@@ -17,32 +17,32 @@ import { XP_VALUES, getLevelByXp } from "@/lib/levels";
 const TRACK_PERSONAL = {
   id: "personal",
   title: "Tài chính cá nhân",
-  subtitle: "Chưa có nền tảng tài chính",
+  subtitle: "Lộ trình 60 ngày",
   description:
     "Dành cho người muốn hiểu tiền bạc, kiểm soát chi tiêu, xây dựng tài sản và đầu tư thông minh — không cần kiến thức ngành.",
-  pillars: ["Quản lý dòng tiền", "Tích lũy và đầu tư", "Kế hoạch tài chính dài hạn"],
+  pillars: ["Tư duy tiền bạc", "Đầu tư cá nhân", "Lập kế hoạch tài chính"],
   stages: [
     {
       label: "Chặng 1",
-      name: "Tư duy tiền bạc & tài chính cơ bản",
+      name: "Tư duy tiền bạc và tài chính cơ bản",
       days: [1, 20] as [number, number],
       available: true,
     },
     {
       label: "Chặng 2",
-      name: "Đầu tư thực tế: cổ phiếu, ETF, quỹ chỉ số",
+      name: "Cổ phiếu, ETF và quỹ đầu tư",
       days: [201, 220] as [number, number],
       available: false,
     },
     {
       label: "Chặng 3",
-      name: "Bất động sản & bảo hiểm cá nhân",
+      name: "Trái phiếu và các công cụ cố định",
       days: [221, 240] as [number, number],
       available: false,
     },
     {
       label: "Chặng 4",
-      name: "Kế hoạch hưu trí & tự do tài chính",
+      name: "Danh mục đầu tư và kế hoạch hưu trí",
       days: [241, 260] as [number, number],
       available: false,
     },
