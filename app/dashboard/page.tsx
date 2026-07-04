@@ -8,8 +8,6 @@ import { useProgress } from "@/lib/client-hooks";
 import { lessons } from "@/lib/lessons";
 import { createClient } from "@/lib/supabase";
 import UserStats from "@/components/UserStats";
-import Leaderboard from "@/components/Leaderboard";
-import Roadmap from "@/components/Roadmap";
 import UserMenu from "@/components/UserMenu";
 import { XP_VALUES, getLevelByXp } from "@/lib/levels";
 
@@ -171,52 +169,6 @@ export default function Dashboard() {
   const totalDone = completed.length;
   const totalLessons = sorted.length;
 
-  // Mock leaderboard data (in a real app, fetch from database)
-  const mockLeaderboardEntries = [
-    {
-      rank: 1,
-      name: "Nguyễn Văn A",
-      xp: 450,
-      lessonsCompleted: 45,
-      avgQuizScore: 88,
-      level: getLevelByXp(450),
-    },
-    {
-      rank: 2,
-      name: "Trần Thị B",
-      xp: 380,
-      lessonsCompleted: 38,
-      avgQuizScore: 82,
-      level: getLevelByXp(380),
-    },
-    {
-      rank: 3,
-      name: "Phạm Văn C",
-      xp: 320,
-      lessonsCompleted: 32,
-      avgQuizScore: 75,
-      level: getLevelByXp(320),
-    },
-    {
-      rank: 4,
-      name: user?.user_metadata?.full_name || "Bạn",
-      xp: userXp,
-      lessonsCompleted: totalDone,
-      avgQuizScore: avgQuizScore,
-      level: getLevelByXp(userXp),
-    },
-  ].sort((a, b) => b.xp - a.xp);
-
-  // Update ranks after sorting
-  const leaderboardWithRanks = mockLeaderboardEntries.map((entry, idx) => ({
-    ...entry,
-    rank: idx + 1,
-  }));
-
-  const userLeaderboardEntry = leaderboardWithRanks.find(
-    (e) => e.name === (user?.user_metadata?.full_name || "Bạn")
-  );
-
   return (
     <div className="min-h-screen bg-white">
       {/* ── Sticky header ── */}
@@ -239,9 +191,9 @@ export default function Dashboard() {
         </div>
       </div>
 
-      <div className="px-6 py-8 space-y-8">
-        {/* ── User Stats Section (Full Width) ── */}
-        <div className="max-w-7xl mx-auto">
+      <div className="px-6 py-8">
+        {/* ── User Stats Section ── */}
+        <div className="max-w-4xl mx-auto mb-8">
           <UserStats
             xp={userXp}
             lessonsCompleted={totalDone}
@@ -250,25 +202,17 @@ export default function Dashboard() {
           />
         </div>
 
-        {/* ── Three Column Layout: Roadmap | Lessons | Leaderboard ── */}
-        <div className="max-w-7xl mx-auto grid grid-cols-12 gap-6">
-          {/* Left: Roadmap (small) */}
-          <div className="col-span-3 hidden lg:block">
-            <Roadmap stages={track.stages} activeTrack={activeTrack} />
-          </div>
-
-          {/* Middle: Lessons (main content) */}
-          <div className="col-span-12 lg:col-span-6">
-
-        {/* ── Track selector cards ── */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        {/* ── Main Content ── */}
+        <div className="max-w-4xl mx-auto">
+          {/* Track selector - Compact */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-8">
           {[TRACK_PERSONAL, TRACK_PROFESSIONAL].map((t) => {
             const isActive = activeTrack === t.id;
             return (
               <button
                 key={t.id}
                 onClick={() => setActiveTrack(t.id as "personal" | "professional")}
-                className={`text-left rounded-2xl border-2 px-6 py-5 transition-all duration-200 ${
+                className={`text-left rounded-xl border-2 px-5 py-4 transition-all ${
                   isActive
                     ? "border-stone-900 bg-stone-900 text-white"
                     : "border-stone-200 bg-white text-stone-700 hover:border-stone-400"
@@ -277,39 +221,16 @@ export default function Dashboard() {
                 <div className={`text-xs font-bold uppercase tracking-widest mb-1 ${isActive ? "text-stone-400" : "text-stone-400"}`}>
                   {t.subtitle}
                 </div>
-                <div className={`text-lg font-bold mb-2 ${isActive ? "text-white" : "text-stone-900"}`}>
+                <div className={`text-base font-bold ${isActive ? "text-white" : "text-stone-900"}`}>
                   {t.title}
-                </div>
-                <p className={`text-sm leading-relaxed mb-4 ${isActive ? "text-stone-300" : "text-stone-500"}`}>
-                  {t.description}
-                </p>
-                <div className="space-y-1">
-                  {t.pillars.map((p) => (
-                    <div key={p} className={`flex items-center gap-2 text-sm ${isActive ? "text-stone-300" : "text-stone-500"}`}>
-                      <span className={`w-1 h-1 rounded-full flex-shrink-0 ${isActive ? "bg-stone-400" : "bg-stone-300"}`} />
-                      {p}
-                    </div>
-                  ))}
-                </div>
-                <div className={`mt-4 text-xs font-semibold ${isActive ? "text-stone-300" : "text-stone-400"}`}>
-                  {t.stages.length} chặng · {t.stages.filter(s => s.available).length} đang mở
                 </div>
               </button>
             );
           })}
         </div>
 
-        {/* ── Divider with active track label ── */}
-        <div className="flex items-center gap-4">
-          <div className="flex-1 h-px bg-stone-100" />
-          <span className="text-xs font-bold text-stone-400 uppercase tracking-widest whitespace-nowrap">
-            {track.title}
-          </span>
-          <div className="flex-1 h-px bg-stone-100" />
-        </div>
-
-        {/* ── Stages + lessons ── */}
-        <div className="space-y-8">
+          {/* ── Stages + lessons ── */}
+          <div className="space-y-6 mt-8">
           {track.stages.map((stage) => {
             const stageLessons = sorted.filter(
               (l) => l.id >= stage.days[0] && l.id <= stage.days[1]
@@ -443,15 +364,6 @@ export default function Dashboard() {
               </div>
             );
           })}
-        </div>
-          </div>
-
-          {/* Right: Leaderboard (small) */}
-          <div className="col-span-3 hidden lg:block">
-            <Leaderboard
-              entries={leaderboardWithRanks}
-              currentUserRank={userLeaderboardEntry?.rank}
-            />
           </div>
         </div>
       </div>
