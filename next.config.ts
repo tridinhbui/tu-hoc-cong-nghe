@@ -1,6 +1,9 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
+  // Don't advertise the framework to would-be attackers scanning for
+  // framework-specific CVEs.
+  poweredByHeader: false,
   images: {
     remotePatterns: [
       {
