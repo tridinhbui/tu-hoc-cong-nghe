@@ -5620,7 +5620,7 @@ export const lessons: Lesson[] = [
       },
     ],
     keyTakeaways: ["Commodity = hàng hóa chuẩn hóa, price taker", "Spot vs Futures: contango vs backwardation", "Phân tích: ai hưởng lợi, ai bị hại khi commodity tăng?"],
-    track: "professional",
+    track: "personal",
     sections: [
       { type: "lead", text: "Từ ly cà phê buổi sáng đến vé máy bay bạn mua, giá cả gần như mọi thứ trong nền kinh tế đều chịu ảnh hưởng từ một nhóm hàng hóa gốc gọi là commodity — dầu thô, kim loại, nông sản. Hiểu commodity là hiểu một trong những 'cost driver' quan trọng nhất chi phối lợi nhuận doanh nghiệp toàn cầu." },
       { type: "paragraph", text: "Commodity (hàng hóa cơ bản) là những sản phẩm được chuẩn hóa về chất lượng và quy cách đến mức một đơn vị hàng hóa từ nhà cung cấp này có thể thay thế hoàn toàn cho đơn vị từ nhà cung cấp khác — một thùng dầu thô WTI ở Texas về bản chất giao dịch giống hệt một thùng dầu WTI ở nơi khác. Chính sự chuẩn hóa này cho phép commodity được giao dịch trên các sàn toàn cầu (CME, ICE, LME) với mức giá thống nhất theo cung-cầu thế giới." },

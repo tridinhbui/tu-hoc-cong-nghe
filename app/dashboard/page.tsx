@@ -18,6 +18,19 @@ export const dynamic = "force-dynamic";
 
 /* ─── Track definitions ─────────────────────────────────────────── */
 
+interface StagePart {
+  name: string;
+  days: [number, number];
+}
+
+interface Stage {
+  label: string;
+  name: string;
+  days: [number, number];
+  available: boolean;
+  parts: StagePart[];
+}
+
 const TRACK_PERSONAL = {
   id: "personal",
   title: "Tài chính cá nhân",
@@ -31,26 +44,42 @@ const TRACK_PERSONAL = {
       name: "Tư duy tiền bạc và tài chính cơ bản",
       days: [1, 20] as [number, number],
       available: true,
+      parts: [
+        { name: "Tiền, thời gian và lãi kép", days: [1, 10] as [number, number] },
+        { name: "Rủi ro, nợ và hệ thống tài chính", days: [11, 20] as [number, number] },
+      ],
     },
     {
       label: "Chặng 2",
       name: "Cổ phiếu, ETF và quỹ đầu tư",
       days: [201, 220] as [number, number],
       available: true,
+      parts: [
+        { name: "Cổ phiếu, ETF và quỹ chỉ số", days: [201, 210] as [number, number] },
+        { name: "Tâm lý đầu tư và thực hành", days: [211, 220] as [number, number] },
+      ],
     },
     {
       label: "Chặng 3",
       name: "Trái phiếu và các công cụ cố định",
       days: [221, 240] as [number, number],
       available: true,
+      parts: [
+        { name: "Nền tảng trái phiếu", days: [221, 230] as [number, number] },
+        { name: "Chiến lược và rủi ro trái phiếu", days: [231, 240] as [number, number] },
+      ],
     },
     {
       label: "Chặng 4",
       name: "Danh mục đầu tư và kế hoạch hưu trí",
-      days: [241, 260] as [number, number],
+      days: [241, 262] as [number, number],
       available: true,
+      parts: [
+        { name: "Danh mục theo tuổi và kế hoạch hưu trí", days: [241, 250] as [number, number] },
+        { name: "Bảo vệ tài sản và tổng kết hành trình", days: [251, 262] as [number, number] },
+      ],
     },
-  ],
+  ] satisfies Stage[],
 };
 
 const TRACK_PROFESSIONAL = {
@@ -66,56 +95,92 @@ const TRACK_PROFESSIONAL = {
       name: "Kế toán nền tảng",
       days: [21, 40] as [number, number],
       available: true,
+      parts: [
+        { name: "Ngôn ngữ kế toán và bảng cân đối", days: [21, 30] as [number, number] },
+        { name: "Vốn lưu động và nguyên tắc ghi nhận", days: [31, 40] as [number, number] },
+      ],
     },
     {
       label: "Chặng 2",
       name: "Đọc 3 báo cáo tài chính",
       days: [41, 60] as [number, number],
       available: true,
+      parts: [
+        { name: "Income Statement và Balance Sheet", days: [41, 50] as [number, number] },
+        { name: "Cash Flow Statement và case thực tế", days: [51, 60] as [number, number] },
+      ],
     },
     {
       label: "Chặng 3",
       name: "Chỉ số tài chính cơ bản",
       days: [61, 80] as [number, number],
       available: true,
+      parts: [
+        { name: "Biên lợi nhuận và khả năng sinh lời", days: [61, 70] as [number, number] },
+        { name: "Hiệu quả vận hành và định giá cơ bản", days: [71, 80] as [number, number] },
+      ],
     },
     {
       label: "Chặng 4",
       name: "Giá trị thời gian của tiền",
       days: [81, 100] as [number, number],
       available: true,
+      parts: [
+        { name: "PV, FV và các công cụ chiết khấu", days: [81, 90] as [number, number] },
+        { name: "WACC, CAPM và ứng dụng", days: [91, 100] as [number, number] },
+      ],
     },
     {
       label: "Chặng 5",
       name: "Tài chính doanh nghiệp",
       days: [101, 120] as [number, number],
       available: true,
+      parts: [
+        { name: "Cơ cấu vốn và M&A", days: [101, 110] as [number, number] },
+        { name: "Vận hành vốn và tài chính khởi nghiệp", days: [111, 120] as [number, number] },
+      ],
     },
     {
       label: "Chặng 6",
       name: "Cổ phiếu và định giá doanh nghiệp",
       days: [121, 140] as [number, number],
       available: true,
+      parts: [
+        { name: "Định giá tương đối (multiples)", days: [121, 130] as [number, number] },
+        { name: "Định giá DCF", days: [131, 140] as [number, number] },
+      ],
     },
     {
       label: "Chặng 7",
       name: "Trái phiếu, lãi suất và tín dụng",
       days: [141, 160] as [number, number],
       available: true,
+      parts: [
+        { name: "Định giá trái phiếu và lãi suất", days: [141, 150] as [number, number] },
+        { name: "Rủi ro tín dụng và các loại trái phiếu", days: [151, 160] as [number, number] },
+      ],
     },
     {
       label: "Chặng 8",
       name: "Danh mục đầu tư và quản trị rủi ro",
       days: [161, 180] as [number, number],
       available: true,
+      parts: [
+        { name: "Lý thuyết danh mục hiện đại", days: [161, 170] as [number, number] },
+        { name: "Đo lường hiệu quả và các loại quỹ", days: [171, 180] as [number, number] },
+      ],
     },
     {
       label: "Chặng 9",
       name: "Phái sinh và công cụ tài chính nâng cao",
       days: [181, 200] as [number, number],
       available: true,
+      parts: [
+        { name: "Hợp đồng phái sinh cơ bản", days: [181, 190] as [number, number] },
+        { name: "Swap, phòng hộ rủi ro và tổng kết", days: [191, 200] as [number, number] },
+      ],
     },
-  ],
+  ] satisfies Stage[],
 };
 
 /* ─── Component ─────────────────────────────────────────────────── */
@@ -142,6 +207,26 @@ export default function Dashboard() {
   const [userXp, setUserXp] = useState(0);
   const [avgQuizScore, setAvgQuizScore] = useState(0);
   const [leaderboardEntries, setLeaderboardEntries] = useState<any[]>([]);
+  const [openStages, setOpenStages] = useState<Set<string>>(new Set());
+  const [openParts, setOpenParts] = useState<Set<string>>(new Set());
+
+  const toggleStage = (key: string) => {
+    setOpenStages((prev) => {
+      const next = new Set(prev);
+      if (next.has(key)) next.delete(key);
+      else next.add(key);
+      return next;
+    });
+  };
+
+  const togglePart = (key: string) => {
+    setOpenParts((prev) => {
+      const next = new Set(prev);
+      if (next.has(key)) next.delete(key);
+      else next.add(key);
+      return next;
+    });
+  };
 
   // Check auth and calculate XP on mount
   useEffect(() => {
@@ -317,24 +402,32 @@ export default function Dashboard() {
               (l) => l.id >= stage.days[0] && l.id <= stage.days[1] && (!l.track || l.track === activeTrack)
             );
             const stageDone = stageLessons.filter((l) => completed.includes(l.id)).length;
+            const stageKey = `${activeTrack}-${stage.label}`;
+            const stageOpen = openStages.has(stageKey);
 
             return (
               <div key={stage.label}>
-                {/* Stage header */}
-                <div className="flex items-baseline gap-4 mb-4">
+                {/* Stage header — click to expand/collapse */}
+                <button
+                  onClick={() => toggleStage(stageKey)}
+                  className="w-full flex items-baseline gap-4 mb-4 cursor-pointer text-left"
+                >
                   <span className="text-xs font-extrabold text-stone-900 uppercase tracking-widest bg-stone-100 px-3 py-1 rounded-lg">
                     {stage.label}
                   </span>
-                  <h2 className="text-lg font-extrabold text-stone-900">{stage.name}</h2>
+                  <span className="text-lg font-extrabold text-stone-900" role="heading" aria-level={2}>{stage.name}</span>
                   {stage.available && stageLessons.length > 0 && (
                     <span className="ml-auto text-base font-bold text-stone-900 bg-stone-100 px-4 py-1 rounded-lg">
                       {stageDone}/{stageLessons.length}
                     </span>
                   )}
-                </div>
+                  <span className={`text-stone-400 text-sm transition-transform ${stageOpen ? "rotate-180" : ""}`}>
+                    ▾
+                  </span>
+                </button>
 
                 {/* Not available yet - with lock and loading animation */}
-                {!stage.available && (
+                {stageOpen && !stage.available && (
                   <div className="border-2 border-dashed border-stone-200 rounded-xl px-5 py-6 text-center bg-stone-50 relative overflow-hidden">
                     {/* Animated building background */}
                     <div className="absolute inset-0 bg-gradient-to-r from-transparent via-stone-200 to-transparent opacity-30 animate-pulse" />
@@ -355,7 +448,7 @@ export default function Dashboard() {
                 )}
 
                 {/* Available but no lessons in DB yet - with building animation */}
-                {stage.available && stageLessons.length === 0 && (
+                {stageOpen && stage.available && stageLessons.length === 0 && (
                   <div className="border-2 border-dashed border-stone-200 rounded-xl px-5 py-6 text-center bg-emerald-50 relative overflow-hidden">
                     {/* Animated construction bars */}
                     <div className="absolute inset-0 flex items-center justify-center gap-1 opacity-20">
@@ -374,69 +467,102 @@ export default function Dashboard() {
                   </div>
                 )}
 
-                {/* Lesson list */}
-                {stage.available && stageLessons.length > 0 && (
-                  <div className="space-y-2">
-                    {stageLessons.map((lesson) => {
-                      const isDone = completed.includes(lesson.id);
+                {/* Parts (sub-stages) — each its own collapsible accordion */}
+                {stageOpen && stage.available && stageLessons.length > 0 && (
+                  <div className="space-y-3">
+                    {stage.parts.map((part) => {
+                      const partLessons = sorted.filter(
+                        (l) => l.id >= part.days[0] && l.id <= part.days[1] && (!l.track || l.track === activeTrack)
+                      );
+                      if (partLessons.length === 0) return null;
+                      const partDone = partLessons.filter((l) => completed.includes(l.id)).length;
+                      const partKey = `${stageKey}-${part.name}`;
+                      const partOpen = openParts.has(partKey);
+
                       return (
-                        <div key={lesson.id} className="relative">
-                          <Link
-                            href={`/bai-hoc/${lesson.slug}`}
-                            className={`block rounded-xl border-2 transition-all ${
-                              isDone
-                                ? "bg-emerald-50 border-emerald-200 hover:border-emerald-300 hover:bg-emerald-100"
-                                : "bg-white border-stone-200 hover:border-stone-400 hover:bg-stone-50"
-                            }`}
+                        <div key={part.name} className="border border-stone-200 rounded-xl overflow-hidden">
+                          <button
+                            onClick={() => togglePart(partKey)}
+                            className="w-full flex items-center gap-3 px-5 py-3.5 bg-stone-50 hover:bg-stone-100 transition-colors cursor-pointer text-left"
                           >
-                          <div className="flex items-center gap-4 px-6 py-5">
-                            {/* Day number */}
-                            <div className="w-12 flex-shrink-0 text-center">
-                              <span className={`font-mono text-sm font-extrabold ${isDone ? "text-emerald-600" : "text-stone-400"}`}>
-                                {String(lesson.id).padStart(3, "0")}
-                              </span>
-                            </div>
+                            <span className="font-bold text-stone-800 text-sm">{part.name}</span>
+                            <span className="text-xs text-stone-400 font-mono">
+                              Day {part.days[0]}-{part.days[1]}
+                            </span>
+                            <span className="ml-auto text-sm font-bold text-stone-600 bg-white px-3 py-0.5 rounded-lg border border-stone-200">
+                              {partDone}/{partLessons.length}
+                            </span>
+                            <span className={`text-stone-400 text-sm transition-transform ${partOpen ? "rotate-180" : ""}`}>
+                              ▾
+                            </span>
+                          </button>
 
-                            {/* Status circle */}
-                            <div className="flex-shrink-0">
-                              {isDone ? (
-                                <div className="w-6 h-6 rounded-full bg-emerald-500 flex items-center justify-center">
-                                  <CheckCircle2 className="w-5 h-5 text-white" />
-                                </div>
-                              ) : (
-                                <div className="w-6 h-6 rounded-full border-3 border-stone-300" />
-                              )}
-                            </div>
+                          {partOpen && (
+                            <div className="p-2 space-y-2">
+                              {partLessons.map((lesson) => {
+                                const isDone = completed.includes(lesson.id);
+                                return (
+                                  <Link
+                                    key={lesson.id}
+                                    href={`/bai-hoc/${lesson.slug}`}
+                                    className={`block rounded-xl border-2 transition-all ${
+                                      isDone
+                                        ? "bg-emerald-50 border-emerald-200 hover:border-emerald-300 hover:bg-emerald-100"
+                                        : "bg-white border-stone-200 hover:border-stone-400 hover:bg-stone-50"
+                                    }`}
+                                  >
+                                    <div className="flex items-center gap-4 px-6 py-5">
+                                      {/* Day number */}
+                                      <div className="w-12 flex-shrink-0 text-center">
+                                        <span className={`font-mono text-sm font-extrabold ${isDone ? "text-emerald-600" : "text-stone-400"}`}>
+                                          {String(lesson.id).padStart(3, "0")}
+                                        </span>
+                                      </div>
 
-                            {/* Title + subtitle */}
-                            <div className="flex-1 min-w-0">
-                              <div className={`text-base font-bold leading-snug ${isDone ? "text-emerald-900" : "text-stone-900"}`}>
-                                {lesson.title}
-                              </div>
-                              <div className={`text-sm mt-1 truncate ${isDone ? "text-emerald-700" : "text-stone-600"}`}>
-                                {lesson.subtitle}
-                              </div>
-                            </div>
+                                      {/* Status circle */}
+                                      <div className="flex-shrink-0">
+                                        {isDone ? (
+                                          <div className="w-6 h-6 rounded-full bg-emerald-500 flex items-center justify-center">
+                                            <CheckCircle2 className="w-5 h-5 text-white" />
+                                          </div>
+                                        ) : (
+                                          <div className="w-6 h-6 rounded-full border-3 border-stone-300" />
+                                        )}
+                                      </div>
 
-                            {/* Meta */}
-                            <div className="hidden sm:flex items-center gap-3 flex-shrink-0">
-                              <span className={`text-sm font-semibold ${isDone ? "text-emerald-700" : "text-stone-600"}`}>
-                                {lesson.duration}
-                              </span>
-                              <span className={`text-sm font-bold rounded-lg px-3 py-1 ${
-                                isDone
-                                  ? "bg-emerald-200 text-emerald-900"
-                                  : "bg-stone-100 text-stone-700"
-                              }`}>
-                                {isDone ? "Xong" : lesson.difficulty}
-                              </span>
-                            </div>
+                                      {/* Title + subtitle */}
+                                      <div className="flex-1 min-w-0">
+                                        <div className={`text-base font-bold leading-snug ${isDone ? "text-emerald-900" : "text-stone-900"}`}>
+                                          {lesson.title}
+                                        </div>
+                                        <div className={`text-sm mt-1 truncate ${isDone ? "text-emerald-700" : "text-stone-600"}`}>
+                                          {lesson.subtitle}
+                                        </div>
+                                      </div>
 
-                            <div className={`flex-shrink-0 text-lg font-bold ${isDone ? "text-emerald-600" : "text-stone-400"}`}>
-                              ›
+                                      {/* Meta */}
+                                      <div className="hidden sm:flex items-center gap-3 flex-shrink-0">
+                                        <span className={`text-sm font-semibold ${isDone ? "text-emerald-700" : "text-stone-600"}`}>
+                                          {lesson.duration}
+                                        </span>
+                                        <span className={`text-sm font-bold rounded-lg px-3 py-1 ${
+                                          isDone
+                                            ? "bg-emerald-200 text-emerald-900"
+                                            : "bg-stone-100 text-stone-700"
+                                        }`}>
+                                          {isDone ? "Xong" : lesson.difficulty}
+                                        </span>
+                                      </div>
+
+                                      <div className={`flex-shrink-0 text-lg font-bold ${isDone ? "text-emerald-600" : "text-stone-400"}`}>
+                                        ›
+                                      </div>
+                                    </div>
+                                  </Link>
+                                );
+                              })}
                             </div>
-                          </div>
-                        </Link>
+                          )}
                         </div>
                       );
                     })}
