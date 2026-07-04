@@ -340,19 +340,44 @@ export default function Dashboard() {
                   )}
                 </div>
 
-                {/* Not available yet */}
+                {/* Not available yet - with lock and loading animation */}
                 {!stage.available && (
-                  <div className="border border-dashed border-stone-200 rounded-xl px-5 py-6 text-center">
-                    <p className="text-stone-400 text-sm">Chặng này đang được xây dựng</p>
-                    <p className="text-stone-300 text-xs mt-1">Sắp ra mắt</p>
+                  <div className="border-2 border-dashed border-stone-200 rounded-xl px-5 py-6 text-center bg-stone-50 relative overflow-hidden">
+                    {/* Animated building background */}
+                    <div className="absolute inset-0 bg-gradient-to-r from-transparent via-stone-200 to-transparent opacity-30 animate-pulse" />
+
+                    {/* Lock icon */}
+                    <div className="relative z-10 flex flex-col items-center gap-3">
+                      <div className="w-12 h-12 rounded-lg bg-stone-200 flex items-center justify-center animate-bounce">
+                        <svg className="w-6 h-6 text-stone-600" fill="currentColor" viewBox="0 0 24 24">
+                          <path d="M12 1C6.48 1 2 5.48 2 11v10c0 .55.45 1 1 1h18c.55 0 1-.45 1-1V11c0-5.52-4.48-10-10-10zm0 2c4.41 0 8 3.59 8 8v2H4v-2c0-4.41 3.59-8 8-8zm-3 13h6v2H9z"/>
+                        </svg>
+                      </div>
+                      <div>
+                        <p className="text-stone-600 text-sm font-extrabold">Chặng này bị khoá</p>
+                        <p className="text-stone-400 text-xs mt-1">Hoàn thành chặng trước để mở</p>
+                      </div>
+                    </div>
                   </div>
                 )}
 
-                {/* Available but no lessons in DB yet */}
+                {/* Available but no lessons in DB yet - with building animation */}
                 {stage.available && stageLessons.length === 0 && (
-                  <div className="border border-dashed border-stone-200 rounded-xl px-5 py-6 text-center">
-                    <p className="text-stone-400 text-sm">Bài học đang được biên soạn</p>
-                    <p className="text-stone-300 text-xs mt-1">Sắp có</p>
+                  <div className="border-2 border-dashed border-stone-200 rounded-xl px-5 py-6 text-center bg-emerald-50 relative overflow-hidden">
+                    {/* Animated construction bars */}
+                    <div className="absolute inset-0 flex items-center justify-center gap-1 opacity-20">
+                      <div className="w-1 bg-stone-400 rounded-full animate-pulse" style={{ height: '20px', animationDelay: '0s' }} />
+                      <div className="w-1 bg-stone-400 rounded-full animate-pulse" style={{ height: '28px', animationDelay: '0.2s' }} />
+                      <div className="w-1 bg-stone-400 rounded-full animate-pulse" style={{ height: '24px', animationDelay: '0.4s' }} />
+                      <div className="w-1 bg-stone-400 rounded-full animate-pulse" style={{ height: '20px', animationDelay: '0.6s' }} />
+                    </div>
+
+                    {/* Content */}
+                    <div className="relative z-10 flex flex-col items-center gap-2">
+                      <div className="text-3xl animate-bounce">🏗️</div>
+                      <p className="text-stone-600 text-sm font-extrabold">Đang xây dựng</p>
+                      <p className="text-stone-500 text-xs">Bài học sắp được hoàn thiện</p>
+                    </div>
                   </div>
                 )}
 
@@ -362,15 +387,15 @@ export default function Dashboard() {
                     {stageLessons.map((lesson) => {
                       const isDone = completed.includes(lesson.id);
                       return (
-                        <Link
-                          key={lesson.id}
-                          href={`/bai-hoc/${lesson.slug}`}
-                          className={`block rounded-xl border-2 transition-all ${
-                            isDone
-                              ? "bg-emerald-50 border-emerald-200 hover:border-emerald-300 hover:bg-emerald-100"
-                              : "bg-white border-stone-200 hover:border-stone-400 hover:bg-stone-50"
-                          }`}
-                        >
+                        <div key={lesson.id} className="relative">
+                          <Link
+                            href={`/bai-hoc/${lesson.slug}`}
+                            className={`block rounded-xl border-2 transition-all ${
+                              isDone
+                                ? "bg-emerald-50 border-emerald-200 hover:border-emerald-300 hover:bg-emerald-100"
+                                : "bg-white border-stone-200 hover:border-stone-400 hover:bg-stone-50"
+                            }`}
+                          >
                           <div className="flex items-center gap-4 px-6 py-5">
                             {/* Day number */}
                             <div className="w-12 flex-shrink-0 text-center">
@@ -419,6 +444,7 @@ export default function Dashboard() {
                             </div>
                           </div>
                         </Link>
+                        </div>
                       );
                     })}
                   </div>
