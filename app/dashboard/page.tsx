@@ -9,6 +9,7 @@ import { lessons } from "@/lib/lessons";
 import { createClient } from "@/lib/supabase";
 import UserStats from "@/components/UserStats";
 import UserMenu from "@/components/UserMenu";
+import Leaderboard from "@/components/Leaderboard";
 import { XP_VALUES, getLevelByXp } from "@/lib/levels";
 
 /* ─── Track definitions ─────────────────────────────────────────── */
@@ -121,10 +122,11 @@ export default function Dashboard() {
   const progress = useProgress();
   const completed = progress.completedLessons;
   const [activeTrack, setActiveTrack] = useState<"personal" | "professional">("personal");
-  const [user, setUser] = useState<{ email?: string; user_metadata?: { full_name?: string } } | null>(null);
+  const [user, setUser] = useState<{ id?: string; email?: string; user_metadata?: { full_name?: string } } | null>(null);
   const [loading, setLoading] = useState(true);
   const [userXp, setUserXp] = useState(0);
   const [avgQuizScore, setAvgQuizScore] = useState(0);
+  const [leaderboardEntries, setLeaderboardEntries] = useState<any[]>([]);
 
   // Check auth and calculate XP on mount
   useEffect(() => {
@@ -141,13 +143,60 @@ export default function Dashboard() {
       setUser(session.user);
 
       // Calculate XP from completed lessons (10 XP per lesson)
-      // In a real app, this would come from the database
       const calculatedXp = completed.length * XP_VALUES.LESSON_COMPLETED;
       setUserXp(calculatedXp);
 
-      // Mock average quiz score (in a real app, fetch from database)
+      // Mock average quiz score
       setAvgQuizScore(75);
 
+      // Generate leaderboard data with real user
+      const mockUsers = [
+        {
+          id: "user1",
+          rank: 0,
+          name: "Nguyễn Văn A",
+          xp: 450,
+          lessonsCompleted: 45,
+          avgQuizScore: 88,
+          level: getLevelByXp(450),
+        },
+        {
+          id: "user2",
+          rank: 0,
+          name: "Trần Thị B",
+          xp: 380,
+          lessonsCompleted: 38,
+          avgQuizScore: 82,
+          level: getLevelByXp(380),
+        },
+        {
+          id: "user3",
+          rank: 0,
+          name: "Phạm Văn C",
+          xp: 320,
+          lessonsCompleted: 32,
+          avgQuizScore: 75,
+          level: getLevelByXp(320),
+        },
+        {
+          id: session.user.id,
+          rank: 0,
+          name: session.user.user_metadata?.full_name || session.user.email || "Bạn",
+          xp: calculatedXp,
+          lessonsCompleted: completed.length,
+          avgQuizScore: 75,
+          level: getLevelByXp(calculatedXp),
+        },
+      ];
+
+      // Sort by XP and assign ranks
+      const sorted = mockUsers.sort((a, b) => b.xp - a.xp);
+      const ranked = sorted.map((user, idx) => ({
+        ...user,
+        rank: idx + 1,
+      }));
+
+      setLeaderboardEntries(ranked);
       setLoading(false);
     };
 
@@ -193,7 +242,7 @@ export default function Dashboard() {
 
       <div className="px-6 py-8">
         {/* ── User Stats Section ── */}
-        <div className="max-w-4xl mx-auto mb-8">
+        <div className="max-w-6xl mx-auto mb-8">
           <UserStats
             xp={userXp}
             lessonsCompleted={totalDone}
@@ -202,8 +251,10 @@ export default function Dashboard() {
           />
         </div>
 
-        {/* ── Main Content ── */}
-        <div className="max-w-4xl mx-auto">
+        {/* ── Main Content: Lessons + Leaderboard ── */}
+        <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-3 gap-6">
+          {/* Left: Lessons (2 columns on desktop) */}
+          <div className="lg:col-span-2">
           {/* Track selector - Compact */}
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-8">
           {[TRACK_PERSONAL, TRACK_PROFESSIONAL].map((t) => {
@@ -364,6 +415,15 @@ export default function Dashboard() {
               </div>
             );
           })}
+          </div>
+          </div>
+
+          {/* Right: Leaderboard (1 column on desktop, full width on mobile) */}
+          <div className="lg:col-span-1">
+            <Leaderboard
+              entries={leaderboardEntries}
+              currentUserRank={leaderboardEntries.find((e) => e.id === user?.id)?.rank}
+            />
           </div>
         </div>
       </div>
