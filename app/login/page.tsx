@@ -227,7 +227,7 @@ export default function LoginPage() {
                   className="flex items-center justify-between gap-3 border border-stone-200 hover:border-stone-400 hover:bg-stone-50 rounded-xl px-4 py-3 transition-colors group"
                 >
                   <div>
-                    <div className="text-[10px] font-bold text-stone-400 uppercase tracking-wider">Xem thử miễn phí, không cần đăng nhập</div>
+                    <div className="text-[10px] font-bold text-stone-400 uppercase tracking-wider">Xem thử ngay, không cần đăng nhập</div>
                     <div className="text-sm font-bold text-stone-900">{TRACKS[previewTrack].previewLabel}</div>
                   </div>
                   <span className="text-stone-400 group-hover:text-stone-900 group-hover:translate-x-0.5 transition-all">→</span>
@@ -237,15 +237,6 @@ export default function LoginPage() {
           </div>
         </div>
 
-        {/* Footer: Trust indicators */}
-        <div className="space-y-3 border-t border-stone-100 pt-8">
-          <p className="text-sm font-bold text-stone-900">Được tin tưởng bởi</p>
-          <div className="flex gap-8 text-stone-500 text-sm font-semibold">
-            <div>200+ bài</div>
-            <div>0đ chi phí</div>
-            <div>Mãi mãi</div>
-          </div>
-        </div>
       </div>
 
       {/* ── RIGHT SIDE: Form ── */}
@@ -271,7 +262,7 @@ export default function LoginPage() {
               <p className="text-sm text-stone-500">
                 {mode === "login"
                   ? "Chào mừng trở lại"
-                  : "Miễn phí, không cần thẻ tín dụng"}
+                  : "Tạo tài khoản để bắt đầu học"}
               </p>
             </div>
 
@@ -400,16 +391,6 @@ export default function LoginPage() {
               >
                 Xem thử bài học đầu tiên, chưa cần đăng nhập →
               </a>
-            </div>
-          </div>
-
-          {/* Mobile: Trust indicators */}
-          <div className="lg:hidden mt-8 text-center space-y-2">
-            <p className="text-xs font-bold text-stone-900">Được tin tưởng bởi</p>
-            <div className="flex items-center justify-center gap-4 text-stone-500 text-xs font-semibold">
-              <div>200+ bài</div>
-              <div>0đ</div>
-              <div>Mãi mãi</div>
             </div>
           </div>
         </div>
