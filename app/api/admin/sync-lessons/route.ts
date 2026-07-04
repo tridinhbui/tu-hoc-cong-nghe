@@ -1,9 +1,9 @@
-import { createClient } from "@/lib/supabase";
+import { createAdminClient } from "@/lib/supabase-admin";
 import { lessons } from "@/lib/lessons";
 
 export async function POST() {
   try {
-    const supabase = createClient();
+    const supabase = createAdminClient();
 
     // Sync all lessons to Supabase
     const lessonData = lessons.map((lesson) => ({

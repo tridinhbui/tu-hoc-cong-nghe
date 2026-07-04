@@ -28,6 +28,7 @@ create table if not exists public.lessons (
   explanation text,
   key_takeaways text[],
   status text default 'draft', -- 'draft', 'ready', 'published'
+  track text, -- 'personal', 'professional', or null (shared foundation lesson)
   created_at timestamp with time zone default now(),
   updated_at timestamp with time zone default now()
 );
@@ -36,6 +37,7 @@ create table if not exists public.lessons (
 create index lessons_stage_idx on public.lessons(stage_number);
 create index lessons_day_idx on public.lessons(day_number);
 create index lessons_status_idx on public.lessons(status);
+create index lessons_track_idx on public.lessons(track);
 ```
 
 ---
