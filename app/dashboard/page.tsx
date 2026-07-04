@@ -260,22 +260,40 @@ export default function Dashboard() {
           {[TRACK_PERSONAL, TRACK_PROFESSIONAL].map((t) => {
             const isActive = activeTrack === t.id;
             return (
-              <button
-                key={t.id}
-                onClick={() => setActiveTrack(t.id as "personal" | "professional")}
-                className={`text-left rounded-xl border-2 px-5 py-4 transition-all ${
-                  isActive
-                    ? "border-stone-900 bg-stone-900 text-white"
-                    : "border-stone-200 bg-white text-stone-700 hover:border-stone-400"
-                }`}
-              >
-                <div className={`text-xs font-bold uppercase tracking-widest mb-1 ${isActive ? "text-stone-400" : "text-stone-400"}`}>
-                  {t.subtitle}
+              <div key={t.id} className="relative group">
+                <button
+                  onClick={() => setActiveTrack(t.id as "personal" | "professional")}
+                  className={`w-full text-left rounded-xl border-2 px-5 py-4 transition-all ${
+                    isActive
+                      ? "border-stone-900 bg-stone-900 text-white"
+                      : "border-stone-200 bg-white text-stone-700 hover:border-stone-400"
+                  }`}
+                >
+                  <div className={`text-xs font-bold uppercase tracking-widest mb-1 ${isActive ? "text-stone-400" : "text-stone-400"}`}>
+                    {t.subtitle}
+                  </div>
+                  <div className={`text-base font-bold ${isActive ? "text-white" : "text-stone-900"}`}>
+                    {t.title}
+                  </div>
+                </button>
+
+                {/* Hover Tooltip */}
+                <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-3 hidden group-hover:block z-50">
+                  <div className="bg-stone-900 text-white rounded-xl px-4 py-3 whitespace-nowrap shadow-lg border border-stone-800">
+                    <p className="text-sm font-bold mb-2">{t.description}</p>
+                    <div className="space-y-1 text-xs text-stone-300">
+                      {t.pillars.map((pillar) => (
+                        <div key={pillar} className="flex gap-2">
+                          <span>•</span>
+                          <span>{pillar}</span>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                  {/* Tooltip arrow */}
+                  <div className="absolute top-full left-1/2 -translate-x-1/2 border-8 border-transparent border-t-stone-900" />
                 </div>
-                <div className={`text-base font-bold ${isActive ? "text-white" : "text-stone-900"}`}>
-                  {t.title}
-                </div>
-              </button>
+              </div>
             );
           })}
         </div>
