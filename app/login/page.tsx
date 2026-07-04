@@ -2,10 +2,42 @@
 
 import React, { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
+import { AnimatePresence, motion } from "framer-motion";
 import { createClient } from "@/lib/supabase";
 
 // Reads Supabase env vars at render time — never prerender statically.
 export const dynamic = "force-dynamic";
+
+const TRACKS = {
+  personal: {
+    tab: "Tài chính cá nhân",
+    subtitle: "Lộ trình 80 ngày · dành cho người mới",
+    description: "Quản lý tiền, tiết kiệm, đầu tư cá nhân, lên kế hoạch tài chính — không cần kiến thức ngành.",
+    stages: [
+      "Chặng 1 — Tư duy tiền bạc và tài chính cơ bản",
+      "Chặng 2 — Cổ phiếu, ETF và quỹ đầu tư",
+      "Chặng 3 — Trái phiếu và các công cụ cố định",
+      "Chặng 4 — Danh mục đầu tư và kế hoạch hưu trí",
+    ],
+    previewSlug: "tai-chinh-la-gi",
+    previewLabel: "Day 1: Tài chính là gì?",
+  },
+  professional: {
+    tab: "Tài chính chuyên ngành",
+    subtitle: "Lộ trình 180 ngày · chuyên sâu",
+    description: "Kế toán, đọc báo cáo tài chính, định giá doanh nghiệp, trái phiếu, danh mục và phái sinh.",
+    stages: [
+      "Chặng 1-3 — Kế toán, báo cáo tài chính, chỉ số",
+      "Chặng 4-5 — Giá trị thời gian của tiền, tài chính doanh nghiệp",
+      "Chặng 6-7 — Định giá cổ phiếu, trái phiếu và tín dụng",
+      "Chặng 8-9 — Danh mục đầu tư và công cụ phái sinh",
+    ],
+    previewSlug: "ke-toan-la-gi",
+    previewLabel: "Day 21: Kế toán là ngôn ngữ của kinh doanh",
+  },
+} as const;
+
+type TrackId = keyof typeof TRACKS;
 
 export default function LoginPage() {
   const router = useRouter();
@@ -17,6 +49,7 @@ export default function LoginPage() {
   const [error, setError] = useState("");
   const [mode, setMode] = useState<"login" | "signup">("login");
   const [name, setName] = useState("");
+  const [previewTrack, setPreviewTrack] = useState<TrackId>("personal");
 
   // Check if already logged in
   useEffect(() => {
@@ -142,37 +175,65 @@ export default function LoginPage() {
             </p>
           </div>
 
-          {/* Two Track Preview */}
-          <div className="space-y-4">
-            <div className="border-2 border-stone-200 rounded-2xl p-6 hover:border-stone-300 transition-colors">
-              <div className="text-xs font-bold text-stone-400 uppercase tracking-widest mb-2">
-                Track 1
-              </div>
-              <h3 className="text-lg font-bold text-stone-900 mb-2">Tài chính cá nhân</h3>
-              <p className="text-sm text-stone-600 mb-4">
-                Quản lý tiền, tiết kiệm, đầu tư cá nhân, lên kế hoạch tài chính.
-              </p>
-              <ul className="space-y-2 text-xs text-stone-500">
-                <li className="flex gap-2"><span className="flex-shrink-0">+</span> Chặng 1: Tư duy tiền bạc</li>
-                <li className="flex gap-2"><span className="flex-shrink-0">+</span> Chặng 2-4: Đầu tư thực tế</li>
-                <li className="flex gap-2"><span className="flex-shrink-0">+</span> Không cần kiến thức ngành</li>
-              </ul>
+          {/* Two Track Preview — interactive tabs, not static hover cards */}
+          <div className="border-2 border-stone-200 rounded-2xl overflow-hidden">
+            <div className="grid grid-cols-2">
+              {(Object.keys(TRACKS) as TrackId[]).map((id) => {
+                const t = TRACKS[id];
+                const isActive = previewTrack === id;
+                return (
+                  <button
+                    key={id}
+                    onClick={() => setPreviewTrack(id)}
+                    className={`px-5 py-4 text-left transition-colors cursor-pointer ${
+                      isActive ? "bg-stone-900 text-white" : "bg-white text-stone-500 hover:bg-stone-50"
+                    }`}
+                  >
+                    <div className="text-xs font-bold uppercase tracking-widest opacity-60 mb-1">
+                      {id === "personal" ? "Track 1" : "Track 2"}
+                    </div>
+                    <div className="font-bold text-sm">{t.tab}</div>
+                  </button>
+                );
+              })}
             </div>
 
-            <div className="border-2 border-stone-200 rounded-2xl p-6 hover:border-stone-300 transition-colors">
-              <div className="text-xs font-bold text-stone-400 uppercase tracking-widest mb-2">
-                Track 2
-              </div>
-              <h3 className="text-lg font-bold text-stone-900 mb-2">Tài chính chuyên ngành</h3>
-              <p className="text-sm text-stone-600 mb-4">
-                Kế toán, phân tích báo cáo, định giá, tài chính doanh nghiệp.
-              </p>
-              <ul className="space-y-2 text-xs text-stone-500">
-                <li className="flex gap-2"><span className="flex-shrink-0">+</span> Chặng 1-9: Từ cơ bản đến nâng cao</li>
-                <li className="flex gap-2"><span className="flex-shrink-0">+</span> 50+ bài học chuyên sâu</li>
-                <li className="flex gap-2"><span className="flex-shrink-0">+</span> Theo ngành, theo lĩnh vực</li>
-              </ul>
-            </div>
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={previewTrack}
+                initial={{ opacity: 0, y: 6 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -6 }}
+                transition={{ duration: 0.18 }}
+                className="p-6 space-y-4"
+              >
+                <div>
+                  <div className="text-xs font-bold text-stone-400 uppercase tracking-widest mb-1">
+                    {TRACKS[previewTrack].subtitle}
+                  </div>
+                  <p className="text-sm text-stone-600">{TRACKS[previewTrack].description}</p>
+                </div>
+
+                <ul className="space-y-2 text-xs text-stone-500">
+                  {TRACKS[previewTrack].stages.map((s) => (
+                    <li key={s} className="flex gap-2">
+                      <span className="flex-shrink-0 text-stone-300">→</span> {s}
+                    </li>
+                  ))}
+                </ul>
+
+                <a
+                  href={`/bai-hoc/${TRACKS[previewTrack].previewSlug}`}
+                  className="flex items-center justify-between gap-3 border border-stone-200 hover:border-stone-400 hover:bg-stone-50 rounded-xl px-4 py-3 transition-colors group"
+                >
+                  <div>
+                    <div className="text-[10px] font-bold text-stone-400 uppercase tracking-wider">Xem thử miễn phí, không cần đăng nhập</div>
+                    <div className="text-sm font-bold text-stone-900">{TRACKS[previewTrack].previewLabel}</div>
+                  </div>
+                  <span className="text-stone-400 group-hover:text-stone-900 group-hover:translate-x-0.5 transition-all">→</span>
+                </a>
+              </motion.div>
+            </AnimatePresence>
           </div>
         </div>
 
