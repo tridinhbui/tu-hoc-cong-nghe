@@ -253,7 +253,7 @@ export default function LessonPageLayout({ lesson, quiz, children }: Props) {
         <div className="flex flex-col lg:flex-row gap-8 lg:gap-12 items-start">
 
           {/* ── LEFT: Article ─────────────────────────────────────── */}
-          <article ref={articleRef} className="flex-1 min-w-0 space-y-8">
+          <article ref={articleRef} className="flex-1 min-w-0 space-y-8 pb-20 lg:pb-0">
             {/* Hero */}
             <div className={`rounded-2xl ${c.bg} border-2 ${c.border} p-8 sm:p-10`}>
               <div className={`text-sm font-extrabold uppercase tracking-widest ${c.text} mb-3`}>
