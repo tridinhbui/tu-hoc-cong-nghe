@@ -23,12 +23,11 @@ export default function MidpointInteractive({
       initial={{ opacity: 0, y: 10 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
-      className="bg-gradient-to-br from-blue-50 to-indigo-50 border-2 border-indigo-200 rounded-2xl p-6 my-8"
+      className="bg-stone-50 border-2 border-stone-200 rounded-2xl p-6 my-8"
     >
       <div className="flex items-center gap-2 mb-4">
-        <span className="text-2xl">⏸️</span>
-        <h3 className="text-base font-bold text-indigo-900">Dừng & Kiểm tra</h3>
-        <span className="ml-auto text-xs font-bold text-indigo-600 bg-indigo-100 px-3 py-1 rounded-full">
+        <h3 className="text-base font-bold text-stone-900">Dừng & Kiểm tra</h3>
+        <span className="ml-auto text-xs font-bold text-stone-500 bg-stone-100 px-3 py-1 rounded-full">
           Điểm giữa bài
         </span>
       </div>
@@ -43,7 +42,7 @@ export default function MidpointInteractive({
             onClick={() => setSelected(i)}
             className={`w-full text-left px-4 py-3 rounded-xl border-2 transition-all ${
               selected === i
-                ? "border-indigo-500 bg-white text-indigo-900 font-semibold"
+                ? "border-stone-900 bg-white text-stone-900 font-semibold"
                 : submitted
                   ? i === question.correct
                     ? "border-emerald-500 bg-emerald-50 text-emerald-900"
@@ -60,7 +59,7 @@ export default function MidpointInteractive({
       {selected !== null && !submitted && (
         <button
           onClick={() => setSubmitted(true)}
-          className="w-full bg-indigo-600 hover:bg-indigo-700 text-white py-2.5 rounded-xl font-bold text-sm transition"
+          className="w-full bg-stone-900 hover:bg-stone-800 text-white py-2.5 rounded-xl font-bold text-sm transition"
         >
           Kiểm tra
         </button>
@@ -73,13 +72,13 @@ export default function MidpointInteractive({
           className={`mt-4 p-4 rounded-xl ${
             isCorrect
               ? "bg-emerald-100 border border-emerald-300"
-              : "bg-blue-100 border border-blue-300"
+              : "bg-stone-100 border border-stone-300"
           }`}
         >
-          <p className={`font-bold ${isCorrect ? "text-emerald-900" : "text-blue-900"}`}>
-            {isCorrect ? "✨ Chính xác!" : "💡 Chưa đúng — xem giải thích"}
+          <p className={`font-bold ${isCorrect ? "text-emerald-900" : "text-stone-900"}`}>
+            {isCorrect ? "Chính xác!" : "Chưa đúng — xem giải thích"}
           </p>
-          <p className={`text-sm mt-1 ${isCorrect ? "text-emerald-800" : "text-blue-800"}`}>
+          <p className={`text-sm mt-1 ${isCorrect ? "text-emerald-800" : "text-stone-700"}`}>
             {question.explanation}
           </p>
           <button
@@ -88,7 +87,7 @@ export default function MidpointInteractive({
               setSubmitted(false);
               onComplete?.();
             }}
-            className="mt-3 text-sm font-bold text-indigo-600 hover:text-indigo-700 underline"
+            className="mt-3 text-sm font-bold text-stone-700 hover:text-stone-900 underline"
           >
             Tiếp tục đọc →
           </button>

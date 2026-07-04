@@ -40,7 +40,7 @@ function OpeningQuestionBlock({
             else if (i === selected) btnCls = "border-rose-500 bg-rose-50 text-rose-800";
             else btnCls = "border-stone-100 bg-stone-50/20 text-stone-400 opacity-60";
           } else if (selected === i) {
-            btnCls = "border-[#5F5DF0] bg-[#EEEDFF] text-[#4F46E5] font-semibold border-2";
+            btnCls = "border-stone-900 bg-stone-100 text-stone-900 font-semibold border-2";
           }
 
           return (
@@ -64,7 +64,7 @@ function OpeningQuestionBlock({
       {selected !== null && !submitted && (
         <button
           onClick={() => setSubmitted(true)}
-          className="w-full bg-[#5F5DF0] hover:bg-[#4E4CD9] text-white py-3 rounded-xl font-bold text-xs uppercase tracking-wider transition-all cursor-pointer shadow-sm active:scale-[0.98]"
+          className="w-full bg-stone-900 hover:bg-stone-800 text-white py-3 rounded-xl font-bold text-xs uppercase tracking-wider transition-all cursor-pointer shadow-sm active:scale-[0.98]"
         >
           Xác nhận câu trả lời
         </button>
@@ -79,7 +79,7 @@ function OpeningQuestionBlock({
           }`}
         >
           <p className="font-semibold mb-1">
-            {selected === correct ? "✨ Đúng rồi!" : "💡 Chưa đúng — nhưng không sao!"}
+            {selected === correct ? "Đúng rồi!" : "Chưa đúng — nhưng không sao!"}
           </p>
           <p>{explanation}</p>
         </motion.div>
@@ -102,7 +102,7 @@ export default function LessonPage({ params }: { params: Promise<{ slug: string 
   const meta = {
     id: lesson.id,
     day: lesson.id,
-    accent: "indigo",
+    accent: "stone",
     title: lesson.title,
     subtitle: lesson.subtitle,
     duration: lesson.duration,
@@ -179,32 +179,29 @@ export default function LessonPage({ params }: { params: Promise<{ slug: string 
 
       {/* 5. Real-life Example block */}
       {lesson.realWorldExample && lesson.realWorldExample.company && (
-        <div className="space-y-3">
-          <div className="text-[10px] font-bold text-stone-400 uppercase tracking-wider">
-            Ví dụ thực tế
-          </div>
-          <div className="bg-gradient-to-br from-indigo-50/50 to-purple-50/50 rounded-2xl border border-indigo-100/40 p-6">
-            <h4 className="font-bold text-stone-900 text-base mb-2">
-              🏢 {lesson.realWorldExample.company}
-            </h4>
-            <p className="text-stone-600 text-sm leading-relaxed">
-              {lesson.realWorldExample.description}
-            </p>
-          </div>
+        <div className="border border-stone-200 rounded-2xl p-6 bg-stone-50 space-y-3">
+          <p className="text-xs font-bold text-stone-400 uppercase tracking-widest">
+            Ví dụ thực tế · {lesson.realWorldExample.company}
+          </p>
+          <p className="text-stone-700 text-base leading-relaxed">
+            {lesson.realWorldExample.description}
+          </p>
         </div>
       )}
 
       {/* 6. Key Takeaways block */}
       {lesson.keyTakeaways && lesson.keyTakeaways.length > 0 && (
-        <div className="bg-emerald-50/60 border border-emerald-100/70 rounded-2xl p-6">
-          <h3 className="font-bold text-emerald-950 mb-3 flex items-center gap-2">
-            <span>📌</span> Ghi nhớ nhanh
-          </h3>
-          <div className="space-y-2.5">
+        <div className="rounded-2xl overflow-hidden shadow-xl">
+          <div className="bg-stone-900 px-6 py-5">
+            <p className="text-white font-extrabold text-xl tracking-wide">Ghi nhớ nhanh</p>
+          </div>
+          <div className="bg-stone-800 divide-y divide-stone-700">
             {lesson.keyTakeaways.map((t, i) => (
-              <div key={i} className="flex items-start gap-2 text-sm text-emerald-800 leading-relaxed">
-                <span className="text-emerald-500 font-bold flex-shrink-0">✓</span>
-                <span>{t}</span>
+              <div key={i} className="flex items-start gap-4 px-6 py-5">
+                <span className="w-8 h-8 rounded-full bg-stone-600 flex items-center justify-center text-white font-bold text-sm flex-shrink-0 mt-0.5">
+                  {i + 1}
+                </span>
+                <p className="text-stone-200 text-base leading-relaxed font-medium">{t}</p>
               </div>
             ))}
           </div>
