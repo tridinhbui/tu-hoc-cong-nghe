@@ -243,13 +243,60 @@ export default function LoginPage() {
       <div className="w-full lg:w-1/2 bg-stone-50 flex flex-col items-center justify-center px-6 py-16 lg:py-0">
         <div className="w-full max-w-sm">
           {/* Mobile Brand (visible on small screens) */}
-          <div className="lg:hidden space-y-4 mb-12 text-center">
+          <div className="lg:hidden space-y-4 mb-8 text-center">
             <div className="text-sm font-bold text-stone-400 uppercase tracking-widest">
               Tự Học Tài Chính
             </div>
             <h1 className="text-4xl font-bold text-stone-900">
               Hiểu tiền bạc
             </h1>
+          </div>
+
+          {/* Mobile: same interactive track tabs as desktop, just more compact */}
+          <div className="lg:hidden border-2 border-stone-200 rounded-2xl overflow-hidden mb-8">
+            <div className="grid grid-cols-2">
+              {(Object.keys(TRACKS) as TrackId[]).map((id) => {
+                const t = TRACKS[id];
+                const isActive = previewTrack === id;
+                return (
+                  <button
+                    key={id}
+                    onClick={() => setPreviewTrack(id)}
+                    className={`px-4 py-3 text-left transition-colors cursor-pointer ${
+                      isActive ? "bg-stone-900 text-white" : "bg-white text-stone-500"
+                    }`}
+                  >
+                    <div className="text-[10px] font-bold uppercase tracking-widest opacity-60 mb-0.5">
+                      {id === "personal" ? "Track 1" : "Track 2"}
+                    </div>
+                    <div className="font-bold text-xs">{t.tab}</div>
+                  </button>
+                );
+              })}
+            </div>
+
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={previewTrack}
+                initial={{ opacity: 0, y: 4 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -4 }}
+                transition={{ duration: 0.18 }}
+                className="p-4 space-y-3"
+              >
+                <p className="text-xs text-stone-600">{TRACKS[previewTrack].description}</p>
+                <a
+                  href={`/bai-hoc/${TRACKS[previewTrack].previewSlug}`}
+                  className="flex items-center justify-between gap-3 border border-stone-200 hover:border-stone-400 rounded-xl px-3 py-2.5 transition-colors"
+                >
+                  <div>
+                    <div className="text-[9px] font-bold text-stone-400 uppercase tracking-wider">Xem thử ngay</div>
+                    <div className="text-xs font-bold text-stone-900">{TRACKS[previewTrack].previewLabel}</div>
+                  </div>
+                  <span className="text-stone-400">→</span>
+                </a>
+              </motion.div>
+            </AnimatePresence>
           </div>
 
           {/* Form Card */}
@@ -383,15 +430,6 @@ export default function LoginPage() {
               )}
             </div>
 
-            {/* Preview a real lesson before signing up */}
-            <div className="text-center text-sm pt-2">
-              <a
-                href="/bai-hoc/tai-chinh-la-gi"
-                className="text-stone-500 font-semibold hover:text-stone-900 hover:underline"
-              >
-                Xem thử bài học đầu tiên, chưa cần đăng nhập →
-              </a>
-            </div>
           </div>
         </div>
       </div>

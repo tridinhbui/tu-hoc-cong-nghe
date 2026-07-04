@@ -60,7 +60,7 @@ export default function LessonSections({ sections }: { sections: LessonSectionBl
               <div key={i} className="rounded-2xl overflow-hidden border-2 border-stone-900 shadow-lg">
                 <div className="bg-stone-900 px-6 py-4">
                   <p className="text-white font-extrabold text-lg tracking-wide">{block.title}</p>
-                  <p className="text-stone-400 text-sm mt-0.5">{block.subtitle ?? "Hover vào từng dòng để xem chi tiết"}</p>
+                  <p className="text-stone-400 text-sm mt-0.5">{block.subtitle ?? "Chạm hoặc di chuột vào từng dòng"}</p>
                 </div>
                 <div className="divide-y divide-stone-100 bg-white">
                   {block.concepts.map(({ vi, en, def }) => (

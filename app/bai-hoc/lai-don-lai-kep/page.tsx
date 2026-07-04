@@ -151,7 +151,7 @@ export default function LaiDonLaiKepPage() {
         <div className="rounded-2xl overflow-hidden border-2 border-stone-900 shadow-lg">
           <div className="bg-stone-900 px-6 py-4">
             <p className="text-white font-extrabold text-lg tracking-wide">Khái niệm cần nhớ</p>
-            <p className="text-stone-400 text-sm mt-0.5">Hover vào từng dòng để xem chi tiết</p>
+            <p className="text-stone-400 text-sm mt-0.5">Chạm hoặc di chuột vào từng dòng</p>
           </div>
           <div className="divide-y divide-stone-100 bg-white">
             {CONCEPTS.map(({ vi, en, def }) => (
