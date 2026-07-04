@@ -1,10 +1,12 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { CheckCircle2 } from "lucide-react";
 import { useProgress } from "@/lib/client-hooks";
 import { lessons } from "@/lib/lessons";
+import { createClient } from "@/lib/supabase";
 
 /* ─── Track definitions ─────────────────────────────────────────── */
 
@@ -111,9 +113,46 @@ const TRACK_PROFESSIONAL = {
 /* ─── Component ─────────────────────────────────────────────────── */
 
 export default function Dashboard() {
+  const router = useRouter();
+  const supabase = createClient();
   const progress = useProgress();
   const completed = progress.completedLessons;
   const [activeTrack, setActiveTrack] = useState<"personal" | "professional">("personal");
+  const [user, setUser] = useState<{ email?: string; user_metadata?: { full_name?: string } } | null>(null);
+  const [loading, setLoading] = useState(true);
+
+  // Check auth on mount
+  useEffect(() => {
+    const checkAuth = async () => {
+      const {
+        data: { session },
+      } = await supabase.auth.getSession();
+
+      if (!session) {
+        router.replace("/login");
+        return;
+      }
+
+      setUser(session.user);
+      setLoading(false);
+    };
+
+    checkAuth();
+  }, [router, supabase.auth]);
+
+  const handleLogout = async () => {
+    await supabase.auth.signOut();
+    router.replace("/login");
+  };
+
+  if (loading) {
+    return (
+      <div className="min-h-screen bg-white flex items-center justify-center">
+        <p className="text-stone-500">Đang tải...</p>
+      </div>
+    );
+  }
+
   const sorted = [...lessons].sort((a, b) => a.id - b.id);
   const track = activeTrack === "personal" ? TRACK_PERSONAL : TRACK_PROFESSIONAL;
 
@@ -125,13 +164,28 @@ export default function Dashboard() {
       {/* ── Sticky header ── */}
       <div className="border-b border-stone-200 sticky top-0 bg-white z-10">
         <div className="max-w-4xl mx-auto px-6 py-4 flex items-center justify-between">
-          <div>
+          <div className="flex-1">
             <h1 className="text-xl font-bold text-stone-900">Tự Học Tài Chính</h1>
             <p className="text-xs text-stone-400 mt-0.5">Chọn lộ trình phù hợp với bạn</p>
           </div>
-          <div className="text-right">
-            <div className="text-xl font-bold text-stone-900">{totalDone}</div>
-            <div className="text-xs text-stone-400">/ {totalLessons} bài đã học</div>
+          <div className="flex items-center gap-6">
+            <div className="text-right hidden sm:block">
+              <div className="text-xl font-bold text-stone-900">{totalDone}</div>
+              <div className="text-xs text-stone-400">/ {totalLessons} bài đã học</div>
+            </div>
+            <div className="flex items-center gap-3">
+              <div className="text-right hidden xs:block">
+                <p className="text-xs font-semibold text-stone-900">
+                  {user?.user_metadata?.full_name || user?.email}
+                </p>
+              </div>
+              <button
+                onClick={handleLogout}
+                className="text-xs font-bold text-stone-400 hover:text-stone-600 transition-colors px-3 py-1.5 rounded-lg hover:bg-stone-50"
+              >
+                Đăng xuất
+              </button>
+            </div>
           </div>
         </div>
       </div>

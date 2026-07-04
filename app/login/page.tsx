@@ -2,41 +2,125 @@
 
 import React, { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
-import { loginOrRegister, getSession } from "@/lib/auth";
+import { createClient } from "@/lib/supabase";
 
 export default function LoginPage() {
   const router = useRouter();
-  const [name, setName] = useState("");
+  const supabase = createClient();
+
   const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
+  const [mode, setMode] = useState<"login" | "signup">("login");
+  const [name, setName] = useState("");
 
+  // Check if already logged in
   useEffect(() => {
-    if (getSession()) router.replace("/dashboard");
-  }, [router]);
+    const checkAuth = async () => {
+      const {
+        data: { session },
+      } = await supabase.auth.getSession();
+      if (session) {
+        router.replace("/dashboard");
+      }
+    };
+    checkAuth();
+  }, [router, supabase.auth]);
 
-  function handleSubmit(e: React.FormEvent) {
+  // Handle email/password auth
+  async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
     setError("");
-
-    if (!name.trim() || !email.trim()) {
-      setError("Vui lòng điền đầy đủ tên và email.");
-      return;
-    }
-    if (!email.includes("@")) {
-      setError("Địa chỉ email không đúng định dạng.");
-      return;
-    }
-
     setLoading(true);
-    loginOrRegister(name, email);
-    router.push("/dashboard");
+
+    try {
+      if (mode === "signup") {
+        // Validate inputs
+        if (!name.trim() || !email.trim() || !password.trim()) {
+          setError("Vui lòng điền đầy đủ tên, email và mật khẩu.");
+          setLoading(false);
+          return;
+        }
+        if (password.length < 6) {
+          setError("Mật khẩu phải ít nhất 6 ký tự.");
+          setLoading(false);
+          return;
+        }
+
+        const { error: signupError } = await supabase.auth.signUp({
+          email: email.toLowerCase().trim(),
+          password: password,
+          options: {
+            data: {
+              full_name: name.trim(),
+            },
+          },
+        });
+
+        if (signupError) {
+          setError(signupError.message || "Đăng ký thất bại. Vui lòng thử lại.");
+          setLoading(false);
+          return;
+        }
+
+        setError("");
+        setEmail("");
+        setPassword("");
+        setName("");
+        setMode("login");
+        setError(""); // Clear error on success
+        setLoading(false);
+        // Show success message
+        return;
+      } else {
+        // Login mode
+        if (!email.trim() || !password.trim()) {
+          setError("Vui lòng điền email và mật khẩu.");
+          setLoading(false);
+          return;
+        }
+
+        const { error: loginError } = await supabase.auth.signInWithPassword({
+          email: email.toLowerCase().trim(),
+          password: password,
+        });
+
+        if (loginError) {
+          setError(loginError.message || "Đăng nhập thất bại. Vui lòng thử lại.");
+          setLoading(false);
+          return;
+        }
+
+        router.push("/dashboard");
+      }
+    } catch (err) {
+      setError("Có lỗi xảy ra. Vui lòng thử lại.");
+      setLoading(false);
+    }
   }
 
-  function handleDemoLogin() {
+  // Handle Google OAuth
+  async function handleGoogleLogin() {
+    setError("");
     setLoading(true);
-    loginOrRegister("Demo User", "demo@tuhoctaichinh.vn");
-    router.push("/dashboard");
+
+    try {
+      const { error } = await supabase.auth.signInWithOAuth({
+        provider: "google",
+        options: {
+          redirectTo: `${window.location.origin}/auth/callback`,
+        },
+      });
+
+      if (error) {
+        setError("Đăng nhập Google thất bại. Vui lòng thử lại.");
+        setLoading(false);
+      }
+    } catch (err) {
+      setError("Có lỗi xảy ra. Vui lòng thử lại.");
+      setLoading(false);
+    }
   }
 
   return (
@@ -98,24 +182,53 @@ export default function LoginPage() {
           <div className="bg-white border border-stone-200 rounded-2xl p-8 space-y-6">
             {/* Form Title */}
             <div>
-              <h2 className="text-2xl font-bold text-stone-900 mb-2">Bắt đầu ngay</h2>
-              <p className="text-sm text-stone-500">Miễn phí, không cần thẻ tín dụng</p>
+              <h2 className="text-2xl font-bold text-stone-900 mb-2">
+                {mode === "login" ? "Đăng nhập" : "Đăng ký"}
+              </h2>
+              <p className="text-sm text-stone-500">
+                {mode === "login"
+                  ? "Chào mừng trở lại"
+                  : "Miễn phí, không cần thẻ tín dụng"}
+              </p>
             </div>
 
-            {/* Form */}
+            {/* Google Login Button */}
+            <button
+              onClick={handleGoogleLogin}
+              disabled={loading}
+              className="w-full border border-stone-200 hover:bg-stone-50 text-stone-900 py-3 rounded-xl font-bold text-base transition-colors disabled:opacity-60 flex items-center justify-center gap-2"
+            >
+              <svg className="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z" />
+              </svg>
+              Đăng nhập với Google
+            </button>
+
+            {/* Divider */}
+            <div className="relative flex items-center">
+              <div className="flex-1 border-t border-stone-100" />
+              <span className="px-3 text-xs text-stone-400 font-bold uppercase tracking-wider">
+                Hoặc email
+              </span>
+              <div className="flex-1 border-t border-stone-100" />
+            </div>
+
+            {/* Email/Password Form */}
             <form onSubmit={handleSubmit} className="space-y-4">
-              <div className="space-y-2">
-                <label className="text-xs font-bold text-stone-600 uppercase tracking-wider block">
-                  Tên của bạn
-                </label>
-                <input
-                  type="text"
-                  value={name}
-                  onChange={(e) => setName(e.target.value)}
-                  placeholder="Nguyễn Văn A"
-                  className="w-full px-4 py-3 rounded-xl border border-stone-200 bg-white focus:border-stone-400 focus:ring-1 focus:ring-stone-900/5 focus:outline-none text-stone-900 text-base placeholder:text-stone-300"
-                />
-              </div>
+              {mode === "signup" && (
+                <div className="space-y-2">
+                  <label className="text-xs font-bold text-stone-600 uppercase tracking-wider block">
+                    Tên của bạn
+                  </label>
+                  <input
+                    type="text"
+                    value={name}
+                    onChange={(e) => setName(e.target.value)}
+                    placeholder="Nguyễn Văn A"
+                    className="w-full px-4 py-3 rounded-xl border border-stone-200 bg-white focus:border-stone-400 focus:ring-1 focus:ring-stone-900/5 focus:outline-none text-stone-900 text-base placeholder:text-stone-300"
+                  />
+                </div>
+              )}
 
               <div className="space-y-2">
                 <label className="text-xs font-bold text-stone-600 uppercase tracking-wider block">
@@ -126,6 +239,19 @@ export default function LoginPage() {
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   placeholder="email@vi-du.com"
+                  className="w-full px-4 py-3 rounded-xl border border-stone-200 bg-white focus:border-stone-400 focus:ring-1 focus:ring-stone-900/5 focus:outline-none text-stone-900 text-base placeholder:text-stone-300"
+                />
+              </div>
+
+              <div className="space-y-2">
+                <label className="text-xs font-bold text-stone-600 uppercase tracking-wider block">
+                  Mật khẩu
+                </label>
+                <input
+                  type="password"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  placeholder="••••••"
                   className="w-full px-4 py-3 rounded-xl border border-stone-200 bg-white focus:border-stone-400 focus:ring-1 focus:ring-stone-900/5 focus:outline-none text-stone-900 text-base placeholder:text-stone-300"
                 />
               </div>
@@ -141,26 +267,44 @@ export default function LoginPage() {
                 disabled={loading}
                 className="w-full bg-stone-900 hover:bg-stone-800 text-white py-4 rounded-xl font-bold text-base transition-colors disabled:opacity-60 mt-2"
               >
-                {loading ? "Đang xử lý..." : "Bắt đầu học miễn phí"}
+                {loading
+                  ? "Đang xử lý..."
+                  : mode === "login"
+                    ? "Đăng nhập"
+                    : "Đăng ký"}
               </button>
             </form>
 
-            {/* Divider */}
-            <div className="relative flex items-center">
-              <div className="flex-1 border-t border-stone-100" />
-              <span className="px-3 text-xs text-stone-400 font-bold uppercase tracking-wider">
-                Hoặc thử
-              </span>
-              <div className="flex-1 border-t border-stone-100" />
+            {/* Mode Toggle */}
+            <div className="text-center text-sm text-stone-600">
+              {mode === "login" ? (
+                <>
+                  Chưa có tài khoản?{" "}
+                  <button
+                    onClick={() => {
+                      setMode("signup");
+                      setError("");
+                    }}
+                    className="text-stone-900 font-bold hover:underline"
+                  >
+                    Đăng ký
+                  </button>
+                </>
+              ) : (
+                <>
+                  Đã có tài khoản?{" "}
+                  <button
+                    onClick={() => {
+                      setMode("login");
+                      setError("");
+                    }}
+                    className="text-stone-900 font-bold hover:underline"
+                  >
+                    Đăng nhập
+                  </button>
+                </>
+              )}
             </div>
-
-            {/* Demo Button */}
-            <button
-              onClick={handleDemoLogin}
-              className="w-full border border-stone-200 hover:bg-stone-50 text-stone-900 py-3 rounded-xl font-bold text-base transition-colors"
-            >
-              Vào Demo
-            </button>
           </div>
 
           {/* Trust indicators */}
@@ -185,7 +329,7 @@ export default function LoginPage() {
 
       {/* ── Footer Info ── */}
       <div className="bg-white border-t border-stone-100 px-6 py-8 text-center text-xs text-stone-500">
-        <p>Bạn có tài khoản? Đăng nhập bằng email của bạn ở trên</p>
+        <p>Dữ liệu của bạn được bảo vệ bằng mã hóa SSL</p>
       </div>
     </div>
   );
