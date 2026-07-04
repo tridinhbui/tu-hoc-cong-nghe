@@ -63,6 +63,7 @@ export default function LessonPageLayout({ lesson, quiz, children }: Props) {
   const [results, setResults]     = useState<boolean[]>(new Array(quiz.length).fill(false));
   const [activeQ, setActiveQ]     = useState(0);
   const [readPct, setReadPct]     = useState(0);
+  const [isScrolling, setIsScrolling] = useState(false);
   const [userId, setUserId]       = useState<string | null>(null);
   const [newBadge, setNewBadge]   = useState<BadgeDefinition | null>(null);
   const articleRef = useRef<HTMLElement>(null);
@@ -90,16 +91,24 @@ export default function LessonPageLayout({ lesson, quiz, children }: Props) {
 
   useEffect(() => {
     let saveTimer: ReturnType<typeof setTimeout> | null = null;
+    let idleTimer: ReturnType<typeof setTimeout> | null = null;
 
     function onScroll() {
-      const el = articleRef.current;
-      if (!el) return;
-      const top = el.getBoundingClientRect().top;
-      const height = el.offsetHeight;
+      // Tied to actual page scroll position (not the article's bounding box),
+      // so it reads exactly 0% at the very top and 100% at the very bottom —
+      // scrolling back up always brings it back down instead of resting on a
+      // non-zero floor.
       const winH = window.innerHeight;
-      const scrolled = Math.max(0, winH - top);
-      const pct = Math.min(100, Math.round((scrolled / (height + winH * 0.3)) * 100));
+      const docH = document.documentElement.scrollHeight;
+      const totalScroll = docH - winH;
+      const pct = totalScroll > 0 ? Math.min(100, Math.max(0, Math.round((window.scrollY / totalScroll) * 100))) : 100;
       setReadPct(pct);
+
+      // Only fully visible while actively scrolling; fades to a faint sliver
+      // when idle so it doesn't sit there as a permanent visual distraction.
+      setIsScrolling(true);
+      if (idleTimer) clearTimeout(idleTimer);
+      idleTimer = setTimeout(() => setIsScrolling(false), 1200);
 
       if (pct > maxReachedRef.current) {
         maxReachedRef.current = pct;
@@ -116,6 +125,7 @@ export default function LessonPageLayout({ lesson, quiz, children }: Props) {
     return () => {
       window.removeEventListener("scroll", onScroll);
       if (saveTimer) clearTimeout(saveTimer);
+      if (idleTimer) clearTimeout(idleTimer);
     };
   }, [userId, lesson.id]);
 
@@ -188,8 +198,14 @@ export default function LessonPageLayout({ lesson, quiz, children }: Props) {
 
   return (
     <div className="min-h-screen bg-[#FAFAFC] font-sans antialiased text-[#1A1A1E]">
-      {/* Reading Progress Bar (Fixed Left, race track style) */}
-      <div className="fixed left-6 top-1/2 -translate-y-1/2 z-30 hidden lg:block">
+      {/* Reading Progress Bar (Fixed Left, race track style) — full opacity
+          while actively scrolling, fades to a faint sliver when idle so it
+          doesn't linger as a constant on-screen distraction. */}
+      <div
+        className={`fixed left-6 top-1/2 -translate-y-1/2 z-30 hidden lg:block transition-opacity duration-700 ${
+          isScrolling ? "opacity-100" : "opacity-20 hover:opacity-100"
+        }`}
+      >
         <ReadingProgress progress={readPct} onMilestone={handleMilestone} />
       </div>
 
