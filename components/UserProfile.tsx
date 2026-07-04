@@ -30,17 +30,32 @@ export default function UserProfile() {
         return;
       }
 
-      // First create/update profile
-      await fetch("/api/auth/create-profile", { method: "POST" });
+      // Fallback so the avatar/dropdown (and sign-out) always render, even if
+      // the user_profiles row can't be created/read (e.g. table not migrated yet).
+      const fallback: Profile = {
+        id: user.id,
+        email: user.email || "",
+        full_name: user.user_metadata?.full_name || null,
+        avatar_url: user.user_metadata?.avatar_url || null,
+        total_xp: 0,
+        current_level: 1,
+        lessons_completed: 0,
+      };
 
-      // Then fetch profile
-      const { data } = await supabase
-        .from("user_profiles")
-        .select("*")
-        .eq("id", user.id)
-        .single();
+      try {
+        await fetch("/api/auth/create-profile", { method: "POST" });
 
-      setProfile(data);
+        const { data } = await supabase
+          .from("user_profiles")
+          .select("*")
+          .eq("id", user.id)
+          .single();
+
+        setProfile(data || fallback);
+      } catch {
+        setProfile(fallback);
+      }
+
       setLoading(false);
     };
 
