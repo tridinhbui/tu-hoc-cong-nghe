@@ -5,7 +5,7 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { CheckCircle2 } from "lucide-react";
 import { useProgress } from "@/lib/client-hooks";
-import { lessons200Days } from "@/lib/lessons-200days";
+import { allLessons } from "@/lib/lessons-200days";
 import { createClient } from "@/lib/supabase";
 import UserStats from "@/components/UserStats";
 import UserMenu from "@/components/UserMenu";
@@ -218,7 +218,7 @@ export default function Dashboard() {
     );
   }
 
-  const sorted = [...lessons200Days].sort((a, b) => a.id - b.id);
+  const sorted = [...allLessons].sort((a, b) => a.id - b.id);
   const track = activeTrack === "personal" ? TRACK_PERSONAL : TRACK_PROFESSIONAL;
 
   const totalDone = completed.length;
@@ -308,7 +308,7 @@ export default function Dashboard() {
           <div className="space-y-6 mt-8">
           {track.stages.map((stage) => {
             const stageLessons = sorted.filter(
-              (l) => l.id >= stage.days[0] && l.id <= stage.days[1]
+              (l) => l.id >= stage.days[0] && l.id <= stage.days[1] && (!l.track || l.track === activeTrack)
             );
             const stageDone = stageLessons.filter((l) => completed.includes(l.id)).length;
 

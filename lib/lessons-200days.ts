@@ -20,10 +20,11 @@ export interface Lesson {
   };
   quiz: any[];
   keyTakeaways: string[];
+  track?: "professional" | "personal"; // Which track this lesson belongs to
 }
 
 // Helper function to create stub lessons for content under development
-const stubLesson = (id: number, title: string, subtitle: string): Lesson => ({
+const stubLesson = (id: number, title: string, subtitle: string, track: "professional" | "personal" = "professional"): Lesson => ({
   id,
   slug: title.toLowerCase().replace(/\s+/g, "-").replace(/[^\w-]/g, ""),
   title: `Tự học Tài chính Day ${id}: ${title}`,
@@ -40,6 +41,7 @@ const stubLesson = (id: number, title: string, subtitle: string): Lesson => ({
   realWorldExample: { company: "Đang xây", description: "Nội dung sắp tới" },
   quiz: [],
   keyTakeaways: ["Đang chuẩn bị"],
+  track,
 });
 
 export const lessons200Days: Lesson[] = [
@@ -266,10 +268,85 @@ export const lessons200Days: Lesson[] = [
 
 // Helper function to get lesson by slug
 export function getLessonBySlug(slug: string): Lesson | undefined {
-  return lessons200Days.find((l) => l.slug === slug);
+  return allLessons.find((l) => l.slug === slug);
 }
+
+// Personal track lessons (Days 201-260, same IDs but different content)
+const personalTrackLessons: Lesson[] = [
+  // ━━━ PERSONAL CHẶNG 2: CỔ PHIẾU, ETF VÀ QUỸ ĐẦU TƯ (NGÀY 201-220) ━━━
+  stubLesson(201, "Cổ phiếu là gì? Tại sao người mới nên hiểu cổ phiếu", "Cấp độ cơ bản về cổ phiếu", "personal"),
+  stubLesson(202, "Công ty công khai vs công ty riêng tư", "IPO là gì", "personal"),
+  stubLesson(203, "Cách mua cổ phiếu", "Bước đầu tiên vào thị trường chứng khoán", "personal"),
+  stubLesson(204, "Lợi nhuận từ cổ phiếu: giới hạn lợi và cổ tức", "Kiếm tiền từ cổ phiếu", "personal"),
+  stubLesson(205, "P/E ratio đơn giản: cổ phiếu rẻ hay đắt", "Cách đọc báo giá cổ phiếu", "personal"),
+  stubLesson(206, "ETF là gì? Tại sao nó an toàn hơn cổ phiếu riêng lẻ", "Diversified investment vehicle", "personal"),
+  stubLesson(207, "Quỹ chỉ số: theo dõi thị trường", "Index funds", "personal"),
+  stubLesson(208, "Quỹ tương tác: chuyên gia quản lý", "Managed funds", "personal"),
+  stubLesson(209, "Phí quỹ: chi phí ẩn mà bạn phải trả", "Expense ratio", "personal"),
+  stubLesson(210, "Cách chọn ETF phù hợp với bạn", "Building a stock portfolio", "personal"),
+  stubLesson(211, "DCA: đầu tư định kỳ hơn là bỏ lúm", "Dollar-cost averaging", "personal"),
+  stubLesson(212, "Tâm lý trong đầu tư: lòng tham và sợ hãi", "Behavioral finance basics", "personal"),
+  stubLesson(213, "Sai lầm phổ biến của nhà đầu tư mới", "Pitfalls to avoid", "personal"),
+  stubLesson(214, "Kỳ vọng lợi nhuận thực tế từ cổ phiếu", "Realistic return expectations", "personal"),
+  stubLesson(215, "Rủi ro của cổ phiếu đơn lẻ vs danh mục", "Risk management", "personal"),
+  stubLesson(216, "Tính thuế trên lợi nhuận cổ phiếu", "Tax implications", "personal"),
+  stubLesson(217, "Tài khoản tự quản vs tài khoản được quản lý", "Account types", "personal"),
+  stubLesson(218, "Khi nào nên bán cổ phiếu?", "Exit strategy", "personal"),
+  stubLesson(219, "Case: Phân tích một cổ phiếu đơn giản", "Stock analysis example", "personal"),
+  stubLesson(220, "Tổng ôn chặng 2: đầu tư chứng khoán cơ bản", "Stage 2 summary", "personal"),
+
+  // ━━━ PERSONAL CHẶNG 3: TRÁI PHIẾU VÀ CÁC CÔNG CỤ CỐ ĐỊNH (NGÀY 221-240) ━━━
+  stubLesson(221, "Trái phiếu là gì? Cho ai vay tiền", "Introduction to bonds", "personal"),
+  stubLesson(222, "Trái phiếu chính phủ vs trái phiếu công ty", "Government vs corporate bonds", "personal"),
+  stubLesson(223, "Lãi suất và giá trái phiếu", "Bond pricing basics", "personal"),
+  stubLesson(224, "Rủi ro vỡ nợ: xếp hạng trái phiếu", "Credit ratings for bonds", "personal"),
+  stubLesson(225, "Khi nào nên mua trái phiếu", "Bond investment decision", "personal"),
+  stubLesson(226, "Lợi suất trái phiếu vs cổ phiếu", "Bonds vs stocks return comparison", "personal"),
+  stubLesson(227, "Rủi ro lãi suất: giá trái phiếu thay đổi như thế nào", "Interest rate risk", "personal"),
+  stubLesson(228, "Danh mục tối ưu: bao nhiêu trái phiếu bao nhiêu cổ phiếu", "Allocation between bonds and stocks", "personal"),
+  stubLesson(229, "Quỹ trái phiếu: cho vay mà không cần chọn từng trái phiếu", "Bond funds", "personal"),
+  stubLesson(230, "Trái phiếu quốc tế: rủi ro tỷ giá", "International bonds", "personal"),
+  stubLesson(231, "Trái phiếu lãi nổi và trái phiếu lãi cố định", "Fixed vs floating rate bonds", "personal"),
+  stubLesson(232, "Vì sao lãi suất tăng làm giá trái phiếu giảm", "Inverse relationship explained", "personal"),
+  stubLesson(233, "Duration: độ nhạy của trái phiếu với lãi suất", "Bond duration concept", "personal"),
+  stubLesson(234, "Tái đầu tư coupon: lợi suất thực tế", "Reinvestment considerations", "personal"),
+  stubLesson(235, "Thuế trên lợi tức trái phiếu", "Bond tax implications", "personal"),
+  stubLesson(236, "Chiến lược ladder: mua trái phiếu khác hạn", "Bond laddering strategy", "personal"),
+  stubLesson(237, "Khi nào trái phiếu là lựa chọn tốt", "When to choose bonds", "personal"),
+  stubLesson(238, "Các loại trái phiếu khác: bảo hiểm, tiết kiệm", "Other bond types", "personal"),
+  stubLesson(239, "Case: Phân tích danh mục trái phiếu đơn giản", "Bond portfolio example", "personal"),
+  stubLesson(240, "Tổng ôn chặng 3: trái phiếu cho người bảo thủ", "Stage 3 summary", "personal"),
+
+  // ━━━ PERSONAL CHẶNG 4: DANH MỤC ĐẦU TƯ VÀ KỀ HOẠCH HƯU TRỊ (NGÀY 241-260) ━━━
+  stubLesson(241, "Danh mục là gì? Tại sao không nên bỏ tất cả vào 1 rổ", "Portfolio diversification", "personal"),
+  stubLesson(242, "Cân bằng cổ phiếu-trái phiếu theo tuổi", "Age-based allocation", "personal"),
+  stubLesson(243, "Đặc tính cá nhân: cẩn thận hay mạo hiểm", "Risk tolerance assessment", "personal"),
+  stubLesson(244, "Tái cân bằng danh mục hàng năm", "Portfolio rebalancing", "personal"),
+  stubLesson(245, "Phí quản lý: chi phí của danh mục", "Expense optimization", "personal"),
+  stubLesson(246, "Tài khoản hưu trí: 401k, IRA, pension", "Retirement accounts", "personal"),
+  stubLesson(247, "Lợi thế thuế của tài khoản hưu trí", "Tax advantages", "personal"),
+  stubLesson(248, "Bao nhiêu tiền để hưu trí thoải mái", "Retirement savings goal", "personal"),
+  stubLesson(249, "Quy tắc 4%: có thể rút bao nhiêu từ hưu trí", "Safe withdrawal rate", "personal"),
+  stubLesson(250, "Lạm phát và hưu trí: vì sao cần đầu tư", "Inflation impact on retirement", "personal"),
+  stubLesson(251, "Hưu trí sớm: bao nhiêu tiền cần", "Early retirement planning", "personal"),
+  stubLesson(252, "Bảo hiểm: bảo vệ danh mục từ rủi ro", "Insurance role in planning", "personal"),
+  stubLesson(253, "Anh em, bạn bè, gia đình: vay tiền như thế nào", "Lending to loved ones", "personal"),
+  stubLesson(254, "Kế hoạch thừa kế: để lại gì cho con em", "Estate planning basics", "personal"),
+  stubLesson(255, "Bảo mật tài chính: bảo vệ tiền khỏi lừa đảo", "Financial security", "personal"),
+  stubLesson(256, "Theo dõi danh mục: cần kiểm tra bao lâu", "Monitoring frequency", "personal"),
+  stubLesson(257, "Khi nào cần tư vấn tài chính chuyên nghiệp", "When to hire an advisor", "personal"),
+  stubLesson(258, "Tờ khai tài chính cá nhân: biết bạn có gì", "Net worth statement", "personal"),
+  stubLesson(259, "Case: Xây dựng danh mục cho một gia đình", "Family portfolio example", "personal"),
+  stubLesson(260, "Tổng ôn chặng 4: từ bỏ lùi đến tự do tài chính", "Stage 4 summary", "personal"),
+];
+
+// Combine professional and personal lessons
+export const allLessons = [...lessons200Days, ...personalTrackLessons].sort((a, b) => {
+  if (a.id !== b.id) return a.id - b.id;
+  return (a.track || "professional").localeCompare(b.track || "professional");
+});
 
 // Helper function to get lesson by ID
 export function getLessonById(id: number): Lesson | undefined {
-  return lessons200Days.find((l) => l.id === id);
+  return allLessons.find((l) => l.id === id);
 }
