@@ -13,6 +13,9 @@ import AdminChat from "@/components/AdminChat";
 import Leaderboard from "@/components/Leaderboard";
 import { XP_VALUES, getLevelByXp } from "@/lib/levels";
 
+// Auth-gated and reads Supabase env vars at render time — never prerender statically.
+export const dynamic = "force-dynamic";
+
 /* ─── Track definitions ─────────────────────────────────────────── */
 
 const TRACK_PERSONAL = {
@@ -122,7 +125,18 @@ export default function Dashboard() {
   const supabase = createClient();
   const progress = useProgress();
   const completed = progress.completedLessons;
-  const [activeTrack, setActiveTrack] = useState<"personal" | "professional">("personal");
+  const [activeTrack, setActiveTrackState] = useState<"personal" | "professional">("personal");
+  const setActiveTrack = (track: "personal" | "professional") => {
+    setActiveTrackState(track);
+    localStorage.setItem("activeTrack", track);
+  };
+
+  useEffect(() => {
+    const saved = localStorage.getItem("activeTrack");
+    if (saved === "personal" || saved === "professional") {
+      setActiveTrackState(saved);
+    }
+  }, []);
   const [user, setUser] = useState<{ id?: string; email?: string; user_metadata?: { full_name?: string } } | null>(null);
   const [loading, setLoading] = useState(true);
   const [userXp, setUserXp] = useState(0);

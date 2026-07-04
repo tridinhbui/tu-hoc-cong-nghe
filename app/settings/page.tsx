@@ -6,6 +6,9 @@ import Link from "next/link";
 import { createClient } from "@/lib/supabase";
 import UserMenu from "@/components/UserMenu";
 
+// Auth-gated and reads Supabase env vars at render time — never prerender statically.
+export const dynamic = "force-dynamic";
+
 export default function SettingsPage() {
   const router = useRouter();
   const supabase = createClient();

@@ -6,12 +6,14 @@ import { markLessonComplete } from "@/lib/progress";
 import FloatingContact from "@/components/FloatingChatbot";
 import TaiTaiLesson from "@/components/TaiTaiLesson";
 import BadgeToast from "@/components/BadgeToast";
+import ReadingProgress from "@/components/ReadingProgress";
 import { createClient } from "@/lib/supabase";
 import { markLessonComplete as markLessonCompleteSupabase } from "@/lib/supabase-progress";
 import { getCompletedLessons } from "@/lib/supabase-progress";
-import { awardBadges } from "@/lib/supabase-badges";
-import { getBadgesForLessonCount } from "@/lib/badges";
+import { awardBadges, awardBadge } from "@/lib/supabase-badges";
+import { getBadgesForLessonCount, getBadgeForMilestone } from "@/lib/badges";
 import { BADGE_DEFINITIONS, type BadgeDefinition } from "@/lib/badges";
+import { getReadingProgress, updateReadingProgress } from "@/lib/supabase-reading";
 
 export interface QuizQuestion {
   question: string;
@@ -64,17 +66,31 @@ export default function LessonPageLayout({ lesson, quiz, children }: Props) {
   const [userId, setUserId]       = useState<string | null>(null);
   const [newBadge, setNewBadge]   = useState<BadgeDefinition | null>(null);
   const articleRef = useRef<HTMLElement>(null);
+  const maxReachedRef = useRef(0);
+  const savedMilestonesRef = useRef<Set<number>>(new Set());
 
   const durationMin = parseInt(lesson.duration) || 5;
 
   useEffect(() => {
     const supabase = createClient();
-    supabase.auth.getUser().then(({ data: { user } }) => {
-      if (user) setUserId(user.id);
+    supabase.auth.getUser().then(async ({ data: { user } }) => {
+      if (!user) return;
+      setUserId(user.id);
+
+      const existing = await getReadingProgress(user.id, lesson.id);
+      if (existing) {
+        maxReachedRef.current = existing.max_percent_reached;
+        if (existing.milestone_25) savedMilestonesRef.current.add(25);
+        if (existing.milestone_50) savedMilestonesRef.current.add(50);
+        if (existing.milestone_75) savedMilestonesRef.current.add(75);
+        if (existing.milestone_100) savedMilestonesRef.current.add(100);
+      }
     });
-  }, []);
+  }, [lesson.id]);
 
   useEffect(() => {
+    let saveTimer: ReturnType<typeof setTimeout> | null = null;
+
     function onScroll() {
       const el = articleRef.current;
       if (!el) return;
@@ -84,11 +100,35 @@ export default function LessonPageLayout({ lesson, quiz, children }: Props) {
       const scrolled = Math.max(0, winH - top);
       const pct = Math.min(100, Math.round((scrolled / (height + winH * 0.3)) * 100));
       setReadPct(pct);
+
+      if (pct > maxReachedRef.current) {
+        maxReachedRef.current = pct;
+      }
+
+      if (saveTimer) clearTimeout(saveTimer);
+      saveTimer = setTimeout(async () => {
+        if (!userId) return;
+        await updateReadingProgress(userId, lesson.id, maxReachedRef.current);
+      }, 800);
     }
     window.addEventListener("scroll", onScroll, { passive: true });
     onScroll();
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      if (saveTimer) clearTimeout(saveTimer);
+    };
+  }, [userId, lesson.id]);
+
+  const handleMilestone = async (milestone: number) => {
+    if (!userId || savedMilestonesRef.current.has(milestone)) return;
+    savedMilestonesRef.current.add(milestone);
+
+    const badgeKey = getBadgeForMilestone(milestone);
+    if (!badgeKey) return;
+
+    const badge = await awardBadge(userId, badgeKey);
+    if (badge) setNewBadge(BADGE_DEFINITIONS[badge.badge_key]);
+  };
 
   const remainMin = Math.max(0, Math.ceil(durationMin * (1 - readPct / 100)));
   const submittedCount = submitted.filter(Boolean).length;
@@ -148,6 +188,11 @@ export default function LessonPageLayout({ lesson, quiz, children }: Props) {
 
   return (
     <div className="min-h-screen bg-[#FAFAFC] font-sans antialiased text-[#1A1A1E]">
+      {/* Reading Progress Bar (Fixed Left, race track style) */}
+      <div className="fixed left-6 top-1/2 -translate-y-1/2 z-30 hidden lg:block">
+        <ReadingProgress progress={readPct} onMilestone={handleMilestone} />
+      </div>
+
       {/* Sticky header */}
       <header className="bg-white border-b border-stone-200 sticky top-0 z-50">
         {/* Scroll progress bar: full width, 4px, sits at very top of header */}

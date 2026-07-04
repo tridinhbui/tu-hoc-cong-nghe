@@ -4,6 +4,9 @@ import React, { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { createClient } from "@/lib/supabase";
 
+// Reads Supabase env vars at render time — never prerender statically.
+export const dynamic = "force-dynamic";
+
 export default function LoginPage() {
   const router = useRouter();
   const supabase = createClient();
