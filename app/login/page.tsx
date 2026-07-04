@@ -2,9 +2,7 @@
 
 import React, { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
-import { motion } from "framer-motion";
 import { loginOrRegister, getSession } from "@/lib/auth";
-import { BookOpen, Users, CheckCircle2 } from "lucide-react";
 
 export default function LoginPage() {
   const router = useRouter();
@@ -36,136 +34,158 @@ export default function LoginPage() {
   }
 
   function handleDemoLogin() {
-    setName("Demo User");
-    setEmail("demo@tuhoctaichinh.vn");
     setLoading(true);
     loginOrRegister("Demo User", "demo@tuhoctaichinh.vn");
     router.push("/dashboard");
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-[#EEEDFF]/60 via-[#FAFAFC] to-[#ECFEFF]/60 flex flex-col items-center justify-center p-6 font-sans">
-      <div className="w-full max-w-md space-y-8">
-        
-        {/* Brand header logo */}
-        <div className="text-center">
-          <div className="inline-flex items-center gap-3 bg-white rounded-2xl px-5 py-3 shadow-[0_4px_12px_rgba(0,0,0,0.015)] border border-stone-200/50 mb-6">
-            <div className="w-8 h-8 bg-[#5F5DF0] rounded-xl flex items-center justify-center text-white text-sm font-extrabold shadow-sm shadow-[#5F5DF0]/25">
-              TH
+    <div className="min-h-screen bg-white flex flex-col">
+      {/* ── Hero Section ── */}
+      <div className="flex-1 flex flex-col items-center justify-center px-6 py-16 sm:py-24">
+        <div className="max-w-2xl w-full space-y-8">
+          {/* Logo & Brand */}
+          <div className="space-y-3">
+            <div className="text-sm font-bold text-stone-400 uppercase tracking-widest">
+              Tự Học Tài Chính
             </div>
-            <div className="text-left">
-              <div className="font-extrabold text-stone-900 text-xs leading-none tracking-tight">
-                Tự Học Tài Chính
+            <h1 className="text-5xl sm:text-6xl font-bold text-stone-900 leading-tight">
+              Hiểu tiền bạc,<br />quản lý tài sản
+            </h1>
+            <p className="text-lg sm:text-xl text-stone-600 leading-relaxed max-w-lg">
+              200 ngày học từ vỡ lòng đến phân tích doanh nghiệp. Chọn lộ trình phù hợp, học theo tốc độ của bạn.
+            </p>
+          </div>
+
+          {/* Two Track Preview */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div className="border-2 border-stone-200 rounded-2xl p-6 hover:border-stone-300 transition-colors">
+              <div className="text-xs font-bold text-stone-400 uppercase tracking-widest mb-2">
+                Track 1
               </div>
-              <div className="text-[9px] text-[#5F5DF0] font-bold uppercase tracking-wider mt-0.5">
-                Mỗi Ngày
+              <h3 className="text-xl font-bold text-stone-900 mb-2">Tài chính cá nhân</h3>
+              <p className="text-sm text-stone-600 mb-4">
+                Quản lý tiền, tiết kiệm, đầu tư cá nhân, lên kế hoạch tài chính.
+              </p>
+              <ul className="space-y-2 text-xs text-stone-500">
+                <li className="flex gap-2"><span className="flex-shrink-0">+</span> Chặng 1: Tư duy tiền bạc</li>
+                <li className="flex gap-2"><span className="flex-shrink-0">+</span> Chặng 2-4: Đầu tư thực tế</li>
+                <li className="flex gap-2"><span className="flex-shrink-0">+</span> Không cần kiến thức ngành</li>
+              </ul>
+            </div>
+
+            <div className="border-2 border-stone-200 rounded-2xl p-6 hover:border-stone-300 transition-colors">
+              <div className="text-xs font-bold text-stone-400 uppercase tracking-widest mb-2">
+                Track 2
               </div>
+              <h3 className="text-xl font-bold text-stone-900 mb-2">Tài chính chuyên ngành</h3>
+              <p className="text-sm text-stone-600 mb-4">
+                Kế toán, phân tích báo cáo, định giá, tài chính doanh nghiệp.
+              </p>
+              <ul className="space-y-2 text-xs text-stone-500">
+                <li className="flex gap-2"><span className="flex-shrink-0">+</span> Chặng 1-9: Từ cơ bản đến nâng cao</li>
+                <li className="flex gap-2"><span className="flex-shrink-0">+</span> 50+ bài học chuyên sâu</li>
+                <li className="flex gap-2"><span className="flex-shrink-0">+</span> Theo ngành, theo lĩnh vực</li>
+              </ul>
             </div>
           </div>
-          <h1 className="text-3xl font-extrabold text-stone-950 tracking-tight mb-2">
-            Nâng tầm tri thức tài chính
-          </h1>
-          <p className="text-stone-500 text-sm font-medium">
-            Chỉ 5-10 phút mỗi ngày. Tự tin quản lý và tích lũy tài sản.
-          </p>
         </div>
+      </div>
 
-        {/* Authentication Card Form */}
-        <motion.div
-          initial={{ opacity: 0, y: 15 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.4 }}
-          className="bg-white rounded-[24px] border border-stone-200/50 shadow-md shadow-stone-200/10 p-8 space-y-6"
-        >
-          <form onSubmit={handleSubmit} className="space-y-4">
-            <div className="space-y-1.5">
-              <label className="text-xs font-bold text-stone-600 uppercase tracking-wider block">
-                Tên của bạn
-              </label>
-              <input
-                type="text"
-                value={name}
-                onChange={(e) => setName(e.target.value)}
-                placeholder="Nguyễn Văn A"
-                className="w-full px-4 py-3 rounded-xl border border-stone-200 bg-white focus:border-[#5F5DF0] focus:ring-1 focus:ring-[#5F5DF0]/30 focus:outline-none text-stone-800 text-sm placeholder:text-stone-300 transition-premium font-medium"
-              />
-            </div>
-            
-            <div className="space-y-1.5">
-              <label className="text-xs font-bold text-stone-600 uppercase tracking-wider block">
-                Địa chỉ email
-              </label>
-              <input
-                type="email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                placeholder="email@vi-du.com"
-                className="w-full px-4 py-3 rounded-xl border border-stone-200 bg-white focus:border-[#5F5DF0] focus:ring-1 focus:ring-[#5F5DF0]/30 focus:outline-none text-stone-800 text-sm placeholder:text-stone-300 transition-premium font-medium"
-              />
+      {/* ── Form Section ── */}
+      <div className="bg-stone-50 border-t border-stone-200 px-6 py-16">
+        <div className="max-w-lg mx-auto">
+          <div className="bg-white border border-stone-200 rounded-2xl p-8 space-y-6">
+            {/* Form Title */}
+            <div>
+              <h2 className="text-2xl font-bold text-stone-900 mb-2">Bắt đầu ngay</h2>
+              <p className="text-sm text-stone-500">Miễn phí, không cần thẻ tín dụng</p>
             </div>
 
-            {error && (
-              <div className="bg-[#FEF2F2] border border-red-200 text-[#EF4444] text-xs font-semibold rounded-xl px-4 py-3 leading-relaxed">
-                ⚠️ {error}
+            {/* Form */}
+            <form onSubmit={handleSubmit} className="space-y-4">
+              <div className="space-y-2">
+                <label className="text-xs font-bold text-stone-600 uppercase tracking-wider block">
+                  Tên của bạn
+                </label>
+                <input
+                  type="text"
+                  value={name}
+                  onChange={(e) => setName(e.target.value)}
+                  placeholder="Nguyễn Văn A"
+                  className="w-full px-4 py-3 rounded-xl border border-stone-200 bg-white focus:border-stone-400 focus:ring-1 focus:ring-stone-900/5 focus:outline-none text-stone-900 text-base placeholder:text-stone-300"
+                />
               </div>
-            )}
 
-            <button
-              type="submit"
-              disabled={loading}
-              className="w-full bg-[#5F5DF0] hover:bg-[#4E4CD9] text-white py-3.5 rounded-xl font-bold text-xs uppercase tracking-wider transition-premium disabled:opacity-60 mt-4 cursor-pointer shadow-sm active:scale-[0.98]"
-            >
-              {loading ? "Đang xử lý..." : "Bắt đầu học miễn phí →"}
-            </button>
-          </form>
-
-          {/* Quick Demo Switcher */}
-          <div className="space-y-4 pt-2 border-t border-stone-100">
-            <div className="relative flex items-center justify-center">
-              <div className="absolute inset-0 flex items-center">
-                <div className="w-full border-t border-stone-100" />
+              <div className="space-y-2">
+                <label className="text-xs font-bold text-stone-600 uppercase tracking-wider block">
+                  Địa chỉ email
+                </label>
+                <input
+                  type="email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  placeholder="email@vi-du.com"
+                  className="w-full px-4 py-3 rounded-xl border border-stone-200 bg-white focus:border-stone-400 focus:ring-1 focus:ring-stone-900/5 focus:outline-none text-stone-900 text-base placeholder:text-stone-300"
+                />
               </div>
-              <span className="relative bg-white px-3 text-[10px] font-bold text-stone-400 uppercase tracking-widest">
-                Hoặc trải nghiệm nhanh
+
+              {error && (
+                <div className="bg-red-50 border border-red-200 text-red-700 text-xs font-semibold rounded-xl px-4 py-3">
+                  {error}
+                </div>
+              )}
+
+              <button
+                type="submit"
+                disabled={loading}
+                className="w-full bg-stone-900 hover:bg-stone-800 text-white py-4 rounded-xl font-bold text-base transition-colors disabled:opacity-60 mt-2"
+              >
+                {loading ? "Đang xử lý..." : "Bắt đầu học miễn phí"}
+              </button>
+            </form>
+
+            {/* Divider */}
+            <div className="relative flex items-center">
+              <div className="flex-1 border-t border-stone-100" />
+              <span className="px-3 text-xs text-stone-400 font-bold uppercase tracking-wider">
+                Hoặc thử
               </span>
+              <div className="flex-1 border-t border-stone-100" />
             </div>
-            
+
+            {/* Demo Button */}
             <button
               onClick={handleDemoLogin}
-              className="w-full border border-stone-200 hover:border-stone-300 text-stone-600 py-3 rounded-xl text-xs font-bold transition-premium hover:bg-stone-50/50 flex items-center justify-center gap-2 cursor-pointer"
+              className="w-full border border-stone-200 hover:bg-stone-50 text-stone-900 py-3 rounded-xl font-bold text-base transition-colors"
             >
-              <span>🎯 Vào bằng tài khoản Demo</span>
+              Vào Demo
             </button>
           </div>
-        </motion.div>
 
-        {/* Feature/Stats highlights */}
-        <div className="grid grid-cols-3 gap-3">
-          {[
-            { label: "Bài học", num: "44+", icon: BookOpen, color: "text-[#5F5DF0]", bg: "bg-[#EEEDFF]" },
-            { label: "Học viên", num: "5.000+", icon: Users, color: "text-[#3FD1E3]", bg: "bg-[#ECFEFF]" },
-            { label: "Mãi mãi", num: "Miễn phí", icon: CheckCircle2, color: "text-[#3CD070]", bg: "bg-[#ECFDF5]" },
-          ].map((s) => {
-            const Icon = s.icon;
-            return (
-              <div
-                key={s.label}
-                className="bg-white rounded-2xl p-4 border border-stone-200/50 flex flex-col items-center text-center shadow-sm shadow-stone-200/5"
-              >
-                <div className={`w-8 h-8 rounded-lg ${s.bg} flex items-center justify-center mb-2`}>
-                  <Icon className={`w-4 h-4 ${s.color} stroke-[2.5]`} />
-                </div>
-                <div className="font-extrabold text-stone-900 text-xs tracking-tight">
-                  {s.num}
-                </div>
-                <div className="text-[9px] text-stone-400 font-bold uppercase tracking-wider mt-0.5">
-                  {s.label}
-                </div>
+          {/* Trust indicators */}
+          <div className="mt-8 text-center space-y-2">
+            <p className="text-sm font-bold text-stone-900">Được tin tưởng bởi</p>
+            <div className="flex items-center justify-center gap-6 text-stone-500 text-xs font-semibold">
+              <div className="flex items-center gap-1">
+                <span>200+ bài</span>
               </div>
-            );
-          })}
+              <div className="w-px h-4 bg-stone-200" />
+              <div className="flex items-center gap-1">
+                <span>0đ chi phí</span>
+              </div>
+              <div className="w-px h-4 bg-stone-200" />
+              <div className="flex items-center gap-1">
+                <span>Mãi mãi</span>
+              </div>
+            </div>
+          </div>
         </div>
+      </div>
 
+      {/* ── Footer Info ── */}
+      <div className="bg-white border-t border-stone-100 px-6 py-8 text-center text-xs text-stone-500">
+        <p>Bạn có tài khoản? Đăng nhập bằng email của bạn ở trên</p>
       </div>
     </div>
   );
