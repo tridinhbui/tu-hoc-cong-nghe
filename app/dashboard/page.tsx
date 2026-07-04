@@ -18,7 +18,7 @@ import { XP_VALUES, getLevelByXp } from "@/lib/levels";
 const TRACK_PERSONAL = {
   id: "personal",
   title: "Tài chính cá nhân",
-  subtitle: "Lộ trình 60 ngày",
+  subtitle: "Lộ trình 80 ngày",
   description:
     "Dành cho người muốn hiểu tiền bạc, kiểm soát chi tiêu, xây dựng tài sản và đầu tư thông minh — không cần kiến thức ngành.",
   pillars: ["Tư duy tiền bạc", "Đầu tư cá nhân", "Lập kế hoạch tài chính"],
@@ -53,67 +53,61 @@ const TRACK_PERSONAL = {
 const TRACK_PROFESSIONAL = {
   id: "professional",
   title: "Tài chính chuyên ngành",
-  subtitle: "Lộ trình 200 ngày",
+  subtitle: "Lộ trình 180 ngày chuyên sâu",
   description:
-    "Lộ trình hoàn chỉnh 200 ngày từ cơ bản đến nâng cao: kế toán, báo cáo tài chính, định giá, trái phiếu, danh mục đầu tư, phái sinh.",
+    "Lộ trình chuyên sâu 180 ngày dành cho người đã biết tài chính cơ bản: kế toán, báo cáo tài chính, định giá, trái phiếu, danh mục đầu tư, phái sinh.",
   pillars: ["Kế toán & báo cáo tài chính", "Định giá & phân tích", "Đầu tư & quản lý rủi ro"],
   stages: [
     {
       label: "Chặng 1",
-      name: "Tư duy tiền bạc và tài chính cơ bản",
-      days: [1, 20] as [number, number],
-      available: true,
-    },
-    {
-      label: "Chặng 2",
       name: "Kế toán nền tảng",
       days: [21, 40] as [number, number],
       available: true,
     },
     {
-      label: "Chặng 3",
+      label: "Chặng 2",
       name: "Đọc 3 báo cáo tài chính",
       days: [41, 60] as [number, number],
       available: true,
     },
     {
-      label: "Chặng 4",
+      label: "Chặng 3",
       name: "Chỉ số tài chính cơ bản",
       days: [61, 80] as [number, number],
       available: true,
     },
     {
-      label: "Chặng 5",
+      label: "Chặng 4",
       name: "Giá trị thời gian của tiền",
       days: [81, 100] as [number, number],
       available: true,
     },
     {
-      label: "Chặng 6",
+      label: "Chặng 5",
       name: "Tài chính doanh nghiệp",
       days: [101, 120] as [number, number],
       available: true,
     },
     {
-      label: "Chặng 7",
+      label: "Chặng 6",
       name: "Cổ phiếu và định giá doanh nghiệp",
       days: [121, 140] as [number, number],
       available: true,
     },
     {
-      label: "Chặng 8",
+      label: "Chặng 7",
       name: "Trái phiếu, lãi suất và tín dụng",
       days: [141, 160] as [number, number],
       available: true,
     },
     {
-      label: "Chặng 9",
+      label: "Chặng 8",
       name: "Danh mục đầu tư và quản trị rủi ro",
       days: [161, 180] as [number, number],
       available: true,
     },
     {
-      label: "Chặng 10",
+      label: "Chặng 9",
       name: "Phái sinh và công cụ tài chính nâng cao",
       days: [181, 200] as [number, number],
       available: true,
