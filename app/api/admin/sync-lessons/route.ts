@@ -1,7 +1,18 @@
 import { createAdminClient } from "@/lib/supabase-admin";
 import { lessons } from "@/lib/lessons";
+import { NextRequest } from "next/server";
 
-export async function POST() {
+// Destructive (wipes and re-seeds the entire `lessons` table with the
+// service-role key, bypassing RLS) — must never be reachable without proof
+// the caller is the site operator, not just any visitor who found the URL.
+export async function POST(request: NextRequest) {
+  const expectedSecret = process.env.ADMIN_SYNC_SECRET;
+  const providedSecret = request.headers.get("x-admin-secret");
+
+  if (!expectedSecret || providedSecret !== expectedSecret) {
+    return Response.json({ error: "Unauthorized" }, { status: 401 });
+  }
+
   try {
     const supabase = createAdminClient();
 

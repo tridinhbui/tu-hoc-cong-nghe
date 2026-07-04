@@ -330,6 +330,16 @@ export default function LoginPage() {
                 </>
               )}
             </div>
+
+            {/* Preview a real lesson before signing up */}
+            <div className="text-center text-sm pt-2">
+              <a
+                href="/bai-hoc/tai-chinh-la-gi"
+                className="text-stone-500 font-semibold hover:text-stone-900 hover:underline"
+              >
+                Xem thử bài học đầu tiên, chưa cần đăng nhập →
+              </a>
+            </div>
           </div>
 
           {/* Mobile: Trust indicators */}
