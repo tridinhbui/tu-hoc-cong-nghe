@@ -103,26 +103,26 @@ export default function LessonPageLayout({ lesson, quiz, children }: Props) {
   return (
     <div className="min-h-screen bg-[#FAFAFC] font-sans antialiased text-[#1A1A1E]">
       {/* Sticky header */}
-      <header className="bg-white/90 backdrop-blur border-b border-stone-200/60 sticky top-0 z-50">
-        {/* Scroll progress bar: full width, 3px, sits at very top of header */}
-        <div className="h-1 w-full bg-stone-100">
+      <header className="bg-white border-b border-stone-200 sticky top-0 z-50">
+        {/* Scroll progress bar: full width, 4px, sits at very top of header */}
+        <div className="h-1.5 w-full bg-stone-100">
           <div
             className={`h-full ${c.bar} transition-all duration-150`}
             style={{ width: `${readPct}%` }}
           />
         </div>
 
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 py-4 flex items-center justify-between gap-4">
-          <div className="flex items-center gap-3">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 py-5 flex items-center justify-between gap-4">
+          <div className="flex items-center gap-4">
             <Link
               href="/dashboard"
-              className="w-10 h-10 rounded-full border border-stone-200 flex items-center justify-center text-stone-400 hover:text-stone-700 bg-white transition-colors text-lg"
+              className="w-11 h-11 rounded-full border-2 border-stone-300 flex items-center justify-center text-stone-600 hover:text-stone-900 hover:border-stone-400 bg-white transition-all text-xl font-bold"
             >
               ←
             </Link>
             <div>
-              <h1 className="font-bold text-stone-900 text-base leading-tight line-clamp-1">{lesson.title}</h1>
-              <p className="text-xs text-stone-400 hidden sm:block">Day {lesson.day}</p>
+              <h1 className="font-extrabold text-stone-900 text-lg leading-tight line-clamp-1">{lesson.title}</h1>
+              <p className="text-sm text-stone-500 hidden sm:block font-semibold">Day {lesson.day}</p>
             </div>
           </div>
 
@@ -162,23 +162,23 @@ export default function LessonPageLayout({ lesson, quiz, children }: Props) {
         <div className="flex flex-col lg:flex-row gap-8 lg:gap-12 items-start">
 
           {/* ── LEFT: Article ─────────────────────────────────────── */}
-          <article ref={articleRef} className="flex-1 min-w-0 space-y-6">
+          <article ref={articleRef} className="flex-1 min-w-0 space-y-8">
             {/* Hero */}
-            <div className={`rounded-2xl ${c.bg} border ${c.border} p-6 sm:p-8`}>
-              <div className={`text-xs font-bold uppercase tracking-widest ${c.text} mb-2`}>
+            <div className={`rounded-2xl ${c.bg} border-2 ${c.border} p-8 sm:p-10`}>
+              <div className={`text-sm font-extrabold uppercase tracking-widest ${c.text} mb-3`}>
                 Day {lesson.day} · {lesson.difficulty}
               </div>
-              <h2 className="text-2xl sm:text-4xl font-extrabold text-stone-950 leading-tight mb-3">
+              <h2 className="text-3xl sm:text-5xl font-extrabold text-stone-950 leading-tight mb-4">
                 {lesson.title}
               </h2>
-              <p className="text-stone-600 text-base sm:text-lg leading-relaxed">{lesson.subtitle}</p>
-              <div className="mt-5 pt-4 border-t border-stone-200/50 space-y-3">
-                <div className="flex items-center gap-4 text-sm text-stone-400 font-medium">
+              <p className="text-stone-700 text-lg sm:text-xl leading-relaxed">{lesson.subtitle}</p>
+              <div className="mt-7 pt-5 border-t-2 border-stone-300 space-y-4">
+                <div className="flex items-center gap-4 text-base text-stone-700 font-semibold">
                   <span>{lesson.duration} đọc</span>
                   <span>·</span>
                   <span>{quiz.length} câu quiz</span>
                   <span>·</span>
-                  <span className="font-semibold text-stone-600">
+                  <span className="font-bold text-stone-900">
                     {readPct === 0
                       ? "Chưa bắt đầu"
                       : readPct >= 100
@@ -187,15 +187,15 @@ export default function LessonPageLayout({ lesson, quiz, children }: Props) {
                   </span>
                 </div>
                 {/* Reading progress bar inside hero */}
-                <div className="h-1.5 bg-stone-200 rounded-full overflow-hidden">
+                <div className="h-2.5 bg-stone-300 rounded-full overflow-hidden">
                   <div
                     className={`h-full ${c.bar} rounded-full transition-all duration-150`}
                     style={{ width: `${readPct}%` }}
                   />
                 </div>
                 {readPct > 0 && readPct < 100 && (
-                  <p className="text-xs text-stone-400">
-                    Còn khoảng <strong className="text-stone-600">~{remainMin} phút</strong> để đọc xong
+                  <p className="text-sm text-stone-700 font-semibold">
+                    Còn khoảng <strong className="text-stone-900">~{remainMin} phút</strong> để đọc xong
                   </p>
                 )}
               </div>
@@ -205,7 +205,7 @@ export default function LessonPageLayout({ lesson, quiz, children }: Props) {
             <TaiTaiLesson lessonId={lesson.id} lessonTitle={lesson.title} />
 
             {/* Content */}
-            <div className="space-y-6 text-stone-700 leading-relaxed text-base sm:text-lg">
+            <div className="space-y-8 text-stone-800 leading-relaxed text-lg sm:text-xl font-medium">
               {children}
             </div>
 
@@ -218,20 +218,20 @@ export default function LessonPageLayout({ lesson, quiz, children }: Props) {
           {/* ── RIGHT: Quiz sidebar ────────────────────────────────── */}
           <aside className="w-full lg:w-[440px] flex-shrink-0 lg:sticky lg:top-24 space-y-4">
             {/* Quiz progress */}
-            <div className="bg-white rounded-2xl border border-stone-200 p-5">
-              <div className="flex items-center justify-between mb-3">
-                <span className="text-sm font-bold text-stone-600 uppercase tracking-wide">Kiểm tra nhanh</span>
-                <span className="text-sm text-stone-400 font-semibold">{submittedCount}/{quiz.length} câu</span>
+            <div className="bg-white rounded-2xl border-2 border-stone-300 p-6">
+              <div className="flex items-center justify-between mb-4">
+                <span className="text-base font-extrabold text-stone-900 uppercase tracking-wide">Kiểm tra nhanh</span>
+                <span className="text-base font-bold text-stone-700 bg-stone-100 px-3 py-1 rounded-lg">{submittedCount}/{quiz.length}</span>
               </div>
               <div className="flex gap-2">
                 {quiz.map((_, i) => (
                   <button
                     key={i}
                     onClick={() => setActiveQ(i)}
-                    className={`flex-1 h-2 rounded-full transition-all cursor-pointer ${
+                    className={`flex-1 h-3 rounded-full transition-all cursor-pointer ${
                       submitted[i]
-                        ? results[i] ? "bg-emerald-400" : "bg-rose-400"
-                        : i === activeQ ? `${c.bar}` : "bg-stone-200"
+                        ? results[i] ? "bg-emerald-500" : "bg-rose-500"
+                        : i === activeQ ? `${c.bar}` : "bg-stone-300"
                     }`}
                   />
                 ))}
@@ -240,46 +240,46 @@ export default function LessonPageLayout({ lesson, quiz, children }: Props) {
 
             {/* Active question */}
             {!allDone ? (
-              <div className="bg-white rounded-2xl border border-stone-200 p-6 space-y-5">
+              <div className="bg-white rounded-2xl border-2 border-stone-300 p-8 space-y-6">
                 <div>
-                  <div className="flex items-center justify-between mb-3">
-                    <span className="text-xs font-bold text-stone-400 uppercase tracking-wider">
+                  <div className="flex items-center justify-between mb-4">
+                    <span className="text-sm font-extrabold text-stone-700 uppercase tracking-wider bg-stone-100 px-3 py-1 rounded-lg">
                       Câu {activeQ + 1} / {quiz.length}
                     </span>
                     {qSubmitted && (
-                      <span className={`text-xs font-bold px-3 py-1 rounded-full ${qCorrect ? "bg-emerald-100 text-emerald-700" : "bg-rose-100 text-rose-700"}`}>
-                        {qCorrect ? "Đúng rồi!" : "Chưa đúng"}
+                      <span className={`text-sm font-bold px-3 py-1.5 rounded-lg ${qCorrect ? "bg-emerald-100 text-emerald-900" : "bg-rose-100 text-rose-900"}`}>
+                        {qCorrect ? "✓ Đúng rồi!" : "✗ Chưa đúng"}
                       </span>
                     )}
                   </div>
-                  <p className="font-semibold text-stone-900 text-base leading-relaxed">{q.question}</p>
+                  <p className="font-bold text-stone-900 text-lg leading-relaxed">{q.question}</p>
                 </div>
 
-                <div className="space-y-2.5">
+                <div className="space-y-3">
                   {q.options.map((opt, oi) => {
                     const isSelected = qSelected === oi;
                     const isCorrectOpt = oi === q.correct;
-                    let cls = "border-stone-200 bg-white text-stone-700 hover:border-stone-300 hover:bg-stone-50";
+                    let cls = "border-2 border-stone-300 bg-white text-stone-900 hover:border-stone-400 hover:bg-stone-50";
                     if (qSubmitted) {
-                      if (isCorrectOpt) cls = "border-emerald-400 bg-emerald-50 text-emerald-800";
-                      else if (isSelected) cls = "border-rose-400 bg-rose-50 text-rose-700";
-                      else cls = "border-stone-100 bg-stone-50 text-stone-400 opacity-50";
+                      if (isCorrectOpt) cls = "border-2 border-emerald-500 bg-emerald-50 text-emerald-900 font-semibold";
+                      else if (isSelected) cls = "border-2 border-rose-500 bg-rose-50 text-rose-900 font-semibold";
+                      else cls = "border-2 border-stone-200 bg-stone-50 text-stone-500";
                     } else if (isSelected) {
-                      cls = `${c.border} ${c.bg} ${c.text} border-2 font-medium`;
+                      cls = `${c.border} ${c.bg} ${c.text} border-2 font-semibold`;
                     }
                     return (
                       <button
                         key={oi}
                         disabled={qSubmitted}
                         onClick={() => choose(activeQ, oi)}
-                        className={`w-full text-left px-4 py-3.5 rounded-xl border text-sm transition-all flex items-center gap-3 cursor-pointer ${cls}`}
+                        className={`w-full text-left px-5 py-4 rounded-xl border transition-all flex items-center gap-4 cursor-pointer font-medium text-base ${cls}`}
                       >
-                        <span className="w-7 h-7 rounded-lg text-xs font-bold flex items-center justify-center flex-shrink-0 bg-stone-100 text-stone-600">
+                        <span className="w-8 h-8 rounded-lg text-xs font-extrabold flex items-center justify-center flex-shrink-0 bg-stone-200 text-stone-800">
                           {["A", "B", "C", "D"][oi]}
                         </span>
-                        <span className="flex-1 text-sm leading-snug">{opt}</span>
-                        {qSubmitted && isCorrectOpt && <span className="text-emerald-500 font-bold">✓</span>}
-                        {qSubmitted && isSelected && !isCorrectOpt && <span className="text-rose-500 font-bold">✗</span>}
+                        <span className="flex-1 text-base leading-snug">{opt}</span>
+                        {qSubmitted && isCorrectOpt && <span className="text-emerald-600 font-bold text-xl">✓</span>}
+                        {qSubmitted && isSelected && !isCorrectOpt && <span className="text-rose-600 font-bold text-xl">✗</span>}
                       </button>
                     );
                   })}

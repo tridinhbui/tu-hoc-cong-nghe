@@ -7,6 +7,10 @@ import { CheckCircle2 } from "lucide-react";
 import { useProgress } from "@/lib/client-hooks";
 import { lessons } from "@/lib/lessons";
 import { createClient } from "@/lib/supabase";
+import UserStats from "@/components/UserStats";
+import Leaderboard from "@/components/Leaderboard";
+import Roadmap from "@/components/Roadmap";
+import { XP_VALUES, getLevelByXp } from "@/lib/levels";
 
 /* ─── Track definitions ─────────────────────────────────────────── */
 
@@ -120,8 +124,10 @@ export default function Dashboard() {
   const [activeTrack, setActiveTrack] = useState<"personal" | "professional">("personal");
   const [user, setUser] = useState<{ email?: string; user_metadata?: { full_name?: string } } | null>(null);
   const [loading, setLoading] = useState(true);
+  const [userXp, setUserXp] = useState(0);
+  const [avgQuizScore, setAvgQuizScore] = useState(0);
 
-  // Check auth on mount
+  // Check auth and calculate XP on mount
   useEffect(() => {
     const checkAuth = async () => {
       const {
@@ -134,11 +140,20 @@ export default function Dashboard() {
       }
 
       setUser(session.user);
+
+      // Calculate XP from completed lessons (10 XP per lesson)
+      // In a real app, this would come from the database
+      const calculatedXp = completed.length * XP_VALUES.LESSON_COMPLETED;
+      setUserXp(calculatedXp);
+
+      // Mock average quiz score (in a real app, fetch from database)
+      setAvgQuizScore(75);
+
       setLoading(false);
     };
 
     checkAuth();
-  }, [router, supabase.auth]);
+  }, [router, supabase.auth, completed.length]);
 
   const handleLogout = async () => {
     await supabase.auth.signOut();
@@ -158,6 +173,52 @@ export default function Dashboard() {
 
   const totalDone = completed.length;
   const totalLessons = sorted.length;
+
+  // Mock leaderboard data (in a real app, fetch from database)
+  const mockLeaderboardEntries = [
+    {
+      rank: 1,
+      name: "Nguyễn Văn A",
+      xp: 450,
+      lessonsCompleted: 45,
+      avgQuizScore: 88,
+      level: getLevelByXp(450),
+    },
+    {
+      rank: 2,
+      name: "Trần Thị B",
+      xp: 380,
+      lessonsCompleted: 38,
+      avgQuizScore: 82,
+      level: getLevelByXp(380),
+    },
+    {
+      rank: 3,
+      name: "Phạm Văn C",
+      xp: 320,
+      lessonsCompleted: 32,
+      avgQuizScore: 75,
+      level: getLevelByXp(320),
+    },
+    {
+      rank: 4,
+      name: user?.user_metadata?.full_name || "Bạn",
+      xp: userXp,
+      lessonsCompleted: totalDone,
+      avgQuizScore: avgQuizScore,
+      level: getLevelByXp(userXp),
+    },
+  ].sort((a, b) => b.xp - a.xp);
+
+  // Update ranks after sorting
+  const leaderboardWithRanks = mockLeaderboardEntries.map((entry, idx) => ({
+    ...entry,
+    rank: idx + 1,
+  }));
+
+  const userLeaderboardEntry = leaderboardWithRanks.find(
+    (e) => e.name === (user?.user_metadata?.full_name || "Bạn")
+  );
 
   return (
     <div className="min-h-screen bg-white">
@@ -191,6 +252,22 @@ export default function Dashboard() {
       </div>
 
       <div className="max-w-4xl mx-auto px-6 py-8 space-y-8">
+        {/* ── User Stats Section ── */}
+        <UserStats
+          xp={userXp}
+          lessonsCompleted={totalDone}
+          totalLessons={totalLessons}
+          avgQuizScore={avgQuizScore}
+        />
+
+        {/* ── Roadmap Section ── */}
+        <Roadmap stages={track.stages} activeTrack={activeTrack} />
+
+        {/* ── Leaderboard Section ── */}
+        <Leaderboard
+          entries={leaderboardWithRanks}
+          currentUserRank={userLeaderboardEntry?.rank}
+        />
 
         {/* ── Track selector cards ── */}
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
