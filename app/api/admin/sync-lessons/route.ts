@@ -5,6 +5,22 @@ export async function POST() {
   try {
     const supabase = createAdminClient();
 
+    // Clear the table first: ids/slugs can be fully reshuffled between syncs
+    // (e.g. curriculum renumbering), and upserting by id alone can collide
+    // with the separate unique constraint on slug when a slug moves to a
+    // different id in the same batch.
+    const { error: deleteError } = await supabase
+      .from("lessons")
+      .delete()
+      .gte("id", 0);
+
+    if (deleteError) {
+      return Response.json(
+        { error: deleteError.message, details: deleteError.details },
+        { status: 500 }
+      );
+    }
+
     // Sync all lessons to Supabase
     const lessonData = lessons.map((lesson) => ({
       id: lesson.id,
