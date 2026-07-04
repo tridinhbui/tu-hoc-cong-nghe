@@ -50,7 +50,7 @@ export default function UserMenu({ name, email, avatarUrl }: UserMenuProps) {
       {/* Avatar Button */}
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="w-9 h-9 rounded-full overflow-hidden bg-stone-200 hover:bg-stone-300 transition-colors flex items-center justify-center text-xs font-extrabold text-stone-700 border border-stone-300"
+        className="w-9 h-9 rounded-full overflow-hidden bg-stone-200 dark:bg-stone-700 hover:bg-stone-300 dark:hover:bg-stone-600 transition-colors flex items-center justify-center text-xs font-extrabold text-stone-700 dark:text-stone-300 border border-stone-300 dark:border-stone-600"
       >
         {avatarUrl ? (
           <Image src={avatarUrl} alt={displayName} width={36} height={36} className="w-full h-full object-cover" />
@@ -61,11 +61,11 @@ export default function UserMenu({ name, email, avatarUrl }: UserMenuProps) {
 
       {/* Dropdown Menu */}
       {isOpen && (
-        <div className="absolute right-0 mt-2 w-56 bg-white border-2 border-stone-200 rounded-xl shadow-lg z-50">
+        <div className="absolute right-0 mt-2 w-56 bg-white dark:bg-stone-900 border-2 border-stone-200 dark:border-stone-800 rounded-xl shadow-lg z-50">
           {/* User Info */}
-          <div className="px-4 py-3 border-b border-stone-200">
-            <p className="text-sm font-bold text-stone-900">{displayName}</p>
-            <p className="text-xs text-stone-500 mt-0.5 truncate">{email}</p>
+          <div className="px-4 py-3 border-b border-stone-200 dark:border-stone-800">
+            <p className="text-sm font-bold text-stone-900 dark:text-stone-100">{displayName}</p>
+            <p className="text-xs text-stone-500 dark:text-stone-400 mt-0.5 truncate">{email}</p>
           </div>
 
           {/* Menu Items */}
@@ -73,27 +73,27 @@ export default function UserMenu({ name, email, avatarUrl }: UserMenuProps) {
             <Link
               href="/profile"
               onClick={() => setIsOpen(false)}
-              className="block px-4 py-2 text-sm font-semibold text-stone-900 hover:bg-stone-50 transition-colors"
+              className="block px-4 py-2 text-sm font-semibold text-stone-900 dark:text-stone-100 hover:bg-stone-50 dark:hover:bg-stone-800 transition-colors"
             >
               Hồ sơ
             </Link>
             <Link
               href="/settings"
               onClick={() => setIsOpen(false)}
-              className="block px-4 py-2 text-sm font-semibold text-stone-900 hover:bg-stone-50 transition-colors"
+              className="block px-4 py-2 text-sm font-semibold text-stone-900 dark:text-stone-100 hover:bg-stone-50 dark:hover:bg-stone-800 transition-colors"
             >
               Cài đặt
             </Link>
           </div>
 
           {/* Logout */}
-          <div className="px-4 py-2 border-t border-stone-200">
+          <div className="px-4 py-2 border-t border-stone-200 dark:border-stone-800">
             <button
               onClick={() => {
                 setIsOpen(false);
                 handleLogout();
               }}
-              className="w-full text-left px-2 py-2 text-sm font-semibold text-red-600 hover:bg-red-50 rounded transition-colors"
+              className="w-full text-left px-2 py-2 text-sm font-semibold text-red-600 dark:text-red-400 hover:bg-red-50 dark:hover:bg-red-950/50 rounded transition-colors"
             >
               Đăng xuất
             </button>

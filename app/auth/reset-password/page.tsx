@@ -64,23 +64,23 @@ export default function ResetPasswordPage() {
 
   if (checkingSession) {
     return (
-      <div className="min-h-screen bg-white flex items-center justify-center">
-        <p className="text-stone-500">Đang tải...</p>
+      <div className="min-h-screen bg-white dark:bg-stone-950 flex items-center justify-center">
+        <p className="text-stone-500 dark:text-stone-400">Đang tải...</p>
       </div>
     );
   }
 
   if (!hasRecoverySession) {
     return (
-      <div className="min-h-screen bg-white flex items-center justify-center px-6">
+      <div className="min-h-screen bg-white dark:bg-stone-950 flex items-center justify-center px-6">
         <div className="text-center space-y-4 max-w-sm">
-          <p className="text-lg font-bold text-stone-900">Link không hợp lệ hoặc đã hết hạn</p>
-          <p className="text-sm text-stone-500">
+          <p className="text-lg font-bold text-stone-900 dark:text-stone-100">Link không hợp lệ hoặc đã hết hạn</p>
+          <p className="text-sm text-stone-500 dark:text-stone-400">
             Vui lòng yêu cầu gửi lại email đặt lại mật khẩu.
           </p>
           <a
             href="/login"
-            className="inline-block bg-stone-900 hover:bg-stone-800 text-white px-6 py-3 rounded-xl font-bold text-sm transition-colors"
+            className="inline-block bg-stone-900 hover:bg-stone-800 dark:bg-stone-100 dark:hover:bg-white text-white dark:text-stone-900 px-6 py-3 rounded-xl font-bold text-sm transition-colors"
           >
             Về trang đăng nhập
           </a>
@@ -90,16 +90,16 @@ export default function ResetPasswordPage() {
   }
 
   return (
-    <div className="min-h-screen bg-stone-50 flex items-center justify-center px-6">
-      <div className="w-full max-w-sm bg-white border border-stone-200 rounded-2xl p-8 space-y-6">
+    <div className="min-h-screen bg-stone-50 dark:bg-stone-900/50 flex items-center justify-center px-6">
+      <div className="w-full max-w-sm bg-white dark:bg-stone-900 border border-stone-200 dark:border-stone-800 rounded-2xl p-8 space-y-6">
         <div>
-          <h1 className="text-2xl font-bold text-stone-900 mb-2">Đặt mật khẩu mới</h1>
-          <p className="text-sm text-stone-500">Nhập mật khẩu mới cho tài khoản của bạn</p>
+          <h1 className="text-2xl font-bold text-stone-900 dark:text-stone-100 mb-2">Đặt mật khẩu mới</h1>
+          <p className="text-sm text-stone-500 dark:text-stone-400">Nhập mật khẩu mới cho tài khoản của bạn</p>
         </div>
 
         <form onSubmit={handleSubmit} className="space-y-4">
           <div className="space-y-2">
-            <label className="text-xs font-bold text-stone-600 uppercase tracking-wider block">
+            <label className="text-xs font-bold text-stone-600 dark:text-stone-400 uppercase tracking-wider block">
               Mật khẩu mới
             </label>
             <input
@@ -107,12 +107,12 @@ export default function ResetPasswordPage() {
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               placeholder="••••••"
-              className="w-full px-4 py-3 rounded-xl border border-stone-200 bg-white focus:border-stone-400 focus:ring-1 focus:ring-stone-900/5 focus:outline-none text-stone-900 text-base placeholder:text-stone-300"
+              className="w-full px-4 py-3 rounded-xl border border-stone-200 dark:border-stone-700 bg-white dark:bg-stone-800 focus:border-stone-400 dark:focus:border-stone-500 focus:ring-1 focus:ring-stone-900/5 focus:outline-none text-stone-900 dark:text-stone-100 text-base placeholder:text-stone-300 dark:placeholder:text-stone-600"
             />
           </div>
 
           <div className="space-y-2">
-            <label className="text-xs font-bold text-stone-600 uppercase tracking-wider block">
+            <label className="text-xs font-bold text-stone-600 dark:text-stone-400 uppercase tracking-wider block">
               Nhập lại mật khẩu mới
             </label>
             <input
@@ -120,12 +120,12 @@ export default function ResetPasswordPage() {
               value={confirmPassword}
               onChange={(e) => setConfirmPassword(e.target.value)}
               placeholder="••••••"
-              className="w-full px-4 py-3 rounded-xl border border-stone-200 bg-white focus:border-stone-400 focus:ring-1 focus:ring-stone-900/5 focus:outline-none text-stone-900 text-base placeholder:text-stone-300"
+              className="w-full px-4 py-3 rounded-xl border border-stone-200 dark:border-stone-700 bg-white dark:bg-stone-800 focus:border-stone-400 dark:focus:border-stone-500 focus:ring-1 focus:ring-stone-900/5 focus:outline-none text-stone-900 dark:text-stone-100 text-base placeholder:text-stone-300 dark:placeholder:text-stone-600"
             />
           </div>
 
           {error && (
-            <div className="bg-red-50 border border-red-200 text-red-700 text-xs font-semibold rounded-xl px-4 py-3">
+            <div className="bg-red-50 dark:bg-red-950/50 border border-red-200 dark:border-red-900 text-red-700 dark:text-red-400 text-xs font-semibold rounded-xl px-4 py-3">
               {error}
             </div>
           )}
@@ -133,7 +133,7 @@ export default function ResetPasswordPage() {
           <button
             type="submit"
             disabled={loading}
-            className="w-full bg-stone-900 hover:bg-stone-800 text-white py-4 rounded-xl font-bold text-base transition-colors disabled:opacity-60 mt-2"
+            className="w-full bg-stone-900 hover:bg-stone-800 dark:bg-stone-100 dark:hover:bg-white text-white dark:text-stone-900 py-4 rounded-xl font-bold text-base transition-colors disabled:opacity-60 mt-2"
           >
             {loading ? "Đang lưu..." : "Đặt mật khẩu mới"}
           </button>

@@ -189,25 +189,25 @@ export default function LoginPage() {
   }
 
   return (
-    <div className="min-h-screen bg-white flex">
+    <div className="min-h-screen bg-white dark:bg-stone-950 flex">
       {/* ── LEFT SIDE: Hero + Info ── */}
-      <div className="hidden lg:flex flex-col w-1/2 bg-white px-12 py-16 justify-between">
+      <div className="hidden lg:flex flex-col w-1/2 bg-white dark:bg-stone-950 px-12 py-16 justify-between">
         <div className="space-y-12">
           {/* Logo & Brand */}
           <div className="space-y-4">
-            <div className="text-sm font-bold text-stone-500 uppercase tracking-widest">
+            <div className="text-sm font-bold text-stone-500 dark:text-stone-400 uppercase tracking-widest">
               Tự Học Tài Chính
             </div>
-            <h1 className="text-5xl font-bold text-stone-900 leading-tight">
+            <h1 className="text-5xl font-bold text-stone-900 dark:text-stone-100 leading-tight">
               Hiểu tiền bạc,<br />quản lý tài sản
             </h1>
-            <p className="text-lg text-stone-600 leading-relaxed max-w-md">
+            <p className="text-lg text-stone-600 dark:text-stone-400 leading-relaxed max-w-md">
               200 ngày học từ vỡ lòng đến phân tích doanh nghiệp. Chọn lộ trình phù hợp, học theo tốc độ của bạn.
             </p>
           </div>
 
           {/* Two Track Preview — interactive tabs, not static hover cards */}
-          <div className="border-2 border-stone-200 rounded-2xl overflow-hidden">
+          <div className="border-2 border-stone-200 dark:border-stone-800 rounded-2xl overflow-hidden">
             <div className="grid grid-cols-2">
               {(Object.keys(TRACKS) as TrackId[]).map((id) => {
                 const t = TRACKS[id];
@@ -217,7 +217,7 @@ export default function LoginPage() {
                     key={id}
                     onClick={() => setPreviewTrack(id)}
                     className={`px-5 py-4 text-left transition-colors cursor-pointer ${
-                      isActive ? "bg-stone-900 text-white" : "bg-white text-stone-500 hover:bg-stone-50"
+                      isActive ? "bg-stone-900 dark:bg-stone-100 text-white dark:text-stone-900" : "bg-white dark:bg-stone-950 text-stone-500 dark:text-stone-400 hover:bg-stone-50 dark:hover:bg-stone-900"
                     }`}
                   >
                     <div className="text-xs font-bold uppercase tracking-widest opacity-60 mb-1">
@@ -239,29 +239,29 @@ export default function LoginPage() {
                 className="p-6 space-y-4"
               >
                 <div>
-                  <div className="text-xs font-bold text-stone-500 uppercase tracking-widest mb-1">
+                  <div className="text-xs font-bold text-stone-500 dark:text-stone-400 uppercase tracking-widest mb-1">
                     {TRACKS[previewTrack].subtitle}
                   </div>
-                  <p className="text-sm text-stone-600">{TRACKS[previewTrack].description}</p>
+                  <p className="text-sm text-stone-600 dark:text-stone-400">{TRACKS[previewTrack].description}</p>
                 </div>
 
-                <ul className="space-y-2 text-xs text-stone-500">
+                <ul className="space-y-2 text-xs text-stone-500 dark:text-stone-400">
                   {TRACKS[previewTrack].stages.map((s) => (
                     <li key={s} className="flex gap-2">
-                      <span className="flex-shrink-0 text-stone-300">→</span> {s}
+                      <span className="flex-shrink-0 text-stone-300 dark:text-stone-600">→</span> {s}
                     </li>
                   ))}
                 </ul>
 
                 <a
                   href={`/bai-hoc/${TRACKS[previewTrack].previewSlug}`}
-                  className="flex items-center justify-between gap-3 border border-stone-200 hover:border-stone-400 hover:bg-stone-50 rounded-xl px-4 py-3 transition-colors group"
+                  className="flex items-center justify-between gap-3 border border-stone-200 dark:border-stone-800 hover:border-stone-400 dark:hover:border-stone-600 hover:bg-stone-50 dark:hover:bg-stone-900 rounded-xl px-4 py-3 transition-colors group"
                 >
                   <div>
-                    <div className="text-[10px] font-bold text-stone-500 uppercase tracking-wider">Xem thử ngay, không cần đăng nhập</div>
-                    <div className="text-sm font-bold text-stone-900">{TRACKS[previewTrack].previewLabel}</div>
+                    <div className="text-[10px] font-bold text-stone-500 dark:text-stone-400 uppercase tracking-wider">Xem thử ngay, không cần đăng nhập</div>
+                    <div className="text-sm font-bold text-stone-900 dark:text-stone-100">{TRACKS[previewTrack].previewLabel}</div>
                   </div>
-                  <span className="text-stone-500 group-hover:text-stone-900 group-hover:translate-x-0.5 transition-all">→</span>
+                  <span className="text-stone-500 dark:text-stone-400 group-hover:text-stone-900 dark:group-hover:text-stone-100 group-hover:translate-x-0.5 transition-all">→</span>
                 </a>
               </motion.div>
             </AnimatePresence>
@@ -271,20 +271,20 @@ export default function LoginPage() {
       </div>
 
       {/* ── RIGHT SIDE: Form ── */}
-      <div className="w-full lg:w-1/2 bg-stone-50 flex flex-col items-center justify-center px-6 py-16 lg:py-0">
+      <div className="w-full lg:w-1/2 bg-stone-50 dark:bg-stone-900/50 flex flex-col items-center justify-center px-6 py-16 lg:py-0">
         <div className="w-full max-w-sm">
           {/* Mobile Brand (visible on small screens) */}
           <div className="lg:hidden space-y-4 mb-8 text-center">
-            <div className="text-sm font-bold text-stone-500 uppercase tracking-widest">
+            <div className="text-sm font-bold text-stone-500 dark:text-stone-400 uppercase tracking-widest">
               Tự Học Tài Chính
             </div>
-            <h1 className="text-4xl font-bold text-stone-900">
+            <h1 className="text-4xl font-bold text-stone-900 dark:text-stone-100">
               Hiểu tiền bạc
             </h1>
           </div>
 
           {/* Mobile: same interactive track tabs as desktop, just more compact */}
-          <div className="lg:hidden border-2 border-stone-200 rounded-2xl overflow-hidden mb-8">
+          <div className="lg:hidden border-2 border-stone-200 dark:border-stone-800 rounded-2xl overflow-hidden mb-8">
             <div className="grid grid-cols-2">
               {(Object.keys(TRACKS) as TrackId[]).map((id) => {
                 const t = TRACKS[id];
@@ -294,7 +294,7 @@ export default function LoginPage() {
                     key={id}
                     onClick={() => setPreviewTrack(id)}
                     className={`px-4 py-3 text-left transition-colors cursor-pointer ${
-                      isActive ? "bg-stone-900 text-white" : "bg-white text-stone-500"
+                      isActive ? "bg-stone-900 dark:bg-stone-100 text-white dark:text-stone-900" : "bg-white dark:bg-stone-900 text-stone-500 dark:text-stone-400"
                     }`}
                   >
                     <div className="text-[10px] font-bold uppercase tracking-widest opacity-60 mb-0.5">
@@ -315,29 +315,29 @@ export default function LoginPage() {
                 transition={{ duration: 0.18 }}
                 className="p-4 space-y-3"
               >
-                <p className="text-xs text-stone-600">{TRACKS[previewTrack].description}</p>
+                <p className="text-xs text-stone-600 dark:text-stone-400">{TRACKS[previewTrack].description}</p>
                 <a
                   href={`/bai-hoc/${TRACKS[previewTrack].previewSlug}`}
-                  className="flex items-center justify-between gap-3 border border-stone-200 hover:border-stone-400 rounded-xl px-3 py-2.5 transition-colors"
+                  className="flex items-center justify-between gap-3 border border-stone-200 dark:border-stone-800 hover:border-stone-400 dark:hover:border-stone-600 rounded-xl px-3 py-2.5 transition-colors"
                 >
                   <div>
-                    <div className="text-[9px] font-bold text-stone-500 uppercase tracking-wider">Xem thử ngay</div>
-                    <div className="text-xs font-bold text-stone-900">{TRACKS[previewTrack].previewLabel}</div>
+                    <div className="text-[9px] font-bold text-stone-500 dark:text-stone-400 uppercase tracking-wider">Xem thử ngay</div>
+                    <div className="text-xs font-bold text-stone-900 dark:text-stone-100">{TRACKS[previewTrack].previewLabel}</div>
                   </div>
-                  <span className="text-stone-500">→</span>
+                  <span className="text-stone-500 dark:text-stone-400">→</span>
                 </a>
               </motion.div>
             </AnimatePresence>
           </div>
 
           {/* Form Card */}
-          <div className="bg-white border border-stone-200 rounded-2xl p-8 space-y-6">
+          <div className="bg-white dark:bg-stone-900 border border-stone-200 dark:border-stone-800 rounded-2xl p-8 space-y-6">
             {/* Form Title */}
             <div>
-              <h2 className="text-2xl font-bold text-stone-900 mb-2">
+              <h2 className="text-2xl font-bold text-stone-900 dark:text-stone-100 mb-2">
                 {mode === "login" ? "Đăng nhập" : mode === "signup" ? "Đăng ký" : "Quên mật khẩu"}
               </h2>
-              <p className="text-sm text-stone-500">
+              <p className="text-sm text-stone-500 dark:text-stone-400">
                 {mode === "login"
                   ? "Chào mừng trở lại"
                   : mode === "signup"
@@ -352,7 +352,7 @@ export default function LoginPage() {
                 <button
                   onClick={handleGoogleLogin}
                   disabled={loading}
-                  className="w-full border border-stone-200 hover:bg-stone-50 text-stone-900 py-3 rounded-xl font-bold text-base transition-colors disabled:opacity-60 flex items-center justify-center gap-2"
+                  className="w-full border border-stone-200 dark:border-stone-700 hover:bg-stone-50 dark:hover:bg-stone-800 text-stone-900 dark:text-stone-100 py-3 rounded-xl font-bold text-base transition-colors disabled:opacity-60 flex items-center justify-center gap-2"
                 >
                   <svg className="w-5 h-5" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                     <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/>
@@ -365,24 +365,24 @@ export default function LoginPage() {
 
                 {/* Divider */}
                 <div className="relative flex items-center">
-                  <div className="flex-1 border-t border-stone-100" />
-                  <span className="px-3 text-xs text-stone-500 font-bold uppercase tracking-wider">
+                  <div className="flex-1 border-t border-stone-100 dark:border-stone-800" />
+                  <span className="px-3 text-xs text-stone-500 dark:text-stone-400 font-bold uppercase tracking-wider">
                     Hoặc email
                   </span>
-                  <div className="flex-1 border-t border-stone-100" />
+                  <div className="flex-1 border-t border-stone-100 dark:border-stone-800" />
                 </div>
               </>
             )}
 
             {mode === "forgot" ? (
               resetSent ? (
-                <div className="bg-emerald-50 border border-emerald-200 text-emerald-800 text-sm font-semibold rounded-xl px-4 py-4 text-center">
+                <div className="bg-emerald-50 dark:bg-emerald-950/50 border border-emerald-200 dark:border-emerald-900 text-emerald-800 dark:text-emerald-400 text-sm font-semibold rounded-xl px-4 py-4 text-center">
                   Đã gửi email tới <strong>{email}</strong>. Mở email và bấm vào link để đặt lại mật khẩu.
                 </div>
               ) : (
                 <form onSubmit={handleForgotPassword} className="space-y-4">
                   <div className="space-y-2">
-                    <label className="text-xs font-bold text-stone-600 uppercase tracking-wider block">
+                    <label className="text-xs font-bold text-stone-600 dark:text-stone-400 uppercase tracking-wider block">
                       Địa chỉ email
                     </label>
                     <input
@@ -390,12 +390,12 @@ export default function LoginPage() {
                       value={email}
                       onChange={(e) => setEmail(e.target.value)}
                       placeholder="email@vi-du.com"
-                      className="w-full px-4 py-3 rounded-xl border border-stone-200 bg-white focus:border-stone-400 focus:ring-1 focus:ring-stone-900/5 focus:outline-none text-stone-900 text-base placeholder:text-stone-300"
+                      className="w-full px-4 py-3 rounded-xl border border-stone-200 dark:border-stone-700 bg-white dark:bg-stone-800 focus:border-stone-400 dark:focus:border-stone-500 focus:ring-1 focus:ring-stone-900/5 focus:outline-none text-stone-900 dark:text-stone-100 text-base placeholder:text-stone-300 dark:placeholder:text-stone-600"
                     />
                   </div>
 
                   {error && (
-                    <div className="bg-red-50 border border-red-200 text-red-700 text-xs font-semibold rounded-xl px-4 py-3">
+                    <div className="bg-red-50 dark:bg-red-950/50 border border-red-200 dark:border-red-900 text-red-700 dark:text-red-400 text-xs font-semibold rounded-xl px-4 py-3">
                       {error}
                     </div>
                   )}
@@ -403,7 +403,7 @@ export default function LoginPage() {
                   <button
                     type="submit"
                     disabled={loading}
-                    className="w-full bg-stone-900 hover:bg-stone-800 text-white py-4 rounded-xl font-bold text-base transition-colors disabled:opacity-60 mt-2"
+                    className="w-full bg-stone-900 hover:bg-stone-800 dark:bg-stone-100 dark:hover:bg-white text-white dark:text-stone-900 py-4 rounded-xl font-bold text-base transition-colors disabled:opacity-60 mt-2"
                   >
                     {loading ? "Đang gửi..." : "Gửi email đặt lại mật khẩu"}
                   </button>
@@ -413,7 +413,7 @@ export default function LoginPage() {
               <form onSubmit={handleSubmit} className="space-y-4">
                 {mode === "signup" && (
                   <div className="space-y-2">
-                    <label className="text-xs font-bold text-stone-600 uppercase tracking-wider block">
+                    <label className="text-xs font-bold text-stone-600 dark:text-stone-400 uppercase tracking-wider block">
                       Tên của bạn
                     </label>
                     <input
@@ -421,13 +421,13 @@ export default function LoginPage() {
                       value={name}
                       onChange={(e) => setName(e.target.value)}
                       placeholder="Nguyễn Văn A"
-                      className="w-full px-4 py-3 rounded-xl border border-stone-200 bg-white focus:border-stone-400 focus:ring-1 focus:ring-stone-900/5 focus:outline-none text-stone-900 text-base placeholder:text-stone-300"
+                      className="w-full px-4 py-3 rounded-xl border border-stone-200 dark:border-stone-700 bg-white dark:bg-stone-800 focus:border-stone-400 dark:focus:border-stone-500 focus:ring-1 focus:ring-stone-900/5 focus:outline-none text-stone-900 dark:text-stone-100 text-base placeholder:text-stone-300 dark:placeholder:text-stone-600"
                     />
                   </div>
                 )}
 
                 <div className="space-y-2">
-                  <label className="text-xs font-bold text-stone-600 uppercase tracking-wider block">
+                  <label className="text-xs font-bold text-stone-600 dark:text-stone-400 uppercase tracking-wider block">
                     Địa chỉ email
                   </label>
                   <input
@@ -435,13 +435,13 @@ export default function LoginPage() {
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     placeholder="email@vi-du.com"
-                    className="w-full px-4 py-3 rounded-xl border border-stone-200 bg-white focus:border-stone-400 focus:ring-1 focus:ring-stone-900/5 focus:outline-none text-stone-900 text-base placeholder:text-stone-300"
+                    className="w-full px-4 py-3 rounded-xl border border-stone-200 dark:border-stone-700 bg-white dark:bg-stone-800 focus:border-stone-400 dark:focus:border-stone-500 focus:ring-1 focus:ring-stone-900/5 focus:outline-none text-stone-900 dark:text-stone-100 text-base placeholder:text-stone-300 dark:placeholder:text-stone-600"
                   />
                 </div>
 
                 <div className="space-y-2">
                   <div className="flex items-center justify-between">
-                    <label className="text-xs font-bold text-stone-600 uppercase tracking-wider block">
+                    <label className="text-xs font-bold text-stone-600 dark:text-stone-400 uppercase tracking-wider block">
                       Mật khẩu
                     </label>
                     {mode === "login" && (
@@ -452,7 +452,7 @@ export default function LoginPage() {
                           setError("");
                           setResetSent(false);
                         }}
-                        className="text-xs font-semibold text-stone-500 hover:text-stone-900 hover:underline"
+                        className="text-xs font-semibold text-stone-500 dark:text-stone-400 hover:text-stone-900 dark:hover:text-stone-100 hover:underline"
                       >
                         Quên mật khẩu?
                       </button>
@@ -463,12 +463,12 @@ export default function LoginPage() {
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
                     placeholder="••••••"
-                    className="w-full px-4 py-3 rounded-xl border border-stone-200 bg-white focus:border-stone-400 focus:ring-1 focus:ring-stone-900/5 focus:outline-none text-stone-900 text-base placeholder:text-stone-300"
+                    className="w-full px-4 py-3 rounded-xl border border-stone-200 dark:border-stone-700 bg-white dark:bg-stone-800 focus:border-stone-400 dark:focus:border-stone-500 focus:ring-1 focus:ring-stone-900/5 focus:outline-none text-stone-900 dark:text-stone-100 text-base placeholder:text-stone-300 dark:placeholder:text-stone-600"
                   />
                 </div>
 
                 {error && (
-                  <div className="bg-red-50 border border-red-200 text-red-700 text-xs font-semibold rounded-xl px-4 py-3">
+                  <div className="bg-red-50 dark:bg-red-950/50 border border-red-200 dark:border-red-900 text-red-700 dark:text-red-400 text-xs font-semibold rounded-xl px-4 py-3">
                     {error}
                   </div>
                 )}
@@ -476,7 +476,7 @@ export default function LoginPage() {
                 <button
                   type="submit"
                   disabled={loading}
-                  className="w-full bg-stone-900 hover:bg-stone-800 text-white py-4 rounded-xl font-bold text-base transition-colors disabled:opacity-60 mt-2"
+                  className="w-full bg-stone-900 hover:bg-stone-800 dark:bg-stone-100 dark:hover:bg-white text-white dark:text-stone-900 py-4 rounded-xl font-bold text-base transition-colors disabled:opacity-60 mt-2"
                 >
                   {loading
                     ? "Đang xử lý..."
@@ -488,7 +488,7 @@ export default function LoginPage() {
             )}
 
             {/* Mode Toggle */}
-            <div className="text-center text-sm text-stone-600">
+            <div className="text-center text-sm text-stone-600 dark:text-stone-400">
               {mode === "login" ? (
                 <>
                   Chưa có tài khoản?{" "}
@@ -497,7 +497,7 @@ export default function LoginPage() {
                       setMode("signup");
                       setError("");
                     }}
-                    className="text-stone-900 font-bold hover:underline"
+                    className="text-stone-900 dark:text-stone-100 font-bold hover:underline"
                   >
                     Đăng ký
                   </button>
@@ -511,7 +511,7 @@ export default function LoginPage() {
                       setError("");
                       setResetSent(false);
                     }}
-                    className="text-stone-900 font-bold hover:underline"
+                    className="text-stone-900 dark:text-stone-100 font-bold hover:underline"
                   >
                     Đăng nhập
                   </button>

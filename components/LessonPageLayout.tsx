@@ -42,17 +42,17 @@ interface Props {
 }
 
 const ACCENTS: Record<string, { bg: string; text: string; border: string; badge: string; bar: string; btn: string }> = {
-  emerald: { bg: "bg-emerald-50",  text: "text-emerald-700", border: "border-emerald-200", badge: "bg-emerald-100 text-emerald-700", bar: "bg-emerald-500", btn: "bg-emerald-600 hover:bg-emerald-700" },
-  blue:    { bg: "bg-blue-50",     text: "text-blue-700",    border: "border-blue-200",    badge: "bg-blue-100 text-blue-700",    bar: "bg-blue-500",    btn: "bg-blue-600 hover:bg-blue-700" },
-  violet:  { bg: "bg-violet-50",   text: "text-violet-700",  border: "border-violet-200",  badge: "bg-violet-100 text-violet-700", bar: "bg-violet-500",  btn: "bg-violet-600 hover:bg-violet-700" },
-  orange:  { bg: "bg-orange-50",   text: "text-orange-700",  border: "border-orange-200",  badge: "bg-orange-100 text-orange-700", bar: "bg-orange-500",  btn: "bg-orange-600 hover:bg-orange-700" },
-  teal:    { bg: "bg-teal-50",     text: "text-teal-700",    border: "border-teal-200",    badge: "bg-teal-100 text-teal-700",    bar: "bg-teal-500",    btn: "bg-teal-600 hover:bg-teal-700" },
-  cyan:    { bg: "bg-cyan-50",     text: "text-cyan-700",    border: "border-cyan-200",    badge: "bg-cyan-100 text-cyan-700",    bar: "bg-cyan-500",    btn: "bg-cyan-600 hover:bg-cyan-700" },
-  rose:    { bg: "bg-rose-50",     text: "text-rose-700",    border: "border-rose-200",    badge: "bg-rose-100 text-rose-700",    bar: "bg-rose-500",    btn: "bg-rose-600 hover:bg-rose-700" },
-  indigo:  { bg: "bg-indigo-50",   text: "text-indigo-700",  border: "border-indigo-200",  badge: "bg-indigo-100 text-indigo-700", bar: "bg-indigo-500",  btn: "bg-indigo-600 hover:bg-indigo-700" },
-  amber:   { bg: "bg-amber-50",    text: "text-amber-700",   border: "border-amber-200",   badge: "bg-amber-100 text-amber-700",  bar: "bg-amber-500",   btn: "bg-amber-600 hover:bg-amber-700" },
-  purple:  { bg: "bg-purple-50",   text: "text-purple-700",  border: "border-purple-200",  badge: "bg-purple-100 text-purple-700", bar: "bg-purple-500",  btn: "bg-purple-600 hover:bg-purple-700" },
-  stone:   { bg: "bg-stone-100",   text: "text-stone-600",   border: "border-stone-200",   badge: "bg-stone-200 text-stone-600",  bar: "bg-stone-500",   btn: "bg-stone-700 hover:bg-stone-800" },
+  emerald: { bg: "bg-emerald-50 dark:bg-emerald-950/40",  text: "text-emerald-700 dark:text-emerald-400", border: "border-emerald-200 dark:border-emerald-900", badge: "bg-emerald-100 dark:bg-emerald-950/60 text-emerald-700 dark:text-emerald-400", bar: "bg-emerald-500", btn: "bg-emerald-600 hover:bg-emerald-700" },
+  blue:    { bg: "bg-blue-50 dark:bg-blue-950/40",     text: "text-blue-700 dark:text-blue-400",    border: "border-blue-200 dark:border-blue-900",    badge: "bg-blue-100 dark:bg-blue-950/60 text-blue-700 dark:text-blue-400",    bar: "bg-blue-500",    btn: "bg-blue-600 hover:bg-blue-700" },
+  violet:  { bg: "bg-violet-50 dark:bg-violet-950/40",   text: "text-violet-700 dark:text-violet-400",  border: "border-violet-200 dark:border-violet-900",  badge: "bg-violet-100 dark:bg-violet-950/60 text-violet-700 dark:text-violet-400", bar: "bg-violet-500",  btn: "bg-violet-600 hover:bg-violet-700" },
+  orange:  { bg: "bg-orange-50 dark:bg-orange-950/40",   text: "text-orange-700 dark:text-orange-400",  border: "border-orange-200 dark:border-orange-900",  badge: "bg-orange-100 dark:bg-orange-950/60 text-orange-700 dark:text-orange-400", bar: "bg-orange-500",  btn: "bg-orange-600 hover:bg-orange-700" },
+  teal:    { bg: "bg-teal-50 dark:bg-teal-950/40",     text: "text-teal-700 dark:text-teal-400",    border: "border-teal-200 dark:border-teal-900",    badge: "bg-teal-100 dark:bg-teal-950/60 text-teal-700 dark:text-teal-400",    bar: "bg-teal-500",    btn: "bg-teal-600 hover:bg-teal-700" },
+  cyan:    { bg: "bg-cyan-50 dark:bg-cyan-950/40",     text: "text-cyan-700 dark:text-cyan-400",    border: "border-cyan-200 dark:border-cyan-900",    badge: "bg-cyan-100 dark:bg-cyan-950/60 text-cyan-700 dark:text-cyan-400",    bar: "bg-cyan-500",    btn: "bg-cyan-600 hover:bg-cyan-700" },
+  rose:    { bg: "bg-rose-50 dark:bg-rose-950/40",     text: "text-rose-700 dark:text-rose-400",    border: "border-rose-200 dark:border-rose-900",    badge: "bg-rose-100 dark:bg-rose-950/60 text-rose-700 dark:text-rose-400",    bar: "bg-rose-500",    btn: "bg-rose-600 hover:bg-rose-700" },
+  indigo:  { bg: "bg-indigo-50 dark:bg-indigo-950/40",   text: "text-indigo-700 dark:text-indigo-400",  border: "border-indigo-200 dark:border-indigo-900",  badge: "bg-indigo-100 dark:bg-indigo-950/60 text-indigo-700 dark:text-indigo-400", bar: "bg-indigo-500",  btn: "bg-indigo-600 hover:bg-indigo-700" },
+  amber:   { bg: "bg-amber-50 dark:bg-amber-950/40",    text: "text-amber-700 dark:text-amber-400",   border: "border-amber-200 dark:border-amber-900",   badge: "bg-amber-100 dark:bg-amber-950/60 text-amber-700 dark:text-amber-400",  bar: "bg-amber-500",   btn: "bg-amber-600 hover:bg-amber-700" },
+  purple:  { bg: "bg-purple-50 dark:bg-purple-950/40",   text: "text-purple-700 dark:text-purple-400",  border: "border-purple-200 dark:border-purple-900",  badge: "bg-purple-100 dark:bg-purple-950/60 text-purple-700 dark:text-purple-400", bar: "bg-purple-500",  btn: "bg-purple-600 hover:bg-purple-700" },
+  stone:   { bg: "bg-stone-100 dark:bg-stone-900",   text: "text-stone-600 dark:text-stone-400",   border: "border-stone-200 dark:border-stone-800",   badge: "bg-stone-200 dark:bg-stone-800 text-stone-600 dark:text-stone-400",  bar: "bg-stone-500",   btn: "bg-stone-700 hover:bg-stone-800" },
 };
 
 export default function LessonPageLayout({ lesson, quiz, children }: Props) {
@@ -197,7 +197,7 @@ export default function LessonPageLayout({ lesson, quiz, children }: Props) {
   const qSelected  = selected[activeQ];
 
   return (
-    <div className="min-h-screen bg-[#FAFAFC] font-sans antialiased text-[#1A1A1E]">
+    <div className="min-h-screen bg-[#FAFAFC] dark:bg-stone-950 font-sans antialiased text-[#1A1A1E] dark:text-stone-100">
       {/* Reading Progress Bar (Fixed Left, race track style) — full opacity
           while actively scrolling, fades to a faint sliver when idle so it
           doesn't linger as a constant on-screen distraction. */}
@@ -210,9 +210,9 @@ export default function LessonPageLayout({ lesson, quiz, children }: Props) {
       </div>
 
       {/* Sticky header */}
-      <header className="bg-white border-b border-stone-200 sticky top-0 z-50">
+      <header className="bg-white dark:bg-stone-900 border-b border-stone-200 dark:border-stone-800 sticky top-0 z-50">
         {/* Scroll progress bar: full width, 4px, sits at very top of header */}
-        <div className="h-1.5 w-full bg-stone-100">
+        <div className="h-1.5 w-full bg-stone-100 dark:bg-stone-800">
           <div
             className={`h-full ${c.bar} transition-all duration-150`}
             style={{ width: `${readPct}%` }}
@@ -223,26 +223,27 @@ export default function LessonPageLayout({ lesson, quiz, children }: Props) {
           <div className="flex items-center gap-4">
             <Link
               href="/dashboard"
-              className="w-11 h-11 rounded-full border-2 border-stone-300 flex items-center justify-center text-stone-600 hover:text-stone-900 hover:border-stone-400 bg-white transition-all text-xl font-bold"
+              aria-label="Về Dashboard"
+              className="w-11 h-11 rounded-full border-2 border-stone-300 dark:border-stone-700 flex items-center justify-center text-stone-600 dark:text-stone-400 hover:text-stone-900 dark:hover:text-stone-100 hover:border-stone-400 dark:hover:border-stone-600 bg-white dark:bg-stone-900 transition-all text-xl font-bold"
             >
               ←
             </Link>
             <div>
-              <p className="font-extrabold text-stone-900 text-lg leading-tight line-clamp-1">{lesson.title}</p>
-              <p className="text-sm text-stone-500 hidden sm:block font-semibold">Day {lesson.day}</p>
+              <p className="font-extrabold text-stone-900 dark:text-stone-100 text-lg leading-tight line-clamp-1">{lesson.title}</p>
+              <p className="text-sm text-stone-500 dark:text-stone-400 hidden sm:block font-semibold">Day {lesson.day}</p>
             </div>
           </div>
 
           <div className="flex items-center gap-3">
             {/* Reading progress badge */}
-            <div className="hidden sm:flex items-center gap-2 bg-stone-50 border border-stone-200 rounded-full px-3 py-1.5">
-              <div className="w-4 h-4 rounded-full bg-stone-200 overflow-hidden flex-shrink-0 relative">
+            <div className="hidden sm:flex items-center gap-2 bg-stone-50 dark:bg-stone-900/50 border border-stone-200 dark:border-stone-800 rounded-full px-3 py-1.5">
+              <div className="w-4 h-4 rounded-full bg-stone-200 dark:bg-stone-700 overflow-hidden flex-shrink-0 relative">
                 <div
                   className={`absolute bottom-0 left-0 right-0 ${c.bar} transition-all duration-150`}
                   style={{ height: `${readPct}%` }}
                 />
               </div>
-              <span className="text-xs font-bold text-stone-600">
+              <span className="text-xs font-bold text-stone-600 dark:text-stone-400">
                 {readPct < 100
                   ? readPct === 0
                     ? `~${durationMin} phút đọc`
@@ -252,10 +253,10 @@ export default function LessonPageLayout({ lesson, quiz, children }: Props) {
             </div>
 
             <div className="hidden sm:flex items-center gap-2">
-              <div className="h-2 w-28 bg-stone-100 rounded-full overflow-hidden">
+              <div className="h-2 w-28 bg-stone-100 dark:bg-stone-800 rounded-full overflow-hidden">
                 <div className={`h-full ${c.bar} rounded-full transition-all duration-500`} style={{ width: `${pct}%` }} />
               </div>
-              <span className="text-xs text-stone-500 font-semibold">{submittedCount}/{quiz.length}</span>
+              <span className="text-xs text-stone-500 dark:text-stone-400 font-semibold">{submittedCount}/{quiz.length}</span>
             </div>
             <span className={`text-xs font-bold uppercase tracking-wider px-3 py-1.5 rounded-full ${c.badge}`}>
               Day {lesson.day}
@@ -275,17 +276,17 @@ export default function LessonPageLayout({ lesson, quiz, children }: Props) {
               <div className={`text-sm font-extrabold uppercase tracking-widest ${c.text} mb-3`}>
                 Day {lesson.day} · {lesson.difficulty}
               </div>
-              <h1 className="text-3xl sm:text-5xl font-extrabold text-stone-950 leading-tight mb-4">
+              <h1 className="text-3xl sm:text-5xl font-extrabold text-stone-950 dark:text-stone-100 leading-tight mb-4">
                 {lesson.title}
               </h1>
-              <p className="text-stone-700 text-lg sm:text-xl leading-relaxed">{lesson.subtitle}</p>
-              <div className="mt-7 pt-5 border-t-2 border-stone-300 space-y-4">
-                <div className="flex items-center gap-4 text-base text-stone-700 font-semibold">
+              <p className="text-stone-700 dark:text-stone-300 text-lg sm:text-xl leading-relaxed">{lesson.subtitle}</p>
+              <div className="mt-7 pt-5 border-t-2 border-stone-300 dark:border-stone-700 space-y-4">
+                <div className="flex items-center gap-4 text-base text-stone-700 dark:text-stone-300 font-semibold">
                   <span>{lesson.duration} đọc</span>
                   <span>·</span>
                   <span>{quiz.length} câu quiz</span>
                   <span>·</span>
-                  <span className="font-bold text-stone-900">
+                  <span className="font-bold text-stone-900 dark:text-stone-100">
                     {readPct === 0
                       ? "Chưa bắt đầu"
                       : readPct >= 100
@@ -294,15 +295,15 @@ export default function LessonPageLayout({ lesson, quiz, children }: Props) {
                   </span>
                 </div>
                 {/* Reading progress bar inside hero */}
-                <div className="h-2.5 bg-stone-300 rounded-full overflow-hidden">
+                <div className="h-2.5 bg-stone-300 dark:bg-stone-700 rounded-full overflow-hidden">
                   <div
                     className={`h-full ${c.bar} rounded-full transition-all duration-150`}
                     style={{ width: `${readPct}%` }}
                   />
                 </div>
                 {readPct > 0 && readPct < 100 && (
-                  <p className="text-sm text-stone-700 font-semibold">
-                    Còn khoảng <strong className="text-stone-900">~{remainMin} phút</strong> để đọc xong
+                  <p className="text-sm text-stone-700 dark:text-stone-300 font-semibold">
+                    Còn khoảng <strong className="text-stone-900 dark:text-stone-100">~{remainMin} phút</strong> để đọc xong
                   </p>
                 )}
               </div>
@@ -312,23 +313,23 @@ export default function LessonPageLayout({ lesson, quiz, children }: Props) {
             <TaiTaiLesson lessonId={lesson.id} lessonTitle={lesson.title} />
 
             {/* Content */}
-            <div className="space-y-8 text-stone-800 leading-relaxed text-lg sm:text-xl font-medium">
+            <div className="space-y-8 text-stone-800 dark:text-stone-300 leading-relaxed text-lg sm:text-xl font-medium">
               {children}
             </div>
 
             {/* Mobile quiz prompt */}
-            <div className="lg:hidden mt-8 border-t border-stone-200 pt-6">
-              <p className="text-base text-stone-500 text-center">Cuộn xuống để làm quiz →</p>
+            <div className="lg:hidden mt-8 border-t border-stone-200 dark:border-stone-800 pt-6">
+              <p className="text-base text-stone-500 dark:text-stone-400 text-center">Cuộn xuống để làm quiz →</p>
             </div>
           </article>
 
           {/* ── RIGHT: Quiz sidebar ────────────────────────────────── */}
           <aside className="w-full lg:w-[440px] flex-shrink-0 lg:sticky lg:top-24 space-y-4">
             {/* Quiz progress */}
-            <div className="bg-white rounded-2xl border-2 border-stone-300 p-6">
+            <div className="bg-white dark:bg-stone-900 rounded-2xl border-2 border-stone-300 dark:border-stone-700 p-6">
               <div className="flex items-center justify-between mb-4">
-                <span className="text-base font-extrabold text-stone-900 uppercase tracking-wide">Kiểm tra nhanh</span>
-                <span className="text-base font-bold text-stone-700 bg-stone-100 px-3 py-1 rounded-lg">{submittedCount}/{quiz.length}</span>
+                <span className="text-base font-extrabold text-stone-900 dark:text-stone-100 uppercase tracking-wide">Kiểm tra nhanh</span>
+                <span className="text-base font-bold text-stone-700 dark:text-stone-300 bg-stone-100 dark:bg-stone-800 px-3 py-1 rounded-lg">{submittedCount}/{quiz.length}</span>
               </div>
               <div className="flex gap-2">
                 {quiz.map((_, i) => (
@@ -338,7 +339,7 @@ export default function LessonPageLayout({ lesson, quiz, children }: Props) {
                     className={`flex-1 h-3 rounded-full transition-all cursor-pointer ${
                       submitted[i]
                         ? results[i] ? "bg-emerald-500" : "bg-rose-500"
-                        : i === activeQ ? `${c.bar}` : "bg-stone-300"
+                        : i === activeQ ? `${c.bar}` : "bg-stone-300 dark:bg-stone-700"
                     }`}
                   />
                 ))}
@@ -347,30 +348,30 @@ export default function LessonPageLayout({ lesson, quiz, children }: Props) {
 
             {/* Active question */}
             {!allDone ? (
-              <div className="bg-white rounded-2xl border-2 border-stone-300 p-8 space-y-6">
+              <div className="bg-white dark:bg-stone-900 rounded-2xl border-2 border-stone-300 dark:border-stone-700 p-8 space-y-6">
                 <div>
                   <div className="flex items-center justify-between mb-4">
-                    <span className="text-sm font-extrabold text-stone-700 uppercase tracking-wider bg-stone-100 px-3 py-1 rounded-lg">
+                    <span className="text-sm font-extrabold text-stone-700 dark:text-stone-300 uppercase tracking-wider bg-stone-100 dark:bg-stone-800 px-3 py-1 rounded-lg">
                       Câu {activeQ + 1} / {quiz.length}
                     </span>
                     {qSubmitted && (
-                      <span className={`text-sm font-bold px-3 py-1.5 rounded-lg ${qCorrect ? "bg-emerald-100 text-emerald-900" : "bg-rose-100 text-rose-900"}`}>
+                      <span className={`text-sm font-bold px-3 py-1.5 rounded-lg ${qCorrect ? "bg-emerald-100 dark:bg-emerald-950/50 text-emerald-900 dark:text-emerald-400" : "bg-rose-100 dark:bg-rose-950/50 text-rose-900 dark:text-rose-400"}`}>
                         {qCorrect ? "✓ Đúng rồi!" : "✗ Chưa đúng"}
                       </span>
                     )}
                   </div>
-                  <p className="font-bold text-stone-900 text-lg leading-relaxed">{q.question}</p>
+                  <p className="font-bold text-stone-900 dark:text-stone-100 text-lg leading-relaxed">{q.question}</p>
                 </div>
 
                 <div className="space-y-3">
                   {q.options.map((opt, oi) => {
                     const isSelected = qSelected === oi;
                     const isCorrectOpt = oi === q.correct;
-                    let cls = "border-2 border-stone-300 bg-white text-stone-900 hover:border-stone-400 hover:bg-stone-50";
+                    let cls = "border-2 border-stone-300 dark:border-stone-700 bg-white dark:bg-stone-900 text-stone-900 dark:text-stone-100 hover:border-stone-400 dark:hover:border-stone-600 hover:bg-stone-50 dark:hover:bg-stone-800";
                     if (qSubmitted) {
-                      if (isCorrectOpt) cls = "border-2 border-emerald-500 bg-emerald-50 text-emerald-900 font-semibold";
-                      else if (isSelected) cls = "border-2 border-rose-500 bg-rose-50 text-rose-900 font-semibold";
-                      else cls = "border-2 border-stone-200 bg-stone-50 text-stone-500";
+                      if (isCorrectOpt) cls = "border-2 border-emerald-500 bg-emerald-50 dark:bg-emerald-950/50 text-emerald-900 dark:text-emerald-400 font-semibold";
+                      else if (isSelected) cls = "border-2 border-rose-500 bg-rose-50 dark:bg-rose-950/50 text-rose-900 dark:text-rose-400 font-semibold";
+                      else cls = "border-2 border-stone-200 dark:border-stone-800 bg-stone-50 dark:bg-stone-900/50 text-stone-500 dark:text-stone-400";
                     } else if (isSelected) {
                       cls = `${c.border} ${c.bg} ${c.text} border-2 font-semibold`;
                     }
@@ -381,19 +382,19 @@ export default function LessonPageLayout({ lesson, quiz, children }: Props) {
                         onClick={() => choose(activeQ, oi)}
                         className={`w-full text-left px-5 py-4 rounded-xl border transition-all flex items-center gap-4 cursor-pointer font-medium text-base ${cls}`}
                       >
-                        <span className="w-8 h-8 rounded-lg text-xs font-extrabold flex items-center justify-center flex-shrink-0 bg-stone-200 text-stone-800">
+                        <span className="w-8 h-8 rounded-lg text-xs font-extrabold flex items-center justify-center flex-shrink-0 bg-stone-200 dark:bg-stone-700 text-stone-800 dark:text-stone-300">
                           {["A", "B", "C", "D"][oi]}
                         </span>
                         <span className="flex-1 text-base leading-snug">{opt}</span>
-                        {qSubmitted && isCorrectOpt && <span className="text-emerald-600 font-bold text-xl">✓</span>}
-                        {qSubmitted && isSelected && !isCorrectOpt && <span className="text-rose-600 font-bold text-xl">✗</span>}
+                        {qSubmitted && isCorrectOpt && <span className="text-emerald-600 dark:text-emerald-400 font-bold text-xl">✓</span>}
+                        {qSubmitted && isSelected && !isCorrectOpt && <span className="text-rose-600 dark:text-rose-400 font-bold text-xl">✗</span>}
                       </button>
                     );
                   })}
                 </div>
 
                 {qSubmitted && (
-                  <div className={`rounded-xl p-4 text-sm leading-relaxed border ${qCorrect ? "bg-emerald-50 border-emerald-100 text-emerald-800" : "bg-rose-50 border-rose-100 text-rose-800"}`}>
+                  <div className={`rounded-xl p-4 text-sm leading-relaxed border ${qCorrect ? "bg-emerald-50 dark:bg-emerald-950/50 border-emerald-100 dark:border-emerald-900 text-emerald-800 dark:text-emerald-400" : "bg-rose-50 dark:bg-rose-950/50 border-rose-100 dark:border-rose-900 text-rose-800 dark:text-rose-400"}`}>
                     <p className="font-bold mb-1.5">{qCorrect ? "Chính xác!" : "Giải thích:"}</p>
                     <p>{q.explanation}</p>
                   </div>
@@ -404,7 +405,7 @@ export default function LessonPageLayout({ lesson, quiz, children }: Props) {
                     disabled={qSelected === null}
                     onClick={() => verify(activeQ)}
                     className={`w-full py-4 rounded-xl font-bold text-sm uppercase tracking-wider text-white transition-all cursor-pointer ${
-                      qSelected !== null ? `${c.btn}` : "bg-stone-200 text-stone-500 cursor-not-allowed"
+                      qSelected !== null ? `${c.btn}` : "bg-stone-200 dark:bg-stone-700 text-stone-500 dark:text-stone-400 cursor-not-allowed"
                     }`}
                   >
                     Kiểm tra →
@@ -422,11 +423,11 @@ export default function LessonPageLayout({ lesson, quiz, children }: Props) {
               </div>
             ) : (
               /* Completion card */
-              <div className={`rounded-2xl border p-7 text-center space-y-4 ${score === quiz.length ? "bg-emerald-50 border-emerald-200" : "bg-indigo-50 border-indigo-200"}`}>
+              <div className={`rounded-2xl border p-7 text-center space-y-4 ${score === quiz.length ? "bg-emerald-50 dark:bg-emerald-950/50 border-emerald-200 dark:border-emerald-900" : "bg-indigo-50 dark:bg-indigo-950/50 border-indigo-200 dark:border-indigo-900"}`}>
                 <div className="text-5xl">{score === quiz.length ? "★" : score >= quiz.length * 0.7 ? "+" : "↑"}</div>
                 <div>
-                  <h3 className="font-bold text-stone-900 text-xl">Hoàn thành!</h3>
-                  <p className="text-stone-500 text-sm mt-1">{score}/{quiz.length} câu đúng</p>
+                  <h3 className="font-bold text-stone-900 dark:text-stone-100 text-xl">Hoàn thành!</h3>
+                  <p className="text-stone-500 dark:text-stone-400 text-sm mt-1">{score}/{quiz.length} câu đúng</p>
                 </div>
                 <div className="flex gap-2 justify-center">
                   {results.map((ok, i) => (
@@ -436,7 +437,7 @@ export default function LessonPageLayout({ lesson, quiz, children }: Props) {
                   ))}
                 </div>
                 <div className="grid grid-cols-2 gap-3 pt-2">
-                  <Link href="/dashboard" className="py-3.5 rounded-xl border border-stone-200 text-stone-600 text-sm font-bold text-center hover:bg-stone-50 transition-colors">
+                  <Link href="/dashboard" className="py-3.5 rounded-xl border border-stone-200 dark:border-stone-700 text-stone-600 dark:text-stone-400 text-sm font-bold text-center hover:bg-stone-50 dark:hover:bg-stone-800 transition-colors">
                     Dashboard
                   </Link>
                   {lesson.nextSlug ? (
@@ -444,7 +445,7 @@ export default function LessonPageLayout({ lesson, quiz, children }: Props) {
                       Bài tiếp →
                     </Link>
                   ) : (
-                    <div className="py-3.5 rounded-xl bg-stone-100 text-stone-500 text-sm font-bold text-center">Sắp ra mắt</div>
+                    <div className="py-3.5 rounded-xl bg-stone-100 dark:bg-stone-800 text-stone-500 dark:text-stone-400 text-sm font-bold text-center">Sắp ra mắt</div>
                   )}
                 </div>
               </div>
@@ -452,8 +453,8 @@ export default function LessonPageLayout({ lesson, quiz, children }: Props) {
 
             {/* Mini nav between questions */}
             {!allDone && quiz.length > 1 && (
-              <div className="bg-white rounded-2xl border border-stone-200 p-4">
-                <div className="text-xs text-stone-500 font-bold uppercase tracking-wide mb-3">Các câu hỏi</div>
+              <div className="bg-white dark:bg-stone-900 rounded-2xl border border-stone-200 dark:border-stone-800 p-4">
+                <div className="text-xs text-stone-500 dark:text-stone-400 font-bold uppercase tracking-wide mb-3">Các câu hỏi</div>
                 <div className="grid grid-cols-5 gap-2">
                   {quiz.map((_, i) => (
                     <button
@@ -463,8 +464,8 @@ export default function LessonPageLayout({ lesson, quiz, children }: Props) {
                         i === activeQ
                           ? `${c.bar} text-white`
                           : submitted[i]
-                          ? results[i] ? "bg-emerald-100 text-emerald-700" : "bg-rose-100 text-rose-700"
-                          : "bg-stone-100 text-stone-500 hover:bg-stone-200"
+                          ? results[i] ? "bg-emerald-100 dark:bg-emerald-950/50 text-emerald-700 dark:text-emerald-400" : "bg-rose-100 dark:bg-rose-950/50 text-rose-700 dark:text-rose-400"
+                          : "bg-stone-100 dark:bg-stone-800 text-stone-500 dark:text-stone-400 hover:bg-stone-200 dark:hover:bg-stone-700"
                       }`}
                     >
                       {i + 1}

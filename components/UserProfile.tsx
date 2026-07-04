@@ -64,7 +64,7 @@ export default function UserProfile() {
 
   if (loading || !profile) {
     return (
-      <div className="w-10 h-10 bg-stone-200 rounded-full animate-pulse" />
+      <div className="w-10 h-10 bg-stone-200 dark:bg-stone-700 rounded-full animate-pulse" />
     );
   }
 
@@ -72,7 +72,7 @@ export default function UserProfile() {
     <div className="relative">
       <button
         onClick={() => setShowDropdown(!showDropdown)}
-        className="flex items-center gap-2 p-2 rounded-lg hover:bg-stone-100 transition"
+        className="flex items-center gap-2 p-2 rounded-lg hover:bg-stone-100 dark:hover:bg-stone-800 transition"
       >
         {profile.avatar_url ? (
           <Image
@@ -90,8 +90,8 @@ export default function UserProfile() {
       </button>
 
       {showDropdown && (
-        <div className="absolute right-0 mt-2 w-72 bg-white rounded-xl border border-stone-200 shadow-lg z-50 p-4">
-          <div className="flex gap-3 mb-4 pb-4 border-b border-stone-100">
+        <div className="absolute right-0 mt-2 w-72 bg-white dark:bg-stone-900 rounded-xl border border-stone-200 dark:border-stone-800 shadow-lg z-50 p-4">
+          <div className="flex gap-3 mb-4 pb-4 border-b border-stone-100 dark:border-stone-800">
             {profile.avatar_url ? (
               <Image
                 src={profile.avatar_url}
@@ -106,23 +106,23 @@ export default function UserProfile() {
               </div>
             )}
             <div className="flex-1">
-              <p className="font-bold text-stone-900">{profile.full_name || "User"}</p>
-              <p className="text-xs text-stone-500">{profile.email}</p>
+              <p className="font-bold text-stone-900 dark:text-stone-100">{profile.full_name || "User"}</p>
+              <p className="text-xs text-stone-500 dark:text-stone-400">{profile.email}</p>
             </div>
           </div>
 
-          <div className="grid grid-cols-3 gap-3 mb-4 pb-4 border-b border-stone-100 text-center">
+          <div className="grid grid-cols-3 gap-3 mb-4 pb-4 border-b border-stone-100 dark:border-stone-800 text-center">
             <div>
-              <p className="text-lg font-bold text-indigo-600">{profile.current_level}</p>
-              <p className="text-xs text-stone-500">Cấp độ</p>
+              <p className="text-lg font-bold text-indigo-600 dark:text-indigo-400">{profile.current_level}</p>
+              <p className="text-xs text-stone-500 dark:text-stone-400">Cấp độ</p>
             </div>
             <div>
-              <p className="text-lg font-bold text-emerald-600">{profile.total_xp}</p>
-              <p className="text-xs text-stone-500">XP</p>
+              <p className="text-lg font-bold text-emerald-600 dark:text-emerald-400">{profile.total_xp}</p>
+              <p className="text-xs text-stone-500 dark:text-stone-400">XP</p>
             </div>
             <div>
-              <p className="text-lg font-bold text-stone-900">{profile.lessons_completed}</p>
-              <p className="text-xs text-stone-500">Bài học</p>
+              <p className="text-lg font-bold text-stone-900 dark:text-stone-100">{profile.lessons_completed}</p>
+              <p className="text-xs text-stone-500 dark:text-stone-400">Bài học</p>
             </div>
           </div>
 
@@ -130,14 +130,14 @@ export default function UserProfile() {
             <Link
               href="/profile"
               onClick={() => setShowDropdown(false)}
-              className="block px-3 py-2 text-sm font-semibold text-stone-900 hover:bg-stone-50 rounded-lg transition"
+              className="block px-3 py-2 text-sm font-semibold text-stone-900 dark:text-stone-100 hover:bg-stone-50 dark:hover:bg-stone-800 rounded-lg transition"
             >
               Hồ sơ
             </Link>
             <Link
               href="/settings"
               onClick={() => setShowDropdown(false)}
-              className="block px-3 py-2 text-sm font-semibold text-stone-900 hover:bg-stone-50 rounded-lg transition"
+              className="block px-3 py-2 text-sm font-semibold text-stone-900 dark:text-stone-100 hover:bg-stone-50 dark:hover:bg-stone-800 rounded-lg transition"
             >
               Cài đặt
             </Link>
@@ -148,7 +148,7 @@ export default function UserProfile() {
               createClient().auth.signOut();
               window.location.href = "/login";
             }}
-            className="w-full px-4 py-2 text-sm font-bold text-rose-600 hover:bg-rose-50 rounded-lg transition"
+            className="w-full px-4 py-2 text-sm font-bold text-rose-600 dark:text-rose-400 hover:bg-rose-50 dark:hover:bg-rose-950/50 rounded-lg transition"
           >
             Đăng xuất
           </button>

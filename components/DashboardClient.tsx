@@ -315,8 +315,8 @@ export default function DashboardClient({ lessonsMeta }: { lessonsMeta: LessonMe
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-white flex items-center justify-center">
-        <p className="text-stone-500">Đang tải...</p>
+      <div className="min-h-screen bg-white dark:bg-stone-950 flex items-center justify-center">
+        <p className="text-stone-500 dark:text-stone-400">Đang tải...</p>
       </div>
     );
   }
@@ -335,18 +335,18 @@ export default function DashboardClient({ lessonsMeta }: { lessonsMeta: LessonMe
   const bonusOpen = openStages.has("bonus");
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-white dark:bg-stone-950">
       {/* ── Sticky header ── */}
-      <div className="border-b border-stone-200 sticky top-0 bg-white z-10">
+      <div className="border-b border-stone-200 dark:border-stone-800 sticky top-0 bg-white dark:bg-stone-950 z-10">
         <div className="max-w-4xl mx-auto px-6 py-4 flex items-center justify-between">
           <div className="flex-1">
-            <h1 className="text-xl font-bold text-stone-900">Tự Học Tài Chính</h1>
-            <p className="text-xs text-stone-500 mt-0.5">Chọn lộ trình phù hợp với bạn</p>
+            <h1 className="text-xl font-bold text-stone-900 dark:text-stone-100">Tự Học Tài Chính</h1>
+            <p className="text-xs text-stone-500 dark:text-stone-400 mt-0.5">Chọn lộ trình phù hợp với bạn</p>
           </div>
           <div className="flex items-center gap-6">
             <div className="text-right hidden sm:block">
-              <div className="text-xl font-bold text-stone-900">{totalDone}</div>
-              <div className="text-xs text-stone-500">/ {totalLessons} bài đã học</div>
+              <div className="text-xl font-bold text-stone-900 dark:text-stone-100">{totalDone}</div>
+              <div className="text-xs text-stone-500 dark:text-stone-400">/ {totalLessons} bài đã học</div>
             </div>
             <UserProfile />
           </div>
@@ -378,21 +378,21 @@ export default function DashboardClient({ lessonsMeta }: { lessonsMeta: LessonMe
                   onClick={() => setActiveTrack(t.id as "personal" | "professional")}
                   className={`w-full text-left rounded-xl border-2 px-5 py-4 transition-all ${
                     isActive
-                      ? "border-stone-900 bg-stone-900 text-white"
-                      : "border-stone-200 bg-white text-stone-700 hover:border-stone-400"
+                      ? "border-stone-900 dark:border-stone-100 bg-stone-900 dark:bg-stone-100 text-white dark:text-stone-900"
+                      : "border-stone-200 dark:border-stone-800 bg-white dark:bg-stone-900 text-stone-700 dark:text-stone-300 hover:border-stone-400 dark:hover:border-stone-600"
                   }`}
                 >
-                  <div className={`text-xs font-bold uppercase tracking-widest mb-1 ${isActive ? "text-stone-500" : "text-stone-500"}`}>
+                  <div className={`text-xs font-bold uppercase tracking-widest mb-1 ${isActive ? "text-stone-500 dark:text-stone-400" : "text-stone-500 dark:text-stone-400"}`}>
                     {t.subtitle}
                   </div>
-                  <div className={`text-base font-bold ${isActive ? "text-white" : "text-stone-900"}`}>
+                  <div className={`text-base font-bold ${isActive ? "text-white dark:text-stone-900" : "text-stone-900 dark:text-stone-100"}`}>
                     {t.title}
                   </div>
                 </button>
 
                 {/* Hover Tooltip */}
                 <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-3 hidden group-hover:block z-50">
-                  <div className="bg-stone-900 text-white rounded-xl px-4 py-3 whitespace-nowrap shadow-lg border border-stone-800">
+                  <div className="bg-stone-900 dark:bg-stone-800 text-white rounded-xl px-4 py-3 whitespace-nowrap shadow-lg border border-stone-800 dark:border-stone-700">
                     <p className="text-sm font-bold mb-2">{t.description}</p>
                     <div className="space-y-1 text-xs text-stone-300">
                       {t.pillars.map((pillar) => (
@@ -404,7 +404,7 @@ export default function DashboardClient({ lessonsMeta }: { lessonsMeta: LessonMe
                     </div>
                   </div>
                   {/* Tooltip arrow */}
-                  <div className="absolute top-full left-1/2 -translate-x-1/2 border-8 border-transparent border-t-stone-900" />
+                  <div className="absolute top-full left-1/2 -translate-x-1/2 border-8 border-transparent border-t-stone-900 dark:border-t-stone-800" />
                 </div>
               </div>
             );
@@ -428,36 +428,36 @@ export default function DashboardClient({ lessonsMeta }: { lessonsMeta: LessonMe
                   onClick={() => toggleStage(stageKey)}
                   className="w-full flex items-baseline gap-4 mb-4 cursor-pointer text-left"
                 >
-                  <span className="text-xs font-extrabold text-stone-900 uppercase tracking-widest bg-stone-100 px-3 py-1 rounded-lg">
+                  <span className="text-xs font-extrabold text-stone-900 dark:text-stone-100 uppercase tracking-widest bg-stone-100 dark:bg-stone-800 px-3 py-1 rounded-lg">
                     {stage.label}
                   </span>
-                  <span className="text-lg font-extrabold text-stone-900" role="heading" aria-level={2}>{stage.name}</span>
+                  <span className="text-lg font-extrabold text-stone-900 dark:text-stone-100" role="heading" aria-level={2}>{stage.name}</span>
                   {stage.available && stageLessons.length > 0 && (
-                    <span className="ml-auto text-base font-bold text-stone-900 bg-stone-100 px-4 py-1 rounded-lg">
+                    <span className="ml-auto text-base font-bold text-stone-900 dark:text-stone-100 bg-stone-100 dark:bg-stone-800 px-4 py-1 rounded-lg">
                       {stageDone}/{stageLessons.length}
                     </span>
                   )}
-                  <span className={`text-stone-500 text-sm transition-transform ${stageOpen ? "rotate-180" : ""}`}>
+                  <span className={`text-stone-500 dark:text-stone-400 text-sm transition-transform ${stageOpen ? "rotate-180" : ""}`}>
                     ▾
                   </span>
                 </button>
 
                 {/* Not available yet - with lock and loading animation */}
                 {stageOpen && !stage.available && (
-                  <div className="border-2 border-dashed border-stone-200 rounded-xl px-5 py-6 text-center bg-stone-50 relative overflow-hidden">
+                  <div className="border-2 border-dashed border-stone-200 dark:border-stone-800 rounded-xl px-5 py-6 text-center bg-stone-50 dark:bg-stone-900/50 relative overflow-hidden">
                     {/* Animated building background */}
-                    <div className="absolute inset-0 bg-gradient-to-r from-transparent via-stone-200 to-transparent opacity-30 animate-pulse" />
+                    <div className="absolute inset-0 bg-gradient-to-r from-transparent via-stone-200 dark:via-stone-800 to-transparent opacity-30 animate-pulse" />
 
                     {/* Lock icon */}
                     <div className="relative z-10 flex flex-col items-center gap-3">
-                      <div className="w-12 h-12 rounded-lg bg-stone-200 flex items-center justify-center animate-bounce">
-                        <svg className="w-6 h-6 text-stone-600" fill="currentColor" viewBox="0 0 24 24">
+                      <div className="w-12 h-12 rounded-lg bg-stone-200 dark:bg-stone-700 flex items-center justify-center animate-bounce">
+                        <svg className="w-6 h-6 text-stone-600 dark:text-stone-400" fill="currentColor" viewBox="0 0 24 24">
                           <path d="M12 1C6.48 1 2 5.48 2 11v10c0 .55.45 1 1 1h18c.55 0 1-.45 1-1V11c0-5.52-4.48-10-10-10zm0 2c4.41 0 8 3.59 8 8v2H4v-2c0-4.41 3.59-8 8-8zm-3 13h6v2H9z"/>
                         </svg>
                       </div>
                       <div>
-                        <p className="text-stone-600 text-sm font-extrabold">Chặng này bị khoá</p>
-                        <p className="text-stone-500 text-xs mt-1">Hoàn thành chặng trước để mở</p>
+                        <p className="text-stone-600 dark:text-stone-400 text-sm font-extrabold">Chặng này bị khoá</p>
+                        <p className="text-stone-500 dark:text-stone-400 text-xs mt-1">Hoàn thành chặng trước để mở</p>
                       </div>
                     </div>
                   </div>
@@ -465,7 +465,7 @@ export default function DashboardClient({ lessonsMeta }: { lessonsMeta: LessonMe
 
                 {/* Available but no lessons in DB yet - with building animation */}
                 {stageOpen && stage.available && stageLessons.length === 0 && (
-                  <div className="border-2 border-dashed border-stone-200 rounded-xl px-5 py-6 text-center bg-emerald-50 relative overflow-hidden">
+                  <div className="border-2 border-dashed border-stone-200 dark:border-stone-800 rounded-xl px-5 py-6 text-center bg-emerald-50 dark:bg-emerald-950/50 relative overflow-hidden">
                     {/* Animated construction bars */}
                     <div className="absolute inset-0 flex items-center justify-center gap-1 opacity-20">
                       <div className="w-1 bg-stone-400 rounded-full animate-pulse" style={{ height: '20px', animationDelay: '0s' }} />
@@ -477,8 +477,8 @@ export default function DashboardClient({ lessonsMeta }: { lessonsMeta: LessonMe
                     {/* Content */}
                     <div className="relative z-10 flex flex-col items-center gap-2">
                       <div className="text-3xl animate-bounce">🏗️</div>
-                      <p className="text-stone-600 text-sm font-extrabold">Đang xây dựng</p>
-                      <p className="text-stone-500 text-xs">Bài học sắp được hoàn thiện</p>
+                      <p className="text-stone-600 dark:text-stone-400 text-sm font-extrabold">Đang xây dựng</p>
+                      <p className="text-stone-500 dark:text-stone-400 text-xs">Bài học sắp được hoàn thiện</p>
                     </div>
                   </div>
                 )}
@@ -496,19 +496,19 @@ export default function DashboardClient({ lessonsMeta }: { lessonsMeta: LessonMe
                       const partOpen = openParts.has(partKey);
 
                       return (
-                        <div key={part.name} className="border border-stone-200 rounded-xl overflow-hidden">
+                        <div key={part.name} className="border border-stone-200 dark:border-stone-800 rounded-xl overflow-hidden">
                           <button
                             onClick={() => togglePart(partKey)}
-                            className="w-full flex items-center gap-3 px-5 py-3.5 bg-stone-50 hover:bg-stone-100 transition-colors cursor-pointer text-left"
+                            className="w-full flex items-center gap-3 px-5 py-3.5 bg-stone-50 dark:bg-stone-900/50 hover:bg-stone-100 dark:hover:bg-stone-800 transition-colors cursor-pointer text-left"
                           >
-                            <span className="font-bold text-stone-800 text-sm">{part.name}</span>
-                            <span className="text-xs text-stone-500 font-mono">
+                            <span className="font-bold text-stone-800 dark:text-stone-300 text-sm">{part.name}</span>
+                            <span className="text-xs text-stone-500 dark:text-stone-400 font-mono">
                               Day {part.days[0]}-{part.days[1]}
                             </span>
-                            <span className="ml-auto text-sm font-bold text-stone-600 bg-white px-3 py-0.5 rounded-lg border border-stone-200">
+                            <span className="ml-auto text-sm font-bold text-stone-600 dark:text-stone-400 bg-white dark:bg-stone-900 px-3 py-0.5 rounded-lg border border-stone-200 dark:border-stone-800">
                               {partDone}/{partLessons.length}
                             </span>
-                            <span className={`text-stone-500 text-sm transition-transform ${partOpen ? "rotate-180" : ""}`}>
+                            <span className={`text-stone-500 dark:text-stone-400 text-sm transition-transform ${partOpen ? "rotate-180" : ""}`}>
                               ▾
                             </span>
                           </button>
@@ -523,14 +523,14 @@ export default function DashboardClient({ lessonsMeta }: { lessonsMeta: LessonMe
                                     href={`/bai-hoc/${lesson.slug}`}
                                     className={`block rounded-xl border-2 transition-all ${
                                       isDone
-                                        ? "bg-emerald-50 border-emerald-200 hover:border-emerald-300 hover:bg-emerald-100"
-                                        : "bg-white border-stone-200 hover:border-stone-400 hover:bg-stone-50"
+                                        ? "bg-emerald-50 dark:bg-emerald-950/50 border-emerald-200 dark:border-emerald-900 hover:border-emerald-300 dark:hover:border-emerald-800 hover:bg-emerald-100 dark:hover:bg-emerald-950"
+                                        : "bg-white dark:bg-stone-900 border-stone-200 dark:border-stone-800 hover:border-stone-400 dark:hover:border-stone-600 hover:bg-stone-50 dark:hover:bg-stone-800"
                                     }`}
                                   >
                                     <div className="flex items-center gap-4 px-6 py-5">
                                       {/* Day number */}
                                       <div className="w-12 flex-shrink-0 text-center">
-                                        <span className={`font-mono text-sm font-extrabold ${isDone ? "text-emerald-600" : "text-stone-500"}`}>
+                                        <span className={`font-mono text-sm font-extrabold ${isDone ? "text-emerald-600 dark:text-emerald-400" : "text-stone-500 dark:text-stone-400"}`}>
                                           {String(lesson.id).padStart(3, "0")}
                                         </span>
                                       </div>
@@ -542,35 +542,35 @@ export default function DashboardClient({ lessonsMeta }: { lessonsMeta: LessonMe
                                             <CheckCircle2 className="w-5 h-5 text-white" />
                                           </div>
                                         ) : (
-                                          <div className="w-6 h-6 rounded-full border-3 border-stone-300" />
+                                          <div className="w-6 h-6 rounded-full border-3 border-stone-300 dark:border-stone-700" />
                                         )}
                                       </div>
 
                                       {/* Title + subtitle */}
                                       <div className="flex-1 min-w-0">
-                                        <div className={`text-base font-bold leading-snug ${isDone ? "text-emerald-900" : "text-stone-900"}`}>
+                                        <div className={`text-base font-bold leading-snug ${isDone ? "text-emerald-900 dark:text-emerald-400" : "text-stone-900 dark:text-stone-100"}`}>
                                           {lesson.title}
                                         </div>
-                                        <div className={`text-sm mt-1 truncate ${isDone ? "text-emerald-700" : "text-stone-600"}`}>
+                                        <div className={`text-sm mt-1 truncate ${isDone ? "text-emerald-700 dark:text-emerald-400" : "text-stone-600 dark:text-stone-400"}`}>
                                           {lesson.subtitle}
                                         </div>
                                       </div>
 
                                       {/* Meta */}
                                       <div className="hidden sm:flex items-center gap-3 flex-shrink-0">
-                                        <span className={`text-sm font-semibold ${isDone ? "text-emerald-700" : "text-stone-600"}`}>
+                                        <span className={`text-sm font-semibold ${isDone ? "text-emerald-700 dark:text-emerald-400" : "text-stone-600 dark:text-stone-400"}`}>
                                           {lesson.duration}
                                         </span>
                                         <span className={`text-sm font-bold rounded-lg px-3 py-1 ${
                                           isDone
-                                            ? "bg-emerald-200 text-emerald-900"
-                                            : "bg-stone-100 text-stone-700"
+                                            ? "bg-emerald-200 dark:bg-emerald-900 text-emerald-900 dark:text-emerald-300"
+                                            : "bg-stone-100 dark:bg-stone-800 text-stone-700 dark:text-stone-300"
                                         }`}>
                                           {isDone ? "Xong" : lesson.difficulty}
                                         </span>
                                       </div>
 
-                                      <div className={`flex-shrink-0 text-lg font-bold ${isDone ? "text-emerald-600" : "text-stone-500"}`}>
+                                      <div className={`flex-shrink-0 text-lg font-bold ${isDone ? "text-emerald-600 dark:text-emerald-400" : "text-stone-500 dark:text-stone-400"}`}>
                                         ›
                                       </div>
                                     </div>
@@ -596,14 +596,14 @@ export default function DashboardClient({ lessonsMeta }: { lessonsMeta: LessonMe
                 onClick={() => toggleStage("bonus")}
                 className="w-full flex items-baseline gap-4 mb-4 cursor-pointer text-left"
               >
-                <span className="text-xs font-extrabold text-stone-900 uppercase tracking-widest bg-stone-100 px-3 py-1 rounded-lg">
+                <span className="text-xs font-extrabold text-stone-900 dark:text-stone-100 uppercase tracking-widest bg-stone-100 dark:bg-stone-800 px-3 py-1 rounded-lg">
                   Bonus
                 </span>
-                <span className="text-lg font-extrabold text-stone-900" role="heading" aria-level={2}>Case chuyên sâu</span>
-                <span className="ml-auto text-base font-bold text-stone-900 bg-stone-100 px-4 py-1 rounded-lg">
+                <span className="text-lg font-extrabold text-stone-900 dark:text-stone-100" role="heading" aria-level={2}>Case chuyên sâu</span>
+                <span className="ml-auto text-base font-bold text-stone-900 dark:text-stone-100 bg-stone-100 dark:bg-stone-800 px-4 py-1 rounded-lg">
                   {bonusDone}/{bonusLessons.length}
                 </span>
-                <span className={`text-stone-400 text-sm transition-transform ${bonusOpen ? "rotate-180" : ""}`}>
+                <span className={`text-stone-400 dark:text-stone-500 text-sm transition-transform ${bonusOpen ? "rotate-180" : ""}`}>
                   ▾
                 </span>
               </button>
@@ -618,8 +618,8 @@ export default function DashboardClient({ lessonsMeta }: { lessonsMeta: LessonMe
                         href={`/bai-hoc/${lesson.slug}`}
                         className={`block rounded-xl border-2 transition-all ${
                           isDone
-                            ? "bg-emerald-50 border-emerald-200 hover:border-emerald-300 hover:bg-emerald-100"
-                            : "bg-white border-stone-200 hover:border-stone-400 hover:bg-stone-50"
+                            ? "bg-emerald-50 dark:bg-emerald-950/50 border-emerald-200 dark:border-emerald-900 hover:border-emerald-300 dark:hover:border-emerald-800 hover:bg-emerald-100 dark:hover:bg-emerald-950"
+                            : "bg-white dark:bg-stone-900 border-stone-200 dark:border-stone-800 hover:border-stone-400 dark:hover:border-stone-600 hover:bg-stone-50 dark:hover:bg-stone-800"
                         }`}
                       >
                         <div className="flex items-center gap-4 px-6 py-4">
@@ -629,18 +629,18 @@ export default function DashboardClient({ lessonsMeta }: { lessonsMeta: LessonMe
                                 <CheckCircle2 className="w-5 h-5 text-white" />
                               </div>
                             ) : (
-                              <div className="w-6 h-6 rounded-full border-2 border-stone-300" />
+                              <div className="w-6 h-6 rounded-full border-2 border-stone-300 dark:border-stone-700" />
                             )}
                           </div>
                           <div className="flex-1 min-w-0">
-                            <div className={`text-base font-bold leading-snug ${isDone ? "text-emerald-900" : "text-stone-900"}`}>
+                            <div className={`text-base font-bold leading-snug ${isDone ? "text-emerald-900 dark:text-emerald-400" : "text-stone-900 dark:text-stone-100"}`}>
                               {lesson.title}
                             </div>
-                            <div className={`text-sm mt-0.5 truncate ${isDone ? "text-emerald-700" : "text-stone-600"}`}>
+                            <div className={`text-sm mt-0.5 truncate ${isDone ? "text-emerald-700 dark:text-emerald-400" : "text-stone-600 dark:text-stone-400"}`}>
                               {lesson.subtitle}
                             </div>
                           </div>
-                          <div className={`flex-shrink-0 text-lg font-bold ${isDone ? "text-emerald-600" : "text-stone-400"}`}>
+                          <div className={`flex-shrink-0 text-lg font-bold ${isDone ? "text-emerald-600 dark:text-emerald-400" : "text-stone-400 dark:text-stone-500"}`}>
                             ›
                           </div>
                         </div>
