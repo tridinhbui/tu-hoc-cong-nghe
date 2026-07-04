@@ -2,41 +2,21 @@
 
 import { useState } from "react";
 import { motion } from "framer-motion";
+import type { QuizQuestion } from "@/lib/lessons";
 
 interface MidpointInteractiveProps {
-  lessonId: number;
-  lessonTitle: string;
+  question: QuizQuestion;
+  onComplete?: () => void;
 }
 
 export default function MidpointInteractive({
-  lessonId,
-  lessonTitle,
+  question,
+  onComplete,
 }: MidpointInteractiveProps) {
   const [selected, setSelected] = useState<number | null>(null);
   const [submitted, setSubmitted] = useState(false);
-  const [showFeedback, setShowFeedback] = useState(false);
 
-  // Simple midpoint check questions
-  const questions: Record<
-    number,
-    {
-      question: string;
-      options: string[];
-      correct: number;
-      feedback: string;
-    }
-  > = {
-    1: {
-      question: "Từ những gì bạn vừa đọc, khái niệm chính là gì?",
-      options: ["Áp dụng đúng", "Tìm hiểu sâu hơn", "Ôn lại từ đầu", "Xem ví dụ"],
-      correct: 0,
-      feedback: "Bạn hiểu rõ! Hãy tiếp tục với phần còn lại.",
-    },
-  };
-
-  const q = questions[lessonId] || questions[1];
-
-  const isCorrect = selected === q.correct;
+  const isCorrect = selected === question.correct;
 
   return (
     <motion.div
@@ -49,26 +29,23 @@ export default function MidpointInteractive({
         <span className="text-2xl">⏸️</span>
         <h3 className="text-base font-bold text-indigo-900">Dừng & Kiểm tra</h3>
         <span className="ml-auto text-xs font-bold text-indigo-600 bg-indigo-100 px-3 py-1 rounded-full">
-          50% bài học
+          Điểm giữa bài
         </span>
       </div>
 
-      <p className="text-stone-800 font-semibold mb-4">{q.question}</p>
+      <p className="text-stone-800 font-semibold mb-4">{question.question}</p>
 
       <div className="space-y-2 mb-4">
-        {q.options.map((opt, i) => (
+        {question.options.map((opt, i) => (
           <button
             key={i}
             disabled={submitted}
-            onClick={() => {
-              setSelected(i);
-              setShowFeedback(false);
-            }}
+            onClick={() => setSelected(i)}
             className={`w-full text-left px-4 py-3 rounded-xl border-2 transition-all ${
               selected === i
                 ? "border-indigo-500 bg-white text-indigo-900 font-semibold"
                 : submitted
-                  ? i === q.correct
+                  ? i === question.correct
                     ? "border-emerald-500 bg-emerald-50 text-emerald-900"
                     : "border-stone-200 bg-stone-50 text-stone-600 opacity-50"
                   : "border-stone-200 bg-white text-stone-700 hover:border-stone-400"
@@ -82,17 +59,14 @@ export default function MidpointInteractive({
 
       {selected !== null && !submitted && (
         <button
-          onClick={() => {
-            setSubmitted(true);
-            setShowFeedback(true);
-          }}
+          onClick={() => setSubmitted(true)}
           className="w-full bg-indigo-600 hover:bg-indigo-700 text-white py-2.5 rounded-xl font-bold text-sm transition"
         >
           Kiểm tra
         </button>
       )}
 
-      {submitted && showFeedback && (
+      {submitted && (
         <motion.div
           initial={{ opacity: 0, scale: 0.95 }}
           animate={{ opacity: 1, scale: 1 }}
@@ -103,16 +77,16 @@ export default function MidpointInteractive({
           }`}
         >
           <p className={`font-bold ${isCorrect ? "text-emerald-900" : "text-blue-900"}`}>
-            {isCorrect ? "✨ Tuyệt vời!" : "💡 Thông tin bổ sung"}
+            {isCorrect ? "✨ Chính xác!" : "💡 Chưa đúng — xem giải thích"}
           </p>
           <p className={`text-sm mt-1 ${isCorrect ? "text-emerald-800" : "text-blue-800"}`}>
-            {q.feedback}
+            {question.explanation}
           </p>
           <button
             onClick={() => {
               setSelected(null);
               setSubmitted(false);
-              setShowFeedback(false);
+              onComplete?.();
             }}
             className="mt-3 text-sm font-bold text-indigo-600 hover:text-indigo-700 underline"
           >

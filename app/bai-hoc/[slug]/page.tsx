@@ -1,6 +1,6 @@
 "use client";
 
-import React, { use, useState, useEffect } from "react";
+import React, { use, useState, useEffect, useRef } from "react";
 import { notFound } from "next/navigation";
 import { motion } from "framer-motion";
 import { lessons } from "@/lib/lessons";
@@ -8,6 +8,13 @@ import LessonPageLayout from "@/components/LessonPageLayout";
 import InteractiveWidget from "@/components/InteractiveWidget";
 import ReadingProgress from "@/components/ReadingProgress";
 import MidpointInteractive from "@/components/MidpointInteractive";
+import BadgeToast from "@/components/BadgeToast";
+import { createClient } from "@/lib/supabase";
+import { updateReadingProgress, getReadingProgress } from "@/lib/supabase-reading";
+import { awardBadge } from "@/lib/supabase-badges";
+import { getBadgeForMilestone } from "@/lib/badges";
+import type { BadgeDefinition } from "@/lib/badges";
+import { BADGE_DEFINITIONS } from "@/lib/badges";
 
 function OpeningQuestionBlock({
   question,
@@ -31,7 +38,7 @@ function OpeningQuestionBlock({
       <p className="text-stone-800 font-semibold leading-relaxed text-base">
         {question}
       </p>
-      
+
       <div className="space-y-2.5">
         {options.map((opt, i) => {
           let btnCls = "border-stone-200 bg-white text-stone-700 hover:border-stone-300 hover:bg-stone-50/30";
@@ -96,28 +103,82 @@ export default function LessonPage({ params }: { params: Promise<{ slug: string 
   const { slug } = use(params);
   const lesson = getLessonBySlug(slug);
   const [readingProgress, setReadingProgress] = useState(0);
+  const [userId, setUserId] = useState<string | null>(null);
+  const [newBadge, setNewBadge] = useState<BadgeDefinition | null>(null);
+  const maxReachedRef = useRef(0);
+  const savedMilestonesRef = useRef<Set<number>>(new Set());
 
   if (!lesson) notFound();
 
   const nextLesson = lessons.find((l) => l.id === lesson.id + 1);
 
-  // Track reading progress
+  // Get current user + restore prior progress
   useEffect(() => {
+    const init = async () => {
+      const supabase = createClient();
+      const {
+        data: { user },
+      } = await supabase.auth.getUser();
+      if (!user) return;
+      setUserId(user.id);
+
+      const existing = await getReadingProgress(user.id, lesson.id);
+      if (existing) {
+        maxReachedRef.current = existing.max_percent_reached;
+        if (existing.milestone_25) savedMilestonesRef.current.add(25);
+        if (existing.milestone_50) savedMilestonesRef.current.add(50);
+        if (existing.milestone_75) savedMilestonesRef.current.add(75);
+        if (existing.milestone_100) savedMilestonesRef.current.add(100);
+      }
+    };
+    init();
+  }, [lesson.id]);
+
+  // Track reading progress + persist to Supabase (throttled) + award milestone badges
+  useEffect(() => {
+    let saveTimer: ReturnType<typeof setTimeout> | null = null;
+
     const handleScroll = () => {
       const windowHeight = window.innerHeight;
       const documentHeight = document.documentElement.scrollHeight;
       const scrollTop = window.scrollY;
 
       const totalScroll = documentHeight - windowHeight;
-      const scrolled = scrollTop / totalScroll;
+      const scrolled = totalScroll > 0 ? scrollTop / totalScroll : 0;
       const progress = Math.min(Math.round(scrolled * 100), 100);
 
       setReadingProgress(progress);
+
+      if (progress > maxReachedRef.current) {
+        maxReachedRef.current = progress;
+      }
+
+      if (saveTimer) clearTimeout(saveTimer);
+      saveTimer = setTimeout(async () => {
+        if (!userId) return;
+        await updateReadingProgress(userId, lesson.id, maxReachedRef.current);
+      }, 800);
     };
 
     window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+      if (saveTimer) clearTimeout(saveTimer);
+    };
+  }, [userId, lesson.id]);
+
+  const handleMilestone = async (milestone: number) => {
+    if (!userId || savedMilestonesRef.current.has(milestone)) return;
+    savedMilestonesRef.current.add(milestone);
+
+    // Reading finish-line (100%) has no dedicated badge — quiz completion
+    // (handled in LessonPageLayout) is the true "lesson completed" signal.
+    const badgeKey = getBadgeForMilestone(milestone);
+    if (!badgeKey) return;
+
+    const badge = await awardBadge(userId, badgeKey);
+    if (badge) setNewBadge(BADGE_DEFINITIONS[badge.badge_key]);
+  };
 
   const meta = {
     id: lesson.id,
@@ -132,17 +193,17 @@ export default function LessonPage({ params }: { params: Promise<{ slug: string 
     nextTitle: nextLesson ? `Day ${nextLesson.id}: ${nextLesson.title}` : undefined,
   };
 
+  const midpointQuestion = lesson.quiz && lesson.quiz.length > 0 ? lesson.quiz[0] : null;
+
   return (
     <div className="relative">
-      {/* Reading Progress Bar (Fixed Left) */}
+      {/* Reading Progress Bar (Fixed Left, race track style) */}
       <div className="fixed left-6 top-1/2 -translate-y-1/2 z-30 hidden lg:block">
-        <ReadingProgress
-          progress={readingProgress}
-          onMilestone={(milestone) => {
-            console.log(`Reached ${milestone}% milestone for lesson ${lesson.id}`);
-          }}
-        />
+        <ReadingProgress progress={readingProgress} onMilestone={handleMilestone} />
       </div>
+
+      {/* Badge earned toast */}
+      <BadgeToast badge={newBadge} onDismiss={() => setNewBadge(null)} />
 
       <LessonPageLayout lesson={meta} quiz={lesson.quiz}>
       {/* 1. Opening Question block */}
@@ -167,8 +228,8 @@ export default function LessonPage({ params }: { params: Promise<{ slug: string 
         </div>
       )}
 
-      {/* 2.5. Midpoint Interactive Activity (at ~50% of content) */}
-      <MidpointInteractive lessonId={lesson.id} lessonTitle={lesson.title} />
+      {/* 2.5. Midpoint Interactive Activity (custom question per lesson, at ~50% of content) */}
+      {midpointQuestion && <MidpointInteractive question={midpointQuestion} />}
 
       {/* 3. Diagram block */}
       {lesson.diagram && lesson.diagram.length > 0 && (

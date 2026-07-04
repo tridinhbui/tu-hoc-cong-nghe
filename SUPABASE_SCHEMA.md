@@ -135,6 +135,67 @@ create index leaderboard_updated_idx on public.leaderboard_cache(updated_at);
 
 ---
 
+## 5.1 Table: `chat_messages` (Chat giữa user và admin)
+
+```sql
+create table if not exists public.chat_messages (
+  id bigint primary key generated always as identity,
+  user_id uuid not null references public.user_profiles on delete cascade,
+  sender text not null check (sender in ('user', 'admin')),
+  content text not null,
+  read boolean default false,
+  created_at timestamp with time zone default now()
+);
+
+create index chat_messages_user_idx on public.chat_messages(user_id);
+create index chat_messages_created_idx on public.chat_messages(created_at);
+```
+
+---
+
+## 5.2 Table: `reading_progress` (Tiến độ đọc từng bài, lưu lâu dài)
+
+```sql
+create table if not exists public.reading_progress (
+  id bigint primary key generated always as identity,
+  user_id uuid not null references public.user_profiles on delete cascade,
+  lesson_id bigint not null references public.lessons on delete cascade,
+  scroll_percent int default 0, -- 0-100
+  max_percent_reached int default 0, -- highest ever reached, never decreases
+  milestone_25 boolean default false,
+  milestone_50 boolean default false,
+  milestone_75 boolean default false,
+  milestone_100 boolean default false,
+  last_read_at timestamp with time zone default now(),
+  created_at timestamp with time zone default now(),
+  unique(user_id, lesson_id)
+);
+
+create index reading_progress_user_idx on public.reading_progress(user_id);
+create index reading_progress_lesson_idx on public.reading_progress(lesson_id);
+```
+
+---
+
+## 5.3 Table: `user_badges` (Huy hiệu / thành tựu)
+
+```sql
+create table if not exists public.user_badges (
+  id bigint primary key generated always as identity,
+  user_id uuid not null references public.user_profiles on delete cascade,
+  badge_key text not null, -- 'first_lesson', 'streak_7', 'stage_1_complete', 'milestone_25_x10', etc.
+  badge_name text not null,
+  badge_description text,
+  badge_icon text default '🏆',
+  earned_at timestamp with time zone default now(),
+  unique(user_id, badge_key)
+);
+
+create index user_badges_user_idx on public.user_badges(user_id);
+```
+
+---
+
 ## 6. Row Level Security (RLS) - Bảo mật
 
 ```sql
@@ -166,7 +227,36 @@ create policy "Users can view their own stats" on public.user_stats
 -- Leaderboard: Mọi người có thể xem
 alter table public.leaderboard_cache enable row level security;
 create policy "Leaderboard is public" on public.leaderboard_cache for select using (true);
+
+-- Chat Messages: User chỉ xem/gửi tin nhắn của mình; admin xem tất cả
+alter table public.chat_messages enable row level security;
+create policy "Users can view their own chat" on public.chat_messages
+  for select using (auth.uid() = user_id or auth.jwt() ->> 'role' = 'admin');
+create policy "Users can send messages" on public.chat_messages
+  for insert with check (auth.uid() = user_id or auth.jwt() ->> 'role' = 'admin');
+
+-- Reading Progress: Chỉ chính người dùng
+alter table public.reading_progress enable row level security;
+create policy "Users can view their own reading progress" on public.reading_progress
+  for select using (auth.uid() = user_id);
+create policy "Users can upsert their own reading progress" on public.reading_progress
+  for insert with check (auth.uid() = user_id);
+create policy "Users can update their own reading progress" on public.reading_progress
+  for update using (auth.uid() = user_id);
+
+-- User Badges: Chỉ chính người dùng xem, hệ thống ghi
+alter table public.user_badges enable row level security;
+create policy "Users can view their own badges" on public.user_badges
+  for select using (auth.uid() = user_id);
+create policy "Users can earn badges" on public.user_badges
+  for insert with check (auth.uid() = user_id);
 ```
+
+---
+
+## Enable Realtime (cho chat_messages)
+
+Vào Supabase Dashboard → Database → Replication → bật realtime cho bảng `chat_messages`.
 
 ---
 

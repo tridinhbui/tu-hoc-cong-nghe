@@ -5,6 +5,13 @@ import Link from "next/link";
 import { markLessonComplete } from "@/lib/progress";
 import FloatingContact from "@/components/FloatingChatbot";
 import TaiTaiLesson from "@/components/TaiTaiLesson";
+import BadgeToast from "@/components/BadgeToast";
+import { createClient } from "@/lib/supabase";
+import { markLessonComplete as markLessonCompleteSupabase } from "@/lib/supabase-progress";
+import { getCompletedLessons } from "@/lib/supabase-progress";
+import { awardBadges } from "@/lib/supabase-badges";
+import { getBadgesForLessonCount } from "@/lib/badges";
+import { BADGE_DEFINITIONS, type BadgeDefinition } from "@/lib/badges";
 
 export interface QuizQuestion {
   question: string;
@@ -54,9 +61,18 @@ export default function LessonPageLayout({ lesson, quiz, children }: Props) {
   const [results, setResults]     = useState<boolean[]>(new Array(quiz.length).fill(false));
   const [activeQ, setActiveQ]     = useState(0);
   const [readPct, setReadPct]     = useState(0);
+  const [userId, setUserId]       = useState<string | null>(null);
+  const [newBadge, setNewBadge]   = useState<BadgeDefinition | null>(null);
   const articleRef = useRef<HTMLElement>(null);
 
   const durationMin = parseInt(lesson.duration) || 5;
+
+  useEffect(() => {
+    const supabase = createClient();
+    supabase.auth.getUser().then(({ data: { user } }) => {
+      if (user) setUserId(user.id);
+    });
+  }, []);
 
   useEffect(() => {
     function onScroll() {
@@ -91,8 +107,38 @@ export default function LessonPageLayout({ lesson, quiz, children }: Props) {
     const ok = sel === quiz[qi].correct;
     setResults((r) => { const n = [...r]; n[qi] = ok; return n; });
     setSubmitted((s) => { const n = [...s]; n[qi] = true; return n; });
-    if (qi === quiz.length - 1) markLessonComplete(lesson.id, durationMin);
+    if (qi === quiz.length - 1) {
+      markLessonComplete(lesson.id, durationMin);
+      const finalResults = [...results];
+      finalResults[qi] = ok;
+      completeLessonInSupabase(finalResults);
+    }
     if (qi < quiz.length - 1) setTimeout(() => setActiveQ(qi + 1), 600);
+  }
+
+  async function completeLessonInSupabase(finalResults: boolean[]) {
+    if (!userId) return;
+
+    const finalScore =
+      quiz.length > 0
+        ? Math.round((finalResults.filter(Boolean).length / quiz.length) * 100)
+        : 100;
+    await markLessonCompleteSupabase(userId, lesson.id, finalScore, durationMin * 60);
+
+    const completed = await getCompletedLessons(userId);
+    const badgeKeys = getBadgesForLessonCount(completed.length);
+    const newlyAwarded = await awardBadges(userId, badgeKeys);
+
+    if (newlyAwarded.length > 0) {
+      setNewBadge(BADGE_DEFINITIONS[newlyAwarded[0].badge_key]);
+    }
+
+    if (finalScore === 100) {
+      const perfectBadges = await awardBadges(userId, ["perfect_quiz"]);
+      if (perfectBadges.length > 0 && newlyAwarded.length === 0) {
+        setNewBadge(BADGE_DEFINITIONS[perfectBadges[0].badge_key]);
+      }
+    }
   }
 
   const q = quiz[activeQ];
@@ -370,6 +416,7 @@ export default function LessonPageLayout({ lesson, quiz, children }: Props) {
         </div>
       </div>
       <FloatingContact />
+      <BadgeToast badge={newBadge} onDismiss={() => setNewBadge(null)} />
     </div>
   );
 }
