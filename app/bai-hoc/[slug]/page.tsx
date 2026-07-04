@@ -3,7 +3,7 @@
 import React, { use, useState } from "react";
 import { notFound } from "next/navigation";
 import { motion } from "framer-motion";
-import { getLessonBySlug, lessons } from "@/lib/lessons";
+import { getLessonBySlug, lessons200Days } from "@/lib/lessons-200days";
 import LessonPageLayout from "@/components/LessonPageLayout";
 import InteractiveWidget from "@/components/InteractiveWidget";
 
@@ -92,7 +92,7 @@ export default function LessonPage({ params }: { params: Promise<{ slug: string 
 
   if (!lesson) notFound();
 
-  const nextLesson = lessons.find((l) => l.id === lesson.id + 1);
+  const nextLesson = lessons200Days.find((l) => l.id === lesson.id + 1);
 
   const meta = {
     id: lesson.id,
@@ -158,7 +158,7 @@ export default function LessonPage({ params }: { params: Promise<{ slug: string 
           <div className="text-[10px] font-bold text-stone-400 uppercase tracking-wider">
             Thử nghiệm tương tác
           </div>
-          <InteractiveWidget type={lesson.interactiveType} />
+          <InteractiveWidget type={lesson.interactiveType as any} />
         </div>
       )}
 

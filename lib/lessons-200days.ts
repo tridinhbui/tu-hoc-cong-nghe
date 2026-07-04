@@ -263,3 +263,13 @@ export const lessons200Days: Lesson[] = [
   stubLesson(199, "Kết nối tất cả: báo cáo tài chính, định giá, rủi ro, thị trường", "Connecting all topics"),
   stubLesson(200, "Bài cuối: tự phân tích một doanh nghiệp hoàn chỉnh từ A đến Z", "Complete company analysis"),
 ];
+
+// Helper function to get lesson by slug
+export function getLessonBySlug(slug: string): Lesson | undefined {
+  return lessons200Days.find((l) => l.slug === slug);
+}
+
+// Helper function to get lesson by ID
+export function getLessonById(id: number): Lesson | undefined {
+  return lessons200Days.find((l) => l.id === id);
+}
