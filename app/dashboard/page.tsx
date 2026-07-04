@@ -251,23 +251,26 @@ export default function Dashboard() {
         </div>
       </div>
 
-      <div className="max-w-4xl mx-auto px-6 py-8 space-y-8">
-        {/* ── User Stats Section ── */}
-        <UserStats
-          xp={userXp}
-          lessonsCompleted={totalDone}
-          totalLessons={totalLessons}
-          avgQuizScore={avgQuizScore}
-        />
+      <div className="px-6 py-8 space-y-8">
+        {/* ── User Stats Section (Full Width) ── */}
+        <div className="max-w-7xl mx-auto">
+          <UserStats
+            xp={userXp}
+            lessonsCompleted={totalDone}
+            totalLessons={totalLessons}
+            avgQuizScore={avgQuizScore}
+          />
+        </div>
 
-        {/* ── Roadmap Section ── */}
-        <Roadmap stages={track.stages} activeTrack={activeTrack} />
+        {/* ── Three Column Layout: Roadmap | Lessons | Leaderboard ── */}
+        <div className="max-w-7xl mx-auto grid grid-cols-12 gap-6">
+          {/* Left: Roadmap (small) */}
+          <div className="col-span-3 hidden lg:block">
+            <Roadmap stages={track.stages} activeTrack={activeTrack} />
+          </div>
 
-        {/* ── Leaderboard Section ── */}
-        <Leaderboard
-          entries={leaderboardWithRanks}
-          currentUserRank={userLeaderboardEntry?.rank}
-        />
+          {/* Middle: Lessons (main content) */}
+          <div className="col-span-12 lg:col-span-6">
 
         {/* ── Track selector cards ── */}
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -452,6 +455,16 @@ export default function Dashboard() {
               </div>
             );
           })}
+        </div>
+          </div>
+
+          {/* Right: Leaderboard (small) */}
+          <div className="col-span-3 hidden lg:block">
+            <Leaderboard
+              entries={leaderboardWithRanks}
+              currentUserRank={userLeaderboardEntry?.rank}
+            />
+          </div>
         </div>
       </div>
     </div>
