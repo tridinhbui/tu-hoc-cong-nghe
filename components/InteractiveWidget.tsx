@@ -4,7 +4,7 @@ import InteractiveSupplyDemand from "./InteractiveSupplyDemand";
 import InteractiveROE from "./InteractiveROE";
 import InteractiveBond from "./InteractiveBond";
 
-type WidgetType = "interest-rate" | "supply-demand" | "profit-calc" | "balance-sheet" | "roe" | "bond" | "etf";
+type WidgetType = "interest-rate" | "supply-demand" | "profit-calc" | "roe" | "bond";
 
 export default function InteractiveWidget({ type }: { type: WidgetType }) {
   switch (type) {
