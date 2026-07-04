@@ -251,13 +251,13 @@ export default function Dashboard() {
             return (
               <div key={stage.label}>
                 {/* Stage header */}
-                <div className="flex items-baseline gap-3 mb-3">
-                  <span className="text-xs font-bold text-stone-400 uppercase tracking-widest">
+                <div className="flex items-baseline gap-4 mb-4">
+                  <span className="text-xs font-extrabold text-stone-900 uppercase tracking-widest bg-stone-100 px-3 py-1 rounded-lg">
                     {stage.label}
                   </span>
-                  <h2 className="text-base font-bold text-stone-900">{stage.name}</h2>
+                  <h2 className="text-lg font-extrabold text-stone-900">{stage.name}</h2>
                   {stage.available && stageLessons.length > 0 && (
-                    <span className="ml-auto text-sm text-stone-400">
+                    <span className="ml-auto text-base font-bold text-stone-900 bg-stone-100 px-4 py-1 rounded-lg">
                       {stageDone}/{stageLessons.length}
                     </span>
                   )}
@@ -281,19 +281,23 @@ export default function Dashboard() {
 
                 {/* Lesson list */}
                 {stage.available && stageLessons.length > 0 && (
-                  <div className="border border-stone-200 rounded-xl overflow-hidden">
+                  <div className="space-y-2">
                     {stageLessons.map((lesson) => {
                       const isDone = completed.includes(lesson.id);
                       return (
                         <Link
                           key={lesson.id}
                           href={`/bai-hoc/${lesson.slug}`}
-                          className="block border-b border-stone-100 last:border-0"
+                          className={`block rounded-xl border-2 transition-all ${
+                            isDone
+                              ? "bg-emerald-50 border-emerald-200 hover:border-emerald-300 hover:bg-emerald-100"
+                              : "bg-white border-stone-200 hover:border-stone-400 hover:bg-stone-50"
+                          }`}
                         >
-                          <div className={`flex items-center gap-4 px-5 py-4 hover:bg-stone-50 transition-colors ${isDone ? "opacity-50" : ""}`}>
+                          <div className="flex items-center gap-4 px-6 py-5">
                             {/* Day number */}
-                            <div className="w-10 flex-shrink-0 text-center">
-                              <span className="font-mono text-xs font-bold text-stone-300">
+                            <div className="w-12 flex-shrink-0 text-center">
+                              <span className={`font-mono text-sm font-extrabold ${isDone ? "text-emerald-600" : "text-stone-400"}`}>
                                 {String(lesson.id).padStart(3, "0")}
                               </span>
                             </div>
@@ -301,31 +305,41 @@ export default function Dashboard() {
                             {/* Status circle */}
                             <div className="flex-shrink-0">
                               {isDone ? (
-                                <CheckCircle2 className="w-4 h-4 text-stone-400" />
+                                <div className="w-6 h-6 rounded-full bg-emerald-500 flex items-center justify-center">
+                                  <CheckCircle2 className="w-5 h-5 text-white" />
+                                </div>
                               ) : (
-                                <div className="w-4 h-4 rounded-full border-2 border-stone-200" />
+                                <div className="w-6 h-6 rounded-full border-3 border-stone-300" />
                               )}
                             </div>
 
                             {/* Title + subtitle */}
                             <div className="flex-1 min-w-0">
-                              <div className={`text-sm font-semibold leading-snug ${isDone ? "text-stone-400" : "text-stone-900"}`}>
+                              <div className={`text-base font-bold leading-snug ${isDone ? "text-emerald-900" : "text-stone-900"}`}>
                                 {lesson.title}
                               </div>
-                              <div className="text-xs text-stone-400 mt-0.5 truncate">
+                              <div className={`text-sm mt-1 truncate ${isDone ? "text-emerald-700" : "text-stone-600"}`}>
                                 {lesson.subtitle}
                               </div>
                             </div>
 
                             {/* Meta */}
                             <div className="hidden sm:flex items-center gap-3 flex-shrink-0">
-                              <span className="text-xs text-stone-300">{lesson.duration}</span>
-                              <span className="text-xs font-medium text-stone-400 border border-stone-100 rounded px-2 py-0.5">
+                              <span className={`text-sm font-semibold ${isDone ? "text-emerald-700" : "text-stone-600"}`}>
+                                {lesson.duration}
+                              </span>
+                              <span className={`text-sm font-bold rounded-lg px-3 py-1 ${
+                                isDone
+                                  ? "bg-emerald-200 text-emerald-900"
+                                  : "bg-stone-100 text-stone-700"
+                              }`}>
                                 {isDone ? "Xong" : lesson.difficulty}
                               </span>
                             </div>
 
-                            <div className="flex-shrink-0 text-stone-200 text-base">›</div>
+                            <div className={`flex-shrink-0 text-lg font-bold ${isDone ? "text-emerald-600" : "text-stone-400"}`}>
+                              ›
+                            </div>
                           </div>
                         </Link>
                       );
