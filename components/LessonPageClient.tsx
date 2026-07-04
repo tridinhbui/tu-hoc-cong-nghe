@@ -106,11 +106,16 @@ export default function LessonPageClient({ lesson, nextLesson }: Props) {
     nextTitle: nextLesson ? `Day ${nextLesson.id}: ${nextLesson.title}` : undefined,
   };
 
-  const midpointQuestion = lesson.quiz && lesson.quiz.length > 0 ? lesson.quiz[0] : null;
+  // Reuse the first quiz question as the mid-article checkpoint, but only
+  // when there's at least one more question left for the sidebar quiz —
+  // otherwise the same question would be asked twice in one lesson.
+  const hasMidpoint = lesson.quiz && lesson.quiz.length > 1;
+  const midpointQuestion = hasMidpoint ? lesson.quiz[0] : null;
+  const sidebarQuiz = hasMidpoint ? lesson.quiz.slice(1) : lesson.quiz;
 
   return (
     <div className="relative">
-      <LessonPageLayout lesson={meta} quiz={lesson.quiz}>
+      <LessonPageLayout lesson={meta} quiz={sidebarQuiz}>
       {/* 1. Opening Question block */}
       {lesson.openingQuestion && (
         <OpeningQuestionBlock
