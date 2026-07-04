@@ -3,7 +3,7 @@
 import React, { use, useState } from "react";
 import { notFound } from "next/navigation";
 import { motion } from "framer-motion";
-import { getLessonBySlug, lessons200Days } from "@/lib/lessons-200days";
+import { lessons } from "@/lib/lessons";
 import LessonPageLayout from "@/components/LessonPageLayout";
 import InteractiveWidget from "@/components/InteractiveWidget";
 
@@ -86,13 +86,17 @@ function OpeningQuestionBlock({
   );
 }
 
+function getLessonBySlug(slug: string) {
+  return lessons.find((l) => l.slug === slug);
+}
+
 export default function LessonPage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = use(params);
   const lesson = getLessonBySlug(slug);
 
   if (!lesson) notFound();
 
-  const nextLesson = lessons200Days.find((l) => l.id === lesson.id + 1);
+  const nextLesson = lessons.find((l) => l.id === lesson.id + 1);
 
   const meta = {
     id: lesson.id,

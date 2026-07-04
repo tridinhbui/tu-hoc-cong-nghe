@@ -27,6 +27,7 @@ export interface Lesson {
   };
   quiz: QuizQuestion[];
   keyTakeaways: string[];
+  track?: "professional" | "personal"; // Which track this lesson belongs to
 }
 
 export interface DiagramNode {

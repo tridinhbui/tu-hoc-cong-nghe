@@ -5,7 +5,7 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { CheckCircle2 } from "lucide-react";
 import { useProgress } from "@/lib/client-hooks";
-import { allLessons } from "@/lib/lessons-200days";
+import { lessons } from "@/lib/lessons";
 import { createClient } from "@/lib/supabase";
 import UserStats from "@/components/UserStats";
 import UserMenu from "@/components/UserMenu";
@@ -218,7 +218,7 @@ export default function Dashboard() {
     );
   }
 
-  const sorted = [...allLessons].sort((a, b) => a.id - b.id);
+  const sorted = [...lessons].sort((a, b) => a.id - b.id);
   const track = activeTrack === "personal" ? TRACK_PERSONAL : TRACK_PROFESSIONAL;
 
   const totalDone = completed.length;
