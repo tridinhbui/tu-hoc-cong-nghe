@@ -9,6 +9,11 @@ export interface ChatMessage {
   created_at: string;
 }
 
+// PGRST205 = table not found in schema cache (migration not run yet on this Supabase project)
+function isMissingTableError(error: { code?: string } | null) {
+  return error?.code === "PGRST205";
+}
+
 export async function getChatHistory(userId: string) {
   const supabase = createClient();
   const { data, error } = await supabase
@@ -18,7 +23,9 @@ export async function getChatHistory(userId: string) {
     .order("created_at", { ascending: true });
 
   if (error) {
-    console.error("Error fetching chat history:", error);
+    if (!isMissingTableError(error)) {
+      console.error("Error fetching chat history:", error);
+    }
     return [];
   }
 
@@ -38,7 +45,9 @@ export async function sendMessage(
     .single();
 
   if (error) {
-    console.error("Error sending message:", error);
+    if (!isMissingTableError(error)) {
+      console.error("Error sending message:", error);
+    }
     return null;
   }
 

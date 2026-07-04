@@ -11,6 +11,11 @@ export interface UserBadge {
   earned_at: string;
 }
 
+// PGRST205 = table not found in schema cache (migration not run yet on this Supabase project)
+function isMissingTableError(error: { code?: string } | null) {
+  return error?.code === "PGRST205";
+}
+
 export async function getUserBadges(userId: string) {
   const supabase = createClient();
   const { data, error } = await supabase
@@ -20,7 +25,9 @@ export async function getUserBadges(userId: string) {
     .order("earned_at", { ascending: false });
 
   if (error) {
-    console.error("Error fetching badges:", error);
+    if (!isMissingTableError(error)) {
+      console.error("Error fetching badges:", error);
+    }
     return [];
   }
 
@@ -35,13 +42,14 @@ export async function awardBadge(userId: string, badgeKey: string) {
   const supabase = createClient();
 
   // Check if already earned
-  const { data: existing } = await supabase
+  const { data: existing, error: checkError } = await supabase
     .from("user_badges")
     .select("id")
     .eq("user_id", userId)
     .eq("badge_key", badgeKey)
     .single();
 
+  if (checkError && isMissingTableError(checkError)) return null;
   if (existing) return null; // already has it
 
   const { data, error } = await supabase
@@ -60,7 +68,7 @@ export async function awardBadge(userId: string, badgeKey: string) {
 
   if (error) {
     // Unique constraint race - not an actual error for UX
-    if (error.code !== "23505") {
+    if (error.code !== "23505" && !isMissingTableError(error)) {
       console.error("Error awarding badge:", error);
     }
     return null;
