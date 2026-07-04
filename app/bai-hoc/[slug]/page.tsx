@@ -1,11 +1,13 @@
 "use client";
 
-import React, { use, useState } from "react";
+import React, { use, useState, useEffect } from "react";
 import { notFound } from "next/navigation";
 import { motion } from "framer-motion";
 import { lessons } from "@/lib/lessons";
 import LessonPageLayout from "@/components/LessonPageLayout";
 import InteractiveWidget from "@/components/InteractiveWidget";
+import ReadingProgress from "@/components/ReadingProgress";
+import MidpointInteractive from "@/components/MidpointInteractive";
 
 function OpeningQuestionBlock({
   question,
@@ -93,10 +95,29 @@ function getLessonBySlug(slug: string) {
 export default function LessonPage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = use(params);
   const lesson = getLessonBySlug(slug);
+  const [readingProgress, setReadingProgress] = useState(0);
 
   if (!lesson) notFound();
 
   const nextLesson = lessons.find((l) => l.id === lesson.id + 1);
+
+  // Track reading progress
+  useEffect(() => {
+    const handleScroll = () => {
+      const windowHeight = window.innerHeight;
+      const documentHeight = document.documentElement.scrollHeight;
+      const scrollTop = window.scrollY;
+
+      const totalScroll = documentHeight - windowHeight;
+      const scrolled = scrollTop / totalScroll;
+      const progress = Math.min(Math.round(scrolled * 100), 100);
+
+      setReadingProgress(progress);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   const meta = {
     id: lesson.id,
@@ -112,7 +133,18 @@ export default function LessonPage({ params }: { params: Promise<{ slug: string 
   };
 
   return (
-    <LessonPageLayout lesson={meta} quiz={lesson.quiz}>
+    <div className="relative">
+      {/* Reading Progress Bar (Fixed Left) */}
+      <div className="fixed left-6 top-1/2 -translate-y-1/2 z-30 hidden lg:block">
+        <ReadingProgress
+          progress={readingProgress}
+          onMilestone={(milestone) => {
+            console.log(`Reached ${milestone}% milestone for lesson ${lesson.id}`);
+          }}
+        />
+      </div>
+
+      <LessonPageLayout lesson={meta} quiz={lesson.quiz}>
       {/* 1. Opening Question block */}
       {lesson.openingQuestion && (
         <OpeningQuestionBlock
@@ -134,6 +166,9 @@ export default function LessonPage({ params }: { params: Promise<{ slug: string 
           </p>
         </div>
       )}
+
+      {/* 2.5. Midpoint Interactive Activity (at ~50% of content) */}
+      <MidpointInteractive lessonId={lesson.id} lessonTitle={lesson.title} />
 
       {/* 3. Diagram block */}
       {lesson.diagram && lesson.diagram.length > 0 && (
@@ -200,5 +235,6 @@ export default function LessonPage({ params }: { params: Promise<{ slug: string 
         </div>
       )}
     </LessonPageLayout>
+    </div>
   );
 }

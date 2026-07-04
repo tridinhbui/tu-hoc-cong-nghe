@@ -8,7 +8,8 @@ import { useProgress } from "@/lib/client-hooks";
 import { lessons } from "@/lib/lessons";
 import { createClient } from "@/lib/supabase";
 import UserStats from "@/components/UserStats";
-import UserMenu from "@/components/UserMenu";
+import UserProfile from "@/components/UserProfile";
+import AdminChat from "@/components/AdminChat";
 import Leaderboard from "@/components/Leaderboard";
 import { XP_VALUES, getLevelByXp } from "@/lib/levels";
 
@@ -238,10 +239,7 @@ export default function Dashboard() {
               <div className="text-xl font-bold text-stone-900">{totalDone}</div>
               <div className="text-xs text-stone-400">/ {totalLessons} bài đã học</div>
             </div>
-            <UserMenu
-              name={user?.user_metadata?.full_name}
-              email={user?.email}
-            />
+            <UserProfile />
           </div>
         </div>
       </div>
@@ -451,6 +449,9 @@ export default function Dashboard() {
           </div>
         </div>
       </div>
+
+      {/* Admin Chat */}
+      <AdminChat />
     </div>
   );
 }
