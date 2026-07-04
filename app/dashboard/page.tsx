@@ -10,6 +10,7 @@ import { createClient } from "@/lib/supabase";
 import UserStats from "@/components/UserStats";
 import Leaderboard from "@/components/Leaderboard";
 import Roadmap from "@/components/Roadmap";
+import UserMenu from "@/components/UserMenu";
 import { XP_VALUES, getLevelByXp } from "@/lib/levels";
 
 /* ─── Track definitions ─────────────────────────────────────────── */
@@ -155,10 +156,6 @@ export default function Dashboard() {
     checkAuth();
   }, [router, supabase.auth, completed.length]);
 
-  const handleLogout = async () => {
-    await supabase.auth.signOut();
-    router.replace("/login");
-  };
 
   if (loading) {
     return (
@@ -234,19 +231,10 @@ export default function Dashboard() {
               <div className="text-xl font-bold text-stone-900">{totalDone}</div>
               <div className="text-xs text-stone-400">/ {totalLessons} bài đã học</div>
             </div>
-            <div className="flex items-center gap-3">
-              <div className="text-right hidden xs:block">
-                <p className="text-xs font-semibold text-stone-900">
-                  {user?.user_metadata?.full_name || user?.email}
-                </p>
-              </div>
-              <button
-                onClick={handleLogout}
-                className="text-xs font-bold text-stone-400 hover:text-stone-600 transition-colors px-3 py-1.5 rounded-lg hover:bg-stone-50"
-              >
-                Đăng xuất
-              </button>
-            </div>
+            <UserMenu
+              name={user?.user_metadata?.full_name}
+              email={user?.email}
+            />
           </div>
         </div>
       </div>

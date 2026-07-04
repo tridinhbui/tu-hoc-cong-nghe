@@ -50,15 +50,12 @@ export default function UserStats({
         {/* Progress Bar */}
         {nextLevel && (
           <div className="flex-1 min-w-0">
-            <div className="h-2 bg-stone-100 rounded-full overflow-hidden border border-stone-200">
+            <div className="h-1.5 bg-stone-100 rounded-full overflow-hidden border border-stone-200">
               <div
-                className="h-full bg-gradient-to-r from-stone-400 to-stone-600 transition-all"
+                className="h-full bg-stone-400 transition-all"
                 style={{ width: `${progress}%` }}
               />
             </div>
-            <p className="text-xs text-stone-500 mt-1 text-center">
-              {progress}%
-            </p>
           </div>
         )}
 
