@@ -327,6 +327,13 @@ export default function DashboardClient({ lessonsMeta }: { lessonsMeta: LessonMe
   const totalDone = completed.length;
   const totalLessons = sorted.length;
 
+  // Case-study lessons (id >= 1001) live outside the day-numbered curriculum
+  // entirely — they're real company/topic deep-dives, but with no stage to
+  // belong to they were previously only reachable by guessing the URL.
+  const bonusLessons = sorted.filter((l) => l.id >= 1001);
+  const bonusDone = bonusLessons.filter((l) => completed.includes(l.id)).length;
+  const bonusOpen = openStages.has("bonus");
+
   return (
     <div className="min-h-screen bg-white">
       {/* ── Sticky header ── */}
@@ -581,6 +588,69 @@ export default function DashboardClient({ lessonsMeta }: { lessonsMeta: LessonMe
             );
           })}
           </div>
+
+          {/* Case chuyên sâu — real company/topic deep-dives outside the day curriculum */}
+          {bonusLessons.length > 0 && (
+            <div className="mt-6">
+              <button
+                onClick={() => toggleStage("bonus")}
+                className="w-full flex items-baseline gap-4 mb-4 cursor-pointer text-left"
+              >
+                <span className="text-xs font-extrabold text-stone-900 uppercase tracking-widest bg-stone-100 px-3 py-1 rounded-lg">
+                  Bonus
+                </span>
+                <span className="text-lg font-extrabold text-stone-900" role="heading" aria-level={2}>Case chuyên sâu</span>
+                <span className="ml-auto text-base font-bold text-stone-900 bg-stone-100 px-4 py-1 rounded-lg">
+                  {bonusDone}/{bonusLessons.length}
+                </span>
+                <span className={`text-stone-400 text-sm transition-transform ${bonusOpen ? "rotate-180" : ""}`}>
+                  ▾
+                </span>
+              </button>
+
+              {bonusOpen && (
+                <div className="space-y-2">
+                  {bonusLessons.map((lesson) => {
+                    const isDone = completed.includes(lesson.id);
+                    return (
+                      <Link
+                        key={lesson.id}
+                        href={`/bai-hoc/${lesson.slug}`}
+                        className={`block rounded-xl border-2 transition-all ${
+                          isDone
+                            ? "bg-emerald-50 border-emerald-200 hover:border-emerald-300 hover:bg-emerald-100"
+                            : "bg-white border-stone-200 hover:border-stone-400 hover:bg-stone-50"
+                        }`}
+                      >
+                        <div className="flex items-center gap-4 px-6 py-4">
+                          <div className="flex-shrink-0">
+                            {isDone ? (
+                              <div className="w-6 h-6 rounded-full bg-emerald-500 flex items-center justify-center">
+                                <CheckCircle2 className="w-5 h-5 text-white" />
+                              </div>
+                            ) : (
+                              <div className="w-6 h-6 rounded-full border-2 border-stone-300" />
+                            )}
+                          </div>
+                          <div className="flex-1 min-w-0">
+                            <div className={`text-base font-bold leading-snug ${isDone ? "text-emerald-900" : "text-stone-900"}`}>
+                              {lesson.title}
+                            </div>
+                            <div className={`text-sm mt-0.5 truncate ${isDone ? "text-emerald-700" : "text-stone-600"}`}>
+                              {lesson.subtitle}
+                            </div>
+                          </div>
+                          <div className={`flex-shrink-0 text-lg font-bold ${isDone ? "text-emerald-600" : "text-stone-400"}`}>
+                            ›
+                          </div>
+                        </div>
+                      </Link>
+                    );
+                  })}
+                </div>
+              )}
+            </div>
+          )}
           </div>
 
           {/* Right: Leaderboard (1 column on desktop, full width on mobile) */}

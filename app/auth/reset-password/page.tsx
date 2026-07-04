@@ -1,0 +1,144 @@
+"use client";
+
+import { useState, useEffect } from "react";
+import { useRouter } from "next/navigation";
+import { createClient } from "@/lib/supabase";
+
+// Reads Supabase env vars at render time — never prerender statically.
+export const dynamic = "force-dynamic";
+
+export default function ResetPasswordPage() {
+  const router = useRouter();
+  const supabase = createClient();
+
+  const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
+  const [checkingSession, setCheckingSession] = useState(true);
+  const [hasRecoverySession, setHasRecoverySession] = useState(false);
+
+  // The reset-password link from Supabase exchanges its token for a temporary
+  // session on redirect — if there's no session here, the link was invalid
+  // or already used.
+  useEffect(() => {
+    const checkSession = async () => {
+      const {
+        data: { session },
+      } = await supabase.auth.getSession();
+      setHasRecoverySession(!!session);
+      setCheckingSession(false);
+    };
+    checkSession();
+  }, [supabase.auth]);
+
+  async function handleSubmit(e: React.FormEvent) {
+    e.preventDefault();
+    setError("");
+
+    if (password.length < 6) {
+      setError("Mật khẩu phải ít nhất 6 ký tự.");
+      return;
+    }
+    if (password !== confirmPassword) {
+      setError("Hai mật khẩu không khớp.");
+      return;
+    }
+
+    setLoading(true);
+    try {
+      const { error: updateError } = await supabase.auth.updateUser({ password });
+
+      if (updateError) {
+        setError(updateError.message || "Không đặt lại được mật khẩu. Vui lòng thử lại.");
+        setLoading(false);
+        return;
+      }
+
+      router.push("/dashboard");
+    } catch (err) {
+      setError("Có lỗi xảy ra. Vui lòng thử lại.");
+      setLoading(false);
+    }
+  }
+
+  if (checkingSession) {
+    return (
+      <div className="min-h-screen bg-white flex items-center justify-center">
+        <p className="text-stone-500">Đang tải...</p>
+      </div>
+    );
+  }
+
+  if (!hasRecoverySession) {
+    return (
+      <div className="min-h-screen bg-white flex items-center justify-center px-6">
+        <div className="text-center space-y-4 max-w-sm">
+          <p className="text-lg font-bold text-stone-900">Link không hợp lệ hoặc đã hết hạn</p>
+          <p className="text-sm text-stone-500">
+            Vui lòng yêu cầu gửi lại email đặt lại mật khẩu.
+          </p>
+          <a
+            href="/login"
+            className="inline-block bg-stone-900 hover:bg-stone-800 text-white px-6 py-3 rounded-xl font-bold text-sm transition-colors"
+          >
+            Về trang đăng nhập
+          </a>
+        </div>
+      </div>
+    );
+  }
+
+  return (
+    <div className="min-h-screen bg-stone-50 flex items-center justify-center px-6">
+      <div className="w-full max-w-sm bg-white border border-stone-200 rounded-2xl p-8 space-y-6">
+        <div>
+          <h1 className="text-2xl font-bold text-stone-900 mb-2">Đặt mật khẩu mới</h1>
+          <p className="text-sm text-stone-500">Nhập mật khẩu mới cho tài khoản của bạn</p>
+        </div>
+
+        <form onSubmit={handleSubmit} className="space-y-4">
+          <div className="space-y-2">
+            <label className="text-xs font-bold text-stone-600 uppercase tracking-wider block">
+              Mật khẩu mới
+            </label>
+            <input
+              type="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              placeholder="••••••"
+              className="w-full px-4 py-3 rounded-xl border border-stone-200 bg-white focus:border-stone-400 focus:ring-1 focus:ring-stone-900/5 focus:outline-none text-stone-900 text-base placeholder:text-stone-300"
+            />
+          </div>
+
+          <div className="space-y-2">
+            <label className="text-xs font-bold text-stone-600 uppercase tracking-wider block">
+              Nhập lại mật khẩu mới
+            </label>
+            <input
+              type="password"
+              value={confirmPassword}
+              onChange={(e) => setConfirmPassword(e.target.value)}
+              placeholder="••••••"
+              className="w-full px-4 py-3 rounded-xl border border-stone-200 bg-white focus:border-stone-400 focus:ring-1 focus:ring-stone-900/5 focus:outline-none text-stone-900 text-base placeholder:text-stone-300"
+            />
+          </div>
+
+          {error && (
+            <div className="bg-red-50 border border-red-200 text-red-700 text-xs font-semibold rounded-xl px-4 py-3">
+              {error}
+            </div>
+          )}
+
+          <button
+            type="submit"
+            disabled={loading}
+            className="w-full bg-stone-900 hover:bg-stone-800 text-white py-4 rounded-xl font-bold text-base transition-colors disabled:opacity-60 mt-2"
+          >
+            {loading ? "Đang lưu..." : "Đặt mật khẩu mới"}
+          </button>
+        </form>
+      </div>
+    </div>
+  );
+}
