@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import { createClient } from "@/lib/supabase";
 import Image from "next/image";
+import Link from "next/link";
 
 interface Profile {
   id: string;
@@ -108,6 +109,23 @@ export default function UserProfile() {
               <p className="text-lg font-bold text-stone-900">{profile.lessons_completed}</p>
               <p className="text-xs text-stone-500">Bài học</p>
             </div>
+          </div>
+
+          <div className="space-y-1 mb-2">
+            <Link
+              href="/profile"
+              onClick={() => setShowDropdown(false)}
+              className="block px-3 py-2 text-sm font-semibold text-stone-900 hover:bg-stone-50 rounded-lg transition"
+            >
+              Hồ sơ
+            </Link>
+            <Link
+              href="/settings"
+              onClick={() => setShowDropdown(false)}
+              className="block px-3 py-2 text-sm font-semibold text-stone-900 hover:bg-stone-50 rounded-lg transition"
+            >
+              Cài đặt
+            </Link>
           </div>
 
           <button

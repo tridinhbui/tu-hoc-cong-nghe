@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
+import Image from "next/image";
 import { createClient } from "@/lib/supabase";
 import { getLevelByXp } from "@/lib/levels";
 import UserMenu from "@/components/UserMenu";
@@ -61,7 +62,7 @@ export default function ProfilePage() {
             </Link>
             <h1 className="text-xl font-bold text-stone-900 mt-2">Hồ sơ cá nhân</h1>
           </div>
-          <UserMenu name={user?.user_metadata?.full_name} email={user?.email} />
+          <UserMenu name={user?.user_metadata?.full_name} email={user?.email} avatarUrl={user?.user_metadata?.avatar_url} />
         </div>
       </div>
 
@@ -69,9 +70,19 @@ export default function ProfilePage() {
       <div className="max-w-2xl mx-auto px-6 py-8">
         {/* Avatar Section */}
         <div className="bg-white border-2 border-stone-200 rounded-xl p-8 text-center mb-6">
-          <div className="w-24 h-24 rounded-full bg-stone-200 flex items-center justify-center mx-auto text-3xl font-extrabold text-stone-700 border-2 border-stone-300 mb-4">
-            {initials}
-          </div>
+          {user?.user_metadata?.avatar_url ? (
+            <Image
+              src={user.user_metadata.avatar_url}
+              alt={user?.user_metadata?.full_name || "User"}
+              width={96}
+              height={96}
+              className="w-24 h-24 rounded-full object-cover mx-auto border-2 border-stone-300 mb-4"
+            />
+          ) : (
+            <div className="w-24 h-24 rounded-full bg-stone-200 flex items-center justify-center mx-auto text-3xl font-extrabold text-stone-700 border-2 border-stone-300 mb-4">
+              {initials}
+            </div>
+          )}
           <h2 className="text-2xl font-extrabold text-stone-900 mb-1">
             {user?.user_metadata?.full_name || "Người dùng"}
           </h2>

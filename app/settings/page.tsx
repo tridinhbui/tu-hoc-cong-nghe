@@ -121,7 +121,7 @@ export default function SettingsPage() {
               Cài đặt
             </h1>
           </div>
-          <UserMenu name={user?.user_metadata?.full_name} email={user?.email} />
+          <UserMenu name={user?.user_metadata?.full_name} email={user?.email} avatarUrl={user?.user_metadata?.avatar_url} />
         </div>
       </div>
 

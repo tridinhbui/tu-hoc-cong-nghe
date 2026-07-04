@@ -2,15 +2,17 @@
 
 import { useState, useRef, useEffect } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { createClient } from "@/lib/supabase";
 
 interface UserMenuProps {
   name?: string;
   email?: string;
+  avatarUrl?: string;
 }
 
-export default function UserMenu({ name, email }: UserMenuProps) {
+export default function UserMenu({ name, email, avatarUrl }: UserMenuProps) {
   const router = useRouter();
   const supabase = createClient();
   const [isOpen, setIsOpen] = useState(false);
@@ -48,9 +50,13 @@ export default function UserMenu({ name, email }: UserMenuProps) {
       {/* Avatar Button */}
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="w-9 h-9 rounded-full bg-stone-200 hover:bg-stone-300 transition-colors flex items-center justify-center text-xs font-extrabold text-stone-700 border border-stone-300"
+        className="w-9 h-9 rounded-full overflow-hidden bg-stone-200 hover:bg-stone-300 transition-colors flex items-center justify-center text-xs font-extrabold text-stone-700 border border-stone-300"
       >
-        {initials}
+        {avatarUrl ? (
+          <Image src={avatarUrl} alt={displayName} width={36} height={36} className="w-full h-full object-cover" />
+        ) : (
+          initials
+        )}
       </button>
 
       {/* Dropdown Menu */}
