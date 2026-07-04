@@ -120,9 +120,9 @@ export default function Page() {
         <div className="bg-stone-50 border border-stone-200 rounded-xl p-4 mb-4">
           <div className="text-xs font-bold text-stone-500 uppercase mb-3">Tại sao concentration risk nguy hiểm?</div>
           <div className="space-y-2 text-sm text-stone-600">
-            <div className="flex gap-3"><span className="text-stone-400 flex-shrink-0">—</span><span>PVGas bán cho khách hàng lớn, hợp đồng lớn — khi một vài đối tác chậm trả, khoản phải thu phình rất mạnh</span></div>
-            <div className="flex gap-3"><span className="text-stone-400 flex-shrink-0">—</span><span>Khách hàng tập trung trong ngành điện có nghĩa là rủi ro liên quan đến một ngành, một nhóm chính sách</span></div>
-            <div className="flex gap-3"><span className="text-stone-400 flex-shrink-0">—</span><span>Đọc nợ xấu cũng là đọc xem công ty đang phụ thuộc dòng tiền vào những ai</span></div>
+            <div className="flex gap-3"><span className="text-stone-500 flex-shrink-0">—</span><span>PVGas bán cho khách hàng lớn, hợp đồng lớn — khi một vài đối tác chậm trả, khoản phải thu phình rất mạnh</span></div>
+            <div className="flex gap-3"><span className="text-stone-500 flex-shrink-0">—</span><span>Khách hàng tập trung trong ngành điện có nghĩa là rủi ro liên quan đến một ngành, một nhóm chính sách</span></div>
+            <div className="flex gap-3"><span className="text-stone-500 flex-shrink-0">—</span><span>Đọc nợ xấu cũng là đọc xem công ty đang phụ thuộc dòng tiền vào những ai</span></div>
           </div>
         </div>
       </section>

@@ -132,7 +132,7 @@ export default function TaiChinhLaGiPage() {
           </p>
 
           <div className="border border-stone-200 rounded-2xl p-6 bg-stone-50 space-y-3">
-            <p className="text-xs font-bold text-stone-400 uppercase tracking-widest">Chi phí cơ hội</p>
+            <p className="text-xs font-bold text-stone-500 uppercase tracking-widest">Chi phí cơ hội</p>
             <p className="text-stone-700 text-base leading-relaxed">
               Chi phí cơ hội là giá trị của <strong className="text-stone-900">lựa chọn tốt nhất bị từ bỏ</strong> khi bạn chọn một phương án. Nếu bạn dùng 100 triệu đồng mua xe, chi phí cơ hội là số tiền bạn có thể kiếm được nếu đem 100 triệu đó đầu tư với mức lãi suất thị trường. Mọi quyết định đều có chi phí cơ hội, dù mình không nhìn thấy nó trên hóa đơn.
             </p>
@@ -172,13 +172,13 @@ export default function TaiChinhLaGiPage() {
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div className="border border-stone-200 rounded-2xl p-6 space-y-3">
-              <p className="text-xs font-bold text-stone-400 uppercase tracking-widest">Cá nhân</p>
+              <p className="text-xs font-bold text-stone-500 uppercase tracking-widest">Cá nhân</p>
               <p className="text-base text-stone-600 leading-relaxed">
                 Thu nhập hàng tháng là nguồn lực có giới hạn. Quyết định chi tiêu hôm nay, tiết kiệm hay đầu tư, vay thêm hay trả nợ đều là quyết định tài chính.
               </p>
             </div>
             <div className="border border-stone-200 rounded-2xl p-6 space-y-3">
-              <p className="text-xs font-bold text-stone-400 uppercase tracking-widest">Doanh nghiệp</p>
+              <p className="text-xs font-bold text-stone-500 uppercase tracking-widest">Doanh nghiệp</p>
               <p className="text-base text-stone-600 leading-relaxed">
                 Vốn của doanh nghiệp là nguồn lực có giới hạn. Quyết định đầu tư vào đâu, huy động vốn thế nào, trả cổ tức hay tái đầu tư đều là tài chính doanh nghiệp.
               </p>
@@ -207,7 +207,7 @@ export default function TaiChinhLaGiPage() {
         <div className="rounded-2xl overflow-hidden border-2 border-stone-900 shadow-lg">
           <div className="bg-stone-900 px-6 py-4">
             <p className="text-white font-extrabold text-lg tracking-wide">Khái niệm cần nhớ</p>
-            <p className="text-stone-400 text-sm mt-0.5">Chạm hoặc di chuột vào từng dòng</p>
+            <p className="text-stone-500 text-sm mt-0.5">Chạm hoặc di chuột vào từng dòng</p>
           </div>
           <div className="divide-y divide-stone-100 bg-white">
             {CONCEPTS.map(({ vi, en, def }) => (
@@ -218,11 +218,11 @@ export default function TaiChinhLaGiPage() {
                 <div className="flex-1 min-w-0">
                   <div className="flex items-baseline gap-3 flex-wrap">
                     <span className="font-bold text-stone-900 text-base group-hover:text-stone-700 transition-colors">{vi}</span>
-                    <span className="text-sm text-stone-400 font-mono bg-stone-100 px-2 py-0.5 rounded group-hover:bg-stone-200 transition-colors">{en}</span>
+                    <span className="text-sm text-stone-500 font-mono bg-stone-100 px-2 py-0.5 rounded group-hover:bg-stone-200 transition-colors">{en}</span>
                   </div>
                   <p className="text-stone-500 text-base mt-1 leading-relaxed group-hover:text-stone-700 transition-colors">{def}</p>
                 </div>
-                <span className="text-stone-200 group-hover:text-stone-400 transition-colors text-lg mt-0.5 flex-shrink-0">→</span>
+                <span className="text-stone-200 group-hover:text-stone-500 transition-colors text-lg mt-0.5 flex-shrink-0">→</span>
               </div>
             ))}
           </div>
@@ -232,7 +232,7 @@ export default function TaiChinhLaGiPage() {
         <div className="rounded-2xl overflow-hidden shadow-xl">
           <div className="bg-stone-900 px-6 py-5">
             <p className="text-white font-extrabold text-xl tracking-wide">Ghi nhớ nhanh</p>
-            <p className="text-stone-400 text-sm mt-0.5">4 điều cốt lõi từ bài này</p>
+            <p className="text-stone-500 text-sm mt-0.5">4 điều cốt lõi từ bài này</p>
           </div>
           <div className="bg-stone-800 divide-y divide-stone-700">
             {TAKEAWAYS.map((t, i) => (
@@ -251,7 +251,7 @@ export default function TaiChinhLaGiPage() {
 
         {/* Closing */}
         <div className="text-center space-y-2 py-4">
-          <p className="text-stone-400 text-base">Tiền là đối tượng của tài chính.</p>
+          <p className="text-stone-500 text-base">Tiền là đối tượng của tài chính.</p>
           <p className="text-stone-900 font-bold text-xl">Nhưng tài chính là cách ra quyết định về tiền trong điều kiện có thời gian, rủi ro và lựa chọn thay thế.</p>
         </div>
 

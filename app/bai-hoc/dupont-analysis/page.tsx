@@ -85,7 +85,7 @@ function DuPontSimulator() {
           <span>=</span>
           <span className={`font-bold text-lg ${roe > 15 ? "text-stone-700" : roe > 8 ? "text-stone-700" : "text-stone-700"}`}>{roe.toFixed(2)}%</span>
         </div>
-        <div className="text-center text-xs text-stone-400">Net Margin × Asset Turnover × Equity Multiplier = ROE</div>
+        <div className="text-center text-xs text-stone-500">Net Margin × Asset Turnover × Equity Multiplier = ROE</div>
       </div>
 
       <div className={`rounded-xl p-3 text-center text-xs font-medium border ${roe > 15 ? "bg-stone-50 border-stone-200 text-stone-700" : roe > 8 ? "bg-stone-50 border-stone-200 text-stone-700" : "bg-stone-50 border-stone-200 text-stone-700"}`}>
@@ -119,7 +119,7 @@ export default function Page() {
               <div className={`font-bold text-${c.color}-700 mb-1`}>{c.label}</div>
               <div className={`font-mono text-${c.color}-600 text-xs mb-1`}>{c.formula}</div>
               <div className="text-stone-500">{c.question}</div>
-              <div className="text-stone-400 italic mt-1">{c.example}</div>
+              <div className="text-stone-500 italic mt-1">{c.example}</div>
             </div>
           ))}
         </div>
@@ -152,7 +152,7 @@ export default function Page() {
               <div className="w-28 font-bold text-stone-700 flex-shrink-0">{c.company}</div>
               <div className="flex-1 font-mono text-stone-500">{c.margin} × {c.at} × {c.em}</div>
               <div className="font-bold text-stone-700 flex-shrink-0">ROE {c.roe}</div>
-              <div className="text-stone-400 flex-shrink-0 max-w-32 hidden md:block">{c.note}</div>
+              <div className="text-stone-500 flex-shrink-0 max-w-32 hidden md:block">{c.note}</div>
             </div>
           ))}
         </div>

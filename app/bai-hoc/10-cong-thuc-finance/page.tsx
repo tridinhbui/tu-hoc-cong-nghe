@@ -132,7 +132,7 @@ export default function TenCongThucPage() {
         <section className="space-y-4">
           <h2 className="text-xl font-bold text-stone-900">FPT — Áp dụng thực tế</h2>
           <div className="bg-stone-900 rounded-2xl p-5 text-sm space-y-2">
-            <div className="text-stone-400 text-xs font-bold uppercase tracking-widest mb-3">FPT Corporation — Ước tính 2023</div>
+            <div className="text-stone-500 text-xs font-bold uppercase tracking-widest mb-3">FPT Corporation — Ước tính 2023</div>
             {[
               { label: "Revenue", val: "~55,000 tỷ" },
               { label: "Gross Profit", val: "~18,000 tỷ (GPM ~33%)" },
@@ -143,7 +143,7 @@ export default function TenCongThucPage() {
               { label: "EV/EBITDA", val: "~15x (phù hợp tech VN)" },
             ].map(r => (
               <div key={r.label} className="flex justify-between py-1.5 border-b border-stone-800 last:border-0">
-                <span className="text-stone-400">{r.label}</span>
+                <span className="text-stone-500">{r.label}</span>
                 <span className="text-white font-semibold">{r.val}</span>
               </div>
             ))}

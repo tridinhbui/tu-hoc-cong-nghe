@@ -25,7 +25,7 @@ export default function UserStats({
       <div className="flex items-center justify-between gap-6">
         {/* Level Info */}
         <div>
-          <p className="text-xs font-extrabold text-stone-400 uppercase tracking-widest">
+          <p className="text-xs font-extrabold text-stone-500 uppercase tracking-widest">
             Level
           </p>
           <h3 className="text-lg font-extrabold text-stone-900 mt-1">
@@ -38,7 +38,7 @@ export default function UserStats({
 
         {/* XP Display */}
         <div className="text-right">
-          <p className="text-xs font-extrabold text-stone-400 uppercase tracking-widest">
+          <p className="text-xs font-extrabold text-stone-500 uppercase tracking-widest">
             XP
           </p>
           <div className="text-2xl font-extrabold text-stone-900 mt-1">{xp}</div>

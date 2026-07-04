@@ -61,7 +61,7 @@ export default function Page() {
                 <tr key={i} className={i % 2 === 0 ? "bg-white" : "bg-stone-50"}>
                   <td className="p-3">
                     <div className="font-medium text-stone-800 text-xs">{r.item}</div>
-                    <div className="text-stone-400 text-xs">{r.note}</div>
+                    <div className="text-stone-500 text-xs">{r.note}</div>
                   </td>
                   <td className="p-3 text-right font-mono font-bold text-stone-700 text-sm">{r.val.toLocaleString()}</td>
                   <td className="p-3 text-right text-stone-500 text-xs">{((r.val / 8530) * 100).toFixed(0)}%</td>

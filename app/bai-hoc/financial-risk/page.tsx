@@ -136,10 +136,10 @@ export default function Page() {
             <div key={r.name} className="border border-stone-200 rounded-xl p-4">
               <div className="flex items-baseline gap-2 mb-2">
                 <span className="font-bold text-stone-800 text-sm">{r.name}</span>
-                <span className="text-xs text-stone-400">({r.vn})</span>
+                <span className="text-xs text-stone-500">({r.vn})</span>
               </div>
               <p className="text-stone-600 text-xs leading-relaxed mb-2">{r.desc}</p>
-              <p className="text-stone-400 text-xs italic">{r.example}</p>
+              <p className="text-stone-500 text-xs italic">{r.example}</p>
               {r.model && <p className="mt-2 text-xs text-stone-500 bg-stone-50 rounded-lg px-3 py-2 font-mono">{r.model}</p>}
             </div>
           ))}

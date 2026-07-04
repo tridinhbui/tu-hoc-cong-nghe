@@ -105,7 +105,7 @@ export default function ThuNhapChiPhiPage() {
           </p>
 
           <div className="border border-stone-200 rounded-2xl p-6 bg-stone-50 space-y-3">
-            <p className="text-xs font-bold text-stone-400 uppercase tracking-widest">Tại sao phân biệt quan trọng</p>
+            <p className="text-xs font-bold text-stone-500 uppercase tracking-widest">Tại sao phân biệt quan trọng</p>
             <p className="text-stone-700 text-base leading-relaxed">
               Khi thu nhập giảm, bạn không thể ngừng trả tiền thuê nhà hay tiền vay ngân hàng ngay lập tức. Nhưng bạn có thể giảm ăn ngoài, tạm dừng mua sắm, cắt các dịch vụ giải trí. Biết rõ chi phí nào là cố định giúp bạn đánh giá được mức thu nhập tối thiểu cần có để duy trì cuộc sống, từ đó xây dựng quỹ dự phòng phù hợp.
             </p>
@@ -154,7 +154,7 @@ export default function ThuNhapChiPhiPage() {
         <div className="rounded-2xl overflow-hidden border-2 border-stone-900 shadow-lg">
           <div className="bg-stone-900 px-6 py-4">
             <p className="text-white font-extrabold text-lg tracking-wide">Khái niệm cần nhớ</p>
-            <p className="text-stone-400 text-sm mt-0.5">Chạm hoặc di chuột vào từng dòng</p>
+            <p className="text-stone-500 text-sm mt-0.5">Chạm hoặc di chuột vào từng dòng</p>
           </div>
           <div className="divide-y divide-stone-100 bg-white">
             {CONCEPTS.map(({ vi, en, def }) => (
@@ -162,11 +162,11 @@ export default function ThuNhapChiPhiPage() {
                 <div className="flex-1 min-w-0">
                   <div className="flex items-baseline gap-3 flex-wrap">
                     <span className="font-bold text-stone-900 text-base group-hover:text-stone-700 transition-colors">{vi}</span>
-                    <span className="text-sm text-stone-400 font-mono bg-stone-100 px-2 py-0.5 rounded group-hover:bg-stone-200 transition-colors">{en}</span>
+                    <span className="text-sm text-stone-500 font-mono bg-stone-100 px-2 py-0.5 rounded group-hover:bg-stone-200 transition-colors">{en}</span>
                   </div>
                   <p className="text-stone-500 text-base mt-1 leading-relaxed group-hover:text-stone-700 transition-colors">{def}</p>
                 </div>
-                <span className="text-stone-200 group-hover:text-stone-400 transition-colors text-lg mt-0.5 flex-shrink-0">→</span>
+                <span className="text-stone-200 group-hover:text-stone-500 transition-colors text-lg mt-0.5 flex-shrink-0">→</span>
               </div>
             ))}
           </div>
@@ -175,7 +175,7 @@ export default function ThuNhapChiPhiPage() {
         <div className="rounded-2xl overflow-hidden shadow-xl">
           <div className="bg-stone-900 px-6 py-5">
             <p className="text-white font-extrabold text-xl tracking-wide">Ghi nhớ nhanh</p>
-            <p className="text-stone-400 text-sm mt-0.5">4 điều cốt lõi từ bài này</p>
+            <p className="text-stone-500 text-sm mt-0.5">4 điều cốt lõi từ bài này</p>
           </div>
           <div className="bg-stone-800 divide-y divide-stone-700">
             {TAKEAWAYS.map((t, i) => (
@@ -188,7 +188,7 @@ export default function ThuNhapChiPhiPage() {
         </div>
 
         <div className="text-center space-y-2 py-4">
-          <p className="text-stone-400 text-base">Không có thu nhập nào quá thấp để bắt đầu.</p>
+          <p className="text-stone-500 text-base">Không có thu nhập nào quá thấp để bắt đầu.</p>
           <p className="text-stone-900 font-bold text-xl">Vấn đề không phải kiếm bao nhiêu, mà là giữ được bao nhiêu phần trăm trong số đó.</p>
         </div>
 

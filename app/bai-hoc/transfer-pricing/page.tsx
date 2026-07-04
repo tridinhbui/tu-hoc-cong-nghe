@@ -127,7 +127,7 @@ export default function Page() {
             <div key={s.method} className="bg-stone-50 rounded-xl p-4 border border-stone-200">
               <div className="font-bold text-stone-700 text-sm mb-1">{s.method}</div>
               <p className="text-xs text-stone-600 mb-1">{s.desc}</p>
-              <p className="text-xs text-stone-400 italic">{s.example}</p>
+              <p className="text-xs text-stone-500 italic">{s.example}</p>
             </div>
           ))}
         </div>

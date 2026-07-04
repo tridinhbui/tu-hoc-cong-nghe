@@ -66,7 +66,7 @@ export default function Page() {
       <section className="mb-8">
         <h3 className="text-lg font-bold text-stone-800 mb-3"> Snapshot Q1/2027 Highlights</h3>
         <div className="bg-stone-800 text-white rounded-xl p-5 font-mono text-sm space-y-2 mb-4">
-          <div className="text-stone-400 text-xs mb-2">{ '// Walmart Q1/2027 — Key Metrics' }</div>
+          <div className="text-stone-500 text-xs mb-2">{ '// Walmart Q1/2027 — Key Metrics' }</div>
           <div className="flex justify-between"><span className="text-stone-300">Revenue growth YoY</span><span className="text-white">+~10B USD</span></div>
           <div className="flex justify-between"><span className="text-stone-700">eCommerce growth</span><span className="text-stone-700">+26%</span></div>
           <div className="flex justify-between"><span className="text-stone-700">Marketplace growth</span><span className="text-stone-700">+~50%</span></div>
@@ -109,7 +109,7 @@ export default function Page() {
           ].map(s => (
             <div key={s.from} className="bg-stone-50 rounded-xl p-4 border border-stone-200">
               <div className="text-xl mb-1">{s.icon}</div>
-              <div className="text-xs text-stone-400 mb-1">{s.from} → {s.to}</div>
+              <div className="text-xs text-stone-500 mb-1">{s.from} → {s.to}</div>
               <p className="text-stone-600 text-xs">{s.detail}</p>
             </div>
           ))}

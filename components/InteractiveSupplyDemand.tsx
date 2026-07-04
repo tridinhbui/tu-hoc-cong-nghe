@@ -102,7 +102,7 @@ export default function InteractiveSupplyDemand() {
             />
           ))}
         </div>
-        <div className="flex justify-between text-xs text-stone-400 mt-1">
+        <div className="flex justify-between text-xs text-stone-500 mt-1">
           <span>Rẻ nhất</span>
           <span>Đắt nhất</span>
         </div>

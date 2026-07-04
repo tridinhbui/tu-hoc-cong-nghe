@@ -27,7 +27,7 @@ export default function BadgeToast({ badge, onDismiss }: BadgeToastProps) {
         >
           <span className="text-3xl">{badge.icon}</span>
           <div>
-            <p className="text-[10px] font-bold uppercase tracking-wider text-stone-400">
+            <p className="text-[10px] font-bold uppercase tracking-wider text-stone-500">
               Huy hiệu mới
             </p>
             <p className="font-bold">{badge.name}</p>

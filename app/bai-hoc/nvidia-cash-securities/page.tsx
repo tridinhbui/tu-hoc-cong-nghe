@@ -101,10 +101,10 @@ export default function Page() {
             <div key={s.level} className="border-l-4 border-stone-300 pl-4 py-2">
               <div className="flex items-center gap-3 mb-1">
                 <span className="font-bold text-stone-800 text-sm">{s.level}</span>
-                <span className="text-xs text-stone-400">{s.reliable}</span>
+                <span className="text-xs text-stone-500">{s.reliable}</span>
               </div>
               <div className="text-stone-600 text-sm font-medium mb-0.5">{s.method}</div>
-              <div className="text-stone-400 text-xs">{s.example}</div>
+              <div className="text-stone-500 text-xs">{s.example}</div>
             </div>
           ))}
         </div>
@@ -120,10 +120,10 @@ export default function Page() {
               Treasury đọc bảng này để trả lời một câu hỏi cốt lõi: <strong>công ty có đủ tiền dùng ngay không?</strong> Họ phân loại từng khoản theo khả năng chuyển đổi thành tiền mặt.
             </p>
             <div className="bg-stone-50 rounded-xl border border-stone-200 p-4 text-sm space-y-2">
-              <div className="flex gap-3"><span className="text-stone-400 flex-shrink-0">—</span><span className="text-stone-600">Bao nhiêu tài sản có thể dùng ngay cho vận hành, đầu tư hoặc M&A?</span></div>
-              <div className="flex gap-3"><span className="text-stone-400 flex-shrink-0">—</span><span className="text-stone-600">Bao nhiêu đang nằm trong trái phiếu, cần thời gian để bán?</span></div>
-              <div className="flex gap-3"><span className="text-stone-400 flex-shrink-0">—</span><span className="text-stone-600">Bao nhiêu bị lock-up và không thể tiếp cận?</span></div>
-              <div className="flex gap-3"><span className="text-stone-400 flex-shrink-0">—</span><span className="text-stone-600">Thanh khoản có đủ an toàn trong mọi kịch bản không?</span></div>
+              <div className="flex gap-3"><span className="text-stone-500 flex-shrink-0">—</span><span className="text-stone-600">Bao nhiêu tài sản có thể dùng ngay cho vận hành, đầu tư hoặc M&A?</span></div>
+              <div className="flex gap-3"><span className="text-stone-500 flex-shrink-0">—</span><span className="text-stone-600">Bao nhiêu đang nằm trong trái phiếu, cần thời gian để bán?</span></div>
+              <div className="flex gap-3"><span className="text-stone-500 flex-shrink-0">—</span><span className="text-stone-600">Bao nhiêu bị lock-up và không thể tiếp cận?</span></div>
+              <div className="flex gap-3"><span className="text-stone-500 flex-shrink-0">—</span><span className="text-stone-600">Thanh khoản có đủ an toàn trong mọi kịch bản không?</span></div>
             </div>
           </div>
 
@@ -133,9 +133,9 @@ export default function Page() {
               FP&A đọc cùng bảng đó nhưng hỏi về <strong>tác động tương lai</strong>: khoản này sẽ ảnh hưởng thế nào đến lợi nhuận quý sau? Lợi nhuận đến từ business hay từ tài sản tăng giá?
             </p>
             <div className="bg-stone-50 rounded-xl border border-stone-200 p-4 text-sm space-y-2">
-              <div className="flex gap-3"><span className="text-stone-400 flex-shrink-0">—</span><span className="text-stone-600">Lợi nhuận này đến từ hoạt động kinh doanh hay từ tài sản tài chính tăng giá?</span></div>
-              <div className="flex gap-3"><span className="text-stone-400 flex-shrink-0">—</span><span className="text-stone-600">Nếu thị trường giảm, earnings quý sau sẽ bị ảnh hưởng thế nào?</span></div>
-              <div className="flex gap-3"><span className="text-stone-400 flex-shrink-0">—</span><span className="text-stone-600">Lock-up assets có nên tính vào available capital khi build forecast không?</span></div>
+              <div className="flex gap-3"><span className="text-stone-500 flex-shrink-0">—</span><span className="text-stone-600">Lợi nhuận này đến từ hoạt động kinh doanh hay từ tài sản tài chính tăng giá?</span></div>
+              <div className="flex gap-3"><span className="text-stone-500 flex-shrink-0">—</span><span className="text-stone-600">Nếu thị trường giảm, earnings quý sau sẽ bị ảnh hưởng thế nào?</span></div>
+              <div className="flex gap-3"><span className="text-stone-500 flex-shrink-0">—</span><span className="text-stone-600">Lock-up assets có nên tính vào available capital khi build forecast không?</span></div>
             </div>
           </div>
         </div>

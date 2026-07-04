@@ -164,7 +164,7 @@ export default function LoginPage() {
         <div className="space-y-12">
           {/* Logo & Brand */}
           <div className="space-y-4">
-            <div className="text-sm font-bold text-stone-400 uppercase tracking-widest">
+            <div className="text-sm font-bold text-stone-500 uppercase tracking-widest">
               Tự Học Tài Chính
             </div>
             <h1 className="text-5xl font-bold text-stone-900 leading-tight">
@@ -208,7 +208,7 @@ export default function LoginPage() {
                 className="p-6 space-y-4"
               >
                 <div>
-                  <div className="text-xs font-bold text-stone-400 uppercase tracking-widest mb-1">
+                  <div className="text-xs font-bold text-stone-500 uppercase tracking-widest mb-1">
                     {TRACKS[previewTrack].subtitle}
                   </div>
                   <p className="text-sm text-stone-600">{TRACKS[previewTrack].description}</p>
@@ -227,10 +227,10 @@ export default function LoginPage() {
                   className="flex items-center justify-between gap-3 border border-stone-200 hover:border-stone-400 hover:bg-stone-50 rounded-xl px-4 py-3 transition-colors group"
                 >
                   <div>
-                    <div className="text-[10px] font-bold text-stone-400 uppercase tracking-wider">Xem thử ngay, không cần đăng nhập</div>
+                    <div className="text-[10px] font-bold text-stone-500 uppercase tracking-wider">Xem thử ngay, không cần đăng nhập</div>
                     <div className="text-sm font-bold text-stone-900">{TRACKS[previewTrack].previewLabel}</div>
                   </div>
-                  <span className="text-stone-400 group-hover:text-stone-900 group-hover:translate-x-0.5 transition-all">→</span>
+                  <span className="text-stone-500 group-hover:text-stone-900 group-hover:translate-x-0.5 transition-all">→</span>
                 </a>
               </motion.div>
             </AnimatePresence>
@@ -244,7 +244,7 @@ export default function LoginPage() {
         <div className="w-full max-w-sm">
           {/* Mobile Brand (visible on small screens) */}
           <div className="lg:hidden space-y-4 mb-8 text-center">
-            <div className="text-sm font-bold text-stone-400 uppercase tracking-widest">
+            <div className="text-sm font-bold text-stone-500 uppercase tracking-widest">
               Tự Học Tài Chính
             </div>
             <h1 className="text-4xl font-bold text-stone-900">
@@ -290,10 +290,10 @@ export default function LoginPage() {
                   className="flex items-center justify-between gap-3 border border-stone-200 hover:border-stone-400 rounded-xl px-3 py-2.5 transition-colors"
                 >
                   <div>
-                    <div className="text-[9px] font-bold text-stone-400 uppercase tracking-wider">Xem thử ngay</div>
+                    <div className="text-[9px] font-bold text-stone-500 uppercase tracking-wider">Xem thử ngay</div>
                     <div className="text-xs font-bold text-stone-900">{TRACKS[previewTrack].previewLabel}</div>
                   </div>
-                  <span className="text-stone-400">→</span>
+                  <span className="text-stone-500">→</span>
                 </a>
               </motion.div>
             </AnimatePresence>
@@ -331,7 +331,7 @@ export default function LoginPage() {
             {/* Divider */}
             <div className="relative flex items-center">
               <div className="flex-1 border-t border-stone-100" />
-              <span className="px-3 text-xs text-stone-400 font-bold uppercase tracking-wider">
+              <span className="px-3 text-xs text-stone-500 font-bold uppercase tracking-wider">
                 Hoặc email
               </span>
               <div className="flex-1 border-t border-stone-100" />

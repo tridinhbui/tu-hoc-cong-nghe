@@ -107,7 +107,7 @@ function TAccountDemo() {
       })()}
 
       {!selected && (
-        <div className="bg-white rounded-xl border border-dashed border-stone-200 p-6 text-center text-stone-400 text-sm">
+        <div className="bg-white rounded-xl border border-dashed border-stone-200 p-6 text-center text-stone-500 text-sm">
           Chọn loại tài khoản để xem quy tắc Dr./Cr.
         </div>
       )}
@@ -162,7 +162,7 @@ export default function Page() {
       <section className="mb-8">
         <h3 className="text-lg font-bold text-stone-800 mb-3"> Ví dụ thực tế: Bán hàng thu tiền mặt</h3>
         <div className="bg-stone-800 rounded-xl p-5 font-mono text-sm">
-          <div className="text-stone-400 mb-3 text-xs">{ '// Bán hàng 50 triệu, khách trả tiền mặt ngay' }</div>
+          <div className="text-stone-500 mb-3 text-xs">{ '// Bán hàng 50 triệu, khách trả tiền mặt ngay' }</div>
           <div className="flex justify-between mb-1">
             <span className="text-stone-700">Dr. Cash (Asset ↑)</span>
             <span className="text-white">50.000.000</span>
@@ -171,7 +171,7 @@ export default function Page() {
             <span className="text-stone-700">Cr. Revenue (Income ↑)</span>
             <span className="text-white">50.000.000</span>
           </div>
-          <div className="border-t border-stone-600 pt-3 text-stone-400 text-xs">
+          <div className="border-t border-stone-600 pt-3 text-stone-500 text-xs">
             Total Dr. = Total Cr. = 50M 
           </div>
         </div>

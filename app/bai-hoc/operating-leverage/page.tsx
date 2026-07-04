@@ -115,7 +115,7 @@ export default function Page() {
               <div className="flex-1 font-mono text-xs">
                 Rev: <span className="text-stone-800">{r.rev}</span> | SG&A: <span className="text-stone-500">{r.sga}</span> | Ratio: <span className="font-bold text-stone-700">{r.ratio}</span>
               </div>
-              <div className="text-xs text-stone-400 flex-shrink-0 max-w-32">{r.note}</div>
+              <div className="text-xs text-stone-500 flex-shrink-0 max-w-32">{r.note}</div>
             </div>
           ))}
         </div>

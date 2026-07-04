@@ -111,7 +111,7 @@ export default function Page() {
       <section className="mb-8">
         <h3 className="text-lg font-bold text-stone-800 mb-3">📋 Case Study: Maple Leaf Foods</h3>
         <div className="bg-stone-800 text-white rounded-xl p-5 font-mono text-sm space-y-2 mb-4">
-          <div className="text-stone-400 text-xs mb-2">{ '// Maple Leaf Foods — Financial Snapshot' }</div>
+          <div className="text-stone-500 text-xs mb-2">{ '// Maple Leaf Foods — Financial Snapshot' }</div>
           <div className="flex justify-between"><span className="text-stone-700">Revenue growth YoY</span><span>+6.2%</span></div>
           <div className="flex justify-between"><span className="text-stone-700">Long-term Debt</span><span>&gt;1B CAD</span></div>
           <div className="flex justify-between"><span className="text-stone-700">Net Debt</span><span>~995M CAD</span></div>
@@ -171,7 +171,7 @@ export default function Page() {
             <div key={s.sector} className="flex items-center gap-3 bg-stone-50 rounded-lg p-3 border border-stone-200">
               <div className="flex-1">
                 <div className="text-sm font-medium text-stone-700">{s.sector}</div>
-                <div className="text-xs text-stone-400">{s.note}</div>
+                <div className="text-xs text-stone-500">{s.note}</div>
               </div>
               <div className="font-bold text-stone-700 text-sm flex-shrink-0">{s.range}</div>
             </div>

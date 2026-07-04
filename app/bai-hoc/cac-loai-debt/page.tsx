@@ -162,7 +162,7 @@ export default function CacLoaiDebtPage() {
                     <span className="text-xl flex-shrink-0">{d.emoji}</span>
                     <div>
                       <div className="font-bold text-sm text-stone-800">{d.name}</div>
-                      <div className="text-xs mt-0.5 text-stone-400">{d.tag} · Lãi ~{d.rate}%</div>
+                      <div className="text-xs mt-0.5 text-stone-500">{d.tag} · Lãi ~{d.rate}%</div>
                     </div>
                   </div>
                   <div className="flex items-center gap-2 flex-shrink-0 ml-2">

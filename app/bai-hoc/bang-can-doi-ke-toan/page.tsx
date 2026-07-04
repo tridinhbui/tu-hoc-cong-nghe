@@ -175,7 +175,7 @@ export default function BalanceSheetPage() {
               { label: "Goodwill / Intangibles", val: "~30,000 tỷ (từ M&A)" },
             ].map(r => (
               <div key={r.label} className="flex justify-between py-1.5 border-b border-stone-800 last:border-0">
-                <span className="text-stone-400">{r.label}</span>
+                <span className="text-stone-500">{r.label}</span>
                 <span className="text-white font-semibold">{r.val}</span>
               </div>
             ))}

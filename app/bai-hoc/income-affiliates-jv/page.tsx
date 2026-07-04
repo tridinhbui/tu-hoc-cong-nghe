@@ -104,7 +104,7 @@ export default function Page() {
       <section className="mb-8">
         <h3 className="text-lg font-bold text-stone-800 mb-3">📐 Equity Method — cách hoạt động</h3>
         <div className="bg-stone-800 text-white rounded-xl p-5 font-mono text-sm space-y-2">
-          <div className="text-stone-400 text-xs mb-2">{ '// Ví dụ: Sở hữu 35% JV, JV profit = 100M USD' }</div>
+          <div className="text-stone-500 text-xs mb-2">{ '// Ví dụ: Sở hữu 35% JV, JV profit = 100M USD' }</div>
           <div className="flex justify-between mb-1">
             <span className="text-stone-300">JV Net Income</span>
             <span className="text-stone-700">100M USD</span>
@@ -117,7 +117,7 @@ export default function Page() {
             <span className="text-white font-bold">Share of Profit (P&L)</span>
             <span className="text-white font-bold">35M USD</span>
           </div>
-          <div className="mt-3 pt-3 border-t border-stone-600 text-xs text-stone-400">
+          <div className="mt-3 pt-3 border-t border-stone-600 text-xs text-stone-500">
             <div>Balance Sheet: Investment carrying value +35M</div>
             <div>Khi nhận dividend từ JV: BS Investment -dividend amount</div>
           </div>

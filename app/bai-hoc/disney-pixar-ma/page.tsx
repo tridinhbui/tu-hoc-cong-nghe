@@ -80,7 +80,7 @@ export default function Page() {
           </div>
         </div>
         <div className="bg-stone-800 text-white rounded-xl p-4 font-mono text-sm text-center">
-          <div className="text-stone-400 text-xs mb-1">Deal closed January 2006</div>
+          <div className="text-stone-500 text-xs mb-1">Deal closed January 2006</div>
           <div className="text-2xl font-bold text-stone-200">7.4 tỷ USD</div>
           <div className="text-stone-300 text-xs">All-stock deal — Disney issue shares cho Pixar shareholders</div>
         </div>
@@ -108,7 +108,7 @@ export default function Page() {
                 <div key={s.label} className="rounded-xl p-3 border border-stone-200 bg-stone-50">
                   <div className="text-xs font-bold text-stone-500 mb-1">{s.label}</div>
                   {s.items.map((item, k) => (
-                    <div key={k} className="text-xs text-stone-600 flex gap-1.5"><span className="text-stone-400">·</span>{item}</div>
+                    <div key={k} className="text-xs text-stone-600 flex gap-1.5"><span className="text-stone-500">·</span>{item}</div>
                   ))}
                 </div>
               ))}
@@ -120,15 +120,15 @@ export default function Page() {
       <section className="mb-8">
         <h3 className="text-lg font-bold text-stone-800 mb-3">Synergy Value Framework</h3>
         <div className="bg-stone-800 text-white rounded-xl p-5 font-mono text-sm">
-          <div className="text-stone-400 text-xs mb-3">{"// M&A Synergy Valuation"}</div>
+          <div className="text-stone-500 text-xs mb-3">{"// M&A Synergy Valuation"}</div>
           <div className="flex justify-between mb-1"><span className="text-stone-300">Revenue Synergy</span><span>PV of incremental cash from combined IP × distribution</span></div>
           <div className="flex justify-between mb-1"><span className="text-stone-300">Cost Synergy</span><span>PV of cost savings (overlapping functions)</span></div>
-          <div className="flex justify-between mb-3"><span className="text-stone-400">− Dis-synergies</span><span>Integration costs, cultural clash, talent loss</span></div>
+          <div className="flex justify-between mb-3"><span className="text-stone-500">− Dis-synergies</span><span>Integration costs, cultural clash, talent loss</span></div>
           <div className="flex justify-between border-t border-stone-600 pt-2">
             <span className="font-bold">Total Synergy Value</span>
             <span className="font-bold text-white">= Premium worth paying</span>
           </div>
-          <div className="text-stone-400 text-xs mt-2">Disney/Pixar: trọng tâm là Revenue Synergy — Parks, Merch, Streaming. Cost synergy = secondary.</div>
+          <div className="text-stone-500 text-xs mt-2">Disney/Pixar: trọng tâm là Revenue Synergy — Parks, Merch, Streaming. Cost synergy = secondary.</div>
         </div>
       </section>
 
@@ -153,7 +153,7 @@ export default function Page() {
         <h3 className="text-lg font-bold text-stone-800 mb-3">Bài học từ Disney–Pixar</h3>
         <div className="bg-stone-900 text-white rounded-xl p-5">
           <p className="font-bold mb-2">Trong M&A, giá trị không nằm ở con số hôm nay — mà ở cỗ máy tạo ra giá trị trong tương lai.</p>
-          <div className="text-stone-400 text-sm space-y-1">
+          <div className="text-stone-500 text-sm space-y-1">
             <div>— Revenue synergy: 1 IP × N revenue streams = compounding value</div>
             <div>— Acquisition premium justified khi synergy PV &gt; premium paid</div>
             <div>— Revenue synergy khó achieve hơn cost synergy — cần integration tốt</div>

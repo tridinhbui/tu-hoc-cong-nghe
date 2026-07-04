@@ -131,7 +131,7 @@ export default function Page() {
         <div className="border border-stone-200 rounded-xl p-5">
           <div className="mb-4">
             <div className="font-bold text-stone-800 text-base mb-0.5">{group.title}</div>
-            <div className="text-stone-400 text-xs uppercase tracking-wide">{group.earn}</div>
+            <div className="text-stone-500 text-xs uppercase tracking-wide">{group.earn}</div>
           </div>
           <p className="text-stone-600 text-sm leading-relaxed mb-5">{group.model}</p>
 

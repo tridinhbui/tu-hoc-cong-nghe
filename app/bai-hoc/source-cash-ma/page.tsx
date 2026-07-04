@@ -115,7 +115,7 @@ function FundingStructure() {
       </div>
 
       <div className="bg-stone-800 rounded-xl p-4">
-        <div className="text-xs font-semibold text-stone-400 mb-2">Sau 5 năm (giả định EBITDA +50%, trả 50% nợ):</div>
+        <div className="text-xs font-semibold text-stone-500 mb-2">Sau 5 năm (giả định EBITDA +50%, trả 50% nợ):</div>
         <div className="flex justify-between text-sm mb-1">
           <span className="text-stone-300">Exit EV ({exitMultiple}x × {exitEbitda} tỷ EBITDA)</span>
           <span className="text-white font-bold">{exitEV.toFixed(0)} tỷ</span>

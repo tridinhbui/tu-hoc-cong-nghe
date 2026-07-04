@@ -85,7 +85,7 @@ function DepreciationChart() {
           </div>
         ))}
       </div>
-      <div className="flex justify-between text-[9px] text-stone-400 mb-3">
+      <div className="flex justify-between text-[9px] text-stone-500 mb-3">
         <span>Y1</span>
         <span>Y{Math.floor(life / 2)}</span>
         <span>Y{life}</span>
@@ -94,15 +94,15 @@ function DepreciationChart() {
       <div className="grid grid-cols-3 gap-2 text-center text-xs">
         <div className="bg-white rounded-lg p-2 border border-stone-200">
           <div className="font-bold text-stone-700">{(cost / life).toFixed(0)}M/năm</div>
-          <div className="text-stone-400">D&A (SL)</div>
+          <div className="text-stone-500">D&A (SL)</div>
         </div>
         <div className="bg-white rounded-lg p-2 border border-stone-200">
           <div className="font-bold text-stone-700">{cost}M</div>
-          <div className="text-stone-400">Cost ban đầu</div>
+          <div className="text-stone-500">Cost ban đầu</div>
         </div>
         <div className="bg-white rounded-lg p-2 border border-stone-200">
           <div className="font-bold text-stone-700">0M</div>
-          <div className="text-stone-400">Book Value Y{life}</div>
+          <div className="text-stone-500">Book Value Y{life}</div>
         </div>
       </div>
     </div>

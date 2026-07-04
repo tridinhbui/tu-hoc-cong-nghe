@@ -76,7 +76,7 @@ export default function InteractiveROE() {
           <div className="text-xl">🏦</div>
           <div className="flex-1">
             <div className="text-sm font-medium text-stone-700">Gửi ngân hàng</div>
-            <div className="text-xs text-stone-400">An toàn, không cần làm gì</div>
+            <div className="text-xs text-stone-500">An toàn, không cần làm gì</div>
           </div>
           <div className="font-bold text-stone-600">{bankRate}%</div>
         </div>
@@ -85,7 +85,7 @@ export default function InteractiveROE() {
           <div className="text-xl">📊</div>
           <div className="flex-1">
             <div className="text-sm font-medium text-stone-700">Đầu tư vào doanh nghiệp</div>
-            <div className="text-xs text-stone-400">Rủi ro hơn, cần quản lý</div>
+            <div className="text-xs text-stone-500">Rủi ro hơn, cần quản lý</div>
           </div>
           <div className={`font-bold ${isWorthIt ? "text-emerald-600" : "text-rose-600"}`}>{roe}%</div>
         </div>
@@ -97,7 +97,7 @@ export default function InteractiveROE() {
         </div>
       </div>
 
-      <div className="text-xs text-stone-400 bg-stone-50 rounded-xl p-3">
+      <div className="text-xs text-stone-500 bg-stone-50 rounded-xl p-3">
         💡 <strong>Công thức:</strong> ROE = {profit} ÷ {equity} × 100 = {roe}%
         <br />Nghĩa là: cứ 100 đồng vốn cổ đông → tạo ra {roe} đồng lợi nhuận
       </div>

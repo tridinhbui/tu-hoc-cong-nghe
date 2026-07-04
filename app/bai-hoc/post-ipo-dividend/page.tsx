@@ -105,10 +105,10 @@ export default function Page() {
             },
           ].map(s => (
             <div key={s.condition} className="border border-stone-200 rounded-xl p-4">
-              <div className="text-xs text-stone-400 mb-1">Khi: {s.condition}</div>
+              <div className="text-xs text-stone-500 mb-1">Khi: {s.condition}</div>
               <div className="font-bold text-stone-800 text-sm mb-1">→ {s.decision}</div>
               <div className="text-xs text-stone-600 mb-1">{s.action}</div>
-              <div className="text-xs text-stone-400 italic">{s.example}</div>
+              <div className="text-xs text-stone-500 italic">{s.example}</div>
             </div>
           ))}
         </div>

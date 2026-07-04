@@ -115,21 +115,21 @@ function SupplyDemandSimulator() {
             <div className={`font-bold text-lg ${balance > 0 ? "text-stone-700" : balance < 0 ? "text-stone-700" : "text-stone-500"}`}>
               {balance > 0 ? "+" : ""}{balance}
             </div>
-            <div className="text-xs text-stone-400">{balance > 0 ? "Thiếu hàng" : balance < 0 ? "Dư hàng" : "Cân bằng"}</div>
+            <div className="text-xs text-stone-500">{balance > 0 ? "Thiếu hàng" : balance < 0 ? "Dư hàng" : "Cân bằng"}</div>
           </div>
           <div className="text-center">
             <div className="text-xs text-stone-500 mb-0.5">Inventory trend</div>
             <div className={`font-bold text-lg ${invChange < 0 ? "text-stone-700" : invChange > 0 ? "text-stone-700" : "text-stone-500"}`}>
               {invChange > 0 ? "+" : ""}{invChange.toFixed(0)}
             </div>
-            <div className="text-xs text-stone-400">{invChange < 0 ? "Đang giảm " : "Đang tích lũy ⚠️"}</div>
+            <div className="text-xs text-stone-500">{invChange < 0 ? "Đang giảm " : "Đang tích lũy ⚠️"}</div>
           </div>
         </div>
         <div className={`rounded-xl p-3 border text-center font-bold ${signal.color}`}>
           {signal.label}
         </div>
       </div>
-      <p className="text-xs text-stone-400 text-center">Price signal = f(supply/demand balance, inventory level)</p>
+      <p className="text-xs text-stone-500 text-center">Price signal = f(supply/demand balance, inventory level)</p>
     </div>
   );
 }
@@ -254,7 +254,7 @@ export default function Page() {
             <div key={h.co} className="bg-stone-50 rounded-xl p-3 border border-stone-200">
               <div className="flex items-center gap-2 mb-1">
                 <span className="font-bold text-stone-700 text-sm">{h.co}</span>
-                <span className="text-xs text-stone-400">({h.com})</span>
+                <span className="text-xs text-stone-500">({h.com})</span>
               </div>
               <p className="text-stone-600 text-xs">{h.strategy}</p>
             </div>

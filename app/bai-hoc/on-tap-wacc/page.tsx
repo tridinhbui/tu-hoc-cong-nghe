@@ -91,7 +91,7 @@ export default function Page() {
               <div className="font-mono font-bold text-stone-800">{s.sym}</div>
               <div className="font-semibold text-stone-700 text-xs mt-0.5">{s.name}</div>
               <div className="text-stone-500 text-xs mt-1">{s.calc}</div>
-              <div className="text-stone-400 text-xs italic">{s.note}</div>
+              <div className="text-stone-500 text-xs italic">{s.note}</div>
             </div>
           ))}
         </div>

@@ -102,7 +102,7 @@ export default function Page() {
               <div className="grid grid-cols-2 gap-1">
                 {step.questions.map((q, i) => (
                   <div key={i} className="text-xs text-stone-600 flex gap-1">
-                    <span className="text-stone-400">→</span>{q}
+                    <span className="text-stone-500">→</span>{q}
                   </div>
                 ))}
               </div>
@@ -121,7 +121,7 @@ export default function Page() {
           ].map(d => (
             <div key={d.title} className="bg-stone-800 rounded-xl p-4">
               <div className="text-white font-bold text-xs mb-1">{d.title}</div>
-              <div className="text-stone-400 text-xs">{d.desc}</div>
+              <div className="text-stone-500 text-xs">{d.desc}</div>
             </div>
           ))}
         </div>

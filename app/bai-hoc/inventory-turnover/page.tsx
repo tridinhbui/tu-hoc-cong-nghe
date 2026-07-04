@@ -74,14 +74,14 @@ function InventorySimulator() {
 
       <div className="grid grid-cols-2 gap-3">
         <div className="bg-white rounded-xl border border-stone-200 p-4 text-center">
-          <div className="text-xs text-stone-400 mb-1">Inventory Turnover</div>
+          <div className="text-xs text-stone-500 mb-1">Inventory Turnover</div>
           <div className="font-bold text-2xl text-stone-700">{turnover.toFixed(1)}x</div>
-          <div className="text-xs text-stone-400 mt-1">{turnover > 8 ? "Nhanh — lean inventory" : turnover > 4 ? "Trung bình" : "Chậm — xem xét lại"}</div>
+          <div className="text-xs text-stone-500 mt-1">{turnover > 8 ? "Nhanh — lean inventory" : turnover > 4 ? "Trung bình" : "Chậm — xem xét lại"}</div>
         </div>
         <div className="bg-white rounded-xl border border-stone-200 p-4 text-center">
-          <div className="text-xs text-stone-400 mb-1">Days on Hand (DOH)</div>
+          <div className="text-xs text-stone-500 mb-1">Days on Hand (DOH)</div>
           <div className="font-bold text-2xl text-stone-700">{doh.toFixed(0)} ngày</div>
-          <div className="text-xs text-stone-400 mt-1">{doh < 30 ? "Rất nhanh" : doh < 60 ? "Bình thường" : "Cần kiểm tra context"}</div>
+          <div className="text-xs text-stone-500 mt-1">{doh < 30 ? "Rất nhanh" : doh < 60 ? "Bình thường" : "Cần kiểm tra context"}</div>
         </div>
       </div>
     </div>
@@ -159,7 +159,7 @@ export default function Page() {
             </ul>
           </div>
         </div>
-        <p className="text-xs text-stone-400 mt-2 italic text-center">Signal là DOH + Gross Margin cùng nhau. DOH tăng + GM giảm = bad. DOH tăng + GM stable = context-dependent.</p>
+        <p className="text-xs text-stone-500 mt-2 italic text-center">Signal là DOH + Gross Margin cùng nhau. DOH tăng + GM giảm = bad. DOH tăng + GM stable = context-dependent.</p>
       </section>
 
       <section>

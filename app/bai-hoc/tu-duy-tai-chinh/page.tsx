@@ -108,7 +108,7 @@ export default function Page() {
             <div>Tuổi 25 bắt đầu → 4.5 tỷ ở tuổi 65</div>
             <div>Tuổi 35 bắt đầu → 1.7 tỷ ở tuổi 65</div>
             <div>Tuổi 45 bắt đầu → 650M ở tuổi 65</div>
-            <div className="text-xs text-stone-400 mt-1">(Giả định: 5 triệu/tháng, 10%/năm)</div>
+            <div className="text-xs text-stone-500 mt-1">(Giả định: 5 triệu/tháng, 10%/năm)</div>
           </div>
           <p>Bắt đầu sớm 10 năm tạo sự khác biệt gấp ~2.7 lần ở điểm đích.</p>
         </div>

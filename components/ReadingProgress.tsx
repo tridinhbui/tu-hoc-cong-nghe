@@ -64,7 +64,7 @@ export default function ReadingProgress({ progress, onMilestone }: ReadingProgre
             />
             <span
               className={`absolute -right-8 text-[10px] font-black ${
-                progress >= cp ? "text-stone-900" : "text-stone-400"
+                progress >= cp ? "text-stone-900" : "text-stone-500"
               }`}
             >
               {cp === 100 ? "🏁" : `${cp}%`}

@@ -173,10 +173,10 @@ export default function Page() {
         <div className="bg-stone-900 text-white rounded-xl p-5">
           <div className="flex items-center gap-3 flex-wrap">
             {["Journal Entries", "→", "General Ledger", "→", "Trial Balance", "→", "Financial Statements"].map((s, i) => (
-              <span key={i} className={s === "→" ? "text-stone-400 font-bold" : "bg-white/20 px-3 py-1.5 rounded-lg text-sm font-semibold"}>{s}</span>
+              <span key={i} className={s === "→" ? "text-stone-500 font-bold" : "bg-white/20 px-3 py-1.5 rounded-lg text-sm font-semibold"}>{s}</span>
             ))}
           </div>
-          <p className="text-stone-400 text-xs mt-3">Mọi con số trên P&amp;L, Balance Sheet, Cash Flow đều xuất phát từ journal entries</p>
+          <p className="text-stone-500 text-xs mt-3">Mọi con số trên P&amp;L, Balance Sheet, Cash Flow đều xuất phát từ journal entries</p>
         </div>
       </section>
     </LessonPageLayout>

@@ -106,7 +106,7 @@ export default function AdminChat() {
             <div className="bg-stone-900 text-white px-4 py-4 flex items-center justify-between">
               <div>
                 <h3 className="font-bold">Admin Support</h3>
-                <p className="text-xs text-stone-400">Trả lời trong vòng 1 giờ</p>
+                <p className="text-xs text-stone-500">Trả lời trong vòng 1 giờ</p>
               </div>
               <button
                 onClick={() => setIsOpen(false)}
@@ -119,7 +119,7 @@ export default function AdminChat() {
             {/* Messages */}
             <div className="flex-1 overflow-y-auto p-4 space-y-4 bg-stone-50">
               {messages.length === 0 && (
-                <p className="text-center text-xs text-stone-400 mt-8">
+                <p className="text-center text-xs text-stone-500 mt-8">
                   Gửi tin nhắn để bắt đầu trò chuyện với admin.
                 </p>
               )}
@@ -138,7 +138,7 @@ export default function AdminChat() {
                     <p className="text-sm">{msg.content}</p>
                     <p
                       className={`text-xs mt-1 ${
-                        msg.sender === "user" ? "text-stone-400" : "text-stone-400"
+                        msg.sender === "user" ? "text-stone-500" : "text-stone-500"
                       }`}
                     >
                       {new Date(msg.created_at).toLocaleTimeString("vi-VN", {

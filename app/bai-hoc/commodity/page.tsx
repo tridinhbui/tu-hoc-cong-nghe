@@ -114,7 +114,7 @@ function CommodityImpactSimulator() {
           <div key={s.label}>
             <div className="flex justify-between text-xs text-stone-600 mb-1">
               <span className="font-semibold">{s.icon} {s.label}</span>
-              <span className={`font-bold ${s.val > 0 ? "text-stone-700" : s.val < 0 ? "text-stone-700" : "text-stone-400"}`}>
+              <span className={`font-bold ${s.val > 0 ? "text-stone-700" : s.val < 0 ? "text-stone-700" : "text-stone-500"}`}>
                 {s.val > 0 ? "+" : ""}{s.val}%
               </span>
             </div>
@@ -135,11 +135,11 @@ function CommodityImpactSimulator() {
           const good = s.invert ? s.val < 0 : s.val > 0;
           return (
             <div key={s.label} className={`rounded-xl p-3 text-center border ${bad ? "bg-stone-50 border-stone-200" : good ? "bg-stone-50 border-stone-200" : "bg-white border-stone-100"}`}>
-              <div className={`text-lg font-bold ${bad ? "text-stone-700" : good ? "text-stone-700" : "text-stone-400"}`}>
+              <div className={`text-lg font-bold ${bad ? "text-stone-700" : good ? "text-stone-700" : "text-stone-500"}`}>
                 {fmt(s.val)}
               </div>
               <div className="text-[10px] text-stone-500 mt-0.5 font-medium">{s.label}</div>
-              <div className="text-[9px] text-stone-400">{s.sub}</div>
+              <div className="text-[9px] text-stone-500">{s.sub}</div>
             </div>
           );
         })}
@@ -203,7 +203,7 @@ export default function Page() {
           <div className="bg-stone-800 text-white rounded-xl p-4">
             <div className="font-bold text-stone-700 mb-1 text-sm">SPOT PRICE</div>
             <p className="text-stone-300 text-xs leading-relaxed">Giá giao dịch ngay lập tức, nhận hàng ngay. Phản ánh cung cầu thực tế <em>hôm nay</em>.</p>
-            <div className="mt-3 font-mono text-xs text-stone-400">Dầu WTI spot = $82/barrel</div>
+            <div className="mt-3 font-mono text-xs text-stone-500">Dầu WTI spot = $82/barrel</div>
           </div>
           <div className="bg-stone-50 text-white rounded-xl p-4">
             <div className="font-bold text-stone-700 mb-1 text-sm">FUTURES PRICE</div>

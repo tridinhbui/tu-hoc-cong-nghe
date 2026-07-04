@@ -151,7 +151,7 @@ function MethodSelector() {
           </div>
         </div>
       ) : (
-        <div className="bg-white rounded-xl border border-dashed border-stone-200 p-5 text-center text-stone-400 text-sm">
+        <div className="bg-white rounded-xl border border-dashed border-stone-200 p-5 text-center text-stone-500 text-sm">
           Chọn một phương pháp để xem chi tiết
         </div>
       )}

@@ -170,7 +170,7 @@ export default function Page() {
             <div key={r.label} className={`flex items-center gap-3 bg-${r.color}-50 rounded-lg p-3 border border-${r.color}-100`}>
               <div className="flex-1">
                 <div className="text-sm font-medium text-stone-700">{r.label}</div>
-                <div className="text-xs text-stone-400">{r.note}</div>
+                <div className="text-xs text-stone-500">{r.note}</div>
               </div>
               <div className={`font-bold text-${r.color}-600 text-sm`}>{r.range}</div>
             </div>

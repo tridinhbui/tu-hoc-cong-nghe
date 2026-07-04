@@ -102,7 +102,7 @@ export default function NoTotNoXauPage() {
           </ul>
 
           <div className="border border-stone-200 rounded-2xl p-6 bg-stone-50 space-y-3">
-            <p className="text-xs font-bold text-stone-400 uppercase tracking-widest">Nợ thẻ tín dụng: tốc độ nhân</p>
+            <p className="text-xs font-bold text-stone-500 uppercase tracking-widest">Nợ thẻ tín dụng: tốc độ nhân</p>
             <p className="text-stone-700 text-base leading-relaxed">
               Mua điện thoại 20 triệu bằng thẻ, trả tối thiểu mỗi tháng 500 nghìn với lãi 2.5%/tháng: sau 5 năm, bạn có thể trả tổng cộng 30-35 triệu cho chiếc điện thoại đó, trong khi giá trị thực của nó đã về gần 0.
             </p>
@@ -125,7 +125,7 @@ export default function NoTotNoXauPage() {
         <div className="rounded-2xl overflow-hidden border-2 border-stone-900 shadow-lg">
           <div className="bg-stone-900 px-6 py-4">
             <p className="text-white font-extrabold text-lg tracking-wide">Khái niệm cần nhớ</p>
-            <p className="text-stone-400 text-sm mt-0.5">Chạm hoặc di chuột vào từng dòng</p>
+            <p className="text-stone-500 text-sm mt-0.5">Chạm hoặc di chuột vào từng dòng</p>
           </div>
           <div className="divide-y divide-stone-100 bg-white">
             {CONCEPTS.map(({ vi, en, def }) => (
@@ -133,11 +133,11 @@ export default function NoTotNoXauPage() {
                 <div className="flex-1 min-w-0">
                   <div className="flex items-baseline gap-3 flex-wrap">
                     <span className="font-bold text-stone-900 text-base group-hover:text-stone-700 transition-colors">{vi}</span>
-                    <span className="text-sm text-stone-400 font-mono bg-stone-100 px-2 py-0.5 rounded group-hover:bg-stone-200 transition-colors">{en}</span>
+                    <span className="text-sm text-stone-500 font-mono bg-stone-100 px-2 py-0.5 rounded group-hover:bg-stone-200 transition-colors">{en}</span>
                   </div>
                   <p className="text-stone-500 text-base mt-1 leading-relaxed group-hover:text-stone-700 transition-colors">{def}</p>
                 </div>
-                <span className="text-stone-200 group-hover:text-stone-400 transition-colors text-lg mt-0.5 flex-shrink-0">→</span>
+                <span className="text-stone-200 group-hover:text-stone-500 transition-colors text-lg mt-0.5 flex-shrink-0">→</span>
               </div>
             ))}
           </div>
@@ -146,7 +146,7 @@ export default function NoTotNoXauPage() {
         <div className="rounded-2xl overflow-hidden shadow-xl">
           <div className="bg-stone-900 px-6 py-5">
             <p className="text-white font-extrabold text-xl tracking-wide">Ghi nhớ nhanh</p>
-            <p className="text-stone-400 text-sm mt-0.5">4 điều cốt lõi từ bài này</p>
+            <p className="text-stone-500 text-sm mt-0.5">4 điều cốt lõi từ bài này</p>
           </div>
           <div className="bg-stone-800 divide-y divide-stone-700">
             {TAKEAWAYS.map((t, i) => (
@@ -159,7 +159,7 @@ export default function NoTotNoXauPage() {
         </div>
 
         <div className="text-center space-y-2 py-4">
-          <p className="text-stone-400 text-base">Câu hỏi không phải là có nên vay không.</p>
+          <p className="text-stone-500 text-base">Câu hỏi không phải là có nên vay không.</p>
           <p className="text-stone-900 font-bold text-xl">Câu hỏi là khoản vay này tạo ra giá trị gì, với chi phí bao nhiêu, và có xứng đáng không.</p>
         </div>
 

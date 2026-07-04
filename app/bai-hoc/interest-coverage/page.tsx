@@ -99,7 +99,7 @@ function ICRSimulator() {
         <div className="h-4 bg-stone-100 rounded-full overflow-hidden mb-2">
           <div className={`h-full ${status.bar} rounded-full transition-all`} style={{ width: `${Math.min(100, (icr / 5) * 100)}%` }} />
         </div>
-        <div className="flex justify-between text-xs text-stone-400 mb-3">
+        <div className="flex justify-between text-xs text-stone-500 mb-3">
           <span>0x</span><span>1.5x</span><span>3x</span><span>5x+</span>
         </div>
         <div className={`text-center py-2 rounded-xl text-sm font-bold ${status.color}`}>{status.label}</div>
@@ -178,7 +178,7 @@ export default function Page() {
             <div key={r.industry} className="flex items-center gap-3 bg-stone-50 rounded-lg p-3 border border-stone-200">
               <div className="flex-1">
                 <div className="text-sm font-medium text-stone-700">{r.industry}</div>
-                <div className="text-xs text-stone-400">{r.note}</div>
+                <div className="text-xs text-stone-500">{r.note}</div>
               </div>
               <div className="font-bold text-stone-700 text-sm">{r.range}</div>
             </div>

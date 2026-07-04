@@ -15,7 +15,7 @@ export default function Roadmap({ stages, activeTrack }: RoadmapProps) {
   return (
     <div className="bg-white border-2 border-stone-200 rounded-xl p-5 h-fit sticky top-24">
       <div className="mb-4">
-        <p className="text-xs font-extrabold text-stone-400 uppercase tracking-widest">
+        <p className="text-xs font-extrabold text-stone-500 uppercase tracking-widest">
           Roadmap
         </p>
       </div>

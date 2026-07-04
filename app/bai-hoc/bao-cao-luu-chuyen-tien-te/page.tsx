@@ -131,7 +131,7 @@ export default function BaoLuuChuyenPage() {
             ].map(r => (
               <div key={r.step} className="pl-4 border-l-2 border-stone-200 text-stone-700">
                 <div>{r.step}</div>
-                {r.note && <div className="text-xs text-stone-400 font-sans">{r.note}</div>}
+                {r.note && <div className="text-xs text-stone-500 font-sans">{r.note}</div>}
               </div>
             ))}
           </div>
@@ -140,7 +140,7 @@ export default function BaoLuuChuyenPage() {
         <section className="space-y-4">
           <h2 className="text-xl font-bold text-stone-900">Từ Net Income → Operating Cash Flow — ví dụ</h2>
           <div className="bg-stone-900 rounded-2xl p-4 space-y-1.5">
-            <div className="text-stone-400 text-xs font-bold uppercase tracking-widest mb-2">Phương pháp gián tiếp (ví dụ minh họa)</div>
+            <div className="text-stone-500 text-xs font-bold uppercase tracking-widest mb-2">Phương pháp gián tiếp (ví dụ minh họa)</div>
             {[
               { label: "Net Income", val: "+100 tỷ" },
               { label: "+ Khấu hao D&A (phi tiền mặt)", val: "+30 tỷ" },
@@ -149,7 +149,7 @@ export default function BaoLuuChuyenPage() {
               { label: "± Thay đổi Tồn kho", val: "−15 tỷ" },
             ].map(r => (
               <div key={r.label} className="flex justify-between items-center text-sm">
-                <span className="text-stone-400 text-xs">{r.label}</span>
+                <span className="text-stone-500 text-xs">{r.label}</span>
                 <span className="font-bold text-sm text-stone-300">{r.val}</span>
               </div>
             ))}
@@ -208,7 +208,7 @@ export default function BaoLuuChuyenPage() {
         <section className="space-y-4">
           <h2 className="text-xl font-bold text-stone-900">Vinamilk — Đọc BCLCTT thực tế</h2>
           <div className="bg-stone-900 rounded-2xl p-5 text-sm space-y-3">
-            <div className="text-stone-400 text-xs font-bold uppercase tracking-widest">Vinamilk (VNM) — BCLCTT 2023 (ước lượng minh họa)</div>
+            <div className="text-stone-500 text-xs font-bold uppercase tracking-widest">Vinamilk (VNM) — BCLCTT 2023 (ước lượng minh họa)</div>
             {[
               { label: "OCF", val: "+3,200 tỷ", note: "Kinh doanh lành mạnh, tiền về đều đặn" },
               { label: "CFI", val: "−1,800 tỷ", note: "Đầu tư mở rộng sản xuất" },
@@ -217,7 +217,7 @@ export default function BaoLuuChuyenPage() {
             ].map(r => (
               <div key={r.label} className="border-b border-stone-800 pb-3 last:border-0">
                 <div className="flex justify-between">
-                  <span className="text-stone-400">{r.label}</span>
+                  <span className="text-stone-500">{r.label}</span>
                   <span className="font-bold text-white">{r.val}</span>
                 </div>
                 <div className="text-stone-500 text-xs mt-0.5">{r.note}</div>

@@ -15,9 +15,9 @@ export default function LessonSections({ sections }: { sections: LessonSectionBl
 
           case "heading":
             return (
-              <h3 key={i} className="text-2xl font-bold text-stone-900">
+              <h2 key={i} className="text-2xl font-bold text-stone-900">
                 {block.text}
-              </h3>
+              </h2>
             );
 
           case "paragraph":
@@ -38,7 +38,7 @@ export default function LessonSections({ sections }: { sections: LessonSectionBl
           case "callout":
             return (
               <div key={i} className="border border-stone-200 rounded-2xl p-6 bg-stone-50 space-y-3">
-                <p className="text-xs font-bold text-stone-400 uppercase tracking-widest">{block.label}</p>
+                <p className="text-xs font-bold text-stone-500 uppercase tracking-widest">{block.label}</p>
                 <p className="text-stone-700 text-base leading-relaxed">{block.text}</p>
               </div>
             );
@@ -48,7 +48,7 @@ export default function LessonSections({ sections }: { sections: LessonSectionBl
               <div key={i} className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 {[block.left, block.right].map((side) => (
                   <div key={side.label} className="border border-stone-200 rounded-2xl p-6 space-y-3">
-                    <p className="text-xs font-bold text-stone-400 uppercase tracking-widest">{side.label}</p>
+                    <p className="text-xs font-bold text-stone-500 uppercase tracking-widest">{side.label}</p>
                     <p className="text-base text-stone-600 leading-relaxed">{side.text}</p>
                   </div>
                 ))}
@@ -60,7 +60,7 @@ export default function LessonSections({ sections }: { sections: LessonSectionBl
               <div key={i} className="rounded-2xl overflow-hidden border-2 border-stone-900 shadow-lg">
                 <div className="bg-stone-900 px-6 py-4">
                   <p className="text-white font-extrabold text-lg tracking-wide">{block.title}</p>
-                  <p className="text-stone-400 text-sm mt-0.5">{block.subtitle ?? "Chạm hoặc di chuột vào từng dòng"}</p>
+                  <p className="text-stone-500 text-sm mt-0.5">{block.subtitle ?? "Chạm hoặc di chuột vào từng dòng"}</p>
                 </div>
                 <div className="divide-y divide-stone-100 bg-white">
                   {block.concepts.map(({ vi, en, def }) => (
@@ -71,11 +71,11 @@ export default function LessonSections({ sections }: { sections: LessonSectionBl
                       <div className="flex-1 min-w-0">
                         <div className="flex items-baseline gap-3 flex-wrap">
                           <span className="font-bold text-stone-900 text-base group-hover:text-stone-700 transition-colors">{vi}</span>
-                          <span className="text-sm text-stone-400 font-mono bg-stone-100 px-2 py-0.5 rounded group-hover:bg-stone-200 transition-colors">{en}</span>
+                          <span className="text-sm text-stone-500 font-mono bg-stone-100 px-2 py-0.5 rounded group-hover:bg-stone-200 transition-colors">{en}</span>
                         </div>
                         <p className="text-stone-500 text-base mt-1 leading-relaxed group-hover:text-stone-700 transition-colors">{def}</p>
                       </div>
-                      <span className="text-stone-200 group-hover:text-stone-400 transition-colors text-lg mt-0.5 flex-shrink-0">→</span>
+                      <span className="text-stone-200 group-hover:text-stone-500 transition-colors text-lg mt-0.5 flex-shrink-0">→</span>
                     </div>
                   ))}
                 </div>
@@ -88,7 +88,7 @@ export default function LessonSections({ sections }: { sections: LessonSectionBl
                 {block.lines.map((line, j) => (
                   <p
                     key={j}
-                    className={j === block.lines.length - 1 ? "text-stone-900 font-bold text-xl" : "text-stone-400 text-base"}
+                    className={j === block.lines.length - 1 ? "text-stone-900 font-bold text-xl" : "text-stone-500 text-base"}
                   >
                     {line}
                   </p>

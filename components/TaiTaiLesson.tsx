@@ -119,11 +119,11 @@ export default function TaiTaiLesson({ lessonId }: Props) {
         </div>
         <div className="flex-1 min-w-0">
           <span className="text-white font-bold text-sm">Tài Tài</span>
-          <span className="text-stone-400 text-xs ml-2">· nhận xét về bài này</span>
+          <span className="text-stone-500 text-xs ml-2">· nhận xét về bài này</span>
         </div>
         <div className="flex items-center gap-1.5">
           <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
-          <span className="text-stone-400 text-xs">live</span>
+          <span className="text-stone-500 text-xs">live</span>
         </div>
       </div>
 

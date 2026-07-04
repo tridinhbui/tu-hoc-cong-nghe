@@ -65,7 +65,7 @@ export default function InteractiveProfitCalc() {
             className="w-full"
             style={{ background: `linear-gradient(to right, #0891b2 ${(cashReceived / revenue) * 100}%, #e5e7eb ${(cashReceived / revenue) * 100}%)` }}
           />
-          <p className="text-xs text-stone-400 mt-1">
+          <p className="text-xs text-stone-500 mt-1">
             Còn {revenue - cashReceived} triệu khách chưa trả (công nợ phải thu)
           </p>
         </div>
@@ -78,7 +78,7 @@ export default function InteractiveProfitCalc() {
           <div className={`text-2xl font-bold ${profit >= 0 ? "text-emerald-600" : "text-rose-600"}`}>
             {profit >= 0 ? "+" : ""}{profit} triệu
           </div>
-          <div className="text-xs text-stone-400 mt-1">{profit >= 0 ? "Đang lãi 📈" : "Đang lỗ 📉"}</div>
+          <div className="text-xs text-stone-500 mt-1">{profit >= 0 ? "Đang lãi 📈" : "Đang lỗ 📉"}</div>
         </div>
 
         <div className={`rounded-2xl p-4 text-center ${actualCash >= 0 ? "bg-blue-50" : "bg-orange-50"}`}>
@@ -86,7 +86,7 @@ export default function InteractiveProfitCalc() {
           <div className={`text-2xl font-bold ${actualCash >= 0 ? "text-blue-600" : "text-orange-600"}`}>
             {actualCash >= 0 ? "+" : ""}{actualCash} triệu
           </div>
-          <div className="text-xs text-stone-400 mt-1">{actualCash >= 0 ? "Đủ tiền ✅" : "Thiếu tiền ⚠️"}</div>
+          <div className="text-xs text-stone-500 mt-1">{actualCash >= 0 ? "Đủ tiền ✅" : "Thiếu tiền ⚠️"}</div>
         </div>
       </div>
 

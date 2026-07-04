@@ -24,7 +24,7 @@ function OpeningQuestionBlock({
 
   return (
     <div className="space-y-4">
-      <div className="text-[10px] font-bold text-stone-400 uppercase tracking-wider">
+      <div className="text-[10px] font-bold text-stone-500 uppercase tracking-wider">
         Bắt đầu bằng một câu hỏi
       </div>
       <p className="text-stone-800 font-semibold leading-relaxed text-base">
@@ -37,7 +37,7 @@ function OpeningQuestionBlock({
           if (submitted) {
             if (i === correct) btnCls = "border-emerald-500 bg-emerald-50 text-emerald-800 font-semibold";
             else if (i === selected) btnCls = "border-rose-500 bg-rose-50 text-rose-800";
-            else btnCls = "border-stone-100 bg-stone-50/20 text-stone-400 opacity-60";
+            else btnCls = "border-stone-100 bg-stone-50/20 text-stone-500 opacity-60";
           } else if (selected === i) {
             btnCls = "border-stone-900 bg-stone-100 text-stone-900 font-semibold border-2";
           }
@@ -132,7 +132,7 @@ export default function LessonPageClient({ lesson, nextLesson }: Props) {
       ) : (
         lesson.explanation && (
           <div className="space-y-3">
-            <div className="text-[10px] font-bold text-stone-400 uppercase tracking-wider">
+            <div className="text-[10px] font-bold text-stone-500 uppercase tracking-wider">
               Giải thích chi tiết
             </div>
             <p className="text-stone-700 leading-relaxed text-base">
@@ -148,7 +148,7 @@ export default function LessonPageClient({ lesson, nextLesson }: Props) {
       {/* 3. Diagram block */}
       {lesson.diagram && lesson.diagram.length > 0 && (
         <div className="space-y-4">
-          <div className="text-[10px] font-bold text-stone-400 uppercase tracking-wider">
+          <div className="text-[10px] font-bold text-stone-500 uppercase tracking-wider">
             Sơ đồ trực quan
           </div>
           <div className="flex flex-col items-center py-4 bg-stone-50/50 rounded-2xl border border-stone-100">
@@ -169,7 +169,7 @@ export default function LessonPageClient({ lesson, nextLesson }: Props) {
       {/* 4. Interactive Simulation block */}
       {lesson.interactiveType && (
         <div className="space-y-3">
-          <div className="text-[10px] font-bold text-stone-400 uppercase tracking-wider">
+          <div className="text-[10px] font-bold text-stone-500 uppercase tracking-wider">
             Thử nghiệm tương tác
           </div>
           <InteractiveWidget type={lesson.interactiveType as any} />
@@ -179,7 +179,7 @@ export default function LessonPageClient({ lesson, nextLesson }: Props) {
       {/* 5. Real-life Example block */}
       {lesson.realWorldExample && lesson.realWorldExample.company && (
         <div className="border border-stone-200 rounded-2xl p-6 bg-stone-50 space-y-3">
-          <p className="text-xs font-bold text-stone-400 uppercase tracking-widest">
+          <p className="text-xs font-bold text-stone-500 uppercase tracking-widest">
             Ví dụ thực tế · {lesson.realWorldExample.company}
           </p>
           <p className="text-stone-700 text-base leading-relaxed">

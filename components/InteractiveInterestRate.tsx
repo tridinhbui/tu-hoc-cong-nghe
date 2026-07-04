@@ -47,7 +47,7 @@ export default function InteractiveInterestRate() {
           className="w-full"
           style={{ background: `linear-gradient(to right, #059669 ${((rate - 1) / 14) * 100}%, #e5e7eb ${((rate - 1) / 14) * 100}%)` }}
         />
-        <div className="flex justify-between text-xs text-stone-400 mt-1">
+        <div className="flex justify-between text-xs text-stone-500 mt-1">
           <span>1%</span>
           <span className="text-center font-medium text-stone-600">{getRateLabel()}</span>
           <span>15%</span>
@@ -63,7 +63,7 @@ export default function InteractiveInterestRate() {
           </div>
           <div className="text-right">
             <div className="text-xl font-bold text-blue-600">+{savingsReturn} triệu</div>
-            <div className="text-xs text-stone-400">/năm</div>
+            <div className="text-xs text-stone-500">/năm</div>
           </div>
         </div>
 
@@ -75,7 +75,7 @@ export default function InteractiveInterestRate() {
           </div>
           <div className="text-right">
             <div className="text-xl font-bold text-rose-600">+{monthlyCost} triệu</div>
-            <div className="text-xs text-stone-400">/tháng</div>
+            <div className="text-xs text-stone-500">/tháng</div>
           </div>
         </div>
 

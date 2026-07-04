@@ -65,12 +65,12 @@ export default function Page() {
           <p className="text-stone-700 text-sm">Other Comprehensive Income = lãi/lỗ chưa qua P&L thông thường</p>
         </div>
         <div className="bg-white border border-stone-200 rounded-xl p-5 font-mono text-sm">
-          <div className="text-stone-400 text-xs mb-3">{ '// Statement of Comprehensive Income' }</div>
+          <div className="text-stone-500 text-xs mb-3">{ '// Statement of Comprehensive Income' }</div>
           <div className="flex justify-between mb-2 text-stone-700">
             <span>Net Income (từ P&L)</span>
             <span className="text-stone-700">+ 80M</span>
           </div>
-          <div className="text-xs text-stone-400 mb-1 mt-3">Other Comprehensive Income:</div>
+          <div className="text-xs text-stone-500 mb-1 mt-3">Other Comprehensive Income:</div>
           <div className="flex justify-between mb-1 pl-3 text-xs">
             <span className="text-stone-500">FX translation adjustment</span>
             <span className="text-stone-700">-15M</span>
@@ -153,13 +153,13 @@ export default function Page() {
       <section>
         <h3 className="text-lg font-bold text-stone-800 mb-3">🔍 AOCI trong Equity — đọc Balance Sheet</h3>
         <div className="bg-stone-800 text-white rounded-xl p-5 font-mono text-sm">
-          <div className="text-stone-400 text-xs mb-3">{ '// Phần Equity trên Balance Sheet' }</div>
+          <div className="text-stone-500 text-xs mb-3">{ '// Phần Equity trên Balance Sheet' }</div>
           <div className="flex justify-between mb-1"><span className="text-white">Common Stock</span><span className="text-stone-300">500M</span></div>
           <div className="flex justify-between mb-1"><span className="text-white">Additional Paid-in Capital</span><span className="text-stone-300">1,200M</span></div>
           <div className="flex justify-between mb-1"><span className="text-white">Retained Earnings</span><span className="text-stone-700">2,300M</span></div>
           <div className="flex justify-between mb-3"><span className="text-stone-700">Accumulated OCI (AOCI)</span><span className="text-stone-700">-85M</span></div>
           <div className="flex justify-between border-t border-stone-600 pt-2 font-bold"><span>Total Equity</span><span>3,915M</span></div>
-          <div className="text-stone-400 text-xs mt-3">AOCI -85M = FX losses -120M + Unrealized bond gains +35M (accumulated)</div>
+          <div className="text-stone-500 text-xs mt-3">AOCI -85M = FX losses -120M + Unrealized bond gains +35M (accumulated)</div>
         </div>
       </section>
     </LessonPageLayout>

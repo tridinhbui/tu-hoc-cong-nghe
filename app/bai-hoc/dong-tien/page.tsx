@@ -144,7 +144,7 @@ export default function DongTienPage() {
           </ul>
 
           <div className="border border-stone-200 rounded-2xl p-6 bg-stone-50 space-y-3">
-            <p className="text-xs font-bold text-stone-400 uppercase tracking-widest">Ví dụ thực tế</p>
+            <p className="text-xs font-bold text-stone-500 uppercase tracking-widest">Ví dụ thực tế</p>
             <p className="text-stone-700 text-base leading-relaxed">
               Một công ty bán được <strong className="text-stone-900">5 tỷ đồng</strong> hàng hóa trong quý,
               nhưng khách hàng được trả chậm sau 90 ngày. Trên báo cáo, công ty có doanh thu. Nhưng trong
@@ -181,7 +181,7 @@ export default function DongTienPage() {
           <h3 className="text-2xl font-bold text-stone-900">Với doanh nghiệp và với cá nhân</h3>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div className="border border-stone-200 rounded-2xl p-6 space-y-3">
-              <p className="text-xs font-bold text-stone-400 uppercase tracking-widest">Doanh nghiệp</p>
+              <p className="text-xs font-bold text-stone-500 uppercase tracking-widest">Doanh nghiệp</p>
               <p className="text-base text-stone-600 leading-relaxed">
                 Một công ty có thể tăng trưởng doanh thu nhanh nhưng vẫn rơi vào khó khăn nếu chi trước
                 quá nhiều cho hàng tồn kho, mở rộng hệ thống, marketing, trong khi tiền thu về chậm.
@@ -192,7 +192,7 @@ export default function DongTienPage() {
             </div>
 
             <div className="border border-stone-200 rounded-2xl p-6 space-y-3">
-              <p className="text-xs font-bold text-stone-400 uppercase tracking-widest">Cá nhân</p>
+              <p className="text-xs font-bold text-stone-500 uppercase tracking-widest">Cá nhân</p>
               <div className="space-y-3 text-base text-stone-600">
                 <div className="flex justify-between border-b border-stone-100 pb-3">
                   <span>Thu nhập 50 triệu, chi 55 triệu</span>
@@ -233,7 +233,7 @@ export default function DongTienPage() {
         <div className="rounded-2xl overflow-hidden border-2 border-stone-900 shadow-lg">
           <div className="bg-stone-900 px-6 py-4">
             <p className="text-white font-extrabold text-lg tracking-wide">Khái niệm cần nhớ</p>
-            <p className="text-stone-400 text-sm mt-0.5">Chạm hoặc di chuột vào từng dòng</p>
+            <p className="text-stone-500 text-sm mt-0.5">Chạm hoặc di chuột vào từng dòng</p>
           </div>
           <div className="divide-y divide-stone-100 bg-white">
             {CONCEPTS.map(({ vi, en, def }) => (
@@ -244,11 +244,11 @@ export default function DongTienPage() {
                 <div className="flex-1 min-w-0">
                   <div className="flex items-baseline gap-3 flex-wrap">
                     <span className="font-bold text-stone-900 text-base group-hover:text-stone-700 transition-colors">{vi}</span>
-                    <span className="text-sm text-stone-400 font-mono bg-stone-100 px-2 py-0.5 rounded group-hover:bg-stone-200 transition-colors">{en}</span>
+                    <span className="text-sm text-stone-500 font-mono bg-stone-100 px-2 py-0.5 rounded group-hover:bg-stone-200 transition-colors">{en}</span>
                   </div>
                   <p className="text-stone-500 text-base mt-1 leading-relaxed group-hover:text-stone-700 transition-colors">{def}</p>
                 </div>
-                <span className="text-stone-200 group-hover:text-stone-400 transition-colors text-lg mt-0.5 flex-shrink-0">→</span>
+                <span className="text-stone-200 group-hover:text-stone-500 transition-colors text-lg mt-0.5 flex-shrink-0">→</span>
               </div>
             ))}
           </div>
@@ -258,7 +258,7 @@ export default function DongTienPage() {
         <div className="rounded-2xl overflow-hidden shadow-xl">
           <div className="bg-stone-900 px-6 py-5">
             <p className="text-white font-extrabold text-xl tracking-wide">Ghi nhớ nhanh</p>
-            <p className="text-stone-400 text-sm mt-0.5">4 điều cốt lõi bạn cần nhớ từ bài này</p>
+            <p className="text-stone-500 text-sm mt-0.5">4 điều cốt lõi bạn cần nhớ từ bài này</p>
           </div>
           <div className="bg-stone-800 divide-y divide-stone-700">
             {TAKEAWAYS.map((t, i) => (
@@ -277,7 +277,7 @@ export default function DongTienPage() {
 
         {/* Closing quote */}
         <div className="text-center space-y-2 py-4">
-          <p className="text-stone-400 text-base">Lợi nhuận cho thấy hiệu quả trên báo cáo.</p>
+          <p className="text-stone-500 text-base">Lợi nhuận cho thấy hiệu quả trên báo cáo.</p>
           <p className="text-stone-900 font-bold text-xl">Dòng tiền cho thấy năng lực tài chính trong thực tế.</p>
         </div>
 

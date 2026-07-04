@@ -91,7 +91,7 @@ function FCFAnimation() {
 
       {/* Center-zero bar */}
       <div className="space-y-2">
-        <div className="flex justify-between text-xs text-stone-400">
+        <div className="flex justify-between text-xs text-stone-500">
           <span>FCF rất âm</span><span>Điểm 0</span><span>FCF rất dương</span>
         </div>
         <div className="h-8 bg-stone-100 rounded-full relative overflow-hidden">
@@ -114,8 +114,8 @@ function FCFAnimation() {
       </div>
 
       <div className="grid grid-cols-2 gap-3 text-sm">
-        <button onClick={() => { setOcf(200); setCapex(50); }} className="border border-stone-200 rounded-xl p-2 hover:bg-stone-50 text-stone-600 text-xs">📱 Tech Company<br/><span className="text-stone-400">OCF cao, CapEx thấp</span></button>
-        <button onClick={() => { setOcf(300); setCapex(280); }} className="border border-stone-200 rounded-xl p-2 hover:bg-stone-50 text-stone-600 text-xs">🏭 Manufacturing<br/><span className="text-stone-400">OCF cao nhưng CapEx lớn</span></button>
+        <button onClick={() => { setOcf(200); setCapex(50); }} className="border border-stone-200 rounded-xl p-2 hover:bg-stone-50 text-stone-600 text-xs">📱 Tech Company<br/><span className="text-stone-500">OCF cao, CapEx thấp</span></button>
+        <button onClick={() => { setOcf(300); setCapex(280); }} className="border border-stone-200 rounded-xl p-2 hover:bg-stone-50 text-stone-600 text-xs">🏭 Manufacturing<br/><span className="text-stone-500">OCF cao nhưng CapEx lớn</span></button>
       </div>
     </div>
   );
@@ -194,7 +194,7 @@ export default function FreeCashFlowPage() {
             ].map(r => (
               <div key={r.co} className="border-b border-stone-800 pb-3 last:border-0">
                 <div className="text-white font-bold">{r.co}</div>
-                <div className="text-stone-400 text-xs mt-1">FCF {r.fcf} / Market Cap {r.mc} → Yield {r.yield}</div>
+                <div className="text-stone-500 text-xs mt-1">FCF {r.fcf} / Market Cap {r.mc} → Yield {r.yield}</div>
                 <div className="text-stone-500 text-xs">{r.note}</div>
               </div>
             ))}

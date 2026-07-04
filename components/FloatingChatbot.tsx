@@ -78,7 +78,7 @@ export default function FloatingContact() {
             </div>
             <div className="flex-1">
               <p className="text-white font-bold text-base">Góp ý & Đóng góp</p>
-              <p className="text-stone-400 text-sm mt-0.5">Giúp chúng mình phát triển sản phẩm tốt hơn</p>
+              <p className="text-stone-500 text-sm mt-0.5">Giúp chúng mình phát triển sản phẩm tốt hơn</p>
             </div>
           </div>
 
@@ -109,13 +109,13 @@ export default function FloatingContact() {
                     value={name}
                     onChange={(e) => setName(e.target.value)}
                     placeholder="Nguyễn Văn A"
-                    className="w-full px-4 py-3 rounded-xl border border-stone-200 text-base text-stone-900 placeholder:text-stone-400 focus:outline-none focus:border-stone-400 focus:ring-2 focus:ring-stone-100 transition-all"
+                    className="w-full px-4 py-3 rounded-xl border border-stone-200 text-base text-stone-900 placeholder:text-stone-500 focus:outline-none focus:border-stone-400 focus:ring-2 focus:ring-stone-100 transition-all"
                   />
                 </div>
 
                 <div className="space-y-1.5">
                   <label className="text-sm font-semibold text-stone-700">
-                    Góp ý / Đóng góp <span className="text-stone-400 font-normal">(bắt buộc)</span>
+                    Góp ý / Đóng góp <span className="text-stone-500 font-normal">(bắt buộc)</span>
                   </label>
                   <textarea
                     value={message}
@@ -123,7 +123,7 @@ export default function FloatingContact() {
                     required
                     rows={4}
                     placeholder="Ví dụ: Bài học X còn thiếu phần giải thích về Y, hoặc mình muốn đóng góp nội dung về Z..."
-                    className="w-full px-4 py-3 rounded-xl border border-stone-200 text-base text-stone-900 placeholder:text-stone-400 focus:outline-none focus:border-stone-400 focus:ring-2 focus:ring-stone-100 transition-all resize-none"
+                    className="w-full px-4 py-3 rounded-xl border border-stone-200 text-base text-stone-900 placeholder:text-stone-500 focus:outline-none focus:border-stone-400 focus:ring-2 focus:ring-stone-100 transition-all resize-none"
                   />
                 </div>
 
@@ -134,13 +134,13 @@ export default function FloatingContact() {
                     className={`w-full py-3.5 rounded-xl font-bold text-base text-white transition-all cursor-pointer ${
                       message.trim() && status !== "sending"
                         ? "bg-stone-900 hover:bg-stone-700"
-                        : "bg-stone-200 text-stone-400 cursor-not-allowed"
+                        : "bg-stone-200 text-stone-500 cursor-not-allowed"
                     }`}
                   >
                     {status === "sending" ? "Đang gửi..." : "Gửi góp ý"}
                   </button>
 
-                  <p className="text-xs text-stone-400 text-center leading-relaxed">
+                  <p className="text-xs text-stone-500 text-center leading-relaxed">
                     Hoặc liên hệ qua email:{" "}
                     <a
                       href="mailto:tribd.tec@gmail.com"

@@ -93,7 +93,7 @@ function TVMAnimation() {
                 background: i === years ? "#f43f5e" : `rgba(244,63,94,${0.2 + (i / years) * 0.6})`,
               }}
             />
-            <span className="text-[9px] text-stone-400">{i === 0 ? "PV" : i === years ? "FV" : `Y${i}`}</span>
+            <span className="text-[9px] text-stone-500">{i === 0 ? "PV" : i === years ? "FV" : `Y${i}`}</span>
           </div>
         ))}
       </div>

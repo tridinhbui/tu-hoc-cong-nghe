@@ -117,7 +117,7 @@ function ValuationFootballField() {
           </div>
         ))}
       </div>
-      <div className="flex justify-between text-[10px] text-stone-400 mt-2 px-1">
+      <div className="flex justify-between text-[10px] text-stone-500 mt-2 px-1">
         <span>40</span><span>80</span><span>120</span><span>160</span><span>180</span>
       </div>
       <p className="text-xs text-stone-500 text-center mt-2">{s.label}: giá trị mục tiêu trong nghìn tỷ VNĐ</p>

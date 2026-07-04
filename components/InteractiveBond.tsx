@@ -23,7 +23,7 @@ export default function InteractiveBond() {
 
       {/* Bond card */}
       <div className="bg-gradient-to-br from-stone-800 to-stone-900 rounded-2xl p-5 text-white">
-        <div className="text-xs text-stone-400 mb-3">TRÁI PHIẾU CHÍNH PHỦ</div>
+        <div className="text-xs text-stone-500 mb-3">TRÁI PHIẾU CHÍNH PHỦ</div>
         <div className="flex justify-between items-start">
           <div>
             <div className="text-stone-300 text-sm">Mệnh giá</div>
@@ -34,7 +34,7 @@ export default function InteractiveBond() {
             <div className="text-2xl font-bold text-emerald-400">{bondRate}%/năm</div>
           </div>
         </div>
-        <div className="mt-3 text-stone-400 text-xs">Đáo hạn: 10 năm · Trả lãi hàng năm</div>
+        <div className="mt-3 text-stone-500 text-xs">Đáo hạn: 10 năm · Trả lãi hàng năm</div>
       </div>
 
       <div>
@@ -52,7 +52,7 @@ export default function InteractiveBond() {
           className="w-full"
           style={{ background: `linear-gradient(to right, #059669 ${((marketRate - 1) / 11) * 100}%, #e5e7eb ${((marketRate - 1) / 11) * 100}%)` }}
         />
-        <div className="flex justify-between text-xs text-stone-400 mt-1">
+        <div className="flex justify-between text-xs text-stone-500 mt-1">
           <span>1%</span>
           <span>6.5% (bình thường)</span>
           <span>12%</span>

@@ -145,7 +145,7 @@ export default function Page() {
           <p className="text-stone-700 text-sm">P/E = nhà đầu tư sẵn sàng trả bao nhiêu lần earnings</p>
         </div>
         <div className="bg-white border border-stone-200 rounded-xl p-4 font-mono text-sm">
-          <div className="text-stone-400 text-xs mb-2">{ '// Ví dụ công ty stable' }</div>
+          <div className="text-stone-500 text-xs mb-2">{ '// Ví dụ công ty stable' }</div>
           <div className="flex justify-between mb-1"><span>Net Income</span><span className="text-stone-700">100M USD</span></div>
           <div className="flex justify-between mb-1"><span>P/E múltiple</span><span className="text-stone-700">20x</span></div>
           <div className="flex justify-between border-t pt-1"><span className="font-bold">Equity Value</span><span className="font-bold">2,000M = 2B USD</span></div>
@@ -160,10 +160,10 @@ export default function Page() {
           <div className="bg-stone-50 rounded-xl p-4 border border-stone-200">
             <div className="font-bold text-stone-700 mb-3 text-sm">🏭 Stable Company</div>
             <ul className="space-y-1.5 text-xs text-stone-600">
-              <li className="flex gap-1.5"><span className="text-stone-400">·</span>P/E: 10–20x</li>
-              <li className="flex gap-1.5"><span className="text-stone-400">·</span>Focus: current earnings</li>
-              <li className="flex gap-1.5"><span className="text-stone-400">·</span>Metrics: P/E, EV/EBITDA</li>
-              <li className="flex gap-1.5"><span className="text-stone-400">·</span>Ví dụ: Vinamilk, Petrolimex</li>
+              <li className="flex gap-1.5"><span className="text-stone-500">·</span>P/E: 10–20x</li>
+              <li className="flex gap-1.5"><span className="text-stone-500">·</span>Focus: current earnings</li>
+              <li className="flex gap-1.5"><span className="text-stone-500">·</span>Metrics: P/E, EV/EBITDA</li>
+              <li className="flex gap-1.5"><span className="text-stone-500">·</span>Ví dụ: Vinamilk, Petrolimex</li>
             </ul>
           </div>
           <div className="bg-stone-50 rounded-xl p-4 border border-stone-200">
@@ -191,7 +191,7 @@ export default function Page() {
                 <span className="text-sm font-semibold text-stone-700">Price driven by:</span>
               </div>
               <p className="text-stone-600 text-sm mb-1">{s.driver}</p>
-              <p className="text-stone-400 text-xs italic">{s.example}</p>
+              <p className="text-stone-500 text-xs italic">{s.example}</p>
             </div>
           ))}
         </div>

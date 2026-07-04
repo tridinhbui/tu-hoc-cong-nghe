@@ -77,7 +77,7 @@ export default function Page() {
       <section className="mb-8">
         <h3 className="text-lg font-bold text-stone-800 mb-3">📋 Số liệu từ BCLCTT Q4/2024</h3>
         <div className="bg-stone-800 text-white rounded-xl p-5 font-mono text-sm space-y-2">
-          <div className="text-stone-400 text-xs mb-3">{ '// Báo cáo Lưu chuyển Tiền tệ — Dòng tiền từ Tài chính (CFF)' }</div>
+          <div className="text-stone-500 text-xs mb-3">{ '// Báo cáo Lưu chuyển Tiền tệ — Dòng tiền từ Tài chính (CFF)' }</div>
           <div className="flex justify-between">
             <span className="text-stone-700">Tiền thu từ đi vay</span>
             <span className="text-white font-bold">+165.900 tỷ VND</span>

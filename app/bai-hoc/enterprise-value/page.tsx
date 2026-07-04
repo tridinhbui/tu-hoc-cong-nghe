@@ -99,12 +99,12 @@ function EVCalculator() {
         <div className="bg-stone-50 rounded-xl p-3 border border-stone-200">
           <div className="text-xs text-stone-500 mb-0.5">EV/EBITDA</div>
           <div className="font-bold text-stone-700 text-lg">{evEbitda.toFixed(1)}x</div>
-          <div className="text-xs text-stone-400">{evEbitda > 20 ? "Premium (growth)" : evEbitda > 10 ? "Typical" : "Value/distressed"}</div>
+          <div className="text-xs text-stone-500">{evEbitda > 20 ? "Premium (growth)" : evEbitda > 10 ? "Typical" : "Value/distressed"}</div>
         </div>
         <div className="bg-stone-50 rounded-xl p-3 border border-stone-200">
           <div className="text-xs text-stone-500 mb-0.5">Net Debt</div>
           <div className="font-bold text-stone-700 text-lg">{debt - cash}B</div>
-          <div className="text-xs text-stone-400">{debt - cash > 0 ? "Net leveraged" : "Net cash position"}</div>
+          <div className="text-xs text-stone-500">{debt - cash > 0 ? "Net leveraged" : "Net cash position"}</div>
         </div>
       </div>
     </div>
@@ -123,7 +123,7 @@ export default function Page() {
           Nếu muốn mua cả Apple, bạn không chỉ trả Market Cap cho cổ đông. Bạn còn phải <strong>gánh nợ</strong> của Apple — nhưng đổi lại <strong>nhận luôn tiền mặt</strong> trong công ty.
         </p>
         <div className="bg-stone-800 text-white rounded-xl p-5 font-mono text-sm">
-          <div className="text-stone-400 text-xs mb-3">{ '// Apple EV (2024)' }</div>
+          <div className="text-stone-500 text-xs mb-3">{ '// Apple EV (2024)' }</div>
           <div className="flex justify-between mb-1"><span className="text-white">Market Cap</span><span className="text-stone-700">4.200 tỷ USD</span></div>
           <div className="flex justify-between mb-1"><span className="text-stone-300">+ Total Debt</span><span className="text-stone-700">+85 tỷ USD</span></div>
           <div className="flex justify-between mb-3"><span className="text-stone-300">− Cash & Equivalents</span><span className="text-stone-700">−69 tỷ USD</span></div>

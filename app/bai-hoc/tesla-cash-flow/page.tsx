@@ -66,7 +66,7 @@ export default function Page() {
       <section className="mb-8">
         <h3 className="text-lg font-bold text-stone-800 mb-3"> Q1/2026 Snapshot</h3>
         <div className="bg-stone-800 text-white rounded-xl p-5 font-mono text-sm space-y-2">
-          <div className="text-stone-400 text-xs mb-2">{ '// Tesla Q1/2026 — Cash Flow Highlights' }</div>
+          <div className="text-stone-500 text-xs mb-2">{ '// Tesla Q1/2026 — Cash Flow Highlights' }</div>
           <div className="flex justify-between">
             <span className="text-stone-300">Net Income</span>
             <span className="text-white font-bold">491M USD</span>
@@ -75,22 +75,22 @@ export default function Page() {
             <span className="text-stone-700">Operating Cash Flow (OCF)</span>
             <span className="text-stone-700 font-bold">3,940M USD 🚀</span>
           </div>
-          <div className="flex justify-between text-xs text-stone-400 mt-1">
+          <div className="flex justify-between text-xs text-stone-500 mt-1">
             <span>OCF / Net Income multiple</span>
             <span>~8x !</span>
           </div>
           <div className="mt-3 pt-3 border-t border-stone-600 space-y-1">
-            <div className="text-stone-400 text-xs">OCF Drivers:</div>
+            <div className="text-stone-500 text-xs">OCF Drivers:</div>
             <div className="flex justify-between text-xs">
-              <span className="text-stone-400">+ D&A (Depreciation & Amortization)</span>
+              <span className="text-stone-500">+ D&A (Depreciation & Amortization)</span>
               <span className="text-stone-700">Large</span>
             </div>
             <div className="flex justify-between text-xs">
-              <span className="text-stone-400">+ SBC (Stock-Based Comp)</span>
+              <span className="text-stone-500">+ SBC (Stock-Based Comp)</span>
               <span className="text-stone-700">Significant</span>
             </div>
             <div className="flex justify-between text-xs">
-              <span className="text-stone-400">− Inventory increase</span>
+              <span className="text-stone-500">− Inventory increase</span>
               <span className="text-stone-700">-2,260M USD</span>
             </div>
           </div>
@@ -159,12 +159,12 @@ export default function Page() {
       <section className="mb-8">
         <h3 className="text-lg font-bold text-stone-800 mb-3">📐 Cash Flow Reconciliation</h3>
         <div className="bg-white border border-stone-200 rounded-xl p-4 font-mono text-xs">
-          <div className="text-stone-400 mb-2">{ '// Net Income → OCF bridge' }</div>
+          <div className="text-stone-500 mb-2">{ '// Net Income → OCF bridge' }</div>
           <div className="flex justify-between mb-1"><span>Net Income</span><span className="text-stone-600">+491M</span></div>
           <div className="flex justify-between mb-1"><span className="text-stone-700">+ D&A (non-cash)</span><span className="text-stone-700">+Large</span></div>
           <div className="flex justify-between mb-1"><span className="text-stone-700">+ SBC (non-cash)</span><span className="text-stone-700">+Significant</span></div>
           <div className="flex justify-between mb-1"><span className="text-stone-700">− Inventory build</span><span className="text-stone-700">-2,260M</span></div>
-          <div className="flex justify-between mb-1"><span className="text-stone-400">± Other working capital</span><span className="text-stone-400">Net positive</span></div>
+          <div className="flex justify-between mb-1"><span className="text-stone-500">± Other working capital</span><span className="text-stone-500">Net positive</span></div>
           <div className="flex justify-between border-t pt-1 font-bold"><span>Operating Cash Flow</span><span className="text-stone-700">+3,940M</span></div>
           <div className="flex justify-between mt-2 text-stone-500"><span>− CapEx &amp; Investments</span><span className="text-stone-700">~-4,500M</span></div>
           <div className="flex justify-between border-t pt-1 font-bold"><span>Free Cash Flow (approx)</span><span className="text-stone-700">~-560M</span></div>

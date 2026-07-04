@@ -334,12 +334,12 @@ export default function DashboardClient({ lessonsMeta }: { lessonsMeta: LessonMe
         <div className="max-w-4xl mx-auto px-6 py-4 flex items-center justify-between">
           <div className="flex-1">
             <h1 className="text-xl font-bold text-stone-900">Tự Học Tài Chính</h1>
-            <p className="text-xs text-stone-400 mt-0.5">Chọn lộ trình phù hợp với bạn</p>
+            <p className="text-xs text-stone-500 mt-0.5">Chọn lộ trình phù hợp với bạn</p>
           </div>
           <div className="flex items-center gap-6">
             <div className="text-right hidden sm:block">
               <div className="text-xl font-bold text-stone-900">{totalDone}</div>
-              <div className="text-xs text-stone-400">/ {totalLessons} bài đã học</div>
+              <div className="text-xs text-stone-500">/ {totalLessons} bài đã học</div>
             </div>
             <UserProfile />
           </div>
@@ -375,7 +375,7 @@ export default function DashboardClient({ lessonsMeta }: { lessonsMeta: LessonMe
                       : "border-stone-200 bg-white text-stone-700 hover:border-stone-400"
                   }`}
                 >
-                  <div className={`text-xs font-bold uppercase tracking-widest mb-1 ${isActive ? "text-stone-400" : "text-stone-400"}`}>
+                  <div className={`text-xs font-bold uppercase tracking-widest mb-1 ${isActive ? "text-stone-500" : "text-stone-500"}`}>
                     {t.subtitle}
                   </div>
                   <div className={`text-base font-bold ${isActive ? "text-white" : "text-stone-900"}`}>
@@ -430,7 +430,7 @@ export default function DashboardClient({ lessonsMeta }: { lessonsMeta: LessonMe
                       {stageDone}/{stageLessons.length}
                     </span>
                   )}
-                  <span className={`text-stone-400 text-sm transition-transform ${stageOpen ? "rotate-180" : ""}`}>
+                  <span className={`text-stone-500 text-sm transition-transform ${stageOpen ? "rotate-180" : ""}`}>
                     ▾
                   </span>
                 </button>
@@ -450,7 +450,7 @@ export default function DashboardClient({ lessonsMeta }: { lessonsMeta: LessonMe
                       </div>
                       <div>
                         <p className="text-stone-600 text-sm font-extrabold">Chặng này bị khoá</p>
-                        <p className="text-stone-400 text-xs mt-1">Hoàn thành chặng trước để mở</p>
+                        <p className="text-stone-500 text-xs mt-1">Hoàn thành chặng trước để mở</p>
                       </div>
                     </div>
                   </div>
@@ -495,13 +495,13 @@ export default function DashboardClient({ lessonsMeta }: { lessonsMeta: LessonMe
                             className="w-full flex items-center gap-3 px-5 py-3.5 bg-stone-50 hover:bg-stone-100 transition-colors cursor-pointer text-left"
                           >
                             <span className="font-bold text-stone-800 text-sm">{part.name}</span>
-                            <span className="text-xs text-stone-400 font-mono">
+                            <span className="text-xs text-stone-500 font-mono">
                               Day {part.days[0]}-{part.days[1]}
                             </span>
                             <span className="ml-auto text-sm font-bold text-stone-600 bg-white px-3 py-0.5 rounded-lg border border-stone-200">
                               {partDone}/{partLessons.length}
                             </span>
-                            <span className={`text-stone-400 text-sm transition-transform ${partOpen ? "rotate-180" : ""}`}>
+                            <span className={`text-stone-500 text-sm transition-transform ${partOpen ? "rotate-180" : ""}`}>
                               ▾
                             </span>
                           </button>
@@ -523,7 +523,7 @@ export default function DashboardClient({ lessonsMeta }: { lessonsMeta: LessonMe
                                     <div className="flex items-center gap-4 px-6 py-5">
                                       {/* Day number */}
                                       <div className="w-12 flex-shrink-0 text-center">
-                                        <span className={`font-mono text-sm font-extrabold ${isDone ? "text-emerald-600" : "text-stone-400"}`}>
+                                        <span className={`font-mono text-sm font-extrabold ${isDone ? "text-emerald-600" : "text-stone-500"}`}>
                                           {String(lesson.id).padStart(3, "0")}
                                         </span>
                                       </div>
@@ -563,7 +563,7 @@ export default function DashboardClient({ lessonsMeta }: { lessonsMeta: LessonMe
                                         </span>
                                       </div>
 
-                                      <div className={`flex-shrink-0 text-lg font-bold ${isDone ? "text-emerald-600" : "text-stone-400"}`}>
+                                      <div className={`flex-shrink-0 text-lg font-bold ${isDone ? "text-emerald-600" : "text-stone-500"}`}>
                                         ›
                                       </div>
                                     </div>

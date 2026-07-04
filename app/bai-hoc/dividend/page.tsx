@@ -97,7 +97,7 @@ export default function Page() {
       <section className="mb-8">
         <h3 className="text-lg font-bold text-stone-800 mb-3">Case Study: Tyson Foods Dividend Analysis</h3>
         <div className="bg-stone-800 text-white rounded-xl p-5 font-mono text-sm mb-4">
-          <div className="text-stone-400 text-xs mb-3">{"// Tyson Foods — Dividend Sustainability Check"}</div>
+          <div className="text-stone-500 text-xs mb-3">{"// Tyson Foods — Dividend Sustainability Check"}</div>
           <div className="flex justify-between mb-1"><span className="text-stone-300">Payout Ratio (NI-based)</span><span>~197%</span></div>
           <div className="flex justify-between mb-1"><span className="text-stone-300">Net Income</span><span className="text-stone-300">~Low (low margin quarter)</span></div>
           <div className="flex justify-between mb-1"><span className="text-stone-200">Free Cash Flow</span><span className="text-stone-200">Much higher than NI</span></div>
@@ -105,7 +105,7 @@ export default function Page() {
             <span className="text-white font-bold">FCF Dividend Coverage</span>
             <span className="text-stone-200 font-bold">~4x</span>
           </div>
-          <div className="text-stone-400 text-xs mt-2">NI thấp vì D&A lớn (non-cash). FCF = NI + D&A ± Working Capital — FCF cao hơn NI nhiều.</div>
+          <div className="text-stone-500 text-xs mt-2">NI thấp vì D&A lớn (non-cash). FCF = NI + D&A ± Working Capital — FCF cao hơn NI nhiều.</div>
         </div>
         <div className="border-l-2 border-stone-300 pl-4">
           <p className="text-sm text-stone-700">
@@ -129,7 +129,7 @@ export default function Page() {
                 <span className="font-mono text-xs text-stone-600 bg-stone-100 px-2 py-0.5 rounded">{m.formula}</span>
               </div>
               <p className="text-xs text-stone-600 mb-1"><span className="font-medium">Benchmark:</span> {m.good}</p>
-              <p className="text-xs text-stone-400">{m.when}</p>
+              <p className="text-xs text-stone-500">{m.when}</p>
             </div>
           ))}
         </div>

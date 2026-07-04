@@ -92,13 +92,13 @@ export default function Page() {
       <section className="mb-8">
         <h3 className="text-lg font-bold text-stone-800 mb-3">Cấu trúc trình bày trên Income Statement</h3>
         <div className="bg-stone-800 text-white rounded-xl p-5 font-mono text-sm space-y-2">
-          <div className="text-stone-400 text-xs mb-3">{"// Cách đọc đúng"}</div>
+          <div className="text-stone-500 text-xs mb-3">{"// Cách đọc đúng"}</div>
           <div className="flex justify-between"><span className="text-white">Revenue</span><span className="text-stone-300">1.000</span></div>
-          <div className="flex justify-between"><span className="text-stone-300">− Operating Expenses</span><span className="text-stone-400">(800)</span></div>
+          <div className="flex justify-between"><span className="text-stone-300">− Operating Expenses</span><span className="text-stone-500">(800)</span></div>
           <div className="flex justify-between border-t border-stone-600 pt-2"><span className="text-white font-bold">Income from Continuing Ops</span><span className="text-stone-200 font-bold">200</span></div>
-          <div className="flex justify-between pt-1"><span className="text-stone-300">Discontinued Operations (net of tax)</span><span className="text-stone-400">(150)</span></div>
+          <div className="flex justify-between pt-1"><span className="text-stone-300">Discontinued Operations (net of tax)</span><span className="text-stone-500">(150)</span></div>
           <div className="flex justify-between border-t border-stone-600 pt-2"><span className="text-white font-bold">Net Income</span><span className="text-white font-bold">50</span></div>
-          <div className="mt-3 text-xs text-stone-400 border-t border-stone-700 pt-3">
+          <div className="mt-3 text-xs text-stone-500 border-t border-stone-700 pt-3">
             Analyst dùng 200 để value — không phải 50
           </div>
         </div>
@@ -157,7 +157,7 @@ export default function Page() {
         <h3 className="text-lg font-bold text-stone-800 mb-3">Takeaway</h3>
         <div className="bg-stone-900 text-white rounded-xl p-5 text-center">
           <p className="text-lg font-bold mb-2">Đừng để Net Income đánh lừa.</p>
-          <p className="text-stone-400 text-sm">Luôn tách Continuing Operations ra khi phân tích earnings — đó là số phản ánh business thực đang chạy.</p>
+          <p className="text-stone-500 text-sm">Luôn tách Continuing Operations ra khi phân tích earnings — đó là số phản ánh business thực đang chạy.</p>
         </div>
       </section>
     </LessonPageLayout>

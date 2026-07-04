@@ -132,7 +132,7 @@ export default function Page() {
       <section className="mb-8">
         <h3 className="text-lg font-bold text-stone-800 mb-3"> Ví dụ trực quan</h3>
         <div className="bg-white border border-stone-200 rounded-xl p-5 font-mono text-sm">
-          <div className="text-stone-400 text-xs mb-3">{ '// Tòa nhà văn phòng — Ho Chi Minh City' }</div>
+          <div className="text-stone-500 text-xs mb-3">{ '// Tòa nhà văn phòng — Ho Chi Minh City' }</div>
           <div className="flex justify-between mb-1"><span className="text-stone-600">NOI hàng năm</span><span className="text-stone-700">2.000.000 USD</span></div>
           <div className="flex justify-between mb-3"><span className="text-stone-600">Market cap rate</span><span className="text-stone-700">5%</span></div>
           <div className="flex justify-between border-t pt-2 text-base font-bold">
@@ -157,11 +157,11 @@ export default function Page() {
             <div key={r.type} className="flex items-center gap-3 bg-stone-50 rounded-lg p-3 border border-stone-200">
               <div className="flex-1">
                 <div className="text-sm font-medium text-stone-700">{r.type}</div>
-                <div className="text-xs text-stone-400">{r.note}</div>
+                <div className="text-xs text-stone-500">{r.note}</div>
               </div>
               <div className="text-right flex-shrink-0">
                 <div className="font-bold text-stone-700 text-sm">{r.range}</div>
-                <div className="text-xs text-stone-400">{r.risk}</div>
+                <div className="text-xs text-stone-500">{r.risk}</div>
               </div>
             </div>
           ))}

@@ -212,7 +212,7 @@ export default function LessonPageLayout({ lesson, quiz, children }: Props) {
               ←
             </Link>
             <div>
-              <h1 className="font-extrabold text-stone-900 text-lg leading-tight line-clamp-1">{lesson.title}</h1>
+              <p className="font-extrabold text-stone-900 text-lg leading-tight line-clamp-1">{lesson.title}</p>
               <p className="text-sm text-stone-500 hidden sm:block font-semibold">Day {lesson.day}</p>
             </div>
           </div>
@@ -259,9 +259,9 @@ export default function LessonPageLayout({ lesson, quiz, children }: Props) {
               <div className={`text-sm font-extrabold uppercase tracking-widest ${c.text} mb-3`}>
                 Day {lesson.day} · {lesson.difficulty}
               </div>
-              <h2 className="text-3xl sm:text-5xl font-extrabold text-stone-950 leading-tight mb-4">
+              <h1 className="text-3xl sm:text-5xl font-extrabold text-stone-950 leading-tight mb-4">
                 {lesson.title}
-              </h2>
+              </h1>
               <p className="text-stone-700 text-lg sm:text-xl leading-relaxed">{lesson.subtitle}</p>
               <div className="mt-7 pt-5 border-t-2 border-stone-300 space-y-4">
                 <div className="flex items-center gap-4 text-base text-stone-700 font-semibold">
@@ -388,7 +388,7 @@ export default function LessonPageLayout({ lesson, quiz, children }: Props) {
                     disabled={qSelected === null}
                     onClick={() => verify(activeQ)}
                     className={`w-full py-4 rounded-xl font-bold text-sm uppercase tracking-wider text-white transition-all cursor-pointer ${
-                      qSelected !== null ? `${c.btn}` : "bg-stone-200 text-stone-400 cursor-not-allowed"
+                      qSelected !== null ? `${c.btn}` : "bg-stone-200 text-stone-500 cursor-not-allowed"
                     }`}
                   >
                     Kiểm tra →
@@ -428,7 +428,7 @@ export default function LessonPageLayout({ lesson, quiz, children }: Props) {
                       Bài tiếp →
                     </Link>
                   ) : (
-                    <div className="py-3.5 rounded-xl bg-stone-100 text-stone-400 text-sm font-bold text-center">Sắp ra mắt</div>
+                    <div className="py-3.5 rounded-xl bg-stone-100 text-stone-500 text-sm font-bold text-center">Sắp ra mắt</div>
                   )}
                 </div>
               </div>
@@ -437,7 +437,7 @@ export default function LessonPageLayout({ lesson, quiz, children }: Props) {
             {/* Mini nav between questions */}
             {!allDone && quiz.length > 1 && (
               <div className="bg-white rounded-2xl border border-stone-200 p-4">
-                <div className="text-xs text-stone-400 font-bold uppercase tracking-wide mb-3">Các câu hỏi</div>
+                <div className="text-xs text-stone-500 font-bold uppercase tracking-wide mb-3">Các câu hỏi</div>
                 <div className="grid grid-cols-5 gap-2">
                   {quiz.map((_, i) => (
                     <button
