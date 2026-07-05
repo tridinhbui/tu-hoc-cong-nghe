@@ -3,15 +3,19 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { CheckCircle2 } from "lucide-react";
+import { CheckCircle2, BarChart3 } from "lucide-react";
 import { useProgress } from "@/lib/client-hooks";
-import type { Difficulty } from "@/lib/lessons";
+import type { Difficulty } from "@/lib/lessons-loader";
 import { createClient } from "@/lib/supabase";
 import UserStats from "@/components/UserStats";
 import UserProfile from "@/components/UserProfile";
 import AdminChat from "@/components/AdminChat";
 import Leaderboard from "@/components/Leaderboard";
+import OnboardingFlow from "@/components/OnboardingFlow";
+import ResumeLearningButton from "@/components/ResumeLearningButton";
+import StreakDisplay from "@/components/StreakDisplay";
 import { XP_VALUES, getLevelByXp } from "@/lib/levels";
+import { hasCompletedOnboarding, completeOnboarding } from "@/lib/supabase-onboarding";
 
 // Slim projection of Lesson — just enough to render the dashboard listing,
 // so the full lesson bodies (sections/quiz/etc) never reach this client bundle.
@@ -23,6 +27,21 @@ export interface LessonMeta {
   duration: string;
   difficulty: Difficulty;
   track?: "professional" | "personal" | "bonus";
+}
+
+export interface LeaderboardEntry {
+  id: string;
+  rank: number;
+  name: string;
+  xp: number;
+  lessonsCompleted: number;
+  avgQuizScore: number;
+  level: {
+    level: number;
+    name: string;
+    minXp: number;
+    color: string;
+  };
 }
 
 /* ─── Track definitions ─────────────────────────────────────────── */
@@ -199,25 +218,26 @@ export default function DashboardClient({ lessonsMeta }: { lessonsMeta: LessonMe
   const supabase = createClient();
   const progress = useProgress();
   const completed = progress.completedLessons;
-  const [activeTrack, setActiveTrackState] = useState<"personal" | "professional">("personal");
+  const [activeTrack, setActiveTrackState] = useState<"personal" | "professional">(() => {
+    if (typeof window === "undefined") return "personal";
+    const saved = window.localStorage.getItem("activeTrack");
+    return saved === "personal" || saved === "professional" ? saved : "personal";
+  });
   const setActiveTrack = (track: "personal" | "professional") => {
     setActiveTrackState(track);
-    localStorage.setItem("activeTrack", track);
-  };
-
-  useEffect(() => {
-    const saved = localStorage.getItem("activeTrack");
-    if (saved === "personal" || saved === "professional") {
-      setActiveTrackState(saved);
+    if (typeof window !== "undefined") {
+      window.localStorage.setItem("activeTrack", track);
     }
-  }, []);
+  };
   const [user, setUser] = useState<{ id?: string; email?: string; user_metadata?: { full_name?: string } } | null>(null);
   const [loading, setLoading] = useState(true);
   const [userXp, setUserXp] = useState(0);
   const [avgQuizScore, setAvgQuizScore] = useState(0);
-  const [leaderboardEntries, setLeaderboardEntries] = useState<any[]>([]);
+  const [leaderboardEntries, setLeaderboardEntries] = useState<LeaderboardEntry[]>([]);
   const [openStages, setOpenStages] = useState<Set<string>>(new Set());
   const [openParts, setOpenParts] = useState<Set<string>>(new Set());
+  const [showOnboarding, setShowOnboarding] = useState(false);
+  const [onboardingChecked, setOnboardingChecked] = useState(false);
 
   const toggleStage = (key: string) => {
     setOpenStages((prev) => {
@@ -237,6 +257,23 @@ export default function DashboardClient({ lessonsMeta }: { lessonsMeta: LessonMe
     });
   };
 
+  const handleOnboardingComplete = async (selectedTrack: "personal" | "professional") => {
+    if (user?.id) {
+      try {
+        await completeOnboarding(user.id, selectedTrack);
+        setActiveTrackState(selectedTrack);
+        localStorage.setItem("activeTrack", selectedTrack);
+        setShowOnboarding(false);
+      } catch (error) {
+        console.error("Error completing onboarding:", error);
+      }
+    }
+  };
+
+  const handleOnboardingSkip = () => {
+    setShowOnboarding(false);
+  };
+
   // Check auth and calculate XP on mount
   useEffect(() => {
     const checkAuth = async () => {
@@ -250,6 +287,19 @@ export default function DashboardClient({ lessonsMeta }: { lessonsMeta: LessonMe
       }
 
       setUser(session.user);
+
+      // Check if user has completed onboarding
+      try {
+        const hasOnboarded = await hasCompletedOnboarding(session.user.id);
+        setOnboardingChecked(true);
+        
+        if (!hasOnboarded) {
+          setShowOnboarding(true);
+        }
+      } catch (error) {
+        console.error("Error checking onboarding:", error);
+        setOnboardingChecked(true);
+      }
 
       // Calculate XP from completed lessons (10 XP per lesson)
       const calculatedXp = completed.length * XP_VALUES.LESSON_COMPLETED;
@@ -321,6 +371,16 @@ export default function DashboardClient({ lessonsMeta }: { lessonsMeta: LessonMe
     );
   }
 
+  // Show onboarding if not completed
+  if (showOnboarding && onboardingChecked) {
+    return (
+      <OnboardingFlow
+        onComplete={handleOnboardingComplete}
+        onSkip={handleOnboardingSkip}
+      />
+    );
+  }
+
   const sorted = [...lessonsMeta].sort((a, b) => a.id - b.id);
   const track = activeTrack === "personal" ? TRACK_PERSONAL : TRACK_PROFESSIONAL;
 
@@ -348,20 +408,35 @@ export default function DashboardClient({ lessonsMeta }: { lessonsMeta: LessonMe
               <div className="text-xl font-bold text-stone-900 dark:text-stone-100">{totalDone}</div>
               <div className="text-xs text-stone-500 dark:text-stone-400">/ {totalLessons} bài đã học</div>
             </div>
+            <Link
+              href="/analytics"
+              className="hidden sm:flex items-center gap-1.5 text-xs font-bold text-stone-500 dark:text-stone-400 hover:text-stone-900 dark:hover:text-stone-100 border border-stone-200 dark:border-stone-800 hover:border-stone-400 dark:hover:border-stone-600 rounded-lg px-3 py-1.5 transition-colors"
+            >
+              <BarChart3 className="w-3.5 h-3.5" />
+              Thống kê
+            </Link>
             <UserProfile />
           </div>
         </div>
       </div>
 
       <div className="px-6 py-8">
-        {/* ── User Stats Section ── */}
+        {/* ── User Stats + Streak (compact row) ── */}
+        <div className="max-w-6xl mx-auto mb-8 flex flex-col sm:flex-row gap-3">
+          <div className="flex-1">
+            <UserStats
+              xp={userXp}
+              lessonsCompleted={totalDone}
+              totalLessons={totalLessons}
+              avgQuizScore={avgQuizScore}
+            />
+          </div>
+          <StreakDisplay />
+        </div>
+
+        {/* ── Resume Learning Button ── */}
         <div className="max-w-6xl mx-auto mb-8">
-          <UserStats
-            xp={userXp}
-            lessonsCompleted={totalDone}
-            totalLessons={totalLessons}
-            avgQuizScore={avgQuizScore}
-          />
+          <ResumeLearningButton activeTrack={activeTrack} />
         </div>
 
         {/* ── Main Content: Lessons + Leaderboard ── */}
