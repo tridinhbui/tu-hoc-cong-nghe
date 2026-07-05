@@ -1,5 +1,12 @@
 export type Difficulty = "Dễ" | "Trung bình" | "Khó";
 
+export interface LessonPracticePrompt {
+  question: string;
+  options: string[];
+  correct: number;
+  explanation: string;
+}
+
 export interface Lesson {
   id: number;
   slug: string;
@@ -18,13 +25,28 @@ export interface Lesson {
     | "supply-demand"
     | "profit-calc"
     | "roe"
-    | "bond";
+    | "bond"
+    | "money-vs-asset"
+    | "cash-flow-simulator"
+    | "inflation-calculator";
   realWorldExample: {
     company: string;
     description: string;
   };
   quiz: QuizQuestion[];
   keyTakeaways: string[];
+  practicePrompt?: LessonPracticePrompt;
+  summary?: {
+    keyIdea: string;
+    formula?: string;
+    commonMistake?: string;
+    action?: string;
+  };
+  application?: {
+    title?: string;
+    message: string;
+    secondary?: string;
+  };
   track?: "professional" | "personal" | "bonus"; // "bonus" = case-study lessons not part of the day-numbered curriculum
   sections?: LessonSectionBlock[]; // rich hand-written body; falls back to `explanation`/`diagram` when absent
 }
@@ -74,7 +96,7 @@ export const lessons: Lesson[] = [
     correctOption: 1,
     explanation: "Mọi quyết định dùng tiền đều là quyết định tài chính: chi tiêu hôm nay hay đầu tư cho mai sau? Tài chính giúp bạn ra quyết định đó có cơ sở hơn.",
     diagram: [],
-    interactiveType: "roe",
+    interactiveType: "money-vs-asset",
     realWorldExample: { company: "Cá nhân", description: "Ngân sách gia đình, kế hoạch hưu trí, quyết định mua nhà thuê nhà, tất cả đều là tài chính cá nhân." },
     quiz: [
       {
@@ -110,12 +132,44 @@ export const lessons: Lesson[] = [
         correct: 1,
         explanation: "Nếu bạn dùng 100 triệu mua xe, chi phí cơ hội là số tiền bạn có thể kiếm được nếu đem 100 triệu đó đầu tư. Mọi quyết định đều có chi phí cơ hội.",
       },
+      {
+        question: "Scenario: Bạn có 50 triệu đồng. Lựa chọn A: Mua iPhone mới. Lựa chọn B: Đầu tư vào chứng khoán kỳ vọng 15%/năm. Nếu chọn A, chi phí cơ hội 1 năm sau là bao nhiêu?",
+        options: [
+          "50 triệu đồng",
+          "7.5 triệu đồng (15% của 50 triệu)",
+          "Không có chi phí cơ hội vì iPhone là tài sản",
+          "Chỉ có chi phí cơ hội nếu iPhone mất giá",
+        ],
+        correct: 1,
+        explanation: "Chi phí cơ hội = 50 triệu × 15% = 7.5 triệu. Đây là số tiền bạn bỏ lỡ khi chọn mua iPhone thay vì đầu tư. Chi phí cơ hội luôn tồn tại với mọi quyết định.",
+      },
     ],
     keyTakeaways: [
       "Tài chính là phân bổ nguồn lực trong thời gian và bất định",
       "Khác kế toán: tài chính hướng tương lai, kế toán ghi quá khứ",
       "Mọi quyết định dùng tiền đều có chi phí cơ hội",
     ],
+    practicePrompt: {
+      question: "Nếu bạn có 10 triệu đồng hôm nay, bạn nên dùng nó cho việc nào trước để tối ưu giá trị lâu dài?",
+      options: [
+        "Mua đồ dùng cá nhân ngay vì cần thiết",
+        "Đặt vào mục tiêu tiết kiệm ngắn hạn và đầu tư nhỏ",
+        "Để trong tài khoản không sinh lời",
+        "Cho vay người khác ngay lập tức",
+      ],
+      correct: 1,
+      explanation: "Một quyết định tài chính tốt thường cân bằng nhu cầu hiện tại với mục tiêu tương lai. Tự hỏi về chi phí cơ hội giúp chọn phương án có giá trị lâu dài hơn.",
+    },
+    summary: {
+      keyIdea: "Tài chính là việc phân bổ nguồn lực giữa hiện tại và tương lai.",
+      formula: "Chi phí cơ hội = giá trị của lựa chọn tốt nhất bị bỏ lỡ.",
+      commonMistake: "Nhầm lẫn giữa chi tiêu và đầu tư.",
+      action: "Hãy nhìn lại một quyết định tiền bạc gần đây của bạn và hỏi: nếu chọn khác thì mình sẽ có gì tốt hơn?",
+    },
+    application: {
+      title: "Áp dụng ngay",
+      message: "Hôm nay, hãy chọn một khoản chi tiêu lớn sắp tới và hỏi xem nó có thật sự tạo giá trị lâu dài hay không.",
+    },
   },
 {
     id: 2,
@@ -135,7 +189,7 @@ export const lessons: Lesson[] = [
     correctOption: 1,
     explanation: "Tiền phải có 5 đặc tính: chia nhỏ được, bền, đồng nhất, khan hiếm và được chấp nhận. Vàng đáp ứng cả 5, đá và quần áo thì không.",
     diagram: [],
-    interactiveType: "roe",
+    interactiveType: "money-vs-asset",
     realWorldExample: { company: "Ngân hàng Nhà nước", description: "Tiền đồng VND ngày nay không được đảm bảo bằng vàng mà bằng niềm tin vào Nhà nước và chính sách tiền tệ." },
     quiz: [
       {
@@ -171,12 +225,44 @@ export const lessons: Lesson[] = [
         correct: 1,
         explanation: "Giữ tiền mặt khi lạm phát 6% nghĩa là mỗi năm bạn mất 6% sức mua. Đây là lý do tại sao cần đầu tư: để lợi nhuận vượt lạm phát.",
       },
+      {
+        question: "Scenario: Bạn có 500 triệu đồng. Lựa chọn A: Giữ tiền mặt tại nhà. Lựa chọn B: Mua vàng (giá vàng tăng trung bình 5%/năm, lạm phát 4%/năm). Sau 3 năm, lựa chọn nào bảo toàn sức mua tốt hơn và chênh lệch khoảng bao nhiêu?",
+        options: [
+          "Lựa chọn A tốt hơn vì tiền mặt không rủi ro",
+          "Lựa chọn B tốt hơn, chênh lệch khoảng 15% (3% × 3 năm)",
+          "Hai lựa chọn tương đương vì vàng cũng mất giá",
+          "Lựa chọn A tốt hơn vì vàng có chi phí bảo quản",
+        ],
+        correct: 1,
+        explanation: "Tiền mặt mất 4%/năm theo lạm phát → sau 3 năm mất ~12% sức mua. Vàng tăng 5%/năm → sau 3 năm tăng ~15% giá trị danh nghĩa. Lợi nhuận thực của vàng ≈ 1%/năm (5% - 4%). Vàng bảo toàn sức mua tốt hơn tiền mặt trong môi trường lạm phát.",
+      },
     ],
     keyTakeaways: [
       "Tiền là phương tiện trao đổi, có thanh khoản tuyệt đối",
       "Net worth = tổng tài sản - tổng nợ",
       "Tiền mặt mất sức mua theo lạm phát; đầu tư để bảo tồn giá trị thực",
     ],
+    practicePrompt: {
+      question: "Nếu lạm phát tăng lên, điều gì sẽ xảy ra với giá trị thực của 500 triệu tiền mặt bạn giữ?",
+      options: [
+        "Tăng vì tiền dễ tiêu",
+        "Giảm vì sức mua bị hao hụt",
+        "Không đổi vì tiền vẫn là tiền",
+        "Tăng nếu bạn không dùng đến",
+      ],
+      correct: 1,
+      explanation: "Tiền mặt giữ nguyên số lượng nhưng mất sức mua khi giá cả tăng. Đây là lý do bảo tồn giá trị thực là một mục tiêu tài chính quan trọng.",
+    },
+    summary: {
+      keyIdea: "Tiền là công cụ trao đổi, còn tài sản là thứ có thể tạo giá trị hoặc giữ giá trị.",
+      formula: "Net worth = tổng tài sản - tổng nợ.",
+      commonMistake: "Nhầm lẫn giữa tiền mặt và tài sản có giá trị thực.",
+      action: "Hãy tính net worth của mình bằng cách liệt kê tài sản và nợ hiện tại.",
+    },
+    application: {
+      title: "Áp dụng ngay",
+      message: "Đừng chỉ nhìn vào số tiền trong tài khoản; hãy nhìn cả giá trị thực của nó sau lạm phát.",
+    },
   },
 {
     id: 3,
@@ -221,12 +307,44 @@ export const lessons: Lesson[] = [
         correct: 1,
         explanation: "Chi phí biến đổi thay đổi tùy theo hành vi và nhu cầu. Thuê nhà, trả góp là chi phí cố định. Mua sắm quần áo phụ thuộc vào quyết định của bạn mỗi tháng.",
       },
+      {
+        question: "Scenario: Bạn thu nhập 20 triệu/tháng. Chi phí cố định (thuê nhà, trả góp, điện nước): 12 triệu. Chi phí biến đổi (ăn uống, mua sắm, giải trí): 5 triệu. Tỷ lệ tiết kiệm hiện tại là bao nhiêu? Nếu giảm chi phí biến đổi xuống 3 triệu, tỷ lệ tiết kiệm mới là bao nhiêu?",
+        options: [
+          "Hiện tại 15%, mới 25%",
+          "Hiện tại 15%, mới 20%",
+          "Hiện tại 25%, mới 30%",
+          "Hiện tại 20%, mới 25%",
+        ],
+        correct: 0,
+        explanation: "Hiện tại: (20 - 12 - 5) / 20 = 3 / 20 = 15%. Mới: (20 - 12 - 3) / 20 = 5 / 20 = 25%. Giảm chi phí biến đổi 2 triệu tăng tỷ lệ tiết kiệm từ 15% lên 25%.",
+      },
     ],
     keyTakeaways: [
       "Tỷ lệ tiết kiệm quan trọng hơn số tiền tiết kiệm tuyệt đối",
       "Tiết kiệm bảo toàn vốn; đầu tư tăng trưởng vốn qua rủi ro có tính toán",
       "Phân biệt chi phí cố định và chi phí biến đổi để kiểm soát ngân sách",
     ],
+    practicePrompt: {
+      question: "Nếu thu nhập của bạn là 20 triệu/tháng và chi phí cố định là 12 triệu, bạn nên ưu tiên điều gì đầu tiên để cải thiện nền tảng tài chính?",
+      options: [
+        "Tăng chi tiêu cho giải trí",
+        "Giảm các khoản chi phí biến đổi và tăng tỷ lệ tiết kiệm",
+        "Vay thêm để có thêm tiền tiêu",
+        "Bỏ qua kế hoạch vì số tiền còn ít",
+      ],
+      correct: 1,
+      explanation: "Kiểm soát chi phí biến đổi là cách nhanh nhất để tăng tỷ lệ tiết kiệm mà không cần tăng thu nhập tức thời.",
+    },
+    summary: {
+      keyIdea: "Tiết kiệm là nền tảng; đầu tư là bước tiếp theo khi đã có nền tảng vững.",
+      formula: "Tỷ lệ tiết kiệm = (thu nhập - chi phí) / thu nhập.",
+      commonMistake: "Đánh giá năng lực tài chính bằng thu nhập chứ không phải tỷ lệ tiết kiệm.",
+      action: "Hãy tính tỷ lệ tiết kiệm của mình trong tháng này và đặt mục tiêu tăng nhẹ 5%.",
+    },
+    application: {
+      title: "Áp dụng ngay",
+      message: "Xem lại 3 khoản chi phí biến đổi trong tháng và hỏi: khoản nào có thể giảm mà không làm giảm chất lượng cuộc sống đáng kể?",
+    },
   },
 {
     id: 4,
@@ -246,7 +364,7 @@ export const lessons: Lesson[] = [
     correctOption: 1,
     explanation: "Lợi nhuận ghi nhận khi bán hàng dù khách chưa trả. Tiền mặt chỉ vào khi khách thực sự chuyển khoản. Công ty có lãi nhưng khách trả chậm vẫn có thể thiếu tiền mặt tức thì.",
     diagram: [],
-    interactiveType: "profit-calc",
+    interactiveType: "cash-flow-simulator",
     realWorldExample: { company: "Vinamilk", description: "Vinamilk báo lãi nghìn tỷ mỗi quý nhưng vẫn vay ngắn hạn để trả tiền nguyên liệu vì tiền bán hàng từ siêu thị chưa về kịp." },
     quiz: [
       {
@@ -271,12 +389,44 @@ export const lessons: Lesson[] = [
         correct: 1,
         explanation: "Ngân hàng muốn biết công ty có đủ tiền trả nợ không. Nhà đầu tư muốn biết công ty tạo tiền thật hay chỉ lợi nhuận trên giấy. Cả hai đều nhìn vào dòng tiền.",
       },
+      {
+        question: "Scenario: Bạn kinh doanh online. Tháng 1: bán hàng 100 triệu, khách trả ngay 70 triệu, 30 triệu trả sau 30 ngày. Chi phí nhập hàng 60 triệu trả ngay. Lợi nhuận tháng 1 là bao nhiêu? Dòng tiền tháng 1 là bao nhiêu?",
+        options: [
+          "Lợi nhuận 40 triệu, dòng tiền 10 triệu",
+          "Lợi nhuận 40 triệu, dòng tiền 40 triệu",
+          "Lợi nhuận 10 triệu, dòng tiền 40 triệu",
+          "Lợi nhuận 10 triệu, dòng tiền 10 triệu",
+        ],
+        correct: 0,
+        explanation: "Lợi nhuận = Doanh thu - Chi phí = 100 - 60 = 40 triệu. Dòng tiền = Tiền vào - Tiền ra = 70 - 60 = 10 triệu. 30 triệu công nợ sẽ về dòng tiền tháng 2. Đây là ví dụ điển hình: lợi nhuận > dòng tiền.",
+      },
     ],
     keyTakeaways: [
       "Lợi nhuận là con số kế toán; dòng tiền là tiền thực trong tài khoản",
       "Doanh nghiệp phá sản vì hết tiền, không phải vì báo cáo lỗ",
       "Người giàu quản lý dòng tiền trước, lợi nhuận sau",
     ],
+    practicePrompt: {
+      question: "Một doanh nghiệp có lợi nhuận nhưng vẫn thiếu tiền mặt, nguyên nhân khả năng nhất là gì?",
+      options: [
+        "Khách hàng chưa thanh toán hết",
+        "Lợi nhuận không phải là doanh thu",
+        "Dòng tiền luôn dương khi doanh nghiệp lãi",
+        "Công ty không cần tiền mặt nếu có lợi nhuận",
+      ],
+      correct: 0,
+      explanation: "Lợi nhuận và dòng tiền không phải lúc nào cũng đi cùng nhau. Công nợ cần thu và thời điểm thu tiền có thể khiến doanh nghiệp thiếu tiền mặt dù vẫn lãi.",
+    },
+    summary: {
+      keyIdea: "Dòng tiền cho thấy sức khỏe thực tế, còn lợi nhuận là con số kế toán.",
+      formula: "Dòng tiền = tiền vào - tiền ra.",
+      commonMistake: "Đánh giá doanh nghiệp bằng lợi nhuận mà bỏ qua dòng tiền.",
+      action: "Trong một doanh nghiệp hoặc cá nhân, hãy xem xét thời điểm tiền vào và tiền ra để hiểu tình hình thực tế.",
+    },
+    application: {
+      title: "Áp dụng ngay",
+      message: "Hãy nhìn lại một khoản thu nhập gần đây và hỏi: mình đã nhận tiền thật chưa, hay mới là doanh thu trên giấy?",
+    },
   },
 {
     id: 5,
@@ -296,7 +446,7 @@ export const lessons: Lesson[] = [
     correctOption: 2,
     explanation: "Nhà ở tạo ra dòng tiền âm hàng tháng (lãi vay, thuế, bảo trì). Nhà cho thuê tạo dòng tiền dương. Cùng một tài sản có thể là tài sản hoặc tiêu sản tùy cách sử dụng.",
     diagram: [],
-    interactiveType: "roe",
+    interactiveType: "money-vs-asset",
     realWorldExample: { company: "Xe hơi", description: "Xe hơi cá nhân là tiêu sản điển hình: mua bảo hiểm, xăng, bảo trì, khấu hao mỗi năm. Xe taxi là tài sản: tạo ra thu nhập." },
     quiz: [
       {
@@ -321,12 +471,44 @@ export const lessons: Lesson[] = [
         correct: 1,
         explanation: "Tài chính cá nhân không chỉ tối ưu dòng tiền. An cư, sự ổn định tâm lý và tăng giá tài sản dài hạn đều có giá trị. Cực đoan kiểu gì cũng dẫn đến quyết định lệch.",
       },
+      {
+        question: "Scenario: Bạn có 200 triệu đồng. Lựa chọn A: Mua xe máy cá nhân (chi phí bảo hiểm, xăng, bảo trì ~5 triệu/năm). Lựa chọn B: Mua xe máy chạy Grab (thu nhập ~15 triệu/năm sau khi trừ chi phí). Theo định nghĩa dòng tiền, lựa chọn nào là tài sản?",
+        options: [
+          "Cả hai đều là tài sản vì đều có giá trị",
+          "Lựa chọn A là tài sản vì xe cá nhân có giá trị bán lại",
+          "Lựa chọn B là tài sản vì tạo dòng tiền dương 15 triệu/năm",
+          "Không phải tài sản vì xe máy là tiêu sản",
+        ],
+        correct: 2,
+        explanation: "Theo định nghĩa dòng tiền: tài sản là thứ bỏ tiền vào túi bạn. Xe chạy Grab tạo 15 triệu/năm dòng tiền dương → tài sản. Xe cá nhân lấy 5 triệu/năm → tiêu sản. Cùng một loại xe, khác cách dùng → khác kết quả.",
+      },
     ],
     keyTakeaways: [
       "Tài sản tạo dòng tiền dương; tiêu sản tạo dòng tiền âm",
       "Cùng một vật có thể là tài sản hoặc tiêu sản tùy cách dùng",
       "Không áp dụng cực đoan: cuộc sống không chỉ là tối ưu dòng tiền",
     ],
+    practicePrompt: {
+      question: "Một chiếc xe máy cá nhân có thể trở thành tài sản nếu nó được dùng như thế nào?",
+      options: [
+        "Được dùng để đi làm và kiếm thêm thu nhập",
+        "Được dùng chỉ cho nhu cầu cá nhân và tạo chi phí liên tục",
+        "Được giữ nguyên trong gara không dùng",
+        "Không bao giờ có thể trở thành tài sản",
+      ],
+      correct: 0,
+      explanation: "Khi một tài sản tạo ra giá trị hoặc dòng tiền, nó trở thành tài sản theo nghĩa tài chính. Việc sử dụng quyết định nó có mang lại lợi ích hay không.",
+    },
+    summary: {
+      keyIdea: "Một thứ có thể là tài sản hoặc tiêu sản tùy cách nó ảnh hưởng đến dòng tiền của bạn.",
+      formula: "Tài sản = thứ làm tiền vào túi bạn hoặc tăng giá trị dài hạn.",
+      commonMistake: "Nhìn vào giá trị sổ sách mà bỏ qua dòng tiền thực tế.",
+      action: "Hãy nhìn lại 3 thứ bạn đang sở hữu và hỏi: cái nào đang làm tiền vào túi, cái nào đang lấy tiền ra?",
+    },
+    application: {
+      title: "Áp dụng ngay",
+      message: "Đừng chỉ hỏi 'món này có đáng tiền không?'; hãy hỏi 'món này có làm mình giàu hơn hay poorer mỗi tháng không?'.",
+    },
   },
 {
     id: 6,
@@ -371,12 +553,44 @@ export const lessons: Lesson[] = [
         correct: 1,
         explanation: "Lãi suất thực = lãi suất danh nghĩa - lạm phát. Nếu ngân hàng trả 6%/năm nhưng lạm phát 7%, lãi suất thực là âm 1%. Bạn thực ra đang mất tiền dù được trả lãi.",
       },
+      {
+        question: "Scenario: Bạn vay 500 triệu mua nhà, lãi suất 10%/năm trong 10 năm. Lạm phát bình quân 5%/năm. Lãi suất thực của khoản vay là bao nhiêu? Lạm phát có lợi cho người vay hay người cho vay?",
+        options: [
+          "Lãi suất thực 5%, có lợi cho người cho vay",
+          "Lãi suất thực 5%, có lợi cho người vay",
+          "Lãi suất thực 15%, có lợi cho người vay",
+          "Lãi suất thực 10%, không ai lợi",
+        ],
+        correct: 1,
+        explanation: "Lãi suất thực = 10% - 5% = 5%. Lạm phát làm giảm giá trị thực của số tiền bạn phải trả lại. Người vay được lợi vì trả lại tiền đã mất giá. Người cho vay bị thiệt vì nhận lại tiền có sức mua thấp hơn.",
+      },
     ],
     keyTakeaways: [
       "Lãi suất là giá của tiền: tăng thì vay đắt hơn, tiết kiệm hấp dẫn hơn",
       "Ngân hàng trung ương dùng lãi suất làm công cụ chống lạm phát",
       "Lãi suất thực = lãi suất danh nghĩa - lạm phát",
     ],
+    practicePrompt: {
+      question: "Nếu lãi suất tăng, điều nào sau đây thường đúng nhất?",
+      options: [
+        "Người vay có lợi hơn vì tiền dễ kiếm",
+        "Người tiết kiệm có lợi hơn, người vay chịu áp lực nhiều hơn",
+        "Cả hai đều được lợi như nhau",
+        "Lạm phát sẽ giảm ngay lập tức",
+      ],
+      correct: 1,
+      explanation: "Lãi suất tăng làm vay đắt hơn nhưng khiến tiết kiệm hấp dẫn hơn. Đây là lý do thay đổi lãi suất tác động tới cả chi tiêu, đầu tư và giá tài sản.",
+    },
+    summary: {
+      keyIdea: "Lãi suất là giá của tiền và là công cụ chính để điều tiết nền kinh tế.",
+      formula: "Lãi suất thực = lãi suất danh nghĩa - lạm phát.",
+      commonMistake: "Nhìn vào lãi suất danh nghĩa mà bỏ qua lạm phát.",
+      action: "Khi nhìn một sản phẩm tiết kiệm hoặc vay, hãy hỏi: lợi suất này có thực sự đáng giá sau lạm phát không?",
+    },
+    application: {
+      title: "Áp dụng ngay",
+      message: "Nếu bạn đang cân nhắc vay hoặc đầu tư, hãy xem xét cả lãi suất và lạm phát trước khi quyết định.",
+    },
   },
 {
     id: 7,
@@ -421,12 +635,44 @@ export const lessons: Lesson[] = [
         correct: 1,
         explanation: "Quy tắc 72: số năm tăng gấp đôi = 72 / lãi suất. Lãi 6%: tăng gấp đôi sau 12 năm. Lãi 10%: sau 7.2 năm. Công cụ tính nhanh không cần máy tính.",
       },
+      {
+        question: "Scenario: Bạn 25 tuổi, có 100 triệu đồng. Lựa chọn A: Bắt đầu đầu tư ngay với lãi kép 10%/năm. Lựa chọn B: Chờ đến 35 tuổi mới đầu tư với cùng lãi suất 10%/năm. Khi cả hai cùng 65 tuổi, chênh lệch tài sản giữa A và B là bao nhiêu?",
+        options: [
+          "Chênh lệch khoảng 2 lần",
+          "Chênh lệch khoảng 4 lần",
+          "Chênh lệch khoảng 6 lần",
+          "Chênh lệch khoảng 10 lần",
+        ],
+        correct: 2,
+        explanation: "A đầu tư 40 năm: 100 triệu × (1.1)^40 ≈ 4.5 tỷ. B đầu tư 30 năm: 100 triệu × (1.1)^30 ≈ 1.7 tỷ. Chênh lệch ~2.7 tỷ, khoảng 2.7 lần. 10 năm đầu tư sớm tạo ra chênh lệch khổng lồ nhờ lãi kép.",
+      },
     ],
     keyTakeaways: [
       "Lãi kép: lãi sinh lãi, tạo hiệu ứng bóng tuyết theo thời gian",
       "Quy tắc 72: số năm gấp đôi = 72 chia cho lãi suất",
       "Bắt đầu sớm quan trọng hơn đầu tư nhiều",
     ],
+    practicePrompt: {
+      question: "Nếu bạn đầu tư 100 triệu với lãi suất 10%/năm, sau 10 năm số tiền sẽ gần bằng bao nhiêu?",
+      options: [
+        "100 triệu",
+        "150 triệu",
+        "260 triệu",
+        "500 triệu",
+      ],
+      correct: 2,
+      explanation: "100 triệu × 1.1^10 ≈ 259 triệu. Đây là hiệu ứng lãi kép: số tiền tăng nhanh hơn khi thời gian dài hơn.",
+    },
+    summary: {
+      keyIdea: "Lãi kép làm tăng trưởng trở nên mạnh mẽ khi thời gian dài.",
+      formula: "FV = PV × (1 + r)^n.",
+      commonMistake: "Nhìn vào tăng trưởng tuyến tính thay vì hàm mũ.",
+      action: "Hãy thử tính lại một khoản đầu tư nhỏ với 10 năm và 20 năm để thấy khác biệt.",
+    },
+    application: {
+      title: "Áp dụng ngay",
+      message: "Đừng chờ đến khi 'đủ tiền' mới bắt đầu đầu tư; bắt đầu sớm dù nhỏ vẫn có giá trị lớn về lâu dài.",
+    },
   },
 {
     id: 8,
@@ -471,12 +717,44 @@ export const lessons: Lesson[] = [
         correct: 1,
         explanation: "DCA loại bỏ áp lực phải chọn đúng thời điểm vào thị trường. Mua đều hàng tháng: khi giá thấp mua được nhiều, khi cao mua ít hơn. Trung bình giá mua thấp hơn đỉnh thị trường.",
       },
+      {
+        question: "Scenario: Bạn có 2 lựa chọn đầu tư quỹ cổ phiếu với lãi trung bình 12%/năm. Lựa chọn A: Đầu tư 10 triệu/tháng trong 10 năm (tổng 1.2 tỷ). Lựa chọn B: Đợi 5 năm rồi đầu tư 20 triệu/tháng trong 5 năm (cũng tổng 1.2 tỷ). Sau 15 năm từ hôm nay, lựa chọn nào cho kết quả tốt hơn và chênh lệch khoảng bao nhiêu?",
+        options: [
+          "Lựa chọn B tốt hơn vì đầu tư số tiền lớn hơn mỗi tháng",
+          "Lựa chọn A tốt hơn, chênh lệch khoảng 50%",
+          "Hai lựa chọn bằng nhau vì tổng vốn đầu tư như nhau",
+          "Lựa chọn B tốt hơn, chênh lệch khoảng 30%",
+        ],
+        correct: 1,
+        explanation: "A: đầu tư 10 năm, tiền tăng trưởng 15 năm. B: đầu tư 5 năm, tiền tăng trưởng 10 năm. Với lãi kép, 5 năm tăng trưởng thêm tạo ra chênh lệch lớn. A có lợi nhờ thời gian tăng trưởng dài hơn dù tổng vốn như nhau.",
+      },
     ],
     keyTakeaways: [
       "Bắt đầu sớm quan trọng hơn đầu tư nhiều về sau",
       "Thời gian tăng trưởng, không phải thời gian đóng tiền, quyết định kết quả",
       "DCA: đầu tư đều đặn mỗi tháng, không cần chờ thời điểm tốt",
     ],
+    practicePrompt: {
+      question: "Vì sao đầu tư đều đặn mỗi tháng thường hợp lý hơn việc đợi thời điểm 'tốt' để đầu tư một lần?",
+      options: [
+        "Vì không cần quan tâm đến lạm phát",
+        "Vì giúp giảm ảnh hưởng của biến động giá và tránh việc nhập vào đúng đỉnh",
+        "Vì lãi suất luôn cố định",
+        "Vì chỉ cần đầu tư một lần là đủ",
+      ],
+      correct: 1,
+      explanation: "Đầu tư đều đặn giúp bạn mua nhiều hơn khi giá thấp và ít hơn khi giá cao, giảm rủi ro chọn thời điểm sai.",
+    },
+    summary: {
+      keyIdea: "Thời gian và tính đều đặn thường quan trọng hơn việc tìm đúng thời điểm.",
+      formula: "DCA = đầu tư một khoản cố định đều đặn trong thời gian dài.",
+      commonMistake: "Đợi thị trường thấp nhất rồi quyết định đầu tư.",
+      action: "Hãy tự đặt một lịch đầu tư đều đặn mỗi tháng, dù số tiền nhỏ.",
+    },
+    application: {
+      title: "Áp dụng ngay",
+      message: "Nếu bạn đang muốn bắt đầu đầu tư, hãy chọn một khoản cố định và tự động hóa việc đầu tư đó mỗi tháng.",
+    },
   },
 {
     id: 9,
@@ -496,7 +774,7 @@ export const lessons: Lesson[] = [
     correctOption: 1,
     explanation: "Giá phở tăng 140 lần (70.000 / 500). Để mua tô phở hôm nay bạn cần 140 đồng so với 1 đồng năm 1990. Đây là bằng chứng trực quan về sức tàn phá của lạm phát tích lũy.",
     diagram: [],
-    interactiveType: "interest-rate",
+    interactiveType: "inflation-calculator",
     realWorldExample: { company: "Zimbabwe 2008", description: "Zimbabwe trải qua siêu lạm phát 89.7 tỷ phần trăm mỗi tháng. Tờ 100 nghìn tỷ đô la Zimbabwe không đủ mua một ổ bánh mì." },
     quiz: [
       {
@@ -521,12 +799,44 @@ export const lessons: Lesson[] = [
         correct: 1,
         explanation: "Lạm phát vừa phải tạo ra áp lực chi tiêu: tiền sẽ mất giá nên tốt hơn là đầu tư hôm nay. Deflation (giảm phát) nguy hiểm hơn vì mọi người trì hoãn mua sắm chờ giá giảm tiếp.",
       },
+      {
+        question: "Scenario: Bạn có 100 triệu đồng gửi tiết kiệm ngân hàng lãi suất 6%/năm. Lạm phát bình quân 4%/năm. Sau 5 năm, sức mua thực tế của tiền bạn tăng hay giảm và bao nhiêu?",
+        options: [
+          "Tăng 30% (6% × 5 năm)",
+          "Tăng 10% ((6% - 4%) × 5 năm)",
+          "Giảm 20% (4% × 5 năm)",
+          "Không đổi vì lãi suất bù đắp lạm phát",
+        ],
+        correct: 1,
+        explanation: "Lãi suất thực = Lãi suất danh nghĩa - Lạm phát = 6% - 4% = 2%/năm. Sau 5 năm, sức mua thực tế tăng khoảng 10% (2% × 5). Nếu lãi suất < lạm phát, bạn mất sức mua dù số tiền tăng.",
+      },
     ],
     keyTakeaways: [
       "Lạm phát làm tiền mất sức mua theo thời gian, tích lũy theo năm",
       "Mức 2% là mục tiêu lành mạnh: kích thích chi tiêu, tránh giảm phát",
       "Đầu tư phải tạo lợi nhuận trên lạm phát mới bảo toàn được tài sản thực",
     ],
+    practicePrompt: {
+      question: "Nếu lãi suất tiết kiệm chỉ bằng 4% nhưng lạm phát là 5%, điều gì sẽ xảy ra?",
+      options: [
+        "Sức mua thực tăng",
+        "Sức mua thực giảm",
+        "Sức mua thực không đổi",
+        "Không có gì thay đổi vì lãi suất đã đủ",
+      ],
+      correct: 1,
+      explanation: "Lãi suất thực âm khi lãi suất thấp hơn lạm phát. Bạn vẫn có nhiều tiền hơn về mặt danh nghĩa nhưng ít sức mua hơn.",
+    },
+    summary: {
+      keyIdea: "Lạm phát là thước đo sức mua bị hao hụt theo thời gian.",
+      formula: "Lãi suất thực ≈ lãi suất danh nghĩa - lạm phát.",
+      commonMistake: "Chỉ nhìn vào con số tiền mà không nhìn vào sức mua thực.",
+      action: "Hãy kiểm tra xem khoản tiết kiệm của bạn có thực sự tăng sức mua hay chỉ tăng số tiền trên giấy.",
+    },
+    application: {
+      title: "Áp dụng ngay",
+      message: "Khi bạn so sánh các lựa chọn đầu tư, hãy so sánh lợi nhuận thực sau khi trừ lạm phát.",
+    },
   },
 {
     id: 10,
@@ -570,6 +880,17 @@ export const lessons: Lesson[] = [
         ],
         correct: 1,
         explanation: "Discount rate phản ánh chi phí cơ hội: nếu bạn có thể kiếm 10%/năm với rủi ro tương đương, thì dùng 10% để chiết khấu. Dòng tiền tương lai chỉ đáng giá nếu PV của nó cao hơn chi phí hôm nay.",
+      },
+      {
+        question: "Scenario: Một dự án đầu tư cần vốn 500 triệu hôm nay. Dự kiến dòng tiền: năm 1: 100 triệu, năm 2: 200 triệu, năm 3: 300 triệu. Với discount rate 10%, PV của tổng dòng tiền tương lai là bao nhiêu? Dự án có nên đầu tư?",
+        options: [
+          "PV = 600 triệu, nên đầu tư",
+          "PV = 481 triệu, không nên đầu tư",
+          "PV = 550 triệu, nên đầu tư",
+          "PV = 450 triệu, không nên đầu tư",
+        ],
+        correct: 1,
+        explanation: "PV = 100/(1.1) + 200/(1.1)^2 + 300/(1.1)^3 = 90.9 + 165.3 + 225.4 = 481.6 triệu. PV (481 triệu) < Vốn đầu tư (500 triệu) → Không nên đầu tư vì lỗ về giá trị thời gian.",
       },
     ],
     keyTakeaways: [
@@ -621,6 +942,17 @@ export const lessons: Lesson[] = [
         correct: 2,
         explanation: "Đa dạng hóa loại bỏ rủi ro đặc thù của từng tài sản (công ty phá sản, scandal, ngành suy thoái). Nhưng rủi ro thị trường chung (suy thoái toàn nền kinh tế) không thể đa dạng hóa được.",
       },
+      {
+        question: "Scenario: Bạn có 1 tỷ đồng để đầu tư. Lựa chọn A: Đặt vào trái phiếu chính phủ lãi 6%/năm, gần như không rủi ro. Lựa chọn B: Đầu tư vào quỹ cổ phiếu VN-Index, lịch sử trung bình 12%/năm nhưng có thể -20% trong năm xấu. Lựa chọn C: Đầu tư vào startup, có thể x10 vốn nhưng 80% khả năng mất trắng. Nếu bạn cần tiền mua nhà sau 3 năm, lựa chọn nào phù hợp nhất?",
+        options: [
+          "Lựa chọn A vì cần bảo toàn vốn cho mục tiêu ngắn hạn",
+          "Lựa chọn B vì lãi cao hơn và 3 năm đủ để thị trường phục hồi",
+          "Lựa chọn C vì cơ hội lợi nhuận cao nhất",
+          "Chia đều 3 lựa chọn để đa dạng hóa",
+        ],
+        correct: 0,
+        explanation: "Mục tiêu mua nhà sau 3 năm là ngắn hạn, cần bảo toàn vốn. Startup quá rủi ro, cổ phiếu có thể giảm sâu trong 3 năm. Trái phiếu chính phủ phù hợp nhất vì rủi ro thấp, bảo toàn vốn dù lãi không cao nhất.",
+      },
     ],
     keyTakeaways: [
       "Lợi nhuận cao hơn luôn đi kèm rủi ro cao hơn, không có ngoại lệ",
@@ -670,6 +1002,17 @@ export const lessons: Lesson[] = [
         ],
         correct: 1,
         explanation: "Sharpe Ratio = (lợi nhuận danh mục - lãi suất phi rủi ro) / độ lệch chuẩn. Nó đo lợi nhuận nhận được trên mỗi đơn vị rủi ro chấp nhận. Sharpe cao hơn nghĩa là hiệu quả hơn.",
+      },
+      {
+        question: "Scenario: Bạn có 2 quỹ đầu tư để chọn. Quỹ A: Lợi nhuận kỳ vọng 15%/năm, độ lệch chuẩn 20%. Quỹ B: Lợi nhuận kỳ vọng 12%/năm, độ lệch chuẩn 10%. Lãi suất phi rủi ro là 6%. Quỹ nào có Sharpe Ratio tốt hơn và giá trị là bao nhiêu?",
+        options: [
+          "Quỹ A tốt hơn, Sharpe = 0.45",
+          "Quỹ B tốt hơn, Sharpe = 0.60",
+          "Quỹ A tốt hơn, Sharpe = 0.75",
+          "Quỹ B tốt hơn, Sharpe = 0.90",
+        ],
+        correct: 1,
+        explanation: "Sharpe A = (15% - 6%) / 20% = 0.45. Sharpe B = (12% - 6%) / 10% = 0.60. Quỹ B có Sharpe cao hơn nghĩa là tạo ra lợi nhuận thặng dư tốt hơn trên mỗi đơn vị rủi ro chấp nhận.",
       },
     ],
     keyTakeaways: [
@@ -721,6 +1064,17 @@ export const lessons: Lesson[] = [
         correct: 1,
         explanation: "Ngân hàng huy động tiền ngắn hạn (tiết kiệm) nhưng cho vay dài hạn (thế chấp). Rủi ro thanh khoản xảy ra khi nhiều người rút tiền cùng lúc (bank run). Dự trữ và tài sản thanh khoản cao là lớp bảo vệ đầu tiên.",
       },
+      {
+        question: "Scenario: Bạn có 2 tỷ đồng cần đầu tư trong 5 năm. Lựa chọn A: Đất ven đô giá rẻ, dự kiến tăng giá 15%/năm nhưng rất khó bán, có thể mất 1-2 năm mới bán được. Lựa chọn B: Cổ phiếu blue-chip niêm yết, dự kiến tăng giá 10%/năm nhưng có thể bán bất cứ ngày nào. Nếu bạn có thể cần tiền gấp bất cứ lúc nào, lựa chọn nào phù hợp hơn?",
+        options: [
+          "Lựa chọn A vì lãi suất cao hơn",
+          "Lựa chọn B vì thanh khoản cao, có thể bán nhanh khi cần tiền",
+          "Chia 50-50 để cân bằng",
+          "Cả hai đều không phù hợp vì rủi ro cao",
+        ],
+        correct: 1,
+        explanation: "Nếu có thể cần tiền gấp, thanh khoản quan trọng hơn lợi nhuận kỳ vọng. Đất khó bán có thể không bán được khi cần, gây áp lực tài chính. Cổ phiếu có thể bán trong vài ngày, linh hoạt hơn cho nhu cầu tài chính không lường trước.",
+      },
     ],
     keyTakeaways: [
       "Thanh khoản: khả năng bán nhanh mà không mất nhiều giá trị",
@@ -770,6 +1124,17 @@ export const lessons: Lesson[] = [
         ],
         correct: 1,
         explanation: "DTI = tổng nợ hàng tháng / thu nhập hàng tháng. Ngân hàng thường yêu cầu DTI dưới 43% khi xét duyệt vay. DTI cao nghĩa là thu nhập bị chiếm dụng quá nhiều cho nợ, ít dư địa xử lý cú sốc.",
+      },
+      {
+        question: "Scenario: Bạn có thu nhập 30 triệu/tháng. Hiện tại bạn đang trả nợ nhà 8 triệu/tháng và nợ xe 3 triệu/tháng. Bạn đang cân nhắc vay thêm 5 triệu/tháng để mở quán cà phê với dự kiến lợi nhuận 8 triệu/tháng sau chi phí. DTI mới của bạn sẽ là bao nhiêu và khoản vay này có nên thực hiện?",
+        options: [
+          "DTI = 53%, không nên vay vì vượt ngưỡng an toàn",
+          "DTI = 43%, nên vay vì nằm trong ngưỡng cho phép",
+          "DTI = 36%, nên vay vì DTI thấp",
+          "DTI = 47%, nên vay vì quán cà phê sinh lời",
+        ],
+        correct: 0,
+        explanation: "Tổng nợ mới = 8 + 3 + 5 = 16 triệu/tháng. DTI = 16 / 30 = 53%. DTI 53% vượt ngưỡng an toàn 43% của ngân hàng, nghĩa là thu nhập bị chiếm dụng quá nhiều. Dù quán cà phê sinh lời, rủi ro tài chính vẫn quá cao.",
       },
     ],
     keyTakeaways: [
@@ -821,6 +1186,17 @@ export const lessons: Lesson[] = [
         correct: 1,
         explanation: "Leverage 4:1 = tổng tài sản 400 triệu, vốn tự có 100 triệu, nợ 300 triệu. Mỗi biến động 1% của tổng tài sản tạo ra biến động 4% trên vốn tự có.",
       },
+      {
+        question: "Scenario: Bạn có 200 triệu vốn tự có. Lựa chọn A: Đầu tư không dùng đòn bẩy, dự kiến lợi nhuận 15%/năm. Lựa chọn B: Vay thêm 600 triệu (tổng 800 triệu) với lãi 8%/năm, dự kiến lợi nhuận 15%/năm trên tổng tài sản. Nếu thị trường tăng 15%, ROE của mỗi lựa chọn là bao nhiêu? Nếu thị trường giảm 10% thì sao?",
+        options: [
+          "A: 15% / 10%; B: 27% / -34%",
+          "A: 15% / -10%; B: 27% / -46%",
+          "A: 15% / -10%; B: 15% / -10%",
+          "A: 15% / 10%; B: 15% / -10%",
+        ],
+        correct: 1,
+        explanation: "Khi tăng 15%: A = 15%. B: Lãi = 800x15% - 600x8% = 120 - 48 = 72 triệu. ROE = 72/200 = 36%. Khi giảm 10%: A = -10%. B: Lỗ = 800x(-10%) - 600x8% = -80 - 48 = -128 triệu. ROE = -128/200 = -64%. Đòn bẩy khuếch đại cả thắng lẫn thua.",
+      },
     ],
     keyTakeaways: [
       "Đòn bẩy khuếch đại cả lợi nhuận lẫn thua lỗ so với vốn tự có",
@@ -870,6 +1246,17 @@ export const lessons: Lesson[] = [
         ],
         correct: 1,
         explanation: "Khi dùng margin, nếu giá tài sản giảm đến mức tỷ lệ vốn tự có so với tổng vị thế thấp quá ngưỡng quy định, sàn yêu cầu nạp thêm tiền hoặc tự động bán cắt lỗ để thu hồi nợ.",
+      },
+      {
+        question: "Scenario: Bạn vay 500 triệu với lãi 10%/năm để đầu tư vào một dự án kinh doanh. Dự án A: Cửa hàng tạp hóa, dự kiến lợi nhuận 8%/năm ổn định. Dự án B: Quán cà phê, dự kiến lợi nhuận 18%/năm nhưng rủi ro cao, có thể 5% trong năm xấu. Dự án C: Đất nền ven đô, dự kiến tăng giá 25%/năm nhưng thanh khoản rất thấp. Nếu bạn cần dòng tiền hàng tháng để trả lãi, dự án nào phù hợp nhất?",
+        options: [
+          "Dự án A vì ổn định, dòng tiền đủ trả lãi dù spread âm",
+          "Dự án B vì spread dương cao nhất",
+          "Dự án C vì lợi nhuận cao nhất",
+          "Không nên vay cho dự án nào vì rủi ro quá cao",
+        ],
+        correct: 0,
+        explanation: "Dự án A: ROI 8% < lãi 10%, spread âm 2% nhưng ổn định, có thể trả lãi từ dòng tiền. Dự án B: spread dương nhưng rủi ro cao, năm xấu có thể không đủ trả lãi. Dự án C: spread dương cao nhất nhưng không có dòng tiền, thanh khoản thấp, khó trả lãi hàng tháng. Khi cần dòng tiền ổn định, ổn định quan trọng hơn lợi nhuận cao.",
       },
     ],
     keyTakeaways: [
@@ -921,6 +1308,17 @@ export const lessons: Lesson[] = [
         correct: 1,
         explanation: "Fiscal policy: chính phủ điều tiết qua thuế và chi tiêu công. Monetary policy: ngân hàng trung ương điều tiết qua lãi suất và cung tiền. Hai công cụ khác nhau, thường phối hợp nhau.",
       },
+      {
+        question: "Scenario: Kinh tế đang suy thoái, doanh nghiệp đóng cửa, người dân mất việc. Chính phủ muốn kích cầu. Lựa chọn A: Giảm thuế 20% để người dân có thêm tiền tiêu dùng. Lựa chọn B: Tăng chi tiêu công 500 nghìn tỷ để xây dựng đường sá, tạo việc làm. Lựa chọn C: Ngân hàng trung ương giảm lãi suất 2% để doanh nghiệp vay rẻ hơn. Lựa chọn nào là fiscal policy và tại sao?",
+        options: [
+          "Lựa chọn A và B đều là fiscal policy vì do chính phủ điều tiết qua thuế và chi tiêu",
+          "Chỉ lựa chọn A là fiscal policy vì liên quan đến thuế",
+          "Chỉ lựa chọn C là fiscal policy vì liên quan đến lãi suất",
+          "Cả ba đều là fiscal policy vì cùng mục tiêu kích cầu",
+        ],
+        correct: 0,
+        explanation: "Fiscal policy (chính sách tài khóa) bao gồm thuế và chi tiêu của chính phủ. Lựa chọn A (giảm thuế) và B (tăng chi tiêu công) đều là fiscal policy. Lựa chọn C (giảm lãi suất) là monetary policy (chính sách tiền tệ) do ngân hàng trung ương thực hiện.",
+      },
     ],
     keyTakeaways: [
       "Cá nhân tối ưu tiêu dùng và tích lũy trong vòng đời",
@@ -970,6 +1368,17 @@ export const lessons: Lesson[] = [
         correct: 1,
         explanation: "IPO là thị trường sơ cấp: doanh nghiệp nhận tiền trực tiếp từ nhà đầu tư. Sau đó, cổ phiếu giao dịch trên sàn là thị trường thứ cấp: tiền chảy giữa nhà đầu tư, không vào doanh nghiệp nữa.",
       },
+      {
+        question: "Scenario: Bạn có 500 triệu đồng muốn đầu tư. Lựa chọn A: Gửi tiết kiệm ngân hàng 6%/năm, được bảo lãnh vốn. Lựa chọn B: Mua quỹ đầu tư chứng khoán, dự kiến lợi nhuận 12%/năm nhưng có thể thua lỗ 20% trong năm xấu. Lựa chọn C: Mua cổ phiếu trực tiếp trên thị trường thứ cấp, dự kiến lợi nhuận 15%/năm nhưng rủi ro cao nhất. Nếu bạn cần tiền sau 6 tháng để mua nhà và không thể chịu rủi ro mất vốn, lựa chọn nào phù hợp nhất?",
+        options: [
+          "Lựa chọn A vì bảo lãnh vốn và có thể rút bất cứ lúc nào",
+          "Lựa chọn B vì lợi nhuận cao hơn",
+          "Lựa chọn C vì lợi nhuận cao nhất",
+          "Chia đều 3 lựa chọn để đa dạng hóa",
+        ],
+        correct: 0,
+        explanation: "Khi cần tiền trong ngắn hạn (6 tháng) và không thể chịu rủi ro mất vốn, bảo toàn vốn là ưu tiên hàng đầu. Gửi tiết kiệm bảo lãnh vốn, có thể rút bất cứ lúc nào. Quỹ và cổ phiếu có rủi ro thị trường, giá có thể giảm khi cần tiền.",
+      },
     ],
     keyTakeaways: [
       "Ngân hàng: trung gian tín dụng, huy động để cho vay",
@@ -1018,6 +1427,17 @@ export const lessons: Lesson[] = [
         ],
         correct: 1,
         explanation: "Quy ước: tăng 20% từ đáy là bull market; giảm 20% từ đỉnh là bear market. Lịch sử cho thấy bull market thường kéo dài hơn và tăng nhiều hơn bear market giảm, đây là cơ sở cho triết lý đầu tư dài hạn.",
+      },
+      {
+        question: "Scenario: Bạn đang theo dõi thị trường chứng khoán. VN-Index đã giảm 25% từ đỉnh 6 tháng trước, nhiều nhà đầu tư hoảng loạn bán tháo. Bạn có 100 triệu đồng tiền mặt. Lựa chọn A: Mua vào ngay vì giá đã giảm nhiều, cơ hội tốt. Lựa chọn B: Chờ đợi vì thị trường có thể giảm thêm. Lựa chọn C: Bỏ qua thị trường, gửi tiết kiệm an toàn. Nếu bạn tin vào Efficient Market Hypothesis và lịch sử cho thấy bull market thường kéo dài hơn bear market, lựa chọn nào phù hợp nhất?",
+        options: [
+          "Lựa chọn A vì giá đã giảm 25%, cơ hội mua rẻ",
+          "Lựa chọn B vì thị trường có thể giảm thêm, cần chờ đáy",
+          "Lựa chọn C vì thị trường quá rủi ro",
+          "Chia nhỏ: mua 50 triệu, chờ 50 triệu để trung bình giá",
+        ],
+        correct: 3,
+        explanation: "Theo EMH, giá hiện tại đã phản ánh thông tin, không thể dự đoán đáy chính xác. Lịch sử cho thấy thị trường hồi phục sau bear market. Chiến lược DCA (Dollar Cost Averaging) - chia nhỏ và mua dần - giúp giảm rủi ro thời điểm, phù hợp với nhà đầu tư dài hạn.",
       },
     ],
     keyTakeaways: [
@@ -1069,6 +1489,17 @@ export const lessons: Lesson[] = [
         correct: 1,
         explanation: "Bốn trụ cột tài chính cá nhân: bắt đầu sớm để tận dụng lãi kép, hiểu và định giá đúng rủi ro, quản lý dòng tiền trước lợi nhuận, và dùng đòn bẩy có tính toán.",
       },
+      {
+        question: "Scenario: Bạn 25 tuổi, thu nhập 20 triệu/tháng, chi phí 15 triệu/tháng. Bạn có 100 triệu tiền mặt. Lãi suất ngân hàng 6%/năm, lạm phát 4%/năm. Bạn muốn mua nhà sau 10 năm giá 2 tỷ. Bạn có 3 chiến lược: A) Gửi tiết kiệm 100 triệu + tiết kiệm 5 triệu/tháng. B) Đầu tư cổ phiếu với kỳ vọng 12%/năm, rủi ro có thể -20% trong năm xấu. C) Kết hợp: 50 triệu gửi tiết kiệm an toàn, 50 triệu đầu tư cổ phiếu, tiết kiệm 5 triệu/tháng. Dựa trên các khái niệm chặng 1 (lãi kép, rủi ro, dòng tiền, thời gian), chiến lược nào phù hợp nhất cho mục tiêu 10 năm?",
+        options: [
+          "Chiến lược A vì an toàn tuyệt đối",
+          "Chiến lược B vì lợi nhuận cao nhất, đạt mục tiêu nhanh hơn",
+          "Chiến lược C vì cân bằng giữa an toàn và tăng trưởng, phù hợp với mục tiêu dài hạn",
+          "Không nên mua nhà vì giá quá cao so với thu nhập",
+        ],
+        correct: 2,
+        explanation: "Với mục tiêu 10 năm, thời gian là ally. Chiến lược C cân bằng: 50 triệu an toàn cho trường hợp khẩn cấp, 50 triệu đầu tư để tận dụng lãi kép dài hạn, 5 triệu/tháng tiết kiệm đều đặn. Lãi kép 12% trên 10 năm có thể tăng gấp 3 lần, nhưng vẫn có phần an toàn để chịu rủi ro. Đây là ứng dụng của: quản lý rủi ro, giá trị thời gian của tiền, và dòng tiền.",
+      },
     ],
     keyTakeaways: [
       "Tiền: phương tiện trao đổi, mất giá theo lạm phát",
@@ -1077,7 +1508,7 @@ export const lessons: Lesson[] = [
       "Dòng tiền: sức khỏe tài chính thực tế, quan trọng hơn lợi nhuận kế toán",
     ],
   },
-{ id: 21, slug: "ke-toan-la-gi", title: "Tự học Tài chính Day 21: Kế toán là ngôn ngữ của kinh doanh", subtitle: "Vì sao mọi quyết định tài chính đều cần kế toán", duration: "5 phút", difficulty: "Dễ", emoji: "·", openingQuestion: "Bạn muốn biết công ty đang lãi hay lỗ — bạn cần đọc gì?", openingOptions: ["Xem giá cổ phiếu","Đọc báo cáo tài chính","Hỏi CEO","Xem số nhân viên"], correctOption: 1, explanation: "Kế toán là hệ thống ghi chép, phân loại và tóm tắt các giao dịch kinh tế. Nó tạo ra ngôn ngữ chung để mọi người — nhà đầu tư, ngân hàng, ban lãnh đạo — đọc và hiểu tình trạng tài chính của một tổ chức.", diagram: [], realWorldExample: { company: "Vingroup", description: "Vingroup công bố báo cáo tài chính hợp nhất hàng quý theo chuẩn IFRS — hàng nghìn nhà đầu tư, ngân hàng, cơ quan thuế đọc cùng một bộ số liệu để ra quyết định khác nhau, minh chứng kế toán là ngôn ngữ chung." }, quiz: [{ question: "Mục đích chính của kế toán là gì?", options: ["Tính thuế cho nhà nước","Ghi chép và trình bày tình hình tài chính một cách chuẩn hóa","Dự báo giá cổ phiếu","Quản lý nhân sự"], correct: 1, explanation: "Kế toán cung cấp thông tin tài chính đáng tin cậy cho các bên liên quan ra quyết định." }, { question: "Vì sao kế toán được ví như một \"ngôn ngữ\" chứ không chỉ là một công cụ tính toán?", options: ["Vì kế toán viên dùng nhiều thuật ngữ khó hiểu", "Vì nó có quy tắc, cấu trúc và ký hiệu chuẩn hóa (chuẩn mực kế toán) giúp bất kỳ ai ở bất kỳ đâu cũng đọc hiểu tình hình tài chính của một tổ chức theo cùng một cách", "Vì kế toán chỉ dùng được ở một quốc gia duy nhất", "Vì kế toán không có quy tắc cố định nào"], correct: 1, explanation: "Giống ngôn ngữ có ngữ pháp chung, kế toán có chuẩn mực (VAS, IFRS, US GAAP) đảm bảo một báo cáo tài chính ở Việt Nam và một báo cáo ở Mỹ có thể được so sánh, hiểu và tin cậy theo cùng một logic." }], keyTakeaways: ["Kế toán là ngôn ngữ của kinh doanh — ai cũng cần biết đọc", "Báo cáo tài chính là sản phẩm của hệ thống kế toán", "Không cần là kế toán viên để hiểu được con số cơ bản"],
+{ id: 21, slug: "ke-toan-la-gi", title: "Tự học Tài chính Day 21: Kế toán là ngôn ngữ của kinh doanh", subtitle: "Vì sao mọi quyết định tài chính đều cần kế toán", duration: "5 phút", difficulty: "Dễ", emoji: "·", openingQuestion: "Bạn muốn biết công ty đang lãi hay lỗ — bạn cần đọc gì?", openingOptions: ["Xem giá cổ phiếu","Đọc báo cáo tài chính","Hỏi CEO","Xem số nhân viên"], correctOption: 1, explanation: "Kế toán là hệ thống ghi chép, phân loại và tóm tắt các giao dịch kinh tế. Nó tạo ra ngôn ngữ chung để mọi người — nhà đầu tư, ngân hàng, ban lãnh đạo — đọc và hiểu tình trạng tài chính của một tổ chức.", diagram: [], realWorldExample: { company: "Vingroup", description: "Vingroup công bố báo cáo tài chính hợp nhất hàng quý theo chuẩn IFRS — hàng nghìn nhà đầu tư, ngân hàng, cơ quan thuế đọc cùng một bộ số liệu để ra quyết định khác nhau, minh chứng kế toán là ngôn ngữ chung." }, quiz: [{ question: "Mục đích chính của kế toán là gì?", options: ["Tính thuế cho nhà nước","Ghi chép và trình bày tình hình tài chính một cách chuẩn hóa","Dự báo giá cổ phiếu","Quản lý nhân sự"], correct: 1, explanation: "Kế toán cung cấp thông tin tài chính đáng tin cậy cho các bên liên quan ra quyết định." }, { question: "Vì sao kế toán được ví như một \"ngôn ngữ\" chứ không chỉ là một công cụ tính toán?", options: ["Vì kế toán viên dùng nhiều thuật ngữ khó hiểu", "Vì nó có quy tắc, cấu trúc và ký hiệu chuẩn hóa (chuẩn mực kế toán) giúp bất kỳ ai ở bất kỳ đâu cũng đọc hiểu tình hình tài chính của một tổ chức theo cùng một cách", "Vì kế toán chỉ dùng được ở một quốc gia duy nhất", "Vì kế toán không có quy tắc cố định nào"], correct: 1, explanation: "Giống ngôn ngữ có ngữ pháp chung, kế toán có chuẩn mực (VAS, IFRS, US GAAP) đảm bảo một báo cáo tài chính ở Việt Nam và một báo cáo ở Mỹ có thể được so sánh, hiểu và tin cậy theo cùng một logic." }, { question: "Scenario: Bạn là nhà đầu tư đang xem xét hai công ty cùng ngành. Công ty A: Doanh thu tăng 50%, lợi nhuận tăng 30%, nhưng khoản phải thu tăng 80%. Công ty B: Doanh thu tăng 30%, lợi nhuận tăng 25%, khoản phải thu tăng 20%. Nếu bạn quan tâm đến chất lượng dòng tiền thực tế, công ty nào đáng tin cậy hơn và tại sao?", options: ["Công ty A vì tăng trưởng doanh thu và lợi nhuận cao hơn", "Công ty B vì tăng trưởng doanh thu đi kèm với kiểm soát khoản phải thu tốt hơn, cho thấy chất lượng doanh thu cao hơn", "Cả hai đều như nhau vì cùng ngành", "Không thể đánh giá vì thiếu thông tin"], correct: 1, explanation: "Khoản phải thu tăng nhanh hơn doanh thu là dấu hiệu cảnh báo: công ty bán được hàng trên giấy nhưng khó thu tiền. Công ty B có tăng trưởng chậm hơn nhưng kiểm soát khoản phải thu tốt hơn, cho thấy chất lượng doanh thu cao hơn và dòng tiền thực tế tốt hơn." }], keyTakeaways: ["Kế toán là ngôn ngữ của kinh doanh — ai cũng cần biết đọc", "Báo cáo tài chính là sản phẩm của hệ thống kế toán", "Không cần là kế toán viên để hiểu được con số cơ bản"],
 sections: [
   { type: "lead", text: "Bạn đọc được menu bằng tiếng Việt vì bạn biết chữ Việt. Tương tự, bạn chỉ đọc được sức khỏe tài chính của Vingroup, Vinamilk hay FPT nếu bạn biết 'chữ' kế toán — thứ ngôn ngữ chung mà mọi doanh nghiệp trên thế giới dùng để kể lại câu chuyện tiền bạc của mình." },
   { type: "heading", text: "Kế toán ghi lại điều gì?" },
@@ -1104,7 +1535,7 @@ sections: [
     "20 bài tiếp theo sẽ dạy bạn từng chữ trong ngôn ngữ đó, bắt đầu từ doanh thu và chi phí.",
   ] },
 ] },
-{ id: 22, slug: "doanh-thu-ghi-nhan", title: "Tự học Tài chính Day 22: Doanh thu: khi nào được ghi nhận?", subtitle: "Accrual vs cash — hai cách nhìn khác nhau về cùng một giao dịch", duration: "6 phút", difficulty: "Dễ", emoji: "·", openingQuestion: "Bạn bán hàng ngày 1, khách trả tiền ngày 30. Doanh thu được ghi nhận khi nào?", openingOptions: ["Ngày 30 khi nhận được tiền","Ngày 1 khi giao hàng","Ngày ký hợp đồng","Chia đều 2 ngày"], correctOption: 1, explanation: "Theo nguyên tắc kế toán dồn tích (accrual), doanh thu được ghi nhận khi hàng hóa/dịch vụ đã được cung cấp — không phải khi tiền về. Đây là lý do P&L có thể đẹp trong khi dòng tiền lại âm.", diagram: [], interactiveType: "profit-calc", realWorldExample: { company: "Amazon", description: "Amazon ghi nhận doanh thu bán hàng ngay khi giao sản phẩm cho khách, dù nhiều khách hàng trả sau qua thẻ tín dụng — dòng tiền thực tế thường đến sau thời điểm ghi nhận doanh thu vài ngày." }, quiz: [{ question: "Nguyên tắc ghi nhận doanh thu theo accrual là gì?", options: ["Khi tiền về tài khoản","Khi hoàn thành nghĩa vụ cung cấp hàng hóa/dịch vụ","Khi ký hợp đồng","Khi xuất hóa đơn"], correct: 1, explanation: "Doanh thu ghi nhận khi performance obligation hoàn thành, không phụ thuộc vào thời điểm thu tiền." }, { question: "Một công ty phần mềm bán gói dịch vụ 12 tháng, thu tiền toàn bộ ngay từ đầu. Doanh thu nên được ghi nhận thế nào?", options: ["Toàn bộ ngay khi nhận tiền", "Phân bổ dần trong 12 tháng, tương ứng với phần dịch vụ đã thực sự cung cấp mỗi tháng", "Chỉ ghi nhận vào cuối năm", "Không cần ghi nhận vì đã có tiền"], correct: 1, explanation: "Đây là nguyên tắc matching: doanh thu phải khớp với nghĩa vụ đã hoàn thành. Tiền nhận trước cho dịch vụ chưa cung cấp được ghi vào \"doanh thu chưa thực hiện\" (deferred revenue), phân bổ dần theo thời gian sử dụng thực tế." }], keyTakeaways: ["Doanh thu ≠ tiền nhận được", "Accrual accounting: ghi nhận khi giao hàng/dịch vụ hoàn thành", "Cash accounting: ghi nhận khi thực sự nhận tiền"],
+{ id: 22, slug: "doanh-thu-ghi-nhan", title: "Tự học Tài chính Day 22: Doanh thu: khi nào được ghi nhận?", subtitle: "Accrual vs cash — hai cách nhìn khác nhau về cùng một giao dịch", duration: "6 phút", difficulty: "Dễ", emoji: "·", openingQuestion: "Bạn bán hàng ngày 1, khách trả tiền ngày 30. Doanh thu được ghi nhận khi nào?", openingOptions: ["Ngày 30 khi nhận được tiền","Ngày 1 khi giao hàng","Ngày ký hợp đồng","Chia đều 2 ngày"], correctOption: 1, explanation: "Theo nguyên tắc kế toán dồn tích (accrual), doanh thu được ghi nhận khi hàng hóa/dịch vụ đã được cung cấp — không phải khi tiền về. Đây là lý do P&L có thể đẹp trong khi dòng tiền lại âm.", diagram: [], interactiveType: "profit-calc", realWorldExample: { company: "Amazon", description: "Amazon ghi nhận doanh thu bán hàng ngay khi giao sản phẩm cho khách, dù nhiều khách hàng trả sau qua thẻ tín dụng — dòng tiền thực tế thường đến sau thời điểm ghi nhận doanh thu vài ngày." }, quiz: [{ question: "Nguyên tắc ghi nhận doanh thu theo accrual là gì?", options: ["Khi tiền về tài khoản","Khi hoàn thành nghĩa vụ cung cấp hàng hóa/dịch vụ","Khi ký hợp đồng","Khi xuất hóa đơn"], correct: 1, explanation: "Doanh thu ghi nhận khi performance obligation hoàn thành, không phụ thuộc vào thời điểm thu tiền." }, { question: "Một công ty phần mềm bán gói dịch vụ 12 tháng, thu tiền toàn bộ ngay từ đầu. Doanh thu nên được ghi nhận thế nào?", options: ["Toàn bộ ngay khi nhận tiền", "Phân bổ dần trong 12 tháng, tương ứng với phần dịch vụ đã thực sự cung cấp mỗi tháng", "Chỉ ghi nhận vào cuối năm", "Không cần ghi nhận vì đã có tiền"], correct: 1, explanation: "Đây là nguyên tắc matching: doanh thu phải khớp với nghĩa vụ đã hoàn thành. Tiền nhận trước cho dịch vụ chưa cung cấp được ghi vào \"doanh thu chưa thực hiện\" (deferred revenue), phân bổ dần theo thời gian sử dụng thực tế." }, { question: "Scenario: Bạn là chủ một cửa hàng quần áo. Tháng 1: Bạn bán 100 triệu hàng cho khách sỉ, khách hứa trả sau 30 ngày. Tháng 2: Bạn nhận được 80 triệu từ khách sỉ, bán thêm 50 triệu hàng trả ngay. Theo nguyên tắc accrual accounting, doanh thu tháng 1 và tháng 2 là bao nhiêu? Theo cash accounting thì sao?", options: ["Accrual: Th1=100tr, Th2=50tr | Cash: Th1=0tr, Th2=130tr", "Accrual: Th1=0tr, Th2=150tr | Cash: Th1=100tr, Th2=50tr", "Accrual: Th1=100tr, Th2=130tr | Cash: Th1=100tr, Th2=130tr", "Accrual: Th1=80tr, Th2=50tr | Cash: Th1=80tr, Th2=50tr"], correct: 0, explanation: "Accrual: Doanh thu ghi nhận khi giao hàng, không phụ thuộc tiền về. Th1=100tr (đã giao), Th2=50tr (đã giao). Cash: Doanh thu ghi nhận khi tiền về. Th1=0tr (chưa nhận tiền), Th2=80tr+50tr=130tr (nhận nợ cũ + bán mới). Đây là lý do P&L và cash flow có thể khác nhau." }], keyTakeaways: ["Doanh thu ≠ tiền nhận được", "Accrual accounting: ghi nhận khi giao hàng/dịch vụ hoàn thành", "Cash accounting: ghi nhận khi thực sự nhận tiền"],
 sections: [
   { type: "lead", text: "Hai công ty cùng bán một lô hàng trị giá 100 triệu đồng vào ngày 1. Một công ty ghi doanh thu ngay ngày 1, công ty kia đợi đến ngày 30 khi khách trả tiền mới ghi. Ai đúng? Câu trả lời nằm ở một trong những nguyên tắc quan trọng nhất của kế toán: accrual (dồn tích)." },
   { type: "heading", text: "Accrual accounting: ghi nhận theo nghĩa vụ, không theo dòng tiền" },
@@ -1131,7 +1562,7 @@ sections: [
     "Hiểu accrual giúp bạn không nhầm lẫn giữa 'công ty có lãi' và 'công ty có tiền'.",
   ] },
 ] },
-{ id: 23, slug: "chi-phi-vs-dong-tien-ra", title: "Tự học Tài chính Day 23: Chi phí khác dòng tiền ra thế nào?", subtitle: "Tại sao mua máy móc 1 tỷ không làm giảm lợi nhuận 1 tỷ ngay lập tức", duration: "6 phút", difficulty: "Dễ", emoji: "·", openingQuestion: "Công ty mua máy móc 1 tỷ. Lợi nhuận năm đó giảm bao nhiêu?", openingOptions: ["1 tỷ","Bằng khấu hao năm đó (ví dụ 200 triệu/năm nếu khấu hao 5 năm)","Không giảm gì","Phụ thuộc giá bán máy cũ"], correctOption: 1, explanation: "Chi phí kế toán là giá trị kinh tế tiêu thụ trong kỳ. Mua máy 1 tỷ là dòng tiền ra, nhưng chi phí kế toán chỉ là khấu hao từng năm. Sự tách biệt này là nền tảng của accrual accounting.", diagram: [], interactiveType: "profit-calc", realWorldExample: { company: "Vietnam Airlines", description: "Vietnam Airlines mua máy bay trị giá hàng nghìn tỷ đồng nhưng không ghi nhận toàn bộ chi phí ngay — khấu hao dần trong 15-20 năm tuổi thọ máy bay, giúp P&L phản ánh đúng mức tiêu hao giá trị mỗi năm." }, quiz: [{ question: "Sự khác biệt giữa CapEx và chi phí khấu hao là gì?", options: ["Chúng hoàn toàn giống nhau","CapEx là dòng tiền ra thực tế, khấu hao là phân bổ chi phí theo thời gian","CapEx chỉ dùng cho nhà máy","Khấu hao không ảnh hưởng lợi nhuận"], correct: 1, explanation: "CapEx (mua tài sản) là cash outflow, còn khấu hao là cách phân bổ chi phí đó vào P&L theo tuổi thọ tài sản." }, { question: "Nếu công ty trả trước tiền thuê văn phòng cho cả năm, khoản chi này ảnh hưởng dòng tiền và chi phí kế toán ra sao?", options: ["Dòng tiền và chi phí kế toán giảm cùng lúc, cùng mức trong tháng trả tiền", "Dòng tiền ra ngay toàn bộ trong tháng trả tiền, nhưng chi phí kế toán (rent expense) được phân bổ đều mỗi tháng trong năm sử dụng", "Không ảnh hưởng gì đến báo cáo tài chính", "Chỉ ảnh hưởng đến bảng cân đối kế toán, không liên quan chi phí"], correct: 1, explanation: "Khoản trả trước được ghi vào tài sản \"chi phí trả trước\" (prepaid expense), sau đó phân bổ dần vào chi phí mỗi tháng khi dịch vụ thực sự được sử dụng — một ví dụ khác của sự tách biệt giữa dòng tiền và chi phí kế toán." }], keyTakeaways: ["Chi phí kế toán ≠ dòng tiền ra trong cùng kỳ", "Mua tài sản dài hạn → khấu hao dần qua các năm", "Đây là lý do OCF và Net Income thường khác nhau"],
+{ id: 23, slug: "chi-phi-vs-dong-tien-ra", title: "Tự học Tài chính Day 23: Chi phí khác dòng tiền ra thế nào?", subtitle: "Tại sao mua máy móc 1 tỷ không làm giảm lợi nhuận 1 tỷ ngay lập tức", duration: "6 phút", difficulty: "Dễ", emoji: "·", openingQuestion: "Công ty mua máy móc 1 tỷ. Lợi nhuận năm đó giảm bao nhiêu?", openingOptions: ["1 tỷ","Bằng khấu hao năm đó (ví dụ 200 triệu/năm nếu khấu hao 5 năm)","Không giảm gì","Phụ thuộc giá bán máy cũ"], correctOption: 1, explanation: "Chi phí kế toán là giá trị kinh tế tiêu thụ trong kỳ. Mua máy 1 tỷ là dòng tiền ra, nhưng chi phí kế toán chỉ là khấu hao từng năm. Sự tách biệt này là nền tảng của accrual accounting.", diagram: [], interactiveType: "profit-calc", realWorldExample: { company: "Vietnam Airlines", description: "Vietnam Airlines mua máy bay trị giá hàng nghìn tỷ đồng nhưng không ghi nhận toàn bộ chi phí ngay — khấu hao dần trong 15-20 năm tuổi thọ máy bay, giúp P&L phản ánh đúng mức tiêu hao giá trị mỗi năm." }, quiz: [{ question: "Sự khác biệt giữa CapEx và chi phí khấu hao là gì?", options: ["Chúng hoàn toàn giống nhau","CapEx là dòng tiền ra thực tế, khấu hao là phân bổ chi phí theo thời gian","CapEx chỉ dùng cho nhà máy","Khấu hao không ảnh hưởng lợi nhuận"], correct: 1, explanation: "CapEx (mua tài sản) là cash outflow, còn khấu hao là cách phân bổ chi phí đó vào P&L theo tuổi thọ tài sản." }, { question: "Nếu công ty trả trước tiền thuê văn phòng cho cả năm, khoản chi này ảnh hưởng dòng tiền và chi phí kế toán ra sao?", options: ["Dòng tiền và chi phí kế toán giảm cùng lúc, cùng mức trong tháng trả tiền", "Dòng tiền ra ngay toàn bộ trong tháng trả tiền, nhưng chi phí kế toán (rent expense) được phân bổ đều mỗi tháng trong năm sử dụng", "Không ảnh hưởng gì đến báo cáo tài chính", "Chỉ ảnh hưởng đến bảng cân đối kế toán, không liên quan chi phí"], correct: 1, explanation: "Khoản trả trước được ghi vào tài sản \"chi phí trả trước\" (prepaid expense), sau đó phân bổ dần vào chi phí mỗi tháng khi dịch vụ thực sự được sử dụng — một ví dụ khác của sự tách biệt giữa dòng tiền và chi phí kế toán." }, { question: "Scenario: Bạn là chủ một startup công nghệ. Năm 1: Bạn chi 500 triệu mua server (CapEx), trả trước 120 triệu tiền thuê văn phòng 1 năm, và trả lương nhân viên 200 triệu/tháng. Theo nguyên tắc kế toán, chi phí năm 1 là bao nhiêu? Dòng tiền ra năm 1 là bao nhiêu? (Giả sử khấu hao server 100 triệu/năm)", options: ["Chi phí: 500tr + 120tr + 2400tr = 3020tr | Dòng tiền: 500tr + 120tr + 2400tr = 3020tr", "Chi phí: 100tr (khấu hao) + 120tr (tiền thuê) + 2400tr (lương) = 2620tr | Dòng tiền: 500tr (server) + 120tr (tiền thuê) + 2400tr (lương) = 3020tr", "Chi phí: 500tr + 2400tr = 2900tr | Dòng tiền: 500tr + 120tr + 2400tr = 3020tr", "Chi phí: 100tr + 2400tr = 2500tr | Dòng tiền: 500tr + 2400tr = 2900tr"], correct: 1, explanation: "Chi phí kế toán = khấu hao (100tr) + tiền thuê phân bổ (120tr) + lương (2400tr) = 2620tr. Dòng tiền ra = mua server (500tr) + tiền thuê trả trước (120tr) + lương (2400tr) = 3020tr. Sự chênh lệch 400tr đến từ: CapEx 500tr - khấu hao 100tr = 400tr. Đây là lý do Net Income và Cash Flow khác nhau." }], keyTakeaways: ["Chi phí kế toán ≠ dòng tiền ra trong cùng kỳ", "Mua tài sản dài hạn → khấu hao dần qua các năm", "Đây là lý do OCF và Net Income thường khác nhau"],
 sections: [
   { type: "lead", text: "Vietnam Airlines chi hàng nghìn tỷ đồng mua một chiếc máy bay mới. Nếu ghi hết số tiền đó vào chi phí năm mua, lợi nhuận năm đó sẽ âm khủng khiếp, còn những năm sau — khi máy bay vẫn đang bay và tạo doanh thu — lại không có chi phí gì tương ứng. Đó là lý do kế toán tách biệt dòng tiền ra khỏi chi phí." },
   { type: "heading", text: "CapEx: dòng tiền ra, không phải chi phí ngay lập tức" },
@@ -1154,7 +1585,7 @@ sections: [
     "Hiểu sự tách biệt này là chìa khóa để đọc đúng P&L của các doanh nghiệp thâm dụng vốn.",
   ] },
 ] },
-{ id: 24, slug: "loi-nhuan-cac-cap-do", title: "Tự học Tài chính Day 24: Lợi nhuận gộp, hoạt động, ròng", subtitle: "Ba tầng lợi nhuận — mỗi tầng nói lên điều gì khác nhau", duration: "7 phút", difficulty: "Dễ", emoji: "·", openingQuestion: "Gross Profit, Operating Profit, và Net Income khác nhau ở điều gì?", openingOptions: ["Chúng giống nhau, chỉ khác tên","Mỗi tầng trừ đi thêm một loại chi phí khác nhau","Chỉ có Net Income mới quan trọng","Gross Profit luôn lớn nhất"], correctOption: 1, explanation: "Gross Profit = Revenue − COGS. Operating Profit = Gross Profit − Operating Expenses. Net Income = Operating Profit − Interest − Taxes. Mỗi tầng tiết lộ một khía cạnh hiệu quả khác nhau của doanh nghiệp.", diagram: [], interactiveType: "profit-calc", realWorldExample: { company: "Thế Giới Di Động", description: "Thế Giới Di Động có Gross Margin ổn định quanh 20% nhưng Operating Margin biến động mạnh hơn nhiều tùy chi phí thuê mặt bằng và vận hành chuỗi cửa hàng — minh họa rõ ba tầng lợi nhuận phản ánh những vấn đề khác nhau." }, quiz: [{ question: "Công ty có Gross Margin cao nhưng Operating Margin thấp — điều này gợi ý gì?", options: ["Công ty rất hiệu quả","Chi phí vận hành (SG&A, R&D) đang ăn vào lợi nhuận gộp","Doanh thu đang giảm","Công ty đang lỗ"], correct: 1, explanation: "Gap giữa gross margin và operating margin phản ánh quy mô chi phí vận hành. Nếu quá lớn, cần xem xét hiệu quả chi phí bán hàng và quản lý." }, { question: "Vì sao nhà phân tích tài chính luôn xem cả ba tầng lợi nhuận thay vì chỉ nhìn Net Income cuối cùng?", options: ["Vì Net Income luôn không chính xác", "Vì mỗi tầng cô lập một nhóm chi phí khác nhau — Gross Profit cho biết hiệu quả sản xuất/COGS, Operating Profit cho biết hiệu quả vận hành, còn Net Income bị ảnh hưởng thêm bởi cấu trúc vốn (lãi vay) và thuế, có thể che khuất vấn đề ở tầng trên", "Vì quy định pháp luật yêu cầu xem cả ba", "Chỉ cần xem tầng nào lớn nhất là đủ"], correct: 1, explanation: "Một công ty có Net Income tốt nhưng Operating Margin xấu có thể đang được \"cứu\" bởi thu nhập tài chính bất thường — không bền vững. Xem đủ ba tầng giúp phát hiện vấn đề thực sự nằm ở đâu: sản xuất, vận hành, hay cấu trúc vốn." }], keyTakeaways: ["Gross Profit đo hiệu quả sản xuất/kinh doanh cốt lõi", "Operating Income đo hiệu quả vận hành toàn doanh nghiệp", "Net Income là con số cuối sau lãi vay và thuế"],
+{ id: 24, slug: "loi-nhuan-cac-cap-do", title: "Tự học Tài chính Day 24: Lợi nhuận gộp, hoạt động, ròng", subtitle: "Ba tầng lợi nhuận — mỗi tầng nói lên điều gì khác nhau", duration: "7 phút", difficulty: "Dễ", emoji: "·", openingQuestion: "Gross Profit, Operating Profit, và Net Income khác nhau ở điều gì?", openingOptions: ["Chúng giống nhau, chỉ khác tên","Mỗi tầng trừ đi thêm một loại chi phí khác nhau","Chỉ có Net Income mới quan trọng","Gross Profit luôn lớn nhất"], correctOption: 1, explanation: "Gross Profit = Revenue − COGS. Operating Profit = Gross Profit − Operating Expenses. Net Income = Operating Profit − Interest − Taxes. Mỗi tầng tiết lộ một khía cạnh hiệu quả khác nhau của doanh nghiệp.", diagram: [], interactiveType: "profit-calc", realWorldExample: { company: "Thế Giới Di Động", description: "Thế Giới Di Động có Gross Margin ổn định quanh 20% nhưng Operating Margin biến động mạnh hơn nhiều tùy chi phí thuê mặt bằng và vận hành chuỗi cửa hàng — minh họa rõ ba tầng lợi nhuận phản ánh những vấn đề khác nhau." }, quiz: [{ question: "Công ty có Gross Margin cao nhưng Operating Margin thấp — điều này gợi ý gì?", options: ["Công ty rất hiệu quả","Chi phí vận hành (SG&A, R&D) đang ăn vào lợi nhuận gộp","Doanh thu đang giảm","Công ty đang lỗ"], correct: 1, explanation: "Gap giữa gross margin và operating margin phản ánh quy mô chi phí vận hành. Nếu quá lớn, cần xem xét hiệu quả chi phí bán hàng và quản lý." }, { question: "Vì sao nhà phân tích tài chính luôn xem cả ba tầng lợi nhuận thay vì chỉ nhìn Net Income cuối cùng?", options: ["Vì Net Income luôn không chính xác", "Vì mỗi tầng cô lập một nhóm chi phí khác nhau — Gross Profit cho biết hiệu quả sản xuất/COGS, Operating Profit cho biết hiệu quả vận hành, còn Net Income bị ảnh hưởng thêm bởi cấu trúc vốn (lãi vay) và thuế, có thể che khuất vấn đề ở tầng trên", "Vì quy định pháp luật yêu cầu xem cả ba", "Chỉ cần xem tầng nào lớn nhất là đủ"], correct: 1, explanation: "Một công ty có Net Income tốt nhưng Operating Margin xấu có thể đang được \"cứu\" bởi thu nhập tài chính bất thường — không bền vững. Xem đủ ba tầng giúp phát hiện vấn đề thực sự nằm ở đâu: sản xuất, vận hành, hay cấu trúc vốn." }, { question: "Scenario: Bạn đang phân tích hai công ty bán lẻ cùng ngành. Công ty A: Doanh thu 1000 tỷ, COGS 700 tỷ, chi phí vận hành 200 tỷ, lãi vay 30 tỷ, thuế 21 tỷ. Công ty B: Doanh thu 1000 tỷ, COGS 750 tỷ, chi phí vận hành 150 tỷ, lãi vay 10 tỷ, thuế 14 tỷ. Tính Gross Margin, Operating Margin và Net Margin của mỗi công ty. Công ty nào hiệu quả hơn ở từng tầng?", options: ["A: GM=30%, OM=10%, NM=4.9% | B: GM=25%, OM=10%, NM=7.6% - A tốt hơn Gross Margin, B tốt hơn Net Margin", "A: GM=30%, OM=10%, NM=4.9% | B: GM=25%, OM=10%, NM=7.6% - B tốt hơn mọi tầng", "A: GM=70%, OM=50%, NM=30% | B: GM=75%, OM=60%, NM=40% - B tốt hơn mọi tầng", "Cả hai giống nhau vì cùng doanh thu"], correct: 0, explanation: "Công ty A: GM=(1000-700)/1000=30%, OM=(1000-700-200)/1000=10%, NM=(1000-700-200-30-21)/1000=4.9%. Công ty B: GM=(1000-750)/1000=25%, OM=(1000-750-150)/1000=10%, NM=(1000-750-150-10-14)/1000=7.6%. A tốt hơn Gross Margin (hiệu quả sản xuất), Operating Margin bằng nhau, B tốt hơn Net Margin do cấu trúc vốn tốt hơn (ít nợ)." }], keyTakeaways: ["Gross Profit đo hiệu quả sản xuất/kinh doanh cốt lõi", "Operating Income đo hiệu quả vận hành toàn doanh nghiệp", "Net Income là con số cuối sau lãi vay và thuế"],
 sections: [
   { type: "lead", text: "Thế Giới Di Động có thể công bố 'lợi nhuận' theo ba cách khác nhau trong cùng một báo cáo — và cả ba đều đúng, chỉ là mỗi con số trả lời một câu hỏi khác nhau. Không hiểu rõ ba tầng này, nhà đầu tư rất dễ nhầm lẫn khi so sánh các công ty với nhau." },
   { type: "heading", text: "Tầng 1: Lợi nhuận gộp (Gross Profit)" },
@@ -1500,7 +1931,7 @@ sections: [
   ] },
   { type: "closing", lines: ["Assets = Liabilities + Equity là xương sống của mọi phân tích tài chính sau này.", "Working Capital và Cash Conversion Cycle là công cụ để đo 'sức khỏe vận hành' thực sự, tách biệt khỏi lợi nhuận kế toán.", "Từ đây, bạn đã đủ nền tảng để bước sang các chặng đọc báo cáo tài chính và định giá doanh nghiệp phức tạp hơn."] }
 ] },
-{ id: 41, slug: "bo-3-bao-cao", title: "Tự học Tài chính Day 41: Bộ 3 báo cáo tài chính gồm gì?", subtitle: "Income Statement, Balance Sheet, Cash Flow Statement — ba góc nhìn của một doanh nghiệp", duration: "5 phút", difficulty: "Dễ", emoji: "·", openingQuestion: "Để biết doanh nghiệp có thực sự tạo ra tiền mặt không, bạn đọc báo cáo nào?", openingOptions: ["Income Statement","Balance Sheet","Cash Flow Statement","Báo cáo thường niên"], correctOption: 2, explanation: "Ba báo cáo tài chính: (1) P&L — lợi nhuận trong kỳ; (2) Balance Sheet — sức khỏe tài chính tại một thời điểm; (3) Cash Flow Statement — dòng tiền thực tế. Mỗi báo cáo trả lời một câu hỏi khác nhau.", diagram: [], realWorldExample: { company: "Vingroup (VIC)", description: "Báo cáo tài chính hợp nhất của Vingroup là ví dụ điển hình cho việc phải đọc cả 3 báo cáo cùng lúc: Income Statement cho thấy doanh thu hàng chục nghìn tỷ đồng từ bất động sản, bán lẻ, công nghiệp; Balance Sheet cho thấy tổng tài sản rất lớn nhưng đi kèm nợ vay và trái phiếu đáng kể; Cash Flow Statement lại thường cho thấy dòng tiền hoạt động kinh doanh (CFO) âm hoặc thấp hơn nhiều so với lợi nhuận kế toán, vì phần lớn doanh thu bất động sản ghi nhận theo tiến độ nhưng tiền thu về theo hợp đồng trả góp. Nhà đầu tư chỉ nhìn Income Statement dễ bị đánh lừa về sức khỏe tiền mặt thực sự của tập đoàn." }, quiz: [{ question: "Balance Sheet khác P&L ở điểm gì cơ bản?", options: ["Balance Sheet dài hơn","Balance Sheet là snapshot tại một thời điểm, P&L là dòng chảy trong một kỳ","P&L quan trọng hơn","Không có sự khác biệt quan trọng"], correct: 1, explanation: "P&L (flow statement) đo hiệu quả trong kỳ. Balance Sheet (stock statement) phản ánh vị thế tại một ngày cụ thể. Cash Flow Statement theo dõi dòng tiền vào/ra trong kỳ." }], keyTakeaways: ["P&L: lợi nhuận qua thời gian", "Balance Sheet: vị thế tài chính tại một thời điểm", "Cash Flow: tiền thực sự vào ra — không thể giả mạo"],
+{ id: 41, slug: "bo-3-bao-cao", title: "Tự học Tài chính Day 41: Bộ 3 báo cáo tài chính gồm gì?", subtitle: "Income Statement, Balance Sheet, Cash Flow Statement — ba góc nhìn của một doanh nghiệp", duration: "5 phút", difficulty: "Dễ", emoji: "·", openingQuestion: "Để biết doanh nghiệp có thực sự tạo ra tiền mặt không, bạn đọc báo cáo nào?", openingOptions: ["Income Statement","Balance Sheet","Cash Flow Statement","Báo cáo thường niên"], correctOption: 2, explanation: "Ba báo cáo tài chính: (1) P&L — lợi nhuận trong kỳ; (2) Balance Sheet — sức khỏe tài chính tại một thời điểm; (3) Cash Flow Statement — dòng tiền thực tế. Mỗi báo cáo trả lời một câu hỏi khác nhau.", diagram: [], realWorldExample: { company: "Vingroup (VIC)", description: "Báo cáo tài chính hợp nhất của Vingroup là ví dụ điển hình cho việc phải đọc cả 3 báo cáo cùng lúc: Income Statement cho thấy doanh thu hàng chục nghìn tỷ đồng từ bất động sản, bán lẻ, công nghiệp; Balance Sheet cho thấy tổng tài sản rất lớn nhưng đi kèm nợ vay và trái phiếu đáng kể; Cash Flow Statement lại thường cho thấy dòng tiền hoạt động kinh doanh (CFO) âm hoặc thấp hơn nhiều so với lợi nhuận kế toán, vì phần lớn doanh thu bất động sản ghi nhận theo tiến độ nhưng tiền thu về theo hợp đồng trả góp. Nhà đầu tư chỉ nhìn Income Statement dễ bị đánh lừa về sức khỏe tiền mặt thực sự của tập đoàn." }, quiz: [{ question: "Balance Sheet khác P&L ở điểm gì cơ bản?", options: ["Balance Sheet dài hơn","Balance Sheet là snapshot tại một thời điểm, P&L là dòng chảy trong một kỳ","P&L quan trọng hơn","Không có sự khác biệt quan trọng"], correct: 1, explanation: "P&L (flow statement) đo hiệu quả trong kỳ. Balance Sheet (stock statement) phản ánh vị thế tại một ngày cụ thể. Cash Flow Statement theo dõi dòng tiền vào/ra trong kỳ." }, { question: "Nếu chỉ được chọn MỘT trong ba báo cáo tài chính để đánh giá sức khỏe một doanh nghiệp, vì sao chọn một cũng không bao giờ là đủ?", options: ["Vì luật kế toán yêu cầu công bố cả ba", "Vì mỗi báo cáo chỉ trả lời một câu hỏi khác nhau — Income Statement không nói gì về khả năng thanh toán, Balance Sheet không nói gì về hiệu quả kinh doanh trong kỳ, Cash Flow không nói gì về cơ cấu tài sản — thiếu một góc nhìn dễ dẫn đến kết luận sai lệch", "Vì báo cáo nào cũng có sai số", "Chỉ cần đọc báo cáo dài nhất là đủ thông tin"], correct: 1, explanation: "Ba báo cáo bổ sung cho nhau như ba lát cắt của cùng một cơ thể: P&L đo hiệu suất, Balance Sheet đo sức khỏe tại một thời điểm, Cash Flow đo dòng máu thực sự lưu thông. Bỏ qua bất kỳ báo cáo nào cũng để lại một góc mù nguy hiểm." }], keyTakeaways: ["P&L: lợi nhuận qua thời gian", "Balance Sheet: vị thế tài chính tại một thời điểm", "Cash Flow: tiền thực sự vào ra — không thể giả mạo"],
   sections: [
     { type: "lead", text: "Một doanh nghiệp giống như một cơ thể sống: bạn không thể đánh giá sức khỏe chỉ bằng một chỉ số. Ba báo cáo tài chính — Income Statement, Balance Sheet, Cash Flow Statement — là ba lát cắt bổ sung cho nhau, mỗi báo cáo trả lời một câu hỏi mà hai báo cáo còn lại không trả lời được." },
     { type: "heading", text: "Income Statement: doanh nghiệp có lãi không?" },
@@ -1529,7 +1960,7 @@ sections: [
     ] },
   ],
 },
-{ id: 42, slug: "income-statement-la-gi", title: "Tự học Tài chính Day 42: Income Statement: Báo cáo kết quả kinh doanh", subtitle: "Từ doanh thu xuống lợi nhuận ròng — câu chuyện hiệu quả", duration: "6 phút", difficulty: "Dễ", emoji: "·", openingQuestion: "Income Statement bắt đầu từ đâu và kết thúc ở đâu?", openingOptions: ["Từ tài sản đến nợ","Từ doanh thu (top line) đến lợi nhuận ròng (bottom line)","Từ tiền mặt đến đầu tư","Từ vốn đến cổ tức"], correctOption: 1, explanation: "Income Statement (P&L) bắt đầu từ Revenue (top line), trừ dần các chi phí để xuống Net Income (bottom line). Mỗi dòng tiết lộ hiệu quả ở một tầng khác nhau của hoạt động kinh doanh.", diagram: [], interactiveType: "profit-calc", realWorldExample: { company: "FPT Corporation", description: "Income Statement của FPT là ví dụ rõ ràng về cấu trúc nhiều tầng: doanh thu hợp nhất đến từ ba mảng (Công nghệ, Viễn thông, Giáo dục), sau khi trừ giá vốn ra Gross Profit; trừ tiếp chi phí bán hàng và quản lý doanh nghiệp ra Operating Income; trừ lãi vay và thuế thu nhập doanh nghiệp (thường quanh 20%) ra Net Income. Biên lợi nhuận ròng của FPT nhiều năm liền duy trì quanh 10-13%, phản ánh mô hình kinh doanh dịch vụ công nghệ có biên lợi nhuận ổn định hơn nhiều so với các doanh nghiệp sản xuất thâm dụng vốn." }, quiz: [{ question: "Tại sao Net Income được gọi là 'bottom line'?", options: ["Vì nó là số quan trọng nhất","Vì nó nằm ở dòng cuối cùng của Income Statement","Vì nó luôn dương","Vì là số nhỏ nhất"], correct: 1, explanation: "Bottom line là lợi nhuận sau khi trừ tất cả chi phí, lãi vay và thuế — dòng cuối cùng của P&L. Top line là doanh thu." }], keyTakeaways: ["P&L đi từ Revenue xuống Net Income", "Mỗi tầng phản ánh hiệu quả hoạt động khác nhau", "Top line = Revenue; Bottom line = Net Income"],
+{ id: 42, slug: "income-statement-la-gi", title: "Tự học Tài chính Day 42: Income Statement: Báo cáo kết quả kinh doanh", subtitle: "Từ doanh thu xuống lợi nhuận ròng — câu chuyện hiệu quả", duration: "6 phút", difficulty: "Dễ", emoji: "·", openingQuestion: "Income Statement bắt đầu từ đâu và kết thúc ở đâu?", openingOptions: ["Từ tài sản đến nợ","Từ doanh thu (top line) đến lợi nhuận ròng (bottom line)","Từ tiền mặt đến đầu tư","Từ vốn đến cổ tức"], correctOption: 1, explanation: "Income Statement (P&L) bắt đầu từ Revenue (top line), trừ dần các chi phí để xuống Net Income (bottom line). Mỗi dòng tiết lộ hiệu quả ở một tầng khác nhau của hoạt động kinh doanh.", diagram: [], interactiveType: "profit-calc", realWorldExample: { company: "FPT Corporation", description: "Income Statement của FPT là ví dụ rõ ràng về cấu trúc nhiều tầng: doanh thu hợp nhất đến từ ba mảng (Công nghệ, Viễn thông, Giáo dục), sau khi trừ giá vốn ra Gross Profit; trừ tiếp chi phí bán hàng và quản lý doanh nghiệp ra Operating Income; trừ lãi vay và thuế thu nhập doanh nghiệp (thường quanh 20%) ra Net Income. Biên lợi nhuận ròng của FPT nhiều năm liền duy trì quanh 10-13%, phản ánh mô hình kinh doanh dịch vụ công nghệ có biên lợi nhuận ổn định hơn nhiều so với các doanh nghiệp sản xuất thâm dụng vốn." }, quiz: [{ question: "Tại sao Net Income được gọi là 'bottom line'?", options: ["Vì nó là số quan trọng nhất","Vì nó nằm ở dòng cuối cùng của Income Statement","Vì nó luôn dương","Vì là số nhỏ nhất"], correct: 1, explanation: "Bottom line là lợi nhuận sau khi trừ tất cả chi phí, lãi vay và thuế — dòng cuối cùng của P&L. Top line là doanh thu." }, { question: "Hai công ty cùng ngành có Revenue bằng nhau nhưng một công ty có nhiều dòng chi phí \"phi thường\" (non-recurring) hơn trên Income Statement. Điều này ảnh hưởng thế nào đến việc so sánh Net Income giữa hai công ty?", options: ["Không ảnh hưởng gì vì Revenue bằng nhau", "So sánh trực tiếp Net Income có thể gây hiểu lầm — cần loại trừ các khoản bất thường để so sánh đúng hiệu quả kinh doanh cốt lõi (core operating performance) giữa hai công ty", "Công ty có nhiều chi phí bất thường luôn kém hơn", "Net Income luôn phản ánh chính xác hiệu quả cốt lõi bất kể cấu trúc chi phí"], correct: 1, explanation: "Các khoản mục bất thường (impairment, thanh lý tài sản, chi phí tái cấu trúc) làm méo mó Net Income của một kỳ cụ thể. Nhà phân tích thường điều chỉnh (normalize) để so sánh đúng hiệu quả kinh doanh lặp lại được giữa các công ty." }], keyTakeaways: ["P&L đi từ Revenue xuống Net Income", "Mỗi tầng phản ánh hiệu quả hoạt động khác nhau", "Top line = Revenue; Bottom line = Net Income"],
   sections: [
     { type: "lead", text: "Nếu Balance Sheet là một bức ảnh, thì Income Statement là một đoạn phim ngắn kể lại câu chuyện doanh nghiệp đã kiếm tiền và tiêu tiền như thế nào trong một quý hay một năm. Đọc đúng P&L nghĩa là hiểu được mỗi tầng lợi nhuận nói lên điều gì." },
     { type: "heading", text: "Cấu trúc tầng của Income Statement" },
@@ -1555,7 +1986,7 @@ sections: [
     ] },
   ],
 },
-{ id: 43, slug: "revenue-cogs-gross-profit", title: "Tự học Tài chính Day 43: Revenue, COGS và Gross Profit", subtitle: "Ba dòng đầu tiên của P&L — nền tảng của mọi phân tích", duration: "6 phút", difficulty: "Dễ", emoji: "·", openingQuestion: "Công ty bán 1.000 sản phẩm, giá 100k/cái, giá vốn 60k/cái. Gross Profit là bao nhiêu?", openingOptions: ["100 triệu","40 triệu","60 triệu","160 triệu"], correctOption: 1, explanation: "Revenue = 1.000 × 100k = 100 triệu. COGS = 1.000 × 60k = 60 triệu. Gross Profit = 100 − 60 = 40 triệu. Gross Margin = 40%. COGS gồm chi phí trực tiếp để sản xuất/mua hàng.", diagram: [], interactiveType: "profit-calc", realWorldExample: { company: "Vinamilk (VNM)", description: "Vinamilk là ví dụ kinh điển về Gross Margin ổn định trong ngành FMCG. Doanh thu chủ yếu từ sữa nước, sữa bột và sữa chua; COGS gồm giá sữa nguyên liệu (bột sữa nhập khẩu, sữa tươi thu mua), bao bì, chi phí nhân công sản xuất. Nhờ quy mô lớn và thương hiệu mạnh, Gross Margin của Vinamilk thường duy trì quanh 40%, cao hơn hẳn nhiều đối thủ nhỏ hơn trong ngành — minh chứng cho pricing power và hiệu quả chuỗi cung ứng." }, quiz: [{ question: "Điều gì KHÔNG nằm trong COGS?", options: ["Nguyên vật liệu","Chi phí nhân công trực tiếp","Chi phí marketing","Chi phí vận chuyển hàng bán"], correct: 2, explanation: "COGS gồm chi phí trực tiếp tạo ra sản phẩm/dịch vụ. Marketing là chi phí gián tiếp (SG&A), nằm dưới Gross Profit trong P&L." }], keyTakeaways: ["COGS = chi phí trực tiếp để tạo ra sản phẩm", "Gross Profit = Revenue − COGS", "Gross Margin = Gross Profit / Revenue — đo pricing power"],
+{ id: 43, slug: "revenue-cogs-gross-profit", title: "Tự học Tài chính Day 43: Revenue, COGS và Gross Profit", subtitle: "Ba dòng đầu tiên của P&L — nền tảng của mọi phân tích", duration: "6 phút", difficulty: "Dễ", emoji: "·", openingQuestion: "Công ty bán 1.000 sản phẩm, giá 100k/cái, giá vốn 60k/cái. Gross Profit là bao nhiêu?", openingOptions: ["100 triệu","40 triệu","60 triệu","160 triệu"], correctOption: 1, explanation: "Revenue = 1.000 × 100k = 100 triệu. COGS = 1.000 × 60k = 60 triệu. Gross Profit = 100 − 60 = 40 triệu. Gross Margin = 40%. COGS gồm chi phí trực tiếp để sản xuất/mua hàng.", diagram: [], interactiveType: "profit-calc", realWorldExample: { company: "Vinamilk (VNM)", description: "Vinamilk là ví dụ kinh điển về Gross Margin ổn định trong ngành FMCG. Doanh thu chủ yếu từ sữa nước, sữa bột và sữa chua; COGS gồm giá sữa nguyên liệu (bột sữa nhập khẩu, sữa tươi thu mua), bao bì, chi phí nhân công sản xuất. Nhờ quy mô lớn và thương hiệu mạnh, Gross Margin của Vinamilk thường duy trì quanh 40%, cao hơn hẳn nhiều đối thủ nhỏ hơn trong ngành — minh chứng cho pricing power và hiệu quả chuỗi cung ứng." }, quiz: [{ question: "Điều gì KHÔNG nằm trong COGS?", options: ["Nguyên vật liệu","Chi phí nhân công trực tiếp","Chi phí marketing","Chi phí vận chuyển hàng bán"], correct: 2, explanation: "COGS gồm chi phí trực tiếp tạo ra sản phẩm/dịch vụ. Marketing là chi phí gián tiếp (SG&A), nằm dưới Gross Profit trong P&L." }, { question: "Một công ty tăng giá bán 10% nhưng giữ nguyên COGS trên mỗi sản phẩm. Điều gì xảy ra với Gross Margin (tính theo %)?", options: ["Không đổi vì COGS không đổi", "Gross Margin (%) tăng lên — vì Revenue trên mỗi sản phẩm tăng trong khi COGS trên mỗi sản phẩm giữ nguyên, phần chênh lệch (Gross Profit) tăng nhanh hơn Revenue", "Gross Margin giảm xuống", "Cần biết thêm thông tin về SG&A mới xác định được"], correct: 1, explanation: "Gross Margin % = Gross Profit / Revenue. Nếu giá bán tăng mà chi phí sản xuất trên mỗi đơn vị không đổi, Gross Profit trên mỗi đơn vị tăng đúng bằng phần tăng giá — làm Gross Margin % tăng lên tương ứng. Đây là lý do pricing power (khả năng tăng giá mà không mất khách) rất quý giá." }], keyTakeaways: ["COGS = chi phí trực tiếp để tạo ra sản phẩm", "Gross Profit = Revenue − COGS", "Gross Margin = Gross Profit / Revenue — đo pricing power"],
   sections: [
     { type: "lead", text: "Ba dòng đầu tiên của Income Statement — Revenue, COGS, Gross Profit — là nền móng cho mọi phân tích sâu hơn. Nếu hiểu sai ba dòng này, mọi tỷ số tài chính tính sau đó đều lệch theo." },
     { type: "heading", text: "Revenue: không chỉ là 'bán được bao nhiêu tiền'" },
@@ -1583,7 +2014,7 @@ sections: [
     ] },
   ],
 },
-{ id: 44, slug: "operating-expense", title: "Tự học Tài chính Day 44: Operating Expense: SG&A, R&D", subtitle: "Chi phí vận hành — nằm giữa Gross Profit và Operating Income", duration: "6 phút", difficulty: "Dễ", emoji: "·", openingQuestion: "Lương CEO, chi phí marketing và thuê văn phòng thuộc loại chi phí gì?", openingOptions: ["COGS","SG&A (Selling, General & Administrative)","COGS và SG&A","Không phải chi phí"], correctOption: 1, explanation: "SG&A là chi phí vận hành gián tiếp: bán hàng (sales team, marketing), quản lý (lương admin, thuê văn phòng) và chi phí chung. R&D là đầu tư vào phát triển sản phẩm. Cả hai trừ vào Gross Profit.", diagram: [], interactiveType: "profit-calc", realWorldExample: { company: "Thế Giới Di Động (MWG)", description: "MWG là ví dụ điển hình về SG&A chiếm tỷ trọng lớn trong P&L của doanh nghiệp bán lẻ: chi phí thuê mặt bằng hàng nghìn cửa hàng, lương nhân viên bán hàng, chi phí marketing và vận hành chuỗi cung ứng. Trong các giai đoạn sức mua yếu, MWG phải chủ động đóng bớt cửa hàng kém hiệu quả để cắt giảm SG&A, cho thấy đòn bẩy vận hành (operating leverage) hoạt động theo cả hai chiều — tăng doanh thu thì margin cải thiện nhanh, nhưng giảm doanh thu thì SG&A cố định lại ăn mòn lợi nhuận nhanh không kém." }, quiz: [{ question: "Tại sao R&D thường không được vốn hóa (capitalized) trong kế toán phương Tây?", options: ["Vì R&D không tạo ra giá trị","Vì lợi ích tương lai không chắc chắn — nguyên tắc thận trọng","Vì luật không cho phép","Vì R&D luôn thất bại"], correct: 1, explanation: "GAAP/IFRS yêu cầu expense hầu hết R&D ngay khi phát sinh vì lợi ích tương lai không chắc chắn. Điều này làm P&L của công ty R&D-heavy (như pharma, tech) trông kém tốt hơn thực tế." }], keyTakeaways: ["SG&A = chi phí vận hành gián tiếp (bán hàng + quản lý)", "R&D = đầu tư vào tương lai, thường expense ngay", "Operating Income = Gross Profit − SG&A − R&D"],
+{ id: 44, slug: "operating-expense", title: "Tự học Tài chính Day 44: Operating Expense: SG&A, R&D", subtitle: "Chi phí vận hành — nằm giữa Gross Profit và Operating Income", duration: "6 phút", difficulty: "Dễ", emoji: "·", openingQuestion: "Lương CEO, chi phí marketing và thuê văn phòng thuộc loại chi phí gì?", openingOptions: ["COGS","SG&A (Selling, General & Administrative)","COGS và SG&A","Không phải chi phí"], correctOption: 1, explanation: "SG&A là chi phí vận hành gián tiếp: bán hàng (sales team, marketing), quản lý (lương admin, thuê văn phòng) và chi phí chung. R&D là đầu tư vào phát triển sản phẩm. Cả hai trừ vào Gross Profit.", diagram: [], interactiveType: "profit-calc", realWorldExample: { company: "Thế Giới Di Động (MWG)", description: "MWG là ví dụ điển hình về SG&A chiếm tỷ trọng lớn trong P&L của doanh nghiệp bán lẻ: chi phí thuê mặt bằng hàng nghìn cửa hàng, lương nhân viên bán hàng, chi phí marketing và vận hành chuỗi cung ứng. Trong các giai đoạn sức mua yếu, MWG phải chủ động đóng bớt cửa hàng kém hiệu quả để cắt giảm SG&A, cho thấy đòn bẩy vận hành (operating leverage) hoạt động theo cả hai chiều — tăng doanh thu thì margin cải thiện nhanh, nhưng giảm doanh thu thì SG&A cố định lại ăn mòn lợi nhuận nhanh không kém." }, quiz: [{ question: "Tại sao R&D thường không được vốn hóa (capitalized) trong kế toán phương Tây?", options: ["Vì R&D không tạo ra giá trị","Vì lợi ích tương lai không chắc chắn — nguyên tắc thận trọng","Vì luật không cho phép","Vì R&D luôn thất bại"], correct: 1, explanation: "GAAP/IFRS yêu cầu expense hầu hết R&D ngay khi phát sinh vì lợi ích tương lai không chắc chắn. Điều này làm P&L của công ty R&D-heavy (như pharma, tech) trông kém tốt hơn thực tế." }, { question: "Vì sao R&D thường được xem là một khoản đầu tư cho tương lai hơn là chi phí thuần túy, dù kế toán vẫn ghi nhận nó vào Operating Expense của kỳ hiện tại?", options: ["Vì R&D luôn mang lại lợi nhuận ngay lập tức", "Vì R&D tạo ra tài sản vô hình tương lai (sản phẩm mới, công nghệ, bằng sáng chế) dù về mặt kế toán phải ghi nhận ngay là chi phí (do tính bất định cao) thay vì vốn hóa như CapEx", "Vì R&D không ảnh hưởng đến Net Income", "Vì luật yêu cầu ghi nhận R&D khác với các chi phí khác"], correct: 1, explanation: "Chuẩn mực kế toán thận trọng: vì lợi ích tương lai từ R&D quá bất định để đo lường đáng tin cậy, R&D được ghi thẳng vào chi phí thay vì vốn hóa thành tài sản như CapEx — dù về bản chất kinh tế, R&D chính là một khoản đầu tư dài hạn." }], keyTakeaways: ["SG&A = chi phí vận hành gián tiếp (bán hàng + quản lý)", "R&D = đầu tư vào tương lai, thường expense ngay", "Operating Income = Gross Profit − SG&A − R&D"],
   sections: [
     { type: "lead", text: "Sau Gross Profit, doanh nghiệp còn phải trả cho bộ máy vận hành phía sau sản phẩm: đội bán hàng, bộ phận quản lý, nghiên cứu phát triển. Đây là Operating Expense (OpEx) — tầng chi phí thứ hai của Income Statement." },
     { type: "heading", text: "SG&A: chi phí bán hàng và quản lý" },
@@ -1611,7 +2042,7 @@ sections: [
     ] },
   ],
 },
-{ id: 45, slug: "ebit-operating-income", title: "Tự học Tài chính Day 45: EBIT và Operating Income", subtitle: "Lợi nhuận trước lãi vay và thuế — đo hiệu quả hoạt động thuần", duration: "6 phút", difficulty: "Trung bình", emoji: "·", openingQuestion: "Tại sao EBIT hữu ích hơn Net Income khi so sánh hai công ty có cơ cấu nợ khác nhau?", openingOptions: ["EBIT lớn hơn Net Income","EBIT loại bỏ ảnh hưởng của lãi vay và thuế — chỉ đo hiệu quả hoạt động","EBIT dễ tính hơn","Net Income không chuẩn"], correctOption: 1, explanation: "EBIT = Revenue − COGS − OpEx. Nó loại bỏ ảnh hưởng của cơ cấu vốn (lãi vay) và thuế suất, giúp so sánh hiệu quả hoạt động giữa các công ty công bằng hơn.", diagram: [], interactiveType: "profit-calc", realWorldExample: { company: "Hòa Phát (HPG)", description: "Hòa Phát là ví dụ tốt để hiểu EBIT trong ngành thâm dụng vốn. Tập đoàn vay nợ lớn để đầu tư các khu liên hợp gang thép (như Dung Quất), khiến chi phí lãi vay hàng năm ở mức đáng kể. Khi so sánh Hòa Phát với một công ty thép khác ít vay nợ hơn, nhìn Net Income sẽ đánh giá thấp hiệu quả vận hành thực sự của Hòa Phát vì phần lớn chênh lệch đến từ chi phí lãi vay chứ không phải hiệu quả sản xuất — đây chính là lý do EBIT/Operating Margin là thước đo công bằng hơn để so sánh hai doanh nghiệp có đòn bẩy tài chính khác nhau." }, quiz: [{ question: "EBITDA khác EBIT ở điểm gì?", options: ["EBITDA trừ thêm thuế","EBITDA cộng lại D&A — loại bỏ ảnh hưởng của khấu hao","EBIT dành cho manufacturing","Chúng giống nhau"], correct: 1, explanation: "EBITDA = EBIT + Depreciation & Amortization. Bằng cách loại bỏ D&A (non-cash), EBITDA gần hơn với dòng tiền hoạt động và dễ so sánh giữa các ngành." }], keyTakeaways: ["EBIT đo hiệu quả hoạt động, độc lập với cơ cấu vốn", "EBITDA = EBIT + D&A — proxy cho cash generation", "Operating margin = EBIT / Revenue"],
+{ id: 45, slug: "ebit-operating-income", title: "Tự học Tài chính Day 45: EBIT và Operating Income", subtitle: "Lợi nhuận trước lãi vay và thuế — đo hiệu quả hoạt động thuần", duration: "6 phút", difficulty: "Trung bình", emoji: "·", openingQuestion: "Tại sao EBIT hữu ích hơn Net Income khi so sánh hai công ty có cơ cấu nợ khác nhau?", openingOptions: ["EBIT lớn hơn Net Income","EBIT loại bỏ ảnh hưởng của lãi vay và thuế — chỉ đo hiệu quả hoạt động","EBIT dễ tính hơn","Net Income không chuẩn"], correctOption: 1, explanation: "EBIT = Revenue − COGS − OpEx. Nó loại bỏ ảnh hưởng của cơ cấu vốn (lãi vay) và thuế suất, giúp so sánh hiệu quả hoạt động giữa các công ty công bằng hơn.", diagram: [], interactiveType: "profit-calc", realWorldExample: { company: "Hòa Phát (HPG)", description: "Hòa Phát là ví dụ tốt để hiểu EBIT trong ngành thâm dụng vốn. Tập đoàn vay nợ lớn để đầu tư các khu liên hợp gang thép (như Dung Quất), khiến chi phí lãi vay hàng năm ở mức đáng kể. Khi so sánh Hòa Phát với một công ty thép khác ít vay nợ hơn, nhìn Net Income sẽ đánh giá thấp hiệu quả vận hành thực sự của Hòa Phát vì phần lớn chênh lệch đến từ chi phí lãi vay chứ không phải hiệu quả sản xuất — đây chính là lý do EBIT/Operating Margin là thước đo công bằng hơn để so sánh hai doanh nghiệp có đòn bẩy tài chính khác nhau." }, quiz: [{ question: "EBITDA khác EBIT ở điểm gì?", options: ["EBITDA trừ thêm thuế","EBITDA cộng lại D&A — loại bỏ ảnh hưởng của khấu hao","EBIT dành cho manufacturing","Chúng giống nhau"], correct: 1, explanation: "EBITDA = EBIT + Depreciation & Amortization. Bằng cách loại bỏ D&A (non-cash), EBITDA gần hơn với dòng tiền hoạt động và dễ so sánh giữa các ngành." }, { question: "Công ty A và B có cùng EBIT nhưng công ty A vay nợ nhiều hơn nhiều so với B. So sánh EBIT giữa hai công ty này có công bằng hơn so sánh Net Income không?", options: ["Không, vì EBIT không liên quan đến hiệu quả thực", "Có — vì EBIT được tính trước lãi vay và thuế, loại bỏ hoàn toàn ảnh hưởng của cơ cấu vốn khác nhau, cho phép so sánh thuần túy hiệu quả hoạt động kinh doanh cốt lõi giữa A và B", "Không, vì Net Income luôn là chỉ số tốt nhất để so sánh", "Cả EBIT và Net Income đều không dùng để so sánh được"], correct: 1, explanation: "Đây chính là lý do EBIT tồn tại: bằng cách bỏ qua lãi vay và thuế — hai yếu tố phụ thuộc vào quyết định tài trợ vốn (financing decision) chứ không phải hiệu quả vận hành — EBIT cho một sân chơi công bằng để so sánh các công ty có cơ cấu vốn khác nhau." }], keyTakeaways: ["EBIT đo hiệu quả hoạt động, độc lập với cơ cấu vốn", "EBITDA = EBIT + D&A — proxy cho cash generation", "Operating margin = EBIT / Revenue"],
   sections: [
     { type: "lead", text: "Nếu bạn muốn so sánh hai doanh nghiệp cùng ngành nhưng một công ty vay nợ nhiều, một công ty gần như không vay, Net Income sẽ đánh lừa bạn. EBIT là công cụ để so sánh 'táo với táo'." },
     { type: "heading", text: "EBIT là gì và vì sao nó trung lập với cơ cấu vốn" },
@@ -1639,7 +2070,7 @@ sections: [
     ] },
   ],
 },
-{ id: 46, slug: "interest-tax-expense", title: "Tự học Tài chính Day 46: Interest Expense và Tax Expense", subtitle: "Hai khoản cuối trước Net Income — ảnh hưởng của nợ và thuế", duration: "5 phút", difficulty: "Dễ", emoji: "·", openingQuestion: "Vì sao công ty dùng nhiều nợ có lợi nhuận ròng thấp hơn công ty không có nợ dù EBIT bằng nhau?", openingOptions: ["Vì công ty nợ kém hiệu quả","Vì interest expense làm giảm lợi nhuận trước thuế, giảm Net Income","Vì thuế suất cao hơn","Vì doanh thu thấp hơn"], correctOption: 1, explanation: "EBIT − Interest = EBT (Earnings Before Tax). EBT × (1 − Tax Rate) = Net Income. Công ty nhiều nợ có interest expense cao → EBT thấp → Net Income thấp. Nhưng lá chắn thuế (tax shield) bù một phần.", diagram: [], interactiveType: "profit-calc", realWorldExample: { company: "Novaland (NVL)", description: "Novaland là ví dụ rõ nét về ảnh hưởng của interest expense lên Net Income. Là doanh nghiệp bất động sản sử dụng đòn bẩy tài chính cao qua trái phiếu và vay ngân hàng để phát triển dự án, chi phí lãi vay của Novaland trong các giai đoạn thị trường khó khăn có thể chiếm tỷ trọng rất lớn so với EBIT, thậm chí khiến EBT và Net Income chuyển sang âm dù hoạt động kinh doanh cốt lõi (EBIT) vẫn dương. Đây là minh họa vì sao nhà đầu tư cần tách biệt hiệu quả hoạt động (EBIT) khỏi gánh nặng tài chính (Interest Expense) khi đánh giá một doanh nghiệp có đòn bẩy cao." }, quiz: [{ question: "Lá chắn thuế (tax shield) từ lãi vay là gì?", options: ["Thuế không phải trả khi có nợ","Lãi vay được trừ trước khi tính thuế, làm giảm thuế phải nộp","Doanh nghiệp được hoàn thuế","Không có khái niệm này"], correct: 1, explanation: "Interest expense là chi phí khấu trừ thuế. Doanh nghiệp trả lãi vay 100 tỷ, thuế suất 20% → tiết kiệm 20 tỷ tiền thuế. Đây là lý do nợ rẻ hơn equity về chi phí sau thuế." }], keyTakeaways: ["EBIT − Interest = EBT; EBT × (1−Tax) = Net Income", "Nhiều nợ = interest expense cao = Net Income thấp hơn", "Nhưng lãi vay được khấu trừ thuế — lá chắn thuế"],
+{ id: 46, slug: "interest-tax-expense", title: "Tự học Tài chính Day 46: Interest Expense và Tax Expense", subtitle: "Hai khoản cuối trước Net Income — ảnh hưởng của nợ và thuế", duration: "5 phút", difficulty: "Dễ", emoji: "·", openingQuestion: "Vì sao công ty dùng nhiều nợ có lợi nhuận ròng thấp hơn công ty không có nợ dù EBIT bằng nhau?", openingOptions: ["Vì công ty nợ kém hiệu quả","Vì interest expense làm giảm lợi nhuận trước thuế, giảm Net Income","Vì thuế suất cao hơn","Vì doanh thu thấp hơn"], correctOption: 1, explanation: "EBIT − Interest = EBT (Earnings Before Tax). EBT × (1 − Tax Rate) = Net Income. Công ty nhiều nợ có interest expense cao → EBT thấp → Net Income thấp. Nhưng lá chắn thuế (tax shield) bù một phần.", diagram: [], interactiveType: "profit-calc", realWorldExample: { company: "Novaland (NVL)", description: "Novaland là ví dụ rõ nét về ảnh hưởng của interest expense lên Net Income. Là doanh nghiệp bất động sản sử dụng đòn bẩy tài chính cao qua trái phiếu và vay ngân hàng để phát triển dự án, chi phí lãi vay của Novaland trong các giai đoạn thị trường khó khăn có thể chiếm tỷ trọng rất lớn so với EBIT, thậm chí khiến EBT và Net Income chuyển sang âm dù hoạt động kinh doanh cốt lõi (EBIT) vẫn dương. Đây là minh họa vì sao nhà đầu tư cần tách biệt hiệu quả hoạt động (EBIT) khỏi gánh nặng tài chính (Interest Expense) khi đánh giá một doanh nghiệp có đòn bẩy cao." }, quiz: [{ question: "Lá chắn thuế (tax shield) từ lãi vay là gì?", options: ["Thuế không phải trả khi có nợ","Lãi vay được trừ trước khi tính thuế, làm giảm thuế phải nộp","Doanh nghiệp được hoàn thuế","Không có khái niệm này"], correct: 1, explanation: "Interest expense là chi phí khấu trừ thuế. Doanh nghiệp trả lãi vay 100 tỷ, thuế suất 20% → tiết kiệm 20 tỷ tiền thuế. Đây là lý do nợ rẻ hơn equity về chi phí sau thuế." }, { question: "Vì sao \"lá chắn thuế\" (tax shield) từ lãi vay lại được xem là một lợi ích, dù về bản chất công ty vẫn đang phải trả tiền lãi thực sự cho ngân hàng?", options: ["Vì lãi vay không cần trả thực sự", "Vì chi phí lãi vay được khấu trừ trước khi tính thuế thu nhập doanh nghiệp, làm giảm số thuế phải nộp — một phần chi phí lãi vay được bù đắp gián tiếp qua khoản thuế tiết kiệm được", "Vì ngân hàng miễn lãi cho công ty có lãi vay lớn", "Vì lãi vay luôn thấp hơn thuế phải nộp"], correct: 1, explanation: "Nếu thuế suất là 20%, mỗi 100 đồng lãi vay giúp công ty tiết kiệm 20 đồng thuế phải nộp — chi phí lãi vay \"thực\" chỉ còn 80 đồng sau thuế. Đây là lý do nợ có chi phí thấp hơn vốn chủ sở hữu về bản chất, và tại sao WACC dùng after-tax cost of debt." }], keyTakeaways: ["EBIT − Interest = EBT; EBT × (1−Tax) = Net Income", "Nhiều nợ = interest expense cao = Net Income thấp hơn", "Nhưng lãi vay được khấu trừ thuế — lá chắn thuế"],
   sections: [
     { type: "lead", text: "Sau EBIT, chỉ còn hai bước nữa để đến Net Income: trừ lãi vay, rồi trừ thuế. Hai bước này tưởng đơn giản nhưng phản ánh hai quyết định chiến lược khác nhau — cơ cấu vốn và hiệu quả quản lý thuế." },
     { type: "heading", text: "Interest Expense: cái giá của việc sử dụng nợ" },
@@ -1667,7 +2098,7 @@ sections: [
     ] },
   ],
 },
-{ id: 47, slug: "net-income-y-nghia", title: "Tự học Tài chính Day 47: Net Income: ý nghĩa và giới hạn", subtitle: "Con số cuối cùng của P&L — không phải lúc nào cũng nói hết sự thật", duration: "6 phút", difficulty: "Trung bình", emoji: "·", openingQuestion: "Công ty Net Income 500 tỷ nhưng FCF âm 200 tỷ. Bạn lo điều gì?", openingOptions: ["Không lo gì — lợi nhuận dương là tốt","Tiền không về thực tế — có thể AR tăng mạnh, CapEx lớn, hoặc WC kém quản lý","Cần tăng doanh thu","Công ty đang trả quá nhiều thuế"], correctOption: 1, explanation: "Net Income là con số kế toán — có thể tốt trên giấy nhưng kém về tiền thực. FCF âm trong khi NI dương là warning signal: bán hàng nhưng chưa thu tiền, CapEx lớn, hoặc tồn kho phình to.", diagram: [], interactiveType: "profit-calc", realWorldExample: { company: "Masan Group (MSN)", description: "Masan là ví dụ tốt để thấy giới hạn của Net Income như một con số đơn lẻ. Tập đoàn đa ngành này thường có Net Income bị ảnh hưởng lớn bởi các khoản mục không lặp lại: đánh giá lại giá trị hợp lý các khoản đầu tư, lãi/lỗ từ thoái vốn công ty con, hoặc chi phí tài chính liên quan đến các thương vụ M&A lớn. Nhà đầu tư theo dõi Masan thường phải nhìn thêm Core Net Income (lợi nhuận cốt lõi, loại bỏ các khoản bất thường) mà công ty tự công bố, thay vì chỉ dựa vào Net Income kế toán, để đánh giá đúng hơn khả năng sinh lời bền vững từ hoạt động kinh doanh chính (tiêu dùng, bán lẻ, thức ăn chăn nuôi)." }, quiz: [{ question: "EPS (Earnings Per Share) tính như thế nào?", options: ["Net Income × Số cổ phiếu","Net Income / Diluted Shares Outstanding","Revenue / Số cổ phiếu","EBITDA / Số cổ phiếu"], correct: 1, explanation: "EPS = Net Income / Diluted Shares. Diluted shares bao gồm options, warrants, convertibles — phản ánh đúng hơn số cổ phần thực tế. EPS là nền tảng tính P/E." }], keyTakeaways: ["Net Income là bottom line — nhưng chỉ là con số kế toán", "NI dương + FCF âm = cần điều tra sâu hơn", "EPS = Net Income / Diluted Shares — dùng cho P/E"],
+{ id: 47, slug: "net-income-y-nghia", title: "Tự học Tài chính Day 47: Net Income: ý nghĩa và giới hạn", subtitle: "Con số cuối cùng của P&L — không phải lúc nào cũng nói hết sự thật", duration: "6 phút", difficulty: "Trung bình", emoji: "·", openingQuestion: "Công ty Net Income 500 tỷ nhưng FCF âm 200 tỷ. Bạn lo điều gì?", openingOptions: ["Không lo gì — lợi nhuận dương là tốt","Tiền không về thực tế — có thể AR tăng mạnh, CapEx lớn, hoặc WC kém quản lý","Cần tăng doanh thu","Công ty đang trả quá nhiều thuế"], correctOption: 1, explanation: "Net Income là con số kế toán — có thể tốt trên giấy nhưng kém về tiền thực. FCF âm trong khi NI dương là warning signal: bán hàng nhưng chưa thu tiền, CapEx lớn, hoặc tồn kho phình to.", diagram: [], interactiveType: "profit-calc", realWorldExample: { company: "Masan Group (MSN)", description: "Masan là ví dụ tốt để thấy giới hạn của Net Income như một con số đơn lẻ. Tập đoàn đa ngành này thường có Net Income bị ảnh hưởng lớn bởi các khoản mục không lặp lại: đánh giá lại giá trị hợp lý các khoản đầu tư, lãi/lỗ từ thoái vốn công ty con, hoặc chi phí tài chính liên quan đến các thương vụ M&A lớn. Nhà đầu tư theo dõi Masan thường phải nhìn thêm Core Net Income (lợi nhuận cốt lõi, loại bỏ các khoản bất thường) mà công ty tự công bố, thay vì chỉ dựa vào Net Income kế toán, để đánh giá đúng hơn khả năng sinh lời bền vững từ hoạt động kinh doanh chính (tiêu dùng, bán lẻ, thức ăn chăn nuôi)." }, quiz: [{ question: "EPS (Earnings Per Share) tính như thế nào?", options: ["Net Income × Số cổ phiếu","Net Income / Diluted Shares Outstanding","Revenue / Số cổ phiếu","EBITDA / Số cổ phiếu"], correct: 1, explanation: "EPS = Net Income / Diluted Shares. Diluted shares bao gồm options, warrants, convertibles — phản ánh đúng hơn số cổ phần thực tế. EPS là nền tảng tính P/E." }, { question: "Một công ty có Net Income tăng trưởng đều 15%/năm trong 3 năm liên tiếp, nhưng phần lớn mức tăng đến từ việc giảm dự phòng nợ xấu (một ước tính kế toán) chứ không phải tăng doanh thu thực. Điều này nói lên điều gì về \"chất lượng lợi nhuận\" (earnings quality)?", options: ["Chất lượng lợi nhuận rất tốt vì Net Income vẫn tăng đều", "Chất lượng lợi nhuận đáng ngờ — tăng trưởng đến từ một ước tính kế toán có thể thay đổi tùy ý (giảm dự phòng), không phải từ hoạt động kinh doanh cốt lõi bền vững", "Không liên quan gì đến chất lượng lợi nhuận", "Chỉ cần Net Income dương là đủ, không cần xem nguồn gốc tăng trưởng"], correct: 1, explanation: "Chất lượng lợi nhuận cao khi tăng trưởng đến từ doanh thu thực và kiểm soát chi phí hiệu quả. Tăng trưởng từ các ước tính kế toán chủ quan (dự phòng, đánh giá lại tài sản) là dấu hiệu cảnh báo cần đào sâu vào ghi chú báo cáo tài chính (financial notes) để hiểu bản chất thực sự." }], keyTakeaways: ["Net Income là bottom line — nhưng chỉ là con số kế toán", "NI dương + FCF âm = cần điều tra sâu hơn", "EPS = Net Income / Diluted Shares — dùng cho P/E"],
   sections: [
     { type: "lead", text: "Net Income là con số được nhắc đến nhiều nhất trên báo chí tài chính, nhưng cũng là con số dễ bị hiểu lầm nhất. Hiểu đúng ý nghĩa và giới hạn của nó là bước bắt buộc trước khi dùng nó để định giá hay ra quyết định đầu tư." },
     { type: "heading", text: "Net Income là gì và dùng để làm gì" },
@@ -1695,7 +2126,7 @@ sections: [
     ] },
   ],
 },
-{ id: 48, slug: "balance-sheet-doc", title: "Tự học Tài chính Day 48: Đọc Balance Sheet từ đầu đến cuối", subtitle: "Cách đọc bảng cân đối kế toán trong 5 phút", duration: "7 phút", difficulty: "Trung bình", emoji: "·", openingQuestion: "Khi đọc Balance Sheet, bạn nhìn vào phần nào đầu tiên để đánh giá thanh khoản ngắn hạn?", openingOptions: ["Tổng tài sản","Current Assets vs Current Liabilities","Vốn chủ sở hữu","Tổng nợ"], correctOption: 1, explanation: "Current Ratio = Current Assets / Current Liabilities đánh giá khả năng thanh toán ngắn hạn. Dưới 1.0 là cảnh báo. Cũng cần xem cơ cấu nợ: bao nhiêu ngắn hạn vs dài hạn.", diagram: [], realWorldExample: { company: "Techcombank (TCB)", description: "Đọc Balance Sheet của một ngân hàng như Techcombank khác đáng kể so với doanh nghiệp sản xuất: tài sản chủ yếu là các khoản cho vay khách hàng và chứng khoán đầu tư, còn nợ phải trả chủ yếu là tiền gửi khách hàng. Vốn chủ sở hữu chỉ chiếm một tỷ trọng nhỏ so với tổng tài sản (đòn bẩy tài chính rất cao là đặc thù ngành ngân hàng), nên các chỉ số như CAR (hệ số an toàn vốn) và tỷ lệ nợ xấu (NPL) quan trọng hơn nhiều so với Current Ratio thông thường. Đây là lý do Balance Sheet của ngân hàng cần một bộ chỉ số phân tích riêng, không thể áp dụng máy móc khung phân tích của doanh nghiệp phi tài chính." }, quiz: [{ question: "Book Value (giá trị sổ sách) của doanh nghiệp bằng gì?", options: ["Tổng tài sản","Tổng vốn chủ sở hữu (Total Equity)","Market Cap","Tổng doanh thu"], correct: 1, explanation: "Book Value = Total Equity = Total Assets − Total Liabilities. P/B ratio = Market Cap / Book Value. P/B > 1 nghĩa là thị trường định giá cao hơn giá trị sổ sách." }], keyTakeaways: ["Đọc BS: tài sản ngắn hạn vs nợ ngắn hạn trước", "Book Value = Total Equity — nền tảng tính P/B", "Debt/Equity ratio từ BS cho biết đòn bẩy tài chính"],
+{ id: 48, slug: "balance-sheet-doc", title: "Tự học Tài chính Day 48: Đọc Balance Sheet từ đầu đến cuối", subtitle: "Cách đọc bảng cân đối kế toán trong 5 phút", duration: "7 phút", difficulty: "Trung bình", emoji: "·", openingQuestion: "Khi đọc Balance Sheet, bạn nhìn vào phần nào đầu tiên để đánh giá thanh khoản ngắn hạn?", openingOptions: ["Tổng tài sản","Current Assets vs Current Liabilities","Vốn chủ sở hữu","Tổng nợ"], correctOption: 1, explanation: "Current Ratio = Current Assets / Current Liabilities đánh giá khả năng thanh toán ngắn hạn. Dưới 1.0 là cảnh báo. Cũng cần xem cơ cấu nợ: bao nhiêu ngắn hạn vs dài hạn.", diagram: [], realWorldExample: { company: "Techcombank (TCB)", description: "Đọc Balance Sheet của một ngân hàng như Techcombank khác đáng kể so với doanh nghiệp sản xuất: tài sản chủ yếu là các khoản cho vay khách hàng và chứng khoán đầu tư, còn nợ phải trả chủ yếu là tiền gửi khách hàng. Vốn chủ sở hữu chỉ chiếm một tỷ trọng nhỏ so với tổng tài sản (đòn bẩy tài chính rất cao là đặc thù ngành ngân hàng), nên các chỉ số như CAR (hệ số an toàn vốn) và tỷ lệ nợ xấu (NPL) quan trọng hơn nhiều so với Current Ratio thông thường. Đây là lý do Balance Sheet của ngân hàng cần một bộ chỉ số phân tích riêng, không thể áp dụng máy móc khung phân tích của doanh nghiệp phi tài chính." }, quiz: [{ question: "Book Value (giá trị sổ sách) của doanh nghiệp bằng gì?", options: ["Tổng tài sản","Tổng vốn chủ sở hữu (Total Equity)","Market Cap","Tổng doanh thu"], correct: 1, explanation: "Book Value = Total Equity = Total Assets − Total Liabilities. P/B ratio = Market Cap / Book Value. P/B > 1 nghĩa là thị trường định giá cao hơn giá trị sổ sách." }, { question: "Vì sao Balance Sheet được gọi là một \"bức ảnh chụp\" (snapshot) trong khi Income Statement và Cash Flow Statement được gọi là \"đoạn phim\" (flow)?", options: ["Vì Balance Sheet luôn ngắn hơn hai báo cáo kia", "Vì Balance Sheet phản ánh tình trạng tài sản/nợ/vốn chủ TẠI MỘT THỜI ĐIỂM cụ thể (ví dụ 31/12), trong khi hai báo cáo còn lại phản ánh những gì đã diễn ra TRONG SUỐT MỘT KỲ (ví dụ cả năm)", "Vì Balance Sheet không có số liệu", "Không có sự khác biệt thực sự nào giữa ba báo cáo"], correct: 1, explanation: "Đây là điểm phân biệt quan trọng nhất giữa ba báo cáo: Balance Sheet = trạng thái tại một thời điểm (stock), P&L và Cash Flow = biến động trong một khoảng thời gian (flow). Hiểu đúng sự khác biệt này giúp tránh nhầm lẫn khi so sánh số liệu giữa các báo cáo." }], keyTakeaways: ["Đọc BS: tài sản ngắn hạn vs nợ ngắn hạn trước", "Book Value = Total Equity — nền tảng tính P/B", "Debt/Equity ratio từ BS cho biết đòn bẩy tài chính"],
   sections: [
     { type: "lead", text: "Balance Sheet trông giống một bảng số liệu khô khan, nhưng nếu biết đọc theo đúng trình tự, chỉ trong 5 phút bạn có thể đánh giá được thanh khoản, đòn bẩy và giá trị sổ sách của một doanh nghiệp." },
     { type: "heading", text: "Phương trình kế toán nền tảng" },
@@ -1725,7 +2156,7 @@ sections: [
     ] },
   ],
 },
-{ id: 49, slug: "current-non-current-assets", title: "Tự học Tài chính Day 49: Current Assets và Non-current Assets", subtitle: "Phân loại tài sản theo tính thanh khoản", duration: "5 phút", difficulty: "Dễ", emoji: "·", openingQuestion: "Điều nào sau đây là Non-current Asset?", openingOptions: ["Tiền mặt","Khoản phải thu","Nhà xưởng và máy móc (PP&E)","Hàng tồn kho"], correctOption: 2, explanation: "Non-current assets (tài sản dài hạn) là những tài sản không chuyển thành tiền trong 12 tháng: PP&E (Property, Plant & Equipment), intangible assets (thương hiệu, bằng sáng chế), đầu tư dài hạn.", diagram: [], realWorldExample: { company: "Hòa Phát (HPG)", description: "Hòa Phát là ví dụ điển hình về một Balance Sheet nghiêng mạnh về Non-current Assets: các khu liên hợp gang thép như Dung Quất đại diện cho khối PP&E (nhà xưởng, lò cao, dây chuyền sản xuất) trị giá hàng chục nghìn tỷ đồng, chiếm tỷ trọng rất lớn trong tổng tài sản. Ngược lại, Current Assets của Hòa Phát gồm tồn kho quặng sắt, than cốc, thép thành phẩm và các khoản phải thu từ đại lý phân phối. Tỷ trọng Non-current Assets cao phản ánh đặc thù ngành sản xuất thâm dụng vốn — cần đầu tư lớn ban đầu và thời gian thu hồi vốn dài." }, quiz: [{ question: "Goodwill xuất hiện trên Balance Sheet khi nào?", options: ["Khi công ty có thương hiệu tốt","Khi công ty mua lại doanh nghiệp khác với giá cao hơn book value","Khi lợi nhuận tăng trưởng cao","Khi thị phần tăng"], correct: 1, explanation: "Goodwill = Giá mua − Fair value tài sản ròng của công ty mục tiêu. Phản ánh kỳ vọng về thương hiệu, khách hàng, synergy. Goodwill lớn trong M&A thường chịu rủi ro impairment." }], keyTakeaways: ["Current assets: tiền mặt, AR, hàng tồn kho — thanh khoản trong 1 năm", "Non-current: PP&E, intangibles, goodwill — dài hạn", "Asset mix ảnh hưởng đến tính thanh khoản và rủi ro"],
+{ id: 49, slug: "current-non-current-assets", title: "Tự học Tài chính Day 49: Current Assets và Non-current Assets", subtitle: "Phân loại tài sản theo tính thanh khoản", duration: "5 phút", difficulty: "Dễ", emoji: "·", openingQuestion: "Điều nào sau đây là Non-current Asset?", openingOptions: ["Tiền mặt","Khoản phải thu","Nhà xưởng và máy móc (PP&E)","Hàng tồn kho"], correctOption: 2, explanation: "Non-current assets (tài sản dài hạn) là những tài sản không chuyển thành tiền trong 12 tháng: PP&E (Property, Plant & Equipment), intangible assets (thương hiệu, bằng sáng chế), đầu tư dài hạn.", diagram: [], realWorldExample: { company: "Hòa Phát (HPG)", description: "Hòa Phát là ví dụ điển hình về một Balance Sheet nghiêng mạnh về Non-current Assets: các khu liên hợp gang thép như Dung Quất đại diện cho khối PP&E (nhà xưởng, lò cao, dây chuyền sản xuất) trị giá hàng chục nghìn tỷ đồng, chiếm tỷ trọng rất lớn trong tổng tài sản. Ngược lại, Current Assets của Hòa Phát gồm tồn kho quặng sắt, than cốc, thép thành phẩm và các khoản phải thu từ đại lý phân phối. Tỷ trọng Non-current Assets cao phản ánh đặc thù ngành sản xuất thâm dụng vốn — cần đầu tư lớn ban đầu và thời gian thu hồi vốn dài." }, quiz: [{ question: "Goodwill xuất hiện trên Balance Sheet khi nào?", options: ["Khi công ty có thương hiệu tốt","Khi công ty mua lại doanh nghiệp khác với giá cao hơn book value","Khi lợi nhuận tăng trưởng cao","Khi thị phần tăng"], correct: 1, explanation: "Goodwill = Giá mua − Fair value tài sản ròng của công ty mục tiêu. Phản ánh kỳ vọng về thương hiệu, khách hàng, synergy. Goodwill lớn trong M&A thường chịu rủi ro impairment." }, { question: "Goodwill xuất hiện trên Balance Sheet của một công ty khi nào, và vì sao nó không tự nhiên xuất hiện với một công ty tự phát triển nội bộ?", options: ["Goodwill xuất hiện khi công ty có lợi nhuận cao", "Goodwill chỉ xuất hiện khi công ty MUA LẠI một doanh nghiệp khác với giá cao hơn giá trị tài sản ròng công bằng — nó đại diện cho phần trả thêm cho thương hiệu, khách hàng, con người mà không thể định giá riêng lẻ; một công ty tự lớn mạnh nội bộ không ghi nhận goodwill vì không có giao dịch mua bán để đo lường", "Goodwill là một loại tiền mặt dự trữ", "Mọi công ty đều tự động có goodwill sau 5 năm hoạt động"], correct: 1, explanation: "Goodwill chỉ phát sinh từ M&A: Goodwill = Giá mua − Giá trị tài sản ròng công bằng (fair value) của công ty bị mua. Đây là lý do công ty tự phát triển thương hiệu mạnh (như Google, Vinamilk xây dựng nội bộ) không có goodwill khổng lồ trên sổ sách dù giá trị thương hiệu thực tế rất lớn." }], keyTakeaways: ["Current assets: tiền mặt, AR, hàng tồn kho — thanh khoản trong 1 năm", "Non-current: PP&E, intangibles, goodwill — dài hạn", "Asset mix ảnh hưởng đến tính thanh khoản và rủi ro"],
   sections: [
     { type: "lead", text: "Không phải tài sản nào cũng 'có giá trị như nhau' theo nghĩa thanh khoản. Balance Sheet chia tài sản thành hai nhóm lớn dựa trên tiêu chí: tài sản này có chuyển thành tiền mặt trong vòng 12 tháng tới hay không." },
     { type: "heading", text: "Current Assets: tài sản ngắn hạn" },
@@ -1753,7 +2184,7 @@ sections: [
     ] },
   ],
 },
-{ id: 50, slug: "current-long-term-liabilities", title: "Tự học Tài chính Day 50: Current và Long-term Liabilities", subtitle: "Phân loại nợ theo thời hạn đáo hạn", duration: "5 phút", difficulty: "Dễ", emoji: "·", openingQuestion: "Trái phiếu 5 năm của công ty còn 8 tháng nữa đáo hạn. Nó được phân loại là gì?", openingOptions: ["Long-term liability","Current liability — vì đáo hạn trong 12 tháng","Non-current asset","Không thay đổi phân loại"], correctOption: 1, explanation: "Khi nợ dài hạn còn ≤ 12 tháng đáo hạn, nó được tái phân loại thành current liability. Điều này ảnh hưởng đến current ratio và là lý do cần theo dõi debt maturity schedule.", diagram: [], realWorldExample: { company: "Novaland (NVL)", description: "Novaland là ví dụ thời sự về tầm quan trọng của việc phân loại Current vs Long-term Liabilities. Khi thị trường bất động sản và trái phiếu doanh nghiệp gặp khó khăn, một lượng lớn trái phiếu dài hạn của Novaland đến gần ngày đáo hạn buộc phải tái phân loại thành Current Liabilities, khiến Current Ratio của công ty sụt giảm mạnh và làm lộ rõ áp lực thanh khoản ngắn hạn — dẫn đến các đợt đàm phán gia hạn, hoán đổi nợ với trái chủ. Đây là minh chứng thực tế cho việc theo dõi debt maturity schedule (lịch đáo hạn nợ) quan trọng không kém gì việc theo dõi tổng dư nợ." }, quiz: [{ question: "Deferred Revenue (doanh thu nhận trước) được phân loại là gì?", options: ["Tài sản vì là tiền nhận được","Liability vì vẫn còn nghĩa vụ cung cấp hàng hóa/dịch vụ","Vốn chủ sở hữu","Chi phí trả trước"], correct: 1, explanation: "Deferred Revenue là tiền khách trả trước nhưng công ty chưa giao hàng/dịch vụ — là nợ (liability). Khi giao hàng, nó chuyển thành doanh thu trên P&L. Ví dụ: phần mềm subscription." }], keyTakeaways: ["Nợ ≤ 12 tháng = current; > 12 tháng = long-term", "Nợ dài hạn sắp đáo hạn được reclassify thành current", "Deferred Revenue là liability — quan trọng với SaaS, subscription"],
+{ id: 50, slug: "current-long-term-liabilities", title: "Tự học Tài chính Day 50: Current và Long-term Liabilities", subtitle: "Phân loại nợ theo thời hạn đáo hạn", duration: "5 phút", difficulty: "Dễ", emoji: "·", openingQuestion: "Trái phiếu 5 năm của công ty còn 8 tháng nữa đáo hạn. Nó được phân loại là gì?", openingOptions: ["Long-term liability","Current liability — vì đáo hạn trong 12 tháng","Non-current asset","Không thay đổi phân loại"], correctOption: 1, explanation: "Khi nợ dài hạn còn ≤ 12 tháng đáo hạn, nó được tái phân loại thành current liability. Điều này ảnh hưởng đến current ratio và là lý do cần theo dõi debt maturity schedule.", diagram: [], realWorldExample: { company: "Novaland (NVL)", description: "Novaland là ví dụ thời sự về tầm quan trọng của việc phân loại Current vs Long-term Liabilities. Khi thị trường bất động sản và trái phiếu doanh nghiệp gặp khó khăn, một lượng lớn trái phiếu dài hạn của Novaland đến gần ngày đáo hạn buộc phải tái phân loại thành Current Liabilities, khiến Current Ratio của công ty sụt giảm mạnh và làm lộ rõ áp lực thanh khoản ngắn hạn — dẫn đến các đợt đàm phán gia hạn, hoán đổi nợ với trái chủ. Đây là minh chứng thực tế cho việc theo dõi debt maturity schedule (lịch đáo hạn nợ) quan trọng không kém gì việc theo dõi tổng dư nợ." }, quiz: [{ question: "Deferred Revenue (doanh thu nhận trước) được phân loại là gì?", options: ["Tài sản vì là tiền nhận được","Liability vì vẫn còn nghĩa vụ cung cấp hàng hóa/dịch vụ","Vốn chủ sở hữu","Chi phí trả trước"], correct: 1, explanation: "Deferred Revenue là tiền khách trả trước nhưng công ty chưa giao hàng/dịch vụ — là nợ (liability). Khi giao hàng, nó chuyển thành doanh thu trên P&L. Ví dụ: phần mềm subscription." }, { question: "Vì sao các nhà phân tích tín dụng (credit analyst) đặc biệt quan tâm đến \"debt maturity schedule\" (lịch đáo hạn nợ) thay vì chỉ nhìn tổng dư nợ?", options: ["Vì tổng dư nợ không quan trọng bằng chi tiết từng khoản", "Vì một công ty có tổng nợ vừa phải nhưng có quá nhiều khoản đáo hạn dồn vào cùng một thời điểm (nợ \"wall\") có thể đối mặt rủi ro thanh khoản nghiêm trọng hơn nhiều so với công ty có nợ lớn hơn nhưng trải đều qua nhiều năm", "Vì lịch đáo hạn nợ ảnh hưởng đến thuế phải nộp", "Debt maturity schedule không có ý nghĩa phân tích thực tế nào"], correct: 1, explanation: "\"Maturity wall\" — khi một lượng lớn nợ đáo hạn cùng lúc — buộc công ty phải tái cấp vốn (refinance) một khối lượng lớn trong thời gian ngắn. Nếu điều kiện tín dụng thị trường xấu đi đúng lúc đó, công ty có thể rơi vào khủng hoảng thanh khoản dù tổng nợ không hề tăng." }], keyTakeaways: ["Nợ ≤ 12 tháng = current; > 12 tháng = long-term", "Nợ dài hạn sắp đáo hạn được reclassify thành current", "Deferred Revenue là liability — quan trọng với SaaS, subscription"],
   sections: [
     { type: "lead", text: "Phía bên phải của Balance Sheet — Liabilities — cũng được phân loại theo thời hạn, giống như Assets. Nhưng khác với tài sản, nợ mang tính bắt buộc: không trả đúng hạn có thể dẫn đến vỡ nợ, ảnh hưởng nghiêm trọng đến uy tín và khả năng huy động vốn tương lai." },
     { type: "heading", text: "Current Liabilities: nợ ngắn hạn" },
@@ -1783,7 +2214,7 @@ sections: [
     ] },
   ],
 },
-{ id: 51, slug: "shareholders-equity", title: "Tự học Tài chính Day 51: Shareholders' Equity gồm những gì?", subtitle: "Các thành phần của vốn chủ — từ vốn góp đến lợi nhuận giữ lại", duration: "6 phút", difficulty: "Trung bình", emoji: "·", openingQuestion: "Retained Earnings âm (accumulated deficit) có nghĩa là gì?", openingOptions: ["Công ty đang lỗ năm nay","Công ty đã lỗ tích lũy nhiều hơn tổng lợi nhuận lịch sử","Công ty đã trả quá nhiều cổ tức","Vốn góp ban đầu ít"], correctOption: 1, explanation: "Retained Earnings âm (accumulated deficit) nghĩa là tổng lỗ lịch sử vượt tổng lãi lịch sử. Phổ biến ở startup đang đốt tiền. Amazon có accumulated deficit nhiều năm trước khi có lãi bền vững.", diagram: [], realWorldExample: { company: "Thế Giới Di Động (MWG)", description: "Bảng cân đối kế toán của MWG cho thấy vốn chủ sở hữu gồm vốn góp cổ đông (mệnh giá cổ phiếu phát hành), thặng dư vốn cổ phần (chênh lệch giá phát hành so với mệnh giá), lợi nhuận sau thuế chưa phân phối (retained earnings) tích lũy qua nhiều năm, và cổ phiếu quỹ khi MWG thực hiện mua lại cổ phiếu ESOP hoặc buyback." }, quiz: [{ question: "Treasury Stock (cổ phiếu quỹ) ảnh hưởng thế nào đến equity?", options: ["Làm tăng equity","Làm giảm equity — là contra-equity account","Không ảnh hưởng","Làm tăng nợ"], correct: 1, explanation: "Khi công ty mua lại cổ phiếu của mình (buyback), số cổ phiếu đó trở thành treasury stock và được trừ vào equity. Đây là lý do buyback mạnh có thể làm equity âm." }], keyTakeaways: ["Equity gồm: common stock, APIC, retained earnings, treasury stock", "Retained earnings âm = accumulated deficit — lỗ tích lũy", "Buyback giảm equity — companies với buyback lớn có thể có equity âm"],
+{ id: 51, slug: "shareholders-equity", title: "Tự học Tài chính Day 51: Shareholders' Equity gồm những gì?", subtitle: "Các thành phần của vốn chủ — từ vốn góp đến lợi nhuận giữ lại", duration: "6 phút", difficulty: "Trung bình", emoji: "·", openingQuestion: "Retained Earnings âm (accumulated deficit) có nghĩa là gì?", openingOptions: ["Công ty đang lỗ năm nay","Công ty đã lỗ tích lũy nhiều hơn tổng lợi nhuận lịch sử","Công ty đã trả quá nhiều cổ tức","Vốn góp ban đầu ít"], correctOption: 1, explanation: "Retained Earnings âm (accumulated deficit) nghĩa là tổng lỗ lịch sử vượt tổng lãi lịch sử. Phổ biến ở startup đang đốt tiền. Amazon có accumulated deficit nhiều năm trước khi có lãi bền vững.", diagram: [], realWorldExample: { company: "Thế Giới Di Động (MWG)", description: "Bảng cân đối kế toán của MWG cho thấy vốn chủ sở hữu gồm vốn góp cổ đông (mệnh giá cổ phiếu phát hành), thặng dư vốn cổ phần (chênh lệch giá phát hành so với mệnh giá), lợi nhuận sau thuế chưa phân phối (retained earnings) tích lũy qua nhiều năm, và cổ phiếu quỹ khi MWG thực hiện mua lại cổ phiếu ESOP hoặc buyback." }, quiz: [{ question: "Treasury Stock (cổ phiếu quỹ) ảnh hưởng thế nào đến equity?", options: ["Làm tăng equity","Làm giảm equity — là contra-equity account","Không ảnh hưởng","Làm tăng nợ"], correct: 1, explanation: "Khi công ty mua lại cổ phiếu của mình (buyback), số cổ phiếu đó trở thành treasury stock và được trừ vào equity. Đây là lý do buyback mạnh có thể làm equity âm." }, { question: "Vì sao một công ty có Retained Earnings dương lớn vẫn có thể phải tăng vốn bằng cách phát hành thêm cổ phiếu mới?", options: ["Không thể xảy ra — Retained Earnings dương nghĩa là công ty luôn đủ tiền mặt", "Retained Earnings là một con số kế toán (lợi nhuận lũy kế), không phải tiền mặt thực tế — công ty có thể có Retained Earnings lớn nhưng tiền mặt đã được dùng để đầu tư vào tài sản, trả nợ, hoặc bị kẹt trong vốn lưu động", "Retained Earnings luôn bằng đúng số dư tiền mặt hiện tại", "Chỉ công ty thua lỗ mới cần phát hành thêm cổ phiếu"], correct: 1, explanation: "Đây là nhầm lẫn phổ biến: Retained Earnings phản ánh LỢI NHUẬN LŨY KẾ chưa chia, không phải TIỀN MẶT SẴN CÓ. Lợi nhuận các năm trước có thể đã được tái đầu tư vào nhà xưởng, hàng tồn kho, hoặc khoản phải thu — không còn nằm dưới dạng tiền mặt để dùng ngay." }], keyTakeaways: ["Equity gồm: common stock, APIC, retained earnings, treasury stock", "Retained earnings âm = accumulated deficit — lỗ tích lũy", "Buyback giảm equity — companies với buyback lớn có thể có equity âm"],
 sections: [
   { type: "lead", text: "Bạn đã học Balance Sheet gồm Tài sản = Nợ phải trả + Vốn chủ sở hữu. Nhưng 'Vốn chủ sở hữu' (Shareholders' Equity) không phải một con số đơn lẻ — nó là tổng của nhiều mảnh ghép, mỗi mảnh kể một câu chuyện khác nhau về nguồn gốc giá trị mà cổ đông đang nắm giữ." },
   { type: "heading", text: "Bốn thành phần chính của Equity" },
@@ -1809,7 +2240,7 @@ sections: [
     "Hiểu cấu trúc Equity giúp bạn đọc đúng câu chuyện: công ty đang tích lũy giá trị, đốt tiền, hay trả lại vốn cho cổ đông.",
   ] },
 ] },
-{ id: 52, slug: "cash-flow-statement-la-gi", title: "Tự học Tài chính Day 52: Cash Flow Statement là gì?", subtitle: "Ba phần của báo cáo lưu chuyển tiền tệ", duration: "6 phút", difficulty: "Dễ", emoji: "·", openingQuestion: "Cash Flow Statement chia làm mấy phần?", openingOptions: ["Hai: vào và ra","Ba: Operating, Investing, Financing","Bốn phần","Không cố định"], correctOption: 1, explanation: "Cash Flow Statement gồm 3 phần: (1) Operating — tiền từ hoạt động kinh doanh chính; (2) Investing — tiền mua/bán tài sản dài hạn; (3) Financing — tiền từ vay nợ, phát hành/mua lại cổ phiếu, trả cổ tức.", diagram: [], realWorldExample: { company: "Hòa Phát Group (HPG)", description: "Báo cáo lưu chuyển tiền tệ của Hòa Phát tách rõ ba dòng: tiền từ bán thép và sản phẩm công nghiệp (Operating), tiền chi xây dựng Khu liên hợp gang thép Dung Quất (Investing — CapEx rất lớn), và tiền từ vay ngân hàng để tài trợ dự án (Financing). Đọc riêng từng phần cho thấy Hòa Phát đang ở giai đoạn đầu tư mở rộng mạnh." }, quiz: [{ question: "Phần nào của Cash Flow Statement quan trọng nhất để đánh giá sức khỏe dài hạn?", options: ["Financing Cash Flow","Investing Cash Flow","Operating Cash Flow","Tất cả như nhau"], correct: 2, explanation: "OCF (Operating Cash Flow) cho thấy doanh nghiệp có thực sự tạo ra tiền từ hoạt động kinh doanh cốt lõi hay không. OCF dương bền vững = doanh nghiệp khỏe mạnh." }], keyTakeaways: ["3 phần: Operating, Investing, Financing", "OCF = tiền thực từ kinh doanh chính — quan trọng nhất", "Net Change in Cash = OCF + ICF + FCF"],
+{ id: 52, slug: "cash-flow-statement-la-gi", title: "Tự học Tài chính Day 52: Cash Flow Statement là gì?", subtitle: "Ba phần của báo cáo lưu chuyển tiền tệ", duration: "6 phút", difficulty: "Dễ", emoji: "·", openingQuestion: "Cash Flow Statement chia làm mấy phần?", openingOptions: ["Hai: vào và ra","Ba: Operating, Investing, Financing","Bốn phần","Không cố định"], correctOption: 1, explanation: "Cash Flow Statement gồm 3 phần: (1) Operating — tiền từ hoạt động kinh doanh chính; (2) Investing — tiền mua/bán tài sản dài hạn; (3) Financing — tiền từ vay nợ, phát hành/mua lại cổ phiếu, trả cổ tức.", diagram: [], realWorldExample: { company: "Hòa Phát Group (HPG)", description: "Báo cáo lưu chuyển tiền tệ của Hòa Phát tách rõ ba dòng: tiền từ bán thép và sản phẩm công nghiệp (Operating), tiền chi xây dựng Khu liên hợp gang thép Dung Quất (Investing — CapEx rất lớn), và tiền từ vay ngân hàng để tài trợ dự án (Financing). Đọc riêng từng phần cho thấy Hòa Phát đang ở giai đoạn đầu tư mở rộng mạnh." }, quiz: [{ question: "Phần nào của Cash Flow Statement quan trọng nhất để đánh giá sức khỏe dài hạn?", options: ["Financing Cash Flow","Investing Cash Flow","Operating Cash Flow","Tất cả như nhau"], correct: 2, explanation: "OCF (Operating Cash Flow) cho thấy doanh nghiệp có thực sự tạo ra tiền từ hoạt động kinh doanh cốt lõi hay không. OCF dương bền vững = doanh nghiệp khỏe mạnh." }, { question: "Vì sao lợi nhuận ròng (Net Income) không phải là điểm khởi đầu duy nhất có thể dùng để tính Cash Flow Statement — mà còn có phương pháp \"direct method\" bắt đầu từ các khoản thu chi tiền mặt thực tế?", options: ["Direct method không tồn tại trong thực tế", "Indirect method (bắt đầu từ Net Income, điều chỉnh các khoản non-cash) phổ biến hơn vì dễ lập từ dữ liệu kế toán sẵn có, trong khi Direct method yêu cầu theo dõi riêng biệt từng dòng tiền thu/chi thực tế — cả hai đều cho ra cùng kết quả Operating Cash Flow cuối cùng", "Chỉ công ty nhỏ mới dùng indirect method", "Direct method luôn cho kết quả khác indirect method"], correct: 1, explanation: "Cả hai phương pháp đều tính ra cùng một con số Operating Cash Flow cuối cùng — chỉ khác cách trình bày. Indirect method (phổ biến hơn 95% công ty dùng) dễ lập hơn vì tận dụng dữ liệu đã có trên Income Statement và Balance Sheet." }], keyTakeaways: ["3 phần: Operating, Investing, Financing", "OCF = tiền thực từ kinh doanh chính — quan trọng nhất", "Net Change in Cash = OCF + ICF + FCF"],
 sections: [
   { type: "lead", text: "P&L cho bạn biết công ty có lãi hay không. Balance Sheet cho biết công ty đang sở hữu và nợ những gì. Nhưng chỉ Cash Flow Statement (Báo cáo lưu chuyển tiền tệ) mới trả lời câu hỏi thực tế nhất: tiền mặt trong tài khoản công ty tăng hay giảm, và vì sao?" },
   { type: "heading", text: "Ba dòng chảy tiền, ba câu chuyện khác nhau" },
@@ -1834,7 +2265,7 @@ sections: [
     "20 bài tiếp theo sẽ đi sâu vào từng dòng, và giải thích vì sao lãi kế toán không đồng nghĩa với có tiền trong tay.",
   ] },
 ] },
-{ id: 53, slug: "operating-cash-flow", title: "Tự học Tài chính Day 53: Operating Cash Flow là gì?", subtitle: "Tiền thực tế từ hoạt động kinh doanh — khác Net Income thế nào", duration: "6 phút", difficulty: "Trung bình", emoji: "·", openingQuestion: "OCF = Net Income + D&A − ΔNWC. D&A được cộng lại vì sao?", openingOptions: ["Vì D&A là lợi nhuận","Vì D&A là non-cash expense — đã trừ vào NI nhưng không phải tiền thực ra","Vì D&A cần tái đầu tư","Vì quy định kế toán"], correctOption: 1, explanation: "D&A là chi phí không dùng tiền mặt (non-cash). Khi tính OCF từ Net Income, phải cộng lại D&A vì nó đã làm giảm NI nhưng không thực sự tiêu tiền. Tương tự, tăng WC tiêu tốn tiền nên trừ đi.", diagram: [], interactiveType: "profit-calc", realWorldExample: { company: "Vinamilk (VNM)", description: "Vinamilk có Net Income cao và D&A đáng kể từ các nhà máy sữa. Khi tính OCF, D&A được cộng ngược lại vào Net Income, cùng với điều chỉnh thay đổi khoản phải thu, hàng tồn kho — kết quả OCF của Vinamilk thường cao hơn Net Income, phản ánh chất lượng lợi nhuận tốt và khả năng quản lý vốn lưu động hiệu quả." }, quiz: [{ question: "OCF cao hơn Net Income nhiều thường gợi ý điều gì?", options: ["Doanh nghiệp đang gian lận","Doanh nghiệp có khấu hao lớn và/hoặc WC quản lý tốt — chất lượng lợi nhuận cao","Doanh thu đang giảm","Thuế suất cao"], correct: 1, explanation: "OCF > NI thường là tín hiệu tốt: D&A lớn (tài sản nhiều), WC quản lý hiệu quả, ít AR khó thu. Doanh nghiệp tạo tiền thực nhiều hơn lợi nhuận kế toán." }], keyTakeaways: ["OCF = tiền thực từ kinh doanh, điều chỉnh từ Net Income", "D&A cộng lại vì non-cash; tăng WC trừ đi vì tiêu tiền", "OCF > NI bền vững = chất lượng lợi nhuận cao"],
+{ id: 53, slug: "operating-cash-flow", title: "Tự học Tài chính Day 53: Operating Cash Flow là gì?", subtitle: "Tiền thực tế từ hoạt động kinh doanh — khác Net Income thế nào", duration: "6 phút", difficulty: "Trung bình", emoji: "·", openingQuestion: "OCF = Net Income + D&A − ΔNWC. D&A được cộng lại vì sao?", openingOptions: ["Vì D&A là lợi nhuận","Vì D&A là non-cash expense — đã trừ vào NI nhưng không phải tiền thực ra","Vì D&A cần tái đầu tư","Vì quy định kế toán"], correctOption: 1, explanation: "D&A là chi phí không dùng tiền mặt (non-cash). Khi tính OCF từ Net Income, phải cộng lại D&A vì nó đã làm giảm NI nhưng không thực sự tiêu tiền. Tương tự, tăng WC tiêu tốn tiền nên trừ đi.", diagram: [], interactiveType: "profit-calc", realWorldExample: { company: "Vinamilk (VNM)", description: "Vinamilk có Net Income cao và D&A đáng kể từ các nhà máy sữa. Khi tính OCF, D&A được cộng ngược lại vào Net Income, cùng với điều chỉnh thay đổi khoản phải thu, hàng tồn kho — kết quả OCF của Vinamilk thường cao hơn Net Income, phản ánh chất lượng lợi nhuận tốt và khả năng quản lý vốn lưu động hiệu quả." }, quiz: [{ question: "OCF cao hơn Net Income nhiều thường gợi ý điều gì?", options: ["Doanh nghiệp đang gian lận","Doanh nghiệp có khấu hao lớn và/hoặc WC quản lý tốt — chất lượng lợi nhuận cao","Doanh thu đang giảm","Thuế suất cao"], correct: 1, explanation: "OCF > NI thường là tín hiệu tốt: D&A lớn (tài sản nhiều), WC quản lý hiệu quả, ít AR khó thu. Doanh nghiệp tạo tiền thực nhiều hơn lợi nhuận kế toán." }, { question: "Nếu một công ty có D&A rất lớn nhưng Operating Cash Flow chỉ cao hơn Net Income một chút (không tương xứng với D&A), điều này gợi ý điều gì cần kiểm tra thêm?", options: ["Không có gì đáng lo — D&A luôn cộng thêm vào OCF một cách tự động", "Có thể một khoản mục khác (như tăng mạnh khoản phải thu hoặc hàng tồn kho) đang \"ăn\" bớt phần cải thiện từ D&A — cần xem chi tiết thay đổi vốn lưu động (ΔNWC) trong công thức OCF", "Công ty chắc chắn đang gian lận báo cáo tài chính", "D&A không liên quan gì đến OCF"], correct: 1, explanation: "OCF = Net Income + D&A − ΔNWC (tăng vốn lưu động). Nếu D&A lớn nhưng OCF chỉ nhích nhẹ so với NI, rất có thể ΔNWC (ví dụ AR hoặc Inventory tăng mạnh) đang triệt tiêu phần lớn lợi ích từ việc cộng lại D&A — một dấu hiệu cần theo dõi sát." }], keyTakeaways: ["OCF = tiền thực từ kinh doanh, điều chỉnh từ Net Income", "D&A cộng lại vì non-cash; tăng WC trừ đi vì tiêu tiền", "OCF > NI bền vững = chất lượng lợi nhuận cao"],
 sections: [
   { type: "lead", text: "Net Income là con số kế toán, chịu ảnh hưởng của các quy tắc ghi nhận không dùng tiền mặt. Operating Cash Flow (OCF) là câu trả lời cho câu hỏi thực dụng hơn: hoạt động kinh doanh cốt lõi thực sự tạo ra bao nhiêu tiền mặt trong kỳ?" },
   { type: "heading", text: "Công thức: từ Net Income đến OCF" },
@@ -1859,7 +2290,7 @@ sections: [
     "So sánh OCF và Net Income theo thời gian là một trong những cách nhanh nhất để đánh giá chất lượng lợi nhuận của một doanh nghiệp.",
   ] },
 ] },
-{ id: 54, slug: "investing-cash-flow", title: "Tự học Tài chính Day 54: Investing Cash Flow là gì?", subtitle: "Tiền dùng để mua tài sản và đầu tư dài hạn", duration: "5 phút", difficulty: "Dễ", emoji: "·", openingQuestion: "ICF (Investing Cash Flow) thường âm ở doanh nghiệp đang phát triển. Điều đó có nghĩa là gì?", openingOptions: ["Doanh nghiệp đang lỗ","Doanh nghiệp đang đầu tư vào tài sản dài hạn (CapEx, M&A) — bình thường","Doanh nghiệp đang bán tài sản","ICF âm luôn là xấu"], correctOption: 1, explanation: "ICF âm thường phản ánh CapEx (mua máy móc, nhà xưởng) và M&A — đầu tư cho tương lai. ICF dương có thể do bán tài sản. Doanh nghiệp tăng trưởng luôn có ICF âm lớn.", diagram: [], realWorldExample: { company: "Vingroup (VIC)", description: "Vingroup thường xuyên có Investing Cash Flow âm rất lớn do liên tục đầu tư vào các dự án bất động sản, nhà máy VinFast, và mở rộng hệ sinh thái Vinhomes, Vinpearl. ICF âm hàng chục nghìn tỷ đồng mỗi năm phản ánh chiến lược đầu tư dài hạn, không phải dấu hiệu yếu kém." }, quiz: [{ question: "CapEx được tìm thấy ở đâu trong báo cáo tài chính?", options: ["Trên P&L như chi phí","Trong Investing Cash Flow trên Cash Flow Statement","Trong Operating Cash Flow","Trong Financing Cash Flow"], correct: 1, explanation: "CapEx là dòng tiền ra để mua tài sản dài hạn (PP&E) — nằm trong Investing Activities. Trên P&L chỉ xuất hiện gián tiếp qua khấu hao theo từng năm." }], keyTakeaways: ["ICF âm = đang đầu tư vào tương lai (CapEx, M&A)", "ICF dương = bán tài sản hoặc thu hồi đầu tư", "CapEx nằm trong ICF, không phải P&L trực tiếp"],
+{ id: 54, slug: "investing-cash-flow", title: "Tự học Tài chính Day 54: Investing Cash Flow là gì?", subtitle: "Tiền dùng để mua tài sản và đầu tư dài hạn", duration: "5 phút", difficulty: "Dễ", emoji: "·", openingQuestion: "ICF (Investing Cash Flow) thường âm ở doanh nghiệp đang phát triển. Điều đó có nghĩa là gì?", openingOptions: ["Doanh nghiệp đang lỗ","Doanh nghiệp đang đầu tư vào tài sản dài hạn (CapEx, M&A) — bình thường","Doanh nghiệp đang bán tài sản","ICF âm luôn là xấu"], correctOption: 1, explanation: "ICF âm thường phản ánh CapEx (mua máy móc, nhà xưởng) và M&A — đầu tư cho tương lai. ICF dương có thể do bán tài sản. Doanh nghiệp tăng trưởng luôn có ICF âm lớn.", diagram: [], realWorldExample: { company: "Vingroup (VIC)", description: "Vingroup thường xuyên có Investing Cash Flow âm rất lớn do liên tục đầu tư vào các dự án bất động sản, nhà máy VinFast, và mở rộng hệ sinh thái Vinhomes, Vinpearl. ICF âm hàng chục nghìn tỷ đồng mỗi năm phản ánh chiến lược đầu tư dài hạn, không phải dấu hiệu yếu kém." }, quiz: [{ question: "CapEx được tìm thấy ở đâu trong báo cáo tài chính?", options: ["Trên P&L như chi phí","Trong Investing Cash Flow trên Cash Flow Statement","Trong Operating Cash Flow","Trong Financing Cash Flow"], correct: 1, explanation: "CapEx là dòng tiền ra để mua tài sản dài hạn (PP&E) — nằm trong Investing Activities. Trên P&L chỉ xuất hiện gián tiếp qua khấu hao theo từng năm." }, { question: "Một công ty có Investing Cash Flow dương lớn trong một quý. Điều này có luôn là tín hiệu tích cực?", options: ["Luôn luôn tích cực vì dòng tiền dương là tốt", "Không nhất thiết — ICF dương có thể đến từ việc BÁN tài sản dài hạn (nhà xưởng, mảng kinh doanh, chứng khoán đầu tư), có thể là tín hiệu công ty đang cần tiền mặt gấp hoặc thu hẹp hoạt động, chứ không phải luôn là dấu hiệu tốt như OCF dương", "ICF luôn phải âm ở mọi công ty", "ICF không có ý nghĩa phân tích gì đáng kể"], correct: 1, explanation: "Cần phân biệt: ICF dương do bán mảng kinh doanh chiến lược để tái cơ cấu là một chuyện; ICF dương do buộc phải bán tài sản để có tiền mặt trả nợ khẩn cấp là chuyện hoàn toàn khác. Luôn cần đọc chi tiết các dòng trong Investing Activities, không chỉ nhìn con số tổng." }], keyTakeaways: ["ICF âm = đang đầu tư vào tương lai (CapEx, M&A)", "ICF dương = bán tài sản hoặc thu hồi đầu tư", "CapEx nằm trong ICF, không phải P&L trực tiếp"],
 sections: [
   { type: "lead", text: "Một công ty chi hàng nghìn tỷ đồng xây nhà máy mới — số tiền đó không nằm trên P&L như một khoản chi phí trong năm. Nó nằm ở Investing Cash Flow (ICF), phần thứ hai của Cash Flow Statement, ghi lại toàn bộ hoạt động mua bán tài sản dài hạn của doanh nghiệp." },
   { type: "heading", text: "ICF ghi nhận những gì?" },
@@ -1887,7 +2318,7 @@ sections: [
     "Điều quan trọng là xem ICF cùng với OCF: doanh nghiệp có tự tạo đủ tiền để tài trợ cho khoản đầu tư đó hay phải đi vay?",
   ] },
 ] },
-{ id: 55, slug: "financing-cash-flow", title: "Tự học Tài chính Day 55: Financing Cash Flow là gì?", subtitle: "Dòng tiền từ vay nợ, phát hành cổ phiếu và trả cổ tức", duration: "5 phút", difficulty: "Dễ", emoji: "·", openingQuestion: "Công ty phát hành cổ phiếu mới được 500 tỷ. Dòng tiền này nằm ở đâu?", openingOptions: ["Operating Cash Flow","Investing Cash Flow","Financing Cash Flow","Không xuất hiện"], correctOption: 2, explanation: "Financing Cash Flow ghi nhận: vay nợ (+), trả nợ (−), phát hành cổ phiếu (+), mua lại cổ phiếu (−), trả cổ tức (−). Phát hành cổ phiếu là nguồn vốn từ cổ đông → FCF dương.", diagram: [], realWorldExample: { company: "PNJ", description: "PNJ đều đặn trả cổ tức tiền mặt cho cổ đông hàng năm — khoản này ghi âm trong Financing Cash Flow. Khi cần vốn mở rộng chuỗi cửa hàng, PNJ có thể vay ngân hàng ngắn hạn để tài trợ vốn lưu động cho mùa cao điểm (Tết, Valentine) — khoản vay này ghi dương trong FCF của kỳ đó." }, quiz: [{ question: "FCF (Financing Cash Flow) âm lớn có thể là dấu hiệu tốt không?", options: ["Không bao giờ","Có thể tốt nếu do buyback cổ phiếu và trả nợ — doanh nghiệp dùng tiền trả lại cổ đông","Chỉ xấu","Không liên quan đến sức khỏe doanh nghiệp"], correct: 1, explanation: "FCF âm do buyback và trả nợ là tốt — doanh nghiệp tạo ra đủ tiền để trả lại cổ đông. FCF âm do vay nợ nhiều cần xem xét thêm mục đích sử dụng." }], keyTakeaways: ["FCF: vay (+), trả nợ (−), phát hành CP (+), buyback (−), cổ tức (−)", "FCF âm do buyback/trả nợ thường là tín hiệu tốt", "Ba luồng OCF + ICF + FCF = Net Change in Cash"],
+{ id: 55, slug: "financing-cash-flow", title: "Tự học Tài chính Day 55: Financing Cash Flow là gì?", subtitle: "Dòng tiền từ vay nợ, phát hành cổ phiếu và trả cổ tức", duration: "5 phút", difficulty: "Dễ", emoji: "·", openingQuestion: "Công ty phát hành cổ phiếu mới được 500 tỷ. Dòng tiền này nằm ở đâu?", openingOptions: ["Operating Cash Flow","Investing Cash Flow","Financing Cash Flow","Không xuất hiện"], correctOption: 2, explanation: "Financing Cash Flow ghi nhận: vay nợ (+), trả nợ (−), phát hành cổ phiếu (+), mua lại cổ phiếu (−), trả cổ tức (−). Phát hành cổ phiếu là nguồn vốn từ cổ đông → FCF dương.", diagram: [], realWorldExample: { company: "PNJ", description: "PNJ đều đặn trả cổ tức tiền mặt cho cổ đông hàng năm — khoản này ghi âm trong Financing Cash Flow. Khi cần vốn mở rộng chuỗi cửa hàng, PNJ có thể vay ngân hàng ngắn hạn để tài trợ vốn lưu động cho mùa cao điểm (Tết, Valentine) — khoản vay này ghi dương trong FCF của kỳ đó." }, quiz: [{ question: "FCF (Financing Cash Flow) âm lớn có thể là dấu hiệu tốt không?", options: ["Không bao giờ","Có thể tốt nếu do buyback cổ phiếu và trả nợ — doanh nghiệp dùng tiền trả lại cổ đông","Chỉ xấu","Không liên quan đến sức khỏe doanh nghiệp"], correct: 1, explanation: "FCF âm do buyback và trả nợ là tốt — doanh nghiệp tạo ra đủ tiền để trả lại cổ đông. FCF âm do vay nợ nhiều cần xem xét thêm mục đích sử dụng." }, { question: "Công ty vừa vay thêm nợ mới (Financing Cash Flow dương) đồng thời lại tăng chi trả cổ tức và mua lại cổ phiếu (thường làm FCF âm) trong cùng một kỳ. Sự kết hợp này có thể là dấu hiệu của điều gì?", options: ["Không có gì đáng chú ý, đây là điều bình thường ở mọi công ty", "Có thể công ty đang vay nợ để tài trợ cho việc trả cổ tức/buyback thay vì dùng dòng tiền hoạt động thực sự tạo ra — một chiến lược tài chính rủi ro nếu duy trì lâu dài vì tăng đòn bẩy chỉ để làm đẹp lợi nhuận trên mỗi cổ phần", "Đây luôn là dấu hiệu công ty đang phát triển mạnh mẽ", "Không thể xảy ra trong cùng một kỳ báo cáo"], correct: 1, explanation: "\"Vay để trả cổ tức/buyback\" (debt-funded shareholder returns) là một cấu trúc tài chính cần cảnh giác — nó có thể tạm thời làm đẹp EPS và lợi suất cổ tức, nhưng làm tăng đòn bẩy tài chính và rủi ro nếu dòng tiền hoạt động thực sự không đủ mạnh để trả nợ về sau." }], keyTakeaways: ["FCF: vay (+), trả nợ (−), phát hành CP (+), buyback (−), cổ tức (−)", "FCF âm do buyback/trả nợ thường là tín hiệu tốt", "Ba luồng OCF + ICF + FCF = Net Change in Cash"],
 sections: [
   { type: "lead", text: "Nếu Operating Cash Flow là tiền từ 'làm ăn' và Investing Cash Flow là tiền 'đầu tư cho tương lai', thì Financing Cash Flow (FCF, dòng tiền tài chính) là tiền qua lại giữa doanh nghiệp với những người cấp vốn cho nó: chủ nợ và cổ đông." },
   { type: "heading", text: "Những khoản mục nằm trong Financing Cash Flow" },
@@ -1911,7 +2342,7 @@ sections: [
     "Ba dòng OCF, ICF, FCF cộng lại chính là Net Change in Cash — điểm khởi đầu cho bài học tiếp theo về vì sao công ty lãi mà vẫn thiếu tiền.",
   ] },
 ] },
-{ id: 56, slug: "cong-ty-lai-ma-het-tien", title: "Tự học Tài chính Day 56: Vì sao công ty lãi nhưng thiếu tiền?", subtitle: "Bẫy lợi nhuận kế toán và thực tế dòng tiền", duration: "6 phút", difficulty: "Trung bình", emoji: "·", openingQuestion: "Công ty ghi nhận doanh thu 100 tỷ nhưng khách trả sau 90 ngày. Tiền mặt thực tế tháng này là bao nhiêu?", openingOptions: ["100 tỷ","0 (chưa có tiền về)","50 tỷ","Tùy thuế suất"], correctOption: 1, explanation: "Doanh thu kế toán ghi nhận ngay khi giao hàng, nhưng tiền thực chưa về. Nếu đồng thời phải trả nhân công, nguyên liệu trong tháng → thiếu tiền dù P&L đẹp. Đây là liquidity trap.", diagram: [], interactiveType: "profit-calc", realWorldExample: { company: "Novaland (NVL)", description: "Trong giai đoạn 2021-2022, nhiều doanh nghiệp bất động sản như Novaland ghi nhận doanh thu và lợi nhuận từ các dự án đã bàn giao, nhưng dòng tiền thực tế bị kẹt lại ở khoản phải thu từ khách hàng trả góp và tồn kho bất động sản dở dang khổng lồ — dẫn đến khủng hoảng thanh khoản dù P&L vẫn có lãi trên sổ sách." }, quiz: [{ question: "Ba nguyên nhân chính khiến công ty lãi nhưng thiếu tiền là gì?", options: ["Thuế cao, chi phí cao, lương cao","AR tăng nhanh, inventory tăng, CapEx lớn trong khi OCF chưa về","Doanh thu thấp, chi phí cao, nợ nhiều","Không có lý do hợp lý"], correct: 1, explanation: "Bộ ba nguy hiểm: (1) AR tăng mạnh = bán nhưng chưa thu tiền; (2) Inventory phình to = tiền kẹt hàng; (3) CapEx lớn = tiền đầu tư tài sản. Cả ba làm tiền mặt cạn dù lợi nhuận dương." }], keyTakeaways: ["Lợi nhuận kế toán ≠ tiền thực trong tay", "AR, inventory, CapEx lớn có thể làm cạn tiền mặt", "Theo dõi OCF, không chỉ Net Income"],
+{ id: 56, slug: "cong-ty-lai-ma-het-tien", title: "Tự học Tài chính Day 56: Vì sao công ty lãi nhưng thiếu tiền?", subtitle: "Bẫy lợi nhuận kế toán và thực tế dòng tiền", duration: "6 phút", difficulty: "Trung bình", emoji: "·", openingQuestion: "Công ty ghi nhận doanh thu 100 tỷ nhưng khách trả sau 90 ngày. Tiền mặt thực tế tháng này là bao nhiêu?", openingOptions: ["100 tỷ","0 (chưa có tiền về)","50 tỷ","Tùy thuế suất"], correctOption: 1, explanation: "Doanh thu kế toán ghi nhận ngay khi giao hàng, nhưng tiền thực chưa về. Nếu đồng thời phải trả nhân công, nguyên liệu trong tháng → thiếu tiền dù P&L đẹp. Đây là liquidity trap.", diagram: [], interactiveType: "profit-calc", realWorldExample: { company: "Novaland (NVL)", description: "Trong giai đoạn 2021-2022, nhiều doanh nghiệp bất động sản như Novaland ghi nhận doanh thu và lợi nhuận từ các dự án đã bàn giao, nhưng dòng tiền thực tế bị kẹt lại ở khoản phải thu từ khách hàng trả góp và tồn kho bất động sản dở dang khổng lồ — dẫn đến khủng hoảng thanh khoản dù P&L vẫn có lãi trên sổ sách." }, quiz: [{ question: "Ba nguyên nhân chính khiến công ty lãi nhưng thiếu tiền là gì?", options: ["Thuế cao, chi phí cao, lương cao","AR tăng nhanh, inventory tăng, CapEx lớn trong khi OCF chưa về","Doanh thu thấp, chi phí cao, nợ nhiều","Không có lý do hợp lý"], correct: 1, explanation: "Bộ ba nguy hiểm: (1) AR tăng mạnh = bán nhưng chưa thu tiền; (2) Inventory phình to = tiền kẹt hàng; (3) CapEx lớn = tiền đầu tư tài sản. Cả ba làm tiền mặt cạn dù lợi nhuận dương." }, { question: "Ngoài khoản phải thu tăng, còn yếu tố nào trong vốn lưu động thường khiến một công ty đang tăng trưởng nhanh gặp tình trạng \"lãi nhưng thiếu tiền\"?", options: ["Chỉ có khoản phải thu là nguyên nhân duy nhất", "Hàng tồn kho tăng để đáp ứng nhu cầu tăng trưởng — tiền đã chi ra để mua/sản xuất hàng nhưng chưa bán được, làm tiền mặt bị \"kẹt\" trong kho dù P&L vẫn ghi nhận tăng trưởng doanh thu dự kiến", "Chỉ có chi phí lãi vay là nguyên nhân", "Chỉ có thuế thu nhập doanh nghiệp là nguyên nhân"], correct: 1, explanation: "Ba \"thủ phạm\" kinh điển của tình trạng lãi nhưng thiếu tiền: khoản phải thu tăng (bán chịu), hàng tồn kho tăng (chuẩn bị cho tăng trưởng), và CapEx lớn (đầu tư tài sản). Cả ba đều tiêu tốn tiền mặt trước khi lợi ích quay trở lại thành doanh thu và tiền thu về." }], keyTakeaways: ["Lợi nhuận kế toán ≠ tiền thực trong tay", "AR, inventory, CapEx lớn có thể làm cạn tiền mặt", "Theo dõi OCF, không chỉ Net Income"],
 sections: [
   { type: "lead", text: "Đây là một trong những nghịch lý gây sốc nhất cho người mới học tài chính: một công ty có thể báo lãi hàng trăm tỷ đồng trên P&L, rồi vài tháng sau tuyên bố mất khả năng thanh toán. Làm sao lãi mà vẫn hết tiền? Câu trả lời nằm ở khoảng cách giữa lợi nhuận kế toán (accrual) và tiền mặt thực tế." },
   { type: "heading", text: "Ba 'lỗ hổng' hút cạn tiền mặt dù có lãi" },
@@ -1931,7 +2362,7 @@ sections: [
     "Luôn đối chiếu Net Income với OCF; nếu chúng phân kỳ nhiều và lâu, đó là tín hiệu rủi ro thanh khoản cần xem xét nghiêm túc.",
   ] },
 ] },
-{ id: 57, slug: "cong-ty-lo-ma-con-tien", title: "Tự học Tài chính Day 57: Vì sao công ty lỗ nhưng vẫn còn tiền?", subtitle: "Depreciation shield và timing khác biệt giữa P&L và Cash", duration: "5 phút", difficulty: "Trung bình", emoji: "·", openingQuestion: "Công ty báo lỗ 20 tỷ nhưng tiền mặt tăng 30 tỷ trong kỳ. Điều này có thể xảy ra không?", openingOptions: ["Không — lỗ thì phải hết tiền","Có — D&A lớn, WC giảm, hoặc nhận tiền trước từ khách"], correctOption: 1, explanation: "Lỗ kế toán ≠ tiền giảm. Khấu hao lớn (non-cash) cộng lại vào OCF. Deferred revenue (tiền nhận trước) cũng tăng OCF. Một công ty lỗ nhưng OCF dương vẫn sống được.", diagram: [], interactiveType: "profit-calc", realWorldExample: { company: "Vietjet Air (VJC)", description: "Trong các giai đoạn khó khăn của ngành hàng không, Vietjet có thể ghi nhận lỗ kế toán do khấu hao đội tàu bay lớn và biến động giá nhiên liệu, nhưng vẫn duy trì dòng tiền hoạt động nhờ khách hàng mua vé trả trước (giống deferred revenue) và D&A không dùng tiền mặt được cộng ngược lại trong OCF." }, quiz: [{ question: "Amazon lỗ nhiều năm nhưng vẫn phát triển mạnh. Điều này có thể vì sao?", options: ["Amazon gian lận kế toán","OCF dương nhờ Deferred Revenue từ Prime/AWS và D&A lớn, dù NI âm","Amazon vay tiền liên tục","Nhà đầu tư không quan tâm lợi nhuận"], correct: 1, explanation: "Amazon có OCF rất dương nhờ: khách trả tiền Prime trước (deferred revenue), WC tốt (trả NCC chậm), và D&A lớn từ hạ tầng. NI âm do đầu tư R&D và CapEx cực lớn." }], keyTakeaways: ["Lỗ kế toán ≠ hết tiền — D&A và WC tạo ra sự khác biệt", "Deferred revenue = tiền nhận trước → tốt cho OCF", "Amazon là ví dụ kinh điển: lỗ kế toán nhưng OCF mạnh"],
+{ id: 57, slug: "cong-ty-lo-ma-con-tien", title: "Tự học Tài chính Day 57: Vì sao công ty lỗ nhưng vẫn còn tiền?", subtitle: "Depreciation shield và timing khác biệt giữa P&L và Cash", duration: "5 phút", difficulty: "Trung bình", emoji: "·", openingQuestion: "Công ty báo lỗ 20 tỷ nhưng tiền mặt tăng 30 tỷ trong kỳ. Điều này có thể xảy ra không?", openingOptions: ["Không — lỗ thì phải hết tiền","Có — D&A lớn, WC giảm, hoặc nhận tiền trước từ khách","Chỉ có thể nếu công ty vay thêm nợ mới","Chỉ có thể nếu công ty bán bớt tài sản"], correctOption: 1, explanation: "Lỗ kế toán ≠ tiền giảm. Khấu hao lớn (non-cash) cộng lại vào OCF. Deferred revenue (tiền nhận trước) cũng tăng OCF. Một công ty lỗ nhưng OCF dương vẫn sống được.", diagram: [], interactiveType: "profit-calc", realWorldExample: { company: "Vietjet Air (VJC)", description: "Trong các giai đoạn khó khăn của ngành hàng không, Vietjet có thể ghi nhận lỗ kế toán do khấu hao đội tàu bay lớn và biến động giá nhiên liệu, nhưng vẫn duy trì dòng tiền hoạt động nhờ khách hàng mua vé trả trước (giống deferred revenue) và D&A không dùng tiền mặt được cộng ngược lại trong OCF." }, quiz: [{ question: "Amazon lỗ nhiều năm nhưng vẫn phát triển mạnh. Điều này có thể vì sao?", options: ["Amazon gian lận kế toán","OCF dương nhờ Deferred Revenue từ Prime/AWS và D&A lớn, dù NI âm","Amazon vay tiền liên tục","Nhà đầu tư không quan tâm lợi nhuận"], correct: 1, explanation: "Amazon có OCF rất dương nhờ: khách trả tiền Prime trước (deferred revenue), WC tốt (trả NCC chậm), và D&A lớn từ hạ tầng. NI âm do đầu tư R&D và CapEx cực lớn." }, { question: "Ngoài D&A và Deferred Revenue, một công ty có thể lỗ trên sổ sách nhưng vẫn có OCF dương nhờ yếu tố nào khác liên quan đến vốn lưu động?", options: ["Không có yếu tố nào khác ngoài D&A và Deferred Revenue", "Giảm khoản phải thu hoặc hàng tồn kho (thu hồi tiền từ các tài sản ngắn hạn đã tồn đọng trước đó) cũng làm tăng OCF dù Net Income âm — công ty đang \"giải phóng\" tiền mặt đã bị kẹt trước đây", "Tăng chi phí lãi vay sẽ làm OCF tăng", "Chỉ có tăng vốn chủ sở hữu mới cải thiện được OCF"], correct: 1, explanation: "Công thức OCF = Net Income + D&A − ΔNWC cho thấy: nếu vốn lưu động (NWC) GIẢM trong kỳ (ví dụ thu hồi được khoản phải thu cũ, bán bớt tồn kho), phần giảm đó cộng thêm vào OCF — đây là một nguồn cải thiện dòng tiền khác ngoài D&A, đặc biệt quan trọng với công ty đang thu hẹp quy mô có kiểm soát." }], keyTakeaways: ["Lỗ kế toán ≠ hết tiền — D&A và WC tạo ra sự khác biệt", "Deferred revenue = tiền nhận trước → tốt cho OCF", "Amazon là ví dụ kinh điển: lỗ kế toán nhưng OCF mạnh"],
 sections: [
   { type: "lead", text: "Nếu bài trước cho thấy 'lãi mà vẫn hết tiền', thì đây là mặt còn lại của đồng xu: một công ty hoàn toàn có thể báo lỗ trên P&L nhưng tiền mặt trong tài khoản vẫn tăng. Nghe có vẻ vô lý, nhưng hoàn toàn hợp logic khi hiểu rõ cơ chế kế toán dồn tích." },
   { type: "heading", text: "Depreciation shield — khấu hao không tiêu tiền" },
@@ -1951,7 +2382,7 @@ sections: [
     "Bài học chung của Day 56 và 57: luôn đọc P&L cùng Cash Flow Statement, đừng để một con số đánh lừa cả bức tranh.",
   ] },
 ] },
-{ id: 58, slug: "free-cash-flow-co-ban", title: "Tự học Tài chính Day 58: Free Cash Flow là gì?", subtitle: "OCF − CapEx = tiền thực sự tự do của doanh nghiệp", duration: "6 phút", difficulty: "Trung bình", emoji: "·", openingQuestion: "FCF = OCF − CapEx. Vì sao CapEx bị trừ đi?", openingOptions: ["Vì CapEx là chi phí","Vì CapEx là tiền thực sự ra để duy trì và phát triển tài sản — tiền không còn tự do","Vì CapEx là nợ","Vì quy ước kế toán"], correctOption: 1, explanation: "FCF là tiền còn lại sau khi đã đầu tư vào tài sản để duy trì và phát triển năng lực kinh doanh. FCF có thể dùng để trả nợ, chia cổ tức, buyback, hoặc M&A — đây là tiền thực sự thuộc về cổ đông.", diagram: [], interactiveType: "profit-calc", realWorldExample: { company: "FPT Corporation", description: "FPT có Operating Cash Flow ổn định từ mảng công nghệ và viễn thông, trong khi CapEx duy trì ở mức vừa phải so với doanh thu (chủ yếu đầu tư hạ tầng data center, R&D). Nhờ vậy Free Cash Flow của FPT thường dương đều đặn — nền tảng để công ty vừa chia cổ tức tiền mặt hàng năm vừa tiếp tục đầu tư mở rộng mảng chuyển đổi số ra nước ngoài." }, quiz: [{ question: "Buffett gọi FCF là 'owner earnings'. Điều đó có nghĩa là gì?", options: ["FCF là lợi nhuận của CEO","FCF là số tiền cổ đông thực sự được hưởng sau khi duy trì hoạt động kinh doanh","FCF bằng cổ tức","FCF là doanh thu thuần"], correct: 1, explanation: "Buffett định nghĩa owner earnings = Net Income + D&A − CapEx bảo trì. Đây là tiền thực sự tạo ra cho chủ sở hữu. FCF là nền tảng của DCF valuation." }], keyTakeaways: ["FCF = OCF − CapEx", "FCF là tiền thực sự tự do sau khi duy trì kinh doanh", "FCF là nền tảng của DCF và 'owner earnings' của Buffett"],
+{ id: 58, slug: "free-cash-flow-co-ban", title: "Tự học Tài chính Day 58: Free Cash Flow là gì?", subtitle: "OCF − CapEx = tiền thực sự tự do của doanh nghiệp", duration: "6 phút", difficulty: "Trung bình", emoji: "·", openingQuestion: "FCF = OCF − CapEx. Vì sao CapEx bị trừ đi?", openingOptions: ["Vì CapEx là chi phí","Vì CapEx là tiền thực sự ra để duy trì và phát triển tài sản — tiền không còn tự do","Vì CapEx là nợ","Vì quy ước kế toán"], correctOption: 1, explanation: "FCF là tiền còn lại sau khi đã đầu tư vào tài sản để duy trì và phát triển năng lực kinh doanh. FCF có thể dùng để trả nợ, chia cổ tức, buyback, hoặc M&A — đây là tiền thực sự thuộc về cổ đông.", diagram: [], interactiveType: "profit-calc", realWorldExample: { company: "FPT Corporation", description: "FPT có Operating Cash Flow ổn định từ mảng công nghệ và viễn thông, trong khi CapEx duy trì ở mức vừa phải so với doanh thu (chủ yếu đầu tư hạ tầng data center, R&D). Nhờ vậy Free Cash Flow của FPT thường dương đều đặn — nền tảng để công ty vừa chia cổ tức tiền mặt hàng năm vừa tiếp tục đầu tư mở rộng mảng chuyển đổi số ra nước ngoài." }, quiz: [{ question: "Buffett gọi FCF là 'owner earnings'. Điều đó có nghĩa là gì?", options: ["FCF là lợi nhuận của CEO","FCF là số tiền cổ đông thực sự được hưởng sau khi duy trì hoạt động kinh doanh","FCF bằng cổ tức","FCF là doanh thu thuần"], correct: 1, explanation: "Buffett định nghĩa owner earnings = Net Income + D&A − CapEx bảo trì. Đây là tiền thực sự tạo ra cho chủ sở hữu. FCF là nền tảng của DCF valuation." }, { question: "Vì sao Free Cash Flow (FCF) được nhiều nhà đầu tư giá trị xem là chỉ số đáng tin cậy hơn Net Income khi định giá doanh nghiệp?", options: ["Vì FCF luôn có giá trị lớn hơn Net Income", "Vì FCF phản ánh tiền THỰC SỰ có sẵn sau khi đã duy trì và phát triển tài sản kinh doanh — khó bị bóp méo bởi các lựa chọn kế toán (như chính sách khấu hao, ước tính dự phòng) hơn so với Net Income", "Vì FCF không cần tính CapEx", "Net Income luôn chính xác hơn FCF trong mọi trường hợp"], correct: 1, explanation: "Net Income chịu ảnh hưởng bởi nhiều lựa chọn và ước tính kế toán (khấu hao, dự phòng, ghi nhận doanh thu) có thể khác nhau giữa các công ty dù bản chất kinh doanh tương tự. FCF, dựa trên dòng tiền thực tế, khó bị điều chỉnh theo ý muốn hơn — đây là lý do Warren Buffett ưu tiên \"owner earnings\" (gần với FCF) hơn Net Income khi định giá." }], keyTakeaways: ["FCF = OCF − CapEx", "FCF là tiền thực sự tự do sau khi duy trì kinh doanh", "FCF là nền tảng của DCF và 'owner earnings' của Buffett"],
 sections: [
   { type: "lead", text: "Nếu phải chọn một con số duy nhất để đánh giá sức khỏe tài chính của một doanh nghiệp, nhiều nhà đầu tư huyền thoại — kể cả Warren Buffett — sẽ chọn Free Cash Flow (FCF), chứ không phải Net Income." },
   { type: "heading", text: "Công thức đơn giản nhưng sâu sắc: FCF = OCF − CapEx" },
@@ -1976,7 +2407,7 @@ sections: [
     "Nắm vững FCF, bạn đã có nền tảng để bước sang bài case study đọc báo cáo tài chính thực tế tiếp theo.",
   ] },
 ] },
-{ id: 59, slug: "doc-bctc-apple", title: "Tự học Tài chính Day 59: Case: Đọc báo cáo tài chính Apple/Vinamilk", subtitle: "Áp dụng 3 báo cáo vào ví dụ thực tế", duration: "7 phút", difficulty: "Trung bình", emoji: "·", openingQuestion: "Apple có hàng trăm tỷ USD tiền mặt nhưng vẫn vay nợ. Tại sao?", openingOptions: ["Vì Apple sắp phá sản","Vì tiền ở nước ngoài, vay trong nước để buyback — tối ưu thuế","Vì Apple không đủ tiền","Vì luật bắt buộc"], correctOption: 1, explanation: "Apple giữ cash ở nước ngoài (offshore). Trước thuế hồi hương, Apple vay trong nước để buyback cổ phiếu thay vì repatriate cash và bị đánh thuế. Đây là capital allocation thông minh.", diagram: [], realWorldExample: { company: "Apple Inc.", description: "Apple: Revenue ~400 tỷ USD, Gross Margin ~45%, OCF ~110 tỷ, FCF ~100 tỷ, buyback ~90 tỷ/năm. Đây là công ty FCF mạnh nhất thế giới." }, quiz: [{ question: "Vinamilk có Gross Margin ~45%. Điều đó có nghĩa là gì?", options: ["Vinamilk lãi 45% doanh thu","Cứ 100 đồng doanh thu, 45 đồng còn lại sau khi trừ giá vốn hàng bán","Vinamilk có 45% thị phần","Tăng trưởng 45%"], correct: 1, explanation: "Gross Margin 45% = pricing power tốt hoặc chi phí sản xuất thấp. Với ngành sữa VN, margin này khá cao — phản ánh thương hiệu mạnh và hiệu quả vận hành của Vinamilk." }], keyTakeaways: ["Apple: OCF mạnh, FCF gần bằng OCF, buyback liên tục", "Vinamilk: gross margin cao → pricing power hoặc hiệu quả sản xuất", "Case study giúp áp dụng lý thuyết vào thực tế"],
+{ id: 59, slug: "doc-bctc-apple", title: "Tự học Tài chính Day 59: Case: Đọc báo cáo tài chính Apple/Vinamilk", subtitle: "Áp dụng 3 báo cáo vào ví dụ thực tế", duration: "7 phút", difficulty: "Trung bình", emoji: "·", openingQuestion: "Apple có hàng trăm tỷ USD tiền mặt nhưng vẫn vay nợ. Tại sao?", openingOptions: ["Vì Apple sắp phá sản","Vì tiền ở nước ngoài, vay trong nước để buyback — tối ưu thuế","Vì Apple không đủ tiền","Vì luật bắt buộc"], correctOption: 1, explanation: "Apple giữ cash ở nước ngoài (offshore). Trước thuế hồi hương, Apple vay trong nước để buyback cổ phiếu thay vì repatriate cash và bị đánh thuế. Đây là capital allocation thông minh.", diagram: [], realWorldExample: { company: "Apple Inc.", description: "Apple: Revenue ~400 tỷ USD, Gross Margin ~45%, OCF ~110 tỷ, FCF ~100 tỷ, buyback ~90 tỷ/năm. Đây là công ty FCF mạnh nhất thế giới." }, quiz: [{ question: "Vinamilk có Gross Margin ~45%. Điều đó có nghĩa là gì?", options: ["Vinamilk lãi 45% doanh thu","Cứ 100 đồng doanh thu, 45 đồng còn lại sau khi trừ giá vốn hàng bán","Vinamilk có 45% thị phần","Tăng trưởng 45%"], correct: 1, explanation: "Gross Margin 45% = pricing power tốt hoặc chi phí sản xuất thấp. Với ngành sữa VN, margin này khá cao — phản ánh thương hiệu mạnh và hiệu quả vận hành của Vinamilk." }, { question: "Case Apple/Vinamilk cho thấy hai công ty rất khác nhau về ngành và quy mô. Điều gì là bài học chung quan trọng nhất khi áp dụng khung phân tích 3 báo cáo tài chính cho BẤT KỲ doanh nghiệp nào?", options: ["Mọi công ty nên có Gross Margin giống hệt nhau", "Ba báo cáo tài chính cho một khung phân tích NHẤT QUÁN áp dụng được cho mọi ngành, mọi quy mô — dù các con số tuyệt đối và chuẩn mực từng ngành khác nhau, cách đọc và liên kết ba báo cáo vẫn giống nhau", "Chỉ công ty công nghệ mới cần đọc cả 3 báo cáo", "Doanh nghiệp Việt Nam và Mỹ cần khung phân tích hoàn toàn khác nhau"], correct: 1, explanation: "Đây là giá trị cốt lõi của việc học đọc báo cáo tài chính: một khi hiểu được logic liên kết giữa Income Statement, Balance Sheet và Cash Flow Statement, bạn có thể áp dụng để phân tích BẤT KỲ doanh nghiệp nào — từ công ty công nghệ Mỹ đến doanh nghiệp sữa Việt Nam — dù benchmark cụ thể của từng ngành sẽ khác nhau." }], keyTakeaways: ["Apple: OCF mạnh, FCF gần bằng OCF, buyback liên tục", "Vinamilk: gross margin cao → pricing power hoặc hiệu quả sản xuất", "Case study giúp áp dụng lý thuyết vào thực tế"],
 sections: [
   { type: "lead", text: "Lý thuyết chỉ thực sự thấm khi áp dụng vào số liệu thật. Bài này đi qua từng bước phân tích báo cáo tài chính của hai công ty ở hai đầu thế giới: Apple — gã khổng lồ công nghệ Mỹ với núi tiền mặt, và Vinamilk — công ty sữa hàng đầu Việt Nam với biên lợi nhuận đáng nể." },
   { type: "heading", text: "Bước 1: Đọc P&L — biên lợi nhuận nói gì?" },
@@ -2002,7 +2433,7 @@ sections: [
     "Bài ôn tập tiếp theo sẽ hệ thống lại toàn bộ 20 bài học về ba báo cáo tài chính trong Chặng 2.",
   ] },
 ] },
-{ id: 60, slug: "on-tap-3-bao-cao", title: "Tự học Tài chính Day 60: Ôn tập: 3 báo cáo tài chính", subtitle: "Kết nối P&L, Balance Sheet và Cash Flow Statement", duration: "7 phút", difficulty: "Trung bình", emoji: "·", openingQuestion: "Lợi nhuận ròng năm nay kết nối vào Balance Sheet qua khoản mục nào?", openingOptions: ["Tài sản ngắn hạn","Retained Earnings trong vốn chủ sở hữu","Nợ dài hạn","Revenue"], correctOption: 1, explanation: "Net Income → tăng Retained Earnings trên Balance Sheet. Cash Flow Statement bắt đầu từ Net Income (indirect method). Ba báo cáo kết nối chặt chẽ — thay đổi một cái ảnh hưởng đến hai cái còn lại.", diagram: [], realWorldExample: { company: "", description: "" }, quiz: [{ question: "Điều nào ĐÚNG về mối liên hệ giữa 3 báo cáo?", options: ["Chúng độc lập với nhau","Net Income từ P&L vào Retained Earnings (BS) và là điểm bắt đầu của Cash Flow Statement","Chỉ cần đọc một báo cáo là đủ","Cash Flow không liên quan đến P&L"], correct: 1, explanation: "Ba báo cáo liên kết: NI → RE (BS); NI là điểm xuất phát CFS indirect method; tiền mặt cuối kỳ trên CFS = tiền mặt trên BS; khấu hao qua P&L → giảm giá trị TS trên BS." }], keyTakeaways: ["3 báo cáo liên kết với nhau qua NI và tiền mặt", "Không thể hiểu một báo cáo mà bỏ qua hai báo cáo còn lại", "Đọc cả 3: P&L đo hiệu quả, BS đo vị thế, CFS đo tiền thực"],
+{ id: 60, slug: "on-tap-3-bao-cao", title: "Tự học Tài chính Day 60: Ôn tập: 3 báo cáo tài chính", subtitle: "Kết nối P&L, Balance Sheet và Cash Flow Statement", duration: "7 phút", difficulty: "Trung bình", emoji: "·", openingQuestion: "Lợi nhuận ròng năm nay kết nối vào Balance Sheet qua khoản mục nào?", openingOptions: ["Tài sản ngắn hạn","Retained Earnings trong vốn chủ sở hữu","Nợ dài hạn","Revenue"], correctOption: 1, explanation: "Net Income → tăng Retained Earnings trên Balance Sheet. Cash Flow Statement bắt đầu từ Net Income (indirect method). Ba báo cáo kết nối chặt chẽ — thay đổi một cái ảnh hưởng đến hai cái còn lại.", diagram: [], realWorldExample: { company: "Kiểm toán độc lập", description: "Đây chính là lý do kiểm toán viên luôn kiểm tra tính nhất quán (articulation) giữa ba báo cáo tài chính trước tiên — nếu Net Income không khớp vào Retained Earnings hoặc số dư tiền mặt không khớp giữa Cash Flow Statement và Balance Sheet, đó là dấu hiệu đầu tiên của sai sót cần điều tra." }, quiz: [{ question: "Điều nào ĐÚNG về mối liên hệ giữa 3 báo cáo?", options: ["Chúng độc lập với nhau","Net Income từ P&L vào Retained Earnings (BS) và là điểm bắt đầu của Cash Flow Statement","Chỉ cần đọc một báo cáo là đủ","Cash Flow không liên quan đến P&L"], correct: 1, explanation: "Ba báo cáo liên kết: NI → RE (BS); NI là điểm xuất phát CFS indirect method; tiền mặt cuối kỳ trên CFS = tiền mặt trên BS; khấu hao qua P&L → giảm giá trị TS trên BS." }, { question: "Nếu Balance Sheet cuối kỳ của một công ty không cân bằng (Tài sản ≠ Nợ + Vốn chủ) sau khi đã cập nhật đầy đủ Net Income và các giao dịch tài chính khác, nguyên nhân nhiều khả năng nhất là gì?", options: ["Đây là điều bình thường, không cần lo lắng", "Có sai sót trong việc liên kết dữ liệu giữa ba báo cáo — ví dụ Net Income chưa được cộng đúng vào Retained Earnings, hoặc số dư tiền mặt cuối kỳ trên Cash Flow Statement không khớp với tiền mặt trên Balance Sheet", "Balance Sheet không bao giờ cần phải cân bằng", "Chỉ cần điều chỉnh Vốn chủ sở hữu cho khớp là xong, không cần tìm nguyên nhân gốc rễ"], correct: 1, explanation: "Ba báo cáo tài chính là một hệ thống khép kín: Net Income từ P&L phải khớp vào Retained Earnings trên Balance Sheet; tiền mặt cuối kỳ trên Cash Flow Statement phải khớp với số dư tiền mặt trên Balance Sheet. Nếu không khớp, chắc chắn có lỗi liên kết dữ liệu cần truy tìm, không phải hiện tượng bình thường." }], keyTakeaways: ["3 báo cáo liên kết với nhau qua NI và tiền mặt", "Không thể hiểu một báo cáo mà bỏ qua hai báo cáo còn lại", "Đọc cả 3: P&L đo hiệu quả, BS đo vị thế, CFS đo tiền thực"],
 sections: [
   { type: "lead", text: "20 bài học vừa qua đã đi qua ba báo cáo tài chính cốt lõi — mỗi báo cáo trả lời một câu hỏi khác nhau, nhưng chúng không tồn tại độc lập. Bài ôn tập này hệ thống lại toàn bộ Chặng 2 và cho thấy sợi dây kết nối giữa chúng." },
   { type: "heading", text: "Nhóm 1 (Day 41-50): Balance Sheet — công ty sở hữu và nợ gì" },
