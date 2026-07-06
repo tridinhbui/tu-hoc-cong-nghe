@@ -171,6 +171,7 @@ export const lessons: Lesson[] = [
       title: "Áp dụng ngay",
       message: "Hôm nay, hãy chọn một khoản chi tiêu lớn sắp tới và hỏi xem nó có thật sự tạo giá trị lâu dài hay không.",
     },
+    isFundamental: true,
   },
 {
     id: 2,
@@ -264,6 +265,7 @@ export const lessons: Lesson[] = [
       title: "Áp dụng ngay",
       message: "Đừng chỉ nhìn vào số tiền trong tài khoản; hãy nhìn cả giá trị thực của nó sau lạm phát.",
     },
+    isFundamental: true,
   },
 {
     id: 3,
@@ -346,6 +348,7 @@ export const lessons: Lesson[] = [
       title: "Áp dụng ngay",
       message: "Xem lại 3 khoản chi phí biến đổi trong tháng và hỏi: khoản nào có thể giảm mà không làm giảm chất lượng cuộc sống đáng kể?",
     },
+    isFundamental: true,
   },
 {
     id: 4,
@@ -428,6 +431,7 @@ export const lessons: Lesson[] = [
       title: "Áp dụng ngay",
       message: "Hãy nhìn lại một khoản thu nhập gần đây và hỏi: mình đã nhận tiền thật chưa, hay mới là doanh thu trên giấy?",
     },
+    isFundamental: true,
   },
 {
     id: 5,
@@ -510,6 +514,7 @@ export const lessons: Lesson[] = [
       title: "Áp dụng ngay",
       message: "Đừng chỉ hỏi 'món này có đáng tiền không?'; hãy hỏi 'món này có làm mình giàu hơn hay poorer mỗi tháng không?'.",
     },
+    isFundamental: true,
   },
 {
     id: 6,
@@ -592,6 +597,7 @@ export const lessons: Lesson[] = [
       title: "Áp dụng ngay",
       message: "Nếu bạn đang cân nhắc vay hoặc đầu tư, hãy xem xét cả lãi suất và lạm phát trước khi quyết định.",
     },
+    isFundamental: true,
   },
 {
     id: 7,
@@ -674,6 +680,7 @@ export const lessons: Lesson[] = [
       title: "Áp dụng ngay",
       message: "Đừng chờ đến khi 'đủ tiền' mới bắt đầu đầu tư; bắt đầu sớm dù nhỏ vẫn có giá trị lớn về lâu dài.",
     },
+    isFundamental: true,
   },
 {
     id: 8,
@@ -756,6 +763,7 @@ export const lessons: Lesson[] = [
       title: "Áp dụng ngay",
       message: "Nếu bạn đang muốn bắt đầu đầu tư, hãy chọn một khoản cố định và tự động hóa việc đầu tư đó mỗi tháng.",
     },
+    isFundamental: true,
   },
 {
     id: 9,
@@ -838,6 +846,7 @@ export const lessons: Lesson[] = [
       title: "Áp dụng ngay",
       message: "Khi bạn so sánh các lựa chọn đầu tư, hãy so sánh lợi nhuận thực sau khi trừ lạm phát.",
     },
+    isFundamental: true,
   },
 {
     id: 10,
@@ -899,6 +908,7 @@ export const lessons: Lesson[] = [
       "PV = FV / (1+r)^n; FV = PV x (1+r)^n",
       "Discount rate = chi phí cơ hội của vốn",
     ],
+    isFundamental: true,
   },
 {
     id: 11,
@@ -960,6 +970,7 @@ export const lessons: Lesson[] = [
       "Risk premium: phần thưởng cho việc chấp nhận rủi ro",
       "Đa dạng hóa loại bỏ rủi ro đặc thù, không loại bỏ rủi ro thị trường",
     ],
+    isFundamental: true,
   },
 {
     id: 12,
@@ -1021,6 +1032,7 @@ export const lessons: Lesson[] = [
       "Kỳ vọng là trung bình dài hạn, không đảm bảo kết quả ngắn hạn",
       "Sharpe Ratio: lợi nhuận thặng dư trên mỗi đơn vị rủi ro",
     ],
+    isFundamental: true,
   },
 {
     id: 13,
@@ -1082,6 +1094,7 @@ export const lessons: Lesson[] = [
       "Liquidity premium: tài sản kém thanh khoản phải trả lợi suất cao hơn",
       "Luôn giữ một phần tài sản ở dạng thanh khoản cao cho nhu cầu khẩn cấp",
     ],
+    isFundamental: true,
   },
 {
     id: 14,
@@ -1143,6 +1156,7 @@ export const lessons: Lesson[] = [
       "Nợ xấu: dùng để tiêu dùng hoặc mua tài sản kém hơn lãi vay",
       "DTI: theo dõi tỷ lệ nợ/thu nhập để giữ sức khỏe tài chính",
     ],
+    isFundamental: true,
   },
 {
     id: 15,
@@ -1204,6 +1218,7 @@ export const lessons: Lesson[] = [
       "Leverage ratio: tổng tài sản / vốn tự có",
       "Đòn bẩy cao + biến động thị trường = rủi ro phá sản",
     ],
+    isFundamental: true,
   },
 {
     id: 16,
@@ -1265,6 +1280,7 @@ export const lessons: Lesson[] = [
       "Vay phá sản khi ROI nhỏ hơn lãi suất vay (spread âm) hoặc tài sản mất giá mạnh",
       "Điều kiện thị trường thay đổi có thể biến spread dương thành âm",
     ],
+    isFundamental: true,
   },
 {
     id: 17,
@@ -1326,6 +1342,7 @@ export const lessons: Lesson[] = [
       "Doanh nghiệp tối ưu lợi nhuận và giá trị cổ đông",
       "Chính phủ cân bằng tăng trưởng, ổn định và phân phối công bằng",
     ],
+    isFundamental: true,
   },
 {
     id: 18,
@@ -1386,6 +1403,7 @@ export const lessons: Lesson[] = [
       "Quỹ đầu tư: gom vốn để đầu tư, nhà đầu tư chịu rủi ro thị trường",
       "Sơ cấp: doanh nghiệp huy động vốn; thứ cấp: nhà đầu tư giao dịch lại",
     ],
+    isFundamental: true,
   },
 {
     id: 19,
@@ -1446,6 +1464,7 @@ export const lessons: Lesson[] = [
       "EMH: giá đã phản ánh thông tin công khai, khó liên tục đánh bại thị trường",
       "Bull market: tăng từ đáy 20%; bear market: giảm từ đỉnh 20%",
     ],
+    isFundamental: true,
   },
 {
     id: 20,
@@ -1508,6 +1527,7 @@ export const lessons: Lesson[] = [
       "Rủi ro: không miễn phí, cần được định giá, đa dạng hóa loại bỏ rủi ro đặc thù",
       "Dòng tiền: sức khỏe tài chính thực tế, quan trọng hơn lợi nhuận kế toán",
     ],
+    isFundamental: true,
   },
 { id: 21, slug: "ke-toan-la-gi", title: "Tự học Tài chính Day 21: Kế toán là ngôn ngữ của kinh doanh", subtitle: "Vì sao mọi quyết định tài chính đều cần kế toán", duration: "5 phút", difficulty: "Dễ", emoji: "·", openingQuestion: "Bạn muốn biết công ty đang lãi hay lỗ — bạn cần đọc gì?", openingOptions: ["Xem giá cổ phiếu","Đọc báo cáo tài chính","Hỏi CEO","Xem số nhân viên"], correctOption: 1, explanation: "Kế toán là hệ thống ghi chép, phân loại và tóm tắt các giao dịch kinh tế. Nó tạo ra ngôn ngữ chung để mọi người — nhà đầu tư, ngân hàng, ban lãnh đạo — đọc và hiểu tình trạng tài chính của một tổ chức.", diagram: [], realWorldExample: { company: "Vingroup", description: "Vingroup công bố báo cáo tài chính hợp nhất hàng quý theo chuẩn IFRS — hàng nghìn nhà đầu tư, ngân hàng, cơ quan thuế đọc cùng một bộ số liệu để ra quyết định khác nhau, minh chứng kế toán là ngôn ngữ chung." }, quiz: [{ question: "Mục đích chính của kế toán là gì?", options: ["Tính thuế cho nhà nước","Ghi chép và trình bày tình hình tài chính một cách chuẩn hóa","Dự báo giá cổ phiếu","Quản lý nhân sự"], correct: 1, explanation: "Kế toán cung cấp thông tin tài chính đáng tin cậy cho các bên liên quan ra quyết định." }, { question: "Vì sao kế toán được ví như một \"ngôn ngữ\" chứ không chỉ là một công cụ tính toán?", options: ["Vì kế toán viên dùng nhiều thuật ngữ khó hiểu", "Vì nó có quy tắc, cấu trúc và ký hiệu chuẩn hóa (chuẩn mực kế toán) giúp bất kỳ ai ở bất kỳ đâu cũng đọc hiểu tình hình tài chính của một tổ chức theo cùng một cách", "Vì kế toán chỉ dùng được ở một quốc gia duy nhất", "Vì kế toán không có quy tắc cố định nào"], correct: 1, explanation: "Giống ngôn ngữ có ngữ pháp chung, kế toán có chuẩn mực (VAS, IFRS, US GAAP) đảm bảo một báo cáo tài chính ở Việt Nam và một báo cáo ở Mỹ có thể được so sánh, hiểu và tin cậy theo cùng một logic." }, { question: "Scenario: Bạn là nhà đầu tư đang xem xét hai công ty cùng ngành. Công ty A: Doanh thu tăng 50%, lợi nhuận tăng 30%, nhưng khoản phải thu tăng 80%. Công ty B: Doanh thu tăng 30%, lợi nhuận tăng 25%, khoản phải thu tăng 20%. Nếu bạn quan tâm đến chất lượng dòng tiền thực tế, công ty nào đáng tin cậy hơn và tại sao?", options: ["Công ty A vì tăng trưởng doanh thu và lợi nhuận cao hơn", "Công ty B vì tăng trưởng doanh thu đi kèm với kiểm soát khoản phải thu tốt hơn, cho thấy chất lượng doanh thu cao hơn", "Cả hai đều như nhau vì cùng ngành", "Không thể đánh giá vì thiếu thông tin"], correct: 1, explanation: "Khoản phải thu tăng nhanh hơn doanh thu là dấu hiệu cảnh báo: công ty bán được hàng trên giấy nhưng khó thu tiền. Công ty B có tăng trưởng chậm hơn nhưng kiểm soát khoản phải thu tốt hơn, cho thấy chất lượng doanh thu cao hơn và dòng tiền thực tế tốt hơn." }], keyTakeaways: ["Kế toán là ngôn ngữ của kinh doanh — ai cũng cần biết đọc", "Báo cáo tài chính là sản phẩm của hệ thống kế toán", "Không cần là kế toán viên để hiểu được con số cơ bản"], isFundamental: true,
 sections: [
