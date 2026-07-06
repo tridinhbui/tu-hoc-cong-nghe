@@ -67,7 +67,7 @@ export default function DocumentsList({ documents }: { documents: PublicDocument
           description="Quay lại sau nhé — admin sẽ sớm bổ sung mẫu biểu và ebook miễn phí."
         />
       ) : (
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {filtered.map((doc) => {
             const Icon = iconFor(doc.file_name);
             return (
@@ -77,25 +77,50 @@ export default function DocumentsList({ documents }: { documents: PublicDocument
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={() => handleDownload(doc)}
-                className="block rounded-xl border-2 border-stone-200 dark:border-stone-800 hover:border-stone-400 dark:hover:border-stone-600 hover:bg-stone-50 dark:hover:bg-stone-900 transition-colors p-5"
+                className="group block rounded-2xl border border-stone-200 dark:border-stone-800 hover:border-stone-400 dark:hover:border-stone-600 hover:shadow-lg dark:hover:shadow-stone-900/50 transition-all overflow-hidden bg-white dark:bg-stone-900"
               >
-                <div className="flex items-start gap-3">
-                  <div className="w-10 h-10 rounded-lg bg-stone-100 dark:bg-stone-800 flex items-center justify-center flex-shrink-0">
-                    <Icon className="w-5 h-5 text-stone-600 dark:text-stone-400" />
+                {/* Image or Icon */}
+                {doc.image_url ? (
+                  <div className="relative w-full h-48 bg-gradient-to-br from-stone-100 to-stone-200 dark:from-stone-800 dark:to-stone-900 overflow-hidden">
+                    <img
+                      src={doc.image_url}
+                      alt={doc.title}
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                    />
                   </div>
-                  <div className="flex-1 min-w-0">
-                    <div className="flex items-center gap-2 flex-wrap">
-                      <span className="font-bold text-sm text-stone-900 dark:text-stone-100">{doc.title}</span>
-                      <span className="text-[10px] font-bold uppercase tracking-wide bg-stone-100 dark:bg-stone-800 text-stone-500 dark:text-stone-400 px-2 py-0.5 rounded-full">
-                        {categoryLabel(doc.category)}
-                      </span>
+                ) : (
+                  <div className="w-full h-48 bg-gradient-to-br from-stone-100 to-stone-200 dark:from-stone-800 dark:to-stone-900 flex items-center justify-center">
+                    <Icon className="w-16 h-16 text-stone-300 dark:text-stone-700" />
+                  </div>
+                )}
+
+                {/* Content */}
+                <div className="p-5">
+                  <div className="flex items-center gap-2 mb-2">
+                    <span className="text-[11px] font-bold uppercase tracking-wide bg-stone-100 dark:bg-stone-800 text-stone-600 dark:text-stone-300 px-2.5 py-1 rounded-full">
+                      {categoryLabel(doc.category)}
+                    </span>
+                  </div>
+
+                  <h3 className="text-lg font-bold text-stone-900 dark:text-stone-100 mb-2 line-clamp-2 group-hover:text-stone-700 dark:group-hover:text-stone-200 transition-colors">
+                    {doc.title}
+                  </h3>
+
+                  {doc.description && (
+                    <p className="text-sm text-stone-600 dark:text-stone-400 mb-4 line-clamp-3">
+                      {doc.description}
+                    </p>
+                  )}
+
+                  <div className="flex items-center justify-between pt-3 border-t border-stone-100 dark:border-stone-800">
+                    <span className="text-xs font-medium text-stone-500 dark:text-stone-400">
+                      {formatBytes(doc.file_size)}
+                    </span>
+                    <div className="flex items-center gap-1.5 text-stone-600 dark:text-stone-300 group-hover:text-stone-900 dark:group-hover:text-stone-100 transition-colors">
+                      <Download className="w-4 h-4" />
+                      <span className="text-xs font-bold">Tải về</span>
                     </div>
-                    {doc.description && (
-                      <p className="text-sm text-stone-600 dark:text-stone-400 mt-1 line-clamp-2">{doc.description}</p>
-                    )}
-                    <p className="text-[11px] text-stone-400 dark:text-stone-500 mt-2">{formatBytes(doc.file_size)}</p>
                   </div>
-                  <Download className="w-4 h-4 text-stone-400 dark:text-stone-500 flex-shrink-0 mt-1" />
                 </div>
               </a>
             );

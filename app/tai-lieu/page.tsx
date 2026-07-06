@@ -12,6 +12,7 @@ export interface PublicDocument {
   file_name: string;
   file_size: number;
   download_count: number;
+  image_url: string | null;
   created_at: string;
 }
 
@@ -19,7 +20,7 @@ export default async function DocumentsGiveawayPage() {
   const supabase = await createServerSupabaseClient();
   const { data, error } = await supabase
     .from("documents")
-    .select("id, title, description, category, file_url, file_name, file_size, download_count, created_at")
+    .select("id, title, description, category, file_url, file_name, file_size, download_count, image_url, created_at")
     .order("created_at", { ascending: false });
 
   // Table not migrated yet, or genuinely empty — either way, render an empty
