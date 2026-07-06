@@ -77,6 +77,26 @@ export const TRACK_PERSONAL = {
         { name: "Bảo vệ tài sản và tổng kết hành trình", days: [251, 262] as [number, number] },
       ],
     },
+    {
+      label: "Chặng 5",
+      name: "Chiến lược đầu tư cá nhân",
+      days: [269, 278] as [number, number],
+      available: true,
+      parts: [
+        { name: "Giá trị, tăng trưởng và chỉ số cơ bản", days: [269, 273] as [number, number] },
+        { name: "Đa dạng hóa, tái cân bằng và tâm lý đầu tư", days: [274, 278] as [number, number] },
+      ],
+    },
+    {
+      label: "Chặng 6",
+      name: "Quản lý tài sản & hưu trí",
+      days: [279, 288] as [number, number],
+      available: true,
+      parts: [
+        { name: "Tự do tài chính, lãi kép và quy tắc rút 4%", days: [279, 283] as [number, number] },
+        { name: "Bảo vệ tài sản và tổng kết hành trình", days: [284, 288] as [number, number] },
+      ],
+    },
   ] satisfies Stage[],
 };
 

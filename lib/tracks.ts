@@ -10,6 +10,8 @@ export const TRACKS = {
       "Chặng 2 — Cổ phiếu, ETF và quỹ đầu tư",
       "Chặng 3 — Trái phiếu và các công cụ cố định",
       "Chặng 4 — Danh mục đầu tư và kế hoạch hưu trí",
+      "Chặng 5 — Chiến lược đầu tư cá nhân",
+      "Chặng 6 — Quản lý tài sản & hưu trí",
     ],
     previewSlug: "audit-tai-chinh-ca-nhan",
     previewLabel: "Chặng 0: Bạn đang đứng ở đâu?",

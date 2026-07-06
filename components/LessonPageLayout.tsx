@@ -4,7 +4,7 @@ import React, { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import { markLessonComplete } from "@/lib/progress";
 import FloatingContact from "@/components/FloatingChatbot";
-import TaiTaiLesson from "@/components/TaiTaiLesson";
+import StageTipsBanner from "@/components/StageTipsBanner";
 import BadgeToast from "@/components/BadgeToast";
 import ReadingProgress from "@/components/ReadingProgress";
 import BookmarkButton from "@/components/BookmarkButton";
@@ -328,7 +328,7 @@ export default function LessonPageLayout({ lesson, quiz, children }: Props) {
             {RECALL_SCHEDULE[lesson.day] && <RecallCard items={RECALL_SCHEDULE[lesson.day]} />}
 
             {/* Tài Tài auto-tip */}
-            <TaiTaiLesson lessonId={lesson.id} lessonTitle={lesson.title} />
+            <StageTipsBanner lessonId={lesson.id} lessonTitle={lesson.title} />
 
             {/* Content */}
             <div className="space-y-8 text-stone-800 dark:text-stone-300 leading-relaxed text-lg sm:text-xl font-medium">

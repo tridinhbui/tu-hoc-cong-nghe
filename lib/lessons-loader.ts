@@ -1,12 +1,18 @@
-import type { Lesson, Difficulty, QuizQuestion, LessonSectionBlock } from "./lessons";
+import "server-only";
+import type { Lesson, Difficulty, QuizQuestion, LessonSectionBlock, LessonMeta, NextLessonMeta } from "./lesson-types";
 
 /**
- * Dynamic lesson loader for code splitting
- * This prevents the entire 1.2MB lessons.ts from being bundled with every page
+ * Dynamic lesson loader for code splitting.
+ * This prevents the entire 1.2MB lessons.ts from being bundled with every page.
+ *
+ * Client components must import their types from lib/lesson-types.ts
+ * directly, not re-exported from here — re-exporting them from this file
+ * (which also holds the dynamic import("./lessons") below) previously
+ * caused the bundler to pull the entire lessons array into a client chunk
+ * anyway, even though the import was `import type`. The `server-only`
+ * import above makes that regress loudly (a build error) instead of
+ * silently shipping ~1.3MB of extra JS again.
  */
-
-// Re-export types for components that only need type definitions
-export type { Lesson, Difficulty, QuizQuestion, LessonSectionBlock };
 
 // Cache for loaded lessons to avoid repeated imports
 let lessonsCache: Lesson[] | null = null;
@@ -108,22 +114,7 @@ export async function getPreviousLesson(currentId: number): Promise<NextLessonMe
   };
 }
 
-// Type definitions
-export interface LessonMeta {
-  id: number;
-  slug: string;
-  title: string;
-  subtitle: string;
-  duration: string;
-  difficulty: "Dễ" | "Trung bình" | "Khó";
-  track?: "personal" | "professional" | "bonus";
-  isFundamental?: boolean;
-  prerequisiteId?: number | null;
-  isVisible?: boolean;
-}
-
-export interface NextLessonMeta {
-  id: number;
-  slug: string;
-  title: string;
-}
+// Re-export for existing server-side importers (Server Components/Actions
+// that already do `import type { LessonMeta } from "@/lib/lessons-loader"`)
+// — the canonical declarations now live in lib/lesson-types.ts.
+export type { LessonMeta, NextLessonMeta };

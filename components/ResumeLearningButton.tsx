@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import { Play, BookOpen, Clock } from "lucide-react";
-import { getResumeLesson } from "@/lib/resume-learning";
+import { getResumeLessonAction } from "@/app/dashboard/actions";
 import { createClient } from "@/lib/supabase";
 
 interface ResumeLearningButtonProps {
@@ -21,7 +21,7 @@ export default function ResumeLearningButton({ activeTrack }: ResumeLearningButt
         const { data: { user } } = await supabase.auth.getUser();
         
         if (user) {
-          const lesson = await getResumeLesson(user.id, activeTrack);
+          const lesson = await getResumeLessonAction(user.id, activeTrack);
           setNextLesson(lesson);
         }
       } catch (error) {

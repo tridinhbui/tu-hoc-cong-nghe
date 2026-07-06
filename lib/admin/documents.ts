@@ -11,9 +11,91 @@ export interface DocumentRow {
   file_size: number;
   download_count: number;
   created_at: string;
+  image_url: string | null;
 }
 
 export { DOCUMENT_CATEGORIES } from "@/lib/document-categories";
+
+// The upload/edit form's `accept=".pdf,.doc,..."` is a UI hint only — a
+// user can still pick any file, or hit these functions directly. Mirror the
+// same whitelist here so the server is the actual enforcement point.
+const ALLOWED_EXTENSIONS = new Set([
+  "pdf", "doc", "docx", "xls", "xlsx", "ppt", "pptx", "zip", "png", "jpg", "jpeg",
+]);
+
+const ALLOWED_MIME_TYPES = new Set([
+  "application/pdf",
+  "application/msword",
+  "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+  "application/vnd.ms-excel",
+  "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+  "application/vnd.ms-powerpoint",
+  "application/vnd.openxmlformats-officedocument.presentationml.presentation",
+  "application/zip",
+  "application/x-zip-compressed",
+  "image/png",
+  "image/jpeg",
+  // Some OS/browser combos report generic types for zip-based formats —
+  // still gated by the extension check below, so this doesn't widen the
+  // effective whitelist on its own.
+  "application/octet-stream",
+]);
+
+function assertAllowedDocumentFile(file: File): void {
+  const ext = file.name.split(".").pop()?.toLowerCase() ?? "";
+  if (!ALLOWED_EXTENSIONS.has(ext)) {
+    throw new Error(`Định dạng tệp ".${ext}" không được hỗ trợ.`);
+  }
+  if (file.type && !ALLOWED_MIME_TYPES.has(file.type)) {
+    throw new Error("Loại tệp không hợp lệ.");
+  }
+}
+
+const ALLOWED_IMAGE_EXTENSIONS = new Set(["png", "jpg", "jpeg", "webp"]);
+const ALLOWED_IMAGE_MIME_TYPES = new Set(["image/png", "image/jpeg", "image/webp"]);
+
+function assertAllowedCoverImage(file: File): void {
+  const ext = file.name.split(".").pop()?.toLowerCase() ?? "";
+  if (!ALLOWED_IMAGE_EXTENSIONS.has(ext)) {
+    throw new Error(`Định dạng ảnh ".${ext}" không được hỗ trợ.`);
+  }
+  if (file.type && !ALLOWED_IMAGE_MIME_TYPES.has(file.type)) {
+    throw new Error("Loại ảnh không hợp lệ.");
+  }
+  if (file.size > 5 * 1024 * 1024) {
+    throw new Error("Ảnh minh hoạ vượt quá giới hạn 5MB.");
+  }
+}
+
+// image_url was added by a later migration (20260706_add_document_image.sql)
+// that may not be applied on every environment yet. PostgREST's "undefined
+// column" error is code 42703 — if an insert/update including image_url
+// fails with that, retry once without it rather than failing the whole
+// upload/edit over an optional field.
+function isMissingColumnError(error: { code?: string } | null): boolean {
+  return error?.code === "42703";
+}
+
+/** Uploads an optional cover image to the same "documents" storage bucket, under a covers/ prefix. Returns its public URL, or null if no image was given. */
+async function uploadCoverImage(
+  supabase: ReturnType<typeof createAdminClient>,
+  image: File | null | undefined
+): Promise<string | null> {
+  if (!image || image.size === 0) return null;
+  assertAllowedCoverImage(image);
+
+  const ext = image.name.split(".").pop() || "jpg";
+  const path = `covers/${Date.now()}-${Math.random().toString(36).slice(2, 8)}.${ext}`;
+
+  const { error: uploadError } = await supabase.storage
+    .from("documents")
+    .upload(path, image, { contentType: image.type || "image/jpeg" });
+
+  if (uploadError) throw new Error(uploadError.message);
+
+  const { data } = supabase.storage.from("documents").getPublicUrl(path);
+  return data.publicUrl;
+}
 
 export async function getDocuments(): Promise<DocumentRow[]> {
   const supabase = createAdminClient();
@@ -43,9 +125,11 @@ export async function uploadDocument(params: {
   description: string;
   category: string;
   file: File;
+  image?: File | null;
   uploadedBy: string;
 }): Promise<void> {
-  const { title, description, category, file, uploadedBy } = params;
+  const { title, description, category, file, image, uploadedBy } = params;
+  assertAllowedDocumentFile(file);
   const supabase = createAdminClient();
 
   const ext = file.name.split(".").pop() || "bin";
@@ -57,9 +141,19 @@ export async function uploadDocument(params: {
 
   if (uploadError) throw new Error(uploadError.message);
 
+  let imageUrl: string | null = null;
+  try {
+    imageUrl = await uploadCoverImage(supabase, image);
+  } catch (err) {
+    // The document file already uploaded — don't leave it orphaned just
+    // because the optional cover image failed.
+    await supabase.storage.from("documents").remove([path]);
+    throw err;
+  }
+
   const { data: publicUrlData } = supabase.storage.from("documents").getPublicUrl(path);
 
-  const { error: insertError } = await supabase.from("documents").insert({
+  const baseRow = {
     title,
     description: description || null,
     category,
@@ -67,14 +161,106 @@ export async function uploadDocument(params: {
     file_name: file.name,
     file_size: file.size,
     uploaded_by: uploadedBy,
-  });
+  };
+
+  let { error: insertError } = await supabase.from("documents").insert({ ...baseRow, image_url: imageUrl });
+  if (insertError && isMissingColumnError(insertError)) {
+    ({ error: insertError } = await supabase.from("documents").insert(baseRow));
+  }
 
   if (insertError) {
-    // Clean up the uploaded file if the metadata insert fails, so storage
+    // Clean up the uploaded file(s) if the metadata insert fails, so storage
     // doesn't accumulate orphaned files with no corresponding row.
     await supabase.storage.from("documents").remove([path]);
     throw new Error(insertError.message);
   }
+}
+
+export async function updateDocument(params: {
+  id: number;
+  title: string;
+  description: string;
+  category: string;
+  file?: File | null;
+  image?: File | null;
+  removeImage?: boolean;
+}): Promise<void> {
+  const { id, title, description, category, file, image, removeImage } = params;
+  const supabase = createAdminClient();
+
+  const fields: Record<string, unknown> = {
+    title,
+    description: description || null,
+    category,
+  };
+
+  const { data: existing, error: fetchError } = await supabase
+    .from("documents")
+    .select("file_url, image_url")
+    .eq("id", id)
+    .single();
+
+  if (fetchError || !existing) throw new Error(fetchError?.message ?? "Không tìm thấy tài liệu");
+
+  const uploadedPaths: string[] = [];
+  const oldPathsToCleanUp: string[] = [];
+
+  // Replacing the file is optional — editing title/description/category
+  // shouldn't require re-uploading.
+  if (file && file.size > 0) {
+    assertAllowedDocumentFile(file);
+
+    const ext = file.name.split(".").pop() || "bin";
+    const path = `${Date.now()}-${Math.random().toString(36).slice(2, 8)}.${ext}`;
+
+    const { error: uploadError } = await supabase.storage
+      .from("documents")
+      .upload(path, file, { contentType: file.type || "application/octet-stream" });
+    if (uploadError) throw new Error(uploadError.message);
+    uploadedPaths.push(path);
+
+    const { data: publicUrlData } = supabase.storage.from("documents").getPublicUrl(path);
+    fields.file_url = publicUrlData.publicUrl;
+    fields.file_name = file.name;
+    fields.file_size = file.size;
+
+    const oldPath = existing.file_url?.split("/documents/")[1];
+    if (oldPath) oldPathsToCleanUp.push(oldPath);
+  }
+
+  // Cover image is independently optional: replace it, clear it, or leave it
+  // untouched — same three states editable at once, without forcing a
+  // re-upload of the document file itself.
+  if (image && image.size > 0) {
+    try {
+      fields.image_url = await uploadCoverImage(supabase, image);
+    } catch (err) {
+      for (const p of uploadedPaths) await supabase.storage.from("documents").remove([p]);
+      throw err;
+    }
+    const oldImagePath = existing.image_url?.split("/documents/")[1];
+    if (oldImagePath) oldPathsToCleanUp.push(oldImagePath);
+  } else if (removeImage) {
+    fields.image_url = null;
+    const oldImagePath = existing.image_url?.split("/documents/")[1];
+    if (oldImagePath) oldPathsToCleanUp.push(oldImagePath);
+  }
+
+  let { error: updateError } = await supabase.from("documents").update(fields).eq("id", id);
+  if (updateError && isMissingColumnError(updateError) && "image_url" in fields) {
+    const { image_url: _imageUrl, ...fieldsWithoutImage } = fields;
+    void _imageUrl;
+    ({ error: updateError } = await supabase.from("documents").update(fieldsWithoutImage).eq("id", id));
+  }
+
+  if (updateError) {
+    // Roll back anything newly uploaded since the row was never updated to
+    // point at it.
+    for (const p of uploadedPaths) await supabase.storage.from("documents").remove([p]);
+    throw new Error(updateError.message);
+  }
+
+  for (const p of oldPathsToCleanUp) await supabase.storage.from("documents").remove([p]);
 }
 
 export async function deleteDocument(id: number): Promise<void> {

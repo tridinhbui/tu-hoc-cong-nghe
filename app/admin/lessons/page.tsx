@@ -1,4 +1,4 @@
-import { getLessonsAdmin } from "@/lib/admin/lessons";
+import { getLessons } from "@/lib/admin/lessons";
 import { getUnlockRequests } from "@/lib/admin/unlock-requests";
 import LessonsTable from "./LessonsTable";
 import UnlockRequestsPanel from "./UnlockRequestsPanel";
@@ -15,7 +15,7 @@ export default async function AdminLessonsPage({ searchParams }: PageProps) {
   const page = Number(params.page ?? "1") || 1;
 
   const [result, unlockRequests] = await Promise.all([
-    getLessonsAdmin({ search, page, pageSize: 20 }),
+    getLessons({ search, page, pageSize: 20 }),
     getUnlockRequests("pending"),
   ]);
 

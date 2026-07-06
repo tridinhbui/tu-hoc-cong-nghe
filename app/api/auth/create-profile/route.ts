@@ -22,11 +22,27 @@ export async function POST(request: NextRequest) {
     const fullName = user.user_metadata?.full_name || user.email?.split("@")[0] || "User";
     const avatarUrl = user.user_metadata?.avatar_url || null;
 
-    // Create or update profile
-    const { data, error } = await supabase
+    // This route is called on every dashboard load (see UserProfile.tsx), not
+    // just at signup. It must never blindly upsert progress fields
+    // (total_xp/current_level/lessons_completed) — a naive upsert would reset
+    // real progress back to defaults on every single visit. So: check first,
+    // insert defaults only if the row is genuinely new, and on an existing
+    // row only refresh the fields that can legitimately change (name/avatar
+    // from the OAuth provider) without touching progress or role.
+    const { data: existing, error: fetchError } = await supabase
       .from("user_profiles")
-      .upsert(
-        {
+      .select("id")
+      .eq("id", user.id)
+      .maybeSingle();
+
+    if (fetchError) {
+      return NextResponse.json({ error: fetchError.message }, { status: 500 });
+    }
+
+    if (!existing) {
+      const { data, error } = await supabase
+        .from("user_profiles")
+        .insert({
           id: user.id,
           email: user.email,
           full_name: fullName,
@@ -35,9 +51,25 @@ export async function POST(request: NextRequest) {
           current_level: 1,
           total_xp: 0,
           lessons_completed: 0,
-        },
-        { onConflict: "id" }
-      )
+        })
+        .select()
+        .single();
+
+      if (error) {
+        return NextResponse.json({ error: error.message }, { status: 500 });
+      }
+
+      return NextResponse.json({ success: true, profile: data });
+    }
+
+    const { data, error } = await supabase
+      .from("user_profiles")
+      .update({
+        email: user.email,
+        full_name: fullName,
+        avatar_url: avatarUrl,
+      })
+      .eq("id", user.id)
       .select()
       .single();
 

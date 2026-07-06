@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import { Plus_Jakarta_Sans } from "next/font/google";
+import { Analytics } from "@vercel/analytics/next";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 import { Toaster } from "sonner";
 import { THEME_INIT_SCRIPT } from "@/lib/theme";
 import "./globals.css";
@@ -25,6 +27,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <body className="min-h-screen bg-[#FAFAFC] dark:bg-stone-950 text-stone-900 dark:text-stone-100 antialiased font-sans transition-colors" suppressHydrationWarning>
         {children}
         <Toaster position="top-right" richColors closeButton />
+        <Analytics />
+        <SpeedInsights />
       </body>
     </html>
   );

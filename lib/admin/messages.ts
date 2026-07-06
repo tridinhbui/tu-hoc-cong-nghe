@@ -1,5 +1,6 @@
 import "server-only";
 import { createAdminClient } from "@/lib/supabase-admin";
+import { buildOrIlikeFilter } from "@/lib/admin/search-filter";
 
 export interface ContactMessage {
   id: number;
@@ -35,9 +36,8 @@ export async function getMessages(query: MessagesQuery = {}): Promise<MessagesRe
 
   if (filter === "read") q = q.eq("is_read", true);
   if (filter === "unread") q = q.eq("is_read", false);
-  if (search.trim()) {
-    q = q.or(`name.ilike.%${search}%,email.ilike.%${search}%`);
-  }
+  const searchFilter = buildOrIlikeFilter(["name", "email"], search);
+  if (searchFilter) q = q.or(searchFilter);
 
   const from = (page - 1) * pageSize;
   const to = from + pageSize - 1;

@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
+import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { AnimatePresence, motion } from "framer-motion";
 import { toast } from "sonner";
@@ -295,7 +296,7 @@ export default function LoginPage() {
               </h2>
               <p className="text-sm text-stone-500 dark:text-stone-400">
                 {mode === "login"
-                  ? "Chào mừng trở lại"
+                  ? "Đăng nhập để tiếp tục học"
                   : mode === "signup"
                     ? "Tạo tài khoản để bắt đầu học"
                     : "Nhập email để nhận link đặt lại mật khẩu"}
@@ -511,6 +512,18 @@ export default function LoginPage() {
             </div>
 
           </div>
+
+          <p className="text-center text-xs text-stone-400 dark:text-stone-600 mt-4">
+            Bằng việc tiếp tục, bạn đồng ý với{" "}
+            <Link href="/dieu-khoan" className="underline underline-offset-2 hover:text-stone-600 dark:hover:text-stone-400">
+              Điều khoản sử dụng
+            </Link>{" "}
+            và{" "}
+            <Link href="/chinh-sach-bao-mat" className="underline underline-offset-2 hover:text-stone-600 dark:hover:text-stone-400">
+              Chính sách bảo mật
+            </Link>
+            .
+          </p>
         </div>
       </div>
     </div>

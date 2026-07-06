@@ -1,5 +1,6 @@
 import "server-only";
 import { createAdminClient } from "@/lib/supabase-admin";
+import { buildOrIlikeFilter } from "@/lib/admin/search-filter";
 
 export interface AdminUserRow {
   id: string;
@@ -36,9 +37,8 @@ export async function getUsers(query: UsersQuery = {}): Promise<UsersResult> {
       count: "exact",
     });
 
-  if (search.trim()) {
-    q = q.or(`email.ilike.%${search}%,full_name.ilike.%${search}%`);
-  }
+  const searchFilter = buildOrIlikeFilter(["email", "full_name"], search);
+  if (searchFilter) q = q.or(searchFilter);
 
   const from = (page - 1) * pageSize;
   const to = from + pageSize - 1;

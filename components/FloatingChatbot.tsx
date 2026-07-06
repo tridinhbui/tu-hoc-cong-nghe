@@ -5,17 +5,48 @@ import { createClient } from "@/lib/supabase";
 
 type Status = "idle" | "sending" | "sent" | "error";
 
+// Basic anti-spam: contact_messages accepts inserts from anon+authenticated
+// with no other gate, so a plain bot can flood it. Neither check stops a
+// determined attacker, but both are cheap and block the overwhelming
+// majority of generic form-spam bots.
+const LAST_SUBMIT_KEY = "thtcdn_contact_last_submit";
+const SUBMIT_COOLDOWN_MS = 30_000;
+
 export default function FloatingContact() {
   const supabase = createClient();
   const [open, setOpen] = useState(false);
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [message, setMessage] = useState("");
+  // Honeypot: a real user never sees or fills this field. Bots that
+  // blind-fill every input on the page will, and get silently no-op'd.
+  const [website, setWebsite] = useState("");
   const [status, setStatus] = useState<Status>("idle");
+  const [cooldownError, setCooldownError] = useState("");
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
     if (!message.trim()) return;
+    setCooldownError("");
+
+    if (website.trim()) {
+      // Honeypot tripped — pretend success so the bot doesn't learn to
+      // adapt, but don't actually write anything.
+      setStatus("sent");
+      setName("");
+      setEmail("");
+      setMessage("");
+      setWebsite("");
+      return;
+    }
+
+    const lastSubmit = Number(window.localStorage.getItem(LAST_SUBMIT_KEY) || 0);
+    const msSinceLast = Date.now() - lastSubmit;
+    if (lastSubmit && msSinceLast < SUBMIT_COOLDOWN_MS) {
+      setCooldownError(`Vui lòng đợi ${Math.ceil((SUBMIT_COOLDOWN_MS - msSinceLast) / 1000)} giây rồi gửi tiếp.`);
+      return;
+    }
+
     setStatus("sending");
 
     const {
@@ -35,6 +66,7 @@ export default function FloatingContact() {
       return;
     }
 
+    window.localStorage.setItem(LAST_SUBMIT_KEY, String(Date.now()));
     setStatus("sent");
     setName("");
     setEmail("");
@@ -121,6 +153,18 @@ export default function FloatingContact() {
               </div>
             ) : (
               <form onSubmit={handleSubmit} className="space-y-4">
+                {/* Honeypot — hidden from real users, only bots fill it */}
+                <input
+                  type="text"
+                  name="website"
+                  value={website}
+                  onChange={(e) => setWebsite(e.target.value)}
+                  tabIndex={-1}
+                  autoComplete="off"
+                  aria-hidden="true"
+                  className="hidden"
+                />
+
                 <div className="space-y-1.5">
                   <label className="text-sm font-semibold text-stone-700">Tên của bạn</label>
                   <input
@@ -147,6 +191,10 @@ export default function FloatingContact() {
                   <p className="text-sm text-red-600 font-semibold">
                     Không gửi được, vui lòng thử lại sau.
                   </p>
+                )}
+
+                {cooldownError && (
+                  <p className="text-sm text-red-600 font-semibold">{cooldownError}</p>
                 )}
 
                 <div className="space-y-1.5">

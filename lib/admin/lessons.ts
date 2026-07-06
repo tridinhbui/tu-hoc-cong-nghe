@@ -1,5 +1,6 @@
 import "server-only";
 import { createAdminClient } from "@/lib/supabase-admin";
+import { buildOrIlikeFilter } from "@/lib/admin/search-filter";
 
 export interface AdminLessonRow {
   id: number;
@@ -27,7 +28,7 @@ export interface LessonsResult {
   totalPages: number;
 }
 
-export async function getLessonsAdmin(query: LessonsQuery = {}): Promise<LessonsResult> {
+export async function getLessons(query: LessonsQuery = {}): Promise<LessonsResult> {
   const { search = "", page = 1, pageSize = 20 } = query;
   const supabase = createAdminClient();
 
@@ -37,9 +38,8 @@ export async function getLessonsAdmin(query: LessonsQuery = {}): Promise<Lessons
       count: "exact",
     });
 
-  if (search.trim()) {
-    q = q.or(`title.ilike.%${search}%,slug.ilike.%${search}%`);
-  }
+  const searchFilter = buildOrIlikeFilter(["title", "slug"], search);
+  if (searchFilter) q = q.or(searchFilter);
 
   const from = (page - 1) * pageSize;
   const to = from + pageSize - 1;

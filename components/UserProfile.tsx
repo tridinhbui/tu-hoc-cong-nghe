@@ -135,6 +135,20 @@ export default function UserProfile() {
 
           <div className="space-y-1 mb-2">
             <Link
+              href="/analytics"
+              onClick={() => setShowDropdown(false)}
+              className="block px-3 py-2 text-sm font-semibold text-stone-900 dark:text-stone-100 hover:bg-stone-50 dark:hover:bg-stone-800 rounded-lg transition"
+            >
+              Thống kê học tập
+            </Link>
+            <Link
+              href="/tai-lieu"
+              onClick={() => setShowDropdown(false)}
+              className="block px-3 py-2 text-sm font-semibold text-stone-900 dark:text-stone-100 hover:bg-stone-50 dark:hover:bg-stone-800 rounded-lg transition"
+            >
+              Tài liệu miễn phí
+            </Link>
+            <Link
               href="/profile"
               onClick={() => setShowDropdown(false)}
               className="block px-3 py-2 text-sm font-semibold text-stone-900 dark:text-stone-100 hover:bg-stone-50 dark:hover:bg-stone-800 rounded-lg transition"

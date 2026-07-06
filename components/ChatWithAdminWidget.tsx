@@ -11,7 +11,7 @@ import {
   type ChatMessage,
 } from "@/lib/supabase-chat";
 
-export default function AdminChat() {
+export default function ChatWithAdminWidget() {
   const [isOpen, setIsOpen] = useState(false);
   const [userId, setUserId] = useState<string | null>(null);
   const [messages, setMessages] = useState<ChatMessage[]>([]);
@@ -106,7 +106,7 @@ export default function AdminChat() {
             <div className="bg-stone-900 dark:bg-stone-950 text-white px-4 py-4 flex items-center justify-between">
               <div>
                 <h3 className="font-bold">Admin Support</h3>
-                <p className="text-xs text-stone-500 dark:text-stone-400">Trả lời trong vòng 1 giờ</p>
+                <p className="text-xs text-stone-500 dark:text-stone-400">Admin thường phản hồi trong vòng 24 giờ</p>
               </div>
               <button
                 onClick={() => setIsOpen(false)}
@@ -120,7 +120,7 @@ export default function AdminChat() {
             <div className="flex-1 overflow-y-auto p-4 space-y-4 bg-stone-50 dark:bg-stone-900/50">
               {messages.length === 0 && (
                 <p className="text-center text-xs text-stone-500 dark:text-stone-400 mt-8">
-                  Gửi tin nhắn để bắt đầu trò chuyện với admin.
+                  Gửi tin nhắn để bắt đầu trò chuyện với admin. Admin thường phản hồi trong vòng 24 giờ.
                 </p>
               )}
               {messages.map((msg) => (

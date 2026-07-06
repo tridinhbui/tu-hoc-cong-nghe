@@ -2,7 +2,7 @@
 
 import React, { useState } from "react";
 import { motion } from "framer-motion";
-import type { Lesson } from "@/lib/lessons-loader";
+import type { Lesson } from "@/lib/lesson-types";
 import LessonPageLayout from "@/components/LessonPageLayout";
 import InteractiveWidget from "@/components/InteractiveWidget";
 import MidpointInteractive from "@/components/MidpointInteractive";
@@ -207,6 +207,23 @@ export default function LessonPageClient({ lesson, nextLesson }: Props) {
   return (
     <div className="relative">
       <LessonPageLayout lesson={meta} quiz={sidebarQuiz}>
+      {/* 0. Why this lesson matters — one or two sentences up front on what
+          problem it solves and what the learner can do after, so the value
+          is obvious before they invest time reading. Only lessons written
+          with this field show it; older lessons already state their gist in
+          the subtitle shown in the hero above, so there's nothing to
+          duplicate here. */}
+      {lesson.whyItMatters && (
+        <div className="rounded-xl border-2 border-amber-200 dark:border-amber-900 bg-amber-50 dark:bg-amber-950/30 p-5 sm:p-6">
+          <p className="text-xs font-extrabold uppercase tracking-widest text-amber-700 dark:text-amber-500 mb-2">
+            Vì sao bài này quan trọng
+          </p>
+          <p className="text-stone-800 dark:text-stone-200 text-base sm:text-lg leading-relaxed font-medium">
+            {lesson.whyItMatters}
+          </p>
+        </div>
+      )}
+
       {/* 1. Opening Question block */}
       {lesson.openingQuestion && (
         <OpeningQuestionBlock

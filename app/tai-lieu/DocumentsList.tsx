@@ -5,6 +5,7 @@ import { FileText, Download, FileSpreadsheet, FileImage, Archive } from "lucide-
 import { createClient } from "@/lib/supabase";
 import { DOCUMENT_CATEGORIES } from "@/lib/document-categories";
 import EmptyState from "@/components/admin/EmptyState";
+import Modal from "@/components/admin/Modal";
 import type { PublicDocument } from "./page";
 
 function formatBytes(bytes: number) {
@@ -29,6 +30,7 @@ const CATEGORY_FILTERS = [{ value: "all", label: "Tất cả" }, ...DOCUMENT_CAT
 
 export default function DocumentsList({ documents }: { documents: PublicDocument[] }) {
   const [filter, setFilter] = useState<string>("all");
+  const [openDoc, setOpenDoc] = useState<PublicDocument | null>(null);
   const supabase = createClient();
 
   const filtered = filter === "all" ? documents : documents.filter((d) => d.category === filter);
@@ -71,18 +73,27 @@ export default function DocumentsList({ documents }: { documents: PublicDocument
           {filtered.map((doc) => {
             const Icon = iconFor(doc.file_name);
             return (
-              <a
+              <button
                 key={doc.id}
-                href={doc.file_url}
-                target="_blank"
-                rel="noopener noreferrer"
-                onClick={() => handleDownload(doc)}
-                className="group block rounded-2xl border border-stone-200 dark:border-stone-800 hover:border-stone-400 dark:hover:border-stone-600 hover:shadow-lg dark:hover:shadow-stone-900/50 transition-all overflow-hidden bg-white dark:bg-stone-900"
+                type="button"
+                onClick={() => setOpenDoc(doc)}
+                className="group text-left rounded-2xl border border-stone-200 dark:border-stone-800 hover:border-stone-400 dark:hover:border-stone-600 hover:shadow-lg dark:hover:shadow-stone-900/50 transition-all overflow-hidden bg-white dark:bg-stone-900"
               >
-                {/* Icon */}
-                <div className="w-full h-48 bg-gradient-to-br from-stone-100 to-stone-200 dark:from-stone-800 dark:to-stone-900 flex items-center justify-center">
-                  <Icon className="w-16 h-16 text-stone-300 dark:text-stone-700" />
-                </div>
+                {/* Cover image or icon */}
+                {doc.image_url ? (
+                  <div className="relative w-full h-48 bg-stone-100 dark:bg-stone-800 overflow-hidden">
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img
+                      src={doc.image_url}
+                      alt=""
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                    />
+                  </div>
+                ) : (
+                  <div className="w-full h-48 bg-gradient-to-br from-stone-100 to-stone-200 dark:from-stone-800 dark:to-stone-900 flex items-center justify-center">
+                    <Icon className="w-16 h-16 text-stone-300 dark:text-stone-700" />
+                  </div>
+                )}
 
                 {/* Content */}
                 <div className="p-5">
@@ -106,17 +117,72 @@ export default function DocumentsList({ documents }: { documents: PublicDocument
                     <span className="text-xs font-medium text-stone-500 dark:text-stone-400">
                       {formatBytes(doc.file_size)}
                     </span>
-                    <div className="flex items-center gap-1.5 text-stone-600 dark:text-stone-300 group-hover:text-stone-900 dark:group-hover:text-stone-100 transition-colors">
-                      <Download className="w-4 h-4" />
-                      <span className="text-xs font-bold">Tải về</span>
-                    </div>
+                    <span className="text-xs font-bold text-stone-600 dark:text-stone-300 group-hover:text-stone-900 dark:group-hover:text-stone-100 transition-colors">
+                      Xem chi tiết
+                    </span>
                   </div>
                 </div>
-              </a>
+              </button>
             );
           })}
         </div>
       )}
+
+      <Modal
+        open={!!openDoc}
+        onClose={() => setOpenDoc(null)}
+        title={openDoc ? categoryLabel(openDoc.category) : ""}
+        maxWidth="max-w-lg"
+      >
+        {openDoc && (
+          <div className="space-y-4">
+            {openDoc.image_url ? (
+              <div className="relative w-full h-56 rounded-xl overflow-hidden bg-stone-100 dark:bg-stone-800">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img src={openDoc.image_url} alt="" className="w-full h-full object-cover" />
+              </div>
+            ) : (
+              (() => {
+                const Icon = iconFor(openDoc.file_name);
+                return (
+                  <div className="w-full h-40 rounded-xl bg-gradient-to-br from-stone-100 to-stone-200 dark:from-stone-800 dark:to-stone-900 flex items-center justify-center">
+                    <Icon className="w-14 h-14 text-stone-300 dark:text-stone-700" />
+                  </div>
+                );
+              })()
+            )}
+
+            <h3 className="text-xl font-bold text-stone-900 dark:text-stone-100">{openDoc.title}</h3>
+
+            {openDoc.description && (
+              <p className="text-sm text-stone-600 dark:text-stone-400 whitespace-pre-line leading-relaxed">
+                {openDoc.description}
+              </p>
+            )}
+
+            <div className="flex items-center gap-3 text-xs text-stone-500 dark:text-stone-400 pt-2 border-t border-stone-100 dark:border-stone-800">
+              <span>{openDoc.file_name}</span>
+              <span>·</span>
+              <span>{formatBytes(openDoc.file_size)}</span>
+              <span>·</span>
+              <span>{openDoc.download_count} lượt tải</span>
+            </div>
+
+            {/* Explicit download button — downloading is a deliberate click
+                inside the post detail, not a side effect of opening the card. */}
+            <a
+              href={openDoc.file_url}
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={() => handleDownload(openDoc)}
+              className="flex items-center justify-center gap-2 w-full py-3 rounded-xl bg-stone-900 dark:bg-stone-100 text-white dark:text-stone-900 text-sm font-bold hover:bg-stone-800 dark:hover:bg-white transition-colors"
+            >
+              <Download className="w-4 h-4" />
+              Tải xuống
+            </a>
+          </div>
+        )}
+      </Modal>
     </div>
   );
 }

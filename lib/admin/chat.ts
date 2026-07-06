@@ -19,9 +19,10 @@ export interface ChatThreadMessage {
   created_at: string;
 }
 
-// Live 2-way chat (AdminChat widget) is a separate inbox from the async
-// contact_messages feedback form. This groups chat_messages by user so an
-// admin can see every conversation, not just one-way submissions.
+// Live 2-way chat (ChatWithAdminWidget, rendered on the user dashboard) is a
+// separate inbox from the async contact_messages feedback form. This groups
+// chat_messages by user so an admin can see every conversation, not just
+// one-way submissions.
 export async function getChatThreads(): Promise<ChatThread[]> {
   const supabase = createAdminClient();
 

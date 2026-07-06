@@ -2,14 +2,17 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
+import { toast } from "sonner";
 import { CheckCircle2, BarChart3, Lock, FileText } from "lucide-react";
 import { useProgress } from "@/lib/client-hooks";
-import type { Difficulty } from "@/lib/lessons-loader";
+import { getProgress, mergeCompletedLessons } from "@/lib/progress";
+import { getCompletedLessons } from "@/lib/supabase-progress";
+import type { Difficulty } from "@/lib/lesson-types";
 import { createClient } from "@/lib/supabase";
 import UserStats from "@/components/UserStats";
 import UserProfile from "@/components/UserProfile";
-import AdminChat from "@/components/AdminChat";
+import ChatWithAdminWidget from "@/components/ChatWithAdminWidget";
 import Leaderboard from "@/components/Leaderboard";
 import OnboardingFlow from "@/components/OnboardingFlow";
 import ResumeLearningButton from "@/components/ResumeLearningButton";
@@ -54,9 +57,16 @@ export interface LeaderboardEntry {
 
 export default function DashboardClient({ lessonsMeta }: { lessonsMeta: LessonMeta[] }) {
   const router = useRouter();
+  const searchParams = useSearchParams();
   const supabase = createClient();
   const progress = useProgress();
   const completed = progress.completedLessons;
+  // localStorage alone can't be trusted as the progress source of truth — a
+  // new browser/device/incognito session has none of it even though the
+  // user's real progress lives in Supabase (user_progress). Bumping this
+  // after merging server data forces a re-render, which makes useProgress()
+  // pick up the freshly-merged localStorage snapshot (see mergeCompletedLessons).
+  const [, forceProgressResync] = useState(0);
   const [activeTrack, setActiveTrackState] = useState<"personal" | "professional">(() => {
     if (typeof window === "undefined") return "personal";
     const saved = window.localStorage.getItem("activeTrack");
@@ -68,6 +78,18 @@ export default function DashboardClient({ lessonsMeta }: { lessonsMeta: LessonMe
       window.localStorage.setItem("activeTrack", track);
     }
   };
+  // The lesson page redirects here with ?locked=<slug> when a user tries to
+  // open a locked lesson directly by URL — surface that instead of silently
+  // landing back on the dashboard with no explanation.
+  useEffect(() => {
+    const lockedSlug = searchParams.get("locked");
+    if (lockedSlug) {
+      toast.error("Bài học này đang bị khoá. Hoàn thành các bài trước để mở khoá.");
+      router.replace("/dashboard");
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [searchParams]);
+
   const [user, setUser] = useState<{ id?: string; email?: string; user_metadata?: { full_name?: string } } | null>(null);
   const [loading, setLoading] = useState(true);
   const [userXp, setUserXp] = useState(0);
@@ -129,6 +151,18 @@ export default function DashboardClient({ lessonsMeta }: { lessonsMeta: LessonMe
 
       setUser(session.user);
 
+      // Reconcile localStorage with Supabase's user_progress (source of
+      // truth) before computing anything derived from `completed` below —
+      // otherwise a fresh browser/device shows 0% progress and every lesson
+      // as locked, even though the account has real progress on the server.
+      try {
+        const serverCompleted = await getCompletedLessons(session.user.id);
+        mergeCompletedLessons(serverCompleted);
+        forceProgressResync((n) => n + 1);
+      } catch (error) {
+        console.error("Error syncing server progress:", error);
+      }
+
       // Lesson-level unlock grants from approved admin requests (early access
       // to a lesson that would otherwise be locked behind its prerequisite).
       supabase
@@ -152,8 +186,11 @@ export default function DashboardClient({ lessonsMeta }: { lessonsMeta: LessonMe
         setOnboardingChecked(true);
       }
 
-      // Calculate XP from completed lessons (10 XP per lesson)
-      const calculatedXp = completed.length * XP_VALUES.LESSON_COMPLETED;
+      // Calculate XP from completed lessons (10 XP per lesson). Read the
+      // freshly-merged progress directly rather than the `completed`
+      // closured at mount time, which would still be pre-sync/stale here.
+      const syncedCompletedCount = getProgress().completedLessons.length;
+      const calculatedXp = syncedCompletedCount * XP_VALUES.LESSON_COMPLETED;
       setUserXp(calculatedXp);
 
       // Mock average quiz score
@@ -193,7 +230,7 @@ export default function DashboardClient({ lessonsMeta }: { lessonsMeta: LessonMe
           rank: 0,
           name: session.user.user_metadata?.full_name || session.user.email || "Bạn",
           xp: calculatedXp,
-          lessonsCompleted: completed.length,
+          lessonsCompleted: syncedCompletedCount,
           avgQuizScore: 75,
           level: getLevelByXp(calculatedXp),
         },
@@ -702,7 +739,7 @@ export default function DashboardClient({ lessonsMeta }: { lessonsMeta: LessonMe
       </div>
 
       {/* Admin Chat */}
-      <AdminChat />
+      <ChatWithAdminWidget />
 
       {/* Unlock request modal — shown when clicking a locked lesson */}
       {unlockModalLesson && user?.id && (
