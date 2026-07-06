@@ -1,5 +1,3 @@
-"use server";
-
 import { Users, BookOpen, TrendingUp, Clock, Award } from "lucide-react";
 import { getSystemAnalytics } from "@/lib/admin/analytics";
 
