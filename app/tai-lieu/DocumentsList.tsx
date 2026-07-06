@@ -79,20 +79,10 @@ export default function DocumentsList({ documents }: { documents: PublicDocument
                 onClick={() => handleDownload(doc)}
                 className="group block rounded-2xl border border-stone-200 dark:border-stone-800 hover:border-stone-400 dark:hover:border-stone-600 hover:shadow-lg dark:hover:shadow-stone-900/50 transition-all overflow-hidden bg-white dark:bg-stone-900"
               >
-                {/* Image or Icon */}
-                {doc.image_url ? (
-                  <div className="relative w-full h-48 bg-gradient-to-br from-stone-100 to-stone-200 dark:from-stone-800 dark:to-stone-900 overflow-hidden">
-                    <img
-                      src={doc.image_url}
-                      alt={doc.title}
-                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                    />
-                  </div>
-                ) : (
-                  <div className="w-full h-48 bg-gradient-to-br from-stone-100 to-stone-200 dark:from-stone-800 dark:to-stone-900 flex items-center justify-center">
-                    <Icon className="w-16 h-16 text-stone-300 dark:text-stone-700" />
-                  </div>
-                )}
+                {/* Icon */}
+                <div className="w-full h-48 bg-gradient-to-br from-stone-100 to-stone-200 dark:from-stone-800 dark:to-stone-900 flex items-center justify-center">
+                  <Icon className="w-16 h-16 text-stone-300 dark:text-stone-700" />
+                </div>
 
                 {/* Content */}
                 <div className="p-5">
