@@ -7,6 +7,8 @@ import FloatingContact from "@/components/FloatingChatbot";
 import TaiTaiLesson from "@/components/TaiTaiLesson";
 import BadgeToast from "@/components/BadgeToast";
 import ReadingProgress from "@/components/ReadingProgress";
+import BookmarkButton from "@/components/BookmarkButton";
+import LessonNotes from "@/components/LessonNotes";
 import { createClient } from "@/lib/supabase";
 import { markLessonComplete as markLessonCompleteSupabase } from "@/lib/supabase-progress";
 import { getCompletedLessons } from "@/lib/supabase-progress";
@@ -14,6 +16,8 @@ import { awardBadges, awardBadge } from "@/lib/supabase-badges";
 import { getBadgesForLessonCount, getBadgeForMilestone } from "@/lib/badges";
 import { BADGE_DEFINITIONS, type BadgeDefinition } from "@/lib/badges";
 import { getReadingProgress, updateReadingProgress } from "@/lib/supabase-reading";
+import { RECALL_SCHEDULE } from "@/lib/recall-schedule";
+import RecallCard from "@/components/RecallCard";
 
 export interface QuizQuestion {
   question: string;
@@ -31,6 +35,7 @@ export interface LessonMeta {
   emoji: string;
   day: number;
   accent: string;
+  slug?: string;
   nextSlug?: string;
   nextTitle?: string;
 }
@@ -235,6 +240,13 @@ export default function LessonPageLayout({ lesson, quiz, children }: Props) {
           </div>
 
           <div className="flex items-center gap-3">
+            {/* Bookmark button */}
+            <BookmarkButton 
+              lessonId={lesson.id}
+              lessonSlug={lesson.slug || ""}
+              lessonTitle={lesson.title}
+            />
+            
             {/* Reading progress badge */}
             <div className="hidden sm:flex items-center gap-2 bg-stone-50 dark:bg-stone-900/50 border border-stone-200 dark:border-stone-800 rounded-full px-3 py-1.5">
               <div className="w-4 h-4 rounded-full bg-stone-200 dark:bg-stone-700 overflow-hidden flex-shrink-0 relative">
@@ -309,6 +321,12 @@ export default function LessonPageLayout({ lesson, quiz, children }: Props) {
               </div>
             </div>
 
+            {/* Spaced-repetition recall — surfaces concepts from ~5 and ~12
+                lessons back before introducing new material, so review is
+                distributed across the course instead of only happening once
+                at the end of a chặng. */}
+            {RECALL_SCHEDULE[lesson.day] && <RecallCard items={RECALL_SCHEDULE[lesson.day]} />}
+
             {/* Tài Tài auto-tip */}
             <TaiTaiLesson lessonId={lesson.id} lessonTitle={lesson.title} />
 
@@ -325,6 +343,9 @@ export default function LessonPageLayout({ lesson, quiz, children }: Props) {
 
           {/* ── RIGHT: Quiz sidebar ────────────────────────────────── */}
           <aside className="w-full lg:w-[440px] flex-shrink-0 lg:sticky lg:top-24 space-y-4">
+            {/* Lesson Notes */}
+            <LessonNotes lessonId={lesson.id} lessonSlug={lesson.slug || ""} />
+            
             {/* Quiz progress */}
             <div className="bg-white dark:bg-stone-900 rounded-2xl border-2 border-stone-300 dark:border-stone-700 p-6">
               <div className="flex items-center justify-between mb-4">
@@ -373,7 +394,11 @@ export default function LessonPageLayout({ lesson, quiz, children }: Props) {
                       else if (isSelected) cls = "border-2 border-rose-500 bg-rose-50 dark:bg-rose-950/50 text-rose-900 dark:text-rose-400 font-semibold";
                       else cls = "border-2 border-stone-200 dark:border-stone-800 bg-stone-50 dark:bg-stone-900/50 text-stone-500 dark:text-stone-400";
                     } else if (isSelected) {
-                      cls = `${c.border} ${c.bg} ${c.text} border-2 font-semibold`;
+                      // Fixed high-contrast style, independent of the lesson's decorative
+                      // accent color — the "stone" accent (most common) was nearly
+                      // identical to the unselected style, leaving no visible confirmation
+                      // that a tap registered before the user hits "Kiểm tra".
+                      cls = "border-2 border-stone-900 dark:border-stone-100 bg-stone-900 dark:bg-stone-100 text-white dark:text-stone-900 font-semibold";
                     }
                     return (
                       <button
@@ -396,6 +421,16 @@ export default function LessonPageLayout({ lesson, quiz, children }: Props) {
                 {qSubmitted && (
                   <div className={`rounded-xl p-4 text-sm leading-relaxed border ${qCorrect ? "bg-emerald-50 dark:bg-emerald-950/50 border-emerald-100 dark:border-emerald-900 text-emerald-800 dark:text-emerald-400" : "bg-rose-50 dark:bg-rose-950/50 border-rose-100 dark:border-rose-900 text-rose-800 dark:text-rose-400"}`}>
                     <p className="font-bold mb-1.5">{qCorrect ? "Chính xác!" : "Giải thích:"}</p>
+                    {/* Contrast the learner's own wrong pick against the correct
+                        one before explaining — naming the exact misconception
+                        they just revealed, not just restating the right answer. */}
+                    {!qCorrect && qSelected !== null && (
+                      <p className="mb-2 pb-2 border-b border-rose-200 dark:border-rose-900">
+                        <span className="font-semibold">Bạn chọn:</span> "{q.options[qSelected]}"
+                        <br />
+                        <span className="font-semibold">Đáp án đúng:</span> "{q.options[q.correct]}"
+                      </p>
+                    )}
                     <p>{q.explanation}</p>
                   </div>
                 )}

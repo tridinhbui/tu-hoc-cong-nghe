@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, type FormEvent } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { createClient } from "@/lib/supabase";
@@ -10,10 +10,19 @@ import ThemeToggle from "@/components/ThemeToggle";
 // Auth-gated and reads Supabase env vars at render time — never prerender statically.
 export const dynamic = "force-dynamic";
 
+interface CurrentUser {
+  email?: string;
+  created_at?: string;
+  user_metadata?: {
+    full_name?: string;
+    avatar_url?: string;
+  };
+}
+
 export default function SettingsPage() {
   const router = useRouter();
   const supabase = createClient();
-  const [user, setUser] = useState<any>(null);
+  const [user, setUser] = useState<CurrentUser | null>(null);
   const [loading, setLoading] = useState(true);
   const [name, setName] = useState("");
   const [saving, setSaving] = useState(false);
@@ -38,7 +47,7 @@ export default function SettingsPage() {
     checkAuth();
   }, [router, supabase.auth]);
 
-  const handleSaveName = async (e: React.FormEvent) => {
+  const handleSaveName = async (e: FormEvent) => {
     e.preventDefault();
     setSaving(true);
     setMessage("");
@@ -56,7 +65,7 @@ export default function SettingsPage() {
         setMessage("Cập nhật thành công!");
         setTimeout(() => setMessage(""), 3000);
       }
-    } catch (err) {
+    } catch {
       setMessage("Có lỗi xảy ra");
     } finally {
       setSaving(false);
@@ -155,7 +164,7 @@ export default function SettingsPage() {
                 Ngày tham gia
               </p>
               <p className="text-sm font-semibold mt-1">
-                {new Date(user?.created_at).toLocaleDateString("vi-VN")}
+                {user?.created_at ? new Date(user.created_at).toLocaleDateString("vi-VN") : "Chưa cập nhật"}
               </p>
             </div>
           </div>

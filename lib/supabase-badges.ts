@@ -1,4 +1,5 @@
 import { createClient } from "@/lib/supabase";
+import { handleSupabaseError } from "@/lib/errors";
 import { BADGE_DEFINITIONS } from "@/lib/badges";
 
 export interface UserBadge {
@@ -26,7 +27,7 @@ export async function getUserBadges(userId: string) {
 
   if (error) {
     if (!isMissingTableError(error)) {
-      console.error("Error fetching badges:", error);
+      throw handleSupabaseError(error);
     }
     return [];
   }
@@ -69,7 +70,7 @@ export async function awardBadge(userId: string, badgeKey: string) {
   if (error) {
     // Unique constraint race - not an actual error for UX
     if (error.code !== "23505" && !isMissingTableError(error)) {
-      console.error("Error awarding badge:", error);
+      throw handleSupabaseError(error);
     }
     return null;
   }

@@ -1,4 +1,5 @@
 import { createClient } from "@/lib/supabase";
+import { handleSupabaseError } from "@/lib/errors";
 
 export interface ChatMessage {
   id: number;
@@ -24,7 +25,7 @@ export async function getChatHistory(userId: string) {
 
   if (error) {
     if (!isMissingTableError(error)) {
-      console.error("Error fetching chat history:", error);
+      throw handleSupabaseError(error);
     }
     return [];
   }
@@ -46,7 +47,7 @@ export async function sendMessage(
 
   if (error) {
     if (!isMissingTableError(error)) {
-      console.error("Error sending message:", error);
+      throw handleSupabaseError(error);
     }
     return null;
   }

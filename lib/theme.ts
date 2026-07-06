@@ -8,13 +8,10 @@ export function getStoredTheme(): Theme | null {
   return stored === "light" || stored === "dark" ? stored : null;
 }
 
-export function getSystemTheme(): Theme {
-  if (typeof window === "undefined") return "light";
-  return window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
-}
-
+// Default theme is always light, regardless of OS/browser color-scheme
+// preference — only an explicit user choice (stored below) switches to dark.
 export function getInitialTheme(): Theme {
-  return getStoredTheme() ?? getSystemTheme();
+  return getStoredTheme() ?? "light";
 }
 
 export function applyTheme(theme: Theme) {
@@ -30,13 +27,12 @@ export function setTheme(theme: Theme) {
 
 // Inline script source injected in <head> before hydration, so the correct
 // theme class is present on first paint — avoids a flash of the wrong theme.
+// Defaults to light unless the user has explicitly chosen dark before.
 export const THEME_INIT_SCRIPT = `
 (function() {
   try {
     var stored = localStorage.getItem("${STORAGE_KEY}");
-    var theme = stored === "light" || stored === "dark"
-      ? stored
-      : (window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
+    var theme = stored === "light" || stored === "dark" ? stored : "light";
     if (theme === "dark") {
       document.documentElement.classList.add("dark");
       document.documentElement.style.colorScheme = "dark";

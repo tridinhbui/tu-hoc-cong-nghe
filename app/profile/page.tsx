@@ -14,7 +14,7 @@ export const dynamic = "force-dynamic";
 export default function ProfilePage() {
   const router = useRouter();
   const supabase = createClient();
-  const [user, setUser] = useState<any>(null);
+  const [user, setUser] = useState<{ id?: string; email?: string; user_metadata?: { full_name?: string; avatar_url?: string }; created_at?: string } | null>(null);
   const [loading, setLoading] = useState(true);
   const [userXp, setUserXp] = useState(0);
 
@@ -47,7 +47,7 @@ export default function ProfilePage() {
   }
 
   const currentLevel = getLevelByXp(userXp);
-  const initials = (user?.user_metadata?.full_name || user?.email)
+  const initials = (user?.user_metadata?.full_name || user?.email || "U")
     .split(" ")
     .map((n: string) => n[0])
     .join("")
@@ -148,7 +148,7 @@ export default function ProfilePage() {
                 Ngày tham gia
               </p>
               <p className="text-sm font-semibold text-stone-900 dark:text-stone-100">
-                {new Date(user?.created_at).toLocaleDateString("vi-VN")}
+                {user?.created_at ? new Date(user.created_at).toLocaleDateString("vi-VN") : "Chưa có thông tin"}
               </p>
             </div>
           </div>

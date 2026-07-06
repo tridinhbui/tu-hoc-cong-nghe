@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { motion } from "framer-motion";
-import type { QuizQuestion } from "@/lib/lessons";
+import type { QuizQuestion } from "@/lib/lessons-loader";
 
 interface MidpointInteractiveProps {
   question: QuizQuestion;

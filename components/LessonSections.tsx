@@ -1,5 +1,5 @@
 import React from "react";
-import type { LessonSectionBlock } from "@/lib/lessons";
+import type { LessonSectionBlock } from "@/lib/lessons-loader";
 
 export default function LessonSections({ sections }: { sections: LessonSectionBlock[] }) {
   return (

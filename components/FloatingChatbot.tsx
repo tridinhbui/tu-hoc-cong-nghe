@@ -1,25 +1,44 @@
 "use client";
 
-import { useState, useRef } from "react";
+import { useState } from "react";
+import { createClient } from "@/lib/supabase";
 
-type Status = "idle" | "sending" | "sent";
+type Status = "idle" | "sending" | "sent" | "error";
 
 export default function FloatingContact() {
+  const supabase = createClient();
   const [open, setOpen] = useState(false);
   const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
   const [message, setMessage] = useState("");
   const [status, setStatus] = useState<Status>("idle");
 
-  function handleSubmit(e: React.FormEvent) {
+  async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
     if (!message.trim()) return;
     setStatus("sending");
-    // Simulate send — replace with real endpoint if needed
-    setTimeout(() => {
-      setStatus("sent");
-      setName("");
-      setMessage("");
-    }, 900);
+
+    const {
+      data: { user },
+    } = await supabase.auth.getUser();
+
+    const { error } = await supabase.from("contact_messages").insert({
+      user_id: user?.id ?? null,
+      name: name.trim() || user?.user_metadata?.full_name || "Ẩn danh",
+      email: email.trim() || user?.email || null,
+      subject: "Góp ý từ ứng dụng",
+      message: message.trim(),
+    });
+
+    if (error) {
+      setStatus("error");
+      return;
+    }
+
+    setStatus("sent");
+    setName("");
+    setEmail("");
+    setMessage("");
   }
 
   function handleClose() {
@@ -112,6 +131,23 @@ export default function FloatingContact() {
                     className="w-full px-4 py-3 rounded-xl border border-stone-200 text-base text-stone-900 placeholder:text-stone-500 focus:outline-none focus:border-stone-400 focus:ring-2 focus:ring-stone-100 transition-all"
                   />
                 </div>
+
+                <div className="space-y-1.5">
+                  <label className="text-sm font-semibold text-stone-700">Email (để admin phản hồi)</label>
+                  <input
+                    type="email"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    placeholder="ban@email.com"
+                    className="w-full px-4 py-3 rounded-xl border border-stone-200 text-base text-stone-900 placeholder:text-stone-500 focus:outline-none focus:border-stone-400 focus:ring-2 focus:ring-stone-100 transition-all"
+                  />
+                </div>
+
+                {status === "error" && (
+                  <p className="text-sm text-red-600 font-semibold">
+                    Không gửi được, vui lòng thử lại sau.
+                  </p>
+                )}
 
                 <div className="space-y-1.5">
                   <label className="text-sm font-semibold text-stone-700">

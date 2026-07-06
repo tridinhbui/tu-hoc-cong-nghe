@@ -1,4 +1,5 @@
 import { createClient } from "@/lib/supabase";
+import { handleSupabaseError } from "@/lib/errors";
 
 export interface UserProgress {
   id: number;
@@ -23,8 +24,8 @@ export async function getLessonProgress(userId: string, lessonId: number) {
     .single();
 
   if (error && error.code !== "PGRST116") {
-    // PGRST116 = no rows returned
-    console.error("Error fetching lesson progress:", error);
+    // PGRST116 = no rows returned (not an error)
+    throw handleSupabaseError(error);
   }
 
   return (data as UserProgress) || null;
@@ -40,8 +41,7 @@ export async function getUserProgress(userId: string) {
     .order("lesson_id", { ascending: true });
 
   if (error) {
-    console.error("Error fetching user progress:", error);
-    return [];
+    throw handleSupabaseError(error);
   }
 
   return data as UserProgress[];
@@ -57,8 +57,7 @@ export async function getCompletedLessons(userId: string) {
     .eq("completed", true);
 
   if (error) {
-    console.error("Error fetching completed lessons:", error);
-    return [];
+    throw handleSupabaseError(error);
   }
 
   return data?.map((p) => p.lesson_id) || [];
@@ -77,8 +76,7 @@ export async function getStageProgress(userId: string, stageNumber: number) {
     .eq("lessons.stage_number", stageNumber);
 
   if (error) {
-    console.error("Error fetching stage progress:", error);
-    return [];
+    throw handleSupabaseError(error);
   }
 
   return data as UserProgress[];
@@ -111,8 +109,7 @@ export async function markLessonComplete(
     .single();
 
   if (error) {
-    console.error("Error marking lesson complete:", error);
-    return null;
+    throw handleSupabaseError(error);
   }
 
   return data as UserProgress;
@@ -130,8 +127,7 @@ export async function updateQuizScore(userId: string, lessonId: number, score: n
     .single();
 
   if (error) {
-    console.error("Error updating quiz score:", error);
-    return null;
+    throw handleSupabaseError(error);
   }
 
   return data as UserProgress;
@@ -146,8 +142,7 @@ export async function getProgressStats(userId: string) {
     .eq("user_id", userId);
 
   if (error) {
-    console.error("Error fetching progress stats:", error);
-    return null;
+    throw handleSupabaseError(error);
   }
 
   const completed = data?.filter((p) => p.completed).length || 0;
@@ -171,8 +166,7 @@ export async function deleteLessonProgress(userId: string, lessonId: number) {
     .eq("lesson_id", lessonId);
 
   if (error) {
-    console.error("Error deleting lesson progress:", error);
-    return false;
+    throw handleSupabaseError(error);
   }
 
   return true;

@@ -1,5 +1,5 @@
 import { createAdminClient } from "@/lib/supabase-admin";
-import { lessons } from "@/lib/lessons";
+import { loadLessons } from "@/lib/lessons-loader";
 import { NextRequest } from "next/server";
 
 // Destructive (wipes and re-seeds the entire `lessons` table with the
@@ -15,6 +15,7 @@ export async function POST(request: NextRequest) {
 
   try {
     const supabase = createAdminClient();
+    const lessons = await loadLessons();
 
     // Clear the table first: ids/slugs can be fully reshuffled between syncs
     // (e.g. curriculum renumbering), and upserting by id alone can collide
@@ -33,7 +34,7 @@ export async function POST(request: NextRequest) {
     }
 
     // Sync all lessons to Supabase
-    const lessonData = lessons.map((lesson) => ({
+    const lessonData = lessons.map((lesson: { id: number; slug: string; title: string; subtitle: string; duration: string; difficulty: string; emoji: string; openingQuestion: string; openingOptions: string[]; correctOption: number; explanation: string; keyTakeaways: string[]; track?: string }) => ({
       id: lesson.id,
       slug: lesson.slug,
       title: lesson.title,

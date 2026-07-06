@@ -1,22 +1,39 @@
-import { lessons } from "@/lib/lessons";
+import { redirect } from "next/navigation";
+import { getLessonsMeta } from "@/lib/lessons-loader";
+import { getLessonOverrides } from "@/lib/lesson-overrides";
+import { createServerSupabaseClient } from "@/lib/supabase-server";
 import DashboardClient from "@/components/DashboardClient";
 
 // Auth-gated and reads Supabase env vars at render time — never prerender statically.
 export const dynamic = "force-dynamic";
 
-// Server Component: strips each lesson down to the handful of fields the
-// dashboard listing needs before it ever reaches the client bundle, instead
-// of shipping every lesson's full sections/quiz content to every visitor.
-export default function Dashboard() {
-  const lessonsMeta = lessons.map((l) => ({
-    id: l.id,
-    slug: l.slug,
-    title: l.title,
-    subtitle: l.subtitle,
-    duration: l.duration,
-    difficulty: l.difficulty,
-    track: l.track,
-  }));
+// Server Component: uses dynamic import to load lesson metadata only,
+// preventing the entire 1.2MB lessons.ts from being bundled with the dashboard.
+export default async function Dashboard() {
+  const supabase = await createServerSupabaseClient();
+  const {
+    data: { session },
+  } = await supabase.auth.getSession();
+  if (!session) redirect("/login");
 
-  return <DashboardClient lessonsMeta={lessonsMeta} />;
+  const [lessonsMeta, overrides] = await Promise.all([
+    getLessonsMeta(),
+    getLessonOverrides(),
+  ]);
+
+  // Merge admin-controlled lock/visibility flags (from the `lessons` Supabase
+  // table) onto the static lesson metadata. Falls back to the static
+  // defaults (isFundamental from lib/lessons.ts, no prerequisite override,
+  // always visible) when a lesson has no override row yet.
+  const merged = lessonsMeta.map((lesson) => {
+    const override = overrides.get(lesson.id);
+    return {
+      ...lesson,
+      isFundamental: override?.is_fundamental ?? lesson.isFundamental ?? false,
+      prerequisiteId: override?.prerequisite_id ?? null,
+      isVisible: override?.is_visible ?? true,
+    };
+  });
+
+  return <DashboardClient lessonsMeta={merged} />;
 }

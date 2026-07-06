@@ -1,4 +1,5 @@
 import { createClient } from "@/lib/supabase";
+import { handleSupabaseError } from "@/lib/errors";
 
 export interface ReadingProgressRow {
   id: number;
@@ -29,7 +30,7 @@ export async function getReadingProgress(userId: string, lessonId: number) {
     .single();
 
   if (error && !isBenignError(error)) {
-    console.error("Error fetching reading progress:", error);
+    throw handleSupabaseError(error);
   }
 
   return (data as ReadingProgressRow) || null;
@@ -44,7 +45,7 @@ export async function getAllReadingProgress(userId: string) {
 
   if (error) {
     if (!isBenignError(error)) {
-      console.error("Error fetching all reading progress:", error);
+      throw handleSupabaseError(error);
     }
     return [];
   }
@@ -85,7 +86,7 @@ export async function updateReadingProgress(
 
   if (error) {
     if (!isBenignError(error)) {
-      console.error("Error updating reading progress:", error);
+      throw handleSupabaseError(error);
     }
     return null;
   }

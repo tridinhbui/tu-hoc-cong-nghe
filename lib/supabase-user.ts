@@ -1,4 +1,5 @@
 import { createClient } from "@/lib/supabase";
+import { handleSupabaseError } from "@/lib/errors";
 
 export interface UserProfile {
   id: string;
@@ -50,8 +51,7 @@ export async function createUserProfile(userId: string, email: string, fullName?
     .single();
 
   if (error) {
-    console.error("Error creating user profile:", error);
-    return null;
+    throw handleSupabaseError(error);
   }
 
   return data as UserProfile;
@@ -67,8 +67,7 @@ export async function getUserProfile(userId: string) {
     .single();
 
   if (error) {
-    console.error("Error fetching user profile:", error);
-    return null;
+    throw handleSupabaseError(error);
   }
 
   return data as UserProfile;
@@ -85,8 +84,7 @@ export async function updateUserProfile(userId: string, updates: Partial<UserPro
     .single();
 
   if (error) {
-    console.error("Error updating user profile:", error);
-    return null;
+    throw handleSupabaseError(error);
   }
 
   return data as UserProfile;
@@ -102,8 +100,7 @@ export async function getUserStats(userId: string) {
     .single();
 
   if (error) {
-    console.error("Error fetching user stats:", error);
-    return null;
+    throw handleSupabaseError(error);
   }
 
   return data as UserStats;
@@ -127,8 +124,7 @@ export async function upsertUserStats(userId: string, stats: Partial<UserStats>)
     .single();
 
   if (error) {
-    console.error("Error upserting user stats:", error);
-    return null;
+    throw handleSupabaseError(error);
   }
 
   return data as UserStats;
@@ -161,8 +157,7 @@ export async function getLeaderboard(limit: number = 10) {
     .limit(limit);
 
   if (error) {
-    console.error("Error fetching leaderboard:", error);
-    return [];
+    throw handleSupabaseError(error);
   }
 
   return data;
@@ -180,8 +175,7 @@ export async function recalculateUserStats(userId: string) {
     .eq("completed", true);
 
   if (progressError) {
-    console.error("Error fetching progress:", progressError);
-    return null;
+    throw handleSupabaseError(progressError);
   }
 
   const lessonsCompleted = progress?.length || 0;

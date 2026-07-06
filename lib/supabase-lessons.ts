@@ -1,4 +1,5 @@
 import { createClient } from "@/lib/supabase";
+import { handleSupabaseError } from "@/lib/errors";
 
 export interface DBLesson {
   id: number;
@@ -30,8 +31,7 @@ export async function getAllLessons() {
     .order("day_number", { ascending: true });
 
   if (error) {
-    console.error("Error fetching lessons:", error);
-    return [];
+    throw handleSupabaseError(error);
   }
 
   return data as DBLesson[];
@@ -47,8 +47,7 @@ export async function getLessonById(id: number) {
     .single();
 
   if (error) {
-    console.error("Error fetching lesson:", error);
-    return null;
+    throw handleSupabaseError(error);
   }
 
   return data as DBLesson;
@@ -64,8 +63,7 @@ export async function getLessonBySlug(slug: string) {
     .single();
 
   if (error) {
-    console.error("Error fetching lesson:", error);
-    return null;
+    throw handleSupabaseError(error);
   }
 
   return data as DBLesson;
@@ -82,8 +80,7 @@ export async function getLessonsByStage(stageNumber: number) {
     .order("day_number", { ascending: true });
 
   if (error) {
-    console.error("Error fetching lessons by stage:", error);
-    return [];
+    throw handleSupabaseError(error);
   }
 
   return data as DBLesson[];
@@ -99,8 +96,7 @@ export async function addLesson(lesson: Omit<DBLesson, "created_at" | "updated_a
     .single();
 
   if (error) {
-    console.error("Error adding lesson:", error);
-    return null;
+    throw handleSupabaseError(error);
   }
 
   return data as DBLesson;
@@ -117,8 +113,7 @@ export async function updateLesson(id: number, updates: Partial<DBLesson>) {
     .single();
 
   if (error) {
-    console.error("Error updating lesson:", error);
-    return null;
+    throw handleSupabaseError(error);
   }
 
   return data as DBLesson;
@@ -133,8 +128,7 @@ export async function deleteLesson(id: number) {
     .eq("id", id);
 
   if (error) {
-    console.error("Error deleting lesson:", error);
-    return false;
+    throw handleSupabaseError(error);
   }
 
   return true;

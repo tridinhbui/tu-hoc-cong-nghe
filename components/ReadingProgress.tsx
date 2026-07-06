@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
 interface ReadingProgressProps {
@@ -11,21 +11,30 @@ interface ReadingProgressProps {
 const CHECKPOINTS = [25, 50, 75, 100];
 
 export default function ReadingProgress({ progress, onMilestone }: ReadingProgressProps) {
-  const [prevMilestone, setPrevMilestone] = useState(0);
   const [celebratingMilestone, setCelebratingMilestone] = useState<number | null>(null);
+  const previousMilestoneRef = useRef(0);
 
   useEffect(() => {
-    const currentMilestone = CHECKPOINTS.find((m) => progress >= m && m > prevMilestone);
+    const currentMilestone = CHECKPOINTS.find((m) => progress >= m && m > previousMilestoneRef.current);
 
-    if (currentMilestone) {
+    if (!currentMilestone) return;
+
+    const timeoutId = window.setTimeout(() => {
       setCelebratingMilestone(currentMilestone);
-      setPrevMilestone(currentMilestone);
       onMilestone?.(currentMilestone);
+    }, 0);
 
-      const timer = setTimeout(() => setCelebratingMilestone(null), 3000);
-      return () => clearTimeout(timer);
-    }
-  }, [progress, prevMilestone, onMilestone]);
+    previousMilestoneRef.current = currentMilestone;
+
+    return () => window.clearTimeout(timeoutId);
+  }, [progress, onMilestone]);
+
+  useEffect(() => {
+    if (celebratingMilestone === null) return;
+
+    const timer = window.setTimeout(() => setCelebratingMilestone(null), 3000);
+    return () => window.clearTimeout(timer);
+  }, [celebratingMilestone]);
 
   return (
     <div className="flex flex-col items-center gap-3">

@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Plus_Jakarta_Sans } from "next/font/google";
+import { Toaster } from "sonner";
 import { THEME_INIT_SCRIPT } from "@/lib/theme";
 import "./globals.css";
 
@@ -21,7 +22,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         {/* Applies the saved/system theme before first paint to avoid a flash of the wrong theme. */}
         <script dangerouslySetInnerHTML={{ __html: THEME_INIT_SCRIPT }} />
       </head>
-      <body className="min-h-screen bg-[#FAFAFC] dark:bg-stone-950 text-stone-900 dark:text-stone-100 antialiased font-sans transition-colors" suppressHydrationWarning>{children}</body>
+      <body className="min-h-screen bg-[#FAFAFC] dark:bg-stone-950 text-stone-900 dark:text-stone-100 antialiased font-sans transition-colors" suppressHydrationWarning>
+        {children}
+        <Toaster position="top-right" richColors closeButton />
+      </body>
     </html>
   );
 }

@@ -1,21 +1,10 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { getInitialTheme, setTheme as persistTheme, type Theme } from "@/lib/theme";
 
 export default function ThemeToggle() {
-  const [theme, setThemeState] = useState<Theme | null>(null);
-
-  useEffect(() => {
-    setThemeState(getInitialTheme());
-  }, []);
-
-  if (theme === null) {
-    // Avoid rendering a toggle that could briefly show the wrong state
-    // before the client figures out the real theme.
-    return <div className="w-12 h-6 rounded-full bg-stone-200 dark:bg-stone-700 animate-pulse" />;
-  }
-
+  const [theme, setThemeState] = useState<Theme>(() => getInitialTheme());
   const isDark = theme === "dark";
 
   return (

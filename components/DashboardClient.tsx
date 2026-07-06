@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { CheckCircle2, BarChart3 } from "lucide-react";
+import { CheckCircle2, BarChart3, Lock, FileText } from "lucide-react";
 import { useProgress } from "@/lib/client-hooks";
 import type { Difficulty } from "@/lib/lessons-loader";
 import { createClient } from "@/lib/supabase";
@@ -16,6 +16,7 @@ import ResumeLearningButton from "@/components/ResumeLearningButton";
 import StreakDisplay from "@/components/StreakDisplay";
 import { XP_VALUES, getLevelByXp } from "@/lib/levels";
 import { hasCompletedOnboarding, completeOnboarding } from "@/lib/supabase-onboarding";
+import UnlockRequestModal from "@/components/UnlockRequestModal";
 
 // Slim projection of Lesson — just enough to render the dashboard listing,
 // so the full lesson bodies (sections/quiz/etc) never reach this client bundle.
@@ -27,6 +28,9 @@ export interface LessonMeta {
   duration: string;
   difficulty: Difficulty;
   track?: "professional" | "personal" | "bonus";
+  isFundamental?: boolean;
+  prerequisiteId?: number | null;
+  isVisible?: boolean;
 }
 
 export interface LeaderboardEntry {
@@ -62,11 +66,25 @@ interface Stage {
 const TRACK_PERSONAL = {
   id: "personal",
   title: "Tài chính cá nhân",
-  subtitle: "Lộ trình 80 ngày",
+  subtitle: "Lộ trình 88 ngày",
+  estimatedHours: 10,
   description:
     "Dành cho người muốn hiểu tiền bạc, kiểm soát chi tiêu, xây dựng tài sản và đầu tư thông minh — không cần kiến thức ngành.",
   pillars: ["Tư duy tiền bạc", "Đầu tư cá nhân", "Lập kế hoạch tài chính"],
   stages: [
+    {
+      // Foundation-first: know your own numbers before learning any theory.
+      // Ids 263-268 sort after 262 but stages render in array order, so this
+      // block appears first on the dashboard as intended.
+      label: "Chặng 0",
+      name: "Biết mình trước khi học: audit, ngân sách, quỹ khẩn cấp, nợ",
+      days: [263, 268] as [number, number],
+      available: true,
+      parts: [
+        { name: "Audit tài chính và khẩu vị rủi ro", days: [263, 264] as [number, number] },
+        { name: "Ngân sách, quỹ khẩn cấp, trả nợ và mục tiêu", days: [265, 268] as [number, number] },
+      ],
+    },
     {
       label: "Chặng 1",
       name: "Tư duy tiền bạc và tài chính cơ bản",
@@ -82,9 +100,13 @@ const TRACK_PERSONAL = {
       name: "Cổ phiếu, ETF và quỹ đầu tư",
       days: [201, 220] as [number, number],
       available: true,
+      // Psychology-first ordering: learn the traps (FOMO, margin, phím hàng)
+      // and realistic expectations BEFORE learning how to buy. Parts render
+      // in array order regardless of lesson ids.
       parts: [
-        { name: "Cổ phiếu, ETF và quỹ chỉ số", days: [201, 210] as [number, number] },
-        { name: "Tâm lý đầu tư và thực hành", days: [211, 220] as [number, number] },
+        { name: "Tâm lý, sai lầm cần tránh và kỳ vọng thực tế", days: [212, 214] as [number, number] },
+        { name: "Cổ phiếu, ETF, quỹ chỉ số và DCA", days: [201, 211] as [number, number] },
+        { name: "Thuế, kỷ luật mua bán và thực hành", days: [215, 220] as [number, number] },
       ],
     },
     {
@@ -114,6 +136,7 @@ const TRACK_PROFESSIONAL = {
   id: "professional",
   title: "Tài chính chuyên ngành",
   subtitle: "Lộ trình 180 ngày chuyên sâu",
+  estimatedHours: 18,
   description:
     "Lộ trình chuyên sâu 180 ngày dành cho người đã biết tài chính cơ bản: kế toán, báo cáo tài chính, định giá, trái phiếu, danh mục đầu tư, phái sinh.",
   pillars: ["Kế toán & báo cáo tài chính", "Định giá & phân tích", "Đầu tư & quản lý rủi ro"],
@@ -208,6 +231,16 @@ const TRACK_PROFESSIONAL = {
         { name: "Swap, phòng hộ rủi ro và tổng kết", days: [191, 200] as [number, number] },
       ],
     },
+    {
+      label: "Chặng 10",
+      name: "Nâng cao: Ứng dụng nghề Phân tích & Ngân hàng đầu tư",
+      days: [1101, 1110] as [number, number],
+      available: true,
+      parts: [
+        { name: "Chất lượng lợi nhuận, định giá tương đối và tín dụng", days: [1101, 1105] as [number, number] },
+        { name: "M&A, LBO và cơ chế giao dịch", days: [1106, 1110] as [number, number] },
+      ],
+    },
   ] satisfies Stage[],
 };
 
@@ -238,6 +271,8 @@ export default function DashboardClient({ lessonsMeta }: { lessonsMeta: LessonMe
   const [openParts, setOpenParts] = useState<Set<string>>(new Set());
   const [showOnboarding, setShowOnboarding] = useState(false);
   const [onboardingChecked, setOnboardingChecked] = useState(false);
+  const [unlockedLessonIds, setUnlockedLessonIds] = useState<Set<number>>(new Set());
+  const [unlockModalLesson, setUnlockModalLesson] = useState<LessonMeta | null>(null);
 
   const toggleStage = (key: string) => {
     setOpenStages((prev) => {
@@ -287,6 +322,16 @@ export default function DashboardClient({ lessonsMeta }: { lessonsMeta: LessonMe
       }
 
       setUser(session.user);
+
+      // Lesson-level unlock grants from approved admin requests (early access
+      // to a lesson that would otherwise be locked behind its prerequisite).
+      supabase
+        .from("user_lesson_unlocks")
+        .select("lesson_id")
+        .eq("user_id", session.user.id)
+        .then(({ data }) => {
+          if (data) setUnlockedLessonIds(new Set(data.map((row) => row.lesson_id)));
+        });
 
       // Check if user has completed onboarding
       try {
@@ -381,16 +426,43 @@ export default function DashboardClient({ lessonsMeta }: { lessonsMeta: LessonMe
     );
   }
 
-  const sorted = [...lessonsMeta].sort((a, b) => a.id - b.id);
+  const sorted = [...lessonsMeta]
+    .filter((l) => l.isVisible !== false)
+    .sort((a, b) => a.id - b.id);
   const track = activeTrack === "personal" ? TRACK_PERSONAL : TRACK_PROFESSIONAL;
+
+  // A lesson is locked unless: it's fundamental (open to everyone), the user
+  // has an approved admin unlock grant, or its prerequisite (explicit
+  // override, else the previous lesson id) has been completed.
+  const isLessonLocked = (lesson: LessonMeta): boolean => {
+    if (lesson.isFundamental) return false;
+    if (unlockedLessonIds.has(lesson.id)) return false;
+    const prerequisiteId = lesson.prerequisiteId ?? lesson.id - 1;
+    if (prerequisiteId == null) return false;
+    const prereq = sorted.find((l) => l.id === prerequisiteId);
+    if (!prereq) return false;
+    // Implicit sequential prerequisites (id - 1) only apply within the same
+    // track — otherwise Day 201 (personal) would be locked behind Day 200
+    // (professional finale), forcing personal-track users through the entire
+    // professional curriculum. Explicit admin overrides still apply anywhere.
+    if (lesson.prerequisiteId == null && (prereq.track ?? null) !== (lesson.track ?? null)) return false;
+    return !completed.includes(prereq.id);
+  };
+
+  const getPrerequisiteLesson = (lesson: LessonMeta): LessonMeta | undefined => {
+    const prerequisiteId = lesson.prerequisiteId ?? lesson.id - 1;
+    return sorted.find((l) => l.id === prerequisiteId);
+  };
 
   const totalDone = completed.length;
   const totalLessons = sorted.length;
 
-  // Case-study lessons (id >= 1001) live outside the day-numbered curriculum
-  // entirely — they're real company/topic deep-dives, but with no stage to
-  // belong to they were previously only reachable by guessing the URL.
-  const bonusLessons = sorted.filter((l) => l.id >= 1001);
+  // Case-study lessons live outside the day-numbered curriculum entirely —
+  // they're real company/topic deep-dives, but with no stage to belong to
+  // they were previously only reachable by guessing the URL. Filtered by
+  // track (not just id >= 1001) so other high-id ranges — like the advanced
+  // professional Chặng 10 — don't get swept in here too.
+  const bonusLessons = sorted.filter((l) => l.track === "bonus");
   const bonusDone = bonusLessons.filter((l) => completed.includes(l.id)).length;
   const bonusOpen = openStages.has("bonus");
 
@@ -408,6 +480,13 @@ export default function DashboardClient({ lessonsMeta }: { lessonsMeta: LessonMe
               <div className="text-xl font-bold text-stone-900 dark:text-stone-100">{totalDone}</div>
               <div className="text-xs text-stone-500 dark:text-stone-400">/ {totalLessons} bài đã học</div>
             </div>
+            <Link
+              href="/tai-lieu"
+              className="hidden sm:flex items-center gap-1.5 text-xs font-bold text-orange-600 dark:text-orange-400 bg-orange-50 dark:bg-orange-950 border border-orange-200 dark:border-orange-800 hover:bg-orange-100 dark:hover:bg-orange-900 rounded-lg px-3 py-1.5 transition-colors"
+            >
+              <FileText className="w-3.5 h-3.5" />
+              Tài liệu miễn phí
+            </Link>
             <Link
               href="/analytics"
               className="hidden sm:flex items-center gap-1.5 text-xs font-bold text-stone-500 dark:text-stone-400 hover:text-stone-900 dark:hover:text-stone-100 border border-stone-200 dark:border-stone-800 hover:border-stone-400 dark:hover:border-stone-600 rounded-lg px-3 py-1.5 transition-colors"
@@ -463,6 +542,9 @@ export default function DashboardClient({ lessonsMeta }: { lessonsMeta: LessonMe
                   <div className={`text-base font-bold ${isActive ? "text-white dark:text-stone-900" : "text-stone-900 dark:text-stone-100"}`}>
                     {t.title}
                   </div>
+                  <div className={`text-xs mt-0.5 ${isActive ? "text-stone-300 dark:text-stone-600" : "text-stone-500 dark:text-stone-400"}`}>
+                    ~{t.estimatedHours} giờ học
+                  </div>
                 </button>
 
                 {/* Hover Tooltip */}
@@ -493,6 +575,7 @@ export default function DashboardClient({ lessonsMeta }: { lessonsMeta: LessonMe
               (l) => l.id >= stage.days[0] && l.id <= stage.days[1] && (!l.track || l.track === activeTrack)
             );
             const stageDone = stageLessons.filter((l) => completed.includes(l.id)).length;
+            const stageLockedCount = stageLessons.filter((l) => isLessonLocked(l)).length;
             const stageKey = `${activeTrack}-${stage.label}`;
             const stageOpen = openStages.has(stageKey);
 
@@ -507,6 +590,12 @@ export default function DashboardClient({ lessonsMeta }: { lessonsMeta: LessonMe
                     {stage.label}
                   </span>
                   <span className="text-lg font-extrabold text-stone-900 dark:text-stone-100" role="heading" aria-level={2}>{stage.name}</span>
+                  {stage.available && stageLockedCount > 0 && (
+                    <span className="flex items-center gap-1 text-xs font-bold text-stone-500 dark:text-stone-400">
+                      <Lock className="w-3 h-3" />
+                      {stageLockedCount} khoá
+                    </span>
+                  )}
                   {stage.available && stageLessons.length > 0 && (
                     <span className="ml-auto text-base font-bold text-stone-900 dark:text-stone-100 bg-stone-100 dark:bg-stone-800 px-4 py-1 rounded-lg">
                       {stageDone}/{stageLessons.length}
@@ -567,6 +656,7 @@ export default function DashboardClient({ lessonsMeta }: { lessonsMeta: LessonMe
                       );
                       if (partLessons.length === 0) return null;
                       const partDone = partLessons.filter((l) => completed.includes(l.id)).length;
+                      const partLockedCount = partLessons.filter((l) => isLessonLocked(l)).length;
                       const partKey = `${stageKey}-${part.name}`;
                       const partOpen = openParts.has(partKey);
 
@@ -580,6 +670,12 @@ export default function DashboardClient({ lessonsMeta }: { lessonsMeta: LessonMe
                             <span className="text-xs text-stone-500 dark:text-stone-400 font-mono">
                               Day {part.days[0]}-{part.days[1]}
                             </span>
+                            {partLockedCount > 0 && (
+                              <span className="flex items-center gap-1 text-xs font-bold text-stone-500 dark:text-stone-400">
+                                <Lock className="w-3 h-3" />
+                                {partLockedCount}
+                              </span>
+                            )}
                             <span className="ml-auto text-sm font-bold text-stone-600 dark:text-stone-400 bg-white dark:bg-stone-900 px-3 py-0.5 rounded-lg border border-stone-200 dark:border-stone-800">
                               {partDone}/{partLessons.length}
                             </span>
@@ -592,6 +688,39 @@ export default function DashboardClient({ lessonsMeta }: { lessonsMeta: LessonMe
                             <div className="p-2 space-y-2">
                               {partLessons.map((lesson) => {
                                 const isDone = completed.includes(lesson.id);
+                                const locked = isLessonLocked(lesson);
+
+                                if (locked) {
+                                  return (
+                                    <button
+                                      key={lesson.id}
+                                      onClick={() => setUnlockModalLesson(lesson)}
+                                      className="w-full text-left block rounded-xl border-2 border-stone-200 dark:border-stone-800 bg-stone-50 dark:bg-stone-900/50 opacity-70 hover:opacity-100 transition-opacity cursor-pointer"
+                                    >
+                                      <div className="flex items-center gap-4 px-6 py-5">
+                                        <div className="w-12 flex-shrink-0 text-center">
+                                          <span className="font-mono text-sm font-extrabold text-stone-400 dark:text-stone-600">
+                                            {String(lesson.id).padStart(3, "0")}
+                                          </span>
+                                        </div>
+                                        <div className="flex-shrink-0">
+                                          <div className="w-6 h-6 rounded-full bg-stone-200 dark:bg-stone-700 flex items-center justify-center">
+                                            <Lock className="w-3.5 h-3.5 text-stone-500 dark:text-stone-400" />
+                                          </div>
+                                        </div>
+                                        <div className="flex-1 min-w-0">
+                                          <div className="text-base font-bold leading-snug text-stone-500 dark:text-stone-500">
+                                            {lesson.title}
+                                          </div>
+                                          <div className="text-sm mt-1 truncate text-stone-400 dark:text-stone-600">
+                                            Yêu cầu hoàn thành bài trước — nhấn để nhắn admin mở khoá
+                                          </div>
+                                        </div>
+                                      </div>
+                                    </button>
+                                  );
+                                }
+
                                 return (
                                   <Link
                                     key={lesson.id}
@@ -687,6 +816,34 @@ export default function DashboardClient({ lessonsMeta }: { lessonsMeta: LessonMe
                 <div className="space-y-2">
                   {bonusLessons.map((lesson) => {
                     const isDone = completed.includes(lesson.id);
+                    const locked = isLessonLocked(lesson);
+
+                    if (locked) {
+                      return (
+                        <button
+                          key={lesson.id}
+                          onClick={() => setUnlockModalLesson(lesson)}
+                          className="w-full text-left block rounded-xl border-2 border-stone-200 dark:border-stone-800 bg-stone-50 dark:bg-stone-900/50 opacity-70 hover:opacity-100 transition-opacity cursor-pointer"
+                        >
+                          <div className="flex items-center gap-4 px-6 py-4">
+                            <div className="flex-shrink-0">
+                              <div className="w-6 h-6 rounded-full bg-stone-200 dark:bg-stone-700 flex items-center justify-center">
+                                <Lock className="w-3.5 h-3.5 text-stone-500 dark:text-stone-400" />
+                              </div>
+                            </div>
+                            <div className="flex-1 min-w-0">
+                              <div className="text-base font-bold leading-snug text-stone-500 dark:text-stone-500">
+                                {lesson.title}
+                              </div>
+                              <div className="text-sm mt-0.5 truncate text-stone-400 dark:text-stone-600">
+                                Yêu cầu hoàn thành bài trước — nhấn để nhắn admin mở khoá
+                              </div>
+                            </div>
+                          </div>
+                        </button>
+                      );
+                    }
+
                     return (
                       <Link
                         key={lesson.id}
@@ -740,6 +897,16 @@ export default function DashboardClient({ lessonsMeta }: { lessonsMeta: LessonMe
 
       {/* Admin Chat */}
       <AdminChat />
+
+      {/* Unlock request modal — shown when clicking a locked lesson */}
+      {unlockModalLesson && user?.id && (
+        <UnlockRequestModal
+          userId={user.id}
+          lesson={unlockModalLesson}
+          prerequisiteLesson={getPrerequisiteLesson(unlockModalLesson)}
+          onClose={() => setUnlockModalLesson(null)}
+        />
+      )}
     </div>
   );
 }

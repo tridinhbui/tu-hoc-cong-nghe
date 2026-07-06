@@ -98,17 +98,17 @@ export default function TaiTaiLesson({ lessonId }: Props) {
 
   useEffect(() => {
     if (phase !== "typing") return;
-    setDisplayed("");
+
     let i = 0;
-    const id = setInterval(() => {
+    const id = window.setInterval(() => {
       i++;
       setDisplayed(tip.slice(0, i));
       if (i >= tip.length) {
-        clearInterval(id);
+        window.clearInterval(id);
         setPhase("done");
       }
     }, 20);
-    return () => clearInterval(id);
+    return () => window.clearInterval(id);
   }, [phase, tip]);
 
   return (

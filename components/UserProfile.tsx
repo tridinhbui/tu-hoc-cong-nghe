@@ -19,6 +19,13 @@ export default function UserProfile() {
   const [profile, setProfile] = useState<Profile | null>(null);
   const [loading, setLoading] = useState(true);
   const [showDropdown, setShowDropdown] = useState(false);
+  const [signingOut, setSigningOut] = useState(false);
+
+  const handleSignOut = async () => {
+    setSigningOut(true);
+    await createClient().auth.signOut();
+    window.location.href = "/login";
+  };
 
   useEffect(() => {
     const fetchProfile = async () => {
@@ -144,13 +151,11 @@ export default function UserProfile() {
           </div>
 
           <button
-            onClick={() => {
-              createClient().auth.signOut();
-              window.location.href = "/login";
-            }}
-            className="w-full px-4 py-2 text-sm font-bold text-rose-600 dark:text-rose-400 hover:bg-rose-50 dark:hover:bg-rose-950/50 rounded-lg transition"
+            onClick={handleSignOut}
+            disabled={signingOut}
+            className="w-full px-4 py-2 text-sm font-bold text-rose-600 dark:text-rose-400 hover:bg-rose-50 dark:hover:bg-rose-950/50 rounded-lg transition disabled:opacity-50"
           >
-            Đăng xuất
+            {signingOut ? "Đang đăng xuất..." : "Đăng xuất"}
           </button>
         </div>
       )}

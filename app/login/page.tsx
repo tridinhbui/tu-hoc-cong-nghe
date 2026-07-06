@@ -3,41 +3,24 @@
 import React, { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { AnimatePresence, motion } from "framer-motion";
+import { toast } from "sonner";
+import { GraduationCap, Gauge, Sparkles } from "lucide-react";
 import { createClient } from "@/lib/supabase";
+import { translateAuthError, isUnconfirmedEmailError } from "@/lib/auth-error-messages";
+import { TRACKS, type TrackId } from "@/lib/tracks";
+import TrackPreviewPanel from "@/components/login/TrackPreviewPanel";
+
+const MAX_ATTEMPTS = 5;
+const COOLDOWN_MS = 60_000;
+
+const TRUST_HIGHLIGHTS = [
+  { icon: Sparkles, label: "Bài đầu tiên miễn phí, không cần đăng nhập" },
+  { icon: GraduationCap, label: "Lộ trình rõ ràng, có kiểm tra sau mỗi bài" },
+  { icon: Gauge, label: "Học theo tốc độ của riêng bạn" },
+] as const;
 
 // Reads Supabase env vars at render time — never prerender statically.
 export const dynamic = "force-dynamic";
-
-const TRACKS = {
-  personal: {
-    tab: "Tài chính cá nhân",
-    subtitle: "Lộ trình 80 ngày · dành cho người mới",
-    description: "Quản lý tiền, tiết kiệm, đầu tư cá nhân, lên kế hoạch tài chính — không cần kiến thức ngành.",
-    stages: [
-      "Chặng 1 — Tư duy tiền bạc và tài chính cơ bản",
-      "Chặng 2 — Cổ phiếu, ETF và quỹ đầu tư",
-      "Chặng 3 — Trái phiếu và các công cụ cố định",
-      "Chặng 4 — Danh mục đầu tư và kế hoạch hưu trí",
-    ],
-    previewSlug: "tai-chinh-la-gi",
-    previewLabel: "Day 1: Tài chính là gì?",
-  },
-  professional: {
-    tab: "Tài chính chuyên ngành",
-    subtitle: "Lộ trình 180 ngày · chuyên sâu",
-    description: "Kế toán, đọc báo cáo tài chính, định giá doanh nghiệp, trái phiếu, danh mục và phái sinh.",
-    stages: [
-      "Chặng 1-3 — Kế toán, báo cáo tài chính, chỉ số",
-      "Chặng 4-5 — Giá trị thời gian của tiền, tài chính doanh nghiệp",
-      "Chặng 6-7 — Định giá cổ phiếu, trái phiếu và tín dụng",
-      "Chặng 8-9 — Danh mục đầu tư và công cụ phái sinh",
-    ],
-    previewSlug: "ke-toan-la-gi",
-    previewLabel: "Day 21: Kế toán là ngôn ngữ của kinh doanh",
-  },
-} as const;
-
-type TrackId = keyof typeof TRACKS;
 
 export default function LoginPage() {
   const router = useRouter();
@@ -51,6 +34,40 @@ export default function LoginPage() {
   const [name, setName] = useState("");
   const [previewTrack, setPreviewTrack] = useState<TrackId>("personal");
   const [resetSent, setResetSent] = useState(false);
+  const [signupSuccess, setSignupSuccess] = useState(false);
+  const [resendingConfirmation, setResendingConfirmation] = useState(false);
+  const [confirmationResent, setConfirmationResent] = useState(false);
+  const [showResendConfirmation, setShowResendConfirmation] = useState(false);
+  const [failedAttempts, setFailedAttempts] = useState(0);
+  const [cooldownUntil, setCooldownUntil] = useState<number | null>(null);
+  const [cooldownLeft, setCooldownLeft] = useState(0);
+
+  // Basic client-side throttle: after MAX_ATTEMPTS failed logins/signups, force
+  // a short wait before allowing another attempt. Supabase also rate-limits
+  // auth endpoints server-side; this just gives the user a clearer local signal.
+  useEffect(() => {
+    if (!cooldownUntil) return;
+    const interval = setInterval(() => {
+      const remaining = Math.max(0, Math.ceil((cooldownUntil - Date.now()) / 1000));
+      setCooldownLeft(remaining);
+      if (remaining <= 0) {
+        setCooldownUntil(null);
+        setFailedAttempts(0);
+        clearInterval(interval);
+      }
+    }, 500);
+    return () => clearInterval(interval);
+  }, [cooldownUntil]);
+
+  const registerFailedAttempt = () => {
+    setFailedAttempts((prev) => {
+      const next = prev + 1;
+      if (next >= MAX_ATTEMPTS) {
+        setCooldownUntil(Date.now() + COOLDOWN_MS);
+      }
+      return next;
+    });
+  };
 
   // Check if already logged in
   useEffect(() => {
@@ -69,6 +86,14 @@ export default function LoginPage() {
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
     setError("");
+    setConfirmationResent(false);
+    setShowResendConfirmation(false);
+
+    if (cooldownUntil) {
+      setError(`Bạn đã thử quá nhiều lần. Vui lòng đợi ${cooldownLeft} giây rồi thử lại.`);
+      return;
+    }
+
     setLoading(true);
 
     try {
@@ -96,16 +121,17 @@ export default function LoginPage() {
         });
 
         if (signupError) {
-          setError(signupError.message || "Đăng ký thất bại. Vui lòng thử lại.");
+          registerFailedAttempt();
+          setError(translateAuthError(signupError.message));
           setLoading(false);
           return;
         }
 
         setError("");
-        setEmail("");
         setPassword("");
         setName("");
-        setMode("login");
+        setSignupSuccess(true);
+        toast.success("Đã tạo tài khoản! Kiểm tra email để xác nhận trước khi đăng nhập.");
         setLoading(false);
         return;
       } else {
@@ -122,17 +148,36 @@ export default function LoginPage() {
         });
 
         if (loginError) {
-          setError(loginError.message || "Đăng nhập thất bại. Vui lòng thử lại.");
+          registerFailedAttempt();
+          setShowResendConfirmation(isUnconfirmedEmailError(loginError.message));
+          setError(translateAuthError(loginError.message));
           setLoading(false);
           return;
         }
 
+        setFailedAttempts(0);
         router.push("/dashboard");
       }
     } catch (err) {
       setError("Có lỗi xảy ra. Vui lòng thử lại.");
       setLoading(false);
     }
+  }
+
+  async function handleResendConfirmation() {
+    if (!email.trim()) return;
+    setResendingConfirmation(true);
+    const { error: resendError } = await supabase.auth.resend({
+      type: "signup",
+      email: email.toLowerCase().trim(),
+    });
+    setResendingConfirmation(false);
+    if (resendError) {
+      setError(translateAuthError(resendError.message));
+      return;
+    }
+    setConfirmationResent(true);
+    toast.success("Đã gửi lại email xác nhận.");
   }
 
   // Handle "forgot password" — sends a Supabase recovery email
@@ -152,7 +197,7 @@ export default function LoginPage() {
       });
 
       if (resetError) {
-        setError(resetError.message || "Không gửi được email. Vui lòng thử lại.");
+        setError(translateAuthError(resetError.message));
         setLoading(false);
         return;
       }
@@ -179,7 +224,7 @@ export default function LoginPage() {
       });
 
       if (error) {
-        setError("Đăng nhập Google thất bại. Vui lòng thử lại.");
+        setError(translateAuthError(error.message));
         setLoading(false);
       }
     } catch (err) {
@@ -204,68 +249,21 @@ export default function LoginPage() {
             <p className="text-lg text-stone-600 dark:text-stone-400 leading-relaxed max-w-md">
               200 ngày học từ vỡ lòng đến phân tích doanh nghiệp. Chọn lộ trình phù hợp, học theo tốc độ của bạn.
             </p>
+
+            {/* Trust highlights — gives a cold visitor a reason to stay before hitting the auth form */}
+            <ul className="space-y-2.5 pt-2">
+              {TRUST_HIGHLIGHTS.map(({ icon: Icon, label }) => (
+                <li key={label} className="flex items-center gap-3 text-sm text-stone-600 dark:text-stone-400">
+                  <span className="flex-shrink-0 w-8 h-8 rounded-lg bg-stone-100 dark:bg-stone-900 flex items-center justify-center">
+                    <Icon className="w-4 h-4 text-stone-500 dark:text-stone-400" />
+                  </span>
+                  {label}
+                </li>
+              ))}
+            </ul>
           </div>
 
-          {/* Two Track Preview — interactive tabs, not static hover cards */}
-          <div className="border-2 border-stone-200 dark:border-stone-800 rounded-2xl overflow-hidden">
-            <div className="grid grid-cols-2">
-              {(Object.keys(TRACKS) as TrackId[]).map((id) => {
-                const t = TRACKS[id];
-                const isActive = previewTrack === id;
-                return (
-                  <button
-                    key={id}
-                    onClick={() => setPreviewTrack(id)}
-                    className={`px-5 py-4 text-left transition-colors cursor-pointer ${
-                      isActive ? "bg-stone-900 dark:bg-stone-100 text-white dark:text-stone-900" : "bg-white dark:bg-stone-950 text-stone-500 dark:text-stone-400 hover:bg-stone-50 dark:hover:bg-stone-900"
-                    }`}
-                  >
-                    <div className="text-xs font-bold uppercase tracking-widest opacity-60 mb-1">
-                      {id === "personal" ? "Track 1" : "Track 2"}
-                    </div>
-                    <div className="font-bold text-sm">{t.tab}</div>
-                  </button>
-                );
-              })}
-            </div>
-
-            <AnimatePresence mode="wait">
-              <motion.div
-                key={previewTrack}
-                initial={{ opacity: 0, y: 6 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -6 }}
-                transition={{ duration: 0.18 }}
-                className="p-6 space-y-4"
-              >
-                <div>
-                  <div className="text-xs font-bold text-stone-500 dark:text-stone-400 uppercase tracking-widest mb-1">
-                    {TRACKS[previewTrack].subtitle}
-                  </div>
-                  <p className="text-sm text-stone-600 dark:text-stone-400">{TRACKS[previewTrack].description}</p>
-                </div>
-
-                <ul className="space-y-2 text-xs text-stone-500 dark:text-stone-400">
-                  {TRACKS[previewTrack].stages.map((s) => (
-                    <li key={s} className="flex gap-2">
-                      <span className="flex-shrink-0 text-stone-300 dark:text-stone-600">→</span> {s}
-                    </li>
-                  ))}
-                </ul>
-
-                <a
-                  href={`/bai-hoc/${TRACKS[previewTrack].previewSlug}`}
-                  className="flex items-center justify-between gap-3 border border-stone-200 dark:border-stone-800 hover:border-stone-400 dark:hover:border-stone-600 hover:bg-stone-50 dark:hover:bg-stone-900 rounded-xl px-4 py-3 transition-colors group"
-                >
-                  <div>
-                    <div className="text-[10px] font-bold text-stone-500 dark:text-stone-400 uppercase tracking-wider">Xem thử ngay, không cần đăng nhập</div>
-                    <div className="text-sm font-bold text-stone-900 dark:text-stone-100">{TRACKS[previewTrack].previewLabel}</div>
-                  </div>
-                  <span className="text-stone-500 dark:text-stone-400 group-hover:text-stone-900 dark:group-hover:text-stone-100 group-hover:translate-x-0.5 transition-all">→</span>
-                </a>
-              </motion.div>
-            </AnimatePresence>
-          </div>
+          <TrackPreviewPanel previewTrack={previewTrack} setPreviewTrack={setPreviewTrack} />
         </div>
 
       </div>
@@ -284,50 +282,8 @@ export default function LoginPage() {
           </div>
 
           {/* Mobile: same interactive track tabs as desktop, just more compact */}
-          <div className="lg:hidden border-2 border-stone-200 dark:border-stone-800 rounded-2xl overflow-hidden mb-8">
-            <div className="grid grid-cols-2">
-              {(Object.keys(TRACKS) as TrackId[]).map((id) => {
-                const t = TRACKS[id];
-                const isActive = previewTrack === id;
-                return (
-                  <button
-                    key={id}
-                    onClick={() => setPreviewTrack(id)}
-                    className={`px-4 py-3 text-left transition-colors cursor-pointer ${
-                      isActive ? "bg-stone-900 dark:bg-stone-100 text-white dark:text-stone-900" : "bg-white dark:bg-stone-900 text-stone-500 dark:text-stone-400"
-                    }`}
-                  >
-                    <div className="text-[10px] font-bold uppercase tracking-widest opacity-60 mb-0.5">
-                      {id === "personal" ? "Track 1" : "Track 2"}
-                    </div>
-                    <div className="font-bold text-xs">{t.tab}</div>
-                  </button>
-                );
-              })}
-            </div>
-
-            <AnimatePresence mode="wait">
-              <motion.div
-                key={previewTrack}
-                initial={{ opacity: 0, y: 4 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -4 }}
-                transition={{ duration: 0.18 }}
-                className="p-4 space-y-3"
-              >
-                <p className="text-xs text-stone-600 dark:text-stone-400">{TRACKS[previewTrack].description}</p>
-                <a
-                  href={`/bai-hoc/${TRACKS[previewTrack].previewSlug}`}
-                  className="flex items-center justify-between gap-3 border border-stone-200 dark:border-stone-800 hover:border-stone-400 dark:hover:border-stone-600 rounded-xl px-3 py-2.5 transition-colors"
-                >
-                  <div>
-                    <div className="text-[9px] font-bold text-stone-500 dark:text-stone-400 uppercase tracking-wider">Xem thử ngay</div>
-                    <div className="text-xs font-bold text-stone-900 dark:text-stone-100">{TRACKS[previewTrack].previewLabel}</div>
-                  </div>
-                  <span className="text-stone-500 dark:text-stone-400">→</span>
-                </a>
-              </motion.div>
-            </AnimatePresence>
+          <div className="lg:hidden">
+            <TrackPreviewPanel previewTrack={previewTrack} setPreviewTrack={setPreviewTrack} compact />
           </div>
 
           {/* Form Card */}
@@ -409,6 +365,22 @@ export default function LoginPage() {
                   </button>
                 </form>
               )
+            ) : mode === "signup" && signupSuccess ? (
+              <div className="bg-emerald-50 dark:bg-emerald-950/50 border border-emerald-200 dark:border-emerald-900 text-emerald-800 dark:text-emerald-400 text-sm font-semibold rounded-xl px-4 py-4 text-center space-y-3">
+                <p>
+                  Đã tạo tài khoản cho <strong>{email}</strong>! Kiểm tra email và bấm vào link xác nhận trước khi đăng nhập.
+                </p>
+                <button
+                  type="button"
+                  onClick={() => {
+                    setMode("login");
+                    setSignupSuccess(false);
+                  }}
+                  className="text-emerald-900 dark:text-emerald-300 underline underline-offset-2 font-bold"
+                >
+                  Đến trang đăng nhập
+                </button>
+              </div>
             ) : (
               <form onSubmit={handleSubmit} className="space-y-4">
                 {mode === "signup" && (
@@ -468,14 +440,31 @@ export default function LoginPage() {
                 </div>
 
                 {error && (
-                  <div className="bg-red-50 dark:bg-red-950/50 border border-red-200 dark:border-red-900 text-red-700 dark:text-red-400 text-xs font-semibold rounded-xl px-4 py-3">
-                    {error}
+                  <div className="bg-red-50 dark:bg-red-950/50 border border-red-200 dark:border-red-900 text-red-700 dark:text-red-400 text-xs font-semibold rounded-xl px-4 py-3 space-y-2">
+                    <p>{error}</p>
+                    {mode === "login" && showResendConfirmation && !confirmationResent && (
+                      <button
+                        type="button"
+                        onClick={handleResendConfirmation}
+                        disabled={resendingConfirmation}
+                        className="text-red-800 dark:text-red-300 underline underline-offset-2 font-bold disabled:opacity-60"
+                      >
+                        {resendingConfirmation ? "Đang gửi lại..." : "Gửi lại email xác nhận"}
+                      </button>
+                    )}
+                    {confirmationResent && <p className="text-emerald-700 dark:text-emerald-400">Đã gửi lại email xác nhận.</p>}
+                  </div>
+                )}
+
+                {cooldownUntil && (
+                  <div className="bg-amber-50 dark:bg-amber-950/50 border border-amber-200 dark:border-amber-900 text-amber-800 dark:text-amber-400 text-xs font-semibold rounded-xl px-4 py-3">
+                    Quá nhiều lần thử. Vui lòng đợi {cooldownLeft} giây rồi thử lại.
                   </div>
                 )}
 
                 <button
                   type="submit"
-                  disabled={loading}
+                  disabled={loading || !!cooldownUntil}
                   className="w-full bg-stone-900 hover:bg-stone-800 dark:bg-stone-100 dark:hover:bg-white text-white dark:text-stone-900 py-4 rounded-xl font-bold text-base transition-colors disabled:opacity-60 mt-2"
                 >
                   {loading
@@ -496,6 +485,7 @@ export default function LoginPage() {
                     onClick={() => {
                       setMode("signup");
                       setError("");
+                      setSignupSuccess(false);
                     }}
                     className="text-stone-900 dark:text-stone-100 font-bold hover:underline"
                   >
@@ -510,6 +500,7 @@ export default function LoginPage() {
                       setMode("login");
                       setError("");
                       setResetSent(false);
+                      setSignupSuccess(false);
                     }}
                     className="text-stone-900 dark:text-stone-100 font-bold hover:underline"
                   >
