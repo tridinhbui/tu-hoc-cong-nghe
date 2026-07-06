@@ -49,6 +49,7 @@ export interface Lesson {
   };
   track?: "professional" | "personal" | "bonus"; // "bonus" = case-study lessons not part of the day-numbered curriculum
   sections?: LessonSectionBlock[]; // rich hand-written body; falls back to `explanation`/`diagram` when absent
+  isFundamental?: boolean; // free lesson, unlocked for all users
 }
 
 export interface DiagramNode {
