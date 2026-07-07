@@ -18,6 +18,7 @@ import OnboardingFlow from "@/components/OnboardingFlow";
 import ResumeLearningButton from "@/components/ResumeLearningButton";
 import StreakDisplay from "@/components/StreakDisplay";
 import DashboardTour from "@/components/DashboardTour";
+import Logo from "@/components/Logo";
 import { XP_VALUES, getLevelByXp } from "@/lib/levels";
 import { hasCompletedOnboarding, completeOnboarding } from "@/lib/supabase-onboarding";
 import UnlockRequestModal from "@/components/UnlockRequestModal";
@@ -327,9 +328,12 @@ export default function DashboardClient({ lessonsMeta }: { lessonsMeta: LessonMe
       {/* ── Sticky header ── */}
       <div className="border-b border-stone-200 dark:border-stone-800 sticky top-0 bg-white dark:bg-stone-950 z-10">
         <div className="max-w-4xl mx-auto px-6 py-4 flex items-center justify-between">
-          <div className="flex-1">
-            <h1 className="text-xl font-bold text-stone-900 dark:text-stone-100">Tự Học Tài Chính</h1>
-            <p className="text-xs text-stone-500 dark:text-stone-400 mt-0.5">Chọn lộ trình phù hợp với bạn</p>
+          <div className="flex-1 flex items-center gap-2.5">
+            <Logo size={32} className="flex-shrink-0" />
+            <div>
+              <h1 className="text-xl font-bold text-stone-900 dark:text-stone-100">Tự Học Tài Chính</h1>
+              <p className="text-xs text-stone-500 dark:text-stone-400 mt-0.5">Chọn lộ trình phù hợp với bạn</p>
+            </div>
           </div>
           <div className="flex items-center gap-6">
             <div className="text-right hidden sm:block">

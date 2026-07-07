@@ -179,7 +179,7 @@ export default function DashboardTour() {
       />
 
       <div
-        className="fixed bg-stone-900 text-white rounded-2xl shadow-2xl p-5"
+        className="fixed bg-stone-900 text-white rounded-xl shadow-2xl p-3.5"
         style={{
           top: tooltipTop,
           left: tooltipLeft,
@@ -189,20 +189,20 @@ export default function DashboardTour() {
           transform: tooltipBelow ? undefined : "translateY(-100%)",
         }}
       >
-        <div className="flex items-center justify-between mb-2">
-          <span className="text-[10px] font-bold uppercase tracking-widest text-stone-400">
+        <div className="flex items-center justify-between mb-1.5">
+          <p className="font-bold text-sm">{step.title}</p>
+          <span className="text-[10px] font-bold text-stone-500 flex-shrink-0 ml-2">
             {stepIndex + 1}/{STEPS.length}
           </span>
+        </div>
+        <p className="text-xs text-stone-300 leading-snug mb-3">{step.text}</p>
+        <div className="flex items-center justify-between">
           <button onClick={finish} className="text-xs text-stone-400 hover:text-white cursor-pointer p-1 -m-1">
             Bỏ qua
           </button>
-        </div>
-        <p className="font-bold text-base mb-1">{step.title}</p>
-        <p className="text-sm text-stone-300 leading-relaxed mb-4">{step.text}</p>
-        <div className="flex justify-end">
           <button
             onClick={next}
-            className="bg-white text-stone-900 text-xs font-bold px-4 py-2.5 rounded-lg hover:bg-stone-200 transition-colors cursor-pointer"
+            className="bg-white text-stone-900 text-xs font-bold px-3 py-1.5 rounded-lg hover:bg-stone-200 transition-colors cursor-pointer"
           >
             {isLast ? "Xong" : "Tiếp →"}
           </button>

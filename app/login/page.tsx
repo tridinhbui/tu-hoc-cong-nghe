@@ -10,6 +10,7 @@ import { createClient } from "@/lib/supabase";
 import { translateAuthError, isUnconfirmedEmailError } from "@/lib/auth-error-messages";
 import { TRACKS, type TrackId } from "@/lib/tracks";
 import TrackPreviewPanel from "@/components/login/TrackPreviewPanel";
+import Logo from "@/components/Logo";
 
 const MAX_ATTEMPTS = 5;
 const COOLDOWN_MS = 60_000;
@@ -241,8 +242,11 @@ export default function LoginPage() {
         <div className="space-y-12">
           {/* Logo & Brand */}
           <div className="space-y-4">
-            <div className="text-sm font-bold text-stone-500 dark:text-stone-400 uppercase tracking-widest">
-              Tự Học Tài Chính
+            <div className="flex items-center gap-2.5">
+              <Logo size={28} />
+              <div className="text-sm font-bold text-stone-500 dark:text-stone-400 uppercase tracking-widest">
+                Tự Học Tài Chính
+              </div>
             </div>
             <h1 className="text-5xl font-bold text-stone-900 dark:text-stone-100 leading-tight">
               Hiểu tiền bạc,<br />quản lý tài sản
@@ -274,8 +278,11 @@ export default function LoginPage() {
         <div className="w-full max-w-sm">
           {/* Mobile Brand (visible on small screens) */}
           <div className="lg:hidden space-y-4 mb-8 text-center">
-            <div className="text-sm font-bold text-stone-500 dark:text-stone-400 uppercase tracking-widest">
-              Tự Học Tài Chính
+            <div className="flex items-center justify-center gap-2">
+              <Logo size={24} />
+              <div className="text-sm font-bold text-stone-500 dark:text-stone-400 uppercase tracking-widest">
+                Tự Học Tài Chính
+              </div>
             </div>
             <h1 className="text-4xl font-bold text-stone-900 dark:text-stone-100">
               Hiểu tiền bạc
