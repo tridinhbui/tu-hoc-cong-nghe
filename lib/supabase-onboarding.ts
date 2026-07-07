@@ -1,6 +1,14 @@
 import { createClient } from "@/lib/supabase";
 import { handleSupabaseError } from "@/lib/errors";
 
+// "Table not found in schema cache" (PostgREST) or "relation does not exist"
+// (raw Postgres) — the onboarding table may not exist yet on some
+// environments. Onboarding is a non-critical UX nicety, so treat this as
+// "not onboarded" instead of crashing the caller.
+function isMissingTableError(error: { code?: string } | null): boolean {
+  return error?.code === "PGRST205" || error?.code === "42P01";
+}
+
 export interface UserOnboarding {
   id: string;
   user_id: string;
@@ -22,6 +30,9 @@ export async function hasCompletedOnboarding(userId: string): Promise<boolean> {
     .eq("user_id", userId)
     .single();
 
+  if (error && isMissingTableError(error)) {
+    return false;
+  }
   if (error && error.code !== "PGRST116") {
     throw handleSupabaseError(error);
   }
@@ -50,6 +61,20 @@ export async function completeOnboarding(
     .select()
     .single();
 
+  if (error && isMissingTableError(error)) {
+    // Table missing on this environment — let the caller proceed with local
+    // state (track selection, dismissing the modal) instead of getting stuck
+    // unable to ever complete onboarding.
+    return {
+      id: "",
+      user_id: userId,
+      completed: true,
+      selected_track: selectedTrack,
+      completed_at: new Date().toISOString(),
+      created_at: new Date().toISOString(),
+      updated_at: new Date().toISOString(),
+    };
+  }
   if (error) {
     throw handleSupabaseError(error);
   }
@@ -68,6 +93,9 @@ export async function getUserSelectedTrack(userId: string): Promise<"personal" |
     .eq("user_id", userId)
     .single();
 
+  if (error && isMissingTableError(error)) {
+    return null;
+  }
   if (error && error.code !== "PGRST116") {
     throw handleSupabaseError(error);
   }

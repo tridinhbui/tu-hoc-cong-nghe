@@ -1,6 +1,13 @@
 import { createClient } from "@/lib/supabase";
 import { handleSupabaseError } from "@/lib/errors";
 
+// "Table not found in schema cache" (PostgREST) or "relation does not exist"
+// (raw Postgres) — bookmarks are a non-critical UX nicety, so a missing
+// table on the read path should not crash every lesson page's initial load.
+function isMissingTableError(error: { code?: string } | null): boolean {
+  return error?.code === "PGRST205" || error?.code === "42P01";
+}
+
 export interface LessonBookmark {
   id: number;
   user_id: string;
@@ -40,6 +47,9 @@ export async function isLessonBookmarked(userId: string, lessonId: number): Prom
     .eq("lesson_id", lessonId)
     .single();
 
+  if (error && isMissingTableError(error)) {
+    return false;
+  }
   if (error && error.code !== "PGRST116") {
     throw handleSupabaseError(error);
   }

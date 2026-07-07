@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
+import Image from "next/image";
 import { motion } from "framer-motion";
 import type { Lesson } from "@/lib/lesson-types";
 import LessonPageLayout from "@/components/LessonPageLayout";
@@ -197,12 +198,17 @@ export default function LessonPageClient({ lesson, nextLesson }: Props) {
     nextTitle: nextLesson ? `Day ${nextLesson.id}: ${nextLesson.title}` : undefined,
   };
 
-  // Reuse the first quiz question as the mid-article checkpoint, but only
-  // when there's at least one more question left for the sidebar quiz —
-  // otherwise the same question would be asked twice in one lesson.
+  // Pull a middle question out as the mid-article checkpoint, leaving the
+  // sidebar's own "Câu 1" intact — previously this always took quiz[0], which
+  // made the sidebar quiz start at a question that used to be "first" and
+  // read as if the mid-article check and the sidebar were splitting the same
+  // quiz rather than being two distinct checks.
   const hasMidpoint = lesson.quiz && lesson.quiz.length > 1;
-  const midpointQuestion = hasMidpoint ? lesson.quiz[0] : null;
-  const sidebarQuiz = hasMidpoint ? lesson.quiz.slice(1) : lesson.quiz;
+  const midpointIndex = hasMidpoint ? Math.floor(lesson.quiz.length / 2) : -1;
+  const midpointQuestion = hasMidpoint ? lesson.quiz[midpointIndex] : null;
+  const sidebarQuiz = hasMidpoint
+    ? lesson.quiz.filter((_, i) => i !== midpointIndex)
+    : lesson.quiz;
 
   return (
     <div className="relative">
@@ -281,6 +287,24 @@ export default function LessonPageClient({ lesson, nextLesson }: Props) {
             Thử nghiệm tương tác
           </div>
           <InteractiveWidget type={lesson.interactiveType as "interest-rate" | "supply-demand" | "profit-calc" | "roe" | "bond"} />
+        </div>
+      )}
+
+      {/* 4.5. Visual summary image (optional hand-crafted infographic recap) */}
+      {lesson.summaryImage && (
+        <div className="space-y-3">
+          <div className="text-[10px] font-bold text-stone-500 dark:text-stone-400 uppercase tracking-wider">
+            Tóm tắt trực quan
+          </div>
+          <div className="rounded-2xl overflow-hidden border border-stone-200 dark:border-stone-800 shadow-lg">
+            <Image
+              src={lesson.summaryImage}
+              alt={`Tóm tắt trực quan ${lesson.title}`}
+              width={1024}
+              height={1536}
+              className="w-full h-auto"
+            />
+          </div>
         </div>
       )}
 

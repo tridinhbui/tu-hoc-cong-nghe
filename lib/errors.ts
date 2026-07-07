@@ -46,6 +46,10 @@ export function handleSupabaseError(error: unknown): AppError {
     case '42501':
       return new AppError('Permission denied', 'PERMISSION_DENIED', 403);
     case '42P01':
+    // PostgREST's own code when a table/view isn't in its schema cache yet
+    // (e.g. migration ran but PostgREST hasn't reloaded, or the table is
+    // genuinely missing) — surfaces as a distinct code from Postgres's 42P01.
+    case 'PGRST205':
       return new AppError('Table does not exist', 'TABLE_NOT_FOUND', 500);
     default:
       console.error('Unhandled Supabase error:', error);

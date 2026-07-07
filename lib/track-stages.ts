@@ -14,7 +14,7 @@ export interface Stage {
 export const TRACK_PERSONAL = {
   id: "personal",
   title: "Tài chính cá nhân",
-  subtitle: "Lộ trình 88 ngày",
+  subtitle: "Lộ trình 108 ngày",
   estimatedHours: 10,
   description:
     "Dành cho người muốn hiểu tiền bạc, kiểm soát chi tiêu, xây dựng tài sản và đầu tư thông minh — không cần kiến thức ngành.",

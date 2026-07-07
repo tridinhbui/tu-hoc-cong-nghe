@@ -68,6 +68,10 @@ export interface Lesson {
   // the learner actually do afterward. Optional so older lessons keep
   // working; the renderer falls back to `subtitle` when absent.
   whyItMatters?: string;
+  // Path under /public to a hand-crafted visual summary (infographic) shown
+  // near the end of the lesson as a one-glance recap. Optional — most
+  // lessons rely on the diagram/keyTakeaways blocks instead.
+  summaryImage?: string;
   diagram: DiagramNode[];
   interactiveType?:
     | "interest-rate"

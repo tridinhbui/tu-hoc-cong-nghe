@@ -1,6 +1,13 @@
 import { createClient } from "@/lib/supabase";
 import { handleSupabaseError } from "@/lib/errors";
 
+// "Table not found in schema cache" (PostgREST) or "relation does not exist"
+// (raw Postgres) — notes are a non-critical UX nicety, so a missing table on
+// the read path should not crash every lesson page's initial load.
+function isMissingTableError(error: { code?: string } | null): boolean {
+  return error?.code === "PGRST205" || error?.code === "42P01";
+}
+
 export interface LessonNote {
   id: number;
   user_id: string;
@@ -23,6 +30,9 @@ export async function getLessonNotes(userId: string, lessonId: number): Promise<
     .eq("lesson_id", lessonId)
     .order("created_at", { ascending: false });
 
+  if (error && isMissingTableError(error)) {
+    return [];
+  }
   if (error) {
     throw handleSupabaseError(error);
   }

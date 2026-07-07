@@ -122,7 +122,15 @@ export default function LessonPageLayout({ lesson, quiz, children }: Props) {
       if (saveTimer) clearTimeout(saveTimer);
       saveTimer = setTimeout(async () => {
         if (!userId) return;
-        await updateReadingProgress(userId, lesson.id, maxReachedRef.current);
+        try {
+          await updateReadingProgress(userId, lesson.id, maxReachedRef.current);
+        } catch (error) {
+          // Reading progress is a passive nicety (resume-scroll position,
+          // milestone toasts) — never worth crashing the page over, e.g.
+          // when a lesson hasn't been synced into the Supabase mirror table
+          // yet and the FK constraint on lesson_id rejects the row.
+          console.error("Error saving reading progress:", error);
+        }
       }, 800);
     }
     window.addEventListener("scroll", onScroll, { passive: true });

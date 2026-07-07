@@ -1,6 +1,7 @@
 "use client";
 
 import { AnimatePresence, motion } from "framer-motion";
+import { PlayCircle } from "lucide-react";
 import { TRACKS, type TrackId } from "@/lib/tracks";
 
 interface TrackPreviewPanelProps {
@@ -30,11 +31,11 @@ export default function TrackPreviewPanel({ previewTrack, setPreviewTrack, compa
                   : `bg-white dark:bg-stone-900 text-stone-500 dark:text-stone-400 ${compact ? "" : "hover:bg-stone-50 dark:hover:bg-stone-900"}`
               }`}
             >
-              <div className={`font-bold uppercase tracking-widest opacity-60 ${compact ? "text-[10px] mb-0.5" : "text-xs mb-1"}`}>
+              <div className={`font-bold uppercase tracking-widest opacity-60 ${compact ? "text-[11px] mb-0.5" : "text-xs mb-1"}`}>
                 {id === "personal" ? "Track 1" : "Track 2"}
               </div>
-              <div className={`font-bold ${compact ? "text-xs" : "text-sm"}`}>{t.tab}</div>
-              <div className={`opacity-70 ${compact ? "text-[10px] mt-0.5" : "text-xs mt-0.5"}`}>~{t.estimatedHours} giờ học</div>
+              <div className={`font-bold ${compact ? "text-sm" : "text-sm"}`}>{t.tab}</div>
+              <div className={`opacity-70 ${compact ? "text-xs mt-0.5" : "text-xs mt-0.5"}`}>~{t.estimatedHours} giờ học</div>
             </button>
           );
         })}
@@ -58,7 +59,7 @@ export default function TrackPreviewPanel({ previewTrack, setPreviewTrack, compa
             </div>
           )}
 
-          {compact && <p className="text-xs text-stone-600 dark:text-stone-400">{track.description}</p>}
+          {compact && <p className="text-sm text-stone-600 dark:text-stone-400">{track.description}</p>}
 
           {!compact && (
             <ul className="space-y-2 text-xs text-stone-500 dark:text-stone-400">
@@ -72,19 +73,22 @@ export default function TrackPreviewPanel({ previewTrack, setPreviewTrack, compa
 
           <a
             href={`/bai-hoc/${track.previewSlug}`}
-            className={`flex items-center justify-between gap-3 border border-stone-200 dark:border-stone-800 hover:border-stone-400 dark:hover:border-stone-600 rounded-xl transition-colors group ${
-              compact ? "px-3 py-2.5" : "px-4 py-3 hover:bg-stone-50 dark:hover:bg-stone-900"
+            className={`flex items-center justify-between gap-3 rounded-xl transition-all group bg-gradient-to-r from-emerald-500 to-emerald-600 hover:from-emerald-600 hover:to-emerald-700 shadow-sm hover:shadow-md active:scale-[0.99] ${
+              compact ? "px-4 py-3" : "px-5 py-4"
             }`}
           >
-            <div>
-              <div className={`font-bold text-stone-500 dark:text-stone-400 uppercase tracking-wider ${compact ? "text-[9px]" : "text-[10px]"}`}>
-                {compact ? "Xem thử ngay" : "Xem thử ngay, không cần đăng nhập"}
-              </div>
-              <div className={`font-bold text-stone-900 dark:text-stone-100 ${compact ? "text-xs" : "text-sm"}`}>
-                {track.previewLabel}
+            <div className="flex items-center gap-3 min-w-0">
+              <PlayCircle className={`flex-shrink-0 text-white/90 ${compact ? "w-6 h-6" : "w-7 h-7"}`} />
+              <div className="min-w-0">
+                <div className={`font-extrabold text-white uppercase tracking-wider ${compact ? "text-[11px]" : "text-xs"}`}>
+                  {compact ? "Miễn phí · Xem thử ngay" : "Miễn phí · Xem thử ngay, không cần đăng nhập"}
+                </div>
+                <div className={`font-bold text-white truncate ${compact ? "text-sm" : "text-base"}`}>
+                  {track.previewLabel}
+                </div>
               </div>
             </div>
-            <span className="text-stone-500 dark:text-stone-400 group-hover:text-stone-900 dark:group-hover:text-stone-100 group-hover:translate-x-0.5 transition-all">
+            <span className="flex-shrink-0 text-white group-hover:translate-x-0.5 transition-transform text-lg">
               →
             </span>
           </a>

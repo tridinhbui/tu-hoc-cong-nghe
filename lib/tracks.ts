@@ -1,7 +1,7 @@
 export const TRACKS = {
   personal: {
     tab: "Tài chính cá nhân",
-    subtitle: "Lộ trình 88 ngày · dành cho người mới",
+    subtitle: "Lộ trình 108 ngày · dành cho người mới",
     estimatedHours: 10,
     description: "Kiểm tra tài chính của chính bạn, kiểm soát chi tiêu, xây quỹ khẩn cấp, trả nợ và đầu tư thông minh — không cần kiến thức ngành.",
     stages: [

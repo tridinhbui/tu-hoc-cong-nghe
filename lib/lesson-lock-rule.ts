@@ -8,26 +8,18 @@ import type { LessonMeta } from "@/lib/lesson-types";
  * point: this must stay byte-for-byte in sync with
  * components/DashboardClient.tsx#isLessonLocked, which is the UI this rule
  * is meant to actually enforce.
+ *
+ * Product decision: every lesson is unlocked for everyone, no sequential
+ * gating. Kept as a function (rather than deleting the call sites in
+ * proxy.ts / lib/lesson-locking.ts / components/DashboardClient.tsx) so the
+ * previous prerequisite logic can be restored later without re-plumbing
+ * every caller.
  */
 export function computeLessonLocked(
-  lesson: LessonMeta,
-  sortedLessons: LessonMeta[],
-  completedIds: ReadonlySet<number>,
-  unlockedIds: ReadonlySet<number>
+  _lesson: LessonMeta,
+  _sortedLessons: LessonMeta[],
+  _completedIds: ReadonlySet<number>,
+  _unlockedIds: ReadonlySet<number>
 ): boolean {
-  if (lesson.isFundamental) return false;
-  if (unlockedIds.has(lesson.id)) return false;
-
-  const prerequisiteId = lesson.prerequisiteId ?? lesson.id - 1;
-  if (prerequisiteId == null) return false;
-
-  const prereq = sortedLessons.find((l) => l.id === prerequisiteId);
-  if (!prereq) return false;
-
-  // Implicit sequential prerequisites (id - 1) only apply within the same
-  // track — otherwise Day 201 (personal) would be locked behind Day 200
-  // (professional finale). Explicit admin overrides still apply anywhere.
-  if (lesson.prerequisiteId == null && (prereq.track ?? null) !== (lesson.track ?? null)) return false;
-
-  return !completedIds.has(prereq.id);
+  return false;
 }

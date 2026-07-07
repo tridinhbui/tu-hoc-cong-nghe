@@ -134,10 +134,49 @@ function findStageLabel(lessonId: number): { track: "personal" | "professional";
   return null;
 }
 
-function getTip(lessonId: number): string {
+function stripAccents(s: string): string {
+  return s.normalize("NFD").replace(/[̀-ͯ]/g, "").toLowerCase();
+}
+
+const STOPWORDS = new Set([
+  "tu", "hoc", "tai", "chinh", "day", "bai", "chang", "la", "gi", "va", "cua",
+  "trong", "cho", "khi", "voi", "mot", "nhung", "duoc", "khong", "de", "nao",
+  "vi", "sao", "sao", "cac", "nhu", "the",
+]);
+
+function keywords(text: string): string[] {
+  return stripAccents(text)
+    .replace(/[^a-z0-9\s]/g, " ")
+    .split(/\s+/)
+    .filter((w) => w.length >= 4 && !STOPWORDS.has(w));
+}
+
+// Pick the tip whose text shares the most keywords with the lesson's own
+// title/subtitle — previously this just used lessonId % pool.length, which
+// picks tips arbitrarily within a Chặng's pool and often surfaces a tip about
+// a completely different lesson in the same Chặng (e.g. a "khẩu vị rủi ro"
+// tip under the "quỹ khẩn cấp" lesson). Falls back to the old modulo when no
+// tip shares any keyword, so every lesson still gets a tip.
+function getTip(lessonId: number, lessonTitle: string): string {
   const match = findStageLabel(lessonId);
   const tips = match ? STAGE_TIPS[`${match.track}-${match.label}`] : undefined;
   const pool = tips ?? STAGE_TIPS.bonus;
+
+  const titleWords = new Set(keywords(lessonTitle));
+  if (titleWords.size > 0) {
+    let bestIndex = -1;
+    let bestScore = 0;
+    pool.forEach((tip, i) => {
+      const tipWords = keywords(tip);
+      const score = tipWords.filter((w) => titleWords.has(w)).length;
+      if (score > bestScore) {
+        bestScore = score;
+        bestIndex = i;
+      }
+    });
+    if (bestIndex >= 0) return pool[bestIndex];
+  }
+
   return pool[lessonId % pool.length];
 }
 
@@ -146,8 +185,8 @@ interface Props {
   lessonTitle: string;
 }
 
-export default function StageTipsBanner({ lessonId }: Props) {
-  const tip = getTip(lessonId);
+export default function StageTipsBanner({ lessonId, lessonTitle }: Props) {
+  const tip = getTip(lessonId, lessonTitle);
   const [displayed, setDisplayed] = useState("");
   const [phase, setPhase] = useState<"waiting" | "typing" | "done">("waiting");
 

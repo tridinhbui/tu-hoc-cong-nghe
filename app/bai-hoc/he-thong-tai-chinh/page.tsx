@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import LessonPageLayout, { QuizQuestion, LessonMeta } from "@/components/LessonPageLayout";
 
 const LESSON: LessonMeta = {
@@ -163,6 +164,22 @@ export default function HeThongTaiChinhPage() {
             ))}
           </div>
         </div>
+        {/* Tóm tắt trực quan */}
+        <div className="space-y-3">
+          <div className="text-[10px] font-bold text-stone-500 uppercase tracking-wider">
+            Tóm tắt trực quan
+          </div>
+          <div className="rounded-2xl overflow-hidden border border-stone-200 shadow-lg">
+            <Image
+              src="/lessons/day18-he-thong-tai-chinh.png"
+              alt="Tóm tắt trực quan Day 18"
+              width={1024}
+              height={1536}
+              className="w-full h-auto"
+            />
+          </div>
+        </div>
+
 
         <div className="text-center space-y-2 py-4">
           <p className="text-stone-500 text-base">Tiền không bao giờ đứng yên trong hệ thống tài chính.</p>

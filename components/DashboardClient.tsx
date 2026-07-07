@@ -17,6 +17,7 @@ import Leaderboard from "@/components/Leaderboard";
 import OnboardingFlow from "@/components/OnboardingFlow";
 import ResumeLearningButton from "@/components/ResumeLearningButton";
 import StreakDisplay from "@/components/StreakDisplay";
+import DashboardTour from "@/components/DashboardTour";
 import { XP_VALUES, getLevelByXp } from "@/lib/levels";
 import { hasCompletedOnboarding, completeOnboarding } from "@/lib/supabase-onboarding";
 import UnlockRequestModal from "@/components/UnlockRequestModal";
@@ -274,22 +275,35 @@ export default function DashboardClient({ lessonsMeta }: { lessonsMeta: LessonMe
     .sort((a, b) => a.id - b.id);
   const track = activeTrack === "personal" ? TRACK_PERSONAL : TRACK_PROFESSIONAL;
 
-  // A lesson is locked unless: it's fundamental (open to everyone), the user
-  // has an approved admin unlock grant, or its prerequisite (explicit
-  // override, else the previous lesson id) has been completed.
-  const isLessonLocked = (lesson: LessonMeta): boolean => {
-    if (lesson.isFundamental) return false;
-    if (unlockedLessonIds.has(lesson.id)) return false;
-    const prerequisiteId = lesson.prerequisiteId ?? lesson.id - 1;
-    if (prerequisiteId == null) return false;
-    const prereq = sorted.find((l) => l.id === prerequisiteId);
-    if (!prereq) return false;
-    // Implicit sequential prerequisites (id - 1) only apply within the same
-    // track — otherwise Day 201 (personal) would be locked behind Day 200
-    // (professional finale), forcing personal-track users through the entire
-    // professional curriculum. Explicit admin overrides still apply anywhere.
-    if (lesson.prerequisiteId == null && (prereq.track ?? null) !== (lesson.track ?? null)) return false;
-    return !completed.includes(prereq.id);
+  // Track-relative lesson numbering: the personal track reuses lesson ids
+  // from the 200s (originally written for the professional track) in its
+  // own Chặng 2-4, so showing the raw id ("Day 201") right after a "Chặng 1"
+  // that only went up to id 20 reads as a broken sequence to a linear
+  // learner. Map each lesson to its 1-based position within THIS track's own
+  // display order instead, computed with the exact same stage/part filters
+  // used to render the list below so the numbers always match what's shown.
+  const lessonOrdinal = new Map<number, number>();
+  {
+    let n = 0;
+    for (const stage of track.stages) {
+      for (const part of stage.parts) {
+        const partLessons = sorted.filter(
+          (l) => l.id >= part.days[0] && l.id <= part.days[1] && (!l.track || l.track === activeTrack)
+        );
+        for (const l of partLessons) {
+          n += 1;
+          lessonOrdinal.set(l.id, n);
+        }
+      }
+    }
+  }
+
+  // Product decision: all lessons are unlocked for everyone, no sequential
+  // gating. Kept as a function (rather than inlining `false` at every call
+  // site) so the previous prerequisite logic — still in lib/lesson-lock-rule.ts,
+  // which this must stay in sync with — can be restored later in one place.
+  const isLessonLocked = (_lesson: LessonMeta): boolean => {
+    return false;
   };
 
   const getPrerequisiteLesson = (lesson: LessonMeta): LessonMeta | undefined => {
@@ -325,6 +339,7 @@ export default function DashboardClient({ lessonsMeta }: { lessonsMeta: LessonMe
             </div>
             <Link
               href="/tai-lieu"
+              data-tour="free-docs"
               className="hidden sm:flex items-center gap-1.5 text-xs font-bold text-orange-600 dark:text-orange-400 bg-orange-50 dark:bg-orange-950 border border-orange-200 dark:border-orange-800 hover:bg-orange-100 dark:hover:bg-orange-900 rounded-lg px-3 py-1.5 transition-colors"
             >
               <FileText className="w-3.5 h-3.5" />
@@ -344,7 +359,7 @@ export default function DashboardClient({ lessonsMeta }: { lessonsMeta: LessonMe
 
       <div className="px-6 py-8">
         {/* ── User Stats + Streak (compact row) ── */}
-        <div className="max-w-6xl mx-auto mb-8 flex flex-col sm:flex-row gap-3">
+        <div data-tour="user-stats" className="max-w-6xl mx-auto mb-8 flex flex-col sm:flex-row gap-3">
           <div className="flex-1">
             <UserStats
               xp={userXp}
@@ -357,7 +372,7 @@ export default function DashboardClient({ lessonsMeta }: { lessonsMeta: LessonMe
         </div>
 
         {/* ── Resume Learning Button ── */}
-        <div className="max-w-6xl mx-auto mb-8">
+        <div data-tour="resume-learning" className="max-w-6xl mx-auto mb-8">
           <ResumeLearningButton activeTrack={activeTrack} />
         </div>
 
@@ -366,7 +381,7 @@ export default function DashboardClient({ lessonsMeta }: { lessonsMeta: LessonMe
           {/* Left: Lessons (2 columns on desktop) */}
           <div className="lg:col-span-2">
           {/* Track selector - Compact */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-8">
+          <div data-tour="track-selector" className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-8">
           {[TRACK_PERSONAL, TRACK_PROFESSIONAL].map((t) => {
             const isActive = activeTrack === t.id;
             return (
@@ -412,7 +427,7 @@ export default function DashboardClient({ lessonsMeta }: { lessonsMeta: LessonMe
         </div>
 
           {/* ── Stages + lessons ── */}
-          <div className="space-y-6 mt-8">
+          <div data-tour="stage-list" className="space-y-6 mt-8">
           {track.stages.map((stage) => {
             const stageLessons = sorted.filter(
               (l) => l.id >= stage.days[0] && l.id <= stage.days[1] && (!l.track || l.track === activeTrack)
@@ -511,7 +526,7 @@ export default function DashboardClient({ lessonsMeta }: { lessonsMeta: LessonMe
                           >
                             <span className="font-bold text-stone-800 dark:text-stone-300 text-sm">{part.name}</span>
                             <span className="text-xs text-stone-500 dark:text-stone-400 font-mono">
-                              Day {part.days[0]}-{part.days[1]}
+                              Bài {lessonOrdinal.get(partLessons[0].id)}-{lessonOrdinal.get(partLessons[partLessons.length - 1].id)}
                             </span>
                             {partLockedCount > 0 && (
                               <span className="flex items-center gap-1 text-xs font-bold text-stone-500 dark:text-stone-400">
@@ -543,7 +558,7 @@ export default function DashboardClient({ lessonsMeta }: { lessonsMeta: LessonMe
                                       <div className="flex items-center gap-4 px-6 py-5">
                                         <div className="w-12 flex-shrink-0 text-center">
                                           <span className="font-mono text-sm font-extrabold text-stone-400 dark:text-stone-600">
-                                            {String(lesson.id).padStart(3, "0")}
+                                            {String(lessonOrdinal.get(lesson.id) ?? lesson.id).padStart(3, "0")}
                                           </span>
                                         </div>
                                         <div className="flex-shrink-0">
@@ -740,6 +755,9 @@ export default function DashboardClient({ lessonsMeta }: { lessonsMeta: LessonMe
 
       {/* Admin Chat */}
       <ChatWithAdminWidget />
+
+      {/* One-time spotlight walkthrough for brand-new users */}
+      <DashboardTour />
 
       {/* Unlock request modal — shown when clicking a locked lesson */}
       {unlockModalLesson && user?.id && (
