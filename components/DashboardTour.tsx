@@ -67,6 +67,23 @@ export default function DashboardTour() {
     return () => clearTimeout(t);
   }, []);
 
+  // The browser can restore this exact page (including this component's
+  // still-mid-tour React state) straight from the back/forward cache when
+  // the learner hits the Back button, instead of re-mounting it - so the
+  // localStorage check above never re-runs, and a tour that was left open
+  // reappears exactly where it was frozen. `pageshow` fires on every such
+  // restore (event.persisted is true for a bfcache hit); force the tour
+  // closed there whenever it's already been marked seen.
+  useEffect(() => {
+    function onPageShow(e: PageTransitionEvent) {
+      if (e.persisted && window.localStorage.getItem(TOUR_SEEN_KEY)) {
+        setStepIndex(STEPS.length);
+      }
+    }
+    window.addEventListener("pageshow", onPageShow);
+    return () => window.removeEventListener("pageshow", onPageShow);
+  }, []);
+
   // Lock page scroll while the tour is active so the spotlight can't drift
   // out of sync with its target - the tour drives scrolling itself via
   // scrollIntoView; letting the learner also scroll manually moved the

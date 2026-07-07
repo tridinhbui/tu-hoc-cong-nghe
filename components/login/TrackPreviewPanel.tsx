@@ -51,12 +51,7 @@ export default function TrackPreviewPanel({ previewTrack, setPreviewTrack, compa
           className={compact ? "p-4 space-y-3" : "p-6 space-y-4"}
         >
           {!compact && (
-            <div>
-              <div className="text-xs font-bold text-stone-500 dark:text-stone-400 uppercase tracking-widest mb-1">
-                {track.subtitle}
-              </div>
-              <p className="text-sm text-stone-600 dark:text-stone-400">{track.description}</p>
-            </div>
+            <p className="text-sm text-stone-600 dark:text-stone-400">{track.description}</p>
           )}
 
           {compact && <p className="text-sm text-stone-600 dark:text-stone-400">{track.description}</p>}

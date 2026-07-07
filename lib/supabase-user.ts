@@ -1,6 +1,14 @@
 import { createClient } from "@/lib/supabase";
 import { handleSupabaseError } from "@/lib/errors";
 
+// "Table not found in schema cache" (PostgREST) or "relation does not exist"
+// (raw Postgres) - the leaderboard is a non-critical feature, so a missing
+// table should degrade to "no ranking data yet" instead of crashing the
+// dashboard.
+function isMissingTableError(error: { code?: string } | null): boolean {
+  return error?.code === "PGRST205" || error?.code === "42P01";
+}
+
 export interface UserProfile {
   id: string;
   email: string;
@@ -156,6 +164,9 @@ export async function getLeaderboard(limit: number = 10) {
     .order("total_xp", { ascending: false })
     .limit(limit);
 
+  if (error && isMissingTableError(error)) {
+    return [];
+  }
   if (error) {
     throw handleSupabaseError(error);
   }

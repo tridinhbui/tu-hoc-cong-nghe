@@ -18,10 +18,21 @@ import ResumeLearningButton from "@/components/ResumeLearningButton";
 import StreakDisplay from "@/components/StreakDisplay";
 import DashboardTour from "@/components/DashboardTour";
 import Logo from "@/components/Logo";
-import { XP_VALUES } from "@/lib/levels";
+import Leaderboard from "@/components/Leaderboard";
+import { XP_VALUES, getLevelByXp } from "@/lib/levels";
 import { hasCompletedOnboarding, completeOnboarding } from "@/lib/supabase-onboarding";
+import { getLeaderboard } from "@/lib/supabase-user";
 import UnlockRequestModal from "@/components/UnlockRequestModal";
 import { TRACK_PERSONAL, TRACK_PROFESSIONAL } from "@/lib/track-stages";
+
+interface LeaderboardEntry {
+  rank: number;
+  name: string;
+  xp: number;
+  lessonsCompleted: number;
+  avgQuizScore: number;
+  level: ReturnType<typeof getLevelByXp>;
+}
 
 // Slim projection of Lesson - just enough to render the dashboard listing,
 // so the full lesson bodies (sections/quiz/etc) never reach this client bundle.
@@ -80,6 +91,8 @@ export default function DashboardClient({ lessonsMeta }: { lessonsMeta: LessonMe
   const [loading, setLoading] = useState(true);
   const [userXp, setUserXp] = useState(0);
   const [avgQuizScore, setAvgQuizScore] = useState(0);
+  const [leaderboardEntries, setLeaderboardEntries] = useState<LeaderboardEntry[]>([]);
+  const [currentUserRank, setCurrentUserRank] = useState<number | undefined>(undefined);
   const [openStages, setOpenStages] = useState<Set<string>>(new Set());
   const [openParts, setOpenParts] = useState<Set<string>>(new Set());
   const [showOnboarding, setShowOnboarding] = useState(false);
@@ -180,6 +193,29 @@ export default function DashboardClient({ lessonsMeta }: { lessonsMeta: LessonMe
 
       // Mock average quiz score
       setAvgQuizScore(75);
+
+      // Real leaderboard from user_stats - degrades to an empty list (handled
+      // by the Leaderboard component's own empty state) if the table isn't
+      // there yet or the query fails, rather than blocking the dashboard.
+      try {
+        const rows = await getLeaderboard(5);
+        const entries: LeaderboardEntry[] = (rows ?? []).map((row, idx) => {
+          const profile = Array.isArray(row.user_profiles) ? row.user_profiles[0] : row.user_profiles;
+          return {
+            rank: idx + 1,
+            name: profile?.full_name || profile?.email || "Người học",
+            xp: row.total_xp ?? 0,
+            lessonsCompleted: row.total_lessons_completed ?? 0,
+            avgQuizScore: row.avg_quiz_score ?? 0,
+            level: getLevelByXp(row.total_xp ?? 0),
+          };
+        });
+        setLeaderboardEntries(entries);
+        const mine = (rows ?? []).findIndex((row) => row.user_id === session.user.id);
+        setCurrentUserRank(mine >= 0 ? mine + 1 : undefined);
+      } catch (error) {
+        console.error("Error loading leaderboard:", error);
+      }
 
       setLoading(false);
     };
@@ -352,9 +388,10 @@ export default function DashboardClient({ lessonsMeta }: { lessonsMeta: LessonMe
           <ResumeLearningButton activeTrack={activeTrack} />
         </div>
 
-        {/* ── Main Content: Lessons ── */}
-        <div className="max-w-6xl mx-auto">
-          <div>
+        {/* ── Main Content: Lessons + Leaderboard ── */}
+        <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-3 gap-6">
+          {/* Left: Lessons (2 columns on desktop) */}
+          <div className="lg:col-span-2">
           {/* Track selector - Compact */}
           <div data-tour="track-selector" className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-8">
           {[TRACK_PERSONAL, TRACK_PROFESSIONAL].map((t) => {
@@ -369,9 +406,6 @@ export default function DashboardClient({ lessonsMeta }: { lessonsMeta: LessonMe
                       : "border-stone-200 dark:border-stone-800 bg-white dark:bg-stone-900 text-stone-700 dark:text-stone-300 hover:border-stone-400 dark:hover:border-stone-600"
                   }`}
                 >
-                  <div className={`text-xs font-bold uppercase tracking-widest mb-1 ${isActive ? "text-stone-500 dark:text-stone-400" : "text-stone-500 dark:text-stone-400"}`}>
-                    {t.subtitle}
-                  </div>
                   <div className={`text-base font-bold ${isActive ? "text-white dark:text-stone-900" : "text-stone-900 dark:text-stone-100"}`}>
                     {t.title}
                   </div>
@@ -722,6 +756,11 @@ export default function DashboardClient({ lessonsMeta }: { lessonsMeta: LessonMe
               )}
             </div>
           )}
+          </div>
+
+          {/* Right: Leaderboard (1 column on desktop, full width on mobile) */}
+          <div className="lg:col-span-1">
+            <Leaderboard entries={leaderboardEntries} currentUserRank={currentUserRank} />
           </div>
         </div>
       </div>
