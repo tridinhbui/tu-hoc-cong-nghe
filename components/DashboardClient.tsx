@@ -13,13 +13,12 @@ import { createClient } from "@/lib/supabase";
 import UserStats from "@/components/UserStats";
 import UserProfile from "@/components/UserProfile";
 import ChatWithAdminWidget from "@/components/ChatWithAdminWidget";
-import Leaderboard from "@/components/Leaderboard";
 import OnboardingFlow from "@/components/OnboardingFlow";
 import ResumeLearningButton from "@/components/ResumeLearningButton";
 import StreakDisplay from "@/components/StreakDisplay";
 import DashboardTour from "@/components/DashboardTour";
 import Logo from "@/components/Logo";
-import { XP_VALUES, getLevelByXp } from "@/lib/levels";
+import { XP_VALUES } from "@/lib/levels";
 import { hasCompletedOnboarding, completeOnboarding } from "@/lib/supabase-onboarding";
 import UnlockRequestModal from "@/components/UnlockRequestModal";
 import { TRACK_PERSONAL, TRACK_PROFESSIONAL } from "@/lib/track-stages";
@@ -37,21 +36,6 @@ export interface LessonMeta {
   isFundamental?: boolean;
   prerequisiteId?: number | null;
   isVisible?: boolean;
-}
-
-export interface LeaderboardEntry {
-  id: string;
-  rank: number;
-  name: string;
-  xp: number;
-  lessonsCompleted: number;
-  avgQuizScore: number;
-  level: {
-    level: number;
-    name: string;
-    minXp: number;
-    color: string;
-  };
 }
 
 
@@ -96,7 +80,6 @@ export default function DashboardClient({ lessonsMeta }: { lessonsMeta: LessonMe
   const [loading, setLoading] = useState(true);
   const [userXp, setUserXp] = useState(0);
   const [avgQuizScore, setAvgQuizScore] = useState(0);
-  const [leaderboardEntries, setLeaderboardEntries] = useState<LeaderboardEntry[]>([]);
   const [openStages, setOpenStages] = useState<Set<string>>(new Set());
   const [openParts, setOpenParts] = useState<Set<string>>(new Set());
   const [showOnboarding, setShowOnboarding] = useState(false);
@@ -198,54 +181,6 @@ export default function DashboardClient({ lessonsMeta }: { lessonsMeta: LessonMe
       // Mock average quiz score
       setAvgQuizScore(75);
 
-      // Generate leaderboard data with real user
-      const mockUsers = [
-        {
-          id: "user1",
-          rank: 0,
-          name: "Nguyễn Văn A",
-          xp: 450,
-          lessonsCompleted: 45,
-          avgQuizScore: 88,
-          level: getLevelByXp(450),
-        },
-        {
-          id: "user2",
-          rank: 0,
-          name: "Trần Thị B",
-          xp: 380,
-          lessonsCompleted: 38,
-          avgQuizScore: 82,
-          level: getLevelByXp(380),
-        },
-        {
-          id: "user3",
-          rank: 0,
-          name: "Phạm Văn C",
-          xp: 320,
-          lessonsCompleted: 32,
-          avgQuizScore: 75,
-          level: getLevelByXp(320),
-        },
-        {
-          id: session.user.id,
-          rank: 0,
-          name: session.user.user_metadata?.full_name || session.user.email || "Bạn",
-          xp: calculatedXp,
-          lessonsCompleted: syncedCompletedCount,
-          avgQuizScore: 75,
-          level: getLevelByXp(calculatedXp),
-        },
-      ];
-
-      // Sort by XP and assign ranks
-      const sorted = mockUsers.sort((a, b) => b.xp - a.xp);
-      const ranked = sorted.map((user, idx) => ({
-        ...user,
-        rank: idx + 1,
-      }));
-
-      setLeaderboardEntries(ranked);
       setLoading(false);
     };
 
@@ -417,10 +352,9 @@ export default function DashboardClient({ lessonsMeta }: { lessonsMeta: LessonMe
           <ResumeLearningButton activeTrack={activeTrack} />
         </div>
 
-        {/* ── Main Content: Lessons + Leaderboard ── */}
-        <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-3 gap-6">
-          {/* Left: Lessons (2 columns on desktop) */}
-          <div className="lg:col-span-2">
+        {/* ── Main Content: Lessons ── */}
+        <div className="max-w-6xl mx-auto">
+          <div>
           {/* Track selector - Compact */}
           <div data-tour="track-selector" className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-8">
           {[TRACK_PERSONAL, TRACK_PROFESSIONAL].map((t) => {
@@ -444,11 +378,17 @@ export default function DashboardClient({ lessonsMeta }: { lessonsMeta: LessonMe
                   <div className={`text-xs mt-0.5 ${isActive ? "text-stone-300 dark:text-stone-600" : "text-stone-500 dark:text-stone-400"}`}>
                     ~{t.estimatedHours} giờ học
                   </div>
+                  {/* Hover only works on pointer devices - phones get the same
+                      description inline instead, since there's no hover to
+                      reveal it on tap. */}
+                  <div className={`sm:hidden text-xs mt-2 leading-snug ${isActive ? "text-stone-300 dark:text-stone-600" : "text-stone-500 dark:text-stone-400"}`}>
+                    {t.description}
+                  </div>
                 </button>
 
-                {/* Hover Tooltip */}
-                <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-3 hidden group-hover:block z-50">
-                  <div className="bg-stone-900 dark:bg-stone-800 text-white rounded-xl px-4 py-3 whitespace-nowrap shadow-lg border border-stone-800 dark:border-stone-700">
+                {/* Hover Tooltip (pointer devices only) */}
+                <div className="absolute bottom-full left-0 sm:left-1/2 sm:-translate-x-1/2 mb-3 hidden sm:group-hover:block z-50 w-max max-w-xs">
+                  <div className="bg-stone-900 dark:bg-stone-800 text-white rounded-xl px-4 py-3 shadow-lg border border-stone-800 dark:border-stone-700">
                     <p className="text-sm font-bold mb-2">{t.description}</p>
                     <div className="space-y-1 text-xs text-stone-300">
                       {t.pillars.map((pillar) => (
@@ -782,14 +722,6 @@ export default function DashboardClient({ lessonsMeta }: { lessonsMeta: LessonMe
               )}
             </div>
           )}
-          </div>
-
-          {/* Right: Leaderboard (1 column on desktop, full width on mobile) */}
-          <div className="lg:col-span-1">
-            <Leaderboard
-              entries={leaderboardEntries}
-              currentUserRank={leaderboardEntries.find((e) => e.id === user?.id)?.rank}
-            />
           </div>
         </div>
       </div>

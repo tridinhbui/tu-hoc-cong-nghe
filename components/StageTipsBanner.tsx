@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { Bot } from "lucide-react";
+import Image from "next/image";
 import { TRACK_PERSONAL, TRACK_PROFESSIONAL } from "@/lib/track-stages";
 
 // Keyed by "<track>-<chặng label>" so tips always match the lesson's actual
@@ -214,8 +214,8 @@ export default function StageTipsBanner({ lessonId, lessonTitle }: Props) {
   return (
     <div className="rounded-2xl border-2 border-stone-200 bg-stone-50 overflow-hidden">
       <div className="bg-stone-900 px-5 py-3.5 flex items-center gap-3">
-        <div className="w-8 h-8 rounded-full bg-emerald-500 flex items-center justify-center flex-shrink-0">
-          <Bot className="w-4.5 h-4.5 text-white" />
+        <div className="w-8 h-8 rounded-full overflow-hidden flex-shrink-0">
+          <Image src="/tai-tai-avatar.png" alt="Tài Tài" width={32} height={32} className="w-full h-full object-cover" />
         </div>
         <div className="flex-1 min-w-0">
           <span className="text-white font-bold text-sm">Tài Tài</span>

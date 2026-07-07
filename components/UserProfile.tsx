@@ -97,7 +97,7 @@ export default function UserProfile() {
       </button>
 
       {showDropdown && (
-        <div className="absolute right-0 mt-2 w-72 bg-white dark:bg-stone-900 rounded-xl border border-stone-200 dark:border-stone-800 shadow-lg z-50 p-4">
+        <div className="absolute right-0 mt-2 w-[min(18rem,calc(100vw-2rem))] bg-white dark:bg-stone-900 rounded-xl border border-stone-200 dark:border-stone-800 shadow-lg z-50 p-4">
           <div className="flex gap-3 mb-4 pb-4 border-b border-stone-100 dark:border-stone-800">
             {profile.avatar_url ? (
               <Image
