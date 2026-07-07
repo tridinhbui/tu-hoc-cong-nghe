@@ -33,10 +33,13 @@ const STEPS: TourStep[] = [
   },
   {
     selector: '[data-tour="free-docs"]',
-    title: "Tài liệu miễn phí",
-    text: "Ngoài bài học, bạn có thể tải thêm tài liệu tham khảo miễn phí ở đây bất cứ lúc nào.",
+    title: "Tài liệu miễn phí & Thống kê",
+    text: "Trên máy tính, hai mục này nằm ở đây. Trên điện thoại, bấm vào biểu tượng menu (☰) để mở.",
   },
 ];
+
+const VIEWPORT_MARGIN = 16;
+const MAX_TOOLTIP_WIDTH = 384; // matches max-w-sm
 
 // One-time spotlight walkthrough for brand-new users: dims the whole screen
 // except the current step's target element (via a box-shadow "cutout"), with
@@ -46,6 +49,7 @@ const STEPS: TourStep[] = [
 export default function DashboardTour() {
   const [stepIndex, setStepIndex] = useState(-1);
   const [rect, setRect] = useState<DOMRect | null>(null);
+  const [viewport, setViewport] = useState({ width: 0, height: 0 });
 
   useEffect(() => {
     if (typeof window === "undefined") return;
@@ -59,23 +63,50 @@ export default function DashboardTour() {
   useEffect(() => {
     if (stepIndex < 0 || stepIndex >= STEPS.length) return;
 
+    let settleTimer: ReturnType<typeof setTimeout> | null = null;
+
     function measure() {
-      const el = document.querySelector(STEPS[stepIndex].selector);
+      // Some steps have more than one element matching the selector — e.g.
+      // "Tài liệu miễn phí" exists both in the desktop header (hidden on
+      // mobile via a `hidden sm:flex` class) and in the mobile menu. A
+      // `display: none` element is still in the DOM and still matches
+      // querySelector, but getBoundingClientRect() on it returns an all-zero
+      // rect, which previously spotlighted nothing in the top-left corner on
+      // phones. Pick the first match that's actually rendered with size.
+      const candidates = document.querySelectorAll(STEPS[stepIndex].selector);
+      let el: Element | null = null;
+      for (const c of candidates) {
+        const r = c.getBoundingClientRect();
+        if (r.width > 0 && r.height > 0) {
+          el = c;
+          break;
+        }
+      }
       if (!el) {
-        // Target not on screen (e.g. different track selected) — skip step.
+        // No visible target on this screen size — skip step.
         setStepIndex((i) => i + 1);
         return;
       }
       el.scrollIntoView({ block: "center", behavior: "smooth" });
-      setTimeout(() => setRect(el.getBoundingClientRect()), 300);
+      // Mobile scroll (and the smooth-scroll animation itself) can take
+      // longer to settle than on desktop — measure a bit later, and again
+      // once more shortly after in case the first read landed mid-scroll.
+      settleTimer = setTimeout(() => {
+        setViewport({ width: window.innerWidth, height: window.innerHeight });
+        setRect(el.getBoundingClientRect());
+        setTimeout(() => setRect(el.getBoundingClientRect()), 250);
+      }, 400);
     }
 
     measure();
     window.addEventListener("resize", measure);
-    return () => window.removeEventListener("resize", measure);
+    return () => {
+      window.removeEventListener("resize", measure);
+      if (settleTimer) clearTimeout(settleTimer);
+    };
   }, [stepIndex]);
 
-  if (stepIndex < 0 || stepIndex >= STEPS.length || !rect) return null;
+  if (stepIndex < 0 || stepIndex >= STEPS.length || !rect || viewport.width === 0) return null;
 
   const step = STEPS[stepIndex];
   const isLast = stepIndex === STEPS.length - 1;
@@ -91,10 +122,19 @@ export default function DashboardTour() {
     else setStepIndex((i) => i + 1);
   }
 
+  // Tooltip width scales down on narrow viewports instead of assuming a
+  // fixed 384px — on phones under ~416px wide, a hardcoded width pushed the
+  // horizontal clamp negative and shoved the tooltip off-screen.
+  const tooltipWidth = Math.min(MAX_TOOLTIP_WIDTH, viewport.width - VIEWPORT_MARGIN * 2);
+  const tooltipLeft = Math.min(
+    Math.max(rect.left, VIEWPORT_MARGIN),
+    viewport.width - tooltipWidth - VIEWPORT_MARGIN
+  );
+
   // Tooltip position: below the highlighted element, or above if it would
   // overflow the bottom of the viewport.
-  const spaceBelow = window.innerHeight - (rect.bottom + padding);
-  const tooltipBelow = spaceBelow > 180;
+  const spaceBelow = viewport.height - (rect.bottom + padding);
+  const tooltipBelow = spaceBelow > 200;
   const tooltipTop = tooltipBelow ? rect.bottom + padding + 12 : Math.max(12, rect.top - padding - 12);
 
   return (
@@ -115,18 +155,21 @@ export default function DashboardTour() {
       />
 
       <div
-        className="fixed bg-stone-900 text-white rounded-2xl shadow-2xl p-5 w-[90vw] max-w-sm"
-        style={
-          tooltipBelow
-            ? { top: tooltipTop, left: Math.min(Math.max(rect.left, 16), window.innerWidth - 380) }
-            : { top: tooltipTop, left: Math.min(Math.max(rect.left, 16), window.innerWidth - 380), transform: "translateY(-100%)" }
-        }
+        className="fixed bg-stone-900 text-white rounded-2xl shadow-2xl p-5"
+        style={{
+          top: tooltipTop,
+          left: tooltipLeft,
+          width: tooltipWidth,
+          maxHeight: viewport.height - 24,
+          overflowY: "auto",
+          transform: tooltipBelow ? undefined : "translateY(-100%)",
+        }}
       >
         <div className="flex items-center justify-between mb-2">
           <span className="text-[10px] font-bold uppercase tracking-widest text-stone-400">
             {stepIndex + 1}/{STEPS.length}
           </span>
-          <button onClick={finish} className="text-xs text-stone-400 hover:text-white cursor-pointer">
+          <button onClick={finish} className="text-xs text-stone-400 hover:text-white cursor-pointer p-1 -m-1">
             Bỏ qua
           </button>
         </div>
@@ -135,7 +178,7 @@ export default function DashboardTour() {
         <div className="flex justify-end">
           <button
             onClick={next}
-            className="bg-white text-stone-900 text-xs font-bold px-4 py-2 rounded-lg hover:bg-stone-200 transition-colors cursor-pointer"
+            className="bg-white text-stone-900 text-xs font-bold px-4 py-2.5 rounded-lg hover:bg-stone-200 transition-colors cursor-pointer"
           >
             {isLast ? "Xong" : "Tiếp →"}
           </button>

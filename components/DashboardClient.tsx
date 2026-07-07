@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
 import { toast } from "sonner";
-import { CheckCircle2, BarChart3, Lock, FileText } from "lucide-react";
+import { CheckCircle2, BarChart3, Lock, FileText, Menu, X } from "lucide-react";
 import { useProgress } from "@/lib/client-hooks";
 import { getProgress, mergeCompletedLessons } from "@/lib/progress";
 import { getCompletedLessons } from "@/lib/supabase-progress";
@@ -102,6 +102,7 @@ export default function DashboardClient({ lessonsMeta }: { lessonsMeta: LessonMe
   const [onboardingChecked, setOnboardingChecked] = useState(false);
   const [unlockedLessonIds, setUnlockedLessonIds] = useState<Set<number>>(new Set());
   const [unlockModalLesson, setUnlockModalLesson] = useState<LessonMeta | null>(null);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   const toggleStage = (key: string) => {
     setOpenStages((prev) => {
@@ -337,24 +338,62 @@ export default function DashboardClient({ lessonsMeta }: { lessonsMeta: LessonMe
               <div className="text-xl font-bold text-stone-900 dark:text-stone-100">{totalDone}</div>
               <div className="text-xs text-stone-500 dark:text-stone-400">/ {totalLessons} bài đã học</div>
             </div>
+            <div data-tour="free-docs" className="flex items-center gap-6">
+              <Link
+                href="/tai-lieu"
+                className="hidden sm:flex items-center gap-1.5 text-xs font-bold text-orange-600 dark:text-orange-400 bg-orange-50 dark:bg-orange-950 border border-orange-200 dark:border-orange-800 hover:bg-orange-100 dark:hover:bg-orange-900 rounded-lg px-3 py-1.5 transition-colors"
+              >
+                <FileText className="w-3.5 h-3.5" />
+                Tài liệu miễn phí
+              </Link>
+              <Link
+                href="/analytics"
+                className="hidden sm:flex items-center gap-1.5 text-xs font-bold text-stone-500 dark:text-stone-400 hover:text-stone-900 dark:hover:text-stone-100 border border-stone-200 dark:border-stone-800 hover:border-stone-400 dark:hover:border-stone-600 rounded-lg px-3 py-1.5 transition-colors"
+              >
+                <BarChart3 className="w-3.5 h-3.5" />
+                Thống kê
+              </Link>
+              {/* Mobile-only menu toggle — the two links above are hidden
+                  below the `sm` breakpoint with no other way to reach them
+                  besides the avatar dropdown, which doesn't visually read as
+                  "there's more navigation here" on a first visit. */}
+              <button
+                onClick={() => setMobileMenuOpen((v) => !v)}
+                className="sm:hidden flex items-center justify-center w-9 h-9 rounded-lg border border-stone-200 dark:border-stone-800 text-stone-600 dark:text-stone-400 hover:bg-stone-50 dark:hover:bg-stone-900 transition-colors"
+                aria-label="Mở menu"
+                aria-expanded={mobileMenuOpen}
+              >
+                {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+              </button>
+            </div>
+            <UserProfile />
+          </div>
+        </div>
+
+        {/* Mobile menu panel */}
+        {mobileMenuOpen && (
+          <div className="sm:hidden border-t border-stone-200 dark:border-stone-800 px-6 py-3 space-y-2 bg-white dark:bg-stone-950">
+            <div className="text-sm text-stone-500 dark:text-stone-400 pb-1">
+              {totalDone} / {totalLessons} bài đã học
+            </div>
             <Link
               href="/tai-lieu"
-              data-tour="free-docs"
-              className="hidden sm:flex items-center gap-1.5 text-xs font-bold text-orange-600 dark:text-orange-400 bg-orange-50 dark:bg-orange-950 border border-orange-200 dark:border-orange-800 hover:bg-orange-100 dark:hover:bg-orange-900 rounded-lg px-3 py-1.5 transition-colors"
+              onClick={() => setMobileMenuOpen(false)}
+              className="flex items-center gap-2 text-sm font-bold text-orange-600 dark:text-orange-400 bg-orange-50 dark:bg-orange-950 border border-orange-200 dark:border-orange-800 rounded-lg px-3 py-2.5"
             >
-              <FileText className="w-3.5 h-3.5" />
+              <FileText className="w-4 h-4" />
               Tài liệu miễn phí
             </Link>
             <Link
               href="/analytics"
-              className="hidden sm:flex items-center gap-1.5 text-xs font-bold text-stone-500 dark:text-stone-400 hover:text-stone-900 dark:hover:text-stone-100 border border-stone-200 dark:border-stone-800 hover:border-stone-400 dark:hover:border-stone-600 rounded-lg px-3 py-1.5 transition-colors"
+              onClick={() => setMobileMenuOpen(false)}
+              className="flex items-center gap-2 text-sm font-bold text-stone-600 dark:text-stone-400 border border-stone-200 dark:border-stone-800 rounded-lg px-3 py-2.5"
             >
-              <BarChart3 className="w-3.5 h-3.5" />
+              <BarChart3 className="w-4 h-4" />
               Thống kê
             </Link>
-            <UserProfile />
           </div>
-        </div>
+        )}
       </div>
 
       <div className="px-6 py-8">
