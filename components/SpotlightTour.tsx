@@ -60,25 +60,23 @@ export default function SpotlightTour({ steps, storageKey }: Props) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [storageKey]);
 
-  // Lock page scroll while the tour is active so the spotlight can't drift
-  // out of sync with its target - the tour drives scrolling itself via
-  // scrollIntoView; letting the learner also scroll manually moved the
-  // element without the (already-measured, viewport-relative) rect updating,
-  // which smeared the highlight and tooltip away from the real element.
-  useEffect(() => {
-    const active = stepIndex >= 0 && stepIndex < steps.length;
-    if (!active) return;
-    const prevOverflow = document.body.style.overflow;
-    document.body.style.overflow = "hidden";
-    return () => {
-      document.body.style.overflow = prevOverflow;
-    };
-  }, [stepIndex, steps.length]);
-
   useEffect(() => {
     if (stepIndex < 0 || stepIndex >= steps.length) return;
 
     let settleTimer: ReturnType<typeof setTimeout> | null = null;
+    let currentEl: Element | null = null;
+
+    // Re-measure on scroll too (not just resize) instead of locking page
+    // scroll entirely. An earlier version locked scroll with
+    // `overflow: hidden` on <body>, which iOS Safari does not honor
+    // reliably - toggling it while the layout viewport was mid-recalculation
+    // (right as scrollIntoView animates) left the whole page rendered
+    // zoomed-out with grey letterboxing. Tracking the target live as the
+    // learner scrolls is simpler and has no such failure mode.
+    function trackScroll() {
+      if (!currentEl) return;
+      setRect(currentEl.getBoundingClientRect());
+    }
 
     function measure() {
       // Some steps have more than one element matching the selector (e.g. a
@@ -100,6 +98,7 @@ export default function SpotlightTour({ steps, storageKey }: Props) {
         setStepIndex((i) => i + 1);
         return;
       }
+      currentEl = el;
       el.scrollIntoView({ block: "center", behavior: "smooth" });
       // Mobile scroll (and the smooth-scroll animation itself) can take
       // longer to settle than on desktop - measure a bit later, and again
@@ -113,8 +112,10 @@ export default function SpotlightTour({ steps, storageKey }: Props) {
 
     measure();
     window.addEventListener("resize", measure);
+    window.addEventListener("scroll", trackScroll, { passive: true });
     return () => {
       window.removeEventListener("resize", measure);
+      window.removeEventListener("scroll", trackScroll);
       if (settleTimer) clearTimeout(settleTimer);
     };
   }, [stepIndex, steps]);
