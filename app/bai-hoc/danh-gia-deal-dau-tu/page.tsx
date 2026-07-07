@@ -54,7 +54,7 @@ const quiz: QuizQuestion[] = [
     question: "Red flag nào khiến bạn immediately pass một deal?",
     options: [
       "EBITDA margin dưới 20%",
-      "Key person dependency — business phụ thuộc hoàn toàn vào 1-2 người",
+      "Key person dependency - business phụ thuộc hoàn toàn vào 1-2 người",
       "Công ty chưa niêm yết",
       "Revenue dưới 500 tỷ",
     ],
@@ -66,8 +66,8 @@ const quiz: QuizQuestion[] = [
 export default function Page() {
   return (
     <LessonPageLayout lesson={meta} quiz={quiz}>
-      <h2 className="text-2xl font-bold text-stone-900 mb-2">Đánh Giá Deal Đầu Tư — Thực Chiến</h2>
-      <p className="text-stone-600 text-sm mb-6 italic">Framework phân tích deal như một PE analyst — từ triage đến investment committee</p>
+      <h2 className="text-2xl font-bold text-stone-900 mb-2">Đánh Giá Deal Đầu Tư - Thực Chiến</h2>
+      <p className="text-stone-600 text-sm mb-6 italic">Framework phân tích deal như một PE analyst - từ triage đến investment committee</p>
 
       <section className="mb-8">
         <h3 className="text-lg font-bold text-stone-800 mb-3">Framework 5 bước phân tích deal</h3>
@@ -141,7 +141,7 @@ export default function Page() {
             },
             {
               q: "Tại sao IRR quan trọng hơn MOIC?",
-              a: "IRR điều chỉnh theo thời gian — MOIC 3x trong 3 năm (IRR ~44%) tốt hơn nhiều 3x trong 7 năm (IRR ~17%). IRR cho phép so sánh apples-to-apples giữa các deal có holding period khác nhau.",
+              a: "IRR điều chỉnh theo thời gian - MOIC 3x trong 3 năm (IRR ~44%) tốt hơn nhiều 3x trong 7 năm (IRR ~17%). IRR cho phép so sánh apples-to-apples giữa các deal có holding period khác nhau.",
             },
           ].map((item, i) => (
             <div key={i} className="bg-white border border-stone-200 rounded-xl p-4">
@@ -164,7 +164,7 @@ export default function Page() {
               "Ngành đang bị disruption",
               "Accounting irregularities",
             ].map((f, i) => (
-              <div key={i}>— {f}</div>
+              <div key={i}> - {f}</div>
             ))}
           </div>
         </div>

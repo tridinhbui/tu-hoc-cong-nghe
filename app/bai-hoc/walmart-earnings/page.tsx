@@ -7,7 +7,7 @@ const meta: LessonMeta = {
   title: "Walmart Earnings Story",
   subtitle: "Học cách kể chuyện tài chính từ CEO và CFO của Walmart Q1/2027",
   duration: "6 phút", difficulty: "Trung bình", emoji: "🛒",
-  nextSlug: "inventory-turnover", nextTitle: "Inventory — Hàng Tồn Kho",
+  nextSlug: "inventory-turnover", nextTitle: "Inventory - Hàng Tồn Kho",
 };
 
 const quiz: QuizQuestion[] = [
@@ -48,7 +48,7 @@ const quiz: QuizQuestion[] = [
     question: "CFO Walmart nói 'Membership và Advertising chiếm 1/3 Operating Income'. Điều này có ý nghĩa gì với valuation?",
     options: [
       "Walmart đang thu hẹp core retail",
-      "Phần lớn tăng trưởng value của Walmart đến từ high-margin segments — xứng đáng được định giá premium hơn pure retailer",
+      "Phần lớn tăng trưởng value của Walmart đến từ high-margin segments - xứng đáng được định giá premium hơn pure retailer",
       "Operating income của Walmart giảm",
       "Membership fee sẽ giảm",
     ],
@@ -60,13 +60,13 @@ const quiz: QuizQuestion[] = [
 export default function Page() {
   return (
     <LessonPageLayout lesson={meta} quiz={quiz}>
-      <h2 className="text-2xl font-bold text-stone-900 mb-2">Walmart Earnings Story — Q1/2027</h2>
+      <h2 className="text-2xl font-bold text-stone-900 mb-2">Walmart Earnings Story - Q1/2027</h2>
       <p className="text-stone-600 text-sm mb-6 italic">Học cách đọc earnings release như CEO/CFO kể chuyện, không chỉ đọc số</p>
 
       <section className="mb-8">
         <h3 className="text-lg font-bold text-stone-800 mb-3"> Snapshot Q1/2027 Highlights</h3>
         <div className="bg-stone-800 text-white rounded-xl p-5 font-mono text-sm space-y-2 mb-4">
-          <div className="text-stone-500 text-xs mb-2">{ '// Walmart Q1/2027 — Key Metrics' }</div>
+          <div className="text-stone-500 text-xs mb-2">{ '// Walmart Q1/2027 - Key Metrics' }</div>
           <div className="flex justify-between"><span className="text-stone-300">Revenue growth YoY</span><span className="text-white">+~10B USD</span></div>
           <div className="flex justify-between"><span className="text-stone-700">eCommerce growth</span><span className="text-stone-700">+26%</span></div>
           <div className="flex justify-between"><span className="text-stone-700">Marketplace growth</span><span className="text-stone-700">+~50%</span></div>
@@ -91,7 +91,7 @@ export default function Page() {
             {
               from: "Nhà bán lẻ truyền thống",
               to: "Commerce Platform",
-              detail: "Marketplace: Walmart không tự mua hàng rồi bán — họ tạo nền tảng để hàng ngàn sellers khác đăng bán. Giống Shopee/Lazada. Ít risk tồn kho, margin cao hơn.",
+              detail: "Marketplace: Walmart không tự mua hàng rồi bán - họ tạo nền tảng để hàng ngàn sellers khác đăng bán. Giống Shopee/Lazada. Ít risk tồn kho, margin cao hơn.",
               icon: "🏪→🌐",
             },
             {
@@ -119,14 +119,14 @@ export default function Page() {
       <section className="mb-8">
         <h3 className="text-lg font-bold text-stone-800 mb-3">💬 CEO quote: "We're also becoming AI native."</h3>
         <div className="bg-stone-50 border border-stone-200 rounded-xl p-4 mb-3">
-          <p className="text-sm text-stone-700 italic mb-2">"We're also becoming AI native." — Doug McMillon, CEO Walmart</p>
+          <p className="text-sm text-stone-700 italic mb-2">"We're also becoming AI native."- Doug McMillon, CEO Walmart</p>
           <p className="text-stone-600 text-sm">Câu này không chỉ về công nghệ. AI đang giúp Walmart:</p>
           <ul className="mt-2 space-y-1">
             {[
-              "Inventory optimization — đặt hàng đúng lúc, đúng lượng, đúng cửa hàng",
-              "Personalization — cá nhân hóa offer cho từng khách hàng → tăng conversion",
-              "Fulfillment efficiency — optimize routing, packing, delivery",
-              "Advertising targeting — khiến Walmart Connect ads hiệu quả hơn cho brands",
+              "Inventory optimization - đặt hàng đúng lúc, đúng lượng, đúng cửa hàng",
+              "Personalization - cá nhân hóa offer cho từng khách hàng → tăng conversion",
+              "Fulfillment efficiency - optimize routing, packing, delivery",
+              "Advertising targeting - khiến Walmart Connect ads hiệu quả hơn cho brands",
             ].map((p, i) => (
               <li key={i} className="flex gap-2 text-xs text-stone-600">
                 <span className="text-stone-700">→</span>{p}
@@ -178,7 +178,7 @@ export default function Page() {
             <li>→ Doanh thu đến từ đâu? Nguồn nào có margin cao và recurring?</li>
             <li>→ Business mix đang thay đổi ra sao? Walmart đang ít giống retailer hơn</li>
             <li>→ Management đang đánh đổi ngắn hạn (low margin grocery) lấy dài hạn (platform, advertising)?</li>
-            <li>→ CEO/CFO kể gì trong earnings call — đó là thesis đầu tư, không chỉ là con số</li>
+            <li>→ CEO/CFO kể gì trong earnings call - đó là thesis đầu tư, không chỉ là con số</li>
           </ul>
         </div>
       </section>

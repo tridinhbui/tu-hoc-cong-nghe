@@ -11,7 +11,7 @@ export interface LessonOverride {
 /**
  * Reads the admin-controlled lock/visibility flags for every lesson from
  * Supabase. Uses the regular (RLS-respecting) server client since `lessons`
- * has a public SELECT policy — no need for the service-role client here.
+ * has a public SELECT policy - no need for the service-role client here.
  * Falls back to an empty map (nothing overridden) if the table hasn't been
  * synced yet, so the dashboard degrades to "no overrides" rather than
  * breaking.

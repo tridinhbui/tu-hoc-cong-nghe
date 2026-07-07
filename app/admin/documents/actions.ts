@@ -35,7 +35,7 @@ export async function updateDocumentAction(id: number, formData: FormData) {
   const title = (formData.get("title") as string)?.trim();
   const description = (formData.get("description") as string)?.trim() ?? "";
   const category = (formData.get("category") as string) || "khac";
-  // The file and image inputs are optional on edit — only present in the
+  // The file and image inputs are optional on edit - only present in the
   // form data when the admin actually chose/dropped a replacement.
   const file = formData.get("file") as File | null;
   const image = formData.get("image") as File | null;

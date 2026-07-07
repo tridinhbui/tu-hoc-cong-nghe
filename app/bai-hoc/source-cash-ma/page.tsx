@@ -26,13 +26,13 @@ const quiz: QuizQuestion[] = [
   {
     question: "All-cash deal vs all-stock deal: bên bán thích deal nào hơn về mặt thuế?",
     options: [
-      "All-cash — nhận tiền ngay, chắc chắn",
-      "All-stock — deferral thuế capital gain cho đến khi bán cổ phiếu nhận được",
+      "All-cash - nhận tiền ngay, chắc chắn",
+      "All-stock - deferral thuế capital gain cho đến khi bán cổ phiếu nhận được",
       "Hai deal ngang nhau về thuế",
       "Phụ thuộc vào jurisdiction",
     ],
     correct: 1,
-    explanation: "Stock-for-stock deal trong nhiều jurisdiction được xử lý như tax-free reorganization — bên bán không phải trả thuế capital gain ngay, chỉ trả khi bán cổ phiếu nhận được từ bên mua.",
+    explanation: "Stock-for-stock deal trong nhiều jurisdiction được xử lý như tax-free reorganization - bên bán không phải trả thuế capital gain ngay, chỉ trả khi bán cổ phiếu nhận được từ bên mua.",
   },
   {
     question: "Accretive deal là gì?",
@@ -43,7 +43,7 @@ const quiz: QuizQuestion[] = [
       "Bên bán đồng ý bán với giá thấp hơn market",
     ],
     correct: 1,
-    explanation: "Accretive: EPS post-deal > EPS pre-deal. Dilutive: ngược lại. Trong stock deal, bên mua phát hành cổ phiếu mới (dilution) — deal accretive khi earnings từ target bù đắp được dilution.",
+    explanation: "Accretive: EPS post-deal > EPS pre-deal. Dilutive: ngược lại. Trong stock deal, bên mua phát hành cổ phiếu mới (dilution) - deal accretive khi earnings từ target bù đắp được dilution.",
   },
   {
     question: "Tại sao PE fund dùng LBO thay vì all-equity deal?",
@@ -65,7 +65,7 @@ const quiz: QuizQuestion[] = [
       "Cổ phiếu bên mua tặng cho management target",
     ],
     correct: 1,
-    explanation: "Earnout = một phần của deal consideration được trả sau dựa trên performance metrics (revenue, EBITDA). Dùng khi bên mua và bên bán không đồng ý về giá trị tương lai — chia sẻ rủi ro.",
+    explanation: "Earnout = một phần của deal consideration được trả sau dựa trên performance metrics (revenue, EBITDA). Dùng khi bên mua và bên bán không đồng ý về giá trị tương lai - chia sẻ rủi ro.",
   },
 ];
 
@@ -137,7 +137,7 @@ export default function Page() {
   return (
     <LessonPageLayout lesson={meta} quiz={quiz}>
       <h2 className="text-2xl font-bold text-stone-900 mb-2">Source of Cash trong M&A</h2>
-      <p className="text-stone-600 text-sm mb-6 italic">Tiền mua acquisition đến từ đâu — và cấu trúc nào tối ưu hóa return?</p>
+      <p className="text-stone-600 text-sm mb-6 italic">Tiền mua acquisition đến từ đâu - và cấu trúc nào tối ưu hóa return?</p>
 
       <section className="mb-8">
         <h3 className="text-lg font-bold text-stone-800 mb-3">💰 4 nguồn vốn chính trong M&A</h3>

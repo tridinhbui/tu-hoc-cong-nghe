@@ -19,10 +19,10 @@ export default function InteractiveInterestRate() {
   };
 
   const getRateLabel = () => {
-    if (rate <= 4) return "Rất thấp — nền kinh tế cần kích thích";
-    if (rate <= 7) return "Bình thường — cân bằng tốt";
-    if (rate <= 10) return "Cao — đang kiểm soát lạm phát";
-    return "Rất cao — vay vốn rất khó khăn";
+    if (rate <= 4) return "Rất thấp - nền kinh tế cần kích thích";
+    if (rate <= 7) return "Bình thường - cân bằng tốt";
+    if (rate <= 10) return "Cao - đang kiểm soát lạm phát";
+    return "Rất cao - vay vốn rất khó khăn";
   };
 
   return (
@@ -95,13 +95,13 @@ export default function InteractiveInterestRate() {
 
       {rate >= 10 && (
         <div className="bg-rose-50 border border-rose-200 rounded-2xl p-4 text-rose-800 text-sm">
-          <strong>Lãi suất {rate}% — rất cao!</strong> Doanh nghiệp khó vay, thị trường bất động sản đóng băng, nhưng người gửi tiết kiệm rất hài lòng.
+          <strong>Lãi suất {rate}% - rất cao!</strong> Doanh nghiệp khó vay, thị trường bất động sản đóng băng, nhưng người gửi tiết kiệm rất hài lòng.
         </div>
       )}
 
       {rate <= 3 && (
         <div className="bg-blue-50 border border-blue-200 rounded-2xl p-4 text-blue-800 text-sm">
-          <strong>Lãi suất {rate}% — rất thấp!</strong> Vay tiền rẻ, doanh nghiệp đầu tư nhiều hơn, nhưng người gửi tiết kiệm nhận được rất ít.
+          <strong>Lãi suất {rate}% - rất thấp!</strong> Vay tiền rẻ, doanh nghiệp đầu tư nhiều hơn, nhưng người gửi tiết kiệm nhận được rất ít.
         </div>
       )}
     </div>

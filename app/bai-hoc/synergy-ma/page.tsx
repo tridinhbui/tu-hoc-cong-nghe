@@ -6,7 +6,7 @@ import LessonPageLayout, { QuizQuestion, LessonMeta } from "@/components/LessonP
 const meta: LessonMeta = {
   id: 16, day: 16, accent: "purple",
   title: "Synergy trong M&A",
-  subtitle: "1 + 1 = 3 — Khi nào điều này thành hiện thực?",
+  subtitle: "1 + 1 = 3 - Khi nào điều này thành hiện thực?",
   duration: "8 phút", difficulty: "Khó", emoji: "🔗",
   nextSlug: "khau-hao", nextTitle: "Khấu Hao",
 };
@@ -16,18 +16,18 @@ const quiz: QuizQuestion[] = [
     question: "Cost synergy và revenue synergy khác nhau như thế nào về độ chắc chắn?",
     options: [
       "Revenue synergy chắc chắn hơn vì dễ tính toán",
-      "Cost synergy thường chắc chắn hơn — cắt chi phí trùng lặp là việc bên trong có thể kiểm soát",
+      "Cost synergy thường chắc chắn hơn - cắt chi phí trùng lặp là việc bên trong có thể kiểm soát",
       "Hai loại như nhau về độ chắc chắn",
       "Phụ thuộc vào ngành",
     ],
     correct: 1,
-    explanation: "Cost synergy (lay-off trùng lặp, đóng cửa hàng duplicate, consolidate IT systems) là việc internal — manageable. Revenue synergy (cross-sell, upsell cho customer base của nhau) phụ thuộc vào customer behavior — khó predict hơn nhiều.",
+    explanation: "Cost synergy (lay-off trùng lặp, đóng cửa hàng duplicate, consolidate IT systems) là việc internal - manageable. Revenue synergy (cross-sell, upsell cho customer base của nhau) phụ thuộc vào customer behavior - khó predict hơn nhiều.",
   },
   {
     question: "Acquisition premium thường được justified bằng gì?",
     options: [
       "Giá trị sổ sách của target",
-      "PV của synergy kỳ vọng — bên mua trả premium vì tin rằng 1+1 > 2",
+      "PV của synergy kỳ vọng - bên mua trả premium vì tin rằng 1+1 > 2",
       "Cảm xúc và ego của CEO",
       "Áp lực từ investment banker",
     ],
@@ -59,7 +59,7 @@ const quiz: QuizQuestion[] = [
   {
     question: "Trong synergy analysis, 'dis-synergy' là gì?",
     options: [
-      "Synergy âm — giá trị bị mất đi sau khi sáp nhập",
+      "Synergy âm - giá trị bị mất đi sau khi sáp nhập",
       "Synergy khó đo lường",
       "Synergy cần nhiều năm để achieve",
       "Không có khái niệm này trong M&A",
@@ -135,7 +135,7 @@ export default function Page() {
   return (
     <LessonPageLayout lesson={meta} quiz={quiz}>
       <h2 className="text-2xl font-bold text-stone-900 mb-2">Synergy trong M&A</h2>
-      <p className="text-stone-600 text-sm mb-6 italic">Lý do tồn tại của hầu hết thương vụ mua lại — và tại sao nó thường thất vọng</p>
+      <p className="text-stone-600 text-sm mb-6 italic">Lý do tồn tại của hầu hết thương vụ mua lại - và tại sao nó thường thất vọng</p>
 
       <section className="mb-8">
         <h3 className="text-lg font-bold text-stone-800 mb-3">🔍 2 loại synergy chính</h3>
@@ -145,7 +145,7 @@ export default function Page() {
               <span className="text-2xl">✂️</span>
               <div>
                 <div className="font-bold text-stone-800">Cost Synergy</div>
-                <div className="text-xs text-stone-700 font-semibold">Chắc chắn hơn — có thể kiểm soát</div>
+                <div className="text-xs text-stone-700 font-semibold">Chắc chắn hơn - có thể kiểm soát</div>
               </div>
             </div>
             <ul className="space-y-1.5 text-sm text-stone-600">
@@ -160,7 +160,7 @@ export default function Page() {
               <span className="text-2xl"></span>
               <div>
                 <div className="font-bold text-stone-800">Revenue Synergy</div>
-                <div className="text-xs text-stone-700 font-semibold">Không chắc chắn — phụ thuộc khách hàng</div>
+                <div className="text-xs text-stone-700 font-semibold">Không chắc chắn - phụ thuộc khách hàng</div>
               </div>
             </div>
             <ul className="space-y-1.5 text-sm text-stone-600">
@@ -179,7 +179,7 @@ export default function Page() {
         <h3 className="text-lg font-bold text-stone-800 mb-3"> Tại sao 50-70% M&A thất bại?</h3>
         <div className="space-y-3">
           {[
-            { icon: "💰", issue: "Overpay — synergy estimate quá lạc quan", detail: "Banker inflated projection + CEO muốn win deal → bên mua trả premium cao hơn PV(synergy) thực tế" },
+            { icon: "💰", issue: "Overpay - synergy estimate quá lạc quan", detail: "Banker inflated projection + CEO muốn win deal → bên mua trả premium cao hơn PV(synergy) thực tế" },
             { icon: "🏴", issue: "Culture clash", detail: "Hai tổ chức có văn hóa khác nhau không thể tích hợp → key talent nghỉ việc, productivity giảm" },
             { icon: "⏰", issue: "Integration chậm và tốn kém hơn dự tính", detail: "IT systems không tương thích, process khác nhau, customer confusion → mất 2-3 năm thay vì 12 tháng" },
             { icon: "", issue: "Distraction từ core business", detail: "Management tập trung vào integration → core business bị neglect → thua đối thủ" },
@@ -200,7 +200,7 @@ export default function Page() {
         <div className="space-y-2">
           {[
             "Haircut synergy estimate: chỉ dùng 50-70% số banker đưa ra",
-            "Phân tách cost vs revenue synergy — weight cost synergy cao hơn",
+            "Phân tách cost vs revenue synergy - weight cost synergy cao hơn",
             "Model ramp-up timeline: synergy không realized ngay trong năm 1",
             "Include integration costs: one-time costs thường bằng 1-2 năm synergy",
             "Sensitivity analysis: what if synergy thấp hơn 30%? Deal vẫn makes sense?",

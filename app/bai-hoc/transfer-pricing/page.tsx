@@ -5,9 +5,9 @@ import LessonPageLayout, { QuizQuestion, LessonMeta } from "@/components/LessonP
 const meta: LessonMeta = {
   id: 33, day: 33, accent: "rose",
   title: "Transfer Pricing",
-  subtitle: "Arm's length principle — tại sao Apple Ireland lại lợi nhuận thấp thế?",
+  subtitle: "Arm's length principle - tại sao Apple Ireland lại lợi nhuận thấp thế?",
   duration: "6 phút", difficulty: "Khó", emoji: "🌐",
-  nextSlug: "maple-leaf-leverage", nextTitle: "Maple Leaf — Leverage Ratio",
+  nextSlug: "maple-leaf-leverage", nextTitle: "Maple Leaf - Leverage Ratio",
 };
 
 const quiz: QuizQuestion[] = [
@@ -31,18 +31,18 @@ const quiz: QuizQuestion[] = [
       "Xác định tỷ giá hối đoái",
     ],
     correct: 1,
-    explanation: "TP regulations chống lại 'profit shifting' — multinational groups dùng intercompany transactions (IP licensing, management fees, intercompany loans) để move profit từ nước thuế cao (ví dụ US 21%) sang nước thuế thấp (Ireland 12.5%, Cayman 0%). OECD BEPS project là nỗ lực toàn cầu để address vấn đề này.",
+    explanation: "TP regulations chống lại 'profit shifting'- multinational groups dùng intercompany transactions (IP licensing, management fees, intercompany loans) để move profit từ nước thuế cao (ví dụ US 21%) sang nước thuế thấp (Ireland 12.5%, Cayman 0%). OECD BEPS project là nỗ lực toàn cầu để address vấn đề này.",
   },
   {
     question: "Ai là người thường review và tư vấn Transfer Pricing documentation cho doanh nghiệp?",
     options: [
       "Chỉ nội bộ công ty tự làm",
-      "Big 4 accounting firms (Deloitte, PwC, EY, KPMG) — Tax and TP specialists",
+      "Big 4 accounting firms (Deloitte, PwC, EY, KPMG) - Tax and TP specialists",
       "Chỉ luật sư",
       "Chỉ cơ quan thuế",
     ],
     correct: 1,
-    explanation: "Big 4 là leading TP advisors — họ cung cấp: (1) TP policy design, (2) Benchmarking analysis (tìm comparable transactions), (3) TP documentation (Master File, Local File, Country-by-Country Report), (4) Advance Pricing Agreements (APA) với tax authorities. Thuế TP là một specialty lớn trong ngành tax.",
+    explanation: "Big 4 là leading TP advisors - họ cung cấp: (1) TP policy design, (2) Benchmarking analysis (tìm comparable transactions), (3) TP documentation (Master File, Local File, Country-by-Country Report), (4) Advance Pricing Agreements (APA) với tax authorities. Thuế TP là một specialty lớn trong ngành tax.",
   },
   {
     question: "Công ty A (Việt Nam) mua software license từ công ty mẹ B (Ireland) với giá 10M USD/năm. Market rate là 3M USD. Vấn đề gì có thể xảy ra?",
@@ -64,7 +64,7 @@ const quiz: QuizQuestion[] = [
       "Cả B và C",
     ],
     correct: 3,
-    explanation: "CbCR (OECD BEPS Action 13): MNC group với consolidated revenue >750M EUR phải nộp CbCR — breakdown theo jurisdiction: doanh thu, lợi nhuận trước thuế, thuế đã nộp, số nhân viên, assets. Giúp cơ quan thuế identify 'mismatch' giữa nơi economic activity và nơi profit được ghi nhận.",
+    explanation: "CbCR (OECD BEPS Action 13): MNC group với consolidated revenue >750M EUR phải nộp CbCR - breakdown theo jurisdiction: doanh thu, lợi nhuận trước thuế, thuế đã nộp, số nhân viên, assets. Giúp cơ quan thuế identify 'mismatch' giữa nơi economic activity và nơi profit được ghi nhận.",
   },
 ];
 
@@ -72,7 +72,7 @@ export default function Page() {
   return (
     <LessonPageLayout lesson={meta} quiz={quiz}>
       <h2 className="text-2xl font-bold text-stone-900 mb-2">Transfer Pricing</h2>
-      <p className="text-stone-600 text-sm mb-6 italic">Khi Apple Ireland báo ít lãi — hay cả hệ thống tax structure đằng sau?</p>
+      <p className="text-stone-600 text-sm mb-6 italic">Khi Apple Ireland báo ít lãi - hay cả hệ thống tax structure đằng sau?</p>
 
       <section className="mb-8">
         <h3 className="text-lg font-bold text-stone-800 mb-3">🤔 Transfer Pricing là gì?</h3>
@@ -82,7 +82,7 @@ export default function Page() {
           </p>
         </div>
         <p className="text-stone-600 leading-relaxed text-sm">
-          Vì các công ty trong cùng group có thể <strong>tự định giá giao dịch nội bộ</strong>, họ có thể lợi dụng để chuyển lợi nhuận sang nơi có thuế thấp hơn — đây là lý do OECD và các nước đặt ra Transfer Pricing regulations.
+          Vì các công ty trong cùng group có thể <strong>tự định giá giao dịch nội bộ</strong>, họ có thể lợi dụng để chuyển lợi nhuận sang nơi có thuế thấp hơn - đây là lý do OECD và các nước đặt ra Transfer Pricing regulations.
         </p>
       </section>
 
@@ -142,7 +142,7 @@ export default function Page() {
               "Apple (Ireland) ghi nhận profits toàn cầu với tax rate hiệu quả ~0.005% (2014)",
               "IP held in Ireland but managed từ US → 'stateless income' concept",
               "EU: Ireland granted illegal state aid → phải thu lại €13B",
-              "Apple kháng cáo — case kéo dài đến 2024 mới có phán quyết chính thức",
+              "Apple kháng cáo - case kéo dài đến 2024 mới có phán quyết chính thức",
             ].map((p, i) => (
               <div key={i} className="flex gap-2 text-xs">
                 <span className="text-stone-700 flex-shrink-0">•</span>
@@ -159,8 +159,8 @@ export default function Page() {
           {[
             { doc: "Master File", scope: "Group-level TP policy, global business, value chain, IP overview" },
             { doc: "Local File", scope: "Entity-level: detailed analysis từng intercompany transaction, benchmarking studies" },
-            { doc: "Country-by-Country Report (CbCR)", scope: "Revenue, profit, tax, employees per jurisdiction — cho tax authorities" },
-            { doc: "Advance Pricing Agreement (APA)", scope: "Pre-agreed TP methodology với tax authority — certainty cho doanh nghiệp" },
+            { doc: "Country-by-Country Report (CbCR)", scope: "Revenue, profit, tax, employees per jurisdiction - cho tax authorities" },
+            { doc: "Advance Pricing Agreement (APA)", scope: "Pre-agreed TP methodology với tax authority - certainty cho doanh nghiệp" },
           ].map(d => (
             <div key={d.doc} className="flex gap-3 bg-stone-50 rounded-lg p-3 border border-stone-200">
               <div className="w-32 flex-shrink-0 font-bold text-stone-700 text-xs">{d.doc}</div>

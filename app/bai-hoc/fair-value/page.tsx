@@ -27,7 +27,7 @@ const quiz: QuizQuestion[] = [
     question: "EV/EBITDA của công ty A là 12x. Ngành trung bình là 10x. Điều này ngụ ý gì?",
     options: [
       "Công ty A đang rẻ hơn ngành",
-      "Công ty A đang đắt hơn ngành — có thể justified nếu growth cao hơn",
+      "Công ty A đang đắt hơn ngành - có thể justified nếu growth cao hơn",
       "Công ty A có EBITDA cao hơn",
       "Không thể kết luận gì",
     ],
@@ -128,13 +128,13 @@ function ValuationFootballField() {
 export default function Page() {
   return (
     <LessonPageLayout lesson={meta} quiz={quiz}>
-      <h2 className="text-2xl font-bold text-stone-900 mb-2">Fair Value — 3 Cách Định Giá</h2>
-      <p className="text-stone-600 text-sm mb-6 italic">Không có con số định giá "đúng" — chỉ có giả định tốt và giả định tệ</p>
+      <h2 className="text-2xl font-bold text-stone-900 mb-2">Fair Value - 3 Cách Định Giá</h2>
+      <p className="text-stone-600 text-sm mb-6 italic">Không có con số định giá "đúng" - chỉ có giả định tốt và giả định tệ</p>
 
       <section className="mb-8">
         <h3 className="text-lg font-bold text-stone-800 mb-3"> Fair Value là gì?</h3>
         <p className="text-stone-600 leading-relaxed mb-4">
-          Fair Value = giá mà một tài sản sẽ được giao dịch giữa hai bên hiểu biết, sẵn lòng và không bị ép buộc. Trong thực tế, định giá là <strong>nghệ thuật</strong> nhiều hơn khoa học — kết quả phụ thuộc vào giả định.
+          Fair Value = giá mà một tài sản sẽ được giao dịch giữa hai bên hiểu biết, sẵn lòng và không bị ép buộc. Trong thực tế, định giá là <strong>nghệ thuật</strong> nhiều hơn khoa học - kết quả phụ thuộc vào giả định.
         </p>
 
         <div className="grid grid-cols-1 gap-4">
@@ -213,7 +213,7 @@ export default function Page() {
           {[
             "Anchoring: bắt đầu từ giá thị trường hiện tại → bias kết quả DCF",
             "Dùng terminal growth rate quá cao (> GDP dài hạn) → inflate value",
-            "Peer group không thực sự comparable — khác ngành, khác cycle",
+            "Peer group không thực sự comparable - khác ngành, khác cycle",
             "Quên điều chỉnh cho illiquidity discount (công ty private)",
           ].map((p, i) => (
             <div key={i} className="flex gap-3 bg-stone-50 rounded-lg p-3 text-sm border border-stone-200">

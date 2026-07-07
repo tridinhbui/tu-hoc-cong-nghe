@@ -5,7 +5,7 @@ import LessonPageLayout, { QuizQuestion, LessonMeta } from "@/components/LessonP
 const LESSON: LessonMeta = {
   id: 4, day: 4, accent: "orange",
   title: "10 Công Thức Finance Interview",
-  subtitle: "Revenue → FCF → EV → Giá cổ phiếu — một dòng chảy liên thông",
+  subtitle: "Revenue → FCF → EV → Giá cổ phiếu - một dòng chảy liên thông",
   duration: "10 phút", difficulty: "Trung bình", emoji: "",
   nextSlug: "cac-loai-debt", nextTitle: "Day 5: Các Loại Debt",
 };
@@ -26,12 +26,12 @@ const QUIZ: QuizQuestion[] = [
     question: "EBITDA khác EBIT ở điểm gì?",
     options: [
       "EBITDA bao gồm thuế, EBIT thì không",
-      "EBITDA cộng ngược lại D&A (Depreciation & Amortization) — không phải chi tiêu tiền mặt",
+      "EBITDA cộng ngược lại D&A (Depreciation & Amortization) - không phải chi tiêu tiền mặt",
       "EBIT dùng cho manufacturing, EBITDA dùng cho tech",
       "Hai chỉ số hoàn toàn giống nhau",
     ],
     correct: 1,
-    explanation: "EBITDA = EBIT + D&A. D&A là chi phí phi tiền mặt (non-cash) — khấu hao tài sản. EBITDA loại bỏ D&A để phản ánh khả năng tạo tiền thuần hơn. Phổ biến trong so sánh định giá (EV/EBITDA).",
+    explanation: "EBITDA = EBIT + D&A. D&A là chi phí phi tiền mặt (non-cash) - khấu hao tài sản. EBITDA loại bỏ D&A để phản ánh khả năng tạo tiền thuần hơn. Phổ biến trong so sánh định giá (EV/EBITDA).",
   },
   {
     question: "Enterprise Value (EV) = ?",
@@ -54,7 +54,7 @@ const QUIZ: QuizQuestion[] = [
     question: "Tại sao nhà phân tích dùng EV/EBITDA thay vì P/E?",
     options: [
       "EV/EBITDA dễ tính hơn",
-      "EV/EBITDA trung lập với cấu trúc vốn (debt/equity) và chính sách kế toán khấu hao — so sánh công bằng giữa các công ty khác nhau",
+      "EV/EBITDA trung lập với cấu trúc vốn (debt/equity) và chính sách kế toán khấu hao - so sánh công bằng giữa các công ty khác nhau",
       "P/E không áp dụng được cho công ty VN",
       "EV/EBITDA luôn thấp hơn P/E nên nhìn đẹp hơn",
     ],
@@ -68,7 +68,7 @@ const formulas = [
   { id: "ebitda", name: "EBITDA", formula: "Gross Profit − Operating Expenses + D&A", note: "Proxy cho cash generation từ hoạt động. Dùng nhiều trong M&A (EV/EBITDA)." },
   { id: "ebit", name: "EBIT (Operating Income)", formula: "EBITDA − Depreciation & Amortization", note: "Lợi nhuận trước lãi vay và thuế. Phản ánh hiệu quả hoạt động, không phụ thuộc cấu trúc vốn." },
   { id: "ni", name: "Net Income", formula: "(EBIT − Interest Expense) × (1 − Tax Rate)", note: "Lợi nhuận cuối cùng cho cổ đông. Nhưng coi chừng: NI bị ảnh hưởng nhiều bởi kế toán." },
-  { id: "fcf", name: "Free Cash Flow", formula: "OCF − CapEx", note: "Tiền thực sự tự do — cơ sở định giá DCF và 'owner earnings' của Buffett." },
+  { id: "fcf", name: "Free Cash Flow", formula: "OCF − CapEx", note: "Tiền thực sự tự do - cơ sở định giá DCF và 'owner earnings' của Buffett." },
   { id: "ev", name: "Enterprise Value (EV)", formula: "Market Cap + Total Debt − Cash", note: "Giá 'thực' để mua lại cả doanh nghiệp. Chuẩn hóa cho M&A và so sánh (EV/EBITDA)." },
   { id: "equity", name: "Equity Value (Market Cap)", formula: "EV − Net Debt", note: "Giá trị phần thuộc về cổ đông. Chia cho số cổ phiếu = giá lý thuyết mỗi cổ phiếu." },
   { id: "pe", name: "P/E Ratio", formula: "Price per Share / EPS", note: "Nhà đầu tư trả bao nhiêu đồng cho 1 đồng lợi nhuận. P/E cao = kỳ vọng tăng trưởng cao." },
@@ -83,8 +83,8 @@ export default function TenCongThucPage() {
 
         <section className="space-y-4">
           <h2 className="text-xl font-bold text-stone-900">Tại sao cần nhớ 10 công thức này?</h2>
-          <p>Trong bất kỳ cuộc phỏng vấn finance nào — IB, PE, equity research, corporate finance — bạn sẽ được hỏi về những công thức này. Không chỉ hỏi "công thức là gì" mà còn hỏi "tại sao nó quan trọng" và "khi nào dùng cái nào".</p>
-          <p>Điều quan trọng hơn việc ghi nhớ công thức là hiểu <strong>dòng chảy từ Revenue xuống FCF</strong> — và từ FCF lên Enterprise Value — là một chuỗi liên thông.</p>
+          <p>Trong bất kỳ cuộc phỏng vấn finance nào - IB, PE, equity research, corporate finance - bạn sẽ được hỏi về những công thức này. Không chỉ hỏi "công thức là gì" mà còn hỏi "tại sao nó quan trọng" và "khi nào dùng cái nào".</p>
+          <p>Điều quan trọng hơn việc ghi nhớ công thức là hiểu <strong>dòng chảy từ Revenue xuống FCF</strong> - và từ FCF lên Enterprise Value - là một chuỗi liên thông.</p>
         </section>
 
         <section className="space-y-4">
@@ -117,7 +117,7 @@ export default function TenCongThucPage() {
         </section>
 
         <section className="space-y-4">
-          <h2 className="text-xl font-bold text-stone-900">10 công thức — chi tiết</h2>
+          <h2 className="text-xl font-bold text-stone-900">10 công thức - chi tiết</h2>
           <div className="space-y-3">
             {formulas.map(f => (
               <div key={f.id} className="border border-stone-200 rounded-xl p-4">
@@ -130,9 +130,9 @@ export default function TenCongThucPage() {
         </section>
 
         <section className="space-y-4">
-          <h2 className="text-xl font-bold text-stone-900">FPT — Áp dụng thực tế</h2>
+          <h2 className="text-xl font-bold text-stone-900">FPT - Áp dụng thực tế</h2>
           <div className="bg-stone-900 rounded-2xl p-5 text-sm space-y-2">
-            <div className="text-stone-500 text-xs font-bold uppercase tracking-widest mb-3">FPT Corporation — Ước tính 2023</div>
+            <div className="text-stone-500 text-xs font-bold uppercase tracking-widest mb-3">FPT Corporation - Ước tính 2023</div>
             {[
               { label: "Revenue", val: "~55,000 tỷ" },
               { label: "Gross Profit", val: "~18,000 tỷ (GPM ~33%)" },
@@ -153,9 +153,9 @@ export default function TenCongThucPage() {
         <div className="border-l-2 border-stone-300 pl-4 space-y-2">
           <h3 className="font-bold text-stone-800 mb-3">3 điều cần nhớ</h3>
           <div className="space-y-1 text-sm text-stone-700">
-            <div>— Revenue → Gross Profit → EBITDA → EBIT → NI → OCF → FCF là một dòng chảy liên thông</div>
-            <div>— EV/EBITDA trung lập với đòn bẩy — dùng để so sánh giữa các công ty</div>
-            <div>— FCF là cơ sở của mọi mô hình định giá DCF — quan trọng nhất trong finance</div>
+            <div> - Revenue → Gross Profit → EBITDA → EBIT → NI → OCF → FCF là một dòng chảy liên thông</div>
+            <div> - EV/EBITDA trung lập với đòn bẩy - dùng để so sánh giữa các công ty</div>
+            <div> - FCF là cơ sở của mọi mô hình định giá DCF - quan trọng nhất trong finance</div>
           </div>
         </div>
       </div>

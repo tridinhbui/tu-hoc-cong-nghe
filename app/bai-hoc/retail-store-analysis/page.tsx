@@ -31,7 +31,7 @@ const quiz: QuizQuestion[] = [
       "Tốc độ tăng giá cổ phiếu",
     ],
     correct: 1,
-    explanation: "Same-store sales growth (SSSG) là tăng trưởng doanh thu tại các cửa hàng đã hoạt động từ kỳ trước — tách biệt khỏi tăng trưởng do mở thêm cửa hàng mới. SSSG dương cho thấy cửa hàng hiện tại đang hoạt động tốt hơn, không phải chỉ nhờ mở rộng quy mô.",
+    explanation: "Same-store sales growth (SSSG) là tăng trưởng doanh thu tại các cửa hàng đã hoạt động từ kỳ trước - tách biệt khỏi tăng trưởng do mở thêm cửa hàng mới. SSSG dương cho thấy cửa hàng hiện tại đang hoạt động tốt hơn, không phải chỉ nhờ mở rộng quy mô.",
   },
   {
     question: "Nếu một cửa hàng mới mất 36 tháng để hoàn vốn, trong khi cửa hàng cùng ngành chỉ mất 12 tháng, điều này có thể gợi ý gì?",
@@ -69,7 +69,7 @@ export default function Page() {
           Khi phân tích doanh nghiệp bán lẻ, ba phần cần nhìn được là: <strong>hiệu quả của chuỗi hiện tại</strong>, <strong>tốc độ mở mới</strong>, và <strong>same-store sales growth</strong>.
         </p>
         <p className="text-stone-600 leading-relaxed">
-          Mở thêm cửa hàng nghe rất hấp dẫn — từ 500 lên 1.000 cửa hàng thì nhìn qua sẽ thấy tăng trưởng mạnh. Nhưng nếu doanh thu trung bình mỗi cửa hàng thấp, biên lợi nhuận yếu, chi phí vận hành cao, hoặc cửa hàng mới mất quá lâu để hòa vốn thì tốc độ mở rộng đó chưa chắc đã tốt.
+          Mở thêm cửa hàng nghe rất hấp dẫn - từ 500 lên 1.000 cửa hàng thì nhìn qua sẽ thấy tăng trưởng mạnh. Nhưng nếu doanh thu trung bình mỗi cửa hàng thấp, biên lợi nhuận yếu, chi phí vận hành cao, hoặc cửa hàng mới mất quá lâu để hòa vốn thì tốc độ mở rộng đó chưa chắc đã tốt.
         </p>
       </section>
 
@@ -109,10 +109,10 @@ export default function Page() {
           Khi phân tích bán lẻ, số lượng cửa hàng chỉ là con số dễ nhìn. Cái thực sự quan trọng là:
         </p>
         <div className="space-y-2 text-sm text-stone-600">
-          <div>— Mỗi cửa hàng tạo ra bao nhiêu tiền (doanh thu, biên lợi nhuận)</div>
-          <div>— Mất bao lâu để một cửa hàng mới hoàn vốn</div>
-          <div>— Khi chuỗi lớn hơn, vận hành có tốt lên không hay chi phí tăng theo</div>
-          <div>— Dòng tiền có đủ để duy trì mở rộng không hay phải đi vay</div>
+          <div> - Mỗi cửa hàng tạo ra bao nhiêu tiền (doanh thu, biên lợi nhuận)</div>
+          <div> - Mất bao lâu để một cửa hàng mới hoàn vốn</div>
+          <div> - Khi chuỗi lớn hơn, vận hành có tốt lên không hay chi phí tăng theo</div>
+          <div> - Dòng tiền có đủ để duy trì mở rộng không hay phải đi vay</div>
         </div>
       </section>
     </LessonPageLayout>

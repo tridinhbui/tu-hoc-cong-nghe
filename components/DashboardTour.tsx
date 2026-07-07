@@ -19,7 +19,7 @@ const STEPS: TourStep[] = [
   {
     selector: '[data-tour="resume-learning"]',
     title: "Học tiếp từ đâu",
-    text: "Bấm vào đây để quay lại đúng bài học tiếp theo trong lộ trình — không cần tự tìm.",
+    text: "Bấm vào đây để quay lại đúng bài học tiếp theo trong lộ trình, không cần tự tìm.",
   },
   {
     selector: '[data-tour="stage-list"]',
@@ -44,7 +44,7 @@ const MAX_TOOLTIP_WIDTH = 384; // matches max-w-sm
 // One-time spotlight walkthrough for brand-new users: dims the whole screen
 // except the current step's target element (via a box-shadow "cutout"), with
 // a tooltip describing why that element matters. Runs once per browser
-// (localStorage flag) — returning users never see it again, so it never gets
+// (localStorage flag) - returning users never see it again, so it never gets
 // in the way of people who already know the UI.
 export default function DashboardTour() {
   const [stepIndex, setStepIndex] = useState(-1);
@@ -56,9 +56,31 @@ export default function DashboardTour() {
     if (window.localStorage.getItem(TOUR_SEEN_KEY)) return;
     // Give the dashboard a tick to finish its first render/layout before we
     // start measuring element positions.
-    const t = setTimeout(() => setStepIndex(0), 500);
+    const t = setTimeout(() => {
+      // Mark as seen the moment the tour actually starts, not only when the
+      // learner clicks through to the end - previously, navigating away
+      // (e.g. tapping a lesson) mid-tour left the flag unset, so it played
+      // again in full on every subsequent login.
+      window.localStorage.setItem(TOUR_SEEN_KEY, "1");
+      setStepIndex(0);
+    }, 500);
     return () => clearTimeout(t);
   }, []);
+
+  // Lock page scroll while the tour is active so the spotlight can't drift
+  // out of sync with its target - the tour drives scrolling itself via
+  // scrollIntoView; letting the learner also scroll manually moved the
+  // element without the (already-measured, viewport-relative) rect updating,
+  // which smeared the highlight and tooltip away from the real element.
+  useEffect(() => {
+    const active = stepIndex >= 0 && stepIndex < STEPS.length;
+    if (!active) return;
+    const prevOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    return () => {
+      document.body.style.overflow = prevOverflow;
+    };
+  }, [stepIndex]);
 
   useEffect(() => {
     if (stepIndex < 0 || stepIndex >= STEPS.length) return;
@@ -66,7 +88,7 @@ export default function DashboardTour() {
     let settleTimer: ReturnType<typeof setTimeout> | null = null;
 
     function measure() {
-      // Some steps have more than one element matching the selector — e.g.
+      // Some steps have more than one element matching the selector - e.g.
       // "Tài liệu miễn phí" exists both in the desktop header (hidden on
       // mobile via a `hidden sm:flex` class) and in the mobile menu. A
       // `display: none` element is still in the DOM and still matches
@@ -83,18 +105,18 @@ export default function DashboardTour() {
         }
       }
       if (!el) {
-        // No visible target on this screen size — skip step.
+        // No visible target on this screen size - skip step.
         setStepIndex((i) => i + 1);
         return;
       }
       el.scrollIntoView({ block: "center", behavior: "smooth" });
       // Mobile scroll (and the smooth-scroll animation itself) can take
-      // longer to settle than on desktop — measure a bit later, and again
+      // longer to settle than on desktop - measure a bit later, and again
       // once more shortly after in case the first read landed mid-scroll.
       settleTimer = setTimeout(() => {
         setViewport({ width: window.innerWidth, height: window.innerHeight });
-        setRect(el.getBoundingClientRect());
-        setTimeout(() => setRect(el.getBoundingClientRect()), 250);
+        setRect(el!.getBoundingClientRect());
+        settleTimer = setTimeout(() => setRect(el!.getBoundingClientRect()), 250);
       }, 400);
     }
 
@@ -123,7 +145,7 @@ export default function DashboardTour() {
   }
 
   // Tooltip width scales down on narrow viewports instead of assuming a
-  // fixed 384px — on phones under ~416px wide, a hardcoded width pushed the
+  // fixed 384px - on phones under ~416px wide, a hardcoded width pushed the
   // horizontal clamp negative and shoved the tooltip off-screen.
   const tooltipWidth = Math.min(MAX_TOOLTIP_WIDTH, viewport.width - VIEWPORT_MARGIN * 2);
   const tooltipLeft = Math.min(
@@ -135,7 +157,9 @@ export default function DashboardTour() {
   // overflow the bottom of the viewport.
   const spaceBelow = viewport.height - (rect.bottom + padding);
   const tooltipBelow = spaceBelow > 200;
-  const tooltipTop = tooltipBelow ? rect.bottom + padding + 12 : Math.max(12, rect.top - padding - 12);
+  const tooltipTop = tooltipBelow
+    ? Math.min(rect.bottom + padding + 12, viewport.height - 24)
+    : Math.max(12, rect.top - padding - 12);
 
   return (
     <div className="fixed inset-0 z-[9999]">

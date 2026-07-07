@@ -8,7 +8,7 @@ const meta: LessonMeta = {
   title: "DuPont Analysis",
   subtitle: "ROE = Net Margin × Asset Turnover × Equity Multiplier",
   duration: "6 phút", difficulty: "Trung bình", emoji: "🔬",
-  nextSlug: "dividend", nextTitle: "Dividend — Cổ Tức",
+  nextSlug: "dividend", nextTitle: "Dividend - Cổ Tức",
 };
 
 const quiz: QuizQuestion[] = [
@@ -39,7 +39,7 @@ const quiz: QuizQuestion[] = [
     question: "Tyson Foods: Net Margin ~0.6%, Asset Turnover ~0.4x, Equity Multiplier normal. ROE thấp. Nguyên nhân chính?",
     options: [
       "Nợ quá nhiều",
-      "Margin thấp + tài sản quay chậm — điển hình meat processor: low margin, capital-intensive",
+      "Margin thấp + tài sản quay chậm - điển hình meat processor: low margin, capital-intensive",
       "Không đủ doanh thu",
       "Tax rate quá cao",
     ],
@@ -89,9 +89,9 @@ function DuPontSimulator() {
       </div>
 
       <div className={`rounded-xl p-3 text-center text-xs font-medium border ${roe > 15 ? "bg-stone-50 border-stone-200 text-stone-700" : roe > 8 ? "bg-stone-50 border-stone-200 text-stone-700" : "bg-stone-50 border-stone-200 text-stone-700"}`}>
-        {roe > 15 ? ` ROE ${roe.toFixed(1)}% — Excellent. Cần xem nguồn gốc: từ margin, turnover, hay leverage?` :
-         roe > 8 ? `🔶 ROE ${roe.toFixed(1)}% — Trung bình. Yếu tố nào có thể cải thiện?` :
-         `⚠️ ROE ${roe.toFixed(1)}% — Thấp. Cần DuPont để hiểu tại sao và nơi nào cần cải thiện.`}
+        {roe > 15 ? ` ROE ${roe.toFixed(1)}% - Excellent. Cần xem nguồn gốc: từ margin, turnover, hay leverage?` :
+         roe > 8 ? `🔶 ROE ${roe.toFixed(1)}% - Trung bình. Yếu tố nào có thể cải thiện?` :
+         `⚠️ ROE ${roe.toFixed(1)}% - Thấp. Cần DuPont để hiểu tại sao và nơi nào cần cải thiện.`}
       </div>
     </div>
   );
@@ -101,7 +101,7 @@ export default function Page() {
   return (
     <LessonPageLayout lesson={meta} quiz={quiz}>
       <h2 className="text-2xl font-bold text-stone-900 mb-2">DuPont Analysis</h2>
-      <p className="text-stone-600 text-sm mb-6 italic">ROE giống điểm thi cuối kỳ — DuPont cho biết yếu ở môn nào</p>
+      <p className="text-stone-600 text-sm mb-6 italic">ROE giống điểm thi cuối kỳ - DuPont cho biết yếu ở môn nào</p>
 
       <section className="mb-8">
         <h3 className="text-lg font-bold text-stone-800 mb-3"> Công thức DuPont 3 factors</h3>
@@ -129,11 +129,11 @@ export default function Page() {
         <h3 className="text-lg font-bold text-stone-800 mb-3">🏷️ Case Study: Tyson Foods</h3>
         <div className="bg-stone-50 border border-stone-200 rounded-xl p-4 mb-3">
           <p className="text-sm text-stone-700 mb-3">Hệ thống phân tích báo cáo: <span className="font-mono bg-stone-200 px-1 rounded text-xs">Net Margin: 0.6% | AT: 0.4x | ROE thấp</span></p>
-          <p className="text-stone-600 text-sm">Thay vì nói: <em>"ROE = 5% — công ty hoạt động không tốt"</em></p>
+          <p className="text-stone-600 text-sm">Thay vì nói: <em>"ROE = 5% - công ty hoạt động không tốt"</em></p>
           <p className="text-stone-600 text-sm mt-1">DuPont Analysis nói: <em>"ROE thấp chủ yếu do Net Margin chỉ 0.6% (meat processing đặc thù low-margin) và AT 0.4x (capital-intensive với nhiều nhà máy, kho). Leverage không quá bất thường. Cải thiện ROE cần cải thiện margin hoặc tối ưu asset utilization."</em></p>
         </div>
         <div className="bg-stone-50 border border-stone-200 rounded-xl p-3 text-sm">
-          <span className="font-bold text-stone-700">Key insight:</span> <span className="text-stone-600">Đây là lý do DuPont analysis có giá trị — không chỉ nói ROE cao hay thấp, mà kể được câu chuyện tại sao và cần làm gì.</span>
+          <span className="font-bold text-stone-700">Key insight:</span> <span className="text-stone-600">Đây là lý do DuPont analysis có giá trị - không chỉ nói ROE cao hay thấp, mà kể được câu chuyện tại sao và cần làm gì.</span>
         </div>
       </section>
 
@@ -163,8 +163,8 @@ export default function Page() {
         <div className="space-y-2">
           {[
             "So sánh 2 công ty cùng ngành: tại sao ROE khác nhau? Margin? Turnover? Leverage?",
-            "Track xu hướng qua thời gian: lever nào đang yếu đi — cải thiện ở đâu?",
-            "Phân tích competitor: Walmart vs Amazon vs Costco — ba business model rất khác nhau dù cùng retail",
+            "Track xu hướng qua thời gian: lever nào đang yếu đi - cải thiện ở đâu?",
+            "Phân tích competitor: Walmart vs Amazon vs Costco - ba business model rất khác nhau dù cùng retail",
             "Investment thesis: management đang cải thiện ROE bằng cách tăng margin hay leverage?",
           ].map((u, i) => (
             <div key={i} className="flex gap-3 bg-stone-50 rounded-lg p-3 text-sm border border-stone-200">

@@ -16,7 +16,7 @@ const quiz: QuizQuestion[] = [
     question: "Nếu công ty có net income 50M USD và market định giá ở P/E 30x, equity valuation là bao nhiêu?",
     options: ["500M USD", "1B USD", "1.5B USD", "3B USD"],
     correct: 2,
-    explanation: "Equity Value = Net Income × P/E = 50M × 30 = 1.500M = 1.5B USD. P/E là số lần nhà đầu tư sẵn sàng trả cho mỗi đồng lợi nhuận — P/E 30x cao, thường gặp ở growth companies.",
+    explanation: "Equity Value = Net Income × P/E = 50M × 30 = 1.500M = 1.5B USD. P/E là số lần nhà đầu tư sẵn sàng trả cho mỗi đồng lợi nhuận - P/E 30x cao, thường gặp ở growth companies.",
   },
   {
     question: "Điều nào thường làm valuation tăng?",
@@ -44,7 +44,7 @@ const quiz: QuizQuestion[] = [
     question: "Tại sao valuation của growth companies rất sensitive với assumption?",
     options: [
       "Vì chúng không có tài sản hữu hình",
-      "Phần lớn value nằm ở terminal value xa trong tương lai — thay đổi nhỏ trong growth/margin assumption → đổi lớn trong PV",
+      "Phần lớn value nằm ở terminal value xa trong tương lai - thay đổi nhỏ trong growth/margin assumption → đổi lớn trong PV",
       "Vì không có lợi nhuận để so sánh",
       "Vì nhà đầu tư không hiểu business",
     ],
@@ -52,15 +52,15 @@ const quiz: QuizQuestion[] = [
     explanation: "80%+ value của growth company nằm ở terminal value (dòng tiền từ năm 10 trở đi). Một thay đổi nhỏ trong long-term growth rate (ví dụ từ 4% xuống 3%) có thể làm valuation thay đổi 20-30%. Đây là lý do discounted cash flow rất volatile với high-growth companies.",
   },
   {
-    question: "\"Price không phải lúc nào cũng bằng Value\" — điều này ngụ ý điều gì?",
+    question: "\"Price không phải lúc nào cũng bằng Value\" - điều này ngụ ý điều gì?",
     options: [
       "Stock market không đáng tin cậy và không nên đầu tư",
-      "Market ngắn hạn bị ảnh hưởng bởi sentiment và liquidity — cơ hội tồn tại khi price ≠ fair value",
+      "Market ngắn hạn bị ảnh hưởng bởi sentiment và liquidity - cơ hội tồn tại khi price ≠ fair value",
       "Chỉ nên mua cổ phiếu khi giá thấp",
       "Fair value không thể tính được",
     ],
     correct: 1,
-    explanation: "Benjamin Graham: 'Trong ngắn hạn thị trường là máy bỏ phiếu, trong dài hạn là máy cân'. Stock có thể trade cao hơn (overvalued) hoặc thấp hơn (undervalued) fair value trong thời gian dài do sentiment, liquidity, và narrative — tạo cơ hội cho value investors.",
+    explanation: "Benjamin Graham: 'Trong ngắn hạn thị trường là máy bỏ phiếu, trong dài hạn là máy cân'. Stock có thể trade cao hơn (overvalued) hoặc thấp hơn (undervalued) fair value trong thời gian dài do sentiment, liquidity, và narrative - tạo cơ hội cho value investors.",
   },
 ];
 
@@ -111,9 +111,9 @@ function PEValuationSimulator() {
 
       <div className={`rounded-xl p-3 border text-center text-sm ${adjustedPE > 50 ? "bg-stone-50 border-stone-200" : adjustedPE > 30 ? "bg-stone-50 border-stone-200" : "bg-stone-50 border-stone-200"}`}>
         <span className="font-bold">
-          {adjustedPE > 50 ? "⚠️ P/E rất cao — market kỳ vọng growth cực lớn. Sensitive với thay đổi nhỏ." :
-           adjustedPE > 30 ? "🔶 P/E cao — growth company territory. Cần growth story thuyết phục." :
-           " P/E hợp lý — mature business hoặc value stock."}
+          {adjustedPE > 50 ? "⚠️ P/E rất cao - market kỳ vọng growth cực lớn. Sensitive với thay đổi nhỏ." :
+           adjustedPE > 30 ? "🔶 P/E cao - growth company territory. Cần growth story thuyết phục." :
+           " P/E hợp lý - mature business hoặc value stock."}
         </span>
       </div>
     </div>
@@ -124,7 +124,7 @@ export default function Page() {
   return (
     <LessonPageLayout lesson={meta} quiz={quiz}>
       <h2 className="text-2xl font-bold text-stone-900 mb-2">Market Fair Value</h2>
-      <p className="text-stone-600 text-sm mb-6 italic">Market không chỉ định giá earnings hôm nay — market định giá kỳ vọng tương lai</p>
+      <p className="text-stone-600 text-sm mb-6 italic">Market không chỉ định giá earnings hôm nay - market định giá kỳ vọng tương lai</p>
 
       <section className="mb-8">
         <h3 className="text-lg font-bold text-stone-800 mb-3">🤔 Tại sao Anthropic được định giá ~60B USD dù chưa profitable lớn?</h3>
@@ -134,7 +134,7 @@ export default function Page() {
           </p>
         </div>
         <p className="text-stone-600 leading-relaxed">
-          Trong finance, <strong>fair value</strong> = mức định giá hợp lý dựa trên khả năng tạo ra future cash flow, earnings và growth. Với growth companies, phần lớn value nằm ở tương lai — đó là lý do định giá rất sensitive với assumptions.
+          Trong finance, <strong>fair value</strong> = mức định giá hợp lý dựa trên khả năng tạo ra future cash flow, earnings và growth. Với growth companies, phần lớn value nằm ở tương lai - đó là lý do định giá rất sensitive với assumptions.
         </p>
       </section>
 
@@ -183,7 +183,7 @@ export default function Page() {
         <div className="space-y-3">
           {[
             { label: "Short-term", driver: "Sentiment, liquidity, narrative, momentum", example: "Meme stocks, FOMO rallies" },
-            { label: "Long-term", driver: "Fundamental value — earnings, cash flow, growth", example: "Warren Buffett: buy wonderful companies at fair prices" },
+            { label: "Long-term", driver: "Fundamental value - earnings, cash flow, growth", example: "Warren Buffett: buy wonderful companies at fair prices" },
           ].map(s => (
             <div key={s.label} className="bg-stone-50 rounded-xl p-4 border border-stone-200">
               <div className="flex items-center gap-2 mb-1">

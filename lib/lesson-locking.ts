@@ -5,7 +5,7 @@ import { computeLessonLocked } from "@/lib/lesson-lock-rule";
 
 /**
  * Server-side mirror of DashboardClient's isLessonLocked(). The dashboard
- * only used this to decide whether to show a lock icon — app/bai-hoc/[slug]
+ * only used this to decide whether to show a lock icon - app/bai-hoc/[slug]
  * rendered the full lesson to anyone who requested the URL regardless of
  * that UI state, so the lock was cosmetic only. This makes the same rule
  * enforceable on the page that actually serves the content.
@@ -20,7 +20,7 @@ export async function isLessonLockedForUser(lessonId: number, userId: string | n
   const sorted = allLessons.filter((l) => l.isVisible !== false).sort((a, b) => a.id - b.id);
   const lesson = sorted.find((l) => l.id === lessonId);
 
-  if (!lesson) return false; // unknown id — let the caller's own notFound() handle it
+  if (!lesson) return false; // unknown id - let the caller's own notFound() handle it
   if (lesson.isFundamental) return false;
   if (!userId) return true; // not logged in and not a free/fundamental lesson
 

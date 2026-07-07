@@ -5,7 +5,7 @@ import LessonPageLayout, { QuizQuestion, LessonMeta } from "@/components/LessonP
 
 const meta: LessonMeta = {
   id: 24, day: 24, accent: "teal",
-  title: "ROIC Phần 2 — Link sang Valuation",
+  title: "ROIC Phần 2 - Link sang Valuation",
   subtitle: "Driver cốt lõi quyết định Free Cash Flow và Enterprise Value",
   duration: "6 phút", difficulty: "Khó", emoji: "🔗",
   nextSlug: "commodity", nextTitle: "Commodity",
@@ -15,8 +15,8 @@ const quiz: QuizQuestion[] = [
   {
     question: "Nếu ROIC tăng (giữ growth không đổi), điều gì xảy ra với FCF?",
     options: [
-      "FCF tăng — cần ít vốn reinvest hơn để đạt cùng growth → cash còn lại nhiều hơn",
-      "FCF giảm — ROIC cao đòi hỏi reinvest nhiều hơn",
+      "FCF tăng - cần ít vốn reinvest hơn để đạt cùng growth → cash còn lại nhiều hơn",
+      "FCF giảm - ROIC cao đòi hỏi reinvest nhiều hơn",
       "FCF không đổi",
       "Không liên quan",
     ],
@@ -38,7 +38,7 @@ const quiz: QuizQuestion[] = [
     options: [
       "Tạo value vì doanh nghiệp vẫn profitable",
       "Không ảnh hưởng nếu revenue tăng",
-      "Phá hủy value — tăng trưởng thực ra làm hại cổ đông",
+      "Phá hủy value - tăng trưởng thực ra làm hại cổ đông",
       "Chỉ ảnh hưởng revenue, không ảnh hưởng value",
     ],
     correct: 2,
@@ -129,8 +129,8 @@ function ROICValuationLink() {
 export default function Page() {
   return (
     <LessonPageLayout lesson={meta} quiz={quiz}>
-      <h2 className="text-2xl font-bold text-stone-900 mb-2">ROIC Phần 2 — Link sang Valuation</h2>
-      <p className="text-stone-600 text-sm mb-6 italic">ROIC không chỉ là chỉ số hiệu quả — nó là driver cốt lõi của FCF và enterprise value</p>
+      <h2 className="text-2xl font-bold text-stone-900 mb-2">ROIC Phần 2 - Link sang Valuation</h2>
+      <p className="text-stone-600 text-sm mb-6 italic">ROIC không chỉ là chỉ số hiệu quả - nó là driver cốt lõi của FCF và enterprise value</p>
 
       <section className="mb-8">
         <h3 className="text-lg font-bold text-stone-800 mb-3"> Insight cốt lõi</h3>
@@ -138,7 +138,7 @@ export default function Page() {
           <p className="text-lg font-bold text-center mb-2">
             Giá trị doanh nghiệp phụ thuộc vào khả năng tạo lợi nhuận trên vốn <em>so với</em> chi phí vốn
           </p>
-          <p className="text-stone-700 text-sm text-center">ROIC vs WACC — đây là mối quan hệ cốt lõi nhất trong valuation</p>
+          <p className="text-stone-700 text-sm text-center">ROIC vs WACC - đây là mối quan hệ cốt lõi nhất trong valuation</p>
         </div>
         <div className="grid grid-cols-3 gap-3">
           {[
@@ -177,7 +177,7 @@ export default function Page() {
             <div className="font-mono text-sm bg-white rounded p-3 border border-stone-200">
               Value = FCF / (WACC − g)
             </div>
-            <p className="text-xs text-stone-500 mt-2">FCF cao + ROIC cao → Valuation cao. Growth không create value nếu ROIC ≤ WACC — đây là điểm nhiều investor bỏ qua.</p>
+            <p className="text-xs text-stone-500 mt-2">FCF cao + ROIC cao → Valuation cao. Growth không create value nếu ROIC ≤ WACC - đây là điểm nhiều investor bỏ qua.</p>
           </div>
         </div>
       </section>
@@ -217,9 +217,9 @@ export default function Page() {
         <h3 className="text-lg font-bold text-stone-800 mb-3"> Takeaway</h3>
         <div className="space-y-2">
           {[
-            "Growth không tạo value nếu ROIC < WACC — phải reinvest nhiều hơn return tạo ra",
+            "Growth không tạo value nếu ROIC < WACC - phải reinvest nhiều hơn return tạo ra",
             "High ROIC → ít reinvestment cần → FCF cao → valuation premium",
-            "ROIC > WACC spread là 'economic moat' indicator — công ty nào duy trì được lâu dài thì đáng định giá cao",
+            "ROIC > WACC spread là 'economic moat' indicator - công ty nào duy trì được lâu dài thì đáng định giá cao",
           ].map((t, i) => (
             <div key={i} className="flex gap-3 bg-stone-50 rounded-lg p-3 border border-stone-200 text-sm">
               <span className="text-stone-700 font-bold flex-shrink-0">{i + 1}.</span>

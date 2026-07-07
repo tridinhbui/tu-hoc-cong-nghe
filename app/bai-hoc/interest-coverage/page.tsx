@@ -14,9 +14,9 @@ const meta: LessonMeta = {
 const quiz: QuizQuestion[] = [
   {
     question: "Công ty A có EBIT = 300 tỷ, Interest Expense = 100 tỷ. ICR là?",
-    options: ["2x — khá an toàn", "3x — an toàn", "0.33x — nguy hiểm", "30x — rất an toàn"],
+    options: ["2x - khá an toàn", "3x - an toàn", "0.33x - nguy hiểm", "30x - rất an toàn"],
     correct: 1,
-    explanation: "ICR = EBIT / Interest = 300 / 100 = 3x. Lợi nhuận gấp 3 lần lãi vay — đủ an toàn. Lender thường yêu cầu tối thiểu 2-3x.",
+    explanation: "ICR = EBIT / Interest = 300 / 100 = 3x. Lợi nhuận gấp 3 lần lãi vay - đủ an toàn. Lender thường yêu cầu tối thiểu 2-3x.",
   },
   {
     question: "Trong covenant của khoản vay, 'minimum ICR = 2.5x' có nghĩa là?",
@@ -33,7 +33,7 @@ const quiz: QuizQuestion[] = [
     question: "Tại sao EBITDA thay vì EBIT đôi khi được dùng trong ICR?",
     options: [
       "EBITDA luôn cao hơn EBIT",
-      "D&A là non-cash expense — EBITDA phản ánh cash tốt hơn để trả lãi",
+      "D&A là non-cash expense - EBITDA phản ánh cash tốt hơn để trả lãi",
       "Lender thích EBITDA hơn",
       "Không có sự khác biệt đáng kể",
     ],
@@ -43,8 +43,8 @@ const quiz: QuizQuestion[] = [
   {
     question: "Doanh nghiệp có ICR = 1.2x. Điều gì có thể xảy ra nếu doanh thu giảm 20%?",
     options: [
-      "Không sao — vẫn còn ICR dương",
-      "ICR có thể xuống dưới 1x — không đủ lợi nhuận trả lãi → risk of default",
+      "Không sao - vẫn còn ICR dương",
+      "ICR có thể xuống dưới 1x - không đủ lợi nhuận trả lãi → risk of default",
       "Lãi suất sẽ giảm để bù đắp",
       "Doanh nghiệp sẽ tự động renegotiate với lender",
     ],
@@ -71,9 +71,9 @@ function ICRSimulator() {
 
   const getStatus = () => {
     if (icr >= 3) return { label: "An toàn", color: "text-stone-700 bg-stone-50", bar: "bg-stone-50" };
-    if (icr >= 1.5) return { label: "Trung bình — cần theo dõi", color: "text-stone-700 bg-stone-50", bar: "bg-stone-50" };
+    if (icr >= 1.5) return { label: "Trung bình - cần theo dõi", color: "text-stone-700 bg-stone-50", bar: "bg-stone-50" };
     if (icr >= 1) return { label: "Rủi ro cao", color: "text-stone-700 bg-stone-50", bar: "bg-stone-50" };
-    return { label: "Nguy hiểm — có thể default", color: "text-stone-700 bg-stone-50", bar: "bg-stone-50" };
+    return { label: "Nguy hiểm - có thể default", color: "text-stone-700 bg-stone-50", bar: "bg-stone-50" };
   };
 
   const status = getStatus();
@@ -134,7 +134,7 @@ export default function Page() {
           <p className="text-stone-700 text-sm">Lợi nhuận trước lãi vay gấp bao nhiêu lần tiền lãi phải trả</p>
         </div>
         <p className="text-stone-600 leading-relaxed mb-3">
-          ICR = 3x nghĩa là: với mỗi 1 đồng lãi vay phải trả, doanh nghiệp tạo ra 3 đồng EBIT. Cushion 2 đồng này là "safety margin" — cho phép doanh nghiệp chịu đựng được khó khăn mà không vỡ nợ.
+          ICR = 3x nghĩa là: với mỗi 1 đồng lãi vay phải trả, doanh nghiệp tạo ra 3 đồng EBIT. Cushion 2 đồng này là "safety margin" - cho phép doanh nghiệp chịu đựng được khó khăn mà không vỡ nợ.
         </p>
       </section>
 
@@ -190,9 +190,9 @@ export default function Page() {
         <h3 className="text-lg font-bold text-stone-800 mb-3">⚠️ Hạn chế của ICR</h3>
         <div className="space-y-2">
           {[
-            "EBIT ≠ Cash — doanh nghiệp có thể có EBIT cao nhưng Working Capital trap tiền",
-            "Không capture principal repayment — dùng DSCR để đo cả gốc lẫn lãi",
-            "Snapshot một kỳ — cần xem trend 3-5 năm",
+            "EBIT ≠ Cash - doanh nghiệp có thể có EBIT cao nhưng Working Capital trap tiền",
+            "Không capture principal repayment - dùng DSCR để đo cả gốc lẫn lãi",
+            "Snapshot một kỳ - cần xem trend 3-5 năm",
             "Có thể bị manipulate qua accounting choices",
           ].map((l, i) => (
             <div key={i} className="flex gap-2 text-sm bg-stone-50 rounded-lg p-3 border border-stone-200">

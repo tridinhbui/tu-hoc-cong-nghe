@@ -6,7 +6,7 @@ import LessonPageLayout, { QuizQuestion, LessonMeta } from "@/components/LessonP
 const meta: LessonMeta = {
   id: 29, day: 29, accent: "orange",
   title: "Cap Rate trong BĐS",
-  subtitle: "Property Value = NOI / Cap Rate — định giá bất động sản thương mại",
+  subtitle: "Property Value = NOI / Cap Rate - định giá bất động sản thương mại",
   duration: "6 phút", difficulty: "Trung bình", emoji: "🏗️",
   nextSlug: "operating-leverage", nextTitle: "Operating Leverage",
 };
@@ -16,7 +16,7 @@ const quiz: QuizQuestion[] = [
     question: "NOI = 3 triệu USD, Cap Rate = 6%. Property value gần nhất là?",
     options: ["18M USD", "30M USD", "50M USD", "60M USD"],
     correct: 2,
-    explanation: "Property Value = NOI / Cap Rate = 3M / 6% = 3M / 0.06 = 50M USD. Công thức đơn giản nhưng powerful — thay đổi nhỏ trong cap rate tạo ra thay đổi lớn trong valuation.",
+    explanation: "Property Value = NOI / Cap Rate = 3M / 6% = 3M / 0.06 = 50M USD. Công thức đơn giản nhưng powerful - thay đổi nhỏ trong cap rate tạo ra thay đổi lớn trong valuation.",
   },
   {
     question: "Khi interest rate tăng, điều gì thường xảy ra với cap rate?",
@@ -108,7 +108,7 @@ function CapRateSimulator() {
 export default function Page() {
   return (
     <LessonPageLayout lesson={meta} quiz={quiz}>
-      <h2 className="text-2xl font-bold text-stone-900 mb-2">Cap Rate — Định Giá BĐS Thương Mại</h2>
+      <h2 className="text-2xl font-bold text-stone-900 mb-2">Cap Rate - Định Giá BĐS Thương Mại</h2>
       <p className="text-stone-600 text-sm mb-6 italic">Công thức đơn giản nhất, quan trọng nhất trong real estate valuation</p>
 
       <section className="mb-8">
@@ -124,7 +124,7 @@ export default function Page() {
           </div>
           <div className="bg-stone-50 rounded-xl p-4 border border-stone-200">
             <div className="font-bold text-stone-700 mb-2 text-sm">Cap Rate là gì?</div>
-            <p className="text-xs text-stone-600 leading-relaxed">Tỷ suất lợi nhuận market yêu cầu cho loại tài sản đó. Giống lãi suất của BĐS — bỏ 100 đồng mua tòa nhà, thu lại bao nhiêu mỗi năm.</p>
+            <p className="text-xs text-stone-600 leading-relaxed">Tỷ suất lợi nhuận market yêu cầu cho loại tài sản đó. Giống lãi suất của BĐS - bỏ 100 đồng mua tòa nhà, thu lại bao nhiêu mỗi năm.</p>
           </div>
         </div>
       </section>
@@ -132,7 +132,7 @@ export default function Page() {
       <section className="mb-8">
         <h3 className="text-lg font-bold text-stone-800 mb-3"> Ví dụ trực quan</h3>
         <div className="bg-white border border-stone-200 rounded-xl p-5 font-mono text-sm">
-          <div className="text-stone-500 text-xs mb-3">{ '// Tòa nhà văn phòng — Ho Chi Minh City' }</div>
+          <div className="text-stone-500 text-xs mb-3">{ '// Tòa nhà văn phòng - Ho Chi Minh City' }</div>
           <div className="flex justify-between mb-1"><span className="text-stone-600">NOI hàng năm</span><span className="text-stone-700">2.000.000 USD</span></div>
           <div className="flex justify-between mb-3"><span className="text-stone-600">Market cap rate</span><span className="text-stone-700">5%</span></div>
           <div className="flex justify-between border-t pt-2 text-base font-bold">
@@ -148,9 +148,9 @@ export default function Page() {
         <h3 className="text-lg font-bold text-stone-800 mb-3"> Cap Rate theo loại tài sản</h3>
         <div className="space-y-2">
           {[
-            { type: "Prime Office — CBD HCM/Hà Nội", range: "4–6%", risk: "Thấp", note: "Tenant chất lượng, stable income" },
+            { type: "Prime Office - CBD HCM/Hà Nội", range: "4–6%", risk: "Thấp", note: "Tenant chất lượng, stable income" },
             { type: "Industrial / Logistics", range: "5–7%", risk: "Trung bình thấp", note: "Demand cao từ e-commerce" },
-            { type: "Retail Malls — vị trí tốt", range: "6–8%", risk: "Trung bình", note: "Phụ thuộc footfall và anchor tenants" },
+            { type: "Retail Malls - vị trí tốt", range: "6–8%", risk: "Trung bình", note: "Phụ thuộc footfall và anchor tenants" },
             { type: "Hotel & Hospitality", range: "7–10%", risk: "Cao", note: "Seasonal, volatile income" },
             { type: "BĐS vùng xa, risk cao", range: "9–12%+", risk: "Cao", note: "Thanh khoản thấp, risk vacancy cao" },
           ].map(r => (
@@ -169,7 +169,7 @@ export default function Page() {
       </section>
 
       <section>
-        <h3 className="text-lg font-bold text-stone-800 mb-3">⚠️ Cap Rate và Interest Rate — mối quan hệ quan trọng</h3>
+        <h3 className="text-lg font-bold text-stone-800 mb-3">⚠️ Cap Rate và Interest Rate - mối quan hệ quan trọng</h3>
         <div className="space-y-2">
           {[
             "Khi Fed/NHNN tăng lãi suất → cap rate thường tăng theo → property value giảm",

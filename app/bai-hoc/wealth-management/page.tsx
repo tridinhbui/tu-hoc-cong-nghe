@@ -20,7 +20,7 @@ const quiz: QuizQuestion[] = [
       "Lương nhân với số năm làm việc",
     ],
     correct: 1,
-    explanation: "Net Worth = Tổng tài sản (Assets) − Tổng nợ (Liabilities). Không phải thu nhập — một người thu nhập cao nhưng tiêu hết và nợ nhiều có net worth thấp hơn người thu nhập vừa phải nhưng tiết kiệm và tích lũy đều đặn.",
+    explanation: "Net Worth = Tổng tài sản (Assets) − Tổng nợ (Liabilities). Không phải thu nhập - một người thu nhập cao nhưng tiêu hết và nợ nhiều có net worth thấp hơn người thu nhập vừa phải nhưng tiết kiệm và tích lũy đều đặn.",
   },
   {
     question: "Expected return của danh mục gồm 60% cổ phiếu (return kỳ vọng 10%) và 40% trái phiếu (return kỳ vọng 4%) là bao nhiêu?",
@@ -43,7 +43,7 @@ const quiz: QuizQuestion[] = [
     question: "Bước đầu tiên quan trọng nhất trong wealth management cá nhân là gì?",
     options: [
       "Mua ngay cổ phiếu tốt nhất",
-      "Biết mình đang có gì — tài sản và nợ là bao nhiêu",
+      "Biết mình đang có gì - tài sản và nợ là bao nhiêu",
       "Tìm fund manager giỏi",
       "Đầu tư vào bất cứ thứ gì sinh lời cao nhất",
     ],
@@ -59,9 +59,9 @@ export default function Page() {
       <p className="text-stone-500 text-sm mb-8">Quản lý tài sản bắt đầu từ việc biết mình đang có gì</p>
 
       <section className="mb-10">
-        <h3 className="text-base font-bold text-stone-800 mb-4 uppercase tracking-wide text-xs">Wealth Management — định nghĩa đơn giản</h3>
+        <h3 className="text-base font-bold text-stone-800 mb-4 uppercase tracking-wide text-xs">Wealth Management - định nghĩa đơn giản</h3>
         <p className="text-stone-600 leading-relaxed mb-3">
-          Wealth management là quá trình quản lý và tăng trưởng tài sản theo mục tiêu tài chính cá nhân — bao gồm đầu tư, lập kế hoạch thuế, bảo hiểm, di chúc và phân bổ tài sản.
+          Wealth management là quá trình quản lý và tăng trưởng tài sản theo mục tiêu tài chính cá nhân - bao gồm đầu tư, lập kế hoạch thuế, bảo hiểm, di chúc và phân bổ tài sản.
         </p>
         <p className="text-stone-600 leading-relaxed">
           Ở cấp độ cá nhân, wealth management đơn giản hơn: <strong>biết mình đang có gì, biết mình muốn đến đâu, và phân bổ nguồn lực để đi đến đó.</strong>
@@ -69,7 +69,7 @@ export default function Page() {
       </section>
 
       <section className="mb-10">
-        <h3 className="text-base font-bold text-stone-800 mb-4 uppercase tracking-wide text-xs">Net Worth — điểm xuất phát</h3>
+        <h3 className="text-base font-bold text-stone-800 mb-4 uppercase tracking-wide text-xs">Net Worth - điểm xuất phát</h3>
         <div className="bg-stone-50 border border-stone-200 rounded-xl p-5 mb-4 font-mono text-sm">
           <div className="text-stone-500 text-xs mb-3">CÔNG THỨC</div>
           <div className="font-bold text-stone-800">Net Worth = Assets − Liabilities</div>
@@ -79,14 +79,14 @@ export default function Page() {
           </div>
         </div>
         <p className="text-stone-600 text-sm leading-relaxed">
-          Net worth không phải thu nhập. Hai người cùng lương 30 triệu/tháng có thể có net worth rất khác nhau — tùy vào họ tiêu, tiết kiệm, đầu tư và vay mượn thế nào.
+          Net worth không phải thu nhập. Hai người cùng lương 30 triệu/tháng có thể có net worth rất khác nhau - tùy vào họ tiêu, tiết kiệm, đầu tư và vay mượn thế nào.
         </p>
       </section>
 
       <section className="mb-10">
-        <h3 className="text-base font-bold text-stone-800 mb-4 uppercase tracking-wide text-xs">Asset Allocation — phân bổ tài sản</h3>
+        <h3 className="text-base font-bold text-stone-800 mb-4 uppercase tracking-wide text-xs">Asset Allocation - phân bổ tài sản</h3>
         <p className="text-stone-600 leading-relaxed text-sm mb-4">
-          Phân bổ bao nhiêu % vào mỗi loại tài sản. Không có công thức cố định — phụ thuộc vào mục tiêu, thời gian, khẩu vị rủi ro và nhu cầu thanh khoản.
+          Phân bổ bao nhiêu % vào mỗi loại tài sản. Không có công thức cố định - phụ thuộc vào mục tiêu, thời gian, khẩu vị rủi ro và nhu cầu thanh khoản.
         </p>
         <div className="space-y-2 text-sm text-stone-600">
           <div><strong>Cổ phiếu:</strong> Tiềm năng lợi nhuận cao, biến động mạnh, thanh khoản tốt</div>

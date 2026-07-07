@@ -4,10 +4,10 @@ import LessonPageLayout, { QuizQuestion, LessonMeta } from "@/components/LessonP
 
 const meta: LessonMeta = {
   id: 54, day: 87, accent: "teal",
-  title: "Samsung Q1/2026 — AI qua Lăng kính Tài chính",
+  title: "Samsung Q1/2026 - AI qua Lăng kính Tài chính",
   subtitle: "HBM, memory cycle, pricing power và capex AI",
   duration: "6 phút", difficulty: "Trung bình", emoji: "·",
-  nextSlug: "fcf-deep-dive", nextTitle: "Free Cash Flow — Đọc sâu hơn",
+  nextSlug: "fcf-deep-dive", nextTitle: "Free Cash Flow - Đọc sâu hơn",
 };
 
 const quiz: QuizQuestion[] = [
@@ -26,7 +26,7 @@ const quiz: QuizQuestion[] = [
     question: "Memory cycle (chu kỳ bộ nhớ) ảnh hưởng thế nào đến tài chính Samsung?",
     options: [
       "Không ảnh hưởng vì Samsung sản xuất nhiều loại sản phẩm",
-      "Ảnh hưởng trực tiếp — khi giá DRAM/NAND giảm, doanh thu và biên lợi nhuận của DS division giảm mạnh",
+      "Ảnh hưởng trực tiếp - khi giá DRAM/NAND giảm, doanh thu và biên lợi nhuận của DS division giảm mạnh",
       "Chỉ ảnh hưởng đến nhà cung cấp chip nhỏ",
       "Memory cycle chỉ quan trọng với ngành ô tô",
     ],
@@ -37,7 +37,7 @@ const quiz: QuizQuestion[] = [
     question: "Pricing power trong ngành semiconductor liên quan đến điều gì?",
     options: [
       "Chỉ phụ thuộc vào giá USD",
-      "Khả năng đặt giá cao khi nhu cầu vượt cung — đặc biệt khi sản phẩm là thành phần thiết yếu không thể thay thế",
+      "Khả năng đặt giá cao khi nhu cầu vượt cung - đặc biệt khi sản phẩm là thành phần thiết yếu không thể thay thế",
       "Số lượng nhà máy đang xây dựng",
       "Số nhân viên nghiên cứu phát triển",
     ],
@@ -48,7 +48,7 @@ const quiz: QuizQuestion[] = [
     question: "Khi AI hyperscalers (Microsoft, Google, Meta) tăng mạnh capex, đọc từ góc độ tài chính thì có thể gợi ý điều gì?",
     options: [
       "Các công ty AI đang thua lỗ",
-      "Nhu cầu AI chip và hạ tầng mạnh — có thể tạo ra chu kỳ tăng cho nhà cung cấp semiconductor và data center",
+      "Nhu cầu AI chip và hạ tầng mạnh - có thể tạo ra chu kỳ tăng cho nhà cung cấp semiconductor và data center",
       "Thị trường cổ phiếu sắp sập",
       "Không có ý nghĩa tài chính",
     ],
@@ -71,13 +71,13 @@ const quiz: QuizQuestion[] = [
 export default function Page() {
   return (
     <LessonPageLayout lesson={meta} quiz={quiz}>
-      <h2 className="text-2xl font-bold text-stone-900 mb-2">Samsung Q1/2026 — AI qua Lăng kính Tài chính</h2>
+      <h2 className="text-2xl font-bold text-stone-900 mb-2">Samsung Q1/2026 - AI qua Lăng kính Tài chính</h2>
       <p className="text-stone-500 text-sm mb-8">HBM, memory cycle và cách đọc doanh nghiệp semiconductor trong chu kỳ AI</p>
 
       <section className="mb-10">
         <h3 className="text-base font-bold text-stone-800 mb-4 uppercase tracking-wide text-xs">Samsung không phải chỉ là điện thoại</h3>
         <p className="text-stone-600 leading-relaxed mb-3">
-          Phần lớn mọi người biết Samsung qua điện thoại Galaxy. Nhưng về mặt tài chính, phần quan trọng nhất — và biến động nhất — của Samsung là <strong>DS Division (Device Solutions)</strong>: chip nhớ (DRAM, NAND) và chip logic.
+          Phần lớn mọi người biết Samsung qua điện thoại Galaxy. Nhưng về mặt tài chính, phần quan trọng nhất - và biến động nhất - của Samsung là <strong>DS Division (Device Solutions)</strong>: chip nhớ (DRAM, NAND) và chip logic.
         </p>
         <p className="text-stone-600 leading-relaxed">
           DS Division là một trong những ví dụ điển hình nhất của ngành <strong>cyclical</strong>: lợi nhuận có thể dao động từ hàng trăm nghìn tỷ won một năm xuống lỗ lớn năm sau, tùy vào chu kỳ bộ nhớ.
@@ -85,9 +85,9 @@ export default function Page() {
       </section>
 
       <section className="mb-10">
-        <h3 className="text-base font-bold text-stone-800 mb-4 uppercase tracking-wide text-xs">HBM — Thị trường Samsung đang thua</h3>
+        <h3 className="text-base font-bold text-stone-800 mb-4 uppercase tracking-wide text-xs">HBM - Thị trường Samsung đang thua</h3>
         <p className="text-stone-600 text-sm leading-relaxed mb-3">
-          High Bandwidth Memory (HBM) là loại bộ nhớ tốc độ cao, cần thiết cho GPU AI (NVIDIA H100, H200, B100). Đây là phân khúc có <strong>biên lợi nhuận cao nhất</strong> trong ngành memory — và nhu cầu bùng nổ cùng với AI.
+          High Bandwidth Memory (HBM) là loại bộ nhớ tốc độ cao, cần thiết cho GPU AI (NVIDIA H100, H200, B100). Đây là phân khúc có <strong>biên lợi nhuận cao nhất</strong> trong ngành memory - và nhu cầu bùng nổ cùng với AI.
         </p>
         <p className="text-stone-600 text-sm leading-relaxed mb-4">
           Vấn đề: <strong>SK Hynix đang dẫn đầu HBM</strong> trong khi Samsung gặp vấn đề về yield và thời gian chứng nhận từ NVIDIA. Samsung đứng trước áp lực phải lấy lại thị phần trong phân khúc quan trọng nhất của chu kỳ AI này.
@@ -119,9 +119,9 @@ export default function Page() {
       </section>
 
       <section className="mb-10">
-        <h3 className="text-base font-bold text-stone-800 mb-4 uppercase tracking-wide text-xs">Memory Cycle — Ngành Cyclical</h3>
+        <h3 className="text-base font-bold text-stone-800 mb-4 uppercase tracking-wide text-xs">Memory Cycle - Ngành Cyclical</h3>
         <p className="text-stone-600 text-sm leading-relaxed mb-3">
-          Giá DRAM và NAND không ổn định — dao động theo chu kỳ cung-cầu. Khi nhu cầu vượt cung: giá tăng, biên lợi nhuận phục hồi mạnh. Khi cung vượt nhu cầu: giá rơi, biên âm, nhà sản xuất lỗ.
+          Giá DRAM và NAND không ổn định - dao động theo chu kỳ cung-cầu. Khi nhu cầu vượt cung: giá tăng, biên lợi nhuận phục hồi mạnh. Khi cung vượt nhu cầu: giá rơi, biên âm, nhà sản xuất lỗ.
         </p>
         <div className="space-y-2 text-sm">
           {[
@@ -138,15 +138,15 @@ export default function Page() {
       </section>
 
       <section className="mb-10">
-        <h3 className="text-base font-bold text-stone-800 mb-4 uppercase tracking-wide text-xs">AI Capex Boom — Đọc theo chuỗi cung ứng</h3>
+        <h3 className="text-base font-bold text-stone-800 mb-4 uppercase tracking-wide text-xs">AI Capex Boom - Đọc theo chuỗi cung ứng</h3>
         <p className="text-stone-600 text-sm leading-relaxed mb-4">
           Microsoft, Google, Meta, Amazon tăng capex cho AI data center. Capex của hyperscalers là leading indicator cho cả chuỗi cung ứng AI.
         </p>
         <div className="space-y-1 text-sm text-stone-600">
-          <div>— Hyperscaler tăng capex → đặt hàng GPU NVIDIA</div>
-          <div>— NVIDIA đặt hàng HBM → SK Hynix/Samsung hưởng lợi</div>
-          <div>— Nhu cầu điện, làm mát tăng → ngành năng lượng, cơ sở hạ tầng</div>
-          <div>— Data center xây dựng → bất động sản công nghiệp, cáp quang</div>
+          <div> - Hyperscaler tăng capex → đặt hàng GPU NVIDIA</div>
+          <div> - NVIDIA đặt hàng HBM → SK Hynix/Samsung hưởng lợi</div>
+          <div> - Nhu cầu điện, làm mát tăng → ngành năng lượng, cơ sở hạ tầng</div>
+          <div> - Data center xây dựng → bất động sản công nghiệp, cáp quang</div>
         </div>
       </section>
 

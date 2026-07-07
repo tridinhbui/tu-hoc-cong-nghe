@@ -14,8 +14,8 @@ const quiz: QuizQuestion[] = [
   {
     question: "Công ty lợi nhuận 100M USD nhưng FCF = -50M USD. Có nên trả cổ tức lớn không?",
     options: [
-      "Có — lợi nhuận 100M là đủ",
-      "Không — FCF âm 50M nghĩa là tiền thực ra chưa đủ; trả cổ tức sẽ phải vay hoặc issue thêm stock",
+      "Có - lợi nhuận 100M là đủ",
+      "Không - FCF âm 50M nghĩa là tiền thực ra chưa đủ; trả cổ tức sẽ phải vay hoặc issue thêm stock",
       "Tùy CEO quyết định",
       "Chỉ cần payout ratio <50% là ổn",
     ],
@@ -27,7 +27,7 @@ const quiz: QuizQuestion[] = [
     options: [
       "Vì họ không có lợi nhuận",
       "Vì mọi tech company đều lỗ",
-      "Vì còn nhiều cơ hội reinvest với ROI cao hơn cost of capital — mỗi đồng reinvest tạo ra >1 đồng value",
+      "Vì còn nhiều cơ hội reinvest với ROI cao hơn cost of capital - mỗi đồng reinvest tạo ra >1 đồng value",
       "Vì SEC không cho phép",
     ],
     correct: 2,
@@ -37,18 +37,18 @@ const quiz: QuizQuestion[] = [
     question: "Công ty chưa muốn cam kết dividend định kỳ. Giải pháp linh hoạt hơn là?",
     options: [
       "Trả cổ tức cao nhất có thể",
-      "Mua lại cổ phiếu (share buyback) — linh hoạt hơn vì có thể adjust theo từng năm",
+      "Mua lại cổ phiếu (share buyback) - linh hoạt hơn vì có thể adjust theo từng năm",
       "Không làm gì cả",
       "Phát hành thêm cổ phiếu",
     ],
     correct: 1,
-    explanation: "Share buyback vs Dividend: (1) Buyback linh hoạt — không tạo expectation phải duy trì hàng năm. (2) Dividend cut là negative signal → stock giảm mạnh; reduce buyback ít bị penalize hơn. (3) Buyback tăng EPS (ít cổ phiếu hơn) và thường tax-efficient hơn. Apple, Microsoft dùng cả hai.",
+    explanation: "Share buyback vs Dividend: (1) Buyback linh hoạt - không tạo expectation phải duy trì hàng năm. (2) Dividend cut là negative signal → stock giảm mạnh; reduce buyback ít bị penalize hơn. (3) Buyback tăng EPS (ít cổ phiếu hơn) và thường tax-efficient hơn. Apple, Microsoft dùng cả hai.",
   },
   {
-    question: "\"Nếu giữ lại 1 đồng hôm nay, công ty có tạo được hơn 1 đồng giá trị trong tương lai không?\" — Đây là câu hỏi của loại phân tích nào?",
+    question: "\"Nếu giữ lại 1 đồng hôm nay, công ty có tạo được hơn 1 đồng giá trị trong tương lai không?\"- Đây là câu hỏi của loại phân tích nào?",
     options: [
       "Dividend Discount Model",
-      "Capital Allocation — xác định opportunity cost của việc return capital vs reinvest",
+      "Capital Allocation - xác định opportunity cost của việc return capital vs reinvest",
       "Bond valuation",
       "Margin analysis",
     ],
@@ -67,7 +67,7 @@ export default function Page() {
         <h3 className="text-lg font-bold text-stone-800 mb-3">Bài toán thực tế sau IPO</h3>
         <div className="border-l-2 border-stone-300 pl-4 mb-4">
           <p className="text-sm text-stone-700 leading-relaxed">
-            Công ty vừa IPO, lợi nhuận 100M USD. Có nên chia 10M cho cổ đông không? Câu hỏi đúng không phải "có đủ lợi nhuận để chia không?" — mà là <strong>"nếu giữ lại 1 đồng, có tạo ra hơn 1 đồng giá trị trong tương lai không?"</strong>
+            Công ty vừa IPO, lợi nhuận 100M USD. Có nên chia 10M cho cổ đông không? Câu hỏi đúng không phải "có đủ lợi nhuận để chia không?"- mà là <strong>"nếu giữ lại 1 đồng, có tạo ra hơn 1 đồng giá trị trong tương lai không?"</strong>
           </p>
         </div>
         <div className="border-l-2 border-stone-300 pl-4">
@@ -81,25 +81,25 @@ export default function Page() {
           {[
             {
               condition: "ROIC > WACC và còn nhiều growth opportunities",
-              decision: "Reinvest — mỗi đồng reinvest tạo ra > 1 đồng value",
+              decision: "Reinvest - mỗi đồng reinvest tạo ra > 1 đồng value",
               action: "Không trả dividend hoặc buyback ít",
               example: "Amazon 2000-2015, early Apple, Nvidia 2020-2023",
             },
             {
               condition: "ROIC > WACC nhưng cơ hội reinvest hạn chế",
-              decision: "Return excess capital — có lời nhưng không có chỗ put money",
+              decision: "Return excess capital - có lời nhưng không có chỗ put money",
               action: "Buyback hoặc special dividend",
               example: "Apple 2012+, Microsoft 2015+",
             },
             {
               condition: "Mature business, stable earnings, ROIC ≈ WACC",
-              decision: "Regular dividend — signal stability, thu hút income investors",
+              decision: "Regular dividend - signal stability, thu hút income investors",
               action: "Payout ratio 30-60% của FCF",
               example: "Coca-Cola, P&G, Johnson & Johnson",
             },
             {
               condition: "ROIC < WACC (growth destroys value)",
-              decision: "Return capital — tốt hơn là reinvest lỗ",
+              decision: "Return capital - tốt hơn là reinvest lỗ",
               action: "Dividend + stop unprofitable growth",
               example: "Airlines sau restructuring",
             },
@@ -120,19 +120,19 @@ export default function Page() {
           <div className="border border-stone-200 rounded-xl p-4">
             <div className="font-bold text-stone-800 mb-2 text-sm">Dividend</div>
             <div className="space-y-1 text-xs text-stone-600">
-              <div>— Regular income cho investors</div>
-              <div>— Signal stability và confidence</div>
-              <div>— Tạo expectation — cut = negative signal lớn</div>
-              <div>— Ít linh hoạt hơn</div>
+              <div> - Regular income cho investors</div>
+              <div> - Signal stability và confidence</div>
+              <div> - Tạo expectation - cut = negative signal lớn</div>
+              <div> - Ít linh hoạt hơn</div>
             </div>
           </div>
           <div className="border border-stone-200 rounded-xl p-4">
             <div className="font-bold text-stone-800 mb-2 text-sm">Share Buyback</div>
             <div className="space-y-1 text-xs text-stone-600">
-              <div>— Linh hoạt — adjust mỗi năm</div>
-              <div>— Tax-efficient ở một số jurisdictions</div>
-              <div>— Tăng EPS (ít shares hơn)</div>
-              <div>— Có thể wasteful nếu buyback khi stock overvalued</div>
+              <div> - Linh hoạt - adjust mỗi năm</div>
+              <div> - Tax-efficient ở một số jurisdictions</div>
+              <div> - Tăng EPS (ít shares hơn)</div>
+              <div> - Có thể wasteful nếu buyback khi stock overvalued</div>
             </div>
           </div>
         </div>
@@ -145,7 +145,7 @@ export default function Page() {
             "Đầu tư hết vào các dự án NPV-positive trước → phần FCF dư thừa mới xem xét return capital",
             "Nếu chọn dividend: bắt đầu thấp và bền vững hơn là cao rồi phải cắt",
             "Buyback linh hoạt hơn: không tạo commitment cứng nhắc theo năm",
-            "Nếu FCF âm: không nên trả cổ tức — sẽ phải vay hoặc dilute để tài trợ",
+            "Nếu FCF âm: không nên trả cổ tức - sẽ phải vay hoặc dilute để tài trợ",
             "Communicate rõ với investors: capital allocation policy là gì và tại sao",
           ].map((s, i) => (
             <div key={i} className="flex gap-3 bg-stone-50 rounded-lg p-3 text-sm border border-stone-200">

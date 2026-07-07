@@ -5,7 +5,7 @@ import LessonPageLayout, { QuizQuestion, LessonMeta } from "@/components/LessonP
 
 const meta: LessonMeta = {
   id: 8, day: 8, accent: "indigo",
-  title: "Credit vs Debit — Phần 1",
+  title: "Credit vs Debit - Phần 1",
   subtitle: "Tại sao kế toán ghi sổ theo kiểu đó?",
   duration: "6 phút", difficulty: "Trung bình", emoji: "📒",
   nextSlug: "credit-debit-phan-2", nextTitle: "Credit vs Debit Phần 2",
@@ -27,7 +27,7 @@ const quiz: QuizQuestion[] = [
     question: "Tài sản (Assets) tăng được ghi vào bên nào?",
     options: ["Credit (bên phải)", "Debit (bên trái)", "Cả hai", "Không cần ghi"],
     correct: 1,
-    explanation: "Assets tăng → Debit. Assets giảm → Credit. Đây là quy tắc cơ bản — ngược lại với Liabilities và Equity.",
+    explanation: "Assets tăng → Debit. Assets giảm → Credit. Đây là quy tắc cơ bản - ngược lại với Liabilities và Equity.",
   },
   {
     question: "Doanh nghiệp nhận tiền mặt từ khách hàng. Bút toán Cash (tài sản) là?",
@@ -73,7 +73,7 @@ function TAccountDemo() {
 
   return (
     <div className="bg-gradient-to-br from-indigo-50 to-blue-50 rounded-2xl p-5 border border-stone-200 my-6">
-      <h3 className="font-bold text-stone-700 mb-4 text-sm"> T-Account Interactive — Chọn loại tài khoản</h3>
+      <h3 className="font-bold text-stone-700 mb-4 text-sm"> T-Account Interactive - Chọn loại tài khoản</h3>
       <div className="grid grid-cols-2 gap-2 mb-5">
         {accounts.map(a => (
           <button key={a.name} onClick={() => setSelected(a.name === selected ? null : a.name)}
@@ -118,7 +118,7 @@ function TAccountDemo() {
 export default function Page() {
   return (
     <LessonPageLayout lesson={meta} quiz={quiz}>
-      <h2 className="text-2xl font-bold text-stone-900 mb-2">Debit & Credit — Phần 1: Nền Tảng</h2>
+      <h2 className="text-2xl font-bold text-stone-900 mb-2">Debit & Credit - Phần 1: Nền Tảng</h2>
       <p className="text-stone-600 text-sm mb-6 italic">Hệ thống kế toán kép 500 tuổi vẫn là nền tảng mọi báo cáo tài chính</p>
 
       <section className="mb-8">
@@ -136,7 +136,7 @@ export default function Page() {
       <TAccountDemo />
 
       <section className="mb-8">
-        <h3 className="text-lg font-bold text-stone-800 mb-3">📜 DEAD CLIC — Mẹo nhớ quy tắc</h3>
+        <h3 className="text-lg font-bold text-stone-800 mb-3">📜 DEAD CLIC - Mẹo nhớ quy tắc</h3>
         <div className="grid grid-cols-2 gap-3">
           <div className="bg-stone-50 rounded-xl p-4 border border-stone-200">
             <div className="font-bold text-stone-700 mb-3 text-sm">DEBIT tăng:</div>
@@ -181,7 +181,7 @@ export default function Page() {
         <h3 className="text-lg font-bold text-stone-800 mb-3">🔄 Phương trình kế toán</h3>
         <div className="bg-stone-50 text-white rounded-xl p-5 text-center">
           <div className="text-xl font-bold font-mono mb-2">Assets = Liabilities + Equity</div>
-          <p className="text-stone-700 text-sm">Bảng cân đối luôn cân — đây là hệ quả tất yếu của kế toán kép</p>
+          <p className="text-stone-700 text-sm">Bảng cân đối luôn cân - đây là hệ quả tất yếu của kế toán kép</p>
         </div>
       </section>
     </LessonPageLayout>

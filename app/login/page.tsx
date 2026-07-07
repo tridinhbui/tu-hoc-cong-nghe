@@ -20,7 +20,7 @@ const TRUST_HIGHLIGHTS = [
   { icon: Gauge, label: "Học theo tốc độ của riêng bạn" },
 ] as const;
 
-// Reads Supabase env vars at render time — never prerender statically.
+// Reads Supabase env vars at render time - never prerender statically.
 export const dynamic = "force-dynamic";
 
 export default function LoginPage() {
@@ -181,7 +181,7 @@ export default function LoginPage() {
     toast.success("Đã gửi lại email xác nhận.");
   }
 
-  // Handle "forgot password" — sends a Supabase recovery email
+  // Handle "forgot password" - sends a Supabase recovery email
   async function handleForgotPassword(e: React.FormEvent) {
     e.preventDefault();
     setError("");
@@ -251,7 +251,7 @@ export default function LoginPage() {
               200 ngày học từ vỡ lòng đến phân tích doanh nghiệp. Chọn lộ trình phù hợp, học theo tốc độ của bạn.
             </p>
 
-            {/* Trust highlights — gives a cold visitor a reason to stay before hitting the auth form */}
+            {/* Trust highlights - gives a cold visitor a reason to stay before hitting the auth form */}
             <ul className="space-y-2.5 pt-2">
               {TRUST_HIGHLIGHTS.map(({ icon: Icon, label }) => (
                 <li key={label} className="flex items-center gap-3 text-sm text-stone-600 dark:text-stone-400">

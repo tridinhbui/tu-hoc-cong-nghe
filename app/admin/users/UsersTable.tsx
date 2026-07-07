@@ -114,7 +114,7 @@ export default function UsersTable({
                     {new Date(u.created_at).toLocaleDateString("vi-VN")}
                   </td>
                   <td className="px-4 py-3 text-stone-600 dark:text-stone-400">
-                    {u.last_login_at ? new Date(u.last_login_at).toLocaleDateString("vi-VN") : "—"}
+                    {u.last_login_at ? new Date(u.last_login_at).toLocaleDateString("vi-VN") : "- "}
                   </td>
                   <td className="px-4 py-3 text-stone-900 dark:text-stone-100 font-semibold">
                     {u.lessons_completed}

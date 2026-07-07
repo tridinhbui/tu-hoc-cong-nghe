@@ -23,22 +23,22 @@ const quiz: QuizQuestion[] = [
     explanation: "SaaS có operating leverage cao vì fixed cost lớn (servers, R&D, team cố định) nhưng marginal cost gần 0 khi thêm user. Doanh thu tăng → gần như toàn bộ incremental revenue chuyển thành profit. Airlines cũng có fixed cost cao (máy bay, sân bay) nhưng fuel cost là variable lớn.",
   },
   {
-    question: "Doanh thu tăng nhưng operating margin tăng nhanh hơn — điều này phản ánh?",
+    question: "Doanh thu tăng nhưng operating margin tăng nhanh hơn - điều này phản ánh?",
     options: [
       "Công ty đang giảm giá bán",
-      "Operating leverage dương — fixed cost được phân bổ trên nhiều đơn vị hơn, biên lợi nhuận mở rộng",
+      "Operating leverage dương - fixed cost được phân bổ trên nhiều đơn vị hơn, biên lợi nhuận mở rộng",
       "Công ty không có nợ",
       "Tax rate giảm",
     ],
     correct: 1,
-    explanation: "Khi doanh thu tăng nhưng fixed cost không tăng tương ứng → cost per unit giảm → operating margin tăng nhanh hơn revenue. Đây là 'operating leverage in action' — đặc trưng của scalable business models.",
+    explanation: "Khi doanh thu tăng nhưng fixed cost không tăng tương ứng → cost per unit giảm → operating margin tăng nhanh hơn revenue. Đây là 'operating leverage in action'- đặc trưng của scalable business models.",
   },
   {
-    question: "Airlines có operating leverage cao — đây là rủi ro hay cơ hội?",
+    question: "Airlines có operating leverage cao - đây là rủi ro hay cơ hội?",
     options: [
       "Chỉ là cơ hội",
       "Chỉ là rủi ro",
-      "Cả hai — doanh thu tăng → lợi nhuận tăng mạnh; doanh thu giảm → lỗ nhanh. Fixed costs vẫn phải trả dù không bay.",
+      "Cả hai - doanh thu tăng → lợi nhuận tăng mạnh; doanh thu giảm → lỗ nhanh. Fixed costs vẫn phải trả dù không bay.",
       "Không liên quan đến profitability",
     ],
     correct: 2,
@@ -48,12 +48,12 @@ const quiz: QuizQuestion[] = [
     question: "SG&A leverage là gì?",
     options: [
       "Nợ của phòng sales",
-      "Doanh thu tăng nhưng SG&A (Sales, General & Administrative) không tăng tương ứng — một dạng operating leverage qua chi phí cố định",
+      "Doanh thu tăng nhưng SG&A (Sales, General & Administrative) không tăng tương ứng - một dạng operating leverage qua chi phí cố định",
       "Chi phí Marketing tăng",
       "Tỷ lệ nợ trên vốn",
     ],
     correct: 1,
-    explanation: "SG&A leverage = khi revenue tăng nhưng SG&A grows slower → SG&A/Revenue ratio giảm → margin cải thiện. Điển hình khi công ty đã build được brand, distribution, và internal processes — thêm revenue mà không cần tăng proportionally overhead.",
+    explanation: "SG&A leverage = khi revenue tăng nhưng SG&A grows slower → SG&A/Revenue ratio giảm → margin cải thiện. Điển hình khi công ty đã build được brand, distribution, và internal processes - thêm revenue mà không cần tăng proportionally overhead.",
   },
 ];
 
@@ -61,7 +61,7 @@ export default function Page() {
   return (
     <LessonPageLayout lesson={meta} quiz={quiz}>
       <h2 className="text-2xl font-bold text-stone-900 mb-2">Operating Leverage</h2>
-      <p className="text-stone-600 text-sm mb-6 italic">Tại sao doanh thu tăng 30% nhưng lợi nhuận tăng 100%? — Đòn bẩy hoạt động</p>
+      <p className="text-stone-600 text-sm mb-6 italic">Tại sao doanh thu tăng 30% nhưng lợi nhuận tăng 100%? - Đòn bẩy hoạt động</p>
 
       <section className="mb-8">
         <h3 className="text-lg font-bold text-stone-800 mb-3">Operating Leverage là gì?</h3>
@@ -82,20 +82,20 @@ export default function Page() {
           <div className="border border-stone-200 rounded-xl p-4">
             <div className="font-bold text-stone-800 mb-3 text-sm">SaaS Company</div>
             <div className="space-y-1.5 text-xs text-stone-600">
-              <div>— Fixed: servers, R&D team, offices</div>
-              <div>— Variable: ~near 0 per user</div>
-              <div>— Gross margin: 70-85%</div>
-              <div>— Scale: add 1M users → tiny incremental cost</div>
+              <div> - Fixed: servers, R&D team, offices</div>
+              <div> - Variable: ~near 0 per user</div>
+              <div> - Gross margin: 70-85%</div>
+              <div> - Scale: add 1M users → tiny incremental cost</div>
               <div className="font-semibold text-stone-800">→ DOL rất cao khi past break-even</div>
             </div>
           </div>
           <div className="border border-stone-200 rounded-xl p-4">
             <div className="font-bold text-stone-800 mb-3 text-sm">Airlines</div>
             <div className="space-y-1.5 text-xs text-stone-600">
-              <div>— Fixed: máy bay (lease), phi công, airport</div>
-              <div>— Variable: fuel (~30% revenue), catering</div>
-              <div>— Gross margin: 20-35%</div>
-              <div>— Scale: thêm chuyến bay → thêm fuel lớn</div>
+              <div> - Fixed: máy bay (lease), phi công, airport</div>
+              <div> - Variable: fuel (~30% revenue), catering</div>
+              <div> - Gross margin: 20-35%</div>
+              <div> - Scale: thêm chuyến bay → thêm fuel lớn</div>
               <div className="font-semibold text-stone-800">→ DOL cao nhưng variable cost cũng cao</div>
             </div>
           </div>
@@ -103,12 +103,12 @@ export default function Page() {
       </section>
 
       <section className="mb-8">
-        <h3 className="text-lg font-bold text-stone-800 mb-3">SG&A Leverage — dấu hiệu mạnh của scalability</h3>
+        <h3 className="text-lg font-bold text-stone-800 mb-3">SG&A Leverage - dấu hiệu mạnh của scalability</h3>
         <div className="space-y-2">
           {[
             { year: "Năm 1", rev: "100M", sga: "40M", ratio: "40%", note: "Build team, marketing, system" },
             { year: "Năm 2", rev: "200M", sga: "55M", ratio: "27.5%", note: "Revenue double nhưng SG&A chỉ +37%" },
-            { year: "Năm 3", rev: "350M", sga: "68M", ratio: "19.4%", note: "Brand, distribution đã built — leverage kicks in" },
+            { year: "Năm 3", rev: "350M", sga: "68M", ratio: "19.4%", note: "Brand, distribution đã built - leverage kicks in" },
           ].map(r => (
             <div key={r.year} className="flex items-center gap-3 bg-stone-50 rounded-lg p-3 border border-stone-200">
               <div className="w-16 text-xs font-bold text-stone-700 flex-shrink-0">{r.year}</div>

@@ -20,7 +20,7 @@ export function getProgress(): Progress {
  * Merge server-confirmed completed lesson ids (Supabase `user_progress`,
  * the source of truth) into the local snapshot. localStorage alone can't be
  * trusted across devices/browsers/incognito, so on every dashboard load we
- * union it with the server's list and persist the union — this is what
+ * union it with the server's list and persist the union - this is what
  * keeps a fresh browser session from showing 0% progress for a user who has
  * actually completed lessons elsewhere.
  */

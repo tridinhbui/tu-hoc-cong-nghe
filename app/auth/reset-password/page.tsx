@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { createClient } from "@/lib/supabase";
 
-// Reads Supabase env vars at render time — never prerender statically.
+// Reads Supabase env vars at render time - never prerender statically.
 export const dynamic = "force-dynamic";
 
 export default function ResetPasswordPage() {
@@ -19,7 +19,7 @@ export default function ResetPasswordPage() {
   const [hasRecoverySession, setHasRecoverySession] = useState(false);
 
   // The reset-password link from Supabase exchanges its token for a temporary
-  // session on redirect — if there's no session here, the link was invalid
+  // session on redirect - if there's no session here, the link was invalid
   // or already used.
   useEffect(() => {
     const checkSession = async () => {

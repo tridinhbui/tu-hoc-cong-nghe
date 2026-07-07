@@ -4,8 +4,8 @@ import LessonPageLayout, { QuizQuestion, LessonMeta } from "@/components/LessonP
 
 const meta: LessonMeta = {
   id: 37, day: 37, accent: "emerald",
-  title: "Dividend — Cổ Tức",
-  subtitle: "Dividend yield cao không phải lúc nào cũng tốt — cần nhìn FCF",
+  title: "Dividend - Cổ Tức",
+  subtitle: "Dividend yield cao không phải lúc nào cũng tốt - cần nhìn FCF",
   duration: "6 phút", difficulty: "Dễ", emoji: "💰",
   nextSlug: "walmart-earnings", nextTitle: "Walmart Earnings Story",
 };
@@ -15,7 +15,7 @@ const quiz: QuizQuestion[] = [
     question: "Dividend yield cao có luôn tốt không?",
     options: [
       "Có, yield càng cao càng tốt",
-      "Không — yield cao đôi khi do giá cổ phiếu giảm mạnh, thị trường lo ngại công ty sắp cắt cổ tức",
+      "Không - yield cao đôi khi do giá cổ phiếu giảm mạnh, thị trường lo ngại công ty sắp cắt cổ tức",
       "Có, vì công ty chắc chắn đang tăng trưởng tốt",
       "Dividend yield không liên quan đến giá cổ phiếu",
     ],
@@ -37,7 +37,7 @@ const quiz: QuizQuestion[] = [
     question: "Tyson Foods: payout ratio dựa trên net income ~197% nhưng FCF cover dividend ~4x. Đánh giá?",
     options: [
       "Đáng lo vì payout ratio >100%",
-      "Cổ tức ổn định — FCF 4x coverage cho thấy tiền thực sự dư để trả, dù accounting earnings thấp",
+      "Cổ tức ổn định - FCF 4x coverage cho thấy tiền thực sự dư để trả, dù accounting earnings thấp",
       "Tyson sắp cắt cổ tức",
       "Không thể đánh giá mà không có thêm thông tin",
     ],
@@ -53,15 +53,15 @@ const quiz: QuizQuestion[] = [
       "Công ty có nhiều nhân viên không",
     ],
     correct: 1,
-    explanation: "Dividend sustainability check: (1) FCF cover dividend >1.5x? (2) Net Debt/EBITDA manageable? (3) Business có stable/growing earnings không? (4) Payout policy consistent không? Dividend cut là sự kiện tiêu cực lớn với thị trường — thường gây stock price drop 20-30%.",
+    explanation: "Dividend sustainability check: (1) FCF cover dividend >1.5x? (2) Net Debt/EBITDA manageable? (3) Business có stable/growing earnings không? (4) Payout policy consistent không? Dividend cut là sự kiện tiêu cực lớn với thị trường - thường gây stock price drop 20-30%.",
   },
 ];
 
 export default function Page() {
   return (
     <LessonPageLayout lesson={meta} quiz={quiz}>
-      <h2 className="text-2xl font-bold text-stone-900 mb-2">Dividend — Cổ Tức</h2>
-      <p className="text-stone-600 text-sm mb-6 italic">Không chỉ là bao nhiêu % — mà là công ty có đủ dòng tiền thật để duy trì không?</p>
+      <h2 className="text-2xl font-bold text-stone-900 mb-2">Dividend - Cổ Tức</h2>
+      <p className="text-stone-600 text-sm mb-6 italic">Không chỉ là bao nhiêu % - mà là công ty có đủ dòng tiền thật để duy trì không?</p>
 
       <section className="mb-8">
         <h3 className="text-lg font-bold text-stone-800 mb-3">Tại sao cần học về Dividend?</h3>
@@ -75,7 +75,7 @@ export default function Page() {
             {
               n: "2",
               title: "Dividend tiết lộ cách ban lãnh đạo dùng tiền",
-              desc: "Trả dividend = trả tiền về cho cổ đông (không tìm được investment tốt hơn). Giữ lại = invest vào growth. Không lựa chọn nào luôn đúng — quan trọng là có hợp lý với giai đoạn của công ty không.",
+              desc: "Trả dividend = trả tiền về cho cổ đông (không tìm được investment tốt hơn). Giữ lại = invest vào growth. Không lựa chọn nào luôn đúng - quan trọng là có hợp lý với giai đoạn của công ty không.",
             },
             {
               n: "3",
@@ -97,7 +97,7 @@ export default function Page() {
       <section className="mb-8">
         <h3 className="text-lg font-bold text-stone-800 mb-3">Case Study: Tyson Foods Dividend Analysis</h3>
         <div className="bg-stone-800 text-white rounded-xl p-5 font-mono text-sm mb-4">
-          <div className="text-stone-500 text-xs mb-3">{"// Tyson Foods — Dividend Sustainability Check"}</div>
+          <div className="text-stone-500 text-xs mb-3">{"// Tyson Foods - Dividend Sustainability Check"}</div>
           <div className="flex justify-between mb-1"><span className="text-stone-300">Payout Ratio (NI-based)</span><span>~197%</span></div>
           <div className="flex justify-between mb-1"><span className="text-stone-300">Net Income</span><span className="text-stone-300">~Low (low margin quarter)</span></div>
           <div className="flex justify-between mb-1"><span className="text-stone-200">Free Cash Flow</span><span className="text-stone-200">Much higher than NI</span></div>
@@ -105,11 +105,11 @@ export default function Page() {
             <span className="text-white font-bold">FCF Dividend Coverage</span>
             <span className="text-stone-200 font-bold">~4x</span>
           </div>
-          <div className="text-stone-500 text-xs mt-2">NI thấp vì D&A lớn (non-cash). FCF = NI + D&A ± Working Capital — FCF cao hơn NI nhiều.</div>
+          <div className="text-stone-500 text-xs mt-2">NI thấp vì D&A lớn (non-cash). FCF = NI + D&A ± Working Capital - FCF cao hơn NI nhiều.</div>
         </div>
         <div className="border-l-2 border-stone-300 pl-4">
           <p className="text-sm text-stone-700">
-            <strong>Bài học:</strong> Payout ratio 197% nhìn đáng lo, nhưng đây là accounting artifact — NI thấp vì D&A lớn. FCF 4x coverage = cổ tức rất sustainable. Điều này chỉ thấy được khi nhìn cash flow, không chỉ nhìn income statement.
+            <strong>Bài học:</strong> Payout ratio 197% nhìn đáng lo, nhưng đây là accounting artifact - NI thấp vì D&A lớn. FCF 4x coverage = cổ tức rất sustainable. Điều này chỉ thấy được khi nhìn cash flow, không chỉ nhìn income statement.
           </p>
         </div>
       </section>
@@ -119,9 +119,9 @@ export default function Page() {
         <div className="space-y-3">
           {[
             { metric: "Dividend Yield", formula: "Annual DPS / Stock Price", good: ">2% = income, but check sustainability. >7% = possible yield trap", when: "Để so sánh income return" },
-            { metric: "Payout Ratio (NI)", formula: "Annual DPS / EPS", good: "<60% là conservative. >100% = earning không cover dividend", when: "Quick sanity check — nhưng xem FCF nếu D&A lớn" },
+            { metric: "Payout Ratio (NI)", formula: "Annual DPS / EPS", good: "<60% là conservative. >100% = earning không cover dividend", when: "Quick sanity check - nhưng xem FCF nếu D&A lớn" },
             { metric: "FCF Dividend Coverage", formula: "FCF / Total Dividends Paid", good: ">1.5x = comfortable. <1x = nguy hiểm", when: "Metric quan trọng nhất để đánh giá sustainability" },
-            { metric: "Dividend Growth Rate", formula: "Year-over-year % increase in DPS", good: "Consistent growers (Dividend Aristocrats) thường 5-10%/năm", when: "Dài hạn — dividend growth stocks outperform" },
+            { metric: "Dividend Growth Rate", formula: "Year-over-year % increase in DPS", good: "Consistent growers (Dividend Aristocrats) thường 5-10%/năm", when: "Dài hạn - dividend growth stocks outperform" },
           ].map(m => (
             <div key={m.metric} className="bg-stone-50 rounded-xl p-4 border border-stone-200">
               <div className="flex justify-between items-start mb-1">
@@ -139,11 +139,11 @@ export default function Page() {
         <h3 className="text-lg font-bold text-stone-800 mb-3">Framework phân tích Dividend</h3>
         <div className="space-y-2">
           {[
-            "Bước 1: FCF cover dividend >1.5x? — nếu không, tìm hiểu tại sao",
+            "Bước 1: FCF cover dividend >1.5x? - nếu không, tìm hiểu tại sao",
             "Bước 2: Net Debt/EBITDA có room để duy trì không? Nếu leverage cao + FCF tight = rủi ro cut",
             "Bước 3: Business có stable/growing earnings không? Cyclicals rủi ro cut dividend hơn consumer staples",
-            "Bước 4: Track record — công ty đã giữ/tăng dividend liên tục bao nhiêu năm? Dividend Aristocrat (25+ năm) = rất tin cậy",
-            "Bước 5: Management guidance — họ có cam kết dividend policy rõ ràng không?",
+            "Bước 4: Track record - công ty đã giữ/tăng dividend liên tục bao nhiêu năm? Dividend Aristocrat (25+ năm) = rất tin cậy",
+            "Bước 5: Management guidance - họ có cam kết dividend policy rõ ràng không?",
           ].map((s, i) => (
             <div key={i} className="flex gap-3 border border-stone-200 rounded-lg p-3 text-sm">
               <span className="text-stone-500 font-bold flex-shrink-0">→</span>

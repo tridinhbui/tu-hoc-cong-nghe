@@ -22,7 +22,7 @@ function shuffledOptions(item: RecallItem, seed: number): { text: string; correc
 
 // Active-recall check: shown before the lesson's own content, asking the
 // learner to pick which statement matches a concept from a few lessons back
-// — a genuine retrieval test (right/wrong, immediate feedback), not a
+// - a genuine retrieval test (right/wrong, immediate feedback), not a
 // self-reported "did you remember?" which doesn't actually test recall.
 export default function RecallCard({ items }: { items: RecallItem[] }) {
   const [picked, setPicked] = useState<(number | null)[]>(items.map(() => null));
@@ -44,7 +44,7 @@ export default function RecallCard({ items }: { items: RecallItem[] }) {
         return (
           <div key={i} className="bg-white dark:bg-stone-900 rounded-xl border border-amber-200 dark:border-amber-900/60 p-4 space-y-3">
             <p className="text-sm font-semibold text-stone-800 dark:text-stone-200">
-              Từ <span className="text-amber-700 dark:text-amber-400">Day {item.fromDay}</span> ({item.fromTitle}) — ý nào dưới đây đúng?
+              Từ <span className="text-amber-700 dark:text-amber-400">Day {item.fromDay}</span> ({item.fromTitle}) - ý nào dưới đây đúng?
             </p>
             <div className="space-y-2">
               {options.map((opt, optIndex) => {
@@ -86,8 +86,8 @@ export default function RecallCard({ items }: { items: RecallItem[] }) {
                 }`}
               >
                 {isCorrect(picked[i] as number)
-                  ? "Chính xác — kiến thức đang được củng cố."
-                  : "Chưa đúng — không sao, đây chính là lúc ôn lại phát huy tác dụng."}
+                  ? "Chính xác - kiến thức đang được củng cố."
+                  : "Chưa đúng - không sao, đây chính là lúc ôn lại phát huy tác dụng."}
               </p>
             )}
           </div>

@@ -93,7 +93,7 @@ export default function InteractiveProfitCalc() {
       {profit > 0 && isShortOfCash && (
         <div className="bg-amber-50 border border-amber-200 rounded-2xl p-4 text-amber-800 text-sm">
           <span className="font-bold">⚠️ Đây rồi!</span> Lợi nhuận dương (+{profit} triệu) nhưng tiền mặt âm ({actualCash} triệu).{" "}
-          Đây chính xác là trường hợp &ldquo;lãi mà hết tiền&rdquo; — vì {revenue - cashReceived} triệu đang nằm trong công nợ phải thu, chưa về tay.
+          Đây chính xác là trường hợp &ldquo;lãi mà hết tiền&rdquo; - vì {revenue - cashReceived} triệu đang nằm trong công nợ phải thu, chưa về tay.
         </div>
       )}
 

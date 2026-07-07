@@ -15,7 +15,7 @@ interface FileDropzoneProps {
 /**
  * Drag-and-drop file picker for admin forms (documents upload/edit). Wraps a
  * plain `<input type="file">` so it still works with native FormData/server
- * actions unchanged — drag-and-drop just fills that same input via
+ * actions unchanged - drag-and-drop just fills that same input via
  * DataTransfer, no separate upload path to keep in sync.
  */
 export default function FileDropzone({ name, accept, required, label, currentFileName }: FileDropzoneProps) {

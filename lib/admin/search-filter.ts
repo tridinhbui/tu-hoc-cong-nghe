@@ -1,7 +1,7 @@
 /**
  * Shared helper for admin list search boxes (messages, lessons, users), all
  * of which build a Supabase `.or()` filter from raw user input. `,` `(` `)`
- * are syntax characters in PostgREST's filter DSL — left unescaped in a
+ * are syntax characters in PostgREST's filter DSL - left unescaped in a
  * plain template string, a search term containing them can break or
  * manipulate the query. This was fixed independently in three files before
  * being extracted here; keep future search boxes going through this instead

@@ -6,7 +6,7 @@ import LessonPageLayout, { QuizQuestion, LessonMeta } from "@/components/LessonP
 const meta: LessonMeta = {
   id: 7, day: 7, accent: "rose",
   title: "Time Value of Money",
-  subtitle: "1 tỷ hôm nay > 1 tỷ năm sau — tại sao?",
+  subtitle: "1 tỷ hôm nay > 1 tỷ năm sau - tại sao?",
   duration: "7 phút", difficulty: "Trung bình", emoji: "⏳",
   nextSlug: "credit-debit-phan-1", nextTitle: "Credit vs Debit Phần 1",
 };
@@ -27,12 +27,12 @@ const quiz: QuizQuestion[] = [
     question: "Discount rate trong DCF đại diện cho điều gì?",
     options: [
       "Lãi suất ngân hàng hiện hành",
-      "Chi phí vốn (WACC) — chi phí cơ hội của nhà đầu tư",
+      "Chi phí vốn (WACC) - chi phí cơ hội của nhà đầu tư",
       "Tốc độ tăng trưởng doanh nghiệp",
       "Lạm phát kỳ vọng",
     ],
     correct: 1,
-    explanation: "Discount rate = WACC hoặc required rate of return — chi phí của việc sử dụng vốn. Cao hơn → dòng tiền tương lai bị chiết khấu nhiều hơn → giá trị hiện tại thấp hơn.",
+    explanation: "Discount rate = WACC hoặc required rate of return - chi phí của việc sử dụng vốn. Cao hơn → dòng tiền tương lai bị chiết khấu nhiều hơn → giá trị hiện tại thấp hơn.",
   },
   {
     question: "Nếu lãi suất chiết khấu tăng từ 8% lên 12%, giá trị hiện tại (PV) sẽ:",
@@ -43,8 +43,8 @@ const quiz: QuizQuestion[] = [
   {
     question: "NPV = -100 triệu hôm nay + PV(150 triệu sau 3 năm, r=10%). NPV dương hay âm?",
     options: [
-      "Dương — nên đầu tư",
-      "Âm — không nên đầu tư",
+      "Dương - nên đầu tư",
+      "Âm - không nên đầu tư",
       "Cần thêm thông tin",
       "NPV = 0 trong trường hợp này",
     ],
@@ -119,7 +119,7 @@ export default function Page() {
   return (
     <LessonPageLayout lesson={meta} quiz={quiz}>
       <h2 className="text-2xl font-bold text-stone-900 mb-2">Time Value of Money (TVM)</h2>
-      <p className="text-stone-600 text-sm mb-6 italic">Nền tảng của mọi phân tích tài chính — từ định giá cổ phiếu đến quyết định đầu tư</p>
+      <p className="text-stone-600 text-sm mb-6 italic">Nền tảng của mọi phân tích tài chính - từ định giá cổ phiếu đến quyết định đầu tư</p>
 
       <section className="mb-8">
         <h3 className="text-lg font-bold text-stone-800 mb-3">🤔 Tại sao 1 tỷ hôm nay &gt; 1 tỷ năm sau?</h3>
@@ -127,9 +127,9 @@ export default function Page() {
           Đây là nguyên tắc số 1 của tài chính: <strong>tiền hôm nay có giá trị hơn tiền tương lai</strong>, vì ba lý do:
         </p>
         <ul className="space-y-2 mb-4">
-          <li className="flex gap-2"><span className="text-stone-700 font-bold">1.</span><span className="text-stone-600"><strong>Cơ hội đầu tư</strong> — 1 tỷ hôm nay có thể đầu tư và sinh lời</span></li>
-          <li className="flex gap-2"><span className="text-stone-700 font-bold">2.</span><span className="text-stone-600"><strong>Lạm phát</strong> — sức mua của tiền giảm theo thời gian</span></li>
-          <li className="flex gap-2"><span className="text-stone-700 font-bold">3.</span><span className="text-stone-600"><strong>Rủi ro</strong> — tương lai không chắc, nhận tiền sớm hơn an toàn hơn</span></li>
+          <li className="flex gap-2"><span className="text-stone-700 font-bold">1.</span><span className="text-stone-600"><strong>Cơ hội đầu tư</strong> - 1 tỷ hôm nay có thể đầu tư và sinh lời</span></li>
+          <li className="flex gap-2"><span className="text-stone-700 font-bold">2.</span><span className="text-stone-600"><strong>Lạm phát</strong> - sức mua của tiền giảm theo thời gian</span></li>
+          <li className="flex gap-2"><span className="text-stone-700 font-bold">3.</span><span className="text-stone-600"><strong>Rủi ro</strong> - tương lai không chắc, nhận tiền sớm hơn an toàn hơn</span></li>
         </ul>
       </section>
 
@@ -182,7 +182,7 @@ export default function Page() {
         <div className="space-y-3">
           {[
             { err: "Dùng nominal rate thay vì real rate khi có lạm phát", fix: "Điều chỉnh: Real rate ≈ Nominal − Inflation" },
-            { err: "Quên điều chỉnh tần suất (monthly vs annual)", fix: "APR 12% monthly ≠ 12% annual — luôn convert về cùng kỳ" },
+            { err: "Quên điều chỉnh tần suất (monthly vs annual)", fix: "APR 12% monthly ≠ 12% annual - luôn convert về cùng kỳ" },
             { err: "Chọn discount rate quá thấp → overvalue doanh nghiệp", fix: "WACC phải phản ánh rủi ro thực sự của business" },
           ].map((item, i) => (
             <div key={i} className="bg-stone-50 border border-stone-200 rounded-xl p-4">

@@ -4,7 +4,7 @@ import { getLessonOverrides } from "@/lib/lesson-overrides";
 import { createServerSupabaseClient } from "@/lib/supabase-server";
 import DashboardClient from "@/components/DashboardClient";
 
-// Auth-gated and reads Supabase env vars at render time — never prerender statically.
+// Auth-gated and reads Supabase env vars at render time - never prerender statically.
 export const dynamic = "force-dynamic";
 
 // Server Component: uses dynamic import to load lesson metadata only,

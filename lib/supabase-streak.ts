@@ -2,7 +2,7 @@ import { createClient } from "@/lib/supabase";
 import { handleSupabaseError } from "@/lib/errors";
 
 // "Table not found in schema cache" (PostgREST) or "relation does not exist"
-// (raw Postgres) — streaks are a non-critical gamification feature, so treat
+// (raw Postgres) - streaks are a non-critical gamification feature, so treat
 // a missing table as "no streak yet" instead of crashing the caller.
 function isMissingTableError(error: { code?: string } | null): boolean {
   return error?.code === "PGRST205" || error?.code === "42P01";

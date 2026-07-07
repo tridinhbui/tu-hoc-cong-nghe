@@ -6,9 +6,9 @@ import LessonPageLayout, { QuizQuestion, LessonMeta } from "@/components/LessonP
 const meta: LessonMeta = {
   id: 23, day: 23, accent: "emerald",
   title: "ROIC",
-  subtitle: "Return on Invested Capital — đo khả năng tạo giá trị thực sự",
+  subtitle: "Return on Invested Capital - đo khả năng tạo giá trị thực sự",
   duration: "7 phút", difficulty: "Khó", emoji: "",
-  nextSlug: "roic-phan-2", nextTitle: "ROIC Phần 2 — Link sang Valuation",
+  nextSlug: "roic-phan-2", nextTitle: "ROIC Phần 2 - Link sang Valuation",
 };
 
 const quiz: QuizQuestion[] = [
@@ -21,8 +21,8 @@ const quiz: QuizQuestion[] = [
   {
     question: "Hai công ty cùng ROIC = 15%. A reinvest 80% lợi nhuận, B reinvest 30%. Công ty nào tăng trưởng nhanh hơn?",
     options: [
-      "A — vì giữ lại nhiều vốn để compound ở ROIC 15%",
-      "B — vì trả cổ tức cao, cổ đông hài lòng hơn",
+      "A - vì giữ lại nhiều vốn để compound ở ROIC 15%",
+      "B - vì trả cổ tức cao, cổ đông hài lòng hơn",
       "Như nhau vì ROIC giống nhau",
     ],
     correct: 0,
@@ -32,7 +32,7 @@ const quiz: QuizQuestion[] = [
     question: "Công ty write-down tài sản → Invested Capital giảm, NOPAT không đổi → ROIC tăng. Điều này phản ánh điều gì?",
     options: [
       "Business thực sự tốt hơn sau write-down",
-      "Metric bị inflate — ROIC tăng không phản ánh cải thiện operational thực sự",
+      "Metric bị inflate - ROIC tăng không phản ánh cải thiện operational thực sự",
       "Không ảnh hưởng gì đến chất lượng phân tích",
     ],
     correct: 1,
@@ -42,7 +42,7 @@ const quiz: QuizQuestion[] = [
     question: "ROIC > WACC có ý nghĩa gì?",
     options: [
       "Công ty đang profitable",
-      "Công ty đang tạo ra giá trị kinh tế — return trên vốn vượt chi phí vốn",
+      "Công ty đang tạo ra giá trị kinh tế - return trên vốn vượt chi phí vốn",
       "Cổ phiếu đang rẻ và nên mua",
       "Công ty không cần vay nợ thêm",
     ],
@@ -53,7 +53,7 @@ const quiz: QuizQuestion[] = [
     question: "Tại sao ROIC tốt hơn ROE để đánh giá hiệu quả sử dụng vốn?",
     options: [
       "ROIC luôn cao hơn ROE",
-      "ROIC không bị ảnh hưởng bởi leverage — đo hiệu quả của toàn bộ capital base, không chỉ equity",
+      "ROIC không bị ảnh hưởng bởi leverage - đo hiệu quả của toàn bộ capital base, không chỉ equity",
       "ROE tính sai theo GAAP",
       "ROIC dễ tính hơn ROE",
     ],
@@ -134,7 +134,7 @@ function ROICSimulator() {
 export default function Page() {
   return (
     <LessonPageLayout lesson={meta} quiz={quiz}>
-      <h2 className="text-2xl font-bold text-stone-900 mb-2">ROIC — Return on Invested Capital</h2>
+      <h2 className="text-2xl font-bold text-stone-900 mb-2">ROIC - Return on Invested Capital</h2>
       <p className="text-stone-600 text-sm mb-6 italic">Chỉ số phân biệt doanh nghiệp tạo giá trị thực sự với doanh nghiệp chỉ profitable trên giấy</p>
 
       <section className="mb-8">
@@ -147,7 +147,7 @@ export default function Page() {
           <div className="bg-stone-50 rounded-xl p-4 border border-stone-200">
             <div className="font-bold text-stone-700 mb-2 text-sm">NOPAT</div>
             <div className="font-mono text-xs bg-white rounded p-2 border border-stone-200 mb-2">EBIT × (1 − Tax Rate)</div>
-            <p className="text-xs text-stone-600">Net Operating Profit After Tax — lợi nhuận từ hoạt động kinh doanh, loại trừ tác động của cấu trúc vốn (không tính lãi vay)</p>
+            <p className="text-xs text-stone-600">Net Operating Profit After Tax - lợi nhuận từ hoạt động kinh doanh, loại trừ tác động của cấu trúc vốn (không tính lãi vay)</p>
           </div>
           <div className="bg-stone-50 rounded-xl p-4 border border-stone-200">
             <div className="font-bold text-stone-700 mb-2 text-sm">Invested Capital</div>
@@ -181,7 +181,7 @@ export default function Page() {
       <ROICSimulator />
 
       <section className="mb-8">
-        <h3 className="text-lg font-bold text-stone-800 mb-3"> ROIC vs ROE — Tại sao ROIC tốt hơn</h3>
+        <h3 className="text-lg font-bold text-stone-800 mb-3"> ROIC vs ROE - Tại sao ROIC tốt hơn</h3>
         <div className="overflow-x-auto">
           <table className="w-full text-sm">
             <thead>
@@ -194,8 +194,8 @@ export default function Page() {
             <tbody className="divide-y divide-stone-100">
               {[
                 ["Measure", "Hiệu quả toàn bộ capital base", "Hiệu quả trên equity"],
-                ["Bị distort bởi leverage?", "❌ Không — IC = D+E", " Có — ROE tăng khi vay nợ"],
-                ["So sánh cross-industry", " Phù hợp", "❌ Khó — D/E ratio khác nhau"],
+                ["Bị distort bởi leverage?", "❌ Không - IC = D+E", " Có - ROE tăng khi vay nợ"],
+                ["So sánh cross-industry", " Phù hợp", "❌ Khó - D/E ratio khác nhau"],
                 ["Kết hợp với", "WACC để tính economic profit", "Risk-free rate để check opportunity cost"],
               ].map((row, i) => (
                 <tr key={i}>

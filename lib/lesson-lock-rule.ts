@@ -1,7 +1,7 @@
 import type { LessonMeta } from "@/lib/lesson-types";
 
 /**
- * Pure lock rule — no cookies/DB access, just the decision logic — so it can
+ * Pure lock rule - no cookies/DB access, just the decision logic - so it can
  * be called identically from a Server Component (lib/lesson-locking.ts,
  * reads cookies via next/headers) and from proxy.ts (reads cookies via
  * NextRequest, a different API). Keeping the rule in one place is the whole

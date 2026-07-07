@@ -12,7 +12,7 @@ export default async function LessonPage({ params }: { params: Promise<{ slug: s
   if (!lesson) notFound();
 
   // The dashboard only used lock state to decide whether to show a lock
-  // icon — this page rendered the full lesson to anyone who requested the
+  // icon - this page rendered the full lesson to anyone who requested the
   // URL directly, bypassing that entirely. Check here too, since this is
   // the component that actually serves the content.
   const supabase = await createServerSupabaseClient();

@@ -6,7 +6,7 @@ import LessonPageLayout, { QuizQuestion, LessonMeta } from "@/components/LessonP
 const meta: LessonMeta = {
   id: 25, day: 25, accent: "amber",
   title: "Commodity Phần 2",
-  subtitle: "Supply, Demand, Inventory — 3 yếu tố định giá hàng hóa cơ bản",
+  subtitle: "Supply, Demand, Inventory - 3 yếu tố định giá hàng hóa cơ bản",
   duration: "6 phút", difficulty: "Trung bình", emoji: "🌍",
   nextSlug: "trai-phieu", nextTitle: "Trái Phiếu",
 };
@@ -38,7 +38,7 @@ const quiz: QuizQuestion[] = [
     question: "Khi inventory commodity tăng liên tục trong khi demand yếu, điều gì thường xảy ra với giá?",
     options: [
       "Giá commodity tăng vì inventory nhiều = sản xuất nhiều = nền kinh tế mạnh",
-      "Giá commodity giảm — tồn kho dư thừa tạo áp lực bán ra",
+      "Giá commodity giảm - tồn kho dư thừa tạo áp lực bán ra",
       "Biến động về 0",
       "Commodity không bị ảnh hưởng bởi inventory",
     ],
@@ -59,7 +59,7 @@ const quiz: QuizQuestion[] = [
   {
     question: "Geopolitics ảnh hưởng đến commodity như thế nào?",
     options: [
-      "Không ảnh hưởng — commodity là global market",
+      "Không ảnh hưởng - commodity là global market",
       "Chỉ ảnh hưởng vàng vì vàng là safe haven",
       "Xung đột ở vùng sản xuất key commodity có thể disrupt supply và spike giá (oil, wheat, nickel)",
       "Geopolitics chỉ ảnh hưởng tỷ giá, không ảnh hưởng commodity",
@@ -137,7 +137,7 @@ function SupplyDemandSimulator() {
 export default function Page() {
   return (
     <LessonPageLayout lesson={meta} quiz={quiz}>
-      <h2 className="text-2xl font-bold text-stone-900 mb-2">Commodity Phần 2 — Phân Tích Giá</h2>
+      <h2 className="text-2xl font-bold text-stone-900 mb-2">Commodity Phần 2 - Phân Tích Giá</h2>
       <p className="text-stone-600 text-sm mb-6 italic">3 yếu tố định giá commodity và tại sao doanh nghiệp phải hedge</p>
 
       <section className="mb-8">
@@ -223,9 +223,9 @@ export default function Page() {
       </section>
 
       <section className="mb-8">
-        <h3 className="text-lg font-bold text-stone-800 mb-3"> Commodity Cyclicality — Tại sao giá biến động mạnh?</h3>
+        <h3 className="text-lg font-bold text-stone-800 mb-3"> Commodity Cyclicality - Tại sao giá biến động mạnh?</h3>
         <p className="text-stone-600 text-sm leading-relaxed mb-3">
-          Supply của commodity có <strong>lag dài</strong> — xây nhà máy lọc dầu mất 3-5 năm, mở mỏ đồng mất 5-10 năm. Nhưng demand thay đổi nhanh theo GDP cycle. Kết quả:
+          Supply của commodity có <strong>lag dài</strong> - xây nhà máy lọc dầu mất 3-5 năm, mở mỏ đồng mất 5-10 năm. Nhưng demand thay đổi nhanh theo GDP cycle. Kết quả:
         </p>
         <div className="bg-stone-800 text-white rounded-xl p-5 space-y-3 text-sm">
           {[

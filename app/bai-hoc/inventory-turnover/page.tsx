@@ -5,7 +5,7 @@ import LessonPageLayout, { QuizQuestion, LessonMeta } from "@/components/LessonP
 
 const meta: LessonMeta = {
   id: 39, day: 39, accent: "amber",
-  title: "Inventory — Hàng Tồn Kho",
+  title: "Inventory - Hàng Tồn Kho",
   subtitle: "Inventory Turnover, DSI, DOH và liên kết với Supply Chain",
   duration: "6 phút", difficulty: "Trung bình", emoji: "📦",
   nextSlug: "post-ipo-dividend", nextTitle: "Post-IPO: Nên Trả Cổ Tức?",
@@ -76,7 +76,7 @@ function InventorySimulator() {
         <div className="bg-white rounded-xl border border-stone-200 p-4 text-center">
           <div className="text-xs text-stone-500 mb-1">Inventory Turnover</div>
           <div className="font-bold text-2xl text-stone-700">{turnover.toFixed(1)}x</div>
-          <div className="text-xs text-stone-500 mt-1">{turnover > 8 ? "Nhanh — lean inventory" : turnover > 4 ? "Trung bình" : "Chậm — xem xét lại"}</div>
+          <div className="text-xs text-stone-500 mt-1">{turnover > 8 ? "Nhanh - lean inventory" : turnover > 4 ? "Trung bình" : "Chậm - xem xét lại"}</div>
         </div>
         <div className="bg-white rounded-xl border border-stone-200 p-4 text-center">
           <div className="text-xs text-stone-500 mb-1">Days on Hand (DOH)</div>
@@ -91,8 +91,8 @@ function InventorySimulator() {
 export default function Page() {
   return (
     <LessonPageLayout lesson={meta} quiz={quiz}>
-      <h2 className="text-2xl font-bold text-stone-900 mb-2">Inventory — Hàng Tồn Kho</h2>
-      <p className="text-stone-600 text-sm mb-6 italic">Current asset trên Balance Sheet — nhưng quản lý kém thì trở thành gánh nặng</p>
+      <h2 className="text-2xl font-bold text-stone-900 mb-2">Inventory - Hàng Tồn Kho</h2>
+      <p className="text-stone-600 text-sm mb-6 italic">Current asset trên Balance Sheet - nhưng quản lý kém thì trở thành gánh nặng</p>
 
       <section className="mb-8">
         <h3 className="text-lg font-bold text-stone-800 mb-3">📐 2 chỉ số cốt lõi</h3>
@@ -114,7 +114,7 @@ export default function Page() {
         <h3 className="text-lg font-bold text-stone-800 mb-3"> Ví dụ: Inventory Turnover = 5</h3>
         <div className="bg-stone-50 rounded-xl p-4 border border-stone-200 text-sm">
           <p className="text-stone-700 mb-2">→ Trung bình trong năm, công ty đã thay mới lượng tồn kho <strong>5 lần</strong></p>
-          <p className="text-stone-600 mb-2">→ DOH = 365 / 5 = <strong>73 ngày</strong> — trung bình mỗi sản phẩm nằm kho 73 ngày trước khi được bán</p>
+          <p className="text-stone-600 mb-2">→ DOH = 365 / 5 = <strong>73 ngày</strong> - trung bình mỗi sản phẩm nằm kho 73 ngày trước khi được bán</p>
           <p className="text-stone-500 text-xs italic">Lưu ý: DSI cao hay thấp còn tùy chiến lược. Retail fashion: 30-60 ngày. Luxury goods: 180+ ngày. Aerospace: hơn 1 năm.</p>
         </div>
       </section>
@@ -145,7 +145,7 @@ export default function Page() {
           <div className="bg-stone-50 rounded-xl p-4 border border-stone-200">
             <div className="font-bold text-stone-700 mb-2 text-sm">❌ DOH tăng vì xấu</div>
             <ul className="space-y-1">
-              {["Demand yếu — hàng bán chậm", "Sản phẩm lỗi thời / không còn relevant", "Cần giảm giá để xả hàng → Gross Margin giảm", "Quản lý forecast kém"].map((i, k) => (
+              {["Demand yếu - hàng bán chậm", "Sản phẩm lỗi thời / không còn relevant", "Cần giảm giá để xả hàng → Gross Margin giảm", "Quản lý forecast kém"].map((i, k) => (
                 <li key={k} className="text-xs text-stone-600 flex gap-1.5"><span className="text-stone-700">·</span>{i}</li>
               ))}
             </ul>
@@ -163,7 +163,7 @@ export default function Page() {
       </section>
 
       <section>
-        <h3 className="text-lg font-bold text-stone-800 mb-3">🌊 Bullwhip Effect — cạm bẫy trong Supply Chain</h3>
+        <h3 className="text-lg font-bold text-stone-800 mb-3">🌊 Bullwhip Effect - cạm bẫy trong Supply Chain</h3>
         <div className="bg-stone-50 rounded-xl p-4 border border-stone-200">
           <div className="space-y-2 font-mono text-xs">
             {[

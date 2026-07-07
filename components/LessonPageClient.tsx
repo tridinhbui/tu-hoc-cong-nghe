@@ -80,7 +80,7 @@ function OpeningQuestionBlock({
           }`}
         >
           <p className="font-semibold mb-1">
-            {selected === correct ? "Đúng rồi!" : "Chưa đúng — nhưng không sao!"}
+            {selected === correct ? "Đúng rồi!" : "Chưa đúng - nhưng không sao!"}
           </p>
           <p>{explanation}</p>
         </motion.div>
@@ -199,7 +199,7 @@ export default function LessonPageClient({ lesson, nextLesson }: Props) {
   };
 
   // Pull a middle question out as the mid-article checkpoint, leaving the
-  // sidebar's own "Câu 1" intact — previously this always took quiz[0], which
+  // sidebar's own "Câu 1" intact - previously this always took quiz[0], which
   // made the sidebar quiz start at a question that used to be "first" and
   // read as if the mid-article check and the sidebar were splitting the same
   // quiz rather than being two distinct checks.
@@ -213,7 +213,7 @@ export default function LessonPageClient({ lesson, nextLesson }: Props) {
   return (
     <div className="relative">
       <LessonPageLayout lesson={meta} quiz={sidebarQuiz}>
-      {/* 0. Why this lesson matters — one or two sentences up front on what
+      {/* 0. Why this lesson matters - one or two sentences up front on what
           problem it solves and what the learner can do after, so the value
           is obvious before they invest time reading. Only lessons written
           with this field show it; older lessons already state their gist in

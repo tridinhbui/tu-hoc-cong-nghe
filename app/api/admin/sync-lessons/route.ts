@@ -3,7 +3,7 @@ import { loadLessons } from "@/lib/lessons-loader";
 import { NextRequest } from "next/server";
 
 // Destructive (wipes and re-seeds the entire `lessons` table with the
-// service-role key, bypassing RLS) — must never be reachable without proof
+// service-role key, bypassing RLS) - must never be reachable without proof
 // the caller is the site operator, not just any visitor who found the URL.
 export async function POST(request: NextRequest) {
   const expectedSecret = process.env.ADMIN_SYNC_SECRET;

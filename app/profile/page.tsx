@@ -8,7 +8,7 @@ import { createClient } from "@/lib/supabase";
 import { getLevelByXp } from "@/lib/levels";
 import UserMenu from "@/components/UserMenu";
 
-// Auth-gated and reads Supabase env vars at render time — never prerender statically.
+// Auth-gated and reads Supabase env vars at render time - never prerender statically.
 export const dynamic = "force-dynamic";
 
 export default function ProfilePage() {

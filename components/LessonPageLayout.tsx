@@ -100,8 +100,7 @@ export default function LessonPageLayout({ lesson, quiz, children }: Props) {
 
     function onScroll() {
       // Tied to actual page scroll position (not the article's bounding box),
-      // so it reads exactly 0% at the very top and 100% at the very bottom —
-      // scrolling back up always brings it back down instead of resting on a
+      // so it reads exactly 0% at the very top and 100% at the very bottom - // scrolling back up always brings it back down instead of resting on a
       // non-zero floor.
       const winH = window.innerHeight;
       const docH = document.documentElement.scrollHeight;
@@ -126,7 +125,7 @@ export default function LessonPageLayout({ lesson, quiz, children }: Props) {
           await updateReadingProgress(userId, lesson.id, maxReachedRef.current);
         } catch (error) {
           // Reading progress is a passive nicety (resume-scroll position,
-          // milestone toasts) — never worth crashing the page over, e.g.
+          // milestone toasts) - never worth crashing the page over, e.g.
           // when a lesson hasn't been synced into the Supabase mirror table
           // yet and the FK constraint on lesson_id rejects the row.
           console.error("Error saving reading progress:", error);
@@ -211,7 +210,7 @@ export default function LessonPageLayout({ lesson, quiz, children }: Props) {
 
   return (
     <div className="min-h-screen bg-[#FAFAFC] dark:bg-stone-950 font-sans antialiased text-[#1A1A1E] dark:text-stone-100">
-      {/* Reading Progress Bar (Fixed Left, race track style) — full opacity
+      {/* Reading Progress Bar (Fixed Left, race track style) - full opacity
           while actively scrolling, fades to a faint sliver when idle so it
           doesn't linger as a constant on-screen distraction. */}
       <div
@@ -329,7 +328,7 @@ export default function LessonPageLayout({ lesson, quiz, children }: Props) {
               </div>
             </div>
 
-            {/* Spaced-repetition recall — surfaces concepts from ~5 and ~12
+            {/* Spaced-repetition recall - surfaces concepts from ~5 and ~12
                 lessons back before introducing new material, so review is
                 distributed across the course instead of only happening once
                 at the end of a chặng. */}
@@ -403,7 +402,7 @@ export default function LessonPageLayout({ lesson, quiz, children }: Props) {
                       else cls = "border-2 border-stone-200 dark:border-stone-800 bg-stone-50 dark:bg-stone-900/50 text-stone-500 dark:text-stone-400";
                     } else if (isSelected) {
                       // Fixed high-contrast style, independent of the lesson's decorative
-                      // accent color — the "stone" accent (most common) was nearly
+                      // accent color - the "stone" accent (most common) was nearly
                       // identical to the unselected style, leaving no visible confirmation
                       // that a tap registered before the user hits "Kiểm tra".
                       cls = "border-2 border-stone-900 dark:border-stone-100 bg-stone-900 dark:bg-stone-100 text-white dark:text-stone-900 font-semibold";
@@ -430,7 +429,7 @@ export default function LessonPageLayout({ lesson, quiz, children }: Props) {
                   <div className={`rounded-xl p-4 text-sm leading-relaxed border ${qCorrect ? "bg-emerald-50 dark:bg-emerald-950/50 border-emerald-100 dark:border-emerald-900 text-emerald-800 dark:text-emerald-400" : "bg-rose-50 dark:bg-rose-950/50 border-rose-100 dark:border-rose-900 text-rose-800 dark:text-rose-400"}`}>
                     <p className="font-bold mb-1.5">{qCorrect ? "Chính xác!" : "Giải thích:"}</p>
                     {/* Contrast the learner's own wrong pick against the correct
-                        one before explaining — naming the exact misconception
+                        one before explaining - naming the exact misconception
                         they just revealed, not just restating the right answer. */}
                     {!qCorrect && qSelected !== null && (
                       <p className="mb-2 pb-2 border-b border-rose-200 dark:border-rose-900">

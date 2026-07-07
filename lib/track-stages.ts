@@ -17,7 +17,7 @@ export const TRACK_PERSONAL = {
   subtitle: "Lộ trình 108 ngày",
   estimatedHours: 10,
   description:
-    "Dành cho người muốn hiểu tiền bạc, kiểm soát chi tiêu, xây dựng tài sản và đầu tư thông minh — không cần kiến thức ngành.",
+    "Dành cho người muốn hiểu tiền bạc, kiểm soát chi tiêu, xây dựng tài sản và đầu tư thông minh - không cần kiến thức ngành.",
   pillars: ["Tư duy tiền bạc", "Đầu tư cá nhân", "Lập kế hoạch tài chính"],
   stages: [
     {
@@ -214,7 +214,7 @@ export const TRACK_PROFESSIONAL = {
 
 /**
  * Whether a lesson id falls within a track's day ranges. Most lessons don't
- * carry an explicit `track` field on the Lesson object — track membership is
+ * carry an explicit `track` field on the Lesson object - track membership is
  * determined by which stage's day range the id falls into (mirrors the
  * dashboard's own stage-matching logic). An explicit `track` field, when
  * present, still takes priority and is checked by the caller first.

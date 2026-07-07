@@ -11,7 +11,7 @@ interface TrackPreviewPanelProps {
 }
 
 // Shared between the desktop hero panel and the mobile brand block on the
-// login page — one component instead of two hand-kept-in-sync copies.
+// login page - one component instead of two hand-kept-in-sync copies.
 export default function TrackPreviewPanel({ previewTrack, setPreviewTrack, compact = false }: TrackPreviewPanelProps) {
   const track = TRACKS[previewTrack];
 

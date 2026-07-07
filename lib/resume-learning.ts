@@ -3,12 +3,12 @@ import { getCompletedLessons } from "./supabase-progress";
 import { getLessonsMeta } from "./lessons-loader";
 import { isLessonIdInTrack } from "./track-stages";
 
-// Reads the full lesson dataset via getLessonsMeta() — must only ever be
+// Reads the full lesson dataset via getLessonsMeta() - must only ever be
 // called from server-side code (a Server Action, e.g. app/dashboard/actions.ts,
 // or a Server Component), never imported directly by a "use client"
 // component. See app/dashboard/actions.ts for why.
 
-// Most lessons don't carry an explicit `track` field — membership is decided
+// Most lessons don't carry an explicit `track` field - membership is decided
 // by which track's stage day-ranges the id falls into (see track-stages.ts).
 // An explicit `track` field, when present, still takes priority.
 function isInTrack(lesson: { id: number; track?: "professional" | "personal" | "bonus" }, track: "personal" | "professional") {

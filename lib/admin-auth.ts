@@ -12,8 +12,7 @@ export interface AdminSession {
  * Returns the session on success, or null if the caller is not an admin
  * (no session, no profile row, role !== 'admin', or account disabled).
  *
- * Must be called from a Server Component / Route Handler / Server Action —
- * never trust a client-side check alone for admin gating.
+ * Must be called from a Server Component / Route Handler / Server Action - * never trust a client-side check alone for admin gating.
  */
 export async function getAdminSession(): Promise<AdminSession | null> {
   const supabase = await createServerSupabaseClient();

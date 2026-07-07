@@ -76,7 +76,7 @@ export default function MidpointInteractive({
           }`}
         >
           <p className={`font-bold ${isCorrect ? "text-emerald-900 dark:text-emerald-400" : "text-stone-900 dark:text-stone-100"}`}>
-            {isCorrect ? "Chính xác!" : "Chưa đúng — xem giải thích"}
+            {isCorrect ? "Chính xác!" : "Chưa đúng - xem giải thích"}
           </p>
           <p className={`text-sm mt-1 ${isCorrect ? "text-emerald-800 dark:text-emerald-400" : "text-stone-700 dark:text-stone-300"}`}>
             {question.explanation}

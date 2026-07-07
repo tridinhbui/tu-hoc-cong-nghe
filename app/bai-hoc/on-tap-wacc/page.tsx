@@ -5,7 +5,7 @@ import LessonPageLayout, { QuizQuestion, LessonMeta } from "@/components/LessonP
 const meta: LessonMeta = {
   id: 22, day: 22, accent: "blue",
   title: "Ôn Tập WACC",
-  subtitle: "5 câu quiz về chi phí vốn — hiểu bản chất, không học thuộc",
+  subtitle: "5 câu quiz về chi phí vốn - hiểu bản chất, không học thuộc",
   duration: "6 phút", difficulty: "Khó", emoji: "⚖️",
   nextSlug: "roic", nextTitle: "ROIC",
 };
@@ -26,7 +26,7 @@ const quiz: QuizQuestion[] = [
     question: "Tại sao phải dùng after-tax cost of debt trong WACC?",
     options: [
       "Vì debt rẻ hơn equity",
-      "Vì interest expense được tax shield — lãi vay được khấu trừ thuế, làm giảm chi phí thực",
+      "Vì interest expense được tax shield - lãi vay được khấu trừ thuế, làm giảm chi phí thực",
       "Vì debt không có rủi ro",
       "Vì quy định kế toán",
     ],
@@ -36,9 +36,9 @@ const quiz: QuizQuestion[] = [
   {
     question: "Nếu công ty tăng leverage (vay nhiều hơn), WACC sẽ thay đổi thế nào trong thực tế?",
     options: [
-      "Luôn giảm — vì thay equity đắt bằng debt rẻ",
-      "Luôn tăng — vì rủi ro tăng",
-      "Giảm rồi tăng lại — có optimal leverage point",
+      "Luôn giảm - vì thay equity đắt bằng debt rẻ",
+      "Luôn tăng - vì rủi ro tăng",
+      "Giảm rồi tăng lại - có optimal leverage point",
       "Không đổi theo Modigliani-Miller",
     ],
     correct: 2,
@@ -64,7 +64,7 @@ const quiz: QuizQuestion[] = [
       "Dự báo chi phí vận hành",
     ],
     correct: 1,
-    explanation: "WACC là discount rate trong DCF. Nó đại diện cho chi phí cơ hội của vốn — tỷ suất return tối thiểu mà dự án/doanh nghiệp phải tạo ra để justify vốn đầu tư. PV = CF / (1 + WACC)^n.",
+    explanation: "WACC là discount rate trong DCF. Nó đại diện cho chi phí cơ hội của vốn - tỷ suất return tối thiểu mà dự án/doanh nghiệp phải tạo ra để justify vốn đầu tư. PV = CF / (1 + WACC)^n.",
   },
 ];
 
@@ -72,13 +72,13 @@ export default function Page() {
   return (
     <LessonPageLayout lesson={meta} quiz={quiz}>
       <h2 className="text-2xl font-bold text-stone-900 mb-2">Ôn Tập WACC</h2>
-      <p className="text-stone-600 text-sm mb-6 italic">Không học thuộc công thức — hiểu tại sao WACC hoạt động như vậy</p>
+      <p className="text-stone-600 text-sm mb-6 italic">Không học thuộc công thức - hiểu tại sao WACC hoạt động như vậy</p>
 
       <section className="mb-8">
-        <h3 className="text-lg font-bold text-stone-800 mb-3">WACC — Nhắc lại core formula</h3>
+        <h3 className="text-lg font-bold text-stone-800 mb-3">WACC - Nhắc lại core formula</h3>
         <div className="bg-stone-900 text-white rounded-xl p-5 text-center mb-4">
           <div className="font-mono text-lg font-bold mb-1">WACC = Ke × We + Kd × (1−t) × Wd</div>
-          <p className="text-stone-300 text-sm">Chi phí vốn trung bình có trọng số — phản ánh risk tổng thể của doanh nghiệp</p>
+          <p className="text-stone-300 text-sm">Chi phí vốn trung bình có trọng số - phản ánh risk tổng thể của doanh nghiệp</p>
         </div>
         <div className="grid grid-cols-2 gap-3">
           {[
@@ -105,7 +105,7 @@ export default function Page() {
             <p className="text-stone-600 text-sm">Nếu dự án không tạo ra return ≥ WACC, nhà đầu tư tốt hơn nên rút vốn và invest vào nơi khác có cùng risk level. WACC là hurdle rate tối thiểu.</p>
           </div>
           <div className="border-l-2 border-stone-300 pl-4 space-y-1">
-            <div className="font-bold text-stone-800 text-sm">Debt rẻ hơn equity — vì sao không vay 100%?</div>
+            <div className="font-bold text-stone-800 text-sm">Debt rẻ hơn equity - vì sao không vay 100%?</div>
             <p className="text-stone-600 text-sm">Vay nhiều → financial risk tăng → lender đòi lãi cao hơn, cổ đông đòi return cao hơn → cả Kd và Ke tăng → WACC bật lên. Có optimal leverage point tối thiểu hóa WACC.</p>
           </div>
           <div className="border-l-2 border-stone-300 pl-4 space-y-1">
@@ -119,9 +119,9 @@ export default function Page() {
         <h3 className="text-lg font-bold text-stone-800 mb-3">Quick reminders</h3>
         <div className="space-y-2">
           {[
-            "Ke > Kd(1−t) trong hầu hết mọi trường hợp — equity riskier nên đắt hơn",
-            "Dùng market value weights, không phải book value — market phản ánh current reality",
-            "WACC là blended rate — không phải chi phí của bất kỳ nguồn vốn cụ thể nào",
+            "Ke > Kd(1−t) trong hầu hết mọi trường hợp - equity riskier nên đắt hơn",
+            "Dùng market value weights, không phải book value - market phản ánh current reality",
+            "WACC là blended rate - không phải chi phí của bất kỳ nguồn vốn cụ thể nào",
             "Trong LBO: leverage cao → Ke tăng mạnh → offsetting debt benefit → WACC có thể tăng",
           ].map((r, i) => (
             <div key={i} className="flex gap-3 bg-stone-50 rounded-lg p-3 text-sm border border-stone-200">

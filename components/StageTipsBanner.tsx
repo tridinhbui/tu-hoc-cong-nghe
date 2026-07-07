@@ -5,7 +5,7 @@ import { TRACK_PERSONAL, TRACK_PROFESSIONAL } from "@/lib/track-stages";
 
 // Keyed by "<track>-<chặng label>" so tips always match the lesson's actual
 // topic. Previously this bucketed by Math.floor((lessonId-1)/20), capped at
-// index 9 — correct only for the original 200-day professional curriculum.
+// index 9 - correct only for the original 200-day professional curriculum.
 // Every lesson added since (personal Chặng 0/2-6, professional Chặng 10,
 // bonus case studies) fell through to index 9 and got derivatives/phái sinh
 // tips regardless of what the lesson was actually about.
@@ -17,40 +17,40 @@ const STAGE_TIPS: Record<string, string[]> = {
     "Quy tắc 50/30/20: 50% nhu cầu thiết yếu, 30% muốn, 20% tiết kiệm và đầu tư.",
   ],
   "personal-Chặng 0": [
-    "Nhiều người audit lần đầu mới phát hiện mình quên cộng khoản nợ trả góp điện thoại hay vay bạn bè — tài sản ròng thường thấp hơn cảm giác chủ quan vì hay bỏ sót đúng những khoản nợ nhỏ, rải rác.",
-    "Một nghiên cứu hành vi hay được nhắc: người dùng Snowball (trả nợ nhỏ trước) có tỷ lệ kiên trì đến cùng cao hơn Avalanche, dù Avalanche tối ưu hơn về tiền — kỷ luật thắng tối ưu nếu bạn dễ bỏ cuộc.",
-    "Sai lầm phổ biến nhất về khẩu vị rủi ro: đánh giá nó lúc thị trường đang yên ả. Câu hỏi thật chỉ lộ ra khi tài khoản đỏ 20% — lúc đó mới biết mình đã tự đánh giá đúng hay sai.",
-    "Sinking fund và quỹ khẩn cấp hay bị nhầm là một — khác nhau ở chỗ sinking fund dành cho khoản chi BIẾT TRƯỚC (Tết, học phí), quỹ khẩn cấp dành cho thứ KHÔNG lường trước được.",
+    "Nhiều người audit lần đầu mới phát hiện mình quên cộng khoản nợ trả góp điện thoại hay vay bạn bè - tài sản ròng thường thấp hơn cảm giác chủ quan vì hay bỏ sót đúng những khoản nợ nhỏ, rải rác.",
+    "Một nghiên cứu hành vi hay được nhắc: người dùng Snowball (trả nợ nhỏ trước) có tỷ lệ kiên trì đến cùng cao hơn Avalanche, dù Avalanche tối ưu hơn về tiền - kỷ luật thắng tối ưu nếu bạn dễ bỏ cuộc.",
+    "Sai lầm phổ biến nhất về khẩu vị rủi ro: đánh giá nó lúc thị trường đang yên ả. Câu hỏi thật chỉ lộ ra khi tài khoản đỏ 20% - lúc đó mới biết mình đã tự đánh giá đúng hay sai.",
+    "Sinking fund và quỹ khẩn cấp hay bị nhầm là một - khác nhau ở chỗ sinking fund dành cho khoản chi BIẾT TRƯỚC (Tết, học phí), quỹ khẩn cấp dành cho thứ KHÔNG lường trước được.",
   ],
   "personal-Chặng 2": [
-    "ETF chỉ số theo dõi cả thị trường thay vì cược vào một công ty — chi phí thấp, đa dạng hóa sẵn, phù hợp phần lớn nhà đầu tư cá nhân.",
-    "FOMO khiến bạn mua đúng lúc giá đã tăng mạnh vì sợ bỏ lỡ — thường là gần đỉnh, không phải lúc tốt để vào.",
+    "ETF chỉ số theo dõi cả thị trường thay vì cược vào một công ty - chi phí thấp, đa dạng hóa sẵn, phù hợp phần lớn nhà đầu tư cá nhân.",
+    "FOMO khiến bạn mua đúng lúc giá đã tăng mạnh vì sợ bỏ lỡ - thường là gần đỉnh, không phải lúc tốt để vào.",
     "DCA (đầu tư định kỳ) không phải phép màu, chỉ là cách giảm rủi ro timing sai bằng kỷ luật chia nhỏ khoản đầu tư theo thời gian.",
     "Thuế trên lợi nhuận đầu tư và kỷ luật chốt lời/cắt lỗ quan trọng không kém việc chọn đúng cổ phiếu.",
   ],
   "personal-Chặng 3": [
-    "Giá trái phiếu và lãi suất luôn đi ngược chiều nhau — lãi suất thị trường tăng, giá trái phiếu bạn đang cầm sẽ giảm.",
-    "Trái phiếu chính phủ thường an toàn hơn trái phiếu doanh nghiệp, đổi lại lợi suất thấp hơn — đánh đổi rủi ro và lợi nhuận không có ngoại lệ.",
-    "Duration đo độ nhạy của trái phiếu với lãi suất — duration càng cao, giá càng biến động mạnh khi lãi suất thay đổi.",
-    "Trái phiếu không phải tài sản 'miễn rủi ro' — vẫn có rủi ro lãi suất, rủi ro tín dụng, và rủi ro lạm phát ăn mòn lợi suất thực.",
+    "Giá trái phiếu và lãi suất luôn đi ngược chiều nhau - lãi suất thị trường tăng, giá trái phiếu bạn đang cầm sẽ giảm.",
+    "Trái phiếu chính phủ thường an toàn hơn trái phiếu doanh nghiệp, đổi lại lợi suất thấp hơn - đánh đổi rủi ro và lợi nhuận không có ngoại lệ.",
+    "Duration đo độ nhạy của trái phiếu với lãi suất - duration càng cao, giá càng biến động mạnh khi lãi suất thay đổi.",
+    "Trái phiếu không phải tài sản 'miễn rủi ro'- vẫn có rủi ro lãi suất, rủi ro tín dụng, và rủi ro lạm phát ăn mòn lợi suất thực.",
   ],
   "personal-Chặng 4": [
-    "Phân bổ tài sản (asset allocation) quyết định phần lớn kết quả danh mục dài hạn — quan trọng hơn việc chọn đúng một mã cổ phiếu.",
-    "Càng gần tuổi nghỉ hưu, danh mục nên nghiêng dần sang tài sản ổn định hơn — vì không còn nhiều thời gian để hồi phục sau một cú giảm mạnh.",
-    "Tái cân bằng danh mục định kỳ về bản chất là bán bớt thứ đã tăng nhiều, mua thêm thứ đang yếu hơn — kỷ luật ngược với bản năng.",
+    "Phân bổ tài sản (asset allocation) quyết định phần lớn kết quả danh mục dài hạn - quan trọng hơn việc chọn đúng một mã cổ phiếu.",
+    "Càng gần tuổi nghỉ hưu, danh mục nên nghiêng dần sang tài sản ổn định hơn - vì không còn nhiều thời gian để hồi phục sau một cú giảm mạnh.",
+    "Tái cân bằng danh mục định kỳ về bản chất là bán bớt thứ đã tăng nhiều, mua thêm thứ đang yếu hơn - kỷ luật ngược với bản năng.",
     "Bảo hiểm đi trước đầu tư trong thứ tự ưu tiên: một sự kiện y tế không có bảo hiểm có thể xóa sổ nhiều năm tích lũy chỉ trong vài tháng.",
   ],
   "personal-Chặng 5": [
-    "Warren Buffett từng nói ông thà mua một công ty tuyệt vời với giá hợp lý còn hơn một công ty tầm thường với giá rẻ — đầu tư giá trị không có nghĩa là cứ rẻ là mua.",
+    "Warren Buffett từng nói ông thà mua một công ty tuyệt vời với giá hợp lý còn hơn một công ty tầm thường với giá rẻ - đầu tư giá trị không có nghĩa là cứ rẻ là mua.",
     "Một dấu hiệu dễ bỏ qua khi đánh giá đa dạng hóa: hỏi 'nếu tin xấu ập vào NGÀNH này, bao nhiêu % danh mục của tôi bị ảnh hưởng cùng lúc', không chỉ đếm số mã.",
     "Cách đơn giản để tự kiểm tra thiên kiến xác nhận: trước khi mua, thử viết ra 2 lý do KHÔNG nên mua cổ phiếu đó. Nếu không nghĩ ra được lý do nào, có thể bạn chưa nhìn đủ góc.",
-    "Một chỉ số tốt ở một công ty vẫn có thể là tín hiệu xấu nếu đến từ nguồn không bền vững — ROE cao nhờ vay nợ nhiều khác hẳn ROE cao nhờ vận hành hiệu quả.",
+    "Một chỉ số tốt ở một công ty vẫn có thể là tín hiệu xấu nếu đến từ nguồn không bền vững - ROE cao nhờ vay nợ nhiều khác hẳn ROE cao nhờ vận hành hiệu quả.",
   ],
   "personal-Chặng 6": [
-    "FIRE (Financial Independence, Retire Early) là một cộng đồng thực tế đã tính toán chi tiết con số tự do tài chính của họ — không phải khái niệm mơ hồ, mà là một phép tính ai cũng làm được.",
+    "FIRE (Financial Independence, Retire Early) là một cộng đồng thực tế đã tính toán chi tiết con số tự do tài chính của họ - không phải khái niệm mơ hồ, mà là một phép tính ai cũng làm được.",
     "Sequence of returns risk là rủi ro ít người để ý: thị trường giảm mạnh ngay 2-3 năm đầu nghỉ hưu nguy hiểm hơn nhiều so với giảm mạnh ở năm thứ 20, dù mức giảm % là như nhau.",
     "Cách nhanh nhất để nhận ra lừa đảo tài chính: hỏi 'nếu chiến lược này thật sự hiệu quả và an toàn, tại sao họ cần rủ thêm người thay vì tự âm thầm làm giàu'.",
-    "Ở nhiều gia đình, tranh chấp thừa kế không phải vì thiếu tiền mà vì thiếu một cuộc trò chuyện rõ ràng từ sớm — giấy tờ pháp lý chỉ là một nửa câu chuyện.",
+    "Ở nhiều gia đình, tranh chấp thừa kế không phải vì thiếu tiền mà vì thiếu một cuộc trò chuyện rõ ràng từ sớm - giấy tờ pháp lý chỉ là một nửa câu chuyện.",
   ],
   "professional-Chặng 1": [
     "Kế toán là ngôn ngữ kinh doanh, Warren Buffett gọi như vậy. Đọc được báo cáo tài chính là kỹ năng quan trọng nhất của người làm tài chính.",
@@ -107,16 +107,16 @@ const STAGE_TIPS: Record<string, string[]> = {
     "Sau 200 bài, tài chính là bộ mental models. DCF cho giá trị, WACC cho chi phí cơ hội, Portfolio theory cho rủi ro và tương quan.",
   ],
   "professional-Chặng 10": [
-    "LBO dùng đòn bẩy nợ để khuếch đại lợi nhuận vốn chủ — nếu doanh nghiệp sinh lời tốt, ROE tăng mạnh; nếu không, rủi ro phá sản cũng tăng theo.",
-    "Synergy trong M&A thường bị thổi phồng lúc đàm phán và hiếm khi đạt đủ trong thực tế — phần lớn giá trị thương vụ mất đi ở khâu tích hợp hậu sáp nhập.",
-    "Accretion/dilution analysis trả lời câu hỏi: thương vụ M&A này làm EPS công ty mua tăng hay giảm — phụ thuộc cách tài trợ (tiền mặt, nợ, hay phát hành cổ phiếu).",
+    "LBO dùng đòn bẩy nợ để khuếch đại lợi nhuận vốn chủ - nếu doanh nghiệp sinh lời tốt, ROE tăng mạnh; nếu không, rủi ro phá sản cũng tăng theo.",
+    "Synergy trong M&A thường bị thổi phồng lúc đàm phán và hiếm khi đạt đủ trong thực tế - phần lớn giá trị thương vụ mất đi ở khâu tích hợp hậu sáp nhập.",
+    "Accretion/dilution analysis trả lời câu hỏi: thương vụ M&A này làm EPS công ty mua tăng hay giảm - phụ thuộc cách tài trợ (tiền mặt, nợ, hay phát hành cổ phiếu).",
     "Exit strategy (IPO, bán lại, chia cổ tức đặc biệt) phải được nhà đầu tư private equity nghĩ đến ngay từ ngày đầu tư, không phải lúc sắp thoái vốn.",
   ],
   bonus: [
-    "Case study thực tế là nơi lý thuyết gặp thực tế lộn xộn — số liệu công ty thật hiếm khi gọn gàng như ví dụ trong sách giáo khoa.",
-    "Đọc báo cáo tài chính của một công ty thật khác hẳn đọc ví dụ minh họa — luôn có ngữ cảnh ngành, chu kỳ kinh tế, và quyết định quản trị ẩn phía sau con số.",
+    "Case study thực tế là nơi lý thuyết gặp thực tế lộn xộn - số liệu công ty thật hiếm khi gọn gàng như ví dụ trong sách giáo khoa.",
+    "Đọc báo cáo tài chính của một công ty thật khác hẳn đọc ví dụ minh họa - luôn có ngữ cảnh ngành, chu kỳ kinh tế, và quyết định quản trị ẩn phía sau con số.",
     "Phân tích một thương vụ hay một công ty cụ thể là cách tốt nhất để kiểm tra xem bạn đã thực sự hiểu khái niệm hay chỉ mới thuộc lòng định nghĩa.",
-    "Không có công ty nào hoàn hảo để phân tích — mỗi case đều có điểm mù riêng, quan trọng là nhận ra được điểm mù đó là gì.",
+    "Không có công ty nào hoàn hảo để phân tích - mỗi case đều có điểm mù riêng, quan trọng là nhận ra được điểm mù đó là gì.",
   ],
 };
 
@@ -152,7 +152,7 @@ function keywords(text: string): string[] {
 }
 
 // Pick the tip whose text shares the most keywords with the lesson's own
-// title/subtitle — previously this just used lessonId % pool.length, which
+// title/subtitle - previously this just used lessonId % pool.length, which
 // picks tips arbitrarily within a Chặng's pool and often surfaces a tip about
 // a completely different lesson in the same Chặng (e.g. a "khẩu vị rủi ro"
 // tip under the "quỹ khẩn cấp" lesson). Falls back to the old modulo when no

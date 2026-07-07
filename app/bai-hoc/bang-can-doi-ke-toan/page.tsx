@@ -20,13 +20,13 @@ const QUIZ: QuizQuestion[] = [
       "Vốn chủ = Tài sản × Đòn bẩy",
     ],
     correct: 1,
-    explanation: "Assets = Liabilities + Equity. Đây là nền tảng của kế toán kép — mọi giao dịch đều giữ nguyên phương trình này.",
+    explanation: "Assets = Liabilities + Equity. Đây là nền tảng của kế toán kép - mọi giao dịch đều giữ nguyên phương trình này.",
   },
   {
     question: "Tài sản ngắn hạn (Current Assets) bao gồm:",
     options: [
       "Nhà máy, máy móc, bất động sản",
-      "Tiền mặt, phải thu, tồn kho — có thể chuyển thành tiền trong 12 tháng",
+      "Tiền mặt, phải thu, tồn kho - có thể chuyển thành tiền trong 12 tháng",
       "Thương hiệu, bằng sáng chế, goodwill",
       "Đầu tư dài hạn vào công ty khác",
     ],
@@ -42,7 +42,7 @@ const QUIZ: QuizQuestion[] = [
       "Công ty đang lỗ 3 năm liên tiếp",
     ],
     correct: 1,
-    explanation: "D/E = Total Debt / Equity. D/E = 3.0 nghĩa là cứ 1 đồng vốn chủ có 3 đồng nợ — đòn bẩy cao, rủi ro cao nhưng ROE có thể được khuếch đại.",
+    explanation: "D/E = Total Debt / Equity. D/E = 3.0 nghĩa là cứ 1 đồng vốn chủ có 3 đồng nợ - đòn bẩy cao, rủi ro cao nhưng ROE có thể được khuếch đại.",
   },
   {
     question: "Goodwill trên bảng cân đối kế toán phát sinh khi nào?",
@@ -58,13 +58,13 @@ const QUIZ: QuizQuestion[] = [
   {
     question: "Công ty có Current Ratio = 0.6. Điều này cho thấy điều gì?",
     options: [
-      "Rất tốt — tài sản ngắn hạn gấp đôi nợ ngắn hạn",
-      "Rủi ro thanh khoản — nợ ngắn hạn nhiều hơn tài sản ngắn hạn có thể thanh lý",
+      "Rất tốt - tài sản ngắn hạn gấp đôi nợ ngắn hạn",
+      "Rủi ro thanh khoản - nợ ngắn hạn nhiều hơn tài sản ngắn hạn có thể thanh lý",
       "Công ty đang trong giai đoạn tăng trưởng cao",
       "Current Ratio không phản ánh sức khỏe tài chính",
     ],
     correct: 1,
-    explanation: "Current Ratio = Current Assets / Current Liabilities. < 1.0 có nghĩa là nợ ngắn hạn nhiều hơn tài sản ngắn hạn — tiềm ẩn rủi ro không trả được nợ đến hạn.",
+    explanation: "Current Ratio = Current Assets / Current Liabilities. < 1.0 có nghĩa là nợ ngắn hạn nhiều hơn tài sản ngắn hạn - tiềm ẩn rủi ro không trả được nợ đến hạn.",
   },
 ];
 
@@ -75,8 +75,8 @@ export default function BalanceSheetPage() {
 
         <section className="space-y-4">
           <h2 className="text-xl font-bold text-stone-900">Bảng cân đối kế toán là gì?</h2>
-          <p>Nếu P&L (báo cáo kết quả kinh doanh) là bức ảnh ghi lại <em>những gì xảy ra trong một khoảng thời gian</em>, thì bảng cân đối kế toán (Balance Sheet) là <strong>ảnh chụp nhanh tại một thời điểm</strong> — cho thấy doanh nghiệp đang có gì và nguồn vốn đến từ đâu.</p>
-          <p>Phương trình nền tảng: <strong>Tài sản = Nợ phải trả + Vốn chủ sở hữu</strong>. Phương trình này luôn phải cân bằng — đó là lý do gọi là "cân đối".</p>
+          <p>Nếu P&L (báo cáo kết quả kinh doanh) là bức ảnh ghi lại <em>những gì xảy ra trong một khoảng thời gian</em>, thì bảng cân đối kế toán (Balance Sheet) là <strong>ảnh chụp nhanh tại một thời điểm</strong> - cho thấy doanh nghiệp đang có gì và nguồn vốn đến từ đâu.</p>
+          <p>Phương trình nền tảng: <strong>Tài sản = Nợ phải trả + Vốn chủ sở hữu</strong>. Phương trình này luôn phải cân bằng - đó là lý do gọi là "cân đối".</p>
         </section>
 
         <section className="space-y-4">
@@ -93,14 +93,14 @@ export default function BalanceSheetPage() {
               <div key={s.title} className="border border-stone-200 rounded-xl p-4">
                 <div className="font-bold text-sm text-stone-800 mb-0.5">{s.title}</div>
                 <div className="text-xs text-stone-500 mb-2">{s.sub}</div>
-                {s.items.map(t => <div key={t} className="text-xs text-stone-600 flex gap-2 mt-1"><span>—</span><span>{t}</span></div>)}
+                {s.items.map(t => <div key={t} className="text-xs text-stone-600 flex gap-2 mt-1"><span> - </span><span>{t}</span></div>)}
               </div>
             ))}
           </div>
         </section>
 
         <section className="space-y-4">
-          <h2 className="text-xl font-bold text-stone-900">Bảng Cân Đối — minh họa</h2>
+          <h2 className="text-xl font-bold text-stone-900">Bảng Cân Đối - minh họa</h2>
           <div className="border border-stone-200 rounded-xl p-5 space-y-4">
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
               <div className="space-y-2">
@@ -180,15 +180,15 @@ export default function BalanceSheetPage() {
               </div>
             ))}
           </div>
-          <p className="text-sm text-stone-500">Goodwill lớn phản ánh premium trả trong các thương vụ M&A. Đây là điểm cần theo dõi — nếu thương vụ không thành công như kỳ vọng, goodwill impairment có thể làm P&L xấu đột ngột.</p>
+          <p className="text-sm text-stone-500">Goodwill lớn phản ánh premium trả trong các thương vụ M&A. Đây là điểm cần theo dõi - nếu thương vụ không thành công như kỳ vọng, goodwill impairment có thể làm P&L xấu đột ngột.</p>
         </section>
 
         <div className="border-l-2 border-stone-300 pl-4 space-y-2">
           <h3 className="font-bold text-stone-800 mb-3">3 điều cần nhớ</h3>
           <div className="space-y-1 text-sm text-stone-700">
-            <div>— Assets = Liabilities + Equity — luôn luôn cân bằng</div>
-            <div>— Current Ratio &gt; 1.5 và D/E &lt; 2.0 là ngưỡng cơ bản để đánh giá sức khỏe</div>
-            <div>— Goodwill lớn = cần kiểm tra kỹ lịch sử M&A và impairment risk</div>
+            <div> - Assets = Liabilities + Equity - luôn luôn cân bằng</div>
+            <div> - Current Ratio &gt; 1.5 và D/E &lt; 2.0 là ngưỡng cơ bản để đánh giá sức khỏe</div>
+            <div> - Goodwill lớn = cần kiểm tra kỹ lịch sử M&A và impairment risk</div>
           </div>
         </div>
       </div>

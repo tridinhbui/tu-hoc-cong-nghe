@@ -16,7 +16,7 @@ export interface DocumentRow {
 
 export { DOCUMENT_CATEGORIES } from "@/lib/document-categories";
 
-// The upload/edit form's `accept=".pdf,.doc,..."` is a UI hint only — a
+// The upload/edit form's `accept=".pdf,.doc,..."` is a UI hint only - a
 // user can still pick any file, or hit these functions directly. Mirror the
 // same whitelist here so the server is the actual enforcement point.
 const ALLOWED_EXTENSIONS = new Set([
@@ -35,8 +35,7 @@ const ALLOWED_MIME_TYPES = new Set([
   "application/x-zip-compressed",
   "image/png",
   "image/jpeg",
-  // Some OS/browser combos report generic types for zip-based formats —
-  // still gated by the extension check below, so this doesn't widen the
+  // Some OS/browser combos report generic types for zip-based formats - // still gated by the extension check below, so this doesn't widen the
   // effective whitelist on its own.
   "application/octet-stream",
 ]);
@@ -69,7 +68,7 @@ function assertAllowedCoverImage(file: File): void {
 
 // image_url was added by a later migration (20260706_add_document_image.sql)
 // that may not be applied on every environment yet. PostgREST's "undefined
-// column" error is code 42703 — if an insert/update including image_url
+// column" error is code 42703 - if an insert/update including image_url
 // fails with that, retry once without it rather than failing the whole
 // upload/edit over an optional field.
 function isMissingColumnError(error: { code?: string } | null): boolean {
@@ -145,7 +144,7 @@ export async function uploadDocument(params: {
   try {
     imageUrl = await uploadCoverImage(supabase, image);
   } catch (err) {
-    // The document file already uploaded — don't leave it orphaned just
+    // The document file already uploaded - don't leave it orphaned just
     // because the optional cover image failed.
     await supabase.storage.from("documents").remove([path]);
     throw err;
@@ -205,7 +204,7 @@ export async function updateDocument(params: {
   const uploadedPaths: string[] = [];
   const oldPathsToCleanUp: string[] = [];
 
-  // Replacing the file is optional — editing title/description/category
+  // Replacing the file is optional - editing title/description/category
   // shouldn't require re-uploading.
   if (file && file.size > 0) {
     assertAllowedDocumentFile(file);
@@ -229,7 +228,7 @@ export async function updateDocument(params: {
   }
 
   // Cover image is independently optional: replace it, clear it, or leave it
-  // untouched — same three states editable at once, without forcing a
+  // untouched - same three states editable at once, without forcing a
   // re-upload of the document file itself.
   if (image && image.size > 0) {
     try {

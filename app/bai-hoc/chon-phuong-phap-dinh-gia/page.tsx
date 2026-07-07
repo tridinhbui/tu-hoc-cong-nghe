@@ -6,14 +6,14 @@ import LessonPageLayout, { QuizQuestion, LessonMeta } from "@/components/LessonP
 const meta: LessonMeta = {
   id: 20, day: 20, accent: "violet",
   title: "Chọn Phương Pháp Định Giá",
-  subtitle: "\"How do you choose the valuation method?\" — câu phỏng vấn có bẫy",
+  subtitle: "\"How do you choose the valuation method?\"- câu phỏng vấn có bẫy",
   duration: "7 phút", difficulty: "Khó", emoji: "",
   nextSlug: "discontinued-operations", nextTitle: "Discontinued Operations",
 };
 
 const quiz: QuizQuestion[] = [
   {
-    question: "Interviewer hỏi 'How do you choose your valuation method?' — câu trả lời nào thể hiện tư duy tốt nhất?",
+    question: "Interviewer hỏi 'How do you choose your valuation method?'- câu trả lời nào thể hiện tư duy tốt nhất?",
     options: [
       "DCF, comps và precedent transactions là 3 phương pháp chính, mỗi phương pháp có ưu nhược điểm...",
       "Tôi chọn dựa trên context của doanh nghiệp: cash flow có ổn định không, có deal M&A gần đây không, công ty thuộc ngành asset-heavy không?",
@@ -21,7 +21,7 @@ const quiz: QuizQuestion[] = [
       "DCF luôn là phương pháp tốt nhất vì phản ánh intrinsic value",
     ],
     correct: 1,
-    explanation: "Interviewer không muốn nghe định nghĩa — họ muốn thấy bạn biết chọn tool phù hợp với context. Trả lời từ 'đặc điểm doanh nghiệp → phương pháp' mới là tư duy của practitioner.",
+    explanation: "Interviewer không muốn nghe định nghĩa - họ muốn thấy bạn biết chọn tool phù hợp với context. Trả lời từ 'đặc điểm doanh nghiệp → phương pháp' mới là tư duy của practitioner.",
   },
   {
     question: "Bạn đang định giá một startup SaaS, ARR tăng 80%/năm nhưng đang lỗ. Phương pháp nào ít phù hợp nhất?",
@@ -32,13 +32,13 @@ const quiz: QuizQuestion[] = [
       "Precedent transactions trong ngành SaaS",
     ],
     correct: 2,
-    explanation: "Asset-based không phù hợp với SaaS — giá trị nằm ở recurring revenue, customer retention, growth rate, không phải tài sản hữu hình. Book value gần như không có ý nghĩa với software company.",
+    explanation: "Asset-based không phù hợp với SaaS - giá trị nằm ở recurring revenue, customer retention, growth rate, không phải tài sản hữu hình. Book value gần như không có ý nghĩa với software company.",
   },
   {
     question: "Precedent transactions cho implied value cao hơn trading comps vì lý do gì?",
     options: [
       "Dữ liệu precedent transactions luôn cũ hơn nên outdated",
-      "Precedent transactions include acquisition premium — bên mua phải trả thêm để thuyết phục cổ đông bán",
+      "Precedent transactions include acquisition premium - bên mua phải trả thêm để thuyết phục cổ đông bán",
       "Trading comps dùng forward multiples trong khi precedent dùng trailing",
       "Không có lý do rõ ràng",
     ],
@@ -74,7 +74,7 @@ const METHODS = [
     name: "DCF", full: "Discounted Cash Flow",
     when: "Cash flow ổn định, dự báo được",
     companies: "Mature companies: utilities, FMCG, manufacturing",
-    why: "Phản ánh intrinsic value — không phụ thuộc thị trường",
+    why: "Phản ánh intrinsic value - không phụ thuộc thị trường",
     weakness: "Rất nhạy cảm với discount rate và terminal value assumptions",
     color: "blue",
   },
@@ -82,7 +82,7 @@ const METHODS = [
     name: "Trading Comps", full: "Comparable Company Analysis",
     when: "Muốn phản ánh market pricing hiện tại",
     companies: "Mọi công ty có peers niêm yết tương đồng",
-    why: "Market view — thị trường đang trả bao nhiêu cho business tương tự",
+    why: "Market view - thị trường đang trả bao nhiêu cho business tương tự",
     weakness: "Phụ thuộc vào market sentiment; peers không bao giờ 100% comparable",
     color: "emerald",
   },
@@ -90,7 +90,7 @@ const METHODS = [
     name: "Precedent Tx", full: "Precedent Transactions",
     when: "Có M&A gần đây, cần hiểu control premium",
     companies: "Bất kỳ deal M&A nào; đặc biệt hữu ích khi target công ty private",
-    why: "Phản ánh deal context — bao gồm acquisition premium",
+    why: "Phản ánh deal context - bao gồm acquisition premium",
     weakness: "Data cũ, market conditions có thể khác; ít precedents trong ngành nhỏ",
     color: "violet",
   },
@@ -163,12 +163,12 @@ export default function Page() {
   return (
     <LessonPageLayout lesson={meta} quiz={quiz}>
       <h2 className="text-2xl font-bold text-stone-900 mb-2">Chọn Phương Pháp Định Giá</h2>
-      <p className="text-stone-600 text-sm mb-6 italic">Interviewer không hỏi định nghĩa — họ muốn xem bạn có reasoning hay không</p>
+      <p className="text-stone-600 text-sm mb-6 italic">Interviewer không hỏi định nghĩa - họ muốn xem bạn có reasoning hay không</p>
 
       <section className="mb-8">
-        <h3 className="text-lg font-bold text-stone-800 mb-3">🎤 Câu trả lời mẫu — ngắn gọn, có structure</h3>
+        <h3 className="text-lg font-bold text-stone-800 mb-3">🎤 Câu trả lời mẫu - ngắn gọn, có structure</h3>
         <div className="bg-stone-800 text-white rounded-2xl p-5 text-sm leading-relaxed space-y-3">
-          <p className="text-stone-300 italic text-xs mb-4">— "How do you choose your valuation method?"</p>
+          <p className="text-stone-300 italic text-xs mb-4"> -"How do you choose your valuation method?"</p>
           <p>
             <span className="text-stone-700 font-semibold">"Tôi chọn dựa trên đặc điểm của doanh nghiệp, không phải quy tắc cứng.</span>
           </p>
@@ -176,7 +176,7 @@ export default function Page() {
             Với công ty có <span className="text-stone-700 font-semibold">dòng tiền ổn định và dự báo được</span>, tôi ưu tiên <span className="text-stone-700">DCF</span> vì phản ánh intrinsic value.
           </p>
           <p>
-            Với công ty chịu ảnh hưởng nhiều từ thị trường, tôi dùng <span className="text-stone-700">trading comps</span> — P/E hoặc EV/EBITDA — để phản ánh market pricing hiện tại.
+            Với công ty chịu ảnh hưởng nhiều từ thị trường, tôi dùng <span className="text-stone-700">trading comps</span> - P/E hoặc EV/EBITDA - để phản ánh market pricing hiện tại.
           </p>
           <p>
             Nếu có <span className="text-stone-700">M&A gần đây</span> trong ngành, tôi sẽ xem <span className="text-stone-700">precedent transactions</span> để hiểu control premium.
@@ -185,7 +185,7 @@ export default function Page() {
             Với <span className="text-stone-700">asset-heavy hoặc distressed</span>, tôi dùng asset-based approach.
           </p>
           <p className="text-stone-700 font-semibold">
-            Trong thực tế, tôi không dùng một phương pháp duy nhất — tôi triangulate để đưa ra một khoảng định giá hợp lý và hiểu tại sao các phương pháp có thể diverge."
+            Trong thực tế, tôi không dùng một phương pháp duy nhất - tôi triangulate để đưa ra một khoảng định giá hợp lý và hiểu tại sao các phương pháp có thể diverge."
           </p>
         </div>
       </section>
@@ -227,7 +227,7 @@ export default function Page() {
             {
               mistake: "Không nói về trade-off",
               bad: "DCF là tốt nhất vì phản ánh intrinsic value",
-              fix: "'DCF cho intrinsic value nhưng rất nhạy cảm với discount rate — lý do tôi luôn cross-check với comps'",
+              fix: "'DCF cho intrinsic value nhưng rất nhạy cảm với discount rate - lý do tôi luôn cross-check với comps'",
             },
           ].map(s => (
             <div key={s.mistake} className="bg-stone-50 border border-stone-200 rounded-xl p-4">
@@ -243,7 +243,7 @@ export default function Page() {
         <h3 className="text-lg font-bold text-stone-800 mb-3"> One-liner để nhớ</h3>
         <div className="bg-stone-50 text-white rounded-xl p-5 text-center">
           <p className="text-lg font-bold mb-2">"DCF for intrinsic value, comps for market view, transactions for deal context."</p>
-          <p className="text-stone-700 text-sm">Và luôn kết bằng: "No single method is perfect — I triangulate to sanity-check."</p>
+          <p className="text-stone-700 text-sm">Và luôn kết bằng: "No single method is perfect - I triangulate to sanity-check."</p>
         </div>
       </section>
     </LessonPageLayout>

@@ -20,7 +20,7 @@ const quiz: QuizQuestion[] = [
       "Rủi ro nhà đầu tư mua được giá thấp",
     ],
     correct: 1,
-    explanation: "Credit risk là xác suất bên đối tác không thực hiện được nghĩa vụ tài chính — trả gốc, trả lãi, hoặc thực hiện hợp đồng. Khi mua trái phiếu doanh nghiệp, nhà đầu tư đang chịu credit risk của doanh nghiệp phát hành.",
+    explanation: "Credit risk là xác suất bên đối tác không thực hiện được nghĩa vụ tài chính - trả gốc, trả lãi, hoặc thực hiện hợp đồng. Khi mua trái phiếu doanh nghiệp, nhà đầu tư đang chịu credit risk của doanh nghiệp phát hành.",
   },
   {
     question: "Khi mua trái phiếu doanh nghiệp, bản chất là mình đang làm gì?",
@@ -31,7 +31,7 @@ const quiz: QuizQuestion[] = [
       "Mua bảo hiểm cho doanh nghiệp",
     ],
     correct: 2,
-    explanation: "Mua trái phiếu = cho vay. Doanh nghiệp cam kết trả lãi định kỳ và hoàn gốc đúng hạn. Nếu doanh nghiệp không đủ tiền trả, nhà đầu tư chịu credit risk — có thể mất một phần hoặc toàn bộ số tiền đã cho vay.",
+    explanation: "Mua trái phiếu = cho vay. Doanh nghiệp cam kết trả lãi định kỳ và hoàn gốc đúng hạn. Nếu doanh nghiệp không đủ tiền trả, nhà đầu tư chịu credit risk - có thể mất một phần hoặc toàn bộ số tiền đã cho vay.",
   },
   {
     question: "Liquidity risk là gì?",
@@ -72,7 +72,7 @@ const RISKS = [
   {
     name: "Credit Risk",
     vn: "Rủi ro tín dụng",
-    desc: "Bên vay không trả được nợ — gốc hoặc lãi.",
+    desc: "Bên vay không trả được nợ - gốc hoặc lãi.",
     example: "Mua trái phiếu Tân Hoàng Minh → công ty không trả được → nhà đầu tư mất tiền.",
     model: "PD (Probability of Default) × LGD (Loss Given Default) = Expected Loss",
   },
@@ -100,7 +100,7 @@ const RISKS = [
   {
     name: "Concentration Risk",
     vn: "Rủi ro tập trung",
-    desc: "All-in vào một mã, một ngành, một loại tài sản — hoặc phụ thuộc quá nhiều vào một nguồn vốn/nhóm khách hàng.",
+    desc: "All-in vào một mã, một ngành, một loại tài sản - hoặc phụ thuộc quá nhiều vào một nguồn vốn/nhóm khách hàng.",
     example: "Danh mục 100% cổ phiếu ngân hàng. Hoặc PVGas phụ thuộc vào nhóm khách điện.",
     model: "",
   },
@@ -149,23 +149,23 @@ export default function Page() {
       <section className="mb-10">
         <h3 className="text-base font-bold text-stone-800 mb-4 uppercase tracking-wide text-xs">Rủi ro kéo nhau như domino</h3>
         <div className="space-y-2 text-sm text-stone-600">
-          <div>— Lãi suất tăng → chi phí vay tăng</div>
-          <div>— Dòng tiền yếu đi → credit risk tăng</div>
-          <div>— Tài sản khó bán → liquidity risk xuất hiện</div>
-          <div>— Thị trường mất niềm tin → confidence risk → mọi thứ xấu nhanh hơn</div>
+          <div> - Lãi suất tăng → chi phí vay tăng</div>
+          <div> - Dòng tiền yếu đi → credit risk tăng</div>
+          <div> - Tài sản khó bán → liquidity risk xuất hiện</div>
+          <div> - Thị trường mất niềm tin → confidence risk → mọi thứ xấu nhanh hơn</div>
         </div>
       </section>
 
       <section>
-        <h3 className="text-base font-bold text-stone-800 mb-4 uppercase tracking-wide text-xs">Risk Modeling — một số khái niệm</h3>
+        <h3 className="text-base font-bold text-stone-800 mb-4 uppercase tracking-wide text-xs">Risk Modeling - một số khái niệm</h3>
         <div className="space-y-2">
           {[
-            { term: "PD — Probability of Default", def: "Xác suất bên vay không trả được nợ" },
-            { term: "LGD — Loss Given Default", def: "Nếu vỡ nợ thì mất bao nhiêu % khoản vay" },
+            { term: "PD - Probability of Default", def: "Xác suất bên vay không trả được nợ" },
+            { term: "LGD - Loss Given Default", def: "Nếu vỡ nợ thì mất bao nhiêu % khoản vay" },
             { term: "Expected Loss", def: "PD × LGD = khoản lỗ kỳ vọng" },
-            { term: "VaR — Value at Risk", def: "Mức lỗ tối đa có thể xảy ra trong khoảng thời gian với xác suất nhất định" },
+            { term: "VaR - Value at Risk", def: "Mức lỗ tối đa có thể xảy ra trong khoảng thời gian với xác suất nhất định" },
             { term: "Stress Test", def: "Đặt doanh nghiệp vào kịch bản xấu để xem chịu được tới đâu" },
-            { term: "Sensitivity Analysis", def: "Một biến thay đổi 1% thì kết quả thay đổi bao nhiêu — ví dụ lãi suất tăng 1%?" },
+            { term: "Sensitivity Analysis", def: "Một biến thay đổi 1% thì kết quả thay đổi bao nhiêu - ví dụ lãi suất tăng 1%?" },
           ].map(s => (
             <div key={s.term} className="border-l-2 border-stone-200 pl-3 py-1">
               <div className="font-semibold text-stone-800 text-xs">{s.term}</div>

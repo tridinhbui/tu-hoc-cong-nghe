@@ -42,13 +42,13 @@ const quiz: QuizQuestion[] = [
       "Tăng lương cho mình",
     ],
     correct: 1,
-    explanation: "Pay yourself first: ngay khi nhận lương, chuyển ngay X% vào tài khoản đầu tư trước khi chi tiêu. Không chờ 'tiết kiệm phần còn lại' — vì thường không còn gì.",
+    explanation: "Pay yourself first: ngay khi nhận lương, chuyển ngay X% vào tài khoản đầu tư trước khi chi tiêu. Không chờ 'tiết kiệm phần còn lại'- vì thường không còn gì.",
   },
   {
     question: "Lifestyle inflation là gì và tại sao nguy hiểm?",
     options: [
       "Lạm phát ảnh hưởng đến chi tiêu cá nhân",
-      "Chi tiêu tăng theo thu nhập — không bao giờ tích lũy được dù kiếm nhiều hơn",
+      "Chi tiêu tăng theo thu nhập - không bao giờ tích lũy được dù kiếm nhiều hơn",
       "Tăng lương nhưng giá cả cũng tăng theo",
       "Chi phí sinh hoạt tăng theo độ tuổi",
     ],
@@ -58,7 +58,7 @@ const quiz: QuizQuestion[] = [
   {
     question: "Theo tư duy tài chính đúng đắn, điều nào nên ưu tiên đầu tiên?",
     options: [
-      "Mua nhà — đó là đầu tư tốt nhất",
+      "Mua nhà - đó là đầu tư tốt nhất",
       "Xây dựng emergency fund 3-6 tháng chi tiêu",
       "Đầu tư chứng khoán để lãi kép sớm",
       "Trả hết nợ trước rồi mới nghĩ đến đầu tư",
@@ -72,27 +72,27 @@ export default function Page() {
   return (
     <LessonPageLayout lesson={meta} quiz={quiz}>
       <h2 className="text-2xl font-bold text-stone-900 mb-2">Tư Duy Tài Chính Đúng Đắn</h2>
-      <p className="text-stone-600 text-sm mb-8">Kiến thức không thiếu — mindset mới là thứ phân biệt người giàu và người còn lại</p>
+      <p className="text-stone-600 text-sm mb-8">Kiến thức không thiếu - mindset mới là thứ phân biệt người giàu và người còn lại</p>
 
       <section className="mb-10">
-        <h3 className="text-base font-bold text-stone-800 mb-4 uppercase tracking-wide text-xs">Asset vs Liability — Định nghĩa của Kiyosaki</h3>
+        <h3 className="text-base font-bold text-stone-800 mb-4 uppercase tracking-wide text-xs">Asset vs Liability - Định nghĩa của Kiyosaki</h3>
         <div className="space-y-4 text-sm">
           <div>
-            <div className="font-bold text-stone-800 mb-2">ASSET — Thứ bỏ tiền vào túi bạn</div>
+            <div className="font-bold text-stone-800 mb-2">ASSET - Thứ bỏ tiền vào túi bạn</div>
             <div className="text-stone-600">
-              <div>— Cổ phiếu / ETF</div>
-              <div>— Bất động sản cho thuê</div>
-              <div>— Business có dòng tiền</div>
-              <div>— Tiết kiệm sinh lãi</div>
+              <div> - Cổ phiếu / ETF</div>
+              <div> - Bất động sản cho thuê</div>
+              <div> - Business có dòng tiền</div>
+              <div> - Tiết kiệm sinh lãi</div>
             </div>
           </div>
           <div>
-            <div className="font-bold text-stone-800 mb-2">LIABILITY — Thứ lấy tiền ra khỏi túi bạn</div>
+            <div className="font-bold text-stone-800 mb-2">LIABILITY - Thứ lấy tiền ra khỏi túi bạn</div>
             <div className="text-stone-600">
-              <div>— Ô tô tiêu dùng (trả góp)</div>
-              <div>— Thẻ tín dụng lãi cao</div>
-              <div>— Hàng xa xỉ mua trả chậm</div>
-              <div>— Nhà ở (nếu trả mortgage)</div>
+              <div> - Ô tô tiêu dùng (trả góp)</div>
+              <div> - Thẻ tín dụng lãi cao</div>
+              <div> - Hàng xa xỉ mua trả chậm</div>
+              <div> - Nhà ở (nếu trả mortgage)</div>
             </div>
           </div>
           <p className="text-stone-600 text-xs mt-3 border-l-2 border-stone-300 pl-3">
@@ -133,7 +133,7 @@ export default function Page() {
           </div>
           <div>
             <div className="font-bold text-stone-800">Theo dõi dòng tiền cá nhân</div>
-            <p className="text-xs mt-1">Biết tiền đang đi đâu mới kiểm soát được — app hoặc bảng tính đơn giản</p>
+            <p className="text-xs mt-1">Biết tiền đang đi đâu mới kiểm soát được - app hoặc bảng tính đơn giản</p>
           </div>
           <div>
             <div className="font-bold text-stone-800">Học tài chính 15 phút mỗi ngày</div>

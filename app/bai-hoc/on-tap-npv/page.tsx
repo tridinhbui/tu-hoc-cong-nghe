@@ -26,7 +26,7 @@ const quiz: QuizQuestion[] = [
     question: "Nếu IRR của một dự án = 15% và WACC = 18%, bạn nên:",
     options: [
       "Đầu tư vì IRR dương",
-      "Không đầu tư — chi phí vốn cao hơn return kỳ vọng, NPV < 0",
+      "Không đầu tư - chi phí vốn cao hơn return kỳ vọng, NPV < 0",
       "Đầu tư nếu có funding",
       "Phụ thuộc vào ngành",
     ],
@@ -37,7 +37,7 @@ const quiz: QuizQuestion[] = [
     question: "Mutually exclusive projects: Dự án A NPV = 50M, IRR = 30%. Dự án B NPV = 80M, IRR = 20%. Chọn dự án nào?",
     options: [
       "Dự án A vì IRR cao hơn",
-      "Dự án B vì NPV cao hơn — NPV rule beats IRR rule",
+      "Dự án B vì NPV cao hơn - NPV rule beats IRR rule",
       "Phụ thuộc vào vốn có sẵn",
       "Cần thêm thông tin",
     ],
@@ -47,10 +47,10 @@ const quiz: QuizQuestion[] = [
   {
     question: "Terminal Value trong DCF thường chiếm bao nhiêu % tổng giá trị?",
     options: [
-      "10-20% — phần lớn là dòng tiền trong kỳ dự báo",
-      "60-80% — tại sao terminal value assumptions rất quan trọng",
-      "50% — thường chia đôi",
-      "100% — forecast period không đáng kể",
+      "10-20% - phần lớn là dòng tiền trong kỳ dự báo",
+      "60-80% - tại sao terminal value assumptions rất quan trọng",
+      "50% - thường chia đôi",
+      "100% - forecast period không đáng kể",
     ],
     correct: 1,
     explanation: "Trong thực tế, terminal value thường chiếm 60-80% tổng enterprise value trong DCF. Điều này có nghĩa là DCF rất nhạy cảm với terminal growth rate và exit multiple assumptions.",
@@ -71,7 +71,7 @@ const quiz: QuizQuestion[] = [
 export default function Page() {
   return (
     <LessonPageLayout lesson={meta} quiz={quiz}>
-      <h2 className="text-2xl font-bold text-stone-900 mb-2">Ôn Tập NPV — Net Present Value</h2>
+      <h2 className="text-2xl font-bold text-stone-900 mb-2">Ôn Tập NPV - Net Present Value</h2>
       <p className="text-stone-600 text-sm mb-6 italic">Công cụ quan trọng nhất trong capital budgeting và định giá doanh nghiệp</p>
 
       <section className="mb-8">
@@ -96,7 +96,7 @@ export default function Page() {
       </section>
 
       <section className="mb-8">
-        <h3 className="text-lg font-bold text-stone-800 mb-3">NPV vs IRR — Khi nào dùng gì?</h3>
+        <h3 className="text-lg font-bold text-stone-800 mb-3">NPV vs IRR - Khi nào dùng gì?</h3>
         <div className="overflow-x-auto">
           <table className="w-full text-sm">
             <thead>
@@ -109,7 +109,7 @@ export default function Page() {
             <tbody className="divide-y divide-stone-100">
               {[
                 ["Đo gì?", "Giá trị tuyệt đối (VND)", "Tỷ suất sinh lời (%)"],
-                ["Mutually exclusive", "Đúng — chọn NPV cao nhất", "Có thể sai khi scale khác nhau"],
+                ["Mutually exclusive", "Đúng - chọn NPV cao nhất", "Có thể sai khi scale khác nhau"],
                 ["Independent projects", "Accept khi NPV > 0", "Accept khi IRR > WACC"],
                 ["Reinvestment assumption", "Reinvest tại WACC (thực tế hơn)", "Reinvest tại IRR (thường quá lạc quan)"],
               ].map((row, i) => (
@@ -130,7 +130,7 @@ export default function Page() {
           {[
             "NPV > 0 → Accept. NPV < 0 → Reject. NPV = 0 → Indifferent",
             "IRR = discount rate tại đó NPV = 0",
-            "Terminal Value thường 60-80% tổng DCF — sensitize assumptions này!",
+            "Terminal Value thường 60-80% tổng DCF - sensitize assumptions này!",
             "WACC tăng → NPV giảm (inverse relationship)",
           ].map((r, i) => (
             <div key={i} className="flex gap-3 bg-stone-50 rounded-lg p-3 text-sm border border-stone-200">

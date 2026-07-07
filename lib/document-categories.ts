@@ -1,4 +1,4 @@
-// Shared between server-only admin code and client-facing components — kept
+// Shared between server-only admin code and client-facing components - kept
 // separate from lib/admin/documents.ts (which has a "server-only" guard) so
 // client components can import the category list without pulling in
 // service-role-key-using code.

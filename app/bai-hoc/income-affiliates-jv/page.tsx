@@ -5,7 +5,7 @@ import LessonPageLayout, { QuizQuestion, LessonMeta } from "@/components/LessonP
 const meta: LessonMeta = {
   id: 31, day: 31, accent: "purple",
   title: "Income từ Affiliates & JV",
-  subtitle: "Equity method (20-50%) vs Consolidation (>50%) — khi nào dùng cái nào?",
+  subtitle: "Equity method (20-50%) vs Consolidation (>50%) - khi nào dùng cái nào?",
   duration: "6 phút", difficulty: "Trung bình", emoji: "🤝",
   nextSlug: "interim-comprehensive-income", nextTitle: "Interim Statement & Comprehensive Income",
 };
@@ -20,7 +20,7 @@ const quiz: QuizQuestion[] = [
       "Không ghi nhận gì",
     ],
     correct: 1,
-    explanation: "20-50% ownership → equity method. Ghi nhận 35% × 100M = 35M vào P&L dưới dòng 'Share of profits from associates'. Không consolidate toàn bộ tài sản/nợ — chỉ ghi share of profit.",
+    explanation: "20-50% ownership → equity method. Ghi nhận 35% × 100M = 35M vào P&L dưới dòng 'Share of profits from associates'. Không consolidate toàn bộ tài sản/nợ - chỉ ghi share of profit.",
   },
   {
     question: "Tại sao khi mua >50% thì phải consolidate toàn bộ tài sản/nợ của công ty con?",
@@ -31,14 +31,14 @@ const quiz: QuizQuestion[] = [
       "Vì công ty con lỗ",
     ],
     correct: 1,
-    explanation: "Nguyên tắc consolidation: khi có control (>50%), economic substance là bạn đang điều hành toàn bộ công ty con — mọi tài sản, nợ, doanh thu, chi phí đều thuộc về nhóm. Minority interest (phần của cổ đông thiểu số) được trình bày riêng trong equity.",
+    explanation: "Nguyên tắc consolidation: khi có control (>50%), economic substance là bạn đang điều hành toàn bộ công ty con - mọi tài sản, nợ, doanh thu, chi phí đều thuộc về nhóm. Minority interest (phần của cổ đông thiểu số) được trình bày riêng trong equity.",
   },
   {
     question: "Sở hữu <20%: phương pháp kế toán phù hợp nhất là?",
     options: [
       "Equity method",
       "Full consolidation",
-      "Financial investment — ghi nhận theo giá trị hợp lý (fair value) hoặc cost",
+      "Financial investment - ghi nhận theo giá trị hợp lý (fair value) hoặc cost",
       "Proportionate consolidation",
     ],
     correct: 2,
@@ -102,7 +102,7 @@ export default function Page() {
       </section>
 
       <section className="mb-8">
-        <h3 className="text-lg font-bold text-stone-800 mb-3">📐 Equity Method — cách hoạt động</h3>
+        <h3 className="text-lg font-bold text-stone-800 mb-3">📐 Equity Method - cách hoạt động</h3>
         <div className="bg-stone-800 text-white rounded-xl p-5 font-mono text-sm space-y-2">
           <div className="text-stone-500 text-xs mb-2">{ '// Ví dụ: Sở hữu 35% JV, JV profit = 100M USD' }</div>
           <div className="flex justify-between mb-1">
@@ -193,7 +193,7 @@ export default function Page() {
         <h3 className="text-lg font-bold text-stone-800 mb-3"> Key reminders khi đọc BCTC</h3>
         <div className="space-y-2">
           {[
-            "Tìm dòng 'Share of profit/(loss) of associates/JVs' trong P&L — đây là equity method income",
+            "Tìm dòng 'Share of profit/(loss) of associates/JVs' trong P&L - đây là equity method income",
             "Dòng tiền từ equity method investment = dividend nhận được (trong CFI), KHÔNG phải share of profit",
             "Nếu JV lỗ liên tục → carrying value giảm về 0 → không ghi lỗ thêm (trừ khi guaranteed)",
             "Impairment test: nếu investment value bị suy giảm, ghi nhận impairment loss",

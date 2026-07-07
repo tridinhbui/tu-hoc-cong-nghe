@@ -1,8 +1,7 @@
 import { createServerClient } from "@supabase/ssr";
 import { cookies } from "next/headers";
 
-// Server-only client that reads the user's session from request cookies —
-// use this in Route Handlers / Server Components instead of the browser
+// Server-only client that reads the user's session from request cookies - // use this in Route Handlers / Server Components instead of the browser
 // client from lib/supabase.ts, which has no cookie jar to read on the server.
 export async function createServerSupabaseClient() {
   const cookieStore = await cookies();

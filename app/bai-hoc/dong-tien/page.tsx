@@ -27,12 +27,12 @@ const QUIZ: QuizQuestion[] = [
     question: "Người A thu nhập 50 triệu/tháng, chi tiêu và trả nợ 55 triệu. Người B thu nhập 25 triệu, giữ lại 6 triệu mỗi tháng. Ai có nền tảng tài chính lành mạnh hơn?",
     options: [
       "Người A vì thu nhập cao hơn",
-      "Người B vì dòng tiền dương — tích lũy đều đặn dù thu nhập thấp hơn",
+      "Người B vì dòng tiền dương - tích lũy đều đặn dù thu nhập thấp hơn",
       "Như nhau vì khác hoàn cảnh",
       "Không thể so sánh",
     ],
     correct: 1,
-    explanation: "Thu nhập cao không tự động đồng nghĩa với sức khỏe tài chính tốt. Người A dòng tiền âm 5 triệu mỗi tháng — đang mất tài sản dần. Người B dòng tiền dương 6 triệu — đang xây dựng nền tảng bền vững.",
+    explanation: "Thu nhập cao không tự động đồng nghĩa với sức khỏe tài chính tốt. Người A dòng tiền âm 5 triệu mỗi tháng - đang mất tài sản dần. Người B dòng tiền dương 6 triệu - đang xây dựng nền tảng bền vững.",
   },
   {
     question: "Tại sao dòng tiền được xem là nền tảng của tài chính?",
@@ -43,7 +43,7 @@ const QUIZ: QuizQuestion[] = [
       "Vì dòng tiền luôn lớn hơn lợi nhuận",
     ],
     correct: 1,
-    explanation: "Tài chính không chỉ hỏi 'hoạt động này có sinh lời không?' mà còn hỏi 'tiền về khi nào, có chắc chắn không, và có đủ để tồn tại không?' Ba câu hỏi đó chỉ dòng tiền mới trả lời được — không phải lợi nhuận kế toán.",
+    explanation: "Tài chính không chỉ hỏi 'hoạt động này có sinh lời không?' mà còn hỏi 'tiền về khi nào, có chắc chắn không, và có đủ để tồn tại không?' Ba câu hỏi đó chỉ dòng tiền mới trả lời được - không phải lợi nhuận kế toán.",
   },
   {
     question: "Ngân hàng cho vay xem xét yếu tố nào quan trọng nhất?",
@@ -54,7 +54,7 @@ const QUIZ: QuizQuestion[] = [
       "Quy mô doanh nghiệp",
     ],
     correct: 2,
-    explanation: "Ngân hàng biết rằng tài sản thế chấp chỉ là phương án cuối cùng. Điều họ thực sự muốn là doanh nghiệp tạo đủ dòng tiền để trả lãi và gốc đúng hạn — đây là lý do các khoản vay doanh nghiệp đều phân tích DSCR (Debt Service Coverage Ratio).",
+    explanation: "Ngân hàng biết rằng tài sản thế chấp chỉ là phương án cuối cùng. Điều họ thực sự muốn là doanh nghiệp tạo đủ dòng tiền để trả lãi và gốc đúng hạn - đây là lý do các khoản vay doanh nghiệp đều phân tích DSCR (Debt Service Coverage Ratio).",
   },
   {
     question: "\"Profit is opinion, cash is fact\" có nghĩa là gì?",
@@ -65,7 +65,7 @@ const QUIZ: QuizQuestion[] = [
       "Lợi nhuận và tiền mặt luôn bằng nhau trong dài hạn",
     ],
     correct: 1,
-    explanation: "Lợi nhuận bị ảnh hưởng bởi chính sách khấu hao, phương pháp tính hàng tồn kho, thời điểm ghi nhận doanh thu — tất cả có thể điều chỉnh hợp pháp. Tiền mặt trong tài khoản ngân hàng thì không. Đây là lý do nhà đầu tư giỏi luôn nhìn vào dòng tiền, không chỉ P&L.",
+    explanation: "Lợi nhuận bị ảnh hưởng bởi chính sách khấu hao, phương pháp tính hàng tồn kho, thời điểm ghi nhận doanh thu - tất cả có thể điều chỉnh hợp pháp. Tiền mặt trong tài khoản ngân hàng thì không. Đây là lý do nhà đầu tư giỏi luôn nhìn vào dòng tiền, không chỉ P&L.",
   },
 ];
 

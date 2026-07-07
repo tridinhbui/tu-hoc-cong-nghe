@@ -11,11 +11,11 @@ export default function InteractiveROE() {
   const isWorthIt = roe > bankRate;
 
   const getRoeLevel = () => {
-    if (roe < 5) return { label: "Yếu — kém hơn gửi ngân hàng", color: "text-rose-600", bg: "bg-rose-50" };
-    if (roe < 10) return { label: "Trung bình — tương đương gửi tiết kiệm", color: "text-amber-600", bg: "bg-amber-50" };
-    if (roe < 20) return { label: "Khá — tốt hơn gửi ngân hàng", color: "text-emerald-600", bg: "bg-emerald-50" };
-    if (roe < 30) return { label: "Tốt — doanh nghiệp dùng vốn giỏi", color: "text-emerald-700", bg: "bg-emerald-50" };
-    return { label: "Xuất sắc — hoặc đang dùng nhiều nợ", color: "text-blue-600", bg: "bg-blue-50" };
+    if (roe < 5) return { label: "Yếu - kém hơn gửi ngân hàng", color: "text-rose-600", bg: "bg-rose-50" };
+    if (roe < 10) return { label: "Trung bình - tương đương gửi tiết kiệm", color: "text-amber-600", bg: "bg-amber-50" };
+    if (roe < 20) return { label: "Khá - tốt hơn gửi ngân hàng", color: "text-emerald-600", bg: "bg-emerald-50" };
+    if (roe < 30) return { label: "Tốt - doanh nghiệp dùng vốn giỏi", color: "text-emerald-700", bg: "bg-emerald-50" };
+    return { label: "Xuất sắc - hoặc đang dùng nhiều nợ", color: "text-blue-600", bg: "bg-blue-50" };
   };
 
   const level = getRoeLevel();

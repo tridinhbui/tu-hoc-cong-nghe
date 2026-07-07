@@ -88,7 +88,7 @@ export function LessonQuestionCard({
           }`}
         >
           <p className="mb-1 font-semibold">
-            {selected === correct ? "Đúng rồi!" : "Chưa đúng — nhưng không sao!"}
+            {selected === correct ? "Đúng rồi!" : "Chưa đúng - nhưng không sao!"}
           </p>
           <p>{explanation}</p>
         </motion.div>

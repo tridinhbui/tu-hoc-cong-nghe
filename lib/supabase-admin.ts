@@ -1,7 +1,7 @@
 import { createClient as createSupabaseClient } from "@supabase/supabase-js";
 
 /**
- * Server-only Supabase client using the service_role key — bypasses RLS.
+ * Server-only Supabase client using the service_role key - bypasses RLS.
  * Never import this from a "use client" component or expose it to the browser.
  */
 export function createAdminClient() {

@@ -9,7 +9,7 @@ export function getStoredTheme(): Theme | null {
 }
 
 // Default theme is always light, regardless of OS/browser color-scheme
-// preference — only an explicit user choice (stored below) switches to dark.
+// preference - only an explicit user choice (stored below) switches to dark.
 export function getInitialTheme(): Theme {
   return getStoredTheme() ?? "light";
 }
@@ -26,7 +26,7 @@ export function setTheme(theme: Theme) {
 }
 
 // Inline script source injected in <head> before hydration, so the correct
-// theme class is present on first paint — avoids a flash of the wrong theme.
+// theme class is present on first paint - avoids a flash of the wrong theme.
 // Defaults to light unless the user has explicitly chosen dark before.
 export const THEME_INIT_SCRIPT = `
 (function() {

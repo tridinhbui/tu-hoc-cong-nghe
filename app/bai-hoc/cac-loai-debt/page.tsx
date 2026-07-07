@@ -16,7 +16,7 @@ const QUIZ: QuizQuestion[] = [
     question: "Tại sao Secured Debt có lãi suất thấp hơn Unsecured Debt?",
     options: [
       "Vì ngân hàng thích công ty lớn hơn",
-      "Vì có tài sản đảm bảo — nếu vỡ nợ, chủ nợ có thể thu hồi tài sản → rủi ro thấp hơn → lãi thấp hơn",
+      "Vì có tài sản đảm bảo - nếu vỡ nợ, chủ nợ có thể thu hồi tài sản → rủi ro thấp hơn → lãi thấp hơn",
       "Vì ngân hàng được nhà nước hỗ trợ lãi suất",
       "Vì secured debt có kỳ hạn ngắn hơn",
     ],
@@ -43,7 +43,7 @@ const QUIZ: QuizQuestion[] = [
       "Term Loan không tính lãi, Revolver có tính lãi",
     ],
     correct: 1,
-    explanation: "Revolver giống thẻ tín dụng doanh nghiệp — có hạn mức tối đa, rút khi cần, trả lại rồi rút tiếp. Linh hoạt, dùng cho vốn lưu động. Term Loan là khoản vay một lần, trả dần theo lịch cố định.",
+    explanation: "Revolver giống thẻ tín dụng doanh nghiệp - có hạn mức tối đa, rút khi cần, trả lại rồi rút tiếp. Linh hoạt, dùng cho vốn lưu động. Term Loan là khoản vay một lần, trả dần theo lịch cố định.",
   },
   {
     question: "Convertible Note trong startup có đặc điểm gì?",
@@ -72,7 +72,7 @@ const QUIZ: QuizQuestion[] = [
 const DEBT_TYPES = [
   { id: "secured", emoji: "🔒", name: "Secured Debt", tag: "Có tài sản đảm bảo", risk: 10, rate: 5, color: "text-stone-700 bg-stone-50 border-stone-200", desc: "Người vay thế chấp tài sản cụ thể (nhà máy, bất động sản, phải thu). Nếu không trả được, chủ nợ thu hồi tài sản đó. Rủi ro thấp → lãi suất thấp nhất trong cấu trúc vốn.", eg: "Vay ngân hàng thế chấp sổ đỏ, vay mua ô tô thế chấp xe" },
   { id: "unsecured", emoji: "🔓", name: "Unsecured Debt", tag: "Không tài sản đảm bảo", risk: 30, rate: 8, color: "text-stone-700 bg-stone-50 border-stone-200", desc: "Không có tài sản cụ thể làm đảm bảo. Nếu vỡ nợ, chủ nợ phải xếp hàng tranh chấp tài sản còn lại. Rủi ro cao hơn → lãi cao hơn.", eg: "Thẻ tín dụng, trái phiếu doanh nghiệp không có tài sản đảm bảo" },
-  { id: "senior", emoji: "👑", name: "Senior Debt", tag: "Ưu tiên trả trước", risk: 15, rate: 6, color: "text-stone-700 bg-stone-50 border-stone-200", desc: "Được ưu tiên thanh toán trước tất cả trong thứ tự phân phối khi phá sản. Không nhất thiết có tài sản đảm bảo — senior đề cập đến thứ tự ưu tiên, không phải loại đảm bảo.", eg: "Term loan từ ngân hàng thường là senior secured — vừa có tài sản vừa ưu tiên" },
+  { id: "senior", emoji: "👑", name: "Senior Debt", tag: "Ưu tiên trả trước", risk: 15, rate: 6, color: "text-stone-700 bg-stone-50 border-stone-200", desc: "Được ưu tiên thanh toán trước tất cả trong thứ tự phân phối khi phá sản. Không nhất thiết có tài sản đảm bảo - senior đề cập đến thứ tự ưu tiên, không phải loại đảm bảo.", eg: "Term loan từ ngân hàng thường là senior secured - vừa có tài sản vừa ưu tiên" },
   { id: "sub", emoji: "", name: "Subordinated Debt", tag: "Đứng sau senior", risk: 50, rate: 12, color: "text-stone-700 bg-stone-50 border-stone-200", desc: "Chỉ được thanh toán sau khi senior debt đã được trả đầy đủ. Trong LBO, thường là junior bonds hoặc PIK notes. Rủi ro thực sự cao hơn → spread 3-5% so với senior.", eg: "Junior bonds, PIK notes, second-lien loans trong LBO" },
   { id: "revolver", emoji: "🔄", name: "Revolving Credit (Revolver)", tag: "Hạn mức quay vòng", risk: 20, rate: 7, color: "text-cyan-700 bg-cyan-50 border-cyan-200", desc: "Như thẻ tín dụng cho doanh nghiệp. Có hạn mức tối đa, rút ra khi cần, trả lại rồi có thể rút tiếp. Linh hoạt nhất trong các loại debt, thường dùng cho vốn lưu động.", eg: "Retailer dùng revolver nhập hàng trước Tết, sau bán xong trả lại" },
   { id: "term", emoji: "📅", name: "Term Loan", tag: "Vay có kỳ hạn cố định", risk: 25, rate: 7, color: "text-stone-700 bg-stone-50 border-stone-200", desc: "Vay một lần, trả dần theo lịch định sẵn (monthly/quarterly). Không rút lại được sau khi trả. Dùng để mua tài sản cố định hoặc tài trợ M&A.", eg: "Vay 5 năm mua dây chuyền sản xuất, trả gốc + lãi mỗi quý" },
@@ -95,7 +95,7 @@ function CapitalStructureAnimation() {
 
   return (
     <div className="bg-white border-2 border-stone-200 rounded-3xl p-6 space-y-4 my-6">
-      <div className="text-sm font-bold text-stone-700">🏗️ Capital Structure Waterfall — Ai được trả khi phá sản?</div>
+      <div className="text-sm font-bold text-stone-700">🏗️ Capital Structure Waterfall - Ai được trả khi phá sản?</div>
       <div className="bg-stone-100 rounded-2xl p-1.5 flex gap-1.5">
         {(["normal", "distress"] as const).map(s => (
           <button key={s} onClick={() => setScenario(s)}
@@ -139,7 +139,7 @@ export default function CacLoaiDebtPage() {
 
         <section className="space-y-4">
           <h2 className="text-xl font-bold text-stone-900">Không phải mọi khoản nợ đều giống nhau</h2>
-          <p>Khi nói về "nợ" của một doanh nghiệp, hầu hết người mới bắt đầu nghĩ đó là một con số duy nhất trên bảng cân đối. Thực tế, debt là một bức tranh đa tầng với ít nhất 9 loại khác nhau — mỗi loại có <strong>rủi ro, lãi suất, và thứ tự ưu tiên</strong> hoàn toàn khác.</p>
+          <p>Khi nói về "nợ" của một doanh nghiệp, hầu hết người mới bắt đầu nghĩ đó là một con số duy nhất trên bảng cân đối. Thực tế, debt là một bức tranh đa tầng với ít nhất 9 loại khác nhau - mỗi loại có <strong>rủi ro, lãi suất, và thứ tự ưu tiên</strong> hoàn toàn khác.</p>
           <p>Hiểu điều này giúp bạn: (1) đọc balance sheet đúng hơn, (2) hiểu tại sao lãi suất khác nhau, (3) biết ai bị thiệt nhất khi công ty gặp khó khăn.</p>
         </section>
 
@@ -183,10 +183,10 @@ export default function CacLoaiDebtPage() {
         <CapitalStructureAnimation />
 
         <section className="space-y-4">
-          <h2 className="text-xl font-bold text-stone-900">LBO — Ứng dụng thực tế của capital structure</h2>
-          <p>Leveraged Buyout (LBO) là thương vụ điển hình nhất để thấy capital structure trong hành động. PE firm mua lại công ty bằng cách kết hợp nhiều tầng nợ và ít equity nhất có thể — để khuếch đại ROI cho equity.</p>
+          <h2 className="text-xl font-bold text-stone-900">LBO - Ứng dụng thực tế của capital structure</h2>
+          <p>Leveraged Buyout (LBO) là thương vụ điển hình nhất để thấy capital structure trong hành động. PE firm mua lại công ty bằng cách kết hợp nhiều tầng nợ và ít equity nhất có thể - để khuếch đại ROI cho equity.</p>
           <div className="bg-stone-900 rounded-2xl p-5 text-sm space-y-2">
-            <div className="text-stone-700 text-xs font-bold uppercase tracking-widest mb-2">Cấu trúc LBO điển hình — Mua công ty 1,000 tỷ</div>
+            <div className="text-stone-700 text-xs font-bold uppercase tracking-widest mb-2">Cấu trúc LBO điển hình - Mua công ty 1,000 tỷ</div>
             {[
               { layer: "Senior Secured (Term Loan)", pct: "50%", amount: "500 tỷ", rate: "SOFR+300bps", color: "text-stone-700" },
               { layer: "Senior Unsecured Bond", pct: "20%", amount: "200 tỷ", rate: "~8%", color: "text-stone-700" },
@@ -202,7 +202,7 @@ export default function CacLoaiDebtPage() {
               </div>
             ))}
           </div>
-          <p className="text-sm text-stone-500">PE dùng nhiều nợ để mua — nếu bán lại sau 5 năm với giá 1,500 tỷ: equity tăng từ 200 → 700 tỷ = 3.5x, tương đương ~28% IRR.</p>
+          <p className="text-sm text-stone-500">PE dùng nhiều nợ để mua - nếu bán lại sau 5 năm với giá 1,500 tỷ: equity tăng từ 200 → 700 tỷ = 3.5x, tương đương ~28% IRR.</p>
         </section>
 
         <div className="bg-stone-50 border border-stone-200 rounded-2xl p-6">
@@ -210,7 +210,7 @@ export default function CacLoaiDebtPage() {
           <div className="space-y-2">
             {[
               "Risk ↔ Return: secured senior lãi thấp nhất, mezzanine/equity lãi cao nhất",
-              "Waterfall ưu tiên: Senior Secured → Senior Unsecured → Sub → Equity — ai đứng cuối mất nhiều nhất khi phá sản",
+              "Waterfall ưu tiên: Senior Secured → Senior Unsecured → Sub → Equity - ai đứng cuối mất nhiều nhất khi phá sản",
               "Hiểu capital structure = hiểu tại sao mỗi loại nợ có giá (lãi suất) khác nhau",
             ].map((t, i) => (
               <div key={i} className="flex items-start gap-2 text-sm text-stone-700">

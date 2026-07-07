@@ -22,7 +22,7 @@ export default async function DocumentsGiveawayPage() {
   const supabase = await createServerSupabaseClient();
 
   // image_url was added by a later migration that may not have been applied
-  // to every environment yet — select it optimistically and fall back to a
+  // to every environment yet - select it optimistically and fall back to a
   // query without it rather than letting the whole page 500 (or, with the
   // previous "select *"-adjacent approach, silently return zero rows) if the
   // column doesn't exist.
@@ -57,7 +57,7 @@ export default async function DocumentsGiveawayPage() {
           </Link>
           <h1 className="text-2xl font-bold text-stone-900 dark:text-stone-100">Tài liệu miễn phí</h1>
           <p className="text-sm text-stone-500 dark:text-stone-400 mt-1">
-            Mẫu biểu, ebook, checklist và công cụ hỗ trợ hành trình học tài chính của bạn — tải về hoàn toàn miễn phí.
+            Mẫu biểu, ebook, checklist và công cụ hỗ trợ hành trình học tài chính của bạn - tải về hoàn toàn miễn phí.
           </p>
         </div>
       </div>

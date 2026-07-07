@@ -36,7 +36,7 @@ export default function DocumentsList({ documents }: { documents: PublicDocument
   const filtered = filter === "all" ? documents : documents.filter((d) => d.category === filter);
 
   async function handleDownload(doc: PublicDocument) {
-    // Best-effort counter — a logged-out visitor or a missing RPC (migration
+    // Best-effort counter - a logged-out visitor or a missing RPC (migration
     // not run yet) should never block the actual download.
     await supabase.rpc("increment_document_download", { doc_id: doc.id }).then(
       () => {},
@@ -66,7 +66,7 @@ export default function DocumentsList({ documents }: { documents: PublicDocument
         <EmptyState
           icon={FileText}
           title="Chưa có tài liệu nào"
-          description="Quay lại sau nhé — admin sẽ sớm bổ sung mẫu biểu và ebook miễn phí."
+          description="Quay lại sau nhé - admin sẽ sớm bổ sung mẫu biểu và ebook miễn phí."
         />
       ) : (
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -168,7 +168,7 @@ export default function DocumentsList({ documents }: { documents: PublicDocument
               <span>{openDoc.download_count} lượt tải</span>
             </div>
 
-            {/* Explicit download button — downloading is a deliberate click
+            {/* Explicit download button - downloading is a deliberate click
                 inside the post detail, not a side effect of opening the card. */}
             <a
               href={openDoc.file_url}

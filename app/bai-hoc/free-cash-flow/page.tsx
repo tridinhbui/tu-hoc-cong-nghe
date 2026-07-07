@@ -22,19 +22,19 @@ const QUIZ: QuizQuestion[] = [
     question: "Tại sao FCF quan trọng hơn Net Income?",
     options: [
       "FCF luôn lớn hơn Net Income",
-      "FCF không bị ảnh hưởng bởi khấu hao và chính sách kế toán — tiền thực sự trong tay",
+      "FCF không bị ảnh hưởng bởi khấu hao và chính sách kế toán - tiền thực sự trong tay",
       "FCF bao gồm cả hoạt động đầu tư",
       "FCF được kiểm toán nghiêm ngặt hơn",
     ],
     correct: 1,
-    explanation: "Net Income có thể bị điều chỉnh qua D&A, amortization, accruals. FCF là tiền mặt thực không thể làm giả — đây là lý do Warren Buffett gọi FCF là 'owner earnings'.",
+    explanation: "Net Income có thể bị điều chỉnh qua D&A, amortization, accruals. FCF là tiền mặt thực không thể làm giả - đây là lý do Warren Buffett gọi FCF là 'owner earnings'.",
   },
   {
     question: "Một công ty có OCF = 200 tỷ, CapEx = 250 tỷ. FCF là bao nhiêu và điều đó có nghĩa gì?",
     options: [
-      "FCF = 450 tỷ — rất tốt",
-      "FCF = −50 tỷ — đang đầu tư nhiều hơn tiền sinh ra, cần kiểm tra",
-      "FCF = 200 tỷ — CapEx không tính",
+      "FCF = 450 tỷ - rất tốt",
+      "FCF = −50 tỷ - đang đầu tư nhiều hơn tiền sinh ra, cần kiểm tra",
+      "FCF = 200 tỷ - CapEx không tính",
       "Không tính được vì thiếu thông tin",
     ],
     correct: 1,
@@ -49,7 +49,7 @@ const QUIZ: QuizQuestion[] = [
       "Tiền trả lãi vay ngân hàng",
     ],
     correct: 1,
-    explanation: "CapEx là capital expenditure — chi tiêu mua tài sản dài hạn (nhà xưởng, máy móc, phần mềm) tạo ra lợi ích trong nhiều năm. Được ghi nhận trên bảng cân đối, không trực tiếp vào P&L.",
+    explanation: "CapEx là capital expenditure - chi tiêu mua tài sản dài hạn (nhà xưởng, máy móc, phần mềm) tạo ra lợi ích trong nhiều năm. Được ghi nhận trên bảng cân đối, không trực tiếp vào P&L.",
   },
   {
     question: "Doanh nghiệp nào có 'chất lượng' FCF tốt hơn?",
@@ -60,7 +60,7 @@ const QUIZ: QuizQuestion[] = [
       "Không đánh giá được chỉ qua FCF",
     ],
     correct: 1,
-    explanation: "Công ty B có 'maintenance CapEx' thấp — phần lớn FCF là tiền tự do thực sự. Công ty A cần đầu tư nhiều chỉ để duy trì (capital-intensive). Warren Buffett thích Công ty B hơn.",
+    explanation: "Công ty B có 'maintenance CapEx' thấp - phần lớn FCF là tiền tự do thực sự. Công ty A cần đầu tư nhiều chỉ để duy trì (capital-intensive). Warren Buffett thích Công ty B hơn.",
   },
 ];
 
@@ -106,10 +106,10 @@ function FCFAnimation() {
         <div className="text-xs text-stone-500 mb-1">Free Cash Flow</div>
         <div className={`text-3xl font-bold ${fcf >= 0 ? "text-stone-700" : "text-stone-700"}`}>{fcf > 0 ? "+" : ""}{fcf} tỷ</div>
         <div className="text-sm mt-1 text-stone-500">
-          {fcf > 100 ? "💰 Dư tiền nhiều — có thể trả cổ tức, buyback, M&A" :
-           fcf > 0 ? " FCF dương — doanh nghiệp tự nuôi được mình" :
-           fcf > -50 ? "⚠️ FCF âm nhẹ — đang đầu tư, cần theo dõi" :
-           " FCF âm sâu — cần huy động vốn bên ngoài"}
+          {fcf > 100 ? "💰 Dư tiền nhiều - có thể trả cổ tức, buyback, M&A" :
+           fcf > 0 ? " FCF dương - doanh nghiệp tự nuôi được mình" :
+           fcf > -50 ? "⚠️ FCF âm nhẹ - đang đầu tư, cần theo dõi" :
+           " FCF âm sâu - cần huy động vốn bên ngoài"}
         </div>
       </div>
 
@@ -128,20 +128,20 @@ export default function FreeCashFlowPage() {
 
         <section className="space-y-4">
           <h2 className="text-xl font-bold text-stone-900">Vấn đề với lợi nhuận ròng</h2>
-          <p>Sau khi hiểu OCF (bài 1), bạn biết rằng lợi nhuận ≠ tiền mặt. Nhưng ngay cả OCF cũng chưa phải câu trả lời cuối cùng. Một doanh nghiệp có OCF = 500 tỷ nhưng phải chi 480 tỷ để mua máy móc mới — thực ra còn lại rất ít tiền để làm gì khác.</p>
+          <p>Sau khi hiểu OCF (bài 1), bạn biết rằng lợi nhuận ≠ tiền mặt. Nhưng ngay cả OCF cũng chưa phải câu trả lời cuối cùng. Một doanh nghiệp có OCF = 500 tỷ nhưng phải chi 480 tỷ để mua máy móc mới - thực ra còn lại rất ít tiền để làm gì khác.</p>
           <p>Đây là lý do <strong>Free Cash Flow (FCF)</strong> ra đời.</p>
         </section>
 
         <section className="space-y-4">
           <h2 className="text-xl font-bold text-stone-900">FCF = OCF − CapEx</h2>
-          <p>Free Cash Flow là tiền mặt <em>thực sự tự do</em> — sau khi doanh nghiệp đã đầu tư những gì cần thiết để duy trì và phát triển hoạt động kinh doanh.</p>
+          <p>Free Cash Flow là tiền mặt <em>thực sự tự do</em> - sau khi doanh nghiệp đã đầu tư những gì cần thiết để duy trì và phát triển hoạt động kinh doanh.</p>
           <div className="bg-stone-50 border border-stone-200 rounded-2xl p-5">
-            <div className="text-sm font-bold text-stone-700 mb-3">Câu chuyện ThanhTech — phần mềm kế toán</div>
+            <div className="text-sm font-bold text-stone-700 mb-3">Câu chuyện ThanhTech - phần mềm kế toán</div>
             {[
               { icon: "⚙️", text: "OCF năm nay: +200 tỷ (khách hàng trả tiền tốt, chi phí thấp)" },
               { icon: "🖥️", text: "CapEx: −180 tỷ (nâng cấp server, mua data center mới)" },
-              { icon: "💸", text: "FCF = 200 − 180 = 20 tỷ — chỉ còn 20 tỷ để trả cổ tức hay đầu tư khác" },
-              { icon: "", text: "P&L báo lãi 150 tỷ — nhưng tiền tự do thực chỉ có 20 tỷ" },
+              { icon: "💸", text: "FCF = 200 − 180 = 20 tỷ - chỉ còn 20 tỷ để trả cổ tức hay đầu tư khác" },
+              { icon: "", text: "P&L báo lãi 150 tỷ - nhưng tiền tự do thực chỉ có 20 tỷ" },
             ].map(r => (
               <div key={r.text} className="flex items-start gap-3 text-sm text-stone-600 py-1.5 border-b border-stone-100 last:border-0">
                 <span className="text-lg flex-shrink-0">{r.icon}</span>{r.text}
@@ -174,7 +174,7 @@ export default function FreeCashFlowPage() {
           <div className="space-y-3">
             {[
               { icon: "🚀", title: "FCF âm vì đầu tư tăng trưởng (Good)", desc: "Amazon giai đoạn 2012–2016 liên tục có FCF âm hoặc gần 0 vì đầu tư ồ ạt vào warehouse, AWS infrastructure. Kết quả: định giá ngày nay.", color: "bg-stone-50 border-stone-200 text-stone-700" },
-              { icon: "💀", title: "FCF âm vì kinh doanh thua lỗ (Bad)", desc: "Nếu cả OCF âm lẫn CapEx cao — công ty đang đốt tiền mà không sinh ra giá trị. Cần nhìn vào xu hướng nhiều năm và lý do cụ thể.", color: "bg-stone-50 border-stone-200 text-stone-700" },
+              { icon: "💀", title: "FCF âm vì kinh doanh thua lỗ (Bad)", desc: "Nếu cả OCF âm lẫn CapEx cao - công ty đang đốt tiền mà không sinh ra giá trị. Cần nhìn vào xu hướng nhiều năm và lý do cụ thể.", color: "bg-stone-50 border-stone-200 text-stone-700" },
             ].map(r => (
               <div key={r.title} className={`rounded-2xl border p-4 ${r.color}`}>
                 <div className="font-bold text-sm mb-1">{r.icon} {r.title}</div>
@@ -185,12 +185,12 @@ export default function FreeCashFlowPage() {
         </section>
 
         <section className="space-y-4">
-          <h2 className="text-xl font-bold text-stone-900">Vinamilk & FPT — So sánh FCF Yield</h2>
+          <h2 className="text-xl font-bold text-stone-900">Vinamilk & FPT - So sánh FCF Yield</h2>
           <p>FCF Yield = FCF / Market Cap. Chỉ số này cho biết bạn nhận lại bao nhiêu "tiền thực" cho mỗi đồng đầu tư vào cổ phiếu:</p>
           <div className="bg-stone-900 rounded-2xl p-5 text-sm space-y-2">
             {[
-              { co: "Vinamilk (VNM)", fcf: "~2,500 tỷ", mc: "~80,000 tỷ", yield: "~3.1%", note: "Consumer defensive — FCF yield thấp vì PE cao" },
-              { co: "FPT Corp", fcf: "~3,000 tỷ", mc: "~120,000 tỷ", yield: "~2.5%", note: "Tech growth — thị trường trả premium" },
+              { co: "Vinamilk (VNM)", fcf: "~2,500 tỷ", mc: "~80,000 tỷ", yield: "~3.1%", note: "Consumer defensive - FCF yield thấp vì PE cao" },
+              { co: "FPT Corp", fcf: "~3,000 tỷ", mc: "~120,000 tỷ", yield: "~2.5%", note: "Tech growth - thị trường trả premium" },
             ].map(r => (
               <div key={r.co} className="border-b border-stone-800 pb-3 last:border-0">
                 <div className="text-white font-bold">{r.co}</div>
@@ -207,7 +207,7 @@ export default function FreeCashFlowPage() {
             {[
               "FCF = OCF − CapEx. Tiền thực sự tự do sau khi đầu tư.",
               "FCF là nền tảng của mọi phương pháp định giá DCF.",
-              "FCF âm không xấu nếu do đầu tư tăng trưởng — phải xét ngữ cảnh.",
+              "FCF âm không xấu nếu do đầu tư tăng trưởng - phải xét ngữ cảnh.",
             ].map((t, i) => (
               <div key={i} className="flex items-start gap-2 text-sm text-stone-700">
                 <span className="text-stone-700 font-bold flex-shrink-0 mt-0.5"></span>{t}

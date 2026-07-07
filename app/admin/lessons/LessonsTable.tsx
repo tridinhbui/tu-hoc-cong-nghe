@@ -62,7 +62,7 @@ export default function LessonsTable({
       {isPending && <div className="px-4 py-2 text-xs text-stone-400">Đang tải...</div>}
 
       {result.lessons.length === 0 ? (
-        <EmptyState icon={BookOpen} title="Không tìm thấy bài học nào" description="Bảng lessons trên Supabase có thể chưa được đồng bộ — chạy /api/admin/sync-lessons." />
+        <EmptyState icon={BookOpen} title="Không tìm thấy bài học nào" description="Bảng lessons trên Supabase có thể chưa được đồng bộ - chạy /api/admin/sync-lessons." />
       ) : (
         <div className="overflow-x-auto">
           <table className="w-full text-sm">
@@ -114,7 +114,7 @@ export default function LessonsTable({
                     </div>
                   </td>
                   <td className="px-4 py-3 text-stone-600 dark:text-stone-400">
-                    {lesson.prerequisite_id ? `Bài #${lesson.prerequisite_id}` : "—"}
+                    {lesson.prerequisite_id ? `Bài #${lesson.prerequisite_id}` : "- "}
                   </td>
                   <td className="px-4 py-3 font-semibold text-stone-900 dark:text-stone-100">
                     {lesson.completions}
@@ -263,7 +263,7 @@ function EditLessonModal({
             className="w-4 h-4 rounded border-stone-300 dark:border-stone-700"
           />
           <span className="text-sm font-semibold text-stone-700 dark:text-stone-300">
-            Bài nền tảng — mở tự do cho mọi người, bỏ qua điều kiện tiên quyết
+            Bài nền tảng - mở tự do cho mọi người, bỏ qua điều kiện tiên quyết
           </span>
         </label>
         <label className="flex items-center gap-2 cursor-pointer">

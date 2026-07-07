@@ -112,7 +112,7 @@ export default function ReadingProgress({ progress, onMilestone }: ReadingProgre
                 ? "Hoàn thành chặng đua!"
                 : `Chúc mừng! Bạn đã đọc ${celebratingMilestone}%`}
             </p>
-            <p className="text-xs text-stone-300 mt-1">Hãy tiếp tục — bạn đang làm rất tốt!</p>
+            <p className="text-xs text-stone-300 mt-1">Hãy tiếp tục - bạn đang làm rất tốt!</p>
           </motion.div>
         )}
       </AnimatePresence>

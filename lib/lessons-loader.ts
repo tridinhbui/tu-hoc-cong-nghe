@@ -6,7 +6,7 @@ import type { Lesson, Difficulty, QuizQuestion, LessonSectionBlock, LessonMeta, 
  * This prevents the entire 1.2MB lessons.ts from being bundled with every page.
  *
  * Client components must import their types from lib/lesson-types.ts
- * directly, not re-exported from here — re-exporting them from this file
+ * directly, not re-exported from here - re-exporting them from this file
  * (which also holds the dynamic import("./lessons") below) previously
  * caused the bundler to pull the entire lessons array into a client chunk
  * anyway, even though the import was `import type`. The `server-only`
@@ -116,5 +116,5 @@ export async function getPreviousLesson(currentId: number): Promise<NextLessonMe
 
 // Re-export for existing server-side importers (Server Components/Actions
 // that already do `import type { LessonMeta } from "@/lib/lessons-loader"`)
-// — the canonical declarations now live in lib/lesson-types.ts.
+// - the canonical declarations now live in lib/lesson-types.ts.
 export type { LessonMeta, NextLessonMeta };

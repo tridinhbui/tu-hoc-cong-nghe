@@ -15,19 +15,19 @@ const quiz: QuizQuestion[] = [
     question: "Tại sao analyst tách Discontinued Operations ra khỏi Continuing Operations?",
     options: [
       "Vì kế toán bắt buộc phải tách",
-      "Vì discontinued ops là one-off — không phản ánh earning power tương lai của core business",
+      "Vì discontinued ops là one-off - không phản ánh earning power tương lai của core business",
       "Vì discontinued ops luôn là khoản lỗ",
       "Để làm cho Net Income trông đẹp hơn",
     ],
     correct: 1,
-    explanation: "Mục tiêu phân tích là dự báo tương lai. Discontinued ops sẽ không còn tạo ra doanh thu nữa — gộp vào sẽ làm méo picture về core business. Analyst chỉ dùng earnings từ continuing operations để value doanh nghiệp.",
+    explanation: "Mục tiêu phân tích là dự báo tương lai. Discontinued ops sẽ không còn tạo ra doanh thu nữa - gộp vào sẽ làm méo picture về core business. Analyst chỉ dùng earnings từ continuing operations để value doanh nghiệp.",
   },
   {
     question: "Công ty A báo Net Income = 50 tỷ, trong đó Discontinued Ops = +80 tỷ gain (từ bán mảng). Continuing Ops thực chất là?",
     options: [
-      "+130 tỷ — tốt hơn mức báo cáo",
-      "−30 tỷ — core business đang lỗ",
-      "+50 tỷ — không đổi",
+      "+130 tỷ - tốt hơn mức báo cáo",
+      "−30 tỷ - core business đang lỗ",
+      "+50 tỷ - không đổi",
       "Không thể tính từ thông tin này",
     ],
     correct: 1,
@@ -36,8 +36,8 @@ const quiz: QuizQuestion[] = [
   {
     question: "Trong DCF và earnings-based valuation, bạn nên dùng earning nào?",
     options: [
-      "Net Income — vì đó là 'bottom line' cuối cùng",
-      "EBITDA từ Continuing Operations — loại trừ tác động của discontinued",
+      "Net Income - vì đó là 'bottom line' cuối cùng",
+      "EBITDA từ Continuing Operations - loại trừ tác động của discontinued",
       "Revenue tổng hợp bao gồm cả discontinued",
       "Earnings per share trên báo cáo",
     ],
@@ -47,8 +47,8 @@ const quiz: QuizQuestion[] = [
   {
     question: "Khi nào discontinued operations xuất hiện thường xuyên trong báo cáo là dấu hiệu đáng lo?",
     options: [
-      "Không bao giờ — tách bán assets là bình thường",
-      "Khi xảy ra liên tục nhiều năm — có thể là dấu hiệu chiến lược thiếu nhất quán hoặc capital allocation kém",
+      "Không bao giờ - tách bán assets là bình thường",
+      "Khi xảy ra liên tục nhiều năm - có thể là dấu hiệu chiến lược thiếu nhất quán hoặc capital allocation kém",
       "Chỉ đáng lo khi discontinued ops lỗ",
       "Khi công ty là conglomerate",
     ],
@@ -59,12 +59,12 @@ const quiz: QuizQuestion[] = [
     question: "Gain on sale of discontinued operations nên được treat thế nào trong valuation?",
     options: [
       "Cộng vào earnings để tính P/E forward",
-      "Loại bỏ khỏi normalized earnings — đây là one-time item, không recurring",
+      "Loại bỏ khỏi normalized earnings - đây là one-time item, không recurring",
       "Chia đều cho các năm trong tương lai",
       "Giữ nguyên nếu gain lớn",
     ],
     correct: 1,
-    explanation: "Gain on sale là non-recurring — xảy ra một lần khi bán asset, không bao giờ lặp lại. Trong valuation, analyst dùng 'normalized' hoặc 'adjusted' earnings loại trừ one-time items như thế này.",
+    explanation: "Gain on sale là non-recurring - xảy ra một lần khi bán asset, không bao giờ lặp lại. Trong valuation, analyst dùng 'normalized' hoặc 'adjusted' earnings loại trừ one-time items như thế này.",
   },
 ];
 
@@ -72,7 +72,7 @@ export default function Page() {
   return (
     <LessonPageLayout lesson={meta} quiz={quiz}>
       <h2 className="text-2xl font-bold text-stone-900 mb-2">Discontinued Operations Income</h2>
-      <p className="text-stone-600 text-sm mb-6 italic">Net Income có thể nói dối — biết cách tách discontinued ops là kỹ năng analyst thiết yếu</p>
+      <p className="text-stone-600 text-sm mb-6 italic">Net Income có thể nói dối - biết cách tách discontinued ops là kỹ năng analyst thiết yếu</p>
 
       <section className="mb-8">
         <h3 className="text-lg font-bold text-stone-800 mb-3">Discontinued Operations là gì?</h3>
@@ -82,9 +82,9 @@ export default function Page() {
         <div className="border-l-2 border-stone-300 pl-4 space-y-2">
           <div className="text-sm font-semibold text-stone-800 mb-2">Ví dụ thực tế:</div>
           <div className="space-y-1 text-sm text-stone-600">
-            <div>— Masan bán mảng Masan Consumer Holdings để tập trung vào retail</div>
-            <div>— Vingroup thoái vốn VinCommerce (Winmart) cho Masan → discontinued ops cho Vingroup</div>
-            <div>— GE bán mảng tài chính GE Capital — gain khổng lồ trên P&amp;L nhưng là one-time</div>
+            <div> - Masan bán mảng Masan Consumer Holdings để tập trung vào retail</div>
+            <div> - Vingroup thoái vốn VinCommerce (Winmart) cho Masan → discontinued ops cho Vingroup</div>
+            <div> - GE bán mảng tài chính GE Capital - gain khổng lồ trên P&amp;L nhưng là one-time</div>
           </div>
         </div>
       </section>
@@ -99,15 +99,15 @@ export default function Page() {
           <div className="flex justify-between pt-1"><span className="text-stone-300">Discontinued Operations (net of tax)</span><span className="text-stone-500">(150)</span></div>
           <div className="flex justify-between border-t border-stone-600 pt-2"><span className="text-white font-bold">Net Income</span><span className="text-white font-bold">50</span></div>
           <div className="mt-3 text-xs text-stone-500 border-t border-stone-700 pt-3">
-            Analyst dùng 200 để value — không phải 50
+            Analyst dùng 200 để value - không phải 50
           </div>
         </div>
       </section>
 
       <section className="mb-8">
-        <h3 className="text-lg font-bold text-stone-800 mb-3">Income Statement Decomposer — Ví dụ</h3>
+        <h3 className="text-lg font-bold text-stone-800 mb-3">Income Statement Decomposer - Ví dụ</h3>
         <div className="bg-white rounded-xl border border-stone-200 overflow-hidden mb-4">
-          <div className="bg-stone-50 px-4 py-2 text-xs font-bold text-stone-600 border-b border-stone-200">INCOME STATEMENT (tỷ VNĐ) — Ví dụ minh họa</div>
+          <div className="bg-stone-50 px-4 py-2 text-xs font-bold text-stone-600 border-b border-stone-200">INCOME STATEMENT (tỷ VNĐ) - Ví dụ minh họa</div>
           <div className="p-4 space-y-2 font-mono text-sm">
             <div className="flex justify-between">
               <span className="text-stone-600">Income from Continuing Ops</span>
@@ -124,7 +124,7 @@ export default function Page() {
           </div>
         </div>
         <div className="border-l-2 border-stone-300 pl-4">
-          <p className="text-sm text-stone-700">Analyst view: Core business thực chất đang kiếm 100 tỷ — Net Income 70 tỷ đang bị kéo xuống bởi discontinued ops. Dùng 100 tỷ để định giá, không phải 70 tỷ.</p>
+          <p className="text-sm text-stone-700">Analyst view: Core business thực chất đang kiếm 100 tỷ - Net Income 70 tỷ đang bị kéo xuống bởi discontinued ops. Dùng 100 tỷ để định giá, không phải 70 tỷ.</p>
         </div>
       </section>
 
@@ -157,7 +157,7 @@ export default function Page() {
         <h3 className="text-lg font-bold text-stone-800 mb-3">Takeaway</h3>
         <div className="bg-stone-900 text-white rounded-xl p-5 text-center">
           <p className="text-lg font-bold mb-2">Đừng để Net Income đánh lừa.</p>
-          <p className="text-stone-500 text-sm">Luôn tách Continuing Operations ra khi phân tích earnings — đó là số phản ánh business thực đang chạy.</p>
+          <p className="text-stone-500 text-sm">Luôn tách Continuing Operations ra khi phân tích earnings - đó là số phản ánh business thực đang chạy.</p>
         </div>
       </section>
     </LessonPageLayout>

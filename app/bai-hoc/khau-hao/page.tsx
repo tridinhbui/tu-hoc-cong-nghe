@@ -6,7 +6,7 @@ import LessonPageLayout, { QuizQuestion, LessonMeta } from "@/components/LessonP
 const meta: LessonMeta = {
   id: 17, day: 17, accent: "stone",
   title: "Khấu Hao",
-  subtitle: "Tài sản mòn dần — kế toán ghi lại thế nào?",
+  subtitle: "Tài sản mòn dần - kế toán ghi lại thế nào?",
   duration: "7 phút", difficulty: "Trung bình", emoji: "🏗️",
 };
 
@@ -21,12 +21,12 @@ const quiz: QuizQuestion[] = [
     question: "Tại sao D&A được cộng lại trong Cash Flow Statement (indirect method)?",
     options: [
       "Để tăng lợi nhuận",
-      "D&A là non-cash expense — làm giảm Net Income nhưng không thực sự chi tiền mặt",
+      "D&A là non-cash expense - làm giảm Net Income nhưng không thực sự chi tiền mặt",
       "Vì D&A là chi phí đầu tư",
       "Để giảm thuế",
     ],
     correct: 1,
-    explanation: "Indirect method bắt đầu từ Net Income (đã trừ D&A) và cộng lại D&A vì không có dòng tiền ra thực tế. D&A là bút toán phi tiền mặt — chỉ ảnh hưởng đến P&L, không phải bank account.",
+    explanation: "Indirect method bắt đầu từ Net Income (đã trừ D&A) và cộng lại D&A vì không có dòng tiền ra thực tế. D&A là bút toán phi tiền mặt - chỉ ảnh hưởng đến P&L, không phải bank account.",
   },
   {
     question: "Book Value của tài sản sau 3 năm với cost 900M, useful life 15 năm, salvage 0, straight-line là?",
@@ -118,7 +118,7 @@ export default function Page() {
       <section className="mb-8">
         <h3 className="text-lg font-bold text-stone-800 mb-3">❓ Tại sao cần khấu hao?</h3>
         <p className="text-stone-600 leading-relaxed mb-4">
-          Doanh nghiệp mua máy móc 600 triệu để dùng 10 năm. Nếu ghi toàn bộ 600M là chi phí ngay năm 1, lợi nhuận năm đó sẽ giảm mạnh đột ngột — không phản ánh đúng thực tế. Khấu hao giải quyết điều này: <strong>phân bổ chi phí tài sản vào các kỳ sử dụng</strong>.
+          Doanh nghiệp mua máy móc 600 triệu để dùng 10 năm. Nếu ghi toàn bộ 600M là chi phí ngay năm 1, lợi nhuận năm đó sẽ giảm mạnh đột ngột - không phản ánh đúng thực tế. Khấu hao giải quyết điều này: <strong>phân bổ chi phí tài sản vào các kỳ sử dụng</strong>.
         </p>
         <div className="bg-stone-800 text-white rounded-xl p-5 text-center">
           <div className="font-mono text-lg font-bold mb-1">Matching Principle</div>

@@ -23,7 +23,7 @@ import { hasCompletedOnboarding, completeOnboarding } from "@/lib/supabase-onboa
 import UnlockRequestModal from "@/components/UnlockRequestModal";
 import { TRACK_PERSONAL, TRACK_PROFESSIONAL } from "@/lib/track-stages";
 
-// Slim projection of Lesson — just enough to render the dashboard listing,
+// Slim projection of Lesson - just enough to render the dashboard listing,
 // so the full lesson bodies (sections/quiz/etc) never reach this client bundle.
 export interface LessonMeta {
   id: number;
@@ -62,7 +62,7 @@ export default function DashboardClient({ lessonsMeta }: { lessonsMeta: LessonMe
   const supabase = createClient();
   const progress = useProgress();
   const completed = progress.completedLessons;
-  // localStorage alone can't be trusted as the progress source of truth — a
+  // localStorage alone can't be trusted as the progress source of truth - a
   // new browser/device/incognito session has none of it even though the
   // user's real progress lives in Supabase (user_progress). Bumping this
   // after merging server data forces a re-render, which makes useProgress()
@@ -80,7 +80,7 @@ export default function DashboardClient({ lessonsMeta }: { lessonsMeta: LessonMe
     }
   };
   // The lesson page redirects here with ?locked=<slug> when a user tries to
-  // open a locked lesson directly by URL — surface that instead of silently
+  // open a locked lesson directly by URL - surface that instead of silently
   // landing back on the dashboard with no explanation.
   useEffect(() => {
     const lockedSlug = searchParams.get("locked");
@@ -154,8 +154,7 @@ export default function DashboardClient({ lessonsMeta }: { lessonsMeta: LessonMe
       setUser(session.user);
 
       // Reconcile localStorage with Supabase's user_progress (source of
-      // truth) before computing anything derived from `completed` below —
-      // otherwise a fresh browser/device shows 0% progress and every lesson
+      // truth) before computing anything derived from `completed` below - // otherwise a fresh browser/device shows 0% progress and every lesson
       // as locked, even though the account has real progress on the server.
       try {
         const serverCompleted = await getCompletedLessons(session.user.id);
@@ -301,8 +300,8 @@ export default function DashboardClient({ lessonsMeta }: { lessonsMeta: LessonMe
 
   // Product decision: all lessons are unlocked for everyone, no sequential
   // gating. Kept as a function (rather than inlining `false` at every call
-  // site) so the previous prerequisite logic — still in lib/lesson-lock-rule.ts,
-  // which this must stay in sync with — can be restored later in one place.
+  // site) so the previous prerequisite logic - still in lib/lesson-lock-rule.ts,
+  // which this must stay in sync with - can be restored later in one place.
   const isLessonLocked = (_lesson: LessonMeta): boolean => {
     return false;
   };
@@ -315,11 +314,10 @@ export default function DashboardClient({ lessonsMeta }: { lessonsMeta: LessonMe
   const totalDone = completed.length;
   const totalLessons = sorted.length;
 
-  // Case-study lessons live outside the day-numbered curriculum entirely —
-  // they're real company/topic deep-dives, but with no stage to belong to
+  // Case-study lessons live outside the day-numbered curriculum entirely - // they're real company/topic deep-dives, but with no stage to belong to
   // they were previously only reachable by guessing the URL. Filtered by
-  // track (not just id >= 1001) so other high-id ranges — like the advanced
-  // professional Chặng 10 — don't get swept in here too.
+  // track (not just id >= 1001) so other high-id ranges - like the advanced
+  // professional Chặng 10 - don't get swept in here too.
   const bonusLessons = sorted.filter((l) => l.track === "bonus");
   const bonusDone = bonusLessons.filter((l) => completed.includes(l.id)).length;
   const bonusOpen = openStages.has("bonus");
@@ -353,7 +351,7 @@ export default function DashboardClient({ lessonsMeta }: { lessonsMeta: LessonMe
                 <BarChart3 className="w-3.5 h-3.5" />
                 Thống kê
               </Link>
-              {/* Mobile-only menu toggle — the two links above are hidden
+              {/* Mobile-only menu toggle - the two links above are hidden
                   below the `sm` breakpoint with no other way to reach them
                   besides the avatar dropdown, which doesn't visually read as
                   "there's more navigation here" on a first visit. */}
@@ -478,7 +476,7 @@ export default function DashboardClient({ lessonsMeta }: { lessonsMeta: LessonMe
 
             return (
               <div key={stage.label}>
-                {/* Stage header — click to expand/collapse */}
+                {/* Stage header - click to expand/collapse */}
                 <button
                   onClick={() => toggleStage(stageKey)}
                   className="w-full flex items-baseline gap-4 mb-4 cursor-pointer text-left"
@@ -544,7 +542,7 @@ export default function DashboardClient({ lessonsMeta }: { lessonsMeta: LessonMe
                   </div>
                 )}
 
-                {/* Parts (sub-stages) — each its own collapsible accordion */}
+                {/* Parts (sub-stages) - each its own collapsible accordion */}
                 {stageOpen && stage.available && stageLessons.length > 0 && (
                   <div className="space-y-3">
                     {stage.parts.map((part) => {
@@ -610,7 +608,7 @@ export default function DashboardClient({ lessonsMeta }: { lessonsMeta: LessonMe
                                             {lesson.title}
                                           </div>
                                           <div className="text-sm mt-1 truncate text-stone-400 dark:text-stone-600">
-                                            Yêu cầu hoàn thành bài trước — nhấn để nhắn admin mở khoá
+                                            Yêu cầu hoàn thành bài trước - nhấn để nhắn admin mở khoá
                                           </div>
                                         </div>
                                       </div>
@@ -690,7 +688,7 @@ export default function DashboardClient({ lessonsMeta }: { lessonsMeta: LessonMe
           })}
           </div>
 
-          {/* Case chuyên sâu — real company/topic deep-dives outside the day curriculum */}
+          {/* Case chuyên sâu - real company/topic deep-dives outside the day curriculum */}
           {bonusLessons.length > 0 && (
             <div className="mt-6">
               <button
@@ -733,7 +731,7 @@ export default function DashboardClient({ lessonsMeta }: { lessonsMeta: LessonMe
                                 {lesson.title}
                               </div>
                               <div className="text-sm mt-0.5 truncate text-stone-400 dark:text-stone-600">
-                                Yêu cầu hoàn thành bài trước — nhấn để nhắn admin mở khoá
+                                Yêu cầu hoàn thành bài trước - nhấn để nhắn admin mở khoá
                               </div>
                             </div>
                           </div>
@@ -798,7 +796,7 @@ export default function DashboardClient({ lessonsMeta }: { lessonsMeta: LessonMe
       {/* One-time spotlight walkthrough for brand-new users */}
       <DashboardTour />
 
-      {/* Unlock request modal — shown when clicking a locked lesson */}
+      {/* Unlock request modal - shown when clicking a locked lesson */}
       {unlockModalLesson && user?.id && (
         <UnlockRequestModal
           userId={user.id}

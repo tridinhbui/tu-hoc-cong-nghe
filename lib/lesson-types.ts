@@ -1,4 +1,4 @@
-// Pure type declarations only — NO runtime code, NO import of ./lessons or
+// Pure type declarations only - NO runtime code, NO import of ./lessons or
 // ./lessons-loader, and it must stay that way.
 //
 // Why this file exists: lib/lessons.ts holds every lesson's full content
@@ -7,7 +7,7 @@
 // (Lesson, Difficulty, LessonMeta, ...), but when they imported those types
 // from lessons-loader.ts directly, the bundler ended up pulling the entire
 // lessons array into a client-shipped chunk anyway (~1.3MB, verified via a
-// production build) despite the import being `import type` — likely because
+// production build) despite the import being `import type` - likely because
 // the bundler's module-graph analysis processes the whole file, dynamic
 // import() included, before type-only imports are erased.
 //
@@ -63,13 +63,13 @@ export interface Lesson {
   openingOptions: string[];
   correctOption: number;
   explanation: string;
-  // Shown at the very top of the lesson, before the opening question — one
+  // Shown at the very top of the lesson, before the opening question - one
   // or two sentences on why this specific lesson matters and what it lets
   // the learner actually do afterward. Optional so older lessons keep
   // working; the renderer falls back to `subtitle` when absent.
   whyItMatters?: string;
   // Path under /public to a hand-crafted visual summary (infographic) shown
-  // near the end of the lesson as a one-glance recap. Optional — most
+  // near the end of the lesson as a one-glance recap. Optional - most
   // lessons rely on the diagram/keyTakeaways blocks instead.
   summaryImage?: string;
   diagram: DiagramNode[];
@@ -105,7 +105,7 @@ export interface Lesson {
   isFundamental?: boolean; // free lesson, unlocked for all users
 }
 
-// Slim projection of Lesson — just enough to render dashboard/lock-check
+// Slim projection of Lesson - just enough to render dashboard/lock-check
 // listings, so the full lesson bodies (sections/quiz/etc) never need to
 // reach a client bundle.
 export interface LessonMeta {

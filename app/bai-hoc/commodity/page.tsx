@@ -6,7 +6,7 @@ import LessonPageLayout, { QuizQuestion, LessonMeta } from "@/components/LessonP
 const meta: LessonMeta = {
   id: 19, day: 19, accent: "amber",
   title: "Commodity là gì?",
-  subtitle: "Hàng hóa chuẩn hóa — cost driver của toàn bộ nền kinh tế",
+  subtitle: "Hàng hóa chuẩn hóa - cost driver của toàn bộ nền kinh tế",
   duration: "6 phút", difficulty: "Trung bình", emoji: "🛢️",
   nextSlug: "trai-phieu", nextTitle: "Trái Phiếu",
 };
@@ -14,19 +14,19 @@ const meta: LessonMeta = {
 const quiz: QuizQuestion[] = [
   {
     question: "Commodity nào impact trực tiếp nhất tới airline cost?",
-    options: ["Gold — vì airline cần vàng để sản xuất", "Oil (Jet Fuel) — chiếm 20-30% tổng chi phí của hãng bay", "Corn — vì corn ethanol thay thế xăng"],
+    options: ["Gold - vì airline cần vàng để sản xuất", "Oil (Jet Fuel) - chiếm 20-30% tổng chi phí của hãng bay", "Corn - vì corn ethanol thay thế xăng"],
     correct: 1,
-    explanation: "Jet fuel (từ dầu thô) chiếm 20–30% chi phí vận hành của hãng hàng không. Khi oil tăng 10%, margin airline bị ăn mòn ngay lập tức — lý do các hãng dùng futures để hedge.",
+    explanation: "Jet fuel (từ dầu thô) chiếm 20–30% chi phí vận hành của hãng hàng không. Khi oil tăng 10%, margin airline bị ăn mòn ngay lập tức - lý do các hãng dùng futures để hedge.",
   },
   {
     question: "Futures price cao hơn spot price thường imply điều gì?",
     options: ["Demand đang giảm mạnh", "Kỳ vọng giá tăng trong tương lai hoặc có cost of carry (lưu kho, bảo hiểm)", "Supply đang dư thừa"],
     correct: 1,
-    explanation: "Khi futures > spot, thị trường đang ở trạng thái 'contango' — phản ánh cost of carry (lưu kho, bảo hiểm, tài chính) hoặc kỳ vọng giá tăng. Ngược lại, futures < spot là 'backwardation' — thường xảy ra khi cầu spot đang rất cao.",
+    explanation: "Khi futures > spot, thị trường đang ở trạng thái 'contango'- phản ánh cost of carry (lưu kho, bảo hiểm, tài chính) hoặc kỳ vọng giá tăng. Ngược lại, futures < spot là 'backwardation'- thường xảy ra khi cầu spot đang rất cao.",
   },
   {
     question: "Công ty sản xuất thịt sẽ bị ảnh hưởng thế nào nếu hog price tăng nhanh hơn pork price?",
-    options: ["Margin tăng — vì họ bán được nhiều hơn", "Không đổi — giá đầu vào và đầu ra cùng tăng", "Margin giảm — chi phí nguyên liệu tăng nhanh hơn giá bán được"],
+    options: ["Margin tăng - vì họ bán được nhiều hơn", "Không đổi - giá đầu vào và đầu ra cùng tăng", "Margin giảm - chi phí nguyên liệu tăng nhanh hơn giá bán được"],
     correct: 2,
     explanation: "Công ty chế biến thịt mua heo (input) và bán thịt heo (output). Nếu hog price tăng nhanh hơn pork price → cost tăng nhanh hơn revenue → margin bị squeeze. Đây gọi là 'margin compression' trong commodity-dependent business.",
   },
@@ -43,12 +43,12 @@ const quiz: QuizQuestion[] = [
   {
     question: "Khi giá đồng (copper) tăng mạnh, ngành nào bị tác động tiêu cực nhất?",
     options: [
-      "Ngân hàng — vì lãi suất liên quan đến đồng",
-      "Sản xuất điện tử, ô tô điện — đồng là nguyên liệu đầu vào quan trọng",
-      "Bán lẻ thực phẩm — vì đồng dùng trong bao bì",
+      "Ngân hàng - vì lãi suất liên quan đến đồng",
+      "Sản xuất điện tử, ô tô điện - đồng là nguyên liệu đầu vào quan trọng",
+      "Bán lẻ thực phẩm - vì đồng dùng trong bao bì",
     ],
     correct: 1,
-    explanation: "Copper (đồng) là nguyên liệu thiết yếu trong dây điện, PCB, motor điện, pin EV. Khi copper tăng, chi phí sản xuất của ngành điện tử và xe điện tăng theo — lý do copper được gọi là 'Dr. Copper', chỉ báo sức khỏe kinh tế.",
+    explanation: "Copper (đồng) là nguyên liệu thiết yếu trong dây điện, PCB, motor điện, pin EV. Khi copper tăng, chi phí sản xuất của ngành điện tử và xe điện tăng theo - lý do copper được gọi là 'Dr. Copper', chỉ báo sức khỏe kinh tế.",
   },
 ];
 
@@ -151,17 +151,17 @@ function CommodityImpactSimulator() {
 export default function Page() {
   return (
     <LessonPageLayout lesson={meta} quiz={quiz}>
-      <h2 className="text-2xl font-bold text-stone-900 mb-2">Commodity — Hàng Hóa Chuẩn Hóa</h2>
-      <p className="text-stone-600 text-sm mb-6 italic">Cost driver thầm lặng của mọi ngành kinh tế — biết commodity là biết margin của doanh nghiệp</p>
+      <h2 className="text-2xl font-bold text-stone-900 mb-2">Commodity - Hàng Hóa Chuẩn Hóa</h2>
+      <p className="text-stone-600 text-sm mb-6 italic">Cost driver thầm lặng của mọi ngành kinh tế - biết commodity là biết margin của doanh nghiệp</p>
 
       <section className="mb-8">
         <h3 className="text-lg font-bold text-stone-800 mb-3">🤔 Commodity là gì?</h3>
         <p className="text-stone-600 leading-relaxed mb-3">
-          Commodity là hàng hóa <strong>chuẩn hóa</strong> — người mua không quan tâm nguồn gốc hay thương hiệu, chỉ cần đạt chuẩn chất lượng. Dầu WTI từ Texas và dầu WTI từ Oklahoma là như nhau; vàng 99.9% từ bất kỳ đâu đều tương đương.
+          Commodity là hàng hóa <strong>chuẩn hóa</strong> - người mua không quan tâm nguồn gốc hay thương hiệu, chỉ cần đạt chuẩn chất lượng. Dầu WTI từ Texas và dầu WTI từ Oklahoma là như nhau; vàng 99.9% từ bất kỳ đâu đều tương đương.
         </p>
         <div className="bg-stone-50 border border-stone-200 rounded-xl p-4 mb-4">
           <p className="text-sm text-stone-700 leading-relaxed">
-            <strong>Key insight:</strong> Commodity = cost driver của nền kinh tế. Khi commodity tăng giá, ảnh hưởng lan ra toàn bộ chuỗi cung ứng — từ nhà máy đến siêu thị. Phân tích doanh nghiệp mà bỏ qua commodity exposure là thiếu sót lớn.
+            <strong>Key insight:</strong> Commodity = cost driver của nền kinh tế. Khi commodity tăng giá, ảnh hưởng lan ra toàn bộ chuỗi cung ứng - từ nhà máy đến siêu thị. Phân tích doanh nghiệp mà bỏ qua commodity exposure là thiếu sót lớn.
           </p>
         </div>
       </section>
@@ -213,8 +213,8 @@ export default function Page() {
         </div>
         <div className="space-y-2">
           {[
-            { term: "Contango", def: "Futures > Spot — kỳ vọng giá tăng hoặc có cost of carry (lưu kho, bảo hiểm)", color: "rose" },
-            { term: "Backwardation", def: "Futures < Spot — cầu spot đang cực cao, hoặc shortage trong ngắn hạn", color: "emerald" },
+            { term: "Contango", def: "Futures > Spot - kỳ vọng giá tăng hoặc có cost of carry (lưu kho, bảo hiểm)", color: "rose" },
+            { term: "Backwardation", def: "Futures < Spot - cầu spot đang cực cao, hoặc shortage trong ngắn hạn", color: "emerald" },
           ].map(s => (
             <div key={s.term} className={`flex gap-3 bg-${s.color}-50 border border-${s.color}-100 rounded-xl p-3`}>
               <span className={`font-bold text-${s.color}-700 text-sm flex-shrink-0`}>{s.term}:</span>
@@ -255,7 +255,7 @@ export default function Page() {
       </section>
 
       <section>
-        <h3 className="text-lg font-bold text-stone-800 mb-3">🛡️ Hedging — Công cụ bảo vệ margin</h3>
+        <h3 className="text-lg font-bold text-stone-800 mb-3">🛡️ Hedging - Công cụ bảo vệ margin</h3>
         <p className="text-stone-600 text-sm leading-relaxed mb-3">
           Doanh nghiệp commodity-dependent không thể kiểm soát giá thị trường, nhưng có thể <strong>khóa giá trước</strong> thông qua futures và options:
         </p>
@@ -273,7 +273,7 @@ export default function Page() {
         </div>
         <div className="mt-4 bg-stone-800 text-white rounded-xl p-4">
           <p className="text-sm text-stone-300">
-            <span className="text-stone-700 font-bold">Note:</span> Hedging không kiếm lời từ commodity — mục tiêu là <em>reduce uncertainty</em>, không phải maximize profit. Airline hedge oil để biết chi phí trước, không phải để "cá cược" giá dầu.
+            <span className="text-stone-700 font-bold">Note:</span> Hedging không kiếm lời từ commodity - mục tiêu là <em>reduce uncertainty</em>, không phải maximize profit. Airline hedge oil để biết chi phí trước, không phải để "cá cược" giá dầu.
           </p>
         </div>
       </section>

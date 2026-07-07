@@ -4,7 +4,7 @@ import LessonPageLayout, { QuizQuestion, LessonMeta } from "@/components/LessonP
 
 const meta: LessonMeta = {
   id: 9, day: 9, accent: "violet",
-  title: "Debit và Credit — Phần 2",
+  title: "Debit và Credit - Phần 2",
   subtitle: "Ứng dụng thực tế vào các bút toán phổ biến",
   duration: "7 phút", difficulty: "Khó", emoji: "📗",
   nextSlug: "tu-duy-tai-chinh", nextTitle: "Tư Duy Tài Chính",
@@ -53,18 +53,18 @@ const quiz: QuizQuestion[] = [
       "Dr. Cash 50M / Cr. Equity 50M",
     ],
     correct: 1,
-    explanation: "Chưa giao hàng = chưa earn revenue. Ghi Deferred Revenue (Liability) — nghĩa vụ giao hàng trong tương lai. Khi giao hàng mới Dr. Deferred Revenue / Cr. Revenue.",
+    explanation: "Chưa giao hàng = chưa earn revenue. Ghi Deferred Revenue (Liability) - nghĩa vụ giao hàng trong tương lai. Khi giao hàng mới Dr. Deferred Revenue / Cr. Revenue.",
   },
   {
     question: "Sau khi close sổ cuối năm, Revenue và Expense accounts được xử lý thế nào?",
     options: [
       "Giữ nguyên sang năm sau",
-      "Zero out (reset về 0) — chuyển net income vào Retained Earnings",
+      "Zero out (reset về 0) - chuyển net income vào Retained Earnings",
       "Chuyển sang Balance Sheet",
       "Xóa hoàn toàn",
     ],
     correct: 1,
-    explanation: "Closing entries: Dr. Revenue / Cr. Income Summary; Dr. Income Summary / Cr. Retained Earnings (nếu lãi). Revenue và Expense là temporary accounts — reset mỗi năm.",
+    explanation: "Closing entries: Dr. Revenue / Cr. Income Summary; Dr. Income Summary / Cr. Retained Earnings (nếu lãi). Revenue và Expense là temporary accounts - reset mỗi năm.",
   },
 ];
 
@@ -74,14 +74,14 @@ const TRANSACTIONS = [
     dr: "PPE (Asset) ↑",
     cr: "Cash (Asset) ↓",
     amount: "500M",
-    note: "Trao đổi giữa 2 tài sản — tổng assets không đổi",
+    note: "Trao đổi giữa 2 tài sản - tổng assets không đổi",
   },
   {
     name: "Bán hàng chịu (credit sale)",
     dr: "Accounts Receivable ↑",
     cr: "Revenue ↑",
     amount: "200M",
-    note: "Ghi nhận doanh thu dù chưa nhận tiền — accrual basis",
+    note: "Ghi nhận doanh thu dù chưa nhận tiền - accrual basis",
   },
   {
     name: "Thu tiền từ khách nợ",
@@ -95,14 +95,14 @@ const TRANSACTIONS = [
     dr: "Depreciation Expense ↑",
     cr: "Accumulated Depreciation ↑",
     amount: "50M",
-    note: "Non-cash expense — giảm giá trị tài sản ròng",
+    note: "Non-cash expense - giảm giá trị tài sản ròng",
   },
 ];
 
 export default function Page() {
   return (
     <LessonPageLayout lesson={meta} quiz={quiz}>
-      <h2 className="text-2xl font-bold text-stone-900 mb-2">Debit &amp; Credit — Phần 2: Thực Chiến</h2>
+      <h2 className="text-2xl font-bold text-stone-900 mb-2">Debit &amp; Credit - Phần 2: Thực Chiến</h2>
       <p className="text-stone-600 text-sm mb-6 italic">Từ lý thuyết → bút toán thực tế cho các giao dịch phổ biến nhất</p>
 
       <section className="mb-8">
@@ -129,7 +129,7 @@ export default function Page() {
         <div className="space-y-3">
           {TRANSACTIONS.map((tx, i) => (
             <div key={i} className="bg-white rounded-xl border border-stone-200 overflow-hidden">
-              <div className="bg-stone-50 px-4 py-2 border-b border-stone-200 text-xs font-bold text-stone-600 uppercase">{tx.name} — {tx.amount}</div>
+              <div className="bg-stone-50 px-4 py-2 border-b border-stone-200 text-xs font-bold text-stone-600 uppercase">{tx.name} - {tx.amount}</div>
               <div className="p-4 font-mono text-sm">
                 <div className="flex justify-between mb-1">
                   <span className="text-stone-700">Dr. {tx.dr}</span>

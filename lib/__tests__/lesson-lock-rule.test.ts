@@ -14,7 +14,7 @@ function lesson(overrides: Partial<LessonMeta> & { id: number }): LessonMeta {
 }
 
 describe("computeLessonLocked", () => {
-  it("is always unlocked, regardless of progress, prerequisites, or track — all lessons are open by product decision", () => {
+  it("is always unlocked, regardless of progress, prerequisites, or track - all lessons are open by product decision", () => {
     const prev = lesson({ id: 4, track: "professional" });
     const l = lesson({ id: 5, track: "personal", prerequisiteId: 1 });
     expect(computeLessonLocked(l, [prev, l], new Set(), new Set())).toBe(false);

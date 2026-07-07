@@ -31,7 +31,7 @@ const quiz: QuizQuestion[] = [
       "Khi có tin đồn mở bán",
     ],
     correct: 1,
-    explanation: "Đây là đặc thù kế toán BĐS: doanh thu chỉ được ghi nhận khi bàn giao nhà và đủ điều kiện theo chuẩn kế toán, không phải khi ký hợp đồng đặt cọc hay nhận tiền trước. Nhiều dự án presales cao nhưng doanh thu kế toán vẫn chưa về — tạo ra độ lệch thời gian lớn.",
+    explanation: "Đây là đặc thù kế toán BĐS: doanh thu chỉ được ghi nhận khi bàn giao nhà và đủ điều kiện theo chuẩn kế toán, không phải khi ký hợp đồng đặt cọc hay nhận tiền trước. Nhiều dự án presales cao nhưng doanh thu kế toán vẫn chưa về - tạo ra độ lệch thời gian lớn.",
   },
   {
     question: "NOI là gì trong BĐS cho thuê?",
@@ -80,10 +80,10 @@ const GROUPS = [
     examples: "Vinhomes, Nam Long Group",
     earn: "Phát triển dự án và bàn giao sản phẩm",
     metrics: [
-      { m: "Pháp lý dự án + quỹ đất", why: "Quan trọng nhất — có đất chưa chắc đã bán được, pháp lý kẹt làm dự án đứng" },
-      { m: "Presales — đơn hàng tương lai", why: "Như order book: doanh thu tương lai đã có khách đặt mua" },
-      { m: "Tiến độ bàn giao", why: "Doanh thu kế toán chỉ ghi nhận khi bàn giao — không phải khi ký hợp đồng" },
-      { m: "Nợ vay", why: "BĐS nhà ở thường dùng đòn bẩy cao — nợ cần theo dõi kỹ" },
+      { m: "Pháp lý dự án + quỹ đất", why: "Quan trọng nhất - có đất chưa chắc đã bán được, pháp lý kẹt làm dự án đứng" },
+      { m: "Presales - đơn hàng tương lai", why: "Như order book: doanh thu tương lai đã có khách đặt mua" },
+      { m: "Tiến độ bàn giao", why: "Doanh thu kế toán chỉ ghi nhận khi bàn giao - không phải khi ký hợp đồng" },
+      { m: "Nợ vay", why: "BĐS nhà ở thường dùng đòn bẩy cao - nợ cần theo dõi kỹ" },
     ],
     order: "Pháp lý → Quỹ đất → Presales → Bàn giao → Dòng tiền",
   },
@@ -92,9 +92,9 @@ const GROUPS = [
     examples: "Kinh Bắc Corporation (KBC), SZC",
     earn: "Cho thuê đất và hạ tầng công nghiệp",
     metrics: [
-      { m: "Tỷ lệ lấp đầy", why: "Đất còn cho thuê được bao nhiêu — khi lấp đầy cao thì giá thuê có thể tăng" },
+      { m: "Tỷ lệ lấp đầy", why: "Đất còn cho thuê được bao nhiêu - khi lấp đầy cao thì giá thuê có thể tăng" },
       { m: "Giá thuê đất", why: "Pricing power: khu vực hấp dẫn với FDI thì giá thuê tăng được" },
-      { m: "Vị trí và hạ tầng", why: "Tiếp cận cảng, đường, điện, nước — quyết định khả năng thu hút tenant" },
+      { m: "Vị trí và hạ tầng", why: "Tiếp cận cảng, đường, điện, nước - quyết định khả năng thu hút tenant" },
       { m: "Quỹ đất còn lại", why: "Giá trị tương lai: còn bao nhiêu đất chưa cho thuê" },
     ],
     order: "Tỷ lệ lấp đầy → Giá thuê → Quỹ đất còn lại → FDI pipeline",
@@ -104,10 +104,10 @@ const GROUPS = [
     examples: "Vincom Retail (VRE), Gemadept (GMD)",
     earn: "NOI và dòng tiền thuê định kỳ",
     metrics: [
-      { m: "Occupancy rate", why: "Tài sản trống là chi phí không có doanh thu bù — nhạy cảm nhất" },
-      { m: "NOI (Net Operating Income)", why: "Dòng tiền thuần từ tài sản — nền tảng để định giá" },
-      { m: "Cap rate", why: "Property Value = NOI / Cap Rate — nhạy cảm với lãi suất thị trường" },
-      { m: "Lease expiry profile", why: "Hợp đồng thuê hết hạn vào năm nào — risk về doanh thu tương lai" },
+      { m: "Occupancy rate", why: "Tài sản trống là chi phí không có doanh thu bù - nhạy cảm nhất" },
+      { m: "NOI (Net Operating Income)", why: "Dòng tiền thuần từ tài sản - nền tảng để định giá" },
+      { m: "Cap rate", why: "Property Value = NOI / Cap Rate - nhạy cảm với lãi suất thị trường" },
+      { m: "Lease expiry profile", why: "Hợp đồng thuê hết hạn vào năm nào - risk về doanh thu tương lai" },
     ],
     order: "Occupancy → NOI → Cap Rate → Lease renewal pipeline",
   },
@@ -116,9 +116,9 @@ const GROUPS = [
     examples: "Đất Xanh (DXS), Cen Land",
     earn: "Giao dịch và hoa hồng",
     metrics: [
-      { m: "Số lượng giao dịch", why: "Volume là nguồn doanh thu chính — nhạy với thị trường" },
+      { m: "Số lượng giao dịch", why: "Volume là nguồn doanh thu chính - nhạy với thị trường" },
       { m: "Giá trị giao dịch", why: "Ticket size quyết định doanh thu, không chỉ số lượng" },
-      { m: "Hoa hồng", why: "Margin trên từng giao dịch — cạnh tranh ép rate xuống" },
+      { m: "Hoa hồng", why: "Margin trên từng giao dịch - cạnh tranh ép rate xuống" },
     ],
     order: "Volume giao dịch → Hoa hồng → Tốc độ hấp thụ thị trường",
     note: "Nhóm này nhạy nhất với thị trường. Khi thị trường đóng băng, doanh thu rơi rất nhanh.",
@@ -129,7 +129,7 @@ export default function Page() {
   return (
     <LessonPageLayout lesson={meta} quiz={quiz}>
       <h2 className="text-2xl font-bold text-stone-900 mb-2">4 Mô hình Kinh doanh BĐS tại Việt Nam</h2>
-      <p className="text-stone-500 text-sm mb-8">Mỗi nhóm kiếm tiền theo cơ chế khác nhau — phân tích cũng phải khác</p>
+      <p className="text-stone-500 text-sm mb-8">Mỗi nhóm kiếm tiền theo cơ chế khác nhau - phân tích cũng phải khác</p>
 
       <section className="mb-10">
         <h3 className="text-base font-bold text-stone-800 mb-4 uppercase tracking-wide text-xs">Đặc thù của ngành BĐS</h3>
@@ -189,7 +189,7 @@ export default function Page() {
           <strong>Kiếm tiền từ:</strong> Giao dịch và hoa hồng
         </p>
         <p className="text-stone-600 text-sm leading-relaxed">
-          <strong>Chỉ số quan trọng:</strong> Số lượng giao dịch, giá trị giao dịch, hoa hồng. Nhóm này nhạy nhất với thị trường — khi thị trường đóng băng, doanh thu rơi rất nhanh.
+          <strong>Chỉ số quan trọng:</strong> Số lượng giao dịch, giá trị giao dịch, hoa hồng. Nhóm này nhạy nhất với thị trường - khi thị trường đóng băng, doanh thu rơi rất nhanh.
         </p>
       </section>
     </LessonPageLayout>

@@ -2,7 +2,7 @@ import { createClient } from "@/lib/supabase";
 import { handleSupabaseError } from "@/lib/errors";
 
 // "Table not found in schema cache" (PostgREST) or "relation does not exist"
-// (raw Postgres) — the onboarding table may not exist yet on some
+// (raw Postgres) - the onboarding table may not exist yet on some
 // environments. Onboarding is a non-critical UX nicety, so treat this as
 // "not onboarded" instead of crashing the caller.
 function isMissingTableError(error: { code?: string } | null): boolean {
@@ -62,7 +62,7 @@ export async function completeOnboarding(
     .single();
 
   if (error && isMissingTableError(error)) {
-    // Table missing on this environment — let the caller proceed with local
+    // Table missing on this environment - let the caller proceed with local
     // state (track selection, dismissing the modal) instead of getting stuck
     // unable to ever complete onboarding.
     return {

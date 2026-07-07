@@ -30,7 +30,7 @@ export default function FloatingContact() {
     setCooldownError("");
 
     if (website.trim()) {
-      // Honeypot tripped — pretend success so the bot doesn't learn to
+      // Honeypot tripped - pretend success so the bot doesn't learn to
       // adapt, but don't actually write anything.
       setStatus("sent");
       setName("");
@@ -153,7 +153,7 @@ export default function FloatingContact() {
               </div>
             ) : (
               <form onSubmit={handleSubmit} className="space-y-4">
-                {/* Honeypot — hidden from real users, only bots fill it */}
+                {/* Honeypot - hidden from real users, only bots fill it */}
                 <input
                   type="text"
                   name="website"

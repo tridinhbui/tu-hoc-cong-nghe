@@ -192,13 +192,13 @@ export default function DocumentsManager({ documents }: { documents: DocumentRow
           </div>
           <FileDropzone
             name="file"
-            label="Tệp (PDF, Word, Excel, PowerPoint — tối đa 25MB)"
+            label="Tệp (PDF, Word, Excel, PowerPoint - tối đa 25MB)"
             required
             accept=".pdf,.doc,.docx,.xls,.xlsx,.ppt,.pptx,.zip,.png,.jpg,.jpeg"
           />
           <FileDropzone
             name="image"
-            label="Ảnh minh hoạ (không bắt buộc — tối đa 5MB)"
+            label="Ảnh minh hoạ (không bắt buộc - tối đa 5MB)"
             accept=".png,.jpg,.jpeg,.webp"
           />
           <div className="flex justify-end gap-2 pt-2">
@@ -256,7 +256,7 @@ export default function DocumentsManager({ documents }: { documents: DocumentRow
             </div>
             <FileDropzone
               name="file"
-              label="Thay tệp mới (không bắt buộc — để trống nếu giữ tệp hiện tại)"
+              label="Thay tệp mới (không bắt buộc - để trống nếu giữ tệp hiện tại)"
               accept=".pdf,.doc,.docx,.xls,.xlsx,.ppt,.pptx,.zip,.png,.jpg,.jpeg"
               currentFileName={toEdit.file_name}
             />
@@ -278,7 +278,7 @@ export default function DocumentsManager({ documents }: { documents: DocumentRow
               ) : (
                 <FileDropzone
                   name="image"
-                  label="Ảnh minh hoạ (không bắt buộc — tối đa 5MB)"
+                  label="Ảnh minh hoạ (không bắt buộc - tối đa 5MB)"
                   accept=".png,.jpg,.jpeg,.webp"
                 />
               )}
@@ -289,7 +289,7 @@ export default function DocumentsManager({ documents }: { documents: DocumentRow
                   onClick={() => setRemoveImage(false)}
                   className="text-xs font-bold text-stone-600 dark:text-stone-400 hover:underline"
                 >
-                  Hoàn tác — giữ ảnh cũ
+                  Hoàn tác - giữ ảnh cũ
                 </button>
               )}
             </div>

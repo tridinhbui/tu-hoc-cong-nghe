@@ -2,7 +2,7 @@ import Link from "next/link";
 import { ChevronLeft } from "lucide-react";
 
 export const metadata = {
-  title: "Điều khoản sử dụng — Tự học Tài chính",
+  title: "Điều khoản sử dụng - Tự học Tài chính",
 };
 
 export default function TermsPage() {

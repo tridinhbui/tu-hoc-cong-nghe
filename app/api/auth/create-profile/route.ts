@@ -24,7 +24,7 @@ export async function POST(request: NextRequest) {
 
     // This route is called on every dashboard load (see UserProfile.tsx), not
     // just at signup. It must never blindly upsert progress fields
-    // (total_xp/current_level/lessons_completed) — a naive upsert would reset
+    // (total_xp/current_level/lessons_completed) - a naive upsert would reset
     // real progress back to defaults on every single visit. So: check first,
     // insert defaults only if the row is genuinely new, and on an existing
     // row only refresh the fields that can legitimately change (name/avatar

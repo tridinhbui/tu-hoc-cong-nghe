@@ -2,7 +2,7 @@ import Link from "next/link";
 import { ChevronLeft } from "lucide-react";
 
 export const metadata = {
-  title: "Chính sách bảo mật — Tự học Tài chính",
+  title: "Chính sách bảo mật - Tự học Tài chính",
 };
 
 export default function PrivacyPolicyPage() {

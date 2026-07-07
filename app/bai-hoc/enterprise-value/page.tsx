@@ -6,7 +6,7 @@ import LessonPageLayout, { QuizQuestion, LessonMeta } from "@/components/LessonP
 const meta: LessonMeta = {
   id: 28, day: 28, accent: "violet",
   title: "Enterprise Value",
-  subtitle: "EV = Market Cap + Debt − Cash — giá thật khi mua cả công ty",
+  subtitle: "EV = Market Cap + Debt − Cash - giá thật khi mua cả công ty",
   duration: "6 phút", difficulty: "Dễ", emoji: "🏛️",
   nextSlug: "cap-rate", nextTitle: "Cap Rate trong BĐS",
 };
@@ -16,12 +16,12 @@ const quiz: QuizQuestion[] = [
     question: "Enterprise Value phản ánh điều gì chính xác hơn Market Cap?",
     options: [
       "Giá cổ phiếu hàng ngày",
-      "Giá trị hoạt động của doanh nghiệp — bao gồm cả nợ phải gánh và tiền mặt nhận được",
+      "Giá trị hoạt động của doanh nghiệp - bao gồm cả nợ phải gánh và tiền mặt nhận được",
       "Doanh thu năm gần nhất",
       "Lợi nhuận ròng",
     ],
     correct: 1,
-    explanation: "Market Cap chỉ tính equity. EV = Market Cap + Net Debt — đây là giá thực tế phải trả nếu muốn mua toàn bộ doanh nghiệp (phải trả cho cổ đông + trả nợ thay cho họ, nhưng nhận lại tiền mặt trong công ty).",
+    explanation: "Market Cap chỉ tính equity. EV = Market Cap + Net Debt - đây là giá thực tế phải trả nếu muốn mua toàn bộ doanh nghiệp (phải trả cho cổ đông + trả nợ thay cho họ, nhưng nhận lại tiền mặt trong công ty).",
   },
   {
     question: "Nếu cash tăng mạnh còn mọi thứ khác giữ nguyên, EV sẽ thay đổi thế nào?",
@@ -38,7 +38,7 @@ const quiz: QuizQuestion[] = [
   {
     question: "Vì sao tài chính dùng EV/EBITDA thay vì P/E để so sánh doanh nghiệp?",
     options: [
-      "EBITDA phản ánh hoạt động kinh doanh tốt hơn, EV phản ánh giá trị toàn công ty — loại bỏ ảnh hưởng của cấu trúc vốn và thuế",
+      "EBITDA phản ánh hoạt động kinh doanh tốt hơn, EV phản ánh giá trị toàn công ty - loại bỏ ảnh hưởng của cấu trúc vốn và thuế",
       "Vì thuế bằng 0 với EV/EBITDA",
       "Vì công ty không có nợ",
       "Vì doanh thu không quan trọng",
@@ -60,7 +60,7 @@ function EVCalculator() {
   return (
     <div className="bg-gradient-to-br from-violet-50 to-purple-50 rounded-2xl p-5 border border-stone-200 my-6">
       <h3 className="font-bold text-stone-700 mb-1 text-sm">🧮 EV Calculator (tỷ USD)</h3>
-      <p className="text-xs text-stone-500 mb-4">Apple như ví dụ — điều chỉnh để thấy EV thay đổi</p>
+      <p className="text-xs text-stone-500 mb-4">Apple như ví dụ - điều chỉnh để thấy EV thay đổi</p>
 
       <div className="grid grid-cols-2 gap-3 mb-5">
         {[
@@ -115,12 +115,12 @@ export default function Page() {
   return (
     <LessonPageLayout lesson={meta} quiz={quiz}>
       <h2 className="text-2xl font-bold text-stone-900 mb-2">Enterprise Value (EV)</h2>
-      <p className="text-stone-600 text-sm mb-6 italic">Giá trị thật của toàn bộ doanh nghiệp — không chỉ là giá cổ phiếu</p>
+      <p className="text-stone-600 text-sm mb-6 italic">Giá trị thật của toàn bộ doanh nghiệp - không chỉ là giá cổ phiếu</p>
 
       <section className="mb-8">
         <h3 className="text-lg font-bold text-stone-800 mb-3">🍎 Apple là ví dụ trực quan nhất</h3>
         <p className="text-stone-600 leading-relaxed mb-4">
-          Nếu muốn mua cả Apple, bạn không chỉ trả Market Cap cho cổ đông. Bạn còn phải <strong>gánh nợ</strong> của Apple — nhưng đổi lại <strong>nhận luôn tiền mặt</strong> trong công ty.
+          Nếu muốn mua cả Apple, bạn không chỉ trả Market Cap cho cổ đông. Bạn còn phải <strong>gánh nợ</strong> của Apple - nhưng đổi lại <strong>nhận luôn tiền mặt</strong> trong công ty.
         </p>
         <div className="bg-stone-800 text-white rounded-xl p-5 font-mono text-sm">
           <div className="text-stone-500 text-xs mb-3">{ '// Apple EV (2024)' }</div>
@@ -142,7 +142,7 @@ export default function Page() {
         </div>
         <div className="grid grid-cols-3 gap-3 text-center text-sm">
           {[
-            { comp: "Market Cap", sign: "+", desc: "Giá trị equity — trả cho cổ đông", color: "violet" },
+            { comp: "Market Cap", sign: "+", desc: "Giá trị equity - trả cho cổ đông", color: "violet" },
             { comp: "Debt", sign: "+", desc: "Nợ phải gánh thay cho bên bán", color: "rose" },
             { comp: "Cash", sign: "−", desc: "Tiền mặt nhận lại khi mua", color: "emerald" },
           ].map(c => (
@@ -158,10 +158,10 @@ export default function Page() {
       <EVCalculator />
 
       <section className="mb-8">
-        <h3 className="text-lg font-bold text-stone-800 mb-3"> EV/EBITDA — multiple phổ biến nhất trong M&A</h3>
+        <h3 className="text-lg font-bold text-stone-800 mb-3"> EV/EBITDA - multiple phổ biến nhất trong M&A</h3>
         <div className="space-y-3">
           {[
-            { why: "Tại sao EV thay vì Market Cap?", ans: "EV capture cả debt — 2 công ty cùng EBITDA nhưng leverage khác nhau sẽ có Market Cap khác nhau. EV cho cùng starting point." },
+            { why: "Tại sao EV thay vì Market Cap?", ans: "EV capture cả debt - 2 công ty cùng EBITDA nhưng leverage khác nhau sẽ có Market Cap khác nhau. EV cho cùng starting point." },
             { why: "Tại sao EBITDA thay vì Net Income?", ans: "EBITDA loại trừ D&A (non-cash), lãi vay (cấu trúc vốn), thuế (jurisdiction) → so sánh được operational performance thuần." },
             { why: "Benchmark EV/EBITDA theo ngành?", ans: "Tech/SaaS: 15-30x. Consumer/FMCG: 12-18x. Industrials: 8-12x. Utilities: 8-10x. BĐS: dùng EV/NOI hoặc Cap Rate." },
           ].map(s => (

@@ -4,7 +4,7 @@ import LessonPageLayout, { QuizQuestion, LessonMeta } from "@/components/LessonP
 
 const meta: LessonMeta = {
   id: 55, day: 88, accent: "emerald",
-  title: "Free Cash Flow — Đọc Sâu Hơn",
+  title: "Free Cash Flow - Đọc Sâu Hơn",
   subtitle: "FCF = OCF − CapEx, NOPAT và Working Capital",
   duration: "7 phút", difficulty: "Khó", emoji: "·",
   nextSlug: undefined, nextTitle: undefined,
@@ -20,7 +20,7 @@ const quiz: QuizQuestion[] = [
       "EBIT × (1 − Thuế)",
     ],
     correct: 1,
-    explanation: "FCF = Operating Cash Flow (OCF) − CapEx. OCF là tiền từ hoạt động kinh doanh, CapEx là tiền đầu tư vào tài sản cố định. FCF là tiền còn lại sau khi đã duy trì và phát triển năng lực kinh doanh — có thể dùng để trả nợ, trả cổ tức, hoặc mua lại cổ phiếu.",
+    explanation: "FCF = Operating Cash Flow (OCF) − CapEx. OCF là tiền từ hoạt động kinh doanh, CapEx là tiền đầu tư vào tài sản cố định. FCF là tiền còn lại sau khi đã duy trì và phát triển năng lực kinh doanh - có thể dùng để trả nợ, trả cổ tức, hoặc mua lại cổ phiếu.",
   },
   {
     question: "Tại sao FCF quan trọng hơn lợi nhuận ròng trong nhiều trường hợp?",
@@ -31,13 +31,13 @@ const quiz: QuizQuestion[] = [
       "Vì FCF không phụ thuộc vào doanh thu",
     ],
     correct: 1,
-    explanation: "Lợi nhuận kế toán bị ảnh hưởng bởi các quyết định kế toán: phương pháp khấu hao, ghi nhận doanh thu, dự phòng... Còn FCF là tiền thật vào ra khỏi doanh nghiệp — khó bóp méo hơn nhiều. Doanh nghiệp lợi nhuận đẹp nhưng FCF âm kéo dài là warning signal quan trọng.",
+    explanation: "Lợi nhuận kế toán bị ảnh hưởng bởi các quyết định kế toán: phương pháp khấu hao, ghi nhận doanh thu, dự phòng... Còn FCF là tiền thật vào ra khỏi doanh nghiệp - khó bóp méo hơn nhiều. Doanh nghiệp lợi nhuận đẹp nhưng FCF âm kéo dài là warning signal quan trọng.",
   },
   {
     question: "Working Capital tăng ảnh hưởng thế nào đến FCF?",
     options: [
       "FCF tăng theo",
-      "FCF giảm — vì vốn bị kẹt trong hàng tồn kho và khoản phải thu",
+      "FCF giảm - vì vốn bị kẹt trong hàng tồn kho và khoản phải thu",
       "Không ảnh hưởng",
       "FCF tăng mạnh",
     ],
@@ -60,8 +60,8 @@ const quiz: QuizQuestion[] = [
 export default function Page() {
   return (
     <LessonPageLayout lesson={meta} quiz={quiz}>
-      <h2 className="text-2xl font-bold text-stone-900 mb-2">Free Cash Flow — Đọc Sâu Hơn</h2>
-      <p className="text-stone-500 text-sm mb-8">Tiền thật, không phải lợi nhuận kế toán — đây là cái doanh nghiệp thực sự tạo ra</p>
+      <h2 className="text-2xl font-bold text-stone-900 mb-2">Free Cash Flow - Đọc Sâu Hơn</h2>
+      <p className="text-stone-500 text-sm mb-8">Tiền thật, không phải lợi nhuận kế toán - đây là cái doanh nghiệp thực sự tạo ra</p>
 
       <section className="mb-10">
         <h3 className="text-base font-bold text-stone-800 mb-4 uppercase tracking-wide text-xs">Tại sao FCF quan trọng?</h3>
@@ -90,7 +90,7 @@ export default function Page() {
       </section>
 
       <section className="mb-10">
-        <h3 className="text-base font-bold text-stone-800 mb-4 uppercase tracking-wide text-xs">Working Capital — Vốn Lưu động</h3>
+        <h3 className="text-base font-bold text-stone-800 mb-4 uppercase tracking-wide text-xs">Working Capital - Vốn Lưu động</h3>
         <p className="text-stone-600 text-sm leading-relaxed mb-4">
           Working Capital = Tài sản ngắn hạn − Nợ ngắn hạn. Ba thành phần chính:
         </p>
@@ -114,9 +114,9 @@ export default function Page() {
         <h3 className="text-base font-bold text-stone-800 mb-4 uppercase tracking-wide text-xs">FCF Yield</h3>
         <p className="text-stone-600 text-xs font-mono bg-stone-50 p-2 rounded mb-3">FCF Yield = FCF / Market Cap</p>
         <div className="space-y-2 text-sm text-stone-600">
-          <div>— FCF Yield cao → tạo tiền thật so với giá → có thể undervalued</div>
-          <div>— FCF Yield thấp → thị trường trả premium → kỳ vọng tăng trưởng cao</div>
-          <div>— So sánh với lãi suất phi rủi ro để đánh giá độ hấp dẫn</div>
+          <div> - FCF Yield cao → tạo tiền thật so với giá → có thể undervalued</div>
+          <div> - FCF Yield thấp → thị trường trả premium → kỳ vọng tăng trưởng cao</div>
+          <div> - So sánh với lãi suất phi rủi ro để đánh giá độ hấp dẫn</div>
         </div>
       </section>
 
@@ -124,9 +124,9 @@ export default function Page() {
         <h3 className="text-base font-bold text-stone-800 mb-4 uppercase tracking-wide text-xs">Cách đọc FCF</h3>
         <div className="space-y-2 text-sm text-stone-600">
           <div>1. Lấy FCF từ Báo cáo LCTT (OCF − CapEx)</div>
-          <div>2. So sánh FCF với lợi nhuận ròng — lệch lớn thì tìm hiểu tại sao</div>
+          <div>2. So sánh FCF với lợi nhuận ròng - lệch lớn thì tìm hiểu tại sao</div>
           <div>3. Nhìn Working Capital: khoản phải thu, tồn kho tăng nhanh hơn doanh thu là warning</div>
-          <div>4. So sánh FCF qua các năm — ổn định và tăng trưởng là dấu hiệu doanh nghiệp khỏe</div>
+          <div>4. So sánh FCF qua các năm - ổn định và tăng trưởng là dấu hiệu doanh nghiệp khỏe</div>
           <div>5. Tính FCF Yield để đánh giá định giá</div>
         </div>
       </section>

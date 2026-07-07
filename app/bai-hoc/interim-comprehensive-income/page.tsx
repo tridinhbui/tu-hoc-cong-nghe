@@ -15,7 +15,7 @@ const quiz: QuizQuestion[] = [
     question: "Công ty có Net Income = 80M và OCI = -20M (FX translation losses). Comprehensive Income là?",
     options: ["100M", "80M", "60M", "-20M"],
     correct: 2,
-    explanation: "Comprehensive Income = Net Income + OCI = 80M + (-20M) = 60M. OCI (Other Comprehensive Income) ghi nhận các khoản lãi/lỗ không đi qua P&L thông thường — FX translation, unrealized gains trên AFS securities, pension adjustments, hedge accounting.",
+    explanation: "Comprehensive Income = Net Income + OCI = 80M + (-20M) = 60M. OCI (Other Comprehensive Income) ghi nhận các khoản lãi/lỗ không đi qua P&L thông thường - FX translation, unrealized gains trên AFS securities, pension adjustments, hedge accounting.",
   },
   {
     question: "Điều nào KHÔNG thuộc OCI (Other Comprehensive Income)?",
@@ -37,7 +37,7 @@ const quiz: QuizQuestion[] = [
       "Chỉ quan trọng với công ty lỗ",
     ],
     correct: 1,
-    explanation: "Interim (quarterly) reports giúp: (1) Detect revenue seasonality patterns (ví dụ retail Q4 luôn mạnh), (2) Spot business deterioration sớm, (3) Monitor working capital changes, (4) Track OCI fluctuations do FX — quan trọng với MNC. Analysts luôn đọc quarterly earnings.",
+    explanation: "Interim (quarterly) reports giúp: (1) Detect revenue seasonality patterns (ví dụ retail Q4 luôn mạnh), (2) Spot business deterioration sớm, (3) Monitor working capital changes, (4) Track OCI fluctuations do FX - quan trọng với MNC. Analysts luôn đọc quarterly earnings.",
   },
   {
     question: "Accumulated OCI (AOCI) trên Balance Sheet phản ánh gì?",
@@ -48,7 +48,7 @@ const quiz: QuizQuestion[] = [
       "Doanh thu accumulated của tất cả các năm",
     ],
     correct: 1,
-    explanation: "AOCI (Accumulated Other Comprehensive Income) là phần trong Equity ghi nhận tổng OCI chưa realized qua mọi kỳ. Khi items được realized (ví dụ: sell AFS securities, close FX hedge), transfer từ AOCI sang P&L — gọi là 'reclassification adjustment'.",
+    explanation: "AOCI (Accumulated Other Comprehensive Income) là phần trong Equity ghi nhận tổng OCI chưa realized qua mọi kỳ. Khi items được realized (ví dụ: sell AFS securities, close FX hedge), transfer từ AOCI sang P&L - gọi là 'reclassification adjustment'.",
   },
 ];
 
@@ -101,7 +101,7 @@ export default function Page() {
             {
               item: "FX Translation Adjustments",
               when: "Công ty có subsidiaries ở nước ngoài",
-              example: "VCB có chi nhánh tại Lào — đồng Kip giảm giá → translation loss vào OCI",
+              example: "VCB có chi nhánh tại Lào - đồng Kip giảm giá → translation loss vào OCI",
               impact: "Equity ảnh hưởng nhưng P&L không",
             },
             {
@@ -134,12 +134,12 @@ export default function Page() {
       </section>
 
       <section className="mb-8">
-        <h3 className="text-lg font-bold text-stone-800 mb-3">📅 Interim Statements — tại sao đọc quý?</h3>
+        <h3 className="text-lg font-bold text-stone-800 mb-3">📅 Interim Statements - tại sao đọc quý?</h3>
         <div className="grid grid-cols-2 gap-3">
           {[
             { title: "Detect seasonality", desc: "Retail: Q4 mạnh; Construction: Q2-Q3; Banking: Q1 thường chậm. Pattern quan trọng hơn số tuyệt đối." },
             { title: "Track momentum", desc: "Revenue acceleration hay deceleration? YoY và QoQ cả hai cần xem. Đừng chỉ nhìn con số một quý." },
-            { title: "OCI fluctuations", desc: "Với MNC: FX OCI có thể swing lớn theo quarter — ảnh hưởng reported equity nhưng không phải economic reality." },
+            { title: "OCI fluctuations", desc: "Với MNC: FX OCI có thể swing lớn theo quarter - ảnh hưởng reported equity nhưng không phải economic reality." },
             { title: "Early warning", desc: "Accounts receivable tăng nhanh hơn revenue? Inventory bulge? Interim data cho thấy vấn đề sớm 3-6 tháng." },
           ].map(s => (
             <div key={s.title} className="bg-stone-50 rounded-xl p-4 border border-stone-200">
@@ -151,7 +151,7 @@ export default function Page() {
       </section>
 
       <section>
-        <h3 className="text-lg font-bold text-stone-800 mb-3">🔍 AOCI trong Equity — đọc Balance Sheet</h3>
+        <h3 className="text-lg font-bold text-stone-800 mb-3">🔍 AOCI trong Equity - đọc Balance Sheet</h3>
         <div className="bg-stone-800 text-white rounded-xl p-5 font-mono text-sm">
           <div className="text-stone-500 text-xs mb-3">{ '// Phần Equity trên Balance Sheet' }</div>
           <div className="flex justify-between mb-1"><span className="text-white">Common Stock</span><span className="text-stone-300">500M</span></div>

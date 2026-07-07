@@ -7,7 +7,7 @@ import { createClient } from "@/lib/supabase";
 import UserMenu from "@/components/UserMenu";
 import ThemeToggle from "@/components/ThemeToggle";
 
-// Auth-gated and reads Supabase env vars at render time — never prerender statically.
+// Auth-gated and reads Supabase env vars at render time - never prerender statically.
 export const dynamic = "force-dynamic";
 
 interface CurrentUser {
