@@ -18,6 +18,7 @@ import { BADGE_DEFINITIONS, type BadgeDefinition } from "@/lib/badges";
 import { getReadingProgress, updateReadingProgress } from "@/lib/supabase-reading";
 import { RECALL_SCHEDULE } from "@/lib/recall-schedule";
 import RecallCard from "@/components/RecallCard";
+import LessonTour from "@/components/LessonTour";
 
 export interface QuizQuestion {
   question: string;
@@ -248,11 +249,13 @@ export default function LessonPageLayout({ lesson, quiz, children }: Props) {
 
           <div className="flex items-center gap-3">
             {/* Bookmark button */}
-            <BookmarkButton 
-              lessonId={lesson.id}
-              lessonSlug={lesson.slug || ""}
-              lessonTitle={lesson.title}
-            />
+            <div data-tour="lesson-bookmark">
+              <BookmarkButton
+                lessonId={lesson.id}
+                lessonSlug={lesson.slug || ""}
+                lessonTitle={lesson.title}
+              />
+            </div>
             
             {/* Reading progress badge */}
             <div className="hidden sm:flex items-center gap-2 bg-stone-50 dark:bg-stone-900/50 border border-stone-200 dark:border-stone-800 rounded-full px-3 py-1.5">
@@ -314,7 +317,7 @@ export default function LessonPageLayout({ lesson, quiz, children }: Props) {
                   </span>
                 </div>
                 {/* Reading progress bar inside hero */}
-                <div className="h-2.5 bg-stone-300 dark:bg-stone-700 rounded-full overflow-hidden">
+                <div data-tour="lesson-progress" className="h-2.5 bg-stone-300 dark:bg-stone-700 rounded-full overflow-hidden">
                   <div
                     className={`h-full ${c.bar} rounded-full transition-all duration-150`}
                     style={{ width: `${readPct}%` }}
@@ -335,7 +338,9 @@ export default function LessonPageLayout({ lesson, quiz, children }: Props) {
             {RECALL_SCHEDULE[lesson.day] && <RecallCard items={RECALL_SCHEDULE[lesson.day]} />}
 
             {/* Tài Tài auto-tip */}
-            <StageTipsBanner lessonId={lesson.id} lessonTitle={lesson.title} />
+            <div data-tour="lesson-tai-tai">
+              <StageTipsBanner lessonId={lesson.id} lessonTitle={lesson.title} />
+            </div>
 
             {/* Content */}
             <div className="space-y-8 text-stone-800 dark:text-stone-300 leading-relaxed text-lg sm:text-xl font-medium">
@@ -349,7 +354,7 @@ export default function LessonPageLayout({ lesson, quiz, children }: Props) {
           </article>
 
           {/* ── RIGHT: Quiz sidebar ────────────────────────────────── */}
-          <aside className="w-full lg:w-[440px] flex-shrink-0 lg:sticky lg:top-24 space-y-4">
+          <aside data-tour="lesson-quiz" className="w-full lg:w-[440px] flex-shrink-0 lg:sticky lg:top-24 space-y-4">
             {/* Lesson Notes */}
             <LessonNotes lessonId={lesson.id} lessonSlug={lesson.slug || ""} />
             
@@ -521,6 +526,7 @@ export default function LessonPageLayout({ lesson, quiz, children }: Props) {
       </div>
       <FloatingContact />
       <BadgeToast badge={newBadge} onDismiss={() => setNewBadge(null)} />
+      <LessonTour />
     </div>
   );
 }
