@@ -3,10 +3,10 @@
 export const LEVELS = [
   { level: 1, name: "Tò mò", minXp: 0, color: "stone" },
   { level: 2, name: "Học viên", minXp: 100, color: "stone" },
-  { level: 3, name: "Lập trình viên", minXp: 300, color: "stone" },
+  { level: 3, name: "Nhà đầu tư", minXp: 300, color: "stone" },
   { level: 4, name: "Nhà phân tích", minXp: 600, color: "stone" },
-  { level: 5, name: "Chiến lược gia", minXp: 1000, color: "stone" },
-  { level: 6, name: "Huyền thoại", minXp: 1500, color: "emerald" },
+  { level: 5, name: "Cố vấn Tài chính", minXp: 1000, color: "stone" },
+  { level: 6, name: "Thạo thủ Tài chính", minXp: 1500, color: "emerald" },
 ];
 
 export function getLevelByXp(xp: number) {
