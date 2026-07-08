@@ -222,7 +222,7 @@ export default function LessonPageLayout({ lesson, quiz, children }: Props) {
           while actively scrolling, fades to a faint sliver when idle so it
           doesn't linger as a constant on-screen distraction. */}
       <div
-        className={`fixed left-6 top-1/2 -translate-y-1/2 z-30 hidden lg:block transition-opacity duration-700 ${
+        className={`fixed left-6 top-1/2 -translate-y-1/2 z-10 hidden lg:block transition-opacity duration-700 ${
           isScrolling ? "opacity-100" : "opacity-20 hover:opacity-100"
         }`}
       >
