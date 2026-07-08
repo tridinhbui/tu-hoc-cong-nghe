@@ -74,7 +74,7 @@ export default function LessonPageLayout({ lesson, quiz, children }: Props) {
   const [isScrolling, setIsScrolling] = useState(false);
   const [userId, setUserId]       = useState<string | null>(null);
   const [newBadge, setNewBadge]   = useState<BadgeDefinition | null>(null);
-  const [fontScale, setFontScale] = useState(1);
+  const [fontScale, setFontScale] = useState(1.125);
   const [showFeedback, setShowFeedback] = useState(false);
   const articleRef = useRef<HTMLElement>(null);
   const maxReachedRef = useRef(0);

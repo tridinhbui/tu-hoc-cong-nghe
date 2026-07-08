@@ -10,6 +10,7 @@ import { getProgress, mergeCompletedLessons } from "@/lib/progress";
 import { getCompletedLessons } from "@/lib/supabase-progress";
 import type { Difficulty } from "@/lib/lesson-types";
 import { createClient } from "@/lib/supabase";
+import type { Session } from "@supabase/supabase-js";
 import UserStats from "@/components/UserStats";
 import UserProfile from "@/components/UserProfile";
 import ChatWithAdminWidget from "@/components/ChatWithAdminWidget";
@@ -151,32 +152,41 @@ export default function DashboardClient({ lessonsMeta }: { lessonsMeta: LessonMe
   // Check auth and calculate XP on mount
   useEffect(() => {
     const checkAuth = async () => {
-      let {
-        data: { session },
-      } = await supabase.auth.getSession();
-
-      // A freshly-created browser client (e.g. right after redirecting here
-      // from /login) can momentarily report no session even though the
-      // learner really is signed in - it hasn't finished reading the auth
-      // cookie yet. Redirecting to /login on that false negative, only to
-      // have /login's own check immediately bounce back once the session
-      // resolves, is exactly the "flash to login for ~2s then back" bug seen
-      // on production. Give onAuthStateChange a brief window to report the
-      // real (already-resolving) session before giving up and redirecting.
-      if (!session) {
-        session = await new Promise((resolve) => {
-          const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, s) => {
-            if (s) {
-              subscription.unsubscribe();
-              resolve(s);
-            }
-          });
-          setTimeout(() => {
+      // Resolve via the INITIAL_SESSION event instead of calling
+      // getSession() directly. A freshly-created browser client (e.g. right
+      // after redirecting here from /login or the OAuth callback) can have
+      // getSession() report a false "no session" before it's finished
+      // parsing the just-set auth cookie - a fixed timeout race (the
+      // previous fix here) still lost that race often enough in production
+      // to redirect to /login, which then bounced straight back once ITS
+      // own check resolved a moment later. supabase-js guarantees
+      // INITIAL_SESSION fires exactly once with the fully-resolved session
+      // (or null), so waiting for that event is what actually removes the
+      // race instead of just narrowing it.
+      const session = await new Promise<Session | null>((resolve) => {
+        let settled = false;
+        const {
+          data: { subscription },
+        } = supabase.auth.onAuthStateChange((event, s) => {
+          if (settled) return;
+          if (event === "INITIAL_SESSION" || event === "SIGNED_IN") {
+            settled = true;
             subscription.unsubscribe();
-            resolve(null);
-          }, 1500);
+            resolve(s);
+          }
         });
-      }
+        // Safety net in case INITIAL_SESSION never fires (e.g. storage
+        // access blocked) - fall back to a direct check rather than hanging.
+        setTimeout(async () => {
+          if (settled) return;
+          settled = true;
+          subscription.unsubscribe();
+          const {
+            data: { session: fallback },
+          } = await supabase.auth.getSession();
+          resolve(fallback);
+        }, 3000);
+      });
 
       if (!session) {
         router.replace("/login");

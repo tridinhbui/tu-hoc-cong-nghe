@@ -2,11 +2,16 @@
 
 const SCALES = [0.875, 1, 1.125, 1.25, 1.375];
 const STORAGE_KEY = "lesson_font_scale";
+// Default reading size is one notch above the control's own 100% baseline
+// (a ~12.5% bump) - the A-/A+ control still ranges the same five steps,
+// it just starts one step higher unless the learner has explicitly picked
+// a size before.
+const DEFAULT_SCALE = 1.125;
 
 export function loadFontScale(): number {
-  if (typeof window === "undefined") return 1;
+  if (typeof window === "undefined") return DEFAULT_SCALE;
   const saved = Number(window.localStorage.getItem(STORAGE_KEY));
-  return SCALES.includes(saved) ? saved : 1;
+  return SCALES.includes(saved) ? saved : DEFAULT_SCALE;
 }
 
 interface Props {

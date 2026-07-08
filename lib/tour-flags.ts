@@ -40,8 +40,8 @@ export async function hasSeenTour(userId: string, key: string): Promise<boolean>
 export async function markTourSeen(userId: string, key: string): Promise<void> {
   const supabase = createClient();
 
-  // Read-modify-write rather than a blind upsert of `{[key]: true}` so we
-  // don't clobber other tour flags already recorded for this account.
+  // Read first so we don't clobber other tour flags already recorded for
+  // this account.
   const { data, error: readError } = await supabase
     .from("user_profiles")
     .select("tour_flags")
@@ -55,10 +55,16 @@ export async function markTourSeen(userId: string, key: string): Promise<void> {
   const flags = (data?.tour_flags ?? {}) as Record<string, boolean>;
   if (flags[key]) return; // already recorded, nothing to do
 
+  // Upsert rather than a plain update: if this account has no user_profiles
+  // row yet (older accounts created before the profile-row trigger existed,
+  // or any other gap), an update matches zero rows and silently writes
+  // nothing - the flag is never actually persisted, so hasSeenTour reports
+  // "not seen" forever and the tour reappears on every future login despite
+  // markTourSeen having run every single time. Upsert guarantees the row
+  // exists after this call either way.
   const { error: writeError } = await supabase
     .from("user_profiles")
-    .update({ tour_flags: { ...flags, [key]: true } })
-    .eq("id", userId);
+    .upsert({ id: userId, tour_flags: { ...flags, [key]: true } }, { onConflict: "id" });
 
   if (writeError && !isMissingSchemaError(writeError)) {
     console.error("Error saving tour flag:", writeError);
