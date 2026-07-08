@@ -12,18 +12,11 @@ export const dynamic = "force-dynamic";
 export default async function Dashboard() {
   const supabase = await createServerSupabaseClient();
 
-  // Note: getSession() can return null immediately after OAuth callback completes,
-  // before the session cookie is fully settled. Instead of redirecting to /login here,
-  // let DashboardClient handle auth state (it uses INITIAL_SESSION which waits for
-  // the browser to fully parse the auth cookie). Only redirect if truly unauthenticated
-  // (e.g., accessing /dashboard directly with no session and no in-flight auth).
-  const {
-    data: { user },
-  } = await supabase.auth.getUser();
-
-  // getUser() is more reliable than getSession() - it checks the Authorization header
-  // in addition to cookies. If user is null, the user is definitely not authenticated.
-  if (!user) redirect("/login");
+  // Don't check auth on the server side - getUser() and getSession() can both return
+  // null immediately after OAuth callback (race condition with cookie settling).
+  // Let DashboardClient handle auth state on the client side using INITIAL_SESSION,
+  // which properly waits for the browser to fully parse auth cookies from OAuth flow.
+  // This prevents the "redirect to login then back to dashboard" flashing bug.
 
   const [lessonsMeta, overrides] = await Promise.all([
     getLessonsMeta(),
