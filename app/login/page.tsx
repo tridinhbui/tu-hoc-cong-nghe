@@ -16,7 +16,7 @@ const MAX_ATTEMPTS = 5;
 const COOLDOWN_MS = 60_000;
 
 const TRUST_HIGHLIGHTS = [
-  { icon: Sparkles, label: "Bài đầu tiên miễn phí, không cần đăng nhập" },
+  { icon: Sparkles, label: "Tất cả bài học miễn phí" },
   { icon: GraduationCap, label: "Lộ trình rõ ràng, có kiểm tra sau mỗi bài" },
   { icon: Gauge, label: "Học theo tốc độ của riêng bạn" },
 ] as const;
@@ -252,7 +252,7 @@ export default function LoginPage() {
               Hiểu tiền bạc,<br />quản lý tài sản
             </h1>
             <p className="text-lg text-stone-600 dark:text-stone-400 leading-relaxed max-w-md">
-              200 ngày học từ vỡ lòng đến phân tích doanh nghiệp. Chọn lộ trình phù hợp, học theo tốc độ của bạn.
+              200+ bài học miễn phí từ vỡ lòng đến phân tích doanh nghiệp. Chọn lộ trình phù hợp, học theo tốc độ của bạn.
             </p>
 
             {/* Trust highlights - gives a cold visitor a reason to stay before hitting the auth form */}

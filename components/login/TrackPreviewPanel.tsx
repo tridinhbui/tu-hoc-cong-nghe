@@ -35,7 +35,7 @@ export default function TrackPreviewPanel({ previewTrack, setPreviewTrack, compa
                 {id === "personal" ? "Track 1" : "Track 2"}
               </div>
               <div className={`font-bold ${compact ? "text-sm" : "text-sm"}`}>{t.tab}</div>
-              <div className={`opacity-70 ${compact ? "text-xs mt-0.5" : "text-xs mt-0.5"}`}>~{t.estimatedHours} giờ học</div>
+              <div className={`opacity-70 ${compact ? "text-xs mt-0.5" : "text-xs mt-0.5"}`}>~{t.estimatedHours} bài học</div>
             </button>
           );
         })}
