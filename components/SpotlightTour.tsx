@@ -1,6 +1,7 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
+import { hasSeenTour, markTourSeen } from "@/lib/tour-flags";
 
 export interface TourStep {
   selector: string;
@@ -14,33 +15,82 @@ const MAX_TOOLTIP_WIDTH = 384; // matches max-w-sm
 interface Props {
   steps: TourStep[];
   storageKey: string;
+  /** Signed-in user id, if any - enables the server-persisted "seen" flag so
+   *  the tour truly plays once per account, not once per browser. */
+  userId?: string | null;
+  /** Key inside user_profiles.tour_flags for this specific tour, e.g. "dashboard". */
+  remoteKey?: string;
 }
 
 // Generic one-time spotlight walkthrough: dims the whole screen except the
 // current step's target element (via a box-shadow "cutout"), with a tooltip
-// describing why that element matters. Runs once per browser (localStorage
-// flag) - shared by the dashboard tour and the lesson-page tour so the mobile
-// positioning/scroll/bfcache fixes only live in one place.
-export default function SpotlightTour({ steps, storageKey }: Props) {
+// describing why that element matters. Shared by the dashboard tour and the
+// lesson-page tour so the mobile positioning/scroll/bfcache fixes only live
+// in one place.
+//
+// "Seen" is tracked in two layers: localStorage for an instant, no-network
+// check on every page load, and (when userId+remoteKey are given) a
+// server-persisted flag on the account itself. localStorage alone means a
+// different device/browser - or even the same browser if localStorage gets
+// evicted, which iOS Safari does fairly aggressively - never learns the tour
+// was already seen, so it can resurface on almost every login. The server
+// flag is the actual source of truth; localStorage just avoids a network
+// round trip on the common case where it's already known to be seen.
+export default function SpotlightTour({ steps, storageKey, userId, remoteKey }: Props) {
   const [stepIndex, setStepIndex] = useState(-1);
   const [rect, setRect] = useState<DOMRect | null>(null);
   const [viewport, setViewport] = useState({ width: 0, height: 0 });
+  const markedRemote = useRef(false);
+
+  function markSeen() {
+    window.localStorage.setItem(storageKey, "1");
+    if (userId && remoteKey && !markedRemote.current) {
+      markedRemote.current = true;
+      markTourSeen(userId, remoteKey).catch(() => {});
+    }
+  }
 
   useEffect(() => {
     if (typeof window === "undefined") return;
     if (window.localStorage.getItem(storageKey)) return;
-    // Give the page a tick to finish its first render/layout before we start
-    // measuring element positions.
-    const t = setTimeout(() => {
-      // Mark as seen the moment the tour actually starts, not only when the
-      // learner clicks through to the end - otherwise navigating away
-      // mid-tour leaves the flag unset and it plays again in full next time.
-      window.localStorage.setItem(storageKey, "1");
-      setStepIndex(0);
-    }, 500);
-    return () => clearTimeout(t);
+
+    let cancelled = false;
+    let startTimer: ReturnType<typeof setTimeout> | null = null;
+
+    async function decide() {
+      if (userId && remoteKey) {
+        try {
+          if (await hasSeenTour(userId, remoteKey)) {
+            // Already seen on another device/session for this account -
+            // cache locally so we skip the network check next load too.
+            window.localStorage.setItem(storageKey, "1");
+            return;
+          }
+        } catch {
+          // Fall through and show the tour anyway - better to show it once
+          // more than to silently never show it due to a transient error.
+        }
+      }
+      if (cancelled) return;
+      // Give the page a tick to finish its first render/layout before we
+      // start measuring element positions.
+      startTimer = setTimeout(() => {
+        if (cancelled) return;
+        // Mark as seen the moment the tour actually starts, not only when
+        // the learner clicks through to the end - otherwise navigating away
+        // mid-tour leaves the flag unset and it plays again in full next time.
+        markSeen();
+        setStepIndex(0);
+      }, 500);
+    }
+
+    decide();
+    return () => {
+      cancelled = true;
+      if (startTimer) clearTimeout(startTimer);
+    };
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [storageKey]);
+  }, [storageKey, userId, remoteKey]);
 
   // The browser can restore this exact page (including this component's
   // still-mid-tour React state) straight from the back/forward cache when
@@ -127,7 +177,7 @@ export default function SpotlightTour({ steps, storageKey }: Props) {
   const padding = 8;
 
   function finish() {
-    window.localStorage.setItem(storageKey, "1");
+    markSeen();
     setStepIndex(steps.length);
   }
 

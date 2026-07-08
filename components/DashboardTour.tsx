@@ -30,6 +30,6 @@ const STEPS: TourStep[] = [
   },
 ];
 
-export default function DashboardTour() {
-  return <SpotlightTour steps={STEPS} storageKey="dashboard_tour_seen_v1" />;
+export default function DashboardTour({ userId }: { userId?: string | null }) {
+  return <SpotlightTour steps={STEPS} storageKey="dashboard_tour_seen_v1" userId={userId} remoteKey="dashboard" />;
 }

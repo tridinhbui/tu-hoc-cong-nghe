@@ -139,9 +139,32 @@ export default function DashboardClient({ lessonsMeta }: { lessonsMeta: LessonMe
   // Check auth and calculate XP on mount
   useEffect(() => {
     const checkAuth = async () => {
-      const {
+      let {
         data: { session },
       } = await supabase.auth.getSession();
+
+      // A freshly-created browser client (e.g. right after redirecting here
+      // from /login) can momentarily report no session even though the
+      // learner really is signed in - it hasn't finished reading the auth
+      // cookie yet. Redirecting to /login on that false negative, only to
+      // have /login's own check immediately bounce back once the session
+      // resolves, is exactly the "flash to login for ~2s then back" bug seen
+      // on production. Give onAuthStateChange a brief window to report the
+      // real (already-resolving) session before giving up and redirecting.
+      if (!session) {
+        session = await new Promise((resolve) => {
+          const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, s) => {
+            if (s) {
+              subscription.unsubscribe();
+              resolve(s);
+            }
+          });
+          setTimeout(() => {
+            subscription.unsubscribe();
+            resolve(null);
+          }, 1500);
+        });
+      }
 
       if (!session) {
         router.replace("/login");
@@ -769,7 +792,7 @@ export default function DashboardClient({ lessonsMeta }: { lessonsMeta: LessonMe
       <ChatWithAdminWidget />
 
       {/* One-time spotlight walkthrough for brand-new users */}
-      <DashboardTour />
+      <DashboardTour userId={user?.id} />
 
       {/* Unlock request modal - shown when clicking a locked lesson */}
       {unlockModalLesson && user?.id && (

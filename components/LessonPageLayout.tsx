@@ -526,7 +526,7 @@ export default function LessonPageLayout({ lesson, quiz, children }: Props) {
       </div>
       <FloatingContact />
       <BadgeToast badge={newBadge} onDismiss={() => setNewBadge(null)} />
-      <LessonTour />
+      <LessonTour userId={userId} />
     </div>
   );
 }

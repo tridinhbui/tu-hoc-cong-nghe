@@ -29,6 +29,6 @@ const STEPS: TourStep[] = [
 // first-time visitor's very first lesson page - including the free preview
 // lesson reachable without an account, which never sees the dashboard tour
 // at all since it never visits /dashboard.
-export default function LessonTour() {
-  return <SpotlightTour steps={STEPS} storageKey="lesson_tour_seen_v1" />;
+export default function LessonTour({ userId }: { userId?: string | null }) {
+  return <SpotlightTour steps={STEPS} storageKey="lesson_tour_seen_v1" userId={userId} remoteKey="lesson" />;
 }
