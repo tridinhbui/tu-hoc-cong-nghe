@@ -50,6 +50,10 @@ export interface LessonMeta {
 }
 
 
+// Local fast-path/fallback cache for the onboarding modal's "seen" state -
+// see handleOnboardingSkip for why this exists.
+const ONBOARDING_LOCAL_KEY = "onboarding_seen_v1";
+
 /* ─── Component ─────────────────────────────────────────────────── */
 
 export default function DashboardClient({ lessonsMeta }: { lessonsMeta: LessonMeta[] }) {
@@ -125,6 +129,7 @@ export default function DashboardClient({ lessonsMeta }: { lessonsMeta: LessonMe
         await completeOnboarding(user.id, selectedTrack);
         setActiveTrackState(selectedTrack);
         localStorage.setItem("activeTrack", selectedTrack);
+        localStorage.setItem(ONBOARDING_LOCAL_KEY, "1");
         setShowOnboarding(false);
       } catch (error) {
         console.error("Error completing onboarding:", error);
@@ -133,6 +138,13 @@ export default function DashboardClient({ lessonsMeta }: { lessonsMeta: LessonMe
   };
 
   const handleOnboardingSkip = () => {
+    // Previously this only closed the modal for the current page view -
+    // nothing was ever persisted, so a plain reload (or the DB-backed check
+    // failing open because the user_onboarding migration hasn't been applied
+    // on this environment yet) brought the exact same modal right back on
+    // every single dashboard visit. Remember "skipped" locally too, so it
+    // never resurfaces regardless of what the server-side check reports.
+    localStorage.setItem(ONBOARDING_LOCAL_KEY, "1");
     setShowOnboarding(false);
   };
 
@@ -194,17 +206,27 @@ export default function DashboardClient({ lessonsMeta }: { lessonsMeta: LessonMe
           if (data) setUnlockedLessonIds(new Set(data.map((row) => row.lesson_id)));
         });
 
-      // Check if user has completed onboarding
-      try {
-        const hasOnboarded = await hasCompletedOnboarding(session.user.id);
+      // Check if user has completed onboarding. The local flag is checked
+      // first and short-circuits the server round trip - it's what actually
+      // stops the modal from reappearing on every visit when the
+      // user_onboarding table/migration isn't available on this environment
+      // (hasCompletedOnboarding fails open to "not onboarded" in that case).
+      if (window.localStorage.getItem(ONBOARDING_LOCAL_KEY)) {
         setOnboardingChecked(true);
-        
-        if (!hasOnboarded) {
-          setShowOnboarding(true);
+      } else {
+        try {
+          const hasOnboarded = await hasCompletedOnboarding(session.user.id);
+          setOnboardingChecked(true);
+
+          if (hasOnboarded) {
+            window.localStorage.setItem(ONBOARDING_LOCAL_KEY, "1");
+          } else {
+            setShowOnboarding(true);
+          }
+        } catch (error) {
+          console.error("Error checking onboarding:", error);
+          setOnboardingChecked(true);
         }
-      } catch (error) {
-        console.error("Error checking onboarding:", error);
-        setOnboardingChecked(true);
       }
 
       // Calculate XP from completed lessons (10 XP per lesson). Read the
