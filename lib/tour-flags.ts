@@ -55,18 +55,34 @@ export async function markTourSeen(userId: string, key: string): Promise<void> {
   const flags = (data?.tour_flags ?? {}) as Record<string, boolean>;
   if (flags[key]) return; // already recorded, nothing to do
 
-  // Upsert rather than a plain update: if this account has no user_profiles
-  // row yet (older accounts created before the profile-row trigger existed,
-  // or any other gap), an update matches zero rows and silently writes
-  // nothing - the flag is never actually persisted, so hasSeenTour reports
-  // "not seen" forever and the tour reappears on every future login despite
-  // markTourSeen having run every single time. Upsert guarantees the row
-  // exists after this call either way.
-  const { error: writeError } = await supabase
-    .from("user_profiles")
-    .upsert({ id: userId, tour_flags: { ...flags, [key]: true } }, { onConflict: "id" });
+  const updatedFlags = { ...flags, [key]: true };
 
-  if (writeError && !isMissingSchemaError(writeError)) {
-    console.error("Error saving tour flag:", writeError);
+  // First try a normal UPDATE. If it matches 0 rows (no user_profiles for
+  // this account yet - should not happen with the new auth trigger, but
+  // handle it anyway), then INSERT a new row.
+  const { error: updateError } = await supabase
+    .from("user_profiles")
+    .update({ tour_flags: updatedFlags })
+    .eq("id", userId);
+
+  if (updateError && !isMissingSchemaError(updateError)) {
+    console.error("Error updating tour flags:", updateError);
+    return;
+  }
+
+  // Check if UPDATE matched any rows. If not, INSERT instead.
+  const { count, error: countError } = await supabase
+    .from("user_profiles")
+    .select("id", { count: "exact", head: true })
+    .eq("id", userId);
+
+  if (!countError && count === 0) {
+    const { error: insertError } = await supabase
+      .from("user_profiles")
+      .insert({ id: userId, tour_flags: updatedFlags });
+
+    if (insertError && !isMissingSchemaError(insertError)) {
+      console.error("Error inserting user profile with tour flag:", insertError);
+    }
   }
 }
