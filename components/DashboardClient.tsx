@@ -26,6 +26,7 @@ import { hasCompletedOnboarding, completeOnboarding } from "@/lib/supabase-onboa
 import { getLeaderboard } from "@/lib/supabase-user";
 import UnlockRequestModal from "@/components/UnlockRequestModal";
 import { TRACK_PERSONAL, TRACK_PROFESSIONAL } from "@/lib/track-stages";
+import { getLessonStage, getLessonsInStage } from "@/lib/lesson-stages";
 
 interface LeaderboardEntry {
   rank: number;
@@ -340,12 +341,28 @@ export default function DashboardClient({ lessonsMeta }: { lessonsMeta: LessonMe
     }
   }
 
-  // Product decision: all lessons are unlocked for everyone, no sequential
-  // gating. Kept as a function (rather than inlining `false` at every call
-  // site) so the previous prerequisite logic - still in lib/lesson-lock-rule.ts,
-  // which this must stay in sync with - can be restored later in one place.
-  const isLessonLocked = (_lesson: LessonMeta): boolean => {
-    return false;
+  // Client-side lock check - must stay in sync with lib/lesson-lock-rule.ts.
+  // Tiered unlock: stages 1-3 open all, stages 4+ open first 1/3 with prerequisites.
+  // Note: server-side lesson-locking.ts handles admin unlock grants; this is UI-only.
+  const isLessonLocked = (lesson: LessonMeta): boolean => {
+    if (lesson.isFundamental) return false;
+
+    const stage = getLessonStage(lesson);
+
+    if (stage === null || stage === 0) return false;
+    if (stage <= 3) return false;
+
+    // Stages 4+: check if in first 1/3
+    const stageALL = getLessonsInStage(lesson, sorted).sort((a, b) => a.id - b.id);
+    const index = stageALL.findIndex((l) => l.id === lesson.id);
+    const threshold = Math.ceil(stageALL.length / 3);
+
+    if (index < threshold) {
+      const prereqId = lesson.prerequisiteId ?? lesson.id - 1;
+      return !completed.includes(prereqId);
+    }
+
+    return true;
   };
 
   const getPrerequisiteLesson = (lesson: LessonMeta): LessonMeta | undefined => {

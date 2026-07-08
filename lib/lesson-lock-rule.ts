@@ -1,4 +1,5 @@
 import type { LessonMeta } from "@/lib/lesson-types";
+import { getLessonStage, getLessonsInStage, getLessonPositionInStage } from "@/lib/lesson-stages";
 
 /**
  * Pure lock rule - no cookies/DB access, just the decision logic - so it can
@@ -9,17 +10,51 @@ import type { LessonMeta } from "@/lib/lesson-types";
  * components/DashboardClient.tsx#isLessonLocked, which is the UI this rule
  * is meant to actually enforce.
  *
- * Product decision: every lesson is unlocked for everyone, no sequential
- * gating. Kept as a function (rather than deleting the call sites in
- * proxy.ts / lib/lesson-locking.ts / components/DashboardClient.tsx) so the
- * previous prerequisite logic can be restored later without re-plumbing
- * every caller.
+ * Tiered unlock logic:
+ * - Stages 1-3: all lessons unlocked (no prerequisites)
+ * - Stages 4+: only first 1/3 of lessons unlocked, rest locked unless prerequisite completed
+ * - Prerequisites: user must complete the lesson's prerequisiteId (if set) or the previous lesson
  */
 export function computeLessonLocked(
-  _lesson: LessonMeta,
-  _sortedLessons: LessonMeta[],
-  _completedIds: ReadonlySet<number>,
-  _unlockedIds: ReadonlySet<number>
+  lesson: LessonMeta,
+  sortedLessons: LessonMeta[],
+  completedIds: ReadonlySet<number>,
+  unlockedIds: ReadonlySet<number>
 ): boolean {
-  return false;
+  // Free lessons are always unlocked
+  if (lesson.isFundamental) {
+    return false;
+  }
+
+  // Admins can unlock any lesson explicitly
+  if (unlockedIds.has(lesson.id)) {
+    return false;
+  }
+
+  const stage = getLessonStage(lesson);
+
+  // Unknown stage or stage 0 (foundation) - unlock all
+  if (stage === null || stage === 0) {
+    return false;
+  }
+
+  // Stages 1-3: unlock all lessons (no tiered gating)
+  if (stage <= 3) {
+    return false;
+  }
+
+  // Stages 4+: only unlock first 1/3 of lessons in the stage
+  const lessonsInStage = getLessonsInStage(lesson, sortedLessons).sort((a, b) => a.id - b.id);
+  const lessonIndex = getLessonPositionInStage(lesson, sortedLessons);
+  const threshold = Math.ceil(lessonsInStage.length / 3);
+
+  // If lesson is within first 1/3, check prerequisites instead of locking
+  if (lessonIndex < threshold) {
+    // Check if prerequisite is completed
+    const prereqId = lesson.prerequisiteId ?? lesson.id - 1;
+    return !completedIds.has(prereqId);
+  }
+
+  // Beyond first 1/3: always locked
+  return true;
 }
