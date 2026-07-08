@@ -43,8 +43,11 @@ export default function ReadingProgress({ progress, onMilestone }: ReadingProgre
     setIsCollapsed(!nearMilestone);
   }, [progress]);
 
+  // Calculate brightness based on proximity to milestones
+  const isNearMilestone = CHECKPOINTS.some(cp => Math.abs(progress - cp) <= 5);
+
   return (
-    <div className="flex flex-col items-center gap-3">
+    <div className={`flex flex-col items-center gap-3 transition-opacity duration-500 ${isNearMilestone ? "opacity-100" : "opacity-30"}`}>
       {/* Collapsed state - small indicator */}
       {isCollapsed ? (
         <button

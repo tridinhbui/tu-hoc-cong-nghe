@@ -218,14 +218,8 @@ export default function LessonPageLayout({ lesson, quiz, children }: Props) {
 
   return (
     <div className="min-h-screen bg-[#FAFAFC] dark:bg-stone-950 font-sans antialiased text-[#1A1A1E] dark:text-stone-100">
-      {/* Reading Progress Bar (Fixed Left, race track style) - full opacity
-          while actively scrolling, fades to a faint sliver when idle so it
-          doesn't linger as a constant on-screen distraction. */}
-      <div
-        className={`fixed left-6 top-1/2 -translate-y-1/2 z-10 hidden lg:block transition-opacity duration-700 ${
-          isScrolling ? "opacity-100" : "opacity-20 hover:opacity-100"
-        }`}
-      >
+      {/* Reading Progress Bar (Fixed Left, race track style) - bright near milestones, dim otherwise */}
+      <div className="fixed left-6 top-1/2 -translate-y-1/2 z-10 hidden lg:block">
         <ReadingProgress progress={readPct} onMilestone={handleMilestone} />
       </div>
 
