@@ -19,6 +19,8 @@ import { getReadingProgress, updateReadingProgress } from "@/lib/supabase-readin
 import { RECALL_SCHEDULE } from "@/lib/recall-schedule";
 import RecallCard from "@/components/RecallCard";
 import LessonTour from "@/components/LessonTour";
+import FontSizeControl, { loadFontScale } from "@/components/FontSizeControl";
+import LessonFeedbackModal from "@/components/LessonFeedbackModal";
 
 export interface QuizQuestion {
   question: string;
@@ -72,9 +74,15 @@ export default function LessonPageLayout({ lesson, quiz, children }: Props) {
   const [isScrolling, setIsScrolling] = useState(false);
   const [userId, setUserId]       = useState<string | null>(null);
   const [newBadge, setNewBadge]   = useState<BadgeDefinition | null>(null);
+  const [fontScale, setFontScale] = useState(1);
+  const [showFeedback, setShowFeedback] = useState(false);
   const articleRef = useRef<HTMLElement>(null);
   const maxReachedRef = useRef(0);
   const savedMilestonesRef = useRef<Set<number>>(new Set());
+
+  useEffect(() => {
+    setFontScale(loadFontScale());
+  }, []);
 
   const durationMin = parseInt(lesson.duration) || 5;
 
@@ -175,6 +183,9 @@ export default function LessonPageLayout({ lesson, quiz, children }: Props) {
       const finalResults = [...results];
       finalResults[qi] = ok;
       completeLessonInSupabase(finalResults);
+      // Give the completion card a moment to render before asking for
+      // feedback, so it doesn't feel like it's interrupting the result.
+      setTimeout(() => setShowFeedback(true), 1200);
     }
     if (qi < quiz.length - 1) setTimeout(() => setActiveQ(qi + 1), 600);
   }
@@ -248,6 +259,9 @@ export default function LessonPageLayout({ lesson, quiz, children }: Props) {
           </div>
 
           <div className="flex items-center gap-3">
+            {/* Reading font-size control */}
+            <FontSizeControl scale={fontScale} onChange={setFontScale} />
+
             {/* Bookmark button */}
             <div data-tour="lesson-bookmark">
               <BookmarkButton
@@ -342,8 +356,14 @@ export default function LessonPageLayout({ lesson, quiz, children }: Props) {
               <StageTipsBanner lessonId={lesson.id} lessonTitle={lesson.title} />
             </div>
 
-            {/* Content */}
-            <div className="space-y-8 text-stone-800 dark:text-stone-300 leading-relaxed text-lg sm:text-xl font-medium">
+            {/* Content - `zoom` (not fontSize) so the reading-size control
+                rescales every lesson page uniformly regardless of the
+                explicit Tailwind text-sm/lg/xl classes each hand-written
+                lesson sets on its own child elements. */}
+            <div
+              className="space-y-8 text-stone-800 dark:text-stone-300 leading-relaxed text-lg sm:text-xl font-medium"
+              style={{ zoom: fontScale }}
+            >
               {children}
             </div>
 
@@ -527,6 +547,12 @@ export default function LessonPageLayout({ lesson, quiz, children }: Props) {
       <FloatingContact />
       <BadgeToast badge={newBadge} onDismiss={() => setNewBadge(null)} />
       <LessonTour userId={userId} />
+      <LessonFeedbackModal
+        open={showFeedback}
+        onClose={() => setShowFeedback(false)}
+        lessonId={lesson.id}
+        userId={userId}
+      />
     </div>
   );
 }

@@ -214,8 +214,16 @@ export default function StageTipsBanner({ lessonId, lessonTitle }: Props) {
   return (
     <div className="rounded-2xl border-2 border-stone-200 bg-stone-50 overflow-hidden">
       <div className="bg-stone-900 px-5 py-3.5 flex items-center gap-3">
-        <div className="w-8 h-8 rounded-full overflow-hidden flex-shrink-0">
-          <Image src="/tai-tai-avatar.png" alt="Tài Tài" width={32} height={32} className="w-full h-full object-cover" />
+        <div className="relative w-8 h-8 flex-shrink-0">
+          {phase === "waiting" && (
+            <>
+              <span className="absolute inset-0 rounded-full bg-emerald-400/40 animate-ping" />
+              <span className="absolute -inset-1 rounded-full border-2 border-emerald-400/60 animate-spin [animation-duration:1.4s] [border-top-color:transparent] [border-left-color:transparent]" />
+            </>
+          )}
+          <div className="relative w-8 h-8 rounded-full overflow-hidden">
+            <Image src="/tai-tai-avatar.png" alt="Tài Tài" width={32} height={32} className="w-full h-full object-cover" />
+          </div>
         </div>
         <div className="flex-1 min-w-0">
           <span className="text-white font-bold text-sm">Tài Tài</span>
@@ -229,10 +237,15 @@ export default function StageTipsBanner({ lessonId, lessonTitle }: Props) {
       <div className="px-5 py-5">
         <p className="text-stone-800 text-lg leading-relaxed font-medium min-h-[2.5rem]">
           {phase === "waiting" ? (
-            <span className="inline-flex gap-1 align-middle mt-1">
-              <span className="w-2 h-2 rounded-full bg-stone-300 animate-bounce" style={{ animationDelay: "0ms" }} />
-              <span className="w-2 h-2 rounded-full bg-stone-300 animate-bounce" style={{ animationDelay: "160ms" }} />
-              <span className="w-2 h-2 rounded-full bg-stone-300 animate-bounce" style={{ animationDelay: "320ms" }} />
+            <span className="flex flex-col gap-2 mt-1">
+              <span className="h-3 rounded-full bg-gradient-to-r from-stone-200 via-stone-100 to-stone-200 bg-[length:200%_100%] animate-[shimmer_1.2s_ease-in-out_infinite] w-full" />
+              <span className="h-3 rounded-full bg-gradient-to-r from-stone-200 via-stone-100 to-stone-200 bg-[length:200%_100%] animate-[shimmer_1.2s_ease-in-out_infinite] w-2/3" style={{ animationDelay: "120ms" }} />
+              <style>{`
+                @keyframes shimmer {
+                  0% { background-position: 200% 0; }
+                  100% { background-position: -200% 0; }
+                }
+              `}</style>
             </span>
           ) : (
             <>
