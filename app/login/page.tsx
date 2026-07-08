@@ -8,7 +8,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import { toast } from "sonner";
 import { GraduationCap, Gauge, Sparkles } from "lucide-react";
 import { createClient } from "@/lib/supabase";
-import { translateAuthError, isUnconfirmedEmailError } from "@/lib/auth-error-messages";
+import { translateAuthError } from "@/lib/auth-error-messages";
 import { TRACKS, type TrackId } from "@/lib/tracks";
 import TrackPreviewPanel from "@/components/login/TrackPreviewPanel";
 import Logo from "@/components/Logo";
@@ -52,10 +52,6 @@ export default function LoginPage() {
   const [name, setName] = useState("");
   const [previewTrack, setPreviewTrack] = useState<TrackId>("personal");
   const [resetSent, setResetSent] = useState(false);
-  const [signupSuccess, setSignupSuccess] = useState(false);
-  const [resendingConfirmation, setResendingConfirmation] = useState(false);
-  const [confirmationResent, setConfirmationResent] = useState(false);
-  const [showResendConfirmation, setShowResendConfirmation] = useState(false);
   const [failedAttempts, setFailedAttempts] = useState(0);
   const [cooldownUntil, setCooldownUntil] = useState<number | null>(null);
   const [cooldownLeft, setCooldownLeft] = useState(0);
@@ -104,8 +100,6 @@ export default function LoginPage() {
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
     setError("");
-    setConfirmationResent(false);
-    setShowResendConfirmation(false);
 
     if (cooldownUntil) {
       setError(`Bạn đã thử quá nhiều lần. Vui lòng đợi ${cooldownLeft} giây rồi thử lại.`);
@@ -135,6 +129,7 @@ export default function LoginPage() {
             data: {
               full_name: name.trim(),
             },
+            emailRedirectTo: `${window.location.origin}/auth/callback`,
           },
         });
 
@@ -145,12 +140,20 @@ export default function LoginPage() {
           return;
         }
 
-        setError("");
-        setPassword("");
-        setName("");
-        setSignupSuccess(true);
-        toast.success("Đã tạo tài khoản! Kiểm tra email để xác nhận trước khi đăng nhập.");
-        setLoading(false);
+        // Auto-login after successful signup
+        const { error: loginError } = await supabase.auth.signInWithPassword({
+          email: email.toLowerCase().trim(),
+          password: password,
+        });
+
+        if (loginError) {
+          setError("Đã tạo tài khoản nhưng không thể tự động đăng nhập. Vui lòng đăng nhập thủ công.");
+          setLoading(false);
+          return;
+        }
+
+        setFailedAttempts(0);
+        router.push("/dashboard");
         return;
       } else {
         // Login mode
@@ -167,7 +170,6 @@ export default function LoginPage() {
 
         if (loginError) {
           registerFailedAttempt();
-          setShowResendConfirmation(isUnconfirmedEmailError(loginError.message));
           setError(translateAuthError(loginError.message));
           setLoading(false);
           return;
@@ -180,22 +182,6 @@ export default function LoginPage() {
       setError("Có lỗi xảy ra. Vui lòng thử lại.");
       setLoading(false);
     }
-  }
-
-  async function handleResendConfirmation() {
-    if (!email.trim()) return;
-    setResendingConfirmation(true);
-    const { error: resendError } = await supabase.auth.resend({
-      type: "signup",
-      email: email.toLowerCase().trim(),
-    });
-    setResendingConfirmation(false);
-    if (resendError) {
-      setError(translateAuthError(resendError.message));
-      return;
-    }
-    setConfirmationResent(true);
-    toast.success("Đã gửi lại email xác nhận.");
   }
 
   // Handle "forgot password" - sends a Supabase recovery email
@@ -389,22 +375,6 @@ export default function LoginPage() {
                   </button>
                 </form>
               )
-            ) : mode === "signup" && signupSuccess ? (
-              <div className="bg-emerald-50 dark:bg-emerald-950/50 border border-emerald-200 dark:border-emerald-900 text-emerald-800 dark:text-emerald-400 text-sm font-semibold rounded-xl px-4 py-4 text-center space-y-3">
-                <p>
-                  Đã tạo tài khoản cho <strong>{email}</strong>! Kiểm tra email và bấm vào link xác nhận trước khi đăng nhập.
-                </p>
-                <button
-                  type="button"
-                  onClick={() => {
-                    setMode("login");
-                    setSignupSuccess(false);
-                  }}
-                  className="text-emerald-900 dark:text-emerald-300 underline underline-offset-2 font-bold"
-                >
-                  Đến trang đăng nhập
-                </button>
-              </div>
             ) : (
               <form onSubmit={handleSubmit} className="space-y-4">
                 {mode === "signup" && (
@@ -464,19 +434,8 @@ export default function LoginPage() {
                 </div>
 
                 {error && (
-                  <div className="bg-red-50 dark:bg-red-950/50 border border-red-200 dark:border-red-900 text-red-700 dark:text-red-400 text-xs font-semibold rounded-xl px-4 py-3 space-y-2">
+                  <div className="bg-red-50 dark:bg-red-950/50 border border-red-200 dark:border-red-900 text-red-700 dark:text-red-400 text-xs font-semibold rounded-xl px-4 py-3">
                     <p>{error}</p>
-                    {mode === "login" && showResendConfirmation && !confirmationResent && (
-                      <button
-                        type="button"
-                        onClick={handleResendConfirmation}
-                        disabled={resendingConfirmation}
-                        className="text-red-800 dark:text-red-300 underline underline-offset-2 font-bold disabled:opacity-60"
-                      >
-                        {resendingConfirmation ? "Đang gửi lại..." : "Gửi lại email xác nhận"}
-                      </button>
-                    )}
-                    {confirmationResent && <p className="text-emerald-700 dark:text-emerald-400">Đã gửi lại email xác nhận.</p>}
                   </div>
                 )}
 
@@ -509,7 +468,6 @@ export default function LoginPage() {
                     onClick={() => {
                       setMode("signup");
                       setError("");
-                      setSignupSuccess(false);
                     }}
                     className="text-stone-900 dark:text-stone-100 font-bold hover:underline"
                   >
@@ -524,7 +482,6 @@ export default function LoginPage() {
                       setMode("login");
                       setError("");
                       setResetSent(false);
-                      setSignupSuccess(false);
                     }}
                     className="text-stone-900 dark:text-stone-100 font-bold hover:underline"
                   >
