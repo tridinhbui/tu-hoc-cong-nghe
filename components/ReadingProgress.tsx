@@ -46,8 +46,22 @@ export default function ReadingProgress({ progress, onMilestone }: ReadingProgre
   // Calculate brightness based on proximity to milestones
   const isNearMilestone = CHECKPOINTS.some(cp => Math.abs(progress - cp) <= 5);
 
+  // Collapse when clicking anywhere on the page (outside the progress bar)
+  useEffect(() => {
+    const handleClickOutside = (e: MouseEvent) => {
+      const target = e.target as HTMLElement;
+      const progressContainer = target.closest('[data-progress-bar]');
+      if (!progressContainer && !isCollapsed) {
+        setIsCollapsed(true);
+      }
+    };
+
+    document.addEventListener('click', handleClickOutside);
+    return () => document.removeEventListener('click', handleClickOutside);
+  }, [isCollapsed]);
+
   return (
-    <div className={`flex flex-col items-center gap-3 transition-opacity duration-150 ${isNearMilestone ? "opacity-100" : "opacity-30"}`}>
+    <div data-progress-bar className={`flex flex-col items-center gap-3 transition-opacity duration-150 ${isNearMilestone ? "opacity-100" : "opacity-30"}`}>
       {/* Collapsed state - small indicator */}
       {isCollapsed ? (
         <button
