@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { AnimatePresence, motion } from "framer-motion";
 import { toast } from "sonner";
@@ -27,6 +28,21 @@ export const dynamic = "force-dynamic";
 export default function LoginPage() {
   const router = useRouter();
   const supabase = createClient();
+
+  // If a Supabase OAuth `code` (or `error`) param is still in the URL, this
+  // page was landed on directly by the OAuth redirect - e.g. because Supabase's
+  // "Redirect URLs" allowlist doesn't include our /auth/callback route for this
+  // domain, so GoTrue fell back to the configured Site URL instead. In that
+  // case the browser client's own detectSessionInUrl kicks in and exchanges
+  // the code client-side (slower - a real network round trip), and we must
+  // show a loading state instead of the raw login form while that resolves,
+  // otherwise the user sees the form flash for a couple seconds before being
+  // bounced to /dashboard.
+  const [resolvingOAuth, setResolvingOAuth] = useState(() => {
+    if (typeof window === "undefined") return false;
+    const params = new URLSearchParams(window.location.search);
+    return params.has("code") || params.has("error");
+  });
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
