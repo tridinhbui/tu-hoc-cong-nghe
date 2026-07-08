@@ -342,7 +342,7 @@ export default function DashboardClient({ lessonsMeta }: { lessonsMeta: LessonMe
   }
 
   // Client-side lock check - must stay in sync with lib/lesson-lock-rule.ts.
-  // Tiered unlock: stages 1-3 open all, stages 4+ open first 1/3 with prerequisites.
+  // Tiered unlock: stages 1-3 open all, stages 4+ open first 7 with sequential unlock after.
   // Note: server-side lesson-locking.ts handles admin unlock grants; this is UI-only.
   const isLessonLocked = (lesson: LessonMeta): boolean => {
     if (lesson.isFundamental) return false;
@@ -352,17 +352,20 @@ export default function DashboardClient({ lessonsMeta }: { lessonsMeta: LessonMe
     if (stage === null || stage === 0) return false;
     if (stage <= 3) return false;
 
-    // Stages 4+: check if in first 1/3
+    // Stages 4+: first 7 lessons unlocked, rest require sequential completion
     const stageALL = getLessonsInStage(lesson, sorted).sort((a, b) => a.id - b.id);
     const index = stageALL.findIndex((l) => l.id === lesson.id);
-    const threshold = Math.ceil(stageALL.length / 3);
 
-    if (index < threshold) {
-      const prereqId = lesson.prerequisiteId ?? lesson.id - 1;
-      return !completed.includes(prereqId);
+    // First 7: unlocked
+    if (index < 7) return false;
+
+    // Beyond 7: require previous lesson completed
+    if (index >= 7) {
+      const previousLesson = stageALL[index - 1];
+      return !completed.includes(previousLesson.id);
     }
 
-    return true;
+    return false;
   };
 
   const getPrerequisiteLesson = (lesson: LessonMeta): LessonMeta | undefined => {

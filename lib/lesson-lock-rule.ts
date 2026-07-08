@@ -12,7 +12,7 @@ import { getLessonStage, getLessonsInStage, getLessonPositionInStage } from "@/l
  *
  * Tiered unlock logic:
  * - Stages 1-3: all lessons unlocked (no prerequisites)
- * - Stages 4+: only first 1/3 of lessons unlocked, rest locked unless prerequisite completed
+ * - Stages 4+: first 7 lessons unlocked, rest require sequential completion
  * - Prerequisites: user must complete the lesson's prerequisiteId (if set) or the previous lesson
  */
 export function computeLessonLocked(
@@ -43,18 +43,20 @@ export function computeLessonLocked(
     return false;
   }
 
-  // Stages 4+: only unlock first 1/3 of lessons in the stage
+  // Stages 4+: first 7 lessons unlocked, rest require sequential completion
   const lessonsInStage = getLessonsInStage(lesson, sortedLessons).sort((a, b) => a.id - b.id);
   const lessonIndex = getLessonPositionInStage(lesson, sortedLessons);
-  const threshold = Math.ceil(lessonsInStage.length / 3);
 
-  // If lesson is within first 1/3, check prerequisites instead of locking
-  if (lessonIndex < threshold) {
-    // Check if prerequisite is completed
-    const prereqId = lesson.prerequisiteId ?? lesson.id - 1;
-    return !completedIds.has(prereqId);
+  // First 7 lessons: always unlocked
+  if (lessonIndex < 7) {
+    return false;
   }
 
-  // Beyond first 1/3: always locked
-  return true;
+  // Beyond first 7: require completing the previous lesson
+  if (lessonIndex >= 7) {
+    const previousLesson = lessonsInStage[lessonIndex - 1];
+    return !completedIds.has(previousLesson.id);
+  }
+
+  return false;
 }
