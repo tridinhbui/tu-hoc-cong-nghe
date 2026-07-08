@@ -20,7 +20,7 @@ import { RECALL_SCHEDULE } from "@/lib/recall-schedule";
 import RecallCard from "@/components/RecallCard";
 import LessonTour from "@/components/LessonTour";
 import FontSizeControl, { loadFontScale } from "@/components/FontSizeControl";
-import LessonFeedbackModal from "@/components/LessonFeedbackModal";
+import LessonFeedbackInline from "@/components/LessonFeedbackInline";
 
 export interface QuizQuestion {
   question: string;
@@ -75,7 +75,6 @@ export default function LessonPageLayout({ lesson, quiz, children }: Props) {
   const [userId, setUserId]       = useState<string | null>(null);
   const [newBadge, setNewBadge]   = useState<BadgeDefinition | null>(null);
   const [fontScale, setFontScale] = useState(1.125);
-  const [showFeedback, setShowFeedback] = useState(false);
   const articleRef = useRef<HTMLElement>(null);
   const maxReachedRef = useRef(0);
   const savedMilestonesRef = useRef<Set<number>>(new Set());
@@ -183,9 +182,6 @@ export default function LessonPageLayout({ lesson, quiz, children }: Props) {
       const finalResults = [...results];
       finalResults[qi] = ok;
       completeLessonInSupabase(finalResults);
-      // Give the completion card a moment to render before asking for
-      // feedback, so it doesn't feel like it's interrupting the result.
-      setTimeout(() => setShowFeedback(true), 1200);
     }
     if (qi < quiz.length - 1) setTimeout(() => setActiveQ(qi + 1), 600);
   }
@@ -365,6 +361,11 @@ export default function LessonPageLayout({ lesson, quiz, children }: Props) {
               style={{ zoom: fontScale }}
             >
               {children}
+            </div>
+
+            {/* Feedback form at the bottom */}
+            <div className="mt-12 pt-8 border-t border-stone-200 dark:border-stone-800">
+              <LessonFeedbackInline lessonId={lesson.id} userId={userId} />
             </div>
 
             {/* Mobile quiz prompt */}
@@ -547,12 +548,6 @@ export default function LessonPageLayout({ lesson, quiz, children }: Props) {
       <FloatingContact />
       <BadgeToast badge={newBadge} onDismiss={() => setNewBadge(null)} />
       <LessonTour userId={userId} />
-      <LessonFeedbackModal
-        open={showFeedback}
-        onClose={() => setShowFeedback(false)}
-        lessonId={lesson.id}
-        userId={userId}
-      />
     </div>
   );
 }

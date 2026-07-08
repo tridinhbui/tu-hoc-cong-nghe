@@ -11,6 +11,7 @@ import ThemeToggle from "@/components/ThemeToggle";
 export const dynamic = "force-dynamic";
 
 interface CurrentUser {
+  id?: string;
   email?: string;
   created_at?: string;
   user_metadata?: {
@@ -27,6 +28,8 @@ export default function SettingsPage() {
   const [name, setName] = useState("");
   const [saving, setSaving] = useState(false);
   const [message, setMessage] = useState("");
+  const [avatarUploading, setAvatarUploading] = useState(false);
+  const [avatarPreview, setAvatarPreview] = useState<string | null>(null);
 
   useEffect(() => {
     const checkAuth = async () => {
@@ -41,6 +44,7 @@ export default function SettingsPage() {
 
       setUser(session.user);
       setName(session.user.user_metadata?.full_name || "");
+      setAvatarPreview(session.user.user_metadata?.avatar_url || null);
       setLoading(false);
     };
 
@@ -69,6 +73,76 @@ export default function SettingsPage() {
       setMessage("Có lỗi xảy ra");
     } finally {
       setSaving(false);
+    }
+  };
+
+  const handleAvatarUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+
+    // Validate file size (max 2MB)
+    if (file.size > 2 * 1024 * 1024) {
+      setMessage("Lỗi: Kích thước file không được quá 2MB");
+      return;
+    }
+
+    // Validate file type
+    if (!file.type.startsWith("image/")) {
+      setMessage("Lỗi: Chỉ chấp nhận file hình ảnh");
+      return;
+    }
+
+    setAvatarUploading(true);
+    setMessage("");
+
+    try {
+      const fileExt = file.name.split(".").pop();
+      const fileName = `${user?.id}-${Date.now()}.${fileExt}`;
+      const filePath = `avatars/${fileName}`;
+
+      // Upload to Supabase Storage
+      const { error: uploadError } = await supabase.storage
+        .from("avatars")
+        .upload(filePath, file, {
+          upsert: true,
+        });
+
+      if (uploadError) {
+        setMessage("Lỗi upload: " + uploadError.message);
+        setAvatarUploading(false);
+        return;
+      }
+
+      // Get public URL
+      const { data: { publicUrl } } = supabase.storage
+        .from("avatars")
+        .getPublicUrl(filePath);
+
+      // Update user metadata
+      const { error: updateError } = await supabase.auth.updateUser({
+        data: {
+          avatar_url: publicUrl,
+        },
+      });
+
+      if (updateError) {
+        setMessage("Lỗi cập nhật: " + updateError.message);
+      } else {
+        setAvatarPreview(publicUrl);
+        setUser((prev) => prev ? {
+          ...prev,
+          user_metadata: {
+            ...prev.user_metadata,
+            avatar_url: publicUrl,
+          },
+        } : null);
+        setMessage("Cập nhật avatar thành công!");
+        setTimeout(() => setMessage(""), 3000);
+      }
+    } catch (error) {
+      setMessage("Có lỗi xảy ra khi upload avatar");
+    } finally {
+      setAvatarUploading(false);
     }
   };
 
@@ -115,6 +189,45 @@ export default function SettingsPage() {
         {/* Update Name Section */}
         <div className="border-2 border-stone-200 dark:border-stone-800 rounded-xl p-6 bg-white dark:bg-stone-900">
           <h3 className="text-lg font-extrabold mb-4">Thông tin cá nhân</h3>
+
+          {/* Avatar Upload */}
+          <div className="mb-6">
+            <label className="text-xs font-extrabold uppercase tracking-widest text-stone-600 dark:text-stone-400">
+              Avatar
+            </label>
+            <div className="mt-3 flex items-center gap-4">
+              <div className="w-20 h-20 rounded-full overflow-hidden bg-stone-100 dark:bg-stone-800 border-2 border-stone-200 dark:border-stone-700 flex items-center justify-center">
+                {avatarPreview ? (
+                  <img src={avatarPreview} alt="Avatar" className="w-full h-full object-cover" />
+                ) : (
+                  <span className="text-3xl">👤</span>
+                )}
+              </div>
+              <div className="flex-1">
+                <input
+                  type="file"
+                  id="avatar-upload"
+                  accept="image/*"
+                  onChange={handleAvatarUpload}
+                  disabled={avatarUploading}
+                  className="hidden"
+                />
+                <label
+                  htmlFor="avatar-upload"
+                  className={`inline-block px-4 py-2 rounded-xl text-sm font-bold cursor-pointer transition-colors ${
+                    avatarUploading
+                      ? "bg-stone-200 dark:bg-stone-800 text-stone-500 dark:text-stone-600 cursor-not-allowed"
+                      : "bg-stone-900 hover:bg-stone-800 dark:bg-stone-100 dark:hover:bg-white text-white dark:text-stone-900"
+                  }`}
+                >
+                  {avatarUploading ? "Đang upload..." : "Chọn ảnh"}
+                </label>
+                <p className="text-xs text-stone-500 dark:text-stone-400 mt-2">
+                  Tối đa 2MB, định dạng JPG, PNG
+                </p>
+              </div>
+            </div>
+          </div>
 
           <form onSubmit={handleSaveName} className="space-y-4">
             <div>
