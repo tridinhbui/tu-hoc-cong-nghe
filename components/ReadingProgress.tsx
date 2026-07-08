@@ -47,7 +47,7 @@ export default function ReadingProgress({ progress, onMilestone }: ReadingProgre
   const isNearMilestone = CHECKPOINTS.some(cp => Math.abs(progress - cp) <= 5);
 
   return (
-    <div className={`flex flex-col items-center gap-3 transition-opacity duration-500 ${isNearMilestone ? "opacity-100" : "opacity-30"}`}>
+    <div className={`flex flex-col items-center gap-3 transition-opacity duration-150 ${isNearMilestone ? "opacity-100" : "opacity-30"}`}>
       {/* Collapsed state - small indicator */}
       {isCollapsed ? (
         <button
