@@ -342,7 +342,7 @@ export default function DashboardClient({ lessonsMeta }: { lessonsMeta: LessonMe
   }
 
   // Client-side lock check - must stay in sync with lib/lesson-lock-rule.ts.
-  // Tiered unlock: stages 1-3 open all, stages 4+ open first 7 with sequential unlock after.
+  // Sequential unlock: first 7 lessons unlocked per stage, rest require previous lesson completed.
   // Note: server-side lesson-locking.ts handles admin unlock grants; this is UI-only.
   const isLessonLocked = (lesson: LessonMeta): boolean => {
     if (lesson.isFundamental) return false;
@@ -350,9 +350,8 @@ export default function DashboardClient({ lessonsMeta }: { lessonsMeta: LessonMe
     const stage = getLessonStage(lesson);
 
     if (stage === null || stage === 0) return false;
-    if (stage <= 3) return false;
 
-    // Stages 4+: first 7 lessons unlocked, rest require sequential completion
+    // All stages: first 7 lessons unlocked, rest require sequential completion
     const stageALL = getLessonsInStage(lesson, sorted).sort((a, b) => a.id - b.id);
     const index = stageALL.findIndex((l) => l.id === lesson.id);
 

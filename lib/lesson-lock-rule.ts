@@ -10,9 +10,8 @@ import { getLessonStage, getLessonsInStage, getLessonPositionInStage } from "@/l
  * components/DashboardClient.tsx#isLessonLocked, which is the UI this rule
  * is meant to actually enforce.
  *
- * Tiered unlock logic:
- * - Stages 1-3: all lessons unlocked (no prerequisites)
- * - Stages 4+: first 7 lessons unlocked, rest require sequential completion
+ * Sequential unlock logic:
+ * - All stages: first 7 lessons unlocked, rest require sequential completion
  * - Prerequisites: user must complete the lesson's prerequisiteId (if set) or the previous lesson
  */
 export function computeLessonLocked(
@@ -38,12 +37,7 @@ export function computeLessonLocked(
     return false;
   }
 
-  // Stages 1-3: unlock all lessons (no tiered gating)
-  if (stage <= 3) {
-    return false;
-  }
-
-  // Stages 4+: first 7 lessons unlocked, rest require sequential completion
+  // All stages: first 7 lessons unlocked, rest require sequential completion
   const lessonsInStage = getLessonsInStage(lesson, sortedLessons).sort((a, b) => a.id - b.id);
   const lessonIndex = getLessonPositionInStage(lesson, sortedLessons);
 
