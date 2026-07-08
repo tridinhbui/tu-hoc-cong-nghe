@@ -133,6 +133,24 @@ export async function updateQuizScore(userId: string, lessonId: number, score: n
   return data as UserProgress;
 }
 
+// Tổng số phút học thực tế (tổng time_spent_seconds đã ghi nhận), dùng cho
+// lời chào tóm tắt của Tài Tài trên dashboard.
+export async function getTotalTimeSpentMinutes(userId: string): Promise<number> {
+  const supabase = createClient();
+  const { data, error } = await supabase
+    .from("user_progress")
+    .select("time_spent_seconds")
+    .eq("user_id", userId);
+
+  if (error) {
+    console.error("Error fetching total time spent:", error);
+    return 0;
+  }
+
+  const totalSeconds = (data ?? []).reduce((sum, row) => sum + (row.time_spent_seconds ?? 0), 0);
+  return Math.round(totalSeconds / 60);
+}
+
 // Lấy progress stats
 export async function getProgressStats(userId: string) {
   const supabase = createClient();

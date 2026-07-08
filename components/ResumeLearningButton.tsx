@@ -2,46 +2,76 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
-import { Play, BookOpen, Clock } from "lucide-react";
-import { getResumeLessonAction } from "@/app/dashboard/actions";
+import Image from "next/image";
+import { ArrowRight, BookOpen } from "lucide-react";
+import { getDashboardGreetingAction } from "@/app/dashboard/actions";
 import { createClient } from "@/lib/supabase";
 
 interface ResumeLearningButtonProps {
   activeTrack: "personal" | "professional";
 }
 
+interface Greeting {
+  nextLesson: { id: number; slug: string; title: string; subtitle: string; duration: string } | null;
+  completedCount: number;
+  totalMinutes: number;
+}
+
+// Replaces the old plain "Tiếp tục học" banner with a Tài Tài chat bubble
+// that actually summarizes where the learner is - which lesson, what it's
+// about in one line, and how many minutes they've put in so far - instead
+// of a generic label, plus a clear tap target to continue.
 export default function ResumeLearningButton({ activeTrack }: ResumeLearningButtonProps) {
-  const [nextLesson, setNextLesson] = useState<{ id: number; slug: string; title: string; duration: string } | null>(null);
+  const [greeting, setGreeting] = useState<Greeting | null>(null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const fetchResumeLesson = async () => {
+    const fetchGreeting = async () => {
       try {
         const supabase = createClient();
         const { data: { user } } = await supabase.auth.getUser();
-        
+
         if (user) {
-          const lesson = await getResumeLessonAction(user.id, activeTrack);
-          setNextLesson(lesson);
+          const result = await getDashboardGreetingAction(user.id, activeTrack);
+          setGreeting(result);
         }
       } catch (error) {
-        console.error("Error fetching resume lesson:", error);
+        console.error("Error fetching dashboard greeting:", error);
       } finally {
         setLoading(false);
       }
     };
 
-    fetchResumeLesson();
+    fetchGreeting();
   }, [activeTrack]);
 
   if (loading) {
     return (
-      <div className="bg-gradient-to-r from-emerald-500 to-teal-600 rounded-2xl p-6 text-white animate-pulse">
-        <div className="h-6 bg-white/20 rounded w-1/3 mb-2"></div>
-        <div className="h-4 bg-white/20 rounded w-2/3"></div>
+      <div className="bg-white dark:bg-stone-900 border-2 border-stone-200 dark:border-stone-800 rounded-2xl p-5 flex items-center gap-4">
+        <div className="relative w-11 h-11 flex-shrink-0">
+          <span className="absolute inset-0 rounded-full bg-emerald-400/30 animate-ping" />
+          <span className="absolute -inset-1 rounded-full border-2 border-emerald-400/60 border-t-transparent animate-spin" />
+          <div className="relative w-11 h-11 rounded-full overflow-hidden">
+            <Image src="/tai-tai-avatar.png" alt="Tài Tài" width={44} height={44} className="w-full h-full object-cover" />
+          </div>
+        </div>
+        <div className="flex-1 space-y-2">
+          <div className="h-3.5 bg-stone-200 dark:bg-stone-800 rounded-full w-2/5 bg-gradient-to-r from-stone-200 via-stone-100 to-stone-200 dark:from-stone-800 dark:via-stone-700 dark:to-stone-800 bg-[length:200%_100%] animate-[shimmer_1.2s_ease-in-out_infinite]" />
+          <div className="h-3.5 bg-stone-200 dark:bg-stone-800 rounded-full w-4/5 bg-gradient-to-r from-stone-200 via-stone-100 to-stone-200 dark:from-stone-800 dark:via-stone-700 dark:to-stone-800 bg-[length:200%_100%] animate-[shimmer_1.2s_ease-in-out_infinite]" style={{ animationDelay: "120ms" }} />
+        </div>
+        <style>{`
+          @keyframes shimmer {
+            0% { background-position: 200% 0; }
+            100% { background-position: -200% 0; }
+          }
+        `}</style>
       </div>
     );
   }
+
+  const nextLesson = greeting?.nextLesson ?? null;
+  const completedCount = greeting?.completedCount ?? 0;
+  const totalMinutes = greeting?.totalMinutes ?? 0;
 
   if (!nextLesson) {
     return (
@@ -59,27 +89,31 @@ export default function ResumeLearningButton({ activeTrack }: ResumeLearningButt
     );
   }
 
+  const greetingText =
+    completedCount === 0
+      ? `Xin chào! Bạn chưa học được bài nào cả - cùng bắt đầu với "${nextLesson.title}" nhé!`
+      : `Xin chào! Bạn đang học "${nextLesson.title}" - ${nextLesson.subtitle} Bạn đã học được khoảng ${totalMinutes} phút rồi, tiếp tục nhé!`;
+
   return (
     <Link
       href={`/bai-hoc/${nextLesson.slug}`}
-      className="block bg-gradient-to-r from-emerald-500 to-teal-600 rounded-2xl p-6 text-white hover:shadow-xl transition-all hover:scale-[1.02] active:scale-[0.98]"
+      className="group block bg-white dark:bg-stone-900 border-2 border-stone-200 dark:border-stone-800 hover:border-emerald-400 dark:hover:border-emerald-600 rounded-2xl p-5 transition-all hover:shadow-lg"
     >
-      <div className="flex items-center gap-4">
-        <div className="w-12 h-12 rounded-full bg-white/20 flex items-center justify-center flex-shrink-0">
-          <Play className="w-6 h-6 ml-1" />
+      <div className="flex items-start gap-4">
+        <div className="w-11 h-11 rounded-full overflow-hidden flex-shrink-0 ring-2 ring-emerald-100 dark:ring-emerald-950">
+          <Image src="/tai-tai-avatar.png" alt="Tài Tài" width={44} height={44} className="w-full h-full object-cover" />
         </div>
         <div className="flex-1 min-w-0">
-          <p className="text-xs font-bold uppercase tracking-wider text-white/80 mb-1">
-            Tiếp tục học
+          <p className="text-xs font-extrabold text-emerald-600 dark:text-emerald-400 uppercase tracking-wider mb-1">
+            Tài Tài
           </p>
-          <p className="font-bold text-lg truncate">{nextLesson.title}</p>
-          <div className="flex items-center gap-3 mt-1 text-sm text-white/90">
-            <span className="flex items-center gap-1">
-              <Clock className="w-3 h-3" />
-              {nextLesson.duration}
-            </span>
-            <span>Day {nextLesson.id}</span>
-          </div>
+          <p className="text-stone-800 dark:text-stone-200 text-sm sm:text-base leading-relaxed font-medium">
+            {greetingText}
+          </p>
+        </div>
+        <div className="flex-shrink-0 self-center flex items-center gap-1.5 bg-stone-900 dark:bg-stone-100 text-white dark:text-stone-900 text-sm font-bold px-4 py-2.5 rounded-xl group-hover:bg-emerald-600 dark:group-hover:bg-emerald-400 transition-colors">
+          {completedCount === 0 ? "Bắt đầu" : "Tiếp tục"}
+          <ArrowRight className="w-4 h-4" />
         </div>
       </div>
     </Link>
