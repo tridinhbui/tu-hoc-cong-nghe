@@ -17,6 +17,10 @@
 /.next/
 /out/
 
+# generated from lib/lessons.ts by scripts/generate-lesson-data.mjs
+# (predev/prebuild) - not a source of truth, don't hand-edit or commit
+/lib/lessons-data/
+
 # production
 /build
 

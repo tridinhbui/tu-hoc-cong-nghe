@@ -1,4 +1,6 @@
 import "server-only";
+import { readFile } from "fs/promises";
+import path from "path";
 import type { Lesson, Difficulty, QuizQuestion, LessonSectionBlock, LessonMeta, NextLessonMeta } from "./lesson-types";
 
 /**
@@ -12,10 +14,24 @@ import type { Lesson, Difficulty, QuizQuestion, LessonSectionBlock, LessonMeta, 
  * anyway, even though the import was `import type`. The `server-only`
  * import above makes that regress loudly (a build error) instead of
  * silently shipping ~1.3MB of extra JS again.
+ *
+ * lib/lessons.ts itself has grown to ~2MB of source. Dynamic-importing that
+ * whole module just to read one lesson (or the metadata list) meant every
+ * cold server instance paid a multi-hundred-ms parse cost on the very first
+ * request it served - felt like the page "wouldn't load" on a slow
+ * connection. scripts/generate-lesson-data.mjs pre-splits it into one JSON
+ * file per lesson plus a small `_index.json` under lib/lessons-data/, which
+ * the hot paths below (single lesson, metadata list, next/prev) read
+ * directly instead. loadLessons() still dynamic-imports the full module as
+ * a fallback for anything not covered by the generated data, and for the
+ * one genuinely bulk caller (the admin lesson-sync route).
  */
 
 // Cache for loaded lessons to avoid repeated imports
 let lessonsCache: Lesson[] | null = null;
+let indexCache: LessonMeta[] | null = null;
+
+const lessonsDataDir = path.join(process.cwd(), "lib", "lessons-data");
 
 /**
  * Load all lessons (cached after first load)
@@ -31,13 +47,29 @@ export async function loadLessons(): Promise<Lesson[]> {
   return lessons;
 }
 
+async function loadIndex(): Promise<LessonMeta[] | null> {
+  if (indexCache) return indexCache;
+  try {
+    const raw = await readFile(path.join(lessonsDataDir, "_index.json"), "utf8");
+    indexCache = JSON.parse(raw) as LessonMeta[];
+    return indexCache;
+  } catch {
+    return null; // generated data missing/stale - callers fall back to loadLessons()
+  }
+}
+
 /**
  * Get a single lesson by slug with minimal bundle impact
  * Only loads the lessons module when called
  */
 export async function getLessonBySlug(slug: string): Promise<Lesson | undefined> {
-  const lessons = await loadLessons();
-  return lessons.find((l) => l.slug === slug);
+  try {
+    const raw = await readFile(path.join(lessonsDataDir, `${slug}.json`), "utf8");
+    return JSON.parse(raw) as Lesson;
+  } catch {
+    const lessons = await loadLessons();
+    return lessons.find((l) => l.slug === slug);
+  }
 }
 
 /**
@@ -53,6 +85,9 @@ export async function getLessonById(id: number): Promise<Lesson | undefined> {
  * This is the most efficient way to load lesson data for listings
  */
 export async function getLessonsMeta(): Promise<LessonMeta[]> {
+  const index = await loadIndex();
+  if (index) return index;
+
   const lessons = await loadLessons();
   return lessons.map((l) => ({
     id: l.id,
@@ -88,6 +123,12 @@ export async function getLessonsByTrack(track: "personal" | "professional" | "bo
  * Get next lesson by ID
  */
 export async function getNextLesson(currentId: number): Promise<NextLessonMeta | undefined> {
+  const index = await loadIndex();
+  if (index) {
+    const next = index.find((l) => l.id === currentId + 1);
+    return next ? { id: next.id, slug: next.slug, title: next.title } : undefined;
+  }
+
   const lessons = await loadLessons();
   const next = lessons.find((l) => l.id === currentId + 1);
   if (!next) return undefined;
@@ -103,6 +144,12 @@ export async function getNextLesson(currentId: number): Promise<NextLessonMeta |
  * Get previous lesson by ID
  */
 export async function getPreviousLesson(currentId: number): Promise<NextLessonMeta | undefined> {
+  const index = await loadIndex();
+  if (index) {
+    const prev = index.find((l) => l.id === currentId - 1);
+    return prev ? { id: prev.id, slug: prev.slug, title: prev.title } : undefined;
+  }
+
   const lessons = await loadLessons();
   const prev = lessons.find((l) => l.id === currentId - 1);
   if (!prev) return undefined;
