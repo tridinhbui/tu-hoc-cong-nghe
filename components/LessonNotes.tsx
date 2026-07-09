@@ -47,13 +47,16 @@ export default function LessonNotes({ lessonId, lessonSlug }: LessonNotesProps) 
       const supabase = createClient();
       const { data: { user } } = await supabase.auth.getUser();
 
-      if (user) {
-        const newNote = await createNote(user.id, lessonId, lessonSlug, noteContent);
-        setNotes([newNote, ...notes]);
-        setNoteContent("");
-        setIsEditing(false);
-        toast.success("Đã lưu ghi chú");
+      if (!user) {
+        toast.error("Bạn cần đăng nhập để lưu ghi chú.");
+        return;
       }
+
+      const newNote = await createNote(user.id, lessonId, lessonSlug, noteContent);
+      setNotes([newNote, ...notes]);
+      setNoteContent("");
+      setIsEditing(false);
+      toast.success("Đã lưu ghi chú");
     } catch (error) {
       console.error("Error creating note:", error);
       toast.error("Không thể lưu ghi chú. Vui lòng thử lại.");
