@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
 interface ReadingProgressProps {
@@ -9,20 +9,46 @@ interface ReadingProgressProps {
 }
 
 const CHECKPOINTS = [25, 50, 75, 100];
+const AUTO_HIDE_MS = 1800;
+const DRAG_DISMISS_PX = 30;
 
 export default function ReadingProgress({ progress, onMilestone }: ReadingProgressProps) {
   const [celebratingMilestone, setCelebratingMilestone] = useState<number | null>(null);
   const [isCollapsed, setIsCollapsed] = useState(true);
-  const [prevProgress, setPrevProgress] = useState(progress);
   const previousMilestoneRef = useRef(0);
+  const flashedRef = useRef<Set<number>>(new Set());
+  const hideTimerRef = useRef<number | null>(null);
+  const dragStartXRef = useRef<number | null>(null);
 
-  // Auto-collapse when not near milestones (within 5% of a checkpoint).
-  // Adjusted during render (not in an effect) to avoid an extra render pass -
-  // see https://react.dev/learn/you-might-not-need-an-effect#adjusting-some-state-when-a-prop-changes
-  if (progress !== prevProgress) {
-    setPrevProgress(progress);
-    setIsCollapsed(!CHECKPOINTS.some((cp) => Math.abs(progress - cp) <= 5));
-  }
+  const clearHideTimer = useCallback(() => {
+    if (hideTimerRef.current) {
+      window.clearTimeout(hideTimerRef.current);
+      hideTimerRef.current = null;
+    }
+  }, []);
+
+  // Expand for a short moment, then auto-hide so the track never lingers
+  // over the article text while someone is trying to read.
+  const flashOpen = useCallback(() => {
+    clearHideTimer();
+    setIsCollapsed(false);
+    hideTimerRef.current = window.setTimeout(() => {
+      setIsCollapsed(true);
+      hideTimerRef.current = null;
+    }, AUTO_HIDE_MS);
+  }, [clearHideTimer]);
+
+  useEffect(() => clearHideTimer, [clearHideTimer]);
+
+  // Flash open once each time reading crosses near a checkpoint (25/50/75/100%),
+  // instead of staying expanded for the whole +-5% window around it.
+  useEffect(() => {
+    const hit = CHECKPOINTS.find((cp) => Math.abs(progress - cp) <= 2 && !flashedRef.current.has(cp));
+    if (hit) {
+      flashedRef.current.add(hit);
+      flashOpen();
+    }
+  }, [progress, flashOpen]);
 
   useEffect(() => {
     const currentMilestone = CHECKPOINTS.find((m) => progress >= m && m > previousMilestoneRef.current);
@@ -55,20 +81,37 @@ export default function ReadingProgress({ progress, onMilestone }: ReadingProgre
       const target = e.target as HTMLElement;
       const progressContainer = target.closest('[data-progress-bar]');
       if (!progressContainer && !isCollapsed) {
+        clearHideTimer();
         setIsCollapsed(true);
       }
     };
 
     document.addEventListener('click', handleClickOutside);
     return () => document.removeEventListener('click', handleClickOutside);
-  }, [isCollapsed]);
+  }, [isCollapsed, clearHideTimer]);
+
+  // Let people swipe/drag the open track to the left to dismiss it manually.
+  function handleDragStart(e: React.PointerEvent) {
+    dragStartXRef.current = e.clientX;
+  }
+  function handleDragMove(e: React.PointerEvent) {
+    if (dragStartXRef.current === null) return;
+    if (e.clientX - dragStartXRef.current < -DRAG_DISMISS_PX) {
+      dragStartXRef.current = null;
+      clearHideTimer();
+      setIsCollapsed(true);
+    }
+  }
+  function handleDragEnd() {
+    dragStartXRef.current = null;
+  }
 
   return (
     <div data-progress-bar className={`flex flex-col items-center gap-3 transition-opacity duration-150 ${isNearMilestone ? "opacity-100" : "opacity-30"}`}>
       {/* Collapsed state - small indicator */}
       {isCollapsed ? (
         <button
-          onClick={() => setIsCollapsed(false)}
+          onClick={() => flashOpen()}
           className="relative w-6 h-20 bg-stone-100 rounded-full overflow-hidden border-2 border-stone-300 hover:border-stone-400 transition-colors cursor-pointer group"
           title="Mở thanh tiến độ"
         >
@@ -92,7 +135,13 @@ export default function ReadingProgress({ progress, onMilestone }: ReadingProgre
           </div>
         </button>
       ) : (
-        <>
+        <div
+          className="flex flex-col items-center gap-3 touch-none"
+          onPointerDown={handleDragStart}
+          onPointerMove={handleDragMove}
+          onPointerUp={handleDragEnd}
+          onPointerCancel={handleDragEnd}
+        >
           {/* Finish flag at top */}
           <div className={`text-xl transition-opacity ${progress >= 100 ? "opacity-100" : "opacity-30"}`}>
             🏁
@@ -154,13 +203,16 @@ export default function ReadingProgress({ progress, onMilestone }: ReadingProgre
 
           {/* Collapse button */}
           <button
-            onClick={() => setIsCollapsed(true)}
+            onClick={() => {
+              clearHideTimer();
+              setIsCollapsed(true);
+            }}
             className="text-[10px] text-stone-500 hover:text-stone-900 font-bold uppercase tracking-wide transition-colors"
             title="Đóng thanh tiến độ"
           >
             Đóng
           </button>
-        </>
+        </div>
       )}
 
       {/* Celebration animation for milestones */}
