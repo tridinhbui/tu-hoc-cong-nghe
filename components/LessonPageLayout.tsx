@@ -74,14 +74,10 @@ export default function LessonPageLayout({ lesson, quiz, children }: Props) {
   const [readPct, setReadPct]     = useState(0);
   const [userId, setUserId]       = useState<string | null>(null);
   const [newBadge, setNewBadge]   = useState<BadgeDefinition | null>(null);
-  const [fontScale, setFontScale] = useState(1.125);
+  const [fontScale, setFontScale] = useState(() => (typeof window === "undefined" ? 1.125 : loadFontScale()));
   const articleRef = useRef<HTMLElement>(null);
   const maxReachedRef = useRef(0);
   const savedMilestonesRef = useRef<Set<number>>(new Set());
-
-  useEffect(() => {
-    setFontScale(loadFontScale());
-  }, []);
 
   const durationMin = parseInt(lesson.duration) || 5;
 
@@ -104,7 +100,6 @@ export default function LessonPageLayout({ lesson, quiz, children }: Props) {
 
   useEffect(() => {
     let saveTimer: ReturnType<typeof setTimeout> | null = null;
-    let idleTimer: ReturnType<typeof setTimeout> | null = null;
 
     function onScroll() {
       // Tied to actual page scroll position (not the article's bounding box),

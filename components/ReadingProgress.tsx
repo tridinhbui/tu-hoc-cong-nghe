@@ -13,7 +13,16 @@ const CHECKPOINTS = [25, 50, 75, 100];
 export default function ReadingProgress({ progress, onMilestone }: ReadingProgressProps) {
   const [celebratingMilestone, setCelebratingMilestone] = useState<number | null>(null);
   const [isCollapsed, setIsCollapsed] = useState(true);
+  const [prevProgress, setPrevProgress] = useState(progress);
   const previousMilestoneRef = useRef(0);
+
+  // Auto-collapse when not near milestones (within 5% of a checkpoint).
+  // Adjusted during render (not in an effect) to avoid an extra render pass -
+  // see https://react.dev/learn/you-might-not-need-an-effect#adjusting-some-state-when-a-prop-changes
+  if (progress !== prevProgress) {
+    setPrevProgress(progress);
+    setIsCollapsed(!CHECKPOINTS.some((cp) => Math.abs(progress - cp) <= 5));
+  }
 
   useEffect(() => {
     const currentMilestone = CHECKPOINTS.find((m) => progress >= m && m > previousMilestoneRef.current);
@@ -36,12 +45,6 @@ export default function ReadingProgress({ progress, onMilestone }: ReadingProgre
     const timer = window.setTimeout(() => setCelebratingMilestone(null), 3000);
     return () => window.clearTimeout(timer);
   }, [celebratingMilestone]);
-
-  // Auto-collapse when not near milestones (within 5% of a checkpoint)
-  useEffect(() => {
-    const nearMilestone = CHECKPOINTS.some(cp => Math.abs(progress - cp) <= 5);
-    setIsCollapsed(!nearMilestone);
-  }, [progress]);
 
   // Calculate brightness based on proximity to milestones
   const isNearMilestone = CHECKPOINTS.some(cp => Math.abs(progress - cp) <= 5);

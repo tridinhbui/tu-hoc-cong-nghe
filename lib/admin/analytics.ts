@@ -92,7 +92,7 @@ export async function getSystemAnalytics(): Promise<SystemAnalytics> {
       avgStudyTimeMinutes: Math.round(avgStudyTimeMinutes),
       completionByStage: [],
       topicPerformance: [],
-      dailyActiveUsers: dailyActiveUsers.map((d: any) => ({
+      dailyActiveUsers: dailyActiveUsers.map((d: { date?: string; count?: number }) => ({
         date: d.date || "N/A",
         count: d.count || 0,
       })),
