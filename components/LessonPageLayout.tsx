@@ -72,7 +72,6 @@ export default function LessonPageLayout({ lesson, quiz, children }: Props) {
   const [results, setResults]     = useState<boolean[]>(new Array(quiz.length).fill(false));
   const [activeQ, setActiveQ]     = useState(0);
   const [readPct, setReadPct]     = useState(0);
-  const [isScrolling, setIsScrolling] = useState(false);
   const [userId, setUserId]       = useState<string | null>(null);
   const [newBadge, setNewBadge]   = useState<BadgeDefinition | null>(null);
   const [fontScale, setFontScale] = useState(1.125);
@@ -119,9 +118,8 @@ export default function LessonPageLayout({ lesson, quiz, children }: Props) {
 
       // Only fully visible while actively scrolling; fades to a faint sliver
       // when idle so it doesn't sit there as a permanent visual distraction.
-      setIsScrolling(true);
-      if (idleTimer) clearTimeout(idleTimer);
-      idleTimer = setTimeout(() => setIsScrolling(false), 1200);
+      // Note: isScrolling state is no longer used for opacity control - ReadingProgress
+      // component handles its own brightness based on proximity to milestones.
 
       if (pct > maxReachedRef.current) {
         maxReachedRef.current = pct;
@@ -146,7 +144,6 @@ export default function LessonPageLayout({ lesson, quiz, children }: Props) {
     return () => {
       window.removeEventListener("scroll", onScroll);
       if (saveTimer) clearTimeout(saveTimer);
-      if (idleTimer) clearTimeout(idleTimer);
     };
   }, [userId, lesson.id]);
 
