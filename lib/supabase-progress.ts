@@ -1,3 +1,4 @@
+import type { SupabaseClient } from "@supabase/supabase-js";
 import { createClient } from "@/lib/supabase";
 import { handleSupabaseError } from "@/lib/errors";
 
@@ -48,8 +49,16 @@ export async function getUserProgress(userId: string) {
 }
 
 // Lấy các bài đã hoàn thành
-export async function getCompletedLessons(userId: string) {
-  const supabase = createClient();
+//
+// Accepts an optional pre-authenticated client for server-side callers
+// (Server Actions/Components). createClient() from lib/supabase.ts builds a
+// browser client with no cookie jar to read a session from - calling this
+// with the default client from a Server Action silently queries as an
+// anonymous user, and RLS then returns zero rows regardless of how much
+// progress actually exists. Server callers must pass a client built with
+// lib/supabase-server.ts's createServerSupabaseClient() instead.
+export async function getCompletedLessons(userId: string, client?: SupabaseClient) {
+  const supabase = client ?? createClient();
   const { data, error } = await supabase
     .from("user_progress")
     .select("lesson_id")
@@ -135,8 +144,8 @@ export async function updateQuizScore(userId: string, lessonId: number, score: n
 
 // Tổng số phút học thực tế (tổng time_spent_seconds đã ghi nhận), dùng cho
 // lời chào tóm tắt của Tài Tài trên dashboard.
-export async function getTotalTimeSpentMinutes(userId: string): Promise<number> {
-  const supabase = createClient();
+export async function getTotalTimeSpentMinutes(userId: string, client?: SupabaseClient): Promise<number> {
+  const supabase = client ?? createClient();
   const { data, error } = await supabase
     .from("user_progress")
     .select("time_spent_seconds")

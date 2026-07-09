@@ -199,7 +199,22 @@ export default function LessonPageLayout({ lesson, quiz, children }: Props) {
   }
 
   async function completeLessonInSupabase(finalResults: boolean[]) {
-    if (!userId) return;
+    // Don't trust the `userId` state here - it's only set once the mount
+    // effect's supabase.auth.getUser() round trip resolves, and a fast
+    // reader can finish the quiz before that happens. Falling back to
+    // state left this silently no-op-ing: the quiz still showed as done
+    // locally (markLessonComplete above writes to localStorage regardless),
+    // but nothing was ever saved to Supabase, so the dashboard's "next
+    // lesson" greeting kept saying the lesson was never started. Resolve
+    // the current user directly instead of relying on state timing.
+    let uid = userId;
+    if (!uid) {
+      const supabase = createClient();
+      const { data: { user } } = await supabase.auth.getUser();
+      if (!user) return;
+      uid = user.id;
+      setUserId(uid);
+    }
 
     const finalScore =
       quiz.length > 0
@@ -207,7 +222,7 @@ export default function LessonPageLayout({ lesson, quiz, children }: Props) {
         : 100;
 
     try {
-      await markLessonCompleteSupabase(userId, lesson.id, finalScore, durationMin * 60);
+      await markLessonCompleteSupabase(uid, lesson.id, finalScore, durationMin * 60);
       toast.success("Đã lưu tiến độ bài học!");
     } catch (error) {
       console.error("Error saving lesson progress:", error);
@@ -216,16 +231,16 @@ export default function LessonPageLayout({ lesson, quiz, children }: Props) {
     }
 
     try {
-      const completed = await getCompletedLessons(userId);
+      const completed = await getCompletedLessons(uid);
       const badgeKeys = getBadgesForLessonCount(completed.length);
-      const newlyAwarded = await awardBadges(userId, badgeKeys);
+      const newlyAwarded = await awardBadges(uid, badgeKeys);
 
       if (newlyAwarded.length > 0) {
         setNewBadge(BADGE_DEFINITIONS[newlyAwarded[0].badge_key]);
       }
 
       if (finalScore === 100) {
-        const perfectBadges = await awardBadges(userId, ["perfect_quiz"]);
+        const perfectBadges = await awardBadges(uid, ["perfect_quiz"]);
         if (perfectBadges.length > 0 && newlyAwarded.length === 0) {
           setNewBadge(BADGE_DEFINITIONS[perfectBadges[0].badge_key]);
         }

@@ -2,6 +2,7 @@
 
 import { getResumeLesson } from "@/lib/resume-learning";
 import { getCompletedLessons, getTotalTimeSpentMinutes } from "@/lib/supabase-progress";
+import { createServerSupabaseClient } from "@/lib/supabase-server";
 
 // Wraps lib/resume-learning.ts as a Server Action. That module reads the
 // full lesson dataset (lib/lessons.ts, ~1.3MB of lesson content) via
@@ -12,8 +13,18 @@ import { getCompletedLessons, getTotalTimeSpentMinutes } from "@/lib/supabase-pr
 // separate ~1.3MB chunk containing every lesson's content, shipped on every
 // /dashboard load). A Server Action keeps that data server-only and returns
 // only the small resolved lesson object to the client.
+//
+// Every Supabase call in this file must use createServerSupabaseClient()
+// (reads the session from request cookies), never the plain createClient()
+// from lib/supabase.ts. That one builds a browser client with no cookie jar
+// - calling it here queried as an anonymous user, so RLS silently returned
+// zero rows no matter how much progress the account actually had. That's
+// what caused the dashboard to say "you haven't completed any lesson" for
+// users who genuinely had (reported: completed lessons, but going back to
+// the dashboard showed no progress and no way to tell where to continue).
 export async function getResumeLessonAction(userId: string, track: "personal" | "professional") {
-  return getResumeLesson(userId, track);
+  const supabase = await createServerSupabaseClient();
+  return getResumeLesson(userId, track, supabase);
 }
 
 // Feeds the Tài Tài greeting card on the dashboard: the next lesson to
@@ -21,10 +32,11 @@ export async function getResumeLessonAction(userId: string, track: "personal" | 
 // lesson has been completed at all) for the greeting text to actually
 // reflect the learner's real progress instead of being a generic label.
 export async function getDashboardGreetingAction(userId: string, track: "personal" | "professional") {
+  const supabase = await createServerSupabaseClient();
   const [nextLesson, completedLessons, totalMinutes] = await Promise.all([
-    getResumeLesson(userId, track),
-    getCompletedLessons(userId),
-    getTotalTimeSpentMinutes(userId),
+    getResumeLesson(userId, track, supabase),
+    getCompletedLessons(userId, supabase),
+    getTotalTimeSpentMinutes(userId, supabase),
   ]);
 
   return {
