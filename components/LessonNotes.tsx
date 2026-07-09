@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { Edit2, Trash2, Plus, X } from "lucide-react";
+import { toast } from "sonner";
 import { getLessonNotes, createNote, updateNote, deleteNote } from "@/lib/supabase-notes";
 import { createClient } from "@/lib/supabase";
 import type { LessonNote } from "@/lib/supabase-notes";
@@ -45,15 +46,17 @@ export default function LessonNotes({ lessonId, lessonSlug }: LessonNotesProps) 
     try {
       const supabase = createClient();
       const { data: { user } } = await supabase.auth.getUser();
-      
+
       if (user) {
         const newNote = await createNote(user.id, lessonId, lessonSlug, noteContent);
         setNotes([newNote, ...notes]);
         setNoteContent("");
         setIsEditing(false);
+        toast.success("Đã lưu ghi chú");
       }
     } catch (error) {
       console.error("Error creating note:", error);
+      toast.error("Không thể lưu ghi chú. Vui lòng thử lại.");
     }
   };
 
@@ -65,8 +68,10 @@ export default function LessonNotes({ lessonId, lessonSlug }: LessonNotesProps) 
       setNotes(notes.map(note => note.id === noteId ? updatedNote : note));
       setEditingNoteId(null);
       setNoteContent("");
+      toast.success("Đã cập nhật ghi chú");
     } catch (error) {
       console.error("Error updating note:", error);
+      toast.error("Không thể cập nhật ghi chú. Vui lòng thử lại.");
     }
   };
 
@@ -74,8 +79,10 @@ export default function LessonNotes({ lessonId, lessonSlug }: LessonNotesProps) 
     try {
       await deleteNote(noteId);
       setNotes(notes.filter(note => note.id !== noteId));
+      toast.success("Đã xóa ghi chú");
     } catch (error) {
       console.error("Error deleting note:", error);
+      toast.error("Không thể xóa ghi chú. Vui lòng thử lại.");
     }
   };
 

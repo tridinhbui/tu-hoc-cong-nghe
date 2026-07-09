@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect, useRef } from "react";
 import Link from "next/link";
+import { toast } from "sonner";
 import { markLessonComplete } from "@/lib/progress";
 import FloatingContact from "@/components/FloatingChatbot";
 import StageTipsBanner from "@/components/StageTipsBanner";
@@ -193,21 +194,33 @@ export default function LessonPageLayout({ lesson, quiz, children }: Props) {
       quiz.length > 0
         ? Math.round((finalResults.filter(Boolean).length / quiz.length) * 100)
         : 100;
-    await markLessonCompleteSupabase(userId, lesson.id, finalScore, durationMin * 60);
 
-    const completed = await getCompletedLessons(userId);
-    const badgeKeys = getBadgesForLessonCount(completed.length);
-    const newlyAwarded = await awardBadges(userId, badgeKeys);
-
-    if (newlyAwarded.length > 0) {
-      setNewBadge(BADGE_DEFINITIONS[newlyAwarded[0].badge_key]);
+    try {
+      await markLessonCompleteSupabase(userId, lesson.id, finalScore, durationMin * 60);
+      toast.success("Đã lưu tiến độ bài học!");
+    } catch (error) {
+      console.error("Error saving lesson progress:", error);
+      toast.error("Không thể lưu tiến độ. Vui lòng thử lại.");
+      return;
     }
 
-    if (finalScore === 100) {
-      const perfectBadges = await awardBadges(userId, ["perfect_quiz"]);
-      if (perfectBadges.length > 0 && newlyAwarded.length === 0) {
-        setNewBadge(BADGE_DEFINITIONS[perfectBadges[0].badge_key]);
+    try {
+      const completed = await getCompletedLessons(userId);
+      const badgeKeys = getBadgesForLessonCount(completed.length);
+      const newlyAwarded = await awardBadges(userId, badgeKeys);
+
+      if (newlyAwarded.length > 0) {
+        setNewBadge(BADGE_DEFINITIONS[newlyAwarded[0].badge_key]);
       }
+
+      if (finalScore === 100) {
+        const perfectBadges = await awardBadges(userId, ["perfect_quiz"]);
+        if (perfectBadges.length > 0 && newlyAwarded.length === 0) {
+          setNewBadge(BADGE_DEFINITIONS[perfectBadges[0].badge_key]);
+        }
+      }
+    } catch (error) {
+      console.error("Error fetching completed lessons or awarding badges:", error);
     }
   }
 
