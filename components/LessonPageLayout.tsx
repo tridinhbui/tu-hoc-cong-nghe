@@ -12,7 +12,7 @@ import BookmarkButton from "@/components/BookmarkButton";
 import LessonNotes from "@/components/LessonNotes";
 import { createClient } from "@/lib/supabase";
 import { markLessonComplete as markLessonCompleteSupabase } from "@/lib/supabase-progress";
-import { getCompletedLessons } from "@/lib/supabase-progress";
+import { getCompletedLessons, getLessonProgress } from "@/lib/supabase-progress";
 import { awardBadges, awardBadge } from "@/lib/supabase-badges";
 import { getBadgesForLessonCount, getBadgeForMilestone } from "@/lib/badges";
 import { BADGE_DEFINITIONS, type BadgeDefinition } from "@/lib/badges";
@@ -95,8 +95,27 @@ export default function LessonPageLayout({ lesson, quiz, children }: Props) {
         if (existing.milestone_75) savedMilestonesRef.current.add(75);
         if (existing.milestone_100) savedMilestonesRef.current.add(100);
       }
+
+      // If this lesson was already completed in a previous visit, the quiz's
+      // per-question state (submitted/results) only lives in this component's
+      // local state, so it starts empty on every fresh mount. Without this,
+      // the "next lesson" completion card - and its unlock button - stays
+      // hidden until the user redoes the whole quiz. Restore it from the
+      // persisted score so revisiting a finished lesson shows it right away.
+      if (quiz.length > 0) {
+        try {
+          const progress = await getLessonProgress(user.id, lesson.id);
+          if (progress?.completed) {
+            const quizScore = Math.min(progress.quiz_score ?? quiz.length, quiz.length);
+            setSubmitted(new Array(quiz.length).fill(true));
+            setResults(quiz.map((_, i) => i < quizScore));
+          }
+        } catch (error) {
+          console.error("Error fetching lesson progress:", error);
+        }
+      }
     });
-  }, [lesson.id]);
+  }, [lesson.id, quiz.length]);
 
   useEffect(() => {
     let saveTimer: ReturnType<typeof setTimeout> | null = null;
