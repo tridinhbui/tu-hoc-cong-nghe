@@ -228,8 +228,10 @@ export default function LessonPageLayout({ lesson, quiz, children }: Props) {
 
   return (
     <div className="min-h-screen bg-[#FAFAFC] dark:bg-stone-950 font-sans antialiased text-[#1A1A1E] dark:text-stone-100">
-      {/* Reading Progress Bar (Fixed Left, race track style) - bright near milestones, dim otherwise */}
-      <div className="fixed left-6 top-1/2 -translate-y-1/2 z-10 hidden lg:block">
+      {/* Reading Progress Bar (Fixed Left, race track style) - bright near milestones, dim otherwise.
+          Only shown from 2xl up: below that the centered max-w-7xl article's left edge sits too
+          close to the viewport edge, and the fixed bar ends up overlapping lesson text. */}
+      <div className="fixed left-4 top-1/2 -translate-y-1/2 z-10 hidden 2xl:block">
         <ReadingProgress progress={readPct} onMilestone={handleMilestone} />
       </div>
 
