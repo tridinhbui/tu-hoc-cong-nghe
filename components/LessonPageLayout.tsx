@@ -195,7 +195,10 @@ export default function LessonPageLayout({ lesson, quiz, children }: Props) {
       finalResults[qi] = ok;
       completeLessonInSupabase(finalResults);
     }
-    if (qi < quiz.length - 1) setTimeout(() => setActiveQ(qi + 1), 600);
+    // No auto-advance here - it used to jump to the next question 600ms
+    // after answering, which didn't give people time to read the
+    // explanation before it vanished. The "Câu tiếp theo" button below lets
+    // them move on whenever they're ready instead.
   }
 
   async function completeLessonInSupabase(finalResults: boolean[]) {
