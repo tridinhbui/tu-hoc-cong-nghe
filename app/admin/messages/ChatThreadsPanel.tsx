@@ -36,11 +36,17 @@ export default function ChatThreadsPanel({ threads }: { threads: ChatThread[] })
     setSending(true);
     try {
       await sendAdminChatReplyAction(activeUserId, reply.trim());
-      setMessages((prev) => [
-        ...prev,
-        { id: Date.now(), user_id: activeUserId, sender: "admin", content: reply.trim(), read: true, created_at: new Date().toISOString() },
-      ]);
       setReply("");
+      // Re-fetch from the server instead of optimistically appending
+      // locally: if this send lands while openThread()'s own fetch for this
+      // same thread is still in flight (very common for the very first
+      // reply in a thread, sent right after opening it), that fetch's
+      // setMessages(msgs) and this optimistic append raced each other,
+      // resulting in the new message showing up twice. Refetching after the
+      // insert (once, sequentially, no longer racing the initial load)
+      // keeps a single source of truth.
+      const msgs = await getChatThreadMessagesAction(activeUserId);
+      setMessages(msgs);
     } catch (err) {
       toast.error(err instanceof Error ? err.message : "Không gửi được tin nhắn");
     }

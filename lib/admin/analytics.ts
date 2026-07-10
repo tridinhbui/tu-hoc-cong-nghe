@@ -69,12 +69,20 @@ export async function getSystemAnalytics(): Promise<SystemAnalytics> {
 
     const avgLessonsPerUser = totalUsers ? totalLessonsCompleted / totalUsers : 0;
 
-    // Daily active users (last 7 days)
-    const { data: dailyStats, error: dailyError } = await admin
-      .rpc("get_daily_active_users", { days: 7 });
-
-    if (dailyError) throw dailyError;
-    const dailyActiveUsers = dailyStats || [];
+    // Daily active users (last 7 days). This depends on the
+    // get_daily_active_users RPC (supabase/migrations/20260709_daily_active_users.sql)
+    // - handled independently of the rest of the dashboard's stats so a
+    // missing/failed migration on a given environment only blanks out this
+    // one chart instead of throwing and zeroing out every other stat on the
+    // page (total users, quiz scores, etc. don't depend on it at all).
+    let dailyStats: { date?: string; count?: number }[] = [];
+    try {
+      const { data, error: dailyError } = await admin.rpc("get_daily_active_users", { days: 7 });
+      if (dailyError) throw dailyError;
+      dailyStats = data || [];
+    } catch (error) {
+      console.error("Error fetching daily active users:", error);
+    }
 
     // Simple retention (placeholder - would need more complex query)
     const userRetention = [
@@ -92,7 +100,7 @@ export async function getSystemAnalytics(): Promise<SystemAnalytics> {
       avgStudyTimeMinutes: Math.round(avgStudyTimeMinutes),
       completionByStage: [],
       topicPerformance: [],
-      dailyActiveUsers: dailyActiveUsers.map((d: { date?: string; count?: number }) => ({
+      dailyActiveUsers: dailyStats.map((d) => ({
         date: d.date || "N/A",
         count: d.count || 0,
       })),
