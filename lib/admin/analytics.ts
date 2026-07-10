@@ -42,15 +42,23 @@ export async function getSystemAnalytics(): Promise<SystemAnalytics> {
     if (usersError) throw usersError;
     const totalUsers = users?.length || 0;
 
-    // Active users this week
+    // Active users this week. `user_stats.last_lesson_date` (used here
+    // previously) is never actually written by any code path - the only
+    // function that upserts user_stats (recalculateUserStats in
+    // lib/supabase-user.ts) isn't called from anywhere in the app - so that
+    // query always returned zero rows regardless of real activity. Count
+    // distinct users with a completed lesson in the last 7 days from
+    // user_progress directly instead, the same source of truth the rest of
+    // this page's stats already use.
     const weekAgo = new Date(Date.now() - 7 * 24 * 60 * 60 * 1000).toISOString();
     const { data: activeUsers, error: activeError } = await admin
-      .from("user_stats")
-      .select("user_id", { count: "exact" })
-      .gte("last_lesson_date", weekAgo);
+      .from("user_progress")
+      .select("user_id")
+      .eq("completed", true)
+      .gte("completed_at", weekAgo);
 
     if (activeError) throw activeError;
-    const activeUsersThisWeek = activeUsers?.length || 0;
+    const activeUsersThisWeek = new Set((activeUsers ?? []).map((r) => r.user_id)).size;
 
     // Lessons completed
     const { data: progress, error: progressError } = await admin

@@ -13,6 +13,8 @@ import LessonNotes from "@/components/LessonNotes";
 import { createClient } from "@/lib/supabase";
 import { markLessonComplete as markLessonCompleteSupabase } from "@/lib/supabase-progress";
 import { getCompletedLessons, getLessonProgress } from "@/lib/supabase-progress";
+import { recalculateUserStats } from "@/lib/supabase-user";
+import { updateStreak } from "@/lib/supabase-streak";
 import { awardBadges, awardBadge } from "@/lib/supabase-badges";
 import { getBadgesForLessonCount, getBadgeForMilestone } from "@/lib/badges";
 import { BADGE_DEFINITIONS, type BadgeDefinition } from "@/lib/badges";
@@ -226,6 +228,11 @@ export default function LessonPageLayout({ lesson, quiz, children }: Props) {
 
     try {
       await markLessonCompleteSupabase(uid, lesson.id, finalScore, durationMin * 60);
+      // user_stats (XP/level) is only ever written by recalculateUserStats,
+      // which nothing else calls - without this the dashboard keeps
+      // showing 0 XP/level even once progress is saving correctly.
+      await recalculateUserStats(uid);
+      await updateStreak(uid);
       toast.success("Đã lưu tiến độ bài học!");
     } catch (error) {
       console.error("Error saving lesson progress:", error);
