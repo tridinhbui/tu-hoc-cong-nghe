@@ -1,11 +1,12 @@
 "use client";
 
 import { useState } from "react";
-import { FileText, Download, FileSpreadsheet, FileImage, Archive } from "lucide-react";
+import { FileText, Download, FileSpreadsheet, FileImage, Archive, Plus } from "lucide-react";
 import { createClient } from "@/lib/supabase";
 import { DOCUMENT_CATEGORIES } from "@/lib/document-categories";
 import EmptyState from "@/components/admin/EmptyState";
 import Modal from "@/components/admin/Modal";
+import CommunityUploadModal from "./CommunityUploadModal";
 import type { PublicDocument } from "./page";
 
 function formatBytes(bytes: number) {
@@ -18,6 +19,16 @@ function categoryLabel(value: string) {
   return DOCUMENT_CATEGORIES.find((c) => c.value === value)?.label ?? value;
 }
 
+// A non-approved row can only ever belong to the viewer themself (see the
+// documents select RLS policy in supabase/migrations/20260709_community_documents.sql),
+// so this badge always means "your own pending/rejected submission", never
+// someone else's.
+function statusBadge(status: PublicDocument["status"]) {
+  if (status === "pending") return { label: "Chờ duyệt", className: "bg-amber-100 dark:bg-amber-950/60 text-amber-700 dark:text-amber-400" };
+  if (status === "rejected") return { label: "Đã từ chối", className: "bg-rose-100 dark:bg-rose-950/60 text-rose-700 dark:text-rose-400" };
+  return null;
+}
+
 function iconFor(fileName: string) {
   const ext = fileName.split(".").pop()?.toLowerCase();
   if (ext === "xlsx" || ext === "xls") return FileSpreadsheet;
@@ -28,9 +39,10 @@ function iconFor(fileName: string) {
 
 const CATEGORY_FILTERS = [{ value: "all", label: "Tất cả" }, ...DOCUMENT_CATEGORIES];
 
-export default function DocumentsList({ documents }: { documents: PublicDocument[] }) {
+export default function DocumentsList({ documents, currentUserId }: { documents: PublicDocument[]; currentUserId: string | null }) {
   const [filter, setFilter] = useState<string>("all");
   const [openDoc, setOpenDoc] = useState<PublicDocument | null>(null);
+  const [showUpload, setShowUpload] = useState(false);
   const supabase = createClient();
 
   const filtered = filter === "all" ? documents : documents.filter((d) => d.category === filter);
@@ -46,20 +58,29 @@ export default function DocumentsList({ documents }: { documents: PublicDocument
 
   return (
     <div>
-      <div className="flex gap-2 mb-6 flex-wrap">
-        {CATEGORY_FILTERS.map((c) => (
-          <button
-            key={c.value}
-            onClick={() => setFilter(c.value)}
-            className={`px-3 py-1.5 text-xs font-bold rounded-lg transition-colors ${
-              filter === c.value
-                ? "bg-stone-900 dark:bg-stone-100 text-white dark:text-stone-900"
-                : "bg-stone-100 dark:bg-stone-800 text-stone-600 dark:text-stone-400 hover:bg-stone-200 dark:hover:bg-stone-700"
-            }`}
-          >
-            {c.label}
-          </button>
-        ))}
+      <div className="flex items-center justify-between gap-3 mb-6 flex-wrap">
+        <div className="flex gap-2 flex-wrap">
+          {CATEGORY_FILTERS.map((c) => (
+            <button
+              key={c.value}
+              onClick={() => setFilter(c.value)}
+              className={`px-3 py-1.5 text-xs font-bold rounded-lg transition-colors ${
+                filter === c.value
+                  ? "bg-stone-900 dark:bg-stone-100 text-white dark:text-stone-900"
+                  : "bg-stone-100 dark:bg-stone-800 text-stone-600 dark:text-stone-400 hover:bg-stone-200 dark:hover:bg-stone-700"
+              }`}
+            >
+              {c.label}
+            </button>
+          ))}
+        </div>
+        <button
+          onClick={() => setShowUpload(true)}
+          className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg border-2 border-dashed border-stone-300 dark:border-stone-700 hover:border-stone-400 dark:hover:border-stone-600 text-xs font-bold text-stone-600 dark:text-stone-400 transition-colors flex-shrink-0"
+        >
+          <Plus className="w-3.5 h-3.5" />
+          Chia sẻ tài liệu của bạn
+        </button>
       </div>
 
       {filtered.length === 0 ? (
@@ -97,10 +118,15 @@ export default function DocumentsList({ documents }: { documents: PublicDocument
 
                 {/* Content */}
                 <div className="p-5">
-                  <div className="flex items-center gap-2 mb-2">
+                  <div className="flex items-center gap-2 mb-2 flex-wrap">
                     <span className="text-[11px] font-bold uppercase tracking-wide bg-stone-100 dark:bg-stone-800 text-stone-600 dark:text-stone-300 px-2.5 py-1 rounded-full">
                       {categoryLabel(doc.category)}
                     </span>
+                    {statusBadge(doc.status) && (
+                      <span className={`text-[11px] font-bold uppercase tracking-wide px-2.5 py-1 rounded-full ${statusBadge(doc.status)!.className}`}>
+                        {statusBadge(doc.status)!.label}
+                      </span>
+                    )}
                   </div>
 
                   <h3 className="text-lg font-bold text-stone-900 dark:text-stone-100 mb-2 line-clamp-2 group-hover:text-stone-700 dark:group-hover:text-stone-200 transition-colors">
@@ -152,7 +178,24 @@ export default function DocumentsList({ documents }: { documents: PublicDocument
               })()
             )}
 
-            <h3 className="text-xl font-bold text-stone-900 dark:text-stone-100">{openDoc.title}</h3>
+            <div className="flex items-center gap-2 flex-wrap">
+              <h3 className="text-xl font-bold text-stone-900 dark:text-stone-100">{openDoc.title}</h3>
+              {statusBadge(openDoc.status) && (
+                <span className={`text-[11px] font-bold uppercase tracking-wide px-2.5 py-1 rounded-full ${statusBadge(openDoc.status)!.className}`}>
+                  {statusBadge(openDoc.status)!.label}
+                </span>
+              )}
+            </div>
+            {openDoc.status === "pending" && (
+              <p className="text-xs text-amber-700 dark:text-amber-400 -mt-2">
+                Tài liệu này chỉ hiển thị cho bạn cho đến khi admin duyệt.
+              </p>
+            )}
+            {openDoc.status === "rejected" && (
+              <p className="text-xs text-rose-700 dark:text-rose-400 -mt-2">
+                Tài liệu này đã bị từ chối và không hiển thị công khai.
+              </p>
+            )}
 
             {openDoc.description && (
               <p className="text-sm text-stone-600 dark:text-stone-400 whitespace-pre-line leading-relaxed">
@@ -183,6 +226,12 @@ export default function DocumentsList({ documents }: { documents: PublicDocument
           </div>
         )}
       </Modal>
+
+      <CommunityUploadModal
+        open={showUpload}
+        onClose={() => setShowUpload(false)}
+        loggedIn={!!currentUserId}
+      />
     </div>
   );
 }

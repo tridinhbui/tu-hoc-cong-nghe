@@ -2,7 +2,7 @@
 
 import { revalidatePath } from "next/cache";
 import { requireAdmin } from "@/lib/admin-auth";
-import { uploadDocument, updateDocument, deleteDocument } from "@/lib/admin/documents";
+import { uploadDocument, updateDocument, deleteDocument, approveDocument, rejectDocument } from "@/lib/admin/documents";
 
 export async function uploadDocumentAction(formData: FormData) {
   const session = await requireAdmin();
@@ -60,6 +60,20 @@ export async function updateDocumentAction(id: number, formData: FormData) {
 export async function deleteDocumentAction(id: number) {
   await requireAdmin();
   await deleteDocument(id);
+  revalidatePath("/admin/documents");
+  revalidatePath("/tai-lieu");
+}
+
+export async function approveDocumentAction(id: number) {
+  await requireAdmin();
+  await approveDocument(id);
+  revalidatePath("/admin/documents");
+  revalidatePath("/tai-lieu");
+}
+
+export async function rejectDocumentAction(id: number) {
+  await requireAdmin();
+  await rejectDocument(id);
   revalidatePath("/admin/documents");
   revalidatePath("/tai-lieu");
 }

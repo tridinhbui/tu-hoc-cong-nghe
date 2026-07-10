@@ -5,6 +5,8 @@ import DocumentsList from "./DocumentsList";
 
 export const dynamic = "force-dynamic";
 
+export type DocumentStatus = "pending" | "approved" | "rejected";
+
 export interface PublicDocument {
   id: number;
   title: string;
@@ -16,32 +18,49 @@ export interface PublicDocument {
   download_count: number;
   created_at: string;
   image_url: string | null;
+  status: DocumentStatus;
+  uploaded_by: string | null;
 }
+
+const BASE_COLUMNS = "id, title, description, category, file_url, file_name, file_size, download_count, created_at";
 
 export default async function DocumentsGiveawayPage() {
   const supabase = await createServerSupabaseClient();
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
 
-  // image_url was added by a later migration that may not have been applied
-  // to every environment yet - select it optimistically and fall back to a
-  // query without it rather than letting the whole page 500 (or, with the
-  // previous "select *"-adjacent approach, silently return zero rows) if the
+  // image_url and status/uploaded_by (the community-upload columns) were
+  // added by later migrations that may not have run on every environment
+  // yet - select optimistically and fall back to narrower queries rather
+  // than letting the whole page 500 (or silently return zero rows) if a
   // column doesn't exist.
-  const withImage = await supabase
+  let documents: PublicDocument[] = [];
+
+  const withAll = await supabase
     .from("documents")
-    .select("id, title, description, category, file_url, file_name, file_size, download_count, created_at, image_url")
+    .select(`${BASE_COLUMNS}, image_url, status, uploaded_by`)
     .order("created_at", { ascending: false });
 
-  let documents: PublicDocument[] = [];
-  if (!withImage.error) {
-    documents = withImage.data ?? [];
+  if (!withAll.error) {
+    documents = withAll.data ?? [];
   } else {
     const withoutImage = await supabase
       .from("documents")
-      .select("id, title, description, category, file_url, file_name, file_size, download_count, created_at")
+      .select(`${BASE_COLUMNS}, status, uploaded_by`)
       .order("created_at", { ascending: false });
-    documents = withoutImage.error
-      ? []
-      : (withoutImage.data ?? []).map((d) => ({ ...d, image_url: null }));
+
+    if (!withoutImage.error) {
+      documents = (withoutImage.data ?? []).map((d) => ({ ...d, image_url: null }));
+    } else {
+      const bare = await supabase
+        .from("documents")
+        .select(BASE_COLUMNS)
+        .order("created_at", { ascending: false });
+      documents = bare.error
+        ? []
+        : (bare.data ?? []).map((d) => ({ ...d, image_url: null, status: "approved" as const, uploaded_by: null }));
+    }
   }
 
   return (
@@ -58,11 +77,12 @@ export default async function DocumentsGiveawayPage() {
           <h1 className="text-2xl font-bold text-stone-900 dark:text-stone-100">Tài liệu miễn phí</h1>
           <p className="text-sm text-stone-500 dark:text-stone-400 mt-1">
             Mẫu biểu, ebook, checklist và công cụ hỗ trợ hành trình học tài chính của bạn - tải về hoàn toàn miễn phí.
+            Đóng góp tài liệu của riêng bạn để chia sẻ cho cộng đồng nhé!
           </p>
         </div>
       </div>
       <div className="max-w-4xl mx-auto px-6 py-8">
-        <DocumentsList documents={documents} />
+        <DocumentsList documents={documents} currentUserId={user?.id ?? null} />
       </div>
     </div>
   );

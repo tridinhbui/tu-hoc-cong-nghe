@@ -3,10 +3,10 @@
 import { useState, useRef, useTransition } from "react";
 import { useRouter } from "next/navigation";
 import { toast } from "sonner";
-import { Upload, FileText, Trash2, Download, Plus, Pencil } from "lucide-react";
+import { Upload, FileText, Trash2, Download, Plus, Pencil, Check, X } from "lucide-react";
 import type { DocumentRow } from "@/lib/admin/documents";
 import { DOCUMENT_CATEGORIES } from "@/lib/document-categories";
-import { uploadDocumentAction, updateDocumentAction, deleteDocumentAction } from "./actions";
+import { uploadDocumentAction, updateDocumentAction, deleteDocumentAction, approveDocumentAction, rejectDocumentAction } from "./actions";
 import EmptyState from "@/components/admin/EmptyState";
 import ConfirmDialog from "@/components/admin/ConfirmDialog";
 import Modal from "@/components/admin/Modal";
@@ -74,6 +74,26 @@ export default function DocumentsManager({ documents }: { documents: DocumentRow
     }
   }
 
+  async function handleApprove(doc: DocumentRow) {
+    try {
+      await approveDocumentAction(doc.id);
+      toast.success("Đã duyệt - tài liệu hiện đã hiển thị công khai");
+      startTransition(() => router.refresh());
+    } catch (err) {
+      toast.error(err instanceof Error ? err.message : "Không duyệt được tài liệu");
+    }
+  }
+
+  async function handleReject(doc: DocumentRow) {
+    try {
+      await rejectDocumentAction(doc.id);
+      toast.success("Đã từ chối tài liệu");
+      startTransition(() => router.refresh());
+    } catch (err) {
+      toast.error(err instanceof Error ? err.message : "Không từ chối được tài liệu");
+    }
+  }
+
   return (
     <div>
       <div className="flex justify-end mb-4">
@@ -111,6 +131,16 @@ export default function DocumentsManager({ documents }: { documents: DocumentRow
                     <span className="text-[10px] font-bold uppercase tracking-wide bg-stone-100 dark:bg-stone-800 text-stone-600 dark:text-stone-400 px-2 py-0.5 rounded-full">
                       {categoryLabel(doc.category)}
                     </span>
+                    {doc.status === "pending" && (
+                      <span className="text-[10px] font-bold uppercase tracking-wide bg-amber-100 dark:bg-amber-950/60 text-amber-700 dark:text-amber-400 px-2 py-0.5 rounded-full">
+                        Cộng đồng gửi · Chờ duyệt
+                      </span>
+                    )}
+                    {doc.status === "rejected" && (
+                      <span className="text-[10px] font-bold uppercase tracking-wide bg-rose-100 dark:bg-rose-950/60 text-rose-700 dark:text-rose-400 px-2 py-0.5 rounded-full">
+                        Đã từ chối
+                      </span>
+                    )}
                   </div>
                   {doc.description && (
                     <p className="text-sm text-stone-600 dark:text-stone-400 mt-1">{doc.description}</p>
@@ -121,6 +151,24 @@ export default function DocumentsManager({ documents }: { documents: DocumentRow
                   </p>
                 </div>
                 <div className="flex items-center gap-1 flex-shrink-0">
+                  {doc.status === "pending" && (
+                    <>
+                      <button
+                        onClick={() => handleApprove(doc)}
+                        title="Duyệt"
+                        className="p-2 rounded-lg hover:bg-emerald-50 dark:hover:bg-emerald-950/40 text-stone-500 dark:text-stone-400 hover:text-emerald-600 dark:hover:text-emerald-400"
+                      >
+                        <Check className="w-4 h-4" />
+                      </button>
+                      <button
+                        onClick={() => handleReject(doc)}
+                        title="Từ chối"
+                        className="p-2 rounded-lg hover:bg-rose-50 dark:hover:bg-rose-950/40 text-stone-500 dark:text-stone-400 hover:text-rose-600 dark:hover:text-rose-400"
+                      >
+                        <X className="w-4 h-4" />
+                      </button>
+                    </>
+                  )}
                   <a
                     href={doc.file_url}
                     target="_blank"

@@ -1,6 +1,8 @@
 import "server-only";
 import { createAdminClient } from "@/lib/supabase-admin";
 
+export type DocumentStatus = "pending" | "approved" | "rejected";
+
 export interface DocumentRow {
   id: number;
   title: string;
@@ -12,6 +14,8 @@ export interface DocumentRow {
   download_count: number;
   created_at: string;
   image_url: string | null;
+  status: DocumentStatus;
+  uploaded_by: string | null;
 }
 
 export { DOCUMENT_CATEGORIES } from "@/lib/document-categories";
@@ -66,13 +70,16 @@ function assertAllowedCoverImage(file: File): void {
   }
 }
 
-// image_url was added by a later migration (20260706_add_document_image.sql)
-// that may not be applied on every environment yet. PostgREST's "undefined
-// column" error is code 42703 - if an insert/update including image_url
-// fails with that, retry once without it rather than failing the whole
-// upload/edit over an optional field.
+// image_url (and now status/uploaded_by's constraint) were added by later
+// migrations that may not be applied on every environment yet - if an
+// insert/update including one of them fails because the column doesn't
+// exist, retry once without it rather than failing the whole upload/edit.
+// Postgres itself reports undefined column as 42703, but PostgREST's own
+// schema-cache layer (which is what actually rejects the request here, since
+// it validates against its cached schema before ever reaching Postgres)
+// reports it as PGRST204 - both need to be treated as "missing column".
 function isMissingColumnError(error: { code?: string } | null): boolean {
-  return error?.code === "42703";
+  return error?.code === "42703" || error?.code === "PGRST204";
 }
 
 /** Uploads an optional cover image to the same "documents" storage bucket, under a covers/ prefix. Returns its public URL, or null if no image was given. */
@@ -126,8 +133,12 @@ export async function uploadDocument(params: {
   file: File;
   image?: File | null;
   uploadedBy: string;
+  // Admin uploads (app/admin/documents) publish straight to 'approved'.
+  // Community submissions (app/tai-lieu) pass 'pending' so it only appears
+  // publicly once an admin approves it.
+  status?: DocumentStatus;
 }): Promise<void> {
-  const { title, description, category, file, image, uploadedBy } = params;
+  const { title, description, category, file, image, uploadedBy, status = "approved" } = params;
   assertAllowedDocumentFile(file);
   const supabase = createAdminClient();
 
@@ -160,11 +171,25 @@ export async function uploadDocument(params: {
     file_name: file.name,
     file_size: file.size,
     uploaded_by: uploadedBy,
+    status,
   };
 
   let { error: insertError } = await supabase.from("documents").insert({ ...baseRow, image_url: imageUrl });
   if (insertError && isMissingColumnError(insertError)) {
     ({ error: insertError } = await supabase.from("documents").insert(baseRow));
+  }
+  if (insertError && isMissingColumnError(insertError)) {
+    // The 20260709_community_documents.sql migration (adds `status`) hasn't
+    // run on this environment either - a community submission can't be
+    // marked 'pending' without it, so refuse rather than silently
+    // publishing it straight to the public page.
+    if (status !== "approved") {
+      await supabase.storage.from("documents").remove([path]);
+      throw new Error("Tính năng chia sẻ tài liệu chưa sẵn sàng (thiếu migration). Vui lòng thử lại sau.");
+    }
+    const { status: _status, ...baseRowWithoutStatus } = baseRow;
+    void _status;
+    ({ error: insertError } = await supabase.from("documents").insert(baseRowWithoutStatus));
   }
 
   if (insertError) {
@@ -278,4 +303,22 @@ export async function deleteDocument(id: number): Promise<void> {
 
   const { error: deleteError } = await supabase.from("documents").delete().eq("id", id);
   if (deleteError) throw new Error(deleteError.message);
+}
+
+/** Publishes a pending community submission so it appears on /tai-lieu. */
+export async function approveDocument(id: number): Promise<void> {
+  const supabase = createAdminClient();
+  const { error } = await supabase.from("documents").update({ status: "approved" }).eq("id", id);
+  if (error) throw new Error(error.message);
+}
+
+/**
+ * Marks a pending community submission as rejected - kept in the table
+ * (not deleted) so the submitter can still see it was reviewed, via the
+ * "own row" clause in the documents select RLS policy.
+ */
+export async function rejectDocument(id: number): Promise<void> {
+  const supabase = createAdminClient();
+  const { error } = await supabase.from("documents").update({ status: "rejected" }).eq("id", id);
+  if (error) throw new Error(error.message);
 }
