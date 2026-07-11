@@ -78,6 +78,13 @@ export default function UserMenu({ name, email, avatarUrl }: UserMenuProps) {
               Hồ sơ
             </Link>
             <Link
+              href="/ghi-chu"
+              onClick={() => setIsOpen(false)}
+              className="block px-4 py-2 text-sm font-semibold text-stone-900 dark:text-stone-100 hover:bg-stone-50 dark:hover:bg-stone-800 transition-colors"
+            >
+              Ghi chú của tôi
+            </Link>
+            <Link
               href="/settings"
               onClick={() => setIsOpen(false)}
               className="block px-4 py-2 text-sm font-semibold text-stone-900 dark:text-stone-100 hover:bg-stone-50 dark:hover:bg-stone-800 transition-colors"
