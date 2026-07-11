@@ -468,10 +468,10 @@ export default function DashboardClient({ lessonsMeta }: { lessonsMeta: LessonMe
               <Link
                 href="/tai-lieu"
                 title="Tài liệu miễn phí"
-                aria-label="Tài liệu miễn phí"
-                className="flex items-center justify-center w-9 h-9 rounded-full text-stone-400 dark:text-stone-500 hover:bg-stone-100 dark:hover:bg-stone-800 hover:text-stone-700 dark:hover:text-stone-200 transition-colors"
+                className="flex items-center gap-1.5 text-xs font-bold text-orange-600 dark:text-orange-400 bg-orange-50 dark:bg-orange-950 border border-orange-200 dark:border-orange-800 hover:bg-orange-100 dark:hover:bg-orange-900 rounded-lg px-3 py-1.5 transition-colors"
               >
-                <FileText className="w-4 h-4" />
+                <FileText className="w-3.5 h-3.5" />
+                Tài liệu miễn phí
               </Link>
               <Link
                 href="/analytics"
