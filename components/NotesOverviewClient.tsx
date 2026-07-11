@@ -157,6 +157,11 @@ export default function NotesOverviewClient({ lessonsById }: NotesOverviewClient
                               rows={3}
                               autoFocus
                             />
+                            {/\$/.test(editContent) && (
+                              <div className="px-3 py-2 rounded-lg bg-stone-100 dark:bg-stone-800 border border-dashed border-stone-300 dark:border-stone-600 overflow-x-auto">
+                                <NoteContent content={editContent} />
+                              </div>
+                            )}
                             <div className="flex gap-2 justify-end">
                               <button onClick={cancelEditing} className="px-3 py-1 text-sm text-stone-600 dark:text-stone-400 hover:text-stone-900 dark:hover:text-stone-200">
                                 Hủy
