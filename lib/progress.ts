@@ -17,27 +17,22 @@ export function getProgress(): Progress {
 }
 
 /**
- * Merge server-confirmed completed lesson ids (Supabase `user_progress`,
- * the source of truth) into the local snapshot. localStorage alone can't be
- * trusted across devices/browsers/incognito, so on every dashboard load we
- * union it with the server's list and persist the union - this is what
- * keeps a fresh browser session from showing 0% progress for a user who has
- * actually completed lessons elsewhere.
+ * Reconcile the local snapshot with Supabase `user_progress` (the source of
+ * truth) by replacing `completedLessons` with the server's list. This used
+ * to union the two lists instead of replacing, which meant a lesson marked
+ * complete locally but never actually saved server-side (e.g. during the
+ * window before progress-saving was fixed, or a completion attempt that
+ * failed silently) stayed "completed" in that browser's localStorage
+ * forever - inflating the completed-lesson count and XP shown on that one
+ * device, and disagreeing with every other device/browser for the same
+ * account, which only ever saw the server's real count. Replacing keeps the
+ * fast local paint before this resolves, but afterward each device
+ * converges on the same server truth.
  */
 export function mergeCompletedLessons(serverCompletedIds: number[]): Progress {
   const progress = getProgress();
-  const merged = new Set(progress.completedLessons);
-  let changed = false;
-  for (const id of serverCompletedIds) {
-    if (!merged.has(id)) {
-      merged.add(id);
-      changed = true;
-    }
-  }
-  if (changed) {
-    progress.completedLessons = Array.from(merged);
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(progress));
-  }
+  progress.completedLessons = [...serverCompletedIds];
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(progress));
   return progress;
 }
 

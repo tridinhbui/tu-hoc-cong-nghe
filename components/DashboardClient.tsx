@@ -7,7 +7,7 @@ import { useRouter, useSearchParams } from "next/navigation";
 import { toast } from "sonner";
 import { CheckCircle2, BarChart3, Lock, FileText, Menu, X } from "lucide-react";
 import { useProgress } from "@/lib/client-hooks";
-import { getProgress, mergeCompletedLessons } from "@/lib/progress";
+import { mergeCompletedLessons } from "@/lib/progress";
 import { getCompletedLessons } from "@/lib/supabase-progress";
 import type { Difficulty } from "@/lib/lesson-types";
 import { createClient } from "@/lib/supabase";
@@ -21,9 +21,9 @@ import StreakDisplay from "@/components/StreakDisplay";
 import DashboardTour from "@/components/DashboardTour";
 import Logo from "@/components/Logo";
 import Leaderboard from "@/components/Leaderboard";
-import { XP_VALUES, getLevelByXp } from "@/lib/levels";
+import { getLevelByXp } from "@/lib/levels";
 import { hasCompletedOnboarding, completeOnboarding } from "@/lib/supabase-onboarding";
-import { getLeaderboard } from "@/lib/supabase-user";
+import { getLeaderboard, getUserProfile } from "@/lib/supabase-user";
 import UnlockRequestModal from "@/components/UnlockRequestModal";
 import { TRACK_PERSONAL, TRACK_PROFESSIONAL } from "@/lib/track-stages";
 import { getLessonStage, getLessonsInStage } from "@/lib/lesson-stages";
@@ -241,12 +241,17 @@ export default function DashboardClient({ lessonsMeta }: { lessonsMeta: LessonMe
         }
       }
 
-      // Calculate XP from completed lessons (10 XP per lesson). Read the
-      // freshly-merged progress directly rather than the `completed`
-      // closured at mount time, which would still be pre-sync/stale here.
-      const syncedCompletedCount = getProgress().completedLessons.length;
-      const calculatedXp = syncedCompletedCount * XP_VALUES.LESSON_COMPLETED;
-      setUserXp(calculatedXp);
+      // Read the real XP from user_profiles (the same value recalculateUserStats
+      // writes and UserProfile/LearningAnalytics display) instead of
+      // recomputing it client-side from the local completed-lesson count -
+      // that used to produce a third, independent XP number that could
+      // disagree with the stats dashboard and profile page.
+      try {
+        const profile = await getUserProfile(session.user.id);
+        setUserXp(profile.total_xp);
+      } catch (error) {
+        console.error("Error loading user XP:", error);
+      }
 
       // Mock average quiz score
       setAvgQuizScore(75);
