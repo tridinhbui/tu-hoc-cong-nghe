@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { BarChart3 } from "lucide-react";
 import { createClient } from "@/lib/supabase";
@@ -13,6 +13,7 @@ export default function LessonStatsHover() {
   const [open, setOpen] = useState(false);
   const [stats, setStats] = useState<LearningAnalytics | null>(null);
   const [loading, setLoading] = useState(false);
+  const closeTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   useEffect(() => {
     if (!open || stats || loading) return;
@@ -32,14 +33,33 @@ export default function LessonStatsHover() {
     })();
   }, [open, stats, loading]);
 
+  // The button and the popover aren't touching (there's a visual gap for the
+  // little arrow/spacing), so a plain onMouseLeave on the wrapper closed the
+  // popover the instant the cursor crossed that gap, before it ever reached
+  // "Xem đầy đủ". Closing after a short delay - cancelled if the cursor lands
+  // back on the button or the popover in time - survives that crossing.
+  function scheduleClose() {
+    if (closeTimer.current) clearTimeout(closeTimer.current);
+    closeTimer.current = setTimeout(() => setOpen(false), 250);
+  }
+  function cancelClose() {
+    if (closeTimer.current) {
+      clearTimeout(closeTimer.current);
+      closeTimer.current = null;
+    }
+  }
+
+  useEffect(() => () => cancelClose(), []);
+
   return (
-    <div
-      className="relative group"
-      onMouseEnter={() => setOpen(true)}
-      onMouseLeave={() => setOpen(false)}
-    >
+    <div className="relative">
       <button
         onClick={() => setOpen((v) => !v)}
+        onMouseEnter={() => {
+          cancelClose();
+          setOpen(true);
+        }}
+        onMouseLeave={scheduleClose}
         aria-label="Xem nhanh thống kê"
         title="Thống kê"
         className="w-10 h-10 rounded-full flex items-center justify-center bg-stone-100 dark:bg-stone-800 text-stone-500 dark:text-stone-400 hover:bg-stone-200 dark:hover:bg-stone-700 hover:text-stone-700 dark:hover:text-stone-200 transition-all cursor-pointer"
@@ -48,7 +68,11 @@ export default function LessonStatsHover() {
       </button>
 
       {open && (
-        <div className="absolute right-0 top-12 z-50 w-56 bg-white dark:bg-stone-900 border-2 border-stone-200 dark:border-stone-800 rounded-xl shadow-lg p-4">
+        <div
+          onMouseEnter={cancelClose}
+          onMouseLeave={scheduleClose}
+          className="absolute right-0 top-full mt-2 z-50 w-56 bg-white dark:bg-stone-900 border-2 border-stone-200 dark:border-stone-800 rounded-xl shadow-lg p-4"
+        >
           {loading && !stats ? (
             <p className="text-xs text-stone-400 dark:text-stone-500">Đang tải...</p>
           ) : stats ? (
