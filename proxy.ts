@@ -1,6 +1,6 @@
-import { NextRequest, NextResponse } from "next/server";
+import { createServerClient } from "@supabase/ssr";
+import { NextResponse, type NextRequest } from "next/server";
 import { isLessonLockedForUser } from "@/lib/lesson-locking";
-import { createServerSupabaseClient } from "@/lib/supabase-server";
 
 // A handful of lessons are hand-authored as their own static page
 // (app/bai-hoc/<slug>/page.tsx, e.g. "roic", "walmart-earnings",
@@ -58,26 +58,64 @@ const STATIC_PAGE_LESSON_IDS: Record<string, number> = {
   "wealth-management": 1031,
 };
 
-export default async function proxy(req: NextRequest) {
-  const [, section, slug] = req.nextUrl.pathname.split("/");
-  if (section !== "bai-hoc" || !slug) return NextResponse.next();
+// Also runs a Supabase session refresh on every request. Server Components
+// can't set cookies (Next.js forbids it - lib/supabase-server.ts's setAll
+// silently swallows those writes), so when a page's own getUser() call
+// triggers a token refresh, the refreshed cookie has nowhere to go and gets
+// dropped. Over time the browser is left holding a stale/soon-invalid
+// session, which caused a real bug: opening /tai-lieu (a Server Component
+// that calls getUser()) then navigating back to /dashboard would
+// occasionally flash the login page before bouncing back. Proxy is the only
+// place that can forward refreshed cookies to the browser on every request -
+// this is Supabase's documented pattern for keeping SSR sessions in sync.
+export async function proxy(request: NextRequest) {
+  let response = NextResponse.next({ request });
 
-  const lessonId = STATIC_PAGE_LESSON_IDS[slug];
-  if (lessonId === undefined) return NextResponse.next();
+  const supabase = createServerClient(
+    process.env.NEXT_PUBLIC_SUPABASE_URL!,
+    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
+    {
+      cookies: {
+        getAll() {
+          return request.cookies.getAll();
+        },
+        setAll(cookiesToSet) {
+          cookiesToSet.forEach(({ name, value }) => request.cookies.set(name, value));
+          response = NextResponse.next({ request });
+          cookiesToSet.forEach(({ name, value, options }) =>
+            response.cookies.set(name, value, options)
+          );
+        },
+      },
+    }
+  );
 
-  const supabase = await createServerSupabaseClient();
+  // Do not add logic between createServerClient and getUser() - this call is
+  // what actually triggers the refresh-and-forward; anything in between
+  // risks skipping it under some code path and reintroducing the
+  // stale-session bug.
   const {
     data: { user },
   } = await supabase.auth.getUser();
 
-  const locked = await isLessonLockedForUser(lessonId, user?.id ?? null);
-  if (locked) {
-    return NextResponse.redirect(new URL(`/dashboard?locked=${encodeURIComponent(slug)}`, req.url));
+  const [, section, slug] = request.nextUrl.pathname.split("/");
+  if (section === "bai-hoc" && slug) {
+    const lessonId = STATIC_PAGE_LESSON_IDS[slug];
+    if (lessonId !== undefined) {
+      const locked = await isLessonLockedForUser(lessonId, user?.id ?? null);
+      if (locked) {
+        return NextResponse.redirect(
+          new URL(`/dashboard?locked=${encodeURIComponent(slug)}`, request.url)
+        );
+      }
+    }
   }
 
-  return NextResponse.next();
+  return response;
 }
 
 export const config = {
-  matcher: ["/bai-hoc/:path*"],
+  matcher: [
+    "/((?!_next/static|_next/image|favicon.ico|.*\\.(?:svg|png|jpg|jpeg|gif|webp)$).*)",
+  ],
 };
