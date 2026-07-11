@@ -7,6 +7,7 @@ import Image from "next/image";
 import { createClient } from "@/lib/supabase";
 import { getLevelByXp } from "@/lib/levels";
 import { getUserProfile } from "@/lib/supabase-user";
+import { getUserBadges, type UserBadge } from "@/lib/supabase-badges";
 import UserMenu from "@/components/UserMenu";
 
 // Auth-gated and reads Supabase env vars at render time - never prerender statically.
@@ -18,6 +19,7 @@ export default function ProfilePage() {
   const [user, setUser] = useState<{ id?: string; email?: string; user_metadata?: { full_name?: string; avatar_url?: string }; created_at?: string } | null>(null);
   const [loading, setLoading] = useState(true);
   const [userXp, setUserXp] = useState(0);
+  const [badges, setBadges] = useState<UserBadge[]>([]);
 
   useEffect(() => {
     const checkAuth = async () => {
@@ -36,6 +38,16 @@ export default function ProfilePage() {
         setUserXp(profile.total_xp);
       } catch (error) {
         console.error("Error loading user XP:", error);
+      }
+      // Badges were only ever shown once, as a toast at the moment they're
+      // earned (awardBadges in LessonPageLayout) - nothing read them back
+      // afterward, so there was no way to see which ones you'd already
+      // collected.
+      try {
+        const earned = await getUserBadges(session.user.id);
+        setBadges(earned);
+      } catch (error) {
+        console.error("Error loading badges:", error);
       }
       setLoading(false);
     };
@@ -124,6 +136,33 @@ export default function ProfilePage() {
               Tổng XP
             </p>
           </div>
+        </div>
+
+        {/* Badges */}
+        <div className="bg-white dark:bg-stone-900 border-2 border-stone-200 dark:border-stone-800 rounded-xl p-6 mb-6">
+          <h3 className="text-lg font-extrabold text-stone-900 dark:text-stone-100 mb-4">
+            Huy hiệu ({badges.length})
+          </h3>
+          {badges.length === 0 ? (
+            <p className="text-sm text-stone-500 dark:text-stone-400">
+              Chưa có huy hiệu nào. Hoàn thành bài học để nhận huy hiệu đầu tiên!
+            </p>
+          ) : (
+            <div className="grid grid-cols-3 sm:grid-cols-4 gap-3">
+              {badges.map((badge) => (
+                <div
+                  key={badge.id}
+                  title={badge.badge_description}
+                  className="flex flex-col items-center text-center gap-1.5 p-3 rounded-xl border border-stone-200 dark:border-stone-800 bg-stone-50 dark:bg-stone-800/50"
+                >
+                  <span className="text-3xl">{badge.badge_icon}</span>
+                  <span className="text-xs font-bold text-stone-900 dark:text-stone-100 leading-tight">
+                    {badge.badge_name}
+                  </span>
+                </div>
+              ))}
+            </div>
+          )}
         </div>
 
         {/* Account Info */}
