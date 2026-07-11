@@ -3,9 +3,9 @@
 import { useState, useTransition } from "react";
 import { useRouter, usePathname, useSearchParams } from "next/navigation";
 import { toast } from "sonner";
-import { Search, Mail, MailOpen, Trash2 } from "lucide-react";
+import { Search, Mail, MailOpen, Trash2, Reply, Send } from "lucide-react";
 import type { ContactMessage, MessagesResult } from "@/lib/admin/messages";
-import { markMessageReadAction, deleteMessageAction } from "./actions";
+import { markMessageReadAction, deleteMessageAction, sendAdminChatReplyAction } from "./actions";
 import EmptyState from "@/components/admin/EmptyState";
 import Pagination from "@/components/admin/Pagination";
 import ConfirmDialog from "@/components/admin/ConfirmDialog";
@@ -26,6 +26,9 @@ export default function MessagesTable({
   const [search, setSearch] = useState(initialSearch);
   const [toDelete, setToDelete] = useState<ContactMessage | null>(null);
   const [expanded, setExpanded] = useState<number | null>(null);
+  const [replyingTo, setReplyingTo] = useState<number | null>(null);
+  const [replyText, setReplyText] = useState("");
+  const [sendingReply, setSendingReply] = useState(false);
 
   function updateParams(patch: Record<string, string>) {
     const next = new URLSearchParams(searchParams.toString());
@@ -55,6 +58,27 @@ export default function MessagesTable({
     } catch (err) {
       toast.error(err instanceof Error ? err.message : "Có lỗi xảy ra");
     }
+  }
+
+  // Feedback ("Góp ý") replies piggyback on the same chat_messages thread the
+  // "Chat trực tiếp" tab uses (via sendAdminChatReplyAction) - there's no
+  // separate reply/email system, so this is the one place a submitter can
+  // actually see that their feedback was read: it shows up next time they
+  // open the in-app chat widget.
+  async function sendReply(msg: ContactMessage) {
+    if (!msg.user_id || !replyText.trim()) return;
+    setSendingReply(true);
+    try {
+      await sendAdminChatReplyAction(msg.user_id, replyText.trim());
+      if (!msg.is_read) await markMessageReadAction(msg.id, true);
+      toast.success("Đã gửi trả lời qua khung chat");
+      setReplyText("");
+      setReplyingTo(null);
+      router.refresh();
+    } catch (err) {
+      toast.error(err instanceof Error ? err.message : "Không gửi được trả lời");
+    }
+    setSendingReply(false);
   }
 
   async function confirmDelete() {
@@ -134,6 +158,18 @@ export default function MessagesTable({
                   </p>
                 </button>
                 <div className="flex items-center gap-1 flex-shrink-0">
+                  {msg.user_id && (
+                    <button
+                      onClick={() => {
+                        setReplyingTo(replyingTo === msg.id ? null : msg.id);
+                        setReplyText("");
+                      }}
+                      title="Trả lời qua chat"
+                      className="p-2 rounded-lg hover:bg-stone-100 dark:hover:bg-stone-800 text-stone-500 dark:text-stone-400"
+                    >
+                      <Reply className="w-4 h-4" />
+                    </button>
+                  )}
                   <button
                     onClick={() => toggleRead(msg)}
                     title={msg.is_read ? "Đánh dấu chưa đọc" : "Đánh dấu đã đọc"}
@@ -150,6 +186,26 @@ export default function MessagesTable({
                   </button>
                 </div>
               </div>
+
+              {replyingTo === msg.id && (
+                <div className="mt-3 flex gap-2 pl-1">
+                  <input
+                    value={replyText}
+                    onChange={(e) => setReplyText(e.target.value)}
+                    onKeyDown={(e) => e.key === "Enter" && sendReply(msg)}
+                    placeholder={`Trả lời ${msg.name} qua khung chat trong app...`}
+                    autoFocus
+                    className="flex-1 px-3 py-2 text-sm rounded-lg border border-stone-300 dark:border-stone-700 bg-white dark:bg-stone-800 text-stone-900 dark:text-stone-100 focus:outline-none focus:border-stone-500"
+                  />
+                  <button
+                    onClick={() => sendReply(msg)}
+                    disabled={sendingReply || !replyText.trim()}
+                    className="px-3 py-2 rounded-lg bg-stone-900 dark:bg-stone-100 text-white dark:text-stone-900 disabled:opacity-50"
+                  >
+                    <Send className="w-4 h-4" />
+                  </button>
+                </div>
+              )}
             </div>
           ))}
         </div>
