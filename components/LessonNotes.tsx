@@ -6,6 +6,7 @@ import { toast } from "sonner";
 import { getLessonNotes, createNote, updateNote, deleteNote } from "@/lib/supabase-notes";
 import { createClient } from "@/lib/supabase";
 import type { LessonNote } from "@/lib/supabase-notes";
+import NoteContent from "@/components/NoteContent";
 
 interface LessonNotesProps {
   lessonId: number;
@@ -180,9 +181,7 @@ export default function LessonNotes({ lessonId, lessonSlug }: LessonNotesProps) 
                     </div>
                   ) : (
                     <>
-                      <p className="text-sm text-stone-700 dark:text-stone-300 whitespace-pre-wrap">
-                        {note.content}
-                      </p>
+                      <NoteContent content={note.content} />
                       <div className="flex gap-2 mt-2 opacity-0 group-hover:opacity-100 transition-opacity">
                         <button
                           onClick={() => startEditing(note)}
@@ -217,6 +216,9 @@ export default function LessonNotes({ lessonId, lessonSlug }: LessonNotesProps) 
                 rows={3}
                 autoFocus
               />
+              <p className="text-xs text-stone-400 dark:text-stone-500 mt-1">
+                Mẹo: gõ công thức toán trong $...$ (nội dòng) hoặc $$...$$ (khối riêng) để hiển thị đẹp, ví dụ $$\frac{"{a}"}{"{b}"}$$
+              </p>
               <div className="flex gap-2 justify-end mt-2">
                 <button
                   onClick={cancelEditing}
