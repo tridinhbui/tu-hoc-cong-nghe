@@ -203,6 +203,17 @@ export default function LessonPageLayout({ lesson, quiz, children }: Props) {
     // them move on whenever they're ready instead.
   }
 
+  // Re-opens a wrong answer for another attempt instead of leaving it
+  // permanently locked. Resetting `submitted[qi]` also flips `allDone` back
+  // to false when retried from the completion card, which is what swaps the
+  // view back to the question editor for it.
+  function retry(qi: number) {
+    if (results[qi]) return;
+    setSelected((s) => { const n = [...s]; n[qi] = null; return n; });
+    setSubmitted((s) => { const n = [...s]; n[qi] = false; return n; });
+    setActiveQ(qi);
+  }
+
   async function completeLessonInSupabase(finalResults: boolean[]) {
     // Don't trust the `userId` state here - it's only set once the mount
     // effect's supabase.auth.getUser() round trip resolves, and a fast
@@ -524,14 +535,24 @@ export default function LessonPageLayout({ lesson, quiz, children }: Props) {
                     Kiểm tra →
                   </button>
                 ) : (
-                  activeQ < quiz.length - 1 && (
-                    <button
-                      onClick={() => setActiveQ(activeQ + 1)}
-                      className={`w-full py-4 rounded-xl font-bold text-sm uppercase tracking-wider text-white ${c.btn} cursor-pointer`}
-                    >
-                      Câu tiếp theo →
-                    </button>
-                  )
+                  <div className="flex gap-3">
+                    {!qCorrect && (
+                      <button
+                        onClick={() => retry(activeQ)}
+                        className="flex-1 py-4 rounded-xl font-bold text-sm uppercase tracking-wider border-2 border-stone-300 dark:border-stone-700 text-stone-700 dark:text-stone-300 hover:bg-stone-50 dark:hover:bg-stone-800 transition-colors cursor-pointer"
+                      >
+                        Thử lại →
+                      </button>
+                    )}
+                    {activeQ < quiz.length - 1 && (
+                      <button
+                        onClick={() => setActiveQ(activeQ + 1)}
+                        className={`flex-1 py-4 rounded-xl font-bold text-sm uppercase tracking-wider text-white ${c.btn} cursor-pointer`}
+                      >
+                        Câu tiếp theo →
+                      </button>
+                    )}
+                  </div>
                 )}
               </div>
             ) : (
@@ -544,9 +565,15 @@ export default function LessonPageLayout({ lesson, quiz, children }: Props) {
                 </div>
                 <div className="flex gap-2 justify-center">
                   {results.map((ok, i) => (
-                    <div key={i} className={`w-9 h-9 rounded-full text-sm flex items-center justify-center text-white font-bold ${ok ? "bg-emerald-500" : "bg-rose-400"}`}>
+                    <button
+                      key={i}
+                      onClick={() => !ok && retry(i)}
+                      disabled={ok}
+                      title={ok ? undefined : "Thử lại câu này"}
+                      className={`w-9 h-9 rounded-full text-sm flex items-center justify-center text-white font-bold ${ok ? "bg-emerald-500 cursor-default" : "bg-rose-400 hover:bg-rose-500 cursor-pointer"}`}
+                    >
                       {ok ? "✓" : "✗"}
-                    </div>
+                    </button>
                   ))}
                 </div>
                 <div className="grid grid-cols-2 gap-3 pt-2">
