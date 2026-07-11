@@ -465,7 +465,13 @@ export default function LessonPageLayout({ lesson, quiz, children }: Props) {
           </article>
 
           {/* ── RIGHT: Quiz sidebar ────────────────────────────────── */}
-          <aside data-tour="lesson-quiz" className="w-full lg:w-[440px] flex-shrink-0 lg:sticky lg:top-24 space-y-4">
+          {/* max-h + overflow-y-auto so the sticky column scrolls internally
+              once its content (notes + quiz + explanation + mini nav) is
+              taller than the viewport - without this, anything past the
+              fold (e.g. the "Câu tiếp theo" button) was stuck off-screen
+              with no way to reach it, since a sticky element doesn't scroll
+              on its own past its container's height. */}
+          <aside data-tour="lesson-quiz" className="w-full lg:w-[440px] flex-shrink-0 lg:sticky lg:top-24 lg:max-h-[calc(100vh-7rem)] lg:overflow-y-auto space-y-4">
             {/* Lesson Notes */}
             <LessonNotes lessonId={lesson.id} lessonSlug={lesson.slug || ""} />
             
