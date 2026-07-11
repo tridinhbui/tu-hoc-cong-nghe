@@ -36,6 +36,44 @@ export function mergeCompletedLessons(serverCompletedIds: number[]): Progress {
   return progress;
 }
 
+export interface QuizAnswers {
+  selected: (number | null)[];
+  submitted: boolean[];
+  results: boolean[];
+}
+
+const QUIZ_KEY_PREFIX = "thtcdn_quiz_";
+
+/**
+ * Remembers exactly which option was picked for each quiz question, so
+ * revisiting a lesson can show precisely which one was wrong (and what was
+ * picked) instead of guessing. The Supabase-persisted `quiz_score` is only
+ * an aggregate count, not per-question - restoring from it alone had no way
+ * to know *which* questions were right, so it arbitrarily marked the first
+ * `quiz_score` questions "correct", which usually didn't match what the
+ * learner actually got wrong.
+ */
+export function saveQuizAnswers(lessonId: number, answers: QuizAnswers) {
+  if (typeof window === "undefined") return;
+  localStorage.setItem(QUIZ_KEY_PREFIX + lessonId, JSON.stringify(answers));
+}
+
+export function getQuizAnswers(lessonId: number): QuizAnswers | null {
+  if (typeof window === "undefined") return null;
+  const raw = localStorage.getItem(QUIZ_KEY_PREFIX + lessonId);
+  if (!raw) return null;
+  try {
+    return JSON.parse(raw) as QuizAnswers;
+  } catch {
+    return null;
+  }
+}
+
+export function clearQuizAnswers(lessonId: number) {
+  if (typeof window === "undefined") return;
+  localStorage.removeItem(QUIZ_KEY_PREFIX + lessonId);
+}
+
 export function markLessonComplete(lessonId: number, minutes: number) {
   const progress = getProgress();
   if (!progress.completedLessons.includes(lessonId)) {

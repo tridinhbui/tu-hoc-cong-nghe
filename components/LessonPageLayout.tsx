@@ -3,7 +3,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import { toast } from "sonner";
-import { markLessonComplete } from "@/lib/progress";
+import { markLessonComplete, saveQuizAnswers, getQuizAnswers, clearQuizAnswers } from "@/lib/progress";
 import FloatingContact from "@/components/FloatingChatbot";
 import StageTipsBanner from "@/components/StageTipsBanner";
 import BadgeToast from "@/components/BadgeToast";
@@ -102,18 +102,32 @@ export default function LessonPageLayout({ lesson, quiz, children }: Props) {
       // per-question state (submitted/results) only lives in this component's
       // local state, so it starts empty on every fresh mount. Without this,
       // the "next lesson" completion card - and its unlock button - stays
-      // hidden until the user redoes the whole quiz. Restore it from the
-      // persisted score so revisiting a finished lesson shows it right away.
+      // hidden until the user redoes the whole quiz. Restore it so revisiting
+      // a finished lesson shows it right away.
       if (quiz.length > 0) {
-        try {
-          const progress = await getLessonProgress(user.id, lesson.id);
-          if (progress?.completed) {
-            const quizScore = Math.min(progress.quiz_score ?? quiz.length, quiz.length);
-            setSubmitted(new Array(quiz.length).fill(true));
-            setResults(quiz.map((_, i) => i < quizScore));
+        // Prefer the exact per-question record saved locally (which option
+        // was picked for each question) - this is what lets someone
+        // revisiting a lesson see precisely which question they got wrong,
+        // not just how many.
+        const saved = getQuizAnswers(lesson.id);
+        if (saved && saved.submitted.length === quiz.length) {
+          setSelected(saved.selected);
+          setSubmitted(saved.submitted);
+          setResults(saved.results);
+        } else {
+          try {
+            const progress = await getLessonProgress(user.id, lesson.id);
+            if (progress?.completed) {
+              // No per-question record available (e.g. different device/browser) -
+              // fall back to a guess from the aggregate score so the completion
+              // card at least renders instead of forcing a redo.
+              const quizScore = Math.min(progress.quiz_score ?? quiz.length, quiz.length);
+              setSubmitted(new Array(quiz.length).fill(true));
+              setResults(quiz.map((_, i) => i < quizScore));
+            }
+          } catch (error) {
+            console.error("Error fetching lesson progress:", error);
           }
-        } catch (error) {
-          console.error("Error fetching lesson progress:", error);
         }
       }
     });
@@ -189,13 +203,17 @@ export default function LessonPageLayout({ lesson, quiz, children }: Props) {
     const sel = selected[qi];
     if (sel === null || submitted[qi]) return;
     const ok = sel === quiz[qi].correct;
-    setResults((r) => { const n = [...r]; n[qi] = ok; return n; });
-    setSubmitted((s) => { const n = [...s]; n[qi] = true; return n; });
+    const newResults = [...results]; newResults[qi] = ok;
+    const newSubmitted = [...submitted]; newSubmitted[qi] = true;
+    setResults(newResults);
+    setSubmitted(newSubmitted);
+    // Persist the exact per-question outcome (not just an aggregate score)
+    // so revisiting this lesson later shows precisely which question was
+    // wrong and what was picked, instead of guessing from the total score.
+    saveQuizAnswers(lesson.id, { selected, submitted: newSubmitted, results: newResults });
     if (qi === quiz.length - 1) {
       markLessonComplete(lesson.id, durationMin);
-      const finalResults = [...results];
-      finalResults[qi] = ok;
-      completeLessonInSupabase(finalResults);
+      completeLessonInSupabase(newResults);
     }
     // No auto-advance here - it used to jump to the next question 600ms
     // after answering, which didn't give people time to read the
@@ -209,9 +227,25 @@ export default function LessonPageLayout({ lesson, quiz, children }: Props) {
   // view back to the question editor for it.
   function retry(qi: number) {
     if (results[qi]) return;
-    setSelected((s) => { const n = [...s]; n[qi] = null; return n; });
-    setSubmitted((s) => { const n = [...s]; n[qi] = false; return n; });
+    const newSelected = [...selected]; newSelected[qi] = null;
+    const newSubmitted = [...submitted]; newSubmitted[qi] = false;
+    setSelected(newSelected);
+    setSubmitted(newSubmitted);
     setActiveQ(qi);
+    saveQuizAnswers(lesson.id, { selected: newSelected, submitted: newSubmitted, results });
+  }
+
+  // Resets every question back to unanswered, for someone who wants a full
+  // redo rather than fixing just the ones they got wrong.
+  function restartQuiz() {
+    const freshSelected = new Array(quiz.length).fill(null);
+    const freshSubmitted = new Array(quiz.length).fill(false);
+    const freshResults = new Array(quiz.length).fill(false);
+    setSelected(freshSelected);
+    setSubmitted(freshSubmitted);
+    setResults(freshResults);
+    setActiveQ(0);
+    clearQuizAnswers(lesson.id);
   }
 
   async function completeLessonInSupabase(finalResults: boolean[]) {
@@ -588,6 +622,14 @@ export default function LessonPageLayout({ lesson, quiz, children }: Props) {
                     <div className="py-3.5 rounded-xl bg-stone-100 dark:bg-stone-800 text-stone-500 dark:text-stone-400 text-sm font-bold text-center">Sắp ra mắt</div>
                   )}
                 </div>
+                {score < quiz.length && (
+                  <button
+                    onClick={restartQuiz}
+                    className="text-xs font-bold text-stone-500 dark:text-stone-400 hover:text-stone-700 dark:hover:text-stone-200 uppercase tracking-wide transition-colors cursor-pointer"
+                  >
+                    ↺ Làm lại từ đầu
+                  </button>
+                )}
               </div>
             )}
 
