@@ -1,5 +1,5 @@
 import { describe, it, expect } from "vitest";
-import { computeLessonLocked } from "@/lib/lesson-lock-rule";
+import { computeLessonLocked, isChallengeGated } from "@/lib/lesson-lock-rule";
 import type { LessonMeta } from "@/lib/lesson-types";
 
 function lesson(overrides: Partial<LessonMeta> & { id: number }): LessonMeta {
@@ -56,5 +56,26 @@ describe("computeLessonLocked", () => {
     const l8 = lesson({ id: 8, track: "personal", isFundamental: true });
 
     expect(computeLessonLocked(l8, [], new Set(), new Set())).toBe(false);
+  });
+
+  it("requires passing the gate challenge for challenge-gated lessons even once the prerequisite is done", () => {
+    const lessons = Array.from({ length: 10 }, (_, i) => lesson({ id: i + 1, track: "personal" }));
+    const l10 = lesson({ id: 10, track: "personal" }); // 10 % 5 === 0 -> gated
+
+    expect(isChallengeGated(10)).toBe(true);
+    expect(isChallengeGated(9)).toBe(false);
+
+    // Prerequisite (lesson 9) done, but challenge not passed - still locked.
+    expect(computeLessonLocked(l10, lessons, new Set([9]), new Set())).toBe(true);
+
+    // Prerequisite done and challenge passed - unlocked.
+    expect(computeLessonLocked(l10, lessons, new Set([9]), new Set(), new Set([10]))).toBe(false);
+  });
+
+  it("does not require a challenge pass for non-gated lessons", () => {
+    const lessons = Array.from({ length: 10 }, (_, i) => lesson({ id: i + 1, track: "personal" }));
+    const l9 = lesson({ id: 9, track: "personal" }); // not a multiple of 5
+
+    expect(computeLessonLocked(l9, lessons, new Set([8]), new Set())).toBe(false);
   });
 });

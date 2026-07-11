@@ -4,20 +4,30 @@ import { useEffect, useState, useCallback } from "react";
 import Link from "next/link";
 import { X } from "lucide-react";
 import type { ChallengeQuestion } from "@/app/api/knowledge-challenge/route";
+import { recordChallengePass } from "@/lib/supabase-challenges";
 
 interface KnowledgeChallengeModalProps {
   onClose: () => void;
+  /** Gate mode: unlocks this specific lesson on a passing score instead of
+   *  just being a free-standing review quiz. */
+  gate?: { lessonId: number; lessonSlug: string; lessonTitle: string; userId: string };
+  onPassed?: () => void;
 }
 
 type LoadState = "loading" | "empty" | "ready" | "error";
 
-export default function KnowledgeChallengeModal({ onClose }: KnowledgeChallengeModalProps) {
+// Passing bar for gate mode - 60% keeps it a genuine check without requiring
+// a perfect score on questions pulled from lessons studied a while ago.
+const PASS_RATIO = 0.6;
+
+export default function KnowledgeChallengeModal({ onClose, gate, onPassed }: KnowledgeChallengeModalProps) {
   const [state, setState] = useState<LoadState>("loading");
   const [questions, setQuestions] = useState<ChallengeQuestion[]>([]);
   const [activeQ, setActiveQ] = useState(0);
   const [selected, setSelected] = useState<number | null>(null);
   const [submitted, setSubmitted] = useState(false);
   const [results, setResults] = useState<boolean[]>([]);
+  const [passRecorded, setPassRecorded] = useState(false);
 
   const loadChallenge = useCallback(async () => {
     setState("loading");
@@ -25,6 +35,7 @@ export default function KnowledgeChallengeModal({ onClose }: KnowledgeChallengeM
     setSelected(null);
     setSubmitted(false);
     setResults([]);
+    setPassRecorded(false);
     try {
       const res = await fetch("/api/knowledge-challenge");
       if (!res.ok) throw new Error("failed");
@@ -49,6 +60,18 @@ export default function KnowledgeChallengeModal({ onClose }: KnowledgeChallengeM
   const q = questions[activeQ];
   const allDone = submitted && activeQ === questions.length - 1;
   const score = results.filter(Boolean).length;
+  const passed = questions.length > 0 && score >= Math.ceil(questions.length * PASS_RATIO);
+
+  // Record the unlock the moment the gate is actually passed, rather than
+  // waiting for an extra button press - onPassed still lets the caller
+  // decide when to navigate.
+  useEffect(() => {
+    if (!gate || !allDone || !passed || passRecorded) return;
+    setPassRecorded(true);
+    recordChallengePass(gate.userId, gate.lessonId, score, questions.length).catch((error) => {
+      console.error("Error recording challenge pass:", error);
+    });
+  }, [gate, allDone, passed, passRecorded, score, questions.length]);
 
   function choose(oi: number) {
     if (submitted) return;
@@ -76,7 +99,16 @@ export default function KnowledgeChallengeModal({ onClose }: KnowledgeChallengeM
     <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-black/50">
       <div className="bg-white dark:bg-stone-900 rounded-2xl border-2 border-stone-300 dark:border-stone-700 w-full max-w-lg max-h-[90vh] overflow-y-auto">
         <div className="flex items-center justify-between px-6 py-4 border-b border-stone-200 dark:border-stone-800">
-          <h2 className="font-extrabold text-stone-900 dark:text-stone-100">🎯 Thử thách kiến thức</h2>
+          <div>
+            <h2 className="font-extrabold text-stone-900 dark:text-stone-100">
+              {gate ? "🔒 Vượt qua thử thách để mở khoá" : "🎯 Thử thách kiến thức"}
+            </h2>
+            {gate && (
+              <p className="text-xs text-stone-500 dark:text-stone-400 mt-0.5">
+                Cần đúng tối thiểu {Math.ceil((questions.length || 5) * PASS_RATIO)}/{questions.length || 5} câu để mở "{gate.lessonTitle}"
+              </p>
+            )}
+          </div>
           <button onClick={onClose} className="text-stone-400 hover:text-stone-700 dark:hover:text-stone-200 cursor-pointer" title="Đóng">
             <X className="w-5 h-5" />
           </button>
@@ -166,9 +198,11 @@ export default function KnowledgeChallengeModal({ onClose }: KnowledgeChallengeM
 
           {state === "ready" && allDone && (
             <div className="text-center space-y-4">
-              <div className="text-5xl">{score === questions.length ? "🏆" : score >= questions.length * 0.7 ? "🎉" : "💪"}</div>
+              <div className="text-5xl">{gate ? (passed ? "🔓" : "🔒") : score === questions.length ? "🏆" : score >= questions.length * 0.7 ? "🎉" : "💪"}</div>
               <div>
-                <h3 className="font-bold text-stone-900 dark:text-stone-100 text-xl">Hoàn thành thử thách!</h3>
+                <h3 className="font-bold text-stone-900 dark:text-stone-100 text-xl">
+                  {gate ? (passed ? "Đã mở khoá!" : "Chưa đạt yêu cầu") : "Hoàn thành thử thách!"}
+                </h3>
                 <p className="text-stone-500 dark:text-stone-400 text-sm mt-1">{score}/{questions.length} câu đúng</p>
               </div>
               <div className="flex flex-wrap gap-2 justify-center">
@@ -191,14 +225,34 @@ export default function KnowledgeChallengeModal({ onClose }: KnowledgeChallengeM
                   })}
                 </div>
               )}
-              <div className="grid grid-cols-2 gap-3 pt-2">
-                <button onClick={onClose} className="py-3 rounded-xl border border-stone-200 dark:border-stone-700 text-stone-600 dark:text-stone-400 text-sm font-bold hover:bg-stone-50 dark:hover:bg-stone-800 cursor-pointer">
-                  Đóng
-                </button>
-                <button onClick={loadChallenge} className="py-3 rounded-xl text-white text-sm font-bold bg-stone-900 dark:bg-stone-100 dark:text-stone-900 hover:opacity-90 cursor-pointer">
-                  Thử thách mới
-                </button>
-              </div>
+              {gate && passed ? (
+                <div className="grid grid-cols-2 gap-3 pt-2">
+                  <button onClick={onClose} className="py-3 rounded-xl border border-stone-200 dark:border-stone-700 text-stone-600 dark:text-stone-400 text-sm font-bold hover:bg-stone-50 dark:hover:bg-stone-800 cursor-pointer">
+                    Để sau
+                  </button>
+                  <button onClick={onPassed} className="py-3 rounded-xl text-white text-sm font-bold bg-emerald-600 hover:bg-emerald-700 cursor-pointer">
+                    Vào bài học →
+                  </button>
+                </div>
+              ) : gate && !passed ? (
+                <div className="grid grid-cols-2 gap-3 pt-2">
+                  <button onClick={onClose} className="py-3 rounded-xl border border-stone-200 dark:border-stone-700 text-stone-600 dark:text-stone-400 text-sm font-bold hover:bg-stone-50 dark:hover:bg-stone-800 cursor-pointer">
+                    Đóng
+                  </button>
+                  <button onClick={loadChallenge} className="py-3 rounded-xl text-white text-sm font-bold bg-stone-900 dark:bg-stone-100 dark:text-stone-900 hover:opacity-90 cursor-pointer">
+                    Thử lại
+                  </button>
+                </div>
+              ) : (
+                <div className="grid grid-cols-2 gap-3 pt-2">
+                  <button onClick={onClose} className="py-3 rounded-xl border border-stone-200 dark:border-stone-700 text-stone-600 dark:text-stone-400 text-sm font-bold hover:bg-stone-50 dark:hover:bg-stone-800 cursor-pointer">
+                    Đóng
+                  </button>
+                  <button onClick={loadChallenge} className="py-3 rounded-xl text-white text-sm font-bold bg-stone-900 dark:bg-stone-100 dark:text-stone-900 hover:opacity-90 cursor-pointer">
+                    Thử thách mới
+                  </button>
+                </div>
+              )}
             </div>
           )}
         </div>

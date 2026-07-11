@@ -28,6 +28,8 @@ import UnlockRequestModal from "@/components/UnlockRequestModal";
 import KnowledgeChallengeModal from "@/components/KnowledgeChallengeModal";
 import { TRACK_PERSONAL, TRACK_PROFESSIONAL } from "@/lib/track-stages";
 import { getLessonStage, getLessonsInStage } from "@/lib/lesson-stages";
+import { isChallengeGated } from "@/lib/lesson-lock-rule";
+import { getChallengePassedLessonIds } from "@/lib/supabase-challenges";
 
 // Slim projection of Lesson - just enough to render the dashboard listing,
 // so the full lesson bodies (sections/quiz/etc) never reach this client bundle.
@@ -95,7 +97,9 @@ export default function DashboardClient({ lessonsMeta }: { lessonsMeta: LessonMe
   const [showOnboarding, setShowOnboarding] = useState(false);
   const [onboardingChecked, setOnboardingChecked] = useState(false);
   const [unlockedLessonIds, setUnlockedLessonIds] = useState<Set<number>>(new Set());
+  const [challengePassedIds, setChallengePassedIds] = useState<Set<number>>(new Set());
   const [unlockModalLesson, setUnlockModalLesson] = useState<LessonMeta | null>(null);
+  const [challengeGateLesson, setChallengeGateLesson] = useState<LessonMeta | null>(null);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [showChallenge, setShowChallenge] = useState(false);
 
@@ -103,15 +107,22 @@ export default function DashboardClient({ lessonsMeta }: { lessonsMeta: LessonMe
   // most once per calendar day, once they've actually completed enough
   // lessons for a randomized quiz to be worth running. Never fires more
   // than once per day per browser (tracked in localStorage) so it reads as
-  // a friendly surprise rather than an every-visit interruption.
+  // a friendly surprise rather than an every-visit interruption. Re-checked
+  // right before opening (not just when the effect first ran) so it never
+  // pops up on top of a gate challenge the learner is already mid-way
+  // through after clicking a locked lesson.
   useEffect(() => {
     if (loading || completed.length < 5 || typeof window === "undefined") return;
     const today = new Date().toDateString();
     const lastShown = window.localStorage.getItem("thtcdn_challenge_last_shown");
     if (lastShown === today) return;
     const timer = setTimeout(() => {
-      window.localStorage.setItem("thtcdn_challenge_last_shown", today);
-      setShowChallenge(true);
+      setChallengeGateLesson((gate) => {
+        if (gate) return gate; // don't steal focus from an in-progress gate challenge
+        window.localStorage.setItem("thtcdn_challenge_last_shown", today);
+        setShowChallenge(true);
+        return gate;
+      });
     }, 2500);
     return () => clearTimeout(timer);
   }, [loading, completed.length]);
@@ -256,6 +267,11 @@ export default function DashboardClient({ lessonsMeta }: { lessonsMeta: LessonMe
           if (data) setUnlockedLessonIds(new Set(data.map((row) => row.lesson_id)));
         });
 
+      // Lessons unlocked by passing their gate challenge (see isChallengeGated).
+      getChallengePassedLessonIds(session.user.id)
+        .then((ids) => setChallengePassedIds(new Set(ids)))
+        .catch((error) => console.error("Error loading challenge passes:", error));
+
       // Check if user has completed onboarding. The local flag is checked
       // first and short-circuits the server round trip - it's what actually
       // stops the modal from reappearing on every visit when the
@@ -363,9 +379,9 @@ export default function DashboardClient({ lessonsMeta }: { lessonsMeta: LessonMe
 
   // Client-side lock check - must stay in sync with lib/lesson-lock-rule.ts.
   // Sequential unlock: first 7 lessons unlocked per stage, rest require previous lesson completed.
-  // Note: server-side lesson-locking.ts handles admin unlock grants; this is UI-only.
   const isLessonLocked = (lesson: LessonMeta): boolean => {
     if (lesson.isFundamental) return false;
+    if (unlockedLessonIds.has(lesson.id)) return false;
 
     const stage = getLessonStage(lesson);
 
@@ -381,10 +397,38 @@ export default function DashboardClient({ lessonsMeta }: { lessonsMeta: LessonMe
     // Beyond 7: require previous lesson completed
     if (index >= 7) {
       const previousLesson = stageALL[index - 1];
-      return !completed.includes(previousLesson.id);
+      if (!completed.includes(previousLesson.id)) return true;
+      // Prerequisite met - some lessons additionally require passing a
+      // randomized knowledge-check challenge before they unlock.
+      if (isChallengeGated(lesson.id) && !challengePassedIds.has(lesson.id)) return true;
+      return false;
     }
 
     return false;
+  };
+
+  // A locked lesson is either waiting on its prerequisite (send the
+  // "message admin" flow) or waiting on its challenge gate (open the
+  // knowledge-check modal instead) - the two need different click handling.
+  const isWaitingOnChallenge = (lesson: LessonMeta): boolean => {
+    if (lesson.isFundamental || unlockedLessonIds.has(lesson.id)) return false;
+    const stage = getLessonStage(lesson);
+    if (stage === null || stage === 0) return false;
+    const stageALL = getLessonsInStage(lesson, sorted).sort((a, b) => a.id - b.id);
+    const index = stageALL.findIndex((l) => l.id === lesson.id);
+    if (index < 7) return false;
+    const previousLesson = stageALL[index - 1];
+    if (!completed.includes(previousLesson.id)) return false;
+    return isChallengeGated(lesson.id) && !challengePassedIds.has(lesson.id);
+  };
+
+  const handleLockedLessonClick = (lesson: LessonMeta) => {
+    if (isWaitingOnChallenge(lesson)) {
+      setShowChallenge(false); // don't stack the daily-nudge popup behind a gate challenge
+      setChallengeGateLesson(lesson);
+    } else {
+      setUnlockModalLesson(lesson);
+    }
   };
 
   const getPrerequisiteLesson = (lesson: LessonMeta): LessonMeta | undefined => {
@@ -691,7 +735,7 @@ export default function DashboardClient({ lessonsMeta }: { lessonsMeta: LessonMe
                                   return (
                                     <button
                                       key={lesson.id}
-                                      onClick={() => setUnlockModalLesson(lesson)}
+                                      onClick={() => handleLockedLessonClick(lesson)}
                                       className="w-full text-left block rounded-xl border-2 border-stone-200 dark:border-stone-800 bg-stone-50 dark:bg-stone-900/50 opacity-70 hover:opacity-100 transition-opacity cursor-pointer"
                                     >
                                       <div className="flex items-center gap-4 px-6 py-5">
@@ -710,7 +754,9 @@ export default function DashboardClient({ lessonsMeta }: { lessonsMeta: LessonMe
                                             {lesson.title}
                                           </div>
                                           <div className="text-sm mt-1 truncate text-stone-400 dark:text-stone-600">
-                                            Yêu cầu hoàn thành bài trước - nhấn để nhắn admin mở khoá
+                                            {isWaitingOnChallenge(lesson)
+                                              ? "🎯 Vượt qua thử thách kiến thức để mở khoá"
+                                              : "Yêu cầu hoàn thành bài trước - nhấn để nhắn admin mở khoá"}
                                           </div>
                                         </div>
                                       </div>
@@ -819,7 +865,7 @@ export default function DashboardClient({ lessonsMeta }: { lessonsMeta: LessonMe
                       return (
                         <button
                           key={lesson.id}
-                          onClick={() => setUnlockModalLesson(lesson)}
+                          onClick={() => handleLockedLessonClick(lesson)}
                           className="w-full text-left block rounded-xl border-2 border-stone-200 dark:border-stone-800 bg-stone-50 dark:bg-stone-900/50 opacity-70 hover:opacity-100 transition-opacity cursor-pointer"
                         >
                           <div className="flex items-center gap-4 px-6 py-4">
@@ -833,7 +879,9 @@ export default function DashboardClient({ lessonsMeta }: { lessonsMeta: LessonMe
                                 {lesson.title}
                               </div>
                               <div className="text-sm mt-0.5 truncate text-stone-400 dark:text-stone-600">
-                                Yêu cầu hoàn thành bài trước - nhấn để nhắn admin mở khoá
+                                {isWaitingOnChallenge(lesson)
+                                  ? "🎯 Vượt qua thử thách kiến thức để mở khoá"
+                                  : "Yêu cầu hoàn thành bài trước - nhấn để nhắn admin mở khoá"}
                               </div>
                             </div>
                           </div>
@@ -906,6 +954,23 @@ export default function DashboardClient({ lessonsMeta }: { lessonsMeta: LessonMe
       )}
 
       {showChallenge && <KnowledgeChallengeModal onClose={() => setShowChallenge(false)} />}
+
+      {challengeGateLesson && user?.id && (
+        <KnowledgeChallengeModal
+          onClose={() => setChallengeGateLesson(null)}
+          gate={{
+            lessonId: challengeGateLesson.id,
+            lessonSlug: challengeGateLesson.slug,
+            lessonTitle: challengeGateLesson.title,
+            userId: user.id,
+          }}
+          onPassed={() => {
+            setChallengePassedIds((prev) => new Set(prev).add(challengeGateLesson.id));
+            router.push(`/bai-hoc/${challengeGateLesson.slug}`);
+            setChallengeGateLesson(null);
+          }}
+        />
+      )}
     </div>
   );
 }

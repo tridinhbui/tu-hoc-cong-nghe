@@ -14,11 +14,22 @@ import { getLessonStage, getLessonsInStage, getLessonPositionInStage } from "@/l
  * - All stages: first 7 lessons unlocked, rest require sequential completion
  * - Prerequisites: user must complete the lesson's prerequisiteId (if set) or the previous lesson
  */
+// Deterministic pseudo-random selection of which lessons require passing a
+// knowledge-check challenge (not just their prerequisite) to unlock - about
+// 1 in 5, spread through the curriculum by id rather than every lesson, so
+// it reads as an occasional checkpoint rather than a wall on every lesson.
+// Deterministic (not re-randomized per visit) so a lesson's gated/not-gated
+// status doesn't change out from under someone between sessions.
+export function isChallengeGated(lessonId: number): boolean {
+  return lessonId % 5 === 0;
+}
+
 export function computeLessonLocked(
   lesson: LessonMeta,
   sortedLessons: LessonMeta[],
   completedIds: ReadonlySet<number>,
-  unlockedIds: ReadonlySet<number>
+  unlockedIds: ReadonlySet<number>,
+  challengePassedIds: ReadonlySet<number> = new Set()
 ): boolean {
   // Free lessons are always unlocked
   if (lesson.isFundamental) {
@@ -49,7 +60,15 @@ export function computeLessonLocked(
   // Beyond first 7: require completing the previous lesson
   if (lessonIndex >= 7) {
     const previousLesson = lessonsInStage[lessonIndex - 1];
-    return !completedIds.has(previousLesson.id);
+    if (!completedIds.has(previousLesson.id)) {
+      return true;
+    }
+    // Prerequisite met - some lessons additionally require passing a
+    // randomized knowledge-check challenge before they unlock.
+    if (isChallengeGated(lesson.id) && !challengePassedIds.has(lesson.id)) {
+      return true;
+    }
+    return false;
   }
 
   return false;

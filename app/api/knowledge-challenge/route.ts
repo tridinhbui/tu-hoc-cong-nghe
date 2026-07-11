@@ -12,7 +12,7 @@ export interface ChallengeQuestion {
   explanation: string;
 }
 
-const QUESTION_COUNT = 10;
+const QUESTION_COUNT = 5;
 
 function shuffle<T>(arr: T[]): T[] {
   const a = [...arr];

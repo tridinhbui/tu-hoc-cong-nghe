@@ -25,13 +25,15 @@ export async function isLessonLockedForUser(lessonId: number, userId: string | n
   if (!userId) return true; // not logged in and not a free/fundamental lesson
 
   const supabase = await createServerSupabaseClient();
-  const [{ data: unlocks }, { data: progress }] = await Promise.all([
+  const [{ data: unlocks }, { data: progress }, { data: passes }] = await Promise.all([
     supabase.from("user_lesson_unlocks").select("lesson_id").eq("user_id", userId),
     supabase.from("user_progress").select("lesson_id").eq("user_id", userId).eq("completed", true),
+    supabase.from("user_challenge_passes").select("lesson_id").eq("user_id", userId),
   ]);
 
   const unlockedIds = new Set((unlocks ?? []).map((r) => r.lesson_id as number));
   const completedIds = new Set((progress ?? []).map((r) => r.lesson_id as number));
+  const challengePassedIds = new Set((passes ?? []).map((r) => r.lesson_id as number));
 
-  return computeLessonLocked(lesson, sorted, completedIds, unlockedIds);
+  return computeLessonLocked(lesson, sorted, completedIds, unlockedIds, challengePassedIds);
 }
