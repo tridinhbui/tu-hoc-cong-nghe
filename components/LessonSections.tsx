@@ -1,7 +1,13 @@
 import React from "react";
 import type { LessonSectionBlock } from "@/lib/lesson-types";
+import { highlightGlossaryTerms } from "@/components/GlossaryTerm";
 
 export default function LessonSections({ sections }: { sections: LessonSectionBlock[] }) {
+  // Shared across the whole lesson body so a term already highlighted once
+  // (e.g. "dòng tiền" in an early paragraph) doesn't get re-wrapped every
+  // time it's mentioned again later in the same lesson.
+  const seenTerms = new Set<string>();
+
   return (
     <div className="space-y-10 text-stone-700 dark:text-stone-300 leading-relaxed text-lg">
       {sections.map((block, i) => {
@@ -9,7 +15,7 @@ export default function LessonSections({ sections }: { sections: LessonSectionBl
           case "lead":
             return (
               <p key={i} className="text-xl leading-relaxed">
-                {block.text}
+                {highlightGlossaryTerms(block.text, seenTerms)}
               </p>
             );
 
@@ -21,7 +27,7 @@ export default function LessonSections({ sections }: { sections: LessonSectionBl
             );
 
           case "paragraph":
-            return <p key={i}>{block.text}</p>;
+            return <p key={i}>{highlightGlossaryTerms(block.text, seenTerms)}</p>;
 
           case "list":
             return (
@@ -29,7 +35,7 @@ export default function LessonSections({ sections }: { sections: LessonSectionBl
                 {block.items.map((item, j) => (
                   <li key={j} className="flex items-start gap-3 text-stone-600 dark:text-stone-400 text-lg">
                     <span className="mt-2.5 w-2 h-2 rounded-full bg-stone-400 dark:bg-stone-600 flex-shrink-0" />
-                    {item}
+                    <span>{highlightGlossaryTerms(item, seenTerms)}</span>
                   </li>
                 ))}
               </ul>
@@ -39,7 +45,7 @@ export default function LessonSections({ sections }: { sections: LessonSectionBl
             return (
               <div key={i} className="border border-stone-200 dark:border-stone-800 rounded-2xl p-6 bg-stone-50 dark:bg-stone-900/50 space-y-3">
                 <p className="text-xs font-bold text-stone-500 dark:text-stone-400 uppercase tracking-widest">{block.label}</p>
-                <p className="text-stone-700 dark:text-stone-300 text-base leading-relaxed">{block.text}</p>
+                <p className="text-stone-700 dark:text-stone-300 text-base leading-relaxed">{highlightGlossaryTerms(block.text, seenTerms)}</p>
               </div>
             );
 
@@ -49,7 +55,7 @@ export default function LessonSections({ sections }: { sections: LessonSectionBl
                 {[block.left, block.right].map((side) => (
                   <div key={side.label} className="border border-stone-200 dark:border-stone-800 rounded-2xl p-6 space-y-3">
                     <p className="text-xs font-bold text-stone-500 dark:text-stone-400 uppercase tracking-widest">{side.label}</p>
-                    <p className="text-base text-stone-600 dark:text-stone-400 leading-relaxed">{side.text}</p>
+                    <p className="text-base text-stone-600 dark:text-stone-400 leading-relaxed">{highlightGlossaryTerms(side.text, seenTerms)}</p>
                   </div>
                 ))}
               </div>

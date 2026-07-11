@@ -8,6 +8,7 @@ import LessonPageLayout from "@/components/LessonPageLayout";
 import InteractiveWidget from "@/components/InteractiveWidget";
 import MidpointInteractive from "@/components/MidpointInteractive";
 import LessonSections from "@/components/LessonSections";
+import { highlightGlossaryTerms } from "@/components/GlossaryTerm";
 import { LessonApplicationCard, LessonQuestionCard, LessonSummaryCard, ReviewLoopCard } from "@/components/LessonLearningBlocks";
 
 function OpeningQuestionBlock({
@@ -250,7 +251,7 @@ export default function LessonPageClient({ lesson, nextLesson }: Props) {
               Giải thích chi tiết
             </div>
             <p className="text-stone-700 dark:text-stone-300 leading-relaxed text-base">
-              {lesson.explanation}
+              {highlightGlossaryTerms(lesson.explanation, new Set())}
             </p>
           </div>
         )
