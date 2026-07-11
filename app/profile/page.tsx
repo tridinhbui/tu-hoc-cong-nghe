@@ -6,6 +6,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { createClient } from "@/lib/supabase";
 import { getLevelByXp } from "@/lib/levels";
+import { getUserProfile } from "@/lib/supabase-user";
 import UserMenu from "@/components/UserMenu";
 
 // Auth-gated and reads Supabase env vars at render time - never prerender statically.
@@ -30,8 +31,12 @@ export default function ProfilePage() {
       }
 
       setUser(session.user);
-      // Mock XP for now
-      setUserXp(150);
+      try {
+        const profile = await getUserProfile(session.user.id);
+        setUserXp(profile.total_xp);
+      } catch (error) {
+        console.error("Error loading user XP:", error);
+      }
       setLoading(false);
     };
 
