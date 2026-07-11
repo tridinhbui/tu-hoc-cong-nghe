@@ -18,61 +18,11 @@ export interface RecallItem {
 }
 
 export const RECALL_SCHEDULE: Record<number, RecallItem[]> = {
-  "1": [
-    {
-      "fromDay": 264,
-      "fromTitle": "Khẩu vị rủi ro: Bạn chịu được biến động cỡ nào?",
-      "text": "Khẩu vị rủi ro = khả năng TÀI CHÍNH + khả năng TÂM LÝ; danh mục phù hợp phải nằm trong giới hạn của cả hai",
-      "distractors": [
-        "Là bước bắt buộc để đánh giá độ tin cậy và giới hạn của bất kỳ mô hình định giá nào",
-        "Chọn loại nào phụ thuộc vào kỳ vọng lãi suất: nếu tin lãi suất sẽ tăng, lãi thả nổi có lợi hơn; nếu tin lãi suất sẽ giảm hoặc muốn dòng tiền chắc chắn, lãi cố định phù hợp hơn"
-      ]
-    }
-  ],
-  "2": [
-    {
-      "fromDay": 265,
-      "fromTitle": "Lập ngân sách 50/30/20: Kiểm soát tiền trước khi tiền kiểm soát bạn",
-      "text": "50/30/20: 50% nhu cầu thiết yếu, 30% mong muốn, 20% tiết kiệm & trả nợ - tính trên thu nhập sau thuế",
-      "distractors": [
-        "Nợ dài hạn: thời gian trả dài hơn, thường lãi cao hơn",
-        "Chốt lời từng phần là chiến lược cân bằng giữa việc hiện thực hóa lợi nhuận và giữ cơ hội hưởng lợi nếu giá tiếp tục tăng"
-      ]
-    }
-  ],
-  "3": [
-    {
-      "fromDay": 266,
-      "fromTitle": "Quỹ khẩn cấp: Tấm đệm trước mọi cú sốc",
-      "text": "Quỹ khẩn cấp = 3-6 tháng chi tiêu thiết yếu (6-12 tháng nếu thu nhập thất thường), để ở kênh rút được trong 1-2 ngày",
-      "distractors": [
-        "Bảo hiểm nhân thọ bảo vệ người PHỤ THUỘC vào thu nhập của bạn, không phải bản thân bạn",
-        "Tần suất hợp lý cho mục tiêu dài hạn (hưu trí, giáo dục con) là hàng tháng hoặc hàng quý"
-      ]
-    }
-  ],
-  "4": [
-    {
-      "fromDay": 267,
-      "fromTitle": "Trả nợ thông minh: Snowball vs Avalanche",
-      "text": "Avalanche (theo lãi suất cao → thấp) tối ưu về tiền; Snowball (theo số dư nhỏ → lớn) tối ưu về động lực - chọn theo con người thật của bạn",
-      "distractors": [
-        "Không có di chúc, tài sản chia theo pháp luật (hàng thừa kế thứ nhất: vợ/chồng, cha mẹ, con) - không nhất thiết theo mong muốn thực sự của người mất",
-        "Nguyên tắc chung: chậm lại, xác minh qua kênh khác, không hành động dưới áp lực thời gian khi liên quan đến tiền bạc"
-      ]
-    }
-  ],
-  "5": [
-    {
-      "fromDay": 268,
-      "fromTitle": "Tiết kiệm theo mục tiêu: Sinking fund và checklist nền tảng",
-      "text": "Sinking fund: chia khoản chi lớn BIẾT TRƯỚC thành khoản nhỏ hàng tháng - khoản chi đoán được không bao giờ nên trở thành nợ",
-      "distractors": [
-        "Nhưng lãi vay được khấu trừ thuế - lá chắn thuế",
-        "Cần thực hiện sensitivity analysis kỹ lưỡng vì mức độ ảnh hưởng cực lớn đến kết quả cuối cùng"
-      ]
-    }
-  ],
+  "1": [],
+  "2": [],
+  "3": [],
+  "4": [],
+  "5": [],
   "6": [
     {
       "fromDay": 1,
@@ -93,15 +43,6 @@ export const RECALL_SCHEDULE: Record<number, RecallItem[]> = {
         "Nhạy cảm với discount rate và dự báo FCF",
         "SG&A = chi phí vận hành gián tiếp (bán hàng + quản lý)"
       ]
-    },
-    {
-      "fromDay": 263,
-      "fromTitle": "Audit tài chính cá nhân: Bạn đang đứng ở đâu?",
-      "text": "Tài sản ròng = Tổng tài sản − Tổng nợ; phải liệt kê ĐẦY ĐỦ cả hai vế, kể cả nợ 'mềm' (thẻ tín dụng, vay người thân, trả góp)",
-      "distractors": [
-        "Risk premium: phần thưởng cho việc chấp nhận rủi ro",
-        "DPO = AP / (COGS/365) - đo hiệu quả quản lý AP"
-      ]
     }
   ],
   "8": [
@@ -112,15 +53,6 @@ export const RECALL_SCHEDULE: Record<number, RecallItem[]> = {
       "distractors": [
         "Công ty tăng trưởng nhanh thường ưu tiên tái đầu tư hơn là chia cổ tức; công ty ổn định (như Vinamilk) thường trả cổ tức đều đặn",
         "Theo dõi OCF, không chỉ Net Income"
-      ]
-    },
-    {
-      "fromDay": 264,
-      "fromTitle": "Khẩu vị rủi ro: Bạn chịu được biến động cỡ nào?",
-      "text": "Khẩu vị rủi ro = khả năng TÀI CHÍNH + khả năng TÂM LÝ; danh mục phù hợp phải nằm trong giới hạn của cả hai",
-      "distractors": [
-        "Khi so sánh các sản phẩm 'giống trái phiếu' này, luôn xem xét: kỳ hạn, tính thanh khoản (rút trước hạn có mất lãi không), lãi suất thực nhận, và các loại phí đi kèm",
-        "Debt/Equity ratio từ BS cho biết đòn bẩy tài chính"
       ]
     }
   ],
@@ -133,15 +65,6 @@ export const RECALL_SCHEDULE: Record<number, RecallItem[]> = {
         "Là tỷ lệ chiết khấu chuẩn trong DCF",
         "Correlation không cố định - có thể thay đổi bất lợi đúng vào giai đoạn khủng hoảng, đây là giới hạn thực tế cần lưu ý"
       ]
-    },
-    {
-      "fromDay": 265,
-      "fromTitle": "Lập ngân sách 50/30/20: Kiểm soát tiền trước khi tiền kiểm soát bạn",
-      "text": "50/30/20: 50% nhu cầu thiết yếu, 30% mong muốn, 20% tiết kiệm & trả nợ - tính trên thu nhập sau thuế",
-      "distractors": [
-        "Synergy phải lớn hơn premium mới tạo giá trị",
-        "Duration: đo độ nhạy giá với lãi suất"
-      ]
     }
   ],
   "10": [
@@ -152,15 +75,6 @@ export const RECALL_SCHEDULE: Record<number, RecallItem[]> = {
       "distractors": [
         "Quick Ratio loại hàng tồn kho khỏi tài sản ngắn hạn",
         "Là cơ sở tính toán trong hầu hết các thương vụ M&A thực tế"
-      ]
-    },
-    {
-      "fromDay": 266,
-      "fromTitle": "Quỹ khẩn cấp: Tấm đệm trước mọi cú sốc",
-      "text": "Quỹ khẩn cấp = 3-6 tháng chi tiêu thiết yếu (6-12 tháng nếu thu nhập thất thường), để ở kênh rút được trong 1-2 ngày",
-      "distractors": [
-        "Quỹ hưu trí bổ sung tự nguyện (Nghị định 88/2016/NĐ-CP) là lựa chọn bổ sung tự nguyện, có ưu đãi thuế, do các công ty bảo hiểm/quản lý quỹ cung cấp",
-        "WACC tăng → định giá giảm → cổ phiếu rủi ro"
       ]
     }
   ],
@@ -173,15 +87,6 @@ export const RECALL_SCHEDULE: Record<number, RecallItem[]> = {
         "Active investing: cố gắng vượt trội thị trường, chi phí cao hơn",
         "FCF = NOPAT × (1 − Growth/ROIC)"
       ]
-    },
-    {
-      "fromDay": 267,
-      "fromTitle": "Trả nợ thông minh: Snowball vs Avalanche",
-      "text": "Avalanche (theo lãi suất cao → thấp) tối ưu về tiền; Snowball (theo số dư nhỏ → lớn) tối ưu về động lực - chọn theo con người thật của bạn",
-      "distractors": [
-        "Đầu tư vào tài sản có khả năng tăng trưởng dài hạn (cổ phiếu, quỹ đa dạng hóa) là công cụ chính để bảo vệ sức mua trước lạm phát",
-        "AR tăng nhanh hơn revenue = cần điều tra"
-      ]
     }
   ],
   "12": [
@@ -192,15 +97,6 @@ export const RECALL_SCHEDULE: Record<number, RecallItem[]> = {
       "distractors": [
         "Danh mục phù hợp là danh mục bạn có thể kiên trì nắm giữ qua các giai đoạn giảm điểm, không phải danh mục có lợi nhuận kỳ vọng cao nhất trên giấy",
         "Là phương pháp định giá tuyệt đối, độc lập với định giá thị trường của công ty khác"
-      ]
-    },
-    {
-      "fromDay": 268,
-      "fromTitle": "Tiết kiệm theo mục tiêu: Sinking fund và checklist nền tảng",
-      "text": "Sinking fund: chia khoản chi lớn BIẾT TRƯỚC thành khoản nhỏ hàng tháng - khoản chi đoán được không bao giờ nên trở thành nợ",
-      "distractors": [
-        "Leverage ratio: tổng tài sản / vốn tự có",
-        "Nợ dài hạn: thời gian trả dài hơn, thường lãi cao hơn"
       ]
     }
   ],
@@ -3843,15 +3739,6 @@ export const RECALL_SCHEDULE: Record<number, RecallItem[]> = {
   ],
   "203": [
     {
-      "fromDay": 212,
-      "fromTitle": "Tâm lý trong đầu tư: lòng tham và sợ hãi",
-      "text": "Sợ hãi khiến nhà đầu tư bán tháo trong hoảng loạn ở vùng giá thấp; lòng tham khiến nhà đầu tư mua đuổi hoặc dùng đòn bẩy quá mức ở vùng giá cao",
-      "distractors": [
-        "Net Income là bottom line - nhưng chỉ là con số kế toán",
-        "Nên so sánh P/E của một công ty với chính nó trong quá khứ và với các công ty cùng ngành, không so sánh công ty khác ngành với nhau"
-      ]
-    },
-    {
       "fromDay": 14,
       "fromTitle": "Nợ tốt và nợ xấu.",
       "text": "Nợ tốt: dùng để mua tài sản sinh lợi cao hơn lãi vay",
@@ -3863,15 +3750,6 @@ export const RECALL_SCHEDULE: Record<number, RecallItem[]> = {
   ],
   "204": [
     {
-      "fromDay": 213,
-      "fromTitle": "Sai lầm phổ biến của nhà đầu tư mới",
-      "text": "Ba sai lầm phổ biến nhất của nhà đầu tư mới: dồn hết vốn vào một mã, dùng đòn bẩy (margin) quá mức, và tin theo 'phím hàng' thiếu kiểm chứng",
-      "distractors": [
-        "Phản ánh chi phí thực sự để mua đứt toàn bộ hoạt động kinh doanh của công ty",
-        "Alpha: lợi nhuận vượt trội so với benchmark sau khi điều chỉnh rủi ro"
-      ]
-    },
-    {
       "fromDay": 15,
       "fromTitle": "Đòn bẩy tài chính là gì?",
       "text": "Đòn bẩy khuếch đại cả lợi nhuận lẫn thua lỗ so với vốn tự có",
@@ -3882,15 +3760,6 @@ export const RECALL_SCHEDULE: Record<number, RecallItem[]> = {
     }
   ],
   "205": [
-    {
-      "fromDay": 214,
-      "fromTitle": "Kỳ vọng lợi nhuận thực tế từ cổ phiếu",
-      "text": "Lợi nhuận trung bình dài hạn của thị trường chứng khoán (kể cả VN-Index) thường ở mức khoảng 8-12%/năm khi tính lãi kép qua nhiều năm, không phải 50-100%/năm như những câu chuyện thường được kể",
-      "distractors": [
-        "CAGR (tốc độ tăng trưởng kép bình quân) phản ánh hiệu suất thực tế chính xác hơn việc chỉ nhìn vào năm tốt nhất",
-        "Tái cân bằng là đưa danh mục về đúng tỷ trọng mục tiêu ban đầu sau khi thị trường làm lệch tỷ lệ"
-      ]
-    },
     {
       "fromDay": 16,
       "fromTitle": "Vì sao người vay tiền có thể giàu lên hoặc phá sản.",
@@ -3990,15 +3859,6 @@ export const RECALL_SCHEDULE: Record<number, RecallItem[]> = {
         "ROIC > WACC → tạo value",
         "Đây là khung tham khảo, không phải luật cứng - điều chỉnh theo hoàn cảnh nhưng nên biết mình đang lệch ở đâu"
       ]
-    },
-    {
-      "fromDay": 212,
-      "fromTitle": "Tâm lý trong đầu tư: lòng tham và sợ hãi",
-      "text": "Sợ hãi khiến nhà đầu tư bán tháo trong hoảng loạn ở vùng giá thấp; lòng tham khiến nhà đầu tư mua đuổi hoặc dùng đòn bẩy quá mức ở vùng giá cao",
-      "distractors": [
-        "Tài sản có correlation âm/thấp với phần còn lại có giá trị bảo vệ danh mục cao",
-        "EBIT đo hiệu quả hoạt động, độc lập với cơ cấu vốn"
-      ]
     }
   ],
   "211": [
@@ -4009,15 +3869,6 @@ export const RECALL_SCHEDULE: Record<number, RecallItem[]> = {
       "distractors": [
         "WC = Tài sản ngắn hạn − Nợ ngắn hạn",
         "Cả hai phương pháp đều yêu cầu: trả tối thiểu mọi khoản khác, dồn phần dư vào khoản ưu tiên"
-      ]
-    },
-    {
-      "fromDay": 213,
-      "fromTitle": "Sai lầm phổ biến của nhà đầu tư mới",
-      "text": "Ba sai lầm phổ biến nhất của nhà đầu tư mới: dồn hết vốn vào một mã, dùng đòn bẩy (margin) quá mức, và tin theo 'phím hàng' thiếu kiểm chứng",
-      "distractors": [
-        "Chiết khấu bằng Cost of Equity, cho ra trực tiếp Equity Value",
-        "Equity gồm: common stock, APIC, retained earnings, treasury stock"
       ]
     }
   ],

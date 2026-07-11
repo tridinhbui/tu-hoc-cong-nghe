@@ -455,7 +455,7 @@ export default function LessonPageLayout({ lesson, quiz, children }: Props) {
                 lessons back before introducing new material, so review is
                 distributed across the course instead of only happening once
                 at the end of a chặng. */}
-            {RECALL_SCHEDULE[lesson.day] && <RecallCard items={RECALL_SCHEDULE[lesson.day]} />}
+            {RECALL_SCHEDULE[lesson.day]?.length > 0 && <RecallCard items={RECALL_SCHEDULE[lesson.day]} />}
 
             {/* Tài Tài auto-tip */}
             <div data-tour="lesson-tai-tai">
