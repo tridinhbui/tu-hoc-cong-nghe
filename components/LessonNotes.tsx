@@ -6,7 +6,7 @@ import { toast } from "sonner";
 import { getLessonNotes, createNote, updateNote, deleteNote } from "@/lib/supabase-notes";
 import { createClient } from "@/lib/supabase";
 import type { LessonNote } from "@/lib/supabase-notes";
-import NoteContent from "@/components/NoteContent";
+import NoteContent, { hasMathContent } from "@/components/NoteContent";
 
 interface LessonNotesProps {
   lessonId: number;
@@ -164,7 +164,7 @@ export default function LessonNotes({ lessonId, lessonSlug }: LessonNotesProps) 
                         rows={3}
                         autoFocus
                       />
-                      {/\$/.test(noteContent) && (
+                      {hasMathContent(noteContent) && (
                         <div className="px-3 py-2 rounded-lg bg-stone-100 dark:bg-stone-800 border border-dashed border-stone-300 dark:border-stone-600 overflow-x-auto">
                           <NoteContent content={noteContent} />
                         </div>
@@ -224,7 +224,7 @@ export default function LessonNotes({ lessonId, lessonSlug }: LessonNotesProps) 
               <p className="text-xs text-stone-400 dark:text-stone-500 mt-1">
                 Mẹo: gõ công thức toán trong $...$ (nội dòng) hoặc $$...$$ (khối riêng) để hiển thị đẹp, ví dụ $$\frac{"{a}"}{"{b}"}$$
               </p>
-              {/\$/.test(noteContent) && (
+              {hasMathContent(noteContent) && (
                 <div className="mt-2 px-3 py-2 rounded-lg bg-stone-100 dark:bg-stone-800 border border-dashed border-stone-300 dark:border-stone-600 overflow-x-auto">
                   <NoteContent content={noteContent} />
                 </div>

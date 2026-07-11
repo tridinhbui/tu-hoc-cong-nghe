@@ -7,7 +7,7 @@ import { Edit2, Trash2 } from "lucide-react";
 import { toast } from "sonner";
 import { createClient } from "@/lib/supabase";
 import { getAllUserNotes, updateNote, deleteNote, type LessonNote } from "@/lib/supabase-notes";
-import NoteContent from "@/components/NoteContent";
+import NoteContent, { hasMathContent } from "@/components/NoteContent";
 import UserMenu from "@/components/UserMenu";
 
 interface LessonInfo {
@@ -157,7 +157,7 @@ export default function NotesOverviewClient({ lessonsById }: NotesOverviewClient
                               rows={3}
                               autoFocus
                             />
-                            {/\$/.test(editContent) && (
+                            {hasMathContent(editContent) && (
                               <div className="px-3 py-2 rounded-lg bg-stone-100 dark:bg-stone-800 border border-dashed border-stone-300 dark:border-stone-600 overflow-x-auto">
                                 <NoteContent content={editContent} />
                               </div>

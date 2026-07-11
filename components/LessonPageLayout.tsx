@@ -9,6 +9,7 @@ import StageTipsBanner from "@/components/StageTipsBanner";
 import BadgeToast from "@/components/BadgeToast";
 import ReadingProgress from "@/components/ReadingProgress";
 import BookmarkButton from "@/components/BookmarkButton";
+import LessonStatsHover from "@/components/LessonStatsHover";
 import LessonNotes from "@/components/LessonNotes";
 import { createClient } from "@/lib/supabase";
 import { markLessonComplete as markLessonCompleteSupabase } from "@/lib/supabase-progress";
@@ -372,7 +373,10 @@ export default function LessonPageLayout({ lesson, quiz, children }: Props) {
                 lessonTitle={lesson.title}
               />
             </div>
-            
+
+            {/* Quick stats peek */}
+            <LessonStatsHover />
+
             {/* Reading progress badge */}
             <div className="hidden sm:flex items-center gap-2 bg-stone-50 dark:bg-stone-900/50 border border-stone-200 dark:border-stone-800 rounded-full px-3 py-1.5">
               <div className="w-4 h-4 rounded-full bg-stone-200 dark:bg-stone-700 overflow-hidden flex-shrink-0 relative">

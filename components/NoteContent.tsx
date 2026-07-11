@@ -11,10 +11,32 @@ type Segment =
   | { type: "block"; value: string }
   | { type: "inline"; value: string };
 
+// At least 2 backslash-commands (\subseteq, \bigcup, \frac, \text, ...) in a
+// paragraph is a strong signal it's pasted LaTeX, even with no $ delimiters
+// at all - e.g. "K_n \subseteq \bigcup_{i=1}^{n} K_i \quad\text{and}\quad ...".
+// Without this, a note like that rendered as literal backslash-soup instead
+// of a formula, because there was nothing to tell it apart from plain text.
+const LATEX_COMMAND = /\\[a-zA-Z]+/g;
+
+function looksLikeBareLatex(paragraph: string): boolean {
+  const matches = paragraph.match(LATEX_COMMAND);
+  return (matches?.length ?? 0) >= 2;
+}
+
+// Shared by the note editors (LessonNotes, NotesOverviewClient) to decide
+// whether to show a live preview while typing - must use the same detection
+// as splitSegments below, or bare-LaTeX content (no $ at all) would render
+// correctly once saved but never show a preview while editing.
+export function hasMathContent(content: string): boolean {
+  if (content.includes("$")) return true;
+  return content.split(/\n\s*\n|\n/).some((p) => p.trim() && looksLikeBareLatex(p));
+}
+
 // Splits on $$...$$ (block math) first, then splits whatever text is left
 // over on $...$ (inline math) - lets a note mix plain Vietnamese sentences
 // with formulas like "$$\text{Giá trị} = \frac{FV}{(1+r)^n}$$" without
-// needing a separate math-only field.
+// needing a separate math-only field. Paragraphs that look like bare LaTeX
+// (no $ at all, but multiple \commands) are auto-wrapped as display math.
 function splitSegments(content: string): Segment[] {
   const segments: Segment[] = [];
   const blockRegex = /\$\$([\s\S]+?)\$\$/g;
@@ -32,21 +54,42 @@ function splitSegments(content: string): Segment[] {
     segments.push({ type: "text", value: content.slice(lastIndex) });
   }
 
-  const final: Segment[] = [];
+  const withInline: Segment[] = [];
   for (const seg of segments) {
     if (seg.type !== "text") {
-      final.push(seg);
+      withInline.push(seg);
       continue;
     }
     const inlineRegex = /\$([^$\n]+?)\$/g;
     let li = 0;
     let m: RegExpExecArray | null;
     while ((m = inlineRegex.exec(seg.value)) !== null) {
-      if (m.index > li) final.push({ type: "text", value: seg.value.slice(li, m.index) });
-      final.push({ type: "inline", value: m[1] });
+      if (m.index > li) withInline.push({ type: "text", value: seg.value.slice(li, m.index) });
+      withInline.push({ type: "inline", value: m[1] });
       li = m.index + m[0].length;
     }
-    if (li < seg.value.length) final.push({ type: "text", value: seg.value.slice(li) });
+    if (li < seg.value.length) withInline.push({ type: "text", value: seg.value.slice(li) });
+  }
+
+  // Final pass: split remaining plain-text segments into paragraphs (blank
+  // line or single newline) and promote any bare-LaTeX-looking ones to
+  // display math.
+  const final: Segment[] = [];
+  for (const seg of withInline) {
+    if (seg.type !== "text") {
+      final.push(seg);
+      continue;
+    }
+    const parts = seg.value.split(/(\n\s*\n|\n)/);
+    for (const part of parts) {
+      if (/^\n\s*\n$|^\n$/.test(part)) {
+        final.push({ type: "text", value: part });
+      } else if (part.trim() && looksLikeBareLatex(part)) {
+        final.push({ type: "block", value: part.trim() });
+      } else if (part) {
+        final.push({ type: "text", value: part });
+      }
+    }
   }
 
   return final;
