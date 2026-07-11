@@ -5,7 +5,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { useRouter, useSearchParams } from "next/navigation";
 import { toast } from "sonner";
-import { CheckCircle2, BarChart3, Lock, FileText, Menu, X } from "lucide-react";
+import { CheckCircle2, BarChart3, Lock, FileText, Menu, X, Target } from "lucide-react";
 import { useProgress } from "@/lib/client-hooks";
 import { getProgress, mergeCompletedLessons } from "@/lib/progress";
 import { getCompletedLessons, markLessonComplete as markLessonCompleteSupabase } from "@/lib/supabase-progress";
@@ -464,27 +464,33 @@ export default function DashboardClient({ lessonsMeta }: { lessonsMeta: LessonMe
               <div className="text-xl font-bold text-stone-900 dark:text-stone-100">{totalDone}</div>
               <div className="text-xs text-stone-500 dark:text-stone-400">/ {totalLessons} bài đã học</div>
             </div>
-            <div data-tour="free-docs" className="flex items-center gap-6">
+            <div data-tour="free-docs" className="hidden sm:flex items-center gap-1">
               <Link
                 href="/tai-lieu"
-                className="hidden sm:flex items-center gap-1.5 text-xs font-bold text-orange-600 dark:text-orange-400 bg-orange-50 dark:bg-orange-950 border border-orange-200 dark:border-orange-800 hover:bg-orange-100 dark:hover:bg-orange-900 rounded-lg px-3 py-1.5 transition-colors"
+                title="Tài liệu miễn phí"
+                aria-label="Tài liệu miễn phí"
+                className="flex items-center justify-center w-9 h-9 rounded-full text-stone-400 dark:text-stone-500 hover:bg-stone-100 dark:hover:bg-stone-800 hover:text-stone-700 dark:hover:text-stone-200 transition-colors"
               >
-                <FileText className="w-3.5 h-3.5" />
-                Tài liệu miễn phí
+                <FileText className="w-4 h-4" />
               </Link>
               <Link
                 href="/analytics"
-                className="hidden sm:flex items-center gap-1.5 text-xs font-bold text-stone-500 dark:text-stone-400 hover:text-stone-900 dark:hover:text-stone-100 border border-stone-200 dark:border-stone-800 hover:border-stone-400 dark:hover:border-stone-600 rounded-lg px-3 py-1.5 transition-colors"
+                title="Thống kê"
+                aria-label="Thống kê"
+                className="flex items-center justify-center w-9 h-9 rounded-full text-stone-400 dark:text-stone-500 hover:bg-stone-100 dark:hover:bg-stone-800 hover:text-stone-700 dark:hover:text-stone-200 transition-colors"
               >
-                <BarChart3 className="w-3.5 h-3.5" />
-                Thống kê
+                <BarChart3 className="w-4 h-4" />
               </Link>
               <button
                 onClick={() => setShowChallenge(true)}
-                className="hidden sm:flex items-center gap-1.5 text-xs font-bold text-emerald-600 dark:text-emerald-400 bg-emerald-50 dark:bg-emerald-950 border border-emerald-200 dark:border-emerald-800 hover:bg-emerald-100 dark:hover:bg-emerald-900 rounded-lg px-3 py-1.5 transition-colors cursor-pointer"
+                title="Thử thách kiến thức"
+                aria-label="Thử thách kiến thức"
+                className="flex items-center justify-center w-9 h-9 rounded-full text-stone-400 dark:text-stone-500 hover:bg-stone-100 dark:hover:bg-stone-800 hover:text-stone-700 dark:hover:text-stone-200 transition-colors cursor-pointer"
               >
-                🎯 Thử thách
+                <Target className="w-4 h-4" />
               </button>
+            </div>
+            <div className="sm:hidden">
               {/* Mobile-only menu toggle - the two links above are hidden
                   below the `sm` breakpoint with no other way to reach them
                   besides the avatar dropdown, which doesn't visually read as
