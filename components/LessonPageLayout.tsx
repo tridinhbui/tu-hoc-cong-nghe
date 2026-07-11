@@ -73,6 +73,7 @@ export default function LessonPageLayout({ lesson, quiz, children }: Props) {
   const [submitted, setSubmitted] = useState<boolean[]>(new Array(quiz.length).fill(false));
   const [results, setResults]     = useState<boolean[]>(new Array(quiz.length).fill(false));
   const [activeQ, setActiveQ]     = useState(0);
+  const [reviewMode, setReviewMode] = useState(false);
   const [readPct, setReadPct]     = useState(0);
   const [userId, setUserId]       = useState<string | null>(null);
   const [newBadge, setNewBadge]   = useState<BadgeDefinition | null>(null);
@@ -212,6 +213,10 @@ export default function LessonPageLayout({ lesson, quiz, children }: Props) {
     // wrong and what was picked, instead of guessing from the total score.
     saveQuizAnswers(lesson.id, { selected, submitted: newSubmitted, results: newResults });
     if (qi === quiz.length - 1) {
+      // In case this question was reached via "Xem lại"/review nav rather
+      // than the normal flow, make sure finishing it actually surfaces the
+      // completion card instead of leaving reviewMode stuck on.
+      setReviewMode(false);
       markLessonComplete(lesson.id, durationMin);
       completeLessonInSupabase(newResults);
     }
@@ -232,7 +237,17 @@ export default function LessonPageLayout({ lesson, quiz, children }: Props) {
     setSelected(newSelected);
     setSubmitted(newSubmitted);
     setActiveQ(qi);
+    setReviewMode(false);
     saveQuizAnswers(lesson.id, { selected: newSelected, submitted: newSubmitted, results });
+  }
+
+  // Opens an already-answered question (right or wrong) read-only, without
+  // resetting it - `allDone` alone used to gate the question view, so once
+  // every question was submitted there was no way back to look at any of
+  // them, correct or not.
+  function viewQuestion(qi: number) {
+    setActiveQ(qi);
+    setReviewMode(true);
   }
 
   // Resets every question back to unanswered, for someone who wants a full
@@ -245,6 +260,7 @@ export default function LessonPageLayout({ lesson, quiz, children }: Props) {
     setSubmitted(freshSubmitted);
     setResults(freshResults);
     setActiveQ(0);
+    setReviewMode(false);
     clearQuizAnswers(lesson.id);
   }
 
@@ -485,7 +501,8 @@ export default function LessonPageLayout({ lesson, quiz, children }: Props) {
                 {quiz.map((_, i) => (
                   <button
                     key={i}
-                    onClick={() => setActiveQ(i)}
+                    onClick={() => viewQuestion(i)}
+                    title={submitted[i] ? "Xem lại câu này" : undefined}
                     className={`flex-1 h-3 rounded-full transition-all cursor-pointer ${
                       submitted[i]
                         ? results[i] ? "bg-emerald-500" : "bg-rose-500"
@@ -497,7 +514,7 @@ export default function LessonPageLayout({ lesson, quiz, children }: Props) {
             </div>
 
             {/* Active question */}
-            {!allDone ? (
+            {!allDone || reviewMode ? (
               <div className="bg-white dark:bg-stone-900 rounded-2xl border-2 border-stone-300 dark:border-stone-700 p-8 space-y-6">
                 <div>
                   <div className="flex items-center justify-between mb-4">
@@ -584,13 +601,22 @@ export default function LessonPageLayout({ lesson, quiz, children }: Props) {
                         Thử lại →
                       </button>
                     )}
-                    {activeQ < quiz.length - 1 && (
+                    {reviewMode && allDone ? (
                       <button
-                        onClick={() => setActiveQ(activeQ + 1)}
+                        onClick={() => setReviewMode(false)}
                         className={`flex-1 py-4 rounded-xl font-bold text-sm uppercase tracking-wider text-white ${c.btn} cursor-pointer`}
                       >
-                        Câu tiếp theo →
+                        ← Quay lại kết quả
                       </button>
+                    ) : (
+                      activeQ < quiz.length - 1 && (
+                        <button
+                          onClick={() => setActiveQ(activeQ + 1)}
+                          className={`flex-1 py-4 rounded-xl font-bold text-sm uppercase tracking-wider text-white ${c.btn} cursor-pointer`}
+                        >
+                          Câu tiếp theo →
+                        </button>
+                      )
                     )}
                   </div>
                 )}
@@ -607,10 +633,9 @@ export default function LessonPageLayout({ lesson, quiz, children }: Props) {
                   {results.map((ok, i) => (
                     <button
                       key={i}
-                      onClick={() => !ok && retry(i)}
-                      disabled={ok}
-                      title={ok ? undefined : "Thử lại câu này"}
-                      className={`w-9 h-9 rounded-full text-sm flex items-center justify-center text-white font-bold ${ok ? "bg-emerald-500 cursor-default" : "bg-rose-400 hover:bg-rose-500 cursor-pointer"}`}
+                      onClick={() => (ok ? viewQuestion(i) : retry(i))}
+                      title={ok ? "Xem lại câu này" : "Thử lại câu này"}
+                      className={`w-9 h-9 rounded-full text-sm flex items-center justify-center text-white font-bold cursor-pointer ${ok ? "bg-emerald-500 hover:bg-emerald-600" : "bg-rose-400 hover:bg-rose-500"}`}
                     >
                       {ok ? "✓" : "✗"}
                     </button>
@@ -628,26 +653,24 @@ export default function LessonPageLayout({ lesson, quiz, children }: Props) {
                     <div className="py-3.5 rounded-xl bg-stone-100 dark:bg-stone-800 text-stone-500 dark:text-stone-400 text-sm font-bold text-center">Sắp ra mắt</div>
                   )}
                 </div>
-                {score < quiz.length && (
-                  <button
-                    onClick={restartQuiz}
-                    className="text-xs font-bold text-stone-500 dark:text-stone-400 hover:text-stone-700 dark:hover:text-stone-200 uppercase tracking-wide transition-colors cursor-pointer"
-                  >
-                    ↺ Làm lại từ đầu
-                  </button>
-                )}
+                <button
+                  onClick={restartQuiz}
+                  className="text-xs font-bold text-stone-500 dark:text-stone-400 hover:text-stone-700 dark:hover:text-stone-200 uppercase tracking-wide transition-colors cursor-pointer"
+                >
+                  ↺ Làm lại từ đầu
+                </button>
               </div>
             )}
 
             {/* Mini nav between questions */}
-            {!allDone && quiz.length > 1 && (
+            {(!allDone || reviewMode) && quiz.length > 1 && (
               <div className="bg-white dark:bg-stone-900 rounded-2xl border border-stone-200 dark:border-stone-800 p-4">
                 <div className="text-xs text-stone-500 dark:text-stone-400 font-bold uppercase tracking-wide mb-3">Các câu hỏi</div>
                 <div className="grid grid-cols-5 gap-2">
                   {quiz.map((_, i) => (
                     <button
                       key={i}
-                      onClick={() => setActiveQ(i)}
+                      onClick={() => viewQuestion(i)}
                       className={`h-10 rounded-xl text-sm font-bold transition-all cursor-pointer ${
                         i === activeQ
                           ? `${c.bar} text-white`
