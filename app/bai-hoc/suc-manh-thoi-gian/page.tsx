@@ -99,7 +99,13 @@ export default function SucManhThoiGianPage() {
             Nhiều người trì hoãn đầu tư với lý do: chờ đến khi có đủ tiền hơn, chờ thị trường ổn định hơn, hoặc chờ đến khi hiểu rõ hơn. Nhưng mỗi năm trì hoãn đều có chi phí cụ thể.
           </p>
           <p>
-            Nếu bạn 25 tuổi và bắt đầu đầu tư 3 triệu mỗi tháng với lãi 10% mỗi năm, đến 65 tuổi bạn có khoảng 19 tỷ đồng. Nếu bạn bắt đầu lúc 35 tuổi, con số đó giảm xuống còn khoảng 7 tỷ. Mười năm trì hoãn làm mất đi 12 tỷ đồng, dù số tiền đóng hàng tháng hoàn toàn giống nhau.
+            Bạn 25 tuổi, bắt đầu đầu tư 3 triệu đồng mỗi tháng vào quỹ chỉ số với lãi suất bình quân 10% mỗi năm. Đến 65 tuổi, bạn có khoảng 19 tỷ đồng.
+          </p>
+          <p>
+            Bây giờ thử trì hoãn 10 năm: vẫn 3 triệu mỗi tháng, vẫn lãi suất đó, nhưng bắt đầu lúc 35 tuổi thay vì 25 tuổi. Số tiền cuối cùng giảm xuống chỉ còn khoảng 7 tỷ đồng - dù số tiền đóng hàng tháng hoàn toàn giống nhau.
+          </p>
+          <p>
+            Mười năm trì hoãn làm mất đi 12 tỷ đồng. Đó là chi phí thật của việc "chờ thêm một chút" trước khi bắt đầu.
           </p>
         </section>
 

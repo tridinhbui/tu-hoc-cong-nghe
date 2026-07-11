@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 import LessonPageLayout, { QuizQuestion, LessonMeta } from "@/components/LessonPageLayout";
 
 const LESSON: LessonMeta = {
@@ -138,6 +139,13 @@ export default function LaiSuatLaGiPage() {
           <p>
             Nguy hiểm hơn là khi lãi suất danh nghĩa thấp hơn lạm phát. Nếu ngân hàng trả 4% nhưng lạm phát 6%, lãi suất thực là âm 2%. Dù tiền trong tài khoản tăng về số, sức mua thực của bạn đang giảm mỗi năm.
           </p>
+
+          <div className="border border-stone-200 rounded-2xl p-6 bg-stone-50 space-y-3">
+            <p className="text-xs font-bold text-stone-500 uppercase tracking-widest">Lạm phát là gì, nói ngắn gọn</p>
+            <p className="text-stone-700 text-base leading-relaxed">
+              Lạm phát là mức độ giá cả hàng hoá, dịch vụ tăng lên theo thời gian - cùng một số tiền, sau này mua được ít hơn. Đó là lý do "lãi suất danh nghĩa" (con số ngân hàng công bố) không đủ để biết bạn thực sự lời hay lỗ: phải trừ đi phần giá cả đã tăng (lạm phát) mới ra "lãi suất thực" - con số phản ánh đúng sức mua của bạn. Bài <Link href="/bai-hoc/lam-phat-la-gi" className="underline font-semibold text-stone-900">Lạm phát là gì? Vì sao tiền mất giá</Link> (Day 9) sẽ đi sâu vào khái niệm này.
+            </p>
+          </div>
         </section>
 
         <div className="rounded-2xl overflow-hidden border-2 border-stone-900 shadow-lg">
