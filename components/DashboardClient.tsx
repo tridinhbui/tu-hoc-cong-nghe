@@ -25,6 +25,7 @@ import Leaderboard from "@/components/Leaderboard";
 import { hasCompletedOnboarding, completeOnboarding } from "@/lib/supabase-onboarding";
 import { getUserProfile, recalculateUserStats } from "@/lib/supabase-user";
 import UnlockRequestModal from "@/components/UnlockRequestModal";
+import KnowledgeChallengeModal from "@/components/KnowledgeChallengeModal";
 import { TRACK_PERSONAL, TRACK_PROFESSIONAL } from "@/lib/track-stages";
 import { getLessonStage, getLessonsInStage } from "@/lib/lesson-stages";
 
@@ -96,6 +97,24 @@ export default function DashboardClient({ lessonsMeta }: { lessonsMeta: LessonMe
   const [unlockedLessonIds, setUnlockedLessonIds] = useState<Set<number>>(new Set());
   const [unlockModalLesson, setUnlockModalLesson] = useState<LessonMeta | null>(null);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [showChallenge, setShowChallenge] = useState(false);
+
+  // Nudge learners toward the knowledge-review challenge automatically, at
+  // most once per calendar day, once they've actually completed enough
+  // lessons for a randomized quiz to be worth running. Never fires more
+  // than once per day per browser (tracked in localStorage) so it reads as
+  // a friendly surprise rather than an every-visit interruption.
+  useEffect(() => {
+    if (loading || completed.length < 5 || typeof window === "undefined") return;
+    const today = new Date().toDateString();
+    const lastShown = window.localStorage.getItem("thtcdn_challenge_last_shown");
+    if (lastShown === today) return;
+    const timer = setTimeout(() => {
+      window.localStorage.setItem("thtcdn_challenge_last_shown", today);
+      setShowChallenge(true);
+    }, 2500);
+    return () => clearTimeout(timer);
+  }, [loading, completed.length]);
 
   const toggleStage = (key: string) => {
     setOpenStages((prev) => {
@@ -416,6 +435,12 @@ export default function DashboardClient({ lessonsMeta }: { lessonsMeta: LessonMe
                 <BarChart3 className="w-3.5 h-3.5" />
                 Thống kê
               </Link>
+              <button
+                onClick={() => setShowChallenge(true)}
+                className="hidden sm:flex items-center gap-1.5 text-xs font-bold text-emerald-600 dark:text-emerald-400 bg-emerald-50 dark:bg-emerald-950 border border-emerald-200 dark:border-emerald-800 hover:bg-emerald-100 dark:hover:bg-emerald-900 rounded-lg px-3 py-1.5 transition-colors cursor-pointer"
+              >
+                🎯 Thử thách
+              </button>
               {/* Mobile-only menu toggle - the two links above are hidden
                   below the `sm` breakpoint with no other way to reach them
                   besides the avatar dropdown, which doesn't visually read as
@@ -455,6 +480,15 @@ export default function DashboardClient({ lessonsMeta }: { lessonsMeta: LessonMe
               <BarChart3 className="w-4 h-4" />
               Thống kê
             </Link>
+            <button
+              onClick={() => {
+                setMobileMenuOpen(false);
+                setShowChallenge(true);
+              }}
+              className="flex items-center gap-2 text-sm font-bold text-emerald-600 dark:text-emerald-400 border border-emerald-200 dark:border-emerald-800 rounded-lg px-3 py-2.5 w-full cursor-pointer"
+            >
+              🎯 Thử thách kiến thức
+            </button>
           </div>
         )}
       </div>
@@ -870,6 +904,8 @@ export default function DashboardClient({ lessonsMeta }: { lessonsMeta: LessonMe
           onClose={() => setUnlockModalLesson(null)}
         />
       )}
+
+      {showChallenge && <KnowledgeChallengeModal onClose={() => setShowChallenge(false)} />}
     </div>
   );
 }
