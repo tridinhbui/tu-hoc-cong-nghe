@@ -21,21 +21,11 @@ import StreakDisplay from "@/components/StreakDisplay";
 import DashboardTour from "@/components/DashboardTour";
 import Logo from "@/components/Logo";
 import Leaderboard from "@/components/Leaderboard";
-import { getLevelByXp } from "@/lib/levels";
 import { hasCompletedOnboarding, completeOnboarding } from "@/lib/supabase-onboarding";
-import { getLeaderboard, getUserProfile } from "@/lib/supabase-user";
+import { getUserProfile } from "@/lib/supabase-user";
 import UnlockRequestModal from "@/components/UnlockRequestModal";
 import { TRACK_PERSONAL, TRACK_PROFESSIONAL } from "@/lib/track-stages";
 import { getLessonStage, getLessonsInStage } from "@/lib/lesson-stages";
-
-interface LeaderboardEntry {
-  rank: number;
-  name: string;
-  xp: number;
-  lessonsCompleted: number;
-  avgQuizScore: number;
-  level: ReturnType<typeof getLevelByXp>;
-}
 
 // Slim projection of Lesson - just enough to render the dashboard listing,
 // so the full lesson bodies (sections/quiz/etc) never reach this client bundle.
@@ -98,8 +88,6 @@ export default function DashboardClient({ lessonsMeta }: { lessonsMeta: LessonMe
   const [loading, setLoading] = useState(true);
   const [userXp, setUserXp] = useState(0);
   const [avgQuizScore, setAvgQuizScore] = useState(0);
-  const [leaderboardEntries, setLeaderboardEntries] = useState<LeaderboardEntry[]>([]);
-  const [currentUserRank, setCurrentUserRank] = useState<number | undefined>(undefined);
   const [openStages, setOpenStages] = useState<Set<string>>(new Set());
   const [openParts, setOpenParts] = useState<Set<string>>(new Set());
   const [showOnboarding, setShowOnboarding] = useState(false);
@@ -255,29 +243,6 @@ export default function DashboardClient({ lessonsMeta }: { lessonsMeta: LessonMe
 
       // Mock average quiz score
       setAvgQuizScore(75);
-
-      // Real leaderboard from user_stats - degrades to an empty list (handled
-      // by the Leaderboard component's own empty state) if the table isn't
-      // there yet or the query fails, rather than blocking the dashboard.
-      try {
-        const rows = await getLeaderboard(5);
-        const entries: LeaderboardEntry[] = (rows ?? []).map((row, idx) => {
-          const profile = Array.isArray(row.user_profiles) ? row.user_profiles[0] : row.user_profiles;
-          return {
-            rank: idx + 1,
-            name: profile?.full_name || profile?.email || "Người học",
-            xp: row.total_xp ?? 0,
-            lessonsCompleted: row.total_lessons_completed ?? 0,
-            avgQuizScore: row.avg_quiz_score ?? 0,
-            level: getLevelByXp(row.total_xp ?? 0),
-          };
-        });
-        setLeaderboardEntries(entries);
-        const mine = (rows ?? []).findIndex((row) => row.user_id === session.user.id);
-        setCurrentUserRank(mine >= 0 ? mine + 1 : undefined);
-      } catch (error) {
-        console.error("Error loading leaderboard:", error);
-      }
 
       setLoading(false);
     };
@@ -854,7 +819,7 @@ export default function DashboardClient({ lessonsMeta }: { lessonsMeta: LessonMe
 
           {/* Right: Leaderboard (1 column on desktop, full width on mobile) */}
           <div className="lg:col-span-1">
-            <Leaderboard entries={leaderboardEntries} currentUserRank={currentUserRank} />
+            <Leaderboard userId={user?.id} />
           </div>
         </div>
       </div>

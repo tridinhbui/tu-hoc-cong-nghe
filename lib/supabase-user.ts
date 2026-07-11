@@ -148,21 +148,25 @@ export async function setPreferredTrack(userId: string, track: "personal" | "pro
   return updateUserProfile(userId, { preferred_track: track });
 }
 
-// Lấy top users từ leaderboard
-export async function getLeaderboard(limit: number = 10) {
+export type LeaderboardMetric = "xp" | "lessons" | "avg_score" | "streak";
+
+export interface LeaderboardRow {
+  user_id: string;
+  value: number;
+  name: string;
+}
+
+// Both RPCs are SECURITY DEFINER Postgres functions (see
+// supabase/migrations/20260711_leaderboard_rpc.sql) that only ever return
+// user_id/name/value - never email or any other profile column. A plain
+// client-side query joining user_stats to user_profiles doesn't work here:
+// user_profiles' RLS only allows `auth.uid() = id`, and PostgREST's embedded
+// resource is an inner join, so every row whose profile the caller can't
+// see under RLS gets silently dropped - in practice the leaderboard only
+// ever showed the current user's own row, never other learners.
+export async function getLeaderboardByMetric(metric: LeaderboardMetric, limit: number = 10): Promise<LeaderboardRow[]> {
   const supabase = createClient();
-  const { data, error } = await supabase
-    .from("user_stats")
-    .select(`
-      user_id,
-      total_xp,
-      total_lessons_completed,
-      avg_quiz_score,
-      current_level,
-      user_profiles(full_name, email)
-    `)
-    .order("total_xp", { ascending: false })
-    .limit(limit);
+  const { data, error } = await supabase.rpc("get_leaderboard", { p_metric: metric, p_limit: limit });
 
   if (error && isMissingTableError(error)) {
     return [];
@@ -171,7 +175,35 @@ export async function getLeaderboard(limit: number = 10) {
     throw handleSupabaseError(error);
   }
 
-  return data;
+  return ((data ?? []) as { user_id: string; name: string; value: number }[]).map((row) => ({
+    user_id: row.user_id,
+    value: row.value ?? 0,
+    name: row.name || "Người học",
+  }));
+}
+
+// Where the current user stands on one leaderboard category, even if they're
+// not in the top N. Competition ranking: ties share the same (best) rank.
+export async function getMyLeaderboardRank(
+  metric: LeaderboardMetric,
+  userId: string
+): Promise<{ rank: number; value: number } | null> {
+  const supabase = createClient();
+  const { data, error } = await supabase.rpc("get_my_leaderboard_rank", { p_metric: metric, p_user_id: userId });
+
+  if (error && isMissingTableError(error)) {
+    return null;
+  }
+  if (error) {
+    throw handleSupabaseError(error);
+  }
+
+  const row = (data as { rank: number; value: number }[] | null)?.[0];
+  if (!row) {
+    return null;
+  }
+
+  return { rank: row.rank, value: row.value };
 }
 
 // Cập nhật stats từ progress
