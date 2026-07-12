@@ -238,17 +238,17 @@ export default function Page() {
           <table className="w-full text-sm">
             <thead>
               <tr className="bg-stone-100">
-                <th className="text-left p-2 rounded-l-lg text-stone-600 text-xs">Năm</th>
-                <th className="text-center p-2 text-stone-700 text-xs font-bold">AUM đầu năm</th>
-                <th className="text-center p-2 rounded-r-lg text-stone-700 text-xs font-bold">Return</th>
+                <th className="text-left p-2 rounded-l-lg text-stone-600 text-xs">Year</th>
+                <th className="text-center p-2 text-stone-700 text-xs font-bold">Tài sản quản lý/year (AUM)</th>
+                <th className="text-center p-2 rounded-r-lg text-stone-700 text-xs font-bold">Lợi suất trong năm (Return)</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-stone-100">
               {[
-                ["Năm 1", "2,000,000", "+20%"],
-                ["Năm 2", "5,000,000", "+10%"],
-                ["Năm 3", "8,000,000", "-15%"],
-                ["Năm 4", "6,000,000", "+25%"],
+                ["1", "2,000,000", "20%"],
+                ["2", "5,000,000", "10%"],
+                ["3", "8,000,000", "-15%"],
+                ["4", "6,000,000", "25%"],
               ].map((row) => (
                 <tr key={row[0]}>
                   <td className="p-2 text-stone-600 text-xs font-medium">{row[0]}</td>
@@ -278,6 +278,49 @@ export default function Page() {
         <p className="text-stone-600 leading-relaxed mb-3">
           Vì số AUM đầu mỗi năm là số lũy kế, ta cần tìm dòng tiền (nộp thêm/rút ra) thực tế ở đầu mỗi giai đoạn:
         </p>
+        <div className="overflow-x-auto mb-3">
+          <table className="w-full text-sm">
+            <thead>
+              <tr className="bg-stone-100">
+                <th className="text-left p-2 rounded-l-lg text-stone-600 text-xs">Year</th>
+                <th className="text-right p-2 text-stone-700 text-xs font-bold">Tài sản quản lý/year (AUM)</th>
+                <th className="text-left p-2 text-stone-600 text-xs">Công thức</th>
+                <th className="text-right p-2 rounded-r-lg text-stone-700 text-xs font-bold">CF</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-stone-100">
+              <tr>
+                <td className="p-2 text-stone-600 text-xs font-medium">1</td>
+                <td className="p-2 text-right text-stone-700 text-xs font-mono">(2,000,000)</td>
+                <td className="p-2 text-stone-400 text-xs"></td>
+                <td className="p-2 text-right text-stone-700 text-xs font-mono">CF0</td>
+              </tr>
+              <tr>
+                <td className="p-2 text-stone-600 text-xs font-medium">2</td>
+                <td className="p-2 text-right text-stone-700 text-xs font-mono">(2,600,000)</td>
+                <td className="p-2 text-stone-400 text-xs italic">= Y2 − (Y1×(1+% return Y1))</td>
+                <td className="p-2 text-right text-stone-700 text-xs font-mono">CF1</td>
+              </tr>
+              <tr>
+                <td className="p-2 text-stone-600 text-xs font-medium">3</td>
+                <td className="p-2 text-right text-stone-700 text-xs font-mono">(2,500,000)</td>
+                <td className="p-2 text-stone-400 text-xs italic">= Y3 − (Y2×(1+% return Y2))</td>
+                <td className="p-2 text-right text-stone-700 text-xs font-mono">CF2</td>
+              </tr>
+              <tr>
+                <td className="p-2 text-stone-600 text-xs font-medium">4</td>
+                <td className="p-2 text-right text-stone-700 text-xs font-mono">800,000</td>
+                <td className="p-2 text-stone-400 text-xs italic">= Y4 − (Y3×(1+% return Y3))</td>
+                <td className="p-2 text-right text-stone-700 text-xs font-mono">CF3</td>
+              </tr>
+              <tr>
+                <td className="p-2 text-stone-600 text-xs font-medium" colSpan={2}>Số tiền ở năm Y4 rút</td>
+                <td className="p-2 text-stone-400 text-xs italic">= Y4×(1+% return Y4)</td>
+                <td className="p-2 text-right text-stone-700 text-xs font-mono">7,500,000 (CF4)</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
         <div className="space-y-2 text-sm">
           <div className="bg-stone-50 rounded-lg p-3 border border-stone-200"><strong>CF0 (Đầu Y1):</strong> −2M (bỏ vốn ban đầu)</div>
           <div className="bg-stone-50 rounded-lg p-3 border border-stone-200"><strong>CF1 (Đầu Y2):</strong> Cuối Y1 Quỹ có 2M × 1.2 = 2.4M. Đầu Y2 AUM là 5M → Fund nộp thêm 5M − 2.4M = 2.6M (dòng tiền ra: −2.6M).</div>
