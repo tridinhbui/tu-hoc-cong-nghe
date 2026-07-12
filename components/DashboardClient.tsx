@@ -28,6 +28,8 @@ import UnlockRequestModal from "@/components/UnlockRequestModal";
 import KnowledgeChallengeModal from "@/components/KnowledgeChallengeModal";
 import { TRACK_PERSONAL, TRACK_PROFESSIONAL } from "@/lib/track-stages";
 import { BONUS_CATEGORIES, BONUS_CATEGORY_ORDER } from "@/lib/bonus-lesson-categories";
+import { CFA_LEVEL_1_SUBJECTS } from "@/lib/cfa-track";
+import CfaTrackView from "@/components/CfaTrackView";
 import { getLessonStage, getLessonsInStage } from "@/lib/lesson-stages";
 import { isChallengeGated } from "@/lib/lesson-lock-rule";
 import { getChallengePassedLessonIds } from "@/lib/supabase-challenges";
@@ -66,12 +68,12 @@ export default function DashboardClient({ lessonsMeta }: { lessonsMeta: LessonMe
   // after merging server data forces a re-render, which makes useProgress()
   // pick up the freshly-merged localStorage snapshot (see mergeCompletedLessons).
   const [, forceProgressResync] = useState(0);
-  const [activeTrack, setActiveTrackState] = useState<"personal" | "professional">(() => {
+  const [activeTrack, setActiveTrackState] = useState<"personal" | "professional" | "cfa">(() => {
     if (typeof window === "undefined") return "personal";
     const saved = window.localStorage.getItem("activeTrack");
-    return saved === "personal" || saved === "professional" ? saved : "personal";
+    return saved === "personal" || saved === "professional" || saved === "cfa" ? saved : "personal";
   });
-  const setActiveTrack = (track: "personal" | "professional") => {
+  const setActiveTrack = (track: "personal" | "professional" | "cfa") => {
     setActiveTrackState(track);
     if (typeof window !== "undefined") {
       window.localStorage.setItem("activeTrack", track);
@@ -353,7 +355,17 @@ export default function DashboardClient({ lessonsMeta }: { lessonsMeta: LessonMe
   const sorted = [...lessonsMeta]
     .filter((l) => l.isVisible !== false)
     .sort((a, b) => a.id - b.id);
-  const track = activeTrack === "personal" ? TRACK_PERSONAL : TRACK_PROFESSIONAL;
+  const track = activeTrack === "professional" ? TRACK_PROFESSIONAL : TRACK_PERSONAL;
+  // Cross-reference view for Track 3 - not a real day-numbered curriculum,
+  // just the existing lessons (by id) grouped into the 10 official CFA
+  // Level I subjects. See lib/cfa-track.ts.
+  const lessonById = new Map(lessonsMeta.map((l) => [l.id, l]));
+  const cfaSubjects = CFA_LEVEL_1_SUBJECTS.map((subject) => ({
+    subject,
+    lessons: subject.lessonIds
+      .map((id) => lessonById.get(id))
+      .filter((l): l is NonNullable<typeof l> => !!l && l.isVisible !== false),
+  }));
 
   // Track-relative lesson numbering: the personal track reuses lesson ids
   // from the 200s (originally written for the professional track) in its
@@ -587,16 +599,18 @@ export default function DashboardClient({ lessonsMeta }: { lessonsMeta: LessonMe
         </div>
 
         {/* ── Resume Learning Button ── */}
-        <div data-tour="resume-learning" className="max-w-6xl mx-auto mb-8">
-          <ResumeLearningButton activeTrack={activeTrack} />
-        </div>
+        {activeTrack !== "cfa" && (
+          <div data-tour="resume-learning" className="max-w-6xl mx-auto mb-8">
+            <ResumeLearningButton activeTrack={activeTrack} />
+          </div>
+        )}
 
         {/* ── Main Content: Lessons + Leaderboard ── */}
         <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-3 gap-6">
           {/* Left: Lessons (2 columns on desktop) */}
           <div className="lg:col-span-2">
           {/* Track selector - Compact */}
-          <div data-tour="track-selector" className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-8">
+          <div data-tour="track-selector" className="grid grid-cols-1 sm:grid-cols-3 gap-3 mb-8">
           {[TRACK_PERSONAL, TRACK_PROFESSIONAL].map((t) => {
             const isActive = activeTrack === t.id;
             return (
@@ -642,8 +656,30 @@ export default function DashboardClient({ lessonsMeta }: { lessonsMeta: LessonMe
               </div>
             );
           })}
+
+          <button
+            onClick={() => setActiveTrack("cfa")}
+            className={`w-full text-left rounded-xl border-2 px-5 py-4 transition-all ${
+              activeTrack === "cfa"
+                ? "border-stone-900 dark:border-stone-100 bg-stone-900 dark:bg-stone-100 text-white dark:text-stone-900"
+                : "border-stone-200 dark:border-stone-800 bg-white dark:bg-stone-900 text-stone-700 dark:text-stone-300 hover:border-stone-400 dark:hover:border-stone-600"
+            }`}
+          >
+            <div className={`text-base font-bold ${activeTrack === "cfa" ? "text-white dark:text-stone-900" : "text-stone-900 dark:text-stone-100"}`}>
+              Tài chính chứng chỉ
+            </div>
+            <div className={`text-xs mt-0.5 ${activeTrack === "cfa" ? "text-stone-300 dark:text-stone-600" : "text-stone-500 dark:text-stone-400"}`}>
+              CFA Level I
+            </div>
+          </button>
         </div>
 
+          {activeTrack === "cfa" ? (
+            <div data-tour="stage-list" className="mt-8">
+              <CfaTrackView subjects={cfaSubjects} />
+            </div>
+          ) : (
+          <>
           {/* ── Stages + lessons ── */}
           <div data-tour="stage-list" className="space-y-6 mt-8">
           {track.stages.map((stage) => {
@@ -969,6 +1005,8 @@ export default function DashboardClient({ lessonsMeta }: { lessonsMeta: LessonMe
                 </div>
               )}
             </div>
+          )}
+          </>
           )}
           </div>
 
