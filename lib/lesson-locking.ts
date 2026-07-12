@@ -1,39 +1,14 @@
 import "server-only";
-import { createServerSupabaseClient } from "@/lib/supabase-server";
-import { getLessonsMeta, type LessonMeta } from "@/lib/lessons-loader";
-import { computeLessonLocked } from "@/lib/lesson-lock-rule";
 
-/**
- * Server-side mirror of DashboardClient's isLessonLocked(). The dashboard
- * only used this to decide whether to show a lock icon - app/bai-hoc/[slug]
- * rendered the full lesson to anyone who requested the URL regardless of
- * that UI state, so the lock was cosmetic only. This makes the same rule
- * enforceable on the page that actually serves the content.
- *
- * Rule (must stay in sync with components/DashboardClient.tsx#isLessonLocked):
- * a lesson is locked unless it's fundamental (open to everyone), the user
- * has an approved admin unlock grant, or its prerequisite (explicit
- * override, else the previous lesson id within the same track) is completed.
- */
-export async function isLessonLockedForUser(lessonId: number, userId: string | null): Promise<boolean> {
-  const allLessons = await getLessonsMeta();
-  const sorted = allLessons.filter((l) => l.isVisible !== false).sort((a, b) => a.id - b.id);
-  const lesson = sorted.find((l) => l.id === lessonId);
-
-  if (!lesson) return false; // unknown id - let the caller's own notFound() handle it
-  if (lesson.isFundamental) return false;
-  if (!userId) return true; // not logged in and not a free/fundamental lesson
-
-  const supabase = await createServerSupabaseClient();
-  const [{ data: unlocks }, { data: progress }, { data: passes }] = await Promise.all([
-    supabase.from("user_lesson_unlocks").select("lesson_id").eq("user_id", userId),
-    supabase.from("user_progress").select("lesson_id").eq("user_id", userId).eq("completed", true),
-    supabase.from("user_challenge_passes").select("lesson_id").eq("user_id", userId),
-  ]);
-
-  const unlockedIds = new Set((unlocks ?? []).map((r) => r.lesson_id as number));
-  const completedIds = new Set((progress ?? []).map((r) => r.lesson_id as number));
-  const challengePassedIds = new Set((passes ?? []).map((r) => r.lesson_id as number));
-
-  return computeLessonLocked(lesson, sorted, completedIds, unlockedIds, challengePassedIds);
+// Site-wide: lesson locking is disabled for everyone. This used to be a
+// server-side mirror of DashboardClient's isLessonLocked() (see git history
+// for the original body, which called computeLessonLocked in
+// lib/lesson-lock-rule.ts - also short-circuited the same way) but had its
+// own separate `if (!userId) return true` gate that produced a 307 redirect
+// to /dashboard?locked=... whenever the server-side session check came back
+// empty, bypassing the site-wide unlock entirely. To re-enable locking,
+// restore the original body and delete computeLessonLocked's matching early
+// return.
+export async function isLessonLockedForUser(_lessonId: number, _userId: string | null): Promise<boolean> {
+  return false;
 }
