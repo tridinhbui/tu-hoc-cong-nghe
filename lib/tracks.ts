@@ -33,7 +33,12 @@ export const TRACKS = {
   cfa: {
     tab: "Tài chính chứng chỉ",
     subtitle: "CFA Level I · đang xây dựng",
-    estimatedHours: 0,
+    // Sum of the ~258 mapped lessons' own durations (lib/cfa-track.ts),
+    // same "total lesson minutes / 60" method as the other two tracks -
+    // not an estimate of real CFA Level I study time (that's the 300h
+    // figure CFA Institute cites), just how long it'd take to read every
+    // lesson currently mapped into these 10 subjects.
+    estimatedHours: 27,
     description: "Ánh xạ các bài học đã có sang đúng 10 môn thi CFA Level I chính thức - không tạo bài mới, không đổi số ngày của 2 track kia. Môn nào chưa có bài phù hợp sẽ được xây dần.",
     stages: [
       "Ethics and Professional Standards - sẽ xây trong tương lai",

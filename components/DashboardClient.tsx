@@ -29,6 +29,7 @@ import KnowledgeChallengeModal from "@/components/KnowledgeChallengeModal";
 import { TRACK_PERSONAL, TRACK_PROFESSIONAL, isLessonInRange } from "@/lib/track-stages";
 import { BONUS_CATEGORIES, BONUS_CATEGORY_ORDER } from "@/lib/bonus-lesson-categories";
 import { CFA_LEVEL_1_SUBJECTS } from "@/lib/cfa-track";
+import { TRACKS } from "@/lib/tracks";
 import CfaTrackView from "@/components/CfaTrackView";
 import { getLessonStage, getLessonsInStage } from "@/lib/lesson-stages";
 import { isChallengeGated } from "@/lib/lesson-lock-rule";
@@ -317,7 +318,19 @@ export default function DashboardClient({ lessonsMeta }: { lessonsMeta: LessonMe
     };
 
     checkAuth();
-  }, [router, supabase.auth, completed.length]);
+    // Deliberately mount-only. `completed.length` used to be a dependency
+    // here, but this effect itself calls mergeCompletedLessons (via the
+    // recovery-patch logic above), which changes completed.length - making
+    // the effect re-trigger itself on every mount. Each re-run re-subscribes
+    // a fresh onAuthStateChange listener and re-runs the whole reconcile/
+    // unlock/onboarding/XP sequence from scratch, which is both wasted work
+    // (visible as loading flicker) and another chance for the INITIAL_SESSION
+    // race below to resolve unluckily and bounce to /login. checkAuth
+    // already re-reads completed progress itself (getProgress()) instead of
+    // relying on the closed-over `completed` value, so nothing here actually
+    // needs to observe it changing.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [router, supabase.auth]);
 
 
   if (loading) {
@@ -498,9 +511,10 @@ export default function DashboardClient({ lessonsMeta }: { lessonsMeta: LessonMe
                 href="/analytics"
                 title="Thống kê"
                 aria-label="Thống kê"
-                className="flex items-center justify-center w-9 h-9 rounded-full text-stone-400 dark:text-stone-500 hover:bg-stone-100 dark:hover:bg-stone-800 hover:text-stone-700 dark:hover:text-stone-200 transition-colors"
+                className="flex items-center gap-1.5 text-xs font-bold text-stone-500 dark:text-stone-400 hover:text-stone-700 dark:hover:text-stone-200 rounded-full pl-2 pr-3 h-9 hover:bg-stone-100 dark:hover:bg-stone-800 transition-colors"
               >
                 <BarChart3 className="w-4 h-4" />
+                Thống kê
               </Link>
               <button
                 onClick={() => setShowChallenge(true)}
@@ -651,7 +665,7 @@ export default function DashboardClient({ lessonsMeta }: { lessonsMeta: LessonMe
               Tài chính chứng chỉ
             </div>
             <div className={`text-xs mt-0.5 ${activeTrack === "cfa" ? "text-stone-300 dark:text-stone-600" : "text-stone-500 dark:text-stone-400"}`}>
-              CFA Level I
+              CFA Level I · ~{TRACKS.cfa.estimatedHours} giờ học
             </div>
           </button>
         </div>

@@ -68,11 +68,20 @@ export async function createUserProfile(userId: string, email: string, fullName?
 // Lấy user profile
 export async function getUserProfile(userId: string) {
   const supabase = createClient();
-  const { data, error } = await supabase
+  let { data, error } = await supabase
     .from("user_profiles")
     .select("*")
     .eq("id", userId)
     .single();
+
+  // PGRST116 ("0 rows") right after signup usually means the auth trigger
+  // that creates this row hasn't finished yet, not that the account has no
+  // profile - one short retry clears it without surfacing a spurious error
+  // on every fresh account's first dashboard load.
+  if (error?.code === "PGRST116") {
+    await new Promise((resolve) => setTimeout(resolve, 600));
+    ({ data, error } = await supabase.from("user_profiles").select("*").eq("id", userId).single());
+  }
 
   if (error) {
     throw handleSupabaseError(error);
