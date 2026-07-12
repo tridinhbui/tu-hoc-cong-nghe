@@ -7730,7 +7730,14 @@ interactiveType: "inflation-calculator",
     track: "bonus",
   },
 { id: 1036, slug: "dinh-gia-tai-san-rong", title: "Định giá DN kiểu bán hết tài sản rồi trả nợ", subtitle: "Asset-based Valuation, NAV và RNAV - phần định giá doanh nghiệp, tiếp nối ROIC & Enterprise Value", duration: "6 phút", difficulty: "Trung bình", emoji: "🏗️", openingQuestion: "", openingOptions: [], correctOption: 0, explanation: "", diagram: [], interactiveType: "roe", realWorldExample: { company: "", description: "" }, quiz: [], keyTakeaways: [],
-    track: "bonus",
+    // Placed inside Chặng 6 (Cổ phiếu và định giá doanh nghiệp) of the
+    // professional track via extraLessonIds in lib/track-stages.ts, not via
+    // this track field - it keeps id 1036 (can't be renumbered into the
+    // 121-140 range without shifting every lesson after it, which would
+    // break existing users' progress) but reads as track: "professional"
+    // so the dashboard's stage/part filters (which also require
+    // `!l.track || l.track === activeTrack`) actually show it there.
+    track: "professional",
   },
 
   // ─── CHẶNG 0 (Track cá nhân): Biết mình trước khi học ───

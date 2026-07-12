@@ -1,6 +1,12 @@
 export interface StagePart {
   name: string;
   days: [number, number];
+  // Lesson ids to include in this part even though they fall outside the
+  // contiguous `days` range - e.g. a bonus-track case study that belongs
+  // topically in this part but can't be given a contiguous id here without
+  // renumbering every lesson after it (which would break existing users'
+  // progress, tracked by these exact ids).
+  extraLessonIds?: number[];
 }
 
 export interface Stage {
@@ -9,6 +15,16 @@ export interface Stage {
   days: [number, number];
   available: boolean;
   parts: StagePart[];
+  extraLessonIds?: number[];
+}
+
+// True if `lesson` belongs to `range` either via the contiguous [start, end]
+// day span or via `range`'s extraLessonIds allowlist.
+export function isLessonInRange(
+  lessonId: number,
+  range: { days: [number, number]; extraLessonIds?: number[] }
+): boolean {
+  return (lessonId >= range.days[0] && lessonId <= range.days[1]) || !!range.extraLessonIds?.includes(lessonId);
 }
 
 export const TRACK_PERSONAL = {
@@ -164,9 +180,10 @@ export const TRACK_PROFESSIONAL = {
       name: "Cổ phiếu và định giá doanh nghiệp",
       days: [121, 140] as [number, number],
       available: true,
+      extraLessonIds: [1036],
       parts: [
         { name: "Định giá tương đối (multiples)", days: [121, 130] as [number, number] },
-        { name: "Định giá DCF", days: [131, 140] as [number, number] },
+        { name: "Định giá DCF", days: [131, 140] as [number, number], extraLessonIds: [1036] },
       ],
     },
     {
@@ -221,5 +238,5 @@ export const TRACK_PROFESSIONAL = {
  */
 export function isLessonIdInTrack(id: number, track: "personal" | "professional"): boolean {
   const stages = track === "personal" ? TRACK_PERSONAL.stages : TRACK_PROFESSIONAL.stages;
-  return stages.some((stage) => id >= stage.days[0] && id <= stage.days[1]);
+  return stages.some((stage) => isLessonInRange(id, stage));
 }

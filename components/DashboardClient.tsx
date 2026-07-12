@@ -26,7 +26,7 @@ import { hasCompletedOnboarding, completeOnboarding } from "@/lib/supabase-onboa
 import { getUserProfile, recalculateUserStats } from "@/lib/supabase-user";
 import UnlockRequestModal from "@/components/UnlockRequestModal";
 import KnowledgeChallengeModal from "@/components/KnowledgeChallengeModal";
-import { TRACK_PERSONAL, TRACK_PROFESSIONAL } from "@/lib/track-stages";
+import { TRACK_PERSONAL, TRACK_PROFESSIONAL, isLessonInRange } from "@/lib/track-stages";
 import { BONUS_CATEGORIES, BONUS_CATEGORY_ORDER } from "@/lib/bonus-lesson-categories";
 import { CFA_LEVEL_1_SUBJECTS } from "@/lib/cfa-track";
 import CfaTrackView from "@/components/CfaTrackView";
@@ -380,7 +380,7 @@ export default function DashboardClient({ lessonsMeta }: { lessonsMeta: LessonMe
     for (const stage of track.stages) {
       for (const part of stage.parts) {
         const partLessons = sorted.filter(
-          (l) => l.id >= part.days[0] && l.id <= part.days[1] && (!l.track || l.track === activeTrack)
+          (l) => isLessonInRange(l.id, part) && (!l.track || l.track === activeTrack)
         );
         for (const l of partLessons) {
           n += 1;
@@ -666,7 +666,7 @@ export default function DashboardClient({ lessonsMeta }: { lessonsMeta: LessonMe
           <div data-tour="stage-list" className="space-y-6 mt-8">
           {track.stages.map((stage) => {
             const stageLessons = sorted.filter(
-              (l) => l.id >= stage.days[0] && l.id <= stage.days[1] && (!l.track || l.track === activeTrack)
+              (l) => isLessonInRange(l.id, stage) && (!l.track || l.track === activeTrack)
             );
             const stageDone = stageLessons.filter((l) => completed.includes(l.id)).length;
             const stageLockedCount = stageLessons.filter((l) => isLessonLocked(l)).length;
@@ -746,7 +746,7 @@ export default function DashboardClient({ lessonsMeta }: { lessonsMeta: LessonMe
                   <div className="space-y-3">
                     {stage.parts.map((part) => {
                       const partLessons = sorted.filter(
-                        (l) => l.id >= part.days[0] && l.id <= part.days[1] && (!l.track || l.track === activeTrack)
+                        (l) => isLessonInRange(l.id, part) && (!l.track || l.track === activeTrack)
                       );
                       if (partLessons.length === 0) return null;
                       const partDone = partLessons.filter((l) => completed.includes(l.id)).length;
