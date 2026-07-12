@@ -25,9 +25,11 @@ function shuffle<T>(arr: T[]): T[] {
 
 // Builds a randomized mini-quiz pulled from every lesson the user has
 // actually completed, so "ôn lại kiến thức" tests what they've genuinely
-// covered instead of arbitrary content. Runs server-side because loading
-// full lesson bodies (including quiz arrays) for every completed lesson
-// would otherwise mean shipping that content to the client.
+// covered instead of arbitrary content - falling back to Day 1-10 for
+// accounts with nothing completed yet (see sourceIds below). Runs
+// server-side because loading full lesson bodies (including quiz arrays)
+// for every source lesson would otherwise mean shipping that content to
+// the client.
 export async function GET() {
   const supabase = await createServerSupabaseClient();
   const { data: { user }, error: userError } = await supabase.auth.getUser();
@@ -48,8 +50,15 @@ export async function GET() {
 
   const completedIds = Array.from(new Set((progress ?? []).map((r) => r.lesson_id as number)));
 
+  // Brand new accounts have nothing completed yet, which used to mean an
+  // empty pool -> the modal just told them to go complete lessons first,
+  // even though the whole point of opening this from the dashboard is to
+  // try it right away. Fall back to the first 10 lessons (Day 1-10) so
+  // there's always something to answer.
+  const sourceIds = completedIds.length > 0 ? completedIds : Array.from({ length: 10 }, (_, i) => i + 1);
+
   const pool: ChallengeQuestion[] = [];
-  for (const lessonId of completedIds) {
+  for (const lessonId of sourceIds) {
     const lesson = await getLessonById(lessonId);
     if (!lesson?.quiz?.length) continue;
     for (const q of lesson.quiz) {
