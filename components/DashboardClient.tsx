@@ -5,7 +5,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { useRouter, useSearchParams } from "next/navigation";
 import { toast } from "sonner";
-import { CheckCircle2, BarChart3, Lock, FileText, Menu, X, Target } from "lucide-react";
+import { CheckCircle2, BarChart3, Lock, FileText, Menu, X, GraduationCap } from "lucide-react";
 import { useProgress } from "@/lib/client-hooks";
 import { getProgress, mergeCompletedLessons } from "@/lib/progress";
 import { getCompletedLessons, markLessonComplete as markLessonCompleteSupabase } from "@/lib/supabase-progress";
@@ -508,7 +508,7 @@ export default function DashboardClient({ lessonsMeta }: { lessonsMeta: LessonMe
                 aria-label="Thử thách kiến thức"
                 className="flex items-center gap-1.5 text-xs font-bold text-stone-500 dark:text-stone-400 hover:text-stone-700 dark:hover:text-stone-200 rounded-full pl-2 pr-3 h-9 hover:bg-stone-100 dark:hover:bg-stone-800 transition-colors cursor-pointer"
               >
-                <Target className="w-4 h-4" />
+                <GraduationCap className="w-4 h-4" />
                 Kiểm tra
               </button>
             </div>
@@ -559,7 +559,8 @@ export default function DashboardClient({ lessonsMeta }: { lessonsMeta: LessonMe
               }}
               className="flex items-center gap-2 text-sm font-bold text-emerald-600 dark:text-emerald-400 border border-emerald-200 dark:border-emerald-800 rounded-lg px-3 py-2.5 w-full cursor-pointer"
             >
-              🎯 Thử thách kiến thức
+              <GraduationCap className="w-4 h-4" />
+              Thử thách kiến thức
             </button>
           </div>
         )}
