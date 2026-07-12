@@ -27,6 +27,7 @@ import { getUserProfile, recalculateUserStats } from "@/lib/supabase-user";
 import UnlockRequestModal from "@/components/UnlockRequestModal";
 import KnowledgeChallengeModal from "@/components/KnowledgeChallengeModal";
 import { TRACK_PERSONAL, TRACK_PROFESSIONAL } from "@/lib/track-stages";
+import { BONUS_CATEGORIES, BONUS_CATEGORY_ORDER } from "@/lib/bonus-lesson-categories";
 import { getLessonStage, getLessonsInStage } from "@/lib/lesson-stages";
 import { isChallengeGated } from "@/lib/lesson-lock-rule";
 import { getChallengePassedLessonIds } from "@/lib/supabase-challenges";
@@ -446,6 +447,14 @@ export default function DashboardClient({ lessonsMeta }: { lessonsMeta: LessonMe
   const bonusLessons = sorted.filter((l) => l.track === "bonus");
   const bonusDone = bonusLessons.filter((l) => completed.includes(l.id)).length;
   const bonusOpen = openStages.has("bonus");
+  // Grouped by topic (see lib/bonus-lesson-categories.ts) instead of raw id
+  // order - otherwise a newly added case study always lands dead last after
+  // 30+ unrelated ones, however closely it's actually related to existing
+  // cases (e.g. a new valuation case landing after every non-valuation one).
+  const bonusGroups = BONUS_CATEGORY_ORDER.map((category) => ({
+    category,
+    lessons: bonusLessons.filter((l) => (BONUS_CATEGORIES[l.slug] ?? "Khác") === category),
+  })).filter((g) => g.lessons.length > 0);
 
   return (
     <div className="min-h-screen bg-white dark:bg-stone-950">
@@ -878,8 +887,13 @@ export default function DashboardClient({ lessonsMeta }: { lessonsMeta: LessonMe
               </button>
 
               {bonusOpen && (
-                <div className="space-y-2">
-                  {bonusLessons.map((lesson) => {
+                <div className="space-y-5">
+                  {bonusGroups.map((group) => (
+                  <div key={group.category} className="space-y-2">
+                    <div className="text-xs font-extrabold text-stone-500 dark:text-stone-400 uppercase tracking-widest px-1">
+                      {group.category}
+                    </div>
+                  {group.lessons.map((lesson) => {
                     const isDone = completed.includes(lesson.id);
                     const locked = isLessonLocked(lesson);
 
@@ -946,6 +960,8 @@ export default function DashboardClient({ lessonsMeta }: { lessonsMeta: LessonMe
                       </Link>
                     );
                   })}
+                  </div>
+                  ))}
                 </div>
               )}
             </div>
