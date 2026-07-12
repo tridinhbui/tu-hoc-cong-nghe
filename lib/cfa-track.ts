@@ -26,7 +26,7 @@ export const CFA_LEVEL_1_SUBJECTS: CfaSubject[] = [
     id: "quant",
     name: "Quantitative Methods",
     weight: "6–9%",
-    lessonIds: [7, 10, 12, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90, 91, 164, 165, 166],
+    lessonIds: [7, 10, 12, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90, 91, 164, 165, 166, 1037],
   },
   {
     id: "economics",

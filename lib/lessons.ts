@@ -8891,6 +8891,9 @@ interactiveType: "inflation-calculator",
     // `!l.track || l.track === activeTrack`) actually show it there.
     track: "professional",
   },
+{ id: 1037, slug: "bien-so-r-twr-mwrr", title: "Biến số r: TWR vs MWRR trong thẩm định & đầu tư", subtitle: "IRR, Discount Rate, YTM đều là r - và vì sao hiệu suất Quỹ cần nhìn qua cả hai lăng kính TWR và MWRR", duration: "8 phút", difficulty: "Khó", emoji: "📐", openingQuestion: "", openingOptions: [], correctOption: 0, explanation: "", diagram: [], interactiveType: "roe", realWorldExample: { company: "", description: "" }, quiz: [], keyTakeaways: [],
+    track: "bonus",
+  },
 
   // ─── CHẶNG 0 (Track cá nhân): Biết mình trước khi học ───
   // Days 263-268 - track-stages.ts đã định nghĩa range này từ trước;

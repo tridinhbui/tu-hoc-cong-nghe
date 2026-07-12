@@ -21,6 +21,7 @@ import { isLessonLockedForUser } from "@/lib/lesson-locking";
 // here too, or its lock is purely cosmetic on the dashboard.
 const STATIC_PAGE_LESSON_IDS: Record<string, number> = {
   "bds-business-model": 1028,
+  "bien-so-r-twr-mwrr": 1037,
   "bitcoin-crypto": 1025,
   "cap-rate": 1009,
   "commodity": 261,

@@ -15,6 +15,7 @@ export const BONUS_CATEGORIES: Record<string, string> = {
   "enterprise-value": "Định giá doanh nghiệp",
   "dupont-analysis": "Định giá doanh nghiệp",
   "finance-as-math": "Định giá doanh nghiệp",
+  "bien-so-r-twr-mwrr": "Định giá doanh nghiệp",
 
   "discontinued-operations": "Đọc báo cáo tài chính",
   "vingroup-cash-flow": "Đọc báo cáo tài chính",
