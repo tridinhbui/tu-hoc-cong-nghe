@@ -49,6 +49,10 @@ export default function CfaTrackView({ subjects }: Props) {
         transition={{ duration: 0.35 }}
         className="rounded-2xl border border-stone-200 dark:border-stone-800 bg-stone-900 dark:bg-stone-950 p-6 mb-6"
       >
+        <div className="inline-flex items-center gap-1.5 text-[10px] font-extrabold text-stone-900 bg-white px-2.5 py-1 rounded-full uppercase tracking-wide mb-3">
+          <span className="w-1.5 h-1.5 rounded-full bg-stone-900 animate-pulse" />
+          Mới ra mắt · Đang xây dựng · Liên tục nâng cấp
+        </div>
         <p className="text-[11px] font-bold text-stone-400 uppercase tracking-widest mb-1">Track 3</p>
         <p className="text-sm text-stone-300 leading-relaxed max-w-lg">
           Ánh xạ các bài học đã có trong <strong className="text-white">Tài chính cá nhân</strong> và{" "}
