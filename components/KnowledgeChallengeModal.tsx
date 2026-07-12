@@ -2,7 +2,7 @@
 
 import { useEffect, useState, useCallback } from "react";
 import Link from "next/link";
-import { X } from "lucide-react";
+import { X, CheckCircle2 } from "lucide-react";
 import type { ChallengeQuestion } from "@/app/api/knowledge-challenge/route";
 import { recordChallengePass } from "@/lib/supabase-challenges";
 
@@ -180,9 +180,10 @@ export default function KnowledgeChallengeModal({ onClose, gate, onPassed }: Kno
                 <button
                   disabled={selected === null}
                   onClick={verify}
-                  className={`w-full py-3 rounded-xl font-bold text-sm uppercase tracking-wider text-white cursor-pointer ${selected !== null ? "bg-stone-900 dark:bg-stone-100 dark:text-stone-900 hover:opacity-90" : "bg-stone-200 dark:bg-stone-700 text-stone-500 dark:text-stone-400 cursor-not-allowed"}`}
+                  className={`w-full py-4 rounded-xl font-extrabold text-base uppercase tracking-wide text-white cursor-pointer flex items-center justify-center gap-2 ${selected !== null ? "bg-stone-900 dark:bg-stone-100 dark:text-stone-900 hover:opacity-90" : "bg-stone-200 dark:bg-stone-700 text-stone-500 dark:text-stone-400 cursor-not-allowed"}`}
                 >
-                  Kiểm tra →
+                  <CheckCircle2 className="w-5 h-5" />
+                  Kiểm tra đáp án
                 </button>
               ) : activeQ < questions.length - 1 ? (
                 <button onClick={next} className="w-full py-3 rounded-xl font-bold text-sm uppercase tracking-wider text-white bg-stone-900 dark:bg-stone-100 dark:text-stone-900 hover:opacity-90 cursor-pointer">
