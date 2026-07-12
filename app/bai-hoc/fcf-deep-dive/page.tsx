@@ -7,7 +7,7 @@ const meta: LessonMeta = {
   title: "Free Cash Flow - Đọc Sâu Hơn",
   subtitle: "FCF = OCF − CapEx, NOPAT và Working Capital",
   duration: "7 phút", difficulty: "Khó", emoji: "·",
-  nextSlug: undefined, nextTitle: undefined,
+  nextSlug: "dinh-gia-tai-san-rong", nextTitle: "Định giá DN kiểu bán hết tài sản rồi trả nợ",
 };
 
 const quiz: QuizQuestion[] = [

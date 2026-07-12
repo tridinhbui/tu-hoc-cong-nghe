@@ -27,6 +27,7 @@ const STATIC_PAGE_LESSON_IDS: Record<string, number> = {
   "commodity-phan-2": 1005,
   "discontinued-operations": 1001,
   "disney-pixar-ma": 1021,
+  "dinh-gia-tai-san-rong": 1036,
   "dividend": 1017,
   "dupont-analysis": 1016,
   "enterprise-value": 1008,
