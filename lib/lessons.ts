@@ -7729,7 +7729,7 @@ interactiveType: "inflation-calculator",
 { id: 1035, slug: "fcf-deep-dive", title: "Free Cash Flow - Đọc Sâu Hơn", subtitle: "FCF = OCF − CapEx, NOPAT và Working Capital", duration: "7 phút", difficulty: "Khó", emoji: "💧", openingQuestion: "", openingOptions: [], correctOption: 0, explanation: "", diagram: [], interactiveType: "roe", realWorldExample: { company: "", description: "" }, quiz: [], keyTakeaways: [],
     track: "bonus",
   },
-{ id: 1036, slug: "dinh-gia-tai-san-rong", title: "Định giá DN kiểu bán hết tài sản rồi trả nợ", subtitle: "Asset-based Valuation, NAV và RNAV - định giá qua tài sản ròng", duration: "6 phút", difficulty: "Trung bình", emoji: "🏗️", openingQuestion: "", openingOptions: [], correctOption: 0, explanation: "", diagram: [], interactiveType: "roe", realWorldExample: { company: "", description: "" }, quiz: [], keyTakeaways: [],
+{ id: 1036, slug: "dinh-gia-tai-san-rong", title: "Định giá DN kiểu bán hết tài sản rồi trả nợ", subtitle: "Asset-based Valuation, NAV và RNAV - phần định giá doanh nghiệp, tiếp nối ROIC & Enterprise Value", duration: "6 phút", difficulty: "Trung bình", emoji: "🏗️", openingQuestion: "", openingOptions: [], correctOption: 0, explanation: "", diagram: [], interactiveType: "roe", realWorldExample: { company: "", description: "" }, quiz: [], keyTakeaways: [],
     track: "bonus",
   },
 

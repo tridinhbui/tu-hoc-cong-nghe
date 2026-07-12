@@ -3,10 +3,11 @@
 import LessonPageLayout, { QuizQuestion, LessonMeta } from "@/components/LessonPageLayout";
 
 const meta: LessonMeta = {
-  id: 1036, day: 89, accent: "amber",
+  id: 1036, day: 89, accent: "violet",
   title: "Định giá DN kiểu bán hết tài sản rồi trả nợ",
-  subtitle: "Asset-based Valuation, NAV và RNAV - định giá qua tài sản ròng",
+  subtitle: "Asset-based Valuation, NAV và RNAV - phần định giá doanh nghiệp, tiếp nối ROIC & Enterprise Value",
   duration: "6 phút", difficulty: "Trung bình", emoji: "🏗️",
+  nextSlug: "commodity", nextTitle: "Commodity",
 };
 
 const quiz: QuizQuestion[] = [
@@ -72,14 +73,14 @@ export default function Page() {
 
       <section className="mb-8">
         <h3 className="text-lg font-bold text-stone-800 mb-3">📐 Ví dụ đơn giản</h3>
-        <p className="text-stone-700 text-sm mb-3">
+        <p className="text-stone-600 leading-relaxed mb-4">
           Một doanh nghiệp có <strong>10 tỷ tài sản</strong> gồm tiền, đất, máy móc… và đang nợ <strong>4 tỷ</strong>. Giá trị tài sản ròng là:
         </p>
         <div className="bg-stone-800 text-white rounded-xl p-5 text-center mb-4">
           <div className="font-mono text-xl font-bold mb-1">10 tỷ − 4 tỷ = 6 tỷ</div>
           <p className="text-stone-300 text-sm">Đây chính là cách nghĩ của Asset-based Valuation</p>
         </div>
-        <p className="text-stone-700 text-sm mb-2">
+        <p className="text-stone-600 leading-relaxed mb-4">
           Hiểu đơn giản: DN đang có gì, định giá lại hết, rồi trừ toàn bộ nợ. Phần còn lại tạm coi là giá trị thuộc về cổ đông.
         </p>
         <div className="bg-stone-50 rounded-xl p-4 border border-stone-200 font-mono text-sm text-center">
@@ -89,10 +90,10 @@ export default function Page() {
 
       <section className="mb-8">
         <h3 className="text-lg font-bold text-stone-800 mb-3">⚠️ Vì sao không thể lấy nguyên số trên báo cáo tài chính</h3>
-        <p className="text-stone-700 text-sm mb-3">
+        <p className="text-stone-600 leading-relaxed mb-4">
           Vì giá trên sổ sách chưa chắc là giá thật hiện tại. Ví dụ đất mua từ lâu có thể đang được ghi giá khá thấp nhưng bây giờ đã tăng giá nhiều. Ngược lại, hàng tồn kho hay máy móc nhìn trên sổ khá đẹp nhưng bán thật chưa chắc được bấy nhiêu.
         </p>
-        <p className="text-stone-700 text-sm mb-3">
+        <p className="text-stone-600 leading-relaxed mb-4">
           Nên người ta thường điều chỉnh tài sản về <strong>fair value</strong>, tức giá hợp lý theo thị trường hiện tại. Sau khi định giá lại tài sản và nợ, mình sẽ có:
         </p>
         <div className="bg-stone-50 rounded-xl p-4 border border-stone-200 font-mono text-sm text-center">
@@ -102,13 +103,13 @@ export default function Page() {
 
       <section className="mb-8">
         <h3 className="text-lg font-bold text-stone-800 mb-3">🏢 Case thật ở Việt Nam: DN bất động sản</h3>
-        <p className="text-stone-700 text-sm mb-3">
+        <p className="text-stone-600 leading-relaxed mb-4">
           Với các doanh nghiệp như Vinhomes, người phân tích không chỉ nhìn lợi nhuận năm nay mà còn phải nhìn <strong>quỹ đất và các dự án tương lai</strong>.
         </p>
-        <p className="text-stone-700 text-sm mb-3">
+        <p className="text-stone-600 leading-relaxed mb-4">
           Nhưng không phải cứ có nhiều đất là tự động giá trị cao. Còn phải hỏi: đất ở đâu? Pháp lý xong chưa? Khi nào mở bán? Giá bán dự kiến bao nhiêu? Còn tốn bao nhiêu chi phí xây dựng? DN đang nợ bao nhiêu?
         </p>
-        <p className="text-stone-700 text-sm">
+        <p className="text-stone-600 leading-relaxed">
           Cùng là một khu đất lớn, nhưng đất đã có pháp lý, gần khu đông dân và sắp mở bán sẽ đáng giá khác hoàn toàn so với đất còn nằm trên kế hoạch. Đó là lý do DN bất động sản thường được định giá bằng <strong>Adjusted NAV</strong> hoặc <strong>RNAV</strong>, tức định giá từng dự án, trừ chi phí còn phải bỏ ra và trừ nợ.
         </p>
       </section>
@@ -125,7 +126,7 @@ export default function Page() {
             { label: "Mua bán DN nhỏ", note: "Ví dụ mua một cửa hàng hay xưởng sản xuất, xem tiền, hàng hóa, máy móc, đất… trừ nợ còn bao nhiêu" },
           ].map((r) => (
             <div key={r.label} className="flex items-start gap-3 bg-stone-50 rounded-lg p-3 border border-stone-100">
-              <span className="mt-1 w-2 h-2 rounded-full bg-amber-500 flex-shrink-0" />
+              <span className="mt-1 w-2 h-2 rounded-full bg-violet-500 flex-shrink-0" />
               <div>
                 <div className="text-sm font-bold text-stone-700">{r.label}</div>
                 <div className="text-xs text-stone-500">{r.note}</div>
@@ -137,10 +138,10 @@ export default function Page() {
 
       <section className="mb-8">
         <h3 className="text-lg font-bold text-stone-800 mb-3">❌ Khi nào không nên phụ thuộc quá nhiều vào cách này</h3>
-        <p className="text-stone-700 text-sm mb-3">
+        <p className="text-stone-600 leading-relaxed mb-4">
           Cách này không quá hợp với <strong>tech, SaaS, consulting, agency</strong> hay các brand mạnh. Ví dụ một công ty phần mềm có thể chỉ có vài cái laptop và văn phòng. Nếu bán hết tài sản vật chất thì gần như không được bao nhiêu. Nhưng giá trị thật lại nằm ở công nghệ, data, khách hàng, đội ngũ, thương hiệu và khả năng kiếm tiền tương lai.
         </p>
-        <p className="text-stone-700 text-sm">
+        <p className="text-stone-600 leading-relaxed">
           Nên Asset-based Valuation chỉ hợp nhất khi giá trị DN nằm nhiều trong những tài sản có thể nhìn thấy và định giá tương đối rõ.
         </p>
       </section>

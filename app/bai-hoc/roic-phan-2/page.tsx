@@ -8,7 +8,7 @@ const meta: LessonMeta = {
   title: "ROIC Phần 2 - Link sang Valuation",
   subtitle: "Driver cốt lõi quyết định Free Cash Flow và Enterprise Value",
   duration: "6 phút", difficulty: "Khó", emoji: "🔗",
-  nextSlug: "commodity", nextTitle: "Commodity",
+  nextSlug: "dinh-gia-tai-san-rong", nextTitle: "Định giá DN kiểu bán hết tài sản rồi trả nợ",
 };
 
 const quiz: QuizQuestion[] = [
