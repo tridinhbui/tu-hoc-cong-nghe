@@ -31,6 +31,17 @@ export function computeLessonLocked(
   unlockedIds: ReadonlySet<number>,
   challengePassedIds: ReadonlySet<number> = new Set()
 ): boolean {
+  // Site-wide: lesson locking is disabled for everyone - every lesson is
+  // open regardless of sequence/prerequisites/challenges. To re-enable
+  // progression gating, delete this early return; the rest of the function
+  // (sequential-unlock + challenge-gate rule) is left intact below.
+  void lesson;
+  void sortedLessons;
+  void completedIds;
+  void unlockedIds;
+  void challengePassedIds;
+  return false;
+
   // Free lessons are always unlocked
   if (lesson.isFundamental) {
     return false;

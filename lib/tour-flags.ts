@@ -5,8 +5,19 @@ import { createClient } from "@/lib/supabase";
 // so a missing column (e.g. migration not applied yet on this environment)
 // should degrade to "not seen yet" / a silent no-op write, never crash the
 // tour or the dashboard around it.
+//
+// PGRST116 ("0 rows" from .single()) is included too: SpotlightTour calls
+// hasSeenTour() on mount, which can race the auth session still resolving -
+// while unauthenticated, RLS makes the row invisible and PostgREST reports
+// it exactly like a genuinely missing row. Same non-critical situation:
+// just means "haven't confirmed seen yet", not a real error.
 function isMissingSchemaError(error: { code?: string } | null): boolean {
-  return error?.code === "PGRST205" || error?.code === "42P01" || error?.code === "42703";
+  return (
+    error?.code === "PGRST205" ||
+    error?.code === "PGRST116" ||
+    error?.code === "42P01" ||
+    error?.code === "42703"
+  );
 }
 
 /**
