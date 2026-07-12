@@ -98,9 +98,14 @@ export async function GET(request: NextRequest) {
     sourceIds = completedIds.length > 0 ? completedIds : Array.from({ length: 10 }, (_, i) => i + 1);
   }
 
+  // Fetched in parallel rather than one at a time in a loop - a track pool
+  // can be 100-250 lessons (e.g. the CFA track), and each is an independent
+  // file read with no ordering dependency, so awaiting them sequentially
+  // just serializes disk I/O that could otherwise overlap.
+  const lessons = await Promise.all(sourceIds.map((id) => getLessonById(id)));
+
   const pool: ChallengeQuestion[] = [];
-  for (const lessonId of sourceIds) {
-    const lesson = await getLessonById(lessonId);
+  for (const lesson of lessons) {
     if (!lesson?.quiz?.length) continue;
     for (const q of lesson.quiz) {
       pool.push({

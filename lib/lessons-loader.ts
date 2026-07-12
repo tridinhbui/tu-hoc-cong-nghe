@@ -73,9 +73,21 @@ export async function getLessonBySlug(slug: string): Promise<Lesson | undefined>
 }
 
 /**
- * Get lesson by ID with minimal bundle impact
+ * Get lesson by ID with minimal bundle impact - resolves id -> slug via the
+ * cheap generated index, then reuses getLessonBySlug's fast per-file read.
+ * Callers that look up many ids in a loop (e.g. building a quiz question
+ * pool across a whole track, up to ~250 lessons) previously each fell
+ * through to loadLessons(), which dynamic-imports the full ~2MB
+ * lib/lessons.ts module on a cold instance - exactly the multi-hundred-ms
+ * parse cost the index/per-file split exists to avoid.
  */
 export async function getLessonById(id: number): Promise<Lesson | undefined> {
+  const index = await loadIndex();
+  const slug = index?.find((l) => l.id === id)?.slug;
+  if (slug) {
+    const lesson = await getLessonBySlug(slug);
+    if (lesson) return lesson;
+  }
   const lessons = await loadLessons();
   return lessons.find((l) => l.id === id);
 }
