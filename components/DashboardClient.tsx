@@ -506,9 +506,10 @@ export default function DashboardClient({ lessonsMeta }: { lessonsMeta: LessonMe
                 onClick={() => setShowChallenge(true)}
                 title="Thử thách kiến thức"
                 aria-label="Thử thách kiến thức"
-                className="flex items-center justify-center w-9 h-9 rounded-full text-stone-400 dark:text-stone-500 hover:bg-stone-100 dark:hover:bg-stone-800 hover:text-stone-700 dark:hover:text-stone-200 transition-colors cursor-pointer"
+                className="flex items-center gap-1.5 text-xs font-bold text-stone-500 dark:text-stone-400 hover:text-stone-700 dark:hover:text-stone-200 rounded-full pl-2 pr-3 h-9 hover:bg-stone-100 dark:hover:bg-stone-800 transition-colors cursor-pointer"
               >
                 <Target className="w-4 h-4" />
+                Kiểm tra
               </button>
             </div>
             <div className="sm:hidden">
