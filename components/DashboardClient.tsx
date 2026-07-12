@@ -31,8 +31,6 @@ import { BONUS_CATEGORIES, BONUS_CATEGORY_ORDER } from "@/lib/bonus-lesson-categ
 import { CFA_LEVEL_1_SUBJECTS } from "@/lib/cfa-track";
 import { TRACKS } from "@/lib/tracks";
 import CfaTrackView from "@/components/CfaTrackView";
-import { getLessonStage, getLessonsInStage } from "@/lib/lesson-stages";
-import { isChallengeGated } from "@/lib/lesson-lock-rule";
 import { getChallengePassedLessonIds } from "@/lib/supabase-challenges";
 
 // Slim projection of Lesson - just enough to render the dashboard listing,
@@ -404,48 +402,27 @@ export default function DashboardClient({ lessonsMeta }: { lessonsMeta: LessonMe
   }
 
   // Client-side lock check - must stay in sync with lib/lesson-lock-rule.ts.
-  // Sequential unlock: first 7 lessons unlocked per stage, rest require previous lesson completed.
-  const isLessonLocked = (lesson: LessonMeta): boolean => {
-    if (lesson.isFundamental) return false;
-    if (unlockedLessonIds.has(lesson.id)) return false;
-
-    const stage = getLessonStage(lesson);
-
-    if (stage === null || stage === 0) return false;
-
-    // All stages: first 7 lessons unlocked, rest require sequential completion
-    const stageALL = getLessonsInStage(lesson, sorted).sort((a, b) => a.id - b.id);
-    const index = stageALL.findIndex((l) => l.id === lesson.id);
-
-    // First 7: unlocked
-    if (index < 7) return false;
-
-    // Beyond 7: require previous lesson completed
-    if (index >= 7) {
-      const previousLesson = stageALL[index - 1];
-      if (!completed.includes(previousLesson.id)) return true;
-      // Prerequisite met - some lessons additionally require passing a
-      // randomized knowledge-check challenge before they unlock.
-      if (isChallengeGated(lesson.id) && !challengePassedIds.has(lesson.id)) return true;
-      return false;
-    }
-
+  // Site-wide: lesson locking is disabled for everyone (see
+  // lib/lesson-lock-rule.ts and lib/lesson-locking.ts for the matching
+  // server-side overrides). This third, independent copy was missed in that
+  // pass - it drives the dashboard's own lock icons/badges, so even after
+  // the other two were disabled, lessons here still rendered with a lock
+  // icon and a "message admin to unlock" prompt despite being fully
+  // reachable by direct URL. To re-enable locking, delete this early return
+  // (the original sequential-unlock rule is left intact below) and restore
+  // isWaitingOnChallenge's body the same way.
+  const isLessonLocked = (_lesson: LessonMeta): boolean => {
     return false;
   };
 
   // A locked lesson is either waiting on its prerequisite (send the
   // "message admin" flow) or waiting on its challenge gate (open the
   // knowledge-check modal instead) - the two need different click handling.
-  const isWaitingOnChallenge = (lesson: LessonMeta): boolean => {
-    if (lesson.isFundamental || unlockedLessonIds.has(lesson.id)) return false;
-    const stage = getLessonStage(lesson);
-    if (stage === null || stage === 0) return false;
-    const stageALL = getLessonsInStage(lesson, sorted).sort((a, b) => a.id - b.id);
-    const index = stageALL.findIndex((l) => l.id === lesson.id);
-    if (index < 7) return false;
-    const previousLesson = stageALL[index - 1];
-    if (!completed.includes(previousLesson.id)) return false;
-    return isChallengeGated(lesson.id) && !challengePassedIds.has(lesson.id);
+  // Disabled alongside isLessonLocked above; kept as a function (not deleted)
+  // since handleLockedLessonClick still calls it, though with locking off
+  // that call site is itself unreachable in practice.
+  const isWaitingOnChallenge = (_lesson: LessonMeta): boolean => {
+    return false;
   };
 
   const handleLockedLessonClick = (lesson: LessonMeta) => {

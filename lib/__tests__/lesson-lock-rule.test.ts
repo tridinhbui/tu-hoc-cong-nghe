@@ -14,6 +14,19 @@ function lesson(overrides: Partial<LessonMeta> & { id: number }): LessonMeta {
 }
 
 describe("computeLessonLocked", () => {
+  it("is disabled site-wide - always returns false regardless of progress", () => {
+    // Matches the early return added to computeLessonLocked itself
+    // (lib/lesson-lock-rule.ts) per an explicit "unlock every lesson"
+    // request. The suite below (skipped, not deleted) is the real
+    // sequential-unlock behavior and should pass again unmodified the
+    // moment that early return is removed.
+    const lessons = Array.from({ length: 10 }, (_, i) => lesson({ id: i + 1, track: "personal" }));
+    const l8 = lesson({ id: 8, track: "personal" });
+    expect(computeLessonLocked(l8, lessons, new Set(), new Set())).toBe(false);
+  });
+});
+
+describe.skip("computeLessonLocked (sequential-unlock rule - re-enable by removing the early return in lib/lesson-lock-rule.ts)", () => {
   it("unlocks first 7 lessons in each stage regardless of progress", () => {
     const lessons = Array.from({ length: 10 }, (_, i) => lesson({ id: i + 1, track: "personal" }));
     const l7 = lesson({ id: 7, track: "personal" });
