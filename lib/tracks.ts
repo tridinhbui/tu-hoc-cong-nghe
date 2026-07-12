@@ -30,6 +30,21 @@ export const TRACKS = {
     previewSlug: "ke-toan-la-gi",
     previewLabel: "Day 21: Kế toán là ngôn ngữ của kinh doanh",
   },
+  cfa: {
+    tab: "Tài chính chứng chỉ",
+    subtitle: "CFA Level I · đang xây dựng",
+    estimatedHours: 0,
+    description: "Ánh xạ các bài học đã có sang đúng 10 môn thi CFA Level I chính thức - không tạo bài mới, không đổi số ngày của 2 track kia. Môn nào chưa có bài phù hợp sẽ được xây dần.",
+    stages: [
+      "Ethics and Professional Standards - sẽ xây trong tương lai",
+      "Quantitative Methods, Economics",
+      "Financial Statement Analysis, Corporate Issuers",
+      "Equity Investments, Fixed Income",
+      "Derivatives, Alternative Investments, Portfolio Management",
+    ],
+    previewSlug: "",
+    previewLabel: "Xem lộ trình CFA Level I",
+  },
 } as const;
 
 export type TrackId = keyof typeof TRACKS;

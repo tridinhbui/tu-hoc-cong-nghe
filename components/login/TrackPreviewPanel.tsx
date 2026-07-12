@@ -17,8 +17,8 @@ export default function TrackPreviewPanel({ previewTrack, setPreviewTrack, compa
 
   return (
     <div className={`border-2 border-stone-200 dark:border-stone-800 rounded-2xl overflow-hidden ${compact ? "mb-8" : ""}`}>
-      <div className="grid grid-cols-2">
-        {(Object.keys(TRACKS) as TrackId[]).map((id) => {
+      <div className={`grid ${Object.keys(TRACKS).length === 3 ? "grid-cols-3" : "grid-cols-2"}`}>
+        {(Object.keys(TRACKS) as TrackId[]).map((id, index) => {
           const t = TRACKS[id];
           const isActive = previewTrack === id;
           return (
@@ -32,10 +32,12 @@ export default function TrackPreviewPanel({ previewTrack, setPreviewTrack, compa
               }`}
             >
               <div className={`font-bold uppercase tracking-widest opacity-60 ${compact ? "text-[11px] mb-0.5" : "text-xs mb-1"}`}>
-                {id === "personal" ? "Track 1" : "Track 2"}
+                Track {index + 1}
               </div>
               <div className={`font-bold ${compact ? "text-sm" : "text-sm"}`}>{t.tab}</div>
-              <div className={`opacity-70 ${compact ? "text-xs mt-0.5" : "text-xs mt-0.5"}`}>~{t.estimatedHours} bài học</div>
+              {t.estimatedHours > 0 && (
+                <div className={`opacity-70 ${compact ? "text-xs mt-0.5" : "text-xs mt-0.5"}`}>~{t.estimatedHours} bài học</div>
+              )}
             </button>
           );
         })}
@@ -67,7 +69,7 @@ export default function TrackPreviewPanel({ previewTrack, setPreviewTrack, compa
           )}
 
           <a
-            href={`/bai-hoc/${track.previewSlug}`}
+            href={track.previewSlug ? `/bai-hoc/${track.previewSlug}` : "/cfa"}
             className={`flex items-center justify-between gap-3 rounded-xl transition-all group bg-gradient-to-r from-emerald-500 to-emerald-600 hover:from-emerald-600 hover:to-emerald-700 shadow-sm hover:shadow-md active:scale-[0.99] ${
               compact ? "px-4 py-3" : "px-5 py-4"
             }`}
@@ -76,7 +78,11 @@ export default function TrackPreviewPanel({ previewTrack, setPreviewTrack, compa
               <PlayCircle className={`flex-shrink-0 text-white/90 ${compact ? "w-6 h-6" : "w-7 h-7"}`} />
               <div className="min-w-0">
                 <div className={`font-extrabold text-white uppercase tracking-wider ${compact ? "text-[11px]" : "text-xs"}`}>
-                  {compact ? "Miễn phí · Xem thử ngay" : "Miễn phí · Xem thử ngay, không cần đăng nhập"}
+                  {track.previewSlug
+                    ? compact
+                      ? "Miễn phí · Xem thử ngay"
+                      : "Miễn phí · Xem thử ngay, không cần đăng nhập"
+                    : "Xem trước"}
                 </div>
                 <div className={`font-bold text-white truncate ${compact ? "text-sm" : "text-base"}`}>
                   {track.previewLabel}
