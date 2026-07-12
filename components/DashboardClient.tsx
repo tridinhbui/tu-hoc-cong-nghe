@@ -500,11 +500,12 @@ export default function DashboardClient({ lessonsMeta }: { lessonsMeta: LessonMe
               </button>
               <Link
                 href="/cfa"
-                title="Tài chính chứng chỉ (CFA)"
-                aria-label="Tài chính chứng chỉ (CFA)"
-                className="flex items-center justify-center w-9 h-9 rounded-full text-stone-400 dark:text-stone-500 hover:bg-stone-100 dark:hover:bg-stone-800 hover:text-stone-700 dark:hover:text-stone-200 transition-colors"
+                title="Tài chính chứng chỉ (CFA) - mới"
+                aria-label="Tài chính chứng chỉ (CFA) - mới"
+                className="relative flex items-center justify-center w-9 h-9 rounded-full text-stone-400 dark:text-stone-500 hover:bg-stone-100 dark:hover:bg-stone-800 hover:text-stone-700 dark:hover:text-stone-200 transition-colors"
               >
                 <GraduationCap className="w-4 h-4" />
+                <span className="absolute top-1 right-1.5 w-1.5 h-1.5 rounded-full bg-indigo-500 animate-pulse" />
               </Link>
             </div>
             <div className="sm:hidden">
@@ -563,6 +564,9 @@ export default function DashboardClient({ lessonsMeta }: { lessonsMeta: LessonMe
             >
               <GraduationCap className="w-4 h-4" />
               Tài chính chứng chỉ (CFA)
+              <span className="ml-auto text-[10px] font-extrabold text-indigo-600 dark:text-indigo-400 bg-indigo-50 dark:bg-indigo-950 px-1.5 py-0.5 rounded uppercase tracking-wide">
+                Mới
+              </span>
             </Link>
           </div>
         )}

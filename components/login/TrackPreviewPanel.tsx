@@ -25,12 +25,17 @@ export default function TrackPreviewPanel({ previewTrack, setPreviewTrack, compa
             <button
               key={id}
               onClick={() => setPreviewTrack(id)}
-              className={`text-left transition-colors cursor-pointer ${compact ? "px-4 py-3" : "px-5 py-4"} ${
+              className={`relative text-left transition-colors cursor-pointer ${compact ? "px-4 py-3" : "px-5 py-4"} ${
                 isActive
                   ? "bg-stone-900 dark:bg-stone-100 text-white dark:text-stone-900"
                   : `bg-white dark:bg-stone-900 text-stone-500 dark:text-stone-400 ${compact ? "" : "hover:bg-stone-50 dark:hover:bg-stone-900"}`
               }`}
             >
+              {id === "cfa" && (
+                <span className="absolute top-1.5 right-1.5 text-[9px] font-extrabold text-white bg-indigo-500 px-1.5 py-0.5 rounded uppercase tracking-wide">
+                  Mới
+                </span>
+              )}
               <div className={`font-bold uppercase tracking-widest opacity-60 ${compact ? "text-[11px] mb-0.5" : "text-xs mb-1"}`}>
                 Track {index + 1}
               </div>
