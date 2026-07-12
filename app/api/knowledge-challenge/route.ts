@@ -1,6 +1,8 @@
 import { createServerSupabaseClient } from "@/lib/supabase-server";
-import { getLessonById } from "@/lib/lessons-loader";
-import { NextResponse } from "next/server";
+import { getLessonById, getLessonsMeta } from "@/lib/lessons-loader";
+import { TRACK_PERSONAL, TRACK_PROFESSIONAL, isLessonInRange } from "@/lib/track-stages";
+import { CFA_LEVEL_1_SUBJECTS } from "@/lib/cfa-track";
+import { NextRequest, NextResponse } from "next/server";
 
 export interface ChallengeQuestion {
   lessonId: number;
@@ -14,6 +16,12 @@ export interface ChallengeQuestion {
 
 const QUESTION_COUNT = 5;
 
+const DIFFICULTY_LABELS: Record<string, string> = {
+  de: "Dễ",
+  "trung-binh": "Trung bình",
+  kho: "Khó",
+};
+
 function shuffle<T>(arr: T[]): T[] {
   const a = [...arr];
   for (let i = a.length - 1; i > 0; i--) {
@@ -23,14 +31,31 @@ function shuffle<T>(arr: T[]): T[] {
   return a;
 }
 
-// Builds a randomized mini-quiz pulled from every lesson the user has
-// actually completed, so "ôn lại kiến thức" tests what they've genuinely
-// covered instead of arbitrary content - falling back to Day 1-10 for
-// accounts with nothing completed yet (see sourceIds below). Runs
-// server-side because loading full lesson bodies (including quiz arrays)
-// for every source lesson would otherwise mean shipping that content to
-// the client.
-export async function GET() {
+async function idsForTrack(track: "personal" | "professional" | "cfa"): Promise<Set<number>> {
+  if (track === "cfa") {
+    return new Set(CFA_LEVEL_1_SUBJECTS.flatMap((s) => s.lessonIds));
+  }
+  const allLessons = await getLessonsMeta();
+  const stages = track === "personal" ? TRACK_PERSONAL.stages : TRACK_PROFESSIONAL.stages;
+  const ids = allLessons
+    .filter((l) => (l.track ? l.track === track : stages.some((stage) => isLessonInRange(l.id, stage))))
+    .map((l) => l.id);
+  return new Set(ids);
+}
+
+// Builds a randomized mini-quiz. Two modes:
+// - No track/difficulty query params (the dashboard's quick "Thử thách
+//   kiến thức" nudge): pulled from every lesson the user has actually
+//   completed, so it tests what they've genuinely covered - falling back
+//   to Day 1-10 for accounts with nothing completed yet.
+// - track/difficulty provided (the standalone /kiem-tra page): pulled from
+//   every lesson in that track matching that difficulty, regardless of
+//   completion status - the whole point there is to self-test against a
+//   track's material on demand, not just review what's already done.
+// Runs server-side because loading full lesson bodies (including quiz
+// arrays) for every source lesson would otherwise mean shipping that
+// content to the client.
+export async function GET(request: NextRequest) {
   const supabase = await createServerSupabaseClient();
   const { data: { user }, error: userError } = await supabase.auth.getUser();
 
@@ -38,24 +63,40 @@ export async function GET() {
     return NextResponse.json({ error: "Not authenticated" }, { status: 401 });
   }
 
-  const { data: progress, error: progressError } = await supabase
-    .from("user_progress")
-    .select("lesson_id")
-    .eq("user_id", user.id)
-    .eq("completed", true);
+  const { searchParams } = request.nextUrl;
+  const track = searchParams.get("track");
+  const difficulty = searchParams.get("difficulty");
 
-  if (progressError) {
-    return NextResponse.json({ error: progressError.message }, { status: 500 });
+  let sourceIds: number[];
+
+  if (track === "personal" || track === "professional" || track === "cfa") {
+    const trackIds = await idsForTrack(track);
+    let candidateIds = Array.from(trackIds);
+    if (difficulty && difficulty !== "tat-ca" && DIFFICULTY_LABELS[difficulty]) {
+      const allLessons = await getLessonsMeta();
+      const byId = new Map(allLessons.map((l) => [l.id, l]));
+      candidateIds = candidateIds.filter((id) => byId.get(id)?.difficulty === DIFFICULTY_LABELS[difficulty]);
+    }
+    sourceIds = candidateIds;
+  } else {
+    const { data: progress, error: progressError } = await supabase
+      .from("user_progress")
+      .select("lesson_id")
+      .eq("user_id", user.id)
+      .eq("completed", true);
+
+    if (progressError) {
+      return NextResponse.json({ error: progressError.message }, { status: 500 });
+    }
+
+    const completedIds = Array.from(new Set((progress ?? []).map((r) => r.lesson_id as number)));
+    // Brand new accounts have nothing completed yet, which used to mean an
+    // empty pool -> the modal just told them to go complete lessons first,
+    // even though the whole point of opening this from the dashboard is to
+    // try it right away. Fall back to the first 10 lessons (Day 1-10) so
+    // there's always something to answer.
+    sourceIds = completedIds.length > 0 ? completedIds : Array.from({ length: 10 }, (_, i) => i + 1);
   }
-
-  const completedIds = Array.from(new Set((progress ?? []).map((r) => r.lesson_id as number)));
-
-  // Brand new accounts have nothing completed yet, which used to mean an
-  // empty pool -> the modal just told them to go complete lessons first,
-  // even though the whole point of opening this from the dashboard is to
-  // try it right away. Fall back to the first 10 lessons (Day 1-10) so
-  // there's always something to answer.
-  const sourceIds = completedIds.length > 0 ? completedIds : Array.from({ length: 10 }, (_, i) => i + 1);
 
   const pool: ChallengeQuestion[] = [];
   for (const lessonId of sourceIds) {

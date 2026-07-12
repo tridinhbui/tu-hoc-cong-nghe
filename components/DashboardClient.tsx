@@ -493,15 +493,15 @@ export default function DashboardClient({ lessonsMeta }: { lessonsMeta: LessonMe
                 <BarChart3 className="w-4 h-4" />
                 Thống kê
               </Link>
-              <button
-                onClick={() => setShowChallenge(true)}
-                title="Thử thách kiến thức"
-                aria-label="Thử thách kiến thức"
-                className="flex items-center gap-1.5 text-xs font-bold text-stone-500 dark:text-stone-400 hover:text-stone-700 dark:hover:text-stone-200 rounded-full pl-2 pr-3 h-9 hover:bg-stone-100 dark:hover:bg-stone-800 transition-colors cursor-pointer"
+              <Link
+                href="/kiem-tra"
+                title="Kiểm tra kiến thức"
+                aria-label="Kiểm tra kiến thức"
+                className="flex items-center gap-1.5 text-xs font-bold text-stone-500 dark:text-stone-400 hover:text-stone-700 dark:hover:text-stone-200 rounded-full pl-2 pr-3 h-9 hover:bg-stone-100 dark:hover:bg-stone-800 transition-colors"
               >
                 <GraduationCap className="w-4 h-4" />
                 Kiểm tra
-              </button>
+              </Link>
             </div>
             <div className="sm:hidden">
               {/* Mobile-only menu toggle - the two links above are hidden
@@ -543,16 +543,14 @@ export default function DashboardClient({ lessonsMeta }: { lessonsMeta: LessonMe
               <BarChart3 className="w-4 h-4" />
               Thống kê
             </Link>
-            <button
-              onClick={() => {
-                setMobileMenuOpen(false);
-                setShowChallenge(true);
-              }}
-              className="flex items-center gap-2 text-sm font-bold text-emerald-600 dark:text-emerald-400 border border-emerald-200 dark:border-emerald-800 rounded-lg px-3 py-2.5 w-full cursor-pointer"
+            <Link
+              href="/kiem-tra"
+              onClick={() => setMobileMenuOpen(false)}
+              className="flex items-center gap-2 text-sm font-bold text-emerald-600 dark:text-emerald-400 border border-emerald-200 dark:border-emerald-800 rounded-lg px-3 py-2.5 w-full"
             >
               <GraduationCap className="w-4 h-4" />
-              Thử thách kiến thức
-            </button>
+              Kiểm tra kiến thức
+            </Link>
           </div>
         )}
       </div>

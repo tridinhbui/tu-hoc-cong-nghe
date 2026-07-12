@@ -1,5 +1,6 @@
 import { createClient } from "@/lib/supabase";
 import { handleSupabaseError } from "@/lib/errors";
+import { getTotalQuizXp } from "@/lib/supabase-quiz-sessions";
 
 // "Table not found in schema cache" (PostgREST) or "relation does not exist"
 // (raw Postgres) - the leaderboard is a non-critical feature, so a missing
@@ -231,7 +232,13 @@ export async function recalculateUserStats(userId: string) {
   }
 
   const lessonsCompleted = progress?.length || 0;
-  const totalXp = lessonsCompleted * 10; // 10 XP per lesson
+  // 10 XP per lesson, plus whatever's accumulated from standalone "Kiểm
+  // tra" quiz sessions (lib/supabase-quiz-sessions.ts) - added here rather
+  // than written once at quiz-completion time, since this function
+  // recomputes total_xp from scratch on every call and would otherwise
+  // silently wipe out quiz XP the next time any lesson is completed.
+  const quizXp = await getTotalQuizXp(userId);
+  const totalXp = lessonsCompleted * 10 + quizXp;
   const quizScores = progress?.filter((p) => p.quiz_score !== null).map((p) => p.quiz_score) || [];
   const avgScore = quizScores.length > 0 ? quizScores.reduce((a, b) => a + b, 0) / quizScores.length : 0;
   const currentLevel = Math.floor(totalXp / 150) + 1;
