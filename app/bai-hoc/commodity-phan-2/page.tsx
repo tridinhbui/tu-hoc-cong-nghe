@@ -5,8 +5,8 @@ import LessonPageLayout, { QuizQuestion, LessonMeta } from "@/components/LessonP
 
 const meta: LessonMeta = {
   id: 25, day: 25, accent: "amber",
-  title: "Commodity Phần 2",
-  subtitle: "Supply, Demand, Inventory - 3 yếu tố định giá hàng hóa cơ bản",
+  title: "Hàng Hóa Cơ Bản Phần 2",
+  subtitle: "Cung, cầu, tồn kho - 3 yếu tố chính làm giá hàng hóa biến động",
   duration: "6 phút", difficulty: "Trung bình", emoji: "🌍",
   nextSlug: "trai-phieu", nextTitle: "Trái Phiếu",
 };
@@ -15,57 +15,57 @@ const quiz: QuizQuestion[] = [
   {
     question: "Điều nào có khả năng làm giá dầu tăng mạnh nhất?",
     options: [
-      "US shale production tăng mạnh",
+      "Sản lượng dầu đá phiến Mỹ tăng mạnh",
       "OPEC cắt giảm sản lượng",
       "Tồn kho dầu tăng liên tục",
       "Nhu cầu vận tải giảm",
     ],
     correct: 1,
-    explanation: "OPEC cắt giảm sản lượng → supply giảm trong khi demand tương đối ổn định → giá tăng. US shale tăng, tồn kho tăng, demand giảm đều là các yếu tố gây áp lực giảm giá.",
+    explanation: "OPEC cắt giảm sản lượng làm nguồn cung giảm trong khi nhu cầu tương đối ổn định, nên giá có thể tăng. Ngược lại, sản lượng tăng, tồn kho tăng hoặc nhu cầu giảm thường gây áp lực giảm giá.",
   },
   {
-    question: "Vì sao airline companies thường hedge giá dầu?",
+    question: "Vì sao hãng hàng không thường phòng vệ rủi ro giá dầu?",
     options: [
-      "Để tăng doanh thu từ trading dầu",
-      "Để giảm biến động chi phí nhiên liệu và có thể lên kế hoạch pricing vé",
+      "Để tăng doanh thu từ giao dịch dầu",
+      "Để giảm biến động chi phí nhiên liệu và lên kế hoạch giá vé ổn định hơn",
       "Để tăng sản lượng dầu",
       "Để giảm thuế doanh nghiệp",
     ],
     correct: 1,
-    explanation: "Jet fuel chiếm 20-30% chi phí airline. Hedge bằng oil futures cho phép airline biết trước chi phí trong 6-12 tháng → có thể price vé ổn định, bảo vệ margin kế hoạch. Đây là risk management, không phải speculation.",
+    explanation: "Nhiên liệu máy bay thường chiếm tỷ trọng lớn trong chi phí hãng bay. Phòng vệ bằng hợp đồng tương lai dầu giúp hãng biết trước chi phí 6-12 tháng, bảo vệ biên lợi nhuận kế hoạch. Đây là quản trị rủi ro, không phải đầu cơ.",
   },
   {
-    question: "Khi inventory commodity tăng liên tục trong khi demand yếu, điều gì thường xảy ra với giá?",
+    question: "Khi tồn kho hàng hóa tăng liên tục trong khi nhu cầu yếu, điều gì thường xảy ra với giá?",
     options: [
-      "Giá commodity tăng vì inventory nhiều = sản xuất nhiều = nền kinh tế mạnh",
-      "Giá commodity giảm - tồn kho dư thừa tạo áp lực bán ra",
+      "Giá tăng vì tồn kho nhiều nghĩa là nền kinh tế mạnh",
+      "Giá giảm - tồn kho dư thừa tạo áp lực bán ra",
       "Biến động về 0",
-      "Commodity không bị ảnh hưởng bởi inventory",
+      "Hàng hóa không bị ảnh hưởng bởi tồn kho",
     ],
     correct: 1,
-    explanation: "Inventory cao + demand yếu = supply glut. Nhà sản xuất/trader phải bán để giảm tồn kho → áp lực downside lên giá. Đây là tín hiệu bearish trong commodity analysis. Ngược lại, inventory thấp + demand cao = supply squeeze = bullish.",
+    explanation: "Tồn kho cao + nhu cầu yếu = dư cung. Nhà sản xuất hoặc thương nhân phải bán để giảm tồn kho, tạo áp lực giảm giá. Ngược lại, tồn kho thấp + nhu cầu cao thường tạo áp lực tăng giá.",
   },
   {
-    question: "Tại sao commodity có tính chu kỳ cao?",
+    question: "Tại sao hàng hóa cơ bản có tính chu kỳ cao?",
     options: [
-      "Vì giá commodity được quyết định bởi chính phủ",
-      "Vì cung commodity cần nhiều năm để điều chỉnh (build nhà máy, mở mỏ) nhưng demand thay đổi nhanh theo cycle kinh tế",
-      "Vì commodity giao dịch ở các sàn đặc biệt",
-      "Vì commodity không thể tồn kho lâu",
+      "Vì giá hàng hóa luôn được quyết định bởi chính phủ",
+      "Vì nguồn cung cần nhiều năm để điều chỉnh, trong khi nhu cầu thay đổi nhanh theo chu kỳ kinh tế",
+      "Vì hàng hóa chỉ giao dịch ở các sàn đặc biệt",
+      "Vì hàng hóa không thể tồn kho lâu",
     ],
     correct: 1,
-    explanation: "Supply-side lag: mở một mỏ dầu hay xây nhà máy đồng mất 3-7 năm. Nhưng demand tăng/giảm theo GDP cycle hàng quý. Khi boom: demand tăng nhanh, supply không kịp → giá spike. Khi bust: demand sụp, supply đã build rồi không thể tắt ngay → price crash. Đây là commodity supercycle.",
+    explanation: "Mở mỏ dầu hoặc xây nhà máy có thể mất nhiều năm, nhưng nhu cầu thay đổi theo kinh tế từng quý. Khi kinh tế nóng lên, cầu tăng nhanh mà cung chưa kịp tăng nên giá bật mạnh. Khi kinh tế yếu, cầu giảm nhưng nguồn cung đã xây rồi khó tắt ngay, nên giá có thể rơi sâu.",
   },
   {
-    question: "Geopolitics ảnh hưởng đến commodity như thế nào?",
+    question: "Địa chính trị ảnh hưởng đến hàng hóa cơ bản như thế nào?",
     options: [
-      "Không ảnh hưởng - commodity là global market",
+      "Không ảnh hưởng - hàng hóa là thị trường toàn cầu",
       "Chỉ ảnh hưởng vàng vì vàng là safe haven",
-      "Xung đột ở vùng sản xuất key commodity có thể disrupt supply và spike giá (oil, wheat, nickel)",
-      "Geopolitics chỉ ảnh hưởng tỷ giá, không ảnh hưởng commodity",
+      "Xung đột ở vùng sản xuất hàng hóa quan trọng có thể làm gián đoạn nguồn cung và đẩy giá tăng",
+      "Địa chính trị chỉ ảnh hưởng tỷ giá, không ảnh hưởng hàng hóa",
     ],
     correct: 2,
-    explanation: "Nga-Ukraine 2022: Nga là top producer của wheat, nickel, natural gas → supply shock → wheat +40%, gas +200%, nickel +250% trong tuần đầu. Iran sanctions → oil supply giảm → giá tăng. Geopolitics là risk factor quan trọng nhất với commodity.",
+    explanation: "Nếu chiến tranh, cấm vận hoặc bất ổn xảy ra ở vùng sản xuất dầu, lúa mì, nickel, khí đốt, nguồn cung có thể bị gián đoạn và giá tăng mạnh. Đây là rủi ro rất quan trọng với hàng hóa.",
   },
 ];
 
@@ -79,25 +79,25 @@ function SupplyDemandSimulator() {
   const priceSignal = balance * 0.5 - (inventory - 50) * 0.2;
 
   const getSignal = () => {
-    if (priceSignal > 15) return { label: " Bullish mạnh", color: "text-stone-700 bg-stone-50 border-stone-200" };
-    if (priceSignal > 5) return { label: " Nhẹ bullish", color: "text-stone-700 bg-stone-50 border-stone-200" };
+    if (priceSignal > 15) return { label: "Tín hiệu tăng giá mạnh", color: "text-stone-700 bg-stone-50 border-stone-200" };
+    if (priceSignal > 5) return { label: "Tín hiệu nghiêng về tăng giá", color: "text-stone-700 bg-stone-50 border-stone-200" };
     if (priceSignal > -5) return { label: "➡️ Trung lập", color: "text-stone-700 bg-stone-50 border-stone-200" };
-    if (priceSignal > -15) return { label: " Nhẹ bearish", color: "text-stone-700 bg-stone-50 border-stone-200" };
-    return { label: " Bearish mạnh", color: "text-stone-700 bg-stone-50 border-stone-200" };
+    if (priceSignal > -15) return { label: "Tín hiệu nghiêng về giảm giá", color: "text-stone-700 bg-stone-50 border-stone-200" };
+    return { label: "Tín hiệu giảm giá mạnh", color: "text-stone-700 bg-stone-50 border-stone-200" };
   };
 
   const signal = getSignal();
 
   return (
     <div className="bg-gradient-to-br from-amber-50 to-orange-50 rounded-2xl p-5 border border-stone-200 my-6">
-      <h3 className="font-bold text-stone-700 mb-1 text-sm"> Commodity Market Signal Simulator</h3>
-      <p className="text-xs text-stone-500 mb-4">Điều chỉnh supply, demand và inventory để xem tín hiệu giá</p>
+      <h3 className="font-bold text-stone-700 mb-1 text-sm">Mô phỏng tín hiệu giá hàng hóa</h3>
+      <p className="text-xs text-stone-500 mb-4">Điều chỉnh cung, cầu và tồn kho để xem tín hiệu giá</p>
 
       <div className="space-y-3 mb-5">
         {[
-          { label: `Supply (${supply})`, val: supply, set: setSupply, icon: "🏭" },
-          { label: `Demand (${demand})`, val: demand, set: setDemand, icon: "🛒" },
-          { label: `Inventory (${inventory})`, val: inventory, set: setInventory, icon: "🏗️" },
+          { label: `Cung (${supply})`, val: supply, set: setSupply, icon: "🏭" },
+          { label: `Cầu (${demand})`, val: demand, set: setDemand, icon: "🛒" },
+          { label: `Tồn kho (${inventory})`, val: inventory, set: setInventory, icon: "🏗️" },
         ].map(s => (
           <div key={s.label}>
             <div className="flex justify-between text-xs mb-1">
@@ -111,14 +111,14 @@ function SupplyDemandSimulator() {
       <div className="bg-white rounded-xl border border-stone-200 p-4 mb-3">
         <div className="grid grid-cols-2 gap-3 text-sm mb-3">
           <div className="text-center">
-            <div className="text-xs text-stone-500 mb-0.5">Demand − Supply</div>
+            <div className="text-xs text-stone-500 mb-0.5">Cầu − Cung</div>
             <div className={`font-bold text-lg ${balance > 0 ? "text-stone-700" : balance < 0 ? "text-stone-700" : "text-stone-500"}`}>
               {balance > 0 ? "+" : ""}{balance}
             </div>
             <div className="text-xs text-stone-500">{balance > 0 ? "Thiếu hàng" : balance < 0 ? "Dư hàng" : "Cân bằng"}</div>
           </div>
           <div className="text-center">
-            <div className="text-xs text-stone-500 mb-0.5">Inventory trend</div>
+            <div className="text-xs text-stone-500 mb-0.5">Xu hướng tồn kho</div>
             <div className={`font-bold text-lg ${invChange < 0 ? "text-stone-700" : invChange > 0 ? "text-stone-700" : "text-stone-500"}`}>
               {invChange > 0 ? "+" : ""}{invChange.toFixed(0)}
             </div>
@@ -129,7 +129,7 @@ function SupplyDemandSimulator() {
           {signal.label}
         </div>
       </div>
-      <p className="text-xs text-stone-500 text-center">Price signal = f(supply/demand balance, inventory level)</p>
+      <p className="text-xs text-stone-500 text-center">Tín hiệu giá phụ thuộc vào cân bằng cung - cầu và mức tồn kho</p>
     </div>
   );
 }
@@ -137,14 +137,21 @@ function SupplyDemandSimulator() {
 export default function Page() {
   return (
     <LessonPageLayout lesson={meta} quiz={quiz}>
-      <h2 className="text-2xl font-bold text-stone-900 mb-2">Commodity Phần 2 - Phân Tích Giá</h2>
-      <p className="text-stone-600 text-sm mb-6 italic">3 yếu tố định giá commodity và tại sao doanh nghiệp phải hedge</p>
+      <h2 className="text-2xl font-bold text-stone-900 mb-2">Hàng hóa cơ bản phần 2 - phân tích giá</h2>
+      <p className="text-stone-600 text-sm mb-6 italic">3 yếu tố định giá hàng hóa và lý do doanh nghiệp phải phòng vệ rủi ro.</p>
+
+      <section className="mb-8 rounded-xl border border-amber-100 bg-amber-50 p-4">
+        <h3 className="text-sm font-bold uppercase tracking-wide text-amber-800 mb-2">Hiểu nhanh</h3>
+        <p className="text-sm leading-relaxed text-stone-700">
+          Giá hàng hóa thường xoay quanh ba câu hỏi: hàng có thiếu không, tồn kho đang tăng hay giảm, và có sự kiện chính trị/thời tiết nào làm gián đoạn nguồn cung không.
+        </p>
+      </section>
 
       <section className="mb-8">
         <h3 className="text-lg font-bold text-stone-800 mb-3">⚙️ Cơ chế định giá cơ bản</h3>
         <div className="bg-stone-50 text-white rounded-xl p-5 text-center mb-4">
-          <div className="font-bold text-lg mb-1">Demand &gt; Supply → Giá tăng</div>
-          <div className="font-bold text-lg">Supply &gt; Demand → Giá giảm</div>
+            <div className="font-bold text-lg mb-1">Cầu &gt; Cung → Giá tăng</div>
+          <div className="font-bold text-lg">Cung &gt; Cầu → Giá giảm</div>
           <p className="text-stone-700 text-sm mt-2">Đơn giản nhất, mạnh nhất, và không bao giờ thay đổi</p>
         </div>
 
@@ -152,20 +159,20 @@ export default function Page() {
           {[
             {
               event: "OPEC cắt giảm sản lượng dầu 1 triệu thùng/ngày",
-              mechanism: "Supply giảm → demand/supply gap tăng → giá dầu tăng",
-              example: "OPEC+ cut 2023 → WTI từ $70 lên $90/barrel",
+              mechanism: "Nguồn cung giảm → khoảng thiếu hụt tăng → giá dầu tăng",
+              example: "OPEC+ cắt giảm 2023 → dầu WTI từ khoảng $70 lên $90/thùng",
               icon: "🛢️",
             },
             {
               event: "Mùa vụ cà phê Brazil thuận lợi, sản lượng kỷ lục",
-              mechanism: "Supply tăng đột biến → dư cung → giá cà phê giảm",
+              mechanism: "Nguồn cung tăng đột biến → dư cung → giá cà phê giảm",
               example: "Brazil bumper crop → Arabica giảm 20-30% trong mùa thu hoạch",
               icon: "☕",
             },
             {
               event: "Dịch ASF (African Swine Fever) làm chết 50% đàn heo Trung Quốc",
-              mechanism: "Supply thịt heo giảm mạnh → giá hog spike toàn cầu",
-              example: "ASF 2019: hog futures tăng 70%, kéo theo giá thịt heo toàn châu Á",
+              mechanism: "Nguồn cung thịt heo giảm mạnh → giá heo tăng mạnh toàn cầu",
+              example: "Dịch ASF 2019 làm giá heo tăng mạnh, kéo theo giá thịt heo ở châu Á",
               icon: "🐷",
             },
           ].map(s => (
@@ -186,22 +193,22 @@ export default function Page() {
       <SupplyDemandSimulator />
 
       <section className="mb-8">
-        <h3 className="text-lg font-bold text-stone-800 mb-3">📦 3 yếu tố phân tích commodity</h3>
+        <h3 className="text-lg font-bold text-stone-800 mb-3">3 yếu tố phân tích hàng hóa</h3>
         <div className="space-y-3">
           {[
             {
-              n: "01", title: "Supply & Demand",
-              points: ["Production data: OPEC quotas, crop reports, mining output", "Demand: GDP growth, industrial activity, seasonal patterns", "Balance: deficit hay surplus?"],
+              n: "01", title: "Cung và cầu",
+              points: ["Sản lượng: hạn ngạch OPEC, báo cáo mùa vụ, sản lượng khai mỏ", "Nhu cầu: tăng trưởng kinh tế, hoạt động công nghiệp, mùa vụ", "Cân bằng: thiếu hàng hay dư hàng?"],
               color: "amber",
             },
             {
-              n: "02", title: "Inventory (Tồn kho)",
-              points: ["Weekly EIA data (dầu), USDA reports (nông sản)", "Inventory giảm + demand mạnh → bullish signal", "Inventory tăng liên tục → bearish pressure"],
+              n: "02", title: "Tồn kho",
+              points: ["Dữ liệu tồn kho dầu, báo cáo nông sản, số liệu kho bãi", "Tồn kho giảm + nhu cầu mạnh → tín hiệu tăng giá", "Tồn kho tăng liên tục → áp lực giảm giá"],
               color: "orange",
             },
             {
-              n: "03", title: "Geopolitics & Policy",
-              points: ["OPEC decisions, export bans, trade wars", "Weather events (El Niño ảnh hưởng nông sản)", "Sanctions (Iran oil, Russia wheat)"],
+              n: "03", title: "Địa chính trị và chính sách",
+              points: ["Quyết định của OPEC, cấm xuất khẩu, chiến tranh thương mại", "Thời tiết cực đoan ảnh hưởng nông sản", "Cấm vận làm gián đoạn dầu, khí đốt, lúa mì"],
               color: "rose",
             },
           ].map(f => (
@@ -223,16 +230,16 @@ export default function Page() {
       </section>
 
       <section className="mb-8">
-        <h3 className="text-lg font-bold text-stone-800 mb-3"> Commodity Cyclicality - Tại sao giá biến động mạnh?</h3>
+        <h3 className="text-lg font-bold text-stone-800 mb-3">Tính chu kỳ - tại sao giá biến động mạnh?</h3>
         <p className="text-stone-600 text-sm leading-relaxed mb-3">
-          Supply của commodity có <strong>lag dài</strong> - xây nhà máy lọc dầu mất 3-5 năm, mở mỏ đồng mất 5-10 năm. Nhưng demand thay đổi nhanh theo GDP cycle. Kết quả:
+          Nguồn cung hàng hóa thường điều chỉnh rất chậm - xây nhà máy lọc dầu mất 3-5 năm, mở mỏ đồng mất 5-10 năm. Nhưng nhu cầu thay đổi nhanh theo chu kỳ kinh tế. Kết quả:
         </p>
         <div className="bg-stone-800 text-white rounded-xl p-5 space-y-3 text-sm">
           {[
-            { phase: " Boom", desc: "GDP tăng → demand tăng nhanh → supply không kịp → giá spike → attracts investment" },
-            { phase: "🏗️ Build", desc: "Investment đổ vào → new capacity được xây → nhưng mất nhiều năm" },
-            { phase: " Bust", desc: "New supply đổ ra → boom kết thúc → demand giảm theo GDP → giá crash" },
-            { phase: "🔄 Recovery", desc: "Giá thấp → producers cut → capacity giảm → cycle bắt đầu lại" },
+            { phase: "Bùng nổ", desc: "Kinh tế tăng → cầu tăng nhanh → cung không kịp → giá tăng mạnh → vốn đầu tư đổ vào" },
+            { phase: "Xây thêm cung", desc: "Nhà máy, mỏ, kho mới được xây nhưng mất nhiều năm mới hoàn thành" },
+            { phase: "Đi xuống", desc: "Nguồn cung mới xuất hiện đúng lúc nhu cầu yếu đi → giá giảm mạnh" },
+            { phase: "Phục hồi", desc: "Giá thấp khiến nhà sản xuất cắt giảm → nguồn cung giảm → chu kỳ bắt đầu lại" },
           ].map(s => (
             <div key={s.phase} className="flex gap-3">
               <span className="font-bold text-stone-700 flex-shrink-0">{s.phase}</span>
@@ -243,13 +250,13 @@ export default function Page() {
       </section>
 
       <section>
-        <h3 className="text-lg font-bold text-stone-800 mb-3">🛡️ Hedging trong thực tế doanh nghiệp Việt Nam</h3>
+        <h3 className="text-lg font-bold text-stone-800 mb-3">Phòng vệ rủi ro trong doanh nghiệp Việt Nam</h3>
         <div className="space-y-2">
           {[
-            { co: "Vietnam Airlines", com: "Jet fuel (oil)", strategy: "Oil futures 6-12 tháng, thường hedge 40-60% nhu cầu dự kiến" },
-            { co: "Vinamilk", com: "Sữa bột (dairy)", strategy: "Forward contracts với nhà cung cấp New Zealand/EU" },
-            { co: "Masan (WinCommerce)", com: "Heo, gia cầm", strategy: "Spot market chủ yếu + hợp đồng dài hạn với farms" },
-            { co: "Tập đoàn Thép Hòa Phát", com: "Quặng sắt, than coke", strategy: "Long-term supply contracts + spot kết hợp" },
+            { co: "Vietnam Airlines", com: "Nhiên liệu máy bay", strategy: "Dùng hợp đồng tương lai dầu 6-12 tháng để khóa một phần chi phí dự kiến" },
+            { co: "Vinamilk", com: "Sữa bột", strategy: "Dùng hợp đồng kỳ hạn với nhà cung cấp nước ngoài để giảm biến động giá" },
+            { co: "Masan (WinCommerce)", com: "Heo, gia cầm", strategy: "Kết hợp giá giao ngay và hợp đồng dài hạn với trang trại" },
+            { co: "Tập đoàn Thép Hòa Phát", com: "Quặng sắt, than coke", strategy: "Kết hợp hợp đồng cung ứng dài hạn và mua theo giá thị trường" },
           ].map(h => (
             <div key={h.co} className="bg-stone-50 rounded-xl p-3 border border-stone-200">
               <div className="flex items-center gap-2 mb-1">

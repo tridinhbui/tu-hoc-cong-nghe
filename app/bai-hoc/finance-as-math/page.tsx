@@ -5,14 +5,14 @@ import LessonPageLayout, { QuizQuestion, LessonMeta } from "@/components/LessonP
 const meta: LessonMeta = {
   id: 53, day: 86, accent: "blue",
   title: "Tài chính quy về Công thức Toán học",
-  subtitle: "DCF, WACC, Terminal Value và các bội số định giá",
+  subtitle: "Dòng tiền chiết khấu, chi phí vốn và các bội số định giá",
   duration: "7 phút", difficulty: "Khó", emoji: "·",
   nextSlug: "samsung-ai-finance", nextTitle: "Samsung Q1/2026 - AI qua lăng kính tài chính",
 };
 
 const quiz: QuizQuestion[] = [
   {
-    question: "DCF định giá doanh nghiệp dựa trên điều gì?",
+    question: "Phương pháp dòng tiền chiết khấu định giá doanh nghiệp dựa trên điều gì?",
     options: [
       "Giá cổ phiếu hôm nay",
       "Dòng tiền tự do trong tương lai chiết khấu về hiện tại",
@@ -20,29 +20,29 @@ const quiz: QuizQuestion[] = [
       "Lợi nhuận gộp năm gần nhất",
     ],
     correct: 1,
-    explanation: "DCF (Discounted Cash Flow) định giá bằng cách ước tính tất cả dòng tiền tự do (FCF) doanh nghiệp sẽ tạo ra trong tương lai, rồi chiết khấu về giá trị hiện tại bằng tỷ lệ chiết khấu (WACC). Giá trị doanh nghiệp = tổng giá trị hiện tại của tất cả FCF tương lai.",
+    explanation: "Dòng tiền chiết khấu, tiếng Anh là DCF, định giá bằng cách ước tính dòng tiền tự do trong tương lai rồi quy về giá trị hiện tại. Ý tưởng là: tiền trong tương lai phải được giảm về giá trị hôm nay.",
   },
   {
-    question: "WACC là gì và tại sao nó quan trọng trong DCF?",
+    question: "Chi phí vốn bình quân là gì và tại sao quan trọng khi định giá?",
     options: [
       "Tỷ lệ tăng trưởng doanh thu",
-      "Chi phí vốn bình quân gia quyền - tỷ lệ chiết khấu trong DCF",
+      "Chi phí vốn bình quân gia quyền - tỷ lệ dùng để chiết khấu dòng tiền tương lai",
       "Biên lợi nhuận ròng",
       "Tỷ lệ nợ trên tổng tài sản",
     ],
     correct: 1,
-    explanation: "WACC (Weighted Average Cost of Capital) là chi phí vốn bình quân gia quyền của vốn chủ sở hữu và nợ vay. Đây là tỷ lệ chiết khấu trong DCF. WACC tăng → giá trị chiết khấu giảm → định giá thấp hơn. WACC phản ánh rủi ro và cơ cấu vốn của doanh nghiệp.",
+    explanation: "Chi phí vốn bình quân, tiếng Anh là WACC, là mức lợi nhuận tối thiểu mà cả cổ đông và chủ nợ kỳ vọng. Chi phí vốn càng cao thì dòng tiền tương lai càng bị chiết khấu mạnh, định giá càng thấp.",
   },
   {
-    question: "Tại sao Terminal Value thường chiếm tỷ trọng lớn trong tổng giá trị DCF?",
+    question: "Tại sao giá trị dài hạn sau giai đoạn dự báo thường chiếm tỷ trọng lớn trong định giá?",
     options: [
       "Vì năm đầu tiên luôn quan trọng nhất",
       "Vì phần lớn giá trị doanh nghiệp nằm ở dòng tiền dài hạn sau giai đoạn dự báo chi tiết",
-      "Vì terminal value dễ tính nhất",
-      "Vì WACC không áp dụng cho terminal value",
+      "Vì giá trị dài hạn dễ tính nhất",
+      "Vì chi phí vốn không áp dụng cho giá trị dài hạn",
     ],
     correct: 1,
-    explanation: "DCF thường dự báo chi tiết 5-10 năm, nhưng doanh nghiệp sẽ tiếp tục hoạt động sau đó. Terminal Value ước tính tổng giá trị từ năm thứ 11 trở đi - thường chiếm 60-80% tổng định giá. Điều này khiến terminal value rất nhạy cảm với giả định tốc độ tăng trưởng dài hạn (g).",
+    explanation: "Định giá thường chỉ dự báo chi tiết 5-10 năm, nhưng doanh nghiệp còn hoạt động sau đó. Giá trị dài hạn sau giai đoạn dự báo, gọi là Terminal Value, có thể chiếm phần lớn tổng định giá.",
   },
   {
     question: "EV/EBITDA khác P/E ở điểm nào?",
@@ -53,13 +53,13 @@ const quiz: QuizQuestion[] = [
       "Hai chỉ số hoàn toàn giống nhau",
     ],
     correct: 1,
-    explanation: "EV (Enterprise Value) là giá trị toàn bộ doanh nghiệp trước khi trừ nợ. EBITDA là thu nhập trước lãi vay, thuế và khấu hao. EV/EBITDA so sánh ở cấp doanh nghiệp, độc lập với cơ cấu vốn. P/E nhìn ở cấp cổ đông - bị ảnh hưởng bởi đòn bẩy tài chính và thuế. EV/EBITDA phù hợp hơn khi so sánh doanh nghiệp có cơ cấu nợ khác nhau.",
+    explanation: "EV là giá trị toàn bộ doanh nghiệp, gồm cả phần thuộc về chủ nợ. EBITDA là lợi nhuận trước lãi vay, thuế và khấu hao. EV/EBITDA giúp so sánh doanh nghiệp có cơ cấu nợ khác nhau; P/E nhìn ở cấp cổ đông sau nợ và thuế.",
   },
   {
-    question: "Nếu WACC tăng từ 8% lên 12%, trong khi FCF và Terminal Value không đổi, định giá DCF sẽ thế nào?",
+    question: "Nếu chi phí vốn tăng từ 8% lên 12%, trong khi dòng tiền tương lai không đổi, định giá sẽ thế nào?",
     options: ["Tăng", "Giảm", "Không đổi", "Không thể xác định"],
     correct: 1,
-    explanation: "Tỷ lệ chiết khấu tăng → PV của mỗi đồng FCF trong tương lai giảm xuống → tổng giá trị DCF giảm. Đây là lý do khi lãi suất tăng, định giá cổ phiếu (đặc biệt cổ phiếu growth) thường giảm - vì WACC tăng ép định giá xuống.",
+    explanation: "Tỷ lệ chiết khấu tăng làm giá trị hiện tại của mỗi đồng tiền tương lai giảm xuống. Đây là lý do khi lãi suất tăng, định giá cổ phiếu tăng trưởng thường chịu áp lực.",
   },
 ];
 
@@ -67,37 +67,44 @@ export default function Page() {
   return (
     <LessonPageLayout lesson={meta} quiz={quiz}>
       <h2 className="text-2xl font-bold text-stone-900 mb-2">Tài chính quy về Công thức Toán học</h2>
-      <p className="text-stone-500 text-sm mb-8">DCF, WACC, Terminal Value - mọi thứ về định giá đều dựa trên một vài giả định đơn giản</p>
+      <p className="text-stone-500 text-sm mb-8">Dòng tiền chiết khấu, chi phí vốn và giá trị dài hạn đều xoay quanh một ý tưởng: tiền hôm nay đáng giá hơn tiền tương lai.</p>
 
-      <section className="mb-10">
-        <h3 className="text-base font-bold text-stone-800 mb-4 uppercase tracking-wide text-xs">Tài chính là math đặt trong bối cảnh</h3>
-        <p className="text-stone-600 leading-relaxed mb-3">
-          Phần lớn định giá tài chính quy về một ý tưởng đơn giản: <strong>một đồng trong tương lai không bằng một đồng hôm nay</strong>. Và mọi công thức phức tạp đều là biến thể của ý tưởng đó.
-        </p>
-        <p className="text-stone-600 leading-relaxed">
-          Khi hiểu được cái gốc này, mọi công thức - từ DCF đến WACC đến Terminal Value - bắt đầu cảm thấy có logic, không phải là công thức để nhớ thuộc lòng.
+      <section className="mb-10 rounded-xl border border-blue-100 bg-blue-50 p-4">
+        <h3 className="text-sm font-bold uppercase tracking-wide text-blue-800 mb-2">Nói đơn giản</h3>
+        <p className="text-sm leading-relaxed text-stone-700">
+          Định giá không phải là học thuộc công thức. Ta đang hỏi: doanh nghiệp sẽ tạo ra bao nhiêu tiền trong tương lai, số tiền đó đáng giá bao nhiêu ở hiện tại, và mình có đang trả quá đắt không.
         </p>
       </section>
 
       <section className="mb-10">
-        <h3 className="text-base font-bold text-stone-800 mb-4 uppercase tracking-wide text-xs">DCF - Discounted Cash Flow</h3>
+        <h3 className="text-base font-bold text-stone-800 mb-4 uppercase tracking-wide text-xs">Tài chính là math đặt trong bối cảnh</h3>
+        <p className="text-stone-600 leading-relaxed mb-3">
+          Phần lớn định giá tài chính quy về một ý tưởng đơn giản: <strong>một đồng trong tương lai không bằng một đồng hôm nay</strong>. Mọi công thức phức tạp đều là biến thể của ý tưởng đó.
+        </p>
+        <p className="text-stone-600 leading-relaxed">
+          Khi hiểu được cái gốc này, các công thức như dòng tiền chiết khấu, chi phí vốn hay giá trị dài hạn bắt đầu có logic, không còn là thứ phải nhớ thuộc lòng.
+        </p>
+      </section>
+
+      <section className="mb-10">
+        <h3 className="text-base font-bold text-stone-800 mb-4 uppercase tracking-wide text-xs">Dòng tiền chiết khấu (DCF)</h3>
         <p className="text-stone-600 text-sm leading-relaxed mb-4">
           Doanh nghiệp đáng giá bao nhiêu = chiết khấu toàn bộ dòng tiền tự do tương lai về hiện tại.
         </p>
         <div className="space-y-4">
           <div>
-            <div className="font-bold text-stone-800 text-sm mb-1">WACC - Chi phí vốn bình quân</div>
+            <div className="font-bold text-stone-800 text-sm mb-1">Chi phí vốn bình quân (WACC)</div>
             <p className="text-stone-600 text-xs mb-2">
-              Chi phí vốn bình quân của toàn bộ nguồn vốn (cả vốn chủ sở hữu và nợ vay). WACC là tỷ lệ chiết khấu trong DCF.
+              Chi phí vốn bình quân của toàn bộ nguồn vốn, gồm vốn chủ sở hữu và nợ vay. Đây là tỷ lệ dùng để chiết khấu dòng tiền tương lai.
             </p>
             <p className="text-stone-600 text-xs font-mono bg-stone-50 p-2 rounded">
               WACC = (E/V) × Ke + (D/V) × Kd × (1 − Tax rate)
             </p>
           </div>
           <div>
-            <div className="font-bold text-stone-800 text-sm mb-1">Terminal Value</div>
+            <div className="font-bold text-stone-800 text-sm mb-1">Giá trị dài hạn sau giai đoạn dự báo (Terminal Value)</div>
             <p className="text-stone-600 text-xs">
-              DCF dự báo chi tiết 5-10 năm. Terminal Value ước tính giá trị từ năm dự báo cuối trở đi. Thường chiếm 60-80% tổng định giá.
+              Dòng tiền chiết khấu thường dự báo chi tiết 5-10 năm. Giá trị dài hạn ước tính giá trị từ năm dự báo cuối trở đi và thường chiếm phần lớn tổng định giá.
             </p>
           </div>
         </div>
@@ -106,23 +113,23 @@ export default function Page() {
       <section className="mb-10">
         <h3 className="text-base font-bold text-stone-800 mb-4 uppercase tracking-wide text-xs">Bội số định giá (Valuation Multiples)</h3>
         <p className="text-stone-600 text-sm leading-relaxed mb-4">
-          DCF đòi hỏi nhiều giả định. Nhà đầu tư thường dùng kết hợp: DCF làm nền, multiples để so sánh với ngành.
+          Dòng tiền chiết khấu đòi hỏi nhiều giả định. Nhà đầu tư thường dùng thêm các bội số định giá để so sánh với ngành.
         </p>
         <div className="space-y-3 text-sm">
           <div className="border border-stone-200 rounded-lg p-3">
-            <div className="font-bold text-stone-800">P/E - Price to Earnings</div>
+            <div className="font-bold text-stone-800">P/E - Giá trên lợi nhuận</div>
             <p className="text-stone-600 text-xs mt-1">Thị trường trả bao nhiêu lần lợi nhuận/cổ phiếu. Dùng cho cổ phiếu lợi nhuận ổn định, so sánh trong ngành.</p>
           </div>
           <div className="border border-stone-200 rounded-lg p-3">
-            <div className="font-bold text-stone-800">EV/EBITDA</div>
+            <div className="font-bold text-stone-800">EV/EBITDA - Giá trị doanh nghiệp trên lợi nhuận vận hành</div>
             <p className="text-stone-600 text-xs mt-1">Giá trị doanh nghiệp so với thu nhập trước lãi, thuế, khấu hao. So sánh doanh nghiệp có cơ cấu nợ khác nhau.</p>
           </div>
           <div className="border border-stone-200 rounded-lg p-3">
-            <div className="font-bold text-stone-800">P/B - Price to Book</div>
+            <div className="font-bold text-stone-800">P/B - Giá trên giá trị sổ sách</div>
             <p className="text-stone-600 text-xs mt-1">Thị trường trả bao nhiêu lần giá trị sổ sách. Dùng cho ngân hàng, tài chính, BĐS.</p>
           </div>
           <div className="border border-stone-200 rounded-lg p-3">
-            <div className="font-bold text-stone-800">EV/Revenue</div>
+            <div className="font-bold text-stone-800">EV/Revenue - Giá trị doanh nghiệp trên doanh thu</div>
             <p className="text-stone-600 text-xs mt-1">Giá trị doanh nghiệp so với doanh thu. Dùng cho startup, tech chưa có lãi.</p>
           </div>
         </div>
@@ -131,10 +138,10 @@ export default function Page() {
       <section>
         <h3 className="text-base font-bold text-stone-800 mb-3 uppercase tracking-wide text-xs">Điều quan trọng nhất</h3>
         <p className="text-stone-600 text-sm leading-relaxed mb-3">
-          DCF phụ thuộc nhiều vào giả định: FCF tương lai ước tính thế nào, WACC chọn bao nhiêu, g dài hạn bao nhiêu. <strong>Thay đổi nhỏ trong các giả định có thể tạo ra định giá rất khác nhau.</strong>
+          Dòng tiền chiết khấu phụ thuộc nhiều vào giả định: dòng tiền tương lai ước tính thế nào, chi phí vốn chọn bao nhiêu, tốc độ tăng trưởng dài hạn ra sao. <strong>Thay đổi nhỏ trong các giả định có thể tạo ra định giá rất khác nhau.</strong>
         </p>
         <p className="text-stone-600 text-sm leading-relaxed">
-          Đây là lý do nhiều người nói DCF là "garbage in, garbage out" - công thức đúng nhưng đầu vào cần suy nghĩ cẩn thận. Sensitivity analysis (thay đổi từng biến và xem định giá thay đổi ra sao) là cách kiểm tra tính chắc chắn của kết quả.
+          Đây là lý do nhiều người nói: công thức đúng nhưng đầu vào sai thì kết quả vẫn sai. Phân tích độ nhạy, tức thay đổi từng biến và xem định giá thay đổi ra sao, là cách kiểm tra kết quả có chắc không.
         </p>
       </section>
     </LessonPageLayout>
