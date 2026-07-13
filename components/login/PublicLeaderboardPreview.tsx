@@ -39,6 +39,30 @@ export default function PublicLeaderboardPreview() {
         {top.map((entry, idx) => (
           <div key={entry.user_id} className="flex items-center gap-2 min-w-0 rounded-2xl border border-stone-100 bg-stone-50/70 px-2.5 py-2 dark:border-stone-800 dark:bg-stone-800/40">
             <div className="relative flex-shrink-0">
+              {idx < 3 && (
+                <span
+                  className={`pointer-events-none absolute -inset-1.5 rounded-full blur-[1px] opacity-80 animate-pulse ${
+                    idx === 0
+                      ? "bg-gradient-to-r from-amber-300/70 via-yellow-200/40 to-amber-400/20"
+                      : idx === 1
+                        ? "bg-gradient-to-r from-slate-300/70 via-slate-200/40 to-slate-400/20"
+                        : "bg-gradient-to-r from-amber-200/70 via-orange-100/35 to-amber-300/20"
+                  }`}
+                  aria-hidden="true"
+                />
+              )}
+              {idx < 3 && (
+                <span
+                  className="pointer-events-none absolute -inset-1 rounded-full border border-white/70 dark:border-stone-900/80 opacity-60"
+                  aria-hidden="true"
+                />
+              )}
+              {idx < 3 && (
+                <span
+                  className="pointer-events-none absolute -inset-0.5 rounded-full bg-gradient-to-r from-transparent via-white/80 to-transparent opacity-0 animate-[shimmer_1.8s_ease-in-out_infinite]"
+                  aria-hidden="true"
+                />
+              )}
               {entry.avatarUrl ? (
                 <Image
                   src={entry.avatarUrl}
@@ -73,6 +97,16 @@ export default function PublicLeaderboardPreview() {
           </div>
         ))}
       </div>
+      <style>{`
+        @keyframes shimmer {
+          0% {
+            background-position: 200% 0;
+          }
+          100% {
+            background-position: -200% 0;
+          }
+        }
+      `}</style>
     </div>
   );
 }

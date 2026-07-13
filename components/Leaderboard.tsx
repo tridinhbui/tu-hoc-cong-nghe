@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, type ReactNode } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { getLeaderboardByMetric, getMyLeaderboardRank, type LeaderboardMetric, type LeaderboardRow } from "@/lib/supabase-user";
@@ -23,6 +23,46 @@ function LeaderboardAvatar({ name, avatarUrl }: { name: string; avatarUrl: strin
   return (
     <div className="w-6 h-6 rounded-full flex-shrink-0 flex items-center justify-center bg-stone-200 dark:bg-stone-700 text-stone-600 dark:text-stone-300 text-[10px] font-extrabold">
       {name.trim().charAt(0).toUpperCase() || "?"}
+    </div>
+  );
+}
+
+function RankAvatarFrame({
+  rank,
+  children,
+}: {
+  rank: number;
+  children: ReactNode;
+}) {
+  const isTopThree = rank <= 3;
+  const haloClass =
+    rank === 1
+      ? "from-amber-300/70 via-yellow-200/40 to-amber-400/20"
+      : rank === 2
+        ? "from-slate-300/70 via-slate-200/40 to-slate-400/20"
+        : "from-amber-200/70 via-orange-100/35 to-amber-300/20";
+
+  return (
+    <div className="relative">
+      {isTopThree && (
+        <span
+          className={`pointer-events-none absolute -inset-1.5 rounded-full bg-gradient-to-r ${haloClass} blur-[1px] opacity-80 animate-pulse`}
+          aria-hidden="true"
+        />
+      )}
+      {isTopThree && (
+        <span
+          className="pointer-events-none absolute -inset-1 rounded-full border border-white/70 dark:border-stone-900/80 opacity-60"
+          aria-hidden="true"
+        />
+      )}
+      {isTopThree && (
+        <span
+          className="pointer-events-none absolute -inset-0.5 rounded-full bg-gradient-to-r from-transparent via-white/80 to-transparent opacity-0 group-hover:opacity-75 animate-[shimmer_1.8s_ease-in-out_infinite]"
+          aria-hidden="true"
+        />
+      )}
+      <div className="relative">{children}</div>
     </div>
   );
 }
@@ -161,9 +201,11 @@ export default function Leaderboard({ userId }: LeaderboardProps) {
                     {rank}
                   </div>
 
-                  <div className="relative z-10">
-                    <LeaderboardAvatar name={entry.name} avatarUrl={entry.avatarUrl} />
-                  </div>
+                  <RankAvatarFrame rank={rank}>
+                    <div className="relative z-10">
+                      <LeaderboardAvatar name={entry.name} avatarUrl={entry.avatarUrl} />
+                    </div>
+                  </RankAvatarFrame>
 
                   <div className="relative z-10 flex-1 min-w-0">
                     <div className={`font-bold truncate ${isCurrent ? "text-emerald-900 dark:text-emerald-400" : "text-stone-900 dark:text-stone-100"}`}>
@@ -176,7 +218,7 @@ export default function Leaderboard({ userId }: LeaderboardProps) {
 
                   <div className="relative z-10 flex items-center gap-2">
                     <span
-                      className={`inline-flex whitespace-nowrap rounded-full border px-2 py-1 text-[10px] font-bold uppercase tracking-[0.18em] transition-all duration-200 ${
+                      className={`hidden sm:inline-flex whitespace-nowrap rounded-full border px-2 py-1 text-[10px] font-bold uppercase tracking-[0.18em] transition-all duration-200 ${
                         isCurrent
                           ? "border-emerald-200 bg-emerald-100 text-emerald-700 dark:border-emerald-900 dark:bg-emerald-950/60 dark:text-emerald-400"
                           : "border-stone-200 bg-white text-stone-500 opacity-85 group-hover:opacity-100 dark:border-stone-800 dark:bg-stone-950 dark:text-stone-400"
@@ -184,6 +226,11 @@ export default function Leaderboard({ userId }: LeaderboardProps) {
                     >
                       {isCurrent ? "Hồ sơ của bạn" : "Xem hồ sơ"}
                     </span>
+                    {!isCurrent && (
+                      <span className="inline-flex sm:hidden whitespace-nowrap rounded-full border border-stone-200 bg-white px-2 py-1 text-[10px] font-bold uppercase tracking-[0.18em] text-stone-500 shadow-sm dark:border-stone-800 dark:bg-stone-950 dark:text-stone-400">
+                        Chạm xem
+                      </span>
+                    )}
                     {isCurrent ? <div className="text-emerald-600 font-bold text-sm">✓</div> : <div className="text-stone-300 font-bold text-sm transition-transform duration-200 group-hover:translate-x-0.5">→</div>}
                   </div>
                 </Link>
@@ -209,6 +256,16 @@ export default function Leaderboard({ userId }: LeaderboardProps) {
           )}
         </>
       )}
+      <style>{`
+        @keyframes shimmer {
+          0% {
+            background-position: 200% 0;
+          }
+          100% {
+            background-position: -200% 0;
+          }
+        }
+      `}</style>
     </div>
   );
 }
