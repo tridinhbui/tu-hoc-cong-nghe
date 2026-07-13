@@ -308,7 +308,7 @@ export default function HomePage() {
 
       {/* ── VISION & MISSION ── */}
       <section className="max-w-6xl mx-auto px-6 pb-8 lg:pb-12">
-        <div className="grid items-start gap-4 lg:grid-cols-[minmax(0,1.1fr)_minmax(0,0.9fr)]">
+        <div className="grid items-start gap-4 lg:grid-cols-2">
           <ScrollReveal>
             <div className="h-full rounded-[28px] border border-stone-200 dark:border-stone-800 bg-[linear-gradient(135deg,rgba(255,255,255,0.98),rgba(250,250,249,0.94))] dark:bg-[linear-gradient(135deg,rgba(28,25,23,0.98),rgba(24,24,27,0.94))] p-6 lg:p-7 shadow-[0_24px_60px_-42px_rgba(28,25,23,0.2)]">
               <p className="text-xs font-extrabold text-emerald-600 dark:text-emerald-400 uppercase tracking-widest mb-3">
@@ -339,36 +339,36 @@ export default function HomePage() {
                   </p>
                 </div>
               </div>
-              <div className="mt-4 space-y-3 max-w-3xl text-sm lg:text-base leading-relaxed text-stone-600 dark:text-stone-400">
-                <p>
+              <div className="mt-4 grid gap-3 lg:grid-cols-[minmax(0,1.1fr)_minmax(0,0.9fr)]">
+                <div className="rounded-2xl bg-stone-50/80 dark:bg-stone-900/50 px-4 py-4 text-sm lg:text-base leading-relaxed text-stone-600 dark:text-stone-400">
                   Những con số này cho thấy vấn đề{" "}
                   <span className="font-semibold text-stone-900 dark:text-stone-100">không nằm ở việc người học thiếu cố gắng</span>,
                   mà ở chỗ kiến thức tài chính thường bị trình bày quá khó, quá rời rạc hoặc quá xa nhu cầu thực tế.
-                </p>
-                <p>
+                </div>
+                <div className="rounded-2xl bg-emerald-50/70 dark:bg-emerald-950/20 px-4 py-4 text-sm lg:text-base leading-relaxed text-stone-600 dark:text-stone-400">
                   Chúng tôi muốn góp phần{" "}
                   <span className="font-semibold text-emerald-700 dark:text-emerald-300">thu hẹp khoảng trống đó</span>{" "}
                   bằng một nơi học rõ ràng, dễ tiếp cận và đủ chiều sâu để dùng được thật sự.
-                </p>
+                </div>
               </div>
             </div>
           </ScrollReveal>
 
           <ScrollReveal delay={0.08}>
-            <div className="rounded-[28px] border border-emerald-200/80 dark:border-emerald-900/50 bg-emerald-50/70 dark:bg-emerald-950/20 p-6 lg:p-7">
+            <div className="rounded-[28px] border border-emerald-200/80 dark:border-emerald-900/50 bg-emerald-50/70 dark:bg-emerald-950/20 p-6 lg:p-7 lg:min-h-[100%]">
               <p className="text-xs font-extrabold text-emerald-700 dark:text-emerald-300 uppercase tracking-widest mb-3">
                 Tầm nhìn và sứ mệnh
               </p>
-              <div className="space-y-3 text-sm leading-relaxed text-stone-700 dark:text-stone-300">
-                <p>
+              <div className="space-y-4 text-[15px] leading-8 text-stone-700 dark:text-stone-300">
+                <p className="rounded-2xl bg-white/45 dark:bg-stone-950/10 px-4 py-3">
                   Xây một giáo trình miễn phí, rõ ràng và đủ chiều sâu cho người học tài chính cá nhân, người học chứng chỉ,
                   người làm tư vấn tài chính, nhà đầu tư, kế toán mới vào nghề và người làm tài chính giai đoạn đầu.
                 </p>
-                <p>
+                <p className="rounded-2xl bg-white/35 dark:bg-stone-950/10 px-4 py-3">
                   Dùng lộ trình tốt, câu hỏi kiểm tra và cơ chế nhắc ôn đúng lúc để biến kiến thức khó thành thứ có thể học đều mỗi ngày,
                   nhớ lâu hơn và áp dụng được ngoài đời thật.
                 </p>
-                <p className="font-semibold text-emerald-700 dark:text-emerald-300">
+                <p className="rounded-2xl bg-emerald-100/60 dark:bg-emerald-900/20 px-4 py-3 font-semibold text-emerald-700 dark:text-emerald-300">
                   Làm vì cộng đồng trước, giữ miễn phí dài hạn và giúp kiến thức tài chính trở nên gần gũi hơn với mọi người.
                 </p>
               </div>
