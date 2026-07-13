@@ -5,7 +5,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { useRouter, useSearchParams } from "next/navigation";
 import { toast } from "sonner";
-import { CheckCircle2, BarChart3, Lock, FileText, Menu, X, GraduationCap, StickyNote, CheckCheck } from "lucide-react";
+import { CheckCircle2, BarChart3, Lock, FileText, Menu, X, GraduationCap, StickyNote, CheckCheck, Bookmark } from "lucide-react";
 import { useProgress } from "@/lib/client-hooks";
 import { mergeCompletedLessons } from "@/lib/progress";
 import { getCompletedLessons } from "@/lib/supabase-progress";
@@ -32,6 +32,7 @@ import { TRACKS } from "@/lib/tracks";
 import CfaTrackView from "@/components/CfaTrackView";
 import { getChallengePassedLessonIds } from "@/lib/supabase-challenges";
 import { addLessonFlag, getUserLessonFlags, removeLessonFlag } from "@/lib/supabase-lesson-flags";
+import { getUserBookmarks, type LessonBookmark } from "@/lib/supabase-bookmarks";
 import { useRoutePrefetch } from "@/lib/use-route-prefetch";
 
 // Slim projection of Lesson - just enough to render the dashboard listing,
@@ -106,6 +107,7 @@ export default function DashboardClient({ lessonsMeta }: { lessonsMeta: LessonMe
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [showChallenge, setShowChallenge] = useState(false);
   const [flaggedLessonIds, setFlaggedLessonIds] = useState<Set<number>>(new Set());
+  const [bookmarks, setBookmarks] = useState<LessonBookmark[]>([]);
   const [flagSelectionMode, setFlagSelectionMode] = useState(false);
   const [selectedFlagLessonIds, setSelectedFlagLessonIds] = useState<Set<number>>(new Set());
   const [flagSaving, setFlagSaving] = useState(false);
@@ -273,6 +275,10 @@ export default function DashboardClient({ lessonsMeta }: { lessonsMeta: LessonMe
       getUserLessonFlags(session.user.id)
         .then((flags) => setFlaggedLessonIds(new Set(flags.map((flag) => flag.lesson_id))))
         .catch((error) => console.error("Error loading lesson flags:", error));
+
+      getUserBookmarks(session.user.id)
+        .then((saved) => setBookmarks(saved.slice(0, 6)))
+        .catch((error) => console.error("Error loading lesson bookmarks:", error));
 
       // Check if user has completed onboarding. The local flag is checked
       // first and short-circuits the server round trip - it's what actually
@@ -659,6 +665,52 @@ export default function DashboardClient({ lessonsMeta }: { lessonsMeta: LessonMe
         {activeTrack !== "cfa" && (
           <div data-tour="resume-learning" className="max-w-6xl mx-auto mb-8">
             <ResumeLearningButton activeTrack={activeTrack} />
+          </div>
+        )}
+
+        {bookmarks.length > 0 && (
+          <div className="max-w-6xl mx-auto mb-6">
+            <div className="rounded-2xl border border-stone-200 dark:border-stone-800 bg-white dark:bg-stone-900 px-4 py-4 shadow-sm">
+              <div className="flex items-center justify-between gap-3 mb-3">
+                <div className="flex items-center gap-2">
+                  <div className="w-9 h-9 rounded-xl bg-amber-50 dark:bg-amber-950/30 text-amber-600 dark:text-amber-400 flex items-center justify-center">
+                    <Bookmark className="w-4 h-4" />
+                  </div>
+                  <div>
+                    <p className="text-sm font-extrabold text-stone-900 dark:text-stone-100">Bài đã lưu</p>
+                    <p className="text-xs text-stone-500 dark:text-stone-400">Quay lại nhanh những bài bạn muốn đọc tiếp</p>
+                  </div>
+                </div>
+                <Link
+                  href="/profile"
+                  className="text-xs font-bold text-stone-500 dark:text-stone-400 hover:text-stone-800 dark:hover:text-stone-200"
+                >
+                  Xem tất cả
+                </Link>
+              </div>
+
+              <div className="grid gap-3 sm:grid-cols-2 xl:grid-cols-3">
+                {bookmarks.map((bookmark) => (
+                  <Link
+                    key={bookmark.id}
+                    href={`/bai-hoc/${bookmark.lesson_slug}`}
+                    className="group rounded-xl border border-stone-200 dark:border-stone-800 bg-stone-50/80 dark:bg-stone-950/30 px-4 py-3 hover:border-amber-300 dark:hover:border-amber-700 hover:bg-white dark:hover:bg-stone-900 transition-all"
+                  >
+                    <div className="flex items-start justify-between gap-3">
+                      <div className="min-w-0">
+                        <p className="text-sm font-bold text-stone-900 dark:text-stone-100 line-clamp-2">
+                          {bookmark.lesson_title}
+                        </p>
+                        <p className="text-xs text-stone-500 dark:text-stone-400 mt-1">
+                          Lưu ngày {new Date(bookmark.created_at).toLocaleDateString("vi-VN")}
+                        </p>
+                      </div>
+                      <Bookmark className="w-4 h-4 shrink-0 text-amber-500 dark:text-amber-400 group-hover:scale-110 transition-transform" />
+                    </div>
+                  </Link>
+                ))}
+              </div>
+            </div>
           </div>
         )}
 
