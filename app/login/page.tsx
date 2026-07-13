@@ -1,125 +1,54 @@
 "use client";
 
-import React, { useState, useEffect, useRef } from "react";
+import React, { Suspense, useState, useEffect, useRef } from "react";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
-import { motion } from "framer-motion";
-import { GraduationCap, Gauge, Sparkles, Heart, Brain } from "lucide-react";
+import { useRouter, useSearchParams } from "next/navigation";
+import { ArrowLeft, BarChart3, CheckCircle2, ShieldCheck, Sparkles } from "lucide-react";
 import { createClient } from "@/lib/supabase";
-import { getTotalUserCount } from "@/lib/supabase-user";
 import { translateAuthError } from "@/lib/auth-error-messages";
-import type { TrackId } from "@/lib/tracks";
-import TrackPreviewPanel from "@/components/login/TrackPreviewPanel";
-import PublicLeaderboardPreview from "@/components/login/PublicLeaderboardPreview";
 import Logo from "@/components/Logo";
+import TrackPreviewPanel from "@/components/login/TrackPreviewPanel";
+import { type TrackId } from "@/lib/tracks";
 
 const MAX_ATTEMPTS = 5;
 const COOLDOWN_MS = 60_000;
 
-const TRUST_HIGHLIGHTS = [
-  { icon: Sparkles, label: "Tất cả bài học miễn phí" },
-  { icon: GraduationCap, label: "Lộ trình rõ ràng, có kiểm tra sau mỗi bài" },
-  { icon: Gauge, label: "Học theo tốc độ của riêng bạn" },
-  { icon: Brain, label: "Ứng dụng Spaced Repetition - ôn đúng lúc để nhớ lâu, không học vẹt" },
-] as const;
-
-const FADE_UP = {
-  hidden: { opacity: 0, y: 14 },
-  show: { opacity: 1, y: 0, transition: { duration: 0.45, ease: "easeOut" } },
-} as const;
-
-// A number that visibly reads as "live" - pulsing dot glued to it, not just
-// a plain figure - so the count-up animation on mount doesn't get mistaken
-// for a static hardcoded claim.
-function LiveNumber({ value, className = "" }: { value: number; className?: string }) {
-  return (
-    <span className={`relative inline-flex items-baseline font-bold text-stone-900 dark:text-stone-100 tabular-nums ${className}`}>
-      <span className="relative flex w-1.5 h-1.5 mr-1.5">
-        <span className="animate-ping absolute inline-flex w-full h-full rounded-full bg-emerald-400 opacity-75" />
-        <span className="relative inline-flex rounded-full w-1.5 h-1.5 bg-emerald-500" />
-      </span>
-      {value.toLocaleString("vi-VN")}+
-    </span>
-  );
-}
-
 // Reads Supabase env vars at render time - never prerender statically.
 export const dynamic = "force-dynamic";
 
+// Dedicated, minimal auth screen - the marketing pitch (hero, stats, trust
+// highlights, social proof) now all lives on the homepage (app/page.tsx +
+// components/home/HomePage.tsx). This page's only job is to get someone who
+// already decided to sign in/up through that flow with no distractions.
 export default function LoginPage() {
+  return (
+    <Suspense fallback={null}>
+      <LoginForm />
+    </Suspense>
+  );
+}
+
+function LoginForm() {
   const router = useRouter();
+  const searchParams = useSearchParams();
   const supabase = createClient();
 
-  // If a Supabase OAuth `code` (or `error`) param is still in the URL, this
-  // page was landed on directly by the OAuth redirect - e.g. because Supabase's
-  // "Redirect URLs" allowlist doesn't include our /auth/callback route for this
-  // domain, so GoTrue fell back to the configured Site URL instead. In that
-  // case the browser client's own detectSessionInUrl kicks in and exchanges
-  // the code client-side (slower - a real network round trip), and we must
-  // show a loading state instead of the raw login form while that resolves,
-  // otherwise the user sees the form flash for a couple seconds before being
-  // bounced to /dashboard.
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
-  const [mode, setMode] = useState<"login" | "signup" | "forgot">("login");
+  // Homepage CTAs link here with ?mode=signup so "Bắt đầu học miễn phí"
+  // lands directly on the signup form instead of login.
+  const [mode, setMode] = useState<"login" | "signup" | "forgot">(
+    searchParams.get("mode") === "signup" ? "signup" : "login"
+  );
   const [name, setName] = useState("");
-  const [previewTrack, setPreviewTrack] = useState<TrackId>("personal");
   const [resetSent, setResetSent] = useState(false);
 
-  // Counts a displayed number up from 0 to `target` with an ease-out curve.
-  // Shared by the user-count and lesson-count headline numbers so both
-  // animate identically on every mount (page load/reload).
-  function animateCountTo(target: number, setValue: (n: number) => void, cancelledRef: { current: boolean }) {
-    const durationMs = 700;
-    const start = performance.now();
-    const tick = (now: number) => {
-      if (cancelledRef.current) return;
-      const progress = Math.min(1, (now - start) / durationMs);
-      const eased = 1 - Math.pow(1 - progress, 3); // ease-out cubic
-      setValue(Math.round(target * eased));
-      if (progress < 1) requestAnimationFrame(tick);
-    };
-    requestAnimationFrame(tick);
-  }
-
-  // Real registered-user count instead of a static "1000+" - falls back to
-  // the static 1000 floor if the count RPC isn't available or resolves
-  // lower, so the headline never looks worse than the old hardcoded copy.
-  const [displayedUserCount, setDisplayedUserCount] = useState(0);
-  useEffect(() => {
-    const cancelledRef = { current: false };
-    getTotalUserCount()
-      .then((count) => {
-        if (cancelledRef.current || !count) return;
-        animateCountTo(Math.max(count, 1000), setDisplayedUserCount, cancelledRef);
-      })
-      .catch((error) => console.error("Error loading total user count:", error));
-    return () => {
-      cancelledRef.current = true;
-    };
-  }, []);
-
-  // Real lesson count instead of a static "300+" - same fallback-floor
-  // reasoning as the user count above.
-  const [displayedLessonCount, setDisplayedLessonCount] = useState(0);
-  useEffect(() => {
-    const cancelledRef = { current: false };
-    fetch("/api/lesson-count")
-      .then((res) => (res.ok ? res.json() : null))
-      .then((data: { count?: number } | null) => {
-        if (cancelledRef.current || !data?.count) return;
-        animateCountTo(Math.max(data.count, 300), setDisplayedLessonCount, cancelledRef);
-      })
-      .catch((error) => console.error("Error loading lesson count:", error));
-    return () => {
-      cancelledRef.current = true;
-    };
-  }, []);
   const [cooldownUntil, setCooldownUntil] = useState<number | null>(null);
   const [cooldownLeft, setCooldownLeft] = useState(0);
   const failedAttemptsRef = useRef(0);
+  const [previewTrack, setPreviewTrack] = useState<TrackId>("personal");
 
   // Basic client-side throttle: after MAX_ATTEMPTS failed logins/signups, force
   // a short wait before allowing another attempt. Supabase also rate-limits
@@ -305,151 +234,92 @@ export default function LoginPage() {
   }
 
   return (
-    <div className="min-h-screen bg-white dark:bg-stone-950 flex flex-col lg:flex-row">
-      {/* ── LEFT SIDE: Hero + Info ── */}
-      <motion.div
-        initial="hidden"
-        animate="show"
-        variants={{ hidden: {}, show: { transition: { staggerChildren: 0.08 } } }}
-        className="hidden lg:flex relative flex-col w-1/2 bg-white dark:bg-stone-950 px-10 xl:px-12 py-10 xl:py-12 gap-8 overflow-hidden"
-      >
-        {/* Decorative background blobs - depth without touching the palette:
-            same emerald/stone hues used everywhere else, just diffused. */}
-        <div className="pointer-events-none absolute -top-24 -right-24 w-96 h-96 rounded-full bg-emerald-200/40 dark:bg-emerald-900/20 blur-3xl" />
-        <div className="pointer-events-none absolute top-1/2 -left-32 w-80 h-80 rounded-full bg-stone-200/50 dark:bg-stone-800/30 blur-3xl" />
+    <div className="min-h-screen bg-[radial-gradient(circle_at_top_left,_rgba(16,185,129,0.12),_transparent_26%),radial-gradient(circle_at_bottom_right,_rgba(20,184,166,0.08),_transparent_24%)] dark:bg-[radial-gradient(circle_at_top_left,_rgba(16,185,129,0.16),_transparent_28%),linear-gradient(180deg,_rgba(12,10,9,1),_rgba(17,24,39,1))] px-6 py-10">
+      <div className="mx-auto w-full max-w-6xl">
+        <Link
+          href="/"
+          className="inline-flex items-center gap-1.5 text-xs font-bold text-stone-500 dark:text-stone-400 hover:text-stone-900 dark:hover:text-stone-100 mb-6"
+        >
+          <ArrowLeft className="w-3.5 h-3.5" />
+          Về trang chủ
+        </Link>
 
-        <div className="relative space-y-5">
-          {/* Logo & Brand */}
-          <motion.div variants={FADE_UP} className="space-y-3">
-            <div className="flex items-center gap-2.5">
-              <Logo size={28} />
-              <div className="text-sm font-bold text-stone-500 dark:text-stone-400 uppercase tracking-widest">
-                Tự Học Tài Chính
+        <div className="grid gap-8 lg:grid-cols-[minmax(0,0.95fr)_minmax(360px,420px)] lg:items-center">
+          <div className="hidden lg:block">
+            <div className="max-w-xl">
+              <div className="inline-flex items-center gap-2 rounded-full border border-emerald-200 dark:border-emerald-900 bg-emerald-50/80 dark:bg-emerald-950/30 px-4 py-2 text-[11px] font-extrabold uppercase tracking-[0.2em] text-emerald-700 dark:text-emerald-400">
+                <Sparkles className="w-4 h-4" />
+                Miễn phí mãi mãi
               </div>
-            </div>
 
-            {/* Eyebrow badge - marketing-page convention: a short pill above
-                the headline that states the core hook before the H1 does. */}
-            <div className="inline-flex items-center gap-1.5 rounded-full border border-emerald-200 dark:border-emerald-900 bg-emerald-50 dark:bg-emerald-950/40 px-3 py-1 text-[11px] font-bold text-emerald-700 dark:text-emerald-400">
-              <span className="relative flex w-1.5 h-1.5">
-                <span className="animate-ping absolute inline-flex w-full h-full rounded-full bg-emerald-400 opacity-75" />
-                <span className="relative inline-flex rounded-full w-1.5 h-1.5 bg-emerald-500" />
-              </span>
-              Miễn phí mãi mãi · Học ngay hôm nay
-            </div>
-
-            <h1 className="text-4xl xl:text-5xl font-bold text-stone-900 dark:text-stone-100 leading-[0.95]">
-              Hiểu <span className="bg-gradient-to-r from-emerald-600 to-teal-500 dark:from-emerald-400 dark:to-teal-300 bg-clip-text text-transparent">tiền bạc</span>,<br />quản lý tài sản
-            </h1>
-            <p className="text-base text-stone-600 dark:text-stone-400 leading-relaxed max-w-lg">
-              300+ bài học miễn phí từ vỡ lòng đến phân tích doanh nghiệp, chia theo lộ trình và tổng giờ học rõ ràng để bạn chọn đúng tốc độ.
-            </p>
-          </motion.div>
-
-          {/* Stat bar - the count-up numbers pulled out of the paragraph and
-              into their own row, sized and spaced like a real landing-page
-              stats strip instead of being buried in body copy. */}
-          <motion.div
-            variants={FADE_UP}
-            className="flex items-stretch divide-x divide-stone-200 dark:divide-stone-800 rounded-2xl border border-stone-200 dark:border-stone-800 bg-stone-50/60 dark:bg-stone-900/40 px-5 py-3.5 w-fit"
-          >
-            <div className="pr-6">
-              <LiveNumber value={displayedUserCount} className="text-2xl" />
-              <p className="text-[11px] font-semibold text-stone-500 dark:text-stone-400 mt-0.5">người học</p>
-            </div>
-            <div className="pl-6">
-              <LiveNumber value={displayedLessonCount} className="text-2xl" />
-              <p className="text-[11px] font-semibold text-stone-500 dark:text-stone-400 mt-0.5">bài học</p>
-            </div>
-          </motion.div>
-
-          {/* Trust highlights - 2-col feature grid reads more like a
-              marketing page than a plain bullet list. */}
-          <motion.ul variants={FADE_UP} className="grid grid-cols-2 gap-2.5">
-            {TRUST_HIGHLIGHTS.map(({ icon: Icon, label }) => (
-              <li
-                key={label}
-                className="flex flex-col gap-2 rounded-xl border border-stone-200 dark:border-stone-800 bg-white/60 dark:bg-stone-900/40 p-3"
-              >
-                <span className="flex-shrink-0 w-7 h-7 rounded-lg bg-stone-100 dark:bg-stone-800 flex items-center justify-center">
-                  <Icon className="w-3.5 h-3.5 text-stone-500 dark:text-stone-400" />
-                </span>
-                <span className="text-xs font-semibold text-stone-600 dark:text-stone-400 leading-snug">{label}</span>
-              </li>
-            ))}
-          </motion.ul>
-
-          {/* Explicit commitment statement - a cold visitor's biggest doubt
-              on a "free education" site is usually "is this actually free,
-              or a bait-and-switch later" - state the commitment plainly
-              and link the community group as the accountability backing it. */}
-          <motion.div
-            variants={FADE_UP}
-            className="flex items-start gap-3 rounded-2xl border border-rose-100 dark:border-rose-950 bg-rose-50/60 dark:bg-rose-950/20 px-4 py-3"
-          >
-            <Heart className="w-4 h-4 text-rose-500 flex-shrink-0 mt-0.5" />
-            <p className="text-xs text-stone-600 dark:text-stone-400 leading-relaxed">
-              Cam kết toàn bộ bài học tại đây <strong className="text-stone-800 dark:text-stone-200">miễn phí mãi mãi</strong> vì sự phát triển của cộng đồng Tự Học Tài Chính.{" "}
-              <a
-                href="https://www.facebook.com/share/g/1C2jTdsgF5/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="font-bold text-rose-600 dark:text-rose-400 hover:underline"
-              >
-                Tham gia group Facebook →
-              </a>
-            </p>
-          </motion.div>
-
-          <motion.div variants={FADE_UP}>
-            <PublicLeaderboardPreview />
-          </motion.div>
-        </div>
-
-        <motion.div variants={FADE_UP} className="relative">
-          <TrackPreviewPanel previewTrack={previewTrack} setPreviewTrack={setPreviewTrack} />
-        </motion.div>
-      </motion.div>
-
-      {/* ── RIGHT SIDE: Form ── */}
-      <div className="w-full lg:w-1/2 bg-stone-50 dark:bg-stone-900/50 flex flex-col items-center justify-center px-6 py-10 lg:py-16">
-        <div className="w-full max-w-sm">
-          {/* Mobile Brand (visible on small screens) */}
-          <div className="lg:hidden space-y-4 mb-8 text-center">
-            <div className="flex items-center justify-center gap-2">
-              <Logo size={24} />
-              <div className="text-sm font-bold text-stone-500 dark:text-stone-400 uppercase tracking-widest">
-                Tự Học Tài Chính
-              </div>
-            </div>
-            <h1 className="text-4xl font-bold text-stone-900 dark:text-stone-100">
-              Hiểu tiền bạc
-            </h1>
-          </div>
-
-          {/* Mobile: same interactive track tabs as desktop, just more compact */}
-          <div className="lg:hidden">
-            <TrackPreviewPanel previewTrack={previewTrack} setPreviewTrack={setPreviewTrack} compact />
-          </div>
-
-          {/* Form Card - overflow-hidden clips the top accent bar's corners
-              to match the card's own rounded-3xl instead of squaring them off. */}
-          <div className="bg-white dark:bg-stone-900 border border-stone-200 dark:border-stone-800 rounded-3xl shadow-xl shadow-stone-900/5 dark:shadow-black/20 overflow-hidden">
-            <div className="h-1 bg-gradient-to-r from-emerald-500 via-teal-400 to-emerald-500" />
-            <div className="p-7 xl:p-8 space-y-5">
-            {/* Form Title */}
-            <div>
-              <h2 className="text-2xl font-bold text-stone-900 dark:text-stone-100 mb-2">
-                {mode === "login" ? "Đăng nhập" : mode === "signup" ? "Đăng ký" : "Quên mật khẩu"}
-              </h2>
-              <p className="text-sm text-stone-500 dark:text-stone-400">
-                {mode === "login"
-                  ? "Đăng nhập để tiếp tục học"
-                  : mode === "signup"
-                    ? "Tạo tài khoản để bắt đầu học"
-                    : "Nhập email để nhận link đặt lại mật khẩu"}
+              <h1 className="mt-5 text-4xl xl:text-5xl font-black tracking-tight text-stone-950 dark:text-stone-50 leading-[0.98]">
+                Học tài chính theo cách gọn, rõ và đủ động lực để theo lâu dài
+              </h1>
+              <p className="mt-5 max-w-lg text-base leading-7 text-stone-600 dark:text-stone-300">
+                Vào lại hành trình của bạn, tiếp tục đúng bài đang học dở và để hệ thống tự giữ nhịp bằng quiz, ghi chú và Spaced Repetition.
               </p>
+
+              <div className="mt-6 grid gap-3 sm:grid-cols-3">
+                <div className="rounded-2xl border border-stone-200/80 dark:border-stone-800 bg-white/80 dark:bg-stone-900/50 p-4">
+                  <ShieldCheck className="w-5 h-5 text-emerald-600 dark:text-emerald-400" />
+                  <p className="mt-3 text-sm font-bold text-stone-900 dark:text-stone-100">Không cần trả phí</p>
+                  <p className="mt-1 text-xs leading-5 text-stone-500 dark:text-stone-400">Học toàn bộ nội dung mà không cần thẻ.</p>
+                </div>
+                <div className="rounded-2xl border border-stone-200/80 dark:border-stone-800 bg-white/80 dark:bg-stone-900/50 p-4">
+                  <BarChart3 className="w-5 h-5 text-sky-600 dark:text-sky-400" />
+                  <p className="mt-3 text-sm font-bold text-stone-900 dark:text-stone-100">Tiến độ thật</p>
+                  <p className="mt-1 text-xs leading-5 text-stone-500 dark:text-stone-400">Lưu bài học, XP, streak và thống kê học tập.</p>
+                </div>
+                <div className="rounded-2xl border border-stone-200/80 dark:border-stone-800 bg-white/80 dark:bg-stone-900/50 p-4">
+                  <CheckCircle2 className="w-5 h-5 text-violet-600 dark:text-violet-400" />
+                  <p className="mt-3 text-sm font-bold text-stone-900 dark:text-stone-100">Đi từng chặng</p>
+                  <p className="mt-1 text-xs leading-5 text-stone-500 dark:text-stone-400">Không bị ngợp vì đã có lộ trình rõ ràng.</p>
+                </div>
+              </div>
+
+              <div className="mt-7 rounded-[28px] border border-stone-200/80 dark:border-stone-800 bg-white/70 dark:bg-stone-900/45 p-4 shadow-[0_30px_80px_-50px_rgba(28,25,23,0.4)]">
+                <div className="mb-3 flex items-center gap-2.5">
+                  <Logo size={28} />
+                  <div>
+                    <p className="text-sm font-bold text-stone-900 dark:text-stone-100">Chọn lộ trình rồi vào học ngay</p>
+                    <p className="text-xs text-stone-500 dark:text-stone-400">Bạn có thể đổi hướng học sau trong phần cài đặt.</p>
+                  </div>
+                </div>
+                <TrackPreviewPanel previewTrack={previewTrack} setPreviewTrack={setPreviewTrack} compact />
+              </div>
             </div>
+          </div>
+
+          <div className="w-full max-w-md lg:max-w-none mx-auto">
+            <div className="flex items-center gap-2.5 mb-6 lg:hidden">
+              <Logo size={26} />
+              <span className="text-sm font-bold text-stone-500 dark:text-stone-400 uppercase tracking-widest">
+                Tự Học Tài Chính
+              </span>
+            </div>
+
+            <div className="bg-white/95 dark:bg-stone-900/95 border border-stone-200/90 dark:border-stone-800 rounded-[28px] shadow-[0_30px_80px_-45px_rgba(28,25,23,0.35)] dark:shadow-black/30 overflow-hidden backdrop-blur">
+              <div className="h-1 bg-gradient-to-r from-emerald-500 via-teal-400 to-emerald-500" />
+              <div className="p-7 xl:p-8 space-y-5">
+                <div className="lg:hidden rounded-2xl border border-emerald-100 dark:border-emerald-900 bg-emerald-50/70 dark:bg-emerald-950/25 px-4 py-3">
+                  <p className="text-sm font-bold text-stone-900 dark:text-stone-100">
+                    Học 300+ bài miễn phí, lưu tiến độ thật trên tài khoản của bạn.
+                  </p>
+                </div>
+
+            {/* Form Title */}
+                <div>
+                  <h1 className="text-2xl font-bold text-stone-900 dark:text-stone-100 mb-2">
+                    {mode === "login" ? "Đăng nhập" : mode === "signup" ? "Tạo tài khoản" : "Quên mật khẩu"}
+                  </h1>
+                  <p className="text-sm text-stone-500 dark:text-stone-400 leading-6">
+                    {mode === "login"
+                      ? "Quay lại dashboard, tiếp tục bài đang học và xem lại tiến độ của bạn."
+                      : mode === "signup"
+                        ? "Bắt đầu hành trình học tài chính của riêng bạn chỉ trong chưa tới một phút."
+                        : "Nhập email để nhận link đặt lại mật khẩu và quay lại học tiếp."}
+                  </p>
+                </div>
 
             {mode !== "forgot" && (
               <>
@@ -457,7 +327,7 @@ export default function LoginPage() {
                 <button
                   onClick={handleGoogleLogin}
                   disabled={loading}
-                  className="w-full border border-stone-200 dark:border-stone-700 hover:bg-stone-50 dark:hover:bg-stone-800 text-stone-900 dark:text-stone-100 py-3 rounded-xl font-bold text-base transition-colors disabled:opacity-60 flex items-center justify-center gap-2"
+                  className="w-full border border-stone-200 dark:border-stone-700 hover:bg-stone-50 dark:hover:bg-stone-800 text-stone-900 dark:text-stone-100 py-3.5 rounded-2xl font-bold text-base transition-colors disabled:opacity-60 flex items-center justify-center gap-2"
                 >
                   <svg className="w-5 h-5" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                     <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/>
@@ -587,7 +457,7 @@ export default function LoginPage() {
                 <button
                   type="submit"
                   disabled={loading || !!cooldownUntil}
-                  className="w-full bg-stone-900 hover:bg-stone-800 dark:bg-stone-100 dark:hover:bg-white text-white dark:text-stone-900 py-4 rounded-xl font-bold text-base transition-colors disabled:opacity-60 mt-2"
+                  className="w-full bg-stone-900 hover:bg-stone-800 dark:bg-stone-100 dark:hover:bg-white text-white dark:text-stone-900 py-4 rounded-2xl font-bold text-base transition-colors disabled:opacity-60 mt-2"
                 >
                   {loading
                     ? "Đang xử lý..."
@@ -630,22 +500,22 @@ export default function LoginPage() {
               )}
             </div>
 
-            </div>
+            <p className="text-center text-xs text-stone-400 dark:text-stone-600 mt-4 px-2">
+              Bằng việc tiếp tục, bạn đồng ý với{" "}
+              <Link href="/dieu-khoan" className="underline underline-offset-2 hover:text-stone-600 dark:hover:text-stone-400">
+                Điều khoản sử dụng
+              </Link>{" "}
+              và{" "}
+              <Link href="/chinh-sach-bao-mat" className="underline underline-offset-2 hover:text-stone-600 dark:hover:text-stone-400">
+                Chính sách bảo mật
+              </Link>
+              .
+            </p>
           </div>
-
-          <p className="text-center text-xs text-stone-400 dark:text-stone-600 mt-4">
-            Bằng việc tiếp tục, bạn đồng ý với{" "}
-            <Link href="/dieu-khoan" className="underline underline-offset-2 hover:text-stone-600 dark:hover:text-stone-400">
-              Điều khoản sử dụng
-            </Link>{" "}
-            và{" "}
-            <Link href="/chinh-sach-bao-mat" className="underline underline-offset-2 hover:text-stone-600 dark:hover:text-stone-400">
-              Chính sách bảo mật
-            </Link>
-            .
-          </p>
+          </div>
         </div>
       </div>
+    </div>
     </div>
   );
 }

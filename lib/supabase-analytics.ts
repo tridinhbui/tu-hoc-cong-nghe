@@ -5,28 +5,67 @@ function isMissingTableError(error: { code?: string } | null) {
   return error?.code === "PGRST205" || error?.code === "42P01";
 }
 
+interface ProgressRow {
+  lesson_id: number;
+  completed: boolean;
+  quiz_score: number | null;
+  time_spent_seconds: number | null;
+  completed_at: string | null;
+}
+
+interface LessonMetaRow {
+  id: number;
+  difficulty: string | null;
+  title?: string | null;
+  slug?: string | null;
+  track?: string | null;
+}
+
 export interface LearningAnalytics {
   totalLessonsCompleted: number;
+  totalLessonsStarted: number;
+  completionRate: number;
   totalXpEarned: number;
   averageQuizScore: number;
-  totalTimeSpent: number; // in minutes
+  totalTimeSpent: number;
+  averageMinutesPerLesson: number;
   currentLevel: number;
   streakDays: number;
   longestStreak: number;
+  consistencyScore: number;
+  bestStudyHour: number | null;
+  peakStudyWindow: string;
+  recentMomentum: {
+    last7DaysLessons: number;
+    last30DaysLessons: number;
+    last7DaysMinutes: number;
+    weeklyTrendPercent: number;
+  };
   lessonsByDifficulty: {
     easy: number;
     medium: number;
     hard: number;
   };
+  lessonsByTrack: {
+    personal: number;
+    professional: number;
+    bonus: number;
+  };
   weeklyActivity: {
     week: number;
+    label: string;
     lessonsCompleted: number;
     xpEarned: number;
+    minutesSpent: number;
   }[];
   weakAreas: {
     topic: string;
     averageScore: number;
     lessonsCount: number;
+  }[];
+  studyTimeDistribution: {
+    hour: number;
+    lessonsCompleted: number;
   }[];
   notes: {
     totalNotes: number;
@@ -38,148 +77,226 @@ export interface LearningAnalytics {
       notesCount: number;
     }[];
   };
+  manualFlags: {
+    totalFlags: number;
+  };
 }
 
-/**
- * Get comprehensive learning analytics for a user
- */
+function formatWeekLabel(date: Date) {
+  return `${date.getDate()}/${date.getMonth() + 1}`;
+}
+
+function getPeakStudyWindow(hour: number | null) {
+  if (hour === null) return "Chưa đủ dữ liệu";
+  if (hour < 6) return "Khuya / rất sớm";
+  if (hour < 12) return "Buổi sáng";
+  if (hour < 18) return "Buổi chiều";
+  if (hour < 22) return "Buổi tối";
+  return "Đêm muộn";
+}
+
 export async function getUserAnalytics(userId: string): Promise<LearningAnalytics> {
   const supabase = createClient();
 
-  // Get user progress
-  const { data: progress, error: progressError } = await supabase
-    .from("user_progress")
-    .select("lesson_id, completed, quiz_score, time_spent_seconds, completed_at")
-    .eq("user_id", userId)
-    .eq("completed", true);
+  const [
+    progressResponse,
+    completedProgressResponse,
+    statsResponse,
+    streakResponse,
+    notesResponse,
+    flagsResponse,
+  ] = await Promise.all([
+    supabase
+      .from("user_progress")
+      .select("lesson_id, completed, quiz_score, time_spent_seconds, completed_at")
+      .eq("user_id", userId),
+    supabase
+      .from("user_progress")
+      .select("lesson_id, completed, quiz_score, time_spent_seconds, completed_at")
+      .eq("user_id", userId)
+      .eq("completed", true),
+    supabase.from("user_stats").select("*").eq("user_id", userId).single(),
+    supabase.from("user_streaks").select("*").eq("user_id", userId).single(),
+    supabase.from("lesson_notes").select("lesson_id").eq("user_id", userId),
+    supabase.from("lesson_manual_flags").select("lesson_id").eq("user_id", userId),
+  ]);
 
-  if (progressError) {
-    throw handleSupabaseError(progressError);
+  if (progressResponse.error) {
+    throw handleSupabaseError(progressResponse.error);
+  }
+  if (completedProgressResponse.error) {
+    throw handleSupabaseError(completedProgressResponse.error);
+  }
+  if (statsResponse.error && statsResponse.error.code !== "PGRST116") {
+    throw handleSupabaseError(statsResponse.error);
+  }
+  if (streakResponse.error && streakResponse.error.code !== "PGRST116") {
+    throw handleSupabaseError(streakResponse.error);
+  }
+  if (notesResponse.error && !isMissingTableError(notesResponse.error)) {
+    throw handleSupabaseError(notesResponse.error);
+  }
+  if (flagsResponse.error && !isMissingTableError(flagsResponse.error)) {
+    throw handleSupabaseError(flagsResponse.error);
   }
 
-  // Get user stats
-  const { data: stats, error: statsError } = await supabase
-    .from("user_stats")
-    .select("*")
-    .eq("user_id", userId)
-    .single();
+  const allProgress = (progressResponse.data ?? []) as ProgressRow[];
+  const completedProgress = (completedProgressResponse.data ?? []) as ProgressRow[];
+  const stats = statsResponse.data;
+  const streak = streakResponse.data;
 
-  if (statsError && statsError.code !== "PGRST116") {
-    throw handleSupabaseError(statsError);
-  }
+  const lessonIdsForMeta = Array.from(new Set([...allProgress.map((p) => p.lesson_id), ...(notesResponse.data ?? []).map((row) => row.lesson_id as number)]));
 
-  // Get user streak
-  const { data: streak, error: streakError } = await supabase
-    .from("user_streaks")
-    .select("*")
-    .eq("user_id", userId)
-    .single();
-
-  if (streakError && streakError.code !== "PGRST116") {
-    throw handleSupabaseError(streakError);
-  }
-
-  // Get lesson data for difficulty breakdown
-  const lessonIds = progress?.map(p => p.lesson_id) || [];
-  const { data: lessons, error: lessonsError } = await supabase
-    .from("lessons")
-    .select("id, difficulty")
-    .in("id", lessonIds);
+  const { data: lessons, error: lessonsError } = lessonIdsForMeta.length
+    ? await supabase.from("lessons").select("id, difficulty, title, slug, track").in("id", lessonIdsForMeta)
+    : { data: [], error: null };
 
   if (lessonsError) {
     throw handleSupabaseError(lessonsError);
   }
 
-  // Get user notes. This is optional analytics sugar, so missing-table
-  // environments should degrade to zeroes instead of breaking the page.
-  const { data: notesRows, error: notesError } = await supabase
-    .from("lesson_notes")
-    .select("lesson_id")
-    .eq("user_id", userId);
-
-  if (notesError && !isMissingTableError(notesError)) {
-    throw handleSupabaseError(notesError);
-  }
+  const lessonRows = (lessons ?? []) as LessonMetaRow[];
+  const lessonsById = new Map(lessonRows.map((lesson) => [lesson.id, lesson]));
 
   const notesByLesson = new Map<number, number>();
-  for (const row of notesRows ?? []) {
+  for (const row of notesResponse.data ?? []) {
     const lessonId = row.lesson_id as number;
     notesByLesson.set(lessonId, (notesByLesson.get(lessonId) ?? 0) + 1);
   }
 
-  const noteLessonIds = Array.from(notesByLesson.keys());
-  const { data: noteLessons, error: noteLessonsError } = noteLessonIds.length
-    ? await supabase
-        .from("lessons")
-        .select("id, title, slug")
-        .in("id", noteLessonIds)
-    : { data: [], error: null };
-
-  if (noteLessonsError) {
-    throw handleSupabaseError(noteLessonsError);
-  }
-
-  const noteLessonMeta = new Map(
-    (noteLessons ?? []).map((lesson) => [
-      lesson.id as number,
-      { title: lesson.title as string, slug: lesson.slug as string },
-    ])
-  );
-
-  // Calculate analytics
-  const totalLessonsCompleted = progress?.length || 0;
+  const totalLessonsStarted = allProgress.length;
+  const totalLessonsCompleted = completedProgress.length;
+  const completionRate =
+    totalLessonsStarted > 0 ? Math.round((totalLessonsCompleted / totalLessonsStarted) * 100) : 0;
   const totalXpEarned = stats?.total_xp || 0;
-  const quizScores = progress?.map(p => p.quiz_score).filter((s): s is number => s !== null) || [];
-  const averageQuizScore = quizScores.length > 0 
-    ? quizScores.reduce((a, b) => a + b, 0) / quizScores.length 
-    : 0;
-  const totalTimeSpent = progress?.reduce((sum, p) => sum + (p.time_spent_seconds || 0), 0) || 0;
+  const quizScores = completedProgress
+    .map((progress) => progress.quiz_score)
+    .filter((score): score is number => score !== null);
+  const averageQuizScore =
+    quizScores.length > 0 ? quizScores.reduce((sum, score) => sum + score, 0) / quizScores.length : 0;
+  const totalTimeSpentSeconds =
+    completedProgress.reduce((sum, progress) => sum + (progress.time_spent_seconds || 0), 0) || 0;
+  const totalTimeSpent = Math.round(totalTimeSpentSeconds / 60);
+  const averageMinutesPerLesson =
+    totalLessonsCompleted > 0 ? Math.round(totalTimeSpent / totalLessonsCompleted) : 0;
   const currentLevel = stats?.current_level || 1;
   const streakDays = streak?.current_streak || 0;
   const longestStreak = streak?.longest_streak || 0;
 
-  // Difficulty breakdown
   const lessonsByDifficulty = {
-    easy: lessons?.filter(l => l.difficulty === "Dễ").length || 0,
-    medium: lessons?.filter(l => l.difficulty === "Trung bình").length || 0,
-    hard: lessons?.filter(l => l.difficulty === "Khó").length || 0,
+    easy: 0,
+    medium: 0,
+    hard: 0,
   };
 
-  // Weekly activity (last 8 weeks)
+  const lessonsByTrack = {
+    personal: 0,
+    professional: 0,
+    bonus: 0,
+  };
+
+  for (const progress of completedProgress) {
+    const lesson = lessonsById.get(progress.lesson_id);
+    if (lesson?.difficulty === "Dễ") lessonsByDifficulty.easy += 1;
+    if (lesson?.difficulty === "Trung bình") lessonsByDifficulty.medium += 1;
+    if (lesson?.difficulty === "Khó") lessonsByDifficulty.hard += 1;
+
+    if (lesson?.track === "professional") lessonsByTrack.professional += 1;
+    else if (lesson?.track === "bonus") lessonsByTrack.bonus += 1;
+    else lessonsByTrack.personal += 1;
+  }
+
+  const hourlyDistribution = new Array(24).fill(0);
+  for (const progress of completedProgress) {
+    if (!progress.completed_at) continue;
+    const hour = new Date(progress.completed_at).getHours();
+    hourlyDistribution[hour] += 1;
+  }
+
+  const bestStudyHourValue = Math.max(...hourlyDistribution);
+  const bestStudyHour = bestStudyHourValue > 0 ? hourlyDistribution.findIndex((value) => value === bestStudyHourValue) : null;
+
   const weeklyActivity = [];
-  for (let i = 7; i >= 0; i--) {
+  for (let i = 7; i >= 0; i -= 1) {
     const weekStart = new Date();
-    weekStart.setDate(weekStart.getDate() - (i * 7));
+    weekStart.setDate(weekStart.getDate() - i * 7);
     weekStart.setHours(0, 0, 0, 0);
-    
+
     const weekEnd = new Date(weekStart);
     weekEnd.setDate(weekEnd.getDate() + 7);
 
-    const weekProgress = progress?.filter(p => {
-      const completedAt = p.completed_at ? new Date(p.completed_at) : null;
-      return completedAt && completedAt >= weekStart && completedAt < weekEnd;
-    }) || [];
+    const weekProgress = completedProgress.filter((progress) => {
+      if (!progress.completed_at) return false;
+      const completedAt = new Date(progress.completed_at);
+      return completedAt >= weekStart && completedAt < weekEnd;
+    });
+
+    const minutesSpent = Math.round(
+      weekProgress.reduce((sum, progress) => sum + (progress.time_spent_seconds || 0), 0) / 60
+    );
 
     weeklyActivity.push({
-      week: i + 1,
+      week: 8 - i,
+      label: formatWeekLabel(weekStart),
       lessonsCompleted: weekProgress.length,
-      xpEarned: weekProgress.length * 10, // 10 XP per lesson
+      xpEarned: weekProgress.length * 10,
+      minutesSpent,
     });
   }
 
-  // Weak areas (topics with low quiz scores)
-  const weakAreas: { topic: string; averageScore: number; lessonsCount: number }[] = [];
-  // This would require lesson topic data - simplified for now
-  // In a real implementation, you'd group by lesson topic/stage
+  const weeksWithActivity = weeklyActivity.filter((week) => week.lessonsCompleted > 0).length;
+  const consistencyScore = Math.round((weeksWithActivity / Math.max(weeklyActivity.length, 1)) * 100);
+
+  const now = new Date();
+  const last7DaysStart = new Date(now);
+  last7DaysStart.setDate(now.getDate() - 7);
+  const prev7DaysStart = new Date(now);
+  prev7DaysStart.setDate(now.getDate() - 14);
+  const last30DaysStart = new Date(now);
+  last30DaysStart.setDate(now.getDate() - 30);
+
+  const last7DaysProgress = completedProgress.filter((progress) => {
+    if (!progress.completed_at) return false;
+    const completedAt = new Date(progress.completed_at);
+    return completedAt >= last7DaysStart;
+  });
+
+  const prev7DaysProgress = completedProgress.filter((progress) => {
+    if (!progress.completed_at) return false;
+    const completedAt = new Date(progress.completed_at);
+    return completedAt >= prev7DaysStart && completedAt < last7DaysStart;
+  });
+
+  const last30DaysProgress = completedProgress.filter((progress) => {
+    if (!progress.completed_at) return false;
+    const completedAt = new Date(progress.completed_at);
+    return completedAt >= last30DaysStart;
+  });
+
+  const weeklyTrendPercent =
+    prev7DaysProgress.length > 0
+      ? Math.round(((last7DaysProgress.length - prev7DaysProgress.length) / prev7DaysProgress.length) * 100)
+      : last7DaysProgress.length > 0
+        ? 100
+        : 0;
+
+  const recentMomentum = {
+    last7DaysLessons: last7DaysProgress.length,
+    last30DaysLessons: last30DaysProgress.length,
+    last7DaysMinutes: Math.round(
+      last7DaysProgress.reduce((sum, progress) => sum + (progress.time_spent_seconds || 0), 0) / 60
+    ),
+    weeklyTrendPercent,
+  };
 
   const topLessons = Array.from(notesByLesson.entries())
     .sort((a, b) => b[1] - a[1] || a[0] - b[0])
     .map(([lessonId, notesCount]) => {
-      const meta = noteLessonMeta.get(lessonId);
+      const lesson = lessonsById.get(lessonId);
       return {
         lessonId,
-        title: meta?.title ?? `Bai hoc #${lessonId}`,
-        slug: meta?.slug ?? "",
+        title: lesson?.title ?? `Bài học #${lessonId}`,
+        slug: lesson?.slug ?? "",
         notesCount,
       };
     })
@@ -187,29 +304,41 @@ export async function getUserAnalytics(userId: string): Promise<LearningAnalytic
 
   return {
     totalLessonsCompleted,
+    totalLessonsStarted,
+    completionRate,
     totalXpEarned,
     averageQuizScore: Math.round(averageQuizScore * 100) / 100,
-    totalTimeSpent: Math.round(totalTimeSpent / 60), // Convert to minutes
+    totalTimeSpent,
+    averageMinutesPerLesson,
     currentLevel,
     streakDays,
     longestStreak,
+    consistencyScore,
+    bestStudyHour,
+    peakStudyWindow: getPeakStudyWindow(bestStudyHour),
+    recentMomentum,
     lessonsByDifficulty,
+    lessonsByTrack,
     weeklyActivity,
-    weakAreas,
+    weakAreas: [],
+    studyTimeDistribution: hourlyDistribution.map((lessonsCompleted, hour) => ({
+      hour,
+      lessonsCompleted,
+    })),
     notes: {
-      totalNotes: notesRows?.length ?? 0,
+      totalNotes: notesResponse.data?.length ?? 0,
       lessonsWithNotes: notesByLesson.size,
       topLessons,
+    },
+    manualFlags: {
+      totalFlags: flagsResponse.data?.length ?? 0,
     },
   };
 }
 
-/**
- * Get learning time distribution by hour of day
- */
 export async function getLearningTimeDistribution(userId: string): Promise<number[]> {
   const supabase = createClient();
-  
+
   const { data, error } = await supabase
     .from("user_progress")
     .select("completed_at")
@@ -221,13 +350,11 @@ export async function getLearningTimeDistribution(userId: string): Promise<numbe
     throw handleSupabaseError(error);
   }
 
-  // Initialize 24-hour array
   const hourlyDistribution = new Array(24).fill(0);
-
-  data?.forEach(progress => {
+  data?.forEach((progress) => {
     if (progress.completed_at) {
       const hour = new Date(progress.completed_at).getHours();
-      hourlyDistribution[hour]++;
+      hourlyDistribution[hour] += 1;
     }
   });
 

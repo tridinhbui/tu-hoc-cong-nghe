@@ -43,21 +43,22 @@ export default function AnalyticsPage() {
   }
 
   return (
-    <div className="min-h-screen bg-white dark:bg-stone-950">
-      {/* Header */}
-      <div className="border-b border-stone-200 dark:border-stone-800 sticky top-0 bg-white dark:bg-stone-950 z-10">
+    <div className="min-h-screen bg-stone-50 dark:bg-stone-950">
+      <div className="border-b border-stone-200 dark:border-stone-800 sticky top-0 bg-white/95 dark:bg-stone-950/95 backdrop-blur z-10">
         <div className="max-w-4xl mx-auto px-6 py-4 flex items-center justify-between">
           <div>
             <Link href="/dashboard" className="text-stone-500 dark:text-stone-400 hover:text-stone-600 dark:hover:text-stone-300 text-sm font-semibold">
               ← Quay lại
             </Link>
-            <h1 className="text-xl font-bold text-stone-900 dark:text-stone-100 mt-2">Thống kê học tập</h1>
+            <h1 className="text-2xl font-bold text-stone-900 dark:text-stone-100 mt-2">Thống kê học tập</h1>
+            <p className="text-sm text-stone-500 dark:text-stone-400 mt-1">
+              Đọc nhịp học của bạn rõ hơn để biết đang tiến tốt ở đâu và nên tối ưu điều gì tiếp theo.
+            </p>
           </div>
           <UserMenu name={user?.user_metadata?.full_name} email={user?.email} avatarUrl={user?.user_metadata?.avatar_url} />
         </div>
       </div>
 
-      {/* Content */}
       <div className="max-w-4xl mx-auto px-6 py-8">
         <LearningAnalytics />
       </div>

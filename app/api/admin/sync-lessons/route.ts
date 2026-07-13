@@ -2,9 +2,13 @@ import { createAdminClient } from "@/lib/supabase-admin";
 import { loadLessons } from "@/lib/lessons-loader";
 import { NextRequest } from "next/server";
 
-// Destructive (wipes and re-seeds the entire `lessons` table with the
-// service-role key, bypassing RLS) - must never be reachable without proof
-// the caller is the site operator, not just any visitor who found the URL.
+function isMissingAtomicSyncFunction(error: { code?: string } | null) {
+  return error?.code === "PGRST202" || error?.code === "42883";
+}
+
+// Runs the lesson sync inside one Postgres function/transaction so we never
+// expose a half-synced state or cascade-delete dependent data mid-request.
+// This endpoint is still service-role + shared-secret only.
 export async function POST(request: NextRequest) {
   const expectedSecret = process.env.ADMIN_SYNC_SECRET;
   const providedSecret = request.headers.get("x-admin-secret");
@@ -17,23 +21,6 @@ export async function POST(request: NextRequest) {
     const supabase = createAdminClient();
     const lessons = await loadLessons();
 
-    // Clear the table first: ids/slugs can be fully reshuffled between syncs
-    // (e.g. curriculum renumbering), and upserting by id alone can collide
-    // with the separate unique constraint on slug when a slug moves to a
-    // different id in the same batch.
-    const { error: deleteError } = await supabase
-      .from("lessons")
-      .delete()
-      .gte("id", 0);
-
-    if (deleteError) {
-      return Response.json(
-        { error: deleteError.message, details: deleteError.details },
-        { status: 500 }
-      );
-    }
-
-    // Sync all lessons to Supabase
     const lessonData = lessons.map((lesson: { id: number; slug: string; title: string; subtitle: string; duration: string; difficulty: string; emoji: string; openingQuestion: string; openingOptions: string[]; correctOption: number; explanation: string; keyTakeaways: string[]; track?: string }) => ({
       id: lesson.id,
       slug: lesson.slug,
@@ -53,12 +40,20 @@ export async function POST(request: NextRequest) {
       day_number: lesson.id,
     }));
 
-    const { data, error } = await supabase
-      .from("lessons")
-      .upsert(lessonData, { onConflict: "id" })
-      .select();
+    const { data, error } = await supabase.rpc("sync_lessons_atomic", {
+      p_lessons: lessonData,
+    });
 
     if (error) {
+      if (isMissingAtomicSyncFunction(error)) {
+        return Response.json(
+          {
+            error: "Missing required SQL function sync_lessons_atomic(jsonb). Run the latest Supabase migration first.",
+            details: error.message,
+          },
+          { status: 500 }
+        );
+      }
       return Response.json(
         { error: error.message, details: error.details },
         { status: 500 }
@@ -67,8 +62,8 @@ export async function POST(request: NextRequest) {
 
     return Response.json({
       success: true,
-      message: `Synced ${data?.length || 0} lessons to Supabase`,
-      count: data?.length,
+      message: `Synced ${typeof data === "number" ? data : lessonData.length} lessons to Supabase`,
+      count: typeof data === "number" ? data : lessonData.length,
     });
   } catch (error) {
     return Response.json(

@@ -7,9 +7,8 @@ import { useRouter, useSearchParams } from "next/navigation";
 import { toast } from "sonner";
 import { CheckCircle2, BarChart3, Lock, FileText, Menu, X, GraduationCap, StickyNote, CheckCheck } from "lucide-react";
 import { useProgress } from "@/lib/client-hooks";
-import { getProgress, mergeCompletedLessons } from "@/lib/progress";
-import { getCompletedLessons, markLessonComplete as markLessonCompleteSupabase } from "@/lib/supabase-progress";
-import { updateStreak } from "@/lib/supabase-streak";
+import { mergeCompletedLessons } from "@/lib/progress";
+import { getCompletedLessons } from "@/lib/supabase-progress";
 import type { Difficulty } from "@/lib/lesson-types";
 import { createClient } from "@/lib/supabase";
 import type { Session } from "@supabase/supabase-js";
@@ -23,7 +22,7 @@ import DashboardTour from "@/components/DashboardTour";
 import Logo from "@/components/Logo";
 import Leaderboard from "@/components/Leaderboard";
 import { hasCompletedOnboarding, completeOnboarding } from "@/lib/supabase-onboarding";
-import { getUserProfile, recalculateUserStats } from "@/lib/supabase-user";
+import { getUserProfile } from "@/lib/supabase-user";
 import UnlockRequestModal from "@/components/UnlockRequestModal";
 import KnowledgeChallengeModal from "@/components/KnowledgeChallengeModal";
 import { TRACK_PERSONAL, TRACK_PROFESSIONAL, isLessonInRange } from "@/lib/track-stages";
@@ -224,41 +223,13 @@ export default function DashboardClient({ lessonsMeta }: { lessonsMeta: LessonMe
       setUser(session.user);
 
       // Reconcile localStorage with Supabase's user_progress (source of
-      // truth) before computing anything derived from `completed` below - // otherwise a fresh browser/device shows 0% progress and every lesson
-      // as locked, even though the account has real progress on the server.
-      //
-      // EMERGENCY DATA-RECOVERY PATCH (2026-07-11): a lessons-table resync
-      // accidentally cascade-deleted nearly all of user_progress in prod
-      // (FK lesson_id -> lessons.id was ON DELETE CASCADE, not documented
-      // anywhere in the reconstructed schema file). Supabase's free tier has
-      // no backups/PITR, so the only remaining copy of most users' progress
-      // is whatever is still sitting in their own browser's localStorage
-      // from before the incident. Before this patch, mergeCompletedLessons
-      // would have *replaced* that local list with the now-empty server
-      // list, permanently destroying it the moment they opened the
-      // dashboard. Instead: any lesson id present locally but missing from
-      // the server is treated as lost data and re-submitted to
-      // user_progress right now, before any merge happens.
+      // truth) before computing anything derived from `completed` below.
+      // localStorage is only a client-side cache / offline hint - never a
+      // trusted source for restoring authoritative completion back onto the
+      // account, because the learner can edit it freely in the browser.
       try {
         const serverCompleted = await getCompletedLessons(session.user.id);
-        const localCompleted = getProgress().completedLessons;
-        const lost = localCompleted.filter((id) => !serverCompleted.includes(id));
-
-        if (lost.length > 0) {
-          for (const lessonId of lost) {
-            try {
-              await markLessonCompleteSupabase(session.user.id, lessonId, 100, 0);
-            } catch (restoreError) {
-              console.error(`Error restoring lost progress for lesson ${lessonId}:`, restoreError);
-            }
-          }
-          await recalculateUserStats(session.user.id);
-          await updateStreak(session.user.id);
-          toast.success(`Đã khôi phục ${lost.length} bài học từ dữ liệu trên máy này.`);
-          mergeCompletedLessons([...serverCompleted, ...lost]);
-        } else {
-          mergeCompletedLessons(serverCompleted);
-        }
+        mergeCompletedLessons(serverCompleted);
         forceProgressResync((n) => n + 1);
       } catch (error) {
         console.error("Error syncing server progress:", error);
