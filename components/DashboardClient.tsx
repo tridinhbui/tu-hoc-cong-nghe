@@ -674,6 +674,9 @@ export default function DashboardClient({ lessonsMeta }: { lessonsMeta: LessonMe
         <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-3 gap-6">
           {/* Left: Lessons (2 columns on desktop) */}
           <div className="lg:col-span-2">
+          <div className="mb-4 rounded-xl border border-stone-200 dark:border-stone-800 bg-white dark:bg-stone-900 px-4 py-3 text-xs text-stone-600 dark:text-stone-400 leading-relaxed">
+            Lưu ý: bài chuyển <span className="font-semibold text-emerald-600 dark:text-emerald-400">xanh lá</span> và được cộng XP khi bạn làm xong hết quiz của bài (bài không có quiz thì đọc hết là tính). Nếu bạn chỉ bấm &quot;Tự đánh dấu&quot; vì tự biết mình đã học rồi, bài sẽ chuyển <span className="font-semibold text-sky-600 dark:text-sky-400">xanh dương</span> để ghi nhớ tiến độ, nhưng sẽ không được cộng XP.
+          </div>
           <div className="mb-4 flex flex-wrap items-center justify-between gap-3">
             <div className="text-sm text-stone-500 dark:text-stone-400">
               {flagSelectionMode
