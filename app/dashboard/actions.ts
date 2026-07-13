@@ -3,6 +3,8 @@
 import { getResumeLesson } from "@/lib/resume-learning";
 import { getCompletedLessons, getTotalTimeSpentMinutes } from "@/lib/supabase-progress";
 import { createServerSupabaseClient } from "@/lib/supabase-server";
+import { getLessonsMeta } from "@/lib/lessons-loader";
+import { isLessonIdInTrack } from "@/lib/track-stages";
 
 // Wraps lib/resume-learning.ts as a Server Action. That module reads the
 // full lesson dataset (lib/lessons.ts, ~1.3MB of lesson content) via
@@ -33,11 +35,12 @@ export async function getResumeLessonAction(userId: string, track: "personal" | 
 // reflect the learner's real progress instead of being a generic label.
 export async function getDashboardGreetingAction(userId: string, track: "personal" | "professional") {
   const supabase = await createServerSupabaseClient();
-  const [nextLesson, completedLessons, totalMinutes, profile] = await Promise.all([
+  const [nextLesson, completedLessons, totalMinutes, profile, allLessons] = await Promise.all([
     getResumeLesson(userId, track, supabase),
     getCompletedLessons(userId, supabase),
     getTotalTimeSpentMinutes(userId, supabase),
     supabase.from("user_profiles").select("full_name, email").eq("id", userId).single(),
+    getLessonsMeta(),
   ]);
 
   const firstName =
@@ -45,10 +48,22 @@ export async function getDashboardGreetingAction(userId: string, track: "persona
     profile.data?.email?.split("@")[0] ||
     null;
 
+  // Track-scoped completion, for the "Chặng X · Y% track" progress bar on
+  // the resume card - completedLessons above spans every track, so it has
+  // to be filtered down to just this one before it means anything as a %.
+  const trackLessonIds = allLessons.filter((l) => isLessonIdInTrack(l.id, track)).map((l) => l.id);
+  const completedInTrack = trackLessonIds.filter((id) => completedLessons.includes(id)).length;
+  const trackProgressPercent = trackLessonIds.length > 0 ? Math.round((completedInTrack / trackLessonIds.length) * 100) : 0;
+
   return {
     nextLesson,
     completedCount: completedLessons.length,
     totalMinutes,
     firstName,
+    trackProgress: {
+      completed: completedInTrack,
+      total: trackLessonIds.length,
+      percent: trackProgressPercent,
+    },
   };
 }

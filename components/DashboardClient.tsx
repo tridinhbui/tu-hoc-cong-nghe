@@ -18,6 +18,7 @@ import ChatWithAdminWidget from "@/components/ChatWithAdminWidget";
 import OnboardingFlow from "@/components/OnboardingFlow";
 import ResumeLearningButton from "@/components/ResumeLearningButton";
 import StreakDisplay from "@/components/StreakDisplay";
+import StreakReminderManager from "@/components/StreakReminderManager";
 import DashboardTour from "@/components/DashboardTour";
 import Logo from "@/components/Logo";
 import Leaderboard from "@/components/Leaderboard";
@@ -647,6 +648,15 @@ export default function DashboardClient({ lessonsMeta }: { lessonsMeta: LessonMe
       </div>
 
       <div className="px-6 py-8">
+        {/* ── Streak/recall browser-notification reminders (opt-in banner +
+            silent background checks; client-only, no Service Worker) ── */}
+        {user?.id && (
+          <StreakReminderManager
+            userId={user.id}
+            nextLessonId={sorted.find((l) => !completed.includes(l.id))?.id}
+          />
+        )}
+
         {/* ── User Stats + Streak (compact row) ── */}
         <div data-tour="user-stats" className="max-w-6xl mx-auto mb-8 flex flex-col sm:flex-row gap-3">
           <div className="flex-1">

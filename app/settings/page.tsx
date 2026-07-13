@@ -10,6 +10,7 @@ import UserMenu from "@/components/UserMenu";
 import { getUserProfile, setDarkMode, setPreferredTrack, updateUserProfile } from "@/lib/supabase-user";
 import { getInitialTheme, setTheme, type Theme } from "@/lib/theme";
 import { TRACKS } from "@/lib/tracks";
+import { getNotificationPreferences, saveNotificationPreferences } from "@/lib/notification-preferences";
 
 export const dynamic = "force-dynamic";
 
@@ -68,6 +69,8 @@ export default function SettingsPage() {
   const [flash, setFlash] = useState<{ tone: FlashTone; text: string } | null>(null);
   const [avatarUploading, setAvatarUploading] = useState(false);
   const [avatarPreview, setAvatarPreview] = useState<string | null>(null);
+  const [emailRemindersEnabled, setEmailRemindersEnabled] = useState(false);
+  const [savingReminders, setSavingReminders] = useState(false);
 
   useEffect(() => {
     const checkAuth = async () => {
@@ -93,6 +96,13 @@ export default function SettingsPage() {
         console.error("Error loading user profile:", error);
         setName(session.user.user_metadata?.full_name || "");
         setBio("");
+      }
+
+      try {
+        const notificationPrefs = await getNotificationPreferences(session.user.id);
+        setEmailRemindersEnabled(notificationPrefs?.emailRemindersEnabled ?? false);
+      } catch (error) {
+        console.error("Error loading notification preferences:", error);
       }
 
       setAvatarPreview(session.user.user_metadata?.avatar_url || null);
@@ -252,6 +262,25 @@ export default function SettingsPage() {
     const nextTheme: Theme = theme === "dark" ? "light" : "dark";
     setThemeState(nextTheme);
     setTheme(nextTheme);
+  };
+
+  const handleToggleEmailReminders = async () => {
+    if (!user?.id) return;
+    const next = !emailRemindersEnabled;
+    setEmailRemindersEnabled(next);
+    setSavingReminders(true);
+    setFlash(null);
+
+    try {
+      await saveNotificationPreferences(user.id, { emailRemindersEnabled: next });
+      showFlash("success", next ? "Đã bật nhắc nhở qua email." : "Đã tắt nhắc nhở qua email.");
+    } catch (error) {
+      console.error("Error saving notification preferences:", error);
+      setEmailRemindersEnabled(!next);
+      showFlash("error", "Không lưu được tùy chọn nhắc nhở. Vui lòng thử lại.");
+    } finally {
+      setSavingReminders(false);
+    }
   };
 
   const handlePasswordReset = async () => {
@@ -475,6 +504,41 @@ export default function SettingsPage() {
                 >
                   {savingPreferences ? "Đang lưu tùy chọn..." : "Lưu tùy chọn"}
                 </button>
+              </div>
+            </SectionCard>
+
+            <SectionCard
+              icon={<Bell className="w-5 h-5" />}
+              title="Nhắc nhở học tập"
+              description="Bật email nhắc nhở để không bỏ lỡ streak hoặc bài ôn tập đến hạn."
+            >
+              <div className="space-y-4">
+                <div className="flex items-center justify-between gap-4">
+                  <div>
+                    <p className="font-bold text-stone-900 dark:text-stone-100">Nhắc nhở qua email</p>
+                    <p className="text-sm text-stone-500 dark:text-stone-400 mt-1">
+                      Khi sắp mất streak hoặc có bài ôn tập đến hạn
+                    </p>
+                  </div>
+                  <button
+                    onClick={handleToggleEmailReminders}
+                    disabled={savingReminders}
+                    aria-label={emailRemindersEnabled ? "Tắt nhắc nhở qua email" : "Bật nhắc nhở qua email"}
+                    className={`w-14 h-7 rounded-full border-2 transition-colors flex items-center cursor-pointer disabled:opacity-60 ${
+                      emailRemindersEnabled ? "bg-emerald-600 border-emerald-700" : "bg-stone-200 border-stone-300"
+                    }`}
+                  >
+                    <div
+                      className={`w-4 h-4 rounded-full bg-white transition-transform ${
+                        emailRemindersEnabled ? "translate-x-7" : "translate-x-1"
+                      }`}
+                    />
+                  </button>
+                </div>
+                <p className="text-xs text-stone-500 dark:text-stone-400">
+                  Email sẽ được gửi tối đa 1 lần/ngày, chỉ khi thực sự cần (sắp mất streak hoặc có bài ôn tập đến
+                  hạn).
+                </p>
               </div>
             </SectionCard>
 

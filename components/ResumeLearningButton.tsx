@@ -17,6 +17,7 @@ interface Greeting {
   completedCount: number;
   totalMinutes: number;
   firstName: string | null;
+  trackProgress: { completed: number; total: number; percent: number };
 }
 
 // Replaces the old plain "Tiếp tục học" banner with a Tài Tài chat bubble
@@ -75,6 +76,7 @@ export default function ResumeLearningButton({ activeTrack }: ResumeLearningButt
   const completedCount = greeting?.completedCount ?? 0;
   const totalMinutes = greeting?.totalMinutes ?? 0;
   const firstName = greeting?.firstName ?? null;
+  const trackProgress = greeting?.trackProgress ?? null;
   const nextLessonLabel = nextLesson ? getLessonDisplayLabel({ id: nextLesson.id, title: nextLesson.title, track: undefined }) : null;
   const nextLessonShortTitle = nextLesson ? getLessonShortTitle({ title: nextLesson.title }) : null;
 
@@ -118,6 +120,19 @@ export default function ResumeLearningButton({ activeTrack }: ResumeLearningButt
           <p className="text-stone-800 dark:text-stone-200 text-sm sm:text-base leading-relaxed font-medium">
             {greetingText}
           </p>
+          {trackProgress && trackProgress.total > 0 && (
+            <div className="mt-2.5 flex items-center gap-2">
+              <div className="flex-1 h-1.5 rounded-full bg-stone-100 dark:bg-stone-800 overflow-hidden max-w-[180px]">
+                <div
+                  className="h-full rounded-full bg-emerald-500 transition-all duration-500"
+                  style={{ width: `${trackProgress.percent}%` }}
+                />
+              </div>
+              <span className="text-[11px] font-bold text-stone-400 dark:text-stone-500 whitespace-nowrap">
+                {trackProgress.completed}/{trackProgress.total} bài · {trackProgress.percent}%
+              </span>
+            </div>
+          )}
         </div>
         <div className="flex-shrink-0 self-center flex items-center gap-1.5 bg-stone-900 dark:bg-stone-100 text-white dark:text-stone-900 text-sm font-bold px-4 py-2.5 rounded-xl group-hover:bg-emerald-600 dark:group-hover:bg-emerald-400 transition-colors">
           {completedCount === 0 ? "Bắt đầu" : "Tiếp tục"}
