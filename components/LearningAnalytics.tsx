@@ -384,10 +384,12 @@ export default function LearningAnalytics() {
                     background: "rgba(255,255,255,0.96)",
                     boxShadow: "0 20px 40px -24px rgba(28,25,23,0.35)",
                   }}
-                  formatter={(value: number, name: string) => {
-                    if (name === "lessonsCompleted") return [`${value} bài`, "Hoàn thành"];
-                    if (name === "minutesSpent") return [`${value} phút`, "Thời gian"];
-                    return [value, name];
+                  formatter={(value, name) => {
+                    const numericValue = typeof value === "number" ? value : Number(value ?? 0);
+                    const seriesName = String(name ?? "");
+                    if (seriesName === "lessonsCompleted") return [`${numericValue} bài`, "Hoàn thành"];
+                    if (seriesName === "minutesSpent") return [`${numericValue} phút`, "Thời gian"];
+                    return [numericValue, seriesName];
                   }}
                   labelFormatter={(label) => `Tuần bắt đầu ${label}`}
                 />
@@ -441,7 +443,10 @@ export default function LearningAnalytics() {
                       background: "rgba(255,255,255,0.96)",
                       boxShadow: "0 20px 40px -24px rgba(28,25,23,0.35)",
                     }}
-                    formatter={(value: number) => [`${value} bài`, "Hoàn thành"]}
+                    formatter={(value) => {
+                      const numericValue = typeof value === "number" ? value : Number(value ?? 0);
+                      return [`${numericValue} bài`, "Hoàn thành"];
+                    }}
                     labelFormatter={(label) => `Khung giờ ${formatHour(Number(label))}`}
                   />
                   <Bar dataKey="lessonsCompleted" radius={[14, 14, 4, 4]}>
@@ -507,7 +512,10 @@ export default function LearningAnalytics() {
                         background: "rgba(255,255,255,0.96)",
                         boxShadow: "0 20px 40px -24px rgba(28,25,23,0.35)",
                       }}
-                      formatter={(value: number) => [`${value} bài`, "Hoàn thành"]}
+                      formatter={(value) => {
+                        const numericValue = typeof value === "number" ? value : Number(value ?? 0);
+                        return [`${numericValue} bài`, "Hoàn thành"];
+                      }}
                     />
                   </PieChart>
                 </ResponsiveContainer>
