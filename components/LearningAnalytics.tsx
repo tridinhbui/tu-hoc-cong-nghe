@@ -128,7 +128,7 @@ function MetricCard({
 function AnalyticsSkeleton() {
   return (
     <div className="space-y-6 animate-pulse">
-      <div className="rounded-[32px] border border-stone-200 dark:border-stone-800 bg-white dark:bg-stone-900 p-8">
+      <div className="rounded-[28px] sm:rounded-[32px] border border-stone-200 dark:border-stone-800 bg-white dark:bg-stone-900 p-5 sm:p-8">
         <div className="h-6 w-40 rounded-full bg-stone-200 dark:bg-stone-800" />
         <div className="mt-4 h-10 w-72 rounded-2xl bg-stone-200 dark:bg-stone-800" />
         <div className="mt-3 h-5 w-full max-w-2xl rounded-full bg-stone-200 dark:bg-stone-800" />
@@ -139,8 +139,8 @@ function AnalyticsSkeleton() {
         ))}
       </div>
       <div className="grid gap-6 lg:grid-cols-[1.15fr_0.85fr]">
-        <div className="h-96 rounded-[32px] bg-stone-200 dark:bg-stone-800" />
-        <div className="h-96 rounded-[32px] bg-stone-200 dark:bg-stone-800" />
+        <div className="h-96 rounded-[28px] sm:rounded-[32px] bg-stone-200 dark:bg-stone-800" />
+        <div className="h-96 rounded-[28px] sm:rounded-[32px] bg-stone-200 dark:bg-stone-800" />
       </div>
     </div>
   );
@@ -208,7 +208,7 @@ export default function LearningAnalytics() {
 
   if (!analytics) {
     return (
-      <div className="rounded-[32px] border border-stone-200 dark:border-stone-800 bg-white dark:bg-stone-900 p-8 text-center text-stone-500 dark:text-stone-400">
+      <div className="rounded-[28px] sm:rounded-[32px] border border-stone-200 dark:border-stone-800 bg-white dark:bg-stone-900 p-6 sm:p-8 text-center text-stone-500 dark:text-stone-400">
         Không có dữ liệu analytics
       </div>
     );
@@ -220,7 +220,7 @@ export default function LearningAnalytics() {
         initial="hidden"
         animate="visible"
         variants={fadeUp}
-        className="relative overflow-hidden rounded-[32px] border border-stone-200/80 dark:border-stone-800 bg-[radial-gradient(circle_at_top_left,_rgba(16,185,129,0.18),_transparent_30%),linear-gradient(135deg,_rgba(255,255,255,0.98),_rgba(248,250,252,0.94))] dark:bg-[radial-gradient(circle_at_top_left,_rgba(16,185,129,0.18),_transparent_30%),linear-gradient(135deg,_rgba(28,25,23,0.98),_rgba(17,24,39,0.95))] p-8 shadow-[0_30px_80px_-40px_rgba(28,25,23,0.45)]"
+        className="relative overflow-hidden rounded-[28px] sm:rounded-[32px] border border-stone-200/80 dark:border-stone-800 bg-[radial-gradient(circle_at_top_left,_rgba(16,185,129,0.18),_transparent_30%),linear-gradient(135deg,_rgba(255,255,255,0.98),_rgba(248,250,252,0.94))] dark:bg-[radial-gradient(circle_at_top_left,_rgba(16,185,129,0.18),_transparent_30%),linear-gradient(135deg,_rgba(28,25,23,0.98),_rgba(17,24,39,0.95))] p-5 sm:p-8 shadow-[0_30px_80px_-40px_rgba(28,25,23,0.45)]"
       >
         <div className="absolute right-0 top-0 h-44 w-44 rounded-full bg-emerald-500/10 blur-3xl" />
         <div className="relative flex flex-col gap-8 lg:flex-row lg:items-end lg:justify-between">
@@ -237,7 +237,7 @@ export default function LearningAnalytics() {
               thời điểm học hiệu quả hơn và những tín hiệu để quay lại đúng chỗ cần cải thiện.
             </p>
 
-            <div className="mt-6 grid gap-3 sm:grid-cols-3">
+            <div className="mt-6 grid gap-3 lg:grid-cols-3">
               {insights.map((insight, index) => (
                 <div
                   key={index}
@@ -249,8 +249,8 @@ export default function LearningAnalytics() {
             </div>
           </div>
 
-          <div className="grid min-w-[280px] gap-4 sm:grid-cols-2">
-            <div className="rounded-3xl border border-stone-200/80 dark:border-stone-700 bg-white/85 dark:bg-stone-900/75 p-5">
+          <div className="grid w-full min-w-0 gap-4 sm:grid-cols-2 lg:max-w-[320px]">
+            <div className="rounded-3xl border border-stone-200/80 dark:border-stone-700 bg-white/85 dark:bg-stone-900/75 p-4 sm:p-5">
               <p className="text-xs font-extrabold uppercase tracking-[0.2em] text-stone-500 dark:text-stone-400">
                 Nhịp 7 ngày
               </p>
@@ -261,7 +261,7 @@ export default function LearningAnalytics() {
                 bài · {analytics.recentMomentum.last7DaysMinutes} phút
               </p>
             </div>
-            <div className="rounded-3xl border border-stone-200/80 dark:border-stone-700 bg-white/85 dark:bg-stone-900/75 p-5">
+            <div className="rounded-3xl border border-stone-200/80 dark:border-stone-700 bg-white/85 dark:bg-stone-900/75 p-4 sm:p-5">
               <p className="text-xs font-extrabold uppercase tracking-[0.2em] text-stone-500 dark:text-stone-400">
                 Độ ổn định
               </p>
@@ -349,7 +349,7 @@ export default function LearningAnalytics() {
           initial="hidden"
           animate="visible"
           variants={fadeUp}
-          className="rounded-[32px] border border-stone-200/80 dark:border-stone-800 bg-white/90 dark:bg-stone-900/90 p-6 shadow-[0_20px_60px_-36px_rgba(28,25,23,0.35)]"
+          className="min-w-0 overflow-hidden rounded-[28px] sm:rounded-[32px] border border-stone-200/80 dark:border-stone-800 bg-white/90 dark:bg-stone-900/90 p-4 sm:p-6 shadow-[0_20px_60px_-36px_rgba(28,25,23,0.35)]"
         >
           <div className="mb-6 flex items-center justify-between gap-4">
             <div>
@@ -403,7 +403,7 @@ export default function LearningAnalytics() {
           initial="hidden"
           animate="visible"
           variants={fadeUp}
-          className="rounded-[32px] border border-stone-200/80 dark:border-stone-800 bg-white/90 dark:bg-stone-900/90 p-6 shadow-[0_20px_60px_-36px_rgba(28,25,23,0.35)]"
+          className="min-w-0 overflow-hidden rounded-[28px] sm:rounded-[32px] border border-stone-200/80 dark:border-stone-800 bg-white/90 dark:bg-stone-900/90 p-4 sm:p-6 shadow-[0_20px_60px_-36px_rgba(28,25,23,0.35)]"
         >
           <div className="mb-6">
             <p className="text-xs font-extrabold uppercase tracking-[0.22em] text-stone-500 dark:text-stone-400">
@@ -466,7 +466,7 @@ export default function LearningAnalytics() {
           initial="hidden"
           animate="visible"
           variants={fadeUp}
-          className="rounded-[32px] border border-stone-200/80 dark:border-stone-800 bg-white/90 dark:bg-stone-900/90 p-6 shadow-[0_20px_60px_-36px_rgba(28,25,23,0.35)]"
+          className="min-w-0 overflow-hidden rounded-[28px] sm:rounded-[32px] border border-stone-200/80 dark:border-stone-800 bg-white/90 dark:bg-stone-900/90 p-4 sm:p-6 shadow-[0_20px_60px_-36px_rgba(28,25,23,0.35)]"
         >
           <div className="mb-6 flex items-center justify-between gap-4">
             <div>
@@ -484,7 +484,7 @@ export default function LearningAnalytics() {
               Chưa có dữ liệu track để hiển thị.
             </div>
           ) : (
-            <div className="grid items-center gap-4 md:grid-cols-[0.9fr_1.1fr]">
+            <div className="grid min-w-0 items-center gap-4 md:grid-cols-[0.9fr_1.1fr]">
               <div className="h-[260px]">
                 <ResponsiveContainer width="100%" height="100%">
                   <PieChart>
@@ -538,7 +538,7 @@ export default function LearningAnalytics() {
           initial="hidden"
           animate="visible"
           variants={fadeUp}
-          className="rounded-[32px] border border-stone-200/80 dark:border-stone-800 bg-white/90 dark:bg-stone-900/90 p-6 shadow-[0_20px_60px_-36px_rgba(28,25,23,0.35)]"
+          className="min-w-0 overflow-hidden rounded-[28px] sm:rounded-[32px] border border-stone-200/80 dark:border-stone-800 bg-white/90 dark:bg-stone-900/90 p-4 sm:p-6 shadow-[0_20px_60px_-36px_rgba(28,25,23,0.35)]"
         >
           <div className="mb-6 flex items-center justify-between gap-4">
             <div>
@@ -613,7 +613,7 @@ export default function LearningAnalytics() {
           initial="hidden"
           animate="visible"
           variants={fadeUp}
-          className="rounded-[32px] border border-stone-200/80 dark:border-stone-800 bg-white/90 dark:bg-stone-900/90 p-6 shadow-[0_20px_60px_-36px_rgba(28,25,23,0.35)]"
+          className="min-w-0 overflow-hidden rounded-[28px] sm:rounded-[32px] border border-stone-200/80 dark:border-stone-800 bg-white/90 dark:bg-stone-900/90 p-4 sm:p-6 shadow-[0_20px_60px_-36px_rgba(28,25,23,0.35)]"
         >
           <div className="mb-6 flex items-center justify-between gap-4">
             <div>
@@ -670,7 +670,7 @@ export default function LearningAnalytics() {
           initial="hidden"
           animate="visible"
           variants={fadeUp}
-          className="rounded-[32px] border border-stone-200/80 dark:border-stone-800 bg-white/90 dark:bg-stone-900/90 p-6 shadow-[0_20px_60px_-36px_rgba(28,25,23,0.35)]"
+          className="min-w-0 overflow-hidden rounded-[28px] sm:rounded-[32px] border border-stone-200/80 dark:border-stone-800 bg-white/90 dark:bg-stone-900/90 p-4 sm:p-6 shadow-[0_20px_60px_-36px_rgba(28,25,23,0.35)]"
         >
           <div className="mb-6">
             <p className="text-xs font-extrabold uppercase tracking-[0.22em] text-stone-500 dark:text-stone-400">
