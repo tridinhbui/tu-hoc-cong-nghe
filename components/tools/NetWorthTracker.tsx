@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import {
   Area,
   AreaChart,
@@ -78,6 +78,10 @@ export default function NetWorthTracker({ userId }: { userId: string }) {
   const [liabilities, setLiabilities] = useState<Record<string, string>>(
     emptyBreakdown(LIABILITY_FIELDS)
   );
+  // Guards against a double-click/2-tab race inserting two snapshots before
+  // the `saving` state's re-render lands (net_worth_snapshots is
+  // insert-only, no upsert to naturally collapse duplicates).
+  const savingRef = useRef(false);
 
   useEffect(() => {
     let cancelled = false;
@@ -136,6 +140,12 @@ export default function NetWorthTracker({ userId }: { userId: string }) {
   );
 
   async function handleSave() {
+    if (savingRef.current) return;
+    if (totalAssets === 0 && totalLiabilities === 0) {
+      setError("Nhập ít nhất một khoản tài sản hoặc nợ trước khi lưu.");
+      return;
+    }
+    savingRef.current = true;
     setSaving(true);
     setError(null);
     setSaved(false);
@@ -149,6 +159,7 @@ export default function NetWorthTracker({ userId }: { userId: string }) {
       console.error("Error saving net worth snapshot:", err);
       setError("Không thể lưu snapshot. Vui lòng thử lại.");
     } finally {
+      savingRef.current = false;
       setSaving(false);
     }
   }
@@ -318,7 +329,7 @@ export default function NetWorthTracker({ userId }: { userId: string }) {
         <button
           type="button"
           onClick={() => void handleSave()}
-          disabled={saving}
+          disabled={saving || (totalAssets === 0 && totalLiabilities === 0)}
           className="mt-5 inline-flex items-center justify-center gap-2 bg-stone-900 hover:bg-stone-800 dark:bg-stone-100 dark:hover:bg-white text-white dark:text-stone-900 font-bold rounded-xl px-6 py-3 disabled:opacity-60 disabled:cursor-not-allowed transition-colors"
         >
           {saving ? <Loader2 className="h-4 w-4 animate-spin" /> : <Save className="h-4 w-4" />}

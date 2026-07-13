@@ -52,11 +52,35 @@ export function useAuthGate() {
       }
       setUserId(session.user.id);
       setChecking(false);
+
+      // Initial resolution above unsubscribes right away - without a
+      // second, longer-lived listener, logging out in another tab left
+      // this tab still holding a stale userId and letting the page
+      // continue issuing writes under it until a manual refresh.
+      const {
+        data: { subscription },
+      } = supabase.auth.onAuthStateChange((event) => {
+        if (cancelled) return;
+        if (event === "SIGNED_OUT") {
+          setUserId(null);
+          router.replace("/login");
+        }
+      });
+      return () => subscription.unsubscribe();
     };
 
-    checkAuth();
+    let cleanupSignedOutListener: (() => void) | undefined;
+    checkAuth().then((cleanup) => {
+      if (cancelled) {
+        cleanup?.();
+      } else {
+        cleanupSignedOutListener = cleanup;
+      }
+    });
+
     return () => {
       cancelled = true;
+      cleanupSignedOutListener?.();
     };
   }, [router]);
 

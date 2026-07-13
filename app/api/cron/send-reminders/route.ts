@@ -127,11 +127,18 @@ export async function GET(request: NextRequest) {
 
   const cutoff = new Date(Date.now() - REMINDER_COOLDOWN_HOURS * 60 * 60 * 1000).toISOString();
 
+  // Capped so a single invocation (whether the real daily cron or, absent
+  // CRON_SECRET, anyone who finds the URL) can only ever touch a bounded
+  // slice of users - repeated calls drain the queue a batch at a time
+  // instead of one call being able to scan+process the entire table.
+  const MAX_CANDIDATES_PER_RUN = 500;
+
   const { data: candidates, error } = await supabase
     .from("notification_preferences")
     .select("user_id")
     .eq("email_reminders_enabled", true)
-    .or(`last_reminder_sent_at.is.null,last_reminder_sent_at.lt.${cutoff}`);
+    .or(`last_reminder_sent_at.is.null,last_reminder_sent_at.lt.${cutoff}`)
+    .limit(MAX_CANDIDATES_PER_RUN);
 
   if (error) {
     console.error("[send-reminders] Failed to query notification_preferences:", error);

@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { toast } from "sonner";
 import { getBudgetPlan, saveBudgetPlan } from "@/lib/financial-tools";
 
@@ -23,6 +23,10 @@ export default function BudgetCalculator({ userId }: BudgetCalculatorProps) {
   const [wantsAmount, setWantsAmount] = useState<string>("");
   const [savingsAmount, setSavingsAmount] = useState<string>("");
   const [touched, setTouched] = useState(false);
+  // Guards against a double-click firing two saves before the `saving`
+  // state's re-render lands - `disabled={saving}` alone has a gap between
+  // click and re-render that a fast double-click can slip through.
+  const savingRef = useRef(false);
 
   useEffect(() => {
     let cancelled = false;
@@ -75,12 +79,16 @@ export default function BudgetCalculator({ userId }: BudgetCalculatorProps) {
   const needsWarning = income > 0 && needsPct > 60;
   const wantsWarning = income > 0 && wantsPct > 40;
   const savingsWarning = income > 0 && savingsPct < 10;
+  const totalPct = needsPct + wantsPct + savingsPct;
+  const overBudgetWarning = income > 0 && totalPct > 100;
 
   const handleSave = async () => {
     if (income <= 0) {
       toast.error("Vui lòng nhập thu nhập hàng tháng.");
       return;
     }
+    if (savingRef.current) return;
+    savingRef.current = true;
     setSaving(true);
     try {
       await saveBudgetPlan(userId, {
@@ -93,6 +101,7 @@ export default function BudgetCalculator({ userId }: BudgetCalculatorProps) {
     } catch {
       toast.error("Không thể lưu ngân sách. Vui lòng thử lại.");
     } finally {
+      savingRef.current = false;
       setSaving(false);
     }
   };
@@ -229,6 +238,14 @@ export default function BudgetCalculator({ userId }: BudgetCalculatorProps) {
               </p>
             )}
           </div>
+
+          {overBudgetWarning && (
+            <div className="rounded-xl border border-rose-200 dark:border-rose-900 bg-rose-50 dark:bg-rose-950/30 p-3">
+              <p className="text-xs font-bold text-rose-700 dark:text-rose-400">
+                Tổng 3 khoản đang chiếm {totalPct.toFixed(0)}% thu nhập - vượt quá 100%. Kiểm tra lại số liệu, có thể bạn đang chi nhiều hơn số tiền thực nhận.
+              </p>
+            </div>
+          )}
         </div>
       )}
 

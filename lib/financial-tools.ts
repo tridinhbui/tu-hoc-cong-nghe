@@ -8,6 +8,27 @@ function isMissingTableError(error: { code?: string } | null): boolean {
   return error?.code === "PGRST205" || error?.code === "42P01";
 }
 
+// Money inputs (net worth, budget, emergency fund) are plain <input
+// type="number"> fields - `min` on the element only hints the UI, it
+// doesn't stop someone from typing a leading "-" or a value so large it
+// loses precision as a JS float. Clamp here so every save path (not just
+// whichever component remembered to validate) writes a sane number; the DB
+// CHECK constraints (20260714_financial_tools_constraints.sql) are the
+// final backstop if this is ever bypassed.
+const MAX_MONEY_VALUE = 1_000_000_000_000; // 1,000 tỷ VNĐ - generous ceiling, not a real financial limit
+function clampMoney(value: number): number {
+  if (!Number.isFinite(value)) return 0;
+  return Math.min(Math.max(0, value), MAX_MONEY_VALUE);
+}
+
+function clampBreakdown(values: Record<string, number>): Record<string, number> {
+  const result: Record<string, number> = {};
+  for (const [key, value] of Object.entries(values)) {
+    result[key] = clampMoney(value);
+  }
+  return result;
+}
+
 export interface NetWorthSnapshot {
   id: number;
   totalAssets: number;
@@ -48,15 +69,17 @@ export async function saveNetWorthSnapshot(
   liabilitiesBreakdown: Record<string, number>
 ): Promise<void> {
   const supabase = createClient();
-  const totalAssets = Object.values(assetsBreakdown).reduce((sum, v) => sum + (v || 0), 0);
-  const totalLiabilities = Object.values(liabilitiesBreakdown).reduce((sum, v) => sum + (v || 0), 0);
+  const cleanAssets = clampBreakdown(assetsBreakdown);
+  const cleanLiabilities = clampBreakdown(liabilitiesBreakdown);
+  const totalAssets = Object.values(cleanAssets).reduce((sum, v) => sum + v, 0);
+  const totalLiabilities = Object.values(cleanLiabilities).reduce((sum, v) => sum + v, 0);
 
   const { error } = await supabase.from("net_worth_snapshots").insert({
     user_id: userId,
     total_assets: totalAssets,
     total_liabilities: totalLiabilities,
-    assets_breakdown: assetsBreakdown,
-    liabilities_breakdown: liabilitiesBreakdown,
+    assets_breakdown: cleanAssets,
+    liabilities_breakdown: cleanLiabilities,
   });
 
   if (error && !isMissingTableError(error)) throw handleSupabaseError(error);
@@ -97,10 +120,10 @@ export async function saveBudgetPlan(userId: string, plan: Omit<BudgetPlan, "upd
   const supabase = createClient();
   const { error } = await supabase.from("budget_plans").upsert({
     user_id: userId,
-    monthly_income: plan.monthlyIncome,
-    needs_amount: plan.needsAmount,
-    wants_amount: plan.wantsAmount,
-    savings_amount: plan.savingsAmount,
+    monthly_income: clampMoney(plan.monthlyIncome),
+    needs_amount: clampMoney(plan.needsAmount),
+    wants_amount: clampMoney(plan.wantsAmount),
+    savings_amount: clampMoney(plan.savingsAmount),
     updated_at: new Date().toISOString(),
   });
 
@@ -140,9 +163,9 @@ export async function saveEmergencyFund(userId: string, fund: Omit<EmergencyFund
   const supabase = createClient();
   const { error } = await supabase.from("emergency_funds").upsert({
     user_id: userId,
-    monthly_expenses: fund.monthlyExpenses,
-    target_months: fund.targetMonths,
-    current_saved: fund.currentSaved,
+    monthly_expenses: clampMoney(fund.monthlyExpenses),
+    target_months: Math.min(Math.max(1, fund.targetMonths || 0), 60),
+    current_saved: clampMoney(fund.currentSaved),
     updated_at: new Date().toISOString(),
   });
 

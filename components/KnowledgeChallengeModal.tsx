@@ -4,7 +4,7 @@ import { useEffect, useState, useCallback } from "react";
 import Link from "next/link";
 import { X, CheckCircle2 } from "lucide-react";
 import type { ChallengeQuestion } from "@/app/api/knowledge-challenge/route";
-import { recordChallengePass } from "@/lib/supabase-challenges";
+import { submitGateChallenge, type QuizAnswerSubmission } from "@/lib/supabase-challenges";
 
 interface KnowledgeChallengeModalProps {
   onClose: () => void;
@@ -27,7 +27,13 @@ export default function KnowledgeChallengeModal({ onClose, gate, onPassed }: Kno
   const [selected, setSelected] = useState<number | null>(null);
   const [submitted, setSubmitted] = useState(false);
   const [results, setResults] = useState<boolean[]>([]);
+  const [answers, setAnswers] = useState<QuizAnswerSubmission[]>([]);
   const [passRecorded, setPassRecorded] = useState(false);
+  // Server's own verdict on the gate challenge - null while pending. The
+  // unlock button only appears once this resolves true; the locally-computed
+  // `passed` below is cosmetic (immediate per-question feedback) only, the
+  // actual unlock write happens server-side (see submitGateChallenge).
+  const [serverPassed, setServerPassed] = useState<boolean | null>(null);
 
   const loadChallenge = useCallback(async () => {
     setState("loading");
@@ -35,7 +41,9 @@ export default function KnowledgeChallengeModal({ onClose, gate, onPassed }: Kno
     setSelected(null);
     setSubmitted(false);
     setResults([]);
+    setAnswers([]);
     setPassRecorded(false);
+    setServerPassed(null);
     try {
       const res = await fetch("/api/knowledge-challenge");
       if (!res.ok) throw new Error("failed");
@@ -75,16 +83,23 @@ export default function KnowledgeChallengeModal({ onClose, gate, onPassed }: Kno
       n[activeQ] = ok;
       return n;
     });
+    setAnswers((a) => [...a, { token: q.token, selected }]);
     setSubmitted(true);
   }
 
   function next() {
     if (activeQ === questions.length - 1) {
-      if (gate && passed && !passRecorded) {
+      if (gate && !passRecorded) {
         setPassRecorded(true);
-        recordChallengePass(gate.userId, gate.lessonId, score, questions.length).catch((error) => {
-          console.error("Error recording challenge pass:", error);
-        });
+        // Server re-derives the score from the signed tokens and is the
+        // only writer of user_challenge_passes - the locally-computed
+        // `passed` above never unlocks anything by itself.
+        submitGateChallenge(gate.lessonId, answers)
+          .then((result) => setServerPassed(result.passed))
+          .catch((error) => {
+            console.error("Error submitting gate challenge:", error);
+            setServerPassed(false);
+          });
       }
       setActiveQ((i) => i + 1);
       return;
@@ -196,12 +211,18 @@ export default function KnowledgeChallengeModal({ onClose, gate, onPassed }: Kno
             </div>
           )}
 
-          {state === "ready" && allDone && (
+          {state === "ready" && allDone && gate && serverPassed === null && (
+            <div className="text-center py-8">
+              <p className="text-stone-500 dark:text-stone-400 text-sm">Đang xác nhận kết quả...</p>
+            </div>
+          )}
+
+          {state === "ready" && allDone && (!gate || serverPassed !== null) && (
             <div className="text-center space-y-4">
-              <div className="text-5xl">{gate ? (passed ? "🔓" : "🔒") : score === questions.length ? "🏆" : score >= questions.length * 0.7 ? "🎉" : "💪"}</div>
+              <div className="text-5xl">{gate ? (serverPassed ? "🔓" : "🔒") : score === questions.length ? "🏆" : score >= questions.length * 0.7 ? "🎉" : "💪"}</div>
               <div>
                 <h3 className="font-bold text-stone-900 dark:text-stone-100 text-xl">
-                  {gate ? (passed ? "Đã mở khoá!" : "Chưa đạt yêu cầu") : "Hoàn thành thử thách!"}
+                  {gate ? (serverPassed ? "Đã mở khoá!" : "Chưa đạt yêu cầu") : "Hoàn thành thử thách!"}
                 </h3>
                 <p className="text-stone-500 dark:text-stone-400 text-sm mt-1">{score}/{questions.length} câu đúng</p>
               </div>
@@ -225,7 +246,7 @@ export default function KnowledgeChallengeModal({ onClose, gate, onPassed }: Kno
                   })}
                 </div>
               )}
-              {gate && passed ? (
+              {gate && serverPassed ? (
                 <div className="grid grid-cols-2 gap-3 pt-2">
                   <button onClick={onClose} className="py-3 rounded-xl border border-stone-200 dark:border-stone-700 text-stone-600 dark:text-stone-400 text-sm font-bold hover:bg-stone-50 dark:hover:bg-stone-800 cursor-pointer">
                     Để sau
@@ -234,7 +255,7 @@ export default function KnowledgeChallengeModal({ onClose, gate, onPassed }: Kno
                     Vào bài học →
                   </button>
                 </div>
-              ) : gate && !passed ? (
+              ) : gate && serverPassed === false ? (
                 <div className="grid grid-cols-2 gap-3 pt-2">
                   <button onClick={onClose} className="py-3 rounded-xl border border-stone-200 dark:border-stone-700 text-stone-600 dark:text-stone-400 text-sm font-bold hover:bg-stone-50 dark:hover:bg-stone-800 cursor-pointer">
                     Đóng

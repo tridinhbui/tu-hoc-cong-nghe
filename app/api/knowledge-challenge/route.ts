@@ -2,6 +2,7 @@ import { createServerSupabaseClient } from "@/lib/supabase-server";
 import { getLessonById, getLessonsMeta } from "@/lib/lessons-loader";
 import { TRACK_PERSONAL, TRACK_PROFESSIONAL, isLessonInRange } from "@/lib/track-stages";
 import { CFA_LEVEL_1_SUBJECTS } from "@/lib/cfa-track";
+import { signQuestionToken } from "@/lib/quiz-tokens";
 import { NextRequest, NextResponse } from "next/server";
 
 export interface ChallengeQuestion {
@@ -12,6 +13,12 @@ export interface ChallengeQuestion {
   options: string[];
   correct: number;
   explanation: string;
+  // Signed proof of `correct` for this specific delivered question -
+  // submit it back (with the option the learner picked) to
+  // /api/knowledge-challenge/submit so the server can grade the attempt
+  // itself instead of trusting a client-computed score. See
+  // lib/quiz-tokens.ts.
+  token: string;
 }
 
 const QUESTION_COUNT = 5;
@@ -104,7 +111,7 @@ export async function GET(request: NextRequest) {
   // just serializes disk I/O that could otherwise overlap.
   const lessons = await Promise.all(sourceIds.map((id) => getLessonById(id)));
 
-  const pool: ChallengeQuestion[] = [];
+  const pool: Omit<ChallengeQuestion, "token">[] = [];
   for (const lesson of lessons) {
     if (!lesson?.quiz?.length) continue;
     for (const q of lesson.quiz) {
@@ -131,10 +138,12 @@ export async function GET(request: NextRequest) {
   // correct answer in the same position as it did in the original lesson.
   const questions = picked.map((q) => {
     const order = shuffle(q.options.map((_, i) => i));
+    const correct = order.indexOf(q.correct);
     return {
       ...q,
       options: order.map((i) => q.options[i]),
-      correct: order.indexOf(q.correct),
+      correct,
+      token: signQuestionToken({ lessonId: q.lessonId, correct }),
     };
   });
 

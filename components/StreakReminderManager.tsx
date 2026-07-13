@@ -67,6 +67,15 @@ export default function StreakReminderManager({
 
     let cancelled = false;
 
+    // The decide-then-mark-shown sequence below reads then writes
+    // localStorage - with 2+ tabs open, both can read "not shown yet"
+    // before either writes, firing the same notification twice. Web Locks
+    // serializes this across tabs (same-origin, all browsers since ~2020);
+    // where it's unavailable this just runs unlocked, same as before -
+    // a rare duplicate notification, not a data-integrity issue.
+    const withLock = (fn: () => Promise<void>) =>
+      "locks" in navigator ? navigator.locks.request("thtcdn-reminder-check", fn) : fn();
+
     const runCheck = async () => {
       try {
         const streak = await getUserStreak(userId);
@@ -79,23 +88,28 @@ export default function StreakReminderManager({
         // (e.g. a re-engagement banner) can read it without recomputation.
         void getInactiveDaysCount(streak);
 
-        const alreadyShown = (kind: ReminderKind) =>
-          window.localStorage.getItem(reminderShownKey(kind)) === "1";
+        await withLock(async () => {
+          const alreadyShown = (kind: ReminderKind) =>
+            window.localStorage.getItem(reminderShownKey(kind)) === "1";
 
-        const decision = decideReminder({ streakRisk, dueRecallCount, alreadyShown });
-        if (!decision) return;
+          const decision = decideReminder({ streakRisk, dueRecallCount, alreadyShown });
+          if (!decision) return;
 
-        const notification = new Notification(decision.title, {
-          body: decision.body,
-          icon: "/tai-tai-avatar.png",
-          tag: `thtcdn-reminder-${decision.kind}`,
+          // Mark shown before firing, still inside the lock, so a second
+          // tab that queues behind this one sees it as already-shown the
+          // moment it gets the lock.
+          window.localStorage.setItem(reminderShownKey(decision.kind), "1");
+
+          const notification = new Notification(decision.title, {
+            body: decision.body,
+            icon: "/tai-tai-avatar.png",
+            tag: `thtcdn-reminder-${decision.kind}`,
+          });
+          notification.onclick = () => {
+            window.focus();
+            window.location.href = "/dashboard";
+          };
         });
-        notification.onclick = () => {
-          window.focus();
-          window.location.href = "/dashboard";
-        };
-
-        window.localStorage.setItem(reminderShownKey(decision.kind), "1");
       } catch (error) {
         console.error("Error checking streak/recall reminders:", error);
       }

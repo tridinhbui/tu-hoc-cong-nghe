@@ -25,23 +25,37 @@ export function computeQuizXp(score: number, total: number): number {
   return score * XP_PER_CORRECT_ANSWER;
 }
 
-export async function recordQuizSession(
-  userId: string,
+export interface QuizAnswerSubmission {
+  token: string;
+  selected: number;
+}
+
+// Grades and records a quiz session server-side (app/api/knowledge-challenge/submit)
+// instead of inserting a client-computed score/xp_earned directly - direct
+// insert is revoked for `authenticated` (see
+// supabase/migrations/20260714_harden_quiz_writes.sql) precisely so a
+// score/XP value can no longer be fabricated from devtools. `answers` are
+// the signed per-question tokens from the /api/knowledge-challenge
+// response, each paired with the option index the learner picked - the
+// server re-derives the score from those tokens, it never trusts a score
+// computed in the browser.
+export async function submitQuizSession(
   track: QuizTrack,
   difficulty: QuizDifficulty,
-  score: number,
-  total: number
-): Promise<number> {
-  const xpEarned = computeQuizXp(score, total);
-  const supabase = createClient();
-  const { error } = await supabase
-    .from("user_quiz_sessions")
-    .insert([{ user_id: userId, track, difficulty, score, total, xp_earned: xpEarned }]);
+  answers: QuizAnswerSubmission[]
+): Promise<{ score: number; total: number; xpEarned: number }> {
+  const res = await fetch("/api/knowledge-challenge/submit", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ mode: "quiz", track, difficulty, answers }),
+  });
 
-  if (error && !isMissingTableError(error)) {
-    throw handleSupabaseError(error);
+  if (!res.ok) {
+    const body = await res.json().catch(() => null);
+    throw new Error(body?.error ?? `Failed to submit quiz session (${res.status})`);
   }
-  return xpEarned;
+
+  return res.json();
 }
 
 /** Sum of XP earned from all past standalone quiz sessions - added on top

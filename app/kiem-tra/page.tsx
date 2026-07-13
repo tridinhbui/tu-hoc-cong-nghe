@@ -5,7 +5,7 @@ import Link from "next/link";
 import { ChevronLeft, Sparkles, CheckCircle2 } from "lucide-react";
 import { createClient } from "@/lib/supabase";
 import type { ChallengeQuestion } from "@/app/api/knowledge-challenge/route";
-import { recordQuizSession, computeQuizXp, type QuizTrack, type QuizDifficulty } from "@/lib/supabase-quiz-sessions";
+import { submitQuizSession, computeQuizXp, type QuizTrack, type QuizDifficulty, type QuizAnswerSubmission } from "@/lib/supabase-quiz-sessions";
 import { recalculateUserStats } from "@/lib/supabase-user";
 
 const TRACKS: { id: QuizTrack; label: string; desc: string }[] = [
@@ -37,6 +37,7 @@ export default function KiemTraPage() {
   const [selected, setSelected] = useState<number | null>(null);
   const [submitted, setSubmitted] = useState(false);
   const [results, setResults] = useState<boolean[]>([]);
+  const [answers, setAnswers] = useState<QuizAnswerSubmission[]>([]);
   const [xpAwarded, setXpAwarded] = useState<number | null>(null);
   const [recording, setRecording] = useState(false);
 
@@ -50,6 +51,7 @@ export default function KiemTraPage() {
     setSelected(null);
     setSubmitted(false);
     setResults([]);
+    setAnswers([]);
     setXpAwarded(null);
     try {
       const res = await fetch(`/api/knowledge-challenge?track=${track}&difficulty=${difficulty}`);
@@ -77,12 +79,15 @@ export default function KiemTraPage() {
     if (!userId || recording || xpAwarded !== null) return;
     setRecording(true);
     try {
-      const xp = await recordQuizSession(userId, track, difficulty, score, questions.length);
+      // Server re-derives score/XP from the signed tokens collected below -
+      // it never trusts the client's own `score` tally for what gets
+      // written to the database (see lib/quiz-tokens.ts).
+      const result = await submitQuizSession(track, difficulty, answers);
       await recalculateUserStats(userId);
-      setXpAwarded(xp);
+      setXpAwarded(result.xpEarned);
     } catch (error) {
       console.error("Error recording quiz session:", error);
-      setXpAwarded(computeQuizXp(score, questions.length)); // optimistic fallback so the UI still shows a reward
+      setXpAwarded(computeQuizXp(score, questions.length)); // optimistic fallback so the UI still shows a reward - nothing is persisted if this branch runs
     } finally {
       setRecording(false);
     }
@@ -101,6 +106,7 @@ export default function KiemTraPage() {
       n[activeQ] = ok;
       return n;
     });
+    setAnswers((a) => [...a, { token: q.token, selected }]);
     setSubmitted(true);
   }
 

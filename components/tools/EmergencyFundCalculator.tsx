@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { toast } from "sonner";
 import { getEmergencyFund, saveEmergencyFund } from "@/lib/financial-tools";
 
@@ -20,6 +20,7 @@ export default function EmergencyFundCalculator({ userId }: EmergencyFundCalcula
   const [monthlyExpenses, setMonthlyExpenses] = useState<string>("");
   const [targetMonths, setTargetMonths] = useState<number>(6);
   const [currentSaved, setCurrentSaved] = useState<string>("");
+  const savingRef = useRef(false);
 
   useEffect(() => {
     let cancelled = false;
@@ -54,6 +55,8 @@ export default function EmergencyFundCalculator({ userId }: EmergencyFundCalcula
       toast.error("Vui lòng nhập chi tiêu hàng tháng.");
       return;
     }
+    if (savingRef.current) return;
+    savingRef.current = true;
     setSaving(true);
     try {
       await saveEmergencyFund(userId, {
@@ -65,6 +68,7 @@ export default function EmergencyFundCalculator({ userId }: EmergencyFundCalcula
     } catch {
       toast.error("Không thể lưu. Vui lòng thử lại.");
     } finally {
+      savingRef.current = false;
       setSaving(false);
     }
   };
