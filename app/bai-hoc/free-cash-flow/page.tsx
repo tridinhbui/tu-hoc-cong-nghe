@@ -4,7 +4,7 @@ import { useState } from "react";
 import LessonPageLayout, { QuizQuestion, LessonMeta } from "@/components/LessonPageLayout";
 
 const LESSON: LessonMeta = {
-  id: 2, day: 2, accent: "blue",
+  id: 2, day: 2, accent: "emerald",
   title: "Dòng Tiền Tự Do (Free Cash Flow)",
   subtitle: "Tại sao doanh nghiệp lãi mà vẫn không có tiền để dùng?",
   duration: "7 phút", difficulty: "Trung bình", emoji: "💸",
@@ -127,8 +127,8 @@ export default function FreeCashFlowPage() {
       <div className="space-y-8 text-stone-700 leading-relaxed">
 
         <section className="space-y-4">
-          <div className="rounded-xl border border-blue-100 bg-blue-50 p-4">
-            <h3 className="text-sm font-bold uppercase tracking-wide text-blue-800 mb-2">Hiểu nhanh</h3>
+          <div className="rounded-xl border border-emerald-100 bg-emerald-50 p-4">
+            <h3 className="text-sm font-bold uppercase tracking-wide text-emerald-800 mb-2">Hiểu nhanh</h3>
             <p className="text-sm leading-relaxed text-stone-700">
               Dòng tiền tự do là số tiền doanh nghiệp còn lại sau khi đã chi phần cần thiết để duy trì và phát triển hoạt động. Lãi trên giấy chưa đủ; quan trọng là cuối cùng còn bao nhiêu tiền thật.
             </p>
@@ -144,13 +144,13 @@ export default function FreeCashFlowPage() {
           <div className="bg-stone-50 border border-stone-200 rounded-2xl p-5">
             <div className="text-sm font-bold text-stone-700 mb-3">Câu chuyện ThanhTech - phần mềm kế toán</div>
             {[
-              { icon: "⚙️", text: "Dòng tiền kinh doanh năm nay: +200 tỷ (khách hàng trả tiền tốt, chi phí thấp)" },
-              { icon: "🖥️", text: "Chi đầu tư tài sản: −180 tỷ (nâng cấp máy chủ, mua trung tâm dữ liệu mới)" },
-              { icon: "💸", text: "Dòng tiền tự do = 200 − 180 = 20 tỷ - chỉ còn 20 tỷ để trả cổ tức hay đầu tư khác" },
-              { icon: "", text: "Báo cáo lãi 150 tỷ - nhưng tiền tự do thực chỉ có 20 tỷ" },
-            ].map(r => (
-              <div key={r.text} className="flex items-start gap-3 text-sm text-stone-600 py-1.5 border-b border-stone-100 last:border-0">
-                <span className="text-lg flex-shrink-0">{r.icon}</span>{r.text}
+              "Dòng tiền kinh doanh năm nay: +200 tỷ (khách hàng trả tiền tốt, chi phí thấp)",
+              "Chi đầu tư tài sản: −180 tỷ (nâng cấp máy chủ, mua trung tâm dữ liệu mới)",
+              "Dòng tiền tự do = 200 − 180 = 20 tỷ - chỉ còn 20 tỷ để trả cổ tức hay đầu tư khác",
+              "Báo cáo lãi 150 tỷ - nhưng tiền tự do thực chỉ có 20 tỷ",
+            ].map(text => (
+              <div key={text} className="text-sm text-stone-600 py-1.5 border-b border-stone-100 last:border-0">
+                {text}
               </div>
             ))}
           </div>
@@ -160,55 +160,16 @@ export default function FreeCashFlowPage() {
 
         <section className="space-y-4">
           <h2 className="text-xl font-bold text-stone-900">Vì sao nhà đầu tư thích nhìn dòng tiền tự do?</h2>
-          <p>Warren Buffett hay nói về tiền mà chủ sở hữu thực sự có thể rút ra mà không làm yếu doanh nghiệp. Về cơ bản, đó chính là dòng tiền tự do.</p>
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            {[
-              { icon: "📋", title: "Lợi nhuận ròng", items: ["Bị ảnh hưởng bởi khấu hao và ghi nhận kế toán", "Khác nhau tùy phương pháp kế toán", "Chưa phản ánh nhu cầu đầu tư tài sản"], color: "bg-stone-50 border-stone-200 text-stone-700" },
-              { icon: "💰", title: "Dòng tiền tự do", items: ["Gần với tiền mặt thực hơn", "Phản ánh đúng nhu cầu đầu tư", "Là nền tảng của nhiều cách định giá"], color: "bg-stone-50 border-stone-200 text-stone-700" },
-            ].map(c => (
-              <div key={c.title} className={`rounded-2xl border p-4 ${c.color}`}>
-                <div className="font-bold text-sm mb-2">{c.icon} {c.title}</div>
-                {c.items.map(t => <div key={t} className="text-xs opacity-80 flex gap-2 mt-1"><span>•</span>{t}</div>)}
-              </div>
-            ))}
-          </div>
+          <p>Warren Buffett hay nói về tiền mà chủ sở hữu thực sự có thể rút ra mà không làm yếu doanh nghiệp. Về cơ bản, đó chính là dòng tiền tự do. Lợi nhuận ròng bị ảnh hưởng bởi khấu hao và cách ghi nhận kế toán, còn dòng tiền tự do gần với tiền mặt thực hơn và là nền tảng của nhiều cách định giá.</p>
         </section>
 
         <section className="space-y-4">
           <h2 className="text-xl font-bold text-stone-900">Dòng tiền tự do âm có phải lúc nào cũng xấu?</h2>
-          <p>Không. Dòng tiền tự do âm có hai nguyên nhân hoàn toàn khác nhau:</p>
-          <div className="space-y-3">
-            {[
-              { icon: "🚀", title: "Âm vì đầu tư tăng trưởng", desc: "Doanh nghiệp đang chi mạnh để mở rộng. Điều này có thể chấp nhận được nếu khoản đầu tư tạo ra dòng tiền tốt hơn sau này.", color: "bg-stone-50 border-stone-200 text-stone-700" },
-              { icon: "💀", title: "Âm vì kinh doanh yếu", desc: "Nếu dòng tiền kinh doanh âm và vẫn phải chi đầu tư lớn, công ty đang đốt tiền. Cần nhìn xu hướng nhiều năm và lý do cụ thể.", color: "bg-stone-50 border-stone-200 text-stone-700" },
-            ].map(r => (
-              <div key={r.title} className={`rounded-2xl border p-4 ${r.color}`}>
-                <div className="font-bold text-sm mb-1">{r.icon} {r.title}</div>
-                <p className="text-sm opacity-90">{r.desc}</p>
-              </div>
-            ))}
-          </div>
-        </section>
-
-        <section className="space-y-4">
-          <h2 className="text-xl font-bold text-stone-900">Vinamilk & FPT - so sánh tiền thật với giá cổ phiếu</h2>
-          <p>Tỷ suất dòng tiền tự do = dòng tiền tự do / giá trị thị trường. Chỉ số này cho biết bạn nhận lại bao nhiêu "tiền thực" cho mỗi đồng đầu tư vào cổ phiếu:</p>
-          <div className="bg-stone-900 rounded-2xl p-5 text-sm space-y-2">
-            {[
-              { co: "Vinamilk (VNM)", fcf: "~2,500 tỷ", mc: "~80,000 tỷ", yield: "~3.1%", note: "Consumer defensive - FCF yield thấp vì PE cao" },
-              { co: "FPT Corp", fcf: "~3,000 tỷ", mc: "~120,000 tỷ", yield: "~2.5%", note: "Tech growth - thị trường trả premium" },
-            ].map(r => (
-              <div key={r.co} className="border-b border-stone-800 pb-3 last:border-0">
-                <div className="text-white font-bold">{r.co}</div>
-                <div className="text-stone-500 text-xs mt-1">Dòng tiền tự do {r.fcf} / Giá trị thị trường {r.mc} → Tỷ suất {r.yield}</div>
-                <div className="text-stone-500 text-xs">{r.note}</div>
-              </div>
-            ))}
-          </div>
+          <p>Không. Dòng tiền tự do âm có hai nguyên nhân hoàn toàn khác nhau: <strong>âm vì đầu tư tăng trưởng</strong> - doanh nghiệp đang chi mạnh để mở rộng, có thể chấp nhận được nếu khoản đầu tư tạo ra dòng tiền tốt hơn sau này; hoặc <strong>âm vì kinh doanh yếu</strong> - dòng tiền kinh doanh đã âm mà vẫn phải chi đầu tư lớn, nghĩa là công ty đang đốt tiền. Cần nhìn xu hướng nhiều năm để phân biệt hai trường hợp.</p>
         </section>
 
         <div className="bg-stone-50 border border-stone-200 rounded-2xl p-6">
-          <h3 className="font-bold text-stone-700 mb-3"> 3 điều cần nhớ</h3>
+          <h3 className="font-bold text-stone-700 mb-3">3 điều cần nhớ</h3>
           <div className="space-y-2">
             {[
               "Dòng tiền tự do = dòng tiền kinh doanh − chi đầu tư tài sản.",
@@ -216,7 +177,7 @@ export default function FreeCashFlowPage() {
               "Dòng tiền tự do âm không luôn xấu; phải xem âm vì tăng trưởng hay vì kinh doanh yếu.",
             ].map((t, i) => (
               <div key={i} className="flex items-start gap-2 text-sm text-stone-700">
-                <span className="text-stone-700 font-bold flex-shrink-0 mt-0.5"></span>{t}
+                <span className="text-emerald-700 font-bold flex-shrink-0 mt-0.5">•</span>{t}
               </div>
             ))}
           </div>

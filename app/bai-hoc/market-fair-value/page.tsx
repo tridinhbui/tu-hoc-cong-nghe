@@ -127,14 +127,51 @@ export default function Page() {
       <p className="text-stone-600 text-sm mb-6 italic">Market không chỉ định giá earnings hôm nay - market định giá kỳ vọng tương lai</p>
 
       <section className="mb-8">
-        <h3 className="text-lg font-bold text-stone-800 mb-3">🤔 Tại sao Anthropic được định giá ~60B USD dù chưa profitable lớn?</h3>
+        <h3 className="text-lg font-bold text-stone-800 mb-3">🤔 Tại sao một công ty chưa có lợi nhuận lớn vẫn được định giá hàng chục tỷ USD?</h3>
         <div className="bg-stone-50 border border-stone-200 rounded-xl p-4 mb-4">
           <p className="text-sm text-stone-700 leading-relaxed">
-            Câu hỏi hay. Lý do là <strong>market định giá dựa trên future expectation</strong>, không chỉ earnings hiện tại. Investors đang đặt cược vào: TAM khổng lồ của AI, market dominance potential, và long-term cash flow khi AI becomes infrastructure.
+            Lý do là <strong>market định giá dựa trên kỳ vọng tương lai</strong>, không chỉ lợi nhuận hiện tại. Nhưng "kỳ vọng tương lai" không phải là một câu chuyện mơ hồ kiểu "công nghệ mới sẽ thay đổi thế giới" - nó là một phép tính có thể tách thành 4 giả định cụ thể. Nhà đầu tư nghiêm túc luôn hỏi rõ 4 câu sau trước khi trả giá cao cho một công ty tăng trưởng.
           </p>
         </div>
         <p className="text-stone-600 leading-relaxed">
-          Trong finance, <strong>fair value</strong> = mức định giá hợp lý dựa trên khả năng tạo ra future cash flow, earnings và growth. Với growth companies, phần lớn value nằm ở tương lai - đó là lý do định giá rất sensitive với assumptions.
+          Trong finance, <strong>fair value</strong> = mức định giá hợp lý dựa trên khả năng tạo ra dòng tiền, lợi nhuận và tăng trưởng trong tương lai. Với growth companies (công ty tăng trưởng), phần lớn giá trị nằm ở tương lai - đó là lý do định giá rất nhạy với từng giả định.
+        </p>
+      </section>
+
+      <section className="mb-8">
+        <h3 className="text-lg font-bold text-stone-800 mb-3">📋 Khung 4 giả định khi định giá công ty tăng trưởng</h3>
+        <div className="space-y-3">
+          {[
+            {
+              q: "1. Quy mô thị trường tiềm năng lớn cỡ nào?",
+              d: "Tổng doanh thu tối đa mà tất cả công ty trong ngành có thể thu được, nếu mọi khách hàng tiềm năng đều mua. Thị trường càng lớn, trần tăng trưởng của công ty càng cao.",
+              ex: "Ví dụ: thị trường phần mềm quản lý doanh nghiệp toàn cầu ước tính 500 tỷ USD/năm.",
+            },
+            {
+              q: "2. Xác suất công ty thắng và chiếm được bao nhiêu thị phần?",
+              d: "Có thị trường lớn không đồng nghĩa công ty sẽ chiếm được nó - phải cạnh tranh với nhiều đối thủ. Cần ước tính xác suất thành công và thị phần thực tế có thể đạt được.",
+              ex: "Ví dụ: giả định công ty có 20% xác suất chiếm được 10% thị phần trong 10 năm → doanh thu kỳ vọng = 500 tỷ × 10% × 20% = 10 tỷ USD.",
+            },
+            {
+              q: "3. Biên lợi nhuận tương lai kỳ vọng là bao nhiêu?",
+              d: "Doanh thu lớn không có nghĩa là lợi nhuận lớn. Cần ước tính khi công ty đạt quy mô (scale), biên lợi nhuận hoạt động (operating margin) sẽ ổn định ở mức nào.",
+              ex: "Ví dụ: nếu operating margin dài hạn là 25%, doanh thu 10 tỷ USD → lợi nhuận kỳ vọng ≈ 2.5 tỷ USD/năm.",
+            },
+            {
+              q: "4. Rủi ro pha loãng cổ phần (dilution) khi công ty gọi vốn thêm?",
+              d: "Công ty tăng trưởng thường chưa có đủ tiền mặt để tự tài trợ, nên phải phát hành thêm cổ phiếu để gọi vốn nhiều lần. Mỗi lần phát hành thêm, tỷ lệ sở hữu của cổ đông hiện tại bị pha loãng - giá trị mỗi cổ phần nhận được ít hơn so với lợi nhuận tuyệt đối của công ty.",
+              ex: "Ví dụ: nếu công ty phát hành thêm cổ phiếu khiến tổng số cổ phần tăng gấp đôi trong 10 năm, thì lợi nhuận 2.5 tỷ USD ở trên chỉ còn tương đương ~1.25 tỷ USD 'phần của cổ đông ban đầu' trên mỗi cổ phần gốc.",
+            },
+          ].map(s => (
+            <div key={s.q} className="bg-stone-50 rounded-xl p-4 border border-stone-200">
+              <div className="font-bold text-stone-800 text-sm mb-1">{s.q}</div>
+              <p className="text-stone-600 text-sm mb-1">{s.d}</p>
+              <p className="text-stone-500 text-xs italic">{s.ex}</p>
+            </div>
+          ))}
+        </div>
+        <p className="text-stone-500 text-xs mt-3 italic">
+          Cộng 4 yếu tố lại: quy mô thị trường × xác suất thắng × thị phần × biên lợi nhuận, rồi chia cho mức pha loãng dự kiến, mới ra được một con số định giá có căn cứ - thay vì chỉ dựa vào cảm giác "công nghệ này rất tiềm năng".
         </p>
       </section>
 

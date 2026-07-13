@@ -136,43 +136,61 @@ export default function Page() {
       <TAccountDemo />
 
       <section className="mb-8">
-        <h3 className="text-lg font-bold text-stone-800 mb-3">📜 DEAD CLIC - Mẹo nhớ quy tắc</h3>
+        <h3 className="text-lg font-bold text-stone-800 mb-3">📜 Debit tăng gì? Credit tăng gì?</h3>
+        <p className="text-stone-600 text-sm leading-relaxed mb-4">
+          Thay vì học vẹt viết tắt tiếng Anh, hãy nhớ theo cách này: hãy tưởng tượng <strong>Debit là &quot;bên trái - những gì bạn đang có hoặc đang bỏ ra&quot;</strong>, còn <strong>Credit là &quot;bên phải - những gì bạn đang nợ hoặc đang thu về&quot;</strong>. Cứ mỗi nhóm tài khoản sẽ có 1 phía làm nó tăng, phía còn lại làm nó giảm.
+        </p>
         <div className="grid grid-cols-2 gap-3">
           <div className="bg-stone-50 rounded-xl p-4 border border-stone-200">
-            <div className="font-bold text-stone-700 mb-3 text-sm">DEBIT tăng:</div>
-            <ul className="space-y-1 text-sm">
-              <li className="flex gap-2"><span className="font-bold text-stone-700">D</span><span className="text-stone-600">rawings (rút vốn)</span></li>
-              <li className="flex gap-2"><span className="font-bold text-stone-700">E</span><span className="text-stone-600">xpenses (chi phí)</span></li>
-              <li className="flex gap-2"><span className="font-bold text-stone-700">A</span><span className="text-stone-600">ssets (tài sản)</span></li>
-              <li className="flex gap-2"><span className="font-bold text-stone-700">D</span><span className="text-stone-600">ividends (cổ tức)</span></li>
+            <div className="font-bold text-stone-700 mb-3 text-sm">DEBIT (bên trái) làm những thứ này TĂNG:</div>
+            <ul className="space-y-2 text-sm">
+              <li className="text-stone-600"><strong className="text-stone-700">Tài sản (Assets)</strong> - VD: tiền mặt, hàng tồn kho, xe cộ. Bạn mua thêm xe → tài sản tăng → ghi Debit.</li>
+              <li className="text-stone-600"><strong className="text-stone-700">Chi phí (Expenses)</strong> - VD: tiền điện, lương nhân viên. Trả thêm chi phí → khoản chi phí tăng → ghi Debit.</li>
+              <li className="text-stone-600"><strong className="text-stone-700">Rút vốn (Drawings)</strong> - chủ doanh nghiệp rút tiền ra xài riêng → ghi Debit.</li>
             </ul>
           </div>
           <div className="bg-stone-50 rounded-xl p-4 border border-stone-200">
-            <div className="font-bold text-stone-700 mb-3 text-sm">CREDIT tăng:</div>
-            <ul className="space-y-1 text-sm">
-              <li className="flex gap-2"><span className="font-bold text-stone-700">C</span><span className="text-stone-600">apital (vốn chủ)</span></li>
-              <li className="flex gap-2"><span className="font-bold text-stone-700">L</span><span className="text-stone-600">iabilities (nợ)</span></li>
-              <li className="flex gap-2"><span className="font-bold text-stone-700">I</span><span className="text-stone-600">ncome (doanh thu)</span></li>
-              <li className="flex gap-2"><span className="font-bold text-stone-700">C</span><span className="text-stone-600">redit increases these</span></li>
+            <div className="font-bold text-stone-700 mb-3 text-sm">CREDIT (bên phải) làm những thứ này TĂNG:</div>
+            <ul className="space-y-2 text-sm">
+              <li className="text-stone-600"><strong className="text-stone-700">Nợ phải trả (Liabilities)</strong> - VD: vay ngân hàng. Vay thêm tiền → khoản nợ tăng → ghi Credit.</li>
+              <li className="text-stone-600"><strong className="text-stone-700">Vốn chủ sở hữu (Equity)</strong> - VD: vốn góp của cổ đông. Góp thêm vốn → vốn chủ tăng → ghi Credit.</li>
+              <li className="text-stone-600"><strong className="text-stone-700">Doanh thu (Income/Revenue)</strong> - VD: tiền bán hàng. Bán được thêm hàng → doanh thu tăng → ghi Credit.</li>
             </ul>
           </div>
         </div>
+        <p className="text-stone-500 text-xs mt-3 italic">Mẹo nhớ nhanh: Tài sản và Chi phí &quot;thích&quot; bên trái (Debit). Nợ, Vốn chủ và Doanh thu &quot;thích&quot; bên phải (Credit).</p>
       </section>
 
       <section className="mb-8">
-        <h3 className="text-lg font-bold text-stone-800 mb-3"> Ví dụ thực tế: Bán hàng thu tiền mặt</h3>
+        <h3 className="text-lg font-bold text-stone-800 mb-3">🍜 Ví dụ đời thường trước khi vào bút toán</h3>
+        <div className="space-y-3 mb-5">
+          <div className="border border-stone-200 rounded-xl p-4">
+            <div className="font-semibold text-stone-800 text-sm mb-1">Bạn mua đồ ăn hết 50.000đ bằng tiền mặt</div>
+            <p className="text-stone-600 text-xs leading-relaxed">Tiền mặt bạn có (tài sản) giảm 50.000đ, đổi lại bạn có một bữa ăn (chi phí) tăng 50.000đ. Về bản chất: <strong>tài sản này giảm để chi phí kia tăng</strong> - tiền không tự nhiên biến mất, nó chuyển thành thứ khác.</p>
+          </div>
+          <div className="border border-stone-200 rounded-xl p-4">
+            <div className="font-semibold text-stone-800 text-sm mb-1">Bạn vay ngân hàng 20 triệu để mua xe máy</div>
+            <p className="text-stone-600 text-xs leading-relaxed">Tiền mặt (tài sản) của bạn tăng 20 triệu, nhưng đồng thời khoản nợ phải trả ngân hàng (nợ) cũng tăng 20 triệu. Có thêm tiền không có nghĩa là bạn giàu hơn - vì bạn cũng nợ thêm đúng bằng số đó.</p>
+          </div>
+          <div className="border border-stone-200 rounded-xl p-4">
+            <div className="font-semibold text-stone-800 text-sm mb-1">Bạn nhận lương 15 triệu vào tài khoản</div>
+            <p className="text-stone-600 text-xs leading-relaxed">Tiền mặt (tài sản) tăng 15 triệu, và đây là khoản thu nhập/doanh thu của bạn cũng tăng tương ứng. Không có khoản nợ nào phát sinh - đây là tiền &quot;của bạn thật sự&quot;.</p>
+          </div>
+        </div>
+
+        <h3 className="text-lg font-bold text-stone-800 mb-3">Ví dụ bút toán: Bán hàng thu tiền mặt</h3>
         <div className="bg-stone-800 rounded-xl p-5 font-mono text-sm">
           <div className="text-stone-500 mb-3 text-xs">{ '// Bán hàng 50 triệu, khách trả tiền mặt ngay' }</div>
           <div className="flex justify-between mb-1">
-            <span className="text-stone-700">Dr. Cash (Asset ↑)</span>
+            <span className="text-stone-700">Dr. Cash (Tài sản ↑)</span>
             <span className="text-white">50.000.000</span>
           </div>
           <div className="flex justify-between mb-3 pl-8">
-            <span className="text-stone-700">Cr. Revenue (Income ↑)</span>
+            <span className="text-stone-700">Cr. Revenue (Doanh thu ↑)</span>
             <span className="text-white">50.000.000</span>
           </div>
           <div className="border-t border-stone-600 pt-3 text-stone-500 text-xs">
-            Total Dr. = Total Cr. = 50M 
+            Diễn giải: tiền mặt trong túi bạn tăng 50 triệu (Debit), đồng thời doanh thu bán hàng cũng tăng 50 triệu (Credit). Tổng Dr. = Tổng Cr. = 50 triệu.
           </div>
         </div>
       </section>

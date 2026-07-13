@@ -76,6 +76,21 @@ export default function Page() {
       </section>
 
       <section className="mb-8">
+        <h3 className="text-lg font-bold text-stone-800 mb-3">Trước tiên: ROIC và WACC là gì?</h3>
+        <div className="bg-stone-50 border border-stone-200 rounded-xl p-4 mb-3 space-y-3">
+          <p className="text-sm text-stone-700 leading-relaxed">
+            <strong>ROIC (tỷ suất sinh lời trên vốn đầu tư)</strong>: nếu công ty bỏ 100 đồng vốn vào hoạt động kinh doanh, mỗi năm công ty tạo ra bao nhiêu đồng lợi nhuận từ số vốn đó. ROIC = 20% nghĩa là mỗi 100 đồng vốn tạo ra 20 đồng lợi nhuận/năm.
+          </p>
+          <p className="text-sm text-stone-700 leading-relaxed">
+            <strong>WACC (chi phí vốn bình quân)</strong>: chi phí mà công ty phải trả để có được số vốn đó - gồm lãi vay ngân hàng/trái phiếu và mức lợi nhuận tối thiểu mà cổ đông kỳ vọng khi bỏ tiền vào công ty (nếu không đạt được, cổ đông thà đem tiền đi đầu tư chỗ khác). WACC = 10% nghĩa là công ty cần tạo ra ít nhất 10 đồng lợi nhuận trên mỗi 100 đồng vốn để "hòa vốn" so với kỳ vọng của người góp vốn.
+          </p>
+          <p className="text-sm text-stone-700 leading-relaxed">
+            <strong>Logic đơn giản:</strong> nếu ROIC &gt; WACC (ví dụ 20% &gt; 10%) → mỗi đồng công ty giữ lại và tái đầu tư sinh lời tốt hơn mức cổ đông tự đi đầu tư nơi khác → nên giữ tiền lại để tái đầu tư. Ngược lại, nếu ROIC &lt; WACC → công ty đầu tư vào hoạt động kinh doanh mà sinh lời kém hơn chi phí vốn, tức là đang "phá hủy" giá trị → nên trả tiền lại cho cổ đông (chia cổ tức hoặc mua lại cổ phiếu) để cổ đông tự tìm nơi đầu tư tốt hơn.
+          </p>
+        </div>
+      </section>
+
+      <section className="mb-8">
         <h3 className="text-lg font-bold text-stone-800 mb-3">Framework: Khi nào nên Return Capital?</h3>
         <div className="space-y-3">
           {[

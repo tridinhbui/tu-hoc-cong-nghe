@@ -45,15 +45,15 @@ const quiz: QuizQuestion[] = [
     explanation: "Với manufacturers: Working Capital = cash conversion cycle. Tồn kho cao = tiền bị kẹt. AR cao = đã bán nhưng chưa thu. AP cao = được trả chậm cho nhà cung cấp (tốt cho cash). Tesla's 2.26B inventory build là major cash drain trong Q1/2026.",
   },
   {
-    question: "Tesla đầu tư ~4.5B USD vào CapEx, AI và SpaceX trong Q1. Điều này phản ánh gì?",
+    question: "Tesla chi ~4.5B USD CapEx (đầu tư xây nhà máy, máy móc, mở rộng năng lực sản xuất) trong Q1. Điều này phản ánh gì?",
     options: [
       "Tesla đang khó khăn tài chính",
-      "Tesla chọn reinvest thay vì accumulate cash - typical cho growth/capital-intensive companies",
+      "Tesla chọn tái đầu tư (reinvest) thay vì giữ tiền mặt - bình thường với công ty đang tăng trưởng và cần vốn lớn để mở rộng",
       "Elon Musk đang rút tiền công ty",
       "CapEx không ảnh hưởng gì đến Cash Flow",
     ],
     correct: 1,
-    explanation: "High CapEx trong FCF statement = investing for future capacity. Tesla build thêm Gigafactory capacity, invest vào FSD/AI, fund SpaceX. OCF 3.94B − CapEx 4.5B ≈ FCF âm - nhưng đây là growth reinvestment, không phải distress. Consistent với Tesla's long-term build-out strategy.",
+    explanation: "CapEx lớn trong báo cáo dòng tiền thường nghĩa là công ty đang đầu tư cho năng lực sản xuất tương lai. Tesla mở rộng Gigafactory, đầu tư công nghệ tự lái. OCF 3.94B − CapEx 4.5B ≈ Free Cash Flow (FCF, dòng tiền tự do) âm - nhưng vì OCF vẫn dương và mạnh, đây là dấu hiệu growth reinvestment (đầu tư mở rộng), không phải distress (khó khăn tài chính). Phù hợp với chiến lược mở rộng dài hạn của Tesla.",
   },
 ];
 
@@ -96,7 +96,7 @@ export default function Page() {
           </div>
           <div className="mt-3 pt-3 border-t border-stone-600">
             <div className="flex justify-between">
-              <span className="text-stone-700">CapEx + AI + SpaceX</span>
+              <span className="text-stone-700">CapEx - đầu tư nhà máy, máy móc, dự án dài hạn</span>
               <span className="text-stone-700 font-bold">~4,500M USD</span>
             </div>
           </div>
@@ -135,6 +135,38 @@ export default function Page() {
             </div>
           ))}
         </div>
+      </section>
+
+      <section className="mb-8">
+        <h3 className="text-lg font-bold text-stone-800 mb-3">🔑 Phân biệt: "đầu tư mở rộng" vs "gặp khó khăn tài chính"</h3>
+        <div className="bg-stone-50 border border-stone-200 rounded-xl p-4 mb-3">
+          <p className="text-sm text-stone-700 leading-relaxed">
+            Đây là điểm hay bị nhầm lẫn nhất khi đọc báo cáo dòng tiền: <strong>dòng tiền tự do (Free Cash Flow - FCF, tức là tiền mặt còn lại sau khi trừ hết chi phí đầu tư tài sản cố định)</strong> bị âm không tự động là tin xấu. Có hai lý do hoàn toàn khác nhau khiến FCF âm, và cách phân biệt chúng nằm ở việc nhìn <strong>tiền đó đi đâu</strong> và <strong>công ty có đủ nguồn lực để chịu đựng hay không</strong>.
+          </p>
+        </div>
+        <div className="grid grid-cols-1 gap-3">
+          <div className="bg-emerald-50 rounded-xl p-4 border border-emerald-100">
+            <div className="font-bold text-emerald-700 text-sm mb-1">✅ Dòng tiền âm vì đang đầu tư mở rộng (growth reinvestment) - dấu hiệu tốt nếu tăng trưởng là thật</div>
+            <ul className="space-y-1 text-xs text-stone-600 list-disc pl-4">
+              <li>Dòng tiền từ hoạt động kinh doanh (OCF - tiền mặt công ty tạo ra từ việc bán hàng, chưa tính đầu tư) vẫn dương, thậm chí tăng.</li>
+              <li>Tiền âm chủ yếu do <strong>CapEx (Capital Expenditure - chi phí mua sắm/xây dựng tài sản cố định như nhà máy, máy móc)</strong> lớn, không phải do lỗ hoạt động.</li>
+              <li>Công ty vẫn còn nhiều tiền mặt dự trữ hoặc dễ dàng vay/gọi vốn với lãi suất hợp lý.</li>
+              <li>Doanh thu và số lượng khách hàng vẫn đang tăng - CapEx là để phục vụ tăng trưởng đó, không phải để "cứu" một mảng đang suy giảm.</li>
+            </ul>
+          </div>
+          <div className="bg-rose-50 rounded-xl p-4 border border-rose-100">
+            <div className="font-bold text-rose-700 text-sm mb-1">⚠️ Dòng tiền âm vì đang gặp khó khăn tài chính (distress) - dấu hiệu xấu</div>
+            <ul className="space-y-1 text-xs text-stone-600 list-disc pl-4">
+              <li>OCF yếu hoặc âm - bản thân hoạt động kinh doanh cốt lõi không tạo ra đủ tiền, không liên quan gì đến CapEx.</li>
+              <li>Công ty phải vay thêm hoặc phát hành cổ phiếu chỉ để duy trì hoạt động hàng ngày, không phải để mở rộng.</li>
+              <li>Doanh thu chững lại hoặc giảm, trong khi chi phí vẫn cao - tiền mặt "chảy máu" mà không có tăng trưởng tương ứng bù lại.</li>
+              <li>Nợ vay tăng nhanh trong khi khả năng trả nợ (dòng tiền/nợ) suy yếu dần qua từng quý.</li>
+            </ul>
+          </div>
+        </div>
+        <p className="text-stone-500 text-xs mt-3 italic">
+          Cách kiểm tra nhanh: nhìn OCF trước - nếu OCF vẫn dương và tăng, tiền âm chủ yếu đến từ CapEx thì nhiều khả năng là growth reinvestment. Nếu OCF yếu/âm và công ty phải vay để "sống" thì đó là dấu hiệu distress.
+        </p>
       </section>
 
       <section className="mb-8">

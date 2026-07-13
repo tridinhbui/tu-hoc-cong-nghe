@@ -4,7 +4,7 @@ import { useMemo, useState } from "react";
 import LessonPageLayout, { QuizQuestion, LessonMeta } from "@/components/LessonPageLayout";
 
 const meta: LessonMeta = {
-  id: 1037, day: 90, accent: "violet",
+  id: 1037, day: 90, accent: "emerald",
   title: "Biến số r: TWR vs MWRR trong thẩm định & đầu tư",
   subtitle: "IRR, Discount Rate, YTM đều là r - và vì sao hiệu suất Quỹ cần nhìn qua cả hai lăng kính TWR và MWRR",
   duration: "8 phút", difficulty: "Khó", emoji: "📐",
@@ -134,8 +134,8 @@ function FundPerformanceCalculator() {
   }
 
   return (
-    <div className="bg-gradient-to-br from-violet-50 to-purple-50 rounded-2xl p-5 border border-stone-200 my-6">
-      <h3 className="font-bold text-stone-700 mb-1 text-sm">🧮 Fund Performance Calculator</h3>
+    <div className="bg-stone-50 rounded-2xl p-5 border border-stone-200 my-6">
+      <h3 className="font-bold text-stone-700 mb-1 text-sm">Fund Performance Calculator</h3>
       <p className="text-xs text-stone-500 mb-4">Chỉnh AUM đầu năm và Return từng năm để xem TWR và MWRR thay đổi thế nào</p>
 
       <div className="space-y-3 mb-5">
@@ -149,7 +149,7 @@ function FundPerformanceCalculator() {
                   type="range" min={500000} max={12000000} step={100000}
                   value={y.aum}
                   onChange={(e) => updateYear(i, "aum", +e.target.value)}
-                  className="w-full accent-violet-500"
+                  className="w-full accent-emerald-600"
                 />
               </div>
               <div>
@@ -158,7 +158,7 @@ function FundPerformanceCalculator() {
                   type="range" min={-40} max={40} step={1}
                   value={y.returnPct}
                   onChange={(e) => updateYear(i, "returnPct", +e.target.value)}
-                  className="w-full accent-violet-500"
+                  className="w-full accent-emerald-600"
                 />
               </div>
             </div>
@@ -208,7 +208,7 @@ export default function Page() {
       </p>
 
       <section className="mb-8">
-        <h3 className="text-lg font-bold text-stone-800 mb-3">📛 r mang nhiều tên gọi khác nhau</h3>
+        <h3 className="text-lg font-bold text-stone-800 mb-3">r mang nhiều tên gọi khác nhau</h3>
         <p className="text-stone-600 leading-relaxed mb-4">
           Tùy vào mục đích sử dụng, r sẽ mang những tên gọi và ý nghĩa khác nhau. Tựu chung lại, bản chất của r là đưa các dòng tiền thu về trong tương lai về mặt giá trị hiện tại để đánh giá hiệu quả.
         </p>
@@ -230,7 +230,7 @@ export default function Page() {
       </section>
 
       <section className="mb-8">
-        <h3 className="text-lg font-bold text-stone-800 mb-3">📊 Bài toán thực tế: Đánh giá hiệu suất của Quỹ A</h3>
+        <h3 className="text-lg font-bold text-stone-800 mb-3">Bài toán thực tế: Đánh giá hiệu suất của Quỹ A</h3>
         <p className="text-stone-600 leading-relaxed mb-3">
           Giả sử Quỹ A nhận thêm vốn vào đầu mỗi năm và tạo ra hiệu suất qua 4 năm như sau:
         </p>
@@ -344,7 +344,7 @@ export default function Page() {
       <FundPerformanceCalculator />
 
       <section className="mb-8">
-        <h3 className="text-lg font-bold text-stone-800 mb-3">🔍 Vì sao TWR (8.824%) &gt; MWRR (5.64%)?</h3>
+        <h3 className="text-lg font-bold text-stone-800 mb-3">Vì sao TWR (8.824%) &gt; MWRR (5.64%)?</h3>
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <div className="bg-stone-50 rounded-xl p-4 border border-stone-200">
             <div className="font-bold text-stone-700 mb-1 text-sm">Về năng lực chọn tài sản (TWR tốt)</div>
@@ -361,20 +361,20 @@ export default function Page() {
       </section>
 
       <section>
-        <h3 className="text-lg font-bold text-stone-800 mb-3">🏢 Từ câu chuyện của Quỹ, nhìn về bài toán doanh nghiệp</h3>
+        <h3 className="text-lg font-bold text-stone-800 mb-3">Từ câu chuyện của Quỹ, nhìn về bài toán doanh nghiệp</h3>
         <p className="text-stone-600 leading-relaxed mb-3">
           Tư duy bóc tách này hoàn toàn tương đồng với việc quản trị một doanh nghiệp. Khi đánh giá hiệu quả, nhà quản trị cần phân biệt rõ:
         </p>
         <div className="space-y-2 mb-4">
           <div className="flex items-start gap-3 bg-stone-50 rounded-lg p-3 border border-stone-100">
-            <span className="mt-1 w-2 h-2 rounded-full bg-violet-500 flex-shrink-0" />
+            <span className="mt-1 w-2 h-2 rounded-full bg-emerald-600 flex-shrink-0" />
             <div>
               <div className="text-sm font-bold text-stone-700">Hiệu suất của bản thân dự án/sản phẩm (tương tự TWR)</div>
               <div className="text-xs text-stone-500">Dự án này có biên lợi nhuận tốt không? Mô hình kinh doanh có hiệu quả không, nếu bỏ qua yếu tố cấu trúc vốn? Vế này thường được đánh giá qua NPV & IRR so với chi phí cơ hội r.</div>
             </div>
           </div>
           <div className="flex items-start gap-3 bg-stone-50 rounded-lg p-3 border border-stone-100">
-            <span className="mt-1 w-2 h-2 rounded-full bg-violet-500 flex-shrink-0" />
+            <span className="mt-1 w-2 h-2 rounded-full bg-emerald-600 flex-shrink-0" />
             <div>
               <div className="text-sm font-bold text-stone-700">Hiệu quả sử dụng vốn của doanh nghiệp (tương tự IRR/MWRR)</div>
               <div className="text-xs text-stone-500">Doanh nghiệp có đang bơm vốn vào mở rộng đúng lúc thị trường tạo đỉnh, hoặc siết vốn/rút tiền ngay trước khi dự án vào pha bùng nổ hay không?</div>

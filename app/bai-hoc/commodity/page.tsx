@@ -4,7 +4,7 @@ import { useState } from "react";
 import LessonPageLayout, { QuizQuestion, LessonMeta } from "@/components/LessonPageLayout";
 
 const meta: LessonMeta = {
-  id: 19, day: 19, accent: "amber",
+  id: 19, day: 19, accent: "emerald",
   title: "Hàng Hóa Cơ Bản (Commodity)",
   subtitle: "Nguyên liệu chuẩn hóa và tác động lên chi phí của nền kinh tế",
   duration: "6 phút", difficulty: "Trung bình", emoji: "🛢️",
@@ -54,37 +54,30 @@ const quiz: QuizQuestion[] = [
 
 const CATEGORIES = [
   {
-    name: "Năng lượng", icon: "", color: "orange",
+    name: "Năng lượng",
     items: ["Dầu thô (WTI, Brent)", "Khí tự nhiên", "Dầu máy bay", "Than"],
     impact: "Airline, vận tải, hóa chất, nhựa",
     example: "Dầu tăng 10% → chi phí hãng bay tăng → biên lợi nhuận bị ăn mòn",
   },
   {
-    name: "Kim loại", icon: "🔩", color: "slate",
+    name: "Kim loại",
     items: ["Vàng (Gold)", "Đồng (Copper)", "Nhôm (Aluminum)", "Thép (Steel)"],
     impact: "Điện tử, xây dựng, ô tô, hàng không",
     example: "Đồng tăng → chi phí xe điện tăng, biên lợi nhuận bị co lại",
   },
   {
-    name: "Nông sản", icon: "🌽", color: "green",
+    name: "Nông sản",
     items: ["Ngô (Corn)", "Lúa mì (Wheat)", "Đậu nành (Soybean)", "Đường (Sugar)"],
     impact: "Thực phẩm, chăn nuôi, nhiên liệu sinh học, hàng tiêu dùng",
     example: "Corn ↑ → chi phí thức ăn chăn nuôi ↑ → thịt đắt hơn",
   },
   {
-    name: "Chăn nuôi", icon: "🐷", color: "rose",
+    name: "Chăn nuôi",
     items: ["Heo (Hog/Pork)", "Bò (Cattle/Beef)", "Gà (Poultry)"],
     impact: "Công ty chế biến thịt, chuỗi nhà hàng, siêu thị",
     example: "Hog ↑ → Vissan, CPV mua nguyên liệu đắt hơn",
   },
 ];
-
-const colorMap: Record<string, { bg: string; border: string; text: string; badge: string }> = {
-  orange: { bg: "bg-stone-50", border: "border-stone-200", text: "text-stone-700", badge: "bg-stone-50 text-stone-700" },
-  slate:  { bg: "bg-slate-50",  border: "border-slate-200",  text: "text-slate-700",  badge: "bg-slate-100 text-slate-700"  },
-  green:  { bg: "bg-stone-50",  border: "border-stone-200",  text: "text-stone-700",  badge: "bg-stone-50 text-stone-700"  },
-  rose:   { bg: "bg-stone-50",   border: "border-stone-200",   text: "text-stone-700",   badge: "bg-stone-50 text-stone-700"   },
-};
 
 function HangHoaImpactSimulator() {
   const [oilChange, setOilChange] = useState(0);
@@ -101,35 +94,35 @@ function HangHoaImpactSimulator() {
   };
 
   return (
-    <div className="bg-gradient-to-br from-amber-50 to-orange-50 rounded-2xl p-5 border border-stone-200 my-6">
+    <div className="bg-stone-50 rounded-2xl p-5 border border-stone-200 my-6">
       <h3 className="font-bold text-stone-700 mb-1 text-sm">Mô phỏng tác động của hàng hóa</h3>
       <p className="text-xs text-stone-500 mb-4">Kéo thanh trượt để xem giá hàng hóa ảnh hưởng tới biên lợi nhuận ngành</p>
 
       <div className="space-y-3 mb-5">
         {[
-          { label: "Dầu / nhiên liệu máy bay", val: oilChange, set: setOilChange, icon: "🛢️" },
-          { label: "Corn (thức ăn chăn nuôi)", val: cornChange, set: setCornChange, icon: "🌽" },
-          { label: "Hog (heo sống)", val: hogChange, set: setHogChange, icon: "🐷" },
+          { label: "Dầu / nhiên liệu máy bay", val: oilChange, set: setOilChange },
+          { label: "Corn (thức ăn chăn nuôi)", val: cornChange, set: setCornChange },
+          { label: "Hog (heo sống)", val: hogChange, set: setHogChange },
         ].map(s => (
           <div key={s.label}>
             <div className="flex justify-between text-xs text-stone-600 mb-1">
-              <span className="font-semibold">{s.icon} {s.label}</span>
+              <span className="font-semibold">{s.label}</span>
               <span className={`font-bold ${s.val > 0 ? "text-stone-700" : s.val < 0 ? "text-stone-700" : "text-stone-500"}`}>
                 {s.val > 0 ? "+" : ""}{s.val}%
               </span>
             </div>
             <input type="range" min={-30} max={30} value={s.val}
               onChange={e => s.set(+e.target.value)}
-              className="w-full accent-amber-500" />
+              className="w-full accent-emerald-600" />
           </div>
         ))}
       </div>
 
       <div className="grid grid-cols-3 gap-3">
         {[
-          { label: "✈️ Biên hãng bay", val: Number(airlineImpact), sub: "theo giá dầu" },
-          { label: "🐄 Chi phí chăn nuôi", val: Number(livestockCost), sub: "theo giá ngô", invert: true },
-          { label: "🥩 Biên công ty thịt", val: Number(meatMargin), sub: "heo đầu vào" },
+          { label: "Biên hãng bay", val: Number(airlineImpact), sub: "theo giá dầu" },
+          { label: "Chi phí chăn nuôi", val: Number(livestockCost), sub: "theo giá ngô", invert: true },
+          { label: "Biên công ty thịt", val: Number(meatMargin), sub: "heo đầu vào" },
         ].map(s => {
           const bad = s.invert ? s.val > 0 : s.val < 0;
           const good = s.invert ? s.val < 0 : s.val > 0;
@@ -154,8 +147,8 @@ export default function Page() {
       <h2 className="text-2xl font-bold text-stone-900 mb-2">Hàng hóa cơ bản (Commodity)</h2>
       <p className="text-stone-600 text-sm mb-6 italic">Nhóm nguyên liệu chuẩn hóa âm thầm quyết định chi phí và biên lợi nhuận của nhiều ngành.</p>
 
-      <section className="mb-8 rounded-xl border border-amber-100 bg-amber-50 p-4">
-        <h3 className="text-sm font-bold uppercase tracking-wide text-amber-800 mb-2">Hiểu nhanh</h3>
+      <section className="mb-8 rounded-xl border border-emerald-100 bg-emerald-50 p-4">
+        <h3 className="text-sm font-bold uppercase tracking-wide text-emerald-800 mb-2">Hiểu nhanh</h3>
         <p className="text-sm leading-relaxed text-stone-700">
           Hàng hóa cơ bản là dầu, vàng, đồng, ngô, lúa mì, heo... Khi giá các nguyên liệu này thay đổi, lợi nhuận của hãng bay, nhà máy thực phẩm, công ty điện tử hay doanh nghiệp xây dựng cũng thay đổi theo.
         </p>
@@ -176,29 +169,25 @@ export default function Page() {
       <section className="mb-8">
         <h3 className="text-lg font-bold text-stone-800 mb-3">4 nhóm hàng hóa cơ bản chính</h3>
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-          {CATEGORIES.map(cat => {
-            const c = colorMap[cat.color];
-            return (
-              <div key={cat.name} className={`${c.bg} rounded-xl p-4 border ${c.border}`}>
-                <div className="flex items-center gap-2 mb-3">
-                  <span className="text-2xl">{cat.icon}</span>
-                  <span className={`font-bold text-stone-800`}>{cat.name}</span>
-                  <span className={`text-xs font-semibold px-2 py-0.5 rounded-full ml-auto ${c.badge}`}>4 loại chính</span>
-                </div>
-                <ul className="space-y-0.5 mb-3">
-                  {cat.items.map(item => (
-                    <li key={item} className="text-xs text-stone-600 flex gap-1.5">
-                      <span className={c.text}>·</span>{item}
-                    </li>
-                  ))}
-                </ul>
-                <div className="border-t border-white/60 pt-2 space-y-1">
-                  <div className="text-xs text-stone-500"><span className="font-semibold">Ảnh hưởng:</span> {cat.impact}</div>
-                  <div className={`text-xs font-medium ${c.text} italic`}>"{cat.example}"</div>
-                </div>
+          {CATEGORIES.map(cat => (
+            <div key={cat.name} className="bg-stone-50 rounded-xl p-4 border border-stone-200">
+              <div className="flex items-center gap-2 mb-3">
+                <span className="font-bold text-stone-800">{cat.name}</span>
+                <span className="text-xs font-semibold px-2 py-0.5 rounded-full ml-auto bg-emerald-50 text-emerald-700">4 loại chính</span>
               </div>
-            );
-          })}
+              <ul className="space-y-0.5 mb-3">
+                {cat.items.map(item => (
+                  <li key={item} className="text-xs text-stone-600 flex gap-1.5">
+                    <span className="text-stone-400">·</span>{item}
+                  </li>
+                ))}
+              </ul>
+              <div className="border-t border-stone-200 pt-2 space-y-1">
+                <div className="text-xs text-stone-500"><span className="font-semibold">Ảnh hưởng:</span> {cat.impact}</div>
+                <div className="text-xs font-medium text-stone-600 italic">"{cat.example}"</div>
+              </div>
+            </div>
+          ))}
         </div>
       </section>
 
@@ -220,11 +209,11 @@ export default function Page() {
         </div>
         <div className="space-y-2">
           {[
-            { term: "Contango", def: "Giá tương lai cao hơn giá giao ngay - thường do chi phí lưu kho, bảo hiểm hoặc kỳ vọng giá tăng.", color: "rose" },
-            { term: "Backwardation", def: "Giá tương lai thấp hơn giá giao ngay - thường do nhu cầu hàng ngay đang rất cao hoặc thiếu hụt ngắn hạn.", color: "emerald" },
+            { term: "Contango", def: "Giá tương lai cao hơn giá giao ngay - thường do chi phí lưu kho, bảo hiểm hoặc kỳ vọng giá tăng." },
+            { term: "Backwardation", def: "Giá tương lai thấp hơn giá giao ngay - thường do nhu cầu hàng ngay đang rất cao hoặc thiếu hụt ngắn hạn." },
           ].map(s => (
-            <div key={s.term} className={`flex gap-3 bg-${s.color}-50 border border-${s.color}-100 rounded-xl p-3`}>
-              <span className={`font-bold text-${s.color}-700 text-sm flex-shrink-0`}>{s.term}:</span>
+            <div key={s.term} className="flex gap-3 bg-stone-50 border border-stone-200 rounded-xl p-3">
+              <span className="font-bold text-emerald-700 text-sm flex-shrink-0">{s.term}:</span>
               <span className="text-stone-600 text-sm">{s.def}</span>
             </div>
           ))}
@@ -239,16 +228,16 @@ export default function Page() {
             <thead>
               <tr className="bg-stone-100">
                 <th className="text-left p-2 rounded-l-lg font-semibold text-stone-600 text-xs">Hàng hóa</th>
-                <th className="text-left p-2 font-semibold text-stone-700 text-xs">❌ Bị hại khi tăng</th>
-                <th className="text-left p-2 rounded-r-lg font-semibold text-stone-700 text-xs"> Hưởng lợi khi tăng</th>
+                <th className="text-left p-2 font-semibold text-stone-700 text-xs">Bị hại khi tăng</th>
+                <th className="text-left p-2 rounded-r-lg font-semibold text-stone-700 text-xs">Hưởng lợi khi tăng</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-stone-100">
               {[
-                { com: "🛢️ Dầu", hurt: "Hãng bay, logistics, nhựa, hóa chất", gain: "PetroVietnam, công ty khai thác dầu" },
-                { com: "🥇 Gold", hurt: "Người không nắm vàng", gain: "Công ty khai thác vàng, nhà đầu tư" },
-                { com: "🌽 Ngô", hurt: "Công ty chăn nuôi, nhà sản xuất nhiên liệu sinh học", gain: "Nông dân, công ty giao dịch nông sản" },
-                { com: "🐷 Heo", hurt: "Nhà máy chế biến thịt nếu giá bán không tăng theo", gain: "Trang trại chăn nuôi heo" },
+                { com: "Dầu", hurt: "Hãng bay, logistics, nhựa, hóa chất", gain: "PetroVietnam, công ty khai thác dầu" },
+                { com: "Gold", hurt: "Người không nắm vàng", gain: "Công ty khai thác vàng, nhà đầu tư" },
+                { com: "Ngô", hurt: "Công ty chăn nuôi, nhà sản xuất nhiên liệu sinh học", gain: "Nông dân, công ty giao dịch nông sản" },
+                { com: "Heo", hurt: "Nhà máy chế biến thịt nếu giá bán không tăng theo", gain: "Trang trại chăn nuôi heo" },
               ].map(r => (
                 <tr key={r.com}>
                   <td className="p-2 font-semibold text-stone-700 text-xs">{r.com}</td>
