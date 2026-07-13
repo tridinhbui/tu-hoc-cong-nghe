@@ -54,10 +54,16 @@ function formatHour(hour: number) {
 }
 
 function metricTone(score: number) {
-  if (score >= 75) return "text-teal-700 dark:text-teal-300";
+  if (score >= 75) return "text-emerald-700 dark:text-emerald-300";
   if (score >= 45) return "text-amber-700 dark:text-amber-300";
   return "text-stone-700 dark:text-stone-300";
 }
+
+const panelClass =
+  "min-w-0 overflow-hidden rounded-2xl border-2 border-stone-200 dark:border-stone-800 bg-white dark:bg-stone-900";
+const panelSoftClass =
+  "rounded-2xl border border-stone-200 dark:border-stone-800 bg-stone-50 dark:bg-stone-800/50";
+const sectionLabelClass = "text-xs font-extrabold uppercase tracking-[0.22em] text-stone-500 dark:text-stone-400";
 
 function insightFromAnalytics(analytics: LearningAnalyticsType) {
   const insights: string[] = [];
@@ -106,15 +112,15 @@ function MetricCard({
       initial="hidden"
       animate="visible"
       variants={fadeUp}
-      className="relative overflow-hidden rounded-3xl border border-stone-200/80 dark:border-stone-800 bg-white/90 dark:bg-stone-900/90 p-5 shadow-[0_18px_50px_-30px_rgba(28,25,23,0.35)]"
+      className="relative overflow-hidden rounded-2xl border-2 border-stone-200 dark:border-stone-800 bg-white dark:bg-stone-900 p-5 transition-all hover:-translate-y-0.5 hover:shadow-[0_14px_30px_-24px_rgba(28,25,23,0.2)]"
     >
       <div className={`absolute inset-x-0 top-0 h-1.5 ${accent}`} />
       <div className="flex items-center justify-between gap-4">
         <div>
-          <p className="text-[11px] font-extrabold uppercase tracking-[0.22em] text-stone-500 dark:text-stone-400">
+          <p className={sectionLabelClass}>
             {label}
           </p>
-          <p className="mt-3 text-3xl font-black text-stone-950 dark:text-stone-50">{value}</p>
+          <p className="mt-3 text-2xl sm:text-3xl font-black text-stone-950 dark:text-stone-50">{value}</p>
           <p className="mt-2 text-sm text-stone-500 dark:text-stone-400">{hint}</p>
         </div>
         <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-stone-100 dark:bg-stone-800 text-stone-700 dark:text-stone-200">
@@ -128,19 +134,19 @@ function MetricCard({
 function AnalyticsSkeleton() {
   return (
     <div className="space-y-6 animate-pulse">
-      <div className="rounded-[28px] sm:rounded-[32px] border border-stone-200 dark:border-stone-800 bg-white dark:bg-stone-900 p-5 sm:p-8">
+      <div className="rounded-2xl border-2 border-stone-200 dark:border-stone-800 bg-white dark:bg-stone-900 p-5 sm:p-8">
         <div className="h-6 w-40 rounded-full bg-stone-200 dark:bg-stone-800" />
         <div className="mt-4 h-10 w-72 rounded-2xl bg-stone-200 dark:bg-stone-800" />
         <div className="mt-3 h-5 w-full max-w-2xl rounded-full bg-stone-200 dark:bg-stone-800" />
       </div>
       <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-4">
         {Array.from({ length: 8 }).map((_, index) => (
-          <div key={index} className="h-36 rounded-3xl bg-stone-200 dark:bg-stone-800" />
+          <div key={index} className="h-36 rounded-2xl border border-stone-200 dark:border-stone-800 bg-stone-200 dark:bg-stone-800" />
         ))}
       </div>
       <div className="grid gap-6 lg:grid-cols-[1.15fr_0.85fr]">
-        <div className="h-96 rounded-[28px] sm:rounded-[32px] bg-stone-200 dark:bg-stone-800" />
-        <div className="h-96 rounded-[28px] sm:rounded-[32px] bg-stone-200 dark:bg-stone-800" />
+        <div className="h-96 rounded-2xl border border-stone-200 dark:border-stone-800 bg-stone-200 dark:bg-stone-800" />
+        <div className="h-96 rounded-2xl border border-stone-200 dark:border-stone-800 bg-stone-200 dark:bg-stone-800" />
       </div>
     </div>
   );
@@ -180,18 +186,18 @@ export default function LearningAnalytics() {
   const trackPieData = useMemo(() => {
     if (!analytics) return [];
     return [
-      { name: "Cá nhân", value: analytics.lessonsByTrack.personal, color: "#4f7a6b" },
-      { name: "Chuyên ngành", value: analytics.lessonsByTrack.professional, color: "#44403c" },
-      { name: "Bonus", value: analytics.lessonsByTrack.bonus, color: "#b98b45" },
+      { name: "Cá nhân", value: analytics.lessonsByTrack.personal, color: "#10b981" },
+      { name: "Chuyên ngành", value: analytics.lessonsByTrack.professional, color: "#57534e" },
+      { name: "Bonus", value: analytics.lessonsByTrack.bonus, color: "#f59e0b" },
     ].filter((item) => item.value > 0);
   }, [analytics]);
 
   const difficultyData = useMemo(() => {
     if (!analytics) return [];
     return [
-      { label: "Dễ", value: analytics.lessonsByDifficulty.easy, color: "#5f8a7a" },
-      { label: "Trung bình", value: analytics.lessonsByDifficulty.medium, color: "#b98b45" },
-      { label: "Khó", value: analytics.lessonsByDifficulty.hard, color: "#8f5f5a" },
+      { label: "Dễ", value: analytics.lessonsByDifficulty.easy, color: "#10b981" },
+      { label: "Trung bình", value: analytics.lessonsByDifficulty.medium, color: "#f59e0b" },
+      { label: "Khó", value: analytics.lessonsByDifficulty.hard, color: "#78716c" },
     ];
   }, [analytics]);
 
@@ -208,7 +214,7 @@ export default function LearningAnalytics() {
 
   if (!analytics) {
     return (
-      <div className="rounded-[28px] sm:rounded-[32px] border border-stone-200 dark:border-stone-800 bg-white dark:bg-stone-900 p-6 sm:p-8 text-center text-stone-500 dark:text-stone-400">
+      <div className="rounded-2xl border-2 border-stone-200 dark:border-stone-800 bg-white dark:bg-stone-900 p-6 sm:p-8 text-center text-stone-500 dark:text-stone-400">
         Không có dữ liệu analytics
       </div>
     );
@@ -220,28 +226,27 @@ export default function LearningAnalytics() {
         initial="hidden"
         animate="visible"
         variants={fadeUp}
-        className="relative overflow-hidden rounded-[28px] sm:rounded-[32px] border border-stone-200/80 dark:border-stone-800 bg-[radial-gradient(circle_at_top_left,_rgba(120,113,108,0.12),_transparent_32%),linear-gradient(135deg,_rgba(255,255,255,0.98),_rgba(245,245,244,0.94))] dark:bg-[radial-gradient(circle_at_top_left,_rgba(120,113,108,0.16),_transparent_32%),linear-gradient(135deg,_rgba(28,25,23,0.98),_rgba(24,24,27,0.95))] p-5 sm:p-8 shadow-[0_30px_80px_-40px_rgba(28,25,23,0.45)]"
+        className="relative overflow-hidden rounded-2xl border-2 border-stone-200 dark:border-stone-800 bg-white dark:bg-stone-900 p-5 sm:p-6"
       >
-        <div className="absolute right-0 top-0 h-44 w-44 rounded-full bg-stone-400/10 blur-3xl" />
-        <div className="relative flex flex-col gap-8 lg:flex-row lg:items-end lg:justify-between">
+        <div className="absolute inset-x-0 top-0 h-1.5 bg-emerald-500/15 dark:bg-emerald-400/20" />
+        <div className="relative flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
           <div className="max-w-2xl">
-            <div className="inline-flex items-center gap-2 rounded-full border border-stone-200/80 dark:border-stone-700 bg-white/80 dark:bg-stone-900/80 px-4 py-2 text-xs font-bold uppercase tracking-[0.18em] text-stone-600 dark:text-stone-300">
-              <Sparkles className="h-4 w-4 text-stone-600 dark:text-stone-300" />
-              Dashboard học tập
+            <div className="inline-flex items-center gap-2 rounded-full border border-emerald-200 dark:border-emerald-900 bg-emerald-50 dark:bg-emerald-950/50 px-4 py-2 text-xs font-bold uppercase tracking-[0.18em] text-emerald-700 dark:text-emerald-400">
+              <Sparkles className="h-4 w-4 text-emerald-600 dark:text-emerald-400" />
+              Thống kê học tập
             </div>
             <h2 className="mt-5 text-3xl font-black tracking-tight text-stone-950 dark:text-stone-50 sm:text-4xl">
-              Bức tranh toàn cảnh về cách bạn đang học
+              Một bức tranh gọn, rõ và đúng về tiến độ của bạn
             </h2>
-            <p className="mt-4 text-base leading-7 text-stone-600 dark:text-stone-300">
-              Không chỉ là số bài hoàn thành. Phần này cho bạn thấy nhịp học, độ bền streak,
-              thời điểm học hiệu quả hơn và những tín hiệu để quay lại đúng chỗ cần cải thiện.
+            <p className="mt-4 text-base leading-7 text-stone-600 dark:text-stone-300 max-w-2xl">
+              Không phải dashboard màu mè. Đây là nơi tóm gọn nhịp học, streak, thời điểm học hiệu quả và những điểm nên ưu tiên để quay lại học mượt hơn.
             </p>
 
             <div className="mt-6 grid gap-3 lg:grid-cols-3">
               {insights.map((insight, index) => (
                 <div
                   key={index}
-                  className="rounded-2xl border border-stone-200/80 dark:border-stone-700 bg-white/85 dark:bg-stone-900/70 px-4 py-3 text-sm text-stone-700 dark:text-stone-200"
+                  className="rounded-2xl border border-stone-200 dark:border-stone-800 bg-stone-50 dark:bg-stone-800/50 px-4 py-3 text-sm text-stone-700 dark:text-stone-200"
                 >
                   {insight}
                 </div>
@@ -250,8 +255,8 @@ export default function LearningAnalytics() {
           </div>
 
           <div className="grid w-full min-w-0 gap-4 sm:grid-cols-2 lg:max-w-[320px]">
-            <div className="rounded-3xl border border-stone-200/80 dark:border-stone-700 bg-white/85 dark:bg-stone-900/75 p-4 sm:p-5">
-              <p className="text-xs font-extrabold uppercase tracking-[0.2em] text-stone-500 dark:text-stone-400">
+            <div className={panelSoftClass + " p-4 sm:p-5"}>
+              <p className={sectionLabelClass}>
                 Nhịp 7 ngày
               </p>
               <p className="mt-3 text-3xl font-black text-stone-950 dark:text-stone-50">
@@ -261,8 +266,8 @@ export default function LearningAnalytics() {
                 bài · {analytics.recentMomentum.last7DaysMinutes} phút
               </p>
             </div>
-            <div className="rounded-3xl border border-stone-200/80 dark:border-stone-700 bg-white/85 dark:bg-stone-900/75 p-4 sm:p-5">
-              <p className="text-xs font-extrabold uppercase tracking-[0.2em] text-stone-500 dark:text-stone-400">
+            <div className={panelSoftClass + " p-4 sm:p-5"}>
+              <p className={sectionLabelClass}>
                 Độ ổn định
               </p>
               <p className={`mt-3 text-3xl font-black ${metricTone(analytics.consistencyScore)}`}>
@@ -282,7 +287,7 @@ export default function LearningAnalytics() {
           label="Bài hoàn thành"
           value={`${analytics.totalLessonsCompleted}`}
           hint={`${analytics.completionRate}% trên ${analytics.totalLessonsStarted} bài đã mở`}
-          accent="bg-teal-700 dark:bg-teal-400"
+          accent="bg-emerald-600 dark:bg-emerald-400"
           delay={0.02}
         />
         <MetricCard
@@ -290,7 +295,7 @@ export default function LearningAnalytics() {
           label="Tổng XP"
           value={`${analytics.totalXpEarned}`}
           hint={`Level ${analytics.currentLevel} hiện tại`}
-          accent="bg-amber-700 dark:bg-amber-400"
+          accent="bg-stone-600 dark:bg-stone-400"
           delay={0.06}
         />
         <MetricCard
@@ -298,7 +303,7 @@ export default function LearningAnalytics() {
           label="Điểm quiz"
           value={`${analytics.averageQuizScore}%`}
           hint={`TB ${analytics.averageMinutesPerLesson} phút cho mỗi bài`}
-          accent="bg-stone-600 dark:bg-stone-300"
+          accent="bg-amber-600 dark:bg-amber-400"
           delay={0.1}
         />
         <MetricCard
@@ -306,7 +311,7 @@ export default function LearningAnalytics() {
           label="Chuỗi ngày"
           value={`${analytics.streakDays}`}
           hint={`Kỷ lục ${analytics.longestStreak} ngày liên tiếp`}
-          accent="bg-orange-700 dark:bg-orange-400"
+          accent="bg-emerald-600 dark:bg-emerald-400"
           delay={0.14}
         />
         <MetricCard
@@ -322,7 +327,7 @@ export default function LearningAnalytics() {
           label="Xu hướng tuần"
           value={`${analytics.recentMomentum.weeklyTrendPercent > 0 ? "+" : ""}${analytics.recentMomentum.weeklyTrendPercent}%`}
           hint={`${analytics.recentMomentum.last30DaysLessons} bài trong 30 ngày qua`}
-          accent="bg-stone-700 dark:bg-stone-200"
+          accent="bg-emerald-600 dark:bg-emerald-400"
           delay={0.22}
         />
         <MetricCard
@@ -330,7 +335,7 @@ export default function LearningAnalytics() {
           label="Ghi chú"
           value={`${analytics.notes.totalNotes}`}
           hint={`${analytics.notes.lessonsWithNotes} bài có note`}
-          accent="bg-slate-700 dark:bg-slate-300"
+          accent="bg-stone-600 dark:bg-stone-300"
           delay={0.26}
         />
         <MetricCard
@@ -338,7 +343,7 @@ export default function LearningAnalytics() {
           label="Đánh dấu thủ công"
           value={`${analytics.manualFlags.totalFlags}`}
           hint="các bài bạn tự xác nhận đã học"
-          accent="bg-stone-900 dark:bg-stone-100"
+          accent="bg-amber-600 dark:bg-amber-400"
           delay={0.3}
         />
       </div>
@@ -349,18 +354,18 @@ export default function LearningAnalytics() {
           initial="hidden"
           animate="visible"
           variants={fadeUp}
-          className="min-w-0 overflow-hidden rounded-[28px] sm:rounded-[32px] border border-stone-200/80 dark:border-stone-800 bg-white/90 dark:bg-stone-900/90 p-4 sm:p-6 shadow-[0_20px_60px_-36px_rgba(28,25,23,0.35)]"
+          className={panelClass + " p-4 sm:p-6"}
         >
           <div className="mb-6 flex items-center justify-between gap-4">
             <div>
-              <p className="text-xs font-extrabold uppercase tracking-[0.22em] text-stone-500 dark:text-stone-400">
-                Weekly Momentum
+              <p className={sectionLabelClass}>
+                Nhịp học 8 tuần gần đây
               </p>
               <h3 className="mt-2 text-xl font-black text-stone-950 dark:text-stone-50">
-                Hoạt động 8 tuần gần đây
+                Hoạt động của bạn theo tuần
               </h3>
             </div>
-            <div className="rounded-2xl bg-stone-100 dark:bg-stone-800 px-4 py-2 text-sm text-stone-600 dark:text-stone-300">
+            <div className={panelSoftClass + " px-4 py-2 text-sm text-stone-600 dark:text-stone-300"}>
               Tuần tốt nhất: {weeklyPeak} bài
             </div>
           </div>
@@ -370,11 +375,11 @@ export default function LearningAnalytics() {
               <AreaChart data={analytics.weeklyActivity} margin={{ left: 0, right: 0, top: 12, bottom: 0 }}>
                 <defs>
                   <linearGradient id="weeklyLessons" x1="0" x2="0" y1="0" y2="1">
-                    <stop offset="0%" stopColor="#5f8a7a" stopOpacity={0.4} />
-                    <stop offset="100%" stopColor="#5f8a7a" stopOpacity={0.05} />
+                    <stop offset="0%" stopColor="#10b981" stopOpacity={0.32} />
+                    <stop offset="100%" stopColor="#10b981" stopOpacity={0.04} />
                   </linearGradient>
                 </defs>
-                <CartesianGrid vertical={false} stroke="#d6d3d1" strokeDasharray="4 4" opacity={0.35} />
+                <CartesianGrid vertical={false} stroke="#e7e5e4" strokeDasharray="4 4" opacity={0.7} />
                 <XAxis dataKey="label" tickLine={false} axisLine={false} tick={{ fontSize: 12, fill: "#78716c" }} />
                 <YAxis tickLine={false} axisLine={false} tick={{ fontSize: 12, fill: "#78716c" }} allowDecimals={false} />
                 <Tooltip
@@ -393,8 +398,8 @@ export default function LearningAnalytics() {
                   }}
                   labelFormatter={(label) => `Tuần bắt đầu ${label}`}
                 />
-                <Area type="monotone" dataKey="lessonsCompleted" stroke="#4f7a6b" strokeWidth={3} fill="url(#weeklyLessons)" />
-                <Area type="monotone" dataKey="minutesSpent" stroke="#57534e" strokeWidth={2} fillOpacity={0} />
+                <Area type="monotone" dataKey="lessonsCompleted" stroke="#10b981" strokeWidth={3} fill="url(#weeklyLessons)" />
+                <Area type="monotone" dataKey="minutesSpent" stroke="#78716c" strokeWidth={2} fillOpacity={0} />
               </AreaChart>
             </ResponsiveContainer>
           </div>
@@ -405,14 +410,14 @@ export default function LearningAnalytics() {
           initial="hidden"
           animate="visible"
           variants={fadeUp}
-          className="min-w-0 overflow-hidden rounded-[28px] sm:rounded-[32px] border border-stone-200/80 dark:border-stone-800 bg-white/90 dark:bg-stone-900/90 p-4 sm:p-6 shadow-[0_20px_60px_-36px_rgba(28,25,23,0.35)]"
+          className={panelClass + " p-4 sm:p-6"}
         >
           <div className="mb-6">
-            <p className="text-xs font-extrabold uppercase tracking-[0.22em] text-stone-500 dark:text-stone-400">
-              Study Rhythm
+            <p className={sectionLabelClass}>
+              Khung giờ học
             </p>
             <h3 className="mt-2 text-xl font-black text-stone-950 dark:text-stone-50">
-              Giờ học quen thuộc
+              Giờ học quen thuộc nhất
             </h3>
             <p className="mt-2 text-sm text-stone-500 dark:text-stone-400">
               Dựa trên thời điểm bạn hoàn thành bài học, để thấy khung giờ nào đang hợp với bạn nhất.
@@ -420,14 +425,14 @@ export default function LearningAnalytics() {
           </div>
 
           {studyHourData.length === 0 ? (
-            <div className="flex h-[320px] items-center justify-center rounded-3xl bg-stone-50 dark:bg-stone-800/50 text-sm text-stone-500 dark:text-stone-400">
+            <div className="flex h-[320px] items-center justify-center rounded-2xl bg-stone-50 dark:bg-stone-800/50 text-sm text-stone-500 dark:text-stone-400">
               Chưa đủ dữ liệu giờ học để vẽ biểu đồ.
             </div>
           ) : (
             <div className="h-[320px]">
               <ResponsiveContainer width="100%" height="100%">
                 <BarChart data={studyHourData} margin={{ left: -12, right: 0, top: 12, bottom: 0 }}>
-                  <CartesianGrid vertical={false} stroke="#d6d3d1" strokeDasharray="4 4" opacity={0.35} />
+                  <CartesianGrid vertical={false} stroke="#e7e5e4" strokeDasharray="4 4" opacity={0.7} />
                   <XAxis
                     dataKey="hour"
                     tickFormatter={(value) => `${value}h`}
@@ -453,7 +458,7 @@ export default function LearningAnalytics() {
                     {studyHourData.map((entry) => (
                       <Cell
                         key={entry.hour}
-                        fill={entry.hour === analytics.bestStudyHour ? "#5f8a7a" : "#57534e"}
+                        fill={entry.hour === analytics.bestStudyHour ? "#10b981" : "#78716c"}
                         fillOpacity={entry.hour === analytics.bestStudyHour ? 1 : 0.72}
                       />
                     ))}
@@ -471,21 +476,21 @@ export default function LearningAnalytics() {
           initial="hidden"
           animate="visible"
           variants={fadeUp}
-          className="min-w-0 overflow-hidden rounded-[28px] sm:rounded-[32px] border border-stone-200/80 dark:border-stone-800 bg-white/90 dark:bg-stone-900/90 p-4 sm:p-6 shadow-[0_20px_60px_-36px_rgba(28,25,23,0.35)]"
+          className={panelClass + " p-4 sm:p-6"}
         >
           <div className="mb-6 flex items-center justify-between gap-4">
             <div>
-              <p className="text-xs font-extrabold uppercase tracking-[0.22em] text-stone-500 dark:text-stone-400">
-                Learning Mix
+              <p className={sectionLabelClass}>
+                Cơ cấu track học
               </p>
               <h3 className="mt-2 text-xl font-black text-stone-950 dark:text-stone-50">
-                Bạn học theo track nào nhiều hơn?
+                Bạn đang học theo track nào nhiều hơn?
               </h3>
             </div>
           </div>
 
           {trackPieData.length === 0 ? (
-            <div className="flex h-[280px] items-center justify-center rounded-3xl bg-stone-50 dark:bg-stone-800/50 text-sm text-stone-500 dark:text-stone-400">
+            <div className="flex h-[280px] items-center justify-center rounded-2xl bg-stone-50 dark:bg-stone-800/50 text-sm text-stone-500 dark:text-stone-400">
               Chưa có dữ liệu track để hiển thị.
             </div>
           ) : (
@@ -529,7 +534,7 @@ export default function LearningAnalytics() {
                   >
                     <div className="flex items-center justify-between gap-4">
                       <div className="flex items-center gap-3">
-                        <span className="h-3.5 w-3.5 rounded-full" style={{ backgroundColor: item.color }} />
+                        <span className="h-3.5 w-3.5 rounded-full ring-2 ring-white dark:ring-stone-900" style={{ backgroundColor: item.color }} />
                         <span className="font-semibold text-stone-900 dark:text-stone-100">{item.name}</span>
                       </div>
                       <span className="text-sm font-black text-stone-900 dark:text-stone-100">{item.value}</span>
@@ -546,18 +551,18 @@ export default function LearningAnalytics() {
           initial="hidden"
           animate="visible"
           variants={fadeUp}
-          className="min-w-0 overflow-hidden rounded-[28px] sm:rounded-[32px] border border-stone-200/80 dark:border-stone-800 bg-white/90 dark:bg-stone-900/90 p-4 sm:p-6 shadow-[0_20px_60px_-36px_rgba(28,25,23,0.35)]"
+          className={panelClass + " p-4 sm:p-6"}
         >
           <div className="mb-6 flex items-center justify-between gap-4">
             <div>
-              <p className="text-xs font-extrabold uppercase tracking-[0.22em] text-stone-500 dark:text-stone-400">
-                Difficulty Balance
+              <p className={sectionLabelClass}>
+                Độ khó
               </p>
               <h3 className="mt-2 text-xl font-black text-stone-950 dark:text-stone-50">
                 Độ khó bài đã hoàn thành
               </h3>
             </div>
-            <div className="rounded-2xl bg-stone-100 dark:bg-stone-800 px-4 py-2 text-sm text-stone-600 dark:text-stone-300">
+            <div className={panelSoftClass + " px-4 py-2 text-sm text-stone-600 dark:text-stone-300"}>
               {analytics.totalLessonsCompleted} bài
             </div>
           </div>
@@ -590,8 +595,8 @@ export default function LearningAnalytics() {
 
           <div className="mt-6 grid gap-3 sm:grid-cols-2">
             <div className="rounded-2xl border border-stone-200 dark:border-stone-800 bg-stone-50 dark:bg-stone-800/50 p-4">
-              <p className="text-xs font-extrabold uppercase tracking-[0.18em] text-stone-500 dark:text-stone-400">
-                Completion rate
+              <p className={sectionLabelClass}>
+                Tỷ lệ hoàn thành
               </p>
               <p className={`mt-3 text-3xl font-black ${metricTone(analytics.completionRate)}`}>
                 {analytics.completionRate}%
@@ -601,7 +606,7 @@ export default function LearningAnalytics() {
               </p>
             </div>
             <div className="rounded-2xl border border-stone-200 dark:border-stone-800 bg-stone-50 dark:bg-stone-800/50 p-4">
-              <p className="text-xs font-extrabold uppercase tracking-[0.18em] text-stone-500 dark:text-stone-400">
+              <p className={sectionLabelClass}>
                 Nhịp ghi chú
               </p>
               <p className="mt-3 text-3xl font-black text-stone-950 dark:text-stone-50">
@@ -621,12 +626,12 @@ export default function LearningAnalytics() {
           initial="hidden"
           animate="visible"
           variants={fadeUp}
-          className="min-w-0 overflow-hidden rounded-[28px] sm:rounded-[32px] border border-stone-200/80 dark:border-stone-800 bg-white/90 dark:bg-stone-900/90 p-4 sm:p-6 shadow-[0_20px_60px_-36px_rgba(28,25,23,0.35)]"
+          className={panelClass + " p-4 sm:p-6"}
         >
           <div className="mb-6 flex items-center justify-between gap-4">
             <div>
-              <p className="text-xs font-extrabold uppercase tracking-[0.22em] text-stone-500 dark:text-stone-400">
-                Note Hotspots
+              <p className={sectionLabelClass}>
+                Ghi chú nổi bật
               </p>
               <h3 className="mt-2 text-xl font-black text-stone-950 dark:text-stone-50">
                 Bài học được ghi chú nhiều nhất
@@ -634,7 +639,7 @@ export default function LearningAnalytics() {
             </div>
             <Link
               href="/ghi-chu"
-              className="inline-flex items-center gap-2 rounded-full border border-stone-200 dark:border-stone-800 px-4 py-2 text-sm font-bold text-stone-600 dark:text-stone-300 hover:bg-stone-50 dark:hover:bg-stone-800/50 transition-colors"
+              className="inline-flex items-center gap-2 rounded-full border border-stone-200 dark:border-stone-800 bg-white dark:bg-stone-900 px-4 py-2 text-sm font-bold text-stone-600 dark:text-stone-300 hover:bg-stone-50 dark:hover:bg-stone-800/50 transition-colors"
             >
               Xem ghi chú
               <ChevronRight className="h-4 w-4" />
@@ -642,7 +647,7 @@ export default function LearningAnalytics() {
           </div>
 
           {analytics.notes.topLessons.length === 0 ? (
-            <div className="rounded-3xl bg-stone-50 dark:bg-stone-800/50 px-5 py-6 text-sm text-stone-500 dark:text-stone-400">
+            <div className="rounded-2xl bg-stone-50 dark:bg-stone-800/50 px-5 py-6 text-sm text-stone-500 dark:text-stone-400">
               Chưa có ghi chú nào được lưu. Khi bạn note lại ý quan trọng trong bài học, phần này sẽ giúp bạn biết mình đang suy nghĩ nhiều về chủ đề nào nhất.
             </div>
           ) : (
@@ -654,7 +659,7 @@ export default function LearningAnalytics() {
                   className="group flex items-center justify-between gap-4 rounded-2xl border border-stone-200 dark:border-stone-800 bg-stone-50 dark:bg-stone-800/50 px-4 py-4 transition-colors hover:bg-stone-100 dark:hover:bg-stone-800"
                 >
                   <div className="flex min-w-0 items-center gap-4">
-                    <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-2xl bg-white dark:bg-stone-900 text-sm font-black text-stone-900 dark:text-stone-100">
+                    <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-2xl bg-white dark:bg-stone-900 text-sm font-black text-stone-900 dark:text-stone-100 border border-stone-200 dark:border-stone-800">
                       {index + 1}
                     </div>
                     <div className="min-w-0">
@@ -678,11 +683,11 @@ export default function LearningAnalytics() {
           initial="hidden"
           animate="visible"
           variants={fadeUp}
-          className="min-w-0 overflow-hidden rounded-[28px] sm:rounded-[32px] border border-stone-200/80 dark:border-stone-800 bg-white/90 dark:bg-stone-900/90 p-4 sm:p-6 shadow-[0_20px_60px_-36px_rgba(28,25,23,0.35)]"
+          className={panelClass + " p-4 sm:p-6"}
         >
           <div className="mb-6">
-            <p className="text-xs font-extrabold uppercase tracking-[0.22em] text-stone-500 dark:text-stone-400">
-              Next Best Actions
+            <p className={sectionLabelClass}>
+              Gợi ý tiếp theo
             </p>
             <h3 className="mt-2 text-xl font-black text-stone-950 dark:text-stone-50">
               Gợi ý để dùng analytics tốt hơn
@@ -692,11 +697,11 @@ export default function LearningAnalytics() {
           <div className="space-y-3">
             <div className="rounded-2xl border border-stone-200 dark:border-stone-800 bg-stone-50 dark:bg-stone-800/50 p-4">
               <div className="flex items-start gap-3">
-                <CheckCircle2 className="mt-0.5 h-5 w-5 text-teal-700 dark:text-teal-300" />
+                <CheckCircle2 className="mt-0.5 h-5 w-5 text-emerald-700 dark:text-emerald-300" />
                 <div>
                   <p className="font-bold text-stone-900 dark:text-stone-100">Đóng các bài đang dang dở</p>
                   <p className="mt-1 text-sm text-stone-500 dark:text-stone-400">
-                    Completion rate của bạn đang là {analytics.completionRate}%. Nếu muốn XP và BXH phản ánh chuẩn hơn, hãy ưu tiên hoàn tất các bài đã mở.
+                    Tỷ lệ hoàn thành của bạn đang là {analytics.completionRate}%. Nếu muốn XP và BXH phản ánh chuẩn hơn, hãy ưu tiên hoàn tất các bài đã mở.
                   </p>
                 </div>
               </div>
@@ -714,7 +719,7 @@ export default function LearningAnalytics() {
             </div>
             <div className="rounded-2xl border border-stone-200 dark:border-stone-800 bg-stone-50 dark:bg-stone-800/50 p-4">
               <div className="flex items-start gap-3">
-                <NotebookPen className="mt-0.5 h-5 w-5 text-slate-700 dark:text-slate-300" />
+                <NotebookPen className="mt-0.5 h-5 w-5 text-stone-700 dark:text-stone-300" />
                 <div>
                   <p className="font-bold text-stone-900 dark:text-stone-100">Biến ghi chú thành lợi thế ôn tập</p>
                   <p className="mt-1 text-sm text-stone-500 dark:text-stone-400">
