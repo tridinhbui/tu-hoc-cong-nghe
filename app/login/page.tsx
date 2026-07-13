@@ -3,7 +3,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { GraduationCap, Gauge, Sparkles, Heart } from "lucide-react";
+import { GraduationCap, Gauge, Sparkles, Heart, Brain } from "lucide-react";
 import { createClient } from "@/lib/supabase";
 import { getTotalUserCount } from "@/lib/supabase-user";
 import { translateAuthError } from "@/lib/auth-error-messages";
@@ -19,6 +19,7 @@ const TRUST_HIGHLIGHTS = [
   { icon: Sparkles, label: "Tất cả bài học miễn phí" },
   { icon: GraduationCap, label: "Lộ trình rõ ràng, có kiểm tra sau mỗi bài" },
   { icon: Gauge, label: "Học theo tốc độ của riêng bạn" },
+  { icon: Brain, label: "Ứng dụng Spaced Repetition - ôn đúng lúc để nhớ lâu, không học vẹt" },
 ] as const;
 
 // Reads Supabase env vars at render time - never prerender statically.

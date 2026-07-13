@@ -57,7 +57,8 @@ export default function CfaTrackView({ subjects }: Props) {
         <p className="text-sm text-stone-300 leading-relaxed max-w-lg">
           Ánh xạ các bài học đã có trong <strong className="text-white">Tài chính cá nhân</strong> và{" "}
           <strong className="text-white">Tài chính chuyên ngành</strong> vào đúng 10 môn thi CFA Level I
-          chính thức. Bài học không bị di chuyển hay đổi số ngày.
+          chính thức, bám sát Learning Outcome Statements (LOS) và các nguồn tài liệu chính thống của
+          CFA Institute, có điều chỉnh cho phù hợp với lộ trình hiện tại. Bài học không bị di chuyển hay đổi số ngày.
         </p>
 
         <div className="flex items-center gap-6 mt-5">
