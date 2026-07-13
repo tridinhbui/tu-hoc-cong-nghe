@@ -25,6 +25,7 @@ import { getEligibleUserBadges, type UserBadge } from "@/lib/supabase-badges";
 import { getUserStreak, type UserStreak } from "@/lib/supabase-streak";
 import { getAllUserNotes } from "@/lib/supabase-notes";
 import { getUserLessonFlags } from "@/lib/supabase-lesson-flags";
+import { getUserBookmarks, type LessonBookmark } from "@/lib/supabase-bookmarks";
 import UserMenu from "@/components/UserMenu";
 import { TRACKS } from "@/lib/tracks";
 import {
@@ -194,6 +195,7 @@ export default function ProfilePage() {
   const [notesCount, setNotesCount] = useState(0);
   const [flaggedLessonCount, setFlaggedLessonCount] = useState(0);
   const [flaggedLessons, setFlaggedLessons] = useState<Array<{ lesson_id: number; lesson_slug: string; lesson_title: string }>>([]);
+  const [bookmarks, setBookmarks] = useState<LessonBookmark[]>([]);
   const [recentLessons, setRecentLessons] = useState<RecentLesson[]>([]);
   const [trackProgress, setTrackProgress] = useState<TrackProgressSummary[]>([]);
   const [studyMinutes, setStudyMinutes] = useState(0);
@@ -221,6 +223,7 @@ export default function ProfilePage() {
           earnedBadges,
           notes,
           flags,
+          bookmarksResponse,
           rank,
           progressResponse,
           lessonsResponse,
@@ -230,6 +233,7 @@ export default function ProfilePage() {
           getEligibleUserBadges(session.user.id),
           getAllUserNotes(session.user.id),
           getUserLessonFlags(session.user.id),
+          getUserBookmarks(session.user.id),
           getMyLeaderboardRank("xp", session.user.id),
           supabase
             .from("user_progress")
@@ -259,6 +263,7 @@ export default function ProfilePage() {
         setNotesCount(notes.length);
         setFlaggedLessonCount(flags.length);
         setFlaggedLessons(flags.slice(0, 4));
+        setBookmarks(bookmarksResponse.slice(0, 6));
         setXpRank(rank);
         setLessonsStarted(progressRows.length);
         setStudyMinutes(
@@ -540,6 +545,13 @@ export default function ProfilePage() {
                 <div className="flex items-center justify-between gap-4">
                   <span className="inline-flex items-center gap-2 text-stone-500 dark:text-stone-400">
                     <Bookmark className="w-4 h-4" />
+                    Bài học đã lưu
+                  </span>
+                  <span className="font-bold text-stone-900 dark:text-stone-100">{bookmarks.length}</span>
+                </div>
+                <div className="flex items-center justify-between gap-4">
+                  <span className="inline-flex items-center gap-2 text-stone-500 dark:text-stone-400">
+                    <Bookmark className="w-4 h-4" />
                     Bài tự đánh dấu
                   </span>
                   <span className="font-bold text-stone-900 dark:text-stone-100">{flaggedLessonCount}</span>
@@ -618,6 +630,40 @@ export default function ProfilePage() {
                         </p>
                         <p className="text-[11px] text-stone-500 dark:text-stone-400 mt-1">quiz</p>
                       </div>
+                    </div>
+                  </Link>
+                ))}
+              </div>
+            )}
+          </SectionCard>
+
+          <SectionCard
+            icon={<Bookmark className="w-5 h-5" />}
+            title="Bài học đã lưu"
+            description="Những bài bạn đánh dấu để quay lại đọc tiếp hoặc ôn lại sau."
+          >
+            {bookmarks.length === 0 ? (
+              <p className="text-sm text-stone-500 dark:text-stone-400">
+                Bạn chưa lưu bài học nào. Khi thấy bài đáng quay lại, hãy bấm biểu tượng đánh dấu trong trang bài học.
+              </p>
+            ) : (
+              <div className="space-y-3">
+                {bookmarks.map((bookmark) => (
+                  <Link
+                    key={bookmark.id}
+                    href={`/bai-hoc/${bookmark.lesson_slug}`}
+                    className="block rounded-xl border border-stone-200 dark:border-stone-800 px-4 py-3 hover:bg-stone-50 dark:hover:bg-stone-800/50 transition-colors"
+                  >
+                    <div className="flex items-start justify-between gap-3">
+                      <div className="min-w-0">
+                        <p className="text-sm font-bold text-stone-900 dark:text-stone-100">
+                          {bookmark.lesson_title}
+                        </p>
+                        <p className="text-xs text-stone-500 dark:text-stone-400 mt-1">
+                          Lưu ngày {new Date(bookmark.created_at).toLocaleDateString("vi-VN")}
+                        </p>
+                      </div>
+                      <Bookmark className="w-4 h-4 shrink-0 text-amber-500 dark:text-amber-400" />
                     </div>
                   </Link>
                 ))}

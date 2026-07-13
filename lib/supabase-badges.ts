@@ -94,54 +94,19 @@ export async function getEligibleUserBadges(userId: string) {
   }).filter((badge) => isBadgeEarnedByCurrentState(badge.badge_key, state));
 }
 
-/** Award a badge if not already earned. Returns the badge if newly awarded, null if already had it. */
+/**
+ * Client-side badge awarding is intentionally disabled.
+ * Earned badges must be written only from trusted server-side code / SQL
+ * after verifying the user's real state, never from the browser.
+ */
 export async function awardBadge(userId: string, badgeKey: string) {
-  const def = BADGE_DEFINITIONS[badgeKey];
-  if (!def) return null;
-
-  const supabase = createClient();
-
-  // Check if already earned
-  const { data: existing, error: checkError } = await supabase
-    .from("user_badges")
-    .select("id")
-    .eq("user_id", userId)
-    .eq("badge_key", badgeKey)
-    .single();
-
-  if (checkError && isMissingTableError(checkError)) return null;
-  if (existing) return null; // already has it
-
-  const { data, error } = await supabase
-    .from("user_badges")
-    .insert([
-      {
-        user_id: userId,
-        badge_key: def.key,
-        badge_name: def.name,
-        badge_description: def.description,
-        badge_icon: def.icon,
-      },
-    ])
-    .select()
-    .single();
-
-  if (error) {
-    // Unique constraint race - not an actual error for UX
-    if (error.code !== "23505" && !isMissingTableError(error)) {
-      throw handleSupabaseError(error);
-    }
-    return null;
-  }
-
-  return data as UserBadge;
+  void userId;
+  void badgeKey;
+  return null;
 }
 
 export async function awardBadges(userId: string, badgeKeys: string[]) {
-  const newlyAwarded: UserBadge[] = [];
-  for (const key of badgeKeys) {
-    const badge = await awardBadge(userId, key);
-    if (badge) newlyAwarded.push(badge);
-  }
-  return newlyAwarded;
+  void userId;
+  void badgeKeys;
+  return [] as UserBadge[];
 }

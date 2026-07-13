@@ -310,12 +310,11 @@ export default function FriendsClient() {
                       key={account.id}
                       className="flex items-center gap-3 rounded-xl border border-stone-200 dark:border-stone-800 bg-stone-50 dark:bg-stone-800/50 p-3"
                     >
-                      <Avatar name={account.full_name || account.email} avatarUrl={account.avatar_url} />
+                      <Avatar name={account.full_name || "Người dùng"} avatarUrl={account.avatar_url} />
                       <div className="flex-1 min-w-0">
                         <p className="text-sm font-bold text-stone-900 dark:text-stone-100 truncate">
                           {account.full_name || "Người dùng"}
                         </p>
-                        <p className="text-xs text-stone-500 dark:text-stone-400 truncate">{account.email}</p>
                         <p className="text-[11px] text-stone-400 dark:text-stone-500 mt-0.5">
                           Level {account.current_level} · {account.total_xp} XP
                         </p>
@@ -374,12 +373,11 @@ export default function FriendsClient() {
                 incomingRequests.map((connection) => (
                   <div key={connection.friendship_id} className="rounded-xl border border-stone-200 dark:border-stone-800 p-3">
                     <div className="flex items-center gap-3">
-                      <Avatar name={connection.full_name || connection.email} avatarUrl={connection.avatar_url} />
+                      <Avatar name={connection.full_name || "Người dùng"} avatarUrl={connection.avatar_url} />
                       <div className="flex-1 min-w-0">
                         <p className="text-sm font-bold text-stone-900 dark:text-stone-100 truncate">
                           {connection.full_name || "Người dùng"}
                         </p>
-                        <p className="text-xs text-stone-500 dark:text-stone-400 truncate">{connection.email}</p>
                       </div>
                     </div>
                     <div className="mt-3 flex gap-2">
@@ -430,7 +428,7 @@ export default function FriendsClient() {
                     }`}
                   >
                     <div className="flex items-center gap-3">
-                      <Avatar name={connection.full_name || connection.email} avatarUrl={connection.avatar_url} />
+                      <Avatar name={connection.full_name || "Người dùng"} avatarUrl={connection.avatar_url} />
                       <div className="min-w-0">
                         <p className="text-sm font-bold text-stone-900 dark:text-stone-100 truncate">
                           {connection.full_name || "Người dùng"}
@@ -457,7 +455,6 @@ export default function FriendsClient() {
                     <p className="text-sm font-bold text-stone-900 dark:text-stone-100 truncate">
                       {connection.full_name || "Người dùng"}
                     </p>
-                    <p className="text-xs text-stone-500 dark:text-stone-400 truncate mt-0.5">{connection.email}</p>
                   </div>
                 ))}
               </div>
@@ -475,13 +472,13 @@ export default function FriendsClient() {
           ) : (
             <>
               <div className="px-5 py-4 border-b border-stone-200 dark:border-stone-800 flex items-center gap-3">
-                <Avatar name={activeConnection.full_name || activeConnection.email} avatarUrl={activeConnection.avatar_url} size={44} />
+                <Avatar name={activeConnection.full_name || "Người dùng"} avatarUrl={activeConnection.avatar_url} size={44} />
                 <div className="min-w-0">
                   <p className="text-sm font-bold text-stone-900 dark:text-stone-100 truncate">
                     {activeConnection.full_name || "Người dùng"}
                   </p>
                   <p className="text-xs text-stone-500 dark:text-stone-400 truncate">
-                    {activeConnection.email} · Level {activeConnection.current_level}
+                    Level {activeConnection.current_level} · {activeConnection.total_xp} XP
                   </p>
                 </div>
               </div>

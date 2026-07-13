@@ -4,7 +4,6 @@ import { handleSupabaseError } from "@/lib/errors";
 export interface SearchAccountResult {
   id: string;
   full_name: string | null;
-  email: string | null;
   avatar_url: string | null;
   current_level: number;
   total_xp: number;
@@ -17,7 +16,6 @@ export interface SocialConnection {
   friendship_id: number;
   user_id: string;
   full_name: string | null;
-  email: string | null;
   avatar_url: string | null;
   current_level: number;
   total_xp: number;
