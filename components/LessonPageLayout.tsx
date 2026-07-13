@@ -386,8 +386,8 @@ export default function LessonPageLayout({ lesson, quiz, children }: Props) {
           />
         </div>
 
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 py-5 flex items-center justify-between gap-4">
-          <div className="flex items-center gap-4">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 py-5 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+          <div className="flex items-center gap-3 sm:gap-4 min-w-0">
             <Link
               href="/dashboard"
               aria-label="Về Dashboard"
@@ -401,7 +401,7 @@ export default function LessonPageLayout({ lesson, quiz, children }: Props) {
             </div>
           </div>
 
-          <div className="flex items-center gap-3">
+          <div className="flex flex-wrap items-center gap-2 sm:gap-3 w-full sm:w-auto sm:justify-end">
             {/* Reading font-size control */}
             <FontSizeControl scale={fontScale} onChange={setFontScale} />
 
