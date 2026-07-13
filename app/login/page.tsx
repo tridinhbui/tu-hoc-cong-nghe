@@ -3,6 +3,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
+import { motion } from "framer-motion";
 import { GraduationCap, Gauge, Sparkles, Heart, Brain } from "lucide-react";
 import { createClient } from "@/lib/supabase";
 import { getTotalUserCount } from "@/lib/supabase-user";
@@ -21,6 +22,26 @@ const TRUST_HIGHLIGHTS = [
   { icon: Gauge, label: "Học theo tốc độ của riêng bạn" },
   { icon: Brain, label: "Ứng dụng Spaced Repetition - ôn đúng lúc để nhớ lâu, không học vẹt" },
 ] as const;
+
+const FADE_UP = {
+  hidden: { opacity: 0, y: 14 },
+  show: { opacity: 1, y: 0, transition: { duration: 0.45, ease: "easeOut" } },
+} as const;
+
+// A number that visibly reads as "live" - pulsing dot glued to it, not just
+// a plain figure - so the count-up animation on mount doesn't get mistaken
+// for a static hardcoded claim.
+function LiveNumber({ value }: { value: number }) {
+  return (
+    <span className="relative inline-flex items-baseline font-bold text-stone-900 dark:text-stone-100 tabular-nums">
+      <span className="relative flex w-1.5 h-1.5 mr-1.5">
+        <span className="animate-ping absolute inline-flex w-full h-full rounded-full bg-emerald-400 opacity-75" />
+        <span className="relative inline-flex rounded-full w-1.5 h-1.5 bg-emerald-500" />
+      </span>
+      {value.toLocaleString("vi-VN")}+
+    </span>
+  );
+}
 
 // Reads Supabase env vars at render time - never prerender statically.
 export const dynamic = "force-dynamic";
@@ -284,12 +305,17 @@ export default function LoginPage() {
   }
 
   return (
-    <div className="min-h-screen lg:h-screen bg-white dark:bg-stone-950 flex lg:overflow-hidden">
+    <div className="min-h-screen bg-white dark:bg-stone-950 flex flex-col lg:flex-row">
       {/* ── LEFT SIDE: Hero + Info ── */}
-      <div className="hidden lg:flex flex-col w-1/2 bg-white dark:bg-stone-950 px-10 xl:px-12 py-10 xl:py-12 justify-between">
-        <div className="space-y-8">
+      <motion.div
+        initial="hidden"
+        animate="show"
+        variants={{ hidden: {}, show: { transition: { staggerChildren: 0.09 } } }}
+        className="hidden lg:flex flex-col w-1/2 bg-white dark:bg-stone-950 px-10 xl:px-12 py-10 xl:py-12 gap-10"
+      >
+        <div className="space-y-6">
           {/* Logo & Brand */}
-          <div className="space-y-3">
+          <motion.div variants={FADE_UP} className="space-y-3">
             <div className="flex items-center gap-2.5">
               <Logo size={28} />
               <div className="text-sm font-bold text-stone-500 dark:text-stone-400 uppercase tracking-widest">
@@ -300,50 +326,56 @@ export default function LoginPage() {
               Hiểu tiền bạc,<br />quản lý tài sản
             </h1>
             <p className="text-base xl:text-lg text-stone-600 dark:text-stone-400 leading-relaxed max-w-lg">
-              Hơn <span className="font-bold text-stone-900 dark:text-stone-100 tabular-nums">{displayedUserCount.toLocaleString("vi-VN")}+</span> người học đã tham gia. <span className="font-bold text-stone-900 dark:text-stone-100 tabular-nums">{displayedLessonCount.toLocaleString("vi-VN")}+</span> bài học miễn phí từ vỡ lòng đến phân tích doanh nghiệp, chia theo lộ trình và tổng giờ học rõ ràng để bạn chọn đúng tốc độ.
+              Hơn <LiveNumber value={displayedUserCount} /> người học đã tham gia. <LiveNumber value={displayedLessonCount} /> bài học miễn phí từ vỡ lòng đến phân tích doanh nghiệp, chia theo lộ trình và tổng giờ học rõ ràng để bạn chọn đúng tốc độ.
             </p>
+          </motion.div>
 
-            {/* Trust highlights - gives a cold visitor a reason to stay before hitting the auth form */}
-            <ul className="space-y-2 pt-1">
-              {TRUST_HIGHLIGHTS.map(({ icon: Icon, label }) => (
-                <li key={label} className="flex items-center gap-3 text-sm text-stone-600 dark:text-stone-400">
-                  <span className="flex-shrink-0 w-8 h-8 rounded-lg bg-stone-100 dark:bg-stone-900 flex items-center justify-center">
-                    <Icon className="w-4 h-4 text-stone-500 dark:text-stone-400" />
-                  </span>
-                  {label}
-                </li>
-              ))}
-            </ul>
+          {/* Trust highlights - gives a cold visitor a reason to stay before hitting the auth form */}
+          <motion.ul variants={FADE_UP} className="space-y-2">
+            {TRUST_HIGHLIGHTS.map(({ icon: Icon, label }) => (
+              <li key={label} className="flex items-center gap-3 text-sm text-stone-600 dark:text-stone-400">
+                <span className="flex-shrink-0 w-8 h-8 rounded-lg bg-stone-100 dark:bg-stone-900 flex items-center justify-center">
+                  <Icon className="w-4 h-4 text-stone-500 dark:text-stone-400" />
+                </span>
+                {label}
+              </li>
+            ))}
+          </motion.ul>
 
-            {/* Explicit commitment statement - a cold visitor's biggest doubt
-                on a "free education" site is usually "is this actually free,
-                or a bait-and-switch later" - state the commitment plainly
-                and link the community group as the accountability backing it. */}
-            <div className="flex items-start gap-3 rounded-2xl border border-rose-100 dark:border-rose-950 bg-rose-50/60 dark:bg-rose-950/20 px-4 py-3">
-              <Heart className="w-4 h-4 text-rose-500 flex-shrink-0 mt-0.5" />
-              <p className="text-xs text-stone-600 dark:text-stone-400 leading-relaxed">
-                Cam kết toàn bộ bài học tại đây <strong className="text-stone-800 dark:text-stone-200">miễn phí mãi mãi</strong> vì sự phát triển của cộng đồng Tự Học Tài Chính.{" "}
-                <a
-                  href="https://www.facebook.com/share/g/1C2jTdsgF5/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="font-bold text-rose-600 dark:text-rose-400 hover:underline"
-                >
-                  Tham gia group Facebook →
-                </a>
-              </p>
-            </div>
+          {/* Explicit commitment statement - a cold visitor's biggest doubt
+              on a "free education" site is usually "is this actually free,
+              or a bait-and-switch later" - state the commitment plainly
+              and link the community group as the accountability backing it. */}
+          <motion.div
+            variants={FADE_UP}
+            className="flex items-start gap-3 rounded-2xl border border-rose-100 dark:border-rose-950 bg-rose-50/60 dark:bg-rose-950/20 px-4 py-3"
+          >
+            <Heart className="w-4 h-4 text-rose-500 flex-shrink-0 mt-0.5" />
+            <p className="text-xs text-stone-600 dark:text-stone-400 leading-relaxed">
+              Cam kết toàn bộ bài học tại đây <strong className="text-stone-800 dark:text-stone-200">miễn phí mãi mãi</strong> vì sự phát triển của cộng đồng Tự Học Tài Chính.{" "}
+              <a
+                href="https://www.facebook.com/share/g/1C2jTdsgF5/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="font-bold text-rose-600 dark:text-rose-400 hover:underline"
+              >
+                Tham gia group Facebook →
+              </a>
+            </p>
+          </motion.div>
 
+          <motion.div variants={FADE_UP}>
             <PublicLeaderboardPreview />
-          </div>
-
-          <TrackPreviewPanel previewTrack={previewTrack} setPreviewTrack={setPreviewTrack} />
+          </motion.div>
         </div>
 
-      </div>
+        <motion.div variants={FADE_UP}>
+          <TrackPreviewPanel previewTrack={previewTrack} setPreviewTrack={setPreviewTrack} />
+        </motion.div>
+      </motion.div>
 
       {/* ── RIGHT SIDE: Form ── */}
-      <div className="w-full lg:w-1/2 bg-stone-50 dark:bg-stone-900/50 flex flex-col items-center justify-center px-6 py-10 lg:py-0 overflow-y-auto lg:overflow-hidden">
+      <div className="w-full lg:w-1/2 bg-stone-50 dark:bg-stone-900/50 flex flex-col items-center justify-center px-6 py-10 lg:py-16">
         <div className="w-full max-w-sm">
           {/* Mobile Brand (visible on small screens) */}
           <div className="lg:hidden space-y-4 mb-8 text-center">
