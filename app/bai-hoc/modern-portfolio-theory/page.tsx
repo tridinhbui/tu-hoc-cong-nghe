@@ -1,12 +1,13 @@
 "use client";
 
+import { useMemo, useState } from "react";
 import LessonPageLayout, { QuizQuestion, LessonMeta } from "@/components/LessonPageLayout";
 
 const meta: LessonMeta = {
   id: 52, day: 85, accent: "indigo",
   title: "Modern Portfolio Theory",
   subtitle: "Tương quan, đường biên hiệu quả và phân tán rủi ro",
-  duration: "7 phút", difficulty: "Khó", emoji: "·",
+  duration: "9 phút", difficulty: "Khó", emoji: "📊",
   nextSlug: "finance-as-math", nextTitle: "Tài chính quy về Công thức Toán học",
 };
 
@@ -53,78 +54,243 @@ const quiz: QuizQuestion[] = [
       "Số năm doanh nghiệp đã hoạt động",
     ],
     correct: 1,
-    explanation: "Beta đo mức độ nhạy cảm của cổ phiếu với biến động thị trường. Beta = 1: cổ phiếu biến động như thị trường. Beta > 1: biến động mạnh hơn thị trường (tăng nhiều hơn khi thị trường lên, giảm nhiều hơn khi thị trường xuống). Beta < 1: biến động ít hơn, ổn định hơn.",
+    explanation: "Beta đo mức độ nhạy cảm của cổ phiếu với biến động thị trường. Beta = 1: cổ phiếu biến động như thị trường. Beta > 1: biến động mạnh hơn thị trường. Beta < 1: biến động ít hơn, ổn định hơn.",
   },
 ];
+
+const PORTFOLIOS = [
+  {
+    id: "growth",
+    name: "Danh mục tăng trưởng",
+    stock: 80,
+    bond: 10,
+    gold: 10,
+  },
+  {
+    id: "balanced",
+    name: "Danh mục cân bằng",
+    stock: 60,
+    bond: 30,
+    gold: 10,
+  },
+  {
+    id: "defensive",
+    name: "Danh mục phòng thủ",
+    stock: 35,
+    bond: 50,
+    gold: 15,
+  },
+];
+
+function PortfolioSimulator() {
+  const [selectedId, setSelectedId] = useState("balanced");
+  const selected = PORTFOLIOS.find((portfolio) => portfolio.id === selectedId) ?? PORTFOLIOS[1];
+
+  const stats = useMemo(() => {
+    const expectedReturn = selected.stock * 0.1 + selected.bond * 0.04 + selected.gold * 0.05;
+    const rawRisk = selected.stock * 0.16 + selected.bond * 0.05 + selected.gold * 0.09;
+    const diversificationBonus = Math.min(selected.bond, selected.gold) * 0.03 + selected.gold * 0.02;
+    const estimatedRisk = Math.max(4, rawRisk / 100 - diversificationBonus / 100);
+
+    return {
+      expectedReturn: expectedReturn / 100,
+      estimatedRisk,
+    };
+  }, [selected]);
+
+  return (
+    <div className="my-8 rounded-2xl border border-stone-200 bg-gradient-to-br from-indigo-50 to-white p-5">
+      <div className="mb-4">
+        <h3 className="text-sm font-extrabold uppercase tracking-widest text-indigo-700">Portfolio Simulator</h3>
+        <p className="mt-1 text-sm leading-relaxed text-stone-600">
+          Chọn một cấu trúc danh mục để thấy ngay lợi nhuận kỳ vọng và rủi ro ước tính thay đổi thế nào khi phối hợp tài sản có tương quan khác nhau.
+        </p>
+      </div>
+
+      <div className="grid gap-3 sm:grid-cols-3">
+        {PORTFOLIOS.map((portfolio) => (
+          <button
+            key={portfolio.id}
+            onClick={() => setSelectedId(portfolio.id)}
+            className={`rounded-xl border p-4 text-left transition-all ${
+              portfolio.id === selectedId
+                ? "border-indigo-400 bg-white shadow-sm"
+                : "border-stone-200 bg-stone-50 hover:border-stone-300"
+            }`}
+          >
+            <p className="text-sm font-bold text-stone-900">{portfolio.name}</p>
+            <p className="mt-2 text-xs text-stone-500">
+              Cổ phiếu {portfolio.stock}% · Trái phiếu {portfolio.bond}% · Vàng {portfolio.gold}%
+            </p>
+          </button>
+        ))}
+      </div>
+
+      <div className="mt-5 grid gap-4 lg:grid-cols-[1.2fr_0.8fr]">
+        <div className="rounded-xl border border-stone-200 bg-white p-4">
+          <p className="text-xs font-bold uppercase tracking-wide text-stone-500 mb-3">Tỷ trọng danh mục</p>
+          <div className="overflow-hidden rounded-full bg-stone-100 h-5 flex">
+            <div className="bg-indigo-500 h-full" style={{ width: `${selected.stock}%` }} />
+            <div className="bg-emerald-500 h-full" style={{ width: `${selected.bond}%` }} />
+            <div className="bg-amber-400 h-full" style={{ width: `${selected.gold}%` }} />
+          </div>
+          <div className="mt-3 grid gap-2 text-sm text-stone-600 sm:grid-cols-3">
+            <div><span className="font-bold text-indigo-600">Cổ phiếu</span>: {selected.stock}%</div>
+            <div><span className="font-bold text-emerald-600">Trái phiếu</span>: {selected.bond}%</div>
+            <div><span className="font-bold text-amber-600">Vàng</span>: {selected.gold}%</div>
+          </div>
+          <p className="mt-4 text-sm leading-relaxed text-stone-600">
+            Ở đây cổ phiếu là nguồn return chính, trái phiếu là bộ giảm xóc, còn vàng đóng vai trò đối trọng khi thị trường stress. MPT không nói bạn phải luôn cầm đúng 3 tài sản này; nó nói <strong>sự phối hợp giữa các tài sản quan trọng hơn việc nhìn từng món riêng lẻ</strong>.
+          </p>
+        </div>
+
+        <div className="rounded-xl border border-stone-200 bg-stone-900 p-4 text-white">
+          <p className="text-xs font-bold uppercase tracking-wide text-stone-400 mb-3">Ước tính danh mục</p>
+          <div className="space-y-4">
+            <div>
+              <p className="text-xs text-stone-400">Expected return</p>
+              <p className="text-2xl font-extrabold">{(stats.expectedReturn * 100).toFixed(1)}%</p>
+            </div>
+            <div>
+              <p className="text-xs text-stone-400">Estimated risk</p>
+              <p className="text-2xl font-extrabold">{(stats.estimatedRisk * 100).toFixed(1)}%</p>
+            </div>
+            <p className="text-xs leading-relaxed text-stone-300">
+              Risk ở đây chỉ là mô phỏng trực quan để học khái niệm: khi tăng tài sản tăng trưởng, return kỳ vọng tăng nhưng biến động cũng tăng; khi trộn thêm tài sản tương quan thấp, tổng rủi ro có thể giảm nhiều hơn bạn tưởng.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
 
 export default function Page() {
   return (
     <LessonPageLayout lesson={meta} quiz={quiz}>
       <h2 className="text-2xl font-bold text-stone-900 mb-2">Modern Portfolio Theory</h2>
-      <p className="text-stone-500 text-sm mb-8">Harry Markowitz, 1952 - danh mục hiệu quả là gì và tại sao đa dạng hóa có giá trị</p>
+      <p className="text-stone-500 text-sm mb-8">Harry Markowitz, 1952 - danh mục không mạnh vì từng tài sản đều tốt, mà mạnh vì chúng phối hợp với nhau đúng cách</p>
 
       <section className="mb-10">
-        <h3 className="text-base font-bold text-stone-800 mb-4 uppercase tracking-wide text-xs">Ý tưởng cốt lõi</h3>
-        <p className="text-stone-600 leading-relaxed mb-3">
-          Một danh mục tốt không chỉ là tập hợp các cổ phiếu tốt. Đặt cạnh nhau các tài sản biến động theo những chiều khác nhau - khi một cái xuống thì cái khác ổn hoặc lên - có thể tạo ra danh mục có rủi ro thấp hơn từng tài sản riêng lẻ, với cùng mức lợi nhuận kỳ vọng.
+        <h3 className="text-base font-bold text-stone-800 mb-4 uppercase tracking-wide text-xs">Ý tưởng cốt lõi của MPT</h3>
+        <p className="text-stone-600 leading-relaxed mb-4">
+          Modern Portfolio Theory bắt đầu từ một quan sát rất đơn giản nhưng cực mạnh: <strong>rủi ro của danh mục không bằng phép cộng rủi ro của từng tài sản</strong>. Nếu bạn ghép những tài sản không di chuyển giống nhau, chúng có thể triệt bớt biến động của nhau.
         </p>
         <p className="text-stone-600 leading-relaxed">
-          Đây là nền tảng của <strong>Modern Portfolio Theory (MPT)</strong>: không nhìn rủi ro của từng cổ phiếu riêng lẻ, mà nhìn rủi ro của cả danh mục - và tối ưu hóa tỷ lệ phân bổ để đạt return cao nhất với risk thấp nhất.
+          Đây là điểm khiến MPT khác hẳn tư duy sơ cấp kiểu "mua vài cổ phiếu tốt là đủ". Một doanh nghiệp riêng lẻ có thể tuyệt vời, nhưng danh mục gồm 5 doanh nghiệp cùng ngành, cùng beta cao, cùng nhạy với lãi suất vẫn có thể rất mong manh. MPT dạy ta nhìn <strong>mối quan hệ giữa các tài sản</strong>, không chỉ nhìn từng asset độc lập.
         </p>
       </section>
 
       <section className="mb-10">
-        <h3 className="text-base font-bold text-stone-800 mb-4 uppercase tracking-wide text-xs">Correlation - tương quan giữa các tài sản</h3>
+        <h3 className="text-base font-bold text-stone-800 mb-4 uppercase tracking-wide text-xs">Correlation: linh hồn của đa dạng hóa</h3>
         <p className="text-stone-600 text-sm leading-relaxed mb-4">
-          Correlation đo mức độ hai tài sản di chuyển cùng chiều hay ngược chiều. Giá trị từ -1 đến +1.
+          Correlation đo mức độ hai tài sản di chuyển cùng chiều hay ngược chiều. Giá trị nằm trong khoảng từ -1 đến +1.
         </p>
-        <div className="space-y-2 text-sm text-stone-600">
-          <div><strong>+1:</strong> Tương quan hoàn toàn thuận - luôn tăng giảm cùng chiều. Không có lợi ích đa dạng hóa.</div>
-          <div><strong>0:</strong> Không tương quan - biến động độc lập. Đa dạng hóa có lợi ích.</div>
-          <div><strong>-1:</strong> Tương quan hoàn toàn nghịch - một lên thì cái kia xuống. Lý tưởng để giảm biến động.</div>
+        <div className="grid gap-3 sm:grid-cols-3">
+          {[
+            {
+              title: "+1",
+              body: "Hai tài sản gần như nhảy cùng một điệu. Giữ cả hai gần như không tạo lợi ích đa dạng hóa.",
+            },
+            {
+              title: "0",
+              body: "Hai tài sản khá độc lập. Kết hợp chúng giúp danh mục bớt xóc hơn mà không phải hy sinh quá nhiều return.",
+            },
+            {
+              title: "-1",
+              body: "Một tài sản lên khi tài sản kia xuống. Đây là trường hợp lý tưởng về mặt toán học, nhưng hiếm trong đời thực.",
+            },
+          ].map((item) => (
+            <div key={item.title} className="rounded-xl border border-stone-200 bg-stone-50 p-4">
+              <p className="text-lg font-extrabold text-stone-900 mb-2">{item.title}</p>
+              <p className="text-sm leading-relaxed text-stone-600">{item.body}</p>
+            </div>
+          ))}
         </div>
-        <p className="text-stone-600 text-xs mt-3">
-          Ví dụ: cổ phiếu và vàng có tương quan thấp. Khi cổ phiếu sụt, vàng thường giữ giá hoặc tăng - tạo đối trọng.
+        <p className="text-stone-600 text-sm leading-relaxed mt-4">
+          Ví dụ đời thường: cổ phiếu tăng trưởng, trái phiếu chính phủ và vàng không phải lúc nào cũng đi ngược nhau hoàn toàn, nhưng chúng thường phản ứng khác nhau trước lạm phát, suy thoái, hay panic. Chính "không giống nhau hoàn toàn" đó tạo ra giá trị.
+        </p>
+      </section>
+
+      <PortfolioSimulator />
+
+      <section className="mb-10">
+        <h3 className="text-base font-bold text-stone-800 mb-4 uppercase tracking-wide text-xs">Ví dụ danh mục: vì sao 60/40 có ý nghĩa</h3>
+        <div className="overflow-x-auto rounded-xl border border-stone-200">
+          <table className="w-full min-w-[680px] text-sm">
+            <thead className="bg-stone-100 text-stone-700">
+              <tr>
+                <th className="px-4 py-3 text-left font-bold">Danh mục</th>
+                <th className="px-4 py-3 text-left font-bold">Tỷ trọng</th>
+                <th className="px-4 py-3 text-left font-bold">Đọc nhanh</th>
+              </tr>
+            </thead>
+            <tbody>
+              {[
+                ["100% cổ phiếu", "100/0/0", "Return kỳ vọng cao nhưng toàn bộ biến động thị trường dội thẳng vào tài khoản."],
+                ["60/40 cổ phiếu - trái phiếu", "60/40/0", "Hy sinh một phần upside để đổi lấy độ ổn định và khả năng sống sót qua chu kỳ."],
+                ["60/30/10 thêm vàng", "60/30/10", "Thêm một lớp đối trọng khi thị trường stress hoặc lạm phát tăng."],
+              ].map(([name, mix, note], index) => (
+                <tr key={name} className={index % 2 === 0 ? "bg-white" : "bg-stone-50/60"}>
+                  <td className="px-4 py-3 font-medium text-stone-800">{name}</td>
+                  <td className="px-4 py-3 text-stone-600">{mix}</td>
+                  <td className="px-4 py-3 text-stone-600">{note}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+        <p className="text-stone-600 text-sm leading-relaxed mt-4">
+          Điểm hay của 60/40 không phải vì đó là tỷ lệ thần kỳ cho mọi thời đại, mà vì nó minh họa rất rõ tinh thần MPT: thay vì hỏi "cổ phiếu nào thắng nhất", ta hỏi "mình ghép các tài sản này ra sao để danh mục chịu đựng tốt hơn mà vẫn tăng trưởng đủ".
         </p>
       </section>
 
       <section className="mb-10">
-        <h3 className="text-base font-bold text-stone-800 mb-4 uppercase tracking-wide text-xs">Efficient Frontier - đường biên hiệu quả</h3>
-        <p className="text-stone-600 text-sm leading-relaxed mb-3">
-          Với một tập hợp tài sản, có vô số cách phân bổ tỷ trọng. Mỗi cách tạo ra một danh mục với expected return và risk (standard deviation) khác nhau.
-        </p>
+        <h3 className="text-base font-bold text-stone-800 mb-4 uppercase tracking-wide text-xs">Efficient Frontier: đường biên của các danh mục hợp lý</h3>
         <p className="text-stone-600 text-sm leading-relaxed mb-4">
-          <strong>Efficient Frontier</strong> là tập hợp các danh mục đạt return cao nhất với mỗi mức risk - hoặc risk thấp nhất với mỗi mức return. Danh mục nằm trong đường biên này là kém hiệu quả: có thể đạt cùng return với risk thấp hơn, hoặc return cao hơn với cùng risk.
+          Nếu lấy nhiều tài sản rồi thử hàng trăm cách phân bổ khác nhau, bạn sẽ có hàng trăm điểm risk-return. Một số điểm rõ ràng vô lý: return không hơn bao nhiêu nhưng biến động rất cao. Một số điểm khác tối ưu hơn - đó là vùng Efficient Frontier.
         </p>
-        <div className="border border-stone-200 rounded-xl p-4 text-sm text-stone-600">
-          Ý nghĩa thực tế: khi xây danh mục, câu hỏi không phải "chọn tài sản tốt nhất" mà là "phân bổ như thế nào để danh mục nằm trên Efficient Frontier."
+        <div className="rounded-xl border border-stone-200 bg-stone-50 p-5">
+          <p className="text-sm leading-relaxed text-stone-700">
+            Câu hỏi của MPT là: <strong>với mức đau bạn chịu được, đâu là danh mục có expected return tốt nhất?</strong>
+          </p>
+          <p className="mt-3 text-sm leading-relaxed text-stone-600">
+            Danh mục nằm dưới đường biên là danh mục "lười suy nghĩ": hoặc đang cầm quá nhiều rủi ro cho lợi nhuận không tương xứng, hoặc đang bỏ phí cơ hội tăng return trong khi risk không cao hơn bao nhiêu.
+          </p>
         </div>
       </section>
 
       <section className="mb-10">
-        <h3 className="text-base font-bold text-stone-800 mb-4 uppercase tracking-wide text-xs">Systematic vs Unsystematic Risk</h3>
-        <div className="space-y-3 text-sm text-stone-600">
-          <div>
-            <strong>Systematic Risk - rủi ro thị trường</strong>
-            <p className="mt-1">Ảnh hưởng toàn bộ thị trường: khủng hoảng kinh tế, lãi suất tăng, chiến tranh, đại dịch. Không giảm được bằng đa dạng hóa - mọi cổ phiếu đều bị ảnh hưởng.</p>
+        <h3 className="text-base font-bold text-stone-800 mb-4 uppercase tracking-wide text-xs">Systematic vs unsystematic risk</h3>
+        <div className="grid gap-3 sm:grid-cols-2">
+          <div className="rounded-xl border border-stone-200 bg-white p-4">
+            <p className="text-sm font-bold text-stone-900 mb-2">Unsystematic risk</p>
+            <p className="text-sm leading-relaxed text-stone-600">
+              Rủi ro riêng của công ty hoặc ngành: scandal quản trị, sản phẩm lỗi, vụ kiện, mất thị phần. Đây là loại MPT giúp giảm đáng kể nhờ đa dạng hóa.
+            </p>
           </div>
-          <div>
-            <strong>Unsystematic Risk - rủi ro đặc thù</strong>
-            <p className="mt-1">Riêng của từng doanh nghiệp: CEO từ chức, sản phẩm thất bại, vụ kiện, bê bối. Giảm được bằng đa dạng hóa - nắm nhiều cổ phiếu khác nhau sẽ triệt tiêu những rủi ro này.</p>
+          <div className="rounded-xl border border-stone-200 bg-white p-4">
+            <p className="text-sm font-bold text-stone-900 mb-2">Systematic risk</p>
+            <p className="text-sm leading-relaxed text-stone-600">
+              Rủi ro của cả hệ thống: lãi suất, suy thoái, panic thị trường, chiến tranh. Loại này không biến mất chỉ vì bạn cầm 20 mã cổ phiếu khác nhau.
+            </p>
           </div>
         </div>
       </section>
 
       <section>
-        <h3 className="text-base font-bold text-stone-800 mb-4 uppercase tracking-wide text-xs">Beta - độ nhạy cảm với thị trường</h3>
-        <p className="text-stone-600 text-sm leading-relaxed mb-3">
-          Beta đo mức độ biến động của cổ phiếu so với thị trường chung. Cách đo lường systematic risk.
+        <h3 className="text-base font-bold text-stone-800 mb-4 uppercase tracking-wide text-xs">Beta và bài học thực chiến</h3>
+        <p className="text-stone-600 text-sm leading-relaxed mb-4">
+          Beta là cách đo độ nhạy của một tài sản với thị trường chung. Nhưng beta không phải toàn bộ câu chuyện. Một cổ phiếu beta thấp vẫn có thể là khoản đầu tư tệ nếu kinh doanh suy thoái. MPT hữu ích nhất khi được dùng như công cụ cấu trúc danh mục, chứ không phải cái cớ để bỏ qua chất lượng business.
         </p>
-        <div className="space-y-2 text-sm text-stone-600">
-          <div><strong>Beta &gt; 1:</strong> Công nghệ, startup - biến động mạnh hơn thị trường, tiềm năng cao nhưng risk cao</div>
-          <div><strong>Beta = 1:</strong> Biến động như thị trường</div>
-          <div><strong>Beta &lt; 1:</strong> Tiện ích công cộng, y tế - ổn định, ít biến động hơn thị trường</div>
-          <div><strong>Beta âm:</strong> Vàng, quỹ hedge - di chuyển ngược chiều thị trường</div>
+        <div className="rounded-2xl bg-stone-900 p-5 text-white">
+          <p className="font-bold mb-3">Khung nhớ cuối bài</p>
+          <div className="space-y-2 text-sm text-stone-300">
+            <div>1. Tài sản tốt ghép sai nhau vẫn có thể tạo danh mục tệ.</div>
+            <div>2. Tương quan thấp là nhiên liệu của đa dạng hóa.</div>
+            <div>3. Efficient Frontier không chọn "asset tốt nhất", mà chọn "mix hợp lý nhất".</div>
+            <div>4. Mục tiêu cuối cùng không phải tối đa hóa return trên giấy, mà là tối ưu risk-return cho con người thật của bạn.</div>
+          </div>
         </div>
       </section>
     </LessonPageLayout>

@@ -4,10 +4,13 @@
 // lessons. Instead it's a cross-reference layer: each of the 10 official
 // CFA Level I subjects lists the ids of already-existing lessons that
 // happen to cover that subject's material, curated by hand from lesson
-// titles/subtitles. A subject with no matching lessons yet (Ethics has
-// none - nothing in the existing curriculum covers professional conduct
-// standards) renders as "sẽ xây trong tương lai" on the CFA page instead
-// of an empty section.
+// titles/subtitles against the official CFA Institute curriculum books
+// and Learning Modules (Learning Outcome Statements), not just guessed
+// from title keywords. A subject with no matching lessons yet is filled
+// in gradually with purpose-built lessons that follow the same official
+// curriculum structure; until then it renders as "sẽ xây trong tương lai"
+// on the CFA page instead of an empty section. Ethics is the first such
+// subject being actively built out (see app/bai-hoc/cfa-ethics-*/ lessons).
 export interface CfaSubject {
   id: string;
   name: string;

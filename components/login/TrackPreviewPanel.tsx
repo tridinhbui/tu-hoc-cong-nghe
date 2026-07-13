@@ -14,6 +14,7 @@ interface TrackPreviewPanelProps {
 // login page - one component instead of two hand-kept-in-sync copies.
 export default function TrackPreviewPanel({ previewTrack, setPreviewTrack, compact = false }: TrackPreviewPanelProps) {
   const track = TRACKS[previewTrack];
+  const trackEffortLabel = (hours: number) => `~${hours} giờ học`;
 
   return (
     <div className={`border-2 border-stone-200 dark:border-stone-800 rounded-2xl overflow-hidden ${compact ? "mb-8" : ""}`}>
@@ -41,7 +42,7 @@ export default function TrackPreviewPanel({ previewTrack, setPreviewTrack, compa
               </div>
               <div className={`font-bold ${compact ? "text-sm" : "text-sm"}`}>{t.tab}</div>
               {t.estimatedHours > 0 && (
-                <div className={`opacity-70 ${compact ? "text-xs mt-0.5" : "text-xs mt-0.5"}`}>~{t.estimatedHours} bài học</div>
+                <div className={`opacity-70 ${compact ? "text-xs mt-0.5" : "text-xs mt-0.5"}`}>{trackEffortLabel(t.estimatedHours)}</div>
               )}
             </button>
           );
@@ -55,16 +56,16 @@ export default function TrackPreviewPanel({ previewTrack, setPreviewTrack, compa
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: compact ? -4 : -6 }}
           transition={{ duration: 0.18 }}
-          className={compact ? "p-4 space-y-3" : "p-6 space-y-4"}
+          className={compact ? "p-4 space-y-3" : "p-5 xl:p-6 space-y-3"}
         >
           {!compact && (
-            <p className="text-sm text-stone-600 dark:text-stone-400">{track.description}</p>
+            <p className="text-sm text-stone-600 dark:text-stone-400 leading-relaxed">{track.description}</p>
           )}
 
-          {compact && <p className="text-sm text-stone-600 dark:text-stone-400">{track.description}</p>}
+          {compact && <p className="text-sm text-stone-600 dark:text-stone-400 leading-relaxed">{track.description}</p>}
 
           {!compact && (
-            <ul className="space-y-2 text-xs text-stone-500 dark:text-stone-400">
+            <ul className="space-y-1.5 text-xs text-stone-500 dark:text-stone-400">
               {track.stages.map((s) => (
                 <li key={s} className="flex gap-2">
                   <span className="flex-shrink-0 text-stone-300 dark:text-stone-600">→</span> {s}
@@ -76,7 +77,7 @@ export default function TrackPreviewPanel({ previewTrack, setPreviewTrack, compa
           <a
             href={track.previewSlug ? `/bai-hoc/${track.previewSlug}` : "/cfa"}
             className={`flex items-center justify-between gap-3 rounded-xl transition-all group bg-gradient-to-r from-emerald-500 to-emerald-600 hover:from-emerald-600 hover:to-emerald-700 shadow-sm hover:shadow-md active:scale-[0.99] ${
-              compact ? "px-4 py-3" : "px-5 py-4"
+              compact ? "px-4 py-3" : "px-5 py-3.5"
             }`}
           >
             <div className="flex items-center gap-3 min-w-0">

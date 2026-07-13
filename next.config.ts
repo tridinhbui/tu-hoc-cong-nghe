@@ -14,6 +14,10 @@ const nextConfig: NextConfig = {
         protocol: "https",
         hostname: "*.googleusercontent.com",
       },
+      {
+        protocol: "https",
+        hostname: "*.supabase.co",
+      },
     ],
   },
   async headers() {
@@ -25,7 +29,7 @@ const nextConfig: NextConfig = {
       "default-src 'self'",
       `script-src 'self' 'unsafe-inline' ${isDev ? "'unsafe-eval'" : ""}`,
       "style-src 'self' 'unsafe-inline'",
-      "img-src 'self' data: https://lh3.googleusercontent.com https://*.googleusercontent.com",
+      "img-src 'self' data: https://lh3.googleusercontent.com https://*.googleusercontent.com https://*.supabase.co",
       "font-src 'self' data:",
       "connect-src 'self' https://*.supabase.co wss://*.supabase.co",
       "frame-ancestors 'none'",

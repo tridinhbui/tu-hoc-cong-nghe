@@ -10,6 +10,7 @@ import MidpointInteractive from "@/components/MidpointInteractive";
 import LessonSections from "@/components/LessonSections";
 import { highlightGlossaryTerms } from "@/components/GlossaryTerm";
 import { LessonApplicationCard, LessonQuestionCard, LessonSummaryCard, ReviewLoopCard } from "@/components/LessonLearningBlocks";
+import { getLessonDisplayLabel, getLessonRecallDay } from "@/lib/lesson-labels";
 
 function OpeningQuestionBlock({
   question,
@@ -185,9 +186,13 @@ function buildDefaultApplication(lesson: Lesson) {
 }
 
 export default function LessonPageClient({ lesson, nextLesson }: Props) {
+  const lessonLabel = getLessonDisplayLabel(lesson);
+
   const meta = {
     id: lesson.id,
     day: lesson.id,
+    label: lessonLabel,
+    recallDay: getLessonRecallDay(lesson),
     accent: "stone",
     title: lesson.title,
     subtitle: lesson.subtitle,
@@ -196,7 +201,7 @@ export default function LessonPageClient({ lesson, nextLesson }: Props) {
     emoji: lesson.emoji,
     slug: lesson.slug,
     nextSlug: nextLesson?.slug,
-    nextTitle: nextLesson ? `Day ${nextLesson.id}: ${nextLesson.title}` : undefined,
+    nextTitle: nextLesson ? nextLesson.title : undefined,
   };
 
   // Pull a middle question out as the mid-article checkpoint, leaving the

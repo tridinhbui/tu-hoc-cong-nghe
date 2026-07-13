@@ -73,22 +73,20 @@ export default function KiemTraPage() {
   const score = results.filter(Boolean).length;
   const passed = questions.length > 0 && score >= Math.ceil(questions.length * PASS_RATIO);
 
-  useEffect(() => {
-    if (stage !== "done" || !userId || recording || xpAwarded !== null) return;
+  async function finalizeQuiz() {
+    if (!userId || recording || xpAwarded !== null) return;
     setRecording(true);
-    (async () => {
-      try {
-        const xp = await recordQuizSession(userId, track, difficulty, score, questions.length);
-        await recalculateUserStats(userId);
-        setXpAwarded(xp);
-      } catch (error) {
-        console.error("Error recording quiz session:", error);
-        setXpAwarded(computeQuizXp(score, questions.length)); // optimistic fallback so the UI still shows a reward
-      } finally {
-        setRecording(false);
-      }
-    })();
-  }, [stage, userId, recording, xpAwarded, track, difficulty, score, questions.length]);
+    try {
+      const xp = await recordQuizSession(userId, track, difficulty, score, questions.length);
+      await recalculateUserStats(userId);
+      setXpAwarded(xp);
+    } catch (error) {
+      console.error("Error recording quiz session:", error);
+      setXpAwarded(computeQuizXp(score, questions.length)); // optimistic fallback so the UI still shows a reward
+    } finally {
+      setRecording(false);
+    }
+  }
 
   function choose(oi: number) {
     if (submitted) return;
@@ -109,6 +107,7 @@ export default function KiemTraPage() {
   function next() {
     if (activeQ === questions.length - 1) {
       setStage("done");
+      void finalizeQuiz();
       return;
     }
     setActiveQ((i) => i + 1);

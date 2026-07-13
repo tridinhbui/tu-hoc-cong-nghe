@@ -240,3 +240,63 @@ export function isLessonIdInTrack(id: number, track: "personal" | "professional"
   const stages = track === "personal" ? TRACK_PERSONAL.stages : TRACK_PROFESSIONAL.stages;
   return stages.some((stage) => isLessonInRange(id, stage));
 }
+
+type TrackLessonLike = {
+  id: number;
+  track?: "personal" | "professional" | "bonus";
+};
+
+function isExplicitlyInTrack(lesson: TrackLessonLike, track: "personal" | "professional"): boolean {
+  if (lesson.track === "bonus") return false;
+  if (lesson.track) return lesson.track === track;
+  return isLessonIdInTrack(lesson.id, track);
+}
+
+// Dashboard sections render in stage/part order, not raw numeric id order.
+// Personal Chặng 0 lives at ids 263-268 but is intentionally the FIRST
+// thing a learner should do; sorting by id makes resume logic jump to Day 1
+// first and makes the app talk as if Chặng 0 were "after" 262 earlier days.
+export function orderLessonsForTrack<T extends TrackLessonLike>(
+  lessons: T[],
+  track: "personal" | "professional"
+): T[] {
+  const stages = track === "personal" ? TRACK_PERSONAL.stages : TRACK_PROFESSIONAL.stages;
+  const trackLessons = lessons.filter((lesson) => isExplicitlyInTrack(lesson, track));
+  const byId = new Map(trackLessons.map((lesson) => [lesson.id, lesson]));
+  const ordered: T[] = [];
+  const seen = new Set<number>();
+
+  const pushLessonsInRange = (range: { days: [number, number]; extraLessonIds?: number[] }) => {
+    const partLessons = trackLessons
+      .filter((lesson) => !seen.has(lesson.id) && isLessonInRange(lesson.id, range))
+      .sort((a, b) => a.id - b.id);
+
+    for (const lesson of partLessons) {
+      seen.add(lesson.id);
+      ordered.push(lesson);
+    }
+  };
+
+  for (const stage of stages) {
+    for (const part of stage.parts) {
+      pushLessonsInRange(part);
+    }
+
+    const stageExtraLessonIds = (stage as Stage).extraLessonIds;
+    if (stageExtraLessonIds) {
+      for (const lessonId of stageExtraLessonIds) {
+        const lesson = byId.get(lessonId);
+        if (lesson && !seen.has(lesson.id)) {
+          seen.add(lesson.id);
+          ordered.push(lesson);
+        }
+      }
+    }
+  }
+
+  const leftovers = trackLessons
+    .filter((lesson) => !seen.has(lesson.id))
+    .sort((a, b) => a.id - b.id);
+
+  return [...ordered, ...leftovers];
+}

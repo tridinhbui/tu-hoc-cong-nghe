@@ -5,7 +5,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { useRouter, useSearchParams } from "next/navigation";
 import { toast } from "sonner";
-import { CheckCircle2, BarChart3, Lock, FileText, Menu, X, GraduationCap } from "lucide-react";
+import { CheckCircle2, BarChart3, Lock, FileText, Menu, X, GraduationCap, StickyNote, CheckCheck } from "lucide-react";
 import { useProgress } from "@/lib/client-hooks";
 import { getProgress, mergeCompletedLessons } from "@/lib/progress";
 import { getCompletedLessons, markLessonComplete as markLessonCompleteSupabase } from "@/lib/supabase-progress";
@@ -32,6 +32,7 @@ import { CFA_LEVEL_1_SUBJECTS } from "@/lib/cfa-track";
 import { TRACKS } from "@/lib/tracks";
 import CfaTrackView from "@/components/CfaTrackView";
 import { getChallengePassedLessonIds } from "@/lib/supabase-challenges";
+import { addLessonFlag, getUserLessonFlags, removeLessonFlag } from "@/lib/supabase-lesson-flags";
 
 // Slim projection of Lesson - just enough to render the dashboard listing,
 // so the full lesson bodies (sections/quiz/etc) never reach this client bundle.
@@ -104,6 +105,10 @@ export default function DashboardClient({ lessonsMeta }: { lessonsMeta: LessonMe
   const [challengeGateLesson, setChallengeGateLesson] = useState<LessonMeta | null>(null);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [showChallenge, setShowChallenge] = useState(false);
+  const [flaggedLessonIds, setFlaggedLessonIds] = useState<Set<number>>(new Set());
+  const [flagSelectionMode, setFlagSelectionMode] = useState(false);
+  const [selectedFlagLessonIds, setSelectedFlagLessonIds] = useState<Set<number>>(new Set());
+  const [flagSaving, setFlagSaving] = useState(false);
 
   // Nudge learners toward the knowledge-review challenge automatically, at
   // most once per calendar day, once they've actually completed enough
@@ -274,6 +279,10 @@ export default function DashboardClient({ lessonsMeta }: { lessonsMeta: LessonMe
         .then((ids) => setChallengePassedIds(new Set(ids)))
         .catch((error) => console.error("Error loading challenge passes:", error));
 
+      getUserLessonFlags(session.user.id)
+        .then((flags) => setFlaggedLessonIds(new Set(flags.map((flag) => flag.lesson_id))))
+        .catch((error) => console.error("Error loading lesson flags:", error));
+
       // Check if user has completed onboarding. The local flag is checked
       // first and short-circuits the server round trip - it's what actually
       // stops the modal from reappearing on every visit when the
@@ -442,6 +451,74 @@ export default function DashboardClient({ lessonsMeta }: { lessonsMeta: LessonMe
   const totalDone = completed.length;
   const totalLessons = sorted.length;
 
+  const toggleFlagSelection = (lessonId: number) => {
+    setSelectedFlagLessonIds((prev) => {
+      const next = new Set(prev);
+      if (next.has(lessonId)) next.delete(lessonId);
+      else next.add(lessonId);
+      return next;
+    });
+  };
+
+  const clearFlagSelection = () => {
+    setFlagSelectionMode(false);
+    setSelectedFlagLessonIds(new Set());
+  };
+
+  const handleSelectableLessonCardClick = (lessonId: number, isDone: boolean) => {
+    if (!flagSelectionMode || isDone) return;
+    toggleFlagSelection(lessonId);
+  };
+
+  const applyManualFlags = async () => {
+    if (!user?.id || selectedFlagLessonIds.size === 0) return;
+
+    const targets = sorted.filter((lesson) => selectedFlagLessonIds.has(lesson.id));
+    const selectableTargets = targets.filter((lesson) => !completed.includes(lesson.id));
+    if (selectableTargets.length === 0) {
+      toast.message("Các bài này đã được hệ thống tính tiến độ rồi.");
+      clearFlagSelection();
+      return;
+    }
+
+    const confirmed = window.confirm(
+      "Bạn xác nhận đã học các bài này nhé, nhưng sẽ không được nhận kinh nghiệm trừ khi bạn đọc hết và làm hết."
+    );
+    if (!confirmed) return;
+
+    setFlagSaving(true);
+    try {
+      const toAdd = selectableTargets.filter((lesson) => !flaggedLessonIds.has(lesson.id));
+      const toRemove = selectableTargets.filter((lesson) => flaggedLessonIds.has(lesson.id));
+
+      await Promise.all([
+        ...toAdd.map((lesson) => addLessonFlag(user.id!, lesson.id, lesson.slug, lesson.title)),
+        ...toRemove.map((lesson) => removeLessonFlag(user.id!, lesson.id)),
+      ]);
+
+      setFlaggedLessonIds((prev) => {
+        const next = new Set(prev);
+        for (const lesson of toAdd) next.add(lesson.id);
+        for (const lesson of toRemove) next.delete(lesson.id);
+        return next;
+      });
+
+      toast.success(
+        toRemove.length > 0 && toAdd.length > 0
+          ? "Đã cập nhật các đánh dấu đã học."
+          : toAdd.length > 0
+            ? `Đã đánh dấu ${toAdd.length} bài là bạn đã học.`
+            : `Đã bỏ đánh dấu ${toRemove.length} bài.`
+      );
+      clearFlagSelection();
+    } catch (error) {
+      console.error("Error applying lesson flags:", error);
+      toast.error("Không thể cập nhật đánh dấu. Vui lòng thử lại.");
+    } finally {
+      setFlagSaving(false);
+    }
+  };
+
   // Case-study lessons live outside the day-numbered curriculum entirely - // they're real company/topic deep-dives, but with no stage to belong to
   // they were previously only reachable by guessing the URL. Filtered by
   // track (not just id >= 1001) so other high-id ranges - like the advanced
@@ -462,15 +539,15 @@ export default function DashboardClient({ lessonsMeta }: { lessonsMeta: LessonMe
     <div className="min-h-screen bg-white dark:bg-stone-950">
       {/* ── Sticky header ── */}
       <div className="border-b border-stone-200 dark:border-stone-800 sticky top-0 bg-white dark:bg-stone-950 z-10">
-        <div className="max-w-4xl mx-auto px-6 py-4 flex items-center justify-between">
-          <div className="flex-1 flex items-center gap-2.5">
+        <div className="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between gap-6">
+          <div className="flex items-center gap-2.5 min-w-0">
             <Logo size={32} className="flex-shrink-0" />
-            <div>
-              <h1 className="text-xl font-bold text-stone-900 dark:text-stone-100">Tự Học Tài Chính</h1>
+            <div className="min-w-0">
+              <h1 className="text-xl font-bold text-stone-900 dark:text-stone-100 leading-tight">Tự Học Tài Chính</h1>
               <p className="text-xs text-stone-500 dark:text-stone-400 mt-0.5">Chọn lộ trình phù hợp với bạn</p>
             </div>
           </div>
-          <div className="flex items-center gap-6">
+          <div className="flex items-center gap-6 shrink-0">
             <div className="text-right hidden sm:block">
               <div className="text-xl font-bold text-stone-900 dark:text-stone-100">{totalDone}</div>
               <div className="text-xs text-stone-500 dark:text-stone-400">/ {totalLessons} bài đã học</div>
@@ -492,6 +569,15 @@ export default function DashboardClient({ lessonsMeta }: { lessonsMeta: LessonMe
               >
                 <BarChart3 className="w-4 h-4" />
                 Thống kê
+              </Link>
+              <Link
+                href="/ghi-chu"
+                title="Ghi chú của tôi"
+                aria-label="Ghi chú của tôi"
+                className="flex items-center gap-1.5 text-xs font-bold text-stone-500 dark:text-stone-400 hover:text-stone-700 dark:hover:text-stone-200 rounded-full pl-2 pr-3 h-9 hover:bg-stone-100 dark:hover:bg-stone-800 transition-colors"
+              >
+                <StickyNote className="w-4 h-4" />
+                Ghi chú
               </Link>
               <Link
                 href="/kiem-tra"
@@ -544,6 +630,14 @@ export default function DashboardClient({ lessonsMeta }: { lessonsMeta: LessonMe
               Thống kê
             </Link>
             <Link
+              href="/ghi-chu"
+              onClick={() => setMobileMenuOpen(false)}
+              className="flex items-center gap-2 text-sm font-bold text-stone-600 dark:text-stone-400 border border-stone-200 dark:border-stone-800 rounded-lg px-3 py-2.5"
+            >
+              <StickyNote className="w-4 h-4" />
+              Ghi chú của tôi
+            </Link>
+            <Link
               href="/kiem-tra"
               onClick={() => setMobileMenuOpen(false)}
               className="flex items-center gap-2 text-sm font-bold text-emerald-600 dark:text-emerald-400 border border-emerald-200 dark:border-emerald-800 rounded-lg px-3 py-2.5 w-full"
@@ -580,6 +674,45 @@ export default function DashboardClient({ lessonsMeta }: { lessonsMeta: LessonMe
         <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-3 gap-6">
           {/* Left: Lessons (2 columns on desktop) */}
           <div className="lg:col-span-2">
+          <div className="mb-4 flex flex-wrap items-center justify-between gap-3">
+            <div className="text-sm text-stone-500 dark:text-stone-400">
+              {flagSelectionMode
+                ? `${selectedFlagLessonIds.size} bài đang được chọn để tự đánh dấu`
+                : "Bạn có thể tự đánh dấu các bài đã học mà không cộng kinh nghiệm."}
+            </div>
+            <div className="flex items-center gap-2">
+              {flagSelectionMode && (
+                <>
+                  <button
+                    onClick={clearFlagSelection}
+                    className="px-3 py-2 text-sm font-bold rounded-lg border border-stone-200 dark:border-stone-800 text-stone-600 dark:text-stone-400 hover:bg-stone-50 dark:hover:bg-stone-900 transition-colors"
+                  >
+                    Hủy
+                  </button>
+                  <button
+                    onClick={applyManualFlags}
+                    disabled={flagSaving || selectedFlagLessonIds.size === 0}
+                    className="px-3 py-2 text-sm font-bold rounded-lg bg-stone-900 dark:bg-stone-100 text-white dark:text-stone-900 disabled:opacity-50 disabled:cursor-not-allowed"
+                  >
+                    {flagSaving ? "Đang lưu..." : "Xác nhận đánh dấu"}
+                  </button>
+                </>
+              )}
+              <button
+                onClick={() => {
+                  if (flagSelectionMode) clearFlagSelection();
+                  else setFlagSelectionMode(true);
+                }}
+                className={`px-3 py-2 text-sm font-bold rounded-lg border transition-colors ${
+                  flagSelectionMode
+                    ? "border-sky-300 dark:border-sky-800 bg-sky-50 dark:bg-sky-950/40 text-sky-700 dark:text-sky-300"
+                    : "border-stone-200 dark:border-stone-800 text-stone-600 dark:text-stone-400 hover:bg-stone-50 dark:hover:bg-stone-900"
+                }`}
+              >
+                Đánh dấu đã học
+              </button>
+            </div>
+          </div>
           {/* Track selector - Compact */}
           <div data-tour="track-selector" className="grid grid-cols-1 sm:grid-cols-3 gap-3 mb-8">
           {[TRACK_PERSONAL, TRACK_PROFESSIONAL].map((t) => {
@@ -772,6 +905,8 @@ export default function DashboardClient({ lessonsMeta }: { lessonsMeta: LessonMe
                               {partLessons.map((lesson) => {
                                 const isDone = completed.includes(lesson.id);
                                 const locked = isLessonLocked(lesson);
+                                const isFlagged = flaggedLessonIds.has(lesson.id);
+                                const isSelectedForFlag = selectedFlagLessonIds.has(lesson.id);
 
                                 if (locked) {
                                   return (
@@ -807,19 +942,23 @@ export default function DashboardClient({ lessonsMeta }: { lessonsMeta: LessonMe
                                 }
 
                                 return (
-                                  <Link
+                                  <div
                                     key={lesson.id}
-                                    href={`/bai-hoc/${lesson.slug}`}
+                                    onClick={() => handleSelectableLessonCardClick(lesson.id, isDone)}
                                     className={`block rounded-xl border-2 transition-all ${
                                       isDone
                                         ? "bg-emerald-50 dark:bg-emerald-950/50 border-emerald-200 dark:border-emerald-900 hover:border-emerald-300 dark:hover:border-emerald-800 hover:bg-emerald-100 dark:hover:bg-emerald-950"
-                                        : "bg-white dark:bg-stone-900 border-stone-200 dark:border-stone-800 hover:border-stone-400 dark:hover:border-stone-600 hover:bg-stone-50 dark:hover:bg-stone-800"
+                                        : isSelectedForFlag
+                                          ? "bg-sky-50 dark:bg-sky-950/40 border-sky-300 dark:border-sky-800"
+                                          : isFlagged
+                                            ? "bg-sky-50 dark:bg-sky-950/20 border-sky-200 dark:border-sky-900 hover:border-sky-300 dark:hover:border-sky-800"
+                                            : "bg-white dark:bg-stone-900 border-stone-200 dark:border-stone-800 hover:border-stone-400 dark:hover:border-stone-600 hover:bg-stone-50 dark:hover:bg-stone-800"
                                     }`}
                                   >
                                     <div className="flex items-center gap-4 px-6 py-5">
                                       {/* Day number */}
                                       <div className="w-12 flex-shrink-0 text-center">
-                                        <span className={`font-mono text-sm font-extrabold ${isDone ? "text-emerald-600 dark:text-emerald-400" : "text-stone-500 dark:text-stone-400"}`}>
+                                        <span className={`font-mono text-sm font-extrabold ${isDone ? "text-emerald-600 dark:text-emerald-400" : isFlagged ? "text-sky-600 dark:text-sky-400" : "text-stone-500 dark:text-stone-400"}`}>
                                           {String(lesson.id).padStart(3, "0")}
                                         </span>
                                       </div>
@@ -830,32 +969,64 @@ export default function DashboardClient({ lessonsMeta }: { lessonsMeta: LessonMe
                                           <div className="w-6 h-6 rounded-full bg-emerald-500 flex items-center justify-center">
                                             <CheckCircle2 className="w-5 h-5 text-white" />
                                           </div>
+                                        ) : isFlagged ? (
+                                          <div className="w-6 h-6 rounded-full bg-sky-500 flex items-center justify-center">
+                                            <CheckCheck className="w-4 h-4 text-white" />
+                                          </div>
                                         ) : (
                                           <div className="w-6 h-6 rounded-full border-3 border-stone-300 dark:border-stone-700" />
                                         )}
                                       </div>
 
                                       {/* Title + subtitle */}
-                                      <div className="flex-1 min-w-0">
-                                        <div className={`text-base font-bold leading-snug ${isDone ? "text-emerald-900 dark:text-emerald-400" : "text-stone-900 dark:text-stone-100"}`}>
+                                      <Link
+                                        href={`/bai-hoc/${lesson.slug}`}
+                                        onClick={(event) => {
+                                          if (flagSelectionMode) {
+                                            event.stopPropagation();
+                                          }
+                                        }}
+                                        className="flex-1 min-w-0 block"
+                                      >
+                                        <div className={`text-base font-bold leading-snug ${isDone ? "text-emerald-900 dark:text-emerald-400" : isFlagged ? "text-sky-900 dark:text-sky-300" : "text-stone-900 dark:text-stone-100"}`}>
                                           {lesson.title}
                                         </div>
-                                        <div className={`text-sm mt-1 truncate ${isDone ? "text-emerald-700 dark:text-emerald-400" : "text-stone-600 dark:text-stone-400"}`}>
-                                          {lesson.subtitle}
+                                        <div className={`text-sm mt-1 truncate ${isDone ? "text-emerald-700 dark:text-emerald-400" : isFlagged ? "text-sky-700 dark:text-sky-400" : "text-stone-600 dark:text-stone-400"}`}>
+                                          {isFlagged ? "Bạn đã tự đánh dấu đã học bài này" : lesson.subtitle}
                                         </div>
-                                      </div>
+                                      </Link>
+
+                                      {flagSelectionMode && !isDone && (
+                                        <button
+                                          type="button"
+                                          onClick={(event) => {
+                                            event.stopPropagation();
+                                            toggleFlagSelection(lesson.id);
+                                          }}
+                                          className={`flex-shrink-0 w-6 h-6 rounded border-2 flex items-center justify-center ${
+                                            isSelectedForFlag
+                                              ? "border-sky-500 bg-sky-500 text-white"
+                                              : "border-stone-300 dark:border-stone-700 text-transparent"
+                                          }`}
+                                          aria-label="Chọn để tự đánh dấu đã học"
+                                        >
+                                          <CheckCheck className="w-3.5 h-3.5" />
+                                        </button>
+                                      )}
 
                                       {/* Meta */}
                                       <div className="hidden sm:flex items-center gap-3 flex-shrink-0">
-                                        <span className={`text-sm font-semibold ${isDone ? "text-emerald-700 dark:text-emerald-400" : "text-stone-600 dark:text-stone-400"}`}>
+                                        <span className={`text-sm font-semibold ${isDone ? "text-emerald-700 dark:text-emerald-400" : isFlagged ? "text-sky-700 dark:text-sky-400" : "text-stone-600 dark:text-stone-400"}`}>
                                           {lesson.duration}
                                         </span>
                                         <span className={`text-sm font-bold rounded-lg px-3 py-1 ${
                                           isDone
                                             ? "bg-emerald-200 dark:bg-emerald-900 text-emerald-900 dark:text-emerald-300"
+                                            : isFlagged
+                                              ? "bg-sky-100 dark:bg-sky-950/60 text-sky-800 dark:text-sky-300"
                                             : "bg-stone-100 dark:bg-stone-800 text-stone-700 dark:text-stone-300"
                                         }`}>
-                                          {isDone ? "Xong" : lesson.difficulty}
+                                          {isDone ? "Xong" : isFlagged ? "Tự đánh dấu" : lesson.difficulty}
                                         </span>
                                       </div>
 
@@ -863,7 +1034,7 @@ export default function DashboardClient({ lessonsMeta }: { lessonsMeta: LessonMe
                                         ›
                                       </div>
                                     </div>
-                                  </Link>
+                                  </div>
                                 );
                               })}
                             </div>
@@ -907,6 +1078,8 @@ export default function DashboardClient({ lessonsMeta }: { lessonsMeta: LessonMe
                   {group.lessons.map((lesson) => {
                     const isDone = completed.includes(lesson.id);
                     const locked = isLessonLocked(lesson);
+                    const isFlagged = flaggedLessonIds.has(lesson.id);
+                    const isSelectedForFlag = selectedFlagLessonIds.has(lesson.id);
 
                     if (locked) {
                       return (
@@ -937,12 +1110,16 @@ export default function DashboardClient({ lessonsMeta }: { lessonsMeta: LessonMe
                     }
 
                     return (
-                      <Link
+                      <div
                         key={lesson.id}
-                        href={`/bai-hoc/${lesson.slug}`}
+                        onClick={() => handleSelectableLessonCardClick(lesson.id, isDone)}
                         className={`block rounded-xl border-2 transition-all ${
                           isDone
                             ? "bg-emerald-50 dark:bg-emerald-950/50 border-emerald-200 dark:border-emerald-900 hover:border-emerald-300 dark:hover:border-emerald-800 hover:bg-emerald-100 dark:hover:bg-emerald-950"
+                            : isSelectedForFlag
+                              ? "bg-sky-50 dark:bg-sky-950/40 border-sky-300 dark:border-sky-800"
+                              : isFlagged
+                                ? "bg-sky-50 dark:bg-sky-950/20 border-sky-200 dark:border-sky-900 hover:border-sky-300 dark:hover:border-sky-800"
                             : "bg-white dark:bg-stone-900 border-stone-200 dark:border-stone-800 hover:border-stone-400 dark:hover:border-stone-600 hover:bg-stone-50 dark:hover:bg-stone-800"
                         }`}
                       >
@@ -952,23 +1129,52 @@ export default function DashboardClient({ lessonsMeta }: { lessonsMeta: LessonMe
                               <div className="w-6 h-6 rounded-full bg-emerald-500 flex items-center justify-center">
                                 <CheckCircle2 className="w-5 h-5 text-white" />
                               </div>
+                            ) : isFlagged ? (
+                              <div className="w-6 h-6 rounded-full bg-sky-500 flex items-center justify-center">
+                                <CheckCheck className="w-4 h-4 text-white" />
+                              </div>
                             ) : (
                               <div className="w-6 h-6 rounded-full border-2 border-stone-300 dark:border-stone-700" />
                             )}
                           </div>
-                          <div className="flex-1 min-w-0">
-                            <div className={`text-base font-bold leading-snug ${isDone ? "text-emerald-900 dark:text-emerald-400" : "text-stone-900 dark:text-stone-100"}`}>
+                          <Link
+                            href={`/bai-hoc/${lesson.slug}`}
+                            onClick={(event) => {
+                              if (flagSelectionMode) {
+                                event.stopPropagation();
+                              }
+                            }}
+                            className="flex-1 min-w-0 block"
+                          >
+                            <div className={`text-base font-bold leading-snug ${isDone ? "text-emerald-900 dark:text-emerald-400" : isFlagged ? "text-sky-900 dark:text-sky-300" : "text-stone-900 dark:text-stone-100"}`}>
                               {lesson.title}
                             </div>
-                            <div className={`text-sm mt-0.5 truncate ${isDone ? "text-emerald-700 dark:text-emerald-400" : "text-stone-600 dark:text-stone-400"}`}>
-                              {lesson.subtitle}
+                            <div className={`text-sm mt-0.5 truncate ${isDone ? "text-emerald-700 dark:text-emerald-400" : isFlagged ? "text-sky-700 dark:text-sky-400" : "text-stone-600 dark:text-stone-400"}`}>
+                              {isFlagged ? "Bạn đã tự đánh dấu đã học bài này" : lesson.subtitle}
                             </div>
-                          </div>
+                          </Link>
+                          {flagSelectionMode && !isDone && (
+                            <button
+                              type="button"
+                              onClick={(event) => {
+                                event.stopPropagation();
+                                toggleFlagSelection(lesson.id);
+                              }}
+                              className={`flex-shrink-0 w-6 h-6 rounded border-2 flex items-center justify-center ${
+                                isSelectedForFlag
+                                  ? "border-sky-500 bg-sky-500 text-white"
+                                  : "border-stone-300 dark:border-stone-700 text-transparent"
+                              }`}
+                              aria-label="Chọn để tự đánh dấu đã học"
+                            >
+                              <CheckCheck className="w-3.5 h-3.5" />
+                            </button>
+                          )}
                           <div className={`flex-shrink-0 text-lg font-bold ${isDone ? "text-emerald-600 dark:text-emerald-400" : "text-stone-400 dark:text-stone-500"}`}>
                             ›
                           </div>
                         </div>
-                      </Link>
+                      </div>
                     );
                   })}
                   </div>

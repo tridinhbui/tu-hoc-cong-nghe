@@ -15,23 +15,21 @@ export default function LessonStatsHover() {
   const [loading, setLoading] = useState(false);
   const rootRef = useRef<HTMLDivElement>(null);
 
-  useEffect(() => {
-    if (!open || stats || loading) return;
+  async function loadStatsPreview() {
+    if (stats || loading) return;
     setLoading(true);
-    (async () => {
-      try {
-        const supabase = createClient();
-        const { data: { user } } = await supabase.auth.getUser();
-        if (!user) return;
-        const data = await getUserAnalytics(user.id);
-        setStats(data);
-      } catch (error) {
-        console.error("Error loading lesson stats preview:", error);
-      } finally {
-        setLoading(false);
-      }
-    })();
-  }, [open, stats, loading]);
+    try {
+      const supabase = createClient();
+      const { data: { user } } = await supabase.auth.getUser();
+      if (!user) return;
+      const data = await getUserAnalytics(user.id);
+      setStats(data);
+    } catch (error) {
+      console.error("Error loading lesson stats preview:", error);
+    } finally {
+      setLoading(false);
+    }
+  }
 
   // Hover opens it, but it should only close on an explicit click outside -
   // not the instant the cursor drifts off the button/card, which made it
@@ -50,8 +48,17 @@ export default function LessonStatsHover() {
   return (
     <div ref={rootRef} className="relative">
       <button
-        onClick={() => setOpen((v) => !v)}
-        onMouseEnter={() => setOpen(true)}
+        onClick={() => {
+          const nextOpen = !open;
+          setOpen(nextOpen);
+          if (nextOpen) {
+            void loadStatsPreview();
+          }
+        }}
+        onMouseEnter={() => {
+          setOpen(true);
+          void loadStatsPreview();
+        }}
         aria-label="Xem nhanh thống kê"
         title="Thống kê"
         className="w-10 h-10 rounded-full flex items-center justify-center bg-stone-100 dark:bg-stone-800 text-stone-500 dark:text-stone-400 hover:bg-stone-200 dark:hover:bg-stone-700 hover:text-stone-700 dark:hover:text-stone-200 transition-all cursor-pointer"

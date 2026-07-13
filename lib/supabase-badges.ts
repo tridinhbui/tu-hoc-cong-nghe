@@ -1,6 +1,7 @@
 import { createClient } from "@/lib/supabase";
 import { handleSupabaseError } from "@/lib/errors";
-import { BADGE_DEFINITIONS } from "@/lib/badges";
+import { BADGE_DEFINITIONS, getLevelBadgeKeys } from "@/lib/badges";
+import { getLevelByXp } from "@/lib/levels";
 
 export interface UserBadge {
   id: number;
@@ -33,6 +34,64 @@ export async function getUserBadges(userId: string) {
   }
 
   return data as UserBadge[];
+}
+
+function isBadgeEarnedByCurrentState(
+  badgeKey: string,
+  state: {
+    currentLevel: number;
+  }
+): boolean {
+  return getLevelBadgeKeys(state.currentLevel).includes(badgeKey);
+}
+
+/**
+ * Read badges defensively. `user_badges` is historical state, and production
+ * has had progress rows reset/deleted while badge rows survived, leaving
+ * orphaned badges that the learner no longer qualifies for. Profile display
+ * should reflect the current source-of-truth tables, not stale badge rows.
+ */
+export async function getEligibleUserBadges(userId: string) {
+  const supabase = createClient();
+  const { data: profile, error: profileError } = await supabase
+    .from("user_profiles")
+    .select("current_level, total_xp")
+    .eq("id", userId)
+    .single();
+
+  if (profileError) throw handleSupabaseError(profileError);
+
+  const currentLevel =
+    profile?.current_level && profile.current_level > 0
+      ? profile.current_level
+      : getLevelByXp(profile?.total_xp ?? 0).level;
+
+  const allowedBadgeKeys = getLevelBadgeKeys(currentLevel);
+  if (allowedBadgeKeys.length === 0) return [];
+
+  const badges = await getUserBadges(userId);
+  const state = {
+    currentLevel,
+  };
+
+  const existingByKey = new Map(badges.map((badge) => [badge.badge_key, badge]));
+
+  return allowedBadgeKeys.map((badgeKey, index) => {
+    const existing = existingByKey.get(badgeKey);
+    const def = BADGE_DEFINITIONS[badgeKey];
+
+    return (
+      existing ?? {
+        id: -(index + 1),
+        user_id: userId,
+        badge_key: def.key,
+        badge_name: def.name,
+        badge_description: def.description,
+        badge_icon: def.icon,
+        earned_at: new Date(0).toISOString(),
+      }
+    );
+  }).filter((badge) => isBadgeEarnedByCurrentState(badge.badge_key, state));
 }
 
 /** Award a badge if not already earned. Returns the badge if newly awarded, null if already had it. */

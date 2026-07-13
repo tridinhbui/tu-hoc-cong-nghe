@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import Link from "next/link";
 import { BarChart3, Clock, Target, TrendingUp, Award, Flame } from "lucide-react";
 import { getUserAnalytics } from "@/lib/supabase-analytics";
 import { createClient } from "@/lib/supabase";
@@ -106,7 +107,48 @@ export default function LearningAnalytics() {
           </div>
           <p className="text-2xl font-bold text-stone-900 dark:text-stone-100">{analytics.currentLevel}</p>
         </div>
+
+        <Link
+          href="/ghi-chu"
+          className="bg-stone-50 dark:bg-stone-800 rounded-xl p-4 border border-transparent hover:border-stone-300 dark:hover:border-stone-600 transition-colors col-span-2 sm:col-span-1"
+        >
+          <div className="flex items-center gap-2 mb-2">
+            <Target className="w-4 h-4 text-indigo-600 dark:text-indigo-400" />
+            <span className="text-xs font-bold text-stone-500 dark:text-stone-400 uppercase">Ghi chú</span>
+          </div>
+          <p className="text-2xl font-bold text-stone-900 dark:text-stone-100">{analytics.notes.totalNotes}</p>
+          <p className="text-xs text-stone-500 dark:text-stone-400 mt-1">
+            {analytics.notes.lessonsWithNotes} bài có ghi chú
+          </p>
+        </Link>
       </div>
+
+      {analytics.notes.totalNotes > 0 && (
+        <div className="mb-6 rounded-xl border border-stone-200 dark:border-stone-800 bg-stone-50 dark:bg-stone-800/40 p-4">
+          <div className="flex items-center justify-between gap-4 mb-3">
+            <h4 className="text-sm font-bold text-stone-700 dark:text-stone-300">Bài học được ghi chú nhiều nhất</h4>
+            <Link href="/ghi-chu" className="text-xs font-bold text-stone-500 dark:text-stone-400 hover:text-stone-800 dark:hover:text-stone-200">
+              Xem tất cả
+            </Link>
+          </div>
+          <div className="space-y-2">
+            {analytics.notes.topLessons.map((lesson) => (
+              <div key={lesson.lessonId} className="flex items-center justify-between gap-3 rounded-lg bg-white dark:bg-stone-900 px-3 py-2.5 border border-stone-200 dark:border-stone-700">
+                {lesson.slug ? (
+                  <Link href={`/bai-hoc/${lesson.slug}`} className="min-w-0 font-semibold text-sm text-stone-900 dark:text-stone-100 hover:underline">
+                    <span className="block truncate">{lesson.title}</span>
+                  </Link>
+                ) : (
+                  <span className="min-w-0 font-semibold text-sm text-stone-900 dark:text-stone-100 truncate">{lesson.title}</span>
+                )}
+                <span className="shrink-0 text-xs font-bold text-stone-500 dark:text-stone-400">
+                  {lesson.notesCount} ghi chú
+                </span>
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
 
       {/* Difficulty Breakdown */}
       <div className="mb-6">

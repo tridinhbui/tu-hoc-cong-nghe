@@ -2,7 +2,7 @@ import "server-only";
 import type { SupabaseClient } from "@supabase/supabase-js";
 import { getCompletedLessons } from "./supabase-progress";
 import { getLessonsMeta } from "./lessons-loader";
-import { isLessonIdInTrack } from "./track-stages";
+import { isLessonIdInTrack, orderLessonsForTrack } from "./track-stages";
 
 // Reads the full lesson dataset via getLessonsMeta() - must only ever be
 // called from server-side code (a Server Action, e.g. app/dashboard/actions.ts,
@@ -26,8 +26,10 @@ export async function getResumeLesson(userId: string, track: "personal" | "profe
   const completedLessons = await getCompletedLessons(userId, client);
   const allLessons = await getLessonsMeta();
 
-  // Filter lessons by track, ordered by id so "first incomplete" is stable
-  const trackLessons = allLessons.filter((l) => isInTrack(l, track)).sort((a, b) => a.id - b.id);
+  // Follow the actual curriculum order shown on the dashboard instead of raw
+  // numeric ids. Personal Chặng 0 intentionally comes first but lives at ids
+  // 263-268, so id-sorting made resume skip it and jump straight to Day 1.
+  const trackLessons = orderLessonsForTrack(allLessons.filter((l) => isInTrack(l, track)), track);
 
   // Find first incomplete lesson
   const nextLesson = trackLessons.find(lesson => !completedLessons.includes(lesson.id));
@@ -42,15 +44,14 @@ export async function getLastCompletedLesson(userId: string, track: "personal" |
   const completedLessons = await getCompletedLessons(userId, client);
   const allLessons = await getLessonsMeta();
 
-  // Filter lessons by track
-  const trackLessons = allLessons.filter((l) => isInTrack(l, track));
+  const trackLessons = orderLessonsForTrack(allLessons.filter((l) => isInTrack(l, track)), track);
+  const completedSet = new Set(completedLessons);
 
-  // Find last completed lesson (highest ID)
-  const completedTrackLessons = trackLessons.filter(lesson => completedLessons.includes(lesson.id));
-
-  if (completedTrackLessons.length === 0) {
-    return null;
+  for (let i = trackLessons.length - 1; i >= 0; i -= 1) {
+    if (completedSet.has(trackLessons[i].id)) {
+      return trackLessons[i];
+    }
   }
 
-  return completedTrackLessons.sort((a, b) => b.id - a.id)[0];
+  return null;
 }

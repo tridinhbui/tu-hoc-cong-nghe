@@ -1,6 +1,10 @@
 import { createClient } from "@/lib/supabase";
 import { handleSupabaseError } from "@/lib/errors";
 
+function isMissingTableError(error: { code?: string } | null) {
+  return error?.code === "PGRST205" || error?.code === "42P01";
+}
+
 export interface LearningAnalytics {
   totalLessonsCompleted: number;
   totalXpEarned: number;
@@ -24,6 +28,16 @@ export interface LearningAnalytics {
     averageScore: number;
     lessonsCount: number;
   }[];
+  notes: {
+    totalNotes: number;
+    lessonsWithNotes: number;
+    topLessons: {
+      lessonId: number;
+      title: string;
+      slug: string;
+      notesCount: number;
+    }[];
+  };
 }
 
 /**
@@ -76,6 +90,42 @@ export async function getUserAnalytics(userId: string): Promise<LearningAnalytic
     throw handleSupabaseError(lessonsError);
   }
 
+  // Get user notes. This is optional analytics sugar, so missing-table
+  // environments should degrade to zeroes instead of breaking the page.
+  const { data: notesRows, error: notesError } = await supabase
+    .from("lesson_notes")
+    .select("lesson_id")
+    .eq("user_id", userId);
+
+  if (notesError && !isMissingTableError(notesError)) {
+    throw handleSupabaseError(notesError);
+  }
+
+  const notesByLesson = new Map<number, number>();
+  for (const row of notesRows ?? []) {
+    const lessonId = row.lesson_id as number;
+    notesByLesson.set(lessonId, (notesByLesson.get(lessonId) ?? 0) + 1);
+  }
+
+  const noteLessonIds = Array.from(notesByLesson.keys());
+  const { data: noteLessons, error: noteLessonsError } = noteLessonIds.length
+    ? await supabase
+        .from("lessons")
+        .select("id, title, slug")
+        .in("id", noteLessonIds)
+    : { data: [], error: null };
+
+  if (noteLessonsError) {
+    throw handleSupabaseError(noteLessonsError);
+  }
+
+  const noteLessonMeta = new Map(
+    (noteLessons ?? []).map((lesson) => [
+      lesson.id as number,
+      { title: lesson.title as string, slug: lesson.slug as string },
+    ])
+  );
+
   // Calculate analytics
   const totalLessonsCompleted = progress?.length || 0;
   const totalXpEarned = stats?.total_xp || 0;
@@ -122,6 +172,19 @@ export async function getUserAnalytics(userId: string): Promise<LearningAnalytic
   // This would require lesson topic data - simplified for now
   // In a real implementation, you'd group by lesson topic/stage
 
+  const topLessons = Array.from(notesByLesson.entries())
+    .sort((a, b) => b[1] - a[1] || a[0] - b[0])
+    .map(([lessonId, notesCount]) => {
+      const meta = noteLessonMeta.get(lessonId);
+      return {
+        lessonId,
+        title: meta?.title ?? `Bai hoc #${lessonId}`,
+        slug: meta?.slug ?? "",
+        notesCount,
+      };
+    })
+    .slice(0, 5);
+
   return {
     totalLessonsCompleted,
     totalXpEarned,
@@ -133,6 +196,11 @@ export async function getUserAnalytics(userId: string): Promise<LearningAnalytic
     lessonsByDifficulty,
     weeklyActivity,
     weakAreas,
+    notes: {
+      totalNotes: notesRows?.length ?? 0,
+      lessonsWithNotes: notesByLesson.size,
+      topLessons,
+    },
   };
 }
 

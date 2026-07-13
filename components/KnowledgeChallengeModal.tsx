@@ -54,24 +54,13 @@ export default function KnowledgeChallengeModal({ onClose, gate, onPassed }: Kno
   }, []);
 
   useEffect(() => {
-    loadChallenge();
+    void Promise.resolve().then(loadChallenge);
   }, [loadChallenge]);
 
   const q = questions[activeQ];
   const allDone = submitted && activeQ === questions.length - 1;
   const score = results.filter(Boolean).length;
   const passed = questions.length > 0 && score >= Math.ceil(questions.length * PASS_RATIO);
-
-  // Record the unlock the moment the gate is actually passed, rather than
-  // waiting for an extra button press - onPassed still lets the caller
-  // decide when to navigate.
-  useEffect(() => {
-    if (!gate || !allDone || !passed || passRecorded) return;
-    setPassRecorded(true);
-    recordChallengePass(gate.userId, gate.lessonId, score, questions.length).catch((error) => {
-      console.error("Error recording challenge pass:", error);
-    });
-  }, [gate, allDone, passed, passRecorded, score, questions.length]);
 
   function choose(oi: number) {
     if (submitted) return;
@@ -90,6 +79,16 @@ export default function KnowledgeChallengeModal({ onClose, gate, onPassed }: Kno
   }
 
   function next() {
+    if (activeQ === questions.length - 1) {
+      if (gate && passed && !passRecorded) {
+        setPassRecorded(true);
+        recordChallengePass(gate.userId, gate.lessonId, score, questions.length).catch((error) => {
+          console.error("Error recording challenge pass:", error);
+        });
+      }
+      setActiveQ((i) => i + 1);
+      return;
+    }
     setActiveQ((i) => i + 1);
     setSelected(null);
     setSubmitted(false);
@@ -190,7 +189,7 @@ export default function KnowledgeChallengeModal({ onClose, gate, onPassed }: Kno
                   Câu tiếp theo →
                 </button>
               ) : (
-                <button onClick={() => setActiveQ((i) => i + 1)} className="w-full py-3 rounded-xl font-bold text-sm uppercase tracking-wider text-white bg-stone-900 dark:bg-stone-100 dark:text-stone-900 hover:opacity-90 cursor-pointer">
+                <button onClick={next} className="w-full py-3 rounded-xl font-bold text-sm uppercase tracking-wider text-white bg-stone-900 dark:bg-stone-100 dark:text-stone-900 hover:opacity-90 cursor-pointer">
                   Xem kết quả →
                 </button>
               )}

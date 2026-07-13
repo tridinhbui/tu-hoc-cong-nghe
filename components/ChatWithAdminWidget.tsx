@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef, useEffect, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Send, X, MessageCircle } from "lucide-react";
 import { createClient } from "@/lib/supabase";
@@ -17,34 +17,21 @@ export default function ChatWithAdminWidget() {
   const [messages, setMessages] = useState<ChatMessage[]>([]);
   const [input, setInput] = useState("");
   const [sending, setSending] = useState(false);
+  const [loadingHistory, setLoadingHistory] = useState(false);
   const messagesEndRef = useRef<HTMLDivElement>(null);
+  const hasLoadedHistoryRef = useRef(false);
 
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
   };
 
   useEffect(() => {
+    if (!isOpen) return;
     scrollToBottom();
-  }, [messages]);
+  }, [isOpen, messages]);
 
   useEffect(() => {
-    const init = async () => {
-      const supabase = createClient();
-      const {
-        data: { user },
-      } = await supabase.auth.getUser();
-      if (!user) return;
-
-      setUserId(user.id);
-      const history = await getChatHistory(user.id);
-      setMessages(history);
-    };
-
-    init();
-  }, []);
-
-  useEffect(() => {
-    if (!userId) return;
+    if (!isOpen || !userId) return;
 
     const unsubscribe = subscribeToChatMessages(userId, (message) => {
       setMessages((prev) => {
@@ -54,7 +41,32 @@ export default function ChatWithAdminWidget() {
     });
 
     return unsubscribe;
-  }, [userId]);
+  }, [isOpen, userId]);
+
+  const loadConversation = useCallback(async () => {
+    if (hasLoadedHistoryRef.current || loadingHistory) return;
+
+    setLoadingHistory(true);
+    try {
+      const supabase = createClient();
+      const {
+        data: { user },
+      } = await supabase.auth.getUser();
+      if (!user) return;
+
+      setUserId(user.id);
+      const history = await getChatHistory(user.id);
+      setMessages(history);
+      hasLoadedHistoryRef.current = true;
+    } finally {
+      setLoadingHistory(false);
+    }
+  }, [loadingHistory]);
+
+  useEffect(() => {
+    if (!isOpen) return;
+    void loadConversation();
+  }, [isOpen, loadConversation]);
 
   const handleSend = async () => {
     if (!input.trim() || !userId || sending) return;
@@ -118,7 +130,12 @@ export default function ChatWithAdminWidget() {
 
             {/* Messages */}
             <div className="flex-1 overflow-y-auto p-4 space-y-4 bg-stone-50 dark:bg-stone-900/50">
-              {messages.length === 0 && (
+              {loadingHistory && messages.length === 0 && (
+                <p className="text-center text-xs text-stone-500 dark:text-stone-400 mt-8">
+                  Đang tải cuộc trò chuyện...
+                </p>
+              )}
+              {!loadingHistory && messages.length === 0 && (
                 <p className="text-center text-xs text-stone-500 dark:text-stone-400 mt-8">
                   Gửi tin nhắn để bắt đầu trò chuyện với admin. Admin thường phản hồi trong vòng 24 giờ.
                 </p>

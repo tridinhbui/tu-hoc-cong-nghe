@@ -1,15 +1,12 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import Link from "next/link";
-import Image from "next/image";
 import { useRouter } from "next/navigation";
-import { AnimatePresence, motion } from "framer-motion";
-import { toast } from "sonner";
 import { GraduationCap, Gauge, Sparkles, Heart } from "lucide-react";
 import { createClient } from "@/lib/supabase";
 import { translateAuthError } from "@/lib/auth-error-messages";
-import { TRACKS, type TrackId } from "@/lib/tracks";
+import type { TrackId } from "@/lib/tracks";
 import TrackPreviewPanel from "@/components/login/TrackPreviewPanel";
 import Logo from "@/components/Logo";
 
@@ -38,12 +35,6 @@ export default function LoginPage() {
   // show a loading state instead of the raw login form while that resolves,
   // otherwise the user sees the form flash for a couple seconds before being
   // bounced to /dashboard.
-  const [resolvingOAuth, setResolvingOAuth] = useState(() => {
-    if (typeof window === "undefined") return false;
-    const params = new URLSearchParams(window.location.search);
-    return params.has("code") || params.has("error");
-  });
-
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
@@ -52,9 +43,9 @@ export default function LoginPage() {
   const [name, setName] = useState("");
   const [previewTrack, setPreviewTrack] = useState<TrackId>("personal");
   const [resetSent, setResetSent] = useState(false);
-  const [failedAttempts, setFailedAttempts] = useState(0);
   const [cooldownUntil, setCooldownUntil] = useState<number | null>(null);
   const [cooldownLeft, setCooldownLeft] = useState(0);
+  const failedAttemptsRef = useRef(0);
 
   // Basic client-side throttle: after MAX_ATTEMPTS failed logins/signups, force
   // a short wait before allowing another attempt. Supabase also rate-limits
@@ -66,7 +57,7 @@ export default function LoginPage() {
       setCooldownLeft(remaining);
       if (remaining <= 0) {
         setCooldownUntil(null);
-        setFailedAttempts(0);
+        failedAttemptsRef.current = 0;
         clearInterval(interval);
       }
     }, 500);
@@ -74,13 +65,10 @@ export default function LoginPage() {
   }, [cooldownUntil]);
 
   const registerFailedAttempt = () => {
-    setFailedAttempts((prev) => {
-      const next = prev + 1;
-      if (next >= MAX_ATTEMPTS) {
-        setCooldownUntil(Date.now() + COOLDOWN_MS);
-      }
-      return next;
-    });
+    failedAttemptsRef.current += 1;
+    if (failedAttemptsRef.current >= MAX_ATTEMPTS) {
+      setCooldownUntil(Date.now() + COOLDOWN_MS);
+    }
   };
 
   // Check if already logged in
@@ -152,7 +140,7 @@ export default function LoginPage() {
           return;
         }
 
-        setFailedAttempts(0);
+        failedAttemptsRef.current = 0;
         router.push("/dashboard");
         return;
       } else {
@@ -175,10 +163,10 @@ export default function LoginPage() {
           return;
         }
 
-        setFailedAttempts(0);
+        failedAttemptsRef.current = 0;
         router.push("/dashboard");
       }
-    } catch (err) {
+    } catch {
       setError("Có lỗi xảy ra. Vui lòng thử lại.");
       setLoading(false);
     }
@@ -208,7 +196,7 @@ export default function LoginPage() {
 
       setResetSent(true);
       setLoading(false);
-    } catch (err) {
+    } catch {
       setError("Có lỗi xảy ra. Vui lòng thử lại.");
       setLoading(false);
     }
@@ -231,34 +219,34 @@ export default function LoginPage() {
         setError(translateAuthError(error.message));
         setLoading(false);
       }
-    } catch (err) {
+    } catch {
       setError("Có lỗi xảy ra. Vui lòng thử lại.");
       setLoading(false);
     }
   }
 
   return (
-    <div className="min-h-screen bg-white dark:bg-stone-950 flex">
+    <div className="min-h-screen lg:h-screen bg-white dark:bg-stone-950 flex lg:overflow-hidden">
       {/* ── LEFT SIDE: Hero + Info ── */}
-      <div className="hidden lg:flex flex-col w-1/2 bg-white dark:bg-stone-950 px-12 py-16 justify-between">
-        <div className="space-y-12">
+      <div className="hidden lg:flex flex-col w-1/2 bg-white dark:bg-stone-950 px-10 xl:px-12 py-10 xl:py-12 justify-between">
+        <div className="space-y-8">
           {/* Logo & Brand */}
-          <div className="space-y-4">
+          <div className="space-y-3">
             <div className="flex items-center gap-2.5">
               <Logo size={28} />
               <div className="text-sm font-bold text-stone-500 dark:text-stone-400 uppercase tracking-widest">
                 Tự Học Tài Chính
               </div>
             </div>
-            <h1 className="text-5xl font-bold text-stone-900 dark:text-stone-100 leading-tight">
+            <h1 className="text-4xl xl:text-5xl font-bold text-stone-900 dark:text-stone-100 leading-[0.95]">
               Hiểu tiền bạc,<br />quản lý tài sản
             </h1>
-            <p className="text-lg text-stone-600 dark:text-stone-400 leading-relaxed max-w-md">
-              200+ bài học miễn phí từ vỡ lòng đến phân tích doanh nghiệp. Chọn lộ trình phù hợp, học theo tốc độ của bạn.
+            <p className="text-base xl:text-lg text-stone-600 dark:text-stone-400 leading-relaxed max-w-lg">
+              Hơn 1000+ người học đã tham gia. 300+ bài học miễn phí từ vỡ lòng đến phân tích doanh nghiệp, chia theo lộ trình và tổng giờ học rõ ràng để bạn chọn đúng tốc độ.
             </p>
 
             {/* Trust highlights - gives a cold visitor a reason to stay before hitting the auth form */}
-            <ul className="space-y-2.5 pt-2">
+            <ul className="space-y-2 pt-1">
               {TRUST_HIGHLIGHTS.map(({ icon: Icon, label }) => (
                 <li key={label} className="flex items-center gap-3 text-sm text-stone-600 dark:text-stone-400">
                   <span className="flex-shrink-0 w-8 h-8 rounded-lg bg-stone-100 dark:bg-stone-900 flex items-center justify-center">
@@ -273,7 +261,7 @@ export default function LoginPage() {
                 on a "free education" site is usually "is this actually free,
                 or a bait-and-switch later" - state the commitment plainly
                 and link the community group as the accountability backing it. */}
-            <div className="flex items-start gap-3 rounded-2xl border border-rose-100 dark:border-rose-950 bg-rose-50/60 dark:bg-rose-950/20 px-4 py-3.5">
+            <div className="flex items-start gap-3 rounded-2xl border border-rose-100 dark:border-rose-950 bg-rose-50/60 dark:bg-rose-950/20 px-4 py-3">
               <Heart className="w-4 h-4 text-rose-500 flex-shrink-0 mt-0.5" />
               <p className="text-xs text-stone-600 dark:text-stone-400 leading-relaxed">
                 Cam kết toàn bộ bài học tại đây <strong className="text-stone-800 dark:text-stone-200">miễn phí mãi mãi</strong> vì sự phát triển của cộng đồng Tự Học Tài Chính.{" "}
@@ -295,7 +283,7 @@ export default function LoginPage() {
       </div>
 
       {/* ── RIGHT SIDE: Form ── */}
-      <div className="w-full lg:w-1/2 bg-stone-50 dark:bg-stone-900/50 flex flex-col items-center justify-center px-6 py-16 lg:py-0">
+      <div className="w-full lg:w-1/2 bg-stone-50 dark:bg-stone-900/50 flex flex-col items-center justify-center px-6 py-10 lg:py-0 overflow-y-auto lg:overflow-hidden">
         <div className="w-full max-w-sm">
           {/* Mobile Brand (visible on small screens) */}
           <div className="lg:hidden space-y-4 mb-8 text-center">
@@ -316,7 +304,7 @@ export default function LoginPage() {
           </div>
 
           {/* Form Card */}
-          <div className="bg-white dark:bg-stone-900 border border-stone-200 dark:border-stone-800 rounded-2xl p-8 space-y-6">
+          <div className="bg-white dark:bg-stone-900 border border-stone-200 dark:border-stone-800 rounded-2xl p-7 xl:p-8 space-y-5">
             {/* Form Title */}
             <div>
               <h2 className="text-2xl font-bold text-stone-900 dark:text-stone-100 mb-2">

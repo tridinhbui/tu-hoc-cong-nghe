@@ -7,7 +7,7 @@ import Image from "next/image";
 import { createClient } from "@/lib/supabase";
 import { getLevelByXp } from "@/lib/levels";
 import { getUserProfile } from "@/lib/supabase-user";
-import { getUserBadges, type UserBadge } from "@/lib/supabase-badges";
+import { getEligibleUserBadges, type UserBadge } from "@/lib/supabase-badges";
 import UserMenu from "@/components/UserMenu";
 
 // Auth-gated and reads Supabase env vars at render time - never prerender statically.
@@ -44,7 +44,7 @@ export default function ProfilePage() {
       // afterward, so there was no way to see which ones you'd already
       // collected.
       try {
-        const earned = await getUserBadges(session.user.id);
+        const earned = await getEligibleUserBadges(session.user.id);
         setBadges(earned);
       } catch (error) {
         console.error("Error loading badges:", error);
@@ -200,8 +200,15 @@ export default function ProfilePage() {
 
         {/* Settings Button */}
         <Link
+          href="/ban-be"
+          className="block mt-6 w-full bg-white dark:bg-stone-900 border-2 border-stone-200 dark:border-stone-800 text-stone-900 dark:text-stone-100 font-bold py-3 px-6 rounded-xl text-center transition-colors hover:bg-stone-50 dark:hover:bg-stone-800"
+        >
+          Bạn bè & chat
+        </Link>
+
+        <Link
           href="/settings"
-          className="block mt-6 w-full bg-stone-900 hover:bg-stone-800 dark:bg-stone-100 dark:hover:bg-white text-white dark:text-stone-900 font-bold py-3 px-6 rounded-xl text-center transition-colors"
+          className="block mt-4 w-full bg-stone-900 hover:bg-stone-800 dark:bg-stone-100 dark:hover:bg-white text-white dark:text-stone-900 font-bold py-3 px-6 rounded-xl text-center transition-colors"
         >
           Cài đặt
         </Link>

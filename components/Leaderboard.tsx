@@ -24,7 +24,6 @@ export default function Leaderboard({ userId }: LeaderboardProps) {
 
   useEffect(() => {
     let cancelled = false;
-    setLoading(true);
     (async () => {
       try {
         const [top, mine] = await Promise.all([
@@ -68,7 +67,11 @@ export default function Leaderboard({ userId }: LeaderboardProps) {
         {TABS.map((tab) => (
           <button
             key={tab.metric}
-            onClick={() => setMetric(tab.metric)}
+            onClick={() => {
+              if (tab.metric === metric) return;
+              setLoading(true);
+              setMetric(tab.metric);
+            }}
             className={`flex-1 text-[11px] font-bold py-1.5 rounded-md transition-all cursor-pointer ${
               metric === tab.metric
                 ? "bg-white dark:bg-stone-900 text-stone-900 dark:text-stone-100 shadow-sm"

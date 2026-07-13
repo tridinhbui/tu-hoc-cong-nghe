@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect, type FormEvent } from "react";
+import Image from "next/image";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { createClient } from "@/lib/supabase";
@@ -139,7 +140,7 @@ export default function SettingsPage() {
         setMessage("Cập nhật avatar thành công!");
         setTimeout(() => setMessage(""), 3000);
       }
-    } catch (error) {
+    } catch {
       setMessage("Có lỗi xảy ra khi upload avatar");
     } finally {
       setAvatarUploading(false);
@@ -198,7 +199,7 @@ export default function SettingsPage() {
             <div className="mt-3 flex items-center gap-4">
               <div className="w-20 h-20 rounded-full overflow-hidden bg-stone-100 dark:bg-stone-800 border-2 border-stone-200 dark:border-stone-700 flex items-center justify-center">
                 {avatarPreview ? (
-                  <img src={avatarPreview} alt="Avatar" className="w-full h-full object-cover" />
+                  <Image src={avatarPreview} alt="Avatar" width={80} height={80} className="w-full h-full object-cover" />
                 ) : (
                   <span className="text-3xl">👤</span>
                 )}

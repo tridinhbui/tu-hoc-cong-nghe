@@ -6,6 +6,7 @@ import Image from "next/image";
 import { ArrowRight, BookOpen } from "lucide-react";
 import { getDashboardGreetingAction } from "@/app/dashboard/actions";
 import { createClient } from "@/lib/supabase";
+import { getLessonDisplayLabel, getLessonShortTitle } from "@/lib/lesson-labels";
 
 interface ResumeLearningButtonProps {
   activeTrack: "personal" | "professional";
@@ -72,6 +73,8 @@ export default function ResumeLearningButton({ activeTrack }: ResumeLearningButt
   const nextLesson = greeting?.nextLesson ?? null;
   const completedCount = greeting?.completedCount ?? 0;
   const totalMinutes = greeting?.totalMinutes ?? 0;
+  const nextLessonLabel = nextLesson ? getLessonDisplayLabel({ id: nextLesson.id, title: nextLesson.title, track: undefined }) : null;
+  const nextLessonShortTitle = nextLesson ? getLessonShortTitle({ title: nextLesson.title }) : null;
 
   if (!nextLesson) {
     return (
@@ -91,8 +94,10 @@ export default function ResumeLearningButton({ activeTrack }: ResumeLearningButt
 
   const greetingText =
     completedCount === 0
-      ? `Xin chào! Bạn chưa học được bài nào cả - cùng bắt đầu với "${nextLesson.title}" nhé!`
-      : `Xin chào! Bạn đang học "${nextLesson.title}" - ${nextLesson.subtitle} Bạn đã học được khoảng ${totalMinutes} phút rồi, tiếp tục nhé!`;
+      ? `Xin chào! Bạn chưa học được bài nào cả - cùng bắt đầu với ${nextLessonLabel}: ${nextLessonShortTitle} nhé!`
+      : totalMinutes > 0
+        ? `Xin chào! Bạn đang học ${nextLessonLabel}: ${nextLessonShortTitle} - ${nextLesson.subtitle} Bạn đã học được khoảng ${totalMinutes} phút rồi, tiếp tục nhé!`
+        : `Xin chào! Bạn đang học ${nextLessonLabel}: ${nextLessonShortTitle} - ${nextLesson.subtitle} Bạn đã có tiến độ rồi, tiếp tục nhé!`;
 
   return (
     <Link

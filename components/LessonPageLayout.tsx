@@ -6,25 +6,23 @@ import { toast } from "sonner";
 import { markLessonComplete, saveQuizAnswers, getQuizAnswers, clearQuizAnswers } from "@/lib/progress";
 import FloatingContact from "@/components/FloatingChatbot";
 import StageTipsBanner from "@/components/StageTipsBanner";
-import BadgeToast from "@/components/BadgeToast";
 import ReadingProgress from "@/components/ReadingProgress";
 import BookmarkButton from "@/components/BookmarkButton";
+import ManualLessonFlagButton from "@/components/ManualLessonFlagButton";
 import LessonStatsHover from "@/components/LessonStatsHover";
 import LessonNotes from "@/components/LessonNotes";
 import { createClient } from "@/lib/supabase";
 import { markLessonComplete as markLessonCompleteSupabase } from "@/lib/supabase-progress";
-import { getCompletedLessons, getLessonProgress } from "@/lib/supabase-progress";
+import { getLessonProgress } from "@/lib/supabase-progress";
 import { recalculateUserStats } from "@/lib/supabase-user";
 import { updateStreak } from "@/lib/supabase-streak";
-import { awardBadges, awardBadge } from "@/lib/supabase-badges";
-import { getBadgesForLessonCount, getBadgeForMilestone } from "@/lib/badges";
-import { BADGE_DEFINITIONS, type BadgeDefinition } from "@/lib/badges";
 import { getReadingProgress, updateReadingProgress } from "@/lib/supabase-reading";
 import { RECALL_SCHEDULE } from "@/lib/recall-schedule";
 import RecallCard from "@/components/RecallCard";
 import LessonTour from "@/components/LessonTour";
 import FontSizeControl, { loadFontScale } from "@/components/FontSizeControl";
 import LessonFeedbackInline from "@/components/LessonFeedbackInline";
+import { getLessonDisplayLabel } from "@/lib/lesson-labels";
 
 export interface QuizQuestion {
   question: string;
@@ -41,6 +39,8 @@ export interface LessonMeta {
   difficulty: "Dễ" | "Trung bình" | "Khó";
   emoji: string;
   day: number;
+  label?: string;
+  recallDay?: number;
   accent: string;
   slug?: string;
   nextSlug?: string;
@@ -67,8 +67,52 @@ const ACCENTS: Record<string, { bg: string; text: string; border: string; badge:
   stone:   { bg: "bg-stone-100 dark:bg-stone-900",   text: "text-stone-600 dark:text-stone-400",   border: "border-stone-200 dark:border-stone-800",   badge: "bg-stone-200 dark:bg-stone-800 text-stone-600 dark:text-stone-400",  bar: "bg-stone-500",   btn: "bg-stone-700 hover:bg-stone-800" },
 };
 
+// A set of older hand-written pages still declare their pre-resync lesson id
+// inline, while the dashboard and Supabase `lessons` table use the canonical
+// ids from lib/lessons-data/_index.json. Persisting with the stale inline id
+// makes the quiz look complete locally but invisible on the dashboard.
+const CANONICAL_LESSON_IDS_BY_SLUG: Record<string, number> = {
+  "bds-business-model": 1028,
+  "bitcoin-crypto": 1025,
+  "cap-rate": 1009,
+  "commodity": 261,
+  "commodity-phan-2": 1005,
+  "discontinued-operations": 1001,
+  "disney-pixar-ma": 1021,
+  "dividend": 1017,
+  "dupont-analysis": 1016,
+  "enterprise-value": 1008,
+  "fcf-deep-dive": 1035,
+  "finance-as-math": 1033,
+  "financial-risk": 1029,
+  "fpt-cfo-cash": 1023,
+  "hoc-tai-chinh-hanh-trinh": 1030,
+  "income-affiliates-jv": 1011,
+  "interim-comprehensive-income": 1012,
+  "inventory-turnover": 1019,
+  "maple-leaf-leverage": 1014,
+  "market-fair-value": 1006,
+  "modern-portfolio-theory": 1032,
+  "nvidia-cash-securities": 1022,
+  "oil-gas-business-model": 1024,
+  "on-tap-wacc": 1002,
+  "operating-leverage": 1010,
+  "post-ipo-dividend": 1020,
+  "pvgas-bad-debt": 1026,
+  "retail-store-analysis": 1027,
+  "roic": 1003,
+  "roic-phan-2": 1004,
+  "samsung-ai-finance": 1034,
+  "tesla-cash-flow": 1015,
+  "transfer-pricing": 1013,
+  "vingroup-cash-flow": 1007,
+  "walmart-earnings": 1018,
+  "wealth-management": 1031,
+};
+
 export default function LessonPageLayout({ lesson, quiz, children }: Props) {
   const c = ACCENTS[lesson.accent] ?? ACCENTS.indigo;
+  const persistedLessonId = lesson.slug ? CANONICAL_LESSON_IDS_BY_SLUG[lesson.slug] ?? lesson.id : lesson.id;
 
   const [selected, setSelected]   = useState<(number | null)[]>(new Array(quiz.length).fill(null));
   const [submitted, setSubmitted] = useState<boolean[]>(new Array(quiz.length).fill(false));
@@ -77,13 +121,14 @@ export default function LessonPageLayout({ lesson, quiz, children }: Props) {
   const [reviewMode, setReviewMode] = useState(false);
   const [readPct, setReadPct]     = useState(0);
   const [userId, setUserId]       = useState<string | null>(null);
-  const [newBadge, setNewBadge]   = useState<BadgeDefinition | null>(null);
   const [fontScale, setFontScale] = useState(() => (typeof window === "undefined" ? 1.125 : loadFontScale()));
   const articleRef = useRef<HTMLElement>(null);
   const maxReachedRef = useRef(0);
   const savedMilestonesRef = useRef<Set<number>>(new Set());
+  const zeroQuizCompletedRef = useRef(false);
 
   const durationMin = parseInt(lesson.duration) || 5;
+  const lessonLabel = lesson.label ?? getLessonDisplayLabel({ id: lesson.id, title: lesson.title, track: undefined });
 
   useEffect(() => {
     const supabase = createClient();
@@ -91,7 +136,7 @@ export default function LessonPageLayout({ lesson, quiz, children }: Props) {
       if (!user) return;
       setUserId(user.id);
 
-      const existing = await getReadingProgress(user.id, lesson.id);
+      const existing = await getReadingProgress(user.id, persistedLessonId);
       if (existing) {
         maxReachedRef.current = existing.max_percent_reached;
         if (existing.milestone_25) savedMilestonesRef.current.add(25);
@@ -111,14 +156,14 @@ export default function LessonPageLayout({ lesson, quiz, children }: Props) {
         // was picked for each question) - this is what lets someone
         // revisiting a lesson see precisely which question they got wrong,
         // not just how many.
-        const saved = getQuizAnswers(lesson.id);
+        const saved = getQuizAnswers(persistedLessonId);
         if (saved && saved.submitted.length === quiz.length) {
           setSelected(saved.selected);
           setSubmitted(saved.submitted);
           setResults(saved.results);
         } else {
           try {
-            const progress = await getLessonProgress(user.id, lesson.id);
+            const progress = await getLessonProgress(user.id, persistedLessonId);
             if (progress?.completed) {
               // No per-question record available (e.g. different device/browser) -
               // fall back to a guess from the aggregate score so the completion
@@ -131,9 +176,16 @@ export default function LessonPageLayout({ lesson, quiz, children }: Props) {
             console.error("Error fetching lesson progress:", error);
           }
         }
+      } else {
+        try {
+          const progress = await getLessonProgress(user.id, persistedLessonId);
+          zeroQuizCompletedRef.current = !!progress?.completed;
+        } catch (error) {
+          console.error("Error fetching zero-quiz lesson progress:", error);
+        }
       }
     });
-  }, [lesson.id, quiz.length]);
+  }, [persistedLessonId, quiz.length]);
 
   useEffect(() => {
     let saveTimer: ReturnType<typeof setTimeout> | null = null;
@@ -161,7 +213,7 @@ export default function LessonPageLayout({ lesson, quiz, children }: Props) {
       saveTimer = setTimeout(async () => {
         if (!userId) return;
         try {
-          await updateReadingProgress(userId, lesson.id, maxReachedRef.current);
+          await updateReadingProgress(userId, persistedLessonId, maxReachedRef.current);
         } catch (error) {
           // Reading progress is a passive nicety (resume-scroll position,
           // milestone toasts) - never worth crashing the page over, e.g.
@@ -177,17 +229,11 @@ export default function LessonPageLayout({ lesson, quiz, children }: Props) {
       window.removeEventListener("scroll", onScroll);
       if (saveTimer) clearTimeout(saveTimer);
     };
-  }, [userId, lesson.id]);
+  }, [userId, persistedLessonId]);
 
   const handleMilestone = async (milestone: number) => {
     if (!userId || savedMilestonesRef.current.has(milestone)) return;
     savedMilestonesRef.current.add(milestone);
-
-    const badgeKey = getBadgeForMilestone(milestone);
-    if (!badgeKey) return;
-
-    const badge = await awardBadge(userId, badgeKey);
-    if (badge) setNewBadge(BADGE_DEFINITIONS[badge.badge_key]);
   };
 
   const remainMin = Math.max(0, Math.ceil(durationMin * (1 - readPct / 100)));
@@ -212,13 +258,13 @@ export default function LessonPageLayout({ lesson, quiz, children }: Props) {
     // Persist the exact per-question outcome (not just an aggregate score)
     // so revisiting this lesson later shows precisely which question was
     // wrong and what was picked, instead of guessing from the total score.
-    saveQuizAnswers(lesson.id, { selected, submitted: newSubmitted, results: newResults });
-    if (qi === quiz.length - 1) {
-      // In case this question was reached via "Xem lại"/review nav rather
-      // than the normal flow, make sure finishing it actually surfaces the
-      // completion card instead of leaving reviewMode stuck on.
+    saveQuizAnswers(persistedLessonId, { selected, submitted: newSubmitted, results: newResults });
+    if (newSubmitted.every(Boolean)) {
+      // Learners can jump between questions via the progress dots, so the
+      // lesson is complete when every question has been submitted, not only
+      // when the last-index question happens to be the one just answered.
       setReviewMode(false);
-      markLessonComplete(lesson.id, durationMin);
+      markLessonComplete(persistedLessonId, durationMin);
       completeLessonInSupabase(newResults);
     }
     // No auto-advance here - it used to jump to the next question 600ms
@@ -239,7 +285,7 @@ export default function LessonPageLayout({ lesson, quiz, children }: Props) {
     setSubmitted(newSubmitted);
     setActiveQ(qi);
     setReviewMode(false);
-    saveQuizAnswers(lesson.id, { selected: newSelected, submitted: newSubmitted, results });
+    saveQuizAnswers(persistedLessonId, { selected: newSelected, submitted: newSubmitted, results });
   }
 
   // Opens an already-answered question (right or wrong) read-only, without
@@ -262,7 +308,7 @@ export default function LessonPageLayout({ lesson, quiz, children }: Props) {
     setResults(freshResults);
     setActiveQ(0);
     setReviewMode(false);
-    clearQuizAnswers(lesson.id);
+    clearQuizAnswers(persistedLessonId);
   }
 
   async function completeLessonInSupabase(finalResults: boolean[]) {
@@ -289,7 +335,7 @@ export default function LessonPageLayout({ lesson, quiz, children }: Props) {
         : 100;
 
     try {
-      await markLessonCompleteSupabase(uid, lesson.id, finalScore, durationMin * 60);
+      await markLessonCompleteSupabase(uid, persistedLessonId, finalScore, durationMin * 60);
       // user_stats (XP/level) is only ever written by recalculateUserStats,
       // which nothing else calls - without this the dashboard keeps
       // showing 0 XP/level even once progress is saving correctly.
@@ -302,25 +348,19 @@ export default function LessonPageLayout({ lesson, quiz, children }: Props) {
       return;
     }
 
-    try {
-      const completed = await getCompletedLessons(uid);
-      const badgeKeys = getBadgesForLessonCount(completed.length);
-      const newlyAwarded = await awardBadges(uid, badgeKeys);
-
-      if (newlyAwarded.length > 0) {
-        setNewBadge(BADGE_DEFINITIONS[newlyAwarded[0].badge_key]);
-      }
-
-      if (finalScore === 100) {
-        const perfectBadges = await awardBadges(uid, ["perfect_quiz"]);
-        if (perfectBadges.length > 0 && newlyAwarded.length === 0) {
-          setNewBadge(BADGE_DEFINITIONS[perfectBadges[0].badge_key]);
-        }
-      }
-    } catch (error) {
-      console.error("Error fetching completed lessons or awarding badges:", error);
-    }
   }
+
+  useEffect(() => {
+    if (quiz.length > 0 || readPct < 100 || zeroQuizCompletedRef.current) return;
+
+    zeroQuizCompletedRef.current = true;
+    markLessonComplete(persistedLessonId, durationMin);
+    void completeLessonInSupabase([]);
+    // completeLessonInSupabase is defined in-component and stable enough for
+    // this one-way zero-quiz completion flow; including it here would make
+    // the effect re-fire on every render due to function identity.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [durationMin, persistedLessonId, quiz.length, readPct]);
 
   const q = quiz[activeQ];
   const qSubmitted = submitted[activeQ];
@@ -357,7 +397,7 @@ export default function LessonPageLayout({ lesson, quiz, children }: Props) {
             </Link>
             <div>
               <p className="font-extrabold text-stone-900 dark:text-stone-100 text-lg leading-tight line-clamp-1">{lesson.title}</p>
-              <p className="text-sm text-stone-500 dark:text-stone-400 hidden sm:block font-semibold">Day {lesson.day}</p>
+              <p className="text-sm text-stone-500 dark:text-stone-400 hidden sm:block font-semibold">{lessonLabel}</p>
             </div>
           </div>
 
@@ -368,11 +408,17 @@ export default function LessonPageLayout({ lesson, quiz, children }: Props) {
             {/* Bookmark button */}
             <div data-tour="lesson-bookmark">
               <BookmarkButton
-                lessonId={lesson.id}
+                lessonId={persistedLessonId}
                 lessonSlug={lesson.slug || ""}
                 lessonTitle={lesson.title}
               />
             </div>
+
+            <ManualLessonFlagButton
+              lessonId={persistedLessonId}
+              lessonSlug={lesson.slug || ""}
+              lessonTitle={lesson.title}
+            />
 
             {/* Quick stats peek */}
             <LessonStatsHover />
@@ -401,7 +447,7 @@ export default function LessonPageLayout({ lesson, quiz, children }: Props) {
               <span className="text-xs text-stone-500 dark:text-stone-400 font-semibold">{submittedCount}/{quiz.length}</span>
             </div>
             <span className={`text-xs font-bold uppercase tracking-wider px-3 py-1.5 rounded-full ${c.badge}`}>
-              Day {lesson.day}
+              {lessonLabel}
             </span>
           </div>
         </div>
@@ -416,7 +462,7 @@ export default function LessonPageLayout({ lesson, quiz, children }: Props) {
             {/* Hero */}
             <div className={`rounded-2xl ${c.bg} border-2 ${c.border} p-8 sm:p-10`}>
               <div className={`text-sm font-extrabold uppercase tracking-widest ${c.text} mb-3`}>
-                Day {lesson.day} · {lesson.difficulty}
+                {lessonLabel} · {lesson.difficulty}
               </div>
               <h1 className="text-3xl sm:text-5xl font-extrabold text-stone-950 dark:text-stone-100 leading-tight mb-4">
                 {lesson.title}
@@ -455,11 +501,11 @@ export default function LessonPageLayout({ lesson, quiz, children }: Props) {
                 lessons back before introducing new material, so review is
                 distributed across the course instead of only happening once
                 at the end of a chặng. */}
-            {RECALL_SCHEDULE[lesson.day]?.length > 0 && <RecallCard items={RECALL_SCHEDULE[lesson.day]} />}
+            {lesson.recallDay && RECALL_SCHEDULE[lesson.recallDay]?.length > 0 && <RecallCard items={RECALL_SCHEDULE[lesson.recallDay]} />}
 
             {/* Tài Tài auto-tip */}
             <div data-tour="lesson-tai-tai">
-              <StageTipsBanner lessonId={lesson.id} lessonTitle={lesson.title} />
+              <StageTipsBanner lessonId={persistedLessonId} lessonTitle={lesson.title} />
             </div>
 
             {/* Content - `zoom` (not fontSize) so the reading-size control
@@ -475,7 +521,7 @@ export default function LessonPageLayout({ lesson, quiz, children }: Props) {
 
             {/* Feedback form at the bottom */}
             <div className="mt-12 pt-8 border-t border-stone-200 dark:border-stone-800">
-              <LessonFeedbackInline lessonId={lesson.id} userId={userId} />
+              <LessonFeedbackInline lessonId={persistedLessonId} userId={userId} />
             </div>
 
             {/* Mobile quiz prompt */}
@@ -493,7 +539,7 @@ export default function LessonPageLayout({ lesson, quiz, children }: Props) {
               on its own past its container's height. */}
           <aside data-tour="lesson-quiz" className="w-full lg:w-[440px] flex-shrink-0 lg:sticky lg:top-24 lg:max-h-[calc(100vh-7rem)] lg:overflow-y-auto space-y-4">
             {/* Lesson Notes */}
-            <LessonNotes lessonId={lesson.id} lessonSlug={lesson.slug || ""} />
+            <LessonNotes lessonId={persistedLessonId} lessonSlug={lesson.slug || ""} />
             
             {/* Quiz progress */}
             <div className="bg-white dark:bg-stone-900 rounded-2xl border-2 border-stone-300 dark:border-stone-700 p-6">
@@ -693,7 +739,6 @@ export default function LessonPageLayout({ lesson, quiz, children }: Props) {
         </div>
       </div>
       <FloatingContact />
-      <BadgeToast badge={newBadge} onDismiss={() => setNewBadge(null)} />
       <LessonTour userId={userId} />
     </div>
   );

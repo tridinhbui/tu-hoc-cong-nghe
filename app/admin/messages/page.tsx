@@ -1,5 +1,6 @@
 import { getMessages } from "@/lib/admin/messages";
 import { getChatThreads } from "@/lib/admin/chat";
+import { getBugReports } from "@/lib/admin/bugs";
 import MessagesTabs from "./MessagesTabs";
 
 export const dynamic = "force-dynamic";
@@ -14,18 +15,19 @@ export default async function AdminMessagesPage({ searchParams }: PageProps) {
   const filter = (params.filter as "all" | "read" | "unread") ?? "all";
   const page = Number(params.page ?? "1") || 1;
 
-  const [result, threads] = await Promise.all([
+  const [result, threads, bugReports] = await Promise.all([
     getMessages({ search, filter, page, pageSize: 20 }),
     getChatThreads(),
+    getBugReports(),
   ]);
 
   return (
     <div>
       <h1 className="text-2xl font-bold text-stone-900 dark:text-stone-100 mb-1">Tin nhắn</h1>
       <p className="text-sm text-stone-500 dark:text-stone-400 mb-6">
-        Góp ý gửi qua form liên hệ, và các cuộc trò chuyện trực tiếp từ khung chat
+        Góp ý, chat trực tiếp và bảng lỗi realtime người dùng gửi vào
       </p>
-      <MessagesTabs result={result} initialSearch={search} initialFilter={filter} threads={threads} />
+      <MessagesTabs result={result} initialSearch={search} initialFilter={filter} threads={threads} bugReports={bugReports} />
     </div>
   );
 }

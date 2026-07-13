@@ -1,5 +1,5 @@
 import { describe, it, expect } from "vitest";
-import { isLessonIdInTrack } from "@/lib/track-stages";
+import { isLessonIdInTrack, orderLessonsForTrack } from "@/lib/track-stages";
 
 describe("isLessonIdInTrack", () => {
   it("classifies Day 1 (personal Chặng 1) as personal, not professional", () => {
@@ -30,5 +30,19 @@ describe("isLessonIdInTrack", () => {
   it("returns false for an id that falls in no stage's day range on either track", () => {
     expect(isLessonIdInTrack(99999, "personal")).toBe(false);
     expect(isLessonIdInTrack(99999, "professional")).toBe(false);
+  });
+
+  it("orders personal lessons by curriculum order, not raw numeric id", () => {
+    const ordered = orderLessonsForTrack(
+      [
+        { id: 1, track: "personal" as const },
+        { id: 2, track: "personal" as const },
+        { id: 263, track: "personal" as const },
+        { id: 264, track: "personal" as const },
+      ],
+      "personal"
+    );
+
+    expect(ordered.map((lesson) => lesson.id)).toEqual([263, 264, 1, 2]);
   });
 });

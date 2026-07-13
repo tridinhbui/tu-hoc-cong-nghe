@@ -31,10 +31,12 @@ create index if not exists user_quiz_sessions_user_idx
 
 alter table public.user_quiz_sessions enable row level security;
 
+drop policy if exists "Users can read own quiz sessions" on public.user_quiz_sessions;
 create policy "Users can read own quiz sessions"
   on public.user_quiz_sessions for select
   using (auth.uid() = user_id);
 
+drop policy if exists "Users can insert own quiz sessions" on public.user_quiz_sessions;
 create policy "Users can insert own quiz sessions"
   on public.user_quiz_sessions for insert
   with check (auth.uid() = user_id);

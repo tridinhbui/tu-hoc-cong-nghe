@@ -1,0 +1,123 @@
+"use client";
+
+import { useEffect, useState } from "react";
+import { CheckCheck, CheckCircle2 } from "lucide-react";
+import { toast } from "sonner";
+import { createClient } from "@/lib/supabase";
+import { getLessonProgress } from "@/lib/supabase-progress";
+import { isLessonFlagged, toggleLessonFlag } from "@/lib/supabase-lesson-flags";
+
+interface ManualLessonFlagButtonProps {
+  lessonId: number;
+  lessonSlug: string;
+  lessonTitle: string;
+}
+
+export default function ManualLessonFlagButton({
+  lessonId,
+  lessonSlug,
+  lessonTitle,
+}: ManualLessonFlagButtonProps) {
+  const [flagged, setFlagged] = useState(false);
+  const [completed, setCompleted] = useState(false);
+  const [loading, setLoading] = useState(true);
+  const [toggling, setToggling] = useState(false);
+
+  useEffect(() => {
+    const load = async () => {
+      try {
+        const supabase = createClient();
+        const {
+          data: { user },
+        } = await supabase.auth.getUser();
+
+        if (!user) return;
+
+        const [manualFlagged, progress] = await Promise.all([
+          isLessonFlagged(user.id, lessonId),
+          getLessonProgress(user.id, lessonId),
+        ]);
+
+        setFlagged(manualFlagged);
+        setCompleted(!!progress?.completed);
+      } catch (error) {
+        console.error("Error loading manual lesson flag state:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    load();
+  }, [lessonId]);
+
+  const handleToggle = async () => {
+    if (completed) {
+      toast.message("Bài này đã được hệ thống tính rồi trên bảng xếp hạng.", {
+        description: "Bạn đã hoàn thành quiz hoặc đọc đủ, nên không cần tự đánh dấu nữa.",
+      });
+      return;
+    }
+
+    if (!flagged) {
+      const confirmed = window.confirm(
+        "Bạn xác nhận đã học bài này nhé, nhưng sẽ không được nhận kinh nghiệm trừ khi bạn đọc hết và làm hết."
+      );
+      if (!confirmed) return;
+    }
+
+    setToggling(true);
+    try {
+      const supabase = createClient();
+      const {
+        data: { user },
+      } = await supabase.auth.getUser();
+
+      if (!user) {
+        toast.error("Bạn cần đăng nhập để tự đánh dấu bài đã học.");
+        return;
+      }
+
+      const result = await toggleLessonFlag(user.id, lessonId, lessonSlug, lessonTitle);
+      setFlagged(result.flagged);
+
+      if (result.flagged) {
+        toast.success("Đã đánh dấu bài này là bạn đã học.");
+      } else {
+        toast.success("Đã bỏ đánh dấu tự xác nhận.");
+      }
+    } catch (error) {
+      console.error("Error toggling manual lesson flag:", error);
+      toast.error("Không thể cập nhật đánh dấu. Vui lòng thử lại.");
+    } finally {
+      setToggling(false);
+    }
+  };
+
+  if (loading) {
+    return <div className="w-10 h-10 rounded-full bg-stone-100 dark:bg-stone-800 animate-pulse" />;
+  }
+
+  return (
+    <button
+      onClick={handleToggle}
+      disabled={toggling}
+      title={
+        completed
+          ? "Bài này đã được hệ thống tính tiến độ"
+          : flagged
+            ? "Bỏ đánh dấu tự xác nhận"
+            : "Tự đánh dấu đã học"
+      }
+      className={`w-10 h-10 rounded-full flex items-center justify-center transition-all ${
+        completed
+          ? "bg-emerald-100 dark:bg-emerald-900/30 text-emerald-600 dark:text-emerald-400"
+          : flagged
+            ? "bg-sky-100 dark:bg-sky-900/30 text-sky-600 dark:text-sky-400"
+            : "bg-stone-100 dark:bg-stone-800 text-stone-500 dark:text-stone-400 hover:bg-stone-200 dark:hover:bg-stone-700"
+      } ${toggling ? "opacity-50 cursor-not-allowed" : "hover:scale-110"}`}
+      aria-label="Tự đánh dấu đã học"
+    >
+      {completed ? <CheckCircle2 className="w-5 h-5" /> : <CheckCheck className="w-5 h-5" />}
+    </button>
+  );
+}

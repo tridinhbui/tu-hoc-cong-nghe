@@ -6,7 +6,7 @@ const meta: LessonMeta = {
   id: 51, day: 83, accent: "violet",
   title: "Wealth Management là gì?",
   subtitle: "Tài sản ròng, phân bổ tài sản và danh mục kỳ vọng",
-  duration: "6 phút", difficulty: "Trung bình", emoji: "·",
+  duration: "8 phút", difficulty: "Trung bình", emoji: "💼",
   nextSlug: "modern-portfolio-theory", nextTitle: "Modern Portfolio Theory",
 };
 
@@ -56,74 +56,167 @@ export default function Page() {
   return (
     <LessonPageLayout lesson={meta} quiz={quiz}>
       <h2 className="text-2xl font-bold text-stone-900 mb-2">Wealth Management là gì?</h2>
-      <p className="text-stone-500 text-sm mb-8">Quản lý tài sản bắt đầu từ việc biết mình đang có gì</p>
+      <p className="text-stone-500 text-sm mb-8">Quản lý tài sản không bắt đầu từ việc chọn cổ phiếu, mà bắt đầu từ việc biết mình đang sở hữu gì, nợ gì, và tiền đó phải phục vụ mục tiêu nào</p>
 
       <section className="mb-10">
-        <h3 className="text-base font-bold text-stone-800 mb-4 uppercase tracking-wide text-xs">Wealth Management - định nghĩa đơn giản</h3>
-        <p className="text-stone-600 leading-relaxed mb-3">
-          Wealth management là quá trình quản lý và tăng trưởng tài sản theo mục tiêu tài chính cá nhân - bao gồm đầu tư, lập kế hoạch thuế, bảo hiểm, di chúc và phân bổ tài sản.
+        <h3 className="text-base font-bold text-stone-800 mb-4 uppercase tracking-wide text-xs">Wealth Management thực sự là gì?</h3>
+        <p className="text-stone-600 leading-relaxed mb-4">
+          Wealth management thường khiến người mới nghĩ đến private banker, quỹ đầu tư lớn, hay người rất giàu. Nhưng ở bản chất, wealth management chỉ là <strong>nghệ thuật sắp xếp toàn bộ tài sản của bạn để phục vụ cuộc đời bạn</strong>: tiền mặt, đầu tư, nợ, bảo hiểm, thuế, mục tiêu gia đình, và cả việc để lại tài sản sau này.
         </p>
         <p className="text-stone-600 leading-relaxed">
-          Ở cấp độ cá nhân, wealth management đơn giản hơn: <strong>biết mình đang có gì, biết mình muốn đến đâu, và phân bổ nguồn lực để đi đến đó.</strong>
+          Nói cách khác, đây không phải là môn "chọn asset hot nhất", mà là bài toán điều phối nguồn lực. Một người có 5 tỷ nhưng phân bổ sai có thể mong manh hơn người có 1 tỷ nhưng cấu trúc tài sản hợp lý, nợ thấp, quỹ khẩn cấp đủ và mục tiêu rõ ràng.
         </p>
       </section>
 
       <section className="mb-10">
-        <h3 className="text-base font-bold text-stone-800 mb-4 uppercase tracking-wide text-xs">Net Worth - điểm xuất phát</h3>
-        <div className="bg-stone-50 border border-stone-200 rounded-xl p-5 mb-4 font-mono text-sm">
-          <div className="text-stone-500 text-xs mb-3">CÔNG THỨC</div>
-          <div className="font-bold text-stone-800">Net Worth = Assets − Liabilities</div>
-          <div className="mt-3 space-y-1 text-xs text-stone-500">
-            <div>Assets: tiền mặt, chứng khoán, BĐS, xe, góp vốn công ty, tài sản khác</div>
-            <div>Liabilities: vay ngân hàng, nợ thẻ tín dụng, vay gia đình, thuê mua</div>
+        <h3 className="text-base font-bold text-stone-800 mb-4 uppercase tracking-wide text-xs">Bước 1: Net worth là bảng điều khiển trung tâm</h3>
+        <div className="bg-stone-50 border border-stone-200 rounded-xl p-5 mb-4">
+          <div className="text-stone-500 text-xs mb-3 uppercase tracking-wide font-bold">Công thức gốc</div>
+          <div className="font-mono font-bold text-stone-800 text-base">Net Worth = Assets - Liabilities</div>
+          <div className="mt-4 grid gap-2 text-sm text-stone-600 sm:grid-cols-2">
+            <div>
+              <div className="font-bold text-stone-800 mb-1">Assets</div>
+              <div>Tiền mặt, tiền gửi, cổ phiếu, trái phiếu, quỹ, BĐS, góp vốn, xe, tài sản khác</div>
+            </div>
+            <div>
+              <div className="font-bold text-stone-800 mb-1">Liabilities</div>
+              <div>Vay mua nhà, vay mua xe, nợ thẻ tín dụng, vay tiêu dùng, nợ người thân</div>
+            </div>
           </div>
         </div>
+        <p className="text-stone-600 text-sm leading-relaxed mb-3">
+          Net worth không nói bạn kiếm được bao nhiêu trong tháng; nó nói <strong>bạn thực sự sở hữu bao nhiêu sau khi trừ hết nghĩa vụ</strong>. Đây là điểm xuất phát bắt buộc, vì nếu không có bản đồ tài sản hiện tại, mọi quyết định đầu tư phía sau đều thiếu nền.
+        </p>
         <p className="text-stone-600 text-sm leading-relaxed">
-          Net worth không phải thu nhập. Hai người cùng lương 30 triệu/tháng có thể có net worth rất khác nhau - tùy vào họ tiêu, tiết kiệm, đầu tư và vay mượn thế nào.
+          Ví dụ, hai người cùng thu nhập 40 triệu/tháng có thể sống ở hai thế giới rất khác nhau: một người có 2 tỷ tài sản ròng và quỹ dự phòng 12 tháng; người kia có danh mục nhìn có vẻ lớn nhưng vay margin, nợ thẻ, và gần như không có tiền mặt. Thu nhập giống nhau, độ vững hoàn toàn khác nhau.
         </p>
       </section>
 
       <section className="mb-10">
-        <h3 className="text-base font-bold text-stone-800 mb-4 uppercase tracking-wide text-xs">Asset Allocation - phân bổ tài sản</h3>
-        <p className="text-stone-600 leading-relaxed text-sm mb-4">
-          Phân bổ bao nhiêu % vào mỗi loại tài sản. Không có công thức cố định - phụ thuộc vào mục tiêu, thời gian, khẩu vị rủi ro và nhu cầu thanh khoản.
+        <h3 className="text-base font-bold text-stone-800 mb-4 uppercase tracking-wide text-xs">Bước 2: Mục tiêu quyết định cấu trúc danh mục</h3>
+        <div className="grid gap-3 sm:grid-cols-3">
+          {[
+            {
+              title: "Ngắn hạn",
+              body: "Mua xe, dự phòng 6-12 tháng, học phí. Tài sản nên ưu tiên thanh khoản cao, biến động thấp.",
+            },
+            {
+              title: "Trung hạn",
+              body: "Mua nhà, vốn mở kinh doanh, cho con đi học. Có thể chấp nhận một phần biến động nhưng không được để toàn bộ ở tài sản rủi ro.",
+            },
+            {
+              title: "Dài hạn",
+              body: "Tự do tài chính, hưu trí, để lại tài sản cho gia đình. Đây là nơi cổ phiếu, quỹ chỉ số, tài sản tăng trưởng có vai trò lớn hơn.",
+            },
+          ].map((item) => (
+            <div key={item.title} className="rounded-xl border border-stone-200 bg-white p-4">
+              <p className="text-sm font-bold text-stone-900 mb-2">{item.title}</p>
+              <p className="text-sm leading-relaxed text-stone-600">{item.body}</p>
+            </div>
+          ))}
+        </div>
+        <p className="text-stone-600 text-sm leading-relaxed mt-4">
+          Cùng một người, nhưng tiền cho quỹ khẩn cấp và tiền cho hưu trí không nên được đầu tư theo cùng một cách. Khi asset allocation không gắn với thời gian và mục tiêu, danh mục dễ trở thành một đống tài sản mua ngẫu hứng, thay vì một hệ thống.
         </p>
-        <div className="space-y-2 text-sm text-stone-600">
-          <div><strong>Cổ phiếu:</strong> Tiềm năng lợi nhuận cao, biến động mạnh, thanh khoản tốt</div>
-          <div><strong>Trái phiếu:</strong> Ổn định, thu nhập cố định, đối trọng với cổ phiếu</div>
-          <div><strong>Bất động sản:</strong> Phòng lạm phát, dòng tiền cho thuê, thanh khoản thấp</div>
-          <div><strong>Tiền mặt:</strong> Thanh khoản cao, sinh lời thấp, dự phòng ngắn hạn</div>
+      </section>
+
+      <section className="mb-10">
+        <h3 className="text-base font-bold text-stone-800 mb-4 uppercase tracking-wide text-xs">Bước 3: Asset allocation là trái tim của wealth management</h3>
+        <p className="text-stone-600 text-sm leading-relaxed mb-4">
+          Asset allocation không phải câu hỏi "cổ phiếu nào tốt nhất", mà là "bao nhiêu % tài sản nên ở dạng nào". Quyết định này thường ảnh hưởng kết quả dài hạn nhiều hơn việc cố gắng chọn đúng một mã cụ thể.
+        </p>
+        <div className="space-y-3 text-sm text-stone-600">
+          <div><strong className="text-stone-800">Cổ phiếu:</strong> tăng trưởng mạnh, biến động cao, phù hợp mục tiêu dài hạn.</div>
+          <div><strong className="text-stone-800">Trái phiếu / thu nhập cố định:</strong> ổn định hơn, giúp cân danh mục và tạo cash flow.</div>
+          <div><strong className="text-stone-800">Bất động sản:</strong> chống lạm phát tốt, nhưng thanh khoản thấp và cần quản trị đòn bẩy kỹ.</div>
+          <div><strong className="text-stone-800">Tiền mặt:</strong> lợi suất thấp nhưng cực kỳ quan trọng cho an toàn, cơ hội và nhu cầu bất ngờ.</div>
         </div>
       </section>
 
       <section className="mb-10">
-        <h3 className="text-base font-bold text-stone-800 mb-4 uppercase tracking-wide text-xs">Expected Return của danh mục</h3>
-        <div className="bg-stone-50 border border-stone-200 rounded-xl p-5 mb-3 font-mono text-sm">
-          <div className="text-stone-500 text-xs mb-2">VÍ DỤ: danh mục 60/40</div>
-          <div className="text-stone-700 text-xs space-y-1">
-            <div>60% cổ phiếu × 10% kỳ vọng = 6%</div>
-            <div>40% trái phiếu × 4% kỳ vọng = 1.6%</div>
-            <div className="mt-2 font-bold text-stone-800">Expected Return = 7.6%</div>
+        <h3 className="text-base font-bold text-stone-800 mb-4 uppercase tracking-wide text-xs">Ví dụ: hai danh mục khác nhau cho hai con người khác nhau</h3>
+        <div className="overflow-x-auto rounded-xl border border-stone-200">
+          <table className="w-full min-w-[680px] text-sm">
+            <thead className="bg-stone-100 text-stone-700">
+              <tr>
+                <th className="px-4 py-3 text-left font-bold">Tài sản</th>
+                <th className="px-4 py-3 text-left font-bold">Người A - 28 tuổi</th>
+                <th className="px-4 py-3 text-left font-bold">Người B - 52 tuổi</th>
+              </tr>
+            </thead>
+            <tbody>
+              {[
+                ["Tiền mặt", "10%", "20%"],
+                ["Cổ phiếu / quỹ cổ phiếu", "65%", "35%"],
+                ["Trái phiếu / tiền gửi dài hơn", "15%", "30%"],
+                ["BĐS / tài sản thay thế", "10%", "15%"],
+              ].map(([asset, a, b], index) => (
+                <tr key={asset} className={index % 2 === 0 ? "bg-white" : "bg-stone-50/60"}>
+                  <td className="px-4 py-3 font-medium text-stone-800">{asset}</td>
+                  <td className="px-4 py-3 text-stone-600">{a}</td>
+                  <td className="px-4 py-3 text-stone-600">{b}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+        <p className="text-stone-600 text-sm leading-relaxed mt-4">
+          Người A còn nhiều thời gian để chịu biến động và tích lũy, nên danh mục thiên về tăng trưởng. Người B gần mục tiêu nghỉ hưu hơn, nên cần giảm xác suất bị drawdown lớn ngay trước lúc cần dùng tiền. Không có cấu trúc "đúng cho mọi người"; chỉ có cấu trúc hợp với từng hoàn cảnh.
+        </p>
+      </section>
+
+      <section className="mb-10">
+        <h3 className="text-base font-bold text-stone-800 mb-4 uppercase tracking-wide text-xs">Expected return chỉ là một nửa câu chuyện</h3>
+        <div className="bg-stone-50 border border-stone-200 rounded-xl p-5 mb-4 font-mono text-sm">
+          <div className="text-stone-500 text-xs mb-2">Ví dụ danh mục 60/40</div>
+          <div className="space-y-1 text-stone-700">
+            <div>60% cổ phiếu x 10% = 6.0%</div>
+            <div>40% trái phiếu x 4% = 1.6%</div>
+            <div className="mt-2 font-bold text-stone-900">Expected Return = 7.6%</div>
           </div>
         </div>
-        <p className="text-stone-600 text-xs leading-relaxed">
-          Expected return của danh mục là trung bình có trọng số của expected return từng tài sản thành phần. Danh mục khác nhau tạo ra risk-return profile khác nhau.
+        <p className="text-stone-600 text-sm leading-relaxed mb-3">
+          Công thức này hữu ích để hình dung lợi nhuận kỳ vọng, nhưng wealth management không dừng ở đó. Một danh mục 9% kỳ vọng mà bạn hoảng sợ bán tháo giữa drawdown thực tế còn tệ hơn danh mục 7% nhưng bạn giữ được kỷ luật suốt 15 năm.
         </p>
+        <p className="text-stone-600 text-sm leading-relaxed">
+          Vì vậy, quản lý tài sản không chỉ là tối đa hóa lợi nhuận; nó là <strong>cân bằng giữa lợi nhuận, rủi ro, thanh khoản và khả năng tâm lý của chính bạn</strong>.
+        </p>
+      </section>
+
+      <section className="mb-10">
+        <h3 className="text-base font-bold text-stone-800 mb-4 uppercase tracking-wide text-xs">3 sai lầm kinh điển</h3>
+        <div className="space-y-3">
+          {[
+            {
+              title: "Nhầm wealth management với picking stocks",
+              body: "Đầu tư chỉ là một mảnh ghép. Nếu nợ xấu, thiếu bảo hiểm, không có tiền mặt dự phòng, danh mục cổ phiếu đẹp đến đâu cũng không cứu được cấu trúc tài chính yếu.",
+            },
+            {
+              title: "Không tách tiền theo mục tiêu",
+              body: "Tiền mua nhà trong 2 năm tới mà đem bỏ hoàn toàn vào cổ phiếu là đang dùng sai công cụ cho sai nhiệm vụ.",
+            },
+            {
+              title: "Nhìn tổng tài sản mà quên nghĩa vụ nợ",
+              body: "Nhiều người thấy mình 'có nhiều tài sản' nhưng phần lớn là tài sản kém thanh khoản đi kèm vay lớn. Wealth thật phải nhìn sau khi trừ nợ và tính đến khả năng xoay sở khi có biến.",
+            },
+          ].map((item) => (
+            <div key={item.title} className="rounded-xl border border-stone-200 bg-stone-50 p-4">
+              <p className="text-sm font-bold text-stone-900 mb-1">{item.title}</p>
+              <p className="text-sm leading-relaxed text-stone-600">{item.body}</p>
+            </div>
+          ))}
+        </div>
       </section>
 
       <section>
-        <h3 className="text-base font-bold text-stone-800 mb-4 uppercase tracking-wide text-xs">3 câu hỏi cốt lõi</h3>
-        <div className="space-y-3">
-          {[
-            { q: "Mình đang ở đâu?", a: "Lập bảng net worth: assets và liabilities" },
-            { q: "Mình muốn đến đâu?", a: "Mục tiêu tài chính: về hưu, mua nhà, tài chính tự do..." },
-            { q: "Phân bổ thế nào để đến đó?", a: "Asset allocation theo rủi ro, thời gian và thanh khoản" },
-          ].map(s => (
-            <div key={s.q} className="flex gap-4 text-sm">
-              <span className="font-semibold text-stone-800 min-w-[160px]">{s.q}</span>
-              <span className="text-stone-500">{s.a}</span>
-            </div>
-          ))}
+        <h3 className="text-base font-bold text-stone-800 mb-4 uppercase tracking-wide text-xs">Khung nhớ cuối bài</h3>
+        <div className="rounded-2xl bg-stone-900 p-5 text-white">
+          <p className="font-bold mb-3">Wealth management cá nhân có thể tóm lại trong 3 câu hỏi:</p>
+          <div className="space-y-2 text-sm text-stone-300">
+            <div>1. Mình đang ở đâu? - đo bằng net worth và dòng tiền hiện tại.</div>
+            <div>2. Mình muốn đi đâu? - định nghĩa mục tiêu, thời gian, mức sống mong muốn.</div>
+            <div>3. Tài sản cần được sắp xếp thế nào để đi từ điểm 1 tới điểm 2? - đó là asset allocation.</div>
+          </div>
         </div>
       </section>
     </LessonPageLayout>
