@@ -1,12 +1,15 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import { getLevelByXp, getNextLevel, getXpToNextLevel, getLevelProgress, LEVELS } from "@/lib/levels";
+import { getLevelStats, type LevelStats } from "@/lib/supabase-user";
 
 interface UserStatsProps {
   xp: number;
   lessonsCompleted: number;
   totalLessons: number;
   avgQuizScore?: number;
+  userId?: string;
 }
 
 export default function UserStats({
@@ -14,11 +17,26 @@ export default function UserStats({
   lessonsCompleted,
   totalLessons,
   avgQuizScore = 0,
+  userId,
 }: UserStatsProps) {
   const currentLevel = getLevelByXp(xp);
   const nextLevel = getNextLevel(currentLevel.level);
   const xpToNext = getXpToNextLevel(xp);
   const progress = getLevelProgress(xp);
+
+  const [levelStats, setLevelStats] = useState<LevelStats | null>(null);
+
+  useEffect(() => {
+    let cancelled = false;
+    getLevelStats(userId)
+      .then((stats) => {
+        if (!cancelled) setLevelStats(stats);
+      })
+      .catch((error) => console.error("Error loading level stats:", error));
+    return () => {
+      cancelled = true;
+    };
+  }, [userId]);
 
   return (
     <div className="bg-white dark:bg-stone-900 border-2 border-stone-200 dark:border-stone-800 rounded-xl p-4">
@@ -34,6 +52,11 @@ export default function UserStats({
           <p className="text-xs text-stone-600 dark:text-stone-400 mt-0.5">
             {currentLevel.level} / {LEVELS.length}
           </p>
+          {levelStats?.myTopPercent !== null && levelStats?.myTopPercent !== undefined && (
+            <p className="text-xs font-bold text-emerald-600 dark:text-emerald-400 mt-1">
+              Bạn nằm trong top {levelStats.myTopPercent}%
+            </p>
+          )}
         </div>
 
         {/* XP Display */}
@@ -101,6 +124,11 @@ export default function UserStats({
                 >
                   {lvl.name}
                 </span>
+                {levelStats && (
+                  <span className="text-[9px] sm:text-[10px] text-stone-400 dark:text-stone-600">
+                    {levelStats.levelCounts[lvl.level] ?? 0} người
+                  </span>
+                )}
               </div>
             );
           })}

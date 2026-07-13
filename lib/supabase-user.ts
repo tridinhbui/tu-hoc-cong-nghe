@@ -216,6 +216,42 @@ export async function getMyLeaderboardRank(
   return { rank: row.rank, value: row.value };
 }
 
+export interface LevelStats {
+  levelCounts: Record<number, number>;
+  totalUsers: number;
+  myRank: number | null;
+  myTopPercent: number | null; // e.g. 12 means "top 12%"
+}
+
+// Powers the level roadmap card: how many users sit at each level, plus the
+// current user's XP rank -> "top X%". Degrades to null (roadmap just hides
+// the counts/percentile) if the RPC hasn't been migrated in yet, same
+// pattern as the leaderboard's isMissingTableError.
+export async function getLevelStats(userId?: string): Promise<LevelStats | null> {
+  const supabase = createClient();
+  const { data, error } = await supabase.rpc("get_level_stats", { p_user_id: userId ?? null });
+
+  if (error) {
+    if (isMissingTableError(error) || error.code === "PGRST202" || error.code === "42883") {
+      return null;
+    }
+    throw handleSupabaseError(error);
+  }
+
+  const rows = (data ?? []) as { level: number; user_count: number; total_users: number; my_rank: number | null }[];
+  if (rows.length === 0) return null;
+
+  const levelCounts: Record<number, number> = {};
+  for (const row of rows) levelCounts[row.level] = row.user_count;
+
+  const totalUsers = rows[0].total_users ?? 0;
+  const myRank = rows[0].my_rank ?? null;
+  const myTopPercent =
+    myRank !== null && totalUsers > 0 ? Math.max(1, Math.round((myRank / totalUsers) * 100)) : null;
+
+  return { levelCounts, totalUsers, myRank, myTopPercent };
+}
+
 // Cập nhật stats từ progress
 export async function recalculateUserStats(userId: string) {
   const supabase = createClient();

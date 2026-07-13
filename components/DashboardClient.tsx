@@ -658,6 +658,7 @@ export default function DashboardClient({ lessonsMeta }: { lessonsMeta: LessonMe
               lessonsCompleted={totalDone}
               totalLessons={totalLessons}
               avgQuizScore={avgQuizScore}
+              userId={user?.id}
             />
           </div>
           <StreakDisplay />
