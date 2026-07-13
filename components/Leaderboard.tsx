@@ -1,7 +1,30 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import Image from "next/image";
 import { getLeaderboardByMetric, getMyLeaderboardRank, type LeaderboardMetric, type LeaderboardRow } from "@/lib/supabase-user";
+
+// Small circular avatar with an initials fallback for learners who haven't
+// uploaded a profile photo - keeps the row layout stable either way instead
+// of collapsing the space where the image would've been.
+function LeaderboardAvatar({ name, avatarUrl }: { name: string; avatarUrl: string | null }) {
+  if (avatarUrl) {
+    return (
+      <Image
+        src={avatarUrl}
+        alt={name}
+        width={24}
+        height={24}
+        className="w-6 h-6 rounded-full object-cover flex-shrink-0 border border-stone-200 dark:border-stone-700"
+      />
+    );
+  }
+  return (
+    <div className="w-6 h-6 rounded-full flex-shrink-0 flex items-center justify-center bg-stone-200 dark:bg-stone-700 text-stone-600 dark:text-stone-300 text-[10px] font-extrabold">
+      {name.trim().charAt(0).toUpperCase() || "?"}
+    </div>
+  );
+}
 
 interface LeaderboardProps {
   userId?: string;
@@ -117,6 +140,8 @@ export default function Leaderboard({ userId }: LeaderboardProps) {
                   >
                     {rank}
                   </div>
+
+                  <LeaderboardAvatar name={entry.name} avatarUrl={entry.avatarUrl} />
 
                   <div className="flex-1 min-w-0">
                     <div className={`font-bold truncate ${isCurrent ? "text-emerald-900 dark:text-emerald-400" : "text-stone-900 dark:text-stone-100"}`}>

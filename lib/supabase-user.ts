@@ -164,6 +164,7 @@ export interface LeaderboardRow {
   user_id: string;
   value: number;
   name: string;
+  avatarUrl: string | null;
 }
 
 // Both RPCs are SECURITY DEFINER Postgres functions (see
@@ -185,10 +186,11 @@ export async function getLeaderboardByMetric(metric: LeaderboardMetric, limit: n
     throw handleSupabaseError(error);
   }
 
-  return ((data ?? []) as { user_id: string; name: string; value: number }[]).map((row) => ({
+  return ((data ?? []) as { user_id: string; name: string; value: number; avatar_url: string | null }[]).map((row) => ({
     user_id: row.user_id,
     value: row.value ?? 0,
     name: row.name || "Người học",
+    avatarUrl: row.avatar_url ?? null,
   }));
 }
 
