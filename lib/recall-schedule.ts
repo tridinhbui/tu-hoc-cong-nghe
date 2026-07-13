@@ -9,6 +9,12 @@
 // `distractors` turns the card into a real multiple-choice retrieval check
 // (pick the correct takeaway among 3) instead of a self-reported "did you
 // remember?"- self-report doesn't actually test recall, an MCQ does.
+//
+// ~5000 lines - "server-only" makes any accidental client-component import
+// fail the build loudly instead of silently shipping this whole dataset to
+// the browser on every lesson page. Client code must go through
+// lib/recall-actions.ts's Server Actions instead.
+import "server-only";
 
 export interface RecallItem {
   fromDay: number;

@@ -3,13 +3,16 @@
 // decision logic ("should we nag the user right now?") can be reasoned
 // about/tested without touching the Notification API or localStorage.
 //
-// Reuses the existing streak/recall data instead of re-deriving it:
-// - lib/supabase-streak.ts's UserStreak (current_streak, last_activity_date)
-// - lib/recall-schedule.ts's RECALL_SCHEDULE, keyed by the same "Day N" used
-//   by lesson.recallDay (see lib/lesson-labels.ts's getLessonRecallDay).
+// Reuses lib/supabase-streak.ts's UserStreak (current_streak,
+// last_activity_date). Recall-item counting used to live here too (reading
+// lib/recall-schedule.ts's RECALL_SCHEDULE directly), but that's a ~5000-line
+// generated dataset - importing it here pulled the whole thing into the
+// client bundle of every component that imports this file (this one is
+// imported by the client-side StreakReminderManager.tsx). Moved to
+// lib/recall-actions.ts's getRecallCountAction, a Server Action that returns
+// just the count.
 
 import type { UserStreak } from "@/lib/supabase-streak";
-import { RECALL_SCHEDULE } from "@/lib/recall-schedule";
 
 // After this local hour, an active streak with no activity yet today is
 // treated as "about to be lost" - the whole rest of the evening is prime
@@ -76,18 +79,6 @@ export function getInactiveDaysCount(streak: UserStreak | null, now: Date = new 
   const today = todayDateString(now);
   const gap = daysBetween(streak.last_activity_date, today);
   return Math.max(0, gap);
-}
-
-/**
- * Number of spaced-repetition recall items due for the next lesson the user
- * hasn't completed yet. Reuses RECALL_SCHEDULE (the same table RecallCard
- * reads from) instead of re-deriving the "which lessons attach a recall
- * check" mapping - a lesson's recall items become "due" the moment that
- * lesson is next up in the queue.
- */
-export function getDueRecallCount(nextLessonId: number | undefined): number {
-  if (!nextLessonId) return 0;
-  return RECALL_SCHEDULE[nextLessonId]?.length ?? 0;
 }
 
 export type ReminderKind = "streak" | "recall";

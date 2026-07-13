@@ -5,12 +5,12 @@ import { Bell, X } from "lucide-react";
 import { getUserStreak } from "@/lib/supabase-streak";
 import {
   decideReminder,
-  getDueRecallCount,
   getInactiveDaysCount,
   getStreakRiskStatus,
   reminderShownKey,
   type ReminderKind,
 } from "@/lib/streak-reminders";
+import { getRecallCountAction } from "@/lib/recall-actions";
 
 const BANNER_DISMISSED_KEY = "notif-banner-dismissed_v1";
 
@@ -82,7 +82,7 @@ export default function StreakReminderManager({
         if (cancelled) return;
 
         const streakRisk = getStreakRiskStatus(streak);
-        const dueRecallCount = getDueRecallCount(nextLessonId);
+        const dueRecallCount = await getRecallCountAction(nextLessonId);
         // Not currently surfaced in a notification, but computed here per
         // spec (c) - "days in a row without studying" - so future callers
         // (e.g. a re-engagement banner) can read it without recomputation.

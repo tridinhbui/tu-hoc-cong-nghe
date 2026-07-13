@@ -1,11 +1,18 @@
 "use client";
 
 import { useState } from "react";
+import dynamic from "next/dynamic";
 import { Wallet, PiggyBank, ShieldAlert } from "lucide-react";
 import { useAuthGate } from "@/lib/use-auth-gate";
-import NetWorthTracker from "@/components/tools/NetWorthTracker";
-import BudgetCalculator from "@/components/tools/BudgetCalculator";
-import EmergencyFundCalculator from "@/components/tools/EmergencyFundCalculator";
+
+// Only one tab renders at a time - lazy-load each so switching tabs is what
+// pulls in its code instead of every visit shipping all three up front.
+// NetWorthTracker alone pulls in recharts, a sizeable chart library that two
+// of the three tabs never touch.
+const LOADING = <div className="py-12 text-center text-sm text-stone-400 dark:text-stone-500">Đang tải...</div>;
+const NetWorthTracker = dynamic(() => import("@/components/tools/NetWorthTracker"), { loading: () => LOADING });
+const BudgetCalculator = dynamic(() => import("@/components/tools/BudgetCalculator"), { loading: () => LOADING });
+const EmergencyFundCalculator = dynamic(() => import("@/components/tools/EmergencyFundCalculator"), { loading: () => LOADING });
 
 type Tab = "net-worth" | "budget" | "emergency-fund";
 

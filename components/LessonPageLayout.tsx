@@ -17,7 +17,8 @@ import { getLessonProgress } from "@/lib/supabase-progress";
 import { recalculateUserStats } from "@/lib/supabase-user";
 import { updateStreak } from "@/lib/supabase-streak";
 import { getReadingProgress, updateReadingProgress } from "@/lib/supabase-reading";
-import { RECALL_SCHEDULE } from "@/lib/recall-schedule";
+import { getRecallItemsAction } from "@/lib/recall-actions";
+import type { RecallItem } from "@/lib/recall-schedule";
 import RecallCard from "@/components/RecallCard";
 import LessonTour from "@/components/LessonTour";
 import FontSizeControl, { loadFontScale } from "@/components/FontSizeControl";
@@ -121,6 +122,7 @@ export default function LessonPageLayout({ lesson, quiz, children }: Props) {
   const [reviewMode, setReviewMode] = useState(false);
   const [readPct, setReadPct]     = useState(0);
   const [userId, setUserId]       = useState<string | null>(null);
+  const [recallItems, setRecallItems] = useState<RecallItem[]>([]);
   const [fontScale, setFontScale] = useState(() => (typeof window === "undefined" ? 1.125 : loadFontScale()));
   const articleRef = useRef<HTMLElement>(null);
   const maxReachedRef = useRef(0);
@@ -129,6 +131,17 @@ export default function LessonPageLayout({ lesson, quiz, children }: Props) {
 
   const durationMin = parseInt(lesson.duration) || 5;
   const lessonLabel = lesson.label ?? getLessonDisplayLabel({ id: lesson.id, title: lesson.title, track: undefined });
+
+  useEffect(() => {
+    if (!lesson.recallDay) return;
+    let cancelled = false;
+    getRecallItemsAction(lesson.recallDay).then((items) => {
+      if (!cancelled) setRecallItems(items);
+    });
+    return () => {
+      cancelled = true;
+    };
+  }, [lesson.recallDay]);
 
   useEffect(() => {
     const supabase = createClient();
@@ -501,7 +514,7 @@ export default function LessonPageLayout({ lesson, quiz, children }: Props) {
                 lessons back before introducing new material, so review is
                 distributed across the course instead of only happening once
                 at the end of a chặng. */}
-            {lesson.recallDay && RECALL_SCHEDULE[lesson.recallDay]?.length > 0 && <RecallCard items={RECALL_SCHEDULE[lesson.recallDay]} />}
+            {recallItems.length > 0 && <RecallCard items={recallItems} />}
 
             {/* Tài Tài auto-tip */}
             <div data-tour="lesson-tai-tai">

@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
+import { timingSafeEqual } from "crypto";
 import { createAdminClient } from "@/lib/supabase-admin";
 import { getStreakRiskStatus, getInactiveDaysCount } from "@/lib/streak-reminders";
 import type { UserStreak } from "@/lib/supabase-streak";
@@ -16,21 +17,23 @@ export const dynamic = "force-dynamic";
 
 const REMINDER_COOLDOWN_HOURS = 20;
 
+// Fail-closed: a missing CRON_SECRET used to make this route run wide open
+// (anyone who found the URL could trigger it - a real risk once email
+// sending is wired up, since it can mark up to 500 users/call as reminded).
+// Set CRON_SECRET locally too if you need to exercise this route in dev.
 function isAuthorized(request: NextRequest): boolean {
   const cronSecret = process.env.CRON_SECRET;
-
   if (!cronSecret) {
-    // Not configured yet (e.g. local dev). Allow the route to run so it can
-    // be exercised manually, but make the gap very visible in logs.
-    console.warn(
-      "[send-reminders] CRON_SECRET is not set - this endpoint is running WITHOUT auth protection. " +
-        "Set CRON_SECRET in the environment before deploying to production."
-    );
-    return true;
+    console.error("[send-reminders] CRON_SECRET is not set - refusing to run. Set it in the environment.");
+    return false;
   }
 
-  const authHeader = request.headers.get("authorization");
-  return authHeader === `Bearer ${cronSecret}`;
+  const authHeader = request.headers.get("authorization") ?? "";
+  const expected = `Bearer ${cronSecret}`;
+  const authBuf = Buffer.from(authHeader);
+  const expectedBuf = Buffer.from(expected);
+  if (authBuf.length !== expectedBuf.length) return false;
+  return timingSafeEqual(authBuf, expectedBuf);
 }
 
 /**
