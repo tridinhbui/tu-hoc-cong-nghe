@@ -120,12 +120,12 @@ export default function Leaderboard({ userId }: LeaderboardProps) {
   const myRankInTop10 = userId !== undefined && entries.some((e) => e.user_id === userId);
 
   return (
-    <div className="h-fit rounded-[28px] border border-stone-200/90 dark:border-stone-800 bg-[linear-gradient(180deg,rgba(255,255,255,0.98),rgba(249,250,251,0.94))] dark:bg-[linear-gradient(180deg,rgba(28,25,23,0.98),rgba(24,24,27,0.94))] p-5 shadow-[0_26px_60px_-42px_rgba(28,25,23,0.32)] lg:sticky lg:top-24">
-      <div className="mb-4">
+    <div className="bg-white dark:bg-stone-900 border-2 border-stone-200 dark:border-stone-800 rounded-xl p-5 h-fit lg:sticky lg:top-24">
+      <div className="mb-3">
         <p className="text-xs font-extrabold text-stone-500 dark:text-stone-400 uppercase tracking-widest">
           Top Người Học
         </p>
-        <div className="mt-1 flex items-center gap-1.5 text-[10px] font-bold text-stone-400 dark:text-stone-500">
+        <div className="flex items-center gap-1.5 mt-1 text-[10px] font-bold text-stone-400 dark:text-stone-500">
           <span className="relative flex w-1.5 h-1.5">
             <span className="animate-ping absolute inline-flex w-full h-full rounded-full bg-emerald-400 opacity-75" />
             <span className="relative inline-flex rounded-full w-1.5 h-1.5 bg-emerald-500" />
@@ -134,7 +134,7 @@ export default function Leaderboard({ userId }: LeaderboardProps) {
         </div>
       </div>
 
-      <div className="mb-4 flex gap-1 rounded-2xl border border-stone-200 dark:border-stone-800 bg-stone-50/90 dark:bg-stone-900/60 p-1">
+      <div className="flex gap-1 mb-4 bg-stone-100 dark:bg-stone-800 rounded-lg p-1">
         {TABS.map((tab) => (
           <button
             key={tab.metric}
@@ -143,9 +143,9 @@ export default function Leaderboard({ userId }: LeaderboardProps) {
               setLoading(true);
               setMetric(tab.metric);
             }}
-            className={`flex-1 rounded-xl py-2 text-[11px] font-bold transition-all cursor-pointer ${
+            className={`flex-1 text-[11px] font-bold py-1.5 rounded-md transition-all cursor-pointer ${
               metric === tab.metric
-                ? "bg-white dark:bg-stone-950 text-stone-900 dark:text-stone-100 shadow-[0_10px_24px_-20px_rgba(28,25,23,0.45)]"
+                ? "bg-white dark:bg-stone-900 text-stone-900 dark:text-stone-100 shadow-sm"
                 : "text-stone-500 dark:text-stone-400 hover:text-stone-700 dark:hover:text-stone-300"
             }`}
           >
@@ -162,7 +162,7 @@ export default function Leaderboard({ userId }: LeaderboardProps) {
         </p>
       ) : (
         <>
-          <div className="space-y-2">
+          <div className="space-y-1.5">
             {entries.map((entry, idx) => {
               const rank = idx + 1;
               const isCurrent = entry.user_id === userId;
@@ -171,10 +171,10 @@ export default function Leaderboard({ userId }: LeaderboardProps) {
                 <Link
                   key={entry.user_id}
                   href={href}
-                  className={`group relative flex items-center gap-2.5 overflow-hidden rounded-2xl px-3.5 py-3 text-xs transition-all duration-200 active:scale-[0.99] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400/60 ${
+                  className={`group relative flex items-center gap-2 overflow-hidden px-3 py-2 rounded-lg text-xs transition-all duration-200 active:scale-[0.99] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400/60 ${
                     isCurrent
-                      ? "bg-emerald-50 dark:bg-emerald-950/50 border border-emerald-200 dark:border-emerald-900 shadow-[0_18px_34px_-24px_rgba(16,185,129,0.36)]"
-                      : "bg-white/92 dark:bg-stone-900/92 border border-stone-200 dark:border-stone-800 hover:-translate-y-0.5 hover:border-stone-300 dark:hover:border-stone-700 hover:bg-white dark:hover:bg-stone-900 hover:shadow-[0_18px_34px_-26px_rgba(28,25,23,0.2)]"
+                      ? "bg-emerald-50 dark:bg-emerald-950/50 border border-emerald-200 dark:border-emerald-900 shadow-[0_10px_24px_-18px_rgba(16,185,129,0.5)]"
+                      : "bg-white dark:bg-stone-900 border border-stone-200 dark:border-stone-800 hover:border-emerald-300 dark:hover:border-emerald-700 hover:bg-emerald-50/70 dark:hover:bg-emerald-950/20 hover:shadow-[0_14px_30px_-20px_rgba(16,185,129,0.45)]"
                   }`}
                 >
                   <div className={`pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-200 group-hover:opacity-100 ${
@@ -188,7 +188,7 @@ export default function Leaderboard({ userId }: LeaderboardProps) {
                   }`} />
 
                   <div
-                    className={`relative z-10 flex h-7 w-7 flex-shrink-0 items-center justify-center rounded-xl font-extrabold transition-transform duration-200 group-hover:scale-105 ${
+                    className={`relative z-10 w-6 h-6 rounded flex items-center justify-center flex-shrink-0 font-extrabold transition-transform duration-200 group-hover:scale-105 ${
                       rank === 1
                         ? "bg-amber-200 dark:bg-amber-900 text-amber-900 dark:text-amber-300"
                         : rank === 2
@@ -218,10 +218,10 @@ export default function Leaderboard({ userId }: LeaderboardProps) {
 
                   <div className="relative z-10 flex items-center gap-2">
                     <span
-                      className={`hidden sm:inline-flex whitespace-nowrap rounded-full border px-2.5 py-1.5 text-[10px] font-bold uppercase tracking-[0.18em] transition-all duration-200 ${
+                      className={`hidden sm:inline-flex whitespace-nowrap rounded-full border px-2 py-1 text-[10px] font-bold uppercase tracking-[0.18em] transition-all duration-200 ${
                         isCurrent
                           ? "border-emerald-200 bg-emerald-100 text-emerald-700 dark:border-emerald-900 dark:bg-emerald-950/60 dark:text-emerald-400"
-                          : "border-stone-200 bg-white text-stone-500 opacity-85 group-hover:border-stone-300 group-hover:text-stone-700 group-hover:opacity-100 dark:border-stone-800 dark:bg-stone-950 dark:text-stone-400 dark:group-hover:border-stone-700 dark:group-hover:text-stone-300"
+                          : "border-stone-200 bg-white text-stone-500 opacity-85 group-hover:opacity-100 dark:border-stone-800 dark:bg-stone-950 dark:text-stone-400"
                       }`}
                     >
                       {isCurrent ? "Hồ sơ của bạn" : "Xem hồ sơ"}
@@ -243,8 +243,8 @@ export default function Leaderboard({ userId }: LeaderboardProps) {
               where you stand once you fall outside it. */}
           {myRank !== null && !myRankInTop10 && (
             <div className="mt-3 pt-3 border-t border-stone-200 dark:border-stone-800">
-              <div className="flex items-center gap-2 rounded-2xl border border-dashed border-stone-300 bg-stone-50 px-3 py-3 text-xs dark:border-stone-700 dark:bg-stone-800/50">
-                <div className="flex h-7 w-7 flex-shrink-0 items-center justify-center rounded-xl bg-stone-200 text-[10px] font-extrabold text-stone-700 dark:bg-stone-700 dark:text-stone-300">
+              <div className="flex items-center gap-2 px-3 py-2 rounded-lg text-xs bg-stone-50 dark:bg-stone-800/50 border border-dashed border-stone-300 dark:border-stone-700">
+                <div className="w-6 h-6 rounded flex items-center justify-center flex-shrink-0 font-extrabold bg-stone-200 dark:bg-stone-700 text-stone-700 dark:text-stone-300 text-[10px]">
                   #{myRank.rank}
                 </div>
                 <div className="flex-1 min-w-0">

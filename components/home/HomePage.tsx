@@ -306,6 +306,77 @@ export default function HomePage() {
         </div>
       </section>
 
+      {/* ── VISION & MISSION ── */}
+      <section className="max-w-6xl mx-auto px-6 pb-8 lg:pb-12">
+        <div className="grid items-start gap-4 lg:grid-cols-[minmax(0,1.1fr)_minmax(0,0.9fr)]">
+          <ScrollReveal>
+            <div className="h-full rounded-[28px] border border-stone-200 dark:border-stone-800 bg-[linear-gradient(135deg,rgba(255,255,255,0.98),rgba(250,250,249,0.94))] dark:bg-[linear-gradient(135deg,rgba(28,25,23,0.98),rgba(24,24,27,0.94))] p-6 lg:p-7 shadow-[0_24px_60px_-42px_rgba(28,25,23,0.2)]">
+              <p className="text-xs font-extrabold text-emerald-600 dark:text-emerald-400 uppercase tracking-widest mb-3">
+                Vì sao chúng tôi làm
+              </p>
+              <h2 className="text-2xl lg:text-3xl font-bold tracking-tight text-stone-900 dark:text-stone-100">
+                Khoảng trống về hiểu biết tài chính ở Việt Nam vẫn còn rất lớn, dù nhu cầu học và nhu cầu quản lý tiền bạc trong đời sống ngày càng tăng.
+              </h2>
+              <div className="mt-5 grid gap-3 sm:grid-cols-2">
+                <div className="rounded-2xl border border-emerald-200/80 dark:border-emerald-900/50 bg-emerald-50/70 dark:bg-emerald-950/20 px-4 py-4">
+                  <div className="text-[11px] font-extrabold uppercase tracking-[0.18em] text-emerald-700 dark:text-emerald-300">
+                    Số liệu gợi mở
+                  </div>
+                  <p className="mt-2 text-sm leading-relaxed text-stone-700 dark:text-stone-300">
+                    Theo S&amp;P Global FinLit Survey, chỉ khoảng{" "}
+                    <span className="font-extrabold text-emerald-700 dark:text-emerald-300">24%</span>{" "}
+                    người trưởng thành tại Việt Nam đạt ngưỡng hiểu biết tài chính cơ bản.
+                  </p>
+                </div>
+                <div className="rounded-2xl border border-stone-200/80 dark:border-stone-800 bg-stone-50/80 dark:bg-stone-900/50 px-4 py-4">
+                  <div className="text-[11px] font-extrabold uppercase tracking-[0.18em] text-stone-500 dark:text-stone-400">
+                    Tiếp cận chính thức
+                  </div>
+                  <p className="mt-2 text-sm leading-relaxed text-stone-700 dark:text-stone-300">
+                    Một báo cáo của Ngân hàng Thế giới cho biết năm 2011, chỉ{" "}
+                    <span className="font-extrabold text-stone-900 dark:text-stone-100">21,4%</span>{" "}
+                    người trưởng thành Việt Nam có tài khoản tại một tổ chức tài chính chính thức.
+                  </p>
+                </div>
+              </div>
+              <div className="mt-4 space-y-3 max-w-3xl text-sm lg:text-base leading-relaxed text-stone-600 dark:text-stone-400">
+                <p>
+                  Những con số này cho thấy vấn đề{" "}
+                  <span className="font-semibold text-stone-900 dark:text-stone-100">không nằm ở việc người học thiếu cố gắng</span>,
+                  mà ở chỗ kiến thức tài chính thường bị trình bày quá khó, quá rời rạc hoặc quá xa nhu cầu thực tế.
+                </p>
+                <p>
+                  Chúng tôi muốn góp phần{" "}
+                  <span className="font-semibold text-emerald-700 dark:text-emerald-300">thu hẹp khoảng trống đó</span>{" "}
+                  bằng một nơi học rõ ràng, dễ tiếp cận và đủ chiều sâu để dùng được thật sự.
+                </p>
+              </div>
+            </div>
+          </ScrollReveal>
+
+          <ScrollReveal delay={0.08}>
+            <div className="rounded-[28px] border border-emerald-200/80 dark:border-emerald-900/50 bg-emerald-50/70 dark:bg-emerald-950/20 p-6 lg:p-7">
+              <p className="text-xs font-extrabold text-emerald-700 dark:text-emerald-300 uppercase tracking-widest mb-3">
+                Tầm nhìn và sứ mệnh
+              </p>
+              <div className="space-y-3 text-sm leading-relaxed text-stone-700 dark:text-stone-300">
+                <p>
+                  Xây một giáo trình miễn phí, rõ ràng và đủ chiều sâu cho người học tài chính cá nhân, người học chứng chỉ,
+                  người làm tư vấn tài chính, nhà đầu tư, kế toán mới vào nghề và người làm tài chính giai đoạn đầu.
+                </p>
+                <p>
+                  Dùng lộ trình tốt, câu hỏi kiểm tra và cơ chế nhắc ôn đúng lúc để biến kiến thức khó thành thứ có thể học đều mỗi ngày,
+                  nhớ lâu hơn và áp dụng được ngoài đời thật.
+                </p>
+                <p className="font-semibold text-emerald-700 dark:text-emerald-300">
+                  Làm vì cộng đồng trước, giữ miễn phí dài hạn và giúp kiến thức tài chính trở nên gần gũi hơn với mọi người.
+                </p>
+              </div>
+            </div>
+          </ScrollReveal>
+        </div>
+      </section>
+
       {/* ── WHO IT IS FOR ── */}
       <section className="max-w-6xl mx-auto px-6 py-16 lg:py-20">
         <ScrollReveal className="max-w-2xl mb-10">
