@@ -32,6 +32,7 @@ import { TRACKS } from "@/lib/tracks";
 import CfaTrackView from "@/components/CfaTrackView";
 import { getChallengePassedLessonIds } from "@/lib/supabase-challenges";
 import { addLessonFlag, getUserLessonFlags, removeLessonFlag } from "@/lib/supabase-lesson-flags";
+import { useRoutePrefetch } from "@/lib/use-route-prefetch";
 
 // Slim projection of Lesson - just enough to render the dashboard listing,
 // so the full lesson bodies (sections/quiz/etc) never reach this client bundle.
@@ -109,6 +110,8 @@ export default function DashboardClient({ lessonsMeta }: { lessonsMeta: LessonMe
   const [selectedFlagLessonIds, setSelectedFlagLessonIds] = useState<Set<number>>(new Set());
   const [flagSaving, setFlagSaving] = useState(false);
   const [manualFlagInfoOpen, setManualFlagInfoOpen] = useState(false);
+
+  useRoutePrefetch(["/analytics", "/ghi-chu", "/kiem-tra", "/tai-lieu", "/ban-be", "/profile", "/settings", "/cfa"]);
 
   useEffect(() => {
     if (!manualFlagInfoOpen) return;

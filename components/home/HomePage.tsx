@@ -22,6 +22,7 @@ import LiveNumber from "@/components/LiveNumber";
 import ScrollReveal from "@/components/home/ScrollReveal";
 import TrackPreviewPanel from "@/components/login/TrackPreviewPanel";
 import PublicLeaderboardPreview from "@/components/login/PublicLeaderboardPreview";
+import { useRoutePrefetch } from "@/lib/use-route-prefetch";
 
 // Each pain point is framed as the visitor's actual internal objection
 // before signing up for yet another "learn finance" product - not a
@@ -64,6 +65,8 @@ export default function HomePage() {
   const [displayedLessonCount, setDisplayedLessonCount] = useState(0);
   const [previewTrack, setPreviewTrack] = useState<TrackId>("personal");
   const userCountLoadedRef = useRef(false);
+
+  useRoutePrefetch(["/login", "/login?mode=signup", `/bai-hoc/${TRACKS.personal.previewSlug}`], { delayMs: 500 });
 
   useEffect(() => {
     const cancelledRef = { current: false };

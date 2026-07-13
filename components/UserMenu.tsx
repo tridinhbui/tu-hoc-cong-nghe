@@ -5,6 +5,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { createClient } from "@/lib/supabase";
+import { useRoutePrefetch } from "@/lib/use-route-prefetch";
 
 interface UserMenuProps {
   name?: string;
@@ -17,6 +18,8 @@ export default function UserMenu({ name, email, avatarUrl }: UserMenuProps) {
   const supabase = createClient();
   const [isOpen, setIsOpen] = useState(false);
   const menuRef = useRef<HTMLDivElement>(null);
+
+  useRoutePrefetch(["/dashboard", "/analytics", "/profile", "/ban-be", "/ghi-chu", "/settings", "/tai-lieu", "/kiem-tra", "/cfa"]);
 
   // Close menu when clicking outside
   useEffect(() => {
