@@ -5,6 +5,11 @@
 -- `auth.uid() = id`, so a plain client join would drop every row but the
 -- caller's own).
 
+-- CREATE OR REPLACE can't change a function's return columns (Postgres
+-- error 42P13: "Row type defined by OUT parameters is different") - must
+-- drop the old 3-column version before creating the new 4-column one.
+drop function if exists public.get_leaderboard(text, int);
+
 create or replace function public.get_leaderboard(p_metric text, p_limit int default 10)
 returns table(user_id uuid, name text, value numeric, avatar_url text)
 language plpgsql

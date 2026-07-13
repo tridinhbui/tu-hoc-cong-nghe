@@ -218,16 +218,24 @@ export async function getMyLeaderboardRank(
   return { rank: row.rank, value: row.value };
 }
 
+export interface LevelTopUser {
+  name: string;
+  avatarUrl: string | null;
+  xp: number;
+}
+
 export interface LevelStats {
   levelCounts: Record<number, number>;
+  topUsersByLevel: Record<number, LevelTopUser[]>;
   totalUsers: number;
   myRank: number | null;
   myTopPercent: number | null; // e.g. 12 means "top 12%"
 }
 
-// Powers the level roadmap card: how many users sit at each level, plus the
-// current user's XP rank -> "top X%". Degrades to null (roadmap just hides
-// the counts/percentile) if the RPC hasn't been migrated in yet, same
+// Powers the level roadmap card: how many users sit at each level, the top
+// XP earners within each level (for the hover card), plus the current
+// user's XP rank -> "top X%". Degrades to null (roadmap just hides the
+// counts/percentile/hover) if the RPC hasn't been migrated in yet, same
 // pattern as the leaderboard's isMissingTableError.
 export async function getLevelStats(userId?: string): Promise<LevelStats | null> {
   const supabase = createClient();
@@ -240,18 +248,32 @@ export async function getLevelStats(userId?: string): Promise<LevelStats | null>
     throw handleSupabaseError(error);
   }
 
-  const rows = (data ?? []) as { level: number; user_count: number; total_users: number; my_rank: number | null }[];
+  const rows = (data ?? []) as {
+    level: number;
+    user_count: number;
+    total_users: number;
+    my_rank: number | null;
+    top_users: { name: string; avatar_url: string | null; xp: number }[] | null;
+  }[];
   if (rows.length === 0) return null;
 
   const levelCounts: Record<number, number> = {};
-  for (const row of rows) levelCounts[row.level] = row.user_count;
+  const topUsersByLevel: Record<number, LevelTopUser[]> = {};
+  for (const row of rows) {
+    levelCounts[row.level] = row.user_count;
+    topUsersByLevel[row.level] = (row.top_users ?? []).map((u) => ({
+      name: u.name,
+      avatarUrl: u.avatar_url,
+      xp: u.xp,
+    }));
+  }
 
   const totalUsers = rows[0].total_users ?? 0;
   const myRank = rows[0].my_rank ?? null;
   const myTopPercent =
     myRank !== null && totalUsers > 0 ? Math.max(1, Math.round((myRank / totalUsers) * 100)) : null;
 
-  return { levelCounts, totalUsers, myRank, myTopPercent };
+  return { levelCounts, topUsersByLevel, totalUsers, myRank, myTopPercent };
 }
 
 // Cập nhật stats từ progress

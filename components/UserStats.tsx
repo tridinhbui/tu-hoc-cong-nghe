@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import Image from "next/image";
 import { getLevelByXp, getNextLevel, getXpToNextLevel, getLevelProgress, LEVELS } from "@/lib/levels";
 import { getLevelStats, type LevelStats } from "@/lib/supabase-user";
 
@@ -100,8 +101,9 @@ export default function UserStats({
           {LEVELS.map((lvl) => {
             const reached = xp >= lvl.minXp;
             const isCurrent = lvl.level === currentLevel.level;
+            const topUsers = levelStats?.topUsersByLevel[lvl.level] ?? [];
             return (
-              <div key={lvl.level} className="relative flex flex-col items-center gap-1.5 flex-1 min-w-0">
+              <div key={lvl.level} className="relative flex flex-col items-center gap-1.5 flex-1 min-w-0 group">
                 <div
                   className={`w-5 h-5 rounded-full flex items-center justify-center text-[10px] font-extrabold border-2 ${
                     isCurrent
@@ -128,6 +130,38 @@ export default function UserStats({
                   <span className="text-[9px] sm:text-[10px] text-stone-400 dark:text-stone-600">
                     {levelStats.levelCounts[lvl.level] ?? 0} người
                   </span>
+                )}
+
+                {/* Hover card: who's leading this level, by XP */}
+                {topUsers.length > 0 && (
+                  <div className="pointer-events-none absolute top-full left-1/2 -translate-x-1/2 z-30 mt-2 w-56 rounded-xl border border-stone-200 dark:border-stone-800 bg-white dark:bg-stone-900 px-3 py-2.5 shadow-xl opacity-0 scale-95 origin-top transition-all duration-150 group-hover:opacity-100 group-hover:scale-100">
+                    <p className="text-[10px] font-extrabold text-stone-500 dark:text-stone-400 uppercase tracking-wider mb-1.5">
+                      Top {lvl.name}
+                    </p>
+                    <div className="space-y-1.5">
+                      {topUsers.map((u, i) => (
+                        <div key={i} className="flex items-center gap-2">
+                          {u.avatarUrl ? (
+                            <Image
+                              src={u.avatarUrl}
+                              alt={u.name}
+                              width={20}
+                              height={20}
+                              className="w-5 h-5 rounded-full object-cover flex-shrink-0 border border-stone-200 dark:border-stone-700"
+                            />
+                          ) : (
+                            <div className="w-5 h-5 rounded-full flex-shrink-0 flex items-center justify-center bg-stone-200 dark:bg-stone-700 text-stone-600 dark:text-stone-300 text-[9px] font-extrabold">
+                              {u.name.trim().charAt(0).toUpperCase() || "?"}
+                            </div>
+                          )}
+                          <span className="text-xs font-semibold text-stone-800 dark:text-stone-200 truncate flex-1">
+                            {u.name}
+                          </span>
+                          <span className="text-xs text-stone-500 dark:text-stone-400 flex-shrink-0">{u.xp} XP</span>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
                 )}
               </div>
             );
