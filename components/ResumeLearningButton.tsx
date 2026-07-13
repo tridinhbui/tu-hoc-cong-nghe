@@ -16,6 +16,7 @@ interface Greeting {
   nextLesson: { id: number; slug: string; title: string; subtitle: string; duration: string } | null;
   completedCount: number;
   totalMinutes: number;
+  firstName: string | null;
 }
 
 // Replaces the old plain "Tiếp tục học" banner with a Tài Tài chat bubble
@@ -73,6 +74,7 @@ export default function ResumeLearningButton({ activeTrack }: ResumeLearningButt
   const nextLesson = greeting?.nextLesson ?? null;
   const completedCount = greeting?.completedCount ?? 0;
   const totalMinutes = greeting?.totalMinutes ?? 0;
+  const firstName = greeting?.firstName ?? null;
   const nextLessonLabel = nextLesson ? getLessonDisplayLabel({ id: nextLesson.id, title: nextLesson.title, track: undefined }) : null;
   const nextLessonShortTitle = nextLesson ? getLessonShortTitle({ title: nextLesson.title }) : null;
 
@@ -84,7 +86,7 @@ export default function ResumeLearningButton({ activeTrack }: ResumeLearningButt
             <BookOpen className="w-6 h-6" />
           </div>
           <div className="flex-1">
-            <p className="font-bold text-lg">Chúc mừng!</p>
+            <p className="font-bold text-lg">Chúc mừng{firstName ? `, ${firstName}` : ""}!</p>
             <p className="text-sm text-white/90">Bạn đã hoàn thành tất cả bài học</p>
           </div>
         </div>
@@ -92,12 +94,13 @@ export default function ResumeLearningButton({ activeTrack }: ResumeLearningButt
     );
   }
 
+  const greeted = firstName ? `Chào ${firstName}!` : "Xin chào!";
   const greetingText =
     completedCount === 0
-      ? `Xin chào! Bạn chưa học được bài nào cả - cùng bắt đầu với ${nextLessonLabel}: ${nextLessonShortTitle} nhé!`
+      ? `${greeted} ${firstName ? firstName : "Bạn"} chưa học được bài nào cả - cùng bắt đầu với ${nextLessonLabel}: ${nextLessonShortTitle} nhé!`
       : totalMinutes > 0
-        ? `Xin chào! Bạn đang học ${nextLessonLabel}: ${nextLessonShortTitle} - ${nextLesson.subtitle} Bạn đã học được khoảng ${totalMinutes} phút rồi, tiếp tục nhé!`
-        : `Xin chào! Bạn đang học ${nextLessonLabel}: ${nextLessonShortTitle} - ${nextLesson.subtitle} Bạn đã có tiến độ rồi, tiếp tục nhé!`;
+        ? `${greeted} ${firstName ? firstName : "Bạn"} đang học ${nextLessonLabel}: ${nextLessonShortTitle} - ${nextLesson.subtitle} ${firstName ? firstName : "Bạn"} đã học được khoảng ${totalMinutes} phút rồi, tiếp tục nhé!`
+        : `${greeted} ${firstName ? firstName : "Bạn"} đang học ${nextLessonLabel}: ${nextLessonShortTitle} - ${nextLesson.subtitle} ${firstName ? firstName : "Bạn"} đã có tiến độ rồi, tiếp tục nhé!`;
 
   return (
     <Link

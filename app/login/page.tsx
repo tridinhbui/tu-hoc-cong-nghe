@@ -5,6 +5,7 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { GraduationCap, Gauge, Sparkles, Heart } from "lucide-react";
 import { createClient } from "@/lib/supabase";
+import { getTotalUserCount } from "@/lib/supabase-user";
 import { translateAuthError } from "@/lib/auth-error-messages";
 import type { TrackId } from "@/lib/tracks";
 import TrackPreviewPanel from "@/components/login/TrackPreviewPanel";
@@ -43,6 +44,34 @@ export default function LoginPage() {
   const [name, setName] = useState("");
   const [previewTrack, setPreviewTrack] = useState<TrackId>("personal");
   const [resetSent, setResetSent] = useState(false);
+
+  // Real registered-user count, counted up from 0 on every mount (page
+  // load/reload) instead of a static "1000+" - falls back to the static
+  // 1000 floor if the count RPC isn't available or resolves lower, so the
+  // headline never looks worse than the old hardcoded copy.
+  const [displayedUserCount, setDisplayedUserCount] = useState(0);
+  useEffect(() => {
+    let cancelled = false;
+    getTotalUserCount()
+      .then((count) => {
+        if (cancelled || !count) return;
+        const target = Math.max(count, 1000);
+        const durationMs = 700;
+        const start = performance.now();
+        const tick = (now: number) => {
+          if (cancelled) return;
+          const progress = Math.min(1, (now - start) / durationMs);
+          const eased = 1 - Math.pow(1 - progress, 3); // ease-out cubic
+          setDisplayedUserCount(Math.round(target * eased));
+          if (progress < 1) requestAnimationFrame(tick);
+        };
+        requestAnimationFrame(tick);
+      })
+      .catch((error) => console.error("Error loading total user count:", error));
+    return () => {
+      cancelled = true;
+    };
+  }, []);
   const [cooldownUntil, setCooldownUntil] = useState<number | null>(null);
   const [cooldownLeft, setCooldownLeft] = useState(0);
   const failedAttemptsRef = useRef(0);
@@ -242,7 +271,7 @@ export default function LoginPage() {
               Hiểu tiền bạc,<br />quản lý tài sản
             </h1>
             <p className="text-base xl:text-lg text-stone-600 dark:text-stone-400 leading-relaxed max-w-lg">
-              Hơn 1000+ người học đã tham gia. 300+ bài học miễn phí từ vỡ lòng đến phân tích doanh nghiệp, chia theo lộ trình và tổng giờ học rõ ràng để bạn chọn đúng tốc độ.
+              Hơn <span className="font-bold text-stone-900 dark:text-stone-100 tabular-nums">{displayedUserCount.toLocaleString("vi-VN")}+</span> người học đã tham gia. 300+ bài học miễn phí từ vỡ lòng đến phân tích doanh nghiệp, chia theo lộ trình và tổng giờ học rõ ràng để bạn chọn đúng tốc độ.
             </p>
 
             {/* Trust highlights - gives a cold visitor a reason to stay before hitting the auth form */}

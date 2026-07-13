@@ -10,6 +10,24 @@ function isMissingTableError(error: { code?: string } | null): boolean {
   return error?.code === "PGRST205" || error?.code === "42P01";
 }
 
+// Public headline count for the signed-out homepage hero ("Hơn X người học
+// đã tham gia"). Falls back to null (caller keeps its static copy) if the
+// RPC isn't migrated in yet - this number is decoration, not something
+// worth blocking the landing page render over.
+export async function getTotalUserCount(): Promise<number | null> {
+  const supabase = createClient();
+  const { data, error } = await supabase.rpc("get_total_user_count");
+
+  if (error) {
+    if (isMissingTableError(error) || error.code === "PGRST202" || error.code === "42883") {
+      return null;
+    }
+    throw handleSupabaseError(error);
+  }
+
+  return typeof data === "number" ? data : null;
+}
+
 export interface UserProfile {
   id: string;
   email: string;

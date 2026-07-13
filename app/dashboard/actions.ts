@@ -33,15 +33,22 @@ export async function getResumeLessonAction(userId: string, track: "personal" | 
 // reflect the learner's real progress instead of being a generic label.
 export async function getDashboardGreetingAction(userId: string, track: "personal" | "professional") {
   const supabase = await createServerSupabaseClient();
-  const [nextLesson, completedLessons, totalMinutes] = await Promise.all([
+  const [nextLesson, completedLessons, totalMinutes, profile] = await Promise.all([
     getResumeLesson(userId, track, supabase),
     getCompletedLessons(userId, supabase),
     getTotalTimeSpentMinutes(userId, supabase),
+    supabase.from("user_profiles").select("full_name, email").eq("id", userId).single(),
   ]);
+
+  const firstName =
+    profile.data?.full_name?.trim().split(/\s+/).pop() || // Vietnamese names: given name is last
+    profile.data?.email?.split("@")[0] ||
+    null;
 
   return {
     nextLesson,
     completedCount: completedLessons.length,
     totalMinutes,
+    firstName,
   };
 }
