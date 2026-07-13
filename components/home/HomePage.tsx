@@ -385,7 +385,7 @@ export default function HomePage() {
                       Tinh thần
                     </div>
                     <p className="mt-2 text-sm leading-relaxed font-semibold text-emerald-700 dark:text-emerald-300">
-                      Làm vì cộng đồng trước, giữ miễn phí dài hạn và giúp kiến thức tài chính trở nên gần gũi hơn với mọi người.
+                      Làm vì cộng đồng, duy trì miễn phí và giúp kiến thức tài chính trở nên gần gũi hơn với mọi người.
                     </p>
                   </div>
                 </div>
