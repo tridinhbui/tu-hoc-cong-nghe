@@ -12,6 +12,7 @@ import ts from "typescript";
 import { readFileSync, writeFileSync, mkdirSync, readdirSync, unlinkSync } from "fs";
 import { fileURLToPath } from "url";
 import path from "path";
+import { applyLessonOverrides } from "../lib/lesson-quiz-overrides.js";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const root = path.resolve(__dirname, "..");
@@ -30,7 +31,7 @@ const { outputText } = ts.transpileModule(stripped, {
 
 const moduleObj = { exports: {} };
 new Function("exports", "module", outputText)(moduleObj.exports, moduleObj);
-const lessons = moduleObj.exports.lessons;
+const lessons = applyLessonOverrides(moduleObj.exports.lessons);
 
 if (!Array.isArray(lessons) || lessons.length === 0) {
   throw new Error(`Expected a non-empty lessons array, got: ${typeof lessons}`);

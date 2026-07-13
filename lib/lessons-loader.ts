@@ -2,6 +2,7 @@ import "server-only";
 import { readFile } from "fs/promises";
 import path from "path";
 import type { Lesson, Difficulty, QuizQuestion, LessonSectionBlock, LessonMeta, NextLessonMeta } from "./lesson-types";
+import { applyLessonOverrides } from "./lesson-quiz-overrides.js";
 
 /**
  * Dynamic lesson loader for code splitting.
@@ -43,8 +44,8 @@ export async function loadLessons(): Promise<Lesson[]> {
   }
 
   const { lessons } = await import("./lessons");
-  lessonsCache = lessons;
-  return lessons;
+  lessonsCache = applyLessonOverrides(lessons) as Lesson[];
+  return lessonsCache;
 }
 
 async function loadIndex(): Promise<LessonMeta[] | null> {
@@ -65,7 +66,9 @@ async function loadIndex(): Promise<LessonMeta[] | null> {
 export async function getLessonBySlug(slug: string): Promise<Lesson | undefined> {
   try {
     const raw = await readFile(path.join(lessonsDataDir, `${slug}.json`), "utf8");
-    return JSON.parse(raw) as Lesson;
+    const lesson = JSON.parse(raw) as Lesson;
+    const overridden = applyLessonOverrides([lesson])[0];
+    return overridden;
   } catch {
     const lessons = await loadLessons();
     return lessons.find((l) => l.slug === slug);
