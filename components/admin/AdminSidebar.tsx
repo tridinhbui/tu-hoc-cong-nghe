@@ -6,6 +6,7 @@ import { usePathname } from "next/navigation";
 import {
   LayoutDashboard,
   MessageSquare,
+  Megaphone,
   Users,
   BookOpen,
   FileText,
@@ -19,6 +20,7 @@ import {
 const NAV_ITEMS = [
   { href: "/admin", label: "Tổng quan", icon: LayoutDashboard, exact: true },
   { href: "/admin/messages", label: "Tin nhắn", icon: MessageSquare },
+  { href: "/admin/announcements", label: "Thông báo", icon: Megaphone },
   { href: "/admin/users", label: "Người dùng", icon: Users },
   { href: "/admin/lessons", label: "Bài học", icon: BookOpen },
   { href: "/admin/documents", label: "Tài liệu", icon: FileText },

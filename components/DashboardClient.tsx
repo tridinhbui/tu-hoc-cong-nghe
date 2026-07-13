@@ -19,6 +19,7 @@ import OnboardingFlow from "@/components/OnboardingFlow";
 import ResumeLearningButton from "@/components/ResumeLearningButton";
 import StreakDisplay from "@/components/StreakDisplay";
 import StreakReminderManager from "@/components/StreakReminderManager";
+import AnnouncementBanner from "@/components/AnnouncementBanner";
 import DashboardTour from "@/components/DashboardTour";
 import Logo from "@/components/Logo";
 import Leaderboard from "@/components/Leaderboard";
@@ -648,6 +649,11 @@ export default function DashboardClient({ lessonsMeta }: { lessonsMeta: LessonMe
       </div>
 
       <div className="px-6 py-8">
+        {/* ── Admin -> everyone broadcasts (maintenance, launches, policy
+            changes) - shown above the streak/recall reminders since these
+            are typically more time-sensitive. ── */}
+        {user?.id && <AnnouncementBanner userId={user.id} />}
+
         {/* ── Streak/recall browser-notification reminders (opt-in banner +
             silent background checks; client-only, no Service Worker) ── */}
         {user?.id && (
