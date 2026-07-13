@@ -115,6 +115,9 @@ export default function ResumeLearningButton({ activeTrack }: ResumeLearningButt
           <p className="text-stone-800 dark:text-stone-200 text-sm sm:text-base leading-relaxed font-medium">
             {greetingText}
           </p>
+          <p className="text-xs text-stone-500 dark:text-stone-400 mt-1.5">
+            Lưu ý: bài chuyển <span className="font-semibold text-emerald-600 dark:text-emerald-400">xanh lá</span> và được cộng XP khi bạn làm xong hết quiz của bài (bài không có quiz thì đọc hết là tính). Nếu bạn chỉ bấm &quot;Tự đánh dấu&quot; vì tự biết mình đã học rồi, bài sẽ chuyển <span className="font-semibold text-sky-600 dark:text-sky-400">xanh dương</span> để ghi nhớ tiến độ, nhưng sẽ không được cộng XP.
+          </p>
         </div>
         <div className="flex-shrink-0 self-center flex items-center gap-1.5 bg-stone-900 dark:bg-stone-100 text-white dark:text-stone-900 text-sm font-bold px-4 py-2.5 rounded-xl group-hover:bg-emerald-600 dark:group-hover:bg-emerald-400 transition-colors">
           {completedCount === 0 ? "Bắt đầu" : "Tiếp tục"}
