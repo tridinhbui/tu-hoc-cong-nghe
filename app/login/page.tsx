@@ -263,6 +263,11 @@ export default function LoginPage() {
         provider: "google",
         options: {
           redirectTo: `${window.location.origin}/auth/callback`,
+          // Without this, Google silently reuses whichever account is
+          // already active in the browser session instead of showing the
+          // account chooser - a problem on shared/multi-account devices
+          // where that's rarely the account the person meant to use.
+          queryParams: { prompt: "select_account" },
         },
       });
 
