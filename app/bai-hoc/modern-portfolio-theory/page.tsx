@@ -5,15 +5,15 @@ import LessonPageLayout, { QuizQuestion, LessonMeta } from "@/components/LessonP
 
 const meta: LessonMeta = {
   id: 52, day: 85, accent: "indigo",
-  title: "Modern Portfolio Theory",
-  subtitle: "Tương quan, đường biên hiệu quả và phân tán rủi ro",
+  title: "Lý Thuyết Danh Mục Hiện Đại",
+  subtitle: "Modern Portfolio Theory: tương quan, đường biên hiệu quả và phân tán rủi ro",
   duration: "9 phút", difficulty: "Khó", emoji: "📊",
   nextSlug: "finance-as-math", nextTitle: "Tài chính quy về Công thức Toán học",
 };
 
 const quiz: QuizQuestion[] = [
   {
-    question: "Tương quan (correlation) âm giữa hai tài sản có nghĩa là gì?",
+    question: "Tương quan âm giữa hai tài sản có nghĩa là gì?",
     options: [
       "Cả hai cùng tăng hoặc cùng giảm",
       "Khi một tài sản tăng, tài sản kia có xu hướng giảm",
@@ -21,29 +21,29 @@ const quiz: QuizQuestion[] = [
       "Cả hai đều không biến động",
     ],
     correct: 1,
-    explanation: "Correlation âm (-1 đến 0) nghĩa là hai tài sản di chuyển ngược chiều nhau. Khi kết hợp trong danh mục, chúng giúp đối trọng nhau - giảm tổng biến động. Đây là nguyên lý cốt lõi của đa dạng hóa.",
+    explanation: "Tương quan là mức độ hai tài sản di chuyển giống hoặc khác nhau. Tương quan âm nghĩa là một tài sản có xu hướng tăng khi tài sản kia giảm, giúp danh mục bớt biến động.",
   },
   {
-    question: "Diversification (đa dạng hóa) giúp giảm loại rủi ro nào?",
+    question: "Đa dạng hóa giúp giảm loại rủi ro nào?",
     options: [
-      "Systematic risk - rủi ro thị trường chung",
-      "Unsystematic risk - rủi ro đặc thù của từng doanh nghiệp/ngành",
+      "Rủi ro thị trường chung",
+      "Rủi ro đặc thù của từng doanh nghiệp/ngành",
       "Tất cả các loại rủi ro",
       "Không giảm loại rủi ro nào",
     ],
     correct: 1,
-    explanation: "Đa dạng hóa giảm unsystematic risk (rủi ro đặc thù: quản lý yếu, sản phẩm thất bại, vụ kiện...) vì các rủi ro này không xảy ra cùng lúc. Nhưng systematic risk (thị trường chung sập, khủng hoảng kinh tế) không giảm được bằng đa dạng hóa - nó ảnh hưởng đến tất cả.",
+    explanation: "Đa dạng hóa giảm rủi ro đặc thù như quản lý yếu, sản phẩm thất bại, vụ kiện. Nhưng rủi ro thị trường chung như khủng hoảng kinh tế vẫn ảnh hưởng đến hầu hết tài sản.",
   },
   {
-    question: "Efficient Frontier là gì?",
+    question: "Đường biên hiệu quả là gì?",
     options: [
       "Danh sách cổ phiếu tốt nhất",
-      "Tập hợp các danh mục đạt return cao nhất với mức rủi ro cho trước",
+      "Tập hợp các danh mục đạt lợi nhuận kỳ vọng cao nhất với mức rủi ro cho trước",
       "Giới hạn pháp lý về đầu tư",
       "Công thức tính lãi suất ngân hàng",
     ],
     correct: 1,
-    explanation: "Efficient Frontier là tập hợp các danh mục tối ưu - với mỗi mức rủi ro (standard deviation), chỉ có một danh mục đạt expected return cao nhất. Danh mục nằm ngoài đường biên này là kém hiệu quả: hoặc return thấp hơn với cùng risk, hoặc risk cao hơn với cùng return.",
+    explanation: "Đường biên hiệu quả là tập hợp các danh mục tối ưu. Với mỗi mức rủi ro, nó chỉ ra danh mục có lợi nhuận kỳ vọng cao nhất. Danh mục nằm dưới đường này thường kém hiệu quả hơn.",
   },
   {
     question: "Beta của một cổ phiếu đo điều gì?",
@@ -101,7 +101,7 @@ function PortfolioSimulator() {
   return (
     <div className="my-8 rounded-2xl border border-stone-200 bg-gradient-to-br from-indigo-50 to-white p-5">
       <div className="mb-4">
-        <h3 className="text-sm font-extrabold uppercase tracking-widest text-indigo-700">Portfolio Simulator</h3>
+        <h3 className="text-sm font-extrabold uppercase tracking-widest text-indigo-700">Mô phỏng danh mục</h3>
         <p className="mt-1 text-sm leading-relaxed text-stone-600">
           Chọn một cấu trúc danh mục để thấy ngay lợi nhuận kỳ vọng và rủi ro ước tính thay đổi thế nào khi phối hợp tài sản có tương quan khác nhau.
         </p>
@@ -140,7 +140,7 @@ function PortfolioSimulator() {
             <div><span className="font-bold text-amber-600">Vàng</span>: {selected.gold}%</div>
           </div>
           <p className="mt-4 text-sm leading-relaxed text-stone-600">
-            Ở đây cổ phiếu là nguồn return chính, trái phiếu là bộ giảm xóc, còn vàng đóng vai trò đối trọng khi thị trường stress. MPT không nói bạn phải luôn cầm đúng 3 tài sản này; nó nói <strong>sự phối hợp giữa các tài sản quan trọng hơn việc nhìn từng món riêng lẻ</strong>.
+            Ở đây cổ phiếu là nguồn lợi nhuận chính, trái phiếu là bộ giảm xóc, còn vàng đóng vai trò đối trọng khi thị trường căng thẳng. Lý thuyết danh mục hiện đại không nói bạn phải luôn cầm đúng 3 tài sản này; nó nói <strong>sự phối hợp giữa các tài sản quan trọng hơn việc nhìn từng món riêng lẻ</strong>.
           </p>
         </div>
 
@@ -148,15 +148,15 @@ function PortfolioSimulator() {
           <p className="text-xs font-bold uppercase tracking-wide text-stone-400 mb-3">Ước tính danh mục</p>
           <div className="space-y-4">
             <div>
-              <p className="text-xs text-stone-400">Expected return</p>
+              <p className="text-xs text-stone-400">Lợi nhuận kỳ vọng</p>
               <p className="text-2xl font-extrabold">{(stats.expectedReturn * 100).toFixed(1)}%</p>
             </div>
             <div>
-              <p className="text-xs text-stone-400">Estimated risk</p>
+              <p className="text-xs text-stone-400">Rủi ro ước tính</p>
               <p className="text-2xl font-extrabold">{(stats.estimatedRisk * 100).toFixed(1)}%</p>
             </div>
             <p className="text-xs leading-relaxed text-stone-300">
-              Risk ở đây chỉ là mô phỏng trực quan để học khái niệm: khi tăng tài sản tăng trưởng, return kỳ vọng tăng nhưng biến động cũng tăng; khi trộn thêm tài sản tương quan thấp, tổng rủi ro có thể giảm nhiều hơn bạn tưởng.
+              Rủi ro ở đây chỉ là mô phỏng trực quan để học khái niệm: khi tăng tài sản tăng trưởng, lợi nhuận kỳ vọng tăng nhưng biến động cũng tăng; khi trộn thêm tài sản tương quan thấp, tổng rủi ro có thể giảm nhiều hơn bạn tưởng.
             </p>
           </div>
         </div>
@@ -168,23 +168,30 @@ function PortfolioSimulator() {
 export default function Page() {
   return (
     <LessonPageLayout lesson={meta} quiz={quiz}>
-      <h2 className="text-2xl font-bold text-stone-900 mb-2">Modern Portfolio Theory</h2>
+      <h2 className="text-2xl font-bold text-stone-900 mb-2">Lý thuyết danh mục hiện đại (Modern Portfolio Theory)</h2>
       <p className="text-stone-500 text-sm mb-8">Harry Markowitz, 1952 - danh mục không mạnh vì từng tài sản đều tốt, mà mạnh vì chúng phối hợp với nhau đúng cách</p>
 
-      <section className="mb-10">
-        <h3 className="text-base font-bold text-stone-800 mb-4 uppercase tracking-wide text-xs">Ý tưởng cốt lõi của MPT</h3>
-        <p className="text-stone-600 leading-relaxed mb-4">
-          Modern Portfolio Theory bắt đầu từ một quan sát rất đơn giản nhưng cực mạnh: <strong>rủi ro của danh mục không bằng phép cộng rủi ro của từng tài sản</strong>. Nếu bạn ghép những tài sản không di chuyển giống nhau, chúng có thể triệt bớt biến động của nhau.
-        </p>
-        <p className="text-stone-600 leading-relaxed">
-          Đây là điểm khiến MPT khác hẳn tư duy sơ cấp kiểu "mua vài cổ phiếu tốt là đủ". Một doanh nghiệp riêng lẻ có thể tuyệt vời, nhưng danh mục gồm 5 doanh nghiệp cùng ngành, cùng beta cao, cùng nhạy với lãi suất vẫn có thể rất mong manh. MPT dạy ta nhìn <strong>mối quan hệ giữa các tài sản</strong>, không chỉ nhìn từng asset độc lập.
+      <section className="mb-10 rounded-xl border border-indigo-100 bg-indigo-50 p-4">
+        <h3 className="text-sm font-bold uppercase tracking-wide text-indigo-800 mb-2">Nói đơn giản</h3>
+        <p className="text-sm leading-relaxed text-stone-700">
+          Đừng chỉ hỏi “mua tài sản nào tốt?”. Hãy hỏi “các tài sản này đi cùng nhau có làm danh mục bớt rung lắc mà vẫn tăng trưởng đủ không?”.
         </p>
       </section>
 
       <section className="mb-10">
-        <h3 className="text-base font-bold text-stone-800 mb-4 uppercase tracking-wide text-xs">Correlation: linh hồn của đa dạng hóa</h3>
+        <h3 className="text-base font-bold text-stone-800 mb-4 uppercase tracking-wide text-xs">Ý tưởng cốt lõi của lý thuyết danh mục hiện đại</h3>
+        <p className="text-stone-600 leading-relaxed mb-4">
+          Lý thuyết danh mục hiện đại bắt đầu từ một quan sát rất đơn giản nhưng cực mạnh: <strong>rủi ro của danh mục không bằng phép cộng rủi ro của từng tài sản</strong>. Nếu bạn ghép những tài sản không di chuyển giống nhau, chúng có thể triệt bớt biến động của nhau.
+        </p>
+        <p className="text-stone-600 leading-relaxed">
+          Đây là điểm khiến lý thuyết này khác tư duy sơ cấp kiểu "mua vài cổ phiếu tốt là đủ". Một doanh nghiệp riêng lẻ có thể tuyệt vời, nhưng danh mục gồm 5 doanh nghiệp cùng ngành, cùng nhạy với lãi suất vẫn có thể rất mong manh. Bài học là nhìn <strong>mối quan hệ giữa các tài sản</strong>, không chỉ nhìn từng tài sản độc lập.
+        </p>
+      </section>
+
+      <section className="mb-10">
+        <h3 className="text-base font-bold text-stone-800 mb-4 uppercase tracking-wide text-xs">Tương quan: linh hồn của đa dạng hóa</h3>
         <p className="text-stone-600 text-sm leading-relaxed mb-4">
-          Correlation đo mức độ hai tài sản di chuyển cùng chiều hay ngược chiều. Giá trị nằm trong khoảng từ -1 đến +1.
+          Tương quan (correlation) đo mức độ hai tài sản di chuyển cùng chiều hay ngược chiều. Giá trị nằm trong khoảng từ -1 đến +1.
         </p>
         <div className="grid gap-3 sm:grid-cols-3">
           {[
@@ -194,7 +201,7 @@ export default function Page() {
             },
             {
               title: "0",
-              body: "Hai tài sản khá độc lập. Kết hợp chúng giúp danh mục bớt xóc hơn mà không phải hy sinh quá nhiều return.",
+              body: "Hai tài sản khá độc lập. Kết hợp chúng giúp danh mục bớt xóc hơn mà không phải hy sinh quá nhiều lợi nhuận kỳ vọng.",
             },
             {
               title: "-1",
@@ -208,7 +215,7 @@ export default function Page() {
           ))}
         </div>
         <p className="text-stone-600 text-sm leading-relaxed mt-4">
-          Ví dụ đời thường: cổ phiếu tăng trưởng, trái phiếu chính phủ và vàng không phải lúc nào cũng đi ngược nhau hoàn toàn, nhưng chúng thường phản ứng khác nhau trước lạm phát, suy thoái, hay panic. Chính "không giống nhau hoàn toàn" đó tạo ra giá trị.
+          Ví dụ đời thường: cổ phiếu tăng trưởng, trái phiếu chính phủ và vàng không phải lúc nào cũng đi ngược nhau hoàn toàn, nhưng chúng thường phản ứng khác nhau trước lạm phát, suy thoái, hay hoảng loạn thị trường. Chính "không giống nhau hoàn toàn" đó tạo ra giá trị.
         </p>
       </section>
 
@@ -241,36 +248,36 @@ export default function Page() {
           </table>
         </div>
         <p className="text-stone-600 text-sm leading-relaxed mt-4">
-          Điểm hay của 60/40 không phải vì đó là tỷ lệ thần kỳ cho mọi thời đại, mà vì nó minh họa rất rõ tinh thần MPT: thay vì hỏi "cổ phiếu nào thắng nhất", ta hỏi "mình ghép các tài sản này ra sao để danh mục chịu đựng tốt hơn mà vẫn tăng trưởng đủ".
+          Điểm hay của 60/40 không phải vì đó là tỷ lệ thần kỳ cho mọi thời đại, mà vì nó minh họa rất rõ tinh thần của lý thuyết danh mục hiện đại: thay vì hỏi "cổ phiếu nào thắng nhất", ta hỏi "mình ghép các tài sản này ra sao để danh mục chịu đựng tốt hơn mà vẫn tăng trưởng đủ".
         </p>
       </section>
 
       <section className="mb-10">
-        <h3 className="text-base font-bold text-stone-800 mb-4 uppercase tracking-wide text-xs">Efficient Frontier: đường biên của các danh mục hợp lý</h3>
+        <h3 className="text-base font-bold text-stone-800 mb-4 uppercase tracking-wide text-xs">Đường biên hiệu quả: vùng của các danh mục hợp lý</h3>
         <p className="text-stone-600 text-sm leading-relaxed mb-4">
-          Nếu lấy nhiều tài sản rồi thử hàng trăm cách phân bổ khác nhau, bạn sẽ có hàng trăm điểm risk-return. Một số điểm rõ ràng vô lý: return không hơn bao nhiêu nhưng biến động rất cao. Một số điểm khác tối ưu hơn - đó là vùng Efficient Frontier.
+          Nếu lấy nhiều tài sản rồi thử hàng trăm cách phân bổ khác nhau, bạn sẽ có hàng trăm cặp lợi nhuận - rủi ro. Một số điểm rõ ràng vô lý: lợi nhuận không hơn bao nhiêu nhưng biến động rất cao. Một số điểm khác tối ưu hơn - đó là vùng đường biên hiệu quả.
         </p>
         <div className="rounded-xl border border-stone-200 bg-stone-50 p-5">
           <p className="text-sm leading-relaxed text-stone-700">
-            Câu hỏi của MPT là: <strong>với mức đau bạn chịu được, đâu là danh mục có expected return tốt nhất?</strong>
+            Câu hỏi của lý thuyết này là: <strong>với mức biến động bạn chịu được, đâu là danh mục có lợi nhuận kỳ vọng tốt nhất?</strong>
           </p>
           <p className="mt-3 text-sm leading-relaxed text-stone-600">
-            Danh mục nằm dưới đường biên là danh mục "lười suy nghĩ": hoặc đang cầm quá nhiều rủi ro cho lợi nhuận không tương xứng, hoặc đang bỏ phí cơ hội tăng return trong khi risk không cao hơn bao nhiêu.
+            Danh mục nằm dưới đường biên là danh mục chưa tối ưu: hoặc đang cầm quá nhiều rủi ro cho lợi nhuận không tương xứng, hoặc đang bỏ phí cơ hội tăng lợi nhuận trong khi rủi ro không cao hơn bao nhiêu.
           </p>
         </div>
       </section>
 
       <section className="mb-10">
-        <h3 className="text-base font-bold text-stone-800 mb-4 uppercase tracking-wide text-xs">Systematic vs unsystematic risk</h3>
+        <h3 className="text-base font-bold text-stone-800 mb-4 uppercase tracking-wide text-xs">Rủi ro thị trường chung và rủi ro đặc thù</h3>
         <div className="grid gap-3 sm:grid-cols-2">
           <div className="rounded-xl border border-stone-200 bg-white p-4">
-            <p className="text-sm font-bold text-stone-900 mb-2">Unsystematic risk</p>
+            <p className="text-sm font-bold text-stone-900 mb-2">Rủi ro đặc thù</p>
             <p className="text-sm leading-relaxed text-stone-600">
-              Rủi ro riêng của công ty hoặc ngành: scandal quản trị, sản phẩm lỗi, vụ kiện, mất thị phần. Đây là loại MPT giúp giảm đáng kể nhờ đa dạng hóa.
+              Rủi ro riêng của công ty hoặc ngành: quản trị yếu, sản phẩm lỗi, vụ kiện, mất thị phần. Đây là loại rủi ro có thể giảm đáng kể nhờ đa dạng hóa.
             </p>
           </div>
           <div className="rounded-xl border border-stone-200 bg-white p-4">
-            <p className="text-sm font-bold text-stone-900 mb-2">Systematic risk</p>
+            <p className="text-sm font-bold text-stone-900 mb-2">Rủi ro thị trường chung</p>
             <p className="text-sm leading-relaxed text-stone-600">
               Rủi ro của cả hệ thống: lãi suất, suy thoái, panic thị trường, chiến tranh. Loại này không biến mất chỉ vì bạn cầm 20 mã cổ phiếu khác nhau.
             </p>
@@ -281,15 +288,15 @@ export default function Page() {
       <section>
         <h3 className="text-base font-bold text-stone-800 mb-4 uppercase tracking-wide text-xs">Beta và bài học thực chiến</h3>
         <p className="text-stone-600 text-sm leading-relaxed mb-4">
-          Beta là cách đo độ nhạy của một tài sản với thị trường chung. Nhưng beta không phải toàn bộ câu chuyện. Một cổ phiếu beta thấp vẫn có thể là khoản đầu tư tệ nếu kinh doanh suy thoái. MPT hữu ích nhất khi được dùng như công cụ cấu trúc danh mục, chứ không phải cái cớ để bỏ qua chất lượng business.
+          Beta là cách đo độ nhạy của một tài sản với thị trường chung. Beta lớn hơn 1 nghĩa là thường biến động mạnh hơn thị trường; nhỏ hơn 1 nghĩa là ổn định hơn. Nhưng beta không phải toàn bộ câu chuyện. Một cổ phiếu beta thấp vẫn có thể là khoản đầu tư tệ nếu kinh doanh suy thoái.
         </p>
         <div className="rounded-2xl bg-stone-900 p-5 text-white">
           <p className="font-bold mb-3">Khung nhớ cuối bài</p>
           <div className="space-y-2 text-sm text-stone-300">
             <div>1. Tài sản tốt ghép sai nhau vẫn có thể tạo danh mục tệ.</div>
             <div>2. Tương quan thấp là nhiên liệu của đa dạng hóa.</div>
-            <div>3. Efficient Frontier không chọn "asset tốt nhất", mà chọn "mix hợp lý nhất".</div>
-            <div>4. Mục tiêu cuối cùng không phải tối đa hóa return trên giấy, mà là tối ưu risk-return cho con người thật của bạn.</div>
+            <div>3. Đường biên hiệu quả không chọn "tài sản tốt nhất", mà chọn "cách phối hợp hợp lý nhất".</div>
+            <div>4. Mục tiêu cuối cùng không phải tối đa hóa lợi nhuận trên giấy, mà là tối ưu lợi nhuận - rủi ro cho con người thật của bạn.</div>
           </div>
         </div>
       </section>

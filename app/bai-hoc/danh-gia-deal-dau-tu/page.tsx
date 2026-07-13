@@ -4,94 +4,101 @@ import LessonPageLayout, { QuizQuestion, LessonMeta } from "@/components/LessonP
 
 const meta: LessonMeta = {
   id: 12, day: 12, accent: "orange",
-  title: "Đánh Giá Deal Đầu Tư",
-  subtitle: "Câu hỏi phỏng vấn finance thực chiến",
+  title: "Đánh Giá Thương Vụ Đầu Tư",
+  subtitle: "Cách đọc một thương vụ mua lại doanh nghiệp như nhà đầu tư chuyên nghiệp",
   duration: "9 phút", difficulty: "Khó", emoji: "🤝",
   nextSlug: "on-tap-npv", nextTitle: "Ôn Tập NPV",
 };
 
 const quiz: QuizQuestion[] = [
   {
-    question: "Khi pitch một deal LBO, câu đầu tiên investor thường hỏi là gì?",
+    question: "Khi trình bày một thương vụ mua lại dùng nợ vay (LBO), câu đầu tiên nhà đầu tư thường hỏi là gì?",
     options: [
-      "Revenue là bao nhiêu?",
-      "What's the entry multiple và exit multiple kỳ vọng?",
+      "Doanh thu là bao nhiêu?",
+      "Mua vào và bán ra ở mức định giá bao nhiêu lần lợi nhuận vận hành?",
       "Bao nhiêu nhân viên?",
       "Lãi suất vay là bao nhiêu?",
     ],
     correct: 1,
-    explanation: "Entry/exit multiple là core của mọi LBO: mua vào ở bao nhiêu x EBITDA, bán ra ở bao nhiêu x. Khoảng cách = multiple expansion, là một trong 3 nguồn return chính.",
+    explanation: "LBO là thương vụ mua doanh nghiệp bằng nhiều nợ vay. Nhà đầu tư nhìn rất kỹ mức định giá lúc mua vào và bán ra: mua ở bao nhiêu lần EBITDA, bán ở bao nhiêu lần EBITDA. EBITDA là lợi nhuận trước lãi vay, thuế, khấu hao và phân bổ.",
   },
   {
-    question: "3 nguồn return trong LBO là gì?",
+    question: "3 nguồn tạo lợi nhuận chính trong một thương vụ LBO là gì?",
     options: [
-      "Revenue growth, cost cutting, refinancing",
-      "EBITDA growth, debt paydown, multiple expansion",
-      "Asset sale, dividend recap, IPO",
-      "Organic growth, M&A, market share gain",
+      "Tăng doanh thu, cắt chi phí, tái cấp vốn",
+      "Tăng lợi nhuận vận hành, trả bớt nợ, bán ra ở mức định giá cao hơn",
+      "Bán tài sản, rút cổ tức bằng nợ, IPO",
+      "Tăng trưởng nội bộ, mua bán sáp nhập, tăng thị phần",
     ],
     correct: 1,
-    explanation: "PE return drivers trong LBO: (1) EBITDA growth (kinh doanh tốt hơn), (2) Debt paydown (tự trả nợ từ cash flow), (3) Multiple expansion (exit đắt hơn entry).",
+    explanation: "Trong LBO, lợi nhuận thường đến từ 3 nguồn: doanh nghiệp kiếm nhiều tiền hơn, dùng dòng tiền để trả bớt nợ, và bán lại công ty ở mức định giá cao hơn lúc mua.",
   },
   {
-    question: "Tại sao PE fund thích doanh nghiệp có recurring revenue?",
+    question: "Tại sao quỹ đầu tư tư nhân thích doanh nghiệp có doanh thu lặp lại?",
     options: [
-      "Recurring revenue cao hơn one-time revenue",
-      "Dự đoán được, ổn định → có thể leverage cao hơn trong LBO vì lender tin tưởng hơn",
-      "Recurring revenue không bị thuế",
-      "Nhà đầu tư thích subscription model hơn",
+      "Doanh thu lặp lại luôn cao hơn doanh thu một lần",
+      "Dự đoán được, ổn định → có thể vay nợ nhiều hơn vì bên cho vay tin tưởng hơn",
+      "Doanh thu lặp lại không bị thuế",
+      "Nhà đầu tư chỉ thích mô hình thuê bao",
     ],
     correct: 1,
-    explanation: "Lender trong LBO nhìn vào khả năng trả nợ. Recurring revenue (subscription, contract) = visibility cao → lender comfortable cho vay nhiều hơn → equity return cao hơn.",
+    explanation: "Doanh thu lặp lại là doanh thu có khả năng quay lại đều đặn, ví dụ hợp đồng thuê bao hoặc hợp đồng dài hạn. Dòng tiền dễ dự báo làm bên cho vay tự tin hơn, nên thương vụ có thể dùng nợ vay an toàn hơn.",
   },
   {
-    question: "MOIC 3x trong 5 năm tương đương IRR khoảng bao nhiêu?",
+    question: "Nhân 3 lần vốn trong 5 năm tương đương tỷ suất sinh lời hằng năm khoảng bao nhiêu?",
     options: ["~15%", "~25%", "~50%", "~60%"],
     correct: 1,
-    explanation: "MOIC 3x trong 5 năm ≈ IRR 25%. Công thức: IRR = (MOIC)^(1/n) - 1 = 3^(1/5) - 1 ≈ 24.6%. PE thường target IRR 20-25%+.",
+    explanation: "MOIC là số lần nhân vốn: bỏ 1 đồng thu về 3 đồng là MOIC 3x. IRR là tỷ suất sinh lời hằng năm. MOIC 3x trong 5 năm tương đương IRR khoảng 25%.",
   },
   {
-    question: "Red flag nào khiến bạn immediately pass một deal?",
+    question: "Dấu hiệu cảnh báo nào có thể khiến nhà đầu tư bỏ qua một thương vụ ngay?",
     options: [
-      "EBITDA margin dưới 20%",
-      "Key person dependency - business phụ thuộc hoàn toàn vào 1-2 người",
+      "Biên lợi nhuận vận hành dưới 20%",
+      "Phụ thuộc hoàn toàn vào 1-2 cá nhân chủ chốt",
       "Công ty chưa niêm yết",
       "Revenue dưới 500 tỷ",
     ],
     correct: 1,
-    explanation: "Key person risk là red flag nghiêm trọng: nếu CEO/founder rời đi → business có thể sụp đổ. PE cần scalable business không phụ thuộc vào cá nhân cụ thể.",
+    explanation: "Rủi ro phụ thuộc cá nhân chủ chốt nghĩa là nếu CEO hoặc founder rời đi, doanh nghiệp có thể suy yếu mạnh. Nhà đầu tư thích mô hình có thể vận hành bền vững, không phụ thuộc quá nặng vào một người.",
   },
 ];
 
 export default function Page() {
   return (
     <LessonPageLayout lesson={meta} quiz={quiz}>
-      <h2 className="text-2xl font-bold text-stone-900 mb-2">Đánh Giá Deal Đầu Tư - Thực Chiến</h2>
-      <p className="text-stone-600 text-sm mb-6 italic">Framework phân tích deal như một PE analyst - từ triage đến investment committee</p>
+      <h2 className="text-2xl font-bold text-stone-900 mb-2">Đánh giá thương vụ đầu tư - thực chiến</h2>
+      <p className="text-stone-600 text-sm mb-6 italic">Khung phân tích một thương vụ như nhà đầu tư tư nhân: hiểu doanh nghiệp, đọc số, soi rủi ro và chọn điểm thoát.</p>
+
+      <section className="mb-8 rounded-xl border border-orange-100 bg-orange-50 p-4">
+        <h3 className="text-sm font-bold uppercase tracking-wide text-orange-800 mb-2">Nói đơn giản</h3>
+        <p className="text-sm leading-relaxed text-stone-700">
+          Một thương vụ tốt không chỉ là “công ty hay”. Nhà đầu tư phải biết mua với giá nào, dùng bao nhiêu nợ, dòng tiền có trả được nợ không, và sau vài năm có thể bán lại cho ai.
+        </p>
+      </section>
 
       <section className="mb-8">
-        <h3 className="text-lg font-bold text-stone-800 mb-3">Framework 5 bước phân tích deal</h3>
+        <h3 className="text-lg font-bold text-stone-800 mb-3">Khung 5 bước phân tích thương vụ</h3>
         <div className="space-y-3">
           {[
             {
-              n: 1, title: "Business Understanding",
-              questions: ["Business model là gì?", "Doanh thu đến từ đâu?", "Competitive moat ở đâu?", "Industry dynamics thế nào?"],
+              n: 1, title: "Hiểu mô hình kinh doanh",
+              questions: ["Công ty kiếm tiền bằng cách nào?", "Doanh thu đến từ đâu?", "Lợi thế cạnh tranh nằm ở đâu?", "Ngành đang tăng hay giảm?"],
             },
             {
-              n: 2, title: "Financial Analysis",
-              questions: ["Revenue growth 3-5 năm?", "EBITDA margin trend?", "FCF conversion cao không?", "Working capital needs?"],
+              n: 2, title: "Phân tích tài chính",
+              questions: ["Doanh thu 3-5 năm tăng ra sao?", "Biên lợi nhuận vận hành đi lên hay đi xuống?", "Lợi nhuận có chuyển thành tiền mặt không?", "Có cần nhiều vốn lưu động không?"],
             },
             {
-              n: 3, title: "Deal Structure",
-              questions: ["Entry EV/EBITDA bao nhiêu?", "Debt/EBITDA leverage?", "Equity contribution?", "Management rollover?"],
+              n: 3, title: "Cấu trúc thương vụ",
+              questions: ["Giá mua bằng bao nhiêu lần lợi nhuận vận hành?", "Vay nợ bao nhiêu so với lợi nhuận vận hành?", "Nhà đầu tư bỏ vốn thật bao nhiêu?", "Ban điều hành có tiếp tục góp vốn không?"],
             },
             {
-              n: 4, title: "Value Creation Plan",
-              questions: ["Organic growth levers?", "Operational improvements?", "Add-on acquisitions?", "Exit options trong 3-5 năm?"],
+              n: 4, title: "Kế hoạch tạo giá trị",
+              questions: ["Tăng trưởng tự thân đến từ đâu?", "Có thể cải thiện vận hành gì?", "Có thể mua thêm công ty nhỏ không?", "3-5 năm nữa bán cho ai?"],
             },
             {
-              n: 5, title: "Risk Assessment",
-              questions: ["Key risks là gì?", "Downside scenario?", "Covenant headroom?", "Red flags nào?"],
+              n: 5, title: "Đánh giá rủi ro",
+              questions: ["Rủi ro chính là gì?", "Kịch bản xấu nhất ra sao?", "Có còn dư địa trả nợ không?", "Dấu hiệu cảnh báo nào?"],
             },
           ].map(step => (
             <div key={step.n} className="border border-stone-200 rounded-xl p-4">
@@ -112,12 +119,12 @@ export default function Page() {
       </section>
 
       <section className="mb-8">
-        <h3 className="text-lg font-bold text-stone-800 mb-3">LBO Return Drivers</h3>
+        <h3 className="text-lg font-bold text-stone-800 mb-3">Nguồn tạo lợi nhuận trong LBO</h3>
         <div className="space-y-2">
           {[
-            { title: "EBITDA Growth", desc: "Tăng doanh thu, cải thiện margin → EBITDA cao hơn" },
-            { title: "Debt Paydown", desc: "Cash flow trả nợ → equity tự nhiên tăng" },
-            { title: "Multiple Expansion", desc: "Exit multiple cao hơn entry multiple" },
+            { title: "Tăng lợi nhuận vận hành", desc: "Doanh thu tăng hoặc biên lợi nhuận tốt hơn → EBITDA cao hơn" },
+            { title: "Trả bớt nợ", desc: "Dòng tiền dùng để giảm nợ → phần giá trị thuộc về cổ đông tăng lên" },
+            { title: "Bán ra ở định giá cao hơn", desc: "Mua vào rẻ hơn, bán ra ở mức định giá tốt hơn" },
           ].map(d => (
             <div key={d.title} className="bg-stone-800 rounded-xl p-4">
               <div className="text-white font-bold text-xs mb-1">{d.title}</div>
@@ -128,20 +135,20 @@ export default function Page() {
       </section>
 
       <section className="mb-8">
-        <h3 className="text-lg font-bold text-stone-800 mb-3">Interview Questions thực chiến</h3>
+        <h3 className="text-lg font-bold text-stone-800 mb-3">Câu hỏi phỏng vấn thực chiến</h3>
         <div className="space-y-3">
           {[
             {
-              q: "Walk me through an LBO model",
-              a: "Entry: mua công ty với leveraged capital (60-70% debt). Operations: trả nợ từ FCF, improve EBITDA. Exit: bán sau 3-5 năm tại higher multiple. Return = MOIC = Exit Equity / Entry Equity.",
+              q: "Hãy giải thích một mô hình LBO",
+              a: "Bước 1: mua công ty bằng vốn chủ và nợ vay. Bước 2: dùng dòng tiền tự do để trả nợ và cải thiện EBITDA. Bước 3: bán sau 3-5 năm. Lợi nhuận đến từ phần vốn chủ tăng lên sau khi nợ giảm và công ty có giá trị cao hơn.",
             },
             {
-              q: "What makes a good LBO candidate?",
-              a: "Stable/predictable cash flows, low CapEx, strong market position, potential for operational improvement, management team, clear exit options (strategic buyer, IPO, secondary).",
+              q: "Doanh nghiệp nào phù hợp với LBO?",
+              a: "Dòng tiền ổn định, nhu cầu đầu tư tài sản không quá lớn, vị thế thị trường tốt, còn dư địa cải thiện vận hành, đội ngũ quản lý đáng tin và có người mua lại trong tương lai.",
             },
             {
               q: "Tại sao IRR quan trọng hơn MOIC?",
-              a: "IRR điều chỉnh theo thời gian - MOIC 3x trong 3 năm (IRR ~44%) tốt hơn nhiều 3x trong 7 năm (IRR ~17%). IRR cho phép so sánh apples-to-apples giữa các deal có holding period khác nhau.",
+              a: "MOIC cho biết nhân vốn bao nhiêu lần, còn IRR cho biết tốc độ sinh lời mỗi năm. Nhân 3 lần vốn trong 3 năm tốt hơn nhiều so với nhân 3 lần vốn trong 7 năm.",
             },
           ].map((item, i) => (
             <div key={i} className="bg-white border border-stone-200 rounded-xl p-4">
@@ -153,16 +160,16 @@ export default function Page() {
       </section>
 
       <section>
-        <h3 className="text-lg font-bold text-stone-800 mb-3">Red Flags cần watch out</h3>
+        <h3 className="text-lg font-bold text-stone-800 mb-3">Dấu hiệu cảnh báo cần chú ý</h3>
         <div className="border-l-2 border-stone-300 pl-4 space-y-2">
           <div className="space-y-1 text-sm text-stone-700">
             {[
-              "Customer concentration > 30% từ 1 khách",
-              "Key person dependency",
-              "Declining revenue / market share loss",
-              "Lãi vay ICR < 2x ở entry",
+              "Một khách hàng chiếm hơn 30% doanh thu",
+              "Phụ thuộc quá nhiều vào một cá nhân chủ chốt",
+              "Doanh thu giảm hoặc mất thị phần",
+              "Khả năng trả lãi yếu ngay từ lúc mua",
               "Ngành đang bị disruption",
-              "Accounting irregularities",
+              "Số liệu kế toán có dấu hiệu bất thường",
             ].map((f, i) => (
               <div key={i}> - {f}</div>
             ))}
