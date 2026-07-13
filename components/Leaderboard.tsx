@@ -131,14 +131,24 @@ export default function Leaderboard({ userId }: LeaderboardProps) {
                 <Link
                   key={entry.user_id}
                   href={href}
-                  className={`flex items-center gap-2 px-3 py-2 rounded-lg text-xs transition-all ${
+                  className={`group relative flex items-center gap-2 overflow-hidden px-3 py-2 rounded-lg text-xs transition-all duration-200 active:scale-[0.99] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400/60 ${
                     isCurrent
-                      ? "bg-emerald-50 dark:bg-emerald-950/50 border border-emerald-200 dark:border-emerald-900"
-                      : "bg-white dark:bg-stone-900 border border-stone-200 dark:border-stone-800 hover:border-stone-300 dark:hover:border-stone-700"
+                      ? "bg-emerald-50 dark:bg-emerald-950/50 border border-emerald-200 dark:border-emerald-900 shadow-[0_10px_24px_-18px_rgba(16,185,129,0.5)]"
+                      : "bg-white dark:bg-stone-900 border border-stone-200 dark:border-stone-800 hover:border-emerald-300 dark:hover:border-emerald-700 hover:bg-emerald-50/70 dark:hover:bg-emerald-950/20 hover:shadow-[0_14px_30px_-20px_rgba(16,185,129,0.45)]"
                   }`}
                 >
+                  <div className={`pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-200 group-hover:opacity-100 ${
+                    rank === 1
+                      ? "bg-[linear-gradient(135deg,rgba(251,191,36,0.08),transparent_40%)]"
+                      : rank === 2
+                        ? "bg-[linear-gradient(135deg,rgba(148,163,184,0.08),transparent_40%)]"
+                        : rank === 3
+                          ? "bg-[linear-gradient(135deg,rgba(251,191,36,0.05),transparent_40%)]"
+                          : "bg-[linear-gradient(135deg,rgba(16,185,129,0.06),transparent_40%)]"
+                  }`} />
+
                   <div
-                    className={`w-6 h-6 rounded flex items-center justify-center flex-shrink-0 font-extrabold ${
+                    className={`relative z-10 w-6 h-6 rounded flex items-center justify-center flex-shrink-0 font-extrabold transition-transform duration-200 group-hover:scale-105 ${
                       rank === 1
                         ? "bg-amber-200 dark:bg-amber-900 text-amber-900 dark:text-amber-300"
                         : rank === 2
@@ -151,9 +161,11 @@ export default function Leaderboard({ userId }: LeaderboardProps) {
                     {rank}
                   </div>
 
-                  <LeaderboardAvatar name={entry.name} avatarUrl={entry.avatarUrl} />
+                  <div className="relative z-10">
+                    <LeaderboardAvatar name={entry.name} avatarUrl={entry.avatarUrl} />
+                  </div>
 
-                  <div className="flex-1 min-w-0">
+                  <div className="relative z-10 flex-1 min-w-0">
                     <div className={`font-bold truncate ${isCurrent ? "text-emerald-900 dark:text-emerald-400" : "text-stone-900 dark:text-stone-100"}`}>
                       {entry.name}
                     </div>
@@ -162,7 +174,18 @@ export default function Leaderboard({ userId }: LeaderboardProps) {
                     </div>
                   </div>
 
-                  {isCurrent && <div className="text-emerald-600 font-bold text-sm">✓</div>}
+                  <div className="relative z-10 flex items-center gap-2">
+                    <span
+                      className={`inline-flex whitespace-nowrap rounded-full border px-2 py-1 text-[10px] font-bold uppercase tracking-[0.18em] transition-all duration-200 ${
+                        isCurrent
+                          ? "border-emerald-200 bg-emerald-100 text-emerald-700 dark:border-emerald-900 dark:bg-emerald-950/60 dark:text-emerald-400"
+                          : "border-stone-200 bg-white text-stone-500 opacity-85 group-hover:opacity-100 dark:border-stone-800 dark:bg-stone-950 dark:text-stone-400"
+                      }`}
+                    >
+                      {isCurrent ? "Hồ sơ của bạn" : "Xem hồ sơ"}
+                    </span>
+                    {isCurrent ? <div className="text-emerald-600 font-bold text-sm">✓</div> : <div className="text-stone-300 font-bold text-sm transition-transform duration-200 group-hover:translate-x-0.5">→</div>}
+                  </div>
                 </Link>
               );
             })}
