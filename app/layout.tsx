@@ -13,9 +13,34 @@ const plusJakartaSans = Plus_Jakarta_Sans({
   display: "swap",
 });
 
+// NEXT_PUBLIC_SITE_URL must be set to the real production domain for the
+// og:image/twitter:image URLs below to resolve to an absolute, publicly
+// reachable path - without it they fall back to localhost, which is fine
+// for local dev but means link previews (Facebook/Zalo/Messenger) will
+// show no image at all when the site is actually deployed and shared.
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000";
+const title = "Tự học Tài chính Mỗi Ngày";
+const description = "300+ bài học miễn phí về tài chính cá nhân, CFA và tài chính chuyên ngành. Học 5 phút mỗi ngày, ứng dụng Spaced Repetition để nhớ lâu.";
+
 export const metadata: Metadata = {
-  title: "Tự học Tài chính Mỗi Ngày",
-  description: "Mỗi ngày chỉ 5 phút để hiểu thêm một khái niệm tài chính. Dành cho người Việt Nam.",
+  metadataBase: new URL(siteUrl),
+  title,
+  description,
+  openGraph: {
+    title,
+    description,
+    url: siteUrl,
+    siteName: title,
+    locale: "vi_VN",
+    type: "website",
+    images: [{ url: "/logo.png", width: 1254, height: 1254, alt: title }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title,
+    description,
+    images: ["/logo.png"],
+  },
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
