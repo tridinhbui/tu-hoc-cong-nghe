@@ -6,7 +6,7 @@ import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { AnimatePresence, motion } from "framer-motion";
 import { toast } from "sonner";
-import { GraduationCap, Gauge, Sparkles } from "lucide-react";
+import { GraduationCap, Gauge, Sparkles, Heart } from "lucide-react";
 import { createClient } from "@/lib/supabase";
 import { translateAuthError } from "@/lib/auth-error-messages";
 import { TRACKS, type TrackId } from "@/lib/tracks";
@@ -268,6 +268,25 @@ export default function LoginPage() {
                 </li>
               ))}
             </ul>
+
+            {/* Explicit commitment statement - a cold visitor's biggest doubt
+                on a "free education" site is usually "is this actually free,
+                or a bait-and-switch later" - state the commitment plainly
+                and link the community group as the accountability backing it. */}
+            <div className="flex items-start gap-3 rounded-2xl border border-rose-100 dark:border-rose-950 bg-rose-50/60 dark:bg-rose-950/20 px-4 py-3.5">
+              <Heart className="w-4 h-4 text-rose-500 flex-shrink-0 mt-0.5" />
+              <p className="text-xs text-stone-600 dark:text-stone-400 leading-relaxed">
+                Cam kết toàn bộ bài học tại đây <strong className="text-stone-800 dark:text-stone-200">miễn phí mãi mãi</strong> vì sự phát triển của cộng đồng Tự Học Tài Chính.{" "}
+                <a
+                  href="https://www.facebook.com/share/g/1C2jTdsgF5/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="font-bold text-rose-600 dark:text-rose-400 hover:underline"
+                >
+                  Tham gia group Facebook →
+                </a>
+              </p>
+            </div>
           </div>
 
           <TrackPreviewPanel previewTrack={previewTrack} setPreviewTrack={setPreviewTrack} />
