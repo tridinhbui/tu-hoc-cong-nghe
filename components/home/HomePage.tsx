@@ -93,6 +93,23 @@ export default function HomePage() {
 
   return (
     <div className="bg-white dark:bg-stone-950">
+      <div className="border-b border-emerald-100 bg-emerald-50/85 dark:border-emerald-900/40 dark:bg-emerald-950/20">
+        <div className="max-w-6xl mx-auto px-6 py-2.5 flex flex-col gap-2 text-center sm:flex-row sm:items-center sm:justify-between sm:text-left">
+          <p className="text-sm font-semibold text-stone-700 dark:text-stone-200">
+            Duy trì miễn phí vĩnh viễn cho cộng đồng Tự Học Tài Chính, không khóa bài học và không mở paywall sau.
+          </p>
+          <a
+            href="https://www.facebook.com/share/g/1C2jTdsgF5/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center justify-center gap-2 text-sm font-bold text-emerald-700 transition-colors hover:text-emerald-800 dark:text-emerald-300 dark:hover:text-emerald-200"
+          >
+            Tham gia group cộng đồng
+            <ArrowRight className="w-4 h-4" />
+          </a>
+        </div>
+      </div>
+
       {/* ── NAV ── */}
       <header className="sticky top-0 z-40 bg-white/80 dark:bg-stone-950/80 backdrop-blur-md border-b border-stone-100 dark:border-stone-900">
         <div className="max-w-6xl mx-auto px-6 py-3.5 flex items-center justify-between">
@@ -130,7 +147,7 @@ export default function HomePage() {
                 <span className="animate-ping absolute inline-flex w-full h-full rounded-full bg-emerald-400 opacity-75" />
                 <span className="relative inline-flex rounded-full w-1.5 h-1.5 bg-emerald-500" />
               </span>
-              Miễn phí mãi mãi · Không cần thẻ tín dụng
+              Cộng đồng hỗ trợ · Miễn phí vĩnh viễn · Không cần thẻ tín dụng
             </motion.div>
 
             <motion.h1
@@ -182,7 +199,7 @@ export default function HomePage() {
               initial={{ opacity: 0, y: 14 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.45, ease: "easeOut", delay: 0.24 }}
-              className="flex items-stretch divide-x divide-stone-200 dark:divide-stone-800 rounded-2xl border border-stone-200 dark:border-stone-800 bg-stone-50/60 dark:bg-stone-900/40 px-5 py-3.5 w-fit"
+              className="mb-6 flex flex-wrap items-stretch gap-3 sm:gap-0 sm:divide-x divide-stone-200 dark:divide-stone-800 rounded-2xl border border-stone-200 dark:border-stone-800 bg-stone-50/60 dark:bg-stone-900/40 px-5 py-3.5 w-fit"
             >
               <div className="pr-6">
                 <LiveNumber value={displayedUserCount} className="text-2xl" />
@@ -191,6 +208,34 @@ export default function HomePage() {
               <div className="pl-6">
                 <LiveNumber value={displayedLessonCount} className="text-2xl" />
                 <p className="text-[11px] font-semibold text-stone-500 dark:text-stone-400 mt-0.5">bài học</p>
+              </div>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, y: 14 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.45, ease: "easeOut", delay: 0.28 }}
+              className="max-w-xl rounded-2xl border border-rose-100 dark:border-rose-950 bg-rose-50/70 dark:bg-rose-950/20 px-5 py-4"
+            >
+              <div className="flex items-start gap-3">
+                <Heart className="w-5 h-5 text-rose-500 flex-shrink-0 mt-0.5" />
+                <div>
+                  <p className="text-sm font-bold text-stone-900 dark:text-stone-100">
+                    Duy trì miễn phí vĩnh viễn cho cộng đồng
+                  </p>
+                  <p className="mt-1 text-sm text-stone-600 dark:text-stone-400 leading-relaxed">
+                    Toàn bộ bài học được giữ free lâu dài để cộng đồng cùng học. Không paywall, không khóa bài sau khi đăng ký.
+                  </p>
+                  <a
+                    href="https://www.facebook.com/share/g/1C2jTdsgF5/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="mt-3 inline-flex items-center gap-2 text-sm font-bold text-rose-600 transition-colors hover:text-rose-700 dark:text-rose-400 dark:hover:text-rose-300"
+                  >
+                    Vào group Facebook của cộng đồng
+                    <ArrowRight className="w-4 h-4" />
+                  </a>
+                </div>
               </div>
             </motion.div>
             </div>
