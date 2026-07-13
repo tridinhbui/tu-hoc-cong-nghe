@@ -9,6 +9,7 @@ import { getTotalUserCount } from "@/lib/supabase-user";
 import { translateAuthError } from "@/lib/auth-error-messages";
 import type { TrackId } from "@/lib/tracks";
 import TrackPreviewPanel from "@/components/login/TrackPreviewPanel";
+import PublicLeaderboardPreview from "@/components/login/PublicLeaderboardPreview";
 import Logo from "@/components/Logo";
 
 const MAX_ATTEMPTS = 5;
@@ -331,6 +332,8 @@ export default function LoginPage() {
                 </a>
               </p>
             </div>
+
+            <PublicLeaderboardPreview />
           </div>
 
           <TrackPreviewPanel previewTrack={previewTrack} setPreviewTrack={setPreviewTrack} />

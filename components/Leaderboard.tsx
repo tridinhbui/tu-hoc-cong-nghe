@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import Image from "next/image";
+import Link from "next/link";
 import { getLeaderboardByMetric, getMyLeaderboardRank, type LeaderboardMetric, type LeaderboardRow } from "@/lib/supabase-user";
 
 // Small circular avatar with an initials fallback for learners who haven't
@@ -84,6 +85,13 @@ export default function Leaderboard({ userId }: LeaderboardProps) {
         <p className="text-xs font-extrabold text-stone-500 dark:text-stone-400 uppercase tracking-widest">
           Top Người Học
         </p>
+        <div className="flex items-center gap-1.5 mt-1 text-[10px] font-bold text-stone-400 dark:text-stone-500">
+          <span className="relative flex w-1.5 h-1.5">
+            <span className="animate-ping absolute inline-flex w-full h-full rounded-full bg-emerald-400 opacity-75" />
+            <span className="relative inline-flex rounded-full w-1.5 h-1.5 bg-emerald-500" />
+          </span>
+          Số liệu thật, cập nhật trực tiếp
+        </div>
       </div>
 
       <div className="flex gap-1 mb-4 bg-stone-100 dark:bg-stone-800 rounded-lg p-1">
@@ -118,9 +126,11 @@ export default function Leaderboard({ userId }: LeaderboardProps) {
             {entries.map((entry, idx) => {
               const rank = idx + 1;
               const isCurrent = entry.user_id === userId;
+              const href = isCurrent ? "/profile" : `/nguoi-hoc/${entry.user_id}`;
               return (
-                <div
+                <Link
                   key={entry.user_id}
+                  href={href}
                   className={`flex items-center gap-2 px-3 py-2 rounded-lg text-xs transition-all ${
                     isCurrent
                       ? "bg-emerald-50 dark:bg-emerald-950/50 border border-emerald-200 dark:border-emerald-900"
@@ -153,7 +163,7 @@ export default function Leaderboard({ userId }: LeaderboardProps) {
                   </div>
 
                   {isCurrent && <div className="text-emerald-600 font-bold text-sm">✓</div>}
-                </div>
+                </Link>
               );
             })}
           </div>

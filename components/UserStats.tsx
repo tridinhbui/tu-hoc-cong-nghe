@@ -88,6 +88,15 @@ export default function UserStats({
           level's name, so a learner can see the whole journey ahead
           (what's next, how far, and how many levels remain) at a glance. */}
       <div className="mt-4 pt-4 border-t border-stone-100 dark:border-stone-800">
+        {levelStats && (
+          <div className="flex items-center gap-1.5 mb-3 text-[10px] font-bold text-stone-400 dark:text-stone-500">
+            <span className="relative flex w-1.5 h-1.5">
+              <span className="animate-ping absolute inline-flex w-full h-full rounded-full bg-emerald-400 opacity-75" />
+              <span className="relative inline-flex rounded-full w-1.5 h-1.5 bg-emerald-500" />
+            </span>
+            Số liệu thật, cập nhật trực tiếp từ toàn bộ học viên trên hệ thống
+          </div>
+        )}
         <div className="relative flex items-start justify-between">
           {/* Connecting line + filled progress, sits behind the dots */}
           <div className="absolute top-2.5 left-0 right-0 h-0.5 bg-stone-200 dark:bg-stone-800 mx-2.5" />
