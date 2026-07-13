@@ -187,7 +187,7 @@ export default function LessonNotes({ lessonId, lessonSlug }: LessonNotesProps) 
                   ) : (
                     <>
                       <NoteContent content={note.content} />
-                      <div className="flex gap-2 mt-2 opacity-0 group-hover:opacity-100 transition-opacity">
+                      <div className="mt-2 flex gap-2 opacity-100 transition-opacity sm:opacity-0 sm:group-hover:opacity-100">
                         <button
                           onClick={() => startEditing(note)}
                           className="text-stone-500 hover:text-stone-700 dark:text-stone-400 dark:hover:text-stone-200"

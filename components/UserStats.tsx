@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import { getLevelByXp, getNextLevel, getXpToNextLevel, getLevelProgress, LEVELS } from "@/lib/levels";
 import { getLevelStats, type LevelStats } from "@/lib/supabase-user";
@@ -26,6 +26,8 @@ export default function UserStats({
   const progress = getLevelProgress(xp);
 
   const [levelStats, setLevelStats] = useState<LevelStats | null>(null);
+  const [openLevelTooltip, setOpenLevelTooltip] = useState<number | null>(null);
+  const rootRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     let cancelled = false;
@@ -39,8 +41,23 @@ export default function UserStats({
     };
   }, [userId]);
 
+  useEffect(() => {
+    if (openLevelTooltip === null) return;
+    function handlePointerDown(event: MouseEvent | TouchEvent) {
+      if (rootRef.current && !rootRef.current.contains(event.target as Node)) {
+        setOpenLevelTooltip(null);
+      }
+    }
+    document.addEventListener("mousedown", handlePointerDown);
+    document.addEventListener("touchstart", handlePointerDown);
+    return () => {
+      document.removeEventListener("mousedown", handlePointerDown);
+      document.removeEventListener("touchstart", handlePointerDown);
+    };
+  }, [openLevelTooltip]);
+
   return (
-    <div className="bg-white dark:bg-stone-900 border-2 border-stone-200 dark:border-stone-800 rounded-xl p-4">
+    <div ref={rootRef} className="bg-white dark:bg-stone-900 border-2 border-stone-200 dark:border-stone-800 rounded-xl p-4">
       <div className="flex items-center justify-between gap-6 flex-wrap sm:flex-nowrap">
         {/* Level Info */}
         <div>
@@ -111,8 +128,15 @@ export default function UserStats({
             const reached = xp >= lvl.minXp;
             const isCurrent = lvl.level === currentLevel.level;
             const topUsers = levelStats?.topUsersByLevel[lvl.level] ?? [];
+            const isTooltipOpen = openLevelTooltip === lvl.level;
             return (
-              <div key={lvl.level} className="relative flex flex-col items-center gap-1.5 flex-1 min-w-0 group">
+              <button
+                key={lvl.level}
+                type="button"
+                onClick={() => setOpenLevelTooltip((current) => (current === lvl.level ? null : lvl.level))}
+                onMouseEnter={() => setOpenLevelTooltip(lvl.level)}
+                className="relative flex flex-1 min-w-0 flex-col items-center gap-1.5 group bg-transparent text-left"
+              >
                 <div
                   className={`w-5 h-5 rounded-full flex items-center justify-center text-[10px] font-extrabold border-2 ${
                     isCurrent
@@ -143,7 +167,9 @@ export default function UserStats({
 
                 {/* Hover card: who's leading this level, by XP */}
                 {topUsers.length > 0 && (
-                  <div className="pointer-events-none absolute top-full left-1/2 -translate-x-1/2 z-30 mt-2 w-56 rounded-xl border border-stone-200 dark:border-stone-800 bg-white dark:bg-stone-900 px-3 py-2.5 shadow-xl opacity-0 scale-95 origin-top transition-all duration-150 group-hover:opacity-100 group-hover:scale-100">
+                  <div className={`absolute top-full left-1/2 -translate-x-1/2 z-30 mt-2 w-56 rounded-xl border border-stone-200 dark:border-stone-800 bg-white dark:bg-stone-900 px-3 py-2.5 shadow-xl origin-top transition-all duration-150 ${
+                    isTooltipOpen ? "opacity-100 scale-100 pointer-events-auto" : "pointer-events-none opacity-0 scale-95 group-hover:opacity-100 group-hover:scale-100"
+                  }`}>
                     <p className="text-[10px] font-extrabold text-stone-500 dark:text-stone-400 uppercase tracking-wider mb-1.5">
                       Top {lvl.name}
                     </p>
@@ -172,7 +198,7 @@ export default function UserStats({
                     </div>
                   </div>
                 )}
-              </div>
+              </button>
             );
           })}
         </div>

@@ -14,7 +14,7 @@ export default function PublicLeaderboardPreview() {
 
   useEffect(() => {
     let cancelled = false;
-    getLeaderboardByMetric("xp", 6)
+    getLeaderboardByMetric("xp", 9)
       .then((rows) => {
         if (!cancelled) setTop(rows);
       })
@@ -35,9 +35,9 @@ export default function PublicLeaderboardPreview() {
         </span>
         Học viên nổi bật · số liệu thật, cập nhật trực tiếp
       </div>
-      <div className="grid grid-cols-3 gap-x-3 gap-y-2.5">
+      <div className="grid grid-cols-2 gap-x-3 gap-y-2.5 sm:grid-cols-3">
         {top.map((entry, idx) => (
-          <div key={entry.user_id} className="flex items-center gap-2 min-w-0">
+          <div key={entry.user_id} className="flex items-center gap-2 min-w-0 rounded-2xl border border-stone-100 bg-stone-50/70 px-2.5 py-2 dark:border-stone-800 dark:bg-stone-800/40">
             <div className="relative flex-shrink-0">
               {entry.avatarUrl ? (
                 <Image

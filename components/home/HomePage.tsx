@@ -147,7 +147,7 @@ export default function HomePage() {
                 <span className="animate-ping absolute inline-flex w-full h-full rounded-full bg-emerald-400 opacity-75" />
                 <span className="relative inline-flex rounded-full w-1.5 h-1.5 bg-emerald-500" />
               </span>
-              Cộng đồng hỗ trợ · Miễn phí vĩnh viễn · Không cần thẻ tín dụng
+              Cộng đồng hỗ trợ · Miễn phí vĩnh viễn
             </motion.div>
 
             <motion.h1
@@ -307,7 +307,7 @@ export default function HomePage() {
             </div>
             <ul className="space-y-2.5">
               {[
-                "Không cần thẻ tín dụng, không dùng thử giới hạn ngày",
+                "Không dùng thử giới hạn ngày",
                 "Không quảng cáo xen giữa bài học",
                 "Nội dung được cập nhật và mở rộng liên tục",
               ].map((line) => (

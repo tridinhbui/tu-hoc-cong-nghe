@@ -108,6 +108,23 @@ export default function DashboardClient({ lessonsMeta }: { lessonsMeta: LessonMe
   const [flagSelectionMode, setFlagSelectionMode] = useState(false);
   const [selectedFlagLessonIds, setSelectedFlagLessonIds] = useState<Set<number>>(new Set());
   const [flagSaving, setFlagSaving] = useState(false);
+  const [manualFlagInfoOpen, setManualFlagInfoOpen] = useState(false);
+
+  useEffect(() => {
+    if (!manualFlagInfoOpen) return;
+    function handlePointerDown(event: MouseEvent | TouchEvent) {
+      const target = event.target as HTMLElement | null;
+      if (!target?.closest("[data-manual-flag-info-root]")) {
+        setManualFlagInfoOpen(false);
+      }
+    }
+    document.addEventListener("mousedown", handlePointerDown);
+    document.addEventListener("touchstart", handlePointerDown);
+    return () => {
+      document.removeEventListener("mousedown", handlePointerDown);
+      document.removeEventListener("touchstart", handlePointerDown);
+    };
+  }, [manualFlagInfoOpen]);
 
   // Nudge learners toward the knowledge-review challenge automatically, at
   // most once per calendar day, once they've actually completed enough
@@ -668,7 +685,7 @@ export default function DashboardClient({ lessonsMeta }: { lessonsMeta: LessonMe
                   </button>
                 </>
               )}
-              <div className="relative group">
+              <div data-manual-flag-info-root className="relative group">
                 <button
                   onClick={() => {
                     if (flagSelectionMode) clearFlagSelection();
@@ -682,7 +699,18 @@ export default function DashboardClient({ lessonsMeta }: { lessonsMeta: LessonMe
                 >
                   Đánh dấu đã học
                 </button>
-                <div className="pointer-events-none absolute right-0 top-full z-20 mt-2 w-80 max-w-[90vw] rounded-xl border border-stone-200 dark:border-stone-800 bg-white dark:bg-stone-900 px-4 py-3 text-sm text-stone-700 dark:text-stone-300 leading-relaxed shadow-xl opacity-0 scale-95 origin-top-right transition-all duration-150 group-hover:opacity-100 group-hover:scale-100 space-y-2">
+                <button
+                  type="button"
+                  onClick={() => setManualFlagInfoOpen((current) => !current)}
+                  className="ml-2 inline-flex items-center justify-center rounded-full border border-stone-200 px-2 py-1 text-[11px] font-bold text-stone-500 transition-colors hover:bg-stone-50 dark:border-stone-800 dark:text-stone-400 dark:hover:bg-stone-900"
+                  aria-expanded={manualFlagInfoOpen}
+                  aria-label="Giải thích cách đánh dấu đã học"
+                >
+                  ?
+                </button>
+                <div className={`absolute right-0 top-full z-20 mt-2 w-80 max-w-[90vw] rounded-xl border border-stone-200 dark:border-stone-800 bg-white dark:bg-stone-900 px-4 py-3 text-sm text-stone-700 dark:text-stone-300 leading-relaxed shadow-xl origin-top-right transition-all duration-150 space-y-2 ${
+                  manualFlagInfoOpen ? "opacity-100 scale-100 pointer-events-auto" : "pointer-events-none opacity-0 scale-95 group-hover:opacity-100 group-hover:scale-100"
+                }`}>
                   <p>
                     Làm xong hết quiz của bài (bài không có quiz thì đọc hết là tính) → bài chuyển{" "}
                     <span className="font-semibold text-emerald-600 dark:text-emerald-400">xanh lá</span> và được cộng XP.
