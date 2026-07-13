@@ -54,9 +54,9 @@ function formatHour(hour: number) {
 }
 
 function metricTone(score: number) {
-  if (score >= 75) return "text-emerald-600 dark:text-emerald-400";
-  if (score >= 45) return "text-amber-600 dark:text-amber-400";
-  return "text-rose-600 dark:text-rose-400";
+  if (score >= 75) return "text-teal-700 dark:text-teal-300";
+  if (score >= 45) return "text-amber-700 dark:text-amber-300";
+  return "text-stone-700 dark:text-stone-300";
 }
 
 function insightFromAnalytics(analytics: LearningAnalyticsType) {
@@ -180,18 +180,18 @@ export default function LearningAnalytics() {
   const trackPieData = useMemo(() => {
     if (!analytics) return [];
     return [
-      { name: "Cá nhân", value: analytics.lessonsByTrack.personal, color: "#10b981" },
-      { name: "Chuyên ngành", value: analytics.lessonsByTrack.professional, color: "#111827" },
-      { name: "Bonus", value: analytics.lessonsByTrack.bonus, color: "#f59e0b" },
+      { name: "Cá nhân", value: analytics.lessonsByTrack.personal, color: "#4f7a6b" },
+      { name: "Chuyên ngành", value: analytics.lessonsByTrack.professional, color: "#44403c" },
+      { name: "Bonus", value: analytics.lessonsByTrack.bonus, color: "#b98b45" },
     ].filter((item) => item.value > 0);
   }, [analytics]);
 
   const difficultyData = useMemo(() => {
     if (!analytics) return [];
     return [
-      { label: "Dễ", value: analytics.lessonsByDifficulty.easy, color: "#10b981" },
-      { label: "Trung bình", value: analytics.lessonsByDifficulty.medium, color: "#f59e0b" },
-      { label: "Khó", value: analytics.lessonsByDifficulty.hard, color: "#ef4444" },
+      { label: "Dễ", value: analytics.lessonsByDifficulty.easy, color: "#5f8a7a" },
+      { label: "Trung bình", value: analytics.lessonsByDifficulty.medium, color: "#b98b45" },
+      { label: "Khó", value: analytics.lessonsByDifficulty.hard, color: "#8f5f5a" },
     ];
   }, [analytics]);
 
@@ -220,13 +220,13 @@ export default function LearningAnalytics() {
         initial="hidden"
         animate="visible"
         variants={fadeUp}
-        className="relative overflow-hidden rounded-[28px] sm:rounded-[32px] border border-stone-200/80 dark:border-stone-800 bg-[radial-gradient(circle_at_top_left,_rgba(16,185,129,0.18),_transparent_30%),linear-gradient(135deg,_rgba(255,255,255,0.98),_rgba(248,250,252,0.94))] dark:bg-[radial-gradient(circle_at_top_left,_rgba(16,185,129,0.18),_transparent_30%),linear-gradient(135deg,_rgba(28,25,23,0.98),_rgba(17,24,39,0.95))] p-5 sm:p-8 shadow-[0_30px_80px_-40px_rgba(28,25,23,0.45)]"
+        className="relative overflow-hidden rounded-[28px] sm:rounded-[32px] border border-stone-200/80 dark:border-stone-800 bg-[radial-gradient(circle_at_top_left,_rgba(120,113,108,0.12),_transparent_32%),linear-gradient(135deg,_rgba(255,255,255,0.98),_rgba(245,245,244,0.94))] dark:bg-[radial-gradient(circle_at_top_left,_rgba(120,113,108,0.16),_transparent_32%),linear-gradient(135deg,_rgba(28,25,23,0.98),_rgba(24,24,27,0.95))] p-5 sm:p-8 shadow-[0_30px_80px_-40px_rgba(28,25,23,0.45)]"
       >
-        <div className="absolute right-0 top-0 h-44 w-44 rounded-full bg-emerald-500/10 blur-3xl" />
+        <div className="absolute right-0 top-0 h-44 w-44 rounded-full bg-stone-400/10 blur-3xl" />
         <div className="relative flex flex-col gap-8 lg:flex-row lg:items-end lg:justify-between">
           <div className="max-w-2xl">
             <div className="inline-flex items-center gap-2 rounded-full border border-stone-200/80 dark:border-stone-700 bg-white/80 dark:bg-stone-900/80 px-4 py-2 text-xs font-bold uppercase tracking-[0.18em] text-stone-600 dark:text-stone-300">
-              <Sparkles className="h-4 w-4 text-emerald-600 dark:text-emerald-400" />
+              <Sparkles className="h-4 w-4 text-stone-600 dark:text-stone-300" />
               Dashboard học tập
             </div>
             <h2 className="mt-5 text-3xl font-black tracking-tight text-stone-950 dark:text-stone-50 sm:text-4xl">
@@ -282,7 +282,7 @@ export default function LearningAnalytics() {
           label="Bài hoàn thành"
           value={`${analytics.totalLessonsCompleted}`}
           hint={`${analytics.completionRate}% trên ${analytics.totalLessonsStarted} bài đã mở`}
-          accent="bg-emerald-500"
+          accent="bg-teal-700 dark:bg-teal-400"
           delay={0.02}
         />
         <MetricCard
@@ -290,7 +290,7 @@ export default function LearningAnalytics() {
           label="Tổng XP"
           value={`${analytics.totalXpEarned}`}
           hint={`Level ${analytics.currentLevel} hiện tại`}
-          accent="bg-amber-500"
+          accent="bg-amber-700 dark:bg-amber-400"
           delay={0.06}
         />
         <MetricCard
@@ -298,7 +298,7 @@ export default function LearningAnalytics() {
           label="Điểm quiz"
           value={`${analytics.averageQuizScore}%`}
           hint={`TB ${analytics.averageMinutesPerLesson} phút cho mỗi bài`}
-          accent="bg-sky-500"
+          accent="bg-stone-600 dark:bg-stone-300"
           delay={0.1}
         />
         <MetricCard
@@ -306,7 +306,7 @@ export default function LearningAnalytics() {
           label="Chuỗi ngày"
           value={`${analytics.streakDays}`}
           hint={`Kỷ lục ${analytics.longestStreak} ngày liên tiếp`}
-          accent="bg-orange-500"
+          accent="bg-orange-700 dark:bg-orange-400"
           delay={0.14}
         />
         <MetricCard
@@ -314,7 +314,7 @@ export default function LearningAnalytics() {
           label="Thời gian học"
           value={`${analytics.totalTimeSpent} phút`}
           hint={`${analytics.peakStudyWindow} · ${analytics.bestStudyHour !== null ? formatHour(analytics.bestStudyHour) : "chưa rõ giờ đỉnh"}`}
-          accent="bg-violet-500"
+          accent="bg-stone-500 dark:bg-stone-400"
           delay={0.18}
         />
         <MetricCard
@@ -322,7 +322,7 @@ export default function LearningAnalytics() {
           label="Xu hướng tuần"
           value={`${analytics.recentMomentum.weeklyTrendPercent > 0 ? "+" : ""}${analytics.recentMomentum.weeklyTrendPercent}%`}
           hint={`${analytics.recentMomentum.last30DaysLessons} bài trong 30 ngày qua`}
-          accent="bg-rose-500"
+          accent="bg-stone-700 dark:bg-stone-200"
           delay={0.22}
         />
         <MetricCard
@@ -330,7 +330,7 @@ export default function LearningAnalytics() {
           label="Ghi chú"
           value={`${analytics.notes.totalNotes}`}
           hint={`${analytics.notes.lessonsWithNotes} bài có note`}
-          accent="bg-indigo-500"
+          accent="bg-slate-700 dark:bg-slate-300"
           delay={0.26}
         />
         <MetricCard
@@ -370,8 +370,8 @@ export default function LearningAnalytics() {
               <AreaChart data={analytics.weeklyActivity} margin={{ left: 0, right: 0, top: 12, bottom: 0 }}>
                 <defs>
                   <linearGradient id="weeklyLessons" x1="0" x2="0" y1="0" y2="1">
-                    <stop offset="0%" stopColor="#10b981" stopOpacity={0.55} />
-                    <stop offset="100%" stopColor="#10b981" stopOpacity={0.06} />
+                    <stop offset="0%" stopColor="#5f8a7a" stopOpacity={0.4} />
+                    <stop offset="100%" stopColor="#5f8a7a" stopOpacity={0.05} />
                   </linearGradient>
                 </defs>
                 <CartesianGrid vertical={false} stroke="#d6d3d1" strokeDasharray="4 4" opacity={0.35} />
@@ -391,8 +391,8 @@ export default function LearningAnalytics() {
                   }}
                   labelFormatter={(label) => `Tuần bắt đầu ${label}`}
                 />
-                <Area type="monotone" dataKey="lessonsCompleted" stroke="#059669" strokeWidth={3} fill="url(#weeklyLessons)" />
-                <Area type="monotone" dataKey="minutesSpent" stroke="#111827" strokeWidth={2} fillOpacity={0} />
+                <Area type="monotone" dataKey="lessonsCompleted" stroke="#4f7a6b" strokeWidth={3} fill="url(#weeklyLessons)" />
+                <Area type="monotone" dataKey="minutesSpent" stroke="#57534e" strokeWidth={2} fillOpacity={0} />
               </AreaChart>
             </ResponsiveContainer>
           </div>
@@ -448,7 +448,7 @@ export default function LearningAnalytics() {
                     {studyHourData.map((entry) => (
                       <Cell
                         key={entry.hour}
-                        fill={entry.hour === analytics.bestStudyHour ? "#10b981" : "#111827"}
+                        fill={entry.hour === analytics.bestStudyHour ? "#5f8a7a" : "#57534e"}
                         fillOpacity={entry.hour === analytics.bestStudyHour ? 1 : 0.72}
                       />
                     ))}
@@ -684,7 +684,7 @@ export default function LearningAnalytics() {
           <div className="space-y-3">
             <div className="rounded-2xl border border-stone-200 dark:border-stone-800 bg-stone-50 dark:bg-stone-800/50 p-4">
               <div className="flex items-start gap-3">
-                <CheckCircle2 className="mt-0.5 h-5 w-5 text-emerald-600 dark:text-emerald-400" />
+                <CheckCircle2 className="mt-0.5 h-5 w-5 text-teal-700 dark:text-teal-300" />
                 <div>
                   <p className="font-bold text-stone-900 dark:text-stone-100">Đóng các bài đang dang dở</p>
                   <p className="mt-1 text-sm text-stone-500 dark:text-stone-400">
@@ -695,7 +695,7 @@ export default function LearningAnalytics() {
             </div>
             <div className="rounded-2xl border border-stone-200 dark:border-stone-800 bg-stone-50 dark:bg-stone-800/50 p-4">
               <div className="flex items-start gap-3">
-                <BarChart3 className="mt-0.5 h-5 w-5 text-sky-600 dark:text-sky-400" />
+                <BarChart3 className="mt-0.5 h-5 w-5 text-stone-700 dark:text-stone-300" />
                 <div>
                   <p className="font-bold text-stone-900 dark:text-stone-100">Cố định một khung giờ học</p>
                   <p className="mt-1 text-sm text-stone-500 dark:text-stone-400">
@@ -706,7 +706,7 @@ export default function LearningAnalytics() {
             </div>
             <div className="rounded-2xl border border-stone-200 dark:border-stone-800 bg-stone-50 dark:bg-stone-800/50 p-4">
               <div className="flex items-start gap-3">
-                <NotebookPen className="mt-0.5 h-5 w-5 text-indigo-600 dark:text-indigo-400" />
+                <NotebookPen className="mt-0.5 h-5 w-5 text-slate-700 dark:text-slate-300" />
                 <div>
                   <p className="font-bold text-stone-900 dark:text-stone-100">Biến ghi chú thành lợi thế ôn tập</p>
                   <p className="mt-1 text-sm text-stone-500 dark:text-stone-400">
