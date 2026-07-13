@@ -674,14 +674,9 @@ export default function DashboardClient({ lessonsMeta }: { lessonsMeta: LessonMe
         <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-3 gap-6">
           {/* Left: Lessons (2 columns on desktop) */}
           <div className="lg:col-span-2">
-          <div className="mb-4 rounded-xl border border-stone-200 dark:border-stone-800 bg-white dark:bg-stone-900 px-4 py-3 text-xs text-stone-600 dark:text-stone-400 leading-relaxed">
-            Lưu ý: bài chuyển <span className="font-semibold text-emerald-600 dark:text-emerald-400">xanh lá</span> và được cộng XP khi bạn làm xong hết quiz của bài (bài không có quiz thì đọc hết là tính). Nếu bạn chỉ bấm &quot;Tự đánh dấu&quot; vì tự biết mình đã học rồi, bài sẽ chuyển <span className="font-semibold text-sky-600 dark:text-sky-400">xanh dương</span> để ghi nhớ tiến độ, nhưng sẽ không được cộng XP.
-          </div>
           <div className="mb-4 flex flex-wrap items-center justify-between gap-3">
             <div className="text-sm text-stone-500 dark:text-stone-400">
-              {flagSelectionMode
-                ? `${selectedFlagLessonIds.size} bài đang được chọn để tự đánh dấu`
-                : "Bạn có thể tự đánh dấu các bài đã học mà không cộng kinh nghiệm."}
+              {flagSelectionMode ? `${selectedFlagLessonIds.size} bài đang được chọn để tự đánh dấu` : ""}
             </div>
             <div className="flex items-center gap-2">
               {flagSelectionMode && (
@@ -701,19 +696,31 @@ export default function DashboardClient({ lessonsMeta }: { lessonsMeta: LessonMe
                   </button>
                 </>
               )}
-              <button
-                onClick={() => {
-                  if (flagSelectionMode) clearFlagSelection();
-                  else setFlagSelectionMode(true);
-                }}
-                className={`px-3 py-2 text-sm font-bold rounded-lg border transition-colors ${
-                  flagSelectionMode
-                    ? "border-sky-300 dark:border-sky-800 bg-sky-50 dark:bg-sky-950/40 text-sky-700 dark:text-sky-300"
-                    : "border-stone-200 dark:border-stone-800 text-stone-600 dark:text-stone-400 hover:bg-stone-50 dark:hover:bg-stone-900"
-                }`}
-              >
-                Đánh dấu đã học
-              </button>
+              <div className="relative group">
+                <button
+                  onClick={() => {
+                    if (flagSelectionMode) clearFlagSelection();
+                    else setFlagSelectionMode(true);
+                  }}
+                  className={`px-3 py-2 text-sm font-bold rounded-lg border transition-colors ${
+                    flagSelectionMode
+                      ? "border-sky-300 dark:border-sky-800 bg-sky-50 dark:bg-sky-950/40 text-sky-700 dark:text-sky-300"
+                      : "border-stone-200 dark:border-stone-800 text-stone-600 dark:text-stone-400 hover:bg-stone-50 dark:hover:bg-stone-900"
+                  }`}
+                >
+                  Đánh dấu đã học
+                </button>
+                <div className="pointer-events-none absolute right-0 top-full z-20 mt-2 w-80 max-w-[90vw] rounded-xl border border-stone-200 dark:border-stone-800 bg-white dark:bg-stone-900 px-4 py-3 text-sm text-stone-700 dark:text-stone-300 leading-relaxed shadow-xl opacity-0 scale-95 origin-top-right transition-all duration-150 group-hover:opacity-100 group-hover:scale-100 space-y-2">
+                  <p>
+                    Làm xong hết quiz của bài (bài không có quiz thì đọc hết là tính) → bài chuyển{" "}
+                    <span className="font-semibold text-emerald-600 dark:text-emerald-400">xanh lá</span> và được cộng XP.
+                  </p>
+                  <p>
+                    Chỉ bấm &quot;Tự đánh dấu&quot; vì tự biết mình đã học rồi → bài chuyển{" "}
+                    <span className="font-semibold text-sky-600 dark:text-sky-400">xanh dương</span> để ghi nhớ tiến độ, nhưng không được cộng XP.
+                  </p>
+                </div>
+              </div>
             </div>
           </div>
           {/* Track selector - Compact */}
