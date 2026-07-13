@@ -8894,6 +8894,9 @@ interactiveType: "inflation-calculator",
 { id: 1037, slug: "bien-so-r-twr-mwrr", title: "Biến số r: TWR vs MWRR trong thẩm định & đầu tư", subtitle: "IRR, Discount Rate, YTM đều là r - và vì sao hiệu suất Quỹ cần nhìn qua cả hai lăng kính TWR và MWRR", duration: "8 phút", difficulty: "Khó", emoji: "📐", openingQuestion: "", openingOptions: [], correctOption: 0, explanation: "", diagram: [], interactiveType: "roe", realWorldExample: { company: "", description: "" }, quiz: [], keyTakeaways: [],
     track: "bonus",
   },
+{ id: 1038, slug: "danh-gia-du-an-npv-irr", title: "Đánh giá dự án đầu tư nội bộ: NPV, IRR và Payback", subtitle: "Dự án 80 triệu USD - bao lâu hòa vốn, và có đáng đầu tư không?", duration: "7 phút", difficulty: "Trung bình", emoji: "📊", openingQuestion: "", openingOptions: [], correctOption: 0, explanation: "", diagram: [], interactiveType: "profit-calc", realWorldExample: { company: "", description: "" }, quiz: [], keyTakeaways: [],
+    track: "bonus",
+  },
 
   // ─── CHẶNG 0 (Track cá nhân): Biết mình trước khi học ───
   // Days 263-268 - track-stages.ts đã định nghĩa range này từ trước;
