@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import {
@@ -63,17 +63,34 @@ export default function HomePage() {
   const [displayedUserCount, setDisplayedUserCount] = useState(0);
   const [displayedLessonCount, setDisplayedLessonCount] = useState(0);
   const [previewTrack, setPreviewTrack] = useState<TrackId>("personal");
+  const userCountLoadedRef = useRef(false);
 
   useEffect(() => {
     const cancelledRef = { current: false };
-    getTotalUserCount()
-      .then((count) => {
+    const loadUserCount = async () => {
+      try {
+        const count = await getTotalUserCount();
         if (cancelledRef.current || !count) return;
-        animateCountTo(Math.max(count, 1000), setDisplayedUserCount, cancelledRef);
-      })
-      .catch((error) => console.error("Error loading total user count:", error));
+        const safeCount = Math.max(count, 1000);
+        if (!userCountLoadedRef.current) {
+          userCountLoadedRef.current = true;
+          animateCountTo(safeCount, setDisplayedUserCount, cancelledRef);
+        } else {
+          setDisplayedUserCount(safeCount);
+        }
+      } catch (error) {
+        console.error("Error loading total user count:", error);
+      }
+    };
+
+    void loadUserCount();
+    const intervalId = window.setInterval(() => {
+      void loadUserCount();
+    }, 30000);
+
     return () => {
       cancelledRef.current = true;
+      window.clearInterval(intervalId);
     };
   }, []);
 
@@ -199,15 +216,24 @@ export default function HomePage() {
               initial={{ opacity: 0, y: 14 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.45, ease: "easeOut", delay: 0.24 }}
-              className="mb-6 flex flex-wrap items-stretch gap-3 sm:gap-0 sm:divide-x divide-stone-200 dark:divide-stone-800 rounded-2xl border border-stone-200 dark:border-stone-800 bg-stone-50/60 dark:bg-stone-900/40 px-5 py-3.5 w-fit"
+              className="mb-6 rounded-2xl border border-stone-200 dark:border-stone-800 bg-stone-50/60 dark:bg-stone-900/40 px-5 py-3.5 w-fit"
             >
-              <div className="pr-6">
-                <LiveNumber value={displayedUserCount} className="text-2xl" />
-                <p className="text-[11px] font-semibold text-stone-500 dark:text-stone-400 mt-0.5">người học</p>
+              <div className="mb-3 inline-flex items-center gap-2 rounded-full border border-emerald-200/80 bg-white/80 px-2.5 py-1 text-[10px] font-bold uppercase tracking-[0.18em] text-emerald-700 dark:border-emerald-900/50 dark:bg-stone-900/60 dark:text-emerald-300">
+                <span className="relative flex w-1.5 h-1.5">
+                  <span className="animate-ping absolute inline-flex w-full h-full rounded-full bg-emerald-400 opacity-75" />
+                  <span className="relative inline-flex rounded-full w-1.5 h-1.5 bg-emerald-500" />
+                </span>
+                Live cập nhật trực tiếp
               </div>
-              <div className="pl-6">
-                <LiveNumber value={displayedLessonCount} className="text-2xl" />
-                <p className="text-[11px] font-semibold text-stone-500 dark:text-stone-400 mt-0.5">bài học</p>
+              <div className="flex items-stretch divide-x divide-stone-200 dark:divide-stone-800">
+                <div className="pr-6">
+                  <LiveNumber value={displayedUserCount} className="text-2xl" />
+                  <p className="text-[11px] font-semibold text-stone-500 dark:text-stone-400 mt-0.5">người học</p>
+                </div>
+                <div className="pl-6">
+                  <LiveNumber value={displayedLessonCount} className="text-2xl" />
+                  <p className="text-[11px] font-semibold text-stone-500 dark:text-stone-400 mt-0.5">bài học</p>
+                </div>
               </div>
             </motion.div>
 
