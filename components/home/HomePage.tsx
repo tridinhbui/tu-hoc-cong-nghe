@@ -113,7 +113,7 @@ export default function HomePage() {
       <div className="border-b border-emerald-100 bg-emerald-50/85 dark:border-emerald-900/40 dark:bg-emerald-950/20">
         <div className="max-w-6xl mx-auto px-6 py-2.5 flex flex-col gap-2 text-center sm:flex-row sm:items-center sm:justify-between sm:text-left">
           <p className="text-sm font-semibold text-stone-700 dark:text-stone-200">
-            Duy trì miễn phí vĩnh viễn cho cộng đồng Tự Học Tài Chính, không khóa bài học và không mở paywall sau.
+            Duy trì miễn phí vĩnh viễn cho cộng đồng học tài chính cá nhân, CFA, financial planner, investor và người làm tài chính chuyên nghiệp.
           </p>
           <a
             href="https://www.facebook.com/share/g/1C2jTdsgF5/"
@@ -162,9 +162,9 @@ export default function HomePage() {
             >
               <span className="relative flex w-1.5 h-1.5">
                 <span className="animate-ping absolute inline-flex w-full h-full rounded-full bg-emerald-400 opacity-75" />
-                <span className="relative inline-flex rounded-full w-1.5 h-1.5 bg-emerald-500" />
+              <span className="relative inline-flex rounded-full w-1.5 h-1.5 bg-emerald-500" />
               </span>
-              Cộng đồng hỗ trợ · Miễn phí vĩnh viễn
+              Cộng đồng hỗ trợ · Miễn phí vĩnh viễn · Cho mọi lộ trình tài chính
             </motion.div>
 
             <motion.h1
@@ -186,8 +186,9 @@ export default function HomePage() {
               transition={{ duration: 0.45, ease: "easeOut", delay: 0.12 }}
               className="text-lg text-stone-600 dark:text-stone-400 leading-relaxed mb-7 max-w-xl"
             >
-              300+ bài học miễn phí từ vỡ lòng đến phân tích doanh nghiệp, ứng dụng Spaced
-              Repetition để bạn nhớ lâu thay vì học vẹt rồi quên.
+              300+ bài học miễn phí cho người học tài chính cá nhân, CFA, financial planner, investor
+              và cả người mới vào nghề kế toán hoặc tài chính chuyên nghiệp. Học theo Spaced
+              Repetition để nhớ lâu thay vì học vẹt rồi quên.
             </motion.p>
 
             <motion.div
@@ -247,10 +248,11 @@ export default function HomePage() {
                 <Heart className="w-5 h-5 text-rose-500 flex-shrink-0 mt-0.5" />
                 <div>
                   <p className="text-sm font-bold text-stone-900 dark:text-stone-100">
-                    Duy trì miễn phí vĩnh viễn cho cộng đồng
+                    Duy trì miễn phí vĩnh viễn cho cộng đồng tài chính
                   </p>
                   <p className="mt-1 text-sm text-stone-600 dark:text-stone-400 leading-relaxed">
-                    Toàn bộ bài học được giữ free lâu dài để cộng đồng cùng học. Không paywall, không khóa bài sau khi đăng ký.
+                    Từ tài chính cá nhân đến CFA, planning, đầu tư, và nền tảng nghề nghiệp cho kế toán
+                    hoặc nhân sự tài chính mới vào nghề.
                   </p>
                   <a
                     href="https://www.facebook.com/share/g/1C2jTdsgF5/"
@@ -301,6 +303,61 @@ export default function HomePage() {
         </div>
       </section>
 
+      {/* ── WHO IT IS FOR ── */}
+      <section className="max-w-6xl mx-auto px-6 py-16 lg:py-20">
+        <ScrollReveal className="max-w-2xl mb-10">
+          <p className="text-xs font-extrabold text-emerald-600 dark:text-emerald-400 uppercase tracking-widest mb-2">
+            Đối tượng phù hợp
+          </p>
+          <h2 className="text-3xl lg:text-4xl font-bold text-stone-900 dark:text-stone-100">
+            Nền tảng này dành cho ai?
+          </h2>
+          <p className="mt-3 text-stone-600 dark:text-stone-400 leading-relaxed">
+            Mục tiêu của chúng tôi là đem kiến thức tài chính đến với nhiều nhóm người học khác nhau,
+            từ tự học cá nhân đến lộ trình nghề nghiệp chuyên sâu.
+          </p>
+        </ScrollReveal>
+
+        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          {[
+            {
+              title: "Tài chính cá nhân",
+              text: "Người muốn hiểu tiền, tiết kiệm, đầu tư, nợ, ngân sách và cách ra quyết định tài chính hằng ngày.",
+            },
+            {
+              title: "Người học CFA",
+              text: "Ai cần nền tảng kiến thức chắc hơn để học CFA, luyện tư duy phân tích và tăng độ bền kiến thức.",
+            },
+            {
+              title: "Financial planner",
+              text: "Người làm tư vấn hoặc lập kế hoạch tài chính cần hệ thống hóa kiến thức để tư vấn tự tin hơn.",
+            },
+            {
+              title: "Investor",
+              text: "Nhà đầu tư cá nhân muốn hiểu doanh nghiệp, định giá, dòng tiền và chất lượng tài sản sâu hơn.",
+            },
+            {
+              title: "Kế toán mới vào nghề",
+              text: "Người mới đi làm cần củng cố nền tảng để đọc số liệu, hiểu báo cáo và giao tiếp tài chính tốt hơn.",
+            },
+            {
+              title: "Tài chính chuyên nghiệp mới vào nghề",
+              text: "Nhân sự finance/FP&A/analysis mới vào nghề cần một hệ thống học nhanh, rõ và bền hơn.",
+            },
+          ].map((item) => (
+            <ScrollReveal key={item.title}>
+              <div className="h-full rounded-2xl border border-stone-200 dark:border-stone-800 bg-white dark:bg-stone-900 p-5">
+                <div className="inline-flex items-center gap-2 rounded-full border border-emerald-200/70 bg-emerald-50/70 dark:border-emerald-900/40 dark:bg-emerald-950/20 px-3 py-1 text-[11px] font-bold uppercase tracking-[0.18em] text-emerald-700 dark:text-emerald-300">
+                  Phù hợp
+                </div>
+                <h3 className="mt-4 text-lg font-bold text-stone-900 dark:text-stone-100">{item.title}</h3>
+                <p className="mt-2 text-sm leading-relaxed text-stone-600 dark:text-stone-400">{item.text}</p>
+              </div>
+            </ScrollReveal>
+          ))}
+        </div>
+      </section>
+
       {/* ── SOCIAL PROOF ── */}
       <section className="bg-stone-50 dark:bg-stone-900/40 py-16 lg:py-20">
         <div className="max-w-6xl mx-auto px-6 grid lg:grid-cols-2 gap-8 items-start">
@@ -309,7 +366,7 @@ export default function HomePage() {
               Cộng đồng thật
             </p>
             <h2 className="text-3xl font-bold text-stone-900 dark:text-stone-100 mb-4">
-              Học viên nổi bật đang học mỗi ngày
+              Học viên nổi bật đang học mỗi ngày, từ tài chính cá nhân đến CFA và nghề nghiệp tài chính
             </h2>
             <PublicLeaderboardPreview />
           </ScrollReveal>
@@ -320,7 +377,8 @@ export default function HomePage() {
               <p className="text-sm text-stone-600 dark:text-stone-400 leading-relaxed">
                 Cam kết toàn bộ bài học tại đây{" "}
                 <strong className="text-stone-800 dark:text-stone-200">miễn phí mãi mãi</strong> vì sự
-                phát triển của cộng đồng Tự Học Tài Chính.{" "}
+                phát triển của cộng đồng học tài chính cá nhân, CFA, financial planner, investor và
+                người làm tài chính chuyên nghiệp.{" "}
                 <a
                   href="https://www.facebook.com/share/g/1C2jTdsgF5/"
                   target="_blank"
