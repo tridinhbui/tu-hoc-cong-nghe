@@ -230,6 +230,60 @@ export default function HomePage() {
         </div>
       </section>
 
+      {/* ── SOCIAL PROOF ── */}
+      <section className="bg-stone-50 dark:bg-stone-900/40 py-16 lg:py-20">
+        <div className="max-w-6xl mx-auto px-6 grid lg:grid-cols-2 gap-8 items-start">
+          <ScrollReveal>
+            <p className="text-xs font-extrabold text-emerald-600 dark:text-emerald-400 uppercase tracking-widest mb-2">
+              Cộng đồng thật
+            </p>
+            <h2 className="text-3xl font-bold text-stone-900 dark:text-stone-100 mb-4">
+              Học viên nổi bật đang học mỗi ngày
+            </h2>
+            <PublicLeaderboardPreview />
+          </ScrollReveal>
+
+          <ScrollReveal delay={0.1}>
+            <div className="flex items-start gap-3 rounded-2xl border border-rose-100 dark:border-rose-950 bg-rose-50/60 dark:bg-rose-950/20 px-5 py-4 mb-4">
+              <Heart className="w-5 h-5 text-rose-500 flex-shrink-0 mt-0.5" />
+              <p className="text-sm text-stone-600 dark:text-stone-400 leading-relaxed">
+                Cam kết toàn bộ bài học tại đây{" "}
+                <strong className="text-stone-800 dark:text-stone-200">miễn phí mãi mãi</strong> vì sự
+                phát triển của cộng đồng Tự Học Tài Chính.{" "}
+                <a
+                  href="https://www.facebook.com/share/g/1C2jTdsgF5/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="font-bold text-rose-600 dark:text-rose-400 hover:underline"
+                >
+                  Tham gia group Facebook →
+                </a>
+              </p>
+            </div>
+            <ul className="space-y-2.5">
+              {[
+                "Không cần thẻ tín dụng, không dùng thử giới hạn ngày",
+                "Không quảng cáo xen giữa bài học",
+                "Nội dung được cập nhật và mở rộng liên tục",
+              ].map((line) => (
+                <li key={line} className="flex items-center gap-2.5 text-sm text-stone-600 dark:text-stone-400">
+                  <CheckCircle2 className="w-4 h-4 text-emerald-500 flex-shrink-0" />
+                  {line}
+                </li>
+              ))}
+            </ul>
+
+            <Link
+              href="/login?mode=signup"
+              className="mt-5 inline-flex items-center gap-2 text-sm font-bold text-emerald-700 dark:text-emerald-400 hover:text-emerald-800 dark:hover:text-emerald-300 transition-colors"
+            >
+              Vào học cùng cộng đồng
+              <ArrowRight className="w-4 h-4" />
+            </Link>
+          </ScrollReveal>
+        </div>
+      </section>
+
       {/* ── PAIN POINTS / TRUST ── */}
       <section className="max-w-6xl mx-auto px-6 py-16 lg:py-20">
         <ScrollReveal className="max-w-2xl mb-10">
@@ -323,60 +377,6 @@ export default function HomePage() {
             </Link>
           </div>
         </ScrollReveal>
-      </section>
-
-      {/* ── SOCIAL PROOF ── */}
-      <section className="bg-stone-50 dark:bg-stone-900/40 py-16 lg:py-20">
-        <div className="max-w-6xl mx-auto px-6 grid lg:grid-cols-2 gap-8 items-start">
-          <ScrollReveal>
-            <p className="text-xs font-extrabold text-emerald-600 dark:text-emerald-400 uppercase tracking-widest mb-2">
-              Cộng đồng thật
-            </p>
-            <h2 className="text-3xl font-bold text-stone-900 dark:text-stone-100 mb-4">
-              Học viên nổi bật đang học mỗi ngày
-            </h2>
-            <PublicLeaderboardPreview />
-          </ScrollReveal>
-
-          <ScrollReveal delay={0.1}>
-            <div className="flex items-start gap-3 rounded-2xl border border-rose-100 dark:border-rose-950 bg-rose-50/60 dark:bg-rose-950/20 px-5 py-4 mb-4">
-              <Heart className="w-5 h-5 text-rose-500 flex-shrink-0 mt-0.5" />
-              <p className="text-sm text-stone-600 dark:text-stone-400 leading-relaxed">
-                Cam kết toàn bộ bài học tại đây{" "}
-                <strong className="text-stone-800 dark:text-stone-200">miễn phí mãi mãi</strong> vì sự
-                phát triển của cộng đồng Tự Học Tài Chính.{" "}
-                <a
-                  href="https://www.facebook.com/share/g/1C2jTdsgF5/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="font-bold text-rose-600 dark:text-rose-400 hover:underline"
-                >
-                  Tham gia group Facebook →
-                </a>
-              </p>
-            </div>
-            <ul className="space-y-2.5">
-              {[
-                "Không cần thẻ tín dụng, không dùng thử giới hạn ngày",
-                "Không quảng cáo xen giữa bài học",
-                "Nội dung được cập nhật và mở rộng liên tục",
-              ].map((line) => (
-                <li key={line} className="flex items-center gap-2.5 text-sm text-stone-600 dark:text-stone-400">
-                  <CheckCircle2 className="w-4 h-4 text-emerald-500 flex-shrink-0" />
-                  {line}
-                </li>
-              ))}
-            </ul>
-
-            <Link
-              href="/login?mode=signup"
-              className="mt-5 inline-flex items-center gap-2 text-sm font-bold text-emerald-700 dark:text-emerald-400 hover:text-emerald-800 dark:hover:text-emerald-300 transition-colors"
-            >
-              Vào học cùng cộng đồng
-              <ArrowRight className="w-4 h-4" />
-            </Link>
-          </ScrollReveal>
-        </div>
       </section>
 
       {/* ── FINAL CTA ── */}
