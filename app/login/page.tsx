@@ -45,31 +45,53 @@ export default function LoginPage() {
   const [previewTrack, setPreviewTrack] = useState<TrackId>("personal");
   const [resetSent, setResetSent] = useState(false);
 
-  // Real registered-user count, counted up from 0 on every mount (page
-  // load/reload) instead of a static "1000+" - falls back to the static
-  // 1000 floor if the count RPC isn't available or resolves lower, so the
-  // headline never looks worse than the old hardcoded copy.
+  // Counts a displayed number up from 0 to `target` with an ease-out curve.
+  // Shared by the user-count and lesson-count headline numbers so both
+  // animate identically on every mount (page load/reload).
+  function animateCountTo(target: number, setValue: (n: number) => void, cancelledRef: { current: boolean }) {
+    const durationMs = 700;
+    const start = performance.now();
+    const tick = (now: number) => {
+      if (cancelledRef.current) return;
+      const progress = Math.min(1, (now - start) / durationMs);
+      const eased = 1 - Math.pow(1 - progress, 3); // ease-out cubic
+      setValue(Math.round(target * eased));
+      if (progress < 1) requestAnimationFrame(tick);
+    };
+    requestAnimationFrame(tick);
+  }
+
+  // Real registered-user count instead of a static "1000+" - falls back to
+  // the static 1000 floor if the count RPC isn't available or resolves
+  // lower, so the headline never looks worse than the old hardcoded copy.
   const [displayedUserCount, setDisplayedUserCount] = useState(0);
   useEffect(() => {
-    let cancelled = false;
+    const cancelledRef = { current: false };
     getTotalUserCount()
       .then((count) => {
-        if (cancelled || !count) return;
-        const target = Math.max(count, 1000);
-        const durationMs = 700;
-        const start = performance.now();
-        const tick = (now: number) => {
-          if (cancelled) return;
-          const progress = Math.min(1, (now - start) / durationMs);
-          const eased = 1 - Math.pow(1 - progress, 3); // ease-out cubic
-          setDisplayedUserCount(Math.round(target * eased));
-          if (progress < 1) requestAnimationFrame(tick);
-        };
-        requestAnimationFrame(tick);
+        if (cancelledRef.current || !count) return;
+        animateCountTo(Math.max(count, 1000), setDisplayedUserCount, cancelledRef);
       })
       .catch((error) => console.error("Error loading total user count:", error));
     return () => {
-      cancelled = true;
+      cancelledRef.current = true;
+    };
+  }, []);
+
+  // Real lesson count instead of a static "300+" - same fallback-floor
+  // reasoning as the user count above.
+  const [displayedLessonCount, setDisplayedLessonCount] = useState(0);
+  useEffect(() => {
+    const cancelledRef = { current: false };
+    fetch("/api/lesson-count")
+      .then((res) => (res.ok ? res.json() : null))
+      .then((data: { count?: number } | null) => {
+        if (cancelledRef.current || !data?.count) return;
+        animateCountTo(Math.max(data.count, 300), setDisplayedLessonCount, cancelledRef);
+      })
+      .catch((error) => console.error("Error loading lesson count:", error));
+    return () => {
+      cancelledRef.current = true;
     };
   }, []);
   const [cooldownUntil, setCooldownUntil] = useState<number | null>(null);
@@ -271,7 +293,7 @@ export default function LoginPage() {
               Hiểu tiền bạc,<br />quản lý tài sản
             </h1>
             <p className="text-base xl:text-lg text-stone-600 dark:text-stone-400 leading-relaxed max-w-lg">
-              Hơn <span className="font-bold text-stone-900 dark:text-stone-100 tabular-nums">{displayedUserCount.toLocaleString("vi-VN")}+</span> người học đã tham gia. 300+ bài học miễn phí từ vỡ lòng đến phân tích doanh nghiệp, chia theo lộ trình và tổng giờ học rõ ràng để bạn chọn đúng tốc độ.
+              Hơn <span className="font-bold text-stone-900 dark:text-stone-100 tabular-nums">{displayedUserCount.toLocaleString("vi-VN")}+</span> người học đã tham gia. <span className="font-bold text-stone-900 dark:text-stone-100 tabular-nums">{displayedLessonCount.toLocaleString("vi-VN")}+</span> bài học miễn phí từ vỡ lòng đến phân tích doanh nghiệp, chia theo lộ trình và tổng giờ học rõ ràng để bạn chọn đúng tốc độ.
             </p>
 
             {/* Trust highlights - gives a cold visitor a reason to stay before hitting the auth form */}
