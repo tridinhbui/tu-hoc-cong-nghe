@@ -11,6 +11,9 @@ import BookmarkButton from "@/components/BookmarkButton";
 import ManualLessonFlagButton from "@/components/ManualLessonFlagButton";
 import LessonStatsHover from "@/components/LessonStatsHover";
 import LessonNotes from "@/components/LessonNotes";
+import TextHighlightMenu from "@/components/TextHighlightMenu";
+import LessonHighlightsList from "@/components/LessonHighlightsList";
+import { getLessonHighlights, type LessonHighlight } from "@/lib/lesson-highlights";
 import { createClient } from "@/lib/supabase";
 import { markLessonComplete as markLessonCompleteSupabase } from "@/lib/supabase-progress";
 import { getLessonProgress } from "@/lib/supabase-progress";
@@ -123,6 +126,7 @@ export default function LessonPageLayout({ lesson, quiz, children }: Props) {
   const [readPct, setReadPct]     = useState(0);
   const [userId, setUserId]       = useState<string | null>(null);
   const [recallItems, setRecallItems] = useState<RecallItem[]>([]);
+  const [highlights, setHighlights] = useState<LessonHighlight[]>([]);
   const [fontScale, setFontScale] = useState(() => (typeof window === "undefined" ? 1.125 : loadFontScale()));
   const articleRef = useRef<HTMLElement>(null);
   const maxReachedRef = useRef(0);
@@ -155,6 +159,10 @@ export default function LessonPageLayout({ lesson, quiz, children }: Props) {
     supabase.auth.getUser().then(async ({ data: { user } }) => {
       if (!user) return;
       setUserId(user.id);
+
+      getLessonHighlights(user.id, persistedLessonId)
+        .then(setHighlights)
+        .catch((error) => console.error("Error loading highlights:", error));
 
       const existing = await getReadingProgress(user.id, persistedLessonId);
       if (existing) {
@@ -505,6 +513,13 @@ export default function LessonPageLayout({ lesson, quiz, children }: Props) {
         <div className="flex flex-col lg:flex-row gap-8 lg:gap-12 items-start">
 
           {/* ── LEFT: Article ─────────────────────────────────────── */}
+          <TextHighlightMenu
+            containerRef={articleRef}
+            lessonId={persistedLessonId}
+            lessonSlug={lesson.slug || ""}
+            onCreated={(h) => setHighlights((prev) => [...prev, h])}
+          />
+
           <article ref={articleRef} className="flex-1 min-w-0 space-y-8 pb-20 lg:pb-0">
             {/* Hero */}
             <div className={`rounded-2xl ${c.bg} border-2 ${c.border} p-8 sm:p-10`}>
@@ -592,6 +607,12 @@ export default function LessonPageLayout({ lesson, quiz, children }: Props) {
           <aside data-tour="lesson-quiz" className="w-full lg:w-[440px] flex-shrink-0 lg:sticky lg:top-24 lg:max-h-[calc(100vh-7rem)] lg:overflow-y-auto space-y-4">
             {/* Lesson Notes */}
             <LessonNotes lessonId={persistedLessonId} lessonSlug={lesson.slug || ""} />
+
+            {/* Saved text highlights / AI-content flags for this lesson */}
+            <LessonHighlightsList
+              highlights={highlights}
+              onDeleted={(id) => setHighlights((prev) => prev.filter((h) => h.id !== id))}
+            />
             
             {/* Quiz progress */}
             <div className="bg-white dark:bg-stone-900 rounded-2xl border-2 border-stone-300 dark:border-stone-700 p-6">
