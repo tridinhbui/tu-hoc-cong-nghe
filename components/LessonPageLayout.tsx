@@ -126,7 +126,6 @@ export default function LessonPageLayout({ lesson, quiz, children }: Props) {
   const [activeQ, setActiveQ]     = useState(0);
   const [reviewMode, setReviewMode] = useState(false);
   const [readPct, setReadPct]     = useState(0);
-  const [forceUpdate, setForceUpdate] = useState(0);
   const [userId, setUserId]       = useState<string | null>(null);
   const [recallItems, setRecallItems] = useState<RecallItem[]>([]);
   const [highlights, setHighlights] = useState<LessonHighlight[]>([]);
@@ -247,8 +246,6 @@ export default function LessonPageLayout({ lesson, quiz, children }: Props) {
       if (isAtBottom) {
         setReadPct(100);
         maxReachedRef.current = 100;
-        // Force re-render to update checklist immediately
-        setForceUpdate(prev => prev + 1);
       } else {
         setReadPct(pct);
         if (pct > maxReachedRef.current) {
@@ -287,9 +284,8 @@ export default function LessonPageLayout({ lesson, quiz, children }: Props) {
   useEffect(() => {
     if (maxReachedRef.current >= 100 && readPct < 100) {
       setReadPct(100);
-      setForceUpdate(prev => prev + 1);
     }
-  }, [readPct, forceUpdate]);
+  }, [readPct]);
 
   const handleMilestone = async (milestone: number) => {
     if (!userId || savedMilestonesRef.current.has(milestone)) return;
@@ -299,7 +295,6 @@ export default function LessonPageLayout({ lesson, quiz, children }: Props) {
     if (milestone === 100) {
       setReadPct(100);
       maxReachedRef.current = 100;
-      setForceUpdate(prev => prev + 1);
       tryFireCompletion();
     }
   };
@@ -612,11 +607,6 @@ export default function LessonPageLayout({ lesson, quiz, children }: Props) {
                 {(() => {
                   const scrolledFully = readPct >= 99;
                   const sidebarQuizDone = quiz.length > 0 && submittedCount === quiz.length;
-
-                  // Debug logging
-                  if (process.env.NODE_ENV === 'development') {
-                    console.log('Checklist debug:', { readPct, scrolledFully, maxReached: maxReachedRef.current });
-                  }
                   const checklistItems: { label: string; done: boolean }[] = [
                     { label: "Đọc hết 100% nội dung bài", done: scrolledFully },
                   ];
