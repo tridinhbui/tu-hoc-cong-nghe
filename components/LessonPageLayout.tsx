@@ -126,6 +126,7 @@ export default function LessonPageLayout({ lesson, quiz, children }: Props) {
   const [activeQ, setActiveQ]     = useState(0);
   const [reviewMode, setReviewMode] = useState(false);
   const [readPct, setReadPct]     = useState(0);
+  const [forceUpdate, setForceUpdate] = useState(0);
   const [userId, setUserId]       = useState<string | null>(null);
   const [recallItems, setRecallItems] = useState<RecallItem[]>([]);
   const [highlights, setHighlights] = useState<LessonHighlight[]>([]);
@@ -240,12 +241,14 @@ export default function LessonPageLayout({ lesson, quiz, children }: Props) {
       const totalScroll = docH - winH;
       const pct = totalScroll > 0 ? Math.min(100, Math.max(0, Math.round((scrollTop / totalScroll) * 100))) : 100;
 
-      // Check if scrolled to bottom (with small buffer for rounding)
-      const isAtBottom = scrollTop + winH >= docH - 5;
+      // Check if scrolled to bottom (with larger buffer for better detection)
+      const isAtBottom = scrollTop + winH >= docH - 10;
 
       if (isAtBottom) {
         setReadPct(100);
         maxReachedRef.current = 100;
+        // Force re-render to update checklist immediately
+        setForceUpdate(prev => prev + 1);
       } else {
         setReadPct(pct);
         if (pct > maxReachedRef.current) {
@@ -591,7 +594,7 @@ export default function LessonPageLayout({ lesson, quiz, children }: Props) {
                   </p>
                 )}
                 {(() => {
-                  const scrolledFully = readPct >= 100;
+                  const scrolledFully = readPct >= 99;
                   const sidebarQuizDone = quiz.length > 0 && submittedCount === quiz.length;
                   const checklistItems: { label: string; done: boolean }[] = [
                     { label: "Cuộn hết 100% nội dung bài", done: scrolledFully },
