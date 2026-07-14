@@ -236,21 +236,26 @@ export default function LessonPageLayout({ lesson, quiz, children }: Props) {
       // non-zero floor.
       const winH = window.innerHeight;
       const docH = document.documentElement.scrollHeight;
+      const scrollTop = window.scrollY || document.documentElement.scrollTop;
       const totalScroll = docH - winH;
-      const pct = totalScroll > 0 ? Math.min(100, Math.max(0, Math.round((window.scrollY / totalScroll) * 100))) : 100;
-      setReadPct(pct);
+      const pct = totalScroll > 0 ? Math.min(100, Math.max(0, Math.round((scrollTop / totalScroll) * 100))) : 100;
 
-      // Force 100% when scrolled to the very bottom to handle rounding issues
-      if (window.scrollY + winH >= docH - 1) {
+      // Check if scrolled to bottom (with small buffer for rounding)
+      const isAtBottom = scrollTop + winH >= docH - 5;
+
+      if (isAtBottom) {
         setReadPct(100);
         maxReachedRef.current = 100;
+      } else {
+        setReadPct(pct);
+        if (pct > maxReachedRef.current) {
+          maxReachedRef.current = pct;
+        }
+      }
+
+      // Try to complete when reaching bottom or 100%
+      if (maxReachedRef.current >= 100) {
         tryFireCompletion();
-      } else if (pct > maxReachedRef.current) {
-        maxReachedRef.current = pct;
-        // Covers the case where the quiz finished before the article was
-        // fully scrolled (tryFireCompletion no-op'd back in verify()) -
-        // once scrolling catches up to 100%, complete it now.
-        if (maxReachedRef.current >= 100) tryFireCompletion();
       }
 
       if (saveTimer) clearTimeout(saveTimer);
@@ -584,7 +589,7 @@ export default function LessonPageLayout({ lesson, quiz, children }: Props) {
                   </p>
                 )}
                 {(() => {
-                  const scrolledFully = readPct >= 99;
+                  const scrolledFully = readPct >= 100;
                   const sidebarQuizDone = quiz.length > 0 && submittedCount === quiz.length;
                   const checklistItems: { label: string; done: boolean }[] = [
                     { label: "Cuộn hết 100% nội dung bài", done: scrolledFully },
