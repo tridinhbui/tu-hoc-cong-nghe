@@ -131,6 +131,7 @@ export default function LessonPageLayout({ lesson, quiz, children }: Props) {
   const [highlights, setHighlights] = useState<LessonHighlight[]>([]);
   const [fontScale, setFontScale] = useState(() => (typeof window === "undefined" ? 1.125 : loadFontScale()));
   const articleRef = useRef<HTMLElement>(null);
+  const bottomSentinelRef = useRef<HTMLDivElement>(null);
   const maxReachedRef = useRef(0);
   const savedMilestonesRef = useRef<Set<number>>(new Set());
   const zeroQuizCompletedRef = useRef(false);
@@ -279,6 +280,34 @@ export default function LessonPageLayout({ lesson, quiz, children }: Props) {
       if (saveTimer) clearTimeout(saveTimer);
     };
   }, [userId, persistedLessonId]);
+
+  // Robust "reached the very end" detection via IntersectionObserver on a
+  // sentinel at the bottom of the article, instead of relying solely on the
+  // scroll handler's docH-winH percentage math above. That calculation is
+  // fragile to layout shifts that happen without a scroll event - notably
+  // the reading-size control below applies `zoom` to the whole article,
+  // which changes document.documentElement.scrollHeight the instant the
+  // font scale changes, silently moving the "100%" goalpost. An
+  // IntersectionObserver re-evaluates on any layout change, not just
+  // 'scroll' events, so it can't be fooled by that the same way.
+  useEffect(() => {
+    const el = bottomSentinelRef.current;
+    if (!el) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (!entries[0]?.isIntersecting) return;
+        if (maxReachedRef.current < 100) {
+          maxReachedRef.current = 100;
+          setReadPct(100);
+        }
+        tryFireCompletion();
+      },
+      { threshold: 0 }
+    );
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
 
   // Sync readPct with maxReachedRef to ensure checklist updates
   useEffect(() => {
@@ -684,6 +713,11 @@ export default function LessonPageLayout({ lesson, quiz, children }: Props) {
             <div className="lg:hidden mt-8 border-t border-stone-200 dark:border-stone-800 pt-6">
               <p className="text-base text-stone-500 dark:text-stone-400 text-center">Cuộn xuống để làm quiz →</p>
             </div>
+
+            {/* Bottom-of-article sentinel for IntersectionObserver-based
+                scroll completion - see the effect above. Must be the very
+                last thing in the article. */}
+            <div ref={bottomSentinelRef} className="h-px" aria-hidden="true" />
           </article>
 
           {/* ── RIGHT: Quiz sidebar ────────────────────────────────── */}
