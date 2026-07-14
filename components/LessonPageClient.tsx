@@ -263,7 +263,7 @@ export default function LessonPageClient({ lesson, nextLesson }: Props) {
       )}
 
       {/* 2.5. Midpoint Interactive Activity (custom question per lesson, at ~50% of content) */}
-      {midpointQuestion && <MidpointInteractive question={midpointQuestion} />}
+      {midpointQuestion && <MidpointInteractive question={midpointQuestion} lessonId={lesson.id} />}
 
       {/* 3. Diagram block */}
       {lesson.diagram && lesson.diagram.length > 0 && (

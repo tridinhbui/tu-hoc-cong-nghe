@@ -4,14 +4,17 @@ import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import type { QuizQuestion } from "@/lib/lesson-types";
 import { useLessonCompletion } from "@/lib/lesson-completion-context";
+import { getMidpointDone, saveMidpointDone } from "@/lib/progress";
 
 interface MidpointInteractiveProps {
   question: QuizQuestion;
+  lessonId: number;
   onComplete?: () => void;
 }
 
 export default function MidpointInteractive({
   question,
+  lessonId,
   onComplete,
 }: MidpointInteractiveProps) {
   const [selected, setSelected] = useState<number | null>(null);
@@ -20,10 +23,18 @@ export default function MidpointInteractive({
 
   // Tells the enclosing LessonPageLayout this lesson has a midpoint check,
   // so completion won't fire until it's answered too (not just the sidebar
-  // "Kiểm tra nhanh" quiz + full scroll).
+  // "Kiểm tra nhanh" quiz + full scroll). If it was already answered in a
+  // previous visit (persisted via saveMidpointDone below), report it as
+  // already done right away - this component's own selected/submitted
+  // state always starts fresh on mount with no persistence, so without
+  // this a revisit could never satisfy the completion gate without
+  // re-answering, even for someone who genuinely already did.
   useEffect(() => {
     lessonCompletion?.registerMidpoint();
-  }, [lessonCompletion]);
+    if (getMidpointDone(lessonId)) {
+      lessonCompletion?.markMidpointDone();
+    }
+  }, [lessonCompletion, lessonId]);
 
   const isCorrect = selected === question.correct;
 
@@ -94,6 +105,7 @@ export default function MidpointInteractive({
             onClick={() => {
               setSelected(null);
               setSubmitted(false);
+              saveMidpointDone(lessonId);
               lessonCompletion?.markMidpointDone();
               onComplete?.();
             }}

@@ -74,6 +74,28 @@ export function clearQuizAnswers(lessonId: number) {
   localStorage.removeItem(QUIZ_KEY_PREFIX + lessonId);
 }
 
+const MIDPOINT_KEY_PREFIX = "thtcdn_midpoint_done_";
+
+/**
+ * MidpointInteractive (the "Dừng & Kiểm tra" check embedded mid-article)
+ * only ever tracked its answered state in its own component-local
+ * useState, with no persistence anywhere - so leaving and returning to a
+ * lesson (or even a dev Fast Refresh) reset it to unanswered, which meant
+ * the completion checklist's midpoint requirement could never be satisfied
+ * on a revisit without re-answering it, even for someone who'd already
+ * done so. This is the same localStorage-persistence pattern already used
+ * for the sidebar quiz answers above.
+ */
+export function saveMidpointDone(lessonId: number) {
+  if (typeof window === "undefined") return;
+  localStorage.setItem(MIDPOINT_KEY_PREFIX + lessonId, "1");
+}
+
+export function getMidpointDone(lessonId: number): boolean {
+  if (typeof window === "undefined") return false;
+  return localStorage.getItem(MIDPOINT_KEY_PREFIX + lessonId) === "1";
+}
+
 export function markLessonComplete(lessonId: number, minutes: number) {
   const progress = getProgress();
   if (!progress.completedLessons.includes(lessonId)) {

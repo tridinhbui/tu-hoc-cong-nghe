@@ -192,6 +192,18 @@ export default function LessonPageLayout({ lesson, quiz, children }: Props) {
       // the "next lesson" completion card - and its unlock button - stays
       // hidden until the user redoes the whole quiz. Restore it so revisiting
       // a finished lesson shows it right away.
+      //
+      // Just as important: restoring the *visual* state above isn't enough
+      // on its own - tryFireCompletion() gates on quizAllSubmittedRef/
+      // midpointDoneRef, refs that only ever got set inside verify()/
+      // markMidpointDone() during THIS session. A learner who fully
+      // finished a lesson (quiz + midpoint + scroll) in a past visit, then
+      // left and came back, had those refs reset to false on the fresh
+      // mount with no way to become true again short of redoing everything
+      // - even though the lesson is already marked done in `user_progress`.
+      // That's the "did everything right, still not counted" bug: whenever
+      // Supabase says this lesson is already completed, short-circuit every
+      // gate to done immediately instead of re-deriving it from local state.
       if (quiz.length > 0) {
         // Prefer the exact per-question record saved locally (which option
         // was picked for each question) - this is what lets someone
@@ -202,10 +214,15 @@ export default function LessonPageLayout({ lesson, quiz, children }: Props) {
           setSelected(saved.selected);
           setSubmitted(saved.submitted);
           setResults(saved.results);
-        } else {
-          try {
-            const progress = await getLessonProgress(user.id, persistedLessonId);
-            if (progress?.completed) {
+          if (saved.submitted.every(Boolean)) {
+            quizAllSubmittedRef.current = true;
+            quizFinalResultsRef.current = saved.results;
+          }
+        }
+        try {
+          const progress = await getLessonProgress(user.id, persistedLessonId);
+          if (progress?.completed) {
+            if (!saved || saved.submitted.length !== quiz.length) {
               // No per-question record available (e.g. different device/browser) -
               // fall back to a guess from the aggregate score so the completion
               // card at least renders instead of forcing a redo.
@@ -213,14 +230,25 @@ export default function LessonPageLayout({ lesson, quiz, children }: Props) {
               setSubmitted(new Array(quiz.length).fill(true));
               setResults(quiz.map((_, i) => i < quizScore));
             }
-          } catch (error) {
-            console.error("Error fetching lesson progress:", error);
+            quizCompletionFiredRef.current = true;
+            quizAllSubmittedRef.current = true;
+            midpointDoneRef.current = true;
+            setMidpointDone(true);
+            maxReachedRef.current = 100;
+            setReadPct(100);
           }
+        } catch (error) {
+          console.error("Error fetching lesson progress:", error);
         }
       } else {
         try {
           const progress = await getLessonProgress(user.id, persistedLessonId);
           zeroQuizCompletedRef.current = !!progress?.completed;
+          if (progress?.completed) {
+            quizCompletionFiredRef.current = true;
+            maxReachedRef.current = 100;
+            setReadPct(100);
+          }
         } catch (error) {
           console.error("Error fetching zero-quiz lesson progress:", error);
         }
