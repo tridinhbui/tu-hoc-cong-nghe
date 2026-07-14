@@ -240,12 +240,12 @@ export default function LessonPageLayout({ lesson, quiz, children }: Props) {
       const pct = totalScroll > 0 ? Math.min(100, Math.max(0, Math.round((window.scrollY / totalScroll) * 100))) : 100;
       setReadPct(pct);
 
-      // Only fully visible while actively scrolling; fades to a faint sliver
-      // when idle so it doesn't sit there as a permanent visual distraction.
-      // Note: isScrolling state is no longer used for opacity control - ReadingProgress
-      // component handles its own brightness based on proximity to milestones.
-
-      if (pct > maxReachedRef.current) {
+      // Force 100% when scrolled to the very bottom to handle rounding issues
+      if (window.scrollY + winH >= docH - 1) {
+        setReadPct(100);
+        maxReachedRef.current = 100;
+        tryFireCompletion();
+      } else if (pct > maxReachedRef.current) {
         maxReachedRef.current = pct;
         // Covers the case where the quiz finished before the article was
         // fully scrolled (tryFireCompletion no-op'd back in verify()) -
@@ -584,7 +584,7 @@ export default function LessonPageLayout({ lesson, quiz, children }: Props) {
                   </p>
                 )}
                 {(() => {
-                  const scrolledFully = readPct >= 100;
+                  const scrolledFully = readPct >= 99;
                   const sidebarQuizDone = quiz.length > 0 && submittedCount === quiz.length;
                   const checklistItems: { label: string; done: boolean }[] = [
                     { label: "Cuộn hết 100% nội dung bài", done: scrolledFully },
