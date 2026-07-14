@@ -128,6 +128,13 @@ export default function LessonPageLayout({ lesson, quiz, children }: Props) {
   const maxReachedRef = useRef(0);
   const savedMilestonesRef = useRef<Set<number>>(new Set());
   const zeroQuizCompletedRef = useRef(false);
+  // A lesson only counts as done once BOTH the quiz is fully answered AND
+  // the article has been scrolled to the very end - finishing the quiz
+  // early (it's not necessarily the last thing on the page) used to mark
+  // the lesson complete regardless of how much was actually read.
+  const quizAllSubmittedRef = useRef(false);
+  const quizFinalResultsRef = useRef<boolean[]>([]);
+  const quizCompletionFiredRef = useRef(false);
 
   const durationMin = parseInt(lesson.duration) || 5;
   const lessonLabel = lesson.label ?? getLessonDisplayLabel({ id: lesson.id, title: lesson.title, track: undefined });
@@ -220,6 +227,10 @@ export default function LessonPageLayout({ lesson, quiz, children }: Props) {
 
       if (pct > maxReachedRef.current) {
         maxReachedRef.current = pct;
+        // Covers the case where the quiz finished before the article was
+        // fully scrolled (tryFireCompletion no-op'd back in verify()) -
+        // once scrolling catches up to 100%, complete it now.
+        if (maxReachedRef.current >= 100) tryFireCompletion();
       }
 
       if (saveTimer) clearTimeout(saveTimer);
@@ -277,8 +288,12 @@ export default function LessonPageLayout({ lesson, quiz, children }: Props) {
       // lesson is complete when every question has been submitted, not only
       // when the last-index question happens to be the one just answered.
       setReviewMode(false);
-      markLessonComplete(persistedLessonId, durationMin);
-      completeLessonInSupabase(newResults);
+      quizAllSubmittedRef.current = true;
+      quizFinalResultsRef.current = newResults;
+      const fired = tryFireCompletion();
+      if (!fired) {
+        toast.info("Đã làm xong quiz! Cuộn hết bài học để hoàn thành nhé.");
+      }
     }
     // No auto-advance here - it used to jump to the next question 600ms
     // after answering, which didn't give people time to read the
@@ -361,6 +376,25 @@ export default function LessonPageLayout({ lesson, quiz, children }: Props) {
       return;
     }
 
+  }
+
+  // Fires the "lesson complete" flow only once both conditions are met:
+  // every quiz question answered AND the article scrolled to the very end
+  // (maxReachedRef reaches 100 - see the scroll handler below). Called from
+  // both verify() (quiz finishes first, most common) and the scroll handler
+  // (someone who scrolls to the bottom before answering the last question) -
+  // quizCompletionFiredRef guards against firing twice regardless of which
+  // path gets there second. Returns whether it actually fired, so callers
+  // can tell the user what's still missing.
+  function tryFireCompletion(): boolean {
+    if (quizCompletionFiredRef.current) return true;
+    if (!quizAllSubmittedRef.current) return false;
+    if (maxReachedRef.current < 100) return false;
+
+    quizCompletionFiredRef.current = true;
+    markLessonComplete(persistedLessonId, durationMin);
+    completeLessonInSupabase(quizFinalResultsRef.current);
+    return true;
   }
 
   useEffect(() => {
