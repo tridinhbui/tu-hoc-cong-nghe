@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { Edit2, Trash2 } from "lucide-react";
+import { Edit2, Trash2, ArrowLeft } from "lucide-react";
 import { toast } from "sonner";
 import { createClient } from "@/lib/supabase";
 import { getAllUserNotes, updateNote, deleteNote, type LessonNote } from "@/lib/supabase-notes";
@@ -111,8 +111,9 @@ export default function NotesOverviewClient({ lessonsById }: NotesOverviewClient
       <div className="border-b border-stone-200 dark:border-stone-800 sticky top-0 bg-white dark:bg-stone-950 z-10">
         <div className="max-w-2xl mx-auto px-6 py-4 flex items-center justify-between">
           <div>
-            <Link href="/dashboard" className="text-stone-500 dark:text-stone-400 hover:text-stone-600 dark:hover:text-stone-300 text-sm font-semibold">
-              ← Quay lại
+            <Link href="/dashboard" className="inline-flex items-center gap-1.5 text-sm font-bold text-stone-600 dark:text-stone-400 hover:text-stone-900 dark:hover:text-stone-100 hover:bg-stone-100 dark:hover:bg-stone-800 rounded-lg px-3 py-2 transition-colors">
+              <ArrowLeft className="w-4 h-4" />
+              Quay lại
             </Link>
             <h1 className="text-xl font-bold text-stone-900 dark:text-stone-100 mt-2">
               Ghi chú của tôi ({notes.length})

@@ -3,7 +3,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import { toast } from "sonner";
-import { CheckCircle2, Circle } from "lucide-react";
+import { CheckCircle2, Circle, ArrowLeft } from "lucide-react";
 import { markLessonComplete, saveQuizAnswers, getQuizAnswers, clearQuizAnswers } from "@/lib/progress";
 import FloatingContact from "@/components/FloatingChatbot";
 import StageTipsBanner from "@/components/StageTipsBanner";
@@ -596,9 +596,10 @@ export default function LessonPageLayout({ lesson, quiz, children }: Props) {
             <Link
               href="/dashboard"
               aria-label="Về Dashboard"
-              className="w-11 h-11 rounded-full border-2 border-stone-300 dark:border-stone-700 flex items-center justify-center text-stone-600 dark:text-stone-400 hover:text-stone-900 dark:hover:text-stone-100 hover:border-stone-400 dark:hover:border-stone-600 bg-white dark:bg-stone-900 transition-all text-xl font-bold"
+              className="inline-flex items-center gap-1.5 px-4 py-2 rounded-lg border-2 border-stone-300 dark:border-stone-700 text-stone-700 dark:text-stone-300 font-bold hover:bg-stone-100 dark:hover:bg-stone-800 hover:border-stone-400 dark:hover:border-stone-600 hover:text-stone-900 dark:hover:text-stone-100 bg-white dark:bg-stone-900 transition-all"
             >
-              ←
+              <ArrowLeft className="w-4 h-4" />
+              Quay lại
             </Link>
             <div>
               <p className="font-extrabold text-stone-900 dark:text-stone-100 text-lg leading-tight line-clamp-1">{lesson.title}</p>

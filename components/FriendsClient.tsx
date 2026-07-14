@@ -5,7 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { toast } from "sonner";
-import { Check, MessageCircle, Search, Send, UserPlus, X } from "lucide-react";
+import { Check, MessageCircle, Search, Send, UserPlus, X, ArrowLeft } from "lucide-react";
 import { createClient } from "@/lib/supabase";
 import UserMenu from "@/components/UserMenu";
 import {
@@ -274,8 +274,9 @@ export default function FriendsClient() {
       <div className="border-b border-stone-200 dark:border-stone-800 sticky top-0 z-10 bg-white dark:bg-stone-950">
         <div className="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
           <div>
-            <Link href="/dashboard" className="text-stone-500 dark:text-stone-400 hover:text-stone-700 dark:hover:text-stone-300 text-sm font-semibold">
-              ← Quay lại
+            <Link href="/dashboard" className="inline-flex items-center gap-1.5 text-sm font-bold text-stone-600 dark:text-stone-400 hover:text-stone-900 dark:hover:text-stone-100 hover:bg-stone-100 dark:hover:bg-stone-800 rounded-lg px-3 py-2 transition-colors">
+              <ArrowLeft className="w-4 h-4" />
+              Quay lại
             </Link>
             <h1 className="text-xl font-bold text-stone-900 dark:text-stone-100 mt-2">Bạn bè & chat</h1>
           </div>

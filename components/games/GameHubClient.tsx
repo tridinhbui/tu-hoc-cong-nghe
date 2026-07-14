@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { toast } from "sonner";
 import { Gamepad2, Trophy, History as HistoryIcon, ArrowLeft } from "lucide-react";
+import Link from "next/link";
 import { useAuthGate } from "@/lib/use-auth-gate";
 import { GAMES, getGameMeta, type GameType } from "@/lib/games";
 import { recalculateUserStats } from "@/lib/supabase-user";
@@ -47,7 +48,14 @@ export default function GameHubClient() {
     return (
       <div className="min-h-screen bg-stone-50 dark:bg-stone-950">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 py-8">
-          <div className="mb-2 flex items-center gap-2">
+          <div className="mb-4 flex items-center gap-3">
+            <Link
+              href="/dashboard"
+              className="inline-flex items-center gap-1.5 text-sm font-bold text-stone-600 dark:text-stone-400 hover:text-stone-900 dark:hover:text-stone-100 hover:bg-stone-100 dark:hover:bg-stone-800 rounded-lg px-3 py-2 transition-colors"
+            >
+              <ArrowLeft className="w-4 h-4" />
+              Quay lại
+            </Link>
             <span className="inline-flex items-center gap-1.5 rounded-full bg-emerald-50 dark:bg-emerald-950/40 px-2.5 py-1 text-[11px] font-extrabold uppercase tracking-widest text-emerald-700 dark:text-emerald-400">
               <Gamepad2 className="w-3.5 h-3.5" /> Mini Game
             </span>
