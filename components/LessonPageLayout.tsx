@@ -3,6 +3,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import { toast } from "sonner";
+import { CheckCircle2, Circle } from "lucide-react";
 import { markLessonComplete, saveQuizAnswers, getQuizAnswers, clearQuizAnswers } from "@/lib/progress";
 import FloatingContact from "@/components/FloatingChatbot";
 import StageTipsBanner from "@/components/StageTipsBanner";
@@ -145,6 +146,11 @@ export default function LessonPageLayout({ lesson, quiz, children }: Props) {
   // lessons with a midpoint question require it before completing.
   const hasMidpointRef = useRef(false);
   const midpointDoneRef = useRef(false);
+  // Refs above are the source of truth tryFireCompletion reads synchronously
+  // (avoids stale-closure issues); these state mirrors exist purely so the
+  // completion checklist UI re-renders when they change.
+  const [hasMidpoint, setHasMidpoint] = useState(false);
+  const [midpointDone, setMidpointDone] = useState(false);
 
   const durationMin = parseInt(lesson.duration) || 5;
   const lessonLabel = lesson.label ?? getLessonDisplayLabel({ id: lesson.id, title: lesson.title, track: undefined });
@@ -418,9 +424,11 @@ export default function LessonPageLayout({ lesson, quiz, children }: Props) {
   // thread the state up through LessonPageClient.
   function registerMidpoint() {
     hasMidpointRef.current = true;
+    setHasMidpoint(true);
   }
   function markMidpointDone() {
     midpointDoneRef.current = true;
+    setMidpointDone(true);
     tryFireCompletion();
   }
 
@@ -575,14 +583,50 @@ export default function LessonPageLayout({ lesson, quiz, children }: Props) {
                     Còn khoảng <strong className="text-stone-900 dark:text-stone-100">~{remainMin} phút</strong> để đọc xong
                   </p>
                 )}
-                <div className={`flex items-start gap-2.5 rounded-xl border-2 ${c.border} ${c.bg} px-4 py-3`}>
-                  <span className="text-base leading-none mt-0.5">⚠️</span>
-                  <p className={`text-sm sm:text-base font-bold ${c.text}`}>
-                    {quiz.length > 0
-                      ? "Để tính hoàn thành và được cộng XP: cần cuộn hết 100% bài này VÀ làm xong hết quiz - gồm cả câu hỏi giữa bài (nếu có) lẫn phần \"Kiểm tra nhanh\" ở cuối/bên cạnh bài."
-                      : "Để tính hoàn thành và được cộng XP: cần cuộn hết 100% bài này."}
-                  </p>
-                </div>
+                {(() => {
+                  const scrolledFully = readPct >= 100;
+                  const sidebarQuizDone = quiz.length > 0 && submittedCount === quiz.length;
+                  const checklistItems: { label: string; done: boolean }[] = [
+                    { label: "Cuộn hết 100% nội dung bài", done: scrolledFully },
+                  ];
+                  if (hasMidpoint) {
+                    checklistItems.push({ label: "Trả lời câu hỏi \"Dừng & Kiểm tra\" giữa bài", done: midpointDone });
+                  }
+                  if (quiz.length > 0) {
+                    checklistItems.push({
+                      label: `Hoàn thành "Kiểm tra nhanh" (${submittedCount}/${quiz.length} câu)`,
+                      done: sidebarQuizDone,
+                    });
+                  }
+                  const allDoneNow = checklistItems.every((it) => it.done);
+
+                  return (
+                    <div className={`rounded-xl border-2 ${allDoneNow ? "border-emerald-500 bg-emerald-50 dark:bg-emerald-950/30" : c.border} ${allDoneNow ? "" : c.bg} px-4 py-3.5 space-y-2.5`}>
+                      <p className={`text-xs font-extrabold uppercase tracking-widest flex items-center gap-1.5 ${allDoneNow ? "text-emerald-700 dark:text-emerald-400" : c.text}`}>
+                        <span>{allDoneNow ? "✅" : "⚠️"}</span>
+                        Điều kiện hoàn thành &amp; nhận XP
+                      </p>
+                      <ul className="space-y-1.5">
+                        {checklistItems.map((item, i) => (
+                          <li key={i} className="flex items-center gap-2">
+                            {item.done ? (
+                              <CheckCircle2 className="w-4 h-4 text-emerald-600 dark:text-emerald-400 flex-shrink-0" />
+                            ) : (
+                              <Circle className="w-4 h-4 text-stone-400 dark:text-stone-600 flex-shrink-0" />
+                            )}
+                            <span
+                              className={`text-sm sm:text-base font-bold ${
+                                item.done ? "text-emerald-700 dark:text-emerald-400 line-through decoration-2" : c.text
+                              }`}
+                            >
+                              {item.label}
+                            </span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  );
+                })()}
               </div>
             </div>
 
