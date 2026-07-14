@@ -783,8 +783,8 @@ export default function DashboardClient({ lessonsMeta }: { lessonsMeta: LessonMe
                   manualFlagInfoOpen ? "opacity-100 scale-100 pointer-events-auto" : "pointer-events-none opacity-0 scale-95 group-hover:opacity-100 group-hover:scale-100"
                 }`}>
                   <p>
-                    Làm xong hết quiz của bài (bài không có quiz thì đọc hết là tính) → bài chuyển{" "}
-                    <span className="font-semibold text-emerald-600 dark:text-emerald-400">xanh lá</span> và được cộng XP.
+                    Cuộn hết 100% nội dung bài <strong>và</strong> làm xong hết quiz (bài không có quiz thì cuộn hết là tính) → bài chuyển{" "}
+                    <span className="font-semibold text-emerald-600 dark:text-emerald-400">xanh lá</span> và được cộng XP. Thiếu 1 trong 2 điều kiện thì chưa tính hoàn thành.
                   </p>
                   <p>
                     Chỉ bấm &quot;Tự đánh dấu&quot; vì tự biết mình đã học rồi → bài chuyển{" "}

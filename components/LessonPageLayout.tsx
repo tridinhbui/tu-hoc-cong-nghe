@@ -541,6 +541,11 @@ export default function LessonPageLayout({ lesson, quiz, children }: Props) {
                     Còn khoảng <strong className="text-stone-900 dark:text-stone-100">~{remainMin} phút</strong> để đọc xong
                   </p>
                 )}
+                <p className={`text-xs sm:text-sm rounded-lg px-3 py-2 ${c.bg} ${c.text} font-semibold`}>
+                  {quiz.length > 0
+                    ? "Để tính hoàn thành và được cộng XP: cần cuộn hết 100% bài này và làm xong hết quiz."
+                    : "Để tính hoàn thành và được cộng XP: cần cuộn hết 100% bài này."}
+                </p>
               </div>
             </div>
 
