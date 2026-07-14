@@ -286,6 +286,14 @@ export default function LessonPageLayout({ lesson, quiz, children }: Props) {
   const handleMilestone = async (milestone: number) => {
     if (!userId || savedMilestonesRef.current.has(milestone)) return;
     savedMilestonesRef.current.add(milestone);
+
+    // When reaching 100% milestone, force update checklist immediately
+    if (milestone === 100) {
+      setReadPct(100);
+      maxReachedRef.current = 100;
+      setForceUpdate(prev => prev + 1);
+      tryFireCompletion();
+    }
   };
 
   const remainMin = Math.max(0, Math.ceil(durationMin * (1 - readPct / 100)));
@@ -597,7 +605,7 @@ export default function LessonPageLayout({ lesson, quiz, children }: Props) {
                   const scrolledFully = readPct >= 99;
                   const sidebarQuizDone = quiz.length > 0 && submittedCount === quiz.length;
                   const checklistItems: { label: string; done: boolean }[] = [
-                    { label: "Cuộn hết 100% nội dung bài", done: scrolledFully },
+                    { label: "Đọc hết 100% nội dung bài", done: scrolledFully },
                   ];
                   if (hasMidpoint) {
                     checklistItems.push({ label: "Trả lời câu hỏi \"Dừng & Kiểm tra\" giữa bài", done: midpointDone });
