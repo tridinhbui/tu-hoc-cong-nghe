@@ -5,6 +5,7 @@ import { toast } from "sonner";
 import { Gamepad2, Trophy, History as HistoryIcon, ArrowLeft } from "lucide-react";
 import { useAuthGate } from "@/lib/use-auth-gate";
 import { GAMES, getGameMeta, type GameType } from "@/lib/games";
+import { recalculateUserStats } from "@/lib/supabase-user";
 import GameLeaderboard from "@/components/games/GameLeaderboard";
 import GameHistory from "@/components/games/GameHistory";
 import BucketGame from "@/components/games/BucketGame";
@@ -36,6 +37,9 @@ export default function GameHubClient() {
   function handleFinished(score: number, total: number, xpEarned: number) {
     if (xpEarned > 0) toast.success(`Hoàn thành! ${score}/${total} đúng - nhận +${xpEarned} XP`);
     else toast.info(`Được ${score}/${total} - cần đúng ít nhất 70% để nhận XP. Thử lại nhé!`);
+    // Fold the game's best-per-game XP into the user's real total_xp/level
+    // right away (best-effort - the session is already saved regardless).
+    if (userId) void recalculateUserStats(userId).catch(() => {});
     setInnerTab("leaderboard");
   }
 

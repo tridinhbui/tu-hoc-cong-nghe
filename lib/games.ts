@@ -297,6 +297,34 @@ export async function recordGameSession(
   return xpEarned;
 }
 
+/**
+ * Total game XP that counts toward a user's real total_xp/level: the BEST
+ * xp_earned per game type, summed. Deliberately best-per-game rather than
+ * sum-of-all-sessions so replaying the same game can't farm unlimited XP -
+ * each game contributes its best result once (max 50/game). Folded into
+ * recalculateUserStats alongside lesson + quiz XP; without this the "+X XP"
+ * a game shows on finish never actually reached the user's level/leaderboard.
+ */
+export async function getTotalGameXp(userId: string): Promise<number> {
+  const supabase = createClient();
+  const { data, error } = await supabase
+    .from("game_sessions")
+    .select("game_type, xp_earned")
+    .eq("user_id", userId);
+
+  if (error) {
+    if (isMissingTableError(error)) return 0;
+    throw handleSupabaseError(error);
+  }
+
+  const bestByGame = new Map<string, number>();
+  for (const row of (data ?? []) as { game_type: string; xp_earned: number }[]) {
+    const cur = bestByGame.get(row.game_type) ?? 0;
+    if (row.xp_earned > cur) bestByGame.set(row.game_type, row.xp_earned);
+  }
+  return Array.from(bestByGame.values()).reduce((sum, v) => sum + v, 0);
+}
+
 export async function getGameHistory(userId: string, gameType: GameType, limit = 20): Promise<GameSession[]> {
   const supabase = createClient();
   const { data, error } = await supabase
