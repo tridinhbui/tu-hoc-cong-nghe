@@ -283,6 +283,14 @@ export default function LessonPageLayout({ lesson, quiz, children }: Props) {
     };
   }, [userId, persistedLessonId]);
 
+  // Sync readPct with maxReachedRef to ensure checklist updates
+  useEffect(() => {
+    if (maxReachedRef.current >= 100 && readPct < 100) {
+      setReadPct(100);
+      setForceUpdate(prev => prev + 1);
+    }
+  }, [readPct, forceUpdate]);
+
   const handleMilestone = async (milestone: number) => {
     if (!userId || savedMilestonesRef.current.has(milestone)) return;
     savedMilestonesRef.current.add(milestone);
@@ -604,6 +612,11 @@ export default function LessonPageLayout({ lesson, quiz, children }: Props) {
                 {(() => {
                   const scrolledFully = readPct >= 99;
                   const sidebarQuizDone = quiz.length > 0 && submittedCount === quiz.length;
+
+                  // Debug logging
+                  if (process.env.NODE_ENV === 'development') {
+                    console.log('Checklist debug:', { readPct, scrolledFully, maxReached: maxReachedRef.current });
+                  }
                   const checklistItems: { label: string; done: boolean }[] = [
                     { label: "Đọc hết 100% nội dung bài", done: scrolledFully },
                   ];
