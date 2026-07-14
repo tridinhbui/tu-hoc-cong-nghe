@@ -3,6 +3,7 @@
 import { useEffect, useState, type ReactNode } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { Trophy } from "lucide-react";
 import { getLeaderboardByMetric, getMyLeaderboardRank, type LeaderboardMetric, type LeaderboardRow } from "@/lib/supabase-user";
 
 // Small circular avatar with an initials fallback for learners who haven't
@@ -77,6 +78,17 @@ const TABS: { metric: LeaderboardMetric; label: string; format: (v: number) => s
   { metric: "avg_score", label: "Điểm TB", format: (v) => `${Math.round(v)}%` },
   { metric: "streak", label: "Chuỗi ngày", format: (v) => `${v} ngày` },
 ];
+
+// Fun titles for top 3 learners in the XP leaderboard
+const XP_TITLES: Record<number, string> = {
+  1: "🏆 Bậc thầy tài chính",
+  2: "🥈 Chuyên gia đầu tư",
+  3: "🥉 Nhà đầu tư tài năng",
+};
+
+function getXpTitle(rank: number): string | null {
+  return XP_TITLES[rank] || null;
+}
 
 export default function Leaderboard({ userId }: LeaderboardProps) {
   const [metric, setMetric] = useState<LeaderboardMetric>("xp");
@@ -211,6 +223,12 @@ export default function Leaderboard({ userId }: LeaderboardProps) {
                     <div className={`font-bold truncate ${isCurrent ? "text-emerald-900 dark:text-emerald-400" : "text-stone-900 dark:text-stone-100"}`}>
                       {entry.name}
                     </div>
+                    {metric === "xp" && rank <= 3 && (
+                      <div className="text-[11px] font-bold text-amber-600 dark:text-amber-400 flex items-center gap-1">
+                        <Trophy className="w-3 h-3" />
+                        {getXpTitle(rank)}
+                      </div>
+                    )}
                     <div className={`text-xs ${isCurrent ? "text-emerald-700 dark:text-emerald-400" : "text-stone-500 dark:text-stone-400"}`}>
                       {activeTab.format(entry.value)}
                     </div>

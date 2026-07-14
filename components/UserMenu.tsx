@@ -95,18 +95,18 @@ export default function UserMenu({ name, email, avatarUrl }: UserMenuProps) {
               Ghi chú của tôi
             </Link>
             <Link
+              href="/game"
+              onClick={() => setIsOpen(false)}
+              className="block px-4 py-2 text-sm font-bold text-emerald-600 dark:text-emerald-400 hover:bg-emerald-50 dark:hover:bg-emerald-950/30 transition-colors"
+            >
+              🎮 Mini Game
+            </Link>
+            <Link
               href="/cong-cu"
               onClick={() => setIsOpen(false)}
               className="block px-4 py-2 text-sm font-semibold text-stone-900 dark:text-stone-100 hover:bg-stone-50 dark:hover:bg-stone-800 transition-colors"
             >
               Công cụ cá nhân
-            </Link>
-            <Link
-              href="/game"
-              onClick={() => setIsOpen(false)}
-              className="block px-4 py-2 text-sm font-semibold text-stone-900 dark:text-stone-100 hover:bg-stone-50 dark:hover:bg-stone-800 transition-colors"
-            >
-              Mini Game
             </Link>
             <Link
               href="/settings"
