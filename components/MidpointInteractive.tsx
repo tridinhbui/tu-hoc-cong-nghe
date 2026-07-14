@@ -1,8 +1,9 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import type { QuizQuestion } from "@/lib/lesson-types";
+import { useLessonCompletion } from "@/lib/lesson-completion-context";
 
 interface MidpointInteractiveProps {
   question: QuizQuestion;
@@ -15,6 +16,14 @@ export default function MidpointInteractive({
 }: MidpointInteractiveProps) {
   const [selected, setSelected] = useState<number | null>(null);
   const [submitted, setSubmitted] = useState(false);
+  const lessonCompletion = useLessonCompletion();
+
+  // Tells the enclosing LessonPageLayout this lesson has a midpoint check,
+  // so completion won't fire until it's answered too (not just the sidebar
+  // "Kiểm tra nhanh" quiz + full scroll).
+  useEffect(() => {
+    lessonCompletion?.registerMidpoint();
+  }, [lessonCompletion]);
 
   const isCorrect = selected === question.correct;
 
@@ -85,6 +94,7 @@ export default function MidpointInteractive({
             onClick={() => {
               setSelected(null);
               setSubmitted(false);
+              lessonCompletion?.markMidpointDone();
               onComplete?.();
             }}
             className="mt-3 text-sm font-bold text-stone-700 dark:text-stone-300 hover:text-stone-900 dark:hover:text-stone-100 underline"

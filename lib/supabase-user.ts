@@ -212,6 +212,26 @@ export async function getLeaderboardByMetric(metric: LeaderboardMetric, limit: n
   }));
 }
 
+const SHOUTOUT_TEMPLATES = [
+  (name: string, value: number) => `🎉 ${name} vừa đạt ${value} XP - một trong những học viên chăm chỉ nhất cộng đồng!`,
+  (name: string, value: number) => `👏 Chúc mừng ${name} đã tích luỹ ${value} XP - hành trình học tập rất ấn tượng!`,
+  (name: string, value: number) => `🔥 ${name} đang giữ phong độ cực tốt với ${value} XP tích luỹ được!`,
+  (name: string, value: number) => `⭐ Vinh danh ${name} - đã đạt ${value} XP nhờ học đều đặn mỗi ngày!`,
+] as const;
+
+/** A random "shoutout" celebrating a real top learner, for the admin
+ *  chatbot's greeting - pulls from the top of the real XP leaderboard so
+ *  it's never a made-up name, and picks both a random learner and a random
+ *  phrasing so it doesn't feel like the same canned message every time. */
+export async function getRandomCommunityShoutout(): Promise<string | null> {
+  const top = await getLeaderboardByMetric("xp", 15);
+  if (top.length === 0) return null;
+
+  const learner = top[Math.floor(Math.random() * top.length)];
+  const template = SHOUTOUT_TEMPLATES[Math.floor(Math.random() * SHOUTOUT_TEMPLATES.length)];
+  return template(learner.name, learner.value);
+}
+
 // Where the current user stands on one leaderboard category, even if they're
 // not in the top N. Competition ranking: ties share the same (best) rank.
 export async function getMyLeaderboardRank(

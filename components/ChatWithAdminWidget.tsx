@@ -2,8 +2,10 @@
 
 import { useState, useRef, useEffect, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Send, X, MessageCircle } from "lucide-react";
+import { Send, X } from "lucide-react";
 import { createClient } from "@/lib/supabase";
+import Logo from "@/components/Logo";
+import { getRandomCommunityShoutout } from "@/lib/supabase-user";
 import {
   getChatHistory,
   sendMessage,
@@ -18,6 +20,7 @@ export default function ChatWithAdminWidget() {
   const [input, setInput] = useState("");
   const [sending, setSending] = useState(false);
   const [loadingHistory, setLoadingHistory] = useState(false);
+  const [shoutout, setShoutout] = useState<string | null>(null);
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const hasLoadedHistoryRef = useRef(false);
 
@@ -29,6 +32,16 @@ export default function ChatWithAdminWidget() {
     if (!isOpen) return;
     scrollToBottom();
   }, [isOpen, messages]);
+
+  // A fresh shoutout celebrating a real top learner every time the chat is
+  // opened - not persisted, not mixed into the actual message history, just
+  // a "here's who's doing great right now" banner from the admin chatbot.
+  useEffect(() => {
+    if (!isOpen) return;
+    getRandomCommunityShoutout()
+      .then(setShoutout)
+      .catch((error) => console.error("Error loading community shoutout:", error));
+  }, [isOpen]);
 
   useEffect(() => {
     if (!isOpen || !userId) return;
@@ -95,11 +108,12 @@ export default function ChatWithAdminWidget() {
             animate={{ scale: 1 }}
             exit={{ scale: 0 }}
             onClick={() => setIsOpen(true)}
-            className="fixed bottom-6 right-6 z-40 w-14 h-14 rounded-full bg-stone-900 dark:bg-stone-100 text-white dark:text-stone-900 shadow-lg hover:shadow-xl hover:bg-stone-800 dark:hover:bg-white transition flex items-center justify-center group"
+            className="fixed bottom-6 right-6 z-40 w-14 h-14 rounded-full bg-white dark:bg-stone-100 shadow-lg hover:shadow-xl hover:scale-105 transition flex items-center justify-center group overflow-hidden border border-stone-200 dark:border-stone-300"
           >
-            <MessageCircle className="w-6 h-6" />
+            <Logo size={56} className="rounded-full" />
+            <span className="absolute top-0.5 right-0.5 w-3.5 h-3.5 rounded-full bg-emerald-500 border-2 border-white dark:border-stone-100" />
             <div className="absolute bottom-full right-0 mb-2 bg-stone-900 dark:bg-stone-800 text-white text-xs px-3 py-2 rounded-lg whitespace-nowrap opacity-0 group-hover:opacity-100 transition">
-              Hỗ trợ Admin
+              Admin Chatbot
             </div>
           </motion.button>
         )}
@@ -115,18 +129,35 @@ export default function ChatWithAdminWidget() {
             className="fixed inset-x-4 bottom-4 sm:inset-x-auto sm:bottom-6 sm:right-6 z-50 sm:w-96 max-h-[75vh] sm:max-h-96 bg-white dark:bg-stone-900 rounded-2xl shadow-2xl border border-stone-200 dark:border-stone-800 flex flex-col overflow-hidden"
           >
             {/* Header */}
-            <div className="bg-stone-900 dark:bg-stone-950 text-white px-4 py-4 flex items-center justify-between">
-              <div>
-                <h3 className="font-bold">Admin Support</h3>
-                <p className="text-xs text-stone-500 dark:text-stone-400">Admin thường phản hồi trong vòng 24 giờ</p>
+            <div className="bg-stone-900 dark:bg-stone-950 text-white px-4 py-4 flex items-center gap-3">
+              <div className="relative flex-shrink-0">
+                <Logo size={36} className="rounded-full" />
+                <span className="absolute -bottom-0.5 -right-0.5 w-3 h-3 rounded-full bg-emerald-500 border-2 border-stone-900" />
+              </div>
+              <div className="flex-1 min-w-0">
+                <h3 className="font-bold">Admin Chatbot</h3>
+                <p className="text-xs text-emerald-400 flex items-center gap-1.5">
+                  <span className="relative flex w-1.5 h-1.5">
+                    <span className="animate-ping absolute inline-flex w-full h-full rounded-full bg-emerald-400 opacity-75" />
+                    <span className="relative inline-flex rounded-full w-1.5 h-1.5 bg-emerald-500" />
+                  </span>
+                  Đang hoạt động
+                </p>
               </div>
               <button
                 onClick={() => setIsOpen(false)}
-                className="text-white hover:bg-white/10 p-1 rounded-lg transition"
+                className="text-white hover:bg-white/10 p-1 rounded-lg transition flex-shrink-0"
               >
                 <X className="w-5 h-5" />
               </button>
             </div>
+
+            {/* Community shoutout - a fresh one every time the chat opens */}
+            {shoutout && (
+              <div className="px-4 py-2.5 bg-emerald-50 dark:bg-emerald-950/30 border-b border-emerald-100 dark:border-emerald-900 text-xs text-emerald-800 dark:text-emerald-300 leading-relaxed">
+                {shoutout}
+              </div>
+            )}
 
             {/* Messages */}
             <div className="flex-1 overflow-y-auto p-4 space-y-4 bg-stone-50 dark:bg-stone-900/50">

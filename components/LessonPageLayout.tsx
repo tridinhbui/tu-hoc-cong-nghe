@@ -14,6 +14,7 @@ import LessonNotes from "@/components/LessonNotes";
 import TextHighlightMenu from "@/components/TextHighlightMenu";
 import LessonHighlightsList from "@/components/LessonHighlightsList";
 import { getLessonHighlights, type LessonHighlight } from "@/lib/lesson-highlights";
+import { LessonCompletionContext } from "@/lib/lesson-completion-context";
 import { createClient } from "@/lib/supabase";
 import { markLessonComplete as markLessonCompleteSupabase } from "@/lib/supabase-progress";
 import { getLessonProgress } from "@/lib/supabase-progress";
@@ -139,6 +140,11 @@ export default function LessonPageLayout({ lesson, quiz, children }: Props) {
   const quizAllSubmittedRef = useRef(false);
   const quizFinalResultsRef = useRef<boolean[]>([]);
   const quizCompletionFiredRef = useRef(false);
+  // Set by MidpointInteractive (the "Dừng & Kiểm tra" check embedded
+  // mid-article) via LessonCompletionContext if this lesson has one - only
+  // lessons with a midpoint question require it before completing.
+  const hasMidpointRef = useRef(false);
+  const midpointDoneRef = useRef(false);
 
   const durationMin = parseInt(lesson.duration) || 5;
   const lessonLabel = lesson.label ?? getLessonDisplayLabel({ id: lesson.id, title: lesson.title, track: undefined });
@@ -398,11 +404,24 @@ export default function LessonPageLayout({ lesson, quiz, children }: Props) {
     if (quizCompletionFiredRef.current) return true;
     if (!quizAllSubmittedRef.current) return false;
     if (maxReachedRef.current < 100) return false;
+    if (hasMidpointRef.current && !midpointDoneRef.current) return false;
 
     quizCompletionFiredRef.current = true;
     markLessonComplete(persistedLessonId, durationMin);
     completeLessonInSupabase(quizFinalResultsRef.current);
     return true;
+  }
+
+  // Exposed to descendants (via LessonCompletionContext) so
+  // MidpointInteractive - the "Dừng & Kiểm tra" check embedded mid-article -
+  // can tell this layout it exists and has been answered, without having to
+  // thread the state up through LessonPageClient.
+  function registerMidpoint() {
+    hasMidpointRef.current = true;
+  }
+  function markMidpointDone() {
+    midpointDoneRef.current = true;
+    tryFireCompletion();
   }
 
   useEffect(() => {
@@ -556,11 +575,14 @@ export default function LessonPageLayout({ lesson, quiz, children }: Props) {
                     Còn khoảng <strong className="text-stone-900 dark:text-stone-100">~{remainMin} phút</strong> để đọc xong
                   </p>
                 )}
-                <p className={`text-xs sm:text-sm rounded-lg px-3 py-2 ${c.bg} ${c.text} font-semibold`}>
-                  {quiz.length > 0
-                    ? "Để tính hoàn thành và được cộng XP: cần cuộn hết 100% bài này và làm xong hết quiz."
-                    : "Để tính hoàn thành và được cộng XP: cần cuộn hết 100% bài này."}
-                </p>
+                <div className={`flex items-start gap-2.5 rounded-xl border-2 ${c.border} ${c.bg} px-4 py-3`}>
+                  <span className="text-base leading-none mt-0.5">⚠️</span>
+                  <p className={`text-sm sm:text-base font-bold ${c.text}`}>
+                    {quiz.length > 0
+                      ? "Để tính hoàn thành và được cộng XP: cần cuộn hết 100% bài này VÀ làm xong hết quiz - gồm cả câu hỏi giữa bài (nếu có) lẫn phần \"Kiểm tra nhanh\" ở cuối/bên cạnh bài."
+                      : "Để tính hoàn thành và được cộng XP: cần cuộn hết 100% bài này."}
+                  </p>
+                </div>
               </div>
             </div>
 
@@ -583,7 +605,9 @@ export default function LessonPageLayout({ lesson, quiz, children }: Props) {
               className="space-y-8 text-stone-800 dark:text-stone-300 leading-relaxed text-lg sm:text-xl font-medium"
               style={{ zoom: fontScale }}
             >
-              {children}
+              <LessonCompletionContext.Provider value={{ registerMidpoint, markMidpointDone }}>
+                {children}
+              </LessonCompletionContext.Provider>
             </div>
 
             {/* Feedback form at the bottom */}
