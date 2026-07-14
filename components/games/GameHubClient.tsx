@@ -76,7 +76,7 @@ export default function GameHubClient() {
 
   return (
     <div className="min-h-screen bg-stone-50 dark:bg-stone-950">
-      <div className="max-w-3xl mx-auto px-4 sm:px-6 py-8">
+      <div className="max-w-3xl mx-auto px-4 sm:px-6 py-6 sm:py-8">
         <button
           onClick={() => setActiveGame(null)}
           className="text-sm font-bold text-stone-500 dark:text-stone-400 hover:text-stone-900 dark:hover:text-stone-100 mb-4"
@@ -84,28 +84,29 @@ export default function GameHubClient() {
           ← Chọn game khác
         </button>
 
-        <div className="mb-6 flex items-center gap-2.5">
-          <span className="text-2xl">{meta.emoji}</span>
-          <h1 className="text-xl font-bold text-stone-900 dark:text-stone-100">{meta.title}</h1>
+        <div className="mb-4 sm:mb-6 flex items-center gap-2.5">
+          <span className="text-xl sm:text-2xl">{meta.emoji}</span>
+          <h1 className="text-lg sm:text-xl font-bold text-stone-900 dark:text-stone-100">{meta.title}</h1>
         </div>
 
-        <div className="flex gap-1.5 mb-6 bg-stone-100 dark:bg-stone-900 rounded-xl p-1.5">
+        <div className="flex gap-1 sm:gap-1.5 mb-4 sm:mb-6 bg-stone-100 dark:bg-stone-900 rounded-xl p-1 sm:p-1.5">
           {[
             { id: "play" as const, label: "Chơi", icon: Gamepad2 },
-            { id: "leaderboard" as const, label: "Bảng xếp hạng", icon: Trophy },
+            { id: "leaderboard" as const, label: "BXH", icon: Trophy },
             { id: "history" as const, label: "Lịch sử", icon: HistoryIcon },
           ].map(({ id, label, icon: Icon }) => (
             <button
               key={id}
               onClick={() => setInnerTab(id)}
-              className={`flex-1 flex items-center justify-center gap-1.5 text-xs sm:text-sm font-bold px-3 py-2.5 rounded-lg transition-all ${
+              className={`flex-1 flex items-center justify-center gap-1 sm:gap-1.5 text-[11px] sm:text-xs font-bold px-2 sm:px-3 py-2 sm:py-2.5 rounded-lg transition-all ${
                 innerTab === id
                   ? "bg-white dark:bg-stone-800 text-stone-900 dark:text-stone-100 shadow-sm"
                   : "text-stone-500 dark:text-stone-400 hover:text-stone-700 dark:hover:text-stone-300"
               }`}
             >
-              <Icon className="w-4 h-4" />
-              {label}
+              <Icon className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
+              <span className="hidden sm:inline">{label}</span>
+              <span className="sm:hidden">{id === "leaderboard" ? "BXH" : id === "play" ? "Chơi" : "LS"}</span>
             </button>
           ))}
         </div>

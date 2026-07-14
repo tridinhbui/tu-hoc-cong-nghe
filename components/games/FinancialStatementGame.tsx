@@ -133,7 +133,7 @@ export default function FinancialStatementGame({ userId, onFinished }: Financial
   const sourceItems = items.filter((it) => !it.placed);
 
   return (
-    <div className="bg-white dark:bg-stone-900 border-2 border-stone-200 dark:border-stone-800 rounded-2xl p-4 sm:p-6">
+    <div className="bg-white dark:bg-stone-900 border-2 border-stone-200 dark:border-stone-800 rounded-2xl p-3 sm:p-4 lg:p-6">
       <style>{`
         @keyframes fsg-shake {
           0%, 100% { transform: translateX(0); }
@@ -147,12 +147,12 @@ export default function FinancialStatementGame({ userId, onFinished }: Financial
         }
       `}</style>
 
-      <div className="flex items-center justify-between gap-3 mb-4">
-        <div>
-          <p className="text-sm font-bold text-stone-900 dark:text-stone-100">
+      <div className="flex items-center justify-between gap-2 sm:gap-3 mb-3 sm:mb-4">
+        <div className="min-w-0">
+          <p className="text-xs sm:text-sm font-bold text-stone-900 dark:text-stone-100">
             Đã xếp đúng {placedCount}/{total}
           </p>
-          <div className="w-40 sm:w-56 h-2 bg-stone-100 dark:bg-stone-800 rounded-full overflow-hidden mt-1.5">
+          <div className="w-32 sm:w-40 lg:w-56 h-1.5 sm:h-2 bg-stone-100 dark:bg-stone-800 rounded-full overflow-hidden mt-1 sm:mt-1.5">
             <div
               className="h-full bg-emerald-500 transition-all"
               style={{ width: `${total > 0 ? (placedCount / total) * 100 : 0}%` }}
@@ -161,10 +161,11 @@ export default function FinancialStatementGame({ userId, onFinished }: Financial
         </div>
         <button
           onClick={resetRound}
-          className="inline-flex items-center gap-1.5 text-xs sm:text-sm font-bold text-stone-500 dark:text-stone-400 hover:text-stone-900 dark:hover:text-stone-100 border-2 border-stone-200 dark:border-stone-800 rounded-lg px-3 py-2 transition-colors"
+          className="inline-flex items-center gap-1 sm:gap-1.5 text-[11px] sm:text-xs lg:text-sm font-bold text-stone-500 dark:text-stone-400 hover:text-stone-900 dark:hover:text-stone-100 border-2 border-stone-200 dark:border-stone-800 rounded-lg px-2 sm:px-3 py-1.5 sm:py-2 transition-colors flex-shrink-0"
         >
-          <RotateCcw className="w-3.5 h-3.5" />
-          Chơi lại
+          <RotateCcw className="w-3 h-3 sm:w-3.5 sm:h-3.5" />
+          <span className="hidden sm:inline">Chơi lại</span>
+          <span className="sm:hidden">Lại</span>
         </button>
       </div>
 
@@ -178,11 +179,11 @@ export default function FinancialStatementGame({ userId, onFinished }: Financial
       ) : (
         <>
           {/* Source area */}
-          <div className="mb-6">
-            <p className="text-xs font-bold text-stone-400 dark:text-stone-500 uppercase tracking-wider mb-2">
+          <div className="mb-4 sm:mb-6">
+            <p className="text-[11px] sm:text-xs font-bold text-stone-400 dark:text-stone-500 uppercase tracking-wider mb-2">
               Kéo hoặc chọn thẻ, rồi thả vào đúng báo cáo
             </p>
-            <div className="flex flex-wrap gap-2">
+            <div className="flex flex-wrap gap-1.5 sm:gap-2">
               {sourceItems.map((item) => {
                 const isSelected = selectedId === item.id;
                 const isWrong = wrongFlashId === item.id;
@@ -192,7 +193,7 @@ export default function FinancialStatementGame({ userId, onFinished }: Financial
                     draggable
                     onDragStart={(e) => handleDragStart(e, item.id)}
                     onClick={() => handleCardClick(item.id)}
-                    className={`select-none cursor-pointer rounded-xl border-2 px-3 py-2 text-sm font-semibold transition-colors ${
+                    className={`select-none cursor-pointer rounded-xl border-2 px-2 sm:px-3 py-1.5 sm:py-2 text-xs sm:text-sm font-semibold transition-colors ${
                       isWrong
                         ? "fsg-shake border-rose-500 bg-rose-50 dark:bg-rose-950/40 text-rose-700 dark:text-rose-300"
                         : isSelected

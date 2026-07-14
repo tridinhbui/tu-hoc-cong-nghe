@@ -538,18 +538,18 @@ export default function DashboardClient({ lessonsMeta }: { lessonsMeta: LessonMe
     <div className="min-h-screen bg-white dark:bg-stone-950">
       {/* ── Sticky header ── */}
       <div className="border-b border-stone-200 dark:border-stone-800 sticky top-0 bg-white dark:bg-stone-950 z-10">
-        <div className="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between gap-6">
-          <div className="flex items-center gap-2.5 min-w-0">
-            <Logo size={32} className="flex-shrink-0" />
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 py-3 sm:py-4 flex items-center justify-between gap-3 sm:gap-6">
+          <div className="flex items-center gap-2 sm:gap-2.5 min-w-0">
+            <Logo size={28} className="flex-shrink-0 sm:w-8 sm:h-8" />
             <div className="min-w-0">
-              <h1 className="text-xl font-bold text-stone-900 dark:text-stone-100 leading-tight">Tự Học Tài Chính</h1>
-              <p className="text-xs text-stone-500 dark:text-stone-400 mt-0.5">Chọn lộ trình phù hợp với bạn</p>
+              <h1 className="text-lg sm:text-xl font-bold text-stone-900 dark:text-stone-100 leading-tight">Tự Học Tài Chính</h1>
+              <p className="text-[11px] sm:text-xs text-stone-500 dark:text-stone-400 mt-0.5 hidden sm:block">Chọn lộ trình phù hợp với bạn</p>
             </div>
           </div>
-          <div className="flex items-center gap-6 shrink-0">
+          <div className="flex items-center gap-3 sm:gap-6 shrink-0">
             <div className="text-right hidden sm:block">
-              <div className="text-xl font-bold text-stone-900 dark:text-stone-100">{totalDone}</div>
-              <div className="text-xs text-stone-500 dark:text-stone-400">/ {totalLessons} bài đã học</div>
+              <div className="text-lg sm:text-xl font-bold text-stone-900 dark:text-stone-100">{totalDone}</div>
+              <div className="text-[11px] sm:text-xs text-stone-500 dark:text-stone-400">/ {totalLessons} bài</div>
             </div>
             <div data-tour="free-docs" className="hidden sm:flex items-center gap-1">
               <Link
@@ -564,7 +564,7 @@ export default function DashboardClient({ lessonsMeta }: { lessonsMeta: LessonMe
                 href="/analytics"
                 title="Thống kê"
                 aria-label="Thống kê"
-                className="flex items-center gap-1.5 text-xs font-bold text-stone-500 dark:text-stone-400 hover:text-stone-700 dark:hover:text-stone-200 rounded-full pl-2 pr-3 h-9 hover:bg-stone-100 dark:hover:bg-stone-800 transition-colors"
+                className="hidden sm:flex items-center gap-1.5 text-xs font-bold text-stone-500 dark:text-stone-400 hover:text-stone-700 dark:hover:text-stone-200 rounded-full pl-2 pr-3 h-9 hover:bg-stone-100 dark:hover:bg-stone-800 transition-colors"
               >
                 <BarChart3 className="w-4 h-4" />
                 Thống kê
@@ -573,7 +573,7 @@ export default function DashboardClient({ lessonsMeta }: { lessonsMeta: LessonMe
                 href="/ghi-chu"
                 title="Ghi chú của tôi"
                 aria-label="Ghi chú của tôi"
-                className="flex items-center gap-1.5 text-xs font-bold text-stone-500 dark:text-stone-400 hover:text-stone-700 dark:hover:text-stone-200 rounded-full pl-2 pr-3 h-9 hover:bg-stone-100 dark:hover:bg-stone-800 transition-colors"
+                className="hidden sm:flex items-center gap-1.5 text-xs font-bold text-stone-500 dark:text-stone-400 hover:text-stone-700 dark:hover:text-stone-200 rounded-full pl-2 pr-3 h-9 hover:bg-stone-100 dark:hover:bg-stone-800 transition-colors"
               >
                 <StickyNote className="w-4 h-4" />
                 Ghi chú
@@ -582,7 +582,7 @@ export default function DashboardClient({ lessonsMeta }: { lessonsMeta: LessonMe
                 href="/kiem-tra"
                 title="Kiểm tra kiến thức"
                 aria-label="Kiểm tra kiến thức"
-                className="flex items-center gap-1.5 text-xs font-bold text-stone-500 dark:text-stone-400 hover:text-stone-700 dark:hover:text-stone-200 rounded-full pl-2 pr-3 h-9 hover:bg-stone-100 dark:hover:bg-stone-800 transition-colors"
+                className="hidden sm:flex items-center gap-1.5 text-xs font-bold text-stone-500 dark:text-stone-400 hover:text-stone-700 dark:hover:text-stone-200 rounded-full pl-2 pr-3 h-9 hover:bg-stone-100 dark:hover:bg-stone-800 transition-colors"
               >
                 <GraduationCap className="w-4 h-4" />
                 Kiểm tra
@@ -731,7 +731,7 @@ export default function DashboardClient({ lessonsMeta }: { lessonsMeta: LessonMe
         )}
 
         {/* ── Main Content: Lessons + Leaderboard ── */}
-        <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-3 gap-6">
+        <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-3 gap-4 sm:gap-6">
           {/* Left: Lessons (2 columns on desktop) */}
           <div className="lg:col-span-2">
           <div className="mb-4 flex flex-wrap items-center justify-between gap-3">

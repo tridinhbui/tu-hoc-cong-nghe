@@ -132,21 +132,22 @@ export default function Leaderboard({ userId }: LeaderboardProps) {
   const myRankInTop10 = userId !== undefined && entries.some((e) => e.user_id === userId);
 
   return (
-    <div className="bg-white dark:bg-stone-900 border-2 border-stone-200 dark:border-stone-800 rounded-xl p-5 h-fit lg:sticky lg:top-24">
-      <div className="mb-3">
-        <p className="text-xs font-extrabold text-stone-500 dark:text-stone-400 uppercase tracking-widest">
+    <div className="bg-white dark:bg-stone-900 border-2 border-stone-200 dark:border-stone-800 rounded-xl p-3 sm:p-4 lg:p-5 h-fit lg:sticky lg:top-24">
+      <div className="mb-2 sm:mb-3">
+        <p className="text-[11px] sm:text-xs font-extrabold text-stone-500 dark:text-stone-400 uppercase tracking-widest">
           Top Người Học
         </p>
-        <div className="flex items-center gap-1.5 mt-1 text-[10px] font-bold text-stone-400 dark:text-stone-500">
+        <div className="flex items-center gap-1.5 mt-1 text-[9px] sm:text-[10px] font-bold text-stone-400 dark:text-stone-500">
           <span className="relative flex w-1.5 h-1.5">
             <span className="animate-ping absolute inline-flex w-full h-full rounded-full bg-emerald-400 opacity-75" />
             <span className="relative inline-flex rounded-full w-1.5 h-1.5 bg-emerald-500" />
           </span>
-          Số liệu thật, cập nhật trực tiếp
+          <span className="hidden sm:inline">Số liệu thật, cập nhật trực tiếp</span>
+          <span className="sm:hidden">Cập nhật trực tiếp</span>
         </div>
       </div>
 
-      <div className="flex gap-1 mb-4 bg-stone-100 dark:bg-stone-800 rounded-lg p-1">
+      <div className="flex gap-0.5 sm:gap-1 mb-3 sm:mb-4 bg-stone-100 dark:bg-stone-800 rounded-lg p-0.5 sm:p-1">
         {TABS.map((tab) => (
           <button
             key={tab.metric}
@@ -155,7 +156,7 @@ export default function Leaderboard({ userId }: LeaderboardProps) {
               setLoading(true);
               setMetric(tab.metric);
             }}
-            className={`flex-1 text-[11px] font-bold py-1.5 rounded-md transition-all cursor-pointer ${
+            className={`flex-1 text-[10px] sm:text-[11px] font-bold py-1 sm:py-1.5 rounded-md transition-all cursor-pointer ${
               metric === tab.metric
                 ? "bg-white dark:bg-stone-900 text-stone-900 dark:text-stone-100 shadow-sm"
                 : "text-stone-500 dark:text-stone-400 hover:text-stone-700 dark:hover:text-stone-300"
@@ -234,7 +235,7 @@ export default function Leaderboard({ userId }: LeaderboardProps) {
                     </div>
                   </div>
 
-                  <div className="relative z-10 flex items-center gap-2">
+                  <div className="relative z-10 flex items-center gap-1.5 sm:gap-2">
                     <span
                       className={`hidden sm:inline-flex whitespace-nowrap rounded-full border px-2 py-1 text-[10px] font-bold uppercase tracking-[0.18em] transition-all duration-200 ${
                         isCurrent
@@ -245,11 +246,11 @@ export default function Leaderboard({ userId }: LeaderboardProps) {
                       {isCurrent ? "Hồ sơ của bạn" : "Xem hồ sơ"}
                     </span>
                     {!isCurrent && (
-                      <span className="inline-flex sm:hidden whitespace-nowrap rounded-full border border-stone-200 bg-white px-2 py-1 text-[10px] font-bold uppercase tracking-[0.18em] text-stone-500 shadow-sm dark:border-stone-800 dark:bg-stone-950 dark:text-stone-400">
-                        Chạm xem
+                      <span className="inline-flex sm:hidden whitespace-nowrap rounded-full border border-stone-200 bg-white px-1.5 py-0.5 text-[9px] font-bold uppercase tracking-[0.18em] text-stone-500 shadow-sm dark:border-stone-800 dark:bg-stone-950 dark:text-stone-400">
+                        Xem
                       </span>
                     )}
-                    {isCurrent ? <div className="text-emerald-600 font-bold text-sm">✓</div> : <div className="text-stone-300 font-bold text-sm transition-transform duration-200 group-hover:translate-x-0.5">→</div>}
+                    {isCurrent ? <div className="text-emerald-600 font-bold text-xs sm:text-sm">✓</div> : <div className="text-stone-300 font-bold text-xs sm:text-sm transition-transform duration-200 group-hover:translate-x-0.5">→</div>}
                   </div>
                 </Link>
               );

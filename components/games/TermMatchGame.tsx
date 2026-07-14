@@ -144,7 +144,7 @@ export default function TermMatchGame({ userId, onFinished }: Props) {
 
   function cardClass(kind: "vi" | "en", index: number, cardState: CardState | undefined, selected: boolean) {
     const base =
-      "w-full text-left px-4 py-3 rounded-xl border-2 font-semibold text-sm sm:text-base transition-all cursor-pointer select-none";
+      "w-full text-left px-3 sm:px-4 py-2 sm:py-3 rounded-xl border-2 font-semibold text-xs sm:text-sm transition-all cursor-pointer select-none";
     if (!cardState) return base;
     if (cardState.matched) {
       return `${base} border-emerald-500 bg-emerald-50 dark:bg-emerald-950/30 text-emerald-700 dark:text-emerald-300 cursor-default`;
@@ -160,7 +160,7 @@ export default function TermMatchGame({ userId, onFinished }: Props) {
   }
 
   return (
-    <div className="bg-white dark:bg-stone-900 border-2 border-stone-200 dark:border-stone-800 rounded-2xl p-5 sm:p-6">
+    <div className="bg-white dark:bg-stone-900 border-2 border-stone-200 dark:border-stone-800 rounded-2xl p-3 sm:p-4 lg:p-6">
       <style>{`
         @keyframes wiggle {
           0%, 100% { transform: translateX(0); }
@@ -171,12 +171,12 @@ export default function TermMatchGame({ userId, onFinished }: Props) {
         }
       `}</style>
 
-      <div className="flex items-center justify-between mb-5">
-        <div>
-          <p className="text-sm font-bold text-stone-900 dark:text-stone-100">
+      <div className="flex items-center justify-between gap-2 sm:gap-3 mb-4 sm:mb-5">
+        <div className="min-w-0">
+          <p className="text-xs sm:text-sm font-bold text-stone-900 dark:text-stone-100">
             Đã ghép {matchedCount}/{round.length} cặp
           </p>
-          <div className="w-40 sm:w-56 h-2 bg-stone-100 dark:bg-stone-800 rounded-full mt-1.5 overflow-hidden">
+          <div className="w-32 sm:w-40 lg:w-56 h-1.5 sm:h-2 bg-stone-100 dark:bg-stone-800 rounded-full mt-1 sm:mt-1.5 overflow-hidden">
             <div
               className="h-full bg-emerald-500 transition-all"
               style={{ width: `${round.length ? (matchedCount / round.length) * 100 : 0}%` }}
@@ -185,14 +185,15 @@ export default function TermMatchGame({ userId, onFinished }: Props) {
         </div>
         <button
           onClick={startNewRound}
-          className="inline-flex items-center gap-1.5 text-sm font-bold text-stone-500 dark:text-stone-400 hover:text-stone-900 dark:hover:text-stone-100 border-2 border-stone-200 dark:border-stone-800 rounded-lg px-3 py-2"
+          className="inline-flex items-center gap-1 sm:gap-1.5 text-[11px] sm:text-xs lg:text-sm font-bold text-stone-500 dark:text-stone-400 hover:text-stone-900 dark:hover:text-stone-100 border-2 border-stone-200 dark:border-stone-800 rounded-lg px-2 sm:px-3 py-1.5 sm:py-2 flex-shrink-0"
         >
-          <RefreshCw className="w-3.5 h-3.5" />
-          Chơi lại
+          <RefreshCw className="w-3 h-3 sm:w-3.5 sm:h-3.5" />
+          <span className="hidden sm:inline">Chơi lại</span>
+          <span className="sm:hidden">Lại</span>
         </button>
       </div>
 
-      <p className="text-xs text-stone-500 dark:text-stone-400 mb-4">
+      <p className="text-[11px] sm:text-xs text-stone-500 dark:text-stone-400 mb-3 sm:mb-4">
         Kéo thả hoặc bấm chọn 1 thẻ Tiếng Việt rồi bấm 1 thẻ Tiếng Anh tương ứng để ghép cặp.
       </p>
 
