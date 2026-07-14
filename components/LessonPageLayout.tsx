@@ -439,6 +439,8 @@ export default function LessonPageLayout({ lesson, quiz, children }: Props) {
 
   useEffect(() => {
     if (quiz.length > 0 || readPct < 100 || zeroQuizCompletedRef.current) return;
+    // For zero-quiz lessons with midpoint, require midpoint to be done
+    if (hasMidpointRef.current && !midpointDoneRef.current) return;
 
     zeroQuizCompletedRef.current = true;
     markLessonComplete(persistedLessonId, durationMin);
