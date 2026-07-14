@@ -331,7 +331,12 @@ export default function LessonPageLayout({ lesson, quiz, children }: Props) {
         }
         tryFireCompletion();
       },
-      { threshold: 0 }
+      // Generous bottom rootMargin so "reached the end" registers a bit
+      // before the very last pixel is on screen - guards against readers
+      // who stop scrolling once the last paragraph is visible but not
+      // pinned to the exact bottom, and against sub-pixel/zoom rounding
+      // that could otherwise leave the scroll-% math stuck at 98-99.
+      { threshold: 0, rootMargin: "0px 0px 400px 0px" }
     );
     observer.observe(el);
     return () => observer.disconnect();
@@ -362,6 +367,46 @@ export default function LessonPageLayout({ lesson, quiz, children }: Props) {
   const allDone = submittedCount === quiz.length;
   const pct = quiz.length > 0 ? Math.round((submittedCount / quiz.length) * 100) : 0;
 
+  // Single source of truth for "is this lesson complete", computed from the
+  // EXACT SAME state the completion checklist renders from (readPct,
+  // submittedCount, midpointDone) - not the separate refs tryFireCompletion
+  // reads. Previously completion was fired only from scattered event
+  // handlers (quiz submit, scroll, midpoint button), so if the last
+  // criterion flipped without one of those specific events re-running, the
+  // learner would see all three checkmarks green yet the lesson never
+  // registered as done. Driving it off this derived value guarantees: if
+  // the user sees every box checked, completion fires. The refs are still
+  // synced here so completeLessonInSupabase persists the right quiz score.
+  const scrolledFully = readPct >= 95;
+  const quizCriterionMet = quiz.length === 0 || submittedCount === quiz.length;
+  const midpointCriterionMet = !hasMidpoint || midpointDone;
+  const allCriteriaMet = scrolledFully && quizCriterionMet && midpointCriterionMet;
+
+  useEffect(() => {
+    if (!allCriteriaMet) return;
+    if (quizCompletionFiredRef.current || zeroQuizCompletedRef.current) return;
+
+    quizCompletionFiredRef.current = true;
+    zeroQuizCompletedRef.current = true;
+    quizAllSubmittedRef.current = true;
+    quizFinalResultsRef.current = results;
+    maxReachedRef.current = 100;
+    midpointDoneRef.current = true;
+
+    markLessonComplete(persistedLessonId, durationMin);
+    void completeLessonInSupabase(quiz.length > 0 ? results : []).then((ok) => {
+      // If the critical server write failed (transient network/RLS blip),
+      // release the guards so a later re-trigger - or this effect re-running
+      // when the user interacts again - retries the save instead of leaving
+      // the lesson permanently unsaved for the session.
+      if (!ok) {
+        quizCompletionFiredRef.current = false;
+        zeroQuizCompletedRef.current = false;
+      }
+    });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [allCriteriaMet]);
+
   function choose(qi: number, oi: number) {
     if (submitted[qi]) return;
     setSelected((s) => { const n = [...s]; n[qi] = oi; return n; });
@@ -386,9 +431,17 @@ export default function LessonPageLayout({ lesson, quiz, children }: Props) {
       setReviewMode(false);
       quizAllSubmittedRef.current = true;
       quizFinalResultsRef.current = newResults;
-      const fired = tryFireCompletion();
-      if (!fired) {
-        toast.info("Đã làm xong quiz! Cuộn hết bài học để hoàn thành nhé.");
+      // The completion write itself is handled by the allCriteriaMet effect;
+      // here we only hint at what's still missing. Computed from current
+      // values (not the possibly-stale allCriteriaMet closure) since the
+      // submitted-state update above hasn't re-rendered yet.
+      const stillNeedsScroll = readPct < 95;
+      const stillNeedsMidpoint = hasMidpoint && !midpointDone;
+      if (stillNeedsScroll || stillNeedsMidpoint) {
+        const parts: string[] = [];
+        if (stillNeedsMidpoint) parts.push("trả lời câu hỏi giữa bài");
+        if (stillNeedsScroll) parts.push("cuộn hết bài học");
+        toast.info(`Đã làm xong quiz! Còn ${parts.join(" và ")} để hoàn thành nhé.`);
       }
     }
     // No auto-advance here - it used to jump to the next question 600ms
@@ -435,7 +488,11 @@ export default function LessonPageLayout({ lesson, quiz, children }: Props) {
     clearQuizAnswers(persistedLessonId);
   }
 
-  async function completeLessonInSupabase(finalResults: boolean[]) {
+  // Returns whether the completion (user_progress row - the ONLY thing the
+  // dashboard reads to show a lesson as "Xong") was successfully persisted.
+  // Callers use this to reset the fired-guard and retry on failure instead
+  // of leaving a lesson permanently unsaved for the session.
+  async function completeLessonInSupabase(finalResults: boolean[]): Promise<boolean> {
     // Don't trust the `userId` state here - it's only set once the mount
     // effect's supabase.auth.getUser() round trip resolves, and a fast
     // reader can finish the quiz before that happens. Falling back to
@@ -448,7 +505,7 @@ export default function LessonPageLayout({ lesson, quiz, children }: Props) {
     if (!uid) {
       const supabase = createClient();
       const { data: { user } } = await supabase.auth.getUser();
-      if (!user) return;
+      if (!user) return false;
       uid = user.id;
       setUserId(uid);
     }
@@ -458,46 +515,49 @@ export default function LessonPageLayout({ lesson, quiz, children }: Props) {
         ? Math.round((finalResults.filter(Boolean).length / quiz.length) * 100)
         : 100;
 
+    // The critical write: this row is what makes the lesson show as
+    // completed everywhere. If it fails, report failure so the caller can
+    // retry - nothing else matters if this didn't land.
     try {
       await markLessonCompleteSupabase(uid, persistedLessonId, finalScore, durationMin * 60);
-      // user_stats (XP/level) is only ever written by recalculateUserStats,
-      // which nothing else calls - without this the dashboard keeps
-      // showing 0 XP/level even once progress is saving correctly.
-      await recalculateUserStats(uid);
-      await updateStreak(uid);
-      toast.success("Đã lưu tiến độ bài học!");
     } catch (error) {
-      console.error("Error saving lesson progress:", error);
-      toast.error("Không thể lưu tiến độ. Vui lòng thử lại.");
-      return;
+      console.error("Error saving lesson completion:", error);
+      toast.error("Không thể lưu tiến độ. Sẽ tự thử lại - hoặc tải lại trang nếu vẫn lỗi.");
+      return false;
     }
 
+    // XP/level and streak are enrichment on top of the completion that's
+    // already safely saved above - a failure here must NOT report the
+    // lesson as unsaved (it's saved) or block anything. Recompute best-effort.
+    try {
+      await recalculateUserStats(uid);
+      await updateStreak(uid);
+    } catch (error) {
+      console.error("Error updating stats/streak after completion (lesson still saved):", error);
+    }
+
+    toast.success("Đã lưu tiến độ bài học!");
+    return true;
   }
 
-  // Fires the "lesson complete" flow only once both conditions are met:
-  // every quiz question answered AND the article scrolled to the very end
-  // (maxReachedRef reaches 100 - see the scroll handler below). Called from
-  // both verify() (quiz finishes first, most common) and the scroll handler
-  // (someone who scrolls to the bottom before answering the last question) -
-  // quizCompletionFiredRef guards against firing twice regardless of which
-  // path gets there second. Returns whether it actually fired, so callers
-  // can tell the user what's still missing.
+  // Pure predicate: are all applicable completion criteria met right now?
+  // Does NOT save anything - the single `allCriteriaMet` useEffect above is
+  // the ONE place that persists completion (with retry-on-failure).
+  // Consolidating every completion write into that one effect is deliberate:
+  // the reported "checklist all green but lesson never saved / resets on
+  // revisit" bug came from several independent code paths (this function,
+  // the scroll handler, the midpoint button, a separate zero-quiz effect)
+  // each firing - or failing to fire - completion out of sync with each
+  // other and with the checklist the user actually sees. Now there is one
+  // source of truth (allCriteriaMet) and one writer.
   function tryFireCompletion(): boolean {
-    if (quizCompletionFiredRef.current) return true;
-    if (!quizAllSubmittedRef.current) return false;
-    if (maxReachedRef.current < 100) return false;
-    if (hasMidpointRef.current && !midpointDoneRef.current) return false;
-
-    quizCompletionFiredRef.current = true;
-    markLessonComplete(persistedLessonId, durationMin);
-    completeLessonInSupabase(quizFinalResultsRef.current);
-    return true;
+    return allCriteriaMet;
   }
 
   // Exposed to descendants (via LessonCompletionContext) so
   // MidpointInteractive - the "Dừng & Kiểm tra" check embedded mid-article -
-  // can tell this layout it exists and has been answered, without having to
-  // thread the state up through LessonPageClient.
+  // can tell this layout it exists and has been answered. Only flips state;
+  // the completion effect reacts to midpointDone / hasMidpoint changing.
   function registerMidpoint() {
     hasMidpointRef.current = true;
     setHasMidpoint(true);
@@ -505,22 +565,7 @@ export default function LessonPageLayout({ lesson, quiz, children }: Props) {
   function markMidpointDone() {
     midpointDoneRef.current = true;
     setMidpointDone(true);
-    tryFireCompletion();
   }
-
-  useEffect(() => {
-    if (quiz.length > 0 || readPct < 100 || zeroQuizCompletedRef.current) return;
-    // For zero-quiz lessons with midpoint, require midpoint to be done
-    if (hasMidpointRef.current && !midpointDoneRef.current) return;
-
-    zeroQuizCompletedRef.current = true;
-    markLessonComplete(persistedLessonId, durationMin);
-    void completeLessonInSupabase([]);
-    // completeLessonInSupabase is defined in-component and stable enough for
-    // this one-way zero-quiz completion flow; including it here would make
-    // the effect re-fire on every render due to function identity.
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [durationMin, persistedLessonId, quiz.length, readPct]);
 
   const q = quiz[activeQ];
   const qSubmitted = submitted[activeQ];
@@ -662,7 +707,7 @@ export default function LessonPageLayout({ lesson, quiz, children }: Props) {
                   </p>
                 )}
                 {(() => {
-                  const scrolledFully = readPct >= 99;
+                  const scrolledFully = readPct >= 95;
                   const sidebarQuizDone = quiz.length > 0 && submittedCount === quiz.length;
                   const checklistItems: { label: string; done: boolean }[] = [
                     { label: "Đọc hết 100% nội dung bài", done: scrolledFully },

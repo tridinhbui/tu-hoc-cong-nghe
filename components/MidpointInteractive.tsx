@@ -78,7 +78,17 @@ export default function MidpointInteractive({
 
       {selected !== null && !submitted && (
         <button
-          onClick={() => setSubmitted(true)}
+          onClick={() => {
+            setSubmitted(true);
+            // Answering the question IS completing the midpoint check -
+            // count it done the moment they submit, not only if they later
+            // click the "Tiếp tục đọc" button below (which many people skip,
+            // just scrolling on past the explanation). Gating completion on
+            // that button meant "answered the midpoint but lesson never
+            // counts as done" - one of the reported bugs.
+            saveMidpointDone(lessonId);
+            lessonCompletion?.markMidpointDone();
+          }}
           className="w-full bg-stone-900 hover:bg-stone-800 dark:bg-stone-100 dark:hover:bg-white text-white dark:text-stone-900 py-2.5 rounded-xl font-bold text-sm transition"
         >
           Kiểm tra
