@@ -15,6 +15,7 @@ import type { Session } from "@supabase/supabase-js";
 import UserStats from "@/components/UserStats";
 import UserProfile from "@/components/UserProfile";
 import ChatWithAdminWidget from "@/components/ChatWithAdminWidget";
+import LessonAppealModal from "@/components/LessonAppealModal";
 import OnboardingFlow from "@/components/OnboardingFlow";
 import ResumeLearningButton from "@/components/ResumeLearningButton";
 import StreakDisplay from "@/components/StreakDisplay";
@@ -114,6 +115,7 @@ export default function DashboardClient({ lessonsMeta }: { lessonsMeta: LessonMe
   const [selectedFlagLessonIds, setSelectedFlagLessonIds] = useState<Set<number>>(new Set());
   const [flagSaving, setFlagSaving] = useState(false);
   const [manualFlagInfoOpen, setManualFlagInfoOpen] = useState(false);
+  const [appealTarget, setAppealTarget] = useState<{ id: number; slug: string; title: string } | null>(null);
 
   useRoutePrefetch(["/analytics", "/ghi-chu", "/kiem-tra", "/tai-lieu", "/ban-be", "/profile", "/settings", "/cfa"]);
 
@@ -1109,6 +1111,19 @@ export default function DashboardClient({ lessonsMeta }: { lessonsMeta: LessonMe
                                         }`}>
                                           {isDone ? "Xong" : isFlagged ? "Tự đánh dấu" : lesson.difficulty}
                                         </span>
+                                        {isFlagged && !isDone && (
+                                          <button
+                                            type="button"
+                                            onClick={(event) => {
+                                              event.stopPropagation();
+                                              event.preventDefault();
+                                              setAppealTarget({ id: lesson.id, slug: lesson.slug, title: lesson.title });
+                                            }}
+                                            className="text-xs font-bold text-stone-400 dark:text-stone-500 hover:text-sky-600 dark:hover:text-sky-400 underline underline-offset-2"
+                                          >
+                                            Khiếu nại
+                                          </button>
+                                        )}
                                       </div>
 
                                       <div className={`flex-shrink-0 text-lg font-bold ${isDone ? "text-emerald-600 dark:text-emerald-400" : "text-stone-500 dark:text-stone-400"}`}>
@@ -1277,6 +1292,10 @@ export default function DashboardClient({ lessonsMeta }: { lessonsMeta: LessonMe
 
       {/* Admin Chat */}
       <ChatWithAdminWidget />
+
+      {appealTarget && user?.id && (
+        <LessonAppealModal userId={user.id} lesson={appealTarget} onClose={() => setAppealTarget(null)} />
+      )}
 
       {/* One-time spotlight walkthrough for brand-new users */}
       <DashboardTour userId={user?.id} />
