@@ -96,12 +96,12 @@ function SectionCard({
   children: ReactNode;
 }) {
   return (
-    <div className="bg-white dark:bg-stone-900 border-2 border-stone-200 dark:border-stone-800 rounded-2xl p-6">
+    <div className="bg-white dark:bg-stone-900 border-2 border-stone-200 dark:border-stone-800 rounded-2xl p-4 sm:p-6 min-w-0">
       <div className="flex items-start gap-4 mb-5">
-        <div className="w-11 h-11 rounded-2xl bg-stone-100 dark:bg-stone-800 flex items-center justify-center text-stone-700 dark:text-stone-200">
+        <div className="w-11 h-11 rounded-2xl bg-stone-100 dark:bg-stone-800 flex items-center justify-center text-stone-700 dark:text-stone-200 flex-shrink-0">
           {icon}
         </div>
-        <div>
+        <div className="min-w-0">
           <h3 className="text-lg font-extrabold text-stone-900 dark:text-stone-100">{title}</h3>
           <p className="text-sm text-stone-500 dark:text-stone-400 mt-1">{description}</p>
         </div>
@@ -328,9 +328,9 @@ export default function ProfilePage() {
     .slice(0, 2);
 
   return (
-    <div className="min-h-screen bg-stone-50 dark:bg-stone-950">
+    <div className="min-h-screen bg-stone-50 dark:bg-stone-950 overflow-x-hidden">
       <div className="border-b border-stone-200 dark:border-stone-800 sticky top-0 bg-white/95 dark:bg-stone-950/95 backdrop-blur z-10">
-        <div className="max-w-5xl mx-auto px-6 py-4 flex items-center justify-between gap-4">
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 py-4 flex items-center justify-between gap-3">
           <div>
             <Link
               href="/dashboard"
@@ -347,7 +347,7 @@ export default function ProfilePage() {
         </div>
       </div>
 
-      <div className="max-w-5xl mx-auto px-6 py-8 space-y-6">
+      <div className="max-w-5xl mx-auto px-4 sm:px-6 py-8 space-y-6">
         {errorMessage && (
           <div className="rounded-2xl border border-red-200 dark:border-red-900 bg-red-50 dark:bg-red-950/40 px-4 py-3 text-sm font-semibold text-red-700 dark:text-red-300">
             {errorMessage}

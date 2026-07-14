@@ -5,7 +5,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { useRouter, useSearchParams } from "next/navigation";
 import { toast } from "sonner";
-import { CheckCircle2, BarChart3, Lock, FileText, Menu, X, GraduationCap, StickyNote, CheckCheck, Bookmark } from "lucide-react";
+import { CheckCircle2, BarChart3, Lock, FileText, Menu, X, GraduationCap, StickyNote, CheckCheck, Bookmark, Gamepad2 } from "lucide-react";
 import { useProgress } from "@/lib/client-hooks";
 import { mergeCompletedLessons } from "@/lib/progress";
 import { getCompletedLessons } from "@/lib/supabase-progress";
@@ -589,6 +589,15 @@ export default function DashboardClient({ lessonsMeta }: { lessonsMeta: LessonMe
                 <GraduationCap className="w-4 h-4" />
                 Kiểm tra
               </Link>
+              <Link
+                href="/game"
+                title="Mini game"
+                aria-label="Mini game"
+                className="hidden sm:flex items-center gap-1.5 text-xs font-bold text-emerald-600 dark:text-emerald-400 bg-emerald-50 dark:bg-emerald-950 border border-emerald-200 dark:border-emerald-800 hover:bg-emerald-100 dark:hover:bg-emerald-900 rounded-lg px-3 py-1.5 transition-colors"
+              >
+                <Gamepad2 className="w-3.5 h-3.5" />
+                Game
+              </Link>
             </div>
             <div className="sm:hidden">
               {/* Mobile-only menu toggle - the two links above are hidden
@@ -645,6 +654,14 @@ export default function DashboardClient({ lessonsMeta }: { lessonsMeta: LessonMe
             >
               <GraduationCap className="w-4 h-4" />
               Kiểm tra kiến thức
+            </Link>
+            <Link
+              href="/game"
+              onClick={() => setMobileMenuOpen(false)}
+              className="flex items-center gap-2 text-sm font-bold text-emerald-600 dark:text-emerald-400 bg-emerald-50 dark:bg-emerald-950 border border-emerald-200 dark:border-emerald-800 rounded-lg px-3 py-2.5 w-full"
+            >
+              <Gamepad2 className="w-4 h-4" />
+              Mini game
             </Link>
           </div>
         )}
