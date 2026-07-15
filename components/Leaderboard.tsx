@@ -94,12 +94,20 @@ export default function Leaderboard({ userId }: LeaderboardProps) {
   const [metric, setMetric] = useState<LeaderboardMetric>("xp");
   const [entries, setEntries] = useState<LeaderboardRow[]>([]);
   const [myRank, setMyRank] = useState<{ rank: number; value: number } | null>(null);
+  // `loading` is only ever true before the very first successful fetch -
+  // `switching` covers every later tab change. Splitting them keeps the
+  // current list mounted (just dimmed) while a new metric loads, instead of
+  // unmounting it back to "Đang tải..." and remounting once data arrives,
+  // which is what made tapping between tabs flicker the whole table even
+  // though each fetch is fast.
   const [loading, setLoading] = useState(true);
+  const [switching, setSwitching] = useState(false);
 
   const activeTab = TABS.find((t) => t.metric === metric)!;
 
   useEffect(() => {
     let cancelled = false;
+    setSwitching(true);
     (async () => {
       try {
         const [top, mine] = await Promise.all([
@@ -116,7 +124,10 @@ export default function Leaderboard({ userId }: LeaderboardProps) {
           setMyRank(null);
         }
       } finally {
-        if (!cancelled) setLoading(false);
+        if (!cancelled) {
+          setLoading(false);
+          setSwitching(false);
+        }
       }
     })();
     return () => {
@@ -153,7 +164,6 @@ export default function Leaderboard({ userId }: LeaderboardProps) {
             key={tab.metric}
             onClick={() => {
               if (tab.metric === metric) return;
-              setLoading(true);
               setMetric(tab.metric);
             }}
             className={`flex-1 text-[10px] sm:text-[11px] font-bold py-1 sm:py-1.5 rounded-md transition-all cursor-pointer ${
@@ -174,7 +184,7 @@ export default function Leaderboard({ userId }: LeaderboardProps) {
           Chưa có đủ dữ liệu xếp hạng. Hoàn thành bài học để lên bảng đầu tiên!
         </p>
       ) : (
-        <>
+        <div className={`transition-opacity duration-150 ${switching ? "opacity-40" : "opacity-100"}`}>
           <div className="space-y-1.5">
             {entries.map((entry, idx) => {
               const rank = idx + 1;
@@ -273,7 +283,7 @@ export default function Leaderboard({ userId }: LeaderboardProps) {
               </div>
             </div>
           )}
-        </>
+        </div>
       )}
       <style>{`
         @keyframes shimmer {
