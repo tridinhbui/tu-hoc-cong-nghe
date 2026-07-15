@@ -94,3 +94,20 @@ export async function getUserCount(): Promise<number> {
   if (error) return 0;
   return count ?? 0;
 }
+
+/**
+ * Recomputes lessons_completed/total_xp/current_level/avg_quiz_score for
+ * EVERY user in one set-based SQL pass (see
+ * 20260722_admin_resync_all_user_stats.sql) - the bulk counterpart to
+ * lib/supabase-user.ts#recalculateUserStats, which only self-heals one
+ * account at a time, the next time that person visits the dashboard/profile.
+ * This fixes everyone already affected by a past silent-failure right now,
+ * in one call, instead of waiting for each of them to log back in. Returns
+ * the number of accounts whose stats actually changed.
+ */
+export async function resyncAllUserStats(): Promise<number> {
+  const supabase = createAdminClient();
+  const { data, error } = await supabase.rpc("admin_resync_all_user_stats");
+  if (error) throw new Error(error.message);
+  return (data as number) ?? 0;
+}
