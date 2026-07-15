@@ -386,6 +386,12 @@ export default function LessonPageLayout({ lesson, quiz, children }: Props) {
   const midpointCriterionMet = !hasMidpoint || midpointDone;
   const allCriteriaMet = scrolledFully && quizCriterionMet && midpointCriterionMet;
 
+  // Mirrors LessonTableOfContents' own "at least 3 headings" gate - computed
+  // here too so the wrapper column that reserves its layout space can skip
+  // rendering entirely when there's nothing to show, instead of reserving
+  // 256px of dead space on every lesson without a real TOC.
+  const hasToc = (lesson.sections?.filter((s) => s.type === "heading").length ?? 0) >= 3;
+
   useEffect(() => {
     if (!allCriteriaMet) return;
     if (quizCompletionFiredRef.current || zeroQuizCompletedRef.current) return;
@@ -828,9 +834,20 @@ export default function LessonPageLayout({ lesson, quiz, children }: Props) {
           </div>
 
           {/* ── RIGHT: Table of Contents (XL+) ─────────────────────────── */}
-          <div className="hidden xl:block w-64 flex-shrink-0">
-            <LessonTableOfContents sections={lesson.sections} />
-          </div>
+          {/* Most lessons are quiz/explanation-based (no `sections`), or
+              have fewer than 3 headings - LessonTableOfContents renders
+              null for those, but this wrapper used to render unconditionally
+              regardless, reserving 256px + gap of dead flex space between
+              the article and quiz sidebar on every lesson without a real
+              TOC. That's what squeezed both columns narrow with a large
+              blank gap between them on laptop-width screens (reported:
+              "phần các bài học trên laptop screen bị co lại"). Only
+              reserving the space when there's an actual TOC to show fixes it. */}
+          {hasToc && (
+            <div className="hidden xl:block w-64 flex-shrink-0">
+              <LessonTableOfContents sections={lesson.sections} />
+            </div>
+          )}
 
           {/* ── RIGHT: Quiz sidebar ────────────────────────────────── */}
           {/* max-h + overflow-y-auto so the sticky column scrolls internally
