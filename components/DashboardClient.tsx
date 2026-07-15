@@ -839,8 +839,9 @@ export default function DashboardClient({ lessonsMeta }: { lessonsMeta: LessonMe
               
               const isPrevStageCompleted = prevStageLessons.length > 0 && prevStageDone === prevStageLessons.length;
               prevMilestonePassed = passedMilestones.some((m) => m.stage_label === prevStage.label);
-              isStageLockedByMilestone = !isPrevStageCompleted || !prevMilestonePassed;
+              isStageLockedByMilestone = false; // Gỡ khóa bài học theo yêu cầu người dùng, mở hoàn toàn
             }
+            const isCurrentMilestonePassed = passedMilestones.some((m) => m.stage_label === stage.label);
 
             return (
               <div key={stage.label}>
@@ -858,7 +859,11 @@ export default function DashboardClient({ lessonsMeta }: { lessonsMeta: LessonMe
                         {stage.label}
                       </span>
                       <span className="text-base sm:text-lg font-extrabold text-stone-900 dark:text-stone-100 flex-1 leading-snug">{stage.name}</span>
-                      {isStageLockedByMilestone ? (
+                      {isCurrentMilestonePassed ? (
+                        <span className="flex items-center gap-1 text-xs font-bold text-emerald-600 dark:text-emerald-450 shrink-0 bg-emerald-50 dark:bg-emerald-950/40 px-2.5 py-1 rounded-lg border border-emerald-200/40">
+                          🌟 Đã vượt ải
+                        </span>
+                      ) : isStageLockedByMilestone ? (
                         <span className="flex items-center gap-1 text-xs font-bold text-rose-500 dark:text-rose-400 shrink-0">
                           <Lock className="w-3 h-3" /> Chờ vượt ải
                         </span>

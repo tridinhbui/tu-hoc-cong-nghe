@@ -1,20 +1,35 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
 import { toast } from "sonner";
-import { Sparkles, Trophy, Calendar, CheckCircle2, Gift } from "lucide-react";
+import { Sparkles, Trophy, Calendar, CheckCircle2, Gift, ChevronDown, ChevronUp, ArrowRight } from "lucide-react";
 import { getDailyQuests, claimQuestReward, type Quest } from "@/lib/supabase-quests";
 
 interface DailyQuestsWidgetProps {
   userId: string;
 }
 
+// Where "Làm ngay →" sends the learner for each quest - daily_1 (complete a
+// lesson) scrolls to the resume-learning card already on this same
+// dashboard page (data-tour="resume-learning") rather than navigating
+// anywhere, since it's already right there; the game quests route to /game.
+function goToQuestAction(questId: string, router: ReturnType<typeof useRouter>) {
+  if (questId === "daily_1") {
+    document.querySelector('[data-tour="resume-learning"]')?.scrollIntoView({ behavior: "smooth", block: "center" });
+  } else {
+    router.push("/game");
+  }
+}
+
 export default function DailyQuestsWidget({ userId }: DailyQuestsWidgetProps) {
+  const router = useRouter();
   const [quests, setQuests] = useState<Quest[]>([]);
   const [dayKey, setDayKey] = useState<string>("");
   const [loading, setLoading] = useState(true);
   const [claimingId, setClaimingId] = useState<string | null>(null);
   const [weeklyClaimed, setWeeklyClaimed] = useState(false);
+  const [collapsed, setCollapsed] = useState(false);
 
   // Get Swedish ISO date string (YYYY-MM-DD) local to the user
   const getLocalDayKey = () => {
@@ -109,23 +124,34 @@ export default function DailyQuestsWidget({ userId }: DailyQuestsWidgetProps) {
       <div className="absolute top-0 right-0 w-32 h-32 bg-amber-500/[0.03] rounded-full blur-3xl pointer-events-none" />
       <div className="absolute bottom-0 left-0 w-24 h-24 bg-rose-500/[0.02] rounded-full blur-2xl pointer-events-none" />
 
-      <div className="flex items-center justify-between mb-4 relative z-10">
+      <button
+        onClick={() => setCollapsed((v) => !v)}
+        className="w-full flex items-center justify-between mb-4 relative z-10 cursor-pointer"
+      >
         <div className="flex items-center gap-2">
           <div className="w-8 h-8 rounded-xl bg-amber-50 dark:bg-amber-950/40 text-amber-600 dark:text-amber-450 flex items-center justify-center">
             <Sparkles className="w-4 h-4" />
           </div>
-          <div>
+          <div className="text-left">
             <h3 className="text-sm font-extrabold text-stone-900 dark:text-stone-150">Nhiệm vụ hàng ngày</h3>
             <p className="text-[10px] text-stone-450 dark:text-stone-400 font-bold uppercase tracking-wider flex items-center gap-1 mt-0.5">
               <Calendar className="w-3 h-3" /> {dayKey}
             </p>
           </div>
         </div>
-        <span className="text-[11px] font-extrabold px-2.5 py-1 rounded-full bg-stone-50 dark:bg-stone-950/60 text-stone-600 dark:text-stone-450 border border-stone-100 dark:border-stone-800">
-          Đạt {completedQuestsCount}/3
-        </span>
-      </div>
+        <div className="flex items-center gap-2">
+          <span className="text-[11px] font-extrabold px-2.5 py-1 rounded-full bg-stone-50 dark:bg-stone-950/60 text-stone-600 dark:text-stone-450 border border-stone-100 dark:border-stone-800">
+            Đạt {completedQuestsCount}/3
+          </span>
+          {collapsed ? (
+            <ChevronDown className="w-4 h-4 text-stone-400 dark:text-stone-500" />
+          ) : (
+            <ChevronUp className="w-4 h-4 text-stone-400 dark:text-stone-500" />
+          )}
+        </div>
+      </button>
 
+      {collapsed ? null : (
       <div className="space-y-3 relative z-10">
         {quests.map((quest) => {
           const isDone = quest.current >= quest.target;
@@ -155,7 +181,7 @@ export default function DailyQuestsWidget({ userId }: DailyQuestsWidgetProps) {
                   <p className="text-[11px] text-stone-500 dark:text-stone-400 mt-1 leading-relaxed">{quest.description}</p>
                 </div>
 
-                <div className="shrink-0">
+                <div className="shrink-0 flex items-center gap-1.5">
                   {quest.claimed ? (
                     <span className="text-[10px] font-extrabold text-stone-450 dark:text-stone-400 bg-stone-100 dark:bg-stone-950/40 px-2 py-1.5 rounded-lg border border-stone-200/50 dark:border-stone-850">
                       Đã nhận
@@ -169,9 +195,18 @@ export default function DailyQuestsWidget({ userId }: DailyQuestsWidgetProps) {
                       +{quest.xpReward} XP 🎁
                     </button>
                   ) : (
-                    <span className="text-[10px] font-extrabold text-stone-500 bg-stone-50 dark:bg-stone-950/40 px-2.5 py-1.5 rounded-lg border border-stone-200/40 dark:border-stone-850">
-                      +{quest.xpReward} XP
-                    </span>
+                    <>
+                      <span className="text-[10px] font-extrabold text-stone-500 bg-stone-50 dark:bg-stone-950/40 px-2.5 py-1.5 rounded-lg border border-stone-200/40 dark:border-stone-850">
+                        +{quest.xpReward} XP
+                      </span>
+                      <button
+                        onClick={() => goToQuestAction(quest.id, router)}
+                        title="Đi làm nhiệm vụ này ngay"
+                        className="inline-flex items-center gap-1 text-[10px] font-extrabold text-amber-700 dark:text-amber-400 bg-amber-50 dark:bg-amber-950/30 hover:bg-amber-100 dark:hover:bg-amber-900/40 px-2 py-1.5 rounded-lg border border-amber-200/60 dark:border-amber-900/40 transition-colors cursor-pointer"
+                      >
+                        Làm ngay <ArrowRight className="w-3 h-3" />
+                      </button>
+                    </>
                   )}
                 </div>
               </div>
@@ -179,6 +214,7 @@ export default function DailyQuestsWidget({ userId }: DailyQuestsWidgetProps) {
           );
         })}
       </div>
+      )}
 
       {/* Weekly Chest Tracker */}
       <div className="mt-4 pt-4 border-t border-stone-150 dark:border-stone-800/80 relative z-10">
