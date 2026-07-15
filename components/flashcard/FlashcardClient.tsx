@@ -205,12 +205,18 @@ export default function FlashcardClient() {
       .map((line) => line.trim())
       .filter(Boolean)
       .map((line) => {
-        const parts = line.includes("|") ? line.split("|") : line.split("\t");
-        const term = (parts[0] ?? "").trim();
-        const definition = parts.slice(1).join(parts[0]?.includes("|") ? "|" : "\t").trim();
+        // Split on the FIRST separator only - a definition containing
+        // another "|" (e.g. a ratio or "A | B" phrase) used to get
+        // silently mangled: rejoining the remaining parts checked whether
+        // the term (never the separator itself) contained "|", which is
+        // never true, so it always rejoined with a tab instead of "|".
+        const sepIndex = line.includes("|") ? line.indexOf("|") : line.indexOf("\t");
+        if (sepIndex === -1) return null; // no recognized separator on this line - not a valid card
+        const term = line.slice(0, sepIndex).trim();
+        const definition = line.slice(sepIndex + 1).trim();
         return { term, definition };
       })
-      .filter((c) => c.term && c.definition);
+      .filter((c): c is { term: string; definition: string } => c !== null && !!c.term && !!c.definition);
   }
 
   const handleBulkImport = async () => {
