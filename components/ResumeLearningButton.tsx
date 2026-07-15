@@ -8,6 +8,8 @@ import { getDashboardGreetingAction } from "@/app/(app)/dashboard/actions";
 import { createClient } from "@/lib/supabase";
 import { getLessonDisplayLabel, getLessonShortTitle } from "@/lib/lesson-labels";
 import { getQuizAnswers } from "@/lib/progress";
+import RecallCard from "@/components/RecallCard";
+import type { RecallItem } from "@/lib/recall-schedule";
 
 interface ResumeLearningButtonProps {
   activeTrack: "personal" | "professional";
@@ -16,6 +18,7 @@ interface ResumeLearningButtonProps {
 interface Greeting {
   nextLesson: { id: number; slug: string; title: string; subtitle: string; duration: string } | null;
   nextLessonCriteria: { readPercent: number; quizTotal: number } | null;
+  todayRecallItems: RecallItem[];
   completedCount: number;
   totalMinutes: number;
   firstName: string | null;
@@ -124,7 +127,10 @@ export default function ResumeLearningButton({ activeTrack }: ResumeLearningButt
       ? `${addressee} chưa học bài nào cả - cùng bắt đầu với:`
       : `${addressee} đang học dở:`;
 
+  const todayRecallItems = greeting?.todayRecallItems ?? [];
+
   return (
+    <div className="space-y-4">
     <Link
       href={`/bai-hoc/${nextLesson.slug}`}
       className="group block bg-white dark:bg-stone-900 border-2 border-stone-200 dark:border-stone-800 hover:border-emerald-400 dark:hover:border-emerald-600 rounded-2xl p-5 transition-all hover:shadow-lg"
@@ -182,5 +188,7 @@ export default function ResumeLearningButton({ activeTrack }: ResumeLearningButt
         </div>
       </div>
     </Link>
+    {todayRecallItems.length > 0 && <RecallCard items={todayRecallItems} title="Ôn tập hôm nay" />}
+    </div>
   );
 }

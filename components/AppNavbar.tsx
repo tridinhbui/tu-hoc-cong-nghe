@@ -8,6 +8,7 @@ import { FileText, BarChart3, StickyNote, GraduationCap, Gamepad2, Menu, X } fro
 import { createClient } from "@/lib/supabase";
 import { useRoutePrefetch } from "@/lib/use-route-prefetch";
 import Logo from "@/components/Logo";
+import LessonSearch from "@/components/LessonSearch";
 
 interface NavProfile {
   full_name: string | null;
@@ -132,6 +133,7 @@ export default function AppNavbar() {
         </nav>
 
         <div className="flex items-center gap-2 flex-shrink-0">
+          <LessonSearch />
           <button
             onClick={() => setMobileMenuOpen((v) => !v)}
             className="md:hidden flex items-center justify-center w-9 h-9 rounded-lg border border-stone-200 dark:border-stone-800 text-stone-600 dark:text-stone-400 hover:bg-stone-50 dark:hover:bg-stone-900 transition-colors"

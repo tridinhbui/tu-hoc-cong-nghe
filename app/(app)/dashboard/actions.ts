@@ -5,6 +5,8 @@ import { getCompletedLessons, getTotalTimeSpentMinutes } from "@/lib/supabase-pr
 import { createServerSupabaseClient } from "@/lib/supabase-server";
 import { getLessonsMeta, getLessonById } from "@/lib/lessons-loader";
 import { isLessonIdInTrack } from "@/lib/track-stages";
+import { getLessonRecallDay } from "@/lib/lesson-labels";
+import { RECALL_SCHEDULE, type RecallItem } from "@/lib/recall-schedule";
 
 // Wraps lib/resume-learning.ts as a Server Action. That module reads the
 // full lesson dataset (lib/lessons.ts, ~1.3MB of lesson content) via
@@ -77,9 +79,23 @@ export async function getDashboardGreetingAction(userId: string, track: "persona
     };
   }
 
+  // "Ôn tập hôm nay": the recall system (lib/recall-schedule.ts) ties review
+  // items to a specific lesson's position in the sequence (surfaced inline
+  // via RecallCard when that lesson is opened), not to a calendar date - so
+  // there's no independent "due today" list to query. The closest honest
+  // equivalent is the recall items already attached to the learner's next
+  // lesson: material from lessons ~5-12 back that they're about to be
+  // quizzed on anyway. Surfacing it on the dashboard lets them warm up
+  // before clicking in, instead of only discovering it once they're already
+  // on the page.
+  const todayRecallItems: RecallItem[] = nextLesson
+    ? RECALL_SCHEDULE[getLessonRecallDay(nextLesson) ?? -1] ?? []
+    : [];
+
   return {
     nextLesson,
     nextLessonCriteria,
+    todayRecallItems,
     completedCount: completedLessons.length,
     totalMinutes,
     firstName,
