@@ -92,8 +92,26 @@ export async function approveAppeal(appealId: number, adminId: string): Promise<
     .eq("user_id", appeal.user_id);
   const quizXp = (quizSessions ?? []).reduce((sum, row) => sum + (row.xp_earned as number), 0);
 
+  // Best xp_earned per game_type, summed - same rule as
+  // lib/games.ts#getTotalGameXp (kept as a duplicate formula rather than a
+  // shared import since this runs on the admin service-role client, not the
+  // browser client getTotalGameXp uses). Missing this previously meant
+  // approving an appeal overwrote total_xp and silently dropped any
+  // mini-game XP the user had earned, until it happened to self-correct on
+  // their next dashboard/profile visit.
+  const { data: gameSessions } = await supabase
+    .from("game_sessions")
+    .select("game_type, xp_earned")
+    .eq("user_id", appeal.user_id);
+  const bestGameXpByType = new Map<string, number>();
+  for (const row of (gameSessions ?? []) as { game_type: string; xp_earned: number }[]) {
+    const cur = bestGameXpByType.get(row.game_type) ?? 0;
+    if (row.xp_earned > cur) bestGameXpByType.set(row.game_type, row.xp_earned);
+  }
+  const gameXp = Array.from(bestGameXpByType.values()).reduce((sum, v) => sum + v, 0);
+
   const lessonsCompleted = progress?.length ?? 0;
-  const totalXp = lessonsCompleted * 10 + quizXp;
+  const totalXp = lessonsCompleted * 10 + quizXp + gameXp;
   const currentLevel = Math.floor(totalXp / 150) + 1;
   const quizScores = (progress ?? []).filter((p) => p.quiz_score !== null).map((p) => p.quiz_score as number);
   const avgScore = quizScores.length > 0 ? quizScores.reduce((a, b) => a + b, 0) / quizScores.length : 0;

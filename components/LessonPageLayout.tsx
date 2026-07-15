@@ -397,16 +397,40 @@ export default function LessonPageLayout({ lesson, quiz, children }: Props) {
     midpointDoneRef.current = true;
 
     markLessonComplete(persistedLessonId, durationMin);
-    void completeLessonInSupabase(quiz.length > 0 ? results : []).then((ok) => {
-      // If the critical server write failed (transient network/RLS blip),
-      // release the guards so a later re-trigger - or this effect re-running
-      // when the user interacts again - retries the save instead of leaving
-      // the lesson permanently unsaved for the session.
-      if (!ok) {
-        quizCompletionFiredRef.current = false;
-        zeroQuizCompletedRef.current = false;
+
+    // This effect depends only on `allCriteriaMet` (a boolean) - once every
+    // criterion is met, there's nothing left for the learner to do on this
+    // page, so nothing will ever flip it false-then-true again to naturally
+    // re-run the effect. That means a single transient failure (network
+    // blip, brief RLS hiccup) used to strand the completion unsaved for the
+    // rest of the visit despite the guard being reset, because nothing was
+    // actually driving a retry - the toast promised "sẽ tự thử lại" but no
+    // such retry existed. Actually retry with backoff here instead.
+    let cancelled = false;
+    const RETRY_DELAYS_MS = [1500, 4000, 8000];
+    async function attemptSave() {
+      const finalResults = quiz.length > 0 ? results : [];
+      for (let attempt = 0; ; attempt++) {
+        if (cancelled) return;
+        const ok = await completeLessonInSupabase(finalResults);
+        if (ok || cancelled) return;
+        if (attempt >= RETRY_DELAYS_MS.length) {
+          // Retries exhausted - release the guards so leaving and
+          // returning to the lesson (a fresh mount re-evaluates and
+          // re-fires this effect) can try again, instead of the
+          // completion staying silently unsaved forever this session.
+          quizCompletionFiredRef.current = false;
+          zeroQuizCompletedRef.current = false;
+          toast.error("Không thể lưu tiến độ bài học. Vui lòng tải lại trang để thử lại.");
+          return;
+        }
+        await new Promise((resolve) => setTimeout(resolve, RETRY_DELAYS_MS[attempt]));
       }
-    });
+    }
+    void attemptSave();
+    return () => {
+      cancelled = true;
+    };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [allCriteriaMet]);
 
@@ -525,7 +549,6 @@ export default function LessonPageLayout({ lesson, quiz, children }: Props) {
       await markLessonCompleteSupabase(uid, persistedLessonId, finalScore, durationMin * 60);
     } catch (error) {
       console.error("Error saving lesson completion:", error);
-      toast.error("Không thể lưu tiến độ. Sẽ tự thử lại - hoặc tải lại trang nếu vẫn lỗi.");
       return false;
     }
 
