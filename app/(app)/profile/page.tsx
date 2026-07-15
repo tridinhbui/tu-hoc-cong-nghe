@@ -20,7 +20,7 @@ import {
 } from "lucide-react";
 import { createClient } from "@/lib/supabase";
 import { getLevelByXp, getLevelProgress, getXpToNextLevel } from "@/lib/levels";
-import { getMyLeaderboardRank, getUserProfile, type UserProfile } from "@/lib/supabase-user";
+import { getMyLeaderboardRank, getUserProfile, recalculateUserStats, type UserProfile } from "@/lib/supabase-user";
 import { getEligibleUserBadges, type UserBadge } from "@/lib/supabase-badges";
 import { getMyGameTitles, type EarnedGameTitle } from "@/lib/games";
 import { getUserStreak, type UserStreak } from "@/lib/supabase-streak";
@@ -268,6 +268,26 @@ export default function ProfilePage() {
         getMyGameTitles(session.user.id)
           .then(setGameTitles)
           .catch((err) => console.error("Error loading game titles:", err));
+        // Self-heals total_xp/level/lessons_completed against the real
+        // completed-lesson count - see the matching note in
+        // DashboardClient.tsx. Fires after the fast initial paint above so a
+        // stale number briefly shows, then corrects, rather than blocking
+        // the page on it.
+        recalculateUserStats(session.user.id)
+          .then((stats) =>
+            setProfile((prev) =>
+              prev
+                ? {
+                    ...prev,
+                    total_xp: stats.total_xp,
+                    current_level: stats.current_level,
+                    lessons_completed: stats.total_lessons_completed,
+                    avg_quiz_score: stats.avg_quiz_score,
+                  }
+                : prev
+            )
+          )
+          .catch((err) => console.error("Error recalculating user stats:", err));
         setNotesCount(notes.length);
         setFlaggedLessonCount(flags.length);
         setFlaggedLessons(flags.slice(0, 4));

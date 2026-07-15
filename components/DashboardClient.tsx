@@ -5,7 +5,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { useRouter, useSearchParams } from "next/navigation";
 import { toast } from "sonner";
-import { CheckCircle2, BarChart3, Lock, FileText, Menu, X, GraduationCap, StickyNote, CheckCheck, Bookmark, Gamepad2 } from "lucide-react";
+import { CheckCircle2, Lock, CheckCheck, Bookmark } from "lucide-react";
 import { useProgress } from "@/lib/client-hooks";
 import { mergeCompletedLessons } from "@/lib/progress";
 import { getCompletedLessons } from "@/lib/supabase-progress";
@@ -13,7 +13,6 @@ import type { Difficulty } from "@/lib/lesson-types";
 import { createClient } from "@/lib/supabase";
 import type { Session } from "@supabase/supabase-js";
 import UserStats from "@/components/UserStats";
-import UserProfile from "@/components/UserProfile";
 import ChatWithAdminWidget from "@/components/ChatWithAdminWidget";
 import LessonAppealModal from "@/components/LessonAppealModal";
 import OnboardingFlow from "@/components/OnboardingFlow";
@@ -22,10 +21,9 @@ import StreakDisplay from "@/components/StreakDisplay";
 import StreakReminderManager from "@/components/StreakReminderManager";
 import AnnouncementBanner from "@/components/AnnouncementBanner";
 import DashboardTour from "@/components/DashboardTour";
-import Logo from "@/components/Logo";
 import Leaderboard from "@/components/Leaderboard";
 import { hasCompletedOnboarding, completeOnboarding } from "@/lib/supabase-onboarding";
-import { getUserProfile } from "@/lib/supabase-user";
+import { getUserProfile, recalculateUserStats } from "@/lib/supabase-user";
 import UnlockRequestModal from "@/components/UnlockRequestModal";
 import KnowledgeChallengeModal from "@/components/KnowledgeChallengeModal";
 import { TRACK_PERSONAL, TRACK_PROFESSIONAL, isLessonInRange } from "@/lib/track-stages";
@@ -107,7 +105,6 @@ export default function DashboardClient({ lessonsMeta }: { lessonsMeta: LessonMe
   const [challengePassedIds, setChallengePassedIds] = useState<Set<number>>(new Set());
   const [unlockModalLesson, setUnlockModalLesson] = useState<LessonMeta | null>(null);
   const [challengeGateLesson, setChallengeGateLesson] = useState<LessonMeta | null>(null);
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [showChallenge, setShowChallenge] = useState(false);
   const [flaggedLessonIds, setFlaggedLessonIds] = useState<Set<number>>(new Set());
   const [bookmarks, setBookmarks] = useState<LessonBookmark[]>([]);
@@ -307,16 +304,27 @@ export default function DashboardClient({ lessonsMeta }: { lessonsMeta: LessonMe
         }
       }
 
-      // Read the real XP from user_profiles (the same value recalculateUserStats
-      // writes and UserProfile/LearningAnalytics display) instead of
-      // recomputing it client-side from the local completed-lesson count -
-      // that used to produce a third, independent XP number that could
-      // disagree with the stats dashboard and profile page.
+      // Self-heals total_xp on every dashboard visit instead of trusting
+      // whatever user_profiles.total_xp currently holds. recalculateUserStats
+      // is normally called right after a lesson completes, but that call is
+      // best-effort (a network blip or transient error just gets logged, not
+      // retried - the completion itself still saved fine) - so a user could
+      // legitimately have N completed lessons in user_progress while
+      // total_xp reflects an earlier, smaller N forever, with nothing to
+      // ever reconcile the two. Reported by users as "đã học xong 26 bài
+      // nhưng chỉ có 110 XP". Recomputing from the real completed-lesson
+      // count here, every mount, makes that permanently self-correcting.
       try {
-        const profile = await getUserProfile(session.user.id);
-        setUserXp(profile.total_xp);
+        const stats = await recalculateUserStats(session.user.id);
+        setUserXp(stats.total_xp);
       } catch (error) {
-        console.error("Error loading user XP:", error);
+        console.error("Error recalculating user XP, falling back to stored value:", error);
+        try {
+          const profile = await getUserProfile(session.user.id);
+          setUserXp(profile.total_xp);
+        } catch (fallbackError) {
+          console.error("Error loading user XP:", fallbackError);
+        }
       }
 
       // Mock average quiz score
@@ -538,133 +546,20 @@ export default function DashboardClient({ lessonsMeta }: { lessonsMeta: LessonMe
 
   return (
     <div className="min-h-screen bg-white dark:bg-stone-950">
-      {/* ── Sticky header ── */}
-      <div className="border-b border-stone-200 dark:border-stone-800 sticky top-0 bg-white dark:bg-stone-950 z-10">
+      {/* ── Page context bar (AppNavbar in app/(app)/layout.tsx already
+          provides the persistent nav links + avatar - this just adds the
+          dashboard-specific "chọn lộ trình" subtitle + progress counter) ── */}
+      <div className="border-b border-stone-200 dark:border-stone-800 bg-white dark:bg-stone-950">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 py-3 sm:py-4 flex items-center justify-between gap-3 sm:gap-6">
-          <div className="flex items-center gap-2 sm:gap-2.5 min-w-0">
-            <Logo size={28} className="flex-shrink-0 sm:w-8 sm:h-8" />
-            <div className="min-w-0">
-              <h1 className="text-lg sm:text-xl font-bold text-stone-900 dark:text-stone-100 leading-tight">Tự Học Tài Chính</h1>
-              <p className="text-[11px] sm:text-xs text-stone-500 dark:text-stone-400 mt-0.5 hidden sm:block">Chọn lộ trình phù hợp với bạn</p>
-            </div>
+          <div className="min-w-0">
+            <h1 className="text-lg sm:text-xl font-bold text-stone-900 dark:text-stone-100 leading-tight">Tự Học Tài Chính</h1>
+            <p className="text-[11px] sm:text-xs text-stone-500 dark:text-stone-400 mt-0.5">Chọn lộ trình phù hợp với bạn</p>
           </div>
-          <div className="flex items-center gap-3 sm:gap-6 shrink-0">
-            <div className="text-right hidden sm:block">
-              <div className="text-lg sm:text-xl font-bold text-stone-900 dark:text-stone-100">{totalDone}</div>
-              <div className="text-[11px] sm:text-xs text-stone-500 dark:text-stone-400">/ {totalLessons} bài</div>
-            </div>
-            <div data-tour="free-docs" className="hidden sm:flex items-center gap-1">
-              <Link
-                href="/tai-lieu"
-                title="Tài liệu miễn phí"
-                className="flex items-center gap-1.5 text-xs font-bold text-orange-600 dark:text-orange-400 bg-orange-50 dark:bg-orange-950 border border-orange-200 dark:border-orange-800 hover:bg-orange-100 dark:hover:bg-orange-900 rounded-lg px-3 py-1.5 transition-colors"
-              >
-                <FileText className="w-3.5 h-3.5" />
-                Tài liệu miễn phí
-              </Link>
-              <Link
-                href="/analytics"
-                title="Thống kê"
-                aria-label="Thống kê"
-                className="hidden sm:flex items-center gap-1.5 text-xs font-bold text-stone-500 dark:text-stone-400 hover:text-stone-700 dark:hover:text-stone-200 rounded-full pl-2 pr-3 h-9 hover:bg-stone-100 dark:hover:bg-stone-800 transition-colors"
-              >
-                <BarChart3 className="w-4 h-4" />
-                Thống kê
-              </Link>
-              <Link
-                href="/ghi-chu"
-                title="Ghi chú của tôi"
-                aria-label="Ghi chú của tôi"
-                className="hidden sm:flex items-center gap-1.5 text-xs font-bold text-stone-500 dark:text-stone-400 hover:text-stone-700 dark:hover:text-stone-200 rounded-full pl-2 pr-3 h-9 hover:bg-stone-100 dark:hover:bg-stone-800 transition-colors"
-              >
-                <StickyNote className="w-4 h-4" />
-                Ghi chú
-              </Link>
-              <Link
-                href="/kiem-tra"
-                title="Kiểm tra kiến thức"
-                aria-label="Kiểm tra kiến thức"
-                className="hidden sm:flex items-center gap-1.5 text-xs font-bold text-stone-500 dark:text-stone-400 hover:text-stone-700 dark:hover:text-stone-200 rounded-full pl-2 pr-3 h-9 hover:bg-stone-100 dark:hover:bg-stone-800 transition-colors"
-              >
-                <GraduationCap className="w-4 h-4" />
-                Kiểm tra
-              </Link>
-              <Link
-                href="/game"
-                title="Mini game"
-                aria-label="Mini game"
-                className="hidden sm:flex items-center gap-1.5 text-xs font-bold text-emerald-600 dark:text-emerald-400 bg-emerald-50 dark:bg-emerald-950 border border-emerald-200 dark:border-emerald-800 hover:bg-emerald-100 dark:hover:bg-emerald-900 rounded-lg px-3 py-1.5 transition-colors"
-              >
-                <Gamepad2 className="w-3.5 h-3.5" />
-                Game
-              </Link>
-            </div>
-            <div className="sm:hidden">
-              {/* Mobile-only menu toggle - the two links above are hidden
-                  below the `sm` breakpoint with no other way to reach them
-                  besides the avatar dropdown, which doesn't visually read as
-                  "there's more navigation here" on a first visit. */}
-              <button
-                onClick={() => setMobileMenuOpen((v) => !v)}
-                className="sm:hidden flex items-center justify-center w-9 h-9 rounded-lg border border-stone-200 dark:border-stone-800 text-stone-600 dark:text-stone-400 hover:bg-stone-50 dark:hover:bg-stone-900 transition-colors"
-                aria-label="Mở menu"
-                aria-expanded={mobileMenuOpen}
-              >
-                {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
-              </button>
-            </div>
-            <UserProfile />
+          <div className="text-right shrink-0" data-tour="free-docs">
+            <div className="text-lg sm:text-xl font-bold text-stone-900 dark:text-stone-100">{totalDone}</div>
+            <div className="text-[11px] sm:text-xs text-stone-500 dark:text-stone-400">/ {totalLessons} bài</div>
           </div>
         </div>
-
-        {/* Mobile menu panel */}
-        {mobileMenuOpen && (
-          <div className="sm:hidden border-t border-stone-200 dark:border-stone-800 px-6 py-3 space-y-2 bg-white dark:bg-stone-950">
-            <div className="text-sm text-stone-500 dark:text-stone-400 pb-1">
-              {totalDone} / {totalLessons} bài đã học
-            </div>
-            <Link
-              href="/tai-lieu"
-              onClick={() => setMobileMenuOpen(false)}
-              className="flex items-center gap-2 text-sm font-bold text-orange-600 dark:text-orange-400 bg-orange-50 dark:bg-orange-950 border border-orange-200 dark:border-orange-800 rounded-lg px-3 py-2.5"
-            >
-              <FileText className="w-4 h-4" />
-              Tài liệu miễn phí
-            </Link>
-            <Link
-              href="/analytics"
-              onClick={() => setMobileMenuOpen(false)}
-              className="flex items-center gap-2 text-sm font-bold text-stone-600 dark:text-stone-400 border border-stone-200 dark:border-stone-800 rounded-lg px-3 py-2.5"
-            >
-              <BarChart3 className="w-4 h-4" />
-              Thống kê
-            </Link>
-            <Link
-              href="/ghi-chu"
-              onClick={() => setMobileMenuOpen(false)}
-              className="flex items-center gap-2 text-sm font-bold text-stone-600 dark:text-stone-400 border border-stone-200 dark:border-stone-800 rounded-lg px-3 py-2.5"
-            >
-              <StickyNote className="w-4 h-4" />
-              Ghi chú của tôi
-            </Link>
-            <Link
-              href="/kiem-tra"
-              onClick={() => setMobileMenuOpen(false)}
-              className="flex items-center gap-2 text-sm font-bold text-emerald-600 dark:text-emerald-400 border border-emerald-200 dark:border-emerald-800 rounded-lg px-3 py-2.5 w-full"
-            >
-              <GraduationCap className="w-4 h-4" />
-              Kiểm tra kiến thức
-            </Link>
-            <Link
-              href="/game"
-              onClick={() => setMobileMenuOpen(false)}
-              className="flex items-center gap-2 text-sm font-bold text-emerald-600 dark:text-emerald-400 bg-emerald-50 dark:bg-emerald-950 border border-emerald-200 dark:border-emerald-800 rounded-lg px-3 py-2.5 w-full"
-            >
-              <Gamepad2 className="w-4 h-4" />
-              Mini game
-            </Link>
-          </div>
-        )}
       </div>
 
       <div className="px-6 py-8">

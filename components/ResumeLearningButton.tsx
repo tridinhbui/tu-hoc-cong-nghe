@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { ArrowRight, BookOpen } from "lucide-react";
-import { getDashboardGreetingAction } from "@/app/dashboard/actions";
+import { getDashboardGreetingAction } from "@/app/(app)/dashboard/actions";
 import { createClient } from "@/lib/supabase";
 import { getLessonDisplayLabel, getLessonShortTitle } from "@/lib/lesson-labels";
 import { getQuizAnswers } from "@/lib/progress";
