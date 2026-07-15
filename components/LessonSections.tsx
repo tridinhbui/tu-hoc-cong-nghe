@@ -21,7 +21,7 @@ export default function LessonSections({ sections }: { sections: LessonSectionBl
 
           case "heading":
             return (
-              <h2 key={i} className="text-2xl font-bold text-stone-900 dark:text-stone-100">
+              <h2 key={i} id={`heading-${i}`} className="text-2xl font-bold text-stone-900 dark:text-stone-100 scroll-mt-24">
                 {block.text}
               </h2>
             );
