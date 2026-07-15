@@ -185,7 +185,21 @@ function buildDefaultApplication(lesson: Lesson) {
   };
 }
 
+function getMetaphorForLesson(title: string): string {
+  const t = title.toLowerCase();
+  if (t.includes("lãi kép") || t.includes("compound")) return "quả cầu tuyết lăn từ đỉnh núi: càng lăn xa càng hút thêm tuyết và phình to khổng lồ";
+  if (t.includes("dòng tiền") || t.includes("cash flow")) return "nguồn nước chảy trong sinh hoạt: dù bể nhà bạn to (tài sản lớn) nhưng nếu đường ống bị tắc (thiếu tiền mặt), bạn vẫn không có nước tắm rửa";
+  if (t.includes("lãi suất") || t.includes("interest")) return "phí thuê một chiếc xe máy: bạn mượn xe người khác đi thì cuối ngày phải trả một số tiền nhỏ gọi là tiền thuê";
+  if (t.includes("nợ") || t.includes("debt") || t.includes("vay")) return "một chiếc ba lô chứa đá: giúp bạn lao dốc nhanh hơn nhờ quán tính nếu mang vừa sức, nhưng sẽ đè bẹp bạn nếu quá nặng";
+  if (t.includes("cổ tức") || t.includes("dividend")) return "vườn táo chung: bạn góp vốn mua cây con, khi cây ra trái ngọt, chủ vườn hái chia đều cho mỗi người vài trái mang về";
+  if (t.includes("lạm phát") || t.includes("inflation")) return "cục nước đá để ngoài nắng: cứ mỗi giờ trôi qua nó lại bị chảy bớt đi một chút giá trị mua sắm";
+  if (t.includes("định giá") || t.includes("valuation")) return "mua một món đồ cũ: bạn phải soi kỹ đường may, chất liệu để xem mức giá người bán nói có bị đắt quá không";
+  if (t.includes("tài sản") || t.includes("asset")) return "con gà đẻ trứng vàng: mỗi ngày nó đẻ ra một quả trứng vàng để bạn đem bán kiếm tiền";
+  return "trò chơi trao đổi sticker ở trường: để đổi được sticker hiếm, bạn phải hiểu rõ giá trị của những tấm sticker mình đang sở hữu";
+}
+
 export default function LessonPageClient({ lesson, nextLesson }: Props) {
+  const [feynmanMode, setFeynmanMode] = useState(false);
   const lessonLabel = getLessonDisplayLabel(lesson);
 
   const meta = {
@@ -234,6 +248,65 @@ export default function LessonPageClient({ lesson, nextLesson }: Props) {
             {lesson.whyItMatters}
           </p>
         </div>
+      )}
+
+      {/* Feynman ELI5 Mode Toggle */}
+      <div className="rounded-2xl border border-stone-200 dark:border-stone-800 bg-stone-50/40 dark:bg-stone-900/30 p-4.5 flex items-center justify-between gap-4">
+        <div className="min-w-0 flex-1">
+          <h4 className="text-xs font-bold text-stone-900 dark:text-stone-150 flex items-center gap-1.5">
+            💡 Chế độ Feynman (Giải thích siêu đơn giản)
+          </h4>
+          <p className="text-[10px] text-stone-500 dark:text-stone-400 mt-1 leading-relaxed">
+            Tài Tài giải thích bài học này theo cách dễ nhớ nhất cho học sinh lớp 5!
+          </p>
+        </div>
+        <button
+          onClick={() => setFeynmanMode(!feynmanMode)}
+          className={`px-3.5 py-2 text-xs font-bold rounded-xl shadow-sm hover:scale-[1.03] active:scale-95 transition-all cursor-pointer ${
+            feynmanMode
+              ? "bg-amber-500 text-white"
+              : "bg-white dark:bg-stone-800 text-stone-700 dark:text-stone-300 border border-stone-200 dark:border-stone-700"
+          }`}
+        >
+          {feynmanMode ? "Đang bật 💡" : "Dùng ELI5 ⚡"}
+        </button>
+      </div>
+
+      {feynmanMode && (
+        <motion.div
+          initial={{ opacity: 0, y: 8 }}
+          animate={{ opacity: 1, y: 0 }}
+          className="rounded-2xl border border-amber-200 dark:border-amber-900/50 bg-amber-50/10 dark:bg-amber-950/10 p-5 space-y-4"
+        >
+          <div className="flex items-center gap-2.5">
+            <span className="text-2xl animate-bounce">🦖</span>
+            <div>
+              <h5 className="text-xs font-extrabold text-amber-700 dark:text-amber-400">Tài Tài giải thích (dành cho học sinh lớp 5)</h5>
+              <p className="text-[10px] text-stone-450 dark:text-stone-400 font-bold uppercase tracking-wider">Học theo phép so sánh ẩn dụ</p>
+            </div>
+          </div>
+          <div className="text-xs leading-relaxed text-stone-700 dark:text-stone-300 space-y-3 font-medium">
+            <p>
+              Chào bạn! Để giúp bạn ghi nhớ bài <strong>&quot;{lesson.title}&quot;</strong> nhanh nhất, Tài Tài xin đưa ra một phép so sánh siêu bình dân:
+            </p>
+            <div className="bg-amber-50/40 dark:bg-amber-950/20 p-3.5 rounded-xl border border-amber-200/50 dark:border-amber-900/30 text-amber-900 dark:text-amber-300 font-bold">
+              💡 Hãy tưởng tượng khái niệm này giống như {getMetaphorForLesson(lesson.title)}.
+            </div>
+            <p className="font-semibold text-stone-900 dark:text-stone-200">3 điểm mấu chốt dễ nhớ nhất:</p>
+            <ul className="list-disc pl-4 space-y-1.5 text-stone-600 dark:text-stone-400">
+              {(lesson.keyTakeaways ?? []).slice(0, 3).map((takeaway: string, idx: number) => (
+                <li key={idx}>
+                  <strong>{takeaway.split(" - ")[0]}</strong>: {takeaway.split(" - ")[1] || takeaway}
+                </li>
+              ))}
+            </ul>
+            {lesson.summary?.commonMistake && (
+              <p className="text-[11px] text-red-500 bg-red-50/30 dark:bg-red-950/20 p-2.5 rounded-lg border border-red-200/30 dark:border-red-900/20 font-bold">
+                ⚠️ Sai lầm hay gặp: {lesson.summary.commonMistake}
+              </p>
+            )}
+          </div>
+        </motion.div>
       )}
 
       {/* 1. Opening Question block */}

@@ -2,13 +2,24 @@
 
 import React, { useEffect, useRef, useState } from "react";
 import { findGlossaryMatches } from "@/lib/finance-glossary";
+import { createClient } from "@/lib/supabase";
+import { saveFlashcard } from "@/lib/supabase-flashcards";
+import { toast } from "sonner";
 
 // Dotted-underline term with a CSS-only (no JS/state needed) tooltip showing
 // the English translation on hover/focus - server-renderable since it's
 // plain markup, no client component required.
 function GlossaryTermSpan({ term, en }: { term: string; en: string }) {
   const [open, setOpen] = useState(false);
+  const [userId, setUserId] = useState<string | null>(null);
   const rootRef = useRef<HTMLSpanElement>(null);
+
+  useEffect(() => {
+    const supabase = createClient();
+    supabase.auth.getUser().then(({ data: { user } }) => {
+      if (user) setUserId(user.id);
+    });
+  }, []);
 
   useEffect(() => {
     if (!open) return;
@@ -25,21 +36,50 @@ function GlossaryTermSpan({ term, en }: { term: string; en: string }) {
     };
   }, [open]);
 
+  const handleSaveFlashcard = async (e: React.MouseEvent) => {
+    e.stopPropagation();
+    if (!userId) {
+      toast.error("Vui lòng đăng nhập để lưu thẻ!");
+      return;
+    }
+    const card = {
+      term,
+      definition: `Thuật ngữ tiếng Anh: ${en}. Được lưu từ bài học hệ thống.`,
+      interval: 1,
+      ease_factor: 2.5,
+      repetitions: 0,
+      next_review_at: new Date().toISOString(),
+    };
+    const ok = await saveFlashcard(userId, card);
+    if (ok) {
+      toast.success(`Đã thêm "${term}" vào Flashcards! 🗂️`);
+      setOpen(false);
+    } else {
+      toast.error("Không thể lưu thẻ.");
+    }
+  };
+
   return (
     <span ref={rootRef} className="relative inline-block group/term">
       <button
         type="button"
         onClick={() => setOpen((current) => !current)}
         onFocus={() => setOpen(true)}
-        onBlur={() => setOpen(false)}
         className="border-b border-dotted border-stone-400 dark:border-stone-500 cursor-help focus:outline-none"
       >
         {term}
       </button>
-      <span className={`absolute left-1/2 -translate-x-1/2 bottom-full mb-1.5 whitespace-nowrap rounded-md bg-stone-900 dark:bg-stone-700 text-white text-xs font-semibold px-2 py-1 transition-opacity z-20 ${
+      <span className={`absolute left-1/2 -translate-x-1/2 bottom-full mb-1.5 rounded-xl bg-stone-900 dark:bg-stone-850 text-white text-xs font-semibold p-2.5 transition-opacity z-20 shadow-lg flex flex-col items-center gap-1.5 border border-stone-800 ${
         open ? "opacity-100" : "pointer-events-none opacity-0 group-hover/term:opacity-100 group-focus-within/term:opacity-100"
       }`}>
-        {en}
+        <span className="font-extrabold whitespace-nowrap">{en}</span>
+        <button
+          type="button"
+          onClick={handleSaveFlashcard}
+          className="text-[9px] font-extrabold uppercase tracking-wider bg-emerald-500 hover:bg-emerald-600 text-white px-2 py-1 rounded cursor-pointer shadow-sm active:scale-95 transition-all"
+        >
+          + 🗂️ Lưu Flashcard
+        </button>
       </span>
     </span>
   );

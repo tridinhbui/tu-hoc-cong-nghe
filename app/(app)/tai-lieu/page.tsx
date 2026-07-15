@@ -68,7 +68,7 @@ export default async function DocumentsGiveawayPage() {
       <div className="border-b border-stone-200 dark:border-stone-800">
         <div className="max-w-4xl mx-auto px-6 py-8">
           <Link
-            href="/"
+            href="/dashboard"
             className="inline-flex items-center gap-1 text-sm font-medium text-stone-600 dark:text-stone-400 hover:text-stone-900 dark:hover:text-stone-100 mb-4 transition-colors"
           >
             <ChevronLeft className="w-4 h-4" />

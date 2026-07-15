@@ -4,12 +4,15 @@ import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { usePathname, useRouter } from "next/navigation";
-import { FileText, BarChart3, StickyNote, GraduationCap, Gamepad2, Menu, X } from "lucide-react";
+import { FileText, BarChart3, StickyNote, GraduationCap, Gamepad2, Layers, Menu, X } from "lucide-react";
 import { createClient } from "@/lib/supabase";
 import { useRoutePrefetch } from "@/lib/use-route-prefetch";
 import Logo from "@/components/Logo";
 import LessonSearch from "@/components/LessonSearch";
 import { getUnresolvedMistakeCount } from "@/lib/quiz-mistakes";
+import { claimPendingReferral } from "@/lib/referrals";
+import { useLevelUpWatcher } from "@/lib/use-level-up-watcher";
+import LevelUpModal from "@/components/LevelUpModal";
 
 interface NavProfile {
   full_name: string | null;
@@ -26,6 +29,7 @@ const NAV_LINKS = [
   { href: "/ghi-chu", label: "Ghi chú", icon: StickyNote },
   { href: "/kiem-tra", label: "Kiểm tra", icon: GraduationCap },
   { href: "/game", label: "Game", icon: Gamepad2 },
+  { href: "/flashcard", label: "Flashcard", icon: Layers },
 ];
 
 // Single, persistent top navbar for every signed-in page (mounted once in
@@ -75,8 +79,26 @@ export default function AppNavbar() {
       getUnresolvedMistakeCount(user.id)
         .then(setMistakeCount)
         .catch(() => {});
+      void claimPendingReferral();
     });
   }, []);
+
+  // Keeps `profile` in sync with level/XP changes that happen after the
+  // one-time fetch above - AppNavbar mounts once and stays alive across
+  // client-side navigation (that's the whole point of the persistent
+  // navbar), so without this it would never notice a lesson/quiz/game
+  // completion that raised the user's level during the same session.
+  useEffect(() => {
+    function handleXpUpdate(e: Event) {
+      const detail = (e as CustomEvent<{ currentLevel: number; totalXp: number }>).detail;
+      if (!detail) return;
+      setProfile((prev) => (prev ? { ...prev, current_level: detail.currentLevel, total_xp: detail.totalXp } : prev));
+    }
+    window.addEventListener("thtcdn:xp-updated", handleXpUpdate);
+    return () => window.removeEventListener("thtcdn:xp-updated", handleXpUpdate);
+  }, []);
+
+  const { celebrateLevel, dismiss } = useLevelUpWatcher(profile?.current_level);
 
   useEffect(() => {
     function handleClickOutside(event: MouseEvent) {
@@ -120,18 +142,29 @@ export default function AppNavbar() {
         <nav className="hidden md:flex items-center gap-1 flex-1 justify-center">
           {NAV_LINKS.map(({ href, label, icon: Icon }) => {
             const active = pathname === href;
+            const isGame = href === "/game";
             return (
               <Link
                 key={href}
                 href={href}
-                className={`flex items-center gap-1.5 text-xs font-bold px-3 py-2 rounded-lg transition-colors ${
+                className={`group relative flex items-center gap-1.5 text-xs font-bold px-3 py-2 rounded-lg transition-all duration-200 ${
                   active
-                    ? "bg-emerald-50 dark:bg-emerald-950/40 text-emerald-700 dark:text-emerald-300"
-                    : "text-stone-500 dark:text-stone-400 hover:text-stone-800 dark:hover:text-stone-200 hover:bg-stone-100 dark:hover:bg-stone-900"
+                    ? isGame
+                      ? "bg-amber-500/15 dark:bg-amber-950/40 text-amber-700 dark:text-amber-300 border border-amber-500/30"
+                      : "bg-emerald-50 dark:bg-emerald-950/40 text-emerald-700 dark:text-emerald-300"
+                    : isGame
+                      ? "bg-amber-50/80 dark:bg-amber-950/20 text-amber-600 dark:text-amber-450 border border-amber-200/50 dark:border-amber-900/40 hover:bg-amber-100/60 dark:hover:bg-amber-950/30 hover:border-amber-300"
+                      : "text-stone-500 dark:text-stone-400 hover:text-stone-800 dark:hover:text-stone-200 hover:bg-stone-100 dark:hover:bg-stone-900"
                 }`}
               >
-                <Icon className="w-3.5 h-3.5" />
+                <Icon className={`w-3.5 h-3.5 transition-transform duration-200 group-hover:scale-110 ${isGame ? "text-amber-500" : ""}`} />
                 {label}
+                {isGame && (
+                  <span className="absolute -top-0.5 -right-0.5 flex h-2 w-2">
+                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-amber-400 opacity-75"></span>
+                    <span className="relative inline-flex rounded-full h-2 w-2 bg-amber-500"></span>
+                  </span>
+                )}
               </Link>
             );
           })}
@@ -198,6 +231,9 @@ export default function AppNavbar() {
                     <Link href="/profile" onClick={() => setDropdownOpen(false)} className="block px-3 py-2 text-sm font-semibold text-stone-900 dark:text-stone-100 hover:bg-stone-50 dark:hover:bg-stone-800 rounded-lg transition">
                       Hồ sơ
                     </Link>
+                    <Link href="/hanh-trinh" onClick={() => setDropdownOpen(false)} className="block px-3 py-2 text-sm font-semibold text-stone-900 dark:text-stone-100 hover:bg-stone-50 dark:hover:bg-stone-800 rounded-lg transition">
+                      🗺️ Hành trình của tôi
+                    </Link>
                     <Link href="/ban-be" onClick={() => setDropdownOpen(false)} className="block px-3 py-2 text-sm font-semibold text-stone-900 dark:text-stone-100 hover:bg-stone-50 dark:hover:bg-stone-800 rounded-lg transition">
                       Bạn bè
                     </Link>
@@ -228,24 +264,37 @@ export default function AppNavbar() {
         <div className="md:hidden border-t border-stone-200 dark:border-stone-800 px-4 sm:px-6 py-3 space-y-1.5 bg-white dark:bg-stone-950">
           {NAV_LINKS.map(({ href, label, icon: Icon }) => {
             const active = pathname === href;
+            const isGame = href === "/game";
             return (
               <Link
                 key={href}
                 href={href}
                 onClick={() => setMobileMenuOpen(false)}
-                className={`flex items-center gap-2 text-sm font-bold px-3 py-2.5 rounded-lg transition-colors ${
+                className={`group relative flex items-center gap-2 text-sm font-bold px-3 py-2.5 rounded-lg transition-all duration-200 ${
                   active
-                    ? "bg-emerald-50 dark:bg-emerald-950/40 text-emerald-700 dark:text-emerald-300"
-                    : "text-stone-600 dark:text-stone-400 hover:bg-stone-100 dark:hover:bg-stone-900"
+                    ? isGame
+                      ? "bg-amber-500/15 dark:bg-amber-950/40 text-amber-700 dark:text-amber-300 border border-amber-500/25"
+                      : "bg-emerald-50 dark:bg-emerald-950/40 text-emerald-700 dark:text-emerald-300"
+                    : isGame
+                      ? "bg-amber-50/80 dark:bg-amber-950/20 text-amber-600 dark:text-amber-400 border border-amber-200/50 dark:border-amber-900/40 hover:bg-amber-100/60 dark:hover:bg-amber-950/30"
+                      : "text-stone-600 dark:text-stone-400 hover:bg-stone-100 dark:hover:bg-stone-900"
                 }`}
               >
-                <Icon className="w-4 h-4" />
+                <Icon className={`w-4 h-4 transition-transform duration-200 group-hover:scale-110 ${isGame ? "text-amber-500" : ""}`} />
                 {label}
+                {isGame && (
+                  <span className="absolute top-3.5 right-4 flex h-2 w-2">
+                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-amber-400 opacity-75"></span>
+                    <span className="relative inline-flex rounded-full h-2 w-2 bg-amber-500"></span>
+                  </span>
+                )}
               </Link>
             );
           })}
         </div>
       )}
+
+      {celebrateLevel !== null && <LevelUpModal level={celebrateLevel} onClose={dismiss} />}
     </div>
   );
 }

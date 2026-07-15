@@ -16,12 +16,42 @@ import CombinedGameLeaderboard from "@/components/games/CombinedGameLeaderboard"
 type InnerTab = "play" | "leaderboard" | "history";
 type HubTab = "games" | "combined";
 
-const ACCENT: Record<string, { grad: string; ring: string; chip: string }> = {
-  emerald: { grad: "from-emerald-500 to-teal-500", ring: "hover:border-emerald-400 dark:hover:border-emerald-600", chip: "bg-emerald-50 dark:bg-emerald-950/40 text-emerald-700 dark:text-emerald-300" },
-  sky: { grad: "from-sky-500 to-blue-500", ring: "hover:border-sky-400 dark:hover:border-sky-600", chip: "bg-sky-50 dark:bg-sky-950/40 text-sky-700 dark:text-sky-300" },
-  amber: { grad: "from-amber-500 to-orange-500", ring: "hover:border-amber-400 dark:hover:border-amber-600", chip: "bg-amber-50 dark:bg-amber-950/40 text-amber-700 dark:text-amber-300" },
-  violet: { grad: "from-violet-500 to-purple-500", ring: "hover:border-violet-400 dark:hover:border-violet-600", chip: "bg-violet-50 dark:bg-violet-950/40 text-violet-700 dark:text-violet-300" },
-  rose: { grad: "from-rose-500 to-pink-500", ring: "hover:border-rose-400 dark:hover:border-rose-600", chip: "bg-rose-50 dark:bg-rose-950/40 text-rose-700 dark:text-rose-300" },
+const ACCENT: Record<string, { grad: string; ring: string; chip: string; glow: string; shadow: string }> = {
+  emerald: {
+    grad: "from-emerald-500 to-teal-500",
+    ring: "hover:border-emerald-400 dark:hover:border-emerald-600",
+    chip: "bg-emerald-50 dark:bg-emerald-950/40 text-emerald-700 dark:text-emerald-300",
+    glow: "bg-emerald-500/5 dark:bg-emerald-500/10",
+    shadow: "hover:shadow-[0_16px_32px_-10px_rgba(16,185,129,0.15)] dark:hover:shadow-[0_16px_32px_-10px_rgba(16,185,129,0.25)]"
+  },
+  sky: {
+    grad: "from-sky-500 to-blue-500",
+    ring: "hover:border-sky-400 dark:hover:border-sky-600",
+    chip: "bg-sky-50 dark:bg-sky-950/40 text-sky-700 dark:text-sky-300",
+    glow: "bg-sky-500/5 dark:bg-sky-500/10",
+    shadow: "hover:shadow-[0_16px_32px_-10px_rgba(14,165,233,0.15)] dark:hover:shadow-[0_16px_32px_-10px_rgba(14,165,233,0.25)]"
+  },
+  amber: {
+    grad: "from-amber-500 to-orange-500",
+    ring: "hover:border-amber-400 dark:hover:border-amber-600",
+    chip: "bg-amber-50 dark:bg-amber-950/40 text-amber-700 dark:text-amber-300",
+    glow: "bg-amber-500/5 dark:bg-amber-500/10",
+    shadow: "hover:shadow-[0_16px_32px_-10px_rgba(245,158,11,0.15)] dark:hover:shadow-[0_16px_32px_-10px_rgba(245,158,11,0.25)]"
+  },
+  violet: {
+    grad: "from-violet-500 to-purple-500",
+    ring: "hover:border-violet-400 dark:hover:border-violet-600",
+    chip: "bg-violet-50 dark:bg-violet-950/40 text-violet-700 dark:text-violet-300",
+    glow: "bg-violet-500/5 dark:bg-violet-500/10",
+    shadow: "hover:shadow-[0_16px_32px_-10px_rgba(139,92,246,0.15)] dark:hover:shadow-[0_16px_32px_-10px_rgba(139,92,246,0.25)]"
+  },
+  rose: {
+    grad: "from-rose-500 to-pink-500",
+    ring: "hover:border-rose-400 dark:hover:border-rose-600",
+    chip: "bg-rose-50 dark:bg-rose-950/40 text-rose-700 dark:text-rose-300",
+    glow: "bg-rose-500/5 dark:bg-rose-500/10",
+    shadow: "hover:shadow-[0_16px_32px_-10px_rgba(244,63,94,0.15)] dark:hover:shadow-[0_16px_32px_-10px_rgba(244,63,94,0.25)]"
+  },
 };
 
 export default function GameHubClient() {
@@ -91,7 +121,7 @@ export default function GameHubClient() {
           {hubTab === "combined" ? (
             <CombinedGameLeaderboard />
           ) : (
-            <div className="grid sm:grid-cols-2 gap-3.5">
+            <div className="grid sm:grid-cols-2 gap-4">
               {GAMES.map((g) => {
                 const a = ACCENT[g.accent] ?? ACCENT.emerald;
                 return (
@@ -101,21 +131,31 @@ export default function GameHubClient() {
                       setActiveGame(g.id);
                       setInnerTab("play");
                     }}
-                    className={`group text-left rounded-2xl border-2 border-stone-200 dark:border-stone-800 bg-white dark:bg-stone-900 p-4 sm:p-5 transition-all hover:shadow-lg ${a.ring}`}
+                    className={`group text-left rounded-2xl border border-stone-200 dark:border-stone-850 bg-white dark:bg-stone-900 p-5 transition-all duration-300 hover:-translate-y-1 relative overflow-hidden ${a.ring} ${a.shadow}`}
                   >
-                    <div className="flex items-start gap-3">
-                      <span className={`flex-shrink-0 w-12 h-12 rounded-2xl bg-gradient-to-br ${a.grad} text-white text-2xl flex items-center justify-center shadow-sm`}>
+                    {/* Glowing background spot in the corner */}
+                    <div className={`absolute -bottom-8 -right-8 w-24 h-24 ${a.glow} rounded-full blur-xl pointer-events-none transition-transform duration-500 group-hover:scale-125`} />
+                    
+                    <div className="flex items-start gap-4 relative z-10">
+                      <span className={`flex-shrink-0 w-13 h-13 rounded-2xl bg-gradient-to-br ${a.grad} text-white text-2xl flex items-center justify-center shadow-md transition-transform duration-300 group-hover:scale-110 group-hover:rotate-2`}>
                         {g.emoji}
                       </span>
-                      <div className="min-w-0">
-                        <p className="font-bold text-stone-900 dark:text-stone-100">{g.title}</p>
-                        <p className="text-sm text-stone-500 dark:text-stone-400 mt-1 leading-relaxed">{g.description}</p>
+                      <div className="min-w-0 flex-1">
+                        <div className="flex items-center justify-between gap-2">
+                          <p className="font-extrabold text-stone-900 dark:text-stone-50 group-hover:text-stone-950 dark:group-hover:text-white transition-colors">{g.title}</p>
+                          <span className="text-[9px] font-extrabold uppercase tracking-wider text-stone-400 dark:text-stone-500 shrink-0 bg-stone-50 dark:bg-stone-950/60 px-1.5 py-0.5 rounded">
+                            {g.mechanic === "bucket" ? "Phân loại 📥" : "Ghép cặp 🔗"}
+                          </span>
+                        </div>
+                        <p className="text-xs text-stone-500 dark:text-stone-400 mt-1.5 leading-relaxed">{g.description}</p>
                       </div>
                     </div>
-                    <span className={`inline-flex items-center gap-1.5 mt-4 text-xs font-bold px-2.5 py-1.5 rounded-lg ${a.chip}`}>
-                      Chơi ngay
-                      <span className="transition-transform group-hover:translate-x-0.5">→</span>
-                    </span>
+                    <div className="relative z-10 flex items-center justify-between mt-4">
+                      <span className={`inline-flex items-center gap-1.5 text-xs font-extrabold px-3 py-2 rounded-xl transition-all duration-300 ${a.chip} group-hover:shadow-sm`}>
+                        Chơi ngay
+                        <span className="transition-transform duration-300 group-hover:translate-x-0.5">→</span>
+                      </span>
+                    </div>
                   </button>
                 );
               })}

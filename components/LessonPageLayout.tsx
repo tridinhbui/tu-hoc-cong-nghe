@@ -31,6 +31,7 @@ import FontSizeControl, { loadFontScale } from "@/components/FontSizeControl";
 import LessonFeedbackInline from "@/components/LessonFeedbackInline";
 import LessonTableOfContents from "@/components/LessonTableOfContents";
 import { getLessonDisplayLabel } from "@/lib/lesson-labels";
+import ShareCompletionButton from "@/components/ShareCompletionButton";
 
 export interface QuizQuestion {
   question: string;
@@ -1051,6 +1052,11 @@ export default function LessonPageLayout({ lesson, quiz, children }: Props) {
                     <div className="py-3.5 rounded-xl bg-stone-100 dark:bg-stone-800 text-stone-500 dark:text-stone-400 text-sm font-bold text-center">Sắp ra mắt</div>
                   )}
                 </div>
+                <ShareCompletionButton
+                  lessonSlug={lesson.slug || ""}
+                  lessonTitle={lesson.title}
+                  className="w-full inline-flex items-center justify-center gap-2 py-3 rounded-xl text-white text-sm font-bold transition-colors cursor-pointer hover:brightness-110"
+                />
                 <button
                   onClick={restartQuiz}
                   className="text-xs font-bold text-stone-500 dark:text-stone-400 hover:text-stone-700 dark:hover:text-stone-200 uppercase tracking-wide transition-colors cursor-pointer"

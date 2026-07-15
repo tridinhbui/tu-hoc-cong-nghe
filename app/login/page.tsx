@@ -6,6 +6,7 @@ import { useRouter, useSearchParams } from "next/navigation";
 import { ArrowLeft, BarChart3, CheckCircle2, ShieldCheck, Sparkles } from "lucide-react";
 import { createClient } from "@/lib/supabase";
 import { translateAuthError } from "@/lib/auth-error-messages";
+import { stashReferralCodeFromUrl } from "@/lib/referrals";
 import Logo from "@/components/Logo";
 import TrackPreviewPanel from "@/components/login/TrackPreviewPanel";
 import { type TrackId } from "@/lib/tracks";
@@ -73,6 +74,14 @@ function LoginForm() {
       setCooldownUntil(Date.now() + COOLDOWN_MS);
     }
   };
+
+  // Stashed to localStorage (not just read here) since an OAuth signup
+  // navigates away to Google and back, losing this page's query string -
+  // the referral is actually recorded later, after a session exists (see
+  // AppNavbar's claimPendingReferral() call).
+  useEffect(() => {
+    stashReferralCodeFromUrl(searchParams);
+  }, [searchParams]);
 
   // Check if already logged in
   useEffect(() => {

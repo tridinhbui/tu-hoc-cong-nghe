@@ -1,8 +1,39 @@
+import type { Metadata } from "next";
 import { notFound, redirect } from "next/navigation";
 import { getLessonBySlug, getNextLesson } from "@/lib/lessons-loader";
 import { isLessonLockedForUser } from "@/lib/lesson-locking";
 import { createServerSupabaseClient } from "@/lib/supabase-server";
 import LessonPageClient from "@/components/LessonPageClient";
+
+// No route-level `revalidate`/ISR here on purpose: this page reads the
+// session via createServerSupabaseClient() (cookies()) and per-user lesson
+// lock state, then can redirect to /dashboard?locked=... - time-based ISR
+// caches one rendered response and reuses it for every visitor during the
+// window, so an early request from a locked-out or logged-out visitor could
+// get served (or serve its redirect) to a completely different, unlocked
+// user for up to the revalidate window. Lesson content itself is already
+// cheap to load (pre-split per-lesson JSON, not the full dataset), so
+// there's no real performance case for risking that.
+
+// Without this, every lesson page fell back to the root layout's generic
+// site-wide title/description - so sharing a just-completed lesson to
+// Facebook (ShareCompletionButton) produced a link preview card that just
+// said "Tự học Tài chính Mỗi Ngày" for every single lesson, not which one.
+export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
+  const { slug } = await params;
+  const lesson = await getLessonBySlug(slug);
+  if (!lesson) return {};
+
+  const title = `${lesson.title} | Tự học Tài chính Mỗi Ngày`;
+  const description = lesson.subtitle || lesson.whyItMatters || undefined;
+
+  return {
+    title,
+    description,
+    openGraph: { title, description },
+    twitter: { title, description },
+  };
+}
 
 // Server Component: uses dynamic import to load only the requested lesson,
 // preventing the entire 1.2MB lessons.ts from being bundled with every lesson page.

@@ -24,7 +24,7 @@ export async function getUserBookmarks(userId: string): Promise<LessonBookmark[]
   const supabase = createClient();
   const { data, error } = await supabase
     .from("lesson_bookmarks")
-    .select("*")
+    .select("id, user_id, lesson_id, lesson_slug, lesson_title, created_at")
     .eq("user_id", userId)
     .order("created_at", { ascending: false });
 

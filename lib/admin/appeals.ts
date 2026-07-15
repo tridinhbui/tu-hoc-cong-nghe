@@ -1,5 +1,6 @@
 import "server-only";
 import { createAdminClient } from "@/lib/supabase-admin";
+import { REFERRER_BONUS_XP, REFERRED_BONUS_XP } from "@/lib/referrals";
 
 export interface AdminLessonAppeal {
   id: number;
@@ -110,8 +111,34 @@ export async function approveAppeal(appealId: number, adminId: string): Promise<
   }
   const gameXp = Array.from(bestGameXpByType.values()).reduce((sum, v) => sum + v, 0);
 
+  // Approving an appeal is this user's first confirmed lesson completion in
+  // plenty of cases (that's often exactly why they're appealing) - convert
+  // any pending referral the same way recalculateUserStats does client-side,
+  // using a direct update instead of the reward_my_referral() RPC since that
+  // RPC is bound to auth.uid() and this runs on the service-role client
+  // (no authenticated caller, RLS bypassed entirely).
   const lessonsCompleted = progress?.length ?? 0;
-  const totalXp = lessonsCompleted * 10 + quizXp + gameXp;
+  if (lessonsCompleted >= 1) {
+    await supabase
+      .from("referrals")
+      .update({ status: "rewarded", rewarded_at: new Date().toISOString() })
+      .eq("referred_id", appeal.user_id)
+      .eq("status", "pending");
+  }
+  const { data: referralRows } = await supabase
+    .from("referrals")
+    .select("referrer_id, referred_id")
+    .eq("status", "rewarded")
+    .or(`referrer_id.eq.${appeal.user_id},referred_id.eq.${appeal.user_id}`);
+  const referralXp = ((referralRows ?? []) as { referrer_id: string; referred_id: string }[]).reduce(
+    (sum, row) =>
+      sum +
+      (row.referrer_id === appeal.user_id ? REFERRER_BONUS_XP : 0) +
+      (row.referred_id === appeal.user_id ? REFERRED_BONUS_XP : 0),
+    0
+  );
+
+  const totalXp = lessonsCompleted * 10 + quizXp + gameXp + referralXp;
   const currentLevel = Math.floor(totalXp / 150) + 1;
   const quizScores = (progress ?? []).filter((p) => p.quiz_score !== null).map((p) => p.quiz_score as number);
   const avgScore = quizScores.length > 0 ? quizScores.reduce((a, b) => a + b, 0) / quizScores.length : 0;

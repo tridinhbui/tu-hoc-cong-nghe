@@ -70,6 +70,8 @@ export default function SettingsPage() {
   const [avatarPreview, setAvatarPreview] = useState<string | null>(null);
   const [emailRemindersEnabled, setEmailRemindersEnabled] = useState(false);
   const [savingReminders, setSavingReminders] = useState(false);
+  const [weeklyDigestEnabled, setWeeklyDigestEnabled] = useState(false);
+  const [savingWeeklyDigest, setSavingWeeklyDigest] = useState(false);
 
   useEffect(() => {
     const checkAuth = async () => {
@@ -100,6 +102,7 @@ export default function SettingsPage() {
       try {
         const notificationPrefs = await getNotificationPreferences(session.user.id);
         setEmailRemindersEnabled(notificationPrefs?.emailRemindersEnabled ?? false);
+        setWeeklyDigestEnabled(notificationPrefs?.weeklyDigestEnabled ?? false);
       } catch (error) {
         console.error("Error loading notification preferences:", error);
       }
@@ -279,6 +282,25 @@ export default function SettingsPage() {
       showFlash("error", "Không lưu được tùy chọn nhắc nhở. Vui lòng thử lại.");
     } finally {
       setSavingReminders(false);
+    }
+  };
+
+  const handleToggleWeeklyDigest = async () => {
+    if (!user?.id) return;
+    const next = !weeklyDigestEnabled;
+    setWeeklyDigestEnabled(next);
+    setSavingWeeklyDigest(true);
+    setFlash(null);
+
+    try {
+      await saveNotificationPreferences(user.id, { weeklyDigestEnabled: next });
+      showFlash("success", next ? "Đã bật tổng kết tuần qua email." : "Đã tắt tổng kết tuần qua email.");
+    } catch (error) {
+      console.error("Error saving weekly digest preference:", error);
+      setWeeklyDigestEnabled(!next);
+      showFlash("error", "Không lưu được tùy chọn tổng kết tuần. Vui lòng thử lại.");
+    } finally {
+      setSavingWeeklyDigest(false);
     }
   };
 
@@ -535,6 +557,29 @@ export default function SettingsPage() {
                   Email sẽ được gửi tối đa 1 lần/ngày, chỉ khi thực sự cần (sắp mất streak hoặc có bài ôn tập đến
                   hạn).
                 </p>
+
+                <div className="flex items-center justify-between gap-4 pt-4 border-t border-stone-100 dark:border-stone-800">
+                  <div>
+                    <p className="font-bold text-stone-900 dark:text-stone-100">Tổng kết tuần qua email</p>
+                    <p className="text-sm text-stone-500 dark:text-stone-400 mt-1">
+                      Số bài đã học, XP tích lũy và streak hiện tại - gửi mỗi tuần
+                    </p>
+                  </div>
+                  <button
+                    onClick={handleToggleWeeklyDigest}
+                    disabled={savingWeeklyDigest}
+                    aria-label={weeklyDigestEnabled ? "Tắt tổng kết tuần qua email" : "Bật tổng kết tuần qua email"}
+                    className={`w-14 h-7 rounded-full border-2 transition-colors flex items-center cursor-pointer disabled:opacity-60 flex-shrink-0 ${
+                      weeklyDigestEnabled ? "bg-emerald-600 border-emerald-700" : "bg-stone-200 border-stone-300"
+                    }`}
+                  >
+                    <div
+                      className={`w-4 h-4 rounded-full bg-white transition-transform ${
+                        weeklyDigestEnabled ? "translate-x-7" : "translate-x-1"
+                      }`}
+                    />
+                  </button>
+                </div>
               </div>
             </SectionCard>
 

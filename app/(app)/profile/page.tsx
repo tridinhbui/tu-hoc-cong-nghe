@@ -378,419 +378,335 @@ export default function ProfilePage() {
           </div>
         )}
 
-        <div className="grid gap-6 lg:grid-cols-[1.12fr_0.88fr]">
-          <div className="bg-white dark:bg-stone-900 border-2 border-stone-200 dark:border-stone-800 rounded-2xl p-7">
-            <div className="flex flex-col sm:flex-row sm:items-start gap-5">
+        {/* Premium Dark Hero Header */}
+        <div className="relative overflow-hidden rounded-2xl bg-stone-900 dark:bg-stone-950 text-white p-6 sm:p-8 shadow-lg border border-stone-850">
+          <div className="absolute top-0 right-0 w-64 h-64 bg-emerald-500/10 rounded-full blur-3xl pointer-events-none" />
+          <div className="absolute bottom-0 left-1/3 w-72 h-72 bg-teal-500/5 rounded-full blur-3xl pointer-events-none" />
+
+          <div className="relative flex flex-col md:flex-row md:items-center justify-between gap-6">
+            <div className="flex flex-col sm:flex-row items-center sm:items-start gap-5 text-center sm:text-left">
               {avatarUrl ? (
-                <Image
-                  src={avatarUrl}
-                  alt={displayName}
-                  width={96}
-                  height={96}
-                  className="w-24 h-24 rounded-full object-cover border-2 border-stone-200 dark:border-stone-700"
-                />
+                <div className="relative w-24 h-24 sm:w-28 sm:h-28 rounded-full overflow-hidden border-4 border-white/10 dark:border-stone-800 shadow-md flex-shrink-0">
+                  <Image
+                    src={avatarUrl}
+                    alt={displayName}
+                    fill
+                    className="object-cover"
+                  />
+                </div>
               ) : (
-                <div className="w-24 h-24 rounded-full bg-stone-200 dark:bg-stone-700 border-2 border-stone-300 dark:border-stone-600 flex items-center justify-center text-3xl font-extrabold text-stone-700 dark:text-stone-300">
+                <div className="w-24 h-24 sm:w-28 sm:h-28 rounded-full bg-emerald-500 border-4 border-white/10 dark:border-stone-800 shadow-md flex items-center justify-center text-4xl font-extrabold text-white flex-shrink-0">
                   {initials}
                 </div>
               )}
 
-              <div className="min-w-0 flex-1">
-                <div className="flex flex-wrap items-center gap-2 mb-3">
-                  <span className="inline-flex items-center rounded-full bg-stone-100 dark:bg-stone-800 px-3 py-1 text-xs font-bold text-stone-700 dark:text-stone-200">
+              <div className="min-w-0">
+                <div className="flex flex-wrap justify-center sm:justify-start items-center gap-2 mb-2.5">
+                  <span className="inline-flex items-center rounded-full bg-white/10 dark:bg-stone-800 px-3 py-1 text-[10px] font-extrabold uppercase tracking-widest text-emerald-300">
                     {currentTrackLabel}
                   </span>
-                  <span className="inline-flex items-center rounded-full bg-emerald-50 dark:bg-emerald-950/40 px-3 py-1 text-xs font-bold text-emerald-700 dark:text-emerald-300">
+                  <span className="inline-flex items-center rounded-full bg-emerald-550/20 px-3 py-1 text-[10px] font-extrabold uppercase tracking-widest text-emerald-300">
                     Level {currentLevel.level} · {currentLevel.name}
                   </span>
                 </div>
-                <h2 className="text-3xl font-extrabold text-stone-900 dark:text-stone-100 leading-tight">
+                <h2 className="text-2xl sm:text-3xl font-extrabold tracking-tight">
                   {displayName}
                 </h2>
-                <p className="text-sm text-stone-500 dark:text-stone-400 mt-2">{user?.email}</p>
-                <p className="text-sm text-stone-500 dark:text-stone-400 mt-1">
-                  Tham gia từ {joinedAt ? new Date(joinedAt).toLocaleDateString("vi-VN") : "chưa cập nhật"}
+                <p className="text-sm text-stone-400 mt-1.5">{user?.email}</p>
+                <p className="text-xs text-stone-500 mt-1">
+                  Tham gia ngày {joinedAt ? new Date(joinedAt).toLocaleDateString("vi-VN") : "chưa rõ"}
                 </p>
-                <p className="text-sm text-stone-700 dark:text-stone-300 mt-4 leading-relaxed">
-                  {profile?.bio?.trim() ||
-                    "Bạn chưa có phần giới thiệu. Thêm vài dòng ngắn về mục tiêu học tập để hồ sơ cá nhân trông đầy đặn và rõ chất riêng hơn."}
+                <p className="text-sm text-stone-300 mt-4 max-w-xl leading-relaxed italic">
+                  "{profile?.bio?.trim() || "Bạn chưa có phần giới thiệu. Hãy thêm vài dòng ngắn về mục tiêu học tập để hồ sơ rõ chất riêng hơn!"}"
                 </p>
               </div>
             </div>
 
-            <div className="mt-6 rounded-2xl border border-stone-200 dark:border-stone-800 bg-stone-50/80 dark:bg-stone-950/40 p-5">
-              <div className="flex items-center justify-between gap-4 mb-3">
-                <div>
-                  <p className="text-sm font-bold text-stone-900 dark:text-stone-100">Tiến trình lên level kế tiếp</p>
-                  <p className="text-xs text-stone-500 dark:text-stone-400 mt-1">
-                    {xpToNextLevel > 0 ? `Còn ${xpToNextLevel} XP để lên level tiếp theo` : "Bạn đang ở level cao nhất hiện có"}
-                  </p>
-                </div>
-                <div className="text-right">
-                  <p className="text-xl font-extrabold text-stone-900 dark:text-stone-100">{profile?.total_xp || 0} XP</p>
-                  <p className="text-xs text-stone-500 dark:text-stone-400">{levelProgress}% trong level hiện tại</p>
-                </div>
-              </div>
-              <div className="h-3 rounded-full bg-stone-200 dark:bg-stone-800 overflow-hidden">
-                <div
-                  className="h-full rounded-full bg-stone-900 dark:bg-stone-100 transition-all"
-                  style={{ width: `${levelProgress}%` }}
-                />
-              </div>
-            </div>
-
-            <div className="mt-6 flex flex-wrap gap-3">
+            <div className="flex flex-col sm:flex-row gap-2.5 self-center md:self-start shrink-0">
               <Link
                 href="/settings"
-                className="inline-flex items-center gap-2 rounded-xl bg-stone-900 hover:bg-stone-800 dark:bg-stone-100 dark:hover:bg-white text-white dark:text-stone-900 font-bold px-4 py-3 transition-colors"
+                className="inline-flex items-center justify-center gap-2 rounded-xl bg-white hover:bg-stone-100 text-stone-900 font-bold px-4 py-2.5 text-xs transition-all shadow-sm active:scale-95"
               >
-                <Edit3 className="w-4 h-4" />
-                Chỉnh sửa hồ sơ
-              </Link>
-              <Link
-                href="/analytics"
-                className="inline-flex items-center gap-2 rounded-xl border border-stone-200 dark:border-stone-800 bg-white dark:bg-stone-900 hover:bg-stone-50 dark:hover:bg-stone-800/70 text-stone-900 dark:text-stone-100 font-bold px-4 py-3 transition-colors"
-              >
-                <ArrowRight className="w-4 h-4" />
-                Xem thống kê chi tiết
+                <Edit3 className="w-3.5 h-3.5" />
+                Thiết lập tài khoản
               </Link>
             </div>
           </div>
 
-          <div className="grid grid-cols-2 gap-4">
-            <StatCard label="Level" value={`${currentLevel.level}`} hint={currentLevel.name} />
-            <StatCard label="XP" value={`${profile?.total_xp || 0}`} hint="Tổng kinh nghiệm" />
-            <StatCard
-              label="Hoàn thành"
-              value={`${profile?.lessons_completed || 0}`}
-              hint={`${lessonsStarted} bài đã bắt đầu`}
-            />
-            <StatCard
-              label="Điểm quiz"
-              value={`${Math.round(profile?.avg_quiz_score || 0)}%`}
-              hint="Điểm trung bình"
-            />
-            <StatCard
-              label="Streak"
-              value={`${streak?.current_streak || 0} ngày`}
-              hint={`Kỷ lục ${streak?.longest_streak || 0} ngày`}
-            />
-            <StatCard
-              label="Xếp hạng XP"
-              value={xpRank ? `#${xpRank.rank}` : "Chưa rõ"}
-              hint={xpRank ? `${xpRank.value} XP trên BXH` : "Sẽ hiện khi BXH sẵn sàng"}
-            />
+          {/* Integrated Level Progress Bar */}
+          <div className="mt-8 pt-5 border-t border-white/5">
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-2 text-xs text-stone-400">
+              <div className="flex items-center gap-1.5">
+                <span className="font-bold text-stone-200">Tiến trình lên Level {currentLevel.level + 1}</span>
+                <span>·</span>
+                <span>{xpToNextLevel > 0 ? `Còn ${xpToNextLevel} XP` : "Đã đạt cấp tối đa"}</span>
+              </div>
+              <div className="font-extrabold text-stone-200">
+                {profile?.total_xp || 0} XP <span className="text-stone-500 font-normal">({levelProgress}%)</span>
+              </div>
+            </div>
+            <div className="h-2 rounded-full bg-white/10 dark:bg-stone-850 overflow-hidden">
+              <div
+                className="h-full rounded-full bg-emerald-500 transition-all duration-500"
+                style={{ width: `${levelProgress}%` }}
+              />
+            </div>
           </div>
         </div>
 
+        {/* 2-Column Responsive Dashboard Body */}
         <div className="grid gap-6 lg:grid-cols-[1.12fr_0.88fr]">
-          <SectionCard
-            icon={<Target className="w-5 h-5" />}
-            title="Tiến độ học tập"
-            description="Nhìn nhanh xem bạn đang đi trên lộ trình nào và mỗi chặng đã tiến được tới đâu."
-          >
-            <div className="space-y-4">
-              {trackProgress.map((track) => (
-                <div
-                  key={track.track}
-                  className="rounded-2xl border border-stone-200 dark:border-stone-800 bg-stone-50/70 dark:bg-stone-950/40 p-4"
-                >
-                  <div className="flex items-start justify-between gap-4 mb-3">
-                    <div>
-                      <div className="flex items-center gap-2 flex-wrap">
-                        <p className="text-sm font-bold text-stone-900 dark:text-stone-100">{track.title}</p>
-                        {track.track === currentTrack && (
-                          <span className="inline-flex rounded-full bg-emerald-50 dark:bg-emerald-950/40 px-2.5 py-1 text-[11px] font-bold text-emerald-700 dark:text-emerald-300">
-                            Ưu tiên hiện tại
-                          </span>
-                        )}
-                      </div>
-                      <p className="text-xs text-stone-500 dark:text-stone-400 mt-1">{track.subtitle}</p>
-                    </div>
-                    <div className="text-right">
-                      <p className="text-sm font-extrabold text-stone-900 dark:text-stone-100">
-                        {track.completed}/{track.total}
-                      </p>
-                      <p className="text-xs text-stone-500 dark:text-stone-400">
-                        {track.percent}% · ~{track.estimatedHours} giờ học
-                      </p>
-                    </div>
-                  </div>
-
-                  <div className="h-2.5 rounded-full bg-stone-200 dark:bg-stone-800 overflow-hidden mb-4">
-                    <div
-                      className="h-full rounded-full bg-stone-900 dark:bg-stone-100"
-                      style={{ width: `${track.percent}%` }}
-                    />
-                  </div>
-
-                  <div className="space-y-2">
-                    {track.stages.map((stage) => (
-                      <div key={`${track.track}-${stage.label}`} className="flex items-center justify-between gap-3 text-sm">
-                        <div className="min-w-0">
-                          <p className="font-semibold text-stone-900 dark:text-stone-100">{stage.label}</p>
-                          <p className="text-xs text-stone-500 dark:text-stone-400 truncate">{stage.name}</p>
-                        </div>
-                        <div className="text-right shrink-0">
-                          <p className="font-bold text-stone-900 dark:text-stone-100">
-                            {stage.completed}/{stage.total}
-                          </p>
-                          <p className="text-xs text-stone-500 dark:text-stone-400">{stage.percent}%</p>
-                        </div>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              ))}
-            </div>
-          </SectionCard>
-
+          
+          {/* Left Column: Learning Track Progress & Recent Lessons */}
           <div className="space-y-6">
-            <SectionCard
-              icon={<ShieldCheck className="w-5 h-5" />}
-              title="Tóm tắt nhanh"
-              description="Những con số quan trọng nhất để bạn tự kiểm tra nhịp học của mình."
-            >
-              <div className="space-y-4 text-sm">
-                <div className="flex items-center justify-between gap-4">
-                  <span className="inline-flex items-center gap-2 text-stone-500 dark:text-stone-400">
-                    <Clock3 className="w-4 h-4" />
-                    Thời gian học
-                  </span>
-                  <span className="font-bold text-stone-900 dark:text-stone-100">{studyMinutes} phút</span>
+            
+            {/* Track Progress Summary Card */}
+            <div className="bg-white dark:bg-stone-900 border border-stone-200 dark:border-stone-850 rounded-2xl p-5 sm:p-6 shadow-sm">
+              <div className="flex items-start gap-4 mb-5 border-b border-stone-100 dark:border-stone-800 pb-4">
+                <div className="w-10 h-10 rounded-xl bg-emerald-50 dark:bg-emerald-950/40 text-emerald-600 dark:text-emerald-450 flex items-center justify-center flex-shrink-0">
+                  <Target className="w-5 h-5" />
                 </div>
-                <div className="flex items-center justify-between gap-4">
-                  <span className="inline-flex items-center gap-2 text-stone-500 dark:text-stone-400">
-                    <NotebookPen className="w-4 h-4" />
-                    Ghi chú đã lưu
-                  </span>
-                  <span className="font-bold text-stone-900 dark:text-stone-100">{notesCount}</span>
-                </div>
-                <div className="flex items-center justify-between gap-4">
-                  <span className="inline-flex items-center gap-2 text-stone-500 dark:text-stone-400">
-                    <Bookmark className="w-4 h-4" />
-                    Bài học đã lưu
-                  </span>
-                  <span className="font-bold text-stone-900 dark:text-stone-100">{bookmarks.length}</span>
-                </div>
-                <div className="flex items-center justify-between gap-4">
-                  <span className="inline-flex items-center gap-2 text-stone-500 dark:text-stone-400">
-                    <Bookmark className="w-4 h-4" />
-                    Bài tự đánh dấu
-                  </span>
-                  <span className="font-bold text-stone-900 dark:text-stone-100">{flaggedLessonCount}</span>
-                </div>
-                <div className="flex items-center justify-between gap-4">
-                  <span className="inline-flex items-center gap-2 text-stone-500 dark:text-stone-400">
-                    <Flame className="w-4 h-4" />
-                    Chuỗi dài nhất
-                  </span>
-                  <span className="font-bold text-stone-900 dark:text-stone-100">{streak?.longest_streak || 0} ngày</span>
+                <div className="min-w-0">
+                  <h3 className="text-base sm:text-lg font-extrabold text-stone-900 dark:text-stone-100">Tiến độ Lộ trình</h3>
+                  <p className="text-xs text-stone-500 dark:text-stone-400 mt-0.5">Tiến độ tổng quát và chi tiết chặng học của bạn</p>
                 </div>
               </div>
-            </SectionCard>
 
-            <SectionCard
-              icon={<Trophy className="w-5 h-5" />}
-              title={`Huy hiệu (${badges.length})`}
-              description="Các huy hiệu đang hợp lệ theo level hiện tại của bạn."
-            >
-              {badges.length === 0 ? (
-                <p className="text-sm text-stone-500 dark:text-stone-400">
-                  Chưa có huy hiệu nào. Hoàn thành thêm bài học để mở huy hiệu đầu tiên.
+              <div className="space-y-5">
+                {trackProgress.map((track) => {
+                  const isCurrent = track.track === currentTrack;
+                  return (
+                    <div
+                      key={track.track}
+                      className={`rounded-xl border p-4.5 transition-all ${
+                        isCurrent
+                          ? "border-emerald-250 dark:border-emerald-900/60 bg-emerald-50/20 dark:bg-emerald-950/5 shadow-[0_8px_20px_-12px_rgba(16,185,129,0.15)]"
+                          : "border-stone-200 dark:border-stone-800/80 bg-stone-50/40 dark:bg-stone-900/10"
+                      }`}
+                    >
+                      <div className="flex items-start justify-between gap-4 mb-2.5">
+                        <div className="min-w-0">
+                          <div className="flex items-center gap-1.5 flex-wrap">
+                            <p className="text-xs sm:text-sm font-extrabold text-stone-900 dark:text-stone-100">{track.title}</p>
+                            {isCurrent && (
+                              <span className="inline-flex rounded bg-emerald-100/70 dark:bg-emerald-950 text-emerald-800 dark:text-emerald-450 px-1.5 py-0.5 text-[9px] font-extrabold uppercase tracking-wider">
+                                Đang học
+                              </span>
+                            )}
+                          </div>
+                          <p className="text-[11px] text-stone-500 dark:text-stone-400 mt-0.5 truncate max-w-[280px]">
+                            {track.subtitle}
+                          </p>
+                        </div>
+                        <div className="text-right shrink-0">
+                          <p className="text-xs sm:text-sm font-extrabold text-stone-900 dark:text-stone-100">
+                            {track.completed}/{track.total} bài
+                          </p>
+                          <p className="text-[10px] text-stone-450 dark:text-stone-500 mt-0.5">
+                            {track.percent}% · ~{track.estimatedHours} giờ
+                          </p>
+                        </div>
+                      </div>
+
+                      <div className="h-2 rounded-full bg-stone-200 dark:bg-stone-800 overflow-hidden mb-3.5">
+                        <div
+                          className={`h-full rounded-full transition-all duration-300 ${isCurrent ? "bg-emerald-500" : "bg-stone-400 dark:bg-stone-600"}`}
+                          style={{ width: `${track.percent}%` }}
+                        />
+                      </div>
+
+                      <div className="grid grid-cols-2 gap-x-4 gap-y-2 pt-2.5 border-t border-stone-100 dark:border-stone-800/60">
+                        {track.stages.map((stage) => (
+                          <div key={`${track.track}-${stage.label}`} className="flex items-center justify-between text-[11px] text-stone-600 dark:text-stone-400">
+                            <span className="font-semibold truncate max-w-[130px]" title={stage.name}>{stage.label}</span>
+                            <span className="font-bold text-stone-850 dark:text-stone-200 shrink-0">{stage.completed}/{stage.total}</span>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+
+            {/* Recent Lessons Card */}
+            <div className="bg-white dark:bg-stone-900 border border-stone-200 dark:border-stone-850 rounded-2xl p-5 sm:p-6 shadow-sm">
+              <div className="flex items-start gap-4 mb-5 border-b border-stone-100 dark:border-stone-800 pb-4">
+                <div className="w-10 h-10 rounded-xl bg-amber-550/10 text-amber-600 dark:text-amber-400 flex items-center justify-center flex-shrink-0">
+                  <BookOpen className="w-5 h-5" />
+                </div>
+                <div className="min-w-0">
+                  <h3 className="text-base sm:text-lg font-extrabold text-stone-900 dark:text-stone-100">Bài học hoàn thành gần đây</h3>
+                  <p className="text-xs text-stone-500 dark:text-stone-400 mt-0.5">Các bài vừa học xong gần nhất để bạn ôn tập</p>
+                </div>
+              </div>
+
+              {recentLessons.length === 0 ? (
+                <p className="text-xs text-stone-500 dark:text-stone-400 py-2">
+                  Chưa có bài hoàn thành nào để hiển thị. Hãy tiếp tục học trên Dashboard để lưu tiến độ nhé!
                 </p>
               ) : (
-                <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
+                <div className="space-y-2.5">
+                  {recentLessons.map((lesson) => (
+                    <Link
+                      key={`${lesson.id}-${lesson.completedAt ?? "pending"}`}
+                      href={`/bai-hoc/${lesson.slug}`}
+                      className="flex items-center justify-between gap-3 rounded-xl border border-stone-150 dark:border-stone-800/80 px-4 py-3 hover:bg-stone-50/70 dark:hover:bg-stone-800/50 transition-colors group"
+                    >
+                      <div className="min-w-0 flex-1">
+                        <p className="text-xs sm:text-sm font-bold text-stone-900 dark:text-stone-100 group-hover:text-emerald-600 dark:group-hover:text-emerald-400 transition-colors truncate">
+                          {lesson.title}
+                        </p>
+                        <p className="text-[10px] text-stone-450 dark:text-stone-500 mt-0.5">
+                          {lesson.completedAt ? `Hoàn thành ngày ${new Date(lesson.completedAt).toLocaleDateString("vi-VN")}` : "Không rõ ngày"}
+                        </p>
+                      </div>
+                      <div className="flex items-center gap-3 shrink-0">
+                        <div className="text-right">
+                          <span className="text-xs font-extrabold text-stone-900 dark:text-stone-100">
+                            {lesson.quizScore !== null && lesson.quizScore !== undefined ? `${Math.round(lesson.quizScore)}%` : "N/A"}
+                          </span>
+                          <p className="text-[9px] text-stone-450 dark:text-stone-500">Đọc & Quiz</p>
+                        </div>
+                        <ArrowRight className="w-3.5 h-3.5 text-stone-400 group-hover:text-emerald-500 transition-colors" />
+                      </div>
+                    </Link>
+                  ))}
+                </div>
+              )}
+            </div>
+          </div>
+
+          {/* Right Column: Key Stats, Achievements & Shortcuts */}
+          <div className="space-y-6">
+
+            {/* Unified Key Stats Grid */}
+            <div className="bg-white dark:bg-stone-900 border border-stone-200 dark:border-stone-850 rounded-2xl p-5 shadow-sm">
+              <h4 className="text-sm font-extrabold text-stone-900 dark:text-stone-100 mb-4 tracking-tight">Thống kê tóm tắt</h4>
+              <div className="grid grid-cols-2 gap-3">
+                <div className="bg-stone-50/70 dark:bg-stone-900/30 border border-stone-200/50 dark:border-stone-800 rounded-xl p-3.5">
+                  <span className="text-[10px] font-extrabold text-stone-450 dark:text-stone-500 uppercase tracking-wider block mb-1">Thời gian học</span>
+                  <p className="text-base font-extrabold text-stone-900 dark:text-stone-100">{studyMinutes} phút</p>
+                  <p className="text-[10px] text-stone-455 dark:text-stone-450 mt-0.5">{lessonsStarted} bài đã mở</p>
+                </div>
+                <div className="bg-stone-50/70 dark:bg-stone-900/30 border border-stone-200/50 dark:border-stone-800 rounded-xl p-3.5">
+                  <span className="text-[10px] font-extrabold text-stone-450 dark:text-stone-500 uppercase tracking-wider block mb-1">Xếp hạng tuần</span>
+                  <p className="text-base font-extrabold text-stone-900 dark:text-stone-100">{xpRank ? `#${xpRank.rank}` : "Chưa xếp hạng"}</p>
+                  <p className="text-[10px] text-stone-455 dark:text-stone-450 mt-0.5">{xpRank ? `${xpRank.value} XP` : "Học tiếp để lên hạng"}</p>
+                </div>
+                <div className="bg-stone-50/70 dark:bg-stone-900/30 border border-stone-200/50 dark:border-stone-800 rounded-xl p-3.5">
+                  <span className="text-[10px] font-extrabold text-stone-450 dark:text-stone-500 uppercase tracking-wider block mb-1">Nhịp học streak</span>
+                  <p className="text-base font-extrabold text-stone-900 dark:text-stone-100">{streak?.current_streak || 0} ngày</p>
+                  <p className="text-[10px] text-stone-455 dark:text-stone-450 mt-0.5">Kỷ lục {streak?.longest_streak || 0} ngày</p>
+                </div>
+                <div className="bg-stone-50/70 dark:bg-stone-900/30 border border-stone-200/50 dark:border-stone-800 rounded-xl p-3.5">
+                  <span className="text-[10px] font-extrabold text-stone-450 dark:text-stone-500 uppercase tracking-wider block mb-1">Ghi chú & Flag</span>
+                  <p className="text-base font-extrabold text-stone-900 dark:text-stone-100">{notesCount} Note</p>
+                  <p className="text-[10px] text-stone-455 dark:text-stone-450 mt-0.5">{flaggedLessonCount} bài tự đánh dấu</p>
+                </div>
+              </div>
+            </div>
+
+            {/* Achievements & Badges */}
+            <div className="bg-white dark:bg-stone-900 border border-stone-200 dark:border-stone-850 rounded-2xl p-5 shadow-sm">
+              <div className="flex items-center justify-between mb-4 border-b border-stone-100 dark:border-stone-800 pb-3">
+                <h4 className="text-sm font-extrabold text-stone-900 dark:text-stone-100 flex items-center gap-1.5">
+                  <Trophy className="w-4 h-4 text-amber-500" />
+                  Huy hiệu & Danh hiệu
+                </h4>
+                <span className="text-[10px] font-extrabold text-stone-450 dark:text-stone-500 bg-stone-100 dark:bg-stone-800 px-2 py-0.5 rounded">
+                  Tổng {badges.length + gameTitles.length}
+                </span>
+              </div>
+
+              {gameTitles.length > 0 && (
+                <div className="space-y-2 mb-4">
+                  {gameTitles.map((t) => (
+                    <div
+                      key={t.gameType}
+                      className="flex items-center gap-3 rounded-xl border border-amber-250 dark:border-amber-900/60 bg-amber-50/30 dark:bg-amber-950/10 px-3.5 py-2.5"
+                    >
+                      <span className="text-xl flex-shrink-0">{t.gameEmoji}</span>
+                      <div className="min-w-0 flex-1">
+                        <p className="text-xs font-extrabold text-amber-700 dark:text-amber-400 truncate">{t.title}</p>
+                        <p className="text-[10px] text-stone-500 dark:text-stone-450 truncate">{t.gameLabel}</p>
+                      </div>
+                      <span className="text-[10px] font-extrabold text-amber-600 dark:text-amber-500 shrink-0">Hạng #{t.rank}</span>
+                    </div>
+                  ))}
+                </div>
+              )}
+
+              {badges.length === 0 ? (
+                <p className="text-xs text-stone-500 dark:text-stone-400 py-1">
+                  Chưa đạt được huy hiệu học tập nào. Hoàn thành thêm bài học nhé!
+                </p>
+              ) : (
+                <div className="grid grid-cols-3 gap-2.5">
                   {badges.map((badge) => (
                     <div
                       key={badge.id}
                       title={badge.badge_description}
-                      className="flex flex-col items-center text-center gap-1.5 p-3 rounded-xl border border-stone-200 dark:border-stone-800 bg-stone-50 dark:bg-stone-800/50"
+                      className="flex flex-col items-center text-center gap-1 p-2.5 rounded-xl border border-stone-200 dark:border-stone-800 bg-stone-50/50 dark:bg-stone-900/30"
                     >
-                      <span className="text-3xl">{badge.badge_icon}</span>
-                      <span className="text-xs font-bold text-stone-900 dark:text-stone-100 leading-tight">
+                      <span className="text-2xl">{badge.badge_icon}</span>
+                      <span className="text-[9px] font-extrabold text-stone-900 dark:text-stone-200 leading-tight truncate w-full">
                         {badge.badge_name}
                       </span>
                     </div>
                   ))}
                 </div>
               )}
-            </SectionCard>
-
-            {gameTitles.length > 0 && (
-              <SectionCard
-                icon={<span className="text-lg">🎮</span>}
-                title={`Danh hiệu Mini Game (${gameTitles.length})`}
-                description="Vị trí top 3 hiện tại của bạn trên các bảng xếp hạng mini-game."
-              >
-                <div className="space-y-2">
-                  {gameTitles.map((t) => (
-                    <div
-                      key={t.gameType}
-                      className="flex items-center gap-3 rounded-xl border border-amber-200 dark:border-amber-900 bg-amber-50/60 dark:bg-amber-950/20 px-3.5 py-2.5"
-                    >
-                      <span className="text-xl flex-shrink-0">{t.gameEmoji}</span>
-                      <div className="min-w-0 flex-1">
-                        <p className="text-sm font-extrabold text-amber-700 dark:text-amber-300 truncate">{t.title}</p>
-                        <p className="text-xs text-stone-500 dark:text-stone-400 truncate">{t.gameLabel}</p>
-                      </div>
-                      <span className="text-xs font-bold text-stone-400 dark:text-stone-500 flex-shrink-0">#{t.rank}</span>
-                    </div>
-                  ))}
-                </div>
-              </SectionCard>
-            )}
-          </div>
-        </div>
-
-        <div className="grid gap-6 lg:grid-cols-[1fr_1fr]">
-          <SectionCard
-            icon={<BookOpen className="w-5 h-5" />}
-            title="Hoạt động gần đây"
-            description="Các bài vừa hoàn thành gần nhất để bạn nối lại mạch học cho dễ."
-          >
-            {recentLessons.length === 0 ? (
-              <p className="text-sm text-stone-500 dark:text-stone-400">
-                Bạn chưa có bài hoàn thành nào để hiển thị. Bắt đầu từ dashboard để hệ thống lưu tiến độ đầu tiên.
-              </p>
-            ) : (
-              <div className="space-y-3">
-                {recentLessons.map((lesson) => (
-                  <Link
-                    key={`${lesson.id}-${lesson.completedAt ?? "pending"}`}
-                    href={`/bai-hoc/${lesson.slug}`}
-                    className="block rounded-xl border border-stone-200 dark:border-stone-800 px-4 py-3 hover:bg-stone-50 dark:hover:bg-stone-800/50 transition-colors"
-                  >
-                    <div className="flex items-start justify-between gap-3">
-                      <div className="min-w-0">
-                        <p className="text-sm font-bold text-stone-900 dark:text-stone-100">{lesson.title}</p>
-                        <p className="text-xs text-stone-500 dark:text-stone-400 mt-1">
-                          {lesson.completedAt
-                            ? `Hoàn thành ${new Date(lesson.completedAt).toLocaleDateString("vi-VN")}`
-                            : "Chưa rõ ngày"}
-                        </p>
-                      </div>
-                      <div className="text-right shrink-0">
-                        <p className="text-xs font-bold text-stone-900 dark:text-stone-100">
-                          {lesson.quizScore !== null && lesson.quizScore !== undefined
-                            ? `${Math.round(lesson.quizScore)}%`
-                            : "Không quiz"}
-                        </p>
-                        <p className="text-[11px] text-stone-500 dark:text-stone-400 mt-1">quiz</p>
-                      </div>
-                    </div>
-                  </Link>
-                ))}
-              </div>
-            )}
-          </SectionCard>
-
-          <SectionCard
-            icon={<Bookmark className="w-5 h-5" />}
-            title="Bài học đã lưu"
-            description="Những bài bạn đánh dấu để quay lại đọc tiếp hoặc ôn lại sau."
-          >
-            {bookmarks.length === 0 ? (
-              <p className="text-sm text-stone-500 dark:text-stone-400">
-                Bạn chưa lưu bài học nào. Khi thấy bài đáng quay lại, hãy bấm biểu tượng đánh dấu trong trang bài học.
-              </p>
-            ) : (
-              <div className="space-y-3">
-                {bookmarks.map((bookmark) => (
-                  <Link
-                    key={bookmark.id}
-                    href={`/bai-hoc/${bookmark.lesson_slug}`}
-                    className="block rounded-xl border border-stone-200 dark:border-stone-800 px-4 py-3 hover:bg-stone-50 dark:hover:bg-stone-800/50 transition-colors"
-                  >
-                    <div className="flex items-start justify-between gap-3">
-                      <div className="min-w-0">
-                        <p className="text-sm font-bold text-stone-900 dark:text-stone-100">
-                          {bookmark.lesson_title}
-                        </p>
-                        <p className="text-xs text-stone-500 dark:text-stone-400 mt-1">
-                          Lưu ngày {new Date(bookmark.created_at).toLocaleDateString("vi-VN")}
-                        </p>
-                      </div>
-                      <Bookmark className="w-4 h-4 shrink-0 text-amber-500 dark:text-amber-400" />
-                    </div>
-                  </Link>
-                ))}
-              </div>
-            )}
-          </SectionCard>
-
-          <SectionCard
-            icon={<Medal className="w-5 h-5" />}
-            title="Lối tắt hữu ích"
-            description="Những nơi bạn thường muốn quay lại ngay sau khi xem hồ sơ."
-          >
-            <div className="space-y-3">
-              <Link
-                href="/ban-be"
-                className="flex items-center justify-between rounded-xl border border-stone-200 dark:border-stone-800 px-4 py-3 hover:bg-stone-50 dark:hover:bg-stone-800/50 transition-colors"
-              >
-                <div>
-                  <p className="font-bold text-stone-900 dark:text-stone-100">Bạn bè & chat</p>
-                  <p className="text-sm text-stone-500 dark:text-stone-400 mt-1">Tìm người học khác và giữ kết nối</p>
-                </div>
-                <ArrowRight className="w-4 h-4 text-stone-500 dark:text-stone-400" />
-              </Link>
-              <Link
-                href="/ghi-chu"
-                className="flex items-center justify-between rounded-xl border border-stone-200 dark:border-stone-800 px-4 py-3 hover:bg-stone-50 dark:hover:bg-stone-800/50 transition-colors"
-              >
-                <div>
-                  <p className="font-bold text-stone-900 dark:text-stone-100">Kho ghi chú</p>
-                  <p className="text-sm text-stone-500 dark:text-stone-400 mt-1">Ôn lại nhanh các ý bạn đã viết ra</p>
-                </div>
-                <ArrowRight className="w-4 h-4 text-stone-500 dark:text-stone-400" />
-              </Link>
-              <Link
-                href="/dashboard"
-                className="flex items-center justify-between rounded-xl border border-stone-200 dark:border-stone-800 px-4 py-3 hover:bg-stone-50 dark:hover:bg-stone-800/50 transition-colors"
-              >
-                <div>
-                  <p className="font-bold text-stone-900 dark:text-stone-100">Tiếp tục học</p>
-                  <p className="text-sm text-stone-500 dark:text-stone-400 mt-1">Quay lại dashboard và tiếp tục đúng mạch</p>
-                </div>
-                <ArrowRight className="w-4 h-4 text-stone-500 dark:text-stone-400" />
-              </Link>
-              <Link
-                href="/settings"
-                className="flex items-center justify-between rounded-xl border border-stone-200 dark:border-stone-800 px-4 py-3 hover:bg-stone-50 dark:hover:bg-stone-800/50 transition-colors"
-              >
-                <div>
-                  <p className="font-bold text-stone-900 dark:text-stone-100">Cài đặt tài khoản</p>
-                  <p className="text-sm text-stone-500 dark:text-stone-400 mt-1">Đổi avatar, bio, mật khẩu và lộ trình ưu tiên</p>
-                </div>
-                <ArrowRight className="w-4 h-4 text-stone-500 dark:text-stone-400" />
-              </Link>
             </div>
 
+            {/* Bookmarked Lessons Card */}
+            {bookmarks.length > 0 && (
+              <div className="bg-white dark:bg-stone-900 border border-stone-200 dark:border-stone-850 rounded-2xl p-5 shadow-sm">
+                <h4 className="text-sm font-extrabold text-stone-900 dark:text-stone-100 mb-3.5 flex items-center gap-1.5">
+                  <Bookmark className="w-4 h-4 text-emerald-500" />
+                  Bài học đã lưu ({bookmarks.length})
+                </h4>
+                <div className="space-y-2">
+                  {bookmarks.map((bookmark) => (
+                    <Link
+                      key={bookmark.id}
+                      href={`/bai-hoc/${bookmark.lesson_slug}`}
+                      className="flex items-center justify-between gap-2.5 rounded-xl border border-stone-150 dark:border-stone-800/80 px-3 py-2.5 hover:bg-stone-50 dark:hover:bg-stone-800/50 transition-colors group"
+                    >
+                      <span className="text-xs font-bold text-stone-850 dark:text-stone-200 group-hover:text-emerald-600 dark:group-hover:text-emerald-400 transition-colors truncate">
+                        {bookmark.lesson_title}
+                      </span>
+                      <Bookmark className="w-3.5 h-3.5 text-amber-550 shrink-0" />
+                    </Link>
+                  ))}
+                </div>
+              </div>
+            )}
+
+            {/* Flagged Lessons Shortcuts */}
             {flaggedLessons.length > 0 && (
-              <div className="mt-5 pt-5 border-t border-stone-200 dark:border-stone-800">
-                <p className="text-sm font-bold text-stone-900 dark:text-stone-100 mb-3">
-                  Bài bạn đã tự đánh dấu
-                </p>
+              <div className="bg-white dark:bg-stone-900 border border-stone-200 dark:border-stone-850 rounded-2xl p-5 shadow-sm">
+                <h4 className="text-sm font-extrabold text-stone-900 dark:text-stone-100 mb-3.5 flex items-center gap-1.5">
+                  <CheckCircle2 className="w-4 h-4 text-amber-500" />
+                  Bài tự đánh dấu ({flaggedLessonCount})
+                </h4>
                 <div className="space-y-2">
                   {flaggedLessons.map((lesson) => (
                     <Link
                       key={lesson.lesson_id}
                       href={`/bai-hoc/${lesson.lesson_slug}`}
-                      className="flex items-center justify-between gap-3 rounded-xl bg-stone-50 dark:bg-stone-800/40 px-3 py-2 hover:bg-stone-100 dark:hover:bg-stone-800/70 transition-colors"
+                      className="flex items-center justify-between gap-3 rounded-xl border border-stone-150 dark:border-stone-800/80 px-3 py-2.5 hover:bg-stone-50 dark:hover:bg-stone-800/50 transition-colors group"
                     >
-                      <div className="min-w-0">
-                        <p className="text-sm font-semibold text-stone-900 dark:text-stone-100 truncate">
-                          {lesson.lesson_title}
-                        </p>
-                      </div>
+                      <span className="text-xs font-bold text-stone-850 dark:text-stone-200 group-hover:text-emerald-600 dark:group-hover:text-emerald-400 transition-colors truncate">
+                        {lesson.lesson_title}
+                      </span>
                       <CheckCircle2 className="w-4 h-4 shrink-0 text-emerald-600 dark:text-emerald-400" />
                     </Link>
                   ))}
                 </div>
               </div>
             )}
-          </SectionCard>
+          </div>
         </div>
       </div>
     </div>
