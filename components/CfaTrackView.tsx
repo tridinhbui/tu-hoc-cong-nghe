@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { createClient } from "@/lib/supabase";
-import { BookOpen, X, Loader2 } from "lucide-react";
+import { BookOpen, X, Loader2, CheckCircle2, AlertCircle } from "lucide-react";
 import katex from "katex";
 import type { LessonMeta } from "@/lib/lesson-types";
 import type { CfaSubject } from "@/lib/cfa-track";
@@ -36,18 +36,40 @@ interface Module {
   order: number | null;
 }
 
+interface QuizHeader {
+  id: string;
+  moduleId: string;
+  title: string;
+  studyNotes: string | null;
+}
+
+interface QuizQuestion {
+  id: string;
+  headerId: string;
+  questionNo: number;
+  prompt: string;
+  optionA: string;
+  optionB: string;
+  optionC: string;
+  correct: string;
+  explanation: string | null;
+}
+
 interface Props {
   subjects: { subject: CfaSubject; lessons: LessonMeta[] }[];
 }
 
 // Renders inline math $...$ and bold **...**
 function renderInlineStyles(text: string): React.ReactNode[] {
-  const parts = text.split(/\$([^$]+?)\$/g);
+  if (!text) return [];
+  // Split using non-greedy match that allows newlines in case math blocks span multiple lines.
+  const parts = text.split(/\$([\s\S]+?)\$/g);
   return parts.map((part, i) => {
     // Odd indices are math segments
     if (i % 2 === 1) {
       try {
-        const html = katex.renderToString(part, { throwOnError: false, displayMode: false });
+        const cleanMath = part.replace(/\\\\/g, "\\");
+        const html = katex.renderToString(cleanMath, { throwOnError: false, displayMode: false });
         return <span key={i} dangerouslySetInnerHTML={{ __html: html }} />;
       } catch (err) {
         return <code key={i} className="font-mono text-xs bg-stone-100 dark:bg-stone-800 px-1 py-0.5 rounded">{part}</code>;
@@ -251,8 +273,21 @@ export default function CfaTrackView({ subjects }: Props) {
 
   // Selected Module details state
   const [activeModule, setActiveModule] = useState<Module | null>(null);
+  const [activeTab, setActiveTab] = useState<"lesson" | "quiz">("lesson");
   const [lessonContent, setLessonContent] = useState<string | null>(null);
   const [loadingContent, setLoadingContent] = useState(false);
+
+  // Quiz details state
+  const [quizHeader, setQuizHeader] = useState<QuizHeader | null>(null);
+  const [quizQuestions, setQuizQuestions] = useState<QuizQuestion[]>([]);
+  const [loadingQuiz, setLoadingQuiz] = useState(false);
+
+  // Quiz active state
+  const [currentQIndex, setCurrentQIndex] = useState(0);
+  const [selectedOption, setSelectedOption] = useState<"A" | "B" | "C" | null>(null);
+  const [showAnswer, setShowAnswer] = useState(false);
+  const [quizFinished, setQuizFinished] = useState(false);
+  const [correctAnswersCount, setCorrectAnswersCount] = useState(0);
 
   useEffect(() => {
     async function fetchBooks() {
@@ -331,42 +366,104 @@ export default function CfaTrackView({ subjects }: Props) {
     fetchReadingsAndModules();
   }, [selectedBook]);
 
-  // Fetch lesson content when a module is selected
+  // Fetch lesson content & quiz data when a module is selected
   useEffect(() => {
     if (!activeModule) {
       setLessonContent(null);
+      setQuizHeader(null);
+      setQuizQuestions([]);
+      setActiveTab("lesson");
       return;
     }
 
     const moduleId = activeModule.id;
+    setActiveTab("lesson");
+    setCurrentQIndex(0);
+    setSelectedOption(null);
+    setShowAnswer(false);
+    setQuizFinished(false);
+    setCorrectAnswersCount(0);
 
-    async function fetchLessonContent() {
+    async function fetchContentAndQuiz() {
       setLoadingContent(true);
+      setLoadingQuiz(true);
       try {
         const supabase = createClient();
-        const { data, error } = await supabase
+
+        // 1. Fetch Lesson Content
+        const { data: contentData, error: contentError } = await supabase
           .from("LessonContent")
           .select("content")
           .eq("moduleId", moduleId)
           .maybeSingle();
 
-        if (error) throw error;
+        if (contentError) throw contentError;
+        setLessonContent(contentData ? contentData.content : "Bài học này chưa có nội dung chi tiết.");
 
-        if (data) {
-          setLessonContent(data.content);
+        // 2. Fetch Quiz Header & Questions
+        const { data: headerData, error: headerError } = await supabase
+          .from("ModuleQuizHeader")
+          .select("*")
+          .eq("moduleId", moduleId)
+          .maybeSingle();
+
+        if (headerError) throw headerError;
+
+        if (headerData) {
+          setQuizHeader(headerData);
+          const { data: qData, error: qError } = await supabase
+            .from("ModuleQuizQuestion")
+            .select("*")
+            .eq("headerId", headerData.id)
+            .order("questionNo", { ascending: true });
+
+          if (qError) throw qError;
+          setQuizQuestions(qData || []);
         } else {
-          setLessonContent("Bài học này chưa có nội dung chi tiết.");
+          setQuizHeader(null);
+          setQuizQuestions([]);
         }
       } catch (err) {
-        console.error("Error loading lesson content:", err);
-        setLessonContent("Không thể tải nội dung bài học. Vui lòng thử lại sau.");
+        console.error("Error loading module details:", err);
+        setLessonContent("Không thể tải nội dung bài học.");
       } finally {
         setLoadingContent(false);
+        setLoadingQuiz(false);
       }
     }
 
-    fetchLessonContent();
+    fetchContentAndQuiz();
   }, [activeModule]);
+
+  // Handle Quiz Answer Submit
+  const handleCheckAnswer = () => {
+    if (!selectedOption || showAnswer) return;
+    
+    const currentQuestion = quizQuestions[currentQIndex];
+    const isCorrect = selectedOption === currentQuestion.correct;
+    if (isCorrect) {
+      setCorrectAnswersCount(prev => prev + 1);
+    }
+    setShowAnswer(true);
+  };
+
+  const handleNextQuestion = () => {
+    setSelectedOption(null);
+    setShowAnswer(false);
+    if (currentQIndex + 1 < quizQuestions.length) {
+      setCurrentQIndex(prev => prev + 1);
+    } else {
+      setQuizFinished(true);
+    }
+  };
+
+  const handleRestartQuiz = () => {
+    setCurrentQIndex(0);
+    setSelectedOption(null);
+    setShowAnswer(false);
+    setQuizFinished(false);
+    setCorrectAnswersCount(0);
+  };
 
   return (
     <div className="py-2">
@@ -485,13 +582,13 @@ export default function CfaTrackView({ subjects }: Props) {
                 </span>
               </div>
 
-              {/* Right Column: Readings List OR Active Module Content */}
+              {/* Right Column: Readings List OR Active Module Details */}
               <div className="md:w-2/3 p-6 overflow-y-auto flex flex-col min-h-[300px]">
                 {activeModule ? (
-                  // MODULE CONTENT VIEW
+                  // ACTIVE MODULE DETAIL PANEL
                   <div className="flex-1 flex flex-col">
                     {/* Back Header */}
-                    <div className="flex items-center gap-2 mb-4 border-b border-stone-150 dark:border-stone-800 pb-3">
+                    <div className="flex items-center gap-2 mb-4 border-b border-stone-150 dark:border-stone-800 pb-3 flex-shrink-0">
                       <button
                         onClick={() => setActiveModule(null)}
                         className="text-xs font-extrabold text-stone-500 hover:text-stone-900 dark:hover:text-white transition-colors"
@@ -500,7 +597,7 @@ export default function CfaTrackView({ subjects }: Props) {
                       </button>
                     </div>
 
-                    <div className="flex items-center gap-2 mb-4">
+                    <div className="flex items-center gap-2 mb-4 flex-shrink-0">
                       <span className="text-[10px] font-extrabold text-stone-900 dark:text-white bg-stone-200 dark:bg-stone-800 px-2 py-0.5 rounded uppercase flex-shrink-0">
                         Module {activeModule.code}
                       </span>
@@ -509,19 +606,177 @@ export default function CfaTrackView({ subjects }: Props) {
                       </h4>
                     </div>
 
-                    {/* Lesson Content Body */}
+                    {/* Tab Navigation */}
+                    {quizQuestions.length > 0 && (
+                      <div className="flex border-b border-stone-200 dark:border-stone-800 mb-5 flex-shrink-0">
+                        <button
+                          onClick={() => setActiveTab("lesson")}
+                          className={`px-4 py-2 text-xs font-bold border-b-2 transition-colors ${
+                            activeTab === "lesson"
+                              ? "border-stone-900 dark:border-white text-stone-900 dark:text-white"
+                              : "border-transparent text-stone-400 hover:text-stone-600 dark:hover:text-stone-300"
+                          }`}
+                        >
+                          Bài học
+                        </button>
+                        <button
+                          onClick={() => setActiveTab("quiz")}
+                          className={`px-4 py-2 text-xs font-bold border-b-2 transition-colors ${
+                            activeTab === "quiz"
+                              ? "border-stone-900 dark:border-white text-stone-900 dark:text-white"
+                              : "border-transparent text-stone-400 hover:text-stone-600 dark:hover:text-stone-300"
+                          }`}
+                        >
+                          Luyện tập ({quizQuestions.length})
+                        </button>
+                      </div>
+                    )}
+
+                    {/* Content View */}
                     <div className="flex-1">
-                      {loadingContent ? (
-                        <div className="h-full min-h-[200px] flex flex-col justify-center items-center gap-2">
-                          <Loader2 className="w-6 h-6 animate-spin text-stone-500 dark:text-stone-400" />
-                          <span className="text-xs text-stone-500 dark:text-stone-400">Đang tải nội dung bài học...</span>
-                        </div>
-                      ) : lessonContent ? (
-                        <LessonContentRenderer content={lessonContent} />
+                      {activeTab === "lesson" ? (
+                        // LESSON TEXT
+                        loadingContent ? (
+                          <div className="h-full min-h-[200px] flex flex-col justify-center items-center gap-2">
+                            <Loader2 className="w-6 h-6 animate-spin text-stone-500 dark:text-stone-400" />
+                            <span className="text-xs text-stone-500 dark:text-stone-400">Đang tải nội dung...</span>
+                          </div>
+                        ) : lessonContent ? (
+                          <LessonContentRenderer content={lessonContent} />
+                        ) : (
+                          <div className="text-xs text-stone-450 dark:text-stone-500 text-center py-10">
+                            Bài học này chưa có nội dung chi tiết.
+                          </div>
+                        )
                       ) : (
-                        <div className="text-xs text-stone-450 dark:text-stone-500 text-center py-10">
-                          Bài học này chưa có nội dung chi tiết.
-                        </div>
+                        // QUIZ INTERACTIVE INTERFACE
+                        loadingQuiz ? (
+                          <div className="h-full min-h-[200px] flex flex-col justify-center items-center gap-2">
+                            <Loader2 className="w-6 h-6 animate-spin text-stone-500 dark:text-stone-400" />
+                            <span className="text-xs text-stone-500 dark:text-stone-400">Đang tải câu hỏi...</span>
+                          </div>
+                        ) : quizFinished ? (
+                          // QUIZ END RESULT SCREEN
+                          <motion.div
+                            initial={{ opacity: 0, scale: 0.98 }}
+                            animate={{ opacity: 1, scale: 1 }}
+                            className="flex flex-col items-center justify-center py-10 px-4 text-center border border-stone-200 dark:border-stone-850 bg-stone-50/50 dark:bg-stone-900/10 rounded-2xl"
+                          >
+                            <CheckCircle2 className="w-12 h-12 text-emerald-500 mb-4" />
+                            <h5 className="text-sm font-extrabold text-stone-900 dark:text-white uppercase tracking-wider mb-2">
+                              Luyện tập hoàn thành!
+                            </h5>
+                            <p className="text-xs text-stone-500 dark:text-stone-400 mb-6">
+                              Bạn đã trả lời đúng <strong className="text-emerald-500">{correctAnswersCount}</strong> trên tổng số <strong>{quizQuestions.length}</strong> câu hỏi.
+                            </p>
+                            <button
+                              onClick={handleRestartQuiz}
+                              className="px-4 py-2 text-xs font-bold bg-stone-900 hover:bg-stone-800 dark:bg-white dark:text-stone-900 text-white rounded-lg transition-colors shadow-sm"
+                            >
+                              Luyện tập lại
+                            </button>
+                          </motion.div>
+                        ) : (
+                          // QUIZ QUESTION CARD
+                          <div className="space-y-6">
+                            {/* Progress bar */}
+                            <div className="flex items-center justify-between text-[10px] text-stone-450 dark:text-stone-500 font-bold uppercase tracking-wider">
+                              <span>Câu hỏi {currentQIndex + 1}/{quizQuestions.length}</span>
+                              <span className="text-emerald-500">Đúng: {correctAnswersCount}</span>
+                            </div>
+                            <div className="w-full h-1 bg-stone-100 dark:bg-stone-800 rounded-full overflow-hidden">
+                              <div
+                                className="h-full bg-stone-950 dark:bg-white transition-all duration-300"
+                                style={{ width: `${((currentQIndex + 1) / quizQuestions.length) * 100}%` }}
+                              />
+                            </div>
+
+                            {/* Prompt */}
+                            <div className="text-xs font-extrabold text-stone-900 dark:text-white leading-relaxed space-y-4">
+                              <LessonContentRenderer content={quizQuestions[currentQIndex].prompt} />
+                            </div>
+
+                            {/* Options Grid */}
+                            <div className="space-y-3">
+                              {(["A", "B", "C"] as const).map((opt) => {
+                                const currentQ = quizQuestions[currentQIndex];
+                                const optVal = opt === "A" ? currentQ.optionA : opt === "B" ? currentQ.optionB : currentQ.optionC;
+                                const isSelected = selectedOption === opt;
+                                const isCorrect = currentQ.correct === opt;
+                                
+                                let optStyle = "border-stone-200 dark:border-stone-800 hover:bg-stone-50 dark:hover:bg-stone-800/40";
+                                if (isSelected) {
+                                  optStyle = "border-stone-900 dark:border-white bg-stone-50/50 dark:bg-stone-800/50";
+                                }
+                                
+                                if (showAnswer) {
+                                  if (isCorrect) {
+                                    optStyle = "border-emerald-500 bg-emerald-50/20 dark:bg-emerald-950/15 text-emerald-700 dark:text-emerald-400";
+                                  } else if (isSelected) {
+                                    optStyle = "border-rose-500 bg-rose-50/20 dark:bg-rose-950/15 text-rose-700 dark:text-rose-400";
+                                  } else {
+                                    optStyle = "border-stone-150 dark:border-stone-850 opacity-60 pointer-events-none";
+                                  }
+                                }
+
+                                return (
+                                  <button
+                                    key={opt}
+                                    disabled={showAnswer}
+                                    onClick={() => setSelectedOption(opt)}
+                                    className={`w-full flex items-start gap-3 p-3.5 border rounded-xl text-left text-xs font-medium leading-relaxed transition-all ${optStyle}`}
+                                  >
+                                    <span className="font-extrabold font-mono flex-shrink-0 text-stone-450 dark:text-stone-500 mt-0.5">
+                                      {opt}.
+                                    </span>
+                                    <span>{renderInlineStyles(optVal)}</span>
+                                  </button>
+                                );
+                              })}
+                            </div>
+
+                            {/* Actions bar */}
+                            <div className="flex justify-end pt-3">
+                              {!showAnswer ? (
+                                <button
+                                  disabled={!selectedOption}
+                                  onClick={handleCheckAnswer}
+                                  className={`px-4 py-2 text-xs font-bold rounded-lg transition-colors ${
+                                    selectedOption
+                                      ? "bg-stone-900 hover:bg-stone-800 dark:bg-white dark:text-stone-900 text-white shadow-sm cursor-pointer"
+                                      : "bg-stone-100 text-stone-400 dark:bg-stone-850 dark:text-stone-600 cursor-not-allowed"
+                                  }`}
+                                >
+                                  Kiểm tra đáp án
+                                </button>
+                              ) : (
+                                <button
+                                  onClick={handleNextQuestion}
+                                  className="px-4 py-2 text-xs font-bold bg-stone-900 hover:bg-stone-800 dark:bg-white dark:text-stone-900 text-white rounded-lg transition-colors shadow-sm"
+                                >
+                                  {currentQIndex + 1 < quizQuestions.length ? "Câu tiếp theo" : "Hoàn thành"}
+                                </button>
+                              )}
+                            </div>
+
+                            {/* Explanation Details */}
+                            {showAnswer && quizQuestions[currentQIndex].explanation && (
+                              <motion.div
+                                initial={{ opacity: 0, y: 8 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                className="p-4 border border-stone-200 dark:border-stone-800 bg-stone-50/50 dark:bg-stone-900/40 rounded-xl space-y-2 mt-4"
+                              >
+                                <div className="flex items-center gap-1.5 text-[10px] font-extrabold text-stone-500 uppercase tracking-widest">
+                                  <AlertCircle className="w-3.5 h-3.5 text-stone-450" />
+                                  <span>Giải thích chi tiết</span>
+                                </div>
+                                <div className="text-[11px] text-stone-600 dark:text-stone-400 leading-relaxed font-normal space-y-4">
+                                  <LessonContentRenderer content={quizQuestions[currentQIndex].explanation || ""} />
+                                </div>
+                              </motion.div>
+                            )}
+                          </div>
+                        )
                       )}
                     </div>
                   </div>
