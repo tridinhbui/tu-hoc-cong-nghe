@@ -17,7 +17,6 @@ import ChatWithAdminWidget from "@/components/ChatWithAdminWidget";
 import LessonAppealModal from "@/components/LessonAppealModal";
 import OnboardingFlow from "@/components/OnboardingFlow";
 import ResumeLearningButton from "@/components/ResumeLearningButton";
-import StreakDisplay from "@/components/StreakDisplay";
 import StreakReminderManager from "@/components/StreakReminderManager";
 import AnnouncementBanner from "@/components/AnnouncementBanner";
 import DashboardTour from "@/components/DashboardTour";
@@ -579,18 +578,15 @@ export default function DashboardClient({ lessonsMeta }: { lessonsMeta: LessonMe
           />
         )}
 
-        {/* ── User Stats + Streak (compact row) ── */}
-        <div data-tour="user-stats" className="max-w-6xl mx-auto mb-8 flex flex-col sm:flex-row gap-3">
-          <div className="flex-1">
-            <UserStats
-              xp={userXp}
-              lessonsCompleted={totalDone}
-              totalLessons={totalLessons}
-              avgQuizScore={avgQuizScore}
-              userId={user?.id}
-            />
-          </div>
-          <StreakDisplay />
+        {/* ── User Stats (compact) ── */}
+        <div data-tour="user-stats" className="max-w-6xl mx-auto mb-8">
+          <UserStats
+            xp={userXp}
+            lessonsCompleted={totalDone}
+            totalLessons={totalLessons}
+            avgQuizScore={avgQuizScore}
+            userId={user?.id}
+          />
         </div>
 
         {/* ── Mistake Review Alert ── */}

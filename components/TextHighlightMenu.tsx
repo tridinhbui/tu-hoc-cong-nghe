@@ -35,7 +35,10 @@ export default function TextHighlightMenu({ containerRef, lessonId, lessonSlug, 
       const selection = window.getSelection();
       const quote = selection?.toString().trim() ?? "";
       if (!quote || quote.length < MIN_SELECTION_LENGTH) return;
-      if (!container!.contains(selection!.anchorNode)) return;
+
+      // Avoid showing menu if right-clicking inside form inputs
+      const target = e.target as HTMLElement;
+      if (target.tagName === "INPUT" || target.tagName === "TEXTAREA") return;
 
       e.preventDefault();
       setMenu({
@@ -51,11 +54,11 @@ export default function TextHighlightMenu({ containerRef, lessonId, lessonSlug, 
       }
     }
 
-    container.addEventListener("contextmenu", handleContextMenu);
+    document.addEventListener("contextmenu", handleContextMenu);
     document.addEventListener("click", handleClickAway);
     document.addEventListener("scroll", () => setMenu(null), { passive: true });
     return () => {
-      container.removeEventListener("contextmenu", handleContextMenu);
+      document.removeEventListener("contextmenu", handleContextMenu);
       document.removeEventListener("click", handleClickAway);
     };
   }, [containerRef]);

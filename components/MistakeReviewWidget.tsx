@@ -16,8 +16,8 @@ export default function MistakeReviewWidget({ userId }: MistakeReviewWidgetProps
   useEffect(() => {
     const fetchMistakes = async () => {
       try {
-        const { getMistakeCount } = await import("@/lib/lesson-mistakes");
-        const count = await getMistakeCount(userId);
+        const { getUnresolvedMistakeCount } = await import("@/lib/quiz-mistakes");
+        const count = await getUnresolvedMistakeCount(userId);
         setMistakeCount(count);
       } catch (error) {
         console.error("Failed to load mistake count:", error);
