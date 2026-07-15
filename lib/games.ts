@@ -372,6 +372,43 @@ export async function getGameLeaderboard(gameType: GameType, limit = 10): Promis
   );
 }
 
+export interface CombinedLeaderboardRow {
+  user_id: string;
+  name: string;
+  avatarUrl: string | null;
+  totalXp: number;
+  gamesPlayed: number;
+  lastPlayedAt: string;
+}
+
+export async function getCombinedGameLeaderboard(limit = 10): Promise<CombinedLeaderboardRow[]> {
+  const supabase = createClient();
+  const { data, error } = await supabase.rpc("get_combined_game_leaderboard", { p_limit: limit });
+
+  if (error) {
+    if (isMissingTableError(error)) return [];
+    throw handleSupabaseError(error);
+  }
+
+  return (
+    (data ?? []) as {
+      user_id: string;
+      name: string;
+      avatar_url: string | null;
+      total_xp: number;
+      games_played: number;
+      last_played_at: string;
+    }[]
+  ).map((row) => ({
+    user_id: row.user_id,
+    name: row.name,
+    avatarUrl: row.avatar_url,
+    totalXp: row.total_xp,
+    gamesPlayed: row.games_played,
+    lastPlayedAt: row.last_played_at,
+  }));
+}
+
 // ─── Fun finance-themed titles for the top 3 of each game's leaderboard ───
 
 const GAME_TITLES: Record<GameType, [string, string, string]> = {
@@ -386,4 +423,12 @@ const GAME_TITLES: Record<GameType, [string, string, string]> = {
 export function getGameTitle(gameType: GameType, rank: number): string | null {
   if (rank < 1 || rank > 3) return null;
   return GAME_TITLES[gameType][rank - 1];
+}
+
+const COMBINED_TITLES: [string, string, string] = ["Huyền Thoại Mini Game", "Đại Kiện Tướng Tài Chính", "Cao Thủ Toàn Năng"];
+
+/** Rank is 1-based. Returns null for rank 4+. For the cross-game combined leaderboard. */
+export function getCombinedGameTitle(rank: number): string | null {
+  if (rank < 1 || rank > 3) return null;
+  return COMBINED_TITLES[rank - 1];
 }

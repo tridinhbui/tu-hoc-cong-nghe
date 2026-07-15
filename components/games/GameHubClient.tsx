@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { toast } from "sonner";
-import { Gamepad2, Trophy, History as HistoryIcon, ArrowLeft } from "lucide-react";
+import { Gamepad2, Trophy, History as HistoryIcon, ArrowLeft, Crown } from "lucide-react";
 import Link from "next/link";
 import { useAuthGate } from "@/lib/use-auth-gate";
 import { GAMES, getGameMeta, type GameType } from "@/lib/games";
@@ -11,8 +11,10 @@ import GameLeaderboard from "@/components/games/GameLeaderboard";
 import GameHistory from "@/components/games/GameHistory";
 import BucketGame from "@/components/games/BucketGame";
 import PairGame from "@/components/games/PairGame";
+import CombinedGameLeaderboard from "@/components/games/CombinedGameLeaderboard";
 
 type InnerTab = "play" | "leaderboard" | "history";
+type HubTab = "games" | "combined";
 
 const ACCENT: Record<string, { grad: string; ring: string; chip: string }> = {
   emerald: { grad: "from-emerald-500 to-teal-500", ring: "hover:border-emerald-400 dark:hover:border-emerald-600", chip: "bg-emerald-50 dark:bg-emerald-950/40 text-emerald-700 dark:text-emerald-300" },
@@ -26,6 +28,7 @@ export default function GameHubClient() {
   const { userId, checking } = useAuthGate();
   const [activeGame, setActiveGame] = useState<GameType | null>(null);
   const [innerTab, setInnerTab] = useState<InnerTab>("play");
+  const [hubTab, setHubTab] = useState<HubTab>("games");
 
   if (checking || !userId) {
     return (
@@ -65,35 +68,59 @@ export default function GameHubClient() {
             Kéo thả nhanh, nhớ lâu - vượt 70% mỗi ván để nhận XP và leo bảng xếp hạng riêng của từng game.
           </p>
 
-          <div className="grid sm:grid-cols-2 gap-3.5">
-            {GAMES.map((g) => {
-              const a = ACCENT[g.accent] ?? ACCENT.emerald;
-              return (
-                <button
-                  key={g.id}
-                  onClick={() => {
-                    setActiveGame(g.id);
-                    setInnerTab("play");
-                  }}
-                  className={`group text-left rounded-2xl border-2 border-stone-200 dark:border-stone-800 bg-white dark:bg-stone-900 p-4 sm:p-5 transition-all hover:shadow-lg ${a.ring}`}
-                >
-                  <div className="flex items-start gap-3">
-                    <span className={`flex-shrink-0 w-12 h-12 rounded-2xl bg-gradient-to-br ${a.grad} text-white text-2xl flex items-center justify-center shadow-sm`}>
-                      {g.emoji}
-                    </span>
-                    <div className="min-w-0">
-                      <p className="font-bold text-stone-900 dark:text-stone-100">{g.title}</p>
-                      <p className="text-sm text-stone-500 dark:text-stone-400 mt-1 leading-relaxed">{g.description}</p>
-                    </div>
-                  </div>
-                  <span className={`inline-flex items-center gap-1.5 mt-4 text-xs font-bold px-2.5 py-1.5 rounded-lg ${a.chip}`}>
-                    Chơi ngay
-                    <span className="transition-transform group-hover:translate-x-0.5">→</span>
-                  </span>
-                </button>
-              );
-            })}
+          <div className="flex gap-1 sm:gap-1.5 mb-5 bg-stone-100 dark:bg-stone-900 rounded-xl p-1 sm:p-1.5 max-w-xs">
+            {[
+              { id: "games" as const, label: "Các game", icon: Gamepad2 },
+              { id: "combined" as const, label: "BXH tổng hợp", icon: Crown },
+            ].map(({ id, label, icon: Icon }) => (
+              <button
+                key={id}
+                onClick={() => setHubTab(id)}
+                className={`flex-1 flex items-center justify-center gap-1.5 text-xs font-bold px-2 sm:px-3 py-2 sm:py-2.5 rounded-lg transition-all ${
+                  hubTab === id
+                    ? "bg-white dark:bg-stone-800 text-stone-900 dark:text-stone-100 shadow-sm"
+                    : "text-stone-500 dark:text-stone-400 hover:text-stone-700 dark:hover:text-stone-300"
+                }`}
+              >
+                <Icon className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
+                {label}
+              </button>
+            ))}
           </div>
+
+          {hubTab === "combined" ? (
+            <CombinedGameLeaderboard />
+          ) : (
+            <div className="grid sm:grid-cols-2 gap-3.5">
+              {GAMES.map((g) => {
+                const a = ACCENT[g.accent] ?? ACCENT.emerald;
+                return (
+                  <button
+                    key={g.id}
+                    onClick={() => {
+                      setActiveGame(g.id);
+                      setInnerTab("play");
+                    }}
+                    className={`group text-left rounded-2xl border-2 border-stone-200 dark:border-stone-800 bg-white dark:bg-stone-900 p-4 sm:p-5 transition-all hover:shadow-lg ${a.ring}`}
+                  >
+                    <div className="flex items-start gap-3">
+                      <span className={`flex-shrink-0 w-12 h-12 rounded-2xl bg-gradient-to-br ${a.grad} text-white text-2xl flex items-center justify-center shadow-sm`}>
+                        {g.emoji}
+                      </span>
+                      <div className="min-w-0">
+                        <p className="font-bold text-stone-900 dark:text-stone-100">{g.title}</p>
+                        <p className="text-sm text-stone-500 dark:text-stone-400 mt-1 leading-relaxed">{g.description}</p>
+                      </div>
+                    </div>
+                    <span className={`inline-flex items-center gap-1.5 mt-4 text-xs font-bold px-2.5 py-1.5 rounded-lg ${a.chip}`}>
+                      Chơi ngay
+                      <span className="transition-transform group-hover:translate-x-0.5">→</span>
+                    </span>
+                  </button>
+                );
+              })}
+            </div>
+          )}
         </div>
       </div>
     );
