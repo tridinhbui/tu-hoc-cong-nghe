@@ -22,6 +22,8 @@ import StreakReminderManager from "@/components/StreakReminderManager";
 import AnnouncementBanner from "@/components/AnnouncementBanner";
 import DashboardTour from "@/components/DashboardTour";
 import Leaderboard from "@/components/Leaderboard";
+import DashboardRecommendations from "@/components/DashboardRecommendations";
+import MistakeReviewWidget from "@/components/MistakeReviewWidget";
 import { hasCompletedOnboarding, completeOnboarding } from "@/lib/supabase-onboarding";
 import { getUserProfile, recalculateUserStats } from "@/lib/supabase-user";
 import UnlockRequestModal from "@/components/UnlockRequestModal";
@@ -591,10 +593,20 @@ export default function DashboardClient({ lessonsMeta }: { lessonsMeta: LessonMe
           <StreakDisplay />
         </div>
 
-        {/* ── Resume Learning Button ── */}
+        {/* ── Mistake Review Alert ── */}
+        {activeTrack !== "cfa" && user?.id && (
+          <MistakeReviewWidget userId={user.id} />
+        )}
+
+        {/* ── Resume Learning & Recommendations (1 Row) ── */}
         {activeTrack !== "cfa" && (
-          <div data-tour="resume-learning" className="max-w-6xl mx-auto mb-8">
-            <ResumeLearningButton activeTrack={activeTrack} />
+          <div className="max-w-6xl mx-auto mb-8 grid grid-cols-1 md:grid-cols-4 gap-4 items-stretch">
+            <div data-tour="resume-learning" className="md:col-span-1">
+              <ResumeLearningButton activeTrack={activeTrack} />
+            </div>
+            <div className="md:col-span-3">
+              <DashboardRecommendations lessonsMeta={lessonsMeta} completed={completed} />
+            </div>
           </div>
         )}
 
