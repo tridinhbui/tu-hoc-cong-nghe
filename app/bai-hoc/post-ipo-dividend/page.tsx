@@ -60,11 +60,11 @@ const quiz: QuizQuestion[] = [
 export default function Page() {
   return (
     <LessonPageLayout lesson={meta} quiz={quiz}>
-      <h2 className="text-2xl font-bold text-stone-900 mb-2">Post-IPO: Nên Trả Cổ Tức Không?</h2>
+      <h2 className="text-2xl font-bold text-stone-900 dark:text-stone-100 mb-2">Post-IPO: Nên Trả Cổ Tức Không?</h2>
       <p className="text-stone-600 text-sm mb-6 italic">Bài toán CFO phải trả lời: giữ tiền grow hay chia lại cho cổ đông?</p>
 
       <section className="mb-8">
-        <h3 className="text-lg font-bold text-stone-800 mb-3">Bài toán thực tế sau IPO</h3>
+        <h3 className="text-lg font-bold text-stone-800 dark:text-stone-200 mb-3">Bài toán thực tế sau IPO</h3>
         <div className="border-l-2 border-stone-300 pl-4 mb-4">
           <p className="text-sm text-stone-700 leading-relaxed">
             Công ty vừa IPO, lợi nhuận 100M USD. Có nên chia 10M cho cổ đông không? Câu hỏi đúng không phải "có đủ lợi nhuận để chia không?"- mà là <strong>"nếu giữ lại 1 đồng, có tạo ra hơn 1 đồng giá trị trong tương lai không?"</strong>
@@ -76,7 +76,7 @@ export default function Page() {
       </section>
 
       <section className="mb-8">
-        <h3 className="text-lg font-bold text-stone-800 mb-3">Trước tiên: ROIC và WACC là gì?</h3>
+        <h3 className="text-lg font-bold text-stone-800 dark:text-stone-200 mb-3">Trước tiên: ROIC và WACC là gì?</h3>
         <div className="bg-stone-50 border border-stone-200 rounded-xl p-4 mb-3 space-y-3">
           <p className="text-sm text-stone-700 leading-relaxed">
             <strong>ROIC (tỷ suất sinh lời trên vốn đầu tư)</strong>: nếu công ty bỏ 100 đồng vốn vào hoạt động kinh doanh, mỗi năm công ty tạo ra bao nhiêu đồng lợi nhuận từ số vốn đó. ROIC = 20% nghĩa là mỗi 100 đồng vốn tạo ra 20 đồng lợi nhuận/năm.
@@ -91,7 +91,7 @@ export default function Page() {
       </section>
 
       <section className="mb-8">
-        <h3 className="text-lg font-bold text-stone-800 mb-3">Framework: Khi nào nên Return Capital?</h3>
+        <h3 className="text-lg font-bold text-stone-800 dark:text-stone-200 mb-3">Framework: Khi nào nên Return Capital?</h3>
         <div className="space-y-3">
           {[
             {
@@ -130,7 +130,7 @@ export default function Page() {
       </section>
 
       <section className="mb-8">
-        <h3 className="text-lg font-bold text-stone-800 mb-3">Dividend vs Share Buyback</h3>
+        <h3 className="text-lg font-bold text-stone-800 dark:text-stone-200 mb-3">Dividend vs Share Buyback</h3>
         <div className="grid grid-cols-2 gap-4">
           <div className="border border-stone-200 rounded-xl p-4">
             <div className="font-bold text-stone-800 mb-2 text-sm">Dividend</div>
@@ -154,7 +154,7 @@ export default function Page() {
       </section>
 
       <section className="mb-8">
-        <h3 className="text-lg font-bold text-stone-800 mb-3">Post-IPO: Một số hướng giải quyết</h3>
+        <h3 className="text-lg font-bold text-stone-800 dark:text-stone-200 mb-3">Post-IPO: Một số hướng giải quyết</h3>
         <div className="space-y-2">
           {[
             "Đầu tư hết vào các dự án NPV-positive trước → phần FCF dư thừa mới xem xét return capital",
@@ -172,7 +172,7 @@ export default function Page() {
       </section>
 
       <section>
-        <h3 className="text-lg font-bold text-stone-800 mb-3">Key Question</h3>
+        <h3 className="text-lg font-bold text-stone-800 dark:text-stone-200 mb-3">Key Question</h3>
         <div className="bg-stone-900 text-white rounded-xl p-5 text-center">
           <p className="font-bold text-lg mb-2">"Nếu giữ lại 1 đồng hôm nay, công ty có tạo ra hơn 1 đồng giá trị không?"</p>
           <p className="text-stone-300 text-sm">Nếu có → giữ lại. Nếu không → trả lại cho cổ đông. Đây là foundation của capital allocation decision.</p>

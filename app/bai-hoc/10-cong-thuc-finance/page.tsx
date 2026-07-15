@@ -82,13 +82,13 @@ export default function TenCongThucPage() {
       <div className="space-y-8 text-stone-700 leading-relaxed">
 
         <section className="space-y-4">
-          <h2 className="text-xl font-bold text-stone-900">Tại sao cần nhớ 10 công thức này?</h2>
+          <h2 className="text-xl font-bold text-stone-900 dark:text-stone-100">Tại sao cần nhớ 10 công thức này?</h2>
           <p>Trong bất kỳ cuộc phỏng vấn finance nào - IB, PE, equity research, corporate finance - bạn sẽ được hỏi về những công thức này. Không chỉ hỏi "công thức là gì" mà còn hỏi "tại sao nó quan trọng" và "khi nào dùng cái nào".</p>
           <p>Điều quan trọng hơn việc ghi nhớ công thức là hiểu <strong>dòng chảy từ Revenue xuống FCF</strong> - và từ FCF lên Enterprise Value - là một chuỗi liên thông.</p>
         </section>
 
         <section className="space-y-4">
-          <h2 className="text-xl font-bold text-stone-900">Dòng chảy từ Revenue → FCF</h2>
+          <h2 className="text-xl font-bold text-stone-900 dark:text-stone-100">Dòng chảy từ Revenue → FCF</h2>
           <div className="bg-stone-50 rounded-2xl p-5 space-y-1 font-mono text-sm">
             {[
               { label: "Revenue", op: "" },
@@ -117,7 +117,7 @@ export default function TenCongThucPage() {
         </section>
 
         <section className="space-y-4">
-          <h2 className="text-xl font-bold text-stone-900">10 công thức - chi tiết</h2>
+          <h2 className="text-xl font-bold text-stone-900 dark:text-stone-100">10 công thức - chi tiết</h2>
           <div className="space-y-3">
             {formulas.map(f => (
               <div key={f.id} className="border border-stone-200 rounded-xl p-4">
@@ -130,7 +130,7 @@ export default function TenCongThucPage() {
         </section>
 
         <section className="space-y-4">
-          <h2 className="text-xl font-bold text-stone-900">FPT - Áp dụng thực tế</h2>
+          <h2 className="text-xl font-bold text-stone-900 dark:text-stone-100">FPT - Áp dụng thực tế</h2>
           <div className="bg-stone-900 rounded-2xl p-5 text-sm space-y-2">
             <div className="text-stone-500 text-xs font-bold uppercase tracking-widest mb-3">FPT Corporation - Ước tính 2023</div>
             {[
@@ -151,7 +151,7 @@ export default function TenCongThucPage() {
         </section>
 
         <div className="border-l-2 border-stone-300 pl-4 space-y-2">
-          <h3 className="font-bold text-stone-800 mb-3">3 điều cần nhớ</h3>
+          <h3 className="font-bold text-stone-800 dark:text-stone-200 mb-3">3 điều cần nhớ</h3>
           <div className="space-y-1 text-sm text-stone-700">
             <div> - Revenue → Gross Profit → EBITDA → EBIT → NI → OCF → FCF là một dòng chảy liên thông</div>
             <div> - EV/EBITDA trung lập với đòn bẩy - dùng để so sánh giữa các công ty</div>

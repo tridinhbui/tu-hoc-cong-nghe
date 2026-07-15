@@ -105,11 +105,11 @@ function LeverageSimulator() {
 export default function Page() {
   return (
     <LessonPageLayout lesson={meta} quiz={quiz}>
-      <h2 className="text-2xl font-bold text-stone-900 mb-2">Maple Leaf Foods - Đọc Nợ Đúng Cách</h2>
+      <h2 className="text-2xl font-bold text-stone-900 dark:text-stone-100 mb-2">Maple Leaf Foods - Đọc Nợ Đúng Cách</h2>
       <p className="text-stone-600 text-sm mb-6 italic">995M CAD net debt - nhiều hay ít? Câu trả lời đúng là: tùy vào EBITDA và context</p>
 
       <section className="mb-8">
-        <h3 className="text-lg font-bold text-stone-800 mb-3">📋 Case Study: Maple Leaf Foods</h3>
+        <h3 className="text-lg font-bold text-stone-800 dark:text-stone-200 mb-3">📋 Case Study: Maple Leaf Foods</h3>
         <div className="bg-stone-800 text-white rounded-xl p-5 font-mono text-sm space-y-2 mb-4">
           <div className="text-stone-500 text-xs mb-2">{ '// Maple Leaf Foods - Financial Snapshot' }</div>
           <div className="flex justify-between"><span className="text-stone-700">Revenue growth YoY</span><span>+6.2%</span></div>
@@ -126,7 +126,7 @@ export default function Page() {
       </section>
 
       <section className="mb-8">
-        <h3 className="text-lg font-bold text-stone-800 mb-3"> 3 câu hỏi trước khi nhìn vào nợ</h3>
+        <h3 className="text-lg font-bold text-stone-800 dark:text-stone-200 mb-3"> 3 câu hỏi trước khi nhìn vào nợ</h3>
         <div className="space-y-3">
           {[
             {
@@ -159,7 +159,7 @@ export default function Page() {
       <LeverageSimulator />
 
       <section className="mb-8">
-        <h3 className="text-lg font-bold text-stone-800 mb-3"> Leverage ratio benchmark theo ngành</h3>
+        <h3 className="text-lg font-bold text-stone-800 dark:text-stone-200 mb-3"> Leverage ratio benchmark theo ngành</h3>
         <div className="space-y-2">
           {[
             { sector: "Utilities", range: "3-5x", note: "Stable regulated cashflow, highly leveraged is normal" },
@@ -180,7 +180,7 @@ export default function Page() {
       </section>
 
       <section>
-        <h3 className="text-lg font-bold text-stone-800 mb-3"> Key insight</h3>
+        <h3 className="text-lg font-bold text-stone-800 dark:text-stone-200 mb-3"> Key insight</h3>
         <div className="bg-stone-50 text-white rounded-xl p-5">
           <p className="font-bold mb-1">Câu hỏi đầu tiên không phải "nợ bao nhiêu?"- mà là "có đủ dòng tiền để trả không?"</p>
           <p className="text-stone-700 text-sm">Net Debt/EBITDA cho biết lý thuyết cần bao nhiêu năm EBITDA để clear nợ. FCF coverage là thực tế. Cả hai cùng nhau mới kể được câu chuyện đầy đủ.</p>

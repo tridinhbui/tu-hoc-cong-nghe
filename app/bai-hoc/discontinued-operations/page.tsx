@@ -71,11 +71,11 @@ const quiz: QuizQuestion[] = [
 export default function Page() {
   return (
     <LessonPageLayout lesson={meta} quiz={quiz}>
-      <h2 className="text-2xl font-bold text-stone-900 mb-2">Discontinued Operations Income</h2>
+      <h2 className="text-2xl font-bold text-stone-900 dark:text-stone-100 mb-2">Discontinued Operations Income</h2>
       <p className="text-stone-600 text-sm mb-6 italic">Net Income có thể nói dối - biết cách tách discontinued ops là kỹ năng analyst thiết yếu</p>
 
       <section className="mb-8">
-        <h3 className="text-lg font-bold text-stone-800 mb-3">Discontinued Operations là gì?</h3>
+        <h3 className="text-lg font-bold text-stone-800 dark:text-stone-200 mb-3">Discontinued Operations là gì?</h3>
         <p className="text-stone-600 leading-relaxed mb-4">
           Discontinued Operations = phần business đã bán hoặc đóng cửa và <strong>sẽ không còn đóng góp doanh thu/lợi nhuận trong tương lai</strong>. Kế toán bắt buộc phải báo cáo tách biệt để tránh làm méo picture về core business đang hoạt động.
         </p>
@@ -90,7 +90,7 @@ export default function Page() {
       </section>
 
       <section className="mb-8">
-        <h3 className="text-lg font-bold text-stone-800 mb-3">Cấu trúc trình bày trên Income Statement</h3>
+        <h3 className="text-lg font-bold text-stone-800 dark:text-stone-200 mb-3">Cấu trúc trình bày trên Income Statement</h3>
         <div className="bg-stone-800 text-white rounded-xl p-5 font-mono text-sm space-y-2">
           <div className="text-stone-500 text-xs mb-3">{"// Cách đọc đúng"}</div>
           <div className="flex justify-between"><span className="text-white">Revenue</span><span className="text-stone-300">1.000</span></div>
@@ -105,7 +105,7 @@ export default function Page() {
       </section>
 
       <section className="mb-8">
-        <h3 className="text-lg font-bold text-stone-800 mb-3">Income Statement Decomposer - Ví dụ</h3>
+        <h3 className="text-lg font-bold text-stone-800 dark:text-stone-200 mb-3">Income Statement Decomposer - Ví dụ</h3>
         <div className="bg-white rounded-xl border border-stone-200 overflow-hidden mb-4">
           <div className="bg-stone-50 px-4 py-2 text-xs font-bold text-stone-600 border-b border-stone-200">INCOME STATEMENT (tỷ VNĐ) - Ví dụ minh họa</div>
           <div className="p-4 space-y-2 font-mono text-sm">
@@ -129,7 +129,7 @@ export default function Page() {
       </section>
 
       <section className="mb-8">
-        <h3 className="text-lg font-bold text-stone-800 mb-3">Ứng dụng trong phân tích</h3>
+        <h3 className="text-lg font-bold text-stone-800 dark:text-stone-200 mb-3">Ứng dụng trong phân tích</h3>
         <div className="space-y-3">
           {[
             {
@@ -154,7 +154,7 @@ export default function Page() {
       </section>
 
       <section>
-        <h3 className="text-lg font-bold text-stone-800 mb-3">Takeaway</h3>
+        <h3 className="text-lg font-bold text-stone-800 dark:text-stone-200 mb-3">Takeaway</h3>
         <div className="bg-stone-900 text-white rounded-xl p-5 text-center">
           <p className="text-lg font-bold mb-2">Đừng để Net Income đánh lừa.</p>
           <p className="text-stone-500 text-sm">Luôn tách Continuing Operations ra khi phân tích earnings - đó là số phản ánh business thực đang chạy.</p>

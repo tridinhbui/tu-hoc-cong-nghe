@@ -112,11 +112,11 @@ export default function NoteContent({ content }: NoteContentProps) {
   // No math delimiters found at all - skip the wrapper markup and render
   // exactly like a plain note always has.
   if (segments.length === 1 && segments[0].type === "text") {
-    return <p className="text-sm text-stone-700 dark:text-stone-300 whitespace-pre-wrap">{content}</p>;
+    return <p className="text-sm text-stone-700 dark:text-stone-200 whitespace-pre-wrap">{content}</p>;
   }
 
   return (
-    <div className="text-sm text-stone-700 dark:text-stone-300 whitespace-pre-wrap">
+    <div className="text-sm text-stone-700 dark:text-stone-200 whitespace-pre-wrap">
       {segments.map((seg, i) => {
         if (seg.type === "text") return <span key={i}>{seg.value}</span>;
         if (seg.type === "inline") {

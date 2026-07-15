@@ -118,11 +118,11 @@ function TVMAnimation() {
 export default function Page() {
   return (
     <LessonPageLayout lesson={meta} quiz={quiz}>
-      <h2 className="text-2xl font-bold text-stone-900 mb-2">Time Value of Money (TVM)</h2>
+      <h2 className="text-2xl font-bold text-stone-900 dark:text-stone-100 mb-2">Time Value of Money (TVM)</h2>
       <p className="text-stone-600 text-sm mb-6 italic">Nền tảng của mọi phân tích tài chính - từ định giá cổ phiếu đến quyết định đầu tư</p>
 
       <section className="mb-8">
-        <h3 className="text-lg font-bold text-stone-800 mb-3">🤔 Tại sao 1 tỷ hôm nay &gt; 1 tỷ năm sau?</h3>
+        <h3 className="text-lg font-bold text-stone-800 dark:text-stone-200 mb-3">🤔 Tại sao 1 tỷ hôm nay &gt; 1 tỷ năm sau?</h3>
         <p className="text-stone-600 leading-relaxed mb-3">
           Đây là nguyên tắc số 1 của tài chính: <strong>tiền hôm nay có giá trị hơn tiền tương lai</strong>, vì ba lý do:
         </p>
@@ -136,7 +136,7 @@ export default function Page() {
       <TVMAnimation />
 
       <section className="mb-8">
-        <h3 className="text-lg font-bold text-stone-800 mb-3">📐 Hai công thức cốt lõi</h3>
+        <h3 className="text-lg font-bold text-stone-800 dark:text-stone-200 mb-3">📐 Hai công thức cốt lõi</h3>
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
           <div className="bg-stone-50 rounded-xl p-4 border border-stone-200">
             <div className="text-xs font-bold text-stone-700 mb-1">FUTURE VALUE</div>
@@ -157,7 +157,7 @@ export default function Page() {
       </section>
 
       <section className="mb-8">
-        <h3 className="text-lg font-bold text-stone-800 mb-3">🏗️ Ứng dụng thực tế: DCF Valuation</h3>
+        <h3 className="text-lg font-bold text-stone-800 dark:text-stone-200 mb-3">🏗️ Ứng dụng thực tế: DCF Valuation</h3>
         <p className="text-stone-600 leading-relaxed mb-3">
           DCF (Discounted Cash Flow) là phương pháp định giá doanh nghiệp phổ biến nhất trong M&A và đầu tư:
         </p>
@@ -178,7 +178,7 @@ export default function Page() {
       </section>
 
       <section className="mb-4">
-        <h3 className="text-lg font-bold text-stone-800 mb-3">⚠️ Lỗi phổ biến khi dùng TVM</h3>
+        <h3 className="text-lg font-bold text-stone-800 dark:text-stone-200 mb-3">⚠️ Lỗi phổ biến khi dùng TVM</h3>
         <div className="space-y-3">
           {[
             { err: "Dùng nominal rate thay vì real rate khi có lạm phát", fix: "Điều chỉnh: Real rate ≈ Nominal − Inflation" },

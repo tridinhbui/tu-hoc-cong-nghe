@@ -60,11 +60,11 @@ const quiz: QuizQuestion[] = [
 export default function Page() {
   return (
     <LessonPageLayout lesson={meta} quiz={quiz}>
-      <h2 className="text-2xl font-bold text-stone-900 mb-2">Operating Leverage</h2>
+      <h2 className="text-2xl font-bold text-stone-900 dark:text-stone-100 mb-2">Operating Leverage</h2>
       <p className="text-stone-600 text-sm mb-6 italic">Tại sao doanh thu tăng 30% nhưng lợi nhuận tăng 100%? - Đòn bẩy hoạt động</p>
 
       <section className="mb-8">
-        <h3 className="text-lg font-bold text-stone-800 mb-3">Operating Leverage là gì?</h3>
+        <h3 className="text-lg font-bold text-stone-800 dark:text-stone-200 mb-3">Operating Leverage là gì?</h3>
         <div className="border-l-2 border-stone-300 pl-4 mb-4">
           <p className="text-sm text-stone-700 leading-relaxed">
             <strong>Operating leverage</strong> = mức độ doanh thu tăng được khuếch đại thành lợi nhuận. Công ty có fixed cost cao → khi revenue tăng, cost không tăng tương ứng → <strong>margin mở rộng nhanh</strong>.
@@ -77,7 +77,7 @@ export default function Page() {
       </section>
 
       <section className="mb-8">
-        <h3 className="text-lg font-bold text-stone-800 mb-3">SaaS vs Airlines: cùng fixed cost, khác kết quả</h3>
+        <h3 className="text-lg font-bold text-stone-800 dark:text-stone-200 mb-3">SaaS vs Airlines: cùng fixed cost, khác kết quả</h3>
         <div className="grid grid-cols-2 gap-4">
           <div className="border border-stone-200 rounded-xl p-4">
             <div className="font-bold text-stone-800 mb-3 text-sm">SaaS Company</div>
@@ -103,7 +103,7 @@ export default function Page() {
       </section>
 
       <section className="mb-8">
-        <h3 className="text-lg font-bold text-stone-800 mb-3">SG&A Leverage - dấu hiệu mạnh của scalability</h3>
+        <h3 className="text-lg font-bold text-stone-800 dark:text-stone-200 mb-3">SG&A Leverage - dấu hiệu mạnh của scalability</h3>
         <div className="space-y-2">
           {[
             { year: "Năm 1", rev: "100M", sga: "40M", ratio: "40%", note: "Build team, marketing, system" },
@@ -123,7 +123,7 @@ export default function Page() {
       </section>
 
       <section>
-        <h3 className="text-lg font-bold text-stone-800 mb-3">Operating leverage = double-edged sword</h3>
+        <h3 className="text-lg font-bold text-stone-800 dark:text-stone-200 mb-3">Operating leverage = double-edged sword</h3>
         <div className="grid grid-cols-2 gap-3">
           <div className="border border-stone-200 rounded-xl p-4">
             <div className="font-bold text-stone-800 mb-2 text-sm">Khi doanh thu tăng</div>

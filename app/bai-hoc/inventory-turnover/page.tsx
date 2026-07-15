@@ -91,11 +91,11 @@ function InventorySimulator() {
 export default function Page() {
   return (
     <LessonPageLayout lesson={meta} quiz={quiz}>
-      <h2 className="text-2xl font-bold text-stone-900 mb-2">Inventory - Hàng Tồn Kho</h2>
+      <h2 className="text-2xl font-bold text-stone-900 dark:text-stone-100 mb-2">Inventory - Hàng Tồn Kho</h2>
       <p className="text-stone-600 text-sm mb-6 italic">Current asset trên Balance Sheet - nhưng quản lý kém thì trở thành gánh nặng</p>
 
       <section className="mb-8">
-        <h3 className="text-lg font-bold text-stone-800 mb-3">📐 2 chỉ số cốt lõi</h3>
+        <h3 className="text-lg font-bold text-stone-800 dark:text-stone-200 mb-3">📐 2 chỉ số cốt lõi</h3>
         <div className="grid grid-cols-2 gap-4">
           <div className="bg-stone-50 text-white rounded-xl p-4 text-center">
             <div className="font-bold text-lg mb-1">Inventory Turnover</div>
@@ -111,7 +111,7 @@ export default function Page() {
       </section>
 
       <section className="mb-8">
-        <h3 className="text-lg font-bold text-stone-800 mb-3"> Ví dụ: Inventory Turnover = 5</h3>
+        <h3 className="text-lg font-bold text-stone-800 dark:text-stone-200 mb-3"> Ví dụ: Inventory Turnover = 5</h3>
         <div className="bg-stone-50 rounded-xl p-4 border border-stone-200 text-sm">
           <p className="text-stone-700 mb-2">→ Trung bình trong năm, công ty đã thay mới lượng tồn kho <strong>5 lần</strong></p>
           <p className="text-stone-600 mb-2">→ DOH = 365 / 5 = <strong>73 ngày</strong> - trung bình mỗi sản phẩm nằm kho 73 ngày trước khi được bán</p>
@@ -122,7 +122,7 @@ export default function Page() {
       <InventorySimulator />
 
       <section className="mb-8">
-        <h3 className="text-lg font-bold text-stone-800 mb-3">🔗 Supply Chain Link: Forecast → Inventory → Cash Flow</h3>
+        <h3 className="text-lg font-bold text-stone-800 dark:text-stone-200 mb-3">🔗 Supply Chain Link: Forecast → Inventory → Cash Flow</h3>
         <div className="space-y-2">
           {[
             { step: "Demand Forecast", desc: "Dự báo demand → quyết định cần đặt bao nhiêu hàng" },
@@ -140,7 +140,7 @@ export default function Page() {
       </section>
 
       <section className="mb-8">
-        <h3 className="text-lg font-bold text-stone-800 mb-3">⚠️ DOH tăng: Tốt hay Xấu?</h3>
+        <h3 className="text-lg font-bold text-stone-800 dark:text-stone-200 mb-3">⚠️ DOH tăng: Tốt hay Xấu?</h3>
         <div className="grid grid-cols-2 gap-3">
           <div className="bg-stone-50 rounded-xl p-4 border border-stone-200">
             <div className="font-bold text-stone-700 mb-2 text-sm">❌ DOH tăng vì xấu</div>
@@ -163,7 +163,7 @@ export default function Page() {
       </section>
 
       <section>
-        <h3 className="text-lg font-bold text-stone-800 mb-3">🌊 Bullwhip Effect - cạm bẫy trong Supply Chain</h3>
+        <h3 className="text-lg font-bold text-stone-800 dark:text-stone-200 mb-3">🌊 Bullwhip Effect - cạm bẫy trong Supply Chain</h3>
         <div className="bg-stone-50 rounded-xl p-4 border border-stone-200">
           <div className="space-y-2 font-mono text-xs">
             {[

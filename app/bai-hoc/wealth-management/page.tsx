@@ -55,11 +55,11 @@ const quiz: QuizQuestion[] = [
 export default function Page() {
   return (
     <LessonPageLayout lesson={meta} quiz={quiz}>
-      <h2 className="text-2xl font-bold text-stone-900 mb-2">Wealth Management là gì?</h2>
+      <h2 className="text-2xl font-bold text-stone-900 dark:text-stone-100 mb-2">Wealth Management là gì?</h2>
       <p className="text-stone-500 text-sm mb-8">Quản lý tài sản không bắt đầu từ việc chọn cổ phiếu, mà bắt đầu từ việc biết mình đang sở hữu gì, nợ gì, và tiền đó phải phục vụ mục tiêu nào</p>
 
       <section className="mb-10">
-        <h3 className="text-base font-bold text-stone-800 mb-4 uppercase tracking-wide text-xs">Wealth Management thực sự là gì?</h3>
+        <h3 className="text-base font-bold text-stone-800 dark:text-stone-200 mb-4 uppercase tracking-wide text-xs">Wealth Management thực sự là gì?</h3>
         <p className="text-stone-600 leading-relaxed mb-4">
           Wealth management thường khiến người mới nghĩ đến private banker, quỹ đầu tư lớn, hay người rất giàu. Nhưng ở bản chất, wealth management chỉ là <strong>nghệ thuật sắp xếp toàn bộ tài sản của bạn để phục vụ cuộc đời bạn</strong>: tiền mặt, đầu tư, nợ, bảo hiểm, thuế, mục tiêu gia đình, và cả việc để lại tài sản sau này.
         </p>
@@ -69,7 +69,7 @@ export default function Page() {
       </section>
 
       <section className="mb-10">
-        <h3 className="text-base font-bold text-stone-800 mb-4 uppercase tracking-wide text-xs">Bước 1: Net worth là bảng điều khiển trung tâm</h3>
+        <h3 className="text-base font-bold text-stone-800 dark:text-stone-200 mb-4 uppercase tracking-wide text-xs">Bước 1: Net worth là bảng điều khiển trung tâm</h3>
         <div className="bg-stone-50 border border-stone-200 rounded-xl p-5 mb-4">
           <div className="text-stone-500 text-xs mb-3 uppercase tracking-wide font-bold">Công thức gốc</div>
           <div className="font-mono font-bold text-stone-800 text-base">Net Worth = Assets - Liabilities</div>
@@ -93,7 +93,7 @@ export default function Page() {
       </section>
 
       <section className="mb-10">
-        <h3 className="text-base font-bold text-stone-800 mb-4 uppercase tracking-wide text-xs">Bước 2: Mục tiêu quyết định cấu trúc danh mục</h3>
+        <h3 className="text-base font-bold text-stone-800 dark:text-stone-200 mb-4 uppercase tracking-wide text-xs">Bước 2: Mục tiêu quyết định cấu trúc danh mục</h3>
         <div className="grid gap-3 sm:grid-cols-3">
           {[
             {
@@ -121,7 +121,7 @@ export default function Page() {
       </section>
 
       <section className="mb-10">
-        <h3 className="text-base font-bold text-stone-800 mb-4 uppercase tracking-wide text-xs">Bước 3: Asset allocation là trái tim của wealth management</h3>
+        <h3 className="text-base font-bold text-stone-800 dark:text-stone-200 mb-4 uppercase tracking-wide text-xs">Bước 3: Asset allocation là trái tim của wealth management</h3>
         <p className="text-stone-600 text-sm leading-relaxed mb-4">
           Asset allocation không phải câu hỏi "cổ phiếu nào tốt nhất", mà là "bao nhiêu % tài sản nên ở dạng nào". Quyết định này thường ảnh hưởng kết quả dài hạn nhiều hơn việc cố gắng chọn đúng một mã cụ thể.
         </p>
@@ -134,7 +134,7 @@ export default function Page() {
       </section>
 
       <section className="mb-10">
-        <h3 className="text-base font-bold text-stone-800 mb-4 uppercase tracking-wide text-xs">Ví dụ: hai danh mục khác nhau cho hai con người khác nhau</h3>
+        <h3 className="text-base font-bold text-stone-800 dark:text-stone-200 mb-4 uppercase tracking-wide text-xs">Ví dụ: hai danh mục khác nhau cho hai con người khác nhau</h3>
         <div className="overflow-x-auto rounded-xl border border-stone-200">
           <table className="w-full min-w-[680px] text-sm">
             <thead className="bg-stone-100 text-stone-700">
@@ -166,7 +166,7 @@ export default function Page() {
       </section>
 
       <section className="mb-10">
-        <h3 className="text-base font-bold text-stone-800 mb-4 uppercase tracking-wide text-xs">Expected return chỉ là một nửa câu chuyện</h3>
+        <h3 className="text-base font-bold text-stone-800 dark:text-stone-200 mb-4 uppercase tracking-wide text-xs">Expected return chỉ là một nửa câu chuyện</h3>
         <div className="bg-stone-50 border border-stone-200 rounded-xl p-5 mb-4 font-mono text-sm">
           <div className="text-stone-500 text-xs mb-2">Ví dụ danh mục 60/40</div>
           <div className="space-y-1 text-stone-700">
@@ -184,7 +184,7 @@ export default function Page() {
       </section>
 
       <section className="mb-10">
-        <h3 className="text-base font-bold text-stone-800 mb-4 uppercase tracking-wide text-xs">3 sai lầm kinh điển</h3>
+        <h3 className="text-base font-bold text-stone-800 dark:text-stone-200 mb-4 uppercase tracking-wide text-xs">3 sai lầm kinh điển</h3>
         <div className="space-y-3">
           {[
             {
@@ -209,7 +209,7 @@ export default function Page() {
       </section>
 
       <section>
-        <h3 className="text-base font-bold text-stone-800 mb-4 uppercase tracking-wide text-xs">Khung nhớ cuối bài</h3>
+        <h3 className="text-base font-bold text-stone-800 dark:text-stone-200 mb-4 uppercase tracking-wide text-xs">Khung nhớ cuối bài</h3>
         <div className="rounded-2xl bg-stone-900 p-5 text-white">
           <p className="font-bold mb-3">Wealth management cá nhân có thể tóm lại trong 3 câu hỏi:</p>
           <div className="space-y-2 text-sm text-stone-300">

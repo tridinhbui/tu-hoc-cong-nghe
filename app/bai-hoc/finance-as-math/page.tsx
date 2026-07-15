@@ -66,7 +66,7 @@ const quiz: QuizQuestion[] = [
 export default function Page() {
   return (
     <LessonPageLayout lesson={meta} quiz={quiz}>
-      <h2 className="text-2xl font-bold text-stone-900 mb-2">Tài chính quy về Công thức Toán học</h2>
+      <h2 className="text-2xl font-bold text-stone-900 dark:text-stone-100 mb-2">Tài chính quy về Công thức Toán học</h2>
       <p className="text-stone-500 text-sm mb-8">Dòng tiền chiết khấu, chi phí vốn và giá trị dài hạn đều xoay quanh một ý tưởng: tiền hôm nay đáng giá hơn tiền tương lai.</p>
 
       <section className="mb-10 rounded-xl border border-blue-100 bg-blue-50 p-4">
@@ -77,7 +77,7 @@ export default function Page() {
       </section>
 
       <section className="mb-10">
-        <h3 className="text-base font-bold text-stone-800 mb-4 uppercase tracking-wide text-xs">Tài chính là math đặt trong bối cảnh</h3>
+        <h3 className="text-base font-bold text-stone-800 dark:text-stone-200 mb-4 uppercase tracking-wide text-xs">Tài chính là math đặt trong bối cảnh</h3>
         <p className="text-stone-600 leading-relaxed mb-3">
           Phần lớn định giá tài chính quy về một ý tưởng đơn giản: <strong>một đồng trong tương lai không bằng một đồng hôm nay</strong>. Mọi công thức phức tạp đều là biến thể của ý tưởng đó.
         </p>
@@ -87,7 +87,7 @@ export default function Page() {
       </section>
 
       <section className="mb-10">
-        <h3 className="text-base font-bold text-stone-800 mb-4 uppercase tracking-wide text-xs">Dòng tiền chiết khấu (DCF)</h3>
+        <h3 className="text-base font-bold text-stone-800 dark:text-stone-200 mb-4 uppercase tracking-wide text-xs">Dòng tiền chiết khấu (DCF)</h3>
         <p className="text-stone-600 text-sm leading-relaxed mb-4">
           Doanh nghiệp đáng giá bao nhiêu = chiết khấu toàn bộ dòng tiền tự do tương lai về hiện tại.
         </p>
@@ -111,7 +111,7 @@ export default function Page() {
       </section>
 
       <section className="mb-10">
-        <h3 className="text-base font-bold text-stone-800 mb-4 uppercase tracking-wide text-xs">Bội số định giá (Valuation Multiples)</h3>
+        <h3 className="text-base font-bold text-stone-800 dark:text-stone-200 mb-4 uppercase tracking-wide text-xs">Bội số định giá (Valuation Multiples)</h3>
         <p className="text-stone-600 text-sm leading-relaxed mb-4">
           Dòng tiền chiết khấu đòi hỏi nhiều giả định. Nhà đầu tư thường dùng thêm các bội số định giá để so sánh với ngành.
         </p>
@@ -136,7 +136,7 @@ export default function Page() {
       </section>
 
       <section>
-        <h3 className="text-base font-bold text-stone-800 mb-3 uppercase tracking-wide text-xs">Điều quan trọng nhất</h3>
+        <h3 className="text-base font-bold text-stone-800 dark:text-stone-200 mb-3 uppercase tracking-wide text-xs">Điều quan trọng nhất</h3>
         <p className="text-stone-600 text-sm leading-relaxed mb-3">
           Dòng tiền chiết khấu phụ thuộc nhiều vào giả định: dòng tiền tương lai ước tính thế nào, chi phí vốn chọn bao nhiêu, tốc độ tăng trưởng dài hạn ra sao. <strong>Thay đổi nhỏ trong các giả định có thể tạo ra định giá rất khác nhau.</strong>
         </p>

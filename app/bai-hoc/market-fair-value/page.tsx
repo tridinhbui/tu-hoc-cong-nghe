@@ -123,11 +123,11 @@ function PEValuationSimulator() {
 export default function Page() {
   return (
     <LessonPageLayout lesson={meta} quiz={quiz}>
-      <h2 className="text-2xl font-bold text-stone-900 mb-2">Market Fair Value</h2>
+      <h2 className="text-2xl font-bold text-stone-900 dark:text-stone-100 mb-2">Market Fair Value</h2>
       <p className="text-stone-600 text-sm mb-6 italic">Market không chỉ định giá earnings hôm nay - market định giá kỳ vọng tương lai</p>
 
       <section className="mb-8">
-        <h3 className="text-lg font-bold text-stone-800 mb-3">🤔 Tại sao một công ty chưa có lợi nhuận lớn vẫn được định giá hàng chục tỷ USD?</h3>
+        <h3 className="text-lg font-bold text-stone-800 dark:text-stone-200 mb-3">🤔 Tại sao một công ty chưa có lợi nhuận lớn vẫn được định giá hàng chục tỷ USD?</h3>
         <div className="bg-stone-50 border border-stone-200 rounded-xl p-4 mb-4">
           <p className="text-sm text-stone-700 leading-relaxed">
             Lý do là <strong>market định giá dựa trên kỳ vọng tương lai</strong>, không chỉ lợi nhuận hiện tại. Nhưng "kỳ vọng tương lai" không phải là một câu chuyện mơ hồ kiểu "công nghệ mới sẽ thay đổi thế giới" - nó là một phép tính có thể tách thành 4 giả định cụ thể. Nhà đầu tư nghiêm túc luôn hỏi rõ 4 câu sau trước khi trả giá cao cho một công ty tăng trưởng.
@@ -139,7 +139,7 @@ export default function Page() {
       </section>
 
       <section className="mb-8">
-        <h3 className="text-lg font-bold text-stone-800 mb-3">📋 Khung 4 giả định khi định giá công ty tăng trưởng</h3>
+        <h3 className="text-lg font-bold text-stone-800 dark:text-stone-200 mb-3">📋 Khung 4 giả định khi định giá công ty tăng trưởng</h3>
         <div className="space-y-3">
           {[
             {
@@ -176,7 +176,7 @@ export default function Page() {
       </section>
 
       <section className="mb-8">
-        <h3 className="text-lg font-bold text-stone-800 mb-3">📐 Định giá cơ bản: P/E Multiple</h3>
+        <h3 className="text-lg font-bold text-stone-800 dark:text-stone-200 mb-3">📐 Định giá cơ bản: P/E Multiple</h3>
         <div className="bg-stone-50 text-white rounded-xl p-5 text-center mb-4">
           <div className="font-mono text-xl font-bold mb-1">Equity Value = Net Income × P/E</div>
           <p className="text-stone-700 text-sm">P/E = nhà đầu tư sẵn sàng trả bao nhiêu lần earnings</p>
@@ -192,7 +192,7 @@ export default function Page() {
       <PEValuationSimulator />
 
       <section className="mb-8">
-        <h3 className="text-lg font-bold text-stone-800 mb-3"> Stable vs Growth Company: cách nhìn khác nhau</h3>
+        <h3 className="text-lg font-bold text-stone-800 dark:text-stone-200 mb-3"> Stable vs Growth Company: cách nhìn khác nhau</h3>
         <div className="grid grid-cols-2 gap-4">
           <div className="bg-stone-50 rounded-xl p-4 border border-stone-200">
             <div className="font-bold text-stone-700 mb-3 text-sm">🏭 Stable Company</div>
@@ -216,7 +216,7 @@ export default function Page() {
       </section>
 
       <section className="mb-8">
-        <h3 className="text-lg font-bold text-stone-800 mb-3">⚠️ Key insight: Price ≠ Value</h3>
+        <h3 className="text-lg font-bold text-stone-800 dark:text-stone-200 mb-3">⚠️ Key insight: Price ≠ Value</h3>
         <div className="space-y-3">
           {[
             { label: "Short-term", driver: "Sentiment, liquidity, narrative, momentum", example: "Meme stocks, FOMO rallies" },
@@ -235,7 +235,7 @@ export default function Page() {
       </section>
 
       <section>
-        <h3 className="text-lg font-bold text-stone-800 mb-3"> 5 drivers investor theo dõi ở growth companies</h3>
+        <h3 className="text-lg font-bold text-stone-800 dark:text-stone-200 mb-3"> 5 drivers investor theo dõi ở growth companies</h3>
         <div className="space-y-2">
           {[
             { d: "Revenue growth rate", n: "30%+ thường được coi là high-growth; deceleration là red flag" },

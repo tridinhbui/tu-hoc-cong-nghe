@@ -72,7 +72,7 @@ export default function LamPhatLaGiPage() {
         </p>
 
         <section className="space-y-5">
-          <h3 className="text-2xl font-bold text-stone-900">Lạm phát là gì</h3>
+          <h3 className="text-2xl font-bold text-stone-900 dark:text-stone-100">Lạm phát là gì</h3>
           <p>
             Lạm phát là tốc độ tăng của mức giá chung trong nền kinh tế. Khi lạm phát 7% một năm, điều đó có nghĩa là một rổ hàng hóa và dịch vụ điển hình năm nay đắt hơn 7% so với năm ngoái.
           </p>
@@ -85,7 +85,7 @@ export default function LamPhatLaGiPage() {
         </section>
 
         <section className="space-y-5">
-          <h3 className="text-2xl font-bold text-stone-900">Lạm phát ảnh hưởng đến bạn như thế nào</h3>
+          <h3 className="text-2xl font-bold text-stone-900 dark:text-stone-100">Lạm phát ảnh hưởng đến bạn như thế nào</h3>
           <p>
             Giả sử bạn có 500 triệu đồng tiền mặt và không làm gì với nó. Lạm phát 7% mỗi năm đồng nghĩa với:
           </p>
@@ -114,7 +114,7 @@ export default function LamPhatLaGiPage() {
         </section>
 
         <section className="space-y-5">
-          <h3 className="text-2xl font-bold text-stone-900">Nguyên nhân gây lạm phát</h3>
+          <h3 className="text-2xl font-bold text-stone-900 dark:text-stone-100">Nguyên nhân gây lạm phát</h3>
           <p>
             Lạm phát có thể đến từ nhiều phía:
           </p>
@@ -134,7 +134,7 @@ export default function LamPhatLaGiPage() {
         </section>
 
         <section className="space-y-5">
-          <h3 className="text-2xl font-bold text-stone-900">Lạm phát vừa phải có lợi: tại sao</h3>
+          <h3 className="text-2xl font-bold text-stone-900 dark:text-stone-100">Lạm phát vừa phải có lợi: tại sao</h3>
           <p>
             Nghe có vẻ nghịch lý, nhưng lạm phát hoàn toàn bằng không hoặc giảm phát thực ra không tốt cho kinh tế.
           </p>

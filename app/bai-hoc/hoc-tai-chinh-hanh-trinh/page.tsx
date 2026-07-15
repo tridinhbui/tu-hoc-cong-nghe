@@ -49,11 +49,11 @@ const quiz: QuizQuestion[] = [
 export default function Page() {
   return (
     <LessonPageLayout lesson={meta} quiz={quiz}>
-      <h2 className="text-2xl font-bold text-stone-900 mb-2">3 Điều Nản Khi Học Tài Chính</h2>
+      <h2 className="text-2xl font-bold text-stone-900 dark:text-stone-100 mb-2">3 Điều Nản Khi Học Tài Chính</h2>
       <p className="text-stone-500 text-sm mb-8">Phản chiếu sau 79 ngày - học gì, mắc đâu, và điều gì thực sự giúp ích</p>
 
       <section className="mb-10">
-        <h3 className="text-base font-bold text-stone-800 mb-4 uppercase tracking-wide text-xs">Dừng lại để nhìn lại</h3>
+        <h3 className="text-base font-bold text-stone-800 dark:text-stone-200 mb-4 uppercase tracking-wide text-xs">Dừng lại để nhìn lại</h3>
         <p className="text-stone-600 leading-relaxed mb-3">
           Sau 79 ngày học tài chính, có những thứ mình đã hiểu hơn. Nhưng cũng có những thứ vẫn cứ mắc. Và có lẽ, phần hay nhất của việc học là nhận ra mình đang mắc ở đâu.
         </p>
@@ -63,12 +63,12 @@ export default function Page() {
       </section>
 
       <section className="mb-10">
-        <h3 className="text-base font-bold text-stone-800 mb-6 uppercase tracking-wide text-xs">3 điều nản hay gặp</h3>
+        <h3 className="text-base font-bold text-stone-800 dark:text-stone-200 mb-6 uppercase tracking-wide text-xs">3 điều nản hay gặp</h3>
 
         <div className="space-y-8">
           <div>
             <div className="text-xs font-mono text-stone-300 mb-1">01</div>
-            <h4 className="font-bold text-stone-800 mb-3 text-base">Hiểu nhưng không dùng được</h4>
+            <h4 className="font-bold text-stone-800 dark:text-stone-200 mb-3 text-base">Hiểu nhưng không dùng được</h4>
             <p className="text-stone-600 text-sm leading-relaxed mb-3">
               Đọc xong bài về DCF, cảm giác hiểu. Nhưng ngồi xuống mở báo cáo tài chính thật và thử tính - hoàn toàn khác. Biết công thức là một chuyện. Biết số nào lấy từ đâu, tại sao lại dùng con số này chứ không phải con số kia - là chuyện khác.
             </p>
@@ -79,7 +79,7 @@ export default function Page() {
 
           <div>
             <div className="text-xs font-mono text-stone-300 mb-1">02</div>
-            <h4 className="font-bold text-stone-800 mb-3 text-base">Học xong rồi quên</h4>
+            <h4 className="font-bold text-stone-800 dark:text-stone-200 mb-3 text-base">Học xong rồi quên</h4>
             <p className="text-stone-600 text-sm leading-relaxed mb-3">
               Tuần trước đọc bài về working capital, tuần này hỏi lại thì mờ dần. Điều này không phải vì bộ nhớ kém - mà vì kiến thức chưa được kết nối với bối cảnh cụ thể nào.
             </p>
@@ -90,7 +90,7 @@ export default function Page() {
 
           <div>
             <div className="text-xs font-mono text-stone-300 mb-1">03</div>
-            <h4 className="font-bold text-stone-800 mb-3 text-base">Biết nhiều thứ nhưng không biết đang ở đâu</h4>
+            <h4 className="font-bold text-stone-800 dark:text-stone-200 mb-3 text-base">Biết nhiều thứ nhưng không biết đang ở đâu</h4>
             <p className="text-stone-600 text-sm leading-relaxed mb-3">
               Học xong macro, học xong phân tích ngành, học xong đọc báo cáo tài chính - nhưng không biết ba phần đó nối với nhau thế nào. Cảm giác như có nhiều mảnh ghép nhưng chưa có bức tranh tổng.
             </p>
@@ -102,7 +102,7 @@ export default function Page() {
       </section>
 
       <section>
-        <h3 className="text-base font-bold text-stone-800 mb-4 uppercase tracking-wide text-xs">Vì sao vẫn nên tiếp tục?</h3>
+        <h3 className="text-base font-bold text-stone-800 dark:text-stone-200 mb-4 uppercase tracking-wide text-xs">Vì sao vẫn nên tiếp tục?</h3>
         <p className="text-stone-600 text-sm leading-relaxed mb-4">
           Tài chính không phải là môn học xong là xong. Nó là cách nhìn thế giới. Cách nhìn đó được xây dựng từ từ - từng bài, từng con số, từng lần mắc lỗi.
         </p>

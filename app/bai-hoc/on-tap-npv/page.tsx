@@ -71,11 +71,11 @@ const quiz: QuizQuestion[] = [
 export default function Page() {
   return (
     <LessonPageLayout lesson={meta} quiz={quiz}>
-      <h2 className="text-2xl font-bold text-stone-900 mb-2">Ôn Tập NPV - Net Present Value</h2>
+      <h2 className="text-2xl font-bold text-stone-900 dark:text-stone-100 mb-2">Ôn Tập NPV - Net Present Value</h2>
       <p className="text-stone-600 text-sm mb-6 italic">Công cụ quan trọng nhất trong capital budgeting và định giá doanh nghiệp</p>
 
       <section className="mb-8">
-        <h3 className="text-lg font-bold text-stone-800 mb-3">Công thức NPV</h3>
+        <h3 className="text-lg font-bold text-stone-800 dark:text-stone-200 mb-3">Công thức NPV</h3>
         <div className="bg-stone-900 text-white rounded-xl p-5 mb-4 text-center">
           <div className="font-mono text-lg font-bold mb-2">NPV = Σ [CF_t / (1+r)^t] − C₀</div>
           <p className="text-stone-300 text-sm">Tổng PV dòng tiền tương lai trừ vốn đầu tư ban đầu</p>
@@ -96,7 +96,7 @@ export default function Page() {
       </section>
 
       <section className="mb-8">
-        <h3 className="text-lg font-bold text-stone-800 mb-3">NPV vs IRR - Khi nào dùng gì?</h3>
+        <h3 className="text-lg font-bold text-stone-800 dark:text-stone-200 mb-3">NPV vs IRR - Khi nào dùng gì?</h3>
         <div className="overflow-x-auto">
           <table className="w-full text-sm">
             <thead>
@@ -125,7 +125,7 @@ export default function Page() {
       </section>
 
       <section>
-        <h3 className="text-lg font-bold text-stone-800 mb-3">Quick reminders</h3>
+        <h3 className="text-lg font-bold text-stone-800 dark:text-stone-200 mb-3">Quick reminders</h3>
         <div className="space-y-2">
           {[
             "NPV > 0 → Accept. NPV < 0 → Reject. NPV = 0 → Indifferent",

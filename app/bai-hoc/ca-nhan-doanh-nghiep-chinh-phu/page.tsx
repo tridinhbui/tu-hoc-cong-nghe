@@ -71,7 +71,7 @@ export default function CaNhanDoanNghiepChinhPhuPage() {
         </p>
 
         <section className="space-y-5">
-          <h3 className="text-2xl font-bold text-stone-900">Tài chính cá nhân: nền tảng đơn giản nhất</h3>
+          <h3 className="text-2xl font-bold text-stone-900 dark:text-stone-100">Tài chính cá nhân: nền tảng đơn giản nhất</h3>
           <p>
             Tài chính cá nhân vận hành theo logic đơn giản nhất: thu nhập trừ chi tiêu bằng tiết kiệm. Tiết kiệm được đầu tư, đầu tư tạo ra thu nhập thụ động, và vòng lặp đó tích lũy theo thời gian.
           </p>
@@ -81,7 +81,7 @@ export default function CaNhanDoanNghiepChinhPhuPage() {
         </section>
 
         <section className="space-y-5">
-          <h3 className="text-2xl font-bold text-stone-900">Tài chính doanh nghiệp: phức tạp hơn nhưng cùng nguyên lý</h3>
+          <h3 className="text-2xl font-bold text-stone-900 dark:text-stone-100">Tài chính doanh nghiệp: phức tạp hơn nhưng cùng nguyên lý</h3>
           <p>
             Doanh nghiệp có thêm một lớp phức tạp: cần huy động vốn từ cổ đông và chủ nợ, quản lý vốn lưu động, tối ưu cấu trúc vốn, và báo cáo cho nhiều bên liên quan.
           </p>
@@ -103,7 +103,7 @@ export default function CaNhanDoanNghiepChinhPhuPage() {
         </section>
 
         <section className="space-y-5">
-          <h3 className="text-2xl font-bold text-stone-900">Tài chính chính phủ: quy mô và công cụ đặc biệt</h3>
+          <h3 className="text-2xl font-bold text-stone-900 dark:text-stone-100">Tài chính chính phủ: quy mô và công cụ đặc biệt</h3>
           <p>
             Chính phủ hoạt động theo logic khác: mục tiêu không phải tối đa hóa lợi nhuận mà là ổn định kinh tế, tăng trưởng, và phân phối lợi ích xã hội.
           </p>
@@ -120,7 +120,7 @@ export default function CaNhanDoanNghiepChinhPhuPage() {
         </section>
 
         <section className="space-y-5">
-          <h3 className="text-2xl font-bold text-stone-900">Tại sao hiểu ba cấp độ này quan trọng</h3>
+          <h3 className="text-2xl font-bold text-stone-900 dark:text-stone-100">Tại sao hiểu ba cấp độ này quan trọng</h3>
           <p>
             Khi đọc tin tức kinh tế, bạn thường thấy: ngân hàng trung ương tăng lãi suất, chính phủ tăng thâm hụt ngân sách, doanh nghiệp báo cáo lợi nhuận. Nếu chỉ hiểu tài chính cá nhân, những tin tức này không có nhiều ý nghĩa.
           </p>

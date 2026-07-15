@@ -74,13 +74,13 @@ export default function BalanceSheetPage() {
       <div className="space-y-8 text-stone-700 leading-relaxed">
 
         <section className="space-y-4">
-          <h2 className="text-xl font-bold text-stone-900">Bảng cân đối kế toán là gì?</h2>
+          <h2 className="text-xl font-bold text-stone-900 dark:text-stone-100">Bảng cân đối kế toán là gì?</h2>
           <p>Nếu P&L (báo cáo kết quả kinh doanh) là bức ảnh ghi lại <em>những gì xảy ra trong một khoảng thời gian</em>, thì bảng cân đối kế toán (Balance Sheet) là <strong>ảnh chụp nhanh tại một thời điểm</strong> - cho thấy doanh nghiệp đang có gì và nguồn vốn đến từ đâu.</p>
           <p>Phương trình nền tảng: <strong>Tài sản = Nợ phải trả + Vốn chủ sở hữu</strong>. Phương trình này luôn phải cân bằng - đó là lý do gọi là "cân đối".</p>
         </section>
 
         <section className="space-y-4">
-          <h2 className="text-xl font-bold text-stone-900">3 phần của Balance Sheet</h2>
+          <h2 className="text-xl font-bold text-stone-900 dark:text-stone-100">3 phần của Balance Sheet</h2>
           <div className="space-y-3">
             {[
               { title: "Tài sản (Assets)", sub: "Doanh nghiệp đang có gì?",
@@ -100,7 +100,7 @@ export default function BalanceSheetPage() {
         </section>
 
         <section className="space-y-4">
-          <h2 className="text-xl font-bold text-stone-900">Bảng Cân Đối - minh họa</h2>
+          <h2 className="text-xl font-bold text-stone-900 dark:text-stone-100">Bảng Cân Đối - minh họa</h2>
           <div className="border border-stone-200 rounded-xl p-5 space-y-4">
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
               <div className="space-y-2">
@@ -145,7 +145,7 @@ export default function BalanceSheetPage() {
         </section>
 
         <section className="space-y-4">
-          <h2 className="text-xl font-bold text-stone-900">3 câu hỏi quan trọng khi đọc Balance Sheet</h2>
+          <h2 className="text-xl font-bold text-stone-900 dark:text-stone-100">3 câu hỏi quan trọng khi đọc Balance Sheet</h2>
           <div className="space-y-3">
             {[
               { q: "Doanh nghiệp có đủ thanh khoản không?", metric: "Current Ratio = Current Assets / Current Liabilities", good: "> 1.5 = an toàn", bad: "< 1.0 = cảnh báo" },
@@ -165,7 +165,7 @@ export default function BalanceSheetPage() {
         </section>
 
         <section className="space-y-4">
-          <h2 className="text-xl font-bold text-stone-900">Case study: Masan Group</h2>
+          <h2 className="text-xl font-bold text-stone-900 dark:text-stone-100">Case study: Masan Group</h2>
           <p>Masan là holding company với portfolio đa dạng (Masan Consumer, WinCommerce, Masan MEATLife). Balance Sheet của họ minh hoạ rõ cách một tập đoàn sử dụng đòn bẩy để mở rộng nhanh.</p>
           <div className="bg-stone-900 rounded-2xl p-5 text-sm space-y-2">
             {[
@@ -184,7 +184,7 @@ export default function BalanceSheetPage() {
         </section>
 
         <div className="border-l-2 border-stone-300 pl-4 space-y-2">
-          <h3 className="font-bold text-stone-800 mb-3">3 điều cần nhớ</h3>
+          <h3 className="font-bold text-stone-800 dark:text-stone-200 mb-3">3 điều cần nhớ</h3>
           <div className="space-y-1 text-sm text-stone-700">
             <div> - Assets = Liabilities + Equity - luôn luôn cân bằng</div>
             <div> - Current Ratio &gt; 1.5 và D/E &lt; 2.0 là ngưỡng cơ bản để đánh giá sức khỏe</div>

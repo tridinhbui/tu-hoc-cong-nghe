@@ -54,11 +54,11 @@ const quiz: QuizQuestion[] = [
 export default function Page() {
   return (
     <LessonPageLayout lesson={meta} quiz={quiz}>
-      <h2 className="text-2xl font-bold text-stone-900 mb-2">Disney–Pixar: Horizontal M&A</h2>
+      <h2 className="text-2xl font-bold text-stone-900 dark:text-stone-100 mb-2">Disney–Pixar: Horizontal M&A</h2>
       <p className="text-stone-600 text-sm mb-6 italic">2006: Disney mua Pixar 7.4B USD - mua hãng phim hay mua content engine?</p>
 
       <section className="mb-8">
-        <h3 className="text-lg font-bold text-stone-800 mb-3">Background: Tại sao Disney cần Pixar?</h3>
+        <h3 className="text-lg font-bold text-stone-800 dark:text-stone-200 mb-3">Background: Tại sao Disney cần Pixar?</h3>
         <div className="grid grid-cols-2 gap-4 mb-4">
           <div className="border border-stone-200 rounded-xl p-4">
             <div className="font-bold text-stone-800 mb-2 text-sm">Disney 2005 - Vấn đề</div>
@@ -87,7 +87,7 @@ export default function Page() {
       </section>
 
       <section className="mb-8">
-        <h3 className="text-lg font-bold text-stone-800 mb-3">Horizontal M&A là gì?</h3>
+        <h3 className="text-lg font-bold text-stone-800 dark:text-stone-200 mb-3">Horizontal M&A là gì?</h3>
         <div className="border-l-2 border-stone-300 pl-4">
           <p className="text-sm text-stone-700">
             <strong>Horizontal M&A</strong> = hai doanh nghiệp cùng ngành/phân khúc kết hợp (horizontal = cùng level trong chuỗi giá trị). Disney và Pixar cùng entertainment. Khác với Vertical M&A (ví dụ: hãng phim mua chuỗi rạp chiếu = upstream + downstream).
@@ -96,7 +96,7 @@ export default function Page() {
       </section>
 
       <section className="mb-8">
-        <h3 className="text-lg font-bold text-stone-800 mb-3">Revenue Synergy - IP một lần, doanh thu nhiều nơi</h3>
+        <h3 className="text-lg font-bold text-stone-800 dark:text-stone-200 mb-3">Revenue Synergy - IP một lần, doanh thu nhiều nơi</h3>
         <p className="text-sm text-stone-600 leading-relaxed mb-3">
           <strong>Revenue Synergy (cộng hưởng doanh thu)</strong>: khi 2 công ty gộp lại, tổng doanh thu tạo ra lớn hơn tổng doanh thu mà từng công ty có thể tự làm riêng lẻ. Ví dụ dễ hiểu: Pixar giỏi làm phim hay nhưng không có hệ thống công viên/cửa hàng để bán đồ chơi theo nhân vật; Disney có hệ thống đó nhưng thiếu IP (nhân vật, câu chuyện) hấp dẫn. Gộp lại, cả hai bán được nhiều hơn.
         </p>
@@ -121,7 +121,7 @@ export default function Page() {
       </section>
 
       <section className="mb-8">
-        <h3 className="text-lg font-bold text-stone-800 mb-3">Synergy Value Framework (khung tính giá trị cộng hưởng)</h3>
+        <h3 className="text-lg font-bold text-stone-800 dark:text-stone-200 mb-3">Synergy Value Framework (khung tính giá trị cộng hưởng)</h3>
         <p className="text-sm text-stone-600 leading-relaxed mb-3">
           <strong>Cost Synergy (cộng hưởng chi phí)</strong>: khi gộp 2 công ty, một số bộ phận bị trùng lặp (marketing, nhân sự, kho bãi...) có thể hợp nhất lại để tiết kiệm chi phí. <strong>PV</strong> là viết tắt của Present Value (giá trị hiện tại) - quy đổi các dòng tiền sẽ nhận trong tương lai về giá trị tương đương ở thời điểm hiện tại, vì 1 đồng nhận sau 10 năm không đáng giá bằng 1 đồng nhận ngay bây giờ.
         </p>
@@ -139,7 +139,7 @@ export default function Page() {
       </section>
 
       <section className="mb-8">
-        <h3 className="text-lg font-bold text-stone-800 mb-3">&ldquo;Buying a content engine, not just a movie studio&rdquo; (Mua một cỗ máy tạo nội dung, không chỉ một hãng phim)</h3>
+        <h3 className="text-lg font-bold text-stone-800 dark:text-stone-200 mb-3">&ldquo;Buying a content engine, not just a movie studio&rdquo; (Mua một cỗ máy tạo nội dung, không chỉ một hãng phim)</h3>
         <p className="text-sm text-stone-600 leading-relaxed mb-3">
           <strong>Acquisition Premium (khoản trả thêm khi mua lại)</strong> là phần chênh lệch giữa giá Disney trả (7.4 tỷ) và giá trị &quot;đứng một mình&quot; của Pixar nếu không sáp nhập (khoảng dựa trên doanh thu ~800 triệu). Khoản chênh lệch này chỉ hợp lý nếu Disney tin rằng giá trị cộng hưởng (synergy) trong tương lai lớn hơn số tiền trả thêm đó.
         </p>
@@ -159,7 +159,7 @@ export default function Page() {
       </section>
 
       <section>
-        <h3 className="text-lg font-bold text-stone-800 mb-3">Bài học từ Disney–Pixar</h3>
+        <h3 className="text-lg font-bold text-stone-800 dark:text-stone-200 mb-3">Bài học từ Disney–Pixar</h3>
         <div className="bg-stone-900 text-white rounded-xl p-5">
           <p className="font-bold mb-2">Trong M&A, giá trị không nằm ở con số hôm nay - mà ở cỗ máy tạo ra giá trị trong tương lai.</p>
           <div className="text-stone-500 text-sm space-y-1">

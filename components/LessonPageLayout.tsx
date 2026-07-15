@@ -3,7 +3,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import { toast } from "sonner";
-import { CheckCircle2, Circle, ArrowLeft } from "lucide-react";
+import { CheckCircle2, Circle, ArrowLeft, ChevronDown, ChevronUp } from "lucide-react";
 import { markLessonComplete, saveQuizAnswers, getQuizAnswers, clearQuizAnswers } from "@/lib/progress";
 import FloatingContact from "@/components/FloatingChatbot";
 import StageTipsBanner from "@/components/StageTipsBanner";
@@ -28,6 +28,7 @@ import RecallCard from "@/components/RecallCard";
 import LessonTour from "@/components/LessonTour";
 import FontSizeControl, { loadFontScale } from "@/components/FontSizeControl";
 import LessonFeedbackInline from "@/components/LessonFeedbackInline";
+import LessonTableOfContents from "@/components/LessonTableOfContents";
 import { getLessonDisplayLabel } from "@/lib/lesson-labels";
 
 export interface QuizQuestion {
@@ -51,6 +52,7 @@ export interface LessonMeta {
   slug?: string;
   nextSlug?: string;
   nextTitle?: string;
+  sections?: import("@/lib/lesson-types").LessonSectionBlock[];
 }
 
 interface Props {
@@ -130,6 +132,7 @@ export default function LessonPageLayout({ lesson, quiz, children }: Props) {
   const [recallItems, setRecallItems] = useState<RecallItem[]>([]);
   const [highlights, setHighlights] = useState<LessonHighlight[]>([]);
   const [fontScale, setFontScale] = useState(() => (typeof window === "undefined" ? 1.125 : loadFontScale()));
+  const [quizCollapsed, setQuizCollapsed] = useState(false);
   const articleRef = useRef<HTMLElement>(null);
   const bottomSentinelRef = useRef<HTMLDivElement>(null);
   const maxReachedRef = useRef(0);
@@ -661,10 +664,11 @@ export default function LessonPageLayout({ lesson, quiz, children }: Props) {
 
       {/* 2-column layout */}
       <div className="max-w-7xl mx-auto px-3 sm:px-4 lg:px-6 py-6 sm:py-8 lg:py-12">
-        <div className="flex flex-col lg:flex-row gap-6 sm:gap-8 lg:gap-12 items-start">
+        <div className="flex flex-col xl:flex-row gap-6 sm:gap-8 lg:gap-12 items-start">
 
           {/* ── LEFT: Article ─────────────────────────────────────── */}
-          <TextHighlightMenu
+          <div className="flex-1 min-w-0">
+            <TextHighlightMenu
             containerRef={articleRef}
             lessonId={persistedLessonId}
             lessonSlug={lesson.slug || ""}
@@ -680,9 +684,9 @@ export default function LessonPageLayout({ lesson, quiz, children }: Props) {
               <h1 className="text-3xl sm:text-5xl font-extrabold text-stone-950 dark:text-stone-100 leading-tight mb-4">
                 {lesson.title}
               </h1>
-              <p className="text-stone-700 dark:text-stone-300 text-lg sm:text-xl leading-relaxed">{lesson.subtitle}</p>
+              <p className="text-stone-700 dark:text-stone-200 text-lg sm:text-xl leading-relaxed">{lesson.subtitle}</p>
               <div className="mt-7 pt-5 border-t-2 border-stone-300 dark:border-stone-700 space-y-4">
-                <div className="flex items-center gap-4 text-base text-stone-700 dark:text-stone-300 font-semibold">
+                <div className="flex items-center gap-4 text-base text-stone-700 dark:text-stone-200 font-semibold">
                   <span>{lesson.duration} đọc</span>
                   <span>·</span>
                   <span>{quiz.length} câu quiz</span>
@@ -703,7 +707,7 @@ export default function LessonPageLayout({ lesson, quiz, children }: Props) {
                   />
                 </div>
                 {readPct > 0 && readPct < 100 && (
-                  <p className="text-sm text-stone-700 dark:text-stone-300 font-semibold">
+                  <p className="text-sm text-stone-700 dark:text-stone-200 font-semibold">
                     Còn khoảng <strong className="text-stone-900 dark:text-stone-100">~{remainMin} phút</strong> để đọc xong
                   </p>
                 )}
@@ -770,7 +774,7 @@ export default function LessonPageLayout({ lesson, quiz, children }: Props) {
                 explicit Tailwind text-sm/lg/xl classes each hand-written
                 lesson sets on its own child elements. */}
             <div
-              className="space-y-8 text-stone-800 dark:text-stone-300 leading-relaxed text-lg sm:text-xl font-medium"
+              className="space-y-8 text-stone-800 dark:text-stone-200 leading-relaxed text-lg sm:text-xl font-medium"
               style={{ zoom: fontScale }}
             >
               <LessonCompletionContext.Provider value={{ registerMidpoint, markMidpointDone }}>
@@ -793,6 +797,12 @@ export default function LessonPageLayout({ lesson, quiz, children }: Props) {
                 last thing in the article. */}
             <div ref={bottomSentinelRef} className="h-px" aria-hidden="true" />
           </article>
+          </div>
+
+          {/* ── RIGHT: Table of Contents (XL+) ─────────────────────────── */}
+          <div className="hidden xl:block w-64 flex-shrink-0">
+            <LessonTableOfContents sections={lesson.sections} />
+          </div>
 
           {/* ── RIGHT: Quiz sidebar ────────────────────────────────── */}
           {/* max-h + overflow-y-auto so the sticky column scrolls internally
@@ -810,13 +820,21 @@ export default function LessonPageLayout({ lesson, quiz, children }: Props) {
               highlights={highlights}
               onDeleted={(id) => setHighlights((prev) => prev.filter((h) => h.id !== id))}
             />
-            
-            {/* Quiz progress */}
-            <div className="bg-white dark:bg-stone-900 rounded-2xl border-2 border-stone-300 dark:border-stone-700 p-6">
-              <div className="flex items-center justify-between mb-4">
-                <span className="text-base font-extrabold text-stone-900 dark:text-stone-100 uppercase tracking-wide">Kiểm tra nhanh</span>
-                <span className="text-base font-bold text-stone-700 dark:text-stone-300 bg-stone-100 dark:bg-stone-800 px-3 py-1 rounded-lg">{submittedCount}/{quiz.length}</span>
-              </div>
+
+            {/* Quiz progress - collapsible */}
+            <div className="bg-white dark:bg-stone-900 rounded-2xl border-2 border-stone-300 dark:border-stone-700 overflow-hidden">
+              <button
+                onClick={() => setQuizCollapsed(!quizCollapsed)}
+                className="w-full flex items-center justify-between p-4 hover:bg-stone-50 dark:hover:bg-stone-800 transition-colors"
+              >
+                <div className="flex items-center gap-3">
+                  <span className="text-base font-extrabold text-stone-900 dark:text-stone-100 uppercase tracking-wide">Kiểm tra nhanh</span>
+                  <span className="text-base font-bold text-stone-700 dark:text-stone-300 bg-stone-100 dark:bg-stone-800 px-3 py-1 rounded-lg">{submittedCount}/{quiz.length}</span>
+                </div>
+                {quizCollapsed ? <ChevronDown className="w-5 h-5 text-stone-500 dark:text-stone-400" /> : <ChevronUp className="w-5 h-5 text-stone-500 dark:text-stone-400" />}
+              </button>
+              {!quizCollapsed && (
+                <div className="p-6 pt-0">
               <div className="flex gap-2">
                 {quiz.map((_, i) => (
                   <button
@@ -831,6 +849,8 @@ export default function LessonPageLayout({ lesson, quiz, children }: Props) {
                   />
                 ))}
               </div>
+                </div>
+              )}
             </div>
 
             {/* Active question */}

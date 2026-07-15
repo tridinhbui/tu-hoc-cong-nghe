@@ -60,11 +60,11 @@ const quiz: QuizQuestion[] = [
 export default function Page() {
   return (
     <LessonPageLayout lesson={meta} quiz={quiz}>
-      <h2 className="text-2xl font-bold text-stone-900 mb-2">Tesla Q1/2026 - Net Income vs Cash Flow</h2>
+      <h2 className="text-2xl font-bold text-stone-900 dark:text-stone-100 mb-2">Tesla Q1/2026 - Net Income vs Cash Flow</h2>
       <p className="text-stone-600 text-sm mb-6 italic">Lợi nhuận nhìn bình thường, nhưng tiền thật vẫn chảy rất mạnh - tại sao?</p>
 
       <section className="mb-8">
-        <h3 className="text-lg font-bold text-stone-800 mb-3"> Q1/2026 Snapshot</h3>
+        <h3 className="text-lg font-bold text-stone-800 dark:text-stone-200 mb-3"> Q1/2026 Snapshot</h3>
         <div className="bg-stone-800 text-white rounded-xl p-5 font-mono text-sm space-y-2">
           <div className="text-stone-500 text-xs mb-2">{ '// Tesla Q1/2026 - Cash Flow Highlights' }</div>
           <div className="flex justify-between">
@@ -104,7 +104,7 @@ export default function Page() {
       </section>
 
       <section className="mb-8">
-        <h3 className="text-lg font-bold text-stone-800 mb-3"> Tại sao OCF gấp 8x Net Income?</h3>
+        <h3 className="text-lg font-bold text-stone-800 dark:text-stone-200 mb-3"> Tại sao OCF gấp 8x Net Income?</h3>
         <div className="space-y-3">
           {[
             {
@@ -138,7 +138,7 @@ export default function Page() {
       </section>
 
       <section className="mb-8">
-        <h3 className="text-lg font-bold text-stone-800 mb-3">🔑 Phân biệt: "đầu tư mở rộng" vs "gặp khó khăn tài chính"</h3>
+        <h3 className="text-lg font-bold text-stone-800 dark:text-stone-200 mb-3">🔑 Phân biệt: "đầu tư mở rộng" vs "gặp khó khăn tài chính"</h3>
         <div className="bg-stone-50 border border-stone-200 rounded-xl p-4 mb-3">
           <p className="text-sm text-stone-700 leading-relaxed">
             Đây là điểm hay bị nhầm lẫn nhất khi đọc báo cáo dòng tiền: <strong>dòng tiền tự do (Free Cash Flow - FCF, tức là tiền mặt còn lại sau khi trừ hết chi phí đầu tư tài sản cố định)</strong> bị âm không tự động là tin xấu. Có hai lý do hoàn toàn khác nhau khiến FCF âm, và cách phân biệt chúng nằm ở việc nhìn <strong>tiền đó đi đâu</strong> và <strong>công ty có đủ nguồn lực để chịu đựng hay không</strong>.
@@ -170,7 +170,7 @@ export default function Page() {
       </section>
 
       <section className="mb-8">
-        <h3 className="text-lg font-bold text-stone-800 mb-3">🏭 Inventory tăng 2.26B - đáng lo không?</h3>
+        <h3 className="text-lg font-bold text-stone-800 dark:text-stone-200 mb-3">🏭 Inventory tăng 2.26B - đáng lo không?</h3>
         <div className="bg-stone-50 border border-stone-200 rounded-xl p-4 mb-3">
           <p className="text-sm text-stone-700 leading-relaxed">
             Inventory build có thể là: (1) <strong>Demand yếu</strong> - xe bán chậm hơn dự kiến, (2) <strong>Strategic preparation</strong> - chuẩn bị launch model mới hoặc đẩy mạnh delivery vào cuối năm. Cần xem kỳ tiếp theo inventory có normalize không.
@@ -189,7 +189,7 @@ export default function Page() {
       </section>
 
       <section className="mb-8">
-        <h3 className="text-lg font-bold text-stone-800 mb-3">📐 Cash Flow Reconciliation</h3>
+        <h3 className="text-lg font-bold text-stone-800 dark:text-stone-200 mb-3">📐 Cash Flow Reconciliation</h3>
         <div className="bg-white border border-stone-200 rounded-xl p-4 font-mono text-xs">
           <div className="text-stone-500 mb-2">{ '// Net Income → OCF bridge' }</div>
           <div className="flex justify-between mb-1"><span>Net Income</span><span className="text-stone-600">+491M</span></div>
@@ -204,7 +204,7 @@ export default function Page() {
       </section>
 
       <section>
-        <h3 className="text-lg font-bold text-stone-800 mb-3"> Bài học từ Tesla Q1</h3>
+        <h3 className="text-lg font-bold text-stone-800 dark:text-stone-200 mb-3"> Bài học từ Tesla Q1</h3>
         <div className="space-y-2">
           {[
             "Net Income kể câu chuyện accounting. Operating Cash Flow kể câu chuyện tiền mặt thực tế.",

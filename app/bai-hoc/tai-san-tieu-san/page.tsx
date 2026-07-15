@@ -71,7 +71,7 @@ export default function TaiSanTieuSanPage() {
         </p>
 
         <section className="space-y-5">
-          <h3 className="text-2xl font-bold text-stone-900">Định nghĩa theo dòng tiền</h3>
+          <h3 className="text-2xl font-bold text-stone-900 dark:text-stone-100">Định nghĩa theo dòng tiền</h3>
           <p>
             Trong tài chính cá nhân, phân biệt tài sản và tiêu sản thường dựa trên dòng tiền chúng tạo ra, không phải giá trị danh nghĩa.
           </p>
@@ -103,7 +103,7 @@ export default function TaiSanTieuSanPage() {
         </section>
 
         <section className="space-y-5">
-          <h3 className="text-2xl font-bold text-stone-900">Cùng một vật, hai bản chất khác nhau</h3>
+          <h3 className="text-2xl font-bold text-stone-900 dark:text-stone-100">Cùng một vật, hai bản chất khác nhau</h3>
           <p>
             Điểm thú vị là cùng một vật có thể là tài sản hoặc tiêu sản tùy cách bạn sử dụng.
           </p>
@@ -116,7 +116,7 @@ export default function TaiSanTieuSanPage() {
         </section>
 
         <section className="space-y-5">
-          <h3 className="text-2xl font-bold text-stone-900">Vấn đề với cách áp dụng cực đoan</h3>
+          <h3 className="text-2xl font-bold text-stone-900 dark:text-stone-100">Vấn đề với cách áp dụng cực đoan</h3>
           <p>
             Một số người sau khi hiểu khái niệm này kết luận rằng không nên mua nhà để ở, không nên mua xe, và mọi chi tiêu không tạo ra dòng tiền đều là sai lầm. Đây là cách hiểu quá cứng nhắc.
           </p>
@@ -136,7 +136,7 @@ export default function TaiSanTieuSanPage() {
         </section>
 
         <section className="space-y-5">
-          <h3 className="text-2xl font-bold text-stone-900">Xây dựng tài sản: nguyên tắc cơ bản</h3>
+          <h3 className="text-2xl font-bold text-stone-900 dark:text-stone-100">Xây dựng tài sản: nguyên tắc cơ bản</h3>
           <p>
             Mục tiêu tài chính dài hạn của hầu hết mọi người là xây dựng đủ tài sản để tạo ra thu nhập thụ động, tức là tiền chảy vào dù bạn có làm việc hay không.
           </p>

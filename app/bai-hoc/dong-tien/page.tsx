@@ -124,7 +124,7 @@ export default function DongTienPage() {
 
         {/* Section 1 */}
         <section className="space-y-5">
-          <h3 className="text-2xl font-bold text-stone-900">Doanh thu ≠ Tiền mặt</h3>
+          <h3 className="text-2xl font-bold text-stone-900 dark:text-stone-100">Doanh thu ≠ Tiền mặt</h3>
           <p className="text-lg">
             Một doanh nghiệp có thể ghi nhận doanh thu cao nhưng chưa chắc có dòng tiền tốt. Khi doanh nghiệp
             đã bán hàng nhưng khách hàng <strong className="text-stone-900">chưa thanh toán</strong>, khoản doanh thu
@@ -159,7 +159,7 @@ export default function DongTienPage() {
 
         {/* Section 2 */}
         <section className="space-y-5">
-          <h3 className="text-2xl font-bold text-stone-900">Tại sao dòng tiền là nền tảng của tài chính</h3>
+          <h3 className="text-2xl font-bold text-stone-900 dark:text-stone-100">Tại sao dòng tiền là nền tảng của tài chính</h3>
           <p className="text-lg">
             Tài chính không chỉ quan tâm một hoạt động có tạo ra lợi nhuận hay không. Tài chính còn quan tâm:
           </p>
@@ -179,7 +179,7 @@ export default function DongTienPage() {
 
         {/* Section 3: Business vs Personal */}
         <section className="space-y-5">
-          <h3 className="text-2xl font-bold text-stone-900">Với doanh nghiệp và với cá nhân</h3>
+          <h3 className="text-2xl font-bold text-stone-900 dark:text-stone-100">Với doanh nghiệp và với cá nhân</h3>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div className="border border-stone-200 rounded-2xl p-6 space-y-3">
               <p className="text-xs font-bold text-stone-500 uppercase tracking-widest">Doanh nghiệp</p>
@@ -213,7 +213,7 @@ export default function DongTienPage() {
 
         {/* Section 4: Applications */}
         <section className="space-y-5">
-          <h3 className="text-2xl font-bold text-stone-900">Dòng tiền kết nối với những gì?</h3>
+          <h3 className="text-2xl font-bold text-stone-900 dark:text-stone-100">Dòng tiền kết nối với những gì?</h3>
           <p className="text-lg">Từ dòng tiền, các khái niệm tài chính quan trọng được hình thành:</p>
           <ul className="space-y-3 pl-1">
             {[

@@ -73,7 +73,7 @@ export default function LaiSuatLaGiPage() {
         </p>
 
         <section className="space-y-5">
-          <h3 className="text-2xl font-bold text-stone-900">Lãi suất là giá của tiền</h3>
+          <h3 className="text-2xl font-bold text-stone-900 dark:text-stone-100">Lãi suất là giá của tiền</h3>
           <p>
             Trong nền kinh tế thị trường, mọi thứ đều có giá. Lao động có mức lương. Hàng hóa có giá bán. Và tiền cũng có giá, đó chính là <strong className="text-stone-900">lãi suất</strong>.
           </p>
@@ -86,7 +86,7 @@ export default function LaiSuatLaGiPage() {
         </section>
 
         <section className="space-y-5">
-          <h3 className="text-2xl font-bold text-stone-900">Lãi suất tăng kéo theo điều gì</h3>
+          <h3 className="text-2xl font-bold text-stone-900 dark:text-stone-100">Lãi suất tăng kéo theo điều gì</h3>
           <p>
             Khi lãi suất tăng, phản ứng dây chuyền diễn ra trên toàn nền kinh tế:
           </p>
@@ -113,7 +113,7 @@ export default function LaiSuatLaGiPage() {
         </section>
 
         <section className="space-y-5">
-          <h3 className="text-2xl font-bold text-stone-900">Ngân hàng trung ương và lãi suất điều hành</h3>
+          <h3 className="text-2xl font-bold text-stone-900 dark:text-stone-100">Ngân hàng trung ương và lãi suất điều hành</h3>
           <p>
             Ngân hàng Nhà nước Việt Nam, Cục Dự trữ Liên bang Mỹ (Fed), Ngân hàng Trung ương Châu Âu (ECB) đều có một công cụ chính để điều tiết nền kinh tế: lãi suất điều hành.
           </p>
@@ -129,7 +129,7 @@ export default function LaiSuatLaGiPage() {
         </section>
 
         <section className="space-y-5">
-          <h3 className="text-2xl font-bold text-stone-900">Lãi suất thực: thước đo đúng hơn</h3>
+          <h3 className="text-2xl font-bold text-stone-900 dark:text-stone-100">Lãi suất thực: thước đo đúng hơn</h3>
           <p>
             Lãi suất ngân hàng bạn thấy trên bảng quảng cáo là <strong className="text-stone-900">lãi suất danh nghĩa</strong>. Nhưng con số quan trọng hơn là <strong className="text-stone-900">lãi suất thực</strong>, tức là phần tăng sức mua thật sự sau khi trừ đi lạm phát.
           </p>

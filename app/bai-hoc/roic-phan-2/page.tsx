@@ -129,7 +129,7 @@ function ROICValuationLink() {
 export default function Page() {
   return (
     <LessonPageLayout lesson={meta} quiz={quiz}>
-      <h2 className="text-2xl font-bold text-stone-900 mb-2">ROIC phần 2 - liên hệ với định giá</h2>
+      <h2 className="text-2xl font-bold text-stone-900 dark:text-stone-100 mb-2">ROIC phần 2 - liên hệ với định giá</h2>
       <p className="text-stone-600 text-sm mb-6 italic">ROIC không chỉ là chỉ số hiệu quả - nó quyết định doanh nghiệp cần bao nhiêu vốn để tăng trưởng.</p>
 
       <section className="mb-8 rounded-xl border border-teal-100 bg-teal-50 p-4">
@@ -140,7 +140,7 @@ export default function Page() {
       </section>
 
       <section className="mb-8">
-        <h3 className="text-lg font-bold text-stone-800 mb-3">Ý chính cốt lõi</h3>
+        <h3 className="text-lg font-bold text-stone-800 dark:text-stone-200 mb-3">Ý chính cốt lõi</h3>
         <div className="bg-stone-50 text-white rounded-xl p-5 mb-4">
           <p className="text-lg font-bold text-center mb-2">
             Giá trị doanh nghiệp phụ thuộc vào khả năng tạo lợi nhuận trên vốn <em>so với</em> chi phí vốn
@@ -163,7 +163,7 @@ export default function Page() {
       </section>
 
       <section className="mb-8">
-        <h3 className="text-lg font-bold text-stone-800 mb-3">Từ ROIC đến dòng tiền tự do và định giá</h3>
+        <h3 className="text-lg font-bold text-stone-800 dark:text-stone-200 mb-3">Từ ROIC đến dòng tiền tự do và định giá</h3>
         <div className="space-y-3">
           <div className="bg-stone-50 rounded-xl p-4 border border-stone-200">
             <div className="font-bold text-stone-700 text-sm mb-2">Bước 1: Tỷ lệ tái đầu tư từ ROIC và tăng trưởng</div>
@@ -192,7 +192,7 @@ export default function Page() {
       <ROICValuationLink />
 
       <section className="mb-8">
-        <h3 className="text-lg font-bold text-stone-800 mb-3">Ví dụ: tại sao Google/Microsoft thường được định giá cao?</h3>
+        <h3 className="text-lg font-bold text-stone-800 dark:text-stone-200 mb-3">Ví dụ: tại sao Google/Microsoft thường được định giá cao?</h3>
         <div className="bg-stone-800 text-white rounded-xl p-5">
           <div className="grid grid-cols-2 gap-4 text-sm mb-3">
             <div className="bg-white/10 rounded-lg p-3">
@@ -221,7 +221,7 @@ export default function Page() {
       </section>
 
       <section>
-        <h3 className="text-lg font-bold text-stone-800 mb-3">Điểm cần nhớ</h3>
+        <h3 className="text-lg font-bold text-stone-800 dark:text-stone-200 mb-3">Điểm cần nhớ</h3>
         <div className="space-y-2">
           {[
             "Tăng trưởng không tạo giá trị nếu ROIC thấp hơn chi phí vốn.",

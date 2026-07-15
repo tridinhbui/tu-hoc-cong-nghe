@@ -60,11 +60,11 @@ const quiz: QuizQuestion[] = [
 export default function Page() {
   return (
     <LessonPageLayout lesson={meta} quiz={quiz}>
-      <h2 className="text-2xl font-bold text-stone-900 mb-2">Dividend - Cổ Tức</h2>
+      <h2 className="text-2xl font-bold text-stone-900 dark:text-stone-100 mb-2">Dividend - Cổ Tức</h2>
       <p className="text-stone-600 text-sm mb-6 italic">Không chỉ là bao nhiêu % - mà là công ty có đủ dòng tiền thật để duy trì không?</p>
 
       <section className="mb-8">
-        <h3 className="text-lg font-bold text-stone-800 mb-3">Tại sao cần học về Dividend?</h3>
+        <h3 className="text-lg font-bold text-stone-800 dark:text-stone-200 mb-3">Tại sao cần học về Dividend?</h3>
         <div className="space-y-3">
           {[
             {
@@ -95,7 +95,7 @@ export default function Page() {
       </section>
 
       <section className="mb-8">
-        <h3 className="text-lg font-bold text-stone-800 mb-3">Case Study: Tyson Foods Dividend Analysis</h3>
+        <h3 className="text-lg font-bold text-stone-800 dark:text-stone-200 mb-3">Case Study: Tyson Foods Dividend Analysis</h3>
         <div className="bg-stone-800 text-white rounded-xl p-5 font-mono text-sm mb-4">
           <div className="text-stone-500 text-xs mb-3">{"// Tyson Foods - Dividend Sustainability Check"}</div>
           <div className="flex justify-between mb-1"><span className="text-stone-300">Payout Ratio (NI-based)</span><span>~197%</span></div>
@@ -115,7 +115,7 @@ export default function Page() {
       </section>
 
       <section className="mb-8">
-        <h3 className="text-lg font-bold text-stone-800 mb-3">Key Dividend Metrics</h3>
+        <h3 className="text-lg font-bold text-stone-800 dark:text-stone-200 mb-3">Key Dividend Metrics</h3>
         <div className="space-y-3">
           {[
             { metric: "Dividend Yield", formula: "Annual DPS / Stock Price", good: ">2% = income, but check sustainability. >7% = possible yield trap", when: "Để so sánh income return" },
@@ -136,7 +136,7 @@ export default function Page() {
       </section>
 
       <section>
-        <h3 className="text-lg font-bold text-stone-800 mb-3">Framework phân tích Dividend</h3>
+        <h3 className="text-lg font-bold text-stone-800 dark:text-stone-200 mb-3">Framework phân tích Dividend</h3>
         <div className="space-y-2">
           {[
             "Bước 1: FCF cover dividend >1.5x? - nếu không, tìm hiểu tại sao",

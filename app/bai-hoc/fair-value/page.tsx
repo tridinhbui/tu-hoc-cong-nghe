@@ -128,11 +128,11 @@ function ValuationFootballField() {
 export default function Page() {
   return (
     <LessonPageLayout lesson={meta} quiz={quiz}>
-      <h2 className="text-2xl font-bold text-stone-900 mb-2">Fair Value - 3 Cách Định Giá</h2>
+      <h2 className="text-2xl font-bold text-stone-900 dark:text-stone-100 mb-2">Fair Value - 3 Cách Định Giá</h2>
       <p className="text-stone-600 text-sm mb-6 italic">Không có con số định giá "đúng" - chỉ có giả định tốt và giả định tệ</p>
 
       <section className="mb-8">
-        <h3 className="text-lg font-bold text-stone-800 mb-3"> Fair Value là gì?</h3>
+        <h3 className="text-lg font-bold text-stone-800 dark:text-stone-200 mb-3"> Fair Value là gì?</h3>
         <p className="text-stone-600 leading-relaxed mb-4">
           Fair Value = giá mà một tài sản sẽ được giao dịch giữa hai bên hiểu biết, sẵn lòng và không bị ép buộc. Trong thực tế, định giá là <strong>nghệ thuật</strong> nhiều hơn khoa học - kết quả phụ thuộc vào giả định.
         </p>
@@ -179,7 +179,7 @@ export default function Page() {
       <ValuationFootballField />
 
       <section className="mb-8">
-        <h3 className="text-lg font-bold text-stone-800 mb-3"> Multiples phổ biến nhất</h3>
+        <h3 className="text-lg font-bold text-stone-800 dark:text-stone-200 mb-3"> Multiples phổ biến nhất</h3>
         <div className="overflow-x-auto">
           <table className="w-full text-sm">
             <thead>
@@ -208,7 +208,7 @@ export default function Page() {
       </section>
 
       <section>
-        <h3 className="text-lg font-bold text-stone-800 mb-3">⚠️ Pitfall thường gặp trong định giá</h3>
+        <h3 className="text-lg font-bold text-stone-800 dark:text-stone-200 mb-3">⚠️ Pitfall thường gặp trong định giá</h3>
         <div className="space-y-2">
           {[
             "Anchoring: bắt đầu từ giá thị trường hiện tại → bias kết quả DCF",

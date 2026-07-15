@@ -71,7 +71,7 @@ export default function NoTotNoXauPage() {
         </p>
 
         <section className="space-y-5">
-          <h3 className="text-2xl font-bold text-stone-900">Nợ tốt: đòn bẩy cho tài sản</h3>
+          <h3 className="text-2xl font-bold text-stone-900 dark:text-stone-100">Nợ tốt: đòn bẩy cho tài sản</h3>
           <p>
             Nợ tốt là khoản vay mà chi phí vay (lãi suất) thấp hơn lợi nhuận hoặc giá trị mà khoản vay đó tạo ra.
           </p>
@@ -84,7 +84,7 @@ export default function NoTotNoXauPage() {
         </section>
 
         <section className="space-y-5">
-          <h3 className="text-2xl font-bold text-stone-900">Nợ xấu: trả lãi cho thứ mất giá</h3>
+          <h3 className="text-2xl font-bold text-stone-900 dark:text-stone-100">Nợ xấu: trả lãi cho thứ mất giá</h3>
           <p>
             Nợ xấu là khoản vay có chi phí cao hơn lợi ích tạo ra, hoặc dùng để mua hàng hóa tiêu dùng mất giá ngay khi mua.
           </p>
@@ -111,7 +111,7 @@ export default function NoTotNoXauPage() {
         </section>
 
         <section className="space-y-5">
-          <h3 className="text-2xl font-bold text-stone-900">Nguyên tắc quản lý nợ</h3>
+          <h3 className="text-2xl font-bold text-stone-900 dark:text-stone-100">Nguyên tắc quản lý nợ</h3>
           <p>
             Không phải mọi nợ lãi suất thấp đều nên trả nhanh. Nếu bạn vay mua nhà lãi suất 7%/năm nhưng có khả năng đầu tư khoản tiền thừa vào quỹ chỉ số với kỳ vọng 12%/năm, về mặt toán học bạn nên đầu tư thay vì trả nợ nhanh.
           </p>

@@ -92,7 +92,7 @@ export default function OnTapChang1Page() {
         </p>
 
         <section className="space-y-5">
-          <h3 className="text-2xl font-bold text-stone-900">Bức tranh toàn cảnh: mọi thứ kết nối như thế nào</h3>
+          <h3 className="text-2xl font-bold text-stone-900 dark:text-stone-100">Bức tranh toàn cảnh: mọi thứ kết nối như thế nào</h3>
           <p>
             Hãy nhìn lại 19 ngày vừa qua và thấy các mảnh ghép kết nối với nhau.
           </p>
@@ -114,7 +114,7 @@ export default function OnTapChang1Page() {
         </section>
 
         <section className="space-y-5">
-          <h3 className="text-2xl font-bold text-stone-900">Trình tự ưu tiên không thể bỏ qua</h3>
+          <h3 className="text-2xl font-bold text-stone-900 dark:text-stone-100">Trình tự ưu tiên không thể bỏ qua</h3>
           <p>
             Một trong những hiểu lầm phổ biến nhất về tài chính cá nhân là bỏ qua các bước nền tảng và nhảy thẳng vào đầu tư. Nhưng không có nền tảng vững, đầu tư trở thành cờ bạc.
           </p>
@@ -135,7 +135,7 @@ export default function OnTapChang1Page() {
         </section>
 
         <section className="space-y-5">
-          <h3 className="text-2xl font-bold text-stone-900">Ba sai lầm phổ biến nhất cần tránh</h3>
+          <h3 className="text-2xl font-bold text-stone-900 dark:text-stone-100">Ba sai lầm phổ biến nhất cần tránh</h3>
           <ul className="space-y-3 pl-1">
             {[
               { bold: "Tiêu trước, tiết kiệm sau", rest: ": hầu như không bao giờ còn gì để tiết kiệm. Tiết kiệm tự động ngay khi nhận lương là cách duy nhất hiệu quả cho đa số người" },
@@ -151,7 +151,7 @@ export default function OnTapChang1Page() {
         </section>
 
         <section className="space-y-5">
-          <h3 className="text-2xl font-bold text-stone-900">Điều quan trọng hơn kiến thức: hành động</h3>
+          <h3 className="text-2xl font-bold text-stone-900 dark:text-stone-100">Điều quan trọng hơn kiến thức: hành động</h3>
           <p>
             Tài chính cá nhân không phức tạp về mặt trí tuệ, nhưng rất khó về mặt hành vi. Biết rằng tiết kiệm 15% thu nhập mỗi tháng là tốt, và thực sự làm điều đó mỗi tháng trong 20 năm, là hai điều khác nhau hoàn toàn.
           </p>

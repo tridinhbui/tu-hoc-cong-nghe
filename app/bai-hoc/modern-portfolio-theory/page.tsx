@@ -168,7 +168,7 @@ function PortfolioSimulator() {
 export default function Page() {
   return (
     <LessonPageLayout lesson={meta} quiz={quiz}>
-      <h2 className="text-2xl font-bold text-stone-900 mb-2">Lý thuyết danh mục hiện đại (Modern Portfolio Theory)</h2>
+      <h2 className="text-2xl font-bold text-stone-900 dark:text-stone-100 mb-2">Lý thuyết danh mục hiện đại (Modern Portfolio Theory)</h2>
       <p className="text-stone-500 text-sm mb-8">Harry Markowitz, 1952 - danh mục không mạnh vì từng tài sản đều tốt, mà mạnh vì chúng phối hợp với nhau đúng cách</p>
 
       <section className="mb-10 rounded-xl border border-indigo-100 bg-indigo-50 p-4">
@@ -179,7 +179,7 @@ export default function Page() {
       </section>
 
       <section className="mb-10">
-        <h3 className="text-base font-bold text-stone-800 mb-4 uppercase tracking-wide text-xs">Ý tưởng cốt lõi của lý thuyết danh mục hiện đại</h3>
+        <h3 className="text-base font-bold text-stone-800 dark:text-stone-200 mb-4 uppercase tracking-wide text-xs">Ý tưởng cốt lõi của lý thuyết danh mục hiện đại</h3>
         <p className="text-stone-600 leading-relaxed mb-4">
           Lý thuyết danh mục hiện đại bắt đầu từ một quan sát rất đơn giản nhưng cực mạnh: <strong>rủi ro của danh mục không bằng phép cộng rủi ro của từng tài sản</strong>. Nếu bạn ghép những tài sản không di chuyển giống nhau, chúng có thể triệt bớt biến động của nhau.
         </p>
@@ -189,7 +189,7 @@ export default function Page() {
       </section>
 
       <section className="mb-10">
-        <h3 className="text-base font-bold text-stone-800 mb-4 uppercase tracking-wide text-xs">Tương quan: linh hồn của đa dạng hóa</h3>
+        <h3 className="text-base font-bold text-stone-800 dark:text-stone-200 mb-4 uppercase tracking-wide text-xs">Tương quan: linh hồn của đa dạng hóa</h3>
         <p className="text-stone-600 text-sm leading-relaxed mb-4">
           Tương quan (correlation) đo mức độ hai tài sản di chuyển cùng chiều hay ngược chiều. Giá trị nằm trong khoảng từ -1 đến +1.
         </p>
@@ -222,7 +222,7 @@ export default function Page() {
       <PortfolioSimulator />
 
       <section className="mb-10">
-        <h3 className="text-base font-bold text-stone-800 mb-4 uppercase tracking-wide text-xs">Ví dụ danh mục: vì sao 60/40 có ý nghĩa</h3>
+        <h3 className="text-base font-bold text-stone-800 dark:text-stone-200 mb-4 uppercase tracking-wide text-xs">Ví dụ danh mục: vì sao 60/40 có ý nghĩa</h3>
         <div className="overflow-x-auto rounded-xl border border-stone-200">
           <table className="w-full min-w-[680px] text-sm">
             <thead className="bg-stone-100 text-stone-700">
@@ -253,7 +253,7 @@ export default function Page() {
       </section>
 
       <section className="mb-10">
-        <h3 className="text-base font-bold text-stone-800 mb-4 uppercase tracking-wide text-xs">Đường biên hiệu quả: vùng của các danh mục hợp lý</h3>
+        <h3 className="text-base font-bold text-stone-800 dark:text-stone-200 mb-4 uppercase tracking-wide text-xs">Đường biên hiệu quả: vùng của các danh mục hợp lý</h3>
         <p className="text-stone-600 text-sm leading-relaxed mb-4">
           Nếu lấy nhiều tài sản rồi thử hàng trăm cách phân bổ khác nhau, bạn sẽ có hàng trăm cặp lợi nhuận - rủi ro. Một số điểm rõ ràng vô lý: lợi nhuận không hơn bao nhiêu nhưng biến động rất cao. Một số điểm khác tối ưu hơn - đó là vùng đường biên hiệu quả.
         </p>
@@ -268,7 +268,7 @@ export default function Page() {
       </section>
 
       <section className="mb-10">
-        <h3 className="text-base font-bold text-stone-800 mb-4 uppercase tracking-wide text-xs">Rủi ro thị trường chung và rủi ro đặc thù</h3>
+        <h3 className="text-base font-bold text-stone-800 dark:text-stone-200 mb-4 uppercase tracking-wide text-xs">Rủi ro thị trường chung và rủi ro đặc thù</h3>
         <div className="grid gap-3 sm:grid-cols-2">
           <div className="rounded-xl border border-stone-200 bg-white p-4">
             <p className="text-sm font-bold text-stone-900 mb-2">Rủi ro đặc thù</p>
@@ -286,7 +286,7 @@ export default function Page() {
       </section>
 
       <section>
-        <h3 className="text-base font-bold text-stone-800 mb-4 uppercase tracking-wide text-xs">Beta và bài học thực chiến</h3>
+        <h3 className="text-base font-bold text-stone-800 dark:text-stone-200 mb-4 uppercase tracking-wide text-xs">Beta và bài học thực chiến</h3>
         <p className="text-stone-600 text-sm leading-relaxed mb-4">
           Beta là cách đo độ nhạy của một tài sản với thị trường chung. Beta lớn hơn 1 nghĩa là thường biến động mạnh hơn thị trường; nhỏ hơn 1 nghĩa là ổn định hơn. Nhưng beta không phải toàn bộ câu chuyện. Một cổ phiếu beta thấp vẫn có thể là khoản đầu tư tệ nếu kinh doanh suy thoái.
         </p>

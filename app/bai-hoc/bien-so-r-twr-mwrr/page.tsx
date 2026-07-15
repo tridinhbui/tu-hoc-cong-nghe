@@ -202,13 +202,13 @@ function FundPerformanceCalculator() {
 export default function Page() {
   return (
     <LessonPageLayout lesson={meta} quiz={quiz}>
-      <h2 className="text-2xl font-bold text-stone-900 mb-2">Biến số r - thước đo cốt lõi trong thẩm định & đầu tư</h2>
+      <h2 className="text-2xl font-bold text-stone-900 dark:text-stone-100 mb-2">Biến số r - thước đo cốt lõi trong thẩm định & đầu tư</h2>
       <p className="text-stone-600 text-sm mb-6 italic">
         Khi đánh giá tính khả thi của một dự án doanh nghiệp hay thẩm định hiệu suất đầu tư của một Quỹ, biến số quan trọng nhất luôn là r (lợi suất/suất chiết khấu).
       </p>
 
       <section className="mb-8">
-        <h3 className="text-lg font-bold text-stone-800 mb-3">r mang nhiều tên gọi khác nhau</h3>
+        <h3 className="text-lg font-bold text-stone-800 dark:text-stone-200 mb-3">r mang nhiều tên gọi khác nhau</h3>
         <p className="text-stone-600 leading-relaxed mb-4">
           Tùy vào mục đích sử dụng, r sẽ mang những tên gọi và ý nghĩa khác nhau. Tựu chung lại, bản chất của r là đưa các dòng tiền thu về trong tương lai về mặt giá trị hiện tại để đánh giá hiệu quả.
         </p>
@@ -230,7 +230,7 @@ export default function Page() {
       </section>
 
       <section className="mb-8">
-        <h3 className="text-lg font-bold text-stone-800 mb-3">Bài toán thực tế: Đánh giá hiệu suất của Quỹ A</h3>
+        <h3 className="text-lg font-bold text-stone-800 dark:text-stone-200 mb-3">Bài toán thực tế: Đánh giá hiệu suất của Quỹ A</h3>
         <p className="text-stone-600 leading-relaxed mb-3">
           Giả sử Quỹ A nhận thêm vốn vào đầu mỗi năm và tạo ra hiệu suất qua 4 năm như sau:
         </p>
@@ -263,7 +263,7 @@ export default function Page() {
       </section>
 
       <section className="mb-8">
-        <h3 className="text-lg font-bold text-stone-800 mb-3">Bước 1: Tính TWR (Time-weighted return)</h3>
+        <h3 className="text-lg font-bold text-stone-800 dark:text-stone-200 mb-3">Bước 1: Tính TWR (Time-weighted return)</h3>
         <p className="text-stone-600 leading-relaxed mb-3">
           TWR phản ánh khả năng chọn cổ phiếu/tài sản của Quỹ mà không bị ảnh hưởng bởi việc nhà đầu tư nộp/rút tiền.
         </p>
@@ -274,7 +274,7 @@ export default function Page() {
       </section>
 
       <section className="mb-8">
-        <h3 className="text-lg font-bold text-stone-800 mb-3">Bước 2: Tính dòng tiền thực tế Quỹ nhận/trả mỗi năm</h3>
+        <h3 className="text-lg font-bold text-stone-800 dark:text-stone-200 mb-3">Bước 2: Tính dòng tiền thực tế Quỹ nhận/trả mỗi năm</h3>
         <p className="text-stone-600 leading-relaxed mb-3">
           Vì số AUM đầu mỗi năm là số lũy kế, ta cần tìm dòng tiền (nộp thêm/rút ra) thực tế ở đầu mỗi giai đoạn:
         </p>
@@ -331,7 +331,7 @@ export default function Page() {
       </section>
 
       <section className="mb-8">
-        <h3 className="text-lg font-bold text-stone-800 mb-3">Bước 3 & 4: Giá trị cuối kỳ và tính MWRR/IRR</h3>
+        <h3 className="text-lg font-bold text-stone-800 dark:text-stone-200 mb-3">Bước 3 & 4: Giá trị cuối kỳ và tính MWRR/IRR</h3>
         <p className="text-stone-600 leading-relaxed mb-3">
           CF4 (cuối Y4): 6M × (1+25%) = +7.5M. Quét toàn bộ dòng tiền từ CF0 đến CF4: [−2M, −2.6M, −2.5M, +0.8M, +7.5M] vào hàm =IRR() trong Excel:
         </p>
@@ -344,7 +344,7 @@ export default function Page() {
       <FundPerformanceCalculator />
 
       <section className="mb-8">
-        <h3 className="text-lg font-bold text-stone-800 mb-3">Vì sao TWR (8.824%) &gt; MWRR (5.64%)?</h3>
+        <h3 className="text-lg font-bold text-stone-800 dark:text-stone-200 mb-3">Vì sao TWR (8.824%) &gt; MWRR (5.64%)?</h3>
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <div className="bg-stone-50 rounded-xl p-4 border border-stone-200">
             <div className="font-bold text-stone-700 mb-1 text-sm">Về năng lực chọn tài sản (TWR tốt)</div>
@@ -361,7 +361,7 @@ export default function Page() {
       </section>
 
       <section>
-        <h3 className="text-lg font-bold text-stone-800 mb-3">Từ câu chuyện của Quỹ, nhìn về bài toán doanh nghiệp</h3>
+        <h3 className="text-lg font-bold text-stone-800 dark:text-stone-200 mb-3">Từ câu chuyện của Quỹ, nhìn về bài toán doanh nghiệp</h3>
         <p className="text-stone-600 leading-relaxed mb-3">
           Tư duy bóc tách này hoàn toàn tương đồng với việc quản trị một doanh nghiệp. Khi đánh giá hiệu quả, nhà quản trị cần phân biệt rõ:
         </p>

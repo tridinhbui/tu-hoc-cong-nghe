@@ -35,11 +35,11 @@ const quiz: QuizQuestion[] = [
 export default function Page() {
   return (
     <LessonPageLayout lesson={meta} quiz={quiz}>
-      <h2 className="text-2xl font-bold text-stone-900 mb-2">CFO FPT và 8.500 tỷ Tiền Mặt</h2>
+      <h2 className="text-2xl font-bold text-stone-900 dark:text-stone-100 mb-2">CFO FPT và 8.500 tỷ Tiền Mặt</h2>
       <p className="text-stone-500 text-sm mb-8">Bài toán capital allocation thực tế: giữ bao nhiêu và tối ưu bao nhiêu?</p>
 
       <section className="mb-10">
-        <h3 className="text-base font-bold text-stone-800 mb-4 uppercase tracking-wide text-xs">Số liệu thực tế - FPT Q1/2026</h3>
+        <h3 className="text-base font-bold text-stone-800 dark:text-stone-200 mb-4 uppercase tracking-wide text-xs">Số liệu thực tế - FPT Q1/2026</h3>
         <p className="text-stone-600 leading-relaxed mb-4">
           Tại 31/03/2026, công ty mẹ FPT đang nắm giữ tổng cộng hơn <strong>8.500 tỷ VND</strong> trong các dạng tài sản liên quan đến tiền và đầu tư ngắn hạn.
         </p>
@@ -81,7 +81,7 @@ export default function Page() {
       </section>
 
       <section className="mb-10">
-        <h3 className="text-base font-bold text-stone-800 mb-4 uppercase tracking-wide text-xs">Ba câu hỏi CFO phải trả lời</h3>
+        <h3 className="text-base font-bold text-stone-800 dark:text-stone-200 mb-4 uppercase tracking-wide text-xs">Ba câu hỏi CFO phải trả lời</h3>
         <div className="space-y-4">
           {[
             {
@@ -106,7 +106,7 @@ export default function Page() {
       </section>
 
       <section className="mb-10">
-        <h3 className="text-base font-bold text-stone-800 mb-4 uppercase tracking-wide text-xs">Phân bổ điển hình - FPT 8.500 tỷ VND</h3>
+        <h3 className="text-base font-bold text-stone-800 dark:text-stone-200 mb-4 uppercase tracking-wide text-xs">Phân bổ điển hình - FPT 8.500 tỷ VND</h3>
         <div className="border border-stone-200 rounded-xl p-4 bg-stone-50 space-y-2 text-sm text-stone-700">
           <div className="flex justify-between border-b border-stone-200 pb-2">
             <span>Cash &amp; Equivalents (26%)</span>
@@ -127,7 +127,7 @@ export default function Page() {
       </section>
 
       <section className="mb-10">
-        <h3 className="text-base font-bold text-stone-800 mb-4 uppercase tracking-wide text-xs">Đánh đổi không thể tránh</h3>
+        <h3 className="text-base font-bold text-stone-800 dark:text-stone-200 mb-4 uppercase tracking-wide text-xs">Đánh đổi không thể tránh</h3>
         <div className="grid grid-cols-2 gap-4">
           <div className="border border-stone-200 rounded-xl p-4">
             <div className="font-bold text-stone-700 text-sm mb-2">Giữ quá nhiều tiền mặt</div>
@@ -142,7 +142,7 @@ export default function Page() {
       </section>
 
       <section>
-        <h3 className="text-base font-bold text-stone-800 mb-3 uppercase tracking-wide text-xs">Góc nhìn thực hành</h3>
+        <h3 className="text-base font-bold text-stone-800 dark:text-stone-200 mb-3 uppercase tracking-wide text-xs">Góc nhìn thực hành</h3>
         <p className="text-stone-600 text-sm leading-relaxed">
           Bài học từ FPT không phải là con số cụ thể, mà là <strong>tư duy phân bổ tiền mặt có chủ đích</strong>. Tiền không để im - nhưng cũng không được khóa đến mức mất đi sự linh hoạt chiến lược. CFO giỏi biết ranh giới đó nằm ở đâu với công ty của mình.
         </p>

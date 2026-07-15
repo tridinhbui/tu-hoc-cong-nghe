@@ -60,11 +60,11 @@ const quiz: QuizQuestion[] = [
 export default function Page() {
   return (
     <LessonPageLayout lesson={meta} quiz={quiz}>
-      <h2 className="text-2xl font-bold text-stone-900 mb-2">Walmart Earnings Story - Q1/2027</h2>
+      <h2 className="text-2xl font-bold text-stone-900 dark:text-stone-100 mb-2">Walmart Earnings Story - Q1/2027</h2>
       <p className="text-stone-600 text-sm mb-6 italic">Học cách đọc earnings release như CEO/CFO kể chuyện, không chỉ đọc số</p>
 
       <section className="mb-8">
-        <h3 className="text-lg font-bold text-stone-800 mb-3"> Snapshot Q1/2027 Highlights</h3>
+        <h3 className="text-lg font-bold text-stone-800 dark:text-stone-200 mb-3"> Snapshot Q1/2027 Highlights</h3>
         <div className="bg-stone-800 text-white rounded-xl p-5 font-mono text-sm space-y-2 mb-4">
           <div className="text-stone-500 text-xs mb-2">{ '// Walmart Q1/2027 - Key Metrics' }</div>
           <div className="flex justify-between"><span className="text-stone-300">Revenue growth YoY</span><span className="text-white">+~10B USD</span></div>
@@ -85,7 +85,7 @@ export default function Page() {
       </section>
 
       <section className="mb-8">
-        <h3 className="text-lg font-bold text-stone-800 mb-3">🏪 Walmart đang chuyển mình thành gì?</h3>
+        <h3 className="text-lg font-bold text-stone-800 dark:text-stone-200 mb-3">🏪 Walmart đang chuyển mình thành gì?</h3>
         <div className="space-y-3">
           {[
             {
@@ -117,7 +117,7 @@ export default function Page() {
       </section>
 
       <section className="mb-8">
-        <h3 className="text-lg font-bold text-stone-800 mb-3">💬 CEO quote: "We're also becoming AI native."</h3>
+        <h3 className="text-lg font-bold text-stone-800 dark:text-stone-200 mb-3">💬 CEO quote: "We're also becoming AI native."</h3>
         <div className="bg-stone-50 border border-stone-200 rounded-xl p-4 mb-3">
           <p className="text-sm text-stone-700 italic mb-2">"We're also becoming AI native."- Doug McMillon, CEO Walmart</p>
           <p className="text-stone-600 text-sm">Câu này không chỉ về công nghệ. AI đang giúp Walmart:</p>
@@ -140,7 +140,7 @@ export default function Page() {
       </section>
 
       <section className="mb-8">
-        <h3 className="text-lg font-bold text-stone-800 mb-3">📐 Revenue Quality Analysis</h3>
+        <h3 className="text-lg font-bold text-stone-800 dark:text-stone-200 mb-3">📐 Revenue Quality Analysis</h3>
         <div className="overflow-x-auto">
           <table className="w-full text-xs border-collapse">
             <thead>
@@ -171,7 +171,7 @@ export default function Page() {
       </section>
 
       <section>
-        <h3 className="text-lg font-bold text-stone-800 mb-3"> Key Lesson từ Walmart</h3>
+        <h3 className="text-lg font-bold text-stone-800 dark:text-stone-200 mb-3"> Key Lesson từ Walmart</h3>
         <div className="bg-stone-50 text-white rounded-xl p-5">
           <p className="font-bold mb-2">Học tài chính là học cách hiểu cỗ máy kinh doanh phía sau những báo cáo đó.</p>
           <ul className="text-stone-700 text-sm space-y-1">

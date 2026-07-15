@@ -136,11 +136,11 @@ function FundingStructure() {
 export default function Page() {
   return (
     <LessonPageLayout lesson={meta} quiz={quiz}>
-      <h2 className="text-2xl font-bold text-stone-900 mb-2">Source of Cash trong M&A</h2>
+      <h2 className="text-2xl font-bold text-stone-900 dark:text-stone-100 mb-2">Source of Cash trong M&A</h2>
       <p className="text-stone-600 text-sm mb-6 italic">Tiền mua acquisition đến từ đâu - và cấu trúc nào tối ưu hóa return?</p>
 
       <section className="mb-8">
-        <h3 className="text-lg font-bold text-stone-800 mb-3">💰 4 nguồn vốn chính trong M&A</h3>
+        <h3 className="text-lg font-bold text-stone-800 dark:text-stone-200 mb-3">💰 4 nguồn vốn chính trong M&A</h3>
         <div className="space-y-3">
           {[
             {
@@ -187,7 +187,7 @@ export default function Page() {
       <FundingStructure />
 
       <section>
-        <h3 className="text-lg font-bold text-stone-800 mb-3">📋 Checklist khi phân tích deal financing</h3>
+        <h3 className="text-lg font-bold text-stone-800 dark:text-stone-200 mb-3">📋 Checklist khi phân tích deal financing</h3>
         <div className="space-y-2">
           {[
             "Bên mua có đủ tiền/capacity để thực hiện deal không?",

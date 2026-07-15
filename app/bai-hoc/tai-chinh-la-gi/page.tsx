@@ -98,7 +98,7 @@ export default function TaiChinhLaGiPage() {
 
         {/* Section 1 */}
         <section className="space-y-5">
-          <h3 className="text-2xl font-bold text-stone-900">Tài chính không chỉ hỏi: mình có bao nhiêu tiền?</h3>
+          <h3 className="text-2xl font-bold text-stone-900 dark:text-stone-100">Tài chính không chỉ hỏi: mình có bao nhiêu tiền?</h3>
           <p>
             Tài chính còn hỏi những câu phức tạp hơn nhiều:
           </p>
@@ -124,7 +124,7 @@ export default function TaiChinhLaGiPage() {
 
         {/* Section 2 */}
         <section className="space-y-5">
-          <h3 className="text-2xl font-bold text-stone-900">Ví dụ: 10 tỷ đồng và vô số lựa chọn</h3>
+          <h3 className="text-2xl font-bold text-stone-900 dark:text-stone-100">Ví dụ: 10 tỷ đồng và vô số lựa chọn</h3>
           <p>
             Một doanh nghiệp có 10 tỷ đồng tiền mặt. Giữ tiền trong tài khoản là một lựa chọn. Dùng tiền để mở thêm cửa hàng là một lựa chọn khác. Trả nợ, mua máy móc, tuyển nhân sự, hoặc đầu tư vào sản phẩm mới cũng đều là lựa chọn tài chính.
           </p>
@@ -142,7 +142,7 @@ export default function TaiChinhLaGiPage() {
 
         {/* Section 3 */}
         <section className="space-y-5">
-          <h3 className="text-2xl font-bold text-stone-900">Bốn trụ cột của tư duy tài chính</h3>
+          <h3 className="text-2xl font-bold text-stone-900 dark:text-stone-100">Bốn trụ cột của tư duy tài chính</h3>
           <p>
             Vì vậy, tài chính không chỉ là "có tiền hay không". Tài chính là cách đánh giá bốn yếu tố sau để đưa ra quyết định hợp lý hơn:
           </p>
@@ -163,7 +163,7 @@ export default function TaiChinhLaGiPage() {
 
         {/* Section 4 */}
         <section className="space-y-5">
-          <h3 className="text-2xl font-bold text-stone-900">Tài chính cá nhân và tài chính doanh nghiệp: cùng một logic</h3>
+          <h3 className="text-2xl font-bold text-stone-900 dark:text-stone-100">Tài chính cá nhân và tài chính doanh nghiệp: cùng một logic</h3>
           <p>
             Trong đời sống cá nhân cũng vậy. Một người có thu nhập cao chưa chắc có nền tài chính tốt nếu chi tiêu vượt quá khả năng, vay nợ quá nhiều hoặc không có khoản dự phòng. Ngược lại, một người thu nhập vừa phải nhưng quản lý dòng tiền tốt, biết tiết kiệm, đầu tư và kiểm soát rủi ro có thể có nền tài chính lành mạnh hơn rất nhiều.
           </p>
@@ -189,7 +189,7 @@ export default function TaiChinhLaGiPage() {
 
         {/* Section 5 */}
         <section className="space-y-5">
-          <h3 className="text-2xl font-bold text-stone-900">Tài chính khác kế toán như thế nào?</h3>
+          <h3 className="text-2xl font-bold text-stone-900 dark:text-stone-100">Tài chính khác kế toán như thế nào?</h3>
           <p>
             Kế toán và tài chính thường bị nhầm lẫn, nhưng bản chất rất khác nhau.
           </p>

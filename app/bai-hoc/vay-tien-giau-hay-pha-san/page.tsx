@@ -71,7 +71,7 @@ export default function VayTienGiauHayPhasanPage() {
         </p>
 
         <section className="space-y-5">
-          <h3 className="text-2xl font-bold text-stone-900">Hai cách dùng nợ</h3>
+          <h3 className="text-2xl font-bold text-stone-900 dark:text-stone-100">Hai cách dùng nợ</h3>
           <p>
             Cách thứ nhất: vay để mua điện thoại mới, đi du lịch, mua quần áo, hoặc lấp đầy khoảng trống giữa thu nhập và mong muốn tiêu dùng. Tài sản mua về mất giá nhanh, trong khi khoản nợ và lãi tích lũy theo hướng ngược lại. Đây là con đường dẫn đến bẫy nợ.
           </p>
@@ -92,7 +92,7 @@ export default function VayTienGiauHayPhasanPage() {
         </section>
 
         <section className="space-y-5">
-          <h3 className="text-2xl font-bold text-stone-900">Bẫy nợ: khi nợ tự nhân</h3>
+          <h3 className="text-2xl font-bold text-stone-900 dark:text-stone-100">Bẫy nợ: khi nợ tự nhân</h3>
           <p>
             Bẫy nợ bắt đầu từ một điểm đơn giản: thu nhập không đủ để trả cả gốc lẫn lãi. Lúc đó, người ta phải vay mới để trả lãi cũ.
           </p>
@@ -105,7 +105,7 @@ export default function VayTienGiauHayPhasanPage() {
         </section>
 
         <section className="space-y-5">
-          <h3 className="text-2xl font-bold text-stone-900">Ngưỡng an toàn và cách đánh giá bản thân</h3>
+          <h3 className="text-2xl font-bold text-stone-900 dark:text-stone-100">Ngưỡng an toàn và cách đánh giá bản thân</h3>
           <p>
             Trước khi vay bất kỳ khoản nào, hãy tính tỷ lệ nợ trên thu nhập:
           </p>
@@ -128,7 +128,7 @@ export default function VayTienGiauHayPhasanPage() {
         </section>
 
         <section className="space-y-5">
-          <h3 className="text-2xl font-bold text-stone-900">Chiến lược của người dùng nợ hiệu quả</h3>
+          <h3 className="text-2xl font-bold text-stone-900 dark:text-stone-100">Chiến lược của người dùng nợ hiệu quả</h3>
           <p>
             Nhiều người thành công về tài chính dùng chiến lược đơn giản: vay với lãi suất thấp nhất có thể (thường bằng thế chấp bất động sản hoặc dựa trên điểm tín dụng tốt), và đầu tư khoản tiền đó vào tài sản có lợi nhuận kỳ vọng cao hơn lãi vay.
           </p>

@@ -71,11 +71,11 @@ const quiz: QuizQuestion[] = [
 export default function Page() {
   return (
     <LessonPageLayout lesson={meta} quiz={quiz}>
-      <h2 className="text-2xl font-bold text-stone-900 mb-2">Ôn Tập WACC</h2>
+      <h2 className="text-2xl font-bold text-stone-900 dark:text-stone-100 mb-2">Ôn Tập WACC</h2>
       <p className="text-stone-600 text-sm mb-6 italic">Không học thuộc công thức - hiểu tại sao WACC hoạt động như vậy</p>
 
       <section className="mb-8">
-        <h3 className="text-lg font-bold text-stone-800 mb-3">WACC - Nhắc lại core formula</h3>
+        <h3 className="text-lg font-bold text-stone-800 dark:text-stone-200 mb-3">WACC - Nhắc lại core formula</h3>
         <div className="bg-stone-900 text-white rounded-xl p-5 text-center mb-4">
           <div className="font-mono text-lg font-bold mb-1">WACC = Ke × We + Kd × (1−t) × Wd</div>
           <p className="text-stone-300 text-sm">Chi phí vốn trung bình có trọng số - phản ánh risk tổng thể của doanh nghiệp</p>
@@ -98,7 +98,7 @@ export default function Page() {
       </section>
 
       <section className="mb-8">
-        <h3 className="text-lg font-bold text-stone-800 mb-3">3 intuitions cốt lõi về WACC</h3>
+        <h3 className="text-lg font-bold text-stone-800 dark:text-stone-200 mb-3">3 intuitions cốt lõi về WACC</h3>
         <div className="space-y-3">
           <div className="border-l-2 border-stone-300 pl-4 space-y-1">
             <div className="font-bold text-stone-800 text-sm">WACC = chi phí cơ hội của vốn</div>
@@ -116,7 +116,7 @@ export default function Page() {
       </section>
 
       <section>
-        <h3 className="text-lg font-bold text-stone-800 mb-3">Quick reminders</h3>
+        <h3 className="text-lg font-bold text-stone-800 dark:text-stone-200 mb-3">Quick reminders</h3>
         <div className="space-y-2">
           {[
             "Ke > Kd(1−t) trong hầu hết mọi trường hợp - equity riskier nên đắt hơn",

@@ -144,7 +144,7 @@ function HangHoaImpactSimulator() {
 export default function Page() {
   return (
     <LessonPageLayout lesson={meta} quiz={quiz}>
-      <h2 className="text-2xl font-bold text-stone-900 mb-2">Hàng hóa cơ bản (Commodity)</h2>
+      <h2 className="text-2xl font-bold text-stone-900 dark:text-stone-100 mb-2">Hàng hóa cơ bản (Commodity)</h2>
       <p className="text-stone-600 text-sm mb-6 italic">Nhóm nguyên liệu chuẩn hóa âm thầm quyết định chi phí và biên lợi nhuận của nhiều ngành.</p>
 
       <section className="mb-8 rounded-xl border border-emerald-100 bg-emerald-50 p-4">
@@ -155,7 +155,7 @@ export default function Page() {
       </section>
 
       <section className="mb-8">
-        <h3 className="text-lg font-bold text-stone-800 mb-3">Hàng hóa cơ bản là gì?</h3>
+        <h3 className="text-lg font-bold text-stone-800 dark:text-stone-200 mb-3">Hàng hóa cơ bản là gì?</h3>
         <p className="text-stone-600 leading-relaxed mb-3">
           Hàng hóa cơ bản (commodity) là hàng hóa <strong>chuẩn hóa</strong>: người mua chủ yếu quan tâm chất lượng đạt chuẩn, không quan tâm nhiều đến thương hiệu. Ví dụ dầu WTI đạt cùng chuẩn thì có thể giao dịch như nhau; vàng 99.9% từ nhiều nơi vẫn tương đương về mặt hàng hóa.
         </p>
@@ -167,7 +167,7 @@ export default function Page() {
       </section>
 
       <section className="mb-8">
-        <h3 className="text-lg font-bold text-stone-800 mb-3">4 nhóm hàng hóa cơ bản chính</h3>
+        <h3 className="text-lg font-bold text-stone-800 dark:text-stone-200 mb-3">4 nhóm hàng hóa cơ bản chính</h3>
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           {CATEGORIES.map(cat => (
             <div key={cat.name} className="bg-stone-50 rounded-xl p-4 border border-stone-200">
@@ -194,7 +194,7 @@ export default function Page() {
       <HangHoaImpactSimulator />
 
       <section className="mb-8">
-        <h3 className="text-lg font-bold text-stone-800 mb-3">Giá giao ngay và giá tương lai</h3>
+        <h3 className="text-lg font-bold text-stone-800 dark:text-stone-200 mb-3">Giá giao ngay và giá tương lai</h3>
         <div className="grid grid-cols-2 gap-4 mb-4">
           <div className="bg-stone-800 text-white rounded-xl p-4">
             <div className="font-bold text-stone-700 mb-1 text-sm">Giá giao ngay (Spot Price)</div>
@@ -221,7 +221,7 @@ export default function Page() {
       </section>
 
       <section className="mb-8">
-        <h3 className="text-lg font-bold text-stone-800 mb-3">Cách phân tích: hưởng lợi hay bị hại?</h3>
+        <h3 className="text-lg font-bold text-stone-800 dark:text-stone-200 mb-3">Cách phân tích: hưởng lợi hay bị hại?</h3>
         <p className="text-stone-600 text-sm mb-4">Khi đọc tin tức hàng hóa, câu hỏi đầu tiên là: <strong>công ty này bị động nhận giá thị trường, hay có quyền tự đặt giá bán?</strong></p>
         <div className="overflow-x-auto">
           <table className="w-full text-sm">
@@ -251,7 +251,7 @@ export default function Page() {
       </section>
 
       <section>
-        <h3 className="text-lg font-bold text-stone-800 mb-3">Phòng vệ rủi ro giá - công cụ bảo vệ biên lợi nhuận</h3>
+        <h3 className="text-lg font-bold text-stone-800 dark:text-stone-200 mb-3">Phòng vệ rủi ro giá - công cụ bảo vệ biên lợi nhuận</h3>
         <p className="text-stone-600 text-sm leading-relaxed mb-3">
           Doanh nghiệp phụ thuộc hàng hóa không thể kiểm soát giá thị trường, nhưng có thể <strong>khóa giá trước</strong> thông qua hợp đồng tương lai hoặc quyền chọn:
         </p>

@@ -55,11 +55,11 @@ const quiz: QuizQuestion[] = [
 export default function Page() {
   return (
     <LessonPageLayout lesson={meta} quiz={quiz}>
-      <h2 className="text-2xl font-bold text-stone-900 mb-2">Interim Statement & Comprehensive Income</h2>
+      <h2 className="text-2xl font-bold text-stone-900 dark:text-stone-100 mb-2">Interim Statement & Comprehensive Income</h2>
       <p className="text-stone-600 text-sm mb-6 italic">Lợi nhuận đầy đủ = Net Income + các khoản chưa realized qua P&L</p>
 
       <section className="mb-8">
-        <h3 className="text-lg font-bold text-stone-800 mb-3"> Công thức cốt lõi</h3>
+        <h3 className="text-lg font-bold text-stone-800 dark:text-stone-200 mb-3"> Công thức cốt lõi</h3>
         <div className="bg-stone-50 text-white rounded-xl p-5 text-center mb-4">
           <div className="font-mono text-xl font-bold mb-1">Comprehensive Income = Net Income + OCI</div>
           <p className="text-stone-700 text-sm">Other Comprehensive Income = lãi/lỗ chưa qua P&L thông thường</p>
@@ -95,7 +95,7 @@ export default function Page() {
       </section>
 
       <section className="mb-8">
-        <h3 className="text-lg font-bold text-stone-800 mb-3">📋 4 thành phần chính của OCI</h3>
+        <h3 className="text-lg font-bold text-stone-800 dark:text-stone-200 mb-3">📋 4 thành phần chính của OCI</h3>
         <div className="space-y-3">
           {[
             {
@@ -134,7 +134,7 @@ export default function Page() {
       </section>
 
       <section className="mb-8">
-        <h3 className="text-lg font-bold text-stone-800 mb-3">📅 Interim Statements - tại sao đọc quý?</h3>
+        <h3 className="text-lg font-bold text-stone-800 dark:text-stone-200 mb-3">📅 Interim Statements - tại sao đọc quý?</h3>
         <div className="grid grid-cols-2 gap-3">
           {[
             { title: "Detect seasonality", desc: "Retail: Q4 mạnh; Construction: Q2-Q3; Banking: Q1 thường chậm. Pattern quan trọng hơn số tuyệt đối." },
@@ -151,7 +151,7 @@ export default function Page() {
       </section>
 
       <section>
-        <h3 className="text-lg font-bold text-stone-800 mb-3">🔍 AOCI trong Equity - đọc Balance Sheet</h3>
+        <h3 className="text-lg font-bold text-stone-800 dark:text-stone-200 mb-3">🔍 AOCI trong Equity - đọc Balance Sheet</h3>
         <div className="bg-stone-800 text-white rounded-xl p-5 font-mono text-sm">
           <div className="text-stone-500 text-xs mb-3">{ '// Phần Equity trên Balance Sheet' }</div>
           <div className="flex justify-between mb-1"><span className="text-white">Common Stock</span><span className="text-stone-300">500M</span></div>

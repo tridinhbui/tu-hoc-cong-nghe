@@ -66,7 +66,7 @@ const quiz: QuizQuestion[] = [
 export default function Page() {
   return (
     <LessonPageLayout lesson={meta} quiz={quiz}>
-      <h2 className="text-2xl font-bold text-stone-900 mb-2">Đánh giá thương vụ đầu tư - thực chiến</h2>
+      <h2 className="text-2xl font-bold text-stone-900 dark:text-stone-100 mb-2">Đánh giá thương vụ đầu tư - thực chiến</h2>
       <p className="text-stone-600 text-sm mb-6 italic">Khung phân tích một thương vụ như nhà đầu tư tư nhân: hiểu doanh nghiệp, đọc số, soi rủi ro và chọn điểm thoát.</p>
 
       <section className="mb-8 rounded-xl border border-orange-100 bg-orange-50 p-4">
@@ -77,7 +77,7 @@ export default function Page() {
       </section>
 
       <section className="mb-8">
-        <h3 className="text-lg font-bold text-stone-800 mb-3">Khung 5 bước phân tích thương vụ</h3>
+        <h3 className="text-lg font-bold text-stone-800 dark:text-stone-200 mb-3">Khung 5 bước phân tích thương vụ</h3>
         <div className="space-y-3">
           {[
             {
@@ -119,7 +119,7 @@ export default function Page() {
       </section>
 
       <section className="mb-8">
-        <h3 className="text-lg font-bold text-stone-800 mb-3">Nguồn tạo lợi nhuận trong LBO</h3>
+        <h3 className="text-lg font-bold text-stone-800 dark:text-stone-200 mb-3">Nguồn tạo lợi nhuận trong LBO</h3>
         <div className="space-y-2">
           {[
             { title: "Tăng lợi nhuận vận hành", desc: "Doanh thu tăng hoặc biên lợi nhuận tốt hơn → EBITDA cao hơn" },
@@ -135,7 +135,7 @@ export default function Page() {
       </section>
 
       <section className="mb-8">
-        <h3 className="text-lg font-bold text-stone-800 mb-3">Câu hỏi phỏng vấn thực chiến</h3>
+        <h3 className="text-lg font-bold text-stone-800 dark:text-stone-200 mb-3">Câu hỏi phỏng vấn thực chiến</h3>
         <div className="space-y-3">
           {[
             {
@@ -160,7 +160,7 @@ export default function Page() {
       </section>
 
       <section>
-        <h3 className="text-lg font-bold text-stone-800 mb-3">Dấu hiệu cảnh báo cần chú ý</h3>
+        <h3 className="text-lg font-bold text-stone-800 dark:text-stone-200 mb-3">Dấu hiệu cảnh báo cần chú ý</h3>
         <div className="border-l-2 border-stone-300 pl-4 space-y-2">
           <div className="space-y-1 text-sm text-stone-700">
             {[

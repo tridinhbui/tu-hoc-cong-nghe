@@ -60,13 +60,13 @@ const quiz: QuizQuestion[] = [
 export default function Page() {
   return (
     <LessonPageLayout lesson={meta} quiz={quiz}>
-      <h2 className="text-2xl font-bold text-stone-900 mb-2">Dự án 80 triệu USD - có đáng xuống tiền?</h2>
+      <h2 className="text-2xl font-bold text-stone-900 dark:text-stone-100 mb-2">Dự án 80 triệu USD - có đáng xuống tiền?</h2>
       <p className="text-stone-600 text-sm mb-6 italic">
         Khi làm quản lý hoặc chủ doanh nghiệp, câu hỏi &quot;công ty định rót tiền vào một dự án/hệ thống/dây chuyền mới, liệu có đáng không&quot; luôn cần trả lời bằng con số cụ thể - không phải cảm tính.
       </p>
 
       <section className="mb-8">
-        <h3 className="text-lg font-bold text-stone-800 mb-3">Đề bài</h3>
+        <h3 className="text-lg font-bold text-stone-800 dark:text-stone-200 mb-3">Đề bài</h3>
         <p className="text-sm text-stone-700 leading-relaxed mb-2">
           Doanh nghiệp muốn đầu tư mở nhà máy mới với chi phí ban đầu (Năm 0) là <strong>80 triệu USD</strong>.
           Chi phí vốn r = <strong>8%</strong> (tương đương lãi suất vay dài hạn hoặc tỷ suất sinh lời tối thiểu doanh nghiệp kỳ vọng).
@@ -77,7 +77,7 @@ export default function Page() {
       </section>
 
       <section className="mb-8">
-        <h3 className="text-lg font-bold text-stone-800 mb-3">Bảng dòng tiền &amp; kết quả</h3>
+        <h3 className="text-lg font-bold text-stone-800 dark:text-stone-200 mb-3">Bảng dòng tiền &amp; kết quả</h3>
         <div className="bg-stone-800 text-white rounded-xl p-5 font-mono text-xs overflow-x-auto">
           <div className="text-stone-500 mb-2">{"// r = 8%"}</div>
           <table className="w-full min-w-[480px] border-collapse">
@@ -132,7 +132,7 @@ export default function Page() {
       </section>
 
       <section className="mb-8">
-        <h3 className="text-lg font-bold text-stone-800 mb-3">Có đáng đầu tư không?</h3>
+        <h3 className="text-lg font-bold text-stone-800 dark:text-stone-200 mb-3">Có đáng đầu tư không?</h3>
         <div className="space-y-4">
           <div className="bg-emerald-50 border border-emerald-200 rounded-xl p-4">
             <div className="font-bold text-emerald-800 mb-1">1. NPV = 2,69 triệu USD (&gt; 0) → ĐÁNG ĐẦU TƯ</div>
@@ -154,7 +154,7 @@ export default function Page() {
       </section>
 
       <section className="mb-8">
-        <h3 className="text-lg font-bold text-stone-800 mb-3">Sau bao lâu thì có tiền (hòa vốn)?</h3>
+        <h3 className="text-lg font-bold text-stone-800 dark:text-stone-200 mb-3">Sau bao lâu thì có tiền (hòa vốn)?</h3>
         <div className="bg-white border border-stone-200 rounded-xl p-4 font-mono text-xs mb-3">
           <div className="flex justify-between mb-1"><span>Tổng dòng tiền 4 năm đầu</span><span className="text-stone-700">15+17+18+25 = 75</span></div>
           <div className="flex justify-between mb-1"><span>Còn thiếu so với vốn 80tr</span><span className="text-stone-700">5 triệu</span></div>
@@ -167,7 +167,7 @@ export default function Page() {
       </section>
 
       <section>
-        <h3 className="text-lg font-bold text-stone-800 mb-3">Tổng số tiền thu về là bao nhiêu?</h3>
+        <h3 className="text-lg font-bold text-stone-800 dark:text-stone-200 mb-3">Tổng số tiền thu về là bao nhiêu?</h3>
         <div className="space-y-2">
           {[
             "Con số thực thu (chưa chiết khấu): tổng dòng tiền 5 năm là 107 triệu USD. Trừ 80 triệu vốn gốc, doanh nghiệp thu về 27 triệu USD tiền lãi thực tế.",

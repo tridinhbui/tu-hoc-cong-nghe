@@ -71,11 +71,11 @@ const quiz: QuizQuestion[] = [
 export default function Page() {
   return (
     <LessonPageLayout lesson={meta} quiz={quiz}>
-      <h2 className="text-2xl font-bold text-stone-900 mb-2">Đọc Dòng Tiền Vingroup Q4/2024</h2>
+      <h2 className="text-2xl font-bold text-stone-900 dark:text-stone-100 mb-2">Đọc Dòng Tiền Vingroup Q4/2024</h2>
       <p className="text-stone-600 text-sm mb-6 italic">Case study thực tế: tập đoàn BĐS-hạ tầng xoay vòng 160.000 tỷ vốn vay - bình thường hay đáng lo?</p>
 
       <section className="mb-8">
-        <h3 className="text-lg font-bold text-stone-800 mb-3">📋 Số liệu từ BCLCTT Q4/2024</h3>
+        <h3 className="text-lg font-bold text-stone-800 dark:text-stone-200 mb-3">📋 Số liệu từ BCLCTT Q4/2024</h3>
         <div className="bg-stone-800 text-white rounded-xl p-5 font-mono text-sm space-y-2">
           <div className="text-stone-500 text-xs mb-3">{ '// Báo cáo Lưu chuyển Tiền tệ - Dòng tiền từ Tài chính (CFF)' }</div>
           <div className="flex justify-between">
@@ -104,7 +104,7 @@ export default function Page() {
       </section>
 
       <section className="mb-8">
-        <h3 className="text-lg font-bold text-stone-800 mb-3">🔍 Đọc hiểu: 165.900 tỷ vay có đáng lo không?</h3>
+        <h3 className="text-lg font-bold text-stone-800 dark:text-stone-200 mb-3">🔍 Đọc hiểu: 165.900 tỷ vay có đáng lo không?</h3>
         <div className="bg-cyan-50 border border-cyan-200 rounded-xl p-4 mb-4">
           <p className="text-sm text-stone-700 leading-relaxed">
             <strong>Đừng nhìn gross borrowing một mình.</strong> 165.900 tỷ là gross - nhưng net chỉ là 9.720 tỷ. Phần lớn là <strong>refinancing</strong>: vay mới để trả khoản cũ đến hạn. Đây là đặc trưng bình thường của tập đoàn BĐS-hạ tầng có nhiều dự án dài hạn.
@@ -137,7 +137,7 @@ export default function Page() {
       </section>
 
       <section className="mb-8">
-        <h3 className="text-lg font-bold text-stone-800 mb-3"> 3 dòng quan trọng nhất khi đọc BĐS/Holding</h3>
+        <h3 className="text-lg font-bold text-stone-800 dark:text-stone-200 mb-3"> 3 dòng quan trọng nhất khi đọc BĐS/Holding</h3>
         <div className="space-y-3">
           {[
             { n: "1", title: "Tiền vay mới vs Tiền trả nợ gốc", why: "Xem tỷ lệ refinancing - net borrowing tăng hay giảm? Gross cao nhưng net thấp là bình thường.", icon: "" },
@@ -156,7 +156,7 @@ export default function Page() {
       </section>
 
       <section className="mb-8">
-        <h3 className="text-lg font-bold text-stone-800 mb-3">🚦 Framework phân tích BĐS leverage cao</h3>
+        <h3 className="text-lg font-bold text-stone-800 dark:text-stone-200 mb-3">🚦 Framework phân tích BĐS leverage cao</h3>
         <div className="grid grid-cols-2 gap-3">
           {[
             { icon: "", label: "Tín hiệu tốt", items: ["Cash buffer tăng YoY", "OCF dương và growing", "Refinancing được thực hiện trơn tru", "Bán hàng/bàn giao tiến độ đúng kế hoạch"] },
@@ -177,7 +177,7 @@ export default function Page() {
       </section>
 
       <section>
-        <h3 className="text-lg font-bold text-stone-800 mb-3"> Bài học</h3>
+        <h3 className="text-lg font-bold text-stone-800 dark:text-stone-200 mb-3"> Bài học</h3>
         <div className="bg-cyan-600 text-white rounded-xl p-5">
           <p className="font-bold mb-2">Với BĐS và holding leverage cao: đừng chỉ nhìn lợi nhuận.</p>
           <p className="text-cyan-200 text-sm">Chất lượng tài chính phụ thuộc vào khả năng xoay vòng nợ, bán hàng thu tiền, và duy trì thanh khoản - những thứ chỉ thấy được khi đọc Cash Flow Statement.</p>
