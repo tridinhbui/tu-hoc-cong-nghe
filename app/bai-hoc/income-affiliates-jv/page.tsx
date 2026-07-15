@@ -60,7 +60,7 @@ const quiz: QuizQuestion[] = [
 export default function Page() {
   return (
     <LessonPageLayout lesson={meta} quiz={quiz}>
-      <h2 className="text-2xl font-bold text-stone-900 mb-2">Thu nhập từ công ty liên kết và liên doanh</h2>
+      <h2 className="text-2xl font-bold text-stone-900 dark:text-stone-100 mb-2">Thu nhập từ công ty liên kết và liên doanh</h2>
       <p className="text-stone-600 text-sm mb-6 italic">Ba ngưỡng sở hữu, ba cách kế toán hoàn toàn khác nhau</p>
 
       <section className="mb-8 rounded-xl border border-purple-100 bg-purple-50 p-4">
@@ -71,7 +71,7 @@ export default function Page() {
       </section>
 
       <section className="mb-8">
-        <h3 className="text-lg font-bold text-stone-800 mb-3"> 3 ngưỡng quan trọng</h3>
+        <h3 className="text-lg font-bold text-stone-800 dark:text-stone-200 mb-3"> 3 ngưỡng quan trọng</h3>
         <div className="space-y-3">
           {[
             {
@@ -109,7 +109,7 @@ export default function Page() {
       </section>
 
       <section className="mb-8">
-        <h3 className="text-lg font-bold text-stone-800 mb-3">Phương pháp vốn chủ sở hữu (Equity Method) hoạt động thế nào?</h3>
+        <h3 className="text-lg font-bold text-stone-800 dark:text-stone-200 mb-3">Phương pháp vốn chủ sở hữu (Equity Method) hoạt động thế nào?</h3>
         <div className="bg-stone-800 text-white rounded-xl p-5 font-mono text-sm space-y-2">
           <div className="text-stone-500 text-xs mb-2">{ '// Ví dụ: Sở hữu 35% liên doanh, liên doanh lãi = 100M USD' }</div>
           <div className="flex justify-between mb-1">
@@ -132,7 +132,7 @@ export default function Page() {
       </section>
 
       <section className="mb-8">
-        <h3 className="text-lg font-bold text-stone-800 mb-3">🏢 Ví dụ thực tế ở Việt Nam</h3>
+        <h3 className="text-lg font-bold text-stone-800 dark:text-stone-200 mb-3">🏢 Ví dụ thực tế ở Việt Nam</h3>
         <div className="space-y-3">
           {[
             {
@@ -167,7 +167,7 @@ export default function Page() {
       </section>
 
       <section className="mb-8">
-        <h3 className="text-lg font-bold text-stone-800 mb-3">Ảnh hưởng lên báo cáo tài chính</h3>
+        <h3 className="text-lg font-bold text-stone-800 dark:text-stone-200 mb-3">Ảnh hưởng lên báo cáo tài chính</h3>
         <div className="overflow-x-auto">
           <table className="w-full text-xs border-collapse">
             <thead>
@@ -197,7 +197,7 @@ export default function Page() {
       </section>
 
       <section>
-        <h3 className="text-lg font-bold text-stone-800 mb-3">Điểm cần nhớ khi đọc BCTC</h3>
+        <h3 className="text-lg font-bold text-stone-800 dark:text-stone-200 mb-3">Điểm cần nhớ khi đọc BCTC</h3>
         <div className="space-y-2">
           {[
             "Tìm dòng lãi/lỗ từ công ty liên kết hoặc liên doanh trong báo cáo lãi lỗ.",

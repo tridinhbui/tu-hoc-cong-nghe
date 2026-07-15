@@ -72,7 +72,7 @@ export default function RuiRoLaGiPage() {
         </p>
 
         <section className="space-y-5">
-          <h3 className="text-2xl font-bold text-stone-900">Rủi ro là gì trong tài chính</h3>
+          <h3 className="text-2xl font-bold text-stone-900 dark:text-stone-100">Rủi ro là gì trong tài chính</h3>
           <p>
             Rủi ro trong tài chính không phải là sự chắc chắn về tổn thất. Nó là <strong className="text-stone-900">sự không chắc chắn về kết quả</strong>: kết quả thực tế có thể tốt hơn hoặc tệ hơn so với kỳ vọng.
           </p>
@@ -85,7 +85,7 @@ export default function RuiRoLaGiPage() {
         </section>
 
         <section className="space-y-5">
-          <h3 className="text-2xl font-bold text-stone-900">Hai loại rủi ro cần phân biệt</h3>
+          <h3 className="text-2xl font-bold text-stone-900 dark:text-stone-100">Hai loại rủi ro cần phân biệt</h3>
           <p>
             Lý thuyết danh mục đầu tư hiện đại phân chia rủi ro thành hai loại:
           </p>
@@ -106,7 +106,7 @@ export default function RuiRoLaGiPage() {
         </section>
 
         <section className="space-y-5">
-          <h3 className="text-2xl font-bold text-stone-900">Mối quan hệ giữa rủi ro và lợi nhuận</h3>
+          <h3 className="text-2xl font-bold text-stone-900 dark:text-stone-100">Mối quan hệ giữa rủi ro và lợi nhuận</h3>
           <p>
             Đây là một trong những quy luật cơ bản nhất của tài chính: <strong className="text-stone-900">lợi nhuận kỳ vọng cao hơn đi kèm với rủi ro cao hơn</strong>. Không có ngoại lệ bền vững nào.
           </p>
@@ -126,7 +126,7 @@ export default function RuiRoLaGiPage() {
         </section>
 
         <section className="space-y-5">
-          <h3 className="text-2xl font-bold text-stone-900">Đánh giá khả năng chịu rủi ro của bản thân</h3>
+          <h3 className="text-2xl font-bold text-stone-900 dark:text-stone-100">Đánh giá khả năng chịu rủi ro của bản thân</h3>
           <p>
             Không có mức rủi ro đúng hay sai tuyệt đối, chỉ có mức phù hợp hay không phù hợp với từng người tại từng thời điểm. Khả năng chịu rủi ro phụ thuộc vào:
           </p>

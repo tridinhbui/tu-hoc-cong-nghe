@@ -116,11 +116,11 @@ const RISKS = [
 export default function Page() {
   return (
     <LessonPageLayout lesson={meta} quiz={quiz}>
-      <h2 className="text-2xl font-bold text-stone-900 mb-2">Phân loại Rủi ro Tài chính</h2>
+      <h2 className="text-2xl font-bold text-stone-900 dark:text-stone-100 mb-2">Phân loại Rủi ro Tài chính</h2>
       <p className="text-stone-500 text-sm mb-8">Nhìn rủi ro phía sau doanh nghiệp trước khi đầu tư</p>
 
       <section className="mb-10">
-        <h3 className="text-base font-bold text-stone-800 mb-4 uppercase tracking-wide text-xs">Tại sao cần học về rủi ro?</h3>
+        <h3 className="text-base font-bold text-stone-800 dark:text-stone-200 mb-4 uppercase tracking-wide text-xs">Tại sao cần học về rủi ro?</h3>
         <p className="text-stone-600 leading-relaxed mb-3">
           Nhìn lại các case tại Việt Nam: <strong>Tân Hoàng Minh</strong> là bài học về trái phiếu doanh nghiệp. <strong>Vạn Thịnh Phát</strong> là bài học về hệ sinh thái, ngân hàng và niềm tin. <strong>FLC/Faros</strong> là bài học về cổ phiếu và thao túng giá.
         </p>
@@ -130,7 +130,7 @@ export default function Page() {
       </section>
 
       <section className="mb-10">
-        <h3 className="text-base font-bold text-stone-800 mb-4 uppercase tracking-wide text-xs">6 loại rủi ro cần nhớ</h3>
+        <h3 className="text-base font-bold text-stone-800 dark:text-stone-200 mb-4 uppercase tracking-wide text-xs">6 loại rủi ro cần nhớ</h3>
         <div className="space-y-4">
           {RISKS.map(r => (
             <div key={r.name} className="border border-stone-200 rounded-xl p-4">
@@ -147,7 +147,7 @@ export default function Page() {
       </section>
 
       <section className="mb-10">
-        <h3 className="text-base font-bold text-stone-800 mb-4 uppercase tracking-wide text-xs">Rủi ro kéo nhau như domino</h3>
+        <h3 className="text-base font-bold text-stone-800 dark:text-stone-200 mb-4 uppercase tracking-wide text-xs">Rủi ro kéo nhau như domino</h3>
         <div className="space-y-2 text-sm text-stone-600">
           <div> - Lãi suất tăng → chi phí vay tăng</div>
           <div> - Dòng tiền yếu đi → credit risk tăng</div>
@@ -157,7 +157,7 @@ export default function Page() {
       </section>
 
       <section>
-        <h3 className="text-base font-bold text-stone-800 mb-4 uppercase tracking-wide text-xs">Risk Modeling - một số khái niệm</h3>
+        <h3 className="text-base font-bold text-stone-800 dark:text-stone-200 mb-4 uppercase tracking-wide text-xs">Risk Modeling - một số khái niệm</h3>
         <div className="space-y-2">
           {[
             { term: "PD - Probability of Default", def: "Xác suất bên vay không trả được nợ" },

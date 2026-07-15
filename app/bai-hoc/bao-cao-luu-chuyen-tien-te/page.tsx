@@ -114,7 +114,7 @@ export default function BaoLuuChuyenPage() {
       <div className="space-y-8 text-stone-700 leading-relaxed">
 
         <section className="space-y-4">
-          <h2 className="text-xl font-bold text-stone-900">Lợi nhuận là câu chuyện kế toán, tiền mặt là sức khỏe thật</h2>
+          <h2 className="text-xl font-bold text-stone-900 dark:text-stone-100">Lợi nhuận là câu chuyện kế toán, tiền mặt là sức khỏe thật</h2>
           <p>Câu này tóm gọn lý do Báo cáo Lưu chuyển Tiền tệ tồn tại. Lợi nhuận trên báo cáo lãi lỗ có thể bị ảnh hưởng bởi chính sách kế toán như ghi nhận doanh thu, khấu hao, dự phòng nợ xấu. Tiền mặt trong tài khoản thì khó “trang điểm” hơn.</p>
           <p>BCLCTT trả lời câu hỏi đơn giản nhưng quan trọng nhất: <strong>tiền đã đi đâu trong kỳ này?</strong></p>
           <div className="rounded-xl border border-cyan-100 bg-cyan-50 p-4">
@@ -126,7 +126,7 @@ export default function BaoLuuChuyenPage() {
         </section>
 
         <section className="space-y-4">
-          <h2 className="text-xl font-bold text-stone-900">Tại sao lợi nhuận ≠ Tiền mặt?</h2>
+          <h2 className="text-xl font-bold text-stone-900 dark:text-stone-100">Tại sao lợi nhuận ≠ Tiền mặt?</h2>
           <p>Bài 1 đã đề cập vấn đề này. Trong BCLCTT, chúng ta đi sâu hơn vào cơ chế đối chiếu giữa lợi nhuận ròng và dòng tiền kinh doanh theo phương pháp gián tiếp:</p>
           <div className="space-y-2 font-mono text-sm">
             {[
@@ -144,7 +144,7 @@ export default function BaoLuuChuyenPage() {
         </section>
 
         <section className="space-y-4">
-          <h2 className="text-xl font-bold text-stone-900">Từ lợi nhuận ròng đến dòng tiền kinh doanh - ví dụ</h2>
+          <h2 className="text-xl font-bold text-stone-900 dark:text-stone-100">Từ lợi nhuận ròng đến dòng tiền kinh doanh - ví dụ</h2>
           <div className="bg-stone-900 rounded-2xl p-4 space-y-1.5">
             <div className="text-stone-500 text-xs font-bold uppercase tracking-widest mb-2">Phương pháp gián tiếp (ví dụ minh họa)</div>
             {[
@@ -167,7 +167,7 @@ export default function BaoLuuChuyenPage() {
         </section>
 
         <section className="space-y-4">
-          <h2 className="text-xl font-bold text-stone-900">3 phần của Báo cáo lưu chuyển tiền tệ</h2>
+          <h2 className="text-xl font-bold text-stone-900 dark:text-stone-100">3 phần của Báo cáo lưu chuyển tiền tệ</h2>
           {cashflowSections.map(sec => (
             <div key={sec.key} className="border border-stone-200 rounded-xl p-5 space-y-4">
               <div>
@@ -195,7 +195,7 @@ export default function BaoLuuChuyenPage() {
         </section>
 
         <section className="space-y-4">
-          <h2 className="text-xl font-bold text-stone-900">Tỷ lệ dòng tiền kinh doanh / lợi nhuận ròng</h2>
+          <h2 className="text-xl font-bold text-stone-900 dark:text-stone-100">Tỷ lệ dòng tiền kinh doanh / lợi nhuận ròng</h2>
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
             {[
               { range: "Trên 1.2 lần", tag: "Xuất sắc", desc: "Tiền về nhanh hơn lợi nhuận ghi nhận" },
@@ -212,7 +212,7 @@ export default function BaoLuuChuyenPage() {
         </section>
 
         <section className="space-y-4">
-          <h2 className="text-xl font-bold text-stone-900">Vinamilk - Đọc BCLCTT thực tế</h2>
+          <h2 className="text-xl font-bold text-stone-900 dark:text-stone-100">Vinamilk - Đọc BCLCTT thực tế</h2>
           <div className="bg-stone-900 rounded-2xl p-5 text-sm space-y-3">
             <div className="text-stone-500 text-xs font-bold uppercase tracking-widest">Vinamilk (VNM) - BCLCTT 2023 (ước lượng minh họa)</div>
             {[
@@ -234,7 +234,7 @@ export default function BaoLuuChuyenPage() {
         </section>
 
         <div className="border-l-2 border-stone-300 pl-4 space-y-2">
-          <h3 className="font-bold text-stone-800 mb-3">3 điều cần nhớ</h3>
+          <h3 className="font-bold text-stone-800 dark:text-stone-200 mb-3">3 điều cần nhớ</h3>
           <div className="space-y-1 text-sm text-stone-700">
             <div> - BCLCTT = dòng tiền kinh doanh + dòng tiền đầu tư + dòng tiền tài chính = thay đổi tiền mặt trong kỳ</div>
             <div> - Dòng tiền kinh doanh cao hơn lợi nhuận ròng thường là dấu hiệu chất lượng lợi nhuận tốt</div>

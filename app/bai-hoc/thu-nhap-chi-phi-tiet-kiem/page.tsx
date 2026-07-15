@@ -72,7 +72,7 @@ export default function ThuNhapChiPhiPage() {
         </p>
 
         <section className="space-y-5">
-          <h3 className="text-2xl font-bold text-stone-900">Thu nhập: không chỉ là tiền lương</h3>
+          <h3 className="text-2xl font-bold text-stone-900 dark:text-stone-100">Thu nhập: không chỉ là tiền lương</h3>
           <p>
             Thu nhập là tổng dòng tiền vào trong một khoảng thời gian, từ tất cả các nguồn. Nhiều người chỉ tính lương từ công việc chính, nhưng thu nhập có thể đến từ nhiều nguồn khác nhau:
           </p>
@@ -94,7 +94,7 @@ export default function ThuNhapChiPhiPage() {
         </section>
 
         <section className="space-y-5">
-          <h3 className="text-2xl font-bold text-stone-900">Chi phí: cố định và biến đổi</h3>
+          <h3 className="text-2xl font-bold text-stone-900 dark:text-stone-100">Chi phí: cố định và biến đổi</h3>
           <p>
             Không phải tất cả chi phí đều như nhau. Hiểu được sự khác biệt giữa <strong className="text-stone-900">chi phí cố định</strong> và <strong className="text-stone-900">chi phí biến đổi</strong> là bước đầu tiên để kiểm soát ngân sách.
           </p>
@@ -114,7 +114,7 @@ export default function ThuNhapChiPhiPage() {
         </section>
 
         <section className="space-y-5">
-          <h3 className="text-2xl font-bold text-stone-900">Tiết kiệm: tỷ lệ quan trọng hơn con số</h3>
+          <h3 className="text-2xl font-bold text-stone-900 dark:text-stone-100">Tiết kiệm: tỷ lệ quan trọng hơn con số</h3>
           <p>
             Nhiều người nghĩ rằng tiết kiệm ít vì thu nhập thấp. Nhưng thực tế cho thấy tỷ lệ tiết kiệm quan trọng hơn số tiền tuyệt đối.
           </p>
@@ -127,7 +127,7 @@ export default function ThuNhapChiPhiPage() {
         </section>
 
         <section className="space-y-5">
-          <h3 className="text-2xl font-bold text-stone-900">Tiết kiệm khác đầu tư như thế nào</h3>
+          <h3 className="text-2xl font-bold text-stone-900 dark:text-stone-100">Tiết kiệm khác đầu tư như thế nào</h3>
           <p>
             Tiết kiệm và đầu tư thường bị dùng lẫn lộn, nhưng bản chất khác nhau hoàn toàn.
           </p>
@@ -143,7 +143,7 @@ export default function ThuNhapChiPhiPage() {
         </section>
 
         <section className="space-y-5">
-          <h3 className="text-2xl font-bold text-stone-900">Vòng tròn cơ bản của tài chính cá nhân</h3>
+          <h3 className="text-2xl font-bold text-stone-900 dark:text-stone-100">Vòng tròn cơ bản của tài chính cá nhân</h3>
           <p>
             Bốn khái niệm này tạo thành một vòng tròn: thu nhập vào, chi phí ra, phần còn lại là tiết kiệm, và tiết kiệm được đưa vào đầu tư để tạo ra thu nhập thụ động trong tương lai.
           </p>

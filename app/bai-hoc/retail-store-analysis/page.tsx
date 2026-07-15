@@ -60,11 +60,11 @@ const quiz: QuizQuestion[] = [
 export default function Page() {
   return (
     <LessonPageLayout lesson={meta} quiz={quiz}>
-      <h2 className="text-2xl font-bold text-stone-900 mb-2">Phân tích Doanh nghiệp Bán lẻ</h2>
+      <h2 className="text-2xl font-bold text-stone-900 dark:text-stone-100 mb-2">Phân tích Doanh nghiệp Bán lẻ</h2>
       <p className="text-stone-500 text-sm mb-8">Nhìn đúng một chuỗi: không chỉ đếm số cửa hàng mà phải đọc unit economics của từng điểm bán</p>
 
       <section className="mb-10">
-        <h3 className="text-base font-bold text-stone-800 mb-4 uppercase tracking-wide text-xs">Ý tưởng cốt lõi</h3>
+        <h3 className="text-base font-bold text-stone-800 dark:text-stone-200 mb-4 uppercase tracking-wide text-xs">Ý tưởng cốt lõi</h3>
         <p className="text-stone-600 leading-relaxed mb-4">
           Khi phân tích doanh nghiệp bán lẻ, sai lầm phổ biến nhất là nhìn thấy chuỗi mở thêm hàng trăm cửa hàng rồi kết luận ngay rằng công ty đang tăng trưởng mạnh. Trong bán lẻ, <strong>tăng số cửa hàng chỉ là tăng "container"</strong>; thứ quyết định giá trị là mỗi container đó tạo ra bao nhiêu doanh thu, bao nhiêu lợi nhuận, quay vòng hàng nhanh hay chậm, và mất bao lâu để hoàn vốn.
         </p>
@@ -74,7 +74,7 @@ export default function Page() {
       </section>
 
       <section className="mb-10">
-        <h3 className="text-base font-bold text-stone-800 mb-4 uppercase tracking-wide text-xs">Framework 4 câu hỏi phải trả lời</h3>
+        <h3 className="text-base font-bold text-stone-800 dark:text-stone-200 mb-4 uppercase tracking-wide text-xs">Framework 4 câu hỏi phải trả lời</h3>
         <div className="grid gap-3 sm:grid-cols-2">
           {[
             {
@@ -103,7 +103,7 @@ export default function Page() {
       </section>
 
       <section className="mb-10">
-        <h3 className="text-base font-bold text-stone-800 mb-4 uppercase tracking-wide text-xs">Bộ chỉ số cần theo dõi</h3>
+        <h3 className="text-base font-bold text-stone-800 dark:text-stone-200 mb-4 uppercase tracking-wide text-xs">Bộ chỉ số cần theo dõi</h3>
         <div className="space-y-4">
           <div className="border-l-2 border-amber-300 pl-4 py-1">
             <div className="font-bold text-stone-800 text-sm">Store Productivity</div>
@@ -133,7 +133,7 @@ export default function Page() {
       </section>
 
       <section className="mb-10">
-        <h3 className="text-base font-bold text-stone-800 mb-4 uppercase tracking-wide text-xs">Ví dụ đơn giản: cùng mở 100 cửa hàng, chất lượng rất khác</h3>
+        <h3 className="text-base font-bold text-stone-800 dark:text-stone-200 mb-4 uppercase tracking-wide text-xs">Ví dụ đơn giản: cùng mở 100 cửa hàng, chất lượng rất khác</h3>
         <div className="overflow-x-auto rounded-xl border border-stone-200">
           <table className="w-full min-w-[640px] text-sm">
             <thead className="bg-stone-100 text-stone-700">
@@ -167,7 +167,7 @@ export default function Page() {
       </section>
 
       <section className="mb-10">
-        <h3 className="text-base font-bold text-stone-800 mb-4 uppercase tracking-wide text-xs">Những bẫy dễ dính khi đọc doanh nghiệp bán lẻ</h3>
+        <h3 className="text-base font-bold text-stone-800 dark:text-stone-200 mb-4 uppercase tracking-wide text-xs">Những bẫy dễ dính khi đọc doanh nghiệp bán lẻ</h3>
         <div className="space-y-3">
           {[
             {
@@ -196,7 +196,7 @@ export default function Page() {
       </section>
 
       <section>
-        <h3 className="text-base font-bold text-stone-800 mb-4 uppercase tracking-wide text-xs">Checklist cuối cùng</h3>
+        <h3 className="text-base font-bold text-stone-800 dark:text-stone-200 mb-4 uppercase tracking-wide text-xs">Checklist cuối cùng</h3>
         <div className="rounded-2xl bg-stone-900 p-5 text-white">
           <p className="font-bold mb-3">Trước khi kết luận một chuỗi bán lẻ là tốt, hãy tự hỏi:</p>
           <div className="space-y-2 text-sm text-stone-300">

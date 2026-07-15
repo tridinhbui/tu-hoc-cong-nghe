@@ -72,7 +72,7 @@ export default function DonBayTaiChinhPage() {
         </p>
 
         <section className="space-y-5">
-          <h3 className="text-2xl font-bold text-stone-900">Cơ chế khuếch đại của đòn bẩy</h3>
+          <h3 className="text-2xl font-bold text-stone-900 dark:text-stone-100">Cơ chế khuếch đại của đòn bẩy</h3>
           <p>
             Khi bạn mua tài sản hoàn toàn bằng vốn tự có, lợi nhuận bằng với mức tăng giá tài sản. Nhưng khi dùng đòn bẩy, tức là dùng một phần vốn vay để mua, lợi nhuận trên vốn tự có được khuếch đại theo tỷ lệ đòn bẩy.
           </p>
@@ -97,7 +97,7 @@ export default function DonBayTaiChinhPage() {
         </section>
 
         <section className="space-y-5">
-          <h3 className="text-2xl font-bold text-stone-900">Rủi ro đặc thù: margin call và âm vốn</h3>
+          <h3 className="text-2xl font-bold text-stone-900 dark:text-stone-100">Rủi ro đặc thù: margin call và âm vốn</h3>
           <p>
             Đòn bẩy không chỉ khuếch đại tổn thất, nó còn tạo ra những rủi ro không tồn tại khi đầu tư thuần vốn tự có.
           </p>
@@ -110,7 +110,7 @@ export default function DonBayTaiChinhPage() {
         </section>
 
         <section className="space-y-5">
-          <h3 className="text-2xl font-bold text-stone-900">Đòn bẩy khi nào hợp lý</h3>
+          <h3 className="text-2xl font-bold text-stone-900 dark:text-stone-100">Đòn bẩy khi nào hợp lý</h3>
           <p>
             Đòn bẩy không phải luôn sai. Nó hợp lý khi:
           </p>

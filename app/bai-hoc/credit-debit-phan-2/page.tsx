@@ -102,11 +102,11 @@ const TRANSACTIONS = [
 export default function Page() {
   return (
     <LessonPageLayout lesson={meta} quiz={quiz}>
-      <h2 className="text-2xl font-bold text-stone-900 mb-2">Debit &amp; Credit - Phần 2: Thực Chiến</h2>
+      <h2 className="text-2xl font-bold text-stone-900 dark:text-stone-100 mb-2">Debit &amp; Credit - Phần 2: Thực Chiến</h2>
       <p className="text-stone-600 text-sm mb-6 italic">Từ lý thuyết → bút toán thực tế cho các giao dịch phổ biến nhất</p>
 
       <section className="mb-8">
-        <h3 className="text-lg font-bold text-stone-800 mb-3">💡 Nói đơn giản: bút toán kép là gì?</h3>
+        <h3 className="text-lg font-bold text-stone-800 dark:text-stone-200 mb-3">💡 Nói đơn giản: bút toán kép là gì?</h3>
         <div className="bg-stone-50 border border-stone-200 rounded-xl p-4 space-y-3">
           <p className="text-sm text-stone-700 leading-relaxed">
             Mỗi khi tiền hoặc tài sản của bạn di chuyển, nó luôn <strong>đi từ đâu đó đến đâu đó</strong> - không tự nhiên sinh ra hay biến mất. Bút toán kép (double-entry) chỉ đơn giản là ghi lại cả hai đầu của sự di chuyển đó: một vế Dr. (nơi tiền/giá trị đi đến hoặc thứ gì tăng lên) và một vế Cr. (nơi tiền/giá trị đi ra hoặc thứ gì đó khác tăng lên tương ứng).
@@ -124,7 +124,7 @@ export default function Page() {
       </section>
 
       <section className="mb-8">
-        <h3 className="text-lg font-bold text-stone-800 mb-3">3 bước ghi bút toán</h3>
+        <h3 className="text-lg font-bold text-stone-800 dark:text-stone-200 mb-3">3 bước ghi bút toán</h3>
         <div className="space-y-3">
           {[
             { n: 1, title: "Identify accounts affected", desc: "Xác định tài khoản nào bị ảnh hưởng (Cash, Inventory, Revenue, Loan...)" },
@@ -143,7 +143,7 @@ export default function Page() {
       </section>
 
       <section className="my-6">
-        <h3 className="font-bold text-stone-800 mb-4 text-sm">Journal Entry Simulator</h3>
+        <h3 className="font-bold text-stone-800 dark:text-stone-200 mb-4 text-sm">Journal Entry Simulator</h3>
         <div className="space-y-3">
           {TRANSACTIONS.map((tx, i) => (
             <div key={i} className="bg-white rounded-xl border border-stone-200 overflow-hidden">
@@ -167,7 +167,7 @@ export default function Page() {
       </section>
 
       <section className="mb-8">
-        <h3 className="text-lg font-bold text-stone-800 mb-3">Ví dụ tổng hợp: Tháng 1 của startup</h3>
+        <h3 className="text-lg font-bold text-stone-800 dark:text-stone-200 mb-3">Ví dụ tổng hợp: Tháng 1 của startup</h3>
         <div className="space-y-3">
           {[
             { tx: "Cổ đông góp vốn 2 tỷ", dr: "Dr. Cash 2 tỷ", cr: "Cr. Share Capital 2 tỷ" },
@@ -187,7 +187,7 @@ export default function Page() {
       </section>
 
       <section>
-        <h3 className="text-lg font-bold text-stone-800 mb-3">Từ Journal Entries → Báo cáo tài chính</h3>
+        <h3 className="text-lg font-bold text-stone-800 dark:text-stone-200 mb-3">Từ Journal Entries → Báo cáo tài chính</h3>
         <div className="bg-stone-900 text-white rounded-xl p-5">
           <div className="flex items-center gap-3 flex-wrap">
             {["Journal Entries", "→", "General Ledger", "→", "Trial Balance", "→", "Financial Statements"].map((s, i) => (

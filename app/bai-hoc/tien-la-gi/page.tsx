@@ -102,7 +102,7 @@ export default function TienLaGiPage() {
 
         {/* Section 1 */}
         <section className="space-y-5">
-          <h3 className="text-2xl font-bold text-stone-900">Ba chức năng của tiền</h3>
+          <h3 className="text-2xl font-bold text-stone-900 dark:text-stone-100">Ba chức năng của tiền</h3>
           <p>
             Tiền thực hiện ba chức năng cơ bản trong nền kinh tế:
           </p>
@@ -122,7 +122,7 @@ export default function TienLaGiPage() {
 
         {/* Section 2 */}
         <section className="space-y-5">
-          <h3 className="text-2xl font-bold text-stone-900">Tiền khác tài sản như thế nào</h3>
+          <h3 className="text-2xl font-bold text-stone-900 dark:text-stone-100">Tiền khác tài sản như thế nào</h3>
           <p>
             Tiền là một dạng tài sản có <strong className="text-stone-900">tính thanh khoản rất cao</strong>, nghĩa là có thể dùng ngay để thanh toán. Nhưng không phải mọi tài sản đều là tiền.
           </p>
@@ -145,7 +145,7 @@ export default function TienLaGiPage() {
 
         {/* Section 3 */}
         <section className="space-y-5">
-          <h3 className="text-2xl font-bold text-stone-900">Có nhiều tài sản chưa chắc đã an toàn</h3>
+          <h3 className="text-2xl font-bold text-stone-900 dark:text-stone-100">Có nhiều tài sản chưa chắc đã an toàn</h3>
           <p>
             Một người sở hữu căn nhà trị giá 5 tỷ đồng có thể được xem là có tài sản lớn. Nhưng nếu trong tài khoản chỉ còn 5 triệu đồng, người đó vẫn có thể gặp khó khăn khi cần trả chi phí sinh hoạt hoặc thanh toán khoản nợ ngắn hạn. Vấn đề không nằm ở tổng tài sản, mà nằm ở <strong className="text-stone-900">thanh khoản</strong>.
           </p>
@@ -171,7 +171,7 @@ export default function TienLaGiPage() {
 
         {/* Section 4 */}
         <section className="space-y-5">
-          <h3 className="text-2xl font-bold text-stone-900">Tài sản tốt tạo ra dòng tiền</h3>
+          <h3 className="text-2xl font-bold text-stone-900 dark:text-stone-100">Tài sản tốt tạo ra dòng tiền</h3>
           <p>
             Một tài sản tốt không chỉ giữ giá trị mà còn <strong className="text-stone-900">tạo ra dòng tiền trong tương lai</strong>. Nhà cho thuê tạo tiền thuê hàng tháng. Cổ phiếu có thể tạo cổ tức. Trái phiếu tạo lãi định kỳ. Một doanh nghiệp tạo ra lợi nhuận và dòng tiền.
           </p>
@@ -185,7 +185,7 @@ export default function TienLaGiPage() {
 
         {/* Section 5 */}
         <section className="space-y-5">
-          <h3 className="text-2xl font-bold text-stone-900">Tiền mặt và lạm phát</h3>
+          <h3 className="text-2xl font-bold text-stone-900 dark:text-stone-100">Tiền mặt và lạm phát</h3>
           <p>
             Một điểm nhiều người bỏ qua: tiền mặt không phải là nơi trú ẩn an toàn trong dài hạn. Lạm phát làm giảm sức mua của tiền theo từng năm. Nếu lạm phát 6% mỗi năm và bạn giữ 100 triệu trong két, sau 10 năm số tiền đó chỉ còn giá trị tương đương khoảng 56 triệu đồng theo sức mua thực tế.
           </p>

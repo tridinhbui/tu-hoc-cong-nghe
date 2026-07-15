@@ -24,7 +24,7 @@ function shuffledOptions(item: RecallItem, seed: number): { text: string; correc
 // learner to pick which statement matches a concept from a few lessons back
 // - a genuine retrieval test (right/wrong, immediate feedback), not a
 // self-reported "did you remember?" which doesn't actually test recall.
-export default function RecallCard({ items }: { items: RecallItem[] }) {
+export default function RecallCard({ items, title = "Nhớ lại trước khi học tiếp" }: { items: RecallItem[]; title?: string }) {
   const [picked, setPicked] = useState<(number | null)[]>(items.map(() => null));
   const optionSets = useMemo(
     () => items.map((item, i) => shuffledOptions(item, item.fromDay * 31 + i * 7 + 11)),
@@ -35,7 +35,7 @@ export default function RecallCard({ items }: { items: RecallItem[] }) {
     <div className="rounded-2xl border-2 border-amber-200 dark:border-amber-900 bg-amber-50/60 dark:bg-amber-950/20 p-6 space-y-4">
       <div className="flex items-center gap-2 text-xs font-extrabold uppercase tracking-widest text-amber-700 dark:text-amber-400">
         <RotateCcw className="w-3.5 h-3.5" />
-        Nhớ lại trước khi học tiếp
+        {title}
       </div>
       {items.map((item, i) => {
         const options = optionSets[i];

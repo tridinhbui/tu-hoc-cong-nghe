@@ -71,7 +71,7 @@ const quiz: QuizQuestion[] = [
 export default function Page() {
   return (
     <LessonPageLayout lesson={meta} quiz={quiz}>
-      <h2 className="text-2xl font-bold text-stone-900 mb-2">Samsung Q1/2026 - AI qua Lăng kính Tài chính</h2>
+      <h2 className="text-2xl font-bold text-stone-900 dark:text-stone-100 mb-2">Samsung Q1/2026 - AI qua Lăng kính Tài chính</h2>
       <p className="text-stone-500 text-sm mb-8">Bộ nhớ tốc độ cao, chu kỳ chip nhớ và cách đọc doanh nghiệp bán dẫn trong chu kỳ AI</p>
 
       <section className="mb-10 rounded-xl border border-teal-100 bg-teal-50 p-4">
@@ -82,7 +82,7 @@ export default function Page() {
       </section>
 
       <section className="mb-10">
-        <h3 className="text-base font-bold text-stone-800 mb-4 uppercase tracking-wide text-xs">Samsung không phải chỉ là điện thoại</h3>
+        <h3 className="text-base font-bold text-stone-800 dark:text-stone-200 mb-4 uppercase tracking-wide text-xs">Samsung không phải chỉ là điện thoại</h3>
         <p className="text-stone-600 leading-relaxed mb-3">
           Phần lớn mọi người biết Samsung qua điện thoại Galaxy. Nhưng về mặt tài chính, phần quan trọng nhất - và biến động nhất - của Samsung là <strong>mảng Giải pháp Thiết bị (Device Solutions)</strong>: chip nhớ DRAM/NAND và chip logic.
         </p>
@@ -92,7 +92,7 @@ export default function Page() {
       </section>
 
       <section className="mb-10">
-        <h3 className="text-base font-bold text-stone-800 mb-4 uppercase tracking-wide text-xs">Bộ nhớ băng thông cao (HBM) - thị trường Samsung đang bị dẫn trước</h3>
+        <h3 className="text-base font-bold text-stone-800 dark:text-stone-200 mb-4 uppercase tracking-wide text-xs">Bộ nhớ băng thông cao (HBM) - thị trường Samsung đang bị dẫn trước</h3>
         <p className="text-stone-600 text-sm leading-relaxed mb-3">
           Bộ nhớ băng thông cao (HBM) là loại bộ nhớ tốc độ rất cao, cần thiết cho GPU AI như NVIDIA H100, H200, B100. Đây là phân khúc có <strong>biên lợi nhuận cao</strong> trong ngành chip nhớ, và nhu cầu tăng mạnh cùng AI.
         </p>
@@ -126,7 +126,7 @@ export default function Page() {
       </section>
 
       <section className="mb-10">
-        <h3 className="text-base font-bold text-stone-800 mb-4 uppercase tracking-wide text-xs">Chu kỳ bộ nhớ - ngành lên xuống theo cung cầu</h3>
+        <h3 className="text-base font-bold text-stone-800 dark:text-stone-200 mb-4 uppercase tracking-wide text-xs">Chu kỳ bộ nhớ - ngành lên xuống theo cung cầu</h3>
         <p className="text-stone-600 text-sm leading-relaxed mb-3">
           Giá DRAM và NAND không ổn định - dao động theo chu kỳ cung-cầu. Khi nhu cầu vượt cung: giá tăng, biên lợi nhuận phục hồi mạnh. Khi cung vượt nhu cầu: giá rơi, biên âm, nhà sản xuất lỗ.
         </p>
@@ -145,7 +145,7 @@ export default function Page() {
       </section>
 
       <section className="mb-10">
-        <h3 className="text-base font-bold text-stone-800 mb-4 uppercase tracking-wide text-xs">Làn sóng đầu tư AI - đọc theo chuỗi cung ứng</h3>
+        <h3 className="text-base font-bold text-stone-800 dark:text-stone-200 mb-4 uppercase tracking-wide text-xs">Làn sóng đầu tư AI - đọc theo chuỗi cung ứng</h3>
         <p className="text-stone-600 text-sm leading-relaxed mb-4">
           Microsoft, Google, Meta, Amazon tăng chi đầu tư cho trung tâm dữ liệu AI. Đây là tín hiệu sớm cho cả chuỗi cung ứng AI.
         </p>
@@ -158,7 +158,7 @@ export default function Page() {
       </section>
 
       <section>
-        <h3 className="text-base font-bold text-stone-800 mb-4 uppercase tracking-wide text-xs">Đọc Samsung = Đọc hai chiều</h3>
+        <h3 className="text-base font-bold text-stone-800 dark:text-stone-200 mb-4 uppercase tracking-wide text-xs">Đọc Samsung = Đọc hai chiều</h3>
         <div className="grid grid-cols-2 gap-3 text-xs">
           <div className="bg-stone-100 border border-stone-200 rounded-lg p-3">
             <div className="font-bold text-stone-800 mb-2">Tốt</div>

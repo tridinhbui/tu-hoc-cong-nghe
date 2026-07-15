@@ -1,5 +1,6 @@
 import { createAdminClient } from "@/lib/supabase-admin";
 import { handleSupabaseError } from "@/lib/errors";
+import { getLessonsMeta } from "@/lib/lessons-loader";
 
 export interface SystemAnalytics {
   totalUsers: number;
@@ -8,25 +9,21 @@ export interface SystemAnalytics {
   avgLessonsPerUser: number;
   avgQuizScore: number;
   avgStudyTimeMinutes: number;
-  completionByStage: {
-    stage: string;
-    completed: number;
-    total: number;
-    percentage: number;
-  }[];
-  topicPerformance: {
-    topic: string;
-    avgScore: number;
+  trackBreakdown: {
+    personal: number;
+    professional: number;
+    cfa: number;
+  };
+  topLessons: {
+    id: number;
+    title: string;
+    slug: string;
     completions: number;
+    avgScore: number;
   }[];
   dailyActiveUsers: {
     date: string;
     count: number;
-  }[];
-  userRetention: {
-    week: number;
-    retained: number;
-    percentage: number;
   }[];
 }
 
@@ -34,55 +31,93 @@ export async function getSystemAnalytics(): Promise<SystemAnalytics> {
   const admin = createAdminClient();
 
   try {
-    // Total users
-    const { data: users, error: usersError } = await admin
+    // 1. Total users count (exact count, head only)
+    const { count: totalUsersCount, error: usersError } = await admin
       .from("user_profiles")
-      .select("id", { count: "exact" });
+      .select("*", { count: "exact", head: true });
 
     if (usersError) throw usersError;
-    const totalUsers = users?.length || 0;
+    const totalUsers = totalUsersCount || 0;
 
-    // Active users this week. `user_stats.last_lesson_date` (used here
-    // previously) is never actually written by any code path - the only
-    // function that upserts user_stats (recalculateUserStats in
-    // lib/supabase-user.ts) isn't called from anywhere in the app - so that
-    // query always returned zero rows regardless of real activity. Count
-    // distinct users with a completed lesson in the last 7 days from
-    // user_progress directly instead, the same source of truth the rest of
-    // this page's stats already use.
+    // 2. Active users this week (completed at least one lesson in last 7 days)
     const weekAgo = new Date(Date.now() - 7 * 24 * 60 * 60 * 1000).toISOString();
-    const { data: activeUsers, error: activeError } = await admin
-      .from("user_progress")
-      .select("user_id")
-      .eq("completed", true)
-      .gte("completed_at", weekAgo);
+    
+    // We fetch all active user IDs in the last 7 days, paginated to avoid limit
+    let activeUserIds = new Set<string>();
+    let activePage = 0;
+    const activePageSize = 1000;
+    
+    while (true) {
+      const { data: activeData, error: activeError } = await admin
+        .from("user_progress")
+        .select("user_id")
+        .eq("completed", true)
+        .gte("completed_at", weekAgo)
+        .range(activePage * activePageSize, (activePage + 1) * activePageSize - 1);
 
-    if (activeError) throw activeError;
-    const activeUsersThisWeek = new Set((activeUsers ?? []).map((r) => r.user_id)).size;
+      if (activeError) throw activeError;
+      if (!activeData || activeData.length === 0) break;
+      
+      activeData.forEach((row) => activeUserIds.add(row.user_id));
+      if (activeData.length < activePageSize) break;
+      activePage++;
+    }
+    const activeUsersThisWeek = activeUserIds.size;
 
-    // Lessons completed
-    const { data: progress, error: progressError } = await admin
-      .from("user_progress")
-      .select("quiz_score, time_spent_seconds", { count: "exact" })
-      .eq("completed", true);
+    // 3. Track breakdown (three separate count queries to bypass 1000 limit)
+    const { count: personalCount } = await admin
+      .from("user_profiles")
+      .select("*", { count: "exact", head: true })
+      .eq("preferred_track", "personal");
 
-    if (progressError) throw progressError;
-    const totalLessonsCompleted = progress?.length || 0;
-    const avgQuizScore = progress?.length
-      ? progress.reduce((sum, p) => sum + (p.quiz_score || 0), 0) / progress.length
+    const { count: professionalCount } = await admin
+      .from("user_profiles")
+      .select("*", { count: "exact", head: true })
+      .eq("preferred_track", "professional");
+
+    const { count: cfaCount } = await admin
+      .from("user_profiles")
+      .select("*", { count: "exact", head: true })
+      .eq("preferred_track", "cfa");
+
+    // Any users without preferred_track or preferred_track not matching professional/cfa default to personal
+    const professional = professionalCount || 0;
+    const cfa = cfaCount || 0;
+    const personal = totalUsers - professional - cfa;
+
+    const trackBreakdown = { personal, professional, cfa };
+
+    // 4. Fetch all completed user_progress rows with pagination to bypass 1000 limit
+    let allProgress: { lesson_id: number; quiz_score: number | null; time_spent_seconds: number | null }[] = [];
+    let progressPage = 0;
+    const progressPageSize = 1000;
+
+    while (true) {
+      const { data: progressData, error: progressError } = await admin
+        .from("user_progress")
+        .select("lesson_id, quiz_score, time_spent_seconds")
+        .eq("completed", true)
+        .range(progressPage * progressPageSize, (progressPage + 1) * progressPageSize - 1);
+
+      if (progressError) throw progressError;
+      if (!progressData || progressData.length === 0) break;
+
+      allProgress = [...allProgress, ...progressData];
+      if (progressData.length < progressPageSize) break;
+      progressPage++;
+    }
+
+    const totalLessonsCompleted = allProgress.length;
+    const avgQuizScore = allProgress.length
+      ? allProgress.reduce((sum, p) => sum + (p.quiz_score || 0), 0) / allProgress.length
       : 0;
-    const avgStudyTimeMinutes = progress?.length
-      ? progress.reduce((sum, p) => sum + (p.time_spent_seconds || 0), 0) / progress.length / 60
+    const avgStudyTimeMinutes = allProgress.length
+      ? allProgress.reduce((sum, p) => sum + (p.time_spent_seconds || 0), 0) / allProgress.length / 60
       : 0;
 
     const avgLessonsPerUser = totalUsers ? totalLessonsCompleted / totalUsers : 0;
 
-    // Daily active users (last 7 days). This depends on the
-    // get_daily_active_users RPC (supabase/migrations/20260709_daily_active_users.sql)
-    // - handled independently of the rest of the dashboard's stats so a
-    // missing/failed migration on a given environment only blanks out this
-    // one chart instead of throwing and zeroing out every other stat on the
-    // page (total users, quiz scores, etc. don't depend on it at all).
+    // 5. Daily active users (last 7 days)
     let dailyStats: { date?: string; count?: number }[] = [];
     try {
       const { data, error: dailyError } = await admin.rpc("get_daily_active_users", { days: 7 });
@@ -92,12 +127,34 @@ export async function getSystemAnalytics(): Promise<SystemAnalytics> {
       console.error("Error fetching daily active users:", error);
     }
 
-    // Simple retention (placeholder - would need more complex query)
-    const userRetention = [
-      { week: 1, retained: activeUsersThisWeek, percentage: 100 },
-      { week: 2, retained: Math.floor(activeUsersThisWeek * 0.8), percentage: 80 },
-      { week: 4, retained: Math.floor(activeUsersThisWeek * 0.6), percentage: 60 },
-    ];
+    // 6. Top 5 popular lessons
+    const lessonMeta = await getLessonsMeta();
+    const lessonCounts: Record<number, { count: number; totalScore: number }> = {};
+    
+    allProgress.forEach((row) => {
+      const id = row.lesson_id;
+      if (id === undefined || id === null) return;
+      if (!lessonCounts[id]) {
+        lessonCounts[id] = { count: 0, totalScore: 0 };
+      }
+      lessonCounts[id].count++;
+      lessonCounts[id].totalScore += row.quiz_score || 0;
+    });
+
+    const topLessons = Object.entries(lessonCounts)
+      .map(([idStr, stats]) => {
+        const id = Number(idStr);
+        const meta = lessonMeta.find((l) => l.id === id);
+        return {
+          id,
+          title: meta?.title || `Bài học #${id}`,
+          slug: meta?.slug || "",
+          completions: stats.count,
+          avgScore: Math.round(stats.totalScore / stats.count),
+        };
+      })
+      .sort((a, b) => b.completions - a.completions)
+      .slice(0, 5);
 
     return {
       totalUsers,
@@ -106,13 +163,12 @@ export async function getSystemAnalytics(): Promise<SystemAnalytics> {
       avgLessonsPerUser,
       avgQuizScore: Math.round(avgQuizScore),
       avgStudyTimeMinutes: Math.round(avgStudyTimeMinutes),
-      completionByStage: [],
-      topicPerformance: [],
+      trackBreakdown,
+      topLessons,
       dailyActiveUsers: dailyStats.map((d) => ({
         date: d.date || "N/A",
         count: d.count || 0,
       })),
-      userRetention,
     };
   } catch (error) {
     throw handleSupabaseError(error);

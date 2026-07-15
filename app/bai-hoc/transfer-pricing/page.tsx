@@ -71,11 +71,11 @@ const quiz: QuizQuestion[] = [
 export default function Page() {
   return (
     <LessonPageLayout lesson={meta} quiz={quiz}>
-      <h2 className="text-2xl font-bold text-stone-900 mb-2">Transfer Pricing</h2>
+      <h2 className="text-2xl font-bold text-stone-900 dark:text-stone-100 mb-2">Transfer Pricing</h2>
       <p className="text-stone-600 text-sm mb-6 italic">Khi Apple Ireland báo ít lãi - hay cả hệ thống tax structure đằng sau?</p>
 
       <section className="mb-8">
-        <h3 className="text-lg font-bold text-stone-800 mb-3">🤔 Transfer Pricing là gì?</h3>
+        <h3 className="text-lg font-bold text-stone-800 dark:text-stone-200 mb-3">🤔 Transfer Pricing là gì?</h3>
         <div className="bg-stone-50 border border-stone-200 rounded-xl p-4 mb-4">
           <p className="text-sm text-stone-700 leading-relaxed">
             <strong>Transfer Pricing</strong> = giá của giao dịch giữa các công ty trong cùng một tập đoàn (intercompany transactions). Ví dụ: Apple Inc. (US) mua linh kiện từ Apple Manufacturing (China) với giá bao nhiêu? Apple US bán cho Apple Ireland với giá nào?
@@ -87,7 +87,7 @@ export default function Page() {
       </section>
 
       <section className="mb-8">
-        <h3 className="text-lg font-bold text-stone-800 mb-3">⚖️ Arm's Length Principle</h3>
+        <h3 className="text-lg font-bold text-stone-800 dark:text-stone-200 mb-3">⚖️ Arm's Length Principle</h3>
         <div className="bg-stone-50 text-white rounded-xl p-5 text-center mb-4">
           <div className="font-bold text-xl mb-1">Arm's Length Price</div>
           <p className="text-stone-700 text-sm">Giá intercompany phải = giá hai bên độc lập sẽ thỏa thuận trên thị trường mở</p>
@@ -105,7 +105,7 @@ export default function Page() {
       </section>
 
       <section className="mb-8">
-        <h3 className="text-lg font-bold text-stone-800 mb-3"> 3 loại TP methods phổ biến</h3>
+        <h3 className="text-lg font-bold text-stone-800 dark:text-stone-200 mb-3"> 3 loại TP methods phổ biến</h3>
         <div className="space-y-3">
           {[
             {
@@ -134,7 +134,7 @@ export default function Page() {
       </section>
 
       <section className="mb-8">
-        <h3 className="text-lg font-bold text-stone-800 mb-3">🌍 Case Study: Apple & Ireland</h3>
+        <h3 className="text-lg font-bold text-stone-800 dark:text-stone-200 mb-3">🌍 Case Study: Apple & Ireland</h3>
         <div className="bg-stone-800 text-white rounded-xl p-5 text-sm">
           <p className="text-stone-300 mb-3 text-xs">EC State Aid Investigation 2016: Apple owed €13B in back taxes</p>
           <div className="space-y-2">
@@ -154,7 +154,7 @@ export default function Page() {
       </section>
 
       <section>
-        <h3 className="text-lg font-bold text-stone-800 mb-3">📑 TP Documentation Requirements</h3>
+        <h3 className="text-lg font-bold text-stone-800 dark:text-stone-200 mb-3">📑 TP Documentation Requirements</h3>
         <div className="space-y-2">
           {[
             { doc: "Master File", scope: "Group-level TP policy, global business, value chain, IP overview" },

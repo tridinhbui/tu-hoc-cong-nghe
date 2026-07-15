@@ -48,11 +48,11 @@ const quiz: QuizQuestion[] = [
 export default function Page() {
   return (
     <LessonPageLayout lesson={meta} quiz={quiz}>
-      <h2 className="text-2xl font-bold text-stone-900 mb-2">Nợ xấu PVGas Q1/2026</h2>
+      <h2 className="text-2xl font-bold text-stone-900 dark:text-stone-100 mb-2">Nợ xấu PVGas Q1/2026</h2>
       <p className="text-stone-500 text-sm mb-8">Tập đọc bad debts - doanh thu đã ghi nhận có thu về được không?</p>
 
       <section className="mb-10">
-        <h3 className="text-base font-bold text-stone-800 mb-4 uppercase tracking-wide text-xs">Tại sao nợ xấu đáng đọc?</h3>
+        <h3 className="text-base font-bold text-stone-800 dark:text-stone-200 mb-4 uppercase tracking-wide text-xs">Tại sao nợ xấu đáng đọc?</h3>
         <p className="text-stone-600 leading-relaxed mb-3">
           Khi nhìn báo cáo tài chính, nhiều người dừng lại ở lợi nhuận. Nhưng lợi nhuận trên P&L là doanh thu đã ghi nhận theo kế toán - không có nghĩa tiền đã thực sự về tay.
         </p>
@@ -62,7 +62,7 @@ export default function Page() {
       </section>
 
       <section className="mb-10">
-        <h3 className="text-base font-bold text-stone-800 mb-4 uppercase tracking-wide text-xs">Số liệu PVGas - cuối Q1/2026</h3>
+        <h3 className="text-base font-bold text-stone-800 dark:text-stone-200 mb-4 uppercase tracking-wide text-xs">Số liệu PVGas - cuối Q1/2026</h3>
         <div className="border border-stone-200 rounded-xl overflow-hidden mb-4">
           <table className="w-full text-sm">
             <thead className="bg-stone-100">
@@ -94,7 +94,7 @@ export default function Page() {
       </section>
 
       <section className="mb-10">
-        <h3 className="text-base font-bold text-stone-800 mb-4 uppercase tracking-wide text-xs">Không chỉ nhìn tổng - nhìn chất lượng</h3>
+        <h3 className="text-base font-bold text-stone-800 dark:text-stone-200 mb-4 uppercase tracking-wide text-xs">Không chỉ nhìn tổng - nhìn chất lượng</h3>
         <p className="text-stone-600 leading-relaxed mb-4">
           Khi đọc nợ xấu, tổng giảm chỉ là bước đầu. Cần nhìn thêm:
         </p>
@@ -113,7 +113,7 @@ export default function Page() {
       </section>
 
       <section className="mb-10">
-        <h3 className="text-base font-bold text-stone-800 mb-4 uppercase tracking-wide text-xs">Concentration Risk - rủi ro tập trung vào điện lực</h3>
+        <h3 className="text-base font-bold text-stone-800 dark:text-stone-200 mb-4 uppercase tracking-wide text-xs">Concentration Risk - rủi ro tập trung vào điện lực</h3>
         <p className="text-stone-600 leading-relaxed mb-4">
           Một phần lớn nợ xấu của PVGas đến từ nhóm khách hàng điện. Riêng <strong>Tổng công ty Điện lực Dầu khí Việt Nam</strong> đã chiếm khoảng 2.891 tỷ cuối Q1/2026. Khoản liên quan đến Phú Mỹ 3 tăng từ ~401 tỷ lên hơn 833 tỷ.
         </p>
@@ -128,7 +128,7 @@ export default function Page() {
       </section>
 
       <section>
-        <h3 className="text-base font-bold text-stone-800 mb-4 uppercase tracking-wide text-xs">Mindset khi đọc khoản phải thu</h3>
+        <h3 className="text-base font-bold text-stone-800 dark:text-stone-200 mb-4 uppercase tracking-wide text-xs">Mindset khi đọc khoản phải thu</h3>
         <p className="text-stone-600 text-sm leading-relaxed mb-4">
           Đọc theo chuỗi: <strong>Khoản phải thu → Nợ xấu → Dự phòng → Operating Cash Flow</strong>. Từ chuỗi đó có thể đọc được chất lượng doanh thu, rủi ro khách hàng và độ chắc của dòng tiền.
         </p>

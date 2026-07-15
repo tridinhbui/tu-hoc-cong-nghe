@@ -71,11 +71,11 @@ const quiz: QuizQuestion[] = [
 export default function Page() {
   return (
     <LessonPageLayout lesson={meta} quiz={quiz}>
-      <h2 className="text-2xl font-bold text-stone-900 mb-2">Tư Duy Tài Chính Đúng Đắn</h2>
+      <h2 className="text-2xl font-bold text-stone-900 dark:text-stone-100 mb-2">Tư Duy Tài Chính Đúng Đắn</h2>
       <p className="text-stone-600 text-sm mb-8">Kiến thức không thiếu - mindset mới là thứ phân biệt người giàu và người còn lại</p>
 
       <section className="mb-10">
-        <h3 className="text-base font-bold text-stone-800 mb-4 uppercase tracking-wide text-xs">Asset vs Liability - Định nghĩa của Kiyosaki</h3>
+        <h3 className="text-base font-bold text-stone-800 dark:text-stone-200 mb-4 uppercase tracking-wide text-xs">Asset vs Liability - Định nghĩa của Kiyosaki</h3>
         <div className="space-y-4 text-sm">
           <div>
             <div className="font-bold text-stone-800 mb-2">ASSET - Thứ bỏ tiền vào túi bạn</div>
@@ -102,7 +102,7 @@ export default function Page() {
       </section>
 
       <section className="mb-10">
-        <h3 className="text-base font-bold text-stone-800 mb-4 uppercase tracking-wide text-xs">Sức mạnh của Compound Interest</h3>
+        <h3 className="text-base font-bold text-stone-800 dark:text-stone-200 mb-4 uppercase tracking-wide text-xs">Sức mạnh của Compound Interest</h3>
         <div className="text-sm text-stone-600 mb-4">
           <div className="font-mono bg-stone-50 p-3 rounded mb-3">
             <div>Tuổi 25 bắt đầu → 4.5 tỷ ở tuổi 65</div>
@@ -115,7 +115,7 @@ export default function Page() {
       </section>
 
       <section className="mb-10">
-        <h3 className="text-base font-bold text-stone-800 mb-4 uppercase tracking-wide text-xs">Kim tự tháp tài chính cá nhân</h3>
+        <h3 className="text-base font-bold text-stone-800 dark:text-stone-200 mb-4 uppercase tracking-wide text-xs">Kim tự tháp tài chính cá nhân</h3>
         <div className="space-y-1 text-xs text-stone-600">
           <div className="border-l-2 border-stone-300 pl-3 py-1"><strong>4. Đầu tư dài hạn:</strong> stocks, ETF, BĐS</div>
           <div className="border-l-2 border-stone-300 pl-3 py-1"><strong>3. Bảo hiểm:</strong> Nhân thọ &amp; sức khỏe</div>
@@ -125,7 +125,7 @@ export default function Page() {
       </section>
 
       <section>
-        <h3 className="text-base font-bold text-stone-800 mb-4 uppercase tracking-wide text-xs">3 thói quen tài chính tối thiểu</h3>
+        <h3 className="text-base font-bold text-stone-800 dark:text-stone-200 mb-4 uppercase tracking-wide text-xs">3 thói quen tài chính tối thiểu</h3>
         <div className="space-y-3 text-sm text-stone-600">
           <div>
             <div className="font-bold text-stone-800">Tiết kiệm ít nhất 20% thu nhập</div>

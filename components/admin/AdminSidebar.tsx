@@ -16,6 +16,7 @@ import {
   Menu,
   X,
   ArrowLeft,
+  AlertTriangle,
 } from "lucide-react";
 
 const NAV_ITEMS = [
@@ -23,6 +24,7 @@ const NAV_ITEMS = [
   { href: "/admin/messages", label: "Tin nhắn", icon: MessageSquare },
   { href: "/admin/announcements", label: "Thông báo", icon: Megaphone },
   { href: "/admin/appeals", label: "Khiếu nại", icon: ShieldQuestion },
+  { href: "/admin/ai-reports", label: "Báo lỗi AI", icon: AlertTriangle },
   { href: "/admin/users", label: "Người dùng", icon: Users },
   { href: "/admin/lessons", label: "Bài học", icon: BookOpen },
   { href: "/admin/documents", label: "Tài liệu", icon: FileText },

@@ -101,11 +101,11 @@ export default function Page() {
 
   return (
     <LessonPageLayout lesson={meta} quiz={quiz}>
-      <h2 className="text-2xl font-bold text-stone-900 mb-2">4 Mô hình Kinh doanh Ngành Dầu khí</h2>
+      <h2 className="text-2xl font-bold text-stone-900 dark:text-stone-100 mb-2">4 Mô hình Kinh doanh Ngành Dầu khí</h2>
       <p className="text-stone-500 text-sm mb-8">Mỗi nhóm kiếm tiền theo cơ chế khác nhau - phân tích tài chính cũng phải khác nhau</p>
 
       <section className="mb-10">
-        <h3 className="text-base font-bold text-stone-800 mb-4 uppercase tracking-wide text-xs">Tại sao cần phân nhóm?</h3>
+        <h3 className="text-base font-bold text-stone-800 dark:text-stone-200 mb-4 uppercase tracking-wide text-xs">Tại sao cần phân nhóm?</h3>
         <p className="text-stone-600 leading-relaxed mb-3">
           Khi nghe "công ty dầu khí," nhiều người nghĩ ngay đến giá dầu. Nhưng <strong>cùng một biến động giá dầu có thể làm nhóm này hưởng lợi trong khi nhóm khác thiệt hại</strong> - vì cơ chế tạo ra doanh thu của chúng hoàn toàn khác nhau.
         </p>
@@ -115,7 +115,7 @@ export default function Page() {
       </section>
 
       <section className="mb-10">
-        <h3 className="text-base font-bold text-stone-800 mb-3 uppercase tracking-wide text-xs">Khám phá 4 nhóm</h3>
+        <h3 className="text-base font-bold text-stone-800 dark:text-stone-200 mb-3 uppercase tracking-wide text-xs">Khám phá 4 nhóm</h3>
         <div className="flex gap-2 mb-5 flex-wrap">
           {GROUPS.map(g => (
             <button
@@ -154,7 +154,7 @@ export default function Page() {
       </section>
 
       <section className="mb-10">
-        <h3 className="text-base font-bold text-stone-800 mb-4 uppercase tracking-wide text-xs">Tóm tắt - ai kiếm tiền từ đâu</h3>
+        <h3 className="text-base font-bold text-stone-800 dark:text-stone-200 mb-4 uppercase tracking-wide text-xs">Tóm tắt - ai kiếm tiền từ đâu</h3>
         <div className="overflow-x-auto">
           <table className="w-full text-xs border-collapse">
             <thead>
@@ -183,7 +183,7 @@ export default function Page() {
       </section>
 
       <section>
-        <h3 className="text-base font-bold text-stone-800 mb-4 uppercase tracking-wide text-xs">Checklist phân tích - trước khi nhìn số</h3>
+        <h3 className="text-base font-bold text-stone-800 dark:text-stone-200 mb-4 uppercase tracking-wide text-xs">Checklist phân tích - trước khi nhìn số</h3>
         <div className="space-y-2 text-sm text-stone-600">
           {[
             "Doanh thu đến từ mảng nào trong 4 nhóm trên?",

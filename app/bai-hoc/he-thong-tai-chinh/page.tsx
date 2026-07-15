@@ -72,7 +72,7 @@ export default function HeThongTaiChinhPage() {
         </p>
 
         <section className="space-y-5">
-          <h3 className="text-2xl font-bold text-stone-900">Chức năng cơ bản: phân bổ vốn</h3>
+          <h3 className="text-2xl font-bold text-stone-900 dark:text-stone-100">Chức năng cơ bản: phân bổ vốn</h3>
           <p>
             Trong bất kỳ nền kinh tế nào, luôn có hai nhóm người: người có tiền thừa và người cần tiền để đầu tư hay tiêu dùng. Hệ thống tài chính là cơ sở hạ tầng kết nối hai nhóm đó.
           </p>
@@ -82,7 +82,7 @@ export default function HeThongTaiChinhPage() {
         </section>
 
         <section className="space-y-5">
-          <h3 className="text-2xl font-bold text-stone-900">Ngân hàng thương mại: trung gian truyền thống</h3>
+          <h3 className="text-2xl font-bold text-stone-900 dark:text-stone-100">Ngân hàng thương mại: trung gian truyền thống</h3>
           <p>
             Ngân hàng thương mại là hình thức trung gian tài chính phổ biến nhất và lâu đời nhất. Mô hình kinh doanh đơn giản: huy động tiền gửi từ hàng triệu người với lãi suất X, cho vay lại với lãi suất X+Y, và phần Y (sau chi phí hoạt động) là lợi nhuận.
           </p>
@@ -99,7 +99,7 @@ export default function HeThongTaiChinhPage() {
         </section>
 
         <section className="space-y-5">
-          <h3 className="text-2xl font-bold text-stone-900">Các thành phần khác của hệ thống tài chính</h3>
+          <h3 className="text-2xl font-bold text-stone-900 dark:text-stone-100">Các thành phần khác của hệ thống tài chính</h3>
           <ul className="space-y-3 pl-1">
             {[
               { bold: "Thị trường chứng khoán", rest: ": kết nối doanh nghiệp cần vốn dài hạn với nhà đầu tư muốn sở hữu cổ phần" },
@@ -117,7 +117,7 @@ export default function HeThongTaiChinhPage() {
         </section>
 
         <section className="space-y-5">
-          <h3 className="text-2xl font-bold text-stone-900">Tại sao ổn định hệ thống ngân hàng quan trọng đặc biệt</h3>
+          <h3 className="text-2xl font-bold text-stone-900 dark:text-stone-100">Tại sao ổn định hệ thống ngân hàng quan trọng đặc biệt</h3>
           <p>
             Hệ thống ngân hàng là trung tâm thần kinh của nền kinh tế. Khi ngân hàng hoạt động bình thường, tín dụng lưu thông, doanh nghiệp mở rộng, người dân vay mua nhà. Khi ngân hàng gặp vấn đề, mọi thứ đóng băng.
           </p>

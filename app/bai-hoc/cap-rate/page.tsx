@@ -108,11 +108,11 @@ function CapRateSimulator() {
 export default function Page() {
   return (
     <LessonPageLayout lesson={meta} quiz={quiz}>
-      <h2 className="text-2xl font-bold text-stone-900 mb-2">Cap Rate - Định Giá BĐS Thương Mại</h2>
+      <h2 className="text-2xl font-bold text-stone-900 dark:text-stone-100 mb-2">Cap Rate - Định Giá BĐS Thương Mại</h2>
       <p className="text-stone-600 text-sm mb-6 italic">Công thức đơn giản nhất, quan trọng nhất trong real estate valuation</p>
 
       <section className="mb-8">
-        <h3 className="text-lg font-bold text-stone-800 mb-3">📐 Công thức cốt lõi</h3>
+        <h3 className="text-lg font-bold text-stone-800 dark:text-stone-200 mb-3">📐 Công thức cốt lõi</h3>
         <div className="bg-stone-50 text-white rounded-xl p-5 text-center mb-4">
           <div className="font-mono text-xl font-bold mb-1">Property Value = NOI / Cap Rate</div>
           <p className="text-stone-700 text-sm">Net Operating Income chia cho Capitalization Rate</p>
@@ -130,7 +130,7 @@ export default function Page() {
       </section>
 
       <section className="mb-8">
-        <h3 className="text-lg font-bold text-stone-800 mb-3"> Ví dụ trực quan</h3>
+        <h3 className="text-lg font-bold text-stone-800 dark:text-stone-200 mb-3"> Ví dụ trực quan</h3>
         <div className="bg-white border border-stone-200 rounded-xl p-5 font-mono text-sm">
           <div className="text-stone-500 text-xs mb-3">{ '// Tòa nhà văn phòng - Ho Chi Minh City' }</div>
           <div className="flex justify-between mb-1"><span className="text-stone-600">NOI hàng năm</span><span className="text-stone-700">2.000.000 USD</span></div>
@@ -145,7 +145,7 @@ export default function Page() {
       <CapRateSimulator />
 
       <section className="mb-8">
-        <h3 className="text-lg font-bold text-stone-800 mb-3"> Cap Rate theo loại tài sản</h3>
+        <h3 className="text-lg font-bold text-stone-800 dark:text-stone-200 mb-3"> Cap Rate theo loại tài sản</h3>
         <div className="space-y-2">
           {[
             { type: "Prime Office - CBD HCM/Hà Nội", range: "4–6%", risk: "Thấp", note: "Tenant chất lượng, stable income" },
@@ -169,7 +169,7 @@ export default function Page() {
       </section>
 
       <section>
-        <h3 className="text-lg font-bold text-stone-800 mb-3">⚠️ Cap Rate và Interest Rate - mối quan hệ quan trọng</h3>
+        <h3 className="text-lg font-bold text-stone-800 dark:text-stone-200 mb-3">⚠️ Cap Rate và Interest Rate - mối quan hệ quan trọng</h3>
         <div className="space-y-2">
           {[
             "Khi Fed/NHNN tăng lãi suất → cap rate thường tăng theo → property value giảm",

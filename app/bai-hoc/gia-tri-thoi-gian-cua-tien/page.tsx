@@ -72,7 +72,7 @@ export default function GiaTriThoiGianCuaTienPage() {
         </p>
 
         <section className="space-y-5">
-          <h3 className="text-2xl font-bold text-stone-900">Nguyên lý giá trị thời gian của tiền</h3>
+          <h3 className="text-2xl font-bold text-stone-900 dark:text-stone-100">Nguyên lý giá trị thời gian của tiền</h3>
           <p>
             <strong className="text-stone-900">Giá trị thời gian của tiền</strong> (Time Value of Money) là nguyên lý nền tảng nhất trong tài chính: một khoản tiền hôm nay đáng giá hơn cùng số tiền đó trong tương lai, vì tiền hôm nay có thể được đầu tư và tạo ra lợi nhuận.
           </p>
@@ -85,7 +85,7 @@ export default function GiaTriThoiGianCuaTienPage() {
         </section>
 
         <section className="space-y-5">
-          <h3 className="text-2xl font-bold text-stone-900">Giá trị hiện tại và giá trị tương lai</h3>
+          <h3 className="text-2xl font-bold text-stone-900 dark:text-stone-100">Giá trị hiện tại và giá trị tương lai</h3>
           <p>
             Hai khái niệm cơ bản trong giá trị thời gian của tiền là giá trị hiện tại và giá trị tương lai.
           </p>
@@ -115,7 +115,7 @@ export default function GiaTriThoiGianCuaTienPage() {
         </section>
 
         <section className="space-y-5">
-          <h3 className="text-2xl font-bold text-stone-900">Ứng dụng: định giá dòng tiền chiết khấu (DCF)</h3>
+          <h3 className="text-2xl font-bold text-stone-900 dark:text-stone-100">Ứng dụng: định giá dòng tiền chiết khấu (DCF)</h3>
           <p>
             Phương pháp DCF (Discounted Cash Flow) là ứng dụng quan trọng nhất của giá trị thời gian của tiền trong đầu tư.
           </p>
@@ -128,7 +128,7 @@ export default function GiaTriThoiGianCuaTienPage() {
         </section>
 
         <section className="space-y-5">
-          <h3 className="text-2xl font-bold text-stone-900">Ứng dụng trong đời sống hàng ngày</h3>
+          <h3 className="text-2xl font-bold text-stone-900 dark:text-stone-100">Ứng dụng trong đời sống hàng ngày</h3>
           <p>
             Giá trị thời gian của tiền không chỉ dùng trong đầu tư phức tạp. Nó hiển diện trong mọi quyết định tài chính thường ngày:
           </p>

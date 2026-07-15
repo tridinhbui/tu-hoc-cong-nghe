@@ -64,11 +64,11 @@ const quiz: QuizQuestion[] = [
 export default function Page() {
   return (
     <LessonPageLayout lesson={meta} quiz={quiz}>
-      <h2 className="text-2xl font-bold text-stone-900 mb-2">NVIDIA Q1/26 - Cash Equivalents and Marketable Securities</h2>
+      <h2 className="text-2xl font-bold text-stone-900 dark:text-stone-100 mb-2">NVIDIA Q1/26 - Cash Equivalents and Marketable Securities</h2>
       <p className="text-stone-500 text-sm mb-8">Góc nhìn Treasury và FP&A từ cùng một bảng số liệu</p>
 
       <section className="mb-10">
-        <h3 className="text-base font-bold text-stone-800 mb-4 uppercase tracking-wide text-xs">Bảng này cho thấy điều gì?</h3>
+        <h3 className="text-base font-bold text-stone-800 dark:text-stone-200 mb-4 uppercase tracking-wide text-xs">Bảng này cho thấy điều gì?</h3>
         <p className="text-stone-600 leading-relaxed mb-4">
           Trong báo cáo quý của NVIDIA, bảng <strong>Cash Equivalents and Marketable Securities</strong> cho thấy tiền của công ty đang nằm ở đâu - không phải tất cả đều giống nhau về thanh khoản và rủi ro.
         </p>
@@ -88,7 +88,7 @@ export default function Page() {
       </section>
 
       <section className="mb-10">
-        <h3 className="text-base font-bold text-stone-800 mb-4 uppercase tracking-wide text-xs">Pricing Category - giá lấy từ đâu?</h3>
+        <h3 className="text-base font-bold text-stone-800 dark:text-stone-200 mb-4 uppercase tracking-wide text-xs">Pricing Category - giá lấy từ đâu?</h3>
         <p className="text-stone-600 leading-relaxed mb-4">
           Cột Pricing Category cho biết công ty xác định giá trị tài sản theo cơ sở nào. Đây là <strong>fair value hierarchy</strong> theo chuẩn kế toán GAAP/IFRS.
         </p>
@@ -111,7 +111,7 @@ export default function Page() {
       </section>
 
       <section className="mb-10">
-        <h3 className="text-base font-bold text-stone-800 mb-4 uppercase tracking-wide text-xs">Hai góc nhìn từ cùng một bảng</h3>
+        <h3 className="text-base font-bold text-stone-800 dark:text-stone-200 mb-4 uppercase tracking-wide text-xs">Hai góc nhìn từ cùng một bảng</h3>
 
         <div className="space-y-6">
           <div>
@@ -142,7 +142,7 @@ export default function Page() {
       </section>
 
       <section className="mb-10">
-        <h3 className="text-base font-bold text-stone-800 mb-4 uppercase tracking-wide text-xs">Ví dụ cụ thể từ NVIDIA</h3>
+        <h3 className="text-base font-bold text-stone-800 dark:text-stone-200 mb-4 uppercase tracking-wide text-xs">Ví dụ cụ thể từ NVIDIA</h3>
         <div className="space-y-4">
           <div className="border border-stone-200 rounded-xl p-5">
             <div className="font-semibold text-stone-800 mb-2 text-sm">94B Unrealized Gain</div>
@@ -174,7 +174,7 @@ export default function Page() {
       </section>
 
       <section>
-        <h3 className="text-base font-bold text-stone-800 mb-4 uppercase tracking-wide text-xs">Cách đọc bảng này hiệu quả</h3>
+        <h3 className="text-base font-bold text-stone-800 dark:text-stone-200 mb-4 uppercase tracking-wide text-xs">Cách đọc bảng này hiệu quả</h3>
         <div className="space-y-3 text-sm text-stone-600">
           <p><strong>Đọc từ trái sang phải</strong>, không phải từ trên xuống dưới: công ty giữ cái gì → giá mua bao nhiêu → tăng/giảm bao nhiêu → hiện đáng giá bao nhiêu.</p>
           <p><strong>Đọc dòng Total trước</strong> để thấy bức tranh lớn, sau đó mới quay lên xem phần nào chiếm tỷ trọng lớn nhất.</p>

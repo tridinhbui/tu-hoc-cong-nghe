@@ -3,8 +3,10 @@
 import { getResumeLesson } from "@/lib/resume-learning";
 import { getCompletedLessons, getTotalTimeSpentMinutes } from "@/lib/supabase-progress";
 import { createServerSupabaseClient } from "@/lib/supabase-server";
-import { getLessonsMeta } from "@/lib/lessons-loader";
+import { getLessonsMeta, getLessonById } from "@/lib/lessons-loader";
 import { isLessonIdInTrack } from "@/lib/track-stages";
+import { getLessonRecallDay } from "@/lib/lesson-labels";
+import { RECALL_SCHEDULE, type RecallItem } from "@/lib/recall-schedule";
 
 // Wraps lib/resume-learning.ts as a Server Action. That module reads the
 // full lesson dataset (lib/lessons.ts, ~1.3MB of lesson content) via
@@ -55,8 +57,45 @@ export async function getDashboardGreetingAction(userId: string, track: "persona
   const completedInTrack = trackLessonIds.filter((id) => completedLessons.includes(id)).length;
   const trackProgressPercent = trackLessonIds.length > 0 ? Math.round((completedInTrack / trackLessonIds.length) * 100) : 0;
 
+  // Enough to tell the learner exactly what's left on the in-progress lesson
+  // (scroll % + quiz answered count) right on the dashboard card, instead of
+  // them having to open the lesson to see the checklist. Quiz count comes
+  // from the full lesson record (server-only - lib/lessons.ts is ~1.3MB and
+  // must never reach a client bundle, see the note above on this file).
+  let nextLessonCriteria: { readPercent: number; quizTotal: number } | null = null;
+  if (nextLesson) {
+    const [readingRow, fullLesson] = await Promise.all([
+      supabase
+        .from("reading_progress")
+        .select("max_percent_reached")
+        .eq("user_id", userId)
+        .eq("lesson_id", nextLesson.id)
+        .maybeSingle(),
+      getLessonById(nextLesson.id),
+    ]);
+    nextLessonCriteria = {
+      readPercent: Math.round(readingRow.data?.max_percent_reached ?? 0),
+      quizTotal: fullLesson?.quiz?.length ?? 0,
+    };
+  }
+
+  // "Ôn tập hôm nay": the recall system (lib/recall-schedule.ts) ties review
+  // items to a specific lesson's position in the sequence (surfaced inline
+  // via RecallCard when that lesson is opened), not to a calendar date - so
+  // there's no independent "due today" list to query. The closest honest
+  // equivalent is the recall items already attached to the learner's next
+  // lesson: material from lessons ~5-12 back that they're about to be
+  // quizzed on anyway. Surfacing it on the dashboard lets them warm up
+  // before clicking in, instead of only discovering it once they're already
+  // on the page.
+  const todayRecallItems: RecallItem[] = nextLesson
+    ? RECALL_SCHEDULE[getLessonRecallDay(nextLesson) ?? -1] ?? []
+    : [];
+
   return {
     nextLesson,
+    nextLessonCriteria,
+    todayRecallItems,
     completedCount: completedLessons.length,
     totalMinutes,
     firstName,

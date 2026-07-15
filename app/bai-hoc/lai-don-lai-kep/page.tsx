@@ -71,7 +71,7 @@ export default function LaiDonLaiKepPage() {
         </p>
 
         <section className="space-y-5">
-          <h3 className="text-2xl font-bold text-stone-900">Lãi đơn: tuyến tính và có giới hạn</h3>
+          <h3 className="text-2xl font-bold text-stone-900 dark:text-stone-100">Lãi đơn: tuyến tính và có giới hạn</h3>
           <p>
             <strong className="text-stone-900">Lãi đơn</strong> là lãi suất tính chỉ trên số tiền gốc ban đầu, không thay đổi qua các năm.
           </p>
@@ -84,7 +84,7 @@ export default function LaiDonLaiKepPage() {
         </section>
 
         <section className="space-y-5">
-          <h3 className="text-2xl font-bold text-stone-900">Lãi kép: hàm mũ và sức mạnh tích lũy</h3>
+          <h3 className="text-2xl font-bold text-stone-900 dark:text-stone-100">Lãi kép: hàm mũ và sức mạnh tích lũy</h3>
           <p>
             <strong className="text-stone-900">Lãi kép</strong> xảy ra khi phần lãi kiếm được không được rút ra mà được tái đầu tư, tức là cộng vào gốc để tiếp tục sinh lãi trong kỳ tiếp theo.
           </p>
@@ -114,7 +114,7 @@ export default function LaiDonLaiKepPage() {
         </section>
 
         <section className="space-y-5">
-          <h3 className="text-2xl font-bold text-stone-900">Quy tắc 72: công cụ tính nhanh</h3>
+          <h3 className="text-2xl font-bold text-stone-900 dark:text-stone-100">Quy tắc 72: công cụ tính nhanh</h3>
           <p>
             Quy tắc 72 là cách tính nhanh trong đầu mà không cần máy tính: <strong className="text-stone-900">chia 72 cho lãi suất hàng năm để biết tiền sẽ tăng gấp đôi sau bao nhiêu năm</strong>.
           </p>
@@ -137,7 +137,7 @@ export default function LaiDonLaiKepPage() {
         </section>
 
         <section className="space-y-5">
-          <h3 className="text-2xl font-bold text-stone-900">Lãi kép cũng hoạt động ngược lại</h3>
+          <h3 className="text-2xl font-bold text-stone-900 dark:text-stone-100">Lãi kép cũng hoạt động ngược lại</h3>
           <p>
             Lãi kép không chỉ có lợi khi bạn là người tiết kiệm. Nó cũng hoạt động bất lợi khi bạn là người đi vay.
           </p>

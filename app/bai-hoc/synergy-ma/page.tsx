@@ -134,11 +134,11 @@ function SynergyCalculator() {
 export default function Page() {
   return (
     <LessonPageLayout lesson={meta} quiz={quiz}>
-      <h2 className="text-2xl font-bold text-stone-900 mb-2">Synergy trong M&A</h2>
+      <h2 className="text-2xl font-bold text-stone-900 dark:text-stone-100 mb-2">Synergy trong M&A</h2>
       <p className="text-stone-600 text-sm mb-6 italic">Lý do tồn tại của hầu hết thương vụ mua lại - và tại sao nó thường thất vọng</p>
 
       <section className="mb-8">
-        <h3 className="text-lg font-bold text-stone-800 mb-3">🔍 2 loại synergy chính</h3>
+        <h3 className="text-lg font-bold text-stone-800 dark:text-stone-200 mb-3">🔍 2 loại synergy chính</h3>
         <div className="grid grid-cols-1 gap-4">
           <div className="bg-stone-50 rounded-xl p-5 border border-stone-200">
             <div className="flex items-center gap-2 mb-3">
@@ -176,7 +176,7 @@ export default function Page() {
       <SynergyCalculator />
 
       <section className="mb-8">
-        <h3 className="text-lg font-bold text-stone-800 mb-3"> Tại sao 50-70% M&A thất bại?</h3>
+        <h3 className="text-lg font-bold text-stone-800 dark:text-stone-200 mb-3"> Tại sao 50-70% M&A thất bại?</h3>
         <div className="space-y-3">
           {[
             { icon: "💰", issue: "Overpay - synergy estimate quá lạc quan", detail: "Banker inflated projection + CEO muốn win deal → bên mua trả premium cao hơn PV(synergy) thực tế" },
@@ -196,7 +196,7 @@ export default function Page() {
       </section>
 
       <section>
-        <h3 className="text-lg font-bold text-stone-800 mb-3"> Best practices cho synergy estimation</h3>
+        <h3 className="text-lg font-bold text-stone-800 dark:text-stone-200 mb-3"> Best practices cho synergy estimation</h3>
         <div className="space-y-2">
           {[
             "Haircut synergy estimate: chỉ dùng 50-70% số banker đưa ra",

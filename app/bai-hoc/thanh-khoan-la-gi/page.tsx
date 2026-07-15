@@ -71,7 +71,7 @@ export default function ThanhKhoanLaGiPage() {
         </p>
 
         <section className="space-y-5">
-          <h3 className="text-2xl font-bold text-stone-900">Thanh khoản là gì</h3>
+          <h3 className="text-2xl font-bold text-stone-900 dark:text-stone-100">Thanh khoản là gì</h3>
           <p>
             <strong className="text-stone-900">Thanh khoản</strong> là khả năng chuyển đổi tài sản thành tiền mặt một cách nhanh chóng và mà không phải chấp nhận mức giá thấp hơn đáng kể so với giá trị thực.
           </p>
@@ -84,7 +84,7 @@ export default function ThanhKhoanLaGiPage() {
         </section>
 
         <section className="space-y-5">
-          <h3 className="text-2xl font-bold text-stone-900">Khủng hoảng thanh khoản: khi giàu mà vẫn vỡ nợ</h3>
+          <h3 className="text-2xl font-bold text-stone-900 dark:text-stone-100">Khủng hoảng thanh khoản: khi giàu mà vẫn vỡ nợ</h3>
           <p>
             Nhiều doanh nghiệp và cá nhân phá sản không phải vì thiếu tài sản, mà vì thiếu thanh khoản ngắn hạn.
           </p>
@@ -101,7 +101,7 @@ export default function ThanhKhoanLaGiPage() {
         </section>
 
         <section className="space-y-5">
-          <h3 className="text-2xl font-bold text-stone-900">Phổ thanh khoản của các tài sản phổ biến</h3>
+          <h3 className="text-2xl font-bold text-stone-900 dark:text-stone-100">Phổ thanh khoản của các tài sản phổ biến</h3>
           <ul className="space-y-3 pl-1">
             {[
               { bold: "Tiền mặt và tài khoản thanh toán", rest: ": thanh khoản tức thì, không mất giá" },
@@ -120,7 +120,7 @@ export default function ThanhKhoanLaGiPage() {
         </section>
 
         <section className="space-y-5">
-          <h3 className="text-2xl font-bold text-stone-900">Quỹ khẩn cấp: phần không thể thiếu</h3>
+          <h3 className="text-2xl font-bold text-stone-900 dark:text-stone-100">Quỹ khẩn cấp: phần không thể thiếu</h3>
           <p>
             Nguyên tắc cơ bản: trước khi đầu tư vào bất kỳ tài sản nào, cần có một quỹ khẩn cấp tương đương 3-6 tháng chi phí sinh hoạt, giữ ở dạng có thanh khoản cao.
           </p>

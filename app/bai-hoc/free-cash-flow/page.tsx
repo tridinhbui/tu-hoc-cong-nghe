@@ -133,13 +133,13 @@ export default function FreeCashFlowPage() {
               Dòng tiền tự do là số tiền doanh nghiệp còn lại sau khi đã chi phần cần thiết để duy trì và phát triển hoạt động. Lãi trên giấy chưa đủ; quan trọng là cuối cùng còn bao nhiêu tiền thật.
             </p>
           </div>
-          <h2 className="text-xl font-bold text-stone-900">Vấn đề với lợi nhuận ròng</h2>
+          <h2 className="text-xl font-bold text-stone-900 dark:text-stone-100">Vấn đề với lợi nhuận ròng</h2>
           <p>Sau khi hiểu dòng tiền kinh doanh, bạn biết rằng lợi nhuận không giống tiền mặt. Nhưng ngay cả dòng tiền kinh doanh cũng chưa phải câu trả lời cuối cùng. Một doanh nghiệp tạo ra 500 tỷ tiền từ kinh doanh nhưng phải chi 480 tỷ mua máy móc mới thì thực ra còn lại rất ít tiền để làm việc khác.</p>
           <p>Đây là lý do <strong>dòng tiền tự do</strong> ra đời.</p>
         </section>
 
         <section className="space-y-4">
-          <h2 className="text-xl font-bold text-stone-900">Công thức đơn giản</h2>
+          <h2 className="text-xl font-bold text-stone-900 dark:text-stone-100">Công thức đơn giản</h2>
           <p>Dòng tiền tự do là tiền mặt <em>thực sự tự do</em> - sau khi doanh nghiệp đã đầu tư những gì cần thiết để duy trì và phát triển hoạt động kinh doanh.</p>
           <div className="bg-stone-50 border border-stone-200 rounded-2xl p-5">
             <div className="text-sm font-bold text-stone-700 mb-3">Câu chuyện ThanhTech - phần mềm kế toán</div>
@@ -159,12 +159,12 @@ export default function FreeCashFlowPage() {
         <FCFAnimation />
 
         <section className="space-y-4">
-          <h2 className="text-xl font-bold text-stone-900">Vì sao nhà đầu tư thích nhìn dòng tiền tự do?</h2>
+          <h2 className="text-xl font-bold text-stone-900 dark:text-stone-100">Vì sao nhà đầu tư thích nhìn dòng tiền tự do?</h2>
           <p>Warren Buffett hay nói về tiền mà chủ sở hữu thực sự có thể rút ra mà không làm yếu doanh nghiệp. Về cơ bản, đó chính là dòng tiền tự do. Lợi nhuận ròng bị ảnh hưởng bởi khấu hao và cách ghi nhận kế toán, còn dòng tiền tự do gần với tiền mặt thực hơn và là nền tảng của nhiều cách định giá.</p>
         </section>
 
         <section className="space-y-4">
-          <h2 className="text-xl font-bold text-stone-900">Dòng tiền tự do âm có phải lúc nào cũng xấu?</h2>
+          <h2 className="text-xl font-bold text-stone-900 dark:text-stone-100">Dòng tiền tự do âm có phải lúc nào cũng xấu?</h2>
           <p>Không. Dòng tiền tự do âm có hai nguyên nhân hoàn toàn khác nhau: <strong>âm vì đầu tư tăng trưởng</strong> - doanh nghiệp đang chi mạnh để mở rộng, có thể chấp nhận được nếu khoản đầu tư tạo ra dòng tiền tốt hơn sau này; hoặc <strong>âm vì kinh doanh yếu</strong> - dòng tiền kinh doanh đã âm mà vẫn phải chi đầu tư lớn, nghĩa là công ty đang đốt tiền. Cần nhìn xu hướng nhiều năm để phân biệt hai trường hợp.</p>
         </section>
 

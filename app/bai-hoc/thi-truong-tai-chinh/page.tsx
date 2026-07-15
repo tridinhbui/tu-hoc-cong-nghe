@@ -72,17 +72,17 @@ export default function ThiTruongTaiChinhPage() {
         </p>
 
         <section className="space-y-5">
-          <h3 className="text-2xl font-bold text-stone-900">Hai tầng của thị trường tài chính</h3>
+          <h3 className="text-2xl font-bold text-stone-900 dark:text-stone-100">Hai tầng của thị trường tài chính</h3>
           <p>
             <strong className="text-stone-900">Thị trường sơ cấp</strong> là nơi tài sản mới được tạo ra. Khi một công ty phát hành cổ phiếu lần đầu (IPO) hoặc chính phủ phát hành trái phiếu, tiền từ nhà đầu tư đi thẳng đến tổ chức phát hành. Đây là lần duy nhất trong vòng đời của tài sản mà người phát hành nhận được tiền.
           </p>
           <p>
-            <strong className="text-stone-900">Thị trường thứ cấp</strong> là nơi các tài sản đó được mua đi bán lại giữa nhà đầu tư. Sàn chứng khoán là ví dụ điển hình: mọi giao dịch ở đây là tiền chạy từ người mua sang người bán, doanh nghiệp không nhận thêm gì. Chức năng chính của thị trường thứ cấp là cung cấp thanh khoản và khám phá giá liên tục.
+            <strong className="text-stone-900">Thị trường thứ cấp</strong> là nơi các tài sản đó được mua đi bán lại giữa nhà đầu tư. Sàn chứng khoán là ví dụ điển hình: mọi giao dịch ở đây là tiền chạy từ người mua sang người bán, doanh nghiệp không nhận thêm gì. Chức năng chính của thị trường thứ cấp là giúp các nhà đầu tư dễ dàng mua bán lại chứng khoán nhanh chóng (tính thanh khoản) và liên tục cập nhật giá thị trường thực tế.
           </p>
         </section>
 
         <section className="space-y-5">
-          <h3 className="text-2xl font-bold text-stone-900">Giá được xác định như thế nào</h3>
+          <h3 className="text-2xl font-bold text-stone-900 dark:text-stone-100">Giá được xác định như thế nào</h3>
           <p>
             Giá thị trường tại bất kỳ thời điểm nào là điểm cân bằng giữa mọi người muốn mua và mọi người muốn bán. Không phải một người quyết định, không phải một công ty quyết định, mà là toàn bộ thị trường.
           </p>
@@ -99,7 +99,7 @@ export default function ThiTruongTaiChinhPage() {
         </section>
 
         <section className="space-y-5">
-          <h3 className="text-2xl font-bold text-stone-900">Giả thuyết thị trường hiệu quả và thực tế</h3>
+          <h3 className="text-2xl font-bold text-stone-900 dark:text-stone-100">Giả thuyết thị trường hiệu quả và thực tế</h3>
           <p>
             Giả thuyết thị trường hiệu quả (Efficient Market Hypothesis) cho rằng giá tài sản luôn phản ánh đầy đủ mọi thông tin có sẵn. Nếu đúng hoàn toàn, không ai có thể liên tục đánh bại thị trường vì thông tin mới lập tức được phản ánh vào giá.
           </p>
@@ -112,7 +112,7 @@ export default function ThiTruongTaiChinhPage() {
         </section>
 
         <section className="space-y-5">
-          <h3 className="text-2xl font-bold text-stone-900">Các loại thị trường tài chính</h3>
+          <h3 className="text-2xl font-bold text-stone-900 dark:text-stone-100">Các loại thị trường tài chính</h3>
           <ul className="space-y-3 pl-1">
             {[
               { bold: "Thị trường cổ phiếu", rest: ": mua bán quyền sở hữu doanh nghiệp; rủi ro cao, lợi nhuận dài hạn cao nhất" },

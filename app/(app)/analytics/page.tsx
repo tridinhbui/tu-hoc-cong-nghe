@@ -4,7 +4,6 @@ import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { createClient } from "@/lib/supabase";
-import UserMenu from "@/components/UserMenu";
 import LearningAnalytics from "@/components/LearningAnalytics";
 
 // Auth-gated and reads Supabase env vars at render time - never prerender statically.
@@ -13,7 +12,6 @@ export const dynamic = "force-dynamic";
 export default function AnalyticsPage() {
   const router = useRouter();
   const supabase = createClient();
-  const [user, setUser] = useState<{ email?: string; user_metadata?: { full_name?: string; avatar_url?: string } } | null>(null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -27,7 +25,6 @@ export default function AnalyticsPage() {
         return;
       }
 
-      setUser(session.user);
       setLoading(false);
     };
 
@@ -44,18 +41,15 @@ export default function AnalyticsPage() {
 
   return (
     <div className="min-h-screen bg-stone-50 dark:bg-stone-950">
-      <div className="border-b border-stone-200 dark:border-stone-800 sticky top-0 bg-white/95 dark:bg-stone-950/95 backdrop-blur z-10">
-        <div className="max-w-6xl mx-auto px-6 py-4 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
-          <div>
-            <Link href="/dashboard" className="text-stone-500 dark:text-stone-400 hover:text-stone-600 dark:hover:text-stone-300 text-sm font-semibold">
-              ← Quay lại
-            </Link>
-            <h1 className="text-2xl font-bold text-stone-900 dark:text-stone-100 mt-2">Thống kê học tập</h1>
-            <p className="text-sm text-stone-500 dark:text-stone-400 mt-1">
-              Đọc nhịp học của bạn rõ hơn để biết đang tiến tốt ở đâu và nên tối ưu điều gì tiếp theo.
-            </p>
-          </div>
-          <UserMenu name={user?.user_metadata?.full_name} email={user?.email} avatarUrl={user?.user_metadata?.avatar_url} />
+      <div className="border-b border-stone-200 dark:border-stone-800 bg-white dark:bg-stone-950">
+        <div className="max-w-6xl mx-auto px-6 py-4">
+          <Link href="/dashboard" className="text-stone-500 dark:text-stone-400 hover:text-stone-600 dark:hover:text-stone-300 text-sm font-semibold">
+            ← Quay lại
+          </Link>
+          <h1 className="text-2xl font-bold text-stone-900 dark:text-stone-100 mt-2">Thống kê học tập</h1>
+          <p className="text-sm text-stone-500 dark:text-stone-400 mt-1">
+            Đọc nhịp học của bạn rõ hơn để biết đang tiến tốt ở đâu và nên tối ưu điều gì tiếp theo.
+          </p>
         </div>
       </div>
 

@@ -2,8 +2,10 @@
 
 import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
+import { Flame } from "lucide-react";
 import { getLevelByXp, getNextLevel, getXpToNextLevel, getLevelProgress, LEVELS } from "@/lib/levels";
 import { getLevelStats, type LevelStats } from "@/lib/supabase-user";
+import { getUserStreak, hasActivityToday as checkActivityToday } from "@/lib/supabase-streak";
 
 interface UserStatsProps {
   xp: number;
@@ -27,15 +29,34 @@ export default function UserStats({
 
   const [levelStats, setLevelStats] = useState<LevelStats | null>(null);
   const [openLevelTooltip, setOpenLevelTooltip] = useState<number | null>(null);
+  const [streak, setStreak] = useState(0);
+  const [hasActivityToday, setHasActivityToday] = useState(false);
   const rootRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
+    if (!userId) return;
     let cancelled = false;
+    
+    // Fetch Level Stats
     getLevelStats(userId)
       .then((stats) => {
         if (!cancelled) setLevelStats(stats);
       })
       .catch((error) => console.error("Error loading level stats:", error));
+
+    // Fetch Streak
+    getUserStreak(userId)
+      .then((streakData) => {
+        if (!cancelled) setStreak(streakData?.current_streak || 0);
+      })
+      .catch((error) => console.error("Error loading streak:", error));
+
+    checkActivityToday(userId)
+      .then((todayActivity) => {
+        if (!cancelled) setHasActivityToday(todayActivity);
+      })
+      .catch((error) => console.error("Error checking today activity:", error));
+
     return () => {
       cancelled = true;
     };
@@ -57,70 +78,82 @@ export default function UserStats({
   }, [openLevelTooltip]);
 
   return (
-    <div ref={rootRef} className="bg-white dark:bg-stone-900 border-2 border-stone-200 dark:border-stone-800 rounded-xl p-4">
-      <div className="flex items-center justify-between gap-6 flex-wrap sm:flex-nowrap">
+    <div ref={rootRef} className="bg-white dark:bg-stone-900 border border-stone-200 dark:border-stone-800 rounded-xl p-3 sm:p-4">
+      {/* Top section with compact stats */}
+      <div className="flex items-center justify-between gap-4 flex-wrap sm:flex-nowrap">
         {/* Level Info */}
-        <div>
-          <p className="text-xs font-extrabold text-stone-500 dark:text-stone-400 uppercase tracking-widest">
-            Level
+        <div className="min-w-[100px]">
+          <p className="text-[10px] font-extrabold text-stone-500 dark:text-stone-400 uppercase tracking-widest">
+            Cấp độ
           </p>
-          <h3 className="text-lg font-extrabold text-stone-900 dark:text-stone-100 mt-1">
+          <h3 className="text-sm font-bold text-stone-900 dark:text-stone-100 mt-0.5 truncate">
             {currentLevel.name}
           </h3>
-          <p className="text-xs text-stone-600 dark:text-stone-400 mt-0.5">
-            {currentLevel.level} / {LEVELS.length}
+          <p className="text-[11px] text-stone-500 dark:text-stone-400">
+            {currentLevel.level}/{LEVELS.length}
           </p>
-          {levelStats?.myTopPercent !== null && levelStats?.myTopPercent !== undefined && (
-            <p className="text-xs font-bold text-emerald-600 dark:text-emerald-400 mt-1">
-              Bạn nằm trong top {levelStats.myTopPercent}%
-            </p>
-          )}
         </div>
 
         {/* XP Display */}
-        <div className="text-right">
-          <p className="text-xs font-extrabold text-stone-500 dark:text-stone-400 uppercase tracking-widest">
+        <div>
+          <p className="text-[10px] font-extrabold text-stone-500 dark:text-stone-400 uppercase tracking-widest">
             XP
           </p>
-          <div className="text-2xl font-extrabold text-stone-900 dark:text-stone-100 mt-1">{xp}</div>
-          <p className="text-xs text-stone-500 dark:text-stone-400 mt-0.5">
-            {xpToNext > 0 ? `+${xpToNext}` : "Max"}
+          <div className="text-base font-bold text-stone-900 dark:text-stone-100 mt-0.5">{xp}</div>
+          <p className="text-[10px] text-stone-400 dark:text-stone-500">
+            {xpToNext > 0 ? `+${xpToNext}` : "Tối đa"}
           </p>
         </div>
 
+        {/* Streak Display */}
+        <div className="flex items-center gap-2">
+          <div className={`w-9 h-9 rounded-full flex items-center justify-center flex-shrink-0 transition-colors ${
+            hasActivityToday 
+              ? "bg-orange-100/80 dark:bg-orange-950/40" 
+              : "bg-stone-50 dark:bg-stone-800"
+          }`}>
+            <Flame 
+              className={`w-5 h-5 transition-all ${
+                hasActivityToday 
+                  ? "text-orange-500 fill-orange-500 filter drop-shadow-[0_0_4px_rgba(249,115,22,0.6)]" 
+                  : "text-stone-400 dark:text-stone-600"
+              }`} 
+            />
+          </div>
+          <div>
+            <p className="text-[10px] font-extrabold text-stone-500 dark:text-stone-400 uppercase tracking-widest leading-none">
+              Streak
+            </p>
+            <div className="text-base font-extrabold text-stone-900 dark:text-stone-100 leading-none mt-1">
+              {streak} ngày
+            </div>
+          </div>
+        </div>
+
         {/* Quick Stats */}
-        <div className="flex items-center gap-4 text-xs">
+        <div className="flex items-center gap-3 text-[11px] border-l border-stone-100 dark:border-stone-850 pl-3">
           <div className="text-center">
-            <div className="font-extrabold text-stone-900 dark:text-stone-100">{lessonsCompleted}</div>
-            <p className="text-stone-500 dark:text-stone-400">bài</p>
+            <div className="font-bold text-stone-900 dark:text-stone-100">
+              {lessonsCompleted}/{totalLessons}
+            </div>
+            <p className="text-stone-500 dark:text-stone-400 text-[10px]">Bài học</p>
           </div>
           <div className="text-center">
-            <div className="font-extrabold text-stone-900 dark:text-stone-100">{Math.round(avgQuizScore)}</div>
-            <p className="text-stone-500 dark:text-stone-400">điểm</p>
+            <div className="font-bold text-stone-900 dark:text-stone-100">{Math.round(avgQuizScore)}%</div>
+            <p className="text-stone-500 dark:text-stone-400 text-[10px]">Quiz TB</p>
           </div>
         </div>
       </div>
 
-      {/* Level roadmap - every milestone laid out, not just the current
-          level's name, so a learner can see the whole journey ahead
-          (what's next, how far, and how many levels remain) at a glance. */}
-      <div className="mt-4 pt-4 border-t border-stone-100 dark:border-stone-800">
-        {levelStats && (
-          <div className="flex items-center gap-1.5 mb-3 text-[10px] font-bold text-stone-400 dark:text-stone-500">
-            <span className="relative flex w-1.5 h-1.5">
-              <span className="animate-ping absolute inline-flex w-full h-full rounded-full bg-emerald-400 opacity-75" />
-              <span className="relative inline-flex rounded-full w-1.5 h-1.5 bg-emerald-500" />
-            </span>
-            Số liệu thật, cập nhật trực tiếp từ toàn bộ học viên trên hệ thống
-          </div>
-        )}
+      {/* Level Roadmap - Shrunk to fit compact height */}
+      <div className="mt-3 pt-3 border-t border-stone-100 dark:border-stone-800">
         <div className="relative flex items-start justify-between">
-          {/* Connecting line + filled progress, sits behind the dots */}
-          <div className="absolute top-2.5 left-0 right-0 h-0.5 bg-stone-200 dark:bg-stone-800 mx-2.5" />
+          {/* Connecting line + progress */}
+          <div className="absolute top-2 left-0 right-0 h-0.5 bg-stone-100 dark:bg-stone-800 mx-2" />
           <div
-            className="absolute top-2.5 left-2.5 h-0.5 bg-emerald-500 transition-all duration-500"
+            className="absolute top-2 left-2 h-0.5 bg-emerald-500 transition-all duration-500"
             style={{
-              width: `calc(${((currentLevel.level - 1 + (nextLevel ? progress / 100 : 0)) / (LEVELS.length - 1)) * 100}% - 20px)`,
+              width: `calc(${((currentLevel.level - 1 + (nextLevel ? progress / 100 : 0)) / (LEVELS.length - 1)) * 100}% - 16px)`,
             }}
           />
 
@@ -135,64 +168,58 @@ export default function UserStats({
                 type="button"
                 onClick={() => setOpenLevelTooltip((current) => (current === lvl.level ? null : lvl.level))}
                 onMouseEnter={() => setOpenLevelTooltip(lvl.level)}
-                className="relative flex flex-1 min-w-0 flex-col items-center gap-1.5 group bg-transparent text-left"
+                className="relative flex flex-1 min-w-0 flex-col items-center gap-1 group bg-transparent text-left"
               >
                 <div
-                  className={`w-5 h-5 rounded-full flex items-center justify-center text-[10px] font-extrabold border-2 ${
+                  className={`w-4 h-4 rounded-full flex items-center justify-center text-[9px] font-extrabold border ${
                     isCurrent
-                      ? "bg-emerald-500 border-emerald-500 text-white scale-125 shadow-md"
+                      ? "bg-emerald-500 border-emerald-500 text-white scale-110 shadow-sm"
                       : reached
-                        ? "bg-emerald-100 dark:bg-emerald-950/60 border-emerald-400 text-emerald-700 dark:text-emerald-400"
-                        : "bg-white dark:bg-stone-900 border-stone-300 dark:border-stone-700 text-stone-400 dark:text-stone-600"
+                        ? "bg-emerald-50 dark:bg-emerald-950/30 border-emerald-400 text-emerald-700 dark:text-emerald-400"
+                        : "bg-white dark:bg-stone-900 border-stone-200 dark:border-stone-800 text-stone-450"
                   }`}
                 >
                   {lvl.level}
                 </div>
                 <span
-                  className={`text-[10px] sm:text-[11px] font-bold text-center leading-tight px-0.5 ${
+                  className={`text-[9px] font-semibold text-center leading-tight px-0.5 ${
                     isCurrent
                       ? "text-emerald-700 dark:text-emerald-400"
                       : reached
                         ? "text-stone-600 dark:text-stone-400"
-                        : "text-stone-400 dark:text-stone-600"
+                        : "text-stone-400 dark:text-stone-500"
                   }`}
                 >
                   {lvl.name}
                 </span>
-                {levelStats && (
-                  <span className="text-[9px] sm:text-[10px] text-stone-400 dark:text-stone-600">
-                    {levelStats.levelCounts[lvl.level] ?? 0} người
-                  </span>
-                )}
-
-                {/* Hover card: who's leading this level, by XP */}
+                
                 {topUsers.length > 0 && (
-                  <div className={`absolute top-full left-1/2 -translate-x-1/2 z-30 mt-2 w-56 rounded-xl border border-stone-200 dark:border-stone-800 bg-white dark:bg-stone-900 px-3 py-2.5 shadow-xl origin-top transition-all duration-150 ${
+                  <div className={`absolute top-full left-1/2 -translate-x-1/2 z-30 mt-1.5 w-48 rounded-lg border border-stone-200 dark:border-stone-800 bg-white dark:bg-stone-900 px-2 py-2 shadow-lg origin-top transition-all duration-150 ${
                     isTooltipOpen ? "opacity-100 scale-100 pointer-events-auto" : "pointer-events-none opacity-0 scale-95 group-hover:opacity-100 group-hover:scale-100"
                   }`}>
-                    <p className="text-[10px] font-extrabold text-stone-500 dark:text-stone-400 uppercase tracking-wider mb-1.5">
+                    <p className="text-[9px] font-extrabold text-stone-500 dark:text-stone-400 uppercase tracking-wider mb-1">
                       Top {lvl.name}
                     </p>
-                    <div className="space-y-1.5">
+                    <div className="space-y-1">
                       {topUsers.map((u, i) => (
-                        <div key={i} className="flex items-center gap-2">
+                        <div key={i} className="flex items-center gap-1.5">
                           {u.avatarUrl ? (
                             <Image
                               src={u.avatarUrl}
                               alt={u.name}
-                              width={20}
-                              height={20}
-                              className="w-5 h-5 rounded-full object-cover flex-shrink-0 border border-stone-200 dark:border-stone-700"
+                              width={16}
+                              height={16}
+                              className="w-4 h-4 rounded-full object-cover flex-shrink-0"
                             />
                           ) : (
-                            <div className="w-5 h-5 rounded-full flex-shrink-0 flex items-center justify-center bg-stone-200 dark:bg-stone-700 text-stone-600 dark:text-stone-300 text-[9px] font-extrabold">
+                            <div className="w-4 h-4 rounded-full flex-shrink-0 flex items-center justify-center bg-stone-200 dark:bg-stone-700 text-stone-600 dark:text-stone-300 text-[8px] font-extrabold">
                               {u.name.trim().charAt(0).toUpperCase() || "?"}
                             </div>
                           )}
-                          <span className="text-xs font-semibold text-stone-800 dark:text-stone-200 truncate flex-1">
+                          <span className="text-[10px] font-semibold text-stone-800 dark:text-stone-200 truncate flex-1">
                             {u.name}
                           </span>
-                          <span className="text-xs text-stone-500 dark:text-stone-400 flex-shrink-0">{u.xp} XP</span>
+                          <span className="text-[10px] text-stone-500 dark:text-stone-400 flex-shrink-0">{u.xp} XP</span>
                         </div>
                       ))}
                     </div>

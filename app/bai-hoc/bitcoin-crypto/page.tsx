@@ -49,11 +49,11 @@ const quiz: QuizQuestion[] = [
 export default function Page() {
   return (
     <LessonPageLayout lesson={meta} quiz={quiz}>
-      <h2 className="text-2xl font-bold text-stone-900 mb-2">Bitcoin rơi về 60k - Crypto có giá trị thật không?</h2>
+      <h2 className="text-2xl font-bold text-stone-900 dark:text-stone-100 mb-2">Bitcoin rơi về 60k - Crypto có giá trị thật không?</h2>
       <p className="text-stone-500 text-sm mb-8">Nhìn crypto từ góc độ tài chính - không phải speculation</p>
 
       <section className="mb-10">
-        <h3 className="text-base font-bold text-stone-800 mb-4 uppercase tracking-wide text-xs">Từ đầu - tiền và tài sản tài chính dựa trên gì?</h3>
+        <h3 className="text-base font-bold text-stone-800 dark:text-stone-200 mb-4 uppercase tracking-wide text-xs">Từ đầu - tiền và tài sản tài chính dựa trên gì?</h3>
         <p className="text-stone-600 leading-relaxed mb-3">
           Bất kỳ hệ thống tài chính nào cũng xoay quanh 4 câu hỏi: Ai ghi nhận quyền sở hữu? Ai xác nhận giao dịch? Ai được quyền sửa sổ? Và vì sao người khác tin tài sản đó có giá trị?
         </p>
@@ -63,7 +63,7 @@ export default function Page() {
       </section>
 
       <section className="mb-10">
-        <h3 className="text-base font-bold text-stone-800 mb-4 uppercase tracking-wide text-xs">Crypto là cả khu chợ - Bitcoin chỉ là một quầy</h3>
+        <h3 className="text-base font-bold text-stone-800 dark:text-stone-200 mb-4 uppercase tracking-wide text-xs">Crypto là cả khu chợ - Bitcoin chỉ là một quầy</h3>
         <p className="text-stone-600 leading-relaxed mb-4">
           Nhầm lẫn phổ biến nhất: đồng nhất crypto với Bitcoin. Crypto là cả thị trường tài sản số. Bitcoin chỉ là đồng đầu tiên và nổi tiếng nhất.
         </p>
@@ -83,7 +83,7 @@ export default function Page() {
       </section>
 
       <section className="mb-10">
-        <h3 className="text-base font-bold text-stone-800 mb-4 uppercase tracking-wide text-xs">Tại sao Bitcoin được mua bán?</h3>
+        <h3 className="text-base font-bold text-stone-800 dark:text-stone-200 mb-4 uppercase tracking-wide text-xs">Tại sao Bitcoin được mua bán?</h3>
         <p className="text-stone-600 leading-relaxed mb-4">
           Bitcoin không tạo ra cash flow như cổ phiếu, không trả coupon như bond. Vậy giá dựa trên gì?
         </p>
@@ -119,7 +119,7 @@ export default function Page() {
       </section>
 
       <section className="mb-10">
-        <h3 className="text-base font-bold text-stone-800 mb-4 uppercase tracking-wide text-xs">Stablecoin - gần tài chính truyền thống hơn</h3>
+        <h3 className="text-base font-bold text-stone-800 dark:text-stone-200 mb-4 uppercase tracking-wide text-xs">Stablecoin - gần tài chính truyền thống hơn</h3>
         <p className="text-stone-600 leading-relaxed mb-3">
           Stablecoin được thiết kế để giữ giá ổn định, thường 1 stablecoin = 1 USD. Khác Bitcoin có thể dao động vài chục % trong ngày, stablecoin cố gắng giữ nguyên giá trị.
         </p>
@@ -139,7 +139,7 @@ export default function Page() {
       </section>
 
       <section>
-        <h3 className="text-base font-bold text-stone-800 mb-3 uppercase tracking-wide text-xs">Chuyện người giàu lên từ crypto</h3>
+        <h3 className="text-base font-bold text-stone-800 dark:text-stone-200 mb-3 uppercase tracking-wide text-xs">Chuyện người giàu lên từ crypto</h3>
         <p className="text-stone-600 text-sm leading-relaxed mb-3">
           Có người giàu lên từ crypto là hoàn toàn có thật - vào sớm, chọn đúng tài sản, giữ qua đúng chu kỳ tăng mạnh. Nhưng đây cũng là phần dễ tạo ảo giác nhất. <strong>Cùng một cơ chế đó, rất nhiều người mất tiền rất nhanh.</strong>
         </p>

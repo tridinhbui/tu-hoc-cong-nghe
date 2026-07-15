@@ -100,7 +100,7 @@ function DuPontSimulator() {
 export default function Page() {
   return (
     <LessonPageLayout lesson={meta} quiz={quiz}>
-      <h2 className="text-2xl font-bold text-stone-900 mb-2">Phân tích DuPont</h2>
+      <h2 className="text-2xl font-bold text-stone-900 dark:text-stone-100 mb-2">Phân tích DuPont</h2>
       <p className="text-stone-600 text-sm mb-6 italic">ROE giống điểm thi cuối kỳ - DuPont cho biết yếu ở môn nào</p>
 
       <section className="mb-8 rounded-xl border border-teal-100 bg-teal-50 p-4">
@@ -111,7 +111,7 @@ export default function Page() {
       </section>
 
       <section className="mb-8">
-        <h3 className="text-lg font-bold text-stone-800 mb-3">Công thức DuPont 3 yếu tố</h3>
+        <h3 className="text-lg font-bold text-stone-800 dark:text-stone-200 mb-3">Công thức DuPont 3 yếu tố</h3>
         <div className="bg-stone-50 text-white rounded-xl p-5 text-center mb-4">
           <div className="font-mono text-lg font-bold mb-1">ROE = Biên lợi nhuận × Vòng quay tài sản × Đòn bẩy</div>
           <div className="font-mono text-sm text-stone-700">= (Lợi nhuận/Doanh thu) × (Doanh thu/Tài sản) × (Tài sản/Vốn chủ)</div>
@@ -133,7 +133,7 @@ export default function Page() {
       </section>
 
       <section className="mb-8">
-        <h3 className="text-lg font-bold text-stone-800 mb-3">Ví dụ: Tyson Foods</h3>
+        <h3 className="text-lg font-bold text-stone-800 dark:text-stone-200 mb-3">Ví dụ: Tyson Foods</h3>
         <div className="bg-stone-50 border border-stone-200 rounded-xl p-4 mb-3">
           <p className="text-sm text-stone-700 mb-3">Hệ thống phân tích báo cáo: <span className="font-mono bg-stone-200 px-1 rounded text-xs">Biên lợi nhuận: 0.6% | Vòng quay tài sản: 0.4x | ROE thấp</span></p>
           <p className="text-stone-600 text-sm">Thay vì nói: <em>"ROE = 5% - công ty hoạt động không tốt"</em></p>
@@ -147,7 +147,7 @@ export default function Page() {
       <DuPontSimulator />
 
       <section className="mb-8">
-        <h3 className="text-lg font-bold text-stone-800 mb-3">Mô hình kinh doanh khác nhau → cấu trúc DuPont khác nhau</h3>
+        <h3 className="text-lg font-bold text-stone-800 dark:text-stone-200 mb-3">Mô hình kinh doanh khác nhau → cấu trúc DuPont khác nhau</h3>
         <div className="space-y-2">
           {[
             { company: "Apple", margin: "25%", at: "1.0x", em: "3.5x", roe: "~88%", note: "Biên lợi nhuận cao + đòn bẩy vừa phải" },
@@ -166,7 +166,7 @@ export default function Page() {
       </section>
 
       <section>
-        <h3 className="text-lg font-bold text-stone-800 mb-3"> Khi nào dùng DuPont?</h3>
+        <h3 className="text-lg font-bold text-stone-800 dark:text-stone-200 mb-3"> Khi nào dùng DuPont?</h3>
         <div className="space-y-2">
           {[
             "So sánh 2 công ty cùng ngành: ROE khác nhau vì biên lợi nhuận, vòng quay tài sản hay đòn bẩy?",

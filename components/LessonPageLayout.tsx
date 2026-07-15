@@ -3,7 +3,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import { toast } from "sonner";
-import { CheckCircle2, Circle } from "lucide-react";
+import { CheckCircle2, Circle, ArrowLeft, ChevronDown, ChevronUp } from "lucide-react";
 import { markLessonComplete, saveQuizAnswers, getQuizAnswers, clearQuizAnswers } from "@/lib/progress";
 import FloatingContact from "@/components/FloatingChatbot";
 import StageTipsBanner from "@/components/StageTipsBanner";
@@ -22,12 +22,14 @@ import { getLessonProgress } from "@/lib/supabase-progress";
 import { recalculateUserStats } from "@/lib/supabase-user";
 import { updateStreak } from "@/lib/supabase-streak";
 import { getReadingProgress, updateReadingProgress } from "@/lib/supabase-reading";
+import { recordQuizMistake } from "@/lib/quiz-mistakes";
 import { getRecallItemsAction } from "@/lib/recall-actions";
 import type { RecallItem } from "@/lib/recall-schedule";
 import RecallCard from "@/components/RecallCard";
 import LessonTour from "@/components/LessonTour";
 import FontSizeControl, { loadFontScale } from "@/components/FontSizeControl";
 import LessonFeedbackInline from "@/components/LessonFeedbackInline";
+import LessonTableOfContents from "@/components/LessonTableOfContents";
 import { getLessonDisplayLabel } from "@/lib/lesson-labels";
 
 export interface QuizQuestion {
@@ -51,6 +53,7 @@ export interface LessonMeta {
   slug?: string;
   nextSlug?: string;
   nextTitle?: string;
+  sections?: import("@/lib/lesson-types").LessonSectionBlock[];
 }
 
 interface Props {
@@ -130,6 +133,7 @@ export default function LessonPageLayout({ lesson, quiz, children }: Props) {
   const [recallItems, setRecallItems] = useState<RecallItem[]>([]);
   const [highlights, setHighlights] = useState<LessonHighlight[]>([]);
   const [fontScale, setFontScale] = useState(() => (typeof window === "undefined" ? 1.125 : loadFontScale()));
+  const [quizCollapsed, setQuizCollapsed] = useState(false);
   const articleRef = useRef<HTMLElement>(null);
   const bottomSentinelRef = useRef<HTMLDivElement>(null);
   const maxReachedRef = useRef(0);
@@ -382,6 +386,12 @@ export default function LessonPageLayout({ lesson, quiz, children }: Props) {
   const midpointCriterionMet = !hasMidpoint || midpointDone;
   const allCriteriaMet = scrolledFully && quizCriterionMet && midpointCriterionMet;
 
+  // Mirrors LessonTableOfContents' own "at least 3 headings" gate - computed
+  // here too so the wrapper column that reserves its layout space can skip
+  // rendering entirely when there's nothing to show, instead of reserving
+  // 256px of dead space on every lesson without a real TOC.
+  const hasToc = (lesson.sections?.filter((s) => s.type === "heading").length ?? 0) >= 3;
+
   useEffect(() => {
     if (!allCriteriaMet) return;
     if (quizCompletionFiredRef.current || zeroQuizCompletedRef.current) return;
@@ -394,16 +404,40 @@ export default function LessonPageLayout({ lesson, quiz, children }: Props) {
     midpointDoneRef.current = true;
 
     markLessonComplete(persistedLessonId, durationMin);
-    void completeLessonInSupabase(quiz.length > 0 ? results : []).then((ok) => {
-      // If the critical server write failed (transient network/RLS blip),
-      // release the guards so a later re-trigger - or this effect re-running
-      // when the user interacts again - retries the save instead of leaving
-      // the lesson permanently unsaved for the session.
-      if (!ok) {
-        quizCompletionFiredRef.current = false;
-        zeroQuizCompletedRef.current = false;
+
+    // This effect depends only on `allCriteriaMet` (a boolean) - once every
+    // criterion is met, there's nothing left for the learner to do on this
+    // page, so nothing will ever flip it false-then-true again to naturally
+    // re-run the effect. That means a single transient failure (network
+    // blip, brief RLS hiccup) used to strand the completion unsaved for the
+    // rest of the visit despite the guard being reset, because nothing was
+    // actually driving a retry - the toast promised "sẽ tự thử lại" but no
+    // such retry existed. Actually retry with backoff here instead.
+    let cancelled = false;
+    const RETRY_DELAYS_MS = [1500, 4000, 8000];
+    async function attemptSave() {
+      const finalResults = quiz.length > 0 ? results : [];
+      for (let attempt = 0; ; attempt++) {
+        if (cancelled) return;
+        const ok = await completeLessonInSupabase(finalResults);
+        if (ok || cancelled) return;
+        if (attempt >= RETRY_DELAYS_MS.length) {
+          // Retries exhausted - release the guards so leaving and
+          // returning to the lesson (a fresh mount re-evaluates and
+          // re-fires this effect) can try again, instead of the
+          // completion staying silently unsaved forever this session.
+          quizCompletionFiredRef.current = false;
+          zeroQuizCompletedRef.current = false;
+          toast.error("Không thể lưu tiến độ bài học. Vui lòng tải lại trang để thử lại.");
+          return;
+        }
+        await new Promise((resolve) => setTimeout(resolve, RETRY_DELAYS_MS[attempt]));
       }
-    });
+    }
+    void attemptSave();
+    return () => {
+      cancelled = true;
+    };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [allCriteriaMet]);
 
@@ -420,6 +454,10 @@ export default function LessonPageLayout({ lesson, quiz, children }: Props) {
     const newSubmitted = [...submitted]; newSubmitted[qi] = true;
     setResults(newResults);
     setSubmitted(newSubmitted);
+    // Logs this specific question as a mistake to resurface later (Ôn tập
+    // câu sai) - or resolves it if this is a corrected retry. Best-effort,
+    // never blocks the quiz UI.
+    void recordQuizMistake(persistedLessonId, qi, ok);
     // Persist the exact per-question outcome (not just an aggregate score)
     // so revisiting this lesson later shows precisely which question was
     // wrong and what was picked, instead of guessing from the total score.
@@ -522,7 +560,6 @@ export default function LessonPageLayout({ lesson, quiz, children }: Props) {
       await markLessonCompleteSupabase(uid, persistedLessonId, finalScore, durationMin * 60);
     } catch (error) {
       console.error("Error saving lesson completion:", error);
-      toast.error("Không thể lưu tiến độ. Sẽ tự thử lại - hoặc tải lại trang nếu vẫn lỗi.");
       return false;
     }
 
@@ -592,16 +629,17 @@ export default function LessonPageLayout({ lesson, quiz, children }: Props) {
         </div>
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 py-5 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
-          <div className="flex items-center gap-3 sm:gap-4 min-w-0">
+          <div className="flex items-center gap-2 sm:gap-4 min-w-0">
             <Link
               href="/dashboard"
               aria-label="Về Dashboard"
-              className="w-11 h-11 rounded-full border-2 border-stone-300 dark:border-stone-700 flex items-center justify-center text-stone-600 dark:text-stone-400 hover:text-stone-900 dark:hover:text-stone-100 hover:border-stone-400 dark:hover:border-stone-600 bg-white dark:bg-stone-900 transition-all text-xl font-bold"
+              className="inline-flex flex-shrink-0 items-center gap-1.5 whitespace-nowrap w-9 h-9 sm:w-auto sm:px-4 sm:py-2 justify-center rounded-full sm:rounded-lg border-2 border-stone-300 dark:border-stone-700 text-stone-700 dark:text-stone-300 font-bold hover:bg-stone-100 dark:hover:bg-stone-800 hover:border-stone-400 dark:hover:border-stone-600 hover:text-stone-900 dark:hover:text-stone-100 bg-white dark:bg-stone-900 transition-all"
             >
-              ←
+              <ArrowLeft className="w-4 h-4 flex-shrink-0" />
+              <span className="hidden sm:inline">Quay lại</span>
             </Link>
-            <div>
-              <p className="font-extrabold text-stone-900 dark:text-stone-100 text-lg leading-tight line-clamp-1">{lesson.title}</p>
+            <div className="min-w-0">
+              <p className="font-extrabold text-stone-900 dark:text-stone-100 text-base sm:text-lg leading-tight line-clamp-1">{lesson.title}</p>
               <p className="text-sm text-stone-500 dark:text-stone-400 hidden sm:block font-semibold">{lessonLabel}</p>
             </div>
           </div>
@@ -660,10 +698,11 @@ export default function LessonPageLayout({ lesson, quiz, children }: Props) {
 
       {/* 2-column layout */}
       <div className="max-w-7xl mx-auto px-3 sm:px-4 lg:px-6 py-6 sm:py-8 lg:py-12">
-        <div className="flex flex-col lg:flex-row gap-6 sm:gap-8 lg:gap-12 items-start">
+        <div className="flex flex-col xl:flex-row gap-6 sm:gap-8 lg:gap-12 items-start">
 
           {/* ── LEFT: Article ─────────────────────────────────────── */}
-          <TextHighlightMenu
+          <div className="flex-1 min-w-0">
+            <TextHighlightMenu
             containerRef={articleRef}
             lessonId={persistedLessonId}
             lessonSlug={lesson.slug || ""}
@@ -679,9 +718,9 @@ export default function LessonPageLayout({ lesson, quiz, children }: Props) {
               <h1 className="text-3xl sm:text-5xl font-extrabold text-stone-950 dark:text-stone-100 leading-tight mb-4">
                 {lesson.title}
               </h1>
-              <p className="text-stone-700 dark:text-stone-300 text-lg sm:text-xl leading-relaxed">{lesson.subtitle}</p>
+              <p className="text-stone-700 dark:text-stone-200 text-lg sm:text-xl leading-relaxed">{lesson.subtitle}</p>
               <div className="mt-7 pt-5 border-t-2 border-stone-300 dark:border-stone-700 space-y-4">
-                <div className="flex items-center gap-4 text-base text-stone-700 dark:text-stone-300 font-semibold">
+                <div className="flex items-center gap-4 text-base text-stone-700 dark:text-stone-200 font-semibold">
                   <span>{lesson.duration} đọc</span>
                   <span>·</span>
                   <span>{quiz.length} câu quiz</span>
@@ -702,7 +741,7 @@ export default function LessonPageLayout({ lesson, quiz, children }: Props) {
                   />
                 </div>
                 {readPct > 0 && readPct < 100 && (
-                  <p className="text-sm text-stone-700 dark:text-stone-300 font-semibold">
+                  <p className="text-sm text-stone-700 dark:text-stone-200 font-semibold">
                     Còn khoảng <strong className="text-stone-900 dark:text-stone-100">~{remainMin} phút</strong> để đọc xong
                   </p>
                 )}
@@ -769,7 +808,7 @@ export default function LessonPageLayout({ lesson, quiz, children }: Props) {
                 explicit Tailwind text-sm/lg/xl classes each hand-written
                 lesson sets on its own child elements. */}
             <div
-              className="space-y-8 text-stone-800 dark:text-stone-300 leading-relaxed text-lg sm:text-xl font-medium"
+              className="space-y-8 text-stone-800 dark:text-stone-200 leading-relaxed text-lg sm:text-xl font-medium"
               style={{ zoom: fontScale }}
             >
               <LessonCompletionContext.Provider value={{ registerMidpoint, markMidpointDone }}>
@@ -792,6 +831,23 @@ export default function LessonPageLayout({ lesson, quiz, children }: Props) {
                 last thing in the article. */}
             <div ref={bottomSentinelRef} className="h-px" aria-hidden="true" />
           </article>
+          </div>
+
+          {/* ── RIGHT: Table of Contents (XL+) ─────────────────────────── */}
+          {/* Most lessons are quiz/explanation-based (no `sections`), or
+              have fewer than 3 headings - LessonTableOfContents renders
+              null for those, but this wrapper used to render unconditionally
+              regardless, reserving 256px + gap of dead flex space between
+              the article and quiz sidebar on every lesson without a real
+              TOC. That's what squeezed both columns narrow with a large
+              blank gap between them on laptop-width screens (reported:
+              "phần các bài học trên laptop screen bị co lại"). Only
+              reserving the space when there's an actual TOC to show fixes it. */}
+          {hasToc && (
+            <div className="hidden xl:block w-64 flex-shrink-0">
+              <LessonTableOfContents sections={lesson.sections} />
+            </div>
+          )}
 
           {/* ── RIGHT: Quiz sidebar ────────────────────────────────── */}
           {/* max-h + overflow-y-auto so the sticky column scrolls internally
@@ -809,13 +865,21 @@ export default function LessonPageLayout({ lesson, quiz, children }: Props) {
               highlights={highlights}
               onDeleted={(id) => setHighlights((prev) => prev.filter((h) => h.id !== id))}
             />
-            
-            {/* Quiz progress */}
-            <div className="bg-white dark:bg-stone-900 rounded-2xl border-2 border-stone-300 dark:border-stone-700 p-6">
-              <div className="flex items-center justify-between mb-4">
-                <span className="text-base font-extrabold text-stone-900 dark:text-stone-100 uppercase tracking-wide">Kiểm tra nhanh</span>
-                <span className="text-base font-bold text-stone-700 dark:text-stone-300 bg-stone-100 dark:bg-stone-800 px-3 py-1 rounded-lg">{submittedCount}/{quiz.length}</span>
-              </div>
+
+            {/* Quiz progress - collapsible */}
+            <div className="bg-white dark:bg-stone-900 rounded-2xl border-2 border-stone-300 dark:border-stone-700 overflow-hidden">
+              <button
+                onClick={() => setQuizCollapsed(!quizCollapsed)}
+                className="w-full flex items-center justify-between p-4 hover:bg-stone-50 dark:hover:bg-stone-800 transition-colors"
+              >
+                <div className="flex items-center gap-3">
+                  <span className="text-base font-extrabold text-stone-900 dark:text-stone-100 uppercase tracking-wide">Kiểm tra nhanh</span>
+                  <span className="text-base font-bold text-stone-700 dark:text-stone-300 bg-stone-100 dark:bg-stone-800 px-3 py-1 rounded-lg">{submittedCount}/{quiz.length}</span>
+                </div>
+                {quizCollapsed ? <ChevronDown className="w-5 h-5 text-stone-500 dark:text-stone-400" /> : <ChevronUp className="w-5 h-5 text-stone-500 dark:text-stone-400" />}
+              </button>
+              {!quizCollapsed && (
+                <div className="p-6 pt-0">
               <div className="flex gap-2">
                 {quiz.map((_, i) => (
                   <button
@@ -830,6 +894,8 @@ export default function LessonPageLayout({ lesson, quiz, children }: Props) {
                   />
                 ))}
               </div>
+                </div>
+              )}
             </div>
 
             {/* Active question */}
@@ -846,7 +912,7 @@ export default function LessonPageLayout({ lesson, quiz, children }: Props) {
                       </span>
                     )}
                   </div>
-                  <p className="font-bold text-stone-900 dark:text-stone-100 text-lg leading-relaxed">{q.question}</p>
+                  <p className="font-bold text-stone-900 dark:text-stone-100 text-lg leading-relaxed select-text">{q.question}</p>
                 </div>
 
                 <div className="space-y-3">
@@ -870,12 +936,12 @@ export default function LessonPageLayout({ lesson, quiz, children }: Props) {
                         key={oi}
                         disabled={qSubmitted}
                         onClick={() => choose(activeQ, oi)}
-                        className={`w-full text-left px-5 py-4 rounded-xl border transition-all flex items-center gap-4 cursor-pointer font-medium text-base ${cls}`}
+                        className={`w-full text-left px-5 py-4 rounded-xl border transition-all flex items-center gap-4 cursor-pointer font-medium text-base select-text ${cls}`}
                       >
-                        <span className="w-8 h-8 rounded-lg text-xs font-extrabold flex items-center justify-center flex-shrink-0 bg-stone-200 dark:bg-stone-700 text-stone-800 dark:text-stone-300">
+                        <span className="w-8 h-8 rounded-lg text-xs font-extrabold flex items-center justify-center flex-shrink-0 bg-stone-200 dark:bg-stone-700 text-stone-800 dark:text-stone-300 select-none">
                           {["A", "B", "C", "D"][oi]}
                         </span>
-                        <span className="flex-1 text-base leading-snug">{opt}</span>
+                        <span className="flex-1 text-base leading-snug select-text">{opt}</span>
                         {qSubmitted && isCorrectOpt && <span className="text-emerald-600 dark:text-emerald-400 font-bold text-xl">✓</span>}
                         {qSubmitted && isSelected && !isCorrectOpt && <span className="text-rose-600 dark:text-rose-400 font-bold text-xl">✗</span>}
                       </button>
@@ -900,45 +966,58 @@ export default function LessonPageLayout({ lesson, quiz, children }: Props) {
                   </div>
                 )}
 
-                {!qSubmitted ? (
-                  <button
-                    disabled={qSelected === null}
-                    onClick={() => verify(activeQ)}
-                    className={`w-full py-4 rounded-xl font-bold text-sm uppercase tracking-wider text-white transition-all cursor-pointer ${
-                      qSelected !== null ? `${c.btn}` : "bg-stone-200 dark:bg-stone-700 text-stone-500 dark:text-stone-400 cursor-not-allowed"
-                    }`}
-                  >
-                    Kiểm tra →
-                  </button>
-                ) : (
-                  <div className="flex gap-3">
-                    {!qCorrect && (
-                      <button
-                        onClick={() => retry(activeQ)}
-                        className="flex-1 py-4 rounded-xl font-bold text-sm uppercase tracking-wider border-2 border-stone-300 dark:border-stone-700 text-stone-700 dark:text-stone-300 hover:bg-stone-50 dark:hover:bg-stone-800 transition-colors cursor-pointer"
-                      >
-                        Thử lại →
-                      </button>
-                    )}
-                    {reviewMode && allDone ? (
-                      <button
-                        onClick={() => setReviewMode(false)}
-                        className={`flex-1 py-4 rounded-xl font-bold text-sm uppercase tracking-wider text-white ${c.btn} cursor-pointer`}
-                      >
-                        ← Quay lại kết quả
-                      </button>
-                    ) : (
-                      activeQ < quiz.length - 1 && (
+                {/* Sticky to the bottom of the quiz sidebar's own scroll
+                    container (see the `aside`'s lg:overflow-y-auto above) so
+                    the action button is always in reach right after picking
+                    an option, instead of requiring a scroll down to find it
+                    and then back up to see the feedback - the exact
+                    complaint from user feedback ("chọn đáp án phải lăn
+                    xuống để click xác nhận... rồi lại lăn lên"). The
+                    negative margin+matching padding cancels out the parent
+                    card's own padding so this reaches the card's true edges
+                    while staying flush against them, not floating with a
+                    gap. */}
+                <div className="sticky bottom-0 -mx-8 -mb-8 px-8 pb-6 pt-3 bg-gradient-to-t from-white dark:from-stone-900 from-70% to-transparent">
+                  {!qSubmitted ? (
+                    <button
+                      disabled={qSelected === null}
+                      onClick={() => verify(activeQ)}
+                      className={`w-full py-4 rounded-xl font-bold text-sm uppercase tracking-wider text-white transition-all cursor-pointer shadow-lg ${
+                        qSelected !== null ? `${c.btn}` : "bg-stone-200 dark:bg-stone-700 text-stone-500 dark:text-stone-400 cursor-not-allowed shadow-none"
+                      }`}
+                    >
+                      Kiểm tra →
+                    </button>
+                  ) : (
+                    <div className="flex gap-3">
+                      {!qCorrect && (
                         <button
-                          onClick={() => setActiveQ(activeQ + 1)}
-                          className={`flex-1 py-4 rounded-xl font-bold text-sm uppercase tracking-wider text-white ${c.btn} cursor-pointer`}
+                          onClick={() => retry(activeQ)}
+                          className="flex-1 py-4 rounded-xl font-bold text-sm uppercase tracking-wider border-2 border-stone-300 dark:border-stone-700 bg-white dark:bg-stone-900 text-stone-700 dark:text-stone-300 hover:bg-stone-50 dark:hover:bg-stone-800 transition-colors cursor-pointer shadow-lg"
                         >
-                          Câu tiếp theo →
+                          Thử lại →
                         </button>
-                      )
-                    )}
-                  </div>
-                )}
+                      )}
+                      {reviewMode && allDone ? (
+                        <button
+                          onClick={() => setReviewMode(false)}
+                          className={`flex-1 py-4 rounded-xl font-bold text-sm uppercase tracking-wider text-white ${c.btn} cursor-pointer shadow-lg`}
+                        >
+                          ← Quay lại kết quả
+                        </button>
+                      ) : (
+                        activeQ < quiz.length - 1 && (
+                          <button
+                            onClick={() => setActiveQ(activeQ + 1)}
+                            className={`flex-1 py-4 rounded-xl font-bold text-sm uppercase tracking-wider text-white ${c.btn} cursor-pointer shadow-lg`}
+                          >
+                            Câu tiếp theo →
+                          </button>
+                        )
+                      )}
+                    </div>
+                  )}
+                </div>
               </div>
             ) : (
               /* Completion card */

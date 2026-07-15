@@ -71,7 +71,7 @@ export default function LoiNhuanKyVongPage() {
         </p>
 
         <section className="space-y-5">
-          <h3 className="text-2xl font-bold text-stone-900">Lợi nhuận kỳ vọng: định nghĩa và cách tính</h3>
+          <h3 className="text-2xl font-bold text-stone-900 dark:text-stone-100">Lợi nhuận kỳ vọng: định nghĩa và cách tính</h3>
           <p>
             Lợi nhuận kỳ vọng là giá trị bình quân xác suất của tất cả các kết quả có thể xảy ra. Công thức cơ bản:
           </p>
@@ -95,7 +95,7 @@ export default function LoiNhuanKyVongPage() {
         </section>
 
         <section className="space-y-5">
-          <h3 className="text-2xl font-bold text-stone-900">So sánh đầu tư: phải tính cả rủi ro</h3>
+          <h3 className="text-2xl font-bold text-stone-900 dark:text-stone-100">So sánh đầu tư: phải tính cả rủi ro</h3>
           <p>
             Sai lầm phổ biến nhất khi so sánh đầu tư là chỉ nhìn vào lợi nhuận mà bỏ qua rủi ro. Đây là lý do tại sao cần công cụ so sánh điều chỉnh theo rủi ro.
           </p>
@@ -108,7 +108,7 @@ export default function LoiNhuanKyVongPage() {
         </section>
 
         <section className="space-y-5">
-          <h3 className="text-2xl font-bold text-stone-900">Đa dạng hóa: bữa trưa miễn phí duy nhất trong đầu tư</h3>
+          <h3 className="text-2xl font-bold text-stone-900 dark:text-stone-100">Đa dạng hóa: bữa trưa miễn phí duy nhất trong đầu tư</h3>
           <p>
             Harry Markowitz, người đặt nền móng lý thuyết danh mục đầu tư hiện đại, từng nói rằng đa dạng hóa là "bữa trưa miễn phí duy nhất" trong tài chính. Ý ông là: đây là cách duy nhất để giảm rủi ro mà không phải trả giá bằng lợi nhuận kỳ vọng.
           </p>
@@ -121,7 +121,7 @@ export default function LoiNhuanKyVongPage() {
         </section>
 
         <section className="space-y-5">
-          <h3 className="text-2xl font-bold text-stone-900">Kỳ vọng trong thực tế: không phải mọi năm đều như nhau</h3>
+          <h3 className="text-2xl font-bold text-stone-900 dark:text-stone-100">Kỳ vọng trong thực tế: không phải mọi năm đều như nhau</h3>
           <p>
             Một điều quan trọng khi áp dụng lợi nhuận kỳ vọng là hiểu rằng đây là con số dài hạn. Trong ngắn hạn, kết quả thực tế có thể rất khác.
           </p>

@@ -3,9 +3,9 @@
 import { useState, useTransition } from "react";
 import { useRouter, usePathname, useSearchParams } from "next/navigation";
 import { toast } from "sonner";
-import { Search, Users as UsersIcon, ShieldCheck, Ban, CheckCircle2 } from "lucide-react";
+import { Search, Users as UsersIcon, ShieldCheck, Ban, CheckCircle2, RefreshCw } from "lucide-react";
 import type { AdminUserRow, UsersResult } from "@/lib/admin/users";
-import { updateUserRoleAction, setUserDisabledAction } from "./actions";
+import { updateUserRoleAction, setUserDisabledAction, resyncAllUserStatsAction } from "./actions";
 import EmptyState from "@/components/admin/EmptyState";
 import Pagination from "@/components/admin/Pagination";
 import ConfirmDialog from "@/components/admin/ConfirmDialog";
@@ -25,6 +25,8 @@ export default function UsersTable({
   const [isPending, startTransition] = useTransition();
   const [search, setSearch] = useState(initialSearch);
   const [toToggle, setToToggle] = useState<AdminUserRow | null>(null);
+  const [confirmResync, setConfirmResync] = useState(false);
+  const [resyncing, setResyncing] = useState(false);
 
   function updateParams(patch: Record<string, string>) {
     const next = new URLSearchParams(searchParams.toString());
@@ -60,10 +62,28 @@ export default function UsersTable({
     }
   }
 
+  async function handleResyncAll() {
+    setResyncing(true);
+    try {
+      const affected = await resyncAllUserStatsAction();
+      toast.success(
+        affected > 0
+          ? `Đã đồng bộ lại XP cho ${affected} tài khoản bị lệch.`
+          : "Kiểm tra xong - không có tài khoản nào bị lệch XP."
+      );
+      setConfirmResync(false);
+      router.refresh();
+    } catch (err) {
+      toast.error(err instanceof Error ? err.message : "Có lỗi xảy ra");
+    } finally {
+      setResyncing(false);
+    }
+  }
+
   return (
     <div className="bg-white dark:bg-stone-900 border-2 border-stone-200 dark:border-stone-800 rounded-xl overflow-hidden">
-      <div className="p-4 border-b border-stone-200 dark:border-stone-800">
-        <form onSubmit={handleSearchSubmit} className="relative max-w-sm">
+      <div className="p-4 border-b border-stone-200 dark:border-stone-800 flex flex-wrap items-center justify-between gap-3">
+        <form onSubmit={handleSearchSubmit} className="relative max-w-sm flex-1 min-w-[200px]">
           <Search className="w-4 h-4 text-stone-400 absolute left-3 top-1/2 -translate-y-1/2" />
           <input
             value={search}
@@ -72,6 +92,14 @@ export default function UsersTable({
             className="w-full pl-9 pr-3 py-2 text-sm rounded-lg border border-stone-300 dark:border-stone-700 bg-white dark:bg-stone-800 text-stone-900 dark:text-stone-100 focus:outline-none focus:border-stone-500"
           />
         </form>
+        <button
+          onClick={() => setConfirmResync(true)}
+          title="Tính lại lessons_completed/XP/level cho mọi tài khoản từ dữ liệu thật (bài học + quiz + game), sửa ngay các tài khoản bị lệch do lỗi mạng trước đây thay vì chờ họ đăng nhập lại"
+          className="inline-flex items-center gap-1.5 text-xs font-bold text-stone-600 dark:text-stone-400 hover:text-stone-900 dark:hover:text-stone-100 border border-stone-300 dark:border-stone-700 rounded-lg px-3 py-2 transition-colors flex-shrink-0"
+        >
+          <RefreshCw className="w-3.5 h-3.5" />
+          Đồng bộ lại XP toàn bộ
+        </button>
       </div>
 
       {isPending && <div className="px-4 py-2 text-xs text-stone-400">Đang tải...</div>}
@@ -163,6 +191,17 @@ export default function UsersTable({
         danger={!toToggle?.is_disabled}
         onConfirm={confirmToggleDisabled}
         onCancel={() => setToToggle(null)}
+      />
+
+      <ConfirmDialog
+        open={confirmResync}
+        title="Đồng bộ lại XP toàn bộ"
+        message="Tính lại số bài hoàn thành, tổng XP và level cho MỌI tài khoản dựa trên dữ liệu thật (bài học đã hoàn thành + phiên kiểm tra + phiên mini-game). Chỉ những tài khoản đang bị lệch mới thay đổi giá trị - việc này không thể hoàn tác nhưng an toàn để chạy nhiều lần."
+        confirmLabel="Đồng bộ ngay"
+        danger={false}
+        loading={resyncing}
+        onConfirm={handleResyncAll}
+        onCancel={() => setConfirmResync(false)}
       />
     </div>
   );

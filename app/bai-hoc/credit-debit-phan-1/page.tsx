@@ -118,11 +118,11 @@ function TAccountDemo() {
 export default function Page() {
   return (
     <LessonPageLayout lesson={meta} quiz={quiz}>
-      <h2 className="text-2xl font-bold text-stone-900 mb-2">Debit & Credit - Phần 1: Nền Tảng</h2>
+      <h2 className="text-2xl font-bold text-stone-900 dark:text-stone-100 mb-2">Debit & Credit - Phần 1: Nền Tảng</h2>
       <p className="text-stone-600 text-sm mb-6 italic">Hệ thống kế toán kép 500 tuổi vẫn là nền tảng mọi báo cáo tài chính</p>
 
       <section className="mb-8">
-        <h3 className="text-lg font-bold text-stone-800 mb-3">😵 Tại sao Debit/Credit gây nhầm lẫn?</h3>
+        <h3 className="text-lg font-bold text-stone-800 dark:text-stone-200 mb-3">😵 Tại sao Debit/Credit gây nhầm lẫn?</h3>
         <div className="bg-stone-50 border border-stone-200 rounded-xl p-4 mb-4">
           <p className="text-sm text-stone-700 leading-relaxed">
             Trong ngân hàng, "Credit" = tiền vào (ngân hàng nợ bạn). Trong kế toán, "Credit" = bên phải T-account và có thể là tiền ra khỏi tài sản của bạn. <strong>Đây là hai khái niệm hoàn toàn khác nhau!</strong>
@@ -136,7 +136,7 @@ export default function Page() {
       <TAccountDemo />
 
       <section className="mb-8">
-        <h3 className="text-lg font-bold text-stone-800 mb-3">📜 Debit tăng gì? Credit tăng gì?</h3>
+        <h3 className="text-lg font-bold text-stone-800 dark:text-stone-200 mb-3">📜 Debit tăng gì? Credit tăng gì?</h3>
         <p className="text-stone-600 text-sm leading-relaxed mb-4">
           Thay vì học vẹt viết tắt tiếng Anh, hãy nhớ theo cách này: hãy tưởng tượng <strong>Debit là &quot;bên trái - những gì bạn đang có hoặc đang bỏ ra&quot;</strong>, còn <strong>Credit là &quot;bên phải - những gì bạn đang nợ hoặc đang thu về&quot;</strong>. Cứ mỗi nhóm tài khoản sẽ có 1 phía làm nó tăng, phía còn lại làm nó giảm.
         </p>
@@ -162,7 +162,7 @@ export default function Page() {
       </section>
 
       <section className="mb-8">
-        <h3 className="text-lg font-bold text-stone-800 mb-3">🍜 Ví dụ đời thường trước khi vào bút toán</h3>
+        <h3 className="text-lg font-bold text-stone-800 dark:text-stone-200 mb-3">🍜 Ví dụ đời thường trước khi vào bút toán</h3>
         <div className="space-y-3 mb-5">
           <div className="border border-stone-200 rounded-xl p-4">
             <div className="font-semibold text-stone-800 text-sm mb-1">Bạn mua đồ ăn hết 50.000đ bằng tiền mặt</div>
@@ -178,7 +178,7 @@ export default function Page() {
           </div>
         </div>
 
-        <h3 className="text-lg font-bold text-stone-800 mb-3">Ví dụ bút toán: Bán hàng thu tiền mặt</h3>
+        <h3 className="text-lg font-bold text-stone-800 dark:text-stone-200 mb-3">Ví dụ bút toán: Bán hàng thu tiền mặt</h3>
         <div className="bg-stone-800 rounded-xl p-5 font-mono text-sm">
           <div className="text-stone-500 mb-3 text-xs">{ '// Bán hàng 50 triệu, khách trả tiền mặt ngay' }</div>
           <div className="flex justify-between mb-1">
@@ -196,7 +196,7 @@ export default function Page() {
       </section>
 
       <section>
-        <h3 className="text-lg font-bold text-stone-800 mb-3">🔄 Phương trình kế toán</h3>
+        <h3 className="text-lg font-bold text-stone-800 dark:text-stone-200 mb-3">🔄 Phương trình kế toán</h3>
         <div className="bg-stone-50 text-white rounded-xl p-5 text-center">
           <div className="text-xl font-bold font-mono mb-2">Assets = Liabilities + Equity</div>
           <p className="text-stone-700 text-sm">Bảng cân đối luôn cân - đây là hệ quả tất yếu của kế toán kép</p>

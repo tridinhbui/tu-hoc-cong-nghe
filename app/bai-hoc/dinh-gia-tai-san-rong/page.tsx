@@ -66,13 +66,13 @@ const glossary: { vi: string; en: string; def: string }[] = [
 export default function Page() {
   return (
     <LessonPageLayout lesson={meta} quiz={quiz}>
-      <h2 className="text-2xl font-bold text-stone-900 mb-2">Định giá kiểu &quot;bán hết tài sản rồi trả nợ&quot;</h2>
+      <h2 className="text-2xl font-bold text-stone-900 dark:text-stone-100 mb-2">Định giá kiểu &quot;bán hết tài sản rồi trả nợ&quot;</h2>
       <p className="text-stone-600 text-sm mb-6 italic">
         Asset-based Valuation - nếu hôm nay bán hết tài sản của DN rồi trả sạch nợ, cổ đông còn lại bao nhiêu?
       </p>
 
       <section className="mb-8">
-        <h3 className="text-lg font-bold text-stone-800 mb-3">📐 Ví dụ đơn giản</h3>
+        <h3 className="text-lg font-bold text-stone-800 dark:text-stone-200 mb-3">📐 Ví dụ đơn giản</h3>
         <p className="text-stone-600 leading-relaxed mb-4">
           Một doanh nghiệp có <strong>10 tỷ tài sản</strong> gồm tiền, đất, máy móc… và đang nợ <strong>4 tỷ</strong>. Giá trị tài sản ròng là:
         </p>
@@ -89,7 +89,7 @@ export default function Page() {
       </section>
 
       <section className="mb-8">
-        <h3 className="text-lg font-bold text-stone-800 mb-3">⚠️ Vì sao không thể lấy nguyên số trên báo cáo tài chính</h3>
+        <h3 className="text-lg font-bold text-stone-800 dark:text-stone-200 mb-3">⚠️ Vì sao không thể lấy nguyên số trên báo cáo tài chính</h3>
         <p className="text-stone-600 leading-relaxed mb-4">
           Vì giá trên sổ sách chưa chắc là giá thật hiện tại. Ví dụ đất mua từ lâu có thể đang được ghi giá khá thấp nhưng bây giờ đã tăng giá nhiều. Ngược lại, hàng tồn kho hay máy móc nhìn trên sổ khá đẹp nhưng bán thật chưa chắc được bấy nhiêu.
         </p>
@@ -102,7 +102,7 @@ export default function Page() {
       </section>
 
       <section className="mb-8">
-        <h3 className="text-lg font-bold text-stone-800 mb-3">🏢 Case thật ở Việt Nam: DN bất động sản</h3>
+        <h3 className="text-lg font-bold text-stone-800 dark:text-stone-200 mb-3">🏢 Case thật ở Việt Nam: DN bất động sản</h3>
         <p className="text-stone-600 leading-relaxed mb-4">
           Với các doanh nghiệp như Vinhomes, người phân tích không chỉ nhìn lợi nhuận năm nay mà còn phải nhìn <strong>quỹ đất và các dự án tương lai</strong>.
         </p>
@@ -115,7 +115,7 @@ export default function Page() {
       </section>
 
       <section className="mb-8">
-        <h3 className="text-lg font-bold text-stone-800 mb-3">✅ Cách này thường được dùng khi nào</h3>
+        <h3 className="text-lg font-bold text-stone-800 dark:text-stone-200 mb-3">✅ Cách này thường được dùng khi nào</h3>
         <div className="space-y-2">
           {[
             { label: "DN bất động sản", note: "Vì giá trị nằm nhiều ở đất và dự án" },
@@ -137,7 +137,7 @@ export default function Page() {
       </section>
 
       <section className="mb-8">
-        <h3 className="text-lg font-bold text-stone-800 mb-3">❌ Khi nào không nên phụ thuộc quá nhiều vào cách này</h3>
+        <h3 className="text-lg font-bold text-stone-800 dark:text-stone-200 mb-3">❌ Khi nào không nên phụ thuộc quá nhiều vào cách này</h3>
         <p className="text-stone-600 leading-relaxed mb-4">
           Cách này không quá hợp với <strong>tech, SaaS, consulting, agency</strong> hay các brand mạnh. Ví dụ một công ty phần mềm có thể chỉ có vài cái laptop và văn phòng. Nếu bán hết tài sản vật chất thì gần như không được bao nhiêu. Nhưng giá trị thật lại nằm ở công nghệ, data, khách hàng, đội ngũ, thương hiệu và khả năng kiếm tiền tương lai.
         </p>
@@ -147,7 +147,7 @@ export default function Page() {
       </section>
 
       <section>
-        <h3 className="text-lg font-bold text-stone-800 mb-3">📚 Khái niệm quan trọng cần nhớ</h3>
+        <h3 className="text-lg font-bold text-stone-800 dark:text-stone-200 mb-3">📚 Khái niệm quan trọng cần nhớ</h3>
         <div className="rounded-2xl overflow-hidden border-2 border-stone-900 shadow-lg">
           <div className="divide-y divide-stone-100 bg-white">
             {glossary.map(({ vi, en, def }) => (

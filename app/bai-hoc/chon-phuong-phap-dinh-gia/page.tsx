@@ -162,11 +162,11 @@ function MethodSelector() {
 export default function Page() {
   return (
     <LessonPageLayout lesson={meta} quiz={quiz}>
-      <h2 className="text-2xl font-bold text-stone-900 mb-2">Chọn Phương Pháp Định Giá</h2>
+      <h2 className="text-2xl font-bold text-stone-900 dark:text-stone-100 mb-2">Chọn Phương Pháp Định Giá</h2>
       <p className="text-stone-600 text-sm mb-6 italic">Interviewer không hỏi định nghĩa - họ muốn xem bạn có reasoning hay không</p>
 
       <section className="mb-8">
-        <h3 className="text-lg font-bold text-stone-800 mb-3">🎤 Câu trả lời mẫu - ngắn gọn, có structure</h3>
+        <h3 className="text-lg font-bold text-stone-800 dark:text-stone-200 mb-3">🎤 Câu trả lời mẫu - ngắn gọn, có structure</h3>
         <div className="bg-stone-800 text-white rounded-2xl p-5 text-sm leading-relaxed space-y-3">
           <p className="text-stone-300 italic text-xs mb-4"> -"How do you choose your valuation method?"</p>
           <p>
@@ -191,7 +191,7 @@ export default function Page() {
       </section>
 
       <section className="mb-8">
-        <h3 className="text-lg font-bold text-stone-800 mb-3"> Công thức nhớ: Context → Method → Why → Cross-check</h3>
+        <h3 className="text-lg font-bold text-stone-800 dark:text-stone-200 mb-3"> Công thức nhớ: Context → Method → Why → Cross-check</h3>
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
           {[
             { step: "1", label: "Context", desc: "Đặc điểm doanh nghiệp là gì?", icon: "🔍", color: "bg-stone-50 text-stone-700" },
@@ -211,7 +211,7 @@ export default function Page() {
       <MethodSelector />
 
       <section className="mb-8">
-        <h3 className="text-lg font-bold text-stone-800 mb-3">🚫 Sai lầm thường gặp trong interview</h3>
+        <h3 className="text-lg font-bold text-stone-800 dark:text-stone-200 mb-3">🚫 Sai lầm thường gặp trong interview</h3>
         <div className="space-y-3">
           {[
             {
@@ -240,7 +240,7 @@ export default function Page() {
       </section>
 
       <section>
-        <h3 className="text-lg font-bold text-stone-800 mb-3"> One-liner để nhớ</h3>
+        <h3 className="text-lg font-bold text-stone-800 dark:text-stone-200 mb-3"> One-liner để nhớ</h3>
         <div className="bg-stone-50 text-white rounded-xl p-5 text-center">
           <p className="text-lg font-bold mb-2">"DCF for intrinsic value, comps for market view, transactions for deal context."</p>
           <p className="text-stone-700 text-sm">Và luôn kết bằng: "No single method is perfect - I triangulate to sanity-check."</p>

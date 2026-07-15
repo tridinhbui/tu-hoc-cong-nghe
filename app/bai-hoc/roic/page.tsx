@@ -134,7 +134,7 @@ function ROICSimulator() {
 export default function Page() {
   return (
     <LessonPageLayout lesson={meta} quiz={quiz}>
-      <h2 className="text-2xl font-bold text-stone-900 mb-2">Hiệu quả sinh lời trên vốn (ROIC)</h2>
+      <h2 className="text-2xl font-bold text-stone-900 dark:text-stone-100 mb-2">Hiệu quả sinh lời trên vốn (ROIC)</h2>
       <p className="text-stone-600 text-sm mb-6 italic">Chỉ số cho biết 1 đồng vốn bỏ vào tạo ra bao nhiêu lợi nhuận thật sau thuế.</p>
 
       <section className="mb-8 rounded-xl border border-emerald-100 bg-emerald-50 p-4">
@@ -145,7 +145,7 @@ export default function Page() {
       </section>
 
       <section className="mb-8">
-        <h3 className="text-lg font-bold text-stone-800 mb-3">Công thức ROIC</h3>
+        <h3 className="text-lg font-bold text-stone-800 dark:text-stone-200 mb-3">Công thức ROIC</h3>
         <div className="bg-stone-50 text-white rounded-xl p-5 text-center mb-4">
           <div className="font-mono text-xl font-bold mb-1">ROIC = Lợi nhuận sau thuế / Vốn đã đầu tư</div>
           <p className="text-stone-700 text-sm">Cứ 1 đồng vốn bỏ vào → tạo ra bao nhiêu lợi nhuận sau thuế?</p>
@@ -165,7 +165,7 @@ export default function Page() {
       </section>
 
       <section className="mb-8">
-        <h3 className="text-lg font-bold text-stone-800 mb-3">Mốc tham khảo ROIC theo ngành</h3>
+        <h3 className="text-lg font-bold text-stone-800 dark:text-stone-200 mb-3">Mốc tham khảo ROIC theo ngành</h3>
         <div className="space-y-2">
           {[
             { label: "Phần mềm", range: "25-50%+", color: "emerald", note: "Ít tài sản hữu hình, biên lợi nhuận cao" },
@@ -188,7 +188,7 @@ export default function Page() {
       <ROICSimulator />
 
       <section className="mb-8">
-        <h3 className="text-lg font-bold text-stone-800 mb-3">ROIC và ROE khác nhau thế nào?</h3>
+        <h3 className="text-lg font-bold text-stone-800 dark:text-stone-200 mb-3">ROIC và ROE khác nhau thế nào?</h3>
         <div className="overflow-x-auto">
           <table className="w-full text-sm">
             <thead>
@@ -217,7 +217,7 @@ export default function Page() {
       </section>
 
       <section>
-        <h3 className="text-lg font-bold text-stone-800 mb-3">Tăng trưởng đến từ ROIC và tái đầu tư</h3>
+        <h3 className="text-lg font-bold text-stone-800 dark:text-stone-200 mb-3">Tăng trưởng đến từ ROIC và tái đầu tư</h3>
         <div className="bg-stone-800 text-white rounded-xl p-5">
           <div className="font-mono text-center text-lg font-bold mb-3 text-stone-700">
             Tăng trưởng = ROIC × Tỷ lệ tái đầu tư

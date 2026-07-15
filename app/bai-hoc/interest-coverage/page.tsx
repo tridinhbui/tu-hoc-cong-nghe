@@ -124,11 +124,11 @@ function ICRSimulator() {
 export default function Page() {
   return (
     <LessonPageLayout lesson={meta} quiz={quiz}>
-      <h2 className="text-2xl font-bold text-stone-900 mb-2">Interest Coverage Ratio (ICR)</h2>
+      <h2 className="text-2xl font-bold text-stone-900 dark:text-stone-100 mb-2">Interest Coverage Ratio (ICR)</h2>
       <p className="text-stone-600 text-sm mb-6 italic">Chỉ số đầu tiên lender kiểm tra khi đánh giá khả năng trả nợ</p>
 
       <section className="mb-8">
-        <h3 className="text-lg font-bold text-stone-800 mb-3">📐 Công thức và ý nghĩa</h3>
+        <h3 className="text-lg font-bold text-stone-800 dark:text-stone-200 mb-3">📐 Công thức và ý nghĩa</h3>
         <div className="bg-stone-50 text-white rounded-xl p-5 text-center mb-4">
           <div className="font-mono text-xl font-bold mb-1">ICR = EBIT ÷ Interest Expense</div>
           <p className="text-stone-700 text-sm">Lợi nhuận trước lãi vay gấp bao nhiêu lần tiền lãi phải trả</p>
@@ -141,7 +141,7 @@ export default function Page() {
       <ICRSimulator />
 
       <section className="mb-8">
-        <h3 className="text-lg font-bold text-stone-800 mb-3"> Tại sao lender quan tâm đến ICR?</h3>
+        <h3 className="text-lg font-bold text-stone-800 dark:text-stone-200 mb-3"> Tại sao lender quan tâm đến ICR?</h3>
         <div className="space-y-3">
           {[
             {
@@ -166,7 +166,7 @@ export default function Page() {
       </section>
 
       <section className="mb-8">
-        <h3 className="text-lg font-bold text-stone-800 mb-3"> ICR theo ngành điển hình</h3>
+        <h3 className="text-lg font-bold text-stone-800 dark:text-stone-200 mb-3"> ICR theo ngành điển hình</h3>
         <div className="space-y-2">
           {[
             { industry: "Utilities / Điện nước", range: "2-4x", note: "Dòng tiền ổn định → chấp nhận leverage cao" },
@@ -187,7 +187,7 @@ export default function Page() {
       </section>
 
       <section>
-        <h3 className="text-lg font-bold text-stone-800 mb-3">⚠️ Hạn chế của ICR</h3>
+        <h3 className="text-lg font-bold text-stone-800 dark:text-stone-200 mb-3">⚠️ Hạn chế của ICR</h3>
         <div className="space-y-2">
           {[
             "EBIT ≠ Cash - doanh nghiệp có thể có EBIT cao nhưng Working Capital trap tiền",

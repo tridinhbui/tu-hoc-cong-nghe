@@ -58,7 +58,7 @@ function DepreciationChart() {
 
   return (
     <div className="bg-gradient-to-br from-stone-50 to-slate-50 rounded-2xl p-5 border border-stone-200 my-6">
-      <h3 className="font-bold text-stone-800 mb-4 text-sm"> Depreciation Schedule Visualizer</h3>
+      <h3 className="font-bold text-stone-800 dark:text-stone-200 mb-4 text-sm"> Depreciation Schedule Visualizer</h3>
       <div className="grid grid-cols-3 gap-3 mb-4">
         <div>
           <label className="text-xs font-semibold text-stone-600 block mb-1">Cost ({cost}M)</label>
@@ -112,11 +112,11 @@ function DepreciationChart() {
 export default function Page() {
   return (
     <LessonPageLayout lesson={meta} quiz={quiz}>
-      <h2 className="text-2xl font-bold text-stone-900 mb-2">Khấu Hao & Accumulated Depreciation</h2>
+      <h2 className="text-2xl font-bold text-stone-900 dark:text-stone-100 mb-2">Khấu Hao & Accumulated Depreciation</h2>
       <p className="text-stone-600 text-sm mb-6 italic">Non-cash expense nhưng ảnh hưởng đến P&L, Balance Sheet và Cash Flow</p>
 
       <section className="mb-8">
-        <h3 className="text-lg font-bold text-stone-800 mb-3">❓ Tại sao cần khấu hao?</h3>
+        <h3 className="text-lg font-bold text-stone-800 dark:text-stone-200 mb-3">❓ Tại sao cần khấu hao?</h3>
         <p className="text-stone-600 leading-relaxed mb-4">
           Doanh nghiệp mua máy móc 600 triệu để dùng 10 năm. Nếu ghi toàn bộ 600M là chi phí ngay năm 1, lợi nhuận năm đó sẽ giảm mạnh đột ngột - không phản ánh đúng thực tế. Khấu hao giải quyết điều này: <strong>phân bổ chi phí tài sản vào các kỳ sử dụng</strong>.
         </p>
@@ -127,7 +127,7 @@ export default function Page() {
       </section>
 
       <section className="mb-8">
-        <h3 className="text-lg font-bold text-stone-800 mb-3">📐 3 phương pháp khấu hao</h3>
+        <h3 className="text-lg font-bold text-stone-800 dark:text-stone-200 mb-3">📐 3 phương pháp khấu hao</h3>
         <div className="space-y-3">
           {[
             {
@@ -165,7 +165,7 @@ export default function Page() {
       <DepreciationChart />
 
       <section className="mb-8">
-        <h3 className="text-lg font-bold text-stone-800 mb-3"> Ảnh hưởng lên 3 báo cáo tài chính</h3>
+        <h3 className="text-lg font-bold text-stone-800 dark:text-stone-200 mb-3"> Ảnh hưởng lên 3 báo cáo tài chính</h3>
         <div className="space-y-2">
           {[
             { report: "P&L (Income Statement)", effect: "D&A expense làm giảm EBIT và Net Income", icon: "📋" },
@@ -184,7 +184,7 @@ export default function Page() {
       </section>
 
       <section>
-        <h3 className="text-lg font-bold text-stone-800 mb-3">🔍 D&A trong phân tích tài chính</h3>
+        <h3 className="text-lg font-bold text-stone-800 dark:text-stone-200 mb-3">🔍 D&A trong phân tích tài chính</h3>
         <div className="space-y-2">
           {[
             "EBITDA = EBIT + D&A → loại trừ ảnh hưởng của khấu hao để so sánh doanh nghiệp",

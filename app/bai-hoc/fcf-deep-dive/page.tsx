@@ -60,7 +60,7 @@ const quiz: QuizQuestion[] = [
 export default function Page() {
   return (
     <LessonPageLayout lesson={meta} quiz={quiz}>
-      <h2 className="text-2xl font-bold text-stone-900 mb-2">Dòng tiền tự do - đọc sâu hơn</h2>
+      <h2 className="text-2xl font-bold text-stone-900 dark:text-stone-100 mb-2">Dòng tiền tự do - đọc sâu hơn</h2>
       <p className="text-stone-500 text-sm mb-8">Tiền thật, không phải lợi nhuận kế toán - đây là cái doanh nghiệp thực sự tạo ra</p>
 
       <section className="mb-10 rounded-xl border border-emerald-100 bg-emerald-50 p-4">
@@ -71,7 +71,7 @@ export default function Page() {
       </section>
 
       <section className="mb-10">
-        <h3 className="text-base font-bold text-stone-800 mb-4 uppercase tracking-wide text-xs">Tại sao dòng tiền tự do quan trọng?</h3>
+        <h3 className="text-base font-bold text-stone-800 dark:text-stone-200 mb-4 uppercase tracking-wide text-xs">Tại sao dòng tiền tự do quan trọng?</h3>
         <p className="text-stone-600 leading-relaxed mb-3">
           Lợi nhuận trên báo cáo lãi lỗ là con số kế toán. Dòng tiền tự do gần với tiền thật hơn. Doanh nghiệp sống bằng tiền mặt, không phải bằng lợi nhuận kế toán.
         </p>
@@ -81,7 +81,7 @@ export default function Page() {
       </section>
 
       <section className="mb-10">
-        <h3 className="text-base font-bold text-stone-800 mb-4 uppercase tracking-wide text-xs">Công thức dòng tiền tự do</h3>
+        <h3 className="text-base font-bold text-stone-800 dark:text-stone-200 mb-4 uppercase tracking-wide text-xs">Công thức dòng tiền tự do</h3>
         <div className="space-y-3">
           <div>
             <div className="font-bold text-stone-800 text-sm mb-1">Đơn giản</div>
@@ -97,7 +97,7 @@ export default function Page() {
       </section>
 
       <section className="mb-10">
-        <h3 className="text-base font-bold text-stone-800 mb-4 uppercase tracking-wide text-xs">Vốn lưu động</h3>
+        <h3 className="text-base font-bold text-stone-800 dark:text-stone-200 mb-4 uppercase tracking-wide text-xs">Vốn lưu động</h3>
         <p className="text-stone-600 text-sm leading-relaxed mb-4">
           Vốn lưu động = tài sản ngắn hạn − nợ ngắn hạn. Ba thành phần chính:
         </p>
@@ -118,7 +118,7 @@ export default function Page() {
       </section>
 
       <section className="mb-10">
-        <h3 className="text-base font-bold text-stone-800 mb-4 uppercase tracking-wide text-xs">Tỷ suất dòng tiền tự do</h3>
+        <h3 className="text-base font-bold text-stone-800 dark:text-stone-200 mb-4 uppercase tracking-wide text-xs">Tỷ suất dòng tiền tự do</h3>
         <p className="text-stone-600 text-xs font-mono bg-stone-50 p-2 rounded mb-3">Tỷ suất dòng tiền tự do = Dòng tiền tự do / Giá trị thị trường</p>
         <div className="space-y-2 text-sm text-stone-600">
           <div> - Tỷ suất cao → tạo nhiều tiền thật so với giá → có thể bị định giá thấp</div>
@@ -128,7 +128,7 @@ export default function Page() {
       </section>
 
       <section>
-        <h3 className="text-base font-bold text-stone-800 mb-4 uppercase tracking-wide text-xs">Cách đọc dòng tiền tự do</h3>
+        <h3 className="text-base font-bold text-stone-800 dark:text-stone-200 mb-4 uppercase tracking-wide text-xs">Cách đọc dòng tiền tự do</h3>
         <div className="space-y-2 text-sm text-stone-600">
           <div>1. Lấy dòng tiền kinh doanh trừ chi đầu tư tài sản.</div>
           <div>2. So sánh dòng tiền tự do với lợi nhuận ròng - lệch lớn thì tìm hiểu tại sao.</div>

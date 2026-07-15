@@ -138,13 +138,13 @@ export default function CacLoaiDebtPage() {
       <div className="space-y-8 text-stone-700 leading-relaxed">
 
         <section className="space-y-4">
-          <h2 className="text-xl font-bold text-stone-900">Không phải mọi khoản nợ đều giống nhau</h2>
+          <h2 className="text-xl font-bold text-stone-900 dark:text-stone-100">Không phải mọi khoản nợ đều giống nhau</h2>
           <p>Khi nói về "nợ" của một doanh nghiệp, hầu hết người mới bắt đầu nghĩ đó là một con số duy nhất trên bảng cân đối. Thực tế, debt là một bức tranh đa tầng với ít nhất 9 loại khác nhau - mỗi loại có <strong>rủi ro, lãi suất, và thứ tự ưu tiên</strong> hoàn toàn khác.</p>
           <p>Hiểu điều này giúp bạn: (1) đọc balance sheet đúng hơn, (2) hiểu tại sao lãi suất khác nhau, (3) biết ai bị thiệt nhất khi công ty gặp khó khăn.</p>
         </section>
 
         <section className="space-y-4">
-          <h2 className="text-xl font-bold text-stone-900">Quy tắc vàng: Risk ↔ Return</h2>
+          <h2 className="text-xl font-bold text-stone-900 dark:text-stone-100">Quy tắc vàng: Risk ↔ Return</h2>
           <p>Trước khi đi vào từng loại, hãy ghi nhớ một quy tắc bất biến trong finance:</p>
           <div className="bg-stone-900 rounded-2xl p-5 text-white text-center">
             <div className="text-2xl font-bold text-stone-700 mb-2">Rủi ro càng cao → Lợi suất yêu cầu càng cao</div>
@@ -153,7 +153,7 @@ export default function CacLoaiDebtPage() {
         </section>
 
         <section className="space-y-4">
-          <h2 className="text-xl font-bold text-stone-900">9 loại Debt</h2>
+          <h2 className="text-xl font-bold text-stone-900 dark:text-stone-100">9 loại Debt</h2>
           <div className="space-y-2">
             {DEBT_TYPES.map(d => (
               <div key={d.id} className="w-full text-left rounded-2xl border p-4 bg-white border-stone-200">
@@ -183,7 +183,7 @@ export default function CacLoaiDebtPage() {
         <CapitalStructureAnimation />
 
         <section className="space-y-4">
-          <h2 className="text-xl font-bold text-stone-900">LBO - Ứng dụng thực tế của capital structure</h2>
+          <h2 className="text-xl font-bold text-stone-900 dark:text-stone-100">LBO - Ứng dụng thực tế của capital structure</h2>
           <p>Leveraged Buyout (LBO) là thương vụ điển hình nhất để thấy capital structure trong hành động. PE firm mua lại công ty bằng cách kết hợp nhiều tầng nợ và ít equity nhất có thể - để khuếch đại ROI cho equity.</p>
           <div className="bg-stone-900 rounded-2xl p-5 text-sm space-y-2">
             <div className="text-stone-700 text-xs font-bold uppercase tracking-widest mb-2">Cấu trúc LBO điển hình - Mua công ty 1,000 tỷ</div>

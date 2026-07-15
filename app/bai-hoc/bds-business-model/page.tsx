@@ -128,11 +128,11 @@ const GROUPS = [
 export default function Page() {
   return (
     <LessonPageLayout lesson={meta} quiz={quiz}>
-      <h2 className="text-2xl font-bold text-stone-900 mb-2">4 Mô hình Kinh doanh BĐS tại Việt Nam</h2>
+      <h2 className="text-2xl font-bold text-stone-900 dark:text-stone-100 mb-2">4 Mô hình Kinh doanh BĐS tại Việt Nam</h2>
       <p className="text-stone-500 text-sm mb-8">Mỗi nhóm kiếm tiền theo cơ chế khác nhau - phân tích cũng phải khác</p>
 
       <section className="mb-10">
-        <h3 className="text-base font-bold text-stone-800 mb-4 uppercase tracking-wide text-xs">Đặc thù của ngành BĐS</h3>
+        <h3 className="text-base font-bold text-stone-800 dark:text-stone-200 mb-4 uppercase tracking-wide text-xs">Đặc thù của ngành BĐS</h3>
         <p className="text-stone-600 leading-relaxed mb-3">
           BĐS có <strong>độ lệch thời gian rất lớn</strong>. Bán hàng hôm nay có thể 2 năm sau mới ghi nhận doanh thu. Pháp lý kẹt có thể làm dự án đứng rất lâu.
         </p>
@@ -142,7 +142,7 @@ export default function Page() {
       </section>
 
       <section className="mb-10">
-        <h3 className="text-base font-bold text-stone-800 mb-4 uppercase tracking-wide text-xs">1. Phát triển Nhà ở</h3>
+        <h3 className="text-base font-bold text-stone-800 dark:text-stone-200 mb-4 uppercase tracking-wide text-xs">1. Phát triển Nhà ở</h3>
         <p className="text-stone-600 text-sm leading-relaxed mb-3">
           <strong>Ví dụ:</strong> Vinhomes, Nam Long Group
         </p>
@@ -155,7 +155,7 @@ export default function Page() {
       </section>
 
       <section className="mb-10">
-        <h3 className="text-base font-bold text-stone-800 mb-4 uppercase tracking-wide text-xs">2. Khu Công nghiệp</h3>
+        <h3 className="text-base font-bold text-stone-800 dark:text-stone-200 mb-4 uppercase tracking-wide text-xs">2. Khu Công nghiệp</h3>
         <p className="text-stone-600 text-sm leading-relaxed mb-3">
           <strong>Ví dụ:</strong> Kinh Bắc Corporation (KBC), SZC
         </p>
@@ -168,7 +168,7 @@ export default function Page() {
       </section>
 
       <section className="mb-10">
-        <h3 className="text-base font-bold text-stone-800 mb-4 uppercase tracking-wide text-xs">3. Cho thuê Tài sản</h3>
+        <h3 className="text-base font-bold text-stone-800 dark:text-stone-200 mb-4 uppercase tracking-wide text-xs">3. Cho thuê Tài sản</h3>
         <p className="text-stone-600 text-sm leading-relaxed mb-3">
           <strong>Ví dụ:</strong> Vincom Retail (VRE), Gemadept (GMD)
         </p>
@@ -181,7 +181,7 @@ export default function Page() {
       </section>
 
       <section>
-        <h3 className="text-base font-bold text-stone-800 mb-4 uppercase tracking-wide text-xs">4. Môi giới &amp; Dịch vụ</h3>
+        <h3 className="text-base font-bold text-stone-800 dark:text-stone-200 mb-4 uppercase tracking-wide text-xs">4. Môi giới &amp; Dịch vụ</h3>
         <p className="text-stone-600 text-sm leading-relaxed mb-3">
           <strong>Ví dụ:</strong> Đất Xanh (DXS), Cen Land
         </p>

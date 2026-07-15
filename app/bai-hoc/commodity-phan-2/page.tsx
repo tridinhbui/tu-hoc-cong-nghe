@@ -137,7 +137,7 @@ function SupplyDemandSimulator() {
 export default function Page() {
   return (
     <LessonPageLayout lesson={meta} quiz={quiz}>
-      <h2 className="text-2xl font-bold text-stone-900 mb-2">Hàng hóa cơ bản phần 2 - phân tích giá</h2>
+      <h2 className="text-2xl font-bold text-stone-900 dark:text-stone-100 mb-2">Hàng hóa cơ bản phần 2 - phân tích giá</h2>
       <p className="text-stone-600 text-sm mb-6 italic">3 yếu tố định giá hàng hóa và lý do doanh nghiệp phải phòng vệ rủi ro.</p>
 
       <section className="mb-8 rounded-xl border border-amber-100 bg-amber-50 p-4">
@@ -148,7 +148,7 @@ export default function Page() {
       </section>
 
       <section className="mb-8">
-        <h3 className="text-lg font-bold text-stone-800 mb-3">⚙️ Cơ chế định giá cơ bản</h3>
+        <h3 className="text-lg font-bold text-stone-800 dark:text-stone-200 mb-3">⚙️ Cơ chế định giá cơ bản</h3>
         <div className="bg-stone-50 text-white rounded-xl p-5 text-center mb-4">
             <div className="font-bold text-lg mb-1">Cầu &gt; Cung → Giá tăng</div>
           <div className="font-bold text-lg">Cung &gt; Cầu → Giá giảm</div>
@@ -193,7 +193,7 @@ export default function Page() {
       <SupplyDemandSimulator />
 
       <section className="mb-8">
-        <h3 className="text-lg font-bold text-stone-800 mb-3">3 yếu tố phân tích hàng hóa</h3>
+        <h3 className="text-lg font-bold text-stone-800 dark:text-stone-200 mb-3">3 yếu tố phân tích hàng hóa</h3>
         <div className="space-y-3">
           {[
             {
@@ -230,7 +230,7 @@ export default function Page() {
       </section>
 
       <section className="mb-8">
-        <h3 className="text-lg font-bold text-stone-800 mb-3">Tính chu kỳ - tại sao giá biến động mạnh?</h3>
+        <h3 className="text-lg font-bold text-stone-800 dark:text-stone-200 mb-3">Tính chu kỳ - tại sao giá biến động mạnh?</h3>
         <p className="text-stone-600 text-sm leading-relaxed mb-3">
           Nguồn cung hàng hóa thường điều chỉnh rất chậm - xây nhà máy lọc dầu mất 3-5 năm, mở mỏ đồng mất 5-10 năm. Nhưng nhu cầu thay đổi nhanh theo chu kỳ kinh tế. Kết quả:
         </p>
@@ -250,7 +250,7 @@ export default function Page() {
       </section>
 
       <section>
-        <h3 className="text-lg font-bold text-stone-800 mb-3">Phòng vệ rủi ro trong doanh nghiệp Việt Nam</h3>
+        <h3 className="text-lg font-bold text-stone-800 dark:text-stone-200 mb-3">Phòng vệ rủi ro trong doanh nghiệp Việt Nam</h3>
         <div className="space-y-2">
           {[
             { co: "Vietnam Airlines", com: "Nhiên liệu máy bay", strategy: "Dùng hợp đồng tương lai dầu 6-12 tháng để khóa một phần chi phí dự kiến" },

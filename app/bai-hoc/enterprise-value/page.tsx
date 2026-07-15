@@ -114,11 +114,11 @@ function EVCalculator() {
 export default function Page() {
   return (
     <LessonPageLayout lesson={meta} quiz={quiz}>
-      <h2 className="text-2xl font-bold text-stone-900 mb-2">Enterprise Value (EV)</h2>
+      <h2 className="text-2xl font-bold text-stone-900 dark:text-stone-100 mb-2">Enterprise Value (EV)</h2>
       <p className="text-stone-600 text-sm mb-6 italic">Giá trị thật của toàn bộ doanh nghiệp - không chỉ là giá cổ phiếu</p>
 
       <section className="mb-8">
-        <h3 className="text-lg font-bold text-stone-800 mb-3">🍎 Apple là ví dụ trực quan nhất</h3>
+        <h3 className="text-lg font-bold text-stone-800 dark:text-stone-200 mb-3">🍎 Apple là ví dụ trực quan nhất</h3>
         <p className="text-stone-600 leading-relaxed mb-4">
           Nếu muốn mua cả Apple, bạn không chỉ trả Market Cap cho cổ đông. Bạn còn phải <strong>gánh nợ</strong> của Apple - nhưng đổi lại <strong>nhận luôn tiền mặt</strong> trong công ty.
         </p>
@@ -135,7 +135,7 @@ export default function Page() {
       </section>
 
       <section className="mb-8">
-        <h3 className="text-lg font-bold text-stone-800 mb-3">📐 Công thức EV</h3>
+        <h3 className="text-lg font-bold text-stone-800 dark:text-stone-200 mb-3">📐 Công thức EV</h3>
         <div className="bg-stone-50 text-white rounded-xl p-5 text-center mb-4">
           <div className="font-mono text-xl font-bold mb-1">EV = Market Cap + Net Debt</div>
           <div className="font-mono text-sm text-stone-700">= Equity Value + Debt − Cash</div>
@@ -158,7 +158,7 @@ export default function Page() {
       <EVCalculator />
 
       <section className="mb-8">
-        <h3 className="text-lg font-bold text-stone-800 mb-3"> EV/EBITDA - multiple phổ biến nhất trong M&A</h3>
+        <h3 className="text-lg font-bold text-stone-800 dark:text-stone-200 mb-3"> EV/EBITDA - multiple phổ biến nhất trong M&A</h3>
         <div className="space-y-3">
           {[
             { why: "Tại sao EV thay vì Market Cap?", ans: "EV capture cả debt - 2 công ty cùng EBITDA nhưng leverage khác nhau sẽ có Market Cap khác nhau. EV cho cùng starting point." },
@@ -174,7 +174,7 @@ export default function Page() {
       </section>
 
       <section>
-        <h3 className="text-lg font-bold text-stone-800 mb-3"> Key reminders</h3>
+        <h3 className="text-lg font-bold text-stone-800 dark:text-stone-200 mb-3"> Key reminders</h3>
         <div className="space-y-2">
           {[
             "EV = giá phải trả thực tế để sở hữu 100% business",

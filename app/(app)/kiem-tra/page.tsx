@@ -123,7 +123,7 @@ export default function KiemTraPage() {
 
   return (
     <div className="min-h-screen bg-white dark:bg-stone-950">
-      <div className="border-b border-stone-200 dark:border-stone-800 sticky top-0 bg-white dark:bg-stone-950 z-10">
+      <div className="border-b border-stone-200 dark:border-stone-800 bg-white dark:bg-stone-950">
         <div className="max-w-2xl mx-auto px-6 py-4 flex items-center gap-3">
           <Link
             href="/dashboard"
@@ -228,7 +228,7 @@ export default function KiemTraPage() {
               <span className="text-xs text-stone-400 dark:text-stone-500 truncate max-w-[60%]">{q.lessonTitle}</span>
             </div>
 
-            <p className="font-bold text-stone-900 dark:text-stone-100 text-lg leading-relaxed">{q.question}</p>
+            <p className="font-bold text-stone-900 dark:text-stone-100 text-lg leading-relaxed select-text">{q.question}</p>
 
             <div className="space-y-2">
               {q.options.map((opt, oi) => {
@@ -247,7 +247,7 @@ export default function KiemTraPage() {
                     key={oi}
                     disabled={submitted}
                     onClick={() => choose(oi)}
-                    className={`w-full text-left px-4 py-3 rounded-xl transition-all cursor-pointer text-sm ${cls}`}
+                    className={`w-full text-left px-4 py-3 rounded-xl transition-all cursor-pointer text-sm select-text ${cls}`}
                   >
                     {opt}
                   </button>

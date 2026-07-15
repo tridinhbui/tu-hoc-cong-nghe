@@ -71,7 +71,7 @@ export default function SucManhThoiGianPage() {
         </p>
 
         <section className="space-y-5">
-          <h3 className="text-2xl font-bold text-stone-900">Thí nghiệm tư duy: ai giàu hơn?</h3>
+          <h3 className="text-2xl font-bold text-stone-900 dark:text-stone-100">Thí nghiệm tư duy: ai giàu hơn?</h3>
           <p>
             Hãy xem xét hai người, cùng đầu tư 5 triệu đồng mỗi tháng vào quỹ chỉ số với lãi suất bình quân 10% mỗi năm.
           </p>
@@ -94,7 +94,7 @@ export default function SucManhThoiGianPage() {
         </section>
 
         <section className="space-y-5">
-          <h3 className="text-2xl font-bold text-stone-900">Chi phí của việc chậm bắt đầu</h3>
+          <h3 className="text-2xl font-bold text-stone-900 dark:text-stone-100">Chi phí của việc chậm bắt đầu</h3>
           <p>
             Nhiều người trì hoãn đầu tư với lý do: chờ đến khi có đủ tiền hơn, chờ thị trường ổn định hơn, hoặc chờ đến khi hiểu rõ hơn. Nhưng mỗi năm trì hoãn đều có chi phí cụ thể.
           </p>
@@ -110,7 +110,7 @@ export default function SucManhThoiGianPage() {
         </section>
 
         <section className="space-y-5">
-          <h3 className="text-2xl font-bold text-stone-900">Đầu tư định kỳ: không cần dự đoán thị trường</h3>
+          <h3 className="text-2xl font-bold text-stone-900 dark:text-stone-100">Đầu tư định kỳ: không cần dự đoán thị trường</h3>
           <p>
             Một trong những trở ngại lớn nhất của người mới bắt đầu đầu tư là câu hỏi: <em>khi nào là thời điểm tốt để vào?</em> Câu trả lời thực tế là: hầu như không ai dự đoán được thời điểm tốt nhất một cách nhất quán.
           </p>
@@ -123,7 +123,7 @@ export default function SucManhThoiGianPage() {
         </section>
 
         <section className="space-y-5">
-          <h3 className="text-2xl font-bold text-stone-900">Kiên nhẫn là kỹ năng tài chính thực sự</h3>
+          <h3 className="text-2xl font-bold text-stone-900 dark:text-stone-100">Kiên nhẫn là kỹ năng tài chính thực sự</h3>
           <p>
             Sức mạnh của thời gian chỉ phát huy khi bạn không rút ra sớm. Thị trường tài chính thường xuyên trải qua những giai đoạn biến động mạnh khiến nhiều người hoảng loạn và bán ra đúng lúc tệ nhất.
           </p>
