@@ -76,6 +76,8 @@ export default function CfaTrackView({ subjects }: Props) {
       return;
     }
 
+    const bookId = selectedBook.id;
+
     async function fetchReadingsAndModules() {
       setLoadingReadings(true);
       try {
@@ -85,7 +87,7 @@ export default function CfaTrackView({ subjects }: Props) {
         const { data: readingsData, error: readingsError } = await supabase
           .from("Reading")
           .select("*")
-          .eq("bookId", selectedBook.id)
+          .eq("bookId", bookId)
           .order("order", { ascending: true });
 
         if (readingsError) throw readingsError;
