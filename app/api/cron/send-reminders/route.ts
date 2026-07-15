@@ -2,16 +2,15 @@ import { NextRequest, NextResponse } from "next/server";
 import { timingSafeEqual } from "crypto";
 import { createAdminClient } from "@/lib/supabase-admin";
 import { getStreakRiskStatus, getInactiveDaysCount } from "@/lib/streak-reminders";
+import { sendEmail } from "@/lib/send-email";
 import type { UserStreak } from "@/lib/supabase-streak";
 
 // Vercel Cron hits this route via GET (see vercel.json: "0 12 * * *" = 19:00
 // giờ Việt Nam). It opt-in emails learners who are about to lose their
 // streak or have a spaced-repetition review due, at most once per day.
 //
-// IMPORTANT: no email-sending package (resend, nodemailer, ...) is installed
-// in this repo yet. sendReminderEmail() below intentionally no-ops (just
-// logs) until RESEND_API_KEY is configured - see the TODO inside it for how
-// to wire up Resend using nothing but `fetch` (no package install needed).
+// Actual sending goes through lib/send-email.ts (plain-fetch Resend call,
+// no npm install needed) - it no-ops until RESEND_API_KEY is configured.
 
 export const dynamic = "force-dynamic";
 
@@ -36,49 +35,12 @@ function isAuthorized(request: NextRequest): boolean {
   return timingSafeEqual(authBuf, expectedBuf);
 }
 
-/**
- * Sends a reminder email. Currently a no-op (logs only) because no email
- * provider package is installed in this repo.
- *
- * TODO(email integration): once you sign up for Resend, get an API key, and
- * set RESEND_API_KEY in the environment, you do NOT need to `npm install`
- * anything - Resend has a plain HTTP API. Replace the body of the
- * `if (process.env.RESEND_API_KEY)` branch below with something like:
- *
- *   const res = await fetch("https://api.resend.com/emails", {
- *     method: "POST",
- *     headers: {
- *       Authorization: `Bearer ${process.env.RESEND_API_KEY}`,
- *       "Content-Type": "application/json",
- *     },
- *     body: JSON.stringify({
- *       from: "TuHocTaiChinh <reminders@yourdomain.com>",
- *       to,
- *       subject,
- *       html: body,
- *     }),
- *   });
- *   if (!res.ok) throw new Error(`Resend API error: ${res.status}`);
- */
 async function sendReminderEmail(
   to: string,
   subject: string,
   body: string
 ): Promise<{ sent: boolean; reason?: string }> {
-  if (!process.env.RESEND_API_KEY) {
-    console.warn(`[send-reminders] Skipping email to ${to} - RESEND_API_KEY is not set.`);
-    return { sent: false, reason: "no_api_key" };
-  }
-
-  // TODO(email integration): replace this with the real `fetch` call to
-  // https://api.resend.com/emails documented above. Left unimplemented on
-  // purpose - no email provider is wired up in this repo yet.
-  void body;
-  console.warn(
-    `[send-reminders] RESEND_API_KEY is set but the Resend fetch() call is not implemented yet. ` +
-      `Skipping email to ${to} ("${subject}").`
-  );
-  return { sent: false, reason: "not_implemented" };
+  return sendEmail(to, subject, `<p>${body}</p>`);
 }
 
 interface ReminderCandidate {

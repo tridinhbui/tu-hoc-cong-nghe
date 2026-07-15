@@ -231,6 +231,9 @@ export default function AppNavbar() {
                     <Link href="/profile" onClick={() => setDropdownOpen(false)} className="block px-3 py-2 text-sm font-semibold text-stone-900 dark:text-stone-100 hover:bg-stone-50 dark:hover:bg-stone-800 rounded-lg transition">
                       Hồ sơ
                     </Link>
+                    <Link href="/hanh-trinh" onClick={() => setDropdownOpen(false)} className="block px-3 py-2 text-sm font-semibold text-stone-900 dark:text-stone-100 hover:bg-stone-50 dark:hover:bg-stone-800 rounded-lg transition">
+                      🗺️ Hành trình của tôi
+                    </Link>
                     <Link href="/ban-be" onClick={() => setDropdownOpen(false)} className="block px-3 py-2 text-sm font-semibold text-stone-900 dark:text-stone-100 hover:bg-stone-50 dark:hover:bg-stone-800 rounded-lg transition">
                       Bạn bè
                     </Link>

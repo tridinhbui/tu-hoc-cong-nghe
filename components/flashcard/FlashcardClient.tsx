@@ -2,12 +2,13 @@
 
 import { useEffect, useState } from "react";
 import { toast } from "sonner";
-import { ArrowLeft, Plus, Trash2, BookOpen, CheckCircle, HelpCircle, GraduationCap, Sparkles } from "lucide-react";
+import { ArrowLeft, Plus, Trash2, BookOpen, CheckCircle, HelpCircle, GraduationCap, Sparkles, Upload, Download, Copy } from "lucide-react";
 import Link from "next/link";
 import { useAuthGate } from "@/lib/use-auth-gate";
 import {
   getFlashcards,
   saveFlashcard,
+  saveFlashcardsBulk,
   deleteFlashcard,
   calculateSM2,
   DEFAULT_FINANCIAL_GLOSSARY,
@@ -30,6 +31,12 @@ export default function FlashcardClient() {
   const [newDef, setNewDef] = useState("");
   const [saving, setSaving] = useState(false);
   const [generatingFromMistakes, setGeneratingFromMistakes] = useState(false);
+
+  // Bulk import/export: paste/parse many "thuật ngữ | định nghĩa" lines at
+  // once instead of the one-card-at-a-time form above.
+  const [showBulkPanel, setShowBulkPanel] = useState(false);
+  const [bulkText, setBulkText] = useState("");
+  const [bulkImporting, setBulkImporting] = useState(false);
 
   const handleGenerateFromMistakes = async () => {
     if (!userId || generatingFromMistakes) return;
@@ -190,6 +197,58 @@ export default function FlashcardClient() {
     }
   };
 
+  // Each line: "thuật ngữ | định nghĩa" (also accepts a tab as the
+  // separator, in case someone pastes straight out of a spreadsheet).
+  function parseBulkLines(text: string): { term: string; definition: string }[] {
+    return text
+      .split("\n")
+      .map((line) => line.trim())
+      .filter(Boolean)
+      .map((line) => {
+        const parts = line.includes("|") ? line.split("|") : line.split("\t");
+        const term = (parts[0] ?? "").trim();
+        const definition = parts.slice(1).join(parts[0]?.includes("|") ? "|" : "\t").trim();
+        return { term, definition };
+      })
+      .filter((c) => c.term && c.definition);
+  }
+
+  const handleBulkImport = async () => {
+    const parsed = parseBulkLines(bulkText);
+    if (parsed.length === 0) {
+      toast.error('Không đọc được dòng nào hợp lệ - mỗi dòng cần dạng "thuật ngữ | định nghĩa".');
+      return;
+    }
+    setBulkImporting(true);
+    try {
+      const { added, skipped } = await saveFlashcardsBulk(userId, parsed);
+      if (added > 0) {
+        toast.success(`Đã thêm ${added} thẻ mới!${skipped > 0 ? ` (bỏ qua ${skipped} thẻ đã có sẵn)` : ""}`);
+        const list = await getFlashcards(userId);
+        setCards(list);
+        setBulkText("");
+        setShowBulkPanel(false);
+      } else if (skipped > 0) {
+        toast.info(`Cả ${skipped} thẻ đều đã có sẵn trong hộp thẻ của bạn.`);
+      } else {
+        toast.error("Không thể lưu các thẻ này.");
+      }
+    } finally {
+      setBulkImporting(false);
+    }
+  };
+
+  function handleExport() {
+    if (cards.length === 0) {
+      toast.info("Chưa có thẻ nào để xuất.");
+      return;
+    }
+    const text = cards.map((c) => `${c.term} | ${c.definition}`).join("\n");
+    navigator.clipboard.writeText(text).then(() => {
+      toast.success(`Đã sao chép ${cards.length} thẻ vào clipboard.`);
+    });
+  }
+
   const handleDeleteCard = async (term: string) => {
     if (!confirm(`Bạn có chắc chắn muốn xoá thẻ "${term}"?`)) return;
     const ok = await deleteFlashcard(userId, term);
@@ -256,8 +315,69 @@ export default function FlashcardClient() {
             >
               <Plus className="w-3.5 h-3.5" /> Thêm thẻ mới
             </button>
+            <button
+              onClick={() => setShowBulkPanel(!showBulkPanel)}
+              className="inline-flex items-center gap-1.5 text-xs font-bold border border-stone-200 dark:border-stone-800 text-stone-600 dark:text-stone-400 px-3.5 py-2.5 rounded-xl hover:bg-stone-50 dark:hover:bg-stone-800 transition-all cursor-pointer"
+            >
+              <Upload className="w-3.5 h-3.5" /> Nhập/Xuất hàng loạt
+            </button>
           </div>
         </div>
+
+        {showBulkPanel && (
+          <div className="mb-6 p-5 rounded-2xl border border-stone-200 dark:border-stone-800 bg-white dark:bg-stone-900 shadow-sm space-y-4 animate-[fadeIn_0.2s_ease-out]">
+            <div className="flex items-center justify-between gap-3">
+              <h3 className="text-sm font-extrabold text-stone-900 dark:text-stone-150">Nhập/Xuất hàng loạt</h3>
+              <button
+                onClick={handleExport}
+                className="inline-flex items-center gap-1.5 text-[11px] font-bold text-stone-500 dark:text-stone-400 hover:text-stone-800 dark:hover:text-stone-200 transition-colors"
+              >
+                <Download className="w-3.5 h-3.5" /> Xuất {cards.length} thẻ hiện có
+              </button>
+            </div>
+            <div>
+              <label className="block text-[10px] font-extrabold text-stone-400 dark:text-stone-500 uppercase tracking-widest mb-1.5">
+                Dán danh sách - mỗi dòng: thuật ngữ | định nghĩa
+              </label>
+              <textarea
+                rows={6}
+                placeholder={"Lãi kép | Lãi tính trên cả gốc lẫn lãi tích luỹ trước đó\nWACC | Chi phí vốn bình quân gia quyền"}
+                value={bulkText}
+                onChange={(e) => setBulkText(e.target.value)}
+                className="w-full text-sm px-3.5 py-2.5 rounded-xl border border-stone-200 dark:border-stone-850 bg-stone-50/40 dark:bg-stone-950/30 text-stone-900 dark:text-stone-100 focus:outline-none focus:border-emerald-500 font-mono"
+              />
+              {bulkText.trim() && (
+                <p className="text-[11px] text-stone-400 dark:text-stone-500 mt-1.5">
+                  Đọc được {parseBulkLines(bulkText).length} thẻ hợp lệ.
+                </p>
+              )}
+            </div>
+            <div className="flex gap-2 justify-end">
+              <button
+                type="button"
+                onClick={handleExport}
+                className="inline-flex items-center gap-1.5 px-4 py-2 text-xs font-bold rounded-xl border border-stone-200 dark:border-stone-800 text-stone-600 dark:text-stone-400 hover:bg-stone-50 dark:hover:bg-stone-800 transition-colors sm:hidden"
+              >
+                <Copy className="w-3.5 h-3.5" /> Xuất
+              </button>
+              <button
+                type="button"
+                onClick={() => setShowBulkPanel(false)}
+                className="px-4 py-2 text-xs font-bold rounded-xl border border-stone-200 dark:border-stone-800 text-stone-600 dark:text-stone-400 hover:bg-stone-50 dark:hover:bg-stone-800 transition-colors"
+              >
+                Hủy
+              </button>
+              <button
+                type="button"
+                onClick={handleBulkImport}
+                disabled={bulkImporting || !bulkText.trim()}
+                className="px-4 py-2 text-xs font-bold rounded-xl bg-emerald-500 hover:bg-emerald-600 text-white disabled:opacity-50 transition-colors"
+              >
+                {bulkImporting ? "Đang nhập..." : "Nhập thẻ"}
+              </button>
+            </div>
+          </div>
+        )}
 
         {showAddForm && (
           <form onSubmit={handleAddCard} className="mb-6 p-5 rounded-2xl border border-stone-200 dark:border-stone-800 bg-white dark:bg-stone-900 shadow-sm space-y-4 animate-[fadeIn_0.2s_ease-out]">

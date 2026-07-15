@@ -12,6 +12,7 @@ function isMissingTableError(error: { code?: string } | null): boolean {
 export interface NotificationPreferences {
   emailRemindersEnabled: boolean;
   browserRemindersEnabled: boolean;
+  weeklyDigestEnabled: boolean;
 }
 
 export async function getNotificationPreferences(
@@ -20,7 +21,7 @@ export async function getNotificationPreferences(
   const supabase = createClient();
   const { data, error } = await supabase
     .from("notification_preferences")
-    .select("email_reminders_enabled, browser_reminders_enabled")
+    .select("email_reminders_enabled, browser_reminders_enabled, weekly_digest_enabled")
     .eq("user_id", userId)
     .maybeSingle();
 
@@ -33,6 +34,7 @@ export async function getNotificationPreferences(
   return {
     emailRemindersEnabled: Boolean(data.email_reminders_enabled),
     browserRemindersEnabled: Boolean(data.browser_reminders_enabled),
+    weeklyDigestEnabled: Boolean(data.weekly_digest_enabled),
   };
 }
 
@@ -51,6 +53,9 @@ export async function saveNotificationPreferences(
   }
   if (prefs.browserRemindersEnabled !== undefined) {
     payload.browser_reminders_enabled = prefs.browserRemindersEnabled;
+  }
+  if (prefs.weeklyDigestEnabled !== undefined) {
+    payload.weekly_digest_enabled = prefs.weeklyDigestEnabled;
   }
 
   const { error } = await supabase
