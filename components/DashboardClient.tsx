@@ -24,10 +24,13 @@ import Leaderboard from "@/components/Leaderboard";
 import DashboardRecommendations from "@/components/DashboardRecommendations";
 import MistakeReviewWidget from "@/components/MistakeReviewWidget";
 import DailyQuestsWidget from "@/components/DailyQuestsWidget";
+import LessonRecallWidget from "@/components/LessonRecallWidget";
+import SmartRemediationWidget from "@/components/SmartRemediationWidget";
 import { hasCompletedOnboarding, completeOnboarding } from "@/lib/supabase-onboarding";
 import { getUserProfile, recalculateUserStats } from "@/lib/supabase-user";
 import UnlockRequestModal from "@/components/UnlockRequestModal";
 import KnowledgeChallengeModal from "@/components/KnowledgeChallengeModal";
+import StageMilestoneExamModal from "@/components/StageMilestoneExamModal";
 import { TRACK_PERSONAL, TRACK_PROFESSIONAL, isLessonInRange } from "@/lib/track-stages";
 import { BONUS_CATEGORIES, BONUS_CATEGORY_ORDER } from "@/lib/bonus-lesson-categories";
 import { CFA_LEVEL_1_SUBJECTS } from "@/lib/cfa-track";
@@ -37,6 +40,7 @@ import { getChallengePassedLessonIds } from "@/lib/supabase-challenges";
 import { addLessonFlag, getUserLessonFlags, removeLessonFlag } from "@/lib/supabase-lesson-flags";
 import { getUserBookmarks, type LessonBookmark } from "@/lib/supabase-bookmarks";
 import { useRoutePrefetch } from "@/lib/use-route-prefetch";
+import { getPassedMilestones, savePassedMilestone, type MilestoneCompletion } from "@/lib/supabase-milestones";
 
 const STAGE_THEMES: Record<string, { emoji: string; bg: string; text: string; barColor: string }> = {
   // All stages use the clean neutral Stone color theme of Stage 0
@@ -141,6 +145,8 @@ export default function DashboardClient({ lessonsMeta }: { lessonsMeta: LessonMe
   const [flagSaving, setFlagSaving] = useState(false);
   const [manualFlagInfoOpen, setManualFlagInfoOpen] = useState(false);
   const [appealTarget, setAppealTarget] = useState<{ id: number; slug: string; title: string } | null>(null);
+  const [passedMilestones, setPassedMilestones] = useState<MilestoneCompletion[]>([]);
+  const [activeMilestoneExam, setActiveMilestoneExam] = useState<{ label: string; name: string; lessonIds: number[] } | null>(null);
 
   useRoutePrefetch(["/analytics", "/ghi-chu", "/kiem-tra", "/tai-lieu", "/ban-be", "/profile", "/settings", "/cfa"]);
 
@@ -308,6 +314,10 @@ export default function DashboardClient({ lessonsMeta }: { lessonsMeta: LessonMe
       getUserBookmarks(session.user.id)
         .then((saved) => setBookmarks(saved.slice(0, 6)))
         .catch((error) => console.error("Error loading lesson bookmarks:", error));
+
+      getPassedMilestones(session.user.id, activeTrack)
+        .then((milestones) => setPassedMilestones(milestones))
+        .catch((error) => console.error("Error loading milestones:", error));
 
       // Check if user has completed onboarding. The local flag is checked
       // first and short-circuits the server round trip - it's what actually
@@ -607,9 +617,19 @@ export default function DashboardClient({ lessonsMeta }: { lessonsMeta: LessonMe
               <DailyQuestsWidget userId={user.id} />
             )}
 
+            {/* Lesson Recall Scheduler Widget */}
+            {user?.id && (
+              <LessonRecallWidget userId={user.id} />
+            )}
+
             {/* Mistake Review Alert */}
             {user?.id && (
               <MistakeReviewWidget userId={user.id} />
+            )}
+
+            {/* Smart Remediation (Quiz Mistake smart advice) */}
+            {user?.id && (
+              <SmartRemediationWidget userId={user.id} lessonsMeta={lessonsMeta} />
             )}
 
             {/* Daily Recommendations */}
@@ -801,6 +821,27 @@ export default function DashboardClient({ lessonsMeta }: { lessonsMeta: LessonMe
             const stageKey = `${activeTrack}-${stage.label}`;
             const stageOpen = openStages.has(stageKey);
 
+            const stageIdx = track.stages.indexOf(stage);
+            let isStageLockedByMilestone = false;
+            let prevStageLabel = "";
+            let prevStageLessonsCount = 0;
+            let prevStageDone = 0;
+            let prevMilestonePassed = false;
+            
+            if (stageIdx > 1) {
+              const prevStage = track.stages[stageIdx - 1];
+              prevStageLabel = prevStage.label;
+              const prevStageLessons = sorted.filter(
+                (l) => isLessonInRange(l.id, prevStage) && (!l.track || l.track === activeTrack)
+              );
+              prevStageLessonsCount = prevStageLessons.length;
+              prevStageDone = prevStageLessons.filter((l) => completed.includes(l.id)).length;
+              
+              const isPrevStageCompleted = prevStageLessons.length > 0 && prevStageDone === prevStageLessons.length;
+              prevMilestonePassed = passedMilestones.some((m) => m.stage_label === prevStage.label);
+              isStageLockedByMilestone = !isPrevStageCompleted || !prevMilestonePassed;
+            }
+
             return (
               <div key={stage.label}>
                 {/* Stage header - click to expand/collapse */}
@@ -817,11 +858,17 @@ export default function DashboardClient({ lessonsMeta }: { lessonsMeta: LessonMe
                         {stage.label}
                       </span>
                       <span className="text-base sm:text-lg font-extrabold text-stone-900 dark:text-stone-100 flex-1 leading-snug">{stage.name}</span>
-                      {stage.available && stageLockedCount > 0 && (
-                        <span className="flex items-center gap-1 text-xs font-bold text-stone-500 dark:text-stone-400 shrink-0">
-                          <Lock className="w-3 h-3" />
-                          {stageLockedCount} khoá
+                      {isStageLockedByMilestone ? (
+                        <span className="flex items-center gap-1 text-xs font-bold text-rose-500 dark:text-rose-400 shrink-0">
+                          <Lock className="w-3 h-3" /> Chờ vượt ải
                         </span>
+                      ) : (
+                        stage.available && stageLockedCount > 0 && (
+                          <span className="flex items-center gap-1 text-xs font-bold text-stone-500 dark:text-stone-400 shrink-0">
+                            <Lock className="w-3 h-3" />
+                            {stageLockedCount} khoá
+                          </span>
+                        )
                       )}
                       {stage.available && stageLessons.length > 0 && (
                         <div className="flex items-center gap-3 shrink-0 ml-auto sm:ml-0">
@@ -834,7 +881,7 @@ export default function DashboardClient({ lessonsMeta }: { lessonsMeta: LessonMe
                         </div>
                       )}
                       <span className={`text-stone-500 dark:text-stone-400 text-sm transition-transform shrink-0 ${stageOpen ? "rotate-180" : ""}`}>
-                        ▾
+                        {isStageLockedByMilestone ? "🔒" : "▾"}
                       </span>
                     </button>
                   );
@@ -882,7 +929,7 @@ export default function DashboardClient({ lessonsMeta }: { lessonsMeta: LessonMe
                 )}
 
                 {/* Parts (sub-stages) - each its own collapsible accordion */}
-                {stageOpen && stage.available && stageLessons.length > 0 && (
+                {stageOpen && stage.available && stageLessons.length > 0 && !isStageLockedByMilestone && (
                   <div className="space-y-3">
                     {stage.parts.map((part) => {
                       const partLessons = sorted.filter(
@@ -1073,6 +1120,47 @@ export default function DashboardClient({ lessonsMeta }: { lessonsMeta: LessonMe
                         </div>
                       );
                     })}
+                  </div>
+                )}
+
+                {/* Milestone Exam Banner (if current stage is completed but milestone is not passed) */}
+                {stageOpen && stage.available && stageLessons.length > 0 && !isStageLockedByMilestone && stageDone === stageLessons.length && !passedMilestones.some((m) => m.stage_label === stage.label) && (
+                  <div className="mt-4 p-5 rounded-2xl border border-amber-350 bg-amber-500/[0.04] dark:border-amber-950/40 flex flex-col sm:flex-row items-center justify-between gap-4">
+                    <div className="min-w-0 flex-1">
+                      <h4 className="text-xs font-bold text-amber-800 dark:text-amber-400 flex items-center gap-1.5">
+                        🏆 Đã đủ điều kiện Thi Vượt Ải {stage.label}
+                      </h4>
+                      <p className="text-[10px] text-stone-500 dark:text-stone-405 mt-1 leading-relaxed">
+                        Chúc mừng bạn đã học xong tất cả bài học trong chặng này! Hãy vượt qua bài thi trắc nghiệm cột mốc (15 câu) để nhận <strong>+50 XP</strong> và mở khóa chặng sau.
+                      </p>
+                    </div>
+                    <button
+                      onClick={() => setActiveMilestoneExam({
+                        label: stage.label,
+                        name: stage.name,
+                        lessonIds: stageLessons.map((l) => l.id)
+                      })}
+                      className="px-4 py-2 text-xs font-extrabold bg-amber-500 hover:bg-amber-600 text-white rounded-xl shadow-[0_4px_10px_-2px_rgba(245,158,11,0.4)] hover:scale-105 active:scale-95 transition-all cursor-pointer shrink-0"
+                    >
+                      Bắt đầu thi 🏆
+                    </button>
+                  </div>
+                )}
+
+                {/* Locked Stage Banner (if stage is locked by previous stage milestone) */}
+                {stageOpen && stage.available && isStageLockedByMilestone && (
+                  <div className="border-2 border-dashed border-rose-200/60 dark:border-rose-950/40 rounded-2xl px-5 py-8 text-center bg-rose-500/[0.02] relative overflow-hidden">
+                    <div className="flex flex-col items-center gap-3">
+                      <div className="w-12 h-12 rounded-2xl bg-rose-55 dark:bg-rose-950/60 text-rose-500 flex items-center justify-center animate-pulse">
+                        <Lock className="w-6 h-6" />
+                      </div>
+                      <div>
+                        <p className="text-stone-900 dark:text-stone-100 text-sm font-extrabold">Chặng này đang bị khoá 🔒</p>
+                        <p className="text-stone-500 dark:text-stone-400 text-xs mt-1 max-w-xs mx-auto leading-relaxed">
+                          Bạn cần hoàn thành toàn bộ bài học và vượt qua <strong>Kỳ thi Vượt ải {prevStageLabel}</strong> để mở khoá chặng tiếp theo!
+                        </p>
+                      </div>
+                    </div>
                   </div>
                 )}
               </div>
@@ -1270,6 +1358,24 @@ export default function DashboardClient({ lessonsMeta }: { lessonsMeta: LessonMe
             setChallengePassedIds((prev) => new Set(prev).add(challengeGateLesson.id));
             router.push(`/bai-hoc/${challengeGateLesson.slug}`);
             setChallengeGateLesson(null);
+          }}
+        />
+      )}
+
+      {activeMilestoneExam && user?.id && (
+        <StageMilestoneExamModal
+          userId={user.id}
+          trackId={activeTrack}
+          stageLabel={activeMilestoneExam.label}
+          stageName={activeMilestoneExam.name}
+          lessonIds={activeMilestoneExam.lessonIds}
+          onClose={() => setActiveMilestoneExam(null)}
+          onSuccess={() => {
+            setPassedMilestones((prev) => [
+              ...prev,
+              { track_id: activeTrack, stage_label: activeMilestoneExam.label, score: 1 }
+            ]);
+            setActiveMilestoneExam(null);
           }}
         />
       )}

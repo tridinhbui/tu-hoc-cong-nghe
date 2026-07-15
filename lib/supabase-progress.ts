@@ -1,6 +1,7 @@
 import type { SupabaseClient } from "@supabase/supabase-js";
 import { createClient } from "@/lib/supabase";
 import { handleSupabaseError } from "@/lib/errors";
+import { scheduleLessonRecall } from "@/lib/supabase-recalls";
 
 export interface UserProgress {
   id: number;
@@ -120,6 +121,8 @@ export async function markLessonComplete(
   if (error) {
     throw handleSupabaseError(error);
   }
+
+  void scheduleLessonRecall(userId, lessonId, 1).catch(() => {});
 
   return data as UserProgress;
 }

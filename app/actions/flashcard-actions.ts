@@ -36,3 +36,18 @@ export async function getMistakeFlashcardCandidates(userId: string): Promise<Gen
     return [];
   }
 }
+
+export async function getLessonDetailsForRecall(lessonId: number) {
+  try {
+    const lesson = await getLessonById(lessonId);
+    if (!lesson) return null;
+    return {
+      title: lesson.title,
+      slug: lesson.slug,
+      quiz: lesson.quiz,
+    };
+  } catch (error) {
+    console.error("Error loading lesson detail for recall:", error);
+    return null;
+  }
+}

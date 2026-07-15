@@ -134,6 +134,50 @@ export async function saveFlashcard(userId: string, card: Flashcard): Promise<bo
   return true;
 }
 
+export interface BulkImportResult {
+  added: number;
+  skipped: number; // terms that already exist for this user - their review progress is left untouched, not overwritten
+}
+
+/** Bulk import: one insert call for the whole batch instead of N round
+ *  trips (what a naive loop calling saveFlashcard per line would do).
+ *  Deliberately INSERT-only, never upsert: a term that already exists for
+ *  this user is skipped rather than overwritten, so re-pasting a list that
+ *  happens to include a card you've already been reviewing can't silently
+ *  wipe its accumulated SM2 interval/repetitions back to a fresh card. */
+export async function saveFlashcardsBulk(userId: string, cards: { term: string; definition: string }[]): Promise<BulkImportResult> {
+  if (cards.length === 0) return { added: 0, skipped: 0 };
+  const supabase = createClient();
+
+  const dedup = new Map<string, { term: string; definition: string }>();
+  for (const c of cards) dedup.set(c.term, c);
+
+  const existing = await getFlashcards(userId);
+  const existingTerms = new Set(existing.map((c) => c.term));
+
+  const toInsert = Array.from(dedup.values()).filter((c) => !existingTerms.has(c.term));
+  const skipped = dedup.size - toInsert.length;
+  if (toInsert.length === 0) return { added: 0, skipped };
+
+  const rows = toInsert.map((c) => ({
+    user_id: userId,
+    term: c.term,
+    definition: c.definition,
+    interval: 1,
+    ease_factor: 2.5,
+    repetitions: 0,
+    next_review_at: new Date().toISOString(),
+  }));
+
+  const { error, count } = await supabase.from("user_flashcards").insert(rows, { count: "exact" });
+
+  if (error) {
+    console.error("Error bulk-saving flashcards:", error);
+    return { added: 0, skipped };
+  }
+  return { added: count ?? rows.length, skipped };
+}
+
 // Remove a flashcard
 export async function deleteFlashcard(userId: string, term: string): Promise<boolean> {
   const supabase = createClient();
