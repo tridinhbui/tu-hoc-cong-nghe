@@ -547,21 +547,7 @@ export default function DashboardClient({ lessonsMeta }: { lessonsMeta: LessonMe
 
   return (
     <div className="min-h-screen bg-white dark:bg-stone-950">
-      {/* ── Page context bar (AppNavbar in app/(app)/layout.tsx already
-          provides the persistent nav links + avatar - this just adds the
-          dashboard-specific "chọn lộ trình" subtitle + progress counter) ── */}
-      <div className="border-b border-stone-200 dark:border-stone-800 bg-white dark:bg-stone-950">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 py-3 sm:py-4 flex items-center justify-between gap-3 sm:gap-6">
-          <div className="min-w-0">
-            <h1 className="text-lg sm:text-xl font-bold text-stone-900 dark:text-stone-100 leading-tight">Tự Học Tài Chính</h1>
-            <p className="text-[11px] sm:text-xs text-stone-500 dark:text-stone-400 mt-0.5">Chọn lộ trình phù hợp với bạn</p>
-          </div>
-          <div className="text-right shrink-0" data-tour="free-docs">
-            <div className="text-lg sm:text-xl font-bold text-stone-900 dark:text-stone-100">{totalDone}</div>
-            <div className="text-[11px] sm:text-xs text-stone-500 dark:text-stone-400">/ {totalLessons} bài</div>
-          </div>
-        </div>
-      </div>
+
 
       <div className="px-6 py-8">
         {/* ── Admin -> everyone broadcasts (maintenance, launches, policy

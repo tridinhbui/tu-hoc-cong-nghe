@@ -133,8 +133,10 @@ export default function UserStats({
         {/* Quick Stats */}
         <div className="flex items-center gap-3 text-[11px] border-l border-stone-100 dark:border-stone-850 pl-3">
           <div className="text-center">
-            <div className="font-bold text-stone-900 dark:text-stone-100">{lessonsCompleted}</div>
-            <p className="text-stone-500 dark:text-stone-400 text-[10px]">Đã học</p>
+            <div className="font-bold text-stone-900 dark:text-stone-100">
+              {lessonsCompleted}/{totalLessons}
+            </div>
+            <p className="text-stone-500 dark:text-stone-400 text-[10px]">Bài học</p>
           </div>
           <div className="text-center">
             <div className="font-bold text-stone-900 dark:text-stone-100">{Math.round(avgQuizScore)}%</div>
