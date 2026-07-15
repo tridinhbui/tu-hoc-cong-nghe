@@ -28,9 +28,6 @@ export default function TextHighlightMenu({ containerRef, lessonId, lessonSlug, 
   const menuRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    const container = containerRef.current;
-    if (!container) return;
-
     function handleContextMenu(e: MouseEvent) {
       const selection = window.getSelection();
       const quote = selection?.toString().trim() ?? "";
@@ -61,7 +58,7 @@ export default function TextHighlightMenu({ containerRef, lessonId, lessonSlug, 
       document.removeEventListener("contextmenu", handleContextMenu);
       document.removeEventListener("click", handleClickAway);
     };
-  }, [containerRef]);
+  }, []);
 
   async function handleChoose(kind: "important" | "ai_flag") {
     if (!menu || saving) return;
