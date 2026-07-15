@@ -9,6 +9,7 @@ import { createClient } from "@/lib/supabase";
 import { useRoutePrefetch } from "@/lib/use-route-prefetch";
 import Logo from "@/components/Logo";
 import LessonSearch from "@/components/LessonSearch";
+import { getUnresolvedMistakeCount } from "@/lib/quiz-mistakes";
 
 interface NavProfile {
   full_name: string | null;
@@ -41,6 +42,7 @@ export default function AppNavbar() {
   const router = useRouter();
   const pathname = usePathname();
   const [profile, setProfile] = useState<NavProfile | null>(null);
+  const [mistakeCount, setMistakeCount] = useState(0);
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [signingOut, setSigningOut] = useState(false);
@@ -70,6 +72,9 @@ export default function AppNavbar() {
       } catch {
         setProfile(fallback);
       }
+      getUnresolvedMistakeCount(user.id)
+        .then(setMistakeCount)
+        .catch(() => {});
     });
   }, []);
 
@@ -198,6 +203,14 @@ export default function AppNavbar() {
                     </Link>
                     <Link href="/cong-cu" onClick={() => setDropdownOpen(false)} className="block px-3 py-2 text-sm font-semibold text-stone-900 dark:text-stone-100 hover:bg-stone-50 dark:hover:bg-stone-800 rounded-lg transition">
                       Công cụ cá nhân
+                    </Link>
+                    <Link href="/on-tap-cau-sai" onClick={() => setDropdownOpen(false)} className="flex items-center justify-between px-3 py-2 text-sm font-semibold text-stone-900 dark:text-stone-100 hover:bg-stone-50 dark:hover:bg-stone-800 rounded-lg transition">
+                      Câu sai cần ôn
+                      {mistakeCount > 0 && (
+                        <span className="text-[11px] font-bold text-white bg-rose-500 rounded-full px-1.5 py-0.5 min-w-[18px] text-center">
+                          {mistakeCount}
+                        </span>
+                      )}
                     </Link>
                     <Link href="/game" onClick={() => setDropdownOpen(false)} className="block px-3 py-2 text-sm font-bold text-emerald-600 dark:text-emerald-400 hover:bg-emerald-50 dark:hover:bg-emerald-950/30 rounded-lg transition">
                       🎮 Mini Game

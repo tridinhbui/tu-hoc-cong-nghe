@@ -22,6 +22,7 @@ import { getLessonProgress } from "@/lib/supabase-progress";
 import { recalculateUserStats } from "@/lib/supabase-user";
 import { updateStreak } from "@/lib/supabase-streak";
 import { getReadingProgress, updateReadingProgress } from "@/lib/supabase-reading";
+import { recordQuizMistake } from "@/lib/quiz-mistakes";
 import { getRecallItemsAction } from "@/lib/recall-actions";
 import type { RecallItem } from "@/lib/recall-schedule";
 import RecallCard from "@/components/RecallCard";
@@ -447,6 +448,10 @@ export default function LessonPageLayout({ lesson, quiz, children }: Props) {
     const newSubmitted = [...submitted]; newSubmitted[qi] = true;
     setResults(newResults);
     setSubmitted(newSubmitted);
+    // Logs this specific question as a mistake to resurface later (Ôn tập
+    // câu sai) - or resolves it if this is a corrected retry. Best-effort,
+    // never blocks the quiz UI.
+    void recordQuizMistake(persistedLessonId, qi, ok);
     // Persist the exact per-question outcome (not just an aggregate score)
     // so revisiting this lesson later shows precisely which question was
     // wrong and what was picked, instead of guessing from the total score.
