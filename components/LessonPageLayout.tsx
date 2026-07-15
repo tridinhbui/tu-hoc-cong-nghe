@@ -912,7 +912,7 @@ export default function LessonPageLayout({ lesson, quiz, children }: Props) {
                       </span>
                     )}
                   </div>
-                  <p className="font-bold text-stone-900 dark:text-stone-100 text-lg leading-relaxed">{q.question}</p>
+                  <p className="font-bold text-stone-900 dark:text-stone-100 text-lg leading-relaxed select-text">{q.question}</p>
                 </div>
 
                 <div className="space-y-3">
@@ -936,12 +936,12 @@ export default function LessonPageLayout({ lesson, quiz, children }: Props) {
                         key={oi}
                         disabled={qSubmitted}
                         onClick={() => choose(activeQ, oi)}
-                        className={`w-full text-left px-5 py-4 rounded-xl border transition-all flex items-center gap-4 cursor-pointer font-medium text-base ${cls}`}
+                        className={`w-full text-left px-5 py-4 rounded-xl border transition-all flex items-center gap-4 cursor-pointer font-medium text-base select-text ${cls}`}
                       >
-                        <span className="w-8 h-8 rounded-lg text-xs font-extrabold flex items-center justify-center flex-shrink-0 bg-stone-200 dark:bg-stone-700 text-stone-800 dark:text-stone-300">
+                        <span className="w-8 h-8 rounded-lg text-xs font-extrabold flex items-center justify-center flex-shrink-0 bg-stone-200 dark:bg-stone-700 text-stone-800 dark:text-stone-300 select-none">
                           {["A", "B", "C", "D"][oi]}
                         </span>
-                        <span className="flex-1 text-base leading-snug">{opt}</span>
+                        <span className="flex-1 text-base leading-snug select-text">{opt}</span>
                         {qSubmitted && isCorrectOpt && <span className="text-emerald-600 dark:text-emerald-400 font-bold text-xl">✓</span>}
                         {qSubmitted && isSelected && !isCorrectOpt && <span className="text-rose-600 dark:text-rose-400 font-bold text-xl">✗</span>}
                       </button>

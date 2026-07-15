@@ -228,7 +228,7 @@ export default function KiemTraPage() {
               <span className="text-xs text-stone-400 dark:text-stone-500 truncate max-w-[60%]">{q.lessonTitle}</span>
             </div>
 
-            <p className="font-bold text-stone-900 dark:text-stone-100 text-lg leading-relaxed">{q.question}</p>
+            <p className="font-bold text-stone-900 dark:text-stone-100 text-lg leading-relaxed select-text">{q.question}</p>
 
             <div className="space-y-2">
               {q.options.map((opt, oi) => {
@@ -247,7 +247,7 @@ export default function KiemTraPage() {
                     key={oi}
                     disabled={submitted}
                     onClick={() => choose(oi)}
-                    className={`w-full text-left px-4 py-3 rounded-xl transition-all cursor-pointer text-sm ${cls}`}
+                    className={`w-full text-left px-4 py-3 rounded-xl transition-all cursor-pointer text-sm select-text ${cls}`}
                   >
                     {opt}
                   </button>
