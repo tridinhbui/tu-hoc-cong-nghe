@@ -3,7 +3,7 @@
 import { getResumeLesson } from "@/lib/resume-learning";
 import { getCompletedLessons, getTotalTimeSpentMinutes } from "@/lib/supabase-progress";
 import { createServerSupabaseClient } from "@/lib/supabase-server";
-import { getLessonsMeta } from "@/lib/lessons-loader";
+import { getLessonsMeta, getLessonById } from "@/lib/lessons-loader";
 import { isLessonIdInTrack } from "@/lib/track-stages";
 
 // Wraps lib/resume-learning.ts as a Server Action. That module reads the
@@ -55,8 +55,31 @@ export async function getDashboardGreetingAction(userId: string, track: "persona
   const completedInTrack = trackLessonIds.filter((id) => completedLessons.includes(id)).length;
   const trackProgressPercent = trackLessonIds.length > 0 ? Math.round((completedInTrack / trackLessonIds.length) * 100) : 0;
 
+  // Enough to tell the learner exactly what's left on the in-progress lesson
+  // (scroll % + quiz answered count) right on the dashboard card, instead of
+  // them having to open the lesson to see the checklist. Quiz count comes
+  // from the full lesson record (server-only - lib/lessons.ts is ~1.3MB and
+  // must never reach a client bundle, see the note above on this file).
+  let nextLessonCriteria: { readPercent: number; quizTotal: number } | null = null;
+  if (nextLesson) {
+    const [readingRow, fullLesson] = await Promise.all([
+      supabase
+        .from("reading_progress")
+        .select("max_percent_reached")
+        .eq("user_id", userId)
+        .eq("lesson_id", nextLesson.id)
+        .maybeSingle(),
+      getLessonById(nextLesson.id),
+    ]);
+    nextLessonCriteria = {
+      readPercent: Math.round(readingRow.data?.max_percent_reached ?? 0),
+      quizTotal: fullLesson?.quiz?.length ?? 0,
+    };
+  }
+
   return {
     nextLesson,
+    nextLessonCriteria,
     completedCount: completedLessons.length,
     totalMinutes,
     firstName,

@@ -7,6 +7,7 @@ import { ArrowRight, BookOpen } from "lucide-react";
 import { getDashboardGreetingAction } from "@/app/dashboard/actions";
 import { createClient } from "@/lib/supabase";
 import { getLessonDisplayLabel, getLessonShortTitle } from "@/lib/lesson-labels";
+import { getQuizAnswers } from "@/lib/progress";
 
 interface ResumeLearningButtonProps {
   activeTrack: "personal" | "professional";
@@ -14,6 +15,7 @@ interface ResumeLearningButtonProps {
 
 interface Greeting {
   nextLesson: { id: number; slug: string; title: string; subtitle: string; duration: string } | null;
+  nextLessonCriteria: { readPercent: number; quizTotal: number } | null;
   completedCount: number;
   totalMinutes: number;
   firstName: string | null;
@@ -80,6 +82,25 @@ export default function ResumeLearningButton({ activeTrack }: ResumeLearningButt
   const nextLessonLabel = nextLesson ? getLessonDisplayLabel({ id: nextLesson.id, title: nextLesson.title, track: undefined }) : null;
   const nextLessonShortTitle = nextLesson ? getLessonShortTitle({ title: nextLesson.title }) : null;
 
+  // What's left to finish the in-progress lesson, computed from the DB read
+  // percent (server) plus quiz-answers already saved locally (localStorage -
+  // only known client-side, see lib/progress.ts). Midpoint criterion isn't
+  // included here: it only applies to a subset of standalone case-study
+  // pages and isn't derivable from lesson content, so it's left off rather
+  // than guessed.
+  const criteria = greeting?.nextLessonCriteria;
+  const missingCriteria: string[] = [];
+  if (nextLesson && criteria) {
+    if (criteria.readPercent < 95) missingCriteria.push("đọc hết bài");
+    if (criteria.quizTotal > 0) {
+      const answers = getQuizAnswers(nextLesson.id);
+      const submittedCount = answers?.submitted.filter(Boolean).length ?? 0;
+      if (submittedCount < criteria.quizTotal) {
+        missingCriteria.push(`${criteria.quizTotal - submittedCount} câu Kiểm tra nhanh`);
+      }
+    }
+  }
+
   if (!nextLesson) {
     return (
       <div className="bg-gradient-to-r from-emerald-500 to-teal-600 rounded-2xl p-6 text-white">
@@ -97,12 +118,11 @@ export default function ResumeLearningButton({ activeTrack }: ResumeLearningButt
   }
 
   const greeted = firstName ? `Chào ${firstName}!` : "Xin chào!";
-  const greetingText =
+  const addressee = firstName || "Bạn";
+  const opener =
     completedCount === 0
-      ? `${greeted} ${firstName ? firstName : "Bạn"} chưa học được bài nào cả - cùng bắt đầu với ${nextLessonLabel}: ${nextLessonShortTitle} nhé!`
-      : totalMinutes > 0
-        ? `${greeted} ${firstName ? firstName : "Bạn"} đang học ${nextLessonLabel}: ${nextLessonShortTitle} - ${nextLesson.subtitle} ${firstName ? firstName : "Bạn"} đã học được khoảng ${totalMinutes} phút rồi, tiếp tục nhé!`
-        : `${greeted} ${firstName ? firstName : "Bạn"} đang học ${nextLessonLabel}: ${nextLessonShortTitle} - ${nextLesson.subtitle} ${firstName ? firstName : "Bạn"} đã có tiến độ rồi, tiếp tục nhé!`;
+      ? `${addressee} chưa học bài nào cả - cùng bắt đầu với:`
+      : `${addressee} đang học dở:`;
 
   return (
     <Link
@@ -117,9 +137,31 @@ export default function ResumeLearningButton({ activeTrack }: ResumeLearningButt
           <p className="text-xs font-extrabold text-emerald-600 dark:text-emerald-400 uppercase tracking-wider mb-1">
             Tài Tài
           </p>
-          <p className="text-stone-800 dark:text-stone-200 text-sm sm:text-base leading-relaxed font-medium">
-            {greetingText}
+          <p className="text-stone-500 dark:text-stone-400 text-xs sm:text-sm font-semibold mb-1.5">
+            {greeted} {opener}
           </p>
+          <p className="mb-1.5">
+            <span className="inline-flex items-center gap-1.5 rounded-lg bg-emerald-50 dark:bg-emerald-950/40 border border-emerald-200 dark:border-emerald-800 px-2.5 py-1 text-emerald-700 dark:text-emerald-300 text-sm font-extrabold">
+              {nextLessonLabel}: {nextLessonShortTitle}
+            </span>
+          </p>
+          <p className="text-stone-700 dark:text-stone-300 text-sm leading-relaxed">
+            {nextLesson.subtitle}
+          </p>
+          <p className="text-stone-400 dark:text-stone-500 text-xs font-semibold mt-1.5">
+            {totalMinutes > 0 ? (
+              <>
+                Đã học khoảng <span className="font-extrabold text-stone-600 dark:text-stone-300">{totalMinutes} phút</span> - tiếp tục nhé!
+              </>
+            ) : (
+              "Tiếp tục nhé!"
+            )}
+          </p>
+          {missingCriteria.length > 0 && (
+            <p className="mt-1.5 text-xs font-bold text-amber-600 dark:text-amber-400">
+              Còn thiếu: {missingCriteria.join(" và ")} để tính hoàn thành bài này.
+            </p>
+          )}
           {trackProgress && trackProgress.total > 0 && (
             <div className="mt-2.5 flex items-center gap-2">
               <div className="flex-1 h-1.5 rounded-full bg-stone-100 dark:bg-stone-800 overflow-hidden max-w-[180px]">
