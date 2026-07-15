@@ -1,5 +1,8 @@
+"use client";
+
+import { useState } from "react";
 import Link from "next/link";
-import { Sparkles, Flame, TrendingUp, Target, BookOpen, Gamepad2 } from "lucide-react";
+import { Sparkles, Flame, TrendingUp, Target, BookOpen, Gamepad2, ChevronDown, ChevronUp } from "lucide-react";
 import type { LessonMeta } from "./DashboardClient";
 import { GAMES } from "@/lib/games";
 
@@ -43,6 +46,7 @@ const TRENDING_SLUGS = [
 ];
 
 export default function DashboardRecommendations({ lessonsMeta, completed }: DashboardRecommendationsProps) {
+  const [collapsed, setCollapsed] = useState(false);
   // Recommendations
   const topicRecs = TOPICS.map((topic) => {
     const topicLessons = lessonsMeta.filter((l) => topic.slugs.includes(l.slug));
@@ -86,13 +90,24 @@ export default function DashboardRecommendations({ lessonsMeta, completed }: Das
           animation: rec-card-in 0.35s ease-out both;
         }
       `}</style>
-      <div className="flex items-center gap-2 mb-3 flex-shrink-0">
-        <Sparkles className="w-4 h-4 text-amber-500 animate-pulse" />
-        <h2 className="text-sm font-bold text-stone-900 dark:text-stone-100">Gợi ý hôm nay</h2>
-      </div>
+      <button
+        onClick={() => setCollapsed(!collapsed)}
+        className="w-full flex items-center justify-between mb-3 flex-shrink-0 cursor-pointer text-left"
+      >
+        <div className="flex items-center gap-2">
+          <Sparkles className="w-4 h-4 text-amber-500 animate-pulse" />
+          <h2 className="text-sm font-bold text-stone-900 dark:text-stone-100">Gợi ý hôm nay</h2>
+        </div>
+        {collapsed ? (
+          <ChevronDown className="w-4 h-4 text-stone-400 dark:text-stone-500" />
+        ) : (
+          <ChevronUp className="w-4 h-4 text-stone-400 dark:text-stone-500" />
+        )}
+      </button>
 
       {/* Scrollable Container */}
-      <div className="flex gap-3 overflow-x-auto pb-1 snap-x scrollbar-thin scrollbar-thumb-stone-200 dark:scrollbar-thumb-stone-800">
+      {!collapsed && (
+        <div className="flex gap-3 overflow-x-auto pb-1 snap-x scrollbar-thin scrollbar-thumb-stone-200 dark:scrollbar-thumb-stone-800">
         {items.map((item, idx) => {
           if (item.type === "topic") {
             const { topic, lesson } = item;
@@ -203,6 +218,7 @@ export default function DashboardRecommendations({ lessonsMeta, completed }: Das
           );
         })}
       </div>
+      )}
     </div>
   );
 }
