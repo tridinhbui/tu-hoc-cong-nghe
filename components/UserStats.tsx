@@ -106,15 +106,25 @@ export default function UserStats({
         </div>
 
         {/* Streak Display */}
-        <div className="flex items-center gap-1.5">
-          <div className="w-7 h-7 rounded-full bg-orange-50 dark:bg-orange-950/20 flex items-center justify-center flex-shrink-0">
-            <Flame className={`w-3.5 h-3.5 ${hasActivityToday ? "text-orange-500" : "text-stone-400 dark:text-stone-600"}`} />
+        <div className="flex items-center gap-2">
+          <div className={`w-9 h-9 rounded-full flex items-center justify-center flex-shrink-0 transition-colors ${
+            hasActivityToday 
+              ? "bg-orange-100/80 dark:bg-orange-950/40" 
+              : "bg-stone-50 dark:bg-stone-800"
+          }`}>
+            <Flame 
+              className={`w-5 h-5 transition-all ${
+                hasActivityToday 
+                  ? "text-orange-500 fill-orange-500 filter drop-shadow-[0_0_4px_rgba(249,115,22,0.6)]" 
+                  : "text-stone-400 dark:text-stone-600"
+              }`} 
+            />
           </div>
           <div>
-            <p className="text-[10px] font-extrabold text-stone-500 dark:text-stone-400 uppercase tracking-widest">
+            <p className="text-[10px] font-extrabold text-stone-500 dark:text-stone-400 uppercase tracking-widest leading-none">
               Streak
             </p>
-            <div className="text-sm font-bold text-stone-900 dark:text-stone-100 leading-none mt-0.5">
+            <div className="text-base font-extrabold text-stone-900 dark:text-stone-100 leading-none mt-1">
               {streak} ngày
             </div>
           </div>
