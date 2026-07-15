@@ -3,6 +3,7 @@ import { handleSupabaseError } from "@/lib/errors";
 import { getTotalQuizXp } from "@/lib/supabase-quiz-sessions";
 import { getTotalGameXp } from "@/lib/games";
 import { getTotalReferralXp, rewardMyReferralIfPending } from "@/lib/referrals";
+import { getTotalQuestXp } from "@/lib/supabase-quests";
 
 // "Table not found in schema cache" (PostgREST) or "relation does not exist"
 // (raw Postgres) - the leaderboard is a non-critical feature, so a missing
@@ -376,7 +377,8 @@ export async function recalculateUserStats(userId: string) {
     gameAcademicBonusXp = Math.min(30, perfectCount * 3 + highCount * 1);
   }
 
-  const totalXp = lessonsCompleted * 10 + quizXp + gameXp + referralXp + gameAcademicBonusXp;
+  const questXp = await getTotalQuestXp(userId);
+  const totalXp = lessonsCompleted * 10 + quizXp + gameXp + referralXp + gameAcademicBonusXp + questXp;
   const quizScores = progress?.filter((p) => p.quiz_score !== null).map((p) => p.quiz_score) || [];
   const avgScore = quizScores.length > 0 ? quizScores.reduce((a, b) => a + b, 0) / quizScores.length : 0;
   const currentLevel = Math.floor(totalXp / 150) + 1;
@@ -390,10 +392,24 @@ export async function recalculateUserStats(userId: string) {
   });
 
   // Cập nhật user_stats
-  return upsertUserStats(userId, {
+  const stats = await upsertUserStats(userId, {
     total_lessons_completed: lessonsCompleted,
     total_xp: totalXp,
     current_level: currentLevel,
     avg_quiz_score: Math.round(avgScore * 100) / 100,
   });
+
+  // Every XP-changing flow in the app (lesson completion, quiz, game,
+  // referral, admin appeal approval) ultimately calls this one function, so
+  // dispatching here is the single choke point for "did this user's level
+  // just change" - rather than needing every caller to know/care about it.
+  // AppNavbar listens for this to drive the level-up celebration, since it
+  // mounts once and stays alive across client-side navigation (persistent
+  // navbar) and would otherwise never notice a level change that happened
+  // after its own one-time profile fetch on mount.
+  if (typeof window !== "undefined") {
+    window.dispatchEvent(new CustomEvent("thtcdn:xp-updated", { detail: { currentLevel, totalXp } }));
+  }
+
+  return stats;
 }

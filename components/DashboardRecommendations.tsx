@@ -52,10 +52,13 @@ export default function DashboardRecommendations({ lessonsMeta, completed }: Das
     return { type: "topic" as const, topic, lesson };
   }).filter((item): item is NonNullable<typeof item> => item !== null);
 
-  // Trending
-  const trendingLessons = lessonsMeta
-    .filter((l) => TRENDING_SLUGS.includes(l.slug))
-    .filter((l) => !completed.includes(l.id)); // Prefer uncompleted
+  // Trending - prefers uncompleted lessons, but (matching the topic
+  // recommendations' own fallback above) falls back to showing completed
+  // ones rather than silently dropping to zero trending items once a
+  // learner has finished all of them.
+  const allTrendingLessons = lessonsMeta.filter((l) => TRENDING_SLUGS.includes(l.slug));
+  const incompleteTrending = allTrendingLessons.filter((l) => !completed.includes(l.id));
+  const trendingLessons = incompleteTrending.length > 0 ? incompleteTrending : allTrendingLessons;
 
   const trendingItems = trendingLessons.map((lesson) => ({
     type: "trending" as const,
@@ -73,12 +76,21 @@ export default function DashboardRecommendations({ lessonsMeta, completed }: Das
   if (items.length === 0) return null;
 
   return (
-    <div className="h-full bg-white dark:bg-stone-900 border border-stone-200 dark:border-stone-800 rounded-xl p-4 shadow-sm flex flex-col justify-between overflow-hidden">
+    <div className="bg-white dark:bg-stone-900 border border-stone-200 dark:border-stone-800 rounded-xl p-4 shadow-sm flex flex-col justify-between overflow-hidden w-full">
+      <style>{`
+        @keyframes rec-card-in {
+          from { opacity: 0; transform: translateY(6px); }
+          to { opacity: 1; transform: translateY(0); }
+        }
+        .rec-card {
+          animation: rec-card-in 0.35s ease-out both;
+        }
+      `}</style>
       <div className="flex items-center gap-2 mb-3 flex-shrink-0">
-        <Sparkles className="w-4 h-4 text-amber-500" />
+        <Sparkles className="w-4 h-4 text-amber-500 animate-pulse" />
         <h2 className="text-sm font-bold text-stone-900 dark:text-stone-100">Gợi ý hôm nay</h2>
       </div>
-      
+
       {/* Scrollable Container */}
       <div className="flex gap-3 overflow-x-auto pb-1 snap-x scrollbar-thin scrollbar-thumb-stone-200 dark:scrollbar-thumb-stone-800">
         {items.map((item, idx) => {
@@ -90,11 +102,12 @@ export default function DashboardRecommendations({ lessonsMeta, completed }: Das
               <Link
                 key={`topic-${topic.id}`}
                 href={`/bai-hoc/${lesson.slug}`}
-                className="group flex flex-col justify-between rounded-xl border border-stone-100 dark:border-stone-800 bg-stone-50/50 dark:bg-stone-950/30 px-3.5 py-2.5 hover:border-stone-300 dark:hover:border-stone-600 transition-colors min-w-[190px] w-[190px] shrink-0 snap-start"
+                style={{ animationDelay: `${idx * 60}ms` }}
+                className="rec-card group flex flex-col justify-between rounded-xl border border-stone-100 dark:border-stone-800 bg-stone-50/50 dark:bg-stone-950/30 px-3.5 py-2.5 hover:border-stone-300 dark:hover:border-stone-600 hover:shadow-md hover:-translate-y-0.5 transition-all duration-200 min-w-[190px] w-[190px] shrink-0 snap-start"
               >
                 <div>
                   <div className="flex items-center gap-1.5 mb-1.5">
-                    <div className={`w-5 h-5 rounded flex items-center justify-center ${topic.bg} ${topic.color}`}>
+                    <div className={`w-5 h-5 rounded flex items-center justify-center ${topic.bg} ${topic.color} transition-transform duration-200 group-hover:scale-110 group-hover:rotate-3`}>
                       <Icon className="w-3 h-3" />
                     </div>
                     <span className="text-[10px] font-extrabold text-stone-500 dark:text-stone-400 uppercase tracking-wider">
@@ -124,12 +137,13 @@ export default function DashboardRecommendations({ lessonsMeta, completed }: Das
               <Link
                 key={`trending-${lesson.id}`}
                 href={`/bai-hoc/${lesson.slug}`}
-                className="group flex flex-col justify-between rounded-xl border border-rose-100 dark:border-rose-950/30 bg-rose-50/30 dark:bg-rose-950/10 px-3.5 py-2.5 hover:border-rose-300 dark:hover:border-rose-800 transition-colors min-w-[190px] w-[190px] shrink-0 snap-start"
+                style={{ animationDelay: `${idx * 60}ms` }}
+                className="rec-card group flex flex-col justify-between rounded-xl border border-rose-100 dark:border-rose-950/30 bg-rose-50/30 dark:bg-rose-950/10 px-3.5 py-2.5 hover:border-rose-300 dark:hover:border-rose-800 hover:shadow-md hover:-translate-y-0.5 transition-all duration-200 min-w-[190px] w-[190px] shrink-0 snap-start"
               >
                 <div>
                   <div className="flex items-center gap-1.5 mb-1.5">
                     <div className="w-5 h-5 rounded flex items-center justify-center bg-rose-100 dark:bg-rose-900/50 text-rose-500">
-                      <Flame className="w-3 h-3" />
+                      <Flame className="w-3 h-3 animate-pulse" />
                     </div>
                     <span className="text-[10px] font-extrabold text-rose-600 dark:text-rose-400 uppercase tracking-wider">
                       Đang hot
@@ -166,11 +180,12 @@ export default function DashboardRecommendations({ lessonsMeta, completed }: Das
             <Link
               key={`game-${game.id}`}
               href="/game"
-              className={`group flex flex-col justify-between rounded-xl border px-3.5 py-2.5 transition-colors min-w-[190px] w-[190px] shrink-0 snap-start ${accentCls}`}
+              style={{ animationDelay: `${idx * 60}ms` }}
+              className={`rec-card group flex flex-col justify-between rounded-xl border px-3.5 py-2.5 hover:shadow-md hover:-translate-y-0.5 transition-all duration-200 min-w-[190px] w-[190px] shrink-0 snap-start ${accentCls}`}
             >
               <div>
                 <div className="flex items-center gap-1.5 mb-1.5">
-                  <div className="w-5 h-5 rounded flex items-center justify-center bg-stone-100 dark:bg-stone-800 text-stone-700 dark:text-stone-300">
+                  <div className="w-5 h-5 rounded flex items-center justify-center bg-stone-100 dark:bg-stone-800 text-stone-700 dark:text-stone-300 transition-transform duration-200 group-hover:scale-110">
                     <Gamepad2 className="w-3 h-3 text-emerald-600 dark:text-emerald-400" />
                   </div>
                   <span className="text-[10px] font-extrabold text-stone-600 dark:text-stone-400 uppercase tracking-wider">

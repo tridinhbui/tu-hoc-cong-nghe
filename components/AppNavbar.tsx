@@ -4,13 +4,15 @@ import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { usePathname, useRouter } from "next/navigation";
-import { FileText, BarChart3, StickyNote, GraduationCap, Gamepad2, Menu, X } from "lucide-react";
+import { FileText, BarChart3, StickyNote, GraduationCap, Gamepad2, Layers, Menu, X } from "lucide-react";
 import { createClient } from "@/lib/supabase";
 import { useRoutePrefetch } from "@/lib/use-route-prefetch";
 import Logo from "@/components/Logo";
 import LessonSearch from "@/components/LessonSearch";
 import { getUnresolvedMistakeCount } from "@/lib/quiz-mistakes";
 import { claimPendingReferral } from "@/lib/referrals";
+import { useLevelUpWatcher } from "@/lib/use-level-up-watcher";
+import LevelUpModal from "@/components/LevelUpModal";
 
 interface NavProfile {
   full_name: string | null;
@@ -27,6 +29,7 @@ const NAV_LINKS = [
   { href: "/ghi-chu", label: "Ghi chú", icon: StickyNote },
   { href: "/kiem-tra", label: "Kiểm tra", icon: GraduationCap },
   { href: "/game", label: "Game", icon: Gamepad2 },
+  { href: "/flashcard", label: "Flashcard", icon: Layers },
 ];
 
 // Single, persistent top navbar for every signed-in page (mounted once in
@@ -79,6 +82,23 @@ export default function AppNavbar() {
       void claimPendingReferral();
     });
   }, []);
+
+  // Keeps `profile` in sync with level/XP changes that happen after the
+  // one-time fetch above - AppNavbar mounts once and stays alive across
+  // client-side navigation (that's the whole point of the persistent
+  // navbar), so without this it would never notice a lesson/quiz/game
+  // completion that raised the user's level during the same session.
+  useEffect(() => {
+    function handleXpUpdate(e: Event) {
+      const detail = (e as CustomEvent<{ currentLevel: number; totalXp: number }>).detail;
+      if (!detail) return;
+      setProfile((prev) => (prev ? { ...prev, current_level: detail.currentLevel, total_xp: detail.totalXp } : prev));
+    }
+    window.addEventListener("thtcdn:xp-updated", handleXpUpdate);
+    return () => window.removeEventListener("thtcdn:xp-updated", handleXpUpdate);
+  }, []);
+
+  const { celebrateLevel, dismiss } = useLevelUpWatcher(profile?.current_level);
 
   useEffect(() => {
     function handleClickOutside(event: MouseEvent) {
@@ -270,6 +290,8 @@ export default function AppNavbar() {
           })}
         </div>
       )}
+
+      {celebrateLevel !== null && <LevelUpModal level={celebrateLevel} onClose={dismiss} />}
     </div>
   );
 }
