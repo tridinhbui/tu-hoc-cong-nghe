@@ -22,6 +22,7 @@ import { createClient } from "@/lib/supabase";
 import { getLevelByXp, getLevelProgress, getXpToNextLevel } from "@/lib/levels";
 import { getMyLeaderboardRank, getUserProfile, type UserProfile } from "@/lib/supabase-user";
 import { getEligibleUserBadges, type UserBadge } from "@/lib/supabase-badges";
+import { getMyGameTitles, type EarnedGameTitle } from "@/lib/games";
 import { getUserStreak, type UserStreak } from "@/lib/supabase-streak";
 import { getAllUserNotes } from "@/lib/supabase-notes";
 import { getUserLessonFlags } from "@/lib/supabase-lesson-flags";
@@ -201,6 +202,7 @@ export default function ProfilePage() {
   const [studyMinutes, setStudyMinutes] = useState(0);
   const [lessonsStarted, setLessonsStarted] = useState(0);
   const [xpRank, setXpRank] = useState<{ rank: number; value: number } | null>(null);
+  const [gameTitles, setGameTitles] = useState<EarnedGameTitle[]>([]);
 
   useEffect(() => {
     const checkAuth = async () => {
@@ -260,6 +262,12 @@ export default function ProfilePage() {
         setProfile(nextProfile);
         setStreak(nextStreak);
         setBadges(earnedBadges);
+        // Best-effort, separate from the critical Promise.all above (6 RPC
+        // calls at limit=3 each) - a failure here shouldn't block the rest
+        // of the profile from rendering.
+        getMyGameTitles(session.user.id)
+          .then(setGameTitles)
+          .catch((err) => console.error("Error loading game titles:", err));
         setNotesCount(notes.length);
         setFlaggedLessonCount(flags.length);
         setFlaggedLessons(flags.slice(0, 4));
@@ -592,6 +600,30 @@ export default function ProfilePage() {
                 </div>
               )}
             </SectionCard>
+
+            {gameTitles.length > 0 && (
+              <SectionCard
+                icon={<span className="text-lg">🎮</span>}
+                title={`Danh hiệu Mini Game (${gameTitles.length})`}
+                description="Vị trí top 3 hiện tại của bạn trên các bảng xếp hạng mini-game."
+              >
+                <div className="space-y-2">
+                  {gameTitles.map((t) => (
+                    <div
+                      key={t.gameType}
+                      className="flex items-center gap-3 rounded-xl border border-amber-200 dark:border-amber-900 bg-amber-50/60 dark:bg-amber-950/20 px-3.5 py-2.5"
+                    >
+                      <span className="text-xl flex-shrink-0">{t.gameEmoji}</span>
+                      <div className="min-w-0 flex-1">
+                        <p className="text-sm font-extrabold text-amber-700 dark:text-amber-300 truncate">{t.title}</p>
+                        <p className="text-xs text-stone-500 dark:text-stone-400 truncate">{t.gameLabel}</p>
+                      </div>
+                      <span className="text-xs font-bold text-stone-400 dark:text-stone-500 flex-shrink-0">#{t.rank}</span>
+                    </div>
+                  ))}
+                </div>
+              </SectionCard>
+            )}
           </div>
         </div>
 

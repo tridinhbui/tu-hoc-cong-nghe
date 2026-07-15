@@ -432,3 +432,39 @@ export function getCombinedGameTitle(rank: number): string | null {
   if (rank < 1 || rank > 3) return null;
   return COMBINED_TITLES[rank - 1];
 }
+
+export interface EarnedGameTitle {
+  gameType: GameType | "combined";
+  gameEmoji: string;
+  gameLabel: string;
+  title: string;
+  rank: number;
+}
+
+/**
+ * Every top-3 title a user currently holds, across each game's own
+ * leaderboard plus the combined one - feeds the consolidated "Thành tích"
+ * section on the profile page. Reuses the existing per-game/combined
+ * leaderboard RPCs (top 3 only) rather than a dedicated query, since each
+ * one already exists and is cheap at limit=3.
+ */
+export async function getMyGameTitles(userId: string): Promise<EarnedGameTitle[]> {
+  const [perGame, combined] = await Promise.all([
+    Promise.all(GAMES.map((g) => getGameLeaderboard(g.id, 3).then((rows) => ({ game: g, rows })))),
+    getCombinedGameLeaderboard(3),
+  ]);
+
+  const earned: EarnedGameTitle[] = [];
+  for (const { game, rows } of perGame) {
+    const idx = rows.findIndex((r) => r.user_id === userId);
+    if (idx === -1) continue;
+    const title = getGameTitle(game.id, idx + 1);
+    if (title) earned.push({ gameType: game.id, gameEmoji: game.emoji, gameLabel: game.title, title, rank: idx + 1 });
+  }
+  const combinedIdx = combined.findIndex((r) => r.user_id === userId);
+  if (combinedIdx !== -1) {
+    const title = getCombinedGameTitle(combinedIdx + 1);
+    if (title) earned.push({ gameType: "combined", gameEmoji: "👑", gameLabel: "BXH tổng hợp", title, rank: combinedIdx + 1 });
+  }
+  return earned;
+}
