@@ -949,45 +949,58 @@ export default function LessonPageLayout({ lesson, quiz, children }: Props) {
                   </div>
                 )}
 
-                {!qSubmitted ? (
-                  <button
-                    disabled={qSelected === null}
-                    onClick={() => verify(activeQ)}
-                    className={`w-full py-4 rounded-xl font-bold text-sm uppercase tracking-wider text-white transition-all cursor-pointer ${
-                      qSelected !== null ? `${c.btn}` : "bg-stone-200 dark:bg-stone-700 text-stone-500 dark:text-stone-400 cursor-not-allowed"
-                    }`}
-                  >
-                    Kiểm tra →
-                  </button>
-                ) : (
-                  <div className="flex gap-3">
-                    {!qCorrect && (
-                      <button
-                        onClick={() => retry(activeQ)}
-                        className="flex-1 py-4 rounded-xl font-bold text-sm uppercase tracking-wider border-2 border-stone-300 dark:border-stone-700 text-stone-700 dark:text-stone-300 hover:bg-stone-50 dark:hover:bg-stone-800 transition-colors cursor-pointer"
-                      >
-                        Thử lại →
-                      </button>
-                    )}
-                    {reviewMode && allDone ? (
-                      <button
-                        onClick={() => setReviewMode(false)}
-                        className={`flex-1 py-4 rounded-xl font-bold text-sm uppercase tracking-wider text-white ${c.btn} cursor-pointer`}
-                      >
-                        ← Quay lại kết quả
-                      </button>
-                    ) : (
-                      activeQ < quiz.length - 1 && (
+                {/* Sticky to the bottom of the quiz sidebar's own scroll
+                    container (see the `aside`'s lg:overflow-y-auto above) so
+                    the action button is always in reach right after picking
+                    an option, instead of requiring a scroll down to find it
+                    and then back up to see the feedback - the exact
+                    complaint from user feedback ("chọn đáp án phải lăn
+                    xuống để click xác nhận... rồi lại lăn lên"). The
+                    negative margin+matching padding cancels out the parent
+                    card's own padding so this reaches the card's true edges
+                    while staying flush against them, not floating with a
+                    gap. */}
+                <div className="sticky bottom-0 -mx-8 -mb-8 px-8 pb-6 pt-3 bg-gradient-to-t from-white dark:from-stone-900 from-70% to-transparent">
+                  {!qSubmitted ? (
+                    <button
+                      disabled={qSelected === null}
+                      onClick={() => verify(activeQ)}
+                      className={`w-full py-4 rounded-xl font-bold text-sm uppercase tracking-wider text-white transition-all cursor-pointer shadow-lg ${
+                        qSelected !== null ? `${c.btn}` : "bg-stone-200 dark:bg-stone-700 text-stone-500 dark:text-stone-400 cursor-not-allowed shadow-none"
+                      }`}
+                    >
+                      Kiểm tra →
+                    </button>
+                  ) : (
+                    <div className="flex gap-3">
+                      {!qCorrect && (
                         <button
-                          onClick={() => setActiveQ(activeQ + 1)}
-                          className={`flex-1 py-4 rounded-xl font-bold text-sm uppercase tracking-wider text-white ${c.btn} cursor-pointer`}
+                          onClick={() => retry(activeQ)}
+                          className="flex-1 py-4 rounded-xl font-bold text-sm uppercase tracking-wider border-2 border-stone-300 dark:border-stone-700 bg-white dark:bg-stone-900 text-stone-700 dark:text-stone-300 hover:bg-stone-50 dark:hover:bg-stone-800 transition-colors cursor-pointer shadow-lg"
                         >
-                          Câu tiếp theo →
+                          Thử lại →
                         </button>
-                      )
-                    )}
-                  </div>
-                )}
+                      )}
+                      {reviewMode && allDone ? (
+                        <button
+                          onClick={() => setReviewMode(false)}
+                          className={`flex-1 py-4 rounded-xl font-bold text-sm uppercase tracking-wider text-white ${c.btn} cursor-pointer shadow-lg`}
+                        >
+                          ← Quay lại kết quả
+                        </button>
+                      ) : (
+                        activeQ < quiz.length - 1 && (
+                          <button
+                            onClick={() => setActiveQ(activeQ + 1)}
+                            className={`flex-1 py-4 rounded-xl font-bold text-sm uppercase tracking-wider text-white ${c.btn} cursor-pointer shadow-lg`}
+                          >
+                            Câu tiếp theo →
+                          </button>
+                        )
+                      )}
+                    </div>
+                  )}
+                </div>
               </div>
             ) : (
               /* Completion card */
