@@ -123,7 +123,7 @@ export default function KiemTraPage() {
 
   return (
     <div className="min-h-screen bg-white dark:bg-stone-950">
-      <div className="border-b border-stone-200 dark:border-stone-800 sticky top-0 bg-white dark:bg-stone-950 z-10">
+      <div className="border-b border-stone-200 dark:border-stone-800 bg-white dark:bg-stone-950">
         <div className="max-w-2xl mx-auto px-6 py-4 flex items-center gap-3">
           <Link
             href="/dashboard"

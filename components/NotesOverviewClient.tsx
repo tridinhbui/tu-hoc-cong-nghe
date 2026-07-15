@@ -2,13 +2,10 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
 import { Edit2, Trash2, ArrowLeft } from "lucide-react";
 import { toast } from "sonner";
-import { createClient } from "@/lib/supabase";
 import { getAllUserNotes, updateNote, deleteNote, type LessonNote } from "@/lib/supabase-notes";
 import NoteContent, { hasMathContent } from "@/components/NoteContent";
-import UserMenu from "@/components/UserMenu";
 
 interface LessonInfo {
   slug: string;
@@ -17,37 +14,26 @@ interface LessonInfo {
 
 interface NotesOverviewClientProps {
   lessonsById: Record<number, LessonInfo>;
+  userId: string;
 }
 
-export default function NotesOverviewClient({ lessonsById }: NotesOverviewClientProps) {
-  const router = useRouter();
-  const supabase = createClient();
-  const [user, setUser] = useState<{ user_metadata?: { full_name?: string; avatar_url?: string }; email?: string } | null>(null);
+// `userId` comes from the server component (ghi-chu/page.tsx already
+// resolved + auth-gated the session) - fetching notes can start immediately
+// on mount instead of waiting on a client-side getSession() round trip
+// first, which used to make this page load noticeably slower than the rest
+// of the app (two sequential client round trips instead of one).
+export default function NotesOverviewClient({ lessonsById, userId }: NotesOverviewClientProps) {
   const [notes, setNotes] = useState<LessonNote[]>([]);
   const [loading, setLoading] = useState(true);
   const [editingNoteId, setEditingNoteId] = useState<number | null>(null);
   const [editContent, setEditContent] = useState("");
 
   useEffect(() => {
-    const load = async () => {
-      const { data: { session } } = await supabase.auth.getSession();
-      if (!session) {
-        router.replace("/login");
-        return;
-      }
-      setUser(session.user);
-      try {
-        const allNotes = await getAllUserNotes(session.user.id);
-        setNotes(allNotes);
-      } catch (error) {
-        console.error("Error loading notes:", error);
-      } finally {
-        setLoading(false);
-      }
-    };
-    load();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+    getAllUserNotes(userId)
+      .then(setNotes)
+      .catch((error) => console.error("Error loading notes:", error))
+      .finally(() => setLoading(false));
+  }, [userId]);
 
   const startEditing = (note: LessonNote) => {
     setEditingNoteId(note.id);
@@ -108,18 +94,15 @@ export default function NotesOverviewClient({ lessonsById }: NotesOverviewClient
 
   return (
     <div className="min-h-screen bg-white dark:bg-stone-950">
-      <div className="border-b border-stone-200 dark:border-stone-800 sticky top-0 bg-white dark:bg-stone-950 z-10">
-        <div className="max-w-2xl mx-auto px-6 py-4 flex items-center justify-between">
-          <div>
-            <Link href="/dashboard" className="inline-flex items-center gap-1.5 text-sm font-bold text-stone-600 dark:text-stone-400 hover:text-stone-900 dark:hover:text-stone-100 hover:bg-stone-100 dark:hover:bg-stone-800 rounded-lg px-3 py-2 transition-colors">
-              <ArrowLeft className="w-4 h-4" />
-              Quay lại
-            </Link>
-            <h1 className="text-xl font-bold text-stone-900 dark:text-stone-100 mt-2">
-              Ghi chú của tôi ({notes.length})
-            </h1>
-          </div>
-          <UserMenu name={user?.user_metadata?.full_name} email={user?.email} avatarUrl={user?.user_metadata?.avatar_url} />
+      <div className="border-b border-stone-200 dark:border-stone-800 bg-white dark:bg-stone-950">
+        <div className="max-w-2xl mx-auto px-6 py-4">
+          <Link href="/dashboard" className="inline-flex items-center gap-1.5 text-sm font-bold text-stone-600 dark:text-stone-400 hover:text-stone-900 dark:hover:text-stone-100 hover:bg-stone-100 dark:hover:bg-stone-800 rounded-lg px-3 py-2 -ml-3 transition-colors">
+            <ArrowLeft className="w-4 h-4" />
+            Quay lại
+          </Link>
+          <h1 className="text-xl font-bold text-stone-900 dark:text-stone-100 mt-2">
+            Ghi chú của tôi ({notes.length})
+          </h1>
         </div>
       </div>
 

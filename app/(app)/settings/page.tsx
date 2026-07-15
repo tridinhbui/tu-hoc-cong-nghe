@@ -6,7 +6,6 @@ import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { Bell, BookOpen, LogOut, MoonStar, Shield, UserRound } from "lucide-react";
 import { createClient } from "@/lib/supabase";
-import UserMenu from "@/components/UserMenu";
 import { getUserProfile, setDarkMode, setPreferredTrack, updateUserProfile } from "@/lib/supabase-user";
 import { getInitialTheme, setTheme, type Theme } from "@/lib/theme";
 import { TRACKS } from "@/lib/tracks";
@@ -322,18 +321,15 @@ export default function SettingsPage() {
 
   return (
     <div className="min-h-screen bg-stone-50 dark:bg-stone-950 text-stone-900 dark:text-stone-100">
-      <div className="border-b border-stone-200 dark:border-stone-800 sticky top-0 z-10 bg-white/95 dark:bg-stone-950/95 backdrop-blur">
-        <div className="max-w-4xl mx-auto px-6 py-4 flex items-center justify-between">
-          <div>
-            <Link href="/profile" className="text-stone-500 dark:text-stone-400 hover:opacity-70 text-sm font-semibold">
-              ← Quay lại
-            </Link>
-            <h1 className="text-2xl font-bold mt-2 text-stone-900 dark:text-stone-100">Cài đặt</h1>
-            <p className="text-sm text-stone-500 dark:text-stone-400 mt-1">
-              Tùy chỉnh hồ sơ, trải nghiệm học và bảo mật tài khoản.
-            </p>
-          </div>
-          <UserMenu name={user?.user_metadata?.full_name} email={user?.email} avatarUrl={user?.user_metadata?.avatar_url} />
+      <div className="border-b border-stone-200 dark:border-stone-800 bg-white dark:bg-stone-950">
+        <div className="max-w-4xl mx-auto px-6 py-4">
+          <Link href="/profile" className="text-stone-500 dark:text-stone-400 hover:opacity-70 text-sm font-semibold">
+            ← Quay lại
+          </Link>
+          <h1 className="text-2xl font-bold mt-2 text-stone-900 dark:text-stone-100">Cài đặt</h1>
+          <p className="text-sm text-stone-500 dark:text-stone-400 mt-1">
+            Tùy chỉnh hồ sơ, trải nghiệm học và bảo mật tài khoản.
+          </p>
         </div>
       </div>
 

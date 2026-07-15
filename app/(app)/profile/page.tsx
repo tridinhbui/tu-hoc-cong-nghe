@@ -27,7 +27,6 @@ import { getUserStreak, type UserStreak } from "@/lib/supabase-streak";
 import { getAllUserNotes } from "@/lib/supabase-notes";
 import { getUserLessonFlags } from "@/lib/supabase-lesson-flags";
 import { getUserBookmarks, type LessonBookmark } from "@/lib/supabase-bookmarks";
-import UserMenu from "@/components/UserMenu";
 import { TRACKS } from "@/lib/tracks";
 import {
   TRACK_PERSONAL,
@@ -357,21 +356,18 @@ export default function ProfilePage() {
 
   return (
     <div className="min-h-screen bg-stone-50 dark:bg-stone-950 overflow-x-hidden">
-      <div className="border-b border-stone-200 dark:border-stone-800 sticky top-0 bg-white/95 dark:bg-stone-950/95 backdrop-blur z-10">
-        <div className="max-w-5xl mx-auto px-4 sm:px-6 py-4 flex items-center justify-between gap-3">
-          <div>
-            <Link
-              href="/dashboard"
-              className="text-stone-500 dark:text-stone-400 hover:text-stone-700 dark:hover:text-stone-200 text-sm font-semibold"
-            >
-              ← Quay lại
-            </Link>
-            <h1 className="text-2xl font-bold text-stone-900 dark:text-stone-100 mt-2">Hồ sơ cá nhân</h1>
-            <p className="text-sm text-stone-500 dark:text-stone-400 mt-1">
-              Nơi bạn theo dõi hành trình học, thành tích và những việc nên làm tiếp theo.
-            </p>
-          </div>
-          <UserMenu name={displayName} email={user?.email} avatarUrl={avatarUrl || undefined} />
+      <div className="border-b border-stone-200 dark:border-stone-800 bg-white dark:bg-stone-950">
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 py-4">
+          <Link
+            href="/dashboard"
+            className="text-stone-500 dark:text-stone-400 hover:text-stone-700 dark:hover:text-stone-200 text-sm font-semibold"
+          >
+            ← Quay lại
+          </Link>
+          <h1 className="text-2xl font-bold text-stone-900 dark:text-stone-100 mt-2">Hồ sơ cá nhân</h1>
+          <p className="text-sm text-stone-500 dark:text-stone-400 mt-1">
+            Nơi bạn theo dõi hành trình học, thành tích và những việc nên làm tiếp theo.
+          </p>
         </div>
       </div>
 

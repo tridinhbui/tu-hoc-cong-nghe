@@ -623,17 +623,17 @@ export default function LessonPageLayout({ lesson, quiz, children }: Props) {
         </div>
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 py-5 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
-          <div className="flex items-center gap-3 sm:gap-4 min-w-0">
+          <div className="flex items-center gap-2 sm:gap-4 min-w-0">
             <Link
               href="/dashboard"
               aria-label="Về Dashboard"
-              className="inline-flex items-center gap-1.5 px-4 py-2 rounded-lg border-2 border-stone-300 dark:border-stone-700 text-stone-700 dark:text-stone-300 font-bold hover:bg-stone-100 dark:hover:bg-stone-800 hover:border-stone-400 dark:hover:border-stone-600 hover:text-stone-900 dark:hover:text-stone-100 bg-white dark:bg-stone-900 transition-all"
+              className="inline-flex flex-shrink-0 items-center gap-1.5 whitespace-nowrap w-9 h-9 sm:w-auto sm:px-4 sm:py-2 justify-center rounded-full sm:rounded-lg border-2 border-stone-300 dark:border-stone-700 text-stone-700 dark:text-stone-300 font-bold hover:bg-stone-100 dark:hover:bg-stone-800 hover:border-stone-400 dark:hover:border-stone-600 hover:text-stone-900 dark:hover:text-stone-100 bg-white dark:bg-stone-900 transition-all"
             >
-              <ArrowLeft className="w-4 h-4" />
-              Quay lại
+              <ArrowLeft className="w-4 h-4 flex-shrink-0" />
+              <span className="hidden sm:inline">Quay lại</span>
             </Link>
-            <div>
-              <p className="font-extrabold text-stone-900 dark:text-stone-100 text-lg leading-tight line-clamp-1">{lesson.title}</p>
+            <div className="min-w-0">
+              <p className="font-extrabold text-stone-900 dark:text-stone-100 text-base sm:text-lg leading-tight line-clamp-1">{lesson.title}</p>
               <p className="text-sm text-stone-500 dark:text-stone-400 hidden sm:block font-semibold">{lessonLabel}</p>
             </div>
           </div>
