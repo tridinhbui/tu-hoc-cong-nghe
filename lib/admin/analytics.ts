@@ -31,7 +31,7 @@ export async function getSystemAnalytics(): Promise<SystemAnalytics> {
   const admin = createAdminClient();
 
   try {
-    // 1. Total users (using count only for performance)
+    // 1. Total users count (exact count, head only)
     const { count: totalUsersCount, error: usersError } = await admin
       .from("user_profiles")
       .select("*", { count: "exact", head: true });
@@ -39,45 +39,80 @@ export async function getSystemAnalytics(): Promise<SystemAnalytics> {
     if (usersError) throw usersError;
     const totalUsers = totalUsersCount || 0;
 
-    // 2. Active users this week based on actual login
+    // 2. Active users this week (completed at least one lesson in last 7 days)
     const weekAgo = new Date(Date.now() - 7 * 24 * 60 * 60 * 1000).toISOString();
-    const { count: activeUsersCount, error: activeError } = await admin
+    
+    // We fetch all active user IDs in the last 7 days, paginated to avoid limit
+    let activeUserIds = new Set<string>();
+    let activePage = 0;
+    const activePageSize = 1000;
+    
+    while (true) {
+      const { data: activeData, error: activeError } = await admin
+        .from("user_progress")
+        .select("user_id")
+        .eq("completed", true)
+        .gte("completed_at", weekAgo)
+        .range(activePage * activePageSize, (activePage + 1) * activePageSize - 1);
+
+      if (activeError) throw activeError;
+      if (!activeData || activeData.length === 0) break;
+      
+      activeData.forEach((row) => activeUserIds.add(row.user_id));
+      if (activeData.length < activePageSize) break;
+      activePage++;
+    }
+    const activeUsersThisWeek = activeUserIds.size;
+
+    // 3. Track breakdown (three separate count queries to bypass 1000 limit)
+    const { count: personalCount } = await admin
       .from("user_profiles")
       .select("*", { count: "exact", head: true })
-      .gte("last_login_at", weekAgo);
+      .eq("preferred_track", "personal");
 
-    if (activeError) throw activeError;
-    const activeUsersThisWeek = activeUsersCount || 0;
-
-    // 3. Track breakdown
-    const { data: trackData, error: trackError } = await admin
+    const { count: professionalCount } = await admin
       .from("user_profiles")
-      .select("preferred_track");
+      .select("*", { count: "exact", head: true })
+      .eq("preferred_track", "professional");
 
-    const trackBreakdown = { personal: 0, professional: 0, cfa: 0 };
-    if (!trackError && trackData) {
-      trackData.forEach((row) => {
-        const track = row.preferred_track || "personal";
-        if (track === "professional") trackBreakdown.professional++;
-        else if (track === "cfa") trackBreakdown.cfa++;
-        else trackBreakdown.personal++;
-      });
+    const { count: cfaCount } = await admin
+      .from("user_profiles")
+      .select("*", { count: "exact", head: true })
+      .eq("preferred_track", "cfa");
+
+    // Any users without preferred_track or preferred_track not matching professional/cfa default to personal
+    const professional = professionalCount || 0;
+    const cfa = cfaCount || 0;
+    const personal = totalUsers - professional - cfa;
+
+    const trackBreakdown = { personal, professional, cfa };
+
+    // 4. Fetch all completed user_progress rows with pagination to bypass 1000 limit
+    let allProgress: { lesson_id: number; quiz_score: number | null; time_spent_seconds: number | null }[] = [];
+    let progressPage = 0;
+    const progressPageSize = 1000;
+
+    while (true) {
+      const { data: progressData, error: progressError } = await admin
+        .from("user_progress")
+        .select("lesson_id, quiz_score, time_spent_seconds")
+        .eq("completed", true)
+        .range(progressPage * progressPageSize, (progressPage + 1) * progressPageSize - 1);
+
+      if (progressError) throw progressError;
+      if (!progressData || progressData.length === 0) break;
+
+      allProgress = [...allProgress, ...progressData];
+      if (progressData.length < progressPageSize) break;
+      progressPage++;
     }
 
-    // 4. Lessons completed & Quiz averages
-    const { data: progress, error: progressError } = await admin
-      .from("user_progress")
-      .select("lesson_id, quiz_score, time_spent_seconds")
-      .eq("completed", true);
-
-    if (progressError) throw progressError;
-    
-    const totalLessonsCompleted = progress?.length || 0;
-    const avgQuizScore = progress?.length
-      ? progress.reduce((sum, p) => sum + (p.quiz_score || 0), 0) / progress.length
+    const totalLessonsCompleted = allProgress.length;
+    const avgQuizScore = allProgress.length
+      ? allProgress.reduce((sum, p) => sum + (p.quiz_score || 0), 0) / allProgress.length
       : 0;
-    const avgStudyTimeMinutes = progress?.length
-      ? progress.reduce((sum, p) => sum + (p.time_spent_seconds || 0), 0) / progress.length / 60
+    const avgStudyTimeMinutes = allProgress.length
+      ? allProgress.reduce((sum, p) => sum + (p.time_spent_seconds || 0), 0) / allProgress.length / 60
       : 0;
 
     const avgLessonsPerUser = totalUsers ? totalLessonsCompleted / totalUsers : 0;
@@ -96,7 +131,7 @@ export async function getSystemAnalytics(): Promise<SystemAnalytics> {
     const lessonMeta = await getLessonsMeta();
     const lessonCounts: Record<number, { count: number; totalScore: number }> = {};
     
-    (progress ?? []).forEach((row) => {
+    allProgress.forEach((row) => {
       const id = row.lesson_id;
       if (id === undefined || id === null) return;
       if (!lessonCounts[id]) {
