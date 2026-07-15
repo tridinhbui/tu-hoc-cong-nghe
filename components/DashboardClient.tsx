@@ -23,6 +23,7 @@ import DashboardTour from "@/components/DashboardTour";
 import Leaderboard from "@/components/Leaderboard";
 import DashboardRecommendations from "@/components/DashboardRecommendations";
 import MistakeReviewWidget from "@/components/MistakeReviewWidget";
+import DailyQuestsWidget from "@/components/DailyQuestsWidget";
 import { hasCompletedOnboarding, completeOnboarding } from "@/lib/supabase-onboarding";
 import { getUserProfile, recalculateUserStats } from "@/lib/supabase-user";
 import UnlockRequestModal from "@/components/UnlockRequestModal";
@@ -36,6 +37,24 @@ import { getChallengePassedLessonIds } from "@/lib/supabase-challenges";
 import { addLessonFlag, getUserLessonFlags, removeLessonFlag } from "@/lib/supabase-lesson-flags";
 import { getUserBookmarks, type LessonBookmark } from "@/lib/supabase-bookmarks";
 import { useRoutePrefetch } from "@/lib/use-route-prefetch";
+
+const STAGE_THEMES: Record<string, { emoji: string; bg: string; text: string; barColor: string }> = {
+  // All stages use the clean neutral Stone color theme of Stage 0
+  "personal-Chặng 0": { emoji: "🔍", bg: "bg-stone-50 dark:bg-stone-900/60 border border-stone-200 dark:border-stone-800", text: "text-stone-600 dark:text-stone-400", barColor: "bg-stone-400" },
+  "personal-Chặng 1": { emoji: "🧠", bg: "bg-stone-50 dark:bg-stone-900/60 border border-stone-200 dark:border-stone-800", text: "text-stone-600 dark:text-stone-400", barColor: "bg-stone-400" },
+  "personal-Chặng 2": { emoji: "📈", bg: "bg-stone-50 dark:bg-stone-900/60 border border-stone-200 dark:border-stone-800", text: "text-stone-600 dark:text-stone-400", barColor: "bg-stone-400" },
+  "personal-Chặng 3": { emoji: "💼", bg: "bg-stone-50 dark:bg-stone-900/60 border border-stone-200 dark:border-stone-800", text: "text-stone-600 dark:text-stone-400", barColor: "bg-stone-400" },
+  "personal-Chặng 4": { emoji: "📊", bg: "bg-stone-50 dark:bg-stone-900/60 border border-stone-200 dark:border-stone-800", text: "text-stone-600 dark:text-stone-400", barColor: "bg-stone-400" },
+  "personal-Chặng 5": { emoji: "🔬", bg: "bg-stone-50 dark:bg-stone-900/60 border border-stone-200 dark:border-stone-800", text: "text-stone-600 dark:text-stone-400", barColor: "bg-stone-400" },
+  "personal-Chặng 6": { emoji: "🛡️", bg: "bg-stone-50 dark:bg-stone-900/60 border border-stone-200 dark:border-stone-800", text: "text-stone-600 dark:text-stone-400", barColor: "bg-stone-400" },
+  // Professional Track Stages
+  "professional-Chặng 1": { emoji: "📖", bg: "bg-stone-50 dark:bg-stone-900/60 border border-stone-200 dark:border-stone-800", text: "text-stone-600 dark:text-stone-400", barColor: "bg-stone-400" },
+  "professional-Chặng 2": { emoji: "📊", bg: "bg-stone-50 dark:bg-stone-900/60 border border-stone-200 dark:border-stone-800", text: "text-stone-600 dark:text-stone-400", barColor: "bg-stone-400" },
+  "professional-Chặng 3": { emoji: "🧮", bg: "bg-stone-50 dark:bg-stone-900/60 border border-stone-200 dark:border-stone-800", text: "text-stone-600 dark:text-stone-400", barColor: "bg-stone-400" },
+  "professional-Chặng 4": { emoji: "💵", bg: "bg-stone-50 dark:bg-stone-900/60 border border-stone-200 dark:border-stone-800", text: "text-stone-600 dark:text-stone-400", barColor: "bg-stone-400" },
+  "professional-Chặng 5": { emoji: "🎯", bg: "bg-stone-50 dark:bg-stone-900/60 border border-stone-200 dark:border-stone-800", text: "text-stone-600 dark:text-stone-400", barColor: "bg-stone-400" },
+  "professional-Chặng 6": { emoji: "🛡️", bg: "bg-stone-50 dark:bg-stone-900/60 border border-stone-200 dark:border-stone-800", text: "text-stone-600 dark:text-stone-400", barColor: "bg-stone-400" },
+};
 
 // Slim projection of Lesson - just enough to render the dashboard listing,
 // so the full lesson bodies (sections/quiz/etc) never reach this client bundle.
@@ -76,8 +95,16 @@ export default function DashboardClient({ lessonsMeta }: { lessonsMeta: LessonMe
     const saved = window.localStorage.getItem("activeTrack");
     return saved === "personal" || saved === "professional" || saved === "cfa" ? saved : "personal";
   });
+  const [lastNonCfaTrack, setLastNonCfaTrack] = useState<"personal" | "professional">(() => {
+    if (typeof window === "undefined") return "personal";
+    const saved = window.localStorage.getItem("activeTrack");
+    return saved === "professional" ? "professional" : "personal";
+  });
   const setActiveTrack = (track: "personal" | "professional" | "cfa") => {
     setActiveTrackState(track);
+    if (track !== "cfa") {
+      setLastNonCfaTrack(track);
+    }
     if (typeof window !== "undefined") {
       window.localStorage.setItem("activeTrack", track);
     }
@@ -564,84 +591,74 @@ export default function DashboardClient({ lessonsMeta }: { lessonsMeta: LessonMe
           />
         )}
 
-        {/* ── User Stats (compact) ── */}
-        <div data-tour="user-stats" className="max-w-6xl mx-auto mb-8">
-          <UserStats
-            xp={userXp}
-            lessonsCompleted={totalDone}
-            totalLessons={totalLessons}
-            avgQuizScore={avgQuizScore}
-            userId={user?.id}
-          />
-        </div>
-
-        {/* ── Mistake Review Alert ── */}
-        {activeTrack !== "cfa" && user?.id && (
-          <MistakeReviewWidget userId={user.id} />
-        )}
-
-        {/* ── Resume Learning & Recommendations (1 Row) ── */}
-        {activeTrack !== "cfa" && (
-          <div className="max-w-6xl mx-auto mb-8 grid grid-cols-1 md:grid-cols-4 gap-4 items-stretch">
-            <div data-tour="resume-learning" className="md:col-span-1">
-              <ResumeLearningButton activeTrack={activeTrack} />
+        {/* ── Unified Dashboard Grid ── */}
+        <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-10 gap-4 sm:gap-6 items-start">
+          
+          {/* Left Column: Learning Path (7 columns on desktop) */}
+          <div className="lg:col-span-7 space-y-6">
+            
+            {/* Resume Learning Card */}
+            <div data-tour="resume-learning">
+              <ResumeLearningButton activeTrack={lastNonCfaTrack} />
             </div>
-            <div className="md:col-span-3">
-              <DashboardRecommendations lessonsMeta={lessonsMeta} completed={completed} />
-            </div>
-          </div>
-        )}
 
-        {bookmarks.length > 0 && (
-          <div className="max-w-6xl mx-auto mb-6">
-            <div className="rounded-2xl border border-stone-200 dark:border-stone-800 bg-white dark:bg-stone-900 px-4 py-4 shadow-sm">
-              <div className="flex items-center justify-between gap-3 mb-3">
-                <div className="flex items-center gap-2">
-                  <div className="w-9 h-9 rounded-xl bg-amber-50 dark:bg-amber-950/30 text-amber-600 dark:text-amber-400 flex items-center justify-center">
-                    <Bookmark className="w-4 h-4" />
-                  </div>
-                  <div>
-                    <p className="text-sm font-extrabold text-stone-900 dark:text-stone-100">Bài đã lưu</p>
-                    <p className="text-xs text-stone-500 dark:text-stone-400">Quay lại nhanh những bài bạn muốn đọc tiếp</p>
-                  </div>
-                </div>
-                <Link
-                  href="/profile"
-                  className="text-xs font-bold text-stone-500 dark:text-stone-400 hover:text-stone-800 dark:hover:text-stone-200"
-                >
-                  Xem tất cả
-                </Link>
-              </div>
+            {/* Daily Quests Widget */}
+            {user?.id && (
+              <DailyQuestsWidget userId={user.id} />
+            )}
 
-              <div className="grid gap-3 sm:grid-cols-2 xl:grid-cols-3">
-                {bookmarks.map((bookmark) => (
-                  <Link
-                    key={bookmark.id}
-                    href={`/bai-hoc/${bookmark.lesson_slug}`}
-                    className="group rounded-xl border border-stone-200 dark:border-stone-800 bg-stone-50/80 dark:bg-stone-950/30 px-4 py-3 hover:border-amber-300 dark:hover:border-amber-700 hover:bg-white dark:hover:bg-stone-900 transition-all"
-                  >
-                    <div className="flex items-start justify-between gap-3">
-                      <div className="min-w-0">
-                        <p className="text-sm font-bold text-stone-900 dark:text-stone-100 line-clamp-2">
-                          {bookmark.lesson_title}
-                        </p>
-                        <p className="text-xs text-stone-500 dark:text-stone-400 mt-1">
-                          Lưu ngày {new Date(bookmark.created_at).toLocaleDateString("vi-VN")}
-                        </p>
-                      </div>
-                      <Bookmark className="w-4 h-4 shrink-0 text-amber-500 dark:text-amber-400 group-hover:scale-110 transition-transform" />
+            {/* Mistake Review Alert */}
+            {user?.id && (
+              <MistakeReviewWidget userId={user.id} />
+            )}
+
+            {/* Daily Recommendations */}
+            <DashboardRecommendations lessonsMeta={lessonsMeta} completed={completed} />
+
+            {/* Bookmarks Section */}
+            {bookmarks.length > 0 && (
+              <div className="rounded-2xl border border-stone-200 dark:border-stone-800 bg-white dark:bg-stone-900 px-4 py-4 shadow-sm">
+                <div className="flex items-center justify-between gap-3 mb-3">
+                  <div className="flex items-center gap-2">
+                    <div className="w-9 h-9 rounded-xl bg-amber-50 dark:bg-amber-950/30 text-amber-600 dark:text-amber-400 flex items-center justify-center">
+                      <Bookmark className="w-4 h-4" />
                     </div>
+                    <div>
+                      <p className="text-sm font-extrabold text-stone-900 dark:text-stone-100">Bài đã lưu</p>
+                      <p className="text-xs text-stone-500 dark:text-stone-400">Quay lại nhanh những bài bạn muốn đọc tiếp</p>
+                    </div>
+                  </div>
+                  <Link
+                    href="/profile"
+                    className="text-xs font-bold text-stone-500 dark:text-stone-400 hover:text-stone-800 dark:hover:text-stone-200"
+                  >
+                    Xem tất cả
                   </Link>
-                ))}
-              </div>
-            </div>
-          </div>
-        )}
+                </div>
 
-        {/* ── Main Content: Lessons + Leaderboard ── */}
-        <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-3 gap-4 sm:gap-6">
-          {/* Left: Lessons (2 columns on desktop) */}
-          <div className="lg:col-span-2">
+                <div className="grid gap-3 sm:grid-cols-2">
+                  {bookmarks.map((bookmark) => (
+                    <Link
+                      key={bookmark.id}
+                      href={`/bai-hoc/${bookmark.lesson_slug}`}
+                      className="group rounded-xl border border-stone-200 dark:border-stone-800 bg-stone-50/80 dark:bg-stone-950/30 px-4 py-3 hover:border-amber-300 dark:hover:border-amber-700 hover:bg-white dark:hover:bg-stone-900 transition-all"
+                    >
+                      <div className="flex items-start justify-between gap-3">
+                        <div className="min-w-0">
+                          <p className="text-sm font-bold text-stone-900 dark:text-stone-100 line-clamp-2">
+                            {bookmark.lesson_title}
+                          </p>
+                          <p className="text-xs text-stone-500 dark:text-stone-400 mt-1">
+                            Lưu ngày {new Date(bookmark.created_at).toLocaleDateString("vi-VN")}
+                          </p>
+                        </div>
+                        <Bookmark className="w-4 h-4 shrink-0 text-amber-500 dark:text-amber-400 group-hover:scale-110 transition-transform" />
+                      </div>
+                    </Link>
+                  ))}
+                </div>
+              </div>
+            )}
           <div className="mb-4 flex flex-wrap items-center justify-between gap-3">
             <div className="text-sm text-stone-500 dark:text-stone-400">
               {flagSelectionMode ? `${selectedFlagLessonIds.size} bài đang được chọn để tự đánh dấu` : ""}
@@ -787,29 +804,41 @@ export default function DashboardClient({ lessonsMeta }: { lessonsMeta: LessonMe
             return (
               <div key={stage.label}>
                 {/* Stage header - click to expand/collapse */}
-                <button
-                  onClick={() => toggleStage(stageKey)}
-                  className="w-full flex items-baseline gap-4 mb-4 cursor-pointer text-left"
-                >
-                  <span className="text-xs font-extrabold text-stone-900 dark:text-stone-100 uppercase tracking-widest bg-stone-100 dark:bg-stone-800 px-3 py-1 rounded-lg">
-                    {stage.label}
-                  </span>
-                  <span className="text-lg font-extrabold text-stone-900 dark:text-stone-100" role="heading" aria-level={2}>{stage.name}</span>
-                  {stage.available && stageLockedCount > 0 && (
-                    <span className="flex items-center gap-1 text-xs font-bold text-stone-500 dark:text-stone-400">
-                      <Lock className="w-3 h-3" />
-                      {stageLockedCount} khoá
-                    </span>
-                  )}
-                  {stage.available && stageLessons.length > 0 && (
-                    <span className="ml-auto text-base font-bold text-stone-900 dark:text-stone-100 bg-stone-100 dark:bg-stone-800 px-4 py-1 rounded-lg">
-                      {stageDone}/{stageLessons.length}
-                    </span>
-                  )}
-                  <span className={`text-stone-500 dark:text-stone-400 text-sm transition-transform ${stageOpen ? "rotate-180" : ""}`}>
-                    ▾
-                  </span>
-                </button>
+                {(() => {
+                  const themeKey = `${activeTrack}-${stage.label}`;
+                  const theme = STAGE_THEMES[themeKey] || { emoji: "📖", bg: "bg-stone-150 dark:bg-stone-800", text: "text-stone-900 dark:text-stone-100", barColor: "bg-stone-500" };
+                  const percent = stageLessons.length ? (stageDone / stageLessons.length) * 100 : 0;
+                  return (
+                    <button
+                      onClick={() => toggleStage(stageKey)}
+                      className="w-full flex items-center gap-3 mb-4 cursor-pointer text-left flex-wrap sm:flex-nowrap border-b border-stone-100 dark:border-stone-800/40 pb-3"
+                    >
+                      <span className={`text-xs font-extrabold px-3 py-1.5 rounded-lg flex items-center ${theme.bg} ${theme.text}`}>
+                        {stage.label}
+                      </span>
+                      <span className="text-base sm:text-lg font-extrabold text-stone-900 dark:text-stone-100 flex-1 leading-snug">{stage.name}</span>
+                      {stage.available && stageLockedCount > 0 && (
+                        <span className="flex items-center gap-1 text-xs font-bold text-stone-500 dark:text-stone-400 shrink-0">
+                          <Lock className="w-3 h-3" />
+                          {stageLockedCount} khoá
+                        </span>
+                      )}
+                      {stage.available && stageLessons.length > 0 && (
+                        <div className="flex items-center gap-3 shrink-0 ml-auto sm:ml-0">
+                          <div className="w-16 h-1.5 bg-stone-150 dark:bg-stone-800 rounded-full overflow-hidden hidden sm:block">
+                            <div className={`h-full ${theme.barColor}`} style={{ width: `${percent}%` }} />
+                          </div>
+                          <span className="text-sm font-bold text-stone-800 dark:text-stone-200 bg-stone-100 dark:bg-stone-800 px-3 py-1 rounded-lg">
+                            {stageDone}/{stageLessons.length}
+                          </span>
+                        </div>
+                      )}
+                      <span className={`text-stone-500 dark:text-stone-400 text-sm transition-transform shrink-0 ${stageOpen ? "rotate-180" : ""}`}>
+                        ▾
+                      </span>
+                    </button>
+                  );
+                })()}
 
                 {/* Not available yet - with lock and loading animation */}
                 {stageOpen && !stage.available && (
@@ -1189,8 +1218,18 @@ export default function DashboardClient({ lessonsMeta }: { lessonsMeta: LessonMe
           )}
           </div>
 
-          {/* Right: Leaderboard (1 column on desktop, full width on mobile) */}
-          <div className="lg:col-span-1">
+          {/* Right: Sidebar User Stats & Leaderboard (3 columns on desktop grid of 10, full width on mobile) */}
+          <div className="lg:col-span-3 lg:sticky lg:top-24 space-y-6">
+            <div data-tour="user-stats">
+              <UserStats
+                xp={userXp}
+                lessonsCompleted={totalDone}
+                totalLessons={totalLessons}
+                avgQuizScore={avgQuizScore}
+                userId={user?.id}
+                sidebar={true}
+              />
+            </div>
             <Leaderboard userId={user?.id} />
           </div>
         </div>

@@ -123,50 +123,66 @@ export default function PairGame({ userId, gameType, onFinished }: Props) {
   }
 
   function cardClass(kind: "left" | "right", index: number, cs: CardState | undefined, selected: boolean) {
-    const base = "w-full text-left px-3 sm:px-4 py-2 sm:py-3 rounded-xl border-2 font-semibold text-xs sm:text-sm transition-all cursor-pointer select-none";
+    const base = "w-full text-left px-3.5 py-3 rounded-xl border font-bold text-xs sm:text-sm transition-all duration-200 cursor-pointer select-none";
     if (!cs) return base;
-    if (cs.matched) return `${base} border-emerald-500 bg-emerald-50 dark:bg-emerald-950/30 text-emerald-700 dark:text-emerald-300 cursor-default`;
+    if (cs.matched) return `${base} border-emerald-500 bg-emerald-50/50 dark:bg-emerald-950/20 text-emerald-600 dark:text-emerald-400 opacity-75 cursor-default flex items-center justify-between shadow-sm scale-[0.98]`;
     const shaking = kind === "left" ? shakePair.left === index : shakePair.right === index;
-    if (shaking) return `${base} border-rose-500 bg-rose-50 dark:bg-rose-950/30 text-rose-700 dark:text-rose-300 animate-[pg-wiggle_0.5s_ease-in-out]`;
-    if (selected) return `${base} border-stone-900 dark:border-stone-100 ring-2 ring-stone-900 dark:ring-stone-100 bg-white dark:bg-stone-900 text-stone-900 dark:text-stone-100`;
-    return `${base} border-stone-200 dark:border-stone-800 bg-white dark:bg-stone-900 text-stone-900 dark:text-stone-100 hover:border-emerald-400 dark:hover:border-emerald-600`;
+    if (shaking) return `${base} border-red-500 bg-red-50/60 dark:bg-red-950/30 text-red-700 dark:text-red-400 shadow-[0_0_12px_rgba(239,68,68,0.25)] animate-[pg-wiggle_0.4s_ease-in-out]`;
+    if (selected) return `${base} border-emerald-500 bg-emerald-50/40 dark:bg-emerald-950/20 ring-2 ring-emerald-500 dark:ring-emerald-500 text-emerald-700 dark:text-emerald-450 shadow-md scale-[1.03]`;
+    return `${base} border-stone-200 dark:border-stone-800 bg-white dark:bg-stone-850 text-stone-900 dark:text-stone-105 hover:border-emerald-500 dark:hover:border-emerald-500 hover:shadow-md hover:-translate-y-0.5 active:scale-95`;
   }
 
   return (
-    <div className="bg-white dark:bg-stone-900 border-2 border-stone-200 dark:border-stone-800 rounded-2xl p-3 sm:p-4 lg:p-6">
-      <style>{`@keyframes pg-wiggle{0%,100%{transform:translateX(0)}20%{transform:translateX(-4px)}40%{transform:translateX(4px)}60%{transform:translateX(-4px)}80%{transform:translateX(4px)}}`}</style>
+    <div className="bg-white dark:bg-stone-900 border border-stone-200 dark:border-stone-850 rounded-2xl p-4 sm:p-5 lg:p-6 shadow-sm relative overflow-hidden">
+      {/* Decorative subtle background glows */}
+      <div className="absolute top-0 right-0 w-32 h-32 bg-emerald-500/5 rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute bottom-0 left-0 w-32 h-32 bg-amber-500/5 rounded-full blur-3xl pointer-events-none" />
 
-      <div className="flex items-center justify-between gap-2 sm:gap-3 mb-4 sm:mb-5">
+      <style>{`
+        @keyframes pg-wiggle { 
+          0%, 100% { transform: translateX(0); } 
+          20% { transform: translateX(-5px); } 
+          40% { transform: translateX(5px); } 
+          60% { transform: translateX(-4px); } 
+          80% { transform: translateX(4px); } 
+        }
+      `}</style>
+
+      <div className="flex items-center justify-between gap-3 mb-5 relative z-10">
         <div className="min-w-0">
-          <p className="text-xs sm:text-sm font-bold text-stone-900 dark:text-stone-100">Đã ghép {matchedCount}/{round.length} cặp</p>
-          <div className="w-32 sm:w-40 lg:w-56 h-1.5 sm:h-2 bg-stone-100 dark:bg-stone-800 rounded-full mt-1 sm:mt-1.5 overflow-hidden">
-            <div className="h-full bg-emerald-500 transition-all" style={{ width: `${round.length ? (matchedCount / round.length) * 100 : 0}%` }} />
+          <p className="text-xs sm:text-sm font-extrabold text-stone-850 dark:text-stone-250">Đã ghép {matchedCount}/{round.length} cặp</p>
+          <div className="w-36 sm:w-44 lg:w-60 h-2 bg-stone-100 dark:bg-stone-800/80 rounded-full mt-1.5 overflow-hidden shadow-inner">
+            <div className="h-full bg-gradient-to-r from-emerald-500 to-teal-500 transition-all duration-300" style={{ width: `${round.length ? (matchedCount / round.length) * 100 : 0}%` }} />
           </div>
         </div>
         <button
           onClick={startNewRound}
-          className="inline-flex items-center gap-1 sm:gap-1.5 text-[11px] sm:text-xs lg:text-sm font-bold text-stone-500 dark:text-stone-400 hover:text-stone-900 dark:hover:text-stone-100 border-2 border-stone-200 dark:border-stone-800 rounded-lg px-2 sm:px-3 py-1.5 sm:py-2 flex-shrink-0"
+          className="inline-flex items-center gap-1.5 text-xs font-bold text-stone-500 dark:text-stone-400 hover:text-stone-900 dark:hover:text-stone-105 border border-stone-200 dark:border-stone-800 rounded-xl px-3 py-2 hover:bg-stone-50 dark:hover:bg-stone-800 transition-colors flex-shrink-0"
         >
-          <RefreshCw className="w-3 h-3 sm:w-3.5 sm:h-3.5" />
-          <span className="hidden sm:inline">Chơi lại</span>
-          <span className="sm:hidden">Lại</span>
+          <RefreshCw className="w-3.5 h-3.5" />
+          <span>Chơi lại</span>
         </button>
       </div>
 
-      <div className="grid grid-cols-2 gap-2 text-[10px] sm:text-xs font-extrabold text-stone-400 dark:text-stone-500 uppercase tracking-wider mb-2">
+      <div className="grid grid-cols-2 gap-2 text-[10px] font-extrabold text-stone-400 dark:text-stone-500 uppercase tracking-widest mb-1 relative z-10">
         <span>{config.leftLabel}</span>
         <span>{config.rightLabel}</span>
       </div>
-      <p className="text-[11px] sm:text-xs text-stone-500 dark:text-stone-400 mb-3 sm:mb-4">{config.hint}</p>
+      <p className="text-xs text-stone-500 dark:text-stone-400 mb-4 relative z-10">{config.hint}</p>
 
       {finished ? (
-        <div className="text-center py-10">
-          <p className="text-lg font-bold text-stone-900 dark:text-stone-100">{submitting ? "Đang lưu kết quả..." : "Hoàn thành ván chơi!"}</p>
-          <p className="text-sm text-stone-500 dark:text-stone-400 mt-1">Điểm: {score}/{round.length}</p>
+        <div className="text-center py-10 relative z-10 flex flex-col items-center">
+          <span className="text-4xl mb-3 animate-bounce">🏆</span>
+          <p className="text-lg font-extrabold text-stone-900 dark:text-stone-50">
+            {submitting ? "Đang lưu kết quả..." : "Hoàn thành ván chơi!"}
+          </p>
+          <p className="text-xs sm:text-sm text-stone-500 dark:text-stone-450 mt-1 max-w-xs">
+            Bạn đạt được {score}/{round.length} cặp ghép đúng ở lượt đầu tiên. Bấm &quot;Chơi lại&quot; để tiếp tục rèn luyện!
+          </p>
         </div>
       ) : (
-        <div className="grid grid-cols-2 gap-3 sm:gap-4">
-          <div className="flex flex-col gap-2.5">
+        <div className="grid grid-cols-2 gap-4 relative z-10">
+          <div className="flex flex-col gap-3">
             {leftOrder.map((idx) => (
               <div
                 key={`left-${idx}`}
@@ -177,11 +193,12 @@ export default function PairGame({ userId, gameType, onFinished }: Props) {
                 onClick={() => handleLeftClick(idx)}
                 className={cardClass("left", idx, leftCards[idx], selectedLeft === idx)}
               >
-                {round[idx]?.left}
+                <span className="truncate">{round[idx]?.left}</span>
+                {leftCards[idx]?.matched && <span className="text-emerald-500 ml-1.5 shrink-0">✓</span>}
               </div>
             ))}
           </div>
-          <div className="flex flex-col gap-2.5">
+          <div className="flex flex-col gap-3">
             {rightOrder.map((idx) => (
               <div
                 key={`right-${idx}`}
@@ -192,7 +209,8 @@ export default function PairGame({ userId, gameType, onFinished }: Props) {
                 onClick={() => handleRightClick(idx)}
                 className={cardClass("right", idx, rightCards[idx], selectedRight === idx)}
               >
-                {round[idx]?.right}
+                <span className="line-clamp-2">{round[idx]?.right}</span>
+                {rightCards[idx]?.matched && <span className="text-emerald-500 ml-1.5 shrink-0">✓</span>}
               </div>
             ))}
           </div>

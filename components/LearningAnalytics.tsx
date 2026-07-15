@@ -60,10 +60,38 @@ function metricTone(score: number) {
 }
 
 const panelClass =
-  "min-w-0 overflow-hidden rounded-2xl border-2 border-stone-200 dark:border-stone-800 bg-white dark:bg-stone-900";
+  "min-w-0 overflow-hidden rounded-2xl border border-stone-200/80 dark:border-stone-800 bg-white dark:bg-stone-900";
 const panelSoftClass =
-  "rounded-2xl border border-stone-200 dark:border-stone-800 bg-stone-50 dark:bg-stone-800/50";
+  "rounded-2xl border border-stone-200/60 dark:border-stone-800/80 bg-stone-50/50 dark:bg-stone-850/40";
 const sectionLabelClass = "text-xs font-extrabold uppercase tracking-[0.22em] text-stone-500 dark:text-stone-400";
+
+const CustomTooltip = ({ active, payload, label, formatter, labelFormatter }: any) => {
+  if (active && payload && payload.length) {
+    const formattedLabel = labelFormatter ? labelFormatter(label) : label;
+    return (
+      <div className="bg-white/95 dark:bg-stone-900/95 backdrop-blur-md border border-stone-250 dark:border-stone-800 rounded-xl p-3 shadow-xl text-xs space-y-1.5 z-50">
+        {formattedLabel && (
+          <p className="font-extrabold text-stone-900 dark:text-stone-100 border-b border-stone-100 dark:border-stone-800/80 pb-1 mb-1.5">
+            {formattedLabel}
+          </p>
+        )}
+        {payload.map((item: any, idx: number) => {
+          const displayVal = formatter ? formatter(item.value, item.name) : item.value;
+          const displayName = item.name === "lessonsCompleted" ? "Bài học" : item.name === "minutesSpent" ? "Thời gian" : item.name;
+          return (
+            <div key={idx} className="flex items-center gap-4 justify-between">
+              <span className="text-stone-500 dark:text-stone-400 font-medium">{displayName}:</span>
+              <span className="font-bold text-stone-900 dark:text-stone-100" style={{ color: item.color || undefined }}>
+                {displayVal}
+              </span>
+            </div>
+          );
+        })}
+      </div>
+    );
+  }
+  return null;
+};
 
 function insightFromAnalytics(analytics: LearningAnalyticsType) {
   const insights: string[] = [];
@@ -112,18 +140,18 @@ function MetricCard({
       initial="hidden"
       animate="visible"
       variants={fadeUp}
-      className="relative overflow-hidden rounded-2xl border-2 border-stone-200 dark:border-stone-800 bg-white dark:bg-stone-900 p-5 transition-all hover:-translate-y-0.5 hover:shadow-[0_14px_30px_-24px_rgba(28,25,23,0.2)]"
+      className="group relative overflow-hidden rounded-2xl border border-stone-200/80 dark:border-stone-800/80 bg-white/90 dark:bg-stone-900/80 p-5 transition-all duration-300 hover:-translate-y-1 hover:border-emerald-500/30 hover:shadow-[0_20px_35px_-15px_rgba(16,185,129,0.1)] dark:hover:shadow-[0_20px_35px_-15px_rgba(16,185,129,0.06)]"
     >
-      <div className={`absolute inset-x-0 top-0 h-1.5 ${accent}`} />
-      <div className="flex items-center justify-between gap-4">
-        <div>
-          <p className={sectionLabelClass}>
+      <div className={`absolute inset-x-0 top-0 h-[3px] bg-gradient-to-r ${accent}`} />
+      <div className="flex items-start justify-between gap-4">
+        <div className="min-w-0">
+          <p className={`${sectionLabelClass} text-[10px] tracking-[0.2em] opacity-80`}>
             {label}
           </p>
-          <p className="mt-3 text-2xl sm:text-3xl font-black text-stone-950 dark:text-stone-50">{value}</p>
-          <p className="mt-2 text-sm text-stone-500 dark:text-stone-400">{hint}</p>
+          <p className="mt-3 text-2xl sm:text-3xl font-extrabold text-stone-950 dark:text-stone-50 tracking-tight">{value}</p>
+          <p className="mt-2 text-xs text-stone-500 dark:text-stone-400 leading-relaxed truncate">{hint}</p>
         </div>
-        <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-stone-100 dark:bg-stone-800 text-stone-700 dark:text-stone-200">
+        <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-stone-50 dark:bg-stone-800/60 text-stone-500 dark:text-stone-400 group-hover:bg-emerald-50 dark:group-hover:bg-emerald-950/30 group-hover:text-emerald-600 dark:group-hover:text-emerald-400 transition-colors duration-300">
           {icon}
         </div>
       </div>
@@ -155,6 +183,7 @@ function AnalyticsSkeleton() {
 export default function LearningAnalytics() {
   const [analytics, setAnalytics] = useState<LearningAnalyticsType | null>(null);
   const [loading, setLoading] = useState(true);
+  const [activeSection, setActiveSection] = useState<"overview" | "knowledge" | "memory">("overview");
 
   useEffect(() => {
     const fetchAnalytics = async () => {
@@ -214,7 +243,7 @@ export default function LearningAnalytics() {
 
   if (!analytics) {
     return (
-      <div className="rounded-2xl border-2 border-stone-200 dark:border-stone-800 bg-white dark:bg-stone-900 p-6 sm:p-8 text-center text-stone-500 dark:text-stone-400">
+      <div className="rounded-2xl border border-stone-200 dark:border-stone-800 bg-white dark:bg-stone-900 p-6 sm:p-8 text-center text-stone-500 dark:text-stone-400">
         Không có dữ liệu analytics
       </div>
     );
@@ -226,528 +255,492 @@ export default function LearningAnalytics() {
         initial="hidden"
         animate="visible"
         variants={fadeUp}
-        className="relative overflow-hidden rounded-2xl border-2 border-stone-200 dark:border-stone-800 bg-white dark:bg-stone-900 p-5 sm:p-6"
+        className="relative overflow-hidden rounded-2xl border border-stone-200/80 dark:border-stone-800/80 bg-white dark:bg-stone-900 p-6 sm:p-8"
       >
-        <div className="absolute inset-x-0 top-0 h-1.5 bg-emerald-500/15 dark:bg-emerald-400/20" />
-        <div className="relative flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
-          <div className="max-w-2xl">
-            <div className="inline-flex items-center gap-2 rounded-full border border-emerald-200 dark:border-emerald-900 bg-emerald-50 dark:bg-emerald-950/50 px-4 py-2 text-xs font-bold uppercase tracking-[0.18em] text-emerald-700 dark:text-emerald-400">
-              <Sparkles className="h-4 w-4 text-emerald-600 dark:text-emerald-400" />
-              Thống kê học tập
-            </div>
-            <h2 className="mt-5 text-3xl font-black tracking-tight text-stone-950 dark:text-stone-50 sm:text-4xl">
-              Một bức tranh gọn, rõ và đúng về tiến độ của bạn
-            </h2>
-            <p className="mt-4 text-base leading-7 text-stone-600 dark:text-stone-300 max-w-2xl">
-              Không phải dashboard màu mè. Đây là nơi tóm gọn nhịp học, streak, thời điểm học hiệu quả và những điểm nên ưu tiên để quay lại học mượt hơn.
-            </p>
-
-            <div className="mt-6 grid gap-3 lg:grid-cols-3">
-              {insights.map((insight, index) => (
-                <div
-                  key={index}
-                  className="rounded-2xl border border-stone-200 dark:border-stone-800 bg-stone-50 dark:bg-stone-800/50 px-4 py-3 text-sm text-stone-700 dark:text-stone-200"
-                >
-                  {insight}
-                </div>
-              ))}
-            </div>
+        <div className="absolute inset-x-0 top-0 h-[3px] bg-gradient-to-r from-emerald-500 to-teal-500" />
+        <div className="max-w-3xl">
+          <div className="inline-flex items-center gap-2 rounded-full border border-emerald-200 dark:border-emerald-900 bg-emerald-50/50 dark:bg-emerald-950/40 px-3.5 py-1.5 text-[10px] font-extrabold uppercase tracking-[0.18em] text-emerald-700 dark:text-emerald-400">
+            <Sparkles className="h-3.5 w-3.5 text-emerald-600 dark:text-emerald-400" />
+            Thống kê học tập
           </div>
+          <h2 className="mt-5 text-2xl sm:text-3xl font-extrabold tracking-tight text-stone-955 dark:text-stone-50 leading-snug">
+            Một bức tranh gọn, rõ và đúng về tiến độ của bạn
+          </h2>
+          <p className="mt-3 text-sm leading-relaxed text-stone-500 dark:text-stone-400 max-w-2xl">
+            Không màu mè, đây là nơi hệ thống tự động ghi nhận nhịp học, thời gian học tối ưu và cung cấp các gợi ý thông minh giúp bạn tối ưu hóa lộ trình của mình.
+          </p>
 
-          <div className="grid w-full min-w-0 gap-4 sm:grid-cols-2 lg:max-w-[320px]">
-            <div className={panelSoftClass + " p-4 sm:p-5"}>
-              <p className={sectionLabelClass}>
-                Nhịp 7 ngày
-              </p>
-              <p className="mt-3 text-3xl font-black text-stone-950 dark:text-stone-50">
-                {analytics.recentMomentum.last7DaysLessons}
-              </p>
-              <p className="mt-2 text-sm text-stone-500 dark:text-stone-400">
-                bài · {analytics.recentMomentum.last7DaysMinutes} phút
-              </p>
-            </div>
-            <div className={panelSoftClass + " p-4 sm:p-5"}>
-              <p className={sectionLabelClass}>
-                Độ ổn định
-              </p>
-              <p className={`mt-3 text-3xl font-black ${metricTone(analytics.consistencyScore)}`}>
-                {analytics.consistencyScore}%
-              </p>
-              <p className="mt-2 text-sm text-stone-500 dark:text-stone-400">
-                mức hiện diện đều trong 8 tuần gần đây
-              </p>
-            </div>
+          <div className="mt-6 grid gap-3 sm:grid-cols-3">
+            {insights.map((insight, index) => (
+              <div
+                key={index}
+                className="rounded-xl border border-emerald-100/40 dark:border-emerald-950/30 bg-emerald-50/10 dark:bg-emerald-950/5 px-4 py-3.5 text-xs text-stone-600 dark:text-stone-300 flex items-start gap-2"
+              >
+                <span className="text-emerald-600 dark:text-emerald-400 font-extrabold">✦</span>
+                <span className="leading-relaxed">{insight}</span>
+              </div>
+            ))}
           </div>
         </div>
       </motion.section>
 
-      <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-4">
-        <MetricCard
-          icon={<Target className="h-5 w-5" />}
-          label="Bài hoàn thành"
-          value={`${analytics.totalLessonsCompleted}`}
-          hint={`${analytics.completionRate}% trên ${analytics.totalLessonsStarted} bài đã mở`}
-          accent="bg-emerald-600 dark:bg-emerald-400"
-          delay={0.02}
-        />
-        <MetricCard
-          icon={<Award className="h-5 w-5" />}
-          label="Tổng XP"
-          value={`${analytics.totalXpEarned}`}
-          hint={`Level ${analytics.currentLevel} hiện tại`}
-          accent="bg-stone-600 dark:bg-stone-400"
-          delay={0.06}
-        />
-        <MetricCard
-          icon={<Brain className="h-5 w-5" />}
-          label="Điểm quiz"
-          value={`${analytics.averageQuizScore}%`}
-          hint={`TB ${analytics.averageMinutesPerLesson} phút cho mỗi bài`}
-          accent="bg-amber-600 dark:bg-amber-400"
-          delay={0.1}
-        />
-        <MetricCard
-          icon={<Flame className="h-5 w-5" />}
-          label="Chuỗi ngày"
-          value={`${analytics.streakDays}`}
-          hint={`Kỷ lục ${analytics.longestStreak} ngày liên tiếp`}
-          accent="bg-emerald-600 dark:bg-emerald-400"
-          delay={0.14}
-        />
-        <MetricCard
-          icon={<Clock3 className="h-5 w-5" />}
-          label="Thời gian học"
-          value={`${analytics.totalTimeSpent} phút`}
-          hint={`${analytics.peakStudyWindow} · ${analytics.bestStudyHour !== null ? formatHour(analytics.bestStudyHour) : "chưa rõ giờ đỉnh"}`}
-          accent="bg-stone-500 dark:bg-stone-400"
-          delay={0.18}
-        />
-        <MetricCard
-          icon={<TrendingUp className="h-5 w-5" />}
-          label="Xu hướng tuần"
-          value={`${analytics.recentMomentum.weeklyTrendPercent > 0 ? "+" : ""}${analytics.recentMomentum.weeklyTrendPercent}%`}
-          hint={`${analytics.recentMomentum.last30DaysLessons} bài trong 30 ngày qua`}
-          accent="bg-emerald-600 dark:bg-emerald-400"
-          delay={0.22}
-        />
-        <MetricCard
-          icon={<NotebookPen className="h-5 w-5" />}
-          label="Ghi chú"
-          value={`${analytics.notes.totalNotes}`}
-          hint={`${analytics.notes.lessonsWithNotes} bài có note`}
-          accent="bg-stone-600 dark:bg-stone-300"
-          delay={0.26}
-        />
-        <MetricCard
-          icon={<BookMarked className="h-5 w-5" />}
-          label="Đánh dấu thủ công"
-          value={`${analytics.manualFlags.totalFlags}`}
-          hint="các bài bạn tự xác nhận đã học"
-          accent="bg-amber-600 dark:bg-amber-400"
-          delay={0.3}
-        />
-      </div>
-
-      <div className="grid gap-6 lg:grid-cols-[1.2fr_0.8fr]">
-        <motion.section
-          custom={0.08}
-          initial="hidden"
-          animate="visible"
-          variants={fadeUp}
-          className={panelClass + " p-4 sm:p-6"}
-        >
-          <div className="mb-6 flex items-center justify-between gap-4">
-            <div>
-              <p className={sectionLabelClass}>
-                Nhịp học 8 tuần gần đây
-              </p>
-              <h3 className="mt-2 text-xl font-black text-stone-950 dark:text-stone-50">
-                Hoạt động của bạn theo tuần
-              </h3>
-            </div>
-            <div className={panelSoftClass + " px-4 py-2 text-sm text-stone-600 dark:text-stone-300"}>
-              Tuần tốt nhất: {weeklyPeak} bài
-            </div>
-          </div>
-
-          <div className="h-[320px]">
-            <ResponsiveContainer width="100%" height="100%">
-              <AreaChart data={analytics.weeklyActivity} margin={{ left: 0, right: 0, top: 12, bottom: 0 }}>
-                <defs>
-                  <linearGradient id="weeklyLessons" x1="0" x2="0" y1="0" y2="1">
-                    <stop offset="0%" stopColor="#10b981" stopOpacity={0.32} />
-                    <stop offset="100%" stopColor="#10b981" stopOpacity={0.04} />
-                  </linearGradient>
-                </defs>
-                <CartesianGrid vertical={false} stroke="#e7e5e4" strokeDasharray="4 4" opacity={0.7} />
-                <XAxis dataKey="label" tickLine={false} axisLine={false} tick={{ fontSize: 12, fill: "#78716c" }} />
-                <YAxis tickLine={false} axisLine={false} tick={{ fontSize: 12, fill: "#78716c" }} allowDecimals={false} />
-                <Tooltip
-                  contentStyle={{
-                    borderRadius: 18,
-                    border: "1px solid rgba(214,211,209,0.8)",
-                    background: "rgba(255,255,255,0.96)",
-                    boxShadow: "0 20px 40px -24px rgba(28,25,23,0.35)",
-                  }}
-                  formatter={(value, name) => {
-                    const numericValue = typeof value === "number" ? value : Number(value ?? 0);
-                    const seriesName = String(name ?? "");
-                    if (seriesName === "lessonsCompleted") return [`${numericValue} bài`, "Hoàn thành"];
-                    if (seriesName === "minutesSpent") return [`${numericValue} phút`, "Thời gian"];
-                    return [numericValue, seriesName];
-                  }}
-                  labelFormatter={(label) => `Tuần bắt đầu ${label}`}
+      {/* Premium Tab Selector */}
+      <div className="flex border-b border-stone-200 dark:border-stone-850 gap-6 mt-2 pb-0 overflow-x-auto scrollbar-none">
+        {[
+          { id: "overview", label: "Nhịp độ & Thói quen" },
+          { id: "knowledge", label: "Kiến thức & Kết quả" },
+          { id: "memory", label: "Ghi chú & Hành động" },
+        ].map((tab) => {
+          const isActive = activeSection === tab.id;
+          return (
+            <button
+              key={tab.id}
+              onClick={() => setActiveSection(tab.id as any)}
+              className="relative pb-3 text-sm font-bold transition-all cursor-pointer focus:outline-none whitespace-nowrap shrink-0"
+            >
+              <span className={`transition-colors duration-200 ${isActive ? "text-stone-900 dark:text-stone-50" : "text-stone-400 dark:text-stone-500 hover:text-stone-700 dark:hover:text-stone-300"}`}>
+                {tab.label}
+              </span>
+              {isActive && (
+                <motion.div
+                  layoutId="activeTabUnderline"
+                  className="absolute bottom-0 inset-x-0 h-[2.5px] bg-emerald-500 rounded-full"
+                  transition={{ type: "spring", stiffness: 350, damping: 25 }}
                 />
-                <Area type="monotone" dataKey="lessonsCompleted" stroke="#10b981" strokeWidth={3} fill="url(#weeklyLessons)" />
-                <Area type="monotone" dataKey="minutesSpent" stroke="#78716c" strokeWidth={2} fillOpacity={0} />
-              </AreaChart>
-            </ResponsiveContainer>
-          </div>
-        </motion.section>
-
-        <motion.section
-          custom={0.12}
-          initial="hidden"
-          animate="visible"
-          variants={fadeUp}
-          className={panelClass + " p-4 sm:p-6"}
-        >
-          <div className="mb-6">
-            <p className={sectionLabelClass}>
-              Khung giờ học
-            </p>
-            <h3 className="mt-2 text-xl font-black text-stone-950 dark:text-stone-50">
-              Giờ học quen thuộc nhất
-            </h3>
-            <p className="mt-2 text-sm text-stone-500 dark:text-stone-400">
-              Dựa trên thời điểm bạn hoàn thành bài học, để thấy khung giờ nào đang hợp với bạn nhất.
-            </p>
-          </div>
-
-          {studyHourData.length === 0 ? (
-            <div className="flex h-[320px] items-center justify-center rounded-2xl bg-stone-50 dark:bg-stone-800/50 text-sm text-stone-500 dark:text-stone-400">
-              Chưa đủ dữ liệu giờ học để vẽ biểu đồ.
-            </div>
-          ) : (
-            <div className="h-[320px]">
-              <ResponsiveContainer width="100%" height="100%">
-                <BarChart data={studyHourData} margin={{ left: -12, right: 0, top: 12, bottom: 0 }}>
-                  <CartesianGrid vertical={false} stroke="#e7e5e4" strokeDasharray="4 4" opacity={0.7} />
-                  <XAxis
-                    dataKey="hour"
-                    tickFormatter={(value) => `${value}h`}
-                    tickLine={false}
-                    axisLine={false}
-                    tick={{ fontSize: 12, fill: "#78716c" }}
-                  />
-                  <YAxis tickLine={false} axisLine={false} tick={{ fontSize: 12, fill: "#78716c" }} allowDecimals={false} />
-                  <Tooltip
-                    contentStyle={{
-                      borderRadius: 18,
-                      border: "1px solid rgba(214,211,209,0.8)",
-                      background: "rgba(255,255,255,0.96)",
-                      boxShadow: "0 20px 40px -24px rgba(28,25,23,0.35)",
-                    }}
-                    formatter={(value) => {
-                      const numericValue = typeof value === "number" ? value : Number(value ?? 0);
-                      return [`${numericValue} bài`, "Hoàn thành"];
-                    }}
-                    labelFormatter={(label) => `Khung giờ ${formatHour(Number(label))}`}
-                  />
-                  <Bar dataKey="lessonsCompleted" radius={[14, 14, 4, 4]}>
-                    {studyHourData.map((entry) => (
-                      <Cell
-                        key={entry.hour}
-                        fill={entry.hour === analytics.bestStudyHour ? "#10b981" : "#78716c"}
-                        fillOpacity={entry.hour === analytics.bestStudyHour ? 1 : 0.72}
-                      />
-                    ))}
-                  </Bar>
-                </BarChart>
-              </ResponsiveContainer>
-            </div>
-          )}
-        </motion.section>
+              )}
+            </button>
+          );
+        })}
       </div>
 
-      <div className="grid gap-6 lg:grid-cols-[0.9fr_1.1fr]">
-        <motion.section
-          custom={0.16}
-          initial="hidden"
-          animate="visible"
-          variants={fadeUp}
-          className={panelClass + " p-4 sm:p-6"}
-        >
-          <div className="mb-6 flex items-center justify-between gap-4">
-            <div>
-              <p className={sectionLabelClass}>
-                Cơ cấu track học
-              </p>
-              <h3 className="mt-2 text-xl font-black text-stone-950 dark:text-stone-50">
-                Bạn đang học theo track nào nhiều hơn?
-              </h3>
-            </div>
+      {/* Tab Contents */}
+      {activeSection === "overview" && (
+        <div className="space-y-6">
+          <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
+            <MetricCard
+              icon={<Flame className="h-5 w-5" />}
+              label="Chuỗi ngày"
+              value={`${analytics.streakDays}`}
+              hint={`Kỷ lục ${analytics.longestStreak} ngày liên tiếp`}
+              accent="from-orange-500 to-red-650"
+              delay={0.02}
+            />
+            <MetricCard
+              icon={<Sparkles className="h-5 w-5" />}
+              label="Nhịp 7 ngày"
+              value={`${analytics.recentMomentum.last7DaysLessons} bài`}
+              hint={`${analytics.recentMomentum.last7DaysMinutes} phút hoàn thành`}
+              accent="from-emerald-500 to-teal-500"
+              delay={0.06}
+            />
+            <MetricCard
+              icon={<Clock3 className="h-5 w-5" />}
+              label="Thời gian học"
+              value={`${analytics.totalTimeSpent} phút`}
+              hint={`${analytics.peakStudyWindow} · ${analytics.bestStudyHour !== null ? formatHour(analytics.bestStudyHour) : "chưa rõ giờ"}`}
+              accent="from-sky-400 to-blue-600"
+              delay={0.1}
+            />
+            <MetricCard
+              icon={<TrendingUp className="h-5 w-5" />}
+              label="Xu hướng tuần"
+              value={`${analytics.recentMomentum.weeklyTrendPercent > 0 ? "+" : ""}${analytics.recentMomentum.weeklyTrendPercent}%`}
+              hint={`${analytics.recentMomentum.last30DaysLessons} bài trong 30 ngày qua`}
+              accent="from-teal-400 to-emerald-600"
+              delay={0.14}
+            />
           </div>
 
-          {trackPieData.length === 0 ? (
-            <div className="flex h-[280px] items-center justify-center rounded-2xl bg-stone-50 dark:bg-stone-800/50 text-sm text-stone-500 dark:text-stone-400">
-              Chưa có dữ liệu track để hiển thị.
-            </div>
-          ) : (
-            <div className="grid min-w-0 items-center gap-4 md:grid-cols-[0.9fr_1.1fr]">
-              <div className="h-[260px]">
+          <div className="grid gap-6 lg:grid-cols-[1.2fr_0.8fr]">
+            <motion.section
+              custom={0.08}
+              initial="hidden"
+              animate="visible"
+              variants={fadeUp}
+              className={panelClass + " p-4 sm:p-6"}
+            >
+              <div className="mb-6 flex items-center justify-between gap-4">
+                <div>
+                  <p className={sectionLabelClass}>Nhịp học 8 tuần gần đây</p>
+                  <h3 className="mt-2 text-lg font-bold text-stone-900 dark:text-stone-50">Hoạt động của bạn theo tuần</h3>
+                </div>
+                <div className={panelSoftClass + " px-3.5 py-1.5 text-xs text-stone-600 dark:text-stone-300 font-bold"}>
+                  Tuần tốt nhất: {weeklyPeak} bài
+                </div>
+              </div>
+              <div className="h-[300px]">
                 <ResponsiveContainer width="100%" height="100%">
-                  <PieChart>
-                    <Pie
-                      data={trackPieData}
-                      dataKey="value"
-                      nameKey="name"
-                      innerRadius={58}
-                      outerRadius={92}
-                      paddingAngle={3}
-                    >
-                      {trackPieData.map((entry) => (
-                        <Cell key={entry.name} fill={entry.color} />
-                      ))}
-                    </Pie>
+                  <AreaChart data={analytics.weeklyActivity} margin={{ left: -10, right: 0, top: 12, bottom: 0 }}>
+                    <defs>
+                      <linearGradient id="weeklyLessons" x1="0" x2="0" y1="0" y2="1">
+                        <stop offset="0%" stopColor="#10b981" stopOpacity={0.25} />
+                        <stop offset="100%" stopColor="#10b981" stopOpacity={0.0} />
+                      </linearGradient>
+                    </defs>
+                    <CartesianGrid vertical={false} stroke="#e7e5e4" strokeDasharray="4 4" className="dark:stroke-stone-800" opacity={0.6} />
+                    <XAxis dataKey="label" tickLine={false} axisLine={false} tick={{ fontSize: 11, fill: "#78716c" }} />
+                    <YAxis tickLine={false} axisLine={false} tick={{ fontSize: 11, fill: "#78716c" }} allowDecimals={false} />
                     <Tooltip
-                      contentStyle={{
-                        borderRadius: 18,
-                        border: "1px solid rgba(214,211,209,0.8)",
-                        background: "rgba(255,255,255,0.96)",
-                        boxShadow: "0 20px 40px -24px rgba(28,25,23,0.35)",
-                      }}
-                      formatter={(value) => {
-                        const numericValue = typeof value === "number" ? value : Number(value ?? 0);
-                        return [`${numericValue} bài`, "Hoàn thành"];
-                      }}
+                      content={
+                        <CustomTooltip
+                          formatter={(value: any, name: any) => {
+                            if (name === "lessonsCompleted") return `${value} bài`;
+                            if (name === "minutesSpent") return `${value} phút`;
+                            return `${value}`;
+                          }}
+                          labelFormatter={(label: any) => `Tuần bắt đầu ${label}`}
+                        />
+                      }
                     />
-                  </PieChart>
+                    <Area type="monotone" dataKey="lessonsCompleted" stroke="#10b981" strokeWidth={2.5} fill="url(#weeklyLessons)" />
+                    <Area type="monotone" dataKey="minutesSpent" stroke="#78716c" strokeWidth={1.5} fillOpacity={0} />
+                  </AreaChart>
                 </ResponsiveContainer>
+              </div>
+            </motion.section>
+
+            <motion.section
+              custom={0.12}
+              initial="hidden"
+              animate="visible"
+              variants={fadeUp}
+              className={panelClass + " p-4 sm:p-6"}
+            >
+              <div className="mb-6">
+                <p className={sectionLabelClass}>Khung giờ học</p>
+                <h3 className="mt-2 text-lg font-bold text-stone-900 dark:text-stone-50">Giờ học quen thuộc nhất</h3>
+                <p className="mt-1 text-xs text-stone-500 dark:text-stone-400">Dựa trên thời điểm bạn hoàn thành bài học.</p>
+              </div>
+              {studyHourData.length === 0 ? (
+                <div className="flex h-[300px] items-center justify-center rounded-2xl bg-stone-50/50 dark:bg-stone-850/40 text-xs text-stone-400 dark:text-stone-500 border border-stone-200/50 dark:border-stone-800/80">
+                  Chưa đủ dữ liệu giờ học để vẽ biểu đồ.
+                </div>
+              ) : (
+                <div className="h-[300px]">
+                  <ResponsiveContainer width="100%" height="100%">
+                    <BarChart data={studyHourData} margin={{ left: -22, right: 0, top: 12, bottom: 0 }}>
+                      <CartesianGrid vertical={false} stroke="#e7e5e4" strokeDasharray="4 4" className="dark:stroke-stone-800" opacity={0.6} />
+                      <XAxis
+                        dataKey="hour"
+                        tickFormatter={(value) => `${value}h`}
+                        tickLine={false}
+                        axisLine={false}
+                        tick={{ fontSize: 11, fill: "#78716c" }}
+                      />
+                      <YAxis tickLine={false} axisLine={false} tick={{ fontSize: 11, fill: "#78716c" }} allowDecimals={false} />
+                      <Tooltip
+                        content={
+                          <CustomTooltip
+                            formatter={(value: any) => `${value} bài`}
+                            labelFormatter={(label: any) => `Khung giờ ${formatHour(Number(label))}`}
+                          />
+                        }
+                      />
+                      <Bar dataKey="lessonsCompleted" radius={[10, 10, 2, 2]}>
+                        {studyHourData.map((entry) => (
+                          <Cell
+                            key={entry.hour}
+                            fill={entry.hour === analytics.bestStudyHour ? "#10b981" : "#78716c"}
+                            fillOpacity={entry.hour === analytics.bestStudyHour ? 1 : 0.65}
+                          />
+                        ))}
+                      </Bar>
+                    </BarChart>
+                  </ResponsiveContainer>
+                </div>
+              )}
+            </motion.section>
+          </div>
+        </div>
+      )}
+
+      {activeSection === "knowledge" && (
+        <div className="space-y-6">
+          <div className="grid gap-4 md:grid-cols-3">
+            <MetricCard
+              icon={<Brain className="h-5 w-5" />}
+              label="Điểm quiz trung bình"
+              value={`${analytics.averageQuizScore}%`}
+              hint={`TB ${analytics.averageMinutesPerLesson} phút cho mỗi bài`}
+              accent="from-amber-400 to-orange-500"
+              delay={0.02}
+            />
+            <MetricCard
+              icon={<Target className="h-5 w-5" />}
+              label="Bài hoàn thành"
+              value={`${analytics.totalLessonsCompleted}`}
+              hint={`${analytics.completionRate}% trên ${analytics.totalLessonsStarted} bài đã mở`}
+              accent="from-emerald-500 to-teal-500"
+              delay={0.06}
+            />
+            <MetricCard
+              icon={<CheckCircle2 className="h-5 w-5" />}
+              label="Tỷ lệ hoàn thành"
+              value={`${analytics.completionRate}%`}
+              hint="Tỷ số bài kết thúc / bài đã mở"
+              accent="from-indigo-400 to-purple-650"
+              delay={0.1}
+            />
+          </div>
+
+          <div className="grid gap-6 lg:grid-cols-[1.1fr_0.9fr]">
+            <motion.section
+              custom={0.16}
+              initial="hidden"
+              animate="visible"
+              variants={fadeUp}
+              className={panelClass + " p-4 sm:p-6"}
+            >
+              <div className="mb-6">
+                <p className={sectionLabelClass}>Cơ cấu track học</p>
+                <h3 className="mt-2 text-lg font-bold text-stone-900 dark:text-stone-50">Lĩnh vực bạn đang tập trung học</h3>
+              </div>
+              {trackPieData.length === 0 ? (
+                <div className="flex h-[260px] items-center justify-center rounded-2xl bg-stone-50/50 dark:bg-stone-850/40 text-xs text-stone-400 dark:text-stone-500 border border-stone-200/50 dark:border-stone-800/80">
+                  Chưa có dữ liệu track để hiển thị.
+                </div>
+              ) : (
+                <div className="grid min-w-0 items-center gap-6 md:grid-cols-[1fr_1.1fr]">
+                  <div className="h-[250px] relative flex items-center justify-center">
+                    <ResponsiveContainer width="100%" height="100%">
+                      <PieChart>
+                        <Pie
+                          data={trackPieData}
+                          dataKey="value"
+                          nameKey="name"
+                          innerRadius={60}
+                          outerRadius={88}
+                          paddingAngle={4}
+                        >
+                          {trackPieData.map((entry) => (
+                            <Cell key={entry.name} fill={entry.color} />
+                          ))}
+                        </Pie>
+                        <Tooltip content={<CustomTooltip formatter={(value: any) => `${value} bài`} />} />
+                      </PieChart>
+                    </ResponsiveContainer>
+                    <div className="absolute flex flex-col items-center justify-center">
+                      <span className="text-[10px] uppercase font-extrabold tracking-widest text-stone-400 dark:text-stone-500">Tổng cộng</span>
+                      <span className="text-xl font-extrabold text-stone-900 dark:text-stone-50">{analytics.totalLessonsCompleted} bài</span>
+                    </div>
+                  </div>
+                  <div className="space-y-2.5">
+                    {trackPieData.map((item) => (
+                      <div
+                        key={item.name}
+                        className="rounded-xl border border-stone-200/60 dark:border-stone-850 bg-stone-50/30 dark:bg-stone-900/30 px-3.5 py-2.5 flex items-center justify-between text-xs"
+                      >
+                        <div className="flex items-center gap-2.5">
+                          <span className="h-3 w-3 rounded-full ring-2 ring-white dark:ring-stone-900 shrink-0" style={{ backgroundColor: item.color }} />
+                          <span className="font-bold text-stone-800 dark:text-stone-200">{item.name}</span>
+                        </div>
+                        <span className="font-extrabold text-stone-900 dark:text-stone-50">{item.value} bài</span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
+            </motion.section>
+
+            <motion.section
+              custom={0.2}
+              initial="hidden"
+              animate="visible"
+              variants={fadeUp}
+              className={panelClass + " p-4 sm:p-6"}
+            >
+              <div className="mb-6 flex items-center justify-between gap-4">
+                <div>
+                  <p className={sectionLabelClass}>Độ khó bài đã học</p>
+                  <h3 className="mt-2 text-lg font-bold text-stone-900 dark:text-stone-50">Phân phối độ khó</h3>
+                </div>
+                <div className={panelSoftClass + " px-3.5 py-1.5 text-xs text-stone-600 dark:text-stone-300 font-bold"}>
+                  {analytics.totalLessonsCompleted} bài đã xong
+                </div>
+              </div>
+              <div className="space-y-4">
+                {difficultyData.map((item) => {
+                  const width = analytics.totalLessonsCompleted > 0 ? (item.value / analytics.totalLessonsCompleted) * 100 : 0;
+                  return (
+                    <div key={item.label} className="text-xs">
+                      <div className="mb-1.5 flex items-center justify-between">
+                        <div className="flex items-center gap-2">
+                          <span className="h-2.5 w-2.5 rounded-full" style={{ backgroundColor: item.color }} />
+                          <span className="font-bold text-stone-800 dark:text-stone-200">{item.label}</span>
+                        </div>
+                        <span className="font-extrabold text-stone-900 dark:text-stone-55">{item.value} bài ({Math.round(width)}%)</span>
+                      </div>
+                      <div className="h-2.5 rounded-full bg-stone-100 dark:bg-stone-800 overflow-hidden">
+                        <motion.div
+                          initial={{ width: 0 }}
+                          animate={{ width: `${width}%` }}
+                          transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+                          className="h-full rounded-full"
+                          style={{ backgroundColor: item.color }}
+                        />
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
+            </motion.section>
+          </div>
+        </div>
+      )}
+
+      {activeSection === "memory" && (
+        <div className="space-y-6">
+          <div className="grid gap-4 md:grid-cols-3">
+            <MetricCard
+              icon={<NotebookPen className="h-5 w-5" />}
+              label="Tổng số ghi chú"
+              value={`${analytics.notes.totalNotes} note`}
+              hint={`${analytics.notes.lessonsWithNotes} bài học có lưu note`}
+              accent="from-indigo-400 to-purple-650"
+              delay={0.02}
+            />
+            <MetricCard
+              icon={<BookMarked className="h-5 w-5" />}
+              label="Đánh dấu thủ công"
+              value={`${analytics.manualFlags.totalFlags} bài`}
+              hint="Các bài tự bấm đánh dấu đã học"
+              accent="from-cyan-400 to-sky-500"
+              delay={0.06}
+            />
+            <MetricCard
+              icon={<Award className="h-5 w-5" />}
+              label="Độ ổn định nhịp học"
+              value={`${analytics.consistencyScore}%`}
+              hint="Độ hiện diện đều đặn trong 8 tuần"
+              accent="from-stone-500 to-stone-700"
+              delay={0.1}
+            />
+          </div>
+
+          <div className="grid gap-6 lg:grid-cols-[1fr_1fr]">
+            <motion.section
+              custom={0.24}
+              initial="hidden"
+              animate="visible"
+              variants={fadeUp}
+              className={panelClass + " p-4 sm:p-6"}
+            >
+              <div className="mb-6 flex items-center justify-between gap-4">
+                <div>
+                  <p className={sectionLabelClass}>Ghi chú nổi bật</p>
+                  <h3 className="mt-2 text-lg font-bold text-stone-900 dark:text-stone-50">Bài học được note nhiều nhất</h3>
+                </div>
+                <Link
+                  href="/ghi-chu"
+                  className="inline-flex items-center gap-1 text-xs font-bold text-emerald-600 dark:text-emerald-400 hover:underline"
+                >
+                  Xem tất cả
+                  <ChevronRight className="h-3.5 w-3.5" />
+                </Link>
+              </div>
+
+              {analytics.notes.topLessons.length === 0 ? (
+                <div className="rounded-xl border border-stone-200/50 dark:border-stone-800/80 bg-stone-50/50 dark:bg-stone-850/40 px-5 py-8 text-xs text-stone-400 dark:text-stone-500 text-center leading-relaxed">
+                  Chưa có ghi chú nào được lưu. Khi bạn note lại ý quan trọng trong bài học, phần này sẽ hiển thị các bài bạn suy ngẫm nhiều nhất.
+                </div>
+              ) : (
+                <div className="space-y-2.5">
+                  {analytics.notes.topLessons.map((lesson, index) => (
+                    <Link
+                      key={lesson.lessonId}
+                      href={lesson.slug ? `/bai-hoc/${lesson.slug}` : "/ghi-chu"}
+                      className="group flex items-center justify-between gap-4 rounded-xl border border-stone-200/60 dark:border-stone-850 bg-stone-50/20 dark:bg-stone-900/30 px-3.5 py-3 transition-all hover:bg-emerald-50/20 dark:hover:bg-emerald-950/10 hover:border-emerald-500/20"
+                    >
+                      <div className="flex min-w-0 items-center gap-3">
+                        <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-white dark:bg-stone-900 text-xs font-bold text-stone-900 dark:text-stone-100 border border-stone-200 dark:border-stone-800">
+                          {index + 1}
+                        </div>
+                        <div className="min-w-0">
+                          <p className="truncate text-xs font-bold text-stone-900 dark:text-stone-100 group-hover:text-emerald-700 dark:group-hover:text-emerald-400 transition-colors">
+                            {lesson.title}
+                          </p>
+                          <p className="mt-1 text-[10px] text-stone-400 dark:text-stone-500 font-medium">
+                            {lesson.notesCount} ghi chú được lưu
+                          </p>
+                        </div>
+                      </div>
+                      <ArrowRight className="h-4 w-4 shrink-0 text-stone-300 dark:text-stone-600 transition-transform group-hover:translate-x-0.5 group-hover:text-emerald-500" />
+                    </Link>
+                  ))}
+                </div>
+              )}
+            </motion.section>
+
+            <motion.section
+              custom={0.28}
+              initial="hidden"
+              animate="visible"
+              variants={fadeUp}
+              className={panelClass + " p-4 sm:p-6"}
+            >
+              <div className="mb-6">
+                <p className={sectionLabelClass}>Gợi ý tiếp theo</p>
+                <h3 className="mt-2 text-lg font-bold text-stone-900 dark:text-stone-50">Tận dụng dữ liệu học tập</h3>
               </div>
 
               <div className="space-y-3">
-                {trackPieData.map((item) => (
-                  <div
-                    key={item.name}
-                    className="rounded-2xl border border-stone-200 dark:border-stone-800 bg-stone-50 dark:bg-stone-800/50 px-4 py-3"
-                  >
-                    <div className="flex items-center justify-between gap-4">
-                      <div className="flex items-center gap-3">
-                        <span className="h-3.5 w-3.5 rounded-full ring-2 ring-white dark:ring-stone-900" style={{ backgroundColor: item.color }} />
-                        <span className="font-semibold text-stone-900 dark:text-stone-100">{item.name}</span>
-                      </div>
-                      <span className="text-sm font-black text-stone-900 dark:text-stone-100">{item.value}</span>
+                <div className="rounded-xl border border-stone-200/65 dark:border-stone-850 bg-stone-50/20 dark:bg-stone-900/30 p-3.5 text-xs">
+                  <div className="flex items-start gap-2.5">
+                    <CheckCircle2 className="mt-0.5 h-4.5 w-4.5 text-emerald-600 dark:text-emerald-400 shrink-0" />
+                    <div>
+                      <p className="font-bold text-stone-900 dark:text-stone-100">Đóng các bài dang dở</p>
+                      <p className="mt-1 text-stone-500 dark:text-stone-450 leading-relaxed">
+                        Tỷ lệ hoàn thành đang là {analytics.completionRate}%. Hãy ưu tiên ôn lại và kết thúc các bài học đã bắt đầu thay vì mở bài mới để ghi nhớ sâu sắc hơn.
+                      </p>
                     </div>
-                  </div>
-                ))}
-              </div>
-            </div>
-          )}
-        </motion.section>
-
-        <motion.section
-          custom={0.2}
-          initial="hidden"
-          animate="visible"
-          variants={fadeUp}
-          className={panelClass + " p-4 sm:p-6"}
-        >
-          <div className="mb-6 flex items-center justify-between gap-4">
-            <div>
-              <p className={sectionLabelClass}>
-                Độ khó
-              </p>
-              <h3 className="mt-2 text-xl font-black text-stone-950 dark:text-stone-50">
-                Độ khó bài đã hoàn thành
-              </h3>
-            </div>
-            <div className={panelSoftClass + " px-4 py-2 text-sm text-stone-600 dark:text-stone-300"}>
-              {analytics.totalLessonsCompleted} bài
-            </div>
-          </div>
-
-          <div className="space-y-4">
-            {difficultyData.map((item) => {
-              const width = analytics.totalLessonsCompleted > 0 ? (item.value / analytics.totalLessonsCompleted) * 100 : 0;
-              return (
-                <div key={item.label}>
-                  <div className="mb-2 flex items-center justify-between gap-4">
-                    <div className="flex items-center gap-3">
-                      <span className="h-3.5 w-3.5 rounded-full" style={{ backgroundColor: item.color }} />
-                      <span className="font-semibold text-stone-900 dark:text-stone-100">{item.label}</span>
-                    </div>
-                    <span className="text-sm font-black text-stone-900 dark:text-stone-100">{item.value}</span>
-                  </div>
-                  <div className="h-3 rounded-full bg-stone-200 dark:bg-stone-800 overflow-hidden">
-                    <motion.div
-                      initial={{ width: 0 }}
-                      animate={{ width: `${width}%` }}
-                      transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-                      className="h-full rounded-full"
-                      style={{ backgroundColor: item.color }}
-                    />
                   </div>
                 </div>
-              );
-            })}
-          </div>
 
-          <div className="mt-6 grid gap-3 sm:grid-cols-2">
-            <div className="rounded-2xl border border-stone-200 dark:border-stone-800 bg-stone-50 dark:bg-stone-800/50 p-4">
-              <p className={sectionLabelClass}>
-                Tỷ lệ hoàn thành
-              </p>
-              <p className={`mt-3 text-3xl font-black ${metricTone(analytics.completionRate)}`}>
-                {analytics.completionRate}%
-              </p>
-              <p className="mt-2 text-sm text-stone-500 dark:text-stone-400">
-                trên các bài đã bắt đầu
-              </p>
-            </div>
-            <div className="rounded-2xl border border-stone-200 dark:border-stone-800 bg-stone-50 dark:bg-stone-800/50 p-4">
-              <p className={sectionLabelClass}>
-                Nhịp ghi chú
-              </p>
-              <p className="mt-3 text-3xl font-black text-stone-950 dark:text-stone-50">
-                {analytics.notes.lessonsWithNotes}
-              </p>
-              <p className="mt-2 text-sm text-stone-500 dark:text-stone-400">
-                bài có note để ôn lại
-              </p>
-            </div>
-          </div>
-        </motion.section>
-      </div>
+                <div className="rounded-xl border border-stone-200/65 dark:border-stone-850 bg-stone-50/20 dark:bg-stone-900/30 p-3.5 text-xs">
+                  <div className="flex items-start gap-2.5">
+                    <BarChart3 className="mt-0.5 h-4.5 w-4.5 text-blue-500 dark:text-blue-400 shrink-0" />
+                    <div>
+                      <p className="font-bold text-stone-900 dark:text-stone-100">Duy trì cấu trúc giờ học</p>
+                      <p className="mt-1 text-stone-500 dark:text-stone-450 leading-relaxed">
+                        Bạn có xu hướng học tốt nhất vào lúc {analytics.bestStudyHour !== null ? formatHour(analytics.bestStudyHour) : "các giờ cố định"}. Thiết lập nhịp học đều đặn mỗi tuần để đạt hiệu quả cao.
+                      </p>
+                    </div>
+                  </div>
+                </div>
 
-      <div className="grid gap-6 lg:grid-cols-[1fr_1fr]">
-        <motion.section
-          custom={0.24}
-          initial="hidden"
-          animate="visible"
-          variants={fadeUp}
-          className={panelClass + " p-4 sm:p-6"}
-        >
-          <div className="mb-6 flex items-center justify-between gap-4">
-            <div>
-              <p className={sectionLabelClass}>
-                Ghi chú nổi bật
-              </p>
-              <h3 className="mt-2 text-xl font-black text-stone-950 dark:text-stone-50">
-                Bài học được ghi chú nhiều nhất
-              </h3>
-            </div>
-            <Link
-              href="/ghi-chu"
-              className="inline-flex items-center gap-2 rounded-full border border-stone-200 dark:border-stone-800 bg-white dark:bg-stone-900 px-4 py-2 text-sm font-bold text-stone-600 dark:text-stone-300 hover:bg-stone-50 dark:hover:bg-stone-800/50 transition-colors"
-            >
-              Xem ghi chú
-              <ChevronRight className="h-4 w-4" />
-            </Link>
-          </div>
+                <div className="rounded-xl border border-stone-200/65 dark:border-stone-850 bg-stone-50/20 dark:bg-stone-900/30 p-3.5 text-xs">
+                  <div className="flex items-start gap-2.5">
+                    <NotebookPen className="mt-0.5 h-4.5 w-4.5 text-indigo-500 dark:text-indigo-400 shrink-0" />
+                    <div>
+                      <p className="font-bold text-stone-900 dark:text-stone-100">Biến ghi chú thành lợi thế ôn tập</p>
+                      <p className="mt-1 text-stone-500 dark:text-stone-450 leading-relaxed">
+                        Bạn đang có {analytics.notes.totalNotes} ghi chú quan trọng. Hãy thường xuyên ôn tập lại các note để lưu trữ kiến thức bền lâu.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
 
-          {analytics.notes.topLessons.length === 0 ? (
-            <div className="rounded-2xl bg-stone-50 dark:bg-stone-800/50 px-5 py-6 text-sm text-stone-500 dark:text-stone-400">
-              Chưa có ghi chú nào được lưu. Khi bạn note lại ý quan trọng trong bài học, phần này sẽ giúp bạn biết mình đang suy nghĩ nhiều về chủ đề nào nhất.
-            </div>
-          ) : (
-            <div className="space-y-3">
-              {analytics.notes.topLessons.map((lesson, index) => (
+              <div className="mt-5 grid gap-3 sm:grid-cols-2">
                 <Link
-                  key={lesson.lessonId}
-                  href={lesson.slug ? `/bai-hoc/${lesson.slug}` : "/ghi-chu"}
-                  className="group flex items-center justify-between gap-4 rounded-2xl border border-stone-200 dark:border-stone-800 bg-stone-50 dark:bg-stone-800/50 px-4 py-4 transition-colors hover:bg-stone-100 dark:hover:bg-stone-800"
+                  href="/dashboard"
+                  className="inline-flex items-center justify-center gap-1.5 rounded-xl bg-stone-900 px-4 py-2.5 text-xs font-bold text-white transition-colors hover:bg-stone-800 dark:bg-stone-100 dark:text-stone-900 dark:hover:bg-white cursor-pointer"
                 >
-                  <div className="flex min-w-0 items-center gap-4">
-                    <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-2xl bg-white dark:bg-stone-900 text-sm font-black text-stone-900 dark:text-stone-100 border border-stone-200 dark:border-stone-800">
-                      {index + 1}
-                    </div>
-                    <div className="min-w-0">
-                      <p className="truncate text-sm font-bold text-stone-900 dark:text-stone-100">
-                        {lesson.title}
-                      </p>
-                      <p className="mt-1 text-xs text-stone-500 dark:text-stone-400">
-                        {lesson.notesCount} ghi chú được lưu ở bài này
-                      </p>
-                    </div>
-                  </div>
-                  <ArrowRight className="h-4 w-4 shrink-0 text-stone-400 transition-transform group-hover:translate-x-0.5" />
+                  Tiếp tục học
+                  <ArrowRight className="h-3.5 w-3.5" />
                 </Link>
-              ))}
-            </div>
-          )}
-        </motion.section>
-
-        <motion.section
-          custom={0.28}
-          initial="hidden"
-          animate="visible"
-          variants={fadeUp}
-          className={panelClass + " p-4 sm:p-6"}
-        >
-          <div className="mb-6">
-            <p className={sectionLabelClass}>
-              Gợi ý tiếp theo
-            </p>
-            <h3 className="mt-2 text-xl font-black text-stone-950 dark:text-stone-50">
-              Gợi ý để dùng analytics tốt hơn
-            </h3>
-          </div>
-
-          <div className="space-y-3">
-            <div className="rounded-2xl border border-stone-200 dark:border-stone-800 bg-stone-50 dark:bg-stone-800/50 p-4">
-              <div className="flex items-start gap-3">
-                <CheckCircle2 className="mt-0.5 h-5 w-5 text-emerald-700 dark:text-emerald-300" />
-                <div>
-                  <p className="font-bold text-stone-900 dark:text-stone-100">Đóng các bài đang dang dở</p>
-                  <p className="mt-1 text-sm text-stone-500 dark:text-stone-400">
-                    Tỷ lệ hoàn thành của bạn đang là {analytics.completionRate}%. Nếu muốn XP và BXH phản ánh chuẩn hơn, hãy ưu tiên hoàn tất các bài đã mở.
-                  </p>
-                </div>
+                <Link
+                  href="/ghi-chu"
+                  className="inline-flex items-center justify-center gap-1.5 rounded-xl border border-stone-200 dark:border-stone-800 bg-white dark:bg-stone-900 px-4 py-2.5 text-xs font-bold text-stone-850 dark:text-stone-100 transition-colors hover:bg-stone-50 dark:hover:bg-stone-800/50 cursor-pointer"
+                >
+                  Mở ghi chú
+                  <ArrowRight className="h-3.5 w-3.5" />
+                </Link>
               </div>
-            </div>
-            <div className="rounded-2xl border border-stone-200 dark:border-stone-800 bg-stone-50 dark:bg-stone-800/50 p-4">
-              <div className="flex items-start gap-3">
-                <BarChart3 className="mt-0.5 h-5 w-5 text-stone-700 dark:text-stone-300" />
-                <div>
-                  <p className="font-bold text-stone-900 dark:text-stone-100">Cố định một khung giờ học</p>
-                  <p className="mt-1 text-sm text-stone-500 dark:text-stone-400">
-                    Hệ thống thấy bạn học tốt nhất vào {analytics.bestStudyHour !== null ? formatHour(analytics.bestStudyHour) : "một vài thời điểm rải rác"}. Giữ khung này đều 2-3 buổi/tuần sẽ giúp streak bền hơn.
-                  </p>
-                </div>
-              </div>
-            </div>
-            <div className="rounded-2xl border border-stone-200 dark:border-stone-800 bg-stone-50 dark:bg-stone-800/50 p-4">
-              <div className="flex items-start gap-3">
-                <NotebookPen className="mt-0.5 h-5 w-5 text-stone-700 dark:text-stone-300" />
-                <div>
-                  <p className="font-bold text-stone-900 dark:text-stone-100">Biến ghi chú thành lợi thế ôn tập</p>
-                  <p className="mt-1 text-sm text-stone-500 dark:text-stone-400">
-                    Bạn đang có {analytics.notes.totalNotes} ghi chú. Hãy quay lại các bài note nhiều nhất để tổng hợp thành checklist hoặc nguyên tắc cá nhân.
-                  </p>
-                </div>
-              </div>
-            </div>
+            </motion.section>
           </div>
-
-          <div className="mt-6 grid gap-3 sm:grid-cols-2">
-            <Link
-              href="/dashboard"
-              className="inline-flex items-center justify-center gap-2 rounded-2xl bg-stone-900 px-4 py-3 font-bold text-white transition-colors hover:bg-stone-800 dark:bg-stone-100 dark:text-stone-900 dark:hover:bg-white"
-            >
-              Tiếp tục học
-              <ArrowRight className="h-4 w-4" />
-            </Link>
-            <Link
-              href="/ghi-chu"
-              className="inline-flex items-center justify-center gap-2 rounded-2xl border border-stone-200 dark:border-stone-800 bg-white dark:bg-stone-900 px-4 py-3 font-bold text-stone-900 dark:text-stone-100 transition-colors hover:bg-stone-50 dark:hover:bg-stone-800/50"
-            >
-              Mở ghi chú
-              <ArrowRight className="h-4 w-4" />
-            </Link>
-          </div>
-        </motion.section>
-      </div>
+        </div>
+      )}
     </div>
   );
 }

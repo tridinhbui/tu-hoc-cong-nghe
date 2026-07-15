@@ -5,6 +5,8 @@ import { isLessonLockedForUser } from "@/lib/lesson-locking";
 import { createServerSupabaseClient } from "@/lib/supabase-server";
 import LessonPageClient from "@/components/LessonPageClient";
 
+export const revalidate = 3600; // Cache lesson pages for 1 hour (ISR)
+
 // Without this, every lesson page fell back to the root layout's generic
 // site-wide title/description - so sharing a just-completed lesson to
 // Facebook (ShareCompletionButton) produced a link preview card that just

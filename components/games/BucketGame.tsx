@@ -93,39 +93,53 @@ export default function BucketGame({ userId, gameType, onFinished }: BucketGameP
   const gridCols = config.buckets.length >= 4 ? "sm:grid-cols-2 lg:grid-cols-4" : "sm:grid-cols-3";
 
   return (
-    <div className="bg-white dark:bg-stone-900 border-2 border-stone-200 dark:border-stone-800 rounded-2xl p-3 sm:p-4 lg:p-6">
+    <div className="bg-white dark:bg-stone-900 border border-stone-200 dark:border-stone-850 rounded-2xl p-4 sm:p-5 lg:p-6 shadow-sm relative overflow-hidden">
+      {/* Decorative subtle background glows */}
+      <div className="absolute top-0 right-0 w-32 h-32 bg-emerald-500/5 rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute bottom-0 left-0 w-32 h-32 bg-amber-500/5 rounded-full blur-3xl pointer-events-none" />
+
       <style>{`
-        @keyframes bg-shake { 0%,100%{transform:translateX(0)} 20%{transform:translateX(-6px)} 40%{transform:translateX(6px)} 60%{transform:translateX(-4px)} 80%{transform:translateX(4px)} }
-        .bg-shake { animation: bg-shake 0.5s ease-in-out; }
+        @keyframes bg-shake { 
+          0%, 100% { transform: translateX(0); } 
+          20% { transform: translateX(-6px); } 
+          40% { transform: translateX(6px); } 
+          60% { transform: translateX(-4px); } 
+          80% { transform: translateX(4px); } 
+        }
+        .bg-shake { animation: bg-shake 0.4s ease-in-out; }
       `}</style>
 
-      <div className="flex items-center justify-between gap-2 sm:gap-3 mb-3 sm:mb-4">
+      <div className="flex items-center justify-between gap-3 mb-5 relative z-10">
         <div className="min-w-0">
-          <p className="text-xs sm:text-sm font-bold text-stone-900 dark:text-stone-100">Đã xếp đúng {placedCount}/{total}</p>
-          <div className="w-32 sm:w-40 lg:w-56 h-1.5 sm:h-2 bg-stone-100 dark:bg-stone-800 rounded-full overflow-hidden mt-1 sm:mt-1.5">
-            <div className="h-full bg-emerald-500 transition-all" style={{ width: `${total > 0 ? (placedCount / total) * 100 : 0}%` }} />
+          <p className="text-xs sm:text-sm font-extrabold text-stone-850 dark:text-stone-250">Đã xếp đúng {placedCount}/{total}</p>
+          <div className="w-36 sm:w-44 lg:w-60 h-2 bg-stone-100 dark:bg-stone-800/80 rounded-full overflow-hidden mt-1.5 shadow-inner">
+            <div className="h-full bg-gradient-to-r from-emerald-500 to-teal-500 transition-all duration-300" style={{ width: `${total > 0 ? (placedCount / total) * 100 : 0}%` }} />
           </div>
         </div>
         <button
           onClick={resetRound}
-          className="inline-flex items-center gap-1 sm:gap-1.5 text-[11px] sm:text-xs lg:text-sm font-bold text-stone-500 dark:text-stone-400 hover:text-stone-900 dark:hover:text-stone-100 border-2 border-stone-200 dark:border-stone-800 rounded-lg px-2 sm:px-3 py-1.5 sm:py-2 transition-colors flex-shrink-0"
+          className="inline-flex items-center gap-1.5 text-xs font-bold text-stone-500 dark:text-stone-400 hover:text-stone-900 dark:hover:text-stone-105 border border-stone-200 dark:border-stone-800 rounded-xl px-3 py-2 hover:bg-stone-50 dark:hover:bg-stone-800 transition-colors flex-shrink-0"
         >
-          <RotateCcw className="w-3 h-3 sm:w-3.5 sm:h-3.5" />
-          <span className="hidden sm:inline">Chơi lại</span>
-          <span className="sm:hidden">Lại</span>
+          <RotateCcw className="w-3.5 h-3.5" />
+          <span>Chơi lại</span>
         </button>
       </div>
 
       {finished ? (
-        <div className="text-center py-10">
-          <p className="text-lg font-bold text-stone-900 dark:text-stone-100">Hoàn thành ván chơi!</p>
-          <p className="text-sm text-stone-500 dark:text-stone-400 mt-1">Bấm &quot;Chơi lại&quot; để thử một ván mới.</p>
+        <div className="text-center py-10 relative z-10 flex flex-col items-center">
+          <span className="text-4xl mb-3 animate-bounce">🏆</span>
+          <p className="text-lg font-extrabold text-stone-900 dark:text-stone-50">Hoàn thành ván chơi!</p>
+          <p className="text-xs sm:text-sm text-stone-500 dark:text-stone-400 mt-1 max-w-xs">
+            Chúc mừng bạn đã hoàn thành phân loại! Hãy bấm &quot;Chơi lại&quot; ở trên để nâng cao kỷ lục và tích lũy thêm XP.
+          </p>
         </div>
       ) : (
         <>
-          <div className="mb-4 sm:mb-6">
-            <p className="text-[11px] sm:text-xs font-bold text-stone-400 dark:text-stone-500 uppercase tracking-wider mb-2">{config.sourceHint}</p>
-            <div className="flex flex-wrap gap-1.5 sm:gap-2">
+          <div className="mb-6 relative z-10">
+            <p className="text-[10px] font-extrabold text-stone-400 dark:text-stone-500 uppercase tracking-widest mb-2.5">
+              {config.sourceHint}
+            </p>
+            <div className="flex flex-wrap gap-2.5">
               {sourceItems.map((item) => {
                 const isSelected = selectedId === item.id;
                 const isWrong = wrongFlashId === item.id;
@@ -135,12 +149,12 @@ export default function BucketGame({ userId, gameType, onFinished }: BucketGameP
                     draggable
                     onDragStart={(e) => e.dataTransfer.setData("text/plain", String(item.id))}
                     onClick={() => setSelectedId((cur) => (cur === item.id ? null : item.id))}
-                    className={`select-none cursor-pointer rounded-xl border-2 px-2 sm:px-3 py-1.5 sm:py-2 text-xs sm:text-sm font-semibold transition-colors ${
+                    className={`select-none cursor-grab rounded-xl border px-3 py-2 text-xs sm:text-sm font-semibold shadow-sm transition-all duration-200 active:scale-95 active:cursor-grabbing ${
                       isWrong
-                        ? "bg-shake border-rose-500 bg-rose-50 dark:bg-rose-950/40 text-rose-700 dark:text-rose-300"
+                        ? "bg-shake border-red-500 bg-red-50/50 dark:bg-red-950/20 text-red-700 dark:text-red-400 shadow-[0_0_12px_rgba(239,68,68,0.2)]"
                         : isSelected
-                        ? "border-emerald-500 bg-emerald-50 dark:bg-emerald-950/40 text-emerald-700 dark:text-emerald-300"
-                        : "border-stone-200 dark:border-stone-800 bg-stone-50 dark:bg-stone-800/60 text-stone-800 dark:text-stone-200 hover:border-stone-300 dark:hover:border-stone-700"
+                        ? "border-emerald-500 bg-emerald-50/50 dark:bg-emerald-950/20 text-emerald-700 dark:text-emerald-400 shadow-[0_0_12px_rgba(16,185,129,0.2)] scale-[1.04]"
+                        : "border-stone-200 dark:border-stone-800 bg-white dark:bg-stone-850 text-stone-800 dark:text-stone-200 hover:border-emerald-350 dark:hover:border-emerald-700 hover:shadow"
                     }`}
                   >
                     {item.term}
@@ -151,7 +165,7 @@ export default function BucketGame({ userId, gameType, onFinished }: BucketGameP
             </div>
           </div>
 
-          <div className={`grid grid-cols-1 ${gridCols} gap-3`}>
+          <div className={`grid grid-cols-1 ${gridCols} gap-4 relative z-10`}>
             {config.buckets.map((bucket) => {
               const bucketItems = items.filter((it) => it.placed && it.bucket === bucket.id);
               const isDragOver = dragOverBucket === bucket.id;
@@ -162,16 +176,20 @@ export default function BucketGame({ userId, gameType, onFinished }: BucketGameP
                   onDragLeave={() => setDragOverBucket((cur) => (cur === bucket.id ? null : cur))}
                   onDrop={(e) => handleDrop(e, bucket.id)}
                   onClick={() => selectedId !== null && attemptPlace(selectedId, bucket.id)}
-                  className={`min-h-[120px] rounded-2xl border-2 p-3 transition-colors ${
+                  className={`min-h-[140px] rounded-2xl border-2 p-4 transition-all duration-300 ${
                     isDragOver
-                      ? "border-dashed border-emerald-500 bg-emerald-50/60 dark:bg-emerald-950/30"
-                      : "border-stone-200 dark:border-stone-800 bg-stone-50/60 dark:bg-stone-900/40"
-                  } ${selectedId !== null ? "cursor-pointer" : ""}`}
+                      ? "border-dashed border-emerald-500 bg-emerald-50/50 dark:bg-emerald-950/20 shadow-[0_0_15px_rgba(16,185,129,0.1)] scale-[1.02]"
+                      : selectedId !== null 
+                      ? "cursor-pointer border-dashed border-stone-300 dark:border-stone-700 bg-stone-50/60 dark:bg-stone-900/40 hover:border-emerald-400 dark:hover:border-emerald-700"
+                      : "border-stone-200 dark:border-stone-800/80 bg-stone-50/40 dark:bg-stone-900/30 hover:bg-stone-50/80 dark:hover:bg-stone-900/50"
+                  }`}
                 >
-                  <p className="text-xs font-extrabold text-stone-500 dark:text-stone-400 uppercase tracking-wide mb-2">{bucket.label}</p>
-                  <div className="flex flex-wrap gap-1.5">
+                  <p className="text-[10px] font-extrabold text-stone-500 dark:text-stone-400 uppercase tracking-widest mb-3 pb-1.5 border-b border-stone-200/55 dark:border-stone-800/55">
+                    {bucket.label}
+                  </p>
+                  <div className="flex flex-wrap gap-2">
                     {bucketItems.map((item) => (
-                      <span key={item.id} className="rounded-lg border-2 border-emerald-500 bg-emerald-50 dark:bg-emerald-950/40 text-emerald-700 dark:text-emerald-300 px-2.5 py-1.5 text-xs font-semibold">
+                      <span key={item.id} className="rounded-lg border border-emerald-250 dark:border-emerald-900/80 bg-emerald-50/60 dark:bg-emerald-950/20 text-emerald-700 dark:text-emerald-400 px-3 py-1.5 text-xs font-extrabold shadow-sm transition-transform duration-250 hover:scale-105">
                         {item.term}
                       </span>
                     ))}
@@ -181,7 +199,7 @@ export default function BucketGame({ userId, gameType, onFinished }: BucketGameP
             })}
           </div>
 
-          {submitting && <p className="text-center text-sm text-stone-400 dark:text-stone-500 mt-4">Đang lưu kết quả...</p>}
+          {submitting && <p className="text-center text-xs text-stone-400 dark:text-stone-500 mt-4 animate-pulse">Đang lưu kết quả...</p>}
         </>
       )}
     </div>
