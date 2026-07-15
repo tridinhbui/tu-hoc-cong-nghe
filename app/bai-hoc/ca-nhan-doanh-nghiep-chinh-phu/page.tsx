@@ -57,7 +57,7 @@ const CONCEPTS = [
 const TAKEAWAYS = [
   "Ba cấp độ tài chính cùng nguyên lý: thu, chi, tiết kiệm, đầu tư, nợ, nhưng công cụ và ràng buộc khác nhau.",
   "Doanh nghiệp tối ưu lợi nhuận và dòng tiền; chính phủ cân bằng giữa kích thích kinh tế và bền vững tài chính.",
-  "Nợ công cao không phải tự động xấu; quan trọng là dùng để làm gì và khả năng phục vụ nợ từ GDP tương lai.",
+  "Nợ công cao không phải lúc nào cũng xấu; quan trọng là nguồn vốn đó được đầu tư vào đâu và khả năng chi trả gốc, lãi nợ từ sự tăng trưởng GDP trong tương lai.",
   "Hiểu tài chính doanh nghiệp và chính phủ giúp đọc tin tức kinh tế có chiều sâu hơn và đưa ra quyết định đầu tư tốt hơn.",
 ];
 

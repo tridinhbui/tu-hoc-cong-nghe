@@ -77,7 +77,7 @@ export default function ThiTruongTaiChinhPage() {
             <strong className="text-stone-900">Thị trường sơ cấp</strong> là nơi tài sản mới được tạo ra. Khi một công ty phát hành cổ phiếu lần đầu (IPO) hoặc chính phủ phát hành trái phiếu, tiền từ nhà đầu tư đi thẳng đến tổ chức phát hành. Đây là lần duy nhất trong vòng đời của tài sản mà người phát hành nhận được tiền.
           </p>
           <p>
-            <strong className="text-stone-900">Thị trường thứ cấp</strong> là nơi các tài sản đó được mua đi bán lại giữa nhà đầu tư. Sàn chứng khoán là ví dụ điển hình: mọi giao dịch ở đây là tiền chạy từ người mua sang người bán, doanh nghiệp không nhận thêm gì. Chức năng chính của thị trường thứ cấp là cung cấp thanh khoản và khám phá giá liên tục.
+            <strong className="text-stone-900">Thị trường thứ cấp</strong> là nơi các tài sản đó được mua đi bán lại giữa nhà đầu tư. Sàn chứng khoán là ví dụ điển hình: mọi giao dịch ở đây là tiền chạy từ người mua sang người bán, doanh nghiệp không nhận thêm gì. Chức năng chính của thị trường thứ cấp là giúp các nhà đầu tư dễ dàng mua bán lại chứng khoán nhanh chóng (tính thanh khoản) và liên tục cập nhật giá thị trường thực tế.
           </p>
         </section>
 

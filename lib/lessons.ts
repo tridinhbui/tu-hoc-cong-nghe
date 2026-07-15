@@ -1483,7 +1483,7 @@ sections: [
   { type: "comparison",
     left: { label: "Dòng tiền ra (Cash Outflow)", text: "Số tiền thực tế rời khỏi tài khoản ngân hàng tại một thời điểm cụ thể - ghi trên Báo cáo lưu chuyển tiền tệ." },
     right: { label: "Chi phí kế toán (Expense)", text: "Giá trị kinh tế được tiêu thụ/sử dụng trong kỳ báo cáo - ghi trên Báo cáo kết quả kinh doanh, có thể lệch thời điểm rất xa so với dòng tiền ra thực tế." } },
-  { type: "callout", label: "Vì sao điều này quan trọng với nhà đầu tư", text: "Một công ty đang đầu tư mạnh vào tài sản cố định (như các hãng hàng không, nhà máy sản xuất) thường có lợi nhuận kế toán thấp hơn dòng tiền hoạt động thực tế trong giai đoạn đầu, vì khấu hao là chi phí phi tiền mặt (non-cash expense). Đọc Báo cáo lưu chuyển tiền tệ song song với P&L giúp tránh đánh giá sai sức khỏe tài chính thực sự." },
+  { type: "callout", label: "Vì sao điều này quan trọng với nhà đầu tư", text: "Một công ty đang có chi phí khấu hao lớn từ tài sản cố định (do đã đầu tư mạnh trước đó) thường có lợi nhuận kế toán thấp hơn dòng tiền hoạt động thực tế (CFO), vì khấu hao là chi phí phi tiền mặt (được cộng ngược lại khi tính CFO). Tuy nhiên, cần lưu ý dòng tiền tự do (FCF) có thể vẫn âm nếu doanh nghiệp tiếp tục đầu tư Capex lớn. Đọc Báo cáo lưu chuyển tiền tệ song song với P&L giúp tránh đánh giá sai sức khỏe tài chính thực sự." },
   { type: "closing", lines: [
     "Chi phí kế toán là một khái niệm phân bổ theo thời gian, không phải bản ghi tức thời của dòng tiền.",
     "Hiểu sự tách biệt này là chìa khóa để đọc đúng P&L của các doanh nghiệp thâm dụng vốn.",
