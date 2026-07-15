@@ -5,7 +5,15 @@ import { isLessonLockedForUser } from "@/lib/lesson-locking";
 import { createServerSupabaseClient } from "@/lib/supabase-server";
 import LessonPageClient from "@/components/LessonPageClient";
 
-export const revalidate = 3600; // Cache lesson pages for 1 hour (ISR)
+// No route-level `revalidate`/ISR here on purpose: this page reads the
+// session via createServerSupabaseClient() (cookies()) and per-user lesson
+// lock state, then can redirect to /dashboard?locked=... - time-based ISR
+// caches one rendered response and reuses it for every visitor during the
+// window, so an early request from a locked-out or logged-out visitor could
+// get served (or serve its redirect) to a completely different, unlocked
+// user for up to the revalidate window. Lesson content itself is already
+// cheap to load (pre-split per-lesson JSON, not the full dataset), so
+// there's no real performance case for risking that.
 
 // Without this, every lesson page fell back to the root layout's generic
 // site-wide title/description - so sharing a just-completed lesson to
