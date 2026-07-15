@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { toast } from "sonner";
-import { ArrowLeft, Plus, Trash2, BookOpen, CheckCircle, HelpCircle, GraduationCap, Sparkles, Upload, Download, Copy } from "lucide-react";
+import { ArrowLeft, Plus, Trash2, BookOpen, CheckCircle, HelpCircle, GraduationCap, Sparkles, Upload, Download, Copy, Flame } from "lucide-react";
 import Link from "next/link";
 import { useAuthGate } from "@/lib/use-auth-gate";
 import {
@@ -16,6 +16,7 @@ import {
 } from "@/lib/supabase-flashcards";
 import { getUnresolvedMistakeRows } from "@/lib/quiz-mistakes";
 import { getMistakeFlashcardCandidates } from "@/app/actions/flashcard-actions";
+import FlashcardAlbumsGallery from "@/components/flashcard/FlashcardAlbumsGallery";
 
 export default function FlashcardClient() {
   const { userId, checking } = useAuthGate();
@@ -38,6 +39,9 @@ export default function FlashcardClient() {
   const [showBulkPanel, setShowBulkPanel] = useState(false);
   const [bulkText, setBulkText] = useState("");
   const [bulkImporting, setBulkImporting] = useState(false);
+
+  // Curated "hot" preset deck gallery (lib/flashcard-albums.ts).
+  const [showAlbums, setShowAlbums] = useState(false);
 
   const handleGenerateFromMistakes = async () => {
     if (!userId || generatingFromMistakes) return;
@@ -329,8 +333,23 @@ export default function FlashcardClient() {
             >
               <Upload className="w-3.5 h-3.5" /> Nhập/Xuất hàng loạt
             </button>
+            <button
+              onClick={() => setShowAlbums(!showAlbums)}
+              className="inline-flex items-center gap-1.5 text-xs font-bold bg-gradient-to-r from-rose-500 to-orange-500 text-white px-3.5 py-2.5 rounded-xl hover:scale-[1.03] active:scale-95 transition-all shadow-sm cursor-pointer"
+            >
+              <Flame className="w-3.5 h-3.5" /> Bộ thẻ hot
+            </button>
           </div>
         </div>
+
+        {showAlbums && userId && (
+          <FlashcardAlbumsGallery
+            userId={userId}
+            onImported={() => {
+              getFlashcards(userId).then(setCards);
+            }}
+          />
+        )}
 
         {showBulkPanel && (
           <div className="mb-6 p-5 rounded-2xl border border-stone-200 dark:border-stone-800 bg-white dark:bg-stone-900 shadow-sm space-y-4 animate-[fadeIn_0.2s_ease-out]">
