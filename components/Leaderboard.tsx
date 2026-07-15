@@ -3,7 +3,7 @@
 import { useEffect, useState, type ReactNode } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { Trophy } from "lucide-react";
+import { Trophy, BookOpen, Target, Flame } from "lucide-react";
 import { getLeaderboardByMetric, getMyLeaderboardRank, type LeaderboardMetric, type LeaderboardRow } from "@/lib/supabase-user";
 
 // Small circular avatar with an initials fallback for learners who haven't
@@ -79,15 +79,48 @@ const TABS: { metric: LeaderboardMetric; label: string; format: (v: number) => s
   { metric: "streak", label: "Chuỗi ngày", format: (v) => `${v} ngày` },
 ];
 
-// Fun titles for top 3 learners in the XP leaderboard
-const XP_TITLES: Record<number, string> = {
-  1: "🏆 Bậc thầy tài chính",
-  2: "🥈 Chuyên gia đầu tư",
-  3: "🥉 Nhà đầu tư tài năng",
+// Fun titles for top 3 per leaderboard metric
+const LEADERBOARD_TITLES: Record<LeaderboardMetric, Record<number, string>> = {
+  xp: {
+    1: "Bậc thầy tài chính",
+    2: "Chuyên gia đầu tư",
+    3: "Nhà đầu tư tài năng",
+  },
+  lessons: {
+    1: "Vua sách giáo khoa",
+    2: "Thủ kho tri thức",
+    3: "Máy học không ngừng",
+  },
+  avg_score: {
+    1: "Thần chính xác",
+    2: "Đại sư câu hỏi",
+    3: "Quiz master",
+  },
+  streak: {
+    1: "Huyền thoại streak",
+    2: "Lửa không tắt",
+    3: "Kiên trì vàng",
+  },
 };
 
-function getXpTitle(rank: number): string | null {
-  return XP_TITLES[rank] || null;
+const METRIC_TITLE_ICONS: Record<LeaderboardMetric, typeof Trophy> = {
+  xp: Trophy,
+  lessons: BookOpen,
+  avg_score: Target,
+  streak: Flame,
+};
+
+const RANK_MEDALS: Record<number, string> = {
+  1: "🏆",
+  2: "🥈",
+  3: "🥉",
+};
+
+function getLeaderboardTitle(metric: LeaderboardMetric, rank: number): string | null {
+  const title = LEADERBOARD_TITLES[metric]?.[rank];
+  if (!title) return null;
+  const medal = RANK_MEDALS[rank] ?? "";
+  return medal ? `${medal} ${title}` : title;
 }
 
 export default function Leaderboard({ userId }: LeaderboardProps) {
@@ -190,6 +223,8 @@ export default function Leaderboard({ userId }: LeaderboardProps) {
               const rank = idx + 1;
               const isCurrent = entry.user_id === userId;
               const href = isCurrent ? "/profile" : `/nguoi-hoc/${entry.user_id}`;
+              const topTitle = rank <= 3 ? getLeaderboardTitle(metric, rank) : null;
+              const TitleIcon = METRIC_TITLE_ICONS[metric];
               return (
                 <Link
                   key={entry.user_id}
@@ -234,10 +269,10 @@ export default function Leaderboard({ userId }: LeaderboardProps) {
                     <div className={`font-bold truncate ${isCurrent ? "text-emerald-900 dark:text-emerald-400" : "text-stone-900 dark:text-stone-100"}`}>
                       {entry.name}
                     </div>
-                    {metric === "xp" && rank <= 3 && (
+                    {topTitle && (
                       <div className="text-[11px] font-bold text-amber-600 dark:text-amber-400 flex items-center gap-1">
-                        <Trophy className="w-3 h-3" />
-                        {getXpTitle(rank)}
+                        <TitleIcon className="w-3 h-3 flex-shrink-0" />
+                        {topTitle}
                       </div>
                     )}
                     <div className={`text-xs ${isCurrent ? "text-emerald-700 dark:text-emerald-400" : "text-stone-500 dark:text-stone-400"}`}>
