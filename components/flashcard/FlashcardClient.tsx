@@ -14,6 +14,7 @@ import {
   DEFAULT_FINANCIAL_GLOSSARY,
   type Flashcard,
 } from "@/lib/supabase-flashcards";
+import { getUnresolvedMistakeRows } from "@/lib/quiz-mistakes";
 import { getMistakeFlashcardCandidates } from "@/app/actions/flashcard-actions";
 
 export default function FlashcardClient() {
@@ -42,7 +43,8 @@ export default function FlashcardClient() {
     if (!userId || generatingFromMistakes) return;
     setGeneratingFromMistakes(true);
     try {
-      const candidates = await getMistakeFlashcardCandidates(userId);
+      const mistakeRows = await getUnresolvedMistakeRows(userId);
+      const candidates = await getMistakeFlashcardCandidates(mistakeRows);
       if (candidates.length === 0) {
         toast.info("Không tìm thấy câu trắc nghiệm làm sai chưa giải quyết nào! 🌟 Hãy tiếp tục học bài nhé.");
         return;

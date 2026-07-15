@@ -1,24 +1,34 @@
 "use server";
 
-import { getUnresolvedMistakeRows } from "@/lib/quiz-mistakes";
 import { getLessonById } from "@/lib/lessons-loader";
+import type { QuizMistakeRow } from "@/lib/quiz-mistakes";
 
 export interface GeneratedFlashcardCandidate {
   term: string;
   definition: string;
 }
 
-// Scans user's quiz mistakes and generates a list of candidates
-export async function getMistakeFlashcardCandidates(userId: string): Promise<GeneratedFlashcardCandidate[]> {
+// Takes the caller's own unresolved-mistake rows (fetched client-side via
+// lib/quiz-mistakes.ts#getUnresolvedMistakeRows, which uses the browser
+// Supabase client and therefore has a real session/auth.uid() for the
+// quiz_mistakes RLS check to pass) rather than re-querying by userId here.
+// This Server Action previously called getUnresolvedMistakeRows(userId)
+// itself - but that function's browser client has no session when invoked
+// from a Server Action (no window/localStorage/cookies to read), so
+// auth.uid() evaluated to null and the RLS-protected SELECT silently
+// returned zero rows every time, regardless of how many real mistakes the
+// user had. "Tạo từ lỗi sai" always reported "không tìm thấy" as a result.
+// This action now only needs lesson content lookups, which are genuinely
+// server-only (lib/lessons.ts, ~1.3MB) and don't touch Supabase at all.
+export async function getMistakeFlashcardCandidates(rows: QuizMistakeRow[]): Promise<GeneratedFlashcardCandidate[]> {
   try {
-    const rows = await getUnresolvedMistakeRows(userId);
     if (!rows || rows.length === 0) return [];
 
     const candidates: GeneratedFlashcardCandidate[] = [];
-    
+
     // Resolve up to 10 candidates to keep response quick
     const targetRows = rows.slice(0, 10);
-    
+
     for (const row of targetRows) {
       const lesson = await getLessonById(row.lesson_id);
       if (lesson && lesson.quiz && lesson.quiz[row.question_index]) {
