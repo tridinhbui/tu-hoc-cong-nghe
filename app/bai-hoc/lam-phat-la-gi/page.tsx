@@ -45,6 +45,83 @@ const QUIZ: QuizQuestion[] = [
     correct: 1,
     explanation: "Lạm phát nhẹ khiến tiền nhàn rỗi mất giá dần, tạo động lực cho người dân đầu tư hoặc tiêu dùng thay vì cất giữ. Đây là động lực tự nhiên của vòng quay kinh tế.",
   },
+  {
+    question: "Giảm phát là gì và tại sao nó lại xấu cho nền kinh tế?",
+    options: [
+      "Giảm phát tốt vì giá cả rẻ hơn",
+      "Giảm phát là giá chung giảm; tâm lý trì hoãn mua sắm khiến chi tiêu giảm, doanh nghiệp cắt giảm sản xuất, công nhân mất việc",
+      "Giảm phát không ảnh hưởng kinh tế",
+      "Giảm phát chỉ xảy ra ở nước nghèo",
+    ],
+    correct: 1,
+    explanation: "Bài học nêu: khi giá giảm, người ta trì hoãn mua hôm nay để chờ rẻ hơn mai. Tâm lý này lan rộng tạo vòng xoáy đi xuống: chi tiêu giảm → sản xuất giảm → công nhân mất việc → suy thoái.",
+  },
+  {
+    question: "Siêu lạm phát (hyperinflation) có tác động gì?",
+    options: [
+      "Chỉ làm tiền mất giá một chút",
+      "Phá hủy sức mua và hệ thống tiền tệ hoàn toàn (lạm phát trên 50%/tháng)",
+      "Tốt vì khuyến khích chi tiêu nhanh",
+      "Chỉ ảnh hưởng đến người giàu",
+    ],
+    correct: 1,
+    explanation: "Siêu lạm phát không chỉ làm tiền mất giá, nó phá hủy cả hệ thống tiền tệ và niềm tin vào đồng tiền. Người dân chuyển sang dùng ngoại tệ hoặc trao đổi hàng hóa trực tiếp.",
+  },
+  {
+    question: "Từ ví dụ 500 triệu trong bài, sau 10 năm với lạm phát 7%, sức mua còn khoảng bao nhiêu?",
+    options: [
+      "350 triệu",
+      "254 triệu (hơn một nửa bị ăn mòn)",
+      "400 triệu",
+      "150 triệu",
+    ],
+    correct: 1,
+    explanation: "Theo bảng trong bài: sau 10 năm với lạm phát 7%, sức mua còn khoảng 254 triệu. Số tiền không đổi nhưng mua được ít hơn một nửa hàng hóa so với hôm nay.",
+  },
+  {
+    question: "Bốn nguyên nhân chính của lạm phát theo bài học là gì?",
+    options: [
+      "Tăng thuế, tăng lương, tăng sản xuất, tăng chi tiêu",
+      "Cầu kéo, chi phí đẩy, in tiền, kỳ vọng",
+      "Giảm phát, siêu lạm phát, lạm phát kiềm chế, lạm phát tự do",
+      "Tỷ giá, lãi suất, cung tiền, giá dầu",
+    ],
+    correct: 1,
+    explanation: "Bài học nêu 4 nguyên nhân: cầu kéo (nhu cầu > cung), chi phí đẩy (chi phí sản xuất tăng), in tiền (tăng cung tiền quá nhanh), kỳ vọng (tâm lý tự thực hiện).",
+  },
+  {
+    question: "CPI (Chỉ số giá tiêu dùng) được dùng để làm gì?",
+    options: [
+      "Đo tốc độ tăng của lương người lao động",
+      "Đo lường lạm phát bằng cách theo dõi giá một rổ hàng hóa và dịch vụ tiêu biểu",
+      "Đo lường sức khỏe của ngân hàng",
+      "Đo lường số công nhân bị mất việc",
+    ],
+    correct: 1,
+    explanation: "CPI là chỉ số phổ biến nhất để đo lường lạm phát. Nó theo dõi giá của thực phẩm, nhà ở, y tế, giáo dục và các mục hàng khác của người tiêu dùng.",
+  },
+  {
+    question: "Để chống lại lạm phát, bạn nên làm gì?",
+    options: [
+      "Giữ toàn bộ tiền mặt trong túi",
+      "Đầu tư vào tài sản thực như cổ phiếu, bất động sản, vàng để chống lạm phát",
+      "Chỉ gửi tiết kiệm ngân hàng",
+      "Không thể làm gì để chống lạm phát",
+    ],
+    correct: 1,
+    explanation: "Bài học nêu: đầu tư vào tài sản thực là cách phổ biến để chống lạm phát. Các tài sản này có xu hướng tăng giá theo lạm phát, bảo vệ sức mua thực của bạn.",
+  },
+  {
+    question: "Sức mua của tiền mất đi khi nào so với lạm phát?",
+    options: [
+      "Chỉ khi tiền nằm một chỗ không sinh lãi",
+      "Luôn luôn bị mòn bởi lạm phát, dù tiền có sinh lãi (nếu lãi < lạm phát)",
+      "Không bao giờ mất đi",
+      "Chỉ mất đi nếu tiền mặt",
+    ],
+    correct: 1,
+    explanation: "Lạm phát làm mòn sức mua liên tục. Dù có sinh lãi, nếu lãi suất < lạm phát, sức mua vẫn giảm. Đây là lý do quốc gia nào cũng cần có lạm phát chứ không thể lạm phát bằng 0.",
+  },
 ];
 
 const CONCEPTS = [

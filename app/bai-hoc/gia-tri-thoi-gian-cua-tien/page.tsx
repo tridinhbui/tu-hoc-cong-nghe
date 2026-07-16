@@ -45,6 +45,83 @@ const QUIZ: QuizQuestion[] = [
     correct: 1,
     explanation: "Lãi suất cao = cơ hội đầu tư ngay hiện tại tốt hơn. Vì vậy, tiền trong tương lai phải được chiết khấu mạnh hơn để so sánh công bằng với tiền hôm nay có thể tăng trưởng nhanh.",
   },
+  {
+    question: "Công thức Giá trị tương lai (FV) là gì?",
+    options: [
+      "FV = PV - (r × n)",
+      "FV = PV × (1 + r)^n",
+      "FV = PV / (1 + r)^n",
+      "FV = PV + (r + n)",
+    ],
+    correct: 1,
+    explanation: "FV = PV × (1 + r)^n, trong đó PV là giá trị hiện tại, r là lãi suất, n là số năm. Công thức này tính tiền sẽ có được bằng cách nào từ số tiền hôm nay.",
+  },
+  {
+    question: "Công thức Giá trị hiện tại (PV) từ giá trị tương lai là gì?",
+    options: [
+      "PV = FV × (1 + r)^n",
+      "PV = FV / (1 + r)^n",
+      "PV = FV - r - n",
+      "PV = FV + r × n",
+    ],
+    correct: 1,
+    explanation: "PV = FV / (1 + r)^n. Công thức này quy tiền tương lai về giá trị hôm nay. Quá trình này gọi là 'chiết khấu', và (1 + r)^n gọi là 'discount factor'.",
+  },
+  {
+    question: "Chi phí cơ hội liên quan đến giá trị thời gian của tiền như thế nào?",
+    options: [
+      "Chi phí cơ hội không liên quan",
+      "Chi phí cơ hội là lý do tiền hôm nay đáng giá hơn tiền mai - vì tiền hôm nay có thể được đầu tư ở nơi khác",
+      "Chi phí cơ hội là khoản lãi ngân hàng trả",
+      "Chi phí cơ hội chỉ liên quan đến vay nợ",
+    ],
+    correct: 1,
+    explanation: "Bài học nêu rõ: chi phí cơ hội là lý do nằm sâu dưới giá trị thời gian của tiền. Nếu không lấy tiền hôm nay, bạn mất cơ hội đầu tư nó ngay lập tức.",
+  },
+  {
+    question: "Trong ví dụ, 100 triệu hôm nay với lãi 8% bằng giá trị bao nhiêu tiền sau 1 năm?",
+    options: [
+      "108 triệu",
+      "110 triệu",
+      "100 triệu",
+      "98 triệu",
+    ],
+    correct: 0,
+    explanation: "100 triệu × (1 + 8%) = 100 triệu × 1.08 = 108 triệu. Đây là ví dụ minh họa: nếu bạn được chọn 110 triệu sau 1 năm, đó tốt hơn 108 triệu, nên nên đợi.",
+  },
+  {
+    question: "Mọi quyết định tài chính nào được xây dựng trên nguyên lý giá trị thời gian của tiền?",
+    options: [
+      "Chỉ quyết định vay mua nhà",
+      "Mọi quyết định đầu tư, bài toán vay trả góp, định giá doanh nghiệp, định giá dự án",
+      "Chỉ quyết định gửi tiết kiệm",
+      "Không quyết định nào",
+    ],
+    correct: 1,
+    explanation: "Bài học nêu: nguyên lý này là nền tảng nhất trong tài chính. Mọi quyết định về tiền - từ cá nhân đến doanh nghiệp - đều dựa trên nó.",
+  },
+  {
+    question: "Discount rate (tỷ suất chiết khấu) phản ánh những yếu tố nào?",
+    options: [
+      "Chỉ phản ánh lạm phát",
+      "Chi phí cơ hội và rủi ro - giá để chờ đợi tiền trong tương lai",
+      "Chỉ phản ánh lãi suất ngân hàng",
+      "Không phản ánh gì",
+    ],
+    correct: 1,
+    explanation: "Discount rate là lãi suất dùng để quy tiền tương lai về hiện tại. Nó phản ánh cả cơ hội đầu tư (lãi suất) và rủi ro của khoản đó.",
+  },
+  {
+    question: "Giá trị của mọi tài sản được định giá như thế nào, theo bài học?",
+    options: [
+      "Bằng giá thị trường hiện tại",
+      "Bằng tổng hiện giá (PV) của các dòng tiền nó tạo ra trong tương lai",
+      "Bằng chi phí để tạo ra nó",
+      "Bằng ý kiến của các chuyên gia",
+    ],
+    correct: 1,
+    explanation: "Bài học nêu: DCF là công cụ định giá cơ bản. Giá trị của bất kỳ tài sản nào (cổ phiếu, bất động sản, doanh nghiệp) = tổng PV của tất cả dòng tiền nó tạo ra.",
+  },
 ];
 
 const CONCEPTS = [
