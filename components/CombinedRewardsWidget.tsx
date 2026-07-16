@@ -1,67 +1,60 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { Gift, Sparkles, Trophy, CheckCircle2, Flame, BookOpen, ChevronDown, ChevronUp } from "lucide-react";
+import { Gift, Sparkles, Trophy, CheckCircle2, Flame, BookOpen, ChevronDown, ChevronUp, Zap } from "lucide-react";
 import { toast } from "sonner";
 import { recalculateUserStats } from "@/lib/supabase-user";
+import { getUserStreak } from "@/lib/supabase-streak";
+import { getUnopenedChestCount, openNextChest, earnChest, type ChestReward } from "@/lib/chests";
+import { createClient } from "@/lib/supabase";
+import DailyQuestsWidget from "@/components/DailyQuestsWidget";
 
 interface CombinedRewardsWidgetProps {
   userId: string;
 }
 
-const REWARDS = [
-  { type: "title", value: "Chiến thần tích lũy", desc: "Danh hiệu tôn vinh kỷ luật tích sản" },
-  { type: "title", value: "Kẻ hủy diệt nợ nần", desc: "Danh hiệu dành cho người làm chủ tài chính" },
-  { type: "title", value: "Sói già phố Wall", desc: "Danh hiệu của bậc thầy phân tích thị trường" },
-  { type: "title", value: "Đại gia lãi kép", desc: "Danh hiệu dành cho tín đồ dòng tiền dài hạn" },
-  { type: "title", value: "Bậc thầy định giá", desc: "Danh hiệu của chuyên gia đọc báo cáo tài chính" },
-  { type: "xp", value: 30, desc: "Cộng ngay +30 XP vào tổng điểm tích lũy" },
-  { type: "xp", value: 50, desc: "Cộng ngay +50 XP vào tổng điểm tích lũy" },
-  { type: "theme", value: "gold", desc: "Mở khóa Giao diện Hoàng Kim quý tộc" },
-  { type: "theme", value: "emerald", desc: "Mở khóa Giao diện Ngọc Lục Bảo đặc biệt" }
-];
-
+// Merges what used to be two separate cards ("Nhiệm vụ hàng ngày" +
+// "Phần Thưởng") into one, per user request. Also fixes two real bugs found
+// while doing this:
+//
+// 1. Chest rewards ("+30/+50/+100 XP") were pure decoration - opening one
+//    only called recalculateUserStats(), which has no concept of "chest
+//    XP" and recomputes total_xp purely from real activity tables. Chests
+//    (and their reward-picking) now live in lib/chests.ts, persisted in
+//    Supabase, and getTotalChestXp() is folded into that same formula - so
+//    the XP a chest promises is now real and cross-device.
+// 2. The weekly "Chuỗi Học Tập" quest tracked its own `thtcdn_streak_*`
+//    localStorage key, which nothing in the entire codebase ever WROTE to -
+//    it was permanently stuck at 0/5. Now reads the real streak from
+//    user_streaks (the same source StreakDisplay/UserStats already show).
 export default function CombinedRewardsWidget({ userId }: CombinedRewardsWidgetProps) {
-  const [activeTab, setActiveTab] = useState<"chests" | "quests">("chests");
+  const [activeTab, setActiveTab] = useState<"daily" | "chests" | "weekly">("daily");
   const [isExpanded, setIsExpanded] = useState(false);
 
-  // Chest state
-  const [chests, setChests] = useState<number>(0);
+  // Chest state (now server-backed - see lib/chests.ts)
+  const [chestCount, setChestCount] = useState<number>(0);
   const [opening, setOpening] = useState<boolean>(false);
   const [shaking, setShaking] = useState<boolean>(false);
-  const [rewardReveal, setRewardReveal] = useState<any | null>(null);
+  const [rewardReveal, setRewardReveal] = useState<ChestReward | null>(null);
 
-  // Quest state
-  const [streak, setStreak] = useState<number>(0);
+  // Weekly quest state
+  const [realStreak, setRealStreak] = useState<number>(0);
   const [weeklyLessonsCount, setWeeklyLessonsCount] = useState<number>(0);
   const [perfectQuizStreak, setPerfectQuizStreak] = useState<number>(0);
   const [isEpicClaimed, setIsEpicClaimed] = useState<boolean>(false);
   const [claiming, setClaiming] = useState<boolean>(false);
 
-  // Storage keys
-  const chestKey = `thtcdn_chests_${userId}`;
-  const titlesKey = `thtcdn_unlocked_titles_${userId}`;
-  const themesKey = `thtcdn_unlocked_themes_${userId}`;
-  const streakKey = `thtcdn_streak_${userId}`;
   const weeklyLessonsKey = `thtcdn_weekly_completed_lessons_${userId}`;
   const perfectQuizzesKey = `thtcdn_weekly_perfect_quizzes_${userId}`;
-
-  const loadChests = () => {
-    if (typeof window !== "undefined") {
-      setChests(Number(window.localStorage.getItem(chestKey) ?? "0"));
-    }
-  };
 
   const getWeekKey = () => {
     const d = new Date();
     const oneJan = new Date(d.getFullYear(), 0, 1);
     const numberOfDays = Math.floor((d.getTime() - oneJan.getTime()) / (24 * 60 * 60 * 1000));
     const weekNumber = Math.ceil((numberOfDays + oneJan.getDay() + 1) / 7);
-    return `${d.getFullYear()}_w${weekNumber}`;
+    return `${d.getFullYear()}-W${weekNumber}`;
   };
-
   const weekKey = getWeekKey();
-  const epicClaimedKey = `thtcdn_weekly_epic_claimed_${userId}_${weekKey}`;
 
   const getMondayOfCurrentWeek = () => {
     const d = new Date();
@@ -72,91 +65,88 @@ export default function CombinedRewardsWidget({ userId }: CombinedRewardsWidgetP
     return monday.getTime();
   };
 
-  const loadProgress = () => {
+  const loadChests = async () => {
+    try {
+      setChestCount(await getUnopenedChestCount(userId));
+    } catch (err) {
+      console.error("Error loading chest count:", err);
+    }
+  };
+
+  const loadWeeklyProgress = async () => {
     if (typeof window === "undefined") return;
 
-    // Chests
-    loadChests();
-
-    // Streak
-    const currentStreak = Number(window.localStorage.getItem(streakKey) ?? "0");
-    setStreak(currentStreak);
-
-    // Weekly lessons
-    const mondayTime = getMondayOfCurrentWeek();
-    const rawLessons = window.localStorage.getItem(weeklyLessonsKey) ?? "[]";
     try {
+      const streak = await getUserStreak(userId);
+      setRealStreak(streak?.current_streak ?? 0);
+    } catch (err) {
+      console.error("Error loading streak for weekly quest:", err);
+    }
+
+    const mondayTime = getMondayOfCurrentWeek();
+    try {
+      const rawLessons = window.localStorage.getItem(weeklyLessonsKey) ?? "[]";
       const lessonsList = JSON.parse(rawLessons) as { lessonId: number; timestamp: number }[];
       const activeThisWeek = lessonsList.filter((l) => l.timestamp >= mondayTime);
-      const uniqueLessonIds = new Set(activeThisWeek.map((l) => l.lessonId));
-      setWeeklyLessonsCount(uniqueLessonIds.size);
-    } catch (e) {
+      setWeeklyLessonsCount(new Set(activeThisWeek.map((l) => l.lessonId)).size);
+    } catch {
       setWeeklyLessonsCount(0);
     }
 
-    // Perfect quiz streak
-    const currentPerfect = Number(window.localStorage.getItem(perfectQuizzesKey) ?? "0");
-    setPerfectQuizStreak(currentPerfect);
+    setPerfectQuizStreak(Number(window.localStorage.getItem(perfectQuizzesKey) ?? "0"));
 
-    // Epic Claimed status
-    const claimed = window.localStorage.getItem(epicClaimedKey) === "true";
-    setIsEpicClaimed(claimed);
+    // Whether this week's epic reward was already claimed - checked against
+    // the real DB record (user_quest_completions), not a localStorage flag
+    // that clearing browser data could bypass.
+    try {
+      const supabase = createClient();
+      const { data } = await supabase
+        .from("user_quest_completions")
+        .select("id")
+        .eq("user_id", userId)
+        .eq("quest_type", "weekly_epic")
+        .eq("day_key", weekKey)
+        .maybeSingle();
+      setIsEpicClaimed(!!data);
+    } catch (err) {
+      console.error("Error checking weekly epic claim status:", err);
+    }
   };
 
   useEffect(() => {
-    loadProgress();
+    void loadChests();
+    void loadWeeklyProgress();
 
-    const events = ["thtcdn_chests_updated", "thtcdn_weekly_quests_updated", "thtcdn_profile_updated"];
-    events.forEach((event) => window.addEventListener(event, loadProgress));
-
-    return () => {
-      events.forEach((event) => window.removeEventListener(event, loadProgress));
+    const events = ["thtcdn_chests_updated", "thtcdn_weekly_quests_updated"];
+    const handler = () => {
+      void loadChests();
+      void loadWeeklyProgress();
     };
+    events.forEach((event) => window.addEventListener(event, handler));
+    return () => events.forEach((event) => window.removeEventListener(event, handler));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [userId]);
 
   const handleOpenChest = () => {
-    if (chests <= 0 || opening) return;
-
+    if (chestCount <= 0 || opening) return;
     setShaking(true);
 
     setTimeout(async () => {
       setShaking(false);
       setOpening(true);
 
-      const randomReward = REWARDS[Math.floor(Math.random() * REWARDS.length)];
-      setRewardReveal(randomReward);
-
-      const nextChests = Math.max(0, chests - 1);
-      setChests(nextChests);
-      if (typeof window !== "undefined") {
-        window.localStorage.setItem(chestKey, String(nextChests));
+      const { ok, reward } = await openNextChest(userId);
+      if (!ok || !reward) {
+        setOpening(false);
+        toast.error("Không thể mở rương. Vui lòng thử lại.");
+        return;
       }
 
-      if (randomReward.type === "title" && typeof window !== "undefined") {
-        const unlocked = JSON.parse(window.localStorage.getItem(titlesKey) ?? "[]") as string[];
-        const rewardVal = String(randomReward.value);
-        if (!unlocked.includes(rewardVal)) {
-          unlocked.push(rewardVal);
-          window.localStorage.setItem(titlesKey, JSON.stringify(unlocked));
-        }
-        window.localStorage.setItem(`thtcdn_active_title_${userId}`, rewardVal);
-        window.dispatchEvent(new Event("thtcdn_profile_updated"));
-      } else if (randomReward.type === "theme" && typeof window !== "undefined") {
-        const unlocked = JSON.parse(window.localStorage.getItem(themesKey) ?? "[]") as string[];
-        const rewardVal = String(randomReward.value);
-        if (!unlocked.includes(rewardVal)) {
-          unlocked.push(rewardVal);
-          window.localStorage.setItem(themesKey, JSON.stringify(unlocked));
-        }
-        window.localStorage.setItem(`thtcdn_active_theme_${userId}`, rewardVal);
-        window.dispatchEvent(new Event("thtcdn_theme_updated"));
-        window.dispatchEvent(new Event("thtcdn_profile_updated"));
-      } else if (randomReward.type === "xp") {
-        try {
-          await recalculateUserStats(userId);
-        } catch (e) {
-          console.error("Error giving chest XP:", e);
-        }
+      setRewardReveal(reward);
+      setChestCount((c) => Math.max(0, c - 1));
+
+      if (reward.type === "xp") {
+        void recalculateUserStats(userId).catch((err) => console.error("Error applying chest XP:", err));
       }
     }, 1000);
   };
@@ -167,15 +157,13 @@ export default function CombinedRewardsWidget({ userId }: CombinedRewardsWidgetP
     toast.success("Đã thu thập phần quà thành công! 🌟");
   };
 
-  // Quests logic
-  const streakProgress = Math.min(streak, 5);
+  const streakProgress = Math.min(realStreak, 5);
   const lessonsProgress = Math.min(weeklyLessonsCount, 10);
   const quizProgress = Math.min(perfectQuizStreak, 3);
 
   const quest1Done = streakProgress >= 5;
   const quest2Done = lessonsProgress >= 10;
   const quest3Done = quizProgress >= 3;
-
   const allQuestsDone = quest1Done && quest2Done && quest3Done;
 
   const handleClaimEpic = async () => {
@@ -183,19 +171,26 @@ export default function CombinedRewardsWidget({ userId }: CombinedRewardsWidgetP
     setClaiming(true);
 
     try {
-      const currentChests = Number(window.localStorage.getItem(chestKey) ?? "0");
-      window.localStorage.setItem(chestKey, String(currentChests + 3));
+      const supabase = createClient();
+      // Insert-only, guarded by the same unique(user_id, quest_type, day_key)
+      // constraint every other quest claim uses - a duplicate claim (e.g.
+      // from a second tab, or clearing localStorage and retrying) fails here
+      // instead of silently granting a second set of chests.
+      const { error } = await supabase
+        .from("user_quest_completions")
+        .insert([{ user_id: userId, quest_type: "weekly_epic", day_key: weekKey, xp_earned: 0 }]);
 
-      await recalculateUserStats(userId);
+      if (error) {
+        toast.error("Không thể nhận thưởng - có thể bạn đã nhận rồi.");
+        return;
+      }
 
-      window.localStorage.setItem(epicClaimedKey, "true");
+      await earnChest(userId, "weekly_quest", 3);
+      await loadChests();
+
       setIsEpicClaimed(true);
-
-      toast.success("Chúc mừng! Bạn đã mở khóa Rương Sử Thi: Nhận +3 Rương Quà & +100 XP cực lớn! 🎁🏆👑");
-      
+      toast.success("Chúc mừng! Bạn đã mở khóa Rương Sử Thi: Nhận +3 Rương Quà! 🎁🏆👑");
       window.dispatchEvent(new Event("thtcdn_chests_updated"));
-      window.dispatchEvent(new Event("thtcdn_profile_updated"));
-      loadProgress();
     } catch (error) {
       console.error("Error claiming epic chest:", error);
       toast.error("Lỗi khi nhận phần thưởng. Hãy thử lại.");
@@ -213,24 +208,33 @@ export default function CombinedRewardsWidget({ userId }: CombinedRewardsWidgetP
       >
         <div className="flex items-center gap-2">
           <Gift className="w-4 h-4 text-rose-500" />
-          <span className="text-xs font-extrabold text-stone-900 dark:text-stone-100">Phần Thưởng</span>
-          {chests > 0 && (
+          <span className="text-xs font-extrabold text-stone-900 dark:text-stone-100">Nhiệm vụ & Phần thưởng</span>
+          {chestCount > 0 && (
             <span className="text-[9px] font-black bg-rose-500 text-white px-1.5 py-0.5 rounded-full">
-              {chests} rương
+              {chestCount} rương
             </span>
           )}
         </div>
         {isExpanded ? <ChevronUp className="w-4 h-4 text-stone-400 dark:text-stone-500" /> : <ChevronDown className="w-4 h-4 text-stone-400 dark:text-stone-500" />}
       </button>
 
-      {/* Expanded Content */}
       {isExpanded && (
         <div className="border-t border-stone-100 dark:border-stone-800">
           {/* Tabs */}
           <div className="flex gap-1 p-2 bg-stone-50 dark:bg-stone-950/50">
             <button
+              onClick={() => setActiveTab("daily")}
+              className={`flex-1 text-[10px] font-bold px-2 py-1.5 rounded-lg transition-all ${
+                activeTab === "daily"
+                  ? "bg-white dark:bg-stone-900 text-stone-900 dark:text-stone-100 shadow-sm"
+                  : "text-stone-500 dark:text-stone-400 hover:text-stone-700 dark:hover:text-stone-300"
+              }`}
+            >
+              Nhiệm vụ ngày
+            </button>
+            <button
               onClick={() => setActiveTab("chests")}
-              className={`flex-1 text-[10px] font-bold px-3 py-1.5 rounded-lg transition-all ${
+              className={`flex-1 text-[10px] font-bold px-2 py-1.5 rounded-lg transition-all ${
                 activeTab === "chests"
                   ? "bg-white dark:bg-stone-900 text-stone-900 dark:text-stone-100 shadow-sm"
                   : "text-stone-500 dark:text-stone-400 hover:text-stone-700 dark:hover:text-stone-300"
@@ -239,9 +243,9 @@ export default function CombinedRewardsWidget({ userId }: CombinedRewardsWidgetP
               Rương Quà
             </button>
             <button
-              onClick={() => setActiveTab("quests")}
-              className={`flex-1 text-[10px] font-bold px-3 py-1.5 rounded-lg transition-all ${
-                activeTab === "quests"
+              onClick={() => setActiveTab("weekly")}
+              className={`flex-1 text-[10px] font-bold px-2 py-1.5 rounded-lg transition-all ${
+                activeTab === "weekly"
                   ? "bg-white dark:bg-stone-900 text-stone-900 dark:text-stone-100 shadow-sm"
                   : "text-stone-500 dark:text-stone-400 hover:text-stone-700 dark:hover:text-stone-300"
               }`}
@@ -250,9 +254,10 @@ export default function CombinedRewardsWidget({ userId }: CombinedRewardsWidgetP
             </button>
           </div>
 
-          {/* Tab Content */}
           <div className="p-4">
-            {activeTab === "chests" ? (
+            {activeTab === "daily" && <DailyQuestsWidget userId={userId} embedded />}
+
+            {activeTab === "chests" && (
               <>
                 <style>{`
                   @keyframes shake {
@@ -268,12 +273,10 @@ export default function CombinedRewardsWidget({ userId }: CombinedRewardsWidgetP
                     90% { transform: translate(2px, 2px) rotate(0deg); }
                     100% { transform: translate(1px, -2px) rotate(-1deg); }
                   }
-                  .chest-shake {
-                    animation: shake 0.5s infinite;
-                  }
+                  .chest-shake { animation: shake 0.5s infinite; }
                 `}</style>
 
-                {chests > 0 ? (
+                {chestCount > 0 ? (
                   <div className="text-center py-4 bg-stone-50 dark:bg-stone-950 rounded-2xl border border-stone-150 dark:border-stone-850/80 space-y-3">
                     <button
                       onClick={handleOpenChest}
@@ -285,12 +288,8 @@ export default function CombinedRewardsWidget({ userId }: CombinedRewardsWidgetP
                       <span className="text-2xl">🎁</span>
                     </button>
                     <div className="space-y-1">
-                      <p className="text-xs font-bold text-stone-800 dark:text-stone-200">
-                        Bạn có rương quà chưa mở!
-                      </p>
-                      <p className="text-[10px] text-stone-400 dark:text-stone-550">
-                        Nhấn vào rương để mở khóa danh hiệu và phần thưởng
-                      </p>
+                      <p className="text-xs font-bold text-stone-800 dark:text-stone-200">Bạn có rương quà chưa mở!</p>
+                      <p className="text-[10px] text-stone-400 dark:text-stone-550">Nhấn vào rương để mở khóa danh hiệu và phần thưởng</p>
                     </div>
                   </div>
                 ) : (
@@ -299,57 +298,38 @@ export default function CombinedRewardsWidget({ userId }: CombinedRewardsWidgetP
                   </div>
                 )}
               </>
-            ) : (
+            )}
+
+            {activeTab === "weekly" && (
               <>
                 <div className="space-y-3">
-                  {/* Quest 1 */}
                   <div className="space-y-1.5">
                     <div className="flex justify-between items-center text-[10px] font-extrabold text-stone-700 dark:text-stone-300">
-                      <span className="flex items-center gap-1">
-                        <Flame className="w-3 h-3 text-orange-500" />
-                        Chuỗi Học Tập
-                      </span>
+                      <span className="flex items-center gap-1"><Flame className="w-3 h-3 text-orange-500" /> Chuỗi Học Tập</span>
                       <span>{streakProgress}/5</span>
                     </div>
                     <div className="w-full h-1.5 bg-stone-100 dark:bg-stone-800 rounded-full overflow-hidden">
-                      <div
-                        className={`h-full rounded-full transition-all duration-500 ${quest1Done ? "bg-orange-500" : "bg-orange-400"}`}
-                        style={{ width: `${(streakProgress / 5) * 100}%` }}
-                      />
+                      <div className={`h-full rounded-full transition-all duration-500 ${quest1Done ? "bg-orange-500" : "bg-orange-400"}`} style={{ width: `${(streakProgress / 5) * 100}%` }} />
                     </div>
                   </div>
 
-                  {/* Quest 2 */}
                   <div className="space-y-1.5">
                     <div className="flex justify-between items-center text-[10px] font-extrabold text-stone-700 dark:text-stone-300">
-                      <span className="flex items-center gap-1">
-                        <BookOpen className="w-3 h-3 text-sky-500" />
-                        Bài Học Tuần
-                      </span>
+                      <span className="flex items-center gap-1"><BookOpen className="w-3 h-3 text-sky-500" /> Bài Học Tuần</span>
                       <span>{lessonsProgress}/10</span>
                     </div>
                     <div className="w-full h-1.5 bg-stone-100 dark:bg-stone-800 rounded-full overflow-hidden">
-                      <div
-                        className={`h-full rounded-full transition-all duration-500 ${quest2Done ? "bg-sky-500" : "bg-sky-400"}`}
-                        style={{ width: `${(lessonsProgress / 10) * 100}%` }}
-                      />
+                      <div className={`h-full rounded-full transition-all duration-500 ${quest2Done ? "bg-sky-500" : "bg-sky-400"}`} style={{ width: `${(lessonsProgress / 10) * 100}%` }} />
                     </div>
                   </div>
 
-                  {/* Quest 3 */}
                   <div className="space-y-1.5">
                     <div className="flex justify-between items-center text-[10px] font-extrabold text-stone-700 dark:text-stone-300">
-                      <span className="flex items-center gap-1">
-                        <Sparkles className="w-3 h-3 text-emerald-500" />
-                        Quiz Hoàn Hảo
-                      </span>
+                      <span className="flex items-center gap-1"><Sparkles className="w-3 h-3 text-emerald-500" /> Quiz Hoàn Hảo</span>
                       <span>{quizProgress}/3</span>
                     </div>
                     <div className="w-full h-1.5 bg-stone-100 dark:bg-stone-800 rounded-full overflow-hidden">
-                      <div
-                        className={`h-full rounded-full transition-all duration-500 ${quest3Done ? "bg-emerald-500" : "bg-emerald-400"}`}
-                        style={{ width: `${(quizProgress / 3) * 100}%` }}
-                      />
+                      <div className={`h-full rounded-full transition-all duration-500 ${quest3Done ? "bg-emerald-500" : "bg-emerald-400"}`} style={{ width: `${(quizProgress / 3) * 100}%` }} />
                     </div>
                   </div>
                 </div>
@@ -357,8 +337,7 @@ export default function CombinedRewardsWidget({ userId }: CombinedRewardsWidgetP
                 {allQuestsDone ? (
                   isEpicClaimed ? (
                     <div className="mt-4 p-3 bg-stone-50 dark:bg-stone-950 border border-stone-150 dark:border-stone-850 rounded-2xl text-center text-[10px] text-stone-450 dark:text-stone-550 font-bold flex items-center justify-center gap-1.5">
-                      <CheckCircle2 className="w-4 h-4 text-emerald-500" />
-                      Đã nhận phần thưởng tuần này!
+                      <CheckCircle2 className="w-4 h-4 text-emerald-500" /> Đã nhận phần thưởng tuần này!
                     </div>
                   ) : (
                     <button
@@ -366,13 +345,12 @@ export default function CombinedRewardsWidget({ userId }: CombinedRewardsWidgetP
                       disabled={claiming}
                       className="mt-4 w-full py-2.5 bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-600 hover:to-amber-700 text-white rounded-xl text-[11px] font-black uppercase tracking-wider transition-all flex items-center justify-center gap-2 cursor-pointer shadow-lg shadow-amber-500/20 active:scale-95 animate-pulse"
                     >
-                      <Gift className="w-4 h-4" />
-                      {claiming ? "Đang nhận quà..." : "Mở Rương Sử Thi! 🎁"}
+                      <Gift className="w-4 h-4" /> {claiming ? "Đang nhận quà..." : "Mở Rương Sử Thi! 🎁"}
                     </button>
                   )
                 ) : (
                   <div className="mt-4 p-3 bg-stone-50 dark:bg-stone-950 border border-stone-150 dark:border-stone-850 rounded-2xl text-center text-[10px] text-stone-400 dark:text-stone-550 font-bold">
-                    🔒 Hoàn thành cả 3 nhiệm vụ để mở khóa
+                    🔒 Hoàn thành cả 3 nhiệm vụ để mở khóa +3 rương quà
                   </div>
                 )}
               </>
@@ -386,23 +364,17 @@ export default function CombinedRewardsWidget({ userId }: CombinedRewardsWidgetP
         <div className="fixed inset-0 bg-black/60 backdrop-blur-sm flex items-center justify-center z-50 p-4 animate-[fadeIn_0.2s_ease-out]">
           <div className="bg-white dark:bg-stone-900 border border-stone-250 dark:border-stone-850 rounded-3xl w-full max-w-sm p-6 text-center shadow-2xl relative space-y-5 animate-[scaleIn_0.3s_ease-out]">
             <div className="w-16 h-16 mx-auto bg-amber-500 rounded-full flex items-center justify-center text-white shadow-lg animate-bounce">
-              <Sparkles className="w-8 h-8 text-white" />
+              {rewardReveal.type === "xp" ? <Zap className="w-8 h-8 text-white" /> : <Sparkles className="w-8 h-8 text-white" />}
             </div>
-
             <div className="space-y-1">
-              <span className="text-[9px] font-extrabold uppercase tracking-widest text-amber-600 dark:text-amber-400">
-                Bạn đã mở rương nhận được
-              </span>
+              <span className="text-[9px] font-extrabold uppercase tracking-widest text-amber-600 dark:text-amber-400">Bạn đã mở rương nhận được</span>
               <h3 className="text-lg font-black text-stone-900 dark:text-stone-100 flex items-center justify-center gap-1.5">
                 {rewardReveal.type === "title" && <Trophy className="w-5 h-5 text-amber-500" />}
                 {rewardReveal.value}
                 {rewardReveal.type === "xp" && " XP"}
               </h3>
-              <p className="text-xs text-stone-500 dark:text-stone-400">
-                {rewardReveal.desc}
-              </p>
+              <p className="text-xs text-stone-500 dark:text-stone-400">{rewardReveal.desc}</p>
             </div>
-
             <button
               onClick={handleClaimReward}
               className="w-full py-3 bg-emerald-500 hover:bg-emerald-600 text-white rounded-xl text-xs font-extrabold tracking-wider uppercase transition-colors cursor-pointer"

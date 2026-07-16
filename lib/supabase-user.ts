@@ -4,6 +4,7 @@ import { getTotalQuizXp } from "@/lib/supabase-quiz-sessions";
 import { getTotalGameXp } from "@/lib/games";
 import { getTotalReferralXp, rewardMyReferralIfPending } from "@/lib/referrals";
 import { getTotalQuestXp } from "@/lib/supabase-quests";
+import { getTotalChestXp } from "@/lib/chests";
 
 // "Table not found in schema cache" (PostgREST) or "relation does not exist"
 // (raw Postgres) - the leaderboard is a non-critical feature, so a missing
@@ -422,7 +423,13 @@ export async function recalculateUserStats(userId: string) {
     console.error("Error reading recalls for XP:", err);
   }
 
-  const totalXp = lessonsCompleted * 10 + quizXp + gameXp + referralXp + gameAcademicBonusXp + questXp + milestoneXp + recallXp;
+  // "Rương quà" (chest) XP - see lib/chests.ts. Previously chests promised
+  // "+30/+50/+100 XP" on open but that XP was never actually added anywhere
+  // (opening one just called this function, which had no idea "chest XP"
+  // existed) - this is what makes it real.
+  const chestXp = await getTotalChestXp(userId);
+
+  const totalXp = lessonsCompleted * 10 + quizXp + gameXp + referralXp + gameAcademicBonusXp + questXp + milestoneXp + recallXp + chestXp;
   const quizScores = progress?.filter((p) => p.quiz_score !== null).map((p) => p.quiz_score) || [];
   const avgScore = quizScores.length > 0 ? quizScores.reduce((a, b) => a + b, 0) / quizScores.length : 0;
   const currentLevel = Math.floor(totalXp / 150) + 1;

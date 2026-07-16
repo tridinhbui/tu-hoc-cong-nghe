@@ -23,7 +23,6 @@ import DashboardTour from "@/components/DashboardTour";
 import Leaderboard from "@/components/Leaderboard";
 import DashboardRecommendations from "@/components/DashboardRecommendations";
 import MistakeReviewWidget from "@/components/MistakeReviewWidget";
-import DailyQuestsWidget from "@/components/DailyQuestsWidget";
 import LessonRecallWidget from "@/components/LessonRecallWidget";
 import SmartRemediationWidget from "@/components/SmartRemediationWidget";
 import GoalSelectionBanner from "@/components/GoalSelectionBanner";
@@ -641,11 +640,6 @@ export default function DashboardClient({ lessonsMeta }: { lessonsMeta: LessonMe
               <SmartRemediationWidget userId={user.id} lessonsMeta={lessonsMeta} />
             )}
 
-            {/* Daily Recommendations */}
-            {user?.id && (
-              <DashboardRecommendations lessonsMeta={lessonsMeta} completed={completed} userId={user.id} />
-            )}
-
             {/* Bookmarks Section */}
             {bookmarks.length > 0 && (
               <div className="rounded-2xl border border-stone-200 dark:border-stone-800 bg-white dark:bg-stone-900 px-4 py-4 shadow-sm">
@@ -691,15 +685,6 @@ export default function DashboardClient({ lessonsMeta }: { lessonsMeta: LessonMe
               </div>
             )}
 
-            {/* Daily Quests Widget */}
-            {user?.id && (
-              <DailyQuestsWidget userId={user.id} />
-            )}
-
-            {/* Daily News Quiz Challenge */}
-            {user?.id && (
-              <DailyNewsQuizWidget userId={user.id} />
-            )}
           <div className="mb-4 flex flex-wrap items-center justify-between gap-3">
             <div className="text-sm text-stone-500 dark:text-stone-400">
               {flagSelectionMode ? `${selectedFlagLessonIds.size} bài đang được chọn để tự đánh dấu` : ""}
@@ -1360,11 +1345,8 @@ export default function DashboardClient({ lessonsMeta }: { lessonsMeta: LessonMe
           )}
           </div>
 
-          {/* Right: Sidebar User Stats & Leaderboard (3 columns on desktop grid of 10, full width on mobile) */}
+          {/* Right: Cấp độ/streak/bài học, gợi ý hôm nay, nhiệm vụ & phần thưởng, BXH (3 columns on desktop grid of 10, full width on mobile) */}
           <div className="lg:col-span-3 lg:sticky lg:top-24 space-y-6">
-            {user?.id && (
-              <CombinedRewardsWidget userId={user.id} />
-            )}
             <div data-tour="user-stats">
               <UserStats
                 xp={userXp}
@@ -1375,10 +1357,23 @@ export default function DashboardClient({ lessonsMeta }: { lessonsMeta: LessonMe
                 sidebar={true}
               />
             </div>
+            {user?.id && (
+              <DashboardRecommendations lessonsMeta={lessonsMeta} completed={completed} userId={user.id} />
+            )}
+            {user?.id && (
+              <CombinedRewardsWidget userId={user.id} />
+            )}
             <Leaderboard userId={user?.id} />
           </div>
         </div>
       </div>
+
+      {/* Daily News Quiz Challenge - full width, very bottom of the page */}
+      {user?.id && (
+        <div className="max-w-6xl mx-auto px-6 pb-8">
+          <DailyNewsQuizWidget userId={user.id} />
+        </div>
+      )}
 
       {/* Admin Chat */}
       <ChatWithAdminWidget />

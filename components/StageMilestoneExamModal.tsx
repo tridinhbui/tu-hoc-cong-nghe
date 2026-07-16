@@ -6,6 +6,7 @@ import { CheckCircle2, XCircle, Trophy, Sparkles, X, ChevronRight } from "lucide
 import { savePassedMilestone } from "@/lib/supabase-milestones";
 import { getLessonDetailsForRecall } from "@/app/actions/flashcard-actions";
 import { recalculateUserStats } from "@/lib/supabase-user";
+import { earnChest } from "@/lib/chests";
 
 interface StageMilestoneExamModalProps {
   userId: string;
@@ -101,13 +102,9 @@ export default function StageMilestoneExamModal({
       const { ok, errorMessage } = await savePassedMilestone(userId, trackId, stageLabel, finalScoreRatio);
       if (ok) {
         toast.success(`Chúc mừng! Bạn đã vượt ải ${stageLabel} thành công và nhận +50 XP! 🏆🌟`);
-        if (typeof window !== "undefined") {
-          const chestKey = `thtcdn_chests_${userId}`;
-          const currentChests = Number(window.localStorage.getItem(chestKey) ?? "0");
-          window.localStorage.setItem(chestKey, String(currentChests + 1));
-          toast.info("Đặc quyền vượt ải: Nhận thêm 1 Rương Quà Tài Chính! 🎁");
-          window.dispatchEvent(new Event("thtcdn_chests_updated"));
-        }
+        await earnChest(userId, "milestone_exam");
+        toast.info("Đặc quyền vượt ải: Nhận thêm 1 Rương Quà Tài Chính! 🎁");
+        window.dispatchEvent(new Event("thtcdn_chests_updated"));
         void recalculateUserStats(userId).catch(() => {});
         onSuccess();
       } else {

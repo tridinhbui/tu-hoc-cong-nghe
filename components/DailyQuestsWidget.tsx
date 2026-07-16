@@ -5,9 +5,15 @@ import { useRouter } from "next/navigation";
 import { toast } from "sonner";
 import { Sparkles, Trophy, Calendar, CheckCircle2, Gift, ChevronDown, ChevronUp, ArrowRight } from "lucide-react";
 import { getDailyQuests, claimQuestReward, type Quest } from "@/lib/supabase-quests";
+import { earnChest } from "@/lib/chests";
+import { createClient } from "@/lib/supabase";
 
 interface DailyQuestsWidgetProps {
   userId: string;
+  /** When true, renders without its own outer card/background/header - for
+   *  embedding inside another card (CombinedRewardsWidget's "Nhiệm vụ ngày"
+   *  tab) that already provides one. */
+  embedded?: boolean;
 }
 
 // Where "Làm ngay →" sends the learner for each quest - daily_1 (complete a
@@ -22,7 +28,7 @@ function goToQuestAction(questId: string, router: ReturnType<typeof useRouter>) 
   }
 }
 
-export default function DailyQuestsWidget({ userId }: DailyQuestsWidgetProps) {
+export default function DailyQuestsWidget({ userId, embedded = false }: DailyQuestsWidgetProps) {
   const router = useRouter();
   const [quests, setQuests] = useState<Quest[]>([]);
   const [dayKey, setDayKey] = useState<string>("");
@@ -53,12 +59,17 @@ export default function DailyQuestsWidget({ userId }: DailyQuestsWidgetProps) {
         const list = await getDailyQuests(userId, key);
         setQuests(list);
 
-        // Load weekly chest status
-        if (typeof window !== "undefined") {
-          const weeklyKey = getWeeklyDayKey();
-          const savedWeekly = window.localStorage.getItem(`weekly_quest_claimed_${userId}_${weeklyKey}`);
-          setWeeklyClaimed(!!savedWeekly);
-        }
+        // Load weekly chest claim status from the real DB record.
+        const weeklyKey = getWeeklyDayKey();
+        const supabase = createClient();
+        const { data: claimedRow } = await supabase
+          .from("user_quest_completions")
+          .select("id")
+          .eq("user_id", userId)
+          .eq("quest_type", "weekly_chest")
+          .eq("day_key", weeklyKey)
+          .maybeSingle();
+        setWeeklyClaimed(!!claimedRow);
       } catch (error) {
         console.error("Error loading quests:", error);
       } finally {
@@ -91,14 +102,34 @@ export default function DailyQuestsWidget({ userId }: DailyQuestsWidgetProps) {
     }
   };
 
-  const handleWeeklyClaim = () => {
+  // Previously localStorage-only: set a flag and showed a "+25 XP" toast
+  // that never actually added any XP anywhere. Now persists the claim via
+  // user_quest_completions (same unique(user_id, quest_type, day_key)
+  // guard every other quest claim uses - clearing localStorage and
+  // reclaiming no longer works) and awards a real chest via lib/chests.ts,
+  // whose XP is real and folded into recalculateUserStats.
+  const handleWeeklyClaim = async () => {
     if (weeklyClaimed || completedQuestsCount < 3) return;
     const weeklyKey = getWeeklyDayKey();
 
-    if (typeof window !== "undefined") {
-      window.localStorage.setItem(`weekly_quest_claimed_${userId}_${weeklyKey}`, "true");
+    try {
+      const supabase = createClient();
+      const { error } = await supabase
+        .from("user_quest_completions")
+        .insert([{ user_id: userId, quest_type: "weekly_chest", day_key: weeklyKey, xp_earned: 0 }]);
+
+      if (error) {
+        toast.error("Không thể mở rương - có thể bạn đã mở rồi.");
+        return;
+      }
+
+      await earnChest(userId, "weekly_quest", 1);
       setWeeklyClaimed(true);
-      toast.success("Rương tri thức tuần đã mở! Nhận +25 XP học thuật! 🎁✨");
+      toast.success("Rương tri thức tuần đã mở! Kiểm tra tab Rương Quà để nhận thưởng. 🎁✨");
+      window.dispatchEvent(new Event("thtcdn_chests_updated"));
+    } catch (err) {
+      console.error("Error claiming weekly chest:", err);
+      toast.error("Có lỗi xảy ra. Vui lòng thử lại.");
     }
   };
 
@@ -107,7 +138,7 @@ export default function DailyQuestsWidget({ userId }: DailyQuestsWidgetProps) {
 
   if (loading) {
     return (
-      <div className="rounded-2xl border border-stone-200 dark:border-stone-800 bg-white dark:bg-stone-900 p-5 shadow-sm space-y-4 animate-pulse">
+      <div className={embedded ? "space-y-4 animate-pulse" : "rounded-2xl border border-stone-200 dark:border-stone-800 bg-white dark:bg-stone-900 p-5 shadow-sm space-y-4 animate-pulse"}>
         <div className="h-5 bg-stone-200 dark:bg-stone-800 rounded w-1/3" />
         <div className="space-y-2">
           <div className="h-10 bg-stone-200 dark:bg-stone-800 rounded-xl" />
@@ -119,11 +150,16 @@ export default function DailyQuestsWidget({ userId }: DailyQuestsWidgetProps) {
   }
 
   return (
-    <div className="rounded-2xl border border-stone-200/80 dark:border-stone-800/80 bg-white dark:bg-stone-900 p-5 shadow-sm relative overflow-hidden group">
+    <div className={embedded ? "relative" : "rounded-2xl border border-stone-200/80 dark:border-stone-800/80 bg-white dark:bg-stone-900 p-5 shadow-sm relative overflow-hidden group"}>
       {/* Dynamic background lights */}
-      <div className="absolute top-0 right-0 w-32 h-32 bg-amber-500/[0.03] rounded-full blur-3xl pointer-events-none" />
-      <div className="absolute bottom-0 left-0 w-24 h-24 bg-rose-500/[0.02] rounded-full blur-2xl pointer-events-none" />
+      {!embedded && (
+        <>
+          <div className="absolute top-0 right-0 w-32 h-32 bg-amber-500/[0.03] rounded-full blur-3xl pointer-events-none" />
+          <div className="absolute bottom-0 left-0 w-24 h-24 bg-rose-500/[0.02] rounded-full blur-2xl pointer-events-none" />
+        </>
+      )}
 
+      {!embedded && (
       <button
         onClick={() => setCollapsed((v) => !v)}
         className="w-full flex items-center justify-between mb-4 relative z-10 cursor-pointer"
@@ -150,8 +186,9 @@ export default function DailyQuestsWidget({ userId }: DailyQuestsWidgetProps) {
           )}
         </div>
       </button>
+      )}
 
-      {collapsed ? null : (
+      {(embedded || !collapsed) && (
       <div className="space-y-3 relative z-10">
         {quests.map((quest) => {
           const isDone = quest.current >= quest.target;
@@ -234,7 +271,7 @@ export default function DailyQuestsWidget({ userId }: DailyQuestsWidgetProps) {
             />
           </div>
           <button
-            onClick={handleWeeklyClaim}
+            onClick={() => void handleWeeklyClaim()}
             disabled={weeklyClaimed || completedQuestsCount < 3}
             className={`px-3 py-1.5 text-[10px] font-extrabold rounded-lg transition-all duration-200 ${
               weeklyClaimed
