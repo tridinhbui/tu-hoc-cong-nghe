@@ -44,6 +44,8 @@ export default function CombinedRewardsWidget({ userId, defaultExpanded = false 
   const [perfectQuizStreak, setPerfectQuizStreak] = useState<number>(0);
   const [isEpicClaimed, setIsEpicClaimed] = useState<boolean>(false);
   const [claiming, setClaiming] = useState<boolean>(false);
+  const [dailyQuests, setDailyQuests] = useState<any[]>([]);
+  const [weeklyClaimed, setWeeklyClaimed] = useState<boolean>(false);
 
   const weeklyLessonsKey = `thtcdn_weekly_completed_lessons_${userId}`;
   const perfectQuizzesKey = `thtcdn_weekly_perfect_quizzes_${userId}`;
@@ -112,6 +114,21 @@ export default function CombinedRewardsWidget({ userId, defaultExpanded = false 
     } catch (err) {
       console.error("Error checking weekly epic claim status:", err);
     }
+
+    // Check weekly chest claim status
+    try {
+      const supabase = createClient();
+      const { data: claimedRow } = await supabase
+        .from("user_quest_completions")
+        .select("id")
+        .eq("user_id", userId)
+        .eq("quest_type", "weekly_chest")
+        .eq("day_key", weekKey)
+        .maybeSingle();
+      setWeeklyClaimed(!!claimedRow);
+    } catch (err) {
+      console.error("Error loading weekly chest claim status:", err);
+    }
   };
 
   useEffect(() => {
@@ -156,6 +173,32 @@ export default function CombinedRewardsWidget({ userId, defaultExpanded = false 
     setOpening(false);
     setRewardReveal(null);
     toast.success("Đã thu thập phần quà thành công! 🌟");
+  };
+
+  const handleWeeklyClaim = async () => {
+    const completedQuestsCount = dailyQuests.filter((q) => q.current >= q.target).length;
+    if (weeklyClaimed || completedQuestsCount < 3) return;
+
+    try {
+      const supabase = createClient();
+      const { error } = await supabase
+        .from("user_quest_completions")
+        .insert([{ user_id: userId, quest_type: "weekly_chest", day_key: weekKey, xp_earned: 0 }]);
+
+      if (error) {
+        toast.error("Không thể mở rương - có thể bạn đã mở rồi.");
+        return;
+      }
+
+      await earnChest(userId, "weekly_quest", 1);
+      setWeeklyClaimed(true);
+      await loadChests();
+      toast.success("Rương tri thức tuần đã mở thành công! Bạn nhận được thêm +1 Rương Quà! 🎁✨");
+      window.dispatchEvent(new Event("thtcdn_chests_updated"));
+    } catch (err) {
+      console.error("Error claiming weekly chest:", err);
+      toast.error("Có lỗi xảy ra. Vui lòng thử lại.");
+    }
   };
 
   const streakProgress = Math.min(realStreak, 5);
@@ -235,13 +278,19 @@ export default function CombinedRewardsWidget({ userId, defaultExpanded = false 
             </button>
             <button
               onClick={() => setActiveTab("chests")}
-              className={`flex-1 text-[10px] font-bold px-2 py-1.5 rounded-lg transition-all ${
+              className={`flex-1 text-[10.5px] font-black px-2 py-1.5 rounded-lg transition-all relative overflow-hidden flex items-center justify-center gap-1.5 ${
                 activeTab === "chests"
-                  ? "bg-white dark:bg-stone-900 text-stone-900 dark:text-stone-100 shadow-sm"
-                  : "text-stone-500 dark:text-stone-400 hover:text-stone-700 dark:hover:text-stone-300"
+                  ? "bg-gradient-to-r from-amber-500 to-rose-500 text-white shadow-md shadow-rose-500/20"
+                  : chestCount > 0
+                  ? "bg-rose-50 dark:bg-rose-950/40 text-rose-600 dark:text-rose-400 border border-rose-200 dark:border-rose-900/50 animate-pulse font-black"
+                  : "text-stone-500 dark:text-stone-400 hover:text-rose-500 dark:hover:text-rose-450 hover:bg-rose-500/5"
               }`}
             >
-              Rương Quà
+              <span>Rương Quà</span>
+              {chestCount > 0 && (
+                <span className="w-1.5 h-1.5 rounded-full bg-rose-500 animate-ping absolute top-1 right-1.5" />
+              )}
+              <Gift className={`w-3.5 h-3.5 ${chestCount > 0 ? "animate-bounce text-rose-500" : ""}`} />
             </button>
             <button
               onClick={() => setActiveTab("weekly")}
@@ -256,7 +305,13 @@ export default function CombinedRewardsWidget({ userId, defaultExpanded = false 
           </div>
 
           <div className="p-3">
-            {activeTab === "daily" && <DailyQuestsWidget userId={userId} embedded />}
+            {activeTab === "daily" && (
+              <DailyQuestsWidget 
+                userId={userId} 
+                embedded 
+                onQuestsLoaded={(list) => setDailyQuests(list)} 
+              />
+            )}
 
             {activeTab === "chests" && (
               <>
@@ -298,6 +353,46 @@ export default function CombinedRewardsWidget({ userId, defaultExpanded = false 
                     Không có rương nào chưa mở. Hoàn thành nhiệm vụ hàng ngày hoặc thi vượt ải chặng để kiếm rương kho báu! 🏆
                   </div>
                 )}
+
+                {/* Rương tri thức tuần - Weekly Chest Tracker inside Chests Tab */}
+                <div className="mt-4 pt-4 border-t border-stone-150 dark:border-stone-850/80">
+                  <div className="flex items-center justify-between mb-2">
+                    <span className="text-[10px] font-black uppercase tracking-wider flex items-center gap-1 bg-gradient-to-r from-rose-500 to-pink-500 bg-clip-text text-transparent animate-pulse">
+                      <Gift className="w-3.5 h-3.5 text-rose-500" /> Rương tri thức tuần
+                    </span>
+                    <span className="text-[9px] font-extrabold text-stone-600 dark:text-stone-400 bg-stone-50 dark:bg-stone-950/60 px-1.5 py-0.5 rounded border border-stone-200/60 dark:border-stone-850">
+                      {dailyQuests.filter((q) => q.current >= q.target).length}/3 nhiệm vụ ngày
+                    </span>
+                  </div>
+                  
+                  <div className="flex items-center gap-2">
+                    <div className="flex-1 h-3 bg-stone-100 dark:bg-stone-950 rounded-full overflow-hidden shadow-inner relative flex items-center px-0.5 border border-stone-200/40 dark:border-stone-800">
+                      <div
+                        className="h-2 bg-gradient-to-r from-rose-500 to-pink-500 rounded-full transition-all duration-500 flex items-center justify-end px-1"
+                        style={{ width: `${Math.min(100, (dailyQuests.filter((q) => q.current >= q.target).length / 3) * 100)}%` }}
+                      >
+                        {dailyQuests.filter((q) => q.current >= q.target).length > 0 && (
+                          <span className="text-[7.5px] font-black text-white whitespace-nowrap">
+                            {Math.round((dailyQuests.filter((q) => q.current >= q.target).length / 3) * 100)}%
+                          </span>
+                        )}
+                      </div>
+                    </div>
+                    <button
+                      onClick={() => void handleWeeklyClaim()}
+                      disabled={weeklyClaimed || dailyQuests.filter((q) => q.current >= q.target).length < 3}
+                      className={`px-3 py-1.5 text-[9px] font-extrabold rounded-lg transition-all duration-200 border shrink-0 flex items-center justify-center ${
+                        weeklyClaimed
+                          ? "bg-stone-100 dark:bg-stone-950 text-stone-450 border-stone-200/40 dark:border-stone-850"
+                          : dailyQuests.filter((q) => q.current >= q.target).length >= 3
+                          ? "bg-gradient-to-r from-rose-500 to-pink-500 text-white border-rose-500 shadow-[0_4px_10px_-3px_rgba(244,63,94,0.4)] hover:scale-105 active:scale-95 cursor-pointer animate-pulse"
+                          : "bg-stone-50 dark:bg-stone-900 text-stone-400 border-stone-200 dark:border-stone-800 cursor-not-allowed"
+                      }`}
+                    >
+                      {weeklyClaimed ? "Đã mở 🎁" : "Mở rương 🔒"}
+                    </button>
+                  </div>
+                </div>
               </>
             )}
 

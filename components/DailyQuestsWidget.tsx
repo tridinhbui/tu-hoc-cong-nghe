@@ -14,6 +14,7 @@ interface DailyQuestsWidgetProps {
    *  embedding inside another card (CombinedRewardsWidget's "Nhiệm vụ ngày"
    *  tab) that already provides one. */
   embedded?: boolean;
+  onQuestsLoaded?: (quests: Quest[]) => void;
 }
 
 // Where "Làm ngay →" sends the learner for each quest - daily_1 (complete a
@@ -28,7 +29,7 @@ function goToQuestAction(questId: string, router: ReturnType<typeof useRouter>) 
   }
 }
 
-export default function DailyQuestsWidget({ userId, embedded = false }: DailyQuestsWidgetProps) {
+export default function DailyQuestsWidget({ userId, embedded = false, onQuestsLoaded }: DailyQuestsWidgetProps) {
   const router = useRouter();
   const [quests, setQuests] = useState<Quest[]>([]);
   const [dayKey, setDayKey] = useState<string>("");
@@ -58,6 +59,7 @@ export default function DailyQuestsWidget({ userId, embedded = false }: DailyQue
       try {
         const list = await getDailyQuests(userId, key);
         setQuests(list);
+        onQuestsLoaded?.(list);
 
         // Load weekly chest claim status from the real DB record.
         const weeklyKey = getWeeklyDayKey();
@@ -89,9 +91,11 @@ export default function DailyQuestsWidget({ userId, embedded = false }: DailyQue
       const ok = await claimQuestReward(userId, quest.id, dayKey, quest.xpReward);
       if (ok) {
         toast.success(`Chúc mừng! Nhận thành công +${quest.xpReward} XP học thuật! 🌟`);
-        setQuests((prev) =>
-          prev.map((q) => (q.id === quest.id ? { ...q, claimed: true } : q))
-        );
+        setQuests((prev) => {
+          const next = prev.map((q) => (q.id === quest.id ? { ...q, claimed: true } : q));
+          onQuestsLoaded?.(next);
+          return next;
+        });
       } else {
         toast.error("Không thể nhận thưởng. Vui lòng thử lại.");
       }
@@ -262,47 +266,6 @@ export default function DailyQuestsWidget({ userId, embedded = false }: DailyQue
         })}
       </div>
       )}
-
-      {/* Weekly Chest Tracker */}
-      <div className="mt-4 pt-4 border-t border-stone-150 dark:border-stone-800/80 relative z-10">
-        <div className="flex items-center justify-between mb-2.5">
-          <span className="text-[11px] font-black uppercase tracking-wider flex items-center gap-1.5 bg-gradient-to-r from-rose-500 to-pink-500 bg-clip-text text-transparent shrink-0">
-            <Gift className="w-3.5 h-3.5 text-rose-500" /> Rương tri thức tuần
-          </span>
-          <span className="text-[10px] font-extrabold text-stone-600 dark:text-stone-400 bg-stone-50 dark:bg-stone-950/60 px-2 py-0.5 rounded border border-stone-200/60 dark:border-stone-800">
-            {completedQuestsCount}/3 nhiệm vụ
-          </span>
-        </div>
-        
-        {/* Unified Connected Progress Bar & Button Unit */}
-        <div className="flex items-center">
-          <div className="flex-1 h-8 bg-stone-50 dark:bg-stone-950/40 border border-stone-200 dark:border-stone-800 border-r-0 rounded-l-xl overflow-hidden shadow-inner relative flex items-center px-1">
-            <div
-              className="h-6 bg-gradient-to-r from-rose-500 to-pink-500 rounded-l-lg transition-all duration-500 flex items-center justify-end px-2"
-              style={{ width: `${Math.min(100, (completedQuestsCount / 3) * 100)}%` }}
-            >
-              {completedQuestsCount > 0 && (
-                <span className="text-[9px] font-black text-white whitespace-nowrap">
-                  {Math.round((completedQuestsCount / 3) * 100)}%
-                </span>
-              )}
-            </div>
-          </div>
-          <button
-            onClick={() => void handleWeeklyClaim()}
-            disabled={weeklyClaimed || completedQuestsCount < 3}
-            className={`h-8 px-4 text-[10px] font-extrabold rounded-r-xl transition-all duration-200 border shrink-0 flex items-center justify-center ${
-              weeklyClaimed
-                ? "bg-stone-100 dark:bg-stone-950 text-stone-450 border-stone-200 dark:border-stone-850"
-                : completedQuestsCount >= 3
-                ? "bg-gradient-to-r from-rose-500 to-pink-500 text-white border-rose-500 shadow-[0_4px_10px_-3px_rgba(244,63,94,0.4)] hover:scale-102 active:scale-98 cursor-pointer animate-pulse"
-                : "bg-stone-50 dark:bg-stone-900 text-stone-400 border-stone-200 dark:border-stone-800 cursor-not-allowed"
-            }`}
-          >
-            {weeklyClaimed ? "Đã mở 🎁" : "Mở rương 🔒"}
-          </button>
-        </div>
-      </div>
     </div>
   );
 }
