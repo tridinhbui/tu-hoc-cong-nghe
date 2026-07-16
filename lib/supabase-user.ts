@@ -378,7 +378,51 @@ export async function recalculateUserStats(userId: string) {
   }
 
   const questXp = await getTotalQuestXp(userId);
-  const totalXp = lessonsCompleted * 10 + quizXp + gameXp + referralXp + gameAcademicBonusXp + questXp;
+
+  // Milestone Exam XP: +50 XP per milestone with score >= 0.8
+  let milestoneXp = 0;
+  try {
+    const { data: milestones, error: milestoneErr } = await supabase
+      .from("user_milestone_exams")
+      .select("score");
+    if (!milestoneErr && milestones) {
+      milestoneXp = milestones.filter((m) => Number(m.score) >= 0.8).length * 50;
+    } else if (typeof window !== "undefined") {
+      // Fallback: check all milestone tracks in localStorage
+      for (let i = 0; i < window.localStorage.length; i++) {
+        const key = window.localStorage.key(i);
+        if (key && key.startsWith(`milestones_${userId}_`)) {
+          try {
+            const parsed = JSON.parse(window.localStorage.getItem(key) ?? "[]");
+            milestoneXp += parsed.filter((m: any) => Number(m.score) >= 0.8).length * 50;
+          } catch {}
+        }
+      }
+    }
+  } catch (err) {
+    console.error("Error reading milestones for XP:", err);
+  }
+
+  // Active Recall XP: +10 XP per successfully completed recall level (recall_stage - 1)
+  let recallXp = 0;
+  try {
+    const { data: recalls, error: recallErr } = await supabase
+      .from("user_lesson_recalls")
+      .select("recall_stage");
+    if (!recallErr && recalls) {
+      recallXp = recalls.reduce((sum, r) => sum + Math.max(0, Number(r.recall_stage) - 1) * 10, 0);
+    } else if (typeof window !== "undefined") {
+      const localData = window.localStorage.getItem(`lesson_recalls_${userId}`);
+      if (localData) {
+        const parsed = JSON.parse(localData);
+        recallXp = parsed.reduce((sum: number, r: any) => sum + Math.max(0, Number(r.recall_stage) - 1) * 10, 0);
+      }
+    }
+  } catch (err) {
+    console.error("Error reading recalls for XP:", err);
+  }
+
+  const totalXp = lessonsCompleted * 10 + quizXp + gameXp + referralXp + gameAcademicBonusXp + questXp + milestoneXp + recallXp;
   const quizScores = progress?.filter((p) => p.quiz_score !== null).map((p) => p.quiz_score) || [];
   const avgScore = quizScores.length > 0 ? quizScores.reduce((a, b) => a + b, 0) / quizScores.length : 0;
   const currentLevel = Math.floor(totalXp / 150) + 1;

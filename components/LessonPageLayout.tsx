@@ -19,6 +19,7 @@ import { LessonCompletionContext } from "@/lib/lesson-completion-context";
 import { createClient } from "@/lib/supabase";
 import { markLessonComplete as markLessonCompleteSupabase } from "@/lib/supabase-progress";
 import { getLessonProgress } from "@/lib/supabase-progress";
+import { queueOfflineCompletion, removeOfflineCompletion } from "@/lib/offline-sync";
 import { recalculateUserStats } from "@/lib/supabase-user";
 import { updateStreak } from "@/lib/supabase-streak";
 import { getReadingProgress, updateReadingProgress } from "@/lib/supabase-reading";
@@ -559,8 +560,35 @@ export default function LessonPageLayout({ lesson, quiz, children }: Props) {
     // retry - nothing else matters if this didn't land.
     try {
       await markLessonCompleteSupabase(uid, persistedLessonId, finalScore, durationMin * 60);
+      removeOfflineCompletion(uid, persistedLessonId);
+
+      // Track weekly quests progress
+      if (typeof window !== "undefined") {
+        const weeklyLessonsKey = `thtcdn_weekly_completed_lessons_${uid}`;
+        const raw = window.localStorage.getItem(weeklyLessonsKey) ?? "[]";
+        try {
+          const completedList = JSON.parse(raw);
+          completedList.push({ lessonId: persistedLessonId, timestamp: Date.now() });
+          window.localStorage.setItem(weeklyLessonsKey, JSON.stringify(completedList));
+        } catch (e) {
+          window.localStorage.setItem(weeklyLessonsKey, JSON.stringify([{ lessonId: persistedLessonId, timestamp: Date.now() }]));
+        }
+
+        // Track perfect quizzes streak (100% score)
+        const weeklyPerfectKey = `thtcdn_weekly_perfect_quizzes_${uid}`;
+        let perfectStreak = Number(window.localStorage.getItem(weeklyPerfectKey) ?? "0");
+        if (finalScore === 100) {
+          perfectStreak += 1;
+        } else {
+          perfectStreak = 0; // reset on any score less than 100%
+        }
+        window.localStorage.setItem(weeklyPerfectKey, String(perfectStreak));
+        
+        window.dispatchEvent(new Event("thtcdn_weekly_quests_updated"));
+      }
     } catch (error) {
-      console.error("Error saving lesson completion:", error);
+      console.error("Error saving lesson completion, queued for offline sync:", error);
+      queueOfflineCompletion(uid, persistedLessonId, finalScore, durationMin * 60);
       return false;
     }
 

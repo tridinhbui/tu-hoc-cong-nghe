@@ -101,6 +101,13 @@ export default function StageMilestoneExamModal({
       const ok = await savePassedMilestone(userId, trackId, stageLabel, finalScoreRatio);
       if (ok) {
         toast.success(`Chúc mừng! Bạn đã vượt ải ${stageLabel} thành công và nhận +50 XP! 🏆🌟`);
+        if (typeof window !== "undefined") {
+          const chestKey = `thtcdn_chests_${userId}`;
+          const currentChests = Number(window.localStorage.getItem(chestKey) ?? "0");
+          window.localStorage.setItem(chestKey, String(currentChests + 1));
+          toast.info("Đặc quyền vượt ải: Nhận thêm 1 Rương Quà Tài Chính! 🎁");
+          window.dispatchEvent(new Event("thtcdn_chests_updated"));
+        }
         void recalculateUserStats(userId).catch(() => {});
         onSuccess();
       } else {

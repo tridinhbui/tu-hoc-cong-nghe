@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import dynamic from "next/dynamic";
-import { Wallet, PiggyBank, ShieldAlert } from "lucide-react";
+import { Wallet, PiggyBank, ShieldAlert, TrendingUp, Sparkles } from "lucide-react";
 import { useAuthGate } from "@/lib/use-auth-gate";
 
 // Only one tab renders at a time - lazy-load each so switching tabs is what
@@ -13,13 +13,17 @@ const LOADING = <div className="py-12 text-center text-sm text-stone-400 dark:te
 const NetWorthTracker = dynamic(() => import("@/components/tools/NetWorthTracker"), { loading: () => LOADING });
 const BudgetCalculator = dynamic(() => import("@/components/tools/BudgetCalculator"), { loading: () => LOADING });
 const EmergencyFundCalculator = dynamic(() => import("@/components/tools/EmergencyFundCalculator"), { loading: () => LOADING });
+const CompoundInterestSimulator = dynamic(() => import("@/components/tools/CompoundInterestSimulator"), { loading: () => LOADING });
+const FirePlanner = dynamic(() => import("@/components/tools/FirePlanner"), { loading: () => LOADING });
 
-type Tab = "net-worth" | "budget" | "emergency-fund";
+type Tab = "net-worth" | "budget" | "emergency-fund" | "compound-interest" | "fire-planner";
 
 const TABS: { id: Tab; label: string; icon: typeof Wallet }[] = [
   { id: "net-worth", label: "Tài sản ròng", icon: Wallet },
   { id: "budget", label: "Ngân sách 50/30/20", icon: PiggyBank },
   { id: "emergency-fund", label: "Quỹ khẩn cấp", icon: ShieldAlert },
+  { id: "compound-interest", label: "Giả lập Lãi kép", icon: TrendingUp },
+  { id: "fire-planner", label: "Kế hoạch FIRE", icon: Sparkles },
 ];
 
 // Hub for the personal-finance tools that turn lesson concepts (net worth,
@@ -74,6 +78,8 @@ export default function CongCuClient() {
         {tab === "net-worth" && <NetWorthTracker userId={userId} />}
         {tab === "budget" && <BudgetCalculator userId={userId} />}
         {tab === "emergency-fund" && <EmergencyFundCalculator userId={userId} />}
+        {tab === "compound-interest" && <CompoundInterestSimulator />}
+        {tab === "fire-planner" && <FirePlanner />}
       </div>
     </div>
   );

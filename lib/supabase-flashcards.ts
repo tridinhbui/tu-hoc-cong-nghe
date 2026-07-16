@@ -172,6 +172,33 @@ export async function saveFlashcardsBulk(userId: string, cards: { term: string; 
   const { error, count } = await supabase.from("user_flashcards").insert(rows, { count: "exact" });
 
   if (error) {
+    if (isMissingTableError(error)) {
+      if (typeof window !== "undefined") {
+        try {
+          const list = await getFlashcards(userId);
+          const existingTerms = new Set(list.map((c) => c.term));
+          const toInsertLocal = Array.from(dedup.values()).filter((c) => !existingTerms.has(c.term));
+          const skippedLocal = dedup.size - toInsertLocal.length;
+          
+          if (toInsertLocal.length === 0) return { added: 0, skipped: skippedLocal };
+          
+          const newCards = toInsertLocal.map((c) => ({
+            term: c.term,
+            definition: c.definition,
+            interval: 1,
+            ease_factor: 2.5,
+            repetitions: 0,
+            next_review_at: new Date().toISOString(),
+          }));
+          
+          const updatedList = [...list, ...newCards];
+          window.localStorage.setItem(`flashcards_${userId}`, JSON.stringify(updatedList));
+          return { added: newCards.length, skipped: skippedLocal };
+        } catch (e) {
+          console.error("Local storage fallback error in bulk save:", e);
+        }
+      }
+    }
     console.error("Error bulk-saving flashcards:", error);
     return { added: 0, skipped };
   }

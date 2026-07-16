@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { useRouter, useSearchParams } from "next/navigation";
@@ -26,11 +26,15 @@ import MistakeReviewWidget from "@/components/MistakeReviewWidget";
 import DailyQuestsWidget from "@/components/DailyQuestsWidget";
 import LessonRecallWidget from "@/components/LessonRecallWidget";
 import SmartRemediationWidget from "@/components/SmartRemediationWidget";
+import GoalSelectionBanner from "@/components/GoalSelectionBanner";
+import DailyNewsQuizWidget from "@/components/DailyNewsQuizWidget";
+import CombinedRewardsWidget from "@/components/CombinedRewardsWidget";
 import { hasCompletedOnboarding, completeOnboarding } from "@/lib/supabase-onboarding";
 import { getUserProfile, recalculateUserStats } from "@/lib/supabase-user";
 import UnlockRequestModal from "@/components/UnlockRequestModal";
 import KnowledgeChallengeModal from "@/components/KnowledgeChallengeModal";
 import StageMilestoneExamModal from "@/components/StageMilestoneExamModal";
+import CertificateModal from "@/components/CertificateModal";
 import { TRACK_PERSONAL, TRACK_PROFESSIONAL, isLessonInRange } from "@/lib/track-stages";
 import { BONUS_CATEGORIES, BONUS_CATEGORY_ORDER } from "@/lib/bonus-lesson-categories";
 import { CFA_LEVEL_1_SUBJECTS } from "@/lib/cfa-track";
@@ -147,6 +151,7 @@ export default function DashboardClient({ lessonsMeta }: { lessonsMeta: LessonMe
   const [appealTarget, setAppealTarget] = useState<{ id: number; slug: string; title: string } | null>(null);
   const [passedMilestones, setPassedMilestones] = useState<MilestoneCompletion[]>([]);
   const [activeMilestoneExam, setActiveMilestoneExam] = useState<{ label: string; name: string; lessonIds: number[] } | null>(null);
+  const [selectedCertStage, setSelectedCertStage] = useState<{ label: string; name: string } | null>(null);
 
   useRoutePrefetch(["/analytics", "/ghi-chu", "/kiem-tra", "/tai-lieu", "/ban-be", "/profile", "/settings", "/cfa"]);
 
@@ -233,7 +238,85 @@ export default function DashboardClient({ lessonsMeta }: { lessonsMeta: LessonMe
     setShowOnboarding(false);
   };
 
-  // Check auth and calculate XP on mount
+  // Synchronize stats & progress with database and process offline queue
+  const syncProgressAndXP = useCallback(async (userId: string) => {
+    // First, try to sync any offline queued completions
+    try {
+      const { syncOfflineQueue } = await import("@/lib/offline-sync");
+      const didSync = await syncOfflineQueue(userId);
+      if (didSync) {
+        toast.success("Tiến độ học tập offline đã được đồng bộ thành công! 🌟");
+      }
+    } catch (err) {
+      console.error("Offline sync error:", err);
+    }
+
+    try {
+      const serverCompleted = await getCompletedLessons(userId);
+      mergeCompletedLessons(serverCompleted);
+      forceProgressResync((n) => n + 1);
+    } catch (error) {
+      console.error("Error syncing server progress:", error);
+    }
+
+    supabase
+      .from("user_lesson_unlocks")
+      .select("lesson_id")
+      .eq("user_id", userId)
+      .then(({ data }) => {
+        if (data) setUnlockedLessonIds(new Set(data.map((row) => row.lesson_id)));
+      });
+
+    getChallengePassedLessonIds(userId)
+      .then((ids) => setChallengePassedIds(new Set(ids)))
+      .catch((error) => console.error("Error loading challenge passes:", error));
+
+    getUserLessonFlags(userId)
+      .then((flags) => setFlaggedLessonIds(new Set(flags.map((flag) => flag.lesson_id))))
+      .catch((error) => console.error("Error loading lesson flags:", error));
+
+    getUserBookmarks(userId)
+      .then((saved) => setBookmarks(saved.slice(0, 6)))
+      .catch((error) => console.error("Error loading lesson bookmarks:", error));
+
+    getPassedMilestones(userId, activeTrack)
+      .then((milestones) => setPassedMilestones(milestones))
+      .catch((error) => console.error("Error loading milestones:", error));
+
+    if (window.localStorage.getItem(ONBOARDING_LOCAL_KEY)) {
+      setOnboardingChecked(true);
+    } else {
+      try {
+        const hasOnboarded = await hasCompletedOnboarding(userId);
+        setOnboardingChecked(true);
+        if (hasOnboarded) {
+          window.localStorage.setItem(ONBOARDING_LOCAL_KEY, "1");
+        } else {
+          setShowOnboarding(true);
+        }
+      } catch (error) {
+        console.error("Error checking onboarding:", error);
+        setOnboardingChecked(true);
+      }
+    }
+
+    try {
+      const stats = await recalculateUserStats(userId);
+      setUserXp(stats.total_xp);
+    } catch (error) {
+      console.error("Error recalculating user XP, falling back to stored value:", error);
+      try {
+        const profile = await getUserProfile(userId);
+        setUserXp(profile.total_xp);
+      } catch (fallbackError) {
+        console.error("Error loading user XP:", fallbackError);
+      }
+    }
+
+    setAvgQuizScore(75);
+  }, [activeTrack, supabase]);
+
+  // Check auth on mount
   useEffect(() => {
     const checkAuth = async () => {
       // Resolve via the INITIAL_SESSION event instead of calling
@@ -278,113 +361,39 @@ export default function DashboardClient({ lessonsMeta }: { lessonsMeta: LessonMe
       }
 
       setUser(session.user);
-
-      // Reconcile localStorage with Supabase's user_progress (source of
-      // truth) before computing anything derived from `completed` below.
-      // localStorage is only a client-side cache / offline hint - never a
-      // trusted source for restoring authoritative completion back onto the
-      // account, because the learner can edit it freely in the browser.
-      try {
-        const serverCompleted = await getCompletedLessons(session.user.id);
-        mergeCompletedLessons(serverCompleted);
-        forceProgressResync((n) => n + 1);
-      } catch (error) {
-        console.error("Error syncing server progress:", error);
-      }
-
-      // Lesson-level unlock grants from approved admin requests (early access
-      // to a lesson that would otherwise be locked behind its prerequisite).
-      supabase
-        .from("user_lesson_unlocks")
-        .select("lesson_id")
-        .eq("user_id", session.user.id)
-        .then(({ data }) => {
-          if (data) setUnlockedLessonIds(new Set(data.map((row) => row.lesson_id)));
-        });
-
-      // Lessons unlocked by passing their gate challenge (see isChallengeGated).
-      getChallengePassedLessonIds(session.user.id)
-        .then((ids) => setChallengePassedIds(new Set(ids)))
-        .catch((error) => console.error("Error loading challenge passes:", error));
-
-      getUserLessonFlags(session.user.id)
-        .then((flags) => setFlaggedLessonIds(new Set(flags.map((flag) => flag.lesson_id))))
-        .catch((error) => console.error("Error loading lesson flags:", error));
-
-      getUserBookmarks(session.user.id)
-        .then((saved) => setBookmarks(saved.slice(0, 6)))
-        .catch((error) => console.error("Error loading lesson bookmarks:", error));
-
-      getPassedMilestones(session.user.id, activeTrack)
-        .then((milestones) => setPassedMilestones(milestones))
-        .catch((error) => console.error("Error loading milestones:", error));
-
-      // Check if user has completed onboarding. The local flag is checked
-      // first and short-circuits the server round trip - it's what actually
-      // stops the modal from reappearing on every visit when the
-      // user_onboarding table/migration isn't available on this environment
-      // (hasCompletedOnboarding fails open to "not onboarded" in that case).
-      if (window.localStorage.getItem(ONBOARDING_LOCAL_KEY)) {
-        setOnboardingChecked(true);
-      } else {
-        try {
-          const hasOnboarded = await hasCompletedOnboarding(session.user.id);
-          setOnboardingChecked(true);
-
-          if (hasOnboarded) {
-            window.localStorage.setItem(ONBOARDING_LOCAL_KEY, "1");
-          } else {
-            setShowOnboarding(true);
-          }
-        } catch (error) {
-          console.error("Error checking onboarding:", error);
-          setOnboardingChecked(true);
-        }
-      }
-
-      // Self-heals total_xp on every dashboard visit instead of trusting
-      // whatever user_profiles.total_xp currently holds. recalculateUserStats
-      // is normally called right after a lesson completes, but that call is
-      // best-effort (a network blip or transient error just gets logged, not
-      // retried - the completion itself still saved fine) - so a user could
-      // legitimately have N completed lessons in user_progress while
-      // total_xp reflects an earlier, smaller N forever, with nothing to
-      // ever reconcile the two. Reported by users as "đã học xong 26 bài
-      // nhưng chỉ có 110 XP". Recomputing from the real completed-lesson
-      // count here, every mount, makes that permanently self-correcting.
-      try {
-        const stats = await recalculateUserStats(session.user.id);
-        setUserXp(stats.total_xp);
-      } catch (error) {
-        console.error("Error recalculating user XP, falling back to stored value:", error);
-        try {
-          const profile = await getUserProfile(session.user.id);
-          setUserXp(profile.total_xp);
-        } catch (fallbackError) {
-          console.error("Error loading user XP:", fallbackError);
-        }
-      }
-
-      // Mock average quiz score
-      setAvgQuizScore(75);
-
+      await syncProgressAndXP(session.user.id);
       setLoading(false);
     };
 
     checkAuth();
-    // Deliberately mount-only. `completed.length` used to be a dependency
-    // here, but this effect itself calls mergeCompletedLessons (via the
-    // recovery-patch logic above), which changes completed.length - making
-    // the effect re-trigger itself on every mount. Each re-run re-subscribes
-    // a fresh onAuthStateChange listener and re-runs the whole reconcile/
-    // unlock/onboarding/XP sequence from scratch, which is both wasted work
-    // (visible as loading flicker) and another chance for the INITIAL_SESSION
-    // race below to resolve unluckily and bounce to /login. checkAuth
-    // already re-reads completed progress itself (getProgress()) instead of
-    // relying on the closed-over `completed` value, so nothing here actually
-    // needs to observe it changing.
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [router, supabase.auth]);
+  }, [router, supabase.auth, syncProgressAndXP]);
+
+  // Listen for Visibility Change (Wake Up) and Online events to trigger sync
+  useEffect(() => {
+    if (!user?.id) return;
+
+    const handleSyncTrigger = () => {
+      if (document.visibilityState === "visible" && user.id) {
+        void syncProgressAndXP(user.id);
+      }
+    };
+
+    const handleOnline = () => {
+      if (user.id) {
+        void syncProgressAndXP(user.id);
+      }
+    };
+
+    document.addEventListener("visibilitychange", handleSyncTrigger);
+    window.addEventListener("focus", handleSyncTrigger);
+    window.addEventListener("online", handleOnline);
+
+    return () => {
+      document.removeEventListener("visibilitychange", handleSyncTrigger);
+      window.removeEventListener("focus", handleSyncTrigger);
+      window.removeEventListener("online", handleOnline);
+    };
+  }, [user?.id, syncProgressAndXP]);
 
 
   if (loading) {
@@ -607,15 +616,15 @@ export default function DashboardClient({ lessonsMeta }: { lessonsMeta: LessonMe
           {/* Left Column: Learning Path (7 columns on desktop) */}
           <div className="lg:col-span-7 space-y-6">
             
+            {/* Goal Selection Banner */}
+            {user?.id && (
+              <GoalSelectionBanner userId={user.id} />
+            )}
+
             {/* Resume Learning Card */}
             <div data-tour="resume-learning">
               <ResumeLearningButton activeTrack={lastNonCfaTrack} />
             </div>
-
-            {/* Daily Quests Widget */}
-            {user?.id && (
-              <DailyQuestsWidget userId={user.id} />
-            )}
 
             {/* Lesson Recall Scheduler Widget */}
             {user?.id && (
@@ -633,7 +642,9 @@ export default function DashboardClient({ lessonsMeta }: { lessonsMeta: LessonMe
             )}
 
             {/* Daily Recommendations */}
-            <DashboardRecommendations lessonsMeta={lessonsMeta} completed={completed} />
+            {user?.id && (
+              <DashboardRecommendations lessonsMeta={lessonsMeta} completed={completed} userId={user.id} />
+            )}
 
             {/* Bookmarks Section */}
             {bookmarks.length > 0 && (
@@ -678,6 +689,16 @@ export default function DashboardClient({ lessonsMeta }: { lessonsMeta: LessonMe
                   ))}
                 </div>
               </div>
+            )}
+
+            {/* Daily Quests Widget */}
+            {user?.id && (
+              <DailyQuestsWidget userId={user.id} />
+            )}
+
+            {/* Daily News Quiz Challenge */}
+            {user?.id && (
+              <DailyNewsQuizWidget userId={user.id} />
             )}
           <div className="mb-4 flex flex-wrap items-center justify-between gap-3">
             <div className="text-sm text-stone-500 dark:text-stone-400">
@@ -839,8 +860,9 @@ export default function DashboardClient({ lessonsMeta }: { lessonsMeta: LessonMe
               
               const isPrevStageCompleted = prevStageLessons.length > 0 && prevStageDone === prevStageLessons.length;
               prevMilestonePassed = passedMilestones.some((m) => m.stage_label === prevStage.label);
-              isStageLockedByMilestone = !isPrevStageCompleted || !prevMilestonePassed;
+              isStageLockedByMilestone = false; // Gỡ khóa bài học theo yêu cầu người dùng, mở hoàn toàn
             }
+            const isCurrentMilestonePassed = passedMilestones.some((m) => m.stage_label === stage.label);
 
             return (
               <div key={stage.label}>
@@ -852,13 +874,37 @@ export default function DashboardClient({ lessonsMeta }: { lessonsMeta: LessonMe
                   return (
                     <button
                       onClick={() => toggleStage(stageKey)}
-                      className="w-full flex items-center gap-3 mb-4 cursor-pointer text-left flex-wrap sm:flex-nowrap border-b border-stone-100 dark:border-stone-800/40 pb-3"
+                      className={`w-full flex items-center gap-3 cursor-pointer text-left flex-wrap sm:flex-nowrap transition-all ${
+                        isCurrentMilestonePassed
+                          ? "bg-emerald-500/[0.04] dark:bg-emerald-500/[0.02] border border-emerald-500/20 px-4 py-3 rounded-2xl mb-4"
+                          : "border-b border-stone-100 dark:border-stone-800/40 pb-3 mb-4"
+                      }`}
                     >
-                      <span className={`text-xs font-extrabold px-3 py-1.5 rounded-lg flex items-center ${theme.bg} ${theme.text}`}>
+                      <span className={`text-xs font-extrabold px-3 py-1.5 rounded-lg flex items-center ${
+                        isCurrentMilestonePassed
+                          ? "bg-emerald-500 text-white"
+                          : `${theme.bg} ${theme.text}`
+                      }`}>
                         {stage.label}
                       </span>
                       <span className="text-base sm:text-lg font-extrabold text-stone-900 dark:text-stone-100 flex-1 leading-snug">{stage.name}</span>
-                      {isStageLockedByMilestone ? (
+                      {isCurrentMilestonePassed ? (
+                        <div className="flex items-center gap-2">
+                          <span className="flex items-center gap-1 text-xs font-bold text-emerald-600 dark:text-emerald-450 shrink-0 bg-emerald-50 dark:bg-emerald-950/40 px-2.5 py-1 rounded-lg border border-emerald-200/40">
+                            🌟 Đã vượt ải
+                          </span>
+                          <span
+                            role="button"
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              setSelectedCertStage({ label: stage.label, name: stage.name });
+                            }}
+                            className="flex items-center gap-1 text-[11px] font-black text-white shrink-0 bg-gradient-to-r from-amber-500 to-amber-650 hover:from-amber-600 hover:to-amber-700 px-2.5 py-1 rounded-lg shadow-sm shadow-amber-500/20 active:scale-95 transition-all cursor-pointer"
+                          >
+                            📜 Nhận Chứng Chỉ
+                          </span>
+                        </div>
+                      ) : isStageLockedByMilestone ? (
                         <span className="flex items-center gap-1 text-xs font-bold text-rose-500 dark:text-rose-400 shrink-0">
                           <Lock className="w-3 h-3" /> Chờ vượt ải
                         </span>
@@ -873,14 +919,22 @@ export default function DashboardClient({ lessonsMeta }: { lessonsMeta: LessonMe
                       {stage.available && stageLessons.length > 0 && (
                         <div className="flex items-center gap-3 shrink-0 ml-auto sm:ml-0">
                           <div className="w-16 h-1.5 bg-stone-150 dark:bg-stone-800 rounded-full overflow-hidden hidden sm:block">
-                            <div className={`h-full ${theme.barColor}`} style={{ width: `${percent}%` }} />
+                            <div className={`h-full ${isCurrentMilestonePassed ? "bg-emerald-500" : theme.barColor}`} style={{ width: `${percent}%` }} />
                           </div>
-                          <span className="text-sm font-bold text-stone-800 dark:text-stone-200 bg-stone-100 dark:bg-stone-800 px-3 py-1 rounded-lg">
+                          <span className={`text-sm font-bold px-3 py-1 rounded-lg ${
+                            isCurrentMilestonePassed
+                              ? "text-emerald-800 dark:text-emerald-300 bg-emerald-100 dark:bg-emerald-950/60"
+                              : "text-stone-800 dark:text-stone-200 bg-stone-100 dark:bg-stone-800"
+                          }`}>
                             {stageDone}/{stageLessons.length}
                           </span>
                         </div>
                       )}
-                      <span className={`text-stone-500 dark:text-stone-400 text-sm transition-transform shrink-0 ${stageOpen ? "rotate-180" : ""}`}>
+                      <span className={`text-sm transition-transform shrink-0 ${
+                        isCurrentMilestonePassed
+                          ? "text-emerald-500 dark:text-emerald-400"
+                          : "text-stone-500 dark:text-stone-400"
+                      } ${stageOpen ? "rotate-180" : ""}`}>
                         {isStageLockedByMilestone ? "🔒" : "▾"}
                       </span>
                     </button>
@@ -1308,6 +1362,9 @@ export default function DashboardClient({ lessonsMeta }: { lessonsMeta: LessonMe
 
           {/* Right: Sidebar User Stats & Leaderboard (3 columns on desktop grid of 10, full width on mobile) */}
           <div className="lg:col-span-3 lg:sticky lg:top-24 space-y-6">
+            {user?.id && (
+              <CombinedRewardsWidget userId={user.id} />
+            )}
             <div data-tour="user-stats">
               <UserStats
                 xp={userXp}
@@ -1359,6 +1416,15 @@ export default function DashboardClient({ lessonsMeta }: { lessonsMeta: LessonMe
             router.push(`/bai-hoc/${challengeGateLesson.slug}`);
             setChallengeGateLesson(null);
           }}
+        />
+      )}
+
+      {selectedCertStage && user?.id && (
+        <CertificateModal
+          stageLabel={selectedCertStage.label}
+          stageName={selectedCertStage.name}
+          userName={user?.user_metadata?.full_name || user?.email || "Người học"}
+          onClose={() => setSelectedCertStage(null)}
         />
       )}
 

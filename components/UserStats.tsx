@@ -42,7 +42,22 @@ export default function UserStats({
   const [openLevelTooltip, setOpenLevelTooltip] = useState<number | null>(null);
   const [streak, setStreak] = useState(0);
   const [hasActivityToday, setHasActivityToday] = useState(false);
+  const [activeTitle, setActiveTitle] = useState<string | null>(null);
   const rootRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (!userId) return;
+    const loadActiveTitle = () => {
+      if (typeof window !== "undefined") {
+        setActiveTitle(window.localStorage.getItem(`thtcdn_active_title_${userId}`));
+      }
+    };
+    loadActiveTitle();
+    window.addEventListener("thtcdn_profile_updated", loadActiveTitle);
+    return () => {
+      window.removeEventListener("thtcdn_profile_updated", loadActiveTitle);
+    };
+  }, [userId]);
 
   useEffect(() => {
     if (!userId) return;
@@ -109,6 +124,11 @@ export default function UserStats({
           <h3 className="text-sm sm:text-base font-extrabold text-stone-900 dark:text-stone-50 mt-1 tracking-tight leading-none truncate">
             {currentLevel.name}
           </h3>
+          {activeTitle && (
+            <span className="text-[10px] font-bold text-amber-500 dark:text-amber-400 mt-1 block leading-none truncate">
+              🏆 {activeTitle}
+            </span>
+          )}
         </div>
         <div className="text-right shrink-0">
           <span className="text-[10px] font-extrabold text-emerald-600 dark:text-emerald-400 bg-emerald-50 dark:bg-emerald-950/40 border border-emerald-100 dark:border-emerald-900/40 px-2.5 py-1.5 rounded-lg">

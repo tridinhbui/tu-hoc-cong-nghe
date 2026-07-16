@@ -71,16 +71,21 @@ export default function AiReportsClient({ initialReports }: AiReportsClientProps
                 </td>
                 <td className="px-6 py-4">
                   {report.lesson_slug ? (
-                    <Link
-                      href={`/bai-hoc/${report.lesson_slug}`}
-                      target="_blank"
-                      className="inline-flex items-center gap-1 font-semibold text-indigo-600 dark:text-indigo-400 hover:underline"
-                    >
-                      Xem bài học
-                      <ExternalLink className="w-3.5 h-3.5" />
-                    </Link>
+                    <div className="space-y-1">
+                      <div className="text-xs font-bold text-stone-700 dark:text-stone-300 max-w-[200px] truncate" title={report.lesson_title}>
+                        {report.lesson_title}
+                      </div>
+                      <Link
+                        href={`/bai-hoc/${report.lesson_slug}`}
+                        target="_blank"
+                        className="inline-flex items-center gap-1 font-semibold text-indigo-600 dark:text-indigo-400 hover:underline text-xs"
+                      >
+                        Xem bài học
+                        <ExternalLink className="w-3.5 h-3.5" />
+                      </Link>
+                    </div>
                   ) : (
-                    <span className="text-stone-400">ID: {report.lesson_id}</span>
+                    <span className="text-stone-400 text-xs font-medium">ID: {report.lesson_id}</span>
                   )}
                 </td>
                 <td className="px-6 py-4 text-xs text-stone-500 dark:text-stone-400">
