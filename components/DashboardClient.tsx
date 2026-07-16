@@ -29,11 +29,13 @@ import SmartRemediationWidget from "@/components/SmartRemediationWidget";
 import GoalSelectionBanner from "@/components/GoalSelectionBanner";
 import DailyNewsQuizWidget from "@/components/DailyNewsQuizWidget";
 import RewardChestWidget from "@/components/RewardChestWidget";
+import WeeklyQuestsWidget from "@/components/WeeklyQuestsWidget";
 import { hasCompletedOnboarding, completeOnboarding } from "@/lib/supabase-onboarding";
 import { getUserProfile, recalculateUserStats } from "@/lib/supabase-user";
 import UnlockRequestModal from "@/components/UnlockRequestModal";
 import KnowledgeChallengeModal from "@/components/KnowledgeChallengeModal";
 import StageMilestoneExamModal from "@/components/StageMilestoneExamModal";
+import CertificateModal from "@/components/CertificateModal";
 import { TRACK_PERSONAL, TRACK_PROFESSIONAL, isLessonInRange } from "@/lib/track-stages";
 import { BONUS_CATEGORIES, BONUS_CATEGORY_ORDER } from "@/lib/bonus-lesson-categories";
 import { CFA_LEVEL_1_SUBJECTS } from "@/lib/cfa-track";
@@ -150,6 +152,7 @@ export default function DashboardClient({ lessonsMeta }: { lessonsMeta: LessonMe
   const [appealTarget, setAppealTarget] = useState<{ id: number; slug: string; title: string } | null>(null);
   const [passedMilestones, setPassedMilestones] = useState<MilestoneCompletion[]>([]);
   const [activeMilestoneExam, setActiveMilestoneExam] = useState<{ label: string; name: string; lessonIds: number[] } | null>(null);
+  const [selectedCertStage, setSelectedCertStage] = useState<{ label: string; name: string } | null>(null);
 
   useRoutePrefetch(["/analytics", "/ghi-chu", "/kiem-tra", "/tai-lieu", "/ban-be", "/profile", "/settings", "/cfa"]);
 
@@ -887,9 +890,21 @@ export default function DashboardClient({ lessonsMeta }: { lessonsMeta: LessonMe
                       </span>
                       <span className="text-base sm:text-lg font-extrabold text-stone-900 dark:text-stone-100 flex-1 leading-snug">{stage.name}</span>
                       {isCurrentMilestonePassed ? (
-                        <span className="flex items-center gap-1 text-xs font-bold text-emerald-600 dark:text-emerald-450 shrink-0 bg-emerald-50 dark:bg-emerald-950/40 px-2.5 py-1 rounded-lg border border-emerald-200/40">
-                          🌟 Đã vượt ải
-                        </span>
+                        <div className="flex items-center gap-2">
+                          <span className="flex items-center gap-1 text-xs font-bold text-emerald-600 dark:text-emerald-450 shrink-0 bg-emerald-50 dark:bg-emerald-950/40 px-2.5 py-1 rounded-lg border border-emerald-200/40">
+                            🌟 Đã vượt ải
+                          </span>
+                          <span
+                            role="button"
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              setSelectedCertStage({ label: stage.label, name: stage.name });
+                            }}
+                            className="flex items-center gap-1 text-[11px] font-black text-white shrink-0 bg-gradient-to-r from-amber-500 to-amber-650 hover:from-amber-600 hover:to-amber-700 px-2.5 py-1 rounded-lg shadow-sm shadow-amber-500/20 active:scale-95 transition-all cursor-pointer"
+                          >
+                            📜 Nhận Chứng Chỉ
+                          </span>
+                        </div>
                       ) : isStageLockedByMilestone ? (
                         <span className="flex items-center gap-1 text-xs font-bold text-rose-500 dark:text-rose-400 shrink-0">
                           <Lock className="w-3 h-3" /> Chờ vượt ải
@@ -1351,6 +1366,9 @@ export default function DashboardClient({ lessonsMeta }: { lessonsMeta: LessonMe
             {user?.id && (
               <RewardChestWidget userId={user.id} />
             )}
+            {user?.id && (
+              <WeeklyQuestsWidget userId={user.id} />
+            )}
             <div data-tour="user-stats">
               <UserStats
                 xp={userXp}
@@ -1402,6 +1420,15 @@ export default function DashboardClient({ lessonsMeta }: { lessonsMeta: LessonMe
             router.push(`/bai-hoc/${challengeGateLesson.slug}`);
             setChallengeGateLesson(null);
           }}
+        />
+      )}
+
+      {selectedCertStage && user?.id && (
+        <CertificateModal
+          stageLabel={selectedCertStage.label}
+          stageName={selectedCertStage.name}
+          userName={user?.user_metadata?.full_name || user?.email || "Người học"}
+          onClose={() => setSelectedCertStage(null)}
         />
       )}
 
