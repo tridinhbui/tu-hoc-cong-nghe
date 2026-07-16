@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { FileText, Download, FileSpreadsheet, FileImage, Archive, Plus } from "lucide-react";
 import { createClient } from "@/lib/supabase";
 import { DOCUMENT_CATEGORIES } from "@/lib/document-categories";
@@ -39,6 +39,60 @@ function iconFor(fileName: string) {
 
 const CATEGORY_FILTERS = [{ value: "all", label: "Tất cả" }, ...DOCUMENT_CATEGORIES];
 
+function TypingBanner() {
+  const words = [
+    "Ebook định giá cổ phiếu từ cơ bản đến nâng cao...",
+    "File Excel báo cáo lưu chuyển tiền tệ mẫu...",
+    "Checklist quản lý tài chính cá nhân hiệu quả...",
+    "Cẩm nang phân tích báo cáo tài chính doanh nghiệp..."
+  ];
+  const [currentWordIndex, setCurrentWordIndex] = useState(0);
+  const [currentText, setCurrentText] = useState("");
+  const [isDeleting, setIsDeleting] = useState(false);
+  const [typingSpeed, setTypingSpeed] = useState(100);
+
+  useEffect(() => {
+    let timer: NodeJS.Timeout;
+    const fullWord = words[currentWordIndex];
+
+    if (isDeleting) {
+      timer = setTimeout(() => {
+        setCurrentText(fullWord.substring(0, currentText.length - 1));
+        setTypingSpeed(40);
+      }, typingSpeed);
+    } else {
+      timer = setTimeout(() => {
+        setCurrentText(fullWord.substring(0, currentText.length + 1));
+        setTypingSpeed(100);
+      }, typingSpeed);
+    }
+
+    if (!isDeleting && currentText === fullWord) {
+      timer = setTimeout(() => setIsDeleting(true), 2500);
+    } else if (isDeleting && currentText === "") {
+      setIsDeleting(false);
+      setCurrentWordIndex((prev) => (prev + 1) % words.length);
+      setTypingSpeed(300);
+    }
+
+    return () => clearTimeout(timer);
+  }, [currentText, isDeleting, currentWordIndex, typingSpeed]);
+
+  return (
+    <div className="mb-6 p-4 rounded-xl border border-rose-100 dark:border-rose-950/40 bg-rose-50/20 dark:bg-rose-950/5 flex items-center gap-3">
+      <span className="flex h-2 w-2 relative shrink-0">
+        <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-rose-450 opacity-75"></span>
+        <span className="relative inline-flex rounded-full h-2 w-2 bg-rose-500"></span>
+      </span>
+      <p className="text-xs font-bold text-stone-600 dark:text-stone-300">
+        <span className="text-rose-600/60 dark:text-rose-400/50 mr-1.5 font-bold uppercase tracking-wider">Đang cập nhật:</span>
+        <span className="text-rose-600 dark:text-rose-400 font-extrabold">{currentText}</span>
+        <span className="animate-pulse font-extrabold text-rose-650 dark:text-rose-400">|</span>
+      </p>
+    </div>
+  );
+}
+
 export default function DocumentsList({ documents, currentUserId }: { documents: PublicDocument[]; currentUserId: string | null }) {
   const [filter, setFilter] = useState<string>("all");
   const [openDoc, setOpenDoc] = useState<PublicDocument | null>(null);
@@ -58,6 +112,7 @@ export default function DocumentsList({ documents, currentUserId }: { documents:
 
   return (
     <div>
+      <TypingBanner />
       <div className="flex items-center justify-between gap-3 mb-6 flex-wrap">
         <div className="flex gap-2 flex-wrap">
           {CATEGORY_FILTERS.map((c) => (

@@ -433,7 +433,7 @@ export default function ProfilePage() {
           <div className="absolute top-0 right-0 w-64 h-64 bg-emerald-500/10 rounded-full blur-3xl pointer-events-none" />
           <div className="absolute bottom-0 left-1/3 w-72 h-72 bg-teal-500/5 rounded-full blur-3xl pointer-events-none" />
 
-          <div className="relative flex flex-col md:flex-row md:items-center justify-between gap-6">
+          <div className="relative flex flex-col sm:flex-row sm:items-center justify-between gap-6">
             <div className="flex flex-col sm:flex-row items-center sm:items-start gap-5 text-center sm:text-left">
               {avatarUrl ? (
                 <div className="relative w-24 h-24 sm:w-28 sm:h-28 rounded-full overflow-hidden border-4 border-white/10 dark:border-stone-800 shadow-md flex-shrink-0">
@@ -477,10 +477,10 @@ export default function ProfilePage() {
               </div>
             </div>
 
-            <div className="flex flex-col sm:flex-row gap-2.5 self-center md:self-start shrink-0">
+            <div className="flex flex-col gap-2.5 self-stretch sm:self-auto shrink-0">
               <Link
                 href="/settings"
-                className="inline-flex items-center justify-center gap-2 rounded-xl bg-white hover:bg-stone-100 text-stone-900 font-bold px-4 py-2.5 text-xs transition-all shadow-sm active:scale-95"
+                className="inline-flex items-center justify-center gap-2 rounded-xl bg-white hover:bg-stone-100 text-stone-900 font-bold px-4 py-2.5 text-xs transition-all shadow-sm active:scale-95 w-full sm:w-auto"
               >
                 <Edit3 className="w-3.5 h-3.5" />
                 Thiết lập tài khoản
@@ -638,7 +638,7 @@ export default function ProfilePage() {
             {/* Unified Key Stats Grid */}
             <div className="bg-white dark:bg-stone-900 border border-stone-200 dark:border-stone-850 rounded-2xl p-5 shadow-sm">
               <h4 className="text-sm font-extrabold text-stone-900 dark:text-stone-100 mb-4 tracking-tight">Thống kê tóm tắt</h4>
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+              <div className="grid grid-cols-2 gap-2 sm:gap-3">
                 <div className="bg-stone-50/70 dark:bg-stone-900/30 border border-stone-200/50 dark:border-stone-800 rounded-xl p-3.5">
                   <span className="text-[10px] font-extrabold text-stone-450 dark:text-stone-500 uppercase tracking-wider block mb-1">Thời gian học</span>
                   <p className="text-base font-extrabold text-stone-900 dark:text-stone-100">{studyMinutes} phút</p>
