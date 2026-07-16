@@ -3,8 +3,7 @@
 import { useState, useEffect } from "react";
 import { toast } from "sonner";
 import { Newspaper, HelpCircle, CheckCircle2, XCircle, Award, Flame } from "lucide-react";
-import { createClient } from "@/lib/supabase";
-import { recalculateUserStats } from "@/lib/supabase-user";
+import { claimQuestReward } from "@/lib/supabase-quests";
 
 interface DailyNewsQuizWidgetProps {
   userId: string;
@@ -171,41 +170,23 @@ export default function DailyNewsQuizWidget({ userId, compact = false }: DailyNe
     }
 
     if (correct) {
-      toast.success("Chúc mừng! Bạn đã trả lời chính xác tình huống tin tức hôm nay và nhận +15 XP! 🏆📰");
-      
-      // Award XP
+      // Reuses the same user_quest_completions table + claim flow already
+      // proven for daily quests (unique(user_id, quest_type, day_key) stops
+      // double claims, missing-table fallback to localStorage, and it calls
+      // recalculateUserStats() itself) - previously this just called
+      // recalculateUserStats() directly with nothing written anywhere for
+      // "news quiz", so the total_xp formula had no term for it and the
+      // "+15 XP" toast never actually added anything.
       try {
-        const supabase = createClient();
-        await supabase
-          .from("user_quest_completions")
-          .insert([{ user_id: userId, quest_type: "daily_news_quiz", day_key: todayKey, xp_earned: 15 }]);
-
-        // Local fallback
-        if (typeof window !== "undefined") {
-          const localQuestsKey = `quests_claimed_${userId}_${todayKey}`;
-          try {
-            const list = JSON.parse(window.localStorage.getItem(localQuestsKey) ?? "[]");
-            if (!list.includes("daily_news_quiz")) {
-              list.push("daily_news_quiz");
-              window.localStorage.setItem(localQuestsKey, JSON.stringify(list));
-            }
-          } catch {}
+        const awarded = await claimQuestReward(userId, "daily_news_quiz", todayKey, 15);
+        if (awarded) {
+          toast.success("Chúc mừng! Bạn đã trả lời chính xác tình huống tin tức hôm nay và nhận +15 XP! 🏆📰");
+        } else {
+          toast.success("Chính xác! (XP hôm nay đã được ghi nhận trước đó) 🏆📰");
         }
-
-        await recalculateUserStats(userId);
       } catch (err) {
-        console.error("Error rewarding quiz XP:", err);
-      }
-
-      // 30% chance to earn a Reward Chest!
-      const shouldAwardChest = Math.random() < 0.35;
-      if (shouldAwardChest && typeof window !== "undefined") {
-        const chestKey = `thtcdn_chests_${userId}`;
-        const currentChests = Number(window.localStorage.getItem(chestKey) ?? "0");
-        window.localStorage.setItem(chestKey, String(currentChests + 1));
-        toast.info("Wow! Bạn đã may mắn nhận thêm 1 Rương Quà Tài Chính! 🎁 Hãy kiểm tra rương ở góc phải nhé.");
-        // Force refresh chest state in window if registered
-        window.dispatchEvent(new Event("thtcdn_chests_updated"));
+        console.error("Error rewarding news quiz XP:", err);
+        toast.success("Chính xác! Đáp án đúng rồi. 🏆📰");
       }
     } else {
       toast.error("Đáp án chưa chính xác. Đọc lại tin tức và thử suy luận lại nhé! 🧐");
@@ -229,7 +210,7 @@ export default function DailyNewsQuizWidget({ userId, compact = false }: DailyNe
           </div>
           <div>
             <h3 className={`font-extrabold text-stone-900 dark:text-stone-100 flex items-center gap-1.5 ${compact ? "text-xs" : "text-sm"}`}>
-              {compact ? "Thử thách Tin tức (News)" : "Thử thách Tin tức Tài chính (News Challenge)"}
+              {compact ? "Thử thách Tài chính" : "Thử thách Tin tức Tài chính"}
               {!isAnswered && (
                 <span className="w-2 h-2 rounded-full bg-rose-500 animate-ping" />
               )}
