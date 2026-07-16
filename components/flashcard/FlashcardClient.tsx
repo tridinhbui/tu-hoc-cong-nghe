@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { toast } from "sonner";
-import { ArrowLeft, Plus, Trash2, BookOpen, CheckCircle, HelpCircle, GraduationCap, Sparkles, Upload, Download, Copy, Flame } from "lucide-react";
+import { ArrowLeft, Plus, Trash2, GraduationCap, Sparkles, Upload, Download, Copy, Flame, Layers, Target, Trophy } from "lucide-react";
 import Link from "next/link";
 import { useAuthGate } from "@/lib/use-auth-gate";
 import {
@@ -305,42 +305,80 @@ export default function FlashcardClient({ userId: propUserId, embedded = false }
     }
   };
 
+  const masteredCount = cards.filter((c) => c.repetitions >= 5).length;
+
   return (
     <div className={embedded ? "w-full" : "min-h-screen bg-stone-50 dark:bg-stone-950"}>
       <div className={embedded ? "w-full py-4" : "max-w-3xl mx-auto px-4 sm:px-6 py-8"}>
-        <div className="mb-6 flex flex-wrap items-center justify-between gap-3">
-          <div className="flex items-center gap-3">
-            {!embedded && (
-              <Link
-                href="/dashboard"
-                className="inline-flex items-center gap-1.5 text-sm font-bold text-stone-600 dark:text-stone-400 hover:text-stone-900 dark:hover:text-stone-105 hover:bg-stone-100 dark:hover:bg-stone-850 rounded-xl px-3 py-2 transition-all"
-              >
-                <ArrowLeft className="w-4 h-4" /> Quay lại
-              </Link>
-            )}
-            <span className="inline-flex items-center gap-1.5 rounded-full bg-emerald-50 dark:bg-emerald-950/40 px-2.5 py-1 text-[11px] font-extrabold uppercase tracking-widest text-emerald-700 dark:text-emerald-400">
-               Thẻ ghi nhớ Spaced Repetition
-            </span>
+        {!embedded && (
+          <Link
+            href="/dashboard"
+            className="inline-flex items-center gap-1.5 text-sm font-bold text-stone-600 dark:text-stone-400 hover:text-stone-900 dark:hover:text-stone-105 hover:bg-stone-100 dark:hover:bg-stone-850 rounded-xl px-3 py-2 -ml-3 mb-3 transition-all"
+          >
+            <ArrowLeft className="w-4 h-4" /> Quay lại
+          </Link>
+        )}
+
+        {/* Hero header */}
+        <div className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-emerald-600 via-emerald-600 to-teal-700 dark:from-emerald-800 dark:via-emerald-850 dark:to-teal-900 p-5 sm:p-7 mb-6 shadow-lg">
+          <div className="absolute top-0 right-0 w-56 h-56 bg-white/10 rounded-full blur-3xl pointer-events-none -mr-16 -mt-16" />
+          <div className="absolute bottom-0 left-1/4 w-40 h-40 bg-teal-300/10 rounded-full blur-2xl pointer-events-none" />
+
+          <div className="relative flex items-center gap-3 mb-5">
+            <div className="w-11 h-11 rounded-2xl bg-white/15 backdrop-blur flex items-center justify-center shrink-0 shadow-inner">
+              <Layers className="w-5.5 h-5.5 text-white" />
+            </div>
+            <div className="min-w-0">
+              <h1 className="text-lg sm:text-xl font-extrabold text-white leading-tight">Thẻ ghi nhớ</h1>
+              <p className="text-[11px] sm:text-xs text-emerald-100/90 font-semibold">Spaced Repetition · Thuật toán SM2</p>
+            </div>
           </div>
-          <div className="flex flex-wrap gap-2">
+
+          {/* Stat pills */}
+          <div className="relative grid grid-cols-3 gap-2.5 mb-5">
+            <div className="rounded-2xl bg-white/10 backdrop-blur-sm border border-white/10 px-3 py-2.5 text-center">
+              <div className="flex items-center justify-center gap-1 text-amber-200 mb-0.5">
+                <Target className="w-3.5 h-3.5" />
+                <span className="text-lg sm:text-xl font-extrabold text-white">{dueCards.length}</span>
+              </div>
+              <p className="text-[9px] sm:text-[10px] font-bold text-emerald-100/80 uppercase tracking-wider">Đến hạn</p>
+            </div>
+            <div className="rounded-2xl bg-white/10 backdrop-blur-sm border border-white/10 px-3 py-2.5 text-center">
+              <div className="flex items-center justify-center gap-1 text-white mb-0.5">
+                <Layers className="w-3.5 h-3.5" />
+                <span className="text-lg sm:text-xl font-extrabold text-white">{cards.length}</span>
+              </div>
+              <p className="text-[9px] sm:text-[10px] font-bold text-emerald-100/80 uppercase tracking-wider">Tổng số thẻ</p>
+            </div>
+            <div className="rounded-2xl bg-white/10 backdrop-blur-sm border border-white/10 px-3 py-2.5 text-center">
+              <div className="flex items-center justify-center gap-1 text-emerald-200 mb-0.5">
+                <Trophy className="w-3.5 h-3.5" />
+                <span className="text-lg sm:text-xl font-extrabold text-white">{masteredCount}</span>
+              </div>
+              <p className="text-[9px] sm:text-[10px] font-bold text-emerald-100/80 uppercase tracking-wider">Đã thành thạo</p>
+            </div>
+          </div>
+
+          {/* Actions */}
+          <div className="relative flex flex-wrap gap-2">
             <button
               onClick={handleGenerateFromMistakes}
               disabled={generatingFromMistakes}
-              className="inline-flex items-center gap-1.5 text-xs font-bold bg-amber-500 hover:bg-amber-600 text-white px-3.5 py-2.5 rounded-xl hover:scale-[1.03] active:scale-95 transition-all shadow-sm cursor-pointer disabled:opacity-50"
+              className="inline-flex items-center gap-1.5 text-xs font-bold bg-amber-500 hover:bg-amber-400 text-white px-3.5 py-2.5 rounded-xl hover:scale-[1.03] active:scale-95 transition-all shadow-sm cursor-pointer disabled:opacity-50"
             >
-              <Sparkles className="w-3.5 h-3.5" /> {generatingFromMistakes ? "Đang tạo..." : "Tạo từ lỗi sai ⚡"}
+              <Sparkles className="w-3.5 h-3.5" /> {generatingFromMistakes ? "Đang tạo..." : "Tạo từ lỗi sai"}
             </button>
             <button
               onClick={() => setShowAddForm(!showAddForm)}
-              className="inline-flex items-center gap-1.5 text-xs font-bold bg-stone-900 dark:bg-stone-100 text-white dark:text-stone-900 px-3.5 py-2.5 rounded-xl hover:scale-[1.03] active:scale-95 transition-all shadow-sm cursor-pointer"
+              className="inline-flex items-center gap-1.5 text-xs font-bold bg-white text-emerald-700 px-3.5 py-2.5 rounded-xl hover:scale-[1.03] active:scale-95 transition-all shadow-sm cursor-pointer"
             >
               <Plus className="w-3.5 h-3.5" /> Thêm thẻ mới
             </button>
             <button
               onClick={() => setShowBulkPanel(!showBulkPanel)}
-              className="inline-flex items-center gap-1.5 text-xs font-bold border border-stone-200 dark:border-stone-800 text-stone-600 dark:text-stone-400 px-3.5 py-2.5 rounded-xl hover:bg-stone-50 dark:hover:bg-stone-800 transition-all cursor-pointer"
+              className="inline-flex items-center gap-1.5 text-xs font-bold bg-white/10 border border-white/20 text-white px-3.5 py-2.5 rounded-xl hover:bg-white/20 transition-all cursor-pointer"
             >
-              <Upload className="w-3.5 h-3.5" /> Nhập/Xuất hàng loạt
+              <Upload className="w-3.5 h-3.5" /> Nhập/Xuất
             </button>
             <button
               onClick={() => setShowAlbums(!showAlbums)}
@@ -493,13 +531,28 @@ export default function FlashcardClient({ userId: propUserId, embedded = false }
           <div className="space-y-8">
             {/* Spaced Repetition Practice Zone */}
             <div className="flex flex-col items-center">
-              <div className="w-full flex items-center justify-between text-xs font-extrabold text-stone-550 dark:text-stone-400 mb-2 px-1">
-                <span>ÔN TẬP HÔM NAY ({dueCards.length} thẻ đến hạn)</span>
-                <span>TỔNG HỘP THẺ: {cards.length}</span>
-              </div>
+              {currentCard && (
+                <div className="w-full max-w-sm mb-3">
+                  <div className="flex items-center justify-between text-[10px] font-extrabold text-stone-450 dark:text-stone-500 uppercase tracking-wider mb-1.5 px-0.5">
+                    <span>Đang ôn tập</span>
+                    <span>Còn {dueCards.length} thẻ</span>
+                  </div>
+                  <div className="h-1.5 rounded-full bg-stone-150 dark:bg-stone-800 overflow-hidden">
+                    <div
+                      className="h-full rounded-full bg-gradient-to-r from-emerald-500 to-teal-500 transition-all duration-500"
+                      style={{
+                        width: cards.length > 0 ? `${Math.round(((cards.length - dueCards.length) / cards.length) * 100)}%` : "0%",
+                      }}
+                    />
+                  </div>
+                </div>
+              )}
 
               {currentCard ? (
                 <div className="w-full relative min-h-[340px] flex flex-col items-center justify-center">
+                  {/* Ambient glow behind the card */}
+                  <div className="absolute w-64 h-64 bg-emerald-500/10 dark:bg-emerald-500/5 rounded-full blur-3xl pointer-events-none" />
+
                   {/* Spaced Repetition Card Wrapper */}
                   <div
                     onMouseDown={(e) => handleDragStart(e.clientX)}
@@ -518,12 +571,14 @@ export default function FlashcardClient({ userId: propUserId, embedded = false }
                       transform: `translateX(${swipeOffset}px) rotate(${swipeOffset * 0.05}deg)`,
                       cursor: isDragging ? "grabbing" : "grab",
                     }}
-                    className={`w-full max-w-sm min-h-[300px] rounded-3xl border-2 p-6 flex flex-col items-center justify-center text-center transition-shadow relative select-none bg-white dark:bg-stone-900 shadow-lg ${
+                    className={`relative w-full max-w-sm min-h-[300px] rounded-[28px] border-2 p-6 flex flex-col items-center justify-center text-center transition-shadow select-none bg-white dark:bg-stone-900 shadow-xl ${
                       swipeOffset > 40
                         ? "border-emerald-400 bg-emerald-50/[0.04] dark:bg-emerald-950/[0.05]"
                         : swipeOffset < -40
                         ? "border-red-400 bg-red-50/[0.04] dark:bg-red-950/[0.05]"
-                        : "border-stone-200 dark:border-stone-800"
+                        : isFlipped
+                          ? "border-teal-300 dark:border-teal-800"
+                          : "border-stone-200 dark:border-stone-800"
                     }`}
                   >
                     {/* Swipe Overlay Hints */}
@@ -538,8 +593,14 @@ export default function FlashcardClient({ userId: propUserId, embedded = false }
                       </div>
                     )}
 
-                    <span className="text-[10px] font-extrabold text-stone-400 dark:text-stone-500 uppercase tracking-widest absolute top-6">
-                      {isFlipped ? "ĐỊNH NGHĨA" : "THUẬT NGỮ"}
+                    <span
+                      className={`text-[10px] font-extrabold uppercase tracking-widest absolute top-6 px-2.5 py-1 rounded-full ${
+                        isFlipped
+                          ? "text-teal-700 dark:text-teal-300 bg-teal-50 dark:bg-teal-950/40"
+                          : "text-emerald-700 dark:text-emerald-300 bg-emerald-50 dark:bg-emerald-950/40"
+                      }`}
+                    >
+                      {isFlipped ? "Định nghĩa" : "Thuật ngữ"}
                     </span>
 
                     {/* Card Content with 3D Flip feel */}
@@ -555,30 +616,30 @@ export default function FlashcardClient({ userId: propUserId, embedded = false }
                       )}
                     </div>
 
-                    <span className="text-[10px] font-extrabold text-stone-400 dark:text-stone-500 absolute bottom-6 hover:text-emerald-500 transition-colors">
-                      {isFlipped ? "Chạm để xem thuật ngữ ↩" : "Chạm để lật mặt sau ↪"}
+                    <span className="text-[10px] font-bold text-stone-400 dark:text-stone-500 absolute bottom-6 hover:text-emerald-500 transition-colors flex items-center gap-1">
+                      {isFlipped ? "↩ Chạm để xem thuật ngữ" : "↪ Chạm để lật mặt sau"}
                     </span>
                   </div>
 
                   {/* Manual SM-2 Action Buttons */}
-                  <div className="flex gap-3.5 mt-5">
+                  <div className="grid grid-cols-3 gap-2.5 mt-6 w-full max-w-sm">
                     <button
                       onClick={() => handleSM2Action(1)}
-                      className="flex items-center gap-1.5 px-4.5 py-2.5 text-xs font-bold rounded-xl border border-red-200 dark:border-red-900 bg-red-50/40 dark:bg-red-950/20 text-red-600 dark:text-red-400 hover:scale-105 active:scale-95 transition-all shadow-sm cursor-pointer"
+                      className="flex flex-col items-center gap-1 py-3 text-xs font-bold rounded-2xl border border-red-200 dark:border-red-900 bg-red-50/40 dark:bg-red-950/20 text-red-600 dark:text-red-400 hover:scale-[1.04] hover:shadow-md active:scale-95 transition-all cursor-pointer"
                     >
-                      ❌ Quên/Học lại
+                      <span className="text-lg leading-none">❌</span> Quên
                     </button>
                     <button
                       onClick={() => handleSM2Action(3)}
-                      className="flex items-center gap-1.5 px-4.5 py-2.5 text-xs font-bold rounded-xl border border-stone-250 dark:border-stone-850 bg-white dark:bg-stone-900 text-stone-700 dark:text-stone-300 hover:scale-105 active:scale-95 transition-all shadow-sm cursor-pointer"
+                      className="flex flex-col items-center gap-1 py-3 text-xs font-bold rounded-2xl border border-stone-250 dark:border-stone-850 bg-white dark:bg-stone-900 text-stone-700 dark:text-stone-300 hover:scale-[1.04] hover:shadow-md active:scale-95 transition-all cursor-pointer"
                     >
-                      👍 Nhớ vừa phải
+                      <span className="text-lg leading-none">👍</span> Vừa phải
                     </button>
                     <button
                       onClick={() => handleSM2Action(5)}
-                      className="flex items-center gap-1.5 px-4.5 py-2.5 text-xs font-bold rounded-xl border border-emerald-250 dark:border-emerald-900 bg-emerald-50/40 dark:bg-emerald-950/20 text-emerald-600 dark:text-emerald-400 hover:scale-105 active:scale-95 transition-all shadow-sm cursor-pointer"
+                      className="flex flex-col items-center gap-1 py-3 text-xs font-bold rounded-2xl border border-emerald-250 dark:border-emerald-900 bg-emerald-50/40 dark:bg-emerald-950/20 text-emerald-600 dark:text-emerald-400 hover:scale-[1.04] hover:shadow-md active:scale-95 transition-all cursor-pointer"
                     >
-                      ⭐️ Rất dễ nhớ
+                      <span className="text-lg leading-none">⭐️</span> Dễ nhớ
                     </button>
                   </div>
                 </div>
@@ -595,33 +656,51 @@ export default function FlashcardClient({ userId: propUserId, embedded = false }
 
             {/* Manage Cards Zone */}
             <div className="border-t border-stone-150 dark:border-stone-800/80 pt-6">
-              <h3 className="text-xs font-extrabold text-stone-500 dark:text-stone-400 uppercase tracking-widest mb-4">Danh sách từ vựng hiện tại</h3>
+              <div className="flex items-center justify-between mb-4">
+                <h3 className="text-xs font-extrabold text-stone-500 dark:text-stone-400 uppercase tracking-widest">Danh sách từ vựng hiện tại</h3>
+                <span className="text-[10px] font-bold text-stone-400 dark:text-stone-500">{cards.length} thẻ</span>
+              </div>
               <div className="grid gap-3 sm:grid-cols-2">
                 {cards.map((c) => {
                   const isDue = new Date(c.next_review_at) <= now;
+                  const mastery = Math.min(100, Math.round((c.repetitions / 5) * 100));
                   return (
                     <div
                       key={c.term}
-                      className="p-4 rounded-2xl border border-stone-200 dark:border-stone-850 bg-white dark:bg-stone-900 flex justify-between gap-4 items-start shadow-sm"
+                      className="group p-4 rounded-2xl border border-stone-200 dark:border-stone-850 bg-white dark:bg-stone-900 shadow-sm hover:shadow-md hover:border-stone-300 dark:hover:border-stone-700 transition-all"
                     >
-                      <div className="min-w-0">
-                        <div className="flex items-center gap-1.5 flex-wrap">
-                          <p className="font-extrabold text-xs sm:text-sm text-stone-900 dark:text-stone-100">{c.term}</p>
-                          {isDue ? (
-                            <span className="text-[9px] font-extrabold px-1.5 py-0.5 rounded bg-amber-50 dark:bg-amber-950/40 text-amber-700 dark:text-amber-400 border border-amber-200/50">Đến hạn</span>
-                          ) : (
-                            <span className="text-[9px] font-extrabold px-1.5 py-0.5 rounded bg-stone-50 dark:bg-stone-950/40 text-stone-500 border border-stone-150">Đã ôn</span>
-                          )}
+                      <div className="flex justify-between gap-4 items-start">
+                        <div className="min-w-0 flex-1">
+                          <div className="flex items-center gap-1.5 flex-wrap">
+                            <p className="font-extrabold text-xs sm:text-sm text-stone-900 dark:text-stone-100">{c.term}</p>
+                            {isDue ? (
+                              <span className="text-[9px] font-extrabold px-1.5 py-0.5 rounded-full bg-amber-50 dark:bg-amber-950/40 text-amber-700 dark:text-amber-400 border border-amber-200/50">Đến hạn</span>
+                            ) : (
+                              <span className="text-[9px] font-extrabold px-1.5 py-0.5 rounded-full bg-stone-50 dark:bg-stone-950/40 text-stone-500 border border-stone-150">Đã ôn</span>
+                            )}
+                            {c.repetitions >= 5 && (
+                              <span className="text-[9px] font-extrabold px-1.5 py-0.5 rounded-full bg-emerald-50 dark:bg-emerald-950/40 text-emerald-700 dark:text-emerald-400 border border-emerald-200/50 flex items-center gap-0.5">
+                                <Trophy className="w-2.5 h-2.5" /> Thành thạo
+                              </span>
+                            )}
+                          </div>
+                          <p className="text-xs text-stone-500 dark:text-stone-400 mt-1.5 line-clamp-2 leading-relaxed">{c.definition}</p>
                         </div>
-                        <p className="text-xs text-stone-500 dark:text-stone-400 mt-1.5 line-clamp-2 leading-relaxed">{c.definition}</p>
+                        <button
+                          onClick={() => handleDeleteCard(c.term)}
+                          className="text-stone-400 hover:text-red-500 p-1.5 hover:bg-stone-50 dark:hover:bg-stone-800 rounded-lg transition-colors shrink-0 opacity-0 group-hover:opacity-100 sm:opacity-100"
+                          title="Xoá thẻ"
+                        >
+                          <Trash2 className="w-3.5 h-3.5" />
+                        </button>
                       </div>
-                      <button
-                        onClick={() => handleDeleteCard(c.term)}
-                        className="text-stone-400 hover:text-red-500 p-1.5 hover:bg-stone-50 dark:hover:bg-stone-800 rounded-lg transition-colors shrink-0"
-                        title="Xoá thẻ"
-                      >
-                        <Trash2 className="w-3.5 h-3.5" />
-                      </button>
+                      {/* Mastery progress (repetitions towards 5 = "mastered") */}
+                      <div className="h-1 rounded-full bg-stone-100 dark:bg-stone-850 overflow-hidden mt-3">
+                        <div
+                          className={`h-full rounded-full transition-all duration-300 ${mastery >= 100 ? "bg-emerald-500" : "bg-teal-400"}`}
+                          style={{ width: `${mastery}%` }}
+                        />
+                      </div>
                     </div>
                   );
                 })}

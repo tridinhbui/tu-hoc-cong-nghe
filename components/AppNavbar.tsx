@@ -26,6 +26,7 @@ interface NavProfile {
 const NAV_LINKS = [
   { href: "/analytics", label: "Thống kê", icon: BarChart3 },
   { href: "/ghi-chu", label: "Ghi chú", icon: StickyNote },
+  { href: "/flashcard", label: "Thẻ ghi nhớ", icon: Layers },
   { href: "/kiem-tra", label: "Kiểm tra", icon: GraduationCap },
   { href: "/game", label: "Game", icon: Gamepad2 },
 ];
