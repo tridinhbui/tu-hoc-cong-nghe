@@ -45,6 +45,83 @@ const QUIZ: QuizQuestion[] = [
     correct: 1,
     explanation: "Giữ tiền mặt khi lạm phát 6% nghĩa là mỗi năm mất 6% sức mua. Đây là lý do cần đầu tư: để lợi nhuận vượt lạm phát và bảo toàn giá trị thực.",
   },
+  {
+    question: "Ba chức năng cơ bản của tiền trong nền kinh tế là gì?",
+    options: [
+      "In ấn, lưu thông, thu hồi",
+      "Phương tiện trao đổi, đơn vị đo lường giá trị, công cụ lưu trữ giá trị",
+      "Gửi tiết kiệm, vay mượn, đầu tư",
+      "Phát hành, kiểm soát, điều tiết",
+    ],
+    correct: 1,
+    explanation: "Tiền giúp trao đổi hàng hóa không cần đổi hàng lấy hàng, giúp so sánh giá trị các thứ khác nhau, và có thể giữ lại để dùng sau (dù bị lạm phát bào mòn theo thời gian).",
+  },
+  {
+    question: "Một người sở hữu căn nhà 5 tỷ nhưng chỉ có 5 triệu trong tài khoản có thể gặp vấn đề gì?",
+    options: [
+      "Không có vấn đề gì vì tổng tài sản vẫn rất lớn",
+      "Có thể gặp khó khăn thanh toán chi phí sinh hoạt hoặc nợ ngắn hạn dù tài sản lớn - vấn đề nằm ở thanh khoản",
+      "Ngân hàng sẽ tự động cho vay không cần thế chấp",
+      "Căn nhà sẽ tự động mất giá trị theo thời gian",
+    ],
+    correct: 1,
+    explanation: "Đây là ví dụ kinh điển về 'giàu trên giấy nhưng thiếu tiền trong thực tế' - có tài sản lớn không đồng nghĩa với có khả năng thanh toán ngay khi cần.",
+  },
+  {
+    question: "Điều gì làm một tài sản được xem là \"tốt\" theo bài học, ngoài việc giữ giá trị?",
+    options: [
+      "Tài sản đó phải được mua bằng vàng",
+      "Tài sản đó tạo ra dòng tiền trong tương lai (tiền thuê, cổ tức, lãi, lợi nhuận...)",
+      "Tài sản đó không bao giờ được bán đi",
+      "Tài sản đó phải tăng giá mỗi tháng",
+    ],
+    correct: 1,
+    explanation: "Nhà cho thuê tạo tiền thuê, cổ phiếu có thể tạo cổ tức, trái phiếu tạo lãi định kỳ. Giá trị một tài sản phụ thuộc vào khả năng tạo dòng tiền trong tương lai, không chỉ giá trị hiện tại.",
+  },
+  {
+    question: "Vì sao giữ quá nhiều tiền mặt cũng là một rủi ro tài chính?",
+    options: [
+      "Vì tiền mặt dễ bị mất trộm hơn tài sản khác",
+      "Vì tiền mặt liên tục mất sức mua do lạm phát, trong khi tài sản đầu tư có thể tăng giá trị thực theo thời gian",
+      "Vì pháp luật giới hạn số tiền mặt được giữ",
+      "Vì tiền mặt không được ngân hàng chấp nhận gửi",
+    ],
+    correct: 1,
+    explanation: "Bài học nêu ví dụ: giữ 100 triệu tiền mặt với lạm phát 6%/năm, sau 10 năm giá trị thực chỉ còn khoảng 56 triệu. Đây là lý do cần đầu tư để bảo toàn giá trị thực.",
+  },
+  {
+    question: "Gửi tiền ngân hàng với lãi suất thấp hơn lạm phát có ý nghĩa gì về bản chất?",
+    options: [
+      "Đây là cách đầu tư an toàn nhất và luôn có lợi",
+      "Về bản chất là đang mất tiền mỗi ngày vì sức mua giảm nhanh hơn lãi nhận được",
+      "Không có ảnh hưởng gì vì tiền vẫn tăng theo lãi suất",
+      "Ngân hàng sẽ bù đắp phần chênh lệch lạm phát",
+    ],
+    correct: 1,
+    explanation: "Nếu lãi suất gửi 4%/năm nhưng lạm phát 6%/năm, sức mua thực tế của khoản tiền đó giảm 2%/năm dù số dư trên sổ tiết kiệm vẫn tăng.",
+  },
+  {
+    question: "Ba ví dụ nào sau đây đều được bài học liệt kê là tài sản (không phải tiền)?",
+    options: [
+      "Tiền mặt, tiền gửi thanh toán, séc",
+      "Nhà, cổ phiếu, trái phiếu",
+      "Đô la Mỹ, Euro, Yên Nhật",
+      "Thẻ tín dụng, thẻ ghi nợ, ví điện tử",
+    ],
+    correct: 1,
+    explanation: "Nhà, cổ phiếu, trái phiếu (và xe) là tài sản có giá trị nhưng không có tính thanh khoản tuyệt đối như tiền mặt - phải bán, chuyển nhượng hoặc thanh lý mới thành tiền.",
+  },
+  {
+    question: "Điều gì xảy ra khi chuyển một tài sản như bất động sản hoặc cổ phiếu thành tiền mặt?",
+    options: [
+      "Luôn chuyển đổi ngay lập tức không tốn chi phí",
+      "Quá trình đó có thể mất thời gian, phát sinh chi phí, và chịu rủi ro giá thay đổi trước khi bán được",
+      "Giá trị tài sản luôn tăng lên khi bán",
+      "Không thể chuyển đổi tài sản thành tiền mặt được",
+    ],
+    correct: 1,
+    explanation: "Đây là sự khác biệt cốt lõi giữa tiền và tài sản: tiền dùng ngay được, còn tài sản phải trải qua quá trình bán/chuyển nhượng có thể mất thời gian, tốn phí và rủi ro biến động giá.",
+  },
 ];
 
 const CONCEPTS = [
