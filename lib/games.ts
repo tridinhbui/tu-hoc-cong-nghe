@@ -294,6 +294,15 @@ export async function recordGameSession(
     .insert([{ user_id: userId, game_type: gameType, score, total, xp_earned: xpEarned }]);
 
   if (error && !isMissingTableError(error)) throw handleSupabaseError(error);
+
+  // Lets DailyQuestsWidget (and anything else tracking "played a game today")
+  // refetch immediately instead of only picking this up on next full mount -
+  // otherwise a quest already satisfied by this session stays stuck showing
+  // "Làm ngay" until the page is reloaded.
+  if (typeof window !== "undefined") {
+    window.dispatchEvent(new Event("thtcdn_game_session_recorded"));
+  }
+
   return xpEarned;
 }
 

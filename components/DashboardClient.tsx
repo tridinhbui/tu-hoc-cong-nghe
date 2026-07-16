@@ -725,7 +725,7 @@ export default function DashboardClient({ lessonsMeta }: { lessonsMeta: LessonMe
                   {/* Background ambient glow */}
                   <div className="absolute -top-10 -left-10 w-24 h-24 bg-emerald-500/5 dark:bg-emerald-500/10 rounded-full blur-2xl pointer-events-none" />
                   
-                  <div className="flex items-center justify-between mb-6 relative z-10">
+                  <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-6 relative z-10">
                     <div>
                       <h3 className="text-base font-bold text-stone-900 dark:text-stone-100">
                         Bản đồ Cấp độ Học viên
@@ -734,34 +734,42 @@ export default function DashboardClient({ lessonsMeta }: { lessonsMeta: LessonMe
                         Rê chuột hoặc chạm vào từng cấp độ để xem các thành viên đang ở cấp đó
                       </p>
                     </div>
-                    <div className="text-right">
-                      <span className="text-[10px] font-bold text-stone-700 dark:text-stone-300 bg-stone-50 dark:bg-stone-950/60 border border-stone-200 dark:border-stone-800 px-2.5 py-1 rounded-lg">
+                    <div className="text-left sm:text-right">
+                      <span className="inline-block text-[10px] font-bold text-stone-700 dark:text-stone-300 bg-stone-50 dark:bg-stone-950/60 border border-stone-200 dark:border-stone-800 px-2.5 py-1 rounded-lg">
                         Bạn đang ở Cấp {currentUserLevel}: <span className="text-emerald-600 dark:text-emerald-450 font-extrabold">{getLevelByXp(userXp).name}</span>
                       </span>
                     </div>
                   </div>
 
                   {/* Minimalist Progress Line/Dots Wrapper */}
-                  <div className="relative z-10 h-24 mt-12 mb-6 mx-2 sm:mx-6">
-                    <style>{`
-                      @keyframes bobbing {
-                        0%, 100% { transform: translateY(-16px); }
-                        50% { transform: translateY(-22px); }
-                      }
-                      @keyframes particleRise {
-                        0% { transform: translateY(0) scale(0.5); opacity: 0; }
-                        50% { opacity: 0.8; }
-                        100% { transform: translateY(-30px) scale(1.2); opacity: 0; }
-                      }
-                      @keyframes rippleWave {
-                        0% { transform: scale(0.9); opacity: 0.8; }
-                        100% { transform: scale(1.6); opacity: 0; }
-                      }
-                      @keyframes fadeInTooltip {
-                        from { opacity: 0; transform: translateY(-4px); }
-                        to { opacity: 1; transform: translateY(0); }
-                      }
-                    `}</style>
+                  <div className="overflow-x-auto pb-6 scrollbar-none -mx-5 px-5">
+                    <div className="relative z-10 h-24 mt-12 mb-6 min-w-[540px] sm:min-w-0">
+                      <style>{`
+                        .scrollbar-none::-webkit-scrollbar {
+                          display: none;
+                        }
+                        .scrollbar-none {
+                          -ms-overflow-style: none;
+                          scrollbar-width: none;
+                        }
+                        @keyframes bobbing {
+                          0%, 100% { transform: translateY(-16px); }
+                          50% { transform: translateY(-22px); }
+                        }
+                        @keyframes particleRise {
+                          0% { transform: translateY(0) scale(0.5); opacity: 0; }
+                          50% { opacity: 0.8; }
+                          100% { transform: translateY(-30px) scale(1.2); opacity: 0; }
+                        }
+                        @keyframes rippleWave {
+                          0% { transform: scale(0.9); opacity: 0.8; }
+                          100% { transform: scale(1.6); opacity: 0; }
+                        }
+                        @keyframes fadeInTooltip {
+                          from { opacity: 0; transform: translateY(-4px); }
+                          to { opacity: 1; transform: translateY(0); }
+                        }
+                      `}</style>
 
                     {/* Connecting Line (Underlay) */}
                     <div className="absolute left-0 right-0 top-1/2 -translate-y-1/2 h-1 bg-stone-100 dark:bg-stone-850 rounded-full z-0" />
@@ -987,7 +995,8 @@ export default function DashboardClient({ lessonsMeta }: { lessonsMeta: LessonMe
                     })}
                   </div>
                 </div>
-              );
+              </div>
+            );
             })()}
 
             {/* Resume Learning Card */}
