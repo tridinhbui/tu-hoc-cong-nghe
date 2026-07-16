@@ -34,12 +34,17 @@ export async function getPassedMilestones(userId: string, trackId: string): Prom
   return (data ?? []) as MilestoneCompletion[];
 }
 
+export interface SaveMilestoneResult {
+  ok: boolean;
+  errorMessage?: string; // human-readable: "code: message", so a real failure is diagnosable straight from the toast
+}
+
 export async function savePassedMilestone(
   userId: string,
   trackId: string,
   stageLabel: string,
   score: number
-): Promise<boolean> {
+): Promise<SaveMilestoneResult> {
   const supabase = createClient();
   // Same bug class fixed twice already this session (flashcards, then here):
   // without an explicit onConflict target, PostgREST's upsert defaults to
@@ -72,12 +77,17 @@ export async function savePassedMilestone(
           list.push(entry);
         }
         window.localStorage.setItem(`milestones_${userId}_${trackId}`, JSON.stringify(list));
-        return true;
+        return { ok: true };
       }
     }
+    // Surfaced code/message (not just logged) so a real failure - e.g. the
+    // migration granting table access hasn't actually been run on this
+    // Supabase project yet (42501 = insufficient_privilege) - is immediately
+    // diagnosable from the toast instead of another round of "vẫn không
+    // được" back-and-forth with no way to tell what's actually failing.
     console.error("Error saving milestone completion:", error);
-    return false;
+    return { ok: false, errorMessage: `${error.code ?? "?"}: ${error.message ?? "unknown error"}` };
   }
 
-  return true;
+  return { ok: true };
 }

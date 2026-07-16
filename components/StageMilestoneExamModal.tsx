@@ -98,7 +98,7 @@ export default function StageMilestoneExamModal({
     const passed = finalScoreRatio >= 0.8; // At least 80%
 
     if (passed) {
-      const ok = await savePassedMilestone(userId, trackId, stageLabel, finalScoreRatio);
+      const { ok, errorMessage } = await savePassedMilestone(userId, trackId, stageLabel, finalScoreRatio);
       if (ok) {
         toast.success(`Chúc mừng! Bạn đã vượt ải ${stageLabel} thành công và nhận +50 XP! 🏆🌟`);
         if (typeof window !== "undefined") {
@@ -111,7 +111,7 @@ export default function StageMilestoneExamModal({
         void recalculateUserStats(userId).catch(() => {});
         onSuccess();
       } else {
-        toast.error("Không thể ghi nhận kết quả vượt ải.");
+        toast.error(`Không thể ghi nhận kết quả vượt ải.${errorMessage ? ` (${errorMessage})` : ""}`);
       }
     } else {
       toast.error(`Chưa đạt yêu cầu vượt ải (Đạt ${correctCount}/${questions.length} câu - Yêu cầu >= 80%). Hãy ôn tập và thử lại nhé!`);
