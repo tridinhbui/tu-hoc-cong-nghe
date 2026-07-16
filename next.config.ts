@@ -4,6 +4,12 @@ const nextConfig: NextConfig = {
   // Don't advertise the framework to would-be attackers scanning for
   // framework-specific CVEs.
   poweredByHeader: false,
+  // @napi-rs/canvas ships a native .node binary (js-binding.js) that
+  // Turbopack's Server Component bundler doesn't know how to place a module
+  // id for - opt it out of bundling so it's just native-required at runtime
+  // instead, same as the "canvas" package Next already externalizes by
+  // default. Used by lib/excel-preview.ts to render .xlsx cover previews.
+  serverExternalPackages: ["@napi-rs/canvas"],
   images: {
     remotePatterns: [
       {

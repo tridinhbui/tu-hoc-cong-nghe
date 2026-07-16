@@ -63,6 +63,14 @@ export default async function DocumentsGiveawayPage() {
     }
   }
 
+  // A rejected submission still belongs to its uploader under RLS (so they
+  // could previously see it flagged "Đã từ chối" in their own giveaway
+  // feed), but that's just clutter once the decision is made - there's
+  // nothing actionable left to do with it. Drop it from the feed entirely
+  // rather than showing a dead entry; "pending" rows stay so the uploader
+  // can still see their submission is awaiting review.
+  documents = documents.filter((d) => d.status !== "rejected");
+
   return (
     <div className="min-h-screen bg-white dark:bg-stone-950">
       <div className="border-b border-stone-200 dark:border-stone-800">

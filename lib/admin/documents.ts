@@ -1,5 +1,6 @@
 import "server-only";
 import { createAdminClient } from "@/lib/supabase-admin";
+import { generateExcelPreviewPng, isExcelFileName } from "@/lib/excel-preview";
 
 export type DocumentStatus = "pending" | "approved" | "rejected";
 
@@ -103,6 +104,41 @@ async function uploadCoverImage(
   return data.publicUrl;
 }
 
+/**
+ * When the uploader didn't provide a manual cover image and the file is a
+ * modern .xlsx workbook, auto-generate one from the sheet's own content
+ * (lib/excel-preview.ts) instead of leaving the giveaway card with a
+ * generic file icon. Best-effort: any failure (corrupt file, legacy binary
+ * .xls, encrypted workbook) just skips the cover image entirely, same as if
+ * no image had been given - it must never fail the document upload itself.
+ */
+async function uploadAutoExcelPreview(
+  supabase: ReturnType<typeof createAdminClient>,
+  file: File
+): Promise<string | null> {
+  if (!isExcelFileName(file.name)) return null;
+  try {
+    const buffer = await file.arrayBuffer();
+    const png = await generateExcelPreviewPng(buffer);
+    if (!png) return null;
+
+    const path = `covers/${Date.now()}-${Math.random().toString(36).slice(2, 8)}-auto.png`;
+    const { error: uploadError } = await supabase.storage
+      .from("documents")
+      .upload(path, png, { contentType: "image/png" });
+    if (uploadError) {
+      console.error("Error uploading auto-generated Excel preview:", uploadError);
+      return null;
+    }
+
+    const { data } = supabase.storage.from("documents").getPublicUrl(path);
+    return data.publicUrl;
+  } catch (err) {
+    console.error("Error generating Excel preview:", err);
+    return null;
+  }
+}
+
 export async function getDocuments(): Promise<DocumentRow[]> {
   const supabase = createAdminClient();
   const { data, error } = await supabase
@@ -154,6 +190,9 @@ export async function uploadDocument(params: {
   let imageUrl: string | null = null;
   try {
     imageUrl = await uploadCoverImage(supabase, image);
+    if (!imageUrl) {
+      imageUrl = await uploadAutoExcelPreview(supabase, file);
+    }
   } catch (err) {
     // The document file already uploaded - don't leave it orphaned just
     // because the optional cover image failed.
@@ -268,6 +307,13 @@ export async function updateDocument(params: {
     fields.image_url = null;
     const oldImagePath = existing.image_url?.split("/documents/")[1];
     if (oldImagePath) oldPathsToCleanUp.push(oldImagePath);
+  } else if (file && file.size > 0 && !existing.image_url) {
+    // The file itself was replaced, no manual cover was given, and there
+    // was no existing cover to preserve - regenerate from the new file's
+    // own content the same way a fresh upload would, instead of leaving
+    // the card without a preview until someone edits it again.
+    const autoUrl = await uploadAutoExcelPreview(supabase, file);
+    if (autoUrl) fields.image_url = autoUrl;
   }
 
   let { error: updateError } = await supabase.from("documents").update(fields).eq("id", id);
