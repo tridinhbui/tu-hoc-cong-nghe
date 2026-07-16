@@ -157,6 +157,7 @@ export default function DashboardClient({ lessonsMeta }: { lessonsMeta: LessonMe
   const [selectedCertStage, setSelectedCertStage] = useState<{ label: string; name: string } | null>(null);
   const [communityUsersByLevel, setCommunityUsersByLevel] = useState<Map<number, { name: string; xp: number; avatarUrl: string | null; userId: string }[]>>(new Map());
   const [activeTooltipLevel, setActiveTooltipLevel] = useState<number | null>(null);
+  const [dbAvatarUrl, setDbAvatarUrl] = useState<string | null>(null);
 
   useEffect(() => {
     function handleGlobalClick(event: MouseEvent | TouchEvent) {
@@ -411,11 +412,15 @@ export default function DashboardClient({ lessonsMeta }: { lessonsMeta: LessonMe
     try {
       const stats = await recalculateUserStats(userId);
       setUserXp(stats.total_xp);
+      getUserProfile(userId).then(profile => {
+        setDbAvatarUrl(profile.avatar_url);
+      }).catch(() => {});
     } catch (error) {
       console.error("Error recalculating user XP, falling back to stored value:", error);
       try {
         const profile = await getUserProfile(userId);
         setUserXp(profile.total_xp);
+        setDbAvatarUrl(profile.avatar_url);
       } catch (fallbackError) {
         console.error("Error loading user XP:", fallbackError);
       }
@@ -710,7 +715,7 @@ export default function DashboardClient({ lessonsMeta }: { lessonsMeta: LessonMe
               })();
 
               const pctNum = parseFloat(userRoadmapPercent);
-              const userAvatarUrl = (user?.user_metadata as any)?.avatar_url || null;
+              const userAvatarUrl = dbAvatarUrl || (user?.user_metadata as any)?.avatar_url || null;
               const userDisplayName = (user?.user_metadata as any)?.full_name || user?.email || "Bạn";
               const userInitials = userDisplayName
                 .split(" ")
@@ -881,22 +886,22 @@ export default function DashboardClient({ lessonsMeta }: { lessonsMeta: LessonMe
                               : lvl.level === 6 
                               ? "right-0 translate-x-3 items-end text-right" 
                               : "left-1/2 -translate-x-1/2 items-center text-center"
-                          } w-16 sm:w-24 pointer-events-none`}>
-                            <span className={`text-[9px] sm:text-xs font-extrabold uppercase tracking-wider block ${
+                          } w-20 sm:w-28 pointer-events-none`}>
+                            <span className={`text-[10px] sm:text-xs font-black uppercase tracking-wider block ${
                               isUserCurrent 
                                 ? "text-emerald-600 dark:text-emerald-400 bg-emerald-500/10 dark:bg-emerald-500/20 px-1 py-0.5 rounded-full scale-105 border border-emerald-500/20 shadow-sm" 
                                 : isPassed 
-                                ? "text-stone-700 dark:text-stone-300 font-bold" 
-                                : "text-stone-400 dark:text-stone-500 font-medium"
+                                ? "text-stone-700 dark:text-stone-300 font-extrabold" 
+                                : "text-stone-400 dark:text-stone-500 font-bold"
                             }`}>
                               L{lvl.level}
                             </span>
-                            <span className={`text-[9px] sm:text-xs block leading-tight mt-1 max-w-[55px] sm:max-w-[80px] break-words ${
+                            <span className={`text-[10px] sm:text-xs block leading-tight mt-1 max-w-[65px] sm:max-w-[90px] break-words ${
                               isUserCurrent 
                                 ? "text-emerald-700 dark:text-emerald-400 font-black" 
                                 : isPassed 
-                                ? "text-stone-600 dark:text-stone-300 font-bold" 
-                                : "text-stone-400 dark:text-stone-500 font-medium"
+                                ? "text-stone-600 dark:text-stone-300 font-extrabold" 
+                                : "text-stone-400 dark:text-stone-500 font-bold"
                             }`}>
                               {lvl.name}
                             </span>
