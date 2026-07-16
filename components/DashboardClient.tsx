@@ -1339,7 +1339,7 @@ export default function DashboardClient({ lessonsMeta }: { lessonsMeta: LessonMe
           )}
           </div>
 
-          {/* Right: Cấp độ/streak/bài học, gợi ý hôm nay, BXH (3 columns on desktop grid of 10, full width on mobile) */}
+          {/* Right: Cấp độ/streak/bài học, gợi ý hôm nay, thử thách tin tức, BXH (3 columns on desktop grid of 10, full width on mobile) */}
           <div className="lg:col-span-3 lg:sticky lg:top-24 space-y-6">
             <div data-tour="user-stats">
               <UserStats
@@ -1354,17 +1354,13 @@ export default function DashboardClient({ lessonsMeta }: { lessonsMeta: LessonMe
             {user?.id && (
               <DashboardRecommendations lessonsMeta={lessonsMeta} completed={completed} userId={user.id} />
             )}
+            {user?.id && (
+              <DailyNewsQuizWidget userId={user.id} compact />
+            )}
             <Leaderboard userId={user?.id} />
           </div>
         </div>
       </div>
-
-      {/* Daily News Quiz Challenge - full width, very bottom of the page */}
-      {user?.id && (
-        <div className="max-w-6xl mx-auto px-6 pb-8">
-          <DailyNewsQuizWidget userId={user.id} />
-        </div>
-      )}
 
       {/* Admin Chat */}
       <ChatWithAdminWidget />

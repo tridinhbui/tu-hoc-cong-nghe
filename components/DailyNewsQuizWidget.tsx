@@ -8,6 +8,7 @@ import { recalculateUserStats } from "@/lib/supabase-user";
 
 interface DailyNewsQuizWidgetProps {
   userId: string;
+  compact?: boolean;
 }
 
 interface NewsQuiz {
@@ -128,12 +129,14 @@ const NEWS_QUIZZES: NewsQuiz[] = [
   }
 ];
 
-export default function DailyNewsQuizWidget({ userId }: DailyNewsQuizWidgetProps) {
+export default function DailyNewsQuizWidget({ userId, compact = false }: DailyNewsQuizWidgetProps) {
   const [quiz, setQuiz] = useState<NewsQuiz | null>(null);
   const [selectedOpt, setSelectedOpt] = useState<number | null>(null);
   const [isAnswered, setIsAnswered] = useState<boolean>(false);
   const [isCorrect, setIsCorrect] = useState<boolean>(false);
-  const [collapsed, setCollapsed] = useState<boolean>(false);
+  // Sidebar placement is narrow, so the challenge starts collapsed there to
+  // avoid pushing the rest of the sidebar (leaderboard etc.) far down.
+  const [collapsed, setCollapsed] = useState<boolean>(compact);
 
   const todayKey = new Date().toISOString().split("T")[0]; // YYYY-MM-DD
   const localAnsweredKey = `news_quiz_answered_${userId}_${todayKey}`;
@@ -195,59 +198,65 @@ export default function DailyNewsQuizWidget({ userId }: DailyNewsQuizWidgetProps
   if (!quiz) return null;
 
   return (
-    <div className="bg-white dark:bg-stone-900 border border-stone-250 dark:border-stone-800 rounded-3xl overflow-hidden shadow-sm">
+    <div className={`bg-white dark:bg-stone-900 border border-stone-250 dark:border-stone-800 overflow-hidden shadow-sm ${compact ? "rounded-2xl" : "rounded-3xl"}`}>
       {/* Header */}
       <button
         onClick={() => setCollapsed(!collapsed)}
-        className="w-full px-6 py-4 border-b border-stone-150 dark:border-stone-800 flex items-center justify-between cursor-pointer text-left focus:outline-none"
+        className={`w-full flex items-center justify-between cursor-pointer text-left focus:outline-none ${
+          collapsed ? "" : "border-b border-stone-150 dark:border-stone-800"
+        } ${compact ? "px-4 py-3" : "px-6 py-4"}`}
       >
         <div className="flex items-center gap-2.5">
-          <div className="w-8 h-8 rounded-xl bg-sky-50 dark:bg-sky-950/30 text-sky-600 dark:text-sky-400 flex items-center justify-center">
-            <Newspaper className="w-4.5 h-4.5" />
+          <div className={`rounded-xl bg-sky-50 dark:bg-sky-950/30 text-sky-600 dark:text-sky-400 flex items-center justify-center shrink-0 ${compact ? "w-7 h-7" : "w-8 h-8"}`}>
+            <Newspaper className={compact ? "w-4 h-4" : "w-4.5 h-4.5"} />
           </div>
           <div>
-            <h3 className="text-sm font-extrabold text-stone-900 dark:text-stone-100 flex items-center gap-1.5">
-              Thử thách Tin tức Tài chính
+            <h3 className={`font-extrabold text-stone-900 dark:text-stone-100 flex items-center gap-1.5 ${compact ? "text-xs" : "text-sm"}`}>
+              {compact ? "Thử thách Tài chính" : "Thử thách Tin tức Tài chính"}
               {!isAnswered && (
                 <span className="w-2 h-2 rounded-full bg-rose-500 animate-ping" />
               )}
             </h3>
-            <p className="text-[10px] text-stone-500 dark:text-stone-400 font-bold">
-              Kiểm tra nhanh mức độ nhạy bén vĩ mô hàng ngày
-            </p>
+            {!compact && (
+              <p className="text-[10px] text-stone-500 dark:text-stone-400 font-bold">
+                Kiểm tra nhanh mức độ nhạy bén vĩ mô hàng ngày
+              </p>
+            )}
           </div>
         </div>
-        <span className="text-xs text-stone-400 dark:text-stone-500">
+        <span className="text-xs text-stone-400 dark:text-stone-500 shrink-0">
           {collapsed ? "Mở ra ▾" : "Thu gọn ▴"}
         </span>
       </button>
 
       {/* Content */}
       {!collapsed && (
-        <div className="p-6 space-y-4">
+        <div className={compact ? "p-4 space-y-3" : "p-6 space-y-4"}>
           {/* News snippet box */}
-          <div className="bg-stone-50 dark:bg-stone-950 rounded-2xl p-4 border border-stone-150 dark:border-stone-850/80">
+          <div className={`bg-stone-50 dark:bg-stone-950 border border-stone-150 dark:border-stone-850/80 ${compact ? "rounded-xl p-3" : "rounded-2xl p-4"}`}>
             <div className="flex items-center gap-1.5 mb-2">
               <span className="text-[9px] font-extrabold bg-sky-100 dark:bg-sky-950/60 text-sky-850 dark:text-sky-400 px-2 py-0.5 rounded uppercase">
                 Điểm tin hôm nay
               </span>
             </div>
-            <h4 className="text-xs font-black text-stone-900 dark:text-stone-150 leading-snug">
+            <h4 className={`font-black text-stone-900 dark:text-stone-150 leading-snug ${compact ? "text-[11px]" : "text-xs"}`}>
               {quiz.newsTitle}
             </h4>
-            <p className="text-[11px] text-stone-600 dark:text-stone-400 mt-2 leading-relaxed italic">
-              "{quiz.newsBody}"
-            </p>
+            {!compact && (
+              <p className="text-[11px] text-stone-600 dark:text-stone-400 mt-2 leading-relaxed italic">
+                "{quiz.newsBody}"
+              </p>
+            )}
           </div>
 
           {/* Question and Options */}
-          <div className="space-y-3">
-            <h4 className="text-xs font-black text-stone-900 dark:text-stone-100 flex items-start gap-1.5">
+          <div className={compact ? "space-y-2" : "space-y-3"}>
+            <h4 className={`font-black text-stone-900 dark:text-stone-100 flex items-start gap-1.5 ${compact ? "text-[11px]" : "text-xs"}`}>
               <HelpCircle className="w-4 h-4 text-stone-400 dark:text-stone-500 mt-0.5 shrink-0" />
               <span>{quiz.question}</span>
             </h4>
 
-            <div className="grid gap-2">
+            <div className={compact ? "grid gap-1.5" : "grid gap-2"}>
               {quiz.options.map((opt, idx) => {
                 const isSelected = selectedOpt === idx;
                 const showSuccess = isAnswered && idx === quiz.correctIndex;
@@ -258,7 +267,9 @@ export default function DailyNewsQuizWidget({ userId }: DailyNewsQuizWidgetProps
                     key={idx}
                     disabled={isAnswered}
                     onClick={() => setSelectedOpt(idx)}
-                    className={`w-full text-left p-3.5 rounded-xl border text-xs leading-relaxed transition-all flex items-start gap-2.5 focus:outline-none ${
+                    className={`w-full text-left rounded-xl border leading-relaxed transition-all flex items-start gap-2.5 focus:outline-none ${
+                      compact ? "p-2.5 text-[11px]" : "p-3.5 text-xs"
+                    } ${
                       showSuccess
                         ? "border-emerald-500 bg-emerald-500/[0.04] dark:bg-emerald-950/20 text-emerald-900 dark:text-emerald-400 font-bold"
                         : showFailure
@@ -293,12 +304,14 @@ export default function DailyNewsQuizWidget({ userId }: DailyNewsQuizWidgetProps
             <button
               onClick={handleSubmit}
               disabled={selectedOpt === null}
-              className="w-full py-3 bg-stone-900 hover:bg-stone-800 disabled:bg-stone-200 dark:bg-stone-100 dark:hover:bg-stone-200 dark:disabled:bg-stone-800 text-white dark:text-stone-900 disabled:text-stone-400 rounded-xl text-xs font-extrabold tracking-wider uppercase transition-colors cursor-pointer"
+              className={`w-full bg-stone-900 hover:bg-stone-800 disabled:bg-stone-200 dark:bg-stone-100 dark:hover:bg-stone-200 dark:disabled:bg-stone-800 text-white dark:text-stone-900 disabled:text-stone-400 rounded-xl font-extrabold tracking-wider uppercase transition-colors cursor-pointer ${
+                compact ? "py-2.5 text-[10px]" : "py-3 text-xs"
+              }`}
             >
               Gửi câu trả lời
             </button>
           ) : (
-            <div className="p-4.5 rounded-2xl bg-stone-50 dark:bg-stone-950 border border-stone-200/60 dark:border-stone-800/80 animate-[fadeIn_0.35s_ease-out]">
+            <div className={`rounded-2xl bg-stone-50 dark:bg-stone-950 border border-stone-200/60 dark:border-stone-800/80 animate-[fadeIn_0.35s_ease-out] ${compact ? "p-3" : "p-4.5"}`}>
               <h5 className="text-[10px] font-extrabold uppercase tracking-wider flex items-center gap-1.5 text-stone-700 dark:text-stone-300 mb-2">
                 <Award className={`w-4 h-4 ${isCorrect ? "text-emerald-500" : "text-stone-400"}`} />
                 <span>{isCorrect ? "Trả lời chính xác!" : "Đáp án đúng là A"}</span>
