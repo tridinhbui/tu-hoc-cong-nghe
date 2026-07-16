@@ -387,3 +387,99 @@ const getLeaderboard = async () => {
 ## Chạy SQL
 
 Sao chép từng script SQL vào SQL Editor của Supabase và chạy. Hoặc tạo một migration file.
+
+---
+
+## 7. CFA Curriculum Tables
+
+### Table: `Book` (Lưu trữ sách CFA)
+```sql
+CREATE TABLE IF NOT EXISTS public."Book" (
+  id text PRIMARY KEY,
+  title text NOT NULL,
+  description text,
+  "coverImage" text,
+  level text NOT NULL,
+  "createdAt" timestamp with time zone DEFAULT now()
+);
+
+ALTER TABLE public."Book" ENABLE ROW LEVEL SECURITY;
+CREATE POLICY "Allow public read access" ON public."Book" FOR SELECT USING (true);
+```
+
+### Table: `Reading` (Lưu trữ chương bài học CFA)
+```sql
+CREATE TABLE IF NOT EXISTS public."Reading" (
+  id text PRIMARY KEY,
+  "bookId" text REFERENCES public."Book"(id) ON DELETE CASCADE,
+  code text NOT NULL,
+  title text NOT NULL,
+  "order" integer,
+  "pageStart" integer,
+  "pageEnd" integer,
+  "createdAt" timestamp with time zone DEFAULT now()
+);
+
+ALTER TABLE public."Reading" ENABLE ROW LEVEL SECURITY;
+CREATE POLICY "Allow public read access" ON public."Reading" FOR SELECT USING (true);
+```
+
+### Table: `Module` (Lưu trữ tiểu mục CFA)
+```sql
+CREATE TABLE IF NOT EXISTS public."Module" (
+  id text PRIMARY KEY,
+  "readingId" text REFERENCES public."Reading"(id) ON DELETE CASCADE,
+  code text NOT NULL,
+  title text NOT NULL,
+  "order" integer,
+  "createdAt" timestamp with time zone DEFAULT now()
+);
+
+ALTER TABLE public."Module" ENABLE ROW LEVEL SECURITY;
+CREATE POLICY "Allow public read access" ON public."Module" FOR SELECT USING (true);
+```
+
+### Table: `LessonContent` (Nội dung chi tiết bài học CFA dạng Markdown)
+```sql
+CREATE TABLE IF NOT EXISTS public."LessonContent" (
+  id text PRIMARY KEY,
+  "moduleId" text REFERENCES public."Module"(id) ON DELETE CASCADE,
+  content text NOT NULL,
+  "updatedAt" timestamp with time zone DEFAULT now(),
+  "videoUrl" text
+);
+
+ALTER TABLE public."LessonContent" ENABLE ROW LEVEL SECURITY;
+CREATE POLICY "Allow public read access" ON public."LessonContent" FOR SELECT USING (true);
+```
+
+### Table: `ModuleQuizHeader` (Tiêu đề và tóm tắt ôn tập cho Quiz)
+```sql
+CREATE TABLE IF NOT EXISTS public."ModuleQuizHeader" (
+  id text PRIMARY KEY,
+  "moduleId" text REFERENCES public."Module"(id) ON DELETE CASCADE,
+  title text NOT NULL,
+  "studyNotes" text -- Lưu trữ ghi chú tóm tắt ôn tập dạng JSON string
+);
+
+ALTER TABLE public."ModuleQuizHeader" ENABLE ROW LEVEL SECURITY;
+CREATE POLICY "Allow public read access" ON public."ModuleQuizHeader" FOR SELECT USING (true);
+```
+
+### Table: `ModuleQuizQuestion` (Câu hỏi trắc nghiệm của Quiz - không có vector)
+```sql
+CREATE TABLE IF NOT EXISTS public."ModuleQuizQuestion" (
+  id text PRIMARY KEY,
+  "headerId" text REFERENCES public."ModuleQuizHeader"(id) ON DELETE CASCADE,
+  "questionNo" integer NOT NULL,
+  prompt text NOT NULL,
+  "optionA" text NOT NULL,
+  "optionB" text NOT NULL,
+  "optionC" text NOT NULL,
+  correct text NOT NULL,
+  explanation text
+);
+
+ALTER TABLE public."ModuleQuizQuestion" ENABLE ROW LEVEL SECURITY;
+CREATE POLICY "Allow public read access" ON public."ModuleQuizQuestion" FOR SELECT USING (true);
+```
