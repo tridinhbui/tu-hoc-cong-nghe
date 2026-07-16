@@ -60,6 +60,10 @@ const STAGE_THEMES: Record<string, { emoji: string; bg: string; text: string; ba
   "professional-Chặng 4": { emoji: "💵", bg: "bg-stone-50 dark:bg-stone-900/60 border border-stone-200 dark:border-stone-800", text: "text-stone-600 dark:text-stone-400", barColor: "bg-stone-400" },
   "professional-Chặng 5": { emoji: "🎯", bg: "bg-stone-50 dark:bg-stone-900/60 border border-stone-200 dark:border-stone-800", text: "text-stone-600 dark:text-stone-400", barColor: "bg-stone-400" },
   "professional-Chặng 6": { emoji: "🛡️", bg: "bg-stone-50 dark:bg-stone-900/60 border border-stone-200 dark:border-stone-800", text: "text-stone-600 dark:text-stone-400", barColor: "bg-stone-400" },
+  "professional-Chặng 7": { emoji: "📈", bg: "bg-stone-50 dark:bg-stone-900/60 border border-stone-200 dark:border-stone-800", text: "text-stone-600 dark:text-stone-400", barColor: "bg-stone-400" },
+  "professional-Chặng 8": { emoji: "⚖️", bg: "bg-stone-50 dark:bg-stone-900/60 border border-stone-200 dark:border-stone-800", text: "text-stone-600 dark:text-stone-400", barColor: "bg-stone-400" },
+  "professional-Chặng 9": { emoji: "🔄", bg: "bg-stone-50 dark:bg-stone-900/60 border border-stone-200 dark:border-stone-800", text: "text-stone-600 dark:text-stone-400", barColor: "bg-stone-400" },
+  "professional-Chặng 10": { emoji: "👑", bg: "bg-stone-50 dark:bg-stone-900/60 border border-stone-200 dark:border-stone-800", text: "text-stone-600 dark:text-stone-400", barColor: "bg-stone-400" },
 };
 
 // Slim projection of Lesson - just enough to render the dashboard listing,
@@ -614,6 +618,99 @@ export default function DashboardClient({ lessonsMeta }: { lessonsMeta: LessonMe
           {/* Left Column: Learning Path (7 columns on desktop) */}
           <div className="lg:col-span-7 space-y-6">
 
+            {/* 🗺️ Bản đồ Lộ trình Học tập (Roadmap Progress Bar) */}
+            {activeTrack !== "cfa" && (
+              <div className="bg-white dark:bg-stone-900 border border-stone-200 dark:border-stone-850 rounded-2xl p-4 sm:p-5 shadow-sm relative overflow-hidden">
+                {/* Background glow */}
+                <div className="absolute -top-10 -left-10 w-28 h-28 bg-emerald-500/5 dark:bg-emerald-500/10 rounded-full blur-2xl pointer-events-none" />
+                
+                <div className="flex items-center justify-between mb-4 relative z-10">
+                  <div>
+                    <h3 className="text-sm sm:text-base font-extrabold text-stone-900 dark:text-stone-100 flex items-center gap-1.5">
+                      🗺️ Bản đồ Lộ trình Học tập
+                    </h3>
+                    <p className="text-[10px] text-stone-500 dark:text-stone-400 mt-0.5">
+                      Nhấp vào từng chặng để tự động cuộn đến danh sách bài học
+                    </p>
+                  </div>
+                  <span className="text-[10px] font-extrabold text-emerald-600 dark:text-emerald-450 bg-emerald-50 dark:bg-emerald-950/40 border border-emerald-100 dark:border-emerald-900/40 px-2 py-0.5 rounded-md">
+                    {sorted.length ? Math.round((completed.length / sorted.length) * 100) : 0}% Hoàn thành
+                  </span>
+                </div>
+
+                {/* Horizontal Timeline Map */}
+                <div className="relative z-10 flex items-center justify-between gap-2 overflow-x-auto pb-2 scrollbar-thin scrollbar-thumb-stone-200 dark:scrollbar-thumb-stone-800">
+                  {track.stages.map((stage, idx) => {
+                    const stageKey = `${activeTrack}-${stage.label}`;
+                    const stageLessons = sorted.filter(
+                      (l) => isLessonInRange(l.id, stage) && (!l.track || l.track === activeTrack)
+                    );
+                    const stageDone = stageLessons.filter((l) => completed.includes(l.id)).length;
+                    const isPassed = passedMilestones.some((m) => m.stage_label === stage.label);
+                    const isLearning = stageLessons.length > 0 && stageDone < stageLessons.length && (idx === 0 || passedMilestones.some((m) => m.stage_label === track.stages[idx - 1]?.label));
+                    
+                    const theme = STAGE_THEMES[stageKey] || { emoji: "📖" };
+                    
+                    let statusColor = "bg-stone-100 dark:bg-stone-800 text-stone-400 dark:text-stone-500 border-stone-200 dark:border-stone-700";
+                    if (isPassed) {
+                      statusColor = "bg-emerald-500 text-white border-emerald-500 shadow-sm shadow-emerald-500/20";
+                    } else if (isLearning) {
+                      statusColor = "bg-amber-500 text-white border-amber-500 shadow-sm shadow-amber-500/20 ring-2 ring-amber-400/30 animate-pulse";
+                    }
+
+                    return (
+                      <div key={stage.label} className="flex items-center flex-1 min-w-[70px] relative group/step">
+                        {/* Connecting Line */}
+                        {idx < track.stages.length - 1 && (
+                          <div className="absolute top-5 left-1/2 right-[-50%] h-[2px] bg-stone-100 dark:bg-stone-800 z-0">
+                            <div 
+                              className={`h-full transition-all duration-500 ${isPassed ? "bg-emerald-500" : "bg-stone-100 dark:bg-stone-800"}`} 
+                              style={{ width: isPassed ? "100%" : "0%" }}
+                            />
+                          </div>
+                        )}
+
+                        {/* Interactive Node */}
+                        <button
+                          onClick={() => {
+                            const stageKey = `${activeTrack}-${stage.label}`;
+                            setOpenStages((prev) => {
+                              const next = new Set(prev);
+                              next.add(stageKey);
+                              return next;
+                            });
+                            setTimeout(() => {
+                              const el = document.getElementById(`stage-${stage.label}`);
+                              if (el) {
+                                el.scrollIntoView({ behavior: "smooth", block: "center" });
+                              }
+                            }, 100);
+                          }}
+                          className={`relative z-10 w-10 h-10 rounded-full border-2 flex items-center justify-center text-base cursor-pointer hover:scale-110 active:scale-95 transition-all mx-auto ${statusColor}`}
+                          title={`${stage.label}: ${stage.name}`}
+                        >
+                          {isPassed ? "✓" : theme.emoji}
+                        </button>
+
+                        {/* Label */}
+                        <div className="absolute top-11 left-1/2 -translate-x-1/2 text-center w-max pointer-events-none">
+                          <span className="text-[9px] font-black uppercase tracking-wider block text-stone-500 dark:text-stone-400">
+                            {stage.label}
+                          </span>
+                          <span className="text-[8px] font-bold text-stone-450 dark:text-stone-500 block">
+                            {stageDone}/{stageLessons.length}
+                          </span>
+                        </div>
+                      </div>
+                    );
+                  })}
+                </div>
+                
+                {/* Spacer for label offset */}
+                <div className="h-6" />
+              </div>
+            )}
+
             {/* Resume Learning Card */}
             <div data-tour="resume-learning">
               <ResumeLearningButton activeTrack={lastNonCfaTrack} />
@@ -844,7 +941,7 @@ export default function DashboardClient({ lessonsMeta }: { lessonsMeta: LessonMe
             const isCurrentMilestonePassed = passedMilestones.some((m) => m.stage_label === stage.label);
 
             return (
-              <div key={stage.label}>
+              <div key={stage.label} id={`stage-${stage.label}`}>
                 {/* Stage header - click to expand/collapse */}
                 {(() => {
                   const themeKey = `${activeTrack}-${stage.label}`;
