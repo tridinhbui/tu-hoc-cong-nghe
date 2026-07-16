@@ -159,29 +159,25 @@ export async function getTotalQuestXp(userId: string): Promise<number> {
     .eq("user_id", userId);
 
   if (error) {
-    if (isMissingTableError(error)) {
-      // Fallback: aggregate from localStorage if table not found
-      if (typeof window !== "undefined") {
-        let total = 0;
-        for (let i = 0; i < window.localStorage.length; i++) {
-          const key = window.localStorage.key(i);
-          if (key && key.startsWith(`quests_claimed_${userId}_`)) {
-            try {
-              const items = JSON.parse(window.localStorage.getItem(key) ?? "[]") as string[];
-              items.forEach((item) => {
-                if (item === "daily_1") total += 10;
-                else if (item === "daily_2") total += 5;
-                else if (item === "daily_3") total += 15;
-                else if (item === "daily_news_quiz") total += 15;
-              });
-            } catch {}
-          }
+    console.warn("Supabase Quest Total XP read failed, falling back to localStorage:", error);
+    if (typeof window !== "undefined") {
+      let total = 0;
+      for (let i = 0; i < window.localStorage.length; i++) {
+        const key = window.localStorage.key(i);
+        if (key && key.startsWith(`quests_claimed_${userId}_`)) {
+          try {
+            const items = JSON.parse(window.localStorage.getItem(key) ?? "[]") as string[];
+            items.forEach((item) => {
+              if (item === "daily_1") total += 10;
+              else if (item === "daily_2") total += 5;
+              else if (item === "daily_3") total += 15;
+              else if (item === "daily_news_quiz") total += 15;
+            });
+          } catch {}
         }
-        return total;
       }
-      return 0;
+      return total;
     }
-    console.error("Error reading quest total XP:", error);
     return 0;
   }
 

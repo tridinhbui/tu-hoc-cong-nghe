@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { ChevronLeft } from "lucide-react";
+import { ChevronLeft, Gift } from "lucide-react";
 import { createServerSupabaseClient } from "@/lib/supabase-server";
 import DocumentsList from "./DocumentsList";
 
@@ -75,15 +75,24 @@ export default async function DocumentsGiveawayPage() {
             Về trang chủ
           </Link>
           <div className="flex items-center gap-3 flex-wrap">
-            <h1 className="text-2xl font-black text-stone-900 dark:text-stone-100">Kho Tài liệu học tập</h1>
-            <span className="inline-flex items-center gap-1 px-3 py-1 rounded-full text-xs font-black uppercase bg-gradient-to-r from-emerald-500 to-teal-500 text-white shadow-lg shadow-emerald-500/20 animate-bounce">
-              Miễn phí 100% 💎
+            <h1 className="text-2xl font-black text-stone-900 dark:text-stone-100">Kho Tài liệu Miễn phí</h1>
+            <span className="inline-flex items-center gap-1 px-3 py-1 rounded-full text-xs font-black uppercase bg-gradient-to-r from-rose-500 to-red-600 text-white shadow-lg shadow-rose-500/20 animate-bounce">
+              Miễn phí 100% 🎁
             </span>
           </div>
           <p className="text-sm text-stone-500 dark:text-stone-400 mt-2">
             Mẫu biểu, ebook, checklist và công cụ hỗ trợ hành trình học tài chính của bạn - tải về hoàn toàn miễn phí không giới hạn.
             Đóng góp tài liệu của riêng bạn để chia sẻ cho cộng đồng nhé!
           </p>
+          <div className="mt-4 p-4 rounded-xl border border-rose-250 dark:border-rose-900/60 bg-rose-50/50 dark:bg-rose-950/20 flex items-start gap-3 shadow-[0_0_12px_rgba(244,63,94,0.05)]">
+            <Gift className="w-5 h-5 text-rose-500 shrink-0 mt-0.5 animate-bounce" />
+            <div>
+              <p className="text-xs font-black text-rose-700 dark:text-rose-450 uppercase tracking-wider">Món quà tri thức từ cộng đồng</p>
+              <p className="text-xs text-rose-600/90 dark:text-rose-350 mt-1 leading-relaxed">
+                Tất cả tài liệu, ebook, biểu mẫu Excel và checklist tại đây đều được chia sẻ hoàn toàn miễn phí để phục vụ mục đích học tập cá nhân.
+              </p>
+            </div>
+          </div>
         </div>
       </div>
       <div className="max-w-4xl mx-auto px-6 py-8">

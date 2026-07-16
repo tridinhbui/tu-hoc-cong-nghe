@@ -24,7 +24,6 @@ interface NavProfile {
 }
 
 const NAV_LINKS = [
-  { href: "/tai-lieu", label: "Tài liệu", icon: FileText },
   { href: "/analytics", label: "Thống kê", icon: BarChart3 },
   { href: "/ghi-chu", label: "Ghi chú", icon: StickyNote },
   { href: "/kiem-tra", label: "Kiểm tra", icon: GraduationCap },
@@ -170,6 +169,19 @@ export default function AppNavbar() {
         </nav>
 
         <div className="flex items-center gap-2 flex-shrink-0">
+          <Link
+            href="/tai-lieu"
+            className={`flex items-center gap-1.5 text-xs font-black px-2.5 py-1.5 rounded-lg border transition-all duration-200 ${
+              pathname === "/tai-lieu"
+                ? "bg-rose-500/15 dark:bg-rose-950/40 text-rose-700 dark:text-rose-300 border-rose-500/30"
+                : "bg-rose-50/80 dark:bg-rose-950/20 text-rose-600 dark:text-rose-450 border-rose-200/50 dark:border-rose-900/40 hover:bg-rose-100/60 dark:hover:bg-rose-950/30 hover:border-rose-300 shadow-[0_0_10px_rgba(244,63,94,0.04)]"
+            }`}
+          >
+            <FileText className="w-3.5 h-3.5 text-rose-550 shrink-0" />
+            <span className="hidden sm:inline">Tài liệu Miễn phí</span>
+            <span className="sm:hidden text-[10px]">T.Liệu Free</span>
+          </Link>
+
           <LessonSearch />
           <button
             onClick={() => setMobileMenuOpen((v) => !v)}
@@ -261,6 +273,19 @@ export default function AppNavbar() {
 
       {mobileMenuOpen && (
         <div className="md:hidden border-t border-stone-200 dark:border-stone-800 px-4 sm:px-6 py-3 space-y-1.5 bg-white dark:bg-stone-950">
+          <Link
+            href="/tai-lieu"
+            onClick={() => setMobileMenuOpen(false)}
+            className={`group relative flex items-center gap-2 text-sm font-bold px-3 py-2.5 rounded-lg transition-all duration-200 ${
+              pathname === "/tai-lieu"
+                ? "bg-rose-500/15 dark:bg-rose-950/40 text-rose-700 dark:text-rose-300 border border-rose-500/25"
+                : "bg-rose-50/80 dark:bg-rose-950/20 text-rose-600 dark:text-rose-450 border border-rose-200/50 dark:border-rose-900/40 hover:bg-rose-100/60 dark:hover:bg-rose-950/30"
+            }`}
+          >
+            <FileText className="w-4 h-4 text-rose-550 shrink-0" />
+            Tài liệu Miễn phí
+          </Link>
+
           {NAV_LINKS.map(({ href, label, icon: Icon }) => {
             const active = pathname === href;
             const isGame = href === "/game";

@@ -205,11 +205,11 @@ export default function DailyNewsQuizWidget({ userId, compact = false }: DailyNe
         } ${compact ? "px-4 py-3" : "px-6 py-4"}`}
       >
         <div className="flex items-center gap-2.5">
-          <div className={`rounded-xl bg-sky-50 dark:bg-sky-950/30 text-sky-600 dark:text-sky-400 flex items-center justify-center shrink-0 ${compact ? "w-7 h-7" : "w-8 h-8"}`}>
-            <Newspaper className={compact ? "w-4 h-4" : "w-4.5 h-4.5"} />
+          <div className="rounded-xl bg-sky-50 dark:bg-sky-950/30 text-sky-600 dark:text-sky-400 flex items-center justify-center shrink-0 w-8 h-8">
+            <Newspaper className="w-4.5 h-4.5" />
           </div>
           <div>
-            <h3 className={`font-extrabold text-stone-900 dark:text-stone-100 flex items-center gap-1.5 ${compact ? "text-xs" : "text-sm"}`}>
+            <h3 className="font-bold text-stone-900 dark:text-stone-100 flex items-center gap-1.5 text-base">
               {compact ? "Thử thách Tài chính" : "Thử thách Tin tức Tài chính"}
               {!isAnswered && (
                 <span className="w-2 h-2 rounded-full bg-rose-500 animate-ping" />

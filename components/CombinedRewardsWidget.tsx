@@ -251,15 +251,15 @@ export default function CombinedRewardsWidget({ userId, defaultExpanded = false 
         className="w-full px-3.5 py-2.5 flex items-center justify-between hover:bg-stone-50 dark:hover:bg-stone-950/30 transition-colors"
       >
         <div className="flex items-center gap-2">
-          <Gift className="w-4 h-4 text-rose-500" />
-          <span className="text-xs font-extrabold text-stone-900 dark:text-stone-100">Nhiệm vụ & Phần thưởng</span>
+          <Gift className="w-5 h-5 text-rose-500" />
+          <span className="text-base font-bold text-stone-900 dark:text-stone-100">Nhiệm vụ & Phần thưởng</span>
           {chestCount > 0 && (
-            <span className="text-[9px] font-black bg-rose-500 text-white px-1.5 py-0.5 rounded-full">
+            <span className="text-[10px] font-black bg-rose-500 text-white px-2 py-0.5 rounded-full">
               {chestCount} rương
             </span>
           )}
         </div>
-        {isExpanded ? <ChevronUp className="w-4 h-4 text-stone-400 dark:text-stone-500" /> : <ChevronDown className="w-4 h-4 text-stone-400 dark:text-stone-500" />}
+        {isExpanded ? <ChevronUp className="w-4.5 h-4.5 text-stone-400 dark:text-stone-500" /> : <ChevronDown className="w-4.5 h-4.5 text-stone-400 dark:text-stone-500" />}
       </button>
 
       {isExpanded && (

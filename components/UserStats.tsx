@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
-import { Flame } from "lucide-react";
+import { Flame, BookOpen, Target, TrendingUp, Sparkles } from "lucide-react";
 import { getLevelByXp, getNextLevel, getXpToNextLevel, getLevelProgress, LEVELS } from "@/lib/levels";
 import { getLevelStats, type LevelStats } from "@/lib/supabase-user";
 import { getUserStreak, hasActivityToday as checkActivityToday } from "@/lib/supabase-streak";
@@ -106,26 +106,36 @@ export default function UserStats({
   return (
     <div
       ref={rootRef}
-      className={`bg-white dark:bg-stone-900 border border-stone-200 dark:border-stone-850 rounded-2xl shadow-sm relative overflow-hidden transition-all duration-300 hover:shadow-md group ${
-        sidebar ? "p-3.5" : "p-4 sm:p-5"
+      className={`bg-white dark:bg-stone-900 border border-stone-200 dark:border-stone-850 rounded-3xl shadow-sm relative overflow-hidden transition-all duration-300 hover:shadow-lg group ${
+        sidebar ? "p-4" : "p-4 sm:p-5"
       }`}
     >
       {/* Subtle background glow bubbles for gamified accent */}
       <div className="absolute -top-6 -right-6 w-24 h-24 bg-emerald-500/5 dark:bg-emerald-500/10 rounded-full blur-2xl pointer-events-none transition-transform duration-500 group-hover:scale-125" />
       <div className="absolute -bottom-6 -left-6 w-24 h-24 bg-amber-500/5 dark:bg-amber-500/10 rounded-full blur-2xl pointer-events-none transition-transform duration-500 group-hover:scale-125" />
+      {/* Top accent bar - subtle gradient tied to level progress */}
+      <div className="absolute top-0 left-0 right-0 h-[3px] bg-gradient-to-r from-emerald-400 via-teal-400 to-emerald-500 opacity-70" />
 
-      <div className={`flex items-center gap-3 relative z-10 ${sidebar ? "mb-3" : "mb-4"}`}>
-        <div className={`rounded-xl bg-stone-50 dark:bg-stone-950/60 border border-stone-150 dark:border-stone-800 flex items-center justify-center text-xl shadow-sm shrink-0 ${
-          sidebar ? "w-9 h-9 text-lg" : "w-11 h-11 text-xl"
-        }`}>
-          {LEVEL_EMOJIS[currentLevel.level] || "🌱"}
+      <div className={`flex items-center gap-3 relative z-10 ${sidebar ? "mb-3.5" : "mb-4"}`}>
+        <div className="relative shrink-0">
+          <div className={`rounded-full bg-gradient-to-br from-emerald-50 to-teal-50 dark:from-emerald-950/50 dark:to-teal-950/40 ring-2 ring-emerald-500/15 dark:ring-emerald-400/20 flex items-center justify-center shadow-sm ${
+            sidebar ? "w-11 h-11 text-xl" : "w-12 h-12 text-2xl"
+          }`}>
+            {LEVEL_EMOJIS[currentLevel.level] || "🌱"}
+          </div>
+          {/* Level number chip overlapping the badge */}
+          <div className={`absolute -bottom-1 -right-1 rounded-full bg-emerald-600 dark:bg-emerald-500 text-white font-black flex items-center justify-center ring-2 ring-white dark:ring-stone-900 ${
+            sidebar ? "w-4.5 h-4.5 text-[9px]" : "w-5 h-5 text-[10px]"
+          }`}>
+            {currentLevel.level}
+          </div>
         </div>
         <div className="min-w-0 flex-1">
-          <span className="text-[8px] sm:text-[9px] font-black text-stone-500 dark:text-stone-400 uppercase tracking-widest block leading-none">
+          <span className="text-[8px] sm:text-[9px] font-black text-stone-450 dark:text-stone-400 uppercase tracking-widest block leading-none">
             Cấp độ {currentLevel.level} / {LEVELS.length}
           </span>
           <h3 className={`font-black text-stone-950 dark:text-white mt-1 tracking-tight leading-none truncate ${
-            sidebar ? "text-xs sm:text-sm" : "text-sm sm:text-base"
+            sidebar ? "text-sm" : "text-sm sm:text-base"
           }`}>
             {currentLevel.name}
           </h3>
@@ -136,19 +146,20 @@ export default function UserStats({
           )}
         </div>
         <div className="text-right shrink-0">
-          <span className={`font-black text-emerald-700 dark:text-emerald-400 bg-emerald-500/10 dark:bg-emerald-950/40 border border-emerald-500/20 dark:border-emerald-500/10 rounded-lg ${
-            sidebar ? "text-[10px] px-2 py-1" : "text-[11px] px-2.5 py-1.5"
+          <span className={`inline-flex items-center gap-1 font-black text-white bg-gradient-to-r from-emerald-500 to-teal-500 dark:from-emerald-500 dark:to-teal-600 rounded-full shadow-sm shadow-emerald-500/25 ${
+            sidebar ? "text-[10px] px-2.5 py-1.5" : "text-[11px] px-3 py-1.5"
           }`}>
+            <Sparkles className={sidebar ? "w-2.5 h-2.5" : "w-3 h-3"} />
             {xp} XP
           </span>
         </div>
       </div>
 
       {/* Modern Stats Grid */}
-      <div className={`grid grid-cols-2 gap-2 relative z-10 ${sidebar ? "mb-3" : "mb-4"}`}>
+      <div className={`grid grid-cols-2 gap-2 relative z-10 ${sidebar ? "mb-3.5" : "mb-4"}`}>
         {/* Streak Box */}
-        <div className={`bg-stone-50/60 dark:bg-stone-950/20 border border-stone-150 dark:border-stone-850 rounded-xl flex items-center justify-between gap-1.5 ${
-          sidebar ? "p-2" : "p-3"
+        <div className={`bg-orange-50/40 dark:bg-orange-950/10 border border-orange-100/70 dark:border-orange-900/30 rounded-2xl flex items-center justify-between gap-1.5 transition-colors hover:bg-orange-50/70 dark:hover:bg-orange-950/20 ${
+          sidebar ? "p-2.5" : "p-3"
         }`}>
           <div className="min-w-0">
             <span className="text-[8px] sm:text-[9px] font-black text-stone-500 dark:text-stone-400 uppercase tracking-wider block">Streak</span>
@@ -159,8 +170,8 @@ export default function UserStats({
           <div className={`rounded-full flex items-center justify-center shrink-0 transition-colors ${
             sidebar ? "w-6 h-6" : "w-8 h-8"
           } ${
-            streak > 0 
-              ? "bg-orange-50/50 dark:bg-orange-950/20" 
+            streak > 0
+              ? "bg-orange-50/50 dark:bg-orange-950/20"
               : "bg-stone-100 dark:bg-stone-850"
           }`}>
             {streak > 0 ? (
@@ -214,59 +225,77 @@ export default function UserStats({
         </div>
 
         {/* Progress Box */}
-        <div className={`bg-stone-50/60 dark:bg-stone-950/20 border border-stone-150 dark:border-stone-850 rounded-xl flex flex-col justify-between ${
-          sidebar ? "p-2" : "p-3"
+        <div className={`bg-sky-50/40 dark:bg-sky-950/10 border border-sky-100/70 dark:border-sky-900/30 rounded-2xl flex items-center justify-between gap-1.5 transition-colors hover:bg-sky-50/70 dark:hover:bg-sky-950/20 ${
+          sidebar ? "p-2.5" : "p-3"
         }`}>
-          <span className="text-[8px] sm:text-[9px] font-black text-stone-500 dark:text-stone-400 uppercase tracking-wider block">Bài học</span>
-          <div className="flex items-baseline gap-1 mt-0.5 truncate">
-            <span className={`font-black text-stone-950 dark:text-stone-50 ${sidebar ? "text-xs" : "text-sm sm:text-base"}`}>{lessonsCompleted}</span>
-            <span className="text-[9px] font-bold text-stone-450 dark:text-stone-500">/ {totalLessons}</span>
+          <div className="min-w-0">
+            <span className="text-[8px] sm:text-[9px] font-black text-stone-500 dark:text-stone-400 uppercase tracking-wider block">Bài học</span>
+            <div className="flex items-baseline gap-1 mt-1 truncate">
+              <span className={`font-black text-stone-950 dark:text-stone-50 ${sidebar ? "text-xs" : "text-sm sm:text-base"}`}>{lessonsCompleted}</span>
+              <span className="text-[9px] font-bold text-stone-450 dark:text-stone-500">/ {totalLessons}</span>
+            </div>
+          </div>
+          <div className={`rounded-full bg-sky-50/60 dark:bg-sky-950/30 flex items-center justify-center shrink-0 ${sidebar ? "w-6 h-6" : "w-8 h-8"}`}>
+            <BookOpen className={`${sidebar ? "w-3 h-3" : "w-4 h-4"} text-sky-500 dark:text-sky-400`} />
           </div>
         </div>
 
         {/* Quiz TB Box */}
-        <div className={`bg-stone-50/60 dark:bg-stone-950/20 border border-stone-150 dark:border-stone-850 rounded-xl flex flex-col justify-between ${
-          sidebar ? "p-2" : "p-3"
+        <div className={`bg-emerald-50/40 dark:bg-emerald-950/10 border border-emerald-100/70 dark:border-emerald-900/30 rounded-2xl flex items-center justify-between gap-1.5 transition-colors hover:bg-emerald-50/70 dark:hover:bg-emerald-950/20 ${
+          sidebar ? "p-2.5" : "p-3"
         }`}>
-          <span className="text-[8px] sm:text-[9px] font-black text-stone-500 dark:text-stone-400 uppercase tracking-wider block">Quiz TB</span>
-          <div className="flex items-baseline gap-0.5 mt-0.5">
-            <span className={`font-black text-emerald-600 dark:text-emerald-450 ${sidebar ? "text-xs" : "text-sm sm:text-base"}`}>{Math.round(avgQuizScore)}</span>
-            <span className="text-[9px] font-bold text-emerald-500 dark:text-emerald-450">%</span>
+          <div className="min-w-0">
+            <span className="text-[8px] sm:text-[9px] font-black text-stone-500 dark:text-stone-400 uppercase tracking-wider block">Quiz TB</span>
+            <div className="flex items-baseline gap-0.5 mt-1">
+              <span className={`font-black text-emerald-600 dark:text-emerald-450 ${sidebar ? "text-xs" : "text-sm sm:text-base"}`}>{Math.round(avgQuizScore)}</span>
+              <span className="text-[9px] font-bold text-emerald-500 dark:text-emerald-450">%</span>
+            </div>
+          </div>
+          <div className={`rounded-full bg-emerald-50/60 dark:bg-emerald-950/30 flex items-center justify-center shrink-0 ${sidebar ? "w-6 h-6" : "w-8 h-8"}`}>
+            <Target className={`${sidebar ? "w-3 h-3" : "w-4 h-4"} text-emerald-500 dark:text-emerald-400`} />
           </div>
         </div>
 
         {/* XP Target Box */}
-        <div className={`bg-stone-50/60 dark:bg-stone-950/20 border border-stone-150 dark:border-stone-850 rounded-xl flex flex-col justify-between ${
-          sidebar ? "p-2" : "p-3"
+        <div className={`bg-indigo-50/40 dark:bg-indigo-950/10 border border-indigo-100/70 dark:border-indigo-900/30 rounded-2xl flex items-center justify-between gap-1.5 transition-colors hover:bg-indigo-50/70 dark:hover:bg-indigo-950/20 ${
+          sidebar ? "p-2.5" : "p-3"
         }`}>
-          <span className="text-[8px] sm:text-[9px] font-black text-stone-500 dark:text-stone-400 uppercase tracking-wider block">Tiến cấp</span>
-          <div className="flex items-baseline gap-0.5 mt-0.5 truncate">
-            <span className={`font-black text-indigo-650 dark:text-indigo-400 ${sidebar ? "text-xs" : "text-sm sm:text-base"}`}>{xpToNext > 0 ? `+${xpToNext}` : "Tối đa"}</span>
-            {xpToNext > 0 && <span className="text-[8px] font-black text-stone-500 dark:text-stone-400">XP</span>}
+          <div className="min-w-0">
+            <span className="text-[8px] sm:text-[9px] font-black text-stone-500 dark:text-stone-400 uppercase tracking-wider block">Tiến cấp</span>
+            <div className="flex items-baseline gap-0.5 mt-1 truncate">
+              <span className={`font-black text-indigo-650 dark:text-indigo-400 ${sidebar ? "text-xs" : "text-sm sm:text-base"}`}>{xpToNext > 0 ? `+${xpToNext}` : "Tối đa"}</span>
+              {xpToNext > 0 && <span className="text-[8px] font-black text-stone-500 dark:text-stone-400">XP</span>}
+            </div>
+          </div>
+          <div className={`rounded-full bg-indigo-50/60 dark:bg-indigo-950/30 flex items-center justify-center shrink-0 ${sidebar ? "w-6 h-6" : "w-8 h-8"}`}>
+            <TrendingUp className={`${sidebar ? "w-3 h-3" : "w-4 h-4"} text-indigo-500 dark:text-indigo-400`} />
           </div>
         </div>
       </div>
 
       {/* Level Progress Bar & Alert Banner */}
       {nextLevel && (
-        <div className="mt-2.5 pt-2.5 border-t border-stone-150 dark:border-stone-800/80 relative z-10">
-          <div className="flex items-center justify-between text-[10px] mb-1 font-bold text-stone-500 dark:text-stone-450">
-            <span>Tiến độ cấp {currentLevel.level} ({Math.round(progress)}%)</span>
-            <span className="text-emerald-600 dark:text-emerald-450">Cấp {nextLevel.level}: {nextLevel.name}</span>
+        <div className="mt-1 pt-3 border-t border-stone-150 dark:border-stone-800/80 relative z-10">
+          <div className="flex items-center justify-between text-[10px] mb-1.5 font-bold text-stone-500 dark:text-stone-450">
+            <span>Tiến độ cấp {currentLevel.level} <span className="text-emerald-600 dark:text-emerald-450">({Math.round(progress)}%)</span></span>
+            <span className="inline-flex items-center gap-1 text-stone-600 dark:text-stone-350">
+              Cấp {nextLevel.level}: {nextLevel.name} <span>{LEVEL_EMOJIS[nextLevel.level] || "🌱"}</span>
+            </span>
           </div>
-          <div className="w-full h-1.5 bg-stone-100 dark:bg-stone-800/70 rounded-full overflow-hidden relative shadow-inner">
+          <div className="w-full h-2.5 bg-stone-100 dark:bg-stone-800/70 rounded-full overflow-hidden relative shadow-inner">
             <div
-              className="h-full bg-gradient-to-r from-emerald-500 via-teal-500 to-emerald-400 rounded-full transition-all duration-500 relative"
+              className="h-full bg-gradient-to-r from-emerald-500 via-teal-500 to-emerald-400 rounded-full transition-all duration-500 relative shadow-[0_0_8px_rgba(16,185,129,0.5)]"
               style={{ width: `${progress}%` }}
             >
               <div className="absolute inset-0 bg-white/20 animate-[pulse_1.5s_infinite]" />
             </div>
           </div>
-          
+
           {/* Gamified dopamine info banner */}
           {sidebar ? (
-            <div className="mt-2.5 p-2 bg-stone-50/50 dark:bg-stone-950/30 border border-stone-150/80 dark:border-stone-850/60 rounded-xl text-[10px] text-stone-500 dark:text-stone-450 flex items-center justify-center gap-1.5 font-bold">
-              <span>🎯 Còn ~{Math.max(1, Math.ceil(xpToNext / 20))} bài học (+{xpToNext} XP) lên cấp {nextLevel.level}</span>
+            <div className="mt-2.5 p-2.5 bg-gradient-to-r from-emerald-50/60 to-teal-50/40 dark:from-emerald-950/20 dark:to-teal-950/10 border border-emerald-100/60 dark:border-emerald-900/30 rounded-xl text-[10px] text-stone-600 dark:text-stone-350 flex items-center justify-center gap-1.5 font-bold">
+              <Target className="w-3 h-3 text-emerald-500 dark:text-emerald-400 shrink-0" />
+              <span>Còn ~{Math.max(1, Math.ceil(xpToNext / 20))} bài học (+{xpToNext} XP) lên cấp {nextLevel.level}</span>
             </div>
           ) : (
             <div className="mt-3.5 p-3 bg-stone-50/80 dark:bg-stone-950/40 border border-stone-200/60 dark:border-stone-800/60 rounded-xl space-y-2">

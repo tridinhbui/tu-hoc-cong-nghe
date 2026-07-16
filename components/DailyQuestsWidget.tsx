@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { toast } from "sonner";
-import { Sparkles, Trophy, Calendar, CheckCircle2, Gift, ChevronDown, ChevronUp, ArrowRight } from "lucide-react";
+import { Sparkles, Trophy, Calendar, CheckCircle2, Gift, ChevronDown, ChevronUp, ArrowRight, BookOpen, Gamepad2, Award } from "lucide-react";
 import { getDailyQuests, claimQuestReward, type Quest } from "@/lib/supabase-quests";
 import { earnChest } from "@/lib/chests";
 import { createClient } from "@/lib/supabase";
@@ -204,72 +204,97 @@ export default function DailyQuestsWidget({ userId, embedded = false, onQuestsLo
 
       {(embedded || !collapsed) && (
       <div className="space-y-3 relative z-10">
+        <style>{`
+          @keyframes pulseGlow {
+            0%, 100% { box-shadow: 0 0 8px rgba(245, 158, 11, 0.05); }
+            50% { box-shadow: 0 0 15px rgba(245, 158, 11, 0.15); }
+          }
+        `}</style>
         {quests.map((quest) => {
           const isDone = quest.current >= quest.target;
           return (
             <div
               key={quest.id}
-              className={`p-2.5 rounded-xl border transition-all duration-300 group/item ${
+              className={`p-3 rounded-2xl border transition-all duration-300 group/item flex items-center gap-3.5 ${
                 quest.claimed
-                  ? "bg-stone-50/30 dark:bg-stone-950/10 border-stone-150 dark:border-stone-850 opacity-65"
+                  ? "bg-stone-500/[0.01] dark:bg-stone-950/[0.01] border-stone-150 dark:border-stone-850 opacity-60"
                   : isDone
-                  ? "bg-amber-50/20 dark:bg-amber-950/10 border-amber-250/30 dark:border-amber-900/25 shadow-sm shadow-amber-500/5"
-                  : "bg-white dark:bg-stone-900/50 border-stone-150/80 dark:border-stone-800/80 hover:border-amber-500/40 dark:hover:border-amber-500/30 hover:shadow-md hover:shadow-amber-500/[0.03]"
+                  ? "bg-amber-500/[0.02] dark:bg-amber-500/[0.01] border-amber-300 dark:border-amber-800 shadow-sm shadow-amber-500/5 animate-[pulseGlow_2.5s_infinite]"
+                  : "bg-white dark:bg-stone-900 border-stone-200 dark:border-stone-800 hover:border-emerald-500/40 dark:hover:border-emerald-500/30 hover:shadow-[0_4px_12px_-4px_rgba(16,185,129,0.06)]"
               }`}
             >
-              <div className="flex items-center justify-between gap-3">
-                <div className="min-w-0 flex-1">
-                  <div className="flex items-center gap-1.5">
-                    {quest.claimed ? (
-                      <CheckCircle2 className="w-3.5 h-3.5 text-emerald-500 shrink-0" />
-                    ) : (
-                      <div className={`w-1.5 h-1.5 rounded-full shrink-0 ${isDone ? "bg-amber-500 animate-pulse" : "bg-stone-350 dark:bg-stone-700"}`} />
-                    )}
-                    <p className={`text-[11px] font-black transition-colors duration-250 ${
-                      quest.claimed 
-                        ? "text-stone-400 line-through" 
-                        : isDone 
-                        ? "text-amber-600 dark:text-amber-450" 
-                        : "text-stone-900 dark:text-stone-100 group-hover/item:text-amber-550 dark:group-hover/item:text-amber-400"
-                    }`}>
-                      {quest.title}
-                    </p>
+              {/* Left Icon Area */}
+              <div className="shrink-0">
+                {quest.claimed ? (
+                  <div className="w-9 h-9 rounded-xl bg-emerald-50 dark:bg-emerald-950/20 text-emerald-500 flex items-center justify-center border border-emerald-100 dark:border-emerald-900/30">
+                    <CheckCircle2 className="w-4.5 h-4.5" />
                   </div>
-                  <p className={`text-[10px] mt-0.5 leading-snug transition-colors duration-250 ${
-                    quest.claimed
-                      ? "text-stone-400"
-                      : "text-stone-500 dark:text-stone-400 group-hover/item:text-stone-700 dark:group-hover/item:text-stone-300"
-                  }`}>{quest.description}</p>
-                </div>
+                ) : (
+                  (() => {
+                    let IconComponent = BookOpen;
+                    let colorClass = "bg-indigo-50 dark:bg-indigo-950/30 text-indigo-500 border-indigo-100 dark:border-indigo-900/20";
+                    if (quest.id === "daily_2") {
+                      IconComponent = Gamepad2;
+                      colorClass = "bg-sky-50 dark:bg-sky-950/30 text-sky-500 border-sky-100 dark:border-sky-900/20";
+                    } else if (quest.id === "daily_3") {
+                      IconComponent = Award;
+                      colorClass = "bg-amber-50 dark:bg-amber-950/30 text-amber-600 dark:text-amber-400 border-amber-100 dark:border-amber-900/20";
+                    }
+                    return (
+                      <div className={`w-9 h-9 rounded-xl border flex items-center justify-center transition-transform group-hover/item:scale-105 duration-300 ${colorClass}`}>
+                        <IconComponent className="w-4.5 h-4.5" />
+                      </div>
+                    );
+                  })()
+                )}
+              </div>
 
-                <div className="shrink-0 flex items-center gap-1.5">
-                  {quest.claimed ? (
-                    <span className="text-[9px] font-extrabold text-stone-450 dark:text-stone-400 bg-stone-100 dark:bg-stone-950/40 px-2 py-1 rounded-lg border border-stone-200/50 dark:border-stone-850">
-                      Đã nhận
+              {/* Text Info */}
+              <div className="min-w-0 flex-1">
+                <p className={`text-xs sm:text-sm font-extrabold transition-colors duration-250 ${
+                  quest.claimed 
+                    ? "text-stone-400 line-through" 
+                    : isDone 
+                    ? "text-amber-600 dark:text-amber-450" 
+                    : "text-stone-900 dark:text-stone-100 group-hover/item:text-emerald-600 dark:group-hover/item:text-emerald-450"
+                }`}>
+                  {quest.title}
+                </p>
+                <p className={`text-[10px] mt-0.5 leading-snug transition-colors duration-250 ${
+                  quest.claimed
+                    ? "text-stone-400"
+                    : "text-stone-500 dark:text-stone-400 group-hover/item:text-stone-700 dark:group-hover/item:text-stone-355"
+                }`}>{quest.description}</p>
+              </div>
+
+              {/* Action Buttons */}
+              <div className="shrink-0 flex items-center gap-2">
+                {quest.claimed ? (
+                  <span className="text-[10px] font-black text-emerald-600 dark:text-emerald-450 bg-emerald-50 dark:bg-emerald-950/30 px-2.5 py-1.5 rounded-lg border border-emerald-100 dark:border-emerald-900/30 uppercase tracking-wider">
+                    Đã nhận
+                  </span>
+                ) : isDone ? (
+                  <button
+                    onClick={() => handleClaim(quest)}
+                    disabled={claimingId !== null}
+                    className="px-3 py-1.5 text-[10.5px] font-black rounded-lg bg-gradient-to-r from-amber-500 via-orange-500 to-amber-600 text-white shadow-[0_3px_8px_-2px_rgba(245,158,11,0.45)] hover:scale-105 active:scale-95 transition-all animate-bounce cursor-pointer flex items-center gap-1"
+                  >
+                    Nhận +{quest.xpReward} XP <Gift className="w-3.5 h-3.5" />
+                  </button>
+                ) : (
+                  <>
+                    <span className="text-[10px] font-black text-stone-600 dark:text-stone-400 bg-stone-50 dark:bg-stone-950/40 px-2.5 py-1.5 rounded-lg border border-stone-200/50 dark:border-stone-850">
+                      +{quest.xpReward} XP
                     </span>
-                  ) : isDone ? (
                     <button
-                      onClick={() => handleClaim(quest)}
-                      disabled={claimingId !== null}
-                      className="px-2.5 py-1 text-[10px] font-extrabold rounded-lg bg-gradient-to-r from-amber-500 to-orange-500 text-white shadow-[0_3px_8px_-2px_rgba(245,158,11,0.4)] hover:shadow-[0_4px_10px_-1px_rgba(245,158,11,0.6)] hover:scale-105 active:scale-95 transition-all animate-bounce cursor-pointer"
+                      onClick={() => goToQuestAction(quest.id, router)}
+                      title="Đi làm nhiệm vụ này ngay"
+                      className="group/btn inline-flex items-center gap-1.5 text-[10.5px] font-black text-white bg-gradient-to-r from-emerald-500 via-teal-500 to-emerald-600 hover:from-emerald-600 hover:to-emerald-700 px-3.5 py-1.5 rounded-lg transition-all duration-200 cursor-pointer shadow-md shadow-emerald-500/20 hover:scale-105 active:scale-95 shrink-0"
                     >
-                      +{quest.xpReward} XP 🎁
+                      Làm ngay <ArrowRight className="w-3.5 h-3.5 group-hover/btn:translate-x-0.5 transition-transform" />
                     </button>
-                  ) : (
-                    <>
-                      <span className="text-[9px] font-extrabold text-stone-500 bg-stone-50 dark:bg-stone-950/40 px-2 py-1.5 rounded-lg border border-stone-200/40 dark:border-stone-850">
-                        +{quest.xpReward} XP
-                      </span>
-                      <button
-                        onClick={() => goToQuestAction(quest.id, router)}
-                        title="Đi làm nhiệm vụ này ngay"
-                        className="inline-flex items-center gap-1.5 text-[10.5px] font-black text-white bg-gradient-to-r from-amber-500 via-orange-500 to-amber-600 hover:from-amber-600 hover:to-amber-700 px-3.5 py-1.5 rounded-lg transition-all duration-200 cursor-pointer shadow-md shadow-amber-500/20 hover:scale-105 active:scale-95 animate-pulse shrink-0"
-                      >
-                        Làm ngay <ArrowRight className="w-3 h-3" />
-                      </button>
-                    </>
-                  )}
-                </div>
+                  </>
+                )}
               </div>
             </div>
           );

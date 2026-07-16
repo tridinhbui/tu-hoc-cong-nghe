@@ -20,14 +20,11 @@ export async function getPassedMilestones(userId: string, trackId: string): Prom
     .eq("track_id", trackId);
 
   if (error) {
-    if (isMissingTableError(error)) {
-      if (typeof window !== "undefined") {
-        const localData = window.localStorage.getItem(`milestones_${userId}_${trackId}`);
-        return localData ? (JSON.parse(localData) as MilestoneCompletion[]) : [];
-      }
-      return [];
+    console.warn("Supabase Milestones read failed, falling back to localStorage:", error);
+    if (typeof window !== "undefined") {
+      const localData = window.localStorage.getItem(`milestones_${userId}_${trackId}`);
+      return localData ? (JSON.parse(localData) as MilestoneCompletion[]) : [];
     }
-    console.error("Error reading milestones:", error);
     return [];
   }
 

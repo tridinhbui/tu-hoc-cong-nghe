@@ -155,7 +155,7 @@ export default function DashboardClient({ lessonsMeta }: { lessonsMeta: LessonMe
   const [passedMilestones, setPassedMilestones] = useState<MilestoneCompletion[]>([]);
   const [activeMilestoneExam, setActiveMilestoneExam] = useState<{ label: string; name: string; lessonIds: number[] } | null>(null);
   const [selectedCertStage, setSelectedCertStage] = useState<{ label: string; name: string } | null>(null);
-  const [communityUsersByLevel, setCommunityUsersByLevel] = useState<Map<number, { name: string; xp: number; avatarUrl: string | null }[]>>(new Map());
+  const [communityUsersByLevel, setCommunityUsersByLevel] = useState<Map<number, { name: string; xp: number; avatarUrl: string | null; userId: string }[]>>(new Map());
   const [activeTooltipLevel, setActiveTooltipLevel] = useState<number | null>(null);
 
   useEffect(() => {
@@ -196,14 +196,14 @@ export default function DashboardClient({ lessonsMeta }: { lessonsMeta: LessonMe
     getLeaderboardByMetric("xp", 100)
       .then((entries) => {
         if (cancelled) return;
-        const grouped = new Map<number, { name: string; xp: number; avatarUrl: string | null }[]>();
+        const grouped = new Map<number, { name: string; xp: number; avatarUrl: string | null; userId: string }[]>();
         for (let i = 1; i <= 6; i++) {
           grouped.set(i, []);
         }
         entries.forEach((entry) => {
           const lvl = getLevelByXp(entry.value).level;
           if (grouped.has(lvl)) {
-            grouped.get(lvl)!.push({ name: entry.name, xp: entry.value, avatarUrl: entry.avatarUrl });
+            grouped.get(lvl)!.push({ name: entry.name, xp: entry.value, avatarUrl: entry.avatarUrl, userId: entry.user_id });
           }
         });
         setCommunityUsersByLevel(grouped);
@@ -671,8 +671,6 @@ export default function DashboardClient({ lessonsMeta }: { lessonsMeta: LessonMe
             are typically more time-sensitive. ── */}
         {user?.id && <AnnouncementBanner userId={user.id} />}
 
-        {/* ── Streak/recall browser-notification reminders (opt-in banner +
-            silent background checks; client-only, no Service Worker) ── */}
         {user?.id && (
           <StreakReminderManager
             userId={user.id}
@@ -687,214 +685,310 @@ export default function DashboardClient({ lessonsMeta }: { lessonsMeta: LessonMe
           <div className="lg:col-span-7 space-y-6">
 
             {/* 🏆 Tiến độ Cấp độ (1 -> 6) Elegant Progress Roadmap */}
-            {user?.id && (
-              <div className="bg-white dark:bg-stone-900 border border-stone-200 dark:border-stone-850 rounded-2xl p-5 shadow-sm relative">
-                {/* Background ambient glow */}
-                <div className="absolute -top-10 -left-10 w-24 h-24 bg-emerald-500/5 dark:bg-emerald-500/10 rounded-full blur-2xl pointer-events-none" />
-                
-                <div className="flex items-center justify-between mb-6 relative z-10">
-                  <div>
-                    <h3 className="text-[11px] font-black uppercase tracking-widest text-stone-900 dark:text-stone-100">
-                      Bản đồ Cấp độ Học viên
-                    </h3>
-                    <p className="text-[10px] text-stone-600 dark:text-stone-300 mt-0.5">
-                      Rê chuột hoặc chạm vào từng cấp độ để xem các thành viên đang ở cấp đó
-                    </p>
-                  </div>
-                  <div className="text-right">
-                    <span className="text-[10px] font-bold text-stone-700 dark:text-stone-300 bg-stone-50 dark:bg-stone-950/60 border border-stone-205 dark:border-stone-800 px-2.5 py-1 rounded-lg">
-                      Bạn đang ở Cấp {getLevelByXp(userXp).level}: <span className="text-emerald-600 dark:text-emerald-450 font-extrabold">{getLevelByXp(userXp).name}</span>
-                    </span>
-                  </div>
-                </div>
+            {user?.id && (() => {
+              const userRoadmapPercent = (() => {
+                const levels = [
+                  { level: 1, minXp: 0 },
+                  { level: 2, minXp: 100 },
+                  { level: 3, minXp: 300 },
+                  { level: 4, minXp: 600 },
+                  { level: 5, minXp: 1000 },
+                  { level: 6, minXp: 1500 }
+                ];
+                if (userXp <= 0) return "0%";
+                if (userXp >= 1500) return "100%";
+                for (let i = 0; i < levels.length - 1; i++) {
+                  const current = levels[i];
+                  const next = levels[i+1];
+                  if (userXp >= current.minXp && userXp < next.minXp) {
+                    const fraction = (userXp - current.minXp) / (next.minXp - current.minXp);
+                    const percent = i * 20 + fraction * 20;
+                    return `${percent}%`;
+                  }
+                }
+                return "100%";
+              })();
 
-                {/* Minimalist Progress Line/Dots */}
-                <div className="relative z-10 flex items-center justify-between px-4 mt-6">
-                  {/* Connecting Line (Underlay) */}
-                  <div className="absolute left-6 right-6 top-1/2 -translate-y-1/2 h-1.5 bg-stone-100 dark:bg-stone-800 rounded-full z-0" />
+              const pctNum = parseFloat(userRoadmapPercent);
+              const userAvatarUrl = (user?.user_metadata as any)?.avatar_url || null;
+              const userDisplayName = (user?.user_metadata as any)?.full_name || user?.email || "Bạn";
+              const userInitials = userDisplayName
+                .split(" ")
+                .map((n: string) => n[0])
+                .join("")
+                .toUpperCase()
+                .slice(0, 2);
+              const currentUserLevel = getLevelByXp(userXp).level;
+
+              return (
+                <div className="bg-white dark:bg-stone-900 border border-stone-200 dark:border-stone-850 rounded-2xl p-5 shadow-sm relative">
+                  {/* Background ambient glow */}
+                  <div className="absolute -top-10 -left-10 w-24 h-24 bg-emerald-500/5 dark:bg-emerald-500/10 rounded-full blur-2xl pointer-events-none" />
                   
-                  {/* Completed Line Fill */}
-                  <div 
-                    className="absolute left-6 top-1/2 -translate-y-1/2 h-1.5 bg-gradient-to-r from-emerald-500 via-teal-450 to-emerald-500 bg-[length:200%_auto] rounded-full z-0 transition-all duration-500 animate-[laserLine_2.5s_linear_infinite] shadow-[0_0_8px_rgba(16,185,129,0.45)]" 
-                    style={{ 
-                      width: (() => {
-                        const levels = [
-                          { level: 1, minXp: 0 },
-                          { level: 2, minXp: 100 },
-                          { level: 3, minXp: 300 },
-                          { level: 4, minXp: 600 },
-                          { level: 5, minXp: 1000 },
-                          { level: 6, minXp: 1500 }
-                        ];
-                        if (userXp <= 0) return "0%";
-                        if (userXp >= 1500) return "100%";
-                        for (let i = 0; i < levels.length - 1; i++) {
-                          const current = levels[i];
-                          const next = levels[i+1];
-                          if (userXp >= current.minXp && userXp < next.minXp) {
-                            const fraction = (userXp - current.minXp) / (next.minXp - current.minXp);
-                            const percent = i * 20 + fraction * 20;
-                            return `${percent}%`;
-                          }
-                        }
-                        return "100%";
-                      })(),
-                      maxWidth: '100%' 
-                    }} 
-                  />
+                  <div className="flex items-center justify-between mb-6 relative z-10">
+                    <div>
+                      <h3 className="text-base font-bold text-stone-900 dark:text-stone-100">
+                        Bản đồ Cấp độ Học viên
+                      </h3>
+                      <p className="text-[10px] text-stone-600 dark:text-stone-300 mt-0.5">
+                        Rê chuột hoặc chạm vào từng cấp độ để xem các thành viên đang ở cấp đó
+                      </p>
+                    </div>
+                    <div className="text-right">
+                      <span className="text-[10px] font-bold text-stone-700 dark:text-stone-300 bg-stone-50 dark:bg-stone-950/60 border border-stone-200 dark:border-stone-800 px-2.5 py-1 rounded-lg">
+                        Bạn đang ở Cấp {currentUserLevel}: <span className="text-emerald-600 dark:text-emerald-450 font-extrabold">{getLevelByXp(userXp).name}</span>
+                      </span>
+                    </div>
+                  </div>
 
-                  {/* Level Nodes */}
-                  {[
-                    { level: 1, name: "Tò mò", minXp: 0 },
-                    { level: 2, name: "Học viên", minXp: 100 },
-                    { level: 3, name: "Nhà đầu tư", minXp: 300 },
-                    { level: 4, name: "Nhà phân tích", minXp: 600 },
-                    { level: 5, name: "Cố vấn Tài chính", minXp: 1000 },
-                    { level: 6, name: "Thạo thủ Tài chính", minXp: 1500 }
-                  ].map((lvl) => {
-                    const currentUserLevel = getLevelByXp(userXp).level;
-                    const isUserCurrent = currentUserLevel === lvl.level;
-                    const isPassed = currentUserLevel > lvl.level;
+                  {/* Minimalist Progress Line/Dots Wrapper */}
+                  <div className="relative z-10 h-24 mt-12 mb-6 mx-2 sm:mx-6">
+                    <style>{`
+                      @keyframes bobbing {
+                        0%, 100% { transform: translateY(-16px); }
+                        50% { transform: translateY(-22px); }
+                      }
+                      @keyframes particleRise {
+                        0% { transform: translateY(0) scale(0.5); opacity: 0; }
+                        50% { opacity: 0.8; }
+                        100% { transform: translateY(-30px) scale(1.2); opacity: 0; }
+                      }
+                      @keyframes rippleWave {
+                        0% { transform: scale(0.9); opacity: 0.8; }
+                        100% { transform: scale(1.6); opacity: 0; }
+                      }
+                      @keyframes fadeInTooltip {
+                        from { opacity: 0; transform: translateY(-4px); }
+                        to { opacity: 1; transform: translateY(0); }
+                      }
+                    `}</style>
+
+                    {/* Connecting Line (Underlay) */}
+                    <div className="absolute left-0 right-0 top-1/2 -translate-y-1/2 h-1 bg-stone-100 dark:bg-stone-850 rounded-full z-0" />
                     
-                    const members = communityUsersByLevel.get(lvl.level) || [];
-                    const displayMembers = members.map(m => m.name);
+                    {/* Completed Line Fill (Glow Gradient) */}
+                    <div 
+                      className="absolute left-0 top-1/2 -translate-y-1/2 h-1 bg-gradient-to-r from-emerald-500 via-teal-450 to-indigo-500 rounded-full z-0 transition-all duration-1000 shadow-[0_0_8px_rgba(16,185,129,0.5)]" 
+                      style={{ 
+                        width: `${pctNum}%`,
+                        maxWidth: '100%' 
+                      }} 
+                    />
 
-                    // Responsive Tooltip Alignment: Leftmost and rightmost nodes are shifted to stay in view
-                    let tooltipAlignClass = "left-1/2 -translate-x-1/2";
-                    if (lvl.level === 1) {
-                      tooltipAlignClass = "left-[-8px] origin-bottom-left";
-                    } else if (lvl.level === 6) {
-                      tooltipAlignClass = "right-[-8px] origin-bottom-right";
-                    }
+                    {/* Floating User Avatar Marker on Path */}
+                    <div
+                      className="absolute top-1/2 -translate-x-1/2 -translate-y-1/2 transition-all duration-1000 z-20 pointer-events-none"
+                      style={{ left: `${pctNum}%` }}
+                    >
+                      <div className="relative flex flex-col items-center animate-[bobbing_2.5s_infinite_ease-in-out]">
+                        {/* Pulsing Ripple Wave Halos behind user avatar */}
+                        <span className="absolute w-7 h-7 sm:w-8 sm:h-8 rounded-full border-2 border-emerald-400/40 animate-[rippleWave_2s_infinite] -translate-y-0.5" />
+                        <span className="absolute w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-emerald-500/10 animate-[rippleWave_2s_infinite_1s] -translate-y-0.5" />
 
-                    return (
-                      <div key={lvl.level} data-level-node-root className="relative flex flex-col items-center z-10">
-                        {/* Interactive Dot Node */}
-                        <div
-                          onClick={(e) => {
-                            e.stopPropagation();
-                            setActiveTooltipLevel(prev => prev === lvl.level ? null : lvl.level);
-                          }}
-                          onMouseEnter={() => {
-                            setActiveTooltipLevel(lvl.level);
-                          }}
-                          className={`rounded-full transition-all duration-300 flex items-center justify-center cursor-pointer hover:-translate-y-1 hover:scale-125 hover:shadow-[0_0_12px_rgba(16,185,129,0.5)] ${
-                            isUserCurrent
-                              ? "w-5 h-5 bg-emerald-500 shadow-md shadow-emerald-500/30 relative"
-                              : isPassed
-                              ? "w-3 h-3 bg-emerald-500"
-                              : "w-2.5 h-2.5 bg-stone-200 dark:bg-stone-850"
-                          }`}
-                        >
-                          {isUserCurrent && (
-                            <>
-                              <span className="w-1.5 h-1.5 rounded-full bg-white block relative z-10 animate-pulse" />
-                              {/* Pulsing ripple wave halos */}
-                              <span className="absolute -inset-1 rounded-full border border-emerald-450/40 animate-[rippleWave_2s_infinite]" />
-                              <span className="absolute -inset-2.5 rounded-full bg-emerald-500/10 animate-[rippleWave_2s_infinite_1s]" />
-                            </>
+                        {/* Floating Particles (Upward Sparkles) */}
+                        <span className="absolute w-1 h-1 rounded-full bg-amber-400 animate-[particleRise_2s_infinite] left-1" />
+                        <span className="absolute w-1 h-1 rounded-full bg-yellow-350 animate-[particleRise_1.5s_infinite_0.5s] -right-2" />
+                        <span className="absolute w-0.5 h-0.5 rounded-full bg-emerald-400 animate-[particleRise_2.2s_infinite_1s] left-[-6px]" />
+
+                        <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-gradient-to-tr from-yellow-400 via-emerald-400 to-indigo-500 p-0.5 shadow-md shadow-emerald-500/30">
+                          {userAvatarUrl ? (
+                            <img
+                              src={userAvatarUrl}
+                              alt="Bạn"
+                              className="w-full h-full rounded-full object-cover border border-white dark:border-stone-900"
+                            />
+                          ) : (
+                            <div className="w-full h-full rounded-full bg-emerald-500 flex items-center justify-center text-white font-extrabold text-[8px] sm:text-[10px] border border-white dark:border-stone-900">
+                              {userInitials}
+                            </div>
                           )}
                         </div>
-
-                        {/* Label underneath */}
-                        <div className="mt-3 text-center pointer-events-none flex flex-col items-center">
-                          <span className={`text-[9px] font-black uppercase tracking-wider block ${
-                            isUserCurrent 
-                              ? "text-emerald-600 dark:text-emerald-400 bg-emerald-500/10 dark:bg-emerald-500/20 px-1.5 py-0.5 rounded-full scale-105 border border-emerald-500/20 shadow-sm" 
-                              : isPassed 
-                              ? "text-stone-700 dark:text-stone-300 font-bold" 
-                              : "text-stone-400 dark:text-stone-500 font-medium"
-                          }`}>
-                            L{lvl.level}
-                          </span>
-                          <span className={`text-[8.5px] block leading-tight mt-1 max-w-[70px] truncate ${
-                            isUserCurrent 
-                              ? "text-emerald-700 dark:text-emerald-400 font-black" 
-                              : isPassed 
-                              ? "text-stone-600 dark:text-stone-300 font-bold" 
-                              : "text-stone-400 dark:text-stone-500 font-medium"
-                          }`}>
-                            {lvl.name}
-                          </span>
+                        <div className="bg-stone-900/90 dark:bg-stone-950/90 text-white text-[8px] sm:text-[10px] font-bold px-1.5 py-0.5 rounded border border-white/10 shadow mt-1 whitespace-nowrap">
+                          Bạn (L{currentUserLevel})
                         </div>
+                      </div>
+                    </div>
 
-                        {/* Elegant Tooltip - Opens on Hover/Click, closes only on click outside */}
-                        <div className={`absolute top-full mt-10 ${activeTooltipLevel === lvl.level ? "block" : "hidden"} w-64 p-4 rounded-xl border border-stone-200 dark:border-stone-800 bg-white dark:bg-stone-900 shadow-xl text-left z-[999] animate-[fadeInTooltip_0.2s_ease-out] ${tooltipAlignClass}`}>
-                          <style>{`
-                            @keyframes fadeInTooltip {
-                              from { opacity: 0; transform: translateY(-4px); }
-                              to { opacity: 1; transform: translateY(0); }
-                            }
-                            @keyframes laserLine {
-                              0% { background-position: 0% 50%; }
-                              100% { background-position: 200% 50%; }
-                            }
-                            @keyframes rippleWave {
-                              0% { transform: scale(0.9); opacity: 0.8; }
-                              100% { transform: scale(1.6); opacity: 0; }
-                            }
-                          `}</style>
-                          <div className="mb-2.5 pb-2 border-b border-stone-100 dark:border-stone-800">
-                            <p className="text-[9px] font-black uppercase tracking-widest text-stone-400 dark:text-stone-500">
-                              Cấp độ {lvl.level}
-                            </p>
-                            <p className="text-xs font-extrabold text-stone-900 dark:text-stone-105 mt-0.5">
-                              {lvl.name}
-                            </p>
-                            <p className="text-[9px] font-semibold text-stone-500 dark:text-stone-400 mt-0.5">
-                              Yêu cầu: {lvl.minXp} XP trở lên
-                            </p>
-                          </div>
-                          
-                          <div>
-                            <p className="text-[9px] font-black text-stone-450 dark:text-stone-550 uppercase tracking-widest mb-2">
-                              Thành viên ({members.length})
-                            </p>
-                            {members.length > 0 ? (
-                              <div className="flex flex-col gap-2 max-h-52 overflow-y-auto pr-1 scrollbar-thin scrollbar-thumb-stone-100 dark:scrollbar-thumb-stone-850">
-                                {members.slice(0, 10).map((m, i) => (
-                                  <div key={i} className="flex items-center justify-between gap-2">
-                                    <div className="flex items-center gap-2 min-w-0">
-                                      {m.avatarUrl ? (
-                                        <img src={m.avatarUrl} alt={m.name} className="w-5 h-5 rounded-full object-cover shrink-0" />
-                                      ) : (
-                                        <div className="w-5 h-5 rounded-full bg-emerald-500/10 text-emerald-600 dark:bg-emerald-950/40 dark:text-emerald-450 flex items-center justify-center text-[9px] font-black shrink-0">
-                                          {m.name.charAt(0).toUpperCase()}
-                                        </div>
-                                      )}
-                                      <span className="text-[10px] font-bold text-stone-700 dark:text-stone-300 max-w-[120px] truncate">
-                                        {m.name}
-                                      </span>
-                                    </div>
-                                    <span className="text-[9px] font-black text-emerald-600 dark:text-emerald-450 shrink-0">
-                                      {m.xp} XP
-                                    </span>
-                                  </div>
-                                ))}
-                                {members.length > 10 && (
-                                  <p className="text-[8px] font-extrabold text-stone-450 dark:text-stone-500 italic mt-0.5">
-                                    và {members.length - 10} người khác...
-                                  </p>
-                                )}
-                              </div>
-                            ) : (
-                              <p className="text-[9px] font-bold text-stone-400 dark:text-stone-500 italic">
-                                Chưa có thành viên ở cấp này
-                              </p>
+                    {/* Level Nodes */}
+                    {[
+                      { level: 1, name: "Tò mò", minXp: 0, pct: 0 },
+                      { level: 2, name: "Học viên", minXp: 100, pct: 20 },
+                      { level: 3, name: "Nhà đầu tư", minXp: 300, pct: 40 },
+                      { level: 4, name: "Nhà phân tích", minXp: 600, pct: 60 },
+                      { level: 5, name: "Cố vấn Tài chính", minXp: 1000, pct: 80 },
+                      { level: 6, name: "Thạo thủ Tài chính", minXp: 1500, pct: 100 }
+                    ].map((lvl) => {
+                      const isUserCurrent = currentUserLevel === lvl.level;
+                      const isPassed = currentUserLevel > lvl.level;
+                      
+                      const members = communityUsersByLevel.get(lvl.level) || [];
+                      const displayMembers = members.map(m => m.name);
+
+                      // Responsive Tooltip Alignment: Leftmost and rightmost nodes are shifted to stay in view
+                      let tooltipAlignClass = "left-1/2 -translate-x-1/2";
+                      if (lvl.level === 1) {
+                        tooltipAlignClass = "left-[-8px] origin-bottom-left";
+                      } else if (lvl.level === 6) {
+                        tooltipAlignClass = "right-[-8px] origin-bottom-right";
+                      }
+
+                      return (
+                        <div 
+                          key={lvl.level} 
+                          data-level-node-root 
+                          className="absolute top-1/2 -translate-x-1/2 -translate-y-1/2 flex flex-col items-center z-10"
+                          style={{ left: `${lvl.pct}%` }}
+                        >
+                          {/* Interactive Dot Node */}
+                          <div
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              setActiveTooltipLevel(prev => prev === lvl.level ? null : lvl.level);
+                            }}
+                            onMouseEnter={() => {
+                              setActiveTooltipLevel(lvl.level);
+                            }}
+                            className={`rounded-full transition-all duration-300 flex items-center justify-center cursor-pointer hover:-translate-y-1 hover:scale-125 hover:shadow-[0_0_12px_rgba(16,185,129,0.5)] ${
+                              isUserCurrent
+                                ? "w-4 h-4 sm:w-5 h-5 bg-emerald-500 shadow-md shadow-emerald-500/30 relative"
+                                : isPassed
+                                ? "w-2.5 h-2.5 sm:w-3 h-3 bg-emerald-500"
+                                : "w-2 h-2 sm:w-2.5 h-2.5 bg-stone-200 dark:bg-stone-850"
+                            }`}
+                          >
+                            {isUserCurrent && (
+                              <>
+                                <span className="w-1 sm:w-1.5 h-1 sm:h-1.5 rounded-full bg-white block relative z-10 animate-pulse" />
+                                {/* Pulsing ripple wave halos */}
+                                <span className="absolute -inset-1 rounded-full border border-emerald-450/40 animate-[rippleWave_2s_infinite]" />
+                                <span className="absolute -inset-2 rounded-full bg-emerald-500/10 animate-[rippleWave_2s_infinite_1s]" />
+                              </>
                             )}
                           </div>
 
-                          {/* Elegant Pointer Arrow at top pointing upwards */}
-                          <div className={`absolute bottom-full w-2.5 h-2.5 rotate-45 bg-white dark:bg-stone-900 border-t border-l border-stone-200 dark:border-stone-800 translate-y-1.5 z-0 ${
-                            lvl.level === 1 ? "left-4" : lvl.level === 6 ? "right-4" : "left-1/2 -translate-x-1/2"
-                          }`} />
+                          {/* Label underneath */}
+                          <div className={`absolute top-full mt-3 flex flex-col ${
+                            lvl.level === 1 
+                              ? "left-0 -translate-x-3 items-start text-left" 
+                              : lvl.level === 6 
+                              ? "right-0 translate-x-3 items-end text-right" 
+                              : "left-1/2 -translate-x-1/2 items-center text-center"
+                          } w-16 sm:w-24 pointer-events-none`}>
+                            <span className={`text-[9px] sm:text-xs font-extrabold uppercase tracking-wider block ${
+                              isUserCurrent 
+                                ? "text-emerald-600 dark:text-emerald-400 bg-emerald-500/10 dark:bg-emerald-500/20 px-1 py-0.5 rounded-full scale-105 border border-emerald-500/20 shadow-sm" 
+                                : isPassed 
+                                ? "text-stone-700 dark:text-stone-300 font-bold" 
+                                : "text-stone-400 dark:text-stone-500 font-medium"
+                            }`}>
+                              L{lvl.level}
+                            </span>
+                            <span className={`text-[9px] sm:text-xs block leading-tight mt-1 max-w-[55px] sm:max-w-[80px] break-words ${
+                              isUserCurrent 
+                                ? "text-emerald-700 dark:text-emerald-400 font-black" 
+                                : isPassed 
+                                ? "text-stone-600 dark:text-stone-300 font-bold" 
+                                : "text-stone-400 dark:text-stone-500 font-medium"
+                            }`}>
+                              {lvl.name}
+                            </span>
+                          </div>
+
+                          {/* Elegant Tooltip - Opens on Hover/Click, closes only on click outside */}
+                          <div className={`absolute top-full mt-14 ${activeTooltipLevel === lvl.level ? "block" : "hidden"} w-64 p-4 rounded-2xl border border-stone-200 dark:border-stone-800 bg-white dark:bg-stone-900 shadow-xl text-left z-[999] animate-[fadeInTooltip_0.2s_ease-out] ${tooltipAlignClass}`}>
+
+                            <div className="mb-2.5 pb-2 border-b border-stone-250/40 dark:border-stone-800/80">
+                              <p className="text-[9px] font-black uppercase tracking-widest text-stone-400 dark:text-stone-500">
+                                Cấp độ {lvl.level}
+                              </p>
+                              <p className="text-xs font-extrabold text-stone-900 dark:text-stone-100 mt-0.5">
+                                {lvl.name}
+                              </p>
+                              <p className="text-[9px] font-semibold text-stone-500 dark:text-stone-400 mt-0.5">
+                                Yêu cầu: {lvl.minXp} XP trở lên
+                              </p>
+                            </div>
+
+                            {/* Avatar stack */}
+                            {members.length > 0 && (
+                              <div className="flex -space-x-1.5 overflow-hidden mb-3">
+                                {members.slice(0, 5).map((m, i) => (
+                                  <Link key={i} href={`/nguoi-hoc/${m.userId}`} title={m.name} className="inline-block transition-transform hover:scale-115 hover:z-30">
+                                    {m.avatarUrl ? (
+                                      <img
+                                        src={m.avatarUrl}
+                                        alt={m.name}
+                                        className="h-6 w-6 rounded-full ring-2 ring-white dark:ring-stone-900 object-cover"
+                                      />
+                                    ) : (
+                                      <div className="h-6 w-6 rounded-full ring-2 ring-white dark:ring-stone-900 bg-emerald-500 text-white flex items-center justify-center text-[9px] font-black">
+                                        {m.name.charAt(0).toUpperCase()}
+                                      </div>
+                                    )}
+                                  </Link>
+                                ))}
+                                {members.length > 5 && (
+                                  <div className="inline-flex items-center justify-center h-6 w-6 rounded-full ring-2 ring-white dark:ring-stone-900 bg-stone-100 dark:bg-stone-850 text-stone-500 dark:text-stone-450 text-[8.5px] font-black">
+                                    +{members.length - 5}
+                                  </div>
+                                )}
+                              </div>
+                            )}
+
+                            <div>
+                              <p className="text-[9px] font-black text-stone-450 dark:text-stone-500 uppercase tracking-widest mb-2">
+                                Thành viên ({members.length})
+                              </p>
+                              {members.length > 0 ? (
+                                <div className="flex flex-col gap-2 max-h-52 overflow-y-auto pr-1 scrollbar-thin scrollbar-thumb-stone-200 dark:scrollbar-thumb-stone-800">
+                                  {members.slice(0, 10).map((m, i) => (
+                                    <Link
+                                      key={i}
+                                      href={`/nguoi-hoc/${m.userId}`}
+                                      className="flex items-center justify-between gap-2 hover:bg-stone-500/5 dark:hover:bg-white/5 p-1 rounded transition-colors"
+                                    >
+                                      <div className="flex items-center gap-2 min-w-0">
+                                        {m.avatarUrl ? (
+                                          <img src={m.avatarUrl} alt={m.name} className="w-5 h-5 rounded-full object-cover shrink-0" />
+                                        ) : (
+                                          <div className="w-5 h-5 rounded-full bg-emerald-500/10 text-emerald-600 dark:bg-emerald-950/40 dark:text-emerald-450 flex items-center justify-center text-[9px] font-black shrink-0">
+                                            {m.name.charAt(0).toUpperCase()}
+                                          </div>
+                                        )}
+                                        <span className="text-[10px] font-bold text-stone-700 dark:text-stone-300 max-w-[120px] truncate">
+                                          {m.name}
+                                        </span>
+                                      </div>
+                                      <span className="text-[9px] font-black text-emerald-600 dark:text-emerald-450 shrink-0">
+                                        {m.xp} XP
+                                      </span>
+                                    </Link>
+                                  ))}
+                                  {members.length > 10 && (
+                                    <p className="text-[8px] font-extrabold text-stone-450 dark:text-stone-500 italic mt-0.5">
+                                      và {members.length - 10} người khác...
+                                    </p>
+                                  )}
+                                </div>
+                              ) : (
+                                <p className="text-[9px] font-bold text-stone-400 dark:text-stone-500 italic">
+                                  Chưa có thành viên ở cấp này
+                                </p>
+                              )}
+                            </div>
+
+                            {/* Elegant Pointer Arrow at top pointing upwards */}
+                            <div className={`absolute bottom-full w-2.5 h-2.5 rotate-45 bg-white dark:bg-stone-900 border-t border-l border-stone-200 dark:border-stone-800 translate-y-1.5 z-0 ${
+                              lvl.level === 1 ? "left-4" : lvl.level === 6 ? "right-4" : "left-1/2 -translate-x-1/2"
+                            }`} />
+                          </div>
                         </div>
-                      </div>
-                    );
-                  })}
+                      );
+                    })}
+                  </div>
                 </div>
-              </div>
-            )}
+              );
+            })()}
 
             {/* Resume Learning Card */}
             <div data-tour="resume-learning">
@@ -1619,8 +1713,8 @@ export default function DashboardClient({ lessonsMeta }: { lessonsMeta: LessonMe
             </div>
           )}
           </>
-          )}
-          </div>
+        )}
+      </div>
 
           {/* Right: Cấp độ/streak/bài học, gợi ý hôm nay, thử thách tin tức, BXH (3 columns on desktop grid of 10, full width on mobile) */}
           <div className="lg:col-span-3 lg:sticky lg:top-24 space-y-6">
