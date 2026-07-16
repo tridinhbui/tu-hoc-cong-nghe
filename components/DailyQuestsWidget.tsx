@@ -90,6 +90,19 @@ export default function DailyQuestsWidget({ userId, embedded = false, onQuestsLo
     };
 
     void loadQuests();
+
+    // Quest progress (lesson done / game played) can change while this
+    // widget is already mounted - e.g. finishing a game in another tab of
+    // CombinedRewardsWidget, or completing a lesson without navigating away
+    // from the dashboard. Without this, "current" stays stale at its
+    // mount-time value and a satisfied quest keeps showing "Làm ngay"
+    // instead of the claim button until a full page reload.
+    window.addEventListener("thtcdn_weekly_quests_updated", loadQuests);
+    window.addEventListener("thtcdn_game_session_recorded", loadQuests);
+    return () => {
+      window.removeEventListener("thtcdn_weekly_quests_updated", loadQuests);
+      window.removeEventListener("thtcdn_game_session_recorded", loadQuests);
+    };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [userId]);
 
