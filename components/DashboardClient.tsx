@@ -645,22 +645,22 @@ export default function DashboardClient({ lessonsMeta }: { lessonsMeta: LessonMe
 
             {/* 🏆 Tiến độ Cấp độ (1 -> 6) Elegant Progress Roadmap */}
             {user?.id && (
-              <div className="bg-white dark:bg-stone-900 border border-stone-150 dark:border-stone-850 rounded-2xl p-5 shadow-sm relative overflow-hidden">
+              <div className="bg-white dark:bg-stone-900 border border-stone-200 dark:border-stone-850 rounded-2xl p-5 shadow-sm relative overflow-hidden">
                 {/* Background ambient glow */}
                 <div className="absolute -top-10 -left-10 w-24 h-24 bg-emerald-500/5 dark:bg-emerald-500/10 rounded-full blur-2xl pointer-events-none" />
                 
                 <div className="flex items-center justify-between mb-6 relative z-10">
                   <div>
-                    <h3 className="text-xs font-black uppercase tracking-widest text-stone-550 dark:text-stone-400">
+                    <h3 className="text-[11px] font-black uppercase tracking-widest text-stone-400 dark:text-stone-500">
                       Bản đồ Cấp độ Học viên
                     </h3>
-                    <p className="text-[10px] text-stone-450 dark:text-stone-500 mt-1">
+                    <p className="text-[10px] text-stone-500 dark:text-stone-400 mt-0.5">
                       Rê chuột vào từng cấp độ để xem các thành viên đang ở cấp đó
                     </p>
                   </div>
                   <div className="text-right">
-                    <span className="text-[10px] font-extrabold text-stone-900 dark:text-stone-100 bg-stone-50/50 dark:bg-stone-950/60 border border-stone-150 dark:border-stone-800 px-2.5 py-1.5 rounded-lg shadow-sm">
-                      Bạn đang ở Cấp {getLevelByXp(userXp).level}: <span className="text-emerald-600 dark:text-emerald-400 font-black">{getLevelByXp(userXp).name}</span>
+                    <span className="text-[10px] font-bold text-stone-700 dark:text-stone-300 bg-stone-50 dark:bg-stone-950/60 border border-stone-205 dark:border-stone-800 px-2.5 py-1 rounded-lg">
+                      Bạn đang ở Cấp {getLevelByXp(userXp).level}: <span className="text-emerald-600 dark:text-emerald-450 font-extrabold">{getLevelByXp(userXp).name}</span>
                     </span>
                   </div>
                 </div>
@@ -668,11 +668,11 @@ export default function DashboardClient({ lessonsMeta }: { lessonsMeta: LessonMe
                 {/* Minimalist Progress Line/Dots */}
                 <div className="relative z-10 flex items-center justify-between px-4 mt-6">
                   {/* Connecting Line (Underlay) */}
-                  <div className="absolute left-6 right-6 top-1/2 -translate-y-1/2 h-[1px] bg-stone-200 dark:bg-stone-800 z-0" />
+                  <div className="absolute left-6 right-6 top-1/2 -translate-y-1/2 h-1 bg-stone-100 dark:bg-stone-800 rounded-full z-0" />
                   
                   {/* Completed Line Fill */}
                   <div 
-                    className="absolute left-6 top-1/2 -translate-y-1/2 h-[1.5px] bg-emerald-500 z-0 transition-all duration-500" 
+                    className="absolute left-6 top-1/2 -translate-y-1/2 h-1 bg-emerald-500 rounded-full z-0 transition-all duration-500" 
                     style={{ 
                       width: `${((getLevelByXp(userXp).level - 1) / 5) * 100}%`,
                       maxWidth: '100%' 
@@ -701,24 +701,24 @@ export default function DashboardClient({ lessonsMeta }: { lessonsMeta: LessonMe
                         <div
                           className={`rounded-full transition-all duration-300 flex items-center justify-center cursor-help ${
                             isUserCurrent
-                              ? "w-6 h-6 bg-emerald-500 border-4 border-white dark:border-stone-900 shadow-md ring-4 ring-emerald-500/25 animate-[pulse_2s_infinite]"
+                              ? "w-5 h-5 bg-emerald-500 shadow-sm shadow-emerald-500/20 ring-4 ring-emerald-500/20"
                               : isPassed
-                              ? "w-4.5 h-4.5 bg-emerald-500 border-2 border-white dark:border-stone-900 shadow-sm"
-                              : "w-3.5 h-3.5 bg-stone-100 dark:bg-stone-850 border border-stone-250 dark:border-stone-750 hover:border-stone-400 dark:hover:border-stone-500"
+                              ? "w-3 h-3 bg-emerald-500"
+                              : "w-2.5 h-2.5 bg-stone-200 dark:bg-stone-800 hover:scale-125"
                           }`}
                         >
                           {isUserCurrent && (
-                            <span className="w-1.5 h-1.5 rounded-full bg-white block" />
+                            <span className="w-1.5 h-1.5 rounded-full bg-white block animate-ping" />
                           )}
                         </div>
 
                         {/* Label underneath */}
-                        <div className="mt-2.5 text-center pointer-events-none">
+                        <div className="mt-3.5 text-center pointer-events-none">
                           <span className={`text-[9px] font-black uppercase tracking-wider block ${
                             isUserCurrent 
-                              ? "text-emerald-600 dark:text-emerald-400 font-black" 
+                              ? "text-emerald-600 dark:text-emerald-400" 
                               : isPassed 
-                              ? "text-stone-700 dark:text-stone-300 font-bold" 
+                              ? "text-stone-600 dark:text-stone-300 font-bold" 
                               : "text-stone-400 dark:text-stone-500 font-medium"
                           }`}>
                             L{lvl.level}
@@ -729,21 +729,21 @@ export default function DashboardClient({ lessonsMeta }: { lessonsMeta: LessonMe
                         </div>
 
                         {/* Elegant Tooltip on Hover */}
-                        <div className="absolute bottom-full mb-3 hidden group-hover:block w-56 p-4 rounded-xl border border-stone-150 dark:border-stone-800 bg-white/95 dark:bg-stone-950/95 backdrop-blur-md shadow-xl text-left z-[999] animate-[fadeInTooltip_0.2s_ease-out]">
+                        <div className="absolute bottom-full mb-3.5 hidden group-hover:block w-56 p-4 rounded-xl border border-stone-200 dark:border-stone-800 bg-white/98 dark:bg-stone-900/98 shadow-xl text-left z-[999] animate-[fadeInTooltip_0.2s_ease-out]">
                           <style>{`
                             @keyframes fadeInTooltip {
                               from { opacity: 0; transform: translateY(4px); }
                               to { opacity: 1; transform: translateY(0); }
                             }
                           `}</style>
-                          <div className="mb-2 pb-1.5 border-b border-stone-100 dark:border-stone-850">
-                            <p className="text-[10px] font-extrabold uppercase tracking-widest text-stone-400 dark:text-stone-500">
+                          <div className="mb-2.5 pb-2 border-b border-stone-100 dark:border-stone-800">
+                            <p className="text-[9px] font-black uppercase tracking-widest text-stone-400 dark:text-stone-500">
                               Cấp độ {lvl.level}
                             </p>
-                            <p className="text-xs font-black text-stone-900 dark:text-stone-50 mt-0.5">
+                            <p className="text-xs font-extrabold text-stone-900 dark:text-stone-105 mt-0.5">
                               {lvl.name}
                             </p>
-                            <p className="text-[9px] font-bold text-stone-500 dark:text-stone-400 mt-0.5">
+                            <p className="text-[9px] font-semibold text-stone-500 dark:text-stone-400 mt-0.5">
                               Yêu cầu: {lvl.minXp} XP trở lên
                             </p>
                           </div>
