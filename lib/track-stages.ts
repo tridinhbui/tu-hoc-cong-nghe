@@ -64,12 +64,11 @@ export const TRACK_PERSONAL = {
       name: "Cổ phiếu, ETF và quỹ đầu tư",
       days: [201, 220] as [number, number],
       available: true,
-      // Psychology-first ordering: learn the traps (FOMO, margin, phím hàng)
-      // and realistic expectations BEFORE learning how to buy. Parts render
-      // in array order regardless of lesson ids.
+      // Display in numerical order to avoid lesson-number jumps on dashboard
+      // (was: psychology first [212-214], stocks [201-211], taxes [215-220])
       parts: [
-        { name: "Tâm lý, sai lầm cần tránh và kỳ vọng thực tế", days: [212, 214] as [number, number] },
         { name: "Cổ phiếu, ETF, quỹ chỉ số và DCA", days: [201, 211] as [number, number] },
+        { name: "Tâm lý, sai lầm cần tránh và kỳ vọng thực tế", days: [212, 214] as [number, number] },
         { name: "Thuế, kỷ luật mua bán và thực hành", days: [215, 220] as [number, number] },
       ],
     },
