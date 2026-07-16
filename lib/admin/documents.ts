@@ -359,12 +359,40 @@ export async function approveDocument(id: number): Promise<void> {
 }
 
 /**
- * Marks a pending community submission as rejected - kept in the table
- * (not deleted) so the submitter can still see it was reviewed, via the
- * "own row" clause in the documents select RLS policy.
+ * Marks a pending community submission as rejected - the row itself is kept
+ * (not deleted) as an admin-side audit trail, but the actual file(s) are
+ * purged from Storage. The "documents" bucket is public-read, so the file
+ * stayed downloadable forever by anyone who ever saw/saved its URL even
+ * after being hidden from /tai-lieu - the random filename made it
+ * unguessable and listing is RLS-blocked, but an unguessable-but-permanent
+ * public URL is still a real content-retention gap for anything not yet
+ * fully vetted. Best-effort: a failed storage removal still lets the
+ * rejection go through (row status is the source of truth the app reads;
+ * an orphaned object is a lesser problem than getting stuck unable to
+ * reject at all).
  */
 export async function rejectDocument(id: number): Promise<void> {
   const supabase = createAdminClient();
+
+  const { data: doc, error: fetchError } = await supabase
+    .from("documents")
+    .select("file_url, image_url")
+    .eq("id", id)
+    .single();
+
+  if (fetchError || !doc) throw new Error(fetchError?.message ?? "Không tìm thấy tài liệu");
+
+  const pathsToRemove: string[] = [];
+  const filePath = doc.file_url?.split("/documents/")[1];
+  if (filePath) pathsToRemove.push(filePath);
+  const imagePath = doc.image_url?.split("/documents/")[1];
+  if (imagePath) pathsToRemove.push(imagePath);
+
+  if (pathsToRemove.length > 0) {
+    const { error: removeError } = await supabase.storage.from("documents").remove(pathsToRemove);
+    if (removeError) console.error("Error removing rejected document files from storage:", removeError);
+  }
+
   const { error } = await supabase.from("documents").update({ status: "rejected" }).eq("id", id);
   if (error) throw new Error(error.message);
 }
