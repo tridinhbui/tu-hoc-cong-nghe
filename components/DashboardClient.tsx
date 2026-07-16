@@ -672,7 +672,7 @@ export default function DashboardClient({ lessonsMeta }: { lessonsMeta: LessonMe
                   
                   {/* Completed Line Fill */}
                   <div 
-                    className="absolute left-6 top-1/2 -translate-y-1/2 h-1 bg-emerald-500 rounded-full z-0 transition-all duration-500" 
+                    className="absolute left-6 top-1/2 -translate-y-1/2 h-1 bg-gradient-to-r from-emerald-500 via-teal-400 to-emerald-500 bg-[length:200%_auto] rounded-full z-0 transition-all duration-500 animate-[laserLine_3s_linear_infinite]" 
                     style={{ 
                       width: `${((getLevelByXp(userXp).level - 1) / 5) * 100}%`,
                       maxWidth: '100%' 
@@ -707,16 +707,21 @@ export default function DashboardClient({ lessonsMeta }: { lessonsMeta: LessonMe
                       <div key={lvl.level} className="relative flex flex-col items-center z-10 group">
                         {/* Interactive Dot Node */}
                         <div
-                          className={`rounded-full transition-all duration-300 flex items-center justify-center cursor-pointer group-hover:-translate-y-1 group-hover:scale-110 ${
+                          className={`rounded-full transition-all duration-300 flex items-center justify-center cursor-pointer group-hover:-translate-y-1 group-hover:scale-125 group-hover:shadow-[0_0_12px_rgba(16,185,129,0.5)] ${
                             isUserCurrent
-                              ? "w-5 h-5 bg-emerald-500 shadow-sm shadow-emerald-500/20 ring-4 ring-emerald-500/20"
+                              ? "w-5 h-5 bg-emerald-500 shadow-md shadow-emerald-500/30 relative"
                               : isPassed
                               ? "w-3 h-3 bg-emerald-500"
-                              : "w-2.5 h-2.5 bg-stone-200 dark:bg-stone-800"
+                              : "w-2.5 h-2.5 bg-stone-200 dark:bg-stone-850"
                           }`}
                         >
                           {isUserCurrent && (
-                            <span className="w-1.5 h-1.5 rounded-full bg-white block animate-ping" />
+                            <>
+                              <span className="w-1.5 h-1.5 rounded-full bg-white block relative z-10 animate-pulse" />
+                              {/* Pulsing ripple wave halos */}
+                              <span className="absolute -inset-1 rounded-full border border-emerald-450/40 animate-[rippleWave_2s_infinite]" />
+                              <span className="absolute -inset-2.5 rounded-full bg-emerald-500/10 animate-[rippleWave_2s_infinite_1s]" />
+                            </>
                           )}
                         </div>
 
@@ -737,11 +742,19 @@ export default function DashboardClient({ lessonsMeta }: { lessonsMeta: LessonMe
                         </div>
 
                         {/* Elegant Tooltip on Hover */}
-                        <div className={`absolute bottom-full mb-3.5 hidden group-hover:block w-56 p-4 rounded-xl border border-stone-200 dark:border-stone-800 bg-white/98 dark:bg-stone-900/98 shadow-xl text-left z-[999] animate-[fadeInTooltip_0.2s_ease-out] ${tooltipAlignClass}`}>
+                        <div className={`absolute bottom-full mb-3.5 hidden group-hover:block w-64 p-4 rounded-xl border border-stone-200 dark:border-stone-800 bg-white dark:bg-stone-900 shadow-xl text-left z-[999] animate-[fadeInTooltip_0.2s_ease-out] ${tooltipAlignClass}`}>
                           <style>{`
                             @keyframes fadeInTooltip {
                               from { opacity: 0; transform: translateY(4px); }
                               to { opacity: 1; transform: translateY(0); }
+                            }
+                            @keyframes laserLine {
+                              0% { background-position: 0% 50%; }
+                              100% { background-position: 200% 50%; }
+                            }
+                            @keyframes rippleWave {
+                              0% { transform: scale(0.9); opacity: 0.8; }
+                              100% { transform: scale(1.6); opacity: 0; }
                             }
                           `}</style>
                           <div className="mb-2.5 pb-2 border-b border-stone-100 dark:border-stone-800">
@@ -757,12 +770,12 @@ export default function DashboardClient({ lessonsMeta }: { lessonsMeta: LessonMe
                           </div>
                           
                           <div>
-                            <p className="text-[9px] font-black text-stone-450 dark:text-stone-550 uppercase tracking-widest mb-1.5">
+                            <p className="text-[9px] font-black text-stone-450 dark:text-stone-550 uppercase tracking-widest mb-2">
                               Thành viên ({members.length})
                             </p>
                             {members.length > 0 ? (
-                              <div className="flex flex-col gap-2 max-h-36 overflow-y-auto pr-1">
-                                {members.slice(0, 8).map((m, i) => (
+                              <div className="flex flex-col gap-2 max-h-52 overflow-y-auto pr-1 scrollbar-thin scrollbar-thumb-stone-100 dark:scrollbar-thumb-stone-850">
+                                {members.slice(0, 10).map((m, i) => (
                                   <div key={i} className="flex items-center justify-between gap-2">
                                     <div className="flex items-center gap-2 min-w-0">
                                       {m.avatarUrl ? (
@@ -772,7 +785,7 @@ export default function DashboardClient({ lessonsMeta }: { lessonsMeta: LessonMe
                                           {m.name.charAt(0).toUpperCase()}
                                         </div>
                                       )}
-                                      <span className="text-[10px] font-bold text-stone-700 dark:text-stone-300 truncate">
+                                      <span className="text-[10px] font-bold text-stone-700 dark:text-stone-300 max-w-[120px] truncate">
                                         {m.name}
                                       </span>
                                     </div>
@@ -781,9 +794,9 @@ export default function DashboardClient({ lessonsMeta }: { lessonsMeta: LessonMe
                                     </span>
                                   </div>
                                 ))}
-                                {members.length > 8 && (
+                                {members.length > 10 && (
                                   <p className="text-[8px] font-extrabold text-stone-450 dark:text-stone-500 italic mt-0.5">
-                                    và {members.length - 8} người khác...
+                                    và {members.length - 10} người khác...
                                   </p>
                                 )}
                               </div>
@@ -793,6 +806,11 @@ export default function DashboardClient({ lessonsMeta }: { lessonsMeta: LessonMe
                               </p>
                             )}
                           </div>
+
+                          {/* Elegant Pointer Arrow at bottom */}
+                          <div className={`absolute top-full w-2.5 h-2.5 rotate-45 bg-white dark:bg-stone-900 border-r border-b border-stone-200 dark:border-stone-800 -translate-y-1.5 z-0 ${
+                            lvl.level === 1 ? "left-4" : lvl.level === 6 ? "right-4" : "left-1/2 -translate-x-1/2"
+                          }`} />
                         </div>
                       </div>
                     );
