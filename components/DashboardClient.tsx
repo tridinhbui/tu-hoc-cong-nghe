@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect, useCallback, useMemo } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { useRouter, useSearchParams } from "next/navigation";
@@ -238,6 +238,71 @@ export default function DashboardClient({ lessonsMeta }: { lessonsMeta: LessonMe
     return () => clearTimeout(timer);
   }, [loading, completed.length]);
 
+  const track = activeTrack === "professional" ? TRACK_PROFESSIONAL : TRACK_PERSONAL;
+
+  // lessonsMeta is a stable prop (fixed for the component's lifetime), but
+  // this component re-renders very often from its own local state
+  // (accordion toggles, hover/popover state, flag-selection mode...).
+  // Without memoizing, every one of those renders re-filtered/re-sorted the
+  // full lesson list (300+ entries) from scratch for no reason.
+  const sorted = useMemo(
+    () => [...lessonsMeta].filter((l) => l.isVisible !== false).sort((a, b) => a.id - b.id),
+    [lessonsMeta]
+  );
+
+  const lessonById = useMemo(() => new Map(lessonsMeta.map((l) => [l.id, l])), [lessonsMeta]);
+
+  // Cross-reference view for Track 3 - not a real day-numbered curriculum,
+  // just the existing lessons (by id) grouped into the 10 official CFA
+  // Level I subjects. See lib/cfa-track.ts.
+  const cfaSubjects = useMemo(
+    () =>
+      CFA_LEVEL_1_SUBJECTS.map((subject) => ({
+        subject,
+        lessons: subject.lessonIds
+          .map((id) => lessonById.get(id))
+          .filter((l): l is NonNullable<typeof l> => !!l && l.isVisible !== false),
+      })),
+    [lessonById]
+  );
+
+  // Track-relative lesson numbering: the personal track reuses lesson ids
+  // from the 200s (originally written for the professional track) in its
+  // own Chặng 2-4, so showing the raw id ("Day 201") right after a "Chặng 1"
+  // that only went up to id 20 reads as a broken sequence to a linear
+  // learner. Map each lesson to its 1-based position within THIS track's own
+  // display order instead, computed with the exact same stage/part filters
+  // used to render the list below so the numbers always match what's shown.
+  //
+  // Also precomputes the per-stage and per-part lesson lists themselves
+  // (lessonsByStageLabel/lessonsByPartKey) - the stage/part accordion render
+  // loop below used to call sorted.filter() again for every stage (twice -
+  // once more for the previous stage's milestone check) and every part, on
+  // every single render.
+  const { lessonOrdinal, lessonsByStageLabel, lessonsByPartKey } = useMemo(() => {
+    const ordinal = new Map<number, number>();
+    const byStage = new Map<string, LessonMeta[]>();
+    const byPart = new Map<string, LessonMeta[]>();
+    let n = 0;
+    for (const stage of track.stages) {
+      byStage.set(
+        stage.label,
+        sorted.filter((l) => isLessonInRange(l.id, stage) && (!l.track || l.track === activeTrack))
+      );
+      for (const part of stage.parts) {
+        const partLessons = sorted.filter(
+          (l) => isLessonInRange(l.id, part) && (!l.track || l.track === activeTrack)
+        );
+        byPart.set(`${stage.label}::${part.name}`, partLessons);
+        for (const l of partLessons) {
+          n += 1;
+          ordinal.set(l.id, n);
+        }
+      }
+    }
+    return { lessonOrdinal: ordinal, lessonsByStageLabel: byStage, lessonsByPartKey: byPart };
+  }, [sorted, track, activeTrack]);
+
   const toggleStage = (key: string) => {
     setOpenStages((prev) => {
       const next = new Set(prev);
@@ -469,44 +534,6 @@ export default function DashboardClient({ lessonsMeta }: { lessonsMeta: LessonMe
         onSkip={handleOnboardingSkip}
       />
     );
-  }
-
-  const sorted = [...lessonsMeta]
-    .filter((l) => l.isVisible !== false)
-    .sort((a, b) => a.id - b.id);
-  const track = activeTrack === "professional" ? TRACK_PROFESSIONAL : TRACK_PERSONAL;
-  // Cross-reference view for Track 3 - not a real day-numbered curriculum,
-  // just the existing lessons (by id) grouped into the 10 official CFA
-  // Level I subjects. See lib/cfa-track.ts.
-  const lessonById = new Map(lessonsMeta.map((l) => [l.id, l]));
-  const cfaSubjects = CFA_LEVEL_1_SUBJECTS.map((subject) => ({
-    subject,
-    lessons: subject.lessonIds
-      .map((id) => lessonById.get(id))
-      .filter((l): l is NonNullable<typeof l> => !!l && l.isVisible !== false),
-  }));
-
-  // Track-relative lesson numbering: the personal track reuses lesson ids
-  // from the 200s (originally written for the professional track) in its
-  // own Chặng 2-4, so showing the raw id ("Day 201") right after a "Chặng 1"
-  // that only went up to id 20 reads as a broken sequence to a linear
-  // learner. Map each lesson to its 1-based position within THIS track's own
-  // display order instead, computed with the exact same stage/part filters
-  // used to render the list below so the numbers always match what's shown.
-  const lessonOrdinal = new Map<number, number>();
-  {
-    let n = 0;
-    for (const stage of track.stages) {
-      for (const part of stage.parts) {
-        const partLessons = sorted.filter(
-          (l) => isLessonInRange(l.id, part) && (!l.track || l.track === activeTrack)
-        );
-        for (const l of partLessons) {
-          n += 1;
-          lessonOrdinal.set(l.id, n);
-        }
-      }
-    }
   }
 
   // Client-side lock check - must stay in sync with lib/lesson-lock-rule.ts.
@@ -1075,9 +1102,7 @@ export default function DashboardClient({ lessonsMeta }: { lessonsMeta: LessonMe
           {/* ── Stages + lessons ── */}
           <div data-tour="stage-list" className="space-y-6 mt-8">
           {track.stages.map((stage) => {
-            const stageLessons = sorted.filter(
-              (l) => isLessonInRange(l.id, stage) && (!l.track || l.track === activeTrack)
-            );
+            const stageLessons = lessonsByStageLabel.get(stage.label) ?? [];
             const stageDone = stageLessons.filter((l) => completed.includes(l.id)).length;
             const stageLockedCount = stageLessons.filter((l) => isLessonLocked(l)).length;
             const stageKey = `${activeTrack}-${stage.label}`;
@@ -1093,9 +1118,7 @@ export default function DashboardClient({ lessonsMeta }: { lessonsMeta: LessonMe
             if (stageIdx > 1) {
               const prevStage = track.stages[stageIdx - 1];
               prevStageLabel = prevStage.label;
-              const prevStageLessons = sorted.filter(
-                (l) => isLessonInRange(l.id, prevStage) && (!l.track || l.track === activeTrack)
-              );
+              const prevStageLessons = lessonsByStageLabel.get(prevStage.label) ?? [];
               prevStageLessonsCount = prevStageLessons.length;
               prevStageDone = prevStageLessons.filter((l) => completed.includes(l.id)).length;
               
@@ -1227,9 +1250,7 @@ export default function DashboardClient({ lessonsMeta }: { lessonsMeta: LessonMe
                 {stageOpen && stage.available && stageLessons.length > 0 && !isStageLockedByMilestone && (
                   <div className="space-y-3">
                     {stage.parts.map((part) => {
-                      const partLessons = sorted.filter(
-                        (l) => isLessonInRange(l.id, part) && (!l.track || l.track === activeTrack)
-                      );
+                      const partLessons = lessonsByPartKey.get(`${stage.label}::${part.name}`) ?? [];
                       if (partLessons.length === 0) return null;
                       const partDone = partLessons.filter((l) => completed.includes(l.id)).length;
                       const partLockedCount = partLessons.filter((l) => isLessonLocked(l)).length;
