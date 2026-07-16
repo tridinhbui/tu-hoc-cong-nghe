@@ -28,7 +28,8 @@ import SmartRemediationWidget from "@/components/SmartRemediationWidget";
 import DailyNewsQuizWidget from "@/components/DailyNewsQuizWidget";
 import CombinedRewardsWidget from "@/components/CombinedRewardsWidget";
 import { hasCompletedOnboarding, completeOnboarding } from "@/lib/supabase-onboarding";
-import { getUserProfile, recalculateUserStats } from "@/lib/supabase-user";
+import { getUserProfile, recalculateUserStats, getLeaderboardByMetric } from "@/lib/supabase-user";
+import { getLevelByXp } from "@/lib/levels";
 import UnlockRequestModal from "@/components/UnlockRequestModal";
 import KnowledgeChallengeModal from "@/components/KnowledgeChallengeModal";
 import StageMilestoneExamModal from "@/components/StageMilestoneExamModal";
@@ -154,6 +155,7 @@ export default function DashboardClient({ lessonsMeta }: { lessonsMeta: LessonMe
   const [passedMilestones, setPassedMilestones] = useState<MilestoneCompletion[]>([]);
   const [activeMilestoneExam, setActiveMilestoneExam] = useState<{ label: string; name: string; lessonIds: number[] } | null>(null);
   const [selectedCertStage, setSelectedCertStage] = useState<{ label: string; name: string } | null>(null);
+  const [communityUsersByLevel, setCommunityUsersByLevel] = useState<Map<number, { name: string; xp: number }[]>>(new Map());
 
   useRoutePrefetch(["/analytics", "/ghi-chu", "/kiem-tra", "/tai-lieu", "/ban-be", "/profile", "/settings", "/cfa"]);
 
@@ -172,6 +174,29 @@ export default function DashboardClient({ lessonsMeta }: { lessonsMeta: LessonMe
       document.removeEventListener("touchstart", handlePointerDown);
     };
   }, [manualFlagInfoOpen]);
+
+  useEffect(() => {
+    let cancelled = false;
+    getLeaderboardByMetric("xp", 100)
+      .then((entries) => {
+        if (cancelled) return;
+        const grouped = new Map<number, { name: string; xp: number }[]>();
+        for (let i = 1; i <= 6; i++) {
+          grouped.set(i, []);
+        }
+        entries.forEach((entry) => {
+          const lvl = getLevelByXp(entry.value).level;
+          if (grouped.has(lvl)) {
+            grouped.get(lvl)!.push({ name: entry.name, xp: entry.value });
+          }
+        });
+        setCommunityUsersByLevel(grouped);
+      })
+      .catch((err) => console.error("Error loading community levels:", err));
+    return () => {
+      cancelled = true;
+    };
+  }, []);
 
   // Nudge learners toward the knowledge-review challenge automatically, at
   // most once per calendar day, once they've actually completed enough
@@ -618,96 +643,142 @@ export default function DashboardClient({ lessonsMeta }: { lessonsMeta: LessonMe
           {/* Left Column: Learning Path (7 columns on desktop) */}
           <div className="lg:col-span-7 space-y-6">
 
-            {/* 🗺️ Bản đồ Lộ trình Học tập (Roadmap Progress Bar) */}
-            {activeTrack !== "cfa" && (
-              <div className="bg-white dark:bg-stone-900 border border-stone-200 dark:border-stone-850 rounded-2xl p-4 sm:p-5 shadow-sm relative overflow-hidden">
-                {/* Background glow */}
-                <div className="absolute -top-10 -left-10 w-28 h-28 bg-emerald-500/5 dark:bg-emerald-500/10 rounded-full blur-2xl pointer-events-none" />
+            {/* 🏆 Tiến độ Cấp độ (1 -> 6) Elegant Progress Roadmap */}
+            {user?.id && (
+              <div className="bg-white dark:bg-stone-900 border border-stone-150 dark:border-stone-850 rounded-2xl p-5 shadow-sm relative overflow-hidden">
+                {/* Background ambient glow */}
+                <div className="absolute -top-10 -left-10 w-24 h-24 bg-emerald-500/5 dark:bg-emerald-500/10 rounded-full blur-2xl pointer-events-none" />
                 
-                <div className="flex items-center justify-between mb-4 relative z-10">
+                <div className="flex items-center justify-between mb-6 relative z-10">
                   <div>
-                    <h3 className="text-sm sm:text-base font-extrabold text-stone-900 dark:text-stone-100 flex items-center gap-1.5">
-                      🗺️ Bản đồ Lộ trình Học tập
+                    <h3 className="text-xs font-black uppercase tracking-widest text-stone-550 dark:text-stone-400">
+                      Bản đồ Cấp độ Học viên
                     </h3>
-                    <p className="text-[10px] text-stone-500 dark:text-stone-400 mt-0.5">
-                      Nhấp vào từng chặng để tự động cuộn đến danh sách bài học
+                    <p className="text-[10px] text-stone-450 dark:text-stone-500 mt-1">
+                      Rê chuột vào từng cấp độ để xem các thành viên đang ở cấp đó
                     </p>
                   </div>
-                  <span className="text-[10px] font-extrabold text-emerald-600 dark:text-emerald-450 bg-emerald-50 dark:bg-emerald-950/40 border border-emerald-100 dark:border-emerald-900/40 px-2 py-0.5 rounded-md">
-                    {sorted.length ? Math.round((completed.length / sorted.length) * 100) : 0}% Hoàn thành
-                  </span>
+                  <div className="text-right">
+                    <span className="text-[10px] font-extrabold text-stone-900 dark:text-stone-100 bg-stone-50/50 dark:bg-stone-950/60 border border-stone-150 dark:border-stone-800 px-2.5 py-1.5 rounded-lg shadow-sm">
+                      Bạn đang ở Cấp {getLevelByXp(userXp).level}: <span className="text-emerald-600 dark:text-emerald-400 font-black">{getLevelByXp(userXp).name}</span>
+                    </span>
+                  </div>
                 </div>
 
-                {/* Horizontal Timeline Map */}
-                <div className="relative z-10 flex items-center justify-between gap-2 overflow-x-auto pb-2 scrollbar-thin scrollbar-thumb-stone-200 dark:scrollbar-thumb-stone-800">
-                  {track.stages.map((stage, idx) => {
-                    const stageKey = `${activeTrack}-${stage.label}`;
-                    const stageLessons = sorted.filter(
-                      (l) => isLessonInRange(l.id, stage) && (!l.track || l.track === activeTrack)
-                    );
-                    const stageDone = stageLessons.filter((l) => completed.includes(l.id)).length;
-                    const isPassed = passedMilestones.some((m) => m.stage_label === stage.label);
-                    const isLearning = stageLessons.length > 0 && stageDone < stageLessons.length && (idx === 0 || passedMilestones.some((m) => m.stage_label === track.stages[idx - 1]?.label));
+                {/* Minimalist Progress Line/Dots */}
+                <div className="relative z-10 flex items-center justify-between px-4 mt-6">
+                  {/* Connecting Line (Underlay) */}
+                  <div className="absolute left-6 right-6 top-1/2 -translate-y-1/2 h-[1px] bg-stone-200 dark:bg-stone-800 z-0" />
+                  
+                  {/* Completed Line Fill */}
+                  <div 
+                    className="absolute left-6 top-1/2 -translate-y-1/2 h-[1.5px] bg-emerald-500 z-0 transition-all duration-500" 
+                    style={{ 
+                      width: `${((getLevelByXp(userXp).level - 1) / 5) * 100}%`,
+                      maxWidth: '100%' 
+                    }} 
+                  />
+
+                  {/* Level Nodes */}
+                  {[
+                    { level: 1, name: "Tò mò", minXp: 0 },
+                    { level: 2, name: "Học viên", minXp: 100 },
+                    { level: 3, name: "Nhà đầu tư", minXp: 300 },
+                    { level: 4, name: "Nhà phân tích", minXp: 600 },
+                    { level: 5, name: "Cố vấn Tài chính", minXp: 1000 },
+                    { level: 6, name: "Thạo thủ Tài chính", minXp: 1500 }
+                  ].map((lvl) => {
+                    const currentUserLevel = getLevelByXp(userXp).level;
+                    const isUserCurrent = currentUserLevel === lvl.level;
+                    const isPassed = currentUserLevel > lvl.level;
                     
-                    const theme = STAGE_THEMES[stageKey] || { emoji: "📖" };
-                    
-                    let statusColor = "bg-stone-100 dark:bg-stone-800 text-stone-400 dark:text-stone-500 border-stone-200 dark:border-stone-700";
-                    if (isPassed) {
-                      statusColor = "bg-emerald-500 text-white border-emerald-500 shadow-sm shadow-emerald-500/20";
-                    } else if (isLearning) {
-                      statusColor = "bg-amber-500 text-white border-amber-500 shadow-sm shadow-amber-500/20 ring-2 ring-amber-400/30 animate-pulse";
-                    }
+                    const members = communityUsersByLevel.get(lvl.level) || [];
+                    const displayMembers = members.map(m => m.name);
 
                     return (
-                      <div key={stage.label} className="flex items-center flex-1 min-w-[70px] relative group/step">
-                        {/* Connecting Line */}
-                        {idx < track.stages.length - 1 && (
-                          <div className="absolute top-5 left-1/2 right-[-50%] h-[2px] bg-stone-100 dark:bg-stone-800 z-0">
-                            <div 
-                              className={`h-full transition-all duration-500 ${isPassed ? "bg-emerald-500" : "bg-stone-100 dark:bg-stone-800"}`} 
-                              style={{ width: isPassed ? "100%" : "0%" }}
-                            />
-                          </div>
-                        )}
-
-                        {/* Interactive Node */}
-                        <button
-                          onClick={() => {
-                            const stageKey = `${activeTrack}-${stage.label}`;
-                            setOpenStages((prev) => {
-                              const next = new Set(prev);
-                              next.add(stageKey);
-                              return next;
-                            });
-                            setTimeout(() => {
-                              const el = document.getElementById(`stage-${stage.label}`);
-                              if (el) {
-                                el.scrollIntoView({ behavior: "smooth", block: "center" });
-                              }
-                            }, 100);
-                          }}
-                          className={`relative z-10 w-10 h-10 rounded-full border-2 flex items-center justify-center text-base cursor-pointer hover:scale-110 active:scale-95 transition-all mx-auto ${statusColor}`}
-                          title={`${stage.label}: ${stage.name}`}
+                      <div key={lvl.level} className="relative flex flex-col items-center z-10 group">
+                        {/* Interactive Dot Node */}
+                        <div
+                          className={`rounded-full transition-all duration-300 flex items-center justify-center cursor-help ${
+                            isUserCurrent
+                              ? "w-6 h-6 bg-emerald-500 border-4 border-white dark:border-stone-900 shadow-md ring-4 ring-emerald-500/25 animate-[pulse_2s_infinite]"
+                              : isPassed
+                              ? "w-4.5 h-4.5 bg-emerald-500 border-2 border-white dark:border-stone-900 shadow-sm"
+                              : "w-3.5 h-3.5 bg-stone-100 dark:bg-stone-850 border border-stone-250 dark:border-stone-750 hover:border-stone-400 dark:hover:border-stone-500"
+                          }`}
                         >
-                          {isPassed ? "✓" : theme.emoji}
-                        </button>
+                          {isUserCurrent && (
+                            <span className="w-1.5 h-1.5 rounded-full bg-white block" />
+                          )}
+                        </div>
 
-                        {/* Label */}
-                        <div className="absolute top-11 left-1/2 -translate-x-1/2 text-center w-max pointer-events-none">
-                          <span className="text-[9px] font-black uppercase tracking-wider block text-stone-500 dark:text-stone-400">
-                            {stage.label}
+                        {/* Label underneath */}
+                        <div className="mt-2.5 text-center pointer-events-none">
+                          <span className={`text-[9px] font-black uppercase tracking-wider block ${
+                            isUserCurrent 
+                              ? "text-emerald-600 dark:text-emerald-400 font-black" 
+                              : isPassed 
+                              ? "text-stone-700 dark:text-stone-300 font-bold" 
+                              : "text-stone-400 dark:text-stone-500 font-medium"
+                          }`}>
+                            L{lvl.level}
                           </span>
-                          <span className="text-[8px] font-bold text-stone-450 dark:text-stone-500 block">
-                            {stageDone}/{stageLessons.length}
+                          <span className="text-[8px] text-stone-450 dark:text-stone-500 block leading-tight mt-0.5 max-w-[65px] truncate">
+                            {lvl.name}
                           </span>
+                        </div>
+
+                        {/* Elegant Tooltip on Hover */}
+                        <div className="absolute bottom-full mb-3 hidden group-hover:block w-56 p-4 rounded-xl border border-stone-150 dark:border-stone-800 bg-white/95 dark:bg-stone-950/95 backdrop-blur-md shadow-xl text-left z-[999] animate-[fadeInTooltip_0.2s_ease-out]">
+                          <style>{`
+                            @keyframes fadeInTooltip {
+                              from { opacity: 0; transform: translateY(4px); }
+                              to { opacity: 1; transform: translateY(0); }
+                            }
+                          `}</style>
+                          <div className="mb-2 pb-1.5 border-b border-stone-100 dark:border-stone-850">
+                            <p className="text-[10px] font-extrabold uppercase tracking-widest text-stone-400 dark:text-stone-500">
+                              Cấp độ {lvl.level}
+                            </p>
+                            <p className="text-xs font-black text-stone-900 dark:text-stone-50 mt-0.5">
+                              {lvl.name}
+                            </p>
+                            <p className="text-[9px] font-bold text-stone-500 dark:text-stone-400 mt-0.5">
+                              Yêu cầu: {lvl.minXp} XP trở lên
+                            </p>
+                          </div>
+                          
+                          <div>
+                            <p className="text-[9px] font-black text-stone-450 dark:text-stone-550 uppercase tracking-widest mb-1.5">
+                              Thành viên ({displayMembers.length})
+                            </p>
+                            {displayMembers.length > 0 ? (
+                              <div className="flex flex-col gap-1 max-h-28 overflow-y-auto pr-1">
+                                {displayMembers.slice(0, 8).map((name, i) => (
+                                  <div key={i} className="flex items-center gap-1.5">
+                                    <span className="w-1 h-1 rounded-full bg-emerald-500 shrink-0" />
+                                    <span className="text-[10px] font-bold text-stone-700 dark:text-stone-305 truncate">
+                                      {name}
+                                    </span>
+                                  </div>
+                                ))}
+                                {displayMembers.length > 8 && (
+                                  <p className="text-[8px] font-extrabold text-stone-450 dark:text-stone-500 italic mt-0.5">
+                                    và {displayMembers.length - 8} người khác...
+                                  </p>
+                                )}
+                              </div>
+                            ) : (
+                              <p className="text-[9px] font-bold text-stone-400 dark:text-stone-500 italic">
+                                Chưa có thành viên ở cấp này
+                              </p>
+                            )}
+                          </div>
                         </div>
                       </div>
                     );
                   })}
                 </div>
-                
-                {/* Spacer for label offset */}
-                <div className="h-6" />
               </div>
             )}
 
