@@ -19,6 +19,7 @@ import { LessonCompletionContext } from "@/lib/lesson-completion-context";
 import { createClient } from "@/lib/supabase";
 import { markLessonComplete as markLessonCompleteSupabase } from "@/lib/supabase-progress";
 import { getLessonProgress } from "@/lib/supabase-progress";
+import { queueOfflineCompletion, removeOfflineCompletion } from "@/lib/offline-sync";
 import { recalculateUserStats } from "@/lib/supabase-user";
 import { updateStreak } from "@/lib/supabase-streak";
 import { getReadingProgress, updateReadingProgress } from "@/lib/supabase-reading";
@@ -559,8 +560,10 @@ export default function LessonPageLayout({ lesson, quiz, children }: Props) {
     // retry - nothing else matters if this didn't land.
     try {
       await markLessonCompleteSupabase(uid, persistedLessonId, finalScore, durationMin * 60);
+      removeOfflineCompletion(uid, persistedLessonId);
     } catch (error) {
-      console.error("Error saving lesson completion:", error);
+      console.error("Error saving lesson completion, queued for offline sync:", error);
+      queueOfflineCompletion(uid, persistedLessonId, finalScore, durationMin * 60);
       return false;
     }
 

@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { useRouter, useSearchParams } from "next/navigation";
@@ -233,7 +233,85 @@ export default function DashboardClient({ lessonsMeta }: { lessonsMeta: LessonMe
     setShowOnboarding(false);
   };
 
-  // Check auth and calculate XP on mount
+  // Synchronize stats & progress with database and process offline queue
+  const syncProgressAndXP = useCallback(async (userId: string) => {
+    // First, try to sync any offline queued completions
+    try {
+      const { syncOfflineQueue } = await import("@/lib/offline-sync");
+      const didSync = await syncOfflineQueue(userId);
+      if (didSync) {
+        toast.success("Tiến độ học tập offline đã được đồng bộ thành công! 🌟");
+      }
+    } catch (err) {
+      console.error("Offline sync error:", err);
+    }
+
+    try {
+      const serverCompleted = await getCompletedLessons(userId);
+      mergeCompletedLessons(serverCompleted);
+      forceProgressResync((n) => n + 1);
+    } catch (error) {
+      console.error("Error syncing server progress:", error);
+    }
+
+    supabase
+      .from("user_lesson_unlocks")
+      .select("lesson_id")
+      .eq("user_id", userId)
+      .then(({ data }) => {
+        if (data) setUnlockedLessonIds(new Set(data.map((row) => row.lesson_id)));
+      });
+
+    getChallengePassedLessonIds(userId)
+      .then((ids) => setChallengePassedIds(new Set(ids)))
+      .catch((error) => console.error("Error loading challenge passes:", error));
+
+    getUserLessonFlags(userId)
+      .then((flags) => setFlaggedLessonIds(new Set(flags.map((flag) => flag.lesson_id))))
+      .catch((error) => console.error("Error loading lesson flags:", error));
+
+    getUserBookmarks(userId)
+      .then((saved) => setBookmarks(saved.slice(0, 6)))
+      .catch((error) => console.error("Error loading lesson bookmarks:", error));
+
+    getPassedMilestones(userId, activeTrack)
+      .then((milestones) => setPassedMilestones(milestones))
+      .catch((error) => console.error("Error loading milestones:", error));
+
+    if (window.localStorage.getItem(ONBOARDING_LOCAL_KEY)) {
+      setOnboardingChecked(true);
+    } else {
+      try {
+        const hasOnboarded = await hasCompletedOnboarding(userId);
+        setOnboardingChecked(true);
+        if (hasOnboarded) {
+          window.localStorage.setItem(ONBOARDING_LOCAL_KEY, "1");
+        } else {
+          setShowOnboarding(true);
+        }
+      } catch (error) {
+        console.error("Error checking onboarding:", error);
+        setOnboardingChecked(true);
+      }
+    }
+
+    try {
+      const stats = await recalculateUserStats(userId);
+      setUserXp(stats.total_xp);
+    } catch (error) {
+      console.error("Error recalculating user XP, falling back to stored value:", error);
+      try {
+        const profile = await getUserProfile(userId);
+        setUserXp(profile.total_xp);
+      } catch (fallbackError) {
+        console.error("Error loading user XP:", fallbackError);
+      }
+    }
+
+    setAvgQuizScore(75);
+  }, [activeTrack, supabase]);
+
+  // Check auth on mount
   useEffect(() => {
     const checkAuth = async () => {
       // Resolve via the INITIAL_SESSION event instead of calling
@@ -278,113 +356,39 @@ export default function DashboardClient({ lessonsMeta }: { lessonsMeta: LessonMe
       }
 
       setUser(session.user);
-
-      // Reconcile localStorage with Supabase's user_progress (source of
-      // truth) before computing anything derived from `completed` below.
-      // localStorage is only a client-side cache / offline hint - never a
-      // trusted source for restoring authoritative completion back onto the
-      // account, because the learner can edit it freely in the browser.
-      try {
-        const serverCompleted = await getCompletedLessons(session.user.id);
-        mergeCompletedLessons(serverCompleted);
-        forceProgressResync((n) => n + 1);
-      } catch (error) {
-        console.error("Error syncing server progress:", error);
-      }
-
-      // Lesson-level unlock grants from approved admin requests (early access
-      // to a lesson that would otherwise be locked behind its prerequisite).
-      supabase
-        .from("user_lesson_unlocks")
-        .select("lesson_id")
-        .eq("user_id", session.user.id)
-        .then(({ data }) => {
-          if (data) setUnlockedLessonIds(new Set(data.map((row) => row.lesson_id)));
-        });
-
-      // Lessons unlocked by passing their gate challenge (see isChallengeGated).
-      getChallengePassedLessonIds(session.user.id)
-        .then((ids) => setChallengePassedIds(new Set(ids)))
-        .catch((error) => console.error("Error loading challenge passes:", error));
-
-      getUserLessonFlags(session.user.id)
-        .then((flags) => setFlaggedLessonIds(new Set(flags.map((flag) => flag.lesson_id))))
-        .catch((error) => console.error("Error loading lesson flags:", error));
-
-      getUserBookmarks(session.user.id)
-        .then((saved) => setBookmarks(saved.slice(0, 6)))
-        .catch((error) => console.error("Error loading lesson bookmarks:", error));
-
-      getPassedMilestones(session.user.id, activeTrack)
-        .then((milestones) => setPassedMilestones(milestones))
-        .catch((error) => console.error("Error loading milestones:", error));
-
-      // Check if user has completed onboarding. The local flag is checked
-      // first and short-circuits the server round trip - it's what actually
-      // stops the modal from reappearing on every visit when the
-      // user_onboarding table/migration isn't available on this environment
-      // (hasCompletedOnboarding fails open to "not onboarded" in that case).
-      if (window.localStorage.getItem(ONBOARDING_LOCAL_KEY)) {
-        setOnboardingChecked(true);
-      } else {
-        try {
-          const hasOnboarded = await hasCompletedOnboarding(session.user.id);
-          setOnboardingChecked(true);
-
-          if (hasOnboarded) {
-            window.localStorage.setItem(ONBOARDING_LOCAL_KEY, "1");
-          } else {
-            setShowOnboarding(true);
-          }
-        } catch (error) {
-          console.error("Error checking onboarding:", error);
-          setOnboardingChecked(true);
-        }
-      }
-
-      // Self-heals total_xp on every dashboard visit instead of trusting
-      // whatever user_profiles.total_xp currently holds. recalculateUserStats
-      // is normally called right after a lesson completes, but that call is
-      // best-effort (a network blip or transient error just gets logged, not
-      // retried - the completion itself still saved fine) - so a user could
-      // legitimately have N completed lessons in user_progress while
-      // total_xp reflects an earlier, smaller N forever, with nothing to
-      // ever reconcile the two. Reported by users as "đã học xong 26 bài
-      // nhưng chỉ có 110 XP". Recomputing from the real completed-lesson
-      // count here, every mount, makes that permanently self-correcting.
-      try {
-        const stats = await recalculateUserStats(session.user.id);
-        setUserXp(stats.total_xp);
-      } catch (error) {
-        console.error("Error recalculating user XP, falling back to stored value:", error);
-        try {
-          const profile = await getUserProfile(session.user.id);
-          setUserXp(profile.total_xp);
-        } catch (fallbackError) {
-          console.error("Error loading user XP:", fallbackError);
-        }
-      }
-
-      // Mock average quiz score
-      setAvgQuizScore(75);
-
+      await syncProgressAndXP(session.user.id);
       setLoading(false);
     };
 
     checkAuth();
-    // Deliberately mount-only. `completed.length` used to be a dependency
-    // here, but this effect itself calls mergeCompletedLessons (via the
-    // recovery-patch logic above), which changes completed.length - making
-    // the effect re-trigger itself on every mount. Each re-run re-subscribes
-    // a fresh onAuthStateChange listener and re-runs the whole reconcile/
-    // unlock/onboarding/XP sequence from scratch, which is both wasted work
-    // (visible as loading flicker) and another chance for the INITIAL_SESSION
-    // race below to resolve unluckily and bounce to /login. checkAuth
-    // already re-reads completed progress itself (getProgress()) instead of
-    // relying on the closed-over `completed` value, so nothing here actually
-    // needs to observe it changing.
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [router, supabase.auth]);
+  }, [router, supabase.auth, syncProgressAndXP]);
+
+  // Listen for Visibility Change (Wake Up) and Online events to trigger sync
+  useEffect(() => {
+    if (!user?.id) return;
+
+    const handleSyncTrigger = () => {
+      if (document.visibilityState === "visible" && user.id) {
+        void syncProgressAndXP(user.id);
+      }
+    };
+
+    const handleOnline = () => {
+      if (user.id) {
+        void syncProgressAndXP(user.id);
+      }
+    };
+
+    document.addEventListener("visibilitychange", handleSyncTrigger);
+    window.addEventListener("focus", handleSyncTrigger);
+    window.addEventListener("online", handleOnline);
+
+    return () => {
+      document.removeEventListener("visibilitychange", handleSyncTrigger);
+      window.removeEventListener("focus", handleSyncTrigger);
+      window.removeEventListener("online", handleOnline);
+    };
+  }, [user?.id, syncProgressAndXP]);
 
 
   if (loading) {
