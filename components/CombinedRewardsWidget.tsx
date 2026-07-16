@@ -355,43 +355,28 @@ export default function CombinedRewardsWidget({ userId, defaultExpanded = false 
                 )}
 
                 {/* Rương tri thức tuần - Weekly Chest Tracker inside Chests Tab */}
-                <div className="mt-4 pt-4 border-t border-stone-150 dark:border-stone-850/80">
-                  <div className="flex items-center justify-between mb-2">
-                    <span className="text-[10px] font-black uppercase tracking-wider flex items-center gap-1 bg-gradient-to-r from-rose-500 to-pink-500 bg-clip-text text-transparent animate-pulse">
+                <div className="mt-4 pt-4 border-t border-stone-150 dark:border-stone-850/80 flex items-center justify-between gap-3">
+                  <div className="min-w-0">
+                    <span className="text-[10px] font-black uppercase tracking-wider flex items-center gap-1.5 bg-gradient-to-r from-rose-500 to-pink-500 bg-clip-text text-transparent animate-pulse mb-1">
                       <Gift className="w-3.5 h-3.5 text-rose-500" /> Rương tri thức tuần
                     </span>
-                    <span className="text-[9px] font-extrabold text-stone-600 dark:text-stone-400 bg-stone-50 dark:bg-stone-950/60 px-1.5 py-0.5 rounded border border-stone-200/60 dark:border-stone-850">
-                      {dailyQuests.filter((q) => q.current >= q.target).length}/3 nhiệm vụ ngày
-                    </span>
+                    <p className="text-[11.5px] font-bold text-stone-600 dark:text-stone-300">
+                      Đã hoàn thành: <span className="text-rose-550 dark:text-rose-400 font-black">{dailyQuests.filter((q) => q.current >= q.target).length}/3</span> nhiệm vụ hôm nay
+                    </p>
                   </div>
-                  
-                  <div className="flex items-center gap-2">
-                    <div className="flex-1 h-3 bg-stone-100 dark:bg-stone-950 rounded-full overflow-hidden shadow-inner relative flex items-center px-0.5 border border-stone-200/40 dark:border-stone-800">
-                      <div
-                        className="h-2 bg-gradient-to-r from-rose-500 to-pink-500 rounded-full transition-all duration-500 flex items-center justify-end px-1"
-                        style={{ width: `${Math.min(100, (dailyQuests.filter((q) => q.current >= q.target).length / 3) * 100)}%` }}
-                      >
-                        {dailyQuests.filter((q) => q.current >= q.target).length > 0 && (
-                          <span className="text-[7.5px] font-black text-white whitespace-nowrap">
-                            {Math.round((dailyQuests.filter((q) => q.current >= q.target).length / 3) * 100)}%
-                          </span>
-                        )}
-                      </div>
-                    </div>
-                    <button
-                      onClick={() => void handleWeeklyClaim()}
-                      disabled={weeklyClaimed || dailyQuests.filter((q) => q.current >= q.target).length < 3}
-                      className={`px-3 py-1.5 text-[9px] font-extrabold rounded-lg transition-all duration-200 border shrink-0 flex items-center justify-center ${
-                        weeklyClaimed
-                          ? "bg-stone-100 dark:bg-stone-950 text-stone-450 border-stone-200/40 dark:border-stone-850"
-                          : dailyQuests.filter((q) => q.current >= q.target).length >= 3
-                          ? "bg-gradient-to-r from-rose-500 to-pink-500 text-white border-rose-500 shadow-[0_4px_10px_-3px_rgba(244,63,94,0.4)] hover:scale-105 active:scale-95 cursor-pointer animate-pulse"
-                          : "bg-stone-50 dark:bg-stone-900 text-stone-400 border-stone-200 dark:border-stone-800 cursor-not-allowed"
-                      }`}
-                    >
-                      {weeklyClaimed ? "Đã mở 🎁" : "Mở rương 🔒"}
-                    </button>
-                  </div>
+                  <button
+                    onClick={() => void handleWeeklyClaim()}
+                    disabled={weeklyClaimed || dailyQuests.filter((q) => q.current >= q.target).length < 3}
+                    className={`px-4 py-2 text-[10px] font-black rounded-xl transition-all duration-200 border shrink-0 flex items-center justify-center gap-1.5 ${
+                      weeklyClaimed
+                        ? "bg-stone-100 dark:bg-stone-950 text-stone-450 border-stone-200 dark:border-stone-850"
+                        : dailyQuests.filter((q) => q.current >= q.target).length >= 3
+                        ? "bg-gradient-to-r from-rose-500 to-pink-500 text-white border-rose-500 shadow-[0_4px_10px_-3px_rgba(244,63,94,0.4)] hover:scale-105 active:scale-95 cursor-pointer animate-pulse"
+                        : "bg-stone-50 dark:bg-stone-900 text-stone-400 border-stone-200 dark:border-stone-800 cursor-not-allowed"
+                    }`}
+                  >
+                    {weeklyClaimed ? "Đã mở 🎁" : "Mở rương 🔒"}
+                  </button>
                 </div>
               </>
             )}

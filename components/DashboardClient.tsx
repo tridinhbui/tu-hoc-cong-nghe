@@ -156,6 +156,22 @@ export default function DashboardClient({ lessonsMeta }: { lessonsMeta: LessonMe
   const [activeMilestoneExam, setActiveMilestoneExam] = useState<{ label: string; name: string; lessonIds: number[] } | null>(null);
   const [selectedCertStage, setSelectedCertStage] = useState<{ label: string; name: string } | null>(null);
   const [communityUsersByLevel, setCommunityUsersByLevel] = useState<Map<number, { name: string; xp: number; avatarUrl: string | null }[]>>(new Map());
+  const [activeTooltipLevel, setActiveTooltipLevel] = useState<number | null>(null);
+
+  useEffect(() => {
+    function handleGlobalClick(event: MouseEvent | TouchEvent) {
+      const target = event.target as HTMLElement | null;
+      if (!target?.closest("[data-level-node-root]")) {
+        setActiveTooltipLevel(null);
+      }
+    }
+    document.addEventListener("mousedown", handleGlobalClick);
+    document.addEventListener("touchstart", handleGlobalClick);
+    return () => {
+      document.removeEventListener("mousedown", handleGlobalClick);
+      document.removeEventListener("touchstart", handleGlobalClick);
+    };
+  }, []);
 
   useRoutePrefetch(["/analytics", "/ghi-chu", "/kiem-tra", "/tai-lieu", "/ban-be", "/profile", "/settings", "/cfa"]);
 
@@ -725,10 +741,17 @@ export default function DashboardClient({ lessonsMeta }: { lessonsMeta: LessonMe
                     }
 
                     return (
-                      <div key={lvl.level} className="relative flex flex-col items-center z-10 group">
+                      <div key={lvl.level} data-level-node-root className="relative flex flex-col items-center z-10">
                         {/* Interactive Dot Node */}
                         <div
-                          className={`rounded-full transition-all duration-300 flex items-center justify-center cursor-pointer group-hover:-translate-y-1 group-hover:scale-125 group-hover:shadow-[0_0_12px_rgba(16,185,129,0.5)] ${
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            setActiveTooltipLevel(prev => prev === lvl.level ? null : lvl.level);
+                          }}
+                          onMouseEnter={() => {
+                            setActiveTooltipLevel(lvl.level);
+                          }}
+                          className={`rounded-full transition-all duration-300 flex items-center justify-center cursor-pointer hover:-translate-y-1 hover:scale-125 hover:shadow-[0_0_12px_rgba(16,185,129,0.5)] ${
                             isUserCurrent
                               ? "w-5 h-5 bg-emerald-500 shadow-md shadow-emerald-500/30 relative"
                               : isPassed
@@ -768,8 +791,8 @@ export default function DashboardClient({ lessonsMeta }: { lessonsMeta: LessonMe
                           </span>
                         </div>
 
-                        {/* Elegant Tooltip on Hover */}
-                        <div className={`absolute top-full mt-10 hidden group-hover:block w-64 p-4 rounded-xl border border-stone-200 dark:border-stone-800 bg-white dark:bg-stone-900 shadow-xl text-left z-[999] animate-[fadeInTooltip_0.2s_ease-out] ${tooltipAlignClass}`}>
+                        {/* Elegant Tooltip - Opens on Hover/Click, closes only on click outside */}
+                        <div className={`absolute top-full mt-10 ${activeTooltipLevel === lvl.level ? "block" : "hidden"} w-64 p-4 rounded-xl border border-stone-200 dark:border-stone-800 bg-white dark:bg-stone-900 shadow-xl text-left z-[999] animate-[fadeInTooltip_0.2s_ease-out] ${tooltipAlignClass}`}>
                           <style>{`
                             @keyframes fadeInTooltip {
                               from { opacity: 0; transform: translateY(-4px); }
