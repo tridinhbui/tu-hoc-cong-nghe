@@ -28,8 +28,7 @@ import LessonRecallWidget from "@/components/LessonRecallWidget";
 import SmartRemediationWidget from "@/components/SmartRemediationWidget";
 import GoalSelectionBanner from "@/components/GoalSelectionBanner";
 import DailyNewsQuizWidget from "@/components/DailyNewsQuizWidget";
-import RewardChestWidget from "@/components/RewardChestWidget";
-import WeeklyQuestsWidget from "@/components/WeeklyQuestsWidget";
+import CombinedRewardsWidget from "@/components/CombinedRewardsWidget";
 import { hasCompletedOnboarding, completeOnboarding } from "@/lib/supabase-onboarding";
 import { getUserProfile, recalculateUserStats } from "@/lib/supabase-user";
 import UnlockRequestModal from "@/components/UnlockRequestModal";
@@ -627,16 +626,6 @@ export default function DashboardClient({ lessonsMeta }: { lessonsMeta: LessonMe
               <ResumeLearningButton activeTrack={lastNonCfaTrack} />
             </div>
 
-            {/* Daily Quests Widget */}
-            {user?.id && (
-              <DailyQuestsWidget userId={user.id} />
-            )}
-
-            {/* Daily News Quiz Challenge */}
-            {user?.id && (
-              <DailyNewsQuizWidget userId={user.id} />
-            )}
-
             {/* Lesson Recall Scheduler Widget */}
             {user?.id && (
               <LessonRecallWidget userId={user.id} />
@@ -700,6 +689,16 @@ export default function DashboardClient({ lessonsMeta }: { lessonsMeta: LessonMe
                   ))}
                 </div>
               </div>
+            )}
+
+            {/* Daily Quests Widget */}
+            {user?.id && (
+              <DailyQuestsWidget userId={user.id} />
+            )}
+
+            {/* Daily News Quiz Challenge */}
+            {user?.id && (
+              <DailyNewsQuizWidget userId={user.id} />
             )}
           <div className="mb-4 flex flex-wrap items-center justify-between gap-3">
             <div className="text-sm text-stone-500 dark:text-stone-400">
@@ -1364,10 +1363,7 @@ export default function DashboardClient({ lessonsMeta }: { lessonsMeta: LessonMe
           {/* Right: Sidebar User Stats & Leaderboard (3 columns on desktop grid of 10, full width on mobile) */}
           <div className="lg:col-span-3 lg:sticky lg:top-24 space-y-6">
             {user?.id && (
-              <RewardChestWidget userId={user.id} />
-            )}
-            {user?.id && (
-              <WeeklyQuestsWidget userId={user.id} />
+              <CombinedRewardsWidget userId={user.id} />
             )}
             <div data-tour="user-stats">
               <UserStats

@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { Wallet, TrendingUp, Target, CheckCircle2, Shuffle } from "lucide-react";
+import { Wallet, TrendingUp, Target, CheckCircle2, Shuffle, ChevronDown, ChevronUp } from "lucide-react";
 import { toast } from "sonner";
 
 interface GoalSelectionBannerProps {
@@ -40,6 +40,7 @@ export const GOALS: { id: LearningGoal; name: string; desc: string; icon: any; c
 export default function GoalSelectionBanner({ userId }: GoalSelectionBannerProps) {
   const [selectedGoal, setSelectedGoal] = useState<LearningGoal | null>(null);
   const [showSelector, setShowSelector] = useState<boolean>(false);
+  const [isCollapsed, setIsCollapsed] = useState<boolean>(false);
 
   const goalKey = `thtcdn_learning_goal_${userId}`;
 
@@ -69,30 +70,48 @@ export default function GoalSelectionBanner({ userId }: GoalSelectionBannerProps
 
   return (
     <div className="bg-white dark:bg-stone-900 border border-stone-250 dark:border-stone-850 rounded-3xl overflow-hidden shadow-sm">
-      {/* Active Goal Summary */}
+      {/* Active Goal Summary - Collapsible */}
       {!showSelector && activeGoalInfo ? (
-        <div className="px-6 py-4.5 flex items-center justify-between flex-wrap gap-4">
-          <div className="flex items-center gap-3">
-            <div className={`w-9 h-9 rounded-xl ${activeGoalInfo.bg} ${activeGoalInfo.color} flex items-center justify-center`}>
-              <activeGoalInfo.icon className="w-5 h-5" />
-            </div>
-            <div>
-              <span className="text-[9px] font-extrabold uppercase tracking-widest text-stone-400 dark:text-stone-500 block">
-                Mục tiêu hiện tại của bạn
-              </span>
-              <h4 className="text-xs font-black text-stone-900 dark:text-stone-150 mt-0.5">
-                {activeGoalInfo.name}
-              </h4>
-            </div>
-          </div>
+        <>
           <button
-            onClick={() => setShowSelector(true)}
-            className="px-3.5 py-1.5 text-[10px] font-extrabold bg-stone-100 hover:bg-stone-200 dark:bg-stone-850 dark:hover:bg-stone-800 text-stone-750 dark:text-stone-300 rounded-lg transition-colors flex items-center gap-1 cursor-pointer focus:outline-none"
+            onClick={() => setIsCollapsed(!isCollapsed)}
+            className="w-full px-6 py-4.5 flex items-center justify-between flex-wrap gap-4 cursor-pointer hover:bg-stone-50 dark:hover:bg-stone-950/30 transition-colors"
           >
-            <Shuffle className="w-3.5 h-3.5" />
-            <span>Thay đổi mục tiêu</span>
+            <div className="flex items-center gap-3">
+              <div className={`w-9 h-9 rounded-xl ${activeGoalInfo.bg} ${activeGoalInfo.color} flex items-center justify-center`}>
+                <activeGoalInfo.icon className="w-5 h-5" />
+              </div>
+              <div>
+                <span className="text-[9px] font-extrabold uppercase tracking-widest text-stone-400 dark:text-stone-500 block">
+                  Mục tiêu hiện tại của bạn
+                </span>
+                <h4 className="text-xs font-black text-stone-900 dark:text-stone-150 mt-0.5">
+                  {activeGoalInfo.name}
+                </h4>
+              </div>
+            </div>
+            <div className="flex items-center gap-2">
+              <button
+                onClick={(e) => {
+                  e.stopPropagation();
+                  setShowSelector(true);
+                }}
+                className="px-3.5 py-1.5 text-[10px] font-extrabold bg-stone-100 hover:bg-stone-200 dark:bg-stone-850 dark:hover:bg-stone-800 text-stone-750 dark:text-stone-300 rounded-lg transition-colors flex items-center gap-1 cursor-pointer focus:outline-none"
+              >
+                <Shuffle className="w-3.5 h-3.5" />
+                <span>Thay đổi</span>
+              </button>
+              {isCollapsed ? <ChevronDown className="w-4 h-4 text-stone-400 dark:text-stone-500" /> : <ChevronUp className="w-4 h-4 text-stone-400 dark:text-stone-500" />}
+            </div>
           </button>
-        </div>
+          {!isCollapsed && (
+            <div className="px-6 pb-4.5 pt-0">
+              <p className="text-[11px] text-stone-500 dark:text-stone-400 leading-relaxed">
+                {activeGoalInfo.desc}
+              </p>
+            </div>
+          )}
+        </>
       ) : (
         /* Selector view */
         <div className="p-6 space-y-4">
