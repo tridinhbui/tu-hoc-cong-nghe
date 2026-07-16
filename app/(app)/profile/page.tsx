@@ -510,10 +510,10 @@ export default function ProfilePage() {
         </div>
 
         {/* 2-Column Responsive Dashboard Body */}
-        <div className="grid gap-6 lg:grid-cols-[1.12fr_0.88fr]">
-          
+        <div className="grid gap-6 lg:grid-cols-[1.12fr_0.88fr] min-w-0">
+
           {/* Left Column: Learning Track Progress & Recent Lessons */}
-          <div className="space-y-6">
+          <div className="space-y-6 min-w-0">
             
             {/* Track Progress Summary Card */}
             <div className="bg-white dark:bg-stone-900 border border-stone-200 dark:border-stone-850 rounded-2xl p-5 sm:p-6 shadow-sm">
@@ -570,9 +570,9 @@ export default function ProfilePage() {
                         />
                       </div>
 
-                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-4 gap-y-2 pt-2.5 border-t border-stone-100 dark:border-stone-800/60">
+                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-4 gap-y-2 pt-2.5 border-t border-stone-100 dark:border-stone-800/60 min-w-0">
                         {track.stages.map((stage) => (
-                          <div key={`${track.track}-${stage.label}`} className="flex items-center justify-between text-[11px] text-stone-600 dark:text-stone-400">
+                          <div key={`${track.track}-${stage.label}`} className="flex items-center justify-between text-[11px] text-stone-600 dark:text-stone-400 min-w-0">
                             <span className="font-semibold truncate max-w-[130px]" title={stage.name}>{stage.label}</span>
                             <span className="font-bold text-stone-850 dark:text-stone-200 shrink-0">{stage.completed}/{stage.total}</span>
                           </div>
@@ -633,31 +633,31 @@ export default function ProfilePage() {
           </div>
 
           {/* Right Column: Key Stats, Achievements & Shortcuts */}
-          <div className="space-y-6">
+          <div className="space-y-6 min-w-0">
 
             {/* Unified Key Stats Grid */}
             <div className="bg-white dark:bg-stone-900 border border-stone-200 dark:border-stone-850 rounded-2xl p-5 shadow-sm">
               <h4 className="text-sm font-extrabold text-stone-900 dark:text-stone-100 mb-4 tracking-tight">Thống kê tóm tắt</h4>
               <div className="grid grid-cols-2 gap-2 sm:gap-3">
-                <div className="bg-stone-50/70 dark:bg-stone-900/30 border border-stone-200/50 dark:border-stone-800 rounded-xl p-3.5">
+                <div className="min-w-0 bg-stone-50/70 dark:bg-stone-900/30 border border-stone-200/50 dark:border-stone-800 rounded-xl p-3.5">
                   <span className="text-[10px] font-extrabold text-stone-450 dark:text-stone-500 uppercase tracking-wider block mb-1">Thời gian học</span>
-                  <p className="text-base font-extrabold text-stone-900 dark:text-stone-100">{studyMinutes} phút</p>
-                  <p className="text-[10px] text-stone-455 dark:text-stone-450 mt-0.5">{lessonsStarted} bài đã mở</p>
+                  <p className="text-base font-extrabold text-stone-900 dark:text-stone-100 truncate">{studyMinutes} phút</p>
+                  <p className="text-[10px] text-stone-455 dark:text-stone-450 mt-0.5 truncate">{lessonsStarted} bài đã mở</p>
                 </div>
-                <div className="bg-stone-50/70 dark:bg-stone-900/30 border border-stone-200/50 dark:border-stone-800 rounded-xl p-3.5">
+                <div className="min-w-0 bg-stone-50/70 dark:bg-stone-900/30 border border-stone-200/50 dark:border-stone-800 rounded-xl p-3.5">
                   <span className="text-[10px] font-extrabold text-stone-450 dark:text-stone-500 uppercase tracking-wider block mb-1">Xếp hạng tuần</span>
-                  <p className="text-base font-extrabold text-stone-900 dark:text-stone-100">{xpRank ? `#${xpRank.rank}` : "Chưa xếp hạng"}</p>
-                  <p className="text-[10px] text-stone-455 dark:text-stone-450 mt-0.5">{xpRank ? `${xpRank.value} XP` : "Học tiếp để lên hạng"}</p>
+                  <p className="text-base font-extrabold text-stone-900 dark:text-stone-100 truncate">{xpRank ? `#${xpRank.rank}` : "Chưa xếp hạng"}</p>
+                  <p className="text-[10px] text-stone-455 dark:text-stone-450 mt-0.5 truncate">{xpRank ? `${xpRank.value} XP` : "Học tiếp để lên hạng"}</p>
                 </div>
-                <div className="bg-stone-50/70 dark:bg-stone-900/30 border border-stone-200/50 dark:border-stone-800 rounded-xl p-3.5">
+                <div className="min-w-0 bg-stone-50/70 dark:bg-stone-900/30 border border-stone-200/50 dark:border-stone-800 rounded-xl p-3.5">
                   <span className="text-[10px] font-extrabold text-stone-450 dark:text-stone-500 uppercase tracking-wider block mb-1">Nhịp học streak</span>
-                  <p className="text-base font-extrabold text-stone-900 dark:text-stone-100">{streak?.current_streak || 0} ngày</p>
-                  <p className="text-[10px] text-stone-455 dark:text-stone-450 mt-0.5">Kỷ lục {streak?.longest_streak || 0} ngày</p>
+                  <p className="text-base font-extrabold text-stone-900 dark:text-stone-100 truncate">{streak?.current_streak || 0} ngày</p>
+                  <p className="text-[10px] text-stone-455 dark:text-stone-450 mt-0.5 truncate">Kỷ lục {streak?.longest_streak || 0} ngày</p>
                 </div>
-                <div className="bg-stone-50/70 dark:bg-stone-900/30 border border-stone-200/50 dark:border-stone-800 rounded-xl p-3.5">
+                <div className="min-w-0 bg-stone-50/70 dark:bg-stone-900/30 border border-stone-200/50 dark:border-stone-800 rounded-xl p-3.5">
                   <span className="text-[10px] font-extrabold text-stone-450 dark:text-stone-500 uppercase tracking-wider block mb-1">Ghi chú & Flag</span>
-                  <p className="text-base font-extrabold text-stone-900 dark:text-stone-100">{notesCount} Note</p>
-                  <p className="text-[10px] text-stone-455 dark:text-stone-450 mt-0.5">{flaggedLessonCount} bài tự đánh dấu</p>
+                  <p className="text-base font-extrabold text-stone-900 dark:text-stone-100 truncate">{notesCount} Note</p>
+                  <p className="text-[10px] text-stone-455 dark:text-stone-450 mt-0.5 truncate">{flaggedLessonCount} bài tự đánh dấu</p>
                 </div>
               </div>
             </div>
