@@ -45,6 +45,83 @@ const QUIZ: QuizQuestion[] = [
     correct: 1,
     explanation: "Tài chính cá nhân không chỉ tối ưu dòng tiền. An cư, sự ổn định tâm lý và tăng giá tài sản dài hạn đều có giá trị. Cực đoan kiểu gì cũng dẫn đến quyết định lệch.",
   },
+  {
+    question: "Chiếc xe hơi là tài sản hay tiêu sản?",
+    options: [
+      "Luôn là tiêu sản vì xe khấu hao 15-20%/năm",
+      "Luôn là tài sản vì nó có giá trị tại thị trường",
+      "Tùy vào cách sử dụng: xe cá nhân là tiêu sản, xe chạy taxi hay giao hàng là tài sản tạo dòng tiền dương",
+      "Là tài sản hay tiêu sản tùy thuộc vào giá tiền mua",
+    ],
+    correct: 2,
+    explanation: "Bài học chỉ ra: cùng một vật có thể là tài sản hoặc tiêu sản tùy cách bạn sử dụng. Xe chạy taxi tạo dòng tiền dương (trở thành tài sản), xe cá nhân chỉ tạo chi phí (tiêu sản).",
+  },
+  {
+    question: "Giá trị phi tài chính của ngôi nhà ở bao gồm những gì?",
+    options: [
+      "Chỉ có giá trị khi bán lại được cao",
+      "Sự ổn định, an toàn, không bị chủ nhà đuổi, khả năng cải tạo, gắn kết cộng đồng",
+      "Giá trị đó không tồn tại vì không xuất hiện trên bảng tính dòng tiền",
+      "Chỉ quan trọng ở các khu vực giàu",
+    ],
+    correct: 1,
+    explanation: "Bài học nêu rõ: những giá trị phi tài chính này không xuất hiện trong dòng tiền nhưng ảnh hưởng lớn đến chất lượng cuộc sống. Tài chính không chỉ về tiền.",
+  },
+  {
+    question: "Thay vì hỏi \"tài sản hay tiêu sản\", bạn nên hỏi câu nào?",
+    options: [
+      "Giá tiền là bao nhiêu?",
+      "Tỷ suất lợi nhuận là bao nhiêu và có phù hợp với mục tiêu tài chính của mình không?",
+      "Thứ này có tăng giá không?",
+      "Bao lâu thì dùng hết?",
+    ],
+    correct: 1,
+    explanation: "Bài học khuyến cáo: thay vì gắn bó với khái niệm, hãy tính toán tỷ suất lợi nhuận thực tế. Mua xe 500 triệu để đi làm khi có phương tiện công cộng vs mua xe 300 triệu để kiếm thêm 10 triệu/tháng là hai quyết định hoàn toàn khác.",
+  },
+  {
+    question: "Vòng lặp tích lũy tài sản theo bài học là gì?",
+    options: [
+      "Thu nhập → Tiêu tiêu → Hết tiền → Bắt đầu lại",
+      "Thu nhập từ lao động → Mua tài sản → Thu nhập thụ động → Mua thêm tài sản",
+      "Tiết kiệm → Gửi ngân hàng → Lấy lãi → Tiêu hết",
+      "Mua tiêu sản → Vay nợ → Trả nợ → Hết khả năng",
+    ],
+    correct: 1,
+    explanation: "Đây là quá trình xây dựng nền tảng tài chính bền vững: bắt đầu với thu nhập lao động, mua tài sản sinh lợi, tạo dòng tiền thụ động, dùng nó để mua thêm tài sản. Người có nền tài chính vững đang theo vòng lặp này.",
+  },
+  {
+    question: "Vấn đề chính với việc mua tiêu sản vào thời điểm nào?",
+    options: [
+      "Mua tiêu sản vào lúc nào cũng sai",
+      "Mua tiêu sản trước khi có đủ tài sản, và dùng nợ vay để mua tiêu sản",
+      "Mua tiêu sản sau khi đã 30 tuổi",
+      "Mua tiêu sản nhiều hơn 2 thứ một lần",
+    ],
+    correct: 1,
+    explanation: "Bài học chỉ ra: tiêu sản không phải vấn đề nếu bạn đủ tài sản để bù đắp. Vấn đề là mua tiêu sản trước khi có tài sản, hoặc dùng nợ vay để mua tiêu sản (vay để kiếm lợi nhuận âm).",
+  },
+  {
+    question: "Bất động sản tăng giá có thể thay đổi bản chất của nó như thế nào?",
+    options: [
+      "Không thay đổi gì, tăng giá hay không vẫn là tiêu sản",
+      "Nếu tăng giá đủ mạnh để bù đắp toàn bộ chi phí và tạo lợi nhuận, việc gọi nó là tiêu sản trở nên không chính xác",
+      "Tăng giá = tài sản, không tăng giá = tiêu sản",
+      "Chỉ thay đổi khi bán được cao",
+    ],
+    correct: 1,
+    explanation: "Bài học nêu: nếu bất động sản tăng giá đủ để vượt chi phí nắm giữ và tạo lợi nhuận thực, nó không còn là tiêu sản. Phân loại tài sản hay tiêu sản không cố định, phụ thuộc vào dòng tiền thực tế.",
+  },
+  {
+    question: "Vòng lặp tích lũy tài sản bắt đầu từ bước nào?",
+    options: [
+      "Đã có đủ tài sản để tạo thu nhập thụ động",
+      "Mua tiêu sản bằng nợ vay",
+      "Dùng thu nhập từ lao động để mua tài sản đầu tiên",
+      "Đợi cho đến khi giàu",
+    ],
+    correct: 2,
+    explanation: "Bài học chỉ ra: quá trình bắt đầu từ bước đơn giản - dùng thu nhập lao động mua tài sản, để tài sản tạo thu nhập thụ động, rồi dùng thu nhập thụ động để mua thêm tài sản. Người có nền tài chính vững đang theo vòng lặp này.",
+  },
 ];
 
 const CONCEPTS = [

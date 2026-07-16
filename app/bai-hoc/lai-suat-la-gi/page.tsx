@@ -46,6 +46,83 @@ const QUIZ: QuizQuestion[] = [
     correct: 1,
     explanation: "Lãi suất thực = lãi suất danh nghĩa - lạm phát. Nếu ngân hàng trả 6%/năm nhưng lạm phát 7%, lãi suất thực là âm 1%. Bạn thực ra đang mất tiền dù được trả lãi.",
   },
+  {
+    question: "Nếu ngân hàng trả 7%/năm và lạm phát là 4%, lãi suất thực của bạn là bao nhiêu?",
+    options: [
+      "7%",
+      "11%",
+      "3%",
+      "4%",
+    ],
+    correct: 2,
+    explanation: "Lãi suất thực = 7% - 4% = 3%. Sức mua của bạn thực sự tăng 3% mỗi năm, không phải 7%. Đây là lý do quan trọng nhất để hiểu lãi suất thực, không chỉ danh nghĩa.",
+  },
+  {
+    question: "Ngân hàng trả 4% mỗi năm nhưng lạm phát là 6%. Điều gì xảy ra với sức mua thực của bạn?",
+    options: [
+      "Tăng 4% vì tiền trong tài khoản tăng",
+      "Tăng 2% vì lãi suất dương",
+      "Giảm 2% - lãi suất thực âm, bạn đang mất tiền dù tiền tài khoản tăng",
+      "Không thay đổi",
+    ],
+    correct: 2,
+    explanation: "Lãi suất thực = 4% - 6% = -2%. Dù tiền trong tài khoản tăng về số, sức mua của bạn đang giảm. Đây là lý do tiết kiệm lãi suất thấp hơn lạm phát tức là mất tiền về sức mua.",
+  },
+  {
+    question: "Khi ngân hàng trung ương tăng lãi suất, điều gì có thể xảy ra?",
+    options: [
+      "Giá nhà tăng vì tiền hơn hư giảm",
+      "Cổ phiếu tăng vì ngân hàng kiếm được lãi cao hơn",
+      "Vay mua nhà đắt hơn, tiết kiệm hấp dẫn hơn, doanh nghiệp đầu tư ít hơn",
+      "Lạm phát tăng ngay lập tức",
+    ],
+    correct: 2,
+    explanation: "Khi lãi suất tăng: (1) vay đắt hơn, (2) tiết kiệm hấp dẫn hơn nên người dân chi tiêu ít hơn, (3) doanh nghiệp đầu tư ít hơn vì chi phí vốn cao. Tất cả này làm chậm kinh tế và hạ nhiệt lạm phát.",
+  },
+  {
+    question: "Ví dụ Fed tăng lãi suất 2022-2023 cho thấy điều gì?",
+    options: [
+      "Tăng lãi suất không ảnh hưởng nhiều đến kinh tế",
+      "Lãi suất thế chấp nhà tăng từ 3% lên 7%, cổ phiếu công nghệ giảm 40-70%, doanh nghiệp phải cắt giảm nhân sự vì chi phí vốn tăng",
+      "Lãi suất tăng làm kinh tế tăng trưởng nhanh hơn",
+      "Tăng lãi suất chỉ ảnh hưởng đến ngân hàng, không ảnh hưởng chung cư",
+    ],
+    correct: 1,
+    explanation: "Đây là ví dụ thực tế cho thấy lãi suất ảnh hưởng lan rộng: từ lãi suất thế chấp → giá bất động sản → định giá cổ phiếu → chi phí vốn doanh nghiệp → cắt giảm nhân sự.",
+  },
+  {
+    question: "Vì sao ngân hàng trung ương lại giảm lãi suất khi kinh tế suy thoái?",
+    options: [
+      "Để tạo ra lạm phát cao",
+      "Vì đó là quy trình bắt buộc",
+      "Để làm vay rẻ hơn, chi tiêu và đầu tư tăng, giúp kinh tế phục hồi",
+      "Để ngân hàng kiếm ít tiền hơn",
+    ],
+    correct: 2,
+    explanation: "Khi kinh tế yếu: giảm lãi suất → vay rẻ hơn → chi tiêu tăng, đầu tư tăng → cầu tăng → kinh tế phục hồi. Đây là công cụ chính của ngân hàng trung ương để kích thích nền kinh tế.",
+  },
+  {
+    question: "Độ trễ của lãi suất là gì?",
+    options: [
+      "Thay đổi lãi suất xảy ra ngay lập tức trong nền kinh tế",
+      "Mất 1 tháng để thấy ảnh hưởng",
+      "Mất 12-18 tháng để thay đổi lãi suất lan thấm qua toàn nền kinh tế",
+      "Không có độ trễ",
+    ],
+    correct: 2,
+    explanation: "Bài học chỉ ra: độ trễ này là rất đáng kể - ngân hàng trung ương thay đổi lãi suất hôm nay, nhưng toàn bộ ảnh hưởng mất 12-18 tháng để hiện rõ. Đây là lý do chính sách tiền tệ khó dự báo.",
+  },
+  {
+    question: "Lãi suất ảnh hưởng đến những quyết định tài chính nào?",
+    options: [
+      "Chỉ ảnh hưởng đến vay vốn, không ảnh hưởng tiết kiệm",
+      "Chỉ ảnh hưởng đến cá nhân, không ảnh hưởng doanh nghiệp",
+      "Gửi tiết kiệm, vay mua nhà, định giá cổ phiếu, bất động sản, đầu tư doanh nghiệp, tỷ giá hối đoái",
+      "Lãi suất chỉ ảnh hưởng khi thay đổi",
+    ],
+    correct: 2,
+    explanation: "Bài học nêu: lãi suất ảnh hưởng đến mọi quyết định tài chính từ việc gửi tiết kiệm hay không, đến giá bất động sản, định giá cổ phiếu, tỷ giá. Đó là lý do nó được gọi là khái niệm quan trọng nhất.",
+  },
 ];
 
 const CONCEPTS = [
