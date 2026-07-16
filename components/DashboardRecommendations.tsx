@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
 import { Sparkles, Flame, TrendingUp, Target, BookOpen, Gamepad2, ChevronDown, ChevronUp } from "lucide-react";
 import type { LessonMeta } from "./DashboardClient";
@@ -9,9 +9,10 @@ import { GAMES } from "@/lib/games";
 interface DashboardRecommendationsProps {
   lessonsMeta: LessonMeta[];
   completed: number[];
+  userId: string;
 }
 
-const TOPICS = [
+const DEFAULT_TOPICS = [
   {
     id: "newbie",
     title: "Nhập môn",
@@ -38,17 +39,103 @@ const TOPICS = [
   },
 ];
 
-const TRENDING_SLUGS = [
+const DEFAULT_TRENDING = [
   "tai-chinh-la-gi",
   "lai-don-lai-kep",
   "suc-manh-thoi-gian",
   "loi-nhuan-cac-cap-do",
 ];
 
-export default function DashboardRecommendations({ lessonsMeta, completed }: DashboardRecommendationsProps) {
+export default function DashboardRecommendations({ lessonsMeta, completed, userId }: DashboardRecommendationsProps) {
   const [collapsed, setCollapsed] = useState(false);
+  const [selectedGoal, setSelectedGoal] = useState<string | null>(null);
+
+  const goalKey = `thtcdn_learning_goal_${userId}`;
+
+  const loadGoal = () => {
+    if (typeof window !== "undefined") {
+      setSelectedGoal(window.localStorage.getItem(goalKey));
+    }
+  };
+
+  useEffect(() => {
+    loadGoal();
+
+    // Listen for goal changes
+    window.addEventListener("thtcdn_goal_updated", loadGoal);
+    return () => {
+      window.removeEventListener("thtcdn_goal_updated", loadGoal);
+    };
+  }, [goalKey]);
+
+  // Determine active topics and trending slugs based on user's target goal
+  let activeTopics = DEFAULT_TOPICS;
+  let activeTrendingSlugs = DEFAULT_TRENDING;
+
+  if (selectedGoal === "personal-finance") {
+    activeTopics = [
+      {
+        id: "pf-basic",
+        title: "Tài chính Cá nhân",
+        icon: BookOpen,
+        color: "text-blue-500",
+        bg: "bg-blue-50 dark:bg-blue-950/30",
+        slugs: ["tai-chinh-la-gi", "thu-nhap-chi-phi-tiet-kiem", "tai-san-tieu-san"],
+      },
+      {
+        id: "pf-debt",
+        title: "Tín dụng & Nợ",
+        icon: Target,
+        color: "text-rose-500",
+        bg: "bg-rose-50 dark:bg-rose-950/30",
+        slugs: ["credit-debit-phan-1", "credit-debit-phan-2", "no-tot-no-xau"],
+      }
+    ];
+    activeTrendingSlugs = ["tai-san-tieu-san", "no-tot-no-xau", "credit-debit-phan-1", "thu-nhap-chi-phi-tiet-kiem"];
+  } else if (selectedGoal === "basic-investing") {
+    activeTopics = [
+      {
+        id: "bi-save",
+        title: "Tích lũy",
+        icon: TrendingUp,
+        color: "text-emerald-500",
+        bg: "bg-emerald-50 dark:bg-emerald-950/30",
+        slugs: ["lai-don-lai-kep", "suc-manh-thoi-gian", "thanh-khoan-la-gi"],
+      },
+      {
+        id: "bi-risk",
+        title: "Rủi ro & Kế hoạch",
+        icon: BookOpen,
+        color: "text-amber-500",
+        bg: "bg-amber-50 dark:bg-amber-950/30",
+        slugs: ["lam-phat-la-gi", "rui-ro-la-gi", "loi-nhuan-ky-vong"],
+      }
+    ];
+    activeTrendingSlugs = ["lai-don-lai-kep", "lam-phat-la-gi", "suc-manh-thoi-gian", "thanh-khoan-la-gi"];
+  } else if (selectedGoal === "corporate-finance") {
+    activeTopics = [
+      {
+        id: "cf-reports",
+        title: "Báo cáo tài chính",
+        icon: Target,
+        color: "text-purple-500",
+        bg: "bg-purple-50 dark:bg-purple-950/30",
+        slugs: ["bang-can-doi-ke-toan", "bao-cao-luu-chuyen-tien-te", "dupont-analysis"],
+      },
+      {
+        id: "cf-valuation",
+        title: "Định giá & Cổ phiếu",
+        icon: TrendingUp,
+        color: "text-indigo-500",
+        bg: "bg-indigo-50 dark:bg-indigo-950/30",
+        slugs: ["roic", "enterprise-value", "fcf-deep-dive"],
+      }
+    ];
+    activeTrendingSlugs = ["dupont-analysis", "roic", "enterprise-value", "fcf-deep-dive"];
+  }
+
   // Recommendations
-  const topicRecs = TOPICS.map((topic) => {
+  const topicRecs = activeTopics.map((topic) => {
     const topicLessons = lessonsMeta.filter((l) => topic.slugs.includes(l.slug));
     if (topicLessons.length === 0) return null;
     const incomplete = topicLessons.filter((l) => !completed.includes(l.id));
@@ -56,11 +143,8 @@ export default function DashboardRecommendations({ lessonsMeta, completed }: Das
     return { type: "topic" as const, topic, lesson };
   }).filter((item): item is NonNullable<typeof item> => item !== null);
 
-  // Trending - prefers uncompleted lessons, but (matching the topic
-  // recommendations' own fallback above) falls back to showing completed
-  // ones rather than silently dropping to zero trending items once a
-  // learner has finished all of them.
-  const allTrendingLessons = lessonsMeta.filter((l) => TRENDING_SLUGS.includes(l.slug));
+  // Trending
+  const allTrendingLessons = lessonsMeta.filter((l) => activeTrendingSlugs.includes(l.slug));
   const incompleteTrending = allTrendingLessons.filter((l) => !completed.includes(l.id));
   const trendingLessons = incompleteTrending.length > 0 ? incompleteTrending : allTrendingLessons;
 

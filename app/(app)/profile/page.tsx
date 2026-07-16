@@ -17,6 +17,7 @@ import {
   ShieldCheck,
   Target,
   Trophy,
+  Sparkles,
 } from "lucide-react";
 import { createClient } from "@/lib/supabase";
 import { getLevelByXp, getLevelProgress, getXpToNextLevel } from "@/lib/levels";
@@ -28,6 +29,7 @@ import { getAllUserNotes } from "@/lib/supabase-notes";
 import { getUserLessonFlags } from "@/lib/supabase-lesson-flags";
 import { getUserBookmarks, type LessonBookmark } from "@/lib/supabase-bookmarks";
 import { TRACKS } from "@/lib/tracks";
+import { toast } from "sonner";
 import {
   TRACK_PERSONAL,
   TRACK_PROFESSIONAL,
@@ -202,6 +204,54 @@ export default function ProfilePage() {
   const [lessonsStarted, setLessonsStarted] = useState(0);
   const [xpRank, setXpRank] = useState<{ rank: number; value: number } | null>(null);
   const [gameTitles, setGameTitles] = useState<EarnedGameTitle[]>([]);
+  const [unlockedTitles, setUnlockedTitles] = useState<string[]>([]);
+  const [activeTitle, setActiveTitle] = useState<string | null>(null);
+  const [unlockedThemes, setUnlockedThemes] = useState<string[]>([]);
+  const [activeTheme, setActiveTheme] = useState<string | null>(null);
+
+  useEffect(() => {
+    if (!user?.id) return;
+    const loadProfileRewards = () => {
+      if (typeof window !== "undefined") {
+        setUnlockedTitles(JSON.parse(window.localStorage.getItem(`thtcdn_unlocked_titles_${user.id}`) ?? "[]"));
+        setActiveTitle(window.localStorage.getItem(`thtcdn_active_title_${user.id}`));
+        setUnlockedThemes(JSON.parse(window.localStorage.getItem(`thtcdn_unlocked_themes_${user.id}`) ?? "[]"));
+        setActiveTheme(window.localStorage.getItem(`thtcdn_active_theme_${user.id}`));
+      }
+    };
+    loadProfileRewards();
+    window.addEventListener("thtcdn_profile_updated", loadProfileRewards);
+    return () => {
+      window.removeEventListener("thtcdn_profile_updated", loadProfileRewards);
+    };
+  }, [user?.id]);
+
+  const handleEquipTitle = (title: string) => {
+    if (!user?.id) return;
+    if (activeTitle === title) {
+      setActiveTitle(null);
+      localStorage.removeItem(`thtcdn_active_title_${user.id}`);
+    } else {
+      setActiveTitle(title);
+      localStorage.setItem(`thtcdn_active_title_${user.id}`, title);
+    }
+    window.dispatchEvent(new Event("thtcdn_profile_updated"));
+    toast.success("Đã cập nhật danh hiệu hiển thị!");
+  };
+
+  const handleEquipTheme = (theme: string) => {
+    if (!user?.id) return;
+    if (activeTheme === theme) {
+      setActiveTheme(null);
+      localStorage.removeItem(`thtcdn_active_theme_${user.id}`);
+    } else {
+      setActiveTheme(theme);
+      localStorage.setItem(`thtcdn_active_theme_${user.id}`, theme);
+    }
+    window.dispatchEvent(new Event("thtcdn_theme_updated"));
+    window.dispatchEvent(new Event("thtcdn_profile_updated"));
+    toast.success("Đã cập nhật giao diện hiển thị!");
+  };
 
   useEffect(() => {
     const checkAuth = async () => {
@@ -412,6 +462,11 @@ export default function ProfilePage() {
                 <h2 className="text-2xl sm:text-3xl font-extrabold tracking-tight">
                   {displayName}
                 </h2>
+                {activeTitle && (
+                  <p className="text-xs font-bold text-amber-300 mt-1 flex items-center gap-1 justify-center sm:justify-start">
+                    🏆 {activeTitle}
+                  </p>
+                )}
                 <p className="text-sm text-stone-400 mt-1.5">{user?.email}</p>
                 <p className="text-xs text-stone-500 mt-1">
                   Tham gia ngày {joinedAt ? new Date(joinedAt).toLocaleDateString("vi-VN") : "chưa rõ"}
@@ -657,6 +712,80 @@ export default function ProfilePage() {
                   ))}
                 </div>
               )}
+            </div>
+
+            {/* Unlocked Titles & Themes */}
+            <div className="bg-white dark:bg-stone-900 border border-stone-200 dark:border-stone-850 rounded-2xl p-5 shadow-sm">
+              <h4 className="text-sm font-extrabold text-stone-900 dark:text-stone-100 flex items-center gap-1.5 border-b border-stone-100 dark:border-stone-800 pb-3 mb-4">
+                <Sparkles className="w-4 h-4 text-rose-500 animate-pulse" />
+                Vật phẩm Rương Quà
+              </h4>
+              
+              {/* Titles Section */}
+              <div className="space-y-2 mb-4">
+                <h5 className="text-[10px] font-bold text-stone-400 uppercase tracking-wider">
+                  Danh hiệu ({unlockedTitles.length})
+                </h5>
+                {unlockedTitles.length === 0 ? (
+                  <p className="text-xs text-stone-500 dark:text-stone-450 italic">
+                    Chưa mở khóa danh hiệu nào. Mở rương quà ở Dashboard để kiếm danh hiệu!
+                  </p>
+                ) : (
+                  <div className="flex flex-wrap gap-2">
+                    {unlockedTitles.map((t) => {
+                      const isEquipped = activeTitle === t;
+                      return (
+                        <button
+                          key={t}
+                          onClick={() => handleEquipTitle(t)}
+                          className={`px-3 py-1.5 rounded-xl border text-[11px] font-bold transition-all focus:outline-none cursor-pointer ${
+                            isEquipped
+                              ? "bg-amber-500 text-white border-amber-500 shadow-sm shadow-amber-500/20"
+                              : "border-stone-200 dark:border-stone-800 text-stone-700 dark:text-stone-300 hover:border-amber-400 dark:hover:border-amber-700"
+                          }`}
+                        >
+                          {t} {isEquipped ? "✓" : ""}
+                        </button>
+                      );
+                    })}
+                  </div>
+                )}
+              </div>
+
+              {/* Themes Section */}
+              <div className="space-y-2">
+                <h5 className="text-[10px] font-bold text-stone-400 uppercase tracking-wider">
+                  Giao diện ({unlockedThemes.length})
+                </h5>
+                {unlockedThemes.length === 0 ? (
+                  <p className="text-xs text-stone-500 dark:text-stone-450 italic">
+                    Chưa mở khóa giao diện nào.
+                  </p>
+                ) : (
+                  <div className="flex flex-wrap gap-2">
+                    {unlockedThemes.map((th) => {
+                      const isEquipped = activeTheme === th;
+                      const themeName = th === "gold" ? "Hoàng Kim" : "Ngọc Lục Bảo";
+                      const colorClass = th === "gold" ? "text-amber-500" : "text-emerald-500";
+                      return (
+                        <button
+                          key={th}
+                          onClick={() => handleEquipTheme(th)}
+                          className={`px-3 py-1.5 rounded-xl border text-[11px] font-bold transition-all focus:outline-none cursor-pointer ${
+                            isEquipped
+                              ? th === "gold"
+                                ? "bg-amber-500 text-white border-amber-500 shadow-sm"
+                                : "bg-emerald-500 text-white border-emerald-500 shadow-sm"
+                              : "border-stone-200 dark:border-stone-800 text-stone-700 dark:text-stone-300 hover:border-stone-400 dark:hover:border-stone-700"
+                          }`}
+                        >
+                          <span className={isEquipped ? "text-white" : colorClass}>✦</span> Giao diện {themeName} {isEquipped ? "✓" : ""}
+                        </button>
+                      );
+                    })}
+                  </div>
+                )}
+              </div>
             </div>
 
             {/* Bookmarked Lessons Card */}

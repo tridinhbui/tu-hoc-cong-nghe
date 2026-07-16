@@ -26,6 +26,9 @@ import MistakeReviewWidget from "@/components/MistakeReviewWidget";
 import DailyQuestsWidget from "@/components/DailyQuestsWidget";
 import LessonRecallWidget from "@/components/LessonRecallWidget";
 import SmartRemediationWidget from "@/components/SmartRemediationWidget";
+import GoalSelectionBanner from "@/components/GoalSelectionBanner";
+import DailyNewsQuizWidget from "@/components/DailyNewsQuizWidget";
+import RewardChestWidget from "@/components/RewardChestWidget";
 import { hasCompletedOnboarding, completeOnboarding } from "@/lib/supabase-onboarding";
 import { getUserProfile, recalculateUserStats } from "@/lib/supabase-user";
 import UnlockRequestModal from "@/components/UnlockRequestModal";
@@ -611,6 +614,11 @@ export default function DashboardClient({ lessonsMeta }: { lessonsMeta: LessonMe
           {/* Left Column: Learning Path (7 columns on desktop) */}
           <div className="lg:col-span-7 space-y-6">
             
+            {/* Goal Selection Banner */}
+            {user?.id && (
+              <GoalSelectionBanner userId={user.id} />
+            )}
+
             {/* Resume Learning Card */}
             <div data-tour="resume-learning">
               <ResumeLearningButton activeTrack={lastNonCfaTrack} />
@@ -619,6 +627,11 @@ export default function DashboardClient({ lessonsMeta }: { lessonsMeta: LessonMe
             {/* Daily Quests Widget */}
             {user?.id && (
               <DailyQuestsWidget userId={user.id} />
+            )}
+
+            {/* Daily News Quiz Challenge */}
+            {user?.id && (
+              <DailyNewsQuizWidget userId={user.id} />
             )}
 
             {/* Lesson Recall Scheduler Widget */}
@@ -637,7 +650,9 @@ export default function DashboardClient({ lessonsMeta }: { lessonsMeta: LessonMe
             )}
 
             {/* Daily Recommendations */}
-            <DashboardRecommendations lessonsMeta={lessonsMeta} completed={completed} />
+            {user?.id && (
+              <DashboardRecommendations lessonsMeta={lessonsMeta} completed={completed} userId={user.id} />
+            )}
 
             {/* Bookmarks Section */}
             {bookmarks.length > 0 && (
@@ -1333,6 +1348,9 @@ export default function DashboardClient({ lessonsMeta }: { lessonsMeta: LessonMe
 
           {/* Right: Sidebar User Stats & Leaderboard (3 columns on desktop grid of 10, full width on mobile) */}
           <div className="lg:col-span-3 lg:sticky lg:top-24 space-y-6">
+            {user?.id && (
+              <RewardChestWidget userId={user.id} />
+            )}
             <div data-tour="user-stats">
               <UserStats
                 xp={userXp}
