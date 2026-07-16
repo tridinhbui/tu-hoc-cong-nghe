@@ -45,6 +45,83 @@ const QUIZ: QuizQuestion[] = [
     correct: 1,
     explanation: "Quy tắc 72: số năm tăng gấp đôi = 72 / lãi suất. Lãi 6%: tăng gấp đôi sau 12 năm. Lãi 10%: sau 7.2 năm. Công cụ tính nhanh không cần máy tính.",
   },
+  {
+    question: "Sự khác nhau cơ bản giữa tăng trưởng lãi đơn và lãi kép là gì?",
+    options: [
+      "Lãi đơn tuyến tính, lãi kép hàm mũ - chậm ở đầu nhưng tăng tốc ở sau",
+      "Lãi đơn tăng nhanh, lãi kép tăng chậm",
+      "Chúng giống nhau, chỉ tên gọi khác",
+      "Lãi kép luôn tuyến tính",
+    ],
+    correct: 0,
+    explanation: "Bài học nêu rõ: lãi đơn tăng theo đường thẳng (cộng cố định mỗi năm), lãi kép tăng theo đường cong hàm mũ (chậm ở những năm đầu, nhưng tăng tốc dữ dội ở những năm sau).",
+  },
+  {
+    question: "Từ ví dụ 100 triệu, lãi 10%/năm trong bài học, sau 30 năm lãi đơn và lãi kép cho bao nhiêu?",
+    options: [
+      "Lãi đơn: 400 triệu; Lãi kép: 1.74 tỷ",
+      "Lãi đơn: 300 triệu; Lãi kép: 672 triệu",
+      "Lãi đơn: 500 triệu; Lãi kép: 2.59 tỷ",
+      "Cả hai giống nhau ở 30 năm",
+    ],
+    correct: 0,
+    explanation: "Theo bảng trong bài: sau 30 năm, lãi đơn cho 400 triệu (gốc 100 + lãi 300), lãi kép cho 1.74 tỷ. Khoảng cách khổng lồ này cho thấy sức mạnh của lãi kép theo thời gian.",
+  },
+  {
+    question: "Theo quy tắc 72, với lãi suất 6%, tiền sẽ tăng gấp đôi sau bao lâu?",
+    options: [
+      "6 năm",
+      "12 năm",
+      "18 năm",
+      "24 năm",
+    ],
+    correct: 1,
+    explanation: "Quy tắc 72: 72 / 6 = 12 năm. Đây là ước tính nhanh để biết tiền tăng gấp đôi mà không cần máy tính.",
+  },
+  {
+    question: "Nếu lạm phát là 7%/năm, sức mua của tiền sẽ giảm một nửa sau bao lâu?",
+    options: [
+      "7 năm",
+      "10.3 năm (72 / 7)",
+      "14 năm",
+      "21 năm",
+    ],
+    correct: 1,
+    explanation: "Quy tắc 72 áp dụng ngược: nếu lạm phát 7%/năm, sức mua giảm một nửa sau 72 / 7 = khoảng 10.3 năm. Đây là lý do lạm phát cao là mối nguy hiểm.",
+  },
+  {
+    question: "Lãi kép hoạt động bất lợi như thế nào với người đi vay?",
+    options: [
+      "Lãi kép không ảnh hưởng người đi vay",
+      "Thẻ tín dụng tính lãi kép theo tháng (2.5-3.5%/tháng ≈ 30-42%/năm), nợ tăng mạnh dù chỉ trả tối thiểu",
+      "Người đi vay luôn được hưởng lợi từ lãi kép",
+      "Lãi kép chỉ có lợi khi lãi suất thấp",
+    ],
+    correct: 1,
+    explanation: "Bài học cảnh báo: lãi kép cũng hoạt động bất lợi khi bạn vay. Ví dụ: quẹt thẻ 10 triệu, chỉ trả tối thiểu, sau 3 năm nợ lên 25-30 triệu vì lãi kép.",
+  },
+  {
+    question: "Tại sao bắt đầu đầu tư sớm lại quan trọng?",
+    options: [
+      "Vì sớm thì có nhiều tiền để đầu tư",
+      "Vì lãi kép có hiệu ứng tích lũy mạnh nhất ở những năm cuối, bắt đầu sớm cho phép thời gian sinh lãi lâu hơn",
+      "Vì lãi suất luôn cao hơn ở tuổi trẻ",
+      "Vì không cần đầu tư nếu bắt đầu muộn",
+    ],
+    correct: 1,
+    explanation: "Bài học nêu: bắt đầu sớm và duy trì kiên nhẫn là hai yếu tố then chốt để lãi kép phát huy sức mạnh. Thời gian dài cho phép lãi kép tích lũy thành khoảng cách khổng lồ.",
+  },
+  {
+    question: "Tăng trưởng lãi đơn và lãi kép khác nhau ở điểm nào?",
+    options: [
+      "Lãi đơn luôn nhanh hơn",
+      "Lãi đơn tuyến tính (cộng cố định), lãi kép hàm mũ (tăng tốc ở sau)",
+      "Chúng giống nhau",
+      "Phụ thuộc vào lãi suất",
+    ],
+    correct: 1,
+    explanation: "Bài học nêu: lãi đơn tăng theo đường thẳng (cộng cố định mỗi năm), lãi kép tăng theo đường cong hàm mũ (chậm ở đầu, tăng tốc ở sau). Đây là nền tảng hiểu sự khác biệt.",
+  },
 ];
 
 const CONCEPTS = [

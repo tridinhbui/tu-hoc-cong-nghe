@@ -45,6 +45,83 @@ const QUIZ: QuizQuestion[] = [
     correct: 1,
     explanation: "DCA loại bỏ áp lực phải chọn đúng thời điểm vào thị trường. Mua đều hàng tháng: khi giá thấp mua được nhiều, khi cao mua ít hơn. Trung bình giá mua thấp hơn đỉnh thị trường.",
   },
+  {
+    question: "Thời gian nào quan trọng hơn trong tài chính?",
+    options: [
+      "Thời gian bạn bỏ tiền vào (thời gian đóng tiền)",
+      "Thời gian tiền được phép tăng trưởng lãi kép sau khi bỏ vào",
+      "Hai cái giống nhau",
+      "Tùy thuộc vào lãi suất",
+    ],
+    correct: 1,
+    explanation: "Bài học nêu rõ: thời gian tăng trưởng quan trọng hơn thời gian đóng tiền. Người A đầu tư 10 năm nhưng tiền tăng 40 năm, Người B đầu tư 30 năm nhưng chỉ tăng 30 năm. Người A vẫn thắng.",
+  },
+  {
+    question: "Từ ví dụ bắt đầu lúc 25 vs 35 tuổi, trì hoãn 10 năm mất bao nhiêu tiền?",
+    options: [
+      "1.2 tỷ",
+      "12 tỷ (từ 19 tỷ xuống 7 tỷ)",
+      "5 tỷ",
+      "Không mất tiền nào, chỉ trì hoãn",
+    ],
+    correct: 1,
+    explanation: "Bài học cụ thể: bắt đầu 25 tuổi có 19 tỷ ở 65 tuổi. Bắt đầu 35 tuổi chỉ có 7 tỷ. Chi phí trì hoãn = 12 tỷ. Đó là chi phí thực của 'chờ thêm một chút'.",
+  },
+  {
+    question: "Lợi ích chính của DCA so với việc chờ thời điểm tốt nhất là gì?",
+    options: [
+      "DCA mang lại lãi suất cao hơn",
+      "Loại bỏ áp lực dự đoán thị trường và loại bỏ áp lực tâm lý; cho phép bắt đầu ngay lập tức",
+      "DCA tối ưu về mặt toán học trong mọi kịch bản",
+      "Chỉ DCA mới an toàn để đầu tư",
+    ],
+    correct: 1,
+    explanation: "Bài học nêu: DCA không phải tối ưu toán học trong mọi trường hợp, nhưng nó loại bỏ nhu cầu dự đoán và áp lực tâm lý - đó là lợi thế đủ lớn cho hầu hết người đầu tư dài hạn.",
+  },
+  {
+    question: "Kiên nhẫn trong đầu tư có ý nghĩa gì?",
+    options: [
+      "Chỉ là chờ đợi mà thôi",
+      "Không rút ra sớm dù thị trường biến động mạnh, duy trì đầu tư qua giai đoạn xấu",
+      "Chờ đến khi đủ tiền rồi mới đầu tư",
+      "Chỉ sử dụng kiên nhẫn khi lãi suất cao",
+    ],
+    correct: 1,
+    explanation: "Bài học chỉ ra: sức mạnh của thời gian chỉ phát huy khi bạn không rút ra sớm. Kiên nhẫn là kỹ năng tài chính thực sự - duy trì qua biến động để lãi kép phát huy tác dụng.",
+  },
+  {
+    question: "Nhà đầu tư trung bình thường tại sao có lợi nhuận thấp hơn các quỹ họ đầu tư?",
+    options: [
+      "Vì các quỹ có quản lý chuyên nghiệp",
+      "Vì họ mua vào khi thị trường cao và bán ra khi thị trường thấp (hành động ngược lại với tâm lý đầu tư tốt)",
+      "Vì quỹ luôn tăng hơn cộng đồng",
+      "Vì nhà đầu tư trung bình không hiểu thị trường",
+    ],
+    correct: 1,
+    explanation: "Bài học nêu: nhà đầu tư trung bình mua vào lúc thị trường cao (tâm lý tham lam) và bán ra lúc thị trường thấp (tâm lý hoảng loạn). Kiên nhẫn đúng là kỹ năng tạo giá trị thực.",
+  },
+  {
+    question: "Nền tảng của sức mạnh thời gian trong đầu tư là gì?",
+    options: [
+      "Chỉ là lãi suất cao thôi",
+      "Lãi kép: tiền sinh lãi, lãi lại sinh lãi, tạo hiệu ứng hàm mũ theo thời gian",
+      "Chỉ là may mắn thị trường",
+      "Chỉ những người giàu mới hưởng lợi",
+    ],
+    correct: 1,
+    explanation: "Sức mạnh của thời gian đến từ lãi kép tích lũy hàm mũ, không phải tuyến tính. Bất kỳ ai cũng có thể bắt đầu sớm với số tiền nhỏ và hưởng lợi từ hiệu ứng này.",
+  },
+  {
+    question: "Tại sao thời gian được gọi là \"tài sản duy nhất không thể mua thêm\"?",
+    options: [
+      "Vì thời gian không có giá tiền",
+      "Vì thời gian luôn trôi chảy và không thể quay lại hay mua thêm, không giống tài sản khác",
+      "Vì mọi người đều có thời gian bằng nhau",
+      "Vì thời gian không ảnh hưởng tài chính",
+    ],
+    correct: 1,
+    explanation: "Bài học nhấn mạnh: thời gian là tài nguyên có giá trị thực sự. Không thể mua thêm, không thể lấy lại, và nó không chờ đợi bất kỳ ai. Mỗi năm trì hoạn có chi phí cụ thể.",
+  },
 ];
 
 const CONCEPTS = [
