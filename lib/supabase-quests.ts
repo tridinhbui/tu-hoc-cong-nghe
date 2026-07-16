@@ -172,6 +172,7 @@ export async function getTotalQuestXp(userId: string): Promise<number> {
                 if (item === "daily_1") total += 10;
                 else if (item === "daily_2") total += 5;
                 else if (item === "daily_3") total += 15;
+                else if (item === "daily_news_quiz") total += 15;
               });
             } catch {}
           }

@@ -175,6 +175,23 @@ export default function DailyNewsQuizWidget({ userId, compact = false }: DailyNe
       
       // Award XP
       try {
+        const supabase = createClient();
+        await supabase
+          .from("user_quest_completions")
+          .insert([{ user_id: userId, quest_type: "daily_news_quiz", day_key: todayKey, xp_earned: 15 }]);
+
+        // Local fallback
+        if (typeof window !== "undefined") {
+          const localQuestsKey = `quests_claimed_${userId}_${todayKey}`;
+          try {
+            const list = JSON.parse(window.localStorage.getItem(localQuestsKey) ?? "[]");
+            if (!list.includes("daily_news_quiz")) {
+              list.push("daily_news_quiz");
+              window.localStorage.setItem(localQuestsKey, JSON.stringify(list));
+            }
+          } catch {}
+        }
+
         await recalculateUserStats(userId);
       } catch (err) {
         console.error("Error rewarding quiz XP:", err);
@@ -212,7 +229,7 @@ export default function DailyNewsQuizWidget({ userId, compact = false }: DailyNe
           </div>
           <div>
             <h3 className={`font-extrabold text-stone-900 dark:text-stone-100 flex items-center gap-1.5 ${compact ? "text-xs" : "text-sm"}`}>
-              {compact ? "Thử thách Tài chính" : "Thử thách Tin tức Tài chính"}
+              {compact ? "Thử thách Tin tức (News)" : "Thử thách Tin tức Tài chính (News Challenge)"}
               {!isAnswered && (
                 <span className="w-2 h-2 rounded-full bg-rose-500 animate-ping" />
               )}

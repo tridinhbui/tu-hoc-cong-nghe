@@ -668,11 +668,11 @@ export default function DashboardClient({ lessonsMeta }: { lessonsMeta: LessonMe
                 {/* Minimalist Progress Line/Dots */}
                 <div className="relative z-10 flex items-center justify-between px-4 mt-6">
                   {/* Connecting Line (Underlay) */}
-                  <div className="absolute left-6 right-6 top-1/2 -translate-y-1/2 h-1 bg-stone-100 dark:bg-stone-800 rounded-full z-0" />
+                  <div className="absolute left-6 right-6 top-1/2 -translate-y-1/2 h-1.5 bg-stone-100 dark:bg-stone-800 rounded-full z-0" />
                   
                   {/* Completed Line Fill */}
                   <div 
-                    className="absolute left-6 top-1/2 -translate-y-1/2 h-1 bg-gradient-to-r from-emerald-500 via-teal-400 to-emerald-500 bg-[length:200%_auto] rounded-full z-0 transition-all duration-500 animate-[laserLine_3s_linear_infinite]" 
+                    className="absolute left-6 top-1/2 -translate-y-1/2 h-1.5 bg-gradient-to-r from-emerald-500 via-teal-450 to-emerald-500 bg-[length:200%_auto] rounded-full z-0 transition-all duration-500 animate-[laserLine_2.5s_linear_infinite] shadow-[0_0_8px_rgba(16,185,129,0.45)]" 
                     style={{ 
                       width: `${((getLevelByXp(userXp).level - 1) / 5) * 100}%`,
                       maxWidth: '100%' 
@@ -726,17 +726,23 @@ export default function DashboardClient({ lessonsMeta }: { lessonsMeta: LessonMe
                         </div>
 
                         {/* Label underneath */}
-                        <div className="mt-3.5 text-center pointer-events-none">
+                        <div className="mt-3 text-center pointer-events-none flex flex-col items-center">
                           <span className={`text-[9px] font-black uppercase tracking-wider block ${
                             isUserCurrent 
-                              ? "text-emerald-600 dark:text-emerald-400" 
+                              ? "text-emerald-600 dark:text-emerald-400 bg-emerald-500/10 dark:bg-emerald-500/20 px-1.5 py-0.5 rounded-full scale-105 border border-emerald-500/20 shadow-sm" 
                               : isPassed 
-                              ? "text-stone-600 dark:text-stone-300 font-bold" 
+                              ? "text-stone-700 dark:text-stone-300 font-bold" 
                               : "text-stone-400 dark:text-stone-500 font-medium"
                           }`}>
                             L{lvl.level}
                           </span>
-                          <span className="text-[8px] text-stone-450 dark:text-stone-500 block leading-tight mt-0.5 max-w-[65px] truncate">
+                          <span className={`text-[8.5px] block leading-tight mt-1 max-w-[70px] truncate ${
+                            isUserCurrent 
+                              ? "text-emerald-700 dark:text-emerald-400 font-black" 
+                              : isPassed 
+                              ? "text-stone-600 dark:text-stone-300 font-bold" 
+                              : "text-stone-400 dark:text-stone-500 font-medium"
+                          }`}>
                             {lvl.name}
                           </span>
                         </div>

@@ -239,9 +239,9 @@ export default function DailyQuestsWidget({ userId, embedded = false }: DailyQue
                       <button
                         onClick={() => goToQuestAction(quest.id, router)}
                         title="Đi làm nhiệm vụ này ngay"
-                        className="inline-flex items-center gap-1 text-[9px] font-black text-white bg-gradient-to-r from-amber-500 via-orange-500 to-amber-600 hover:from-amber-600 hover:to-amber-700 px-3 py-1.5 rounded-lg transition-all duration-200 cursor-pointer shadow-md shadow-amber-500/20 hover:scale-105 active:scale-95 animate-pulse shrink-0"
+                        className="inline-flex items-center gap-1.5 text-[10.5px] font-black text-white bg-gradient-to-r from-amber-500 via-orange-500 to-amber-600 hover:from-amber-600 hover:to-amber-700 px-3.5 py-1.5 rounded-lg transition-all duration-200 cursor-pointer shadow-md shadow-amber-500/20 hover:scale-105 active:scale-95 animate-pulse shrink-0"
                       >
-                        Làm ngay <ArrowRight className="w-2.5 h-2.5" />
+                        Làm ngay <ArrowRight className="w-3 h-3" />
                       </button>
                     </>
                   )}
