@@ -497,14 +497,35 @@ export default function DashboardClient({ lessonsMeta }: { lessonsMeta: LessonMe
       }
     };
 
+    // recalculateUserStats (lib/supabase-user.ts) dispatches this on every
+    // XP change app-wide (chest opened, quest claimed, milestone passed,
+    // lesson/quiz/game completed...). AppNavbar already listens for it to
+    // drive its level-up celebration, but the dashboard's own XP-derived UI
+    // (level roadmap, UserStats sidebar) had no listener of its own - it
+    // only ever refreshed on visibility/focus/online, so earning XP while
+    // staying on this same page (e.g. opening a chest from the merged
+    // Rewards widget) left the roadmap showing a stale level/percent until
+    // a reload. Reads totalXp straight off the event's own detail payload
+    // instead of calling syncProgressAndXP (which itself calls
+    // recalculateUserStats and would re-dispatch this same event - an
+    // infinite loop).
+    const handleXpUpdated = (e: Event) => {
+      const detail = (e as CustomEvent<{ currentLevel: number; totalXp: number }>).detail;
+      if (typeof detail?.totalXp === "number") {
+        setUserXp(detail.totalXp);
+      }
+    };
+
     document.addEventListener("visibilitychange", handleSyncTrigger);
     window.addEventListener("focus", handleSyncTrigger);
     window.addEventListener("online", handleOnline);
+    window.addEventListener("thtcdn:xp-updated", handleXpUpdated);
 
     return () => {
       document.removeEventListener("visibilitychange", handleSyncTrigger);
       window.removeEventListener("focus", handleSyncTrigger);
       window.removeEventListener("online", handleOnline);
+      window.removeEventListener("thtcdn:xp-updated", handleXpUpdated);
     };
   }, [user?.id, syncProgressAndXP]);
 
@@ -684,10 +705,10 @@ export default function DashboardClient({ lessonsMeta }: { lessonsMeta: LessonMe
         )}
 
         {/* ── Unified Dashboard Grid ── */}
-        <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-10 gap-4 sm:gap-6 items-start">
-          
+        <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-10 gap-4 sm:gap-6 items-start min-w-0">
+
           {/* Left Column: Learning Path (7 columns on desktop) */}
-          <div className="lg:col-span-7 space-y-6">
+          <div className="lg:col-span-7 space-y-6 min-w-0">
 
             {/* 🏆 Tiến độ Cấp độ (1 -> 6) Elegant Progress Roadmap */}
             {user?.id && (() => {
@@ -1731,7 +1752,7 @@ export default function DashboardClient({ lessonsMeta }: { lessonsMeta: LessonMe
       </div>
 
           {/* Right: Cấp độ/streak/bài học, gợi ý hôm nay, thử thách tin tức, BXH (3 columns on desktop grid of 10, full width on mobile) */}
-          <div className="lg:col-span-3 lg:sticky lg:top-24 space-y-6">
+          <div className="lg:col-span-3 lg:sticky lg:top-24 space-y-6 min-w-0">
             <div data-tour="user-stats">
               <UserStats
                 xp={userXp}

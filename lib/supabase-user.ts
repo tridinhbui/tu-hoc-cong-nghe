@@ -372,8 +372,8 @@ export async function recalculateUserStats(userId: string) {
     getTotalReferralXp(userId), // "Mời bạn học cùng" bonus - see lib/referrals.ts
     supabase.from("game_sessions").select("score, total").eq("user_id", userId),
     getTotalQuestXp(userId),
-    supabase.from("user_milestone_exams").select("score"),
-    supabase.from("user_lesson_recalls").select("recall_stage"),
+    supabase.from("user_milestone_exams").select("score").eq("user_id", userId),
+    supabase.from("user_lesson_recalls").select("recall_stage").eq("user_id", userId),
     // "Rương quà" (chest) XP - see lib/chests.ts. Previously chests promised
     // "+30/+50/+100 XP" on open but that XP was never actually added
     // anywhere (opening one just called this function, which had no idea
