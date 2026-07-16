@@ -570,7 +570,7 @@ export default function ProfilePage() {
                         />
                       </div>
 
-                      <div className="grid grid-cols-2 gap-x-4 gap-y-2 pt-2.5 border-t border-stone-100 dark:border-stone-800/60">
+                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-4 gap-y-2 pt-2.5 border-t border-stone-100 dark:border-stone-800/60">
                         {track.stages.map((stage) => (
                           <div key={`${track.track}-${stage.label}`} className="flex items-center justify-between text-[11px] text-stone-600 dark:text-stone-400">
                             <span className="font-semibold truncate max-w-[130px]" title={stage.name}>{stage.label}</span>
@@ -638,7 +638,7 @@ export default function ProfilePage() {
             {/* Unified Key Stats Grid */}
             <div className="bg-white dark:bg-stone-900 border border-stone-200 dark:border-stone-850 rounded-2xl p-5 shadow-sm">
               <h4 className="text-sm font-extrabold text-stone-900 dark:text-stone-100 mb-4 tracking-tight">Thống kê tóm tắt</h4>
-              <div className="grid grid-cols-2 gap-3">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                 <div className="bg-stone-50/70 dark:bg-stone-900/30 border border-stone-200/50 dark:border-stone-800 rounded-xl p-3.5">
                   <span className="text-[10px] font-extrabold text-stone-450 dark:text-stone-500 uppercase tracking-wider block mb-1">Thời gian học</span>
                   <p className="text-base font-extrabold text-stone-900 dark:text-stone-100">{studyMinutes} phút</p>
@@ -697,7 +697,7 @@ export default function ProfilePage() {
                   Chưa đạt được huy hiệu học tập nào. Hoàn thành thêm bài học nhé!
                 </p>
               ) : (
-                <div className="grid grid-cols-3 gap-2.5">
+                <div className="grid grid-cols-2 sm:grid-cols-3 gap-2.5">
                   {badges.map((badge) => (
                     <div
                       key={badge.id}
@@ -738,7 +738,7 @@ export default function ProfilePage() {
                         <button
                           key={t}
                           onClick={() => handleEquipTitle(t)}
-                          className={`px-3 py-1.5 rounded-xl border text-[11px] font-bold transition-all focus:outline-none cursor-pointer ${
+                          className={`px-3 py-1.5 rounded-xl border text-[10px] sm:text-[11px] font-bold transition-all focus:outline-none cursor-pointer whitespace-nowrap ${
                             isEquipped
                               ? "bg-amber-500 text-white border-amber-500 shadow-sm shadow-amber-500/20"
                               : "border-stone-200 dark:border-stone-800 text-stone-700 dark:text-stone-300 hover:border-amber-400 dark:hover:border-amber-700"
@@ -771,7 +771,7 @@ export default function ProfilePage() {
                         <button
                           key={th}
                           onClick={() => handleEquipTheme(th)}
-                          className={`px-3 py-1.5 rounded-xl border text-[11px] font-bold transition-all focus:outline-none cursor-pointer ${
+                          className={`px-3 py-1.5 rounded-xl border text-[10px] sm:text-[11px] font-bold transition-all focus:outline-none cursor-pointer whitespace-nowrap ${
                             isEquipped
                               ? th === "gold"
                                 ? "bg-amber-500 text-white border-amber-500 shadow-sm"
