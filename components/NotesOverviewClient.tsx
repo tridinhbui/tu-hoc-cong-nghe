@@ -6,6 +6,7 @@ import { Edit2, Trash2, ArrowLeft } from "lucide-react";
 import { toast } from "sonner";
 import { getAllUserNotes, updateNote, deleteNote, type LessonNote } from "@/lib/supabase-notes";
 import NoteContent, { hasMathContent } from "@/components/NoteContent";
+import FlashcardClient from "@/components/flashcard/FlashcardClient";
 
 interface LessonInfo {
   slug: string;
@@ -27,6 +28,7 @@ export default function NotesOverviewClient({ lessonsById, userId }: NotesOvervi
   const [loading, setLoading] = useState(true);
   const [editingNoteId, setEditingNoteId] = useState<number | null>(null);
   const [editContent, setEditContent] = useState("");
+  const [activeTab, setActiveTab] = useState<"notes" | "flashcards">("notes");
 
   useEffect(() => {
     getAllUserNotes(userId)
@@ -92,94 +94,124 @@ export default function NotesOverviewClient({ lessonsById, userId }: NotesOvervi
     );
   }
 
+  const containerWidthClass = activeTab === "notes" ? "max-w-2xl" : "max-w-3xl";
+
   return (
     <div className="min-h-screen bg-white dark:bg-stone-950">
       <div className="border-b border-stone-200 dark:border-stone-800 bg-white dark:bg-stone-950">
-        <div className="max-w-2xl mx-auto px-6 py-4">
+        <div className={`${containerWidthClass} mx-auto px-6 py-4`}>
           <Link href="/dashboard" className="inline-flex items-center gap-1.5 text-sm font-bold text-stone-600 dark:text-stone-400 hover:text-stone-900 dark:hover:text-stone-100 hover:bg-stone-100 dark:hover:bg-stone-800 rounded-lg px-3 py-2 -ml-3 transition-colors">
             <ArrowLeft className="w-4 h-4" />
             Quay lại
           </Link>
           <h1 className="text-xl font-bold text-stone-900 dark:text-stone-100 mt-2">
-            Ghi chú của tôi ({notes.length})
+            Sổ tay học tập
           </h1>
+
+          {/* Sub-Tabs Switcher */}
+          <div className="flex gap-4 mt-4 border-b border-stone-100 dark:border-stone-850 pb-px">
+            <button
+              onClick={() => setActiveTab("notes")}
+              className={`pb-2 px-1 text-xs font-bold transition-all relative ${
+                activeTab === "notes"
+                  ? "text-emerald-600 dark:text-emerald-400 font-extrabold border-b-2 border-emerald-500 scale-105"
+                  : "text-stone-400 hover:text-stone-600 dark:hover:text-stone-300"
+              }`}
+            >
+              Ghi chú của tôi ({notes.length})
+            </button>
+            <button
+              onClick={() => setActiveTab("flashcards")}
+              className={`pb-2 px-1 text-xs font-bold transition-all relative flex items-center gap-1.5 ${
+                activeTab === "flashcards"
+                  ? "text-emerald-600 dark:text-emerald-400 font-extrabold border-b-2 border-emerald-500 scale-105"
+                  : "text-stone-400 hover:text-stone-600 dark:hover:text-stone-300"
+              }`}
+            >
+              Thẻ Flashcards 🗂️
+            </button>
+          </div>
         </div>
       </div>
 
-      <div className="max-w-2xl mx-auto px-6 py-8">
-        {notes.length === 0 ? (
-          <div className="text-center py-16 text-stone-500 dark:text-stone-400">
-            <p className="mb-2">Chưa có ghi chú nào.</p>
-            <p className="text-sm">Ghi chú bạn thêm khi học bài sẽ được tổng hợp ở đây.</p>
-          </div>
+      <div className={`${containerWidthClass} mx-auto px-6 py-8`}>
+        {activeTab === "notes" ? (
+          notes.length === 0 ? (
+            <div className="text-center py-16 text-stone-500 dark:text-stone-400">
+              <p className="mb-2">Chưa có ghi chú nào.</p>
+              <p className="text-sm">Ghi chú bạn thêm khi học bài sẽ được tổng hợp ở đây.</p>
+            </div>
+          ) : (
+            <div className="space-y-6">
+              {lessonIds.map((lessonId) => {
+                const lessonInfo = lessonsById[lessonId];
+                const lessonNotes = grouped.get(lessonId)!;
+                return (
+                  <div key={lessonId} className="bg-white dark:bg-stone-900 border-2 border-stone-200 dark:border-stone-800 rounded-xl overflow-hidden">
+                    <div className="px-5 py-3 border-b border-stone-200 dark:border-stone-800 flex items-center justify-between bg-stone-50 dark:bg-stone-800/50">
+                      {lessonInfo ? (
+                        <Link href={`/bai-hoc/${lessonInfo.slug}`} className="font-bold text-stone-900 dark:text-stone-100 hover:underline">
+                          {lessonInfo.title}
+                        </Link>
+                      ) : (
+                        <span className="font-bold text-stone-500 dark:text-stone-400">Bài học #{lessonId}</span>
+                      )}
+                      <span className="text-xs text-stone-500 dark:text-stone-400">{lessonNotes.length} ghi chú</span>
+                    </div>
+                    <div className="p-5 space-y-3">
+                      {lessonNotes.map((note) => (
+                        <div key={note.id} className="bg-stone-50 dark:bg-stone-800 rounded-lg p-4 group">
+                          {editingNoteId === note.id ? (
+                            <div className="space-y-2">
+                              <textarea
+                                value={editContent}
+                                onChange={(e) => setEditContent(e.target.value)}
+                                className="w-full px-3 py-2 rounded-lg border border-stone-300 dark:border-stone-600 bg-white dark:bg-stone-900 text-stone-900 dark:text-stone-100 text-sm resize-none"
+                                rows={3}
+                                autoFocus
+                              />
+                              {hasMathContent(editContent) && (
+                                <div className="px-3 py-2 rounded-lg bg-stone-100 dark:bg-stone-800 border border-dashed border-stone-300 dark:border-stone-600 overflow-x-auto">
+                                  <NoteContent content={editContent} />
+                                </div>
+                              )}
+                              <div className="flex gap-2 justify-end">
+                                <button onClick={cancelEditing} className="px-3 py-1 text-sm text-stone-600 dark:text-stone-400 hover:text-stone-900 dark:hover:text-stone-200">
+                                  Hủy
+                                </button>
+                                <button onClick={() => saveEdit(note.id)} className="px-3 py-1 text-sm bg-stone-900 dark:bg-stone-100 text-white dark:text-stone-900 rounded-lg hover:opacity-90">
+                                  Lưu
+                                </button>
+                              </div>
+                            </div>
+                          ) : (
+                            <>
+                              <NoteContent content={note.content} />
+                              <div className="flex items-center justify-between mt-2">
+                                <span className="text-[11px] text-stone-400 dark:text-stone-550">
+                                  {new Date(note.updated_at).toLocaleDateString("vi-VN")}
+                                </span>
+                                <div className="flex gap-2 opacity-100 transition-opacity sm:opacity-0 sm:group-hover:opacity-100">
+                                  <button onClick={() => startEditing(note)} className="text-stone-500 hover:text-stone-700 dark:text-stone-400 dark:hover:text-stone-200" title="Sửa">
+                                    <Edit2 className="w-4 h-4" />
+                                  </button>
+                                  <button onClick={() => removeNote(note.id)} className="text-stone-500 hover:text-red-600 dark:text-stone-400 dark:hover:text-red-400" title="Xóa">
+                                    <Trash2 className="w-4 h-4" />
+                                  </button>
+                                </div>
+                              </div>
+                            </>
+                          )}
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          )
         ) : (
-          <div className="space-y-6">
-            {lessonIds.map((lessonId) => {
-              const lessonInfo = lessonsById[lessonId];
-              const lessonNotes = grouped.get(lessonId)!;
-              return (
-                <div key={lessonId} className="bg-white dark:bg-stone-900 border-2 border-stone-200 dark:border-stone-800 rounded-xl overflow-hidden">
-                  <div className="px-5 py-3 border-b border-stone-200 dark:border-stone-800 flex items-center justify-between bg-stone-50 dark:bg-stone-800/50">
-                    {lessonInfo ? (
-                      <Link href={`/bai-hoc/${lessonInfo.slug}`} className="font-bold text-stone-900 dark:text-stone-100 hover:underline">
-                        {lessonInfo.title}
-                      </Link>
-                    ) : (
-                      <span className="font-bold text-stone-500 dark:text-stone-400">Bài học #{lessonId}</span>
-                    )}
-                    <span className="text-xs text-stone-500 dark:text-stone-400">{lessonNotes.length} ghi chú</span>
-                  </div>
-                  <div className="p-5 space-y-3">
-                    {lessonNotes.map((note) => (
-                      <div key={note.id} className="bg-stone-50 dark:bg-stone-800 rounded-lg p-4 group">
-                        {editingNoteId === note.id ? (
-                          <div className="space-y-2">
-                            <textarea
-                              value={editContent}
-                              onChange={(e) => setEditContent(e.target.value)}
-                              className="w-full px-3 py-2 rounded-lg border border-stone-300 dark:border-stone-600 bg-white dark:bg-stone-900 text-stone-900 dark:text-stone-100 text-sm resize-none"
-                              rows={3}
-                              autoFocus
-                            />
-                            {hasMathContent(editContent) && (
-                              <div className="px-3 py-2 rounded-lg bg-stone-100 dark:bg-stone-800 border border-dashed border-stone-300 dark:border-stone-600 overflow-x-auto">
-                                <NoteContent content={editContent} />
-                              </div>
-                            )}
-                            <div className="flex gap-2 justify-end">
-                              <button onClick={cancelEditing} className="px-3 py-1 text-sm text-stone-600 dark:text-stone-400 hover:text-stone-900 dark:hover:text-stone-200">
-                                Hủy
-                              </button>
-                              <button onClick={() => saveEdit(note.id)} className="px-3 py-1 text-sm bg-stone-900 dark:bg-stone-100 text-white dark:text-stone-900 rounded-lg hover:opacity-90">
-                                Lưu
-                              </button>
-                            </div>
-                          </div>
-                        ) : (
-                          <>
-                            <NoteContent content={note.content} />
-                            <div className="flex items-center justify-between mt-2">
-                              <span className="text-[11px] text-stone-400 dark:text-stone-500">
-                                {new Date(note.updated_at).toLocaleDateString("vi-VN")}
-                              </span>
-                              <div className="flex gap-2 opacity-100 transition-opacity sm:opacity-0 sm:group-hover:opacity-100">
-                                <button onClick={() => startEditing(note)} className="text-stone-500 hover:text-stone-700 dark:text-stone-400 dark:hover:text-stone-200" title="Sửa">
-                                  <Edit2 className="w-4 h-4" />
-                                </button>
-                                <button onClick={() => removeNote(note.id)} className="text-stone-500 hover:text-red-600 dark:text-stone-400 dark:hover:text-red-400" title="Xóa">
-                                  <Trash2 className="w-4 h-4" />
-                                </button>
-                              </div>
-                            </div>
-                          </>
-                        )}
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              );
-            })}
-          </div>
+          <FlashcardClient userId={userId} embedded />
         )}
       </div>
     </div>

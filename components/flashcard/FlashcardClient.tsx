@@ -18,8 +18,15 @@ import { getUnresolvedMistakeRows } from "@/lib/quiz-mistakes";
 import { getMistakeFlashcardCandidates } from "@/app/actions/flashcard-actions";
 import FlashcardAlbumsGallery from "@/components/flashcard/FlashcardAlbumsGallery";
 
-export default function FlashcardClient() {
-  const { userId, checking } = useAuthGate();
+interface FlashcardClientProps {
+  userId?: string;
+  embedded?: boolean;
+}
+
+export default function FlashcardClient({ userId: propUserId, embedded = false }: FlashcardClientProps = {}) {
+  const authGate = useAuthGate();
+  const userId = propUserId || authGate.userId;
+  const checking = propUserId ? false : authGate.checking;
   const [cards, setCards] = useState<Flashcard[]>([]);
   const [loading, setLoading] = useState(true);
   const [isFlipped, setIsFlipped] = useState(false);
@@ -299,21 +306,23 @@ export default function FlashcardClient() {
   };
 
   return (
-    <div className="min-h-screen bg-stone-50 dark:bg-stone-950">
-      <div className="max-w-3xl mx-auto px-4 sm:px-6 py-8">
+    <div className={embedded ? "w-full" : "min-h-screen bg-stone-50 dark:bg-stone-950"}>
+      <div className={embedded ? "w-full py-4" : "max-w-3xl mx-auto px-4 sm:px-6 py-8"}>
         <div className="mb-6 flex flex-wrap items-center justify-between gap-3">
           <div className="flex items-center gap-3">
-            <Link
-              href="/dashboard"
-              className="inline-flex items-center gap-1.5 text-sm font-bold text-stone-600 dark:text-stone-400 hover:text-stone-900 dark:hover:text-stone-105 hover:bg-stone-100 dark:hover:bg-stone-850 rounded-xl px-3 py-2 transition-all"
-            >
-              <ArrowLeft className="w-4 h-4" /> Quay lại
-            </Link>
+            {!embedded && (
+              <Link
+                href="/dashboard"
+                className="inline-flex items-center gap-1.5 text-sm font-bold text-stone-600 dark:text-stone-400 hover:text-stone-900 dark:hover:text-stone-105 hover:bg-stone-100 dark:hover:bg-stone-850 rounded-xl px-3 py-2 transition-all"
+              >
+                <ArrowLeft className="w-4 h-4" /> Quay lại
+              </Link>
+            )}
             <span className="inline-flex items-center gap-1.5 rounded-full bg-emerald-50 dark:bg-emerald-950/40 px-2.5 py-1 text-[11px] font-extrabold uppercase tracking-widest text-emerald-700 dark:text-emerald-400">
                Thẻ ghi nhớ Spaced Repetition
             </span>
           </div>
-          <div className="flex gap-2">
+          <div className="flex flex-wrap gap-2">
             <button
               onClick={handleGenerateFromMistakes}
               disabled={generatingFromMistakes}

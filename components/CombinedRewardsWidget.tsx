@@ -268,13 +268,18 @@ export default function CombinedRewardsWidget({ userId, defaultExpanded = false 
           <div className="flex gap-1 p-2 bg-stone-50/50 dark:bg-stone-950/35">
             <button
               onClick={() => setActiveTab("daily")}
-              className={`flex-1 text-[10px] font-bold px-2 py-1.5 rounded-lg transition-all ${
+              className={`flex-1 text-[10.5px] px-2 py-1.5 rounded-lg transition-all relative overflow-hidden flex items-center justify-center gap-1 ${
                 activeTab === "daily"
-                  ? "bg-white dark:bg-stone-900 text-stone-900 dark:text-stone-100 shadow-sm"
-                  : "text-stone-500 dark:text-stone-400 hover:text-stone-700 dark:hover:text-stone-300"
+                  ? "bg-white dark:bg-stone-900 text-stone-900 dark:text-stone-100 shadow-sm font-black"
+                  : dailyQuests.length > 0 && dailyQuests.some((q) => !q.claimed)
+                  ? "bg-amber-50 dark:bg-amber-950/40 text-amber-600 dark:text-amber-400 border border-amber-200/50 dark:border-amber-900/50 animate-pulse font-black"
+                  : "text-stone-500 dark:text-stone-400 hover:text-stone-700 dark:hover:text-stone-300 font-bold"
               }`}
             >
-              Nhiệm vụ ngày
+              <span>Nhiệm vụ ngày</span>
+              {dailyQuests.length > 0 && dailyQuests.some((q) => !q.claimed) && (
+                <span className="w-1.5 h-1.5 rounded-full bg-amber-500 animate-ping absolute top-1 right-1.5" />
+              )}
             </button>
             <button
               onClick={() => setActiveTab("chests")}

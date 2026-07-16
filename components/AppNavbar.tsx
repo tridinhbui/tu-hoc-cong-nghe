@@ -29,7 +29,6 @@ const NAV_LINKS = [
   { href: "/ghi-chu", label: "Ghi chú", icon: StickyNote },
   { href: "/kiem-tra", label: "Kiểm tra", icon: GraduationCap },
   { href: "/game", label: "Game", icon: Gamepad2 },
-  { href: "/flashcard", label: "Flashcard", icon: Layers },
 ];
 
 // Single, persistent top navbar for every signed-in page (mounted once in

@@ -122,6 +122,9 @@ export default function DocumentsList({ documents, currentUserId }: { documents:
                     <span className="text-[11px] font-bold uppercase tracking-wide bg-stone-100 dark:bg-stone-800 text-stone-600 dark:text-stone-300 px-2.5 py-1 rounded-full">
                       {categoryLabel(doc.category)}
                     </span>
+                    <span className="text-[11px] font-black bg-emerald-500/10 dark:bg-emerald-500/20 text-emerald-600 dark:text-emerald-400 px-2.5 py-1 rounded-full border border-emerald-500/20 animate-pulse flex items-center gap-0.5">
+                      Miễn phí 💎
+                    </span>
                     {statusBadge(doc.status) && (
                       <span className={`text-[11px] font-bold uppercase tracking-wide px-2.5 py-1 rounded-full ${statusBadge(doc.status)!.className}`}>
                         {statusBadge(doc.status)!.label}

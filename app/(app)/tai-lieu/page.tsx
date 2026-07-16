@@ -74,9 +74,14 @@ export default async function DocumentsGiveawayPage() {
             <ChevronLeft className="w-4 h-4" />
             Về trang chủ
           </Link>
-          <h1 className="text-2xl font-bold text-stone-900 dark:text-stone-100">Tài liệu miễn phí</h1>
-          <p className="text-sm text-stone-500 dark:text-stone-400 mt-1">
-            Mẫu biểu, ebook, checklist và công cụ hỗ trợ hành trình học tài chính của bạn - tải về hoàn toàn miễn phí.
+          <div className="flex items-center gap-3 flex-wrap">
+            <h1 className="text-2xl font-black text-stone-900 dark:text-stone-100">Kho Tài liệu học tập</h1>
+            <span className="inline-flex items-center gap-1 px-3 py-1 rounded-full text-xs font-black uppercase bg-gradient-to-r from-emerald-500 to-teal-500 text-white shadow-lg shadow-emerald-500/20 animate-bounce">
+              Miễn phí 100% 💎
+            </span>
+          </div>
+          <p className="text-sm text-stone-500 dark:text-stone-400 mt-2">
+            Mẫu biểu, ebook, checklist và công cụ hỗ trợ hành trình học tài chính của bạn - tải về hoàn toàn miễn phí không giới hạn.
             Đóng góp tài liệu của riêng bạn để chia sẻ cho cộng đồng nhé!
           </p>
         </div>
