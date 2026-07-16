@@ -155,7 +155,7 @@ export default function DashboardClient({ lessonsMeta }: { lessonsMeta: LessonMe
   const [passedMilestones, setPassedMilestones] = useState<MilestoneCompletion[]>([]);
   const [activeMilestoneExam, setActiveMilestoneExam] = useState<{ label: string; name: string; lessonIds: number[] } | null>(null);
   const [selectedCertStage, setSelectedCertStage] = useState<{ label: string; name: string } | null>(null);
-  const [communityUsersByLevel, setCommunityUsersByLevel] = useState<Map<number, { name: string; xp: number }[]>>(new Map());
+  const [communityUsersByLevel, setCommunityUsersByLevel] = useState<Map<number, { name: string; xp: number; avatarUrl: string | null }[]>>(new Map());
 
   useRoutePrefetch(["/analytics", "/ghi-chu", "/kiem-tra", "/tai-lieu", "/ban-be", "/profile", "/settings", "/cfa"]);
 
@@ -180,14 +180,14 @@ export default function DashboardClient({ lessonsMeta }: { lessonsMeta: LessonMe
     getLeaderboardByMetric("xp", 100)
       .then((entries) => {
         if (cancelled) return;
-        const grouped = new Map<number, { name: string; xp: number }[]>();
+        const grouped = new Map<number, { name: string; xp: number; avatarUrl: string | null }[]>();
         for (let i = 1; i <= 6; i++) {
           grouped.set(i, []);
         }
         entries.forEach((entry) => {
           const lvl = getLevelByXp(entry.value).level;
           if (grouped.has(lvl)) {
-            grouped.get(lvl)!.push({ name: entry.name, xp: entry.value });
+            grouped.get(lvl)!.push({ name: entry.name, xp: entry.value, avatarUrl: entry.avatarUrl });
           }
         });
         setCommunityUsersByLevel(grouped);
@@ -707,12 +707,12 @@ export default function DashboardClient({ lessonsMeta }: { lessonsMeta: LessonMe
                       <div key={lvl.level} className="relative flex flex-col items-center z-10 group">
                         {/* Interactive Dot Node */}
                         <div
-                          className={`rounded-full transition-all duration-300 flex items-center justify-center cursor-pointer ${
+                          className={`rounded-full transition-all duration-300 flex items-center justify-center cursor-pointer group-hover:-translate-y-1 group-hover:scale-110 ${
                             isUserCurrent
                               ? "w-5 h-5 bg-emerald-500 shadow-sm shadow-emerald-500/20 ring-4 ring-emerald-500/20"
                               : isPassed
-                              ? "w-3 h-3 bg-emerald-500 hover:scale-125"
-                              : "w-2.5 h-2.5 bg-stone-200 dark:bg-stone-800 hover:scale-125"
+                              ? "w-3 h-3 bg-emerald-500"
+                              : "w-2.5 h-2.5 bg-stone-200 dark:bg-stone-800"
                           }`}
                         >
                           {isUserCurrent && (
@@ -758,21 +758,32 @@ export default function DashboardClient({ lessonsMeta }: { lessonsMeta: LessonMe
                           
                           <div>
                             <p className="text-[9px] font-black text-stone-450 dark:text-stone-550 uppercase tracking-widest mb-1.5">
-                              Thành viên ({displayMembers.length})
+                              Thành viên ({members.length})
                             </p>
-                            {displayMembers.length > 0 ? (
-                              <div className="flex flex-col gap-1 max-h-28 overflow-y-auto pr-1">
-                                {displayMembers.slice(0, 8).map((name, i) => (
-                                  <div key={i} className="flex items-center gap-1.5">
-                                    <span className="w-1 h-1 rounded-full bg-emerald-500 shrink-0" />
-                                    <span className="text-[10px] font-bold text-stone-700 dark:text-stone-305 truncate">
-                                      {name}
+                            {members.length > 0 ? (
+                              <div className="flex flex-col gap-2 max-h-36 overflow-y-auto pr-1">
+                                {members.slice(0, 8).map((m, i) => (
+                                  <div key={i} className="flex items-center justify-between gap-2">
+                                    <div className="flex items-center gap-2 min-w-0">
+                                      {m.avatarUrl ? (
+                                        <img src={m.avatarUrl} alt={m.name} className="w-5 h-5 rounded-full object-cover shrink-0" />
+                                      ) : (
+                                        <div className="w-5 h-5 rounded-full bg-emerald-500/10 text-emerald-600 dark:bg-emerald-950/40 dark:text-emerald-450 flex items-center justify-center text-[9px] font-black shrink-0">
+                                          {m.name.charAt(0).toUpperCase()}
+                                        </div>
+                                      )}
+                                      <span className="text-[10px] font-bold text-stone-700 dark:text-stone-300 truncate">
+                                        {m.name}
+                                      </span>
+                                    </div>
+                                    <span className="text-[9px] font-black text-emerald-600 dark:text-emerald-450 shrink-0">
+                                      {m.xp} XP
                                     </span>
                                   </div>
                                 ))}
-                                {displayMembers.length > 8 && (
+                                {members.length > 8 && (
                                   <p className="text-[8px] font-extrabold text-stone-450 dark:text-stone-500 italic mt-0.5">
-                                    và {displayMembers.length - 8} người khác...
+                                    và {members.length - 8} người khác...
                                   </p>
                                 )}
                               </div>
