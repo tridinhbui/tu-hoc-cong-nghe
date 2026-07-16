@@ -742,10 +742,10 @@ export default function DashboardClient({ lessonsMeta }: { lessonsMeta: LessonMe
                         </div>
 
                         {/* Elegant Tooltip on Hover */}
-                        <div className={`absolute bottom-full mb-3.5 hidden group-hover:block w-64 p-4 rounded-xl border border-stone-200 dark:border-stone-800 bg-white dark:bg-stone-900 shadow-xl text-left z-[999] animate-[fadeInTooltip_0.2s_ease-out] ${tooltipAlignClass}`}>
+                        <div className={`absolute top-full mt-10 hidden group-hover:block w-64 p-4 rounded-xl border border-stone-200 dark:border-stone-800 bg-white dark:bg-stone-900 shadow-xl text-left z-[999] animate-[fadeInTooltip_0.2s_ease-out] ${tooltipAlignClass}`}>
                           <style>{`
                             @keyframes fadeInTooltip {
-                              from { opacity: 0; transform: translateY(4px); }
+                              from { opacity: 0; transform: translateY(-4px); }
                               to { opacity: 1; transform: translateY(0); }
                             }
                             @keyframes laserLine {
@@ -807,8 +807,8 @@ export default function DashboardClient({ lessonsMeta }: { lessonsMeta: LessonMe
                             )}
                           </div>
 
-                          {/* Elegant Pointer Arrow at bottom */}
-                          <div className={`absolute top-full w-2.5 h-2.5 rotate-45 bg-white dark:bg-stone-900 border-r border-b border-stone-200 dark:border-stone-800 -translate-y-1.5 z-0 ${
+                          {/* Elegant Pointer Arrow at top pointing upwards */}
+                          <div className={`absolute bottom-full w-2.5 h-2.5 rotate-45 bg-white dark:bg-stone-900 border-t border-l border-stone-200 dark:border-stone-800 translate-y-1.5 z-0 ${
                             lvl.level === 1 ? "left-4" : lvl.level === 6 ? "right-4" : "left-1/2 -translate-x-1/2"
                           }`} />
                         </div>
@@ -823,6 +823,13 @@ export default function DashboardClient({ lessonsMeta }: { lessonsMeta: LessonMe
             <div data-tour="resume-learning">
               <ResumeLearningButton activeTrack={lastNonCfaTrack} />
             </div>
+
+            {/* Tasks & Rewards - below chatbot, always open and compact */}
+            {user?.id && (
+              <div className="mt-6">
+                <CombinedRewardsWidget userId={user.id} defaultExpanded={true} />
+              </div>
+            )}
 
             {/* Lesson Recall Scheduler Widget */}
             {user?.id && (
@@ -1570,12 +1577,7 @@ export default function DashboardClient({ lessonsMeta }: { lessonsMeta: LessonMe
       {/* Admin Chat */}
       <ChatWithAdminWidget />
 
-      {/* Tasks & Rewards - below chatbot, always open and compact */}
-      {user?.id && (
-        <div className="max-w-6xl mx-auto px-6 pb-8">
-          <CombinedRewardsWidget userId={user.id} defaultExpanded={true} />
-        </div>
-      )}
+
 
       {appealTarget && user?.id && (
         <LessonAppealModal userId={user.id} lesson={appealTarget} onClose={() => setAppealTarget(null)} />

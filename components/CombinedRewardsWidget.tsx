@@ -201,11 +201,11 @@ export default function CombinedRewardsWidget({ userId, defaultExpanded = false 
   };
 
   return (
-    <div className="bg-white dark:bg-stone-900 border border-stone-250 dark:border-stone-850 rounded-3xl shadow-sm overflow-hidden">
+    <div className="bg-white dark:bg-stone-900 rounded-2xl shadow-sm overflow-hidden">
       {/* Header - Always visible */}
       <button
         onClick={() => setIsExpanded(!isExpanded)}
-        className="w-full px-4 py-3 flex items-center justify-between hover:bg-stone-50 dark:hover:bg-stone-950/30 transition-colors"
+        className="w-full px-3.5 py-2.5 flex items-center justify-between hover:bg-stone-50 dark:hover:bg-stone-950/30 transition-colors"
       >
         <div className="flex items-center gap-2">
           <Gift className="w-4 h-4 text-rose-500" />
@@ -220,9 +220,9 @@ export default function CombinedRewardsWidget({ userId, defaultExpanded = false 
       </button>
 
       {isExpanded && (
-        <div className="border-t border-stone-100 dark:border-stone-800">
+        <div className="border-t border-stone-100 dark:border-stone-850">
           {/* Tabs */}
-          <div className="flex gap-1 p-2 bg-stone-50 dark:bg-stone-950/50">
+          <div className="flex gap-1 p-2 bg-stone-50/50 dark:bg-stone-950/35">
             <button
               onClick={() => setActiveTab("daily")}
               className={`flex-1 text-[10px] font-bold px-2 py-1.5 rounded-lg transition-all ${
@@ -255,7 +255,7 @@ export default function CombinedRewardsWidget({ userId, defaultExpanded = false 
             </button>
           </div>
 
-          <div className="p-4">
+          <div className="p-3">
             {activeTab === "daily" && <DailyQuestsWidget userId={userId} embedded />}
 
             {activeTab === "chests" && (
