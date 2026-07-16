@@ -67,6 +67,61 @@ const QUIZ: QuizQuestion[] = [
     correct: 1,
     explanation: "Lợi nhuận bị ảnh hưởng bởi chính sách khấu hao, phương pháp tính hàng tồn kho, thời điểm ghi nhận doanh thu - tất cả có thể điều chỉnh hợp pháp. Tiền mặt trong tài khoản ngân hàng thì không. Đây là lý do nhà đầu tư giỏi luôn nhìn vào dòng tiền, không chỉ P&L.",
   },
+  {
+    question: "Ba câu hỏi nào mà tài chính đặt ra khi phân tích dòng tiền, theo bài học?",
+    options: [
+      "Tiền có bao nhiêu, dùng vào đâu, có lời không?",
+      "Khi nào tiền được tạo ra, mức độ chắc chắn như thế nào, có đủ đáp ứng nghĩa vụ hiện tại không?",
+      "Doanh thu cao không, lợi nhuận có dương không, chi phí có giảm không?",
+      "Tiền từ đâu, tiền đi đâu, còn lại bao nhiêu?",
+    ],
+    correct: 1,
+    explanation: "Ba câu hỏi cốt lõi: (1) Khi nào - hôm nay hay sau 6 tháng?, (2) Mức độ chắc chắn - tiền có về đúng hẹn không?, (3) Có đủ - để đáp ứng các nghĩa vụ tài chính hiện tại không?",
+  },
+  {
+    question: "Doanh nghiệp phá sản thường vì nguyên nhân nào chính?",
+    options: [
+      "Báo cáo lỗ trong năm gần nhất",
+      "Hết tiền mặt để chi trả các nghĩa vụ ngắn hạn, không phải vì báo cáo lỗ",
+      "Tài sản giảm giá",
+      "Tỷ lệ nợ trên vốn quá cao",
+    ],
+    correct: 1,
+    explanation: "Bài học nêu rõ: \"Doanh nghiệp phá sản vì hết tiền, không phải vì báo cáo lỗ.\" Một công ty có thể báo cáo lỗ nhưng vẫn tồn tại nếu vốn chủ sở hữu còn, nhưng hết tiền mặt = không thể trả lương, thanh toán nhà cung cấp, trả nợ = bắt buộc phá sản.",
+  },
+  {
+    question: "Nhà đầu tư giỏi xem yếu tố nào để định giá một doanh nghiệp?",
+    options: [
+      "Lợi nhuận hiện tại trong năm gần nhất",
+      "Kích thước doanh thu tuyệt đối",
+      "Dòng tiền tương lai kỳ vọng, không chỉ lợi nhuận hiện tại",
+      "Giá trị tài sản trên bảng cân đối kế toán",
+    ],
+    correct: 2,
+    explanation: "Bài học chỉ ra: định giá doanh nghiệp nhìn vào dòng tiền tương lai, không chỉ lợi nhuận hiện tại. Điều này phản ánh lý do vì sao các startup lỗ mà vẫn được định giá cao - nhà đầu tư nhìn dòng tiền tương lai, không P&L hiện tại.",
+  },
+  {
+    question: "Vốn lưu động (Working Capital) liên quan đến yếu tố nào của dòng tiền?",
+    options: [
+      "Dòng tiền từ đầu tư dài hạn",
+      "Quản lý tiền vào và ra trong ngắn hạn - đảm bảo đủ tiền để duy trì hoạt động hàng ngày",
+      "Tiền thu từ bán cổ phần cho nhà đầu tư",
+      "Dòng tiền từ vay nợ dài hạn",
+    ],
+    correct: 1,
+    explanation: "Vốn lưu động là khía cạnh của dòng tiền ngắn hạn - đảm bảo doanh nghiệp có đủ tiền để trả lương, thanh toán nhà cung cấp, trả lãi vay đến kỳ. Đây là lý do khoảng trắng giữa khi bán hàng và khi nhận tiền có thể gây khó khăn ngay cả với doanh nghiệp lợi nhuận cao.",
+  },
+  {
+    question: "Quản trị rủi ro tài chính liên quan đến dòng tiền như thế nào?",
+    options: [
+      "Dự báo khả năng dòng tiền âm và chuẩn bị dự phòng trước",
+      "Tăng giá sản phẩm để tăng lợi nhuận",
+      "Mua nhiều tài sản để che giấu nợ",
+      "Phủ nhận khả năng mất tiền",
+    ],
+    correct: 0,
+    explanation: "Quản trị rủi ro tài chính bắt đầu từ dòng tiền: dự báo những kịch bản nào có thể dòng tiền âm (khách hàng không trả, chi phí tăng đột ngột), rồi chuẩn bị trước - dự phòng tiền mặt, giới hạn chi trả, đa dạng khách hàng.",
+  },
 ];
 
 const CONCEPTS = [

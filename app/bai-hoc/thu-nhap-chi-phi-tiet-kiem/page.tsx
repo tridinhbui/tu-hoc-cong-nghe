@@ -45,6 +45,83 @@ const QUIZ: QuizQuestion[] = [
     correct: 1,
     explanation: "Chi phí biến đổi thay đổi tùy theo hành vi và nhu cầu. Thuê nhà, trả góp là chi phí cố định. Mua sắm quần áo phụ thuộc vào quyết định của bạn mỗi tháng.",
   },
+  {
+    question: "Theo quy tắc 50/30/20 trong bài học, phần nào dùng cho tiết kiệm và đầu tư?",
+    options: [
+      "50%",
+      "30%",
+      "20%",
+      "Không có quy định cụ thể",
+    ],
+    correct: 2,
+    explanation: "Quy tắc 50/30/20: 50% cho nhu cầu thiết yếu, 30% cho muốn có, 20% cho tiết kiệm và đầu tư. Đây không phải quy tắc tuyệt đối nhưng là điểm khởi đầu tốt.",
+  },
+  {
+    question: "Người có nền tài chính vững chắc thường khác người khác ở điểm gì, theo bài học?",
+    options: [
+      "Có thu nhập cao nhất trong ngành",
+      "Không phụ thuộc vào một nguồn thu nhập duy nhất - có nhiều luồng tiền",
+      "Giữ hết tiền trong tài khoản ngân hàng",
+      "Chi phí cố định thấp nhất",
+    ],
+    correct: 1,
+    explanation: "Bài học nêu rõ: khi thu nhập từ lao động bị gián đoạn, người có thu nhập từ đầu tư (cổ tức, tiền thuê) hoặc kinh doanh vẫn ổn định.",
+  },
+  {
+    question: "\"Lifestyle inflation\" là gì?",
+    options: [
+      "Tăng giá của các sản phẩm lạm phát",
+      "Hiện tượng chi tiêu tăng theo tỷ lệ với thu nhập tăng, tỷ lệ tiết kiệm không thay đổi",
+      "Quy luật chi phí cố định tăng mỗi năm",
+      "Tỷ lệ tiết kiệm luôn giảm theo thời gian",
+    ],
+    correct: 1,
+    explanation: "Bài học chỉ ra đây là lý do nhiều người có thu nhập cao nhưng không tích lũy được tài sản. Khi lương tăng, họ chi tiêu cũng tăng, vậy nên tỷ lệ tiết kiệm không thay đổi.",
+  },
+  {
+    question: "Khi thu nhập giảm, khoản chi phí nào bạn CÓ THỂ kiểm soát ngay lập tức?",
+    options: [
+      "Tiền thuê nhà",
+      "Tiền trả góp vay ngân hàng",
+      "Chi phí biến đổi như ăn ngoài, mua sắm, giải trí",
+      "Bảo hiểm và học phí",
+    ],
+    correct: 2,
+    explanation: "Chi phí cố định không thể cắt giảm ngay. Nhưng chi phí biến đổi có thể kiểm soát nhanh - giảm ăn ngoài, tạm dừng mua sắm, cắt dịch vụ giải trí.",
+  },
+  {
+    question: "Tại sao tiết kiệm được 4 triệu từ 15 triệu tốt hơn tiết kiệm 3 triệu từ 30 triệu?",
+    options: [
+      "Vì số 4 triệu lớn hơn 3 triệu",
+      "Vì người thứ nhất có thu nhập thấp nên dễ tiết kiệm hơn",
+      "Vì tỷ lệ tiết kiệm (27%) cao hơn (10%), sau 10 năm sự chênh lệch tài sản rất lớn",
+      "Vì lãi suất tiết kiệm áp dụng khác nhau",
+    ],
+    correct: 2,
+    explanation: "Tỷ lệ tiết kiệm quyết định tốc độ xây dựng tài sản. Cùng một chu kỳ thời gian, tỷ lệ cao hơn tạo ra khoảng cách tài sản lớn hơn nhiều khi có lãi kép.",
+  },
+  {
+    question: "Sự khác nhau cơ bản giữa mục tiêu của tiết kiệm và đầu tư là gì?",
+    options: [
+      "Tiết kiệm bảo toàn vốn với lãi suất thấp; đầu tư chấp nhận rủi ro để tăng trưởng vượt lạm phát",
+      "Tiết kiệm an toàn 100%; đầu tư có thể mất hết tiền",
+      "Tiết kiệm là ngắn hạn; đầu tư là dài hạn",
+      "Tiết kiệm không cần lãi; đầu tư nhất định phải có lãi",
+    ],
+    correct: 0,
+    explanation: "Tiết kiệm mục tiêu là bảo toàn và giữ thanh khoản, thường lãi suất thấp hơn lạm phát. Đầu tư mục tiêu là tăng trưởng thực sự, chấp nhận rủi ro để đổi lấy lợi nhuận cao hơn.",
+  },
+  {
+    question: "Vòng tròn cơ bản của tài chính cá nhân bao gồm những bước nào?",
+    options: [
+      "Thu nhập → Tiêu tiền → Hết tiền",
+      "Thu nhập → Chi phí → Tiết kiệm → Đầu tư → Thu nhập thụ động trong tương lai",
+      "Tiết kiệm → Đầu tư → Lợi nhuận → Chi tiêu",
+      "Thu nhập → Nợ → Trả nợ",
+    ],
+    correct: 1,
+    explanation: "Bài học chỉ ra: bốn khái niệm tạo thành vòng tròn - thu nhập vào, chi phí ra, phần còn lại là tiết kiệm, tiết kiệm được đưa vào đầu tư tạo thu nhập thụ động trong tương lai. Đây là nền tảng xây dựng tài sản lâu dài.",
+  },
 ];
 
 const CONCEPTS = [
