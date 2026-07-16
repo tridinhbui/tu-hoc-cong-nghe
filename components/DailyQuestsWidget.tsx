@@ -195,12 +195,12 @@ export default function DailyQuestsWidget({ userId, embedded = false }: DailyQue
           return (
             <div
               key={quest.id}
-              className={`p-2.5 rounded-xl border transition-all duration-300 ${
+              className={`p-2.5 rounded-xl border transition-all duration-300 group/item ${
                 quest.claimed
                   ? "bg-stone-50/30 dark:bg-stone-950/10 border-stone-150 dark:border-stone-850 opacity-65"
                   : isDone
-                  ? "bg-amber-50/20 dark:bg-amber-950/10 border-amber-250/30 dark:border-amber-900/25"
-                  : "bg-white dark:bg-stone-900/50 border-stone-150/80 dark:border-stone-800/80 hover:border-stone-300 dark:hover:border-stone-700"
+                  ? "bg-amber-50/20 dark:bg-amber-950/10 border-amber-250/30 dark:border-amber-900/25 shadow-sm shadow-amber-500/5"
+                  : "bg-white dark:bg-stone-900/50 border-stone-150/80 dark:border-stone-800/80 hover:border-amber-500/40 dark:hover:border-amber-500/30 hover:shadow-md hover:shadow-amber-500/[0.03]"
               }`}
             >
               <div className="flex items-center justify-between gap-3">
@@ -209,13 +209,23 @@ export default function DailyQuestsWidget({ userId, embedded = false }: DailyQue
                     {quest.claimed ? (
                       <CheckCircle2 className="w-3.5 h-3.5 text-emerald-500 shrink-0" />
                     ) : (
-                      <div className={`w-1.5 h-1.5 rounded-full shrink-0 ${isDone ? "bg-amber-500 animate-pulse" : "bg-stone-300 dark:bg-stone-750"}`} />
+                      <div className={`w-1.5 h-1.5 rounded-full shrink-0 ${isDone ? "bg-amber-500 animate-pulse" : "bg-stone-350 dark:bg-stone-700"}`} />
                     )}
-                    <p className={`text-[11px] font-extrabold ${quest.claimed ? "text-stone-400 line-through" : "text-stone-900 dark:text-stone-150"}`}>
+                    <p className={`text-[11px] font-black transition-colors duration-250 ${
+                      quest.claimed 
+                        ? "text-stone-400 line-through" 
+                        : isDone 
+                        ? "text-amber-600 dark:text-amber-450" 
+                        : "text-stone-900 dark:text-stone-100 group-hover/item:text-amber-550 dark:group-hover/item:text-amber-400"
+                    }`}>
                       {quest.title}
                     </p>
                   </div>
-                  <p className="text-[10px] text-stone-500 dark:text-stone-400 mt-0.5 leading-snug">{quest.description}</p>
+                  <p className={`text-[10px] mt-0.5 leading-snug transition-colors duration-250 ${
+                    quest.claimed
+                      ? "text-stone-400"
+                      : "text-stone-500 dark:text-stone-400 group-hover/item:text-stone-700 dark:group-hover/item:text-stone-300"
+                  }`}>{quest.description}</p>
                 </div>
 
                 <div className="shrink-0 flex items-center gap-1.5">
@@ -255,30 +265,38 @@ export default function DailyQuestsWidget({ userId, embedded = false }: DailyQue
 
       {/* Weekly Chest Tracker */}
       <div className="mt-4 pt-4 border-t border-stone-150 dark:border-stone-800/80 relative z-10">
-        <div className="flex items-center justify-between mb-2">
-          <span className="text-[11px] font-extrabold text-stone-500 dark:text-stone-400 uppercase tracking-wider flex items-center gap-1">
+        <div className="flex items-center justify-between mb-2.5">
+          <span className="text-[11px] font-black uppercase tracking-wider flex items-center gap-1.5 bg-gradient-to-r from-rose-500 to-pink-500 bg-clip-text text-transparent shrink-0">
             <Gift className="w-3.5 h-3.5 text-rose-500" /> Rương tri thức tuần
           </span>
-          <span className="text-[11px] font-extrabold text-stone-600 dark:text-stone-400">
+          <span className="text-[10px] font-extrabold text-stone-600 dark:text-stone-400 bg-stone-50 dark:bg-stone-950/60 px-2 py-0.5 rounded border border-stone-200/60 dark:border-stone-800">
             {completedQuestsCount}/3 nhiệm vụ
           </span>
         </div>
-        <div className="flex items-center gap-3">
-          <div className="flex-1 h-2 bg-stone-100 dark:bg-stone-800 rounded-full overflow-hidden shadow-inner">
+        
+        {/* Unified Connected Progress Bar & Button Unit */}
+        <div className="flex items-center">
+          <div className="flex-1 h-8 bg-stone-50 dark:bg-stone-950/40 border border-stone-200 dark:border-stone-800 border-r-0 rounded-l-xl overflow-hidden shadow-inner relative flex items-center px-1">
             <div
-              className="h-full bg-gradient-to-r from-rose-500 to-pink-500 transition-all duration-500"
+              className="h-6 bg-gradient-to-r from-rose-500 to-pink-500 rounded-l-lg transition-all duration-500 flex items-center justify-end px-2"
               style={{ width: `${Math.min(100, (completedQuestsCount / 3) * 100)}%` }}
-            />
+            >
+              {completedQuestsCount > 0 && (
+                <span className="text-[9px] font-black text-white whitespace-nowrap">
+                  {Math.round((completedQuestsCount / 3) * 100)}%
+                </span>
+              )}
+            </div>
           </div>
           <button
             onClick={() => void handleWeeklyClaim()}
             disabled={weeklyClaimed || completedQuestsCount < 3}
-            className={`px-3 py-1.5 text-[10px] font-extrabold rounded-lg transition-all duration-200 ${
+            className={`h-8 px-4 text-[10px] font-extrabold rounded-r-xl transition-all duration-200 border shrink-0 flex items-center justify-center ${
               weeklyClaimed
-                ? "bg-stone-100 dark:bg-stone-950 text-stone-450 border border-stone-200/40 dark:border-stone-850"
+                ? "bg-stone-100 dark:bg-stone-950 text-stone-450 border-stone-200 dark:border-stone-850"
                 : completedQuestsCount >= 3
-                ? "bg-gradient-to-r from-rose-500 to-pink-500 text-white shadow-[0_4px_10px_-3px_rgba(244,63,94,0.4)] hover:scale-105 active:scale-95 cursor-pointer animate-pulse"
-                : "bg-stone-50 dark:bg-stone-950/40 text-stone-400 border border-stone-200/40 dark:border-stone-800 cursor-not-allowed"
+                ? "bg-gradient-to-r from-rose-500 to-pink-500 text-white border-rose-500 shadow-[0_4px_10px_-3px_rgba(244,63,94,0.4)] hover:scale-102 active:scale-98 cursor-pointer animate-pulse"
+                : "bg-stone-50 dark:bg-stone-900 text-stone-400 border-stone-200 dark:border-stone-800 cursor-not-allowed"
             }`}
           >
             {weeklyClaimed ? "Đã mở 🎁" : "Mở rương 🔒"}
