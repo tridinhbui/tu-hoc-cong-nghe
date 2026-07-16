@@ -45,14 +45,26 @@ export async function scheduleLessonRecall(
   const nextDate = new Date();
   nextDate.setDate(nextDate.getDate() + days);
 
+  // Same bug class fixed twice already this session (flashcards, then
+  // milestone exams): without an explicit onConflict target, PostgREST's
+  // upsert defaults to the table's PRIMARY KEY (id), which is never part of
+  // this payload - so every call past the first (from markLessonComplete)
+  // behaved as a plain INSERT and hit the real user_lesson_recalls_unique
+  // (user_id, lesson_id) constraint, failing with 23505 instead of updating
+  // the stage. In practice this meant recall_stage never advanced past 1,
+  // the "+10 XP" toast never fired, and reviewed lessons never left the due
+  // list.
   const { error } = await supabase
     .from("user_lesson_recalls")
-    .upsert({
-      user_id: userId,
-      lesson_id: lessonId,
-      recall_stage: stage,
-      next_recall_at: nextDate.toISOString(),
-    });
+    .upsert(
+      {
+        user_id: userId,
+        lesson_id: lessonId,
+        recall_stage: stage,
+        next_recall_at: nextDate.toISOString(),
+      },
+      { onConflict: "user_id,lesson_id" }
+    );
 
   if (error) {
     if (isMissingTableError(error)) {
