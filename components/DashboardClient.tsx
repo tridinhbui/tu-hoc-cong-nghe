@@ -651,10 +651,10 @@ export default function DashboardClient({ lessonsMeta }: { lessonsMeta: LessonMe
                 
                 <div className="flex items-center justify-between mb-6 relative z-10">
                   <div>
-                    <h3 className="text-[11px] font-black uppercase tracking-widest text-stone-400 dark:text-stone-500">
+                    <h3 className="text-[11px] font-black uppercase tracking-widest text-stone-900 dark:text-stone-100">
                       Bản đồ Cấp độ Học viên
                     </h3>
-                    <p className="text-[10px] text-stone-500 dark:text-stone-400 mt-0.5">
+                    <p className="text-[10px] text-stone-600 dark:text-stone-300 mt-0.5">
                       Rê chuột hoặc chạm vào từng cấp độ để xem các thành viên đang ở cấp đó
                     </p>
                   </div>
@@ -674,7 +674,28 @@ export default function DashboardClient({ lessonsMeta }: { lessonsMeta: LessonMe
                   <div 
                     className="absolute left-6 top-1/2 -translate-y-1/2 h-1.5 bg-gradient-to-r from-emerald-500 via-teal-450 to-emerald-500 bg-[length:200%_auto] rounded-full z-0 transition-all duration-500 animate-[laserLine_2.5s_linear_infinite] shadow-[0_0_8px_rgba(16,185,129,0.45)]" 
                     style={{ 
-                      width: `${((getLevelByXp(userXp).level - 1) / 5) * 100}%`,
+                      width: (() => {
+                        const levels = [
+                          { level: 1, minXp: 0 },
+                          { level: 2, minXp: 100 },
+                          { level: 3, minXp: 300 },
+                          { level: 4, minXp: 600 },
+                          { level: 5, minXp: 1000 },
+                          { level: 6, minXp: 1500 }
+                        ];
+                        if (userXp <= 0) return "0%";
+                        if (userXp >= 1500) return "100%";
+                        for (let i = 0; i < levels.length - 1; i++) {
+                          const current = levels[i];
+                          const next = levels[i+1];
+                          if (userXp >= current.minXp && userXp < next.minXp) {
+                            const fraction = (userXp - current.minXp) / (next.minXp - current.minXp);
+                            const percent = i * 20 + fraction * 20;
+                            return `${percent}%`;
+                          }
+                        }
+                        return "100%";
+                      })(),
                       maxWidth: '100%' 
                     }} 
                   />
