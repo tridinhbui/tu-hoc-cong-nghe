@@ -645,7 +645,7 @@ export default function DashboardClient({ lessonsMeta }: { lessonsMeta: LessonMe
 
             {/* 🏆 Tiến độ Cấp độ (1 -> 6) Elegant Progress Roadmap */}
             {user?.id && (
-              <div className="bg-white dark:bg-stone-900 border border-stone-200 dark:border-stone-850 rounded-2xl p-5 shadow-sm relative overflow-hidden">
+              <div className="bg-white dark:bg-stone-900 border border-stone-200 dark:border-stone-850 rounded-2xl p-5 shadow-sm relative">
                 {/* Background ambient glow */}
                 <div className="absolute -top-10 -left-10 w-24 h-24 bg-emerald-500/5 dark:bg-emerald-500/10 rounded-full blur-2xl pointer-events-none" />
                 
@@ -655,7 +655,7 @@ export default function DashboardClient({ lessonsMeta }: { lessonsMeta: LessonMe
                       Bản đồ Cấp độ Học viên
                     </h3>
                     <p className="text-[10px] text-stone-500 dark:text-stone-400 mt-0.5">
-                      Rê chuột vào từng cấp độ để xem các thành viên đang ở cấp đó
+                      Rê chuột hoặc chạm vào từng cấp độ để xem các thành viên đang ở cấp đó
                     </p>
                   </div>
                   <div className="text-right">
@@ -695,15 +695,23 @@ export default function DashboardClient({ lessonsMeta }: { lessonsMeta: LessonMe
                     const members = communityUsersByLevel.get(lvl.level) || [];
                     const displayMembers = members.map(m => m.name);
 
+                    // Responsive Tooltip Alignment: Leftmost and rightmost nodes are shifted to stay in view
+                    let tooltipAlignClass = "left-1/2 -translate-x-1/2";
+                    if (lvl.level === 1) {
+                      tooltipAlignClass = "left-[-8px] origin-bottom-left";
+                    } else if (lvl.level === 6) {
+                      tooltipAlignClass = "right-[-8px] origin-bottom-right";
+                    }
+
                     return (
                       <div key={lvl.level} className="relative flex flex-col items-center z-10 group">
                         {/* Interactive Dot Node */}
                         <div
-                          className={`rounded-full transition-all duration-300 flex items-center justify-center cursor-help ${
+                          className={`rounded-full transition-all duration-300 flex items-center justify-center cursor-pointer ${
                             isUserCurrent
                               ? "w-5 h-5 bg-emerald-500 shadow-sm shadow-emerald-500/20 ring-4 ring-emerald-500/20"
                               : isPassed
-                              ? "w-3 h-3 bg-emerald-500"
+                              ? "w-3 h-3 bg-emerald-500 hover:scale-125"
                               : "w-2.5 h-2.5 bg-stone-200 dark:bg-stone-800 hover:scale-125"
                           }`}
                         >
@@ -729,7 +737,7 @@ export default function DashboardClient({ lessonsMeta }: { lessonsMeta: LessonMe
                         </div>
 
                         {/* Elegant Tooltip on Hover */}
-                        <div className="absolute bottom-full mb-3.5 hidden group-hover:block w-56 p-4 rounded-xl border border-stone-200 dark:border-stone-800 bg-white/98 dark:bg-stone-900/98 shadow-xl text-left z-[999] animate-[fadeInTooltip_0.2s_ease-out]">
+                        <div className={`absolute bottom-full mb-3.5 hidden group-hover:block w-56 p-4 rounded-xl border border-stone-200 dark:border-stone-800 bg-white/98 dark:bg-stone-900/98 shadow-xl text-left z-[999] animate-[fadeInTooltip_0.2s_ease-out] ${tooltipAlignClass}`}>
                           <style>{`
                             @keyframes fadeInTooltip {
                               from { opacity: 0; transform: translateY(4px); }
