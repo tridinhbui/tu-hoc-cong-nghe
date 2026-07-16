@@ -18,12 +18,22 @@ interface DailyQuestsWidgetProps {
 }
 
 // Where "Làm ngay →" sends the learner for each quest - daily_1 (complete a
-// lesson) scrolls to the resume-learning card already on this same
-// dashboard page (data-tour="resume-learning") rather than navigating
-// anywhere, since it's already right there; the game quests route to /game.
+// lesson) jumps straight into the in-progress lesson rather than just
+// scrolling to the resume-learning card (components/ResumeLearningButton.tsx)
+// and leaving a second tap to actually get there. That card is a Link
+// straight to /bai-hoc/<slug> once its own async greeting fetch resolves, so
+// read its href directly off the DOM instead of re-fetching the same data
+// here. Falls back to scrolling into view if the card hasn't finished
+// loading yet (skeleton has no anchor) or every lesson is already done
+// (completion banner also has no anchor). Game quests still route to /game.
 function goToQuestAction(questId: string, router: ReturnType<typeof useRouter>) {
   if (questId === "daily_1") {
-    document.querySelector('[data-tour="resume-learning"]')?.scrollIntoView({ behavior: "smooth", block: "center" });
+    const resumeLink = document.querySelector<HTMLAnchorElement>('[data-tour="resume-learning"] a[href^="/bai-hoc/"]');
+    if (resumeLink) {
+      router.push(resumeLink.getAttribute("href")!);
+    } else {
+      document.querySelector('[data-tour="resume-learning"]')?.scrollIntoView({ behavior: "smooth", block: "center" });
+    }
   } else {
     router.push("/game");
   }
