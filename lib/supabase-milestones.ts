@@ -41,14 +41,24 @@ export async function savePassedMilestone(
   score: number
 ): Promise<boolean> {
   const supabase = createClient();
+  // Same bug class fixed twice already this session (flashcards, then here):
+  // without an explicit onConflict target, PostgREST's upsert defaults to
+  // the table's PRIMARY KEY (id, never part of this payload), so a second
+  // save for the same (user_id, track_id, stage_label) - e.g. retaking a
+  // milestone exam after failing it, or retrying for a better score -
+  // behaved as a plain INSERT and hit the real unique constraint, failing
+  // with 23505 instead of updating the score.
   const { error } = await supabase
     .from("user_milestone_exams")
-    .upsert({
-      user_id: userId,
-      track_id: trackId,
-      stage_label: stageLabel,
-      score,
-    });
+    .upsert(
+      {
+        user_id: userId,
+        track_id: trackId,
+        stage_label: stageLabel,
+        score,
+      },
+      { onConflict: "user_id,track_id,stage_label" }
+    );
 
   if (error) {
     if (isMissingTableError(error)) {
