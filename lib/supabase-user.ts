@@ -388,10 +388,15 @@ export async function recalculateUserStats(userId: string) {
     if (!milestoneErr && milestones) {
       milestoneXp = milestones.filter((m) => Number(m.score) >= 0.8).length * 50;
     } else if (typeof window !== "undefined") {
-      const localData = window.localStorage.getItem(`milestones_${userId}_personal`);
-      if (localData) {
-        const parsed = JSON.parse(localData);
-        milestoneXp = parsed.filter((m: any) => Number(m.score) >= 0.8).length * 50;
+      // Fallback: check all milestone tracks in localStorage
+      for (let i = 0; i < window.localStorage.length; i++) {
+        const key = window.localStorage.key(i);
+        if (key && key.startsWith(`milestones_${userId}_`)) {
+          try {
+            const parsed = JSON.parse(window.localStorage.getItem(key) ?? "[]");
+            milestoneXp += parsed.filter((m: any) => Number(m.score) >= 0.8).length * 50;
+          } catch {}
+        }
       }
     }
   } catch (err) {

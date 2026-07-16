@@ -853,9 +853,17 @@ export default function DashboardClient({ lessonsMeta }: { lessonsMeta: LessonMe
                   return (
                     <button
                       onClick={() => toggleStage(stageKey)}
-                      className="w-full flex items-center gap-3 mb-4 cursor-pointer text-left flex-wrap sm:flex-nowrap border-b border-stone-100 dark:border-stone-800/40 pb-3"
+                      className={`w-full flex items-center gap-3 cursor-pointer text-left flex-wrap sm:flex-nowrap transition-all ${
+                        isCurrentMilestonePassed
+                          ? "bg-emerald-500/[0.04] dark:bg-emerald-500/[0.02] border border-emerald-500/20 px-4 py-3 rounded-2xl mb-4"
+                          : "border-b border-stone-100 dark:border-stone-800/40 pb-3 mb-4"
+                      }`}
                     >
-                      <span className={`text-xs font-extrabold px-3 py-1.5 rounded-lg flex items-center ${theme.bg} ${theme.text}`}>
+                      <span className={`text-xs font-extrabold px-3 py-1.5 rounded-lg flex items-center ${
+                        isCurrentMilestonePassed
+                          ? "bg-emerald-500 text-white"
+                          : `${theme.bg} ${theme.text}`
+                      }`}>
                         {stage.label}
                       </span>
                       <span className="text-base sm:text-lg font-extrabold text-stone-900 dark:text-stone-100 flex-1 leading-snug">{stage.name}</span>
@@ -878,14 +886,22 @@ export default function DashboardClient({ lessonsMeta }: { lessonsMeta: LessonMe
                       {stage.available && stageLessons.length > 0 && (
                         <div className="flex items-center gap-3 shrink-0 ml-auto sm:ml-0">
                           <div className="w-16 h-1.5 bg-stone-150 dark:bg-stone-800 rounded-full overflow-hidden hidden sm:block">
-                            <div className={`h-full ${theme.barColor}`} style={{ width: `${percent}%` }} />
+                            <div className={`h-full ${isCurrentMilestonePassed ? "bg-emerald-500" : theme.barColor}`} style={{ width: `${percent}%` }} />
                           </div>
-                          <span className="text-sm font-bold text-stone-800 dark:text-stone-200 bg-stone-100 dark:bg-stone-800 px-3 py-1 rounded-lg">
+                          <span className={`text-sm font-bold px-3 py-1 rounded-lg ${
+                            isCurrentMilestonePassed
+                              ? "text-emerald-800 dark:text-emerald-300 bg-emerald-100 dark:bg-emerald-950/60"
+                              : "text-stone-800 dark:text-stone-200 bg-stone-100 dark:bg-stone-800"
+                          }`}>
                             {stageDone}/{stageLessons.length}
                           </span>
                         </div>
                       )}
-                      <span className={`text-stone-500 dark:text-stone-400 text-sm transition-transform shrink-0 ${stageOpen ? "rotate-180" : ""}`}>
+                      <span className={`text-sm transition-transform shrink-0 ${
+                        isCurrentMilestonePassed
+                          ? "text-emerald-500 dark:text-emerald-400"
+                          : "text-stone-500 dark:text-stone-400"
+                      } ${stageOpen ? "rotate-180" : ""}`}>
                         {isStageLockedByMilestone ? "🔒" : "▾"}
                       </span>
                     </button>
