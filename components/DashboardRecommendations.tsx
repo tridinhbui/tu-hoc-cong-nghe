@@ -48,6 +48,7 @@ const DEFAULT_TRENDING = [
 
 export default function DashboardRecommendations({ lessonsMeta, completed, userId }: DashboardRecommendationsProps) {
   const [collapsed, setCollapsed] = useState(false);
+  const [hotCollapsed, setHotCollapsed] = useState(false);
   const [selectedGoal, setSelectedGoal] = useState<string | null>(null);
 
   const goalKey = `thtcdn_learning_goal_${userId}`;
@@ -275,47 +276,59 @@ export default function DashboardRecommendations({ lessonsMeta, completed, userI
       {/* 🔥 Bài học Đang hot */}
       {hotItems.length > 0 && (
         <div className="bg-white dark:bg-stone-900 border border-stone-200 dark:border-stone-850 rounded-xl p-4 shadow-sm flex flex-col justify-between overflow-hidden w-full">
-          <div className="flex items-center gap-2 mb-3">
-            <Flame className="w-4 h-4 text-rose-500 animate-pulse" />
-            <h2 className="text-sm font-bold text-stone-900 dark:text-stone-105">Đang hot tuần này</h2>
-          </div>
+          <button
+            onClick={() => setHotCollapsed(!hotCollapsed)}
+            className="w-full flex items-center justify-between mb-3 flex-shrink-0 cursor-pointer text-left"
+          >
+            <div className="flex items-center gap-2">
+              <Flame className="w-4 h-4 text-rose-500 animate-pulse" />
+              <h2 className="text-sm font-bold text-stone-900 dark:text-stone-105">Đang hot tuần này</h2>
+            </div>
+            {hotCollapsed ? (
+              <ChevronDown className="w-4 h-4 text-stone-400 dark:text-stone-500" />
+            ) : (
+              <ChevronUp className="w-4 h-4 text-stone-400 dark:text-stone-500" />
+            )}
+          </button>
           
-          <div className="flex gap-3 overflow-x-auto pb-1 snap-x scrollbar-thin scrollbar-thumb-stone-200 dark:scrollbar-thumb-stone-800">
-            {hotItems.map((item, idx) => {
-              const { lesson } = item;
-              const isDone = completed.includes(lesson.id);
-              return (
-                <Link
-                  key={`hot-${lesson.id}`}
-                  href={`/bai-hoc/${lesson.slug}`}
-                  style={{ animationDelay: `${idx * 60}ms` }}
-                  className="rec-card group flex flex-col justify-between rounded-xl border border-rose-100 dark:border-rose-950/30 bg-rose-50/30 dark:bg-rose-950/10 px-3.5 py-2.5 hover:border-rose-300 dark:hover:border-rose-800 hover:shadow-md hover:-translate-y-0.5 transition-all duration-200 min-w-[190px] w-[190px] shrink-0 snap-start"
-                >
-                  <div>
-                    <div className="flex items-center gap-1.5 mb-1.5">
-                      <div className="w-5 h-5 rounded flex items-center justify-center bg-rose-100 dark:bg-rose-900/50 text-rose-500">
-                        <Flame className="w-3 h-3 animate-pulse" />
-                      </div>
-                      <span className="text-[10px] font-extrabold text-rose-600 dark:text-rose-450 uppercase tracking-wider">
-                        Đang hot
-                      </span>
-                      {isDone && (
-                        <span className="ml-auto text-[9px] font-extrabold text-emerald-600 bg-emerald-50 px-1 py-0.5 rounded-sm">
-                          Xong
+          {!hotCollapsed && (
+            <div className="flex gap-3 overflow-x-auto pb-1 snap-x scrollbar-thin scrollbar-thumb-stone-200 dark:scrollbar-thumb-stone-800">
+              {hotItems.map((item, idx) => {
+                const { lesson } = item;
+                const isDone = completed.includes(lesson.id);
+                return (
+                  <Link
+                    key={`hot-${lesson.id}`}
+                    href={`/bai-hoc/${lesson.slug}`}
+                    style={{ animationDelay: `${idx * 60}ms` }}
+                    className="rec-card group flex flex-col justify-between rounded-xl border border-rose-100 dark:border-rose-950/30 bg-rose-50/30 dark:bg-rose-950/10 px-3.5 py-2.5 hover:border-rose-300 dark:hover:border-rose-800 hover:shadow-md hover:-translate-y-0.5 transition-all duration-200 min-w-[190px] w-[190px] shrink-0 snap-start"
+                  >
+                    <div>
+                      <div className="flex items-center gap-1.5 mb-1.5">
+                        <div className="w-5 h-5 rounded flex items-center justify-center bg-rose-100 dark:bg-rose-900/50 text-rose-500">
+                          <Flame className="w-3 h-3 animate-pulse" />
+                        </div>
+                        <span className="text-[10px] font-extrabold text-rose-600 dark:text-rose-455 uppercase tracking-wider">
+                          Đang hot
                         </span>
-                      )}
+                        {isDone && (
+                          <span className="ml-auto text-[9px] font-extrabold text-emerald-600 bg-emerald-50 px-1 py-0.5 rounded-sm">
+                            Xong
+                          </span>
+                        )}
+                      </div>
+                      <h3 className="text-xs font-bold text-stone-900 dark:text-stone-100 group-hover:text-rose-600 transition-colors line-clamp-2">
+                        {lesson.title}
+                      </h3>
                     </div>
-                    <h3 className="text-xs font-bold text-stone-900 dark:text-stone-100 group-hover:text-rose-600 transition-colors line-clamp-2">
-                      {lesson.title}
-                    </h3>
-                  </div>
-                  <p className="text-[10px] text-stone-400 dark:text-stone-500 mt-2 line-clamp-1">
-                    {lesson.subtitle}
-                  </p>
-                </Link>
-              );
-            })}
-          </div>
+                    <p className="text-[10px] text-stone-400 dark:text-stone-500 mt-2 line-clamp-1">
+                      {lesson.subtitle}
+                    </p>
+                  </Link>
+                );
+              })}
+            </div>
+          )}
         </div>
       )}
     </div>

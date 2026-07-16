@@ -114,7 +114,6 @@ export default function UserStats({
       <div className="absolute -top-6 -right-6 w-24 h-24 bg-emerald-500/5 dark:bg-emerald-500/10 rounded-full blur-2xl pointer-events-none transition-transform duration-500 group-hover:scale-125" />
       <div className="absolute -bottom-6 -left-6 w-24 h-24 bg-amber-500/5 dark:bg-amber-500/10 rounded-full blur-2xl pointer-events-none transition-transform duration-500 group-hover:scale-125" />
 
-      {/* Gamified Header Section */}
       <div className={`flex items-center gap-3 relative z-10 ${sidebar ? "mb-3" : "mb-4"}`}>
         <div className={`rounded-xl bg-stone-50 dark:bg-stone-950/60 border border-stone-150 dark:border-stone-800 flex items-center justify-center text-xl shadow-sm shrink-0 ${
           sidebar ? "w-9 h-9 text-lg" : "w-11 h-11 text-xl"
@@ -122,23 +121,23 @@ export default function UserStats({
           {LEVEL_EMOJIS[currentLevel.level] || "🌱"}
         </div>
         <div className="min-w-0 flex-1">
-          <span className="text-[8px] sm:text-[9px] font-extrabold text-stone-400 dark:text-stone-500 uppercase tracking-widest block leading-none">
+          <span className="text-[8px] sm:text-[9px] font-black text-stone-500 dark:text-stone-400 uppercase tracking-widest block leading-none">
             Cấp độ {currentLevel.level} / {LEVELS.length}
           </span>
-          <h3 className={`font-extrabold text-stone-900 dark:text-stone-50 mt-0.5 tracking-tight leading-none truncate ${
+          <h3 className={`font-black text-stone-950 dark:text-white mt-1 tracking-tight leading-none truncate ${
             sidebar ? "text-xs sm:text-sm" : "text-sm sm:text-base"
           }`}>
             {currentLevel.name}
           </h3>
           {activeTitle && (
-            <span className="text-[9px] font-bold text-amber-500 dark:text-amber-400 mt-0.5 block leading-none truncate">
+            <span className="text-[9px] font-black text-amber-500 dark:text-amber-400 mt-1 block leading-none truncate">
               🏆 {activeTitle}
             </span>
           )}
         </div>
         <div className="text-right shrink-0">
-          <span className={`font-extrabold text-emerald-600 dark:text-emerald-450 bg-emerald-50 dark:bg-emerald-950/40 border border-emerald-100 dark:border-emerald-900/40 rounded-lg ${
-            sidebar ? "text-[9px] px-2 py-1" : "text-[10px] px-2.5 py-1.5"
+          <span className={`font-black text-emerald-700 dark:text-emerald-400 bg-emerald-500/10 dark:bg-emerald-950/40 border border-emerald-500/20 dark:border-emerald-500/10 rounded-lg ${
+            sidebar ? "text-[10px] px-2 py-1" : "text-[11px] px-2.5 py-1.5"
           }`}>
             {xp} XP
           </span>
@@ -152,8 +151,8 @@ export default function UserStats({
           sidebar ? "p-2" : "p-3"
         }`}>
           <div className="min-w-0">
-            <span className="text-[8px] sm:text-[9px] font-extrabold text-stone-455 dark:text-stone-500 uppercase tracking-wider block">Streak</span>
-            <span className={`font-extrabold text-stone-900 dark:text-stone-150 mt-0.5 block leading-none truncate ${
+            <span className="text-[8px] sm:text-[9px] font-black text-stone-500 dark:text-stone-400 uppercase tracking-wider block">Streak</span>
+            <span className={`font-black text-orange-600 dark:text-orange-450 mt-1 block leading-none truncate ${
               sidebar ? "text-xs" : "text-sm"
             }`}>{streak} ngày</span>
           </div>
@@ -218,10 +217,10 @@ export default function UserStats({
         <div className={`bg-stone-50/60 dark:bg-stone-950/20 border border-stone-150 dark:border-stone-850 rounded-xl flex flex-col justify-between ${
           sidebar ? "p-2" : "p-3"
         }`}>
-          <span className="text-[8px] sm:text-[9px] font-extrabold text-stone-450 dark:text-stone-500 uppercase tracking-wider block">Bài học</span>
+          <span className="text-[8px] sm:text-[9px] font-black text-stone-500 dark:text-stone-400 uppercase tracking-wider block">Bài học</span>
           <div className="flex items-baseline gap-1 mt-0.5 truncate">
-            <span className={`font-extrabold text-stone-900 dark:text-stone-105 ${sidebar ? "text-xs" : "text-sm sm:text-base"}`}>{lessonsCompleted}</span>
-            <span className="text-[9px] font-bold text-stone-400 dark:text-stone-500">/ {totalLessons}</span>
+            <span className={`font-black text-stone-950 dark:text-stone-50 ${sidebar ? "text-xs" : "text-sm sm:text-base"}`}>{lessonsCompleted}</span>
+            <span className="text-[9px] font-bold text-stone-450 dark:text-stone-500">/ {totalLessons}</span>
           </div>
         </div>
 
@@ -229,10 +228,10 @@ export default function UserStats({
         <div className={`bg-stone-50/60 dark:bg-stone-950/20 border border-stone-150 dark:border-stone-850 rounded-xl flex flex-col justify-between ${
           sidebar ? "p-2" : "p-3"
         }`}>
-          <span className="text-[8px] sm:text-[9px] font-extrabold text-stone-450 dark:text-stone-500 uppercase tracking-wider block">Quiz TB</span>
+          <span className="text-[8px] sm:text-[9px] font-black text-stone-500 dark:text-stone-400 uppercase tracking-wider block">Quiz TB</span>
           <div className="flex items-baseline gap-0.5 mt-0.5">
-            <span className={`font-extrabold text-stone-900 dark:text-stone-105 ${sidebar ? "text-xs" : "text-sm sm:text-base"}`}>{Math.round(avgQuizScore)}</span>
-            <span className="text-[9px] font-bold text-stone-450 dark:text-stone-500">%</span>
+            <span className={`font-black text-emerald-600 dark:text-emerald-450 ${sidebar ? "text-xs" : "text-sm sm:text-base"}`}>{Math.round(avgQuizScore)}</span>
+            <span className="text-[9px] font-bold text-emerald-500 dark:text-emerald-450">%</span>
           </div>
         </div>
 
@@ -240,10 +239,10 @@ export default function UserStats({
         <div className={`bg-stone-50/60 dark:bg-stone-950/20 border border-stone-150 dark:border-stone-850 rounded-xl flex flex-col justify-between ${
           sidebar ? "p-2" : "p-3"
         }`}>
-          <span className="text-[8px] sm:text-[9px] font-extrabold text-stone-450 dark:text-stone-500 uppercase tracking-wider block">Tiến cấp</span>
+          <span className="text-[8px] sm:text-[9px] font-black text-stone-500 dark:text-stone-400 uppercase tracking-wider block">Tiến cấp</span>
           <div className="flex items-baseline gap-0.5 mt-0.5 truncate">
-            <span className={`font-extrabold text-stone-950 dark:text-stone-50 ${sidebar ? "text-xs" : "text-sm sm:text-base"}`}>{xpToNext > 0 ? `+${xpToNext}` : "Tối đa"}</span>
-            {xpToNext > 0 && <span className="text-[8px] font-extrabold text-stone-400 dark:text-stone-500">XP</span>}
+            <span className={`font-black text-indigo-650 dark:text-indigo-400 ${sidebar ? "text-xs" : "text-sm sm:text-base"}`}>{xpToNext > 0 ? `+${xpToNext}` : "Tối đa"}</span>
+            {xpToNext > 0 && <span className="text-[8px] font-black text-stone-500 dark:text-stone-400">XP</span>}
           </div>
         </div>
       </div>
