@@ -60,6 +60,37 @@ const STATIC_PAGE_LESSON_IDS: Record<string, number> = {
   "wealth-management": 1031,
 };
 
+// Default-deny route gate: every page requires a signed-in session UNLESS
+// its path is explicitly listed here. Previously there was no such gate at
+// all - each page had to remember to check auth itself (client-side or
+// server-side), and several didn't: /tai-lieu and every /bai-hoc/* lesson
+// rendered their full navbar + content to anonymous visitors by design. A
+// new page added later is private by default now, instead of silently
+// public until someone remembers to add a check.
+//
+// /api/* is intentionally excluded from the redirect below - each route
+// handler already does its own auth (shared secret for cron/admin routes,
+// session check for user routes, signed tokens for quiz grading - see
+// app/api/**/route.ts), and redirecting a fetch()-consumed JSON endpoint to
+// an HTML /login page would just break those callers with a confusing
+// non-JSON response instead of a clean 401.
+const PUBLIC_PATHS = new Set([
+  "/", // Marketing homepage - has to render for logged-out visitors to sign up at all.
+  "/login",
+  "/dieu-khoan",
+  "/chinh-sach-bao-mat",
+]);
+
+const PUBLIC_PREFIXES = [
+  "/auth/", // OAuth callback, password reset flow - these run before a session exists.
+  "/api/", // Every route under here has its own auth - see comment above.
+];
+
+function isPublicPath(pathname: string): boolean {
+  if (PUBLIC_PATHS.has(pathname)) return true;
+  return PUBLIC_PREFIXES.some((prefix) => pathname.startsWith(prefix));
+}
+
 // Also runs a Supabase session refresh on every request. Server Components
 // can't set cookies (Next.js forbids it - lib/supabase-server.ts's setAll
 // silently swallows those writes), so when a page's own getUser() call
@@ -71,6 +102,7 @@ const STATIC_PAGE_LESSON_IDS: Record<string, number> = {
 // place that can forward refreshed cookies to the browser on every request -
 // this is Supabase's documented pattern for keeping SSR sessions in sync.
 export async function proxy(request: NextRequest) {
+  const { pathname } = request.nextUrl;
   let response = NextResponse.next({ request });
 
   const supabase = createServerClient(
@@ -99,6 +131,12 @@ export async function proxy(request: NextRequest) {
   const {
     data: { user },
   } = await supabase.auth.getUser();
+
+  if (!user && !isPublicPath(pathname)) {
+    const loginUrl = new URL("/login", request.url);
+    loginUrl.searchParams.set("next", pathname);
+    return NextResponse.redirect(loginUrl);
+  }
 
   const [, section, slug] = request.nextUrl.pathname.split("/");
   if (section === "bai-hoc" && slug) {
