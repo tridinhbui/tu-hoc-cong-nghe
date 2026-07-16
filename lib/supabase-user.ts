@@ -349,19 +349,42 @@ export async function recalculateUserStats(userId: string) {
   // than written once at quiz-completion time, since this function
   // recomputes total_xp from scratch on every call and would otherwise
   // silently wipe out quiz XP the next time any lesson is completed.
-  const quizXp = await getTotalQuizXp(userId);
-  // Best-per-game mini-game XP (lib/games.ts) also counts toward level
-  const gameXp = await getTotalGameXp(userId);
-  // "Mời bạn học cùng" bonus - see lib/referrals.ts.
-  const referralXp = await getTotalReferralXp(userId);
+  //
+  // These 8 reads are all independent of each other - none needs another's
+  // result - so they're fired concurrently instead of one round-trip at a
+  // time. This function is the single choke point every XP-earning action
+  // in the app calls (quests, games, milestones, recalls, lesson
+  // completion, the daily news quiz...), so a sequential chain here meant
+  // every one of those actions paid for a full network waterfall it never
+  // needed.
+  const [
+    quizXp,
+    gameXp,
+    referralXp,
+    gameSessionsRes,
+    questXp,
+    milestonesRes,
+    recallsRes,
+    chestXp,
+  ] = await Promise.all([
+    getTotalQuizXp(userId), // "Kiểm tra" standalone quiz sessions
+    getTotalGameXp(userId), // best-per-game mini-game XP (lib/games.ts)
+    getTotalReferralXp(userId), // "Mời bạn học cùng" bonus - see lib/referrals.ts
+    supabase.from("game_sessions").select("score, total").eq("user_id", userId),
+    getTotalQuestXp(userId),
+    supabase.from("user_milestone_exams").select("score"),
+    supabase.from("user_lesson_recalls").select("recall_stage"),
+    // "Rương quà" (chest) XP - see lib/chests.ts. Previously chests promised
+    // "+30/+50/+100 XP" on open but that XP was never actually added
+    // anywhere (opening one just called this function, which had no idea
+    // "chest XP" existed) - this is what makes it real.
+    getTotalChestXp(userId),
+  ]);
 
   // Academic game bonus: +3 XP for 100% correct, +1 XP for >= 80% correct, capped at +30 XP overall.
   let gameAcademicBonusXp = 0;
-  const { data: gameSessions } = await supabase
-    .from("game_sessions")
-    .select("score, total")
-    .eq("user_id", userId);
-  
+  const gameSessions = gameSessionsRes.data;
+
   if (gameSessions) {
     let perfectCount = 0;
     let highCount = 0;
@@ -378,14 +401,10 @@ export async function recalculateUserStats(userId: string) {
     gameAcademicBonusXp = Math.min(30, perfectCount * 3 + highCount * 1);
   }
 
-  const questXp = await getTotalQuestXp(userId);
-
   // Milestone Exam XP: +50 XP per milestone with score >= 0.8
   let milestoneXp = 0;
   try {
-    const { data: milestones, error: milestoneErr } = await supabase
-      .from("user_milestone_exams")
-      .select("score");
+    const { data: milestones, error: milestoneErr } = milestonesRes;
     if (!milestoneErr && milestones) {
       milestoneXp = milestones.filter((m) => Number(m.score) >= 0.8).length * 50;
     } else if (typeof window !== "undefined") {
@@ -407,9 +426,7 @@ export async function recalculateUserStats(userId: string) {
   // Active Recall XP: +10 XP per successfully completed recall level (recall_stage - 1)
   let recallXp = 0;
   try {
-    const { data: recalls, error: recallErr } = await supabase
-      .from("user_lesson_recalls")
-      .select("recall_stage");
+    const { data: recalls, error: recallErr } = recallsRes;
     if (!recallErr && recalls) {
       recallXp = recalls.reduce((sum, r) => sum + Math.max(0, Number(r.recall_stage) - 1) * 10, 0);
     } else if (typeof window !== "undefined") {
@@ -423,32 +440,28 @@ export async function recalculateUserStats(userId: string) {
     console.error("Error reading recalls for XP:", err);
   }
 
-  // "Rương quà" (chest) XP - see lib/chests.ts. Previously chests promised
-  // "+30/+50/+100 XP" on open but that XP was never actually added anywhere
-  // (opening one just called this function, which had no idea "chest XP"
-  // existed) - this is what makes it real.
-  const chestXp = await getTotalChestXp(userId);
-
   const totalXp = lessonsCompleted * 10 + quizXp + gameXp + referralXp + gameAcademicBonusXp + questXp + milestoneXp + recallXp + chestXp;
   const quizScores = progress?.filter((p) => p.quiz_score !== null).map((p) => p.quiz_score) || [];
   const avgScore = quizScores.length > 0 ? quizScores.reduce((a, b) => a + b, 0) / quizScores.length : 0;
   const currentLevel = Math.floor(totalXp / 150) + 1;
 
-  // Cập nhật user_profiles
-  await updateUserProfile(userId, {
-    lessons_completed: lessonsCompleted,
-    total_xp: totalXp,
-    current_level: currentLevel,
-    avg_quiz_score: Math.round(avgScore * 100) / 100,
-  });
-
-  // Cập nhật user_stats
-  const stats = await upsertUserStats(userId, {
-    total_lessons_completed: lessonsCompleted,
-    total_xp: totalXp,
-    current_level: currentLevel,
-    avg_quiz_score: Math.round(avgScore * 100) / 100,
-  });
+  // Cập nhật user_profiles + user_stats - independent writes to different
+  // tables with the same derived payload, so no need to serialize these
+  // either.
+  const [, stats] = await Promise.all([
+    updateUserProfile(userId, {
+      lessons_completed: lessonsCompleted,
+      total_xp: totalXp,
+      current_level: currentLevel,
+      avg_quiz_score: Math.round(avgScore * 100) / 100,
+    }),
+    upsertUserStats(userId, {
+      total_lessons_completed: lessonsCompleted,
+      total_xp: totalXp,
+      current_level: currentLevel,
+      avg_quiz_score: Math.round(avgScore * 100) / 100,
+    }),
+  ]);
 
   // Every XP-changing flow in the app (lesson completion, quiz, game,
   // referral, admin appeal approval) ultimately calls this one function, so
