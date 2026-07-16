@@ -11,6 +11,7 @@ import DailyQuestsWidget from "@/components/DailyQuestsWidget";
 
 interface CombinedRewardsWidgetProps {
   userId: string;
+  defaultExpanded?: boolean;
 }
 
 // Merges what used to be two separate cards ("Nhiệm vụ hàng ngày" +
@@ -27,9 +28,9 @@ interface CombinedRewardsWidgetProps {
 //    localStorage key, which nothing in the entire codebase ever WROTE to -
 //    it was permanently stuck at 0/5. Now reads the real streak from
 //    user_streaks (the same source StreakDisplay/UserStats already show).
-export default function CombinedRewardsWidget({ userId }: CombinedRewardsWidgetProps) {
+export default function CombinedRewardsWidget({ userId, defaultExpanded = false }: CombinedRewardsWidgetProps) {
   const [activeTab, setActiveTab] = useState<"daily" | "chests" | "weekly">("daily");
-  const [isExpanded, setIsExpanded] = useState(false);
+  const [isExpanded, setIsExpanded] = useState(defaultExpanded);
 
   // Chest state (now server-backed - see lib/chests.ts)
   const [chestCount, setChestCount] = useState<number>(0);
