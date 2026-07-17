@@ -114,6 +114,12 @@ export default function ChatThreadsPanel({ threads }: { threads: ChatThread[] })
                           : "bg-stone-100 dark:bg-stone-800 text-stone-900 dark:text-stone-100"
                       }`}
                     >
+                      {m.image_url && (
+                        <a href={m.image_url} target="_blank" rel="noopener noreferrer">
+                          {/* eslint-disable-next-line @next/next/no-img-element */}
+                          <img src={m.image_url} alt="Ảnh đính kèm" className="max-w-full max-h-48 rounded-lg mb-1.5 object-cover" />
+                        </a>
+                      )}
                       {m.content}
                       <p className="text-[10px] opacity-60 mt-1">
                         {new Date(m.created_at).toLocaleTimeString("vi-VN", { hour: "2-digit", minute: "2-digit" })}

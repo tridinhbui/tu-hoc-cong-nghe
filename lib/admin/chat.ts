@@ -15,6 +15,7 @@ export interface ChatThreadMessage {
   user_id: string;
   sender: "user" | "admin";
   content: string;
+  image_url: string | null;
   read: boolean;
   created_at: string;
 }
@@ -28,7 +29,7 @@ export async function getChatThreads(): Promise<ChatThread[]> {
 
   const { data, error } = await supabase
     .from("chat_messages")
-    .select("id, user_id, sender, content, read, created_at")
+    .select("*")
     .order("created_at", { ascending: false });
 
   if (error || !data) return [];
@@ -71,7 +72,7 @@ export async function getChatThreadMessages(userId: string): Promise<ChatThreadM
   const supabase = createAdminClient();
   const { data, error } = await supabase
     .from("chat_messages")
-    .select("id, user_id, sender, content, read, created_at")
+    .select("*")
     .eq("user_id", userId)
     .order("created_at", { ascending: true });
 

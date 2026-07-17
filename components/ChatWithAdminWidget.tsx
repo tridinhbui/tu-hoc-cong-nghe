@@ -2,7 +2,8 @@
 
 import { useState, useRef, useEffect, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Send, X } from "lucide-react";
+import { Send, X, ImagePlus, Loader2 } from "lucide-react";
+import { toast } from "sonner";
 import { createClient } from "@/lib/supabase";
 import Logo from "@/components/Logo";
 import { getRandomCommunityShoutout } from "@/lib/supabase-user";
@@ -10,6 +11,8 @@ import {
   getChatHistory,
   sendMessage,
   subscribeToChatMessages,
+  uploadChatImage,
+  isAllowedChatImage,
   type ChatMessage,
 } from "@/lib/supabase-chat";
 
@@ -21,8 +24,13 @@ export default function ChatWithAdminWidget() {
   const [sending, setSending] = useState(false);
   const [loadingHistory, setLoadingHistory] = useState(false);
   const [shoutout, setShoutout] = useState<string | null>(null);
+  const [pendingImage, setPendingImage] = useState<File | null>(null);
+  const [pendingImagePreview, setPendingImagePreview] = useState<string | null>(null);
+  const [uploadingImage, setUploadingImage] = useState(false);
+  const [isDraggingImage, setIsDraggingImage] = useState(false);
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const hasLoadedHistoryRef = useRef(false);
+  const fileInputRef = useRef<HTMLInputElement>(null);
 
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
@@ -81,21 +89,64 @@ export default function ChatWithAdminWidget() {
     void loadConversation();
   }, [isOpen, loadConversation]);
 
+  function pickImage(file: File | null | undefined) {
+    if (!file) return;
+    const invalidReason = isAllowedChatImage(file);
+    if (invalidReason) {
+      toast.error(invalidReason);
+      return;
+    }
+    setPendingImage(file);
+    setPendingImagePreview(URL.createObjectURL(file));
+  }
+
+  function clearPendingImage() {
+    if (pendingImagePreview) URL.revokeObjectURL(pendingImagePreview);
+    setPendingImage(null);
+    setPendingImagePreview(null);
+    if (fileInputRef.current) fileInputRef.current.value = "";
+  }
+
+  // Ctrl+V a screenshot straight into the chat, not just drag-drop/file
+  // picker - the most common way people actually share a screenshot.
+  function handlePaste(e: React.ClipboardEvent) {
+    const file = Array.from(e.clipboardData.items)
+      .find((item) => item.type.startsWith("image/"))
+      ?.getAsFile();
+    if (file) pickImage(file);
+  }
+
   const handleSend = async () => {
-    if (!input.trim() || !userId || sending) return;
+    if ((!input.trim() && !pendingImage) || !userId || sending) return;
 
     setSending(true);
     const content = input;
     setInput("");
+    const imageFile = pendingImage;
+    clearPendingImage();
 
-    const saved = await sendMessage(userId, "user", content);
-    if (saved) {
-      setMessages((prev) => {
-        if (prev.some((m) => m.id === saved.id)) return prev;
-        return [...prev, saved];
-      });
+    try {
+      let imageUrl: string | null = null;
+      if (imageFile) {
+        setUploadingImage(true);
+        imageUrl = await uploadChatImage(userId, imageFile);
+        setUploadingImage(false);
+      }
+
+      const saved = await sendMessage(userId, "user", content, imageUrl);
+      if (saved) {
+        setMessages((prev) => {
+          if (prev.some((m) => m.id === saved.id)) return prev;
+          return [...prev, saved];
+        });
+      }
+    } catch (error) {
+      console.error("Error sending chat image:", error);
+      toast.error(error instanceof Error ? error.message : "Không gửi được ảnh. Vui lòng thử lại.");
+    } finally {
+      setUploadingImage(false);
+      setSending(false);
     }
-    setSending(false);
   };
 
   return (
@@ -183,7 +234,16 @@ export default function ChatWithAdminWidget() {
                         : "bg-white dark:bg-stone-800 text-stone-900 dark:text-stone-100 border border-stone-300 dark:border-stone-700 rounded-bl-none"
                     }`}
                   >
-                    <p className="text-sm">{msg.content}</p>
+                    {msg.image_url && (
+                      // eslint-disable-next-line @next/next/no-img-element
+                      <img
+                        src={msg.image_url}
+                        alt="Ảnh đính kèm"
+                        className="max-w-full max-h-48 rounded-lg mb-1.5 cursor-pointer object-cover"
+                        onClick={() => window.open(msg.image_url!, "_blank")}
+                      />
+                    )}
+                    {msg.content && <p className="text-sm">{msg.content}</p>}
                     <p
                       className={`text-xs mt-1 ${
                         msg.sender === "user" ? "text-stone-500 dark:text-stone-400" : "text-stone-500 dark:text-stone-400"
@@ -200,9 +260,54 @@ export default function ChatWithAdminWidget() {
               <div ref={messagesEndRef} />
             </div>
 
-            {/* Input */}
-            <div className="border-t border-stone-200 dark:border-stone-800 p-4 bg-white dark:bg-stone-900">
+            {/* Input - also a drop zone for dragging in a screenshot, and
+                onPaste catches Ctrl+V'd images (the most common way people
+                actually share a screenshot). */}
+            <div
+              onDragOver={(e) => {
+                e.preventDefault();
+                setIsDraggingImage(true);
+              }}
+              onDragLeave={() => setIsDraggingImage(false)}
+              onDrop={(e) => {
+                e.preventDefault();
+                setIsDraggingImage(false);
+                pickImage(e.dataTransfer.files?.[0]);
+              }}
+              className={`border-t p-4 bg-white dark:bg-stone-900 transition-colors ${
+                isDraggingImage ? "border-emerald-400 bg-emerald-50/50 dark:bg-emerald-950/20" : "border-stone-200 dark:border-stone-800"
+              }`}
+            >
+              {pendingImagePreview && (
+                <div className="relative inline-block mb-2">
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img src={pendingImagePreview} alt="Xem trước" className="h-16 rounded-lg border border-stone-200 dark:border-stone-700 object-cover" />
+                  <button
+                    onClick={clearPendingImage}
+                    className="absolute -top-1.5 -right-1.5 w-5 h-5 rounded-full bg-stone-900 text-white flex items-center justify-center"
+                  >
+                    <X className="w-3 h-3" />
+                  </button>
+                </div>
+              )}
+              {isDraggingImage && (
+                <p className="text-xs font-bold text-emerald-600 dark:text-emerald-400 text-center mb-2">Thả ảnh vào đây để đính kèm</p>
+              )}
               <div className="flex gap-2">
+                <input
+                  ref={fileInputRef}
+                  type="file"
+                  accept="image/png,image/jpeg,image/webp,image/gif"
+                  className="hidden"
+                  onChange={(e) => pickImage(e.target.files?.[0])}
+                />
+                <button
+                  onClick={() => fileInputRef.current?.click()}
+                  title="Đính kèm ảnh"
+                  className="p-2 border border-stone-300 dark:border-stone-700 text-stone-500 dark:text-stone-400 hover:text-stone-900 dark:hover:text-stone-100 rounded-lg transition flex-shrink-0"
+                >
+                  <ImagePlus className="w-4 h-4" />
+                </button>
                 <input
                   type="text"
                   value={input}
@@ -210,15 +315,16 @@ export default function ChatWithAdminWidget() {
                   onKeyDown={(e) => {
                     if (e.key === "Enter") handleSend();
                   }}
-                  placeholder="Nhập tin nhắn..."
-                  className="flex-1 px-3 py-2 border border-stone-300 dark:border-stone-700 bg-white dark:bg-stone-800 text-stone-900 dark:text-stone-100 rounded-lg text-sm focus:outline-none focus:border-stone-900 dark:focus:border-stone-400"
+                  onPaste={handlePaste}
+                  placeholder="Nhập tin nhắn, dán hoặc kéo ảnh vào..."
+                  className="flex-1 min-w-0 px-3 py-2 border border-stone-300 dark:border-stone-700 bg-white dark:bg-stone-800 text-stone-900 dark:text-stone-100 rounded-lg text-sm focus:outline-none focus:border-stone-900 dark:focus:border-stone-400"
                 />
                 <button
                   onClick={handleSend}
-                  disabled={!input.trim() || sending || !userId}
-                  className="p-2 bg-stone-900 dark:bg-stone-100 text-white dark:text-stone-900 rounded-lg hover:bg-stone-800 dark:hover:bg-white disabled:opacity-40 transition"
+                  disabled={(!input.trim() && !pendingImage) || sending || !userId}
+                  className="p-2 bg-stone-900 dark:bg-stone-100 text-white dark:text-stone-900 rounded-lg hover:bg-stone-800 dark:hover:bg-white disabled:opacity-40 transition flex-shrink-0"
                 >
-                  <Send className="w-4 h-4" />
+                  {uploadingImage ? <Loader2 className="w-4 h-4 animate-spin" /> : <Send className="w-4 h-4" />}
                 </button>
               </div>
             </div>
