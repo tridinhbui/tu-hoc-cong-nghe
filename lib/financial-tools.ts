@@ -63,6 +63,33 @@ export async function getNetWorthHistory(userId: string): Promise<NetWorthSnapsh
   }));
 }
 
+export interface NetWorthCommunityStats {
+  percentile: number | null;
+  averageNetWorth: number;
+  sampleSize: number;
+}
+
+// Computed server-side (see get_net_worth_percentile RPC) from everyone's
+// latest snapshot - deliberately only an aggregate, never per-user rows.
+export async function getNetWorthCommunityStats(netWorth: number): Promise<NetWorthCommunityStats | null> {
+  const supabase = createClient();
+  const { data, error } = await supabase.rpc("get_net_worth_percentile", { p_net_worth: netWorth });
+
+  if (error) {
+    if (isMissingTableError(error) || error.code === "42883") return null; // function not migrated yet
+    throw handleSupabaseError(error);
+  }
+
+  const row = Array.isArray(data) ? data[0] : data;
+  if (!row || row.sample_size < 5) return null; // too few users to be a meaningful/anonymous comparison
+
+  return {
+    percentile: row.percentile === null ? null : Number(row.percentile),
+    averageNetWorth: Number(row.average_net_worth),
+    sampleSize: Number(row.sample_size),
+  };
+}
+
 export async function saveNetWorthSnapshot(
   userId: string,
   assetsBreakdown: Record<string, number>,

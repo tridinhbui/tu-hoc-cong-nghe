@@ -1,12 +1,13 @@
 "use client";
 
-import { useMemo, useState } from "react";
-import { RotateCcw } from "lucide-react";
-import { getBucketConfig, recordGameSession, type GameType } from "@/lib/games";
+import { useMemo, useState, useEffect, useRef } from "react";
+import { RotateCcw, Timer } from "lucide-react";
+import { getBucketConfig, getDifficultyTimeLimitSeconds, recordGameSession, type GameType, type GameDifficulty } from "@/lib/games";
 
 interface BucketGameProps {
   userId: string;
   gameType: GameType;
+  difficulty?: GameDifficulty;
   onFinished: (score: number, total: number, xpEarned: number) => void;
 }
 
@@ -21,8 +22,9 @@ interface RoundItem {
 // Generic "drag each item into the correct category column" game, driven by
 // getBucketConfig(gameType) - one component powers financial-statement-match,
 // ratio-category, and any future bucket game without code changes.
-export default function BucketGame({ userId, gameType, onFinished }: BucketGameProps) {
-  const config = useMemo(() => getBucketConfig(gameType), [gameType]);
+export default function BucketGame({ userId, gameType, difficulty = "trung-binh", onFinished }: BucketGameProps) {
+  const config = useMemo(() => getBucketConfig(gameType, difficulty), [gameType, difficulty]);
+  const timeLimit = getDifficultyTimeLimitSeconds(difficulty);
 
   const buildRound = useMemo(
     () => () => {
@@ -38,6 +40,9 @@ export default function BucketGame({ userId, gameType, onFinished }: BucketGameP
   const [wrongFlashId, setWrongFlashId] = useState<number | null>(null);
   const [submitting, setSubmitting] = useState(false);
   const [finished, setFinished] = useState(false);
+  const [timeLeft, setTimeLeft] = useState(timeLimit ?? 0);
+  const itemsRef = useRef(items);
+  itemsRef.current = items;
 
   const total = items.length;
   const placedCount = items.filter((it) => it.placed).length;
@@ -49,6 +54,7 @@ export default function BucketGame({ userId, gameType, onFinished }: BucketGameP
     setWrongFlashId(null);
     setSubmitting(false);
     setFinished(false);
+    setTimeLeft(timeLimit ?? 0);
   }
 
   async function handleFinish(finalItems: RoundItem[]) {
@@ -62,6 +68,20 @@ export default function BucketGame({ userId, gameType, onFinished }: BucketGameP
       setSubmitting(false);
     }
   }
+
+  // Hard-mode countdown - ticks down once per second and force-finishes the
+  // round (scoring whatever's placed so far) if it hits 0 before all items
+  // are placed.
+  useEffect(() => {
+    if (!timeLimit || finished) return;
+    if (timeLeft <= 0) {
+      void handleFinish(itemsRef.current);
+      return;
+    }
+    const t = window.setTimeout(() => setTimeLeft((s) => s - 1), 1000);
+    return () => window.clearTimeout(t);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [timeLeft, timeLimit, finished]);
 
   function attemptPlace(itemId: number, bucket: string) {
     const item = items.find((it) => it.id === itemId);
@@ -116,13 +136,21 @@ export default function BucketGame({ userId, gameType, onFinished }: BucketGameP
             <div className="h-full bg-gradient-to-r from-emerald-500 to-teal-500 transition-all duration-300" style={{ width: `${total > 0 ? (placedCount / total) * 100 : 0}%` }} />
           </div>
         </div>
-        <button
-          onClick={resetRound}
-          className="inline-flex items-center gap-1.5 text-xs font-bold text-stone-500 dark:text-stone-400 hover:text-stone-900 dark:hover:text-stone-105 border border-stone-200 dark:border-stone-800 rounded-xl px-3 py-2 hover:bg-stone-50 dark:hover:bg-stone-800 transition-colors flex-shrink-0"
-        >
-          <RotateCcw className="w-3.5 h-3.5" />
-          <span>Chơi lại</span>
-        </button>
+        <div className="flex items-center gap-2 flex-shrink-0">
+          {timeLimit && !finished && (
+            <span className={`inline-flex items-center gap-1 text-xs font-extrabold px-2.5 py-2 rounded-xl ${timeLeft <= 10 ? "text-rose-600 bg-rose-50 dark:bg-rose-950/40 animate-pulse" : "text-stone-600 dark:text-stone-300 bg-stone-100 dark:bg-stone-800"}`}>
+              <Timer className="w-3.5 h-3.5" />
+              {timeLeft}s
+            </span>
+          )}
+          <button
+            onClick={resetRound}
+            className="inline-flex items-center gap-1.5 text-xs font-bold text-stone-500 dark:text-stone-400 hover:text-stone-900 dark:hover:text-stone-105 border border-stone-200 dark:border-stone-800 rounded-xl px-3 py-2 hover:bg-stone-50 dark:hover:bg-stone-800 transition-colors"
+          >
+            <RotateCcw className="w-3.5 h-3.5" />
+            <span>Chơi lại</span>
+          </button>
+        </div>
       </div>
 
       {finished ? (

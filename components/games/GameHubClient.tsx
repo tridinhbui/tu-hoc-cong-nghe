@@ -5,7 +5,7 @@ import { toast } from "sonner";
 import { Gamepad2, Trophy, History as HistoryIcon, ArrowLeft, Crown } from "lucide-react";
 import Link from "next/link";
 import { useAuthGate } from "@/lib/use-auth-gate";
-import { GAMES, getGameMeta, type GameType } from "@/lib/games";
+import { GAMES, GAME_DIFFICULTIES, getGameMeta, type GameType, type GameDifficulty } from "@/lib/games";
 import { recalculateUserStats } from "@/lib/supabase-user";
 import GameLeaderboard from "@/components/games/GameLeaderboard";
 import GameHistory from "@/components/games/GameHistory";
@@ -57,6 +57,7 @@ const ACCENT: Record<string, { grad: string; ring: string; chip: string; glow: s
 export default function GameHubClient() {
   const { userId, checking } = useAuthGate();
   const [activeGame, setActiveGame] = useState<GameType | null>(null);
+  const [difficulty, setDifficulty] = useState<GameDifficulty>("trung-binh");
   const [innerTab, setInnerTab] = useState<InnerTab>("play");
   const [hubTab, setHubTab] = useState<HubTab>("games");
 
@@ -129,6 +130,7 @@ export default function GameHubClient() {
                     key={g.id}
                     onClick={() => {
                       setActiveGame(g.id);
+                      setDifficulty("trung-binh");
                       setInnerTab("play");
                     }}
                     className={`group text-left rounded-2xl border border-stone-200 dark:border-stone-850 bg-white dark:bg-stone-900 p-5 transition-all duration-300 hover:-translate-y-1 relative overflow-hidden ${a.ring} ${a.shadow}`}
@@ -186,6 +188,28 @@ export default function GameHubClient() {
           <h1 className="text-lg sm:text-xl font-bold text-stone-900 dark:text-stone-100">{meta.title}</h1>
         </div>
 
+        {innerTab === "play" && (
+          <div className="mb-4 sm:mb-6">
+            <p className="text-[10px] font-extrabold text-stone-400 dark:text-stone-500 uppercase tracking-widest mb-2">Độ khó</p>
+            <div className="flex flex-wrap gap-2">
+              {GAME_DIFFICULTIES.map((d) => (
+                <button
+                  key={d.id}
+                  onClick={() => setDifficulty(d.id)}
+                  title={d.hint}
+                  className={`text-xs font-bold px-3 py-2 rounded-xl border-2 transition-all ${
+                    difficulty === d.id
+                      ? "border-stone-900 dark:border-stone-100 bg-stone-900 dark:bg-stone-100 text-white dark:text-stone-900"
+                      : "border-stone-200 dark:border-stone-800 text-stone-600 dark:text-stone-400 hover:border-stone-400 dark:hover:border-stone-600"
+                  }`}
+                >
+                  {d.label}
+                </button>
+              ))}
+            </div>
+          </div>
+        )}
+
         <div className="flex gap-1 sm:gap-1.5 mb-4 sm:mb-6 bg-stone-100 dark:bg-stone-900 rounded-xl p-1 sm:p-1.5">
           {[
             { id: "play" as const, label: "Chơi", short: "Chơi", icon: Gamepad2 },
@@ -210,9 +234,9 @@ export default function GameHubClient() {
 
         {innerTab === "play" &&
           (meta.mechanic === "bucket" ? (
-            <BucketGame userId={userId} gameType={activeGame} onFinished={handleFinished} />
+            <BucketGame key={`${activeGame}-${difficulty}`} userId={userId} gameType={activeGame} difficulty={difficulty} onFinished={handleFinished} />
           ) : (
-            <PairGame userId={userId} gameType={activeGame} onFinished={handleFinished} />
+            <PairGame key={`${activeGame}-${difficulty}`} userId={userId} gameType={activeGame} difficulty={difficulty} onFinished={handleFinished} />
           ))}
         {innerTab === "leaderboard" && <GameLeaderboard gameType={activeGame} />}
         {innerTab === "history" && <GameHistory userId={userId} gameType={activeGame} />}

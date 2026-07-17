@@ -1184,15 +1184,19 @@ export default function DashboardClient({ lessonsMeta }: { lessonsMeta: LessonMe
               </div>
             </div>
           </div>
-          {/* Track selector - Compact */}
-          <div data-tour="track-selector" className="grid grid-cols-1 sm:grid-cols-3 gap-3 mb-8">
+          {/* Track selector - Compact. All 3 cards use h-full + flex-col
+              justify-between so they land on the same height regardless of
+              how many content lines each one has (personal/CFA got a fun
+              one-line subtitle added specifically to match professional's,
+              which was shortened to a single inline badge to compensate). */}
+          <div data-tour="track-selector" className="grid grid-cols-1 sm:grid-cols-3 gap-3 mb-8 items-stretch">
           {[TRACK_PERSONAL, TRACK_PROFESSIONAL].map((t) => {
             const isActive = activeTrack === t.id;
             return (
-              <div key={t.id} className="relative group">
+              <div key={t.id} className="relative group h-full">
                 <button
                   onClick={() => setActiveTrack(t.id as "personal" | "professional")}
-                  className={`w-full text-left rounded-xl border-2 px-5 py-4 transition-all ${
+                  className={`w-full h-full flex flex-col text-left rounded-xl border-2 px-5 py-4 transition-all ${
                     isActive
                       ? "border-stone-900 dark:border-stone-100 bg-stone-900 dark:bg-stone-100 text-white dark:text-stone-900"
                       : "border-stone-200 dark:border-stone-800 bg-white dark:bg-stone-900 text-stone-700 dark:text-stone-300 hover:border-stone-400 dark:hover:border-stone-600"
@@ -1217,11 +1221,11 @@ export default function DashboardClient({ lessonsMeta }: { lessonsMeta: LessonMe
                   <div className={`text-xs mt-0.5 ${isActive ? "text-stone-300 dark:text-stone-600" : "text-stone-500 dark:text-stone-400"}`}>
                     ~{t.estimatedHours} giờ học
                   </div>
-                  {t.id === "professional" && (
-                    <div className={`text-[10px] mt-1 font-semibold ${isActive ? "text-amber-300" : "text-amber-600 dark:text-amber-400"}`}>
-                      🚀 Ít người khai phá - lộ trình sâu nhất, giá trị nhất
-                    </div>
-                  )}
+                  <div className={`text-[10px] mt-1 font-semibold ${isActive ? "text-amber-300" : "text-amber-600 dark:text-amber-400"}`}>
+                    {t.id === "professional"
+                      ? "🚀 Ít người khai phá - giá trị nhất"
+                      : "🌱 Nền móng vững, ai cũng nên bắt đầu từ đây"}
+                  </div>
                   {/* Hover only works on pointer devices - phones get the same
                       description inline instead, since there's no hover to
                       reveal it on tap. */}
@@ -1252,7 +1256,7 @@ export default function DashboardClient({ lessonsMeta }: { lessonsMeta: LessonMe
 
           <button
             onClick={() => setActiveTrack("cfa")}
-            className={`w-full text-left rounded-xl border-2 px-5 py-4 transition-all ${
+            className={`w-full h-full flex flex-col text-left rounded-xl border-2 px-5 py-4 transition-all ${
               activeTrack === "cfa"
                 ? "border-stone-900 dark:border-stone-100 bg-stone-900 dark:bg-stone-100 text-white dark:text-stone-900"
                 : "border-stone-200 dark:border-stone-800 bg-white dark:bg-stone-900 text-stone-700 dark:text-stone-300 hover:border-stone-400 dark:hover:border-stone-600"
@@ -1263,6 +1267,9 @@ export default function DashboardClient({ lessonsMeta }: { lessonsMeta: LessonMe
             </div>
             <div className={`text-xs mt-0.5 ${activeTrack === "cfa" ? "text-stone-300 dark:text-stone-600" : "text-stone-500 dark:text-stone-400"}`}>
               CFA Level I · ~{TRACKS.cfa.estimatedHours} giờ học
+            </div>
+            <div className={`text-[10px] mt-1 font-semibold ${activeTrack === "cfa" ? "text-amber-300" : "text-amber-600 dark:text-amber-400"}`}>
+              🎓 Chứng chỉ quốc tế - mở cửa sự nghiệp tài chính
             </div>
           </button>
         </div>

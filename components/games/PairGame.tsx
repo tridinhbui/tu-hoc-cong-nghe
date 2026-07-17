@@ -1,12 +1,13 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
-import { RefreshCw } from "lucide-react";
-import { getPairConfig, pickPairRound, recordGameSession, type GameType } from "@/lib/games";
+import { useEffect, useMemo, useState, useRef } from "react";
+import { RefreshCw, Timer } from "lucide-react";
+import { getPairConfig, pickPairRound, getDifficultyTimeLimitSeconds, recordGameSession, type GameType, type GameDifficulty } from "@/lib/games";
 
 interface Props {
   userId: string;
   gameType: GameType;
+  difficulty?: GameDifficulty;
   onFinished: (score: number, total: number, xpEarned: number) => void;
 }
 
@@ -22,9 +23,10 @@ function shuffle<T>(arr: T[]): T[] {
 // Generic "match each left card to its right-column partner" game, driven by
 // getPairConfig(gameType) - powers en-vi-terms, term-definition, formula-match
 // and any future pair game from data alone.
-export default function PairGame({ userId, gameType, onFinished }: Props) {
-  const config = useMemo(() => getPairConfig(gameType), [gameType]);
-  const [round, setRound] = useState<{ left: string; right: string }[]>(() => pickPairRound(gameType));
+export default function PairGame({ userId, gameType, difficulty = "trung-binh", onFinished }: Props) {
+  const config = useMemo(() => getPairConfig(gameType, difficulty), [gameType, difficulty]);
+  const timeLimit = getDifficultyTimeLimitSeconds(difficulty);
+  const [round, setRound] = useState<{ left: string; right: string }[]>(() => pickPairRound(gameType, difficulty));
   const [leftOrder, setLeftOrder] = useState<number[]>([]);
   const [rightOrder, setRightOrder] = useState<number[]>([]);
   const [leftCards, setLeftCards] = useState<Record<number, CardState>>({});
@@ -36,9 +38,12 @@ export default function PairGame({ userId, gameType, onFinished }: Props) {
   const [score, setScore] = useState(0);
   const [finished, setFinished] = useState(false);
   const [submitting, setSubmitting] = useState(false);
+  const [timeLeft, setTimeLeft] = useState(timeLimit ?? 0);
+  const scoreRef = useRef(0);
+  const roundLenRef = useRef(0);
 
   function startNewRound() {
-    const newRound = pickPairRound(gameType);
+    const newRound = pickPairRound(gameType, difficulty);
     const indices = newRound.map((_, i) => i);
     setRound(newRound);
     setLeftOrder(shuffle(indices));
@@ -50,14 +55,34 @@ export default function PairGame({ userId, gameType, onFinished }: Props) {
     setShakePair({ left: null, right: null });
     setMatchedCount(0);
     setScore(0);
+    scoreRef.current = 0;
+    roundLenRef.current = newRound.length;
     setFinished(false);
     setSubmitting(false);
+    setTimeLeft(timeLimit ?? 0);
   }
 
   useEffect(() => {
     startNewRound();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [gameType]);
+  }, [gameType, difficulty]);
+
+  // Hard-mode countdown - force-finishes with whatever's matched so far.
+  useEffect(() => {
+    if (!timeLimit || finished) return;
+    if (timeLeft <= 0) {
+      setFinished(true);
+      setSubmitting(true);
+      recordGameSession(userId, gameType, scoreRef.current, roundLenRef.current)
+        .then((xpEarned) => onFinished(scoreRef.current, roundLenRef.current, xpEarned))
+        .catch(() => onFinished(scoreRef.current, roundLenRef.current, 0))
+        .finally(() => setSubmitting(false));
+      return;
+    }
+    const t = window.setTimeout(() => setTimeLeft((s) => s - 1), 1000);
+    return () => window.clearTimeout(t);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [timeLeft, timeLimit, finished]);
 
   async function tryMatch(leftIdx: number, rightIdx: number) {
     const l = leftCards[leftIdx];
@@ -73,6 +98,7 @@ export default function PairGame({ userId, gameType, onFinished }: Props) {
       const newScore = countsForScore ? score + 1 : score;
       const newMatched = matchedCount + 1;
       setScore(newScore);
+      scoreRef.current = newScore;
       setMatchedCount(newMatched);
       if (newMatched >= round.length) {
         setFinished(true);
@@ -155,13 +181,21 @@ export default function PairGame({ userId, gameType, onFinished }: Props) {
             <div className="h-full bg-gradient-to-r from-emerald-500 to-teal-500 transition-all duration-300" style={{ width: `${round.length ? (matchedCount / round.length) * 100 : 0}%` }} />
           </div>
         </div>
-        <button
-          onClick={startNewRound}
-          className="inline-flex items-center gap-1.5 text-xs font-bold text-stone-500 dark:text-stone-400 hover:text-stone-900 dark:hover:text-stone-105 border border-stone-200 dark:border-stone-800 rounded-xl px-3 py-2 hover:bg-stone-50 dark:hover:bg-stone-800 transition-colors flex-shrink-0"
-        >
-          <RefreshCw className="w-3.5 h-3.5" />
-          <span>Chơi lại</span>
-        </button>
+        <div className="flex items-center gap-2 flex-shrink-0">
+          {timeLimit && !finished && (
+            <span className={`inline-flex items-center gap-1 text-xs font-extrabold px-2.5 py-2 rounded-xl ${timeLeft <= 10 ? "text-rose-600 bg-rose-50 dark:bg-rose-950/40 animate-pulse" : "text-stone-600 dark:text-stone-300 bg-stone-100 dark:bg-stone-800"}`}>
+              <Timer className="w-3.5 h-3.5" />
+              {timeLeft}s
+            </span>
+          )}
+          <button
+            onClick={startNewRound}
+            className="inline-flex items-center gap-1.5 text-xs font-bold text-stone-500 dark:text-stone-400 hover:text-stone-900 dark:hover:text-stone-105 border border-stone-200 dark:border-stone-800 rounded-xl px-3 py-2 hover:bg-stone-50 dark:hover:bg-stone-800 transition-colors"
+          >
+            <RefreshCw className="w-3.5 h-3.5" />
+            <span>Chơi lại</span>
+          </button>
+        </div>
       </div>
 
       <div className="grid grid-cols-2 gap-2 text-[10px] font-extrabold text-stone-400 dark:text-stone-500 uppercase tracking-widest mb-1 relative z-10">

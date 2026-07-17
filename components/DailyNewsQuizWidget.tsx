@@ -137,6 +137,18 @@ export default function DailyNewsQuizWidget({ userId, compact = false }: DailyNe
   // avoid pushing the rest of the sidebar (leaderboard etc.) far down.
   const [collapsed, setCollapsed] = useState<boolean>(compact);
 
+  // "Unlimited" continuous practice mode: cycles through the same fixed
+  // question pool (NEWS_QUIZZES is hand-authored, not a live feed - there's
+  // no real news source wired up) without the once-a-day XP claim, so
+  // someone can keep drilling past today's single question without it
+  // looking like an exploit of the daily reward.
+  const [practiceMode, setPracticeMode] = useState(false);
+  const [practiceQuiz, setPracticeQuiz] = useState<NewsQuiz | null>(null);
+  const [practiceSelectedOpt, setPracticeSelectedOpt] = useState<number | null>(null);
+  const [practiceAnswered, setPracticeAnswered] = useState(false);
+  const [practiceCorrect, setPracticeCorrect] = useState(false);
+  const [practiceStreak, setPracticeStreak] = useState(0);
+
   const todayKey = new Date().toISOString().split("T")[0]; // YYYY-MM-DD
   const localAnsweredKey = `news_quiz_answered_${userId}_${todayKey}`;
 
@@ -193,7 +205,38 @@ export default function DailyNewsQuizWidget({ userId, compact = false }: DailyNe
     }
   };
 
+  function startPractice() {
+    setPracticeMode(true);
+    setPracticeStreak(0);
+    pickNextPracticeQuiz();
+  }
+
+  function pickNextPracticeQuiz() {
+    const pool = NEWS_QUIZZES.filter((q) => q.day !== practiceQuiz?.day);
+    const next = pool[Math.floor(Math.random() * pool.length)] ?? NEWS_QUIZZES[0];
+    setPracticeQuiz(next);
+    setPracticeSelectedOpt(null);
+    setPracticeAnswered(false);
+    setPracticeCorrect(false);
+  }
+
+  function submitPractice() {
+    if (practiceSelectedOpt === null || !practiceQuiz) return;
+    const correct = practiceSelectedOpt === practiceQuiz.correctIndex;
+    setPracticeCorrect(correct);
+    setPracticeAnswered(true);
+    if (correct) setPracticeStreak((s) => s + 1);
+    else setPracticeStreak(0);
+  }
+
   if (!quiz) return null;
+
+  const activeQuiz = practiceMode ? practiceQuiz : quiz;
+  const activeSelectedOpt = practiceMode ? practiceSelectedOpt : selectedOpt;
+  const activeIsAnswered = practiceMode ? practiceAnswered : isAnswered;
+  const activeIsCorrect = practiceMode ? practiceCorrect : isCorrect;
+
+  if (!activeQuiz) return null;
 
   return (
     <div className={`bg-white dark:bg-stone-900 border border-stone-250 dark:border-stone-800 overflow-hidden shadow-sm ${compact ? "rounded-2xl" : "rounded-3xl"}`}>
@@ -211,7 +254,7 @@ export default function DailyNewsQuizWidget({ userId, compact = false }: DailyNe
           <div>
             <h3 className="font-bold text-stone-900 dark:text-stone-100 flex items-center gap-1.5 text-base">
               {compact ? "Thử thách Tài chính" : "Thử thách Tin tức Tài chính"}
-              {!isAnswered && (
+              {!activeIsAnswered && (
                 <span className="w-2 h-2 rounded-full bg-rose-500 animate-ping" />
               )}
             </h3>
@@ -232,17 +275,24 @@ export default function DailyNewsQuizWidget({ userId, compact = false }: DailyNe
         <div className={compact ? "p-4 space-y-3" : "p-6 space-y-4"}>
           {/* News snippet box */}
           <div className={`bg-stone-50 dark:bg-stone-950 border border-stone-150 dark:border-stone-850/80 ${compact ? "rounded-xl p-3" : "rounded-2xl p-4"}`}>
-            <div className="flex items-center gap-1.5 mb-2">
+            <div className="flex items-center gap-1.5 mb-2 flex-wrap">
               <span className="text-[9px] font-extrabold bg-sky-100 dark:bg-sky-950/60 text-sky-850 dark:text-sky-400 px-2 py-0.5 rounded uppercase">
-                Điểm tin hôm nay
+                {practiceMode ? "Tình huống luyện tập" : "Điểm tin hôm nay"}
+              </span>
+              {/* NEWS_QUIZZES above is a hand-authored, fixed set of scenarios
+                  (not a live news feed) - flagging that explicitly so the
+                  specific-looking numbers (CPI %, tỷ giá, lãi suất...) never
+                  get mistaken for real reported news. */}
+              <span className="text-[9px] font-bold text-stone-400 dark:text-stone-500">
+                📰 Tình huống mô phỏng để luyện tư duy - không phải tin thật
               </span>
             </div>
             <h4 className={`font-black text-stone-900 dark:text-stone-150 leading-snug ${compact ? "text-[11px]" : "text-xs"}`}>
-              {quiz.newsTitle}
+              {activeQuiz.newsTitle}
             </h4>
             {!compact && (
               <p className="text-[11px] text-stone-600 dark:text-stone-400 mt-2 leading-relaxed italic">
-                "{quiz.newsBody}"
+                "{activeQuiz.newsBody}"
               </p>
             )}
           </div>
@@ -251,20 +301,20 @@ export default function DailyNewsQuizWidget({ userId, compact = false }: DailyNe
           <div className={compact ? "space-y-2" : "space-y-3"}>
             <h4 className={`font-black text-stone-900 dark:text-stone-100 flex items-start gap-1.5 ${compact ? "text-[11px]" : "text-xs"}`}>
               <HelpCircle className="w-4 h-4 text-stone-400 dark:text-stone-500 mt-0.5 shrink-0" />
-              <span>{quiz.question}</span>
+              <span>{activeQuiz.question}</span>
             </h4>
 
             <div className={compact ? "grid gap-1.5" : "grid gap-2"}>
-              {quiz.options.map((opt, idx) => {
-                const isSelected = selectedOpt === idx;
-                const showSuccess = isAnswered && idx === quiz.correctIndex;
-                const showFailure = isAnswered && isSelected && !isCorrect;
+              {activeQuiz.options.map((opt, idx) => {
+                const isSelected = activeSelectedOpt === idx;
+                const showSuccess = activeIsAnswered && idx === activeQuiz.correctIndex;
+                const showFailure = activeIsAnswered && isSelected && !activeIsCorrect;
 
                 return (
                   <button
                     key={idx}
-                    disabled={isAnswered}
-                    onClick={() => setSelectedOpt(idx)}
+                    disabled={activeIsAnswered}
+                    onClick={() => (practiceMode ? setPracticeSelectedOpt(idx) : setSelectedOpt(idx))}
                     className={`w-full text-left rounded-xl border leading-relaxed transition-all flex items-start gap-2.5 focus:outline-none ${
                       compact ? "p-2.5 text-[11px]" : "p-3.5 text-xs"
                     } ${
@@ -298,10 +348,10 @@ export default function DailyNewsQuizWidget({ userId, compact = false }: DailyNe
           </div>
 
           {/* Submit or Explanation block */}
-          {!isAnswered ? (
+          {!activeIsAnswered ? (
             <button
-              onClick={handleSubmit}
-              disabled={selectedOpt === null}
+              onClick={practiceMode ? submitPractice : handleSubmit}
+              disabled={activeSelectedOpt === null}
               className={`w-full bg-stone-900 hover:bg-stone-800 disabled:bg-stone-200 dark:bg-stone-100 dark:hover:bg-stone-200 dark:disabled:bg-stone-800 text-white dark:text-stone-900 disabled:text-stone-400 rounded-xl font-extrabold tracking-wider uppercase transition-colors cursor-pointer ${
                 compact ? "py-2.5 text-[10px]" : "py-3 text-xs"
               }`}
@@ -311,13 +361,46 @@ export default function DailyNewsQuizWidget({ userId, compact = false }: DailyNe
           ) : (
             <div className={`rounded-2xl bg-stone-50 dark:bg-stone-950 border border-stone-200/60 dark:border-stone-800/80 animate-[fadeIn_0.35s_ease-out] ${compact ? "p-3" : "p-4.5"}`}>
               <h5 className="text-[10px] font-extrabold uppercase tracking-wider flex items-center gap-1.5 text-stone-700 dark:text-stone-300 mb-2">
-                <Award className={`w-4 h-4 ${isCorrect ? "text-emerald-500" : "text-stone-400"}`} />
-                <span>{isCorrect ? "Trả lời chính xác!" : "Đáp án đúng là A"}</span>
+                <Award className={`w-4 h-4 ${activeIsCorrect ? "text-emerald-500" : "text-stone-400"}`} />
+                <span>{activeIsCorrect ? "Trả lời chính xác!" : `Đáp án đúng là ${String.fromCharCode(65 + activeQuiz.correctIndex)}`}</span>
               </h5>
               <p className="text-[11px] text-stone-650 dark:text-stone-400 leading-relaxed">
-                {quiz.explanation}
+                {activeQuiz.explanation}
               </p>
             </div>
+          )}
+
+          {/* Unlimited practice mode toggle/continue */}
+          {practiceMode ? (
+            <div className="flex items-center gap-2">
+              {practiceStreak > 1 && (
+                <span className="text-[10px] font-extrabold text-emerald-600 dark:text-emerald-400 flex items-center gap-1 shrink-0">
+                  <Flame className="w-3.5 h-3.5" />
+                  Chuỗi đúng: {practiceStreak}
+                </span>
+              )}
+              {practiceAnswered && (
+                <button
+                  onClick={pickNextPracticeQuiz}
+                  className={`flex-1 bg-sky-600 hover:bg-sky-700 text-white rounded-xl font-extrabold tracking-wider uppercase transition-colors cursor-pointer ${compact ? "py-2 text-[10px]" : "py-2.5 text-xs"}`}
+                >
+                  Câu tiếp theo →
+                </button>
+              )}
+              <button
+                onClick={() => setPracticeMode(false)}
+                className={`text-stone-500 dark:text-stone-400 hover:text-stone-800 dark:hover:text-stone-200 font-bold shrink-0 ${compact ? "text-[10px]" : "text-xs"}`}
+              >
+                Thoát
+              </button>
+            </div>
+          ) : (
+            <button
+              onClick={startPractice}
+              className={`w-full border-2 border-dashed border-sky-300 dark:border-sky-800 text-sky-700 dark:text-sky-400 rounded-xl font-bold hover:bg-sky-50 dark:hover:bg-sky-950/30 transition-colors cursor-pointer ${compact ? "py-2 text-[10px]" : "py-2.5 text-xs"}`}
+            >
+              🔁 Luyện tập không giới hạn (không tính XP)
+            </button>
           )}
         </div>
       )}

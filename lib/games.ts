@@ -13,6 +13,25 @@ export type GameType =
   | "term-definition"
   | "formula-match";
 
+export type GameDifficulty = "de" | "trung-binh" | "kho";
+
+export const GAME_DIFFICULTIES: { id: GameDifficulty; label: string; hint: string }[] = [
+  { id: "de", label: "Dễ", hint: "Ít thẻ hơn, không giới hạn thời gian" },
+  { id: "trung-binh", label: "Trung bình", hint: "Số thẻ mặc định, không giới hạn thời gian" },
+  { id: "kho", label: "Khó", hint: "Nhiều thẻ hơn + giới hạn 60 giây" },
+];
+
+// Only "khó" adds time pressure - easy/medium stay untimed so newer players
+// aren't punished by a clock on top of learning the material itself.
+export function getDifficultyTimeLimitSeconds(difficulty: GameDifficulty): number | null {
+  return difficulty === "kho" ? 60 : null;
+}
+
+function scaleRoundSize(baseSize: number, poolSize: number, difficulty: GameDifficulty): number {
+  const delta = difficulty === "de" ? -4 : difficulty === "kho" ? 6 : 0;
+  return Math.max(4, Math.min(poolSize, baseSize + delta));
+}
+
 // "bucket" = drag items into the right category column; "pair" = match items
 // in a left column to their partner in the right column. Both mechanics are
 // generic and data-driven (see BucketGame / PairGame components), so new
@@ -198,8 +217,9 @@ const BUCKET_CONFIGS: Partial<Record<GameType, BucketConfig>> = {
   },
 };
 
-export function getBucketConfig(gameType: GameType): BucketConfig {
-  return BUCKET_CONFIGS[gameType] ?? BUCKET_CONFIGS["financial-statement-match"]!;
+export function getBucketConfig(gameType: GameType, difficulty: GameDifficulty = "trung-binh"): BucketConfig {
+  const base = BUCKET_CONFIGS[gameType] ?? BUCKET_CONFIGS["financial-statement-match"]!;
+  return { ...base, roundSize: scaleRoundSize(base.roundSize, base.items.length, difficulty) };
 }
 
 // ─── Generic pair-game config (match left column -> right column) ──────────
@@ -257,16 +277,21 @@ const PAIR_CONFIGS: Partial<Record<GameType, PairConfig>> = {
   },
 };
 
-export function getPairConfig(gameType: GameType): PairConfig {
+export function getPairConfig(gameType: GameType, difficulty: GameDifficulty = "trung-binh"): PairConfig {
   const cfg = PAIR_CONFIGS[gameType];
-  if (cfg) return cfg;
-  // Fallback: en-vi-terms built from the glossary.
-  const pool = Object.entries(FINANCE_GLOSSARY).map(([vi, en]) => ({ left: vi, right: en }));
-  return { pool, roundSize: 8, leftLabel: "Tiếng Việt", rightLabel: "English", hint: "Kéo thả hoặc bấm chọn 1 thẻ rồi bấm thẻ tương ứng để ghép cặp." };
+  const base = cfg ?? {
+    // Fallback: en-vi-terms built from the glossary.
+    pool: Object.entries(FINANCE_GLOSSARY).map(([vi, en]) => ({ left: vi, right: en })),
+    roundSize: 8,
+    leftLabel: "Tiếng Việt",
+    rightLabel: "English",
+    hint: "Kéo thả hoặc bấm chọn 1 thẻ rồi bấm thẻ tương ứng để ghép cặp.",
+  };
+  return { ...base, roundSize: scaleRoundSize(base.roundSize, base.pool.length, difficulty) };
 }
 
-export function pickPairRound(gameType: GameType): { left: string; right: string }[] {
-  const cfg = getPairConfig(gameType);
+export function pickPairRound(gameType: GameType, difficulty: GameDifficulty = "trung-binh"): { left: string; right: string }[] {
+  const cfg = getPairConfig(gameType, difficulty);
   return [...cfg.pool].sort(() => Math.random() - 0.5).slice(0, Math.min(cfg.roundSize, cfg.pool.length));
 }
 

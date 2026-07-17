@@ -46,6 +46,19 @@ const DEFAULT_TRENDING = [
   "loi-nhuan-cac-cap-do",
 ];
 
+// Illustrative "people studying this now" count - there's no real
+// view/session tracking behind this (see DashboardRecommendations research:
+// no view_count/active-session data source exists). Deterministic per slug
+// (same seed -> same number every render) so it doesn't flicker on
+// re-render, but it is NOT real telemetry - purely a social-proof visual.
+function getIllustrativeStudyingCount(seed: string, min: number, max: number): number {
+  let hash = 0;
+  for (let i = 0; i < seed.length; i++) {
+    hash = (hash * 31 + seed.charCodeAt(i)) >>> 0;
+  }
+  return min + (hash % (max - min + 1));
+}
+
 export default function DashboardRecommendations({ lessonsMeta, completed, userId }: DashboardRecommendationsProps) {
   const [collapsed, setCollapsed] = useState(false);
   const [hotCollapsed, setHotCollapsed] = useState(false);
@@ -287,6 +300,9 @@ export default function DashboardRecommendations({ lessonsMeta, completed, userI
                           <p className="text-[10px] text-stone-450 dark:text-stone-500 mt-2.5 line-clamp-1">
                             {lesson.subtitle}
                           </p>
+                          <p className="text-[9px] text-emerald-600 dark:text-emerald-400 mt-1.5 font-bold">
+                            👥 {getIllustrativeStudyingCount(lesson.slug, 20, 120)} người đang học
+                          </p>
                         </Link>
                       );
                     }
@@ -430,6 +446,9 @@ export default function DashboardRecommendations({ lessonsMeta, completed, userI
                         </div>
                         <p className="text-[10px] text-stone-455 dark:text-stone-500 mt-2.5 line-clamp-1">
                           {lesson.subtitle}
+                        </p>
+                        <p className="text-[9px] text-rose-500 dark:text-rose-400 mt-1.5 font-bold">
+                          👥 {getIllustrativeStudyingCount(lesson.slug, 80, 340)} người đang học
                         </p>
                       </Link>
                     );

@@ -10,11 +10,13 @@ import {
   XAxis,
   YAxis,
 } from "recharts";
-import { Loader2, Save, TrendingDown, TrendingUp, Wallet } from "lucide-react";
+import { Loader2, Save, TrendingDown, TrendingUp, Wallet, Users } from "lucide-react";
 import {
   getNetWorthHistory,
   saveNetWorthSnapshot,
+  getNetWorthCommunityStats,
   type NetWorthSnapshot,
+  type NetWorthCommunityStats,
 } from "@/lib/financial-tools";
 
 const ASSET_FIELDS = [
@@ -78,6 +80,7 @@ export default function NetWorthTracker({ userId }: { userId: string }) {
   const [liabilities, setLiabilities] = useState<Record<string, string>>(
     emptyBreakdown(LIABILITY_FIELDS)
   );
+  const [communityStats, setCommunityStats] = useState<NetWorthCommunityStats | null>(null);
   // Guards against a double-click/2-tab race inserting two snapshots before
   // the `saving` state's re-render lands (net_worth_snapshots is
   // insert-only, no upsert to naturally collapse duplicates).
@@ -125,6 +128,17 @@ export default function NetWorthTracker({ userId }: { userId: string }) {
       cancelled = true;
     };
   }, [userId]);
+
+  useEffect(() => {
+    if (history.length === 0) {
+      setCommunityStats(null);
+      return;
+    }
+    const latestNetWorth = history[history.length - 1].netWorth;
+    getNetWorthCommunityStats(latestNetWorth)
+      .then(setCommunityStats)
+      .catch((err) => console.error("Error loading net worth community stats:", err));
+  }, [history]);
 
   const totalAssets = useMemo(() => sumValues(assets), [assets]);
   const totalLiabilities = useMemo(() => sumValues(liabilities), [liabilities]);
@@ -317,6 +331,27 @@ export default function NetWorthTracker({ userId }: { userId: string }) {
           <p className="mt-4 text-sm text-rose-700 dark:text-rose-400">
             Tài sản ròng đang âm - đây là điểm bắt đầu, không phải điều đáng lo, hãy theo dõi xu hướng.
           </p>
+        )}
+
+        {communityStats && (
+          <div className="mt-4 rounded-xl border border-sky-200 dark:border-sky-900 bg-sky-50 dark:bg-sky-950/20 p-4">
+            <p className="text-xs font-extrabold uppercase tracking-[0.14em] text-sky-700 dark:text-sky-400 flex items-center gap-1.5 mb-2">
+              <Users className="h-3.5 w-3.5" />
+              So với cộng đồng
+            </p>
+            <p className="text-sm text-stone-700 dark:text-stone-300">
+              {communityStats.percentile !== null ? (
+                <>
+                  Tài sản ròng của bạn cao hơn <strong className="text-sky-700 dark:text-sky-400">{communityStats.percentile}%</strong> người dùng đã ghi nhận trên nền tảng.
+                </>
+              ) : (
+                "Chưa đủ dữ liệu để xếp hạng."
+              )}
+            </p>
+            <p className="text-xs text-stone-500 dark:text-stone-400 mt-1">
+              Trung bình cộng đồng: {formatVND(communityStats.averageNetWorth)} · dựa trên {communityStats.sampleSize} người dùng đã lưu snapshot
+            </p>
+          </div>
         )}
 
         {error && <p className="mt-4 text-sm text-rose-700 dark:text-rose-400">{error}</p>}
