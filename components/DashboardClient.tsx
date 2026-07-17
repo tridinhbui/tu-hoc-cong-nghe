@@ -27,6 +27,7 @@ import LessonRecallWidget from "@/components/LessonRecallWidget";
 import SmartRemediationWidget from "@/components/SmartRemediationWidget";
 import DailyNewsQuizWidget from "@/components/DailyNewsQuizWidget";
 import CombinedRewardsWidget from "@/components/CombinedRewardsWidget";
+import JourneyWidget from "@/components/JourneyWidget";
 import { hasCompletedOnboarding, completeOnboarding } from "@/lib/supabase-onboarding";
 import { getUserProfile, recalculateUserStats, getLeaderboardByMetric } from "@/lib/supabase-user";
 import { getLevelByXp } from "@/lib/levels";
@@ -1774,6 +1775,9 @@ export default function DashboardClient({ lessonsMeta }: { lessonsMeta: LessonMe
             </div>
           )}
           </>
+        )}
+        {user?.id && (
+          <JourneyWidget userId={user.id} />
         )}
       </div>
 
