@@ -219,7 +219,7 @@ export default function DashboardClient({ lessonsMeta }: { lessonsMeta: LessonMe
         entries.forEach((entry) => {
           const lvl = getLevelByXp(entry.value).level;
           if (grouped.has(lvl)) {
-            grouped.get(lvl)!.push({ name: entry.name, xp: entry.value, avatarUrl: entry.avatarUrl, userId: entry.user_id });
+            grouped.get(lvl)?.push({ name: entry.name, xp: entry.value, avatarUrl: entry.avatarUrl, userId: entry.user_id });
           }
         });
         setCommunityUsersByLevel(grouped);
@@ -246,10 +246,11 @@ export default function DashboardClient({ lessonsMeta }: { lessonsMeta: LessonMe
     const timer = setTimeout(() => {
       setChallengeGateLesson((gate) => {
         if (gate) return gate; // don't steal focus from an in-progress gate challenge
-        window.localStorage.setItem("thtcdn_challenge_last_shown", today);
-        setShowChallenge(true);
         return gate;
       });
+      // Side effects moved outside state updater
+      window.localStorage.setItem("thtcdn_challenge_last_shown", today);
+      setShowChallenge(true);
     }, 2500);
     return () => clearTimeout(timer);
   }, [loading, completed.length]);

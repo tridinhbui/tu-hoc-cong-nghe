@@ -13,7 +13,7 @@ interface RoadmapProps {
 
 export default function Roadmap({ stages, activeTrack }: RoadmapProps) {
   return (
-    <div className="bg-white border-2 border-stone-200 rounded-xl p-5 h-fit sticky top-24 z-10">
+    <div className="bg-white border-2 border-stone-200 rounded-xl p-5 h-fit sticky top-24 z-0">
       <div className="mb-4">
         <p className="text-xs font-extrabold text-stone-500 uppercase tracking-widest">
           Roadmap
@@ -21,9 +21,9 @@ export default function Roadmap({ stages, activeTrack }: RoadmapProps) {
       </div>
 
       <div className="space-y-2">
-        {stages.map((stage, idx) => (
+        {stages.map((stage) => (
           <div
-            key={idx}
+            key={stage.label}
             className={`px-3 py-2 rounded-lg text-xs border-l-4 transition-all ${
               stage.available
                 ? "bg-emerald-50 border-l-emerald-400 text-emerald-900"
