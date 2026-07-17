@@ -67,6 +67,13 @@ const ACCENT: Record<string, { grad: string; ring: string; chip: string; glow: s
     glow: "bg-teal-500/5 dark:bg-teal-500/10",
     shadow: "hover:shadow-[0_16px_32px_-10px_rgba(20,184,166,0.15)] dark:hover:shadow-[0_16px_32px_-10px_rgba(20,184,166,0.25)]"
   },
+  cyan: {
+    grad: "from-cyan-500 to-sky-500",
+    ring: "hover:border-cyan-400 dark:hover:border-cyan-600",
+    chip: "bg-cyan-50 dark:bg-cyan-950/40 text-cyan-700 dark:text-cyan-300",
+    glow: "bg-cyan-500/5 dark:bg-cyan-500/10",
+    shadow: "hover:shadow-[0_16px_32px_-10px_rgba(6,182,212,0.15)] dark:hover:shadow-[0_16px_32px_-10px_rgba(6,182,212,0.25)]"
+  },
 };
 
 export default function GameHubClient() {

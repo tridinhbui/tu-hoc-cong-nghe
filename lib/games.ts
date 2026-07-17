@@ -13,7 +13,8 @@ export type GameType =
   | "term-definition"
   | "formula-match"
   | "risk-category"
-  | "ticker-match";
+  | "ticker-match"
+  | "cost-category";
 
 export type GameDifficulty = "de" | "trung-binh" | "kho";
 
@@ -46,7 +47,7 @@ export interface GameMeta {
   description: string;
   emoji: string;
   mechanic: GameMechanic;
-  accent: "emerald" | "sky" | "amber" | "violet" | "rose" | "indigo" | "teal";
+  accent: "emerald" | "sky" | "amber" | "violet" | "rose" | "indigo" | "teal" | "cyan";
 }
 
 export const GAMES: GameMeta[] = [
@@ -105,6 +106,14 @@ export const GAMES: GameMeta[] = [
     emoji: "🏢",
     mechanic: "pair",
     accent: "teal",
+  },
+  {
+    id: "cost-category",
+    title: "Phân loại chi phí",
+    description: "Kéo từng khoản chi phí vào đúng nhóm: Cố định (Fixed) hay Biến đổi (Variable).",
+    emoji: "🧾",
+    mechanic: "bucket",
+    accent: "cyan",
   },
 ];
 
@@ -226,6 +235,21 @@ const RISK_ITEMS: BucketItem[] = [
   { term: "Cổ phiếu công ty mới IPO", bucket: "high" },
 ];
 
+const COST_ITEMS: BucketItem[] = [
+  { term: "Tiền thuê mặt bằng", bucket: "fixed" },
+  { term: "Lương quản lý (cố định hàng tháng)", bucket: "fixed" },
+  { term: "Khấu hao tài sản cố định", bucket: "fixed" },
+  { term: "Bảo hiểm nhà xưởng", bucket: "fixed" },
+  { term: "Lãi vay ngân hàng cố định", bucket: "fixed" },
+  { term: "Phí thuê phần mềm hàng tháng", bucket: "fixed" },
+  { term: "Nguyên vật liệu trực tiếp", bucket: "variable" },
+  { term: "Hoa hồng bán hàng", bucket: "variable" },
+  { term: "Chi phí vận chuyển hàng bán", bucket: "variable" },
+  { term: "Chi phí đóng gói sản phẩm", bucket: "variable" },
+  { term: "Nhân công trực tiếp sản xuất (theo sản lượng)", bucket: "variable" },
+  { term: "Phí giao dịch thẻ (theo doanh số)", bucket: "variable" },
+];
+
 const BUCKET_CONFIGS: Partial<Record<GameType, BucketConfig>> = {
   "financial-statement-match": {
     buckets: [
@@ -257,6 +281,15 @@ const BUCKET_CONFIGS: Partial<Record<GameType, BucketConfig>> = {
     items: RISK_ITEMS,
     roundSize: 10,
     sourceHint: "Kéo hoặc chọn tài sản, rồi thả vào đúng mức rủi ro",
+  },
+  "cost-category": {
+    buckets: [
+      { id: "fixed", label: "Chi phí cố định (Fixed)" },
+      { id: "variable", label: "Chi phí biến đổi (Variable)" },
+    ],
+    items: COST_ITEMS,
+    roundSize: 10,
+    sourceHint: "Kéo hoặc chọn khoản chi phí, rồi thả vào đúng nhóm",
   },
 };
 
@@ -516,6 +549,7 @@ const GAME_TITLES: Record<GameType, [string, string, string]> = {
   "formula-match": ["Thần Đồng Công Thức", "Pháp Sư Con Số", "Cao Thủ Định Lượng"],
   "risk-category": ["Vệ Thần Danh Mục", "Cao Thủ Quản Trị Rủi Ro", "Bậc Thầy Phân Bổ Tài Sản"],
   "ticker-match": ["Thổ Địa Sàn Chứng Khoán", "Cao Thủ Đọc Bảng Điện", "Huyền Thoại Mã Cổ Phiếu"],
+  "cost-category": ["Kế Toán Chi Phí Thượng Thừa", "Bậc Thầy Fixed & Variable", "Huyền Thoại Phân Loại Chi Phí"],
 };
 
 /** Rank is 1-based. Returns null for rank 4+. */
