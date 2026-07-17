@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 import { createClient } from "@/lib/supabase";
-import { BookOpen, X, Loader2, ChevronRight } from "lucide-react";
+import { BookOpen, Loader2, ChevronRight, ArrowLeft } from "lucide-react";
 import type { LessonMeta } from "@/lib/lesson-types";
 import type { CfaSubject } from "@/lib/cfa-track";
 
@@ -44,10 +44,14 @@ export default function CfaTrackView({ subjects }: Props) {
   const [books, setBooks] = useState<Book[]>([]);
   const [loading, setLoading] = useState(true);
 
-  // Modal and Readings/Modules state
+  // Which book is open, and its readings/modules - rendered INLINE in this
+  // same tab (swaps out the book grid) instead of a popup modal, so CFA
+  // reads like the personal-finance track's expandable stage list rather
+  // than a bolted-on overlay.
   const [selectedBook, setSelectedBook] = useState<Book | null>(null);
   const [readings, setReadings] = useState<Reading[]>([]);
   const [loadingReadings, setLoadingReadings] = useState(false);
+  const [openReadings, setOpenReadings] = useState<Set<string>>(new Set());
 
   useEffect(() => {
     async function fetchBooks() {
@@ -70,7 +74,6 @@ export default function CfaTrackView({ subjects }: Props) {
     fetchBooks();
   }, []);
 
-  // Fetch readings & modules when a book is selected
   useEffect(() => {
     if (!selectedBook) {
       setReadings([]);
@@ -109,6 +112,9 @@ export default function CfaTrackView({ subjects }: Props) {
           }));
 
           setReadings(readingsWithModules);
+          // First reading opens by default so there's something to see
+          // immediately instead of an all-collapsed wall of headers.
+          setOpenReadings(readingsWithModules[0] ? new Set([readingsWithModules[0].id]) : new Set());
         } else {
           setReadings([]);
         }
@@ -122,6 +128,121 @@ export default function CfaTrackView({ subjects }: Props) {
     fetchReadingsAndModules();
   }, [selectedBook]);
 
+  function toggleReading(id: string) {
+    setOpenReadings((prev) => {
+      const next = new Set(prev);
+      if (next.has(id)) next.delete(id);
+      else next.add(id);
+      return next;
+    });
+  }
+
+  // ─── Book detail view (Readings -> Modules), opened inline ────────────────
+  if (selectedBook) {
+    return (
+      <div className="py-2">
+        <button
+          onClick={() => setSelectedBook(null)}
+          className="inline-flex items-center gap-1.5 text-sm font-bold text-stone-500 dark:text-stone-400 hover:text-stone-900 dark:hover:text-stone-100 mb-6 transition-colors"
+        >
+          <ArrowLeft className="w-4 h-4" />
+          Quay lại danh sách giáo trình
+        </button>
+
+        <div className="flex items-start gap-5 mb-8">
+          <div className="w-24 sm:w-28 aspect-[3/4] rounded-xl overflow-hidden shadow-md bg-stone-200 dark:bg-stone-800 relative flex-shrink-0">
+            {selectedBook.coverImage ? (
+              // eslint-disable-next-line @next/next/no-img-element
+              <img src={selectedBook.coverImage} alt={selectedBook.title} className="w-full h-full object-cover" />
+            ) : (
+              <div className="w-full h-full flex items-center justify-center text-stone-400 dark:text-stone-600">
+                <BookOpen className="w-8 h-8" />
+              </div>
+            )}
+          </div>
+          <div className="min-w-0">
+            <span className="text-[10px] font-bold text-stone-900 dark:text-stone-900 bg-stone-200 dark:bg-stone-100 px-2.5 py-0.5 rounded uppercase">
+              {selectedBook.level}
+            </span>
+            <h2 className="text-xl sm:text-2xl font-extrabold text-stone-900 dark:text-white mt-2 leading-snug">
+              {selectedBook.title}
+            </h2>
+            <p className="text-sm text-stone-500 dark:text-stone-400 mt-2 leading-relaxed">
+              {selectedBook.description}
+            </p>
+          </div>
+        </div>
+
+        {loadingReadings ? (
+          <div className="flex flex-col justify-center items-center gap-2 py-16">
+            <Loader2 className="w-6 h-6 animate-spin text-stone-500 dark:text-stone-400" />
+            <span className="text-sm text-stone-500 dark:text-stone-400">Đang tải bài đọc...</span>
+          </div>
+        ) : readings.length > 0 ? (
+          <div className="space-y-4">
+            {readings.map((reading) => {
+              const isOpen = openReadings.has(reading.id);
+              return (
+                <div key={reading.id} id={`reading-${reading.id}`}>
+                  <button
+                    onClick={() => toggleReading(reading.id)}
+                    className="w-full flex items-center gap-3 cursor-pointer text-left border-b border-stone-100 dark:border-stone-800/40 pb-3 mb-4 transition-all"
+                  >
+                    <span className="text-xs font-extrabold px-3 py-1.5 rounded-lg bg-stone-150 dark:bg-stone-800 text-stone-900 dark:text-stone-100 shrink-0">
+                      {reading.code}
+                    </span>
+                    <span className="text-base sm:text-lg font-extrabold text-stone-900 dark:text-stone-100 flex-1 leading-snug">
+                      {reading.title}
+                    </span>
+                    <span className="text-sm font-bold px-3 py-1 rounded-lg text-stone-800 dark:text-stone-200 bg-stone-100 dark:bg-stone-800 shrink-0">
+                      {reading.modules?.length ?? 0} bài
+                    </span>
+                    <ChevronRight className={`w-4 h-4 text-stone-400 shrink-0 transition-transform ${isOpen ? "rotate-90" : ""}`} />
+                  </button>
+
+                  <AnimatePresence initial={false}>
+                    {isOpen && (
+                      <motion.div
+                        initial={{ height: 0, opacity: 0 }}
+                        animate={{ height: "auto", opacity: 1 }}
+                        exit={{ height: 0, opacity: 0 }}
+                        transition={{ duration: 0.2 }}
+                        className="overflow-hidden"
+                      >
+                        <div className="space-y-3 mb-6">
+                          {(reading.modules ?? []).map((mod) => (
+                            <Link
+                              key={mod.id}
+                              href={`/cfa/${mod.id}`}
+                              className="flex items-center gap-4 p-4 rounded-2xl border border-stone-200 dark:border-stone-800 bg-white dark:bg-stone-900 hover:border-emerald-400 dark:hover:border-emerald-600 hover:shadow-md transition-all group"
+                            >
+                              <span className="w-9 h-9 rounded-full border-3 border-stone-300 dark:border-stone-700 flex items-center justify-center text-[10px] font-black text-stone-500 dark:text-stone-400 shrink-0 group-hover:border-emerald-400 dark:group-hover:border-emerald-600">
+                                {mod.code}
+                              </span>
+                              <span className="flex-1 min-w-0 text-base font-bold text-stone-900 dark:text-stone-100 leading-snug group-hover:text-emerald-700 dark:group-hover:text-emerald-400 transition-colors">
+                                {mod.title}
+                              </span>
+                              <ChevronRight className="w-5 h-5 text-stone-300 dark:text-stone-600 group-hover:text-emerald-500 group-hover:translate-x-0.5 transition-all shrink-0" />
+                            </Link>
+                          ))}
+                        </div>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </div>
+              );
+            })}
+          </div>
+        ) : (
+          <div className="text-center py-10 text-sm text-stone-400 dark:text-stone-500 border border-dashed border-stone-200 dark:border-stone-800 rounded-xl bg-stone-50/50 dark:bg-stone-900/20">
+            Chưa có Reading nào trong cuốn sách này.
+          </div>
+        )}
+      </div>
+    );
+  }
+
+  // ─── Book grid (library view) ──────────────────────────────────────────────
   return (
     <div className="py-2">
       {loading ? (
@@ -182,118 +303,6 @@ export default function CfaTrackView({ subjects }: Props) {
           Chưa có giáo trình nào được lưu.
         </div>
       )}
-
-      {/* Book Readings Details Modal - browses to each module's own page (/cfa/[moduleId]) instead of opening lesson content inline, so every CFA module has a real URL/route like personal-finance lessons. */}
-      <AnimatePresence>
-        {selectedBook && (
-          <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              onClick={() => setSelectedBook(null)}
-              className="absolute inset-0 bg-stone-950/70 backdrop-blur-sm"
-            />
-
-            <motion.div
-              initial={{ opacity: 0, scale: 0.95, y: 16 }}
-              animate={{ opacity: 1, scale: 1, y: 0 }}
-              exit={{ opacity: 0, scale: 0.95, y: 16 }}
-              transition={{ duration: 0.2 }}
-              className="relative flex flex-col md:flex-row w-full max-w-4xl h-[85vh] bg-white dark:bg-stone-900 border border-stone-200 dark:border-stone-800 rounded-2xl overflow-hidden shadow-2xl z-10"
-            >
-              <button
-                onClick={() => setSelectedBook(null)}
-                className="absolute top-4 right-4 p-1.5 rounded-full bg-stone-100 hover:bg-stone-200 dark:bg-stone-800 dark:hover:bg-stone-700 text-stone-500 dark:text-stone-400 transition-colors z-20"
-              >
-                <X className="w-4 h-4" />
-              </button>
-
-              <div className="md:w-1/3 p-6 flex flex-col items-center bg-stone-50 dark:bg-stone-900/40 border-b md:border-b-0 md:border-r border-stone-200 dark:border-stone-800 overflow-y-auto">
-                <div className="w-36 aspect-[3/4] rounded-lg overflow-hidden shadow-md bg-stone-200 dark:bg-stone-800 relative flex-shrink-0">
-                  {selectedBook.coverImage ? (
-                    // eslint-disable-next-line @next/next/no-img-element
-                    <img
-                      src={selectedBook.coverImage}
-                      alt={selectedBook.title}
-                      className="w-full h-full object-cover"
-                    />
-                  ) : (
-                    <div className="w-full h-full flex items-center justify-center text-stone-400 dark:text-stone-600">
-                      <BookOpen className="w-8 h-8" />
-                    </div>
-                  )}
-                </div>
-                <h3 className="text-sm font-extrabold text-stone-900 dark:text-white text-center mt-4 leading-snug">
-                  {selectedBook.title}
-                </h3>
-                <p className="text-[11px] text-stone-500 dark:text-stone-400 text-center mt-2 leading-relaxed">
-                  {selectedBook.description}
-                </p>
-                <span className="mt-4 text-[9px] font-bold text-stone-900 dark:text-stone-900 bg-stone-200 dark:bg-stone-100 px-2.5 py-0.5 rounded uppercase">
-                  {selectedBook.level}
-                </span>
-              </div>
-
-              <div className="md:w-2/3 p-6 overflow-y-auto flex flex-col min-h-[300px]">
-                <div className="flex-1 flex flex-col">
-                  <h4 className="text-xs font-extrabold text-stone-900 dark:text-stone-200 uppercase tracking-widest mb-4">
-                    Danh sách Reading ({readings.length})
-                  </h4>
-
-                  {loadingReadings ? (
-                    <div className="flex-1 flex flex-col justify-center items-center gap-2">
-                      <Loader2 className="w-6 h-6 animate-spin text-stone-500 dark:text-stone-400" />
-                      <span className="text-xs text-stone-500 dark:text-stone-400">Đang tải bài đọc...</span>
-                    </div>
-                  ) : readings.length > 0 ? (
-                    <div className="space-y-4 divide-y divide-stone-100 dark:divide-stone-800">
-                      {readings.map((reading) => (
-                        <div key={reading.id} className="pt-4 first:pt-0 flex flex-col gap-2">
-                          <div className="flex items-start gap-3">
-                            <span className="text-[10px] font-extrabold text-stone-900 dark:text-white bg-stone-200 dark:bg-stone-800 px-2 py-0.5 rounded flex-shrink-0">
-                              {reading.code}
-                            </span>
-                            <span className="text-xs text-stone-900 dark:text-stone-100 font-extrabold leading-relaxed">
-                              {reading.title}
-                            </span>
-                          </div>
-
-                          {reading.modules && reading.modules.length > 0 && (
-                            <div className="ml-8 pl-3 border-l border-stone-200 dark:border-stone-800 space-y-2 py-1">
-                              {reading.modules.map((mod) => (
-                                <Link
-                                  key={mod.id}
-                                  href={`/cfa/${mod.id}`}
-                                  className="flex items-center justify-between gap-2.5 hover:bg-stone-100/50 dark:hover:bg-stone-800/40 p-1.5 rounded-lg transition-colors group"
-                                >
-                                  <div className="flex items-start gap-2.5 min-w-0">
-                                    <span className="text-[9px] font-bold text-stone-500 dark:text-stone-400 font-mono mt-0.5">
-                                      {mod.code}
-                                    </span>
-                                    <span className="text-[11px] text-stone-600 dark:text-stone-300 font-medium leading-tight group-hover:text-stone-900 dark:group-hover:text-white transition-colors">
-                                      {mod.title}
-                                    </span>
-                                  </div>
-                                  <ChevronRight className="w-3.5 h-3.5 text-stone-300 dark:text-stone-600 group-hover:text-stone-900 dark:group-hover:text-white transition-colors flex-shrink-0" />
-                                </Link>
-                              ))}
-                            </div>
-                          )}
-                        </div>
-                      ))}
-                    </div>
-                  ) : (
-                    <div className="flex-1 flex items-center justify-center text-xs text-stone-400 dark:text-stone-500 border border-dashed border-stone-200 dark:border-stone-800 rounded-xl p-6">
-                      Chưa có Reading nào trong cuốn sách này.
-                    </div>
-                  )}
-                </div>
-              </div>
-            </motion.div>
-          </div>
-        )}
-      </AnimatePresence>
     </div>
   );
 }
