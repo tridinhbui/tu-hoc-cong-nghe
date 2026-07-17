@@ -21,7 +21,7 @@ const plusJakartaSans = Plus_Jakarta_Sans({
 // show no image at all when the site is actually deployed and shared.
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000";
 const title = "Tự học Tài chính Mỗi Ngày";
-const description = "300+ bài học miễn phí về tài chính cá nhân, CFA và tài chính chuyên ngành. Học 5 phút mỗi ngày, ứng dụng Spaced Repetition để nhớ lâu.";
+const description = "334+ bài học - 100% miễn phí - về tài chính cá nhân, CFA và tài chính chuyên ngành. Học 5 phút mỗi ngày, ứng dụng Spaced Repetition để nhớ lâu.";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),

@@ -325,7 +325,7 @@ function LoginForm() {
               <div className="p-7 xl:p-8 space-y-5">
                 <div className="lg:hidden rounded-2xl border border-emerald-100 dark:border-emerald-900 bg-emerald-50/70 dark:bg-emerald-950/25 px-4 py-3">
                   <p className="text-sm font-bold text-stone-900 dark:text-stone-100">
-                    Học 300+ bài miễn phí, lưu tiến độ thật trên tài khoản của bạn.
+                    Học 334+ bài, 100% miễn phí, lưu tiến độ thật trên tài khoản của bạn.
                   </p>
                 </div>
 

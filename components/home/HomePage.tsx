@@ -39,7 +39,7 @@ const PAIN_POINTS = [
   {
     icon: Sparkles,
     worry: "“Sợ đóng tiền một khoá đắt rồi bỏ dở”",
-    answer: "Toàn bộ 300+ bài học miễn phí mãi mãi - không có phiên bản trả phí ẩn phía sau.",
+    answer: "Toàn bộ 334+ bài học - 100% miễn phí mãi mãi, không có bài trả phí hay bản nâng cấp ẩn phía sau.",
   },
   {
     icon: GraduationCap,
@@ -103,7 +103,7 @@ export default function HomePage() {
       .then((res) => (res.ok ? res.json() : null))
       .then((data: { count?: number } | null) => {
         if (cancelledRef.current || !data?.count) return;
-        animateCountTo(Math.max(data.count, 300), setDisplayedLessonCount, cancelledRef);
+        animateCountTo(Math.max(data.count, 334), setDisplayedLessonCount, cancelledRef);
       })
       .catch((error) => console.error("Error loading lesson count:", error));
     return () => {
@@ -189,9 +189,9 @@ export default function HomePage() {
               transition={{ duration: 0.45, ease: "easeOut", delay: 0.12 }}
               className="text-lg text-stone-600 dark:text-stone-400 leading-relaxed mb-7 max-w-xl"
             >
-              300+ bài học miễn phí cho người học tài chính cá nhân, CFA, financial planner, investor
-              và cả người mới vào nghề kế toán hoặc tài chính chuyên nghiệp. Học theo Spaced
-              Repetition để nhớ lâu thay vì học vẹt rồi quên.
+              334+ bài học - 100% miễn phí, không có bài nào trả phí - cho người học tài chính cá
+              nhân, CFA, financial planner, investor và cả người mới vào nghề kế toán hoặc tài
+              chính chuyên nghiệp. Học theo Spaced Repetition để nhớ lâu thay vì học vẹt rồi quên.
             </motion.p>
 
             <motion.div
