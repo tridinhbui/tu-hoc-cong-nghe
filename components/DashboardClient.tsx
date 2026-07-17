@@ -8,6 +8,7 @@ import { toast } from "sonner";
 import { CheckCircle2, Lock, CheckCheck, Bookmark, ChevronDown } from "lucide-react";
 import { useProgress } from "@/lib/client-hooks";
 import { mergeCompletedLessons } from "@/lib/progress";
+import { getIllustrativeCount } from "@/lib/illustrative-stats";
 import { getCompletedLessons } from "@/lib/supabase-progress";
 import type { Difficulty } from "@/lib/lesson-types";
 import { createClient } from "@/lib/supabase";
@@ -26,6 +27,7 @@ import MistakeReviewWidget from "@/components/MistakeReviewWidget";
 import LessonRecallWidget from "@/components/LessonRecallWidget";
 import SmartRemediationWidget from "@/components/SmartRemediationWidget";
 import DailyNewsQuizWidget from "@/components/DailyNewsQuizWidget";
+import OnlineUsersWidget from "@/components/OnlineUsersWidget";
 import CombinedRewardsWidget from "@/components/CombinedRewardsWidget";
 import { hasCompletedOnboarding, completeOnboarding } from "@/lib/supabase-onboarding";
 import { getUserProfile, recalculateUserStats, getLeaderboardByMetric } from "@/lib/supabase-user";
@@ -1262,8 +1264,19 @@ export default function DashboardClient({ lessonsMeta }: { lessonsMeta: LessonMe
                 : "border-stone-200 dark:border-stone-800 bg-white dark:bg-stone-900 text-stone-700 dark:text-stone-300 hover:border-stone-400 dark:hover:border-stone-600"
             }`}
           >
-            <div className={`text-base font-bold ${activeTrack === "cfa" ? "text-white dark:text-stone-900" : "text-stone-900 dark:text-stone-100"}`}>
-              Tài chính chứng chỉ
+            <div className="flex items-center gap-2 flex-wrap">
+              <div className={`text-base font-bold ${activeTrack === "cfa" ? "text-white dark:text-stone-900" : "text-stone-900 dark:text-stone-100"}`}>
+                Tài chính chứng chỉ
+              </div>
+              <span
+                className={`text-[9px] font-black uppercase tracking-wider px-2 py-0.5 rounded-full animate-pulse ${
+                  activeTrack === "cfa"
+                    ? "bg-rose-400 text-rose-950"
+                    : "bg-gradient-to-r from-rose-500 to-pink-500 text-white"
+                }`}
+              >
+                ✨ Mới
+              </span>
             </div>
             <div className={`text-xs mt-0.5 ${activeTrack === "cfa" ? "text-stone-300 dark:text-stone-600" : "text-stone-500 dark:text-stone-400"}`}>
               CFA Level I · ~{TRACKS.cfa.estimatedHours} giờ học
@@ -1556,6 +1569,9 @@ export default function DashboardClient({ lessonsMeta }: { lessonsMeta: LessonMe
                                         <div className={`text-sm mt-1 truncate ${isDone ? "text-emerald-700 dark:text-emerald-400" : isFlagged ? "text-sky-700 dark:text-sky-400" : "text-stone-600 dark:text-stone-400"}`}>
                                           {isFlagged ? "Bạn đã tự đánh dấu đã học bài này" : lesson.subtitle}
                                         </div>
+                                        <div className="text-[11px] mt-0.5 text-stone-400 dark:text-stone-500 font-semibold">
+                                          👥 {getIllustrativeCount(lesson.slug, 60, 480)} người đã học
+                                        </div>
                                       </Link>
 
                                       {flagSelectionMode && !isDone && (
@@ -1821,6 +1837,7 @@ export default function DashboardClient({ lessonsMeta }: { lessonsMeta: LessonMe
             {user?.id && (
               <DailyNewsQuizWidget userId={user.id} compact />
             )}
+            <OnlineUsersWidget />
             <Leaderboard userId={user?.id} />
           </div>
         </div>

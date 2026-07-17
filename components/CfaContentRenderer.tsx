@@ -31,6 +31,33 @@ export function renderInlineStyles(text: string): React.ReactNode[] {
   });
 }
 
+const YOUTUBE_URL_RE =
+  /(?:https?:\/\/)?(?:www\.)?(?:youtube\.com\/(?:watch\?v=|embed\/|shorts\/)|youtu\.be\/)([\w-]{11})/i;
+
+function extractYoutubeId(line: string): string | null {
+  const match = line.match(YOUTUBE_URL_RE);
+  return match ? match[1] : null;
+}
+
+// Renders a real-time playable embed instead of leaving a bare YouTube URL
+// as plain text - CFA module content is a plain-text column (see below), so
+// any link an author pasted in would otherwise just sit there unclickable-
+// looking or as a wall of text, unlike personal-finance lessons which have
+// a dedicated video block type.
+function YoutubeEmbed({ videoId }: { videoId: string }) {
+  return (
+    <div className="my-4 aspect-video w-full rounded-xl overflow-hidden border border-stone-200 dark:border-stone-800 shadow-sm">
+      <iframe
+        src={`https://www.youtube.com/embed/${videoId}`}
+        title="YouTube video"
+        className="w-full h-full"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+        allowFullScreen
+      />
+    </div>
+  );
+}
+
 // Custom Markdown & Math renderer for CFA module content (plain-text
 // content column, not the JSON `sections` format personal-finance lessons
 // use, so it can't reuse components/LessonSections.tsx).
@@ -172,6 +199,9 @@ export default function CfaContentRenderer({ content }: { content: string }) {
                 <div className="flex-1">{renderInlineStyles(text)}</div>
               </div>
             );
+          } else if (extractYoutubeId(trimmed)) {
+            flushList(`list-yt-${i}`);
+            renderedElements.push(<YoutubeEmbed key={i} videoId={extractYoutubeId(trimmed)!} />);
           } else {
             flushList(`list-p-${i}`);
             renderedElements.push(

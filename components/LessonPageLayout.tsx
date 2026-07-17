@@ -21,7 +21,7 @@ import { markLessonComplete as markLessonCompleteSupabase } from "@/lib/supabase
 import { getLessonProgress } from "@/lib/supabase-progress";
 import { queueOfflineCompletion, removeOfflineCompletion } from "@/lib/offline-sync";
 import { recalculateUserStats } from "@/lib/supabase-user";
-import { updateStreak } from "@/lib/supabase-streak";
+import { updateStreak, MAX_STREAK_FREEZES } from "@/lib/supabase-streak";
 import { getReadingProgress, updateReadingProgress } from "@/lib/supabase-reading";
 import { recordQuizMistake } from "@/lib/quiz-mistakes";
 import { getRecallItemsAction } from "@/lib/recall-actions";
@@ -597,7 +597,11 @@ export default function LessonPageLayout({ lesson, quiz, children }: Props) {
     // lesson as unsaved (it's saved) or block anything. Recompute best-effort.
     try {
       await recalculateUserStats(uid);
-      await updateStreak(uid);
+      const streakResult = await updateStreak(uid);
+      if (streakResult.freezeUsedThisUpdate) {
+        const remaining = MAX_STREAK_FREEZES - (streakResult.freezes_used ?? 0);
+        toast.info(`🧊 Bạn đã lỡ mất 1 ngày, nhưng chuỗi ${streakResult.current_streak} ngày vẫn được giữ nguyên nhờ lượt bảo vệ chuỗi (còn ${remaining} lượt).`);
+      }
     } catch (error) {
       console.error("Error updating stats/streak after completion (lesson still saved):", error);
     }

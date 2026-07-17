@@ -5,7 +5,7 @@ import Image from "next/image";
 import { Flame, BookOpen, Target, TrendingUp, Sparkles } from "lucide-react";
 import { getLevelByXp, getNextLevel, getXpToNextLevel, getLevelProgress, LEVELS } from "@/lib/levels";
 import { getLevelStats, type LevelStats } from "@/lib/supabase-user";
-import { getUserStreak, hasActivityToday as checkActivityToday } from "@/lib/supabase-streak";
+import { getUserStreak, hasActivityToday as checkActivityToday, getRemainingStreakFreezes } from "@/lib/supabase-streak";
 
 interface UserStatsProps {
   xp: number;
@@ -23,6 +23,8 @@ const LEVEL_EMOJIS: Record<number, string> = {
   4: "📊", // Nhà phân tích
   5: "🛡️", // Cố vấn Tài chính
   6: "👑", // Thạo thủ Tài chính
+  7: "🔥", // Chuyên gia Tài chính
+  8: "💎", // Bậc thầy Tài chính
 };
 
 export default function UserStats({
@@ -41,6 +43,7 @@ export default function UserStats({
   const [levelStats, setLevelStats] = useState<LevelStats | null>(null);
   const [openLevelTooltip, setOpenLevelTooltip] = useState<number | null>(null);
   const [streak, setStreak] = useState(0);
+  const [freezesLeft, setFreezesLeft] = useState(3);
   const [hasActivityToday, setHasActivityToday] = useState(false);
   const [activeTitle, setActiveTitle] = useState<string | null>(null);
   const rootRef = useRef<HTMLDivElement>(null);
@@ -73,7 +76,10 @@ export default function UserStats({
     // Fetch Streak
     getUserStreak(userId)
       .then((streakData) => {
-        if (!cancelled) setStreak(streakData?.current_streak || 0);
+        if (!cancelled) {
+          setStreak(streakData?.current_streak || 0);
+          setFreezesLeft(getRemainingStreakFreezes(streakData));
+        }
       })
       .catch((error) => console.error("Error loading streak:", error));
 
@@ -155,6 +161,42 @@ export default function UserStats({
         </div>
       </div>
 
+      {/* Level roadmap - horizontally scrollable strip of all levels, so the
+          full ladder (now 8 tiers) stays browsable on narrow screens without
+          forcing the card taller. Skipped in sidebar mode - too cramped. */}
+      {!sidebar && (
+        <div className="relative z-10 mb-4 -mx-1 px-1 overflow-x-auto scrollbar-none">
+          <div className="flex items-center gap-2 pb-1 w-max min-w-full">
+            {LEVELS.map((lvl, idx) => {
+              const reached = xp >= lvl.minXp;
+              const isCurrent = lvl.level === currentLevel.level;
+              return (
+                <div key={lvl.level} className="flex items-center gap-2 shrink-0">
+                  <div
+                    title={`Cấp ${lvl.level}: ${lvl.name} (${lvl.minXp} XP)`}
+                    className={`flex flex-col items-center gap-1 rounded-xl px-2.5 py-2 border transition-all ${
+                      isCurrent
+                        ? "border-emerald-500 bg-emerald-50 dark:bg-emerald-950/40 shadow-sm scale-105"
+                        : reached
+                        ? "border-emerald-200 dark:border-emerald-900 bg-emerald-50/40 dark:bg-emerald-950/10"
+                        : "border-stone-200 dark:border-stone-800 bg-stone-50/60 dark:bg-stone-900/30 opacity-60"
+                    }`}
+                  >
+                    <span className="text-base leading-none">{LEVEL_EMOJIS[lvl.level] || "🌱"}</span>
+                    <span className={`text-[8px] font-black uppercase tracking-wide ${isCurrent ? "text-emerald-700 dark:text-emerald-400" : "text-stone-500 dark:text-stone-400"}`}>
+                      L{lvl.level}
+                    </span>
+                  </div>
+                  {idx < LEVELS.length - 1 && (
+                    <div className={`w-4 h-0.5 rounded-full shrink-0 ${reached ? "bg-emerald-400 dark:bg-emerald-600" : "bg-stone-200 dark:bg-stone-800"}`} />
+                  )}
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      )}
+
       {/* Modern Stats Grid */}
       <div className={`grid grid-cols-2 gap-2 relative z-10 ${sidebar ? "mb-3.5" : "mb-4"}`}>
         {/* Streak Box */}
@@ -166,6 +208,9 @@ export default function UserStats({
             <span className={`font-black text-orange-600 dark:text-orange-450 mt-1 block leading-none truncate ${
               sidebar ? "text-xs" : "text-sm"
             }`}>{streak} ngày</span>
+            <span className="text-[8px] font-bold text-sky-600 dark:text-sky-400 mt-1 block leading-none" title="Số lượt được bỏ lỡ 1 ngày mà không mất chuỗi">
+              🧊 Còn {freezesLeft} lượt bảo vệ
+            </span>
           </div>
           <div className={`rounded-full flex items-center justify-center shrink-0 transition-colors ${
             sidebar ? "w-6 h-6" : "w-8 h-8"
@@ -319,7 +364,7 @@ export default function UserStats({
       {!nextLevel && (
         <div className="mt-2.5 pt-2.5 border-t border-stone-150 dark:border-stone-800/80 relative z-10">
           <div className="p-3 bg-amber-50/40 dark:bg-amber-950/10 border border-amber-200/50 dark:border-amber-900/30 rounded-xl flex items-center gap-2 text-xs text-amber-700 dark:text-amber-350 font-bold">
-            <span>👑 Bạn đã đạt cấp độ tối đa! Chúc mừng Thạo thủ Tài chính!</span>
+            <span>👑 Bạn đã đạt cấp độ tối đa! Chúc mừng {currentLevel.name}!</span>
           </div>
         </div>
       )}

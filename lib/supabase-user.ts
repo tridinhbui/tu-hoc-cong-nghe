@@ -5,6 +5,7 @@ import { getTotalGameXp } from "@/lib/games";
 import { getTotalReferralXp, rewardMyReferralIfPending } from "@/lib/referrals";
 import { getTotalQuestXp } from "@/lib/supabase-quests";
 import { getTotalChestXp } from "@/lib/chests";
+import { getLevelByXp } from "@/lib/levels";
 
 // "Table not found in schema cache" (PostgREST) or "relation does not exist"
 // (raw Postgres) - the leaderboard is a non-critical feature, so a missing
@@ -443,7 +444,11 @@ export async function recalculateUserStats(userId: string) {
   const totalXp = lessonsCompleted * 10 + quizXp + gameXp + referralXp + gameAcademicBonusXp + questXp + milestoneXp + recallXp + chestXp;
   const quizScores = progress?.filter((p) => p.quiz_score !== null).map((p) => p.quiz_score) || [];
   const avgScore = quizScores.length > 0 ? quizScores.reduce((a, b) => a + b, 0) / quizScores.length : 0;
-  const currentLevel = Math.floor(totalXp / 150) + 1;
+  // Was Math.floor(totalXp / 150) + 1 - a flat, uncapped formula that never
+  // matched lib/levels.ts's LEVELS thresholds (the array UserStats/level-up
+  // modal actually display), so the level persisted here could silently
+  // diverge from what the UI showed. Single source of truth now.
+  const currentLevel = getLevelByXp(totalXp).level;
 
   // Cập nhật user_profiles + user_stats - independent writes to different
   // tables with the same derived payload, so no need to serialize these

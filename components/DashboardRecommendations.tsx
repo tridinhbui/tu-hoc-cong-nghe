@@ -5,6 +5,7 @@ import Link from "next/link";
 import { Sparkles, Flame, TrendingUp, Target, BookOpen, Gamepad2, ChevronDown, ChevronUp, ChevronLeft, ChevronRight } from "lucide-react";
 import type { LessonMeta } from "./DashboardClient";
 import { GAMES } from "@/lib/games";
+import { getIllustrativeCount } from "@/lib/illustrative-stats";
 
 interface DashboardRecommendationsProps {
   lessonsMeta: LessonMeta[];
@@ -46,18 +47,7 @@ const DEFAULT_TRENDING = [
   "loi-nhuan-cac-cap-do",
 ];
 
-// Illustrative "people studying this now" count - there's no real
-// view/session tracking behind this (see DashboardRecommendations research:
-// no view_count/active-session data source exists). Deterministic per slug
-// (same seed -> same number every render) so it doesn't flicker on
-// re-render, but it is NOT real telemetry - purely a social-proof visual.
-function getIllustrativeStudyingCount(seed: string, min: number, max: number): number {
-  let hash = 0;
-  for (let i = 0; i < seed.length; i++) {
-    hash = (hash * 31 + seed.charCodeAt(i)) >>> 0;
-  }
-  return min + (hash % (max - min + 1));
-}
+const getIllustrativeStudyingCount = getIllustrativeCount;
 
 export default function DashboardRecommendations({ lessonsMeta, completed, userId }: DashboardRecommendationsProps) {
   const [collapsed, setCollapsed] = useState(false);

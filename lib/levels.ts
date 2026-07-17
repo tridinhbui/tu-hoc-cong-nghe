@@ -5,8 +5,13 @@ export const LEVELS = [
   { level: 2, name: "Học viên", minXp: 100, color: "stone" },
   { level: 3, name: "Nhà đầu tư", minXp: 300, color: "stone" },
   { level: 4, name: "Nhà phân tích", minXp: 600, color: "stone" },
-  { level: 5, name: "Cố vấn Tài chính", minXp: 1000, color: "stone" },
-  { level: 6, name: "Thạo thủ Tài chính", minXp: 1500, color: "emerald" },
+  // L5/L6 raised from 1000/1500 - and 2 new tiers (L7/L8) added on top so
+  // the climb from L4 to max level takes noticeably longer, matching more
+  // levels overall in the roadmap.
+  { level: 5, name: "Cố vấn Tài chính", minXp: 1200, color: "stone" },
+  { level: 6, name: "Thạo thủ Tài chính", minXp: 2000, color: "emerald" },
+  { level: 7, name: "Chuyên gia Tài chính", minXp: 3200, color: "emerald" },
+  { level: 8, name: "Bậc thầy Tài chính", minXp: 5000, color: "amber" },
 ];
 
 export function getLevelByXp(xp: number) {

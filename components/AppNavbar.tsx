@@ -12,6 +12,7 @@ import LessonSearch from "@/components/LessonSearch";
 import { getUnresolvedMistakeCount } from "@/lib/quiz-mistakes";
 import { claimPendingReferral } from "@/lib/referrals";
 import { useLevelUpWatcher } from "@/lib/use-level-up-watcher";
+import { usePresenceHeartbeat } from "@/lib/use-presence-heartbeat";
 import LevelUpModal from "@/components/LevelUpModal";
 
 interface NavProfile {
@@ -45,6 +46,7 @@ export default function AppNavbar() {
   const router = useRouter();
   const pathname = usePathname();
   const [profile, setProfile] = useState<NavProfile | null>(null);
+  const [userId, setUserId] = useState<string | null>(null);
   const [mistakeCount, setMistakeCount] = useState(0);
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -57,6 +59,7 @@ export default function AppNavbar() {
     const supabase = createClient();
     supabase.auth.getUser().then(async ({ data: { user } }) => {
       if (!user) return;
+      setUserId(user.id);
       const fallback: NavProfile = {
         full_name: user.user_metadata?.full_name || null,
         email: user.email || "",
@@ -98,6 +101,7 @@ export default function AppNavbar() {
   }, []);
 
   const { celebrateLevel, dismiss } = useLevelUpWatcher(profile?.current_level);
+  usePresenceHeartbeat(userId);
 
   useEffect(() => {
     function handleClickOutside(event: MouseEvent) {

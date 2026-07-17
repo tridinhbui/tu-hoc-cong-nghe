@@ -14,8 +14,20 @@ export interface UserStreak {
   current_streak: number;
   longest_streak: number;
   last_activity_date: string;
+  freezes_used?: number;
   created_at: string;
   updated_at: string;
+}
+
+// Every user gets 3 lifetime streak freezes - each one silently absorbs a
+// missed day (the gap is forgiven, streak count stays put) instead of
+// resetting to 1. Once all 3 are used, a missed day breaks the streak
+// normally again.
+export const MAX_STREAK_FREEZES = 3;
+
+export function getRemainingStreakFreezes(streak: UserStreak | null): number {
+  if (!streak) return MAX_STREAK_FREEZES;
+  return Math.max(0, MAX_STREAK_FREEZES - (streak.freezes_used ?? 0));
 }
 
 /**
@@ -43,7 +55,7 @@ export async function getUserStreak(userId: string): Promise<UserStreak | null> 
  * Update user's streak after completing a lesson
  * This should be called when a user completes a lesson
  */
-export async function updateStreak(userId: string): Promise<UserStreak> {
+export async function updateStreak(userId: string): Promise<UserStreak & { freezeUsedThisUpdate?: boolean }> {
   const supabase = createClient();
   const today = new Date().toISOString().split('T')[0]; // YYYY-MM-DD format
   
@@ -85,33 +97,57 @@ export async function updateStreak(userId: string): Promise<UserStreak> {
 
   let newStreak = currentStreak.current_streak;
   let newLongestStreak = currentStreak.longest_streak;
+  let newFreezesUsed = currentStreak.freezes_used ?? 0;
+  let freezeUsedThisUpdate = false;
 
   if (currentStreak.last_activity_date === yesterdayString) {
     // Continue streak
     newStreak += 1;
     newLongestStreak = Math.max(newLongestStreak, newStreak);
+  } else if (newFreezesUsed < MAX_STREAK_FREEZES) {
+    // Gap of 2+ days, but a freeze is available - absorb it silently: the
+    // streak count is neither incremented nor reset, just carried forward
+    // as if today were the missed day.
+    newFreezesUsed += 1;
+    freezeUsedThisUpdate = true;
   } else {
-    // Streak broken, start new streak
+    // Streak broken, no freezes left, start new streak
     newStreak = 1;
   }
 
   // Update streak
-  const { data, error } = await supabase
+  let { data, error } = await supabase
     .from("user_streaks")
     .update({
       current_streak: newStreak,
       longest_streak: newLongestStreak,
       last_activity_date: today,
+      freezes_used: newFreezesUsed,
     })
     .eq("user_id", userId)
     .select()
     .single();
 
+  // freezes_used column not migrated yet on this environment - retry
+  // without it rather than failing every streak update.
+  if (error && (error.code === "42703" || error.code === "PGRST204")) {
+    ({ data, error } = await supabase
+      .from("user_streaks")
+      .update({
+        current_streak: newStreak,
+        longest_streak: newLongestStreak,
+        last_activity_date: today,
+      })
+      .eq("user_id", userId)
+      .select()
+      .single());
+  }
+
   if (error) {
     throw handleSupabaseError(error);
   }
 
-  return data as UserStreak;
+  return { ...(data as UserStreak), freezeUsedThisUpdate };
 }
 
 /**
