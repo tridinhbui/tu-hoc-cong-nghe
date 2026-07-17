@@ -768,7 +768,7 @@ export default function DashboardClient({ lessonsMeta }: { lessonsMeta: LessonMe
                   </div>
 
                   {/* Minimalist Progress Line/Dots Wrapper */}
-                  <div className="overflow-x-auto pb-6 scrollbar-none -mx-5 px-5">
+                  <div className="overflow-x-auto pb-[290px] -mb-[270px] scrollbar-none -mx-5 px-5">
                     <div className="relative z-10 h-24 mt-12 mb-6 min-w-[600px] md:min-w-0">
                       <style>{`
                         .scrollbar-none::-webkit-scrollbar {
