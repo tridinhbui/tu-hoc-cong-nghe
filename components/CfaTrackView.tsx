@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 import { createClient } from "@/lib/supabase";
-import { BookOpen, Loader2, ChevronRight, ArrowLeft } from "lucide-react";
+import { BookOpen, Loader2, ChevronRight, ArrowLeft, Library, ListChecks } from "lucide-react";
 import type { LessonMeta } from "@/lib/lesson-types";
 import type { CfaSubject } from "@/lib/cfa-track";
 
@@ -40,7 +40,11 @@ interface Props {
   subjects: { subject: CfaSubject; lessons: LessonMeta[] }[];
 }
 
+type ViewMode = "library" | "subjects";
+
 export default function CfaTrackView({ subjects }: Props) {
+  const [viewMode, setViewMode] = useState<ViewMode>("library");
+  const [openSubjects, setOpenSubjects] = useState<Set<string>>(new Set());
   const [books, setBooks] = useState<Book[]>([]);
   const [loading, setLoading] = useState(true);
 
@@ -137,10 +141,117 @@ export default function CfaTrackView({ subjects }: Props) {
     });
   }
 
+  function toggleSubject(id: string) {
+    setOpenSubjects((prev) => {
+      const next = new Set(prev);
+      if (next.has(id)) next.delete(id);
+      else next.add(id);
+      return next;
+    });
+  }
+
+  // ─── Mode switcher: browse the DB-backed Book/Reading/Module library, or
+  // review by the 10 official CFA Level I subjects (cross-referencing
+  // existing personal/professional lessons hand-tagged in lib/cfa-track.ts,
+  // via /bai-hoc/[slug] - the full-featured lesson page). ───────────────────
+  const modeSwitcher = (
+    <div className="flex gap-1 mb-6 bg-stone-100 dark:bg-stone-900 rounded-xl p-1 max-w-md">
+      {[
+        { id: "library" as const, label: "Thư viện giáo trình", icon: Library },
+        { id: "subjects" as const, label: "Ôn theo môn thi CFA", icon: ListChecks },
+      ].map(({ id, label, icon: Icon }) => (
+        <button
+          key={id}
+          onClick={() => setViewMode(id)}
+          className={`flex-1 flex items-center justify-center gap-1.5 text-xs font-bold px-3 py-2.5 rounded-lg transition-all ${
+            viewMode === id
+              ? "bg-white dark:bg-stone-800 text-stone-900 dark:text-stone-100 shadow-sm"
+              : "text-stone-500 dark:text-stone-400 hover:text-stone-700 dark:hover:text-stone-300"
+          }`}
+        >
+          <Icon className="w-3.5 h-3.5" />
+          {label}
+        </button>
+      ))}
+    </div>
+  );
+
+  // ─── Subjects view: 10 official CFA Level I subjects, each expandable to
+  // the existing lessons hand-tagged as covering it. ─────────────────────────
+  if (viewMode === "subjects") {
+    return (
+      <div className="py-2">
+        {modeSwitcher}
+        <div className="space-y-3">
+          {subjects.map(({ subject, lessons }) => {
+            const isOpen = openSubjects.has(subject.id);
+            const isEmpty = lessons.length === 0;
+            return (
+              <div key={subject.id} className="rounded-2xl border border-stone-200 dark:border-stone-800 overflow-hidden">
+                <button
+                  onClick={() => !isEmpty && toggleSubject(subject.id)}
+                  disabled={isEmpty}
+                  className={`w-full flex items-center gap-3 p-4 text-left transition-colors ${
+                    isEmpty ? "cursor-default opacity-60" : "hover:bg-stone-50 dark:hover:bg-stone-900/50 cursor-pointer"
+                  }`}
+                >
+                  <div className="min-w-0 flex-1">
+                    <p className="text-base font-extrabold text-stone-900 dark:text-stone-100 leading-snug">{subject.name}</p>
+                    <p className="text-xs text-stone-500 dark:text-stone-400 mt-0.5">Tỷ trọng đề thi: {subject.weight}</p>
+                  </div>
+                  {isEmpty ? (
+                    <span className="text-xs font-bold text-amber-600 dark:text-amber-400 bg-amber-50 dark:bg-amber-950/30 px-2.5 py-1 rounded-lg shrink-0">
+                      Sẽ xây trong tương lai
+                    </span>
+                  ) : (
+                    <>
+                      <span className="text-sm font-bold text-stone-800 dark:text-stone-200 bg-stone-100 dark:bg-stone-800 px-3 py-1 rounded-lg shrink-0">
+                        {lessons.length} bài
+                      </span>
+                      <ChevronRight className={`w-4 h-4 text-stone-400 shrink-0 transition-transform ${isOpen ? "rotate-90" : ""}`} />
+                    </>
+                  )}
+                </button>
+
+                <AnimatePresence initial={false}>
+                  {isOpen && !isEmpty && (
+                    <motion.div
+                      initial={{ height: 0, opacity: 0 }}
+                      animate={{ height: "auto", opacity: 1 }}
+                      exit={{ height: 0, opacity: 0 }}
+                      transition={{ duration: 0.2 }}
+                      className="overflow-hidden"
+                    >
+                      <div className="p-4 pt-0 space-y-2.5">
+                        {lessons.map((lesson) => (
+                          <Link
+                            key={lesson.id}
+                            href={`/bai-hoc/${lesson.slug}`}
+                            className="flex items-center gap-3 p-3.5 rounded-xl border border-stone-150 dark:border-stone-800/70 bg-stone-50/60 dark:bg-stone-900/40 hover:border-emerald-400 dark:hover:border-emerald-600 hover:bg-white dark:hover:bg-stone-900 transition-all group"
+                          >
+                            <span className="flex-1 min-w-0 text-sm font-bold text-stone-800 dark:text-stone-200 leading-snug group-hover:text-emerald-700 dark:group-hover:text-emerald-400 transition-colors">
+                              {lesson.title}
+                            </span>
+                            <ChevronRight className="w-4 h-4 text-stone-300 dark:text-stone-600 group-hover:text-emerald-500 group-hover:translate-x-0.5 transition-all shrink-0" />
+                          </Link>
+                        ))}
+                      </div>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </div>
+            );
+          })}
+        </div>
+      </div>
+    );
+  }
+
   // ─── Book detail view (Readings -> Modules), opened inline ────────────────
   if (selectedBook) {
     return (
       <div className="py-2">
+        {modeSwitcher}
         <button
           onClick={() => setSelectedBook(null)}
           className="inline-flex items-center gap-1.5 text-sm font-bold text-stone-500 dark:text-stone-400 hover:text-stone-900 dark:hover:text-stone-100 mb-6 transition-colors"
@@ -245,6 +356,7 @@ export default function CfaTrackView({ subjects }: Props) {
   // ─── Book grid (library view) ──────────────────────────────────────────────
   return (
     <div className="py-2">
+      {modeSwitcher}
       {loading ? (
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
           {[1, 2, 3, 4].map((n) => (
