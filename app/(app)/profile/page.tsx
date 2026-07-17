@@ -24,6 +24,7 @@ import { getLevelByXp, getLevelProgress, getXpToNextLevel } from "@/lib/levels";
 import { getMyLeaderboardRank, getUserProfile, recalculateUserStats, type UserProfile } from "@/lib/supabase-user";
 import { getEligibleUserBadges, type UserBadge } from "@/lib/supabase-badges";
 import { getMyGameTitles, type EarnedGameTitle } from "@/lib/games";
+import { getMyJourney, type JourneyMilestone } from "@/lib/journey";
 import { getUserStreak, type UserStreak } from "@/lib/supabase-streak";
 import { getAllUserNotes } from "@/lib/supabase-notes";
 import { getUserLessonFlags } from "@/lib/supabase-lesson-flags";
@@ -185,6 +186,16 @@ function summarizeTrackProgress(
   };
 }
 
+const TYPE_ACCENT: Record<JourneyMilestone["type"], string> = {
+  signup: "border-emerald-300 dark:border-emerald-800 bg-emerald-50 dark:bg-emerald-950/30",
+  lesson_milestone: "border-sky-300 dark:border-sky-800 bg-sky-50 dark:bg-sky-950/30",
+  badge: "border-amber-300 dark:border-amber-800 bg-amber-50 dark:bg-amber-950/30",
+};
+
+function formatDate(iso: string): string {
+  return new Date(iso).toLocaleDateString("vi-VN", { day: "2-digit", month: "2-digit", year: "numeric" });
+}
+
 export default function ProfilePage() {
   const router = useRouter();
   const [supabase] = useState(() => createClient());
@@ -193,6 +204,7 @@ export default function ProfilePage() {
   const [loading, setLoading] = useState(true);
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
   const [badges, setBadges] = useState<UserBadge[]>([]);
+  const [milestones, setMilestones] = useState<JourneyMilestone[]>([]);
   const [streak, setStreak] = useState<UserStreak | null>(null);
   const [notesCount, setNotesCount] = useState(0);
   const [flaggedLessonCount, setFlaggedLessonCount] = useState(0);
@@ -278,6 +290,7 @@ export default function ProfilePage() {
           rank,
           progressResponse,
           lessonsResponse,
+          journeyMilestones,
         ] = await Promise.all([
           getUserProfile(session.user.id),
           getUserStreak(session.user.id),
@@ -292,6 +305,7 @@ export default function ProfilePage() {
             .eq("user_id", session.user.id)
             .order("completed_at", { ascending: false }),
           supabase.from("lessons").select("id, slug, title, track").order("id", { ascending: true }),
+          getMyJourney(session.user.id),
         ]);
 
         if (progressResponse.error) {
@@ -311,6 +325,7 @@ export default function ProfilePage() {
         setProfile(nextProfile);
         setStreak(nextStreak);
         setBadges(earnedBadges);
+        setMilestones(journeyMilestones);
         // Best-effort, separate from the critical Promise.all above (6 RPC
         // calls at limit=3 each) - a failure here shouldn't block the rest
         // of the profile from rendering.
@@ -523,28 +538,28 @@ export default function ProfilePage() {
                 </div>
                 <div className="min-w-0">
                   <h3 className="text-base sm:text-lg font-extrabold text-stone-900 dark:text-stone-100">Tiến độ Lộ trình</h3>
-                  <p className="text-xs text-stone-500 dark:text-stone-400 mt-0.5">Tiến độ tổng quát và chi tiết chặng học của bạn</p>
+                  <p className="text-xs text-stone-500 dark:text-stone-400 mt-0.5">Tiến độ tổng quát lộ trình học của bạn</p>
                 </div>
               </div>
 
-              <div className="space-y-5">
+              <div className="space-y-4">
                 {trackProgress.map((track) => {
                   const isCurrent = track.track === currentTrack;
                   return (
                     <div
                       key={track.track}
-                      className={`rounded-xl border p-4.5 transition-all ${
+                      className={`rounded-xl border p-4 transition-all ${
                         isCurrent
                           ? "border-emerald-250 dark:border-emerald-900/60 bg-emerald-50/20 dark:bg-emerald-950/5 shadow-[0_8px_20px_-12px_rgba(16,185,129,0.15)]"
                           : "border-stone-200 dark:border-stone-800/80 bg-stone-50/40 dark:bg-stone-900/10"
                       }`}
                     >
-                      <div className="flex items-start justify-between gap-4 mb-2.5">
+                      <div className="flex items-start justify-between gap-4 mb-2">
                         <div className="min-w-0">
                           <div className="flex items-center gap-1.5 flex-wrap">
                             <p className="text-xs sm:text-sm font-extrabold text-stone-900 dark:text-stone-100">{track.title}</p>
                             {isCurrent && (
-                              <span className="inline-flex rounded bg-emerald-100/70 dark:bg-emerald-950 text-emerald-800 dark:text-emerald-450 px-1.5 py-0.5 text-[9px] font-extrabold uppercase tracking-wider">
+                              <span className="inline-flex rounded bg-emerald-100/70 dark:bg-emerald-950 text-emerald-800 dark:text-emerald-455 px-1.5 py-0.5 text-[9px] font-extrabold uppercase tracking-wider">
                                 Đang học
                               </span>
                             )}
@@ -557,26 +572,17 @@ export default function ProfilePage() {
                           <p className="text-xs sm:text-sm font-extrabold text-stone-900 dark:text-stone-100">
                             {track.completed}/{track.total} bài
                           </p>
-                          <p className="text-[10px] text-stone-450 dark:text-stone-500 mt-0.5">
+                          <p className="text-[10px] text-stone-455 dark:text-stone-500 mt-0.5">
                             {track.percent}% · ~{track.estimatedHours} giờ
                           </p>
                         </div>
                       </div>
 
-                      <div className="h-2 rounded-full bg-stone-200 dark:bg-stone-800 overflow-hidden mb-3.5">
+                      <div className="h-2 rounded-full bg-stone-200 dark:bg-stone-850 overflow-hidden">
                         <div
-                          className={`h-full rounded-full transition-all duration-300 ${isCurrent ? "bg-emerald-500" : "bg-stone-400 dark:bg-stone-600"}`}
+                          className={`h-full rounded-full transition-all duration-300 ${isCurrent ? "bg-emerald-500" : "bg-stone-450 dark:bg-stone-600"}`}
                           style={{ width: `${track.percent}%` }}
                         />
-                      </div>
-
-                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-4 gap-y-2 pt-2.5 border-t border-stone-100 dark:border-stone-800/60 min-w-0">
-                        {track.stages.map((stage) => (
-                          <div key={`${track.track}-${stage.label}`} className="flex items-center justify-between text-[11px] text-stone-600 dark:text-stone-400 min-w-0">
-                            <span className="font-semibold truncate max-w-[130px]" title={stage.name}>{stage.label}</span>
-                            <span className="font-bold text-stone-850 dark:text-stone-200 shrink-0">{stage.completed}/{stage.total}</span>
-                          </div>
-                        ))}
                       </div>
                     </div>
                   );
@@ -612,7 +618,7 @@ export default function ProfilePage() {
                         <p className="text-xs sm:text-sm font-bold text-stone-900 dark:text-stone-100 group-hover:text-emerald-600 dark:group-hover:text-emerald-400 transition-colors truncate">
                           {lesson.title}
                         </p>
-                        <p className="text-[10px] text-stone-450 dark:text-stone-500 mt-0.5">
+                        <p className="text-[10px] text-stone-455 dark:text-stone-500 mt-0.5">
                           {lesson.completedAt ? `Hoàn thành ngày ${new Date(lesson.completedAt).toLocaleDateString("vi-VN")}` : "Không rõ ngày"}
                         </p>
                       </div>
@@ -621,12 +627,51 @@ export default function ProfilePage() {
                           <span className="text-xs font-extrabold text-stone-900 dark:text-stone-100">
                             {lesson.quizScore !== null && lesson.quizScore !== undefined ? `${Math.round(lesson.quizScore)}%` : "N/A"}
                           </span>
-                          <p className="text-[9px] text-stone-450 dark:text-stone-500">Đọc & Quiz</p>
+                          <p className="text-[9px] text-stone-455 dark:text-stone-500">Đọc & Quiz</p>
                         </div>
                         <ArrowRight className="w-3.5 h-3.5 text-stone-400 group-hover:text-emerald-500 transition-colors" />
                       </div>
                     </Link>
                   ))}
+                </div>
+              )}
+            </div>
+
+            {/* Learning Journey Timeline Card */}
+            <div className="bg-white dark:bg-stone-900 border border-stone-200 dark:border-stone-850 rounded-2xl p-5 sm:p-6 shadow-sm">
+              <div className="flex items-start gap-4 mb-5 border-b border-stone-100 dark:border-stone-800 pb-4">
+                <div className="w-10 h-10 rounded-xl bg-violet-50 dark:bg-violet-950/40 text-violet-650 dark:text-violet-400 flex items-center justify-center flex-shrink-0">
+                  <Target className="w-5 h-5 text-violet-500" />
+                </div>
+                <div className="min-w-0">
+                  <h3 className="text-base sm:text-lg font-extrabold text-stone-900 dark:text-stone-100">Hành trình học tập</h3>
+                  <p className="text-xs text-stone-500 dark:text-stone-400 mt-0.5">Dòng thời gian các cột mốc quan trọng của bạn</p>
+                </div>
+              </div>
+
+              {milestones.length === 0 ? (
+                <p className="text-xs text-stone-550 dark:text-stone-400 py-2">
+                  Chưa có cột mốc nào để hiển thị. Hãy tiếp tục học để tạo cột mốc đầu tiên nhé!
+                </p>
+              ) : (
+                <div className="relative pl-6 max-h-[350px] overflow-y-auto pr-2 scrollbar-thin scrollbar-thumb-stone-200 dark:scrollbar-thumb-stone-800">
+                  <div className="absolute left-[11px] top-2 bottom-2 w-0.5 bg-stone-200 dark:bg-stone-850" aria-hidden="true" />
+                  <div className="space-y-4">
+                    {[...milestones].reverse().map((m, i) => (
+                      <div key={`${m.type}-${m.date}-${i}`} className="relative">
+                        <span
+                          className={`absolute -left-6 top-1.5 w-6 h-6 rounded-full border flex items-center justify-center text-xs bg-white dark:bg-stone-900 ${TYPE_ACCENT[m.type]}`}
+                        >
+                          {m.emoji}
+                        </span>
+                        <div className="bg-stone-50/50 dark:bg-stone-950/20 border border-stone-150 dark:border-stone-800/80 rounded-xl px-4 py-2.5 ml-2.5">
+                          <p className="text-[9px] font-black text-stone-450 dark:text-stone-500 mb-0.5">{formatDate(m.date)}</p>
+                          <p className="font-extrabold text-stone-900 dark:text-stone-100 text-xs">{m.title}</p>
+                          <p className="text-[10px] text-stone-500 dark:text-stone-400 mt-0.5">{m.description}</p>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
                 </div>
               )}
             </div>

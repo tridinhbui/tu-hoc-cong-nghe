@@ -139,6 +139,38 @@ async function uploadAutoExcelPreview(
   }
 }
 
+// Generate placeholder image URL based on category
+function getPlaceholderImageUrl(category: string): string {
+  const categoryEmojis: Record<string, string> = {
+    "excel": "📊",
+    "checklist": "✅",
+    "ebook": "📚",
+    "template": "📋",
+    "guide": "📖",
+    "worksheet": "📝",
+    "cheat-sheet": "📄",
+    "tool": "🛠️",
+  };
+
+  const emoji = categoryEmojis[category.toLowerCase()] || "📄";
+
+  // Generate a simple SVG placeholder with emoji
+  const svg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 280">
+    <defs>
+      <linearGradient id="grad" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%" style="stop-color:#f3f4f6;stop-opacity:1" />
+        <stop offset="100%" style="stop-color:#e5e7eb;stop-opacity:1" />
+      </linearGradient>
+    </defs>
+    <rect width="200" height="280" fill="url(#grad)"/>
+    <rect x="10" y="10" width="180" height="260" rx="8" fill="white" stroke="#d1d5db" stroke-width="1"/>
+    <text x="100" y="140" font-size="60" text-anchor="middle" dominant-baseline="middle">${emoji}</text>
+  </svg>`;
+
+  const encoded = Buffer.from(svg).toString('base64');
+  return `data:image/svg+xml;base64,${encoded}`;
+}
+
 export async function getDocuments(): Promise<DocumentRow[]> {
   const supabase = createAdminClient();
   const { data, error } = await supabase
@@ -150,7 +182,13 @@ export async function getDocuments(): Promise<DocumentRow[]> {
     console.error("Error fetching documents:", error);
     return [];
   }
-  return (data as DocumentRow[]) ?? [];
+
+  // Add placeholder images for documents missing images
+  const docs = (data as DocumentRow[]) ?? [];
+  return docs.map(doc => ({
+    ...doc,
+    image_url: doc.image_url || getPlaceholderImageUrl(doc.category),
+  }));
 }
 
 export async function getDocumentCount(): Promise<number> {
