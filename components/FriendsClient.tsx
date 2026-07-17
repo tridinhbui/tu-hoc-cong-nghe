@@ -3,7 +3,7 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import { toast } from "sonner";
 import { Check, MessageCircle, Search, Send, UserPlus, X, ArrowLeft } from "lucide-react";
 import { createClient } from "@/lib/supabase";
@@ -67,6 +67,7 @@ function Avatar({
 
 export default function FriendsClient() {
   const router = useRouter();
+  const searchParams = useSearchParams();
   const supabase = createClient();
   const [user, setUser] = useState<SessionUser | null>(null);
   const [loading, setLoading] = useState(true);
@@ -152,6 +153,20 @@ export default function FriendsClient() {
       void loadConnections();
     });
   }, [user?.id]);
+
+  // MessageUserButton (public profile page) sends people here with
+  // ?with=<userId> after starting/accepting a friend request - auto-select
+  // that conversation so they land straight in the chat instead of the
+  // empty "chọn một người bạn" state, once their friendship is accepted.
+  useEffect(() => {
+    const withUserId = searchParams.get("with");
+    if (!withUserId) return;
+    const match = connections.find((c) => c.user_id === withUserId && c.status === "accepted");
+    if (match) {
+      setMessages([]);
+      setActiveFriendshipId(match.friendship_id);
+    }
+  }, [searchParams, connections]);
 
   useEffect(() => {
     if (!searchTerm.trim() || searchTerm.trim().length < 2) {

@@ -3,6 +3,7 @@ import Image from "next/image";
 import { notFound, redirect } from "next/navigation";
 import { createServerSupabaseClient } from "@/lib/supabase-server";
 import { getPublicUserProfile } from "@/lib/public-user-profile";
+import MessageUserButton from "@/components/MessageUserButton";
 
 export const dynamic = "force-dynamic";
 
@@ -119,6 +120,9 @@ export default async function PublicUserProfilePage({
                     Chưa có phần giới thiệu cá nhân.
                   </p>
                 )}
+                <div className="mt-5">
+                  <MessageUserButton targetUserId={userId} />
+                </div>
               </div>
             </div>
           </div>
