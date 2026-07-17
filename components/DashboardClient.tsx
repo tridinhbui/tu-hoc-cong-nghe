@@ -1,12 +1,12 @@
 "use client";
 
-import { useState, useEffect, useCallback, useMemo } from "react";
+import { useState, useEffect, useCallback, useMemo, useRef } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { useRouter, useSearchParams } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import { toast } from "sonner";
-import { CheckCircle2, Lock, CheckCheck, Bookmark, ChevronDown } from "lucide-react";
+import { CheckCircle2, Lock, CheckCheck, Bookmark, ChevronDown, ChevronLeft, ChevronRight } from "lucide-react";
 import { useProgress } from "@/lib/client-hooks";
 import { mergeCompletedLessons } from "@/lib/progress";
 import { getIllustrativeCount } from "@/lib/illustrative-stats";
@@ -160,6 +160,7 @@ export default function DashboardClient({ lessonsMeta }: { lessonsMeta: LessonMe
   const [selectedCertStage, setSelectedCertStage] = useState<{ label: string; name: string } | null>(null);
   const [communityUsersByLevel, setCommunityUsersByLevel] = useState<Map<number, { name: string; xp: number; avatarUrl: string | null; userId: string }[]>>(new Map());
   const [activeTooltipLevel, setActiveTooltipLevel] = useState<number | null>(null);
+  const levelStripRef = useRef<HTMLDivElement>(null);
   const [isRoadmapExpanded, setIsRoadmapExpanded] = useState<boolean>(() => {
     if (typeof window !== "undefined") {
       const saved = localStorage.getItem("is_roadmap_expanded");
@@ -788,52 +789,68 @@ export default function DashboardClient({ lessonsMeta }: { lessonsMeta: LessonMe
                           thin line, like the original path design, but each
                           node stays a real inline-expandable card (no
                           floating popup) with its member count always
-                          visible. */}
-                      <div className="overflow-x-auto pb-2 -mx-1 px-1 no-scrollbar">
-                        <div className="flex items-stretch gap-0 min-w-max">
-                          {LEVELS.map((lvl, idx) => {
-                            const isUserCurrent = currentUserLevel === lvl.level;
-                            const isPassed = currentUserLevel > lvl.level;
-                            const members = communityUsersByLevel.get(lvl.level) || [];
-                            const accent = ACCENTS[idx % ACCENTS.length];
-                            const isOpen = openLevel === lvl.level;
+                          visible. Two side arrow buttons scroll it, same
+                          pattern as DashboardRecommendations' carousels. */}
+                      <div className="relative group/level-strip">
+                        <button
+                          onClick={() => levelStripRef.current?.scrollBy({ left: -220, behavior: "smooth" })}
+                          className="hidden sm:flex absolute -left-3 top-1/2 -translate-y-1/2 z-10 w-7 h-7 rounded-full bg-white dark:bg-stone-900 border border-stone-200 dark:border-stone-700 shadow-md items-center justify-center text-stone-600 dark:text-stone-300 hover:bg-stone-50 dark:hover:bg-stone-800 transition-all opacity-0 group-hover/level-strip:opacity-100"
+                          aria-label="Cuộn sang trái"
+                        >
+                          <ChevronLeft className="w-4 h-4" />
+                        </button>
+                        <button
+                          onClick={() => levelStripRef.current?.scrollBy({ left: 220, behavior: "smooth" })}
+                          className="hidden sm:flex absolute -right-3 top-1/2 -translate-y-1/2 z-10 w-7 h-7 rounded-full bg-white dark:bg-stone-900 border border-stone-200 dark:border-stone-700 shadow-md items-center justify-center text-stone-600 dark:text-stone-300 hover:bg-stone-50 dark:hover:bg-stone-800 transition-all opacity-0 group-hover/level-strip:opacity-100"
+                          aria-label="Cuộn sang phải"
+                        >
+                          <ChevronRight className="w-4 h-4" />
+                        </button>
 
-                            return (
-                              <div key={lvl.level} className="flex items-center">
-                                {idx > 0 && (
-                                  <div className={`w-3 sm:w-4 h-0.5 shrink-0 ${isPassed || isUserCurrent ? "bg-emerald-400 dark:bg-emerald-600" : "bg-stone-200 dark:bg-stone-800"}`} />
-                                )}
-                                <button
-                                  onClick={() => setActiveTooltipLevel((prev) => (prev === lvl.level ? null : lvl.level))}
-                                  className={`text-left rounded-xl border-2 p-2 w-[96px] shrink-0 bg-white dark:bg-stone-900 transition-all cursor-pointer ${
-                                    isOpen
-                                      ? `${accent.border} shadow-md scale-[1.02]`
-                                      : isUserCurrent
-                                      ? `${accent.border} shadow-sm`
-                                      : isPassed
-                                      ? "border-stone-200 dark:border-stone-800 hover:border-stone-300 dark:hover:border-stone-700"
-                                      : "border-stone-150 dark:border-stone-850 opacity-70 hover:opacity-100"
-                                  }`}
-                                >
-                                  <div className="flex items-center justify-between gap-1">
-                                    <span className={`text-[10px] font-black uppercase tracking-wider ${isUserCurrent || isOpen ? accent.text : "text-stone-500 dark:text-stone-400"}`}>
-                                      L{lvl.level}
-                                    </span>
-                                    {isUserCurrent && (
-                                      <span className={`text-[7px] font-black uppercase text-white px-1 py-0.5 rounded-full ${accent.solid}`}>Bạn</span>
-                                    )}
-                                  </div>
-                                  <p className={`text-xs font-extrabold mt-1 leading-snug line-clamp-2 ${isUserCurrent || isOpen ? "text-stone-900 dark:text-stone-100" : "text-stone-700 dark:text-stone-300"}`}>
-                                    {lvl.name}
-                                  </p>
-                                  <p className="text-[9px] text-stone-400 dark:text-stone-500 mt-0.5">{lvl.minXp} XP</p>
-                                  <div className={`inline-flex items-center gap-1 text-[9px] font-bold mt-1.5 px-1.5 py-0.5 rounded-full ${accent.bg} ${accent.text}`}>
-                                    👥 {members.length}
-                                  </div>
-                                </button>
-                              </div>
-                            );
-                          })}
+                        <div ref={levelStripRef} className="overflow-x-auto pb-2 -mx-1 px-1 no-scrollbar">
+                          <div className="flex items-stretch gap-0 min-w-max">
+                            {LEVELS.map((lvl, idx) => {
+                              const isUserCurrent = currentUserLevel === lvl.level;
+                              const isPassed = currentUserLevel > lvl.level;
+                              const members = communityUsersByLevel.get(lvl.level) || [];
+                              const accent = ACCENTS[idx % ACCENTS.length];
+                              const isOpen = openLevel === lvl.level;
+
+                              return (
+                                <div key={lvl.level} className="flex items-stretch">
+                                  {idx > 0 && (
+                                    <div className={`w-3 sm:w-4 h-0.5 self-center shrink-0 ${isPassed || isUserCurrent ? "bg-emerald-400 dark:bg-emerald-600" : "bg-stone-200 dark:bg-stone-800"}`} />
+                                  )}
+                                  <button
+                                    onClick={() => setActiveTooltipLevel((prev) => (prev === lvl.level ? null : lvl.level))}
+                                    className={`text-left rounded-xl border p-2 w-[96px] h-[104px] shrink-0 bg-white dark:bg-stone-900 transition-all cursor-pointer flex flex-col ${
+                                      isOpen
+                                        ? `${accent.border} shadow-md scale-[1.02]`
+                                        : isUserCurrent
+                                        ? `${accent.border} shadow-sm`
+                                        : "border-stone-100 dark:border-stone-800 hover:border-stone-300 dark:hover:border-stone-700"
+                                    } ${!isPassed && !isUserCurrent && !isOpen ? "opacity-70 hover:opacity-100" : ""}`}
+                                  >
+                                    <div className="flex items-center justify-between gap-1">
+                                      <span className={`text-[10px] font-black uppercase tracking-wider ${isUserCurrent || isOpen ? accent.text : "text-stone-500 dark:text-stone-400"}`}>
+                                        L{lvl.level}
+                                      </span>
+                                      {isUserCurrent && (
+                                        <span className={`text-[7px] font-black uppercase text-white px-1 py-0.5 rounded-full ${accent.solid}`}>Bạn</span>
+                                      )}
+                                    </div>
+                                    <p className={`text-xs font-extrabold mt-1 leading-snug line-clamp-2 flex-1 ${isUserCurrent || isOpen ? "text-stone-900 dark:text-stone-100" : "text-stone-700 dark:text-stone-300"}`}>
+                                      {lvl.name}
+                                    </p>
+                                    <p className="text-[9px] text-stone-400 dark:text-stone-500 mt-0.5">{lvl.minXp} XP</p>
+                                    <div className={`inline-flex items-center gap-1 text-[9px] font-bold mt-1.5 px-1.5 py-0.5 rounded-full w-fit ${accent.bg} ${accent.text}`}>
+                                      👥 {members.length}
+                                    </div>
+                                  </button>
+                                </div>
+                              );
+                            })}
+                          </div>
                         </div>
                       </div>
 
