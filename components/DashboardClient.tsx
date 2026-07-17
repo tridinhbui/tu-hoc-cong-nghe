@@ -1198,12 +1198,30 @@ export default function DashboardClient({ lessonsMeta }: { lessonsMeta: LessonMe
                       : "border-stone-200 dark:border-stone-800 bg-white dark:bg-stone-900 text-stone-700 dark:text-stone-300 hover:border-stone-400 dark:hover:border-stone-600"
                   }`}
                 >
-                  <div className={`text-base font-bold ${isActive ? "text-white dark:text-stone-900" : "text-stone-900 dark:text-stone-100"}`}>
-                    {t.title}
+                  <div className="flex items-center gap-2 flex-wrap">
+                    <div className={`text-base font-bold ${isActive ? "text-white dark:text-stone-900" : "text-stone-900 dark:text-stone-100"}`}>
+                      {t.title}
+                    </div>
+                    {t.id === "professional" && (
+                      <span
+                        className={`text-[9px] font-black uppercase tracking-wider px-2 py-0.5 rounded-full ${
+                          isActive
+                            ? "bg-amber-400 text-amber-950"
+                            : "bg-gradient-to-r from-amber-400 to-orange-500 text-white"
+                        }`}
+                      >
+                        180 bài chuyên sâu
+                      </span>
+                    )}
                   </div>
                   <div className={`text-xs mt-0.5 ${isActive ? "text-stone-300 dark:text-stone-600" : "text-stone-500 dark:text-stone-400"}`}>
                     ~{t.estimatedHours} giờ học
                   </div>
+                  {t.id === "professional" && (
+                    <div className={`text-[10px] mt-1 font-semibold ${isActive ? "text-amber-300" : "text-amber-600 dark:text-amber-400"}`}>
+                      🚀 Ít người khai phá - lộ trình sâu nhất, giá trị nhất
+                    </div>
+                  )}
                   {/* Hover only works on pointer devices - phones get the same
                       description inline instead, since there's no hover to
                       reveal it on tap. */}
