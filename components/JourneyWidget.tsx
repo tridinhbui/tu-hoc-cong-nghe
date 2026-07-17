@@ -31,40 +31,8 @@ export default function JourneyWidget({ userId }: { userId: string }) {
   }, [userId]);
 
   return (
-    <div className="bg-white dark:bg-stone-900 border border-stone-200 dark:border-stone-850 rounded-2xl p-5 shadow-sm relative mt-8">
-      {/* Background ambient glow */}
-      <div className="absolute -top-10 -left-10 w-24 h-24 bg-violet-500/5 dark:bg-violet-500/10 rounded-full blur-2xl pointer-events-none" />
+    <div className="relative mt-8 px-1">
 
-      <div className="flex items-center justify-between gap-3 mb-6 relative z-10">
-        <div>
-          <h3 className="text-base font-bold text-stone-900 dark:text-stone-100 flex items-center gap-2">
-            <span>🗺️</span> Hành trình của tôi
-          </h3>
-          <p className="text-[10px] text-stone-600 dark:text-stone-305 mt-0.5">
-            Những cột mốc thật trong quá trình học của bạn, từ ngày đầu tiên đến bây giờ.
-          </p>
-        </div>
-      </div>
-
-      {stats && (
-        <div className="grid grid-cols-3 gap-3 mb-6">
-          <div className="bg-stone-50 dark:bg-stone-950/60 border border-stone-200 dark:border-stone-800 rounded-xl p-3 text-center">
-            <BookOpen className="w-4 h-4 mx-auto mb-1 text-sky-500" />
-            <p className="text-base font-black text-stone-900 dark:text-stone-100">{stats.totalLessons}</p>
-            <p className="text-[9px] font-bold text-stone-500 dark:text-stone-400 uppercase tracking-wider mt-0.5">Bài đã học</p>
-          </div>
-          <div className="bg-stone-50 dark:bg-stone-950/60 border border-stone-200 dark:border-stone-800 rounded-xl p-3 text-center">
-            <Flame className="w-4 h-4 mx-auto mb-1 text-rose-500" />
-            <p className="text-base font-black text-stone-900 dark:text-stone-100">{stats.currentStreak}</p>
-            <p className="text-[9px] font-bold text-stone-500 dark:text-stone-400 uppercase tracking-wider mt-0.5">Streak hiện tại</p>
-          </div>
-          <div className="bg-stone-50 dark:bg-stone-950/60 border border-stone-200 dark:border-stone-800 rounded-xl p-3 text-center">
-            <Trophy className="w-4 h-4 mx-auto mb-1 text-amber-500" />
-            <p className="text-base font-black text-stone-900 dark:text-stone-100">{stats.longestStreak}</p>
-            <p className="text-[9px] font-bold text-stone-500 dark:text-stone-400 uppercase tracking-wider mt-0.5">Streak dài nhất</p>
-          </div>
-        </div>
-      )}
 
       {loading ? (
         <p className="text-xs text-stone-400 dark:text-stone-500">Đang tải...</p>
