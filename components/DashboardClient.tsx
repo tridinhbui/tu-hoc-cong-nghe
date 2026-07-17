@@ -5,7 +5,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { useRouter, useSearchParams } from "next/navigation";
 import { toast } from "sonner";
-import { CheckCircle2, Lock, CheckCheck, Bookmark } from "lucide-react";
+import { CheckCircle2, Lock, CheckCheck, Bookmark, ChevronDown } from "lucide-react";
 import { useProgress } from "@/lib/client-hooks";
 import { mergeCompletedLessons } from "@/lib/progress";
 import { getCompletedLessons } from "@/lib/supabase-progress";
@@ -157,6 +157,20 @@ export default function DashboardClient({ lessonsMeta }: { lessonsMeta: LessonMe
   const [selectedCertStage, setSelectedCertStage] = useState<{ label: string; name: string } | null>(null);
   const [communityUsersByLevel, setCommunityUsersByLevel] = useState<Map<number, { name: string; xp: number; avatarUrl: string | null; userId: string }[]>>(new Map());
   const [activeTooltipLevel, setActiveTooltipLevel] = useState<number | null>(null);
+  const [isRoadmapExpanded, setIsRoadmapExpanded] = useState<boolean>(() => {
+    if (typeof window !== "undefined") {
+      const saved = localStorage.getItem("is_roadmap_expanded");
+      return saved !== "false";
+    }
+    return true;
+  });
+  const toggleRoadmap = () => {
+    setIsRoadmapExpanded(prev => {
+      const nextVal = !prev;
+      localStorage.setItem("is_roadmap_expanded", String(nextVal));
+      return nextVal;
+    });
+  };
   const [dbAvatarUrl, setDbAvatarUrl] = useState<string | null>(null);
 
   useEffect(() => {
@@ -751,7 +765,7 @@ export default function DashboardClient({ lessonsMeta }: { lessonsMeta: LessonMe
                   {/* Background ambient glow */}
                   <div className="absolute -top-10 -left-10 w-24 h-24 bg-emerald-500/5 dark:bg-emerald-500/10 rounded-full blur-2xl pointer-events-none" />
                   
-                  <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-6 relative z-10">
+                  <div className={`flex flex-col sm:flex-row sm:items-center justify-between gap-3 ${isRoadmapExpanded ? "mb-6" : "mb-0"} relative z-10`}>
                     <div>
                       <h3 className="text-base font-bold text-stone-900 dark:text-stone-100">
                         Bản đồ Cấp độ Học viên
@@ -760,16 +774,24 @@ export default function DashboardClient({ lessonsMeta }: { lessonsMeta: LessonMe
                         Rê chuột hoặc chạm vào từng cấp độ để xem các thành viên đang ở cấp đó
                       </p>
                     </div>
-                    <div className="text-left sm:text-right">
+                    <div className="flex items-center gap-2 text-left sm:text-right self-start sm:self-auto">
                       <span className="inline-block text-[10px] font-bold text-stone-700 dark:text-stone-300 bg-stone-50 dark:bg-stone-950/60 border border-stone-200 dark:border-stone-800 px-2.5 py-1 rounded-lg">
                         Bạn đang ở Cấp {currentUserLevel}: <span className="text-emerald-600 dark:text-emerald-450 font-extrabold">{getLevelByXp(userXp).name}</span>
                       </span>
+                      <button
+                        onClick={toggleRoadmap}
+                        className="p-1 rounded-lg hover:bg-stone-100 dark:hover:bg-stone-800 transition-all text-stone-500 hover:text-stone-700 dark:text-stone-400 dark:hover:text-stone-200 shrink-0"
+                        title={isRoadmapExpanded ? "Thu gọn" : "Mở rộng"}
+                      >
+                        <ChevronDown className={`w-4 h-4 transition-transform duration-300 ${isRoadmapExpanded ? "rotate-180" : ""}`} />
+                      </button>
                     </div>
                   </div>
 
                   {/* Minimalist Progress Line/Dots Wrapper */}
-                  <div className="overflow-x-auto pb-[290px] -mb-[270px] scrollbar-none -mx-5 px-5">
-                    <div className="relative z-10 h-24 mt-12 mb-6 min-w-[600px] md:min-w-0">
+                  {isRoadmapExpanded && (
+                    <div className="overflow-x-auto pb-[240px] -mb-[225px] scrollbar-none -mx-5 px-5">
+                      <div className="relative z-10 h-16 mt-6 mb-2 min-w-[600px] md:min-w-0">
                       <style>{`
                         .scrollbar-none::-webkit-scrollbar {
                           display: none;
@@ -931,7 +953,7 @@ export default function DashboardClient({ lessonsMeta }: { lessonsMeta: LessonMe
                           </div>
 
                           {/* Elegant Tooltip - Opens on Hover/Click, closes only on click outside */}
-                          <div className={`absolute top-full mt-14 ${activeTooltipLevel === lvl.level ? "block" : "hidden"} w-64 p-4 rounded-2xl border border-stone-200 dark:border-stone-800 bg-white dark:bg-stone-900 shadow-xl text-left z-[999] animate-[fadeInTooltip_0.2s_ease-out] ${tooltipAlignClass}`}>
+                          <div className={`absolute top-full mt-10 ${activeTooltipLevel === lvl.level ? "block" : "hidden"} w-64 p-4 rounded-2xl border border-stone-200 dark:border-stone-800 bg-white dark:bg-stone-900 shadow-xl text-left z-[999] animate-[fadeInTooltip_0.2s_ease-out] ${tooltipAlignClass}`}>
 
                             <div className="mb-2.5 pb-2 border-b border-stone-250/40 dark:border-stone-800/80">
                               <p className="text-[9px] font-black uppercase tracking-widest text-stone-400 dark:text-stone-500">
@@ -1021,9 +1043,10 @@ export default function DashboardClient({ lessonsMeta }: { lessonsMeta: LessonMe
                         </div>
                       );
                     })}
+                      </div>
                     </div>
                   </div>
-                </div>
+                )}
               </div>
             );
             })()}
