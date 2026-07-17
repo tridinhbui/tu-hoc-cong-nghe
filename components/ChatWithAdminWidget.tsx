@@ -96,8 +96,14 @@ export default function ChatWithAdminWidget() {
       toast.error(invalidReason);
       return;
     }
+    // Revoke any previously picked image's blob URL before overwriting it -
+    // otherwise dragging/pasting a second image before sending/clearing the
+    // first leaks that object URL for the life of the page.
+    setPendingImagePreview((prev) => {
+      if (prev) URL.revokeObjectURL(prev);
+      return URL.createObjectURL(file);
+    });
     setPendingImage(file);
-    setPendingImagePreview(URL.createObjectURL(file));
   }
 
   function clearPendingImage() {
