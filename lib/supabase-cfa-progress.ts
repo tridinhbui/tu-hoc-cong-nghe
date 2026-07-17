@@ -1,5 +1,6 @@
 import { createClient } from "@/lib/supabase";
 import { handleSupabaseError } from "@/lib/errors";
+import { scheduleCfaModuleRecall } from "@/lib/supabase-cfa-features";
 
 export interface CfaModuleProgress {
   id: number;
@@ -50,4 +51,8 @@ export async function markCfaModuleComplete(
   );
 
   if (error) throw handleSupabaseError(error);
+
+  // Same "completing a lesson enters the spaced-repetition queue" behavior
+  // as markLessonComplete -> scheduleLessonRecall for personal-finance lessons.
+  await scheduleCfaModuleRecall(userId, moduleId, 1);
 }

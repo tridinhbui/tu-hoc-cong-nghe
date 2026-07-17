@@ -1,13 +1,37 @@
 "use client";
 
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect, useCallback, useRef } from "react";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { createClient } from "@/lib/supabase";
-import { ArrowLeft, Loader2, CheckCircle2, AlertCircle, GraduationCap } from "lucide-react";
+import {
+  ArrowLeft,
+  Loader2,
+  CheckCircle2,
+  AlertCircle,
+  GraduationCap,
+  Bookmark,
+  BookmarkCheck,
+  Highlighter,
+  StickyNote,
+  Trash2,
+  X,
+} from "lucide-react";
 import CfaContentRenderer, { renderInlineStyles } from "@/components/CfaContentRenderer";
 import { getCfaModuleProgress, markCfaModuleComplete } from "@/lib/supabase-cfa-progress";
 import { updateStreak } from "@/lib/supabase-streak";
+import {
+  isCfaModuleBookmarked,
+  toggleCfaModuleBookmark,
+  getCfaModuleNotes,
+  createCfaModuleNote,
+  deleteCfaModuleNote,
+  getCfaModuleHighlights,
+  createCfaModuleHighlight,
+  deleteCfaModuleHighlight,
+  type CfaModuleNote,
+  type CfaModuleHighlight,
+} from "@/lib/supabase-cfa-features";
 
 interface ModuleRow {
   id: string;
@@ -65,6 +89,21 @@ export default function CfaModulePageClient({ moduleId }: { moduleId: string }) 
   const [quizFinished, setQuizFinished] = useState(false);
   const [correctAnswersCount, setCorrectAnswersCount] = useState(0);
   const [saving, setSaving] = useState(false);
+
+  // Bookmark
+  const [bookmarked, setBookmarked] = useState(false);
+  const [togglingBookmark, setTogglingBookmark] = useState(false);
+
+  // Notes
+  const [notes, setNotes] = useState<CfaModuleNote[]>([]);
+  const [noteDraft, setNoteDraft] = useState("");
+  const [savingNote, setSavingNote] = useState(false);
+  const [showNotes, setShowNotes] = useState(false);
+
+  // Highlights (select text in the lesson content, then click the popup button)
+  const [highlights, setHighlights] = useState<CfaModuleHighlight[]>([]);
+  const [selectionPopup, setSelectionPopup] = useState<{ x: number; y: number; quote: string } | null>(null);
+  const contentRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     let cancelled = false;
@@ -150,6 +189,21 @@ export default function CfaModulePageClient({ moduleId }: { moduleId: string }) 
         } catch (err) {
           console.error("Error loading CFA module progress:", err);
         }
+
+        try {
+          const [isBookmarked, moduleNotes, moduleHighlights] = await Promise.all([
+            isCfaModuleBookmarked(user.id, moduleId),
+            getCfaModuleNotes(user.id, moduleId),
+            getCfaModuleHighlights(user.id, moduleId),
+          ]);
+          if (!cancelled) {
+            setBookmarked(isBookmarked);
+            setNotes(moduleNotes);
+            setHighlights(moduleHighlights);
+          }
+        } catch (err) {
+          console.error("Error loading CFA module bookmark/notes/highlights:", err);
+        }
       }
 
       if (!cancelled) setLoading(false);
@@ -197,6 +251,80 @@ export default function CfaModulePageClient({ moduleId }: { moduleId: string }) 
     setShowAnswer(false);
     setQuizFinished(false);
     setCorrectAnswersCount(0);
+  };
+
+  const handleToggleBookmark = async () => {
+    if (!userId || !mod || togglingBookmark) return;
+    setTogglingBookmark(true);
+    try {
+      const result = await toggleCfaModuleBookmark(userId, moduleId, mod.title);
+      setBookmarked(result);
+    } catch (err) {
+      console.error("Error toggling CFA bookmark:", err);
+    } finally {
+      setTogglingBookmark(false);
+    }
+  };
+
+  const handleAddNote = async () => {
+    if (!userId || !noteDraft.trim() || savingNote) return;
+    setSavingNote(true);
+    try {
+      const note = await createCfaModuleNote(userId, moduleId, noteDraft.trim());
+      setNotes((prev) => [...prev, note]);
+      setNoteDraft("");
+    } catch (err) {
+      console.error("Error saving CFA note:", err);
+    } finally {
+      setSavingNote(false);
+    }
+  };
+
+  const handleDeleteNote = async (id: number) => {
+    try {
+      await deleteCfaModuleNote(id);
+      setNotes((prev) => prev.filter((n) => n.id !== id));
+    } catch (err) {
+      console.error("Error deleting CFA note:", err);
+    }
+  };
+
+  const handleTextSelection = () => {
+    const selection = window.getSelection();
+    if (!selection || selection.isCollapsed || !contentRef.current) {
+      setSelectionPopup(null);
+      return;
+    }
+    const quote = selection.toString().trim();
+    if (!quote || !contentRef.current.contains(selection.anchorNode)) {
+      setSelectionPopup(null);
+      return;
+    }
+    const range = selection.getRangeAt(0);
+    const rect = range.getBoundingClientRect();
+    setSelectionPopup({ x: rect.left + rect.width / 2, y: rect.top + window.scrollY - 10, quote });
+  };
+
+  const handleAddHighlight = async () => {
+    if (!userId || !selectionPopup) return;
+    try {
+      const highlight = await createCfaModuleHighlight(userId, moduleId, selectionPopup.quote);
+      setHighlights((prev) => [...prev, highlight]);
+    } catch (err) {
+      console.error("Error saving CFA highlight:", err);
+    } finally {
+      setSelectionPopup(null);
+      window.getSelection()?.removeAllRanges();
+    }
+  };
+
+  const handleDeleteHighlight = async (id: number) => {
+    try {
+      await deleteCfaModuleHighlight(id);
+      setHighlights((prev) => prev.filter((h) => h.id !== id));
+    } catch (err) {
+      console.error("Error deleting CFA highlight:", err);
+    }
   };
 
   const currentIndexInReading = siblingModules.findIndex((m) => m.id === moduleId);
@@ -250,12 +378,40 @@ export default function CfaModulePageClient({ moduleId }: { moduleId: string }) 
               </p>
             </div>
           </div>
-          <span className="text-xs font-bold uppercase tracking-wider px-3 py-1.5 rounded-full bg-amber-100 dark:bg-amber-950/50 text-amber-700 dark:text-amber-400 flex-shrink-0 inline-flex items-center gap-1.5">
-            <GraduationCap className="w-3.5 h-3.5" />
-            CFA Level I
-          </span>
+          <div className="flex items-center gap-2 flex-shrink-0">
+            {userId && (
+              <button
+                onClick={handleToggleBookmark}
+                disabled={togglingBookmark}
+                title={bookmarked ? "Bỏ đánh dấu" : "Đánh dấu bài học"}
+                className={`w-9 h-9 rounded-full flex items-center justify-center transition-all ${
+                  bookmarked
+                    ? "bg-amber-100 dark:bg-amber-900/30 text-amber-600 dark:text-amber-400"
+                    : "bg-stone-100 dark:bg-stone-800 text-stone-500 dark:text-stone-400 hover:bg-stone-200 dark:hover:bg-stone-700"
+                } ${togglingBookmark ? "opacity-50 cursor-not-allowed" : ""}`}
+              >
+                {bookmarked ? <BookmarkCheck className="w-4 h-4" /> : <Bookmark className="w-4 h-4" />}
+              </button>
+            )}
+            <span className="text-xs font-bold uppercase tracking-wider px-3 py-1.5 rounded-full bg-amber-100 dark:bg-amber-950/50 text-amber-700 dark:text-amber-400 inline-flex items-center gap-1.5">
+              <GraduationCap className="w-3.5 h-3.5" />
+              CFA Level I
+            </span>
+          </div>
         </div>
       </header>
+
+      {/* Floating "highlight this" popup, shown while a text selection exists inside the lesson content */}
+      {selectionPopup && userId && (
+        <button
+          onClick={handleAddHighlight}
+          style={{ position: "absolute", left: selectionPopup.x, top: selectionPopup.y, transform: "translate(-50%, -100%)" }}
+          className="z-[60] inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-stone-900 dark:bg-white text-white dark:text-stone-900 text-xs font-bold shadow-lg"
+        >
+          <Highlighter className="w-3.5 h-3.5" />
+          Đánh dấu
+        </button>
+      )}
 
       <main className="max-w-4xl mx-auto px-4 sm:px-6 py-8">
         {previouslyCompleted && (
@@ -270,10 +426,76 @@ export default function CfaModulePageClient({ moduleId }: { moduleId: string }) 
         </span>
         <h1 className="text-xl sm:text-2xl font-extrabold text-stone-900 dark:text-white mt-3 mb-6">{mod.title}</h1>
 
-        {/* Lesson content */}
-        <section className="mb-10">
+        {/* Lesson content - select any passage to highlight it */}
+        <section className="mb-6" ref={contentRef} onMouseUp={handleTextSelection}>
           {content ? <CfaContentRenderer content={content} /> : null}
         </section>
+
+        {highlights.length > 0 && (
+          <div className="mb-6 flex flex-wrap gap-2">
+            {highlights.map((h) => (
+              <span
+                key={h.id}
+                className="group inline-flex items-center gap-1.5 max-w-full text-[11px] font-medium bg-amber-50 dark:bg-amber-950/20 text-amber-800 dark:text-amber-300 border border-amber-200 dark:border-amber-900 rounded-full pl-3 pr-1.5 py-1"
+              >
+                <Highlighter className="w-3 h-3 flex-shrink-0" />
+                <span className="truncate max-w-[220px]">{h.quote}</span>
+                <button
+                  onClick={() => handleDeleteHighlight(h.id)}
+                  className="opacity-0 group-hover:opacity-100 transition-opacity p-0.5 rounded-full hover:bg-amber-200 dark:hover:bg-amber-900"
+                >
+                  <X className="w-3 h-3" />
+                </button>
+              </span>
+            ))}
+          </div>
+        )}
+
+        {userId && (
+          <div className="mb-10 border border-stone-200 dark:border-stone-800 rounded-xl overflow-hidden">
+            <button
+              onClick={() => setShowNotes((v) => !v)}
+              className="w-full flex items-center justify-between px-4 py-3 bg-stone-50 dark:bg-stone-900/50 text-xs font-extrabold text-stone-700 dark:text-stone-300 uppercase tracking-wider"
+            >
+              <span className="inline-flex items-center gap-2">
+                <StickyNote className="w-3.5 h-3.5" />
+                Ghi chú của bạn {notes.length > 0 && `(${notes.length})`}
+              </span>
+              <span className="text-stone-400">{showNotes ? "−" : "+"}</span>
+            </button>
+            {showNotes && (
+              <div className="p-4 space-y-3">
+                {notes.map((note) => (
+                  <div key={note.id} className="flex items-start gap-2 bg-stone-50 dark:bg-stone-900/40 rounded-lg p-3">
+                    <p className="flex-1 text-xs text-stone-700 dark:text-stone-300 whitespace-pre-wrap">{note.content}</p>
+                    <button
+                      onClick={() => handleDeleteNote(note.id)}
+                      className="p-1 rounded hover:bg-stone-200 dark:hover:bg-stone-700 text-stone-400 flex-shrink-0"
+                    >
+                      <Trash2 className="w-3.5 h-3.5" />
+                    </button>
+                  </div>
+                ))}
+                <div className="flex items-start gap-2">
+                  <textarea
+                    value={noteDraft}
+                    onChange={(e) => setNoteDraft(e.target.value)}
+                    placeholder="Viết ghi chú cho bài này..."
+                    rows={2}
+                    className="flex-1 px-3 py-2 rounded-lg border border-stone-200 dark:border-stone-700 bg-white dark:bg-stone-800 text-xs text-stone-900 dark:text-stone-100 focus:outline-none focus:border-stone-400 resize-none"
+                  />
+                  <button
+                    onClick={handleAddNote}
+                    disabled={!noteDraft.trim() || savingNote}
+                    className="px-3 py-2 text-xs font-bold bg-stone-900 hover:bg-stone-800 dark:bg-white dark:text-stone-900 text-white rounded-lg transition-colors disabled:opacity-50 flex-shrink-0"
+                  >
+                    Lưu
+                  </button>
+                </div>
+              </div>
+            )}
+          </div>
+        )}
 
         {/* Quiz */}
         {quizQuestions.length > 0 && (
