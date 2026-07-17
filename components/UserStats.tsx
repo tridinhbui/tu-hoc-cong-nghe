@@ -3,9 +3,19 @@
 import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import { Flame, BookOpen, Target, TrendingUp, Sparkles } from "lucide-react";
-import { getLevelByXp, getNextLevel, getXpToNextLevel, getLevelProgress, LEVELS } from "@/lib/levels";
-import { getLevelStats, type LevelStats } from "@/lib/supabase-user";
-import { getUserStreak, hasActivityToday as checkActivityToday, getRemainingStreakFreezes } from "@/lib/supabase-streak";
+import { getLevelByXp, getNextLevel, getXpToNextLevel, getLevelProgress, getCfaGateRemaining, LEVELS } from "@/lib/levels";
+import { getLevelStats, getCfaCompletedCount, type LevelStats } from "@/lib/supabase-user";
+import {
+  getUserStreak,
+  hasActivityToday as checkActivityToday,
+  getRemainingStreakFreezes,
+  getStreakRestoreOffer,
+  restoreStreakWithXp,
+  STREAK_RESTORE_XP_COST,
+  type UserStreak,
+} from "@/lib/supabase-streak";
+import { recalculateUserStats } from "@/lib/supabase-user";
+import { toast } from "sonner";
 
 interface UserStatsProps {
   xp: number;
@@ -25,6 +35,7 @@ const LEVEL_EMOJIS: Record<number, string> = {
   6: "👑", // Thạo thủ Tài chính
   7: "🔥", // Chuyên gia Tài chính
   8: "💎", // Bậc thầy Tài chính
+  9: "🎓", // Chuyên viên CFA
 };
 
 export default function UserStats({
@@ -35,15 +46,19 @@ export default function UserStats({
   userId,
   sidebar = false,
 }: UserStatsProps) {
-  const currentLevel = getLevelByXp(xp);
+  const [cfaCompleted, setCfaCompleted] = useState(0);
+  const currentLevel = getLevelByXp(xp, cfaCompleted);
   const nextLevel = getNextLevel(currentLevel.level);
   const xpToNext = getXpToNextLevel(xp);
   const progress = getLevelProgress(xp);
+  const cfaGateRemaining = nextLevel ? getCfaGateRemaining(nextLevel, cfaCompleted) : 0;
 
   const [levelStats, setLevelStats] = useState<LevelStats | null>(null);
   const [openLevelTooltip, setOpenLevelTooltip] = useState<number | null>(null);
   const [streak, setStreak] = useState(0);
   const [freezesLeft, setFreezesLeft] = useState(3);
+  const [streakRow, setStreakRow] = useState<UserStreak | null>(null);
+  const [restoringStreak, setRestoringStreak] = useState(false);
   const [hasActivityToday, setHasActivityToday] = useState(false);
   const [activeTitle, setActiveTitle] = useState<string | null>(null);
   const rootRef = useRef<HTMLDivElement>(null);
@@ -73,12 +88,20 @@ export default function UserStats({
       })
       .catch((error) => console.error("Error loading level stats:", error));
 
+    // L9+ CFA gate - needs to match what recalculateUserStats persisted.
+    getCfaCompletedCount(userId)
+      .then((count) => {
+        if (!cancelled) setCfaCompleted(count);
+      })
+      .catch((error) => console.error("Error loading CFA completed count:", error));
+
     // Fetch Streak
     getUserStreak(userId)
       .then((streakData) => {
         if (!cancelled) {
           setStreak(streakData?.current_streak || 0);
           setFreezesLeft(getRemainingStreakFreezes(streakData));
+          setStreakRow(streakData);
         }
       })
       .catch((error) => console.error("Error loading streak:", error));
@@ -108,6 +131,24 @@ export default function UserStats({
       document.removeEventListener("touchstart", handlePointerDown);
     };
   }, [openLevelTooltip]);
+
+  const restoreOffer = getStreakRestoreOffer(streakRow);
+
+  async function handleRestoreStreak() {
+    if (!userId || restoringStreak) return;
+    setRestoringStreak(true);
+    try {
+      const restored = await restoreStreakWithXp(userId);
+      setStreak(restored.current_streak);
+      setStreakRow(restored);
+      await recalculateUserStats(userId);
+      toast.success(`Đã khôi phục chuỗi ${restored.current_streak} ngày! (-${STREAK_RESTORE_XP_COST} XP)`);
+    } catch (error) {
+      toast.error(error instanceof Error ? error.message : "Không thể khôi phục chuỗi.");
+    } finally {
+      setRestoringStreak(false);
+    }
+  }
 
   return (
     <div
@@ -318,6 +359,28 @@ export default function UserStats({
         </div>
       </div>
 
+      {/* Streak restore offer - shown once all 3 free freezes are used up
+          and the streak actually reset, letting the user buy it back with
+          XP instead of losing it for good. */}
+      {restoreOffer.canRestore && (
+        <div className="mt-2.5 p-3 bg-orange-50/60 dark:bg-orange-950/20 border border-orange-200 dark:border-orange-900 rounded-xl flex items-center gap-3 relative z-10">
+          <span className="text-xl shrink-0">💔</span>
+          <div className="flex-1 min-w-0">
+            <p className="text-xs font-extrabold text-stone-900 dark:text-stone-100">
+              Bạn vừa mất chuỗi {restoreOffer.lostStreak} ngày
+            </p>
+            <p className="text-[10px] text-stone-500 dark:text-stone-400 mt-0.5">Đã hết lượt bảo vệ miễn phí - khôi phục bằng XP?</p>
+          </div>
+          <button
+            onClick={handleRestoreStreak}
+            disabled={restoringStreak}
+            className="shrink-0 text-[10px] font-black uppercase px-2.5 py-2 rounded-lg bg-orange-600 hover:bg-orange-700 text-white disabled:opacity-50 transition-colors"
+          >
+            {restoringStreak ? "..." : `-${STREAK_RESTORE_XP_COST} XP`}
+          </button>
+        </div>
+      )}
+
       {/* Level Progress Bar & Alert Banner */}
       {nextLevel && (
         <div className="mt-1 pt-3 border-t border-stone-150 dark:border-stone-800/80 relative z-10">
@@ -356,6 +419,14 @@ export default function UserStats({
                   Sắp mở danh hiệu: <span className="font-extrabold text-amber-600 dark:text-amber-400">{nextLevel.name}</span>
                 </span>
               </div>
+              {cfaGateRemaining > 0 && (
+                <div className="flex items-center gap-2 text-[11px] sm:text-xs font-semibold text-amber-700 dark:text-amber-400">
+                  <span className="text-sm shrink-0">🎓</span>
+                  <span>
+                    Cấp {nextLevel.level} còn yêu cầu hoàn thành thêm <span className="font-extrabold">{cfaGateRemaining} bài/module CFA</span> - đủ XP thôi chưa đủ
+                  </span>
+                </div>
+              )}
             </div>
           )}
         </div>

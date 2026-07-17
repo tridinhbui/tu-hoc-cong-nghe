@@ -12,11 +12,23 @@ export const LEVELS = [
   { level: 6, name: "Thạo thủ Tài chính", minXp: 2000, color: "emerald" },
   { level: 7, name: "Chuyên gia Tài chính", minXp: 3200, color: "emerald" },
   { level: 8, name: "Bậc thầy Tài chính", minXp: 5000, color: "amber" },
+  // L9 is XP-gated like every other level, but ALSO requires having
+  // completed at least `minCfaCompleted` items from the CFA track (tagged
+  // lessons in lib/cfa-track.ts + Book/Reading/Module completions) - pure
+  // XP grinding can no longer reach the top level on its own.
+  { level: 9, name: "Chuyên viên CFA", minXp: 7000, minCfaCompleted: 5, color: "amber" },
 ];
 
-export function getLevelByXp(xp: number) {
-  const level = [...LEVELS].reverse().find((l) => xp >= l.minXp);
+export function getLevelByXp(xp: number, cfaCompleted: number = 0) {
+  const level = [...LEVELS]
+    .reverse()
+    .find((l) => xp >= l.minXp && cfaCompleted >= (l.minCfaCompleted ?? 0));
   return level || LEVELS[0];
+}
+
+/** For a level the user hasn't reached purely because of the CFA gate (XP is enough), how many more CFA items are needed. */
+export function getCfaGateRemaining(level: (typeof LEVELS)[number], cfaCompleted: number): number {
+  return Math.max(0, (level.minCfaCompleted ?? 0) - cfaCompleted);
 }
 
 export function getNextLevel(currentLevel: number) {

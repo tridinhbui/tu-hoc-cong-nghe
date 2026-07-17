@@ -6,6 +6,9 @@ import { getTotalReferralXp, rewardMyReferralIfPending } from "@/lib/referrals";
 import { getTotalQuestXp } from "@/lib/supabase-quests";
 import { getTotalChestXp } from "@/lib/chests";
 import { getLevelByXp } from "@/lib/levels";
+import { CFA_LEVEL_1_SUBJECTS } from "@/lib/cfa-track";
+
+const CFA_LESSON_IDS = new Set(CFA_LEVEL_1_SUBJECTS.flatMap((s) => s.lessonIds));
 
 // "Table not found in schema cache" (PostgREST) or "relation does not exist"
 // (raw Postgres) - the leaderboard is a non-critical feature, so a missing
@@ -320,13 +323,28 @@ export async function getLevelStats(userId?: string): Promise<LevelStats | null>
 }
 
 // Cập nhật stats từ progress
+// Shared with client components (UserStats, DashboardClient) so their
+// locally-computed getLevelByXp(xp, cfaCompleted) matches what
+// recalculateUserStats actually persisted as current_level, instead of
+// silently defaulting cfaCompleted to 0 and under-displaying the L9+ gate.
+export async function getCfaCompletedCount(userId: string): Promise<number> {
+  const supabase = createClient();
+  const [progressRes, cfaModuleRes] = await Promise.all([
+    supabase.from("user_progress").select("lesson_id").eq("user_id", userId).eq("completed", true),
+    supabase.from("cfa_module_progress").select("module_id").eq("user_id", userId).eq("completed", true),
+  ]);
+  const cfaLessonsDone = (progressRes.data ?? []).filter((p) => CFA_LESSON_IDS.has(p.lesson_id)).length;
+  const cfaModulesDone = cfaModuleRes.data?.length ?? 0;
+  return cfaLessonsDone + cfaModulesDone;
+}
+
 export async function recalculateUserStats(userId: string) {
   const supabase = createClient();
 
   // Lấy tất cả progress của user
   const { data: progress, error: progressError } = await supabase
     .from("user_progress")
-    .select("completed, quiz_score")
+    .select("completed, quiz_score, lesson_id")
     .eq("user_id", userId)
     .eq("completed", true);
 
@@ -367,6 +385,8 @@ export async function recalculateUserStats(userId: string) {
     milestonesRes,
     recallsRes,
     chestXp,
+    cfaModuleProgressRes,
+    userStatsRes,
   ] = await Promise.all([
     getTotalQuizXp(userId), // "Kiểm tra" standalone quiz sessions
     getTotalGameXp(userId), // best-per-game mini-game XP (lib/games.ts)
@@ -380,6 +400,13 @@ export async function recalculateUserStats(userId: string) {
     // anywhere (opening one just called this function, which had no idea
     // "chest XP" existed) - this is what makes it real.
     getTotalChestXp(userId),
+    // Completed CFA modules (the DB-backed Book/Reading/Module content, see
+    // lib/supabase-cfa-progress.ts) - counted toward the level-9+ CFA gate
+    // alongside completed lessons tagged in CFA_LEVEL_1_SUBJECTS below.
+    supabase.from("cfa_module_progress").select("module_id").eq("user_id", userId).eq("completed", true),
+    // XP permanently spent on streak restores (lib/supabase-streak.ts) -
+    // subtracted below since total_xp is recomputed from scratch here.
+    supabase.from("user_stats").select("xp_spent").eq("user_id", userId).maybeSingle(),
   ]);
 
   // Academic game bonus: +3 XP for 100% correct, +1 XP for >= 80% correct, capped at +30 XP overall.
@@ -441,14 +468,26 @@ export async function recalculateUserStats(userId: string) {
     console.error("Error reading recalls for XP:", err);
   }
 
-  const totalXp = lessonsCompleted * 10 + quizXp + gameXp + referralXp + gameAcademicBonusXp + questXp + milestoneXp + recallXp + chestXp;
+  const xpSpent = (userStatsRes as { data: { xp_spent: number } | null }).data?.xp_spent ?? 0;
+  const totalXp = Math.max(
+    0,
+    lessonsCompleted * 10 + quizXp + gameXp + referralXp + gameAcademicBonusXp + questXp + milestoneXp + recallXp + chestXp - xpSpent
+  );
   const quizScores = progress?.filter((p) => p.quiz_score !== null).map((p) => p.quiz_score) || [];
   const avgScore = quizScores.length > 0 ? quizScores.reduce((a, b) => a + b, 0) / quizScores.length : 0;
+
+  // Levels beyond L8 additionally require completing CFA content (see
+  // lib/levels.ts minCfaCompleted) - counts lessons tagged in
+  // CFA_LEVEL_1_SUBJECTS plus completed Book/Reading/Module CFA modules.
+  const cfaLessonsDone = (progress ?? []).filter((p) => CFA_LESSON_IDS.has(p.lesson_id)).length;
+  const cfaModulesDone = cfaModuleProgressRes.data?.length ?? 0;
+  const cfaCompletedCount = cfaLessonsDone + cfaModulesDone;
+
   // Was Math.floor(totalXp / 150) + 1 - a flat, uncapped formula that never
   // matched lib/levels.ts's LEVELS thresholds (the array UserStats/level-up
   // modal actually display), so the level persisted here could silently
   // diverge from what the UI showed. Single source of truth now.
-  const currentLevel = getLevelByXp(totalXp).level;
+  const currentLevel = getLevelByXp(totalXp, cfaCompletedCount).level;
 
   // Cập nhật user_profiles + user_stats - independent writes to different
   // tables with the same derived payload, so no need to serialize these

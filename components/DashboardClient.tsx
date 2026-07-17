@@ -31,7 +31,7 @@ import DailyNewsQuizWidget from "@/components/DailyNewsQuizWidget";
 import OnlineUsersWidget from "@/components/OnlineUsersWidget";
 import CombinedRewardsWidget from "@/components/CombinedRewardsWidget";
 import { hasCompletedOnboarding, completeOnboarding } from "@/lib/supabase-onboarding";
-import { getUserProfile, recalculateUserStats, getLeaderboardByMetric } from "@/lib/supabase-user";
+import { getUserProfile, recalculateUserStats, getLeaderboardByMetric, getCfaCompletedCount } from "@/lib/supabase-user";
 import { getLevelByXp, getLevelProgress, LEVELS } from "@/lib/levels";
 import UnlockRequestModal from "@/components/UnlockRequestModal";
 import KnowledgeChallengeModal from "@/components/KnowledgeChallengeModal";
@@ -161,6 +161,7 @@ export default function DashboardClient({ lessonsMeta }: { lessonsMeta: LessonMe
   const [communityUsersByLevel, setCommunityUsersByLevel] = useState<Map<number, { name: string; xp: number; avatarUrl: string | null; userId: string }[]>>(new Map());
   const [activeTooltipLevel, setActiveTooltipLevel] = useState<number | null>(null);
   const levelStripRef = useRef<HTMLDivElement>(null);
+  const [cfaCompletedForLevel, setCfaCompletedForLevel] = useState(0);
   const [isRoadmapExpanded, setIsRoadmapExpanded] = useState<boolean>(() => {
     if (typeof window !== "undefined") {
       const saved = localStorage.getItem("is_roadmap_expanded");
@@ -220,6 +221,12 @@ export default function DashboardClient({ lessonsMeta }: { lessonsMeta: LessonMe
           grouped.set(lvl.level, []);
         }
         entries.forEach((entry) => {
+          // Approximation: grouping every other user by level here can't
+          // check their individual CFA completion for the L9+ gate (that
+          // data isn't part of the xp leaderboard query), so a handful of
+          // high-XP-but-no-CFA users may show under L9 in this member list
+          // even though recalculateUserStats caps their persisted level
+          // lower. Only the current user's own level (below) is exact.
           const lvl = getLevelByXp(entry.value).level;
           if (grouped.has(lvl)) {
             grouped.get(lvl)?.push({ name: entry.name, xp: entry.value, avatarUrl: entry.avatarUrl, userId: entry.user_id });
@@ -232,6 +239,19 @@ export default function DashboardClient({ lessonsMeta }: { lessonsMeta: LessonMe
       cancelled = true;
     };
   }, []);
+
+  useEffect(() => {
+    if (!user?.id) return;
+    let cancelled = false;
+    getCfaCompletedCount(user.id)
+      .then((count) => {
+        if (!cancelled) setCfaCompletedForLevel(count);
+      })
+      .catch((err) => console.error("Error loading CFA completed count:", err));
+    return () => {
+      cancelled = true;
+    };
+  }, [user?.id]);
 
   // Nudge learners toward the knowledge-review challenge automatically, at
   // most once per calendar day, once they've actually completed enough
@@ -735,19 +755,26 @@ export default function DashboardClient({ lessonsMeta }: { lessonsMeta: LessonMe
                 itself instead of hidden behind hover/click. Each tier gets
                 its own accent color instead of one flat gray palette. */}
             {user?.id && (() => {
-              const currentUserLevel = getLevelByXp(userXp).level;
+              const currentUserLevel = getLevelByXp(userXp, cfaCompletedForLevel).level;
               const levelProgress = getLevelProgress(userXp);
               const openLevel = activeTooltipLevel;
 
+              // Ordered from most muted (L1) to most vivid/glowing (highest
+              // level) - a level's true color only ever shows once it's
+              // actually reached; not-yet-reached cards render in flat
+              // grayscale further down, regardless of this palette, so the
+              // "reveal" happens exactly at unlock instead of a diluted
+              // preview of the color.
               const ACCENTS = [
-                { text: "text-stone-600 dark:text-stone-400", bg: "bg-stone-50 dark:bg-stone-900/50", border: "border-stone-200 dark:border-stone-800", solid: "bg-stone-400" },
-                { text: "text-sky-600 dark:text-sky-400", bg: "bg-sky-50 dark:bg-sky-950/30", border: "border-sky-200 dark:border-sky-900", solid: "bg-sky-500" },
-                { text: "text-violet-600 dark:text-violet-400", bg: "bg-violet-50 dark:bg-violet-950/30", border: "border-violet-200 dark:border-violet-900", solid: "bg-violet-500" },
-                { text: "text-amber-600 dark:text-amber-400", bg: "bg-amber-50 dark:bg-amber-950/30", border: "border-amber-200 dark:border-amber-900", solid: "bg-amber-500" },
-                { text: "text-emerald-600 dark:text-emerald-400", bg: "bg-emerald-50 dark:bg-emerald-950/30", border: "border-emerald-200 dark:border-emerald-900", solid: "bg-emerald-500" },
-                { text: "text-teal-600 dark:text-teal-400", bg: "bg-teal-50 dark:bg-teal-950/30", border: "border-teal-200 dark:border-teal-900", solid: "bg-teal-500" },
-                { text: "text-rose-600 dark:text-rose-400", bg: "bg-rose-50 dark:bg-rose-950/30", border: "border-rose-200 dark:border-rose-900", solid: "bg-rose-500" },
-                { text: "text-indigo-600 dark:text-indigo-400", bg: "bg-indigo-50 dark:bg-indigo-950/30", border: "border-indigo-200 dark:border-indigo-900", solid: "bg-indigo-500" },
+                { text: "text-slate-600 dark:text-slate-400", bg: "bg-slate-50 dark:bg-slate-900/50", border: "border-slate-300 dark:border-slate-700", solid: "bg-slate-400", glow: "" },
+                { text: "text-sky-600 dark:text-sky-400", bg: "bg-sky-50 dark:bg-sky-950/30", border: "border-sky-300 dark:border-sky-800", solid: "bg-sky-500", glow: "" },
+                { text: "text-cyan-600 dark:text-cyan-400", bg: "bg-cyan-50 dark:bg-cyan-950/30", border: "border-cyan-300 dark:border-cyan-800", solid: "bg-cyan-500", glow: "" },
+                { text: "text-violet-600 dark:text-violet-400", bg: "bg-violet-50 dark:bg-violet-950/30", border: "border-violet-400 dark:border-violet-700", solid: "bg-violet-500", glow: "shadow-violet-500/20" },
+                { text: "text-emerald-600 dark:text-emerald-400", bg: "bg-emerald-50 dark:bg-emerald-950/30", border: "border-emerald-400 dark:border-emerald-700", solid: "bg-emerald-500", glow: "shadow-emerald-500/20" },
+                { text: "text-teal-600 dark:text-teal-400", bg: "bg-teal-50 dark:bg-teal-950/30", border: "border-teal-400 dark:border-teal-700", solid: "bg-teal-500", glow: "shadow-teal-500/25" },
+                { text: "text-orange-600 dark:text-orange-400", bg: "bg-orange-50 dark:bg-orange-950/30", border: "border-orange-400 dark:border-orange-700", solid: "bg-orange-500", glow: "shadow-orange-500/25" },
+                { text: "text-rose-600 dark:text-rose-400", bg: "bg-rose-50 dark:bg-rose-950/30", border: "border-rose-400 dark:border-rose-700", solid: "bg-rose-500", glow: "shadow-rose-500/30" },
+                { text: "text-amber-600 dark:text-amber-400", bg: "bg-gradient-to-br from-amber-50 to-yellow-100 dark:from-amber-950/40 dark:to-yellow-950/30", border: "border-amber-400 dark:border-amber-500", solid: "bg-gradient-to-r from-amber-400 to-yellow-500", glow: "shadow-amber-500/40" },
               ];
 
               return (
@@ -763,7 +790,7 @@ export default function DashboardClient({ lessonsMeta }: { lessonsMeta: LessonMe
                     </div>
                     <div className="flex items-center gap-2 text-left sm:text-right self-start sm:self-auto">
                       <span className="inline-block text-[10px] font-bold text-emerald-700 dark:text-emerald-400 bg-emerald-50 dark:bg-emerald-950/40 border border-emerald-200 dark:border-emerald-900 px-2.5 py-1 rounded-lg">
-                        Bạn đang ở Cấp {currentUserLevel}: <span className="font-extrabold">{getLevelByXp(userXp).name}</span>
+                        Bạn đang ở Cấp {currentUserLevel}: <span className="font-extrabold">{getLevelByXp(userXp, cfaCompletedForLevel).name}</span>
                       </span>
                       <button
                         onClick={toggleRoadmap}
@@ -812,6 +839,7 @@ export default function DashboardClient({ lessonsMeta }: { lessonsMeta: LessonMe
                             {LEVELS.map((lvl, idx) => {
                               const isUserCurrent = currentUserLevel === lvl.level;
                               const isPassed = currentUserLevel > lvl.level;
+                              const isReached = isPassed || isUserCurrent;
                               const members = communityUsersByLevel.get(lvl.level) || [];
                               const accent = ACCENTS[idx % ACCENTS.length];
                               const isOpen = openLevel === lvl.level;
@@ -819,31 +847,29 @@ export default function DashboardClient({ lessonsMeta }: { lessonsMeta: LessonMe
                               return (
                                 <div key={lvl.level} className="flex items-stretch">
                                   {idx > 0 && (
-                                    <div className={`w-3 sm:w-4 h-0.5 self-center shrink-0 ${isPassed || isUserCurrent ? "bg-emerald-400 dark:bg-emerald-600" : "bg-stone-200 dark:bg-stone-800"}`} />
+                                    <div className={`w-3 sm:w-4 h-0.5 self-center shrink-0 ${isReached ? "bg-emerald-400 dark:bg-emerald-600" : "bg-stone-200 dark:bg-stone-800"}`} />
                                   )}
                                   <button
                                     onClick={() => setActiveTooltipLevel((prev) => (prev === lvl.level ? null : lvl.level))}
                                     className={`text-left rounded-xl border p-2 w-[96px] h-[104px] shrink-0 bg-white dark:bg-stone-900 transition-all cursor-pointer flex flex-col ${
-                                      isOpen
-                                        ? `${accent.border} shadow-md scale-[1.02]`
-                                        : isUserCurrent
-                                        ? `${accent.border} shadow-sm`
-                                        : "border-stone-100 dark:border-stone-800 hover:border-stone-300 dark:hover:border-stone-700"
-                                    } ${!isPassed && !isUserCurrent && !isOpen ? "opacity-70 hover:opacity-100" : ""}`}
+                                      isReached
+                                        ? `${accent.border} ${isOpen ? `shadow-md scale-[1.02] ${accent.glow}` : isUserCurrent ? `shadow-sm ${accent.glow}` : ""}`
+                                        : "border-stone-150 dark:border-stone-800 opacity-60 grayscale hover:opacity-90 hover:grayscale-0"
+                                    }`}
                                   >
                                     <div className="flex items-center justify-between gap-1">
-                                      <span className={`text-[10px] font-black uppercase tracking-wider ${isUserCurrent || isOpen ? accent.text : "text-stone-500 dark:text-stone-400"}`}>
+                                      <span className={`text-[10px] font-black uppercase tracking-wider ${isReached ? accent.text : "text-stone-400 dark:text-stone-500"}`}>
                                         L{lvl.level}
                                       </span>
                                       {isUserCurrent && (
                                         <span className={`text-[7px] font-black uppercase text-white px-1 py-0.5 rounded-full ${accent.solid}`}>Bạn</span>
                                       )}
                                     </div>
-                                    <p className={`text-xs font-extrabold mt-1 leading-snug line-clamp-2 flex-1 ${isUserCurrent || isOpen ? "text-stone-900 dark:text-stone-100" : "text-stone-700 dark:text-stone-300"}`}>
+                                    <p className={`text-xs font-extrabold mt-1 leading-snug line-clamp-2 flex-1 ${isReached ? "text-stone-900 dark:text-stone-100" : "text-stone-500 dark:text-stone-500"}`}>
                                       {lvl.name}
                                     </p>
                                     <p className="text-[9px] text-stone-400 dark:text-stone-500 mt-0.5">{lvl.minXp} XP</p>
-                                    <div className={`inline-flex items-center gap-1 text-[9px] font-bold mt-1.5 px-1.5 py-0.5 rounded-full w-fit ${accent.bg} ${accent.text}`}>
+                                    <div className={`inline-flex items-center gap-1 text-[9px] font-bold mt-1.5 px-1.5 py-0.5 rounded-full w-fit ${isReached ? `${accent.bg} ${accent.text}` : "bg-stone-100 dark:bg-stone-800 text-stone-400 dark:text-stone-500"}`}>
                                       👥 {members.length}
                                     </div>
                                   </button>

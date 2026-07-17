@@ -358,7 +358,7 @@ export default function CfaTrackView({ subjects }: Props) {
     <div className="py-2">
       {modeSwitcher}
       {loading ? (
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
           {[1, 2, 3, 4].map((n) => (
             <div key={n} className="rounded-xl border border-stone-200 dark:border-stone-800 bg-stone-50 dark:bg-stone-900/50 p-4 animate-pulse">
               <div className="aspect-[3/4] bg-stone-200 dark:bg-stone-800 rounded-lg mb-3" />
@@ -368,7 +368,7 @@ export default function CfaTrackView({ subjects }: Props) {
           ))}
         </div>
       ) : books.length > 0 ? (
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
           {books.map((book, i) => (
             <motion.div
               key={book.id}
