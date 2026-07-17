@@ -45,6 +45,48 @@ const QUIZ: QuizQuestion[] = [
     correct: 1,
     explanation: "Thời gian là bộ đệm chống rủi ro tốt nhất. Người có 30 năm đầu tư có thể trải qua 5-6 lần thị trường giảm mạnh rồi phục hồi. Người cần tiền sau 2 năm không có lựa chọn đó.",
   },
+  {
+    question: "Beta của một cổ phiếu là 1.2, có nghĩa là?",
+    options: ["Lợi nhuận được đảm bảo 120%","Cổ phiếu biến động 20% nhiều hơn thị trường chung","Cổ phiếu không có rủi ro","Cổ phiếu luôn tăng giá"],
+    correct: 1,
+    explanation: "Beta = 1.2 = cổ phiếu dao động 1.2 lần so với thị trường. Nếu thị trường +10%, cổ phiếu thường +12%. Nếu thị trường -10%, cổ phiếu thường -12%.",
+  },
+  {
+    question: "Rủi ro phi hệ thống có thể giảm bằng:",
+    options: ["Chỉ chờ thời gian","Đa dạng hóa danh mục đầu tư - mua nhiều loại cổ phiếu khác nhau","Bỏ vào tài khoản ngân hàng","Chỉ mua một loại cổ phiếu"],
+    correct: 1,
+    explanation: "Rủi ro riêng một công ty (kém hiệu quả, CEO từ chức) giảm nếu bạn sở hữu 20-30 cổ phiếu khác nhau. Nếu một công ty thua lỗ, những công ty khác vẫn lãi đắp phần trồi.",
+  },
+  {
+    question: "VaR (Value at Risk) = 5% có nghĩa:",
+    options: ["Mất 5% trong 1 tháng","Trong 100 ngày giao dịch, có 5 ngày (khoảng 1 ngày) thị trường có thể mất giá >X (được định nghĩa rõ)","Rủi ro cực đại là 5%","Không mất tiền"],
+    correct: 1,
+    explanation: "VaR = công cụ đo rủi ro: với xác suất 1%, danh mục có thể mất >X. Thường dùng trong ngân hàng để quản lý rủi ro.",
+  },
+  {
+    question: "Rủi ro tín dụng là:",
+    options: ["Rủi ro lãi suất tăng","Rủi ro người nợ không trả được nợ","Rủi ro thị trường giảm","Không có loại rủi ro này"],
+    correct: 1,
+    explanation: "Credit risk = nguy cơ chủ nợ mặc định (default). Ví dụ: bạn cho một công ty vay 1 tỷ, công ty đó phá sản không trả được.",
+  },
+  {
+    question: "Rủi ro thanh khoản là:",
+    options: ["Rủi ro dòng tiền âm","Rủi ro không bán được tài sản nhanh được hoặc phải bán với giá rẻ","Rủi ro thị trường tụt huyết áp","Không có loại rủi ro này"],
+    correct: 1,
+    explanation: "Liquidity risk = nếu cần bán tài sản gấp, bạn không tìm được người mua hoặc phải bán rẻ. Ví dụ: bất động sản mất 3 năm để bán, cổ phiếu OTC rất khó bán.",
+  },
+  {
+    question: "Tại sao rủi ro và lợi nhuận có quan hệ tuyến tính?",
+    options: ["Không có quan hệ","Nhà đầu tư chỉ chấp nhận rủi ro cao nếu kỳ vọng lợi nhuận cao; không rủi ro cao mà lợi nhuận thấp","Rủi ro và lợi nhuận không liên quan đến nhau","Rủi ro cao luôn mang lợi nhuận cao"],
+    correct: 1,
+    explanation: "Đây là nguyên lý cơ bản: Risk-Return Tradeoff. Bạn phải chịu rủi ro cao để kiếm lợi nhuận cao. Không có 'free lunch' trong tài chính.",
+  },
+  {
+    question: "Correlation (tương quan) giữa hai cổ phiếu = -1 có nghĩa:",
+    options: ["Hoàn toàn độc lập","Khi một tăng 10%, cái kia giảm 10% - tương quan âm hoàn hảo, tuyệt vời cho đa dạng hóa","Đi cùng chiều","Không liên quan gì cả"],
+    correct: 1,
+    explanation: "Correlation -1 = perfect negative correlation. Khi A lên, B xuống → tổng giá trị danh mục ổn định. Đây là mục tiêu của đa dạng hóa.",
+  },
 ];
 
 const CONCEPTS = [
