@@ -45,14 +45,21 @@ export async function getUnopenedChestCount(userId: string): Promise<number> {
 /** Awards a new unopened chest - called from the two real places a chest is
  *  actually earned: finishing all 3 daily quests for the week's tracker, and
  *  passing a stage milestone exam. Best-effort by design (a failed insert
- *  here shouldn't block the toast/XP the triggering action already granted). */
-export async function earnChest(userId: string, source: ChestSource, count = 1): Promise<void> {
+ *  here shouldn't block the toast/XP the triggering action already granted).
+ *  Returns whether the insert actually succeeded - callers that gate a
+ *  "don't show this again today" check on the row existing (like
+ *  claimDailyLoginChest below) need to know, otherwise a silently failed
+ *  insert (e.g. a source value the DB check constraint doesn't allow yet)
+ *  looks identical to success and the caller re-fires every time. */
+export async function earnChest(userId: string, source: ChestSource, count = 1): Promise<boolean> {
   const supabase = createClient();
   const rows = Array.from({ length: count }, () => ({ user_id: userId, source }));
   const { error } = await supabase.from("user_chests").insert(rows);
-  if (error && !isMissingTableError(error)) {
-    console.error("Error earning chest:", error);
+  if (error) {
+    if (!isMissingTableError(error)) console.error("Error earning chest:", error);
+    return false;
   }
+  return true;
 }
 
 /**
@@ -85,8 +92,7 @@ export async function claimDailyLoginChest(userId: string): Promise<boolean> {
   }
   if (existing) return false; // already claimed today
 
-  await earnChest(userId, "daily_login", 1);
-  return true;
+  return earnChest(userId, "daily_login", 1);
 }
 
 export interface OpenChestResult {
