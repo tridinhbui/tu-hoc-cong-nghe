@@ -10,6 +10,8 @@ interface FileDropzoneProps {
   label: string;
   /** Shown when no new file has been picked yet (e.g. the current file name on an edit form). */
   currentFileName?: string;
+  /** Callback when file is selected */
+  onFileChange?: (file: File | null) => void;
 }
 
 /**
@@ -18,10 +20,11 @@ interface FileDropzoneProps {
  * actions unchanged - drag-and-drop just fills that same input via
  * DataTransfer, no separate upload path to keep in sync.
  */
-export default function FileDropzone({ name, accept, required, label, currentFileName }: FileDropzoneProps) {
+export default function FileDropzone({ name, accept, required, label, currentFileName, onFileChange }: FileDropzoneProps) {
   const inputRef = useRef<HTMLInputElement>(null);
   const [isDragging, setIsDragging] = useState(false);
   const [pickedFileName, setPickedFileName] = useState<string | null>(null);
+  const [clearedByUser, setClearedByUser] = useState(false);
 
   function applyFiles(files: FileList | null) {
     if (!files || files.length === 0 || !inputRef.current) return;
@@ -30,7 +33,11 @@ export default function FileDropzone({ name, accept, required, label, currentFil
     const dataTransfer = new DataTransfer();
     dataTransfer.items.add(files[0]);
     inputRef.current.files = dataTransfer.files;
+    // Trigger change event so the input knows files were set.
+    inputRef.current.dispatchEvent(new Event('change', { bubbles: true }));
     setPickedFileName(files[0].name);
+    setClearedByUser(false);
+    onFileChange?.(files[0]);
   }
 
   function handleDrop(e: React.DragEvent<HTMLDivElement>) {
@@ -41,11 +48,18 @@ export default function FileDropzone({ name, accept, required, label, currentFil
 
   function clearFile(e: React.MouseEvent) {
     e.stopPropagation();
-    if (inputRef.current) inputRef.current.value = "";
+    if (inputRef.current) {
+      // Clear both value and files (via empty DataTransfer).
+      inputRef.current.value = "";
+      const dataTransfer = new DataTransfer();
+      inputRef.current.files = dataTransfer.files;
+    }
     setPickedFileName(null);
+    setClearedByUser(true);
+    onFileChange?.(null);
   }
 
-  const displayName = pickedFileName ?? currentFileName;
+  const displayName = pickedFileName ?? (clearedByUser ? null : currentFileName);
 
   return (
     <div className="space-y-2">
@@ -96,7 +110,14 @@ export default function FileDropzone({ name, accept, required, label, currentFil
         type="file"
         required={required && !currentFileName}
         accept={accept}
-        onChange={(e) => setPickedFileName(e.target.files?.[0]?.name ?? null)}
+        onChange={(e) => {
+          const file = e.target.files?.[0];
+          setPickedFileName(file?.name ?? null);
+          if (file) {
+            setClearedByUser(false);
+            onFileChange?.(file);
+          }
+        }}
         className="hidden"
       />
     </div>

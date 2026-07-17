@@ -3,7 +3,7 @@
 import { useState, useRef, useTransition } from "react";
 import { useRouter } from "next/navigation";
 import { toast } from "sonner";
-import { Upload, FileText, Trash2, Download, Plus, Pencil, Check, X } from "lucide-react";
+import { Upload, FileText, Trash2, Download, Plus, Pencil, Check, X, Eye } from "lucide-react";
 import type { DocumentRow } from "@/lib/admin/documents";
 import { DOCUMENT_CATEGORIES } from "@/lib/document-categories";
 import { uploadDocumentAction, updateDocumentAction, deleteDocumentAction, approveDocumentAction, rejectDocumentAction } from "./actions";
@@ -11,6 +11,7 @@ import EmptyState from "@/components/admin/EmptyState";
 import ConfirmDialog from "@/components/admin/ConfirmDialog";
 import Modal from "@/components/admin/Modal";
 import FileDropzone from "@/components/admin/FileDropzone";
+import FilePreviewModal from "@/components/admin/FilePreviewModal";
 
 function formatBytes(bytes: number) {
   if (bytes < 1024) return `${bytes} B`;
@@ -31,6 +32,8 @@ export default function DocumentsManager({ documents }: { documents: DocumentRow
   const [uploading, setUploading] = useState(false);
   const [savingEdit, setSavingEdit] = useState(false);
   const [removeImage, setRemoveImage] = useState(false);
+  const [previewFile, setPreviewFile] = useState<File | null>(null);
+  const [showPreview, setShowPreview] = useState(false);
   const formRef = useRef<HTMLFormElement>(null);
   const editFormRef = useRef<HTMLFormElement>(null);
 
@@ -243,7 +246,22 @@ export default function DocumentsManager({ documents }: { documents: DocumentRow
             label="Tệp (PDF, Word, Excel, PowerPoint - tối đa 25MB)"
             required
             accept=".pdf,.doc,.docx,.xls,.xlsx,.ppt,.pptx,.zip,.png,.jpg,.jpeg"
+            onFileChange={(file) => {
+              if (file) {
+                setPreviewFile(file);
+              }
+            }}
           />
+          {previewFile && (
+            <button
+              type="button"
+              onClick={() => setShowPreview(true)}
+              className="inline-flex items-center gap-2 text-sm font-semibold px-3 py-2 rounded-lg bg-blue-100 dark:bg-blue-950/30 text-blue-700 dark:text-blue-400 hover:bg-blue-200 dark:hover:bg-blue-900/50 transition-colors"
+            >
+              <Eye className="w-4 h-4" />
+              Xem trước: {previewFile.name}
+            </button>
+          )}
           <FileDropzone
             name="image"
             label="Ảnh minh hoạ (không bắt buộc - tối đa 5MB)"
@@ -307,7 +325,22 @@ export default function DocumentsManager({ documents }: { documents: DocumentRow
               label="Thay tệp mới (không bắt buộc - để trống nếu giữ tệp hiện tại)"
               accept=".pdf,.doc,.docx,.xls,.xlsx,.ppt,.pptx,.zip,.png,.jpg,.jpeg"
               currentFileName={toEdit.file_name}
+              onFileChange={(file) => {
+                if (file) {
+                  setPreviewFile(file);
+                }
+              }}
             />
+            {previewFile && (
+              <button
+                type="button"
+                onClick={() => setShowPreview(true)}
+                className="inline-flex items-center gap-2 text-sm font-semibold px-3 py-2 rounded-lg bg-blue-100 dark:bg-blue-950/30 text-blue-700 dark:text-blue-400 hover:bg-blue-200 dark:hover:bg-blue-900/50 transition-colors"
+              >
+                <Eye className="w-4 h-4" />
+                Xem trước: {previewFile.name}
+              </button>
+            )}
 
             <div className="space-y-2">
               {toEdit.image_url && !removeImage ? (
@@ -370,6 +403,15 @@ export default function DocumentsManager({ documents }: { documents: DocumentRow
         danger
         onConfirm={confirmDelete}
         onCancel={() => setToDelete(null)}
+      />
+
+      <FilePreviewModal
+        open={showPreview}
+        file={previewFile}
+        onClose={() => {
+          setShowPreview(false);
+          setPreviewFile(null);
+        }}
       />
     </div>
   );

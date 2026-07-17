@@ -38,7 +38,7 @@ function getPlaceholderImageUrl(category: string): string {
     "tool": "🛠️",
   };
 
-  const emoji = categoryEmojis[category.toLowerCase()] || "📄";
+  const emoji = categoryEmojis[(category || "").toLowerCase()] || "📄";
 
   // Generate a simple SVG placeholder with emoji
   const svg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 280">

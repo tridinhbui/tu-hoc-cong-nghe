@@ -15,3 +15,9 @@ export async function rejectAppealAction(appealId: number, adminNote: string) {
   await rejectAppeal(appealId, session.userId, adminNote);
   revalidatePath("/admin/appeals");
 }
+
+export async function approveMultipleAppealsAction(appealIds: number[]) {
+  const session = await requireAdmin();
+  await Promise.all(appealIds.map((id) => approveAppeal(id, session.userId)));
+  revalidatePath("/admin/appeals");
+}

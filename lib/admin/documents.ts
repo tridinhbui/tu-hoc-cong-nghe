@@ -152,7 +152,7 @@ function getPlaceholderImageUrl(category: string): string {
     "tool": "🛠️",
   };
 
-  const emoji = categoryEmojis[category.toLowerCase()] || "📄";
+  const emoji = categoryEmojis[(category || "").toLowerCase()] || "📄";
 
   // Generate a simple SVG placeholder with emoji
   const svg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 280">
@@ -295,11 +295,20 @@ export async function updateDocument(params: {
     category,
   };
 
-  const { data: existing, error: fetchError } = await supabase
+  let { data: existing, error: fetchError } = await supabase
     .from("documents")
     .select("file_url, image_url")
     .eq("id", id)
     .single();
+
+  // If image_url column doesn't exist, retry without it
+  if (fetchError && isMissingColumnError(fetchError)) {
+    ({ data: existing, error: fetchError } = await supabase
+      .from("documents")
+      .select("file_url")
+      .eq("id", id)
+      .single());
+  }
 
   if (fetchError || !existing) throw new Error(fetchError?.message ?? "Không tìm thấy tài liệu");
 
@@ -355,9 +364,11 @@ export async function updateDocument(params: {
   }
 
   let { error: updateError } = await supabase.from("documents").update(fields).eq("id", id);
-  if (updateError && isMissingColumnError(updateError) && "image_url" in fields) {
-    const { image_url: _imageUrl, ...fieldsWithoutImage } = fields;
-    void _imageUrl;
+
+  // If update fails due to missing columns (e.g., image_url), retry without those fields
+  if (updateError && isMissingColumnError(updateError)) {
+    const fieldsWithoutImage = { ...fields };
+    delete fieldsWithoutImage.image_url;
     ({ error: updateError } = await supabase.from("documents").update(fieldsWithoutImage).eq("id", id));
   }
 
