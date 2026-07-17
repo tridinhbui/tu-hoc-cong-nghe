@@ -42,11 +42,23 @@ interface Props {
 
 type ViewMode = "library" | "subjects";
 
+// Module-level cache (outside the component, survives unmount/remount): this
+// component previously refetched + re-ran its loading-skeleton on EVERY
+// switch back to the CFA tab (DashboardClient conditionally unmounts it when
+// activeTrack changes away and mounts a fresh instance when it changes back).
+// The skeleton -> loaded-grid height swap, compounded by the staggered
+// framer-motion fade-ins, changed the left column's height mid-animation and
+// made the sticky sidebar visibly jump/flash. Caching the books list here so
+// a remount reuses already-fetched data (no skeleton, no reflow, no restart
+// of the fade-in stagger) removes the root cause without touching any
+// sidebar component.
+let cachedBooks: Book[] | null = null;
+
 export default function CfaTrackView({ subjects }: Props) {
   const [viewMode, setViewMode] = useState<ViewMode>("library");
   const [openSubjects, setOpenSubjects] = useState<Set<string>>(new Set());
-  const [books, setBooks] = useState<Book[]>([]);
-  const [loading, setLoading] = useState(true);
+  const [books, setBooks] = useState<Book[]>(cachedBooks ?? []);
+  const [loading, setLoading] = useState(cachedBooks === null);
 
   // Which book is open, and its readings/modules - rendered INLINE in this
   // same tab (swaps out the book grid) instead of a popup modal, so CFA
@@ -58,6 +70,7 @@ export default function CfaTrackView({ subjects }: Props) {
   const [openReadings, setOpenReadings] = useState<Set<string>>(new Set());
 
   useEffect(() => {
+    if (cachedBooks !== null) return;
     async function fetchBooks() {
       try {
         const supabase = createClient();
@@ -67,6 +80,7 @@ export default function CfaTrackView({ subjects }: Props) {
           .order("id", { ascending: true });
         if (!error && data) {
           const primaryBooks = data.filter((b: Book) => b.id.startsWith("book-"));
+          cachedBooks = primaryBooks;
           setBooks(primaryBooks);
         }
       } catch (err) {
