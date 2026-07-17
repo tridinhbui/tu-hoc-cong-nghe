@@ -784,47 +784,57 @@ export default function DashboardClient({ lessonsMeta }: { lessonsMeta: LessonMe
                         />
                       </div>
 
-                      {/* Level cards - member count always visible, no hover needed */}
-                      <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5">
-                        {LEVELS.map((lvl, idx) => {
-                          const isUserCurrent = currentUserLevel === lvl.level;
-                          const isPassed = currentUserLevel > lvl.level;
-                          const members = communityUsersByLevel.get(lvl.level) || [];
-                          const accent = ACCENTS[idx % ACCENTS.length];
-                          const isOpen = openLevel === lvl.level;
+                      {/* Elegant single strip - one scrollable row connected by a
+                          thin line, like the original path design, but each
+                          node stays a real inline-expandable card (no
+                          floating popup) with its member count always
+                          visible. */}
+                      <div className="overflow-x-auto pb-2 -mx-1 px-1 no-scrollbar">
+                        <div className="flex items-stretch gap-0 min-w-max">
+                          {LEVELS.map((lvl, idx) => {
+                            const isUserCurrent = currentUserLevel === lvl.level;
+                            const isPassed = currentUserLevel > lvl.level;
+                            const members = communityUsersByLevel.get(lvl.level) || [];
+                            const accent = ACCENTS[idx % ACCENTS.length];
+                            const isOpen = openLevel === lvl.level;
 
-                          return (
-                            <button
-                              key={lvl.level}
-                              onClick={() => setActiveTooltipLevel((prev) => (prev === lvl.level ? null : lvl.level))}
-                              className={`text-left rounded-2xl border-2 p-3 transition-all cursor-pointer ${
-                                isOpen
-                                  ? `${accent.border} ${accent.bg} shadow-md scale-[1.02]`
-                                  : isUserCurrent
-                                  ? `${accent.border} ${accent.bg} shadow-sm`
-                                  : isPassed
-                                  ? "border-stone-200 dark:border-stone-800 bg-white dark:bg-stone-900 hover:border-stone-300 dark:hover:border-stone-700"
-                                  : "border-stone-150 dark:border-stone-850 bg-stone-50/60 dark:bg-stone-900/30 opacity-70 hover:opacity-100"
-                              }`}
-                            >
-                              <div className="flex items-center justify-between gap-1">
-                                <span className={`text-xs font-black uppercase tracking-wider ${isUserCurrent || isOpen ? accent.text : "text-stone-500 dark:text-stone-400"}`}>
-                                  L{lvl.level}
-                                </span>
-                                {isUserCurrent && (
-                                  <span className={`text-[8px] font-black uppercase text-white px-1.5 py-0.5 rounded-full ${accent.solid}`}>Bạn</span>
+                            return (
+                              <div key={lvl.level} className="flex items-center">
+                                {idx > 0 && (
+                                  <div className={`w-4 sm:w-6 h-0.5 shrink-0 ${isPassed || isUserCurrent ? "bg-emerald-400 dark:bg-emerald-600" : "bg-stone-200 dark:bg-stone-800"}`} />
                                 )}
+                                <button
+                                  onClick={() => setActiveTooltipLevel((prev) => (prev === lvl.level ? null : lvl.level))}
+                                  className={`text-left rounded-2xl border-2 p-3 w-[132px] shrink-0 transition-all cursor-pointer ${
+                                    isOpen
+                                      ? `${accent.border} ${accent.bg} shadow-md scale-[1.02]`
+                                      : isUserCurrent
+                                      ? `${accent.border} ${accent.bg} shadow-sm`
+                                      : isPassed
+                                      ? "border-stone-200 dark:border-stone-800 bg-white dark:bg-stone-900 hover:border-stone-300 dark:hover:border-stone-700"
+                                      : "border-stone-150 dark:border-stone-850 bg-stone-50/60 dark:bg-stone-900/30 opacity-70 hover:opacity-100"
+                                  }`}
+                                >
+                                  <div className="flex items-center justify-between gap-1">
+                                    <span className={`text-xs font-black uppercase tracking-wider ${isUserCurrent || isOpen ? accent.text : "text-stone-500 dark:text-stone-400"}`}>
+                                      L{lvl.level}
+                                    </span>
+                                    {isUserCurrent && (
+                                      <span className={`text-[8px] font-black uppercase text-white px-1.5 py-0.5 rounded-full ${accent.solid}`}>Bạn</span>
+                                    )}
+                                  </div>
+                                  <p className={`text-sm font-extrabold mt-1 leading-snug ${isUserCurrent || isOpen ? "text-stone-900 dark:text-stone-100" : "text-stone-700 dark:text-stone-300"}`}>
+                                    {lvl.name}
+                                  </p>
+                                  <p className="text-[10px] text-stone-400 dark:text-stone-500 mt-0.5">{lvl.minXp} XP trở lên</p>
+                                  <div className={`inline-flex items-center gap-1 text-[10px] font-bold mt-2 px-2 py-0.5 rounded-full ${accent.bg} ${accent.text}`}>
+                                    👥 {members.length}
+                                  </div>
+                                </button>
                               </div>
-                              <p className={`text-sm font-extrabold mt-1 leading-snug ${isUserCurrent || isOpen ? "text-stone-900 dark:text-stone-100" : "text-stone-700 dark:text-stone-300"}`}>
-                                {lvl.name}
-                              </p>
-                              <p className="text-[10px] text-stone-400 dark:text-stone-500 mt-0.5">{lvl.minXp} XP trở lên</p>
-                              <div className={`inline-flex items-center gap-1 text-[10px] font-bold mt-2 px-2 py-0.5 rounded-full ${accent.bg} ${accent.text}`}>
-                                👥 {members.length} thành viên
-                              </div>
-                            </button>
-                          );
-                        })}
+                            );
+                          })}
+                        </div>
                       </div>
 
                       {/* Inline expanded member panel - no floating popup */}
