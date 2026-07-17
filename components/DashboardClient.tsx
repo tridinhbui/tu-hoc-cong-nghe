@@ -797,8 +797,10 @@ export default function DashboardClient({ lessonsMeta }: { lessonsMeta: LessonMe
                         }
                       `}</style>
 
-                    {/* Connecting Line (Underlay) */}
-                    <div className="absolute left-0 right-0 top-1/2 -translate-y-1/2 h-1 bg-stone-100 dark:bg-stone-850 rounded-full z-0" />
+                    {/* Inset content container to prevent edge clipping on all viewports */}
+                    <div className="absolute left-8 right-8 top-1/2 -translate-y-1/2 h-0 z-10">
+                      {/* Connecting Line (Underlay) */}
+                      <div className="absolute left-0 right-0 top-1/2 -translate-y-1/2 h-1 bg-stone-100 dark:bg-stone-850 rounded-full z-0" />
                     
                     {/* Completed Line Fill (Glow Gradient) */}
                     <div 
@@ -1019,6 +1021,7 @@ export default function DashboardClient({ lessonsMeta }: { lessonsMeta: LessonMe
                         </div>
                       );
                     })}
+                    </div>
                   </div>
                 </div>
               </div>
