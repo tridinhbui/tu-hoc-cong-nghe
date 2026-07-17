@@ -29,6 +29,7 @@ import LessonRecallWidget from "@/components/LessonRecallWidget";
 import SmartRemediationWidget from "@/components/SmartRemediationWidget";
 import DailyNewsQuizWidget from "@/components/DailyNewsQuizWidget";
 import OnlineUsersWidget from "@/components/OnlineUsersWidget";
+import ReferralPromptModal from "@/components/ReferralPromptModal";
 import CombinedRewardsWidget from "@/components/CombinedRewardsWidget";
 import { hasCompletedOnboarding, completeOnboarding } from "@/lib/supabase-onboarding";
 import { getUserProfile, recalculateUserStats, getLeaderboardByMetric, getCfaCompletedCount } from "@/lib/supabase-user";
@@ -37,7 +38,7 @@ import UnlockRequestModal from "@/components/UnlockRequestModal";
 import KnowledgeChallengeModal from "@/components/KnowledgeChallengeModal";
 import StageMilestoneExamModal from "@/components/StageMilestoneExamModal";
 import CertificateModal from "@/components/CertificateModal";
-import { TRACK_PERSONAL, TRACK_PROFESSIONAL, isLessonInRange } from "@/lib/track-stages";
+import { TRACK_PERSONAL, TRACK_PROFESSIONAL, isLessonInRange, PROFESSIONAL_BRANCHES, type ProfessionalBranchId } from "@/lib/track-stages";
 import { BONUS_CATEGORIES, BONUS_CATEGORY_ORDER } from "@/lib/bonus-lesson-categories";
 import { CFA_LEVEL_1_SUBJECTS } from "@/lib/cfa-track";
 import { TRACKS } from "@/lib/tracks";
@@ -114,6 +115,18 @@ export default function DashboardClient({ lessonsMeta }: { lessonsMeta: LessonMe
     const saved = window.localStorage.getItem("activeTrack");
     return saved === "professional" ? "professional" : "personal";
   });
+  // Which half of "Tài chính chuyên ngành" is showing - purely a display
+  // filter over TRACK_PROFESSIONAL.stages (see PROFESSIONAL_BRANCHES),
+  // doesn't affect lesson locking/XP/progress at all.
+  const [professionalBranch, setProfessionalBranch] = useState<ProfessionalBranchId>(() => {
+    if (typeof window === "undefined") return "corporate";
+    const saved = window.localStorage.getItem("professionalBranch");
+    return saved === "investment" ? "investment" : "corporate";
+  });
+  const handleSetProfessionalBranch = (branch: ProfessionalBranchId) => {
+    setProfessionalBranch(branch);
+    if (typeof window !== "undefined") window.localStorage.setItem("professionalBranch", branch);
+  };
   const setActiveTrack = (track: "personal" | "professional" | "cfa") => {
     setActiveTrackState(track);
     if (track !== "cfa") {
@@ -735,6 +748,7 @@ export default function DashboardClient({ lessonsMeta }: { lessonsMeta: LessonMe
             changes) - shown above the streak/recall reminders since these
             are typically more time-sensitive. ── */}
         {user?.id && <AnnouncementBanner userId={user.id} />}
+        {user?.id && <ReferralPromptModal />}
 
         {user?.id && (
           <StreakReminderManager
@@ -1176,6 +1190,35 @@ export default function DashboardClient({ lessonsMeta }: { lessonsMeta: LessonMe
           </button>
         </div>
 
+          {/* "Tài chính chuyên ngành" split into 2 choosable branches -
+              purely filters which of TRACK_PROFESSIONAL's 10 stages show,
+              same lessons/locking/XP either way. */}
+          {activeTrack === "professional" && (
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-6">
+              {PROFESSIONAL_BRANCHES.map((branch) => {
+                const isActive = professionalBranch === branch.id;
+                return (
+                  <button
+                    key={branch.id}
+                    onClick={() => handleSetProfessionalBranch(branch.id)}
+                    className={`text-left rounded-xl border-2 px-4 py-3 transition-all ${
+                      isActive
+                        ? "border-stone-900 dark:border-stone-100 bg-stone-900 dark:bg-stone-100 text-white dark:text-stone-900"
+                        : "border-stone-200 dark:border-stone-800 bg-white dark:bg-stone-900 text-stone-700 dark:text-stone-300 hover:border-stone-400 dark:hover:border-stone-600"
+                    }`}
+                  >
+                    <div className={`text-sm font-bold flex items-center gap-1.5 ${isActive ? "text-white dark:text-stone-900" : "text-stone-900 dark:text-stone-100"}`}>
+                      <span>{branch.emoji}</span> {branch.label}
+                    </div>
+                    <div className={`text-[11px] mt-0.5 ${isActive ? "text-stone-300 dark:text-stone-600" : "text-stone-500 dark:text-stone-400"}`}>
+                      {branch.subtitle}
+                    </div>
+                  </button>
+                );
+              })}
+            </div>
+          )}
+
           {activeTrack === "cfa" ? (
             <div data-tour="stage-list" className="mt-8">
               <CfaTrackView subjects={cfaSubjects} />
@@ -1184,7 +1227,10 @@ export default function DashboardClient({ lessonsMeta }: { lessonsMeta: LessonMe
           <>
           {/* ── Stages + lessons ── */}
           <div data-tour="stage-list" className="space-y-6 mt-8">
-          {track.stages.map((stage) => {
+          {(activeTrack === "professional"
+            ? track.stages.filter((s) => (PROFESSIONAL_BRANCHES.find((b) => b.id === professionalBranch)!.stageLabels as readonly string[]).includes(s.label))
+            : track.stages
+          ).map((stage) => {
             const stageLessons = lessonsByStageLabel.get(stage.label) ?? [];
             const stageDone = stageLessons.filter((l) => completed.includes(l.id)).length;
             const stageLockedCount = stageLessons.filter((l) => isLessonLocked(l)).length;

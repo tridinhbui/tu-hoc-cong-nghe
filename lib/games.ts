@@ -11,7 +11,9 @@ export type GameType =
   | "en-vi-terms"
   | "ratio-category"
   | "term-definition"
-  | "formula-match";
+  | "formula-match"
+  | "risk-category"
+  | "ticker-match";
 
 export type GameDifficulty = "de" | "trung-binh" | "kho";
 
@@ -44,7 +46,7 @@ export interface GameMeta {
   description: string;
   emoji: string;
   mechanic: GameMechanic;
-  accent: "emerald" | "sky" | "amber" | "violet" | "rose";
+  accent: "emerald" | "sky" | "amber" | "violet" | "rose" | "indigo" | "teal";
 }
 
 export const GAMES: GameMeta[] = [
@@ -87,6 +89,22 @@ export const GAMES: GameMeta[] = [
     emoji: "➗",
     mechanic: "pair",
     accent: "rose",
+  },
+  {
+    id: "risk-category",
+    title: "Phân loại rủi ro đầu tư",
+    description: "Kéo từng loại tài sản vào đúng nhóm rủi ro: Thấp / Trung bình / Cao.",
+    emoji: "⚖️",
+    mechanic: "bucket",
+    accent: "indigo",
+  },
+  {
+    id: "ticker-match",
+    title: "Mã chứng khoán",
+    description: "Ghép tên doanh nghiệp niêm yết với đúng mã cổ phiếu trên sàn.",
+    emoji: "🏢",
+    mechanic: "pair",
+    accent: "teal",
   },
 ];
 
@@ -193,6 +211,21 @@ const RATIO_ITEMS: BucketItem[] = [
   { term: "Vòng quay tổng tài sản", bucket: "efficiency" },
 ];
 
+const RISK_ITEMS: BucketItem[] = [
+  { term: "Tiền gửi tiết kiệm", bucket: "low" },
+  { term: "Trái phiếu Chính phủ", bucket: "low" },
+  { term: "Chứng chỉ quỹ trái phiếu", bucket: "low" },
+  { term: "Vàng", bucket: "low" },
+  { term: "Trái phiếu doanh nghiệp lớn", bucket: "medium" },
+  { term: "Bất động sản cho thuê", bucket: "medium" },
+  { term: "Quỹ đầu tư cân bằng", bucket: "medium" },
+  { term: "Cổ phiếu Bluechip (VN30)", bucket: "medium" },
+  { term: "Cổ phiếu Penny", bucket: "high" },
+  { term: "Tiền mã hóa (Crypto)", bucket: "high" },
+  { term: "Hợp đồng phái sinh", bucket: "high" },
+  { term: "Cổ phiếu công ty mới IPO", bucket: "high" },
+];
+
 const BUCKET_CONFIGS: Partial<Record<GameType, BucketConfig>> = {
   "financial-statement-match": {
     buckets: [
@@ -214,6 +247,16 @@ const BUCKET_CONFIGS: Partial<Record<GameType, BucketConfig>> = {
     items: RATIO_ITEMS,
     roundSize: 10,
     sourceHint: "Kéo hoặc chọn tỷ số, rồi thả vào đúng nhóm",
+  },
+  "risk-category": {
+    buckets: [
+      { id: "low", label: "Rủi ro thấp" },
+      { id: "medium", label: "Rủi ro trung bình" },
+      { id: "high", label: "Rủi ro cao" },
+    ],
+    items: RISK_ITEMS,
+    roundSize: 10,
+    sourceHint: "Kéo hoặc chọn tài sản, rồi thả vào đúng mức rủi ro",
   },
 };
 
@@ -260,6 +303,19 @@ const FORMULA_PAIRS: { left: string; right: string }[] = [
   { left: "Vốn lưu động", right: "Tài sản ngắn hạn − Nợ ngắn hạn" },
 ];
 
+const TICKER_PAIRS: { left: string; right: string }[] = [
+  { left: "Vinamilk", right: "VNM" },
+  { left: "FPT Corporation", right: "FPT" },
+  { left: "Hòa Phát Group", right: "HPG" },
+  { left: "Vingroup", right: "VIC" },
+  { left: "Thế Giới Di Động", right: "MWG" },
+  { left: "Vietcombank", right: "VCB" },
+  { left: "Sabeco", right: "SAB" },
+  { left: "Masan Group", right: "MSN" },
+  { left: "Petrolimex", right: "PLX" },
+  { left: "Vietjet Air", right: "VJC" },
+];
+
 const PAIR_CONFIGS: Partial<Record<GameType, PairConfig>> = {
   "term-definition": {
     pool: TERM_DEFINITION_PAIRS,
@@ -274,6 +330,13 @@ const PAIR_CONFIGS: Partial<Record<GameType, PairConfig>> = {
     leftLabel: "Tên chỉ số",
     rightLabel: "Công thức",
     hint: "Bấm 1 tên chỉ số rồi bấm công thức đúng (hoặc kéo thả) để ghép cặp.",
+  },
+  "ticker-match": {
+    pool: TICKER_PAIRS,
+    roundSize: 6,
+    leftLabel: "Doanh nghiệp",
+    rightLabel: "Mã cổ phiếu",
+    hint: "Bấm 1 doanh nghiệp rồi bấm đúng mã cổ phiếu (hoặc kéo thả) để ghép cặp.",
   },
 };
 
@@ -451,6 +514,8 @@ const GAME_TITLES: Record<GameType, [string, string, string]> = {
   "ratio-category": ["Bậc Thầy Chỉ Số", "Nhà Phân Tích Thượng Thừa", "Trùm Tỷ Số Tài Chính"],
   "term-definition": ["Từ Điển Sống", "Học Giả Tài Chính", "Bộ Não Bách Khoa"],
   "formula-match": ["Thần Đồng Công Thức", "Pháp Sư Con Số", "Cao Thủ Định Lượng"],
+  "risk-category": ["Vệ Thần Danh Mục", "Cao Thủ Quản Trị Rủi Ro", "Bậc Thầy Phân Bổ Tài Sản"],
+  "ticker-match": ["Thổ Địa Sàn Chứng Khoán", "Cao Thủ Đọc Bảng Điện", "Huyền Thoại Mã Cổ Phiếu"],
 };
 
 /** Rank is 1-based. Returns null for rank 4+. */

@@ -109,6 +109,18 @@ export async function getDailyQuests(userId: string, dayKey: string): Promise<Qu
       xpReward: 15,
       claimed: claimedSet.has("daily_3"),
     },
+    {
+      // Auto-complete: just visiting the platform today satisfies it -
+      // "current" is always 1 the moment this list is fetched, no separate
+      // activity check needed like the other 3 quests.
+      id: "daily_4",
+      title: "Đăng nhập mỗi ngày",
+      description: "Ghé thăm nền tảng hôm nay",
+      target: 1,
+      current: 1,
+      xpReward: 5,
+      claimed: claimedSet.has("daily_4"),
+    },
   ];
 }
 
@@ -171,6 +183,7 @@ export async function getTotalQuestXp(userId: string): Promise<number> {
               if (item === "daily_1") total += 10;
               else if (item === "daily_2") total += 5;
               else if (item === "daily_3") total += 15;
+              else if (item === "daily_4") total += 5;
               else if (item === "daily_news_quiz") total += 15;
             });
           } catch {}

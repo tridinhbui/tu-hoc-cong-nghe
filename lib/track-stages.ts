@@ -228,6 +228,31 @@ export const TRACK_PROFESSIONAL = {
   ] satisfies Stage[],
 };
 
+// TRACK_PROFESSIONAL's 10 stages presented as 2 choosable branches, purely
+// a presentation-layer split (no lesson ids/tracks change - a lesson's
+// track membership still comes from its stage's day range, same as
+// before). Chặng 1-5 (accounting/valuation fundamentals) reads as
+// corporate-finance-flavored; Chặng 6-10 (equities/bonds/portfolios/
+// derivatives) reads as investment-flavored.
+export const PROFESSIONAL_BRANCHES = [
+  {
+    id: "corporate",
+    label: "Tài chính doanh nghiệp",
+    subtitle: "Kế toán, báo cáo tài chính, định giá & tài chính doanh nghiệp",
+    emoji: "🏢",
+    stageLabels: ["Chặng 1", "Chặng 2", "Chặng 3", "Chặng 4", "Chặng 5"],
+  },
+  {
+    id: "investment",
+    label: "Tài chính đầu tư",
+    subtitle: "Cổ phiếu, trái phiếu, danh mục đầu tư & phái sinh",
+    emoji: "📈",
+    stageLabels: ["Chặng 6", "Chặng 7", "Chặng 8", "Chặng 9", "Chặng 10"],
+  },
+] as const;
+
+export type ProfessionalBranchId = (typeof PROFESSIONAL_BRANCHES)[number]["id"];
+
 /**
  * Whether a lesson id falls within a track's day ranges. Most lessons don't
  * carry an explicit `track` field on the Lesson object - track membership is

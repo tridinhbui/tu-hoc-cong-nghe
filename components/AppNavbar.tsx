@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { usePathname, useRouter } from "next/navigation";
+import { toast } from "sonner";
 import { FileText, BarChart3, StickyNote, GraduationCap, Gamepad2, Layers, Menu, X } from "lucide-react";
 import { createClient } from "@/lib/supabase";
 import { useRoutePrefetch } from "@/lib/use-route-prefetch";
@@ -11,6 +12,7 @@ import Logo from "@/components/Logo";
 import LessonSearch from "@/components/LessonSearch";
 import { getUnresolvedMistakeCount } from "@/lib/quiz-mistakes";
 import { claimPendingReferral } from "@/lib/referrals";
+import { claimDailyLoginChest } from "@/lib/chests";
 import { useLevelUpWatcher } from "@/lib/use-level-up-watcher";
 import { usePresenceHeartbeat } from "@/lib/use-presence-heartbeat";
 import LevelUpModal from "@/components/LevelUpModal";
@@ -82,6 +84,11 @@ export default function AppNavbar() {
         .then(setMistakeCount)
         .catch(() => {});
       void claimPendingReferral();
+      claimDailyLoginChest(user.id)
+        .then((granted) => {
+          if (granted) toast.success("🎁 Quà đăng nhập hôm nay đã sẵn sàng - mở ở mục Nhiệm vụ & Rương quà!");
+        })
+        .catch(() => {});
     });
   }, []);
 

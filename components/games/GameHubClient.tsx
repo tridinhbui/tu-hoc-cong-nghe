@@ -7,6 +7,7 @@ import Link from "next/link";
 import { useAuthGate } from "@/lib/use-auth-gate";
 import { GAMES, GAME_DIFFICULTIES, getGameMeta, type GameType, type GameDifficulty } from "@/lib/games";
 import { recalculateUserStats } from "@/lib/supabase-user";
+import { getIllustrativeCount } from "@/lib/illustrative-stats";
 import GameLeaderboard from "@/components/games/GameLeaderboard";
 import GameHistory from "@/components/games/GameHistory";
 import BucketGame from "@/components/games/BucketGame";
@@ -51,6 +52,20 @@ const ACCENT: Record<string, { grad: string; ring: string; chip: string; glow: s
     chip: "bg-rose-50 dark:bg-rose-950/40 text-rose-700 dark:text-rose-300",
     glow: "bg-rose-500/5 dark:bg-rose-500/10",
     shadow: "hover:shadow-[0_16px_32px_-10px_rgba(244,63,94,0.15)] dark:hover:shadow-[0_16px_32px_-10px_rgba(244,63,94,0.25)]"
+  },
+  indigo: {
+    grad: "from-indigo-500 to-blue-500",
+    ring: "hover:border-indigo-400 dark:hover:border-indigo-600",
+    chip: "bg-indigo-50 dark:bg-indigo-950/40 text-indigo-700 dark:text-indigo-300",
+    glow: "bg-indigo-500/5 dark:bg-indigo-500/10",
+    shadow: "hover:shadow-[0_16px_32px_-10px_rgba(99,102,241,0.15)] dark:hover:shadow-[0_16px_32px_-10px_rgba(99,102,241,0.25)]"
+  },
+  teal: {
+    grad: "from-teal-500 to-cyan-500",
+    ring: "hover:border-teal-400 dark:hover:border-teal-600",
+    chip: "bg-teal-50 dark:bg-teal-950/40 text-teal-700 dark:text-teal-300",
+    glow: "bg-teal-500/5 dark:bg-teal-500/10",
+    shadow: "hover:shadow-[0_16px_32px_-10px_rgba(20,184,166,0.15)] dark:hover:shadow-[0_16px_32px_-10px_rgba(20,184,166,0.25)]"
   },
 };
 
@@ -150,6 +165,14 @@ export default function GameHubClient() {
                           </span>
                         </div>
                         <p className="text-xs text-stone-500 dark:text-stone-400 mt-1.5 leading-relaxed">{g.description}</p>
+                        <div className="flex items-center gap-2 mt-2">
+                          <span className="text-[10px] font-extrabold text-amber-600 dark:text-amber-400 bg-amber-50 dark:bg-amber-950/30 px-2 py-0.5 rounded-full">
+                            ⭐ Tối đa +50 XP/ván
+                          </span>
+                          <span className="text-[10px] font-bold text-stone-450 dark:text-stone-500 flex items-center gap-1">
+                            👥 {getIllustrativeCount(g.id, 8, 140)} đang chơi
+                          </span>
+                        </div>
                       </div>
                     </div>
                     <div className="relative z-10 flex items-center justify-between mt-4">

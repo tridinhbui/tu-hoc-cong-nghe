@@ -5,7 +5,7 @@ function isMissingTableError(error: { code?: string } | null): boolean {
   return error?.code === "PGRST205" || error?.code === "42P01";
 }
 
-export type ChestSource = "weekly_quest" | "milestone_exam";
+export type ChestSource = "weekly_quest" | "milestone_exam" | "daily_login";
 export type ChestRewardType = "title" | "xp" | "theme";
 
 export interface ChestReward {
@@ -53,6 +53,40 @@ export async function earnChest(userId: string, source: ChestSource, count = 1):
   if (error && !isMissingTableError(error)) {
     console.error("Error earning chest:", error);
   }
+}
+
+/**
+ * Grants one chest for today's first login, if one hasn't already been
+ * granted today - checked against user_chests directly (source +
+ * earned_at date) rather than a separate tracking column, so there's one
+ * source of truth for "did they already get today's chest". Called once
+ * per session from AppNavbar (mounts once, persists across client-side
+ * navigation), not tied to lesson completion like the streak - opening the
+ * app is the whole signal here.
+ */
+export async function claimDailyLoginChest(userId: string): Promise<boolean> {
+  const supabase = createClient();
+  const todayStart = new Date();
+  todayStart.setHours(0, 0, 0, 0);
+
+  const { data: existing, error: checkError } = await supabase
+    .from("user_chests")
+    .select("id")
+    .eq("user_id", userId)
+    .eq("source", "daily_login")
+    .gte("earned_at", todayStart.toISOString())
+    .limit(1)
+    .maybeSingle();
+
+  if (checkError) {
+    if (isMissingTableError(checkError)) return false;
+    console.error("Error checking daily login chest:", checkError);
+    return false;
+  }
+  if (existing) return false; // already claimed today
+
+  await earnChest(userId, "daily_login", 1);
+  return true;
 }
 
 export interface OpenChestResult {
