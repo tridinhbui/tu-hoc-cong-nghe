@@ -761,7 +761,12 @@ export default function DashboardClient({ lessonsMeta }: { lessonsMeta: LessonMe
         <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-10 gap-4 sm:gap-6 items-start min-w-0">
 
           {/* Left Column: Learning Path (7 columns on desktop) */}
-          <div className="lg:col-span-7 space-y-6 min-w-0">
+          {/* min-h keeps this column's height roughly stable across track
+              switches (CFA's content is much shorter than the 10-stage
+              accordion) - without it, the sticky right sidebar (below)
+              visibly jumps/flashes as the browser recalculates its
+              scrollable range every time this column's height changes. */}
+          <div className="lg:col-span-7 space-y-6 min-w-0 lg:min-h-[1400px]">
 
             {/* 🏆 Bản đồ Cấp độ Học viên - accordion, no floating popups: click
                 a level card to expand its member list inline right below

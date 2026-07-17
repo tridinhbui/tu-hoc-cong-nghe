@@ -23,7 +23,7 @@ export const CFA_LEVEL_1_SUBJECTS: CfaSubject[] = [
     id: "ethics",
     name: "Ethical and Professional Standards",
     weight: "15–20%",
-    lessonIds: [1039, 1040, 1041],
+    lessonIds: [1039, 1040, 1041, 1042, 1043, 1044, 1045, 1046],
   },
   {
     id: "quant",
