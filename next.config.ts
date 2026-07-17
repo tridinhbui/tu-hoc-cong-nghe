@@ -38,6 +38,11 @@ const nextConfig: NextConfig = {
       "img-src 'self' data: https://lh3.googleusercontent.com https://*.googleusercontent.com https://*.supabase.co",
       "font-src 'self' data:",
       "connect-src 'self' https://*.supabase.co wss://*.supabase.co",
+      // CFA module content (CfaContentRenderer) auto-embeds any YouTube link
+      // as a real <iframe> player - without this, "default-src 'self'"
+      // falls back to blocking frame-src too and every embed would be
+      // silently blank.
+      "frame-src https://www.youtube.com https://www.youtube-nocookie.com",
       "frame-ancestors 'none'",
       "base-uri 'self'",
       "form-action 'self' https://accounts.google.com",

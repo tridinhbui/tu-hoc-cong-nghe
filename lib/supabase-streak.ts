@@ -147,7 +147,11 @@ export async function updateStreak(userId: string): Promise<UserStreak & { freez
     throw handleSupabaseError(error);
   }
 
-  return { ...(data as UserStreak), freezeUsedThisUpdate };
+  // freezes_used explicitly overridden (not just spread from `data`) since
+  // the fallback update path above never persists that column, which would
+  // otherwise leave it undefined and make the "remaining freezes" toast in
+  // LessonPageLayout show a stale/wrong count until the migration runs.
+  return { ...(data as UserStreak), freezes_used: newFreezesUsed, freezeUsedThisUpdate };
 }
 
 /**
