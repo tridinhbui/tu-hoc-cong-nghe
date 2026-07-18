@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 import { 
@@ -17,6 +17,7 @@ import {
   Heart, 
   GraduationCap,
   ChevronRight,
+  ChevronLeft,
   Lightbulb,
   SearchCode,
   ThumbsUp,
@@ -534,6 +535,7 @@ export default function JobSearchClient() {
   const [selected, setSelected] = useState<FinanceCareer>(FINANCE_CAREERS[0]);
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("all");
+  const categoryTabsRef = useRef<HTMLDivElement>(null);
   const [activeTab, setActiveTab] = useState<"daily" | "insights" | "path" | "skills" | "search">("daily");
   const [mobileDetailOpen, setMobileDetailOpen] = useState(false);
   
@@ -835,24 +837,50 @@ export default function JobSearchClient() {
               )}
             </div>
 
-            {/* Category Filter Tabs */}
-            <div className="flex gap-2 overflow-x-auto pb-1.5 scrollbar-none">
-              {CATEGORIES.map((cat) => {
-                const isCatSelected = selectedCategory === cat.id;
-                return (
-                  <button
-                    key={cat.id}
-                    onClick={() => setSelectedCategory(cat.id)}
-                    className={`shrink-0 px-3.5 py-1.5 rounded-full text-xs font-black transition-all cursor-pointer select-none ${
-                      isCatSelected
-                        ? "bg-emerald-600 dark:bg-emerald-500 text-white shadow-sm"
-                        : "bg-white dark:bg-stone-900 text-stone-600 dark:text-stone-400 border border-stone-200 dark:border-stone-800/80 hover:bg-stone-50 dark:hover:bg-stone-850"
-                    }`}
-                  >
-                    {cat.label}
-                  </button>
-                );
-              })}
+            {/* Category Filter Tabs - the row scrolls horizontally but gave
+                no visual hint that it does, so it looked cut off/broken
+                (especially once several category pills push past the
+                sidebar width). Left/right arrow buttons make the
+                scrollability obvious at a glance, not just discoverable by
+                accidentally swiping. */}
+            <div className="relative">
+              <button
+                type="button"
+                onClick={() => categoryTabsRef.current?.scrollBy({ left: -160, behavior: "smooth" })}
+                aria-label="Cuộn sang trái"
+                className="absolute -left-1 top-1/2 -translate-y-1/2 z-10 w-6 h-6 rounded-full bg-white dark:bg-stone-900 border border-stone-200 dark:border-stone-700 shadow-sm flex items-center justify-center text-stone-500 dark:text-stone-400 hover:text-stone-900 dark:hover:text-stone-100 cursor-pointer"
+              >
+                <ChevronLeft className="w-3.5 h-3.5" />
+              </button>
+              <div
+                ref={categoryTabsRef}
+                className="flex gap-2 overflow-x-auto pb-1.5 scrollbar-none px-7"
+              >
+                {CATEGORIES.map((cat) => {
+                  const isCatSelected = selectedCategory === cat.id;
+                  return (
+                    <button
+                      key={cat.id}
+                      onClick={() => setSelectedCategory(cat.id)}
+                      className={`shrink-0 px-3.5 py-1.5 rounded-full text-xs font-black transition-all cursor-pointer select-none ${
+                        isCatSelected
+                          ? "bg-emerald-600 dark:bg-emerald-500 text-white shadow-sm"
+                          : "bg-white dark:bg-stone-900 text-stone-600 dark:text-stone-400 border border-stone-200 dark:border-stone-800/80 hover:bg-stone-50 dark:hover:bg-stone-850"
+                      }`}
+                    >
+                      {cat.label}
+                    </button>
+                  );
+                })}
+              </div>
+              <button
+                type="button"
+                onClick={() => categoryTabsRef.current?.scrollBy({ left: 160, behavior: "smooth" })}
+                aria-label="Cuộn sang phải"
+                className="absolute -right-1 top-1/2 -translate-y-1/2 z-10 w-6 h-6 rounded-full bg-white dark:bg-stone-900 border border-stone-200 dark:border-stone-700 shadow-sm flex items-center justify-center text-stone-500 dark:text-stone-400 hover:text-stone-900 dark:hover:text-stone-100 cursor-pointer"
+              >
+                <ChevronRight className="w-3.5 h-3.5" />
+              </button>
             </div>
 
             {/* Careers Scroll List */}
