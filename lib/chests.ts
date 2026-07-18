@@ -1,8 +1,15 @@
 import { createClient } from "@/lib/supabase";
 import { handleSupabaseError } from "@/lib/errors";
 
-function isMissingTableError(error: { code?: string } | null): boolean {
-  return error?.code === "PGRST205" || error?.code === "42P01";
+function isMissingTableError(error: { code?: string; message?: string } | null): boolean {
+  if (!error) return true;
+  const isDbMissing = error.code === "PGRST205" || error.code === "42P01" || error.code === "PGRST202";
+  const isNetworkOrConnection = 
+    error.message?.includes("Failed to fetch") || 
+    error.message?.includes("fetch failed") || 
+    error.message?.includes("TypeError") ||
+    (!error.code && !error.message);
+  return isDbMissing || isNetworkOrConnection;
 }
 
 export type ChestSource = "weekly_quest" | "milestone_exam" | "daily_login";

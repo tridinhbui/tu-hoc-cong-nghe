@@ -48,6 +48,7 @@ import { addLessonFlag, getUserLessonFlags, removeLessonFlag } from "@/lib/supab
 import { getUserBookmarks, type LessonBookmark } from "@/lib/supabase-bookmarks";
 import { useRoutePrefetch } from "@/lib/use-route-prefetch";
 import { getPassedMilestones, savePassedMilestone, type MilestoneCompletion } from "@/lib/supabase-milestones";
+import { syncOfflineQueue } from "@/lib/offline-sync";
 
 const STAGE_THEMES: Record<string, { emoji: string; bg: string; text: string; barColor: string }> = {
   // All stages use the clean neutral Stone color theme of Stage 0
@@ -403,7 +404,6 @@ export default function DashboardClient({ lessonsMeta }: { lessonsMeta: LessonMe
   const syncProgressAndXP = useCallback(async (userId: string) => {
     // First, try to sync any offline queued completions
     try {
-      const { syncOfflineQueue } = await import("@/lib/offline-sync");
       const didSync = await syncOfflineQueue(userId);
       if (didSync) {
         toast.success("Tiến độ học tập offline đã được đồng bộ thành công! 🌟");

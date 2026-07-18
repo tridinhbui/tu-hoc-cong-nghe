@@ -1,7 +1,22 @@
 import { createClient } from "@/lib/supabase";
 
-function isMissingError(error: { code?: string } | null): boolean {
-  return error?.code === "PGRST205" || error?.code === "42P01" || error?.code === "42883" || error?.code === "PGRST202";
+function isMissingError(error: { code?: string; message?: string } | null): boolean {
+  if (!error) return true;
+  const isDbMissing = 
+    error.code === "PGRST205" || 
+    error.code === "PGRST204" || 
+    error.code === "42P01" || 
+    error.code === "42883" || 
+    error.code === "PGRST202" || 
+    error.code === "42703" ||
+    error.message?.includes("last_seen_at") ||
+    error.message?.includes("column");
+  const isNetworkOrConnection = 
+    error.message?.includes("Failed to fetch") || 
+    error.message?.includes("fetch failed") || 
+    error.message?.includes("TypeError") ||
+    (!error.code && !error.message);
+  return isDbMissing || isNetworkOrConnection;
 }
 
 /** Bumps the current user's last_seen_at - called periodically by usePresenceHeartbeat. */
@@ -11,7 +26,7 @@ export async function pingPresence(userId: string): Promise<void> {
     .from("user_profiles")
     .update({ last_seen_at: new Date().toISOString() })
     .eq("id", userId);
-  if (error && !isMissingError(error)) console.error("Error pinging presence:", error);
+  if (error && !isMissingError(error)) console.error("Error pinging presence:", error.message || error);
 }
 
 export interface OnlineUser {

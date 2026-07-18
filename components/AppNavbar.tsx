@@ -5,7 +5,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { usePathname, useRouter } from "next/navigation";
 import { toast } from "sonner";
-import { FileText, BarChart3, StickyNote, GraduationCap, Gamepad2, Layers, Menu, X } from "lucide-react";
+import { FileText, BarChart3, StickyNote, GraduationCap, Gamepad2, Layers, Menu, X, Briefcase } from "lucide-react";
 import { createClient } from "@/lib/supabase";
 import { useRoutePrefetch } from "@/lib/use-route-prefetch";
 import Logo from "@/components/Logo";
@@ -31,6 +31,7 @@ const NAV_LINKS = [
   { href: "/ghi-chu", label: "Ghi chú", icon: StickyNote },
   { href: "/flashcard", label: "Thẻ ghi nhớ", icon: Layers },
   { href: "/kiem-tra", label: "Kiểm tra", icon: GraduationCap },
+  { href: "/su-nghiep", label: "Sự nghiệp", icon: Briefcase },
   { href: "/game", label: "Game", icon: Gamepad2 },
 ];
 
@@ -55,7 +56,7 @@ export default function AppNavbar() {
   const [signingOut, setSigningOut] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
 
-  useRoutePrefetch(["/dashboard", "/analytics", "/profile", "/ban-be", "/nhom-hoc", "/viec-lam", "/ghi-chu", "/cong-cu", "/game", "/settings", "/tai-lieu", "/kiem-tra", "/cfa"]);
+  useRoutePrefetch(["/dashboard", "/analytics", "/profile", "/ban-be", "/nhom-hoc", "/su-nghiep", "/ghi-chu", "/cong-cu", "/game", "/settings", "/tai-lieu", "/kiem-tra", "/cfa"]);
 
   useEffect(() => {
     const supabase = createClient();
@@ -263,7 +264,7 @@ export default function AppNavbar() {
                     <Link href="/nhom-hoc" onClick={() => setDropdownOpen(false)} className="block px-3 py-2 text-sm font-semibold text-stone-900 dark:text-stone-100 hover:bg-stone-50 dark:hover:bg-stone-800 rounded-lg transition">
                       Học cùng nhóm
                     </Link>
-                    <Link href="/viec-lam" onClick={() => setDropdownOpen(false)} className="block px-3 py-2 text-sm font-semibold text-stone-900 dark:text-stone-100 hover:bg-stone-50 dark:hover:bg-stone-800 rounded-lg transition">
+                    <Link href="/su-nghiep" onClick={() => setDropdownOpen(false)} className="block px-3 py-2 text-sm font-semibold text-stone-900 dark:text-stone-100 hover:bg-stone-50 dark:hover:bg-stone-800 rounded-lg transition">
                       Việc làm Tài chính
                     </Link>
                     <Link href="/cong-cu" onClick={() => setDropdownOpen(false)} className="block px-3 py-2 text-sm font-semibold text-stone-900 dark:text-stone-100 hover:bg-stone-50 dark:hover:bg-stone-800 rounded-lg transition">
