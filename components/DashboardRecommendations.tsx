@@ -6,6 +6,7 @@ import { Sparkles, Flame, TrendingUp, Target, BookOpen, Gamepad2, ChevronDown, C
 import type { LessonMeta } from "./DashboardClient";
 import { GAMES } from "@/lib/games";
 import { getIllustrativeCount } from "@/lib/illustrative-stats";
+import { getWeekSeed, pickRotatingWindow } from "@/lib/content-rotation";
 
 interface DashboardRecommendationsProps {
   lessonsMeta: LessonMeta[];
@@ -40,11 +41,23 @@ const DEFAULT_TOPICS = [
   },
 ];
 
-const DEFAULT_TRENDING = [
+// Pools are intentionally larger than what's shown at once - "Đang hot tuần
+// này" picks a rotating 4-item window out of each pool (see
+// pickRotatingWindow/getWeekSeed below), so the same handful of slugs
+// doesn't sit there unchanged forever the way a single fixed 4-item list
+// would. The window shifts once per ISO week, wrapping back to the start
+// once it cycles through the whole pool.
+const DEFAULT_TRENDING_POOL = [
   "tai-chinh-la-gi",
   "lai-don-lai-kep",
   "suc-manh-thoi-gian",
   "loi-nhuan-cac-cap-do",
+  "tien-la-gi",
+  "lai-suat-la-gi",
+  "rui-ro-la-gi",
+  "thanh-khoan-la-gi",
+  "lam-phat-la-gi",
+  "gia-tri-thoi-gian-cua-tien",
 ];
 
 const getIllustrativeStudyingCount = getIllustrativeCount;
@@ -76,9 +89,14 @@ export default function DashboardRecommendations({ lessonsMeta, completed, userI
     };
   }, [goalKey]);
 
-  // Determine active topics and trending slugs based on user's target goal
+  // Determine active topics and trending slugs based on user's target goal.
+  // "Đang hot tuần này" picks a rotating window out of a larger pool (see
+  // DEFAULT_TRENDING_POOL's comment) so it actually changes week to week -
+  // seeded once per render off the current ISO week, not randomized per
+  // visitor, so everyone sees the same "hot this week" set.
+  const weekSeed = getWeekSeed();
   let activeTopics = DEFAULT_TOPICS;
-  let activeTrendingSlugs = DEFAULT_TRENDING;
+  let activeTrendingSlugs = pickRotatingWindow(DEFAULT_TRENDING_POOL, 4, weekSeed);
 
   if (selectedGoal === "personal-finance") {
     activeTopics = [
@@ -96,10 +114,14 @@ export default function DashboardRecommendations({ lessonsMeta, completed, userI
         icon: Target,
         color: "text-rose-500",
         bg: "bg-rose-50 dark:bg-rose-950/30",
-        slugs: ["credit-debit-phan-1", "credit-debit-phan-2", "no-tot-no-xau"],
+        slugs: ["no-tot-no-xau", "vay-tien-giau-hay-pha-san", "tra-no-thong-minh-snowball-avalanche"],
       }
     ];
-    activeTrendingSlugs = ["tai-san-tieu-san", "no-tot-no-xau", "credit-debit-phan-1", "thu-nhap-chi-phi-tiet-kiem"];
+    activeTrendingSlugs = pickRotatingWindow(
+      ["tai-san-tieu-san", "no-tot-no-xau", "vay-tien-giau-hay-pha-san", "thu-nhap-chi-phi-tiet-kiem", "wealth-management", "credit-rating", "credit-spread"],
+      4,
+      weekSeed
+    );
   } else if (selectedGoal === "basic-investing") {
     activeTopics = [
       {
@@ -119,7 +141,11 @@ export default function DashboardRecommendations({ lessonsMeta, completed, userI
         slugs: ["lam-phat-la-gi", "rui-ro-la-gi", "loi-nhuan-ky-vong"],
       }
     ];
-    activeTrendingSlugs = ["lai-don-lai-kep", "lam-phat-la-gi", "suc-manh-thoi-gian", "thanh-khoan-la-gi"];
+    activeTrendingSlugs = pickRotatingWindow(
+      ["lai-don-lai-kep", "lam-phat-la-gi", "suc-manh-thoi-gian", "thanh-khoan-la-gi", "rui-ro-la-gi", "loi-nhuan-ky-vong", "modern-portfolio-theory", "gia-tri-thoi-gian-cua-tien"],
+      4,
+      weekSeed
+    );
   } else if (selectedGoal === "corporate-finance") {
     activeTopics = [
       {
@@ -128,7 +154,7 @@ export default function DashboardRecommendations({ lessonsMeta, completed, userI
         icon: Target,
         color: "text-purple-500",
         bg: "bg-purple-50 dark:bg-purple-950/30",
-        slugs: ["bang-can-doi-ke-toan", "bao-cao-luu-chuyen-tien-te", "dupont-analysis"],
+        slugs: ["bang-can-doi-can-bang", "cash-flow-statement-la-gi", "dupont-analysis"],
       },
       {
         id: "cf-valuation",
@@ -139,7 +165,11 @@ export default function DashboardRecommendations({ lessonsMeta, completed, userI
         slugs: ["roic", "enterprise-value", "fcf-deep-dive"],
       }
     ];
-    activeTrendingSlugs = ["dupont-analysis", "roic", "enterprise-value", "fcf-deep-dive"];
+    activeTrendingSlugs = pickRotatingWindow(
+      ["dupont-analysis", "roic", "enterprise-value", "fcf-deep-dive", "free-cash-flow-co-ban", "operating-leverage", "roic-phan-2", "operating-cash-flow"],
+      4,
+      weekSeed
+    );
   }
 
   // Recommendations
