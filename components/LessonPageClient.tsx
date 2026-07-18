@@ -11,6 +11,7 @@ import LessonSections from "@/components/LessonSections";
 import { highlightGlossaryTerms } from "@/components/GlossaryTerm";
 import { LessonApplicationCard, LessonQuestionCard, LessonSummaryCard, ReviewLoopCard } from "@/components/LessonLearningBlocks";
 import { getLessonDisplayLabel, getLessonRecallDay } from "@/lib/lesson-labels";
+import TypingText from "@/components/TypingText";
 
 function OpeningQuestionBlock({
   question,
@@ -200,6 +201,10 @@ function getMetaphorForLesson(title: string): string {
 
 export default function LessonPageClient({ lesson, nextLesson }: Props) {
   const [feynmanMode, setFeynmanMode] = useState(false);
+  // Staged reveal for the "Tài Tài giải thích" card, like a chatbot response:
+  // the metaphor line types itself out first, then the takeaways/mistake
+  // warning fade in - instead of the whole card appearing at once.
+  const [metaphorTyped, setMetaphorTyped] = useState(false);
   const lessonLabel = getLessonDisplayLabel(lesson);
 
   const meta = {
@@ -261,7 +266,10 @@ export default function LessonPageClient({ lesson, nextLesson }: Props) {
           </p>
         </div>
         <button
-          onClick={() => setFeynmanMode(!feynmanMode)}
+          onClick={() => {
+            setFeynmanMode(!feynmanMode);
+            setMetaphorTyped(false);
+          }}
           className={`px-3.5 py-2 text-xs font-bold rounded-xl shadow-sm hover:scale-[1.03] active:scale-95 transition-all cursor-pointer ${
             feynmanMode
               ? "bg-amber-500 text-white"
@@ -290,20 +298,25 @@ export default function LessonPageClient({ lesson, nextLesson }: Props) {
               Chào bạn! Để giúp bạn ghi nhớ bài <strong>&quot;{lesson.title}&quot;</strong> nhanh nhất, Tài Tài xin đưa ra một phép so sánh siêu bình dân:
             </p>
             <div className="bg-amber-50/40 dark:bg-amber-950/20 p-3.5 rounded-xl border border-amber-200/50 dark:border-amber-900/30 text-amber-900 dark:text-amber-300 font-bold">
-              💡 Hãy tưởng tượng khái niệm này giống như {getMetaphorForLesson(lesson.title)}.
+              💡 Hãy tưởng tượng khái niệm này giống như{" "}
+              <TypingText text={`${getMetaphorForLesson(lesson.title)}.`} onDone={() => setMetaphorTyped(true)} />
             </div>
-            <p className="font-semibold text-stone-900 dark:text-stone-200">3 điểm mấu chốt dễ nhớ nhất:</p>
-            <ul className="list-disc pl-4 space-y-1.5 text-stone-600 dark:text-stone-400">
-              {(lesson.keyTakeaways ?? []).slice(0, 3).map((takeaway: string, idx: number) => (
-                <li key={idx}>
-                  <strong>{takeaway.split(" - ")[0]}</strong>: {takeaway.split(" - ")[1] || takeaway}
-                </li>
-              ))}
-            </ul>
-            {lesson.summary?.commonMistake && (
-              <p className="text-[11px] text-red-500 bg-red-50/30 dark:bg-red-950/20 p-2.5 rounded-lg border border-red-200/30 dark:border-red-900/20 font-bold">
-                ⚠️ Sai lầm hay gặp: {lesson.summary.commonMistake}
-              </p>
+            {metaphorTyped && (
+              <motion.div initial={{ opacity: 0, y: 6 }} animate={{ opacity: 1, y: 0 }} className="space-y-3">
+                <p className="font-semibold text-stone-900 dark:text-stone-200">3 điểm mấu chốt dễ nhớ nhất:</p>
+                <ul className="list-disc pl-4 space-y-1.5 text-stone-600 dark:text-stone-400">
+                  {(lesson.keyTakeaways ?? []).slice(0, 3).map((takeaway: string, idx: number) => (
+                    <li key={idx}>
+                      <strong>{takeaway.split(" - ")[0]}</strong>: {takeaway.split(" - ")[1] || takeaway}
+                    </li>
+                  ))}
+                </ul>
+                {lesson.summary?.commonMistake && (
+                  <p className="text-[11px] text-red-500 bg-red-50/30 dark:bg-red-950/20 p-2.5 rounded-lg border border-red-200/30 dark:border-red-900/20 font-bold">
+                    ⚠️ Sai lầm hay gặp: {lesson.summary.commonMistake}
+                  </p>
+                )}
+              </motion.div>
             )}
           </div>
         </motion.div>
