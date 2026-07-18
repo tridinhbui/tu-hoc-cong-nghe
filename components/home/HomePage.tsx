@@ -291,9 +291,9 @@ export default function HomePage() {
                       <motion.img
                         animate={{ y: [0, -10, 0] }}
                         transition={{ repeat: Infinity, duration: 4, ease: "easeInOut" }}
-                        src="/tai-tai-avatar.jpg"
-                        alt="Tài Tài - trợ lý học tập"
-                        className="w-full h-full object-contain relative z-10 transition-transform duration-300 group-hover:scale-105"
+                        src="/logo.png"
+                        alt="Tự Học Tài Chính"
+                        className="w-full h-full object-contain relative z-10 transition-transform duration-300 group-hover:scale-105 p-6"
                       />
                       <motion.div
                         animate={{ y: [0, 6, 0] }}
