@@ -1480,7 +1480,7 @@ export default function DashboardClient({ lessonsMeta }: { lessonsMeta: LessonMe
                                       {/* Day number */}
                                       <div className="w-12 flex-shrink-0 text-center">
                                         <span className={`font-mono text-sm font-extrabold ${isDone ? "text-emerald-600 dark:text-emerald-400" : isFlagged ? "text-sky-600 dark:text-sky-400" : "text-stone-500 dark:text-stone-400"}`}>
-                                          {String(lesson.id).padStart(3, "0")}
+                                          {String(lessonOrdinal.get(lesson.id) ?? lesson.id).padStart(3, "0")}
                                         </span>
                                       </div>
 
