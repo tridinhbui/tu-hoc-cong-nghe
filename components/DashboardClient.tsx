@@ -30,7 +30,6 @@ import SmartRemediationWidget from "@/components/SmartRemediationWidget";
 import DailyNewsQuizWidget from "@/components/DailyNewsQuizWidget";
 import OnlineUsersWidget from "@/components/OnlineUsersWidget";
 import ReferralPromptModal from "@/components/ReferralPromptModal";
-import ReferralCard from "@/components/ReferralCard";
 import CombinedRewardsWidget from "@/components/CombinedRewardsWidget";
 import { hasCompletedOnboarding, completeOnboarding } from "@/lib/supabase-onboarding";
 import { getUserProfile, recalculateUserStats, getLeaderboardByMetric, getCfaCompletedCount } from "@/lib/supabase-user";
@@ -1782,19 +1781,6 @@ export default function DashboardClient({ lessonsMeta }: { lessonsMeta: LessonMe
             <Leaderboard userId={user?.id} />
           </div>
         </div>
-
-        {/* "Mời bạn học cùng" - previously only reachable via a once-per-
-            session popup (ReferralPromptModal, still shown as a one-time
-            nudge for brand-new users) or by navigating to the Friends page,
-            so anyone who dismissed the popup had no obvious way back to it
-            without knowing to look elsewhere. Pinned here at the bottom of
-            the dashboard so it's always one scroll away regardless of
-            session/reload state. */}
-        {user?.id && (
-          <div className="mt-6 max-w-md">
-            <ReferralCard />
-          </div>
-        )}
       </div>
 
       {/* Admin Chat */}

@@ -6,8 +6,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { toast } from "sonner";
 import { Gift, Copy, Check, X } from "lucide-react";
 import { createClient } from "@/lib/supabase";
-import Logo from "@/components/Logo";
-import { getMyReferralStats, REFERRER_BONUS_XP, REFERRED_BONUS_XP } from "@/lib/referrals";
+import { REFERRER_BONUS_XP, REFERRED_BONUS_XP } from "@/lib/referrals";
 
 // Referral is fully wired end-to-end (lib/referrals.ts). Previously this was
 // a once-per-session full-screen popup that auto-opened itself and, once
@@ -49,10 +48,10 @@ export default function ReferralPromptModal() {
             animate={{ scale: 1 }}
             exit={{ scale: 0 }}
             onClick={() => setOpen(true)}
-            className="fixed bottom-6 left-6 z-40 w-14 h-14 rounded-full bg-white dark:bg-stone-100 shadow-lg hover:shadow-xl hover:scale-105 transition flex items-center justify-center group overflow-hidden border border-stone-200 dark:border-stone-300"
+            className="fixed bottom-6 left-6 z-40 w-14 h-14 rounded-full bg-emerald-600 hover:bg-emerald-700 shadow-lg hover:shadow-xl hover:scale-105 transition flex items-center justify-center group text-white"
           >
-            <Logo size={56} className="rounded-full" />
-            <span className="absolute top-0.5 right-0.5 w-3.5 h-3.5 rounded-full bg-emerald-500 border-2 border-white dark:border-stone-100" />
+            <Gift className="w-6 h-6" />
+            <span className="absolute top-0.5 right-0.5 w-3.5 h-3.5 rounded-full bg-amber-400 border-2 border-white dark:border-stone-900" />
             <div className="absolute bottom-full left-0 mb-2 bg-stone-900 dark:bg-stone-800 text-white text-xs px-3 py-2 rounded-lg whitespace-nowrap opacity-0 group-hover:opacity-100 transition">
               Mời bạn học cùng
             </div>
