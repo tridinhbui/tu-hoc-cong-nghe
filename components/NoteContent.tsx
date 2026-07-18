@@ -1,6 +1,6 @@
 "use client";
 
-import katex from "katex";
+import { useEffect, useState } from "react";
 
 interface NoteContentProps {
   content: string;
@@ -95,22 +95,65 @@ function splitSegments(content: string): Segment[] {
   return final;
 }
 
-function renderKatex(tex: string, displayMode: boolean): string {
-  try {
-    // trust:false (the default) keeps HTML-generating commands like \href
-    // and \includegraphics disabled, so this stays safe to render from
-    // arbitrary user-typed note content.
-    return katex.renderToString(tex, { throwOnError: false, displayMode });
-  } catch {
-    return tex;
+// katex is a heavy dependency (~250KB) that most notes never need - the
+// vast majority are plain text, and hasMathContent() exists specifically to
+// detect the rare case that isn't. Previously imported statically at module
+// scope, so EVERY visit to the notes page paid katex's full bundle cost
+// even with zero math notes, which was the actual cause of "ghi chú loads
+// slowly" - not the notes query itself (a single, cheap, indexed select).
+// Loaded lazily here and cached in a module-level promise, so it's fetched
+// at most once per session and only when a math segment actually renders.
+let katexPromise: Promise<typeof import("katex")> | null = null;
+function loadKatex() {
+  if (!katexPromise) katexPromise = import("katex");
+  return katexPromise;
+}
+
+function KatexSegment({ tex, displayMode }: { tex: string; displayMode: boolean }) {
+  const [html, setHtml] = useState<string | null>(null);
+
+  useEffect(() => {
+    let cancelled = false;
+    loadKatex()
+      .then((katexModule) => {
+        if (cancelled) return;
+        try {
+          // trust:false (the default) keeps HTML-generating commands like
+          // \href and \includegraphics disabled, so this stays safe to
+          // render from arbitrary user-typed note content.
+          setHtml(katexModule.default.renderToString(tex, { throwOnError: false, displayMode }));
+        } catch {
+          setHtml(null);
+        }
+      })
+      .catch(() => setHtml(null));
+    return () => {
+      cancelled = true;
+    };
+  }, [tex, displayMode]);
+
+  // Fallback while katex loads (or if it fails): the raw LaTeX source, so
+  // there's never a blank gap - just briefly unformatted.
+  if (html === null) {
+    return displayMode ? (
+      <div className="my-2 overflow-x-auto font-mono text-xs text-stone-500 dark:text-stone-400">{tex}</div>
+    ) : (
+      <span className="font-mono text-xs text-stone-500 dark:text-stone-400">{tex}</span>
+    );
   }
+
+  return displayMode ? (
+    <div className="my-2 overflow-x-auto" dangerouslySetInnerHTML={{ __html: html }} />
+  ) : (
+    <span dangerouslySetInnerHTML={{ __html: html }} />
+  );
 }
 
 export default function NoteContent({ content }: NoteContentProps) {
   const segments = splitSegments(content);
 
-  // No math delimiters found at all - skip the wrapper markup and render
-  // exactly like a plain note always has.
+  // No math delimiters found at all - skip the wrapper markup (and any
+  // katex loading whatsoever) and render exactly like a plain note always has.
   if (segments.length === 1 && segments[0].type === "text") {
     return <p className="text-sm text-stone-700 dark:text-stone-200 whitespace-pre-wrap">{content}</p>;
   }
@@ -119,14 +162,8 @@ export default function NoteContent({ content }: NoteContentProps) {
     <div className="text-sm text-stone-700 dark:text-stone-200 whitespace-pre-wrap">
       {segments.map((seg, i) => {
         if (seg.type === "text") return <span key={i}>{seg.value}</span>;
-        if (seg.type === "inline") {
-          return <span key={i} dangerouslySetInnerHTML={{ __html: renderKatex(seg.value, false) }} />;
-        }
-        return (
-          <div key={i} className="my-2 overflow-x-auto">
-            <span dangerouslySetInnerHTML={{ __html: renderKatex(seg.value, true) }} />
-          </div>
-        );
+        if (seg.type === "inline") return <KatexSegment key={i} tex={seg.value} displayMode={false} />;
+        return <KatexSegment key={i} tex={seg.value} displayMode />;
       })}
     </div>
   );
