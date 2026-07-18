@@ -11,9 +11,13 @@ import { REFERRER_BONUS_XP, REFERRED_BONUS_XP } from "@/lib/referrals";
 // Referral is fully wired end-to-end (lib/referrals.ts). It's a permanent
 // floating round button (mirrors ChatWithAdminWidget's bottom-right chat
 // bubble, placed bottom-left instead) that the user can open/close
-// themselves - but per explicit request it should also auto-open on its own
-// every single login/page load (not just once per session), so it opens
-// itself shortly after mount every time instead of waiting to be clicked.
+// themselves. It also auto-opens itself once - but only the first time per
+// login, not on every page reload within that same login: sessionStorage
+// (cleared when the tab/browser closes, unlike localStorage) is the signal
+// for "this is a fresh session," so reloading the dashboard five times in a
+// row only pops it open on the first of those five.
+const AUTO_OPEN_KEY = "thtcdn_referral_auto_opened";
+
 export default function ReferralPromptModal() {
   const [open, setOpen] = useState(false);
   const [userId, setUserId] = useState<string | null>(null);
@@ -28,7 +32,13 @@ export default function ReferralPromptModal() {
 
   useEffect(() => {
     if (!userId) return;
-    const timer = window.setTimeout(() => setOpen(true), 2000);
+    if (typeof window === "undefined") return;
+    if (window.sessionStorage.getItem(AUTO_OPEN_KEY)) return;
+
+    const timer = window.setTimeout(() => {
+      setOpen(true);
+      window.sessionStorage.setItem(AUTO_OPEN_KEY, "1");
+    }, 2000);
     return () => window.clearTimeout(timer);
   }, [userId]);
 
