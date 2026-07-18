@@ -40,6 +40,16 @@ body {
   color: #f4f4f5;
 }
 
+/* Kindle-style "sepia" reading mode for lesson pages (see
+   components/ReadingModeControl.tsx) - a warm-tint CSS filter over the
+   light theme rather than a real third color scheme, since lesson content
+   is ~300+ hand-written pages that would each need their own sepia:
+   variant to do this "properly". Applied to the article content wrapper,
+   not the whole page, so header/nav chrome stays neutral. */
+.reading-sepia {
+  filter: sepia(0.35) saturate(1.15) brightness(0.97) contrast(0.96);
+}
+
 /* Premium micro-animations & transitions */
 .transition-premium {
   transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);

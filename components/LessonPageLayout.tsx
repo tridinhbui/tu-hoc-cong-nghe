@@ -29,6 +29,8 @@ import type { RecallItem } from "@/lib/recall-schedule";
 import RecallCard from "@/components/RecallCard";
 import LessonTour from "@/components/LessonTour";
 import FontSizeControl, { loadFontScale } from "@/components/FontSizeControl";
+import ReadingModeControl, { loadReadingMode, type ReadingMode } from "@/components/ReadingModeControl";
+import { setTheme } from "@/lib/theme";
 import LessonFeedbackInline from "@/components/LessonFeedbackInline";
 import LessonTableOfContents from "@/components/LessonTableOfContents";
 import { getLessonDisplayLabel } from "@/lib/lesson-labels";
@@ -135,6 +137,15 @@ export default function LessonPageLayout({ lesson, quiz, children }: Props) {
   const [recallItems, setRecallItems] = useState<RecallItem[]>([]);
   const [highlights, setHighlights] = useState<LessonHighlight[]>([]);
   const [fontScale, setFontScale] = useState(() => (typeof window === "undefined" ? 1.125 : loadFontScale()));
+  const [readingMode, setReadingMode] = useState<ReadingMode>(() => (typeof window === "undefined" ? "light" : loadReadingMode()));
+  // Keeps the underlying light/dark theme in sync with a previously-chosen
+  // reading mode on every load, in case it drifted (e.g. the site theme was
+  // changed from Settings since the last visit) - "sepia" needs a light
+  // base to look right, "dark" should actually be dark.
+  useEffect(() => {
+    setTheme(readingMode === "dark" ? "dark" : "light");
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
   const [quizCollapsed, setQuizCollapsed] = useState(false);
   const articleRef = useRef<HTMLElement>(null);
   const bottomSentinelRef = useRef<HTMLDivElement>(null);
@@ -681,6 +692,9 @@ export default function LessonPageLayout({ lesson, quiz, children }: Props) {
             {/* Reading font-size control */}
             <FontSizeControl scale={fontScale} onChange={setFontScale} />
 
+            {/* Kindle-style reading theme: sáng / dịu nhẹ (sepia) / tối */}
+            <ReadingModeControl mode={readingMode} onChange={setReadingMode} />
+
             {/* Bookmark button */}
             <div data-tour="lesson-bookmark">
               <BookmarkButton
@@ -841,7 +855,7 @@ export default function LessonPageLayout({ lesson, quiz, children }: Props) {
                 explicit Tailwind text-sm/lg/xl classes each hand-written
                 lesson sets on its own child elements. */}
             <div
-              className="space-y-8 text-stone-800 dark:text-stone-200 leading-relaxed text-lg sm:text-xl font-medium"
+              className={`space-y-8 text-stone-800 dark:text-stone-200 leading-relaxed text-lg sm:text-xl font-medium ${readingMode === "sepia" ? "reading-sepia" : ""}`}
               style={{ zoom: fontScale }}
             >
               <LessonCompletionContext.Provider value={{ registerMidpoint, markMidpointDone }}>
