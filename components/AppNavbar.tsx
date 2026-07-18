@@ -55,7 +55,7 @@ export default function AppNavbar() {
   const [signingOut, setSigningOut] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
 
-  useRoutePrefetch(["/dashboard", "/analytics", "/profile", "/ban-be", "/nhom-hoc", "/ghi-chu", "/cong-cu", "/game", "/settings", "/tai-lieu", "/kiem-tra", "/cfa"]);
+  useRoutePrefetch(["/dashboard", "/analytics", "/profile", "/ban-be", "/nhom-hoc", "/viec-lam", "/ghi-chu", "/cong-cu", "/game", "/settings", "/tai-lieu", "/kiem-tra", "/cfa"]);
 
   useEffect(() => {
     const supabase = createClient();
@@ -262,6 +262,9 @@ export default function AppNavbar() {
                     </Link>
                     <Link href="/nhom-hoc" onClick={() => setDropdownOpen(false)} className="block px-3 py-2 text-sm font-semibold text-stone-900 dark:text-stone-100 hover:bg-stone-50 dark:hover:bg-stone-800 rounded-lg transition">
                       Học cùng nhóm
+                    </Link>
+                    <Link href="/viec-lam" onClick={() => setDropdownOpen(false)} className="block px-3 py-2 text-sm font-semibold text-stone-900 dark:text-stone-100 hover:bg-stone-50 dark:hover:bg-stone-800 rounded-lg transition">
+                      Việc làm Tài chính
                     </Link>
                     <Link href="/cong-cu" onClick={() => setDropdownOpen(false)} className="block px-3 py-2 text-sm font-semibold text-stone-900 dark:text-stone-100 hover:bg-stone-50 dark:hover:bg-stone-800 rounded-lg transition">
                       Công cụ cá nhân
