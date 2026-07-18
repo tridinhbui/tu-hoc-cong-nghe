@@ -870,12 +870,18 @@ export default function DashboardClient({ lessonsMeta }: { lessonsMeta: LessonMe
                                   )}
                                   <button
                                     onClick={() => setActiveTooltipLevel((prev) => (prev === lvl.level ? null : lvl.level))}
-                                    className={`text-left rounded-xl border p-2 w-[96px] h-[104px] shrink-0 bg-white dark:bg-stone-900 transition-all cursor-pointer flex flex-col ${
+                                    className={`relative text-left rounded-xl border p-2 w-[96px] h-[104px] shrink-0 bg-white dark:bg-stone-900 transition-all cursor-pointer flex flex-col ${
                                       isReached
                                         ? `${accent.border} ${isOpen ? `shadow-md scale-[1.02] ${accent.glow}` : isUserCurrent ? `shadow-sm ${accent.glow}` : ""}`
                                         : "border-stone-150 dark:border-stone-800 opacity-60 grayscale hover:opacity-90 hover:grayscale-0"
                                     }`}
                                   >
+                                    {isUserCurrent && (
+                                      <span className="absolute -top-1 -left-1 flex w-3 h-3">
+                                        <span className={`animate-ping absolute inline-flex w-full h-full rounded-full opacity-75 ${accent.solid}`} />
+                                        <span className={`relative inline-flex w-3 h-3 rounded-full border-2 border-white dark:border-stone-900 ${accent.solid}`} />
+                                      </span>
+                                    )}
                                     <div className="flex items-center justify-between gap-1">
                                       <span className={`text-[10px] font-black uppercase tracking-wider ${isReached ? accent.text : "text-stone-400 dark:text-stone-500"}`}>
                                         L{lvl.level}
