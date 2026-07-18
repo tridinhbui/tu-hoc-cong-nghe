@@ -222,7 +222,7 @@ export default function StageTipsBanner({ lessonId, lessonTitle }: Props) {
             </>
           )}
           <div className="relative w-8 h-8 rounded-full overflow-hidden">
-            <Image src="/tai-tai-avatar.png" alt="Tài Tài" width={32} height={32} className="w-full h-full object-cover" />
+            <Image src="/tai-tai-avatar.jpg" alt="Tài Tài" width={32} height={32} className="w-full h-full object-cover" />
           </div>
         </div>
         <div className="flex-1 min-w-0">

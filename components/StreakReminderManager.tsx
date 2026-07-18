@@ -102,7 +102,7 @@ export default function StreakReminderManager({
 
           const notification = new Notification(decision.title, {
             body: decision.body,
-            icon: "/tai-tai-avatar.png",
+            icon: "/tai-tai-avatar.jpg",
             tag: `thtcdn-reminder-${decision.kind}`,
           });
           notification.onclick = () => {

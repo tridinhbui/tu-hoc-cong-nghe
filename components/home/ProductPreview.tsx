@@ -1,0 +1,189 @@
+"use client";
+
+import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { CheckCircle2, Circle, Flame, Trophy, Sparkles } from "lucide-react";
+
+type Tab = "dashboard" | "lesson";
+
+const TABS: { id: Tab; label: string }[] = [
+  { id: "dashboard", label: "Dashboard" },
+  { id: "lesson", label: "Trong bài học" },
+];
+
+// Honest, labeled UI mockup of the actual product (dashboard + a lesson
+// screen) - not a real screenshot (no image-capture pipeline exists in this
+// project), but built from the same design tokens (stone/emerald palette,
+// rounded-xl cards, the same card shapes UserStats/lesson pages actually
+// use) so it reads as a faithful preview rather than a generic stock
+// illustration. Framed in a browser chrome so it's unambiguous this is
+// "what the app looks like," not a real photo of anything.
+export default function ProductPreview() {
+  const [tab, setTab] = useState<Tab>("dashboard");
+
+  return (
+    <div className="rounded-[1.75rem] border border-stone-200 dark:border-stone-800 bg-white dark:bg-stone-900 shadow-[0_40px_100px_-45px_rgba(16,24,40,0.35)] overflow-hidden">
+      {/* Browser chrome */}
+      <div className="flex items-center gap-3 border-b border-stone-100 dark:border-stone-850 bg-stone-50 dark:bg-stone-950/60 px-4 py-2.5">
+        <div className="flex gap-1.5">
+          <span className="w-2.5 h-2.5 rounded-full bg-stone-300 dark:bg-stone-700" />
+          <span className="w-2.5 h-2.5 rounded-full bg-stone-300 dark:bg-stone-700" />
+          <span className="w-2.5 h-2.5 rounded-full bg-stone-300 dark:bg-stone-700" />
+        </div>
+        <div className="flex-1 flex items-center justify-center">
+          <div className="text-[11px] font-semibold text-stone-400 dark:text-stone-500 bg-white dark:bg-stone-900 border border-stone-200 dark:border-stone-800 rounded-full px-4 py-1 max-w-xs w-full text-center truncate">
+            tuhoctaichinh.vn/{tab === "dashboard" ? "dashboard" : "bai-hoc"}
+          </div>
+        </div>
+        <div className="flex gap-1 bg-white dark:bg-stone-900 border border-stone-200 dark:border-stone-800 rounded-full p-0.5">
+          {TABS.map((t) => (
+            <button
+              key={t.id}
+              onClick={() => setTab(t.id)}
+              className={`text-[10px] font-bold px-2.5 py-1 rounded-full transition-all ${
+                tab === t.id
+                  ? "bg-stone-900 dark:bg-stone-100 text-white dark:text-stone-900"
+                  : "text-stone-400 dark:text-stone-500 hover:text-stone-600 dark:hover:text-stone-300"
+              }`}
+            >
+              {t.label}
+            </button>
+          ))}
+        </div>
+      </div>
+
+      <div className="p-5 sm:p-6 bg-[#FAFAFC] dark:bg-stone-950 min-h-[340px]">
+        <AnimatePresence mode="wait">
+          {tab === "dashboard" ? (
+            <motion.div
+              key="dashboard"
+              initial={{ opacity: 0, y: 6 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -6 }}
+              transition={{ duration: 0.25 }}
+              className="grid gap-4 sm:grid-cols-[1.3fr_1fr]"
+            >
+              <div className="rounded-2xl border border-stone-200 dark:border-stone-800 bg-white dark:bg-stone-900 p-4">
+                <div className="flex items-center justify-between mb-3">
+                  <div>
+                    <p className="text-[10px] font-black uppercase tracking-widest text-stone-400 dark:text-stone-500">Cấp độ 6</p>
+                    <p className="text-sm font-extrabold text-stone-900 dark:text-stone-100">Nhà phân tích</p>
+                  </div>
+                  <span className="inline-flex items-center gap-1 text-[11px] font-black text-white bg-gradient-to-r from-emerald-500 to-teal-500 rounded-full px-2.5 py-1">
+                    <Sparkles className="w-3 h-3" />
+                    1,240 XP
+                  </span>
+                </div>
+                <div className="h-2 rounded-full bg-stone-100 dark:bg-stone-800 overflow-hidden mb-4">
+                  <div className="h-full w-2/3 rounded-full bg-gradient-to-r from-emerald-500 to-teal-500" />
+                </div>
+                <div className="space-y-2">
+                  {[
+                    { title: "Cổ phiếu là gì và vì sao doanh nghiệp phát hành", done: true },
+                    { title: "Đọc chỉ số P/E trong 5 phút", done: true },
+                    { title: "ETF và quỹ chỉ số: khác gì cổ phiếu lẻ", done: false },
+                  ].map((l) => (
+                    <div
+                      key={l.title}
+                      className={`flex items-center gap-2.5 rounded-xl border px-3 py-2.5 text-xs font-semibold ${
+                        l.done
+                          ? "border-emerald-200 dark:border-emerald-900 bg-emerald-50/60 dark:bg-emerald-950/30 text-emerald-800 dark:text-emerald-300"
+                          : "border-stone-200 dark:border-stone-800 text-stone-600 dark:text-stone-400"
+                      }`}
+                    >
+                      {l.done ? (
+                        <CheckCircle2 className="w-4 h-4 text-emerald-500 shrink-0" />
+                      ) : (
+                        <Circle className="w-4 h-4 text-stone-300 dark:text-stone-700 shrink-0" />
+                      )}
+                      <span className="truncate">{l.title}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              <div className="grid gap-4">
+                <div className="rounded-2xl border border-orange-100 dark:border-orange-950/40 bg-orange-50/60 dark:bg-orange-950/10 p-4 flex items-center gap-3">
+                  <div className="w-10 h-10 rounded-full bg-orange-100 dark:bg-orange-950/40 flex items-center justify-center shrink-0">
+                    <Flame className="w-5 h-5 text-orange-500" />
+                  </div>
+                  <div>
+                    <p className="text-lg font-black text-orange-600 dark:text-orange-400 leading-none">18 ngày</p>
+                    <p className="text-[11px] font-semibold text-stone-500 dark:text-stone-400 mt-0.5">chuỗi học liên tục</p>
+                  </div>
+                </div>
+                <div className="rounded-2xl border border-stone-200 dark:border-stone-800 bg-white dark:bg-stone-900 p-4">
+                  <p className="text-[10px] font-black uppercase tracking-widest text-stone-400 dark:text-stone-500 mb-2.5 flex items-center gap-1.5">
+                    <Trophy className="w-3.5 h-3.5 text-amber-500" />
+                    Top tuần này
+                  </p>
+                  <div className="space-y-2">
+                    {[
+                      { name: "Minh Anh", xp: "2,105" },
+                      { name: "Đức Huy", xp: "1,940" },
+                      { name: "Bạn", xp: "1,240" },
+                    ].map((row, i) => (
+                      <div key={row.name} className="flex items-center justify-between text-xs">
+                        <span className={`font-bold ${row.name === "Bạn" ? "text-emerald-700 dark:text-emerald-400" : "text-stone-700 dark:text-stone-300"}`}>
+                          {i + 1}. {row.name}
+                        </span>
+                        <span className="text-stone-400 dark:text-stone-500 font-semibold">{row.xp} XP</span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </motion.div>
+          ) : (
+            <motion.div
+              key="lesson"
+              initial={{ opacity: 0, y: 6 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -6 }}
+              transition={{ duration: 0.25 }}
+              className="rounded-2xl border border-stone-200 dark:border-stone-800 bg-white dark:bg-stone-900 p-5"
+            >
+              <p className="text-[10px] font-black uppercase tracking-widest text-emerald-600 dark:text-emerald-400 mb-2">
+                Chặng 2 · Bài 14
+              </p>
+              <h3 className="text-base font-extrabold text-stone-900 dark:text-stone-100 mb-3">
+                Vì sao lãi kép mạnh hơn bạn nghĩ
+              </h3>
+              <p className="text-xs text-stone-600 dark:text-stone-400 leading-relaxed mb-4">
+                Lãi kép không chỉ cộng dồn lãi vào gốc - nó khiến khoảng cách giữa bắt đầu sớm và bắt đầu muộn lớn hơn nhiều so với trực giác thông thường...
+              </p>
+              <div className="rounded-xl border border-stone-200 dark:border-stone-800 bg-stone-50 dark:bg-stone-950/40 p-4 mb-4">
+                <p className="text-[11px] font-black uppercase tracking-widest text-stone-400 dark:text-stone-500 mb-2">Câu hỏi nhanh</p>
+                <p className="text-xs font-bold text-stone-900 dark:text-stone-100 mb-3">
+                  Đầu tư 1 triệu/tháng từ năm 25 tuổi khác gì so với bắt đầu từ năm 35 tuổi?
+                </p>
+                <div className="space-y-1.5">
+                  {["Không khác nhiều nếu tổng tiền góp bằng nhau", "Bắt đầu sớm hơn có thể tạo ra chênh lệch gấp đôi vào lúc nghỉ hưu"].map(
+                    (opt, i) => (
+                      <div
+                        key={opt}
+                        className={`text-[11px] font-semibold rounded-lg px-3 py-2 border ${
+                          i === 1
+                            ? "border-emerald-300 dark:border-emerald-800 bg-emerald-50 dark:bg-emerald-950/30 text-emerald-800 dark:text-emerald-300"
+                            : "border-stone-200 dark:border-stone-800 text-stone-500 dark:text-stone-400"
+                        }`}
+                      >
+                        {opt}
+                      </div>
+                    )
+                  )}
+                </div>
+              </div>
+              <div className="flex items-center gap-2 text-[11px] font-bold text-stone-400 dark:text-stone-500">
+                <div className="h-1.5 flex-1 rounded-full bg-stone-100 dark:bg-stone-800 overflow-hidden">
+                  <div className="h-full w-1/3 rounded-full bg-gradient-to-r from-emerald-500 to-teal-500" />
+                </div>
+                5 phút đọc
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
+      </div>
+    </div>
+  );
+}

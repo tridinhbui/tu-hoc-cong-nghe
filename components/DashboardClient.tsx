@@ -589,7 +589,7 @@ export default function DashboardClient({ lessonsMeta }: { lessonsMeta: LessonMe
           <span className="absolute inset-0 rounded-full bg-emerald-400/30 animate-ping" />
           <span className="absolute -inset-1.5 rounded-full border-4 border-emerald-500/70 border-t-transparent animate-spin" />
           <div className="relative w-16 h-16 rounded-full overflow-hidden">
-            <Image src="/tai-tai-avatar.png" alt="Tài Tài" width={64} height={64} className="w-full h-full object-cover" />
+            <Image src="/tai-tai-avatar.jpg" alt="Tài Tài" width={64} height={64} className="w-full h-full object-cover" />
           </div>
         </div>
         <p className="text-stone-500 dark:text-stone-400 font-semibold text-sm flex items-center gap-1.5">
@@ -864,40 +864,53 @@ export default function DashboardClient({ lessonsMeta }: { lessonsMeta: LessonMe
                               const isOpen = openLevel === lvl.level;
 
                               return (
-                                <div key={lvl.level} className="flex items-stretch">
+                                <div key={lvl.level} className="flex items-stretch animate-fade-in">
                                   {idx > 0 && (
-                                    <div className={`w-3 sm:w-4 h-0.5 self-center shrink-0 ${isReached ? "bg-emerald-400 dark:bg-emerald-600" : "bg-stone-200 dark:bg-stone-800"}`} />
+                                    <div className={`w-8 sm:w-10 h-0.5 self-end mb-[52px] shrink-0 ${isReached ? "bg-emerald-400 dark:bg-emerald-600" : "bg-stone-200 dark:bg-stone-850"}`} />
                                   )}
-                                  <button
-                                    onClick={() => setActiveTooltipLevel((prev) => (prev === lvl.level ? null : lvl.level))}
-                                    className={`relative text-left rounded-xl border p-2 w-[96px] h-[104px] shrink-0 bg-white dark:bg-stone-900 transition-all cursor-pointer flex flex-col ${
-                                      isReached
-                                        ? `${accent.border} ${isOpen ? `shadow-md scale-[1.02] ${accent.glow}` : isUserCurrent ? `shadow-sm ${accent.glow}` : ""}`
-                                        : "border-stone-150 dark:border-stone-800 opacity-60 grayscale hover:opacity-90 hover:grayscale-0"
-                                    }`}
-                                  >
-                                    {isUserCurrent && (
-                                      <span className="absolute -top-1 -left-1 flex w-3 h-3">
-                                        <span className={`animate-ping absolute inline-flex w-full h-full rounded-full opacity-75 ${accent.solid}`} />
-                                        <span className={`relative inline-flex w-3 h-3 rounded-full border-2 border-white dark:border-stone-900 ${accent.solid}`} />
-                                      </span>
-                                    )}
-                                    <div className="flex items-center justify-between gap-1">
-                                      <span className={`text-[10px] font-black uppercase tracking-wider ${isReached ? accent.text : "text-stone-400 dark:text-stone-500"}`}>
-                                        L{lvl.level}
-                                      </span>
+                                  <div className="flex flex-col items-center gap-3 shrink-0">
+                                    {/* 3D Character Illustration standing on a pedestal */}
+                                    <div className="w-16 h-16 sm:w-20 sm:h-20 relative flex items-center justify-center select-none pointer-events-none overflow-hidden rounded-full border border-stone-200/50 dark:border-stone-800/50 bg-stone-50 dark:bg-stone-850 shadow-inner">
+                                      <img
+                                        src={`/levels/level${lvl.level}.jpg`}
+                                        alt={lvl.name}
+                                        className={`w-full h-full object-cover transition-all duration-300 ${
+                                          isReached ? "scale-[1.08] hover:scale-[1.15]" : "grayscale opacity-40 contrast-75"
+                                        }`}
+                                      />
+                                    </div>
+
+                                    <button
+                                      onClick={() => setActiveTooltipLevel((prev) => (prev === lvl.level ? null : lvl.level))}
+                                      className={`relative text-left rounded-xl border p-2 w-[96px] h-[104px] shrink-0 bg-white dark:bg-stone-900 transition-all cursor-pointer flex flex-col ${
+                                        isReached
+                                          ? `${accent.border} ${isOpen ? `shadow-md scale-[1.02] ${accent.glow}` : isUserCurrent ? `shadow-sm ${accent.glow}` : ""}`
+                                          : "border-stone-150 dark:border-stone-855 opacity-60 grayscale hover:opacity-90 hover:grayscale-0"
+                                      }`}
+                                    >
                                       {isUserCurrent && (
-                                        <span className={`text-[7px] font-black uppercase text-white px-1 py-0.5 rounded-full ${accent.solid}`}>Bạn</span>
+                                        <span className="absolute -top-1 -left-1 flex w-3 h-3">
+                                          <span className={`animate-ping absolute inline-flex w-full h-full rounded-full opacity-75 ${accent.solid}`} />
+                                          <span className={`relative inline-flex w-3 h-3 rounded-full border-2 border-white dark:border-stone-900 ${accent.solid}`} />
+                                        </span>
                                       )}
-                                    </div>
-                                    <p className={`text-xs font-extrabold mt-1 leading-snug line-clamp-2 flex-1 ${isReached ? "text-stone-900 dark:text-stone-100" : "text-stone-500 dark:text-stone-500"}`}>
-                                      {lvl.name}
-                                    </p>
-                                    <p className="text-[9px] text-stone-400 dark:text-stone-500 mt-0.5">{lvl.minXp} XP</p>
-                                    <div className={`inline-flex items-center gap-1 text-[9px] font-bold mt-1.5 px-1.5 py-0.5 rounded-full w-fit ${isReached ? `${accent.bg} ${accent.text}` : "bg-stone-100 dark:bg-stone-800 text-stone-400 dark:text-stone-500"}`}>
-                                      👥 {members.length}
-                                    </div>
-                                  </button>
+                                      <div className="flex items-center justify-between gap-1">
+                                        <span className={`text-[10px] font-black uppercase tracking-wider ${isReached ? accent.text : "text-stone-400 dark:text-stone-500"}`}>
+                                          L{lvl.level}
+                                        </span>
+                                        {isUserCurrent && (
+                                          <span className={`text-[7px] font-black uppercase text-white px-1 py-0.5 rounded-full ${accent.solid}`}>Bạn</span>
+                                        )}
+                                      </div>
+                                      <p className={`text-xs font-extrabold mt-1 leading-snug line-clamp-2 flex-1 ${isReached ? "text-stone-900 dark:text-stone-100" : "text-stone-500 dark:text-stone-550"}`}>
+                                        {lvl.name}
+                                      </p>
+                                      <p className="text-[9px] text-stone-400 dark:text-stone-500 mt-0.5">{lvl.minXp} XP</p>
+                                      <div className={`inline-flex items-center gap-1 text-[9px] font-bold mt-1.5 px-1.5 py-0.5 rounded-full w-fit ${isReached ? `${accent.bg} ${accent.text}` : "bg-stone-100 dark:bg-stone-800 text-stone-400 dark:text-stone-500"}`}>
+                                        👥 {members.length}
+                                      </div>
+                                    </button>
+                                  </div>
                                 </div>
                               );
                             })}

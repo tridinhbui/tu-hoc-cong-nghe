@@ -43,7 +43,7 @@ export default function LessonFeedbackModal({ open, onClose, lessonId, userId }:
 
         <div className="bg-stone-900 dark:bg-stone-950 px-5 py-4 flex items-center gap-3">
           <div className="w-10 h-10 rounded-full overflow-hidden flex-shrink-0 ring-2 ring-white/20">
-            <Image src="/tai-tai-avatar.png" alt="Tài Tài" width={40} height={40} className="w-full h-full object-cover" />
+            <Image src="/tai-tai-avatar.jpg" alt="Tài Tài" width={40} height={40} className="w-full h-full object-cover" />
           </div>
           <div className="flex-1 min-w-0">
             <p className="text-white font-bold text-sm">Tài Tài</p>

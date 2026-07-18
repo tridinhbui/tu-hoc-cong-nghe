@@ -60,7 +60,7 @@ export default function ResumeLearningButton({ activeTrack }: ResumeLearningButt
           <span className="absolute inset-0 rounded-full bg-emerald-400/30 animate-ping" />
           <span className="absolute -inset-0.5 rounded-full border border-emerald-400/60 border-t-transparent animate-spin" />
           <div className="relative w-8 h-8 rounded-full overflow-hidden">
-            <Image src="/tai-tai-avatar.png" alt="Tài Tài" width={32} height={32} className="w-full h-full object-cover" />
+            <Image src="/tai-tai-avatar.jpg" alt="Tài Tài" width={32} height={32} className="w-full h-full object-cover" />
           </div>
         </div>
         <div className="flex-1 space-y-2">
@@ -148,7 +148,7 @@ export default function ResumeLearningButton({ activeTrack }: ResumeLearningButt
           <div className="relative w-11 h-11 flex-shrink-0 mt-0.5">
             <span className="absolute inset-0 rounded-full bg-emerald-400/20 dark:bg-emerald-400/10 animate-ping [animation-duration:2.5s]" />
             <div className="relative w-11 h-11 rounded-full overflow-hidden border border-emerald-100 dark:border-emerald-900/50 shadow-sm">
-              <Image src="/tai-tai-avatar.png" alt="Tài Tài" width={44} height={44} className="w-full h-full object-cover" />
+              <Image src="/tai-tai-avatar.jpg" alt="Tài Tài" width={44} height={44} className="w-full h-full object-cover" />
             </div>
             {/* Online status indicator */}
             <span className="absolute bottom-0 right-0 w-3 h-3 rounded-full bg-emerald-500 border-2 border-white dark:border-stone-900" />
