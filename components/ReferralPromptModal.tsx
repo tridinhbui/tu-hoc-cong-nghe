@@ -8,12 +8,12 @@ import { Gift, Copy, Check, X } from "lucide-react";
 import { createClient } from "@/lib/supabase";
 import { REFERRER_BONUS_XP, REFERRED_BONUS_XP } from "@/lib/referrals";
 
-// Referral is fully wired end-to-end (lib/referrals.ts). Previously this was
-// a once-per-session full-screen popup that auto-opened itself and, once
-// dismissed, left no way back to it short of navigating to the Friends page
-// - now it's a permanent floating round button (mirrors ChatWithAdminWidget's
-// bottom-right chat bubble, placed bottom-left instead) that the user opens
-// and closes themselves, always available regardless of session/reload state.
+// Referral is fully wired end-to-end (lib/referrals.ts). It's a permanent
+// floating round button (mirrors ChatWithAdminWidget's bottom-right chat
+// bubble, placed bottom-left instead) that the user can open/close
+// themselves - but per explicit request it should also auto-open on its own
+// every single login/page load (not just once per session), so it opens
+// itself shortly after mount every time instead of waiting to be clicked.
 export default function ReferralPromptModal() {
   const [open, setOpen] = useState(false);
   const [userId, setUserId] = useState<string | null>(null);
@@ -25,6 +25,12 @@ export default function ReferralPromptModal() {
       if (user) setUserId(user.id);
     });
   }, []);
+
+  useEffect(() => {
+    if (!userId) return;
+    const timer = window.setTimeout(() => setOpen(true), 2000);
+    return () => window.clearTimeout(timer);
+  }, [userId]);
 
   if (!userId) return null;
 
