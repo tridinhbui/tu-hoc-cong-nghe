@@ -28,6 +28,9 @@ import { JOB_SEARCH_SITES } from "@/lib/job-search-links";
 import { createClient } from "@/lib/supabase";
 import { claimQuestReward } from "@/lib/supabase-quests";
 import { recalculateUserStats } from "@/lib/supabase-user";
+import { getMyCareerGoal, setCareerGoal, clearCareerGoal } from "@/lib/supabase-career-goals";
+import { getCareerLessonProgress, type CareerLessonProgress } from "@/lib/career-lesson-progress";
+import { CheckCircle2, Circle, BookOpen } from "lucide-react";
 
 // Beautiful custom 3D card tilt and glow component
 function CareerAvatar({ career, size = 110, className = "" }: { career: FinanceCareer; size?: number; className?: string }) {
@@ -62,6 +65,90 @@ function CareerAvatar({ career, size = 110, className = "" }: { career: FinanceC
           className="w-full h-full object-cover select-none relative z-10"
         />
       </div>
+    </div>
+  );
+}
+
+// "Học các bài này để chuẩn bị cho nghề X" - turns a career profile into an
+// actual study plan by linking career.relatedLessonSlugs to real lesson
+// pages, instead of the career page and the learning content staying two
+// disconnected islands. Fetches its own real completion status per career
+// (not the self-reported skills/certs checklist above) via
+// /api/career-lesson-progress, so a signed-in user sees which of these are
+// already done. Renders nothing for a logged-out visitor or a career with
+// no linked lessons yet.
+function RelatedLessonsPanel({ career }: { career: FinanceCareer }) {
+  const [progress, setProgress] = useState<CareerLessonProgress | null>(null);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    if (career.relatedLessonSlugs.length === 0) {
+      setLoading(false);
+      return;
+    }
+    let cancelled = false;
+    setLoading(true);
+    getCareerLessonProgress(career.relatedLessonSlugs)
+      .then((p) => {
+        if (!cancelled) setProgress(p);
+      })
+      .catch(() => {
+        if (!cancelled) setProgress(null);
+      })
+      .finally(() => {
+        if (!cancelled) setLoading(false);
+      });
+    return () => {
+      cancelled = true;
+    };
+  }, [career.id]);
+
+  if (career.relatedLessonSlugs.length === 0) return null;
+
+  return (
+    <div className="mt-5 p-5 rounded-2xl bg-emerald-500/5 border-2 border-dashed border-emerald-500/20">
+      <div className="flex items-center justify-between mb-3">
+        <div className="flex items-center gap-2">
+          <BookOpen className="w-4 h-4 text-emerald-600 dark:text-emerald-400" />
+          <h4 className="text-xs font-black uppercase text-emerald-600 dark:text-emerald-400 tracking-wider">
+            Học các bài này để chuẩn bị cho nghề này
+          </h4>
+        </div>
+        {progress && (
+          <span className="text-xs font-black text-emerald-600 dark:text-emerald-400">
+            {progress.completed}/{progress.total}
+          </span>
+        )}
+      </div>
+      {loading ? (
+        <p className="text-[11px] text-stone-400">Đang tải...</p>
+      ) : progress && progress.lessons.length > 0 ? (
+        <div className="space-y-1.5">
+          {progress.lessons.map((l) => (
+            <Link
+              key={l.slug}
+              href={`/bai-hoc/${l.slug}`}
+              className="flex items-center gap-2.5 p-2.5 rounded-lg border border-stone-200/60 dark:border-stone-800/60 bg-white/60 dark:bg-stone-900/40 hover:border-emerald-400 dark:hover:border-emerald-700 transition-colors group"
+            >
+              {l.completed ? (
+                <CheckCircle2 className="w-4 h-4 text-emerald-500 shrink-0" />
+              ) : (
+                <Circle className="w-4 h-4 text-stone-300 dark:text-stone-700 shrink-0" />
+              )}
+              <span
+                className={`text-[11px] font-bold flex-1 ${
+                  l.completed ? "text-stone-500 dark:text-stone-500 line-through" : "text-stone-700 dark:text-stone-300"
+                }`}
+              >
+                {l.title}
+              </span>
+              <ChevronRight className="w-3.5 h-3.5 text-stone-300 dark:text-stone-700 group-hover:translate-x-0.5 transition-transform" />
+            </Link>
+          ))}
+        </div>
+      ) : (
+        <p className="text-[11px] text-stone-400">Đăng nhập để xem tiến độ học các bài liên quan.</p>
+      )}
     </div>
   );
 }
@@ -153,11 +240,308 @@ const QUIZ_QUESTIONS = [
   }
 ];
 
+const CATEGORIES = [
+  { id: "all", label: "Tất cả" },
+  { id: "investment", label: "Đầu tư & Nghiên cứu" },
+  { id: "accounting", label: "Kế toán & Kiểm soát" },
+  { id: "banking", label: "Ngân hàng & Nguồn vốn" },
+  { id: "advisory", label: "Dịch vụ & Tư vấn" },
+];
+
+// SVG Radar Chart for role traits visualization
+function CareerRadarChart({ traits, color = "#0d9488" }: { traits: { analytical: number; compliance: number; clientFacing: number; quantitative: number }; color?: string }) {
+  const cx = 100;
+  const cy = 100;
+  const R = 70;
+  
+  const pAnalytical = { x: cx, y: cy - R * (traits.analytical / 5) };
+  const pQuantitative = { x: cx + R * (traits.quantitative / 5), y: cy };
+  const pClientFacing = { x: cx, y: cy + R * (traits.clientFacing / 5) };
+  const pCompliance = { x: cx - R * (traits.compliance / 5), y: cy };
+  
+  const pointsString = `${pAnalytical.x},${pAnalytical.y} ${pQuantitative.x},${pQuantitative.y} ${pClientFacing.x},${pClientFacing.y} ${pCompliance.x},${pCompliance.y}`;
+  
+  return (
+    <div className="flex flex-col items-center justify-center bg-stone-50 dark:bg-stone-900/40 p-5 rounded-2xl border border-stone-200/60 dark:border-stone-800/50 shadow-sm relative overflow-hidden shrink-0">
+      <span className="text-[9px] font-black uppercase tracking-wider text-stone-400 dark:text-stone-500 mb-4 block text-center">Biểu đồ Phẩm chất</span>
+      <svg className="w-36 h-36 overflow-visible" viewBox="0 0 200 200">
+        {[1, 2, 3, 4, 5].map((lvl) => {
+          const r = R * (lvl / 5);
+          return (
+            <polygon
+              key={lvl}
+              points={`${cx},${cy - r} ${cx + r},${cy} ${cx},${cy + r} ${cx - r},${cy}`}
+              fill="none"
+              stroke="currentColor"
+              className="text-stone-200 dark:text-stone-800/50"
+              strokeWidth="1"
+              strokeDasharray={lvl < 5 ? "2,2" : "none"}
+            />
+          );
+        })}
+        <line x1={cx - R} y1={cy} x2={cx + R} y2={cy} stroke="currentColor" className="text-stone-200 dark:text-stone-850" strokeWidth="1" />
+        <line x1={cx} y1={cy - R} x2={cx} y2={cy + R} stroke="currentColor" className="text-stone-200 dark:text-stone-850" strokeWidth="1" />
+        
+        <text x={cx} y={cy - R - 6} textAnchor="middle" className="text-[8px] font-black fill-stone-500 dark:fill-stone-400">PHÂN TÍCH</text>
+        <text x={cx + R + 6} y={cy + 3} textAnchor="start" className="text-[8px] font-black fill-stone-500 dark:fill-stone-400">Đ.LƯỢNG</text>
+        <text x={cx} y={cy + R + 12} textAnchor="middle" className="text-[8px] font-black fill-stone-500 dark:fill-stone-400">GIAO TIẾP</text>
+        <text x={cx - R - 6} y={cy + 3} textAnchor="end" className="text-[8px] font-black fill-stone-500 dark:fill-stone-400">TUÂN THỦ</text>
+        
+        <polygon
+          points={pointsString}
+          fill={`${color}20`}
+          stroke={color}
+          strokeWidth="2"
+          className="transition-all duration-500 ease-out"
+        />
+        <circle cx={pAnalytical.x} cy={pAnalytical.y} r="3" fill={color} />
+        <circle cx={pQuantitative.x} cy={pQuantitative.y} r="3" fill={color} />
+        <circle cx={pClientFacing.x} cy={pClientFacing.y} r="3" fill={color} />
+        <circle cx={pCompliance.x} cy={pCompliance.y} r="3" fill={color} />
+      </svg>
+    </div>
+  );
+}
+
+// Sidebar or modal component to compare two careers
+function ComparisonModal({ 
+  open, 
+  onClose, 
+  careerA 
+}: { 
+  open: boolean; 
+  onClose: () => void; 
+  careerA: FinanceCareer 
+}) {
+  const [careerBId, setCareerBId] = useState<string>("");
+  const careerB = FINANCE_CAREERS.find((c) => c.id === careerBId);
+
+  if (!open) return null;
+
+  return (
+    <div className="fixed inset-0 bg-black/70 backdrop-blur-sm z-50 flex items-center justify-center p-4" onClick={onClose}>
+      <motion.div 
+        className="bg-white dark:bg-stone-900 rounded-3xl border-2 border-stone-200 dark:border-stone-850 w-full max-w-4xl max-h-[90vh] overflow-y-auto p-6 sm:p-8 relative shadow-2xl"
+        initial={{ scale: 0.95, opacity: 0 }}
+        animate={{ scale: 1, opacity: 1 }}
+        exit={{ scale: 0.95, opacity: 0 }}
+        transition={{ type: "spring", damping: 25, stiffness: 220 }}
+        onClick={(e) => e.stopPropagation()}
+      >
+        <button
+          onClick={onClose}
+          className="absolute top-4 right-4 w-8 h-8 rounded-full bg-stone-100 dark:bg-stone-850 text-stone-500 dark:text-stone-400 hover:text-stone-900 dark:hover:text-stone-100 flex items-center justify-center transition-colors cursor-pointer"
+        >
+          <X className="w-4 h-4" />
+        </button>
+
+        <h2 className="text-lg font-black text-stone-900 dark:text-stone-50 mb-6 flex items-center gap-2">
+          ⚖️ So sánh vị trí công việc
+        </h2>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 items-start">
+          <div className="p-5 rounded-2xl border border-stone-200 dark:border-stone-800 bg-stone-50/50 dark:bg-stone-950/30">
+            <div className="flex gap-4 items-center mb-4">
+              <div className="w-14 h-14 rounded-xl overflow-hidden border border-stone-200 dark:border-stone-800 shadow-sm shrink-0">
+                <img src={careerA.avatar3d} alt={careerA.title} className="w-full h-full object-cover" />
+              </div>
+              <div>
+                <span className="text-[9px] font-black uppercase tracking-wider px-2 py-0.5 rounded bg-emerald-100 dark:bg-emerald-950/40 text-emerald-700 dark:text-emerald-450">Hiện tại</span>
+                <h3 className="text-base font-black text-stone-900 dark:text-stone-50 leading-tight mt-0.5">{careerA.title}</h3>
+                <p className="text-xs text-stone-400 dark:text-stone-500 font-bold">{careerA.englishTitle}</p>
+              </div>
+            </div>
+            <div className="space-y-4 text-xs">
+              <p className="text-stone-600 dark:text-stone-300 leading-relaxed font-semibold italic">"{careerA.summary}"</p>
+              
+              <div className="grid grid-cols-3 gap-2 py-2 border-y border-stone-200/50 dark:border-stone-800/50">
+                <div className="text-center">
+                  <span className="text-[10px] text-stone-400 block font-bold">Độ khó</span>
+                  <span className="text-sm font-black text-stone-805 dark:text-stone-200">{careerA.entryDifficulty}/5</span>
+                </div>
+                <div className="text-center">
+                  <span className="text-[10px] text-stone-400 block font-bold">Áp lực</span>
+                  <span className="text-sm font-black text-stone-805 dark:text-stone-200">{careerA.stressLevel}/5</span>
+                </div>
+                <div className="text-center">
+                  <span className="text-[10px] text-stone-400 block font-bold">Cân bằng</span>
+                  <span className="text-sm font-black text-stone-805 dark:text-stone-200">{careerA.wlb}/5</span>
+                </div>
+              </div>
+
+              <div className="space-y-2 pt-1">
+                <div>
+                  <span className="font-extrabold text-stone-400 block text-[9px] uppercase tracking-wider">Mức lương dự kiến</span>
+                  <span className="font-black text-stone-800 dark:text-stone-200">{careerA.salaryHint}</span>
+                </div>
+                <div>
+                  <span className="font-extrabold text-stone-400 block text-[9px] uppercase tracking-wider">Chứng chỉ chính</span>
+                  <div className="flex flex-wrap gap-1 mt-1">
+                    {careerA.certifications.map(c => (
+                      <span key={c} className="px-1.5 py-0.5 rounded bg-stone-100 dark:bg-stone-800 text-[10px] font-bold text-stone-600 dark:text-stone-400">{c}</span>
+                    ))}
+                  </div>
+                </div>
+                <div>
+                  <span className="font-extrabold text-stone-400 block text-[9px] uppercase tracking-wider">Công cụ chính</span>
+                  <div className="flex flex-wrap gap-1 mt-1">
+                    {careerA.requiredTools.map(t => (
+                      <span key={t} className="px-1.5 py-0.5 rounded bg-emerald-50 dark:bg-emerald-950/20 text-[10px] font-bold text-emerald-700 dark:text-emerald-450">{t}</span>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div className="p-5 rounded-2xl border border-stone-200 dark:border-stone-800 bg-stone-50/50 dark:bg-stone-950/30">
+            <div className="mb-4">
+              <label className="text-[9px] font-black uppercase tracking-wider text-stone-400 block mb-1.5">Chọn vị trí để so sánh</label>
+              <select
+                value={careerBId}
+                onChange={(e) => setCareerBId(e.target.value)}
+                className="w-full p-2.5 rounded-xl bg-white dark:bg-stone-900 border border-stone-200 dark:border-stone-800 text-xs font-bold text-stone-800 dark:text-stone-200 focus:outline-none focus:border-indigo-500"
+              >
+                <option value="">-- Chọn một vị trí --</option>
+                {FINANCE_CAREERS.filter(c => c.id !== careerA.id).map(c => (
+                  <option key={c.id} value={c.id}>{c.title}</option>
+                ))}
+              </select>
+            </div>
+
+            {careerB ? (
+              <div className="space-y-4 text-xs">
+                <div className="flex gap-4 items-center">
+                  <div className="w-14 h-14 rounded-xl overflow-hidden border border-stone-200 dark:border-stone-800 shadow-sm shrink-0">
+                    <img src={careerB.avatar3d} alt={careerB.title} className="w-full h-full object-cover" />
+                  </div>
+                  <div>
+                    <h3 className="text-base font-black text-stone-900 dark:text-stone-50 leading-tight">{careerB.title}</h3>
+                    <p className="text-xs text-stone-400 dark:text-stone-500 font-bold">{careerB.englishTitle}</p>
+                  </div>
+                </div>
+                <p className="text-stone-600 dark:text-stone-300 leading-relaxed font-semibold italic">"{careerB.summary}"</p>
+                
+                <div className="grid grid-cols-3 gap-2 py-2 border-y border-stone-200/50 dark:border-stone-800/50">
+                  <div className="text-center">
+                    <span className="text-[10px] text-stone-400 block font-bold">Độ khó</span>
+                    <span className="text-sm font-black text-stone-805 dark:text-stone-200">{careerB.entryDifficulty}/5</span>
+                  </div>
+                  <div className="text-center">
+                    <span className="text-[10px] text-stone-400 block font-bold">Áp lực</span>
+                    <span className="text-sm font-black text-stone-805 dark:text-stone-200">{careerB.stressLevel}/5</span>
+                  </div>
+                  <div className="text-center">
+                    <span className="text-[10px] text-stone-400 block font-bold">Cân bằng</span>
+                    <span className="text-sm font-black text-stone-805 dark:text-stone-200">{careerB.wlb}/5</span>
+                  </div>
+                </div>
+
+                <div className="space-y-2 pt-1">
+                  <div>
+                    <span className="font-extrabold text-stone-400 block text-[9px] uppercase tracking-wider">Mức lương dự kiến</span>
+                    <span className="font-black text-stone-800 dark:text-stone-200">{careerB.salaryHint}</span>
+                  </div>
+                  <div>
+                    <span className="font-extrabold text-stone-400 block text-[9px] uppercase tracking-wider">Chứng chỉ chính</span>
+                    <div className="flex flex-wrap gap-1 mt-1">
+                      {careerB.certifications.map(c => (
+                        <span key={c} className="px-1.5 py-0.5 rounded bg-stone-100 dark:bg-stone-800 text-[10px] font-bold text-stone-600 dark:text-stone-400">{c}</span>
+                      ))}
+                    </div>
+                  </div>
+                  <div>
+                    <span className="font-extrabold text-stone-400 block text-[9px] uppercase tracking-wider">Công cụ chính</span>
+                    <div className="flex flex-wrap gap-1 mt-1">
+                      {careerB.requiredTools.map(t => (
+                        <span key={t} className="px-1.5 py-0.5 rounded bg-emerald-50 dark:bg-emerald-950/20 text-[10px] font-bold text-emerald-700 dark:text-emerald-400">{t}</span>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            ) : (
+              <div className="py-16 text-center text-stone-400 dark:text-stone-600 text-xs font-semibold border-2 border-dashed border-stone-200 dark:border-stone-800 rounded-2xl bg-white dark:bg-stone-900/30">
+                Chọn vị trí thứ hai để đối chiếu
+              </div>
+            )}
+          </div>
+        </div>
+
+        {careerB && (
+          <div className="mt-8 pt-6 border-t border-stone-200 dark:border-stone-800 flex flex-col items-center">
+            <span className="text-xs font-black uppercase tracking-wider text-stone-500 dark:text-stone-400 mb-4 block text-center">
+              So sánh Phẩm chất năng lực (Overlay Radar)
+            </span>
+            <div className="flex flex-col sm:flex-row items-center gap-6">
+              <svg className="w-48 h-48 overflow-visible" viewBox="0 0 200 200">
+                {[1, 2, 3, 4, 5].map((lvl) => {
+                  const r = 70 * (lvl / 5);
+                  return (
+                    <polygon
+                      key={lvl}
+                      points={`100,${100 - r} ${100 + r},100 ${100},${100 + r} ${100 - r},100`}
+                      fill="none"
+                      stroke="currentColor"
+                      className="text-stone-200 dark:text-stone-850"
+                      strokeWidth="1"
+                      strokeDasharray={lvl < 5 ? "2,2" : "none"}
+                    />
+                  );
+                })}
+                <line x1={30} y1={100} x2={170} y2={100} stroke="currentColor" className="text-stone-200 dark:text-stone-850" strokeWidth="1" />
+                <line x1={100} y1={30} x2={100} y2={170} stroke="currentColor" className="text-stone-200 dark:text-stone-850" strokeWidth="1" />
+
+                <text x={100} y={22} textAnchor="middle" className="text-[8px] font-black fill-stone-550 dark:fill-stone-400">PHÂN TÍCH</text>
+                <text x={178} y={103} textAnchor="start" className="text-[8px] font-black fill-stone-550 dark:fill-stone-400">ĐỊNH LƯỢNG</text>
+                <text x={100} y={184} textAnchor="middle" className="text-[8px] font-black fill-stone-550 dark:fill-stone-400">GIAO TIẾP</text>
+                <text x={22} y={103} textAnchor="end" className="text-[8px] font-black fill-stone-550 dark:fill-stone-400">TUÂN THỦ</text>
+
+                <polygon
+                  points={`100,${100 - 70 * (careerA.traits.analytical / 5)} ${100 + 70 * (careerA.traits.quantitative / 5)},100 ${100},${100 + 70 * (careerA.traits.clientFacing / 5)} ${100 - 70 * (careerA.traits.compliance / 5)},100`}
+                  fill={`${careerA.accentTo}15`}
+                  stroke={careerA.accentTo}
+                  strokeWidth="2"
+                />
+
+                <polygon
+                  points={`100,${100 - 70 * (careerB.traits.analytical / 5)} ${100 + 70 * (careerB.traits.quantitative / 5)},100 ${100},${100 + 70 * (careerB.traits.clientFacing / 5)} ${100 - 70 * (careerB.traits.compliance / 5)},100`}
+                  fill="#6366f115"
+                  stroke="#6366f1"
+                  strokeWidth="2"
+                />
+              </svg>
+
+              <div className="flex flex-row sm:flex-col gap-4 text-xs font-bold">
+                <div className="flex items-center gap-2">
+                  <div className="w-4 h-1.5 rounded" style={{ backgroundColor: careerA.accentTo }} />
+                  <span className="text-stone-700 dark:text-stone-300">{careerA.title}</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <div className="w-4 h-1.5 rounded bg-indigo-500" />
+                  <span className="text-stone-700 dark:text-stone-300">{careerB.title}</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        )}
+      </motion.div>
+    </div>
+  );
+}
+
 export default function JobSearchClient() {
   const [selected, setSelected] = useState<FinanceCareer>(FINANCE_CAREERS[0]);
   const [searchQuery, setSearchQuery] = useState("");
+  const [selectedCategory, setSelectedCategory] = useState("all");
   const [activeTab, setActiveTab] = useState<"daily" | "insights" | "path" | "skills" | "search">("daily");
   const [mobileDetailOpen, setMobileDetailOpen] = useState(false);
+  
+  // Custom states for P2 features
+  const [compareModalOpen, setCompareModalOpen] = useState(false);
+  const [selectedPathStep, setSelectedPathStep] = useState<number | null>(0);
+  const [trackedGoal, setTrackedGoal] = useState<string | null>(null);
+  const [completedItems, setCompletedItems] = useState<string[]>([]);
 
   // Career Fit Quiz State
   const [userId, setUserId] = useState<string | null>(null);
@@ -194,6 +578,63 @@ export default function JobSearchClient() {
       }
     });
   }, []);
+
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      const goal = localStorage.getItem("active_career_goal");
+      const completedStr = localStorage.getItem("active_career_completed_items");
+      if (goal) setTrackedGoal(goal);
+      if (completedStr) {
+        try {
+          setCompletedItems(JSON.parse(completedStr));
+        } catch {
+          setCompletedItems([]);
+        }
+      }
+    }
+  }, []);
+
+  // Reconciles the local (instant-first-paint) goal with the real
+  // server-side one once we know who's signed in - the server value wins if
+  // they've set a goal on another device, so this doesn't stay stuck
+  // showing stale localStorage from before that upgrade.
+  useEffect(() => {
+    if (!userId) return;
+    getMyCareerGoal(userId)
+      .then((serverGoal) => {
+        if (serverGoal) {
+          setTrackedGoal(serverGoal);
+          localStorage.setItem("active_career_goal", serverGoal);
+        }
+      })
+      .catch((error) => console.error("Error loading career goal:", error));
+  }, [userId]);
+
+  const handleTrackGoal = (careerId: string) => {
+    if (trackedGoal === careerId) {
+      setTrackedGoal(null);
+      setCompletedItems([]);
+      localStorage.removeItem("active_career_goal");
+      localStorage.removeItem("active_career_completed_items");
+      toast.info("Đã hủy theo dõi mục tiêu sự nghiệp.");
+      if (userId) void clearCareerGoal(userId).catch((error) => console.error("Error clearing career goal:", error));
+    } else {
+      setTrackedGoal(careerId);
+      setCompletedItems([]);
+      localStorage.setItem("active_career_goal", careerId);
+      localStorage.setItem("active_career_completed_items", JSON.stringify([]));
+      toast.success(`🎯 Đã đặt làm Mục tiêu Sự nghiệp mới!`);
+      if (userId) void setCareerGoal(userId, careerId).catch((error) => console.error("Error saving career goal:", error));
+    }
+  };
+
+  const handleToggleItem = (item: string) => {
+    const next = completedItems.includes(item)
+      ? completedItems.filter(i => i !== item)
+      : [...completedItems, item];
+    setCompletedItems(next);
+    localStorage.setItem("active_career_completed_items", JSON.stringify(next));
+  };
 
   const startQuiz = () => {
     setQuizStep(0);
@@ -268,10 +709,15 @@ export default function JobSearchClient() {
     }
   };
 
-  const filteredCareers = FINANCE_CAREERS.filter((c) =>
-    c.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-    c.englishTitle.toLowerCase().includes(searchQuery.toLowerCase())
-  );
+  const filteredCareers = FINANCE_CAREERS.filter((c) => {
+    const matchesSearch =
+      c.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      c.englishTitle.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      c.skills.some((s) => s.toLowerCase().includes(searchQuery.toLowerCase())) ||
+      c.searchKeyword.toLowerCase().includes(searchQuery.toLowerCase());
+    const matchesCategory = selectedCategory === "all" || c.category === selectedCategory;
+    return matchesSearch && matchesCategory;
+  });
 
   function handleSelectCareer(career: FinanceCareer) {
     setSelected(career);
@@ -344,9 +790,7 @@ export default function JobSearchClient() {
                 </button>
               )}
             </div>
-
-            {/* Career Fit Quiz Widget */}
-            <div className="p-5 rounded-2xl border-2 border-stone-200 dark:border-stone-800 bg-white dark:bg-stone-900 shadow-sm relative overflow-hidden">
+            <div className="p-4 sm:p-5 rounded-2xl border-2 border-stone-200 dark:border-stone-800 bg-white dark:bg-stone-900 shadow-sm relative overflow-hidden">
               <div className="absolute top-0 right-0 w-20 h-20 bg-emerald-500/5 rounded-full blur-xl pointer-events-none" />
               
               {!quizCompleted ? (
@@ -355,37 +799,60 @@ export default function JobSearchClient() {
                     <Sparkles className="w-4 h-4 text-amber-500 animate-pulse animate-duration-1000" />
                     <h4 className="text-xs font-black uppercase tracking-wider">Trắc nghiệm Hướng nghiệp</h4>
                   </div>
-                  <p className="text-xs text-stone-500 dark:text-stone-400 mt-1.5 leading-relaxed">
+                  <p className="hidden sm:block text-xs text-stone-500 dark:text-stone-400 mt-1.5 leading-relaxed">
                     Trả lời 5 câu hỏi để định hướng xem bạn phù hợp nhất với vị trí tài chính nào và nhận ngay <strong className="text-emerald-600 dark:text-emerald-450 font-black">+50 XP</strong>.
+                  </p>
+                  <p className="sm:hidden text-[10px] text-stone-500 dark:text-stone-400 mt-1 leading-relaxed">
+                    Trả lời nhanh 5 câu hỏi nhận ngay <strong className="text-emerald-600 dark:text-emerald-450 font-black">+50 XP</strong>.
                   </p>
                   <button
                     onClick={startQuiz}
-                    className="w-full mt-3 py-2 rounded-xl bg-emerald-600 hover:bg-emerald-500 dark:bg-emerald-500 dark:hover:bg-emerald-400 text-white text-xs font-black shadow-sm transition-all cursor-pointer text-center"
+                    className="w-full mt-2.5 sm:mt-3 py-1.5 sm:py-2 rounded-xl bg-emerald-600 hover:bg-emerald-500 dark:bg-emerald-50 dark:hover:bg-emerald-400 text-white text-xs font-black shadow-sm transition-all cursor-pointer text-center"
                   >
                     Bắt đầu trắc nghiệm (+50 XP)
                   </button>
                 </div>
               ) : (
                 <div>
-                  <div className="flex items-center gap-2 text-stone-900 dark:text-stone-50">
+                  <div className="flex items-center gap-2 text-stone-900 dark:text-stone-550">
                     <SearchCode className="w-4 h-4 text-emerald-500" />
-                    <h4 className="text-xs font-black uppercase tracking-wider">Định hướng nghề nghiệp của bạn</h4>
+                    <h4 className="text-xs font-black uppercase tracking-wider">Hướng nghiệp của bạn</h4>
                   </div>
-                  <div className="mt-2.5 p-3 rounded-xl bg-stone-50 dark:bg-stone-950/30 border border-stone-200/40 dark:border-stone-850 text-xs">
-                    <span className="text-[9px] font-black uppercase text-stone-400 dark:text-stone-550 block mb-0.5">Nhóm ngành phù hợp nhất:</span>
+                  <div className="mt-2 p-2.5 rounded-xl bg-stone-50 dark:bg-stone-950/30 border border-stone-200/40 dark:border-stone-850 text-xs">
+                    <span className="text-[9px] font-black uppercase text-stone-400 dark:text-stone-550 block mb-0.5">Phù hợp nhất:</span>
                     <span className="font-extrabold text-stone-805 dark:text-stone-200 block leading-tight">{quizResult?.split(" - ")[0]}</span>
-                    <span className="text-[10px] text-stone-500 dark:text-stone-450 block mt-1.5 leading-snug">
+                    <span className="text-[10px] text-stone-500 dark:text-stone-450 block mt-1 leading-snug">
                       Gợi ý: {quizResult?.split(" - Gợi ý: ")[1] || "Kế toán, kiểm toán, tài chính."}
                     </span>
                   </div>
                   <button
                     onClick={startQuiz}
-                    className="w-full mt-3 py-1.5 rounded-xl border border-stone-200 dark:border-stone-800 text-stone-600 dark:text-stone-400 text-[10px] font-bold hover:bg-stone-50 dark:hover:bg-stone-950 transition-all cursor-pointer text-center"
+                    className="w-full mt-2.5 py-1.5 rounded-xl border border-stone-200 dark:border-stone-800 text-stone-600 dark:text-stone-400 text-[10px] font-bold hover:bg-stone-50 dark:hover:bg-stone-950 transition-all cursor-pointer text-center"
                   >
                     Làm lại trắc nghiệm
                   </button>
                 </div>
               )}
+            </div>
+
+            {/* Category Filter Tabs */}
+            <div className="flex gap-2 overflow-x-auto pb-1.5 scrollbar-none">
+              {CATEGORIES.map((cat) => {
+                const isCatSelected = selectedCategory === cat.id;
+                return (
+                  <button
+                    key={cat.id}
+                    onClick={() => setSelectedCategory(cat.id)}
+                    className={`shrink-0 px-3.5 py-1.5 rounded-full text-xs font-black transition-all cursor-pointer select-none ${
+                      isCatSelected
+                        ? "bg-emerald-600 dark:bg-emerald-500 text-white shadow-sm"
+                        : "bg-white dark:bg-stone-900 text-stone-600 dark:text-stone-400 border border-stone-200 dark:border-stone-800/80 hover:bg-stone-50 dark:hover:bg-stone-850"
+                    }`}
+                  >
+                    {cat.label}
+                  </button>
+                );
+              })}
             </div>
 
             {/* Careers Scroll List */}
@@ -424,7 +891,7 @@ export default function JobSearchClient() {
 
                       {/* Info text */}
                       <div className="min-w-0 flex-1">
-                        <h3 className="text-sm font-black text-stone-950 dark:text-stone-50 leading-tight flex items-center gap-1.5">
+                        <h3 className="text-sm font-black text-stone-950 dark:text-stone-550 leading-tight flex items-center gap-1.5">
                           {career.title}
                         </h3>
                         <p className="text-xs text-stone-400 dark:text-stone-500 font-bold mt-0.5">{career.englishTitle}</p>
@@ -479,6 +946,9 @@ export default function JobSearchClient() {
                     </span>
                     <span className="text-xs text-stone-400 dark:text-stone-500 font-extrabold">• Dải lương: {selected.salaryHint}</span>
                   </div>
+                  <p className="text-[10px] text-stone-350 dark:text-stone-600 font-semibold mt-1">
+                    * Mức lương chỉ mang tính ước tính tham khảo, thay đổi theo công ty, khu vực và kinh nghiệm thực tế - không phải số liệu khảo sát chính thức.
+                  </p>
                   <h2 className="text-2xl font-black text-stone-900 dark:text-stone-50 mt-2 leading-tight">
                     {selected.title}
                   </h2>
@@ -489,27 +959,116 @@ export default function JobSearchClient() {
                 </div>
               </div>
 
-              {/* Core Metrics Grid */}
-              <div className="grid grid-cols-3 gap-4 mt-6">
-                <MetricBar 
-                  label="Độ khó đầu vào" 
-                  value={selected.entryDifficulty} 
-                  color={getDifficultyColor(selected.entryDifficulty)} 
-                  icon={GraduationCap} 
-                />
-                <MetricBar 
-                  label="Mức độ áp lực" 
-                  value={selected.stressLevel} 
-                  color={getStressColor(selected.stressLevel)} 
-                  icon={Activity} 
-                />
-                <MetricBar 
-                  label="Cân bằng (WLB)" 
-                  value={selected.wlb} 
-                  color={getWlbColor(selected.wlb)} 
-                  icon={Heart} 
-                />
+              {/* Metrics & Radar Chart Section */}
+              <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 mt-6 pb-6 border-b border-stone-150 dark:border-stone-800">
+                {/* Left Side: Stats & Goal Tracking */}
+                <div className="lg:col-span-7 flex flex-col justify-between space-y-4">
+                  <div className="grid grid-cols-3 gap-3">
+                    <MetricBar 
+                      label="Độ khó đầu vào" 
+                      value={selected.entryDifficulty} 
+                      color={getDifficultyColor(selected.entryDifficulty)} 
+                      icon={GraduationCap} 
+                    />
+                    <MetricBar 
+                      label="Mức độ áp lực" 
+                      value={selected.stressLevel} 
+                      color={getStressColor(selected.stressLevel)} 
+                      icon={Activity} 
+                    />
+                    <MetricBar 
+                      label="Cân bằng (WLB)" 
+                      value={selected.wlb} 
+                      color={getWlbColor(selected.wlb)} 
+                      icon={Heart} 
+                    />
+                  </div>
+                  
+                  {/* Action buttons (Track Goal & Compare) */}
+                  <div className="flex flex-wrap gap-2.5">
+                    <button
+                      onClick={() => handleTrackGoal(selected.id)}
+                      className={`flex-1 py-2.5 px-4 rounded-xl text-xs font-black transition-all cursor-pointer text-center select-none flex items-center justify-center gap-1.5 ${
+                        trackedGoal === selected.id
+                          ? "bg-amber-500 text-white shadow-md border border-amber-400"
+                          : "bg-stone-900 dark:bg-stone-100 text-white dark:text-stone-900 shadow-sm hover:opacity-90 active:scale-[0.98]"
+                      }`}
+                    >
+                      🎯 {trackedGoal === selected.id ? "Đã đặt làm Mục tiêu" : "Đặt làm Mục tiêu sự nghiệp"}
+                    </button>
+                    <button
+                      onClick={() => {
+                        setCompareModalOpen(true);
+                      }}
+                      className="py-2.5 px-4 rounded-xl border border-stone-200 dark:border-stone-800 text-stone-750 dark:text-stone-300 text-xs font-black hover:bg-stone-50 dark:hover:bg-stone-950 transition-all cursor-pointer flex items-center justify-center gap-1.5 active:scale-[0.98]"
+                    >
+                      ⚖️ So sánh vị trí
+                    </button>
+                  </div>
+                </div>
+
+                {/* Right Side: Radar Chart */}
+                <div className="lg:col-span-5 flex justify-center lg:justify-end">
+                  <CareerRadarChart traits={selected.traits} color={selected.accentTo} />
+                </div>
               </div>
+
+              {/* Active Goal Checklist Box */}
+              {trackedGoal === selected.id && (
+                <div className="mt-5 p-5 rounded-2xl bg-amber-500/5 border-2 border-dashed border-amber-500/20 relative overflow-hidden">
+                  <div className="flex items-center justify-between mb-3">
+                    <div className="flex items-center gap-2">
+                      <span className="text-base">🏆</span>
+                      <h4 className="text-xs font-black uppercase text-amber-600 dark:text-amber-400 tracking-wider">Tiến độ chuẩn bị sự nghiệp</h4>
+                    </div>
+                    <span className="text-xs font-black text-amber-600 dark:text-amber-400">
+                      {Math.round(((completedItems.filter(i => [...selected.skills, ...selected.certifications].includes(i)).length) / (selected.skills.length + selected.certifications.length || 1)) * 100)}%
+                    </span>
+                  </div>
+                  
+                  <div className="w-full h-1.5 bg-stone-200 dark:bg-stone-800 rounded-full overflow-hidden mb-4">
+                    <motion.div
+                      className="h-full bg-amber-500 rounded-full"
+                      initial={{ width: 0 }}
+                      animate={{ width: `${((completedItems.filter(i => [...selected.skills, ...selected.certifications].includes(i)).length) / (selected.skills.length + selected.certifications.length || 1)) * 100}%` }}
+                      transition={{ duration: 0.4 }}
+                    />
+                  </div>
+                  
+                  <p className="text-[11px] text-stone-500 dark:text-stone-400 leading-normal mb-3 font-semibold">
+                    Đánh dấu các kỹ năng và chứng chỉ bạn đã tích lũy được để theo sát lộ trình sự nghiệp này:
+                  </p>
+                  
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 max-h-36 overflow-y-auto pr-1">
+                    {[...selected.skills, ...selected.certifications].map((item) => {
+                      const isChecked = completedItems.includes(item);
+                      const isCert = selected.certifications.includes(item);
+                      return (
+                        <label 
+                          key={item}
+                          className={`flex items-start gap-2.5 p-2 rounded-lg border text-[11px] font-bold transition-all cursor-pointer select-none ${
+                            isChecked
+                              ? "bg-white dark:bg-stone-900 border-amber-400 text-stone-850 dark:text-stone-200 shadow-sm"
+                              : "bg-white/40 dark:bg-stone-900/20 border-stone-200/50 dark:border-stone-800/50 text-stone-400 hover:border-stone-300"
+                          }`}
+                        >
+                          <input 
+                            type="checkbox"
+                            checked={isChecked}
+                            onChange={() => handleToggleItem(item)}
+                            className="mt-0.5 rounded border-stone-300 text-amber-500 focus:ring-amber-500 h-3.5 w-3.5 cursor-pointer accent-amber-500"
+                          />
+                          <span className="leading-tight flex-1">
+                            {isCert ? "🎓 " : "⚡ "}{item}
+                          </span>
+                        </label>
+                      );
+                    })}
+                  </div>
+                </div>
+              )}
+
+              <RelatedLessonsPanel career={selected} />
 
               {/* Detail Navigation Tabs */}
               <div className="flex border-b border-stone-200 dark:border-stone-800 mt-8 gap-2 overflow-x-auto scrollbar-none">
@@ -624,24 +1183,81 @@ export default function JobSearchClient() {
                           <h3 className="text-xs font-extrabold uppercase tracking-widest text-stone-400 dark:text-stone-500 mb-4">
                             Lộ trình thăng tiến (Career Path)
                           </h3>
-                          <div className="relative border-l-2 border-stone-200 dark:border-stone-800 ml-4 pl-6 space-y-6 py-2">
-                            {selected.careerPath.map((step, idx) => (
-                              <div key={idx} className="relative">
-                                <div 
-                                  className="absolute -left-[35px] top-0.5 w-6 h-6 rounded-full flex items-center justify-center text-[10px] font-black text-white shadow-sm"
-                                  style={{
-                                    background: `linear-gradient(135deg, ${selected.accentFrom}, ${selected.accentTo})`
-                                  }}
+                          <p className="text-[10px] text-stone-400 dark:text-stone-500 font-bold mb-3 italic">
+                            (Nhấp vào từng cấp độ để xem bí quyết thăng tiến)
+                          </p>
+                          <div className="relative border-l-2 border-stone-200 dark:border-stone-855 ml-4 pl-6 space-y-4 py-2">
+                            {selected.careerPath.map((step, idx) => {
+                              const isStepActive = selectedPathStep === idx;
+                              return (
+                                <button
+                                  key={idx}
+                                  onClick={() => setSelectedPathStep(idx)}
+                                  className={`relative w-full text-left flex flex-col p-2.5 rounded-xl transition-all cursor-pointer border ${
+                                    isStepActive 
+                                      ? "bg-indigo-50/40 dark:bg-indigo-950/10 border-indigo-500/30 translate-x-1" 
+                                      : "bg-transparent border-transparent hover:bg-stone-50 dark:hover:bg-stone-900/40"
+                                  }`}
                                 >
-                                  {idx + 1}
-                                </div>
-                                <h4 className="text-sm font-black text-stone-900 dark:text-stone-100">{step}</h4>
-                                <p className="text-[10px] uppercase font-bold text-stone-400 mt-0.5">
-                                  {idx === 0 ? "Khởi đầu" : idx === selected.careerPath.length - 1 ? "Mục tiêu dài hạn" : "Nấc thang phát triển"}
-                                </p>
-                              </div>
-                            ))}
+                                  <div 
+                                    className={`absolute -left-[35px] top-3 w-6 h-6 rounded-full flex items-center justify-center text-[10px] font-black text-white shadow-sm transition-transform ${
+                                      isStepActive ? "scale-110" : "scale-100"
+                                    }`}
+                                    style={{
+                                      background: `linear-gradient(135deg, ${selected.accentFrom}, ${selected.accentTo})`
+                                    }}
+                                  >
+                                    {idx + 1}
+                                  </div>
+                                  <h4 className={`text-sm font-black transition-colors ${isStepActive ? "text-indigo-650 dark:text-indigo-400" : "text-stone-900 dark:text-stone-100"}`}>{step}</h4>
+                                  <p className="text-[9px] uppercase font-black tracking-wider text-stone-400 dark:text-stone-550 mt-0.5">
+                                    {idx === 0 ? "Khởi đầu" : idx === selected.careerPath.length - 1 ? "Mục tiêu dài hạn" : "Nấc thang phát triển"}
+                                  </p>
+                                </button>
+                              );
+                            })}
                           </div>
+
+                          {selectedPathStep !== null && (
+                            <motion.div 
+                              key={selectedPathStep}
+                              initial={{ opacity: 0, y: 8 }}
+                              animate={{ opacity: 1, y: 0 }}
+                              className="mt-5 p-4 rounded-2xl bg-indigo-500/5 dark:bg-indigo-950/20 border border-indigo-500/20 text-xs"
+                            >
+                              <div className="flex items-center justify-between mb-2 pb-1.5 border-b border-indigo-500/10">
+                                <span className="font-extrabold text-indigo-700 dark:text-indigo-300 uppercase tracking-wide">
+                                  Bậc {selectedPathStep + 1}: {selected.careerPath[selectedPathStep]}
+                                </span>
+                                <span className="font-black text-stone-450 uppercase tracking-widest text-[9px]">
+                                  {selectedPathStep === 0 ? "0 - 2 năm" : selectedPathStep === 1 ? "2 - 5 năm" : selectedPathStep === 2 ? "5 - 8 năm" : "8+ năm"}
+                                </span>
+                              </div>
+                              <p className="text-stone-600 dark:text-stone-300 leading-relaxed mb-2 font-semibold">
+                                <strong className="text-stone-800 dark:text-stone-250">Trọng tâm: </strong>
+                                {selectedPathStep === 0 
+                                  ? "Học hỏi quy trình, xử lý số liệu thô, thực thi các nghiệp vụ cơ bản dưới sự kèm cặp sát sao." 
+                                  : selectedPathStep === 1 
+                                    ? "Làm chủ nghiệp vụ, quản lý dự án độc lập, bắt đầu tư vấn trực tiếp và hướng dẫn thực tập sinh."
+                                    : selectedPathStep === 2
+                                      ? "Lập kế hoạch, quản lý nhóm hoặc phòng ban, chịu trách nhiệm chính về hiệu quả hoạt động tài chính."
+                                      : "Quyết định tối cao, làm việc trực tiếp với HĐQT/Cổ đông ngoại, định đoạt cấu trúc dòng vốn toàn tập đoàn."}
+                              </p>
+                              <div className="flex items-start gap-1.5 text-stone-500 dark:text-stone-400 italic">
+                                <Lightbulb className="w-3.5 h-3.5 text-indigo-500 shrink-0 mt-0.5" />
+                                <span>
+                                  <strong>Bí quyết: </strong>
+                                  {selectedPathStep === 0 
+                                    ? "Cẩn thận tuyệt đối trong tính toán, không ngại việc nhỏ, nâng cao tối đa Excel và hoàn thành CFA/ACCA Level 1."
+                                    : selectedPathStep === 1
+                                      ? "Chủ động đề xuất giải pháp thay vì chỉ báo cáo vấn đề, rèn luyện kỹ năng thuyết trình & đàm phán với khách hàng."
+                                      : selectedPathStep === 2
+                                        ? "Học cách ủy quyền hiệu quả, rèn luyện kỹ năng quản trị cảm xúc và thấu hiểu chính trị nội bộ doanh nghiệp."
+                                        : "Tầm nhìn vĩ mô toàn cầu, giữ vững uy tín tối thượng và duy trì mối quan hệ cấp cao với các tổ chức tài chính lớn."}
+                                </span>
+                              </div>
+                            </motion.div>
+                          )}
                         </div>
 
                         {/* Key Certifications recommended */}
@@ -809,129 +1425,314 @@ export default function JobSearchClient() {
                 </div>
               </div>
 
-              {/* Mobile sections */}
-              <div className="space-y-6 mt-6">
-                
-                {/* 1. Một ngày & Nhiệm vụ */}
-                <div className="space-y-3">
-                  <h3 className="text-[11px] font-black uppercase tracking-wider text-stone-400 dark:text-stone-500">
-                    Một ngày & Nhiệm vụ chính
-                  </h3>
-                  <div className="bg-emerald-50/40 dark:bg-emerald-950/10 p-4 rounded-xl border border-emerald-500/10 text-xs italic leading-relaxed text-stone-700 dark:text-stone-300">
-                    "{selected.dayInLife}"
-                  </div>
-                  <ul className="space-y-2.5">
-                    {selected.responsibilities.map((resp, idx) => (
-                      <li key={idx} className="flex items-start gap-2.5 text-xs text-stone-700 dark:text-stone-300">
-                        <span className="w-1.5 h-1.5 rounded-full mt-1.5 shrink-0" style={{ background: selected.accentTo }} />
-                        <span>{resp}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-
-                {/* 2. Lộ trình */}
-                <div className="space-y-3 pt-4 border-t border-stone-100 dark:border-stone-850">
-                  <h3 className="text-[11px] font-black uppercase tracking-wider text-stone-400 dark:text-stone-500">
-                    Lộ trình & Chứng chỉ
-                  </h3>
-                  <div className="relative border-l border-stone-200 dark:border-stone-800 ml-3 pl-5 space-y-4 py-1.5">
-                    {selected.careerPath.map((step, idx) => (
-                      <div key={idx} className="relative">
-                        <div 
-                          className="absolute -left-[27px] top-0.5 w-4.5 h-4.5 rounded-full flex items-center justify-center text-[9px] font-black text-white"
-                          style={{
-                            background: `linear-gradient(135deg, ${selected.accentFrom}, ${selected.accentTo})`
-                          }}
-                        >
-                          {idx + 1}
-                        </div>
-                        <h4 className="text-xs font-black text-stone-900 dark:text-stone-100">{step}</h4>
-                      </div>
-                    ))}
-                  </div>
-                  
-                  <div className="pt-2 flex flex-wrap gap-2">
-                    {selected.certifications.map((cert) => (
-                      <span key={cert} className="text-[10px] font-bold px-2.5 py-1 rounded bg-stone-100 dark:bg-stone-850 text-stone-700 dark:text-stone-300">
-                        🎓 {cert}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-
-                {/* 3. Kỹ năng & công cụ */}
-                <div className="space-y-3 pt-4 border-t border-stone-100 dark:border-stone-850">
-                  <h3 className="text-[11px] font-black uppercase tracking-wider text-stone-400 dark:text-stone-500">
-                    Kỹ năng & Công cụ
-                  </h3>
-                  <div className="flex flex-wrap gap-1.5">
-                    {selected.skills.map((skill) => (
-                      <span key={skill} className="text-[10px] font-semibold px-2 py-1 rounded bg-stone-100 dark:bg-stone-850 text-stone-700 dark:text-stone-300">
-                        {skill}
-                      </span>
-                    ))}
-                  </div>
-                  <div className="flex flex-wrap gap-1.5">
-                    {selected.requiredTools.map((tool) => (
-                      <span key={tool} className="text-[10px] font-semibold px-2 py-1 rounded bg-emerald-50 dark:bg-emerald-950/20 text-emerald-700 dark:text-emerald-400 border border-emerald-100/50 dark:border-emerald-900/30">
-                        💻 {tool}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-
-                {/* 5. Lời khuyên & Ưu/Nhược */}
-                <div className="space-y-3 pt-4 border-t border-stone-100 dark:border-stone-850">
-                  <h3 className="text-[11px] font-black uppercase tracking-wider text-stone-400 dark:text-stone-500">
-                    Lời khuyên & Ưu/Nhược điểm
-                  </h3>
-                  <div className="grid grid-cols-1 gap-3">
-                    <div className="p-4 bg-emerald-50/30 dark:bg-emerald-950/10 rounded-2xl border border-emerald-500/10">
-                      <span className="text-[10px] font-black text-emerald-600 dark:text-emerald-450 block mb-1 flex items-center gap-1">
-                        <ThumbsUp className="w-3.5 h-3.5" />
-                        ƯU ĐIỂM:
-                      </span>
-                      <span className="text-xs text-stone-700 dark:text-stone-300 leading-relaxed">{selected.pros}</span>
-                    </div>
-                    <div className="p-4 bg-rose-50/30 dark:bg-rose-950/10 rounded-2xl border border-rose-500/10">
-                      <span className="text-[10px] font-black text-rose-600 dark:text-rose-450 block mb-1 flex items-center gap-1">
-                        <ThumbsDown className="w-3.5 h-3.5" />
-                        NHƯỢC ĐIỂM:
-                      </span>
-                      <span className="text-xs text-stone-700 dark:text-stone-300 leading-relaxed">{selected.cons}</span>
-                    </div>
-                  </div>
-                  <div className="p-4 bg-amber-50/20 dark:bg-amber-955/10 rounded-2xl border border-amber-500/10 text-xs flex gap-2.5">
-                    <Lightbulb className="w-4 h-4 text-amber-500 shrink-0 mt-0.5" />
-                    <div className="text-stone-700 dark:text-stone-300 leading-relaxed">
-                      <span className="font-extrabold text-stone-900 dark:text-stone-100 block mb-1">Bí quyết ứng tuyển:</span>
-                      {selected.applicationTips}
-                    </div>
-                  </div>
-                </div>
-
-                {/* 4. Tìm việc */}
-                <div className="space-y-3 pt-4 border-t border-stone-100 dark:border-stone-850 pb-6">
-                  <h3 className="text-[11px] font-black uppercase tracking-wider text-stone-400 dark:text-stone-500">
-                    Tìm kiếm việc làm gợi ý
-                  </h3>
-                  <div className="grid grid-cols-3 gap-2">
-                    {JOB_SEARCH_SITES.map((site) => (
-                      <button
-                        key={site.id}
-                        onClick={() => window.open(site.buildUrl(selected.searchKeyword), "_blank", "noopener,noreferrer")}
-                        className="flex items-center justify-center gap-1.5 py-2.5 rounded-xl bg-stone-900 dark:bg-stone-100 text-white dark:text-stone-900 text-[10px] font-black"
-                      >
-                        {site.label}
-                        <ExternalLink className="w-3 h-3" />
-                      </button>
-                    ))}
-                  </div>
-                </div>
-
+              {/* Mobile Action Buttons */}
+              <div className="flex gap-2 mt-4">
+                <button
+                  onClick={() => handleTrackGoal(selected.id)}
+                  className={`flex-1 py-2 px-3 rounded-xl text-[10px] font-black transition-all cursor-pointer text-center select-none flex items-center justify-center gap-1.5 ${
+                    trackedGoal === selected.id
+                      ? "bg-amber-500 text-white shadow-md border border-amber-400"
+                      : "bg-stone-900 dark:bg-stone-100 text-white dark:text-stone-900 shadow-sm hover:opacity-90 active:scale-[0.98]"
+                  }`}
+                >
+                  🎯 {trackedGoal === selected.id ? "Đã đặt Mục tiêu" : "Đặt Mục tiêu sự nghiệp"}
+                </button>
+                <button
+                  onClick={() => {
+                    setCompareModalOpen(true);
+                  }}
+                  className="py-2 px-3 rounded-xl border border-stone-200 dark:border-stone-800 text-stone-750 dark:text-stone-300 text-[10px] font-black hover:bg-stone-50 dark:hover:bg-stone-950 transition-all cursor-pointer flex items-center justify-center gap-1.5 active:scale-[0.98]"
+                >
+                  ⚖️ So sánh
+                </button>
               </div>
 
+              {/* Mobile Active Goal Checklist Box */}
+              {trackedGoal === selected.id && (
+                <div className="mt-4 p-4 rounded-xl bg-amber-500/5 border border-dashed border-amber-500/20 relative overflow-hidden">
+                  <div className="flex items-center justify-between mb-2">
+                    <div className="flex items-center gap-1.5">
+                      <span className="text-xs">🏆</span>
+                      <h4 className="text-[10px] font-black uppercase text-amber-600 dark:text-amber-400 tracking-wider">Tiến độ chuẩn bị sự nghiệp</h4>
+                    </div>
+                    <span className="text-[10px] font-black text-amber-600 dark:text-amber-400">
+                      {Math.round(((completedItems.filter(i => [...selected.skills, ...selected.certifications].includes(i)).length) / (selected.skills.length + selected.certifications.length || 1)) * 100)}%
+                    </span>
+                  </div>
+                  
+                  <div className="w-full h-1 bg-stone-250 dark:bg-stone-800 rounded-full overflow-hidden mb-3">
+                    <div
+                      className="h-full bg-amber-500 rounded-full transition-all duration-300"
+                      style={{ width: `${((completedItems.filter(i => [...selected.skills, ...selected.certifications].includes(i)).length) / (selected.skills.length + selected.certifications.length || 1)) * 100}%` }}
+                    />
+                  </div>
+                  
+                  <div className="space-y-1.5 max-h-32 overflow-y-auto pr-1">
+                    {[...selected.skills, ...selected.certifications].map((item) => {
+                      const isChecked = completedItems.includes(item);
+                      const isCert = selected.certifications.includes(item);
+                      return (
+                        <label 
+                          key={item}
+                          className={`flex items-start gap-2 p-1.5 rounded-lg border text-[10px] font-bold transition-all cursor-pointer select-none ${
+                            isChecked
+                              ? "bg-white dark:bg-stone-900 border-amber-400 text-stone-850 dark:text-stone-200 shadow-sm"
+                              : "bg-white/40 dark:bg-stone-900/20 border-stone-200/50 dark:border-stone-800/50 text-stone-400"
+                          }`}
+                        >
+                          <input 
+                            type="checkbox"
+                            checked={isChecked}
+                            onChange={() => handleToggleItem(item)}
+                            className="mt-0.5 rounded border-stone-300 text-amber-500 focus:ring-amber-500 h-3 w-3 cursor-pointer accent-amber-500"
+                          />
+                          <span className="leading-tight flex-1">
+                            {isCert ? "🎓 " : "⚡ "}{item}
+                          </span>
+                        </label>
+                      );
+                    })}
+                  </div>
+                </div>
+              )}
+
+              <RelatedLessonsPanel career={selected} />
+
+              {/* Mobile tabs container */}
+              <div className="flex border-b border-stone-200 dark:border-stone-800 mt-5 gap-1 overflow-x-auto scrollbar-none">
+                {[
+                  { id: "daily", label: "Nhiệm vụ", icon: Clock },
+                  { id: "insights", label: "Lời khuyên", icon: Lightbulb },
+                  { id: "path", label: "Lộ trình", icon: Award },
+                  { id: "skills", label: "Kỹ năng", icon: Terminal },
+                  { id: "search", label: "Tìm việc", icon: Search }
+                ].map((tab) => {
+                  const isActive = activeTab === tab.id;
+                  return (
+                    <button
+                      key={tab.id}
+                      onClick={() => setActiveTab(tab.id as any)}
+                      className={`flex items-center gap-1.5 px-3.5 py-2.5 text-[10px] font-black uppercase tracking-wider relative shrink-0 transition-colors select-none ${
+                        isActive ? "text-emerald-500 dark:text-emerald-400" : "text-stone-450 dark:text-stone-500 hover:text-stone-600"
+                      }`}
+                    >
+                      <tab.icon className="w-3.5 h-3.5" />
+                      {tab.label}
+                      {isActive && (
+                        <motion.div 
+                          layoutId="activeMobileTabUnderline"
+                          className="absolute bottom-0 left-0 right-0 h-0.5 bg-emerald-500 dark:bg-emerald-400"
+                        />
+                      )}
+                    </button>
+                  );
+                })}
+              </div>
+
+              {/* Mobile Tabbed Contents */}
+              <div className="py-4">
+                <AnimatePresence mode="wait">
+                  <motion.div
+                    key={"mobile_" + activeTab + "_" + selected.id}
+                    initial={{ opacity: 0, y: 5 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -5 }}
+                    transition={{ duration: 0.15 }}
+                  >
+                    {activeTab === "daily" && (
+                      <div className="space-y-4">
+                        <div className="bg-emerald-50/40 dark:bg-emerald-950/10 p-4 rounded-xl border border-emerald-500/10 text-xs italic leading-relaxed text-stone-700 dark:text-stone-300">
+                          <span className="font-extrabold text-stone-900 dark:text-stone-100 block mb-1">Một ngày điển hình:</span>
+                          "{selected.dayInLife}"
+                        </div>
+                        <div>
+                          <h4 className="text-[10px] font-extrabold uppercase tracking-widest text-stone-400 dark:text-stone-500 mb-2 flex items-center gap-1.5">
+                            <Sparkles className="w-3.5 h-3.5 text-amber-500" />
+                            Nhiệm vụ chính
+                          </h4>
+                          <ul className="space-y-2">
+                            {selected.responsibilities.map((resp, idx) => (
+                              <li key={idx} className="flex items-start gap-2 text-xs text-stone-700 dark:text-stone-300">
+                                <span className="w-1.5 h-1.5 rounded-full mt-1.5 shrink-0" style={{ background: selected.accentTo }} />
+                                <span>{resp}</span>
+                              </li>
+                            ))}
+                          </ul>
+                        </div>
+                      </div>
+                    )}
+
+                    {activeTab === "insights" && (
+                      <div className="space-y-4">
+                        <div className="grid grid-cols-1 gap-3">
+                          <div className="p-4 bg-emerald-50/20 dark:bg-emerald-950/10 rounded-2xl border border-emerald-500/10">
+                            <span className="text-[9px] font-black text-emerald-600 dark:text-emerald-450 block mb-1 flex items-center gap-1">
+                              <ThumbsUp className="w-3.5 h-3.5" />
+                              ƯU ĐIỂM
+                            </span>
+                            <p className="text-xs text-stone-700 dark:text-stone-300 leading-relaxed">{selected.pros}</p>
+                          </div>
+                          <div className="p-4 bg-rose-50/20 dark:bg-rose-950/10 rounded-2xl border border-rose-500/10">
+                            <span className="text-[9px] font-black text-rose-600 dark:text-rose-450 block mb-1 flex items-center gap-1">
+                              <ThumbsDown className="w-3.5 h-3.5" />
+                              NHƯỢC ĐIỂM
+                            </span>
+                            <p className="text-xs text-stone-700 dark:text-stone-300 leading-relaxed">{selected.cons}</p>
+                          </div>
+                        </div>
+                        <div className="p-4 bg-amber-50/20 dark:bg-amber-950/10 rounded-2xl border border-amber-500/10 text-xs flex gap-2">
+                          <Lightbulb className="w-4 h-4 text-amber-500 shrink-0 mt-0.5" />
+                          <div className="text-stone-700 dark:text-stone-300 leading-relaxed">
+                            <span className="font-extrabold text-stone-900 dark:text-stone-100 block mb-0.5">Lời khuyên tuyển dụng:</span>
+                            {selected.applicationTips}
+                          </div>
+                        </div>
+                      </div>
+                    )}
+
+                    {activeTab === "path" && (
+                      <div className="space-y-4">
+                        <div>
+                          <h4 className="text-[10px] font-extrabold uppercase tracking-widest text-stone-400 dark:text-stone-500 mb-1">Lộ trình thăng tiến</h4>
+                          <p className="text-[9px] text-stone-450 dark:text-stone-500 font-bold mb-3 italic">
+                            (Nhấp vào từng cấp độ để xem bí quyết)
+                          </p>
+                          <div className="relative border-l border-stone-200 dark:border-stone-850 ml-3 pl-5 space-y-3 py-1">
+                            {selected.careerPath.map((step, idx) => {
+                              const isStepActive = selectedPathStep === idx;
+                              return (
+                                <button
+                                  key={idx}
+                                  onClick={() => setSelectedPathStep(idx)}
+                                  className={`relative w-full text-left flex flex-col p-2 rounded-xl transition-all cursor-pointer border ${
+                                    isStepActive 
+                                      ? "bg-indigo-50/40 dark:bg-indigo-950/10 border-indigo-500/30" 
+                                      : "bg-transparent border-transparent hover:bg-stone-50 dark:hover:bg-stone-900/40"
+                                  }`}
+                                >
+                                  <div 
+                                    className={`absolute -left-[26px] top-2.5 w-4.5 h-4.5 rounded-full flex items-center justify-center text-[8px] font-black text-white ${
+                                      isStepActive ? "scale-110" : "scale-100"
+                                    }`}
+                                    style={{
+                                      background: `linear-gradient(135deg, ${selected.accentFrom}, ${selected.accentTo})`
+                                    }}
+                                  >
+                                    {idx + 1}
+                                  </div>
+                                  <h4 className={`text-xs font-black transition-colors ${isStepActive ? "text-indigo-650 dark:text-indigo-400" : "text-stone-900 dark:text-stone-100"}`}>{step}</h4>
+                                </button>
+                              );
+                            })}
+                          </div>
+                        </div>
+
+                        {selectedPathStep !== null && (
+                          <motion.div 
+                            key={selectedPathStep}
+                            initial={{ opacity: 0, y: 5 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            className="p-3.5 rounded-xl bg-indigo-500/5 dark:bg-indigo-950/20 border border-indigo-500/20 text-[11px]"
+                          >
+                            <div className="flex items-center justify-between mb-1.5 pb-1 border-b border-indigo-500/10">
+                              <span className="font-extrabold text-indigo-700 dark:text-indigo-300 uppercase tracking-wide">
+                                Bậc {selectedPathStep + 1}: {selected.careerPath[selectedPathStep]}
+                              </span>
+                              <span className="font-black text-stone-450 uppercase tracking-widest text-[8px]">
+                                {selectedPathStep === 0 ? "0-2 năm" : selectedPathStep === 1 ? "2-5 năm" : selectedPathStep === 2 ? "5-8 năm" : "8+ năm"}
+                              </span>
+                            </div>
+                            <p className="text-stone-600 dark:text-stone-300 leading-normal mb-1.5 font-semibold">
+                              <strong>Trọng tâm: </strong>
+                              {selectedPathStep === 0 
+                                ? "Học hỏi quy trình, xử lý số liệu thô, thực thi các nghiệp vụ cơ bản." 
+                                : selectedPathStep === 1 
+                                  ? "Làm chủ nghiệp vụ, quản lý độc lập, hướng dẫn thực tập sinh."
+                                  : selectedPathStep === 2
+                                    ? "Lập kế hoạch, quản lý nhóm/phòng ban, chịu trách nhiệm tài chính chính."
+                                    : "Quyết định tối cao, làm việc với HĐQT/Cổ đông, định đoạt cấu trúc vốn."}
+                            </p>
+                            <div className="flex items-start gap-1 text-stone-500 dark:text-stone-400 italic">
+                              <Lightbulb className="w-3 h-3 text-indigo-500 shrink-0 mt-0.5" />
+                              <span>
+                                <strong>Bí quyết: </strong>
+                                {selectedPathStep === 0 
+                                  ? "Cẩn thận tuyệt đối, không ngại việc nhỏ, nâng cao Excel, học CFA/ACCA Level 1."
+                                  : selectedPathStep === 1
+                                    ? "Chủ động đề xuất giải pháp thay vì báo cáo vấn đề, rèn kỹ năng slide & đàm phán."
+                                    : selectedPathStep === 2
+                                      ? "Học cách ủy quyền, rèn quản trị cảm xúc & chính trị nội bộ doanh nghiệp."
+                                      : "Tầm nhìn vĩ mô toàn cầu, giữ vững chữ tín tối thượng, quan hệ cấp cao."}
+                              </span>
+                            </div>
+                          </motion.div>
+                        )}
+                        <div className="pt-3 border-t border-stone-150 dark:border-stone-850">
+                          <h4 className="text-[10px] font-extrabold uppercase tracking-widest text-stone-400 dark:text-stone-500 mb-2">Chứng chỉ khuyên học</h4>
+                          <div className="flex flex-wrap gap-1.5">
+                            {selected.certifications.map((cert) => (
+                              <span key={cert} className="text-[10px] font-bold px-2.5 py-1 rounded bg-stone-100 dark:bg-stone-850 text-stone-700 dark:text-stone-300 flex items-center gap-1">
+                                <Award className="w-3.5 h-3.5 text-amber-500" />
+                                {cert}
+                              </span>
+                            ))}
+                          </div>
+                        </div>
+                      </div>
+                    )}
+
+                    {activeTab === "skills" && (
+                      <div className="space-y-4">
+                        <div>
+                          <h4 className="text-[10px] font-extrabold uppercase tracking-widest text-stone-400 dark:text-stone-500 mb-2">Kỹ năng chuyên môn & Mềm</h4>
+                          <div className="flex flex-wrap gap-1.5">
+                            {selected.skills.map((skill) => (
+                              <span key={skill} className="text-[10px] font-semibold px-2 py-1 rounded bg-stone-100 dark:bg-stone-850 text-stone-700 dark:text-stone-300">
+                                {skill}
+                              </span>
+                            ))}
+                          </div>
+                        </div>
+                        <div>
+                          <h4 className="text-[10px] font-extrabold uppercase tracking-widest text-stone-400 dark:text-stone-500 mb-2">Hệ thống & Công cụ</h4>
+                          <div className="flex flex-wrap gap-1.5">
+                            {selected.requiredTools.map((tool) => (
+                              <span key={tool} className="text-[10px] font-semibold px-2 py-1 rounded bg-emerald-50 dark:bg-emerald-950/20 text-emerald-700 dark:text-emerald-450 border border-emerald-100/50 dark:border-emerald-900/30 flex items-center gap-1">
+                                <Terminal className="w-3 h-3" />
+                                {tool}
+                              </span>
+                            ))}
+                          </div>
+                        </div>
+                      </div>
+                    )}
+
+                    {activeTab === "search" && (
+                      <div className="space-y-4">
+                        <div className="bg-stone-50 dark:bg-stone-900/40 p-4 rounded-xl border border-stone-200/50 dark:border-stone-850">
+                          <span className="text-[9px] font-bold text-stone-400 uppercase">Từ khóa tìm kiếm gợi ý:</span>
+                          <p className="text-sm font-black text-stone-800 dark:text-stone-200 mt-0.5">"{selected.searchKeyword}"</p>
+                        </div>
+                        <div>
+                          <h4 className="text-[10px] font-extrabold uppercase tracking-widest text-stone-400 dark:text-stone-500 mb-2">Tìm kiếm trực tiếp trên các nền tảng:</h4>
+                          <div className="grid grid-cols-3 gap-2">
+                            {JOB_SEARCH_SITES.map((site) => (
+                              <button
+                                key={site.id}
+                                onClick={() => window.open(site.buildUrl(selected.searchKeyword), "_blank", "noopener,noreferrer")}
+                                className="flex items-center justify-center gap-1 py-2 rounded-xl bg-stone-900 dark:bg-stone-100 text-white dark:text-stone-900 text-[10px] font-black shadow-md cursor-pointer"
+                              >
+                                {site.label}
+                                <ExternalLink className="w-3 h-3" />
+                              </button>
+                            ))}
+                          </div>
+                        </div>
+                      </div>
+                    )}
+                  </motion.div>
+                </AnimatePresence>
+              </div>
             </motion.div>
           </motion.div>
         )}
@@ -988,6 +1789,11 @@ export default function JobSearchClient() {
         )}
       </AnimatePresence>
 
+      <ComparisonModal
+        open={compareModalOpen}
+        onClose={() => setCompareModalOpen(false)}
+        careerA={selected}
+      />
     </div>
   );
 }

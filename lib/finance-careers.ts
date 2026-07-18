@@ -2,6 +2,14 @@
 // page - JD summary + required skills per finance career family, aimed at
 // this app's audience (personal finance learners, professional/corporate +
 // investment branches, CFA candidates).
+
+export interface CareerTraits {
+  analytical: number;   // Phân tích (1-5)
+  compliance: number;   // Tuân thủ/Chính xác (1-5)
+  clientFacing: number; // Giao tiếp/Khách hàng (1-5)
+  quantitative: number; // Toán & Định lượng (1-5)
+}
+
 export interface FinanceCareer {
   id: string;
   title: string;
@@ -15,6 +23,13 @@ export interface FinanceCareer {
   entryLevel: string;
   salaryHint: string;
   searchKeyword: string;
+  // Real /bai-hoc/<slug> lesson slugs relevant to this career, verified
+  // against lib/lessons-data/_index.json (or, for hand-coded static lesson
+  // pages like "synergy-ma"/"source-cash-ma", against the actual build
+  // output) - rendered as a "học các bài này để chuẩn bị" study plan on the
+  // career detail view, and used to compute progress toward a tracked
+  // career goal (see lib/supabase-career-goals.ts).
+  relatedLessonSlugs: string[];
   // Enhanced properties
   dayInLife: string;
   careerPath: string[];
@@ -28,6 +43,8 @@ export interface FinanceCareer {
   pros: string;
   cons: string;
   applicationTips: string;
+  category: "investment" | "accounting" | "banking" | "advisory";
+  traits: CareerTraits;
 }
 
 export const FINANCE_CAREERS: FinanceCareer[] = [
@@ -49,6 +66,7 @@ export const FINANCE_CAREERS: FinanceCareer[] = [
     entryLevel: "Fresh/Junior - cần nền tảng kế toán, tài chính doanh nghiệp",
     salaryHint: "10 - 25 triệu (Fresher/Junior) • 25 - 50+ triệu (Senior)",
     searchKeyword: "Phân tích tài chính",
+    relatedLessonSlugs: ["gia-tri-thoi-gian-cua-tien", "enterprise-value", "dupont-analysis", "roic", "fcf-deep-dive"],
     dayInLife: "Đọc tin tức thị trường lúc 8h30 sáng, phân tích các chỉ số tài chính của doanh nghiệp mục tiêu, xây dựng mô hình DCF và lập báo cáo khuyến nghị đầu tư trước 5h chiều.",
     careerPath: ["Intern / Analyst", "Senior Analyst", "Finance Manager", "Finance Director"],
     requiredTools: ["Excel (Advanced)", "Bloomberg Terminal", "FiinPro", "Python (Pandas)", "PowerPoint"],
@@ -60,6 +78,13 @@ export const FINANCE_CAREERS: FinanceCareer[] = [
     pros: "Cơ hội tiếp cận bức tranh tài chính toàn cảnh của doanh nghiệp, rèn luyện tư duy logic nhạy bén và mở ra cơ hội phát triển rộng mở sang các mảng đầu tư hoặc quản trị.",
     cons: "Áp lực số liệu lớn, đòi hỏi độ chính xác tuyệt đối, thời gian làm việc có thể kéo dài khi đến hạn nộp báo cáo quý/năm.",
     applicationTips: "Tập trung giải quyết các bài tập tình huống thực tế (case-study) trong CV, làm nổi bật khả năng xây dựng mô hình Excel linh hoạt và tư duy phân tích sắc bén.",
+    category: "investment",
+    traits: {
+      analytical: 5,
+      compliance: 3,
+      clientFacing: 3,
+      quantitative: 4
+    }
   },
   {
     id: "accountant",
@@ -79,6 +104,7 @@ export const FINANCE_CAREERS: FinanceCareer[] = [
     entryLevel: "Fresh/Junior - phù hợp sinh viên mới ra trường ngành kế toán/tài chính",
     salaryHint: "8 - 15 triệu (Fresher/Junior) • 15 - 30+ triệu (Senior/Kế toán tổng hợp)",
     searchKeyword: "Kế toán",
+    relatedLessonSlugs: ["ke-toan-la-gi", "doanh-thu-ghi-nhan", "bang-can-doi-can-bang", "cong-thuc-ke-toan"],
     dayInLife: "Kiểm tra chứng từ hóa đơn đầu vào/đầu ra, định khoản nghiệp vụ phát sinh, làm việc với tờ khai thuế VAT/CIT và chuẩn bị số liệu cân đối kế toán định kỳ.",
     careerPath: ["Junior Accountant", "Senior / General Accountant", "Chief Accountant", "Finance Controller"],
     requiredTools: ["MISA", "FAST", "SAP ERP", "Excel"],
@@ -90,6 +116,13 @@ export const FINANCE_CAREERS: FinanceCareer[] = [
     pros: "Nhu cầu tuyển dụng của thị trường vô cùng lớn và cực kỳ ổn định, doanh nghiệp nào cũng cần có bộ phận kế toán để vận hành đúng luật.",
     cons: "Công việc có tính lặp lại định kỳ hàng tháng/hàng quý, cực kỳ áp lực và dễ phải làm thêm giờ (OT) vào các đợt quyết toán thuế cuối năm hoặc mùa kiểm toán.",
     applicationTips: "Nên ưu tiên đạt các chứng chỉ chuyên môn, nắm chắc luật thuế hiện hành và tích lũy kỹ năng sử dụng thành thạo ít nhất một phần mềm kế toán phổ biến như MISA.",
+    category: "accounting",
+    traits: {
+      analytical: 3,
+      compliance: 5,
+      clientFacing: 2,
+      quantitative: 2
+    }
   },
   {
     id: "auditor",
@@ -109,6 +142,7 @@ export const FINANCE_CAREERS: FinanceCareer[] = [
     entryLevel: "Fresh/Junior - các công ty Big4/kiểm toán trong nước tuyển ồ ạt hàng năm",
     salaryHint: "10 - 18 triệu (Fresher/Junior) • 20 - 40+ triệu (Senior/Manager)",
     searchKeyword: "Kiểm toán",
+    relatedLessonSlugs: ["ke-toan-la-gi", "bang-can-doi-can-bang", "cash-flow-statement-la-gi"],
     dayInLife: "Di chuyển tới văn phòng khách hàng, thực hiện các thủ tục kiểm tra thực tế hàng tồn kho, phỏng vấn nhân sự kế toán và lập biên bản kiểm toán thực địa tại doanh nghiệp.",
     careerPath: ["Associate", "Senior Auditor", "Audit Manager", "Senior Manager", "Partner"],
     requiredTools: ["CaseWare", "MS Excel (Advanced)", "SAP ERP", "Oracle Financials"],
@@ -120,6 +154,13 @@ export const FINANCE_CAREERS: FinanceCareer[] = [
     pros: "Lộ trình thăng tiến cực kỳ minh bạch và rõ ràng theo từng năm, được cọ xát với nhiều mô hình kinh doanh đa dạng, mở rộng mạng lưới quan hệ công việc vượt trội.",
     cons: "Cực kỳ bận rộn vào mùa kiểm toán (tháng 12 đến tháng 3 năm sau), áp lực thời gian lớn và phải đi công tác tỉnh hoặc OT thường xuyên.",
     applicationTips: "Chuẩn bị tốt ngoại ngữ (đặc biệt là tiếng Anh giao tiếp), rèn luyện kỹ năng làm việc nhóm và hiểu rõ quy trình tuyển dụng định kỳ hàng năm của các hãng Big4.",
+    category: "accounting",
+    traits: {
+      analytical: 4,
+      compliance: 5,
+      clientFacing: 3,
+      quantitative: 2
+    }
   },
   {
     id: "investment-banking",
@@ -139,6 +180,7 @@ export const FINANCE_CAREERS: FinanceCareer[] = [
     entryLevel: "Junior - cạnh tranh cao, thường ưu tiên CFA Level I-II hoặc kinh nghiệm thực tập liên quan",
     salaryHint: "15 - 30 triệu (Analyst) • 40 - 80+ triệu (Associate trở lên)",
     searchKeyword: "Investment Banking",
+    relatedLessonSlugs: ["ma-la-gi", "synergy-trong-ma", "enterprise-value", "source-cash-ma", "disney-pixar-ma"],
     dayInLife: "Chuẩn bị Pitch Book huy động vốn cho khách hàng lớn, định giá công ty theo phương pháp LBO/M&A, làm việc thâu đêm để hoàn thiện tài liệu phát hành trái phiếu.",
     careerPath: ["Analyst", "Associate", "Vice President (VP)", "Director", "Managing Director (MD)"],
     requiredTools: ["Bloomberg Terminal", "Excel (Advanced Model)", "PowerPoint", "Capital IQ"],
@@ -150,6 +192,13 @@ export const FINANCE_CAREERS: FinanceCareer[] = [
     pros: "Thu nhập và chế độ thưởng vô cùng cao, cơ hội làm việc trực tiếp với các nhà lãnh đạo tập đoàn hàng đầu và tham gia vào những thương vụ tỷ đô tái định hình thị trường.",
     cons: "Thời gian làm việc cực kỳ khắc nghiệt (thường xuyên lên tới 80 - 100 giờ/tuần), áp lực tiến độ khủng khiếp, tỷ lệ đào thải (burnout) rất cao.",
     applicationTips: "Luyện tập thuần thục kỹ năng định giá doanh nghiệp phức tạp, thiết kế slide chuyên nghiệp và trang bị chứng chỉ CFA hoặc bằng cấp từ các trường đại học hàng đầu.",
+    category: "investment",
+    traits: {
+      analytical: 5,
+      compliance: 2,
+      clientFacing: 4,
+      quantitative: 3
+    }
   },
   {
     id: "fund-manager",
@@ -169,6 +218,7 @@ export const FINANCE_CAREERS: FinanceCareer[] = [
     entryLevel: "Senior - thường yêu cầu vài năm kinh nghiệm phân tích đầu tư trước khi quản lý danh mục",
     salaryHint: "25 - 50 triệu (Junior PM) • 60 - 150+ triệu (Senior PM + Performance Bonus)",
     searchKeyword: "Quản lý quỹ đầu tư",
+    relatedLessonSlugs: ["modern-portfolio-theory", "rui-ro-la-gi", "loi-nhuan-ky-vong", "bien-so-r-twr-mwrr"],
     dayInLife: "Họp ban đầu tư thảo luận chiến lược vĩ mô, phê duyệt giao dịch mua/bán cổ phiếu tỷ trọng lớn, gặp gỡ lãnh đạo doanh nghiệp niêm yết để đánh giá triển vọng kinh doanh thực tế.",
     careerPath: ["Research Analyst", "Portfolio Manager", "Chief Investment Officer (CIO)"],
     requiredTools: ["Bloomberg Terminal", "Reuters Eikon", "Excel (Portfolio Modeling)", "Matlab / Python"],
@@ -180,6 +230,13 @@ export const FINANCE_CAREERS: FinanceCareer[] = [
     pros: "Năm quyền tự quyết tài chính lớn, tiếp xúc sâu với thế giới vĩ mô và doanh nghiệp, mức thưởng hấp dẫn trực tiếp dựa trên hiệu suất sinh lời của quỹ.",
     cons: "Áp lực tâm lý đè nặng hàng ngày trước những biến động khôn lường của thị trường chứng khoán VN-Index và áp lực giải trình hiệu số đầu tư trước các cổ đông.",
     applicationTips: "Tự tạo lập danh mục đầu tư cá nhân có kiểm chứng số liệu để làm minh chứng thực tế trên CV, kiên trì học CFA và rèn luyện bản lĩnh tâm lý vững vàng dưới áp lực lớn.",
+    category: "investment",
+    traits: {
+      analytical: 5,
+      compliance: 2,
+      clientFacing: 3,
+      quantitative: 4
+    }
   },
   {
     id: "credit-officer",
@@ -195,10 +252,11 @@ export const FINANCE_CAREERS: FinanceCareer[] = [
       "Theo dõi, nhắc nợ và xử lý nợ quá hạn trong danh mục phụ trách",
       "Tư vấn sản phẩm tín dụng phù hợp nhu cầu khách hàng",
     ],
-    skills: ["Thẩm định tín dụng", "Đọc hiểu BCTC khách hàng doanh nghiệp", "Giao tiếp, tư vấn", "Chịu chỉ tiêu (KPI)", "Quản trị rủi ro"],
+    skills: ["Thẩm định tín dụng", "Đọc hiểu BCTC khách hàng doanh nghiệp", "Giao tiếp, tư vấn", "Chịu áp lực KPI doanh số", "Quản trị rủi ro"],
     entryLevel: "Fresh/Junior - một trong những ngả vào ngân hàng phổ biến nhất cho sinh viên mới ra trường",
     salaryHint: "8 - 15 triệu + Thưởng KPI (Fresher) • 20 - 35+ triệu (Senior)",
     searchKeyword: "Chuyên viên tín dụng",
+    relatedLessonSlugs: ["no-tot-no-xau", "vay-tien-giau-hay-pha-san", "don-bay-tai-chinh"],
     dayInLife: "Gặp gỡ khách hàng doanh nghiệp vay vốn, đi khảo sát thực tế tài sản thế chấp và nhà xưởng, lập tờ trình tín dụng đánh giá chi tiết khả năng trả nợ và dòng tiền dự kiến.",
     careerPath: ["Credit Officer", "Senior Credit Officer", "Branch Deputy Director", "Branch Director"],
     requiredTools: ["Core Banking Systems (T24, Flexcube)", "CIC System", "MS Excel"],
@@ -210,6 +268,13 @@ export const FINANCE_CAREERS: FinanceCareer[] = [
     pros: "Cơ hội thấu hiểu sâu sắc cách các doanh nghiệp vận hành thực tế ở Việt Nam, mở rộng mạng lưới quan hệ khách hàng cá nhân/doanh nghiệp vô cùng mạnh mẽ.",
     cons: "Chịu trách nhiệm pháp lý và tài chính cá nhân nếu để xảy ra nợ xấu (nợ khó đòi), áp lực hoàn thành chỉ tiêu doanh số/KPI giải ngân hàng tháng.",
     applicationTips: "Trang bị kỹ năng giao tiếp đàm phán tốt, khả năng đọc nhanh các chỉ số tài chính cơ bản của doanh nghiệp nhỏ và vừa (SME) và nắm chắc quy định pháp lý tín dụng.",
+    category: "banking",
+    traits: {
+      analytical: 3,
+      compliance: 4,
+      clientFacing: 5,
+      quantitative: 2
+    }
   },
   {
     id: "fpa",
@@ -229,6 +294,7 @@ export const FINANCE_CAREERS: FinanceCareer[] = [
     entryLevel: "Junior đến Senior - thường tuyển từ kế toán/kiểm toán chuyển hướng sau vài năm",
     salaryHint: "15 - 25 triệu (Junior) • 30 - 60+ triệu (Senior/Manager)",
     searchKeyword: "FP&A",
+    relatedLessonSlugs: ["gia-tri-thoi-gian-cua-tien", "dupont-analysis", "roic"],
     dayInLife: "Thu thập số liệu chi tiêu thực tế từ các phòng ban, đối chiếu và so sánh với ngân sách được duyệt, đề xuất phương án phân bổ vốn tối ưu cho Ban Giám Đốc.",
     careerPath: ["FP&A Analyst", "Senior FP&A Analyst", "FP&A Manager", "Head of FP&A", "CFO"],
     requiredTools: ["Oracle Hyperion", "SAP BPC", "Power BI", "Tableau", "Excel (Advanced)"],
@@ -240,6 +306,13 @@ export const FINANCE_CAREERS: FinanceCareer[] = [
     pros: "Làm việc trực tiếp và học hỏi từ các cấp quản lý cao cấp (CEO, CFO), đóng góp trực tiếp vào chiến lược tăng trưởng hoặc tối ưu hóa chi phí của doanh nghiệp.",
     cons: "Đóng vai trò cầu nối nên dễ gặp xung đột khi đàm phán phân bổ ngân sách/kế hoạch tài chính giữa các phòng ban nội bộ khác nhau.",
     applicationTips: "Hãy học cách sử dụng các công cụ trực quan hóa dữ liệu như Power BI hoặc Tableau để nâng cấp chất lượng dashboard báo cáo quản trị và rèn luyện tư duy kinh doanh thực tế.",
+    category: "accounting",
+    traits: {
+      analytical: 4,
+      compliance: 4,
+      clientFacing: 3,
+      quantitative: 3
+    }
   },
   {
     id: "risk-management",
@@ -259,6 +332,7 @@ export const FINANCE_CAREERS: FinanceCareer[] = [
     entryLevel: "Junior đến Senior - phổ biến tại ngân hàng và công ty chứng khoán",
     salaryHint: "15 - 25 triệu (Junior) • 35 - 70+ triệu (Senior)",
     searchKeyword: "Quản lý rủi ro",
+    relatedLessonSlugs: ["rui-ro-la-gi", "loi-nhuan-ky-vong", "modern-portfolio-theory"],
     dayInLife: "Chạy mô hình Value at Risk (VaR), thực hiện Stress Test danh mục tín dụng của ngân hàng trước kịch bản lãi suất tăng sốc, cập nhật báo cáo tuân thủ tiêu chuẩn Basel III.",
     careerPath: ["Risk Analyst", "Senior Risk Analyst", "Risk Manager", "Chief Risk Officer (CRO)"],
     requiredTools: ["SQL", "SAS", "R / Python", "Excel", "RiskManager System"],
@@ -270,6 +344,13 @@ export const FINANCE_CAREERS: FinanceCareer[] = [
     pros: "Công việc mang tính chuyên sâu kỹ thuật và mang tính bảo vệ cao, ít chịu áp lực doanh số giải ngân trực tiếp như phòng kinh doanh, chế độ ổn định dài hạn.",
     cons: "Đôi lúc bị các phòng ban kinh doanh xem là rào cản hạn chế tiến độ công việc, đòi hỏi kỹ năng xử lý toán học/thống kê định lượng tương đối phức tạp.",
     applicationTips: "Tập trung lấy chứng chỉ quốc tế FRM (Financial Risk Manager) để chứng minh năng lực chuyên môn vượt trội và thực hành các kỹ năng viết câu lệnh SQL để truy xuất dữ liệu.",
+    category: "banking",
+    traits: {
+      analytical: 4,
+      compliance: 4,
+      clientFacing: 2,
+      quantitative: 5
+    }
   },
   {
     id: "investment-analyst",
@@ -289,6 +370,7 @@ export const FINANCE_CAREERS: FinanceCareer[] = [
     entryLevel: "Junior - nhiều công ty chứng khoán tuyển fresh CFA Level I/II candidate",
     salaryHint: "12 - 22 triệu (Junior) • 30 - 60+ triệu (Senior Analyst)",
     searchKeyword: "Chuyên viên phân tích đầu tư",
+    relatedLessonSlugs: ["enterprise-value", "dupont-analysis", "roic", "roic-phan-2", "fcf-deep-dive"],
     dayInLife: "Đọc BCTC của các công ty cùng ngành để tìm ra cổ phiếu định giá rẻ, xây dựng báo cáo phân tích ngành chi tiết và trình bày trước hội đồng đầu tư của Quỹ.",
     careerPath: ["Research Associate", "Research Analyst", "Senior Research Analyst", "Head of Research"],
     requiredTools: ["Bloomberg Terminal", "Excel (Modeling)", "PowerPoint", "Python (Web Scraping)"],
@@ -300,6 +382,13 @@ export const FINANCE_CAREERS: FinanceCareer[] = [
     pros: "Được làm việc đúng với đam mê nghiên cứu, học hỏi liên tục về nhiều mô hình kinh doanh, có cơ hội làm việc trực tiếp với lãnh đạo các doanh nghiệp niêm yết lớn.",
     cons: "Áp lực cao về mặt hiệu quả khi các khuyến nghị mua/bán ảnh hưởng trực tiếp tới tài sản của khách hàng hoặc quỹ đầu tư, khối lượng thông tin cần đọc mỗi ngày rất lớn.",
     applicationTips: "Hãy tự viết các báo cáo phân tích cổ phiếu mẫu (Investment Pitch Report) thật chuyên nghiệp để gửi kèm CV và theo đuổi các bậc thi CFA sớm nhất có thể.",
+    category: "investment",
+    traits: {
+      analytical: 5,
+      compliance: 2,
+      clientFacing: 2,
+      quantitative: 4
+    }
   },
   {
     id: "cfo-track",
@@ -319,6 +408,7 @@ export const FINANCE_CAREERS: FinanceCareer[] = [
     entryLevel: "Senior - đích đến sau 7-10+ năm kinh nghiệm kế toán/tài chính",
     salaryHint: "40 - 80 triệu (Kế toán trưởng) • 100+ triệu (CFO Tập đoàn lớn)",
     searchKeyword: "Kế toán trưởng",
+    relatedLessonSlugs: ["ma-la-gi", "dupont-analysis", "gia-tri-thoi-gian-cua-tien"],
     dayInLife: "Đàm phán hạn mức tín dụng tài trợ dự án với các ngân hàng lớn, rà soát báo cáo tài chính hợp nhất tập đoàn và cố vấn trực tiếp cho CEO về thương vụ M&A kế tiếp.",
     careerPath: ["Finance Manager", "Financial Controller", "Chief Accountant", "Chief Financial Officer (CFO)"],
     requiredTools: ["ERP Systems (SAP, Oracle)", "BI Dashboards", "Excel (Strategic Models)", "Board portals"],
@@ -330,6 +420,13 @@ export const FINANCE_CAREERS: FinanceCareer[] = [
     pros: "Đỉnh cao nghề nghiệp tài chính doanh nghiệp với mức thu nhập hàng đầu, có tầm ảnh hưởng mang tính sống còn tới sự phát triển dài hạn của toàn bộ doanh nghiệp.",
     cons: "Trách nhiệm pháp lý và áp lực công việc khổng lồ, thường xuyên phải đứng ra giải quyết các bài toán tài chính cực kỳ đau đầu trước hội đồng quản trị.",
     applicationTips: "Hãy tích lũy kinh nghiệm quản trị ở đa dạng mảng nghiệp vụ (kế toán, dòng tiền, FP&A), rèn luyện tư duy lãnh đạo chiến lược và khả năng đối ngoại mạnh mẽ.",
+    category: "accounting",
+    traits: {
+      analytical: 4,
+      compliance: 4,
+      clientFacing: 5,
+      quantitative: 3
+    }
   },
   {
     id: "stockbroker",
@@ -349,6 +446,7 @@ export const FINANCE_CAREERS: FinanceCareer[] = [
     entryLevel: "Fresh/Junior - cơ hội rộng mở cho sinh viên năng động đam mê thị trường",
     salaryHint: "10 - 20 triệu + Hoa hồng doanh số (Thu nhập không giới hạn nếu doanh số tốt)",
     searchKeyword: "Môi giới chứng khoán",
+    relatedLessonSlugs: ["thi-truong-tai-chinh", "thanh-khoan-la-gi", "rui-ro-la-gi"],
     dayInLife: "Gọi điện tư vấn danh mục cho 20 khách hàng, cập nhật tin tức vĩ mô và chỉ số VN-Index lúc mở/đóng cửa, hỗ trợ xử lý lệnh ký quỹ (margin call) khi thị trường biến động.",
     careerPath: ["Broker", "Senior Broker", "Team Leader", "Head of Brokerage", "Brokerage Director"],
     requiredTools: ["SSI Pro / TCBS Active One...", "TradingView", "Excel", "Amibroker"],
@@ -360,6 +458,13 @@ export const FINANCE_CAREERS: FinanceCareer[] = [
     pros: "Cơ hội thu nhập đột biến dựa trên doanh số giao dịch, xây dựng quan hệ với nhiều nhà đầu tư lớn trên thị trường.",
     cons: "Áp lực KPI doanh số cao, thu nhập biến động lớn theo chu kỳ tăng/giảm của thị trường chứng khoán.",
     applicationTips: "Tập trung thể hiện sự am hiểu phân tích kỹ thuật (Technical Analysis), kỹ năng giao tiếp tự tin và đam mê thị trường chứng khoán trong CV.",
+    category: "advisory",
+    traits: {
+      analytical: 2,
+      compliance: 2,
+      clientFacing: 5,
+      quantitative: 2
+    }
   },
   {
     id: "treasury",
@@ -379,6 +484,7 @@ export const FINANCE_CAREERS: FinanceCareer[] = [
     entryLevel: "Junior - đòi hỏi kiến thức vĩ mô và tài chính tiền tệ tốt",
     salaryHint: "15 - 25 triệu (Junior) • 35 - 65+ triệu (Senior/Manager)",
     searchKeyword: "Chuyên viên nguồn vốn",
+    relatedLessonSlugs: ["lai-suat-la-gi", "thanh-khoan-la-gi", "don-bay-tai-chinh"],
     dayInLife: "Rà soát số dư thanh khoản đầu ngày, thực hiện các giao dịch hoán đổi ngoại tệ (FX Swap), cân đối trạng thái vốn ngân hàng và báo cáo biến động lãi suất thị trường liên ngân hàng.",
     careerPath: ["Treasury Analyst", "Senior Dealer", "Treasury Manager", "Head of Treasury", "CFO"],
     requiredTools: ["Reuters Dealing", "Bloomberg Terminal", "Excel (Treasury Models)", "ERP (Treasury Module)"],
@@ -390,5 +496,302 @@ export const FINANCE_CAREERS: FinanceCareer[] = [
     pros: "Môi trường giao dịch tài chính năng động, làm việc trực tiếp với dòng tiền lớn của ngân hàng hoặc tập đoàn, tính chuyên môn hóa rất cao.",
     cons: "Áp lực tức thì từ biến động tỷ giá và lãi suất thị trường, trách nhiệm lớn khi quản lý ranh giới an toàn thanh khoản.",
     applicationTips: "Nêu bật các dự án nghiên cứu vĩ mô, khả năng tính toán định lượng nhanh và chuẩn bị tốt cho chứng chỉ ACI Dealing hoặc CFA.",
+    category: "banking",
+    traits: {
+      analytical: 3,
+      compliance: 3,
+      clientFacing: 3,
+      quantitative: 5
+    }
+  },
+  {
+    id: "wealth-manager",
+    title: "Chuyên viên Hoạch định Tài chính / QLQ",
+    englishTitle: "Financial Planner / Wealth Manager",
+    emoji: "💼",
+    accentFrom: "#3b82f6",
+    accentTo: "#f59e0b",
+    summary: "Tư vấn và thiết lập kế hoạch tài chính cá nhân, quản lý danh mục đầu tư, bảo hiểm, thuế và hưu trí cho khách hàng cá nhân.",
+    responsibilities: [
+      "Phân tích tình hình tài chính hiện tại, dòng tiền và mục tiêu dài hạn của khách hàng",
+      "Thiết lập kế hoạch tài chính cá nhân toàn diện (tích lũy, đầu tư, hưu trí, bảo hiểm)",
+      "Quản lý và tái cấu trúc danh mục tài sản đầu tư theo khẩu vị rủi ro của khách hàng",
+      "Cập nhật định kỳ hiệu quả đầu tư và điều chỉnh kế hoạch theo thay đổi cuộc sống của khách hàng",
+    ],
+    skills: ["Hoạch định tài chính", "Quản lý danh mục đầu tư", "Kỹ năng tư vấn & đàm phán", "Hiểu biết sản phẩm bảo hiểm/quỹ", "Vĩ mô cá nhân"],
+    entryLevel: "Fresh/Junior - phù hợp người năng động, thích tư vấn và định hướng dịch vụ tài chính cá nhân",
+    salaryHint: "12 - 22 triệu + Hoa hồng quản lý tài sản (AUM) • 30 - 70+ triệu (Senior Advisor)",
+    searchKeyword: "Hoạch định tài chính",
+    relatedLessonSlugs: ["gia-tri-thoi-gian-cua-tien", "modern-portfolio-theory", "rui-ro-la-gi"],
+    dayInLife: "Gặp gỡ khách hàng cá nhân trao đổi về mục tiêu học vấn của con cái và kế hoạch nghỉ hưu, phân tích danh mục tài sản hiện tại và xây dựng phương án phân bổ quỹ đầu tư tối ưu.",
+    careerPath: ["Associate Advisor", "Wealth Manager", "Senior Wealth Advisor", "Managing Director of Wealth"],
+    requiredTools: ["MS Excel", "Financial Planning Tools", "CRM Systems", "Morningstar Advisor"],
+    certifications: ["CFP (Certified Financial Planner)", "CFA", "LOMA"],
+    entryDifficulty: 3,
+    stressLevel: 3,
+    wlb: 4,
+    avatar3d: "/careers/wealth-manager.jpg",
+    pros: "Công việc có ý nghĩa thực tế cao khi giúp đỡ trực tiếp các cá nhân đạt tự do tài chính, thời gian linh hoạt, tiềm năng thu nhập tăng dần theo quy mô tài sản quản lý (AUM).",
+    cons: "Đòi hỏi kỹ năng giao tiếp và thuyết phục cực kỳ tốt để xây dựng niềm tin ban đầu với khách hàng, doanh số quản lý tài sản lớn tạo áp lực không nhỏ.",
+    applicationTips: "Trang bị kiến thức rộng về các kênh đầu tư (cổ phiếu, bất động sản, quỹ mở), kỹ năng thuyết trình xuất sắc và hướng tới thi chứng chỉ CFP.",
+    category: "advisory",
+    traits: {
+      analytical: 3,
+      compliance: 3,
+      clientFacing: 5,
+      quantitative: 3
+    }
+  },
+  {
+    id: "quant",
+    title: "Nhà phân tích Định lượng (Quant)",
+    englishTitle: "Quantitative Analyst",
+    emoji: "💻",
+    accentFrom: "#22d3ee",
+    accentTo: "#8b5cf6",
+    summary: "Xây dựng các mô hình toán học, thuật toán giao dịch tự động và hệ thống định giá sản phẩm tài chính phức tạp bằng lập trình máy tính.",
+    responsibilities: [
+      "Nghiên cứu và phát triển các mô hình thống kê dự báo giá tài sản",
+      "Viết thuật toán giao dịch tự động (algorithmic trading strategies)",
+      "Định giá các sản phẩm phái sinh phức tạp và đo lường rủi ro hệ thống",
+      "Lập trình tối ưu hóa tốc độ thực thi lệnh và kiểm thử mô hình (backtesting)",
+    ],
+    skills: ["Toán tài chính & Thống kê", "Lập trình Python/C++/R", "Thuật toán giao dịch", "Machine Learning", "Cấu trúc dữ liệu"],
+    entryLevel: "Junior/Senior - cạnh tranh khốc liệt, yêu cầu rất cao về Toán/Tin học ứng dụng",
+    salaryHint: "25 - 50 triệu (Junior Quant) • 70 - 150+ triệu (Quant Trader / Senior Quant)",
+    searchKeyword: "Quantitative Analyst",
+    relatedLessonSlugs: ["modern-portfolio-theory", "bien-so-r-twr-mwrr", "rui-ro-la-gi"],
+    dayInLife: "Rà soát hiệu suất thuật toán giao dịch ngày hôm trước, viết code Python thử nghiệm một chỉ báo thống kê mới trên dữ liệu tick-by-tick, và tối ưu hóa tốc độ khớp lệnh của hệ thống.",
+    careerPath: ["Quant Researcher", "Senior Quant Analyst", "Quant Portfolio Manager", "Chief Quant Officer"],
+    requiredTools: ["Python (NumPy/Pandas/Scikit-Learn)", "C++", "SQL", "Bloomberg API", "Git"],
+    certifications: ["CQF (Certificate in Quantitative Finance)", "FRM", "CFA"],
+    entryDifficulty: 4.8,
+    stressLevel: 4,
+    wlb: 3.5,
+    avatar3d: "/careers/quant.jpg",
+    pros: "Đứng đầu về mặt công nghệ và tư duy toán học trong tài chính, thu nhập đặc biệt cao với mức thưởng dựa trên hiệu suất thuật toán (PnL), ít chịu áp lực đối ngoại.",
+    cons: "Yêu cầu đầu vào cực kỳ khắt khe về trình độ Toán/Tin học (thường ưu tiên Thạc sĩ/Tiến sĩ), áp lực cạnh tranh công nghệ và thuật toán rất khốc liệt.",
+    applicationTips: "Xây dựng dự án cá nhân về backtesting thuật toán giao dịch công khai trên GitHub, giải quyết tốt các bài toán xác suất và lập trình thuật toán trong phỏng vấn.",
+    category: "investment",
+    traits: {
+      analytical: 4,
+      compliance: 2,
+      clientFacing: 1,
+      quantitative: 5
+    }
+  },
+  {
+    id: "valuation-specialist",
+    title: "Chuyên viên Định giá Tài sản",
+    englishTitle: "Valuation Specialist",
+    emoji: "🏢",
+    accentFrom: "#10b981",
+    accentTo: "#3b82f6",
+    summary: "Xác định giá trị thực tế của doanh nghiệp, dự án đầu tư, bất động sản hoặc các tài sản vô hình phục vụ M&A, thuế, kiểm toán.",
+    responsibilities: [
+      "Thực hiện định giá doanh nghiệp, cổ phần theo các phương pháp (DCF, multiples, asset-based)",
+      "Định giá tài sản vô hình (thương hiệu, bằng sáng chế, lợi thế thương mại)",
+      "Lập báo cáo thẩm định giá chi tiết và bảo vệ luận điểm trước kiểm toán/khách hàng",
+      "Phân tích dữ liệu giao dịch thị trường để tìm kiếm các hệ số so sánh phù hợp",
+    ],
+    skills: ["Mô hình định giá", "Phân tích báo cáo tài chính", "Hiểu biết luật giá & chuẩn mực", "Tư duy phản biện", "Excel chuyên sâu"],
+    entryLevel: "Fresh/Junior - tuyển dụng tại các bộ phận tư vấn giao dịch của Big4, công ty thẩm định độc lập",
+    salaryHint: "12 - 22 triệu (Fresher/Junior) • 25 - 50+ triệu (Senior/Manager)",
+    searchKeyword: "Định giá tài sản",
+    relatedLessonSlugs: ["enterprise-value", "dinh-gia-tai-san-rong", "dupont-analysis", "fcf-deep-dive"],
+    dayInLife: "Rà soát mô hình định giá một công ty công nghệ sắp sáp nhập, đối chiếu các giao dịch M&A tương tự trên thị trường, viết báo cáo giải trình phương pháp chọn discount rate.",
+    careerPath: ["Valuation Associate", "Senior Valuation Specialist", "Valuation Manager", "Partner / Director of Advisory"],
+    requiredTools: ["MS Excel", "Capital IQ", "Bloomberg", "Valuation Databases"],
+    certifications: ["CFA", "Thẻ thẩm định viên về giá (Bộ Tài chính)", "ASA (American Society of Appraisers)"],
+    entryDifficulty: 3.8,
+    stressLevel: 3.5,
+    wlb: 3.5,
+    avatar3d: "/careers/valuation-specialist.jpg",
+    pros: "Kiến thức chuyên sâu về giá trị cốt lõi của tài sản, cơ hội làm việc trong các công ty tư vấn lớn (Big4, hãng định giá độc lập) và tiếp xúc nhiều loại hình doanh nghiệp.",
+    cons: "Áp lực giải trình số liệu rất lớn khi bị kiểm toán độc lập hoặc cơ quan quản lý chất vấn, khối lượng tài liệu lập hồ sơ định giá đồ sộ.",
+    applicationTips: "Năm vững nguyên lý chiết khấu dòng tiền (WACC, CAPM) và cơ chế định giá tài sản vô hình, chuẩn bị tốt kỹ năng viết báo cáo giải trình mạch lạc.",
+    category: "investment",
+    traits: {
+      analytical: 5,
+      compliance: 4,
+      clientFacing: 2,
+      quantitative: 3
+    }
+  },
+  {
+    id: "ir-specialist",
+    title: "Chuyên viên Quan hệ Cổ đông (IR)",
+    englishTitle: "Investor Relations Specialist",
+    emoji: "📢",
+    accentFrom: "#f97316",
+    accentTo: "#14b8a6",
+    summary: "Quản lý việc truyền thông và duy trì mối quan hệ giữa doanh nghiệp niêm yết với các nhà đầu tư, cổ đông, quỹ và chuyên viên phân tích chứng khoán.",
+    responsibilities: [
+      "Chuẩn bị tài liệu công bố thông tin, bản tin nhà đầu tư và bài thuyết trình KQKD hàng quý",
+      "Tổ chức các buổi gặp gỡ nhà đầu tư (Earnings Calls), hội nghị cổ đông và ĐHĐCĐ thường niên",
+      "Phản hồi các câu hỏi từ cổ đông và chuyên viên phân tích thị trường về chiến lược doanh nghiệp",
+      "Theo dõi cơ cấu cổ đông, biến động giá cổ phiếu và nhận định của thị trường về công ty",
+    ],
+    skills: ["Hiểu biết tài chính doanh nghiệp", "Kỹ năng giao tiếp & ngoại giao", "Soạn thảo thông cáo báo chí", "Thiết kế PowerPoint chuyên nghiệp", "Tiếng Anh trôi chảy"],
+    entryLevel: "Junior/Senior - thường tuyển dụng người có nền tảng PR/Marketing và tài chính hoặc cựu Analyst chứng khoán",
+    salaryHint: "15 - 28 triệu (Junior/Mid) • 30 - 65+ triệu (Senior/Manager)",
+    searchKeyword: "Quan hệ cổ đông",
+    relatedLessonSlugs: ["thi-truong-tai-chinh", "he-thong-tai-chinh"],
+    dayInLife: "Tổng hợp kết quả kinh doanh quý mới từ phòng tài chính, biên dịch thông cáo báo chí bằng hai ngôn ngữ Việt-Anh, chuẩn bị slide thuyết trình cho buổi họp trực tuyến với các quỹ ngoại chiều nay.",
+    careerPath: ["IR Officer", "IR Manager", "IR Director", "Chief Communications Officer / CFO"],
+    requiredTools: ["PowerPoint", "Investor Relations Web Portal", "Excel", "Media monitoring tools"],
+    certifications: ["CIRA (Certified Investor Relations Analyst)", "CFA (Level I hoặc II)"],
+    entryDifficulty: 3.5,
+    stressLevel: 3.5,
+    wlb: 3.5,
+    avatar3d: "/careers/ir-specialist.jpg",
+    pros: "Đứng ở trung điểm giữa chiến lược doanh nghiệp và thị trường vốn, tiếp xúc với các quỹ đầu tư lớn toàn cầu, mở rộng vòng quan hệ tài chính rất rộng.",
+    cons: "Chịu áp lực giữ hình ảnh doanh nghiệp trước công chúng, nhạy cảm về công bố thông tin (tránh vi phạm insider trading), bận rộn cao điểm mùa đại hội cổ đông.",
+    applicationTips: "Rèn luyện khả năng tiếng Anh biên phiên dịch chuyên ngành tài chính, khả năng viết lách mạch lạc, am hiểu luật công bố thông tin trên thị trường chứng khoán.",
+    category: "advisory",
+    traits: {
+      analytical: 3,
+      compliance: 3,
+      clientFacing: 5,
+      quantitative: 2
+    }
+  },
+  // ── M&A family, segmented by deal lifecycle (trước deal / trong deal /
+  // sau deal) rather than lumped into one generic "Investment Banking"
+  // entry - each stage is a genuinely different day-to-day and skillset.
+  // Also branches capital markets into PE/VC as a distinct path, since
+  // fund AUM tier (sub-$30M vs sub-$300M) meaningfully changes both
+  // strategy and what a fund's own M&A/deal team looks like.
+  {
+    id: "ma-origination",
+    title: "M&A Origination & Chiến lược (Trước Deal)",
+    englishTitle: "M&A Origination / Corporate Development",
+    emoji: "🧭",
+    accentFrom: "#fbbf24",
+    accentTo: "#b45309",
+    summary: "Tìm kiếm, sàng lọc và xây dựng luận điểm chiến lược cho các thương vụ M&A tiềm năng trước khi deal chính thức khởi động.",
+    responsibilities: [
+      "Rà soát thị trường, sàng lọc danh sách công ty mục tiêu (target screening) phù hợp chiến lược tăng trưởng",
+      "Xây dựng luận điểm chiến lược (strategic rationale) - vì sao thương vụ này tạo giá trị dài hạn",
+      "Định giá sơ bộ (preliminary valuation) để ước tính mức giá hợp lý trước khi tiếp cận",
+      "Tiếp cận ban đầu, xây dựng quan hệ với chủ doanh nghiệp/quỹ sở hữu mục tiêu",
+    ],
+    skills: ["Phân tích ngành & đối thủ cạnh tranh", "Định giá sơ bộ", "Tư duy chiến lược doanh nghiệp", "Xây dựng quan hệ (networking)", "Trình bày luận điểm đầu tư"],
+    entryLevel: "Junior đến Senior - thường tuyển từ Investment Banking Analyst hoặc Corporate Development nội bộ tập đoàn",
+    salaryHint: "20 - 35 triệu (Junior) • 50 - 90+ triệu (Senior/Director)",
+    searchKeyword: "M&A Origination",
+    relatedLessonSlugs: ["ma-la-gi", "enterprise-value", "dupont-analysis", "roic"],
+    dayInLife: "Rà soát danh sách 30 công ty cùng ngành để tìm mục tiêu M&A phù hợp, xây dựng luận điểm chiến lược trình ban lãnh đạo, và chuẩn bị buổi gặp đầu tiên với chủ doanh nghiệp mục tiêu.",
+    careerPath: ["Corporate Development Analyst", "M&A Origination Associate", "Head of Corporate Development", "Chief Strategy Officer (CSO)"],
+    requiredTools: ["Capital IQ", "Bloomberg Terminal", "Excel (Screening Models)", "PowerPoint"],
+    certifications: ["CFA", "MBA là lợi thế lớn"],
+    entryDifficulty: 4,
+    stressLevel: 3.5,
+    wlb: 3.5,
+    avatar3d: "/careers/investment-banking.jpg",
+    pros: "Được nhìn bức tranh chiến lược toàn ngành thay vì chỉ một deal đơn lẻ, xây dựng mạng lưới quan hệ rộng với chủ doanh nghiệp và quỹ đầu tư, ít áp lực deadline gấp gáp hơn giai đoạn thực thi.",
+    cons: "Phần lớn các cơ hội được sàng lọc sẽ không bao giờ thành deal thật - tỷ lệ 'chốt' thấp có thể gây nản, cần kiên nhẫn xây dựng quan hệ dài hạn không có kết quả tức thì.",
+    applicationTips: "Thể hiện tư duy chiến lược qua các case study tự phân tích 'nếu là CEO công ty X, tôi sẽ M&A ai và vì sao', rèn kỹ năng định giá sơ bộ nhanh và networking chuyên nghiệp.",
+    category: "banking",
+    traits: { analytical: 4, compliance: 2, clientFacing: 4, quantitative: 3 },
+  },
+  {
+    id: "ma-execution",
+    title: "M&A Execution - DD & Tài trợ (Trong Deal)",
+    englishTitle: "M&A Execution / Deal Advisory",
+    emoji: "⚙️",
+    accentFrom: "#f97316",
+    accentTo: "#9a3412",
+    summary: "Trực tiếp thực thi thương vụ M&A - thẩm định chuyên sâu (due diligence), thu xếp tài trợ vốn và đàm phán điều khoản với bên mua/bán.",
+    responsibilities: [
+      "Điều phối due diligence (tài chính, pháp lý, thương mại, vận hành) cùng kiểm toán/luật sư",
+      "Xây dựng mô hình định giá chi tiết (DCF, LBO, comps) và cấu trúc giao dịch",
+      "Thu xếp tài trợ vốn cho thương vụ (nợ vay, phát hành trái phiếu, vốn chủ)",
+      "Đàm phán điều khoản hợp đồng mua bán (SPA) cùng đội ngũ pháp lý",
+    ],
+    skills: ["Due diligence tài chính", "Định giá nâng cao (DCF/LBO)", "Cấu trúc giao dịch & tài trợ vốn", "Đàm phán", "Chịu áp lực deadline cao"],
+    entryLevel: "Junior - vị trí Analyst/Associate kinh điển tại các ngân hàng đầu tư và bộ phận tư vấn giao dịch Big4",
+    salaryHint: "18 - 32 triệu (Analyst) • 45 - 85+ triệu (Associate/VP)",
+    searchKeyword: "M&A Execution",
+    relatedLessonSlugs: ["synergy-trong-ma", "source-cash-ma", "enterprise-value", "disney-pixar-ma"],
+    dayInLife: "Đối chiếu số liệu due diligence tài chính với báo cáo kiểm toán độc lập, cập nhật mô hình LBO theo cấu trúc tài trợ vốn mới nhất, và họp với luật sư để rà soát điều khoản SPA trước khi ký.",
+    careerPath: ["M&A Analyst", "M&A Associate", "Vice President (VP)", "Director / Head of M&A"],
+    requiredTools: ["Excel (LBO/DCF Models)", "Bloomberg Terminal", "Capital IQ", "Virtual Data Room (Datasite, Intralinks)"],
+    certifications: ["CFA (Chartered Financial Analyst)", "MBA"],
+    entryDifficulty: 4.8,
+    stressLevel: 5,
+    wlb: 1,
+    avatar3d: "/careers/investment-banking.jpg",
+    pros: "Trực tiếp 'cầm trịch' một thương vụ tỷ đô từ đầu đến khi ký kết, học hỏi cực nhanh về cấu trúc giao dịch phức tạp, đây là vị trí M&A advisory đóng vai trò trung gian kết nối bên mua (buy-side) và bên bán (sell-side).",
+    cons: "Cường độ làm việc khắc nghiệt nhất trong ngành tài chính (thường 80-100 giờ/tuần khi deal vào giai đoạn nước rút), deal có thể đổ vỡ vào phút chót sau nhiều tháng làm việc.",
+    applicationTips: "Luyện thành thạo mô hình LBO/DCF phức tạp, hiểu rõ cấu trúc tài trợ vốn (debt/equity mix) và chuẩn bị tinh thần cho môi trường áp lực cao, deadline gấp.",
+    category: "banking",
+    traits: { analytical: 5, compliance: 3, clientFacing: 3, quantitative: 4 },
+  },
+  {
+    id: "pmi-specialist",
+    title: "Post-Merger Integration - PMI (Sau Deal)",
+    englishTitle: "Post-Merger Integration Specialist",
+    emoji: "🧩",
+    accentFrom: "#0ea5e9",
+    accentTo: "#1e3a8a",
+    summary: "Đảm bảo giá trị cộng hưởng (synergy) đã cam kết trong thương vụ M&A thực sự thành hiện thực, bằng cách hợp nhất hệ thống, quy trình và con người của hai tổ chức.",
+    responsibilities: [
+      "Lập kế hoạch tích hợp 100 ngày đầu (Day-1 và 100-day plan) sau khi deal đóng",
+      "Hợp nhất hệ thống tài chính - kế toán, ERP và quy trình vận hành của hai bên",
+      "Theo dõi và báo cáo tiến độ hiện thực hóa synergy đã cam kết trước hội đồng quản trị",
+      "Quản trị thay đổi (change management) - xử lý xung đột văn hóa doanh nghiệp giữa hai tổ chức",
+    ],
+    skills: ["Quản lý dự án phức tạp", "Hợp nhất hệ thống tài chính/ERP", "Quản trị thay đổi & văn hóa doanh nghiệp", "Đo lường synergy thực tế", "Giao tiếp đa phòng ban"],
+    entryLevel: "Senior - thường tuyển từ tư vấn quản trị (management consulting), FP&A hoặc cựu M&A Execution có kinh nghiệm vận hành",
+    salaryHint: "25 - 45 triệu (PMI Manager) • 60 - 110+ triệu (Head of Integration)",
+    searchKeyword: "Post-Merger Integration",
+    relatedLessonSlugs: ["synergy-trong-ma", "ma-la-gi", "dupont-analysis"],
+    dayInLife: "Họp với trưởng phòng tài chính của cả hai công ty vừa sáp nhập để thống nhất một hệ thống ERP chung, rà soát báo cáo tiến độ hiện thực hóa synergy chi phí so với cam kết ban đầu trước HĐQT.",
+    careerPath: ["Integration Analyst", "PMI Manager", "Head of Integration", "Chief Operating Officer (COO)"],
+    requiredTools: ["Project Management Tools (Asana, MS Project)", "ERP Systems (SAP/Oracle)", "Excel (Synergy Tracking)", "PowerPoint"],
+    certifications: ["PMP (Project Management Professional)", "MBA", "CFA là lợi thế"],
+    entryDifficulty: 4,
+    stressLevel: 4,
+    wlb: 2.5,
+    avatar3d: "/careers/cfo-track.jpg",
+    pros: "Vai trò ít người biết đến nhưng quyết định thành-bại thực sự của một thương vụ M&A - phần lớn giá trị synergy hứa hẹn trên giấy chỉ thành hiện thực nhờ PMI làm tốt, cơ hội học cả tài chính lẫn vận hành/lãnh đạo con người.",
+    cons: "Công việc 'dọn dẹp sau tiệc' thường ít được chú ý bằng đội deal-making, phải xử lý xung đột văn hóa và chính trị nội bộ giữa hai tổ chức vừa hợp nhất - vốn rất nhạy cảm.",
+    applicationTips: "Kết hợp câu chuyện tài chính (đọc hiểu synergy) với kỹ năng quản lý con người/thay đổi trong CV - đây là vị trí hiếm khi tìm được ứng viên có cả hai, nên là lợi thế lớn nếu chứng minh được.",
+    category: "advisory",
+    traits: { analytical: 3, compliance: 3, clientFacing: 4, quantitative: 3 },
+  },
+  {
+    id: "pe-vc-analyst",
+    title: "Private Equity / Venture Capital Analyst",
+    englishTitle: "PE/VC Investment Analyst",
+    emoji: "🌱",
+    accentFrom: "#84cc16",
+    accentTo: "#166534",
+    summary: "Tìm kiếm, thẩm định và đầu tư vào doanh nghiệp chưa niêm yết (PE) hoặc startup giai đoạn đầu (VC), đồng hành hỗ trợ tăng trưởng trước khi thoái vốn.",
+    responsibilities: [
+      "Tìm kiếm và sàng lọc cơ hội đầu tư (deal sourcing) phù hợp chiến lược quỹ",
+      "Thẩm định doanh nghiệp/startup (commercial, financial, management due diligence)",
+      "Xây dựng mô hình định giá và cấu trúc giao dịch (equity stake, board seat, điều khoản bảo vệ nhà đầu tư)",
+      "Đồng hành hỗ trợ công ty trong danh mục (portfolio company) tăng trưởng đến khi thoái vốn (exit)",
+    ],
+    skills: ["Định giá doanh nghiệp chưa niêm yết", "Due diligence toàn diện", "Đàm phán điều khoản đầu tư (term sheet)", "Đánh giá đội ngũ sáng lập/quản lý", "Kiên nhẫn đầu tư dài hạn"],
+    entryLevel: "Junior đến Senior - cạnh tranh rất cao, thường tuyển từ Investment Banking/Consulting hoặc founder có kinh nghiệm khởi nghiệp",
+    salaryHint: "20 - 40 triệu (Analyst/Associate) • 60 - 150+ triệu (Principal/Partner + Carried Interest)",
+    searchKeyword: "Private Equity Venture Capital",
+    relatedLessonSlugs: ["enterprise-value", "modern-portfolio-theory", "roic", "dinh-gia-tai-san-rong"],
+    dayInLife: "Gặp gỡ founder một startup fintech đang gọi vốn Series A, thẩm định mô hình kinh doanh và unit economics, sau đó về văn phòng cập nhật mô hình định giá để trình ủy ban đầu tư của quỹ.",
+    careerPath: ["Analyst", "Associate", "Principal", "Partner / Managing Director"],
+    requiredTools: ["Excel (LBO/VC Models)", "PitchBook / Preqin", "Capital IQ", "CRM đầu tư (Affinity)"],
+    certifications: ["CFA", "CAIA (Chartered Alternative Investment Analyst)", "MBA"],
+    entryDifficulty: 4.8,
+    stressLevel: 4,
+    wlb: 2.5,
+    avatar3d: "/careers/fund-manager.jpg",
+    pros: "Tiếp xúc trực tiếp với founder và mô hình kinh doanh mới nhất của thị trường, quy mô quỹ khác nhau (dưới 30 triệu USD, dưới 100 triệu USD, hay dưới 300 triệu USD AUM) đòi hỏi chiến lược đầu tư và cấu trúc đội ngũ hoàn toàn khác nhau - môi trường học hỏi cực kỳ đa dạng, tiềm năng thu nhập cao qua carried interest nếu quỹ thành công.",
+    cons: "Chu kỳ đầu tư dài (thường 5-10 năm mới thoái vốn), tỷ lệ thất bại của startup/doanh nghiệp trong danh mục vẫn cao dù đã thẩm định kỹ, cạnh tranh vào ngành cực kỳ khốc liệt do số lượng vị trí rất ít.",
+    applicationTips: "Xây dựng luận điểm đầu tư mẫu (investment memo) cho một công ty/startup thật để đính kèm CV, hiểu rõ sự khác biệt giữa quy mô quỹ (AUM tier) ảnh hưởng thế nào đến khẩu vị đầu tư, và mạng lưới quan hệ với founder là lợi thế lớn.",
+    category: "investment",
+    traits: { analytical: 5, compliance: 2, clientFacing: 4, quantitative: 4 },
   },
 ];
