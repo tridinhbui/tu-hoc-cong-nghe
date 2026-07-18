@@ -146,19 +146,30 @@ export default function HomePage() {
       <div className="pointer-events-none absolute top-[75%] left-[12%] w-[500px] h-[500px] rounded-full bg-indigo-500/10 dark:bg-indigo-500/5 blur-[130px] z-0" />
 
       <div className="relative z-10">
-        <div className="border-b border-emerald-100 bg-gradient-to-r from-emerald-50 to-teal-50/80 dark:border-emerald-900/30 dark:from-emerald-950/20 dark:to-teal-950/10">
-          <div className="max-w-6xl mx-auto px-6 py-2.5 flex flex-col gap-2 text-center sm:flex-row sm:items-center sm:justify-between sm:text-left">
-            <p className="text-sm font-semibold text-stone-700 dark:text-stone-200 flex items-center justify-center sm:justify-start gap-1.5">
-              <span>🇻🇳</span>
-              <span>Dành riêng cho cộng đồng học tài chính Việt Nam (CFA, cá nhân, planner, investor).</span>
+        {/* Top banner - pushed to the very top of the page per request, in
+            Vietnamese-flag red/yellow, same commitment message previously
+            further down in the Social Proof section (moved here, not
+            duplicated). */}
+        <div className="relative overflow-hidden bg-[#DA251D]">
+          <div className="pointer-events-none absolute -top-8 -right-8 text-[100px] leading-none text-[#FFCD00]/10 select-none">
+            ★
+          </div>
+          <div className="relative max-w-6xl mx-auto px-6 py-2.5 flex flex-col gap-2 text-center sm:flex-row sm:items-center sm:justify-center sm:gap-3 sm:text-left">
+            <span className="hidden sm:inline text-lg leading-none text-[#FFCD00]" aria-hidden="true">
+              ★
+            </span>
+            <p className="text-sm font-semibold text-white/90 leading-relaxed">
+              Cam kết toàn bộ bài học tại đây <strong className="text-[#FFCD00]">miễn phí mãi mãi</strong> vì sự phát
+              triển của cộng đồng học tài chính cá nhân, CFA, lập kế hoạch tài chính, đầu tư, và người làm tài chính
+              tại Việt Nam.
             </p>
             <a
               href="https://www.facebook.com/share/g/1C2jTdsgF5/"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center justify-center gap-2 text-sm font-bold text-emerald-700 transition-colors hover:text-emerald-800 dark:text-emerald-300 dark:hover:text-emerald-200"
+              className="inline-flex items-center justify-center gap-1.5 text-sm font-black text-white hover:underline whitespace-nowrap"
             >
-              Group Facebook cộng đồng
+              Tham gia group Facebook
               <ArrowRight className="w-4 h-4" />
             </a>
           </div>
@@ -357,27 +368,6 @@ export default function HomePage() {
             </ScrollReveal>
 
             <ScrollReveal delay={0.1}>
-              <div className="relative overflow-hidden flex items-start gap-3.5 rounded-2xl bg-[#DA251D] px-5 py-4 mb-4 shadow-[0_20px_45px_-20px_rgba(218,37,29,0.55)]">
-                <div className="pointer-events-none absolute -top-6 -right-6 text-[80px] leading-none text-[#FFCD00]/15 select-none">
-                  ★
-                </div>
-                <span className="flex-shrink-0 mt-0.5 text-2xl leading-none text-[#FFCD00]" aria-hidden="true">
-                  ★
-                </span>
-                <p className="relative text-sm text-white/90 leading-relaxed">
-                  Cam kết toàn bộ bài học tại đây{" "}
-                  <strong className="text-[#FFCD00]">miễn phí mãi mãi</strong> vì sự phát triển của cộng đồng học tài
-                  chính cá nhân, CFA, lập kế hoạch tài chính, đầu tư, và người làm tài chính tại Việt Nam.{" "}
-                  <a
-                    href="https://www.facebook.com/share/g/1C2jTdsgF5/"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="font-black text-white hover:underline"
-                  >
-                    Tham gia group Facebook →
-                  </a>
-                </p>
-              </div>
               <ul className="space-y-3">
                 {[
                   "Không dùng thử giới hạn ngày",
