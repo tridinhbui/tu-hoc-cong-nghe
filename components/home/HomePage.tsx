@@ -139,7 +139,7 @@ export default function HomePage() {
   }, []);
 
   return (
-    <div className="relative min-h-screen bg-white dark:bg-stone-950 bg-[linear-gradient(to_right,#80808007_1px,transparent_1px),linear-gradient(to_bottom,#80808007_1px,transparent_1px)] bg-[size:20px_20px] transition-colors duration-300">
+    <div className="relative min-h-screen overflow-x-hidden bg-white dark:bg-stone-950 bg-[linear-gradient(to_right,#80808007_1px,transparent_1px),linear-gradient(to_bottom,#80808007_1px,transparent_1px)] bg-[size:20px_20px] transition-colors duration-300">
       {/* Ambient background glows - fixed page-level, not nested inside any section */}
       <div className="pointer-events-none absolute top-[10%] left-[5%] w-[450px] h-[450px] rounded-full bg-emerald-500/10 dark:bg-emerald-500/5 blur-[120px] z-0" />
       <div className="pointer-events-none absolute top-[45%] right-[8%] w-[550px] h-[550px] rounded-full bg-teal-500/10 dark:bg-teal-500/5 blur-[150px] z-0" />

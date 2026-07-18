@@ -23,24 +23,25 @@ export default function ProductPreview() {
 
   return (
     <div className="rounded-[1.75rem] border border-stone-200 dark:border-stone-800 bg-white dark:bg-stone-900 shadow-[0_40px_100px_-45px_rgba(16,24,40,0.35)] overflow-hidden">
-      {/* Browser chrome */}
-      <div className="flex items-center gap-3 border-b border-stone-100 dark:border-stone-850 bg-stone-50 dark:bg-stone-950/60 px-4 py-2.5">
-        <div className="flex gap-1.5">
-          <span className="w-2.5 h-2.5 rounded-full bg-stone-300 dark:bg-stone-700" />
-          <span className="w-2.5 h-2.5 rounded-full bg-stone-300 dark:bg-stone-700" />
-          <span className="w-2.5 h-2.5 rounded-full bg-stone-300 dark:bg-stone-700" />
-        </div>
-        <div className="flex-1 flex items-center justify-center">
-          <div className="text-[11px] font-semibold text-stone-400 dark:text-stone-500 bg-white dark:bg-stone-900 border border-stone-200 dark:border-stone-800 rounded-full px-4 py-1 max-w-xs w-full text-center truncate">
+      {/* Browser chrome - wraps to two rows on narrow viewports instead of
+          the URL pill/tab switcher fighting for space on one line. */}
+      <div className="flex flex-wrap items-center gap-x-3 gap-y-2 border-b border-stone-100 dark:border-stone-850 bg-stone-50 dark:bg-stone-950/60 px-4 py-2.5">
+        <div className="flex items-center gap-3 flex-1 min-w-0">
+          <div className="flex gap-1.5 shrink-0">
+            <span className="w-2.5 h-2.5 rounded-full bg-stone-300 dark:bg-stone-700" />
+            <span className="w-2.5 h-2.5 rounded-full bg-stone-300 dark:bg-stone-700" />
+            <span className="w-2.5 h-2.5 rounded-full bg-stone-300 dark:bg-stone-700" />
+          </div>
+          <div className="flex-1 min-w-0 text-[11px] font-semibold text-stone-400 dark:text-stone-500 bg-white dark:bg-stone-900 border border-stone-200 dark:border-stone-800 rounded-full px-4 py-1 text-center truncate">
             tuhoctaichinh.vn/{tab === "dashboard" ? "dashboard" : "bai-hoc"}
           </div>
         </div>
-        <div className="flex gap-1 bg-white dark:bg-stone-900 border border-stone-200 dark:border-stone-800 rounded-full p-0.5">
+        <div className="flex gap-1 bg-white dark:bg-stone-900 border border-stone-200 dark:border-stone-800 rounded-full p-0.5 shrink-0 mx-auto sm:mx-0">
           {TABS.map((t) => (
             <button
               key={t.id}
               onClick={() => setTab(t.id)}
-              className={`text-[10px] font-bold px-2.5 py-1 rounded-full transition-all ${
+              className={`text-[10px] font-bold px-2.5 py-1 rounded-full transition-all whitespace-nowrap ${
                 tab === t.id
                   ? "bg-stone-900 dark:bg-stone-100 text-white dark:text-stone-900"
                   : "text-stone-400 dark:text-stone-500 hover:text-stone-600 dark:hover:text-stone-300"
@@ -61,7 +62,7 @@ export default function ProductPreview() {
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -6 }}
               transition={{ duration: 0.25 }}
-              className="grid gap-4 sm:grid-cols-[1.3fr_1fr]"
+              className="grid grid-cols-1 gap-4 sm:grid-cols-[1.3fr_1fr]"
             >
               <div className="rounded-2xl border border-stone-200 dark:border-stone-800 bg-white dark:bg-stone-900 p-4">
                 <div className="flex items-center justify-between mb-3">
@@ -85,7 +86,7 @@ export default function ProductPreview() {
                   ].map((l) => (
                     <div
                       key={l.title}
-                      className={`flex items-center gap-2.5 rounded-xl border px-3 py-2.5 text-xs font-semibold ${
+                      className={`flex items-center gap-2.5 min-w-0 rounded-xl border px-3 py-2.5 text-xs font-semibold ${
                         l.done
                           ? "border-emerald-200 dark:border-emerald-900 bg-emerald-50/60 dark:bg-emerald-950/30 text-emerald-800 dark:text-emerald-300"
                           : "border-stone-200 dark:border-stone-800 text-stone-600 dark:text-stone-400"
@@ -96,7 +97,7 @@ export default function ProductPreview() {
                       ) : (
                         <Circle className="w-4 h-4 text-stone-300 dark:text-stone-700 shrink-0" />
                       )}
-                      <span className="truncate">{l.title}</span>
+                      <span className="truncate min-w-0 flex-1">{l.title}</span>
                     </div>
                   ))}
                 </div>
