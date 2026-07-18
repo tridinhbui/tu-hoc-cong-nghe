@@ -1,8 +1,9 @@
 "use client";
 
 import { useState, useRef } from "react";
-import { X, Award, Download, Check } from "lucide-react";
+import { X, Award, Download, Check, Share2 } from "lucide-react";
 import { toast } from "sonner";
+import { svgToPngBlob, shareOrDownloadImage } from "@/lib/share-image";
 
 interface CertificateModalProps {
   stageLabel: string;
@@ -14,6 +15,7 @@ interface CertificateModalProps {
 export default function CertificateModal({ stageLabel, stageName, userName, onClose }: CertificateModalProps) {
   const [downloading, setDownloading] = useState(false);
   const [downloaded, setDownloaded] = useState(false);
+  const [sharing, setSharing] = useState(false);
   const svgRef = useRef<SVGSVGElement | null>(null);
 
   // Generate unique certificate ID hash
@@ -27,52 +29,48 @@ export default function CertificateModal({ stageLabel, stageName, userName, onCl
     year: "numeric",
   });
 
-  const handleDownload = () => {
+  const certFilename = `chung_chi_${stageLabel.toLowerCase().replace(/\s+/g, "_")}.png`;
+
+  const handleDownload = async () => {
     if (!svgRef.current || downloading) return;
     setDownloading(true);
-
     try {
-      const svgElement = svgRef.current;
-      const serializer = new XMLSerializer();
-      const svgString = serializer.serializeToString(svgElement);
-      const svgBlob = new Blob([svgString], { type: "image/svg+xml;charset=utf-8" });
-      const URL = window.URL || window.webkitURL || window;
-      const blobURL = URL.createObjectURL(svgBlob);
-
-      const image = new Image();
-      image.onload = () => {
-        const canvas = document.createElement("canvas");
-        canvas.width = 1600; // High resolution
-        canvas.height = 1200;
-        const context = canvas.getContext("2d");
-
-        if (context) {
-          context.drawImage(image, 0, 0, 1600, 1200);
-          const pngUrl = canvas.toDataURL("image/png");
-
-          const downloadLink = document.createElement("a");
-          downloadLink.href = pngUrl;
-          downloadLink.download = `chung_chi_${stageLabel.toLowerCase().replace(/\s+/g, "_")}.png`;
-          document.body.appendChild(downloadLink);
-          downloadLink.click();
-          document.body.removeChild(downloadLink);
-
-          setDownloaded(true);
-          toast.success("Tải xuống chứng chỉ thành công! Hãy chia sẻ lên Facebook/LinkedIn nhé 🏆🚀");
-        }
-        setDownloading(false);
-        URL.revokeObjectURL(blobURL);
-      };
-      image.onerror = (e) => {
-        console.error("Error loading SVG into image:", e);
-        toast.error("Lỗi khi kết xuất ảnh chứng chỉ. Hãy thử lại.");
-        setDownloading(false);
-      };
-      image.src = blobURL;
+      const blob = await svgToPngBlob(svgRef.current, 1600, 1200);
+      const url = URL.createObjectURL(blob);
+      const downloadLink = document.createElement("a");
+      downloadLink.href = url;
+      downloadLink.download = certFilename;
+      document.body.appendChild(downloadLink);
+      downloadLink.click();
+      document.body.removeChild(downloadLink);
+      URL.revokeObjectURL(url);
+      setDownloaded(true);
+      toast.success("Tải xuống chứng chỉ thành công! Hãy chia sẻ lên Facebook/LinkedIn nhé 🏆🚀");
     } catch (error) {
       console.error("Error creating certificate download:", error);
       toast.error("Không thể tải chứng chỉ lúc này.");
+    } finally {
       setDownloading(false);
+    }
+  };
+
+  const handleShare = async () => {
+    if (!svgRef.current || sharing) return;
+    setSharing(true);
+    try {
+      const blob = await svgToPngBlob(svgRef.current, 1600, 1200);
+      const outcome = await shareOrDownloadImage(
+        blob,
+        certFilename,
+        `Mình vừa hoàn thành chặng ${stageName} (${stageLabel}) trên Tự học Tài chính! 🏆`
+      );
+      if (outcome === "shared") toast.success("Đã chia sẻ chứng chỉ!");
+      else if (outcome === "downloaded") toast.success("Đã tải ảnh chứng chỉ - đăng lên Facebook/LinkedIn và đính kèm ảnh này nhé!");
+    } catch (error) {
+      console.error("Error sharing certificate:", error);
+      toast.error("Không thể chia sẻ chứng chỉ lúc này.");
+    } finally {
+      setSharing(false);
     }
   };
 
@@ -227,6 +225,18 @@ export default function CertificateModal({ stageLabel, stageName, userName, onCl
                 Tải Xuống Chứng Chỉ (PNG)
               </>
             )}
+          </button>
+          <button
+            onClick={handleShare}
+            disabled={sharing}
+            className="flex-1 py-3.5 bg-stone-800 hover:bg-stone-750 disabled:opacity-60 text-white rounded-2xl text-xs font-black uppercase tracking-wider transition-all flex items-center justify-center gap-2 cursor-pointer focus:outline-none"
+          >
+            {sharing ? (
+              <span className="w-4 h-4 border-2 border-white/20 border-t-white rounded-full animate-spin" />
+            ) : (
+              <Share2 className="w-4.5 h-4.5" />
+            )}
+            Chia sẻ
           </button>
         </div>
       </div>

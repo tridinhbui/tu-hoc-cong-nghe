@@ -1,11 +1,14 @@
 "use client";
 
-import { useEffect, useState } from "react";
-import { Sparkles, X } from "lucide-react";
+import { useEffect, useRef, useState } from "react";
+import { Sparkles, X, Download, Share2, Check } from "lucide-react";
+import { toast } from "sonner";
 import { LEVELS } from "@/lib/levels";
+import { svgToPngBlob, shareOrDownloadImage } from "@/lib/share-image";
 
 interface LevelUpModalProps {
   level: number;
+  userName: string;
   onClose: () => void;
 }
 
@@ -37,10 +40,14 @@ function useConfettiPieces(count: number) {
 // the freshly-loaded profile's current_level against the last one seen on
 // this device (localStorage), so it fires once per level gained regardless
 // of which page/action caused it.
-export default function LevelUpModal({ level, onClose }: LevelUpModalProps) {
+export default function LevelUpModal({ level, userName, onClose }: LevelUpModalProps) {
   const confetti = useConfettiPieces(48);
   const levelInfo = LEVELS.find((l) => l.level === level);
   const [visible, setVisible] = useState(false);
+  const svgRef = useRef<SVGSVGElement | null>(null);
+  const [downloading, setDownloading] = useState(false);
+  const [downloaded, setDownloaded] = useState(false);
+  const [sharing, setSharing] = useState(false);
 
   useEffect(() => {
     const raf = requestAnimationFrame(() => setVisible(true));
@@ -54,6 +61,51 @@ export default function LevelUpModal({ level, onClose }: LevelUpModalProps) {
     document.addEventListener("keydown", handleKey);
     return () => document.removeEventListener("keydown", handleKey);
   }, [onClose]);
+
+  const cardFilename = `len_cap_${level}.png`;
+
+  const handleDownload = async () => {
+    if (!svgRef.current || downloading) return;
+    setDownloading(true);
+    try {
+      const blob = await svgToPngBlob(svgRef.current, 1600, 1600);
+      const url = URL.createObjectURL(blob);
+      const link = document.createElement("a");
+      link.href = url;
+      link.download = cardFilename;
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+      URL.revokeObjectURL(url);
+      setDownloaded(true);
+      toast.success("Đã tải ảnh thành tích! Đăng lên story/Facebook khoe ngay nào 🎉");
+    } catch (error) {
+      console.error("Error creating level-up card download:", error);
+      toast.error("Không thể tạo ảnh lúc này.");
+    } finally {
+      setDownloading(false);
+    }
+  };
+
+  const handleShare = async () => {
+    if (!svgRef.current || sharing) return;
+    setSharing(true);
+    try {
+      const blob = await svgToPngBlob(svgRef.current, 1600, 1600);
+      const outcome = await shareOrDownloadImage(
+        blob,
+        cardFilename,
+        `Mình vừa lên Level ${level}${levelInfo ? ` - ${levelInfo.name}` : ""} trên Tự học Tài chính! 🎉`
+      );
+      if (outcome === "shared") toast.success("Đã chia sẻ thành tích!");
+      else if (outcome === "downloaded") toast.success("Đã tải ảnh - đăng lên Facebook/story và đính kèm ảnh này nhé!");
+    } catch (error) {
+      console.error("Error sharing level-up card:", error);
+      toast.error("Không thể chia sẻ lúc này.");
+    } finally {
+      setSharing(false);
+    }
+  };
 
   return (
     <div
@@ -116,6 +168,35 @@ export default function LevelUpModal({ level, onClose }: LevelUpModalProps) {
           Kiến thức tài chính của bạn đang tích luỹ thật sự. Tiếp tục phát huy nhé!
         </p>
 
+        <div className="flex gap-2 mb-3">
+          <button
+            onClick={handleDownload}
+            disabled={downloading}
+            className="flex-1 py-3 rounded-xl border border-stone-200 dark:border-stone-700 text-stone-700 dark:text-stone-300 font-bold text-xs hover:bg-stone-50 dark:hover:bg-stone-800 transition-colors disabled:opacity-60 flex items-center justify-center gap-1.5"
+          >
+            {downloading ? (
+              <span className="w-3.5 h-3.5 border-2 border-stone-300 border-t-stone-600 dark:border-stone-600 dark:border-t-stone-200 rounded-full animate-spin" />
+            ) : downloaded ? (
+              <Check className="w-3.5 h-3.5" />
+            ) : (
+              <Download className="w-3.5 h-3.5" />
+            )}
+            Tải ảnh
+          </button>
+          <button
+            onClick={handleShare}
+            disabled={sharing}
+            className="flex-1 py-3 rounded-xl border border-stone-200 dark:border-stone-700 text-stone-700 dark:text-stone-300 font-bold text-xs hover:bg-stone-50 dark:hover:bg-stone-800 transition-colors disabled:opacity-60 flex items-center justify-center gap-1.5"
+          >
+            {sharing ? (
+              <span className="w-3.5 h-3.5 border-2 border-stone-300 border-t-stone-600 dark:border-stone-600 dark:border-t-stone-200 rounded-full animate-spin" />
+            ) : (
+              <Share2 className="w-3.5 h-3.5" />
+            )}
+            Chia sẻ
+          </button>
+        </div>
+
         <button
           onClick={onClose}
           className="w-full py-3.5 rounded-xl bg-stone-900 dark:bg-stone-100 text-white dark:text-stone-900 font-bold text-sm hover:bg-stone-800 dark:hover:bg-white transition-colors"
@@ -123,6 +204,61 @@ export default function LevelUpModal({ level, onClose }: LevelUpModalProps) {
           Tuyệt vời! 🎉
         </button>
       </div>
+
+      {/* Hidden square achievement card - only rendered to be serialized
+          into a shareable PNG by handleDownload/handleShare above, never
+          shown on screen (the celebratory circle above is the visual). */}
+      <svg
+        ref={svgRef}
+        viewBox="0 0 800 800"
+        width="800"
+        height="800"
+        className="hidden"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <defs>
+          <linearGradient id="levelBg" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stopColor="#0c0a09" />
+            <stop offset="55%" stopColor="#0f1115" />
+            <stop offset="100%" stopColor="#052e2b" />
+          </linearGradient>
+          <linearGradient id="levelAccent" x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="0%" stopColor="#f59e0b" />
+            <stop offset="50%" stopColor="#10b981" />
+            <stop offset="100%" stopColor="#14b8a6" />
+          </linearGradient>
+        </defs>
+
+        <rect width="800" height="800" fill="url(#levelBg)" />
+        <path d="M 50 50 L 750 50 L 750 750 L 50 750 Z" fill="none" stroke="url(#levelAccent)" strokeWidth="3" opacity="0.85" />
+        <path d="M 62 62 L 738 62 L 738 738 L 62 738 Z" fill="none" stroke="#ffffff" strokeWidth="0.6" opacity="0.15" />
+
+        <text x="400" y="140" textAnchor="middle" fill="#fbbf24" fontSize="14" fontWeight="900" letterSpacing="5">
+          TỰ HỌC TÀI CHÍNH MỖI NGÀY
+        </text>
+        <text x="400" y="185" textAnchor="middle" fill="#ffffff" fontSize="26" fontWeight="800" letterSpacing="3">
+          THÀNH TÍCH LÊN CẤP
+        </text>
+        <line x1="300" y1="215" x2="500" y2="215" stroke="url(#levelAccent)" strokeWidth="1.5" />
+
+        <circle cx="400" cy="380" r="130" fill="none" stroke="url(#levelAccent)" strokeWidth="3" opacity="0.9" />
+        <circle cx="400" cy="380" r="115" fill="#0f1115" opacity="0.6" />
+        <text x="400" y="405" textAnchor="middle" fill="url(#levelAccent)" fontSize="90" fontWeight="900">
+          {level}
+        </text>
+
+        <text x="400" y="555" textAnchor="middle" fill="#94a3b8" fontSize="14" fontStyle="italic">
+          {userName} vừa đạt
+        </text>
+        <text x="400" y="600" textAnchor="middle" fill="#ffffff" fontSize="30" fontWeight="800" letterSpacing="1">
+          Level {level}{levelInfo ? ` · ${levelInfo.name}` : ""}
+        </text>
+
+        <line x1="220" y1="650" x2="580" y2="650" stroke="#334155" strokeWidth="0.8" />
+        <text x="400" y="700" textAnchor="middle" fill="#64748b" fontSize="12" fontWeight="700" letterSpacing="1">
+          HỌC TÀI CHÍNH MỖI NGÀY · TUHOCTAICHINH.COM
+        </text>
+      </svg>
 
       <style>{`
         @keyframes confetti-fall {

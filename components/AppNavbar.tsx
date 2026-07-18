@@ -330,7 +330,9 @@ export default function AppNavbar() {
         </div>
       )}
 
-      {celebrateLevel !== null && <LevelUpModal level={celebrateLevel} onClose={dismiss} />}
+      {celebrateLevel !== null && (
+        <LevelUpModal level={celebrateLevel} userName={profile?.full_name || "Học viên"} onClose={dismiss} />
+      )}
     </div>
   );
 }
