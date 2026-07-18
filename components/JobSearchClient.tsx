@@ -25,6 +25,7 @@ import {
 } from "lucide-react";
 import { toast } from "sonner";
 import { FINANCE_CAREERS, type FinanceCareer } from "@/lib/finance-careers";
+import { CFA_LEVEL_1_SUBJECTS } from "@/lib/cfa-track";
 import { JOB_SEARCH_SITES } from "@/lib/job-search-links";
 import { createClient } from "@/lib/supabase";
 import { claimQuestReward } from "@/lib/supabase-quests";
@@ -104,10 +105,31 @@ function RelatedLessonsPanel({ career }: { career: FinanceCareer }) {
     };
   }, [career.id]);
 
-  if (career.relatedLessonSlugs.length === 0) return null;
+  const cfaSubjects = (career.relatedCfaSubjectIds ?? [])
+    .map((id) => CFA_LEVEL_1_SUBJECTS.find((s) => s.id === id))
+    .filter((s): s is NonNullable<typeof s> => !!s);
+
+  if (career.relatedLessonSlugs.length === 0 && cfaSubjects.length === 0) return null;
 
   return (
     <div className="mt-5 p-5 rounded-2xl bg-emerald-500/5 border-2 border-dashed border-emerald-500/20">
+      {cfaSubjects.length > 0 && (
+        <div className="flex flex-wrap items-center gap-1.5 mb-4 pb-4 border-b border-dashed border-emerald-500/20">
+          <span className="text-[10px] font-black uppercase text-stone-400 dark:text-stone-500 tracking-wider mr-1">
+            Liên quan CFA:
+          </span>
+          {cfaSubjects.map((s) => (
+            <span
+              key={s.id}
+              title={`Tỷ trọng đề thi: ${s.weight}`}
+              className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-indigo-100 dark:bg-indigo-950/40 text-indigo-700 dark:text-indigo-300"
+            >
+              {s.name}
+            </span>
+          ))}
+        </div>
+      )}
+      {career.relatedLessonSlugs.length === 0 ? null : (
       <div className="flex items-center justify-between mb-3">
         <div className="flex items-center gap-2">
           <BookOpen className="w-4 h-4 text-emerald-600 dark:text-emerald-400" />
@@ -121,7 +143,8 @@ function RelatedLessonsPanel({ career }: { career: FinanceCareer }) {
           </span>
         )}
       </div>
-      {loading ? (
+      )}
+      {career.relatedLessonSlugs.length === 0 ? null : loading ? (
         <p className="text-[11px] text-stone-400">Đang tải...</p>
       ) : progress && progress.lessons.length > 0 ? (
         <div className="space-y-1.5">
