@@ -7,7 +7,6 @@ import {
   GraduationCap,
   Gauge,
   Sparkles,
-  Heart,
   Brain,
   ArrowRight,
   PlayCircle,
@@ -358,18 +357,22 @@ export default function HomePage() {
             </ScrollReveal>
 
             <ScrollReveal delay={0.1}>
-              <div className="flex items-start gap-3 rounded-2xl border border-rose-100/80 dark:border-rose-950/30 bg-rose-50/50 dark:bg-rose-950/10 px-5 py-4 mb-4">
-                <Heart className="w-5 h-5 text-rose-500 flex-shrink-0 mt-0.5" />
-                <p className="text-sm text-stone-600 dark:text-stone-400 leading-relaxed">
+              <div className="relative overflow-hidden flex items-start gap-3.5 rounded-2xl bg-[#DA251D] px-5 py-4 mb-4 shadow-[0_20px_45px_-20px_rgba(218,37,29,0.55)]">
+                <div className="pointer-events-none absolute -top-6 -right-6 text-[80px] leading-none text-[#FFCD00]/15 select-none">
+                  ★
+                </div>
+                <span className="flex-shrink-0 mt-0.5 text-2xl leading-none text-[#FFCD00]" aria-hidden="true">
+                  ★
+                </span>
+                <p className="relative text-sm text-white/90 leading-relaxed">
                   Cam kết toàn bộ bài học tại đây{" "}
-                  <strong className="text-stone-800 dark:text-stone-200">miễn phí mãi mãi</strong> vì sự phát triển
-                  của cộng đồng học tài chính cá nhân, CFA, lập kế hoạch tài chính, đầu tư, và người làm tài chính tại
-                  Việt Nam.{" "}
+                  <strong className="text-[#FFCD00]">miễn phí mãi mãi</strong> vì sự phát triển của cộng đồng học tài
+                  chính cá nhân, CFA, lập kế hoạch tài chính, đầu tư, và người làm tài chính tại Việt Nam.{" "}
                   <a
                     href="https://www.facebook.com/share/g/1C2jTdsgF5/"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="font-black text-rose-600 dark:text-rose-400 hover:underline"
+                    className="font-black text-white hover:underline"
                   >
                     Tham gia group Facebook →
                   </a>
