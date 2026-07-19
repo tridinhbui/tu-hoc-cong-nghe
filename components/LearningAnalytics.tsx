@@ -35,6 +35,7 @@ import {
 import { getUserAnalytics } from "@/lib/supabase-analytics";
 import { createClient } from "@/lib/supabase";
 import type { LearningAnalytics as LearningAnalyticsType } from "@/lib/supabase-analytics";
+import LeaderboardSection from "@/components/analytics/LeaderboardSection";
 
 const fadeUp = {
   hidden: { opacity: 0, y: 18 },
@@ -183,7 +184,8 @@ function AnalyticsSkeleton() {
 export default function LearningAnalytics() {
   const [analytics, setAnalytics] = useState<LearningAnalyticsType | null>(null);
   const [loading, setLoading] = useState(true);
-  const [activeSection, setActiveSection] = useState<"overview" | "knowledge" | "memory">("overview");
+  const [userId, setUserId] = useState<string | undefined>(undefined);
+  const [activeSection, setActiveSection] = useState<"overview" | "knowledge" | "memory" | "leaderboard">("overview");
 
   useEffect(() => {
     const fetchAnalytics = async () => {
@@ -194,6 +196,7 @@ export default function LearningAnalytics() {
         } = await supabase.auth.getUser();
 
         if (user) {
+          setUserId(user.id);
           const data = await getUserAnalytics(user.id);
           setAnalytics(data);
         }
@@ -290,6 +293,7 @@ export default function LearningAnalytics() {
           { id: "overview", label: "Nhịp độ & Thói quen" },
           { id: "knowledge", label: "Kiến thức & Kết quả" },
           { id: "memory", label: "Ghi chú & Hành động" },
+          { id: "leaderboard", label: "Bảng xếp hạng" },
         ].map((tab) => {
           const isActive = activeSection === tab.id;
           return (
@@ -741,6 +745,8 @@ export default function LearningAnalytics() {
           </div>
         </div>
       )}
+
+      {activeSection === "leaderboard" && <LeaderboardSection userId={userId} />}
     </div>
   );
 }

@@ -5,7 +5,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { usePathname, useRouter } from "next/navigation";
 import { toast } from "sonner";
-import { FileText, BarChart3, StickyNote, GraduationCap, Gamepad2, Layers, Menu, X, Briefcase } from "lucide-react";
+import { FileText, BarChart3, StickyNote, GraduationCap, Gamepad2, Menu, X, Briefcase } from "lucide-react";
 import { createClient } from "@/lib/supabase";
 import { useRoutePrefetch } from "@/lib/use-route-prefetch";
 import Logo from "@/components/Logo";
@@ -29,7 +29,6 @@ interface NavProfile {
 const NAV_LINKS = [
   { href: "/analytics", label: "Thống kê", icon: BarChart3 },
   { href: "/ghi-chu", label: "Ghi chú", icon: StickyNote },
-  { href: "/flashcard", label: "Thẻ ghi nhớ", icon: Layers },
   { href: "/kiem-tra", label: "Kiểm tra", icon: GraduationCap },
   { href: "/su-nghiep", label: "Sự nghiệp", icon: Briefcase },
   { href: "/game", label: "Game", icon: Gamepad2 },

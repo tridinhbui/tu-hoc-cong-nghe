@@ -329,7 +329,11 @@ export default function FlashcardClient({ userId: propUserId, embedded = false }
               <Layers className="w-5.5 h-5.5 text-white" />
             </div>
             <div className="min-w-0">
-              <h1 className="text-lg sm:text-xl font-extrabold text-white leading-tight">Thẻ ghi nhớ</h1>
+              {embedded ? (
+                <h2 className="text-lg sm:text-xl font-extrabold text-white leading-tight">Thẻ ghi nhớ</h2>
+              ) : (
+                <h1 className="text-lg sm:text-xl font-extrabold text-white leading-tight">Thẻ ghi nhớ</h1>
+              )}
               <p className="text-[11px] sm:text-xs text-emerald-100/90 font-semibold">Spaced Repetition · Thuật toán SM2</p>
             </div>
           </div>

@@ -184,7 +184,7 @@ export async function setPreferredTrack(userId: string, track: "personal" | "pro
   return updateUserProfile(userId, { preferred_track: track });
 }
 
-export type LeaderboardMetric = "xp" | "lessons" | "avg_score" | "streak";
+export type LeaderboardMetric = "xp" | "lessons" | "avg_score" | "streak" | "badges";
 
 export interface LeaderboardRow {
   user_id: string;
@@ -262,6 +262,85 @@ export async function getMyLeaderboardRank(
   }
 
   return { rank: row.rank, value: row.value };
+}
+
+// Ranks by count of completed lessons within a track's day ranges (see
+// lib/track-stages.ts). Scoped to "personal"/"professional" only - CFA is
+// deliberately excluded (see supabase/migrations/20260719_leaderboard_expansion.sql).
+export async function getTrackLeaderboard(track: "personal" | "professional", limit: number = 10): Promise<LeaderboardRow[]> {
+  const supabase = createClient();
+  const { data, error } = await supabase.rpc("get_track_leaderboard", { p_track: track, p_limit: limit });
+
+  if (error && isMissingTableError(error)) return [];
+  if (error) throw handleSupabaseError(error);
+
+  return ((data ?? []) as { user_id: string; name: string; value: number; avatar_url: string | null }[]).map((row) => ({
+    user_id: row.user_id,
+    value: row.value ?? 0,
+    name: row.name || "Người học",
+    avatarUrl: row.avatar_url ?? null,
+  }));
+}
+
+export async function getMyTrackLeaderboardRank(
+  track: "personal" | "professional",
+  userId: string
+): Promise<{ rank: number; value: number } | null> {
+  const supabase = createClient();
+  const { data, error } = await supabase.rpc("get_my_track_leaderboard_rank", { p_track: track, p_user_id: userId });
+
+  if (error && isMissingTableError(error)) return null;
+  if (error) throw handleSupabaseError(error);
+
+  const row = (data as { rank: number; value: number }[] | null)?.[0];
+  return row ? { rank: row.rank, value: row.value } : null;
+}
+
+// XP earned since a given timestamp (lessons*10 + quiz + game xp) -
+// used for weekly/monthly leaderboards, same computation as
+// app/api/cron/send-weekly-digest/route.ts's getWeeklyStats, moved server-side.
+export async function getXpLeaderboardSince(since: Date, limit: number = 10): Promise<LeaderboardRow[]> {
+  const supabase = createClient();
+  const { data, error } = await supabase.rpc("get_xp_leaderboard_since", { p_since: since.toISOString(), p_limit: limit });
+
+  if (error && isMissingTableError(error)) return [];
+  if (error) throw handleSupabaseError(error);
+
+  return ((data ?? []) as { user_id: string; name: string; value: number; avatar_url: string | null }[]).map((row) => ({
+    user_id: row.user_id,
+    value: row.value ?? 0,
+    name: row.name || "Người học",
+    avatarUrl: row.avatar_url ?? null,
+  }));
+}
+
+export async function getMyXpRankSince(since: Date, userId: string): Promise<{ rank: number; value: number } | null> {
+  const supabase = createClient();
+  const { data, error } = await supabase.rpc("get_my_xp_rank_since", { p_since: since.toISOString(), p_user_id: userId });
+
+  if (error && isMissingTableError(error)) return null;
+  if (error) throw handleSupabaseError(error);
+
+  const row = (data as { rank: number; value: number }[] | null)?.[0];
+  return row ? { rank: row.rank, value: row.value } : null;
+}
+
+// Ranked among accepted friends only (plus the caller). No separate "my
+// rank" call - friend lists are small enough that the caller's own row is
+// just visible directly in this result.
+export async function getFriendsLeaderboard(metric: LeaderboardMetric): Promise<LeaderboardRow[]> {
+  const supabase = createClient();
+  const { data, error } = await supabase.rpc("get_friends_leaderboard", { p_metric: metric });
+
+  if (error && isMissingTableError(error)) return [];
+  if (error) throw handleSupabaseError(error);
+
+  return ((data ?? []) as { user_id: string; name: string; value: number; avatar_url: string | null }[]).map((row) => ({
+    user_id: row.user_id,
+    value: row.value ?? 0,
+    name: row.name || "Người học",
+    avatarUrl: row.avatar_url ?? null,
+  }));
 }
 
 export interface LevelTopUser {

@@ -15,6 +15,7 @@ interface LessonInfo {
 interface NotesOverviewClientProps {
   lessonsById: Record<number, LessonInfo>;
   userId: string;
+  embedded?: boolean;
 }
 
 // `userId` comes from the server component (ghi-chu/page.tsx already
@@ -22,7 +23,7 @@ interface NotesOverviewClientProps {
 // on mount instead of waiting on a client-side getSession() round trip
 // first, which used to make this page load noticeably slower than the rest
 // of the app (two sequential client round trips instead of one).
-export default function NotesOverviewClient({ lessonsById, userId }: NotesOverviewClientProps) {
+export default function NotesOverviewClient({ lessonsById, userId, embedded = false }: NotesOverviewClientProps) {
   const [notes, setNotes] = useState<LessonNote[]>([]);
   const [loading, setLoading] = useState(true);
   const [editingNoteId, setEditingNoteId] = useState<number | null>(null);
@@ -86,35 +87,36 @@ export default function NotesOverviewClient({ lessonsById, userId }: NotesOvervi
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-white dark:bg-stone-950 flex items-center justify-center">
+      <div className={embedded ? "flex items-center justify-center py-16" : "min-h-screen bg-white dark:bg-stone-950 flex items-center justify-center"}>
         <p className="text-stone-500 dark:text-stone-400">Đang tải...</p>
       </div>
     );
   }
 
-  return (
-    <div className="min-h-screen bg-white dark:bg-stone-950">
-      <div className="border-b border-stone-200 dark:border-stone-800 bg-white dark:bg-stone-950">
-        <div className="max-w-2xl mx-auto px-6 py-4">
-          <Link href="/dashboard" className="inline-flex items-center gap-1.5 text-sm font-bold text-stone-600 dark:text-stone-400 hover:text-stone-900 dark:hover:text-stone-100 hover:bg-stone-100 dark:hover:bg-stone-800 rounded-lg px-3 py-2 -ml-3 transition-colors">
-            <ArrowLeft className="w-4 h-4" />
-            Quay lại
-          </Link>
-          <div className="flex items-center justify-between mt-2 gap-3 flex-wrap">
-            <h1 className="text-xl font-bold text-stone-900 dark:text-stone-100">
-              Sổ tay học tập ({notes.length})
-            </h1>
-            <Link
-              href="/flashcard"
-              className="text-xs font-bold text-emerald-600 dark:text-emerald-400 hover:underline inline-flex items-center gap-1"
-            >
-              Thẻ Flashcards 🗂️ →
+  const content = (
+    <>
+      {!embedded && (
+        <div className="border-b border-stone-200 dark:border-stone-800 bg-white dark:bg-stone-950">
+          <div className="max-w-2xl mx-auto px-6 py-4">
+            <Link href="/dashboard" className="inline-flex items-center gap-1.5 text-sm font-bold text-stone-600 dark:text-stone-400 hover:text-stone-900 dark:hover:text-stone-100 hover:bg-stone-100 dark:hover:bg-stone-800 rounded-lg px-3 py-2 -ml-3 transition-colors">
+              <ArrowLeft className="w-4 h-4" />
+              Quay lại
             </Link>
+            <div className="flex items-center justify-between mt-2 gap-3 flex-wrap">
+              <h1 className="text-xl font-bold text-stone-900 dark:text-stone-100">
+                Sổ tay học tập ({notes.length})
+              </h1>
+            </div>
           </div>
         </div>
-      </div>
+      )}
+      {embedded && (
+        <h2 className="text-lg font-bold text-stone-900 dark:text-stone-100 mb-4">
+          Ghi chú ({notes.length})
+        </h2>
+      )}
 
-      <div className="max-w-2xl mx-auto px-6 py-8">
+      <div className={embedded ? "" : "max-w-2xl mx-auto px-6 py-8"}>
         {(
           notes.length === 0 ? (
             <div className="text-center py-16 text-stone-500 dark:text-stone-400">
@@ -192,6 +194,10 @@ export default function NotesOverviewClient({ lessonsById, userId }: NotesOvervi
           )
         )}
       </div>
-    </div>
+    </>
   );
+
+  if (embedded) return content;
+
+  return <div className="min-h-screen bg-white dark:bg-stone-950">{content}</div>;
 }
