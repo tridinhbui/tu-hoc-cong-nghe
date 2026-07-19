@@ -4,7 +4,6 @@ import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { Toaster } from "sonner";
 import { THEME_INIT_SCRIPT } from "@/lib/theme";
-import "katex/dist/katex.min.css";
 import "./globals.css";
 import ThemeLoader from "@/components/ThemeLoader";
 

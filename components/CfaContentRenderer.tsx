@@ -1,6 +1,7 @@
 "use client";
 
 import katex from "katex";
+import "katex/dist/katex.min.css";
 
 // Renders inline math $...$ and bold **...**
 export function renderInlineStyles(text: string): React.ReactNode[] {

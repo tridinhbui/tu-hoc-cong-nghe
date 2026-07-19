@@ -105,7 +105,9 @@ function splitSegments(content: string): Segment[] {
 // at most once per session and only when a math segment actually renders.
 let katexPromise: Promise<typeof import("katex")> | null = null;
 function loadKatex() {
-  if (!katexPromise) katexPromise = import("katex");
+  if (!katexPromise) {
+    katexPromise = Promise.all([import("katex"), import("katex/dist/katex.min.css")]).then(([katex]) => katex);
+  }
   return katexPromise;
 }
 
