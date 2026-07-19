@@ -33,6 +33,8 @@ import { recalculateUserStats } from "@/lib/supabase-user";
 import { getMyCareerGoal, setCareerGoal, clearCareerGoal } from "@/lib/supabase-career-goals";
 import { getCareerLessonProgress, type CareerLessonProgress } from "@/lib/career-lesson-progress";
 import { CheckCircle2, Circle, BookOpen } from "lucide-react";
+import CareerRoadmapMap from "@/components/CareerRoadmapMap";
+import { SUGGESTED_JOB_KEYWORDS } from "@/lib/job-search-links";
 
 // Beautiful custom 3D card tilt and glow component
 function CareerAvatar({ career, size = 110, className = "" }: { career: FinanceCareer; size?: number; className?: string }) {
@@ -575,6 +577,7 @@ export default function JobSearchClient() {
   const [quizStep, setQuizStep] = useState(0);
   const [quizAnswers, setQuizAnswers] = useState<string[]>([]);
   const [quizResult, setQuizResult] = useState<string | null>(null);
+  const [quizRecommendedCareerIds, setQuizRecommendedCareerIds] = useState<string[]>([]);
 
   useEffect(() => {
     const supabase = createClient();
@@ -587,6 +590,14 @@ export default function JobSearchClient() {
         if (localClaim) {
           setQuizCompleted(true);
           setQuizResult(localClaim);
+          const localRecommended = localStorage.getItem(`career_quiz_recommended_${user.id}`);
+          if (localRecommended) {
+            try {
+              setQuizRecommendedCareerIds(JSON.parse(localRecommended) as string[]);
+            } catch {
+              setQuizRecommendedCareerIds([]);
+            }
+          }
         } else {
           // Check from supabase quest completions
           const { data } = await supabase
@@ -670,7 +681,7 @@ export default function JobSearchClient() {
   const handleAnswerSelect = (optionType: string) => {
     const nextAnswers = [...quizAnswers, optionType];
     setQuizAnswers(nextAnswers);
-    
+
     if (quizStep < QUIZ_QUESTIONS.length - 1) {
       setQuizStep(quizStep + 1);
     } else {
@@ -681,11 +692,11 @@ export default function JobSearchClient() {
         "Client-facing": 0,
         Quantitative: 0
       };
-      
+
       nextAnswers.forEach((ans) => {
         counts[ans] = (counts[ans] || 0) + 1;
       });
-      
+
       let topType = "Analytical";
       let maxScore = 0;
       Object.entries(counts).forEach(([type, score]) => {
@@ -694,7 +705,7 @@ export default function JobSearchClient() {
           topType = type;
         }
       });
-      
+
       let typeLabel = "";
       let rolesText = "";
       if (topType === "Analytical") {
@@ -710,15 +721,41 @@ export default function JobSearchClient() {
         typeLabel = "Nguồn vốn & Định lượng (Quantitative)";
         rolesText = "Quản lý Quỹ, Quản lý Rủi ro, Chuyên viên Nguồn vốn.";
       }
-      
+
       const resultString = `${typeLabel} - Gợi ý: ${rolesText}`;
       setQuizResult(resultString);
       setQuizCompleted(true);
       setShowQuiz(false);
-      
+
+      // Rank every career by similarity between the quiz's answer-count
+      // vector and its own `traits` (same 4 dimensions: analytical,
+      // compliance, clientFacing, quantitative) instead of only surfacing a
+      // generic text blurb for the winning bucket - reuses data every
+      // career already has, no new fields needed.
+      const answerVector = {
+        analytical: counts.Analytical,
+        compliance: counts.Compliance,
+        clientFacing: counts["Client-facing"],
+        quantitative: counts.Quantitative,
+      };
+      const ranked = [...FINANCE_CAREERS]
+        .map((career) => ({
+          career,
+          score:
+            answerVector.analytical * career.traits.analytical +
+            answerVector.compliance * career.traits.compliance +
+            answerVector.clientFacing * career.traits.clientFacing +
+            answerVector.quantitative * career.traits.quantitative,
+        }))
+        .sort((a, b) => b.score - a.score)
+        .slice(0, 3)
+        .map((r) => r.career.id);
+      setQuizRecommendedCareerIds(ranked);
+
       if (userId) {
         localStorage.setItem(`career_quiz_completed_${userId}`, resultString);
-        
+        localStorage.setItem(`career_quiz_recommended_${userId}`, JSON.stringify(ranked));
+
         // Claim the 50 XP quest reward
         claimQuestReward(userId, "career_assessment", "once", 50)
           .then((success) => {
@@ -791,8 +828,10 @@ export default function JobSearchClient() {
 
       {/* Main Content Area */}
       <div className="max-w-7xl mx-auto px-6 py-8">
+        <CareerRoadmapMap careers={FINANCE_CAREERS} onSelectCareer={handleSelectCareer} />
+
         <div className="grid grid-cols-1 md:grid-cols-12 gap-8 items-start">
-          
+
           {/* LEFT COLUMN: Careers List & Filters */}
           <div className="md:col-span-5 lg:col-span-4 space-y-4">
             
@@ -846,10 +885,26 @@ export default function JobSearchClient() {
                   <div className="mt-2 p-2.5 rounded-xl bg-stone-50 dark:bg-stone-950/30 border border-stone-200/40 dark:border-stone-850 text-xs">
                     <span className="text-[9px] font-black uppercase text-stone-400 dark:text-stone-550 block mb-0.5">Phù hợp nhất:</span>
                     <span className="font-extrabold text-stone-805 dark:text-stone-200 block leading-tight">{quizResult?.split(" - ")[0]}</span>
-                    <span className="text-[10px] text-stone-500 dark:text-stone-450 block mt-1 leading-snug">
-                      Gợi ý: {quizResult?.split(" - Gợi ý: ")[1] || "Kế toán, kiểm toán, tài chính."}
-                    </span>
                   </div>
+
+                  {quizRecommendedCareerIds.length > 0 && (
+                    <div className="mt-2.5 space-y-1.5">
+                      {quizRecommendedCareerIds
+                        .map((id) => FINANCE_CAREERS.find((c) => c.id === id))
+                        .filter((c): c is FinanceCareer => Boolean(c))
+                        .map((career) => (
+                          <button
+                            key={career.id}
+                            onClick={() => handleSelectCareer(career)}
+                            className="w-full flex items-center gap-2 px-2.5 py-2 rounded-xl border border-stone-200 dark:border-stone-800 bg-white dark:bg-stone-950/20 hover:border-emerald-400 dark:hover:border-emerald-700 hover:bg-emerald-50/50 dark:hover:bg-emerald-950/20 transition-colors text-left cursor-pointer"
+                          >
+                            <span className="text-sm shrink-0">{career.emoji}</span>
+                            <span className="text-[11px] font-bold text-stone-700 dark:text-stone-300 truncate">{career.title}</span>
+                          </button>
+                        ))}
+                    </div>
+                  )}
+
                   <button
                     onClick={startQuiz}
                     className="w-full mt-2.5 py-1.5 rounded-xl border border-stone-200 dark:border-stone-800 text-stone-600 dark:text-stone-400 text-[10px] font-bold hover:bg-stone-50 dark:hover:bg-stone-950 transition-all cursor-pointer text-center"
@@ -1392,6 +1447,24 @@ export default function JobSearchClient() {
                             ))}
                           </div>
                         </div>
+
+                        <div>
+                          <h3 className="text-xs font-extrabold uppercase tracking-widest text-stone-400 dark:text-stone-500 mb-3.5">
+                            Hoặc tìm nhanh vị trí khác
+                          </h3>
+                          <div className="flex flex-wrap gap-2">
+                            {SUGGESTED_JOB_KEYWORDS.map((keyword) => (
+                              <button
+                                key={keyword}
+                                onClick={() => window.open(JOB_SEARCH_SITES[0].buildUrl(keyword), "_blank", "noopener,noreferrer")}
+                                className="px-3 py-1.5 rounded-full border border-stone-200 dark:border-stone-800 text-[11px] font-bold text-stone-600 dark:text-stone-400 hover:border-emerald-400 dark:hover:border-emerald-700 hover:text-emerald-600 dark:hover:text-emerald-400 transition-colors cursor-pointer"
+                              >
+                                {keyword}
+                              </button>
+                            ))}
+                          </div>
+                        </div>
+
                         <p className="text-[10px] text-stone-400 dark:text-stone-500 italic mt-4 text-center">
                           * Lưu ý: Hãy cập nhật đầy đủ các kỹ năng & chứng chỉ trên CV trước khi bắt đầu ứng tuyển.
                         </p>
@@ -1775,6 +1848,21 @@ export default function JobSearchClient() {
                               >
                                 {site.label}
                                 <ExternalLink className="w-3 h-3" />
+                              </button>
+                            ))}
+                          </div>
+                        </div>
+
+                        <div>
+                          <h4 className="text-[10px] font-extrabold uppercase tracking-widest text-stone-400 dark:text-stone-500 mb-2">Hoặc tìm nhanh vị trí khác:</h4>
+                          <div className="flex flex-wrap gap-1.5">
+                            {SUGGESTED_JOB_KEYWORDS.map((keyword) => (
+                              <button
+                                key={keyword}
+                                onClick={() => window.open(JOB_SEARCH_SITES[0].buildUrl(keyword), "_blank", "noopener,noreferrer")}
+                                className="px-2.5 py-1 rounded-full border border-stone-200 dark:border-stone-800 text-[10px] font-bold text-stone-600 dark:text-stone-400 cursor-pointer"
+                              >
+                                {keyword}
                               </button>
                             ))}
                           </div>

@@ -112,6 +112,19 @@ export const TRACK_PERSONAL = {
         { name: "Bảo vệ tài sản và tổng kết hành trình", days: [284, 288] as [number, number] },
       ],
     },
+    {
+      // New stage, config landed ahead of content per the lesson-content
+      // expansion plan - flip to available: true once all 10 lessons in
+      // days [289, 308] are authored (see plan for the curriculum).
+      label: "Chặng 7",
+      name: "Nhà ở, bảo vệ tài sản và các quyết định tài chính lớn",
+      days: [289, 298] as [number, number],
+      available: false,
+      parts: [
+        { name: "Nhà ở & tín dụng", days: [289, 293] as [number, number] },
+        { name: "Bảo vệ tài sản & di sản", days: [294, 298] as [number, number] },
+      ],
+    },
   ] satisfies Stage[],
 };
 
@@ -216,31 +229,51 @@ export const TRACK_PROFESSIONAL = {
       ],
     },
     {
+      // Was `available: true` with zero lessons actually matching days
+      // [1101, 1110] - anyone who reached this stage saw it completely
+      // empty. Re-enable once the remaining 9 slots have real content;
+      // "Disney-Pixar: Horizontal M&A" (id 1021, previously an orphaned
+      // bonus page with no stage) is wired in via extraLessonIds as the
+      // first of the 10.
       label: "Chặng 10",
       name: "Nâng cao: Ứng dụng nghề Phân tích & Ngân hàng đầu tư",
       days: [1101, 1110] as [number, number],
-      available: true,
+      available: false,
+      extraLessonIds: [1021],
       parts: [
         { name: "Chất lượng lợi nhuận, định giá tương đối và tín dụng", days: [1101, 1105] as [number, number] },
-        { name: "M&A, LBO và cơ chế giao dịch", days: [1106, 1110] as [number, number] },
+        { name: "M&A, LBO và cơ chế giao dịch", days: [1106, 1110] as [number, number], extraLessonIds: [1021] },
+      ],
+    },
+    {
+      // New stage, config landed ahead of content per the lesson-content
+      // expansion plan - flip to available: true once all 10 lessons in
+      // days [1201, 1210] are authored (see plan for the curriculum).
+      label: "Chặng 11",
+      name: "Vận hành tài chính doanh nghiệp hiện đại",
+      days: [1201, 1210] as [number, number],
+      available: false,
+      parts: [
+        { name: "FP&A & vận hành vốn", days: [1201, 1205] as [number, number] },
+        { name: "Treasury & quản trị tài chính", days: [1206, 1210] as [number, number] },
       ],
     },
   ] satisfies Stage[],
 };
 
-// TRACK_PROFESSIONAL's 10 stages presented as 2 choosable branches, purely
+// TRACK_PROFESSIONAL's 11 stages presented as 2 choosable branches, purely
 // a presentation-layer split (no lesson ids/tracks change - a lesson's
 // track membership still comes from its stage's day range, same as
-// before). Chặng 1-5 (accounting/valuation fundamentals) reads as
-// corporate-finance-flavored; Chặng 6-10 (equities/bonds/portfolios/
-// derivatives) reads as investment-flavored.
+// before). Chặng 1-5 (accounting/valuation fundamentals) + 11 (FP&A/
+// treasury/cost accounting) read as corporate-finance-flavored; Chặng 6-10
+// (equities/bonds/portfolios/derivatives) read as investment-flavored.
 export const PROFESSIONAL_BRANCHES = [
   {
     id: "corporate",
     label: "Tài chính doanh nghiệp",
     subtitle: "Kế toán, báo cáo tài chính, định giá & tài chính doanh nghiệp",
     emoji: "🏢",
-    stageLabels: ["Chặng 1", "Chặng 2", "Chặng 3", "Chặng 4", "Chặng 5"],
+    stageLabels: ["Chặng 1", "Chặng 2", "Chặng 3", "Chặng 4", "Chặng 5", "Chặng 11"],
   },
   {
     id: "investment",

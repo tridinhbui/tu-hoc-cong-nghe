@@ -2,6 +2,8 @@
 
 import { useMemo, useState, useEffect, useRef } from "react";
 import { RotateCcw, Timer } from "lucide-react";
+import { motion } from "framer-motion";
+import { toast } from "sonner";
 import { getBucketConfig, getDifficultyTimeLimitSeconds, recordGameSession, type GameType, type GameDifficulty } from "@/lib/games";
 
 interface BucketGameProps {
@@ -41,6 +43,13 @@ export default function BucketGame({ userId, gameType, difficulty = "trung-binh"
   const [submitting, setSubmitting] = useState(false);
   const [finished, setFinished] = useState(false);
   const [timeLeft, setTimeLeft] = useState(timeLimit ?? 0);
+  
+  // Advanced features states
+  const [combo, setCombo] = useState(0);
+  const [freezeActive, setFreezeActive] = useState(false);
+  const [freezeUsed, setFreezeUsed] = useState(false);
+  const [helper5050Used, setHelper5050Used] = useState(false);
+
   const itemsRef = useRef(items);
   itemsRef.current = items;
 
@@ -55,6 +64,10 @@ export default function BucketGame({ userId, gameType, difficulty = "trung-binh"
     setSubmitting(false);
     setFinished(false);
     setTimeLeft(timeLimit ?? 0);
+    setCombo(0);
+    setFreezeActive(false);
+    setFreezeUsed(false);
+    setHelper5050Used(false);
   }
 
   async function handleFinish(finalItems: RoundItem[]) {
@@ -74,6 +87,7 @@ export default function BucketGame({ userId, gameType, difficulty = "trung-binh"
   // are placed.
   useEffect(() => {
     if (!timeLimit || finished) return;
+    if (freezeActive) return; // Freeze time power-up
     if (timeLeft <= 0) {
       void handleFinish(itemsRef.current);
       return;
@@ -81,13 +95,50 @@ export default function BucketGame({ userId, gameType, difficulty = "trung-binh"
     const t = window.setTimeout(() => setTimeLeft((s) => s - 1), 1000);
     return () => window.clearTimeout(t);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [timeLeft, timeLimit, finished]);
+  }, [timeLeft, timeLimit, finished, freezeActive]);
+
+  const activateFreezeTime = () => {
+    if (freezeUsed || finished) return;
+    setFreezeUsed(true);
+    setFreezeActive(true);
+    toast.success("❄️ Đã đóng băng thời gian trong 5 giây!");
+    window.setTimeout(() => {
+      setFreezeActive(false);
+      toast.info("⏱️ Đồng hồ hoạt động trở lại!");
+    }, 5000);
+  };
+
+  const activate5050Helper = () => {
+    if (helper5050Used || finished) return;
+    setHelper5050Used(true);
+    
+    const unplaced = items.filter(it => !it.placed);
+    if (unplaced.length === 0) return;
+    
+    // Auto-place up to 2 items
+    const itemsToPlace = [...unplaced].sort(() => Math.random() - 0.5).slice(0, Math.min(unplaced.length, 2));
+    const placedIds = itemsToPlace.map(it => it.id);
+    
+    const nextItems = items.map(it => 
+      placedIds.includes(it.id) ? { ...it, placed: true, scored: true } : it
+    );
+    
+    setItems(nextItems);
+    toast.success(`⚡ 50/50: Đã tự động phân loại hộ ${itemsToPlace.length} khái niệm!`);
+    
+    if (nextItems.every((it) => it.placed)) {
+      void handleFinish(nextItems);
+    }
+  };
 
   function attemptPlace(itemId: number, bucket: string) {
     const item = items.find((it) => it.id === itemId);
     if (!item || item.placed) return;
 
     if (item.bucket === bucket) {
+      const nextCombo = combo + 1;
+      setCombo(nextCombo);
+      
       const nextItems = items.map((it) =>
         it.id === itemId ? { ...it, placed: true, scored: it.scored === null ? true : it.scored } : it
       );
@@ -95,6 +146,7 @@ export default function BucketGame({ userId, gameType, difficulty = "trung-binh"
       setSelectedId(null);
       if (nextItems.every((it) => it.placed)) void handleFinish(nextItems);
     } else {
+      setCombo(0); // Reset combo
       setItems((prev) => prev.map((it) => (it.id === itemId && it.scored === null ? { ...it, scored: false } : it)));
       setSelectedId(null);
       setWrongFlashId(itemId);
@@ -129,26 +181,109 @@ export default function BucketGame({ userId, gameType, difficulty = "trung-binh"
         .bg-shake { animation: bg-shake 0.4s ease-in-out; }
       `}</style>
 
-      <div className="flex items-center justify-between gap-3 mb-5 relative z-10">
+      <div className="flex flex-wrap items-center justify-between gap-3 mb-5 relative z-10 pb-4 border-b border-stone-200/50 dark:border-stone-800/50">
         <div className="min-w-0">
-          <p className="text-xs sm:text-sm font-extrabold text-stone-850 dark:text-stone-250">Đã xếp đúng {placedCount}/{total}</p>
+          <p className="text-xs sm:text-sm font-black text-stone-850 dark:text-stone-200 flex items-center gap-2">
+            <span>Đã xếp đúng {placedCount}/{total}</span>
+            {combo >= 2 && (
+              <motion.span 
+                initial={{ scale: 0.8 }} 
+                animate={{ scale: [1, 1.15, 1] }} 
+                className="inline-block text-[10px] font-extrabold text-amber-600 dark:text-amber-400 bg-amber-50 dark:bg-amber-950/40 px-2 py-0.5 rounded-full shadow-sm animate-pulse border border-amber-200/40"
+              >
+                🔥 Combo x{combo}
+              </motion.span>
+            )}
+          </p>
           <div className="w-36 sm:w-44 lg:w-60 h-2 bg-stone-100 dark:bg-stone-800/80 rounded-full overflow-hidden mt-1.5 shadow-inner">
             <div className="h-full bg-gradient-to-r from-emerald-500 to-teal-500 transition-all duration-300" style={{ width: `${total > 0 ? (placedCount / total) * 100 : 0}%` }} />
           </div>
         </div>
-        <div className="flex items-center gap-2 flex-shrink-0">
+        
+        <div className="flex items-center gap-3">
+          {/* Power-up: Freeze */}
           {timeLimit && !finished && (
-            <span className={`inline-flex items-center gap-1 text-xs font-extrabold px-2.5 py-2 rounded-xl ${timeLeft <= 10 ? "text-rose-600 bg-rose-50 dark:bg-rose-950/40 animate-pulse" : "text-stone-600 dark:text-stone-300 bg-stone-100 dark:bg-stone-800"}`}>
-              <Timer className="w-3.5 h-3.5" />
-              {timeLeft}s
-            </span>
+            <button
+              onClick={activateFreezeTime}
+              disabled={freezeUsed}
+              className={`w-9 h-9 rounded-xl border flex items-center justify-center transition-all cursor-pointer ${
+                freezeActive
+                  ? "bg-sky-500 border-sky-400 text-white animate-pulse"
+                  : freezeUsed
+                    ? "opacity-40 bg-stone-100 dark:bg-stone-800 border-stone-200 dark:border-stone-800 text-stone-400 cursor-not-allowed"
+                    : "bg-sky-50 dark:bg-sky-950/30 border-sky-200 dark:border-sky-900/40 text-sky-650 hover:bg-sky-100/50"
+              }`}
+              title="Đóng băng thời gian (5 giây)"
+            >
+              ❄️
+            </button>
           )}
+
+          {/* Power-up: 50/50 */}
+          {!finished && (
+            <button
+              onClick={activate5050Helper}
+              disabled={helper5050Used}
+              className={`w-9 h-9 rounded-xl border flex items-center justify-center transition-all cursor-pointer ${
+                helper5050Used
+                  ? "opacity-40 bg-stone-100 dark:bg-stone-800 border-stone-200 dark:border-stone-800 text-stone-400 cursor-not-allowed"
+                  : "bg-indigo-50 dark:bg-indigo-950/30 border-indigo-200 dark:border-indigo-900/40 text-indigo-650 hover:bg-indigo-100/50"
+              }`}
+              title="Quyền trợ giúp 50/50 (Tự xếp 2 mục)"
+            >
+              ⚡
+            </button>
+          )}
+
+          {/* SVG countdown timer */}
+          {timeLimit && !finished && (
+            <div className="flex items-center gap-1.5 bg-stone-50 dark:bg-stone-900/40 p-1.5 rounded-xl border border-stone-200/50 dark:border-stone-800/50">
+              <div className="relative w-8 h-8 flex items-center justify-center shrink-0">
+                <svg className="w-8 h-8 transform -rotate-90 overflow-visible" viewBox="0 0 36 36">
+                  <circle
+                    className="text-stone-200 dark:text-stone-800"
+                    strokeWidth="3.5"
+                    stroke="currentColor"
+                    fill="none"
+                    cx="18"
+                    cy="18"
+                    r="16"
+                  />
+                  <motion.circle
+                    className={
+                      freezeActive
+                        ? "text-sky-500"
+                        : timeLeft <= 5
+                          ? "text-rose-500"
+                          : timeLeft <= 10
+                            ? "text-amber-500"
+                            : "text-emerald-500"
+                    }
+                    strokeWidth="3.5"
+                    strokeDasharray="100"
+                    animate={{ strokeDashoffset: 100 - (timeLeft / timeLimit) * 100 }}
+                    transition={{ duration: 0.5 }}
+                    strokeLinecap="round"
+                    stroke="currentColor"
+                    fill="none"
+                    cx="18"
+                    cy="18"
+                    r="16"
+                  />
+                </svg>
+                <span className="absolute text-[9px] font-black text-stone-700 dark:text-stone-200">
+                  {freezeActive ? "❄️" : `${timeLeft}s`}
+                </span>
+              </div>
+            </div>
+          )}
+
           <button
             onClick={resetRound}
-            className="inline-flex items-center gap-1.5 text-xs font-bold text-stone-500 dark:text-stone-400 hover:text-stone-900 dark:hover:text-stone-105 border border-stone-200 dark:border-stone-800 rounded-xl px-3 py-2 hover:bg-stone-50 dark:hover:bg-stone-800 transition-colors"
+            className="w-9 h-9 rounded-xl border border-stone-200 dark:border-stone-800 flex items-center justify-center hover:bg-stone-50 dark:hover:bg-stone-800 text-stone-500 dark:text-stone-400 transition-colors cursor-pointer"
+            title="Chơi lại"
           >
-            <RotateCcw className="w-3.5 h-3.5" />
-            <span>Chơi lại</span>
+            <RotateCcw className="w-4 h-4" />
           </button>
         </div>
       </div>

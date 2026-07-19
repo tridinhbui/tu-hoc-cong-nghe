@@ -58,4 +58,8 @@ export const SUGGESTED_JOB_KEYWORDS = [
   "Chuyên viên đầu tư",
   "Kế toán trưởng",
   "Chuyên viên phân tích rủi ro",
+  "Hoạch định tài chính",
+  "Quantitative Analyst",
+  "Định giá tài sản",
+  "Quan hệ cổ đông",
 ];

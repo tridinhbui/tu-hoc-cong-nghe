@@ -74,9 +74,34 @@ export const LEADERBOARD_BADGE_DEFINITIONS: Record<string, BadgeDefinition> = {
   },
 };
 
+// Career-map milestones - unlike level/leaderboard badges these are keyed
+// off real state in user_career_goals / user_quest_completions / user_progress
+// (resolved by lib/supabase-badges.ts's getEligibleUserBadges), not level.
+export const CAREER_BADGE_DEFINITIONS: Record<string, BadgeDefinition> = {
+  career_goal_set: {
+    key: "career_goal_set",
+    name: "Đã đặt Mục tiêu Sự nghiệp",
+    description: "Đặt một vị trí trong Bản đồ Việc làm làm mục tiêu sự nghiệp",
+    icon: "🎯",
+  },
+  career_quiz_done: {
+    key: "career_quiz_done",
+    name: "Đã hoàn thành Trắc nghiệm Hướng nghiệp",
+    description: "Hoàn thành bài trắc nghiệm hướng nghiệp 5 câu hỏi",
+    icon: "🧭",
+  },
+  career_path_complete: {
+    key: "career_path_complete",
+    name: "Hoàn thành Lộ trình Sự nghiệp",
+    description: "Học xong toàn bộ bài học liên quan tới mục tiêu sự nghiệp đang theo dõi",
+    icon: "🏁",
+  },
+};
+
 export const BADGE_DEFINITIONS = {
   ...LEVEL_BADGE_DEFINITIONS,
   ...LEADERBOARD_BADGE_DEFINITIONS,
+  ...CAREER_BADGE_DEFINITIONS,
 };
 
 export function getLevelBadgeKeys(currentLevel: number): string[] {
