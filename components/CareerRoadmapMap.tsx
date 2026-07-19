@@ -154,7 +154,7 @@ export default function CareerRoadmapMap({
                   somewhere to go, touch-none so mobile drag doesn't also
                   scroll the page underneath it. */}
               <div
-                className={`relative h-[460px] sm:h-[520px] overflow-hidden bg-stone-50/50 dark:bg-stone-950/30 touch-none ${
+                className={`relative h-[340px] sm:h-[380px] overflow-hidden bg-stone-50/50 dark:bg-stone-950/30 touch-none ${
                   isDragging ? "cursor-grabbing" : "cursor-grab"
                 }`}
                 onPointerDown={handlePointerDown}
