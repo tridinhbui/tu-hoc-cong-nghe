@@ -1,19 +1,25 @@
 import type { Metadata } from "next";
-import { notFound, redirect } from "next/navigation";
-import { getLessonBySlug, getNextLesson } from "@/lib/lessons-loader";
-import { isLessonLockedForUser } from "@/lib/lesson-locking";
-import { createServerSupabaseClient } from "@/lib/supabase-server";
+import { notFound } from "next/navigation";
+import { getLessonBySlug, getNextLesson, getLessonsMeta } from "@/lib/lessons-loader";
 import LessonPageClient from "@/components/LessonPageClient";
 
-// No route-level `revalidate`/ISR here on purpose: this page reads the
-// session via createServerSupabaseClient() (cookies()) and per-user lesson
-// lock state, then can redirect to /dashboard?locked=... - time-based ISR
-// caches one rendered response and reuses it for every visitor during the
-// window, so an early request from a locked-out or logged-out visitor could
-// get served (or serve its redirect) to a completely different, unlocked
-// user for up to the revalidate window. Lesson content itself is already
-// cheap to load (pre-split per-lesson JSON, not the full dataset), so
-// there's no real performance case for risking that.
+// Statically generated at build time (see generateStaticParams below), not
+// force-dynamic: this page used to also check per-user lesson lock state
+// via createServerSupabaseClient()/isLessonLockedForUser() and could
+// redirect locked-out visitors, which required dynamic rendering (a cached
+// static response could otherwise serve one visitor's redirect to another).
+// lib/lesson-locking.ts's isLessonLockedForUser() is now a permanent no-op
+// (site-wide lesson locking is disabled - see that file's comment), so that
+// check was dead code doing a real Supabase auth call on every single
+// request for no behavioral effect. Removing it lets this - the most-
+// visited route in the app, and the one every lesson-share/link-preview bot
+// hits - be served from the CDN instead of invoking a Vercel Function per
+// request. If lesson locking is ever re-enabled, this page needs to go back
+// to dynamic rendering with the lock check restored.
+export async function generateStaticParams() {
+  const lessons = await getLessonsMeta();
+  return lessons.map((l) => ({ slug: l.slug }));
+}
 
 // Without this, every lesson page fell back to the root layout's generic
 // site-wide title/description - so sharing a just-completed lesson to
@@ -41,20 +47,6 @@ export default async function LessonPage({ params }: { params: Promise<{ slug: s
   const { slug } = await params;
   const lesson = await getLessonBySlug(slug);
   if (!lesson) notFound();
-
-  // The dashboard only used lock state to decide whether to show a lock
-  // icon - this page rendered the full lesson to anyone who requested the
-  // URL directly, bypassing that entirely. Check here too, since this is
-  // the component that actually serves the content.
-  const supabase = await createServerSupabaseClient();
-  const {
-    data: { user },
-  } = await supabase.auth.getUser();
-
-  const locked = await isLessonLockedForUser(lesson.id, user?.id ?? null);
-  if (locked) {
-    redirect(`/dashboard?locked=${encodeURIComponent(lesson.slug)}`);
-  }
 
   const nextLesson = await getNextLesson(lesson.id);
 
