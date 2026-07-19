@@ -15,6 +15,7 @@ import { claimPendingReferral } from "@/lib/referrals";
 import { claimDailyLoginChest } from "@/lib/chests";
 import { useLevelUpWatcher } from "@/lib/use-level-up-watcher";
 import { usePresenceHeartbeat } from "@/lib/use-presence-heartbeat";
+import { trackFeatureClick } from "@/lib/feature-events";
 import LevelUpModal from "@/components/LevelUpModal";
 
 interface NavProfile {
@@ -158,6 +159,7 @@ export default function AppNavbar() {
               <Link
                 key={href}
                 href={href}
+                onClick={() => trackFeatureClick("nav_click", { label: href })}
                 className={`group relative flex items-center gap-1.5 text-xs font-bold px-3 py-2 rounded-lg transition-all duration-200 ${
                   active
                     ? isGame
@@ -314,7 +316,10 @@ export default function AppNavbar() {
               <Link
                 key={href}
                 href={href}
-                onClick={() => setMobileMenuOpen(false)}
+                onClick={() => {
+                  setMobileMenuOpen(false);
+                  trackFeatureClick("nav_click", { label: href });
+                }}
                 className={`group relative flex items-center gap-2 text-sm font-bold px-3 py-2.5 rounded-lg transition-all duration-200 ${
                   active
                     ? isGame

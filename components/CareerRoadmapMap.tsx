@@ -2,6 +2,7 @@
 
 import { useRef, useState, type PointerEvent as ReactPointerEvent, type WheelEvent as ReactWheelEvent } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { trackFeatureClick } from "@/lib/feature-events";
 import type { FinanceCareer } from "@/lib/finance-careers";
 
 // "Bắt đầu từ Zero" overview: a 3-level tree (root -> category -> career)
@@ -206,7 +207,10 @@ export default function CareerRoadmapMap({
                           {items.map((career) => (
                             <button
                               key={career.id}
-                              onClick={() => onSelectCareer(career)}
+                              onClick={() => {
+                                onSelectCareer(career);
+                                trackFeatureClick("career_roadmap_node_click", { label: career.id });
+                              }}
                               className="inline-flex items-center gap-1.5 rounded-full border border-stone-200 dark:border-stone-700 bg-stone-50 dark:bg-stone-950/40 px-2.5 py-1.5 text-[11px] font-bold text-stone-700 dark:text-stone-300 hover:border-stone-900 dark:hover:border-stone-100 hover:bg-white dark:hover:bg-stone-900 transition-colors cursor-pointer"
                             >
                               <span className="w-1.5 h-1.5 rounded-full shrink-0" style={{ backgroundColor: meta.color }} />

@@ -4,6 +4,7 @@ import { useEffect, useRef, useState, type ReactNode } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { ChevronLeft, ChevronRight } from "lucide-react";
+import { trackFeatureClick } from "@/lib/feature-events";
 import {
   getLeaderboardByMetric,
   getMyLeaderboardRank,
@@ -195,7 +196,10 @@ export default function LeaderboardSection({ userId }: LeaderboardSectionProps) 
           {TABS.map((t) => (
             <button
               key={t.id}
-              onClick={() => setActiveTab(t.id)}
+              onClick={() => {
+                setActiveTab(t.id);
+                trackFeatureClick("leaderboard_tab_click", { label: t.id });
+              }}
               className={`shrink-0 px-3.5 py-1.5 rounded-full text-xs font-black transition-all cursor-pointer select-none ${
                 activeTab === t.id
                   ? "bg-emerald-600 dark:bg-emerald-500 text-white shadow-sm"

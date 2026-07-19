@@ -5,6 +5,7 @@ import { toast } from "sonner";
 import { Gamepad2, Trophy, History as HistoryIcon, ArrowLeft, Crown } from "lucide-react";
 import Link from "next/link";
 import { useAuthGate } from "@/lib/use-auth-gate";
+import { trackFeatureClick } from "@/lib/feature-events";
 import { GAMES, GAME_DIFFICULTIES, getGameMeta, type GameType, type GameDifficulty } from "@/lib/games";
 import { recalculateUserStats } from "@/lib/supabase-user";
 import { getIllustrativeCount } from "@/lib/illustrative-stats";
@@ -154,6 +155,7 @@ export default function GameHubClient() {
                       setActiveGame(g.id);
                       setDifficulty("trung-binh");
                       setInnerTab("play");
+                      trackFeatureClick("game_open", { label: g.id });
                     }}
                     className={`group text-left rounded-2xl border border-stone-200 dark:border-stone-850 bg-white dark:bg-stone-900 p-5 transition-all duration-300 hover:-translate-y-1 relative overflow-hidden ${a.ring} ${a.shadow}`}
                   >

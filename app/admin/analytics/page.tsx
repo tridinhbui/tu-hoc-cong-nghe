@@ -1,5 +1,7 @@
 import { Users, BookOpen, TrendingUp, Clock, Award, BookMarked, Sparkles } from "lucide-react";
 import { getSystemAnalytics } from "@/lib/admin/analytics";
+import { getFeatureEventStats } from "@/lib/admin/feature-events";
+import FeatureEventsPanel from "@/components/admin/FeatureEventsPanel";
 import Link from "next/link";
 
 export const dynamic = "force-dynamic";
@@ -13,6 +15,8 @@ export default async function AdminAnalyticsPage() {
   } catch (e) {
     error = e instanceof Error ? e.message : "Failed to load analytics";
   }
+
+  const featureEventStats = await getFeatureEventStats(30).catch(() => []);
 
   const totalUsers = analytics?.totalUsers || 0;
   const activeThisWeek = analytics?.activeUsersThisWeek || 0;
@@ -270,6 +274,8 @@ export default async function AdminAnalyticsPage() {
           </div>
         </div>
       </div>
+
+      <FeatureEventsPanel stats={featureEventStats} />
     </div>
   );
 }
