@@ -6,6 +6,7 @@ import Image from "next/image";
 import { ArrowRight, BookOpen } from "lucide-react";
 import { getDashboardGreetingAction } from "@/app/(app)/dashboard/actions";
 import { createClient } from "@/lib/supabase";
+import { trackFeatureClick } from "@/lib/feature-events";
 import { getLessonDisplayLabel, getLessonShortTitle } from "@/lib/lesson-labels";
 import { getQuizAnswers } from "@/lib/progress";
 import RecallCard from "@/components/RecallCard";
@@ -141,6 +142,7 @@ export default function ResumeLearningButton({ activeTrack }: ResumeLearningButt
     <div className="flex flex-col h-full justify-between">
       <Link
         href={`/bai-hoc/${nextLesson.slug}`}
+        onClick={() => trackFeatureClick("resume_learning_click", { label: nextLesson.slug })}
         className="group block h-full bg-white dark:bg-stone-900 border border-stone-200 dark:border-stone-850 hover:border-emerald-400 dark:hover:border-emerald-600 rounded-2xl p-4 sm:p-5 transition-all hover:shadow-[0_16px_36px_-16px_rgba(16,185,129,0.2)] flex flex-col justify-between"
       >
         <div className="flex items-start gap-3.5">

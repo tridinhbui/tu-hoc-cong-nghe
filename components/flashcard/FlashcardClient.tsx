@@ -15,6 +15,7 @@ import {
   type Flashcard,
 } from "@/lib/supabase-flashcards";
 import { getUnresolvedMistakeRows } from "@/lib/quiz-mistakes";
+import { trackFeatureClick } from "@/lib/feature-events";
 import { getMistakeFlashcardCandidates } from "@/app/actions/flashcard-actions";
 import FlashcardAlbumsGallery from "@/components/flashcard/FlashcardAlbumsGallery";
 
@@ -120,7 +121,8 @@ export default function FlashcardClient({ userId: propUserId, embedded = false }
 
   const handleSM2Action = async (quality: number) => {
     if (!currentCard) return;
-    
+    trackFeatureClick("flashcard_review", { label: String(quality) });
+
     const { repetitions, easeFactor, interval, nextReviewAt } = calculateSM2(
       quality,
       currentCard.repetitions,

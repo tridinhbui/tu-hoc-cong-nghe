@@ -3,9 +3,19 @@ import type { FeatureEventStat } from "@/lib/admin/feature-events";
 
 const EVENT_NAME_LABELS: Record<string, string> = {
   game_open: "Mở game",
+  game_hub_tab_click: "Click tab Games/BXH tổng hợp",
+  game_inner_tab_click: "Click tab Chơi/BXH/Lịch sử trong game",
   nav_click: "Click điều hướng",
   career_roadmap_node_click: "Click node bản đồ sự nghiệp",
+  career_card_click: "Click thẻ nghề nghiệp",
+  career_quiz_recommendation_click: "Click gợi ý từ quiz hướng nghiệp",
   leaderboard_tab_click: "Click tab bảng xếp hạng",
+  study_room_random_match: "Ghép nhóm ngẫu nhiên",
+  study_room_manual_join: "Tham gia phòng thủ công",
+  document_open: "Mở tài liệu",
+  document_download: "Tải tài liệu",
+  flashcard_review: "Đánh giá thẻ ghi nhớ",
+  resume_learning_click: "Click tiếp tục học",
 };
 
 function eventLabel(eventName: string): string {

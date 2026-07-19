@@ -129,7 +129,10 @@ export default function GameHubClient() {
             ].map(({ id, label, icon: Icon }) => (
               <button
                 key={id}
-                onClick={() => setHubTab(id)}
+                onClick={() => {
+                  setHubTab(id);
+                  trackFeatureClick("game_hub_tab_click", { label: id });
+                }}
                 className={`flex-1 flex items-center justify-center gap-1.5 text-xs font-bold px-2 sm:px-3 py-2 sm:py-2.5 rounded-lg transition-all ${
                   hubTab === id
                     ? "bg-white dark:bg-stone-800 text-stone-900 dark:text-stone-100 shadow-sm"
@@ -250,7 +253,10 @@ export default function GameHubClient() {
           ].map(({ id, label, short, icon: Icon }) => (
             <button
               key={id}
-              onClick={() => setInnerTab(id)}
+              onClick={() => {
+                setInnerTab(id);
+                trackFeatureClick("game_inner_tab_click", { label: id });
+              }}
               className={`flex-1 flex items-center justify-center gap-1 sm:gap-1.5 text-[11px] sm:text-xs font-bold px-2 sm:px-3 py-2 sm:py-2.5 rounded-lg transition-all ${
                 innerTab === id
                   ? "bg-white dark:bg-stone-800 text-stone-900 dark:text-stone-100 shadow-sm"

@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import { FileText, Download, FileSpreadsheet, FileImage, Archive, Plus } from "lucide-react";
 import { createClient } from "@/lib/supabase";
+import { trackFeatureClick } from "@/lib/feature-events";
 import { DOCUMENT_CATEGORIES } from "@/lib/document-categories";
 import EmptyState from "@/components/admin/EmptyState";
 import Modal from "@/components/admin/Modal";
@@ -52,7 +53,7 @@ function TypingBanner() {
   const [typingSpeed, setTypingSpeed] = useState(100);
 
   useEffect(() => {
-    let timer: NodeJS.Timeout;
+    let timer: ReturnType<typeof setTimeout>;
     const fullWord = words[currentWordIndex];
 
     if (isDeleting) {
@@ -102,6 +103,7 @@ export default function DocumentsList({ documents, currentUserId }: { documents:
   const filtered = filter === "all" ? documents : documents.filter((d) => d.category === filter);
 
   async function handleDownload(doc: PublicDocument) {
+    trackFeatureClick("document_download", { label: doc.file_name });
     // Best-effort counter - a logged-out visitor or a missing RPC (migration
     // not run yet) should never block the actual download.
     await supabase.rpc("increment_document_download", { doc_id: doc.id }).then(
@@ -152,7 +154,10 @@ export default function DocumentsList({ documents, currentUserId }: { documents:
               <button
                 key={doc.id}
                 type="button"
-                onClick={() => setOpenDoc(doc)}
+                onClick={() => {
+                  setOpenDoc(doc);
+                  trackFeatureClick("document_open", { label: doc.file_name });
+                }}
                 className="group text-left rounded-2xl border border-stone-200 dark:border-stone-800 hover:border-stone-400 dark:hover:border-stone-600 hover:shadow-lg dark:hover:shadow-stone-900/50 transition-all overflow-hidden bg-white dark:bg-stone-900"
               >
                 {/* Cover image or icon */}

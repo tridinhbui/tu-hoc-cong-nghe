@@ -28,6 +28,7 @@ import { FINANCE_CAREERS, type FinanceCareer } from "@/lib/finance-careers";
 import { CFA_LEVEL_1_SUBJECTS } from "@/lib/cfa-track";
 import { JOB_SEARCH_SITES } from "@/lib/job-search-links";
 import { createClient } from "@/lib/supabase";
+import { trackFeatureClick } from "@/lib/feature-events";
 import { claimQuestReward } from "@/lib/supabase-quests";
 import { recalculateUserStats } from "@/lib/supabase-user";
 import { getMyCareerGoal, setCareerGoal, clearCareerGoal } from "@/lib/supabase-career-goals";
@@ -895,7 +896,10 @@ export default function JobSearchClient() {
                         .map((career) => (
                           <button
                             key={career.id}
-                            onClick={() => handleSelectCareer(career)}
+                            onClick={() => {
+                              handleSelectCareer(career);
+                              trackFeatureClick("career_quiz_recommendation_click", { label: career.id });
+                            }}
                             className="w-full flex items-center gap-2 px-2.5 py-2 rounded-xl border border-stone-200 dark:border-stone-800 bg-white dark:bg-stone-950/20 hover:border-emerald-400 dark:hover:border-emerald-700 hover:bg-emerald-50/50 dark:hover:bg-emerald-950/20 transition-colors text-left cursor-pointer"
                           >
                             <span className="text-sm shrink-0">{career.emoji}</span>
@@ -969,7 +973,10 @@ export default function JobSearchClient() {
                   return (
                     <button
                       key={career.id}
-                      onClick={() => handleSelectCareer(career)}
+                      onClick={() => {
+                        handleSelectCareer(career);
+                        trackFeatureClick("career_card_click", { label: career.id });
+                      }}
                       className={`w-full group text-left flex items-center gap-4 p-4 rounded-2xl border-2 transition-all relative overflow-hidden select-none ${
                         isSelected
                           ? "bg-white dark:bg-stone-900 border-emerald-500 dark:border-emerald-400 shadow-md translate-x-1"

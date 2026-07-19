@@ -18,6 +18,9 @@ import {
   getRoomMessages,
   sendRoomMessage,
   subscribeToRoomMessages,
+} from "@/lib/supabase-study-rooms";
+import { trackFeatureClick } from "@/lib/feature-events";
+import {
   type StudyRoomMember,
   type StudyRoomMessage,
   type StudyRoomSummary,
@@ -184,6 +187,7 @@ export default function StudyGroupsClient() {
   async function handleRandomMatch(topic: StudyRoomTopic) {
     if (busy) return;
     setBusy(true);
+    trackFeatureClick("study_room_random_match", { label: topic });
     try {
       await joinOrCreateStudyRoom(topic);
       toast.success("Đã ghép bạn vào một phòng học ngẫu nhiên!");
@@ -198,6 +202,7 @@ export default function StudyGroupsClient() {
   async function handleJoinRoom(roomId: number) {
     if (busy) return;
     setBusy(true);
+    trackFeatureClick("study_room_manual_join", { label: String(roomId) });
     try {
       await joinStudyRoom(roomId);
       toast.success("Đã tham gia phòng học!");
