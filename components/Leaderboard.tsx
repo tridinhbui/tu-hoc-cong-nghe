@@ -103,6 +103,11 @@ const LEADERBOARD_TITLES: Record<LeaderboardMetric | "game", Record<number, stri
     2: "Lửa không tắt",
     3: "Kiên trì vàng",
   },
+  badges: {
+    1: "Bộ sưu tập huy hiệu",
+    2: "Thợ săn huy hiệu",
+    3: "Người mở khóa",
+  },
   game: {
     1: "Huyền thoại Mini Game",
     2: "Đại kiện tướng Tài chính",
@@ -115,6 +120,7 @@ const METRIC_TITLE_ICONS: Record<LeaderboardMetric | "game", typeof Trophy | typ
   lessons: BookOpen,
   avg_score: Target,
   streak: Flame,
+  badges: Trophy,
   game: Gamepad2,
 };
 
