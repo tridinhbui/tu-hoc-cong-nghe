@@ -28,6 +28,14 @@ export interface StudyRoomMember {
   weekly_lessons: number;
 }
 
+export interface StudyRoomMessage {
+  id: number;
+  room_id: number;
+  sender_id: string;
+  content: string;
+  created_at: string;
+}
+
 function isMissingTableError(error: { code?: string } | null) {
   return error?.code === "PGRST205" || error?.code === "42P01" || error?.code === "PGRST202" || error?.code === "42883";
 }
@@ -84,4 +92,57 @@ export async function getStudyRoomMembers(roomId: number): Promise<StudyRoomMemb
     throw handleSupabaseError(error);
   }
   return (data ?? []) as StudyRoomMember[];
+}
+
+// Group chat - same shape as lib/supabase-social.ts's direct-message
+// functions, keyed by room_id instead of friendship_id. RLS restricts
+// read/insert to current (not-left) members of the room, see
+// supabase/migrations/20260719_study_room_weekly_match_and_chat.sql.
+export async function getRoomMessages(roomId: number): Promise<StudyRoomMessage[]> {
+  const supabase = createClient();
+  const { data, error } = await supabase
+    .from("study_room_messages")
+    .select("*")
+    .eq("room_id", roomId)
+    .order("created_at", { ascending: true });
+
+  if (error) {
+    if (isMissingTableError(error)) return [];
+    throw handleSupabaseError(error);
+  }
+  return (data ?? []) as StudyRoomMessage[];
+}
+
+export async function sendRoomMessage(roomId: number, senderId: string, content: string): Promise<StudyRoomMessage> {
+  const supabase = createClient();
+  const { data, error } = await supabase
+    .from("study_room_messages")
+    .insert({ room_id: roomId, sender_id: senderId, content: content.trim() })
+    .select()
+    .single();
+
+  if (error) throw handleSupabaseError(error);
+  return data as StudyRoomMessage;
+}
+
+export function subscribeToRoomMessages(roomId: number, onMessage: (message: StudyRoomMessage) => void) {
+  const supabase = createClient();
+
+  const channel = supabase
+    .channel(`study_room_messages:${roomId}`)
+    .on(
+      "postgres_changes",
+      {
+        event: "INSERT",
+        schema: "public",
+        table: "study_room_messages",
+        filter: `room_id=eq.${roomId}`,
+      },
+      (payload) => onMessage(payload.new as StudyRoomMessage)
+    )
+    .subscribe();
+
+  return () => {
+    supabase.removeChannel(channel);
+  };
 }

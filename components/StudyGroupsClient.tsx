@@ -1,11 +1,11 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { toast } from "sonner";
-import { ArrowLeft, Shuffle, Users, LogOut } from "lucide-react";
+import { ArrowLeft, Shuffle, Users, LogOut, Send } from "lucide-react";
 import { createClient } from "@/lib/supabase";
 import {
   STUDY_ROOM_TOPICS,
@@ -15,7 +15,11 @@ import {
   joinOrCreateStudyRoom,
   joinStudyRoom,
   leaveStudyRoom,
+  getRoomMessages,
+  sendRoomMessage,
+  subscribeToRoomMessages,
   type StudyRoomMember,
+  type StudyRoomMessage,
   type StudyRoomSummary,
   type StudyRoomTopic,
 } from "@/lib/supabase-study-rooms";
@@ -57,9 +61,11 @@ function topicLabel(topic: StudyRoomTopic) {
 // "Học cùng nhóm": small (default cap 5) topic-based groups, either
 // randomly matched into an open room or picked manually from the browse
 // list - unlike the 1:1 referral loop this is meant to stay ongoing (a
-// shared weekly goal + mini leaderboard), not a one-time invite. No group
-// chat yet (out of scope for this pass) - the room itself is the shared
-// commitment, visible progress is the mechanism.
+// shared weekly goal + mini leaderboard), not a one-time invite. Every
+// Monday, everyone active in the last 7 days gets auto-placed into a fresh
+// random room for their preferred track (see the weekly-study-match cron +
+// weekly_rematch_study_rooms()) - the manual join/browse UI below stays as
+// the opt-out path for anyone who wants to switch mid-week.
 export default function StudyGroupsClient() {
   const router = useRouter();
   const supabase = createClient();
@@ -71,10 +77,19 @@ export default function StudyGroupsClient() {
   const [rooms, setRooms] = useState<StudyRoomSummary[]>([]);
   const [loadingRooms, setLoadingRooms] = useState(false);
   const [busy, setBusy] = useState(false);
+  const [messages, setMessages] = useState<StudyRoomMessage[]>([]);
+  const [messageInput, setMessageInput] = useState("");
+  const [sendingMessage, setSendingMessage] = useState(false);
+  const messagesEndRef = useRef<HTMLDivElement>(null);
 
   const myMemberRow = useMemo(
     () => myRoomMembers.find((m) => m.user_id === user?.id) ?? null,
     [myRoomMembers, user?.id]
+  );
+
+  const memberById = useMemo(
+    () => new Map(myRoomMembers.map((m) => [m.user_id, m])),
+    [myRoomMembers]
   );
 
   async function refreshMyRoom() {
@@ -125,6 +140,46 @@ export default function StudyGroupsClient() {
     if (myRoom) return; // no need to browse while already in a room
     void refreshBrowseList(browseTopic);
   }, [browseTopic, myRoom]);
+
+  useEffect(() => {
+    if (!myRoom) {
+      setMessages([]);
+      return;
+    }
+    let cancelled = false;
+    getRoomMessages(myRoom.room_id)
+      .then((list) => {
+        if (!cancelled) setMessages(list);
+      })
+      .catch((error) => console.error("Error loading room messages:", error));
+
+    const unsubscribe = subscribeToRoomMessages(myRoom.room_id, (message) => {
+      setMessages((prev) => (prev.some((m) => m.id === message.id) ? prev : [...prev, message]));
+    });
+
+    return () => {
+      cancelled = true;
+      unsubscribe();
+    };
+  }, [myRoom?.room_id]);
+
+  useEffect(() => {
+    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+  }, [messages]);
+
+  async function handleSendMessage() {
+    const content = messageInput.trim();
+    if (!content || !myRoom || !user || sendingMessage) return;
+    setSendingMessage(true);
+    try {
+      await sendRoomMessage(myRoom.room_id, user.id, content);
+      setMessageInput("");
+    } catch (error) {
+      toast.error(error instanceof Error ? error.message : "Không gửi được tin nhắn");
+    } finally {
+      setSendingMessage(false);
+    }
+  }
 
   async function handleRandomMatch(topic: StudyRoomTopic) {
     if (busy) return;
@@ -195,7 +250,11 @@ export default function StudyGroupsClient() {
 
       <div className="max-w-4xl mx-auto px-6 py-8">
         {myRoom ? (
+          <div className="space-y-6">
           <div className="bg-white dark:bg-stone-900 border-2 border-stone-200 dark:border-stone-800 rounded-2xl p-6">
+            <p className="text-xs text-stone-500 dark:text-stone-400 bg-stone-50 dark:bg-stone-800/50 border border-dashed border-stone-200 dark:border-stone-700 rounded-lg px-3.5 py-2.5 mb-5">
+              Bạn đang ở nhóm ngẫu nhiên tuần này - có thể tự đổi nhóm bất kỳ lúc nào bằng cách rời phòng và chọn phòng khác.
+            </p>
             <div className="flex items-center justify-between gap-3 flex-wrap">
               <div>
                 <p className="text-xs font-extrabold text-emerald-700 dark:text-emerald-400 uppercase tracking-widest">
@@ -271,6 +330,66 @@ export default function StudyGroupsClient() {
                 </p>
               )}
             </div>
+          </div>
+
+          <div className="bg-white dark:bg-stone-900 border-2 border-stone-200 dark:border-stone-800 rounded-2xl p-6">
+            <h3 className="text-sm font-extrabold text-stone-900 dark:text-stone-100 uppercase tracking-widest mb-3">
+              Trò chuyện nhóm
+            </h3>
+            <div className="h-72 overflow-y-auto rounded-xl border border-stone-200 dark:border-stone-800 bg-stone-50/50 dark:bg-stone-950/40 p-3 space-y-2.5">
+              {messages.length === 0 ? (
+                <p className="text-xs text-stone-400 dark:text-stone-500 text-center py-8">
+                  Chưa có tin nhắn nào. Chào các thành viên trong nhóm nhé!
+                </p>
+              ) : (
+                messages.map((msg) => {
+                  const isMine = msg.sender_id === user?.id;
+                  const sender = memberById.get(msg.sender_id);
+                  return (
+                    <div key={msg.id} className={`flex ${isMine ? "justify-end" : "justify-start"}`}>
+                      <div className={`max-w-[75%] rounded-xl px-3 py-2 ${
+                        isMine
+                          ? "bg-stone-900 dark:bg-stone-100 text-white dark:text-stone-900"
+                          : "bg-white dark:bg-stone-900 border border-stone-200 dark:border-stone-800 text-stone-900 dark:text-stone-100"
+                      }`}>
+                        {!isMine && (
+                          <p className="text-[10px] font-bold text-emerald-600 dark:text-emerald-400 mb-0.5">
+                            {sender?.full_name || "Thành viên"}
+                          </p>
+                        )}
+                        <p className="text-sm break-words">{msg.content}</p>
+                      </div>
+                    </div>
+                  );
+                })
+              )}
+              <div ref={messagesEndRef} />
+            </div>
+            <div className="flex items-center gap-2 mt-3">
+              <input
+                type="text"
+                value={messageInput}
+                onChange={(e) => setMessageInput(e.target.value)}
+                onKeyDown={(e) => {
+                  if (e.key === "Enter" && !e.shiftKey) {
+                    e.preventDefault();
+                    void handleSendMessage();
+                  }
+                }}
+                placeholder="Nhắn gì đó cho nhóm..."
+                maxLength={2000}
+                className="flex-1 px-3.5 py-2.5 rounded-xl border border-stone-200 dark:border-stone-800 bg-white dark:bg-stone-900 text-sm text-stone-900 dark:text-stone-100 placeholder:text-stone-400 focus:outline-none focus:ring-2 focus:ring-emerald-400/50"
+              />
+              <button
+                onClick={() => void handleSendMessage()}
+                disabled={sendingMessage || !messageInput.trim()}
+                className="shrink-0 w-10 h-10 rounded-xl bg-stone-900 dark:bg-stone-100 text-white dark:text-stone-900 flex items-center justify-center hover:opacity-90 transition-opacity disabled:opacity-40"
+                aria-label="Gửi tin nhắn"
+              >
+                <Send className="w-4 h-4" />
+              </button>
+            </div>
+          </div>
           </div>
         ) : (
           <div className="space-y-6">
