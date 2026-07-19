@@ -2,6 +2,10 @@
   "name": "tuhoctaichinh",
   "version": "0.1.0",
   "private": true,
+  "workspaces": [
+    "apps/mobile",
+    "packages/*"
+  ],
   "scripts": {
     "predev": "node scripts/generate-lesson-data.mjs",
     "dev": "next dev",

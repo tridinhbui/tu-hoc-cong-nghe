@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { ArrowRight, BookOpen } from "lucide-react";
+import { ArrowRight, BookOpen, ChevronDown, ChevronUp } from "lucide-react";
 import { getDashboardGreetingAction } from "@/app/(app)/dashboard/actions";
 import { createClient } from "@/lib/supabase";
 import { trackFeatureClick } from "@/lib/feature-events";
@@ -30,9 +30,26 @@ interface Greeting {
 // that actually summarizes where the learner is - which lesson, what it's
 // about in one line, and how many minutes they've put in so far - instead
 // of a generic label, plus a clear tap target to continue.
+const COLLAPSED_KEY = "thtcdn_resume_card_collapsed";
+
 export default function ResumeLearningButton({ activeTrack }: ResumeLearningButtonProps) {
   const [greeting, setGreeting] = useState<Greeting | null>(null);
   const [loading, setLoading] = useState(true);
+  const [collapsed, setCollapsed] = useState(false);
+
+  useEffect(() => {
+    setCollapsed(window.localStorage.getItem(COLLAPSED_KEY) === "1");
+  }, []);
+
+  function toggleCollapsed(e: React.MouseEvent) {
+    e.preventDefault();
+    e.stopPropagation();
+    setCollapsed((prev) => {
+      const next = !prev;
+      window.localStorage.setItem(COLLAPSED_KEY, next ? "1" : "0");
+      return next;
+    });
+  }
 
   useEffect(() => {
     const fetchGreeting = async () => {
@@ -138,13 +155,53 @@ export default function ResumeLearningButton({ activeTrack }: ResumeLearningButt
   const energeticGreeting = getEnergeticGreeting();
   const todayRecallItems = greeting?.todayRecallItems ?? [];
 
+  if (collapsed) {
+    return (
+      <div className="flex flex-col h-full justify-between">
+        <Link
+          href={`/bai-hoc/${nextLesson.slug}`}
+          onClick={() => trackFeatureClick("resume_learning_click", { label: nextLesson.slug })}
+          className="group flex items-center gap-3 bg-white dark:bg-stone-900 border border-stone-200 dark:border-stone-850 hover:border-emerald-400 dark:hover:border-emerald-600 rounded-2xl p-3 transition-all"
+        >
+          <div className="relative w-8 h-8 flex-shrink-0">
+            <div className="relative w-8 h-8 rounded-full overflow-hidden border border-emerald-100 dark:border-emerald-900/50">
+              <Image src="/tai-tai-avatar.jpg" alt="Tài Tài" width={32} height={32} className="w-full h-full object-cover" />
+            </div>
+            <span className="absolute bottom-0 right-0 w-2.5 h-2.5 rounded-full bg-emerald-500 border-2 border-white dark:border-stone-900" />
+          </div>
+          <p className="flex-1 min-w-0 text-xs sm:text-sm font-bold text-stone-900 dark:text-stone-100 truncate">
+            {nextLessonLabel}: {nextLessonShortTitle}
+          </p>
+          <span className="shrink-0 text-[11px] font-extrabold bg-emerald-600 group-hover:bg-emerald-500 text-white dark:bg-emerald-500 px-3 py-1.5 rounded-xl transition-all">
+            ▶ Học
+          </span>
+          <button
+            onClick={toggleCollapsed}
+            aria-label="Mở rộng"
+            className="shrink-0 w-7 h-7 rounded-full flex items-center justify-center text-stone-400 hover:text-stone-700 dark:hover:text-stone-200 hover:bg-stone-100 dark:hover:bg-stone-800 transition-colors cursor-pointer"
+          >
+            <ChevronDown className="w-4 h-4" />
+          </button>
+        </Link>
+      </div>
+    );
+  }
+
   return (
     <div className="flex flex-col h-full justify-between">
       <Link
         href={`/bai-hoc/${nextLesson.slug}`}
         onClick={() => trackFeatureClick("resume_learning_click", { label: nextLesson.slug })}
-        className="group block h-full bg-white dark:bg-stone-900 border border-stone-200 dark:border-stone-850 hover:border-emerald-400 dark:hover:border-emerald-600 rounded-2xl p-4 sm:p-5 transition-all hover:shadow-[0_16px_36px_-16px_rgba(16,185,129,0.2)] flex flex-col justify-between"
+        className="group relative block h-full bg-white dark:bg-stone-900 border border-stone-200 dark:border-stone-850 hover:border-emerald-400 dark:hover:border-emerald-600 rounded-2xl p-4 sm:p-5 transition-all hover:shadow-[0_16px_36px_-16px_rgba(16,185,129,0.2)] flex flex-col justify-between"
       >
+        <button
+          onClick={toggleCollapsed}
+          aria-label="Thu gọn"
+          className="absolute top-3 right-3 z-10 w-7 h-7 rounded-full flex items-center justify-center text-stone-400 hover:text-stone-700 dark:hover:text-stone-200 hover:bg-stone-100 dark:hover:bg-stone-800 transition-colors cursor-pointer"
+        >
+          <ChevronUp className="w-4 h-4" />
+        </button>
+
         <div className="flex items-start gap-3.5">
           {/* Avatar with energetic pulsing halo */}
           <div className="relative w-11 h-11 flex-shrink-0 mt-0.5">
@@ -156,7 +213,7 @@ export default function ResumeLearningButton({ activeTrack }: ResumeLearningButt
             <span className="absolute bottom-0 right-0 w-3 h-3 rounded-full bg-emerald-500 border-2 border-white dark:border-stone-900" />
           </div>
 
-          <div className="flex-1 min-w-0">
+          <div className="flex-1 min-w-0 pr-6">
             {/* Header Labels */}
             <div className="flex items-center gap-1.5 flex-wrap mb-1.5">
               <span className="text-[9px] font-extrabold text-emerald-700 dark:text-emerald-350 uppercase tracking-widest bg-emerald-50 dark:bg-emerald-950/40 px-2 py-0.5 rounded-md">
