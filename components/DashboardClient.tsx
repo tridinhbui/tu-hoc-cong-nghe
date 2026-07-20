@@ -16,6 +16,7 @@ import { createClient } from "@/lib/supabase";
 import type { Session } from "@supabase/supabase-js";
 import UserStats from "@/components/UserStats";
 import ChatWithAdminWidget from "@/components/ChatWithAdminWidget";
+import FloatingStudyGroupChat from "@/components/FloatingStudyGroupChat";
 import LessonAppealModal from "@/components/LessonAppealModal";
 import OnboardingFlow from "@/components/OnboardingFlow";
 import ResumeLearningButton from "@/components/ResumeLearningButton";
@@ -1806,6 +1807,7 @@ export default function DashboardClient({ lessonsMeta }: { lessonsMeta: LessonMe
 
       {/* Admin Chat */}
       <ChatWithAdminWidget />
+      <FloatingStudyGroupChat />
 
 
 

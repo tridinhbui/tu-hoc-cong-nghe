@@ -348,8 +348,18 @@ export default function StudyGroupsClient() {
                 </p>
               ) : (
                 messages.map((msg) => {
+                  if (msg.is_bot) {
+                    return (
+                      <div key={msg.id} className="flex justify-start">
+                        <div className="max-w-[85%] rounded-xl px-3 py-2 bg-amber-50 dark:bg-amber-950/30 border border-amber-200 dark:border-amber-900">
+                          <p className="text-[10px] font-extrabold text-amber-700 dark:text-amber-400 mb-0.5">Tài Tài · Quản lý nhóm</p>
+                          <p className="text-sm break-words text-stone-800 dark:text-stone-200">{msg.content}</p>
+                        </div>
+                      </div>
+                    );
+                  }
                   const isMine = msg.sender_id === user?.id;
-                  const sender = memberById.get(msg.sender_id);
+                  const sender = msg.sender_id ? memberById.get(msg.sender_id) : undefined;
                   return (
                     <div key={msg.id} className={`flex ${isMine ? "justify-end" : "justify-start"}`}>
                       <div className={`max-w-[75%] rounded-xl px-3 py-2 ${

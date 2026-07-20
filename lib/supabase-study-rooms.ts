@@ -31,9 +31,10 @@ export interface StudyRoomMember {
 export interface StudyRoomMessage {
   id: number;
   room_id: number;
-  sender_id: string;
+  sender_id: string | null;
   content: string;
   created_at: string;
+  is_bot: boolean;
 }
 
 function isMissingTableError(error: { code?: string } | null) {
