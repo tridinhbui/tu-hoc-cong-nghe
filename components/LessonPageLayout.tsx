@@ -132,6 +132,13 @@ export default function LessonPageLayout({ lesson, quiz, children }: Props) {
   const [results, setResults]     = useState<boolean[]>(new Array(quiz.length).fill(false));
   const [activeQ, setActiveQ]     = useState(0);
   const [reviewMode, setReviewMode] = useState(false);
+  // True only once the learner explicitly moves past the last question's
+  // explanation (via "Xem kết quả →"). Deriving the completion-card switch
+  // straight from `allDone` (all questions submitted) instead flips it the
+  // instant the last question is verified, hiding that question's own
+  // explanation before it ever renders - same bug class as the modal's
+  // `allDone` further down in this file used to have.
+  const [finished, setFinished] = useState(false);
   const [readPct, setReadPct]     = useState(0);
   const [userId, setUserId]       = useState<string | null>(null);
   const [recallItems, setRecallItems] = useState<RecallItem[]>([]);
@@ -513,6 +520,7 @@ export default function LessonPageLayout({ lesson, quiz, children }: Props) {
     setSubmitted(newSubmitted);
     setActiveQ(qi);
     setReviewMode(false);
+    setFinished(false);
     saveQuizAnswers(persistedLessonId, { selected: newSelected, submitted: newSubmitted, results });
   }
 
@@ -536,6 +544,7 @@ export default function LessonPageLayout({ lesson, quiz, children }: Props) {
     setResults(freshResults);
     setActiveQ(0);
     setReviewMode(false);
+    setFinished(false);
     clearQuizAnswers(persistedLessonId);
   }
 
@@ -946,7 +955,7 @@ export default function LessonPageLayout({ lesson, quiz, children }: Props) {
             </div>
 
             {/* Active question */}
-            {!allDone || reviewMode ? (
+            {!finished || reviewMode ? (
               <div className="bg-white dark:bg-stone-900 rounded-2xl border-2 border-stone-300 dark:border-stone-700 p-8 space-y-6">
                 <div>
                   <div className="flex items-center justify-between mb-4">
@@ -1045,20 +1054,27 @@ export default function LessonPageLayout({ lesson, quiz, children }: Props) {
                           Thử lại →
                         </button>
                       )}
-                      {reviewMode && allDone ? (
+                      {reviewMode && finished ? (
                         <button
                           onClick={() => setReviewMode(false)}
                           className={`flex-1 py-4 rounded-xl font-bold text-sm uppercase tracking-wider text-white ${c.btn} cursor-pointer shadow-lg`}
                         >
                           ← Quay lại kết quả
                         </button>
+                      ) : activeQ < quiz.length - 1 ? (
+                        <button
+                          onClick={() => setActiveQ(activeQ + 1)}
+                          className={`flex-1 py-4 rounded-xl font-bold text-sm uppercase tracking-wider text-white ${c.btn} cursor-pointer shadow-lg`}
+                        >
+                          Câu tiếp theo →
+                        </button>
                       ) : (
-                        activeQ < quiz.length - 1 && (
+                        !reviewMode && allDone && (
                           <button
-                            onClick={() => setActiveQ(activeQ + 1)}
+                            onClick={() => setFinished(true)}
                             className={`flex-1 py-4 rounded-xl font-bold text-sm uppercase tracking-wider text-white ${c.btn} cursor-pointer shadow-lg`}
                           >
-                            Câu tiếp theo →
+                            Xem kết quả →
                           </button>
                         )
                       )}
@@ -1113,7 +1129,7 @@ export default function LessonPageLayout({ lesson, quiz, children }: Props) {
             )}
 
             {/* Mini nav between questions */}
-            {(!allDone || reviewMode) && quiz.length > 1 && (
+            {(!finished || reviewMode) && quiz.length > 1 && (
               <div className="bg-white dark:bg-stone-900 rounded-2xl border border-stone-200 dark:border-stone-800 p-4">
                 <div className="text-xs text-stone-500 dark:text-stone-400 font-bold uppercase tracking-wide mb-3">Các câu hỏi</div>
                 <div className="grid grid-cols-5 gap-2">

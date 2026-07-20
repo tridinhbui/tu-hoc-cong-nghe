@@ -2,6 +2,46 @@ import { createServerClient } from "@supabase/ssr";
 import { NextResponse, type NextRequest } from "next/server";
 import { isLessonLockedForUser } from "@/lib/lesson-locking";
 
+// Simple in-memory rate limiting for API endpoints
+const rateLimit = new Map<string, { count: number; resetTime: number }>();
+
+const RATE_LIMIT = 100; // requests per window
+const RATE_WINDOW = 60 * 1000; // 1 minute in milliseconds
+
+function getIdentifier(request: NextRequest): string {
+  const ip = request.headers.get('x-forwarded-for') || 
+             request.headers.get('x-real-ip') || 
+             'unknown';
+  return ip.split(',')[0].trim();
+}
+
+function checkRateLimit(identifier: string): boolean {
+  const now = Date.now();
+  const record = rateLimit.get(identifier);
+
+  if (!record || now > record.resetTime) {
+    rateLimit.set(identifier, { count: 1, resetTime: now + RATE_WINDOW });
+    return true;
+  }
+
+  if (record.count >= RATE_LIMIT) {
+    return false;
+  }
+
+  record.count++;
+  return true;
+}
+
+// Clean up old entries periodically
+setInterval(() => {
+  const now = Date.now();
+  for (const [key, value] of rateLimit.entries()) {
+    if (now > value.resetTime) {
+      rateLimit.delete(key);
+    }
+  }
+}, RATE_WINDOW);
+
 // A handful of lessons are hand-authored as their own static page
 // (app/bai-hoc/<slug>/page.tsx, e.g. "roic", "walmart-earnings",
 // "vingroup-cash-flow") instead of going through the data-driven
@@ -103,6 +143,22 @@ function isPublicPath(pathname: string): boolean {
 // this is Supabase's documented pattern for keeping SSR sessions in sync.
 export async function proxy(request: NextRequest) {
   const { pathname } = request.nextUrl;
+  
+  // Apply rate limiting to API routes only (skip in development)
+  if (pathname.startsWith('/api') && process.env.NODE_ENV === 'production') {
+    const identifier = getIdentifier(request);
+    
+    if (!checkRateLimit(identifier)) {
+      return new NextResponse('Too Many Requests', { 
+        status: 429,
+        headers: {
+          'Retry-After': '60',
+          'Content-Type': 'text/plain',
+        },
+      });
+    }
+  }
+  
   let response = NextResponse.next({ request });
 
   const supabase = createServerClient(

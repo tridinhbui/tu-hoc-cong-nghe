@@ -34,6 +34,11 @@ export default function KnowledgeChallengeModal({ onClose, gate, onPassed }: Kno
   // `passed` below is cosmetic (immediate per-question feedback) only, the
   // actual unlock write happens server-side (see submitGateChallenge).
   const [serverPassed, setServerPassed] = useState<boolean | null>(null);
+  // True only once the user has clicked past the last question's explanation.
+  // Deriving "done" from `submitted && activeQ === last index` instead would
+  // flip true the instant the last question is verified, skipping straight
+  // to the results screen before its explanation ever renders.
+  const [finished, setFinished] = useState(false);
 
   const loadChallenge = useCallback(async () => {
     setState("loading");
@@ -44,6 +49,7 @@ export default function KnowledgeChallengeModal({ onClose, gate, onPassed }: Kno
     setAnswers([]);
     setPassRecorded(false);
     setServerPassed(null);
+    setFinished(false);
     try {
       const res = await fetch("/api/knowledge-challenge");
       if (!res.ok) throw new Error("failed");
@@ -66,7 +72,7 @@ export default function KnowledgeChallengeModal({ onClose, gate, onPassed }: Kno
   }, [loadChallenge]);
 
   const q = questions[activeQ];
-  const allDone = submitted && activeQ === questions.length - 1;
+  const allDone = finished;
   const score = results.filter(Boolean).length;
   const passed = questions.length > 0 && score >= Math.ceil(questions.length * PASS_RATIO);
 
@@ -101,7 +107,7 @@ export default function KnowledgeChallengeModal({ onClose, gate, onPassed }: Kno
             setServerPassed(false);
           });
       }
-      setActiveQ((i) => i + 1);
+      setFinished(true);
       return;
     }
     setActiveQ((i) => i + 1);

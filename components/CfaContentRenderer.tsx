@@ -1,7 +1,62 @@
 "use client";
 
-import katex from "katex";
-import "katex/dist/katex.min.css";
+import { useEffect, useState } from "react";
+
+// Lazy-load katex only when math content actually renders - same pattern
+// as NoteContent.tsx. katex is ~250KB and most CFA content has no math,
+// so static import would waste bundle size on every page load.
+let katexPromise: Promise<typeof import("katex")> | null = null;
+function loadKatex() {
+  if (!katexPromise) {
+    katexPromise = Promise.all([import("katex"), import("katex/dist/katex.min.css")]).then(([katex]) => katex);
+  }
+  return katexPromise;
+}
+
+function KatexInline({ tex }: { tex: string }) {
+  const [html, setHtml] = useState<string | null>(null);
+  useEffect(() => {
+    let cancelled = false;
+    loadKatex()
+      .then((katexModule) => {
+        if (cancelled) return;
+        try {
+          const cleanMath = tex.replace(/\\\\/g, "\\");
+          setHtml(katexModule.default.renderToString(cleanMath, { throwOnError: false, displayMode: false }));
+        } catch {
+          setHtml(null);
+        }
+      })
+      .catch(() => setHtml(null));
+    return () => { cancelled = true; };
+  }, [tex]);
+  if (html === null) return <code className="font-mono text-xs bg-stone-100 dark:bg-stone-800 px-1 py-0.5 rounded">{tex}</code>;
+  return <span dangerouslySetInnerHTML={{ __html: html }} />;
+}
+
+function KatexDisplay({ tex }: { tex: string }) {
+  const [html, setHtml] = useState<string | null>(null);
+  useEffect(() => {
+    let cancelled = false;
+    loadKatex()
+      .then((katexModule) => {
+        if (cancelled) return;
+        try {
+          setHtml(katexModule.default.renderToString(tex, { throwOnError: false, displayMode: true }));
+        } catch {
+          setHtml(null);
+        }
+      })
+      .catch(() => setHtml(null));
+    return () => { cancelled = true; };
+  }, [tex]);
+  if (html === null) return <pre className="p-4 bg-stone-100 dark:bg-stone-800 rounded-lg overflow-x-auto text-xs font-mono">{tex}</pre>;
+  return (
+    <div className="my-5 overflow-x-auto py-3 bg-stone-50 dark:bg-stone-900/30 rounded-xl px-4 border border-stone-200/50 dark:border-stone-800 shadow-inner">
+      <div dangerouslySetInnerHTML={{ __html: html }} />
+    </div>
+  );
+}
 
 // Renders inline math $...$ and bold **...**
 export function renderInlineStyles(text: string): React.ReactNode[] {
@@ -9,13 +64,7 @@ export function renderInlineStyles(text: string): React.ReactNode[] {
   const parts = text.split(/\$([\s\S]+?)\$/g);
   return parts.map((part, i) => {
     if (i % 2 === 1) {
-      try {
-        const cleanMath = part.replace(/\\\\/g, "\\");
-        const html = katex.renderToString(cleanMath, { throwOnError: false, displayMode: false });
-        return <span key={i} dangerouslySetInnerHTML={{ __html: html }} />;
-      } catch {
-        return <code key={i} className="font-mono text-xs bg-stone-100 dark:bg-stone-800 px-1 py-0.5 rounded">{part}</code>;
-      }
+      return <KatexInline key={i} tex={part} />;
     }
 
     const boldParts = part.split(/\*\*([^*]+?)\*\*/g);
@@ -69,20 +118,7 @@ export default function CfaContentRenderer({ content }: { content: string }) {
     <div className="space-y-4 text-sm text-stone-750 dark:text-stone-300 leading-relaxed font-normal">
       {blocks.map((block, index) => {
         if (index % 2 === 1) {
-          try {
-            const html = katex.renderToString(block, { throwOnError: false, displayMode: true });
-            return (
-              <div key={index} className="my-5 overflow-x-auto py-3 bg-stone-50 dark:bg-stone-900/30 rounded-xl px-4 border border-stone-200/50 dark:border-stone-800 shadow-inner">
-                <div dangerouslySetInnerHTML={{ __html: html }} />
-              </div>
-            );
-          } catch {
-            return (
-              <pre key={index} className="p-4 bg-stone-100 dark:bg-stone-800 rounded-lg overflow-x-auto text-xs font-mono">
-                {block}
-              </pre>
-            );
-          }
+          return <KatexDisplay key={index} tex={block} />;
         }
 
         const lines = block.split("\n");

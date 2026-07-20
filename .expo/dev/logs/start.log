@@ -1,0 +1,7 @@
+{"_e":"root:init","_t":1784410358974,"format":"v0-jsonl","version":"57.0.9"}
+{"_e":"env:mode","_t":1784410358975,"nodeEnv":"development","babelEnv":"development","mode":"development"}
+{"_e":"env:load","_t":1784410358976,"mode":"development","files":["../../../.env.local"],"env":{"ADMIN_SYNC_SECRET":"e69a4a23c1b92776e41fb67997892b104d574c33a363f53f72cb0dfcdc4b2a16","NEXT_PUBLIC_SUPABASE_ANON_KEY":"sb_publishable_sgPW_QCrt2aAHLdSsC2gdQ_bJ9XprKT","NEXT_PUBLIC_SUPABASE_URL":"https://ggzhnvuneccbxxvzdtkb.supabase.co","SUPABASE_SERVICE_ROLE_KEY":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImdnemhudnVuZWNjYnh4dnpkdGtiIiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTc4MzExNTE1MiwiZXhwIjoyMDk4NjkxMTUyfQ.ZDRDAj6ROtKuYTuyNTQrCU4u1IXuzA-R9B1mt7DMCgw"}}
+{"_e":"devserver:start","_t":1784410375021,"mode":"development","web":true,"baseUrl":"","asyncRoutes":false,"routerRoot":"../../../app","serverComponents":false,"serverActions":false,"serverRendering":false,"apiRoutes":false,"exporting":false}
+{"_e":"metro:config","_t":1784410375224,"serverRoot":"../../..","projectRoot":"../../..","exporting":false,"flags":{"autolinkingModuleResolution":false,"serverActions":false,"serverComponents":false,"reactCompiler":false,"optimizeGraph":false,"treeshaking":false,"logbox":false}}
+{"_e":"expo:dev-tools-plugin:load","_t":1784410375324,"plugins":[]}
+{"_e":"metro:instantiate","_t":1784410375707,"atlas":false,"workers":7,"host":"::","port":8082}
