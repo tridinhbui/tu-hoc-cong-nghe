@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { ArrowRight, BookOpen, ChevronDown, ChevronUp } from "lucide-react";
+import { ArrowRight, BookOpen, ChevronDown, ChevronUp, Map } from "lucide-react";
 import { getDashboardGreetingAction } from "@/app/(app)/dashboard/actions";
 import { createClient } from "@/lib/supabase";
 import { trackFeatureClick } from "@/lib/feature-events";
@@ -140,9 +140,6 @@ export default function ResumeLearningButton({ activeTrack }: ResumeLearningButt
 
   const getEnergeticGreeting = () => {
     const nameStr = firstName ? ` ${firstName}` : "";
-    if (completedCount === 0) {
-      return `Chào${nameStr}! Sẵn sàng nâng cấp tư duy tài chính hôm nay chưa? Hãy bắt đầu bài đầu tiên để bứt phá giới hạn nhé! 🚀`;
-    }
     const messages = [
       `Chào${nameStr}! Sách đã mở, kiến thức đã sẵn sàng. Cùng chinh phục bài tiếp theo để nhận XP nào! 🔥`,
       `Tuyệt vời${nameStr}! Bạn đã hoàn thành ${completedCount} bài học. Cùng duy trì đà tiến bộ này ngay nhé! 🌟`,
@@ -183,6 +180,87 @@ export default function ResumeLearningButton({ activeTrack }: ResumeLearningButt
             <ChevronDown className="w-4 h-4" />
           </button>
         </Link>
+      </div>
+    );
+  }
+
+  // Người mới hoàn toàn (0 bài đã học): thay giọng "chào mừng quay lại"
+  // bằng hướng dẫn 3 bước cụ thể - chọn lộ trình, học bài đầu tiên (siêu
+  // ngắn để tạo momentum), rồi chỉ thẳng vào bảng xếp hạng/streak để tạo
+  // động lực quay lại. Đây là nhóm dễ bỏ cuộc nhất nên cần lối đi rõ ràng
+  // hơn là chỉ một CTA "học ngay".
+  if (completedCount === 0) {
+    return (
+      <div className="flex flex-col h-full justify-between">
+        <div className="relative bg-white dark:bg-stone-900 border border-stone-200 dark:border-stone-850 rounded-2xl p-4 sm:p-5">
+          <button
+            onClick={toggleCollapsed}
+            aria-label="Thu gọn"
+            className="absolute top-3 right-3 z-10 w-7 h-7 rounded-full flex items-center justify-center text-stone-400 hover:text-stone-700 dark:hover:text-stone-200 hover:bg-stone-100 dark:hover:bg-stone-800 transition-colors cursor-pointer"
+          >
+            <ChevronUp className="w-4 h-4" />
+          </button>
+
+          <div className="flex items-start gap-3.5 pr-6">
+            <div className="relative w-11 h-11 flex-shrink-0 mt-0.5">
+              <span className="absolute inset-0 rounded-full bg-emerald-400/20 dark:bg-emerald-400/10 animate-ping [animation-duration:2.5s]" />
+              <div className="relative w-11 h-11 rounded-full overflow-hidden border border-emerald-100 dark:border-emerald-900/50 shadow-sm">
+                <Image src="/tai-tai-avatar.jpg" alt="Tài Tài" width={44} height={44} className="w-full h-full object-cover" />
+              </div>
+              <span className="absolute bottom-0 right-0 w-3 h-3 rounded-full bg-emerald-500 border-2 border-white dark:border-stone-900" />
+            </div>
+
+            <div className="flex-1 min-w-0">
+              <span className="text-[9px] font-extrabold text-emerald-700 dark:text-emerald-350 uppercase tracking-widest bg-emerald-50 dark:bg-emerald-950/40 px-2 py-0.5 rounded-md">
+                Hướng dẫn nhanh 3 bước
+              </span>
+              <p className="mt-1.5 text-stone-850 dark:text-stone-100 text-sm sm:text-[15px] font-bold leading-relaxed">
+                "Chào{firstName ? ` ${firstName}` : ""}! Lần đầu học tài chính đúng không? Đi theo 3 bước này là bạn có nền tảng ngay trong hôm nay."
+              </p>
+            </div>
+          </div>
+
+          <div className="mt-4 space-y-2">
+            <a
+              href="#lo-trinh"
+              onClick={() => trackFeatureClick("beginner_cta_click", { label: "step1_chon_lo_trinh" })}
+              className="group flex items-center gap-3 bg-stone-50/70 dark:bg-stone-950/40 border border-stone-200/60 dark:border-stone-800/80 hover:border-emerald-300 dark:hover:border-emerald-800 rounded-xl p-3 transition-colors"
+            >
+              <span className="shrink-0 w-6 h-6 rounded-full bg-stone-900 dark:bg-stone-100 text-white dark:text-stone-900 text-[11px] font-extrabold flex items-center justify-center">1</span>
+              <div className="flex-1 min-w-0">
+                <p className="text-xs sm:text-sm font-extrabold text-stone-900 dark:text-stone-50">Chọn lộ trình phù hợp</p>
+                <p className="text-[10px] text-stone-450 dark:text-stone-500 font-bold mt-0.5">Cá nhân hay chuyên ngành - chọn đúng ngay từ đầu</p>
+              </div>
+              <Map className="w-4 h-4 text-stone-400 group-hover:text-emerald-500 shrink-0" />
+            </a>
+
+            <Link
+              href={`/bai-hoc/${nextLesson.slug}`}
+              onClick={() => trackFeatureClick("resume_learning_click", { label: nextLesson.slug })}
+              className="group flex items-center gap-3 bg-emerald-50/70 dark:bg-emerald-950/20 border border-emerald-200/60 dark:border-emerald-900/50 hover:border-emerald-400 dark:hover:border-emerald-600 rounded-xl p-3 transition-colors"
+            >
+              <span className="shrink-0 w-6 h-6 rounded-full bg-emerald-600 text-white text-[11px] font-extrabold flex items-center justify-center">2</span>
+              <div className="flex-1 min-w-0">
+                <p className="text-xs sm:text-sm font-extrabold text-stone-900 dark:text-stone-50 truncate">Học bài đầu tiên: {nextLessonShortTitle}</p>
+                <p className="text-[10px] text-stone-450 dark:text-stone-500 font-bold mt-0.5">{nextLesson.duration} thôi - đủ để tạo đà</p>
+              </div>
+              <span className="shrink-0 text-[11px] font-extrabold bg-emerald-600 group-hover:bg-emerald-500 text-white px-3 py-1.5 rounded-xl transition-all">▶ Học</span>
+            </Link>
+
+            <Link
+              href="/analytics?tab=leaderboard"
+              onClick={() => trackFeatureClick("beginner_cta_click", { label: "step3_bang_xep_hang" })}
+              className="group flex items-center gap-3 bg-stone-50/70 dark:bg-stone-950/40 border border-stone-200/60 dark:border-stone-800/80 hover:border-amber-300 dark:hover:border-amber-800 rounded-xl p-3 transition-colors"
+            >
+              <span className="shrink-0 w-6 h-6 rounded-full bg-stone-900 dark:bg-stone-100 text-white dark:text-stone-900 text-[11px] font-extrabold flex items-center justify-center">3</span>
+              <div className="flex-1 min-w-0">
+                <p className="text-xs sm:text-sm font-extrabold text-stone-900 dark:text-stone-50">Xem bảng xếp hạng & giữ streak</p>
+                <p className="text-[10px] text-stone-450 dark:text-stone-500 font-bold mt-0.5">Học đều mỗi ngày để leo hạng</p>
+              </div>
+              <ArrowRight className="w-4 h-4 text-stone-400 group-hover:text-amber-500 shrink-0" />
+            </Link>
+          </div>
+        </div>
       </div>
     );
   }
@@ -251,6 +329,7 @@ export default function ResumeLearningButton({ activeTrack }: ResumeLearningButt
           </div>
         </div>
       </Link>
+
       {todayRecallItems.length > 0 && (
         <div className="mt-2">
           <RecallCard items={todayRecallItems} title="Ôn tập" />

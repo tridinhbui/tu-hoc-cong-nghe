@@ -2,6 +2,7 @@
 
 import { useEffect, useMemo, useState, type ReactNode } from "react";
 import Link from "next/link";
+import { useSearchParams } from "next/navigation";
 import { motion } from "framer-motion";
 import {
   Area,
@@ -182,10 +183,14 @@ function AnalyticsSkeleton() {
 }
 
 export default function LearningAnalytics() {
+  const searchParams = useSearchParams();
+  const initialTab = searchParams.get("tab");
   const [analytics, setAnalytics] = useState<LearningAnalyticsType | null>(null);
   const [loading, setLoading] = useState(true);
   const [userId, setUserId] = useState<string | undefined>(undefined);
-  const [activeSection, setActiveSection] = useState<"overview" | "knowledge" | "memory" | "leaderboard">("overview");
+  const [activeSection, setActiveSection] = useState<"overview" | "knowledge" | "memory" | "leaderboard">(
+    initialTab === "leaderboard" ? "leaderboard" : "overview"
+  );
 
   useEffect(() => {
     const fetchAnalytics = async () => {

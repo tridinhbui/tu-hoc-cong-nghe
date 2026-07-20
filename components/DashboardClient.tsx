@@ -1119,7 +1119,7 @@ export default function DashboardClient({ lessonsMeta }: { lessonsMeta: LessonMe
               how many content lines each one has (personal/CFA got a fun
               one-line subtitle added specifically to match professional's,
               which was shortened to a single inline badge to compensate). */}
-          <div data-tour="track-selector" className="grid grid-cols-1 sm:grid-cols-3 gap-3 mb-8 items-stretch">
+          <div id="lo-trinh" data-tour="track-selector" className="grid grid-cols-1 sm:grid-cols-3 gap-3 mb-8 items-stretch scroll-mt-24">
           {[TRACK_PERSONAL, TRACK_PROFESSIONAL].map((t) => {
             const isActive = activeTrack === t.id;
             return (
