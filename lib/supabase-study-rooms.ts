@@ -33,6 +33,7 @@ export interface StudyRoomMessage {
   room_id: number;
   sender_id: string | null;
   content: string;
+  image_url: string | null;
   created_at: string;
   is_bot: boolean;
   is_pinned: boolean;
@@ -115,11 +116,16 @@ export async function getRoomMessages(roomId: number): Promise<StudyRoomMessage[
   return (data ?? []) as StudyRoomMessage[];
 }
 
-export async function sendRoomMessage(roomId: number, senderId: string, content: string): Promise<StudyRoomMessage> {
+export async function sendRoomMessage(
+  roomId: number,
+  senderId: string,
+  content: string,
+  imageUrl?: string | null
+): Promise<StudyRoomMessage> {
   const supabase = createClient();
   const { data, error } = await supabase
     .from("study_room_messages")
-    .insert({ room_id: roomId, sender_id: senderId, content: content.trim() })
+    .insert({ room_id: roomId, sender_id: senderId, content: content.trim(), image_url: imageUrl ?? null })
     .select()
     .single();
 

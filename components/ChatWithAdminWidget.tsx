@@ -7,6 +7,7 @@ import { toast } from "sonner";
 import { createClient } from "@/lib/supabase";
 import Logo from "@/components/Logo";
 import EmojiPicker from "@/components/EmojiPicker";
+import { announceWidgetOpened, onOtherWidgetOpened } from "@/lib/floating-widget-coordinator";
 import { getRandomCommunityShoutout } from "@/lib/supabase-user";
 import {
   getChatHistory,
@@ -42,6 +43,12 @@ export default function ChatWithAdminWidget() {
     if (!isOpen) return;
     scrollToBottom();
   }, [isOpen, messages]);
+
+  useEffect(() => {
+    if (isOpen) announceWidgetOpened("admin-chat");
+  }, [isOpen]);
+
+  useEffect(() => onOtherWidgetOpened("admin-chat", () => setIsOpen(false)), []);
 
   // A fresh shoutout celebrating a real top learner every time the chat is
   // opened - not persisted, not mixed into the actual message history, just
