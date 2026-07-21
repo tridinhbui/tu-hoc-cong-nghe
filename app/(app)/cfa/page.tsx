@@ -2,6 +2,8 @@ import Link from "next/link";
 import { ChevronLeft } from "lucide-react";
 import { getLessonsMeta } from "@/lib/lessons-loader";
 import { CFA_LEVEL_1_SUBJECTS } from "@/lib/cfa-track";
+import { getCompletedLessons } from "@/lib/supabase-progress";
+import { createServerSupabaseClient } from "@/lib/supabase-server";
 import CfaTrackView from "@/components/CfaTrackView";
 
 export const dynamic = "force-dynamic";
@@ -13,16 +15,37 @@ export const dynamic = "force-dynamic";
 // professional tracks stay completely untouched. Subjects with no matching
 // lesson yet (e.g. Ethics - nothing in the curriculum covers professional
 // conduct standards) show a "sẽ xây trong tương lai" placeholder.
+//
+// Completion state is read here (not client-side) for the same reason
+// app/(app)/dashboard/actions.ts uses createServerSupabaseClient(): the
+// plain browser client from lib/supabase.ts has no cookie jar server-side,
+// so a client-side fetch of user_progress silently returns zero rows and
+// the page would look like nothing was ever completed.
 export default async function CfaPage() {
-  const allLessons = await getLessonsMeta();
-  const lessonById = new Map(allLessons.map((l) => [l.id, l]));
+  const supabase = await createServerSupabaseClient();
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
 
-  const subjects = CFA_LEVEL_1_SUBJECTS.map((subject) => ({
-    subject,
-    lessons: subject.lessonIds
+  const [allLessons, completedLessonIds] = await Promise.all([
+    getLessonsMeta(),
+    user ? getCompletedLessons(user.id, supabase) : Promise.resolve<number[]>([]),
+  ]);
+  const lessonById = new Map(allLessons.map((l) => [l.id, l]));
+  const completedSet = new Set(completedLessonIds);
+
+  const subjects = CFA_LEVEL_1_SUBJECTS.map((subject) => {
+    const lessons = subject.lessonIds
       .map((id) => lessonById.get(id))
-      .filter((l): l is NonNullable<typeof l> => !!l && l.isVisible !== false),
-  }));
+      .filter((l): l is NonNullable<typeof l> => !!l && l.isVisible !== false);
+    const nextLesson = lessons.find((l) => !completedSet.has(l.id)) ?? null;
+    return {
+      subject,
+      lessons,
+      completedCount: lessons.filter((l) => completedSet.has(l.id)).length,
+      nextLessonSlug: nextLesson?.slug ?? null,
+    };
+  });
 
   return (
     <div className="min-h-screen bg-white dark:bg-stone-950">
@@ -43,7 +66,7 @@ export default async function CfaPage() {
       </div>
 
       <div className="max-w-4xl mx-auto px-6 py-8">
-        <CfaTrackView subjects={subjects} />
+        <CfaTrackView subjects={subjects} completedLessonIds={completedLessonIds} />
       </div>
     </div>
   );

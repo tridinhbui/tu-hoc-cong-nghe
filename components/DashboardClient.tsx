@@ -3,6 +3,7 @@
 import { useState, useEffect, useCallback, useMemo, useRef } from "react";
 import Link from "next/link";
 import Image from "next/image";
+import TaiTaiAvatar from "@/components/TaiTaiAvatar";
 import { useRouter, useSearchParams } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import { toast } from "sonner";
@@ -590,8 +591,8 @@ export default function DashboardClient({ lessonsMeta }: { lessonsMeta: LessonMe
         <div className="relative w-16 h-16">
           <span className="absolute inset-0 rounded-full bg-emerald-400/30 animate-ping" />
           <span className="absolute -inset-1.5 rounded-full border-4 border-emerald-500/70 border-t-transparent animate-spin" />
-          <div className="relative w-16 h-16 rounded-full overflow-hidden">
-            <Image src="/tai-tai-avatar.jpg" alt="Tài Tài" width={64} height={64} className="w-full h-full object-cover" />
+          <div className="relative w-16 h-16 rounded-full overflow-hidden bg-stone-150 dark:bg-stone-850">
+            <TaiTaiAvatar size={64} />
           </div>
         </div>
         <p className="text-stone-500 dark:text-stone-400 font-semibold text-sm flex items-center gap-1.5">

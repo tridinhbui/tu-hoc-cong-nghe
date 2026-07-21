@@ -5,6 +5,7 @@ import { RefreshCw, Timer } from "lucide-react";
 import { motion } from "framer-motion";
 import { toast } from "sonner";
 import { getPairConfig, pickPairRound, getDifficultyTimeLimitSeconds, recordGameSession, type GameType, type GameDifficulty } from "@/lib/games";
+import { soundManager } from "@/lib/sounds";
 
 interface Props {
   userId: string;
@@ -104,6 +105,7 @@ export default function PairGame({ userId, gameType, difficulty = "trung-binh", 
     if (freezeUsed || finished) return;
     setFreezeUsed(true);
     setFreezeActive(true);
+    soundManager.playFreeze();
     toast.success("❄️ Đã đóng băng thời gian trong 5 giây!");
     window.setTimeout(() => {
       setFreezeActive(false);
@@ -145,11 +147,17 @@ export default function PairGame({ userId, gameType, difficulty = "trung-binh", 
     setScore(newScore);
     scoreRef.current = newScore;
     
+    soundManager.playPowerup();
     toast.success(`⚡ 50/50: Đã tự động ghép cặp hộ ${pairsToMatch.length} cụm từ!`);
     
     if (newMatched >= round.length) {
       setFinished(true);
       setSubmitting(true);
+      if (newScore / round.length >= 0.7) {
+        soundManager.playWin();
+      } else {
+        soundManager.playWrong();
+      }
       recordGameSession(userId, gameType, newScore, round.length)
         .then((xpEarned) => onFinished(newScore, round.length, xpEarned))
         .catch(() => onFinished(newScore, round.length, 0))
@@ -165,6 +173,11 @@ export default function PairGame({ userId, gameType, difficulty = "trung-binh", 
     if (leftIdx === rightIdx) {
       const nextCombo = combo + 1;
       setCombo(nextCombo);
+      if (nextCombo >= 2) {
+        soundManager.playCombo(nextCombo);
+      } else {
+        soundManager.playCorrect();
+      }
       
       const countsForScore = !l.everWrong && !r.everWrong;
       setLeftCards((prev) => ({ ...prev, [leftIdx]: { ...prev[leftIdx], matched: true } }));
@@ -180,6 +193,11 @@ export default function PairGame({ userId, gameType, difficulty = "trung-binh", 
         setFinished(true);
         setSubmitting(true);
         try {
+          if (newScore / round.length >= 0.7) {
+            soundManager.playWin();
+          } else {
+            soundManager.playWrong();
+          }
           const xpEarned = await recordGameSession(userId, gameType, newScore, round.length);
           onFinished(newScore, round.length, xpEarned);
         } catch {
@@ -190,6 +208,7 @@ export default function PairGame({ userId, gameType, difficulty = "trung-binh", 
       }
     } else {
       setCombo(0); // Reset combo
+      soundManager.playWrong();
       setLeftCards((prev) => ({ ...prev, [leftIdx]: { ...prev[leftIdx], everWrong: true } }));
       setRightCards((prev) => ({ ...prev, [rightIdx]: { ...prev[rightIdx], everWrong: true } }));
       setShakePair({ left: leftIdx, right: rightIdx });

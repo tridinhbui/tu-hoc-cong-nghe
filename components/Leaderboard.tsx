@@ -125,9 +125,16 @@ const METRIC_TITLE_ICONS: Record<LeaderboardMetric | "game", typeof Trophy | typ
 };
 
 const RANK_MEDALS: Record<number, string> = {
-  1: "🏆",
+  1: "🥇",
   2: "🥈",
   3: "🥉",
+  4: "🎖️",
+  5: "🏅",
+  6: "⭐",
+  7: "🌟",
+  8: "✨",
+  9: "⚡",
+  10: "💪",
 };
 
 function getLeaderboardTitle(metric: LeaderboardMetric | "game", rank: number): string | null {
@@ -260,40 +267,62 @@ export default function Leaderboard({ userId }: LeaderboardProps) {
               const isCurrent = entry.user_id === userId;
               const href = isCurrent ? "/profile" : `/nguoi-hoc/${entry.user_id}`;
               const topTitle = rank <= 3 ? getLeaderboardTitle(metric, rank) : null;
+
+              // Premium styling for top 3 and current user
+              let cardBgClass = "bg-white dark:bg-stone-900 border-stone-200 dark:border-stone-800";
+              let shadowClass = "hover:shadow-[0_12px_24px_-15px_rgba(16,185,129,0.3)]";
+              
+              if (isCurrent) {
+                cardBgClass = "bg-emerald-50/50 dark:bg-emerald-950/40 border-emerald-250 dark:border-emerald-900 shadow-[0_10px_24px_-18px_rgba(16,185,129,0.5)]";
+              } else if (rank === 1) {
+                cardBgClass = "bg-gradient-to-r from-amber-500/[0.05] via-amber-500/[0.08] to-transparent dark:from-amber-950/20 dark:via-amber-950/10 dark:to-transparent border-amber-300 dark:border-amber-700/80 hover:border-amber-400 dark:hover:border-amber-600";
+                shadowClass = "shadow-[0_4px_16px_-12px_rgba(251,191,36,0.2)] hover:shadow-[0_10px_24px_-10px_rgba(251,191,36,0.35)] scale-[1.015]";
+              } else if (rank === 2) {
+                cardBgClass = "bg-gradient-to-r from-slate-400/[0.05] via-slate-400/[0.08] to-transparent dark:from-slate-800/20 dark:via-slate-800/10 dark:to-transparent border-slate-300/80 dark:border-slate-700/80 hover:border-slate-400 dark:hover:border-slate-600";
+                shadowClass = "shadow-[0_4px_16px_-12px_rgba(148,163,184,0.15)] hover:shadow-[0_10px_24px_-10px_rgba(148,163,184,0.25)] scale-[1.008]";
+              } else if (rank === 3) {
+                cardBgClass = "bg-gradient-to-r from-orange-400/[0.05] via-orange-400/[0.07] to-transparent dark:from-orange-950/20 dark:via-orange-950/10 dark:to-transparent border-orange-250/80 dark:border-orange-900/80 hover:border-orange-350 dark:hover:border-orange-850";
+                shadowClass = "shadow-[0_4px_16px_-12px_rgba(249,115,22,0.15)] hover:shadow-[0_10px_24px_-10px_rgba(249,115,22,0.25)] scale-[1.002]";
+              } else {
+                cardBgClass = "bg-white dark:bg-stone-900 border-stone-200 dark:border-stone-850 hover:border-stone-300 dark:hover:border-stone-700 hover:bg-stone-50/30 dark:hover:bg-stone-850/30";
+              }
+
               return (
                 <Link
                   key={entry.user_id}
                   href={href}
-                  className={`group relative flex items-center justify-between overflow-hidden px-3.5 py-2.5 rounded-xl text-xs transition-all duration-200 active:scale-[0.99] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400/60 ${
-                    isCurrent
-                      ? "bg-emerald-50 dark:bg-emerald-950/50 border border-emerald-200 dark:border-emerald-900 shadow-[0_10px_24px_-18px_rgba(16,185,129,0.5)]"
-                      : "bg-white dark:bg-stone-900 border border-stone-200 dark:border-stone-800 hover:border-emerald-300 dark:hover:border-emerald-700 hover:bg-emerald-50/70 dark:hover:bg-emerald-950/20 hover:shadow-[0_14px_30px_-20px_rgba(16,185,129,0.45)]"
-                  }`}
+                  className={`group relative flex items-center justify-between overflow-hidden px-3.5 py-2.5 rounded-xl text-xs transition-all duration-300 active:scale-[0.99] border focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400/60 ${cardBgClass} ${shadowClass}`}
                 >
                   <div className={`pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-200 group-hover:opacity-100 ${
                     rank === 1
-                      ? "bg-[linear-gradient(135deg,rgba(251,191,36,0.08),transparent_40%)]"
+                      ? "bg-[linear-gradient(135deg,rgba(251,191,36,0.1),transparent_40%)]"
                       : rank === 2
-                        ? "bg-[linear-gradient(135deg,rgba(148,163,184,0.08),transparent_40%)]"
+                        ? "bg-[linear-gradient(135deg,rgba(148,163,184,0.1),transparent_40%)]"
                         : rank === 3
-                          ? "bg-[linear-gradient(135deg,rgba(251,191,36,0.05),transparent_40%)]"
+                          ? "bg-[linear-gradient(135deg,rgba(249,115,22,0.08),transparent_40%)]"
                           : "bg-[linear-gradient(135deg,rgba(16,185,129,0.06),transparent_40%)]"
                   }`} />
 
                   {/* Left block: Rank + Avatar + Name details */}
                   <div className="flex items-center gap-2.5 min-w-0">
                     <div
-                      className={`relative z-10 w-5.5 h-5.5 rounded flex items-center justify-center flex-shrink-0 font-extrabold text-[10px] transition-transform duration-200 group-hover:scale-105 ${
+                      className={`relative z-10 w-6 h-6 rounded-lg flex items-center justify-center flex-shrink-0 font-extrabold text-[10px] transition-transform duration-300 group-hover:scale-110 shadow-inner border border-stone-200/10 ${
                         rank === 1
-                          ? "bg-amber-200 dark:bg-amber-900 text-amber-900 dark:text-amber-300"
+                          ? "bg-gradient-to-br from-amber-400 to-yellow-300 dark:from-amber-500 dark:to-yellow-500 text-amber-950 dark:text-white"
                           : rank === 2
-                            ? "bg-gray-300 dark:bg-gray-700 text-gray-900 dark:text-gray-300"
+                            ? "bg-gradient-to-br from-slate-300 to-slate-100 dark:from-slate-600 dark:to-slate-500 text-slate-900 dark:text-white"
                             : rank === 3
-                              ? "bg-amber-100 dark:bg-amber-950 text-amber-800 dark:text-amber-400"
-                              : "bg-stone-100 dark:bg-stone-800 text-stone-700 dark:text-stone-300"
+                              ? "bg-gradient-to-br from-amber-300 to-orange-200 dark:from-orange-600 dark:to-orange-500 text-amber-900 dark:text-white"
+                              : rank === 4
+                                ? "bg-purple-50 dark:bg-purple-950/60 text-purple-700 dark:text-purple-300"
+                                : rank === 5
+                                  ? "bg-sky-50 dark:bg-sky-950/60 text-sky-700 dark:text-sky-300"
+                                  : rank === 6
+                                    ? "bg-teal-50 dark:bg-teal-950/60 text-teal-700 dark:text-teal-300"
+                                    : "bg-stone-50 dark:bg-stone-850 text-stone-650 dark:text-stone-350"
                       }`}
                     >
-                      {rank}
+                      <span className="text-xs">{RANK_MEDALS[rank] || rank}</span>
                     </div>
 
                     <RankAvatarFrame rank={rank}>
@@ -303,7 +332,7 @@ export default function Leaderboard({ userId }: LeaderboardProps) {
                     </RankAvatarFrame>
 
                     <div className="relative z-10 min-w-0">
-                      <div className={`font-bold truncate text-xs ${isCurrent ? "text-emerald-900 dark:text-emerald-400" : "text-stone-900 dark:text-stone-100"}`}>
+                      <div className={`font-bold truncate text-xs ${isCurrent ? "text-emerald-950 dark:text-emerald-400" : "text-stone-900 dark:text-stone-100"} ${rank <= 3 ? "text-[12px] sm:text-xs" : ""}`}>
                         {entry.name}
                       </div>
                       {topTitle && (
@@ -317,11 +346,11 @@ export default function Leaderboard({ userId }: LeaderboardProps) {
                   {/* Right block: Value + Arrow */}
                   <div className="relative z-10 flex items-center gap-2 shrink-0 ml-2">
                     <div className="text-right">
-                      <span className={`font-extrabold text-[11px] sm:text-xs ${isCurrent ? "text-emerald-700 dark:text-emerald-400" : "text-stone-700 dark:text-stone-200"}`}>
+                      <span className={`font-extrabold text-[11px] sm:text-xs ${isCurrent ? "text-emerald-700 dark:text-emerald-400" : rank <= 3 ? "text-stone-850 dark:text-stone-100 font-black" : "text-stone-700 dark:text-stone-200"}`}>
                         {activeTab.format(entry.value)}
                       </span>
                     </div>
-                    <div className={`text-stone-300 dark:text-stone-600 transition-transform duration-200 group-hover:translate-x-0.5 ${isCurrent ? "text-emerald-600 font-bold" : ""}`}>
+                    <div className={`text-stone-300 dark:text-stone-600 transition-transform duration-300 group-hover:translate-x-0.5 ${isCurrent ? "text-emerald-600 font-bold" : ""}`}>
                       {isCurrent ? "✓" : "→"}
                     </div>
                   </div>

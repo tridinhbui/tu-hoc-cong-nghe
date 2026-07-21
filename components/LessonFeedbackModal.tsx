@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Image from "next/image";
+import TaiTaiAvatar from "@/components/TaiTaiAvatar";
 import { submitLessonFeedback } from "@/lib/supabase-feedback";
 
 interface Props {
@@ -42,8 +43,8 @@ export default function LessonFeedbackModal({ open, onClose, lessonId, userId }:
         `}</style>
 
         <div className="bg-stone-900 dark:bg-stone-950 px-5 py-4 flex items-center gap-3">
-          <div className="w-10 h-10 rounded-full overflow-hidden flex-shrink-0 ring-2 ring-white/20">
-            <Image src="/tai-tai-avatar.jpg" alt="Tài Tài" width={40} height={40} className="w-full h-full object-cover" />
+          <div className="w-10 h-10 rounded-full overflow-hidden flex-shrink-0 ring-2 ring-white/20 bg-stone-800">
+            <TaiTaiAvatar size={40} />
           </div>
           <div className="flex-1 min-w-0">
             <p className="text-white font-bold text-sm">Tài Tài</p>

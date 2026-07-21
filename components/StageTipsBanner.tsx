@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import Image from "next/image";
+import TaiTaiAvatar from "@/components/TaiTaiAvatar";
 import { TRACK_PERSONAL, TRACK_PROFESSIONAL } from "@/lib/track-stages";
 
 // Keyed by "<track>-<chặng label>" so tips always match the lesson's actual
@@ -221,8 +222,8 @@ export default function StageTipsBanner({ lessonId, lessonTitle }: Props) {
               <span className="absolute -inset-1 rounded-full border-2 border-emerald-400/60 animate-spin [animation-duration:1.4s] [border-top-color:transparent] [border-left-color:transparent]" />
             </>
           )}
-          <div className="relative w-8 h-8 rounded-full overflow-hidden">
-            <Image src="/tai-tai-avatar.jpg" alt="Tài Tài" width={32} height={32} className="w-full h-full object-cover" />
+          <div className="relative w-8 h-8 rounded-full overflow-hidden bg-stone-850">
+            <TaiTaiAvatar size={32} />
           </div>
         </div>
         <div className="flex-1 min-w-0">

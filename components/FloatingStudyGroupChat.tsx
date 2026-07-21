@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
+import TaiTaiAvatar from "@/components/TaiTaiAvatar";
 import { toast } from "sonner";
 import { Users, Send, X, ImagePlus } from "lucide-react";
 import { createClient } from "@/lib/supabase";
@@ -232,7 +233,7 @@ export default function FloatingStudyGroupChat() {
           {pinnedMessage && (
             <div className="shrink-0 px-3 py-2.5 bg-amber-50 dark:bg-amber-950/30 border-b border-amber-200 dark:border-amber-900">
               <div className="flex items-center gap-1.5 mb-1">
-                <Image src="/tai-tai-avatar.jpg" alt="Tài Tài" width={16} height={16} className="rounded-full" />
+                <TaiTaiAvatar size={16} />
                 <span className="text-[10px] font-extrabold text-amber-700 dark:text-amber-400">Tài Tài · Quản lý nhóm · Đã ghim</span>
               </div>
               <p className="text-xs text-stone-800 dark:text-stone-200 leading-relaxed">{pinnedMessage.content}</p>
@@ -268,7 +269,7 @@ export default function FloatingStudyGroupChat() {
                     <div key={msg.id} className="flex justify-start">
                       <div className="max-w-[85%] rounded-xl px-3 py-2 bg-amber-50 dark:bg-amber-950/30 border border-amber-200 dark:border-amber-900">
                         <div className="flex items-center gap-1.5 mb-1">
-                          <Image src="/tai-tai-avatar.jpg" alt="Tài Tài" width={16} height={16} className="rounded-full" />
+                          <TaiTaiAvatar size={16} />
                           <span className="text-[10px] font-extrabold text-amber-700 dark:text-amber-400">Tài Tài · Quản lý nhóm</span>
                         </div>
                         <p className="text-sm text-stone-800 dark:text-stone-200">{msg.content}</p>

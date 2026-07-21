@@ -5,6 +5,7 @@ import { RotateCcw, Timer } from "lucide-react";
 import { motion } from "framer-motion";
 import { toast } from "sonner";
 import { getBucketConfig, getDifficultyTimeLimitSeconds, recordGameSession, type GameType, type GameDifficulty } from "@/lib/games";
+import { soundManager } from "@/lib/sounds";
 
 interface BucketGameProps {
   userId: string;
@@ -76,6 +77,11 @@ export default function BucketGame({ userId, gameType, difficulty = "trung-binh"
     try {
       const xpEarned = await recordGameSession(userId, gameType, score, total);
       setFinished(true);
+      if (score / total >= 0.7) {
+        soundManager.playWin();
+      } else {
+        soundManager.playWrong();
+      }
       onFinished(score, total, xpEarned);
     } finally {
       setSubmitting(false);
@@ -101,6 +107,7 @@ export default function BucketGame({ userId, gameType, difficulty = "trung-binh"
     if (freezeUsed || finished) return;
     setFreezeUsed(true);
     setFreezeActive(true);
+    soundManager.playFreeze();
     toast.success("❄️ Đã đóng băng thời gian trong 5 giây!");
     window.setTimeout(() => {
       setFreezeActive(false);
@@ -124,6 +131,7 @@ export default function BucketGame({ userId, gameType, difficulty = "trung-binh"
     );
     
     setItems(nextItems);
+    soundManager.playPowerup();
     toast.success(`⚡ 50/50: Đã tự động phân loại hộ ${itemsToPlace.length} khái niệm!`);
     
     if (nextItems.every((it) => it.placed)) {
@@ -138,6 +146,11 @@ export default function BucketGame({ userId, gameType, difficulty = "trung-binh"
     if (item.bucket === bucket) {
       const nextCombo = combo + 1;
       setCombo(nextCombo);
+      if (nextCombo >= 2) {
+        soundManager.playCombo(nextCombo);
+      } else {
+        soundManager.playCorrect();
+      }
       
       const nextItems = items.map((it) =>
         it.id === itemId ? { ...it, placed: true, scored: it.scored === null ? true : it.scored } : it
@@ -147,6 +160,7 @@ export default function BucketGame({ userId, gameType, difficulty = "trung-binh"
       if (nextItems.every((it) => it.placed)) void handleFinish(nextItems);
     } else {
       setCombo(0); // Reset combo
+      soundManager.playWrong();
       setItems((prev) => prev.map((it) => (it.id === itemId && it.scored === null ? { ...it, scored: false } : it)));
       setSelectedId(null);
       setWrongFlashId(itemId);
