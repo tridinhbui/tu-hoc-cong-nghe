@@ -7,14 +7,19 @@ import { Trophy, BookOpen, Target, Flame, Gamepad2 } from "lucide-react";
 import { getLeaderboardByMetric, getMyLeaderboardRank, type LeaderboardMetric, type LeaderboardRow } from "@/lib/supabase-user";
 import { getCombinedGameLeaderboard } from "@/lib/games";
 
+// Check if avatar url is a valid image link
+function isValidAvatar(url: string | null | undefined): boolean {
+  return !!(url && url !== "null" && url.trim() !== "" && (url.startsWith("http") || url.startsWith("/") || url.startsWith("blob:")));
+}
+
 // Small circular avatar with an initials fallback for learners who haven't
 // uploaded a profile photo - keeps the row layout stable either way instead
 // of collapsing the space where the image would've been.
 function LeaderboardAvatar({ name, avatarUrl }: { name: string; avatarUrl: string | null }) {
-  if (avatarUrl) {
+  if (isValidAvatar(avatarUrl)) {
     return (
       <Image
-        src={avatarUrl}
+        src={avatarUrl!}
         alt={name}
         width={24}
         height={24}
@@ -22,9 +27,33 @@ function LeaderboardAvatar({ name, avatarUrl }: { name: string; avatarUrl: strin
       />
     );
   }
+  
+  const initials = name.trim().split(" ").map(n => n.charAt(0)).join("").slice(0, 2).toUpperCase() || "?";
   return (
-    <div className="w-6 h-6 rounded-full flex-shrink-0 flex items-center justify-center bg-stone-200 dark:bg-stone-700 text-stone-600 dark:text-stone-300 text-[10px] font-extrabold">
-      {name.trim().charAt(0).toUpperCase() || "?"}
+    <div className="w-6 h-6 rounded-full flex-shrink-0 flex items-center justify-center bg-stone-200 dark:bg-stone-700 text-stone-600 dark:text-stone-300 text-[9px] font-extrabold shadow-inner">
+      {initials}
+    </div>
+  );
+}
+
+// Larger avatar for top 3 podium columns with robust initials fallback
+function PodiumAvatar({ name, avatarUrl, size }: { name: string; avatarUrl: string | null; size: number }) {
+  if (isValidAvatar(avatarUrl)) {
+    return (
+      <Image
+        src={avatarUrl!}
+        alt={name}
+        width={size}
+        height={size}
+        className="w-full h-full rounded-full object-cover"
+      />
+    );
+  }
+  
+  const initials = name.trim().split(" ").map(n => n.charAt(0)).join("").slice(0, 2).toUpperCase() || "?";
+  return (
+    <div className="w-full h-full rounded-full flex items-center justify-center bg-gradient-to-br from-stone-100 to-stone-200 dark:from-stone-850 dark:to-stone-800 text-stone-500 dark:text-stone-400 font-extrabold shadow-inner" style={{ fontSize: `${size * 0.32}px` }}>
+      {initials}
     </div>
   );
 }
@@ -273,13 +302,7 @@ export default function Leaderboard({ userId }: LeaderboardProps) {
                 >
                   <div className="relative mb-2">
                     <div className="w-12 h-12 rounded-full border-[2.5px] border-slate-300 p-0.5 bg-white dark:bg-stone-900 relative shadow-md shadow-slate-400/10 group-hover:scale-105 transition-all duration-300">
-                      <Image
-                        src={entries[1].avatarUrl || "/tai-tai-avatar.jpg"}
-                        alt={entries[1].name}
-                        width={40}
-                        height={40}
-                        className="w-full h-full rounded-full object-cover"
-                      />
+                      <PodiumAvatar name={entries[1].name} avatarUrl={entries[1].avatarUrl} size={40} />
                     </div>
                     <span className="absolute -bottom-1.5 left-1/2 -translate-x-1/2 bg-gradient-to-br from-slate-300 to-slate-400 text-slate-900 text-[9px] font-black w-4.5 h-4.5 rounded-full flex items-center justify-center shadow-sm border border-white dark:border-stone-900">
                       2
@@ -312,13 +335,7 @@ export default function Leaderboard({ userId }: LeaderboardProps) {
                     <span className="absolute -inset-1 rounded-full bg-gradient-to-r from-amber-400/40 to-yellow-350/40 blur-[2px] opacity-75 group-hover:scale-105 transition-all duration-300" />
                     
                     <div className="w-15 h-15 rounded-full border-[3px] border-amber-400 p-0.5 bg-white dark:bg-stone-900 relative shadow-lg shadow-amber-500/10 group-hover:scale-105 transition-all duration-300">
-                      <Image
-                        src={entries[0].avatarUrl || "/tai-tai-avatar.jpg"}
-                        alt={entries[0].name}
-                        width={52}
-                        height={52}
-                        className="w-full h-full rounded-full object-cover"
-                      />
+                      <PodiumAvatar name={entries[0].name} avatarUrl={entries[0].avatarUrl} size={52} />
                     </div>
                     <span className="absolute -bottom-1.5 left-1/2 -translate-x-1/2 bg-gradient-to-br from-amber-400 to-yellow-500 text-amber-950 text-[10px] font-black w-5 h-5 rounded-full flex items-center justify-center shadow border border-white dark:border-stone-900">
                       1
@@ -343,13 +360,7 @@ export default function Leaderboard({ userId }: LeaderboardProps) {
                 >
                   <div className="relative mb-2">
                     <div className="w-11 h-11 rounded-full border-[2px] border-amber-600/80 p-0.5 bg-white dark:bg-stone-900 relative shadow-sm shadow-orange-500/5 group-hover:scale-105 transition-all duration-300">
-                      <Image
-                        src={entries[2].avatarUrl || "/tai-tai-avatar.jpg"}
-                        alt={entries[2].name}
-                        width={36}
-                        height={36}
-                        className="w-full h-full rounded-full object-cover"
-                      />
+                      <PodiumAvatar name={entries[2].name} avatarUrl={entries[2].avatarUrl} size={36} />
                     </div>
                     <span className="absolute -bottom-1.5 left-1/2 -translate-x-1/2 bg-gradient-to-br from-amber-600 to-amber-700 text-white text-[9px] font-black w-4.2 h-4.2 rounded-full flex items-center justify-center shadow-sm border border-white dark:border-stone-900">
                       3

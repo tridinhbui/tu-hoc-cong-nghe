@@ -425,7 +425,7 @@ export default function CfaModulePageClient({ moduleId }: { moduleId: string }) 
         <span className="text-[10px] font-extrabold text-stone-900 dark:text-white bg-stone-200 dark:bg-stone-800 px-2 py-0.5 rounded uppercase">
           Module {mod.code}
         </span>
-        <h1 className="text-xl sm:text-2xl font-extrabold text-stone-900 dark:text-white mt-3 mb-6">{mod.title}</h1>
+        <h1 className="text-xl sm:text-2xl font-extrabold text-stone-900 dark:text-white mt-3 mb-6">{toTitleCase(mod.title)}</h1>
 
         {/* Lesson content - select any passage to highlight it */}
         <section className="mb-6" ref={contentRef} onMouseUp={handleTextSelection}>
