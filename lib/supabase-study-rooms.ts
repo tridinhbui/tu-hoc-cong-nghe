@@ -35,6 +35,7 @@ export interface StudyRoomMessage {
   content: string;
   created_at: string;
   is_bot: boolean;
+  is_pinned: boolean;
 }
 
 function isMissingTableError(error: { code?: string } | null) {

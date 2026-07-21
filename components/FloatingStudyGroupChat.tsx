@@ -115,6 +115,9 @@ export default function FloatingStudyGroupChat() {
 
   if (!room) return null;
 
+  const pinnedMessage = messages.find((m) => m.is_pinned) ?? null;
+  const scrollMessages = messages.filter((m) => !m.is_pinned);
+
   return (
     <>
       <button
@@ -163,13 +166,23 @@ export default function FloatingStudyGroupChat() {
             </button>
           </div>
 
+          {pinnedMessage && (
+            <div className="shrink-0 px-3 py-2.5 bg-amber-50 dark:bg-amber-950/30 border-b border-amber-200 dark:border-amber-900">
+              <div className="flex items-center gap-1.5 mb-1">
+                <Image src="/tai-tai-avatar.jpg" alt="Tài Tài" width={16} height={16} className="rounded-full" />
+                <span className="text-[10px] font-extrabold text-amber-700 dark:text-amber-400">Tài Tài · Quản lý nhóm · Đã ghim</span>
+              </div>
+              <p className="text-xs text-stone-800 dark:text-stone-200 leading-relaxed">{pinnedMessage.content}</p>
+            </div>
+          )}
+
           <div className="flex-1 overflow-y-auto p-3 space-y-2.5 bg-stone-50/50 dark:bg-stone-950/40">
-            {messages.length === 0 ? (
+            {scrollMessages.length === 0 ? (
               <p className="text-xs text-stone-400 dark:text-stone-500 text-center py-8">
                 Chưa có tin nhắn nào. Chào các bạn trong nhóm nhé!
               </p>
             ) : (
-              messages.map((msg) => {
+              scrollMessages.map((msg) => {
                 if (msg.is_bot) {
                   return (
                     <div key={msg.id} className="flex justify-start">

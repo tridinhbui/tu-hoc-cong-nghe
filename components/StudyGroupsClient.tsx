@@ -95,6 +95,9 @@ export default function StudyGroupsClient() {
     [myRoomMembers]
   );
 
+  const pinnedMessage = useMemo(() => messages.find((m) => m.is_pinned) ?? null, [messages]);
+  const scrollMessages = useMemo(() => messages.filter((m) => !m.is_pinned), [messages]);
+
   async function refreshMyRoom() {
     const room = await getMyStudyRoom();
     setMyRoom(room);
@@ -341,13 +344,19 @@ export default function StudyGroupsClient() {
             <h3 className="text-sm font-extrabold text-stone-900 dark:text-stone-100 uppercase tracking-widest mb-3">
               Trò chuyện nhóm
             </h3>
+            {pinnedMessage && (
+              <div className="mb-3 px-3.5 py-2.5 rounded-xl bg-amber-50 dark:bg-amber-950/30 border border-amber-200 dark:border-amber-900">
+                <p className="text-[10px] font-extrabold text-amber-700 dark:text-amber-400 mb-0.5">Tài Tài · Quản lý nhóm · Đã ghim</p>
+                <p className="text-xs text-stone-800 dark:text-stone-200 leading-relaxed">{pinnedMessage.content}</p>
+              </div>
+            )}
             <div className="h-72 overflow-y-auto rounded-xl border border-stone-200 dark:border-stone-800 bg-stone-50/50 dark:bg-stone-950/40 p-3 space-y-2.5">
-              {messages.length === 0 ? (
+              {scrollMessages.length === 0 ? (
                 <p className="text-xs text-stone-400 dark:text-stone-500 text-center py-8">
                   Chưa có tin nhắn nào. Chào các thành viên trong nhóm nhé!
                 </p>
               ) : (
-                messages.map((msg) => {
+                scrollMessages.map((msg) => {
                   if (msg.is_bot) {
                     return (
                       <div key={msg.id} className="flex justify-start">
