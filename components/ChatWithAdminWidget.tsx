@@ -217,12 +217,12 @@ export default function ChatWithAdminWidget({ isOpen: controlledIsOpen, onOpenCh
             initial={{ opacity: 0, y: 20, scale: 0.95 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 20, scale: 0.95 }}
-            className="fixed inset-x-4 bottom-4 sm:inset-x-auto sm:bottom-6 sm:right-6 z-50 sm:w-96 max-h-[80vh] sm:max-h-[460px] bg-white dark:bg-stone-900 rounded-2xl shadow-[0_20px_50px_rgba(0,0,0,0.35)] border border-stone-250 dark:border-stone-800 flex flex-col overflow-hidden transition-all duration-300"
+            className="fixed inset-x-4 bottom-4 sm:inset-x-auto sm:bottom-6 sm:right-6 z-50 sm:w-96 max-h-[80vh] sm:max-h-[460px] bg-white dark:bg-stone-900 rounded-2xl shadow-[0_20px_50px_rgba(0,0,0,0.35)] border border-stone-100 dark:border-stone-800/80 flex flex-col overflow-hidden transition-all duration-300"
           >
             {/* Header */}
-            <div className="bg-gradient-to-r from-stone-950 via-stone-900 to-stone-950 dark:from-stone-950 dark:via-stone-900 dark:to-stone-950 text-white px-4.5 py-4 flex items-center gap-3 border-b border-stone-850/60 shadow-sm">
+            <div className="bg-gradient-to-r from-stone-950 via-stone-900 to-stone-950 dark:from-stone-950 dark:via-stone-900 dark:to-stone-950 text-white px-4.5 py-4 flex items-center gap-3 border-b border-stone-100/10 shadow-sm">
               <div className="relative flex-shrink-0">
-                <Logo size={38} className="rounded-full border border-stone-800" />
+                <Logo size={38} className="rounded-full" />
                 <span className="absolute -bottom-0.5 -right-0.5 w-3 h-3 rounded-full bg-emerald-500 border-2 border-stone-900" />
               </div>
               <div className="flex-1 min-w-0">
@@ -277,8 +277,8 @@ export default function ChatWithAdminWidget({ isOpen: controlledIsOpen, onOpenCh
                     <div
                       className={`max-w-[270px] px-3.5 py-2.5 rounded-2xl text-[12px] leading-relaxed shadow-xs transition-all duration-300 ${
                         msg.sender === "user"
-                          ? "bg-gradient-to-br from-stone-900 to-stone-800 dark:from-white dark:to-stone-100 text-white dark:text-stone-900 rounded-tr-sm border border-stone-800/10 dark:border-stone-200/10"
-                          : "bg-white dark:bg-stone-800/90 text-stone-800 dark:text-stone-100 border border-stone-200/60 dark:border-stone-800 rounded-tl-sm"
+                          ? "bg-gradient-to-br from-stone-900 to-stone-800 dark:from-white dark:to-stone-100 text-white dark:text-stone-900 rounded-tr-sm"
+                          : "bg-white dark:bg-stone-800/90 text-stone-800 dark:text-stone-100 border border-stone-100 dark:border-stone-850/60 rounded-tl-sm"
                       }`}
                     >
                       {msg.image_url && (
@@ -304,14 +304,14 @@ export default function ChatWithAdminWidget({ isOpen: controlledIsOpen, onOpenCh
             </div>
 
             {/* Input Container */}
-            <div className="p-3 bg-white dark:bg-stone-900 border-t border-stone-200/80 dark:border-stone-850">
+            <div className="p-3 bg-white dark:bg-stone-900 border-t border-stone-100 dark:border-stone-850/40">
               {pendingImage && (
                 <div className="relative inline-block mb-2 group">
                   {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img
                     src={pendingImagePreview || ""}
                     alt="Preview"
-                    className="w-14 h-14 rounded-lg object-cover border border-stone-300 dark:border-stone-700 shadow-md"
+                    className="w-14 h-14 rounded-lg object-cover border border-stone-100 dark:border-stone-800/50 shadow-md"
                   />
                   <button
                     onClick={() => {
@@ -341,7 +341,7 @@ export default function ChatWithAdminWidget({ isOpen: controlledIsOpen, onOpenCh
                 <button
                   onClick={() => fileInputRef.current?.click()}
                   title="Đính kèm ảnh"
-                  className="p-2 border border-stone-200 dark:border-stone-850 text-stone-500 dark:text-stone-400 hover:text-stone-800 dark:hover:text-stone-200 hover:bg-stone-50 dark:hover:bg-stone-850 rounded-xl transition flex-shrink-0 active:scale-95"
+                  className="p-2 border border-stone-100 dark:border-stone-850/50 text-stone-500 dark:text-stone-400 hover:text-stone-800 dark:hover:text-stone-200 hover:bg-stone-50 dark:hover:bg-stone-850 rounded-xl transition flex-shrink-0 active:scale-95"
                 >
                   <ImagePlus className="w-4.5 h-4.5" />
                 </button>
@@ -357,7 +357,7 @@ export default function ChatWithAdminWidget({ isOpen: controlledIsOpen, onOpenCh
                   }}
                   onPaste={handlePaste}
                   placeholder="Nhập tin nhắn, dán ảnh..."
-                  className="flex-1 min-w-0 px-3 py-2 border border-stone-200/80 dark:border-stone-850 bg-stone-50/50 dark:bg-stone-950/60 text-stone-900 dark:text-stone-100 rounded-xl text-xs focus:outline-none focus:border-stone-400 dark:focus:border-stone-700 focus:bg-white dark:focus:bg-stone-950 transition-all placeholder:text-stone-400"
+                  className="flex-1 min-w-0 px-3 py-2 border border-stone-100 dark:border-stone-850/40 bg-stone-50/50 dark:bg-stone-950/60 text-stone-900 dark:text-stone-100 rounded-xl text-xs focus:outline-none focus:border-stone-400 dark:focus:border-stone-700 focus:bg-white dark:focus:bg-stone-950 transition-all placeholder:text-stone-400"
                 />
                 
                 <button

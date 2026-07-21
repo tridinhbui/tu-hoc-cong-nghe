@@ -5,6 +5,8 @@ import { getLessonsMeta } from "@/lib/lessons-loader";
 import { createServerSupabaseClient } from "@/lib/supabase-server";
 import NotesOverviewClient from "@/components/NotesOverviewClient";
 import FlashcardClient from "@/components/flashcard/FlashcardClient";
+import type { LessonNote } from "@/lib/supabase-notes";
+import type { Flashcard } from "@/lib/supabase-flashcards";
 
 // Auth-gated and reads Supabase env vars at render time - never prerender statically.
 export const dynamic = "force-dynamic";
@@ -32,6 +34,28 @@ export default async function GhiChuPage() {
     lessonsMeta.map((l) => [l.id, { slug: l.slug, title: l.title }])
   );
 
+  // Fetch notes + flashcards here (server-side, same request as the page
+  // itself) instead of letting each client component do its own fetch after
+  // hydration. That used to mean the page painted its shell immediately but
+  // then sat on two sequential "Đang tải..." spinners while two separate
+  // client-side Supabase round trips ran - this is what made the page feel
+  // slow on every visit, not just the first one. Fetching both in parallel
+  // here means the page can render with data already in hand.
+  const [notesResult, flashcardsResult] = await Promise.all([
+    supabase
+      .from("lesson_notes")
+      .select("*")
+      .eq("user_id", user.id)
+      .order("updated_at", { ascending: false }),
+    supabase
+      .from("user_flashcards")
+      .select("term, definition, interval, ease_factor, repetitions, next_review_at")
+      .eq("user_id", user.id),
+  ]);
+
+  const initialNotes = (notesResult.data ?? []) as LessonNote[];
+  const initialCards = (flashcardsResult.data ?? []) as Flashcard[];
+
   return (
     <div className="min-h-screen bg-white dark:bg-stone-950">
       <div className="border-b border-stone-200 dark:border-stone-800 bg-white dark:bg-stone-950">
@@ -48,8 +72,8 @@ export default async function GhiChuPage() {
       </div>
 
       <div className="max-w-2xl mx-auto px-6 py-8 space-y-10">
-        <NotesOverviewClient lessonsById={lessonsById} userId={user.id} embedded />
-        <FlashcardClient userId={user.id} embedded />
+        <NotesOverviewClient lessonsById={lessonsById} userId={user.id} initialNotes={initialNotes} embedded />
+        <FlashcardClient userId={user.id} initialCards={initialCards} embedded />
       </div>
     </div>
   );

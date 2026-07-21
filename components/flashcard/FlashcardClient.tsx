@@ -21,15 +21,16 @@ import FlashcardAlbumsGallery from "@/components/flashcard/FlashcardAlbumsGaller
 
 interface FlashcardClientProps {
   userId?: string;
+  initialCards?: Flashcard[];
   embedded?: boolean;
 }
 
-export default function FlashcardClient({ userId: propUserId, embedded = false }: FlashcardClientProps = {}) {
+export default function FlashcardClient({ userId: propUserId, initialCards, embedded = false }: FlashcardClientProps = {}) {
   const authGate = useAuthGate();
   const userId = propUserId || authGate.userId;
   const checking = propUserId ? false : authGate.checking;
-  const [cards, setCards] = useState<Flashcard[]>([]);
-  const [loading, setLoading] = useState(true);
+  const [cards, setCards] = useState<Flashcard[]>(initialCards ?? []);
+  const [loading, setLoading] = useState(initialCards === undefined);
   const [isFlipped, setIsFlipped] = useState(false);
   const [swipeOffset, setSwipeOffset] = useState(0);
   const [isDragging, setIsDragging] = useState(false);
@@ -93,6 +94,7 @@ export default function FlashcardClient({ userId: propUserId, embedded = false }
 
   useEffect(() => {
     if (!userId) return;
+    if (initialCards !== undefined) return;
     const loadCards = async () => {
       try {
         const list = await getFlashcards(userId);
@@ -104,6 +106,8 @@ export default function FlashcardClient({ userId: propUserId, embedded = false }
       }
     };
     void loadCards();
+    // Only re-run for a different userId; initialCards is a first-render-only seed.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [userId]);
 
   if (checking || !userId) {

@@ -15,6 +15,7 @@ interface LessonInfo {
 interface NotesOverviewClientProps {
   lessonsById: Record<number, LessonInfo>;
   userId: string;
+  initialNotes?: LessonNote[];
   embedded?: boolean;
 }
 
@@ -23,17 +24,24 @@ interface NotesOverviewClientProps {
 // on mount instead of waiting on a client-side getSession() round trip
 // first, which used to make this page load noticeably slower than the rest
 // of the app (two sequential client round trips instead of one).
-export default function NotesOverviewClient({ lessonsById, userId, embedded = false }: NotesOverviewClientProps) {
-  const [notes, setNotes] = useState<LessonNote[]>([]);
-  const [loading, setLoading] = useState(true);
+//
+// `initialNotes`, when provided, comes from the same server request that
+// rendered the page shell - skip the client-side fetch entirely in that
+// case instead of re-querying data we already have.
+export default function NotesOverviewClient({ lessonsById, userId, initialNotes, embedded = false }: NotesOverviewClientProps) {
+  const [notes, setNotes] = useState<LessonNote[]>(initialNotes ?? []);
+  const [loading, setLoading] = useState(initialNotes === undefined);
   const [editingNoteId, setEditingNoteId] = useState<number | null>(null);
   const [editContent, setEditContent] = useState("");
 
   useEffect(() => {
+    if (initialNotes !== undefined) return;
     getAllUserNotes(userId)
       .then(setNotes)
       .catch((error) => console.error("Error loading notes:", error))
       .finally(() => setLoading(false));
+    // Only re-run for a different userId; initialNotes is a first-render-only seed.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [userId]);
 
   const startEditing = (note: LessonNote) => {

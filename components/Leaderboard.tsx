@@ -289,7 +289,7 @@ export default function Leaderboard({ userId }: LeaderboardProps) {
   const myRankInTop10 = userId !== undefined && entries.some((e) => e.user_id === userId);
 
   return (
-    <div className="bg-white dark:bg-stone-900 border-2 border-stone-200 dark:border-stone-800 rounded-xl p-3 sm:p-4 lg:p-5 h-fit lg:sticky lg:top-24">
+    <div className="bg-white dark:bg-stone-900 border border-stone-100 dark:border-stone-850/60 rounded-xl p-3 sm:p-4 lg:p-5 h-fit lg:sticky lg:top-24">
       <div className="mb-2 sm:mb-3">
         <p className="text-[11px] sm:text-xs font-extrabold text-stone-500 dark:text-stone-400 uppercase tracking-widest">
           Top Người Học
@@ -434,8 +434,8 @@ export default function Leaderboard({ userId }: LeaderboardProps) {
                   href={href}
                   className={`group relative flex items-center justify-between overflow-hidden px-3.5 py-2.5 rounded-xl text-xs transition-all duration-300 active:scale-[0.99] border focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400/60 ${
                     isCurrent
-                      ? "bg-emerald-50/50 dark:bg-emerald-950/40 border-emerald-250 dark:border-emerald-900 shadow-[0_4px_12px_-8px_rgba(16,185,129,0.3)]"
-                      : "bg-white dark:bg-stone-900 border-stone-200 dark:border-stone-850 hover:border-stone-300 dark:hover:border-stone-700 hover:bg-stone-50/30 dark:hover:bg-stone-850/30"
+                      ? "bg-emerald-50/50 dark:bg-emerald-950/40 border-emerald-200 dark:border-emerald-900/60 shadow-[0_4px_12px_-8px_rgba(16,185,129,0.3)]"
+                      : "bg-white dark:bg-stone-900 border-stone-100 dark:border-stone-850/50 hover:bg-stone-50/30 dark:hover:bg-stone-850/30"
                   }`}
                 >
                   <div className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-200 group-hover:opacity-100 bg-[linear-gradient(135deg,rgba(16,185,129,0.04),transparent_40%)]" />
@@ -443,14 +443,14 @@ export default function Leaderboard({ userId }: LeaderboardProps) {
                   {/* Left block: Rank + Avatar + Name details */}
                   <div className="flex items-center gap-2.5 min-w-0">
                     <div
-                      className={`relative z-10 w-6 h-6 rounded-md flex items-center justify-center flex-shrink-0 font-extrabold text-[10px] transition-transform duration-300 group-hover:scale-115 border ${
+                      className={`relative z-10 w-6 h-6 rounded-md flex items-center justify-center flex-shrink-0 font-extrabold text-[10px] transition-transform duration-300 group-hover:scale-115 ${
                         rank === 4
-                          ? "bg-purple-50 dark:bg-purple-950/60 border-purple-100 dark:border-purple-900 text-purple-700 dark:text-purple-300"
+                          ? "bg-purple-50 dark:bg-purple-950/60 text-purple-700 dark:text-purple-300"
                           : rank === 5
-                            ? "bg-sky-50 dark:bg-sky-950/60 border-sky-100 dark:border-sky-900 text-sky-700 dark:text-sky-300"
+                            ? "bg-sky-50 dark:bg-sky-950/60 text-sky-700 dark:text-sky-300"
                             : rank === 6
-                              ? "bg-teal-50 dark:bg-teal-950/60 border-teal-100 dark:border-teal-900 text-teal-700 dark:text-teal-300"
-                              : "bg-stone-50 dark:bg-stone-850 border-stone-150 dark:border-stone-800 text-stone-500 dark:text-stone-400"
+                              ? "bg-teal-50 dark:bg-teal-950/60 text-teal-700 dark:text-teal-300"
+                              : "bg-stone-55 dark:bg-stone-800 text-stone-500 dark:text-stone-400"
                       }`}
                     >
                       <span className="text-[10px]">{rank}</span>

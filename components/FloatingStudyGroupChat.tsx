@@ -231,7 +231,7 @@ export default function FloatingStudyGroupChat({ isOpen: controlledIsOpen, onOpe
           ${open ? "translate-y-0 opacity-100 pointer-events-auto" : "translate-y-4 opacity-0 pointer-events-none"}
         `}
       >
-        <div className="bg-white dark:bg-stone-900 sm:rounded-2xl shadow-[0_20px_50px_rgba(0,0,0,0.35)] border border-stone-250 dark:border-stone-850 flex flex-col overflow-hidden rounded-t-2xl sm:rounded-2xl h-[72vh] sm:h-[480px]">
+        <div className="bg-white dark:bg-stone-900 sm:rounded-2xl shadow-[0_20px_50px_rgba(0,0,0,0.35)] border border-stone-100 dark:border-stone-800/80 flex flex-col overflow-hidden rounded-t-2xl sm:rounded-2xl h-[72vh] sm:h-[480px]">
           
           {/* Header */}
           <div className="bg-gradient-to-r from-emerald-650 via-emerald-600 to-teal-650 px-4.5 py-4 flex items-center gap-3 shrink-0 shadow-sm">
@@ -253,7 +253,7 @@ export default function FloatingStudyGroupChat({ isOpen: controlledIsOpen, onOpe
 
           {/* Pinned Message */}
           {pinnedMessage && (
-            <div className="shrink-0 px-3.5 py-2.5 bg-amber-50/80 dark:bg-amber-950/20 border-b border-amber-200/50 dark:border-amber-900/30">
+            <div className="shrink-0 px-3.5 py-2.5 bg-amber-50/80 dark:bg-amber-950/20 border-b border-amber-100 dark:border-amber-900/30">
               <div className="flex items-center gap-1.5 mb-1">
                 <TaiTaiAvatar size={16} />
                 <span className="text-[10px] font-extrabold text-amber-700 dark:text-amber-400">Tài Tài • Quản lý nhóm • Đã ghim</span>
@@ -295,7 +295,7 @@ export default function FloatingStudyGroupChat({ isOpen: controlledIsOpen, onOpe
                 if (msg.is_bot) {
                   return (
                     <div key={msg.id} className="flex justify-start">
-                      <div className="max-w-[85%] rounded-2xl px-3.5 py-2.5 bg-amber-50/80 dark:bg-amber-950/20 border border-amber-250/50 dark:border-amber-900/40 shadow-xs">
+                      <div className="max-w-[85%] rounded-2xl px-3.5 py-2.5 bg-amber-50/80 dark:bg-amber-950/20 shadow-xs">
                         <div className="flex items-center gap-1.5 mb-1.5">
                           <TaiTaiAvatar size={16} />
                           <span className="text-[10px] font-extrabold text-amber-700 dark:text-amber-400">Tài Tài • Quản lý nhóm</span>
@@ -316,10 +316,10 @@ export default function FloatingStudyGroupChat({ isOpen: controlledIsOpen, onOpe
                           alt={member.full_name || "Thành viên"}
                           width={24}
                           height={24}
-                          className="rounded-full object-cover flex-shrink-0 mb-0.5 border border-stone-200 dark:border-stone-800"
+                          className="rounded-full object-cover flex-shrink-0 mb-0.5 border border-stone-100 dark:border-stone-850"
                         />
                       ) : (
-                        <div className="w-6 h-6 rounded-full bg-stone-200 dark:bg-stone-700 text-stone-600 dark:text-stone-300 text-[9px] font-extrabold flex items-center justify-center flex-shrink-0 mb-0.5 border border-stone-350 dark:border-stone-800">
+                        <div className="w-6 h-6 rounded-full bg-stone-200 dark:bg-stone-700 text-stone-600 dark:text-stone-300 text-[9px] font-extrabold flex items-center justify-center flex-shrink-0 mb-0.5 border border-stone-150 dark:border-stone-800">
                           {initials(member?.full_name)}
                         </div>
                       ))}
@@ -333,7 +333,7 @@ export default function FloatingStudyGroupChat({ isOpen: controlledIsOpen, onOpe
                         className={`rounded-2xl px-3.5 py-2.5 text-[12px] leading-relaxed shadow-xs ${
                           isMine
                             ? "bg-gradient-to-br from-emerald-650 to-teal-600 text-white rounded-tr-sm"
-                            : "bg-white dark:bg-stone-850/90 text-stone-800 dark:text-stone-100 border border-stone-200/60 dark:border-stone-800 rounded-tl-sm"
+                            : "bg-white dark:bg-stone-850/90 text-stone-800 dark:text-stone-100 rounded-tl-sm"
                         }`}
                       >
                         {msg.image_url && (
@@ -356,7 +356,7 @@ export default function FloatingStudyGroupChat({ isOpen: controlledIsOpen, onOpe
           </div>
 
           {/* Input Box */}
-          <div className="p-3 bg-white dark:bg-stone-900 border-t border-stone-200/80 dark:border-stone-850 shrink-0">
+          <div className="p-3 bg-white dark:bg-stone-900 border-t border-stone-100 dark:border-stone-850/40 shrink-0">
             {pendingImagePreview && (
               <div className="relative inline-block mb-2 group">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -381,7 +381,7 @@ export default function FloatingStudyGroupChat({ isOpen: controlledIsOpen, onOpe
               <button
                 onClick={() => fileInputRef.current?.click()}
                 title="Đính kèm ảnh"
-                className="p-2 border border-stone-200 dark:border-stone-850 text-stone-500 dark:text-stone-400 hover:text-stone-800 dark:hover:text-stone-200 hover:bg-stone-50 dark:hover:bg-stone-850 rounded-xl transition flex-shrink-0 active:scale-95"
+                className="p-2 border border-stone-100 dark:border-stone-850/50 text-stone-500 dark:text-stone-400 hover:text-stone-800 dark:hover:text-stone-200 hover:bg-stone-50 dark:hover:bg-stone-850 rounded-xl transition flex-shrink-0 active:scale-95"
               >
                 <ImagePlus className="w-4.5 h-4.5" />
               </button>
@@ -401,7 +401,7 @@ export default function FloatingStudyGroupChat({ isOpen: controlledIsOpen, onOpe
                 onPaste={handlePaste}
                 placeholder="Nhắn gì đó cho nhóm..."
                 maxLength={2000}
-                className="flex-1 min-w-0 px-3 py-2 border border-stone-200/80 dark:border-stone-850 bg-stone-50/50 dark:bg-stone-950/60 text-stone-900 dark:text-stone-100 rounded-xl text-xs focus:outline-none focus:border-emerald-400 dark:focus:border-emerald-700 focus:bg-white dark:focus:bg-stone-950 transition-all placeholder:text-stone-400"
+                className="flex-1 min-w-0 px-3 py-2 border border-stone-100 dark:border-stone-850/40 bg-stone-50/50 dark:bg-stone-950/60 text-stone-900 dark:text-stone-100 rounded-xl text-xs focus:outline-none focus:border-emerald-400 dark:focus:border-emerald-700 focus:bg-white dark:focus:bg-stone-950 transition-all placeholder:text-stone-400"
               />
               
               <button
