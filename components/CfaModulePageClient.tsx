@@ -112,16 +112,18 @@ export default function CfaModulePageClient({ moduleId }: { moduleId: string }) 
       setLoading(true);
       const supabase = createClient();
 
-      const {
-        data: { user },
-      } = await supabase.auth.getUser();
+      // Previously ~8 Supabase round trips ran one after another (each
+      // await blocking the next), even though most don't actually depend
+      // on each other - that serial chain was the real cause of the slow
+      // per-lesson load. Grouped into parallel waves instead: only wait for
+      // a query when its filter genuinely depends on a prior result
+      // (Reading needs modData.readingId; Book/siblings need readingData;
+      // quiz questions need the header's id).
+      const [{ data: user }, { data: modData, error: modError }] = await Promise.all([
+        supabase.auth.getUser().then((r) => ({ data: r.data.user })),
+        supabase.from("Module").select("*").eq("id", moduleId).maybeSingle(),
+      ]);
       if (!cancelled) setUserId(user?.id ?? null);
-
-      const { data: modData, error: modError } = await supabase
-        .from("Module")
-        .select("*")
-        .eq("id", moduleId)
-        .maybeSingle();
 
       if (modError || !modData) {
         if (!cancelled) {
@@ -133,80 +135,80 @@ export default function CfaModulePageClient({ moduleId }: { moduleId: string }) 
       if (cancelled) return;
       setMod(modData);
 
-      const { data: readingData } = await supabase
-        .from("Reading")
-        .select("*")
-        .eq("id", modData.readingId)
-        .maybeSingle();
-      if (!cancelled && readingData) setReading(readingData);
+      const [{ data: readingData }, { data: contentData }, { data: headerData }] = await Promise.all([
+        supabase.from("Reading").select("*").eq("id", modData.readingId).maybeSingle(),
+        supabase.from("LessonContent").select("content").eq("moduleId", moduleId).maybeSingle(),
+        supabase.from("ModuleQuizHeader").select("*").eq("moduleId", moduleId).maybeSingle(),
+      ]);
+      if (cancelled) return;
+      if (readingData) setReading(readingData);
+      setContent(contentData ? contentData.content : "Bài học này chưa có nội dung chi tiết.");
+
+      const followUps: PromiseLike<void>[] = [];
 
       if (readingData) {
-        const { data: bookData } = await supabase
-          .from("Book")
-          .select("id, title")
-          .eq("id", readingData.bookId)
-          .maybeSingle();
-        if (!cancelled && bookData) setBook(bookData);
-
-        const { data: siblings } = await supabase
-          .from("Module")
-          .select("*")
-          .eq("readingId", readingData.id)
-          .order("order", { ascending: true });
-        if (!cancelled && siblings) setSiblingModules(siblings);
+        followUps.push(
+          supabase
+            .from("Book")
+            .select("id, title")
+            .eq("id", readingData.bookId)
+            .maybeSingle()
+            .then(({ data: bookData }) => {
+              if (!cancelled && bookData) setBook(bookData);
+            }),
+          supabase
+            .from("Module")
+            .select("*")
+            .eq("readingId", readingData.id)
+            .order("order", { ascending: true })
+            .then(({ data: siblings }) => {
+              if (!cancelled && siblings) setSiblingModules(siblings);
+            })
+        );
       }
 
-      const { data: contentData } = await supabase
-        .from("LessonContent")
-        .select("content")
-        .eq("moduleId", moduleId)
-        .maybeSingle();
-      if (!cancelled) setContent(contentData ? contentData.content : "Bài học này chưa có nội dung chi tiết.");
-
-      const { data: headerData } = await supabase
-        .from("ModuleQuizHeader")
-        .select("*")
-        .eq("moduleId", moduleId)
-        .maybeSingle();
-
       if (headerData) {
-        const { data: qData } = await supabase
-          .from("ModuleQuizQuestion")
-          .select("*")
-          .eq("headerId", headerData.id)
-          .order("questionNo", { ascending: true });
-        if (!cancelled) setQuizQuestions(qData || []);
+        followUps.push(
+          supabase
+            .from("ModuleQuizQuestion")
+            .select("*")
+            .eq("headerId", headerData.id)
+            .order("questionNo", { ascending: true })
+            .then(({ data: qData }) => {
+              if (!cancelled) setQuizQuestions(qData || []);
+            })
+        );
       }
 
       if (user?.id) {
-        try {
-          const progress = await getCfaModuleProgress(user.id, moduleId);
-          if (!cancelled && progress?.completed) {
-            setPreviouslyCompleted(true);
-            if (progress.quiz_score != null && progress.quiz_total != null) {
-              setPreviousScore({ score: progress.quiz_score, total: progress.quiz_total });
-            }
-          }
-        } catch (err) {
-          console.error("Error loading CFA module progress:", err);
-        }
-
-        try {
-          const [isBookmarked, moduleNotes, moduleHighlights] = await Promise.all([
+        followUps.push(
+          getCfaModuleProgress(user.id, moduleId)
+            .then((progress) => {
+              if (!cancelled && progress?.completed) {
+                setPreviouslyCompleted(true);
+                if (progress.quiz_score != null && progress.quiz_total != null) {
+                  setPreviousScore({ score: progress.quiz_score, total: progress.quiz_total });
+                }
+              }
+            })
+            .catch((err) => console.error("Error loading CFA module progress:", err)),
+          Promise.all([
             isCfaModuleBookmarked(user.id, moduleId),
             getCfaModuleNotes(user.id, moduleId),
             getCfaModuleHighlights(user.id, moduleId),
-          ]);
-          if (!cancelled) {
-            setBookmarked(isBookmarked);
-            setNotes(moduleNotes);
-            setHighlights(moduleHighlights);
-          }
-        } catch (err) {
-          console.error("Error loading CFA module bookmark/notes/highlights:", err);
-        }
+          ])
+            .then(([isBookmarked, moduleNotes, moduleHighlights]) => {
+              if (!cancelled) {
+                setBookmarked(isBookmarked);
+                setNotes(moduleNotes);
+                setHighlights(moduleHighlights);
+              }
+            })
+            .catch((err) => console.error("Error loading CFA module bookmark/notes/highlights:", err))
+        );
       }
 
+      await Promise.all(followUps);
       if (!cancelled) setLoading(false);
     }
     load();
