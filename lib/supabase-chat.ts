@@ -97,6 +97,9 @@ export async function sendMessage(
   return data as ChatMessage;
 }
 
+// Fires on both new messages and read-receipt updates (the `read` column
+// flipping true) so the widget can upsert: append if it's a new id, or patch
+// the existing message in place to show a "seen" indicator live.
 export function subscribeToChatMessages(
   userId: string,
   onMessage: (message: ChatMessage) => void
@@ -117,9 +120,30 @@ export function subscribeToChatMessages(
         onMessage(payload.new as ChatMessage);
       }
     )
+    .on(
+      "postgres_changes",
+      {
+        event: "UPDATE",
+        schema: "public",
+        table: "chat_messages",
+        filter: `user_id=eq.${userId}`,
+      },
+      (payload) => {
+        onMessage(payload.new as ChatMessage);
+      }
+    )
     .subscribe();
 
   return () => {
     supabase.removeChannel(channel);
   };
+}
+
+// Marks the admin's messages in this user's thread as seen. Best-effort: the
+// RPC is restricted to auth.uid() = userId, so this is only ever called for
+// the signed-in user's own thread.
+export async function markMessagesSeenByUser(userId: string) {
+  const supabase = createClient();
+  const { error } = await supabase.rpc("mark_admin_chat_messages_seen", { p_user_id: userId });
+  if (error) console.error("Error marking admin messages as seen:", error);
 }

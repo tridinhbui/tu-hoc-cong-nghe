@@ -80,11 +80,11 @@ export async function getChatThreadMessages(userId: string): Promise<ChatThreadM
   return data as ChatThreadMessage[];
 }
 
-export async function sendAdminChatReply(userId: string, content: string) {
+export async function sendAdminChatReply(userId: string, content: string, imageUrl?: string | null) {
   const supabase = createAdminClient();
   const { error } = await supabase
     .from("chat_messages")
-    .insert({ user_id: userId, sender: "admin", content });
+    .insert({ user_id: userId, sender: "admin", content, image_url: imageUrl ?? null });
   if (error) throw new Error(error.message);
 }
 

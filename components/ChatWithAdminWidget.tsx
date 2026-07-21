@@ -6,6 +6,7 @@ import { Send, X, ImagePlus, Loader2 } from "lucide-react";
 import { toast } from "sonner";
 import { createClient } from "@/lib/supabase";
 import Logo from "@/components/Logo";
+import EmojiPicker from "@/components/EmojiPicker";
 import { getRandomCommunityShoutout } from "@/lib/supabase-user";
 import {
   getChatHistory,
@@ -13,6 +14,7 @@ import {
   subscribeToChatMessages,
   uploadChatImage,
   isAllowedChatImage,
+  markMessagesSeenByUser,
   type ChatMessage,
 } from "@/lib/supabase-chat";
 
@@ -56,9 +58,16 @@ export default function ChatWithAdminWidget() {
 
     const unsubscribe = subscribeToChatMessages(userId, (message) => {
       setMessages((prev) => {
-        if (prev.some((m) => m.id === message.id)) return prev;
-        return [...prev, message];
+        const existingIdx = prev.findIndex((m) => m.id === message.id);
+        if (existingIdx === -1) return [...prev, message];
+        // UPDATE event (e.g. admin marked our message as read) - patch in place.
+        const next = [...prev];
+        next[existingIdx] = message;
+        return next;
       });
+      // A fresh admin message arrived while the chat is open - mark it seen
+      // immediately instead of waiting for the next load.
+      if (message.sender === "admin") void markMessagesSeenByUser(userId);
     });
 
     return unsubscribe;
@@ -79,6 +88,7 @@ export default function ChatWithAdminWidget() {
       const history = await getChatHistory(user.id);
       setMessages(history);
       hasLoadedHistoryRef.current = true;
+      void markMessagesSeenByUser(user.id);
     } finally {
       setLoadingHistory(false);
     }
@@ -228,41 +238,43 @@ export default function ChatWithAdminWidget() {
                   Gửi tin nhắn để bắt đầu trò chuyện với admin. Admin thường phản hồi trong vòng 24 giờ.
                 </p>
               )}
-              {messages.map((msg) => (
-                <div
-                  key={msg.id}
-                  className={`flex ${msg.sender === "user" ? "justify-end" : "justify-start"}`}
-                >
+              {(() => {
+                const lastUserMsgId = [...messages].reverse().find((m) => m.sender === "user")?.id;
+                return messages.map((msg) => (
                   <div
-                    className={`max-w-xs px-4 py-2 rounded-xl ${
-                      msg.sender === "user"
-                        ? "bg-stone-900 dark:bg-stone-100 text-white dark:text-stone-900 rounded-br-none"
-                        : "bg-white dark:bg-stone-800 text-stone-900 dark:text-stone-100 border border-stone-300 dark:border-stone-700 rounded-bl-none"
-                    }`}
+                    key={msg.id}
+                    className={`flex flex-col ${msg.sender === "user" ? "items-end" : "items-start"}`}
                   >
-                    {msg.image_url && (
-                      // eslint-disable-next-line @next/next/no-img-element
-                      <img
-                        src={msg.image_url}
-                        alt="Ảnh đính kèm"
-                        className="max-w-full max-h-48 rounded-lg mb-1.5 cursor-pointer object-cover"
-                        onClick={() => window.open(msg.image_url!, "_blank")}
-                      />
-                    )}
-                    {msg.content && <p className="text-sm">{msg.content}</p>}
-                    <p
-                      className={`text-xs mt-1 ${
-                        msg.sender === "user" ? "text-stone-500 dark:text-stone-400" : "text-stone-500 dark:text-stone-400"
+                    <div
+                      className={`max-w-xs px-4 py-2 rounded-xl ${
+                        msg.sender === "user"
+                          ? "bg-stone-900 dark:bg-stone-100 text-white dark:text-stone-900 rounded-br-none"
+                          : "bg-white dark:bg-stone-800 text-stone-900 dark:text-stone-100 border border-stone-300 dark:border-stone-700 rounded-bl-none"
                       }`}
                     >
-                      {new Date(msg.created_at).toLocaleTimeString("vi-VN", {
-                        hour: "2-digit",
-                        minute: "2-digit",
-                      })}
-                    </p>
+                      {msg.image_url && (
+                        // eslint-disable-next-line @next/next/no-img-element
+                        <img
+                          src={msg.image_url}
+                          alt="Ảnh đính kèm"
+                          className="max-w-full max-h-48 rounded-lg mb-1.5 cursor-pointer object-cover"
+                          onClick={() => window.open(msg.image_url!, "_blank")}
+                        />
+                      )}
+                      {msg.content && <p className="text-sm">{msg.content}</p>}
+                      <p className="text-xs mt-1 text-stone-500 dark:text-stone-400">
+                        {new Date(msg.created_at).toLocaleTimeString("vi-VN", {
+                          hour: "2-digit",
+                          minute: "2-digit",
+                        })}
+                      </p>
+                    </div>
+                    {msg.sender === "user" && msg.id === lastUserMsgId && msg.read && (
+                      <span className="text-[10px] text-stone-400 dark:text-stone-500 mt-0.5 mr-1">Admin đã xem</span>
+                    )}
                   </div>
-                </div>
-              ))}
+                ));
+              })()}
               <div ref={messagesEndRef} />
             </div>
 
@@ -314,6 +326,7 @@ export default function ChatWithAdminWidget() {
                 >
                   <ImagePlus className="w-4 h-4" />
                 </button>
+                <EmojiPicker onSelect={(emoji) => setInput((prev) => prev + emoji)} />
                 <input
                   type="text"
                   value={input}

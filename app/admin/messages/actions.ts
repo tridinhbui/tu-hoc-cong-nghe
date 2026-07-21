@@ -3,7 +3,7 @@
 import { revalidatePath } from "next/cache";
 import { requireAdmin } from "@/lib/admin-auth";
 import { markMessageRead, deleteMessage } from "@/lib/admin/messages";
-import { sendAdminChatReply, markThreadRead, getChatThreadMessages } from "@/lib/admin/chat";
+import { sendAdminChatReply, markThreadRead, getChatThreadMessages, getChatThreads } from "@/lib/admin/chat";
 import { addAdminBugReply, getBugReportMessages, updateBugReportStatus, type BugStatus } from "@/lib/admin/bugs";
 
 export async function markMessageReadAction(id: number, isRead: boolean) {
@@ -18,9 +18,9 @@ export async function deleteMessageAction(id: number) {
   revalidatePath("/admin/messages");
 }
 
-export async function sendAdminChatReplyAction(userId: string, content: string) {
+export async function sendAdminChatReplyAction(userId: string, content: string, imageUrl?: string | null) {
   await requireAdmin();
-  await sendAdminChatReply(userId, content);
+  await sendAdminChatReply(userId, content, imageUrl);
   revalidatePath("/admin/messages");
 }
 
@@ -33,6 +33,15 @@ export async function markThreadReadAction(userId: string) {
 export async function getChatThreadMessagesAction(userId: string) {
   await requireAdmin();
   return getChatThreadMessages(userId);
+}
+
+// Polled from ChatThreadsPanel (short interval, only while the admin has the
+// panel open) to keep unread badges and last-message previews live without a
+// full page reload - the admin<->user chat has no client-side realtime
+// subscription since chat_messages RLS is scoped to the owning user.
+export async function getChatThreadsAction() {
+  await requireAdmin();
+  return getChatThreads();
 }
 
 export async function updateBugReportStatusAction(reportId: number, status: BugStatus) {

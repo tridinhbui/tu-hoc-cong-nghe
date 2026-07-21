@@ -1,21 +1,59 @@
 "use client";
 
-import { useState, useTransition } from "react";
-import { useRouter } from "next/navigation";
+import { useEffect, useRef, useState } from "react";
 import { toast } from "sonner";
-import { MessageCircle, Send } from "lucide-react";
+import { MessageCircle, Send, ImagePlus, X, Loader2 } from "lucide-react";
 import type { ChatThread, ChatThreadMessage } from "@/lib/admin/chat";
-import { sendAdminChatReplyAction, markThreadReadAction, getChatThreadMessagesAction } from "./actions";
+import { sendAdminChatReplyAction, markThreadReadAction, getChatThreadMessagesAction, getChatThreadsAction } from "./actions";
+import { uploadChatImage, isAllowedChatImage } from "@/lib/supabase-chat";
 import EmptyState from "@/components/admin/EmptyState";
+import EmojiPicker from "@/components/EmojiPicker";
 
-export default function ChatThreadsPanel({ threads }: { threads: ChatThread[] }) {
-  const router = useRouter();
-  const [isPending, startTransition] = useTransition();
+const POLL_INTERVAL_MS = 4000;
+
+export default function ChatThreadsPanel({ threads: initialThreads }: { threads: ChatThread[] }) {
+  const [threads, setThreads] = useState(initialThreads);
   const [activeUserId, setActiveUserId] = useState<string | null>(null);
   const [messages, setMessages] = useState<ChatThreadMessage[]>([]);
   const [reply, setReply] = useState("");
   const [loadingThread, setLoadingThread] = useState(false);
   const [sending, setSending] = useState(false);
+  const [pendingImage, setPendingImage] = useState<File | null>(null);
+  const [pendingImagePreview, setPendingImagePreview] = useState<string | null>(null);
+  const [uploadingImage, setUploadingImage] = useState(false);
+  const [isDraggingImage, setIsDraggingImage] = useState(false);
+  const fileInputRef = useRef<HTMLInputElement>(null);
+  const activeUserIdRef = useRef<string | null>(null);
+  useEffect(() => {
+    activeUserIdRef.current = activeUserId;
+  }, [activeUserId]);
+
+  // Polls the whole thread list (badges, last message, ordering) so the
+  // sidebar stays live without a full page reload.
+  useEffect(() => {
+    const interval = setInterval(() => {
+      getChatThreadsAction()
+        .then(setThreads)
+        .catch((error) => console.error("Error polling chat threads:", error));
+    }, POLL_INTERVAL_MS);
+    return () => clearInterval(interval);
+  }, []);
+
+  // Polls the currently open conversation for new messages / read-receipt
+  // flips - there's no client-side realtime subscription here since
+  // chat_messages RLS is scoped to the message owner, not the admin.
+  useEffect(() => {
+    if (!activeUserId) return;
+    const interval = setInterval(() => {
+      getChatThreadMessagesAction(activeUserId)
+        .then((msgs) => {
+          if (activeUserIdRef.current !== activeUserId) return;
+          setMessages(msgs);
+        })
+        .catch((error) => console.error("Error polling chat thread messages:", error));
+    }, POLL_INTERVAL_MS);
+    return () => clearInterval(interval);
+  }, [activeUserId]);
 
   async function openThread(userId: string) {
     setActiveUserId(userId);
@@ -27,16 +65,55 @@ export default function ChatThreadsPanel({ threads }: { threads: ChatThread[] })
     const thread = threads.find((t) => t.user_id === userId);
     if (thread && thread.unread_count > 0) {
       await markThreadReadAction(userId);
-      startTransition(() => router.refresh());
+      setThreads((prev) => prev.map((t) => (t.user_id === userId ? { ...t, unread_count: 0 } : t)));
     }
   }
 
+  function pickImage(file: File | null | undefined) {
+    if (!file) return;
+    const invalidReason = isAllowedChatImage(file);
+    if (invalidReason) {
+      toast.error(invalidReason);
+      return;
+    }
+    setPendingImagePreview((prev) => {
+      if (prev) URL.revokeObjectURL(prev);
+      return URL.createObjectURL(file);
+    });
+    setPendingImage(file);
+  }
+
+  function clearPendingImage() {
+    if (pendingImagePreview) URL.revokeObjectURL(pendingImagePreview);
+    setPendingImage(null);
+    setPendingImagePreview(null);
+    if (fileInputRef.current) fileInputRef.current.value = "";
+  }
+
+  function handlePaste(e: React.ClipboardEvent) {
+    const file = Array.from(e.clipboardData.items)
+      .find((item) => item.type.startsWith("image/"))
+      ?.getAsFile();
+    if (file) pickImage(file);
+  }
+
   async function handleSend() {
-    if (!activeUserId || !reply.trim()) return;
+    if (!activeUserId || (!reply.trim() && !pendingImage) || sending) return;
     setSending(true);
+    const content = reply.trim();
+    setReply("");
+    const imageFile = pendingImage;
+    clearPendingImage();
+
     try {
-      await sendAdminChatReplyAction(activeUserId, reply.trim());
-      setReply("");
+      let imageUrl: string | null = null;
+      if (imageFile) {
+        setUploadingImage(true);
+        imageUrl = await uploadChatImage(activeUserId, imageFile);
+        setUploadingImage(false);
+      }
+
+      await sendAdminChatReplyAction(activeUserId, content, imageUrl);
       // Re-fetch from the server instead of optimistically appending
       // locally: if this send lands while openThread()'s own fetch for this
       // same thread is still in flight (very common for the very first
@@ -47,10 +124,13 @@ export default function ChatThreadsPanel({ threads }: { threads: ChatThread[] })
       // keeps a single source of truth.
       const msgs = await getChatThreadMessagesAction(activeUserId);
       setMessages(msgs);
+      getChatThreadsAction().then(setThreads).catch(() => {});
     } catch (err) {
       toast.error(err instanceof Error ? err.message : "Không gửi được tin nhắn");
+    } finally {
+      setUploadingImage(false);
+      setSending(false);
     }
-    setSending(false);
   }
 
   if (threads.length === 0) {
@@ -58,6 +138,7 @@ export default function ChatThreadsPanel({ threads }: { threads: ChatThread[] })
   }
 
   const activeThread = threads.find((t) => t.user_id === activeUserId);
+  const lastAdminMsgId = [...messages].reverse().find((m) => m.sender === "admin")?.id;
 
   return (
     <div className="bg-white dark:bg-stone-900 border-2 border-stone-200 dark:border-stone-800 rounded-xl overflow-hidden grid grid-cols-1 md:grid-cols-[280px_1fr] min-h-[420px]">
@@ -106,7 +187,7 @@ export default function ChatThreadsPanel({ threads }: { threads: ChatThread[] })
                 <p className="text-xs text-stone-400">Đang tải...</p>
               ) : (
                 messages.map((m) => (
-                  <div key={m.id} className={`flex ${m.sender === "admin" ? "justify-end" : "justify-start"}`}>
+                  <div key={m.id} className={`flex flex-col ${m.sender === "admin" ? "items-end" : "items-start"}`}>
                     <div
                       className={`max-w-xs px-3 py-2 rounded-xl text-sm ${
                         m.sender === "admin"
@@ -125,25 +206,75 @@ export default function ChatThreadsPanel({ threads }: { threads: ChatThread[] })
                         {new Date(m.created_at).toLocaleTimeString("vi-VN", { hour: "2-digit", minute: "2-digit" })}
                       </p>
                     </div>
+                    {m.sender === "admin" && m.id === lastAdminMsgId && m.read && (
+                      <span className="text-[10px] text-stone-400 dark:text-stone-500 mt-0.5 mr-1">Đã xem</span>
+                    )}
                   </div>
                 ))
               )}
             </div>
-            <div className="p-3 border-t border-stone-200 dark:border-stone-800 flex gap-2">
-              <input
-                value={reply}
-                onChange={(e) => setReply(e.target.value)}
-                onKeyDown={(e) => e.key === "Enter" && handleSend()}
-                placeholder="Trả lời..."
-                className="flex-1 px-3 py-2 text-sm rounded-lg border border-stone-300 dark:border-stone-700 bg-white dark:bg-stone-800 text-stone-900 dark:text-stone-100 focus:outline-none focus:border-stone-500"
-              />
-              <button
-                onClick={handleSend}
-                disabled={sending || !reply.trim()}
-                className="px-3 py-2 rounded-lg bg-stone-900 dark:bg-stone-100 text-white dark:text-stone-900 disabled:opacity-50"
-              >
-                <Send className="w-4 h-4" />
-              </button>
+            <div
+              onDragOver={(e) => {
+                e.preventDefault();
+                setIsDraggingImage(true);
+              }}
+              onDragLeave={() => setIsDraggingImage(false)}
+              onDrop={(e) => {
+                e.preventDefault();
+                setIsDraggingImage(false);
+                pickImage(e.dataTransfer.files?.[0]);
+              }}
+              className={`p-3 border-t transition-colors ${
+                isDraggingImage ? "border-emerald-400 bg-emerald-50/50 dark:bg-emerald-950/20" : "border-stone-200 dark:border-stone-800"
+              }`}
+            >
+              {pendingImagePreview && (
+                <div className="relative inline-block mb-2">
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img src={pendingImagePreview} alt="Xem trước" className="h-16 rounded-lg border border-stone-200 dark:border-stone-700 object-cover" />
+                  <button
+                    onClick={clearPendingImage}
+                    className="absolute -top-1.5 -right-1.5 w-5 h-5 rounded-full bg-stone-900 text-white flex items-center justify-center"
+                  >
+                    <X className="w-3 h-3" />
+                  </button>
+                </div>
+              )}
+              {isDraggingImage && (
+                <p className="text-xs font-bold text-emerald-600 dark:text-emerald-400 text-center mb-2">Thả ảnh vào đây để đính kèm</p>
+              )}
+              <div className="flex gap-2">
+                <input
+                  ref={fileInputRef}
+                  type="file"
+                  accept="image/png,image/jpeg,image/webp,image/gif"
+                  className="hidden"
+                  onChange={(e) => pickImage(e.target.files?.[0])}
+                />
+                <button
+                  onClick={() => fileInputRef.current?.click()}
+                  title="Đính kèm ảnh"
+                  className="p-2 border border-stone-300 dark:border-stone-700 text-stone-500 dark:text-stone-400 hover:text-stone-900 dark:hover:text-stone-100 rounded-lg transition flex-shrink-0"
+                >
+                  <ImagePlus className="w-4 h-4" />
+                </button>
+                <EmojiPicker onSelect={(emoji) => setReply((prev) => prev + emoji)} />
+                <input
+                  value={reply}
+                  onChange={(e) => setReply(e.target.value)}
+                  onKeyDown={(e) => e.key === "Enter" && handleSend()}
+                  onPaste={handlePaste}
+                  placeholder="Trả lời, dán hoặc kéo ảnh vào..."
+                  className="flex-1 min-w-0 px-3 py-2 text-sm rounded-lg border border-stone-300 dark:border-stone-700 bg-white dark:bg-stone-800 text-stone-900 dark:text-stone-100 focus:outline-none focus:border-stone-500"
+                />
+                <button
+                  onClick={handleSend}
+                  disabled={sending || (!reply.trim() && !pendingImage)}
+                  className="px-3 py-2 rounded-lg bg-stone-900 dark:bg-stone-100 text-white dark:text-stone-900 disabled:opacity-50 flex-shrink-0"
+                >
+                  {uploadingImage ? <Loader2 className="w-4 h-4 animate-spin" /> : <Send className="w-4 h-4" />}
+                </button>
+              </div>
             </div>
           </>
         )}
