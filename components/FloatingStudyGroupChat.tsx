@@ -231,7 +231,7 @@ export default function FloatingStudyGroupChat({ isOpen: controlledIsOpen, onOpe
           ${open ? "translate-y-0 opacity-100 pointer-events-auto" : "translate-y-4 opacity-0 pointer-events-none"}
         `}
       >
-        <div className="bg-white/95 dark:bg-stone-900/95 backdrop-blur-md sm:rounded-2xl shadow-[0_20px_50px_rgba(0,0,0,0.3)] border border-stone-200 dark:border-stone-850 flex flex-col overflow-hidden rounded-t-2xl sm:rounded-2xl h-[72vh] sm:h-[480px]">
+        <div className="bg-white dark:bg-stone-900 sm:rounded-2xl shadow-[0_20px_50px_rgba(0,0,0,0.35)] border border-stone-250 dark:border-stone-850 flex flex-col overflow-hidden rounded-t-2xl sm:rounded-2xl h-[72vh] sm:h-[480px]">
           
           {/* Header */}
           <div className="bg-gradient-to-r from-emerald-650 via-emerald-600 to-teal-650 px-4.5 py-4 flex items-center gap-3 shrink-0 shadow-sm">

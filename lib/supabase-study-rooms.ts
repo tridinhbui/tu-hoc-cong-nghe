@@ -123,9 +123,17 @@ export async function sendRoomMessage(
   imageUrl?: string | null
 ): Promise<StudyRoomMessage> {
   const supabase = createClient();
+  const insertPayload: any = {
+    room_id: roomId,
+    sender_id: senderId,
+    content: content.trim()
+  };
+  if (imageUrl) {
+    insertPayload.image_url = imageUrl;
+  }
   const { data, error } = await supabase
     .from("study_room_messages")
-    .insert({ room_id: roomId, sender_id: senderId, content: content.trim(), image_url: imageUrl ?? null })
+    .insert(insertPayload)
     .select()
     .single();
 

@@ -217,7 +217,7 @@ export default function ChatWithAdminWidget({ isOpen: controlledIsOpen, onOpenCh
             initial={{ opacity: 0, y: 20, scale: 0.95 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 20, scale: 0.95 }}
-            className="fixed inset-x-4 bottom-4 sm:inset-x-auto sm:bottom-6 sm:right-6 z-50 sm:w-96 max-h-[80vh] sm:max-h-[460px] bg-white/95 dark:bg-stone-900/95 backdrop-blur-md rounded-2xl shadow-[0_20px_50px_rgba(0,0,0,0.3)] border border-stone-200/80 dark:border-stone-850 flex flex-col overflow-hidden transition-all duration-300"
+            className="fixed inset-x-4 bottom-4 sm:inset-x-auto sm:bottom-6 sm:right-6 z-50 sm:w-96 max-h-[80vh] sm:max-h-[460px] bg-white dark:bg-stone-900 rounded-2xl shadow-[0_20px_50px_rgba(0,0,0,0.35)] border border-stone-250 dark:border-stone-800 flex flex-col overflow-hidden transition-all duration-300"
           >
             {/* Header */}
             <div className="bg-gradient-to-r from-stone-950 via-stone-900 to-stone-950 dark:from-stone-950 dark:via-stone-900 dark:to-stone-950 text-white px-4.5 py-4 flex items-center gap-3 border-b border-stone-850/60 shadow-sm">
