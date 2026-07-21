@@ -60,7 +60,9 @@ export default function FloatingStudyGroupChat({ isOpen: controlledIsOpen, onOpe
   const setOpen = useCallback((openState: boolean | ((prev: boolean) => boolean)) => {
     setInternalOpen((prev) => {
       const next = typeof openState === "function" ? openState(prev) : openState;
-      onOpenChange?.(next);
+      if (prev !== next) {
+        onOpenChange?.(next);
+      }
       return next;
     });
   }, [onOpenChange]);

@@ -32,7 +32,9 @@ export default function ChatWithAdminWidget({ isOpen: controlledIsOpen, onOpenCh
   const setIsOpen = useCallback((open: boolean | ((prev: boolean) => boolean)) => {
     setInternalIsOpen((prev) => {
       const next = typeof open === "function" ? open(prev) : open;
-      onOpenChange?.(next);
+      if (prev !== next) {
+        onOpenChange?.(next);
+      }
       return next;
     });
   }, [onOpenChange]);
