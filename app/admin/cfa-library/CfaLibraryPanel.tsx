@@ -52,27 +52,38 @@ export default function CfaLibraryPanel({ books }: { books: AdminBook[] }) {
 
   useEffect(() => {
     if (!bookId) return;
-    setLoadingReadings(true);
-    setReadingId("");
-    setModules([]);
-    setSelectedModuleId(null);
-    listReadingsAction(bookId)
-      .then((r) => {
+    async function load() {
+      setLoadingReadings(true);
+      setReadingId("");
+      setModules([]);
+      setSelectedModuleId(null);
+      try {
+        const r = await listReadingsAction(bookId);
         setReadings(r);
         if (r[0]) setReadingId(r[0].id);
-      })
-      .catch((err) => toast.error(err instanceof Error ? err.message : "Không tải được danh sách Reading"))
-      .finally(() => setLoadingReadings(false));
+      } catch (err) {
+        toast.error(err instanceof Error ? err.message : "Không tải được danh sách Reading");
+      } finally {
+        setLoadingReadings(false);
+      }
+    }
+    load();
   }, [bookId]);
 
   useEffect(() => {
     if (!readingId) return;
-    setLoadingModules(true);
-    setSelectedModuleId(null);
-    listModulesAction(readingId)
-      .then(setModules)
-      .catch((err) => toast.error(err instanceof Error ? err.message : "Không tải được danh sách Module"))
-      .finally(() => setLoadingModules(false));
+    async function load() {
+      setLoadingModules(true);
+      setSelectedModuleId(null);
+      try {
+        setModules(await listModulesAction(readingId));
+      } catch (err) {
+        toast.error(err instanceof Error ? err.message : "Không tải được danh sách Module");
+      } finally {
+        setLoadingModules(false);
+      }
+    }
+    load();
   }, [readingId]);
 
   const selectedModule = modules.find((m) => m.id === selectedModuleId) ?? null;
@@ -176,13 +187,15 @@ function ModuleEditor({
   const [savingQuestionId, setSavingQuestionId] = useState<string | null>(null);
 
   useEffect(() => {
-    setLoadingContent(true);
+    // loadingContent/loadingQuiz already default to true - ModuleEditor is
+    // remounted fresh per module (see `key={selectedModule.id}` where it's
+    // rendered), so there's no stale "still true from a previous module" to
+    // reset here.
     getModuleContentAction(mod.id)
       .then(setContent)
       .catch((err) => toast.error(err instanceof Error ? err.message : "Không tải được nội dung"))
       .finally(() => setLoadingContent(false));
 
-    setLoadingQuiz(true);
     getModuleQuizAction(mod.id)
       .then(setQuiz)
       .catch((err) => toast.error(err instanceof Error ? err.message : "Không tải được câu hỏi"))
