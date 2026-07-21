@@ -4,6 +4,10 @@ import path from "path";
 export default defineConfig({
   test: {
     environment: "node",
+    // e2e/ holds Playwright specs (npm run test:e2e), not vitest tests -
+    // without this, vitest's default glob also matches *.spec.ts there and
+    // fails trying to run Playwright's `test` as if it were vitest's.
+    exclude: ["**/node_modules/**", "**/e2e/**"],
   },
   resolve: {
     alias: {
