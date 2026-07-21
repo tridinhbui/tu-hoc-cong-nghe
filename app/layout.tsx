@@ -6,6 +6,7 @@ import { Toaster } from "sonner";
 import { THEME_INIT_SCRIPT } from "@/lib/theme";
 import "./globals.css";
 import ThemeLoader from "@/components/ThemeLoader";
+import GlobalChatWrapper from "@/components/GlobalChatWrapper";
 
 const plusJakartaSans = Plus_Jakarta_Sans({
   subsets: ["vietnamese", "latin"],
@@ -53,6 +54,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <body className="min-h-screen bg-[#FAFAFC] dark:bg-stone-950 text-stone-900 dark:text-stone-100 antialiased font-sans transition-colors" suppressHydrationWarning>
         <ThemeLoader />
         {children}
+        <GlobalChatWrapper />
         <Toaster position="top-right" richColors closeButton />
         <Analytics />
         <SpeedInsights />

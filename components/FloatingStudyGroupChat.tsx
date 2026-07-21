@@ -234,7 +234,7 @@ export default function FloatingStudyGroupChat({ isOpen: controlledIsOpen, onOpe
         <div className="bg-white dark:bg-stone-900 sm:rounded-2xl shadow-[0_20px_50px_rgba(0,0,0,0.35)] border border-stone-100 dark:border-stone-800/80 flex flex-col overflow-hidden rounded-t-2xl sm:rounded-2xl h-[72vh] sm:h-[480px]">
           
           {/* Header */}
-          <div className="bg-gradient-to-r from-emerald-650 via-emerald-600 to-teal-650 px-4.5 py-4 flex items-center gap-3 shrink-0 shadow-sm">
+          <div className="bg-gradient-to-r from-emerald-700 via-emerald-600 to-teal-700 px-4.5 py-4 flex items-center gap-3 shrink-0 shadow-sm">
             <div className="w-9 h-9 rounded-full bg-white/20 flex items-center justify-center flex-shrink-0 shadow-inner">
               <Users className="w-4.5 h-4.5 text-white" />
             </div>
@@ -332,7 +332,7 @@ export default function FloatingStudyGroupChat({ isOpen: controlledIsOpen, onOpe
                       <div
                         className={`rounded-2xl px-3.5 py-2.5 text-[12px] leading-relaxed shadow-xs ${
                           isMine
-                            ? "bg-gradient-to-br from-emerald-650 to-teal-600 text-white rounded-tr-sm"
+                            ? "bg-gradient-to-br from-emerald-700 to-teal-600 text-white rounded-tr-sm"
                             : "bg-white dark:bg-stone-850/90 text-stone-800 dark:text-stone-100 rounded-tl-sm"
                         }`}
                       >
@@ -407,7 +407,7 @@ export default function FloatingStudyGroupChat({ isOpen: controlledIsOpen, onOpe
               <button
                 onClick={() => void handleSend()}
                 disabled={sending || (!input.trim() && !pendingImage)}
-                className="p-2 bg-gradient-to-br from-emerald-650 to-teal-600 hover:from-emerald-600 hover:to-teal-550 text-white rounded-xl hover:shadow disabled:opacity-30 disabled:pointer-events-none transition flex-shrink-0 active:scale-95"
+                className="p-2 bg-gradient-to-br from-emerald-700 to-teal-600 hover:from-emerald-600 hover:to-teal-500 text-white rounded-xl hover:shadow disabled:opacity-30 disabled:pointer-events-none transition flex-shrink-0 active:scale-95"
                 aria-label="Gửi tin nhắn"
               >
                 <Send className="w-4.5 h-4.5" />
