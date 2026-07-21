@@ -1,8 +1,9 @@
 import { NextRequest, NextResponse } from "next/server";
-import { timingSafeEqual } from "crypto";
 import { createAdminClient } from "@/lib/supabase-admin";
 import { getStreakRiskStatus, getInactiveDaysCount } from "@/lib/streak-reminders";
 import { sendEmail } from "@/lib/send-email";
+import { sendPushNotification } from "@/lib/web-push";
+import { isAuthorizedCronRequest } from "@/lib/cron-auth";
 import type { UserStreak } from "@/lib/supabase-streak";
 
 // Vercel Cron hits this route via GET (see vercel.json: "0 12 * * *" = 19:00
@@ -16,25 +17,6 @@ export const dynamic = "force-dynamic";
 
 const REMINDER_COOLDOWN_HOURS = 20;
 
-// Fail-closed: a missing CRON_SECRET used to make this route run wide open
-// (anyone who found the URL could trigger it - a real risk once email
-// sending is wired up, since it can mark up to 500 users/call as reminded).
-// Set CRON_SECRET locally too if you need to exercise this route in dev.
-function isAuthorized(request: NextRequest): boolean {
-  const cronSecret = process.env.CRON_SECRET;
-  if (!cronSecret) {
-    console.error("[send-reminders] CRON_SECRET is not set - refusing to run. Set it in the environment.");
-    return false;
-  }
-
-  const authHeader = request.headers.get("authorization") ?? "";
-  const expected = `Bearer ${cronSecret}`;
-  const authBuf = Buffer.from(authHeader);
-  const expectedBuf = Buffer.from(expected);
-  if (authBuf.length !== expectedBuf.length) return false;
-  return timingSafeEqual(authBuf, expectedBuf);
-}
-
 async function sendReminderEmail(
   to: string,
   subject: string,
@@ -45,6 +27,8 @@ async function sendReminderEmail(
 
 interface ReminderCandidate {
   user_id: string;
+  email_reminders_enabled: boolean;
+  browser_reminders_enabled: boolean;
 }
 
 async function needsReminder(
@@ -84,7 +68,7 @@ async function needsReminder(
 }
 
 export async function GET(request: NextRequest) {
-  if (!isAuthorized(request)) {
+  if (!isAuthorizedCronRequest(request)) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
 
@@ -98,10 +82,13 @@ export async function GET(request: NextRequest) {
   // instead of one call being able to scan+process the entire table.
   const MAX_CANDIDATES_PER_RUN = 500;
 
+  // Candidate pool now spans both channels - a user only opted into browser
+  // push (no email) still needs to show up here, since last_reminder_sent_at
+  // is a single shared cooldown for "was this user reminded today at all".
   const { data: candidates, error } = await supabase
     .from("notification_preferences")
-    .select("user_id")
-    .eq("email_reminders_enabled", true)
+    .select("user_id, email_reminders_enabled, browser_reminders_enabled")
+    .or("email_reminders_enabled.eq.true,browser_reminders_enabled.eq.true")
     .or(`last_reminder_sent_at.is.null,last_reminder_sent_at.lt.${cutoff}`)
     .limit(MAX_CANDIDATES_PER_RUN);
 
@@ -111,8 +98,10 @@ export async function GET(request: NextRequest) {
   }
 
   let processed = 0;
-  let sent = 0;
+  let emailSent = 0;
   let skippedNoApiKey = 0;
+  let pushSent = 0;
+  let pushSkippedNoVapidKeys = 0;
 
   for (const candidate of (candidates ?? []) as ReminderCandidate[]) {
     processed += 1;
@@ -120,31 +109,57 @@ export async function GET(request: NextRequest) {
     const { needed, reason } = await needsReminder(supabase, candidate.user_id);
     if (!needed) continue;
 
-    const { data: profile } = await supabase
-      .from("user_profiles")
-      .select("email, full_name")
-      .eq("id", candidate.user_id)
-      .maybeSingle();
-
-    if (!profile?.email) continue;
-
-    const subject =
+    const title =
       reason === "streak_at_risk"
         ? "Đừng để mất streak học tập của bạn!"
         : "Đã lâu rồi bạn chưa quay lại học tài chính";
-    const body =
-      reason === "streak_at_risk"
-        ? `Chào ${profile.full_name || "bạn"}, streak học tập của bạn sắp bị mất nếu hôm nay không học. Quay lại ngay nhé!`
-        : `Chào ${profile.full_name || "bạn"}, đã vài ngày rồi bạn chưa học bài mới. Quay lại tiếp tục lộ trình của bạn nhé!`;
 
-    const result = await sendReminderEmail(profile.email, subject, body);
-    if (result.sent) {
-      sent += 1;
-    } else if (result.reason === "no_api_key") {
-      skippedNoApiKey += 1;
+    if (candidate.email_reminders_enabled) {
+      const { data: profile } = await supabase
+        .from("user_profiles")
+        .select("email, full_name")
+        .eq("id", candidate.user_id)
+        .maybeSingle();
+
+      if (profile?.email) {
+        const body =
+          reason === "streak_at_risk"
+            ? `Chào ${profile.full_name || "bạn"}, streak học tập của bạn sắp bị mất nếu hôm nay không học. Quay lại ngay nhé!`
+            : `Chào ${profile.full_name || "bạn"}, đã vài ngày rồi bạn chưa học bài mới. Quay lại tiếp tục lộ trình của bạn nhé!`;
+
+        const result = await sendReminderEmail(profile.email, title, body);
+        if (result.sent) {
+          emailSent += 1;
+        } else if (result.reason === "no_api_key") {
+          skippedNoApiKey += 1;
+        }
+      }
     }
 
-    // Mark as attempted regardless of whether the email actually went out,
+    if (candidate.browser_reminders_enabled) {
+      const pushBody =
+        reason === "streak_at_risk"
+          ? "Streak học tập của bạn sắp bị mất nếu hôm nay không học. Quay lại ngay nhé!"
+          : "Đã vài ngày rồi bạn chưa học bài mới. Quay lại tiếp tục lộ trình của bạn nhé!";
+
+      const { data: subscriptions } = await supabase
+        .from("push_subscriptions")
+        .select("id, endpoint, p256dh, auth")
+        .eq("user_id", candidate.user_id);
+
+      for (const sub of subscriptions ?? []) {
+        const result = await sendPushNotification(sub, { title, body: pushBody, url: "/dashboard" });
+        if (result.sent) {
+          pushSent += 1;
+        } else if (result.reason === "no_vapid_keys") {
+          pushSkippedNoVapidKeys += 1;
+        } else if (result.reason === "expired") {
+          await supabase.from("push_subscriptions").delete().eq("id", sub.id);
+        }
+      }
+    }
+
+    // Mark as attempted regardless of whether either channel actually sent,
     // so we don't retry more than once per day per user.
     await supabase
       .from("notification_preferences")
@@ -154,7 +169,9 @@ export async function GET(request: NextRequest) {
 
   return NextResponse.json({
     processed,
-    sent,
+    emailSent,
     skippedNoApiKey,
+    pushSent,
+    pushSkippedNoVapidKeys,
   });
 }

@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
-import { timingSafeEqual } from "crypto";
 import { createAdminClient } from "@/lib/supabase-admin";
+import { isAuthorizedCronRequest } from "@/lib/cron-auth";
 
 // Vercel Cron hits this route daily (see vercel.json). Sends a personal
 // "chúc mừng" DM (via the same chat_messages/ChatWithAdminWidget channel
@@ -10,23 +10,6 @@ import { createAdminClient } from "@/lib/supabase-admin";
 export const dynamic = "force-dynamic";
 
 const MILESTONES = [7, 14, 21, 28] as const;
-
-// Same fail-closed pattern as app/api/cron/send-reminders - a missing
-// CRON_SECRET must never leave this route callable by anyone who finds the
-// URL, since it can message up to hundreds of users per invocation.
-function isAuthorized(request: NextRequest): boolean {
-  const cronSecret = process.env.CRON_SECRET;
-  if (!cronSecret) {
-    console.error("[send-streak-milestones] CRON_SECRET is not set - refusing to run.");
-    return false;
-  }
-  const authHeader = request.headers.get("authorization") ?? "";
-  const expected = `Bearer ${cronSecret}`;
-  const authBuf = Buffer.from(authHeader);
-  const expectedBuf = Buffer.from(expected);
-  if (authBuf.length !== expectedBuf.length) return false;
-  return timingSafeEqual(authBuf, expectedBuf);
-}
 
 function milestoneMessage(name: string, days: number): string {
   const label = name && name.trim() ? name.trim() : "bạn";
@@ -40,7 +23,7 @@ interface StreakRow {
 }
 
 export async function GET(request: NextRequest) {
-  if (!isAuthorized(request)) {
+  if (!isAuthorizedCronRequest(request)) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
 

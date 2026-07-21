@@ -10,6 +10,7 @@ import { getUserProfile, setDarkMode, setPreferredTrack, updateUserProfile } fro
 import { getInitialTheme, setTheme, type Theme } from "@/lib/theme";
 import { TRACKS } from "@/lib/tracks";
 import { getNotificationPreferences, saveNotificationPreferences } from "@/lib/notification-preferences";
+import { isPushSupported, subscribeToPush, unsubscribeFromPush } from "@/lib/push-notifications";
 
 export const dynamic = "force-dynamic";
 
@@ -72,6 +73,8 @@ export default function SettingsPage() {
   const [savingReminders, setSavingReminders] = useState(false);
   const [weeklyDigestEnabled, setWeeklyDigestEnabled] = useState(false);
   const [savingWeeklyDigest, setSavingWeeklyDigest] = useState(false);
+  const [browserRemindersEnabled, setBrowserRemindersEnabled] = useState(false);
+  const [savingBrowserReminders, setSavingBrowserReminders] = useState(false);
 
   useEffect(() => {
     const checkAuth = async () => {
@@ -103,6 +106,7 @@ export default function SettingsPage() {
         const notificationPrefs = await getNotificationPreferences(session.user.id);
         setEmailRemindersEnabled(notificationPrefs?.emailRemindersEnabled ?? false);
         setWeeklyDigestEnabled(notificationPrefs?.weeklyDigestEnabled ?? false);
+        setBrowserRemindersEnabled(notificationPrefs?.browserRemindersEnabled ?? false);
       } catch (error) {
         console.error("Error loading notification preferences:", error);
       }
@@ -301,6 +305,29 @@ export default function SettingsPage() {
       showFlash("error", "Không lưu được tùy chọn tổng kết tuần. Vui lòng thử lại.");
     } finally {
       setSavingWeeklyDigest(false);
+    }
+  };
+
+  const handleToggleBrowserReminders = async () => {
+    if (!user?.id) return;
+    const next = !browserRemindersEnabled;
+    setSavingBrowserReminders(true);
+    setFlash(null);
+
+    try {
+      if (next) {
+        await subscribeToPush(user.id);
+      } else {
+        await unsubscribeFromPush(user.id);
+      }
+      setBrowserRemindersEnabled(next);
+      await saveNotificationPreferences(user.id, { browserRemindersEnabled: next });
+      showFlash("success", next ? "Đã bật thông báo trình duyệt." : "Đã tắt thông báo trình duyệt.");
+    } catch (error) {
+      console.error("Error toggling browser push:", error);
+      showFlash("error", error instanceof Error ? error.message : "Không bật được thông báo trình duyệt.");
+    } finally {
+      setSavingBrowserReminders(false);
     }
   };
 
@@ -580,6 +607,31 @@ export default function SettingsPage() {
                     />
                   </button>
                 </div>
+
+                {isPushSupported() && (
+                  <div className="flex items-center justify-between gap-4 pt-4 border-t border-stone-100 dark:border-stone-800">
+                    <div>
+                      <p className="font-bold text-stone-900 dark:text-stone-100">Thông báo trình duyệt</p>
+                      <p className="text-sm text-stone-500 dark:text-stone-400 mt-1">
+                        Nhận thông báo đẩy ngay trên trình duyệt khi sắp mất streak
+                      </p>
+                    </div>
+                    <button
+                      onClick={handleToggleBrowserReminders}
+                      disabled={savingBrowserReminders}
+                      aria-label={browserRemindersEnabled ? "Tắt thông báo trình duyệt" : "Bật thông báo trình duyệt"}
+                      className={`w-14 h-7 rounded-full border-2 transition-colors flex items-center cursor-pointer disabled:opacity-60 flex-shrink-0 ${
+                        browserRemindersEnabled ? "bg-emerald-600 border-emerald-700" : "bg-stone-200 border-stone-300"
+                      }`}
+                    >
+                      <div
+                        className={`w-4 h-4 rounded-full bg-white transition-transform ${
+                          browserRemindersEnabled ? "translate-x-7" : "translate-x-1"
+                        }`}
+                      />
+                    </button>
+                  </div>
+                )}
               </div>
             </SectionCard>
 

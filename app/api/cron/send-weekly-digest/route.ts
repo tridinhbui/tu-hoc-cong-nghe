@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
-import { timingSafeEqual } from "crypto";
 import { createAdminClient } from "@/lib/supabase-admin";
 import { sendEmail } from "@/lib/send-email";
+import { isAuthorizedCronRequest } from "@/lib/cron-auth";
 
 // Vercel Cron hits this via GET (see vercel.json: "0 12 * * 1" = Monday
 // 19:00 giờ Việt Nam). Opt-in weekly summary of the PAST week: lessons
@@ -11,20 +11,6 @@ import { sendEmail } from "@/lib/send-email";
 // it's a different cadence and purely a retention/recap email, not a
 // "you're about to lose something" nudge.
 export const dynamic = "force-dynamic";
-
-function isAuthorized(request: NextRequest): boolean {
-  const cronSecret = process.env.CRON_SECRET;
-  if (!cronSecret) {
-    console.error("[send-weekly-digest] CRON_SECRET is not set - refusing to run.");
-    return false;
-  }
-  const authHeader = request.headers.get("authorization") ?? "";
-  const expected = `Bearer ${cronSecret}`;
-  const authBuf = Buffer.from(authHeader);
-  const expectedBuf = Buffer.from(expected);
-  if (authBuf.length !== expectedBuf.length) return false;
-  return timingSafeEqual(authBuf, expectedBuf);
-}
 
 interface DigestCandidate {
   user_id: string;
@@ -87,7 +73,7 @@ function buildDigestEmail(name: string, stats: Awaited<ReturnType<typeof getWeek
 }
 
 export async function GET(request: NextRequest) {
-  if (!isAuthorized(request)) {
+  if (!isAuthorizedCronRequest(request)) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
 

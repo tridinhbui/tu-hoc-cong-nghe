@@ -119,6 +119,9 @@ const PUBLIC_PATHS = new Set([
   "/login",
   "/dieu-khoan",
   "/chinh-sach-bao-mat",
+  "/sw.js", // Service worker script - the matcher below excludes image assets but
+  // not .js files, so without this the browser's `register("/sw.js")` fetch
+  // got redirected to the /login HTML page instead of the actual script.
 ]);
 
 const PUBLIC_PREFIXES = [
