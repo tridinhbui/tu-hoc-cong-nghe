@@ -1306,6 +1306,11 @@ export default function DashboardClient({ lessonsMeta }: { lessonsMeta: LessonMe
                       }`}>
                         {stage.label}
                       </span>
+                      {stage.isNew && (
+                        <span className="text-[10px] font-black text-white bg-gradient-to-r from-rose-500 to-orange-500 px-2 py-0.5 rounded-full shrink-0 animate-pulse">
+                          MỚI
+                        </span>
+                      )}
                       <span className="text-base sm:text-lg font-extrabold text-stone-900 dark:text-stone-100 flex-1 leading-snug">{stage.name}</span>
                       {isCurrentMilestonePassed ? (
                         <div className="flex items-center gap-2">

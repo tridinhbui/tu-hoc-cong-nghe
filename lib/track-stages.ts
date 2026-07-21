@@ -16,6 +16,9 @@ export interface Stage {
   available: boolean;
   parts: StagePart[];
   extraLessonIds?: number[];
+  // Shows a "Mới" badge on the stage card. Manually flip off once a stage
+  // has been live for a while - not time-based, so it won't silently expire.
+  isNew?: boolean;
 }
 
 // True if `lesson` belongs to `range` either via the contiguous [start, end]
@@ -117,6 +120,7 @@ export const TRACK_PERSONAL = {
       name: "Nhà ở, bảo vệ tài sản và các quyết định tài chính lớn",
       days: [289, 298] as [number, number],
       available: true,
+      isNew: true,
       parts: [
         { name: "Nhà ở & tín dụng", days: [289, 293] as [number, number] },
         { name: "Bảo vệ tài sản & di sản", days: [294, 298] as [number, number] },
@@ -230,6 +234,7 @@ export const TRACK_PROFESSIONAL = {
       name: "Nâng cao: Ứng dụng nghề Phân tích & Ngân hàng đầu tư",
       days: [1101, 1110] as [number, number],
       available: true,
+      isNew: true,
       extraLessonIds: [1021],
       parts: [
         { name: "Chất lượng lợi nhuận, định giá tương đối và tín dụng", days: [1101, 1105] as [number, number] },
@@ -241,6 +246,7 @@ export const TRACK_PROFESSIONAL = {
       name: "Vận hành tài chính doanh nghiệp hiện đại",
       days: [1201, 1210] as [number, number],
       available: true,
+      isNew: true,
       parts: [
         { name: "FP&A & vận hành vốn", days: [1201, 1205] as [number, number] },
         { name: "Treasury & quản trị tài chính", days: [1206, 1210] as [number, number] },
