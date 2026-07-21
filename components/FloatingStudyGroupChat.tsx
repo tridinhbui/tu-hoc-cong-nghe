@@ -41,6 +41,7 @@ const LAST_READ_AT_KEY_PREFIX = "thtcdn_study_room_last_read_";
 interface FloatingStudyGroupChatProps {
   isOpen?: boolean;
   onOpenChange?: (open: boolean) => void;
+  hideTrigger?: boolean;
 }
 
 // Floating widget for the caller's active weekly study-group chat, mounted
@@ -49,7 +50,7 @@ interface FloatingStudyGroupChatProps {
 // (or "Tài Tài"'s daily progress recap, see
 // app/api/cron/daily-study-group-update/route.ts) is visible without
 // leaving the dashboard. Renders nothing if the caller has no active room.
-export default function FloatingStudyGroupChat({ isOpen: controlledIsOpen, onOpenChange }: FloatingStudyGroupChatProps = {}) {
+export default function FloatingStudyGroupChat({ isOpen: controlledIsOpen, onOpenChange, hideTrigger }: FloatingStudyGroupChatProps = {}) {
   const [userId, setUserId] = useState<string | null>(null);
   const [room, setRoom] = useState<StudyRoomSummary | null>(null);
   const [members, setMembers] = useState<Map<string, StudyRoomMember>>(new Map());
@@ -198,22 +199,24 @@ export default function FloatingStudyGroupChat({ isOpen: controlledIsOpen, onOpe
 
   return (
     <>
-      <button
-        onClick={() => {
-          setOpen((v) => !v);
-          trackFeatureClick("floating_study_chat_toggle", { label: open ? "close" : "open" });
-        }}
-        aria-label="Chat nhóm học"
-        title={`Nhóm ${topicLabel(room.topic)}`}
-        className="fixed bottom-24 right-4 sm:bottom-28 sm:right-6 z-50 w-14 h-14 rounded-full shadow-xl flex items-center justify-center transition-all duration-300 cursor-pointer select-none bg-emerald-600 hover:bg-emerald-500 hover:scale-110"
-      >
-        <Users className="w-6 h-6 text-white" />
-        {unreadCount > 0 && !open && (
-          <span className="absolute -top-1 -right-1 min-w-[20px] h-5 px-1 rounded-full bg-red-500 text-white text-[10px] font-extrabold flex items-center justify-center border-2 border-white dark:border-stone-950">
-            {unreadCount > 9 ? "9+" : unreadCount}
-          </span>
-        )}
-      </button>
+      {!hideTrigger && (
+        <button
+          onClick={() => {
+            setOpen((v) => !v);
+            trackFeatureClick("floating_study_chat_toggle", { label: open ? "close" : "open" });
+          }}
+          aria-label="Chat nhóm học"
+          title={`Nhóm ${topicLabel(room.topic)}`}
+          className="fixed bottom-24 right-4 sm:bottom-28 sm:right-6 z-50 w-14 h-14 rounded-full shadow-xl flex items-center justify-center transition-all duration-300 cursor-pointer select-none bg-emerald-600 hover:bg-emerald-500 hover:scale-110"
+        >
+          <Users className="w-6 h-6 text-white" />
+          {unreadCount > 0 && !open && (
+            <span className="absolute -top-1 -right-1 min-w-[20px] h-5 px-1 rounded-full bg-red-500 text-white text-[10px] font-extrabold flex items-center justify-center border-2 border-white dark:border-stone-950">
+              {unreadCount > 9 ? "9+" : unreadCount}
+            </span>
+          )}
+        </button>
+      )}
 
       {open && (
         <div className="fixed inset-0 bg-black/20 z-40 sm:hidden" onClick={() => setOpen(false)} />

@@ -1821,10 +1821,12 @@ export default function DashboardClient({ lessonsMeta }: { lessonsMeta: LessonMe
       <ChatWithAdminWidget
         isOpen={activeChatWidget === "admin"}
         onOpenChange={(open) => setActiveChatWidget(open ? "admin" : null)}
+        hideTrigger={activeChatWidget === "group"}
       />
       <FloatingStudyGroupChat
         isOpen={activeChatWidget === "group"}
         onOpenChange={(open) => setActiveChatWidget(open ? "group" : null)}
+        hideTrigger={activeChatWidget === "admin"}
       />
 
 

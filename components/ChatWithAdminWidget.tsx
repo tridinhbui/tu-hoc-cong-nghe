@@ -22,9 +22,10 @@ import {
 interface ChatWithAdminWidgetProps {
   isOpen?: boolean;
   onOpenChange?: (open: boolean) => void;
+  hideTrigger?: boolean;
 }
 
-export default function ChatWithAdminWidget({ isOpen: controlledIsOpen, onOpenChange }: ChatWithAdminWidgetProps = {}) {
+export default function ChatWithAdminWidget({ isOpen: controlledIsOpen, onOpenChange, hideTrigger }: ChatWithAdminWidgetProps = {}) {
   const [internalIsOpen, setInternalIsOpen] = useState(false);
   const isOpen = controlledIsOpen !== undefined ? controlledIsOpen : internalIsOpen;
   
@@ -190,7 +191,7 @@ export default function ChatWithAdminWidget({ isOpen: controlledIsOpen, onOpenCh
     <>
       {/* Floating chat button */}
       <AnimatePresence>
-        {!isOpen && (
+        {!isOpen && !hideTrigger && (
           <motion.button
             initial={{ scale: 0 }}
             animate={{ scale: 1 }}
