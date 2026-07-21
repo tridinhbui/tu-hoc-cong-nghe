@@ -239,7 +239,7 @@ export default function Leaderboard({ userId }: LeaderboardProps) {
 
         if (metric === "game") {
           const gameRows = await getCombinedGameLeaderboard(50);
-          top = gameRows.slice(0, 10).map((row) => ({
+          top = gameRows.slice(0, 20).map((row) => ({
             user_id: row.user_id,
             value: row.totalXp,
             name: row.name,
@@ -253,7 +253,7 @@ export default function Leaderboard({ userId }: LeaderboardProps) {
           }
         } else {
           const [topRows, mineRank] = await Promise.all([
-            getLeaderboardByMetric(metric as LeaderboardMetric, 10),
+            getLeaderboardByMetric(metric as LeaderboardMetric, 20),
             userId ? getMyLeaderboardRank(metric as LeaderboardMetric, userId) : Promise.resolve(null),
           ]);
           top = topRows;

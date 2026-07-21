@@ -1,14 +1,12 @@
 "use client";
 
-import { useState, useEffect, useCallback, useRef } from "react";
+import { useState, useEffect, useMemo, useRef } from "react";
 import Link from "next/link";
-import { motion } from "framer-motion";
 import { createClient } from "@/lib/supabase";
 import {
   ArrowLeft,
   Loader2,
   CheckCircle2,
-  AlertCircle,
   GraduationCap,
   Bookmark,
   BookmarkCheck,
@@ -18,7 +16,12 @@ import {
   X,
 } from "lucide-react";
 import CfaContentRenderer, { renderInlineStyles } from "@/components/CfaContentRenderer";
-import { toTitleCase } from "@/lib/cfa-format";
+import CfaQuizSidebar, { type CfaQuizQuestion } from "@/components/CfaQuizSidebar";
+import InteractiveWidget, { type WidgetType } from "@/components/InteractiveWidget";
+import FontSizeControl, { loadFontScale } from "@/components/FontSizeControl";
+import ReadingModeControl, { loadReadingMode, type ReadingMode } from "@/components/ReadingModeControl";
+import { setTheme } from "@/lib/theme";
+import { toTitleCase, extractYouTubeId } from "@/lib/cfa-format";
 import { getCfaModuleProgress, markCfaModuleComplete } from "@/lib/supabase-cfa-progress";
 import { updateStreak } from "@/lib/supabase-streak";
 import {
@@ -34,12 +37,25 @@ import {
   type CfaModuleHighlight,
 } from "@/lib/supabase-cfa-features";
 
+const INTERACTIVE_WIDGET_TYPES = new Set<string>([
+  "interest-rate",
+  "supply-demand",
+  "profit-calc",
+  "roe",
+  "bond",
+  "money-vs-asset",
+  "cash-flow-simulator",
+  "inflation-calculator",
+]);
+
 interface ModuleRow {
   id: string;
   readingId: string;
   code: string;
   title: string;
   order: number | null;
+  videoUrl: string | null;
+  interactiveType: string | null;
 }
 
 interface ReadingRow {
@@ -55,7 +71,7 @@ interface BookRow {
   title: string;
 }
 
-interface QuizQuestion {
+interface QuizQuestionRow {
   id: string;
   headerId: string;
   questionNo: number;
@@ -78,18 +94,20 @@ export default function CfaModulePageClient({ moduleId }: { moduleId: string }) 
   const [siblingModules, setSiblingModules] = useState<ModuleRow[]>([]);
 
   const [content, setContent] = useState<string | null>(null);
-  const [quizQuestions, setQuizQuestions] = useState<QuizQuestion[]>([]);
+  const [quizQuestions, setQuizQuestions] = useState<QuizQuestionRow[]>([]);
 
   const [previouslyCompleted, setPreviouslyCompleted] = useState(false);
   const [previousScore, setPreviousScore] = useState<{ score: number; total: number } | null>(null);
+  const [quizJustFinished, setQuizJustFinished] = useState(false);
 
-  // Quiz state
-  const [currentQIndex, setCurrentQIndex] = useState(0);
-  const [selectedOption, setSelectedOption] = useState<"A" | "B" | "C" | null>(null);
-  const [showAnswer, setShowAnswer] = useState(false);
-  const [quizFinished, setQuizFinished] = useState(false);
-  const [correctAnswersCount, setCorrectAnswersCount] = useState(0);
-  const [saving, setSaving] = useState(false);
+  // Reading toolbar - identical controls/storage keys to components/LessonPageLayout.tsx
+  // so a preference set on a regular lesson carries over here, and vice versa.
+  const [fontScale, setFontScale] = useState(() => (typeof window === "undefined" ? 1.125 : loadFontScale()));
+  const [readingMode, setReadingMode] = useState<ReadingMode>(() => (typeof window === "undefined" ? "light" : loadReadingMode()));
+  useEffect(() => {
+    setTheme(readingMode === "dark" ? "dark" : "light");
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   // Bookmark
   const [bookmarked, setBookmarked] = useState(false);
@@ -112,13 +130,10 @@ export default function CfaModulePageClient({ moduleId }: { moduleId: string }) 
       setLoading(true);
       const supabase = createClient();
 
-      // Previously ~8 Supabase round trips ran one after another (each
-      // await blocking the next), even though most don't actually depend
-      // on each other - that serial chain was the real cause of the slow
-      // per-lesson load. Grouped into parallel waves instead: only wait for
-      // a query when its filter genuinely depends on a prior result
-      // (Reading needs modData.readingId; Book/siblings need readingData;
-      // quiz questions need the header's id).
+      // ~8 Supabase round trips grouped into parallel waves instead of one
+      // after another - only serialized where a query's filter genuinely
+      // depends on a prior result (Reading needs modData.readingId; Book/
+      // siblings need readingData; quiz questions need the header's id).
       const [{ data: user }, { data: modData, error: modError }] = await Promise.all([
         supabase.auth.getUser().then((r) => ({ data: r.data.user })),
         supabase.from("Module").select("*").eq("id", moduleId).maybeSingle(),
@@ -217,44 +232,32 @@ export default function CfaModulePageClient({ moduleId }: { moduleId: string }) 
     };
   }, [moduleId]);
 
-  const handleCheckAnswer = useCallback(() => {
-    if (!selectedOption || showAnswer) return;
-    const currentQuestion = quizQuestions[currentQIndex];
-    if (selectedOption === currentQuestion.correct) {
-      setCorrectAnswersCount((prev) => prev + 1);
-    }
-    setShowAnswer(true);
-  }, [selectedOption, showAnswer, quizQuestions, currentQIndex]);
+  // Converts ModuleQuizQuestion's optionA/B/C + a correct letter into the
+  // {question, options, correct, explanation} shape CfaQuizSidebar shares
+  // with the regular lesson page's quiz - rendered through CfaContentRenderer/
+  // renderInlineStyles (not raw strings) so formatting in the source content
+  // (bold, formulas, etc.) still shows up like it did in the old quiz block.
+  const normalizedQuiz: CfaQuizQuestion[] = useMemo(
+    () =>
+      quizQuestions.map((q) => ({
+        question: <CfaContentRenderer content={q.prompt} />,
+        options: [renderInlineStyles(q.optionA), renderInlineStyles(q.optionB), renderInlineStyles(q.optionC)],
+        correct: ["A", "B", "C"].indexOf(q.correct),
+        explanation: <CfaContentRenderer content={q.explanation || ""} />,
+      })),
+    [quizQuestions]
+  );
 
-  const handleNextQuestion = useCallback(async () => {
-    setSelectedOption(null);
-    setShowAnswer(false);
-    if (currentQIndex + 1 < quizQuestions.length) {
-      setCurrentQIndex((prev) => prev + 1);
-      return;
+  async function handleQuizFinish(score: number, total: number) {
+    setQuizJustFinished(true);
+    if (!userId) return;
+    try {
+      await markCfaModuleComplete(userId, moduleId, score, total);
+      await updateStreak(userId);
+    } catch (err) {
+      console.error("Error saving CFA module progress:", err);
     }
-
-    setQuizFinished(true);
-    if (userId) {
-      setSaving(true);
-      try {
-        await markCfaModuleComplete(userId, moduleId, correctAnswersCount, quizQuestions.length);
-        await updateStreak(userId);
-      } catch (err) {
-        console.error("Error saving CFA module progress:", err);
-      } finally {
-        setSaving(false);
-      }
-    }
-  }, [currentQIndex, quizQuestions.length, userId, moduleId, correctAnswersCount]);
-
-  const handleRestartQuiz = () => {
-    setCurrentQIndex(0);
-    setSelectedOption(null);
-    setShowAnswer(false);
-    setQuizFinished(false);
-    setCorrectAnswersCount(0);
-  };
+  }
 
   const handleToggleBookmark = async () => {
     if (!userId || !mod || togglingBookmark) return;
@@ -332,6 +335,9 @@ export default function CfaModulePageClient({ moduleId }: { moduleId: string }) 
 
   const currentIndexInReading = siblingModules.findIndex((m) => m.id === moduleId);
   const nextModule = currentIndexInReading >= 0 ? siblingModules[currentIndexInReading + 1] : null;
+  const videoId = mod?.videoUrl ? extractYouTubeId(mod.videoUrl) : null;
+  const widgetType =
+    mod?.interactiveType && INTERACTIVE_WIDGET_TYPES.has(mod.interactiveType) ? (mod.interactiveType as WidgetType) : null;
 
   if (loading) {
     return (
@@ -354,15 +360,18 @@ export default function CfaModulePageClient({ moduleId }: { moduleId: string }) 
 
   return (
     <div className="min-h-screen bg-white dark:bg-stone-950">
-      {/* Sticky header - mirrors components/LessonPageLayout.tsx's header so CFA reads as part of the same product, not a bolted-on section. */}
+      {/* Sticky header - mirrors components/LessonPageLayout.tsx's header (same
+          FontSizeControl/ReadingModeControl components, same bookmark button
+          styling) so CFA reads as part of the same product, not a bolted-on
+          section. */}
       <header className="bg-white dark:bg-stone-900 border-b border-stone-200 dark:border-stone-800 sticky top-0 z-50">
         <div className="h-1.5 w-full bg-stone-100 dark:bg-stone-800">
           <div
             className="h-full bg-amber-500 transition-all duration-300"
-            style={{ width: quizQuestions.length > 0 ? `${((currentQIndex + (quizFinished ? 1 : 0)) / Math.max(quizQuestions.length, 1)) * 100}%` : "0%" }}
+            style={{ width: previouslyCompleted || quizJustFinished ? "100%" : "0%" }}
           />
         </div>
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 py-5 flex items-center justify-between gap-3">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 py-5 flex items-center justify-between gap-3 flex-wrap">
           <div className="flex items-center gap-2 sm:gap-4 min-w-0">
             <Link
               href="/cfa"
@@ -382,18 +391,20 @@ export default function CfaModulePageClient({ moduleId }: { moduleId: string }) 
             </div>
           </div>
           <div className="flex items-center gap-2 flex-shrink-0">
+            <FontSizeControl scale={fontScale} onChange={setFontScale} />
+            <ReadingModeControl mode={readingMode} onChange={setReadingMode} />
             {userId && (
               <button
                 onClick={handleToggleBookmark}
                 disabled={togglingBookmark}
                 title={bookmarked ? "Bỏ đánh dấu" : "Đánh dấu bài học"}
-                className={`w-9 h-9 rounded-full flex items-center justify-center transition-all ${
+                className={`w-10 h-10 rounded-full flex items-center justify-center transition-all ${
                   bookmarked
                     ? "bg-amber-100 dark:bg-amber-900/30 text-amber-600 dark:text-amber-400"
                     : "bg-stone-100 dark:bg-stone-800 text-stone-500 dark:text-stone-400 hover:bg-stone-200 dark:hover:bg-stone-700"
-                } ${togglingBookmark ? "opacity-50 cursor-not-allowed" : ""}`}
+                } ${togglingBookmark ? "opacity-50 cursor-not-allowed" : "hover:scale-110"}`}
               >
-                {bookmarked ? <BookmarkCheck className="w-4 h-4" /> : <Bookmark className="w-4 h-4" />}
+                {bookmarked ? <BookmarkCheck className="w-5 h-5" /> : <Bookmark className="w-5 h-5" />}
               </button>
             )}
             <span className="text-xs font-bold uppercase tracking-wider px-3 py-1.5 rounded-full bg-amber-100 dark:bg-amber-950/50 text-amber-700 dark:text-amber-400 inline-flex items-center gap-1.5">
@@ -429,10 +440,35 @@ export default function CfaModulePageClient({ moduleId }: { moduleId: string }) 
         </span>
         <h1 className="text-xl sm:text-2xl font-extrabold text-stone-900 dark:text-white mt-3 mb-6">{toTitleCase(mod.title)}</h1>
 
-        {/* Lesson content - select any passage to highlight it */}
-        <section className="mb-6" ref={contentRef} onMouseUp={handleTextSelection}>
+        {videoId && (
+          <div className="mb-6 aspect-video rounded-xl overflow-hidden border border-stone-200 dark:border-stone-800">
+            <iframe
+              src={`https://www.youtube.com/embed/${videoId}`}
+              title={toTitleCase(mod.title)}
+              className="w-full h-full"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowFullScreen
+            />
+          </div>
+        )}
+
+        {/* Lesson content - `zoom` (not fontSize) so the reading-size control
+            rescales the whole subtree uniformly, same technique as
+            LessonPageLayout. Select any passage to highlight it. */}
+        <section
+          className={`mb-6 ${readingMode === "sepia" ? "reading-sepia" : ""}`}
+          style={{ zoom: fontScale }}
+          ref={contentRef}
+          onMouseUp={handleTextSelection}
+        >
           {content ? <CfaContentRenderer content={content} /> : null}
         </section>
+
+        {widgetType && (
+          <div className="mb-6">
+            <InteractiveWidget type={widgetType} />
+          </div>
+        )}
 
         {highlights.length > 0 && (
           <div className="mb-6 flex flex-wrap gap-2">
@@ -500,143 +536,19 @@ export default function CfaModulePageClient({ moduleId }: { moduleId: string }) 
           </div>
         )}
 
-        {/* Quiz */}
-        {quizQuestions.length > 0 && (
+        {/* Quiz - visually identical to the regular lesson page's sidebar
+            quiz (components/CfaQuizSidebar.tsx mirrors
+            components/LessonPageLayout.tsx's quiz block). */}
+        {normalizedQuiz.length > 0 && (
           <section className="border-t border-stone-200 dark:border-stone-800 pt-8">
             <h2 className="text-sm font-extrabold text-stone-900 dark:text-white uppercase tracking-wider mb-5">
-              Luyện tập ({quizQuestions.length} câu)
+              Luyện tập ({normalizedQuiz.length} câu)
             </h2>
-
-            {quizFinished ? (
-              <motion.div
-                initial={{ opacity: 0, scale: 0.98 }}
-                animate={{ opacity: 1, scale: 1 }}
-                className="flex flex-col items-center justify-center py-10 px-4 text-center border border-stone-200 dark:border-stone-850 bg-stone-50/50 dark:bg-stone-900/10 rounded-2xl"
-              >
-                <CheckCircle2 className="w-12 h-12 text-emerald-500 mb-4" />
-                <h3 className="text-sm font-extrabold text-stone-900 dark:text-white uppercase tracking-wider mb-2">
-                  Luyện tập hoàn thành!
-                </h3>
-                <p className="text-xs text-stone-500 dark:text-stone-400 mb-6">
-                  Bạn đã trả lời đúng <strong className="text-emerald-500">{correctAnswersCount}</strong> trên tổng số{" "}
-                  <strong>{quizQuestions.length}</strong> câu hỏi.
-                  {saving && " Đang lưu..."}
-                </p>
-                <div className="flex items-center gap-3">
-                  <button
-                    onClick={handleRestartQuiz}
-                    className="px-4 py-2 text-xs font-bold bg-stone-900 hover:bg-stone-800 dark:bg-white dark:text-stone-900 text-white rounded-lg transition-colors shadow-sm"
-                  >
-                    Luyện tập lại
-                  </button>
-                  {nextModule && (
-                    <Link
-                      href={`/cfa/${nextModule.id}`}
-                      className="px-4 py-2 text-xs font-bold border-2 border-stone-300 dark:border-stone-700 rounded-lg text-stone-700 dark:text-stone-300 hover:bg-stone-100 dark:hover:bg-stone-800 transition-colors"
-                    >
-                      Bài tiếp theo →
-                    </Link>
-                  )}
-                </div>
-              </motion.div>
-            ) : (
-              <div className="space-y-6">
-                <div className="flex items-center justify-between text-[10px] text-stone-450 dark:text-stone-500 font-bold uppercase tracking-wider">
-                  <span>Câu hỏi {currentQIndex + 1}/{quizQuestions.length}</span>
-                  <span className="text-emerald-500">Đúng: {correctAnswersCount}</span>
-                </div>
-                <div className="w-full h-1 bg-stone-100 dark:bg-stone-800 rounded-full overflow-hidden">
-                  <div
-                    className="h-full bg-stone-950 dark:bg-white transition-all duration-300"
-                    style={{ width: `${((currentQIndex + 1) / quizQuestions.length) * 100}%` }}
-                  />
-                </div>
-
-                <div className="text-sm font-extrabold text-stone-900 dark:text-white leading-relaxed space-y-4">
-                  <CfaContentRenderer content={quizQuestions[currentQIndex].prompt} />
-                </div>
-
-                <div className="space-y-3">
-                  {(["A", "B", "C"] as const).map((opt) => {
-                    const currentQ = quizQuestions[currentQIndex];
-                    const optVal = opt === "A" ? currentQ.optionA : opt === "B" ? currentQ.optionB : currentQ.optionC;
-                    const isSelected = selectedOption === opt;
-                    const isCorrect = currentQ.correct === opt;
-
-                    let optStyle = "border-stone-200 dark:border-stone-800 hover:bg-stone-50 dark:hover:bg-stone-800/40";
-                    if (isSelected) {
-                      optStyle = "border-stone-900 dark:border-white bg-stone-50/50 dark:bg-stone-800/50";
-                    }
-                    if (showAnswer) {
-                      if (isCorrect) {
-                        optStyle = "border-emerald-500 bg-emerald-50/20 dark:bg-emerald-950/15 text-emerald-700 dark:text-emerald-400";
-                      } else if (isSelected) {
-                        optStyle = "border-rose-500 bg-rose-50/20 dark:bg-rose-950/15 text-rose-700 dark:text-rose-400";
-                      } else {
-                        optStyle = "border-stone-150 dark:border-stone-850 opacity-60 pointer-events-none";
-                      }
-                    }
-
-                    return (
-                      <button
-                        key={opt}
-                        disabled={showAnswer}
-                        onClick={() => setSelectedOption(opt)}
-                        className={`w-full flex items-start gap-3 p-3.5 border rounded-xl text-left text-sm font-medium leading-relaxed transition-all ${optStyle}`}
-                      >
-                        <span className="font-extrabold font-mono flex-shrink-0 text-stone-450 dark:text-stone-500 mt-0.5">
-                          {opt}.
-                        </span>
-                        <span>{renderInlineStyles(optVal)}</span>
-                      </button>
-                    );
-                  })}
-                </div>
-
-                <div className="flex justify-end pt-3">
-                  {!showAnswer ? (
-                    <button
-                      disabled={!selectedOption}
-                      onClick={handleCheckAnswer}
-                      className={`px-4 py-2 text-xs font-bold rounded-lg transition-colors ${
-                        selectedOption
-                          ? "bg-stone-900 hover:bg-stone-800 dark:bg-white dark:text-stone-900 text-white shadow-sm cursor-pointer"
-                          : "bg-stone-100 text-stone-400 dark:bg-stone-850 dark:text-stone-600 cursor-not-allowed"
-                      }`}
-                    >
-                      Kiểm tra đáp án
-                    </button>
-                  ) : (
-                    <button
-                      onClick={handleNextQuestion}
-                      className="px-4 py-2 text-xs font-bold bg-stone-900 hover:bg-stone-800 dark:bg-white dark:text-stone-900 text-white rounded-lg transition-colors shadow-sm"
-                    >
-                      {currentQIndex + 1 < quizQuestions.length ? "Câu tiếp theo" : "Hoàn thành"}
-                    </button>
-                  )}
-                </div>
-
-                {showAnswer && quizQuestions[currentQIndex].explanation && (
-                  <motion.div
-                    initial={{ opacity: 0, y: 8 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    className="p-4 border border-stone-200 dark:border-stone-800 bg-stone-50/50 dark:bg-stone-900/40 rounded-xl space-y-2 mt-4"
-                  >
-                    <div className="flex items-center gap-1.5 text-[10px] font-extrabold text-stone-500 uppercase tracking-widest">
-                      <AlertCircle className="w-3.5 h-3.5 text-stone-450" />
-                      <span>Giải thích chi tiết</span>
-                    </div>
-                    <div className="text-[11px] text-stone-600 dark:text-stone-400 leading-relaxed font-normal space-y-4">
-                      <CfaContentRenderer content={quizQuestions[currentQIndex].explanation || ""} />
-                    </div>
-                  </motion.div>
-                )}
-              </div>
-            )}
+            <CfaQuizSidebar quiz={normalizedQuiz} onFinish={handleQuizFinish} nextModuleId={nextModule?.id ?? null} />
           </section>
         )}
 
-        {!quizFinished && nextModule && quizQuestions.length === 0 && (
+        {normalizedQuiz.length === 0 && nextModule && (
           <div className="border-t border-stone-200 dark:border-stone-800 pt-6 flex justify-end">
             <Link
               href={`/cfa/${nextModule.id}`}
