@@ -237,13 +237,10 @@ export const TRACK_PROFESSIONAL = {
       ],
     },
     {
-      // New stage, config landed ahead of content per the lesson-content
-      // expansion plan - flip to available: true once all 10 lessons in
-      // days [1201, 1210] are authored (see plan for the curriculum).
       label: "Chặng 11",
       name: "Vận hành tài chính doanh nghiệp hiện đại",
       days: [1201, 1210] as [number, number],
-      available: false,
+      available: true,
       parts: [
         { name: "FP&A & vận hành vốn", days: [1201, 1205] as [number, number] },
         { name: "Treasury & quản trị tài chính", days: [1206, 1210] as [number, number] },
