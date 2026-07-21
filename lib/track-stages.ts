@@ -226,16 +226,10 @@ export const TRACK_PROFESSIONAL = {
       ],
     },
     {
-      // Was `available: true` with zero lessons actually matching days
-      // [1101, 1110] - anyone who reached this stage saw it completely
-      // empty. Re-enable once the remaining 9 slots have real content;
-      // "Disney-Pixar: Horizontal M&A" (id 1021, previously an orphaned
-      // bonus page with no stage) is wired in via extraLessonIds as the
-      // first of the 10.
       label: "Chặng 10",
       name: "Nâng cao: Ứng dụng nghề Phân tích & Ngân hàng đầu tư",
       days: [1101, 1110] as [number, number],
-      available: false,
+      available: true,
       extraLessonIds: [1021],
       parts: [
         { name: "Chất lượng lợi nhuận, định giá tương đối và tín dụng", days: [1101, 1105] as [number, number] },
