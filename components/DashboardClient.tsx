@@ -36,6 +36,7 @@ import ReferralPromptModal from "@/components/ReferralPromptModal";
 import CombinedRewardsWidget from "@/components/CombinedRewardsWidget";
 import { hasCompletedOnboarding, completeOnboarding } from "@/lib/supabase-onboarding";
 import { getUserProfile, recalculateUserStats, getLeaderboardByMetric, getCfaCompletedCount } from "@/lib/supabase-user";
+import { getDashboardSummary, getLessonState } from "@/lib/supabase-dashboard-optimized";
 import { getLevelByXp, getLevelProgress, LEVELS } from "@/lib/levels";
 import UnlockRequestModal from "@/components/UnlockRequestModal";
 import KnowledgeChallengeModal from "@/components/KnowledgeChallengeModal";
@@ -96,6 +97,11 @@ export interface LessonMeta {
 const ONBOARDING_LOCAL_KEY = "onboarding_seen_v1";
 
 /* ─── Component ─────────────────────────────────────────────────── */
+
+import type { DashboardSummary, LessonState } from "@/lib/supabase-dashboard-optimized";
+
+let cachedSummary: DashboardSummary | null = null;
+let cachedLessonState: LessonState | null = null;
 
 export default function DashboardClient({ lessonsMeta }: { lessonsMeta: LessonMeta[] }) {
   const router = useRouter();
@@ -409,86 +415,87 @@ export default function DashboardClient({ lessonsMeta }: { lessonsMeta: LessonMe
     setShowOnboarding(false);
   };
 
-  // Synchronize stats & progress with database and process offline queue
+  // Synchronize stats & progress with database using optimized batch RPCs and caching
   const syncProgressAndXP = useCallback(async (userId: string) => {
-    // First, try to sync any offline queued completions
-    try {
-      const didSync = await syncOfflineQueue(userId);
+    // 1. Process offline queue asynchronously in the background
+    void syncOfflineQueue(userId).then((didSync) => {
       if (didSync) {
         toast.success("Tiến độ học tập offline đã được đồng bộ thành công! 🌟");
+        // Re-run sync to pull fresh data after sync completes
+        void syncProgressAndXP(userId);
       }
-    } catch (err) {
+    }).catch((err) => {
       console.error("Offline sync error:", err);
-    }
+    });
 
-    try {
-      const serverCompleted = await getCompletedLessons(userId);
-      mergeCompletedLessons(serverCompleted);
+    // 2. Use cache (Stale-While-Revalidate) if available to prevent blocker state
+    if (cachedSummary && cachedLessonState) {
+      setUserXp(cachedSummary.stats?.total_xp ?? cachedSummary.profile?.total_xp ?? 0);
+      setDbAvatarUrl(cachedSummary.profile?.avatar_url ?? null);
+      setChallengePassedIds(new Set(cachedSummary.challenge_passed_ids));
+      setPassedMilestones(cachedSummary.passed_milestones.filter(m => m.track_id === activeTrack));
+      
+      mergeCompletedLessons(cachedLessonState.completed_lessons);
       forceProgressResync((n) => n + 1);
-    } catch (error) {
-      console.error("Error syncing server progress:", error);
-    }
+      setUnlockedLessonIds(new Set(cachedLessonState.unlocked_lesson_ids));
+      setFlaggedLessonIds(new Set(cachedLessonState.user_lesson_flags));
+      setBookmarks(cachedLessonState.bookmarks.slice(0, 6));
 
-    supabase
-      .from("user_lesson_unlocks")
-      .select("lesson_id")
-      .eq("user_id", userId)
-      .then(({ data }) => {
-        if (data) setUnlockedLessonIds(new Set(data.map((row) => row.lesson_id)));
-      });
-
-    getChallengePassedLessonIds(userId)
-      .then((ids) => setChallengePassedIds(new Set(ids)))
-      .catch((error) => console.error("Error loading challenge passes:", error));
-
-    getUserLessonFlags(userId)
-      .then((flags) => setFlaggedLessonIds(new Set(flags.map((flag) => flag.lesson_id))))
-      .catch((error) => console.error("Error loading lesson flags:", error));
-
-    getUserBookmarks(userId)
-      .then((saved) => setBookmarks(saved.slice(0, 6)))
-      .catch((error) => console.error("Error loading lesson bookmarks:", error));
-
-    getPassedMilestones(userId, activeTrack)
-      .then((milestones) => setPassedMilestones(milestones))
-      .catch((error) => console.error("Error loading milestones:", error));
-
-    if (window.localStorage.getItem(ONBOARDING_LOCAL_KEY)) {
-      setOnboardingChecked(true);
-    } else {
-      try {
-        const hasOnboarded = await hasCompletedOnboarding(userId);
+      if (window.localStorage.getItem(ONBOARDING_LOCAL_KEY)) {
         setOnboardingChecked(true);
-        if (hasOnboarded) {
+      } else {
+        setOnboardingChecked(true);
+        if (cachedSummary.has_completed_onboarding) {
           window.localStorage.setItem(ONBOARDING_LOCAL_KEY, "1");
         } else {
           setShowOnboarding(true);
         }
-      } catch (error) {
-        console.error("Error checking onboarding:", error);
-        setOnboardingChecked(true);
       }
     }
 
+    const startTime = performance.now();
     try {
-      const stats = await recalculateUserStats(userId);
-      setUserXp(stats.total_xp);
-      getUserProfile(userId).then(profile => {
-        setDbAvatarUrl(profile.avatar_url);
-      }).catch(() => {});
-    } catch (error) {
-      console.error("Error recalculating user XP, falling back to stored value:", error);
-      try {
-        const profile = await getUserProfile(userId);
-        setUserXp(profile.total_xp);
-        setDbAvatarUrl(profile.avatar_url);
-      } catch (fallbackError) {
-        console.error("Error loading user XP:", fallbackError);
+      // 3. Fetch both summary and lesson state in parallel
+      const [summary, lessonState] = await Promise.all([
+        getDashboardSummary(),
+        getLessonState()
+      ]);
+
+      const duration = performance.now() - startTime;
+      console.log(`[Dashboard Load] Optimized fetch completed in ${duration.toFixed(2)}ms`);
+
+      // Update cache
+      cachedSummary = summary;
+      cachedLessonState = lessonState;
+
+      // Apply fresh values to states
+      setUserXp(summary.stats?.total_xp ?? summary.profile?.total_xp ?? 0);
+      setDbAvatarUrl(summary.profile?.avatar_url ?? null);
+      setChallengePassedIds(new Set(summary.challenge_passed_ids));
+      setPassedMilestones(summary.passed_milestones.filter(m => m.track_id === activeTrack));
+
+      mergeCompletedLessons(lessonState.completed_lessons);
+      forceProgressResync((n) => n + 1);
+      setUnlockedLessonIds(new Set(lessonState.unlocked_lesson_ids));
+      setFlaggedLessonIds(new Set(lessonState.user_lesson_flags));
+      setBookmarks(lessonState.bookmarks.slice(0, 6));
+
+      if (window.localStorage.getItem(ONBOARDING_LOCAL_KEY)) {
+        setOnboardingChecked(true);
+      } else {
+        setOnboardingChecked(true);
+        if (summary.has_completed_onboarding) {
+          window.localStorage.setItem(ONBOARDING_LOCAL_KEY, "1");
+        } else {
+          setShowOnboarding(true);
+        }
       }
+    } catch (error) {
+      console.error("Error loading optimized dashboard data:", error);
     }
 
     setAvgQuizScore(75);
-  }, [activeTrack, supabase]);
+  }, [activeTrack]);
 
   // Check auth on mount
   useEffect(() => {
