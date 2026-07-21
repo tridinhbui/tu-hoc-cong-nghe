@@ -12,7 +12,7 @@ export const TRACKS = {
       "Chặng 4 - Danh mục đầu tư và kế hoạch hưu trí",
       "Chặng 5 - Chiến lược đầu tư cá nhân",
       "Chặng 6 - Quản lý tài sản & hưu trí",
-      "Chặng 7 - Nhà ở, bảo vệ tài sản và các quyết định tài chính lớn (sắp ra mắt)",
+      "Chặng 7 - Nhà ở, bảo vệ tài sản và các quyết định tài chính lớn",
     ],
     previewSlug: "audit-tai-chinh-ca-nhan",
     previewLabel: "Chặng 0: Bạn đang đứng ở đâu?",

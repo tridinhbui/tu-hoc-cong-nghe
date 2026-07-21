@@ -113,13 +113,10 @@ export const TRACK_PERSONAL = {
       ],
     },
     {
-      // New stage, config landed ahead of content per the lesson-content
-      // expansion plan - flip to available: true once all 10 lessons in
-      // days [289, 308] are authored (see plan for the curriculum).
       label: "Chặng 7",
       name: "Nhà ở, bảo vệ tài sản và các quyết định tài chính lớn",
       days: [289, 298] as [number, number],
-      available: false,
+      available: true,
       parts: [
         { name: "Nhà ở & tín dụng", days: [289, 293] as [number, number] },
         { name: "Bảo vệ tài sản & di sản", days: [294, 298] as [number, number] },

@@ -1263,7 +1263,7 @@ export default function DashboardClient({ lessonsMeta }: { lessonsMeta: LessonMe
             const stageKey = `${activeTrack}-${stage.label}`;
             const stageOpen = openStages.has(stageKey);
 
-            const stageIdx = track.stages.indexOf(stage);
+            const stageIdx = track.stages.findIndex((s) => s.label === stage.label);
             let isStageLockedByMilestone = false;
             let prevStageLabel = "";
             let prevStageLessonsCount = 0;
