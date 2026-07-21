@@ -261,92 +261,164 @@ export default function Leaderboard({ userId }: LeaderboardProps) {
         </p>
       ) : (
         <div className={`transition-opacity duration-150 ${switching ? "opacity-40" : "opacity-100"}`}>
-          <div className="space-y-1.5">
-            {entries.map((entry, idx) => {
-              const rank = idx + 1;
+          {/* Top 3 Podium */}
+          {entries.length > 0 && (
+            <div className="flex items-end justify-center gap-2 pt-6 pb-3 mb-4 border-b border-stone-150 dark:border-stone-800/80 bg-gradient-to-b from-stone-50/50 to-transparent dark:from-stone-900/10 rounded-2xl px-1">
+              
+              {/* Rank 2 (Silver) */}
+              {entries[1] && (
+                <Link
+                  href={entries[1].user_id === userId ? "/profile" : `/nguoi-hoc/${entries[1].user_id}`}
+                  className="flex flex-col items-center flex-1 min-w-0 group cursor-pointer pb-1"
+                >
+                  <div className="relative mb-2">
+                    <div className="w-12 h-12 rounded-full border-[2.5px] border-slate-300 p-0.5 bg-white dark:bg-stone-900 relative shadow-md shadow-slate-400/10 group-hover:scale-105 transition-all duration-300">
+                      <Image
+                        src={entries[1].avatarUrl || "/tai-tai-avatar.jpg"}
+                        alt={entries[1].name}
+                        width={40}
+                        height={40}
+                        className="w-full h-full rounded-full object-cover"
+                      />
+                    </div>
+                    <span className="absolute -bottom-1.5 left-1/2 -translate-x-1/2 bg-gradient-to-br from-slate-300 to-slate-400 text-slate-900 text-[9px] font-black w-4.5 h-4.5 rounded-full flex items-center justify-center shadow-sm border border-white dark:border-stone-900">
+                      2
+                    </span>
+                  </div>
+                  <div className="text-center w-full max-w-[85px] px-0.5">
+                    <p className="text-[11px] font-bold text-stone-800 dark:text-stone-200 truncate group-hover:text-stone-950 dark:group-hover:text-white transition-colors">{entries[1].name}</p>
+                    <p className="text-[10px] font-black text-slate-500 dark:text-slate-400 mt-0.5">{activeTab.format(entries[1].value)}</p>
+                    {getLeaderboardTitle(metric, 2) && (
+                      <p className="text-[8px] font-bold text-slate-400 dark:text-slate-500 truncate mt-0.5">{getLeaderboardTitle(metric, 2)?.replace("🥈 ", "")}</p>
+                    )}
+                  </div>
+                  <div className="w-full h-11 mt-2 rounded-t-lg bg-gradient-to-t from-slate-200/50 via-slate-100/30 to-slate-50/10 dark:from-slate-800/40 dark:via-slate-800/20 dark:to-transparent border-t border-x border-slate-200 dark:border-slate-800/60" />
+                </Link>
+              )}
+
+              {/* Rank 1 (Gold) */}
+              {entries[0] && (
+                <Link
+                  href={entries[0].user_id === userId ? "/profile" : `/nguoi-hoc/${entries[0].user_id}`}
+                  className="flex flex-col items-center flex-[1.2] min-w-0 group cursor-pointer z-10"
+                >
+                  <div className="relative mb-2">
+                    {/* Crown Icon */}
+                    <svg className="w-5 h-5 text-amber-400 absolute -top-4.5 left-1/2 -translate-x-1/2 drop-shadow-[0_1.5px_3px_rgba(245,158,11,0.5)] animate-[bounce_2.5s_infinite]" fill="currentColor" viewBox="0 0 24 24">
+                      <path d="M5 16L3 5l5 5 4-7 4 7 5-5-2 11H5z" />
+                    </svg>
+                    
+                    {/* Glowing ring */}
+                    <span className="absolute -inset-1 rounded-full bg-gradient-to-r from-amber-400/40 to-yellow-350/40 blur-[2px] opacity-75 group-hover:scale-105 transition-all duration-300" />
+                    
+                    <div className="w-15 h-15 rounded-full border-[3px] border-amber-400 p-0.5 bg-white dark:bg-stone-900 relative shadow-lg shadow-amber-500/10 group-hover:scale-105 transition-all duration-300">
+                      <Image
+                        src={entries[0].avatarUrl || "/tai-tai-avatar.jpg"}
+                        alt={entries[0].name}
+                        width={52}
+                        height={52}
+                        className="w-full h-full rounded-full object-cover"
+                      />
+                    </div>
+                    <span className="absolute -bottom-1.5 left-1/2 -translate-x-1/2 bg-gradient-to-br from-amber-400 to-yellow-500 text-amber-950 text-[10px] font-black w-5 h-5 rounded-full flex items-center justify-center shadow border border-white dark:border-stone-900">
+                      1
+                    </span>
+                  </div>
+                  <div className="text-center w-full max-w-[100px] px-0.5">
+                    <p className="text-xs font-black text-stone-900 dark:text-stone-100 truncate group-hover:text-amber-600 dark:group-hover:text-amber-450 transition-colors">{entries[0].name}</p>
+                    <p className="text-[11px] font-black text-amber-600 dark:text-amber-400 mt-0.5">{activeTab.format(entries[0].value)}</p>
+                    {getLeaderboardTitle(metric, 1) && (
+                      <p className="text-[8px] font-bold text-amber-500 dark:text-amber-500 truncate mt-0.5">{getLeaderboardTitle(metric, 1)?.replace("🥇 ", "")}</p>
+                    )}
+                  </div>
+                  <div className="w-full h-15 mt-2 rounded-t-xl bg-gradient-to-t from-amber-550/20 via-amber-400/10 to-amber-200/[0.02] dark:from-amber-500/10 dark:via-amber-500/5 dark:to-transparent border-t border-x border-amber-400/30 dark:border-amber-550/20 shadow-[0_-5px_15px_-8px_rgba(245,158,11,0.2)]" />
+                </Link>
+              )}
+
+              {/* Rank 3 (Bronze) */}
+              {entries[2] && (
+                <Link
+                  href={entries[2].user_id === userId ? "/profile" : `/nguoi-hoc/${entries[2].user_id}`}
+                  className="flex flex-col items-center flex-1 min-w-0 group cursor-pointer pb-1"
+                >
+                  <div className="relative mb-2">
+                    <div className="w-11 h-11 rounded-full border-[2px] border-amber-600/80 p-0.5 bg-white dark:bg-stone-900 relative shadow-sm shadow-orange-500/5 group-hover:scale-105 transition-all duration-300">
+                      <Image
+                        src={entries[2].avatarUrl || "/tai-tai-avatar.jpg"}
+                        alt={entries[2].name}
+                        width={36}
+                        height={36}
+                        className="w-full h-full rounded-full object-cover"
+                      />
+                    </div>
+                    <span className="absolute -bottom-1.5 left-1/2 -translate-x-1/2 bg-gradient-to-br from-amber-600 to-amber-700 text-white text-[9px] font-black w-4.2 h-4.2 rounded-full flex items-center justify-center shadow-sm border border-white dark:border-stone-900">
+                      3
+                    </span>
+                  </div>
+                  <div className="text-center w-full max-w-[85px] px-0.5">
+                    <p className="text-[11px] font-bold text-stone-800 dark:text-stone-200 truncate group-hover:text-stone-950 dark:group-hover:text-white transition-colors">{entries[2].name}</p>
+                    <p className="text-[10px] font-black text-amber-750 dark:text-orange-400 mt-0.5">{activeTab.format(entries[2].value)}</p>
+                    {getLeaderboardTitle(metric, 3) && (
+                      <p className="text-[8px] font-bold text-amber-650 dark:text-orange-500/80 truncate mt-0.5">{getLeaderboardTitle(metric, 3)?.replace("🥉 ", "")}</p>
+                    )}
+                  </div>
+                  <div className="w-full h-9 mt-2 rounded-t-lg bg-gradient-to-t from-amber-700/15 via-amber-600/5 to-transparent dark:from-orange-950/20 dark:via-orange-950/5 dark:to-transparent border-t border-x border-amber-650/20 dark:border-orange-950/30" />
+                </Link>
+              )}
+
+            </div>
+          )}
+
+          {/* List of other ranks (4 - 10) */}
+          <div className="space-y-1.5 max-h-[360px] overflow-y-auto pr-0.5 scrollbar-thin">
+            {entries.slice(3).map((entry, idx) => {
+              const rank = idx + 4;
               const isCurrent = entry.user_id === userId;
               const href = isCurrent ? "/profile" : `/nguoi-hoc/${entry.user_id}`;
-              const topTitle = rank <= 3 ? getLeaderboardTitle(metric, rank) : null;
-
-              // Premium styling for top 3 and current user
-              let cardBgClass = "bg-white dark:bg-stone-900 border-stone-200 dark:border-stone-800";
-              let shadowClass = "hover:shadow-[0_12px_24px_-15px_rgba(16,185,129,0.3)]";
-              
-              if (isCurrent) {
-                cardBgClass = "bg-emerald-50/50 dark:bg-emerald-950/40 border-emerald-250 dark:border-emerald-900 shadow-[0_10px_24px_-18px_rgba(16,185,129,0.5)]";
-              } else if (rank === 1) {
-                cardBgClass = "bg-gradient-to-r from-amber-500/[0.05] via-amber-500/[0.08] to-transparent dark:from-amber-950/20 dark:via-amber-950/10 dark:to-transparent border-amber-300 dark:border-amber-700/80 hover:border-amber-400 dark:hover:border-amber-600";
-                shadowClass = "shadow-[0_4px_16px_-12px_rgba(251,191,36,0.2)] hover:shadow-[0_10px_24px_-10px_rgba(251,191,36,0.35)] scale-[1.015]";
-              } else if (rank === 2) {
-                cardBgClass = "bg-gradient-to-r from-slate-400/[0.05] via-slate-400/[0.08] to-transparent dark:from-slate-800/20 dark:via-slate-800/10 dark:to-transparent border-slate-300/80 dark:border-slate-700/80 hover:border-slate-400 dark:hover:border-slate-600";
-                shadowClass = "shadow-[0_4px_16px_-12px_rgba(148,163,184,0.15)] hover:shadow-[0_10px_24px_-10px_rgba(148,163,184,0.25)] scale-[1.008]";
-              } else if (rank === 3) {
-                cardBgClass = "bg-gradient-to-r from-orange-400/[0.05] via-orange-400/[0.07] to-transparent dark:from-orange-950/20 dark:via-orange-950/10 dark:to-transparent border-orange-250/80 dark:border-orange-900/80 hover:border-orange-350 dark:hover:border-orange-850";
-                shadowClass = "shadow-[0_4px_16px_-12px_rgba(249,115,22,0.15)] hover:shadow-[0_10px_24px_-10px_rgba(249,115,22,0.25)] scale-[1.002]";
-              } else {
-                cardBgClass = "bg-white dark:bg-stone-900 border-stone-200 dark:border-stone-850 hover:border-stone-300 dark:hover:border-stone-700 hover:bg-stone-50/30 dark:hover:bg-stone-850/30";
-              }
 
               return (
                 <Link
                   key={entry.user_id}
                   href={href}
-                  className={`group relative flex items-center justify-between overflow-hidden px-3.5 py-2.5 rounded-xl text-xs transition-all duration-300 active:scale-[0.99] border focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400/60 ${cardBgClass} ${shadowClass}`}
+                  className={`group relative flex items-center justify-between overflow-hidden px-3.5 py-2.5 rounded-xl text-xs transition-all duration-300 active:scale-[0.99] border focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400/60 ${
+                    isCurrent
+                      ? "bg-emerald-50/50 dark:bg-emerald-950/40 border-emerald-250 dark:border-emerald-900 shadow-[0_4px_12px_-8px_rgba(16,185,129,0.3)]"
+                      : "bg-white dark:bg-stone-900 border-stone-200 dark:border-stone-850 hover:border-stone-300 dark:hover:border-stone-700 hover:bg-stone-50/30 dark:hover:bg-stone-850/30"
+                  }`}
                 >
-                  <div className={`pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-200 group-hover:opacity-100 ${
-                    rank === 1
-                      ? "bg-[linear-gradient(135deg,rgba(251,191,36,0.1),transparent_40%)]"
-                      : rank === 2
-                        ? "bg-[linear-gradient(135deg,rgba(148,163,184,0.1),transparent_40%)]"
-                        : rank === 3
-                          ? "bg-[linear-gradient(135deg,rgba(249,115,22,0.08),transparent_40%)]"
-                          : "bg-[linear-gradient(135deg,rgba(16,185,129,0.06),transparent_40%)]"
-                  }`} />
+                  <div className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-200 group-hover:opacity-100 bg-[linear-gradient(135deg,rgba(16,185,129,0.04),transparent_40%)]" />
 
                   {/* Left block: Rank + Avatar + Name details */}
                   <div className="flex items-center gap-2.5 min-w-0">
                     <div
-                      className={`relative z-10 w-6 h-6 rounded-lg flex items-center justify-center flex-shrink-0 font-extrabold text-[10px] transition-transform duration-300 group-hover:scale-110 shadow-inner border border-stone-200/10 ${
-                        rank === 1
-                          ? "bg-gradient-to-br from-amber-400 to-yellow-300 dark:from-amber-500 dark:to-yellow-500 text-amber-950 dark:text-white"
-                          : rank === 2
-                            ? "bg-gradient-to-br from-slate-300 to-slate-100 dark:from-slate-600 dark:to-slate-500 text-slate-900 dark:text-white"
-                            : rank === 3
-                              ? "bg-gradient-to-br from-amber-300 to-orange-200 dark:from-orange-600 dark:to-orange-500 text-amber-900 dark:text-white"
-                              : rank === 4
-                                ? "bg-purple-50 dark:bg-purple-950/60 text-purple-700 dark:text-purple-300"
-                                : rank === 5
-                                  ? "bg-sky-50 dark:bg-sky-950/60 text-sky-700 dark:text-sky-300"
-                                  : rank === 6
-                                    ? "bg-teal-50 dark:bg-teal-950/60 text-teal-700 dark:text-teal-300"
-                                    : "bg-stone-50 dark:bg-stone-850 text-stone-650 dark:text-stone-350"
+                      className={`relative z-10 w-6 h-6 rounded-md flex items-center justify-center flex-shrink-0 font-extrabold text-[10px] transition-transform duration-300 group-hover:scale-115 border ${
+                        rank === 4
+                          ? "bg-purple-50 dark:bg-purple-950/60 border-purple-100 dark:border-purple-900 text-purple-700 dark:text-purple-300"
+                          : rank === 5
+                            ? "bg-sky-50 dark:bg-sky-950/60 border-sky-100 dark:border-sky-900 text-sky-700 dark:text-sky-300"
+                            : rank === 6
+                              ? "bg-teal-50 dark:bg-teal-950/60 border-teal-100 dark:border-teal-900 text-teal-700 dark:text-teal-300"
+                              : "bg-stone-50 dark:bg-stone-850 border-stone-150 dark:border-stone-800 text-stone-500 dark:text-stone-400"
                       }`}
                     >
-                      <span className="text-xs">{RANK_MEDALS[rank] || rank}</span>
+                      <span className="text-[10px]">{RANK_MEDALS[rank] || rank}</span>
                     </div>
 
-                    <RankAvatarFrame rank={rank}>
-                      <div className="relative z-10">
-                        <LeaderboardAvatar name={entry.name} avatarUrl={entry.avatarUrl} />
-                      </div>
-                    </RankAvatarFrame>
+                    <div className="relative z-10">
+                      <LeaderboardAvatar name={entry.name} avatarUrl={entry.avatarUrl} />
+                    </div>
 
                     <div className="relative z-10 min-w-0">
-                      <div className={`font-bold truncate text-xs ${isCurrent ? "text-emerald-950 dark:text-emerald-400" : "text-stone-900 dark:text-stone-100"} ${rank <= 3 ? "text-[12px] sm:text-xs" : ""}`}>
+                      <div className={`font-bold truncate text-xs ${isCurrent ? "text-emerald-950 dark:text-emerald-400 font-extrabold" : "text-stone-900 dark:text-stone-100"}`}>
                         {entry.name}
                       </div>
-                      {topTitle && (
-                        <div className="text-[10px] font-bold text-amber-600 dark:text-amber-400 mt-0.5 truncate max-w-[135px]">
-                          {topTitle}
-                        </div>
-                      )}
                     </div>
                   </div>
 
                   {/* Right block: Value + Arrow */}
                   <div className="relative z-10 flex items-center gap-2 shrink-0 ml-2">
                     <div className="text-right">
-                      <span className={`font-extrabold text-[11px] sm:text-xs ${isCurrent ? "text-emerald-700 dark:text-emerald-400" : rank <= 3 ? "text-stone-850 dark:text-stone-100 font-black" : "text-stone-700 dark:text-stone-200"}`}>
+                      <span className={`font-extrabold text-[11px] sm:text-xs ${isCurrent ? "text-emerald-700 dark:text-emerald-400" : "text-stone-700 dark:text-stone-200"}`}>
                         {activeTab.format(entry.value)}
                       </span>
                     </div>
@@ -364,7 +436,7 @@ export default function Leaderboard({ userId }: LeaderboardProps) {
               where you stand once you fall outside it. */}
           {myRank !== null && !myRankInTop10 && (
             <div className="mt-3 pt-3 border-t border-stone-200 dark:border-stone-800">
-              <div className="flex items-center gap-2 px-3 py-2 rounded-lg text-xs bg-stone-50 dark:bg-stone-800/50 border border-dashed border-stone-300 dark:border-stone-700">
+              <div className="flex items-center gap-2 px-3 py-2 rounded-lg text-xs bg-stone-50 dark:bg-stone-850 border border-dashed border-stone-300 dark:border-stone-700 shadow-inner">
                 <div className="w-6 h-6 rounded flex items-center justify-center flex-shrink-0 font-extrabold bg-stone-200 dark:bg-stone-700 text-stone-700 dark:text-stone-300 text-[10px]">
                   #{myRank.rank}
                 </div>
