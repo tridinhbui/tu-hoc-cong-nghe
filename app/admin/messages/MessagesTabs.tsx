@@ -1,13 +1,14 @@
 "use client";
 
 import { useState } from "react";
-import { Bug, Mail, MessageCircle } from "lucide-react";
+import { Bug, Mail, MessageCircle, Users2 } from "lucide-react";
 import type { MessagesResult } from "@/lib/admin/messages";
 import type { ChatThread } from "@/lib/admin/chat";
 import type { BugReport } from "@/lib/admin/bugs";
 import MessagesTable from "./MessagesTable";
 import ChatThreadsPanel from "./ChatThreadsPanel";
 import BugReportsPanel from "./BugReportsPanel";
+import CommunityModerationPanel from "./CommunityModerationPanel";
 
 export default function MessagesTabs({
   result,
@@ -22,7 +23,7 @@ export default function MessagesTabs({
   threads: ChatThread[];
   bugReports: BugReport[];
 }) {
-  const [tab, setTab] = useState<"feedback" | "chat" | "bugs">("feedback");
+  const [tab, setTab] = useState<"feedback" | "chat" | "bugs" | "community">("feedback");
   const unreadChat = threads.reduce((sum, t) => sum + t.unread_count, 0);
   const openBugReports = bugReports.filter((report) => report.status !== "fixed").length;
 
@@ -65,14 +66,27 @@ export default function MessagesTabs({
           Bảng lỗi
           {openBugReports > 0 && <span className="opacity-60">({openBugReports})</span>}
         </button>
+        <button
+          onClick={() => setTab("community")}
+          className={`flex items-center gap-2 px-4 py-2 text-sm font-bold rounded-lg transition-colors ${
+            tab === "community"
+              ? "bg-stone-900 dark:bg-stone-100 text-white dark:text-stone-900"
+              : "bg-stone-100 dark:bg-stone-800 text-stone-600 dark:text-stone-400 hover:bg-stone-200 dark:hover:bg-stone-700"
+          }`}
+        >
+          <Users2 className="w-4 h-4" />
+          Cộng đồng
+        </button>
       </div>
 
       {tab === "feedback" ? (
         <MessagesTable result={result} initialSearch={initialSearch} initialFilter={initialFilter} />
       ) : tab === "chat" ? (
         <ChatThreadsPanel threads={threads} />
-      ) : (
+      ) : tab === "bugs" ? (
         <BugReportsPanel bugReports={bugReports} />
+      ) : (
+        <CommunityModerationPanel />
       )}
     </div>
   );

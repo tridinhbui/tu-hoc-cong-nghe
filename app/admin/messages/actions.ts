@@ -5,6 +5,7 @@ import { requireAdmin } from "@/lib/admin-auth";
 import { markMessageRead, deleteMessage } from "@/lib/admin/messages";
 import { sendAdminChatReply, markThreadRead, getChatThreadMessages, getChatThreads } from "@/lib/admin/chat";
 import { addAdminBugReply, getBugReportMessages, updateBugReportStatus, type BugStatus } from "@/lib/admin/bugs";
+import { listCommunityPosts, setPostHidden } from "@/lib/admin/community";
 
 export async function markMessageReadAction(id: number, isRead: boolean) {
   await requireAdmin();
@@ -59,4 +60,15 @@ export async function addAdminBugReplyAction(reportId: number, content: string) 
 export async function getBugReportMessagesAction(reportId: number) {
   await requireAdmin();
   return getBugReportMessages(reportId);
+}
+
+export async function listCommunityPostsAction() {
+  await requireAdmin();
+  return listCommunityPosts();
+}
+
+export async function setPostHiddenAction(postId: number, isHidden: boolean) {
+  await requireAdmin();
+  await setPostHidden(postId, isHidden);
+  revalidatePath("/admin/messages");
 }

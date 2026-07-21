@@ -16,6 +16,11 @@ function milestoneMessage(name: string, days: number): string {
   return `Chào ${label}! 🎉 Bạn vừa đạt chuỗi ${days} ngày học liên tục - cảm ơn bạn rất nhiều vì đã kiên trì đồng hành cùng nền tảng. Consistent is key to success - cứ giữ nhịp độ này, thành quả sẽ đến sớm thôi. Đội ngũ luôn ở đây nếu bạn cần hỗ trợ gì nhé! 💪`;
 }
 
+function feedPostContent(name: string, days: number): string {
+  const label = name && name.trim() ? name.trim() : "Một bạn học";
+  return `${label} vừa đạt chuỗi ${days} ngày học liên tục! 🔥`;
+}
+
 interface StreakRow {
   user_id: string;
   current_streak: number;
@@ -72,6 +77,15 @@ export async function GET(request: NextRequest) {
       console.error(`[send-streak-milestones] Failed to send to ${row.user_id}:`, insertError);
       continue;
     }
+
+    // Best-effort - a failed feed post shouldn't block the DM/milestone
+    // marker above, which is why this isn't checked for errors.
+    await supabase.from("community_posts").insert({
+      user_id: row.user_id,
+      kind: "streak",
+      content: feedPostContent(profile?.full_name ?? "", row.current_streak),
+      metadata: { streak_days: row.current_streak },
+    });
 
     await supabase
       .from("user_streaks")
