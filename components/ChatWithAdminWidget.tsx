@@ -251,7 +251,7 @@ export default function ChatWithAdminWidget({ isOpen: controlledIsOpen, onOpenCh
             )}
 
             {/* Messages */}
-            <div className="flex-1 overflow-y-auto p-4 space-y-4 bg-gradient-to-b from-stone-50/50 to-stone-100/30 dark:from-stone-900/30 dark:to-stone-950/30 scrollbar-thin">
+             <div className="flex-1 overflow-y-auto p-4 space-y-4 bg-stone-50 dark:bg-stone-950 scrollbar-thin">
               {loadingHistory && messages.length === 0 && (
                 <p className="text-center text-xs text-stone-450 dark:text-stone-500 mt-12 animate-pulse">
                   Đang tải cuộc trò chuyện...

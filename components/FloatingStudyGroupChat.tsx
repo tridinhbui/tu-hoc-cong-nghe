@@ -275,7 +275,7 @@ export default function FloatingStudyGroupChat({ isOpen: controlledIsOpen, onOpe
               pickImage(e.dataTransfer.files?.[0]);
             }}
             className={`flex-1 overflow-y-auto p-4 space-y-3.5 transition-colors duration-200 scrollbar-thin ${
-              isDraggingImage ? "bg-emerald-50/50 dark:bg-emerald-950/20" : "bg-gradient-to-b from-stone-50/30 to-stone-100/20 dark:from-stone-900/30 dark:to-stone-950/20"
+              isDraggingImage ? "bg-emerald-50/50 dark:bg-emerald-950/20" : "bg-stone-50 dark:bg-stone-950"
             }`}
           >
             {isDraggingImage && (

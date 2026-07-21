@@ -96,12 +96,22 @@ export async function getModuleContent(moduleId: string): Promise<string> {
   return data?.content ?? "";
 }
 
+// Doesn't rely on `upsert`'s onConflict (which needs a unique constraint on
+// moduleId that isn't guaranteed to exist on this externally-created table)
+// - tries an update first, and only inserts if no row existed to update.
 export async function updateModuleContent(moduleId: string, content: string): Promise<void> {
   const supabase = createAdminClient();
-  const { error } = await supabase
+  const { data: updated, error: updateError } = await supabase
     .from("LessonContent")
-    .upsert({ moduleId, content }, { onConflict: "moduleId" });
-  if (error) throw new Error(error.message);
+    .update({ content })
+    .eq("moduleId", moduleId)
+    .select("moduleId");
+  if (updateError) throw new Error(updateError.message);
+
+  if (!updated || updated.length === 0) {
+    const { error: insertError } = await supabase.from("LessonContent").insert({ moduleId, content });
+    if (insertError) throw new Error(insertError.message);
+  }
 }
 
 export async function getModuleQuiz(moduleId: string): Promise<AdminQuizQuestion[]> {
