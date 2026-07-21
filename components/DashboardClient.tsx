@@ -140,6 +140,7 @@ export default function DashboardClient({ lessonsMeta }: { lessonsMeta: LessonMe
       window.localStorage.setItem("activeTrack", track);
     }
   };
+  const [activeChatWidget, setActiveChatWidget] = useState<"admin" | "group" | null>(null);
   // The lesson page redirects here with ?locked=<slug> when a user tries to
   // open a locked lesson directly by URL - surface that instead of silently
   // landing back on the dashboard with no explanation.
@@ -1817,8 +1818,14 @@ export default function DashboardClient({ lessonsMeta }: { lessonsMeta: LessonMe
       </div>
 
       {/* Admin Chat */}
-      <ChatWithAdminWidget />
-      <FloatingStudyGroupChat />
+      <ChatWithAdminWidget
+        isOpen={activeChatWidget === "admin"}
+        onOpenChange={(open) => setActiveChatWidget(open ? "admin" : null)}
+      />
+      <FloatingStudyGroupChat
+        isOpen={activeChatWidget === "group"}
+        onOpenChange={(open) => setActiveChatWidget(open ? "group" : null)}
+      />
 
 
 

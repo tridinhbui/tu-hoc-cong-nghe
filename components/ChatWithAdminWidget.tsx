@@ -19,8 +19,22 @@ import {
   type ChatMessage,
 } from "@/lib/supabase-chat";
 
-export default function ChatWithAdminWidget() {
-  const [isOpen, setIsOpen] = useState(false);
+interface ChatWithAdminWidgetProps {
+  isOpen?: boolean;
+  onOpenChange?: (open: boolean) => void;
+}
+
+export default function ChatWithAdminWidget({ isOpen: controlledIsOpen, onOpenChange }: ChatWithAdminWidgetProps = {}) {
+  const [internalIsOpen, setInternalIsOpen] = useState(false);
+  const isOpen = controlledIsOpen !== undefined ? controlledIsOpen : internalIsOpen;
+  
+  const setIsOpen = useCallback((open: boolean | ((prev: boolean) => boolean)) => {
+    setInternalIsOpen((prev) => {
+      const next = typeof open === "function" ? open(prev) : open;
+      onOpenChange?.(next);
+      return next;
+    });
+  }, [onOpenChange]);
   const [userId, setUserId] = useState<string | null>(null);
   const [messages, setMessages] = useState<ChatMessage[]>([]);
   const [input, setInput] = useState("");

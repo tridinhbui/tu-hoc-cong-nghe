@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, useCallback } from "react";
 import Image from "next/image";
 import TaiTaiAvatar from "@/components/TaiTaiAvatar";
 import { toast } from "sonner";
@@ -38,17 +38,31 @@ function initials(name: string | null | undefined) {
 const LAST_SEEN_ROOM_KEY = "thtcdn_study_room_last_seen_id";
 const LAST_READ_AT_KEY_PREFIX = "thtcdn_study_room_last_read_";
 
+interface FloatingStudyGroupChatProps {
+  isOpen?: boolean;
+  onOpenChange?: (open: boolean) => void;
+}
+
 // Floating widget for the caller's active weekly study-group chat, mounted
 // on the dashboard alongside FloatingChatbot (the feedback widget) rather
 // than folded into the full /nhom-hoc page - so a message from a groupmate
 // (or "Tài Tài"'s daily progress recap, see
 // app/api/cron/daily-study-group-update/route.ts) is visible without
 // leaving the dashboard. Renders nothing if the caller has no active room.
-export default function FloatingStudyGroupChat() {
+export default function FloatingStudyGroupChat({ isOpen: controlledIsOpen, onOpenChange }: FloatingStudyGroupChatProps = {}) {
   const [userId, setUserId] = useState<string | null>(null);
   const [room, setRoom] = useState<StudyRoomSummary | null>(null);
   const [members, setMembers] = useState<Map<string, StudyRoomMember>>(new Map());
-  const [open, setOpen] = useState(false);
+  const [internalOpen, setInternalOpen] = useState(false);
+  const open = controlledIsOpen !== undefined ? controlledIsOpen : internalOpen;
+  
+  const setOpen = useCallback((openState: boolean | ((prev: boolean) => boolean)) => {
+    setInternalOpen((prev) => {
+      const next = typeof openState === "function" ? openState(prev) : openState;
+      onOpenChange?.(next);
+      return next;
+    });
+  }, [onOpenChange]);
   const [messages, setMessages] = useState<StudyRoomMessage[]>([]);
   const [unreadCount, setUnreadCount] = useState(0);
   const [input, setInput] = useState("");
