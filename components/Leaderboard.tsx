@@ -110,37 +110,78 @@ const TABS: { metric: LeaderboardMetric | "game"; label: string; format: (v: num
   { metric: "game", label: "Game thủ", format: (v) => `${v} XP` },
 ];
 
-// Fun titles for top 3 per leaderboard metric
 const LEADERBOARD_TITLES: Record<LeaderboardMetric | "game", Record<number, string>> = {
   xp: {
     1: "Bậc thầy tài chính",
     2: "Chuyên gia đầu tư",
     3: "Nhà đầu tư tài năng",
+    4: "Kiện tướng tích lũy",
+    5: "Thợ săn XP",
+    6: "Chiến binh chăm chỉ",
+    7: "Học giả năng nổ",
+    8: "Cố gắng không ngừng",
+    9: "Học viên xuất sắc",
+    10: "Thành viên tích cực",
   },
   lessons: {
     1: "Vua sách giáo khoa",
     2: "Thủ kho tri thức",
     3: "Máy học không ngừng",
+    4: "Mọt sách chính hiệu",
+    5: "Người đọc thông thái",
+    6: "Chuyên gia lý thuyết",
+    7: "Người chinh phục bài học",
+    8: "Người yêu kiến thức",
+    9: "Học viên siêng năng",
+    10: "Độc giả tích cực",
   },
   avg_score: {
     1: "Thần chính xác",
     2: "Đại sư câu hỏi",
     3: "Quiz master",
+    4: "Chiến thần IQ",
+    5: "Kẻ hủy diệt đáp án",
+    6: "Vua trả lời đúng",
+    7: "Người thấu hiểu đề",
+    8: "Học bá điểm tuyệt đối",
+    9: "Người làm bài cẩn thận",
+    10: "Chuyên gia trắc nghiệm",
   },
   streak: {
     1: "Huyền thoại streak",
     2: "Lửa không tắt",
     3: "Kiên trì vàng",
+    4: "Ngọn lửa đam mê",
+    5: "Học đều mỗi ngày",
+    6: "Thói quen vàng",
+    7: "Chiến binh bền bỉ",
+    8: "Người giữ lửa",
+    9: "Học viên kiên trì",
+    10: "Quyết tâm không từ bỏ",
   },
   badges: {
     1: "Bộ sưu tập huy hiệu",
     2: "Thợ săn huy hiệu",
     3: "Người mở khóa",
+    4: "Nhà sưu tầm vĩ đại",
+    5: "Danh hiệu đầy mình",
+    6: "Kỷ lục gia huy hiệu",
+    7: "Người yêu danh hiệu",
+    8: "Người chinh phục thử thách",
+    9: "Chuyên gia mở khóa",
+    10: "Học viên giàu thành tích",
   },
   game: {
     1: "Huyền thoại Mini Game",
     2: "Đại kiện tướng Tài chính",
     3: "Cao thủ toàn năng",
+    4: "Thần bài tài chính",
+    5: "Kỷ lục gia trò chơi",
+    6: "Chiến thần mini game",
+    7: "Game thủ năng nổ",
+    8: "Kẻ thách thức bảng vàng",
+    9: "Vua trò chơi học tập",
+    10: "Thành viên tranh tài",
   },
 };
 
@@ -423,6 +464,11 @@ export default function Leaderboard({ userId }: LeaderboardProps) {
                       <div className={`font-bold truncate text-xs ${isCurrent ? "text-emerald-950 dark:text-emerald-400 font-extrabold" : "text-stone-900 dark:text-stone-100"}`}>
                         {entry.name}
                       </div>
+                      {getLeaderboardTitle(metric, rank) && (
+                        <div className="text-[9px] font-bold text-stone-500 dark:text-stone-400 mt-0.5 truncate max-w-[145px]">
+                          {getLeaderboardTitle(metric, rank)}
+                        </div>
+                      )}
                     </div>
                   </div>
 
