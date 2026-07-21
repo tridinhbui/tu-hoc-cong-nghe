@@ -7,6 +7,7 @@ import { createClient } from "@/lib/supabase";
 import { BookOpen, Loader2, ChevronRight, ArrowLeft, Library, ListChecks, CheckCircle2, Circle, PlayCircle } from "lucide-react";
 import type { LessonMeta } from "@/lib/lesson-types";
 import type { CfaSubject } from "@/lib/cfa-track";
+import { toTitleCase } from "@/lib/cfa-format";
 
 interface Book {
   id: string;
@@ -325,7 +326,7 @@ export default function CfaTrackView({ subjects, completedLessonIds }: Props) {
               {selectedBook.level}
             </span>
             <h2 className="text-xl sm:text-2xl font-extrabold text-stone-900 dark:text-white mt-2 leading-snug">
-              {selectedBook.title}
+              {toTitleCase(selectedBook.title)}
             </h2>
             <p className="text-sm text-stone-500 dark:text-stone-400 mt-2 leading-relaxed">
               {selectedBook.description}
@@ -352,7 +353,7 @@ export default function CfaTrackView({ subjects, completedLessonIds }: Props) {
                       {reading.code}
                     </span>
                     <span className="text-base sm:text-lg font-extrabold text-stone-900 dark:text-stone-100 flex-1 leading-snug">
-                      {reading.title}
+                      {toTitleCase(reading.title)}
                     </span>
                     <span className="text-sm font-bold px-3 py-1 rounded-lg text-stone-800 dark:text-stone-200 bg-stone-100 dark:bg-stone-800 shrink-0">
                       {reading.modules?.length ?? 0} bài
@@ -380,7 +381,7 @@ export default function CfaTrackView({ subjects, completedLessonIds }: Props) {
                                 {mod.code}
                               </span>
                               <span className="flex-1 min-w-0 text-base font-bold text-stone-900 dark:text-stone-100 leading-snug group-hover:text-emerald-700 dark:group-hover:text-emerald-400 transition-colors">
-                                {mod.title}
+                                {toTitleCase(mod.title)}
                               </span>
                               <ChevronRight className="w-5 h-5 text-stone-300 dark:text-stone-600 group-hover:text-emerald-500 group-hover:translate-x-0.5 transition-all shrink-0" />
                             </Link>
@@ -444,7 +445,7 @@ export default function CfaTrackView({ subjects, completedLessonIds }: Props) {
                 </div>
                 <div className="p-4">
                   <h4 className="text-xs font-extrabold text-stone-900 dark:text-white line-clamp-1 mb-1">
-                    {book.title}
+                    {toTitleCase(book.title)}
                   </h4>
                   <p className="text-[11px] text-stone-500 dark:text-stone-400 line-clamp-2 leading-relaxed">
                     {book.description}

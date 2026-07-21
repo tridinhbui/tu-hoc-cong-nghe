@@ -231,34 +231,38 @@ export default function FloatingStudyGroupChat({ isOpen: controlledIsOpen, onOpe
           ${open ? "translate-y-0 opacity-100 pointer-events-auto" : "translate-y-4 opacity-0 pointer-events-none"}
         `}
       >
-        <div className="bg-white dark:bg-stone-900 sm:rounded-2xl shadow-2xl border border-stone-200 dark:border-stone-800 flex flex-col overflow-hidden rounded-t-2xl sm:rounded-2xl h-[70vh] sm:h-[480px]">
-          <div className="bg-emerald-600 px-4 py-4 flex items-center gap-3 shrink-0">
-            <div className="w-9 h-9 rounded-full bg-white/15 flex items-center justify-center flex-shrink-0">
-              <Users className="w-4 h-4 text-white" />
+        <div className="bg-white/95 dark:bg-stone-900/95 backdrop-blur-md sm:rounded-2xl shadow-[0_20px_50px_rgba(0,0,0,0.3)] border border-stone-200 dark:border-stone-850 flex flex-col overflow-hidden rounded-t-2xl sm:rounded-2xl h-[72vh] sm:h-[480px]">
+          
+          {/* Header */}
+          <div className="bg-gradient-to-r from-emerald-650 via-emerald-600 to-teal-650 px-4.5 py-4 flex items-center gap-3 shrink-0 shadow-sm">
+            <div className="w-9 h-9 rounded-full bg-white/20 flex items-center justify-center flex-shrink-0 shadow-inner">
+              <Users className="w-4.5 h-4.5 text-white" />
             </div>
             <div className="flex-1 min-w-0">
-              <p className="text-white font-bold text-sm truncate">Nhóm {topicLabel(room.topic)}</p>
-              <p className="text-emerald-100 text-xs">{room.member_count}/{room.max_members} thành viên</p>
+              <p className="text-white font-bold text-[13px] tracking-tight truncate">Nhóm {topicLabel(room.topic)}</p>
+              <p className="text-emerald-100/90 text-[10px] font-medium mt-0.5">{room.member_count}/{room.max_members} thành viên hoạt động</p>
             </div>
             <button
               onClick={() => setOpen(false)}
               aria-label="Đóng"
-              className="w-7 h-7 rounded-full flex items-center justify-center text-white/80 hover:text-white hover:bg-white/10 transition-colors cursor-pointer"
+              className="w-7 h-7 rounded-xl flex items-center justify-center text-white/80 hover:text-white hover:bg-white/10 transition-all cursor-pointer active:scale-90"
             >
               <X className="w-4 h-4" />
             </button>
           </div>
 
+          {/* Pinned Message */}
           {pinnedMessage && (
-            <div className="shrink-0 px-3 py-2.5 bg-amber-50 dark:bg-amber-950/30 border-b border-amber-200 dark:border-amber-900">
+            <div className="shrink-0 px-3.5 py-2.5 bg-amber-50/80 dark:bg-amber-950/20 border-b border-amber-200/50 dark:border-amber-900/30">
               <div className="flex items-center gap-1.5 mb-1">
                 <TaiTaiAvatar size={16} />
-                <span className="text-[10px] font-extrabold text-amber-700 dark:text-amber-400">Tài Tài · Quản lý nhóm · Đã ghim</span>
+                <span className="text-[10px] font-extrabold text-amber-700 dark:text-amber-400">Tài Tài • Quản lý nhóm • Đã ghim</span>
               </div>
-              <p className="text-xs text-stone-800 dark:text-stone-200 leading-relaxed">{pinnedMessage.content}</p>
+              <p className="text-[11px] text-stone-800 dark:text-stone-200 leading-relaxed font-medium">{pinnedMessage.content}</p>
             </div>
           )}
 
+          {/* Messages Body */}
           <div
             onDragOver={(e) => {
               e.preventDefault();
@@ -270,28 +274,33 @@ export default function FloatingStudyGroupChat({ isOpen: controlledIsOpen, onOpe
               setIsDraggingImage(false);
               pickImage(e.dataTransfer.files?.[0]);
             }}
-            className={`flex-1 overflow-y-auto p-3 space-y-2.5 transition-colors ${
-              isDraggingImage ? "bg-emerald-50 dark:bg-emerald-950/20" : "bg-stone-50/50 dark:bg-stone-950/40"
+            className={`flex-1 overflow-y-auto p-4 space-y-3.5 transition-colors duration-200 scrollbar-thin ${
+              isDraggingImage ? "bg-emerald-50/50 dark:bg-emerald-950/20" : "bg-gradient-to-b from-stone-50/30 to-stone-100/20 dark:from-stone-900/30 dark:to-stone-950/20"
             }`}
           >
             {isDraggingImage && (
-              <p className="text-xs font-bold text-emerald-600 dark:text-emerald-400 text-center">Thả ảnh vào đây để đính kèm</p>
+              <p className="text-xs font-bold text-emerald-600 dark:text-emerald-400 text-center animate-pulse">Thả ảnh vào đây để đính kèm 📂</p>
             )}
             {scrollMessages.length === 0 ? (
-              <p className="text-xs text-stone-400 dark:text-stone-500 text-center py-8">
-                Chưa có tin nhắn nào. Chào các bạn trong nhóm nhé!
-              </p>
+              <div className="text-center py-12 px-4">
+                <div className="w-12 h-12 rounded-full bg-stone-100 dark:bg-stone-850 flex items-center justify-center mx-auto mb-3 shadow-inner text-stone-400">
+                  <Users className="w-5 h-5 opacity-60" />
+                </div>
+                <p className="text-xs text-stone-400 dark:text-stone-500 font-medium">
+                  Chưa có tin nhắn nào.<br/>Nhắn gì đó chào các bạn trong nhóm nhé!
+                </p>
+              </div>
             ) : (
               scrollMessages.map((msg) => {
                 if (msg.is_bot) {
                   return (
                     <div key={msg.id} className="flex justify-start">
-                      <div className="max-w-[85%] rounded-xl px-3 py-2 bg-amber-50 dark:bg-amber-950/30 border border-amber-200 dark:border-amber-900">
-                        <div className="flex items-center gap-1.5 mb-1">
+                      <div className="max-w-[85%] rounded-2xl px-3.5 py-2.5 bg-amber-50/80 dark:bg-amber-950/20 border border-amber-250/50 dark:border-amber-900/40 shadow-xs">
+                        <div className="flex items-center gap-1.5 mb-1.5">
                           <TaiTaiAvatar size={16} />
-                          <span className="text-[10px] font-extrabold text-amber-700 dark:text-amber-400">Tài Tài · Quản lý nhóm</span>
+                          <span className="text-[10px] font-extrabold text-amber-700 dark:text-amber-400">Tài Tài • Quản lý nhóm</span>
                         </div>
-                        <p className="text-sm text-stone-800 dark:text-stone-200">{msg.content}</p>
+                        <p className="text-[12px] text-stone-850 dark:text-stone-250 leading-relaxed whitespace-pre-wrap">{msg.content}</p>
                       </div>
                     </div>
                   );
@@ -307,36 +316,36 @@ export default function FloatingStudyGroupChat({ isOpen: controlledIsOpen, onOpe
                           alt={member.full_name || "Thành viên"}
                           width={24}
                           height={24}
-                          className="rounded-full object-cover flex-shrink-0 mb-0.5"
+                          className="rounded-full object-cover flex-shrink-0 mb-0.5 border border-stone-200 dark:border-stone-800"
                         />
                       ) : (
-                        <div className="w-6 h-6 rounded-full bg-stone-200 dark:bg-stone-700 text-stone-600 dark:text-stone-300 text-[9px] font-extrabold flex items-center justify-center flex-shrink-0 mb-0.5">
+                        <div className="w-6 h-6 rounded-full bg-stone-200 dark:bg-stone-700 text-stone-600 dark:text-stone-300 text-[9px] font-extrabold flex items-center justify-center flex-shrink-0 mb-0.5 border border-stone-350 dark:border-stone-800">
                           {initials(member?.full_name)}
                         </div>
                       ))}
                     <div className="max-w-[75%]">
                       {!isMine && (
-                        <p className="text-[10px] font-bold text-stone-500 dark:text-stone-400 mb-0.5 ml-1">
+                        <p className="text-[9px] font-bold text-stone-450 dark:text-stone-500 mb-0.5 ml-1">
                           {member?.full_name || "Thành viên"}
                         </p>
                       )}
                       <div
-                        className={`rounded-xl px-3 py-2 ${
+                        className={`rounded-2xl px-3.5 py-2.5 text-[12px] leading-relaxed shadow-xs ${
                           isMine
-                            ? "bg-stone-900 dark:bg-stone-100 text-white dark:text-stone-900"
-                            : "bg-white dark:bg-stone-900 border border-stone-200 dark:border-stone-800 text-stone-900 dark:text-stone-100"
+                            ? "bg-gradient-to-br from-emerald-650 to-teal-600 text-white rounded-tr-sm"
+                            : "bg-white dark:bg-stone-850/90 text-stone-800 dark:text-stone-100 border border-stone-200/60 dark:border-stone-800 rounded-tl-sm"
                         }`}
                       >
                         {msg.image_url && (
                           // eslint-disable-next-line @next/next/no-img-element
                           <img
                             src={msg.image_url}
-                            alt="Ảnh đính kèm"
-                            className="max-w-full max-h-48 rounded-lg mb-1.5 cursor-pointer object-cover"
+                            alt="Đính kèm"
+                            className="max-w-full max-h-40 rounded-lg mb-2 object-contain cursor-pointer hover:opacity-95 transition-opacity"
                             onClick={() => window.open(msg.image_url!, "_blank")}
                           />
                         )}
-                        {msg.content && <p className="text-sm break-words">{msg.content}</p>}
+                        {msg.content && <p className="whitespace-pre-wrap break-words">{msg.content}</p>}
                       </div>
                     </div>
                   </div>
@@ -346,14 +355,15 @@ export default function FloatingStudyGroupChat({ isOpen: controlledIsOpen, onOpe
             <div ref={messagesEndRef} />
           </div>
 
-          <div className="p-3 border-t border-stone-200 dark:border-stone-800 shrink-0">
+          {/* Input Box */}
+          <div className="p-3 bg-white dark:bg-stone-900 border-t border-stone-200/80 dark:border-stone-850 shrink-0">
             {pendingImagePreview && (
-              <div className="relative inline-block mb-2">
+              <div className="relative inline-block mb-2 group">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img src={pendingImagePreview} alt="Xem trước" className="h-16 rounded-lg border border-stone-200 dark:border-stone-700 object-cover" />
+                <img src={pendingImagePreview} alt="Preview" className="w-14 h-14 rounded-lg border border-stone-300 dark:border-stone-700 object-cover shadow-md" />
                 <button
                   onClick={clearPendingImage}
-                  className="absolute -top-1.5 -right-1.5 w-5 h-5 rounded-full bg-stone-900 text-white flex items-center justify-center"
+                  className="absolute -top-1.5 -right-1.5 w-5 h-5 bg-red-500 hover:bg-red-650 text-white rounded-full flex items-center justify-center shadow transition-all border border-white dark:border-stone-950 active:scale-90"
                 >
                   <X className="w-3 h-3" />
                 </button>
@@ -367,14 +377,17 @@ export default function FloatingStudyGroupChat({ isOpen: controlledIsOpen, onOpe
                 className="hidden"
                 onChange={(e) => pickImage(e.target.files?.[0])}
               />
+              
               <button
                 onClick={() => fileInputRef.current?.click()}
                 title="Đính kèm ảnh"
-                className="shrink-0 p-2 border border-stone-300 dark:border-stone-700 text-stone-500 dark:text-stone-400 hover:text-stone-900 dark:hover:text-stone-100 rounded-lg transition"
+                className="p-2 border border-stone-200 dark:border-stone-850 text-stone-500 dark:text-stone-400 hover:text-stone-800 dark:hover:text-stone-200 hover:bg-stone-50 dark:hover:bg-stone-850 rounded-xl transition flex-shrink-0 active:scale-95"
               >
-                <ImagePlus className="w-4 h-4" />
+                <ImagePlus className="w-4.5 h-4.5" />
               </button>
+              
               <EmojiPicker onSelect={(emoji) => setInput((prev) => prev + emoji)} />
+              
               <input
                 type="text"
                 value={input}
@@ -388,15 +401,16 @@ export default function FloatingStudyGroupChat({ isOpen: controlledIsOpen, onOpe
                 onPaste={handlePaste}
                 placeholder="Nhắn gì đó cho nhóm..."
                 maxLength={2000}
-                className="flex-1 min-w-0 px-3.5 py-2.5 rounded-xl border border-stone-200 dark:border-stone-800 bg-white dark:bg-stone-900 text-sm text-stone-900 dark:text-stone-100 placeholder:text-stone-400 focus:outline-none focus:ring-2 focus:ring-emerald-400/50"
+                className="flex-1 min-w-0 px-3 py-2 border border-stone-200/80 dark:border-stone-850 bg-stone-50/50 dark:bg-stone-950/60 text-stone-900 dark:text-stone-100 rounded-xl text-xs focus:outline-none focus:border-emerald-400 dark:focus:border-emerald-700 focus:bg-white dark:focus:bg-stone-950 transition-all placeholder:text-stone-400"
               />
+              
               <button
                 onClick={() => void handleSend()}
                 disabled={sending || (!input.trim() && !pendingImage)}
-                className="shrink-0 w-10 h-10 rounded-xl bg-emerald-600 text-white flex items-center justify-center hover:bg-emerald-500 transition-colors disabled:opacity-40"
+                className="p-2 bg-gradient-to-br from-emerald-650 to-teal-600 hover:from-emerald-600 hover:to-teal-550 text-white rounded-xl hover:shadow disabled:opacity-30 disabled:pointer-events-none transition flex-shrink-0 active:scale-95"
                 aria-label="Gửi tin nhắn"
               >
-                <Send className="w-4 h-4" />
+                <Send className="w-4.5 h-4.5" />
               </button>
             </div>
           </div>

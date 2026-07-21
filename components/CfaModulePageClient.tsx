@@ -18,6 +18,7 @@ import {
   X,
 } from "lucide-react";
 import CfaContentRenderer, { renderInlineStyles } from "@/components/CfaContentRenderer";
+import { toTitleCase } from "@/lib/cfa-format";
 import { getCfaModuleProgress, markCfaModuleComplete } from "@/lib/supabase-cfa-progress";
 import { updateStreak } from "@/lib/supabase-streak";
 import {
@@ -257,7 +258,7 @@ export default function CfaModulePageClient({ moduleId }: { moduleId: string }) 
     if (!userId || !mod || togglingBookmark) return;
     setTogglingBookmark(true);
     try {
-      const result = await toggleCfaModuleBookmark(userId, moduleId, mod.title);
+      const result = await toggleCfaModuleBookmark(userId, moduleId, toTitleCase(mod.title));
       setBookmarked(result);
     } catch (err) {
       console.error("Error toggling CFA bookmark:", err);
@@ -371,10 +372,10 @@ export default function CfaModulePageClient({ moduleId }: { moduleId: string }) 
             </Link>
             <div className="min-w-0">
               <p className="font-extrabold text-stone-900 dark:text-stone-100 text-base sm:text-lg leading-tight line-clamp-1">
-                {mod.title}
+                {toTitleCase(mod.title)}
               </p>
               <p className="text-sm text-stone-500 dark:text-stone-400 hidden sm:block font-semibold line-clamp-1">
-                {book?.title} {reading ? `· ${reading.code}` : ""}
+                {book ? toTitleCase(book.title) : ""} {reading ? `· ${reading.code}` : ""}
               </p>
             </div>
           </div>
