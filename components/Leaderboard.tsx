@@ -401,7 +401,7 @@ export default function Leaderboard({ userId }: LeaderboardProps) {
                               : "bg-stone-50 dark:bg-stone-850 border-stone-150 dark:border-stone-800 text-stone-500 dark:text-stone-400"
                       }`}
                     >
-                      <span className="text-[10px]">{RANK_MEDALS[rank] || rank}</span>
+                      <span className="text-[10px]">{rank}</span>
                     </div>
 
                     <div className="relative z-10">
@@ -431,10 +431,8 @@ export default function Leaderboard({ userId }: LeaderboardProps) {
             })}
           </div>
 
-          {/* Own rank, shown separately whenever it isn't already visible
-              in the top 10 above - otherwise there'd be no way to know
-              where you stand once you fall outside it. */}
-          {myRank !== null && !myRankInTop10 && (
+          {/* Own rank, shown separately at the bottom of all sub-leaderboards */}
+          {myRank !== null && (
             <div className="mt-3 pt-3 border-t border-stone-200 dark:border-stone-800">
               <div className="flex items-center gap-2 px-3 py-2 rounded-lg text-xs bg-stone-50 dark:bg-stone-850 border border-dashed border-stone-300 dark:border-stone-700 shadow-inner">
                 <div className="w-6 h-6 rounded flex items-center justify-center flex-shrink-0 font-extrabold bg-stone-200 dark:bg-stone-700 text-stone-700 dark:text-stone-300 text-[10px]">
