@@ -312,16 +312,21 @@ export default function DashboardClient({ lessonsMeta }: { lessonsMeta: LessonMe
   // Cross-reference view for Track 3 - not a real day-numbered curriculum,
   // just the existing lessons (by id) grouped into the 10 official CFA
   // Level I subjects. See lib/cfa-track.ts.
-  const cfaSubjects = useMemo(
-    () =>
-      CFA_LEVEL_1_SUBJECTS.map((subject) => ({
+  const cfaSubjects = useMemo(() => {
+    const completedSet = new Set(completed);
+    return CFA_LEVEL_1_SUBJECTS.map((subject) => {
+      const lessons = subject.lessonIds
+        .map((id) => lessonById.get(id))
+        .filter((l): l is NonNullable<typeof l> => !!l && l.isVisible !== false);
+      const nextLesson = lessons.find((l) => !completedSet.has(l.id)) ?? null;
+      return {
         subject,
-        lessons: subject.lessonIds
-          .map((id) => lessonById.get(id))
-          .filter((l): l is NonNullable<typeof l> => !!l && l.isVisible !== false),
-      })),
-    [lessonById]
-  );
+        lessons,
+        completedCount: lessons.filter((l) => completedSet.has(l.id)).length,
+        nextLessonSlug: nextLesson?.slug ?? null,
+      };
+    });
+  }, [lessonById, completed]);
 
   // Track-relative lesson numbering: the personal track reuses lesson ids
   // from the 200s (originally written for the professional track) in its
@@ -1248,7 +1253,7 @@ export default function DashboardClient({ lessonsMeta }: { lessonsMeta: LessonMe
 
           {activeTrack === "cfa" ? (
             <div data-tour="stage-list" className="mt-8">
-              <CfaTrackView subjects={cfaSubjects} />
+              <CfaTrackView subjects={cfaSubjects} completedLessonIds={completed} />
             </div>
           ) : (
           <>

@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 import { createClient } from "@/lib/supabase";
-import { BookOpen, Loader2, ChevronRight, ArrowLeft, Library, ListChecks } from "lucide-react";
+import { BookOpen, Loader2, ChevronRight, ArrowLeft, Library, ListChecks, CheckCircle2, Circle, PlayCircle } from "lucide-react";
 import type { LessonMeta } from "@/lib/lesson-types";
 import type { CfaSubject } from "@/lib/cfa-track";
 
@@ -37,7 +37,13 @@ interface Module {
 }
 
 interface Props {
-  subjects: { subject: CfaSubject; lessons: LessonMeta[] }[];
+  subjects: {
+    subject: CfaSubject;
+    lessons: LessonMeta[];
+    completedCount: number;
+    nextLessonSlug: string | null;
+  }[];
+  completedLessonIds: number[];
 }
 
 type ViewMode = "library" | "subjects";
@@ -54,9 +60,10 @@ type ViewMode = "library" | "subjects";
 // sidebar component.
 let cachedBooks: Book[] | null = null;
 
-export default function CfaTrackView({ subjects }: Props) {
+export default function CfaTrackView({ subjects, completedLessonIds }: Props) {
   const [viewMode, setViewMode] = useState<ViewMode>("library");
   const [openSubjects, setOpenSubjects] = useState<Set<string>>(new Set());
+  const completedSet = new Set(completedLessonIds);
   const [books, setBooks] = useState<Book[]>(cachedBooks ?? []);
   const [loading, setLoading] = useState(cachedBooks === null);
 
@@ -197,9 +204,10 @@ export default function CfaTrackView({ subjects }: Props) {
       <div className="py-2">
         {modeSwitcher}
         <div className="space-y-3">
-          {subjects.map(({ subject, lessons }) => {
+          {subjects.map(({ subject, lessons, completedCount, nextLessonSlug }) => {
             const isOpen = openSubjects.has(subject.id);
             const isEmpty = lessons.length === 0;
+            const isSubjectDone = !isEmpty && completedCount === lessons.length;
             return (
               <div key={subject.id} className="rounded-2xl border border-stone-200 dark:border-stone-800 overflow-hidden">
                 <button
@@ -219,13 +227,32 @@ export default function CfaTrackView({ subjects }: Props) {
                     </span>
                   ) : (
                     <>
-                      <span className="text-sm font-bold text-stone-800 dark:text-stone-200 bg-stone-100 dark:bg-stone-800 px-3 py-1 rounded-lg shrink-0">
-                        {lessons.length} bài
+                      <span
+                        className={`text-sm font-bold px-3 py-1 rounded-lg shrink-0 ${
+                          isSubjectDone
+                            ? "text-emerald-700 dark:text-emerald-400 bg-emerald-50 dark:bg-emerald-950/30"
+                            : "text-stone-800 dark:text-stone-200 bg-stone-100 dark:bg-stone-800"
+                        }`}
+                      >
+                        {isSubjectDone ? "✓ Hoàn thành" : `${completedCount}/${lessons.length} bài`}
                       </span>
                       <ChevronRight className={`w-4 h-4 text-stone-400 shrink-0 transition-transform ${isOpen ? "rotate-90" : ""}`} />
                     </>
                   )}
                 </button>
+
+                {!isEmpty && !isSubjectDone && nextLessonSlug && (
+                  <div className="px-4 pb-4 -mt-1">
+                    <Link
+                      href={`/bai-hoc/${nextLessonSlug}`}
+                      onClick={(e) => e.stopPropagation()}
+                      className="inline-flex items-center gap-1.5 text-xs font-bold text-emerald-700 dark:text-emerald-400 bg-emerald-50 dark:bg-emerald-950/30 hover:bg-emerald-100 dark:hover:bg-emerald-950/50 px-3 py-1.5 rounded-lg transition-colors"
+                    >
+                      <PlayCircle className="w-3.5 h-3.5" />
+                      {completedCount === 0 ? "Bắt đầu môn này" : "Học tiếp"}
+                    </Link>
+                  </div>
+                )}
 
                 <AnimatePresence initial={false}>
                   {isOpen && !isEmpty && (
@@ -237,18 +264,26 @@ export default function CfaTrackView({ subjects }: Props) {
                       className="overflow-hidden"
                     >
                       <div className="p-4 pt-0 space-y-2.5">
-                        {lessons.map((lesson) => (
-                          <Link
-                            key={lesson.id}
-                            href={`/bai-hoc/${lesson.slug}`}
-                            className="flex items-center gap-3 p-3.5 rounded-xl border border-stone-150 dark:border-stone-800/70 bg-stone-50/60 dark:bg-stone-900/40 hover:border-emerald-400 dark:hover:border-emerald-600 hover:bg-white dark:hover:bg-stone-900 transition-all group"
-                          >
-                            <span className="flex-1 min-w-0 text-sm font-bold text-stone-800 dark:text-stone-200 leading-snug group-hover:text-emerald-700 dark:group-hover:text-emerald-400 transition-colors">
-                              {lesson.title}
-                            </span>
-                            <ChevronRight className="w-4 h-4 text-stone-300 dark:text-stone-600 group-hover:text-emerald-500 group-hover:translate-x-0.5 transition-all shrink-0" />
-                          </Link>
-                        ))}
+                        {lessons.map((lesson) => {
+                          const isDone = completedSet.has(lesson.id);
+                          return (
+                            <Link
+                              key={lesson.id}
+                              href={`/bai-hoc/${lesson.slug}`}
+                              className="flex items-center gap-3 p-3.5 rounded-xl border border-stone-150 dark:border-stone-800/70 bg-stone-50/60 dark:bg-stone-900/40 hover:border-emerald-400 dark:hover:border-emerald-600 hover:bg-white dark:hover:bg-stone-900 transition-all group"
+                            >
+                              {isDone ? (
+                                <CheckCircle2 className="w-4 h-4 text-emerald-500 shrink-0" />
+                              ) : (
+                                <Circle className="w-4 h-4 text-stone-300 dark:text-stone-700 shrink-0" />
+                              )}
+                              <span className="flex-1 min-w-0 text-sm font-bold text-stone-800 dark:text-stone-200 leading-snug group-hover:text-emerald-700 dark:group-hover:text-emerald-400 transition-colors">
+                                {lesson.title}
+                              </span>
+                              <ChevronRight className="w-4 h-4 text-stone-300 dark:text-stone-600 group-hover:text-emerald-500 group-hover:translate-x-0.5 transition-all shrink-0" />
+                            </Link>
+                          );
+                        })}
                       </div>
                     </motion.div>
                   )}
