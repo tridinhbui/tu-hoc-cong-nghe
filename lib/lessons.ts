@@ -373,6 +373,634 @@ export const lessons = [
 ,
   {"id":1215,"slug":"phan-tich-ky-thuat-cho-moi-gioi","title":"Tự học Tài chính Day 1215: Phân tích kỹ thuật cho môi giới chứng khoán","subtitle":"Support, Resistance, Moving Average - công cụ đơn giản nhất để nhận định thị trường","duration":"7 phút","difficulty":"Trung bình","emoji":"📉","openingQuestion":"Phân tích kỹ thuật (Technical Analysis) là gì?","openingOptions":["Phân tích báo cáo tài chính công ty","Phân tích giá và khối lượng giao dịch qua biểu đồ để dự báo xu hướng giá","Phân tích kỹ thuật của máy móc","Dùng AI để dự báo 100% chính xác"],"correctOption":1,"explanation":"TA phân tích giá và khối lượng qua biểu đồ (chart) để nhận diện xu hướng, mức hỗ trợ (support), kháng cự (resistance), và đưa ra khuyến nghị mua/bán. Nó không dự báo 100% chính xác, chỉ là xác suất cao hơn.","diagram":[],"interactiveType":"chart","realWorldExample":{"company":"Cổ phiếu Việt Nam","description":"Nhà đầu tư thấy VN-Index phá vỡ mức 1300 (resistance cũ) với khối lượng lớn → TA dự báo xu hướng tăng sắp tới. Môi giới sẽ khuyến nghị 'BUY' để khách hàng tham gia vào chân sóng tăng."},"quiz":[{"question":"Support & Resistance là gì?","options":["Tên gọi của các bộ phận trong công ty","Support: mức giá thường bounce lên (không rơi thêm); Resistance: mức giá thường bị chặn lại (không tăng thêm)","Support chỉ dành cho cổ phiếu tăng, Resistance cho cổ phiếu giảm","Không có khái niệm này trong phân tích kỹ thuật"],"correct":1,"explanation":"Support là sàn (mức giá mà khối lượng mua lớn xuất hiện, chặn cổ phiếu không rơi tiếp). Resistance là trần (mức giá mà khối lượng bán lớn xuất hiện, chặn cổ phiếu không tăng tiếp)."},{"question":"Moving Average (MA) là gì?","options":["Giá trung bình di động: tính trung bình giá 50 ngày (hoặc 200 ngày) gần nhất","Giá trung bình cộng của tất cả ngày trong năm","Không liên quan gì đến phân tích kỹ thuật","Chỉ dùng cho cổ phiếu nước ngoài"],"correct":0,"explanation":"MA 50: giá trung bình 50 ngày gần nhất. MA 200: giá trung bình 200 ngày gần nhất. Khi MA 50 vượt lên trên MA 200 = Gold Cross (tín hiệu mua), khi MA 50 đi xuống dưới MA 200 = Death Cross (tín hiệu bán)."},{"question":"RSI (Relative Strength Index) ở mức nào được coi là 'quá mua' (overbought)?","options":["Trên 50","Trên 70","Trên 80","Trên 100"],"correct":1,"explanation":"RSI trên 70 = cổ phiếu quá mua (overbought) → có thể đảo chiều giảm. RSI dưới 30 = quá bán (oversold) → có thể đảo chiều tăng. RSI 30-70 = normal."}],"keyTakeaways":["TA phân tích giá & khối lượng trên biểu đồ để nhận diện xu hướng","Support: sàn (mức giá không rơi tiếp); Resistance: trần (mức giá không tăng tiếp)","MA 50/200: moving averages, dùng để nhận diện xu hướng dài hạn","TA không dự báo 100% chính xác, chỉ là xác suất cao hơn → kết hợp với Risk Management"],"practicePrompt":{"question":"Bạn là môi giới. Khách hàng hỏi: 'VN-Index hiện tại 1250, tôi nên mua hay bán?' Bạn sẽ phân tích như thế nào?","options":["Đoán mò: 'À mua đi, chắc sẽ tăng'","Nhìn biểu đồ: mức support gần nhất là 1200, resistance gần nhất là 1300. Hiện giá 1250 = vùng middle, trend không rõ ràng. Cần xem thêm: volume, moving averages, RSI. Nếu MA 50 > MA 200 + RSI < 70 → khuyến nghị BUY (mức target 1300), stop loss 1200","Không dùng TA, chỉ dùng tin tức","Bảo khách hàng không nên đầu tư cổ phiếu"],"correct":1,"explanation":"Môi giới chuyên nghiệp dùng TA để đưa ra khuyến nghị BUY/SELL cụ thể + mục tiêu giá + stop loss, không phải chỉ đoán mò."},"summary":{"keyIdea":"TA là công cụ để nhận diện xu hướng & cơ hội mua/bán dựa trên giá & khối lượng","commonMistake":"Tin TA 100%, quên rằng TA chỉ xác suất cao hơn, không dự báo 100% chính xác","action":"Mở TradingView, chọn một cổ phiếu, vẽ support & resistance trên biểu đồ ngày"},"application":{"title":"Áp dụng ngay","message":"Chọn 1 cổ phiếu yêu thích. Vẽ support & resistance trên biểu đồ hàng ngày. Tính MA 50 & MA 200. Dựa trên đó, viết 1 khuyến nghị BUY/SELL + target + stop loss.","secondary":"Nếu bạn là môi giới, đây là cách để tư vấn khách hàng một cách chuyên nghiệp thay vì chỉ 'cảm tính'."},"sections":[{"type":"lead","text":"Phân tích kỹ thuật không dự báo 100%, nhưng tăng xác suất thành công hơn là đoán mò. Cho môi giới, đó là sự khác biệt giữa tư vấn chuyên nghiệp và đoán mò."},{"type":"heading","text":"3 công cụ TA cơ bản"},{"type":"list","items":["Support & Resistance: sàn & trần - mức giá quan trọng nơi khối lượng mua/bán lớn","Moving Average (MA): trung bình di động - giúp xác định xu hướng dài hạn","RSI (Relative Strength Index): đo mức độ quá mua/quá bán của cổ phiếu"]},{"type":"heading","text":"Gold Cross & Death Cross"},{"type":"paragraph","text":"Gold Cross: MA 50 (ngắn hạn) vượt lên trên MA 200 (dài hạn) → tín hiệu mua mạnh, xu hướng tăng sắp bắt đầu. Death Cross: MA 50 đi xuống dưới MA 200 → tín hiệu bán mạnh, xu hướng giảm sắp bắt đầu. Đây là những tín hiệu được môi giới dùng rất phổ biến để tư vấn khách hàng."},{"type":"heading","text":"TA + Risk Management = công thức thành công"},{"type":"paragraph","text":"TA không dự báo 100%, luôn có xác suất lỗi. Vì vậy, mỗi khuyến nghị BUY phải kèm theo: Target (mục tiêu giá), Stop Loss (nơi cắt lỗ nếu sai). Ví dụ: 'BUY ở 1250, target 1300 (lợi nhuận 50), stop loss 1200 (cắt lỗ 50)' → rủi ro = lợi nhuận, tỉ lệ Risk/Reward = 1:1 (công bằng)."}]}
 ,
-  {"id":1216,"slug":"ky-quy-va-margin-call","title":"Tự học Tài chính Day 1216: Ký quỹ & Margin Call - Quản lý rủi ro là tối tiên","subtitle":"Tại sao khách hàng phải 'trả lại tiền' ngay khi thị trường đi ngược?","duration":"8 phút","difficulty":"Trung bình-Nâng cao","emoji":"⚠️","openingQuestion":"Ký quỹ (Margin) là gì?","openingOptions":["Phí giao dịch chứng khoán","Tiền vay từ môi giới để có thêm vốn mua cổ phiếu (leverage)","Lãi vay","Thuế giao dịch"],"correctOption":1,"explanation":"Ký quỹ: khách hàng gửi 10 triệu, môi giới cho vay thêm 10 triệu (hoặc hơn) → tổng vốn 20 triệu. Nhân đôi vốn = cơ hội lợi nhuận nhân đôi, nhưng rủi ro cũng nhân đôi.","diagram":[],"interactiveType":"risk","realWorldExample":{"company":"Nhà đầu tư dùng margin","description":"Khách hàng A có 100 triệu, ký quỹ vay thêm 100 triệu (50% margin) → mua cổ phiếu với 200 triệu. Cổ phiếu tăng 10% → lợi nhuận 20 triệu (trên vốn 100 triệu = 20% lợi nhuận) thay vì 10%. Nhưng nếu giảm 10% → lỗ 20 triệu (cả vốn gốc + vay). Nếu giảm 50%+ → Margin Call (yêu cầu nộp thêm tiền)"},"quiz":[{"question":"Margin Ratio là gì?","options":["Tỉ lệ lợi nhuận của giao dịch","Tỉ lệ vốn chủ (tiền bạn gửi) so với tổng vốn (tiền bạn + tiền vay)","Lãi vay","Phí giao dịch"],"correct":1,"explanation":"Margin Ratio = (Vốn chủ) / (Tổng vốn). Ví dụ: bạn gửi 100 triệu, vay 100 triệu, tổng 200 triệu → Margin Ratio = 100/200 = 50%. Khi Margin Ratio rơi xuống mức tối thiểu (ví dụ 30%), bạn bị Margin Call."},{"question":"Margin Call là gì?","options":["Gọi điện thoại để hỏi giá cổ phiếu","Yêu cầu khách hàng nộp thêm tiền (hoặc bán cổ phiếu) để duy trì Margin Ratio tối thiểu","Cuộc gọi từ công ty chứng khoán để chúc mừng","Không có khái niệm này"],"correct":1,"explanation":"Khi cổ phiếu giảm giá, Margin Ratio của bạn giảm theo. Nếu rơi dưới mức tối thiểu (ví dụ 30%), môi giới sẽ Margin Call: bạn phải nộp thêm tiền hoặc bán một phần cổ phiếu để tăng Margin Ratio lên mức an toàn. Nếu không, môi giới sẽ tự bán cổ phiếu của bạn (Force Sell)."},{"question":"Nếu bạn gửi 100M, vay 100M, mua 200M cổ phiếu. Cổ phiếu giảm 50% (còn 100M), margin ratio bây giờ là bao nhiêu?","options":["100% (200M / 200M)","50% (100M / 200M)","25% (100M / 400M) - không đúng vì tổng vốn không đổi","0% vì tất cả đã mất"],"correct":1,"explanation":"Ban đầu: vốn chủ = 100M, tổng vốn = 200M (100M vốn + 100M vay), margin ratio = 50%. Sau khi giảm 50%: tài sản = 100M, nhưng nợ = 100M (vay không đổi), vốn chủ = 100M - 100M = 0. Margin ratio = 0 / 100M = 0% → bị margin call ngay!"}],"keyTakeaways":["Ký quỹ: tiền vay từ môi giới để leverage (nhân đôi cơ hội & rủi ro)","Margin Ratio = Vốn chủ / Tổng vốn → phải duy trì tối thiểu (ví dụ 30%)","Margin Call: yêu cầu nộp thêm tiền hoặc bán cổ phiếu khi margin ratio quá thấp","Force Sell: môi giới tự động bán cổ phiếu của bạn nếu không đáp ứng margin call"],"practicePrompt":{"question":"Bạn là môi giới. Khách hàng gửi 50M, vay 50M, mua 100M cổ phiếu. Cổ phiếu giảm 30% (còn 70M). Margin ratio hiện tại là bao nhiêu? Bạn nên làm gì?","options":["Không làm gì, đợi khách hàng tự xử lý","Tính: vốn chủ = 70M - 50M = 20M, margin ratio = 20M/70M ≈ 29%. Nếu mức tối thiểu là 30%, bạn phải Margin Call ngay: yêu cầu nộp thêm tiền (vài triệu để tăng vốn chủ) hoặc bán 10-15M cổ phiếu","Bảo khách hàng sẽ tăng lên","Tự bán hết cổ phiếu của khách hàng ngay"],"correct":1,"explanation":"Môi giới phải theo dõi margin ratio của mỗi khách hàng hàng ngày. Khi rơi dưới mức tối thiểu, phải margin call ngay để bảo vệ cả khách hàng (giảm lỗ) lẫn chính môi giới (không bị khách hàng chiếm thêm tiền vay)."},"summary":{"keyIdea":"Ký quỹ = leverage (nhân đôi cơ hội & rủi ro). Margin Call = kiểm soát rủi ro. Force Sell = điều cuối cùng để bảo vệ","commonMistake":"Dùng ký quỹ mà không hiểu rủi ro. Bị margin call bất ngờ rồi phản ứng không kịp","action":"Nếu dùng ký quỹ, luôn đặt Stop Loss + theo dõi margin ratio hàng ngày"},"application":{"title":"Áp dụng ngay","message":"Nếu khách hàng của bạn dùng ký quỹ, hãy giáo dục họ: (1) Margin Ratio là gì; (2) Mức tối thiểu; (3) Sau đó hãy để họ quyết định; (4) Giám sát hàng ngày để margin call sớm nếu cần","secondary":"Nếu bạn là khách hàng dùng ký quỹ, LUÔN đặt stop loss + không bao giờ cho phép margin ratio của mình rơi dưới 40-50%."},"sections":[{"type":"lead","text":"Ký quỹ là công cụ mạnh: có thể nhân ba lợi nhuận, nhưng cũng nhân ba lỗ. Margin Call là cơ chế bảo vệ khách hàng khỏi mất hết vốn."},{"type":"heading","text":"Margin Ratio & Mức tối thiểu"},{"type":"paragraph","text":"Mỗi công ty chứng khoán đặt mức margin ratio tối thiểu khác nhau (thường 30-50%). Nếu của bạn = 50%, và margin ratio giảm xuống 35%, bạn vẫn an toàn. Nhưng nếu tiếp tục giảm xuống 30%, bạn bị margin call. Nếu còn tiếp tục giảm xuống 25%, môi giới sẽ force sell cổ phiếu của bạn (không cần sự đồng ý)."},{"type":"heading","text":"Tại sao Margin Call là cơ chế bảo vệ?"},{"type":"list","items":["Bảo vệ khách hàng: ngăn họ tiếp tục nhảy vào hố sâu hơn","Bảo vệ môi giới: đảm bảo khách hàng có khả năng trả lại tiền vay","Bảo vệ thị trường: ngăn khách hàng vỡ nợ hàng loạt (hiệu ứng domino)"]},{"type":"heading","text":"Khi bị Margin Call, bạn có 3 lựa chọn"},{"type":"list","items":["Nộp thêm tiền: tăng vốn chủ để tăng margin ratio lên an toàn","Bán một phần cổ phiếu: giảm tài sản nhưng tăng margin ratio (vì nợ giảm tỉ lệ)","Không làm gì: môi giới sẽ force sell (bán cổ phiếu của bạn)"]}]}
-
+  {"id":1216,"slug":"ky-quy-va-margin-call","title":"Tự học Tài chính Day 1216: Ký quỹ & Margin Call - Quản lý rủi ro là tối tiên","subtitle":"Tại sao khách hàng phải 'trả lại tiền' ngay khi thị trường đi ngược?","duration":"8 phút","difficulty":"Trung bình-Nâng cao","emoji":"⚠️","openingQuestion":"Ký quỹ (Margin) là gì?","openingOptions":["Phí giao dịch chứng khoán","Tiền vay từ môi giới để có thêm vốn mua cổ phiếu (leverage)","Lãi vay","Thuế giao dịch"],"correctOption":1,"explanation":"Ký quỹ: khách hàng gửi 10 triệu, môi giới cho vay thêm 10 triệu (hoặc hơn) → tổng vốn 20 triệu. Nhân đôi vốn = cơ hội lợi nhuận nhân đôi, nhưng rủi ro cũng nhân đôi.","diagram":[],"interactiveType":"risk","realWorldExample":{"company":"Nhà đầu tư dùng margin","description":"Khách hàng A có 100 triệu, ký quỹ vay thêm 100 triệu (50% margin) → mua cổ phiếu với 200 triệu. Cổ phiếu tăng 10% → lợi nhuận 20 triệu (trên vốn 100 triệu = 20% lợi nhuận) thay vì 10%. Nhưng nếu giảm 10% → lỗ 20 triệu (cả vốn gốc + vay). Nếu giảm 50%+ → Margin Call (yêu cầu nộp thêm tiền)"},"quiz":[{"question":"Margin Ratio là gì?","options":["Tỉ lệ lợi nhuận của giao dịch","Tỉ lệ vốn chủ (tiền bạn gửi) so với tổng vốn (tiền bạn + tiền vay)","Lãi vay","Phí giao dịch"],"correct":1,"explanation":"Margin Ratio = (Vốn chủ) / (Tổng vốn). Ví dụ: bạn gửi 100 triệu, vay 100 triệu, tổng 200 triệu → Margin Ratio = 100/200 = 50%. Khi Margin Ratio rơi xuống mức tối thiểu (ví dụ 30%), bạn bị Margin Call."},{"question":"Margin Call là gì?","options":["Gọi điện thoại để hỏi giá cổ phiếu","Yêu cầu khách hàng nộp thêm tiền (hoặc bán cổ phiếu) để duy trì Margin Ratio tối thiểu","Cuộc gọi từ công ty chứng khoán để chúc mừng","Không có khái niệm này"],"correct":1,"explanation":"Khi cổ phiếu giảm giá, Margin Ratio của bạn giảm theo. Nếu rơi dưới mức tối thiểu (ví dụ 30%), môi giới sẽ Margin Call: bạn phải nộp thêm tiền hoặc bán một phần cổ phiếu để tăng Margin Ratio lên mức an toàn. Nếu không, môi giới sẽ tự bán cổ phiếu của bạn (Force Sell)."},{"question":"Nếu bạn gửi 100M, vay 100M, mua 200M cổ phiếu. Cổ phiếu giảm 50% (còn 100M), margin ratio bây giờ là bao nhiêu?","options":["100% (200M / 200M)","50% (100M / 200M)","25% (100M / 400M) - không đúng vì tổng vốn không đổi","0% vì tất cả đã mất"],"correct":1,"explanation":"Ban đầu: vốn chủ = 100M, tổng vốn = 200M (100M vốn + 100M vay), margin ratio = 50%. Sau khi giảm 50%: tài sản = 100M, nhưng nợ = 100M (vay không đổi), vốn chủ = 100M - 100M = 0. Margin ratio = 0 / 100M = 0% → bị margin call ngay!"}],"keyTakeaways":["Ký quỹ: tiền vay từ môi giới để leverage (nhân đôi cơ hội & rủi ro)","Margin Ratio = Vốn chủ / Tổng vốn → phải duy trì tối thiểu (ví dụ 30%)","Margin Call: yêu cầu nộp thêm tiền hoặc bán cổ phiếu khi margin ratio quá thấp","Force Sell: môi giới tự động bán cổ phiếu của bạn nếu không đáp ứng margin call"],"practicePrompt":{"question":"Bạn là môi giới. Khách hàng gửi 50M, vay 50M, mua 100M cổ phiếu. Cổ phiếu giảm 30% (còn 70M). Margin ratio hiện tại là bao nhiêu? Bạn nên làm gì?","options":["Không làm gì, đợi khách hàng tự xử lý","Tính: vốn chủ = 70M - 50M = 20M, margin ratio = 20M/70M ≈ 29%. Nếu mức tối thiểu là 30%, bạn phải Margin Call ngay: yêu cầu nộp thêm tiền (vài triệu để tăng vốn chủ) hoặc bán 10-15M cổ phiếu","Bảo khách hàng sẽ tăng lên","Tự bán hết cổ phiếu của khách hàng ngay"],"correct":1,"explanation":"Môi giới phải theo dõi margin ratio của mỗi khách hàng hàng ngày. Khi rơi dưới mức tối thiểu, phải margin call ngay để bảo vệ cả khách hàng (giảm lỗ) lẫn chính môi giới (không bị khách hàng chiếm thêm tiền vay)."},"summary":{"keyIdea":"Ký quỹ = leverage (nhân đôi cơ hội & rủi ro). Margin Call = kiểm soát rủi ro. Force Sell = điều cuối cùng để bảo vệ","commonMistake":"Dùng ký quỹ mà không hiểu rủi ro. Bị margin call bất ngờ rồi phản ứng không kịp","action":"Nếu dùng ký quỹ, luôn đặt Stop Loss + theo dõi margin ratio hàng ngày"},"application":{"title":"Áp dụng ngay","message":"Nếu khách hàng của bạn dùng ký quỹ, hãy giáo dục họ: (1) Margin Ratio là gì; (2) Mức tối thiểu; (3) Sau đó hãy để họ quyết định; (4) Giám sát hàng ngày để margin call sớm nếu cần","secondary":"Nếu bạn là khách hàng dùng ký quỹ, LUÔN đặt stop loss + không bao giờ cho phép margin ratio của mình rơi dưới 40-50%."},"sections":[{"type":"lead","text":"Ký quỹ là công cụ mạnh: có thể nhân ba lợi nhuận, nhưng cũng nhân ba lỗ. Margin Call là cơ chế bảo vệ khách hàng khỏi mất hết vốn."},{"type":"heading","text":"Margin Ratio & Mức tối thiểu"},{"type":"paragraph","text":"Mỗi công ty chứng khoán đặt mức margin ratio tối thiểu khác nhau (thường 30-50%). Nếu của bạn = 50%, và margin ratio giảm xuống 35%, bạn vẫn an toàn. Nhưng nếu tiếp tục giảm xuống 30%, bạn bị margin call. Nếu còn tiếp tục giảm xuống 25%, môi giới sẽ force sell cổ phiếu của bạn (không cần sự đồng ý)."},{"type":"heading","text":"Tại sao Margin Call là cơ chế bảo vệ?"},{"type":"list","items":["Bảo vệ khách hàng: ngăn họ tiếp tục nhảy vào hố sâu hơn","Bảo vệ môi giới: đảm bảo khách hàng có khả năng trả lại tiền vay","Bảo vệ thị trường: ngăn khách hàng vỡ nợ hàng loạt (hiệu ứng domino)"]},{"type":"heading","text":"Khi bị Margin Call, bạn có 3 lựa chọn"},{"type":"list","items":["Nộp thêm tiền: tăng vốn chủ để tăng margin ratio lên an toàn","Bán một phần cổ phiếu: giảm tài sản nhưng tăng margin ratio (vì nợ giảm tỉ lệ)","Không làm gì: môi giới sẽ force sell (bán cổ phiếu của bạn)"]}]},
+  {
+    "id": 1217,
+    "slug": "value-at-risk-var-stress-testing",
+    "title": "Value at Risk (VaR) & Stress Testing - Đo lường rủi ro tối đa",
+    "subtitle": "Khi bạn không thể loại bỏ rủi ro, điều tiếp theo tốt nhất là đo lường nó một cách chính xác.",
+    "duration": "8 phút",
+    "difficulty": "Khó",
+    "emoji": "📊",
+    "openingQuestion": "Một quỹ đầu tư nói rằng 'VaR của chúng tôi ở mức 95% là $10 triệu'. Điều này có nghĩa là gì?",
+    "openingOptions": [
+      "Quỹ này chắc chắn sẽ mất tối thiểu $10 triệu mỗi ngày",
+      "Có 95% khả năng quỹ sẽ mất không quá $10 triệu trong một ngày (hoặc có 5% khả năng mất hơn $10 triệu)",
+      "Quỹ sẽ kiếm được $10 triệu với xác suất 95%",
+      "Rủi ro của quỹ chỉ là $10 triệu và không còn loại rủi ro nào khác"
+    ],
+    "correctOption": 1,
+    "explanation": "VaR (Value at Risk) ở mức tin cậy 95% có nghĩa: trong điều kiện thị trường bình thường, có 95% khả năng tổn thất hàng ngày sẽ không vượt quá con số đó. Ngược lại, có 5% khả năng (1/20 ngày) tổn thất có thể vượt quá mức này - đó là lý do tại sao stress testing lại quan trọng: để chuẩn bị cho những ngày 'xấu' đó.",
+    "realWorldExample": {
+      "company": "J.P. Morgan",
+      "description": "Ngân hàng này sử dụng VaR để giám sát rủi ro giao dịch hàng ngày. Nếu VaR vượt ngưỡng được phép, các trader phải giảm vị thế hoặc tăng cường kiểm soát - chính sách này đã giúp hạn chế thiệt hại trong các cuộc khủng hoảng tài chính."
+    },
+    "quiz": [
+      {
+        "question": "Nếu VaR 99% của danh mục đầu tư là $5 triệu, đó có phải là rủi ro cao hay thấp so với VaR 95% là $3 triệu?",
+        "options": [
+          "Không so sánh được vì mức tin cậy khác nhau",
+          "VaR 99% luôn tốt hơn vì nó cao hơn",
+          "VaR 99% cho thấy tổn thất tối đa lớn hơn nhưng chỉ xảy ra 1% thời gian; VaR 95% là $3 triệu xảy ra 5% thời gian - nên nguy hiểm hơn"
+        ],
+        "correct": 2
+      },
+      {
+        "question": "Stress test là gì và khác VaR như thế nào?",
+        "options": [
+          "Stress test giống hệt VaR, chỉ là từ gọi khác",
+          "Stress test giả lập những tình huống thị trường cực kỳ bất lợi (như khủng hoảng 2008) để xem danh mục phản ứng thế nào, còn VaR dựa trên dữ liệu lịch sử",
+          "Stress test chỉ dùng cho cổ phiếu, VaR dùng cho trái phiếu"
+        ],
+        "correct": 1
+      },
+      {
+        "question": "Tại sao các ngân hàng cần VaR ngoài các phương pháp quản lý rủi ro khác?",
+        "options": [
+          "Vì VaR là cách duy nhất để tính toán rủi ro",
+          "VaR cho một con số duy nhất để so sánh rủi ro giữa các danh mục khác nhau và tuân thủ quy định Basel",
+          "Để tỉnh táo - VaR nhắc nhở bạn rằng ngay cả trong thời kỳ bình thường, vẫn có xác suất mất rất nhiều tiền"
+        ],
+        "correct": 1
+      }
+    ],
+    "sections": [
+      {
+        "heading": "Khái niệm VaR (Value at Risk)",
+        "content": "Value at Risk (VaR) là một chỉ số đơn giản nhưng mạnh mẽ: nó trả lời câu hỏi 'Tôi có thể mất bao nhiêu tiền trong k ngày với xác suất X% mà không gặp tình huống tệ hơn?' VaR giúp các tổ chức tài chính định lượng rủi ro thị trường. Nó không phải là dự đoán chính xác, mà là một ước tính xác suất."
+      },
+      {
+        "heading": "Ba cách tính VaR",
+        "content": "Phương pháp Lịch sử (Historical): lấy dữ liệu thị trường quá khứ, giả sử mẫu này lặp lại. Đơn giản nhưng có thể bỏ sót các sự kiện hiếm gặp.\n\nPhương pháp Parametric (Variance-Covariance): giả sử lợi suất tuân theo phân phối chuẩn, tính VaR từ độ lệch chuẩn. Nhanh nhưng có thể không chính xác nếu thị trường không bình thường.\n\nMonte Carlo: mô phỏng hàng ngàn hoặc hàng triệu kịch bản thị trường ngẫu nhiên. Linh hoạt nhất nhưng tốn máy tính."
+      },
+      {
+        "heading": "Ưu và hạn chế của VaR",
+        "content": "Ưu điểm: Cho một con số duy nhất, dễ hiểu, tuân thủ Basel III, so sánh được giữa các danh mục.\n\nHạn chế: VaR không nói gì về tổn thất khi vượt ngưỡng VaR. Ví dụ, VaR 99% không nói chuyện gì xảy ra trong 1% thời gian tồi tệ nhất - có thể tổn thất khủng khiếp hơn. Đó là lý do tại sao Conditional VaR (CVaR) hoặc Expected Shortfall được sinh ra."
+      },
+      {
+        "heading": "Stress Testing - Khi VaR không đủ",
+        "content": "Stress test mô phỏng những tình huống thị trường cực kỳ bất lợi: lãi suất tăng 200 bps, cổ phiếu giảm 30%, thanh khoản khô cằn. Điều này chuẩn bị tổ chức cho các sự kiện có xác suất thấp nhưng tác động cao.\n\nVí dụ: Trong cuộc khủng hoảng 2008, nhiều danh mục có VaR 'xanh' nhưng bị lỗ nặng. Stress test sẽ đã cảnh báo."
+      },
+      {
+        "heading": "Basel III và yêu cầu VaR",
+        "content": "Basel III bắt buộc các ngân hàng phải tính VaR tối thiểu ở mức 95% và 99%, theo dõi thường xuyên. Nếu VaR vượt ngưỡng được phép, ngân hàng phải tăng vốn dự phòng hoặc giảm rủi ro. Đây là cách các cơ quan quản lý bảo vệ hệ thống tài chính."
+      },
+      {
+        "heading": "Backtesting - Kiểm tra xem VaR có chính xác không",
+        "content": "Backtesting là quá trình so sánh VaR dự báo với tổn thất thực tế: nếu VaR 99% đúng, nó không nên vượt quá 1% ngày. Nếu backtesting cho thấy VaR quá nhẹ (thường vượt), phải điều chỉnh mô hình. Đây là bước kiểm soát chất lượng quan trọng."
+      },
+      {
+        "heading": "Ứng dụng thực tiễn của VaR và Stress Test",
+        "content": "VaR dùng trong: (1) báo cáo rủi ro hàng ngày; (2) tuân thủ quy định; (3) quyết định mức vốn dự phòng; (4) giám sát danh mục. Stress test dùng trong: (1) chuẩn bị cho khủng hoảng; (2) đánh giá 'điểm yếu' của danh mục; (3) thiết lập giới hạn giao dịch."
+      }
+    ],
+    "keyTakeaways": [
+      "VaR là một ước tính xác suất tổn thất tối đa trong điều kiện bình thường; nó không nói gì về tổn thất khi vượt ngưỡng",
+      "Ba cách tính VaR: lịch sử, parametric, và Monte Carlo - mỗi cách có ưu nhược điểm",
+      "Stress testing khắc phục hạn chế của VaR bằng cách mô phỏng những tình huống cực kỳ bất lợi",
+      "Basel III bắt buộc các ngân hàng tính VaR định kỳ; backtesting kiểm tra xem mô hình có chính xác không"
+    ],
+    "practicePrompt": "Hãy tính VaR 95% cho danh mục: 60% cổ phiếu (biến động 15%/năm), 40% trái phiếu (biến động 5%/năm). Giả sử tương quan = 0.3, dùng phương pháp parametric.",
+    "summary": "Value at Risk là công cụ đo lường rủi ro mạnh mẽ nhưng không hoàn hảo. Nó cho ra một con số dễ hiểu, hỗ trợ quyết định và tuân thủ quy định. Tuy nhiên, VaR có thể giả này trong các cuộc khủng hoảng cực kỳ, vì thế stress testing bổ sung lại là bước quan trọng.",
+    "application": "Trong công việc của risk manager, bạn sẽ tính VaR hàng ngày, giám sát backtesting, và sử dụng stress test để chuẩn bị cho các tình huống bất ngờ. VaR không phải để dự đoán hoàn hảo mà để chuẩn bị tinh thần và tài chính cho những ngày xấu."
+  },
+  {
+    "id": 1218,
+    "slug": "basel-iii-regulatory-capital-requirements",
+    "title": "Basel III & Quy định vốn - Làm sao ngân hàng không phá sản",
+    "subtitle": "Sau khủng hoảng 2008, thế giới quyết định: các ngân hàng phải giữ đủ vốn dự phòng để sống sót qua các cuộc khủng hoảng.",
+    "duration": "8 phút",
+    "difficulty": "Khó",
+    "emoji": "🏛️",
+    "openingQuestion": "Khi Basel III nói rằng một ngân hàng phải có 'Tier 1 capital ratio 10.5%', điều này có nghĩa là gì?",
+    "openingOptions": [
+      "Ngân hàng phải có 10.5% tổng tài sản là vốn chủ sở hữu (equity) mạnh, có thể hấp thụ tổn thất",
+      "Ngân hàng chỉ được cho vay 10.5% của tổng vốn của mình",
+      "Ngân hàng phải lợi nhuận 10.5% mỗi năm",
+      "Lợi tức trên vốn của ngân hàng phải đạt 10.5%"
+    ],
+    "correctOption": 0,
+    "explanation": "Tier 1 capital ratio là tỷ lệ vốn chủ sở hữu (vốn dự phòng tốt nhất, không thể mất) trên tổng tài sản có trọng số rủi ro. Tỷ lệ cao hơn = ngân hàng an toàn hơn, vì nó có 'đệm' lớn hơn để hấp thụ tổn thất trước khi phá sản. Basel III yêu cầu tối thiểu 10.5% để bảo vệ hệ thống tài chính.",
+    "realWorldExample": {
+      "company": "Lehman Brothers",
+      "description": "Trước khủng hoảng 2008, Lehman Brothers chỉ giữ ~3% Tier 1 capital ratio (thấp hơn nhiều so với yêu cầu Basel III ngày nay). Khi tài sản suy giảm, ngân hàng không đủ vốn để hấp thụ tổn thất và phá sản. Nếu Basel III có lúc đó, có thể tình cảnh khác."
+    },
+    "quiz": [
+      {
+        "question": "Sự khác biệt giữa Tier 1 capital và Tier 2 capital là gì?",
+        "options": [
+          "Tier 1 là tiền mặt, Tier 2 là cổ phiếu",
+          "Tier 1 là vốn chủ sở hữu + lợi nhuận chưa phân phối (mạnh nhất); Tier 2 là trái phiếu và hỗ trợ khác (yếu hơn). Khi tổn thất, Tier 1 được dùng trước",
+          "Tier 1 và Tier 2 giống nhau, chỉ là tên gọi khác nhau"
+        ],
+        "correct": 1
+      },
+      {
+        "question": "RWA (Risk Weighted Assets) là gì?",
+        "options": [
+          "Tổng tất cả tài sản của ngân hàng nhân với giá trị của chúng",
+          "Tài sản được điều chỉnh theo độ rủi ro - ví dụ, trái phiếu chính phủ có trọng số 0%, khoản vay cá nhân có trọng số 100%. RWA = tổng tài sản được cân nhắc theo rủi ro",
+          "Tiền lãi lầu ngân hàng kiếm được trong quá khứ"
+        ],
+        "correct": 1
+      },
+      {
+        "question": "Nếu một ngân hàng không đạt yêu cầu Tier 1 capital ratio, điều gì xảy ra?",
+        "options": [
+          "Không có gì, những quy định chỉ là gợi ý",
+          "Cơ quan quản lý sẽ buộc ngân hàng tăng vốn (qua cấp thêm cổ phiếu), giảm rủi ro, hoặc cắt giảm cổ tức - nếu vẫn không tuân thủ, ngân hàng có thể bị kìm chế hoặc đóng cửa",
+          "Ngân hàng phải nộp phạt nhưng có thể tiếp tục kinh doanh bình thường"
+        ],
+        "correct": 1
+      }
+    ],
+    "sections": [
+      {
+        "heading": "Basel III là gì?",
+        "content": "Basel III là một bộ quy chuẩn quốc tế được Ủy ban Basel (tập hợp các cơ quan quản lý từ 28 quốc gia) công bố lần đầu năm 2010 (sau khủng hoảng 2008), để tăng cường sức khỏe của hệ thống ngân hàng toàn cầu. Nó quy định tối thiểu bao nhiêu vốn các ngân hàng phải giữ, tính thanh khoản như thế nào, và quản lý rủi ro thế nào."
+      },
+      {
+        "heading": "Làm sao Basel III sinh ra?",
+        "content": "Khủng hoảng 2008 bắt đầu từ ngân hàng Lehman Brothers - một khối lượng lớn rủi ro được che dấu trong các công cụ tài chính phức tạp, và khi thị trường sụp đổ, ngân hàng không có đủ vốn để hấp thụ tổn thất. Hệ thống tài chính gần như tê liệt. Basel III được thiết kế để đảm bảo điều này không tái diễn."
+      },
+      {
+        "heading": "Ba trụ cột của Basel III",
+        "content": "Trụ cột 1 - Yêu cầu vốn tối thiểu: Tier 1 >= 10.5% RWA, Total Capital >= 13.5% RWA. Trụ cột 2 - Giám sát cơ quan quản lý: cơ quan cần kiểm tra xem ngân hàng tính VaR, stress test, và quản lý rủi ro đúng không. Trụ cột 3 - Minh bạch (Disclosure): ngân hàng phải công bố vốn, rủi ro định kỳ để thị trường có thể giám sát."
+      },
+      {
+        "heading": "Tier 1, Tier 2 - Loại vốn nào?",
+        "content": "Tier 1 (vốn cốt lõi): cổ phiếu phát hành, lợi nhuận chưa phân phối, một số trái phiếu vĩnh viễn. Đây là vốn 'khó mất' nhất. Tier 2 (vốn bổ trợ): trái phiếu dài hạn không được cấp, lợi nhuận tích lũy khác. Khi tổn thất xảy ra, Tier 1 được sử dụng trước vì nó mạnh hơn."
+      },
+      {
+        "heading": "RWA (Risk Weighted Assets) - Tạo sao không phải tất cả tài sản đều bằng nhau",
+        "content": "Tài sản không rủi ro bằng nhau. Trái phiếu chính phủ Mỹ an toàn hơn khoản vay cho một người khởi nghiệp. Basel III quy định trọng số rủi ro cho mỗi loại tài sản: trái phiếu chính phủ = 0%, khoản vay dân sự = 100%. RWA = tổng (tài sản × trọng số rủi ro). Tỷ lệ vốn = Tier 1 Capital / RWA."
+      },
+      {
+        "heading": "Yêu cầu Tier 1 Capital Ratio",
+        "content": "Basel III yêu cầu Tier 1 capital ratio >= 10.5%. Điều này bao gồm 'Common Equity Tier 1' (CET1) >= 7% + 'Tier 1 capital buffer' >= 3.5%. Nếu ngân hàng có RWA $100 tỷ, nó phải có Tier 1 vốn >= $10.5 tỷ. Con số này cao hơn Basel II (trước đó là 4%), để tăng sự an toàn."
+      },
+      {
+        "heading": "Thanh khoản (Liquidity) - Yếu tố thứ hai",
+        "content": "Basel III cũng quy định các ngân hàng phải giữ đủ tài sản thanh khoản cao (tiền mặt, trái phiếu chính phủ) để sống sót qua 30 ngày nếu không huy động được tiền gửi. Này là Liquidity Coverage Ratio (LCR) >= 100%. Trước đó, các ngân hàng sống phụ thuộc vào 'tiền qua đêm' và gặp khủng hoảng khi tài chính khô cằn."
+      },
+      {
+        "heading": "Giám sát và hậu quả không tuân thủ",
+        "content": "Các cơ quan quản lý định kỳ kiểm tra xem ngân hàng có đạt yêu cầu không. Nếu không: (1) buộc tăng vốn qua phát hành cổ phiếu; (2) cắt giảm cổ tức; (3) giảm tiền thưởng quản lý; (4) hạn chế cho vay mới; (5) trong trường hợp cực kỳ, can thiệp trực tiếp hoặc đóng cửa."
+      }
+    ],
+    "keyTakeaways": [
+      "Basel III là bộ quy chuẩn quốc tế sinh ra sau khủng hoảng 2008 để tăng cường sức khỏe hệ thống ngân hàng",
+      "Tier 1 capital ratio >= 10.5% là yêu cầu tối thiểu; nó cho biết ngân hàng có đủ vốn để hấp thụ tổn thất",
+      "RWA điều chỉnh tài sản theo độ rủi ro - tài sản rủi ro cao cần vốn dự phòng cao hơn",
+      "Basel III cũng quy định yêu cầu thanh khoản (LCR, NSFR) để ngân hàng có đủ tiền mặt trong khủng hoảng"
+    ],
+    "practicePrompt": "Tính Tier 1 capital ratio cho ngân hàng: Tier 1 capital = $50 tỷ, RWA = $400 tỷ. Ngân hàng này có tuân thủ Basel III không?",
+    "summary": "Basel III là phòng vệ của hệ thống tài chính chống lại khủng hoảng ngân hàng. Bằng cách yêu cầu vốn cao hơn, thanh khoản tốt hơn, và giám sát tốt hơn, nó giảm xác suất một ngân hàng lớn sụp đổ và gây tổn thất toàn bộ nền kinh tế.",
+    "application": "Trong công việc quản lý rủi ro hay phân tích tín dụng, bạn sẽ thường xuyên kiểm tra xem ngân hàng có đạt yêu cầu Basel III không. Nó ảnh hưởng đến quyết định cho vay (nếu ngân hàng gần đạt ngưỡng, nó sẽ cho vay ít hơn) và định giá (các nhà đầu tư sẽ yêu cầu lợi nhuận cao hơn nếu ngân hàng yếu)."
+  },
+  {
+    "id": 1219,
+    "slug": "dinh-gia-bat-dong-san-tai-san-vo-hinh",
+    "title": "Định giá bất động sản & Tài sản vô hình - Khi DCF không đủ",
+    "subtitle": "Định giá một tòa nhà hay một thương hiệu khác với định giá cổ phiếu - bạn cần các phương pháp khác.",
+    "duration": "8 phút",
+    "difficulty": "Khó",
+    "emoji": "🏢",
+    "openingQuestion": "Tại sao không thể dùng DCF (chiết khấu dòng tiền) để định giá một bất động sản hay một thương hiệu?",
+    "openingOptions": [
+      "DCF hoàn toàn có thể, nó là phương pháp duy nhất",
+      "Vì bất động sản và thương hiệu không tạo ra dòng tiền",
+      "Vì dòng tiền của bất động sản/thương hiệu khó dự báo và không ổn định như dòng tiền của công ty - DCF dựa vào giả định mà thường không đúng với tài sản này"
+    ],
+    "correctOption": 2,
+    "explanation": "DCF dùng tốt nhất cho các công ty có dòng tiền dự báo được. Nhưng bất động sản dễ bị ảnh hưởng bởi thị trường địa phương, chính sách thuế, thay đổi dân số. Thương hiệu (tài sản vô hình) thậm chí khó đo lường dòng tiền riêng biệt. Vì thế cần các phương pháp 'so sánh thị trường' hoặc 'định giá dựa vào chi phí'.",
+    "realWorldExample": {
+      "company": "Wechat",
+      "description": "Khi Tencent muốn mua lại hay định giá WeChat, phương pháp DCF sẽ rất khó vì giá trị của ứng dụng liên quan tới người dùng, sử dụng, và giấy phép chính phủ - những thứ không thể dự báo bằng công thức toán học. Thay vào đó, phải dùng 'tiền lệ gần đây' (comparable transactions) hoặc 'giá trị lợi nhuận trên người dùng'."
+    },
+    "quiz": [
+      {
+        "question": "Ba phương pháp định giá bất động sản chính là gì?",
+        "options": [
+          "DCF, accounting, và thị trường",
+          "Income Approach, Cost Approach, và Market Approach",
+          "Giá vốn, giá thị trường, và giá thanh lý"
+        ],
+        "correct": 1
+      },
+      {
+        "question": "Income Approach định giá bất động sản dựa trên điều gì?",
+        "options": [
+          "Tiền mặt hiện tại của chủ nhân",
+          "Doanh thu thuê nhà (hay dòng tiền từ bất động sản) được chiết khấu về hiện tại - giống DCF nhưng chỉ dùng cho bất động sản",
+          "Giá cua tòa nhà tương tự gần đây được bán"
+        ],
+        "correct": 1
+      },
+      {
+        "question": "Goodwill là gì?",
+        "options": [
+          "Ý định tốt của công ty",
+          "Phần của giá mua vượt quá giá trị sổ sách của tài sản - ví dụ, bạn mua công ty với giá $100M nhưng tài sản thực (máy móc, tiền) chỉ đáng $60M, $40M còn lại là goodwill (cho thương hiệu, khách hàng, bằng sáng chế)",
+          "Lợi nhuận của công ty sau khi mua"
+        ],
+        "correct": 1
+      }
+    ],
+    "sections": [
+      {
+        "heading": "Ba phương pháp định giá tài sản (Income, Cost, Market)",
+        "content": "Income Approach (Phương pháp thu nhập): Định giá dựa vào dòng tiền tạo ra - ví dụ, toà nhà cho thuê, giả sử mỗi năm thu $500K, lợi suất yêu cầu 5%, định giá ≈ $10M. Cost Approach (Phương pháp chi phí): Định giá = chi phí xây dựng lại tài sản + đất, trừ khấu hao - dùng tốt cho bất động sản cũ. Market Approach (Phương pháp thị trường): So sánh với những giao dịch gần đây tương tự - nếu toà nhà tương tự bán với giá $12M/năm cho thuê, toà nhà của bạn là $9M/năm thì định giá ≈ $9M/12M × $12M."
+      },
+      {
+        "heading": "Tại sao bất động sản không thể dùng DCF?",
+        "content": "DCF dựa vào: (1) dự báo dòng tiền chính xác 5-10 năm; (2) tỷ lệ chiết khấu ổn định. Bất động sản: (1) dòng tiền phụ thuộc thị trường địa phương, chính sách (giá thuê có thể đứng yên hay tăng gấp đôi); (2) chi phí bảo trì, sửa chữa khó dự báo; (3) giá đất thay đổi theo lịch sử. Vì thế Income Approach là phiên bản 'bất động sản' của DCF - nó đơn giản hơn và chỉ dùng dòng tiền từ cho thuê."
+      },
+      {
+        "heading": "Tài sản vô hình (Intangible Assets) - Thương hiệu, bằng sáng chế, khách hàng",
+        "content": "Tài sản vô hình là những thứ không có hình dạng vật lý nhưng tạo ra giá trị: thương hiệu (Apple), bằng sáng chế (công nghệ), danh sách khách hàng, hợp đồng dài hạn. Chúng khó định giá vì: (1) dòng tiền riêng biệt khó đo; (2) rủi ro cao; (3) thay đổi nhanh."
+      },
+      {
+        "heading": "Phương pháp định giá tài sản vô hình",
+        "content": "Phương pháp Relief from Royalty: 'Nếu tôi phải trả tiền bản quyền để sử dụng thương hiệu này, tôi sẽ trả bao nhiêu?' Ví dụ, Nike phải trả 5% doanh thu để sử dụng logo của mình. Nhân 5% × doanh số dự báo → giá trị thương hiệu. Phương pháp Incremental Earnings: So sánh lợi nhuận của công ty với thương hiệu mạnh vs công ty giống nhưng thương hiệu yếu - hiệu số là giá trị tài sản vô hình."
+      },
+      {
+        "heading": "Goodwill - Khi bạn trả thêm tiền khi mua công ty",
+        "content": "Goodwill = Giá mua - Giá trị sổ sách tài sản. Ví dụ, Facebook mua WhatsApp với giá $19B nhưng tài sản thực (máy chủ, văn phòng) chỉ ~$500M. Goodwill = $18.5B, đại diện cho người dùng, khách hàng, công nghệ, thị phần. Goodwill xuất hiện trên bảng cân đối kế toán và phải khấu hao (hoặc kiểm tra xem có bị giảm giá không)."
+      },
+      {
+        "heading": "Impairment - Khi tài sản vô hình mất giá",
+        "content": "Nếu một thương hiệu hay bằng sáng chế bất ngờ mất giá (ví dụ, thương hiệu bị scandal, bằng sáng chế bị phán quyết không hợp lệ), giá trị goodwill phải ghi nhận tổn thất (impairment). Ví dụ, nếu Facebook mua TikTok với giá $100B nhưng 2 năm sau TikTok bị cấm ở Mỹ, giá trị sụt về $10B → ghi nhận lỗ $90B."
+      },
+      {
+        "heading": "Ứng dụng thực tiễn - M&A (Sáp nhập và mua lại)",
+        "content": "Khi một công ty muốn mua công ty khác hoặc định giá tài sản để bán, cần phối hợp cả ba phương pháp. Thường kết quả sẽ khác nhau - ví dụ, Market Approach cho $50M, Income Approach cho $45M, Cost Approach cho $40M. Ngôn ngữ sẽ chọn 'giá công bằng' đâu đó giữa ba con số này, tùy thuộc vào bối cảnh (thị trường nóng hay lạnh, tính gấp gáp, v.v.)."
+      }
+    ],
+    "keyTakeaways": [
+      "Ba phương pháp định giá tài sản: Income Approach (dòng tiền), Cost Approach (chi phí xây lại), Market Approach (so sánh thị trường)",
+      "Bất động sản không dùng DCF vì dòng tiền khó dự báo - Income Approach là phiên bản đơn giản hơn",
+      "Tài sản vô hình (thương hiệu, bằng sáng chế) dùng Royalty Relief hoặc Incremental Earnings",
+      "Goodwill là phần giá mua vượt giá trị sổ sách - phát sinh khi mua công ty với giá cao hơn giá trị tài sản"
+    ],
+    "practicePrompt": "Một toà nhà cho thuê doanh thu $500K/năm, dự báo tăng 2%/năm, lợi suất yêu cầu 6%. Dùng Income Approach, định giá toà nhà.",
+    "summary": "Bất động sản và tài sản vô hình cần các phương pháp định giá khác DCF. Income, Cost, và Market Approach có ưu nhược điểm riêng - thường phải kết hợp để có định giá hợp lý.",
+    "application": "Trong công việc M&A, định giá tài sản, hoặc báo cáo tài chính, bạn sẽ phải áp dụng ba phương pháp này để đánh giá một khoản mua, một tòa nhà hay một thương hiệu. Sự hiểu biết về Goodwill cũng quan trọng khi đọc báo cáo tài chính của các công ty mua lại nhiều."
+  },
+  {
+    "id": 1220,
+    "slug": "valuation-report-tinh-hop-ly-dinh-gia",
+    "title": "Valuation Report & Tính hợp lý - Cách trình bày định giá một cách thuyết phục",
+    "subtitle": "Định giá là một con số, nhưng một valuation report phải giải thích tại sao con số đó hợp lý.",
+    "duration": "7 phút",
+    "difficulty": "Khó",
+    "emoji": "📋",
+    "openingQuestion": "Một valuation report nên bao gồm những phần nào?",
+    "openingOptions": [
+      "Chỉ cần một con số định giá là đủ, không cần giải thích",
+      "Executive Summary, Industry Analysis, Financial Analysis, Valuation Methods, Sensitivity Analysis, Recommendations",
+      "Chỉ danh sách các khoản vay và chi phí"
+    ],
+    "correctOption": 1,
+    "explanation": "Một valuation report chuyên nghiệp phải có cấu trúc rõ ràng: Executive Summary (kết luận chính), Industry Analysis (ngành đó thế nào), Financial Analysis (công ty/tài sản thế nào), Valuation Methods (tại sao chọn phương pháp này), Sensitivity Analysis (con số thay đổi thế nào nếu giả định thay đổi), Recommendations. Điều này giúp người đọc (cơ quan quản lý, khách hàng, tòa án) hiểu và tin tưởng định giá.",
+    "realWorldExample": {
+      "company": "Kiểm toán viên độc lập",
+      "description": "Khi một công ty bị kiểm toán, nếu công ty có goodwill lớn hoặc tài sản khó định giá, cơ quan kiểm toán phải thuê các chuyên gia định giá độc lập viết valuation report. Báo cáo này phải mạnh mẽ vì có thể bị thách đấu trong tòa án hoặc bị cơ quan thuế tranh cãi."
+    },
+    "quiz": [
+      {
+        "question": "Executive Summary trong valuation report nên chứa gì?",
+        "options": [
+          "Chi tiết kỹ thuật tất cả các phương pháp định giá",
+          "Chỉ mục của báo cáo",
+          "Kết luận chính: định giá là bao nhiêu, phương pháp chính là gì, các giả định chính là gì"
+        ],
+        "correct": 2
+      },
+      {
+        "question": "Tại sao Sensitivity Analysis quan trọng?",
+        "options": [
+          "Vì nó là bắt buộc theo luật",
+          "Để cho thấy con số định giá thay đổi thế nào nếu các giả định thay đổi - ví dụ, nếu tỷ lệ chiết khấu tăng từ 6% lên 8%, định giá sẽ sụt bao nhiêu",
+          "Để che giấu những điểm yếu của định giá"
+        ],
+        "correct": 1
+      },
+      {
+        "question": "Khi một valuation report bị tranh cãi (ví dụ, trong phiên tòa), điều gì sẽ được xem xét trước tiên?",
+        "options": [
+          "Giá trị cuối cùng (định giá là $50M hay $100M)",
+          "Phương pháp định giá, giả định, và dữ liệu được dùng - tính hợp lý của các bước này",
+          "Ai viết báo cáo"
+        ],
+        "correct": 1
+      }
+    ],
+    "sections": [
+      {
+        "heading": "Cấu trúc một valuation report chuyên nghiệp",
+        "content": "1. Executive Summary (1-2 trang): Kết luận, phương pháp, các con số chính. 2. Introduction (Giới thiệu): Mục đích định giá (mua, bán, thuế, v.v.), công ty/tài sản được định giá là gì. 3. Industry & Market Analysis: Ngành kinh doanh thế nào, xu hướng, cạnh tranh. 4. Company/Asset Analysis: Lịch sử, tài chính, điểm mạnh/yếu. 5. Valuation Methods & Analysis: Dùng phương pháp nào, tại sao, kết quả. 6. Sensitivity & Scenario Analysis: Con số thay đổi thế nào. 7. Conclusion & Recommendation: Định giá cuối cùng là bao nhiêu, phạm vi hợp lý. 8. Appendix: Dữ liệu chi tiết, tài liệu tham khảo."
+      },
+      {
+        "heading": "Executive Summary - Phần quan trọng nhất",
+        "content": "Executive Summary phải trả lời 3 câu hỏi: (1) Định giá là bao nhiêu? (2) Phương pháp chính là gì? (3) Giả định quan trọng nhất là gì? Nó phải dễ hiểu cho những người không phải chuyên gia - CFO, luật sư, hay thẩm phán có thể đọc 2 trang này và hiểu được phần lớn kết luận."
+      },
+      {
+        "heading": "Industry & Market Analysis - Tại sao ngành này lại quan trọng",
+        "content": "Bất kỳ công ty nào cũng bị ảnh hưởng bởi ngành: Tăng trưởng ngành, cạnh tranh, quy định, xu hướng công nghệ. Phần này phải phân tích: kích thước thị trường hiện tại và dự báo, tỷ lệ tăng trưởng, các cạnh tranh chính, rủi ro quy định. Ví dụ, nếu định giá một công ty công nghệ, phải phân tích thị trường AI, xu hướng startups, quy định về dữ liệu."
+      },
+      {
+        "heading": "Financial Analysis - Bắt đầu từ dữ liệu cô đơn",
+        "content": "Phần này phân tích tài chính quá khứ: Doanh thu, lợi nhuận, dòng tiền. Tính các tỷ lệ: ROE, ROIC, biên lợi nhuận. Xu hướng: Doanh thu có tăng hay giảm? Lợi nhuận ổn định hay biến động? Điều này tạo cơ sở để dự báo tương lai."
+      },
+      {
+        "heading": "Valuation Methods - Vì sao chọn DCF mà không chọn Comparable?",
+        "content": "Không có 'phương pháp đúng nhất'. Phần này phải giải thích: (1) Phương pháp nào được chọn (DCF, Comparable Companies, Precedent Transactions, vv); (2) Tại sao phù hợp với công ty này; (3) Giả định chính (tỷ lệ tăng trưởng, tỷ lệ chiết khấu); (4) Kết quả từ mỗi phương pháp. Ví dụ: 'Chọn DCF vì dòng tiền dự báo được; Comparable Companies không phù hợp vì ít công ty tương tự'."
+      },
+      {
+        "heading": "Sensitivity Analysis - Con số sẽ thay đổi thế nào?",
+        "content": "Định giá rất nhạy cảm với các giả định. Sensitivity Analysis cho thấy: nếu tỷ lệ chiết khấu là 5% → định giá $100M, nếu 7% → định giá $70M. Bảng hai chiều (2-way table) thường dùng: hàng là tỷ lệ chiết khấu (5%-9%), cột là tỷ lệ tăng trưởng (2%-6%), ô là định giá. Điều này cho thấy con số không phải là 'chắc chắn' mà có khoảng hợp lý."
+      },
+      {
+        "heading": "Tính hợp lý (Reasonableness Check)",
+        "content": "Trước khi kết luận, phải kiểm tra: (1) Định giá có cao so với ngành không? (2) Định giá / Doanh thu là bao nhiêu (P/S ratio)? (3) Định giá / EBITDA? (4) So sánh với Comparable Companies có hợp lý không? Ví dụ, nếu định giá một công ty startup ở $1B nhưng doanh thu chỉ $1M, P/S = 1000x - rất cao, cần giải thích tại sao."
+      }
+    ],
+    "keyTakeaways": [
+      "Valuation report phải có: Executive Summary, Industry Analysis, Financial Analysis, Valuation Methods, Sensitivity Analysis, Recommendations",
+      "Executive Summary là phần quan trọng nhất - phải trả lời câu hỏi: giá là bao nhiêu, phương pháp là gì, giả định là gì",
+      "Sensitivity Analysis cho thấy con số thay đổi thế nào nếu giả định thay đổi - điều này tăng độ tin cậy",
+      "Tính hợp lý là bước cuối - so sánh định giá với ngành, P/S, P/E, và Comparable Companies để đảm bảo không quá cao hay quá thấp"
+    ],
+    "practicePrompt": "Viết Executive Summary cho định giá của một công ty tech: Phương pháp DCF, định giá $500M, tỷ lệ chiết khấu 8%, tỷ lệ tăng trưởng 15%.",
+    "summary": "Valuation report không chỉ là một con số - nó là một câu chuyện. Câu chuyện phải rõ ràng, logic, và có thể bị thách đấu. Một báo cáo tốt sẽ có Executive Summary mạnh, phương pháp hợp lý, và Sensitivity Analysis để cho thấy khoảng hợp lý của con số.",
+    "application": "Trong công việc M&A, định giá tài sản, hoặc kiểm toán, bạn sẽ phải viết hoặc đánh giá valuation report. Báo cáo này có thể bị cơ quan thuế, tòa án hay các nhà đầu tư chỉ trích - nên phải mạnh mẽ và có thể giải thích từng bước."
+  },
+  {
+    "id": 1221,
+    "slug": "investment-thesis-research-report-structure",
+    "title": "Investment Thesis & Research Report - Cách thuyết phục nhà đầu tư",
+    "subtitle": "Một investment thesis tốt không chỉ là 'công ty này sẽ lên tiền', mà phải có logic rõ ràng.",
+    "duration": "7 phút",
+    "difficulty": "Khó",
+    "emoji": "💡",
+    "openingQuestion": "Một investment thesis là gì?",
+    "openingOptions": [
+      "Một dự đoán về giá cổ phiếu trong tương lai",
+      "Một tuyên bố rõ ràng: 'Tại sao công ty này đáng đầu tư, giá là bao nhiêu, rủi ro là gì'",
+      "Một danh sách các sự kiện lịch sử của công ty"
+    ],
+    "correctOption": 1,
+    "explanation": "Investment thesis là một câu chuyện logic: (1) Vật chủ (công ty/ngành) sẽ phát triển vì sao; (2) Giá hiện tại không phản ánh giá trị thực - 'bị định giá thấp'; (3) Catalyst (xúc tác) là gì sẽ kích hoạt giá tăng; (4) Rủi ro là gì có thể làm vỡ câu chuyện. Một thesis tốt không dự đoán chính xác giá, mà giải thích logic tại sao nó nên tăng.",
+    "realWorldExample": {
+      "company": "Tesla 2010",
+      "description": "Investment thesis: 'Xe điện sẽ thay thế xe xăng, Tesla là công ty dẫn đầu về công nghệ pin và hệ thống điều khiển, giá $17/cổ phiếu quá rẻ so với tiềm năng doanh thu trong tương lai. Catalyst: sản xuất Model S năm 2012, quy mô sản xuất tăng, khách hàng yêu thích. Rủi ro: công nghệ pin chưa chắc chắn, cạnh tranh từ các hãng xe lớn.' Thesis này giải thích logic, không dự đoán 'giá sẽ lên 900x'."
+    },
+    "quiz": [
+      {
+        "question": "Các phần chính của investment thesis là gì?",
+        "options": [
+          "Tên công ty, giá cổ phiếu, lịch sử CEO",
+          "Luận điểm chính, bằng chứng, tính bị định giá thấp, catalyst, rủi ro",
+          "Chỉ là một dự đoán về giá tăng hay giảm"
+        ],
+        "correct": 1
+      },
+      {
+        "question": "Catalyst trong investment là gì?",
+        "options": [
+          "Nguyên nhân lịch sử của công ty",
+          "Sự kiện hoặc thay đổi sẽ kích hoạt giá cổ phiếu tăng - ví dụ, ra sản phẩm mới, merger, hay thị trường mở ra",
+          "Một loại thuốc"
+        ],
+        "correct": 1
+      },
+      {
+        "question": "Cấu trúc của research report là gì?",
+        "options": [
+          "Chỉ cần viết giá target là đủ",
+          "Executive Summary, Investment Thesis, Industry Analysis, Company Analysis, Valuation, Risk Assessment, Recommendation",
+          "Chỉ danh sách các con số tài chính"
+        ],
+        "correct": 1
+      }
+    ],
+    "sections": [
+      {
+        "heading": "Investment Thesis - Câu chuyện logic",
+        "content": "Investment thesis là câu chuyện: 'Tại sao công ty này sẽ tạo ra giá trị' (hay 'mất giá trị' nếu short). Nó phải có ba yếu tố: (1) Fundamental: Doanh nghiệp sẽ phát triển vì sao - sản phẩm tốt, thị trường tăng, lợi thế cạnh tranh. (2) Valuation: Giá hiện tại so với giá trị thực - bị định giá thấp hay cao? (3) Catalyst: Sự kiện cụ thể nào sẽ làm nhà đầu tư nhận ra giá trị này, kích hoạt giá tăng."
+      },
+      {
+        "heading": "Phân tích Fundamental - Công ty này thực sự có tốt không?",
+        "content": "Bây giờ, phân tích sâu: (1) Sản phẩm/dịch vụ: Tốt hơn đối thủ ở điểm nào? Khách hàng có yêu thích không? (2) Thị trường: Ngành đó đang tăng hay giảm? Kích thước thị trường bao lớn? (3) Lợi thế cạnh tranh: Tại sao công ty không bị mất khách cho đối thủ? (4) Lợi nhuận: Công ty có sinh lợi nhuận hay chỉ có doanh thu? Lợi nhuận sẽ tăng hay giảm?"
+      },
+      {
+        "heading": "Valuation - Giá có hợp lý không?",
+        "content": "Dùng DCF, Comparable Companies, hoặc Precedent Transactions để định giá. Sau đó so sánh: giá thị trường hiện tại so với giá hợp lý. Nếu giá thị trường $50 nhưng giá hợp lý $100 → công ty bị định giá thấp, là cơ hội. Nếu ngược lại → cẩn thận, giá quá cao."
+      },
+      {
+        "heading": "Catalyst - Sự kiện sẽ làm giá tăng",
+        "content": "Catalyst không phải là 'hy vọng' mà là sự kiện cụ thể, có lịch trình: (1) Sản phẩm mới sắp ra mắt (ví dụ, iPhone mới, Tesla Cybertruck); (2) Kết quả kinh doanh vượt kỳ vọng (quarterly earnings); (3) Merger/IPO/khác liên doanh; (4) Thay đổi quy định ủng hộ công ty; (5) Phát hiện mới về công nghệ. Catalyst phải có 'timeline' - 'trong 6 tháng tới, Apple sẽ công bố iPhone 16 và doanh số sẽ vượt kỳ vọng'."
+      },
+      {
+        "heading": "Rủi ro - Tại sao thesis có thể sai",
+        "content": "Một thesis tốt phải thừa nhận rủi ro: (1) Operational risks: Công ty không đạt target sản xuất, chất lượng sản phẩm kém. (2) Market risks: Thị trường không tăng như dự báo, hoặc đối thủ mạnh hơn. (3) Regulatory risks: Chính phủ thay đổi chính sách, cấm sản phẩm. (4) Valuation risks: Ngay cả khi công ty phát triển, giá trị cũng có thể không tăng nếu thị trường 'mất hứng'. (5) Downside risks: Trong trường hợp xấu nhất, giá có thể giảm bao nhiêu?"
+      },
+      {
+        "heading": "Cấu trúc Research Report",
+        "content": "1. Executive Summary (1-2 trang): Investment thesis, giá target, rating (Buy/Hold/Sell). 2. Investment Thesis (1 trang): Luận điểm chính, bằng chứng. 3. Industry Analysis: Ngành thế nào, xu hướng. 4. Company Analysis: Công ty phân tích chi tiết. 5. Valuation (1-2 trang): DCF, Comparable, giá target. 6. Risk Assessment: Rủi ro chính. 7. Catalysts: Sự kiện sắp tới. 8. Conclusion: Tóm tắt."
+      },
+      {
+        "heading": "Đúc kết lại - 'What if' analysis",
+        "content": "Phần cuối của research là 'What if' analysis: Nếu catalyst không xảy ra? Nếu đối thủ ra sản phẩm tốt hơn? Nếu nền kinh tế rơi vào suy thoái? Giá target sẽ là bao nhiêu? Điều này giúp nhà đầu tư biết 'downside risk' là gì, hay nói cách khác, 'tôi có thể mất tối đa bao nhiêu nếu thesis bị sai'."
+      }
+    ],
+    "keyTakeaways": [
+      "Investment thesis là câu chuyện logic: fundamental (công ty sẽ phát triển), valuation (bị định giá thấp), catalyst (sự kiện sẽ kích hoạt)",
+      "Catalyst phải cụ thể và có lịch trình, không phải chỉ 'hy vọng' mơ hồ",
+      "Research report bao gồm: Executive Summary, Thesis, Industry/Company Analysis, Valuation, Risk, Catalysts",
+      "Một thesis tốt phải nhận diện được rủi ro và 'downside' nếu thesis bị sai"
+    ],
+    "practicePrompt": "Viết investment thesis cho một công ty công nghệ: sản phẩm tốt, giá $100 (nhưng định giá công bằng $150), catalyst là IPO trong 6 tháng.",
+    "summary": "Investment thesis không phải là dự đoán, mà là logic dựa trên fundamental, valuation, và catalyst. Một thesis tốt sẽ giải thích 'tại sao' và 'khi nào', và thừa nhận rủi ro.",
+    "application": "Trong công việc analyst hay portfolio manager, bạn sẽ phải viết investment thesis hàng ngày. Mỗi khoá quyết định mua/bán cổ phiếu phải dựa trên thesis rõ ràng, không phải 'có cảm giác' hoặc 'xu hướng ngắn hạn'. Khi bị chỉ trích, bạn phải có thể giải thích logic của thesis."
+  },
+  {
+    "id": 1222,
+    "slug": "quy-trinh-tham-dinh-tin-dung-5c-framework",
+    "title": "Quy trình thẩm định tín dụng: 5C Framework - Đừng cho vay tiền xấu",
+    "subtitle": "Trước khi cho vay, phải kiểm tra kỹ khách hàng - 5C giúp bạn làm điều đó có hệ thống.",
+    "duration": "7 phút",
+    "difficulty": "Khó",
+    "emoji": "💳",
+    "openingQuestion": "5C framework trong thẩm định tín dụng bao gồm những gì?",
+    "openingOptions": [
+      "Chỉ kiểm tra tiền của khách hàng",
+      "Character, Capacity, Capital, Collateral, Conditions",
+      "Chỉ dùng CIC score là đủ"
+    ],
+    "correctOption": 1,
+    "explanation": "5C framework là phương pháp toàn diện để đánh giá một khoản vay: (1) Character: Đạo đức, lịch sử trả nợ của người vay; (2) Capacity: Khả năng trả nợ (thu nhập, dòng tiền); (3) Capital: Tài sản, vốn của người vay; (4) Collateral: Tài sản thế chấp (bất động sản, cổ phiếu); (5) Conditions: Điều kiện kinh tế, ngành, quy định. Nếu yếu ở bất kỳ C nào, khoản vay sẽ rủi ro.",
+    "realWorldExample": {
+      "company": "Một ngân hàng Việt",
+      "description": "Một bà chủ xưởng dệt may muốn vay $1M. CIC score tốt (6.5/10), nhưng doanh số xưởng giảm 30% vì khách đặt hàng ít → Capacity yếu. Tài sản thế chấp là nhà cũ trị giá $500K (Collateral chỉ 50%) → Rủi ro. Tuy chữ (Character) tốt, ngân hàng sẽ từ chối hoặc cho vay nhỏ hơn."
+    },
+    "quiz": [
+      {
+        "question": "Character trong 5C là gì?",
+        "options": [
+          "Tính cách của người vay",
+          "Lịch sử trả nợ, danh tiếng, willingness to pay - liệu người này có ý định trả nợ không?",
+          "Giáo dục của người vay"
+        ],
+        "correct": 1
+      },
+      {
+        "question": "Capacity là gì?",
+        "options": [
+          "Kích thước công ty",
+          "Khả năng trả nợ - dựa trên thu nhập, lợi nhuận, dòng tiền. Ratio D/E, Interest Coverage Ratio là các chỉ số",
+          "Tuổi của người vay"
+        ],
+        "correct": 1
+      },
+      {
+        "question": "Tại sao Conditions (điều kiện kinh tế) lại quan trọng?",
+        "options": [
+          "Vì nó là bắt buộc theo luật",
+          "Vì ngay cả với Character, Capacity, Capital, Collateral tốt, nếu nền kinh tế suy thoái hoặc ngành bị ảnh hưởng (ví dụ, lệnh cấm xuất khẩu), khách hàng vẫn có thể không trả được",
+          "Vì nó ảnh hưởng tới lãi suất"
+        ],
+        "correct": 1
+      }
+    ],
+    "sections": [
+      {
+        "heading": "Character - Đạo đức & Lịch sử trả nợ",
+        "content": "Character đánh giá: (1) Lịch sử trả nợ: Trước đây có từng vỡ nợ, trả trễ hạn không? (2) CIC score: Điểm tín dụng từ công ty tín dụng (6.0/10 là bình thường, <5 là rủi ro cao). (3) Danh tiếng: Người này có tiếng là 'chơi bẩn' không, có tranh cãi pháp lý không? (4) Willingness to pay: Liệu người này có ý định trả nợ hay dự định 'bỏ chạy' sau khi lấy tiền? Điều này đánh giá qua tương tác, lịch sử giao dịch."
+      },
+      {
+        "heading": "Capacity - Khả năng trả nợ",
+        "content": "Capacity đánh giá khả năng sinh lợi nhuận: (1) Thu nhập: Nếu vay $1M với kỳ hạn 5 năm và lãi 8%/năm, tổng trả = $1.46M. Thu nhập hàng năm phải đủ để chi trả khoảng $292K/năm mà vẫn có tiền chi tiêu. Thường ngân hàng chỉ cho vay nếu debt payment < 40% thu nhập. (2) EBITDA (nếu công ty): Lợi nhuận trước lãi, thuế, khấu hao. Nếu EBITDA = $200K/năm, khó trả khoản vay đòi $300K/năm. (3) Interest Coverage Ratio = EBITDA / Lãi vay: Nếu ratio < 1.5x, nguy hiểm."
+      },
+      {
+        "heading": "Capital - Tài sản của người vay",
+        "content": "Capital đánh giá: (1) Vốn chủ sở hữu: Nếu người vay không có vốn riêng, họ sẽ không 'chịu chia sẻ rủi ro'. (2) Debt/Equity ratio: Nếu người vay đã có nợ quá nhiều (D/E > 2), cho vay thêm sẽ quá rủi ro. (3) Tài sản net: Nhân vật này có bao nhiêu tài sản (trừ nợ)? Nếu tài sản net âm, họ có thể 'bỏ chạy' vì mất gì. (4) Quy mô vốn: Một công ty khởi nghiệp với vốn $50K yêu cầu vay $1M là nguy hiểm."
+      },
+      {
+        "heading": "Collateral - Tài sản thế chấp",
+        "content": "Collateral là 'giải pháp cuối cùng' nếu người vay mất khả năng trả nợ. Ngân hàng sẽ tịch thu và bán collateral để lấy lại tiền. Loại collateral: (1) Real estate (nhà, đất): Dễ định giá, dễ bán, nhưng lỏng lẻo. (2) Cổ phiếu, trái phiếu: Dễ bán nhưng giá biến động. (3) Hàng tồn kho: Khó định giá, khó bán, thường giá thực < giá định giá. Ngân hàng thường chỉ cho vay 60-80% giá trị collateral (để có biên độ an toàn)."
+      },
+      {
+        "heading": "Conditions - Điều kiện kinh tế & Ngành",
+        "content": "Ngay cả người vay tốt, nếu bối cảnh kinh tế xấu, họ vẫn gặp khó: (1) Suy thoái kinh tế: Doanh số giảm, khó bán hàng. (2) Ngành bị ảnh hưởng: Ví dụ, ngành hàng không bị ảnh hưởng bởi COVID-19, ngành dệt may bị ảnh hưởng bởi tariff Mỹ. (3) Quy định thay đổi: Chính phủ ban hành quy định mới, cấm xuất khẩu, v.v. Ngân hàng phải đánh giá: nếu điều kiện toàn cầu xấu, khách hàng có thể vẫn không trả được."
+      },
+      {
+        "heading": "CIC Score - Thứ tự phụ cấp",
+        "content": "CIC (Central Information Bureau - tương tự CRB ở Mỹ) là một agency tập hợp lịch sử vay và trả nợ của mọi người ở Việt Nam. Điểm CIC từ 1-10: 8-10 là tuyệt vời (ít rủi ro), 6-8 là bình thường, <5 là rủi ro cao. Tuy nhiên, CIC score chỉ là một phần - 5C framework giúp hiểu rõ hơn toàn bộ tình hình."
+      },
+      {
+        "heading": "Quy trình thẩm định - Từ A đến Z",
+        "content": "1. Nhận đơn vay: Khách hàng nộp hồ sơ (giấy tờ, tài chính). 2. Kiểm tra sơ bộ: CIC, Character, lịch sử giao dịch. 3. Phân tích 5C: Chi tiết mỗi C. 4. On-site visit (nếu cần): Thăm công ty, kiểm tra tài sản. 5. Quyết định: Phê duyệt, từ chối, hoặc đề xuất điều kiện khác (vay nhỏ hơn, lãi cao hơn, collateral thêm). 6. Ký hợp đồng: Xác định kỳ hạn, lãi suất, phạt nếu trả trễ."
+      }
+    ],
+    "keyTakeaways": [
+      "5C: Character (đạo đức), Capacity (khả năng trả), Capital (tài sản), Collateral (thế chấp), Conditions (điều kiện kinh tế)",
+      "Character là nền tảng - nếu người vay không có ý định trả, không có gì cứu được",
+      "Capacity đánh giá qua thu nhập, lợi nhuận, Interest Coverage Ratio",
+      "Ngay cả các C tốt, nếu điều kiện kinh tế xấu (Conditions), khoản vay vẫn gặp rủi ro"
+    ],
+    "practicePrompt": "Đánh giá khoản vay $500K cho một bà chủ nhà hàng: CIC 7.0, doanh số $5M/năm, nợ hiện tại $200K, bất động sản thế chấp $800K. Có nên cho vay không?",
+    "summary": "5C framework là phương pháp toàn diện để đánh giá rủi ro tín dụng. Ngân hàng không bao giờ chỉ nhìn vào một C - phải nhìn cả 5 để quyết định cho vay.",
+    "application": "Nếu bạn làm credit officer, bạn sẽ sử dụng 5C framework mỗi ngày. Không ai muốn cho vay tiền 'xấu' - 5C giúp bạn loại trừ các khoản vay sẽ mất tiền. Ngoài ra, bạn cũng có thể dùng 5C để đàm phán điều kiện: nếu một C yếu, bạn sẽ yêu cầu lãi cao hơn hoặc collateral thêm để bù lấp rủi ro."
+  },
+  {
+    "id": 1223,
+    "slug": "hedging-instruments-fx-derivatives",
+    "title": "Hedging Instruments & FX Derivatives - Giảm thiểu rủi ro tỷ giá",
+    "subtitle": "Khi bạn phải giao dịch ngoại tệ, dùng derivatives để 'khóa' tỷ giá thay vì chấp nhận rủi ro.",
+    "duration": "8 phút",
+    "difficulty": "Khó",
+    "emoji": "🔐",
+    "openingQuestion": "Forward contract là gì?",
+    "openingOptions": [
+      "Một loại trái phiếu",
+      "Một hợp đồng cam kết mua/bán ngoại tệ ở mức tỷ giá cố định vào ngày tương lai cụ thể",
+      "Một loại bảo hiểm"
+    ],
+    "correctOption": 1,
+    "explanation": "Forward contract là hợp đồng giữa hai bên: 'Tôi cam kết mua 1M USD ở mức 24,000 VND/USD vào ngày 30/9'. Ngay hôm nay, tỷ giá là 23,500 VND/USD, nhưng bạn lo sợ tỷ giá sẽ tăng (USD tăng giá) và không muốn gặp rủi ro → khóa tỷ giá qua forward.",
+    "realWorldExample": {
+      "company": "Công ty xuất khẩu cà phê",
+      "description": "Một công ty Việt bán 100 tấn cà phê cho bên Mỹ, nhận được 2M USD trong 3 tháng. Vấn đề: nếu USD giảm giá (VND tăng giá), công ty bị tổn thất khi đổi sang VND. Giải pháp: ký forward contract bây giờ, cam kết bán 2M USD ở mức 24,000 VND/USD vào 3 tháng sau. Bây giờ tỷ giá là 23,500, 3 tháng sau là 22,000, nhưng công ty đã khóa ở 24,000 → tránh được tổn thất."
+    },
+    "quiz": [
+      {
+        "question": "Sự khác biệt giữa Forward, Futures, và Options là gì?",
+        "options": [
+          "Không có sự khác biệt, chỉ là tên gọi khác nhau",
+          "Forward: tùy chỉnh, OTC. Futures: chuẩn hóa, sàn giao dịch. Options: quyền (không bắt buộc), Future: bắt buộc",
+          "Forward là tài sản, Futures là tiền"
+        ],
+        "correct": 1
+      },
+      {
+        "question": "Tại sao swaps được dùng trong quản lý lãi suất?",
+        "options": [
+          "Vì nó là loại trái phiếu",
+          "Swap lãi suất: bên A trả lãi suất cố định, bên B trả lãi suất thả nổi. A được bảo vệ nếu lãi suất tăng, B được bảo vệ nếu lãi suất giảm",
+          "Vì nó là loại cổ phiếu"
+        ],
+        "correct": 1
+      },
+      {
+        "question": "Call option trên USD là gì?",
+        "options": [
+          "Một loại điện thoại",
+          "Quyền (nhưng không bắt buộc) mua USD ở mức giá cố định - nếu tỷ giá tăng, bạn thực hiện; nếu giảm, bạn không",
+          "Một loại lãi suất"
+        ],
+        "correct": 1
+      }
+    ],
+    "sections": [
+      {
+        "heading": "Hedging là gì - Giảm thiểu rủi ro, không phải đầu cơ",
+        "content": "Hedging là hành động sử dụng derivatives để giảm thiểu rủi ro của một danh mục hoặc giao dịch. Ví dụ, nếu bạn xuất khẩu và nhận USD, bạn muốn 'khóa' tỷ giá để tránh rủi ro USD giảm giá. Hedging là 'bảo hiểm', không phải đầu cơ - bạn đã chấp nhận tổn thất nhỏ (chi phí hedging) để tránh tổn thất lớn không tính toán được."
+      },
+      {
+        "heading": "Forward Contract - Hợp đồng tùy chỉnh",
+        "content": "Forward contract là hợp đồng giữa hai bên (thường ngân hàng và doanh nghiệp): 'Tôi bán USD cho bạn ở mức 24,000 VND/USD vào ngày 30/9, số lượng 1M USD.' Forward được 'tùy chỉnh' - hai bên có thể thỏa thuận bất kỳ số lượng, ngày, hay mức giá nào. Tuy nhiên, nó không được ghi danh trên sàn giao dịch (OTC - Over The Counter), nên có 'counterparty risk': nếu ngân hàng bị phá sản, bạn sẽ gặp rủi ro."
+      },
+      {
+        "heading": "Futures Contract - Phiên bản chuẩn hóa của Forward",
+        "content": "Futures contract là phiên bản chuẩn hóa của forward: quy mô cố định (ví dụ, 100,000 USD/contract), ngày giao dịch cố định (tháng 3, 6, 9, 12), nó ghi danh trên sàn giao dịch (ví dụ, CBOT, CME). Ưu điểm: dễ dàng mua/bán bất cứ lúc nào, không có counterparty risk (sàn bảo đảm). Hạn chế: ít tùy chỉnh hơn forward."
+      },
+      {
+        "heading": "Options - Quyền lựa chọn",
+        "content": "Option là hợp đồng cho bạn 'quyền' (nhưng không bắt buộc) mua/bán tài sản ở mức giá cố định: Call option: Quyền mua USD ở mức 24,000 VND/USD. Nếu tỷ giá thực tế là 25,000, bạn thực hiện (mua 24,000, bán 25,000, kiếm 1,000). Nếu 23,000, bạn không thực hiện (mất chi phí option nhưng tránh lỗ). Put option: Quyền bán USD ở mức cố định. Option đắt hơn forward/futures (vì bạn trả chi phí 'quyền'), nhưng linh hoạt hơn (bạn không bắt buộc)."
+      },
+      {
+        "heading": "Interest Rate Swap - Quản lý lãi suất",
+        "content": "Swap lãi suất: bên A và B trao đổi luồng lãi suất. Ví dụ: A phải trả nợ ở lãi suất thả nổi (LIBOR + 2%), lo sợ lãi suất sẽ tăng. B lại vay với lãi suất cố định (5%), không sợ lãi suất tăng. Họ ký swap: A trả 5% cố định, B trả LIBOR + 2% cho A. Kết quả: A bây giờ trả 5% cố định (bảo vệ trước lãi suất tăng), B trả LIBOR + 2% (linh hoạt)."
+      },
+      {
+        "heading": "Valuation của Hedges - Tính giá trị Forward/Options",
+        "content": "Forward price được tính: F = S × (1 + r)^t, trong đó S là spot price (tỷ giá hiện tại), r là lãi suất, t là thời gian. Ví dụ, USD spot = 23,500 VND, lãi suất VND = 5%/năm, thời gian 1 năm → F ≈ 23,500 × 1.05 = 24,675. Option phức tạp hơn, dùng Black-Scholes model hoặc binomial model. Độ bay hơi (volatility) của tỷ giá ảnh hưởng rất nhiều tới giá option."
+      },
+      {
+        "heading": "Ứng dụng thực tiễn - Treasury Management",
+        "content": "Trong công việc treasury: (1) Nước ngoài: Nhà nhập khẩu vay ngoài, dùng forward để khóa tỷ giá hóa đơn. (2) Đầu tư: Quỹ ngoại dùng currency forward để bảo vệ danh mục khỏi rủi ro tỷ giá. (3) Lãi suất: Ngân hàng dùng interest rate swap để quản lý duration của danh mục. (4) Commodity: Nhà máy điện dùng futures để khóa giá dầu, giá than. Mục đích luôn là 'giảm thiểu rủi ro', không phải 'đầu cơ'."
+      }
+    ],
+    "keyTakeaways": [
+      "Hedging sử dụng derivatives để giảm thiểu rủi ro, không phải để đầu cơ hoặc kiếm lợi",
+      "Forward: tùy chỉnh, OTC, counterparty risk. Futures: chuẩn hóa, sàn giao dịch, an toàn",
+      "Options cho quyền (nhưng không bắt buộc) - linh hoạt nhưng đắt hơn forward",
+      "Interest rate swap giúp quản lý rủi ro lãi suất - bên cố định và bên nổi plổi huởi"
+    ],
+    "practicePrompt": "Một công ty nhập khẩu cần mua 1M USD trong 3 tháng. Spot rate = 24,000 VND/USD, forward rate 3 tháng = 24,300. Công ty nên dùng forward hay chấp nhận rủi ro?",
+    "summary": "Hedging instruments (forward, futures, options, swaps) giúp ngân hàng, công ty, và nhà đầu tư quản lý rủi ro. Mục đích không phải kiếm lợi mà là 'bảo vệ' danh mục khỏi những thay đổi không lường trước.",
+    "application": "Nếu bạn làm treasury officer, bạn sẽ sử dụng những công cụ này hàng ngày. Quy tắc vàng: 'Hedge nếu bạn biết rằng bạn sẽ phải đối mặt với rủi ro trong tương lai.' Nếu công ty xuất khẩu USD, hedge tỷ giá. Nếu vay ngoài với lãi suất nổi, hedge bằng interest rate swap. Hạn chế: đừng 'over-hedge' (hedge quá nhiều) hoặc dùng derivatives để đầu cơ - đó là cách mất tiền."
+  }
 ] as Lesson[];
