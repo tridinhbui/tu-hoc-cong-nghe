@@ -2,7 +2,8 @@
 
 import { useState, useEffect } from "react";
 import { toast } from "sonner";
-import { BarChart3, TrendingUp, Users, Trophy, Zap, Award } from "lucide-react";
+import { BarChart3, TrendingUp, Users, Trophy, Zap, Award, RefreshCw } from "lucide-react";
+import { getGameSessionStats } from "./actions";
 
 interface GameStats {
   totalGamesPlayed: number;
@@ -11,12 +12,20 @@ interface GameStats {
   totalXpFromGames: number;
   mostPlayedGame: string;
   dailyActiveGamers: number;
+  gameTypeStats: Array<{
+    gameType: string;
+    timesPlayed: number;
+    totalXp: number;
+    averageXp: number;
+    averageScore: number;
+  }>;
 }
 
 export default function GamesAdminClient() {
   const [stats, setStats] = useState<GameStats | null>(null);
   const [loading, setLoading] = useState(true);
   const [selectedMetric, setSelectedMetric] = useState<"overview" | "players" | "performance" | "earnings">("overview");
+  const [refreshing, setRefreshing] = useState(false);
 
   useEffect(() => {
     loadGameStats();
@@ -25,22 +34,25 @@ export default function GamesAdminClient() {
   const loadGameStats = async () => {
     try {
       setLoading(true);
-      // TODO: Replace with actual API call to fetch game statistics
-      // For now, showing placeholder data
-      const mockStats: GameStats = {
-        totalGamesPlayed: 2847,
-        totalPlayersEngaged: 523,
-        averageScorePerGame: 7845,
-        totalXpFromGames: 124560,
-        mostPlayedGame: "Daily News Quiz",
-        dailyActiveGamers: 89,
-      };
-      setStats(mockStats);
+      const data = await getGameSessionStats();
+      setStats(data);
     } catch (error) {
       console.error("Error loading game stats:", error);
       toast.error("Không thể tải thống kê trò chơi");
     } finally {
       setLoading(false);
+    }
+  };
+
+  const handleRefresh = async () => {
+    try {
+      setRefreshing(true);
+      await loadGameStats();
+      toast.success("Đã cập nhật thống kê");
+    } catch (error) {
+      toast.error("Lỗi khi cập nhật thống kê");
+    } finally {
+      setRefreshing(false);
     }
   };
 
@@ -75,8 +87,6 @@ export default function GamesAdminClient() {
     },
   ];
 
-  const Gamepad2 = Users; // Fallback icon
-
   if (loading) {
     return (
       <div className="flex items-center justify-center py-12">
@@ -87,6 +97,17 @@ export default function GamesAdminClient() {
 
   return (
     <div className="space-y-6">
+      {/* Refresh Button */}
+      <div className="flex justify-end">
+        <button
+          onClick={handleRefresh}
+          disabled={refreshing}
+          className="flex items-center gap-2 px-4 py-2 rounded-lg bg-stone-200 dark:bg-stone-800 hover:bg-stone-300 dark:hover:bg-stone-700 text-stone-900 dark:text-stone-100 font-semibold text-sm transition-colors disabled:opacity-50"
+        >
+          <RefreshCw className={`w-4 h-4 ${refreshing ? "animate-spin" : ""}`} />
+          Cập nhật
+        </button>
+      </div>
       {/* Stats Cards */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
         {statCards.map((card) => {
@@ -150,6 +171,47 @@ export default function GamesAdminClient() {
                   <p className="text-lg font-bold text-stone-900 dark:text-stone-100 mt-1">{stats?.dailyActiveGamers}</p>
                 </div>
               </div>
+
+              {/* Game Type Breakdown */}
+              <div className="mt-6">
+                <h4 className="font-semibold text-stone-900 dark:text-stone-100 mb-3">Thống kê từng trò chơi</h4>
+                <div className="space-y-2 max-h-96 overflow-y-auto">
+                  {stats?.gameTypeStats && stats.gameTypeStats.length > 0 ? (
+                    stats.gameTypeStats.map((game) => (
+                      <div
+                        key={game.gameType}
+                        className="p-3 bg-stone-50 dark:bg-stone-950/50 rounded-lg border border-stone-200 dark:border-stone-800"
+                      >
+                        <div className="flex items-center justify-between mb-2">
+                          <p className="font-semibold text-stone-900 dark:text-stone-100 text-sm capitalize">
+                            {game.gameType.replace(/-/g, " ")}
+                          </p>
+                          <span className="text-xs bg-purple-100 dark:bg-purple-950/40 text-purple-700 dark:text-purple-400 px-2 py-1 rounded">
+                            {game.timesPlayed} lần
+                          </span>
+                        </div>
+                        <div className="grid grid-cols-3 gap-2 text-xs">
+                          <div>
+                            <p className="text-stone-500 dark:text-stone-400">Tổng XP</p>
+                            <p className="font-bold text-stone-900 dark:text-stone-100">{game.totalXp.toLocaleString()}</p>
+                          </div>
+                          <div>
+                            <p className="text-stone-500 dark:text-stone-400">XP trung bình</p>
+                            <p className="font-bold text-stone-900 dark:text-stone-100">{game.averageXp}</p>
+                          </div>
+                          <div>
+                            <p className="text-stone-500 dark:text-stone-400">Điểm TB</p>
+                            <p className="font-bold text-stone-900 dark:text-stone-100">{game.averageScore}</p>
+                          </div>
+                        </div>
+                      </div>
+                    ))
+                  ) : (
+                    <p className="text-sm text-stone-500 dark:text-stone-400 text-center py-4">Chưa có dữ liệu trò chơi</p>
+                  )}
+                </div>
+              </div>
+
               <p className="text-xs text-stone-500 dark:text-stone-400 mt-4">
                 💡 Tip: Theo dõi các trò chơi có tỷ lệ hoàn thành thấp để cải thiện trải nghiệm người dùng
               </p>
@@ -178,8 +240,42 @@ export default function GamesAdminClient() {
                   Điểm trung bình mỗi trò chơi: <span className="font-bold text-stone-900 dark:text-stone-100">{stats?.averageScorePerGame.toLocaleString()}</span>
                 </p>
               </div>
+
+              {/* Performance by Game Type */}
+              {stats?.gameTypeStats && stats.gameTypeStats.length > 0 && (
+                <div className="mt-4">
+                  <h4 className="font-semibold text-stone-900 dark:text-stone-100 mb-3">Hiệu suất chi tiết</h4>
+                  <div className="space-y-2 max-h-96 overflow-y-auto">
+                    {stats.gameTypeStats.map((game) => (
+                      <div
+                        key={game.gameType}
+                        className="p-3 bg-stone-50 dark:bg-stone-950/50 rounded-lg border border-stone-200 dark:border-stone-800"
+                      >
+                        <div className="flex items-center justify-between">
+                          <p className="font-medium text-stone-900 dark:text-stone-100 text-sm capitalize">
+                            {game.gameType.replace(/-/g, " ")}
+                          </p>
+                          <div className="flex gap-4 text-xs">
+                            <div className="text-right">
+                              <p className="text-stone-500 dark:text-stone-400">Điểm TB</p>
+                              <p className="font-bold text-emerald-600 dark:text-emerald-400">{game.averageScore}</p>
+                            </div>
+                            <div className="text-right">
+                              <p className="text-stone-500 dark:text-stone-400">Tỷ lệ</p>
+                              <p className="font-bold text-amber-600 dark:text-amber-400">
+                                {game.timesPlayed > 0 ? ((game.averageScore / 10000) * 100).toFixed(1) : "0"}%
+                              </p>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
+
               <p className="text-xs text-stone-500 dark:text-stone-400 mt-4">
-                📈 Biểu đồ hiệu suất sẽ được hiển thị ở đây
+                📈 Dữ liệu được cập nhật từ trò chơi thực tế
               </p>
             </div>
           )}
