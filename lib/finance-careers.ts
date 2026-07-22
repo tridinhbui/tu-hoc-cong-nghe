@@ -539,7 +539,7 @@ export const FINANCE_CAREERS: FinanceCareer[] = [
     entryLevel: "Fresh/Junior - phù hợp người năng động, thích tư vấn và định hướng dịch vụ tài chính cá nhân",
     salaryHint: "12 - 22 triệu + Hoa hồng quản lý tài sản (AUM) • 30 - 70+ triệu (Senior Advisor)",
     searchKeyword: "Hoạch định tài chính",
-    relatedLessonSlugs: ["gia-tri-thoi-gian-cua-tien", "modern-portfolio-theory", "rui-ro-la-gi", "ke-hoach-thua-ke", "bao-hiem"],
+    relatedLessonSlugs: ["gia-tri-thoi-gian-cua-tien", "modern-portfolio-theory", "rui-ro-la-gi", "ke-hoach-thua-ke", "bao-hiem", "hoach-dinh-tai-chinh-toan-dien", "hoach-dinh-tai-chinh-theo-giai-doan-cuoc-doi"],
     relatedCfaSubjectIds: ["portfolio", "alternatives"],
     dayInLife: "Gặp gỡ khách hàng cá nhân trao đổi về mục tiêu học vấn của con cái và kế hoạch nghỉ hưu, phân tích danh mục tài sản hiện tại và xây dựng phương án phân bổ quỹ đầu tư tối ưu.",
     careerPath: ["Associate Advisor", "Wealth Manager", "Senior Wealth Advisor", "Managing Director of Wealth"],
