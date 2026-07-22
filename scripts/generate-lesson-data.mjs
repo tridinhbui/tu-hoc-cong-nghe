@@ -33,7 +33,7 @@ outputText = outputText.replace("exports. = exports.lessons = void 0;", "exports
 
 const moduleObj = { exports: {} };
 new Function("exports", "module", outputText)(moduleObj.exports, moduleObj);
-const lessons = applyLessonOverrides(moduleObj.exports.lessons);
+const lessons = applyLessonOverrides(moduleObj.exports.lessons).filter(Boolean);
 
 if (!Array.isArray(lessons) || lessons.length === 0) {
   throw new Error(`Expected a non-empty lessons array, got: ${typeof lessons}`);
