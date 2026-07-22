@@ -17,13 +17,14 @@ import {
   type LeaderboardRow,
 } from "@/lib/supabase-user";
 import { getCombinedGameLeaderboard } from "@/lib/games";
+import { isValidAvatar } from "@/lib/avatar-utils";
 
 // Same avatar/rank-frame visual pattern as the compact dashboard widget
 // (components/Leaderboard.tsx) - kept as a separate component instead of
 // editing that one, since it stays the 5-tab sidebar widget and regressing
 // it isn't worth the reuse.
 function LeaderboardAvatar({ name, avatarUrl }: { name: string; avatarUrl: string | null }) {
-  if (avatarUrl) {
+  if (isValidAvatar(avatarUrl)) {
     return (
       <Image
         src={avatarUrl}

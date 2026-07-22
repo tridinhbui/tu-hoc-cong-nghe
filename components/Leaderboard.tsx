@@ -6,11 +6,7 @@ import Link from "next/link";
 import { Trophy, BookOpen, Target, Flame, Gamepad2 } from "lucide-react";
 import { getLeaderboardByMetric, getMyLeaderboardRank, type LeaderboardMetric, type LeaderboardRow } from "@/lib/supabase-user";
 import { getCombinedGameLeaderboard } from "@/lib/games";
-
-// Check if avatar url is a valid image link
-function isValidAvatar(url: string | null | undefined): boolean {
-  return !!(url && url !== "null" && url.trim() !== "" && (url.startsWith("http") || url.startsWith("/") || url.startsWith("blob:")));
-}
+import { isValidAvatar } from "@/lib/avatar-utils";
 
 // Small circular avatar with an initials fallback for learners who haven't
 // uploaded a profile photo - keeps the row layout stable either way instead

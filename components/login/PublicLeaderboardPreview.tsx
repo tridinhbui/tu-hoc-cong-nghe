@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import Image from "next/image";
 import { getLeaderboardByMetric, type LeaderboardRow } from "@/lib/supabase-user";
+import { isValidAvatar } from "@/lib/avatar-utils";
 
 // Small public teaser of the real leaderboard, shown to signed-out visitors
 // on the homepage - social proof that real people are actively using the
@@ -63,7 +64,7 @@ export default function PublicLeaderboardPreview() {
                   aria-hidden="true"
                 />
               )}
-              {entry.avatarUrl ? (
+              {isValidAvatar(entry.avatarUrl) ? (
                 <Image
                   src={entry.avatarUrl}
                   alt={entry.name}

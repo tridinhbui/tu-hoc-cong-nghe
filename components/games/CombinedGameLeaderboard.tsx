@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import Image from "next/image";
 import { Trophy, Gamepad2 } from "lucide-react";
 import { getCombinedGameLeaderboard, getCombinedGameTitle, GAMES, type CombinedLeaderboardRow } from "@/lib/games";
+import { isValidAvatar } from "@/lib/avatar-utils";
 
 const RANK_MEDAL: Record<number, string> = { 1: "🥇", 2: "🥈", 3: "🥉" };
 
@@ -62,7 +63,7 @@ export default function CombinedGameLeaderboard() {
             <span className="w-7 text-center text-sm font-extrabold text-stone-500 dark:text-stone-400 flex-shrink-0">
               {RANK_MEDAL[rank] ?? rank}
             </span>
-            {row.avatarUrl ? (
+            {isValidAvatar(row.avatarUrl) ? (
               <Image src={row.avatarUrl} alt={row.name} width={28} height={28} className="w-7 h-7 rounded-full object-cover flex-shrink-0" />
             ) : (
               <div className="w-7 h-7 rounded-full bg-stone-200 dark:bg-stone-700 flex items-center justify-center text-[10px] font-extrabold text-stone-600 dark:text-stone-300 flex-shrink-0">
