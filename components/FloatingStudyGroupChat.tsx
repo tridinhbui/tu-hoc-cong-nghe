@@ -174,7 +174,14 @@ export default function FloatingStudyGroupChat({ isOpen: controlledIsOpen, onOpe
 
   async function handleSend() {
     const content = input.trim();
-    if ((!content && !pendingImage) || !room || !userId || sending) return;
+    // Note: deliberately NOT gating this on `sending`. Each call captures its
+    // own `content`/`imageFile` snapshot below, so overlapping sends (e.g. the
+    // user types and hits Enter again before a slow previous send resolves)
+    // are independent and safe - they just both go out. Blocking on `sending`
+    // used to make the second Enter press a silent no-op: it wouldn't clear
+    // the input or send anything, which read as "the box won't clear so I can
+    // type the next message" on a slow connection.
+    if ((!content && !pendingImage) || !room || !userId) return;
     setSending(true);
     setInput("");
     const imageFile = pendingImage;
