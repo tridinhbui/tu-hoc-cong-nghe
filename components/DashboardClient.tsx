@@ -1037,11 +1037,12 @@ export default function DashboardClient({ lessonsMeta }: { lessonsMeta: LessonMe
             </div>
 
             {/* Tasks & Rewards - below chatbot, always open and compact */}
-            {user?.id && (
+            {/* Hidden: CombinedRewardsWidget (Đã học gì section) */}
+            {/* {user?.id && (
               <div className="mt-6">
                 <CombinedRewardsWidget userId={user.id} defaultExpanded={true} />
               </div>
-            )}
+            )} */}
 
             {/* Lesson Recall Scheduler Widget */}
             {user?.id && (
