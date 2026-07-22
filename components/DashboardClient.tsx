@@ -1134,15 +1134,18 @@ export default function DashboardClient({ lessonsMeta }: { lessonsMeta: LessonMe
               which was shortened to a single inline badge to compensate). */}
           <div id="lo-trinh" data-tour="track-selector" className="grid grid-cols-1 sm:grid-cols-4 gap-3 mb-8 items-stretch scroll-mt-24">
           {/* "Tài chính theo nghề nghiệp" - not a lesson track like the other
-              3 cards (no activeTrack state of its own), it links straight to
-              /su-nghiep where the user picks a career and gets a study plan
-              built from that career's relatedLessonSlugs/relatedCfaSubjectIds
-              (see lib/finance-careers.ts) - the career feature already knew
-              how to point back into the other 3 tracks, it just had no entry
-              point here next to them. Placed first since "pick a direction"
+              3 cards (no activeTrack state of its own). Links to
+              /nghe-nghiep-hoc, a lighter sibling of the full /su-nghiep
+              career-exploration hub (daily-life sim, skills radar, career
+              path, compare, job search - a lot to land on just to answer
+              "what should I study") - it only answers that one question,
+              styled like this dashboard's own track lesson lists, using
+              each career's own emoji/colors (lib/finance-careers.ts).
+              /su-nghiep is still one tap away from there for anyone who
+              wants the full profile. Placed first since "pick a direction"
               is the natural starting question before "pick a track". */}
           <Link
-            href="/su-nghiep"
+            href="/nghe-nghiep-hoc"
             className="w-full h-full flex flex-col text-left rounded-xl border-2 px-5 py-4 transition-all border-indigo-200 dark:border-indigo-900 bg-white dark:bg-stone-900 text-stone-700 dark:text-stone-300 hover:border-indigo-400 dark:hover:border-indigo-600 hover:bg-indigo-50/40 dark:hover:bg-indigo-950/20"
           >
             <div className="flex items-center gap-2 flex-wrap">
