@@ -33,7 +33,29 @@ outputText = outputText.replace("exports. = exports.lessons = void 0;", "exports
 
 const moduleObj = { exports: {} };
 new Function("exports", "module", outputText)(moduleObj.exports, moduleObj);
-const lessons = applyLessonOverrides(moduleObj.exports.lessons).filter(Boolean);
+const lessons = applyLessonOverrides(moduleObj.exports.lessons)
+  .filter(Boolean)
+  .map((lesson) => {
+    if (!lesson || !Array.isArray(lesson.quiz)) return lesson;
+
+    const validQuiz = [];
+    const straySections = [];
+    for (const item of lesson.quiz) {
+      if (item && typeof item === "object" && Array.isArray(item.options)) {
+        validQuiz.push(item);
+      } else if (item && typeof item === "object" && typeof item.type === "string") {
+        straySections.push(item);
+      }
+    }
+
+    if (straySections.length === 0) return lesson;
+
+    return {
+      ...lesson,
+      quiz: validQuiz,
+      sections: [...(Array.isArray(lesson.sections) ? lesson.sections : []), ...straySections],
+    };
+  });
 
 if (!Array.isArray(lessons) || lessons.length === 0) {
   throw new Error(`Expected a non-empty lessons array, got: ${typeof lessons}`);
