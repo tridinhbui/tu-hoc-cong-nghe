@@ -28,16 +28,29 @@ const CATEGORY_LABEL: Record<FinanceCareer["category"], string> = {
   advisory: "Tư vấn",
 };
 
+// One extra filter layer before the (still 7-12 item) career grid, so
+// landing on this page is "pick a broad direction" then "pick a career"
+// instead of scanning 36 cards at once.
+const CATEGORY_META: Record<FinanceCareer["category"], { label: string; description: string; emoji: string; from: string; to: string }> = {
+  investment: { label: "Đầu tư & Phân tích", description: "Phân tích thị trường, định giá doanh nghiệp, quản lý danh mục", emoji: "📈", from: "#34d399", to: "#0d9488" },
+  accounting: { label: "Kế toán & Kiểm toán", description: "Ghi nhận, kiểm tra và đảm bảo tuân thủ sổ sách tài chính", emoji: "📒", from: "#60a5fa", to: "#2563eb" },
+  banking: { label: "Ngân hàng & Rủi ro", description: "Tín dụng, quản lý rủi ro, nguồn vốn, giao dịch", emoji: "🏦", from: "#f59e0b", to: "#d97706" },
+  advisory: { label: "Tư vấn & Khách hàng cá nhân", description: "Môi giới, hoạch định tài chính cá nhân, quan hệ nhà đầu tư", emoji: "🤝", from: "#f472b6", to: "#db2777" },
+};
+const CATEGORY_ORDER: FinanceCareer["category"][] = ["investment", "accounting", "banking", "advisory"];
+
 // Entry-level and mixed ("Junior đến Senior") careers still have a way in;
 // pure "Senior - ..." entries are the destination after years of experience,
 // not something a learner picks as a starting direction to study toward.
 const entryLevelCareers = FINANCE_CAREERS.filter((c) => !c.entryLevel.startsWith("Senior"));
 
 export default function CareerLearningPathClient({ lessonsBySlug, lessonsById, completedLessonIds }: CareerLearningPathClientProps) {
+  const [selectedCategory, setSelectedCategory] = useState<FinanceCareer["category"] | null>(null);
   const [selectedId, setSelectedId] = useState<string | null>(null);
   const completedSet = useMemo(() => new Set(completedLessonIds), [completedLessonIds]);
 
   const selected = selectedId ? entryLevelCareers.find((c) => c.id === selectedId) ?? null : null;
+  const careersInCategory = selectedCategory ? entryLevelCareers.filter((c) => c.category === selectedCategory) : [];
 
   // Same lesson list a career already builds on /su-nghiep's study-plan tab
   // (relatedLessonSlugs + relatedCfaSubjectIds -> CFA_LEVEL_1_SUBJECTS'
@@ -70,9 +83,10 @@ export default function CareerLearningPathClient({ lessonsBySlug, lessonsById, c
   const doneCount = roadmap.filter((l) => completedSet.has(l.id)).length;
   const percent = roadmap.length ? Math.round((doneCount / roadmap.length) * 100) : 0;
 
-  if (!selected) {
+  // Step 1: pick a broad category first.
+  if (!selectedCategory) {
     return (
-      <div className="max-w-3xl mx-auto px-6 py-8">
+      <div className="max-w-2xl mx-auto px-6 py-8">
         <Link
           href="/dashboard"
           className="inline-flex items-center gap-1.5 text-sm font-bold text-stone-600 dark:text-stone-400 hover:text-stone-900 dark:hover:text-stone-100 mb-4"
@@ -82,11 +96,59 @@ export default function CareerLearningPathClient({ lessonsBySlug, lessonsById, c
         </Link>
         <h1 className="text-xl font-bold text-stone-900 dark:text-stone-100 mb-1">Tài chính theo nghề nghiệp</h1>
         <p className="text-sm text-stone-500 dark:text-stone-400 mb-6">
+          Chọn một nhóm nghề nghiệp để bắt đầu.
+        </p>
+
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+          {CATEGORY_ORDER.map((cat) => {
+            const meta = CATEGORY_META[cat];
+            const count = entryLevelCareers.filter((c) => c.category === cat).length;
+            return (
+              <button
+                key={cat}
+                onClick={() => setSelectedCategory(cat)}
+                className="text-left rounded-xl border-2 border-stone-200 dark:border-stone-800 bg-white dark:bg-stone-900 p-4 hover:border-stone-400 dark:hover:border-stone-600 transition-all"
+              >
+                <div className="flex items-center gap-3 mb-2">
+                  <div
+                    className="w-11 h-11 rounded-lg flex items-center justify-center text-xl shrink-0"
+                    style={{ background: `linear-gradient(135deg, ${meta.from}, ${meta.to})` }}
+                  >
+                    {meta.emoji}
+                  </div>
+                  <div className="min-w-0">
+                    <p className="font-bold text-stone-900 dark:text-stone-100 text-sm">{meta.label}</p>
+                    <p className="text-[10px] font-semibold uppercase tracking-wider text-stone-400">{count} nghề</p>
+                  </div>
+                </div>
+                <p className="text-xs text-stone-500 dark:text-stone-400">{meta.description}</p>
+              </button>
+            );
+          })}
+        </div>
+      </div>
+    );
+  }
+
+  // Step 2: pick a career within the chosen category.
+  if (!selected) {
+    const meta = CATEGORY_META[selectedCategory];
+    return (
+      <div className="max-w-3xl mx-auto px-6 py-8">
+        <button
+          onClick={() => setSelectedCategory(null)}
+          className="inline-flex items-center gap-1.5 text-sm font-bold text-stone-600 dark:text-stone-400 hover:text-stone-900 dark:hover:text-stone-100 mb-4"
+        >
+          <ArrowLeft className="w-4 h-4" />
+          Nhóm khác
+        </button>
+        <h1 className="text-xl font-bold text-stone-900 dark:text-stone-100 mb-1">{meta.label}</h1>
+        <p className="text-sm text-stone-500 dark:text-stone-400 mb-6">
           Chọn một định hướng nghề nghiệp để xem lộ trình bài học tương ứng.
         </p>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-          {entryLevelCareers.map((career) => (
+          {careersInCategory.map((career) => (
             <button
               key={career.id}
               onClick={() => setSelectedId(career.id)}
