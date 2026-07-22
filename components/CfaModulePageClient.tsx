@@ -17,6 +17,8 @@ import {
 } from "lucide-react";
 import CfaContentRenderer, { renderInlineStyles } from "@/components/CfaContentRenderer";
 import CfaQuizSidebar, { type CfaQuizQuestion } from "@/components/CfaQuizSidebar";
+import OpeningQuestionBlock from "@/components/OpeningQuestionBlock";
+import { LessonSummaryCard, ReviewLoopCard } from "@/components/LessonLearningBlocks";
 import InteractiveWidget, { type WidgetType } from "@/components/InteractiveWidget";
 import FontSizeControl, { loadFontScale } from "@/components/FontSizeControl";
 import ReadingModeControl, { loadReadingMode, type ReadingMode } from "@/components/ReadingModeControl";
@@ -248,6 +250,27 @@ export default function CfaModulePageClient({ moduleId }: { moduleId: string }) 
     [quizQuestions]
   );
 
+  // Mirrors the regular lesson page: pull one question out as an opening
+  // challenge shown before the reading content, leaving the rest for the
+  // end-of-module quiz sidebar - only when there's more than one question,
+  // so a module with just a single question doesn't lose its only quiz item.
+  const hasOpeningQuestion = normalizedQuiz.length > 1;
+  const openingQuestion = hasOpeningQuestion ? normalizedQuiz[0] : null;
+  const sidebarQuiz = hasOpeningQuestion ? normalizedQuiz.slice(1) : normalizedQuiz;
+
+  // End-of-module summary card, generated the same generic way regular
+  // lessons fall back to buildDefaultSummary() when no hand-authored summary
+  // exists - CFA modules have no authored summary field, so this is always
+  // the synthesized version rather than special-cased per module.
+  const moduleSummary = useMemo(() => {
+    const title = toTitleCase(mod?.title ?? "");
+    return {
+      keyIdea: `Bài này giúp bạn nắm vững nội dung: ${title}.`,
+      commonMistake: "Học thuộc công thức mà không hiểu bản chất - hãy thử tự giải thích lại bằng lời của mình trước khi làm quiz.",
+      action: "Quay lại làm bài quiz sau vài ngày để kiểm tra xem bạn còn nhớ khái niệm này không.",
+    };
+  }, [mod?.title]);
+
   async function handleQuizFinish(score: number, total: number) {
     setQuizJustFinished(true);
     if (!userId) return;
@@ -440,6 +463,20 @@ export default function CfaModulePageClient({ moduleId }: { moduleId: string }) 
         </span>
         <h1 className="text-xl sm:text-2xl font-extrabold text-stone-900 dark:text-white mt-3 mb-6">{toTitleCase(mod.title)}</h1>
 
+        {/* Opening question - same UI regular lessons use to open with a
+            question before the reading content, built from this module's
+            own first quiz question instead of separately-authored content. */}
+        {openingQuestion && (
+          <div className="mb-8 border border-stone-200 dark:border-stone-800 rounded-2xl p-5 sm:p-6 bg-stone-50/50 dark:bg-stone-900/30">
+            <OpeningQuestionBlock
+              question={openingQuestion.question}
+              options={openingQuestion.options}
+              correct={openingQuestion.correct}
+              explanation={openingQuestion.explanation}
+            />
+          </div>
+        )}
+
         {videoId && (
           <div className="mb-6 aspect-video rounded-xl overflow-hidden border border-stone-200 dark:border-stone-800">
             <iframe
@@ -536,19 +573,30 @@ export default function CfaModulePageClient({ moduleId }: { moduleId: string }) 
           </div>
         )}
 
+        {/* Summary + review-loop cards - same end-of-lesson recap regular
+            lessons show, placed before the quiz sidebar to mirror
+            LessonPageClient's layout order. */}
+        <div className="mb-8 space-y-4">
+          <LessonSummaryCard summary={moduleSummary} />
+          <ReviewLoopCard
+            prompt={`Nếu bạn chỉ nhớ 1 điều từ bài này, hãy nhớ rằng: ${moduleSummary.keyIdea}`}
+            cta="Ôn lại trong 1 phút trước khi chuyển bài"
+          />
+        </div>
+
         {/* Quiz - visually identical to the regular lesson page's sidebar
             quiz (components/CfaQuizSidebar.tsx mirrors
             components/LessonPageLayout.tsx's quiz block). */}
-        {normalizedQuiz.length > 0 && (
+        {sidebarQuiz.length > 0 && (
           <section className="border-t border-stone-200 dark:border-stone-800 pt-8">
             <h2 className="text-sm font-extrabold text-stone-900 dark:text-white uppercase tracking-wider mb-5">
-              Luyện tập ({normalizedQuiz.length} câu)
+              Luyện tập ({sidebarQuiz.length} câu)
             </h2>
-            <CfaQuizSidebar quiz={normalizedQuiz} onFinish={handleQuizFinish} nextModuleId={nextModule?.id ?? null} />
+            <CfaQuizSidebar quiz={sidebarQuiz} onFinish={handleQuizFinish} nextModuleId={nextModule?.id ?? null} />
           </section>
         )}
 
-        {normalizedQuiz.length === 0 && nextModule && (
+        {sidebarQuiz.length === 0 && nextModule && (
           <div className="border-t border-stone-200 dark:border-stone-800 pt-6 flex justify-end">
             <Link
               href={`/cfa/${nextModule.id}`}
