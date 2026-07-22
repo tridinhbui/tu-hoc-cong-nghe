@@ -388,6 +388,35 @@ export default function DashboardClient({ lessonsMeta }: { lessonsMeta: LessonMe
     return { lessonOrdinal: ordinal, lessonsByStageLabel: byStage, lessonsByPartKey: byPart };
   }, [sorted, track, activeTrack]);
 
+  // Every stage/part key for the currently visible track, in the exact
+  // format used by toggleStage/togglePart - lets "Mở tất cả"/"Đóng tất cả"
+  // set the whole accordion tree at once instead of the user clicking each
+  // row individually to browse a long lesson list. Must stay above the
+  // loading/onboarding early returns below - hooks can't be skipped on some
+  // renders and not others (React error #310: "rendered more/fewer hooks
+  // than previous render").
+  const allStageAndPartKeys = useMemo(() => {
+    const stageKeys: string[] = [];
+    const partKeys: string[] = [];
+    const visibleStages =
+      activeTrack === "professional"
+        ? track.stages.filter((s) => (PROFESSIONAL_BRANCHES.find((b) => b.id === professionalBranch)!.stageLabels as readonly string[]).includes(s.label))
+        : track.stages;
+    for (const stage of visibleStages) {
+      const stageLessons = lessonsByStageLabel.get(stage.label) ?? [];
+      if (stageLessons.length === 0) continue;
+      const stageKey = `${activeTrack}-${stage.label}`;
+      stageKeys.push(stageKey);
+      for (const part of stage.parts) {
+        const partLessons = lessonsByPartKey.get(`${stage.label}::${part.name}`) ?? [];
+        if (partLessons.length === 0) continue;
+        partKeys.push(`${stageKey}-${part.name}`);
+      }
+    }
+    if (sorted.some((l) => l.track === "bonus")) stageKeys.push("bonus");
+    return { stageKeys, partKeys };
+  }, [track, activeTrack, professionalBranch, lessonsByStageLabel, lessonsByPartKey, sorted]);
+
   const toggleStage = (key: string) => {
     setOpenStages((prev) => {
       const next = new Set(prev);
@@ -781,32 +810,6 @@ export default function DashboardClient({ lessonsMeta }: { lessonsMeta: LessonMe
   const bonusLessons = sorted.filter((l) => l.track === "bonus");
   const bonusDone = bonusLessons.filter((l) => completed.includes(l.id)).length;
   const bonusOpen = openStages.has("bonus");
-
-  // Every stage/part key for the currently visible track, in the exact
-  // format used by toggleStage/togglePart - lets "Mở tất cả"/"Đóng tất cả"
-  // set the whole accordion tree at once instead of the user clicking each
-  // row individually to browse a long lesson list.
-  const allStageAndPartKeys = useMemo(() => {
-    const stageKeys: string[] = [];
-    const partKeys: string[] = [];
-    const visibleStages =
-      activeTrack === "professional"
-        ? track.stages.filter((s) => (PROFESSIONAL_BRANCHES.find((b) => b.id === professionalBranch)!.stageLabels as readonly string[]).includes(s.label))
-        : track.stages;
-    for (const stage of visibleStages) {
-      const stageLessons = lessonsByStageLabel.get(stage.label) ?? [];
-      if (stageLessons.length === 0) continue;
-      const stageKey = `${activeTrack}-${stage.label}`;
-      stageKeys.push(stageKey);
-      for (const part of stage.parts) {
-        const partLessons = lessonsByPartKey.get(`${stage.label}::${part.name}`) ?? [];
-        if (partLessons.length === 0) continue;
-        partKeys.push(`${stageKey}-${part.name}`);
-      }
-    }
-    if (bonusLessons.length > 0) stageKeys.push("bonus");
-    return { stageKeys, partKeys };
-  }, [track, activeTrack, professionalBranch, lessonsByStageLabel, lessonsByPartKey, bonusLessons]);
 
   function expandAllStages() {
     setOpenStages(new Set(allStageAndPartKeys.stageKeys));
