@@ -7,7 +7,7 @@ import { createClient } from "@/lib/supabase";
 import type { ChallengeQuestion } from "@/app/api/knowledge-challenge/route";
 import { submitQuizSession, computeQuizXp, type QuizTrack, type QuizDifficulty, type QuizAnswerSubmission } from "@/lib/supabase-quiz-sessions";
 import { recalculateUserStats } from "@/lib/supabase-user";
-import LevelMapSummaryWidget from "@/components/LevelMapSummaryWidget";
+import TaiTaiQuizSuggestion from "@/components/TaiTaiQuizSuggestion";
 
 const TRACKS: { id: QuizTrack; label: string; desc: string }[] = [
   { id: "personal", label: "Tài chính cá nhân", desc: "Tư duy tiền bạc, đầu tư, danh mục, hưu trí" },
@@ -46,7 +46,13 @@ export default function KiemTraPage() {
     supabase.auth.getUser().then(({ data }) => setUserId(data.user?.id ?? null));
   }, [supabase]);
 
-  const startQuiz = useCallback(async () => {
+  // Accepts explicit overrides so callers (like TaiTai's suggestion card,
+  // which sets track/difficulty and starts the quiz in the same click) don't
+  // race the setTrack/setDifficulty state updates - relying on the `track`/
+  // `difficulty` closures here would still read the PREVIOUS render's values.
+  const startQuiz = useCallback(async (overrideTrack?: QuizTrack, overrideDifficulty?: QuizDifficulty) => {
+    const effectiveTrack = overrideTrack ?? track;
+    const effectiveDifficulty = overrideDifficulty ?? difficulty;
     setStage("loading");
     setActiveQ(0);
     setSelected(null);
@@ -55,7 +61,7 @@ export default function KiemTraPage() {
     setAnswers([]);
     setXpAwarded(null);
     try {
-      const res = await fetch(`/api/knowledge-challenge?track=${track}&difficulty=${difficulty}`);
+      const res = await fetch(`/api/knowledge-challenge?track=${effectiveTrack}&difficulty=${effectiveDifficulty}`);
       if (!res.ok) throw new Error("failed");
       const data = await res.json();
       if (!data.questions || data.questions.length === 0) {
@@ -143,7 +149,16 @@ export default function KiemTraPage() {
       <div className="max-w-2xl mx-auto px-6 py-8">
         {stage === "setup" && (
           <div className="space-y-6">
-            {userId && <LevelMapSummaryWidget userId={userId} />}
+            {userId && (
+              <TaiTaiQuizSuggestion
+                userId={userId}
+                onSelect={(t, d) => {
+                  setTrack(t);
+                  setDifficulty(d);
+                  void startQuiz(t, d);
+                }}
+              />
+            )}
 
             <div className="rounded-2xl border border-emerald-200 dark:border-emerald-900 bg-emerald-50 dark:bg-emerald-950/40 p-4 flex items-start gap-3">
               <Sparkles className="w-5 h-5 text-emerald-600 dark:text-emerald-400 flex-shrink-0 mt-0.5" />
@@ -194,7 +209,7 @@ export default function KiemTraPage() {
             </div>
 
             <button
-              onClick={startQuiz}
+              onClick={() => void startQuiz()}
               className="w-full py-4 rounded-xl font-extrabold text-base uppercase tracking-wide text-white bg-stone-900 dark:bg-stone-100 dark:text-stone-900 hover:opacity-90 cursor-pointer"
             >
               Bắt đầu kiểm tra →
