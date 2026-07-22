@@ -302,7 +302,7 @@ export default function HomePage() {
                   initial={{ opacity: 0, y: 14 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.45, ease: "easeOut", delay: 0.24 }}
-                  className="rounded-2xl border border-stone-200 dark:border-stone-800 bg-stone-50/60 dark:bg-stone-900/40 px-5 py-3.5 w-fit"
+                  className="rounded-2xl border border-stone-200 dark:border-stone-800 bg-stone-50/60 dark:bg-stone-900/40 px-4 sm:px-5 py-3.5 w-full sm:w-fit"
                 >
                   <div className="mb-3 inline-flex items-center gap-2 rounded-full border border-emerald-200/80 bg-white/80 px-2.5 py-1 text-[10px] font-bold uppercase tracking-[0.18em] text-emerald-700 dark:border-emerald-900/50 dark:bg-stone-900/60 dark:text-emerald-300">
                     <span className="relative flex w-1.5 h-1.5">
@@ -312,17 +312,17 @@ export default function HomePage() {
                     Live cập nhật trực tiếp
                   </div>
                   <div className="flex items-stretch divide-x divide-stone-200 dark:divide-stone-800">
-                    <div className="pr-6">
-                      <LiveNumber value={displayedUserCount} className="text-2xl" />
-                      <p className="text-[11px] font-semibold text-stone-500 dark:text-stone-400 mt-0.5">người học</p>
+                    <div className="pr-3 sm:pr-6 min-w-0">
+                      <LiveNumber value={displayedUserCount} className="text-lg sm:text-2xl" />
+                      <p className="text-[10px] sm:text-[11px] font-semibold text-stone-500 dark:text-stone-400 mt-0.5">người học</p>
                     </div>
-                    <div className="px-6">
-                      <LiveNumber value={displayedLessonCount} className="text-2xl" />
-                      <p className="text-[11px] font-semibold text-stone-500 dark:text-stone-400 mt-0.5">bài học</p>
+                    <div className="px-3 sm:px-6 min-w-0">
+                      <LiveNumber value={displayedLessonCount} className="text-lg sm:text-2xl" />
+                      <p className="text-[10px] sm:text-[11px] font-semibold text-stone-500 dark:text-stone-400 mt-0.5">bài học</p>
                     </div>
-                    <div className="pl-6">
-                      <LiveNumber value={displayedCompletedCount} className="text-2xl" />
-                      <p className="text-[11px] font-semibold text-stone-500 dark:text-stone-400 mt-0.5">bài học đã hoàn thành</p>
+                    <div className="pl-3 sm:pl-6 min-w-0">
+                      <LiveNumber value={displayedCompletedCount} className="text-lg sm:text-2xl" />
+                      <p className="text-[10px] sm:text-[11px] font-semibold text-stone-500 dark:text-stone-400 mt-0.5 whitespace-nowrap sm:whitespace-normal">đã hoàn thành</p>
                     </div>
                   </div>
                 </motion.div>
