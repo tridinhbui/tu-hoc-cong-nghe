@@ -841,7 +841,7 @@ export const FINANCE_CAREERS: FinanceCareer[] = [
     entryLevel: "Junior đến Senior - phổ biến tại ngân hàng, công ty chứng khoán và quỹ đầu tư có yếu tố nước ngoài",
     salaryHint: "15 - 25 triệu (Junior) • 35 - 65+ triệu (Senior/Manager)",
     searchKeyword: "Compliance Officer",
-    relatedLessonSlugs: ["he-thong-tai-chinh", "thi-truong-tai-chinh", "credit-rating"],
+    relatedLessonSlugs: ["he-thong-tai-chinh", "thi-truong-tai-chinh", "credit-rating", "aml-kyc-la-gi", "aml-kyc-quy-trinh-chi-tiet", "aml-kyc-case-study"],
     relatedCfaSubjectIds: ["ethics"],
     dayInLife: "Rà soát danh sách giao dịch giá trị lớn phát sinh trong ngày để phát hiện dấu hiệu rửa tiền, cập nhật chính sách nội bộ theo thông tư mới của NHNN, và tổ chức buổi đào tạo tuân thủ cho phòng kinh doanh.",
     careerPath: ["Compliance Analyst", "Senior Compliance Officer", "Compliance Manager", "Chief Compliance Officer (CCO)"],
