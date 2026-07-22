@@ -126,6 +126,17 @@ export const TRACK_PERSONAL = {
         { name: "Bảo vệ tài sản & di sản", days: [294, 298] as [number, number] },
       ],
     },
+    {
+      label: "Chặng 8",
+      name: "Tâm lý học tài chính hành vi (Behavioral Finance)",
+      days: [1235, 1240] as [number, number],
+      available: true,
+      isNew: true,
+      parts: [
+        { name: "Thiên kiến trong đầu tư cá nhân", days: [1235, 1237] as [number, number] },
+        { name: "Tiền bạc, thời gian và xây kỷ luật tài chính", days: [1238, 1240] as [number, number] },
+      ],
+    },
   ] satisfies Stage[],
 };
 
