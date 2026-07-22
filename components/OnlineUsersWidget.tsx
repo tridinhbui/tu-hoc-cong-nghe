@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import Image from "next/image";
 import { Users } from "lucide-react";
 import { getOnlineUsers, getOnlineCount, type OnlineUser } from "@/lib/presence";
+import { isValidAvatar } from "@/lib/avatar-utils";
 
 export default function OnlineUsersWidget() {
   const [users, setUsers] = useState<OnlineUser[]>([]);
@@ -64,7 +65,7 @@ export default function OnlineUsersWidget() {
               className="flex items-center gap-1.5 bg-stone-50 dark:bg-stone-800/60 border border-stone-150 dark:border-stone-800 rounded-full pl-1 pr-2.5 py-1"
             >
               <div className="relative w-5 h-5 rounded-full overflow-hidden bg-stone-200 dark:bg-stone-700 flex-shrink-0">
-                {u.avatarUrl ? (
+                {isValidAvatar(u.avatarUrl) ? (
                   <Image src={u.avatarUrl} alt={u.name} fill sizes="20px" className="object-cover" />
                 ) : (
                   <div className="w-full h-full flex items-center justify-center text-[9px] font-black text-stone-500 dark:text-stone-400">

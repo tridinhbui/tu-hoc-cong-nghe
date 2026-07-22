@@ -22,6 +22,7 @@ import {
   subscribeToRoomMessages,
 } from "@/lib/supabase-study-rooms";
 import { trackFeatureClick } from "@/lib/feature-events";
+import { isValidAvatar } from "@/lib/avatar-utils";
 import {
   type StudyRoomMember,
   type StudyRoomMessage,
@@ -41,7 +42,7 @@ function Avatar({ name, avatarUrl, size = 36 }: { name?: string | null; avatarUr
     .toUpperCase()
     .slice(0, 2);
 
-  return avatarUrl ? (
+  return isValidAvatar(avatarUrl) ? (
     <Image
       src={avatarUrl}
       alt={name || "User"}

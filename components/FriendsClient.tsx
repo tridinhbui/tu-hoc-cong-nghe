@@ -21,6 +21,7 @@ import {
   type SearchAccountResult,
   type SocialConnection,
 } from "@/lib/supabase-social";
+import { isValidAvatar } from "@/lib/avatar-utils";
 
 interface SessionUser {
   id: string;
@@ -47,7 +48,7 @@ function Avatar({
     .toUpperCase()
     .slice(0, 2);
 
-  return avatarUrl ? (
+  return isValidAvatar(avatarUrl) ? (
     <Image
       src={avatarUrl}
       alt={name || "User"}

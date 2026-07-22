@@ -4,6 +4,7 @@ import { useEffect, useState, type ReactNode } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import Image from "next/image";
+import { isValidAvatar } from "@/lib/avatar-utils";
 import {
   ArrowRight,
   Bookmark,
@@ -450,7 +451,7 @@ export default function ProfilePage() {
 
           <div className="relative flex flex-col sm:flex-row sm:items-center justify-between gap-6">
             <div className="flex flex-col sm:flex-row items-center sm:items-start gap-5 text-center sm:text-left">
-              {avatarUrl ? (
+              {isValidAvatar(avatarUrl) ? (
                 <div className="relative w-24 h-24 sm:w-28 sm:h-28 rounded-full overflow-hidden border-4 border-white/10 dark:border-stone-800 shadow-md flex-shrink-0">
                   <Image
                     src={avatarUrl}

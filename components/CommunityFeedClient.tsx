@@ -16,6 +16,7 @@ import {
   subscribeToCommunityFeed,
   type CommunityFeedPost,
 } from "@/lib/supabase-community";
+import { isValidAvatar } from "@/lib/avatar-utils";
 
 interface SessionUser {
   id: string;
@@ -30,7 +31,7 @@ function Avatar({ name, avatarUrl }: { name?: string | null; avatarUrl?: string 
     .toUpperCase()
     .slice(0, 2);
 
-  return avatarUrl ? (
+  return isValidAvatar(avatarUrl) ? (
     <Image
       src={avatarUrl}
       alt={name || "User"}

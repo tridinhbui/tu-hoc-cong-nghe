@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState, useCallback } from "react";
 import Image from "next/image";
+import { isValidAvatar } from "@/lib/avatar-utils";
 import TaiTaiAvatar from "@/components/TaiTaiAvatar";
 import { toast } from "sonner";
 import { Users, Send, X, ImagePlus } from "lucide-react";
@@ -339,7 +340,7 @@ export default function FloatingStudyGroupChat({ isOpen: controlledIsOpen, onOpe
                 return (
                   <div key={msg.id} className={`flex items-end gap-2 ${isMine ? "justify-end" : "justify-start"}`}>
                     {!isMine &&
-                      (member?.avatar_url ? (
+                      (isValidAvatar(member?.avatar_url) ? (
                         <Image
                           src={member.avatar_url}
                           alt={member.full_name || "Thành viên"}

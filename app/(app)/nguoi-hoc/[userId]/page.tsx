@@ -1,5 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
+import { isValidAvatar } from "@/lib/avatar-utils";
 import { notFound, redirect } from "next/navigation";
 import { createServerSupabaseClient } from "@/lib/supabase-server";
 import { getPublicUserProfile } from "@/lib/public-user-profile";
@@ -87,7 +88,7 @@ export default async function PublicUserProfilePage({
         <div className="grid gap-6 lg:grid-cols-[1.1fr_0.9fr]">
           <div className="bg-white dark:bg-stone-900 border-2 border-stone-200 dark:border-stone-800 rounded-2xl p-7">
             <div className="flex items-start gap-5">
-              {profile.avatarUrl ? (
+              {isValidAvatar(profile.avatarUrl) ? (
                 <Image
                   src={profile.avatarUrl}
                   alt={profile.displayName}

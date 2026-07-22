@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
+import { isValidAvatar } from "@/lib/avatar-utils";
 import { usePathname, useRouter } from "next/navigation";
 import { toast } from "sonner";
 import { FileText, BarChart3, StickyNote, GraduationCap, Gamepad2, Menu, X, Briefcase } from "lucide-react";
@@ -225,7 +226,7 @@ export default function AppNavbar() {
                 onClick={() => setDropdownOpen((v) => !v)}
                 className="flex items-center gap-2 p-1 rounded-full hover:bg-stone-100 dark:hover:bg-stone-800 transition-colors"
               >
-                {profile.avatar_url ? (
+                {isValidAvatar(profile.avatar_url) ? (
                   <Image src={profile.avatar_url} alt={displayName} width={34} height={34} className="w-[34px] h-[34px] rounded-full object-cover" />
                 ) : (
                   <div className="w-[34px] h-[34px] rounded-full bg-emerald-500 flex items-center justify-center text-white font-bold text-xs">
@@ -237,7 +238,7 @@ export default function AppNavbar() {
               {dropdownOpen && (
                 <div className="absolute right-0 mt-2 w-[min(18rem,calc(100vw-2rem))] bg-white dark:bg-stone-900 rounded-xl border border-stone-200 dark:border-stone-800 shadow-lg z-40 p-4">
                   <div className="flex gap-3 mb-4 pb-4 border-b border-stone-100 dark:border-stone-800">
-                    {profile.avatar_url ? (
+                    {isValidAvatar(profile.avatar_url) ? (
                       <Image src={profile.avatar_url} alt={displayName} width={44} height={44} className="w-11 h-11 rounded-full object-cover" />
                     ) : (
                       <div className="w-11 h-11 rounded-full bg-emerald-500 flex items-center justify-center text-white font-bold">{initials || "?"}</div>

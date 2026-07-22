@@ -54,6 +54,7 @@ import { getUserBookmarks, type LessonBookmark } from "@/lib/supabase-bookmarks"
 import { useRoutePrefetch } from "@/lib/use-route-prefetch";
 import { getPassedMilestones, savePassedMilestone, type MilestoneCompletion } from "@/lib/supabase-milestones";
 import { syncOfflineQueue } from "@/lib/offline-sync";
+import { isValidAvatar } from "@/lib/avatar-utils";
 
 const STAGE_THEMES: Record<string, { emoji: string; bg: string; text: string; barColor: string }> = {
   // All stages use the clean neutral Stone color theme of Stage 0
@@ -994,7 +995,7 @@ export default function DashboardClient({ lessonsMeta }: { lessonsMeta: LessonMe
                                         href={`/nguoi-hoc/${m.userId}`}
                                         className="flex items-center gap-2.5 bg-white dark:bg-stone-900 border border-stone-200 dark:border-stone-800 rounded-xl px-3 py-2.5 hover:border-stone-400 dark:hover:border-stone-600 hover:shadow-sm transition-all"
                                       >
-                                        {m.avatarUrl ? (
+                                        {isValidAvatar(m.avatarUrl) ? (
                                           <img src={m.avatarUrl} alt={m.name} className="w-8 h-8 rounded-full object-cover shrink-0" />
                                         ) : (
                                           <div className="w-8 h-8 rounded-full bg-stone-100 dark:bg-stone-800 text-stone-600 dark:text-stone-300 flex items-center justify-center text-xs font-black shrink-0">

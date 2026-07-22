@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { createClient } from "@/lib/supabase";
 import Image from "next/image";
 import Link from "next/link";
+import { isValidAvatar } from "@/lib/avatar-utils";
 
 interface Profile {
   id: string;
@@ -81,7 +82,7 @@ export default function UserProfile() {
         onClick={() => setShowDropdown(!showDropdown)}
         className="flex items-center gap-2 p-2 rounded-lg hover:bg-stone-100 dark:hover:bg-stone-800 transition"
       >
-        {profile.avatar_url ? (
+        {isValidAvatar(profile.avatar_url) ? (
           <Image
             src={profile.avatar_url}
             alt={profile.full_name || "User"}
@@ -99,7 +100,7 @@ export default function UserProfile() {
       {showDropdown && (
         <div className="absolute right-0 mt-2 w-[min(18rem,calc(100vw-2rem))] bg-white dark:bg-stone-900 rounded-xl border border-stone-200 dark:border-stone-800 shadow-lg z-50 p-4">
           <div className="flex gap-3 mb-4 pb-4 border-b border-stone-100 dark:border-stone-800">
-            {profile.avatar_url ? (
+            {isValidAvatar(profile.avatar_url) ? (
               <Image
                 src={profile.avatar_url}
                 alt={profile.full_name || "User"}

@@ -6,6 +6,7 @@ import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { createClient } from "@/lib/supabase";
 import { useRoutePrefetch } from "@/lib/use-route-prefetch";
+import { isValidAvatar } from "@/lib/avatar-utils";
 
 interface UserMenuProps {
   name?: string;
@@ -55,7 +56,7 @@ export default function UserMenu({ name, email, avatarUrl }: UserMenuProps) {
         onClick={() => setIsOpen(!isOpen)}
         className="w-9 h-9 rounded-full overflow-hidden bg-stone-200 dark:bg-stone-700 hover:bg-stone-300 dark:hover:bg-stone-600 transition-colors flex items-center justify-center text-xs font-extrabold text-stone-700 dark:text-stone-300 border border-stone-300 dark:border-stone-600"
       >
-        {avatarUrl ? (
+        {isValidAvatar(avatarUrl) ? (
           <Image src={avatarUrl} alt={displayName} width={36} height={36} className="w-full h-full object-cover" />
         ) : (
           initials
