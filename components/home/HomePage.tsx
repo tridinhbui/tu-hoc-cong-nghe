@@ -13,7 +13,7 @@ import {
   ShieldCheck,
   CheckCircle2,
 } from "lucide-react";
-import { getTotalUserCount } from "@/lib/supabase-user";
+import { getTotalUserCount, getTotalCompletedLessonsCount } from "@/lib/supabase-user";
 import { animateCountTo } from "@/lib/animate-count";
 import { TRACKS, type TrackId } from "@/lib/tracks";
 import Logo from "@/components/Logo";
@@ -39,7 +39,7 @@ const PAIN_POINTS = [
   {
     icon: Sparkles,
     worry: "Sợ đóng tiền một khoá đắt rồi bỏ dở",
-    answer: "Toàn bộ 334+ bài học - 100% miễn phí mãi mãi, không có bài trả phí hay bản nâng cấp ẩn phía sau.",
+    answer: "Toàn bộ {count}+ bài học - 100% miễn phí mãi mãi, không có bài trả phí hay bản nâng cấp ẩn phía sau.",
   },
   {
     icon: GraduationCap,
@@ -90,8 +90,15 @@ const AUDIENCES = [
 export default function HomePage() {
   const [displayedUserCount, setDisplayedUserCount] = useState(0);
   const [displayedLessonCount, setDisplayedLessonCount] = useState(0);
+  const [displayedCompletedCount, setDisplayedCompletedCount] = useState(0);
+  // Plain (non-animated) rounded-down count for inline copy ("360+ bài
+  // học..." in the hero paragraph and pain-point card) - the animated
+  // displayedLessonCount above counts up from 0 on load, which reads fine
+  // as a standalone hero stat but looks broken mid-sentence in body text.
+  const [lessonCountFloor, setLessonCountFloor] = useState<number | null>(null);
   const [previewTrack, setPreviewTrack] = useState<TrackId>("personal");
   const userCountLoadedRef = useRef(false);
+  const completedCountLoadedRef = useRef(false);
 
   useRoutePrefetch(["/login", "/login?mode=signup", `/bai-hoc/${TRACKS.personal.previewSlug}`], { delayMs: 500 });
 
@@ -130,11 +137,41 @@ export default function HomePage() {
       .then((res) => (res.ok ? res.json() : null))
       .then((data: { count?: number } | null) => {
         if (cancelledRef.current || !data?.count) return;
-        animateCountTo(Math.max(data.count, 334), setDisplayedLessonCount, cancelledRef);
+        animateCountTo(data.count, setDisplayedLessonCount, cancelledRef);
+        setLessonCountFloor(Math.floor(data.count / 10) * 10);
       })
       .catch((error) => console.error("Error loading lesson count:", error));
     return () => {
       cancelledRef.current = true;
+    };
+  }, []);
+
+  useEffect(() => {
+    const cancelledRef = { current: false };
+    const loadCompletedCount = async () => {
+      try {
+        const count = await getTotalCompletedLessonsCount();
+        if (cancelledRef.current || !count) return;
+        const safeCount = Math.max(count, 8000);
+        if (!completedCountLoadedRef.current) {
+          completedCountLoadedRef.current = true;
+          animateCountTo(safeCount, setDisplayedCompletedCount, cancelledRef);
+        } else {
+          setDisplayedCompletedCount(safeCount);
+        }
+      } catch (error) {
+        console.error("Error loading total completed lessons count:", error);
+      }
+    };
+
+    void loadCompletedCount();
+    const intervalId = window.setInterval(() => {
+      void loadCompletedCount();
+    }, 30000);
+
+    return () => {
+      cancelledRef.current = true;
+      window.clearInterval(intervalId);
     };
   }, []);
 
@@ -234,7 +271,7 @@ export default function HomePage() {
                   transition={{ duration: 0.45, ease: "easeOut", delay: 0.12 }}
                   className="text-base sm:text-lg text-stone-600 dark:text-stone-400 leading-relaxed mb-7 max-w-xl"
                 >
-                  334+ bài học - 100% miễn phí vĩnh viễn - giáo trình thiết kế riêng cho người Việt học tài chính cá
+                  {lessonCountFloor ?? 360}+ bài học - 100% miễn phí vĩnh viễn - giáo trình thiết kế riêng cho người Việt học tài chính cá
                   nhân, CFA, lập kế hoạch tài chính, đầu tư, kế toán và tài chính chuyên nghiệp. Học theo phương pháp
                   Spaced Repetition khoa học.
                 </motion.p>
@@ -279,9 +316,13 @@ export default function HomePage() {
                       <LiveNumber value={displayedUserCount} className="text-2xl" />
                       <p className="text-[11px] font-semibold text-stone-500 dark:text-stone-400 mt-0.5">người học</p>
                     </div>
-                    <div className="pl-6">
+                    <div className="px-6">
                       <LiveNumber value={displayedLessonCount} className="text-2xl" />
                       <p className="text-[11px] font-semibold text-stone-500 dark:text-stone-400 mt-0.5">bài học</p>
+                    </div>
+                    <div className="pl-6">
+                      <LiveNumber value={displayedCompletedCount} className="text-2xl" />
+                      <p className="text-[11px] font-semibold text-stone-500 dark:text-stone-400 mt-0.5">bài học đã hoàn thành</p>
                     </div>
                   </div>
                 </motion.div>
@@ -411,7 +452,9 @@ export default function HomePage() {
                     <Icon className="w-5 h-5 text-emerald-600 dark:text-emerald-400" />
                   </span>
                   <p className="text-sm font-bold text-stone-500 dark:text-stone-500 italic mb-2">“{worry}”</p>
-                  <p className="text-sm text-stone-700 dark:text-stone-300 leading-relaxed font-medium">{answer}</p>
+                  <p className="text-sm text-stone-700 dark:text-stone-300 leading-relaxed font-medium">
+                    {answer.replace("{count}", String(lessonCountFloor ?? 360))}
+                  </p>
                 </div>
               </ScrollReveal>
             ))}

@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { toast } from "sonner";
-import { RefreshCw, CheckCircle, XCircle, HelpCircle, Sparkles } from "lucide-react";
+import { RefreshCw, CheckCircle, XCircle, HelpCircle, Sparkles, ChevronDown, ChevronUp, AlertCircle } from "lucide-react";
 import { getLessonRecalls, processRecallAttempt, type LessonRecall } from "@/lib/supabase-recalls";
 import { getLessonById } from "@/lib/lessons-loader"; // wait: getLessonById is server-only!
 // Since getLessonById is server-only, we should create a server action in app/actions/flashcard-actions.ts
@@ -25,7 +25,8 @@ interface DueRecallItem {
 export default function LessonRecallWidget({ userId }: LessonRecallWidgetProps) {
   const [dueRecalls, setDueRecalls] = useState<DueRecallItem[]>([]);
   const [loading, setLoading] = useState(true);
-  
+  const [collapsed, setCollapsed] = useState(true);
+
   // Active review session state
   const [activeItem, setActiveItem] = useState<DueRecallItem | null>(null);
   const [questions, setQuestions] = useState<any[]>([]);
@@ -136,23 +137,62 @@ export default function LessonRecallWidget({ userId }: LessonRecallWidgetProps) 
   if (loading) return null;
   if (dueRecalls.length === 0 && !activeItem) return null;
 
-  return (
-    <div className="rounded-2xl border border-stone-200/80 dark:border-stone-800/80 bg-white dark:bg-stone-900 p-5 shadow-sm overflow-hidden relative">
-      <div className="absolute top-0 right-0 w-24 h-24 bg-emerald-500/[0.02] rounded-full blur-2xl pointer-events-none" />
+  const hasWarning = dueRecalls.length > 0;
 
-      {!activeItem ? (
-        <div className="space-y-4">
-          <div className="flex items-center gap-2">
-            <div className="w-8 h-8 rounded-xl bg-emerald-50 dark:bg-emerald-950/40 text-emerald-600 dark:text-emerald-400 flex items-center justify-center animate-spin-slow">
-              <RefreshCw className="w-4 h-4" />
-            </div>
-            <div>
-              <h3 className="text-sm font-extrabold text-stone-900 dark:text-stone-150">Vòng lặp ôn tập</h3>
-              <p className="text-[10px] text-stone-500 dark:text-stone-400 mt-0.5">
-                Các bài học đã đến chu kỳ ôn tập để chuyển vào trí nhớ dài hạn
-              </p>
-            </div>
+  return (
+    <div className={`rounded-2xl border shadow-sm overflow-hidden relative transition-all ${
+      hasWarning
+        ? 'border-red-300 dark:border-red-900/60 bg-red-50/40 dark:bg-red-950/30'
+        : 'border-stone-200/80 dark:border-stone-800/80 bg-white dark:bg-stone-900'
+    }`}>
+      {hasWarning && <div className="absolute top-0 right-0 w-24 h-24 bg-red-500/[0.03] rounded-full blur-2xl pointer-events-none" />}
+
+      {/* Collapsible Header */}
+      <button
+        onClick={() => setCollapsed(!collapsed)}
+        className={`w-full flex items-center justify-between gap-2 p-4 cursor-pointer transition-all ${
+          hasWarning
+            ? 'hover:bg-red-100/30 dark:hover:bg-red-950/40'
+            : 'hover:bg-stone-50/50 dark:hover:bg-stone-950/30'
+        }`}
+      >
+        <div className="flex items-center gap-2 min-w-0">
+          <div className={`w-8 h-8 rounded-xl flex items-center justify-center shrink-0 ${
+            hasWarning
+              ? 'bg-red-100 dark:bg-red-950/40 text-red-600 dark:text-red-400 animate-pulse'
+              : 'bg-emerald-50 dark:bg-emerald-950/40 text-emerald-600 dark:text-emerald-400 animate-spin-slow'
+          }`}>
+            {hasWarning ? <AlertCircle className="w-4 h-4" /> : <RefreshCw className="w-4 h-4" />}
           </div>
+          <div className="text-left min-w-0">
+            <h3 className={`text-sm font-extrabold truncate ${
+              hasWarning
+                ? 'text-red-700 dark:text-red-300'
+                : 'text-stone-900 dark:text-stone-150'
+            }`}>
+              CẦN ÔN LẠI GÌ {hasWarning && `(${dueRecalls.length})`}
+            </h3>
+            <p className={`text-[10px] mt-0.5 truncate ${
+              hasWarning
+                ? 'text-red-600/80 dark:text-red-400/70'
+                : 'text-stone-500 dark:text-stone-400'
+            }`}>
+              {hasWarning ? 'Có bài học cần ôn tập ngay' : 'Các bài học đã đến chu kỳ ôn tập'}
+            </p>
+          </div>
+        </div>
+        {collapsed ? (
+          <ChevronDown className={`w-5 h-5 shrink-0 ${hasWarning ? 'text-red-600 dark:text-red-400' : 'text-stone-400'}`} />
+        ) : (
+          <ChevronUp className={`w-5 h-5 shrink-0 ${hasWarning ? 'text-red-600 dark:text-red-400' : 'text-stone-400'}`} />
+        )}
+      </button>
+
+      {/* Collapsible Content */}
+      {!collapsed && (
+      <div className="px-4 pb-4 space-y-4 border-t border-stone-200/50 dark:border-stone-800/50">
+        {!activeItem ? (
+          <div className="space-y-4 pt-4">
 
           <div className="space-y-2">
             {dueRecalls.slice(0, 3).map((item) => (
@@ -261,6 +301,8 @@ export default function LessonRecallWidget({ userId }: LessonRecallWidgetProps) 
             </div>
           )}
         </div>
+        )}
+      </div>
       )}
     </div>
   );

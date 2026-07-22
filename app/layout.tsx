@@ -7,6 +7,7 @@ import { THEME_INIT_SCRIPT } from "@/lib/theme";
 import "./globals.css";
 import ThemeLoader from "@/components/ThemeLoader";
 import GlobalChatWrapper from "@/components/GlobalChatWrapper";
+import { getLessonsMeta } from "@/lib/lessons-loader";
 
 const plusJakartaSans = Plus_Jakarta_Sans({
   subsets: ["vietnamese", "latin"],
@@ -21,28 +22,39 @@ const plusJakartaSans = Plus_Jakarta_Sans({
 // show no image at all when the site is actually deployed and shared.
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000";
 const title = "Tự học Tài chính Mỗi Ngày";
-const description = "334+ bài học - 100% miễn phí - về tài chính cá nhân, CFA và tài chính chuyên ngành. Học 5 phút mỗi ngày, ứng dụng Spaced Repetition để nhớ lâu.";
 
-export const metadata: Metadata = {
-  metadataBase: new URL(siteUrl),
-  title,
-  description,
-  openGraph: {
+// Reads the same generated lesson index the dashboard/homepage counter use,
+// so the SEO description's lesson count always matches the real catalog
+// size - no manual copy update needed when lessons are added or removed.
+export async function generateMetadata(): Promise<Metadata> {
+  const lessons = await getLessonsMeta();
+  // Round down to the nearest 10 so this doesn't need editing every time a
+  // single lesson is added - "360+" stays accurate until the count crosses
+  // the next multiple of 10.
+  const lessonCountFloor = Math.floor(lessons.length / 10) * 10;
+  const description = `${lessonCountFloor}+ bài học - 100% miễn phí - về tài chính cá nhân, CFA và tài chính chuyên ngành. Học 5 phút mỗi ngày, ứng dụng Spaced Repetition để nhớ lâu.`;
+
+  return {
+    metadataBase: new URL(siteUrl),
     title,
     description,
-    url: siteUrl,
-    siteName: title,
-    locale: "vi_VN",
-    type: "website",
-    images: [{ url: "/logo.png", width: 1254, height: 1254, alt: title }],
-  },
-  twitter: {
-    card: "summary_large_image",
-    title,
-    description,
-    images: ["/logo.png"],
-  },
-};
+    openGraph: {
+      title,
+      description,
+      url: siteUrl,
+      siteName: title,
+      locale: "vi_VN",
+      type: "website",
+      images: [{ url: "/logo.png", width: 1254, height: 1254, alt: title }],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title,
+      description,
+      images: ["/logo.png"],
+    },
+  };
+}
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (

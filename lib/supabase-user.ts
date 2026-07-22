@@ -36,6 +36,23 @@ export async function getTotalUserCount(): Promise<number | null> {
   return typeof data === "number" ? data : null;
 }
 
+// Public headline count for the signed-out homepage hero ("X bài học đã
+// hoàn thành"). Same reasoning as getTotalUserCount above - falls back to
+// null (caller keeps its static copy) if the RPC isn't migrated in yet.
+export async function getTotalCompletedLessonsCount(): Promise<number | null> {
+  const supabase = createClient();
+  const { data, error } = await supabase.rpc("get_total_completed_lessons_count");
+
+  if (error) {
+    if (isMissingTableError(error) || error.code === "PGRST202" || error.code === "42883") {
+      return null;
+    }
+    throw handleSupabaseError(error);
+  }
+
+  return typeof data === "number" ? data : null;
+}
+
 export interface UserProfile {
   id: string;
   email: string;

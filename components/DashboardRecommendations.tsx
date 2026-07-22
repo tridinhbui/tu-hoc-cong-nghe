@@ -63,8 +63,8 @@ const DEFAULT_TRENDING_POOL = [
 const getIllustrativeStudyingCount = getIllustrativeCount;
 
 export default function DashboardRecommendations({ lessonsMeta, completed, userId }: DashboardRecommendationsProps) {
-  const [collapsed, setCollapsed] = useState(false);
-  const [hotCollapsed, setHotCollapsed] = useState(false);
+  const [collapsed, setCollapsed] = useState(true);
+  const [hotCollapsed, setHotCollapsed] = useState(true);
   const [selectedGoal, setSelectedGoal] = useState<string | null>(null);
   const [scrollProgress, setScrollProgress] = useState(0);
   const [hotScrollProgress, setHotScrollProgress] = useState(0);

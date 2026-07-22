@@ -63,6 +63,25 @@ function LoginForm() {
   const [cooldownLeft, setCooldownLeft] = useState(0);
   const failedAttemptsRef = useRef(0);
   const [previewTrack, setPreviewTrack] = useState<TrackId>("personal");
+  // Same endpoint HomePage.tsx uses for its live counter - kept as a plain
+  // rounded-down floor (not the animated count) since this is inline copy,
+  // not a hero stat. Falls back to null (renders nothing extra) if the
+  // fetch fails, rather than showing a stale hardcoded number.
+  const [lessonCountFloor, setLessonCountFloor] = useState<number | null>(null);
+
+  useEffect(() => {
+    let cancelled = false;
+    fetch("/api/lesson-count")
+      .then((res) => (res.ok ? res.json() : null))
+      .then((data: { count?: number } | null) => {
+        if (cancelled || !data?.count) return;
+        setLessonCountFloor(Math.floor(data.count / 10) * 10);
+      })
+      .catch((error) => console.error("Error loading lesson count:", error));
+    return () => {
+      cancelled = true;
+    };
+  }, []);
 
   // Basic client-side throttle: after MAX_ATTEMPTS failed logins/signups, force
   // a short wait before allowing another attempt. Supabase also rate-limits
@@ -325,7 +344,7 @@ function LoginForm() {
               <div className="p-7 xl:p-8 space-y-5">
                 <div className="lg:hidden rounded-2xl border border-emerald-100 dark:border-emerald-900 bg-emerald-50/70 dark:bg-emerald-950/25 px-4 py-3">
                   <p className="text-sm font-bold text-stone-900 dark:text-stone-100">
-                    Học 334+ bài, 100% miễn phí, lưu tiến độ thật trên tài khoản của bạn.
+                    Học {lessonCountFloor ?? 360}+ bài, 100% miễn phí, lưu tiến độ thật trên tài khoản của bạn.
                   </p>
                 </div>
 
