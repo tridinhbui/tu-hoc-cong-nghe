@@ -1132,7 +1132,35 @@ export default function DashboardClient({ lessonsMeta }: { lessonsMeta: LessonMe
               how many content lines each one has (personal/CFA got a fun
               one-line subtitle added specifically to match professional's,
               which was shortened to a single inline badge to compensate). */}
-          <div id="lo-trinh" data-tour="track-selector" className="grid grid-cols-1 sm:grid-cols-3 gap-3 mb-8 items-stretch scroll-mt-24">
+          <div id="lo-trinh" data-tour="track-selector" className="grid grid-cols-1 sm:grid-cols-4 gap-3 mb-8 items-stretch scroll-mt-24">
+          {/* "Tài chính theo nghề nghiệp" - not a lesson track like the other
+              3 cards (no activeTrack state of its own), it links straight to
+              /su-nghiep where the user picks a career and gets a study plan
+              built from that career's relatedLessonSlugs/relatedCfaSubjectIds
+              (see lib/finance-careers.ts) - the career feature already knew
+              how to point back into the other 3 tracks, it just had no entry
+              point here next to them. Placed first since "pick a direction"
+              is the natural starting question before "pick a track". */}
+          <Link
+            href="/su-nghiep"
+            className="w-full h-full flex flex-col text-left rounded-xl border-2 px-5 py-4 transition-all border-indigo-200 dark:border-indigo-900 bg-white dark:bg-stone-900 text-stone-700 dark:text-stone-300 hover:border-indigo-400 dark:hover:border-indigo-600 hover:bg-indigo-50/40 dark:hover:bg-indigo-950/20"
+          >
+            <div className="flex items-center gap-2 flex-wrap">
+              <div className="text-base font-bold text-stone-900 dark:text-stone-100">
+                Tài chính theo nghề nghiệp
+              </div>
+              <span className="text-[9px] font-black uppercase tracking-wider px-2 py-0.5 rounded-full bg-gradient-to-r from-indigo-500 to-violet-500 text-white">
+                Chọn hướng
+              </span>
+            </div>
+            <div className="text-xs mt-0.5 text-stone-500 dark:text-stone-400">
+              14+ định hướng nghề nghiệp
+            </div>
+            <div className="text-[10px] mt-1 font-semibold text-indigo-600 dark:text-indigo-400">
+              🧭 Chưa biết bắt đầu từ đâu? Chọn nghề để có lộ trình riêng
+            </div>
+          </Link>
+
           {[TRACK_PERSONAL, TRACK_PROFESSIONAL].map((t) => {
             const isActive = activeTrack === t.id;
             return (
