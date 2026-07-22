@@ -1,6 +1,8 @@
 import { createClient } from "@/lib/supabase";
 import { handleSupabaseError } from "@/lib/errors";
 
+let studyRoomRealtimeSubscriptionSeq = 0;
+
 export type StudyRoomTopic = "personal" | "professional" | "cfa";
 
 export const STUDY_ROOM_TOPICS: { id: StudyRoomTopic; label: string }[] = [
@@ -143,9 +145,10 @@ export async function sendRoomMessage(
 
 export function subscribeToRoomMessages(roomId: number, onMessage: (message: StudyRoomMessage) => void) {
   const supabase = createClient();
+  const channelName = `study_room_messages:${roomId}:${++studyRoomRealtimeSubscriptionSeq}`;
 
   const channel = supabase
-    .channel(`study_room_messages:${roomId}`)
+    .channel(channelName)
     .on(
       "postgres_changes",
       {
