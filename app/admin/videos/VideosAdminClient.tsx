@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react";
 import { toast } from "sonner";
 import { Search, Play, ExternalLink, Trash2, Save } from "lucide-react";
-import { getLessonsMeta } from "@/lib/lessons-loader";
+import type { LessonMeta } from "@/lib/lesson-types";
 
 interface LessonWithVideo {
   id: number;
@@ -12,18 +12,17 @@ interface LessonWithVideo {
   videoUrl?: string;
 }
 
-export default function VideosAdminClient() {
-  const [lessons, setLessons] = useState<LessonWithVideo[]>([]);
-  const [filteredLessons, setFilteredLessons] = useState<LessonWithVideo[]>([]);
+interface VideosAdminClientProps {
+  lessonsMeta: LessonMeta[];
+}
+
+export default function VideosAdminClient({ lessonsMeta }: VideosAdminClientProps) {
+  const [lessons, setLessons] = useState<LessonWithVideo[]>(lessonsMeta);
+  const [filteredLessons, setFilteredLessons] = useState<LessonWithVideo[]>(lessonsMeta);
   const [searchQuery, setSearchQuery] = useState("");
-  const [loading, setLoading] = useState(true);
   const [editingId, setEditingId] = useState<number | null>(null);
   const [editingUrl, setEditingUrl] = useState("");
   const [saving, setSaving] = useState(false);
-
-  useEffect(() => {
-    loadLessons();
-  }, []);
 
   useEffect(() => {
     const filtered = lessons.filter((l) =>
@@ -32,21 +31,6 @@ export default function VideosAdminClient() {
     );
     setFilteredLessons(filtered);
   }, [searchQuery, lessons]);
-
-  const loadLessons = async () => {
-    try {
-      setLoading(true);
-      const meta = await getLessonsMeta();
-      // TODO: In future, fetch videoUrl from database
-      // For now, just use the loaded metadata
-      setLessons(meta as any);
-    } catch (error) {
-      console.error("Error loading lessons:", error);
-      toast.error("Không thể tải danh sách bài học");
-    } finally {
-      setLoading(false);
-    }
-  };
 
   const handleStartEdit = (lesson: LessonWithVideo) => {
     setEditingId(lesson.id);
@@ -91,14 +75,6 @@ export default function VideosAdminClient() {
       setSaving(false);
     }
   };
-
-  if (loading) {
-    return (
-      <div className="flex items-center justify-center py-12">
-        <div className="w-8 h-8 border-2 border-stone-300 dark:border-stone-700 border-t-stone-900 dark:border-t-stone-100 rounded-full animate-spin" />
-      </div>
-    );
-  }
 
   return (
     <div className="space-y-6">

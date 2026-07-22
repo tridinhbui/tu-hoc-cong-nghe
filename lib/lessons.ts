@@ -460,9 +460,9 @@ export const lessons = [
       "Stress testing khắc phục hạn chế của VaR bằng cách mô phỏng những tình huống cực kỳ bất lợi",
       "Basel III bắt buộc các ngân hàng tính VaR định kỳ; backtesting kiểm tra xem mô hình có chính xác không"
     ],
-    "practicePrompt": "Hãy tính VaR 95% cho danh mục: 60% cổ phiếu (biến động 15%/năm), 40% trái phiếu (biến động 5%/năm). Giả sử tương quan = 0.3, dùng phương pháp parametric.",
-    "summary": "Value at Risk là công cụ đo lường rủi ro mạnh mẽ nhưng không hoàn hảo. Nó cho ra một con số dễ hiểu, hỗ trợ quyết định và tuân thủ quy định. Tuy nhiên, VaR có thể giả này trong các cuộc khủng hoảng cực kỳ, vì thế stress testing bổ sung lại là bước quan trọng.",
-    "application": "Trong công việc của risk manager, bạn sẽ tính VaR hàng ngày, giám sát backtesting, và sử dụng stress test để chuẩn bị cho các tình huống bất ngờ. VaR không phải để dự đoán hoàn hảo mà để chuẩn bị tinh thần và tài chính cho những ngày xấu."
+    "practicePrompt": {"question": "Danh mục: 60% cổ phiếu (biến động 15%/năm), 40% trái phiếu (biến động 5%/năm), tương quan 0.3. Độ lệch chuẩn danh mục và VaR 95% (1 năm) là bao nhiêu?", "options": ["σp ≈ 9.8%, VaR 95% ≈ 16.1% (dùng công thức phương sai danh mục có tương quan, sau đó nhân z-score 1.645)", "σp = trung bình có trọng số = 11%, VaR 95% ≈ 18.1% (sai vì bỏ qua lợi ích đa dạng hóa từ tương quan < 1)", "σp ≈ 9.8%, VaR 95% ≈ 9.8% (sai vì quên nhân với z-score 1.645 ở mức tin cậy 95%)", "σp ≈ 20%, VaR 95% ≈ 32.9% (sai vì cộng trực tiếp hai độ lệch chuẩn thay vì dùng công thức phương sai)"], "correct": 0, "explanation": "σp² = w1²σ1² + w2²σ2² + 2w1w2ρσ1σ2 = 0.36×0.0225 + 0.16×0.0025 + 2×0.6×0.4×0.3×0.15×0.05 = 0.00958 → σp ≈ 9.79%. VaR 95% = z95% × σp = 1.645 × 9.79% ≈ 16.1%. Lưu ý: trung bình có trọng số đơn giản (11%) luôn cao hơn σp thực tế khi tương quan < 1, vì công thức phương sai đã tính đến hiệu ứng đa dạng hóa."},
+    "summary": {"keyIdea": "Value at Risk là công cụ đo lường rủi ro mạnh mẽ nhưng không hoàn hảo. Nó cho ra một con số dễ hiểu, hỗ trợ quyết định và tuân thủ quy định. Tuy nhiên, VaR có thể giả này trong các cuộc khủng hoảng cực kỳ, vì thế stress testing bổ sung lại là bước quan trọng."},
+    "application": {"title": "Áp dụng ngay", "message": "Trong công việc của risk manager, bạn sẽ tính VaR hàng ngày, giám sát backtesting, và sử dụng stress test để chuẩn bị cho các tình huống bất ngờ. VaR không phải để dự đoán hoàn hảo mà để chuẩn bị tinh thần và tài chính cho những ngày xấu."}
   },
   {
     "id": 1218,
@@ -554,9 +554,9 @@ export const lessons = [
       "RWA điều chỉnh tài sản theo độ rủi ro - tài sản rủi ro cao cần vốn dự phòng cao hơn",
       "Basel III cũng quy định yêu cầu thanh khoản (LCR, NSFR) để ngân hàng có đủ tiền mặt trong khủng hoảng"
     ],
-    "practicePrompt": "Tính Tier 1 capital ratio cho ngân hàng: Tier 1 capital = $50 tỷ, RWA = $400 tỷ. Ngân hàng này có tuân thủ Basel III không?",
-    "summary": "Basel III là phòng vệ của hệ thống tài chính chống lại khủng hoảng ngân hàng. Bằng cách yêu cầu vốn cao hơn, thanh khoản tốt hơn, và giám sát tốt hơn, nó giảm xác suất một ngân hàng lớn sụp đổ và gây tổn thất toàn bộ nền kinh tế.",
-    "application": "Trong công việc quản lý rủi ro hay phân tích tín dụng, bạn sẽ thường xuyên kiểm tra xem ngân hàng có đạt yêu cầu Basel III không. Nó ảnh hưởng đến quyết định cho vay (nếu ngân hàng gần đạt ngưỡng, nó sẽ cho vay ít hơn) và định giá (các nhà đầu tư sẽ yêu cầu lợi nhuận cao hơn nếu ngân hàng yếu)."
+    "practicePrompt": {"question": "Ngân hàng có Tier 1 capital $50 tỷ, RWA $400 tỷ. Tier 1 capital ratio là bao nhiêu, và có đạt yêu cầu Basel III (tối thiểu 10.5%) không?", "options": ["12.5% - đạt yêu cầu Basel III vì cao hơn mức tối thiểu 10.5%", "8% - không đạt yêu cầu vì thấp hơn mức tối thiểu", "12.5% - vẫn không đạt vì Basel III yêu cầu tối thiểu 15%", "800% - đạt yêu cầu rất dư (tính nhầm RWA/Tier 1 thay vì Tier 1/RWA)"], "correct": 0, "explanation": "Tier 1 capital ratio = Tier 1 Capital / RWA = 50/400 = 12.5%. Vì 12.5% > 10.5% (mức tối thiểu Basel III), ngân hàng này đạt yêu cầu và có vùng đệm an toàn 2 điểm phần trăm."},
+    "summary": {"keyIdea": "Basel III là phòng vệ của hệ thống tài chính chống lại khủng hoảng ngân hàng. Bằng cách yêu cầu vốn cao hơn, thanh khoản tốt hơn, và giám sát tốt hơn, nó giảm xác suất một ngân hàng lớn sụp đổ và gây tổn thất toàn bộ nền kinh tế."},
+    "application": {"title": "Áp dụng ngay", "message": "Trong công việc quản lý rủi ro hay phân tích tín dụng, bạn sẽ thường xuyên kiểm tra xem ngân hàng có đạt yêu cầu Basel III không. Nó ảnh hưởng đến quyết định cho vay (nếu ngân hàng gần đạt ngưỡng, nó sẽ cho vay ít hơn) và định giá (các nhà đầu tư sẽ yêu cầu lợi nhuận cao hơn nếu ngân hàng yếu)."}
   },
   {
     "id": 1219,
@@ -643,9 +643,9 @@ export const lessons = [
       "Tài sản vô hình (thương hiệu, bằng sáng chế) dùng Royalty Relief hoặc Incremental Earnings",
       "Goodwill là phần giá mua vượt giá trị sổ sách - phát sinh khi mua công ty với giá cao hơn giá trị tài sản"
     ],
-    "practicePrompt": "Một toà nhà cho thuê doanh thu $500K/năm, dự báo tăng 2%/năm, lợi suất yêu cầu 6%. Dùng Income Approach, định giá toà nhà.",
-    "summary": "Bất động sản và tài sản vô hình cần các phương pháp định giá khác DCF. Income, Cost, và Market Approach có ưu nhược điểm riêng - thường phải kết hợp để có định giá hợp lý.",
-    "application": "Trong công việc M&A, định giá tài sản, hoặc báo cáo tài chính, bạn sẽ phải áp dụng ba phương pháp này để đánh giá một khoản mua, một tòa nhà hay một thương hiệu. Sự hiểu biết về Goodwill cũng quan trọng khi đọc báo cáo tài chính của các công ty mua lại nhiều."
+    "practicePrompt": {"question": "Toà nhà cho thuê doanh thu $500K trong năm tới, tăng trưởng đều 2%/năm mãi mãi, lợi suất yêu cầu 6%. Dùng Income Approach (mô hình tăng trưởng đều - growing perpetuity), định giá toà nhà là bao nhiêu?", "options": ["≈ $12.75 triệu, dùng công thức V = CF1/(r-g) = 500K/(0.06-0.02)", "≈ $8.33 triệu, dùng V = CF/r = 500K/0.06 (sai vì bỏ qua tăng trưởng)", "≈ $25 triệu, dùng V = CF/g = 500K/0.02 (sai vì dùng nhầm tỷ lệ tăng trưởng làm mẫu số)", "≈ $2.4 triệu, dùng V = CF×(r-g) = 500K×0.04 (sai vì nhân thay vì chia)"], "correct": 0, "explanation": "Mô hình tăng trưởng đều (growing perpetuity): V = CF1/(r-g) = 500,000/(0.06-0.02) = 500,000/0.04 = $12,500,000 ≈ $12.5 triệu (dùng CF năm tới 500K trực tiếp là cách chuẩn khi đề cho sẵn dòng tiền năm 1). Mức chiết khấu-tăng trưởng (r-g) = 4% là mẫu số quyết định giá trị - sai lệch nhỏ ở g có thể thay đổi định giá đáng kể."},
+    "summary": {"keyIdea": "Bất động sản và tài sản vô hình cần các phương pháp định giá khác DCF. Income, Cost, và Market Approach có ưu nhược điểm riêng - thường phải kết hợp để có định giá hợp lý."},
+    "application": {"title": "Áp dụng ngay", "message": "Trong công việc M&A, định giá tài sản, hoặc báo cáo tài chính, bạn sẽ phải áp dụng ba phương pháp này để đánh giá một khoản mua, một tòa nhà hay một thương hiệu. Sự hiểu biết về Goodwill cũng quan trọng khi đọc báo cáo tài chính của các công ty mua lại nhiều."}
   },
   {
     "id": 1220,
@@ -732,9 +732,9 @@ export const lessons = [
       "Sensitivity Analysis cho thấy con số thay đổi thế nào nếu giả định thay đổi - điều này tăng độ tin cậy",
       "Tính hợp lý là bước cuối - so sánh định giá với ngành, P/S, P/E, và Comparable Companies để đảm bảo không quá cao hay quá thấp"
     ],
-    "practicePrompt": "Viết Executive Summary cho định giá của một công ty tech: Phương pháp DCF, định giá $500M, tỷ lệ chiết khấu 8%, tỷ lệ tăng trưởng 15%.",
-    "summary": "Valuation report không chỉ là một con số - nó là một câu chuyện. Câu chuyện phải rõ ràng, logic, và có thể bị thách đấu. Một báo cáo tốt sẽ có Executive Summary mạnh, phương pháp hợp lý, và Sensitivity Analysis để cho thấy khoảng hợp lý của con số.",
-    "application": "Trong công việc M&A, định giá tài sản, hoặc kiểm toán, bạn sẽ phải viết hoặc đánh giá valuation report. Báo cáo này có thể bị cơ quan thuế, tòa án hay các nhà đầu tư chỉ trích - nên phải mạnh mẽ và có thể giải thích từng bước."
+    "practicePrompt": {"question": "Bạn cần viết Executive Summary cho báo cáo định giá công ty tech (DCF, kết quả $500M, chiết khấu 8%, tăng trưởng 15%). Đâu là Executive Summary đạt chuẩn nhất?", "options": ["\"Sử dụng phương pháp DCF với tỷ lệ chiết khấu 8% và tỷ lệ tăng trưởng dài hạn 15%, chúng tôi định giá công ty ở mức $500 triệu. Giả định tăng trưởng cao phản ánh vị thế dẫn đầu công nghệ của công ty; Sensitivity Analysis cho thấy định giá dao động $420-580 triệu tùy chiết khấu.\" - nêu rõ kết luận, phương pháp, giả định chính, và khoảng dao động", "\"Công ty này đáng giá $500 triệu.\" - chỉ có con số, không giải thích phương pháp hay giả định", "\"Chúng tôi đã áp dụng mô hình chiết khấu dòng tiền tự do vốn chủ sở hữu sau khi điều chỉnh CAPEX, working capital, và terminal value theo phương pháp Gordon Growth với g=15%...\" (viết tiếp 3 trang chi tiết kỹ thuật) - quá kỹ thuật, không phù hợp cho người đọc không chuyên", "\"Công ty có tiềm năng tăng trưởng tốt trong ngành công nghệ.\" - không có con số định giá hay phương pháp cụ thể nào"], "correct": 0, "explanation": "Executive Summary chuẩn phải trả lời 3 câu hỏi trong 1-2 đoạn ngắn: định giá là bao nhiêu, phương pháp nào, giả định chính là gì - đủ để CFO hay thẩm phán không chuyên môn sâu vẫn nắm được kết luận, đồng thời có khoảng dao động (sensitivity) để thể hiện tính thận trọng."},
+    "summary": {"keyIdea": "Valuation report không chỉ là một con số - nó là một câu chuyện. Câu chuyện phải rõ ràng, logic, và có thể bị thách đấu. Một báo cáo tốt sẽ có Executive Summary mạnh, phương pháp hợp lý, và Sensitivity Analysis để cho thấy khoảng hợp lý của con số."},
+    "application": {"title": "Áp dụng ngay", "message": "Trong công việc M&A, định giá tài sản, hoặc kiểm toán, bạn sẽ phải viết hoặc đánh giá valuation report. Báo cáo này có thể bị cơ quan thuế, tòa án hay các nhà đầu tư chỉ trích - nên phải mạnh mẽ và có thể giải thích từng bước."}
   },
   {
     "id": 1221,
@@ -821,9 +821,9 @@ export const lessons = [
       "Research report bao gồm: Executive Summary, Thesis, Industry/Company Analysis, Valuation, Risk, Catalysts",
       "Một thesis tốt phải nhận diện được rủi ro và 'downside' nếu thesis bị sai"
     ],
-    "practicePrompt": "Viết investment thesis cho một công ty công nghệ: sản phẩm tốt, giá $100 (nhưng định giá công bằng $150), catalyst là IPO trong 6 tháng.",
-    "summary": "Investment thesis không phải là dự đoán, mà là logic dựa trên fundamental, valuation, và catalyst. Một thesis tốt sẽ giải thích 'tại sao' và 'khi nào', và thừa nhận rủi ro.",
-    "application": "Trong công việc analyst hay portfolio manager, bạn sẽ phải viết investment thesis hàng ngày. Mỗi khoá quyết định mua/bán cổ phiếu phải dựa trên thesis rõ ràng, không phải 'có cảm giác' hoặc 'xu hướng ngắn hạn'. Khi bị chỉ trích, bạn phải có thể giải thích logic của thesis."
+    "practicePrompt": {"question": "Công ty công nghệ: sản phẩm tốt, giá thị trường $100 (định giá công bằng ước tính $150), catalyst là IPO trong 6 tháng. Investment thesis nào đầy đủ nhất?", "options": ["\"Công ty có sản phẩm cạnh tranh tốt trong ngành đang tăng trưởng (fundamental); giá thị trường $100 thấp hơn giá trị hợp lý $150 - định giá thấp 33% (valuation); IPO trong 6 tháng sẽ là sự kiện kích hoạt thị trường định giá lại (catalyst); rủi ro: IPO có thể trì hoãn hoặc thị trường không phản ứng như kỳ vọng.\" - đủ 3 yếu tố + rủi ro", "\"Cổ phiếu này chắc chắn sẽ tăng giá, nên mua ngay.\" - không có luận điểm hay bằng chứng cụ thể", "\"Giá hiện tại là $100.\" - chỉ nêu sự kiện, không có luận điểm đầu tư nào", "\"Sản phẩm của công ty khá tốt.\" - chỉ có fundamental, thiếu valuation và catalyst"], "correct": 0, "explanation": "Investment thesis hoàn chỉnh cần đủ 3 yếu tố: fundamental (tại sao công ty tốt), valuation (tại sao giá hiện tại chưa phản ánh đúng giá trị), và catalyst (sự kiện cụ thể sẽ kích hoạt thị trường định giá lại) - đồng thời phải thừa nhận rủi ro có thể khiến thesis sai."},
+    "summary": {"keyIdea": "Investment thesis không phải là dự đoán, mà là logic dựa trên fundamental, valuation, và catalyst. Một thesis tốt sẽ giải thích 'tại sao' và 'khi nào', và thừa nhận rủi ro."},
+    "application": {"title": "Áp dụng ngay", "message": "Trong công việc analyst hay portfolio manager, bạn sẽ phải viết investment thesis hàng ngày. Mỗi khoá quyết định mua/bán cổ phiếu phải dựa trên thesis rõ ràng, không phải 'có cảm giác' hoặc 'xu hướng ngắn hạn'. Khi bị chỉ trích, bạn phải có thể giải thích logic của thesis."}
   },
   {
     "id": 1222,
@@ -910,9 +910,9 @@ export const lessons = [
       "Capacity đánh giá qua thu nhập, lợi nhuận, Interest Coverage Ratio",
       "Ngay cả các C tốt, nếu điều kiện kinh tế xấu (Conditions), khoản vay vẫn gặp rủi ro"
     ],
-    "practicePrompt": "Đánh giá khoản vay $500K cho một bà chủ nhà hàng: CIC 7.0, doanh số $5M/năm, nợ hiện tại $200K, bất động sản thế chấp $800K. Có nên cho vay không?",
-    "summary": "5C framework là phương pháp toàn diện để đánh giá rủi ro tín dụng. Ngân hàng không bao giờ chỉ nhìn vào một C - phải nhìn cả 5 để quyết định cho vay.",
-    "application": "Nếu bạn làm credit officer, bạn sẽ sử dụng 5C framework mỗi ngày. Không ai muốn cho vay tiền 'xấu' - 5C giúp bạn loại trừ các khoản vay sẽ mất tiền. Ngoài ra, bạn cũng có thể dùng 5C để đàm phán điều kiện: nếu một C yếu, bạn sẽ yêu cầu lãi cao hơn hoặc collateral thêm để bù lấp rủi ro."
+    "practicePrompt": {"question": "Đánh giá khoản vay $500K cho chủ nhà hàng: CIC 7.0, doanh số $5M/năm, nợ hiện tại $200K, bất động sản thế chấp $800K. Quyết định nào hợp lý nhất theo khung 5C?", "options": ["Duyệt vay - Character tốt (CIC 7.0 ở mức bình thường-tốt), Capacity đủ (doanh số $5M lớn hơn nhiều so với khoản vay $500K), Collateral vượt khoản vay ($800K > $500K), nhưng cần theo dõi thêm nợ hiện tại $200K để tránh đòn bẩy quá cao", "Từ chối ngay vì CIC 7.0 chưa đạt mức tuyệt đối 8-10", "Duyệt toàn bộ ngay lập tức mà không cần xem xét thêm bất kỳ yếu tố nào khác", "Từ chối vì doanh số dưới $10 triệu/năm, không đạt ngưỡng cho vay"], "correct": 0, "explanation": "Áp dụng 5C: Character (CIC 7.0 - bình thường tốt), Capacity (doanh số $5M >> khoản vay $500K, khả năng trả nợ tốt), Capital & Collateral (bất động sản thế chấp $800K vượt khoản vay, tỷ lệ cho vay/tài sản thế chấp = 62.5% - an toàn), nhưng nợ hiện tại $200K cần được tính vào tổng đòn bẩy trước khi duyệt. Không có ngưỡng CIC hay doanh thu cứng nhắc nào áp dụng máy móc - phải nhìn tổng thể 5C."},
+    "summary": {"keyIdea": "5C framework là phương pháp toàn diện để đánh giá rủi ro tín dụng. Ngân hàng không bao giờ chỉ nhìn vào một C - phải nhìn cả 5 để quyết định cho vay."},
+    "application": {"title": "Áp dụng ngay", "message": "Nếu bạn làm credit officer, bạn sẽ sử dụng 5C framework mỗi ngày. Không ai muốn cho vay tiền 'xấu' - 5C giúp bạn loại trừ các khoản vay sẽ mất tiền. Ngoài ra, bạn cũng có thể dùng 5C để đàm phán điều kiện: nếu một C yếu, bạn sẽ yêu cầu lãi cao hơn hoặc collateral thêm để bù lấp rủi ro."}
   },
   {
     "id": 1223,
@@ -999,8 +999,8 @@ export const lessons = [
       "Options cho quyền (nhưng không bắt buộc) - linh hoạt nhưng đắt hơn forward",
       "Interest rate swap giúp quản lý rủi ro lãi suất - bên cố định và bên nổi plổi huởi"
     ],
-    "practicePrompt": "Một công ty nhập khẩu cần mua 1M USD trong 3 tháng. Spot rate = 24,000 VND/USD, forward rate 3 tháng = 24,300. Công ty nên dùng forward hay chấp nhận rủi ro?",
-    "summary": "Hedging instruments (forward, futures, options, swaps) giúp ngân hàng, công ty, và nhà đầu tư quản lý rủi ro. Mục đích không phải kiếm lợi mà là 'bảo vệ' danh mục khỏi những thay đổi không lường trước.",
-    "application": "Nếu bạn làm treasury officer, bạn sẽ sử dụng những công cụ này hàng ngày. Quy tắc vàng: 'Hedge nếu bạn biết rằng bạn sẽ phải đối mặt với rủi ro trong tương lai.' Nếu công ty xuất khẩu USD, hedge tỷ giá. Nếu vay ngoài với lãi suất nổi, hedge bằng interest rate swap. Hạn chế: đừng 'over-hedge' (hedge quá nhiều) hoặc dùng derivatives để đầu cơ - đó là cách mất tiền."
+    "practicePrompt": {"question": "Công ty nhập khẩu cần mua 1M USD trong 3 tháng. Spot rate hiện tại 24,000 VND/USD, forward rate 3 tháng 24,300 VND/USD. Công ty nên làm gì?", "options": ["Ký forward contract khóa tỷ giá 24,300 ngay bây giờ - chấp nhận premium nhỏ (1.25%) để loại bỏ hoàn toàn rủi ro USD tăng giá mạnh hơn trong 3 tháng tới", "Chờ đến khi cần mới mua theo spot rate vì spot đang thấp hơn forward - tiết kiệm được chi phí ngay lúc này", "Mua 1M USD ngay hôm nay theo giá spot rồi giữ USD trong 3 tháng chờ đến hạn", "Không cần quan tâm vì chênh lệch spot-forward chỉ 1.25%, không đáng để hedge"], "correct": 0, "explanation": "Mục đích hedging là loại bỏ rủi ro không lường trước được, không phải để kiếm lời từ chênh lệch tỷ giá. Ký forward ở 24,300 nghĩa là công ty chấp nhận trả premium 1.25% so với spot hiện tại, đổi lại biết chắc chắn chi phí mua USD trong 3 tháng tới, dù tỷ giá thực tế khi đó có thể tăng vọt lên 26,000 hay giảm về 23,000. 'Chờ mua theo spot' hoặc 'không hedge vì chênh lệch nhỏ' đều để công ty chịu rủi ro tỷ giá không giới hạn."},
+    "summary": {"keyIdea": "Hedging instruments (forward, futures, options, swaps) giúp ngân hàng, công ty, và nhà đầu tư quản lý rủi ro. Mục đích không phải kiếm lợi mà là 'bảo vệ' danh mục khỏi những thay đổi không lường trước."},
+    "application": {"title": "Áp dụng ngay", "message": "Nếu bạn làm treasury officer, bạn sẽ sử dụng những công cụ này hàng ngày. Quy tắc vàng: 'Hedge nếu bạn biết rằng bạn sẽ phải đối mặt với rủi ro trong tương lai.' Nếu công ty xuất khẩu USD, hedge tỷ giá. Nếu vay ngoài với lãi suất nổi, hedge bằng interest rate swap. Hạn chế: đừng 'over-hedge' (hedge quá nhiều) hoặc dùng derivatives để đầu cơ - đó là cách mất tiền."}
   }
 ] as Lesson[];

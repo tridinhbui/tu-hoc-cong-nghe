@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { toast } from "sonner";
-import { BarChart3, TrendingUp, Users, Trophy, Zap, Award, RefreshCw } from "lucide-react";
+import { BarChart3, TrendingUp, Users, Trophy, Zap, Award, RefreshCw, Gamepad2 } from "lucide-react";
 import { getGameSessionStats } from "./actions";
 
 interface GameStats {

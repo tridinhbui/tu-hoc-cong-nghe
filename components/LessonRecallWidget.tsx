@@ -4,9 +4,6 @@ import { useEffect, useState } from "react";
 import { toast } from "sonner";
 import { RefreshCw, CheckCircle, XCircle, HelpCircle, Sparkles, ChevronDown, ChevronUp, AlertCircle } from "lucide-react";
 import { getLessonRecalls, processRecallAttempt, type LessonRecall } from "@/lib/supabase-recalls";
-import { getLessonById } from "@/lib/lessons-loader"; // wait: getLessonById is server-only!
-// Since getLessonById is server-only, we should create a server action in app/actions/flashcard-actions.ts
-// to fetch lesson detail by ID! Yes, let's create a server action "getLessonDetailsForRecall(lessonId)"!
 import { getLessonDetailsForRecall } from "@/app/actions/flashcard-actions";
 import { recalculateUserStats } from "@/lib/supabase-user";
 

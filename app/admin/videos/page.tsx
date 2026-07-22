@@ -1,9 +1,12 @@
 import { Play } from "lucide-react";
+import { getLessonsMeta } from "@/lib/lessons-loader";
 import VideosAdminClient from "./VideosAdminClient";
 
 export const dynamic = "force-dynamic";
 
 export default async function VideosAdminPage() {
+  const lessonsMeta = await getLessonsMeta();
+
   return (
     <div>
       <div className="flex items-center gap-3 mb-6">
@@ -16,7 +19,7 @@ export default async function VideosAdminPage() {
         </div>
       </div>
 
-      <VideosAdminClient />
+      <VideosAdminClient lessonsMeta={lessonsMeta} />
     </div>
   );
 }
