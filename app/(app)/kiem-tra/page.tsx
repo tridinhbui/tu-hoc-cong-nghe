@@ -7,6 +7,7 @@ import { createClient } from "@/lib/supabase";
 import type { ChallengeQuestion } from "@/app/api/knowledge-challenge/route";
 import { submitQuizSession, computeQuizXp, type QuizTrack, type QuizDifficulty, type QuizAnswerSubmission } from "@/lib/supabase-quiz-sessions";
 import { recalculateUserStats } from "@/lib/supabase-user";
+import LevelMapSummaryWidget from "@/components/LevelMapSummaryWidget";
 
 const TRACKS: { id: QuizTrack; label: string; desc: string }[] = [
   { id: "personal", label: "Tài chính cá nhân", desc: "Tư duy tiền bạc, đầu tư, danh mục, hưu trí" },
@@ -142,6 +143,8 @@ export default function KiemTraPage() {
       <div className="max-w-2xl mx-auto px-6 py-8">
         {stage === "setup" && (
           <div className="space-y-6">
+            {userId && <LevelMapSummaryWidget userId={userId} />}
+
             <div className="rounded-2xl border border-emerald-200 dark:border-emerald-900 bg-emerald-50 dark:bg-emerald-950/40 p-4 flex items-start gap-3">
               <Sparkles className="w-5 h-5 text-emerald-600 dark:text-emerald-400 flex-shrink-0 mt-0.5" />
               <p className="text-sm text-emerald-800 dark:text-emerald-300 leading-relaxed">

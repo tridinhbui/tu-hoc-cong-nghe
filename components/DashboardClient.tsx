@@ -388,35 +388,6 @@ export default function DashboardClient({ lessonsMeta }: { lessonsMeta: LessonMe
     return { lessonOrdinal: ordinal, lessonsByStageLabel: byStage, lessonsByPartKey: byPart };
   }, [sorted, track, activeTrack]);
 
-  // Every stage/part key for the currently visible track, in the exact
-  // format used by toggleStage/togglePart - lets "Mở tất cả"/"Đóng tất cả"
-  // set the whole accordion tree at once instead of the user clicking each
-  // row individually to browse a long lesson list. Must stay above the
-  // loading/onboarding early returns below - hooks can't be skipped on some
-  // renders and not others (React error #310: "rendered more/fewer hooks
-  // than previous render").
-  const allStageAndPartKeys = useMemo(() => {
-    const stageKeys: string[] = [];
-    const partKeys: string[] = [];
-    const visibleStages =
-      activeTrack === "professional"
-        ? track.stages.filter((s) => (PROFESSIONAL_BRANCHES.find((b) => b.id === professionalBranch)!.stageLabels as readonly string[]).includes(s.label))
-        : track.stages;
-    for (const stage of visibleStages) {
-      const stageLessons = lessonsByStageLabel.get(stage.label) ?? [];
-      if (stageLessons.length === 0) continue;
-      const stageKey = `${activeTrack}-${stage.label}`;
-      stageKeys.push(stageKey);
-      for (const part of stage.parts) {
-        const partLessons = lessonsByPartKey.get(`${stage.label}::${part.name}`) ?? [];
-        if (partLessons.length === 0) continue;
-        partKeys.push(`${stageKey}-${part.name}`);
-      }
-    }
-    if (sorted.some((l) => l.track === "bonus")) stageKeys.push("bonus");
-    return { stageKeys, partKeys };
-  }, [track, activeTrack, professionalBranch, lessonsByStageLabel, lessonsByPartKey, sorted]);
-
   const toggleStage = (key: string) => {
     setOpenStages((prev) => {
       const next = new Set(prev);
@@ -810,16 +781,6 @@ export default function DashboardClient({ lessonsMeta }: { lessonsMeta: LessonMe
   const bonusLessons = sorted.filter((l) => l.track === "bonus");
   const bonusDone = bonusLessons.filter((l) => completed.includes(l.id)).length;
   const bonusOpen = openStages.has("bonus");
-
-  function expandAllStages() {
-    setOpenStages(new Set(allStageAndPartKeys.stageKeys));
-    setOpenParts(new Set(allStageAndPartKeys.partKeys));
-  }
-
-  function collapseAllStages() {
-    setOpenStages(new Set());
-    setOpenParts(new Set());
-  }
   // Grouped by topic (see lib/bonus-lesson-categories.ts) instead of raw id
   // order - otherwise a newly added case study always lands dead last after
   // 30+ unrelated ones, however closely it's actually related to existing
@@ -1379,40 +1340,24 @@ export default function DashboardClient({ lessonsMeta }: { lessonsMeta: LessonMe
             </div>
           ) : (
           <>
-          {/* ── Search + expand/collapse all controls ── */}
-          <div className="flex flex-col sm:flex-row gap-3 mt-8">
-            <div className="relative flex-1">
-              <Search className="w-5 h-5 text-stone-400 absolute left-4 top-1/2 -translate-y-1/2 pointer-events-none" />
-              <input
-                value={stageSearchQuery}
-                onChange={(e) => setStageSearchQuery(e.target.value)}
-                placeholder="Tìm bài học trong lộ trình này..."
-                className="w-full pl-12 pr-4 py-3.5 rounded-xl border-2 border-stone-200 dark:border-stone-800 bg-white dark:bg-stone-900 text-base font-medium text-stone-900 dark:text-stone-100 placeholder:text-stone-400 focus:outline-none focus:border-stone-400 dark:focus:border-stone-600 transition-colors"
-              />
-              {stageSearchQuery && (
-                <button
-                  onClick={() => setStageSearchQuery("")}
-                  className="absolute right-4 top-1/2 -translate-y-1/2 text-stone-400 hover:text-stone-700 dark:hover:text-stone-200 cursor-pointer"
-                  title="Xoá tìm kiếm"
-                >
-                  <X className="w-4 h-4" />
-                </button>
-              )}
-            </div>
-            <div className="flex gap-2">
+          {/* ── Search ── */}
+          <div className="relative mt-8">
+            <Search className="w-5 h-5 text-stone-400 absolute left-4 top-1/2 -translate-y-1/2 pointer-events-none" />
+            <input
+              value={stageSearchQuery}
+              onChange={(e) => setStageSearchQuery(e.target.value)}
+              placeholder="Tìm bài học trong lộ trình này..."
+              className="w-full pl-12 pr-4 py-3.5 rounded-xl border-2 border-stone-200 dark:border-stone-800 bg-white dark:bg-stone-900 text-base font-medium text-stone-900 dark:text-stone-100 placeholder:text-stone-400 focus:outline-none focus:border-stone-400 dark:focus:border-stone-600 transition-colors"
+            />
+            {stageSearchQuery && (
               <button
-                onClick={expandAllStages}
-                className="flex-1 sm:flex-none px-4 py-3.5 rounded-xl border-2 border-stone-200 dark:border-stone-800 bg-white dark:bg-stone-900 text-sm font-bold text-stone-700 dark:text-stone-300 hover:border-stone-400 dark:hover:border-stone-600 transition-colors cursor-pointer whitespace-nowrap"
+                onClick={() => setStageSearchQuery("")}
+                className="absolute right-4 top-1/2 -translate-y-1/2 text-stone-400 hover:text-stone-700 dark:hover:text-stone-200 cursor-pointer"
+                title="Xoá tìm kiếm"
               >
-                Mở tất cả
+                <X className="w-4 h-4" />
               </button>
-              <button
-                onClick={collapseAllStages}
-                className="flex-1 sm:flex-none px-4 py-3.5 rounded-xl border-2 border-stone-200 dark:border-stone-800 bg-white dark:bg-stone-900 text-sm font-bold text-stone-700 dark:text-stone-300 hover:border-stone-400 dark:hover:border-stone-600 transition-colors cursor-pointer whitespace-nowrap"
-              >
-                Đóng tất cả
-              </button>
-            </div>
+            )}
           </div>
 
           {/* ── Stages + lessons ── */}
