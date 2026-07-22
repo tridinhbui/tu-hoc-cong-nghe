@@ -185,7 +185,14 @@ export default function FloatingStudyGroupChat({ isOpen: controlledIsOpen, onOpe
       if (imageFile) {
         imageUrl = await uploadChatImage(userId, imageFile);
       }
-      await sendRoomMessage(room.room_id, userId, content, imageUrl);
+      const sent = await sendRoomMessage(room.room_id, userId, content, imageUrl);
+      // Append immediately instead of waiting on the Realtime postgres_changes
+      // subscription to echo the insert back - that round trip can lag or
+      // (if Realtime replication hiccups) never arrive at all, which is what
+      // made sent messages appear stuck until a full page reload re-fetched
+      // history. subscribeToRoomMessages already dedupes by id, so if the
+      // Realtime event does arrive later it's a no-op here.
+      setMessages((prev) => (prev.some((m) => m.id === sent.id) ? prev : [...prev, sent]));
       trackFeatureClick("floating_study_chat_send", { label: String(room.room_id) });
     } catch (error) {
       toast.error(error instanceof Error ? error.message : "Không gửi được tin nhắn");
