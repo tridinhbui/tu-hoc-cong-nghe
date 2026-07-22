@@ -28,11 +28,16 @@ const CATEGORY_LABEL: Record<FinanceCareer["category"], string> = {
   advisory: "Tư vấn",
 };
 
+// Entry-level and mixed ("Junior đến Senior") careers still have a way in;
+// pure "Senior - ..." entries are the destination after years of experience,
+// not something a learner picks as a starting direction to study toward.
+const entryLevelCareers = FINANCE_CAREERS.filter((c) => !c.entryLevel.startsWith("Senior"));
+
 export default function CareerLearningPathClient({ lessonsBySlug, lessonsById, completedLessonIds }: CareerLearningPathClientProps) {
   const [selectedId, setSelectedId] = useState<string | null>(null);
   const completedSet = useMemo(() => new Set(completedLessonIds), [completedLessonIds]);
 
-  const selected = selectedId ? FINANCE_CAREERS.find((c) => c.id === selectedId) ?? null : null;
+  const selected = selectedId ? entryLevelCareers.find((c) => c.id === selectedId) ?? null : null;
 
   // Same lesson list a career already builds on /su-nghiep's study-plan tab
   // (relatedLessonSlugs + relatedCfaSubjectIds -> CFA_LEVEL_1_SUBJECTS'
@@ -81,7 +86,7 @@ export default function CareerLearningPathClient({ lessonsBySlug, lessonsById, c
         </p>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-          {FINANCE_CAREERS.map((career) => (
+          {entryLevelCareers.map((career) => (
             <button
               key={career.id}
               onClick={() => setSelectedId(career.id)}
@@ -89,10 +94,14 @@ export default function CareerLearningPathClient({ lessonsBySlug, lessonsById, c
             >
               <div className="flex items-center gap-3 mb-2">
                 <div
-                  className="w-10 h-10 rounded-lg flex items-center justify-center text-xl shrink-0"
+                  className="w-12 h-12 rounded-lg overflow-hidden shrink-0 relative flex items-center justify-center text-xl"
                   style={{ background: `linear-gradient(135deg, ${career.accentFrom}, ${career.accentTo})` }}
                 >
-                  {career.emoji}
+                  {career.avatar3d ? (
+                    <Image src={career.avatar3d} alt={career.title} fill className="object-cover" />
+                  ) : (
+                    career.emoji
+                  )}
                 </div>
                 <div className="min-w-0">
                   <p className="font-bold text-stone-900 dark:text-stone-100 text-sm truncate">{career.title}</p>
