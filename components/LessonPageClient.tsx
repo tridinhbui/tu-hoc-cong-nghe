@@ -9,6 +9,7 @@ import OpeningQuestionBlock from "@/components/OpeningQuestionBlock";
 import InteractiveWidget from "@/components/InteractiveWidget";
 import MidpointInteractive from "@/components/MidpointInteractive";
 import LessonSections from "@/components/LessonSections";
+import LessonVideoPlayer from "@/components/LessonVideoPlayer";
 import { highlightGlossaryTerms } from "@/components/GlossaryTerm";
 import { LessonApplicationCard, LessonQuestionCard, LessonSummaryCard, ReviewLoopCard } from "@/components/LessonLearningBlocks";
 import { getLessonDisplayLabel, getLessonRecallDay } from "@/lib/lesson-labels";
@@ -242,6 +243,11 @@ export default function LessonPageClient({ lesson, nextLesson }: Props) {
             )}
           </div>
         </motion.div>
+      )}
+
+      {/* Video Player - if available */}
+      {lesson.videoUrl && (
+        <LessonVideoPlayer videoUrl={lesson.videoUrl} title={lesson.title} />
       )}
 
       {/* 1. Opening Question block */}

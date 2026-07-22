@@ -19,6 +19,7 @@ import {
   ArrowLeft,
   AlertTriangle,
   Gamepad2,
+  Play,
 } from "lucide-react";
 
 const NAV_ITEMS = [
@@ -29,6 +30,7 @@ const NAV_ITEMS = [
   { href: "/admin/ai-reports", label: "Báo lỗi AI", icon: AlertTriangle },
   { href: "/admin/users", label: "Người dùng", icon: Users },
   { href: "/admin/lessons", label: "Bài học", icon: BookOpen },
+  { href: "/admin/videos", label: "Video", icon: Play },
   { href: "/admin/games", label: "Trò chơi", icon: Gamepad2 },
   { href: "/admin/cfa-library", label: "Thư viện CFA", icon: GraduationCap },
   { href: "/admin/documents", label: "Tài liệu", icon: FileText },
