@@ -6,6 +6,7 @@ import { MessageCircle, Send, ImagePlus, X, Loader2 } from "lucide-react";
 import type { ChatThread, ChatThreadMessage } from "@/lib/admin/chat";
 import { sendAdminChatReplyAction, markThreadReadAction, getChatThreadMessagesAction, getChatThreadsAction } from "./actions";
 import { uploadChatImage, isAllowedChatImage } from "@/lib/supabase-chat";
+import { createClient } from "@/lib/supabase";
 import EmptyState from "@/components/admin/EmptyState";
 import EmojiPicker from "@/components/EmojiPicker";
 
@@ -29,9 +30,12 @@ export default function ChatThreadsPanel({ threads: initialThreads }: { threads:
   }, [activeUserId]);
 
   // Polls the whole thread list (badges, last message, ordering) so the
-  // sidebar stays live without a full page reload.
+  // sidebar stays live without a full page reload. Skips ticks while the
+  // tab is hidden - an admin tab forgotten overnight was otherwise ~43k
+  // pointless Supabase queries (2 queries / 4s).
   useEffect(() => {
     const interval = setInterval(() => {
+      if (document.visibilityState === "hidden") return;
       getChatThreadsAction()
         .then(setThreads)
         .catch((error) => console.error("Error polling chat threads:", error));
@@ -45,6 +49,7 @@ export default function ChatThreadsPanel({ threads: initialThreads }: { threads:
   useEffect(() => {
     if (!activeUserId) return;
     const interval = setInterval(() => {
+      if (document.visibilityState === "hidden") return;
       getChatThreadMessagesAction(activeUserId)
         .then((msgs) => {
           if (activeUserIdRef.current !== activeUserId) return;
@@ -109,7 +114,16 @@ export default function ChatThreadsPanel({ threads: initialThreads }: { threads:
       let imageUrl: string | null = null;
       if (imageFile) {
         setUploadingImage(true);
-        imageUrl = await uploadChatImage(activeUserId, imageFile);
+        // Upload under the ADMIN's own uid, not the target user's - the
+        // storage policy (20260722_cfa_tables_rls_and_chat_images_hardening)
+        // only allows writing into your own auth.uid() folder; the folder is
+        // purely organizational, the message row still targets activeUserId.
+        const supabase = createClient();
+        const {
+          data: { user: adminUser },
+        } = await supabase.auth.getUser();
+        if (!adminUser) throw new Error("Phiên đăng nhập đã hết hạn");
+        imageUrl = await uploadChatImage(adminUser.id, imageFile);
         setUploadingImage(false);
       }
 

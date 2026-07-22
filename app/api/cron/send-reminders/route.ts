@@ -31,18 +31,9 @@ interface ReminderCandidate {
   browser_reminders_enabled: boolean;
 }
 
-async function needsReminder(
-  supabase: ReturnType<typeof createAdminClient>,
-  userId: string
-): Promise<{ needed: boolean; reason?: string }> {
-  const { data: streakRow } = await supabase
-    .from("user_streaks")
-    .select("id, user_id, current_streak, longest_streak, last_activity_date, created_at, updated_at")
-    .eq("user_id", userId)
-    .maybeSingle();
-
-  const streak = (streakRow as UserStreak | null) ?? null;
-
+// Pure decision over an already-fetched streak row (batched below with a
+// single .in() query, instead of the old one-query-per-candidate N+1).
+function needsReminder(streak: UserStreak | null): { needed: boolean; reason?: string } {
   // 1) About to lose the streak today - reuses the same "is it late enough
   // in the day with no activity yet" rule the client-side browser-reminder
   // uses (lib/streak-reminders.ts), so both channels agree on the trigger.
@@ -97,30 +88,62 @@ export async function GET(request: NextRequest) {
     return NextResponse.json({ error: "Failed to query candidates" }, { status: 500 });
   }
 
-  let processed = 0;
+  const candidateList = (candidates ?? []) as ReminderCandidate[];
+  const processed = candidateList.length;
   let emailSent = 0;
   let skippedNoApiKey = 0;
   let pushSent = 0;
   let pushSkippedNoVapidKeys = 0;
 
-  for (const candidate of (candidates ?? []) as ReminderCandidate[]) {
-    processed += 1;
+  // Batch every per-user lookup into one .in() query per table instead of
+  // the previous per-candidate round trips (~3 sequential queries x 500
+  // candidates = ~1500 queries per run before this).
+  const candidateIds = candidateList.map((c) => c.user_id);
 
-    const { needed, reason } = await needsReminder(supabase, candidate.user_id);
-    if (!needed) continue;
+  const { data: streakRows } = candidateIds.length
+    ? await supabase
+        .from("user_streaks")
+        .select("id, user_id, current_streak, longest_streak, last_activity_date, created_at, updated_at")
+        .in("user_id", candidateIds)
+    : { data: [] };
+  const streakByUser = new Map(((streakRows ?? []) as UserStreak[]).map((s) => [s.user_id, s]));
 
+  const needyCandidates = candidateList
+    .map((candidate) => ({ candidate, decision: needsReminder(streakByUser.get(candidate.user_id) ?? null) }))
+    .filter(({ decision }) => decision.needed);
+
+  const emailUserIds = needyCandidates.filter(({ candidate }) => candidate.email_reminders_enabled).map(({ candidate }) => candidate.user_id);
+  const pushUserIds = needyCandidates.filter(({ candidate }) => candidate.browser_reminders_enabled).map(({ candidate }) => candidate.user_id);
+
+  const [{ data: profileRows }, { data: subscriptionRows }] = await Promise.all([
+    emailUserIds.length
+      ? supabase.from("user_profiles").select("id, email, full_name").in("id", emailUserIds)
+      : Promise.resolve({ data: [] }),
+    pushUserIds.length
+      ? supabase.from("push_subscriptions").select("id, user_id, endpoint, p256dh, auth").in("user_id", pushUserIds)
+      : Promise.resolve({ data: [] }),
+  ]);
+  const profileByUser = new Map(
+    ((profileRows ?? []) as { id: string; email: string | null; full_name: string | null }[]).map((p) => [p.id, p])
+  );
+  const subscriptionsByUser = new Map<string, { id: number; endpoint: string; p256dh: string; auth: string }[]>();
+  for (const sub of (subscriptionRows ?? []) as { id: number; user_id: string; endpoint: string; p256dh: string; auth: string }[]) {
+    const list = subscriptionsByUser.get(sub.user_id) ?? [];
+    list.push(sub);
+    subscriptionsByUser.set(sub.user_id, list);
+  }
+
+  const expiredSubscriptionIds: number[] = [];
+
+  for (const { candidate, decision } of needyCandidates) {
+    const { reason } = decision;
     const title =
       reason === "streak_at_risk"
         ? "Đừng để mất streak học tập của bạn!"
         : "Đã lâu rồi bạn chưa quay lại học tài chính";
 
     if (candidate.email_reminders_enabled) {
-      const { data: profile } = await supabase
-        .from("user_profiles")
-        .select("email, full_name")
-        .eq("id", candidate.user_id)
-        .maybeSingle();
-
+      const profile = profileByUser.get(candidate.user_id);
       if (profile?.email) {
         const body =
           reason === "streak_at_risk"
@@ -142,29 +165,32 @@ export async function GET(request: NextRequest) {
           ? "Streak học tập của bạn sắp bị mất nếu hôm nay không học. Quay lại ngay nhé!"
           : "Đã vài ngày rồi bạn chưa học bài mới. Quay lại tiếp tục lộ trình của bạn nhé!";
 
-      const { data: subscriptions } = await supabase
-        .from("push_subscriptions")
-        .select("id, endpoint, p256dh, auth")
-        .eq("user_id", candidate.user_id);
-
-      for (const sub of subscriptions ?? []) {
+      for (const sub of subscriptionsByUser.get(candidate.user_id) ?? []) {
         const result = await sendPushNotification(sub, { title, body: pushBody, url: "/dashboard" });
         if (result.sent) {
           pushSent += 1;
         } else if (result.reason === "no_vapid_keys") {
           pushSkippedNoVapidKeys += 1;
         } else if (result.reason === "expired") {
-          await supabase.from("push_subscriptions").delete().eq("id", sub.id);
+          expiredSubscriptionIds.push(sub.id);
         }
       }
     }
+  }
 
-    // Mark as attempted regardless of whether either channel actually sent,
-    // so we don't retry more than once per day per user.
+  // Two batched writes to close out the run: drop every expired push
+  // subscription at once, and stamp the shared cooldown for every needy
+  // user at once (same semantics as before - only users we actually
+  // attempted get marked, so the untouched rest stay eligible next run).
+  if (expiredSubscriptionIds.length > 0) {
+    await supabase.from("push_subscriptions").delete().in("id", expiredSubscriptionIds);
+  }
+  const needyIds = needyCandidates.map(({ candidate }) => candidate.user_id);
+  if (needyIds.length > 0) {
     await supabase
       .from("notification_preferences")
       .update({ last_reminder_sent_at: new Date().toISOString() })
-      .eq("user_id", candidate.user_id);
+      .in("user_id", needyIds);
   }
 
   return NextResponse.json({
