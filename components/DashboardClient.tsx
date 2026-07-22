@@ -7,7 +7,7 @@ import TaiTaiAvatar from "@/components/TaiTaiAvatar";
 import { useRouter, useSearchParams } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import { toast } from "sonner";
-import { CheckCircle2, Lock, CheckCheck, Bookmark, ChevronDown, ChevronLeft, ChevronRight } from "lucide-react";
+import { CheckCircle2, Lock, CheckCheck, Bookmark, ChevronDown, ChevronLeft, ChevronRight, Search, X } from "lucide-react";
 import { useProgress } from "@/lib/client-hooks";
 import { mergeCompletedLessons } from "@/lib/progress";
 import { getIllustrativeCount } from "@/lib/illustrative-stats";
@@ -178,6 +178,7 @@ export default function DashboardClient({ lessonsMeta }: { lessonsMeta: LessonMe
   const [avgQuizScore, setAvgQuizScore] = useState(0);
   const [openStages, setOpenStages] = useState<Set<string>>(new Set());
   const [openParts, setOpenParts] = useState<Set<string>>(new Set());
+  const [stageSearchQuery, setStageSearchQuery] = useState("");
   const [showOnboarding, setShowOnboarding] = useState(false);
   const [onboardingChecked, setOnboardingChecked] = useState(false);
   const [unlockedLessonIds, setUnlockedLessonIds] = useState<Set<number>>(new Set());
@@ -404,6 +405,25 @@ export default function DashboardClient({ lessonsMeta }: { lessonsMeta: LessonMe
       return next;
     });
   };
+
+  // Diacritics-insensitive so "lai suat" matches "lãi suất" - people
+  // searching a Vietnamese lesson list rarely bother typing the tone marks.
+  function normalizeForSearch(text: string): string {
+    return text
+      .normalize("NFD")
+      .replace(/[̀-ͯ]/g, "")
+      .replace(/đ/g, "d")
+      .replace(/Đ/g, "D")
+      .toLowerCase();
+  }
+
+  const stageSearchNormalized = normalizeForSearch(stageSearchQuery.trim());
+  const isSearchingStages = stageSearchNormalized.length > 0;
+
+  function lessonMatchesSearch(lesson: LessonMeta): boolean {
+    if (!isSearchingStages) return true;
+    return normalizeForSearch(lesson.title).includes(stageSearchNormalized);
+  }
 
   const handleOnboardingComplete = async (selectedTrack: "personal" | "professional") => {
     if (user?.id) {
@@ -761,6 +781,42 @@ export default function DashboardClient({ lessonsMeta }: { lessonsMeta: LessonMe
   const bonusLessons = sorted.filter((l) => l.track === "bonus");
   const bonusDone = bonusLessons.filter((l) => completed.includes(l.id)).length;
   const bonusOpen = openStages.has("bonus");
+
+  // Every stage/part key for the currently visible track, in the exact
+  // format used by toggleStage/togglePart - lets "Mở tất cả"/"Đóng tất cả"
+  // set the whole accordion tree at once instead of the user clicking each
+  // row individually to browse a long lesson list.
+  const allStageAndPartKeys = useMemo(() => {
+    const stageKeys: string[] = [];
+    const partKeys: string[] = [];
+    const visibleStages =
+      activeTrack === "professional"
+        ? track.stages.filter((s) => (PROFESSIONAL_BRANCHES.find((b) => b.id === professionalBranch)!.stageLabels as readonly string[]).includes(s.label))
+        : track.stages;
+    for (const stage of visibleStages) {
+      const stageLessons = lessonsByStageLabel.get(stage.label) ?? [];
+      if (stageLessons.length === 0) continue;
+      const stageKey = `${activeTrack}-${stage.label}`;
+      stageKeys.push(stageKey);
+      for (const part of stage.parts) {
+        const partLessons = lessonsByPartKey.get(`${stage.label}::${part.name}`) ?? [];
+        if (partLessons.length === 0) continue;
+        partKeys.push(`${stageKey}-${part.name}`);
+      }
+    }
+    if (bonusLessons.length > 0) stageKeys.push("bonus");
+    return { stageKeys, partKeys };
+  }, [track, activeTrack, professionalBranch, lessonsByStageLabel, lessonsByPartKey, bonusLessons]);
+
+  function expandAllStages() {
+    setOpenStages(new Set(allStageAndPartKeys.stageKeys));
+    setOpenParts(new Set(allStageAndPartKeys.partKeys));
+  }
+
+  function collapseAllStages() {
+    setOpenStages(new Set());
+    setOpenParts(new Set());
+  }
   // Grouped by topic (see lib/bonus-lesson-categories.ts) instead of raw id
   // order - otherwise a newly added case study always lands dead last after
   // 30+ unrelated ones, however closely it's actually related to existing
@@ -1320,6 +1376,42 @@ export default function DashboardClient({ lessonsMeta }: { lessonsMeta: LessonMe
             </div>
           ) : (
           <>
+          {/* ── Search + expand/collapse all controls ── */}
+          <div className="flex flex-col sm:flex-row gap-3 mt-8">
+            <div className="relative flex-1">
+              <Search className="w-5 h-5 text-stone-400 absolute left-4 top-1/2 -translate-y-1/2 pointer-events-none" />
+              <input
+                value={stageSearchQuery}
+                onChange={(e) => setStageSearchQuery(e.target.value)}
+                placeholder="Tìm bài học trong lộ trình này..."
+                className="w-full pl-12 pr-4 py-3.5 rounded-xl border-2 border-stone-200 dark:border-stone-800 bg-white dark:bg-stone-900 text-base font-medium text-stone-900 dark:text-stone-100 placeholder:text-stone-400 focus:outline-none focus:border-stone-400 dark:focus:border-stone-600 transition-colors"
+              />
+              {stageSearchQuery && (
+                <button
+                  onClick={() => setStageSearchQuery("")}
+                  className="absolute right-4 top-1/2 -translate-y-1/2 text-stone-400 hover:text-stone-700 dark:hover:text-stone-200 cursor-pointer"
+                  title="Xoá tìm kiếm"
+                >
+                  <X className="w-4 h-4" />
+                </button>
+              )}
+            </div>
+            <div className="flex gap-2">
+              <button
+                onClick={expandAllStages}
+                className="flex-1 sm:flex-none px-4 py-3.5 rounded-xl border-2 border-stone-200 dark:border-stone-800 bg-white dark:bg-stone-900 text-sm font-bold text-stone-700 dark:text-stone-300 hover:border-stone-400 dark:hover:border-stone-600 transition-colors cursor-pointer whitespace-nowrap"
+              >
+                Mở tất cả
+              </button>
+              <button
+                onClick={collapseAllStages}
+                className="flex-1 sm:flex-none px-4 py-3.5 rounded-xl border-2 border-stone-200 dark:border-stone-800 bg-white dark:bg-stone-900 text-sm font-bold text-stone-700 dark:text-stone-300 hover:border-stone-400 dark:hover:border-stone-600 transition-colors cursor-pointer whitespace-nowrap"
+              >
+                Đóng tất cả
+              </button>
+            </div>
+          </div>
+
           {/* ── Stages + lessons ── */}
           <div data-tour="stage-list" className="space-y-6 mt-8">
           {(activeTrack === "professional"
@@ -1327,10 +1419,12 @@ export default function DashboardClient({ lessonsMeta }: { lessonsMeta: LessonMe
             : track.stages
           ).map((stage) => {
             const stageLessons = lessonsByStageLabel.get(stage.label) ?? [];
+            const stageHasSearchMatch = stageLessons.some(lessonMatchesSearch);
+            if (isSearchingStages && !stageHasSearchMatch) return null;
             const stageDone = stageLessons.filter((l) => completed.includes(l.id)).length;
             const stageLockedCount = stageLessons.filter((l) => isLessonLocked(l)).length;
             const stageKey = `${activeTrack}-${stage.label}`;
-            const stageOpen = openStages.has(stageKey);
+            const stageOpen = openStages.has(stageKey) || (isSearchingStages && stageHasSearchMatch);
 
             const stageIdx = track.stages.findIndex((s) => s.label === stage.label);
             let isStageLockedByMilestone = false;
@@ -1481,10 +1575,13 @@ export default function DashboardClient({ lessonsMeta }: { lessonsMeta: LessonMe
                     {stage.parts.map((part) => {
                       const partLessons = lessonsByPartKey.get(`${stage.label}::${part.name}`) ?? [];
                       if (partLessons.length === 0) return null;
+                      const partHasSearchMatch = partLessons.some(lessonMatchesSearch);
+                      if (isSearchingStages && !partHasSearchMatch) return null;
+                      const visiblePartLessons = isSearchingStages ? partLessons.filter(lessonMatchesSearch) : partLessons;
                       const partDone = partLessons.filter((l) => completed.includes(l.id)).length;
                       const partLockedCount = partLessons.filter((l) => isLessonLocked(l)).length;
                       const partKey = `${stageKey}-${part.name}`;
-                      const partOpen = openParts.has(partKey);
+                      const partOpen = openParts.has(partKey) || (isSearchingStages && partHasSearchMatch);
 
                       return (
                         <div key={part.name} className="border border-stone-200 dark:border-stone-800 rounded-xl overflow-hidden">
@@ -1512,7 +1609,7 @@ export default function DashboardClient({ lessonsMeta }: { lessonsMeta: LessonMe
 
                           {partOpen && (
                             <div className="p-2 space-y-2">
-                              {partLessons.map((lesson) => {
+                              {visiblePartLessons.map((lesson) => {
                                 const isDone = completed.includes(lesson.id);
                                 const locked = isLessonLocked(lesson);
                                 const isFlagged = flaggedLessonIds.has(lesson.id);
