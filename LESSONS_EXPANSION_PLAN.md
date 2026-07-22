@@ -207,33 +207,55 @@
 
 ## 📊 Tóm tắt Workload
 
-| Priority | Careers | Bài cần viết | Effort |
+| Priority | Careers/Subject | Trạng thái | Bài đã viết |
 |----------|---------|-------------|--------|
-| **HIGH** | ESG (3), Actuarial (4), Compliance ✅ | 6 bài | 30 giờ |
-| **MEDIUM-HIGH** | Wealth, FP&A, Broker | 6 bài | 24 giờ |
-| **MEDIUM** | Risk, Valuation, Treasury, Analyst, Credit | 7 bài | 28 giờ |
-| **Total** | | **19 bài** | **~82 giờ** |
+| **HIGH** | Compliance ✅ | Done | 3 bài |
+| **HIGH** | ESG (3), Actuarial (4) | ⚠️ Chưa làm | 0 bài |
+| **MEDIUM-HIGH** | Wealth, FP&A, Broker | ✅ Done | 6 bài |
+| **MEDIUM** | Risk, Valuation, Treasury, Analyst, Credit | ✅ Done | 7 bài |
+| **CFA** | Economics (Business Cycles, Fiscal, Trade, FX, Market Structures) | ✅ Done | 5 bài |
+| **Backlog** | 22 nghề còn 3-4 bài (xem Phase 5) | ⚠️ Chưa làm | 0 bài |
+| **Backlog** | CFA Alternatives (đóng khung lại) | ⚠️ Chưa làm | 0 bài |
+| **Backlog** | CFA vignette/item-set format | ⚠️ Chưa làm (feature, không phải content) | - |
+| **Backlog** | Chặng Behavioral Finance | ⚠️ Chưa làm (cần thiết kế cấu trúc trước) | - |
+| **Total đã viết** | | | **21 bài** |
 
 ---
 
 ## 🎬 Giai đoạn Thực Hiện
 
-### Phase 1 (Tuần 1-2): HIGH Priority ✅
-- ✅ Compliance Officer (3 bài AML/KYC) - DONE
-- [ ] ESG Analyst (3 bài ESG)
-- [ ] Insurance Actuarial (3 bài Insurance)
+### Phase 1 (2026-07-22): HIGH Priority ✅ DONE
+- ✅ Compliance Officer (3 bài AML/KYC) - commit `1ed1466`
+- ⚠️ ESG Analyst - **vẫn còn 3 bài, chưa viết thêm** (không phải "done" như bảng cũ ghi nhầm)
+- ⚠️ Insurance Actuarial - **vẫn còn 4 bài, chưa viết thêm**
 
-### Phase 2 (Tuần 3-4): MEDIUM-HIGH
-- [ ] Wealth Manager (2 bài)
-- [ ] FP&A (2 bài)
-- [ ] Stockbroker (2 bài)
+### Phase 2 (2026-07-22): MEDIUM-HIGH ✅ DONE
+- ✅ Wealth Manager (2 bài: hoạch định tài chính toàn diện, theo giai đoạn cuộc đời) - commit `00e4b7f`
+- ✅ FP&A (2 bài) - commit `02c50e8`
+- ✅ Stockbroker (2 bài: phân tích kỹ thuật, margin call) - commit `02c50e8`
 
-### Phase 3 (Tuần 5+): MEDIUM
-- [ ] Risk Management (1-2 bài)
-- [ ] Valuation (2 bài)
-- [ ] Treasury (1 bài)
-- [ ] Investment Analyst (1 bài)
-- [ ] Credit Officer (1 bài)
+### Phase 3 (2026-07-22): MEDIUM ✅ DONE
+- ✅ Risk Management (2 bài: VaR & Stress Testing, Basel III) - commit `95680ef`
+- ✅ Valuation (2 bài: định giá BĐS/tài sản vô hình, valuation report) - commit `95680ef`
+- ✅ Treasury (1 bài: hedging & FX derivatives) - commit `95680ef`
+- ✅ Investment Analyst (1 bài: investment thesis) - commit `95680ef`
+- ✅ Credit Officer (1 bài: 5C framework) - commit `95680ef`
+
+### Phase 4 - CFA Economics (2026-07-22) ✅ DONE
+Subject mỏng nhất so với trọng số thi (6-9% weight, chỉ 4 bài cũ) - đã bổ sung 5 bài chuẩn CFA Level I, bám sát Learning Outcome Statements chính thức (Business Cycles, Fiscal Policy, International Trade, FX & Capital Flows, Market Structures). Slug prefix `cfa-economics-*`, theo đúng pattern chất lượng của `cfa-ethics-*`.
+
+### Phase 5 (chưa làm) - Nghề nghiệp còn mỏng
+Audit lại cho thấy **22 nghề** vẫn chỉ có 3-4 bài liên quan (`relatedLessonSlugs`), thấp hơn nhiều so với các nghề đã mở rộng ở Phase 1-3:
+`esg-analyst` (3), `fintech-product-finance` (3), `insurance-actuarial` (4), `accountant` (4), `fund-manager` (4), `quant` (4), `ir-specialist` (4), `pmi-specialist` (4), `pe-vc-analyst` (4), `internal-audit` (4), `retail-banking-rm` (4), `real-estate-finance` (4), `family-office-advisor` (4), `macro-research-analyst` (4), `personal-financial-advisor` (4), `financial-coach` (4), `insurance-financial-advisor` (4), `household-finance-planner` (4), `etf-fund-specialist` (4), `fixed-income-trader` (4), `consumer-credit-analyst` (4), `management-accountant` (4).
+
+### Phase 6 (chưa làm) - CFA Alternatives
+9 bài hiện tại đúng chủ đề (LBO, VC, PE, Hedge Fund, Commodity, Real Estate, Crypto) nhưng viết dưới dạng case-study cá nhân, chưa đóng khung theo CFA Level I curriculum (không có nhãn `cfa-alternatives-*`, thiếu liên hệ trực tiếp Learning Outcome Statements).
+
+### Phase 7 (chưa làm) - Định dạng câu hỏi vignette/item-set cho CFA
+Đề thi CFA thật dùng item set (1 đoạn tình huống + 3-6 câu hỏi ăn theo) - app hiện chỉ có câu hỏi đơn lẻ độc lập (`CfaQuizSidebar.tsx`). Cần thiết kế type mới (`CfaVignette` với `scenario` + `questions[]`) và thử nghiệm ở vài module tiêu biểu trước khi nhân rộng.
+
+### Phase 8 (chưa làm) - Chặng Behavioral Finance riêng
+Hiện chưa có chặng/track riêng cho tài chính hành vi (behavioral finance) - cần xác định gắn vào track nào (personal, professional, hay bonus) và thiết kế cấu trúc bài học trước khi viết nội dung.
 
 ---
 

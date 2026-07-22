@@ -1002,5 +1002,649 @@ export const lessons = [
     "practicePrompt": {"question": "Công ty nhập khẩu cần mua 1M USD trong 3 tháng. Spot rate hiện tại 24,000 VND/USD, forward rate 3 tháng 24,300 VND/USD. Công ty nên làm gì?", "options": ["Ký forward contract khóa tỷ giá 24,300 ngay bây giờ - chấp nhận premium nhỏ (1.25%) để loại bỏ hoàn toàn rủi ro USD tăng giá mạnh hơn trong 3 tháng tới", "Chờ đến khi cần mới mua theo spot rate vì spot đang thấp hơn forward - tiết kiệm được chi phí ngay lúc này", "Mua 1M USD ngay hôm nay theo giá spot rồi giữ USD trong 3 tháng chờ đến hạn", "Không cần quan tâm vì chênh lệch spot-forward chỉ 1.25%, không đáng để hedge"], "correct": 0, "explanation": "Mục đích hedging là loại bỏ rủi ro không lường trước được, không phải để kiếm lời từ chênh lệch tỷ giá. Ký forward ở 24,300 nghĩa là công ty chấp nhận trả premium 1.25% so với spot hiện tại, đổi lại biết chắc chắn chi phí mua USD trong 3 tháng tới, dù tỷ giá thực tế khi đó có thể tăng vọt lên 26,000 hay giảm về 23,000. 'Chờ mua theo spot' hoặc 'không hedge vì chênh lệch nhỏ' đều để công ty chịu rủi ro tỷ giá không giới hạn."},
     "summary": {"keyIdea": "Hedging instruments (forward, futures, options, swaps) giúp ngân hàng, công ty, và nhà đầu tư quản lý rủi ro. Mục đích không phải kiếm lợi mà là 'bảo vệ' danh mục khỏi những thay đổi không lường trước."},
     "application": {"title": "Áp dụng ngay", "message": "Nếu bạn làm treasury officer, bạn sẽ sử dụng những công cụ này hàng ngày. Quy tắc vàng: 'Hedge nếu bạn biết rằng bạn sẽ phải đối mặt với rủi ro trong tương lai.' Nếu công ty xuất khẩu USD, hedge tỷ giá. Nếu vay ngoài với lãi suất nổi, hedge bằng interest rate swap. Hạn chế: đừng 'over-hedge' (hedge quá nhiều) hoặc dùng derivatives để đầu cơ - đó là cách mất tiền."}
+  },
+  {
+    "id": 1224,
+    "slug": "cfa-economics-business-cycles",
+    "title": "CFA Economics: Chu kỳ kinh doanh (Business Cycles)",
+    "subtitle": "4 giai đoạn của nền kinh tế và cách nhà đầu tư chuyên nghiệp đọc tín hiệu chu kỳ",
+    "duration": "8 phút",
+    "difficulty": "Khó",
+    "emoji": "📈",
+    "track": "bonus",
+    "openingQuestion": "Chu kỳ kinh doanh (business cycle) gồm mấy giai đoạn chính, và GDP tăng trưởng dương nhưng đang chậm lại thuộc giai đoạn nào?",
+    "openingOptions": [
+      "2 giai đoạn: tăng trưởng và suy thoái; GDP chậm lại là suy thoái",
+      "4 giai đoạn: mở rộng (expansion), đỉnh (peak), thu hẹp (contraction/recession), đáy (trough); GDP tăng dương nhưng chậm lại là giai đoạn cuối mở rộng, gần đỉnh",
+      "3 giai đoạn: tăng, ổn định, giảm; GDP chậm lại là giai đoạn ổn định",
+      "Chu kỳ kinh doanh không có giai đoạn cố định, thay đổi ngẫu nhiên theo từng quốc gia"
+    ],
+    "correctOption": 1,
+    "explanation": "CFA Institute định nghĩa chu kỳ kinh doanh gồm 4 giai đoạn lặp lại: Expansion (mở rộng - GDP tăng, thất nghiệp giảm), Peak (đỉnh - tăng trưởng đạt cực đại, bắt đầu có dấu hiệu quá nhiệt như lạm phát tăng), Contraction/Recession (thu hẹp - GDP giảm ít nhất 2 quý liên tiếp theo định nghĩa kỹ thuật), Trough (đáy - điểm thấp nhất trước khi phục hồi). GDP tăng dương nhưng tốc độ chậm lại là dấu hiệu kinh điển của giai đoạn cuối mở rộng, ngay trước đỉnh.",
+    "realWorldExample": {
+      "company": "Cục Dự trữ Liên bang Mỹ (Fed) và chu kỳ 2020-2023",
+      "description": "Sau cú sốc COVID-19 (contraction cực nhanh năm 2020), kinh tế Mỹ phục hồi mạnh (expansion 2021), tiến gần đỉnh với lạm phát cao kỷ lục (2022), buộc Fed tăng lãi suất liên tục để hạ nhiệt - một chu kỳ kinh doanh nén lại trong thời gian ngắn bất thường, minh họa rõ 4 giai đoạn chỉ trong 3 năm."
+    },
+    "quiz": [
+      {
+        "question": "Chỉ báo nào sau đây được xem là 'leading indicator' (chỉ báo đi trước), giúp dự báo chu kỳ kinh doanh trước khi nó xảy ra?",
+        "options": [
+          "Tỷ lệ thất nghiệp (unemployment rate) - vì đây là chỉ báo trễ, phản ánh những gì đã xảy ra",
+          "Đường cong lợi suất trái phiếu (yield curve) đảo ngược, số đơn xin cấp phép xây dựng mới, chỉ số niềm tin người tiêu dùng - các chỉ báo này thường thay đổi TRƯỚC khi GDP thực sự thay đổi",
+          "GDP thực tế đã công bố quý trước - vì đây là dữ liệu chính xác nhất",
+          "Không có chỉ báo nào dự báo được chu kỳ kinh doanh trước"
+        ],
+        "correct": 1,
+        "explanation": "Leading indicators (chỉ báo đi trước) như yield curve đảo ngược, đơn xin giấy phép xây dựng, chỉ số niềm tin tiêu dùng thường thay đổi hướng TRƯỚC khi nền kinh tế chính thức chuyển giai đoạn - nhà đầu tư chuyên nghiệp theo dõi các chỉ báo này để định vị danh mục sớm. Thất nghiệp và GDP là lagging/coincident indicators, phản ánh những gì đã xảy ra."
+      },
+      {
+        "question": "Trong giai đoạn Contraction (thu hẹp), nhóm ngành nào (sector) thường có hiệu suất tương đối tốt hơn thị trường chung?",
+        "options": [
+          "Ngành hàng xa xỉ (luxury goods) và du lịch, vì người tiêu dùng vẫn chi tiêu mạnh",
+          "Ngành phòng thủ (defensive sectors) như hàng tiêu dùng thiết yếu, y tế, tiện ích công cộng - vì nhu cầu ổn định bất kể chu kỳ kinh tế",
+          "Ngành công nghệ tăng trưởng cao (high-growth tech), vì luôn tăng trưởng mạnh nhất",
+          "Ngành bất động sản, vì giá nhà luôn tăng trong suy thoái"
+        ],
+        "correct": 1,
+        "explanation": "Defensive sectors (hàng tiêu dùng thiết yếu, y tế, tiện ích) có nhu cầu ổn định không phụ thuộc vào chu kỳ kinh tế - người ta vẫn phải ăn uống, khám bệnh, dùng điện dù kinh tế suy thoái. Đây là nguyên lý cơ bản của sector rotation theo chu kỳ kinh doanh mà CFA curriculum nhấn mạnh trong Portfolio Management."
+      },
+      {
+        "question": "Định nghĩa kỹ thuật phổ biến của 'suy thoái' (recession) theo NBER (Mỹ) và nhiều tổ chức là gì?",
+        "options": [
+          "Thất nghiệp vượt quá 10%",
+          "GDP thực giảm trong ít nhất 2 quý liên tiếp (2 consecutive quarters of negative real GDP growth)",
+          "Thị trường chứng khoán giảm hơn 20% từ đỉnh",
+          "Lạm phát vượt quá 5%/năm"
+        ],
+        "correct": 1,
+        "explanation": "Định nghĩa kỹ thuật phổ biến nhất (dù NBER Mỹ thực tế dùng định nghĩa rộng hơn, xem xét nhiều chỉ số cùng lúc) là GDP thực giảm liên tục ít nhất 2 quý. Đây là ngưỡng được trích dẫn rộng rãi trong media và cả CFA curriculum khi giới thiệu khái niệm contraction."
+      }
+    ],
+    "keyTakeaways": [
+      "4 giai đoạn chu kỳ kinh doanh: Expansion → Peak → Contraction → Trough, lặp lại theo thời gian",
+      "Leading indicators (yield curve, giấy phép xây dựng, niềm tin tiêu dùng) dự báo chu kỳ TRƯỚC khi nó xảy ra; lagging indicators (thất nghiệp) phản ánh SAU",
+      "Sector rotation: mỗi giai đoạn chu kỳ có nhóm ngành hưởng lợi khác nhau - defensive sectors mạnh trong contraction, cyclical sectors mạnh trong expansion",
+      "Suy thoái kỹ thuật = GDP thực giảm 2 quý liên tiếp, nhưng định nghĩa thực tế của các tổ chức như NBER phức tạp hơn"
+    ],
+    "practicePrompt": {
+      "question": "Yield curve (đường cong lợi suất) vừa đảo ngược (lãi suất ngắn hạn cao hơn dài hạn) trong 3 tháng qua, trong khi GDP quý này vẫn tăng trưởng dương 2%. Nhà quản lý danh mục nên phản ứng thế nào theo logic leading indicator?",
+      "options": [
+        "Bỏ qua tín hiệu vì GDP vẫn dương, tiếp tục giữ nguyên tỷ trọng cổ phiếu cyclical như hiện tại",
+        "Bắt đầu tăng dần tỷ trọng defensive sectors và giảm rủi ro danh mục, vì yield curve đảo ngược là leading indicator đã dự báo suy thoái khá chính xác trong lịch sử, dù GDP hiện tại chưa phản ánh",
+        "Bán toàn bộ danh mục ngay lập tức vì suy thoái chắc chắn xảy ra trong tháng tới",
+        "Mua thêm cổ phiếu công nghệ tăng trưởng cao vì đường cong lợi suất không liên quan gì đến chu kỳ kinh doanh"
+      ],
+      "correct": 1,
+      "explanation": "Yield curve đảo ngược là một trong những leading indicator đáng tin cậy nhất trong lịch sử để dự báo suy thoái (thường đi trước 12-18 tháng), dù không phải lúc nào cũng chính xác 100%. Vì GDP là coincident/lagging indicator, việc GDP vẫn dương không phủ nhận tín hiệu cảnh báo sớm - nhà quản lý chuyên nghiệp điều chỉnh danh mục dần dần (không hoảng loạn bán hết) theo hướng phòng thủ hơn."
+    },
+    "summary": {
+      "keyIdea": "Chu kỳ kinh doanh gồm 4 giai đoạn lặp lại (Expansion-Peak-Contraction-Trough); leading indicators giúp dự báo trước khi GDP chính thức phản ánh, và sector rotation là chiến lược đầu tư theo chu kỳ.",
+      "commonMistake": "Chỉ nhìn vào GDP hiện tại (lagging) mà bỏ qua các leading indicators như yield curve, dẫn đến phản ứng quá muộn với thay đổi chu kỳ",
+      "action": "Theo dõi yield curve và chỉ số niềm tin tiêu dùng hàng tháng để nhận diện sớm tín hiệu chuyển giai đoạn chu kỳ kinh doanh"
+    },
+    "application": {
+      "title": "Áp dụng vào phân tích CFA",
+      "message": "Khi phân tích một nền kinh tế cho bài thi CFA hoặc công việc thực tế, luôn xác định: (1) đang ở giai đoạn nào của chu kỳ, (2) leading indicators đang báo hiệu gì, (3) sector nào nên overweight/underweight theo giai đoạn đó.",
+      "secondary": "Đây là nền tảng lý thuyết cho Top-down Investing - một trong những phương pháp phân bổ tài sản phổ biến nhất trong Portfolio Management."
+    },
+    "sections": [
+      {
+        "type": "lead",
+        "text": "Chu kỳ kinh doanh là nhịp đập của nền kinh tế - hiểu được nó, nhà đầu tư có thể định vị danh mục trước khi thị trường phản ứng, thay vì chạy theo sau."
+      },
+      {
+        "type": "heading",
+        "text": "4 giai đoạn của chu kỳ kinh doanh"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Expansion (Mở rộng): GDP tăng, thất nghiệp giảm, niềm tin tiêu dùng cao, doanh nghiệp mở rộng đầu tư",
+          "Peak (Đỉnh): Tăng trưởng đạt cực đại, bắt đầu có dấu hiệu quá nhiệt (lạm phát tăng, ngân hàng trung ương thắt chặt chính sách)",
+          "Contraction/Recession (Thu hẹp): GDP giảm, thất nghiệp tăng, doanh nghiệp cắt giảm chi tiêu và nhân sự",
+          "Trough (Đáy): Điểm thấp nhất của chu kỳ, các điều kiện bắt đầu ổn định trước khi phục hồi"
+        ]
+      },
+      {
+        "type": "heading",
+        "text": "Leading, Coincident, và Lagging Indicators"
+      },
+      {
+        "type": "paragraph",
+        "text": "Leading indicators (chỉ báo đi trước) thay đổi TRƯỚC khi nền kinh tế chuyển giai đoạn - ví dụ: đường cong lợi suất (yield curve), đơn xin giấy phép xây dựng mới, chỉ số niềm tin tiêu dùng, đơn đặt hàng mới của nhà máy. Coincident indicators (chỉ báo đồng thời) thay đổi CÙNG LÚC với nền kinh tế - ví dụ GDP thực tế, doanh số bán lẻ. Lagging indicators (chỉ báo trễ) thay đổi SAU khi nền kinh tế đã chuyển giai đoạn - ví dụ tỷ lệ thất nghiệp, lãi suất cho vay trung bình. Nhà đầu tư chuyên nghiệp tập trung theo dõi leading indicators để hành động trước thị trường."
+      },
+      {
+        "type": "heading",
+        "text": "Sector Rotation - Chiến lược đầu tư theo chu kỳ"
+      },
+      {
+        "type": "paragraph",
+        "text": "Mỗi giai đoạn chu kỳ kinh doanh có nhóm ngành hưởng lợi khác nhau. Trong Expansion sớm: tài chính, bất động sản, hàng tiêu dùng không thiết yếu thường dẫn đầu (cyclical sectors). Trong Expansion muộn/Peak: năng lượng, nguyên vật liệu thường mạnh do lạm phát tăng. Trong Contraction: hàng tiêu dùng thiết yếu, y tế, tiện ích công cộng (defensive sectors) thường vượt trội vì nhu cầu ổn định. Trong Trough/đầu Expansion mới: công nghệ, công nghiệp thường phục hồi mạnh trước tiên khi kỳ vọng cải thiện."
+      },
+      {
+        "type": "callout",
+        "label": "Lưu ý cho bài thi CFA",
+        "text": "CFA Level I không yêu cầu dự báo chính xác chu kỳ, mà yêu cầu HIỂU mối quan hệ giữa các chỉ báo kinh tế, chính sách tiền tệ/tài khóa, và phản ứng của thị trường tài sản qua từng giai đoạn - đây là nền tảng cho Economics và liên kết trực tiếp tới Portfolio Management (asset allocation theo chu kỳ)."
+      }
+    ]
+  },
+  {
+    "id": 1225,
+    "slug": "cfa-economics-fiscal-policy",
+    "title": "CFA Economics: Chính sách tài khóa (Fiscal Policy)",
+    "subtitle": "Chính phủ dùng thuế và chi tiêu công để điều tiết nền kinh tế như thế nào",
+    "duration": "7 phút",
+    "difficulty": "Khó",
+    "emoji": "🏛️",
+    "track": "bonus",
+    "openingQuestion": "Chính sách tài khóa mở rộng (expansionary fiscal policy) bao gồm những hành động nào?",
+    "openingOptions": [
+      "Ngân hàng trung ương giảm lãi suất để kích thích vay mượn",
+      "Chính phủ tăng chi tiêu công và/hoặc giảm thuế để bơm tiền vào nền kinh tế, thường dùng khi kinh tế suy thoái",
+      "Chính phủ tăng thuế và giảm chi tiêu để kiềm chế lạm phát",
+      "Ngân hàng trung ương mua trái phiếu chính phủ trên thị trường mở"
+    ],
+    "correctOption": 1,
+    "explanation": "Chính sách tài khóa (fiscal policy) là công cụ của CHÍNH PHỦ (không phải ngân hàng trung ương) thông qua thuế và chi tiêu công. Chính sách tài khóa MỞ RỘNG = tăng chi tiêu công (xây hạ tầng, trợ cấp) và/hoặc giảm thuế, nhằm bơm tiền vào nền kinh tế khi suy thoái. Ngược lại, chính sách tài khóa THẮT CHẶT (contractionary) = giảm chi tiêu, tăng thuế, dùng khi kinh tế quá nóng/lạm phát cao. Lưu ý: lãi suất và mua trái phiếu trên thị trường mở là công cụ của CHÍNH SÁCH TIỀN TỆ (monetary policy) do ngân hàng trung ương thực hiện, khác hoàn toàn với fiscal policy.",
+    "realWorldExample": {
+      "company": "Gói kích thích kinh tế COVID-19 tại Việt Nam và Mỹ (2020-2021)",
+      "description": "Chính phủ nhiều nước tung ra các gói hỗ trợ tài khóa khổng lồ trong đại dịch: Mỹ chi hàng nghìn tỷ USD qua CARES Act (trợ cấp thất nghiệp, séc kích thích trực tiếp cho dân), Việt Nam giảm/giãn thuế cho doanh nghiệp và hộ kinh doanh, tăng chi ngân sách cho y tế và an sinh xã hội - đây là ví dụ kinh điển của chính sách tài khóa mở rộng để chống suy thoái do cú sốc bên ngoài."
+    },
+    "quiz": [
+      {
+        "question": "Số nhân tài khóa (fiscal multiplier) là gì, và tại sao nó quan trọng khi đánh giá hiệu quả chính sách tài khóa?",
+        "options": [
+          "Là tỷ lệ nợ công trên GDP, càng cao càng nguy hiểm",
+          "Là hệ số đo lường GDP tăng thêm bao nhiêu cho mỗi đơn vị tiền chính phủ chi thêm - ví dụ multiplier = 1.5 nghĩa là chi thêm 1 đồng làm GDP tăng 1.5 đồng nhờ hiệu ứng lan tỏa (người nhận tiền lại chi tiêu tiếp)",
+          "Là số lần ngân hàng trung ương tăng lãi suất trong một năm",
+          "Là tỷ lệ phần trăm thuế thu nhập doanh nghiệp"
+        ],
+        "correct": 1,
+        "explanation": "Fiscal multiplier đo lường hiệu ứng lan tỏa (ripple effect) của chi tiêu chính phủ: khi chính phủ chi 1 đồng, người nhận (nhà thầu, công nhân...) lại chi tiêu một phần thu nhập đó, tạo ra thu nhập cho người khác, cứ thế lan tỏa. Multiplier > 1 nghĩa là chính sách tài khóa có hiệu ứng khuếch đại lên GDP - đây là lý do các nhà kinh tế tranh luận về hiệu quả thực sự của các gói kích thích."
+      },
+      {
+        "question": "'Crowding out effect' (hiệu ứng chèn lấn) trong chính sách tài khóa mở rộng là gì?",
+        "options": [
+          "Chính phủ chi tiêu nhiều làm doanh nghiệp phải tăng lương để giữ nhân viên",
+          "Khi chính phủ vay nợ nhiều để tài trợ chi tiêu, lãi suất thị trường có thể tăng lên, khiến khu vực tư nhân khó vay vốn hơn và giảm đầu tư - một phần hiệu quả kích thích của chính sách tài khóa bị triệt tiêu",
+          "Chính phủ đóng cửa các doanh nghiệp tư nhân cạnh tranh với doanh nghiệp nhà nước",
+          "Người dân chuyển tiền gửi tiết kiệm sang mua trái phiếu chính phủ"
+        ],
+        "correct": 1,
+        "explanation": "Crowding out là một trong những phản biện kinh điển với chính sách tài khóa mở rộng: chính phủ vay nợ nhiều hơn → cầu vốn vay tăng → lãi suất có xu hướng tăng → doanh nghiệp/cá nhân khu vực tư nhân vay đắt hơn, đầu tư giảm → một phần tác động kích thích GDP bị 'chèn lấn' ngược lại. Đây là khái niệm CFA Level I yêu cầu hiểu để đánh giá hiệu quả ròng của chính sách tài khóa."
+      },
+      {
+        "question": "Thâm hụt ngân sách (budget deficit) khác với nợ công (public debt) như thế nào?",
+        "options": [
+          "Hai khái niệm này hoàn toàn giống nhau, chỉ là cách gọi khác",
+          "Thâm hụt ngân sách là chênh lệch chi > thu TRONG MỘT NĂM cụ thể (dòng - flow); nợ công là TỔNG TÍCH LŨY của tất cả các khoản thâm hụt qua nhiều năm (tồn kho - stock)",
+          "Thâm hụt ngân sách chỉ áp dụng cho doanh nghiệp, nợ công chỉ áp dụng cho chính phủ",
+          "Nợ công luôn nhỏ hơn thâm hụt ngân sách của một năm"
+        ],
+        "correct": 1,
+        "explanation": "Đây là phân biệt flow vs. stock kinh điển: thâm hụt ngân sách là dòng chảy của MỘT NĂM (chi tiêu vượt thu nhập trong năm đó), còn nợ công là TỔNG CỘNG DỒN của tất cả thâm hụt (và thặng dư) qua các năm trước đó, giống như chênh lệch thu-chi hàng tháng (flow) khác với tổng nợ tín dụng tích lũy (stock) của một cá nhân."
+      }
+    ],
+    "keyTakeaways": [
+      "Chính sách tài khóa (thuế + chi tiêu công) do CHÍNH PHỦ điều hành, khác với chính sách tiền tệ (lãi suất, cung tiền) do NGÂN HÀNG TRUNG ƯƠNG điều hành",
+      "Fiscal multiplier đo lường hiệu ứng lan tỏa của chi tiêu chính phủ lên GDP - có thể lớn hơn hoặc nhỏ hơn 1",
+      "Crowding out effect: chính phủ vay nợ nhiều có thể đẩy lãi suất lên, làm giảm đầu tư tư nhân, triệt tiêu một phần hiệu quả kích thích",
+      "Thâm hụt ngân sách (flow - hàng năm) khác nợ công (stock - tích lũy qua nhiều năm)"
+    ],
+    "practicePrompt": {
+      "question": "Chính phủ công bố gói kích thích tài khóa $100 tỷ (tăng chi tiêu công), với fiscal multiplier ước tính 1.3, nhưng đồng thời lãi suất thị trường tăng nhẹ do lo ngại nợ công. Điều gì đang xảy ra và tác động ròng lên GDP nên được hiểu như thế nào?",
+      "options": [
+        "GDP chắc chắn tăng đúng $130 tỷ ($100 tỷ × 1.3) vì multiplier luôn chính xác tuyệt đối",
+        "GDP có xu hướng tăng khoảng $130 tỷ nhờ hiệu ứng multiplier, nhưng phần tăng thực tế có thể thấp hơn do crowding out effect (lãi suất tăng làm giảm đầu tư tư nhân) - cần đánh giá tác động ròng, không chỉ nhìn multiplier đơn thuần",
+        "GDP sẽ giảm vì chính phủ chi tiêu luôn có hại cho nền kinh tế",
+        "Lãi suất tăng không liên quan gì đến chính sách tài khóa, đây là sự trùng hợp ngẫu nhiên"
+      ],
+      "correct": 1,
+      "explanation": "Đây chính là bài học cốt lõi khi phân tích chính sách tài khóa: fiscal multiplier cho ước tính lý thuyết ($100B × 1.3 = $130B), nhưng crowding out effect (lãi suất tăng do chính phủ vay nợ nhiều) làm giảm đầu tư khu vực tư nhân, khiến tác động RÒNG lên GDP thường thấp hơn con số lý thuyết thuần túy. Phân tích chính sách kinh tế đòi hỏi cân nhắc cả hai lực tác động ngược chiều này."
+    },
+    "summary": {
+      "keyIdea": "Chính sách tài khóa dùng thuế và chi tiêu công để điều tiết kinh tế; hiệu quả thực tế phụ thuộc vào fiscal multiplier và bị triệt tiêu một phần bởi crowding out effect.",
+      "commonMistake": "Nhầm lẫn chính sách tài khóa (chính phủ) với chính sách tiền tệ (ngân hàng trung ương) - đây là lỗi phổ biến nhất khi mới học Economics",
+      "action": "Khi đọc tin tức về 'gói kích thích kinh tế', xác định rõ đó là biện pháp tài khóa (chi tiêu/thuế) hay tiền tệ (lãi suất/cung tiền) để hiểu đúng cơ chế tác động"
+    },
+    "application": {
+      "title": "Áp dụng vào phân tích CFA",
+      "message": "Khi phân tích tác động vĩ mô của một quốc gia, luôn tách bạch rõ chính sách tài khóa và tiền tệ đang phối hợp (hay mâu thuẫn) như thế nào - đây là câu hỏi kinh điển trong đề CFA Economics.",
+      "secondary": "Chính sách tài khóa mở rộng đi kèm chính sách tiền tệ thắt chặt (như Mỹ 2022-2023) tạo ra tác động ròng phức tạp mà nhà phân tích cần đánh giá riêng biệt."
+    },
+    "sections": [
+      {
+        "type": "lead",
+        "text": "Khi chính phủ 'bơm tiền' vào nền kinh tế qua chi tiêu công hay giảm thuế, đó là chính sách tài khóa - công cụ riêng biệt và đôi khi mâu thuẫn với chính sách tiền tệ của ngân hàng trung ương."
+      },
+      {
+        "type": "heading",
+        "text": "Hai công cụ chính của chính sách tài khóa"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Chi tiêu công (Government spending): đầu tư hạ tầng, trợ cấp xã hội, chi tiêu quốc phòng, lương công chức",
+          "Thuế (Taxation): thuế thu nhập cá nhân, thuế doanh nghiệp, thuế VAT/tiêu thụ đặc biệt"
+        ]
+      },
+      {
+        "type": "comparison",
+        "left": {
+          "label": "Mở rộng (Expansionary)",
+          "text": "Tăng chi tiêu công + giảm thuế → bơm tiền vào nền kinh tế, dùng khi suy thoái/thất nghiệp cao"
+        },
+        "right": {
+          "label": "Thắt chặt (Contractionary)",
+          "text": "Giảm chi tiêu công + tăng thuế → rút bớt tiền khỏi nền kinh tế, dùng khi lạm phát cao/kinh tế quá nóng"
+        }
+      },
+      {
+        "type": "heading",
+        "text": "Fiscal Multiplier - Hiệu ứng lan tỏa"
+      },
+      {
+        "type": "paragraph",
+        "text": "Khi chính phủ chi 1 đồng cho một dự án hạ tầng, nhà thầu nhận tiền, trả lương công nhân, công nhân lại chi tiêu cho ăn uống/mua sắm, tạo thu nhập cho người bán hàng, cứ thế lan tỏa qua nền kinh tế. Fiscal multiplier đo lường tổng tác động này: multiplier = 1.5 nghĩa là mỗi đồng chi tiêu công tạo ra 1.5 đồng GDP. Multiplier phụ thuộc vào nhiều yếu tố: xu hướng tiêu dùng biên (MPC - marginal propensity to consume), độ mở nền kinh tế (nhập khẩu làm rò rỉ hiệu ứng ra nước ngoài), và mức độ nhàn rỗi của nguồn lực kinh tế."
+      },
+      {
+        "type": "heading",
+        "text": "Crowding Out Effect - Mặt trái của chính sách tài khóa mở rộng"
+      },
+      {
+        "type": "paragraph",
+        "text": "Khi chính phủ tăng chi tiêu, thường phải vay nợ (phát hành trái phiếu chính phủ) để tài trợ, làm tăng cầu vốn vay trên thị trường. Nếu cung vốn không tăng tương ứng, lãi suất có xu hướng tăng lên - khiến doanh nghiệp và cá nhân khu vực tư nhân vay vốn đắt đỏ hơn, giảm đầu tư và tiêu dùng. Hiệu ứng này 'chèn lấn' (crowd out) một phần tác động tích cực của chi tiêu công, khiến GDP tăng ròng thấp hơn dự kiến từ multiplier thuần túy."
+      },
+      {
+        "type": "closing",
+        "lines": [
+          "Chính sách tài khóa là công cụ mạnh nhưng không hoàn hảo - hiệu quả thực tế luôn là kết quả của cuộc giằng co giữa fiscal multiplier (tích cực) và crowding out effect (tiêu cực).",
+          "CFA Level I yêu cầu hiểu cơ chế này để phân tích tác động chính sách lên thị trường tài sản, không chỉ học thuộc định nghĩa."
+        ]
+      }
+    ]
+  },
+  {
+    "id": 1226,
+    "slug": "cfa-economics-international-trade",
+    "title": "CFA Economics: Thương mại quốc tế (International Trade)",
+    "subtitle": "Lợi thế so sánh, thuế quan, và tại sao các quốc gia vẫn giao thương dù có thể tự sản xuất",
+    "duration": "7 phút",
+    "difficulty": "Khó",
+    "emoji": "🌐",
+    "track": "bonus",
+    "openingQuestion": "Lý thuyết lợi thế so sánh (comparative advantage) của David Ricardo giải thích điều gì?",
+    "openingOptions": [
+      "Quốc gia chỉ nên xuất khẩu những mặt hàng mà mình sản xuất RẺ HƠN quốc gia khác về số tuyệt đối",
+      "Ngay cả khi một quốc gia sản xuất MỌI mặt hàng hiệu quả hơn quốc gia khác (lợi thế tuyệt đối ở tất cả), cả hai vẫn có lợi khi mỗi bên chuyên môn hóa vào mặt hàng mà mình có CHI PHÍ CƠ HỘI thấp nhất tương đối, rồi trao đổi với nhau",
+      "Các quốc gia nên tự sản xuất mọi thứ để không phụ thuộc vào nước ngoài",
+      "Thương mại quốc tế luôn có lợi cho quốc gia xuất khẩu và có hại cho quốc gia nhập khẩu"
+    ],
+    "correctOption": 1,
+    "explanation": "Đây là insight quan trọng nhất của lý thuyết lợi thế so sánh: KHÔNG cần một quốc gia phải giỏi nhất tuyệt đối ở một ngành nào đó để hưởng lợi từ thương mại. Ngay cả khi quốc gia A sản xuất MỌI THỨ hiệu quả hơn quốc gia B, thương mại vẫn có lợi cho cả hai nếu mỗi bên tập trung vào ngành có chi phí cơ hội THẤP NHẤT TƯƠNG ĐỐI của mình. Đây khác biệt cơ bản với 'lợi thế tuyệt đối' (absolute advantage) mà nhiều người nhầm lẫn.",
+    "realWorldExample": {
+      "company": "Việt Nam và ngành dệt may/điện tử",
+      "description": "Việt Nam có thể không phải quốc gia có năng suất lao động cao nhất thế giới ở bất kỳ ngành nào, nhưng vẫn hưởng lợi lớn từ thương mại quốc tế bằng cách chuyên môn hóa vào các ngành thâm dụng lao động (dệt may, lắp ráp điện tử) nơi chi phí cơ hội thấp hơn tương đối so với các ngành công nghệ cao - minh họa đúng nguyên lý lợi thế so sánh, không phải lợi thế tuyệt đối."
+    },
+    "quiz": [
+      {
+        "question": "Thuế quan (tariff) là gì, và ai thường là người chịu thiệt hại ròng lớn nhất khi một quốc gia áp thuế quan cao lên hàng nhập khẩu?",
+        "options": [
+          "Thuế quan chỉ ảnh hưởng đến doanh nghiệp nước ngoài, người tiêu dùng trong nước không bị ảnh hưởng",
+          "Thuế quan là thuế đánh vào hàng hóa nhập khẩu; người tiêu dùng trong nước thường chịu thiệt hại ròng lớn nhất vì phải trả giá cao hơn cho hàng nhập khẩu (hoặc hàng nội địa thay thế kém cạnh tranh hơn cũng tăng giá theo)",
+          "Chính phủ luôn là bên chịu thiệt hại vì phải thu ít thuế hơn",
+          "Thuế quan luôn có lợi cho tất cả các bên tham gia thương mại"
+        ],
+        "correct": 1,
+        "explanation": "Thuế quan làm tăng giá hàng nhập khẩu, bảo hộ doanh nghiệp nội địa cạnh tranh yếu hơn nhưng khiến người tiêu dùng trong nước phải trả giá cao hơn cho cả hàng nhập khẩu lẫn hàng nội địa (vì doanh nghiệp nội địa mất áp lực cạnh tranh giá). Kinh tế học phân tích 'deadweight loss' (tổn thất phúc lợi ròng) từ thuế quan cho thấy tổng thiệt hại của người tiêu dùng thường lớn hơn lợi ích của nhà sản xuất nội địa cộng với thu ngân sách từ thuế."
+      },
+      {
+        "question": "Cán cân thương mại (trade balance) thặng dư (surplus) có luôn là dấu hiệu tốt cho một nền kinh tế không?",
+        "options": [
+          "Có, thặng dư thương mại luôn tốt tuyệt đối trong mọi trường hợp",
+          "Không nhất thiết - thặng dư có thể phản ánh nền kinh tế xuất khẩu mạnh (tốt), nhưng cũng có thể phản ánh tiêu dùng nội địa yếu/đầu tư thấp (không hẳn tốt); cần phân tích NGUYÊN NHÂN đằng sau con số, không chỉ nhìn dấu +/-",
+          "Không, thâm hụt thương mại luôn tốt hơn thặng dư",
+          "Cán cân thương mại không có ý nghĩa phân tích kinh tế nào"
+        ],
+        "correct": 1,
+        "explanation": "CFA curriculum nhấn mạnh: không nên đánh giá thặng dư/thâm hụt thương mại là 'tốt' hay 'xấu' một cách máy móc. Ví dụ, Mỹ thâm hụt thương mại lớn nhiều năm nhưng vẫn là nền kinh tế mạnh nhờ dòng vốn đầu tư nước ngoài chảy vào bù đắp (capital account thặng dư tương ứng); trong khi một số nước thặng dư thương mại lại do tiêu dùng nội địa yếu, đầu tư trong nước thấp - phải phân tích bối cảnh, không chỉ con số bề mặt."
+      },
+      {
+        "question": "Hạn ngạch nhập khẩu (import quota) khác thuế quan (tariff) như thế nào về cơ chế tác động?",
+        "options": [
+          "Hai công cụ này hoàn toàn giống nhau về mọi mặt",
+          "Thuế quan tăng GIÁ hàng nhập khẩu (qua thuế) nhưng không giới hạn SỐ LƯỢNG; hạn ngạch giới hạn trực tiếp SỐ LƯỢNG được phép nhập khẩu, khiến giá tăng gián tiếp do khan hiếm nguồn cung khi cầu vượt hạn ngạch",
+          "Hạn ngạch chỉ áp dụng cho dịch vụ, thuế quan chỉ áp dụng cho hàng hóa",
+          "Thuế quan luôn nghiêm khắc hơn hạn ngạch trong mọi trường hợp"
+        ],
+        "correct": 1,
+        "explanation": "Đây là phân biệt cơ chế quan trọng: thuế quan tác động qua GIÁ (đánh thuế trực tiếp, số lượng nhập khẩu tự điều chỉnh theo cung-cầu ở mức giá mới), còn hạn ngạch tác động qua SỐ LƯỢNG (giới hạn cứng số lượng được phép nhập, giá tăng như hệ quả gián tiếp của sự khan hiếm). Cả hai đều là công cụ bảo hộ thương mại (protectionism) nhưng cơ chế truyền dẫn khác nhau, dẫn đến tác động phúc lợi khác nhau."
+      }
+    ],
+    "keyTakeaways": [
+      "Lợi thế so sánh (comparative advantage) khác lợi thế tuyệt đối (absolute advantage) - một quốc gia không cần giỏi nhất tuyệt đối để hưởng lợi từ thương mại, chỉ cần chuyên môn hóa theo chi phí cơ hội thấp nhất tương đối",
+      "Thuế quan làm tăng giá hàng hóa, người tiêu dùng trong nước thường là bên chịu thiệt hại ròng lớn nhất dù mục đích là bảo hộ sản xuất nội địa",
+      "Cán cân thương mại thặng dư/thâm hụt không tự động là 'tốt' hay 'xấu' - cần phân tích nguyên nhân và bối cảnh kinh tế đằng sau",
+      "Thuế quan tác động qua giá, hạn ngạch tác động qua số lượng - cả hai đều tạo ra deadweight loss (tổn thất phúc lợi) cho nền kinh tế tổng thể"
+    ],
+    "practicePrompt": {
+      "question": "Quốc gia A áp thuế quan 25% lên thép nhập khẩu để bảo vệ ngành thép nội địa. Ngành xây dựng và sản xuất ô tô trong nước (khách hàng mua thép) phản đối chính sách này. Ai đúng về mặt phân tích kinh tế?",
+      "options": [
+        "Chính sách này chỉ có lợi, không có ai bị thiệt hại - vì mục đích là bảo vệ việc làm ngành thép",
+        "Cả hai phía đều có luận điểm hợp lý: ngành thép nội địa được bảo hộ (lợi ích tập trung, dễ thấy), nhưng ngành xây dựng/ô tô phải trả giá thép cao hơn (chi phí phân tán trên nhiều doanh nghiệp và người tiêu dùng cuối, khó thấy hơn nhưng tổng thiệt hại thường lớn hơn) - đây là ví dụ kinh điển về deadweight loss của thuế quan",
+        "Ngành xây dựng và ô tô hoàn toàn sai vì thuế quan không ảnh hưởng đến giá nguyên liệu đầu vào",
+        "Thuế quan luôn được áp dụng công bằng cho mọi ngành nên không có bên nào thiệt hại"
+      ],
+      "correct": 1,
+      "explanation": "Đây là minh họa kinh điển của 'concentrated benefits, dispersed costs' (lợi ích tập trung, chi phí phân tán) trong kinh tế học chính sách thương mại: ngành thép nội địa (nhóm nhỏ, được lợi rõ ràng) thường vận động chính sách mạnh hơn ngành tiêu thụ thép (nhóm lớn, mỗi bên chịu thiệt hại nhỏ nhưng tổng cộng lớn hơn). CFA Economics yêu cầu nhận diện được cả hai mặt của chính sách bảo hộ thương mại, không chỉ nhìn từ góc độ ngành được bảo hộ."
+    },
+    "summary": {
+      "keyIdea": "Lợi thế so sánh giải thích tại sao thương mại quốc tế có lợi cho tất cả các bên tham gia dù năng lực sản xuất khác nhau; thuế quan và hạn ngạch bảo hộ sản xuất nội địa nhưng tạo tổn thất phúc lợi ròng cho nền kinh tế.",
+      "commonMistake": "Nhầm lẫn lợi thế so sánh với lợi thế tuyệt đối, hoặc đánh giá cán cân thương mại thặng dư/thâm hụt chỉ dựa vào dấu +/- mà không xét bối cảnh",
+      "action": "Khi phân tích chính sách thương mại của một quốc gia, luôn xác định ai được lợi (concentrated) và ai chịu thiệt hại (dispersed) để đánh giá tác động ròng"
+    },
+    "application": {
+      "title": "Áp dụng vào phân tích CFA",
+      "message": "Thương mại quốc tế liên kết trực tiếp tới tỷ giá hối đoái, dòng vốn, và định giá doanh nghiệp xuất/nhập khẩu - một công ty phụ thuộc nguyên liệu nhập khẩu sẽ chịu rủi ro trực tiếp từ chính sách thuế quan của chính phủ.",
+      "secondary": "Bài tiếp theo về Thị trường ngoại hối sẽ nối tiếp chủ đề này - thương mại quốc tế và tỷ giá hối đoái luôn gắn liền với nhau."
+    },
+    "sections": [
+      {
+        "type": "lead",
+        "text": "Tại sao các quốc gia vẫn giao thương dù có thể tự sản xuất mọi thứ? Câu trả lời nằm ở lý thuyết lợi thế so sánh - một trong những insight quan trọng nhất của kinh tế học."
+      },
+      {
+        "type": "conceptTable",
+        "title": "Lợi thế tuyệt đối vs. Lợi thế so sánh",
+        "subtitle": "Hai khái niệm dễ nhầm lẫn nhất trong Economics CFA Level I",
+        "concepts": [
+          {
+            "vi": "Lợi thế tuyệt đối",
+            "en": "Absolute Advantage",
+            "def": "Khả năng sản xuất MỘT ĐƠN VỊ hàng hóa với ÍT NGUỒN LỰC HƠN quốc gia khác (năng suất cao hơn về số tuyệt đối)"
+          },
+          {
+            "vi": "Lợi thế so sánh",
+            "en": "Comparative Advantage",
+            "def": "Khả năng sản xuất một hàng hóa với CHI PHÍ CƠ HỘI THẤP HƠN TƯƠNG ĐỐI so với hàng hóa khác - đây mới là cơ sở thực sự cho thương mại có lợi"
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "text": "Công cụ bảo hộ thương mại: Thuế quan và Hạn ngạch"
+      },
+      {
+        "type": "paragraph",
+        "text": "Khi một quốc gia muốn bảo vệ ngành sản xuất nội địa khỏi cạnh tranh nước ngoài, hai công cụ phổ biến nhất là thuế quan (tariff - đánh thuế lên hàng nhập khẩu) và hạn ngạch (quota - giới hạn số lượng nhập khẩu). Cả hai đều làm tăng giá hàng hóa trong nước và bảo vệ nhà sản xuất nội địa, nhưng đồng thời gây tổn thất cho người tiêu dùng và tạo ra 'deadweight loss' - phần giá trị kinh tế bị mất đi hoàn toàn (không chuyển sang cho ai) do giao dịch không còn diễn ra ở mức giá cạnh tranh tự nhiên."
+      },
+      {
+        "type": "heading",
+        "text": "Cán cân thương mại - Không đơn giản là 'thặng dư tốt, thâm hụt xấu'"
+      },
+      {
+        "type": "paragraph",
+        "text": "Cán cân thương mại (trade balance) = Xuất khẩu - Nhập khẩu. Nhiều người mặc định thặng dư là tốt, thâm hụt là xấu, nhưng phân tích kinh tế học nghiêm túc đòi hỏi xem xét bối cảnh: một quốc gia thâm hụt thương mại vì đang thu hút mạnh vốn đầu tư nước ngoài (để xây dựng hạ tầng, mở rộng sản xuất) có thể đang trong giai đoạn phát triển lành mạnh; ngược lại, thặng dư thương mại kéo dài do tiêu dùng nội địa yếu có thể phản ánh vấn đề cơ cấu kinh tế."
+      },
+      {
+        "type": "closing",
+        "lines": [
+          "Thương mại quốc tế là lĩnh vực mà trực giác thường sai - lợi thế so sánh cho thấy ngay cả 'kẻ yếu nhất' cũng có chỗ đứng trong thương mại toàn cầu.",
+          "CFA Level I yêu cầu vượt qua các khẩu hiệu chính trị phổ biến ('bảo hộ để giữ việc làm', 'thặng dư luôn tốt') để phân tích tác động kinh tế thực sự bằng công cụ phân tích chi phí-lợi ích."
+        ]
+      }
+    ]
+  },
+  {
+    "id": 1227,
+    "slug": "cfa-economics-fx-capital-flows",
+    "title": "CFA Economics: Thị trường ngoại hối & Dòng vốn quốc tế",
+    "subtitle": "Điều gì quyết định tỷ giá hối đoái, và tại sao dòng vốn di chuyển giữa các quốc gia",
+    "duration": "8 phút",
+    "difficulty": "Khó",
+    "emoji": "💱",
+    "track": "bonus",
+    "openingQuestion": "Nếu Ngân hàng Nhà nước Việt Nam tăng lãi suất điều hành đáng kể trong khi Fed (Mỹ) giữ nguyên lãi suất, điều gì có xu hướng xảy ra với tỷ giá VND/USD (giả định các yếu tố khác không đổi)?",
+    "openingOptions": [
+      "VND có xu hướng MẤT giá so với USD, vì lãi suất cao làm nhà đầu tư rút vốn khỏi Việt Nam",
+      "VND có xu hướng TĂNG giá (mạnh lên) so với USD, vì lãi suất VND cao hơn thu hút dòng vốn đầu tư tìm kiếm lợi suất cao hơn, làm tăng cầu VND",
+      "Tỷ giá không bị ảnh hưởng gì bởi chênh lệch lãi suất giữa hai quốc gia",
+      "USD sẽ tự động tăng giá vì Mỹ là nền kinh tế lớn hơn"
+    ],
+    "correctOption": 1,
+    "explanation": "Đây là nguyên lý 'Interest Rate Parity' cơ bản: khi lãi suất một đồng tiền (VND) cao hơn tương đối, dòng vốn đầu tư quốc tế (carry trade) có xu hướng chảy vào để tìm kiếm lợi suất cao hơn, làm tăng CẦU đối với đồng tiền đó, khiến nó TĂNG GIÁ (appreciate) so với đồng tiền có lãi suất thấp hơn. Đây là một trong những mối quan hệ quan trọng nhất giữa chính sách tiền tệ và thị trường ngoại hối trong CFA Economics.",
+    "realWorldExample": {
+      "company": "Đồng Yên Nhật (JPY) và chính sách lãi suất siêu thấp",
+      "description": "Trong nhiều năm, Nhật Bản duy trì lãi suất gần 0% hoặc âm trong khi các nước khác có lãi suất cao hơn nhiều, tạo ra chiến lược 'carry trade' phổ biến: nhà đầu tư vay JPY lãi suất thấp, chuyển đổi sang đồng tiền lãi suất cao hơn (như USD hay AUD) để đầu tư kiếm chênh lệch lãi suất - dòng vốn khổng lồ này là một trong những nguyên nhân chính khiến JPY yếu đi kéo dài trong giai đoạn 2022-2023 khi chênh lệch lãi suất Nhật-Mỹ nới rộng."
+    },
+    "quiz": [
+      {
+        "question": "Tỷ giá hối đoái danh nghĩa (nominal exchange rate) khác tỷ giá hối đoái thực (real exchange rate) như thế nào?",
+        "options": [
+          "Hai khái niệm này hoàn toàn giống nhau",
+          "Tỷ giá danh nghĩa là mức quy đổi trực tiếp giữa hai đồng tiền trên thị trường (ví dụ 24,500 VND/USD); tỷ giá thực đã ĐIỀU CHỈNH theo chênh lệch lạm phát giữa hai quốc gia, phản ánh sức mua tương đối thực sự",
+          "Tỷ giá thực chỉ dùng cho vàng, tỷ giá danh nghĩa dùng cho tiền tệ thông thường",
+          "Tỷ giá danh nghĩa luôn cao hơn tỷ giá thực"
+        ],
+        "correct": 1,
+        "explanation": "Tỷ giá danh nghĩa là con số bạn thấy trên bảng giá ngân hàng hàng ngày. Tỷ giá thực điều chỉnh theo lạm phát tương đối giữa hai quốc gia, phản ánh sức mua hàng hóa thực tế - nếu lạm phát Việt Nam cao hơn Mỹ nhiều, dù tỷ giá danh nghĩa VND/USD không đổi, sức mua thực của VND so với hàng hóa Mỹ vẫn giảm (đồng VND 'thực' đã mất giá dù danh nghĩa chưa phản ánh)."
+      },
+      {
+        "question": "Purchasing Power Parity (PPP - ngang giá sức mua) dự đoán điều gì về tỷ giá hối đoái trong dài hạn?",
+        "options": [
+          "Tỷ giá hối đoái sẽ điều chỉnh dần để giá cùng một giỏ hàng hóa là tương đương nhau khi quy đổi giữa hai quốc gia - quốc gia có lạm phát cao hơn sẽ có đồng tiền mất giá tương ứng trong dài hạn",
+          "Tỷ giá hối đoái luôn cố định và không bao giờ thay đổi theo lạm phát",
+          "PPP chỉ áp dụng cho vàng và kim loại quý, không áp dụng cho tiền tệ",
+          "Quốc gia có lạm phát cao hơn sẽ có đồng tiền tăng giá trong dài hạn"
+        ],
+        "correct": 0,
+        "explanation": "PPP là lý thuyết dài hạn quan trọng: nếu một chiếc Big Mac giá 5 USD ở Mỹ nhưng quy đổi ra chỉ 3 USD ở Việt Nam (do lạm phát khác biệt qua thời gian), lý thuyết PPP dự đoán tỷ giá sẽ dần điều chỉnh để cân bằng sức mua - quốc gia có lạm phát cao hơn (mất giá trị đồng tiền nhanh hơn) sẽ có tỷ giá danh nghĩa mất giá tương ứng trong dài hạn để giữ sức mua thực tương đối ổn định. Đây là nền tảng lý thuyết cho dự báo tỷ giá dài hạn trong CFA curriculum."
+      },
+      {
+        "question": "'Capital account' (tài khoản vốn) trong cán cân thanh toán quốc gia ghi nhận những gì?",
+        "options": [
+          "Chỉ ghi nhận xuất nhập khẩu hàng hóa và dịch vụ",
+          "Ghi nhận dòng vốn đầu tư quốc tế: đầu tư trực tiếp nước ngoài (FDI), đầu tư gián tiếp vào chứng khoán (portfolio investment), và các luồng vốn tài chính khác chảy vào/ra khỏi quốc gia",
+          "Chỉ ghi nhận lượng vàng dự trữ của ngân hàng trung ương",
+          "Capital account không có trong cán cân thanh toán"
+        ],
+        "correct": 1,
+        "explanation": "Cán cân thanh toán (Balance of Payments) gồm 2 phần chính: Current Account (tài khoản vãng lai - ghi nhận thương mại hàng hóa/dịch vụ, thu nhập đầu tư) và Capital/Financial Account (tài khoản vốn - ghi nhận dòng vốn FDI, đầu tư chứng khoán, vay nợ quốc tế). Hai tài khoản này về lý thuyết cân bằng lẫn nhau: một quốc gia thâm hụt thương mại (current account âm) thường được bù đắp bởi dòng vốn nước ngoài chảy vào (capital account dương)."
+      }
+    ],
+    "keyTakeaways": [
+      "Interest Rate Parity: lãi suất một đồng tiền cao hơn tương đối thường thu hút dòng vốn, làm đồng tiền đó tăng giá (trong điều kiện các yếu tố khác không đổi)",
+      "Tỷ giá thực (điều chỉnh lạm phát) khác tỷ giá danh nghĩa (giá thị trường trực tiếp) - phản ánh sức mua tương đối thực sự",
+      "PPP dự đoán quốc gia lạm phát cao hơn sẽ có đồng tiền mất giá tương ứng trong DÀI HẠN để cân bằng sức mua",
+      "Current Account (thương mại) và Capital Account (dòng vốn) trong cán cân thanh toán thường bù trừ lẫn nhau"
+    ],
+    "practicePrompt": {
+      "question": "Việt Nam có lạm phát trung bình 4%/năm trong khi Mỹ có lạm phát trung bình 2%/năm trong 10 năm qua. Theo lý thuyết PPP, VND nên có xu hướng gì so với USD trong dài hạn?",
+      "options": [
+        "VND có xu hướng mất giá so với USD khoảng 2%/năm (chênh lệch lạm phát), để giữ sức mua tương đối ổn định giữa hai đồng tiền theo thời gian",
+        "VND sẽ tự động tăng giá vì Việt Nam có tốc độ tăng trưởng GDP cao hơn",
+        "Lạm phát không liên quan gì đến tỷ giá hối đoái theo lý thuyết PPP",
+        "Tỷ giá sẽ giữ nguyên hoàn toàn không đổi bất kể chênh lệch lạm phát"
+      ],
+      "correct": 0,
+      "explanation": "Theo PPP, chênh lệch lạm phát giữa hai quốc gia (Việt Nam 4% - Mỹ 2% = 2%/năm) dự báo VND sẽ mất giá tương ứng khoảng 2%/năm so với USD trong dài hạn, để giữ sức mua tương đối cân bằng. Đây là lý do các nhà phân tích CFA dùng chênh lệch lạm phát như một chỉ báo dài hạn cho xu hướng tỷ giá, dù trong ngắn hạn tỷ giá còn bị chi phối bởi nhiều yếu tố khác (lãi suất, dòng vốn, tâm lý thị trường, can thiệp chính sách)."
+    },
+    "summary": {
+      "keyIdea": "Tỷ giá hối đoái chịu tác động của chênh lệch lãi suất (ngắn-trung hạn, qua dòng vốn) và chênh lệch lạm phát (dài hạn, qua PPP); dòng vốn quốc tế và thương mại hàng hóa cùng tạo nên cán cân thanh toán của một quốc gia.",
+      "commonMistake": "Chỉ nhìn tỷ giá danh nghĩa mà bỏ qua tỷ giá thực (đã điều chỉnh lạm phát) khi so sánh sức mua thực sự giữa hai quốc gia",
+      "action": "Khi phân tích một quốc gia có lãi suất cao hơn, kiểm tra liệu dòng vốn có đang chảy vào (đồng tiền tăng giá) hay đang chảy ra do lo ngại rủi ro khác (đồng tiền vẫn mất giá dù lãi suất cao)"
+    },
+    "application": {
+      "title": "Áp dụng vào phân tích CFA",
+      "message": "Hiểu mối quan hệ lãi suất-tỷ giá-dòng vốn là nền tảng cho Fixed Income (định giá trái phiếu quốc tế), Portfolio Management (đa dạng hóa tài sản quốc tế và rủi ro tỷ giá), và Corporate Issuers (doanh nghiệp xuất nhập khẩu quản lý rủi ro FX).",
+      "secondary": "Đây là chủ đề liên môn quan trọng nhất trong CFA Level I - Economics không đứng riêng lẻ mà kết nối trực tiếp tới định giá tài sản ở các subject khác."
+    },
+    "sections": [
+      {
+        "type": "lead",
+        "text": "Tỷ giá hối đoái không phải con số ngẫu nhiên - nó là kết quả của cung-cầu ngoại tệ, chịu chi phối bởi lãi suất, lạm phát, và dòng vốn quốc tế."
+      },
+      {
+        "type": "heading",
+        "text": "Ba yếu tố chính quyết định tỷ giá hối đoái"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Chênh lệch lãi suất (Interest Rate Parity): lãi suất cao hơn thu hút dòng vốn, làm đồng tiền tăng giá trong ngắn-trung hạn",
+          "Chênh lệch lạm phát (Purchasing Power Parity): lạm phát cao hơn dẫn tới đồng tiền mất giá tương ứng trong dài hạn",
+          "Dòng vốn và cán cân thanh toán: thâm hụt thương mại có thể được bù đắp bởi dòng vốn đầu tư nước ngoài chảy vào"
+        ]
+      },
+      {
+        "type": "heading",
+        "text": "Cán cân thanh toán (Balance of Payments) - Bức tranh toàn cảnh"
+      },
+      {
+        "type": "paragraph",
+        "text": "Cán cân thanh toán ghi nhận mọi giao dịch kinh tế giữa một quốc gia với phần còn lại của thế giới, gồm 2 phần chính: Current Account (tài khoản vãng lai - xuất nhập khẩu hàng hóa/dịch vụ, thu nhập đầu tư, chuyển tiền) và Capital/Financial Account (tài khoản vốn - đầu tư trực tiếp FDI, đầu tư gián tiếp chứng khoán, vay nợ quốc tế). Về lý thuyết, hai tài khoản này cân bằng lẫn nhau: nếu một quốc gia nhập khẩu nhiều hơn xuất khẩu (current account âm), phần chênh lệch phải được tài trợ bởi dòng vốn nước ngoài chảy vào (capital account dương)."
+      },
+      {
+        "type": "callout",
+        "label": "Kết nối liên môn quan trọng cho CFA",
+        "text": "Chủ đề FX và dòng vốn không đứng độc lập - nó là cầu nối trực tiếp giữa Economics và Fixed Income (lợi suất trái phiếu quốc tế), Portfolio Management (rủi ro tỷ giá trong danh mục đa quốc gia), và Corporate Issuers (doanh nghiệp xuất nhập khẩu quản lý rủi ro FX qua hedging). Đây là lý do CFA Institute xếp Economics là môn nền tảng liên kết nhiều subject khác."
+      }
+    ]
+  },
+  {
+    "id": 1228,
+    "slug": "cfa-economics-market-structures",
+    "title": "CFA Economics: Cấu trúc thị trường (Market Structures)",
+    "subtitle": "Từ cạnh tranh hoàn hảo đến độc quyền - cấu trúc thị trường quyết định quyền định giá của doanh nghiệp",
+    "duration": "7 phút",
+    "difficulty": "Khó",
+    "emoji": "🏪",
+    "track": "bonus",
+    "openingQuestion": "Trong thị trường cạnh tranh hoàn hảo (perfect competition), doanh nghiệp có khả năng tự quyết định giá bán sản phẩm của mình không?",
+    "openingOptions": [
+      "Có, mỗi doanh nghiệp hoàn toàn tự do đặt giá theo ý muốn",
+      "Không - doanh nghiệp là 'price taker' (người chấp nhận giá), phải bán theo giá thị trường vì sản phẩm đồng nhất và có vô số người bán/mua, không ai đủ lớn để ảnh hưởng giá",
+      "Chỉ doanh nghiệp lớn nhất trong ngành mới được quyết định giá",
+      "Giá chỉ do chính phủ quyết định trong mọi loại thị trường"
+    ],
+    "correctOption": 1,
+    "explanation": "Đây là đặc điểm cốt lõi phân biệt cạnh tranh hoàn hảo với các cấu trúc thị trường khác: trong thị trường cạnh tranh hoàn hảo (nhiều người bán, sản phẩm đồng nhất, thông tin đầy đủ, tự do gia nhập/rút lui), mỗi doanh nghiệp quá nhỏ để tác động đến giá thị trường - họ là 'price taker', chỉ có thể quyết định SẢN LƯỢNG bán ra ở mức giá thị trường đã cho, không thể tự đặt giá cao hơn (sẽ mất hết khách hàng) hay thấp hơn (không cần thiết, bán hết ở giá thị trường).",
+    "realWorldExample": {
+      "company": "Thị trường nông sản (gạo, cà phê) và ngành hàng không (oligopoly)",
+      "description": "Thị trường lúa gạo gần với cạnh tranh hoàn hảo: hàng ngàn nông dân bán sản phẩm gần như đồng nhất, không ai đủ lớn để ảnh hưởng giá thế giới. Ngược lại, ngành hàng không nội địa Việt Nam là ví dụ điển hình của oligopoly (độc quyền nhóm) - chỉ vài hãng lớn (Vietnam Airlines, Vietjet, Bamboo) thống trị thị trường, mỗi hãng có khả năng ảnh hưởng giá vé và theo dõi sát phản ứng của đối thủ khi định giá."
+    },
+    "quiz": [
+      {
+        "question": "Độc quyền nhóm (oligopoly) khác độc quyền hoàn toàn (monopoly) như thế nào?",
+        "options": [
+          "Hai khái niệm này hoàn toàn giống nhau",
+          "Monopoly chỉ có DUY NHẤT một người bán kiểm soát toàn bộ thị trường; Oligopoly có MỘT SỐ ÍT doanh nghiệp lớn cùng thống trị thị trường, và quyết định giá của mỗi doanh nghiệp phụ thuộc lẫn nhau (interdependent) - phải tính đến phản ứng của đối thủ",
+          "Oligopoly có nhiều người bán hơn cả cạnh tranh hoàn hảo",
+          "Monopoly luôn có giá thấp hơn oligopoly"
+        ],
+        "correct": 1,
+        "explanation": "Điểm khác biệt quan trọng nhất của oligopoly (so với cả monopoly và cạnh tranh hoàn hảo) là tính PHỤ THUỘC LẪN NHAU trong chiến lược (strategic interdependence) - khi một hãng hàng không giảm giá vé, các hãng khác phải cân nhắc phản ứng thế nào, dẫn đến hành vi như 'chiến tranh giá' hay cấu kết ngầm (tacit collusion). Đây là lý do lý thuyết trò chơi (game theory) thường được dùng để phân tích oligopoly."
+      },
+      {
+        "question": "Cạnh tranh độc quyền (monopolistic competition) có đặc điểm gì khiến nó khác cạnh tranh hoàn hảo, dù vẫn có nhiều người bán?",
+        "options": [
+          "Không có sự khác biệt nào, hai khái niệm là một",
+          "Sản phẩm trong cạnh tranh độc quyền có sự KHÁC BIỆT HÓA (differentiation) - qua thương hiệu, chất lượng, marketing - cho phép mỗi doanh nghiệp có chút quyền định giá riêng, khác với sản phẩm đồng nhất hoàn toàn trong cạnh tranh hoàn hảo",
+          "Cạnh tranh độc quyền chỉ có 1 người bán duy nhất",
+          "Cạnh tranh độc quyền không tồn tại trong thực tế"
+        ],
+        "correct": 1,
+        "explanation": "Cạnh tranh độc quyền (ví dụ: nhà hàng, quán cà phê, sản phẩm tiêu dùng có thương hiệu) có nhiều người bán như cạnh tranh hoàn hảo, NHƯNG sản phẩm được khác biệt hóa qua thương hiệu/chất lượng/dịch vụ, cho phép mỗi doanh nghiệp giữ một chút quyền định giá (không hoàn toàn là price taker) nhờ khách hàng trung thành với đặc điểm riêng của sản phẩm/dịch vụ đó."
+      },
+      {
+        "question": "Rào cản gia nhập ngành (barriers to entry) cao là đặc điểm điển hình của cấu trúc thị trường nào?",
+        "options": [
+          "Cạnh tranh hoàn hảo - vì đây là đặc điểm định nghĩa của cạnh tranh hoàn hảo",
+          "Độc quyền (monopoly) và độc quyền nhóm (oligopoly) - rào cản cao (bằng sáng chế, vốn đầu tư khổng lồ, quy định pháp lý, hiệu ứng mạng lưới) là lý do khiến số lượng người bán bị giới hạn",
+          "Cạnh tranh độc quyền - vì sản phẩm luôn được cấp bằng sáng chế",
+          "Rào cản gia nhập không liên quan gì đến cấu trúc thị trường"
+        ],
+        "correct": 1,
+        "explanation": "Rào cản gia nhập là yếu tố quyết định cấu trúc thị trường: cạnh tranh hoàn hảo có rào cản gia nhập gần như bằng 0 (ai cũng có thể tham gia); monopoly/oligopoly có rào cản rất cao (vốn đầu tư khổng lồ như ngành hàng không/viễn thông, bằng sáng chế như dược phẩm, quy định giấy phép của chính phủ như ngân hàng) khiến số lượng đối thủ cạnh tranh bị giới hạn nghiêm ngặt, cho phép các doanh nghiệp hiện có giữ quyền định giá cao hơn."
+      }
+    ],
+    "keyTakeaways": [
+      "4 cấu trúc thị trường chính: cạnh tranh hoàn hảo (price taker) → cạnh tranh độc quyền (sản phẩm khác biệt hóa) → độc quyền nhóm (ít doanh nghiệp lớn, phụ thuộc chiến lược lẫn nhau) → độc quyền hoàn toàn (một người bán duy nhất)",
+      "Quyền định giá (pricing power) của doanh nghiệp tăng dần từ cạnh tranh hoàn hảo đến độc quyền hoàn toàn",
+      "Oligopoly có đặc điểm riêng: quyết định của một doanh nghiệp phụ thuộc trực tiếp vào phản ứng dự kiến của đối thủ (strategic interdependence)",
+      "Rào cản gia nhập ngành (vốn, bằng sáng chế, quy định) là yếu tố quyết định một ngành sẽ có cấu trúc thị trường nào"
+    ],
+    "practicePrompt": {
+      "question": "Một nhà phân tích đang định giá một công ty dược phẩm có bằng sáng chế độc quyền cho một loại thuốc mới trong 15 năm tới. Hiểu biết về cấu trúc thị trường giúp gì cho việc định giá công ty này?",
+      "options": [
+        "Không liên quan gì - định giá chỉ cần nhìn vào báo cáo tài chính lịch sử",
+        "Công ty đang ở vị thế gần độc quyền (monopoly) trong 15 năm nhờ bằng sáng chế (rào cản gia nhập tuyệt đối) - có quyền định giá cao, biên lợi nhuận thường vượt trội so với ngành cạnh tranh cao, nhưng nhà phân tích phải mô hình hóa rủi ro khi bằng sáng chế hết hạn (patent cliff) và cạnh tranh generic ập vào",
+        "Bằng sáng chế không ảnh hưởng đến khả năng định giá của công ty",
+        "Công ty này chắc chắn sẽ phá sản vì độc quyền luôn bị chính phủ cấm"
+      ],
+      "correct": 1,
+      "explanation": "Hiểu cấu trúc thị trường trực tiếp ảnh hưởng đến mô hình định giá: một công ty ở vị thế độc quyền tạm thời (nhờ bằng sáng chế) xứng đáng được định giá với biên lợi nhuận cao và dòng tiền ổn định trong thời gian bảo hộ, NHƯNG nhà phân tích phải điều chỉnh mô hình DCF để phản ánh 'patent cliff' - sự sụt giảm mạnh doanh thu/lợi nhuận khi bằng sáng chế hết hạn và thị trường chuyển từ độc quyền sang cạnh tranh với thuốc generic giá rẻ. Đây là ứng dụng trực tiếp của Economics vào Equity Valuation."
+    },
+    "summary": {
+      "keyIdea": "4 cấu trúc thị trường (cạnh tranh hoàn hảo, cạnh tranh độc quyền, độc quyền nhóm, độc quyền hoàn toàn) quyết định mức độ quyền định giá của doanh nghiệp, dựa trên số lượng người bán, mức độ khác biệt sản phẩm, và rào cản gia nhập ngành.",
+      "commonMistake": "Bỏ qua phân tích cấu trúc thị trường khi định giá doanh nghiệp, dẫn đến sai lầm ngoại suy biên lợi nhuận hiện tại vào tương lai mà không xét rào cản gia nhập có bền vững hay không",
+      "action": "Khi phân tích một doanh nghiệp, luôn đặt câu hỏi: ngành này có bao nhiêu đối thủ cạnh tranh thực sự, và rào cản gia nhập (moat) của doanh nghiệp này bền vững đến đâu?"
+    },
+    "application": {
+      "title": "Áp dụng vào phân tích CFA",
+      "message": "Cấu trúc thị trường là nền tảng lý thuyết cho khái niệm 'economic moat' (lợi thế cạnh tranh bền vững) mà các nhà phân tích equity luôn tìm kiếm khi định giá doanh nghiệp dài hạn.",
+      "secondary": "Kết hợp với phân tích ROIC và biên lợi nhuận (đã học ở Corporate Issuers/FSA), hiểu cấu trúc thị trường giúp đánh giá liệu lợi nhuận cao hiện tại có bền vững hay sẽ bị cạnh tranh bào mòn."
+    },
+    "sections": [
+      {
+        "type": "lead",
+        "text": "Cấu trúc thị trường mà một doanh nghiệp hoạt động quyết định trực tiếp quyền định giá, biên lợi nhuận bền vững, và cách nhà phân tích nên định giá công ty đó."
+      },
+      {
+        "type": "heading",
+        "text": "4 cấu trúc thị trường theo phổ từ cạnh tranh cao đến độc quyền"
+      },
+      {
+        "type": "conceptTable",
+        "title": "So sánh 4 cấu trúc thị trường",
+        "concepts": [
+          {
+            "vi": "Cạnh tranh hoàn hảo",
+            "en": "Perfect Competition",
+            "def": "Vô số người bán, sản phẩm đồng nhất, price taker hoàn toàn, rào cản gia nhập gần 0 (ví dụ: nông sản)"
+          },
+          {
+            "vi": "Cạnh tranh độc quyền",
+            "en": "Monopolistic Competition",
+            "def": "Nhiều người bán, sản phẩm khác biệt hóa (thương hiệu), quyền định giá nhỏ (ví dụ: nhà hàng, quán cà phê)"
+          },
+          {
+            "vi": "Độc quyền nhóm",
+            "en": "Oligopoly",
+            "def": "Ít doanh nghiệp lớn, quyết định giá phụ thuộc lẫn nhau, rào cản gia nhập cao (ví dụ: hàng không, viễn thông)"
+          },
+          {
+            "vi": "Độc quyền hoàn toàn",
+            "en": "Monopoly",
+            "def": "Một người bán duy nhất, quyền định giá tối đa, rào cản gia nhập gần như tuyệt đối (ví dụ: bằng sáng chế dược phẩm, tiện ích công cộng độc quyền địa phương)"
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "text": "Ứng dụng thực tế: 'Economic Moat' trong định giá doanh nghiệp"
+      },
+      {
+        "type": "paragraph",
+        "text": "Nhà phân tích equity chuyên nghiệp luôn đặt câu hỏi: doanh nghiệp này đang hoạt động ở đâu trên phổ cấu trúc thị trường, và lợi thế đó có bền vững không? Một doanh nghiệp có 'economic moat' (hào bảo vệ kinh tế) mạnh - qua bằng sáng chế, hiệu ứng mạng lưới, thương hiệu, hay chi phí chuyển đổi cao cho khách hàng - có thể duy trì biên lợi nhuận cao lâu dài, xứng đáng được định giá cao hơn so với doanh nghiệp trong ngành cạnh tranh khốc liệt dù hai công ty có lợi nhuận hiện tại tương đương."
+      },
+      {
+        "type": "closing",
+        "lines": [
+          "Cấu trúc thị trường không chỉ là lý thuyết kinh tế trừu tượng - nó là công cụ thực tế để đánh giá độ bền vững của lợi nhuận doanh nghiệp.",
+          "Kết hợp Economics (cấu trúc thị trường) với Equity Investments (định giá) và Corporate Issuers (phân tích lợi thế cạnh tranh) là cách CFA Level I xây dựng tư duy phân tích tích hợp, không phải các môn học rời rạc."
+        ]
+      }
+    ]
   }
 ] as Lesson[];
