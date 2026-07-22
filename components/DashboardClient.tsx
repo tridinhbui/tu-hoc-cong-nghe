@@ -35,7 +35,6 @@ import CareerGoalWidget from "@/components/CareerGoalWidget";
 import ReferralPromptModal from "@/components/ReferralPromptModal";
 import CombinedRewardsWidget from "@/components/CombinedRewardsWidget";
 import CareerLearningPathClient from "@/components/CareerLearningPathClient";
-import LevelMapSummaryWidget from "@/components/LevelMapSummaryWidget";
 import { hasCompletedOnboarding, completeOnboarding } from "@/lib/supabase-onboarding";
 import { getUserProfile, recalculateUserStats, getLeaderboardByMetric, getCfaCompletedCount } from "@/lib/supabase-user";
 import { getDashboardSummary, getLessonState, type DashboardSummary, type LessonState } from "@/lib/supabase-dashboard-optimized";
@@ -289,7 +288,7 @@ export default function DashboardClient({ lessonsMeta }: { lessonsMeta: LessonMe
     return () => {
       cancelled = true;
     };
-  }, [user?.id]);
+  }, [user?.id, completed.length]);
 
   // Nudge learners toward the knowledge-review challenge automatically, at
   // most once per calendar day, once they've actually completed enough
@@ -1036,10 +1035,6 @@ export default function DashboardClient({ lessonsMeta }: { lessonsMeta: LessonMe
             <div data-tour="resume-learning">
               <ResumeLearningButton activeTrack={lastNonCfaTrack} />
             </div>
-
-            {user?.id && (
-              <LevelMapSummaryWidget userId={user.id} />
-            )}
 
             {/* Tasks & Rewards - below chatbot, always open and compact */}
             {user?.id && (

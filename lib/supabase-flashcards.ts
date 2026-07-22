@@ -113,9 +113,9 @@ export async function saveFlashcard(userId: string, card: Flashcard): Promise<bo
     );
 
   if (error) {
-    if (isMissingTableError(error)) {
-      // Fallback: Save to LocalStorage
-      if (typeof window !== "undefined") {
+    // Fallback to LocalStorage for ANY error (network, auth, missing table, etc.)
+    if (typeof window !== "undefined") {
+      try {
         const list = await getFlashcards(userId);
         const idx = list.findIndex((c) => c.term === card.term);
         if (idx !== -1) {
@@ -125,9 +125,11 @@ export async function saveFlashcard(userId: string, card: Flashcard): Promise<bo
         }
         window.localStorage.setItem(`flashcards_${userId}`, JSON.stringify(list));
         return true;
+      } catch (localError) {
+        console.error("Error saving flashcard to LocalStorage:", localError);
       }
     }
-    console.error("Error saving flashcard:", error);
+    console.error("Error saving flashcard to Supabase:", error);
     return false;
   }
 
