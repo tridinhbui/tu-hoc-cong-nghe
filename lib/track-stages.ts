@@ -263,6 +263,26 @@ export const TRACK_PROFESSIONAL = {
         { name: "Treasury & quản trị tài chính", days: [1206, 1210] as [number, number] },
       ],
     },
+    {
+      // IDs 1241-1243 and 1250-1252 are NOT contiguous (1244-1249 in between
+      // belong to unrelated career cross-reference lessons, tagged with no
+      // explicit track) - the stage-level `days` field only spans [1241,1243]
+      // intentionally, so isLessonIdInTrack's professional-track fallback
+      // check doesn't accidentally sweep in those unrelated career lessons.
+      // All 6 lessons here carry an explicit `track: "professional"` already,
+      // so they don't depend on this range for their own classification -
+      // only the two `parts` below (with their own tight day ranges) matter
+      // for where they actually render.
+      label: "Chặng 12",
+      name: "Tâm lý học tài chính hành vi nâng cao (Behavioral Finance)",
+      days: [1241, 1243] as [number, number],
+      available: true,
+      isNew: true,
+      parts: [
+        { name: "Nền tảng lý thuyết & phân tích thị trường", days: [1241, 1243] as [number, number] },
+        { name: "Quản lý danh mục & thiết kế sản phẩm", days: [1250, 1252] as [number, number] },
+      ],
+    },
   ] satisfies Stage[],
 };
 
@@ -285,7 +305,7 @@ export const PROFESSIONAL_BRANCHES = [
     label: "Tài chính đầu tư",
     subtitle: "Cổ phiếu, trái phiếu, danh mục đầu tư & phái sinh",
     emoji: "📈",
-    stageLabels: ["Chặng 6", "Chặng 7", "Chặng 8", "Chặng 9", "Chặng 10"],
+    stageLabels: ["Chặng 6", "Chặng 7", "Chặng 8", "Chặng 9", "Chặng 10", "Chặng 12"],
   },
 ] as const;
 
