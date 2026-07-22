@@ -36,7 +36,7 @@ import ReferralPromptModal from "@/components/ReferralPromptModal";
 import CombinedRewardsWidget from "@/components/CombinedRewardsWidget";
 import { hasCompletedOnboarding, completeOnboarding } from "@/lib/supabase-onboarding";
 import { getUserProfile, recalculateUserStats, getLeaderboardByMetric, getCfaCompletedCount } from "@/lib/supabase-user";
-import { getDashboardSummary, getLessonState } from "@/lib/supabase-dashboard-optimized";
+import { getDashboardSummary, getLessonState, type DashboardSummary, type LessonState } from "@/lib/supabase-dashboard-optimized";
 import { getLevelByXp, getLevelProgress, LEVELS } from "@/lib/levels";
 import UnlockRequestModal from "@/components/UnlockRequestModal";
 import KnowledgeChallengeModal from "@/components/KnowledgeChallengeModal";
@@ -97,8 +97,6 @@ export interface LessonMeta {
 const ONBOARDING_LOCAL_KEY = "onboarding_seen_v1";
 
 /* ─── Component ─────────────────────────────────────────────────── */
-
-import type { DashboardSummary, LessonState } from "@/lib/supabase-dashboard-optimized";
 
 let cachedSummary: DashboardSummary | null = null;
 let cachedLessonState: LessonState | null = null;
