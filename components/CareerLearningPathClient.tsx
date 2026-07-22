@@ -2,7 +2,6 @@
 
 import { useState, useMemo } from "react";
 import Link from "next/link";
-import Image from "next/image";
 import { ArrowLeft, Circle, CheckCircle2 } from "lucide-react";
 import { FINANCE_CAREERS, type FinanceCareer } from "@/lib/finance-careers";
 import { CFA_LEVEL_1_SUBJECTS } from "@/lib/cfa-track";
@@ -19,6 +18,7 @@ interface CareerLearningPathClientProps {
   lessonsBySlug: Record<string, LessonRef>;
   lessonsById: Record<number, LessonRef>;
   completedLessonIds: number[];
+  embedded?: boolean;
 }
 
 const CATEGORY_LABEL: Record<FinanceCareer["category"], string> = {
@@ -44,7 +44,12 @@ const CATEGORY_ORDER: FinanceCareer["category"][] = ["investment", "accounting",
 // not something a learner picks as a starting direction to study toward.
 const entryLevelCareers = FINANCE_CAREERS.filter((c) => !c.entryLevel.startsWith("Senior"));
 
-export default function CareerLearningPathClient({ lessonsBySlug, lessonsById, completedLessonIds }: CareerLearningPathClientProps) {
+export default function CareerLearningPathClient({
+  lessonsBySlug,
+  lessonsById,
+  completedLessonIds,
+  embedded = false,
+}: CareerLearningPathClientProps) {
   const [selectedCategory, setSelectedCategory] = useState<FinanceCareer["category"] | null>(null);
   const [selectedId, setSelectedId] = useState<string | null>(null);
   const completedSet = useMemo(() => new Set(completedLessonIds), [completedLessonIds]);
@@ -87,13 +92,15 @@ export default function CareerLearningPathClient({ lessonsBySlug, lessonsById, c
   if (!selectedCategory) {
     return (
       <div className="max-w-2xl mx-auto px-6 py-8">
-        <Link
-          href="/dashboard"
-          className="inline-flex items-center gap-1.5 text-sm font-bold text-stone-600 dark:text-stone-400 hover:text-stone-900 dark:hover:text-stone-100 mb-4"
-        >
-          <ArrowLeft className="w-4 h-4" />
-          Quay lại
-        </Link>
+        {!embedded && (
+          <Link
+            href="/dashboard"
+            className="inline-flex items-center gap-1.5 text-sm font-bold text-stone-600 dark:text-stone-400 hover:text-stone-900 dark:hover:text-stone-100 mb-4"
+          >
+            <ArrowLeft className="w-4 h-4" />
+            Quay lại
+          </Link>
+        )}
         <h1 className="text-xl font-bold text-stone-900 dark:text-stone-100 mb-1">Tài chính theo nghề nghiệp</h1>
         <p className="text-sm text-stone-500 dark:text-stone-400 mb-6">
           Chọn một nhóm nghề nghiệp để bắt đầu.
@@ -160,7 +167,7 @@ export default function CareerLearningPathClient({ lessonsBySlug, lessonsById, c
                   style={{ background: `linear-gradient(135deg, ${career.accentFrom}, ${career.accentTo})` }}
                 >
                   {career.avatar3d ? (
-                    <Image src={career.avatar3d} alt={career.title} fill className="object-cover" />
+                    <img src={career.avatar3d} alt={career.title} className="w-full h-full object-cover" />
                   ) : (
                     career.emoji
                   )}
@@ -198,7 +205,7 @@ export default function CareerLearningPathClient({ lessonsBySlug, lessonsById, c
         <div className="flex items-center gap-4">
           <div className="w-14 h-14 rounded-xl overflow-hidden bg-white/20 flex items-center justify-center text-3xl shrink-0 relative">
             {selected.avatar3d ? (
-              <Image src={selected.avatar3d} alt={selected.title} fill className="object-cover" />
+              <img src={selected.avatar3d} alt={selected.title} className="w-full h-full object-cover" />
             ) : (
               selected.emoji
             )}
@@ -260,12 +267,14 @@ export default function CareerLearningPathClient({ lessonsBySlug, lessonsById, c
         </div>
       )}
 
-      <Link
-        href="/su-nghiep"
-        className="block text-center text-xs font-bold text-stone-500 dark:text-stone-400 hover:text-stone-800 dark:hover:text-stone-200 py-2"
-      >
-        Xem hồ sơ nghề nghiệp đầy đủ (lộ trình sự nghiệp, kỹ năng, mức lương...) →
-      </Link>
+      {!embedded && (
+        <Link
+          href="/su-nghiep"
+          className="block text-center text-xs font-bold text-stone-500 dark:text-stone-400 hover:text-stone-800 dark:hover:text-stone-200 py-2"
+        >
+          Xem hồ sơ nghề nghiệp đầy đủ (lộ trình sự nghiệp, kỹ năng, mức lương...) →
+        </Link>
+      )}
     </div>
   );
 }
