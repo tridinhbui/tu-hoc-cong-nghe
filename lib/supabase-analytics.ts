@@ -1,5 +1,6 @@
 import { createClient } from "@/lib/supabase";
 import { handleSupabaseError } from "@/lib/errors";
+import { isLessonInRange, TRACK_PERSONAL, TRACK_PROFESSIONAL } from "@/lib/track-stages";
 
 function isMissingTableError(error: { code?: string } | null) {
   return error?.code === "PGRST205" || error?.code === "42P01";
@@ -19,6 +20,32 @@ interface LessonMetaRow {
   title?: string | null;
   slug?: string | null;
   track?: string | null;
+}
+
+function inferAnalyticsTopic(lesson: LessonMetaRow): string {
+  if (lesson.track === "bonus") return "Bài case & ứng dụng";
+
+  const personalStage = TRACK_PERSONAL.stages.find((stage) => isLessonInRange(lesson.id, stage));
+  if (lesson.track === "personal" || !lesson.track) {
+    if (!personalStage) return "Tài chính cá nhân";
+    if (personalStage.label === "Chặng 0" || personalStage.label === "Chặng 1") return "Nền tảng tiền bạc & rủi ro";
+    if (personalStage.label === "Chặng 2" || personalStage.label === "Chặng 5") return "Đầu tư cá nhân";
+    if (personalStage.label === "Chặng 3") return "Trái phiếu & lãi suất";
+    if (personalStage.label === "Chặng 4" || personalStage.label === "Chặng 6") return "Danh mục & hưu trí";
+    return "Nhà ở & bảo vệ tài sản";
+  }
+
+  const professionalStage = TRACK_PROFESSIONAL.stages.find((stage) => isLessonInRange(lesson.id, stage));
+  if (!professionalStage) return "Tài chính chuyên ngành";
+  if (professionalStage.label === "Chặng 1" || professionalStage.label === "Chặng 2" || professionalStage.label === "Chặng 3") {
+    return "Kế toán & báo cáo tài chính";
+  }
+  if (professionalStage.label === "Chặng 4" || professionalStage.label === "Chặng 5" || professionalStage.label === "Chặng 6") {
+    return "Định giá & tài chính doanh nghiệp";
+  }
+  if (professionalStage.label === "Chặng 7") return "Trái phiếu & tín dụng";
+  if (professionalStage.label === "Chặng 8" || professionalStage.label === "Chặng 9") return "Rủi ro, danh mục & phái sinh";
+  return "Ứng dụng nghề nghiệp";
 }
 
 export interface LearningAnalytics {
@@ -194,6 +221,7 @@ export async function getUserAnalytics(userId: string): Promise<LearningAnalytic
     professional: 0,
     bonus: 0,
   };
+  const topicMistakeCount = new Map<string, number>();
 
   for (const progress of completedProgress) {
     const lesson = lessonsById.get(progress.lesson_id);
@@ -204,6 +232,12 @@ export async function getUserAnalytics(userId: string): Promise<LearningAnalytic
     if (lesson?.track === "professional") lessonsByTrack.professional += 1;
     else if (lesson?.track === "bonus") lessonsByTrack.bonus += 1;
     else lessonsByTrack.personal += 1;
+
+    const quizScore = progress.quiz_score;
+    if (typeof quizScore === "number" && quizScore <= 70) {
+      const topic = inferAnalyticsTopic(lesson ?? { id: progress.lesson_id, title: null, slug: null, track: null, difficulty: null });
+      topicMistakeCount.set(topic, (topicMistakeCount.get(topic) ?? 0) + 1);
+    }
   }
 
   const hourlyDistribution = new Array(24).fill(0);
@@ -302,6 +336,15 @@ export async function getUserAnalytics(userId: string): Promise<LearningAnalytic
     })
     .slice(0, 5);
 
+  const weakAreas = Array.from(topicMistakeCount.entries())
+    .sort((a, b) => b[1] - a[1])
+    .slice(0, 4)
+    .map(([topic, count]) => ({
+      topic,
+      averageScore: Math.max(0, 100 - count * 12),
+      lessonsCount: count,
+    }));
+
   return {
     totalLessonsCompleted,
     totalLessonsStarted,
@@ -320,7 +363,7 @@ export async function getUserAnalytics(userId: string): Promise<LearningAnalytic
     lessonsByDifficulty,
     lessonsByTrack,
     weeklyActivity,
-    weakAreas: [],
+    weakAreas,
     studyTimeDistribution: hourlyDistribution.map((lessonsCompleted, hour) => ({
       hour,
       lessonsCompleted,

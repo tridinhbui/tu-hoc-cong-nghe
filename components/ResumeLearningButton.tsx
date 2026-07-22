@@ -25,6 +25,23 @@ interface Greeting {
   totalMinutes: number;
   firstName: string | null;
   trackProgress: { completed: number; total: number; percent: number };
+  topicGapSummary: { topic: string; count: number }[];
+  criticalMistake: {
+    lessonId: number;
+    lessonSlug: string;
+    lessonTitle: string;
+    topic: string;
+    wrongCount: number;
+    explanation: string;
+    recommendedAction: string;
+  } | null;
+  stageReviewInsight: {
+    lessonId: number;
+    lessonSlug: string;
+    lessonTitle: string;
+    stageLabel: string;
+    message: string;
+  } | null;
 }
 
 // Replaces the old plain "Tiếp tục học" banner with a Tài Tài chat bubble
@@ -103,6 +120,9 @@ export default function ResumeLearningButton({ activeTrack }: ResumeLearningButt
   const trackProgress = greeting?.trackProgress ?? null;
   const nextLessonLabel = nextLesson ? getLessonDisplayLabel({ id: nextLesson.id, title: nextLesson.title, track: undefined }) : null;
   const nextLessonShortTitle = nextLesson ? getLessonShortTitle({ title: nextLesson.title }) : null;
+  const topicGapSummary = greeting?.topicGapSummary ?? [];
+  const criticalMistake = greeting?.criticalMistake ?? null;
+  const stageReviewInsight = greeting?.stageReviewInsight ?? null;
 
   // What's left to finish the in-progress lesson, computed from the DB read
   // percent (server) plus quiz-answers already saved locally (localStorage -
@@ -330,6 +350,96 @@ export default function ResumeLearningButton({ activeTrack }: ResumeLearningButt
           </div>
         </div>
       </Link>
+
+      {(stageReviewInsight || criticalMistake || topicGapSummary.length > 0) && (
+        <div className="mt-2 rounded-2xl border border-stone-200 dark:border-stone-800 bg-white dark:bg-stone-900 p-4 shadow-sm">
+          <div className="flex items-start gap-3">
+            <div className="relative w-9 h-9 flex-shrink-0 mt-0.5">
+              <div className="relative w-9 h-9 rounded-full overflow-hidden border border-emerald-100 dark:border-emerald-900/50 bg-stone-100 dark:bg-stone-850">
+                <TaiTaiAvatar size={36} />
+              </div>
+              <span className="absolute bottom-0 right-0 w-2.5 h-2.5 rounded-full bg-emerald-500 border-2 border-white dark:border-stone-900" />
+            </div>
+
+            <div className="flex-1 min-w-0">
+              <div className="flex items-center gap-1.5 flex-wrap mb-2">
+                <span className="text-[9px] font-extrabold text-sky-700 dark:text-sky-300 uppercase tracking-widest bg-sky-50 dark:bg-sky-950/40 px-2 py-0.5 rounded-md">
+                  Phản hồi học tập
+                </span>
+                {stageReviewInsight && (
+                  <span className="text-[9px] font-extrabold text-amber-700 dark:text-amber-300 uppercase tracking-widest bg-amber-50 dark:bg-amber-950/40 px-2 py-0.5 rounded-md">
+                    Tổng ôn đúng lúc
+                  </span>
+                )}
+              </div>
+
+              {stageReviewInsight && (
+                <div className="rounded-xl border border-amber-200/80 dark:border-amber-900/40 bg-amber-50/70 dark:bg-amber-950/20 p-3 mb-3">
+                  <p className="text-xs font-bold text-stone-900 dark:text-stone-100 leading-relaxed">
+                    Tài Tài nhắc bạn: {stageReviewInsight.message}
+                  </p>
+                  <Link
+                    href={`/bai-hoc/${stageReviewInsight.lessonSlug}`}
+                    className="inline-flex items-center gap-1 mt-2 text-[11px] font-extrabold text-amber-800 dark:text-amber-300 hover:text-amber-600 dark:hover:text-amber-200"
+                  >
+                    Mở {stageReviewInsight.stageLabel}: {getLessonShortTitle({ title: stageReviewInsight.lessonTitle })} <ArrowRight className="w-3.5 h-3.5" />
+                  </Link>
+                </div>
+              )}
+
+              {topicGapSummary.length > 0 && (
+                <div className="mb-3">
+                  <p className="text-[11px] font-bold text-stone-700 dark:text-stone-300 mb-2">
+                    Lỗ hổng kiến thức hiện tại của bạn đang nghiêng về:
+                  </p>
+                  <div className="flex flex-wrap gap-2">
+                    {topicGapSummary.map((item) => (
+                      <span
+                        key={item.topic}
+                        className="inline-flex items-center gap-1 rounded-full border border-rose-200 dark:border-rose-900/40 bg-rose-50 dark:bg-rose-950/20 px-2.5 py-1 text-[10px] font-extrabold text-rose-700 dark:text-rose-300"
+                      >
+                        {item.topic}
+                        <span className="rounded-full bg-rose-500 text-white px-1.5 py-0.5 text-[9px]">{item.count}</span>
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              )}
+
+              {criticalMistake && (
+                <div className="rounded-xl border border-stone-200/80 dark:border-stone-800/80 bg-stone-50/70 dark:bg-stone-950/40 p-3">
+                  <p className="text-[11px] font-extrabold text-stone-900 dark:text-stone-100">
+                    Bạn đang vấp nhiều nhất ở: {criticalMistake.topic}
+                  </p>
+                  <p className="text-[11px] text-stone-600 dark:text-stone-400 mt-1 leading-relaxed">
+                    Đã sai {criticalMistake.wrongCount} lần trong bài “{getLessonShortTitle({ title: criticalMistake.lessonTitle })}”.
+                  </p>
+                  <p className="text-[11px] text-stone-700 dark:text-stone-300 mt-2 leading-relaxed">
+                    {criticalMistake.explanation}
+                  </p>
+                  <p className="text-[11px] font-bold text-emerald-700 dark:text-emerald-350 mt-2 leading-relaxed">
+                    Gợi ý của Tài Tài: {criticalMistake.recommendedAction}
+                  </p>
+                  <div className="flex flex-wrap gap-2 mt-3">
+                    <Link
+                      href={`/bai-hoc/${criticalMistake.lessonSlug}`}
+                      className="inline-flex items-center gap-1 px-3 py-1.5 text-[10px] font-extrabold rounded-lg bg-stone-900 dark:bg-stone-100 text-white dark:text-stone-900"
+                    >
+                      Ôn lại bài này <ArrowRight className="w-3.5 h-3.5" />
+                    </Link>
+                    <Link
+                      href="/ghi-chu"
+                      className="inline-flex items-center gap-1 px-3 py-1.5 text-[10px] font-extrabold rounded-lg border border-stone-200 dark:border-stone-800 bg-white dark:bg-stone-900 text-stone-700 dark:text-stone-300"
+                    >
+                      Tạo flashcard
+                    </Link>
+                  </div>
+                </div>
+              )}
+            </div>
+          </div>
+        </div>
+      )}
 
       {todayRecallItems.length > 0 && (
         <div className="mt-2">

@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 import { createClient } from "@/lib/supabase";
@@ -8,6 +8,7 @@ import { BookOpen, Loader2, ChevronRight, ArrowLeft, Library, ListChecks, CheckC
 import type { LessonMeta } from "@/lib/lesson-types";
 import type { CfaSubject } from "@/lib/cfa-track";
 import { toTitleCase } from "@/lib/cfa-format";
+import { useRoutePrefetch } from "@/lib/use-route-prefetch";
 
 interface Book {
   id: string;
@@ -76,6 +77,29 @@ export default function CfaTrackView({ subjects, completedLessonIds }: Props) {
   const [readings, setReadings] = useState<Reading[]>([]);
   const [loadingReadings, setLoadingReadings] = useState(false);
   const [openReadings, setOpenReadings] = useState<Set<string>>(new Set());
+
+  const prefetchedLessonRoutes = useMemo(() => {
+    if (viewMode !== "subjects") return [];
+
+    const routes = new Set<string>();
+    for (const { subject, lessons, nextLessonSlug } of subjects) {
+      if (nextLessonSlug) {
+        routes.add(`/bai-hoc/${nextLessonSlug}`);
+      }
+
+      if (!openSubjects.has(subject.id)) continue;
+      for (const lesson of lessons) {
+        routes.add(`/bai-hoc/${lesson.slug}`);
+      }
+    }
+
+    return [...routes];
+  }, [openSubjects, subjects, viewMode]);
+
+  useRoutePrefetch(prefetchedLessonRoutes, {
+    enabled: prefetchedLessonRoutes.length > 0,
+    delayMs: 80,
+  });
 
   useEffect(() => {
     if (cachedBooks !== null) return;

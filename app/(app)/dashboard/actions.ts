@@ -4,9 +4,107 @@ import { getResumeLesson } from "@/lib/resume-learning";
 import { getCompletedLessons, getTotalTimeSpentMinutes } from "@/lib/supabase-progress";
 import { createServerSupabaseClient } from "@/lib/supabase-server";
 import { getLessonsMeta, getLessonById } from "@/lib/lessons-loader";
-import { isLessonIdInTrack } from "@/lib/track-stages";
+import { isLessonIdInTrack, isLessonInRange, TRACK_PERSONAL, TRACK_PROFESSIONAL } from "@/lib/track-stages";
 import { getLessonRecallDay } from "@/lib/lesson-labels";
 import { RECALL_SCHEDULE, type RecallItem } from "@/lib/recall-schedule";
+import type { LessonMeta } from "@/lib/lesson-types";
+
+interface TopicGapSummary {
+  topic: string;
+  count: number;
+}
+
+interface CriticalMistakeInsight {
+  lessonId: number;
+  lessonSlug: string;
+  lessonTitle: string;
+  topic: string;
+  wrongCount: number;
+  explanation: string;
+  recommendedAction: string;
+}
+
+interface StageReviewInsight {
+  lessonId: number;
+  lessonSlug: string;
+  lessonTitle: string;
+  stageLabel: string;
+  message: string;
+}
+
+function inferLearningTopic(lesson: LessonMeta, track: "personal" | "professional"): string {
+  const personalStages = TRACK_PERSONAL.stages;
+  const professionalStages = TRACK_PROFESSIONAL.stages;
+  const stages = track === "personal" ? personalStages : professionalStages;
+  const stage = stages.find((item) => isLessonInRange(lesson.id, item));
+
+  if (!stage) {
+    return track === "personal" ? "Tài chính cá nhân" : "Tài chính chuyên ngành";
+  }
+
+  if (track === "personal") {
+    if (stage.label === "Chặng 0" || stage.label === "Chặng 1") return "Nền tảng tiền bạc & rủi ro";
+    if (stage.label === "Chặng 2" || stage.label === "Chặng 5") return "Đầu tư cá nhân";
+    if (stage.label === "Chặng 3") return "Trái phiếu & lãi suất";
+    if (stage.label === "Chặng 4" || stage.label === "Chặng 6") return "Danh mục & hưu trí";
+    return "Nhà ở & bảo vệ tài sản";
+  }
+
+  if (stage.label === "Chặng 1" || stage.label === "Chặng 2" || stage.label === "Chặng 3") return "Kế toán & báo cáo tài chính";
+  if (stage.label === "Chặng 4" || stage.label === "Chặng 5" || stage.label === "Chặng 6") return "Định giá & tài chính doanh nghiệp";
+  if (stage.label === "Chặng 7") return "Trái phiếu & tín dụng";
+  if (stage.label === "Chặng 8" || stage.label === "Chặng 9") return "Rủi ro, danh mục & phái sinh";
+  return "Ứng dụng nghề nghiệp";
+}
+
+function recommendedActionForTopic(topic: string): string {
+  if (topic.includes("Kế toán")) return "Ôn lại cách đọc báo cáo và làm lại 1-2 câu quiz ngay khi vừa đọc xong.";
+  if (topic.includes("Định giá")) return "Xem lại giả định chính và thử tự giải thích công thức bằng lời của bạn.";
+  if (topic.includes("Rủi ro")) return "Ôn lại ví dụ thực tế trong bài rồi tự trả lời lại câu hỏi sai không nhìn đáp án.";
+  if (topic.includes("Trái phiếu")) return "Tự viết lại mối quan hệ giữa lãi suất, giá trái phiếu và rủi ro tín dụng.";
+  if (topic.includes("Đầu tư")) return "Đọc lại bài và so sánh ngay với một tình huống đầu tư cá nhân thực tế của bạn.";
+  return "Học lại bài gốc rồi làm lại ngay câu quiz sai để khóa kiến thức.";
+}
+
+function isStageReviewLesson(lesson: LessonMeta): boolean {
+  return /tổng ôn chặng|ôn tập chặng|tổng ôn|ôn tập/i.test(lesson.title);
+}
+
+function getStageReviewInsight(
+  allLessons: LessonMeta[],
+  completedLessons: number[],
+  track: "personal" | "professional"
+): StageReviewInsight | null {
+  const trackStages = track === "personal" ? TRACK_PERSONAL.stages : TRACK_PROFESSIONAL.stages;
+  const completedSet = new Set(completedLessons);
+
+  for (let i = trackStages.length - 1; i >= 0; i -= 1) {
+    const stage = trackStages[i];
+    const stageLessons = allLessons
+      .filter((lesson) => lesson.isVisible !== false && isLessonInRange(lesson.id, stage) && isLessonIdInTrack(lesson.id, track))
+      .sort((a, b) => a.id - b.id);
+
+    const reviewLesson = stageLessons.find(isStageReviewLesson);
+    if (!reviewLesson || completedSet.has(reviewLesson.id)) continue;
+
+    const nonReviewLessons = stageLessons.filter((lesson) => lesson.id !== reviewLesson.id);
+    if (nonReviewLessons.length === 0) continue;
+
+    const completedBeforeReview = nonReviewLessons.filter((lesson) => completedSet.has(lesson.id)).length;
+    const progressRatio = completedBeforeReview / nonReviewLessons.length;
+    if (progressRatio < 0.7) continue;
+
+    return {
+      lessonId: reviewLesson.id,
+      lessonSlug: reviewLesson.slug,
+      lessonTitle: reviewLesson.title,
+      stageLabel: stage.label,
+      message: `Bạn đã đi gần hết ${stage.label}. Đây là lúc làm bài tổng ôn để khóa lại các ý chính trước khi học tiếp.`,
+    };
+  }
+
+  return null;
+}
 
 // Wraps lib/resume-learning.ts as a Server Action. That module reads the
 // full lesson dataset (lib/lessons.ts, ~1.3MB of lesson content) via
@@ -37,12 +135,20 @@ export async function getResumeLessonAction(userId: string, track: "personal" | 
 // reflect the learner's real progress instead of being a generic label.
 export async function getDashboardGreetingAction(userId: string, track: "personal" | "professional") {
   const supabase = await createServerSupabaseClient();
-  const [nextLesson, completedLessons, totalMinutes, profile, allLessons] = await Promise.all([
+  const [nextLesson, completedLessons, totalMinutes, profile, allLessons, mistakeRows] = await Promise.all([
     getResumeLesson(userId, track, supabase),
     getCompletedLessons(userId, supabase),
     getTotalTimeSpentMinutes(userId, supabase),
     supabase.from("user_profiles").select("full_name, email").eq("id", userId).single(),
     getLessonsMeta(),
+    supabase
+      .from("quiz_mistakes")
+      .select("lesson_id, question_index, wrong_count, last_attempt_at")
+      .eq("user_id", userId)
+      .eq("resolved", false)
+      .order("wrong_count", { ascending: false })
+      .order("last_attempt_at", { ascending: false })
+      .limit(30),
   ]);
 
   const firstName =
@@ -92,6 +198,38 @@ export async function getDashboardGreetingAction(userId: string, track: "persona
     ? RECALL_SCHEDULE[getLessonRecallDay(nextLesson) ?? -1] ?? []
     : [];
 
+  const visibleTrackLessons = allLessons.filter((lesson) => lesson.isVisible !== false && isLessonIdInTrack(lesson.id, track));
+  const topicCounts = new Map<string, number>();
+  let criticalMistake: CriticalMistakeInsight | null = null;
+
+  for (const row of mistakeRows.data ?? []) {
+    const lesson = visibleTrackLessons.find((item) => item.id === row.lesson_id);
+    if (!lesson) continue;
+    const topic = inferLearningTopic(lesson, track);
+    topicCounts.set(topic, (topicCounts.get(topic) ?? 0) + Number(row.wrong_count));
+
+    if (!criticalMistake) {
+      const lessonDetail = await getLessonById(lesson.id);
+      const question = lessonDetail?.quiz?.[row.question_index];
+      criticalMistake = {
+        lessonId: lesson.id,
+        lessonSlug: lesson.slug,
+        lessonTitle: lesson.title,
+        topic,
+        wrongCount: Number(row.wrong_count),
+        explanation: question?.explanation ?? "Bạn đang vấp lại đúng một ý cốt lõi của bài này.",
+        recommendedAction: recommendedActionForTopic(topic),
+      };
+    }
+  }
+
+  const topicGapSummary: TopicGapSummary[] = Array.from(topicCounts.entries())
+    .sort((a, b) => b[1] - a[1])
+    .slice(0, 4)
+    .map(([topic, count]) => ({ topic, count }));
+
+  const stageReviewInsight = getStageReviewInsight(allLessons, completedLessons, track);
+
   return {
     nextLesson,
     nextLessonCriteria,
@@ -104,5 +242,8 @@ export async function getDashboardGreetingAction(userId: string, track: "persona
       total: trackLessonIds.length,
       percent: trackProgressPercent,
     },
+    topicGapSummary,
+    criticalMistake,
+    stageReviewInsight,
   };
 }

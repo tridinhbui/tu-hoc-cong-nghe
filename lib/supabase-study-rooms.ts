@@ -41,6 +41,8 @@ export interface StudyRoomMessage {
   is_pinned: boolean;
 }
 
+const STUDY_ROOM_BOT_COMMANDS = new Set(["/taitai", "/tai", "/bot", "/rules", "/luat"]);
+
 function isMissingTableError(error: { code?: string } | null) {
   return error?.code === "PGRST205" || error?.code === "42P01" || error?.code === "PGRST202" || error?.code === "42883";
 }
@@ -141,6 +143,25 @@ export async function sendRoomMessage(
 
   if (error) throw handleSupabaseError(error);
   return data as StudyRoomMessage;
+}
+
+export function isStudyRoomBotCommand(input: string): boolean {
+  return STUDY_ROOM_BOT_COMMANDS.has(input.trim().toLowerCase());
+}
+
+export async function requestStudyRoomBot(roomId: number, command: string): Promise<StudyRoomMessage> {
+  const response = await fetch("/api/study-room-bot", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ roomId, command }),
+  });
+
+  const payload = (await response.json().catch(() => null)) as { message?: StudyRoomMessage; error?: string } | null;
+  if (!response.ok || !payload?.message) {
+    throw new Error(payload?.error || "Không gọi được Tài Tài lúc này");
+  }
+
+  return payload.message;
 }
 
 export function subscribeToRoomMessages(roomId: number, onMessage: (message: StudyRoomMessage) => void) {

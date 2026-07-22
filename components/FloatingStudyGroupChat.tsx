@@ -15,6 +15,8 @@ import {
   getMyStudyRoom,
   getRoomMessages,
   getStudyRoomMembers,
+  isStudyRoomBotCommand,
+  requestStudyRoomBot,
   sendRoomMessage,
   subscribeToRoomMessages,
   type StudyRoomSummary,
@@ -182,6 +184,19 @@ export default function FloatingStudyGroupChat({ isOpen: controlledIsOpen, onOpe
     // the input or send anything, which read as "the box won't clear so I can
     // type the next message" on a slow connection.
     if ((!content && !pendingImage) || !room || !userId) return;
+    if (content && !pendingImage && isStudyRoomBotCommand(content)) {
+      setSending(true);
+      setInput("");
+      try {
+        const botMessage = await requestStudyRoomBot(room.room_id, content);
+        setMessages((prev) => (prev.some((m) => m.id === botMessage.id) ? prev : [...prev, botMessage]));
+      } catch (error) {
+        toast.error(error instanceof Error ? error.message : "Không gọi được Tài Tài");
+      } finally {
+        setSending(false);
+      }
+      return;
+    }
     setSending(true);
     setInput("");
     const imageFile = pendingImage;
@@ -413,7 +428,7 @@ export default function FloatingStudyGroupChat({ isOpen: controlledIsOpen, onOpe
                   }
                 }}
                 onPaste={handlePaste}
-                placeholder="Nhắn gì đó cho nhóm..."
+                placeholder="Nhắn gì đó cho nhóm... hoặc /taitai"
                 maxLength={2000}
                 className="flex-1 min-w-0 px-3 py-2 border border-stone-100 dark:border-stone-850/40 bg-stone-50/50 dark:bg-stone-950/60 text-stone-900 dark:text-stone-100 rounded-xl text-xs focus:outline-none focus:border-emerald-400 dark:focus:border-emerald-700 focus:bg-white dark:focus:bg-stone-950 transition-all placeholder:text-stone-400"
               />

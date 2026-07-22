@@ -21,13 +21,15 @@ const source = readFileSync(path.join(root, "lib/lessons.ts"), "utf8");
 // Strip the two lines that only matter to the TS module system (server-only
 // guard + type re-exports) - we only need the runtime `lessons` array here.
 const stripped = source
-  .replace(/^import "server-only";\n/m, "")
-  .replace(/^import type \{ Lesson \} from ".\/lesson-types";\n/m, "")
-  .replace(/^export type \{[^}]*\} from ".\/lesson-types";\n/m, "");
+  .split(/\r?\n/)
+  .filter((line) => !line.includes('from "./lesson-types"') && line !== 'import "server-only";')
+  .join("\n");
 
-const { outputText } = ts.transpileModule(stripped, {
+let { outputText } = ts.transpileModule(stripped, {
   compilerOptions: { module: ts.ModuleKind.CommonJS, target: ts.ScriptTarget.ES2020 },
 });
+
+outputText = outputText.replace("exports. = exports.lessons = void 0;", "exports.lessons = void 0;");
 
 const moduleObj = { exports: {} };
 new Function("exports", "module", outputText)(moduleObj.exports, moduleObj);

@@ -35,6 +35,7 @@ import CareerGoalWidget from "@/components/CareerGoalWidget";
 import ReferralPromptModal from "@/components/ReferralPromptModal";
 import CombinedRewardsWidget from "@/components/CombinedRewardsWidget";
 import CareerLearningPathClient from "@/components/CareerLearningPathClient";
+import LevelMapSummaryWidget from "@/components/LevelMapSummaryWidget";
 import { hasCompletedOnboarding, completeOnboarding } from "@/lib/supabase-onboarding";
 import { getUserProfile, recalculateUserStats, getLeaderboardByMetric, getCfaCompletedCount } from "@/lib/supabase-user";
 import { getDashboardSummary, getLessonState, type DashboardSummary, type LessonState } from "@/lib/supabase-dashboard-optimized";
@@ -430,7 +431,7 @@ export default function DashboardClient({ lessonsMeta }: { lessonsMeta: LessonMe
   };
 
   // Synchronize stats & progress with database using optimized batch RPCs and caching
-  const syncProgressAndXP = useCallback(async (userId: string) => {
+  const syncProgressAndXP = useCallback(async function syncProgressAndXP(userId: string) {
     // 1. Process offline queue asynchronously in the background
     void syncOfflineQueue(userId).then((didSync) => {
       if (didSync) {
@@ -1015,6 +1016,10 @@ export default function DashboardClient({ lessonsMeta }: { lessonsMeta: LessonMe
             <div data-tour="resume-learning">
               <ResumeLearningButton activeTrack={lastNonCfaTrack} />
             </div>
+
+            {user?.id && (
+              <LevelMapSummaryWidget userId={user.id} />
+            )}
 
             {/* Tasks & Rewards - below chatbot, always open and compact */}
             {user?.id && (

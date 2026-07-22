@@ -12,10 +12,12 @@ import {
   getMyStudyRoom,
   getStudyRoomMembers,
   getStudyRooms,
+  isStudyRoomBotCommand,
   joinOrCreateStudyRoom,
   joinStudyRoom,
   leaveStudyRoom,
   getRoomMessages,
+  requestStudyRoomBot,
   sendRoomMessage,
   subscribeToRoomMessages,
 } from "@/lib/supabase-study-rooms";
@@ -176,6 +178,19 @@ export default function StudyGroupsClient() {
   async function handleSendMessage() {
     const content = messageInput.trim();
     if (!content || !myRoom || !user || sendingMessage) return;
+    if (isStudyRoomBotCommand(content)) {
+      setSendingMessage(true);
+      setMessageInput("");
+      try {
+        const botMessage = await requestStudyRoomBot(myRoom.room_id, content);
+        setMessages((prev) => (prev.some((m) => m.id === botMessage.id) ? prev : [...prev, botMessage]));
+      } catch (error) {
+        toast.error(error instanceof Error ? error.message : "Không gọi được Tài Tài");
+      } finally {
+        setSendingMessage(false);
+      }
+      return;
+    }
     setSendingMessage(true);
     try {
       await sendRoomMessage(myRoom.room_id, user.id, content);
@@ -400,7 +415,7 @@ export default function StudyGroupsClient() {
                     void handleSendMessage();
                   }
                 }}
-                placeholder="Nhắn gì đó cho nhóm..."
+                placeholder="Nhắn gì đó cho nhóm... hoặc /taitai"
                 maxLength={2000}
                 className="flex-1 px-3.5 py-2.5 rounded-xl border border-stone-200 dark:border-stone-800 bg-white dark:bg-stone-900 text-sm text-stone-900 dark:text-stone-100 placeholder:text-stone-400 focus:outline-none focus:ring-2 focus:ring-emerald-400/50"
               />
