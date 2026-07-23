@@ -296,7 +296,7 @@ export default function FinancialRpgWorldMap() {
   };
 
   return (
-    <div className="min-h-screen bg-stone-50 text-stone-900 p-4 sm:p-6 relative overflow-x-hidden transition-colors duration-500">
+    <div className="min-h-screen bg-white text-stone-900 p-4 sm:p-6 relative overflow-x-hidden transition-colors duration-500">
       {/* Bloomberg Terminal Style Market Ticker Tape */}
       <div className="bg-stone-950 text-amber-400 py-1.5 px-4 -mx-4 -mt-4 sm:-mx-6 sm:-mt-6 mb-4 text-[11px] font-mono border-b border-amber-500/30 overflow-hidden relative z-0 shadow-md flex items-center justify-between">
         <div className="flex items-center gap-6 whitespace-nowrap overflow-x-auto scrollbar-none">
@@ -313,7 +313,7 @@ export default function FinancialRpgWorldMap() {
       {!selectedBuilding && (
         <>
           {/* Wall Street Photo Background - only on town map */}
-          <div className="absolute inset-0 pointer-events-none opacity-35 z-0 overflow-hidden">
+          <div className="absolute inset-0 pointer-events-none opacity-14 z-0 overflow-hidden">
             <Image
               src="/wallstreet-bg.jpg"
               alt="Wall Street Background"
@@ -324,7 +324,8 @@ export default function FinancialRpgWorldMap() {
           </div>
 
           {/* Light Theme Background Pattern */}
-          <div className="absolute inset-0 bg-[radial-gradient(#e5e7eb_1px,transparent_1px)] [background-size:24px_24px] pointer-events-none opacity-60 z-0" />
+          <div className="absolute inset-0 bg-white/75 pointer-events-none z-0" />
+          <div className="absolute inset-0 bg-[radial-gradient(#e5e7eb_1px,transparent_1px)] [background-size:24px_24px] pointer-events-none opacity-25 z-0" />
         </>
       )}
 
@@ -408,26 +409,27 @@ export default function FinancialRpgWorldMap() {
             </div>
 
             {/* Desktop View: Grid Town Map. Real grid tracks prevent cards from overlapping at any zoom/width. */}
-            <div className="hidden md:block relative max-w-4xl mx-auto rounded-3xl border-2 border-amber-300/70 p-5 shadow-2xl overflow-hidden bg-white/98 backdrop-blur-xl">
-              <div className="pointer-events-none absolute inset-5 rounded-[28px] bg-[radial-gradient(#f59e0b_1px,transparent_1px)] [background-size:28px_28px] opacity-[0.05]" />
+            <div className="hidden md:block relative max-w-4xl mx-auto rounded-3xl border-2 border-amber-300/70 p-5 shadow-xl overflow-hidden bg-white backdrop-blur-xl">
+              <div className="pointer-events-none absolute inset-0 bg-white" />
+              <div className="pointer-events-none absolute inset-5 rounded-[28px] bg-[radial-gradient(#f59e0b_1px,transparent_1px)] [background-size:28px_28px] opacity-[0.045]" />
               <svg className="pointer-events-none absolute inset-0 z-10 h-full w-full" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
-                <path d="M50 18 C44 26 30 26 18 34" fill="none" stroke="#38bdf8" strokeWidth="0.6" strokeDasharray="2 2" opacity="0.65" />
-                <path d="M18 34 C28 45 38 47 50 50" fill="none" stroke="#34d399" strokeWidth="0.6" strokeDasharray="2 2" opacity="0.55" />
-                <path d="M50 18 C58 29 73 34 82 68" fill="none" stroke="#c084fc" strokeWidth="0.6" strokeDasharray="2 2" opacity="0.55" />
-                <path d="M50 50 C36 59 26 62 18 68" fill="none" stroke="#c084fc" strokeWidth="0.6" strokeDasharray="2 2" opacity="0.55" />
-                <path d="M50 50 C62 57 74 60 82 68" fill="none" stroke="#f59e0b" strokeWidth="0.6" strokeDasharray="2 2" opacity="0.55" />
-                <path d="M18 68 C28 78 38 84 18 88" fill="none" stroke="#0ea5e9" strokeWidth="0.6" strokeDasharray="2 2" opacity="0.45" />
-                <path d="M82 68 C76 78 72 84 82 88" fill="none" stroke="#f59e0b" strokeWidth="0.6" strokeDasharray="2 2" opacity="0.45" />
+                <path d="M50 18 C44 26 30 26 18 34" fill="none" stroke="#38bdf8" strokeWidth="1.15" strokeLinecap="round" strokeDasharray="3 3" opacity="0.85" />
+                <path d="M18 34 C28 45 38 47 50 50" fill="none" stroke="#34d399" strokeWidth="1.1" strokeLinecap="round" strokeDasharray="3 3" opacity="0.75" />
+                <path d="M50 18 C58 29 73 34 82 68" fill="none" stroke="#c084fc" strokeWidth="1.1" strokeLinecap="round" strokeDasharray="3 3" opacity="0.76" />
+                <path d="M50 50 C36 59 26 62 18 68" fill="none" stroke="#c084fc" strokeWidth="1.1" strokeLinecap="round" strokeDasharray="3 3" opacity="0.76" />
+                <path d="M50 50 C62 57 74 60 82 68" fill="none" stroke="#f59e0b" strokeWidth="1.1" strokeLinecap="round" strokeDasharray="3 3" opacity="0.78" />
+                <path d="M18 68 C28 78 38 84 18 88" fill="none" stroke="#0ea5e9" strokeWidth="1" strokeLinecap="round" strokeDasharray="3 3" opacity="0.65" />
+                <path d="M82 68 C76 78 72 84 82 88" fill="none" stroke="#f59e0b" strokeWidth="1" strokeLinecap="round" strokeDasharray="3 3" opacity="0.65" />
               </svg>
               <motion.div
-                className="pointer-events-none absolute z-30 -ml-5 -mt-5"
+                className="pointer-events-none absolute z-50 -ml-6 -mt-6"
                 animate={{
                   left: `${hoveredBuildingPos?.x ?? 50}%`,
                   top: `${hoveredBuildingPos?.y ?? 50}%`,
                 }}
                 transition={{ type: "spring", stiffness: 95, damping: 16 }}
               >
-                <div className="scale-75 drop-shadow-xl">
+                <div className="rounded-full bg-white/95 p-1 shadow-[0_12px_30px_-12px_rgba(15,23,42,0.45)] ring-2 ring-emerald-300/80">
                   <FinanceCharacterAvatar size="md" level={level} equipments={equippedGear} />
                 </div>
               </motion.div>
