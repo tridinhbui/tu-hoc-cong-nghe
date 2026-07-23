@@ -7,7 +7,7 @@ import TaiTaiAvatar from "@/components/TaiTaiAvatar";
 import { useRouter, useSearchParams } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import { toast } from "sonner";
-import { CheckCircle2, Lock, CheckCheck, Bookmark, ChevronDown, ChevronLeft, ChevronRight, Search, X } from "lucide-react";
+import { CheckCircle2, Lock, CheckCheck, Bookmark, ChevronLeft, ChevronRight, Search, X } from "lucide-react";
 import { useProgress } from "@/lib/client-hooks";
 import { mergeCompletedLessons } from "@/lib/progress";
 import { getIllustrativeCount } from "@/lib/illustrative-stats";
@@ -209,21 +209,6 @@ export default function DashboardClient({ lessonsMeta }: { lessonsMeta: LessonMe
   const [activeTooltipLevel, setActiveTooltipLevel] = useState<number | null>(null);
   const levelStripRef = useRef<HTMLDivElement>(null);
   const [cfaCompletedForLevel, setCfaCompletedForLevel] = useState(0);
-  const [isRoadmapExpanded, setIsRoadmapExpanded] = useState<boolean>(() => {
-    if (typeof window !== "undefined") {
-      const saved = localStorage.getItem("is_roadmap_expanded");
-      if (saved === null) return true;
-      return saved === "true";
-    }
-    return true;
-  });
-  const toggleRoadmap = () => {
-    setIsRoadmapExpanded(prev => {
-      const nextVal = !prev;
-      localStorage.setItem("is_roadmap_expanded", String(nextVal));
-      return nextVal;
-    });
-  };
   const [dbAvatarUrl, setDbAvatarUrl] = useState<string | null>(null);
   const [equippedGear, setEquippedGear] = useState<CharacterEquipments>({});
   const [showBossBattle, setShowBossBattle] = useState(false);
@@ -857,7 +842,7 @@ export default function DashboardClient({ lessonsMeta }: { lessonsMeta: LessonMe
               <div className="rounded-[24px] border border-stone-200 bg-white px-4 py-3 shadow-sm sm:px-5 sm:py-3.5">
                 <div className="grid grid-cols-1 gap-3 xl:grid-cols-[minmax(0,1fr)_288px] xl:items-start">
                   <div className="min-w-0">
-                    <div className={`flex flex-col sm:flex-row sm:items-center justify-between gap-2 ${isRoadmapExpanded ? "mb-2.5" : "mb-0"} relative z-10`}>
+                    <div className="relative z-10 mb-2.5 flex flex-col justify-between gap-2 sm:flex-row sm:items-center">
                       <div>
                         <h3 className="text-[15px] font-bold text-stone-900 dark:text-stone-100">
                           Bản đồ Cấp độ Học viên
@@ -881,18 +866,10 @@ export default function DashboardClient({ lessonsMeta }: { lessonsMeta: LessonMe
                         >
                           🧠 Solo
                         </Link>
-                        <button
-                          onClick={toggleRoadmap}
-                          className="p-1 rounded-lg hover:bg-stone-100 dark:hover:bg-stone-800 transition-all text-stone-500 hover:text-stone-700 dark:text-stone-400 dark:hover:text-stone-200 shrink-0"
-                          title={isRoadmapExpanded ? "Thu gọn" : "Mở rộng"}
-                        >
-                          <ChevronDown className={`w-4 h-4 transition-transform duration-300 ${isRoadmapExpanded ? "rotate-180" : ""}`} />
-                        </button>
                       </div>
                     </div>
 
-                    {isRoadmapExpanded ? (
-                      <div className="relative z-10">
+                    <div className="relative z-10">
                         <div className="w-full h-1 bg-stone-100 dark:bg-stone-800 rounded-full overflow-hidden mb-2.5">
                           <div
                             className="h-full bg-gradient-to-r from-emerald-500 to-teal-500 rounded-full transition-all duration-500"
@@ -1036,35 +1013,7 @@ export default function DashboardClient({ lessonsMeta }: { lessonsMeta: LessonMe
                             );
                           })()}
                         </AnimatePresence>
-                      </div>
-                    ) : (
-                      <div className="relative z-10 mt-3 rounded-2xl border border-dashed border-stone-200 bg-stone-50/80 p-3">
-                        <div className="flex items-center justify-between gap-3">
-                          <div>
-                            <p className="text-[11px] font-extrabold uppercase tracking-[0.18em] text-stone-500">
-                              Xem nhanh cấp độ
-                            </p>
-                            <p className="mt-1 text-xs text-stone-500">
-                              Mở rộng để xem đầy đủ bản đồ, ảnh level và thành viên từng cấp.
-                            </p>
-                          </div>
-                          <div className="flex -space-x-2">
-                            {LEVELS.slice(0, 5).map((lvl) => (
-                              <div
-                                key={lvl.level}
-                                className="flex h-10 w-10 items-center justify-center overflow-hidden rounded-full border-2 border-white bg-stone-100 shadow-sm"
-                              >
-                                <img
-                                  src={`/levels/level${lvl.level}.jpg`}
-                                  alt={lvl.name}
-                                  className="h-full w-full object-cover"
-                                />
-                              </div>
-                            ))}
-                          </div>
-                        </div>
-                      </div>
-                    )}
+                    </div>
                   </div>
 
                   <div className="min-w-0 rounded-[24px] border border-stone-200/90 bg-stone-50/85 p-3 xl:p-3.5">
