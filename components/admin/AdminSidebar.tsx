@@ -1,8 +1,8 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import {
   LayoutDashboard,
   MessageSquare,
@@ -12,7 +12,6 @@ import {
   BookOpen,
   GraduationCap,
   FileText,
-  BarChart3,
   Settings,
   Menu,
   X,
@@ -34,13 +33,20 @@ const NAV_ITEMS = [
   { href: "/admin/games", label: "Trò chơi", icon: Gamepad2 },
   { href: "/admin/cfa-library", label: "Thư viện CFA", icon: GraduationCap },
   { href: "/admin/documents", label: "Tài liệu", icon: FileText },
-  { href: "/admin/analytics", label: "Phân tích", icon: BarChart3 },
   { href: "/admin/settings", label: "Cài đặt", icon: Settings },
 ];
 
 export default function AdminSidebar({ adminEmail }: { adminEmail: string }) {
   const pathname = usePathname();
+  const router = useRouter();
   const [mobileOpen, setMobileOpen] = useState(false);
+
+  useEffect(() => {
+    // Prefetch all admin routes in the background on mount for zero-latency tab switching
+    NAV_ITEMS.forEach((item) => {
+      router.prefetch(item.href);
+    });
+  }, [router]);
 
   const isActive = (href: string, exact?: boolean) =>
     exact ? pathname === href : pathname.startsWith(href);
@@ -54,6 +60,7 @@ export default function AdminSidebar({ adminEmail }: { adminEmail: string }) {
           <Link
             key={item.href}
             href={item.href}
+            prefetch={true}
             onClick={() => setMobileOpen(false)}
             className={`flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-semibold transition-colors ${
               active
