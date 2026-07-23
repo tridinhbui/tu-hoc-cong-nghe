@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { createClient } from "@/lib/supabase";
 import dynamicImport from "next/dynamic";
+import Leaderboard from "@/components/Leaderboard";
 
 const LearningAnalytics = dynamicImport(
   () => import("@/components/LearningAnalytics"),
@@ -18,6 +19,7 @@ export default function AnalyticsPage() {
   const router = useRouter();
   const supabase = createClient();
   const [loading, setLoading] = useState(true);
+  const [userId, setUserId] = useState<string | undefined>(undefined);
 
   useEffect(() => {
     const checkAuth = async () => {
@@ -30,10 +32,11 @@ export default function AnalyticsPage() {
         return;
       }
 
+      setUserId(session.user.id);
       setLoading(false);
     };
 
-    checkAuth();
+    void checkAuth();
   }, [router, supabase.auth]);
 
   if (loading) {
@@ -56,7 +59,28 @@ export default function AnalyticsPage() {
       </div>
 
       <div className="max-w-6xl mx-auto px-6">
-        <LearningAnalytics />
+        <div className="mb-6 rounded-[28px] border border-stone-200 bg-white px-5 py-5 shadow-[0_20px_50px_-35px_rgba(15,23,42,0.22)] sm:px-7 sm:py-6">
+          <div className="inline-flex items-center gap-2 rounded-full border border-emerald-200 bg-emerald-50 px-3 py-1 text-[11px] font-extrabold uppercase tracking-[0.18em] text-emerald-700">
+            Thống kê
+          </div>
+          <div className="mt-4 max-w-3xl">
+            <h1 className="text-3xl font-black tracking-tight text-stone-900 sm:text-4xl">Thống kê cá nhân + BXH chung</h1>
+            <p className="mt-2 text-sm leading-6 text-stone-600 sm:text-base">
+              Gộp toàn bộ tiến độ cá nhân và bảng xếp hạng vào cùng một màn. Bên trái là phần học của bạn, bên phải là nhịp cộng đồng để so nhanh mà không phải đổi trang.
+            </p>
+          </div>
+        </div>
+
+        <div className="grid gap-6 xl:grid-cols-3 xl:items-start">
+          <div className="xl:col-span-2 min-w-0">
+            <LearningAnalytics hideLeaderboardTab />
+          </div>
+          <div className="xl:col-span-1 min-w-0">
+            <div className="xl:sticky xl:top-6">
+              <Leaderboard userId={userId} compact />
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   );

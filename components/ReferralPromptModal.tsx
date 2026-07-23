@@ -64,11 +64,11 @@ export default function ReferralPromptModal() {
             animate={{ scale: 1 }}
             exit={{ scale: 0 }}
             onClick={() => setOpen(true)}
-            className="fixed bottom-6 left-6 z-40 w-14 h-14 rounded-full bg-emerald-600 hover:bg-emerald-700 shadow-lg hover:shadow-xl hover:scale-105 transition flex items-center justify-center group text-white"
+            className="fixed bottom-42 right-4 sm:bottom-42 sm:right-6 z-40 w-14 h-14 rounded-full bg-emerald-600 hover:bg-emerald-700 shadow-lg hover:shadow-xl hover:scale-105 transition flex items-center justify-center group text-white"
           >
             <Gift className="w-6 h-6" />
             <span className="absolute top-0.5 right-0.5 w-3.5 h-3.5 rounded-full bg-amber-400 border-2 border-white dark:border-stone-900" />
-            <div className="absolute bottom-full left-0 mb-2 bg-stone-900 dark:bg-stone-800 text-white text-xs px-3 py-2 rounded-lg whitespace-nowrap opacity-0 group-hover:opacity-100 transition">
+            <div className="absolute bottom-full right-0 mb-2 bg-stone-900 dark:bg-stone-800 text-white text-xs px-3 py-2 rounded-lg whitespace-nowrap opacity-0 group-hover:opacity-100 transition">
               Mời bạn học cùng
             </div>
           </motion.button>
@@ -82,7 +82,7 @@ export default function ReferralPromptModal() {
             initial={{ opacity: 0, y: 20, scale: 0.95 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 20, scale: 0.95 }}
-            className="fixed inset-x-4 bottom-4 sm:inset-x-auto sm:bottom-6 sm:left-6 z-50 sm:w-96 bg-white dark:bg-stone-900 rounded-2xl shadow-2xl border border-stone-200 dark:border-stone-800 p-6"
+            className="fixed inset-x-4 bottom-4 sm:inset-x-auto sm:bottom-42 sm:right-[5.5rem] z-50 sm:w-96 bg-white dark:bg-stone-900 rounded-2xl shadow-2xl border border-stone-200 dark:border-stone-800 p-6"
           >
             <button
               onClick={() => setOpen(false)}

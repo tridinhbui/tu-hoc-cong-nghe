@@ -17,8 +17,14 @@ function GlossaryTermSpan({ term, en }: { term: string; en: string }) {
 
   useEffect(() => {
     const supabase = createClient();
-    supabase.auth.getUser().then(({ data: { user } }) => {
-      if (user) setUserId(user.id);
+    supabase.auth.getSession().then(({ data: { session } }) => {
+      if (session?.user) {
+        setUserId(session.user.id);
+      } else {
+        supabase.auth.getUser().then(({ data: { user } }) => {
+          if (user) setUserId(user.id);
+        });
+      }
     });
   }, []);
 
@@ -40,10 +46,22 @@ function GlossaryTermSpan({ term, en }: { term: string; en: string }) {
   const handleSaveFlashcard = async (e: React.MouseEvent) => {
     e.stopPropagation();
     if (saveState === "saving" || saveState === "saved") return;
-    if (!userId) {
+
+    let currentUserId = userId;
+    if (!currentUserId) {
+      const supabase = createClient();
+      const { data: { user } } = await supabase.auth.getUser();
+      if (user) {
+        currentUserId = user.id;
+        setUserId(user.id);
+      }
+    }
+
+    if (!currentUserId) {
       toast.error("Vui lòng đăng nhập để lưu thẻ!");
       return;
     }
+
     setSaveState("saving");
     const card = {
       term,
@@ -53,14 +71,10 @@ function GlossaryTermSpan({ term, en }: { term: string; en: string }) {
       repetitions: 0,
       next_review_at: new Date().toISOString(),
     };
-    const ok = await saveFlashcard(userId, card);
+    const ok = await saveFlashcard(currentUserId, card);
     if (ok) {
       toast.success(`Đã thêm "${term}" vào Flashcards! 🗂️`);
       setSaveState("saved");
-      // Keep the tooltip open a moment so the "✓ Đã lưu" confirmation is
-      // actually seen at the point of interaction, instead of closing
-      // immediately and relying solely on a toast the user's attention
-      // (still on the mid-paragraph tooltip) may not be on.
       setTimeout(() => setOpen(false), 900);
     } else {
       setSaveState("error");
@@ -84,15 +98,17 @@ function GlossaryTermSpan({ term, en }: { term: string; en: string }) {
       >
         {term}
       </button>
-      <span className={`absolute left-1/2 -translate-x-1/2 bottom-full mb-1.5 rounded-xl bg-stone-900 dark:bg-stone-850 text-white text-xs font-semibold p-2.5 transition-opacity z-20 shadow-lg flex flex-col items-center gap-1.5 border border-stone-800 ${
-        open ? "opacity-100" : "pointer-events-none opacity-0 group-hover/term:opacity-100 group-focus-within/term:opacity-100"
+      <span className={`absolute left-1/2 -translate-x-1/2 bottom-full mb-1.5 rounded-xl bg-stone-900 dark:bg-stone-850 text-white text-xs font-semibold p-2.5 transition-opacity z-30 shadow-lg flex flex-col items-center gap-1.5 border border-stone-800 ${
+        open
+          ? "opacity-100 pointer-events-auto"
+          : "opacity-0 pointer-events-none group-hover/term:opacity-100 group-hover/term:pointer-events-auto group-focus-within/term:opacity-100 group-focus-within/term:pointer-events-auto"
       }`}>
         <span className="font-extrabold whitespace-nowrap">{en}</span>
         <button
           type="button"
           onClick={handleSaveFlashcard}
           disabled={saveState === "saving" || saveState === "saved"}
-          className={`text-[9px] font-extrabold uppercase tracking-wider px-2 py-1 rounded shadow-sm active:scale-95 transition-all ${
+          className={`text-[9px] font-extrabold uppercase tracking-wider px-2.5 py-1 rounded shadow-sm active:scale-95 transition-all ${
             saveState === "saved"
               ? "bg-emerald-700 text-white cursor-default"
               : saveState === "error"

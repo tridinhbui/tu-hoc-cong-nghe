@@ -239,7 +239,7 @@ export default function FloatingStudyGroupChat({ isOpen: controlledIsOpen, onOpe
           }}
           aria-label="Chat nhóm học"
           title={`Nhóm ${topicLabel(room.topic)}`}
-          className="fixed bottom-24 right-4 sm:bottom-28 sm:right-6 z-50 w-14 h-14 rounded-full shadow-xl flex items-center justify-center transition-all duration-300 cursor-pointer select-none bg-emerald-600 hover:bg-emerald-500 hover:scale-110"
+          className="fixed bottom-24 right-4 sm:bottom-24 sm:right-6 z-50 w-14 h-14 rounded-full shadow-xl flex items-center justify-center transition-all duration-300 cursor-pointer select-none bg-emerald-600 hover:bg-emerald-500 hover:scale-110"
         >
           <Users className="w-6 h-6 text-white" />
           {unreadCount > 0 && !open && (
@@ -257,7 +257,7 @@ export default function FloatingStudyGroupChat({ isOpen: controlledIsOpen, onOpe
       <div
         className={`fixed z-50 transition-all duration-300 ease-out
           bottom-0 left-0 right-0
-          sm:bottom-44 sm:right-6 sm:left-auto sm:w-[380px]
+          sm:bottom-24 sm:right-[5.5rem] sm:left-auto sm:w-[380px]
           ${open ? "translate-y-0 opacity-100 pointer-events-auto" : "translate-y-4 opacity-0 pointer-events-none"}
         `}
       >

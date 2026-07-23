@@ -59,7 +59,7 @@ export default async function GhiChuPage() {
   return (
     <div className="min-h-screen bg-white dark:bg-stone-950">
       <div className="border-b border-stone-200 dark:border-stone-800 bg-white dark:bg-stone-950">
-        <div className="max-w-2xl mx-auto px-6 py-4">
+        <div className="max-w-6xl mx-auto px-6 py-4">
           <Link
             href="/dashboard"
             className="inline-flex items-center gap-1.5 text-sm font-bold text-stone-600 dark:text-stone-400 hover:text-stone-900 dark:hover:text-stone-100 hover:bg-stone-100 dark:hover:bg-stone-800 rounded-lg px-3 py-2 -ml-3 transition-colors"
@@ -71,9 +71,15 @@ export default async function GhiChuPage() {
         </div>
       </div>
 
-      <div className="max-w-2xl mx-auto px-6 py-8 space-y-10">
-        <NotesOverviewClient lessonsById={lessonsById} userId={user.id} initialNotes={initialNotes} embedded />
-        <FlashcardClient userId={user.id} initialCards={initialCards} embedded />
+      <div className="max-w-6xl mx-auto px-6 py-8">
+        <div className="grid grid-cols-1 gap-8 xl:grid-cols-[minmax(0,1fr)_minmax(380px,440px)] items-start">
+          <section className="min-w-0">
+            <NotesOverviewClient lessonsById={lessonsById} userId={user.id} initialNotes={initialNotes} embedded />
+          </section>
+          <section className="min-w-0">
+            <FlashcardClient userId={user.id} initialCards={initialCards} embedded />
+          </section>
+        </div>
       </div>
     </div>
   );

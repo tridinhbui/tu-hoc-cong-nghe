@@ -57,7 +57,7 @@ export async function getDailyQuests(userId: string, dayKey: string): Promise<Qu
   const solvedQuizCount = completedTodayCount; // reuse completed lessons/quizzes as indicator
 
   // 4. Fetch claimed status from DB
-  let claimedSet = new Set<string>();
+  const claimedSet = new Set<string>();
   const { data: claims, error: claimsError } = await supabase
     .from("user_quest_completions")
     .select("quest_type")
@@ -120,6 +120,15 @@ export async function getDailyQuests(userId: string, dayKey: string): Promise<Qu
       current: 1,
       xpReward: 5,
       claimed: claimedSet.has("daily_4"),
+    },
+    {
+      id: "daily_game",
+      title: "Khám phá Vương Quốc Game",
+      description: "Tiến vào thế giới Game Tài Chính hôm nay",
+      target: 1,
+      current: 1,
+      xpReward: 2,
+      claimed: claimedSet.has("daily_game"),
     },
   ];
 }

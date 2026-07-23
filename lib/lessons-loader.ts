@@ -71,7 +71,7 @@ export async function getLessonBySlug(slug: string): Promise<Lesson | undefined>
     return overridden;
   } catch {
     const lessons = await loadLessons();
-    return lessons.find((l) => l.slug === slug);
+    return lessons.find((l) => l && l.slug === slug);
   }
 }
 

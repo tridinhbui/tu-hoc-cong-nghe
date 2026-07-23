@@ -247,15 +247,15 @@ export default function PairGame({ userId, gameType, difficulty = "trung-binh", 
   function cardClass(kind: "left" | "right", index: number, cs: CardState | undefined, selected: boolean) {
     const base = "w-full text-left px-3.5 py-3 rounded-xl border font-bold text-xs sm:text-sm transition-all duration-200 cursor-pointer select-none";
     if (!cs) return base;
-    if (cs.matched) return `${base} border-emerald-500 bg-emerald-50/50 dark:bg-emerald-950/20 text-emerald-600 dark:text-emerald-400 opacity-75 cursor-default flex items-center justify-between shadow-sm scale-[0.98]`;
+    if (cs.matched) return `${base} border-emerald-500 bg-emerald-50/50 text-emerald-600 opacity-75 cursor-default flex items-center justify-between shadow-sm scale-[0.98]`;
     const shaking = kind === "left" ? shakePair.left === index : shakePair.right === index;
-    if (shaking) return `${base} border-red-500 bg-red-50/60 dark:bg-red-950/30 text-red-700 dark:text-red-400 shadow-[0_0_12px_rgba(239,68,68,0.25)] animate-[pg-wiggle_0.4s_ease-in-out]`;
-    if (selected) return `${base} border-emerald-500 bg-emerald-50/40 dark:bg-emerald-950/20 ring-2 ring-emerald-500 dark:ring-emerald-500 text-emerald-700 dark:text-emerald-450 shadow-md scale-[1.03]`;
-    return `${base} border-stone-200 dark:border-stone-800 bg-white dark:bg-stone-850 text-stone-900 dark:text-stone-105 hover:border-emerald-500 dark:hover:border-emerald-500 hover:shadow-md hover:-translate-y-0.5 active:scale-95`;
+    if (shaking) return `${base} border-red-500 bg-red-50/60 text-red-700 shadow-[0_0_12px_rgba(239,68,68,0.25)] animate-[pg-wiggle_0.4s_ease-in-out]`;
+    if (selected) return `${base} border-emerald-500 bg-emerald-50/40 ring-2 ring-emerald-500 text-emerald-700 shadow-md scale-[1.03]`;
+    return `${base} border-stone-200 bg-white text-stone-900 hover:border-emerald-500 hover:shadow-md hover:-translate-y-0.5 active:scale-95`;
   }
 
   return (
-    <div className="bg-white dark:bg-stone-900 border border-stone-200 dark:border-stone-850 rounded-2xl p-4 sm:p-5 lg:p-6 shadow-sm relative overflow-hidden">
+    <div className="bg-white border border-stone-200 rounded-2xl p-4 sm:p-5 lg:p-6 shadow-sm relative overflow-hidden">
       {/* Decorative subtle background glows */}
       <div className="absolute top-0 right-0 w-32 h-32 bg-emerald-500/5 rounded-full blur-3xl pointer-events-none" />
       <div className="absolute bottom-0 left-0 w-32 h-32 bg-amber-500/5 rounded-full blur-3xl pointer-events-none" />
@@ -270,21 +270,21 @@ export default function PairGame({ userId, gameType, difficulty = "trung-binh", 
         }
       `}</style>
 
-      <div className="flex flex-wrap items-center justify-between gap-3 mb-5 relative z-10 pb-4 border-b border-stone-200/50 dark:border-stone-800/50">
+      <div className="flex flex-wrap items-center justify-between gap-3 mb-5 relative z-10 pb-4 border-b border-stone-200/50">
         <div className="min-w-0">
-          <p className="text-xs sm:text-sm font-black text-stone-850 dark:text-stone-200 flex items-center gap-2">
+          <p className="text-xs sm:text-sm font-black text-stone-850 flex items-center gap-2">
             <span>Đã ghép {matchedCount}/{round.length} cặp</span>
             {combo >= 2 && (
               <motion.span 
                 initial={{ scale: 0.8 }} 
                 animate={{ scale: [1, 1.15, 1] }} 
-                className="inline-block text-[10px] font-extrabold text-amber-600 dark:text-amber-400 bg-amber-50 dark:bg-amber-950/40 px-2 py-0.5 rounded-full shadow-sm animate-pulse border border-amber-200/40"
+                className="inline-block text-[10px] font-extrabold text-amber-600 bg-amber-50 px-2 py-0.5 rounded-full shadow-sm animate-pulse border border-amber-200/40"
               >
                 🔥 Combo x{combo}
               </motion.span>
             )}
           </p>
-          <div className="w-36 sm:w-44 lg:w-60 h-2 bg-stone-100 dark:bg-stone-800/80 rounded-full mt-1.5 overflow-hidden shadow-inner">
+          <div className="w-36 sm:w-44 lg:w-60 h-2 bg-stone-100 rounded-full mt-1.5 overflow-hidden shadow-inner">
             <div className="h-full bg-gradient-to-r from-emerald-500 to-teal-500 transition-all duration-300" style={{ width: `${round.length ? (matchedCount / round.length) * 100 : 0}%` }} />
           </div>
         </div>
@@ -299,8 +299,8 @@ export default function PairGame({ userId, gameType, difficulty = "trung-binh", 
                 freezeActive
                   ? "bg-sky-500 border-sky-400 text-white animate-pulse"
                   : freezeUsed
-                    ? "opacity-40 bg-stone-100 dark:bg-stone-800 border-stone-200 dark:border-stone-800 text-stone-400 cursor-not-allowed"
-                    : "bg-sky-50 dark:bg-sky-950/30 border-sky-200 dark:border-sky-900/40 text-sky-650 hover:bg-sky-100/50"
+                    ? "opacity-40 bg-stone-100 border-stone-200 text-stone-400 cursor-not-allowed"
+                    : "bg-sky-50 border-sky-200 text-sky-650 hover:bg-sky-100/50"
               }`}
               title="Đóng băng thời gian (5 giây)"
             >
@@ -315,8 +315,8 @@ export default function PairGame({ userId, gameType, difficulty = "trung-binh", 
               disabled={helper5050Used}
               className={`w-9 h-9 rounded-xl border flex items-center justify-center transition-all cursor-pointer ${
                 helper5050Used
-                  ? "opacity-40 bg-stone-100 dark:bg-stone-800 border-stone-200 dark:border-stone-800 text-stone-400 cursor-not-allowed"
-                  : "bg-indigo-50 dark:bg-indigo-950/30 border-indigo-200 dark:border-indigo-900/40 text-indigo-650 hover:bg-indigo-100/50"
+                  ? "opacity-40 bg-stone-100 border-stone-200 text-stone-400 cursor-not-allowed"
+                  : "bg-indigo-50 border-indigo-200 text-indigo-650 hover:bg-indigo-100/50"
               }`}
               title="Quyền trợ giúp 50/50 (Tự ghép 2 cặp)"
             >
@@ -326,11 +326,11 @@ export default function PairGame({ userId, gameType, difficulty = "trung-binh", 
 
           {/* SVG countdown timer */}
           {timeLimit && !finished && (
-            <div className="flex items-center gap-1.5 bg-stone-50 dark:bg-stone-900/40 p-1.5 rounded-xl border border-stone-200/50 dark:border-stone-800/50">
+            <div className="flex items-center gap-1.5 bg-stone-50 p-1.5 rounded-xl border border-stone-200/50">
               <div className="relative w-8 h-8 flex items-center justify-center shrink-0">
                 <svg className="w-8 h-8 transform -rotate-90 overflow-visible" viewBox="0 0 36 36">
                   <circle
-                    className="text-stone-200 dark:text-stone-800"
+                    className="text-stone-200"
                     strokeWidth="3.5"
                     stroke="currentColor"
                     fill="none"
@@ -360,7 +360,7 @@ export default function PairGame({ userId, gameType, difficulty = "trung-binh", 
                     r="16"
                   />
                 </svg>
-                <span className="absolute text-[9px] font-black text-stone-700 dark:text-stone-200">
+                <span className="absolute text-[9px] font-black text-stone-700">
                   {freezeActive ? "❄️" : `${timeLeft}s`}
                 </span>
               </div>
@@ -369,7 +369,7 @@ export default function PairGame({ userId, gameType, difficulty = "trung-binh", 
 
           <button
             onClick={startNewRound}
-            className="w-9 h-9 rounded-xl border border-stone-200 dark:border-stone-800 flex items-center justify-center hover:bg-stone-50 dark:hover:bg-stone-800 text-stone-500 dark:text-stone-400 transition-colors cursor-pointer"
+            className="w-9 h-9 rounded-xl border border-stone-200 flex items-center justify-center hover:bg-stone-50 text-stone-500 transition-colors cursor-pointer"
             title="Chơi lại"
           >
             <RefreshCw className="w-4 h-4" />
@@ -377,19 +377,19 @@ export default function PairGame({ userId, gameType, difficulty = "trung-binh", 
         </div>
       </div>
 
-      <div className="grid grid-cols-2 gap-2 text-[10px] font-extrabold text-stone-400 dark:text-stone-500 uppercase tracking-widest mb-1 relative z-10">
+      <div className="grid grid-cols-2 gap-2 text-[10px] font-extrabold text-stone-400 uppercase tracking-widest mb-1 relative z-10">
         <span>{config.leftLabel}</span>
         <span>{config.rightLabel}</span>
       </div>
-      <p className="text-xs text-stone-500 dark:text-stone-400 mb-4 relative z-10">{config.hint}</p>
+      <p className="text-xs text-stone-500 mb-4 relative z-10">{config.hint}</p>
 
       {finished ? (
         <div className="text-center py-10 relative z-10 flex flex-col items-center">
           <span className="text-4xl mb-3 animate-bounce">🏆</span>
-          <p className="text-lg font-extrabold text-stone-900 dark:text-stone-50">
+          <p className="text-lg font-extrabold text-stone-900">
             {submitting ? "Đang lưu kết quả..." : "Hoàn thành ván chơi!"}
           </p>
-          <p className="text-xs sm:text-sm text-stone-500 dark:text-stone-450 mt-1 max-w-xs">
+          <p className="text-xs sm:text-sm text-stone-500 mt-1 max-w-xs">
             Bạn đạt được {score}/{round.length} cặp ghép đúng ở lượt đầu tiên. Bấm &quot;Chơi lại&quot; để tiếp tục rèn luyện!
           </p>
         </div>

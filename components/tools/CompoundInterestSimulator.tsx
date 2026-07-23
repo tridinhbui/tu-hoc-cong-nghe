@@ -17,7 +17,7 @@ export default function CompoundInterestSimulator() {
   const r = (interestRate / 100) / 12;
   const n = years * 12;
 
-  let totalPrincipal = initialAmount + (monthlyContribution * n);
+  const totalPrincipal = initialAmount + (monthlyContribution * n);
   let futureValue = initialAmount * Math.pow(1 + r, n);
 
   if (r > 0) {

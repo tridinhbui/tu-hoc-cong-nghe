@@ -14,7 +14,17 @@ export type GameType =
   | "formula-match"
   | "risk-category"
   | "ticker-match"
-  | "cost-category";
+  | "cost-category"
+  | "random-mix";
+
+export type SpecialGameType =
+  | "weekly-case-challenge"
+  | "world-boss-raid"
+  | "solo-knowledge-boss"
+  | "vn30-fund-sim"
+  | "pvp-duel";
+
+export type AnyGameType = GameType | SpecialGameType;
 
 export type GameDifficulty = "de" | "trung-binh" | "kho";
 
@@ -51,6 +61,14 @@ export interface GameMeta {
 }
 
 export const GAMES: GameMeta[] = [
+  {
+    id: "random-mix",
+    title: "🎲 Trộn ngẫu nhiên tất cả chủ đề",
+    description: "Thách thức tổng hợp: Trộn ngẫu nhiên kiến thức từ Báo cáo tài chính, Thuật ngữ, Chỉ số, Công thức và Rủi ro!",
+    emoji: "🎲",
+    mechanic: "pair",
+    accent: "rose",
+  },
   {
     id: "financial-statement-match",
     title: "Báo cáo tài chính",
@@ -119,6 +137,58 @@ export const GAMES: GameMeta[] = [
 
 export function getGameMeta(id: GameType): GameMeta {
   return GAMES.find((g) => g.id === id) ?? GAMES[0];
+}
+
+export interface RelatedLesson {
+  slug: string;
+  title: string;
+  subtitle: string;
+}
+
+export const GAME_RELATED_LESSONS: Record<GameType, RelatedLesson[]> = {
+  "financial-statement-match": [
+    { slug: "dong-tien", title: "Day 4: Dòng tiền là gì?", subtitle: "Phân biệt Báo cáo kết quả kinh doanh, Bảng cân đối & Lưu chuyển tiền tệ" },
+    { slug: "tai-chinh-la-gi", title: "Day 1: Tài chính là gì?", subtitle: "Nền tảng phân bổ nguồn lực và đọc hiểu thông số" },
+    { slug: "thu-nhap-chi-phi-tiet-kiem", title: "Day 3: Thu nhập, chi phí, tiết kiệm", subtitle: "Phân loại dòng tiền vào ra" },
+  ],
+  "en-vi-terms": [
+    { slug: "tai-chinh-la-gi", title: "Day 1: Tài chính là gì?", subtitle: "Các thuật ngữ tài chính Anh - Việt cốt lõi" },
+    { slug: "tien-la-gi", title: "Day 2: Tiền là gì?", subtitle: "Các thuộc tính và từ vựng tiền tệ" },
+  ],
+  "ratio-category": [
+    { slug: "chi-so-tai-chinh-co-ban", title: "Các chỉ số tài chính cơ bản", subtitle: "Hiểu rõ nhóm chỉ số Thanh khoản, Sinh lời, Đòn bẩy" },
+    { slug: "dong-tien", title: "Day 4: Dòng tiền là gì?", subtitle: "Chỉ số lưu chuyển tiền tệ và khả năng thanh toán" },
+  ],
+  "term-definition": [
+    { slug: "tai-chinh-la-gi", title: "Day 1: Tài chính là gì?", subtitle: "Thuật ngữ và khái niệm định nghĩa gốc" },
+    { slug: "tai-san-tieu-san", title: "Day 5: Tài sản và tiêu sản", subtitle: "Hiểu đúng bản chất từng khái niệm" },
+  ],
+  "formula-match": [
+    { slug: "chi-so-tai-chinh-co-ban", title: "Các chỉ số tài chính cơ bản", subtitle: "Công thức ROE, ROA, P/E, Current Ratio" },
+    { slug: "lai-suat-la-gi", title: "Day 6: Lãi suất là gì?", subtitle: "Công thức và tác động của lãi suất" },
+    { slug: "lai-don-lai-kep", title: "Day 7: Lãi đơn & Lãi kép", subtitle: "Công thức tính giá trị theo thời gian của tiền" },
+  ],
+  "risk-category": [
+    { slug: "tai-san-tieu-san", title: "Day 5: Tài sản và tiêu sản", subtitle: "Đánh giá mức độ rủi ro và giá trị tài sản" },
+    { slug: "lai-suat-la-gi", title: "Day 6: Lãi suất là gì?", subtitle: "Rủi ro biến động lãi suất và thị trường" },
+  ],
+  "ticker-match": [
+    { slug: "tai-chinh-la-gi", title: "Day 1: Tài chính là gì?", subtitle: "Tìm hiểu doanh nghiệp và niêm yết trên thị trường" },
+    { slug: "chi-so-tai-chinh-co-ban", title: "Các chỉ số tài chính cơ bản", subtitle: "Đánh giá các doanh nghiệp VN30 hàng đầu" },
+  ],
+  "cost-category": [
+    { slug: "thu-nhap-chi-phi-tiet-kiem", title: "Day 3: Thu nhập, chi phí, tiết kiệm", subtitle: "Phân loại chi phí cố định và chi phí biến đổi" },
+    { slug: "dong-tien", title: "Day 4: Dòng tiền là gì?", subtitle: "Tác động của chi phí đến dòng tiền doanh nghiệp" },
+  ],
+  "random-mix": [
+    { slug: "tai-chinh-la-gi", title: "Day 1: Tài chính là gì?", subtitle: "Tổng hợp kiến thức nền tảng tài chính" },
+    { slug: "dong-tien", title: "Day 4: Dòng tiền là gì?", subtitle: "Tổng hợp phân tích dòng tiền & Báo cáo" },
+    { slug: "chi-so-tai-chinh-co-ban", title: "Các chỉ số tài chính cơ bản", subtitle: "Tổng hợp công thức và tỷ số tài chính" },
+  ],
+};
+
+export function getGameRelatedLessons(gameType: GameType): RelatedLesson[] {
+  return GAME_RELATED_LESSONS[gameType] ?? GAME_RELATED_LESSONS["random-mix"];
 }
 
 // Pass threshold to earn XP - a round that's mostly wrong shouldn't reward
@@ -374,6 +444,24 @@ const PAIR_CONFIGS: Partial<Record<GameType, PairConfig>> = {
 };
 
 export function getPairConfig(gameType: GameType, difficulty: GameDifficulty = "trung-binh"): PairConfig {
+  if (gameType === "random-mix") {
+    const glossaryPairs = Object.entries(FINANCE_GLOSSARY).map(([vi, en]) => ({ left: vi, right: en }));
+    const allPools = [
+      ...TERM_DEFINITION_PAIRS,
+      ...FORMULA_PAIRS,
+      ...TICKER_PAIRS,
+      ...glossaryPairs,
+    ];
+    const base = {
+      pool: allPools,
+      roundSize: 8,
+      leftLabel: "Thuật ngữ / Tên",
+      rightLabel: "Định nghĩa / Mã / Khái niệm",
+      hint: "Chế độ Trộn Ngẫu Nhiên: Ghép đúng các cặp thuộc các chủ đề khác nhau!",
+    };
+    return { ...base, roundSize: scaleRoundSize(base.roundSize, base.pool.length, difficulty) };
+  }
+
   const cfg = PAIR_CONFIGS[gameType];
   const base = cfg ?? {
     // Fallback: en-vi-terms built from the glossary.
@@ -404,7 +492,7 @@ export interface GameSession {
 
 export async function recordGameSession(
   userId: string,
-  gameType: GameType,
+  gameType: AnyGameType,
   score: number,
   total: number
 ): Promise<number> {
@@ -425,6 +513,25 @@ export async function recordGameSession(
   }
 
   return xpEarned;
+}
+
+export async function recordCustomGameSession(
+  userId: string,
+  gameType: AnyGameType,
+  score: number,
+  total: number,
+  xpEarned: number
+): Promise<void> {
+  const supabase = createClient();
+  const { error } = await supabase
+    .from("game_sessions")
+    .insert([{ user_id: userId, game_type: gameType, score, total, xp_earned: xpEarned }]);
+
+  if (error && !isMissingTableError(error)) throw handleSupabaseError(error);
+
+  if (typeof window !== "undefined") {
+    window.dispatchEvent(new Event("thtcdn_game_session_recorded"));
+  }
 }
 
 /**
@@ -455,7 +562,7 @@ export async function getTotalGameXp(userId: string): Promise<number> {
   return Array.from(bestByGame.values()).reduce((sum, v) => sum + v, 0);
 }
 
-export async function getGameHistory(userId: string, gameType: GameType, limit = 20): Promise<GameSession[]> {
+export async function getGameHistory(userId: string, gameType: AnyGameType, limit = 20): Promise<GameSession[]> {
   const supabase = createClient();
   const { data, error } = await supabase
     .from("game_sessions")
@@ -481,7 +588,7 @@ export interface GameLeaderboardRow {
   playedAt: string;
 }
 
-export async function getGameLeaderboard(gameType: GameType, limit = 10): Promise<GameLeaderboardRow[]> {
+export async function getGameLeaderboard(gameType: AnyGameType, limit = 10): Promise<GameLeaderboardRow[]> {
   const supabase = createClient();
   const { data, error } = await supabase.rpc("get_game_leaderboard", { p_game_type: gameType, p_limit: limit });
 
@@ -542,6 +649,7 @@ export async function getCombinedGameLeaderboard(limit = 10): Promise<CombinedLe
 // ─── Fun finance-themed titles for the top 3 of each game's leaderboard ───
 
 const GAME_TITLES: Record<GameType, [string, string, string]> = {
+  "random-mix": ["Đại Sư Trộn Ngẫu Nhiên", "Phù Thủy Tổng Hợp", "Cao Thủ Ngẫu Nhiên"],
   "financial-statement-match": ["Kế Toán Trưởng Vũ Trụ", "Thần Cân Đối Kế Toán", "Đại Sư Báo Cáo Tài Chính"],
   "en-vi-terms": ["Phù Thuỷ Song Ngữ Tài Chính", "Thánh Thuật Ngữ", "Dịch Giả Phố Wall"],
   "ratio-category": ["Bậc Thầy Chỉ Số", "Nhà Phân Tích Thượng Thừa", "Trùm Tỷ Số Tài Chính"],

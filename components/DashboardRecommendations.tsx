@@ -63,8 +63,8 @@ const DEFAULT_TRENDING_POOL = [
 const getIllustrativeStudyingCount = getIllustrativeCount;
 
 export default function DashboardRecommendations({ lessonsMeta, completed, userId }: DashboardRecommendationsProps) {
-  const [collapsed, setCollapsed] = useState(true);
-  const [hotCollapsed, setHotCollapsed] = useState(true);
+  const [collapsed, setCollapsed] = useState(false);
+  const [hotCollapsed, setHotCollapsed] = useState(false);
   const [selectedGoal, setSelectedGoal] = useState<string | null>(null);
   const [scrollProgress, setScrollProgress] = useState(0);
   const [hotScrollProgress, setHotScrollProgress] = useState(0);
@@ -215,10 +215,10 @@ export default function DashboardRecommendations({ lessonsMeta, completed, userI
   if (primaryItems.length === 0 && hotItems.length === 0) return null;
 
   return (
-    <div className="space-y-6 w-full">
+    <div className="w-full rounded-3xl border border-stone-200 bg-white p-4 shadow-sm space-y-4">
       {/* 💡 Gợi ý hôm nay */}
       {primaryItems.length > 0 && (
-        <div className="bg-white dark:bg-stone-900 border border-stone-200 dark:border-stone-850 rounded-2xl p-4 shadow-sm flex flex-col justify-between overflow-hidden w-full relative">
+        <section className="flex flex-col overflow-hidden w-full relative">
           <style>{`
             .scrollbar-none::-webkit-scrollbar {
               display: none;
@@ -236,11 +236,13 @@ export default function DashboardRecommendations({ lessonsMeta, completed, userI
             }
           `}</style>
           <button
+            type="button"
             onClick={() => setCollapsed(!collapsed)}
-            className="w-full flex items-center justify-between mb-3 flex-shrink-0 cursor-pointer text-left focus:outline-none"
+            aria-expanded={!collapsed}
+            className={`w-full flex items-center justify-between flex-shrink-0 cursor-pointer text-left focus:outline-none ${collapsed ? "" : "mb-3"}`}
           >
             <div className="flex items-center gap-2">
-              <Sparkles className="w-4 h-4 text-amber-500 animate-pulse" />
+              <Sparkles className="w-4 h-4 text-stone-400" />
               <h2 className="text-sm font-bold text-stone-900 dark:text-stone-100">Gợi ý hôm nay</h2>
             </div>
             {collapsed ? (
@@ -251,7 +253,7 @@ export default function DashboardRecommendations({ lessonsMeta, completed, userI
           </button>
 
           {/* Scrollable Container */}
-          {!collapsed && (
+          <div className={collapsed ? "hidden" : "block"}>
             <>
               <div className="relative group/rec-slider w-full">
                 {/* Left Arrow Button */}
@@ -308,9 +310,9 @@ export default function DashboardRecommendations({ lessonsMeta, completed, userI
                                 {topic.title}
                               </span>
                               {isDone && (
-                                <span className="ml-auto text-[9px] font-extrabold text-emerald-600 bg-emerald-50 dark:bg-emerald-950/40 px-1 py-0.5 rounded-sm">
+                              <span className="ml-auto text-[9px] font-extrabold text-emerald-700 bg-emerald-50/70 dark:bg-emerald-950/40 px-1 py-0.5 rounded-sm">
                                   Xong
-                                </span>
+                              </span>
                               )}
                             </div>
                             <h3 className="text-xs font-bold text-stone-900 dark:text-stone-100 group-hover:text-emerald-600 dark:group-hover:text-emerald-400 transition-colors line-clamp-2 leading-tight">
@@ -330,11 +332,11 @@ export default function DashboardRecommendations({ lessonsMeta, completed, userI
                     // game Suggestion
                     const { game } = item;
                     const ACCENTS: Record<string, string> = {
-                      emerald: "border-emerald-200/60 dark:border-emerald-950 bg-gradient-to-b from-emerald-50/20 to-emerald-100/5 dark:from-emerald-950/20 dark:to-emerald-950/5 hover:border-emerald-400 hover:shadow-emerald-500/5",
-                      sky: "border-sky-200/60 dark:border-sky-950 bg-gradient-to-b from-sky-50/20 to-sky-100/5 dark:from-sky-950/20 dark:to-sky-950/5 hover:border-sky-400 hover:shadow-sky-500/5",
-                      amber: "border-amber-200/60 dark:border-amber-950 bg-gradient-to-b from-amber-50/20 to-amber-100/5 dark:from-amber-950/20 dark:to-amber-950/5 hover:border-amber-400 hover:shadow-amber-500/5",
-                      violet: "border-violet-200/60 dark:border-violet-950 bg-gradient-to-b from-violet-50/20 to-violet-100/5 dark:from-violet-950/20 dark:to-violet-950/5 hover:border-violet-400 hover:shadow-violet-500/5",
-                      rose: "border-rose-200/60 dark:border-rose-950 bg-gradient-to-b from-rose-50/20 to-rose-100/5 dark:from-rose-950/20 dark:to-rose-950/5 hover:border-rose-400 hover:shadow-rose-500/5",
+                      emerald: "border-stone-200/80 dark:border-stone-800 bg-white dark:bg-stone-900 hover:border-emerald-300 hover:shadow-emerald-500/5",
+                      sky: "border-stone-200/80 dark:border-stone-800 bg-white dark:bg-stone-900 hover:border-sky-300 hover:shadow-sky-500/5",
+                      amber: "border-stone-200/80 dark:border-stone-800 bg-white dark:bg-stone-900 hover:border-amber-300 hover:shadow-amber-500/5",
+                      violet: "border-stone-200/80 dark:border-stone-800 bg-white dark:bg-stone-900 hover:border-violet-300 hover:shadow-violet-500/5",
+                      rose: "border-stone-200/80 dark:border-stone-800 bg-white dark:bg-stone-900 hover:border-rose-300 hover:shadow-rose-500/5",
                     };
                     const accentCls = ACCENTS[game.accent] || ACCENTS.emerald;
                     return (
@@ -347,7 +349,7 @@ export default function DashboardRecommendations({ lessonsMeta, completed, userI
                         <div>
                           <div className="flex items-center gap-1.5 mb-2">
                             <div className="w-5.5 h-5.5 rounded-lg flex items-center justify-center bg-stone-100 dark:bg-stone-850 text-stone-700 dark:text-stone-300 transition-transform duration-300 group-hover:scale-110 group-hover:rotate-6">
-                              <Gamepad2 className="w-3 h-3 text-emerald-600 dark:text-emerald-450 animate-pulse" />
+                              <Gamepad2 className="w-3 h-3 text-amber-600 dark:text-amber-450" />
                             </div>
                             <span className="text-[10px] font-extrabold text-stone-600 dark:text-stone-455 uppercase tracking-wider">
                               Mini Game {game.emoji}
@@ -378,19 +380,21 @@ export default function DashboardRecommendations({ lessonsMeta, completed, userI
                 </div>
               )}
             </>
-          )}
-        </div>
+          </div>
+        </section>
       )}
 
       {/* 🔥 Bài học Đang hot */}
       {hotItems.length > 0 && (
-        <div className="bg-white dark:bg-stone-900 border border-stone-200 dark:border-stone-850 rounded-xl p-4 shadow-sm flex flex-col justify-between overflow-hidden w-full relative">
+        <section className={`flex flex-col overflow-hidden w-full relative ${primaryItems.length > 0 ? "border-t border-stone-150 pt-4" : ""}`}>
           <button
+            type="button"
             onClick={() => setHotCollapsed(!hotCollapsed)}
-            className="w-full flex items-center justify-between mb-3 flex-shrink-0 cursor-pointer text-left focus:outline-none"
+            aria-expanded={!hotCollapsed}
+            className={`w-full flex items-center justify-between flex-shrink-0 cursor-pointer text-left focus:outline-none ${hotCollapsed ? "" : "mb-3"}`}
           >
             <div className="flex items-center gap-2">
-              <Flame className="w-4 h-4 text-rose-500 animate-pulse" />
+              <Flame className="w-4 h-4 text-stone-400" />
               <h2 className="text-sm font-bold text-stone-900 dark:text-stone-100">Đang hot tuần này</h2>
             </div>
             {hotCollapsed ? (
@@ -400,7 +404,7 @@ export default function DashboardRecommendations({ lessonsMeta, completed, userI
             )}
           </button>
           
-          {!hotCollapsed && (
+          <div className={hotCollapsed ? "hidden" : "block"}>
             <>
               <div className="relative group/rec-slider w-full">
                 {/* Left Arrow Button */}
@@ -488,8 +492,8 @@ export default function DashboardRecommendations({ lessonsMeta, completed, userI
                 </div>
               )}
             </>
-          )}
-        </div>
+          </div>
+        </section>
       )}
     </div>
   );

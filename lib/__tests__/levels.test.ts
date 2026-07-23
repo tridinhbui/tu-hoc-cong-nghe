@@ -1,5 +1,5 @@
 import { describe, it, expect } from "vitest";
-import { getLevelByXp, getXpToNextLevel, getLevelProgress, getNextLevel, getCfaGateRemaining, LEVELS } from "@/lib/levels";
+import { getLevelByXp, getXpToNextLevel, getLevelProgress, getNextLevel, getCfaGateRemaining, LEVELS, getDomainLevelByXp, getDomainLevelProgress, calculateOverallLevel } from "@/lib/levels";
 
 describe("getLevelByXp", () => {
   it("returns level 1 for 0 xp", () => {
@@ -80,3 +80,32 @@ describe("getLevelProgress", () => {
     expect(getLevelProgress(50)).toBe(50);
   });
 });
+
+describe("Domain Mastery Calculations", () => {
+  it("calculates correct domain level based on domain XP", () => {
+    expect(getDomainLevelByXp(0)).toBe(1);
+    expect(getDomainLevelByXp(100)).toBe(1);
+    expect(getDomainLevelByXp(300)).toBe(2);
+    expect(getDomainLevelByXp(666)).toBe(3);
+  });
+
+  it("calculates domain progress % accurately", () => {
+    // Level 1 to 2: spans 0 to 300 XP. 150 XP is 50%
+    expect(getDomainLevelProgress(150)).toBe(50);
+  });
+
+  it("calculates overall level from weighted domain levels", () => {
+    const domainLevels = {
+      accounting: 2,
+      valuation: 3,
+      corporate_finance: 2,
+      economics: 1,
+      investment: 1,
+      risk_management: 1,
+      ai_for_finance: 1,
+    };
+    expect(calculateOverallLevel(domainLevels)).toBe(11);
+  });
+});
+
+

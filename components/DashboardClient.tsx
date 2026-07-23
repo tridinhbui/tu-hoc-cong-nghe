@@ -24,7 +24,6 @@ import ResumeLearningButton from "@/components/ResumeLearningButton";
 import StreakReminderManager from "@/components/StreakReminderManager";
 import AnnouncementBanner from "@/components/AnnouncementBanner";
 import DashboardTour from "@/components/DashboardTour";
-import Leaderboard from "@/components/Leaderboard";
 import DashboardRecommendations from "@/components/DashboardRecommendations";
 import MistakeReviewWidget from "@/components/MistakeReviewWidget";
 import LessonRecallWidget from "@/components/LessonRecallWidget";
@@ -55,6 +54,18 @@ import { useRoutePrefetch } from "@/lib/use-route-prefetch";
 import { getPassedMilestones, savePassedMilestone, type MilestoneCompletion } from "@/lib/supabase-milestones";
 import { syncOfflineQueue } from "@/lib/offline-sync";
 import { isValidAvatar } from "@/lib/avatar-utils";
+import SkillTreeWidget from "@/components/SkillTreeWidget";
+import CosmeticStore from "@/components/CosmeticStore";
+import FinanceCardCollection from "@/components/FinanceCardCollection";
+import WeeklyChallengeWidget from "@/components/WeeklyChallengeWidget";
+import FinanceCharacterAvatar, { CharacterEquipments } from "@/components/FinanceCharacterAvatar";
+import BossBattleModal from "@/components/BossBattleModal";
+import WorldBossRaidWidget from "@/components/WorldBossRaidWidget";
+import FinancialGuildWidget from "@/components/FinancialGuildWidget";
+import PvpDuelModal from "@/components/PvpDuelModal";
+import DashboardStreakWidget from "@/components/DashboardStreakWidget";
+
+
 
 const STAGE_THEMES: Record<string, { emoji: string; bg: string; text: string; barColor: string }> = {
   // All stages use the clean neutral Stone color theme of Stage 0
@@ -125,14 +136,12 @@ export default function DashboardClient({ lessonsMeta }: { lessonsMeta: LessonMe
     const saved = window.localStorage.getItem("activeTrack");
     return saved === "professional" ? "professional" : "personal";
   });
-  const [activeDashboardTab, setActiveDashboardTab] = useState<"career" | "personal" | "professional" | "cfa">(() => {
+  const [activeDashboardTab, setActiveDashboardTab] = useState<"career" | "personal" | "professional" | "cfa" | "skill-tree" | "weekly-challenge" | "cards" | "cosmetics">(() => {
     if (typeof window === "undefined") return "personal";
     const saved = window.localStorage.getItem("activeDashboardTab");
-    return saved === "career" || saved === "personal" || saved === "professional" || saved === "cfa" ? saved : "personal";
+    const validTabs = ["career", "personal", "professional", "cfa", "skill-tree", "weekly-challenge", "cards", "cosmetics"];
+    return saved && validTabs.includes(saved) ? (saved as any) : "personal";
   });
-  // Which half of "Tài chính chuyên ngành" is showing - purely a display
-  // filter over TRACK_PROFESSIONAL.stages (see PROFESSIONAL_BRANCHES),
-  // doesn't affect lesson locking/XP/progress at all.
   const [professionalBranch, setProfessionalBranch] = useState<ProfessionalBranchId>(() => {
     if (typeof window === "undefined") return "corporate";
     const saved = window.localStorage.getItem("professionalBranch");
@@ -153,7 +162,7 @@ export default function DashboardClient({ lessonsMeta }: { lessonsMeta: LessonMe
       window.localStorage.setItem("activeDashboardTab", track);
     }
   };
-  const setDashboardTab = (tab: "career" | "personal" | "professional" | "cfa") => {
+  const setDashboardTab = (tab: "career" | "personal" | "professional" | "cfa" | "skill-tree" | "weekly-challenge" | "cards" | "cosmetics") => {
     setActiveDashboardTab(tab);
     if (typeof window !== "undefined") {
       window.localStorage.setItem("activeDashboardTab", tab);
@@ -203,9 +212,9 @@ export default function DashboardClient({ lessonsMeta }: { lessonsMeta: LessonMe
   const [isRoadmapExpanded, setIsRoadmapExpanded] = useState<boolean>(() => {
     if (typeof window !== "undefined") {
       const saved = localStorage.getItem("is_roadmap_expanded");
-      return saved !== "false";
+      return saved === "true";
     }
-    return true;
+    return false;
   });
   const toggleRoadmap = () => {
     setIsRoadmapExpanded(prev => {
@@ -215,6 +224,9 @@ export default function DashboardClient({ lessonsMeta }: { lessonsMeta: LessonMe
     });
   };
   const [dbAvatarUrl, setDbAvatarUrl] = useState<string | null>(null);
+  const [equippedGear, setEquippedGear] = useState<CharacterEquipments>({});
+  const [showBossBattle, setShowBossBattle] = useState(false);
+  const [showPvpModal, setShowPvpModal] = useState(false);
 
   useEffect(() => {
     function handleGlobalClick(event: MouseEvent | TouchEvent) {
@@ -525,6 +537,18 @@ export default function DashboardClient({ lessonsMeta }: { lessonsMeta: LessonMe
           setShowOnboarding(true);
         }
       }
+
+      // Fetch RPG Equipped gear
+      const { data: equips } = await supabase
+        .from("user_equipments")
+        .select("slot, asset_key")
+        .eq("user_id", userId);
+
+      const gear: CharacterEquipments = {};
+      equips?.forEach((e: any) => {
+        gear[e.slot as keyof CharacterEquipments] = e.asset_key;
+      });
+      setEquippedGear(gear);
     } catch (error) {
       console.error("Error loading optimized dashboard data:", error);
     }
@@ -809,7 +833,229 @@ export default function DashboardClient({ lessonsMeta }: { lessonsMeta: LessonMe
         )}
 
         {/* ── Unified Dashboard Grid ── */}
-        <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-10 gap-4 sm:gap-6 items-start min-w-0">
+        <div className="max-w-6xl mx-auto space-y-6 min-w-0">
+
+          {user?.id && (() => {
+            const currentUserLevel = getLevelByXp(userXp, cfaCompletedForLevel).level;
+            const levelProgress = getLevelProgress(userXp);
+            const openLevel = activeTooltipLevel;
+
+            const ACCENTS = [
+              { text: "text-slate-600 dark:text-slate-400", bg: "bg-slate-50 dark:bg-slate-900/50", border: "border-slate-300 dark:border-slate-700", solid: "bg-slate-400", glow: "" },
+              { text: "text-sky-600 dark:text-sky-400", bg: "bg-sky-50 dark:bg-sky-950/30", border: "border-sky-300 dark:border-sky-800", solid: "bg-sky-500", glow: "" },
+              { text: "text-cyan-600 dark:text-cyan-400", bg: "bg-cyan-50 dark:bg-cyan-950/30", border: "border-cyan-300 dark:border-cyan-800", solid: "bg-cyan-500", glow: "" },
+              { text: "text-violet-600 dark:text-violet-400", bg: "bg-violet-50 dark:bg-violet-950/30", border: "border-violet-400 dark:border-violet-700", solid: "bg-violet-500", glow: "shadow-violet-500/20" },
+              { text: "text-emerald-600 dark:text-emerald-400", bg: "bg-emerald-50 dark:bg-emerald-950/30", border: "border-emerald-400 dark:border-emerald-700", solid: "bg-emerald-500", glow: "shadow-emerald-500/20" },
+              { text: "text-teal-600 dark:text-teal-400", bg: "bg-teal-50 dark:bg-teal-950/30", border: "border-teal-400 dark:border-teal-700", solid: "bg-teal-500", glow: "shadow-teal-500/25" },
+              { text: "text-orange-600 dark:text-orange-400", bg: "bg-orange-50 dark:bg-orange-950/30", border: "border-orange-400 dark:border-orange-700", solid: "bg-orange-500", glow: "shadow-orange-500/25" },
+              { text: "text-rose-600 dark:text-rose-400", bg: "bg-rose-50 dark:bg-rose-950/30", border: "border-rose-400 dark:border-rose-700", solid: "bg-rose-500", glow: "shadow-rose-500/30" },
+              { text: "text-amber-600 dark:text-amber-400", bg: "bg-gradient-to-br from-amber-50 to-yellow-100 dark:from-amber-950/40 dark:to-yellow-950/30", border: "border-amber-400 dark:border-amber-500", solid: "bg-gradient-to-r from-amber-400 to-yellow-500", glow: "shadow-amber-500/40" },
+            ];
+
+            return (
+              <div className="rounded-[28px] border border-stone-200 bg-white px-5 py-3.5 shadow-sm sm:px-6 sm:py-4">
+                <div className="grid grid-cols-1 gap-3.5 xl:grid-cols-[minmax(0,1fr)_312px] xl:items-start">
+                  <div className="min-w-0">
+                    <div className={`flex flex-col sm:flex-row sm:items-center justify-between gap-2.5 ${isRoadmapExpanded ? "mb-3" : "mb-0"} relative z-10`}>
+                      <div>
+                        <h3 className="text-base font-bold text-stone-900 dark:text-stone-100">
+                          Bản đồ Cấp độ Học viên
+                        </h3>
+                        <p className="text-[10px] text-stone-500 dark:text-stone-400 mt-0.5">
+                          Bấm vào một cấp độ để xem các thành viên đang ở đó
+                        </p>
+                      </div>
+                      <div className="flex flex-wrap items-center gap-2 text-left sm:text-right self-start sm:self-auto">
+                        <Link
+                          href="/game?building=world-boss"
+                          className="inline-flex items-center gap-1 text-[11px] font-extrabold text-amber-700 bg-white border border-amber-200 px-2.5 py-1 rounded-lg hover:bg-amber-50 transition-colors cursor-pointer"
+                          title="Tiến vào Vương Quốc Game - Săn Boss"
+                        >
+                          ⚔️ Đánh Boss
+                        </Link>
+                        <Link
+                          href="/game?building=pvp"
+                          className="inline-flex items-center gap-1 text-[11px] font-extrabold text-stone-600 bg-stone-50 border border-stone-200 px-2.5 py-1 rounded-lg hover:bg-stone-100 transition-colors cursor-pointer"
+                          title="Tiến vào Vương Quốc Game - Đấu Trường Kiến Thức Solo"
+                        >
+                          🧠 Solo
+                        </Link>
+                        <button
+                          onClick={toggleRoadmap}
+                          className="p-1 rounded-lg hover:bg-stone-100 dark:hover:bg-stone-800 transition-all text-stone-500 hover:text-stone-700 dark:text-stone-400 dark:hover:text-stone-200 shrink-0"
+                          title={isRoadmapExpanded ? "Thu gọn" : "Mở rộng"}
+                        >
+                          <ChevronDown className={`w-4 h-4 transition-transform duration-300 ${isRoadmapExpanded ? "rotate-180" : ""}`} />
+                        </button>
+                      </div>
+                    </div>
+
+                    {isRoadmapExpanded && (
+                      <div className="relative z-10">
+                        <div className="w-full h-1 bg-stone-100 dark:bg-stone-800 rounded-full overflow-hidden mb-2.5">
+                          <div
+                            className="h-full bg-gradient-to-r from-emerald-500 to-teal-500 rounded-full transition-all duration-500"
+                            style={{ width: `${levelProgress}%` }}
+                          />
+                        </div>
+
+                        <div className="relative group/level-strip">
+                          <button
+                            onClick={() => levelStripRef.current?.scrollBy({ left: -220, behavior: "smooth" })}
+                            className="hidden sm:flex absolute -left-3 top-1/2 -translate-y-1/2 z-10 w-7 h-7 rounded-full bg-white dark:bg-stone-900 border border-stone-200 dark:border-stone-700 shadow-md items-center justify-center text-stone-600 dark:text-stone-300 hover:bg-stone-50 dark:hover:bg-stone-800 transition-all opacity-0 group-hover/level-strip:opacity-100"
+                            aria-label="Cuộn sang trái"
+                          >
+                            <ChevronLeft className="w-4 h-4" />
+                          </button>
+                          <button
+                            onClick={() => levelStripRef.current?.scrollBy({ left: 220, behavior: "smooth" })}
+                            className="hidden sm:flex absolute -right-3 top-1/2 -translate-y-1/2 z-10 w-7 h-7 rounded-full bg-white dark:bg-stone-900 border border-stone-200 dark:border-stone-700 shadow-md items-center justify-center text-stone-600 dark:text-stone-300 hover:bg-stone-50 dark:hover:bg-stone-800 transition-all opacity-0 group-hover/level-strip:opacity-100"
+                            aria-label="Cuộn sang phải"
+                          >
+                            <ChevronRight className="w-4 h-4" />
+                          </button>
+
+                          <div ref={levelStripRef} className="overflow-x-auto pb-2 -mx-1 px-1 no-scrollbar">
+                            <div className="flex items-stretch gap-0 min-w-max">
+                              {LEVELS.map((lvl, idx) => {
+                                const isUserCurrent = currentUserLevel === lvl.level;
+                                const isPassed = currentUserLevel > lvl.level;
+                                const isReached = isPassed || isUserCurrent;
+                                const members = communityUsersByLevel.get(lvl.level) || [];
+                                const accent = ACCENTS[idx % ACCENTS.length];
+                                const isOpen = openLevel === lvl.level;
+
+                                return (
+                                  <div key={lvl.level} className="flex items-stretch animate-fade-in">
+                                    {idx > 0 && (
+                                      <div className={`w-7 sm:w-9 h-0.5 self-end mb-[42px] shrink-0 ${isReached ? "bg-emerald-400 dark:bg-emerald-600" : "bg-stone-200 dark:bg-stone-850"}`} />
+                                    )}
+                                    <div className="flex flex-col items-center gap-2 shrink-0">
+                                      <div className="w-12 h-12 sm:w-[64px] sm:h-[64px] relative flex items-center justify-center select-none pointer-events-none overflow-hidden rounded-full border border-stone-200/50 dark:border-stone-800/50 bg-stone-50 dark:bg-stone-850 shadow-inner">
+                                        <img
+                                          src={`/levels/level${lvl.level}.jpg`}
+                                          alt={lvl.name}
+                                          className={`w-full h-full object-cover transition-all duration-300 ${
+                                            isReached ? "scale-[1.08] hover:scale-[1.15]" : "grayscale opacity-40 contrast-75"
+                                          }`}
+                                        />
+                                      </div>
+
+                                      <button
+                                        onClick={() => setActiveTooltipLevel((prev) => (prev === lvl.level ? null : lvl.level))}
+                                        className={`relative text-left rounded-xl border p-1.5 w-[84px] h-[88px] shrink-0 bg-white dark:bg-stone-900 transition-all cursor-pointer flex flex-col ${
+                                          isReached
+                                            ? `${accent.border} ${isOpen ? `shadow-md scale-[1.02] ${accent.glow}` : isUserCurrent ? `shadow-sm ${accent.glow}` : ""}`
+                                            : "border-stone-150 dark:border-stone-855 opacity-60 grayscale hover:opacity-90 hover:grayscale-0"
+                                        }`}
+                                      >
+                                        {isUserCurrent && (
+                                          <span className="absolute -top-1 -left-1 flex w-3 h-3">
+                                            <span className={`animate-ping absolute inline-flex w-full h-full rounded-full opacity-75 ${accent.solid}`} />
+                                            <span className={`relative inline-flex w-3 h-3 rounded-full border-2 border-white dark:border-stone-900 ${accent.solid}`} />
+                                          </span>
+                                        )}
+                                        <div className="flex items-center justify-between gap-1">
+                                          <span className={`text-[10px] font-black uppercase tracking-wider ${isReached ? accent.text : "text-stone-400 dark:text-stone-500"}`}>
+                                            L{lvl.level}
+                                          </span>
+                                          {isUserCurrent && (
+                                            <span className={`text-[7px] font-black uppercase text-white px-1 py-0.5 rounded-full ${accent.solid}`}>Bạn</span>
+                                          )}
+                                        </div>
+                                        <p className={`text-[10px] font-extrabold mt-0.5 leading-snug line-clamp-2 flex-1 ${isReached ? "text-stone-900 dark:text-stone-100" : "text-stone-500 dark:text-stone-550"}`}>
+                                          {lvl.name}
+                                        </p>
+                                        <p className="text-[9px] text-stone-400 dark:text-stone-500 mt-0.5">{lvl.minXp} XP</p>
+                                        <div className={`inline-flex items-center gap-1 text-[8px] font-bold mt-1 px-1.5 py-0.5 rounded-full w-fit ${isReached ? `${accent.bg} ${accent.text}` : "bg-stone-100 dark:bg-stone-800 text-stone-400 dark:text-stone-500"}`}>
+                                          👥 {members.length}
+                                        </div>
+                                      </button>
+                                    </div>
+                                  </div>
+                                );
+                              })}
+                            </div>
+                          </div>
+                        </div>
+
+                        <AnimatePresence initial={false}>
+                          {openLevel !== null && (() => {
+                            const lvl = LEVELS.find((l) => l.level === openLevel)!;
+                            const members = communityUsersByLevel.get(openLevel) || [];
+                            const accent = ACCENTS[LEVELS.indexOf(lvl) % ACCENTS.length];
+                            return (
+                              <motion.div
+                                initial={{ height: 0, opacity: 0 }}
+                                animate={{ height: "auto", opacity: 1 }}
+                                exit={{ height: 0, opacity: 0 }}
+                                transition={{ duration: 0.2 }}
+                                className="overflow-hidden"
+                              >
+                                <div className={`mt-4 rounded-2xl border-2 ${accent.border} ${accent.bg} p-4`}>
+                                  <p className={`text-xs font-black uppercase tracking-wider ${accent.text} mb-3`}>
+                                    Thành viên Cấp {lvl.level} - {lvl.name} ({members.length})
+                                  </p>
+                                  {members.length > 0 ? (
+                                    <div className="grid sm:grid-cols-2 gap-2">
+                                      {members.slice(0, 20).map((m, i) => (
+                                        <Link
+                                          key={i}
+                                          href={`/nguoi-hoc/${m.userId}`}
+                                          className="flex items-center gap-2.5 bg-white dark:bg-stone-900 border border-stone-200 dark:border-stone-800 rounded-xl px-3 py-2.5 hover:border-stone-400 dark:hover:border-stone-600 hover:shadow-sm transition-all"
+                                        >
+                                          {isValidAvatar(m.avatarUrl) ? (
+                                            <img src={m.avatarUrl} alt={m.name} className="w-8 h-8 rounded-full object-cover shrink-0" />
+                                          ) : (
+                                            <div className="w-8 h-8 rounded-full bg-stone-100 dark:bg-stone-800 text-stone-600 dark:text-stone-300 flex items-center justify-center text-xs font-black shrink-0">
+                                              {m.name.charAt(0).toUpperCase()}
+                                            </div>
+                                          )}
+                                          <span className="flex-1 min-w-0 text-sm font-bold text-stone-800 dark:text-stone-200 truncate">
+                                            {m.name}
+                                          </span>
+                                          <span className="text-xs font-black text-emerald-600 dark:text-emerald-450 shrink-0">
+                                            {m.xp} XP
+                                          </span>
+                                        </Link>
+                                      ))}
+                                      {members.length > 20 && (
+                                        <p className="text-xs font-bold text-stone-400 dark:text-stone-500 italic sm:col-span-2">
+                                          và {members.length - 20} người khác...
+                                        </p>
+                                      )}
+                                    </div>
+                                  ) : (
+                                    <p className="text-sm font-bold text-stone-400 dark:text-stone-500 italic">
+                                      Chưa có thành viên ở cấp này.
+                                    </p>
+                                  )}
+                                </div>
+                              </motion.div>
+                            );
+                          })()}
+                        </AnimatePresence>
+                      </div>
+                    )}
+                  </div>
+
+                  <div className="min-w-0 rounded-[24px] border border-stone-200/90 bg-stone-50/85 p-3 xl:p-3.5">
+                    <UserStats
+                      xp={userXp}
+                      lessonsCompleted={totalDone}
+                      totalLessons={totalLessons}
+                      avgQuizScore={avgQuizScore}
+                      userId={user?.id}
+                      sidebar={true}
+                      embedded={true}
+                    />
+                  </div>
+                </div>
+              </div>
+            );
+          })()}
+
+        <div className="grid grid-cols-1 lg:grid-cols-10 gap-4 sm:gap-6 items-start min-w-0">
 
           {/* Left Column: Learning Path (7 columns on desktop) */}
           {/* min-h keeps this column's height roughly stable across track
@@ -819,230 +1065,10 @@ export default function DashboardClient({ lessonsMeta }: { lessonsMeta: LessonMe
               scrollable range every time this column's height changes. */}
           <div className="lg:col-span-7 space-y-6 min-w-0 lg:min-h-[1400px]">
 
-            {/* 🏆 Bản đồ Cấp độ Học viên - accordion, no floating popups: click
-                a level card to expand its member list inline right below
-                the grid. Member counts are always visible on the card
-                itself instead of hidden behind hover/click. Each tier gets
-                its own accent color instead of one flat gray palette. */}
-            {user?.id && (() => {
-              const currentUserLevel = getLevelByXp(userXp, cfaCompletedForLevel).level;
-              const levelProgress = getLevelProgress(userXp);
-              const openLevel = activeTooltipLevel;
-
-              // Ordered from most muted (L1) to most vivid/glowing (highest
-              // level) - a level's true color only ever shows once it's
-              // actually reached; not-yet-reached cards render in flat
-              // grayscale further down, regardless of this palette, so the
-              // "reveal" happens exactly at unlock instead of a diluted
-              // preview of the color.
-              const ACCENTS = [
-                { text: "text-slate-600 dark:text-slate-400", bg: "bg-slate-50 dark:bg-slate-900/50", border: "border-slate-300 dark:border-slate-700", solid: "bg-slate-400", glow: "" },
-                { text: "text-sky-600 dark:text-sky-400", bg: "bg-sky-50 dark:bg-sky-950/30", border: "border-sky-300 dark:border-sky-800", solid: "bg-sky-500", glow: "" },
-                { text: "text-cyan-600 dark:text-cyan-400", bg: "bg-cyan-50 dark:bg-cyan-950/30", border: "border-cyan-300 dark:border-cyan-800", solid: "bg-cyan-500", glow: "" },
-                { text: "text-violet-600 dark:text-violet-400", bg: "bg-violet-50 dark:bg-violet-950/30", border: "border-violet-400 dark:border-violet-700", solid: "bg-violet-500", glow: "shadow-violet-500/20" },
-                { text: "text-emerald-600 dark:text-emerald-400", bg: "bg-emerald-50 dark:bg-emerald-950/30", border: "border-emerald-400 dark:border-emerald-700", solid: "bg-emerald-500", glow: "shadow-emerald-500/20" },
-                { text: "text-teal-600 dark:text-teal-400", bg: "bg-teal-50 dark:bg-teal-950/30", border: "border-teal-400 dark:border-teal-700", solid: "bg-teal-500", glow: "shadow-teal-500/25" },
-                { text: "text-orange-600 dark:text-orange-400", bg: "bg-orange-50 dark:bg-orange-950/30", border: "border-orange-400 dark:border-orange-700", solid: "bg-orange-500", glow: "shadow-orange-500/25" },
-                { text: "text-rose-600 dark:text-rose-400", bg: "bg-rose-50 dark:bg-rose-950/30", border: "border-rose-400 dark:border-rose-700", solid: "bg-rose-500", glow: "shadow-rose-500/30" },
-                { text: "text-amber-600 dark:text-amber-400", bg: "bg-gradient-to-br from-amber-50 to-yellow-100 dark:from-amber-950/40 dark:to-yellow-950/30", border: "border-amber-400 dark:border-amber-500", solid: "bg-gradient-to-r from-amber-400 to-yellow-500", glow: "shadow-amber-500/40" },
-              ];
-
-              return (
-                <div className="bg-white dark:bg-stone-900 border border-stone-200 dark:border-stone-850 rounded-2xl p-5 shadow-sm relative">
-                  <div className={`flex flex-col sm:flex-row sm:items-center justify-between gap-3 ${isRoadmapExpanded ? "mb-5" : "mb-0"} relative z-10`}>
-                    <div>
-                      <h3 className="text-base font-bold text-stone-900 dark:text-stone-100">
-                        Bản đồ Cấp độ Học viên
-                      </h3>
-                      <p className="text-[10px] text-stone-500 dark:text-stone-400 mt-0.5">
-                        Bấm vào một cấp độ để xem các thành viên đang ở đó
-                      </p>
-                    </div>
-                    <div className="flex items-center gap-2 text-left sm:text-right self-start sm:self-auto">
-                      <span className="inline-block text-[10px] font-bold text-emerald-700 dark:text-emerald-400 bg-emerald-50 dark:bg-emerald-950/40 border border-emerald-200 dark:border-emerald-900 px-2.5 py-1 rounded-lg">
-                        Bạn đang ở Cấp {currentUserLevel}: <span className="font-extrabold">{getLevelByXp(userXp, cfaCompletedForLevel).name}</span>
-                      </span>
-                      <button
-                        onClick={toggleRoadmap}
-                        className="p-1 rounded-lg hover:bg-stone-100 dark:hover:bg-stone-800 transition-all text-stone-500 hover:text-stone-700 dark:text-stone-400 dark:hover:text-stone-200 shrink-0"
-                        title={isRoadmapExpanded ? "Thu gọn" : "Mở rộng"}
-                      >
-                        <ChevronDown className={`w-4 h-4 transition-transform duration-300 ${isRoadmapExpanded ? "rotate-180" : ""}`} />
-                      </button>
-                    </div>
-                  </div>
-
-                  {isRoadmapExpanded && (
-                    <div className="relative z-10">
-                      {/* Slim progress bar toward next level */}
-                      <div className="w-full h-1.5 bg-stone-100 dark:bg-stone-800 rounded-full overflow-hidden mb-5">
-                        <div
-                          className="h-full bg-gradient-to-r from-emerald-500 to-teal-500 rounded-full transition-all duration-500"
-                          style={{ width: `${levelProgress}%` }}
-                        />
-                      </div>
-
-                      {/* Elegant single strip - one scrollable row connected by a
-                          thin line, like the original path design, but each
-                          node stays a real inline-expandable card (no
-                          floating popup) with its member count always
-                          visible. Two side arrow buttons scroll it, same
-                          pattern as DashboardRecommendations' carousels. */}
-                      <div className="relative group/level-strip">
-                        <button
-                          onClick={() => levelStripRef.current?.scrollBy({ left: -220, behavior: "smooth" })}
-                          className="hidden sm:flex absolute -left-3 top-1/2 -translate-y-1/2 z-10 w-7 h-7 rounded-full bg-white dark:bg-stone-900 border border-stone-200 dark:border-stone-700 shadow-md items-center justify-center text-stone-600 dark:text-stone-300 hover:bg-stone-50 dark:hover:bg-stone-800 transition-all opacity-0 group-hover/level-strip:opacity-100"
-                          aria-label="Cuộn sang trái"
-                        >
-                          <ChevronLeft className="w-4 h-4" />
-                        </button>
-                        <button
-                          onClick={() => levelStripRef.current?.scrollBy({ left: 220, behavior: "smooth" })}
-                          className="hidden sm:flex absolute -right-3 top-1/2 -translate-y-1/2 z-10 w-7 h-7 rounded-full bg-white dark:bg-stone-900 border border-stone-200 dark:border-stone-700 shadow-md items-center justify-center text-stone-600 dark:text-stone-300 hover:bg-stone-50 dark:hover:bg-stone-800 transition-all opacity-0 group-hover/level-strip:opacity-100"
-                          aria-label="Cuộn sang phải"
-                        >
-                          <ChevronRight className="w-4 h-4" />
-                        </button>
-
-                        <div ref={levelStripRef} className="overflow-x-auto pb-2 -mx-1 px-1 no-scrollbar">
-                          <div className="flex items-stretch gap-0 min-w-max">
-                            {LEVELS.map((lvl, idx) => {
-                              const isUserCurrent = currentUserLevel === lvl.level;
-                              const isPassed = currentUserLevel > lvl.level;
-                              const isReached = isPassed || isUserCurrent;
-                              const members = communityUsersByLevel.get(lvl.level) || [];
-                              const accent = ACCENTS[idx % ACCENTS.length];
-                              const isOpen = openLevel === lvl.level;
-
-                              return (
-                                <div key={lvl.level} className="flex items-stretch animate-fade-in">
-                                  {idx > 0 && (
-                                    <div className={`w-8 sm:w-10 h-0.5 self-end mb-[52px] shrink-0 ${isReached ? "bg-emerald-400 dark:bg-emerald-600" : "bg-stone-200 dark:bg-stone-850"}`} />
-                                  )}
-                                  <div className="flex flex-col items-center gap-3 shrink-0">
-                                    {/* 3D Character Illustration standing on a pedestal */}
-                                    <div className="w-16 h-16 sm:w-20 sm:h-20 relative flex items-center justify-center select-none pointer-events-none overflow-hidden rounded-full border border-stone-200/50 dark:border-stone-800/50 bg-stone-50 dark:bg-stone-850 shadow-inner">
-                                      <img
-                                        src={`/levels/level${lvl.level}.jpg`}
-                                        alt={lvl.name}
-                                        className={`w-full h-full object-cover transition-all duration-300 ${
-                                          isReached ? "scale-[1.08] hover:scale-[1.15]" : "grayscale opacity-40 contrast-75"
-                                        }`}
-                                      />
-                                    </div>
-
-                                    <button
-                                      onClick={() => setActiveTooltipLevel((prev) => (prev === lvl.level ? null : lvl.level))}
-                                      className={`relative text-left rounded-xl border p-2 w-[96px] h-[104px] shrink-0 bg-white dark:bg-stone-900 transition-all cursor-pointer flex flex-col ${
-                                        isReached
-                                          ? `${accent.border} ${isOpen ? `shadow-md scale-[1.02] ${accent.glow}` : isUserCurrent ? `shadow-sm ${accent.glow}` : ""}`
-                                          : "border-stone-150 dark:border-stone-855 opacity-60 grayscale hover:opacity-90 hover:grayscale-0"
-                                      }`}
-                                    >
-                                      {isUserCurrent && (
-                                        <span className="absolute -top-1 -left-1 flex w-3 h-3">
-                                          <span className={`animate-ping absolute inline-flex w-full h-full rounded-full opacity-75 ${accent.solid}`} />
-                                          <span className={`relative inline-flex w-3 h-3 rounded-full border-2 border-white dark:border-stone-900 ${accent.solid}`} />
-                                        </span>
-                                      )}
-                                      <div className="flex items-center justify-between gap-1">
-                                        <span className={`text-[10px] font-black uppercase tracking-wider ${isReached ? accent.text : "text-stone-400 dark:text-stone-500"}`}>
-                                          L{lvl.level}
-                                        </span>
-                                        {isUserCurrent && (
-                                          <span className={`text-[7px] font-black uppercase text-white px-1 py-0.5 rounded-full ${accent.solid}`}>Bạn</span>
-                                        )}
-                                      </div>
-                                      <p className={`text-xs font-extrabold mt-1 leading-snug line-clamp-2 flex-1 ${isReached ? "text-stone-900 dark:text-stone-100" : "text-stone-500 dark:text-stone-550"}`}>
-                                        {lvl.name}
-                                      </p>
-                                      <p className="text-[9px] text-stone-400 dark:text-stone-500 mt-0.5">{lvl.minXp} XP</p>
-                                      <div className={`inline-flex items-center gap-1 text-[9px] font-bold mt-1.5 px-1.5 py-0.5 rounded-full w-fit ${isReached ? `${accent.bg} ${accent.text}` : "bg-stone-100 dark:bg-stone-800 text-stone-400 dark:text-stone-500"}`}>
-                                        👥 {members.length}
-                                      </div>
-                                    </button>
-                                  </div>
-                                </div>
-                              );
-                            })}
-                          </div>
-                        </div>
-                      </div>
-
-                      {/* Inline expanded member panel - no floating popup */}
-                      <AnimatePresence initial={false}>
-                        {openLevel !== null && (() => {
-                          const lvl = LEVELS.find((l) => l.level === openLevel)!;
-                          const members = communityUsersByLevel.get(openLevel) || [];
-                          const accent = ACCENTS[LEVELS.indexOf(lvl) % ACCENTS.length];
-                          return (
-                            <motion.div
-                              initial={{ height: 0, opacity: 0 }}
-                              animate={{ height: "auto", opacity: 1 }}
-                              exit={{ height: 0, opacity: 0 }}
-                              transition={{ duration: 0.2 }}
-                              className="overflow-hidden"
-                            >
-                              <div className={`mt-4 rounded-2xl border-2 ${accent.border} ${accent.bg} p-4`}>
-                                <p className={`text-xs font-black uppercase tracking-wider ${accent.text} mb-3`}>
-                                  Thành viên Cấp {lvl.level} - {lvl.name} ({members.length})
-                                </p>
-                                {members.length > 0 ? (
-                                  <div className="grid sm:grid-cols-2 gap-2">
-                                    {members.slice(0, 20).map((m, i) => (
-                                      <Link
-                                        key={i}
-                                        href={`/nguoi-hoc/${m.userId}`}
-                                        className="flex items-center gap-2.5 bg-white dark:bg-stone-900 border border-stone-200 dark:border-stone-800 rounded-xl px-3 py-2.5 hover:border-stone-400 dark:hover:border-stone-600 hover:shadow-sm transition-all"
-                                      >
-                                        {isValidAvatar(m.avatarUrl) ? (
-                                          <img src={m.avatarUrl} alt={m.name} className="w-8 h-8 rounded-full object-cover shrink-0" />
-                                        ) : (
-                                          <div className="w-8 h-8 rounded-full bg-stone-100 dark:bg-stone-800 text-stone-600 dark:text-stone-300 flex items-center justify-center text-xs font-black shrink-0">
-                                            {m.name.charAt(0).toUpperCase()}
-                                          </div>
-                                        )}
-                                        <span className="flex-1 min-w-0 text-sm font-bold text-stone-800 dark:text-stone-200 truncate">
-                                          {m.name}
-                                        </span>
-                                        <span className="text-xs font-black text-emerald-600 dark:text-emerald-450 shrink-0">
-                                          {m.xp} XP
-                                        </span>
-                                      </Link>
-                                    ))}
-                                    {members.length > 20 && (
-                                      <p className="text-xs font-bold text-stone-400 dark:text-stone-500 italic sm:col-span-2">
-                                        và {members.length - 20} người khác...
-                                      </p>
-                                    )}
-                                  </div>
-                                ) : (
-                                  <p className="text-sm font-bold text-stone-400 dark:text-stone-500 italic">
-                                    Chưa có thành viên ở cấp này.
-                                  </p>
-                                )}
-                              </div>
-                            </motion.div>
-                          );
-                        })()}
-                      </AnimatePresence>
-                    </div>
-                  )}
-                </div>
-              );
-            })()}
-
             {/* Resume Learning Card */}
             <div data-tour="resume-learning">
               <ResumeLearningButton activeTrack={lastNonCfaTrack} />
             </div>
-
-            {/* Tasks & Rewards - below chatbot, always open and compact */}
-            {user?.id && (
-              <div className="mt-6">
-                <CombinedRewardsWidget userId={user.id} defaultExpanded={true} />
-              </div>
-            )}
 
             {/* Lesson Recall Scheduler Widget */}
             {user?.id && (
@@ -1105,8 +1131,11 @@ export default function DashboardClient({ lessonsMeta }: { lessonsMeta: LessonMe
             )}
 
           <div className="mb-4 flex flex-wrap items-center justify-between gap-3">
-            <div className="text-sm text-stone-500 dark:text-stone-400">
-              {flagSelectionMode ? `${selectedFlagLessonIds.size} bài đang được chọn để tự đánh dấu` : ""}
+            <div className="flex items-center gap-3 min-w-0">
+              {user?.id && <DashboardStreakWidget userId={user.id} />}
+              <div className="text-sm text-stone-500 dark:text-stone-400">
+                {flagSelectionMode ? `${selectedFlagLessonIds.size} bài đang được chọn để tự đánh dấu` : ""}
+              </div>
             </div>
             <div className="flex items-center gap-2">
               {flagSelectionMode && (
@@ -1169,128 +1198,137 @@ export default function DashboardClient({ lessonsMeta }: { lessonsMeta: LessonMe
               how many content lines each one has (personal/CFA got a fun
               one-line subtitle added specifically to match professional's,
               which was shortened to a single inline badge to compensate). */}
-          <div id="lo-trinh" data-tour="track-selector" className="grid grid-cols-1 sm:grid-cols-4 gap-3 mb-8 items-stretch scroll-mt-24">
-          <button
-            type="button"
-            onClick={() => setDashboardTab("career")}
-            className={`w-full h-full flex flex-col text-left rounded-xl border-2 px-5 py-4 transition-all ${
-              activeDashboardTab === "career"
-                ? "border-indigo-500 dark:border-indigo-400 bg-indigo-50 dark:bg-indigo-950/30 text-stone-900 dark:text-stone-100"
-                : "border-indigo-200 dark:border-indigo-900 bg-white dark:bg-stone-900 text-stone-700 dark:text-stone-300 hover:border-indigo-400 dark:hover:border-indigo-600 hover:bg-indigo-50/40 dark:hover:bg-indigo-950/20"
-            }`}
-          >
-            <div className="flex items-center gap-2 flex-wrap">
-              <div className="text-base font-bold text-stone-900 dark:text-stone-100">
-                Tài chính theo nghề nghiệp
-              </div>
-              <span className="text-[9px] font-black uppercase tracking-wider px-2 py-0.5 rounded-full bg-gradient-to-r from-indigo-500 to-violet-500 text-white">
-                Chọn hướng
-              </span>
-            </div>
-            <div className="text-xs mt-0.5 text-stone-500 dark:text-stone-400">
-              14+ định hướng nghề nghiệp
-            </div>
-            <div className="text-[10px] mt-1 font-semibold text-indigo-600 dark:text-indigo-400">
-              🧭 Chưa biết bắt đầu từ đâu? Chọn nghề để có lộ trình riêng
-            </div>
-          </button>
-
-          {[TRACK_PERSONAL, TRACK_PROFESSIONAL].map((t) => {
-            const isActive = activeDashboardTab === t.id;
-            return (
-              <div key={t.id} className="relative group h-full">
-                <button
-                  onClick={() => setActiveTrack(t.id as "personal" | "professional")}
-                  className={`w-full h-full flex flex-col text-left rounded-xl border-2 px-5 py-4 transition-all ${
-                    isActive
-                      ? "border-stone-900 dark:border-stone-100 bg-stone-900 dark:bg-stone-100 text-white dark:text-stone-900"
-                      : "border-stone-200 dark:border-stone-800 bg-white dark:bg-stone-900 text-stone-700 dark:text-stone-300 hover:border-stone-400 dark:hover:border-stone-600"
-                  }`}
-                >
-                  <div className="flex items-center gap-2 flex-wrap">
-                    <div className={`text-base font-bold ${isActive ? "text-white dark:text-stone-900" : "text-stone-900 dark:text-stone-100"}`}>
-                      {t.title}
-                    </div>
-                    {t.id === "professional" && (
-                      <span
-                        className={`text-[9px] font-black uppercase tracking-wider px-2 py-0.5 rounded-full ${
-                          isActive
-                            ? "bg-amber-400 text-amber-950"
-                            : "bg-gradient-to-r from-amber-400 to-orange-500 text-white"
-                        }`}
-                      >
-                        180 bài chuyên sâu
-                      </span>
-                    )}
-                  </div>
-                  <div className={`text-xs mt-0.5 ${isActive ? "text-stone-300 dark:text-stone-600" : "text-stone-500 dark:text-stone-400"}`}>
-                    ~{t.estimatedHours} giờ học
-                  </div>
-                  <div className={`text-[10px] mt-1 font-semibold ${isActive ? "text-amber-300" : "text-amber-600 dark:text-amber-400"}`}>
-                    {t.id === "professional"
-                      ? "🚀 Ít người khai phá - giá trị nhất"
-                      : "🌱 Nền móng vững, ai cũng nên bắt đầu từ đây"}
-                  </div>
-                  {/* Hover only works on pointer devices - phones get the same
-                      description inline instead, since there's no hover to
-                      reveal it on tap. */}
-                  <div className={`sm:hidden text-xs mt-2 leading-snug ${isActive ? "text-stone-300 dark:text-stone-600" : "text-stone-500 dark:text-stone-400"}`}>
-                    {t.description}
-                  </div>
-                </button>
-
-                {/* Hover Tooltip (pointer devices only) */}
-                <div className="absolute bottom-full left-0 sm:left-1/2 sm:-translate-x-1/2 mb-3 hidden sm:group-hover:block z-50 w-max max-w-xs">
-                  <div className="bg-stone-900 dark:bg-stone-800 text-white rounded-xl px-4 py-3 shadow-lg border border-stone-800 dark:border-stone-700">
-                    <p className="text-sm font-bold mb-2">{t.description}</p>
-                    <div className="space-y-1 text-xs text-stone-300">
-                      {t.pillars.map((pillar) => (
-                        <div key={pillar} className="flex gap-2">
-                          <span>•</span>
-                          <span>{pillar}</span>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-                  {/* Tooltip arrow */}
-                  <div className="absolute top-full left-1/2 -translate-x-1/2 border-8 border-transparent border-t-stone-900 dark:border-t-stone-800" />
+          <div id="lo-trinh" data-tour="track-selector" className="grid grid-cols-1 sm:grid-cols-4 gap-3.5 mb-8 items-stretch scroll-mt-24">
+            {/* Card 1: Tài chính Nghề Nghiệp (Indigo Blue Accent) */}
+            <button
+              type="button"
+              onClick={() => setDashboardTab("career")}
+              className={`w-full h-full flex flex-col text-left rounded-2xl border-2 px-5 py-4 transition-all duration-300 relative overflow-hidden backdrop-blur-md ${
+                activeDashboardTab === "career"
+                  ? "border-stone-300 bg-white text-stone-900 ring-1 ring-stone-200 shadow-md"
+                  : "border-stone-200/90 dark:border-stone-800/90 bg-white/90 dark:bg-stone-900/80 text-stone-700 dark:text-stone-300 hover:border-stone-300 shadow-xs hover:shadow-md"
+              }`}
+            >
+              <div className="h-1 w-full bg-emerald-500 absolute top-0 left-0 right-0" />
+              <div className="flex items-center gap-2 flex-wrap mt-1">
+                <div className="text-base font-extrabold text-stone-900 dark:text-stone-100">
+                  💼 Tài chính Nghề Nghiệp
                 </div>
               </div>
-            );
-          })}
-
-          <button
-            onClick={() => setActiveTrack("cfa")}
-            className={`w-full h-full flex flex-col text-left rounded-xl border-2 px-5 py-4 transition-all ${
-              activeDashboardTab === "cfa"
-                ? "border-stone-900 dark:border-stone-100 bg-stone-900 dark:bg-stone-100 text-white dark:text-stone-900"
-                : "border-stone-200 dark:border-stone-800 bg-white dark:bg-stone-900 text-stone-700 dark:text-stone-300 hover:border-stone-400 dark:hover:border-stone-600"
-            }`}
-          >
-            <div className="flex items-center gap-2 flex-wrap">
-              <div className={`text-base font-bold ${activeDashboardTab === "cfa" ? "text-white dark:text-stone-900" : "text-stone-900 dark:text-stone-100"}`}>
-                Tài chính chứng chỉ
+              <div className="text-xs mt-1.5 text-stone-500 dark:text-stone-400 font-medium">
+                14+ hướng đi nghề nghiệp
               </div>
-              <span
-                className={`text-[9px] font-black uppercase tracking-wider px-2 py-0.5 rounded-full animate-pulse ${
-                  activeDashboardTab === "cfa"
-                    ? "bg-rose-400 text-rose-950"
-                    : "bg-gradient-to-r from-rose-500 to-pink-500 text-white"
+            </button>
+
+            {/* Card 2: Tài chính Cá Nhân (Amber Gold Accent) */}
+            <div className="relative group h-full">
+              <button
+                type="button"
+                onClick={() => setActiveTrack("personal")}
+                className={`w-full h-full flex flex-col text-left rounded-2xl border-2 px-5 py-4 transition-all duration-300 relative overflow-hidden backdrop-blur-md ${
+                  activeDashboardTab === "personal"
+                    ? "border-stone-300 bg-white text-stone-900 ring-1 ring-stone-200 shadow-md"
+                    : "border-stone-200/90 dark:border-stone-800/90 bg-white/90 dark:bg-stone-900/80 text-stone-700 dark:text-stone-300 hover:border-stone-300 shadow-xs hover:shadow-md"
                 }`}
               >
-                ✨ Mới
-              </span>
-            </div>
-            <div className={`text-xs mt-0.5 ${activeDashboardTab === "cfa" ? "text-stone-300 dark:text-stone-600" : "text-stone-500 dark:text-stone-400"}`}>
-              CFA Level I · ~{TRACKS.cfa.estimatedHours} giờ học
-            </div>
-            <div className={`text-[10px] mt-1 font-semibold ${activeDashboardTab === "cfa" ? "text-amber-300" : "text-amber-600 dark:text-amber-400"}`}>
-              🎓 Chứng chỉ quốc tế - mở cửa sự nghiệp tài chính
-            </div>
-          </button>
-        </div>
+                <div className="h-1 w-full bg-amber-500 absolute top-0 left-0 right-0" />
+                <div className="flex items-center gap-2 flex-wrap mt-1">
+                  <div className="text-base font-extrabold text-stone-900 dark:text-stone-100">
+                    🪙 {TRACK_PERSONAL.title}
+                  </div>
+                </div>
+                <div className="text-xs mt-1.5 text-stone-500 dark:text-stone-400 font-medium">
+                  ~{TRACK_PERSONAL.estimatedHours} giờ học nền tảng
+                </div>
+                <div className="sm:hidden text-xs mt-2 leading-snug text-stone-500 dark:text-stone-400">
+                  {TRACK_PERSONAL.description}
+                </div>
+              </button>
 
-          {activeDashboardTab === "career" && (
+              {/* Hover Tooltip (pointer devices) */}
+              <div className="absolute bottom-full left-0 sm:left-1/2 sm:-translate-x-1/2 mb-3 hidden sm:group-hover:block z-50 w-max max-w-xs">
+                <div className="bg-stone-900 dark:bg-stone-800 text-white rounded-xl px-4 py-3 shadow-lg border border-stone-800 dark:border-stone-700">
+                  <p className="text-sm font-bold mb-2">{TRACK_PERSONAL.description}</p>
+                  <div className="space-y-1 text-xs text-stone-300">
+                    {TRACK_PERSONAL.pillars.map((pillar) => (
+                      <div key={pillar} className="flex gap-2">
+                        <span>•</span>
+                        <span>{pillar}</span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+                <div className="absolute top-full left-1/2 -translate-x-1/2 border-8 border-transparent border-t-stone-900 dark:border-t-stone-800" />
+              </div>
+            </div>
+
+            {/* Card 3: Tài chính Chuyên Ngành (Emerald Green Accent) */}
+            <div className="relative group h-full">
+              <button
+                type="button"
+                onClick={() => setActiveTrack("professional")}
+                className={`w-full h-full flex flex-col text-left rounded-2xl border-2 px-5 py-4 transition-all duration-300 relative overflow-hidden backdrop-blur-md ${
+                  activeDashboardTab === "professional"
+                    ? "border-stone-300 bg-white text-stone-900 ring-1 ring-stone-200 shadow-md"
+                    : "border-stone-200/90 dark:border-stone-800/90 bg-white/90 dark:bg-stone-900/80 text-stone-700 dark:text-stone-300 hover:border-stone-300 shadow-xs hover:shadow-md"
+                }`}
+              >
+                <div className="h-1 w-full bg-emerald-500 absolute top-0 left-0 right-0" />
+                <div className="flex items-center gap-2 flex-wrap mt-1">
+                  <div className="text-base font-extrabold text-stone-900 dark:text-stone-100">
+                    🏢 {TRACK_PROFESSIONAL.title}
+                  </div>
+                </div>
+                <div className="text-xs mt-1.5 text-stone-500 dark:text-stone-400 font-medium">
+                  180 bài chuyên sâu
+                </div>
+                <div className="sm:hidden text-xs mt-2 leading-snug text-stone-500 dark:text-stone-400">
+                  {TRACK_PROFESSIONAL.description}
+                </div>
+              </button>
+
+              {/* Hover Tooltip (pointer devices) */}
+              <div className="absolute bottom-full left-0 sm:left-1/2 sm:-translate-x-1/2 mb-3 hidden sm:group-hover:block z-50 w-max max-w-xs">
+                <div className="bg-stone-900 dark:bg-stone-800 text-white rounded-xl px-4 py-3 shadow-lg border border-stone-800 dark:border-stone-700">
+                  <p className="text-sm font-bold mb-2">{TRACK_PROFESSIONAL.description}</p>
+                  <div className="space-y-1 text-xs text-stone-300">
+                    {TRACK_PROFESSIONAL.pillars.map((pillar) => (
+                      <div key={pillar} className="flex gap-2">
+                        <span>•</span>
+                        <span>{pillar}</span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+                <div className="absolute top-full left-1/2 -translate-x-1/2 border-8 border-transparent border-t-stone-900 dark:border-t-stone-800" />
+              </div>
+            </div>
+
+            {/* Card 4: Tài chính Chứng Chỉ CFA (Royal Violet Accent) */}
+            <button
+              type="button"
+              onClick={() => setActiveTrack("cfa")}
+              className={`w-full h-full flex flex-col text-left rounded-2xl border-2 px-5 py-4 transition-all duration-300 relative overflow-hidden backdrop-blur-md ${
+                activeDashboardTab === "cfa"
+                  ? "border-stone-300 bg-white text-stone-900 ring-1 ring-stone-200 shadow-md"
+                  : "border-stone-200/90 dark:border-stone-800/90 bg-white/90 dark:bg-stone-900/80 text-stone-700 dark:text-stone-300 hover:border-stone-300 shadow-xs hover:shadow-md"
+              }`}
+            >
+              <div className="h-1 w-full bg-violet-500 absolute top-0 left-0 right-0" />
+              <div className="flex items-center gap-2 flex-wrap mt-1">
+                <div className="text-base font-extrabold text-stone-900 dark:text-stone-100">
+                  🎓 Tài chính chứng chỉ
+                </div>
+              </div>
+              <div className="text-xs mt-1.5 text-stone-500 dark:text-stone-400 font-medium">
+                CFA Level I · ~{TRACKS.cfa.estimatedHours} giờ học
+              </div>
+            </button>
+          </div>
+
+
+
+        {activeDashboardTab === "career" && (
             <div className="mt-8">
               <CareerLearningPathClient
                 lessonsBySlug={lessonsBySlug}
@@ -1334,6 +1372,18 @@ export default function DashboardClient({ lessonsMeta }: { lessonsMeta: LessonMe
             <div data-tour="stage-list" className="mt-8">
               <CfaTrackView subjects={cfaSubjects} completedLessonIds={completed} />
             </div>
+          ) : activeDashboardTab === "skill-tree" ? (
+            <SkillTreeWidget completedLessonIds={completed} unlockedLessonIds={unlockedLessonIds} />
+          ) : activeDashboardTab === "weekly-challenge" ? (
+            <WeeklyChallengeWidget userId={user?.id || ""} />
+          ) : activeDashboardTab === "cards" ? (
+            <FinanceCardCollection userId={user?.id || ""} />
+          ) : activeDashboardTab === "cosmetics" ? (
+            <CosmeticStore userId={user?.id || ""} />
+          ) : activeDashboardTab === ("world-boss" as any) ? (
+            <WorldBossRaidWidget userId={user?.id || ""} userLevel={getLevelByXp(userXp, cfaCompletedForLevel).level} equipments={equippedGear} />
+          ) : activeDashboardTab === ("guilds" as any) ? (
+            <FinancialGuildWidget userId={user?.id || ""} />
           ) : (
           <>
           {/* ── Search ── */}
@@ -1897,16 +1947,11 @@ export default function DashboardClient({ lessonsMeta }: { lessonsMeta: LessonMe
 
           {/* Right: Cấp độ/streak/bài học, gợi ý hôm nay, thử thách tin tức, BXH (3 columns on desktop grid of 10, full width on mobile) */}
           <div className="lg:col-span-3 lg:sticky lg:top-24 space-y-6 min-w-0">
-            <div data-tour="user-stats">
-              <UserStats
-                xp={userXp}
-                lessonsCompleted={totalDone}
-                totalLessons={totalLessons}
-                avgQuizScore={avgQuizScore}
-                userId={user?.id}
-                sidebar={true}
-              />
-            </div>
+            {user?.id && (
+              <div className="lg:aspect-square min-h-[320px]">
+                <CombinedRewardsWidget userId={user.id} defaultExpanded={true} compact />
+              </div>
+            )}
             {user?.id && (
               <DashboardRecommendations lessonsMeta={lessonsMeta} completed={completed} userId={user.id} />
             )}
@@ -1914,10 +1959,9 @@ export default function DashboardClient({ lessonsMeta }: { lessonsMeta: LessonMe
               <DailyNewsQuizWidget userId={user.id} compact />
             )}
             <CareerGoalWidget userId={user?.id} />
-            <OnlineUsersWidget />
-            <Leaderboard userId={user?.id} />
           </div>
         </div>
+      </div>
       </div>
 
 
@@ -1983,6 +2027,44 @@ export default function DashboardClient({ lessonsMeta }: { lessonsMeta: LessonMe
             ]);
             setActiveMilestoneExam(null);
           }}
+        />
+      )}
+      {showBossBattle && user?.id ? (
+        <BossBattleModal
+          bossName="Boss Bẫy Nợ Nần & Lạm Phát"
+          bossEmoji="🐉"
+          userLevel={getLevelByXp(userXp, cfaCompletedForLevel).level}
+          equipments={equippedGear}
+          questions={[
+            { prompt: "Để chống chọi với Lạm Phát 8%, danh mục đầu tư cần có tỷ suất sinh lời tối thiểu là bao nhiêu?", options: ["> 8%", "= 8%", "< 8%"], correct: 0 },
+            { prompt: "Bẫy nợ tín dụng nguy hiểm nhất ở điểm nào?", options: ["Lãi suất thả nổi cao & Lãi nhập gốc", "Không cho gia hạn", "Không có chiết khấu"], correct: 0 },
+            { prompt: "Tỷ lệ Nợ/Vốn chủ sở hữu (D/E) an toàn tuyệt đối thường nằm dưới mức nào?", options: ["1.0x", "5.0x", "10.0x"], correct: 0 }
+          ]}
+          onVictory={async ({ xp, coins }) => {
+            const newTotalXp = userXp + xp;
+            setUserXp(newTotalXp);
+            
+            const { data: profile } = await supabase
+              .from("user_profiles")
+              .select("coins")
+              .eq("id", user.id)
+              .single();
+            const newCoins = (profile?.coins || 0) + coins;
+
+            await supabase.from("user_profiles").update({ total_xp: newTotalXp, coins: newCoins }).eq("id", user.id);
+            window.dispatchEvent(new CustomEvent("thtcdn:coin-updated", { detail: { coins: newCoins } }));
+            toast.success(`🎉 Hạ gục Boss thành công! Nhận +${xp} XP & 🪙 +${coins} Coins!`);
+          }}
+          onClose={() => setShowBossBattle(false)}
+        />
+      ) : null}
+
+      {showPvpModal && (
+        <BossBattleModal
+          userLevel={getLevelByXp(userXp, cfaCompletedForLevel).level}
+          equipments={equippedGear}
+          completedLessonCount={completed.length}
+          onClose={() => setShowPvpModal(false)}
         />
       )}
     </div>

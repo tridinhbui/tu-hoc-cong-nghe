@@ -182,14 +182,14 @@ function AnalyticsSkeleton() {
   );
 }
 
-export default function LearningAnalytics() {
+export default function LearningAnalytics({ hideLeaderboardTab = false }: { hideLeaderboardTab?: boolean }) {
   const searchParams = useSearchParams();
   const initialTab = searchParams.get("tab");
   const [analytics, setAnalytics] = useState<LearningAnalyticsType | null>(null);
   const [loading, setLoading] = useState(true);
   const [userId, setUserId] = useState<string | undefined>(undefined);
   const [activeSection, setActiveSection] = useState<"overview" | "knowledge" | "memory" | "leaderboard">(
-    initialTab === "leaderboard" ? "leaderboard" : "overview"
+    !hideLeaderboardTab && initialTab === "leaderboard" ? "leaderboard" : "overview"
   );
 
   useEffect(() => {
@@ -298,7 +298,7 @@ export default function LearningAnalytics() {
           { id: "overview", label: "Nhịp độ & Thói quen" },
           { id: "knowledge", label: "Kiến thức & Kết quả" },
           { id: "memory", label: "Ghi chú & Hành động" },
-          { id: "leaderboard", label: "Bảng xếp hạng" },
+          ...(!hideLeaderboardTab ? [{ id: "leaderboard", label: "Bảng xếp hạng" }] : []),
         ].map((tab) => {
           const isActive = activeSection === tab.id;
           return (

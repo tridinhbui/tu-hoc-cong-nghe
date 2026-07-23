@@ -24,7 +24,7 @@ export function useLevelUpWatcher(currentLevel: number | undefined) {
     const lastSeen = stored !== null ? Number(stored) : null;
 
     if (lastSeen !== null && currentLevel > lastSeen) {
-      setCelebrateLevel(currentLevel);
+      queueMicrotask(() => setCelebrateLevel(currentLevel));
     }
     if (lastSeen === null || currentLevel !== lastSeen) {
       window.localStorage.setItem(LAST_SEEN_LEVEL_KEY, String(currentLevel));

@@ -133,9 +133,9 @@ export default function DailyNewsQuizWidget({ userId, compact = false }: DailyNe
   const [selectedOpt, setSelectedOpt] = useState<number | null>(null);
   const [isAnswered, setIsAnswered] = useState<boolean>(false);
   const [isCorrect, setIsCorrect] = useState<boolean>(false);
-  // Sidebar placement is narrow, so the challenge starts collapsed there to
-  // avoid pushing the rest of the sidebar (leaderboard etc.) far down.
-  const [collapsed, setCollapsed] = useState<boolean>(compact);
+  // On the dashboard sidebar this is now treated as a "today in finance"
+  // block rather than an optional challenge, so it starts open by default.
+  const [collapsed, setCollapsed] = useState<boolean>(false);
 
   // "Unlimited" continuous practice mode: cycles through the same fixed
   // question pool (NEWS_QUIZZES is hand-authored, not a live feed - there's
@@ -253,7 +253,7 @@ export default function DailyNewsQuizWidget({ userId, compact = false }: DailyNe
           </div>
           <div>
             <h3 className="font-bold text-stone-900 dark:text-stone-100 flex items-center gap-1.5 text-base">
-              {compact ? "Thử thách Tài chính" : "Thử thách Tin tức Tài chính"}
+              {compact ? "Tin tức tài chính hôm nay" : "Thử thách Tin tức Tài chính"}
               {!activeIsAnswered && (
                 <span className="w-2 h-2 rounded-full bg-rose-500 animate-ping" />
               )}
@@ -266,7 +266,7 @@ export default function DailyNewsQuizWidget({ userId, compact = false }: DailyNe
           </div>
         </div>
         <span className="text-xs text-stone-400 dark:text-stone-500 shrink-0">
-          {collapsed ? "Mở ra ▾" : "Thu gọn ▴"}
+          {collapsed ? "Mở ▾" : "Thu gọn ▴"}
         </span>
       </button>
 

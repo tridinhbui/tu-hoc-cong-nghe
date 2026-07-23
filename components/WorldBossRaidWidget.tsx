@@ -1,0 +1,417 @@
+"use client";
+
+import React, { useState, useEffect } from "react";
+import Image from "next/image";
+import { motion, AnimatePresence } from "framer-motion";
+import { Swords, Flame, Trophy, ShieldAlert, Sparkles, RefreshCw } from "lucide-react";
+import { toast } from "sonner";
+import FinanceCharacterAvatar, { CharacterEquipments } from "@/components/FinanceCharacterAvatar";
+import { recalculateUserStats } from "@/lib/supabase-user";
+
+interface BossQuestion {
+  prompt: string;
+  options: string[];
+  correct: number;
+}
+
+interface WorldBoss {
+  id: string;
+  name: string;
+  description: string;
+  boss_emoji: string;
+  max_hp: number;
+  current_hp: number;
+  questions: BossQuestion[];
+}
+
+interface LeaderboardEntry {
+  rank: number;
+  name: string;
+  totalDamage: number;
+  avatarUrl: string | null;
+}
+
+export default function WorldBossRaidWidget({
+  userId,
+  userLevel = 1,
+  equipments = {},
+}: {
+  userId: string;
+  userLevel?: number;
+  equipments?: CharacterEquipments;
+}) {
+  const [boss, setBoss] = useState<WorldBoss | null>(null);
+  const [leaderboard, setLeaderboard] = useState<LeaderboardEntry[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [inCombat, setInCombat] = useState(false);
+  
+  // Combat State
+  const [qIndex, setQIndex] = useState(0);
+  const [selectedOpt, setSelectedOpt] = useState<number | null>(null);
+  const [sessionDamage, setSessionDamage] = useState(0);
+  const [sessionScore, setSessionScore] = useState(0);
+  const [combatFinished, setCombatFinished] = useState(false);
+
+  const fetchBossData = async () => {
+    setLoading(true);
+    try {
+      const res = await fetch("/api/world-boss");
+      if (res.ok) {
+        const data = await res.json();
+        setBoss(data.boss);
+        setLeaderboard(data.leaderboard || []);
+      }
+    } catch (err) {
+      console.error("Error fetching World Boss data:", err);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    fetchBossData();
+  }, []);
+
+  // Attack Animation States
+  const [hitState, setHitState] = useState<"idle" | "hit_boss" | "hit_hero">("idle");
+  const [lastDamageText, setLastDamageText] = useState<string | null>(null);
+  const [heroHp, setHeroHp] = useState(100);
+
+  const handleStartRaid = () => {
+    setInCombat(true);
+    setQIndex(0);
+    setSelectedOpt(null);
+    setSessionDamage(0);
+    setSessionScore(0);
+    setCombatFinished(false);
+    setHitState("idle");
+    setLastDamageText(null);
+    setHeroHp(100);
+  };
+
+  const handleAnswerSelect = async (optionIndex: number) => {
+    if (!boss || selectedOpt !== null) return;
+    setSelectedOpt(optionIndex);
+
+    const q = boss.questions[qIndex];
+    const isCorrect = optionIndex === q.correct;
+    const hitDamage = isCorrect ? 5000 + Math.floor(Math.random() * 2000) : 0;
+
+    if (isCorrect) {
+      setHitState("hit_boss");
+      setLastDamageText(`💥 -${hitDamage.toLocaleString()} DMG!`);
+      setSessionDamage((prev) => prev + hitDamage);
+      setSessionScore((prev) => prev + 1);
+      toast.success(`💥 Nổ sát thương Combo: +${hitDamage.toLocaleString()} DMG!`);
+    } else {
+      setHitState("hit_hero");
+      setLastDamageText("⚠️ MISS! BOSS PHẢN CÔNG");
+      setHeroHp((hp) => Math.max(0, hp - 34));
+      toast.error("Hụt rồi! Boss phản công làm bạn mất 34 HP.");
+    }
+
+    setTimeout(async () => {
+      setHitState("idle");
+      setLastDamageText(null);
+
+      if (qIndex + 1 >= boss.questions.length) {
+        // Kết thúc trận Raid
+        const finalDamage = sessionDamage + hitDamage;
+        const finalScore = sessionScore + (isCorrect ? 1 : 0);
+
+        setCombatFinished(true);
+
+        // Nộp dữ liệu về API
+        try {
+          const res = await fetch("/api/world-boss", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+              bossId: boss.id,
+              damageDealt: finalDamage,
+              score: finalScore,
+            }),
+          });
+          if (res.ok) {
+            const result = await res.json();
+            window.dispatchEvent(new CustomEvent("thtcdn:coin-updated", { detail: { coins: result.newCoins } }));
+            void recalculateUserStats(userId);
+            toast.success(`🎉 Tổng sát thương trận này: ${finalDamage.toLocaleString()} DMG! +${result.xpReward} XP & +${result.coinReward} Coins`);
+            fetchBossData();
+          }
+        } catch (error) {
+          console.error("Error submitting raid damage:", error);
+        }
+      } else {
+        setQIndex((prev) => prev + 1);
+        setSelectedOpt(null);
+      }
+    }, 1300);
+  };
+
+  if (loading) return <div className="text-center p-4">Đang tải dữ liệu World Boss Server...</div>;
+  if (!boss) return <div className="text-center p-4">Chưa mở sự kiện World Boss tuần này.</div>;
+
+  const hpPercent = Math.max(0, Math.round((boss.current_hp / boss.max_hp) * 100));
+
+  return (
+    <div className="bg-gradient-to-b from-white via-orange-50 to-red-50 border-2 border-red-200 rounded-3xl p-6 text-stone-900 shadow-[0_24px_80px_rgba(239,68,68,0.16)] mt-6 relative overflow-hidden">
+      {/* Visual background aura */}
+      <div className="absolute top-0 right-0 w-80 h-80 bg-orange-300/20 rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute inset-x-0 top-0 h-1.5 bg-gradient-to-r from-red-500 via-orange-400 to-amber-300" />
+
+      {/* Header World Boss Banner */}
+      <div className="flex flex-col md:flex-row items-center justify-between gap-6 border-b border-red-100 pb-6 mb-6">
+        <div className="flex items-center gap-4">
+          <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-red-500 to-orange-400 flex items-center justify-center text-4xl shadow-lg border border-orange-200 shrink-0">
+            {boss.boss_emoji}
+          </div>
+          <div>
+            <span className="text-[10px] uppercase font-black tracking-widest text-red-700 bg-white border border-red-200 px-3 py-1 rounded-full shadow-sm">
+              🔥 Server World Boss Event - Hàng Tuần
+            </span>
+            <h3 className="text-xl font-black text-stone-950 mt-1.5 flex items-center gap-2">
+              {boss.name}
+            </h3>
+            <p className="text-xs text-stone-500 mt-1 max-w-lg leading-relaxed">
+              {boss.description}
+            </p>
+          </div>
+        </div>
+
+        <button
+          onClick={handleStartRaid}
+          className="w-full md:w-auto bg-gradient-to-r from-red-500 via-orange-400 to-amber-300 text-white font-black text-sm px-6 py-3.5 rounded-2xl shadow-[0_18px_40px_rgba(249,115,22,0.28)] hover:scale-[1.02] transition-all flex items-center justify-center gap-2 border border-orange-200 cursor-pointer shrink-0"
+        >
+          <Swords className="w-5 h-5 text-white" /> Săn Boss Server Ngay!
+        </button>
+      </div>
+
+      {/* Shared Server HP Bar */}
+      <div className="bg-white border border-red-100 rounded-2xl p-4 mb-6 space-y-2 shadow-sm">
+        <div className="flex justify-between items-center text-xs font-bold">
+          <span className="text-stone-700 flex items-center gap-1.5">
+            <Flame className="w-4 h-4 text-red-500 animate-pulse" /> Thanh Máu Gộp Toàn Server:
+          </span>
+          <span className="text-red-600 font-extrabold">
+            {boss.current_hp.toLocaleString()} / {boss.max_hp.toLocaleString()} HP ({hpPercent}%)
+          </span>
+        </div>
+        <div className="w-full h-4 bg-red-100 rounded-full overflow-hidden border border-red-200 p-0.5">
+          <motion.div
+            initial={{ width: 0 }}
+            animate={{ width: `${hpPercent}%` }}
+            className="h-full bg-gradient-to-r from-red-600 via-amber-500 to-red-500 rounded-full transition-all duration-700 shadow-inner"
+          />
+        </div>
+      </div>
+
+      <div className="mt-5 rounded-[28px] border-2 border-amber-300 bg-white p-3 sm:p-4 shadow-xl min-h-[560px]">
+        <AnimatePresence mode="wait">
+          {!inCombat ? (
+            <motion.div
+              key="overview"
+              initial={{ opacity: 0, y: 12 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -12 }}
+              className="h-full"
+            >
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div className="bg-white border border-orange-100 rounded-2xl p-4 flex flex-col justify-between shadow-sm">
+                  <div>
+                    <h4 className="text-xs font-black uppercase text-orange-600 mb-3 flex items-center gap-1.5">
+                      <Sparkles className="w-4 h-4" /> Trang Bị Sẵn Sàng Săn Boss
+                    </h4>
+                    <div className="flex items-center gap-4 bg-gradient-to-br from-orange-50 to-white p-3 rounded-xl border border-orange-100">
+                      <FinanceCharacterAvatar level={userLevel} equipments={equipments} size="sm" />
+                      <div>
+                        <span className="text-xs font-bold text-stone-900 block">Sức Mạnh Nhân Vật</span>
+                        <span className="text-[11px] text-stone-500">Level: <strong className="text-orange-600">Lv. {userLevel}</strong></span>
+                        <p className="text-[10px] text-emerald-600 mt-1">
+                          ⚡ Mỗi đáp án đúng gây ~5,000+ Sát thương Server!
+                        </p>
+                      </div>
+                    </div>
+                    <div className="mt-4 grid grid-cols-2 gap-2">
+                      <div className="rounded-xl border border-amber-200 bg-amber-50/70 px-3 py-2.5">
+                        <span className="text-[10px] font-black uppercase text-amber-700 block">Số câu raid</span>
+                        <span className="text-base font-black text-stone-900">{boss.questions.length} câu</span>
+                      </div>
+                      <div className="rounded-xl border border-emerald-200 bg-emerald-50/70 px-3 py-2.5">
+                        <span className="text-[10px] font-black uppercase text-emerald-700 block">Max DMG/câu</span>
+                        <span className="text-base font-black text-stone-900">~7,000</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="bg-white border border-red-100 rounded-2xl p-4 shadow-sm">
+                  <h4 className="text-xs font-black uppercase text-orange-600 mb-3 flex items-center justify-between">
+                    <span className="flex items-center gap-1.5"><Trophy className="w-4 h-4 text-orange-500" /> Bảng Xếp Hạng Top Sát Thương Server</span>
+                    <button onClick={fetchBossData} className="text-stone-400 hover:text-red-500" title="Làm mới"><RefreshCw className="w-3.5 h-3.5" /></button>
+                  </h4>
+
+                  <div className="space-y-2 max-h-56 overflow-y-auto pr-1">
+                    {leaderboard.map((item) => (
+                      <div key={item.rank} className="flex items-center justify-between bg-gradient-to-r from-white to-red-50 px-3 py-2 rounded-xl text-xs border border-red-100">
+                        <div className="flex items-center gap-2">
+                          <span className={`w-5 h-5 rounded-full flex items-center justify-center font-black text-[10px] ${
+                            item.rank === 1 ? "bg-amber-400 text-amber-950" :
+                            item.rank === 2 ? "bg-stone-300 text-stone-900" :
+                            item.rank === 3 ? "bg-orange-500 text-white" :
+                            "bg-red-100 text-red-500"
+                          }`}>
+                            {item.rank}
+                          </span>
+                          <span className="font-bold text-stone-800">{item.name}</span>
+                        </div>
+                        <span className="font-extrabold text-red-500">{item.totalDamage.toLocaleString()} DMG</span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </motion.div>
+          ) : (
+            <motion.div
+              key="combat"
+              initial={{ opacity: 0, scale: 0.96 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 0.96 }}
+              className="bg-gradient-to-b from-stone-900 via-stone-900 to-stone-950 border-2 border-amber-500/70 rounded-3xl p-5 sm:p-6 max-w-2xl w-full mx-auto text-white shadow-2xl relative overflow-hidden"
+            >
+              {/* Header bar */}
+              <div className="flex items-center justify-between border-b border-stone-800 pb-3 mb-4">
+                <span className="text-xs font-black tracking-wider text-amber-400 bg-amber-950/80 border border-amber-800 px-3 py-1 rounded-full">
+                  ⚔️ BATTLE ARENA - CÂU {qIndex + 1}/{boss.questions.length}
+                </span>
+                <button
+                  onClick={() => setInCombat(false)}
+                  className="text-stone-400 hover:text-white text-xs font-bold bg-stone-800 hover:bg-stone-700 px-2.5 py-1 rounded-lg transition-colors"
+                >
+                  ✕ Thoát
+                </button>
+              </div>
+
+              {!combatFinished ? (
+                <div>
+                  {/* VS ARENA HEADER: HERO VS 3D WALL STREET BULL */}
+                  <div className="bg-stone-950/80 border border-amber-500/30 rounded-2xl p-3 sm:p-4 mb-4 relative overflow-hidden">
+                    <div className="grid grid-cols-3 items-center gap-2">
+                      {/* Left: Hero Warrior */}
+                      <motion.div
+                        animate={hitState === "hit_boss" ? { x: [0, 30, 0] } : hitState === "hit_hero" ? { x: [0, -15, 0], opacity: [1, 0.4, 1] } : {}}
+                        transition={{ duration: 0.4 }}
+                        className="flex flex-col items-center text-center"
+                      >
+                        <div className="relative">
+                          <FinanceCharacterAvatar level={userLevel} equipments={equipments} size="sm" />
+                          <span className="absolute -bottom-1 -right-1 text-[9px] font-black bg-emerald-500 text-white px-1.5 py-0.5 rounded-full shadow-xs">
+                            Lv.{userLevel}
+                          </span>
+                        </div>
+                        <span className="text-[11px] font-extrabold text-stone-200 mt-1 truncate max-w-full">Chiến Binh</span>
+                        {/* Hero HP Bar */}
+                        <div className="w-full bg-stone-800 h-2 rounded-full overflow-hidden mt-1 border border-stone-700">
+                          <div className="bg-gradient-to-r from-emerald-500 to-teal-400 h-full transition-all duration-300" style={{ width: `${heroHp}%` }} />
+                        </div>
+                        <span className="text-[9px] font-bold text-emerald-400 mt-0.5">{heroHp}/100 HP</span>
+                      </motion.div>
+
+                      {/* Center: VS & Damage Pop-up */}
+                      <div className="flex flex-col items-center justify-center text-center relative">
+                        <span className="w-9 h-9 rounded-full bg-gradient-to-br from-amber-500 to-red-600 text-white font-black text-sm flex items-center justify-center shadow-lg border border-amber-300 animate-pulse">
+                          VS
+                        </span>
+                        {lastDamageText && (
+                          <motion.span
+                            initial={{ opacity: 0, scale: 0.5, y: 10 }}
+                            animate={{ opacity: 1, scale: 1.2, y: -10 }}
+                            exit={{ opacity: 0 }}
+                            className="absolute -top-3 font-black text-xs sm:text-sm text-amber-300 bg-red-950/90 border border-amber-500/80 px-2.5 py-1 rounded-full shadow-xl whitespace-nowrap z-20"
+                          >
+                            {lastDamageText}
+                          </motion.span>
+                        )}
+                        <span className="text-[9px] font-bold text-amber-400 mt-1">DMG: +{sessionDamage.toLocaleString()}</span>
+                      </div>
+
+                      {/* Right: 3D Wall Street Bull Boss */}
+                      <motion.div
+                        animate={hitState === "hit_boss" ? { x: [0, 15, -15, 0], filter: ["brightness(1)", "brightness(2) saturate(2)", "brightness(1)"] } : hitState === "hit_hero" ? { x: [0, -30, 0] } : {}}
+                        transition={{ duration: 0.4 }}
+                        className="flex flex-col items-center text-center"
+                      >
+                        <div className="relative w-16 h-16 sm:w-20 sm:h-20 shrink-0">
+                          <Image
+                            src="/charging-bull-3d.png"
+                            alt="3D Wall Street Bull Boss"
+                            width={80}
+                            height={80}
+                            className="w-full h-full object-contain drop-shadow-[0_0_15px_rgba(245,158,11,0.5)]"
+                          />
+                        </div>
+                        <span className="text-[11px] font-extrabold text-amber-300 mt-0.5 truncate max-w-full">Trâu Phố Wall 3D</span>
+                        {/* Boss HP Bar */}
+                        <div className="w-full bg-stone-800 h-2 rounded-full overflow-hidden mt-1 border border-amber-900">
+                          <div className="bg-gradient-to-r from-red-600 via-amber-500 to-red-500 h-full transition-all duration-500" style={{ width: `${hpPercent}%` }} />
+                        </div>
+                        <span className="text-[9px] font-bold text-red-400 mt-0.5">{hpPercent}% HP</span>
+                      </motion.div>
+                    </div>
+                  </div>
+
+                  {/* Question Prompt */}
+                  <h3 className="text-xs sm:text-sm font-bold bg-stone-950/90 p-4 rounded-2xl border border-amber-500/30 mb-4 leading-relaxed text-stone-100 shadow-inner">
+                    {boss.questions[qIndex]?.prompt}
+                  </h3>
+
+                  {/* Options */}
+                  <div className="space-y-2.5">
+                    {boss.questions[qIndex]?.options.map((opt, oIdx) => {
+                      const isSelected = selectedOpt === oIdx;
+                      const isCorrect = oIdx === boss.questions[qIndex].correct;
+                      let bg = "bg-stone-850 border-stone-750 hover:border-amber-500 text-stone-200";
+                      if (selectedOpt !== null) {
+                        if (isSelected && isCorrect) bg = "bg-emerald-950/90 border-emerald-500 text-emerald-300 font-bold shadow-lg shadow-emerald-950/50";
+                        else if (isSelected && !isCorrect) bg = "bg-red-950/90 border-red-500 text-red-300 font-bold shadow-lg shadow-red-950/50";
+                        else if (isCorrect) bg = "bg-emerald-950/40 border-emerald-700/50 text-emerald-400";
+                      }
+
+                      return (
+                        <button
+                          key={oIdx}
+                          disabled={selectedOpt !== null}
+                          onClick={() => handleAnswerSelect(oIdx)}
+                          className={`w-full text-left text-xs font-semibold p-3.5 rounded-xl border-2 transition-all flex items-center justify-between gap-2 ${bg}`}
+                        >
+                          <span>{opt}</span>
+                          {selectedOpt !== null && isCorrect && <span className="text-emerald-400 font-bold">✓</span>}
+                          {selectedOpt !== null && isSelected && !isCorrect && <span className="text-red-400 font-bold">✕</span>}
+                        </button>
+                      );
+                    })}
+                  </div>
+                </div>
+              ) : (
+                <div className="text-center py-6 space-y-4">
+                  <Trophy className="w-16 h-16 text-amber-400 mx-auto animate-bounce" />
+                  <h3 className="text-2xl font-black text-amber-400">KẾT THÚC ĐỢT SĂN BOSS!</h3>
+                  <p className="text-sm text-stone-300">
+                    Bạn đã đóng góp tổng cộng <strong className="text-amber-400 text-base">+{sessionDamage.toLocaleString()} DMG</strong> vào Thanh Máu Server!
+                  </p>
+                  <button
+                    onClick={() => setInCombat(false)}
+                    className="w-full bg-gradient-to-r from-amber-500 to-red-600 text-white font-black py-3.5 rounded-xl hover:brightness-110 transition-all shadow-lg"
+                  >
+                    Đóng & Xem Bảng Xếp Hạng
+                  </button>
+                </div>
+              )}
+            </motion.div>
+          )}
+        </AnimatePresence>
+      </div>
+    </div>
+  );
+}

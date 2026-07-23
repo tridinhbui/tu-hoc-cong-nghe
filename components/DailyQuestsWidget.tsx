@@ -42,7 +42,7 @@ function goToQuestAction(questId: string, router: ReturnType<typeof useRouter>) 
 export default function DailyQuestsWidget({ userId, embedded = false, onQuestsLoaded }: DailyQuestsWidgetProps) {
   const router = useRouter();
   const [quests, setQuests] = useState<Quest[]>([]);
-  const [dayKey, setDayKey] = useState<string>("");
+  const [dayKey, setDayKey] = useState<string>(() => new Date().toLocaleDateString("sv-SE"));
   const [loading, setLoading] = useState(true);
   const [claimingId, setClaimingId] = useState<string | null>(null);
   const [weeklyClaimed, setWeeklyClaimed] = useState(false);
@@ -63,7 +63,6 @@ export default function DailyQuestsWidget({ userId, embedded = false, onQuestsLo
 
   useEffect(() => {
     const key = getLocalDayKey();
-    setDayKey(key);
 
     const loadQuests = async () => {
       try {
@@ -216,14 +215,24 @@ export default function DailyQuestsWidget({ userId, embedded = false, onQuestsLo
       )}
 
       {(embedded || !collapsed) && (
-      <div className="space-y-3 relative z-10">
+      <div className="space-y-2.5 relative z-10 max-h-[205px] overflow-y-auto pr-1 custom-scrollbar">
         <style>{`
           @keyframes pulseGlow {
             0%, 100% { box-shadow: 0 0 8px rgba(245, 158, 11, 0.05); }
             50% { box-shadow: 0 0 15px rgba(245, 158, 11, 0.15); }
           }
         `}</style>
-        {quests.map((quest) => {
+        {[...quests]
+          .sort((a, b) => {
+            // Sắp xếp: Chưa xong/Chờ nhận thưởng -> LÊN ĐẦU, Đã nhận thưởng -> TỤT XUỐNG CUỐI
+            const aReady = !a.claimed && a.current >= a.target;
+            const bReady = !b.claimed && b.current >= b.target;
+            if (aReady !== bReady) return aReady ? -1 : 1;
+
+            if (a.claimed !== b.claimed) return a.claimed ? 1 : -1;
+            return 0;
+          })
+          .map((quest) => {
           const isDone = quest.current >= quest.target;
           return (
             <div
@@ -273,7 +282,7 @@ export default function DailyQuestsWidget({ userId, embedded = false, onQuestsLo
                 }`}>
                   {quest.title}
                 </p>
-                <p className={`text-[10px] mt-0.5 leading-snug transition-colors duration-250 ${
+                <p className={`text-[10px] mt-0.5 leading-snug transition-colors duration-250 line-clamp-1 ${
                   quest.claimed
                     ? "text-stone-400"
                     : "text-stone-500 dark:text-stone-400 group-hover/item:text-stone-700 dark:group-hover/item:text-stone-355"
@@ -296,13 +305,13 @@ export default function DailyQuestsWidget({ userId, embedded = false, onQuestsLo
                   </button>
                 ) : (
                   <>
-                    <span className="text-[10px] font-black text-stone-600 dark:text-stone-400 bg-stone-50 dark:bg-stone-950/40 px-2.5 py-1.5 rounded-lg border border-stone-200/50 dark:border-stone-850">
+                    <span className="text-[10px] font-black text-stone-600 dark:text-stone-400 bg-stone-50 dark:bg-stone-950/40 px-2 py-1 rounded-lg border border-stone-200/50 dark:border-stone-850">
                       +{quest.xpReward} XP
                     </span>
                     <button
                       onClick={() => goToQuestAction(quest.id, router)}
                       title="Đi làm nhiệm vụ này ngay"
-                      className="group/btn inline-flex items-center gap-1.5 text-[10.5px] font-black text-white bg-gradient-to-r from-emerald-500 via-teal-500 to-emerald-600 hover:from-emerald-600 hover:to-emerald-700 px-3.5 py-1.5 rounded-lg transition-all duration-200 cursor-pointer shadow-md shadow-emerald-500/20 hover:scale-105 active:scale-95 shrink-0"
+                      className="group/btn inline-flex items-center gap-1.5 text-[10.5px] font-bold text-white bg-emerald-600 hover:bg-emerald-700 px-3 py-1.5 rounded-lg transition-all duration-200 cursor-pointer shadow-xs active:scale-95 shrink-0"
                     >
                       Làm ngay <ArrowRight className="w-3.5 h-3.5 group-hover/btn:translate-x-0.5 transition-transform" />
                     </button>

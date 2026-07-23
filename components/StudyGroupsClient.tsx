@@ -72,7 +72,7 @@ function topicLabel(topic: StudyRoomTopic) {
 // random room for their preferred track (see the weekly-study-match cron +
 // weekly_rematch_study_rooms()) - the manual join/browse UI below stays as
 // the opt-out path for anyone who wants to switch mid-week.
-export default function StudyGroupsClient() {
+export default function StudyGroupsClient({ embedded = false }: { embedded?: boolean } = {}) {
   const router = useRouter();
   const supabase = createClient();
   const [user, setUser] = useState<SessionUser | null>(null);
@@ -251,14 +251,15 @@ export default function StudyGroupsClient() {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-white dark:bg-stone-950 flex items-center justify-center">
+      <div className={`${embedded ? "min-h-[320px]" : "min-h-screen bg-white dark:bg-stone-950"} flex items-center justify-center`}>
         <p className="text-stone-500 dark:text-stone-400">Đang tải...</p>
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen bg-white dark:bg-stone-950">
+    <div className={embedded ? "" : "min-h-screen bg-white dark:bg-stone-950"}>
+      {!embedded && (
       <div className="border-b border-stone-200 dark:border-stone-800 bg-white dark:bg-stone-950">
         <div className="max-w-4xl mx-auto px-6 py-4">
           <Link href="/dashboard" className="inline-flex items-center gap-1.5 text-sm font-bold text-stone-600 dark:text-stone-400 hover:text-stone-900 dark:hover:text-stone-100 hover:bg-stone-100 dark:hover:bg-stone-800 rounded-lg px-3 py-2 -ml-3 transition-colors">
@@ -271,8 +272,9 @@ export default function StudyGroupsClient() {
           </p>
         </div>
       </div>
+      )}
 
-      <div className="max-w-4xl mx-auto px-6 py-8">
+      <div className={`${embedded ? "" : "max-w-4xl mx-auto px-6 py-8"}`}>
         {myRoom ? (
           <div className="space-y-6">
           <div className="bg-white dark:bg-stone-900 border-2 border-stone-200 dark:border-stone-800 rounded-2xl p-6">

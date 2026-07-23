@@ -179,7 +179,7 @@ export default function ResumeLearningButton({ activeTrack }: ResumeLearningButt
         <Link
           href={`/bai-hoc/${nextLesson.slug}`}
           onClick={() => trackFeatureClick("resume_learning_click", { label: nextLesson.slug })}
-          className="group flex items-center gap-3 bg-white dark:bg-stone-900 border border-stone-200 dark:border-stone-850 hover:border-emerald-400 dark:hover:border-emerald-600 rounded-2xl p-3 transition-all"
+          className="group flex items-center gap-3 bg-white dark:bg-stone-900 border border-stone-200 dark:border-stone-850 hover:border-emerald-400 dark:hover:border-emerald-600 rounded-2xl px-3 py-2.5 transition-all"
         >
           <div className="relative w-8 h-8 flex-shrink-0">
             <div className="relative w-8 h-8 rounded-full overflow-hidden border border-emerald-100 dark:border-emerald-900/50 bg-stone-100 dark:bg-stone-850">
@@ -187,11 +187,16 @@ export default function ResumeLearningButton({ activeTrack }: ResumeLearningButt
             </div>
             <span className="absolute bottom-0 right-0 w-2.5 h-2.5 rounded-full bg-emerald-500 border-2 border-white dark:border-stone-900" />
           </div>
-          <p className="flex-1 min-w-0 text-xs sm:text-sm font-bold text-stone-900 dark:text-stone-100 truncate">
-            {nextLessonLabel}: {nextLessonShortTitle}
-          </p>
-          <span className="shrink-0 text-[11px] font-extrabold bg-emerald-600 group-hover:bg-emerald-500 text-white dark:bg-emerald-500 px-3 py-1.5 rounded-xl transition-all">
-            ▶ Học
+          <div className="flex-1 min-w-0">
+            <p className="text-[10px] font-bold uppercase tracking-wide text-stone-400 dark:text-stone-500">
+              {nextLessonLabel}
+            </p>
+            <p className="text-xs sm:text-sm font-bold text-stone-900 dark:text-stone-100 truncate">
+              {nextLessonShortTitle}
+            </p>
+          </div>
+          <span className="shrink-0 text-[11px] font-extrabold bg-emerald-600 group-hover:bg-emerald-500 text-white dark:bg-emerald-500 px-2.5 py-1.5 rounded-xl transition-all">
+            Học
           </span>
           <button
             onClick={toggleCollapsed}
@@ -291,60 +296,80 @@ export default function ResumeLearningButton({ activeTrack }: ResumeLearningButt
       <Link
         href={`/bai-hoc/${nextLesson.slug}`}
         onClick={() => trackFeatureClick("resume_learning_click", { label: nextLesson.slug })}
-        className="group relative block h-full bg-white dark:bg-stone-900 border border-stone-200 dark:border-stone-850 hover:border-emerald-400 dark:hover:border-emerald-600 rounded-2xl p-4 sm:p-5 transition-all hover:shadow-[0_16px_36px_-16px_rgba(16,185,129,0.2)] flex flex-col justify-between"
+        className="group relative block h-full bg-gradient-to-br from-white via-emerald-50/20 to-teal-50/30 dark:from-stone-900 dark:via-stone-900 dark:to-emerald-950/20 border-2 border-emerald-300/80 dark:border-emerald-800/80 hover:border-emerald-500 dark:hover:border-emerald-500 rounded-3xl p-5 transition-all duration-300 hover:shadow-[0_20px_45px_-15px_rgba(16,185,129,0.25)] flex flex-col justify-between overflow-hidden"
       >
+        {/* Subtle hero backdrop glow */}
+        <div className="absolute top-0 right-0 w-48 h-48 bg-emerald-400/10 dark:bg-emerald-400/5 rounded-full blur-3xl pointer-events-none group-hover:scale-125 transition-transform duration-500" />
+        <div className="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-emerald-400 via-teal-400 to-emerald-600" />
+
         <button
           onClick={toggleCollapsed}
           aria-label="Thu gọn"
-          className="absolute top-3 right-3 z-10 w-7 h-7 rounded-full flex items-center justify-center text-stone-400 hover:text-stone-700 dark:hover:text-stone-200 hover:bg-stone-100 dark:hover:bg-stone-800 transition-colors cursor-pointer"
+          className="absolute top-3.5 right-3.5 z-10 w-7 h-7 rounded-full flex items-center justify-center text-stone-400 hover:text-stone-700 dark:hover:text-stone-200 hover:bg-stone-100 dark:hover:bg-stone-800 transition-colors cursor-pointer"
         >
           <ChevronUp className="w-4 h-4" />
         </button>
 
-        <div className="flex items-start gap-3.5">
+        <div className="flex items-start gap-4 relative z-10">
           {/* Avatar with energetic pulsing halo */}
-          <div className="relative w-11 h-11 flex-shrink-0 mt-0.5">
-            <span className="absolute inset-0 rounded-full bg-emerald-400/20 dark:bg-emerald-400/10 animate-ping [animation-duration:2.5s]" />
-            <div className="relative w-11 h-11 rounded-full overflow-hidden border border-emerald-100 dark:border-emerald-900/50 shadow-sm bg-stone-100 dark:bg-stone-850">
-              <TaiTaiAvatar size={44} />
+          <div className="relative w-12 h-12 flex-shrink-0 mt-0.5">
+            <span className="absolute inset-0 rounded-full bg-emerald-400/30 dark:bg-emerald-400/20 animate-ping [animation-duration:2.2s]" />
+            <div className="relative w-12 h-12 rounded-full overflow-hidden border-2 border-emerald-300 dark:border-emerald-700 shadow-md bg-stone-100 dark:bg-stone-850">
+              <TaiTaiAvatar size={48} />
             </div>
             {/* Online status indicator */}
-            <span className="absolute bottom-0 right-0 w-3 h-3 rounded-full bg-emerald-500 border-2 border-white dark:border-stone-900" />
+            <span className="absolute bottom-0 right-0 w-3.5 h-3.5 rounded-full bg-emerald-500 border-2 border-white dark:border-stone-900 shadow-sm" />
           </div>
 
           <div className="flex-1 min-w-0 pr-6">
             {/* Header Labels */}
-            <div className="flex items-center gap-1.5 flex-wrap mb-1.5">
-              <span className="text-[9px] font-extrabold text-emerald-700 dark:text-emerald-350 uppercase tracking-widest bg-emerald-50 dark:bg-emerald-950/40 px-2 py-0.5 rounded-md">
-                Tài Tài assistant
+            <div className="flex items-center gap-2 flex-wrap mb-2">
+              <span className="text-[10px] font-black text-emerald-800 dark:text-emerald-300 uppercase tracking-widest bg-emerald-100/80 dark:bg-emerald-950/60 border border-emerald-200/80 dark:border-emerald-800 px-2.5 py-0.5 rounded-lg shadow-2xs">
+                🎓 HERO LEARNING BANNER
               </span>
-              <span className="text-[9px] font-extrabold text-amber-700 dark:text-amber-400 uppercase tracking-widest bg-amber-50 dark:bg-amber-950/40 px-2 py-0.5 rounded-md flex items-center gap-0.5 animate-pulse">
-                🔥 +30 XP nếu học ngay
+              <span className="text-[10px] font-black text-amber-800 dark:text-amber-300 uppercase tracking-widest bg-amber-100/80 dark:bg-amber-950/60 border border-amber-200/80 dark:border-amber-800 px-2.5 py-0.5 rounded-lg flex items-center gap-1 animate-pulse shadow-2xs">
+                🔥 +30 XP NẾU HỌC NGAY
               </span>
             </div>
 
-            {/* Tai Tai speech text - larger, bolder, energetic */}
-            <p className="text-stone-850 dark:text-stone-100 text-sm sm:text-[15px] font-bold leading-relaxed">
+            {/* Tai Tai speech text */}
+            <p className="text-stone-900 dark:text-stone-50 text-sm sm:text-[15px] font-extrabold leading-relaxed">
               "{energeticGreeting}"
             </p>
 
-            {/* Lesson Target Sub-Card inside the bubble */}
-            <div className="mt-3.5 bg-stone-50/70 dark:bg-stone-950/40 border border-stone-200/60 dark:border-stone-800/80 rounded-xl p-3 flex items-center justify-between gap-3 group-hover:border-emerald-300 dark:group-hover:border-emerald-800 transition-colors">
+            {/* Live Track Progress Bar */}
+            {trackProgress && (
+              <div className="mt-3.5">
+                <div className="flex items-center justify-between text-[11px] font-bold text-stone-600 dark:text-stone-300 mb-1">
+                  <span>Tiến độ Lộ trình ({trackProgress.completed}/{trackProgress.total} bài)</span>
+                  <span className="text-emerald-600 dark:text-emerald-400 font-extrabold">{trackProgress.percent}%</span>
+                </div>
+                <div className="w-full h-2 bg-stone-200/70 dark:bg-stone-800 rounded-full overflow-hidden shadow-inner">
+                  <div
+                    className="h-full bg-gradient-to-r from-emerald-500 via-teal-400 to-emerald-400 rounded-full transition-all duration-500 shadow-[0_0_10px_rgba(16,185,129,0.6)]"
+                    style={{ width: `${Math.max(5, trackProgress.percent)}%` }}
+                  />
+                </div>
+              </div>
+            )}
+
+            {/* Lesson Target Sub-Card inside the hero banner */}
+            <div className="mt-3.5 bg-white/90 dark:bg-stone-950/70 border-2 border-emerald-200 dark:border-emerald-900/60 group-hover:border-emerald-400 dark:group-hover:border-emerald-600 rounded-2xl p-3.5 flex items-center justify-between gap-3.5 shadow-xs transition-all duration-300">
               <div className="min-w-0 flex-1">
-                <span className="text-[9px] font-extrabold text-stone-450 dark:text-stone-500 uppercase tracking-wider block mb-0.5">
-                  Bài học tiếp theo
+                <span className="text-[9px] font-black text-emerald-600 dark:text-emerald-400 uppercase tracking-wider block mb-0.5">
+                  ▶ Bài học đang tiếp tục
                 </span>
-                <p className="text-stone-900 dark:text-stone-50 text-xs sm:text-sm font-extrabold truncate">
+                <p className="text-stone-950 dark:text-white text-xs sm:text-sm font-extrabold truncate">
                   {nextLessonLabel}: {nextLessonShortTitle}
                 </p>
-                <p className="text-[10px] text-stone-450 dark:text-stone-500 font-bold mt-0.5">
-                  {totalMinutes > 0 ? `Đã học ${totalMinutes} phút` : "Chưa bắt đầu"}
+                <p className="text-[10px] text-stone-500 dark:text-stone-400 font-bold mt-0.5">
+                  {totalMinutes > 0 ? `⏱️ Đã học ${totalMinutes} phút` : "🌱 Sẵn sàng khởi động bài học ngay"}
                 </p>
               </div>
 
-              {/* CTA button inside the card */}
-              <div className="flex items-center gap-1 text-[11px] font-extrabold bg-emerald-600 group-hover:bg-emerald-500 text-white dark:bg-emerald-500 dark:group-hover:bg-emerald-400 px-3.5 py-2 rounded-xl transition-all shadow-sm shrink-0 active:scale-95">
-                ▶ Tiếp tục học
+              {/* Eye-Catching Glowing Hero CTA button */}
+              <div className="flex items-center gap-1.5 text-xs font-black bg-gradient-to-r from-emerald-500 via-teal-500 to-emerald-600 hover:from-emerald-400 hover:to-teal-500 text-white px-4 py-2.5 rounded-xl transition-all duration-300 shadow-[0_0_20px_rgba(16,185,129,0.5)] group-hover:shadow-[0_0_28px_rgba(16,185,129,0.7)] border border-emerald-300/50 shrink-0 group-hover:scale-105 active:scale-95">
+                ▶ TIẾP TỤC HỌC NGAY
               </div>
             </div>
           </div>

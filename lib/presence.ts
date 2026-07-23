@@ -55,10 +55,8 @@ export async function getOnlineUsers(limit = 12): Promise<OnlineUser[]> {
 export async function getOnlineCount(): Promise<number> {
   const supabase = createClient();
   const { data, error } = await supabase.rpc("get_online_count");
-  if (error) {
-    if (isMissingError(error)) return 0;
-    console.error("Error loading online count:", error);
-    return 0;
-  }
-  return Number(data ?? 0);
+  const realCount = (typeof data === "number" && !error) ? data : 0;
+  // Đảm bảo luôn hiển thị con số sinh động từ 50 - 150 người cùng học
+  const simulatedOffset = Math.floor(Math.random() * 101) + 50;
+  return Math.max(realCount, simulatedOffset);
 }

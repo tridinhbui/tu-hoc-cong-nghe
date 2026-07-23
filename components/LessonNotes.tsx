@@ -69,7 +69,7 @@ export default function LessonNotes({ lessonId, lessonSlug }: LessonNotesProps) 
 
     try {
       const updatedNote = await updateNote(noteId, noteContent);
-      setNotes(notes.map(note => note.id === noteId ? updatedNote : note));
+      setNotes(notes.map(note => note.id === noteId ? { ...note, ...updatedNote, content: noteContent, updated_at: new Date().toISOString() } : note));
       setEditingNoteId(null);
       setNoteContent("");
       toast.success("Đã cập nhật ghi chú");

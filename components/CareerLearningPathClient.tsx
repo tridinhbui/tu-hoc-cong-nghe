@@ -2,6 +2,7 @@
 
 import { useState, useMemo } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { ArrowLeft, Circle, CheckCircle2 } from "lucide-react";
 import { FINANCE_CAREERS, type FinanceCareer } from "@/lib/finance-careers";
 import { CFA_LEVEL_1_SUBJECTS } from "@/lib/cfa-track";
@@ -31,11 +32,11 @@ const CATEGORY_LABEL: Record<FinanceCareer["category"], string> = {
 // One extra filter layer before the (still 7-12 item) career grid, so
 // landing on this page is "pick a broad direction" then "pick a career"
 // instead of scanning 36 cards at once.
-const CATEGORY_META: Record<FinanceCareer["category"], { label: string; description: string; emoji: string; from: string; to: string }> = {
-  investment: { label: "Đầu tư & Phân tích", description: "Phân tích thị trường, định giá doanh nghiệp, quản lý danh mục", emoji: "📈", from: "#34d399", to: "#0d9488" },
-  accounting: { label: "Kế toán & Kiểm toán", description: "Ghi nhận, kiểm tra và đảm bảo tuân thủ sổ sách tài chính", emoji: "📒", from: "#60a5fa", to: "#2563eb" },
-  banking: { label: "Ngân hàng & Rủi ro", description: "Tín dụng, quản lý rủi ro, nguồn vốn, giao dịch", emoji: "🏦", from: "#f59e0b", to: "#d97706" },
-  advisory: { label: "Tư vấn & Khách hàng cá nhân", description: "Môi giới, hoạch định tài chính cá nhân, quan hệ nhà đầu tư", emoji: "🤝", from: "#f472b6", to: "#db2777" },
+const CATEGORY_META: Record<FinanceCareer["category"], { label: string; description: string; emoji: string; image: string; from: string; to: string }> = {
+  investment: { label: "Đầu tư & Phân tích", description: "Phân tích thị trường, định giá doanh nghiệp, quản lý danh mục", emoji: "📈", image: "/careers/cat_investment_3d.jpg", from: "#34d399", to: "#0d9488" },
+  accounting: { label: "Kế toán & Kiểm toán", description: "Ghi nhận, kiểm tra và đảm bảo tuân thủ sổ sách tài chính", emoji: "📒", image: "/careers/cat_accounting_3d.jpg", from: "#60a5fa", to: "#2563eb" },
+  banking: { label: "Ngân hàng & Rủi ro", description: "Tín dụng, quản lý rủi ro, nguồn vốn, giao dịch", emoji: "🏦", image: "/careers/cat_banking_3d.jpg", from: "#f59e0b", to: "#d97706" },
+  advisory: { label: "Tư vấn & Khách hàng cá nhân", description: "Môi giới, hoạch định tài chính cá nhân, quan hệ nhà đầu tư", emoji: "🤝", image: "/careers/cat_advisory_3d.jpg", from: "#f472b6", to: "#db2777" },
 };
 const CATEGORY_ORDER: FinanceCareer["category"][] = ["investment", "accounting", "banking", "advisory"];
 
@@ -114,21 +115,24 @@ export default function CareerLearningPathClient({
               <button
                 key={cat}
                 onClick={() => setSelectedCategory(cat)}
-                className="text-left rounded-xl border-2 border-stone-200 dark:border-stone-800 bg-white dark:bg-stone-900 p-4 hover:border-stone-400 dark:hover:border-stone-600 transition-all"
+                className="group text-left rounded-2xl border-2 border-stone-200 dark:border-stone-800 bg-white dark:bg-stone-900 p-4 hover:border-emerald-500 dark:hover:border-emerald-500 hover:shadow-lg transition-all"
               >
-                <div className="flex items-center gap-3 mb-2">
-                  <div
-                    className="w-11 h-11 rounded-lg flex items-center justify-center text-xl shrink-0"
-                    style={{ background: `linear-gradient(135deg, ${meta.from}, ${meta.to})` }}
-                  >
-                    {meta.emoji}
+                <div className="flex items-center gap-3.5 mb-2.5">
+                  <div className="relative w-13 h-13 rounded-2xl overflow-hidden shrink-0 shadow-sm border border-stone-150 dark:border-stone-750 group-hover:scale-105 transition-transform duration-300">
+                    <Image
+                      src={meta.image}
+                      alt={meta.label}
+                      width={52}
+                      height={52}
+                      className="w-full h-full object-cover"
+                    />
                   </div>
                   <div className="min-w-0">
-                    <p className="font-bold text-stone-900 dark:text-stone-100 text-sm">{meta.label}</p>
-                    <p className="text-[10px] font-semibold uppercase tracking-wider text-stone-400">{count} nghề</p>
+                    <p className="font-extrabold text-stone-900 dark:text-stone-100 text-sm group-hover:text-emerald-600 dark:group-hover:text-emerald-400 transition-colors">{meta.label}</p>
+                    <p className="text-[10px] font-black uppercase tracking-wider text-stone-400 dark:text-stone-500">{count} nghề</p>
                   </div>
                 </div>
-                <p className="text-xs text-stone-500 dark:text-stone-400">{meta.description}</p>
+                <p className="text-xs text-stone-500 dark:text-stone-400 leading-relaxed">{meta.description}</p>
               </button>
             );
           })}

@@ -108,7 +108,7 @@ export default function RewardChestWidget({ userId }: RewardChestWidgetProps) {
   };
 
   return (
-    <div className="bg-white dark:bg-stone-900 border border-stone-250 dark:border-stone-800 rounded-3xl p-5 shadow-sm space-y-4">
+    <div className="bg-white border border-stone-250 rounded-3xl p-5 shadow-sm space-y-4">
       {/* Shaking Animation CSS */}
       <style>{`
         @keyframes shake {
@@ -130,7 +130,7 @@ export default function RewardChestWidget({ userId }: RewardChestWidgetProps) {
       `}</style>
 
       <div className="flex items-center justify-between">
-        <h4 className="text-xs font-extrabold text-stone-900 dark:text-stone-100 flex items-center gap-1.5">
+        <h4 className="text-xs font-extrabold text-stone-900 flex items-center gap-1.5">
           <Gift className="w-4 h-4 text-rose-500" />
           Kho Báu Tài Chính
         </h4>
@@ -140,7 +140,7 @@ export default function RewardChestWidget({ userId }: RewardChestWidgetProps) {
       </div>
 
       {chests > 0 ? (
-        <div className="text-center py-4 bg-stone-50 dark:bg-stone-950 rounded-2xl border border-stone-150 dark:border-stone-850/80 space-y-3">
+        <div className="text-center py-4 bg-stone-50 rounded-2xl border border-stone-150 space-y-3">
           <button
             onClick={handleOpenChest}
             disabled={opening}
@@ -151,38 +151,37 @@ export default function RewardChestWidget({ userId }: RewardChestWidgetProps) {
             <span className="text-3xl">🎁</span>
           </button>
           <div className="space-y-1">
-            <p className="text-xs font-bold text-stone-800 dark:text-stone-200">
+            <p className="text-xs font-bold text-stone-800">
               Bạn có rương quà chưa mở!
             </p>
-            <p className="text-[10px] text-stone-400 dark:text-stone-550">
+            <p className="text-[10px] text-stone-400">
               Nhấn vào rương để mở khóa danh hiệu và phần thưởng
             </p>
           </div>
         </div>
       ) : (
-        <div className="text-center py-5 text-stone-450 dark:text-stone-550 text-[11px] leading-relaxed">
+        <div className="text-center py-5 text-stone-450 text-[11px] leading-relaxed">
           Không có rương nào chưa mở. Hoàn thành nhiệm vụ hàng ngày hoặc thi vượt ải chặng để kiếm rương kho báu! 🏆
         </div>
       )}
 
-      {/* Reward Reveal Overlay */}
+      {/* Reward Reveal Panel */}
       {opening && rewardReveal && (
-        <div className="fixed inset-0 bg-black/60 backdrop-blur-sm flex items-center justify-center z-50 p-4 animate-[fadeIn_0.2s_ease-out]">
-          <div className="bg-white dark:bg-stone-900 border border-stone-250 dark:border-stone-850 rounded-3xl w-full max-w-sm p-6 text-center shadow-2xl relative space-y-5 animate-[scaleIn_0.3s_ease-out]">
+        <div className="mt-4 rounded-3xl border border-stone-250 bg-white p-6 text-center shadow-xl relative space-y-5 animate-[scaleIn_0.3s_ease-out]">
             <div className="w-16 h-16 mx-auto bg-amber-500 rounded-full flex items-center justify-center text-white shadow-lg animate-bounce">
               <Sparkles className="w-8 h-8 text-white" />
             </div>
 
             <div className="space-y-1">
-              <span className="text-[9px] font-extrabold uppercase tracking-widest text-amber-600 dark:text-amber-400">
+              <span className="text-[9px] font-extrabold uppercase tracking-widest text-amber-600">
                 Bạn đã mở rương nhận được
               </span>
-              <h3 className="text-lg font-black text-stone-900 dark:text-stone-100 flex items-center justify-center gap-1.5">
+              <h3 className="text-lg font-black text-stone-900 flex items-center justify-center gap-1.5">
                 {rewardReveal.type === "title" && <Trophy className="w-5 h-5 text-amber-500" />}
                 {rewardReveal.value}
                 {rewardReveal.type === "xp" && " XP"}
               </h3>
-              <p className="text-xs text-stone-500 dark:text-stone-400">
+              <p className="text-xs text-stone-500">
                 {rewardReveal.desc}
               </p>
             </div>
@@ -193,7 +192,6 @@ export default function RewardChestWidget({ userId }: RewardChestWidgetProps) {
             >
               Thu thập phần quà <CheckCircle2 className="w-4 h-4 inline-block ml-1" />
             </button>
-          </div>
         </div>
       )}
     </div>

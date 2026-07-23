@@ -12,6 +12,7 @@ import DailyQuestsWidget from "@/components/DailyQuestsWidget";
 interface CombinedRewardsWidgetProps {
   userId: string;
   defaultExpanded?: boolean;
+  compact?: boolean;
 }
 
 // Merges what used to be two separate cards ("Nhiệm vụ hàng ngày" +
@@ -28,7 +29,7 @@ interface CombinedRewardsWidgetProps {
 //    localStorage key, which nothing in the entire codebase ever WROTE to -
 //    it was permanently stuck at 0/5. Now reads the real streak from
 //    user_streaks (the same source StreakDisplay/UserStats already show).
-export default function CombinedRewardsWidget({ userId, defaultExpanded = false }: CombinedRewardsWidgetProps) {
+export default function CombinedRewardsWidget({ userId, defaultExpanded = false, compact = false }: CombinedRewardsWidgetProps) {
   const [activeTab, setActiveTab] = useState<"daily" | "chests" | "weekly">("daily");
   const [isExpanded, setIsExpanded] = useState(defaultExpanded);
 
@@ -244,58 +245,62 @@ export default function CombinedRewardsWidget({ userId, defaultExpanded = false 
   };
 
   return (
-    <div className="bg-white dark:bg-stone-900 rounded-2xl shadow-sm overflow-hidden">
+    <div className={`bg-white dark:bg-stone-900 rounded-2xl shadow-sm overflow-hidden ${compact ? "border border-stone-200 min-h-[320px] flex flex-col" : ""}`}>
       {/* Header - Always visible */}
       <button
         onClick={() => setIsExpanded(!isExpanded)}
-        className="w-full px-3.5 py-2.5 flex items-center justify-between hover:bg-stone-50 dark:hover:bg-stone-950/30 transition-colors"
+        className={`w-full flex items-center hover:bg-stone-50 dark:hover:bg-stone-950/30 transition-colors ${compact ? "px-4 py-3" : "px-3.5 py-2"}`}
       >
-        <div className="flex items-center gap-2">
-          <Gift className="w-5 h-5 text-rose-500" />
-          <span className="text-base font-bold text-stone-900 dark:text-stone-100">Nhiệm vụ & Phần thưởng</span>
+        <div className="flex items-center gap-2 min-w-0">
+          <Gift className="w-4.5 h-4.5 text-stone-500" />
+          <span className={`${compact ? "text-sm" : "text-[15px]"} font-bold text-stone-900 dark:text-stone-100`}>Nhiệm vụ</span>
+          {isExpanded ? (
+            <ChevronUp className="w-4 h-4 text-stone-400 dark:text-stone-500 shrink-0" />
+          ) : (
+            <ChevronDown className="w-4 h-4 text-stone-400 dark:text-stone-500 shrink-0" />
+          )}
           {chestCount > 0 && (
-            <span className="text-[10px] font-black bg-rose-500 text-white px-2 py-0.5 rounded-full">
+            <span className="text-[10px] font-black bg-rose-50 text-rose-600 border border-rose-100 px-2 py-0.5 rounded-full">
               {chestCount} rương
             </span>
           )}
         </div>
-        {isExpanded ? <ChevronUp className="w-4.5 h-4.5 text-stone-400 dark:text-stone-500" /> : <ChevronDown className="w-4.5 h-4.5 text-stone-400 dark:text-stone-500" />}
       </button>
 
       {isExpanded && (
-        <div className="border-t border-stone-100 dark:border-stone-850">
+        <div className={`border-t border-stone-100 dark:border-stone-850 ${compact ? "flex-1 flex flex-col min-h-0" : ""}`}>
           {/* Tabs */}
-          <div className="flex gap-1 p-2 bg-stone-50/50 dark:bg-stone-950/35">
+          <div className={`flex gap-1 bg-stone-50/50 dark:bg-stone-950/35 ${compact ? "p-2" : "p-1.5"}`}>
             <button
               onClick={() => setActiveTab("daily")}
               className={`flex-1 text-[10.5px] px-2 py-1.5 rounded-lg transition-all relative overflow-hidden flex items-center justify-center gap-1 ${
                 activeTab === "daily"
                   ? "bg-white dark:bg-stone-900 text-stone-900 dark:text-stone-100 shadow-sm font-black"
                   : dailyQuests.length > 0 && dailyQuests.some((q) => !q.claimed)
-                  ? "bg-amber-50 dark:bg-amber-950/40 text-amber-600 dark:text-amber-400 border border-amber-200/50 dark:border-amber-900/50 animate-pulse font-black"
+                  ? "bg-amber-50/70 dark:bg-amber-950/30 text-amber-700 dark:text-amber-400 border border-amber-200/60 dark:border-amber-900/50 font-black"
                   : "text-stone-500 dark:text-stone-400 hover:text-stone-700 dark:hover:text-stone-300 font-bold"
               }`}
             >
               <span>Nhiệm vụ ngày</span>
               {dailyQuests.length > 0 && dailyQuests.some((q) => !q.claimed) && (
-                <span className="w-1.5 h-1.5 rounded-full bg-amber-500 animate-ping absolute top-1 right-1.5" />
+                <span className="w-1.5 h-1.5 rounded-full bg-amber-400 absolute top-1 right-1.5" />
               )}
             </button>
             <button
               onClick={() => setActiveTab("chests")}
               className={`flex-1 text-[10.5px] font-black px-2 py-1.5 rounded-lg transition-all relative overflow-hidden flex items-center justify-center gap-1.5 ${
                 activeTab === "chests"
-                  ? "bg-gradient-to-r from-amber-500 to-rose-500 text-white shadow-md shadow-rose-500/20"
+                  ? "bg-white dark:bg-stone-900 text-stone-900 dark:text-stone-100 shadow-sm border border-stone-200 dark:border-stone-800"
                   : chestCount > 0
-                  ? "bg-rose-50 dark:bg-rose-950/40 text-rose-600 dark:text-rose-400 border border-rose-200 dark:border-rose-900/50 animate-pulse font-black"
+                  ? "bg-rose-50/70 dark:bg-rose-950/30 text-rose-600 dark:text-rose-400 border border-rose-200 dark:border-rose-900/50 font-black"
                   : "text-stone-500 dark:text-stone-400 hover:text-rose-500 dark:hover:text-rose-450 hover:bg-rose-500/5"
               }`}
             >
               <span>Rương Quà</span>
               {chestCount > 0 && (
-                <span className="w-1.5 h-1.5 rounded-full bg-rose-500 animate-ping absolute top-1 right-1.5" />
+                <span className="w-1.5 h-1.5 rounded-full bg-rose-400 absolute top-1 right-1.5" />
               )}
-              <Gift className={`w-3.5 h-3.5 ${chestCount > 0 ? "animate-bounce text-rose-500" : ""}`} />
+              <Gift className={`w-3.5 h-3.5 ${chestCount > 0 ? "text-rose-500" : ""}`} />
             </button>
             <button
               onClick={() => setActiveTab("weekly")}
@@ -309,7 +314,7 @@ export default function CombinedRewardsWidget({ userId, defaultExpanded = false 
             </button>
           </div>
 
-          <div className="p-3">
+          <div className={`${compact ? "p-2.5 flex-1 overflow-y-auto" : "p-2.5"}`}>
             {activeTab === "daily" && (
               <DailyQuestsWidget 
                 userId={userId} 

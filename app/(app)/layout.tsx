@@ -8,7 +8,7 @@ import AppNavbar from "@/components/AppNavbar";
 // its own independent header (or none at all).
 export default function AppShellLayout({ children }: { children: React.ReactNode }) {
   return (
-    <div className="min-h-screen bg-white dark:bg-stone-950">
+    <div className="min-h-screen bg-white dark:bg-stone-950 lg:pl-64">
       <AppNavbar />
       {children}
     </div>

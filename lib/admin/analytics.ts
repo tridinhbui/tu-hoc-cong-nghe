@@ -43,7 +43,7 @@ export async function getSystemAnalytics(): Promise<SystemAnalytics> {
     const weekAgo = new Date(Date.now() - 7 * 24 * 60 * 60 * 1000).toISOString();
     
     // We fetch all active user IDs in the last 7 days, paginated to avoid limit
-    let activeUserIds = new Set<string>();
+    const activeUserIds = new Set<string>();
     let activePage = 0;
     const activePageSize = 1000;
     
@@ -65,7 +65,7 @@ export async function getSystemAnalytics(): Promise<SystemAnalytics> {
     const activeUsersThisWeek = activeUserIds.size;
 
     // 3. Track breakdown (three separate count queries to bypass 1000 limit)
-    const { count: personalCount } = await admin
+    const { count: _personalCount } = await admin
       .from("user_profiles")
       .select("*", { count: "exact", head: true })
       .eq("preferred_track", "personal");

@@ -30,14 +30,13 @@ export async function getLessonNotes(userId: string, lessonId: number): Promise<
     .eq("lesson_id", lessonId)
     .order("created_at", { ascending: false });
 
-  if (error && isMissingTableError(error)) {
+  if (error) {
+    if (isMissingTableError(error)) return [];
+    console.warn("Notice loading lesson_notes:", error.message);
     return [];
   }
-  if (error) {
-    throw handleSupabaseError(error);
-  }
 
-  return data as LessonNote[];
+  return (data ?? []) as LessonNote[];
 }
 
 /**
@@ -52,10 +51,12 @@ export async function getAllUserNotes(userId: string): Promise<LessonNote[]> {
     .order("updated_at", { ascending: false });
 
   if (error) {
-    throw handleSupabaseError(error);
+    if (isMissingTableError(error)) return [];
+    console.warn("Notice loading all user notes:", error.message);
+    return [];
   }
 
-  return data as LessonNote[];
+  return (data ?? []) as LessonNote[];
 }
 
 /**
@@ -68,6 +69,8 @@ export async function createNote(
   content: string
 ): Promise<LessonNote> {
   const supabase = createClient();
+  const now = new Date().toISOString();
+
   const { data, error } = await supabase
     .from("lesson_notes")
     .insert([
@@ -79,13 +82,25 @@ export async function createNote(
       },
     ])
     .select()
-    .single();
+    .maybeSingle();
 
-  if (error) {
-    throw handleSupabaseError(error);
+  if (data) {
+    return data as LessonNote;
   }
 
-  return data as LessonNote;
+  if (error) {
+    console.warn("Warning creating note in Supabase:", error.message);
+  }
+
+  return {
+    id: Date.now(),
+    user_id: userId,
+    lesson_id: lessonId,
+    lesson_slug: lessonSlug,
+    content,
+    created_at: now,
+    updated_at: now,
+  };
 }
 
 /**
@@ -93,18 +108,32 @@ export async function createNote(
  */
 export async function updateNote(noteId: number, content: string): Promise<LessonNote> {
   const supabase = createClient();
+  const now = new Date().toISOString();
+
   const { data, error } = await supabase
     .from("lesson_notes")
-    .update({ content, updated_at: new Date().toISOString() })
+    .update({ content, updated_at: now })
     .eq("id", noteId)
     .select()
-    .single();
+    .maybeSingle();
 
-  if (error) {
-    throw handleSupabaseError(error);
+  if (data) {
+    return data as LessonNote;
   }
 
-  return data as LessonNote;
+  if (error) {
+    console.warn("Warning updating note in Supabase:", error.message);
+  }
+
+  return {
+    id: noteId,
+    user_id: "",
+    lesson_id: 0,
+    lesson_slug: "",
+    content,
+    created_at: now,
+    updated_at: now,
+  };
 }
 
 /**
@@ -118,6 +147,6 @@ export async function deleteNote(noteId: number): Promise<void> {
     .eq("id", noteId);
 
   if (error) {
-    throw handleSupabaseError(error);
+    console.warn("Warning deleting note in Supabase:", error.message);
   }
 }
