@@ -3,15 +3,39 @@
 import React, { useEffect, useRef, useState } from "react";
 import { findGlossaryMatches } from "@/lib/finance-glossary";
 import { createClient } from "@/lib/supabase";
-import { saveFlashcard } from "@/lib/supabase-flashcards";
+import { saveFlashcard, getFlashcards } from "@/lib/supabase-flashcards";
 import { toast } from "sonner";
 
-// Dotted-underline term with a CSS-only (no JS/state needed) tooltip showing
-// the English translation on hover/focus - server-renderable since it's
-// plain markup, no client component required.
+// Global cache of saved terms for the active user to avoid redundant fetches
+let cachedSavedTerms: Set<string> | null = null;
+let activeUserId: string | null = null;
+
+async function checkIsTermSaved(userId: string, term: string): Promise<boolean> {
+  if (activeUserId !== userId || !cachedSavedTerms) {
+    activeUserId = userId;
+    const cards = await getFlashcards(userId).catch(() => []);
+    cachedSavedTerms = new Set(cards.map((c) => c.term));
+  }
+  return cachedSavedTerms.has(term);
+}
+
+function updateSavedTermCache(userId: string, term: string) {
+  if (activeUserId !== userId) {
+    activeUserId = userId;
+    cachedSavedTerms = new Set([term]);
+  } else if (cachedSavedTerms) {
+    cachedSavedTerms.add(term);
+  }
+  if (typeof window !== "undefined") {
+    window.dispatchEvent(new CustomEvent("thtcdn:flashcards-updated", { detail: { term } }));
+  }
+}
+
+// Dotted-underline term with an interactive tooltip showing English translation & instant Flashcard saving
 function GlossaryTermSpan({ term, en }: { term: string; en: string }) {
   const [open, setOpen] = useState(false);
   const [userId, setUserId] = useState<string | null>(null);
+  const [isSaved, setIsSaved] = useState<boolean>(false);
   const [saveState, setSaveState] = useState<"idle" | "saving" | "saved" | "error">("idle");
   const rootRef = useRef<HTMLSpanElement>(null);
 
@@ -20,13 +44,35 @@ function GlossaryTermSpan({ term, en }: { term: string; en: string }) {
     supabase.auth.getSession().then(({ data: { session } }) => {
       if (session?.user) {
         setUserId(session.user.id);
-      } else {
-        supabase.auth.getUser().then(({ data: { user } }) => {
-          if (user) setUserId(user.id);
+        checkIsTermSaved(session.user.id, term).then((saved) => {
+          if (saved) {
+            setIsSaved(true);
+            setSaveState("saved");
+          }
         });
       }
     });
-  }, []);
+  }, [term]);
+
+  useEffect(() => {
+    function handleFlashcardsUpdated(e: Event) {
+      const detail = (e as CustomEvent<{ term?: string }>).detail;
+      if (!detail?.term || detail.term === term) {
+        if (userId) {
+          checkIsTermSaved(userId, term).then((saved) => {
+            if (saved) {
+              setIsSaved(true);
+              setSaveState("saved");
+            }
+          });
+        }
+      }
+    }
+    window.addEventListener("thtcdn:flashcards-updated", handleFlashcardsUpdated);
+    return () => {
+      window.removeEventListener("thtcdn:flashcards-updated", handleFlashcardsUpdated);
+    };
+  }, [userId, term]);
 
   useEffect(() => {
     if (!open) return;
@@ -45,7 +91,7 @@ function GlossaryTermSpan({ term, en }: { term: string; en: string }) {
 
   const handleSaveFlashcard = async (e: React.MouseEvent) => {
     e.stopPropagation();
-    if (saveState === "saving" || saveState === "saved") return;
+    if (saveState === "saving" || isSaved) return;
 
     let currentUserId = userId;
     if (!currentUserId) {
@@ -58,7 +104,7 @@ function GlossaryTermSpan({ term, en }: { term: string; en: string }) {
     }
 
     if (!currentUserId) {
-      toast.error("Vui lòng đăng nhập để lưu thẻ!");
+      toast.error("Vui lòng đăng nhập để lưu thẻ Flashcard!");
       return;
     }
 
@@ -71,14 +117,21 @@ function GlossaryTermSpan({ term, en }: { term: string; en: string }) {
       repetitions: 0,
       next_review_at: new Date().toISOString(),
     };
+
     const ok = await saveFlashcard(currentUserId, card);
     if (ok) {
-      toast.success(`Đã thêm "${term}" vào Flashcards! 🗂️`);
+      updateSavedTermCache(currentUserId, term);
+      setIsSaved(true);
       setSaveState("saved");
-      setTimeout(() => setOpen(false), 900);
+      toast.success(`Đã thêm "${term}" vào bộ Flashcards của bạn! 🗂️✨`);
+      
+      if (typeof window !== "undefined") {
+        window.dispatchEvent(new CustomEvent("thtcdn:xp-gained", { detail: { xp: 5, label: "Tạo Flashcard mới!" } }));
+      }
+      setTimeout(() => setOpen(false), 1200);
     } else {
       setSaveState("error");
-      toast.error("Không thể lưu thẻ.");
+      toast.error("Không thể lưu thẻ Flashcard. Vui lòng thử lại.");
     }
   };
 
@@ -86,43 +139,41 @@ function GlossaryTermSpan({ term, en }: { term: string; en: string }) {
     <span ref={rootRef} className="relative inline-block group/term">
       <button
         type="button"
-        onClick={() => {
-          setOpen((current) => !current);
-          setSaveState("idle");
-        }}
-        onFocus={() => {
-          setOpen(true);
-          setSaveState("idle");
-        }}
-        className="border-b border-dotted border-stone-400 dark:border-stone-500 cursor-help focus:outline-none"
+        onClick={() => setOpen((current) => !current)}
+        onFocus={() => setOpen(true)}
+        className="border-b border-dotted border-amber-500 dark:border-amber-400 font-medium cursor-help focus:outline-none hover:text-amber-700 dark:hover:text-amber-300 transition-colors"
       >
         {term}
       </button>
-      <span className={`absolute left-1/2 -translate-x-1/2 bottom-full mb-1.5 rounded-xl bg-stone-900 dark:bg-stone-850 text-white text-xs font-semibold p-2.5 transition-opacity z-30 shadow-lg flex flex-col items-center gap-1.5 border border-stone-800 ${
-        open
-          ? "opacity-100 pointer-events-auto"
-          : "opacity-0 pointer-events-none group-hover/term:opacity-100 group-hover/term:pointer-events-auto group-focus-within/term:opacity-100 group-focus-within/term:pointer-events-auto"
-      }`}>
-        <span className="font-extrabold whitespace-nowrap">{en}</span>
+
+      <span
+        className={`absolute left-1/2 -translate-x-1/2 bottom-full mb-2 rounded-2xl bg-stone-900 dark:bg-stone-900 text-white text-xs font-semibold p-3 transition-all duration-200 z-40 shadow-2xl flex flex-col items-center gap-2 border border-stone-700/80 min-w-[150px] ${
+          open
+            ? "opacity-100 scale-100 pointer-events-auto"
+            : "opacity-0 scale-95 pointer-events-none group-hover/term:opacity-100 group-hover/term:scale-100 group-hover/term:pointer-events-auto"
+        }`}
+      >
+        <span className="font-bold text-amber-300 text-sm tracking-wide whitespace-nowrap">{en}</span>
+
         <button
           type="button"
           onClick={handleSaveFlashcard}
-          disabled={saveState === "saving" || saveState === "saved"}
-          className={`text-[9px] font-extrabold uppercase tracking-wider px-2.5 py-1 rounded shadow-sm active:scale-95 transition-all ${
-            saveState === "saved"
-              ? "bg-emerald-700 text-white cursor-default"
+          disabled={saveState === "saving" || isSaved}
+          className={`w-full text-[11px] font-bold px-3 py-1.5 rounded-xl shadow-sm active:scale-95 transition-all flex items-center justify-center gap-1.5 cursor-pointer ${
+            isSaved || saveState === "saved"
+              ? "bg-emerald-600 text-white cursor-default"
               : saveState === "error"
-                ? "bg-rose-500 hover:bg-rose-600 text-white cursor-pointer"
-                : "bg-emerald-500 hover:bg-emerald-600 text-white cursor-pointer"
+                ? "bg-rose-600 hover:bg-rose-700 text-white"
+                : "bg-emerald-500 hover:bg-emerald-400 text-white font-bold"
           }`}
         >
           {saveState === "saving"
-            ? "Đang lưu..."
-            : saveState === "saved"
-              ? "✓ Đã lưu"
+            ? "⏳ Đang lưu..."
+            : isSaved || saveState === "saved"
+              ? "✓ Đã có trong Flashcard"
               : saveState === "error"
                 ? "⚠ Thử lại"
-                : "+ 🗂️ Lưu Flashcard"}
+                : "+ 🗂️ Lưu vào Flashcard (+5 XP)"}
         </button>
       </span>
     </span>

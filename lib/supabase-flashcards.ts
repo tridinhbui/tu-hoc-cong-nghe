@@ -133,6 +133,9 @@ export async function saveFlashcard(userId: string, card: Flashcard): Promise<bo
     return false;
   }
 
+  if (typeof window !== "undefined") {
+    window.dispatchEvent(new Event("thtcdn:flashcards-updated"));
+  }
   return true;
 }
 
