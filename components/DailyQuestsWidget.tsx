@@ -112,6 +112,9 @@ export default function DailyQuestsWidget({ userId, embedded = false, onQuestsLo
     try {
       const ok = await claimQuestReward(userId, quest.id, dayKey, quest.xpReward);
       if (ok) {
+        if (typeof window !== "undefined") {
+          window.dispatchEvent(new CustomEvent("thtcdn:xp-gained", { detail: { xp: quest.xpReward, label: "Thưởng nhiệm vụ!" } }));
+        }
         toast.success(`Chúc mừng! Nhận thành công +${quest.xpReward} XP học thuật! 🌟`);
         setQuests((prev) => {
           const next = prev.map((q) => (q.id === quest.id ? { ...q, claimed: true } : q));

@@ -1,6 +1,7 @@
 import { createClient } from "@/lib/supabase";
 import { handleSupabaseError } from "@/lib/errors";
 import { FINANCE_GLOSSARY } from "@/lib/finance-glossary";
+import { recalculateUserStats } from "@/lib/supabase-user";
 
 function isMissingTableError(error: { code?: string } | null): boolean {
   return error?.code === "PGRST205" || error?.code === "42P01" || error?.code === "PGRST202" || error?.code === "42883";
@@ -504,13 +505,14 @@ export async function recordGameSession(
 
   if (error && !isMissingTableError(error)) throw handleSupabaseError(error);
 
-  // Lets DailyQuestsWidget (and anything else tracking "played a game today")
-  // refetch immediately instead of only picking this up on next full mount -
-  // otherwise a quest already satisfied by this session stays stuck showing
-  // "Làm ngay" until the page is reloaded.
   if (typeof window !== "undefined") {
     window.dispatchEvent(new Event("thtcdn_game_session_recorded"));
+    if (xpEarned > 0) {
+      window.dispatchEvent(new CustomEvent("thtcdn:xp-gained", { detail: { xp: xpEarned, label: "Thắng Mini-Game!" } }));
+    }
   }
+
+  void recalculateUserStats(userId).catch(() => {});
 
   return xpEarned;
 }
@@ -531,7 +533,12 @@ export async function recordCustomGameSession(
 
   if (typeof window !== "undefined") {
     window.dispatchEvent(new Event("thtcdn_game_session_recorded"));
+    if (xpEarned > 0) {
+      window.dispatchEvent(new CustomEvent("thtcdn:xp-gained", { detail: { xp: xpEarned, label: "Trò chơi tài chính!" } }));
+    }
   }
+
+  void recalculateUserStats(userId).catch(() => {});
 }
 
 /**
