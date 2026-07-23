@@ -354,17 +354,18 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
                   {/* Top Ambient Glow */}
                   <div className="pointer-events-none absolute -top-24 left-1/2 -translate-x-1/2 w-96 h-48 bg-emerald-500/20 rounded-full blur-3xl" />
 
-                  {/* 🔮 Center 3D Isometric Study Desk */}
-                  <div className="relative z-10 mx-auto w-full max-w-xl my-2">
-                    <div className="relative mx-auto w-44 h-44 sm:w-52 sm:h-52 rounded-full bg-gradient-to-b from-stone-800/90 via-amber-950/80 to-stone-900 border-4 border-amber-500/50 shadow-[0_0_50px_rgba(245,158,11,0.25)] flex flex-col items-center justify-center text-center p-4">
-                      <div className="absolute inset-2 rounded-full border border-dashed border-amber-400/40 animate-spin-slow pointer-events-none" />
+                  {/* 🔮 Center 3D Isometric Study Desk & Radially Positioned Member Seats */}
+                  <div className="relative mx-auto w-full max-w-xl h-[420px] sm:h-[460px] flex items-center justify-center my-2">
+                    {/* Central 3D Roundtable */}
+                    <div className="relative w-44 h-44 sm:w-56 sm:h-56 rounded-full bg-gradient-to-b from-stone-800/90 via-amber-950/90 to-stone-900 border-4 border-amber-500/60 shadow-[0_0_60px_rgba(245,158,11,0.3)] flex flex-col items-center justify-center text-center p-4 z-10">
+                      <div className="absolute inset-2.5 rounded-full border border-dashed border-amber-400/40 animate-spin-slow pointer-events-none" />
                       
                       <div className="relative z-10">
-                        <span className="text-2xl mb-0.5 animate-bounce inline-block">🔮</span>
+                        <span className="text-3xl mb-1 animate-bounce inline-block">🔮</span>
                         <p className="text-[10px] font-black text-amber-300 uppercase tracking-widest">
                           BÀN HỌC {topicLabel(myRoom.topic).toUpperCase()}
                         </p>
-                        <p className="text-xs font-black text-white mt-1">
+                        <p className="text-xs sm:text-sm font-black text-white mt-1">
                           {myRoom.weekly_xp_progress} / {myRoom.weekly_xp_goal} XP
                         </p>
                         <span className="mt-1 inline-block text-[9px] font-extrabold text-emerald-300 bg-emerald-950/80 px-2 py-0.5 rounded-full border border-emerald-500/40">
@@ -373,42 +374,52 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
                       </div>
                     </div>
 
-                    {/* 🪑 5 Seated Member Seats Positioned Around the Table */}
-                    <div className="grid grid-cols-2 gap-3.5 sm:grid-cols-5 sm:gap-2 mt-6">
-                      {Array.from({ length: 5 }).map((_, idx) => {
-                        const member = [...myRoomMembers].sort((a, b) => b.weekly_lessons - a.weekly_lessons)[idx];
+                    {/* 🪑 5 Seated Member Pods Positioned Radially Around the Table */}
+                    {(() => {
+                      const seatClasses = [
+                        "absolute -top-2 left-1/2 -translate-x-1/2 z-20", // Seat 0: Top Center
+                        "absolute top-8 left-1 sm:left-3 z-20",            // Seat 1: Top Left
+                        "absolute top-8 right-1 sm:right-3 z-20",          // Seat 2: Top Right
+                        "absolute bottom-2 left-3 sm:left-8 z-20",         // Seat 3: Bottom Left
+                        "absolute bottom-2 right-3 sm:right-8 z-20",       // Seat 4: Bottom Right
+                      ];
+
+                      const sortedMembers = [...myRoomMembers].sort((a, b) => b.weekly_lessons - a.weekly_lessons);
+
+                      return seatClasses.map((posClass, idx) => {
+                        const member = sortedMembers[idx];
                         const isMe = member?.user_id === user?.id;
 
                         if (member) {
                           return (
                             <div
                               key={member.user_id}
-                              className={`relative flex flex-col items-center text-center p-2.5 rounded-2xl border transition-all ${
+                              className={`${posClass} flex flex-col items-center text-center p-2 sm:p-2.5 rounded-2xl border transition-all duration-300 w-28 sm:w-32 bg-stone-900/90 backdrop-blur-md ${
                                 isMe
-                                  ? "border-emerald-400 bg-emerald-950/70 shadow-[0_0_20px_rgba(16,185,129,0.35)] scale-105"
-                                  : "border-stone-700/80 bg-stone-900/80 hover:border-amber-400/60"
+                                  ? "border-emerald-400 bg-emerald-950/80 shadow-[0_0_25px_rgba(16,185,129,0.4)] scale-105"
+                                  : "border-stone-700/80 hover:border-amber-400/60"
                               }`}
                             >
                               {/* Top Learner Crown / Rank Badge */}
                               {idx === 0 && (
-                                <span className="absolute -top-3 text-base animate-bounce drop-shadow-md z-20" title="Top 1 Bài học tuần này">
+                                <span className="absolute -top-3.5 text-lg animate-bounce drop-shadow-md z-30" title="Top 1 Bài học tuần này">
                                   👑
                                 </span>
                               )}
 
-                              <div className="relative mb-1.5">
+                              <div className="relative mb-1">
                                 <div className={`rounded-full p-1 ${isMe ? "ring-2 ring-emerald-400" : "ring-1 ring-amber-400/50"}`}>
-                                  <Avatar name={member.full_name} avatarUrl={member.avatar_url} size={44} />
+                                  <Avatar name={member.full_name} avatarUrl={member.avatar_url} size={40} />
                                 </div>
                                 <span className="absolute -bottom-1 left-1/2 -translate-x-1/2 text-[8px] font-black uppercase text-white bg-amber-600 px-1.5 py-0.2 rounded-full shadow-xs whitespace-nowrap">
                                   Lv.{member.current_level}
                                 </span>
                               </div>
 
-                              <p className="text-[11px] font-black text-white truncate max-w-[85px]" title={member.full_name || "Thành viên"}>
+                              <p className="text-[10px] sm:text-[11px] font-black text-white truncate max-w-[90px]" title={member.full_name || "Thành viên"}>
                                 {member.full_name || "Thành viên"}{isMe ? " (Bạn)" : ""}
                               </p>
-                              <span className="text-[10px] font-extrabold text-emerald-400 mt-0.5">
+                              <span className="text-[9px] font-extrabold text-emerald-400 mt-0.5">
                                 🔥 {member.weekly_lessons} bài
                               </span>
                             </div>
@@ -418,15 +429,15 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
                         return (
                           <div
                             key={`empty-${idx}`}
-                            className="flex flex-col items-center justify-center p-2.5 rounded-2xl border border-dashed border-stone-700/60 bg-stone-900/30 text-stone-500 text-center min-h-[100px]"
+                            className={`${posClass} flex flex-col items-center justify-center p-2 rounded-2xl border border-dashed border-stone-700/60 bg-stone-900/40 text-stone-500 text-center w-28 sm:w-32 min-h-[90px] backdrop-blur-xs`}
                           >
-                            <span className="text-lg mb-0.5 opacity-50">🪑</span>
-                            <span className="text-[10px] font-bold text-stone-400 uppercase">Ghế trống</span>
+                            <span className="text-base mb-0.5 opacity-50">🪑</span>
+                            <span className="text-[9px] font-bold text-stone-400 uppercase">Ghế trống</span>
                             <span className="text-[8px] font-medium text-stone-500 mt-0.5">Đang chờ ghép</span>
                           </div>
                         );
-                      })}
-                    </div>
+                      });
+                    })()}
                   </div>
                 </div>
               ) : (
