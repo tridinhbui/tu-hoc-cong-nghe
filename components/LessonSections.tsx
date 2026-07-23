@@ -3,6 +3,39 @@ import type { LessonSectionBlock } from "@/lib/lesson-types";
 import { highlightGlossaryTerms } from "@/components/GlossaryTerm";
 import FormulaBlock from "@/components/FormulaBlock";
 
+function renderFormattedText(text: string, seenTerms: Set<string>): React.ReactNode {
+  // Split on double or single line breaks for clean paragraph spacing
+  const lines = text.split(/\n\n|\n/);
+
+  return (
+    <span className="space-y-3 block">
+      {lines.map((lineText, lineIdx) => {
+        if (!lineText.trim()) return null;
+
+        // Parse **bold** syntax inside each line
+        const parts = lineText.split(/(\*\*[^*]+\*\*)/g);
+        const formattedParts = parts.map((part, pIdx) => {
+          if (part.startsWith("**") && part.endsWith("**")) {
+            const inner = part.slice(2, -2);
+            return (
+              <strong key={pIdx} className="font-extrabold text-stone-900 dark:text-stone-100">
+                {highlightGlossaryTerms(inner, seenTerms)}
+              </strong>
+            );
+          }
+          return <React.Fragment key={pIdx}>{highlightGlossaryTerms(part, seenTerms)}</React.Fragment>;
+        });
+
+        return (
+          <span key={lineIdx} className="block leading-relaxed">
+            {formattedParts}
+          </span>
+        );
+      })}
+    </span>
+  );
+}
+
 export default function LessonSections({ sections }: { sections: LessonSectionBlock[] }) {
   // Shared across the whole lesson body so a term already highlighted once
   // (e.g. "dòng tiền" in an early paragraph) doesn't get re-wrapped every
@@ -10,33 +43,37 @@ export default function LessonSections({ sections }: { sections: LessonSectionBl
   const seenTerms = new Set<string>();
 
   return (
-    <div className="space-y-10 text-stone-700 dark:text-stone-300 leading-relaxed text-lg">
+    <div className="space-y-8 text-stone-700 dark:text-stone-300 leading-relaxed text-lg">
       {sections.map((block, i) => {
         switch (block.type) {
           case "lead":
             return (
-              <p key={i} className="text-xl leading-relaxed">
-                {highlightGlossaryTerms(block.text, seenTerms)}
-              </p>
+              <div key={i} className="text-xl leading-relaxed font-normal text-stone-800 dark:text-stone-200">
+                {renderFormattedText(block.text, seenTerms)}
+              </div>
             );
 
           case "heading":
             return (
-              <h2 key={i} id={`heading-${i}`} className="text-2xl font-bold text-stone-900 dark:text-stone-100 scroll-mt-24">
+              <h2 key={i} id={`heading-${i}`} className="text-2xl font-bold text-stone-900 dark:text-stone-100 scroll-mt-24 pt-4 border-t border-stone-200/60 dark:border-stone-800/60">
                 {block.text}
               </h2>
             );
 
           case "paragraph":
-            return <p key={i}>{highlightGlossaryTerms(block.text, seenTerms)}</p>;
+            return (
+              <div key={i} className="text-lg leading-relaxed">
+                {renderFormattedText(block.text, seenTerms)}
+              </div>
+            );
 
           case "list":
             return (
-              <ul key={i} className="space-y-3 pl-1">
+              <ul key={i} className="space-y-3 pl-1 my-4">
                 {block.items.map((item, j) => (
-                  <li key={j} className="flex items-start gap-3 text-stone-600 dark:text-stone-400 text-lg">
-                    <span className="mt-2.5 w-2 h-2 rounded-full bg-stone-400 dark:bg-stone-600 flex-shrink-0" />
-                    <span>{highlightGlossaryTerms(item, seenTerms)}</span>
+                  <li key={j} className="flex items-start gap-3 text-stone-700 dark:text-stone-300 text-lg">
+                    <span className="mt-2.5 w-2 h-2 rounded-full bg-amber-500 flex-shrink-0" />
+                    <div className="flex-1">{renderFormattedText(item, seenTerms)}</div>
                   </li>
                 ))}
               </ul>
@@ -44,19 +81,19 @@ export default function LessonSections({ sections }: { sections: LessonSectionBl
 
           case "callout":
             return (
-              <div key={i} className="border border-stone-200 dark:border-stone-800 rounded-2xl p-6 bg-stone-50 dark:bg-stone-900/50 space-y-3">
-                <p className="text-xs font-bold text-stone-500 dark:text-stone-400 uppercase tracking-widest">{block.label}</p>
-                <p className="text-stone-700 dark:text-stone-300 text-base leading-relaxed">{highlightGlossaryTerms(block.text, seenTerms)}</p>
+              <div key={i} className="border-l-4 border-l-stone-900 dark:border-l-amber-400 bg-stone-50 dark:bg-stone-900/60 rounded-r-2xl p-5 sm:p-6 space-y-2 border border-stone-200 dark:border-stone-800 my-6">
+                <p className="text-xs font-black text-stone-500 dark:text-stone-400 uppercase tracking-widest">{block.label}</p>
+                <div className="text-stone-800 dark:text-stone-200 text-base leading-relaxed">{renderFormattedText(block.text, seenTerms)}</div>
               </div>
             );
 
           case "comparison":
             return (
-              <div key={i} className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div key={i} className="grid grid-cols-1 sm:grid-cols-2 gap-4 my-6">
                 {[block.left, block.right].map((side) => (
-                  <div key={side.label} className="border border-stone-200 dark:border-stone-800 rounded-2xl p-6 space-y-3">
-                    <p className="text-xs font-bold text-stone-500 dark:text-stone-400 uppercase tracking-widest">{side.label}</p>
-                    <p className="text-base text-stone-600 dark:text-stone-400 leading-relaxed">{highlightGlossaryTerms(side.text, seenTerms)}</p>
+                  <div key={side.label} className="border border-stone-200 dark:border-stone-800 bg-white dark:bg-stone-900 rounded-2xl p-5 space-y-2 shadow-2xs">
+                    <p className="text-xs font-black text-stone-500 dark:text-stone-400 uppercase tracking-widest">{side.label}</p>
+                    <div className="text-base text-stone-700 dark:text-stone-300 leading-relaxed">{renderFormattedText(side.text, seenTerms)}</div>
                   </div>
                 ))}
               </div>
@@ -64,10 +101,10 @@ export default function LessonSections({ sections }: { sections: LessonSectionBl
 
           case "conceptTable":
             return (
-              <div key={i} className="rounded-2xl overflow-hidden border-2 border-stone-900 dark:border-stone-700 shadow-lg">
+              <div key={i} className="rounded-2xl overflow-hidden border-2 border-stone-900 dark:border-stone-700 shadow-lg my-6">
                 <div className="bg-stone-900 dark:bg-stone-800 px-6 py-4">
                   <p className="text-white font-extrabold text-lg tracking-wide">{block.title}</p>
-                  <p className="text-stone-500 dark:text-stone-400 text-sm mt-0.5">{block.subtitle ?? "Chạm hoặc di chuột vào từng dòng"}</p>
+                  <p className="text-stone-400 text-sm mt-0.5">{block.subtitle ?? "Chạm hoặc di chuột vào từng dòng"}</p>
                 </div>
                 <div className="divide-y divide-stone-100 dark:divide-stone-800 bg-white dark:bg-stone-900">
                   {block.concepts.map(({ vi, en, def }) => (
@@ -106,7 +143,7 @@ export default function LessonSections({ sections }: { sections: LessonSectionBl
 
           case "closing":
             return (
-              <div key={i} className="text-center space-y-2 py-4">
+              <div key={i} className="text-center space-y-2 py-6 border-t border-stone-200/80 dark:border-stone-800 my-6">
                 {block.lines.map((line, j) => (
                   <p
                     key={j}
