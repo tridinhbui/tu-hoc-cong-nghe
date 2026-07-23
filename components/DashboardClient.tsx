@@ -212,9 +212,10 @@ export default function DashboardClient({ lessonsMeta }: { lessonsMeta: LessonMe
   const [isRoadmapExpanded, setIsRoadmapExpanded] = useState<boolean>(() => {
     if (typeof window !== "undefined") {
       const saved = localStorage.getItem("is_roadmap_expanded");
+      if (saved === null) return true;
       return saved === "true";
     }
-    return false;
+    return true;
   });
   const toggleRoadmap = () => {
     setIsRoadmapExpanded(prev => {
@@ -890,7 +891,7 @@ export default function DashboardClient({ lessonsMeta }: { lessonsMeta: LessonMe
                       </div>
                     </div>
 
-                    {isRoadmapExpanded && (
+                    {isRoadmapExpanded ? (
                       <div className="relative z-10">
                         <div className="w-full h-1 bg-stone-100 dark:bg-stone-800 rounded-full overflow-hidden mb-2.5">
                           <div
@@ -1035,6 +1036,33 @@ export default function DashboardClient({ lessonsMeta }: { lessonsMeta: LessonMe
                             );
                           })()}
                         </AnimatePresence>
+                      </div>
+                    ) : (
+                      <div className="relative z-10 mt-3 rounded-2xl border border-dashed border-stone-200 bg-stone-50/80 p-3">
+                        <div className="flex items-center justify-between gap-3">
+                          <div>
+                            <p className="text-[11px] font-extrabold uppercase tracking-[0.18em] text-stone-500">
+                              Xem nhanh cấp độ
+                            </p>
+                            <p className="mt-1 text-xs text-stone-500">
+                              Mở rộng để xem đầy đủ bản đồ, ảnh level và thành viên từng cấp.
+                            </p>
+                          </div>
+                          <div className="flex -space-x-2">
+                            {LEVELS.slice(0, 5).map((lvl) => (
+                              <div
+                                key={lvl.level}
+                                className="flex h-10 w-10 items-center justify-center overflow-hidden rounded-full border-2 border-white bg-stone-100 shadow-sm"
+                              >
+                                <img
+                                  src={`/levels/level${lvl.level}.jpg`}
+                                  alt={lvl.name}
+                                  className="h-full w-full object-cover"
+                                />
+                              </div>
+                            ))}
+                          </div>
+                        </div>
                       </div>
                     )}
                   </div>

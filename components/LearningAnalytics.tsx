@@ -99,23 +99,23 @@ function insightFromAnalytics(analytics: LearningAnalyticsType) {
   const insights: string[] = [];
 
   if (analytics.recentMomentum.last7DaysLessons >= 3) {
-    insights.push(`Bạn đang có đà tốt với ${analytics.recentMomentum.last7DaysLessons} bài trong 7 ngày qua.`);
+    insights.push(`${analytics.recentMomentum.last7DaysLessons} bài / 7 ngày`);
   } else if (analytics.recentMomentum.last7DaysLessons === 0) {
-    insights.push("7 ngày qua chưa có bài hoàn thành mới, nên khởi động lại bằng một bài ngắn.");
+    insights.push("7 ngày chưa học");
   } else {
-    insights.push(`7 ngày qua bạn hoàn thành ${analytics.recentMomentum.last7DaysLessons} bài, chỉ cần thêm 1-2 bài nữa là nhịp sẽ rõ hơn.`);
+    insights.push(`${analytics.recentMomentum.last7DaysLessons} bài / 7 ngày`);
   }
 
   if (analytics.bestStudyHour !== null) {
-    insights.push(`Khung giờ học quen thuộc nhất hiện tại là ${formatHour(analytics.bestStudyHour)} (${analytics.peakStudyWindow}).`);
+    insights.push(`${formatHour(analytics.bestStudyHour)} · ${analytics.peakStudyWindow}`);
   }
 
   if (analytics.notes.totalNotes > 0) {
-    insights.push(`Bạn đã có ${analytics.notes.totalNotes} ghi chú trên ${analytics.notes.lessonsWithNotes} bài, đây là nền rất tốt để ôn lại.`);
+    insights.push(`${analytics.notes.totalNotes} ghi chú`);
   }
 
   if (analytics.completionRate < 60 && analytics.totalLessonsStarted >= 3) {
-    insights.push(`Tỷ lệ hoàn thành đang là ${analytics.completionRate}%, có thể ưu tiên kết thúc các bài đã mở trước khi nhảy sang bài mới.`);
+    insights.push(`${analytics.completionRate}% hoàn thành`);
   }
 
   return insights.slice(0, 3);
@@ -281,53 +281,46 @@ export default function LearningAnalytics({ hideLeaderboardTab = false }: { hide
         initial="hidden"
         animate="visible"
         variants={fadeUp}
-        className="relative overflow-hidden rounded-[28px] border border-stone-200/80 bg-white p-5 sm:p-6"
+        className="relative overflow-hidden rounded-[28px] border border-stone-200/80 bg-white p-5"
       >
         <div className="absolute inset-x-0 top-0 h-[3px] bg-gradient-to-r from-emerald-500 via-teal-500 to-sky-500" />
-        <div className="grid gap-5 xl:grid-cols-[minmax(0,1.2fr)_280px]">
+        <div className="grid gap-4 xl:grid-cols-[minmax(0,1fr)_240px]">
           <div className="min-w-0">
             <div className="inline-flex items-center gap-2 rounded-full border border-emerald-200 bg-emerald-50 px-3.5 py-1.5 text-[10px] font-extrabold uppercase tracking-[0.18em] text-emerald-700">
               <Sparkles className="h-3.5 w-3.5 text-emerald-600" />
-              Thống kê học tập
+              Cá nhân
             </div>
-            <h2 className="mt-4 text-2xl font-extrabold leading-snug tracking-tight text-stone-950 sm:text-[2rem]">
-              Nhìn nhanh sức học hiện tại, không cần lục từng box nhỏ
+            <h2 className="mt-4 text-2xl font-extrabold leading-tight tracking-tight text-stone-950 sm:text-3xl">
+              Nhịp học hiện tại
             </h2>
-            <p className="mt-3 max-w-2xl text-sm leading-6 text-stone-600">
-              Phần này giữ vai trò bảng điều khiển cá nhân: nhịp học, độ ổn định, thời điểm học hiệu quả và vài tín hiệu cần chú ý để bạn biết nên đẩy tiếp ở đâu.
-            </p>
 
             <div className="mt-5 grid gap-3 md:grid-cols-3">
               {insights.map((insight, index) => (
                 <div
                   key={index}
-                  className="rounded-2xl border border-stone-200 bg-stone-50/80 px-4 py-3.5 text-xs leading-5 text-stone-600"
+                  className="rounded-2xl border border-stone-200 bg-stone-50/80 px-4 py-3 text-xs font-bold text-stone-700"
                 >
-                  <span className="mb-2 inline-flex rounded-full bg-emerald-100 px-2 py-1 text-[10px] font-extrabold uppercase tracking-[0.16em] text-emerald-700">
-                    Insight {index + 1}
-                  </span>
                   <p>{insight}</p>
                 </div>
               ))}
             </div>
           </div>
 
-          <div className="rounded-[24px] border border-stone-200 bg-stone-50/70 p-3">
-            <div className="rounded-[20px] border border-white bg-white/90 p-4 shadow-sm">
-              <p className="text-[10px] font-extrabold uppercase tracking-[0.22em] text-stone-400">Tóm tắt cá nhân</p>
-              <div className="mt-3 space-y-3">
+          <div className="rounded-[24px] border border-stone-200 bg-stone-50/70 p-2.5">
+            <div className="rounded-[20px] border border-white bg-white/90 p-3 shadow-sm">
+              <div className="space-y-2.5">
                 <SummaryStat
-                  label="Chuỗi hiện tại"
+                  label="Chuỗi"
                   value={`${analytics.streakDays} ngày`}
-                  hint={`Kỷ lục ${analytics.longestStreak} ngày liên tục`}
+                  hint={`Kỷ lục ${analytics.longestStreak}`}
                 />
                 <SummaryStat
                   label="Điểm quiz"
                   value={`${analytics.averageQuizScore}%`}
-                  hint={`${analytics.totalLessonsCompleted} bài hoàn thành`}
+                  hint={`${analytics.totalLessonsCompleted} bài`}
                 />
                 <SummaryStat
-                  label="Giờ mạnh nhất"
+                  label="Giờ học"
                   value={analytics.bestStudyHour !== null ? formatHour(analytics.bestStudyHour) : "Chưa rõ"}
                   hint={analytics.peakStudyWindow}
                 />

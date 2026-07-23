@@ -61,51 +61,50 @@ function getLeaderboardHonor(metric: LeaderboardMetric | "game", rank: number) {
   const defaults = {
     badge: "Ngôi sao nổi bật",
     nickname: "Người chơi đáng chú ý",
-    aura: "Đang giữ vị trí cao trong BXH này",
   };
 
-  const byMetric: Record<LeaderboardMetric | "game", Record<number, { badge: string; nickname: string; aura: string }>> = {
+  const byMetric: Record<LeaderboardMetric | "game", Record<number, { badge: string; nickname: string }>> = {
     xp: {
-      1: { badge: "Vuong mien XP", nickname: "The Wall Street Sage", aura: "Nhan vat dan dau ve tong XP hoc tap" },
-      2: { badge: "Huy chuong bac", nickname: "Capital Strategist", aura: "Tay dua sat nut ngoi dau" },
-      3: { badge: "Huy chuong dong", nickname: "Market Climber", aura: "Top 3 ve suc ben tich luy XP" },
-      4: { badge: "Top 4", nickname: "Momentum Builder", aura: "Dang bam duoi nhom dan dau" },
-      5: { badge: "Top 5", nickname: "Rising Portfolio", aura: "Giu vi tri vinh danh cuoi cung" },
+      1: { badge: "Vương miện XP", nickname: "Wall Street Sage" },
+      2: { badge: "Huy chương bạc", nickname: "Capital Strategist" },
+      3: { badge: "Huy chương đồng", nickname: "Market Climber" },
+      4: { badge: "Top 4", nickname: "Momentum Builder" },
+      5: { badge: "Top 5", nickname: "Rising Portfolio" },
     },
     lessons: {
-      1: { badge: "Vuong mien tri thuc", nickname: "Lesson King", aura: "Nguoi hoan thanh nhieu bai hoc nhat" },
-      2: { badge: "Thu vien bac", nickname: "Knowledge Keeper", aura: "Top dau ve cuong do hoc bai" },
-      3: { badge: "Doc gia dong", nickname: "Study Machine", aura: "Top 3 ve tong so bai da pha dao" },
-      4: { badge: "Top 4", nickname: "Page Runner", aura: "Dang ap sat nhom top bai hoc" },
-      5: { badge: "Top 5", nickname: "Focus Reader", aura: "Thuoc nhom doc bai deu tay nhat" },
+      1: { badge: "Vương miện bài học", nickname: "Lesson King" },
+      2: { badge: "Huy chương bạc", nickname: "Knowledge Keeper" },
+      3: { badge: "Huy chương đồng", nickname: "Study Machine" },
+      4: { badge: "Top 4", nickname: "Page Runner" },
+      5: { badge: "Top 5", nickname: "Focus Reader" },
     },
     avg_score: {
-      1: { badge: "Vuong mien chinh xac", nickname: "Quiz Oracle", aura: "Nguoi co diem trung binh cao nhat" },
-      2: { badge: "Huy chuong bac", nickname: "Precision Analyst", aura: "Do chuan xac rat gan ngai dau" },
-      3: { badge: "Huy chuong dong", nickname: "Sharp Solver", aura: "Top 3 ve do chuan cau tra loi" },
-      4: { badge: "Top 4", nickname: "Signal Reader", aura: "Dang giu phong do quiz rat on" },
-      5: { badge: "Top 5", nickname: "Answer Hunter", aura: "Nam trong nhom diem so noi bat" },
+      1: { badge: "Vương miện quiz", nickname: "Quiz Oracle" },
+      2: { badge: "Huy chương bạc", nickname: "Precision Analyst" },
+      3: { badge: "Huy chương đồng", nickname: "Sharp Solver" },
+      4: { badge: "Top 4", nickname: "Signal Reader" },
+      5: { badge: "Top 5", nickname: "Answer Hunter" },
     },
     streak: {
-      1: { badge: "Vuong mien ben bi", nickname: "Streak Titan", aura: "Chuoi hoc lien tuc dai nhat BXH" },
-      2: { badge: "Huy chuong bac", nickname: "Flame Keeper", aura: "Lua hoc tap dang chay rat deu" },
-      3: { badge: "Huy chuong dong", nickname: "Daily Grinder", aura: "Top 3 ve ky luat hoc moi ngay" },
-      4: { badge: "Top 4", nickname: "Routine Builder", aura: "Giữ nhip hoc on dinh trong top tren" },
-      5: { badge: "Top 5", nickname: "Habit Crafter", aura: "Thuoc nhom hoc deu dang khen" },
+      1: { badge: "Vương miện streak", nickname: "Streak Titan" },
+      2: { badge: "Huy chương bạc", nickname: "Flame Keeper" },
+      3: { badge: "Huy chương đồng", nickname: "Daily Grinder" },
+      4: { badge: "Top 4", nickname: "Routine Builder" },
+      5: { badge: "Top 5", nickname: "Habit Crafter" },
     },
     badges: {
-      1: { badge: "Vuong mien huy hieu", nickname: "Badge Emperor", aura: "So huu bo suu tap danh hieu khung" },
-      2: { badge: "Huy chuong bac", nickname: "Unlock Master", aura: "Mo khoa danh hieu nhanh va deu" },
-      3: { badge: "Huy chuong dong", nickname: "Achievement Hunter", aura: "Top 3 ve toc do san huy hieu" },
-      4: { badge: "Top 4", nickname: "Title Collector", aura: "Dang canh tranh sat top vinh danh" },
-      5: { badge: "Top 5", nickname: "Honor Seeker", aura: "Nam trong nhom mo khoa noi bat" },
+      1: { badge: "Vương miện huy hiệu", nickname: "Badge Emperor" },
+      2: { badge: "Huy chương bạc", nickname: "Unlock Master" },
+      3: { badge: "Huy chương đồng", nickname: "Achievement Hunter" },
+      4: { badge: "Top 4", nickname: "Title Collector" },
+      5: { badge: "Top 5", nickname: "Honor Seeker" },
     },
     game: {
-      1: { badge: "Vuong mien game", nickname: "Kingdom Legend", aura: "Ba chuong ngai tong BXH Game Kingdom" },
-      2: { badge: "Huy chuong bac", nickname: "Boss Hunter", aura: "Cao thu san boss dang bam sat ngai dau" },
-      3: { badge: "Huy chuong dong", nickname: "Arena Master", aura: "Top 3 tong luc chien trong game" },
-      4: { badge: "Top 4", nickname: "Quest Slayer", aura: "Dang giu phong do game cuc on" },
-      5: { badge: "Top 5", nickname: "XP Raider", aura: "Nguoi choi nam trong nhom vinh danh" },
+      1: { badge: "Vương miện game", nickname: "Kingdom Legend" },
+      2: { badge: "Huy chương bạc", nickname: "Boss Hunter" },
+      3: { badge: "Huy chương đồng", nickname: "Arena Master" },
+      4: { badge: "Top 4", nickname: "Quest Slayer" },
+      5: { badge: "Top 5", nickname: "XP Raider" },
     },
   };
 
@@ -238,7 +237,6 @@ export default function Leaderboard({ userId, compact = false }: { userId?: stri
               BXH
             </div>
             <h2 className="mt-3 text-2xl font-black tracking-tight text-stone-900">Bảng xếp hạng</h2>
-            <p className="mt-1 text-sm leading-6 text-stone-500">Top cộng đồng nằm cạnh thống kê cá nhân để xem nhanh trong cùng một màn.</p>
           </div>
           <div className="inline-flex items-center gap-2 rounded-2xl border border-emerald-200 bg-emerald-50 px-3 py-2 text-xs font-bold text-emerald-700">
             <Sparkles className="h-4 w-4" />
@@ -296,13 +294,10 @@ export default function Leaderboard({ userId, compact = false }: { userId?: stri
                         </p>
                         <p className={`mt-1 text-sm font-black ${tone.value}`}>{activeTab.format(entry.value)}</p>
                         {getLeaderboardTitle(metric, rank) && (
-                          <p className="mt-2 line-clamp-2 text-[11px] font-bold leading-5 text-stone-500">
+                          <p className="mt-2 truncate text-[11px] font-bold text-stone-500">
                             {getLeaderboardTitle(metric, rank)}
                           </p>
                         )}
-                        <p className="mt-2 line-clamp-2 text-[11px] leading-5 text-stone-500">
-                          {getLeaderboardHonor(metric, rank).aura}
-                        </p>
                       </div>
                       <div className={`mt-2 w-full rounded-t-[18px] border-x border-t bg-gradient-to-t ${tone.pedestal} ${getPodiumHeight(rank)}`} />
                     </Link>
@@ -337,7 +332,7 @@ export default function Leaderboard({ userId, compact = false }: { userId?: stri
                     <p className="truncate text-[11px] font-extrabold uppercase tracking-[0.14em] text-stone-600">
                       {getLeaderboardHonor(metric, actualRank).nickname}
                     </p>
-                    <p className="truncate text-xs text-stone-500">{getLeaderboardTitle(metric, actualRank) ?? "Người học nổi bật"}</p>
+                    <p className="truncate text-xs text-stone-500">{getLeaderboardTitle(metric, actualRank) ?? "Nổi bật"}</p>
                   </div>
                   <div className="text-right">
                     <p className="text-[10px] font-extrabold uppercase tracking-[0.14em] text-stone-500">
@@ -378,9 +373,6 @@ export default function Leaderboard({ userId, compact = false }: { userId?: stri
             Vinh Danh BXH
           </div>
           <h2 className="mt-3 text-3xl font-black tracking-tight text-stone-900 sm:text-4xl">Top 5 nổi bật</h2>
-          <p className="mt-2 max-w-2xl text-sm leading-6 text-stone-600 sm:text-base">
-            Trả lại khu vực bục vinh danh, làm lớn hơn để 5 vị trí dẫn đầu thực sự nổi bật thay vì lẫn vào list.
-          </p>
         </div>
         <div className="inline-flex items-center gap-2 rounded-2xl border border-emerald-200 bg-emerald-50 px-3.5 py-2 text-sm font-bold text-emerald-700">
           <Sparkles className="h-4 w-4" />
@@ -438,13 +430,10 @@ export default function Leaderboard({ userId, compact = false }: { userId?: stri
                       </p>
                       <p className={`mt-1 text-sm font-black ${tone.value}`}>{activeTab.format(entry.value)}</p>
                       {getLeaderboardTitle(metric, rank) && (
-                        <p className="mt-2 line-clamp-2 text-[11px] font-bold leading-5 text-stone-500">
+                        <p className="mt-2 truncate text-[11px] font-bold text-stone-500">
                           {getLeaderboardTitle(metric, rank)}
                         </p>
                       )}
-                      <p className="mt-2 line-clamp-2 text-[11px] leading-5 text-stone-500">
-                        {getLeaderboardHonor(metric, rank).aura}
-                      </p>
                     </div>
                     <div className={`mt-3 w-full rounded-t-[24px] border-x border-t bg-gradient-to-t ${tone.pedestal} ${getPodiumHeight(rank)}`} />
                   </Link>
@@ -482,7 +471,7 @@ export default function Leaderboard({ userId, compact = false }: { userId?: stri
                         <p className="truncate text-[11px] font-extrabold uppercase tracking-[0.14em] text-stone-600">
                           {getLeaderboardHonor(metric, rank).nickname}
                         </p>
-                        <p className="truncate text-xs text-stone-500">{getLeaderboardTitle(metric, rank) ?? "Nguoi hoc noi bat"}</p>
+                        <p className="truncate text-xs text-stone-500">{getLeaderboardTitle(metric, rank) ?? "Nổi bật"}</p>
                       </div>
                     </div>
                     <div className="text-right">

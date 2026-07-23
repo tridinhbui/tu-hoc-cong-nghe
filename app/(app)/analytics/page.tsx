@@ -60,27 +60,12 @@ export default function AnalyticsPage() {
 
       <div className="max-w-[1280px] mx-auto px-5 pb-8 sm:px-6">
         <div className="mb-6 rounded-[28px] border border-stone-200 bg-white px-5 py-5 shadow-[0_20px_50px_-35px_rgba(15,23,42,0.22)] sm:px-7 sm:py-6">
-          <div className="grid gap-5 lg:grid-cols-[minmax(0,1fr)_280px] lg:items-end">
+          <div className="flex flex-wrap items-end justify-between gap-4">
             <div>
               <div className="inline-flex items-center gap-2 rounded-full border border-emerald-200 bg-emerald-50 px-3 py-1 text-[11px] font-extrabold uppercase tracking-[0.18em] text-emerald-700">
                 Thống kê
               </div>
-              <div className="mt-4 max-w-3xl">
-                <h1 className="text-3xl font-black tracking-tight text-stone-900 sm:text-4xl">Thống kê cá nhân + BXH chung</h1>
-                <p className="mt-2 text-sm leading-6 text-stone-600 sm:text-base">
-                  Màn này ưu tiên hai việc: nhìn rõ tiến độ của bạn, và nhìn đủ lớn top cộng đồng để so nhịp ngay mà không phải đổi trang.
-                </p>
-              </div>
-            </div>
-            <div className="grid grid-cols-2 gap-3 rounded-[24px] border border-stone-200 bg-stone-50/80 p-3">
-              <div className="rounded-2xl bg-white px-3 py-3">
-                <p className="text-[10px] font-extrabold uppercase tracking-[0.18em] text-stone-400">Bố cục</p>
-                <p className="mt-2 text-sm font-black text-stone-900">Cá nhân trái</p>
-              </div>
-              <div className="rounded-2xl bg-white px-3 py-3">
-                <p className="text-[10px] font-extrabold uppercase tracking-[0.18em] text-stone-400">So sánh</p>
-                <p className="mt-2 text-sm font-black text-stone-900">BXH lớn hơn</p>
-              </div>
+              <h1 className="mt-4 text-3xl font-black tracking-tight text-stone-900 sm:text-4xl">Thống kê & BXH</h1>
             </div>
           </div>
         </div>
