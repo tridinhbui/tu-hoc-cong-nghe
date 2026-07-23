@@ -6,7 +6,6 @@ import { usePathname, useRouter } from "next/navigation";
 import {
   LayoutDashboard,
   MessageSquare,
-  Megaphone,
   ShieldQuestion,
   Users,
   BookOpen,
@@ -16,17 +15,14 @@ import {
   Menu,
   X,
   ArrowLeft,
-  AlertTriangle,
   Gamepad2,
   Play,
 } from "lucide-react";
 
 const NAV_ITEMS = [
   { href: "/admin", label: "Tổng quan", icon: LayoutDashboard, exact: true },
-  { href: "/admin/messages", label: "Tin nhắn", icon: MessageSquare },
-  { href: "/admin/announcements", label: "Thông báo", icon: Megaphone },
-  { href: "/admin/appeals", label: "Khiếu nại", icon: ShieldQuestion },
-  { href: "/admin/ai-reports", label: "Báo lỗi AI", icon: AlertTriangle },
+  { href: "/admin/messages", label: "Tin nhắn & Thông báo", icon: MessageSquare },
+  { href: "/admin/appeals", label: "Khiếu nại & Báo lỗi AI", icon: ShieldQuestion },
   { href: "/admin/users", label: "Người dùng", icon: Users },
   { href: "/admin/lessons", label: "Bài học", icon: BookOpen },
   { href: "/admin/videos", label: "Video", icon: Play },
