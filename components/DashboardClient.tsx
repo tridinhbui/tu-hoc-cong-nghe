@@ -833,7 +833,7 @@ export default function DashboardClient({ lessonsMeta }: { lessonsMeta: LessonMe
         )}
 
         {/* ── Unified Dashboard Grid ── */}
-        <div className="max-w-6xl mx-auto space-y-6 min-w-0">
+        <div className="max-w-6xl mx-auto space-y-5 min-w-0">
 
           {user?.id && (() => {
             const currentUserLevel = getLevelByXp(userXp, cfaCompletedForLevel).level;
@@ -853,12 +853,12 @@ export default function DashboardClient({ lessonsMeta }: { lessonsMeta: LessonMe
             ];
 
             return (
-              <div className="rounded-[28px] border border-stone-200 bg-white px-5 py-3.5 shadow-sm sm:px-6 sm:py-4">
-                <div className="grid grid-cols-1 gap-3.5 xl:grid-cols-[minmax(0,1fr)_312px] xl:items-start">
+              <div className="rounded-[24px] border border-stone-200 bg-white px-4 py-3 shadow-sm sm:px-5 sm:py-3.5">
+                <div className="grid grid-cols-1 gap-3 xl:grid-cols-[minmax(0,1fr)_288px] xl:items-start">
                   <div className="min-w-0">
-                    <div className={`flex flex-col sm:flex-row sm:items-center justify-between gap-2.5 ${isRoadmapExpanded ? "mb-3" : "mb-0"} relative z-10`}>
+                    <div className={`flex flex-col sm:flex-row sm:items-center justify-between gap-2 ${isRoadmapExpanded ? "mb-2.5" : "mb-0"} relative z-10`}>
                       <div>
-                        <h3 className="text-base font-bold text-stone-900 dark:text-stone-100">
+                        <h3 className="text-[15px] font-bold text-stone-900 dark:text-stone-100">
                           Bản đồ Cấp độ Học viên
                         </h3>
                         <p className="text-[10px] text-stone-500 dark:text-stone-400 mt-0.5">
@@ -1055,7 +1055,7 @@ export default function DashboardClient({ lessonsMeta }: { lessonsMeta: LessonMe
             );
           })()}
 
-        <div className="grid grid-cols-1 lg:grid-cols-10 gap-4 sm:gap-6 items-start min-w-0">
+        <div className="grid grid-cols-1 lg:grid-cols-10 gap-4 sm:gap-5 items-start min-w-0">
 
           {/* Left Column: Learning Path (7 columns on desktop) */}
           {/* min-h keeps this column's height roughly stable across track
@@ -1063,7 +1063,7 @@ export default function DashboardClient({ lessonsMeta }: { lessonsMeta: LessonMe
               accordion) - without it, the sticky right sidebar (below)
               visibly jumps/flashes as the browser recalculates its
               scrollable range every time this column's height changes. */}
-          <div className="lg:col-span-7 space-y-6 min-w-0 lg:min-h-[1400px]">
+          <div className="lg:col-span-7 space-y-5 min-w-0 lg:min-h-[1320px]">
 
             {/* Resume Learning Card */}
             <div data-tour="resume-learning">
@@ -1130,7 +1130,7 @@ export default function DashboardClient({ lessonsMeta }: { lessonsMeta: LessonMe
               </div>
             )}
 
-          <div className="mb-4 flex flex-wrap items-center justify-between gap-3">
+          <div className="mb-3 flex flex-wrap items-center justify-between gap-2.5">
             <div className="flex items-center gap-3 min-w-0">
               {user?.id && <DashboardStreakWidget userId={user.id} />}
               <div className="text-sm text-stone-500 dark:text-stone-400">

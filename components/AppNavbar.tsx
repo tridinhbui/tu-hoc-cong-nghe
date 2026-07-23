@@ -63,7 +63,7 @@ export default function AppNavbar() {
   const desktopDropdownRef = useRef<HTMLDivElement>(null);
   const mobileDropdownRef = useRef<HTMLDivElement>(null);
 
-  useRoutePrefetch(["/dashboard", "/analytics", "/bxh", "/rpg", "/profile", "/ban-be", "/nhom-hoc", "/cong-dong", "/su-nghiep", "/ghi-chu", "/cong-cu", "/game", "/settings", "/tai-lieu", "/kiem-tra", "/cfa", "/cua-hang"]);
+  useRoutePrefetch(["/dashboard", "/analytics", "/bxh", "/profile", "/ban-be", "/nhom-hoc", "/cong-dong", "/su-nghiep", "/ghi-chu", "/cong-cu", "/game", "/settings", "/tai-lieu", "/kiem-tra", "/cfa"]);
 
   useEffect(() => {
     const supabase = createClient();
@@ -159,7 +159,7 @@ export default function AppNavbar() {
   const openRpgHub = () => {
     setDropdownOpen(false);
     setMobileMenuOpen(false);
-    router.push("/rpg");
+    router.push("/game?building=shop");
   };
 
   const displayName = profile?.full_name || profile?.email || "Người dùng";

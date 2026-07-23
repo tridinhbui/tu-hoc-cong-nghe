@@ -161,6 +161,24 @@ function MetricCard({
   );
 }
 
+function SummaryStat({
+  label,
+  value,
+  hint,
+}: {
+  label: string;
+  value: string;
+  hint: string;
+}) {
+  return (
+    <div className="rounded-2xl border border-stone-200/80 bg-white px-4 py-4">
+      <p className="text-[10px] font-extrabold uppercase tracking-[0.18em] text-stone-400">{label}</p>
+      <p className="mt-2 text-2xl font-black tracking-tight text-stone-900">{value}</p>
+      <p className="mt-1 text-xs leading-5 text-stone-500">{hint}</p>
+    </div>
+  );
+}
+
 function AnalyticsSkeleton() {
   return (
     <div className="space-y-6 animate-pulse">
@@ -263,31 +281,58 @@ export default function LearningAnalytics({ hideLeaderboardTab = false }: { hide
         initial="hidden"
         animate="visible"
         variants={fadeUp}
-        className="relative overflow-hidden rounded-2xl border border-stone-200/80 dark:border-stone-800/80 bg-white dark:bg-stone-900 p-6 sm:p-8"
+        className="relative overflow-hidden rounded-[28px] border border-stone-200/80 bg-white p-5 sm:p-6"
       >
-        <div className="absolute inset-x-0 top-0 h-[3px] bg-gradient-to-r from-emerald-500 to-teal-500" />
-        <div className="max-w-3xl">
-          <div className="inline-flex items-center gap-2 rounded-full border border-emerald-200 dark:border-emerald-900 bg-emerald-50/50 dark:bg-emerald-950/40 px-3.5 py-1.5 text-[10px] font-extrabold uppercase tracking-[0.18em] text-emerald-700 dark:text-emerald-400">
-            <Sparkles className="h-3.5 w-3.5 text-emerald-600 dark:text-emerald-400" />
-            Thống kê học tập
-          </div>
-          <h2 className="mt-5 text-2xl sm:text-3xl font-extrabold tracking-tight text-stone-955 dark:text-stone-50 leading-snug">
-            Một bức tranh gọn, rõ và đúng về tiến độ của bạn
-          </h2>
-          <p className="mt-3 text-sm leading-relaxed text-stone-500 dark:text-stone-400 max-w-2xl">
-            Không màu mè, đây là nơi hệ thống tự động ghi nhận nhịp học, thời gian học tối ưu và cung cấp các gợi ý thông minh giúp bạn tối ưu hóa lộ trình của mình.
-          </p>
+        <div className="absolute inset-x-0 top-0 h-[3px] bg-gradient-to-r from-emerald-500 via-teal-500 to-sky-500" />
+        <div className="grid gap-5 xl:grid-cols-[minmax(0,1.2fr)_280px]">
+          <div className="min-w-0">
+            <div className="inline-flex items-center gap-2 rounded-full border border-emerald-200 bg-emerald-50 px-3.5 py-1.5 text-[10px] font-extrabold uppercase tracking-[0.18em] text-emerald-700">
+              <Sparkles className="h-3.5 w-3.5 text-emerald-600" />
+              Thống kê học tập
+            </div>
+            <h2 className="mt-4 text-2xl font-extrabold leading-snug tracking-tight text-stone-950 sm:text-[2rem]">
+              Nhìn nhanh sức học hiện tại, không cần lục từng box nhỏ
+            </h2>
+            <p className="mt-3 max-w-2xl text-sm leading-6 text-stone-600">
+              Phần này giữ vai trò bảng điều khiển cá nhân: nhịp học, độ ổn định, thời điểm học hiệu quả và vài tín hiệu cần chú ý để bạn biết nên đẩy tiếp ở đâu.
+            </p>
 
-          <div className="mt-6 grid gap-3 sm:grid-cols-3">
-            {insights.map((insight, index) => (
-              <div
-                key={index}
-                className="rounded-xl border border-emerald-100/40 dark:border-emerald-950/30 bg-emerald-50/10 dark:bg-emerald-950/5 px-4 py-3.5 text-xs text-stone-600 dark:text-stone-300 flex items-start gap-2"
-              >
-                <span className="text-emerald-600 dark:text-emerald-400 font-extrabold">✦</span>
-                <span className="leading-relaxed">{insight}</span>
+            <div className="mt-5 grid gap-3 md:grid-cols-3">
+              {insights.map((insight, index) => (
+                <div
+                  key={index}
+                  className="rounded-2xl border border-stone-200 bg-stone-50/80 px-4 py-3.5 text-xs leading-5 text-stone-600"
+                >
+                  <span className="mb-2 inline-flex rounded-full bg-emerald-100 px-2 py-1 text-[10px] font-extrabold uppercase tracking-[0.16em] text-emerald-700">
+                    Insight {index + 1}
+                  </span>
+                  <p>{insight}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <div className="rounded-[24px] border border-stone-200 bg-stone-50/70 p-3">
+            <div className="rounded-[20px] border border-white bg-white/90 p-4 shadow-sm">
+              <p className="text-[10px] font-extrabold uppercase tracking-[0.22em] text-stone-400">Tóm tắt cá nhân</p>
+              <div className="mt-3 space-y-3">
+                <SummaryStat
+                  label="Chuỗi hiện tại"
+                  value={`${analytics.streakDays} ngày`}
+                  hint={`Kỷ lục ${analytics.longestStreak} ngày liên tục`}
+                />
+                <SummaryStat
+                  label="Điểm quiz"
+                  value={`${analytics.averageQuizScore}%`}
+                  hint={`${analytics.totalLessonsCompleted} bài hoàn thành`}
+                />
+                <SummaryStat
+                  label="Giờ mạnh nhất"
+                  value={analytics.bestStudyHour !== null ? formatHour(analytics.bestStudyHour) : "Chưa rõ"}
+                  hint={analytics.peakStudyWindow}
+                />
               </div>
-            ))}
+            </div>
           </div>
         </div>
       </motion.section>
@@ -295,7 +340,7 @@ export default function LearningAnalytics({ hideLeaderboardTab = false }: { hide
       {/* Premium Tab Selector */}
       <div className="flex border-b border-stone-200 dark:border-stone-850 gap-6 mt-2 pb-0 overflow-x-auto scrollbar-none">
         {[
-          { id: "overview", label: "Nhịp độ & Thói quen" },
+          { id: "overview", label: "Thống kê cá nhân" },
           { id: "knowledge", label: "Kiến thức & Kết quả" },
           { id: "memory", label: "Ghi chú & Hành động" },
           ...(!hideLeaderboardTab ? [{ id: "leaderboard", label: "Bảng xếp hạng" }] : []),
@@ -325,7 +370,7 @@ export default function LearningAnalytics({ hideLeaderboardTab = false }: { hide
       {/* Tab Contents */}
       {activeSection === "overview" && (
         <div className="space-y-6">
-          <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
+          <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-2">
             <MetricCard
               icon={<Flame className="h-5 w-5" />}
               label="Chuỗi ngày"
@@ -377,7 +422,7 @@ export default function LearningAnalytics({ hideLeaderboardTab = false }: { hide
                   Tuần tốt nhất: {weeklyPeak} bài
                 </div>
               </div>
-              <div className="h-[300px]">
+              <div className="h-[280px]">
                 <ResponsiveContainer width="100%" height="100%">
                   <AreaChart data={analytics.weeklyActivity} margin={{ left: -10, right: 0, top: 12, bottom: 0 }}>
                     <defs>
@@ -425,7 +470,7 @@ export default function LearningAnalytics({ hideLeaderboardTab = false }: { hide
                   Chưa đủ dữ liệu giờ học để vẽ biểu đồ.
                 </div>
               ) : (
-                <div className="h-[300px]">
+                <div className="h-[280px]">
                   <ResponsiveContainer width="100%" height="100%">
                     <BarChart data={studyHourData} margin={{ left: -22, right: 0, top: 12, bottom: 0 }}>
                       <CartesianGrid vertical={false} stroke="#e7e5e4" strokeDasharray="4 4" className="dark:stroke-stone-800" opacity={0.6} />

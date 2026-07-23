@@ -155,7 +155,7 @@ export default function WorldBossRaidWidget({
   const hpPercent = Math.max(0, Math.round((boss.current_hp / boss.max_hp) * 100));
 
   return (
-    <div className="bg-gradient-to-b from-white via-orange-50 to-red-50 border-2 border-red-200 rounded-3xl p-6 text-stone-900 shadow-[0_24px_80px_rgba(239,68,68,0.16)] mt-6 relative overflow-hidden">
+    <div className="h-full min-h-0 bg-gradient-to-b from-white via-orange-50 to-red-50 border-2 border-red-200 rounded-3xl p-6 text-stone-900 shadow-[0_24px_80px_rgba(239,68,68,0.16)] relative overflow-hidden flex flex-col">
       {/* Visual background aura */}
       <div className="absolute top-0 right-0 w-80 h-80 bg-orange-300/20 rounded-full blur-3xl pointer-events-none" />
       <div className="absolute inset-x-0 top-0 h-1.5 bg-gradient-to-r from-red-500 via-orange-400 to-amber-300" />
@@ -206,7 +206,7 @@ export default function WorldBossRaidWidget({
         </div>
       </div>
 
-      <div className="mt-5 rounded-[28px] border-2 border-amber-300 bg-white p-3 sm:p-4 shadow-xl min-h-[560px]">
+      <div className="mt-5 rounded-[28px] border-2 border-amber-300 bg-white p-3 sm:p-4 shadow-xl flex-1 min-h-0 overflow-hidden">
         <AnimatePresence mode="wait">
           {!inCombat ? (
             <motion.div
@@ -214,7 +214,7 @@ export default function WorldBossRaidWidget({
               initial={{ opacity: 0, y: 12 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -12 }}
-              className="h-full"
+              className="h-full min-h-0 overflow-y-auto pr-1"
             >
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div className="bg-white border border-orange-100 rounded-2xl p-4 flex flex-col justify-between shadow-sm">
@@ -278,25 +278,28 @@ export default function WorldBossRaidWidget({
               initial={{ opacity: 0, scale: 0.96 }}
               animate={{ opacity: 1, scale: 1 }}
               exit={{ opacity: 0, scale: 0.96 }}
-              className="bg-gradient-to-b from-stone-900 via-stone-900 to-stone-950 border-2 border-amber-500/70 rounded-3xl p-5 sm:p-6 max-w-2xl w-full mx-auto text-white shadow-2xl relative overflow-hidden"
+              className="bg-gradient-to-b from-white via-amber-50/70 to-orange-50 border-2 border-amber-300 rounded-3xl p-5 sm:p-6 max-w-2xl w-full h-full mx-auto text-stone-900 shadow-[0_22px_60px_rgba(245,158,11,0.16)] relative overflow-hidden flex flex-col"
             >
+              <div className="absolute inset-x-0 top-0 h-1.5 bg-gradient-to-r from-amber-400 via-orange-400 to-red-400" />
+              <div className="absolute -top-10 right-0 h-36 w-36 rounded-full bg-orange-200/35 blur-3xl pointer-events-none" />
+
               {/* Header bar */}
-              <div className="flex items-center justify-between border-b border-stone-800 pb-3 mb-4">
-                <span className="text-xs font-black tracking-wider text-amber-400 bg-amber-950/80 border border-amber-800 px-3 py-1 rounded-full">
+              <div className="relative z-10 flex items-center justify-between border-b border-amber-100 pb-3 mb-4">
+                <span className="text-xs font-black tracking-wider text-orange-700 bg-white border border-orange-200 px-3 py-1 rounded-full shadow-sm">
                   ⚔️ BATTLE ARENA - CÂU {qIndex + 1}/{boss.questions.length}
                 </span>
                 <button
                   onClick={() => setInCombat(false)}
-                  className="text-stone-400 hover:text-white text-xs font-bold bg-stone-800 hover:bg-stone-700 px-2.5 py-1 rounded-lg transition-colors"
+                  className="text-stone-500 hover:text-stone-900 text-xs font-bold bg-stone-100 hover:bg-stone-200 px-2.5 py-1 rounded-lg transition-colors border border-stone-200"
                 >
                   ✕ Thoát
                 </button>
               </div>
 
               {!combatFinished ? (
-                <div>
+                <div className="flex-1 min-h-0 overflow-y-auto pr-1">
                   {/* VS ARENA HEADER: HERO VS 3D WALL STREET BULL */}
-                  <div className="bg-stone-950/80 border border-amber-500/30 rounded-2xl p-3 sm:p-4 mb-4 relative overflow-hidden">
+                  <div className="bg-gradient-to-r from-amber-50 via-white to-orange-50 border border-amber-200 rounded-2xl p-3 sm:p-4 mb-4 relative overflow-hidden shadow-sm">
                     <div className="grid grid-cols-3 items-center gap-2">
                       {/* Left: Hero Warrior */}
                       <motion.div
@@ -310,9 +313,9 @@ export default function WorldBossRaidWidget({
                             Lv.{userLevel}
                           </span>
                         </div>
-                        <span className="text-[11px] font-extrabold text-stone-200 mt-1 truncate max-w-full">Chiến Binh</span>
+                        <span className="text-[11px] font-extrabold text-stone-800 mt-1 truncate max-w-full">Chiến Binh</span>
                         {/* Hero HP Bar */}
-                        <div className="w-full bg-stone-800 h-2 rounded-full overflow-hidden mt-1 border border-stone-700">
+                        <div className="w-full bg-emerald-100 h-2 rounded-full overflow-hidden mt-1 border border-emerald-200">
                           <div className="bg-gradient-to-r from-emerald-500 to-teal-400 h-full transition-all duration-300" style={{ width: `${heroHp}%` }} />
                         </div>
                         <span className="text-[9px] font-bold text-emerald-400 mt-0.5">{heroHp}/100 HP</span>
@@ -320,7 +323,7 @@ export default function WorldBossRaidWidget({
 
                       {/* Center: VS & Damage Pop-up */}
                       <div className="flex flex-col items-center justify-center text-center relative">
-                        <span className="w-9 h-9 rounded-full bg-gradient-to-br from-amber-500 to-red-600 text-white font-black text-sm flex items-center justify-center shadow-lg border border-amber-300 animate-pulse">
+                        <span className="w-9 h-9 rounded-full bg-gradient-to-br from-amber-500 to-red-500 text-white font-black text-sm flex items-center justify-center shadow-lg border border-amber-200 animate-pulse">
                           VS
                         </span>
                         {lastDamageText && (
@@ -328,12 +331,12 @@ export default function WorldBossRaidWidget({
                             initial={{ opacity: 0, scale: 0.5, y: 10 }}
                             animate={{ opacity: 1, scale: 1.2, y: -10 }}
                             exit={{ opacity: 0 }}
-                            className="absolute -top-3 font-black text-xs sm:text-sm text-amber-300 bg-red-950/90 border border-amber-500/80 px-2.5 py-1 rounded-full shadow-xl whitespace-nowrap z-20"
+                            className="absolute -top-3 font-black text-xs sm:text-sm text-red-600 bg-white border border-red-200 px-2.5 py-1 rounded-full shadow-xl whitespace-nowrap z-20"
                           >
                             {lastDamageText}
                           </motion.span>
                         )}
-                        <span className="text-[9px] font-bold text-amber-400 mt-1">DMG: +{sessionDamage.toLocaleString()}</span>
+                        <span className="text-[9px] font-bold text-orange-600 mt-1">DMG: +{sessionDamage.toLocaleString()}</span>
                       </div>
 
                       {/* Right: 3D Wall Street Bull Boss */}
@@ -351,9 +354,9 @@ export default function WorldBossRaidWidget({
                             className="w-full h-full object-contain drop-shadow-[0_0_15px_rgba(245,158,11,0.5)]"
                           />
                         </div>
-                        <span className="text-[11px] font-extrabold text-amber-300 mt-0.5 truncate max-w-full">Trâu Phố Wall 3D</span>
+                        <span className="text-[11px] font-extrabold text-orange-700 mt-0.5 truncate max-w-full">Trâu Phố Wall 3D</span>
                         {/* Boss HP Bar */}
-                        <div className="w-full bg-stone-800 h-2 rounded-full overflow-hidden mt-1 border border-amber-900">
+                        <div className="w-full bg-red-100 h-2 rounded-full overflow-hidden mt-1 border border-red-200">
                           <div className="bg-gradient-to-r from-red-600 via-amber-500 to-red-500 h-full transition-all duration-500" style={{ width: `${hpPercent}%` }} />
                         </div>
                         <span className="text-[9px] font-bold text-red-400 mt-0.5">{hpPercent}% HP</span>
@@ -362,7 +365,7 @@ export default function WorldBossRaidWidget({
                   </div>
 
                   {/* Question Prompt */}
-                  <h3 className="text-xs sm:text-sm font-bold bg-stone-950/90 p-4 rounded-2xl border border-amber-500/30 mb-4 leading-relaxed text-stone-100 shadow-inner">
+                  <h3 className="text-sm font-bold bg-white p-4 rounded-2xl border border-amber-200 mb-4 leading-relaxed text-stone-900 shadow-sm">
                     {boss.questions[qIndex]?.prompt}
                   </h3>
 
@@ -371,11 +374,11 @@ export default function WorldBossRaidWidget({
                     {boss.questions[qIndex]?.options.map((opt, oIdx) => {
                       const isSelected = selectedOpt === oIdx;
                       const isCorrect = oIdx === boss.questions[qIndex].correct;
-                      let bg = "bg-stone-850 border-stone-750 hover:border-amber-500 text-stone-200";
+                      let bg = "bg-white border-stone-200 hover:border-amber-400 hover:bg-amber-50/60 text-stone-700";
                       if (selectedOpt !== null) {
-                        if (isSelected && isCorrect) bg = "bg-emerald-950/90 border-emerald-500 text-emerald-300 font-bold shadow-lg shadow-emerald-950/50";
-                        else if (isSelected && !isCorrect) bg = "bg-red-950/90 border-red-500 text-red-300 font-bold shadow-lg shadow-red-950/50";
-                        else if (isCorrect) bg = "bg-emerald-950/40 border-emerald-700/50 text-emerald-400";
+                        if (isSelected && isCorrect) bg = "bg-emerald-50 border-emerald-400 text-emerald-700 font-bold shadow-sm";
+                        else if (isSelected && !isCorrect) bg = "bg-red-50 border-red-400 text-red-700 font-bold shadow-sm";
+                        else if (isCorrect) bg = "bg-emerald-50/70 border-emerald-200 text-emerald-700";
                       }
 
                       return (
@@ -383,7 +386,7 @@ export default function WorldBossRaidWidget({
                           key={oIdx}
                           disabled={selectedOpt !== null}
                           onClick={() => handleAnswerSelect(oIdx)}
-                          className={`w-full text-left text-xs font-semibold p-3.5 rounded-xl border-2 transition-all flex items-center justify-between gap-2 ${bg}`}
+                          className={`w-full text-left text-xs sm:text-sm font-semibold p-3.5 rounded-xl border-2 transition-all flex items-center justify-between gap-2 shadow-sm ${bg}`}
                         >
                           <span>{opt}</span>
                           {selectedOpt !== null && isCorrect && <span className="text-emerald-400 font-bold">✓</span>}
@@ -396,9 +399,9 @@ export default function WorldBossRaidWidget({
               ) : (
                 <div className="text-center py-6 space-y-4">
                   <Trophy className="w-16 h-16 text-amber-400 mx-auto animate-bounce" />
-                  <h3 className="text-2xl font-black text-amber-400">KẾT THÚC ĐỢT SĂN BOSS!</h3>
-                  <p className="text-sm text-stone-300">
-                    Bạn đã đóng góp tổng cộng <strong className="text-amber-400 text-base">+{sessionDamage.toLocaleString()} DMG</strong> vào Thanh Máu Server!
+                  <h3 className="text-2xl font-black text-orange-600">KẾT THÚC ĐỢT SĂN BOSS!</h3>
+                  <p className="text-sm text-stone-600">
+                    Bạn đã đóng góp tổng cộng <strong className="text-orange-600 text-base">+{sessionDamage.toLocaleString()} DMG</strong> vào Thanh Máu Server!
                   </p>
                   <button
                     onClick={() => setInCombat(false)}

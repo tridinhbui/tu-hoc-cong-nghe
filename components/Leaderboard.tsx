@@ -56,6 +56,65 @@ function getLeaderboardTitle(metric: LeaderboardMetric | "game", rank: number): 
   return LEADERBOARD_TITLES[metric]?.[rank] ?? null;
 }
 
+function getLeaderboardHonor(metric: LeaderboardMetric | "game", rank: number) {
+  const title = getLeaderboardTitle(metric, rank);
+  const defaults = {
+    badge: "Ngôi sao nổi bật",
+    nickname: "Người chơi đáng chú ý",
+    aura: "Đang giữ vị trí cao trong BXH này",
+  };
+
+  const byMetric: Record<LeaderboardMetric | "game", Record<number, { badge: string; nickname: string; aura: string }>> = {
+    xp: {
+      1: { badge: "Vuong mien XP", nickname: "The Wall Street Sage", aura: "Nhan vat dan dau ve tong XP hoc tap" },
+      2: { badge: "Huy chuong bac", nickname: "Capital Strategist", aura: "Tay dua sat nut ngoi dau" },
+      3: { badge: "Huy chuong dong", nickname: "Market Climber", aura: "Top 3 ve suc ben tich luy XP" },
+      4: { badge: "Top 4", nickname: "Momentum Builder", aura: "Dang bam duoi nhom dan dau" },
+      5: { badge: "Top 5", nickname: "Rising Portfolio", aura: "Giu vi tri vinh danh cuoi cung" },
+    },
+    lessons: {
+      1: { badge: "Vuong mien tri thuc", nickname: "Lesson King", aura: "Nguoi hoan thanh nhieu bai hoc nhat" },
+      2: { badge: "Thu vien bac", nickname: "Knowledge Keeper", aura: "Top dau ve cuong do hoc bai" },
+      3: { badge: "Doc gia dong", nickname: "Study Machine", aura: "Top 3 ve tong so bai da pha dao" },
+      4: { badge: "Top 4", nickname: "Page Runner", aura: "Dang ap sat nhom top bai hoc" },
+      5: { badge: "Top 5", nickname: "Focus Reader", aura: "Thuoc nhom doc bai deu tay nhat" },
+    },
+    avg_score: {
+      1: { badge: "Vuong mien chinh xac", nickname: "Quiz Oracle", aura: "Nguoi co diem trung binh cao nhat" },
+      2: { badge: "Huy chuong bac", nickname: "Precision Analyst", aura: "Do chuan xac rat gan ngai dau" },
+      3: { badge: "Huy chuong dong", nickname: "Sharp Solver", aura: "Top 3 ve do chuan cau tra loi" },
+      4: { badge: "Top 4", nickname: "Signal Reader", aura: "Dang giu phong do quiz rat on" },
+      5: { badge: "Top 5", nickname: "Answer Hunter", aura: "Nam trong nhom diem so noi bat" },
+    },
+    streak: {
+      1: { badge: "Vuong mien ben bi", nickname: "Streak Titan", aura: "Chuoi hoc lien tuc dai nhat BXH" },
+      2: { badge: "Huy chuong bac", nickname: "Flame Keeper", aura: "Lua hoc tap dang chay rat deu" },
+      3: { badge: "Huy chuong dong", nickname: "Daily Grinder", aura: "Top 3 ve ky luat hoc moi ngay" },
+      4: { badge: "Top 4", nickname: "Routine Builder", aura: "Giữ nhip hoc on dinh trong top tren" },
+      5: { badge: "Top 5", nickname: "Habit Crafter", aura: "Thuoc nhom hoc deu dang khen" },
+    },
+    badges: {
+      1: { badge: "Vuong mien huy hieu", nickname: "Badge Emperor", aura: "So huu bo suu tap danh hieu khung" },
+      2: { badge: "Huy chuong bac", nickname: "Unlock Master", aura: "Mo khoa danh hieu nhanh va deu" },
+      3: { badge: "Huy chuong dong", nickname: "Achievement Hunter", aura: "Top 3 ve toc do san huy hieu" },
+      4: { badge: "Top 4", nickname: "Title Collector", aura: "Dang canh tranh sat top vinh danh" },
+      5: { badge: "Top 5", nickname: "Honor Seeker", aura: "Nam trong nhom mo khoa noi bat" },
+    },
+    game: {
+      1: { badge: "Vuong mien game", nickname: "Kingdom Legend", aura: "Ba chuong ngai tong BXH Game Kingdom" },
+      2: { badge: "Huy chuong bac", nickname: "Boss Hunter", aura: "Cao thu san boss dang bam sat ngai dau" },
+      3: { badge: "Huy chuong dong", nickname: "Arena Master", aura: "Top 3 tong luc chien trong game" },
+      4: { badge: "Top 4", nickname: "Quest Slayer", aura: "Dang giu phong do game cuc on" },
+      5: { badge: "Top 5", nickname: "XP Raider", aura: "Nguoi choi nam trong nhom vinh danh" },
+    },
+  };
+
+  return {
+    title: title ?? defaults.badge,
+    ...(byMetric[metric]?.[rank] ?? defaults),
+  };
+}
+
 function getPodiumHeight(rank: number) {
   if (rank === 1) return "h-32";
   if (rank === 2) return "h-24";
@@ -171,7 +230,7 @@ export default function Leaderboard({ userId, compact = false }: { userId?: stri
 
   if (compact) {
     return (
-      <div className="rounded-[28px] border border-stone-200 bg-white p-5 shadow-[0_20px_50px_-35px_rgba(15,23,42,0.18)]">
+      <div className="rounded-[28px] border border-stone-200 bg-white p-5 shadow-[0_20px_50px_-35px_rgba(15,23,42,0.18)] lg:p-6">
         <div className="flex items-start justify-between gap-3 border-b border-stone-200 pb-4">
           <div>
             <div className="inline-flex items-center gap-2 rounded-full border border-amber-200 bg-amber-50 px-3 py-1 text-[11px] font-extrabold uppercase tracking-[0.18em] text-amber-700">
@@ -209,19 +268,59 @@ export default function Leaderboard({ userId, compact = false }: { userId?: stri
           <p className="mt-5 text-sm text-stone-500">Chưa có đủ dữ liệu xếp hạng.</p>
         ) : (
           <div className={`mt-5 space-y-3 transition-opacity duration-150 ${switching ? "opacity-40" : "opacity-100"}`}>
-            {entries.slice(0, 8).map((entry, idx) => {
+            <div className="overflow-x-auto pb-2">
+              <div className="mx-auto flex min-w-[680px] items-end justify-center gap-3 px-1">
+                {PODIUM_ORDER.map((podiumIndex) => {
+                  const entry = podiumEntries[podiumIndex];
+                  if (!entry) return null;
+                  const rank = podiumIndex + 1;
+                  const tone = getPodiumTone(rank);
+                  const href = entry.user_id === userId ? "/profile" : `/nguoi-hoc/${entry.user_id}`;
+                  const isChampion = rank === 1;
+
+                  return (
+                    <Link key={entry.user_id} href={href} className="group flex min-w-[120px] flex-1 flex-col items-center">
+                      <div className={`w-full rounded-[24px] border px-3 py-4 text-center shadow-sm transition-transform duration-200 group-hover:-translate-y-1 ${tone.card} ${isChampion ? "scale-[1.04]" : ""}`}>
+                        <div className="mx-auto mb-3 flex h-14 w-14 items-center justify-center rounded-full border-4 border-white bg-white shadow-sm">
+                          <LeaderboardAvatar name={entry.name} avatarUrl={entry.avatarUrl} size={isChampion ? 48 : 42} />
+                        </div>
+                        <div className={`mx-auto mb-2 inline-flex h-6 min-w-6 items-center justify-center rounded-full px-2 text-[10px] font-black ${tone.chip}`}>
+                          #{rank}
+                        </div>
+                        <div className="mb-2 inline-flex rounded-full border border-white/90 bg-white/80 px-2.5 py-1 text-[10px] font-extrabold uppercase tracking-[0.14em] text-stone-600">
+                          {getLeaderboardHonor(metric, rank).badge}
+                        </div>
+                        <p className="truncate text-sm font-black text-stone-900">{entry.name}</p>
+                        <p className="mt-1 truncate text-[11px] font-extrabold uppercase tracking-[0.16em] text-stone-500">
+                          {getLeaderboardHonor(metric, rank).nickname}
+                        </p>
+                        <p className={`mt-1 text-sm font-black ${tone.value}`}>{activeTab.format(entry.value)}</p>
+                        {getLeaderboardTitle(metric, rank) && (
+                          <p className="mt-2 line-clamp-2 text-[11px] font-bold leading-5 text-stone-500">
+                            {getLeaderboardTitle(metric, rank)}
+                          </p>
+                        )}
+                        <p className="mt-2 line-clamp-2 text-[11px] leading-5 text-stone-500">
+                          {getLeaderboardHonor(metric, rank).aura}
+                        </p>
+                      </div>
+                      <div className={`mt-2 w-full rounded-t-[18px] border-x border-t bg-gradient-to-t ${tone.pedestal} ${getPodiumHeight(rank)}`} />
+                    </Link>
+                  );
+                })}
+              </div>
+            </div>
+
+            <div className="border-t border-stone-200 pt-3">
+              <p className="mb-3 text-xs font-extrabold uppercase tracking-[0.16em] text-stone-500">Các vị trí tiếp theo</p>
+            </div>
+
+            {entries.slice(5, 10).map((entry, idx) => {
               const rank = idx + 1;
+              const actualRank = idx + 6;
               const href = entry.user_id === userId ? "/profile" : `/nguoi-hoc/${entry.user_id}`;
               const isCurrent = entry.user_id === userId;
-              const tone = rank === 1
-                ? "border-amber-200 bg-amber-50/70"
-                : rank === 2
-                  ? "border-slate-200 bg-slate-50/70"
-                  : rank === 3
-                    ? "border-orange-200 bg-orange-50/70"
-                    : isCurrent
-                      ? "border-emerald-200 bg-emerald-50/70"
-                      : "border-stone-200 bg-white";
+              const tone = isCurrent ? "border-emerald-200 bg-emerald-50/70" : "border-stone-200 bg-white";
 
               return (
                 <Link
@@ -229,20 +328,21 @@ export default function Leaderboard({ userId, compact = false }: { userId?: stri
                   href={href}
                   className={`flex items-center gap-3 rounded-2xl border px-3.5 py-3 transition hover:border-stone-300 ${tone}`}
                 >
-                  <div className={`flex h-9 w-9 shrink-0 items-center justify-center rounded-xl font-black ${
-                    rank === 1 ? "bg-amber-500 text-white" :
-                    rank === 2 ? "bg-slate-500 text-white" :
-                    rank === 3 ? "bg-orange-500 text-white" :
-                    "bg-stone-100 text-stone-700"
-                  }`}>
-                    #{rank}
+                  <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-stone-100 font-black text-stone-700">
+                    #{actualRank}
                   </div>
                   <LeaderboardAvatar name={entry.name} avatarUrl={entry.avatarUrl} size={38} />
                   <div className="min-w-0 flex-1">
                     <p className="truncate text-sm font-black text-stone-900">{entry.name}</p>
-                    <p className="truncate text-xs text-stone-500">{getLeaderboardTitle(metric, rank) ?? "Người học nổi bật"}</p>
+                    <p className="truncate text-[11px] font-extrabold uppercase tracking-[0.14em] text-stone-600">
+                      {getLeaderboardHonor(metric, actualRank).nickname}
+                    </p>
+                    <p className="truncate text-xs text-stone-500">{getLeaderboardTitle(metric, actualRank) ?? "Người học nổi bật"}</p>
                   </div>
                   <div className="text-right">
+                    <p className="text-[10px] font-extrabold uppercase tracking-[0.14em] text-stone-500">
+                      {getLeaderboardHonor(metric, actualRank).badge}
+                    </p>
                     <p className="text-sm font-black text-stone-900">{activeTab.format(entry.value)}</p>
                   </div>
                 </Link>
@@ -329,13 +429,22 @@ export default function Leaderboard({ userId, compact = false }: { userId?: stri
                       <div className={`mx-auto mb-2 inline-flex h-7 min-w-7 items-center justify-center rounded-full px-2 text-xs font-black ${tone.chip}`}>
                         #{rank}
                       </div>
+                      <div className="mb-2 inline-flex rounded-full border border-white/90 bg-white/85 px-3 py-1 text-[10px] font-extrabold uppercase tracking-[0.16em] text-stone-700">
+                        {getLeaderboardHonor(metric, rank).badge}
+                      </div>
                       <p className="truncate text-sm font-black text-stone-900">{entry.name}</p>
+                      <p className="mt-1 truncate text-[11px] font-extrabold uppercase tracking-[0.18em] text-stone-500">
+                        {getLeaderboardHonor(metric, rank).nickname}
+                      </p>
                       <p className={`mt-1 text-sm font-black ${tone.value}`}>{activeTab.format(entry.value)}</p>
                       {getLeaderboardTitle(metric, rank) && (
                         <p className="mt-2 line-clamp-2 text-[11px] font-bold leading-5 text-stone-500">
                           {getLeaderboardTitle(metric, rank)}
                         </p>
                       )}
+                      <p className="mt-2 line-clamp-2 text-[11px] leading-5 text-stone-500">
+                        {getLeaderboardHonor(metric, rank).aura}
+                      </p>
                     </div>
                     <div className={`mt-3 w-full rounded-t-[24px] border-x border-t bg-gradient-to-t ${tone.pedestal} ${getPodiumHeight(rank)}`} />
                   </Link>
@@ -370,9 +479,16 @@ export default function Leaderboard({ userId, compact = false }: { userId?: stri
                       <LeaderboardAvatar name={entry.name} avatarUrl={entry.avatarUrl} size={30} />
                       <div className="min-w-0">
                         <p className="truncate font-bold text-stone-900">{entry.name}</p>
+                        <p className="truncate text-[11px] font-extrabold uppercase tracking-[0.14em] text-stone-600">
+                          {getLeaderboardHonor(metric, rank).nickname}
+                        </p>
+                        <p className="truncate text-xs text-stone-500">{getLeaderboardTitle(metric, rank) ?? "Nguoi hoc noi bat"}</p>
                       </div>
                     </div>
                     <div className="text-right">
+                      <p className="text-[10px] font-extrabold uppercase tracking-[0.14em] text-stone-500">
+                        {getLeaderboardHonor(metric, rank).badge}
+                      </p>
                       <p className={`font-black ${isCurrent ? "text-emerald-700" : "text-stone-700"}`}>{activeTab.format(entry.value)}</p>
                     </div>
                   </Link>

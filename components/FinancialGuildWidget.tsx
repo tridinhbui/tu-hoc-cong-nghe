@@ -238,7 +238,7 @@ export default function FinancialGuildWidget({ userId }: { userId: string }) {
   const filteredStocks = selectedSector === "all" ? stocks : stocks.filter((s) => s.sector === selectedSector);
 
   return (
-    <div className="bg-white border-2 border-amber-200 rounded-3xl p-5 sm:p-7 shadow-xl text-stone-900 relative overflow-hidden mt-4">
+    <div className="h-full min-h-0 bg-white border-2 border-amber-200 rounded-3xl p-5 sm:p-7 shadow-xl text-stone-900 relative overflow-hidden flex flex-col">
       {/* Visual Background Lighting */}
       <div className="absolute top-0 right-0 w-80 h-80 bg-amber-500/8 rounded-full blur-3xl pointer-events-none" />
       <div className="absolute bottom-0 left-0 w-80 h-80 bg-emerald-500/8 rounded-full blur-3xl pointer-events-none" />
@@ -283,6 +283,7 @@ export default function FinancialGuildWidget({ userId }: { userId: string }) {
         </div>
       </div>
 
+      <div className="flex-1 min-h-0 overflow-y-auto pr-1">
       {/* Fund Capital Dashboard Card */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
         <div className="bg-amber-50/70 border border-amber-200 p-4 rounded-2xl">
@@ -479,6 +480,8 @@ export default function FinancialGuildWidget({ userId }: { userId: string }) {
             </tbody>
           </table>
         </div>
+      </div>
+
       </div>
 
       {/* Trade Modal Dialog */}

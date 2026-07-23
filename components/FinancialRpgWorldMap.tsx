@@ -494,7 +494,7 @@ export default function FinancialRpgWorldMap() {
           </div>
         ) : (
           /* Active Building Interactive View */
-          <div>
+          <div className="min-h-[calc(100vh-8.5rem)] sm:min-h-[calc(100vh-9rem)] flex flex-col">
             <div className="mb-6 flex flex-col items-start gap-3 sm:flex-row sm:items-center sm:justify-between">
               <button
                 onClick={handleCloseBuilding}
@@ -519,7 +519,7 @@ export default function FinancialRpgWorldMap() {
                 onClose={handleCloseBuilding}
               />
             ) : (
-              <div className="bg-white border border-stone-200 rounded-3xl p-3 sm:p-4 shadow-sm overflow-hidden">
+              <div className="flex-1 min-h-0 bg-white border border-stone-200 rounded-3xl p-3 sm:p-4 shadow-sm overflow-hidden">
                 {selectedBuilding === "world-boss" && (
                 <WorldBossRaidWidget userId={user?.id || ""} userLevel={level} equipments={equippedGear} />
                 )}

@@ -137,7 +137,7 @@ export default function WeeklyChallengeWidget({ userId }: { userId: string }) {
   }
 
   return (
-    <div className="bg-white border-2 border-purple-200 rounded-3xl p-5 sm:p-7 shadow-xl text-stone-900 relative overflow-hidden mt-4">
+    <div className="h-full min-h-0 bg-white border-2 border-purple-200 rounded-3xl p-5 sm:p-7 shadow-xl text-stone-900 relative overflow-hidden flex flex-col">
       {/* Background Decorative Neon Lights */}
       <div className="absolute top-0 right-0 w-64 h-64 bg-purple-500/8 rounded-full blur-3xl pointer-events-none" />
       <div className="absolute bottom-0 left-0 w-64 h-64 bg-rose-500/8 rounded-full blur-3xl pointer-events-none" />
@@ -271,6 +271,7 @@ export default function WeeklyChallengeWidget({ userId }: { userId: string }) {
       )}
 
       {/* GAME STATE 1: BRIEFING */}
+      <div className="flex-1 min-h-0 overflow-y-auto pr-1">
       {gameState === "briefing" && (
         <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} className="space-y-5">
           <div className="bg-purple-50/60 border border-purple-200 rounded-2xl p-5 relative overflow-hidden">
@@ -478,6 +479,7 @@ export default function WeeklyChallengeWidget({ userId }: { userId: string }) {
           </div>
         </motion.div>
       )}
+      </div>
     </div>
   );
 }
