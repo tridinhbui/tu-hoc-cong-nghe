@@ -4,7 +4,14 @@ import { FINANCE_GLOSSARY } from "@/lib/finance-glossary";
 import { recalculateUserStats } from "@/lib/supabase-user";
 
 function isMissingTableError(error: { code?: string } | null): boolean {
-  return error?.code === "PGRST205" || error?.code === "42P01" || error?.code === "PGRST202" || error?.code === "42883";
+  return (
+    error?.code === "PGRST205" ||
+    error?.code === "42P01" ||
+    error?.code === "PGRST202" ||
+    error?.code === "42883" ||
+    error?.code === "23514" ||
+    error?.code === "42703"
+  );
 }
 
 export type GameType =

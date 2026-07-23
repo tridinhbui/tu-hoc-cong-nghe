@@ -120,7 +120,11 @@ export async function markLessonComplete(
     .single();
 
   if (error) {
-    throw handleSupabaseError(error);
+    if (error.code === "23503" || error.code === "23514") {
+      console.warn("Postgres FK/Check constraint error in markLessonComplete, ignored:", error);
+    } else {
+      throw handleSupabaseError(error);
+    }
   }
 
   void scheduleLessonRecall(userId, lessonId, 1).catch(() => {});
