@@ -121,6 +121,48 @@ export default function AppNavbar() {
     };
   }, []);
 
+  const [hasPendingNewsQuiz, setHasPendingNewsQuiz] = useState(false);
+  const [hasPendingStudyGroupCheckin, setHasPendingStudyGroupCheckin] = useState(false);
+
+  useEffect(() => {
+    const checkNewsQuiz = () => {
+      const todayKey = new Date().toISOString().split("T")[0];
+      const key = userId ? `news_quiz_answered_${userId}_${todayKey}` : `news_quiz_answered_guest_${todayKey}`;
+      const answered = typeof window !== "undefined" && Boolean(localStorage.getItem(key));
+      setHasPendingNewsQuiz(!answered);
+    };
+
+    const checkStudyGroupCheckin = () => {
+      const todayKey = new Date().toISOString().split("T")[0];
+      const key = userId ? `study_group_checkin_${userId}_${todayKey}` : `study_group_checkin_guest_${todayKey}`;
+      const checkedIn = typeof window !== "undefined" && Boolean(localStorage.getItem(key));
+      setHasPendingStudyGroupCheckin(!checkedIn);
+    };
+
+    checkNewsQuiz();
+    checkStudyGroupCheckin();
+
+    const handleNewsAnswered = () => {
+      setHasPendingNewsQuiz(false);
+    };
+
+    const handleStudyGroupCheckin = () => {
+      setHasPendingStudyGroupCheckin(false);
+    };
+
+    window.addEventListener("thtcdn:daily-news-quiz-answered", handleNewsAnswered);
+    window.addEventListener("thtcdn:study-group-checkin", handleStudyGroupCheckin);
+    window.addEventListener("thtcdn:xp-updated", () => {
+      checkNewsQuiz();
+      checkStudyGroupCheckin();
+    });
+    return () => {
+      window.removeEventListener("thtcdn:daily-news-quiz-answered", handleNewsAnswered);
+      window.removeEventListener("thtcdn:study-group-checkin", handleStudyGroupCheckin);
+      window.removeEventListener("thtcdn:xp-updated", checkNewsQuiz);
+    };
+  }, [userId]);
+
   const { celebrateLevel, dismiss } = useLevelUpWatcher(profile?.current_level);
   usePresenceHeartbeat(userId);
 
@@ -184,6 +226,8 @@ export default function AppNavbar() {
               const active = pathname === href;
               const isGame = href === "/game";
               const isCareer = href === "/su-nghiep";
+              const isKiemTra = href === "/kiem-tra";
+              const isNhomHoc = href === "/nhom-hoc";
               return (
                 <Link
                   key={href}
@@ -192,12 +236,16 @@ export default function AppNavbar() {
                   className={`group relative flex items-center gap-2.5 rounded-2xl px-3.5 py-2.5 text-sm font-bold transition-all duration-200 ${
                     isGame
                       ? "border border-amber-200 bg-amber-50 text-amber-700 shadow-sm hover:bg-amber-100/70"
-                      : active
-                        ? "border border-emerald-200/70 bg-emerald-50 text-emerald-700 dark:border-emerald-800/60 dark:bg-emerald-950/40 dark:text-emerald-300"
-                        : "text-stone-600 hover:bg-stone-100 hover:text-stone-900 dark:text-stone-400 dark:hover:bg-stone-900 dark:hover:text-stone-100"
+                      : isKiemTra && hasPendingNewsQuiz
+                        ? "border border-rose-300/80 bg-gradient-to-r from-rose-50 to-orange-50/60 text-rose-700 shadow-xs hover:bg-rose-100/80 dark:border-rose-900 dark:from-rose-950/50 dark:to-stone-900 dark:text-rose-300"
+                        : isNhomHoc && hasPendingStudyGroupCheckin
+                          ? "border border-amber-300/80 bg-amber-50/80 text-amber-800 shadow-xs hover:bg-amber-100/80 dark:border-amber-900 dark:bg-amber-950/40 dark:text-amber-300"
+                          : active
+                            ? "border border-emerald-200/70 bg-emerald-50 text-emerald-700 dark:border-emerald-800/60 dark:bg-emerald-950/40 dark:text-emerald-300"
+                            : "text-stone-600 hover:bg-stone-100 hover:text-stone-900 dark:text-stone-400 dark:hover:bg-stone-900 dark:hover:text-stone-100"
                   }`}
                 >
-                  <Icon className={`h-4 w-4 shrink-0 ${isGame ? "text-amber-600" : isCareer ? "text-emerald-600 dark:text-emerald-400" : ""}`} />
+                  <Icon className={`h-4 w-4 shrink-0 ${isGame ? "text-amber-600" : isCareer ? "text-emerald-600 dark:text-emerald-400" : isKiemTra && hasPendingNewsQuiz ? "text-rose-500 animate-pulse" : isNhomHoc && hasPendingStudyGroupCheckin ? "text-amber-600 animate-bounce" : ""}`} />
                   <span className="flex-1">{isGame ? "Game Kingdom" : label}</span>
                   {isGame && (
                     <span className="inline-flex items-center gap-1 text-[9px] font-bold uppercase tracking-wider px-1.5 py-0.5 rounded-full bg-white text-amber-700 border border-amber-200">
@@ -205,7 +253,19 @@ export default function AppNavbar() {
                       HOT
                     </span>
                   )}
-                  {isCareer && (
+                  {isKiemTra && hasPendingNewsQuiz && (
+                    <span className="inline-flex items-center gap-1 text-[9px] font-black uppercase tracking-wider px-2 py-0.5 rounded-full bg-rose-500 text-white shadow-xs animate-pulse">
+                      <span className="w-1.5 h-1.5 rounded-full bg-white animate-ping" />
+                      Tin mới
+                    </span>
+                  )}
+                  {isNhomHoc && hasPendingStudyGroupCheckin && (
+                    <span className="inline-flex items-center gap-1 text-[9px] font-black uppercase tracking-wider px-2 py-0.5 rounded-full bg-amber-500 text-white shadow-xs animate-pulse">
+                      <span className="w-1.5 h-1.5 rounded-full bg-white animate-ping" />
+                      Check-in
+                    </span>
+                  )}
+                  {isCareer && !hasPendingNewsQuiz && (
                     <span className="absolute right-3 top-3 flex h-2 w-2">
                       <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
                     </span>
@@ -264,26 +324,13 @@ export default function AppNavbar() {
                 </button>
 
                 {dropdownOpen && (
-                  <div className="absolute left-full bottom-0 ml-3 w-72 bg-white dark:bg-stone-900 rounded-2xl border border-stone-200 dark:border-stone-800 shadow-xl z-[80] p-4 pointer-events-auto">
+                  <div className="absolute left-full bottom-0 ml-3 w-64 bg-white dark:bg-stone-900 rounded-2xl border border-stone-200 dark:border-stone-800 shadow-xl z-[80] p-4 pointer-events-auto">
                     <div className="space-y-1 mb-2">
-                      <button
-                        onClick={openRpgHub}
-                        className="w-full text-left px-3 py-2 text-sm font-black text-amber-600 dark:text-amber-400 bg-amber-50 dark:bg-amber-950/40 border border-amber-200 dark:border-amber-900 hover:bg-amber-100/80 rounded-xl transition cursor-pointer flex items-center justify-between shadow-2xs mb-1"
-                      >
-                        <span className="flex items-center gap-2">
-                          <span className="text-base">🎒</span> Tủ đồ, trang bị & cửa hàng
-                        </span>
-                        <span className="text-[10px] font-black uppercase px-2 py-0.5 rounded-full bg-amber-500 text-white">Mới</span>
-                      </button>
-
                       <button type="button" onClick={() => handleDropdownNavigate("/profile")} className="block w-full rounded-lg px-3 py-2 text-left text-sm font-semibold text-stone-900 transition hover:bg-stone-50 dark:text-stone-100 dark:hover:bg-stone-800">
                         Hồ sơ
                       </button>
                       <button type="button" onClick={() => handleDropdownNavigate("/ban-be")} className="block w-full rounded-lg px-3 py-2 text-left text-sm font-semibold text-stone-900 transition hover:bg-stone-50 dark:text-stone-100 dark:hover:bg-stone-800">
                         Bạn bè
-                      </button>
-                      <button type="button" onClick={() => handleDropdownNavigate("/bxh?tab=community")} className="block w-full rounded-lg px-3 py-2 text-left text-sm font-semibold text-stone-900 transition hover:bg-stone-50 dark:text-stone-100 dark:hover:bg-stone-800">
-                        Cộng đồng
                       </button>
                       <button type="button" onClick={() => handleDropdownNavigate("/settings")} className="block w-full rounded-lg px-3 py-2 text-left text-sm font-semibold text-stone-900 transition hover:bg-stone-50 dark:text-stone-100 dark:hover:bg-stone-800">
                         Cài đặt
@@ -377,24 +424,11 @@ export default function AppNavbar() {
                   </div>
 
                   <div className="space-y-1 mb-2">
-                    <button
-                      onClick={openRpgHub}
-                      className="w-full text-left px-3 py-2 text-sm font-black text-amber-600 dark:text-amber-400 bg-amber-50 dark:bg-amber-950/40 border border-amber-200 dark:border-amber-900 hover:bg-amber-100/80 rounded-xl transition cursor-pointer flex items-center justify-between shadow-2xs mb-1"
-                    >
-                      <span className="flex items-center gap-2">
-                        <span className="text-base">🎒</span> Tủ đồ, trang bị & cửa hàng
-                      </span>
-                      <span className="text-[10px] font-black uppercase px-2 py-0.5 rounded-full bg-amber-500 text-white">Mới</span>
-                    </button>
-
                     <button type="button" onClick={() => handleDropdownNavigate("/profile")} className="block w-full rounded-lg px-3 py-2 text-left text-sm font-semibold text-stone-900 transition hover:bg-stone-50 dark:text-stone-100 dark:hover:bg-stone-800">
                       Hồ sơ
                     </button>
                     <button type="button" onClick={() => handleDropdownNavigate("/ban-be")} className="block w-full rounded-lg px-3 py-2 text-left text-sm font-semibold text-stone-900 transition hover:bg-stone-50 dark:text-stone-100 dark:hover:bg-stone-800">
                       Bạn bè
-                    </button>
-                    <button type="button" onClick={() => handleDropdownNavigate("/bxh?tab=community")} className="block w-full rounded-lg px-3 py-2 text-left text-sm font-semibold text-stone-900 transition hover:bg-stone-50 dark:text-stone-100 dark:hover:bg-stone-800">
-                      Cộng đồng
                     </button>
                     <button type="button" onClick={() => handleDropdownNavigate("/settings")} className="block w-full rounded-lg px-3 py-2 text-left text-sm font-semibold text-stone-900 transition hover:bg-stone-50 dark:text-stone-100 dark:hover:bg-stone-800">
                       Cài đặt
@@ -434,6 +468,7 @@ export default function AppNavbar() {
             const active = pathname === href;
             const isGame = href === "/game";
             const isCareer = href === "/su-nghiep";
+            const isNhomHoc = href === "/nhom-hoc";
             return (
               <Link
                 key={href}
@@ -442,7 +477,7 @@ export default function AppNavbar() {
                   setMobileMenuOpen(false);
                   trackFeatureClick("nav_click", { label: href });
                 }}
-                className={`group relative flex items-center gap-2 text-sm font-bold px-3 py-2.5 rounded-lg transition-all duration-200 ${
+                className={`group relative flex items-center justify-between text-sm font-bold px-3 py-2.5 rounded-lg transition-all duration-200 ${
                   active
                     ? isGame
                       ? "bg-amber-500/15 dark:bg-amber-950/40 text-amber-700 dark:text-amber-300 border border-amber-500/25"
@@ -451,24 +486,34 @@ export default function AppNavbar() {
                         : "bg-emerald-50 dark:bg-emerald-950/40 text-emerald-700 dark:text-emerald-300"
                     : isGame
                       ? "bg-amber-50/80 dark:bg-amber-950/20 text-amber-600 dark:text-amber-400 border border-amber-200/50 dark:border-amber-900/40 hover:bg-amber-100/60 dark:hover:bg-amber-950/30"
-                      : isCareer
-                        ? "bg-indigo-50/80 dark:bg-indigo-950/20 text-indigo-650 dark:text-indigo-400 border border-indigo-200/50 dark:border-indigo-900/40 hover:bg-indigo-100/60 dark:hover:bg-indigo-950/30"
-                        : "text-stone-600 dark:text-stone-400 hover:bg-stone-100 dark:hover:bg-stone-900"
+                      : isNhomHoc && hasPendingStudyGroupCheckin
+                        ? "bg-amber-50 text-amber-800 border border-amber-300 dark:bg-amber-950/40 dark:text-amber-300"
+                        : isCareer
+                          ? "bg-indigo-50/80 dark:bg-indigo-950/20 text-indigo-650 dark:text-indigo-400 border border-indigo-200/50 dark:border-indigo-900/40 hover:bg-indigo-100/60 dark:hover:bg-indigo-950/30"
+                          : "text-stone-600 dark:text-stone-400 hover:bg-stone-100 dark:hover:bg-stone-900"
                 }`}
               >
-                <Icon className={`w-4 h-4 transition-transform duration-200 group-hover:scale-110 ${isGame ? "text-amber-500" : isCareer ? "text-indigo-500 dark:text-indigo-450" : ""}`} />
-                <span className="flex items-center gap-1.5">
-                  {label}
-                  {isGame && <Flame className="w-3.5 h-3.5 text-orange-500" />}
-                </span>
+                <div className="flex items-center gap-2">
+                  <Icon className={`w-4 h-4 transition-transform duration-200 group-hover:scale-110 ${isGame ? "text-amber-500" : isCareer ? "text-indigo-500 dark:text-indigo-450" : isNhomHoc && hasPendingStudyGroupCheckin ? "text-amber-600 animate-bounce" : ""}`} />
+                  <span className="flex items-center gap-1.5">
+                    {label}
+                    {isGame && <Flame className="w-3.5 h-3.5 text-orange-500" />}
+                  </span>
+                </div>
+
+                {isNhomHoc && hasPendingStudyGroupCheckin && (
+                  <span className="inline-flex items-center gap-1 text-[9px] font-black uppercase tracking-wider px-2 py-0.5 rounded-full bg-amber-500 text-white shadow-2xs animate-pulse">
+                    Check-in
+                  </span>
+                )}
                 {isGame && (
-                  <span className="absolute top-3.5 right-4 flex h-2 w-2">
+                  <span className="flex h-2 w-2">
                     <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-amber-400 opacity-75"></span>
                     <span className="relative inline-flex rounded-full h-2 w-2 bg-amber-500"></span>
                   </span>
                 )}
                 {isCareer && (
-                  <span className="absolute top-3.5 right-4 flex h-2 w-2">
+                  <span className="flex h-2 w-2">
                     <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-indigo-400 opacity-75"></span>
                     <span className="relative inline-flex rounded-full h-2 w-2 bg-indigo-500"></span>
                   </span>

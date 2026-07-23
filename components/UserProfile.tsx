@@ -5,6 +5,7 @@ import { createClient } from "@/lib/supabase";
 import Image from "next/image";
 import Link from "next/link";
 import { isValidAvatar } from "@/lib/avatar-utils";
+import CharacterCustomizerModal from "@/components/CharacterCustomizerModal";
 
 interface Profile {
   id: string;
@@ -20,6 +21,7 @@ export default function UserProfile() {
   const [profile, setProfile] = useState<Profile | null>(null);
   const [loading, setLoading] = useState(true);
   const [showDropdown, setShowDropdown] = useState(false);
+  const [showCustomizer, setShowCustomizer] = useState(false);
   const [signingOut, setSigningOut] = useState(false);
 
   const handleSignOut = async () => {
@@ -135,6 +137,15 @@ export default function UserProfile() {
           </div>
 
           <div className="space-y-1 mb-2">
+            <button
+              onClick={() => {
+                setShowDropdown(false);
+                setShowCustomizer(true);
+              }}
+              className="w-full text-left px-3 py-2 text-sm font-black text-amber-600 dark:text-amber-400 bg-amber-50 dark:bg-amber-950/40 hover:bg-amber-100/80 rounded-lg transition border border-amber-200 dark:border-amber-900/60 flex items-center gap-1.5"
+            >
+              🎨 Tùy Chỉnh Avatar 2.5D
+            </button>
             <Link
               href="/analytics"
               onClick={() => setShowDropdown(false)}
@@ -174,6 +185,13 @@ export default function UserProfile() {
           </button>
         </div>
       )}
+
+      <CharacterCustomizerModal
+        userId={profile.id}
+        userLevel={profile.current_level}
+        isOpen={showCustomizer}
+        onClose={() => setShowCustomizer(false)}
+      />
     </div>
   );
 }

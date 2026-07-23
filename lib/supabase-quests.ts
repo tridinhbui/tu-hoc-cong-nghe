@@ -81,6 +81,10 @@ export async function getDailyQuests(userId: string, dayKey: string): Promise<Qu
     }
   }
 
+  // 5. Fetch study group check-in status today
+  const checkinKey = userId ? `study_group_checkin_${userId}_${dayKey}` : `study_group_checkin_guest_${dayKey}`;
+  const hasCheckedInStudyGroup = typeof window !== "undefined" && Boolean(localStorage.getItem(checkinKey));
+
   return [
     {
       id: "daily_1",
@@ -90,6 +94,15 @@ export async function getDailyQuests(userId: string, dayKey: string): Promise<Qu
       current: Math.min(1, completedTodayCount),
       xpReward: 10,
       claimed: claimedSet.has("daily_1"),
+    },
+    {
+      id: "daily_study_group",
+      title: "Điểm danh Học Nhóm",
+      description: "Vào học nhóm & gửi 1 tin nhắn check-in hôm nay",
+      target: 1,
+      current: hasCheckedInStudyGroup ? 1 : 0,
+      xpReward: 10,
+      claimed: claimedSet.has("daily_study_group"),
     },
     {
       id: "daily_2",

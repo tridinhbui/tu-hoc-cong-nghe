@@ -1,7 +1,8 @@
-"use client";
-
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Sparkles, Shield, Sword } from "lucide-react";
+import Avatar2DCanvas from "@/components/Avatar2DCanvas";
+import { type AvatarConfig } from "@/lib/avatar-customizer-types";
+import { getLocalAvatarConfig } from "@/lib/supabase-avatar";
 
 export interface CharacterEquipments {
   weapon?: string;
@@ -17,6 +18,7 @@ export interface CharacterEquipments {
 interface FinanceCharacterAvatarProps {
   level: number;
   equipments?: CharacterEquipments;
+  avatarConfig?: AvatarConfig;
   size?: "xs" | "sm" | "md" | "lg";
   interactive?: boolean;
 }
@@ -39,8 +41,32 @@ export const ITEM_DESCRIPTIONS: Record<string, { name: string; type: keyof Chara
 export default function FinanceCharacterAvatar({
   level,
   equipments = {},
+  avatarConfig,
   size = "md",
 }: FinanceCharacterAvatarProps) {
+  const [activeConfig, setActiveConfig] = useState<AvatarConfig | undefined>(avatarConfig);
+
+  useEffect(() => {
+    if (avatarConfig) {
+      setActiveConfig(avatarConfig);
+    } else {
+      setActiveConfig(getLocalAvatarConfig());
+    }
+
+    const handleUpdate = (e: Event) => {
+      const detail = (e as CustomEvent<{ config: AvatarConfig }>).detail;
+      if (detail && detail.config) {
+        setActiveConfig(detail.config);
+      }
+    };
+
+    window.addEventListener("thtcdn:avatar-updated", handleUpdate);
+    return () => window.removeEventListener("thtcdn:avatar-updated", handleUpdate);
+  }, [avatarConfig]);
+
+  if (activeConfig) {
+    return <Avatar2DCanvas config={activeConfig} size={size} animated showBackground />;
+  }
   const isExtraSmall = size === "xs";
   const isSmall = size === "sm";
   const isLarge = size === "lg";

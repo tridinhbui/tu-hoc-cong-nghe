@@ -28,7 +28,6 @@ import DashboardRecommendations from "@/components/DashboardRecommendations";
 import MistakeReviewWidget from "@/components/MistakeReviewWidget";
 import LessonRecallWidget from "@/components/LessonRecallWidget";
 import SmartRemediationWidget from "@/components/SmartRemediationWidget";
-import DailyNewsQuizWidget from "@/components/DailyNewsQuizWidget";
 import OnlineUsersWidget from "@/components/OnlineUsersWidget";
 import CareerGoalWidget from "@/components/CareerGoalWidget";
 import ReferralPromptModal from "@/components/ReferralPromptModal";
@@ -851,21 +850,24 @@ export default function DashboardClient({ lessonsMeta }: { lessonsMeta: LessonMe
                           Bấm vào một cấp độ để xem các thành viên đang ở đó
                         </p>
                       </div>
-                      <div className="flex flex-wrap items-center gap-2 text-left sm:text-right self-start sm:self-auto">
-                        <Link
-                          href="/game?building=world-boss"
-                          className="inline-flex items-center gap-1 text-[11px] font-extrabold text-amber-700 bg-white border border-amber-200 px-2.5 py-1 rounded-lg hover:bg-amber-50 transition-colors cursor-pointer"
-                          title="Tiến vào Vương Quốc Game - Săn Boss"
-                        >
-                          ⚔️ Đánh Boss
-                        </Link>
-                        <Link
-                          href="/game?building=pvp"
-                          className="inline-flex items-center gap-1 text-[11px] font-extrabold text-stone-600 bg-stone-50 border border-stone-200 px-2.5 py-1 rounded-lg hover:bg-stone-100 transition-colors cursor-pointer"
-                          title="Tiến vào Vương Quốc Game - Đấu Trường Kiến Thức Solo"
-                        >
-                          🧠 Solo
-                        </Link>
+                      <div className="flex flex-wrap items-center gap-2.5 text-left sm:text-right self-start sm:self-auto">
+                        {user?.id && <DashboardStreakWidget userId={user.id} />}
+                        <div className="flex items-center gap-1.5">
+                          <Link
+                            href="/game?building=world-boss"
+                            className="inline-flex items-center gap-1 text-[11px] font-extrabold text-amber-700 bg-white border border-amber-200 px-2.5 py-1.5 rounded-xl hover:bg-amber-50 transition-colors cursor-pointer shadow-2xs"
+                            title="Tiến vào Vương Quốc Game - Săn Boss"
+                          >
+                            ⚔️ Đánh Boss
+                          </Link>
+                          <Link
+                            href="/game?building=pvp"
+                            className="inline-flex items-center gap-1 text-[11px] font-extrabold text-stone-600 bg-stone-50 border border-stone-200 px-2.5 py-1.5 rounded-xl hover:bg-stone-100 transition-colors cursor-pointer shadow-2xs"
+                            title="Tiến vào Vương Quốc Game - Đấu Trường Kiến Thức Solo"
+                          >
+                            🧠 Solo
+                          </Link>
+                        </div>
                       </div>
                     </div>
 
@@ -1107,69 +1109,7 @@ export default function DashboardClient({ lessonsMeta }: { lessonsMeta: LessonMe
               </div>
             )}
 
-          <div className="mb-3 flex flex-wrap items-center justify-between gap-2.5">
-            <div className="flex items-center gap-3 min-w-0">
-              {user?.id && <DashboardStreakWidget userId={user.id} />}
-              <div className="text-sm text-stone-500 dark:text-stone-400">
-                {flagSelectionMode ? `${selectedFlagLessonIds.size} bài đang được chọn để tự đánh dấu` : ""}
-              </div>
-            </div>
-            <div className="flex items-center gap-2">
-              {flagSelectionMode && (
-                <>
-                  <button
-                    onClick={clearFlagSelection}
-                    className="px-3 py-2 text-sm font-bold rounded-lg border border-stone-200 dark:border-stone-800 text-stone-600 dark:text-stone-400 hover:bg-stone-50 dark:hover:bg-stone-900 transition-colors"
-                  >
-                    Hủy
-                  </button>
-                  <button
-                    onClick={applyManualFlags}
-                    disabled={flagSaving || selectedFlagLessonIds.size === 0}
-                    className="px-3 py-2 text-sm font-bold rounded-lg bg-stone-900 dark:bg-stone-100 text-white dark:text-stone-900 disabled:opacity-50 disabled:cursor-not-allowed"
-                  >
-                    {flagSaving ? "Đang lưu..." : "Xác nhận đánh dấu"}
-                  </button>
-                </>
-              )}
-              <div data-manual-flag-info-root className="relative group">
-                <button
-                  onClick={() => {
-                    if (flagSelectionMode) clearFlagSelection();
-                    else setFlagSelectionMode(true);
-                  }}
-                  className={`px-3 py-2 text-sm font-bold rounded-lg border transition-colors ${
-                    flagSelectionMode
-                      ? "border-sky-300 dark:border-sky-800 bg-sky-50 dark:bg-sky-950/40 text-sky-700 dark:text-sky-300"
-                      : "border-stone-200 dark:border-stone-800 text-stone-600 dark:text-stone-400 hover:bg-stone-50 dark:hover:bg-stone-900"
-                  }`}
-                >
-                  Đánh dấu đã học
-                </button>
-                <button
-                  type="button"
-                  onClick={() => setManualFlagInfoOpen((current) => !current)}
-                  className="ml-2 inline-flex items-center justify-center rounded-full border border-stone-200 px-2 py-1 text-[11px] font-bold text-stone-500 transition-colors hover:bg-stone-50 dark:border-stone-800 dark:text-stone-400 dark:hover:bg-stone-900"
-                  aria-expanded={manualFlagInfoOpen}
-                  aria-label="Giải thích cách đánh dấu đã học"
-                >
-                  ?
-                </button>
-                <div className={`absolute right-0 top-full z-20 mt-2 w-80 max-w-[90vw] rounded-xl border border-stone-200 dark:border-stone-800 bg-white dark:bg-stone-900 px-4 py-3 text-sm text-stone-700 dark:text-stone-300 leading-relaxed shadow-xl origin-top-right transition-all duration-150 space-y-2 ${
-                  manualFlagInfoOpen ? "opacity-100 scale-100 pointer-events-auto" : "pointer-events-none opacity-0 scale-95 group-hover:opacity-100 group-hover:scale-100"
-                }`}>
-                  <p>
-                    Cuộn hết 100% nội dung bài <strong>và</strong> làm xong hết quiz - gồm cả câu hỏi giữa bài (nếu có) lẫn phần &quot;Kiểm tra nhanh&quot; (bài không có quiz thì cuộn hết là tính) → bài chuyển{" "}
-                    <span className="font-semibold text-emerald-600 dark:text-emerald-400">xanh lá</span> và được cộng XP. Thiếu 1 trong các điều kiện trên thì chưa tính hoàn thành.
-                  </p>
-                  <p>
-                    Chỉ bấm &quot;Tự đánh dấu&quot; vì tự biết mình đã học rồi → bài chuyển{" "}
-                    <span className="font-semibold text-sky-600 dark:text-sky-400">xanh dương</span> để ghi nhớ tiến độ, nhưng không được cộng XP.
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
+
           {/* Track selector - Compact. All 3 cards use h-full + flex-col
               justify-between so they land on the same height regardless of
               how many content lines each one has (personal/CFA got a fun
@@ -1363,24 +1303,91 @@ export default function DashboardClient({ lessonsMeta }: { lessonsMeta: LessonMe
             <FinancialGuildWidget userId={user?.id || ""} />
           ) : (
           <>
-          {/* ── Search ── */}
-          <div className="relative mt-8">
-            <Search className="w-5 h-5 text-stone-400 absolute left-4 top-1/2 -translate-y-1/2 pointer-events-none" />
-            <input
-              value={stageSearchQuery}
-              onChange={(e) => setStageSearchQuery(e.target.value)}
-              placeholder="Tìm bài học trong lộ trình này..."
-              className="w-full pl-12 pr-4 py-3.5 rounded-xl border-2 border-stone-200 dark:border-stone-800 bg-white dark:bg-stone-900 text-base font-medium text-stone-900 dark:text-stone-100 placeholder:text-stone-400 focus:outline-none focus:border-stone-400 dark:focus:border-stone-600 transition-colors"
-            />
-            {stageSearchQuery && (
-              <button
-                onClick={() => setStageSearchQuery("")}
-                className="absolute right-4 top-1/2 -translate-y-1/2 text-stone-400 hover:text-stone-700 dark:hover:text-stone-200 cursor-pointer"
-                title="Xoá tìm kiếm"
-              >
-                <X className="w-4 h-4" />
-              </button>
-            )}
+          {/* ── Search Bar (Compact Left) + Flag Mode Controls (Right) ── */}
+          <div className="mt-8 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+            {/* Left: Compact Search Input */}
+            <div className="relative flex-1 max-w-md">
+              <Search className="w-4 h-4 text-stone-400 absolute left-3.5 top-1/2 -translate-y-1/2 pointer-events-none" />
+              <input
+                value={stageSearchQuery}
+                onChange={(e) => setStageSearchQuery(e.target.value)}
+                placeholder="Tìm bài học trong lộ trình này..."
+                className="w-full pl-10 pr-9 py-2.5 rounded-2xl border border-stone-200 dark:border-stone-800 bg-white dark:bg-stone-900 text-sm font-medium text-stone-900 dark:text-stone-100 placeholder:text-stone-400 focus:outline-none focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500 transition-all shadow-2xs"
+              />
+              {stageSearchQuery && (
+                <button
+                  onClick={() => setStageSearchQuery("")}
+                  className="absolute right-3 top-1/2 -translate-y-1/2 text-stone-400 hover:text-stone-700 dark:hover:text-stone-200 cursor-pointer"
+                  title="Xoá tìm kiếm"
+                >
+                  <X className="w-4 h-4" />
+                </button>
+              )}
+            </div>
+
+            {/* Right: Flag Mode Controls */}
+            <div className="flex items-center gap-2 shrink-0 self-end sm:self-auto">
+              {flagSelectionMode && (
+                <>
+                  <span className="text-xs font-bold text-sky-600 dark:text-sky-400 hidden lg:inline">
+                    {selectedFlagLessonIds.size} bài chọn
+                  </span>
+                  <button
+                    onClick={clearFlagSelection}
+                    className="px-3 py-2 text-xs font-bold rounded-xl border border-stone-200 dark:border-stone-800 text-stone-600 dark:text-stone-400 hover:bg-stone-50 dark:hover:bg-stone-900 transition-colors cursor-pointer"
+                  >
+                    Hủy
+                  </button>
+                  <button
+                    onClick={applyManualFlags}
+                    disabled={flagSaving || selectedFlagLessonIds.size === 0}
+                    className="px-3 py-2 text-xs font-bold rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white disabled:opacity-50 disabled:cursor-not-allowed transition-colors cursor-pointer shadow-xs"
+                  >
+                    {flagSaving ? "Đang lưu..." : "Xác nhận đánh dấu"}
+                  </button>
+                </>
+              )}
+
+              <div data-manual-flag-info-root className="relative group">
+                <button
+                  onClick={() => {
+                    if (flagSelectionMode) clearFlagSelection();
+                    else setFlagSelectionMode(true);
+                  }}
+                  className={`px-3.5 py-2 text-xs font-bold rounded-xl border transition-colors cursor-pointer shadow-2xs flex items-center gap-1.5 ${
+                    flagSelectionMode
+                      ? "border-sky-300 dark:border-sky-800 bg-sky-50 dark:bg-sky-950/40 text-sky-700 dark:text-sky-300"
+                      : "border-stone-200 dark:border-stone-800 bg-white dark:bg-stone-900 text-stone-700 dark:text-stone-300 hover:bg-stone-50 dark:hover:bg-stone-800"
+                  }`}
+                >
+                  <span>Đánh dấu đã học</span>
+                  <span
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      setManualFlagInfoOpen((current) => !current);
+                    }}
+                    className="inline-flex items-center justify-center rounded-full border border-stone-300 dark:border-stone-700 w-4 h-4 text-[10px] font-black text-stone-500 transition-colors hover:bg-stone-100 dark:text-stone-400"
+                    aria-expanded={manualFlagInfoOpen}
+                    aria-label="Giải thích cách đánh dấu đã học"
+                  >
+                    ?
+                  </span>
+                </button>
+
+                <div className={`absolute right-0 top-full z-30 mt-2 w-80 max-w-[90vw] rounded-2xl border border-stone-200 dark:border-stone-800 bg-white dark:bg-stone-900 p-4 text-xs text-stone-700 dark:text-stone-300 leading-relaxed shadow-xl origin-top-right transition-all duration-150 space-y-2 ${
+                  manualFlagInfoOpen ? "opacity-100 scale-100 pointer-events-auto" : "pointer-events-none opacity-0 scale-95 group-hover:opacity-100 group-hover:scale-100"
+                }`}>
+                  <p>
+                    Cuộn hết 100% nội dung bài <strong>và</strong> làm xong hết quiz → bài chuyển{" "}
+                    <span className="font-semibold text-emerald-600 dark:text-emerald-400">xanh lá</span> và được cộng XP.
+                  </p>
+                  <p>
+                    Chỉ bấm &quot;Tự đánh dấu&quot; vì tự biết mình đã học rồi → bài chuyển{" "}
+                    <span className="font-semibold text-sky-600 dark:text-sky-400">xanh dương</span> để ghi nhớ tiến độ, nhưng không cộng XP.
+                  </p>
+                </div>
+              </div>
+            </div>
           </div>
 
           {/* ── Stages + lessons ── */}
@@ -1931,9 +1938,6 @@ export default function DashboardClient({ lessonsMeta }: { lessonsMeta: LessonMe
             )}
             {user?.id && (
               <DashboardRecommendations lessonsMeta={lessonsMeta} completed={completed} userId={user.id} />
-            )}
-            {user?.id && (
-              <DailyNewsQuizWidget userId={user.id} compact />
             )}
             <CareerGoalWidget userId={user?.id} />
           </div>

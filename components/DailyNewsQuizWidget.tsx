@@ -179,6 +179,9 @@ export default function DailyNewsQuizWidget({ userId, compact = false }: DailyNe
     if (typeof window !== "undefined") {
       window.localStorage.setItem(localAnsweredKey, correct ? "correct" : "incorrect");
       window.localStorage.setItem(`${localAnsweredKey}_opt`, String(selectedOpt));
+      
+      // Dispatch custom event so AppNavbar warning badge disappears immediately
+      window.dispatchEvent(new CustomEvent("thtcdn:daily-news-quiz-answered", { detail: { date: todayKey, userId } }));
     }
 
     if (correct) {

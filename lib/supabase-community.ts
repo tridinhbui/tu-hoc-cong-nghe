@@ -59,17 +59,13 @@ export async function getCommunityFeed(beforeId?: number, limit = 20): Promise<C
 
 const MANUAL_POST_COOLDOWN_MINUTES = 60;
 
-export async function createManualPost(userId: string, content: string): Promise<void> {
+export async function createManualPost(userId: string, content: string, imageUrl?: string): Promise<void> {
   const trimmed = content.trim();
-  if (!trimmed) throw new Error("Nội dung không được để trống.");
+  if (!trimmed && !imageUrl) throw new Error("Bài viết phải có nội dung hoặc hình ảnh.");
   if (trimmed.length > 500) throw new Error("Nội dung tối đa 500 ký tự.");
 
   const supabase = createClient();
 
-  // Simple client-enforced rate limit (best-effort, not a hard security
-  // boundary) to keep the feed from being spammed - mirrors the cooldown
-  // pattern already used for reminder emails, just per-user/short-lived
-  // instead of server-tracked, since a public feed post is low-stakes.
   const cutoff = new Date(Date.now() - MANUAL_POST_COOLDOWN_MINUTES * 60 * 1000).toISOString();
   const { count } = await supabase
     .from("community_posts")
@@ -82,11 +78,16 @@ export async function createManualPost(userId: string, content: string): Promise
     throw new Error(`Bạn chỉ có thể đăng tối đa 1 bài mỗi ${MANUAL_POST_COOLDOWN_MINUTES} phút.`);
   }
 
-  const { error } = await supabase.from("community_posts").insert({
+  const payload: Record<string, unknown> = {
     user_id: userId,
     kind: "manual",
     content: trimmed,
-  });
+  };
+  if (imageUrl) {
+    payload.metadata = { image_url: imageUrl };
+  }
+
+  const { error } = await supabase.from("community_posts").insert(payload);
 
   if (error) {
     if (isMissingTableError(error)) return;

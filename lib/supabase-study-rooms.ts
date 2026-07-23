@@ -142,6 +142,14 @@ export async function sendRoomMessage(
     .single();
 
   if (error) throw handleSupabaseError(error);
+
+  if (typeof window !== "undefined") {
+    const todayKey = new Date().toISOString().split("T")[0];
+    const checkinKey = `study_group_checkin_${senderId}_${todayKey}`;
+    localStorage.setItem(checkinKey, "true");
+    window.dispatchEvent(new CustomEvent("thtcdn:study-group-checkin", { detail: { senderId, dayKey: todayKey } }));
+  }
+
   return data as StudyRoomMessage;
 }
 

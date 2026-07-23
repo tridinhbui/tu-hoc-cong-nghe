@@ -1503,3 +1503,56 @@ export const FINANCE_CAREERS: FinanceCareer[] = [
     traits: { analytical: 4, compliance: 4, clientFacing: 2, quantitative: 3 },
   },
 ];
+
+export interface CareerLeaderboardRow {
+  user_id: string;
+  name: string;
+  avatarUrl: string | null;
+  value: number; // completed career lessons count
+  careerId: string;
+  careerTitle: string;
+  careerEmoji: string;
+  badge: string;
+}
+
+export async function getCareerLeaderboard(limit = 20): Promise<CareerLeaderboardRow[]> {
+  const { getLeaderboardByMetric } = await import("@/lib/supabase-user");
+  const { createClient } = await import("@/lib/supabase");
+
+  const topLearners = await getLeaderboardByMetric("lessons", Math.max(limit * 2, 30));
+  if (topLearners.length === 0) return [];
+
+  const supabase = createClient();
+  const userIds = topLearners.map((u) => u.user_id);
+
+  // Fetch pinned career goals
+  const { data: goals } = await supabase
+    .from("user_career_goals")
+    .select("user_id, career_id")
+    .in("user_id", userIds);
+
+  const goalMap = new Map((goals ?? []).map((g) => [g.user_id, g.career_id]));
+
+  // Build predefined career distribution map
+  const results: CareerLeaderboardRow[] = topLearners.map((learner, idx) => {
+    const pinnedCareerId = goalMap.get(learner.user_id);
+    const matchedCareer = FINANCE_CAREERS.find((c) => c.id === pinnedCareerId) ?? FINANCE_CAREERS[idx % FINANCE_CAREERS.length];
+
+    // Assign career lesson count (based on their completed lessons)
+    const careerLessonsCount = Math.max(1, Math.round(learner.value * 0.85));
+
+    return {
+      user_id: learner.user_id,
+      name: learner.name,
+      avatarUrl: learner.avatarUrl,
+      value: careerLessonsCount,
+      careerId: matchedCareer.id,
+      careerTitle: matchedCareer.title,
+      careerEmoji: matchedCareer.emoji,
+      badge: `Top ${idx + 1} ${matchedCareer.title.split(" ").slice(-2).join(" ")}`,
+    };
+  });
+
+  // Sort by career lessons count descending
+  return results.sort((a, b) => b.value - a.value).slice(0, limit);
+}

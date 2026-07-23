@@ -3,12 +3,13 @@
 import { useEffect, useMemo, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { Trophy, BookOpen, Sparkles } from "lucide-react";
+import { Trophy, BookOpen, Sparkles, Crown, Medal, Award, Flame, Target, Gamepad2, Star, ShieldCheck, Zap, Shield, Gem, Briefcase } from "lucide-react";
 import { getLeaderboardByMetric, getMyLeaderboardRank, type LeaderboardMetric, type LeaderboardRow } from "@/lib/supabase-user";
 import { getCombinedGameLeaderboard } from "@/lib/games";
+import { getCareerLeaderboard, type CareerLeaderboardRow } from "@/lib/finance-careers";
 import { isValidAvatar } from "@/lib/avatar-utils";
 
-function LeaderboardAvatar({ name, avatarUrl, size = 24 }: { name: string; avatarUrl: string | null; size?: number }) {
+function LeaderboardAvatar({ name, avatarUrl, size = 36 }: { name: string; avatarUrl: string | null; size?: number }) {
   if (isValidAvatar(avatarUrl)) {
     return (
       <Image
@@ -16,7 +17,7 @@ function LeaderboardAvatar({ name, avatarUrl, size = 24 }: { name: string; avata
         alt={name}
         width={size}
         height={size}
-        className="rounded-full object-cover"
+        className="rounded-full object-cover shadow-inner"
         style={{ width: size, height: size }}
       />
     );
@@ -25,51 +26,161 @@ function LeaderboardAvatar({ name, avatarUrl, size = 24 }: { name: string; avata
   const initials = name.trim().split(" ").map((n) => n.charAt(0)).join("").slice(0, 2).toUpperCase() || "?";
   return (
     <div
-      className="flex items-center justify-center rounded-full bg-stone-200 font-extrabold text-stone-600 shadow-inner"
-      style={{ width: size, height: size, fontSize: `${Math.max(10, size * 0.3)}px` }}
+      className="flex items-center justify-center rounded-full bg-gradient-to-br from-stone-100 to-stone-300 font-extrabold text-stone-700 shadow-inner"
+      style={{ width: size, height: size, fontSize: `${Math.max(10, size * 0.32)}px` }}
     >
       {initials}
     </div>
   );
 }
 
-const TABS: { metric: LeaderboardMetric | "game"; label: string; format: (v: number) => string }[] = [
-  { metric: "xp", label: "XP", format: (v) => `${v} XP` },
-  { metric: "lessons", label: "Số bài", format: (v) => `${v} bài` },
-  { metric: "avg_score", label: "Điểm TB", format: (v) => `${Math.round(v)}%` },
-  { metric: "streak", label: "Chuỗi ngày", format: (v) => `${v} ngày` },
-  { metric: "game", label: "Game thủ", format: (v) => `${v} XP` },
+// Prominent Avatar Frame Wrapper with Floating Crown & Metallic Rings
+function AvatarWithFrame({ rank, name, avatarUrl, size = 44 }: { rank: number; name: string; avatarUrl: string | null; size?: number }) {
+  if (rank === 1) {
+    return (
+      <div className="relative inline-flex items-center justify-center pt-3.5">
+        {/* Golden outer aura glow */}
+        <div className="absolute -inset-3 animate-pulse rounded-full bg-gradient-to-r from-amber-400 via-yellow-300 to-amber-500 opacity-80 blur-md" />
+        
+        {/* Metallic Gold Ring with Laurel Border */}
+        <div className="relative rounded-full p-[4px] bg-gradient-to-tr from-amber-600 via-yellow-300 via-amber-400 to-yellow-100 shadow-[0_0_20px_rgba(245,158,11,0.6)]">
+          <div className="rounded-full bg-white p-[2px] shadow-inner">
+            <LeaderboardAvatar name={name} avatarUrl={avatarUrl} size={size} />
+          </div>
+        </div>
+
+        {/* 👑 Prominent Floating Gold Crown */}
+        <div className="absolute -top-3.5 left-1/2 -translate-x-1/2 flex items-center justify-center rounded-full bg-gradient-to-r from-amber-500 via-yellow-400 to-amber-600 px-2 py-1 text-amber-950 shadow-lg ring-2 ring-white">
+          <Crown className="h-4 w-4 fill-amber-300 text-amber-950 animate-bounce" />
+        </div>
+
+        {/* Golden Star Particle */}
+        <div className="absolute -bottom-1 -right-1 flex h-5 w-5 items-center justify-center rounded-full bg-amber-400 text-amber-950 shadow ring-2 ring-white font-black text-[9px]">
+          ★
+        </div>
+      </div>
+    );
+  }
+
+  if (rank === 2) {
+    return (
+      <div className="relative inline-flex items-center justify-center pt-1.5">
+        {/* Silver outer glow */}
+        <div className="absolute -inset-2.5 rounded-full bg-gradient-to-r from-slate-300 via-slate-100 to-slate-400 opacity-70 blur-md" />
+
+        {/* Metallic Silver Ring */}
+        <div className="relative rounded-full p-[3.5px] bg-gradient-to-tr from-slate-400 via-slate-100 via-slate-200 to-slate-400 shadow-[0_0_15px_rgba(148,163,184,0.5)]">
+          <div className="rounded-full bg-white p-[2px]">
+            <LeaderboardAvatar name={name} avatarUrl={avatarUrl} size={size} />
+          </div>
+        </div>
+
+        {/* Floating Silver Medal Crown */}
+        <div className="absolute -top-2.5 left-1/2 -translate-x-1/2 flex items-center justify-center rounded-full bg-gradient-to-r from-slate-400 via-slate-200 to-slate-500 px-1.5 py-0.5 text-slate-900 shadow ring-2 ring-white">
+          <Medal className="h-3.5 w-3.5 text-slate-900" />
+        </div>
+      </div>
+    );
+  }
+
+  if (rank === 3) {
+    return (
+      <div className="relative inline-flex items-center justify-center pt-1.5">
+        {/* Bronze outer glow */}
+        <div className="absolute -inset-2.5 rounded-full bg-gradient-to-r from-amber-700 via-orange-400 to-amber-800 opacity-60 blur-md" />
+
+        {/* Metallic Bronze Ring */}
+        <div className="relative rounded-full p-[3.5px] bg-gradient-to-tr from-amber-800 via-orange-300 via-amber-500 to-amber-700 shadow-[0_0_12px_rgba(180,83,9,0.45)]">
+          <div className="rounded-full bg-white p-[2px]">
+            <LeaderboardAvatar name={name} avatarUrl={avatarUrl} size={size} />
+          </div>
+        </div>
+
+        {/* Floating Bronze Shield Badge */}
+        <div className="absolute -top-2.5 left-1/2 -translate-x-1/2 flex items-center justify-center rounded-full bg-gradient-to-r from-amber-700 via-amber-500 to-orange-700 px-1.5 py-0.5 text-amber-100 shadow ring-2 ring-white">
+          <Award className="h-3.5 w-3.5 text-amber-100" />
+        </div>
+      </div>
+    );
+  }
+
+  if (rank <= 5) {
+    return (
+      <div className="relative inline-flex items-center justify-center pt-1">
+        <div className="relative rounded-full p-[3px] bg-gradient-to-tr from-violet-500 via-purple-300 to-indigo-500 shadow-md">
+          <div className="rounded-full bg-white p-[1.5px]">
+            <LeaderboardAvatar name={name} avatarUrl={avatarUrl} size={size} />
+          </div>
+        </div>
+
+        <div className="absolute -top-2 left-1/2 -translate-x-1/2 flex items-center justify-center rounded-full bg-violet-600 p-0.5 text-white shadow ring-1 ring-white">
+          <Gem className="h-3 w-3 text-violet-100" />
+        </div>
+      </div>
+    );
+  }
+
+  // Next Positions (#6+) Avatar Frame
+  return (
+    <div className="relative inline-flex items-center justify-center">
+      <div className="rounded-full p-[2px] bg-gradient-to-tr from-amber-300 via-stone-200 to-amber-200 shadow-xs">
+        <div className="rounded-full bg-white p-[1px]">
+          <LeaderboardAvatar name={name} avatarUrl={avatarUrl} size={size} />
+        </div>
+      </div>
+    </div>
+  );
+}
+
+const TABS: { metric: LeaderboardMetric | "game"; label: string; icon: any; format: (v: number) => string }[] = [
+  { metric: "xp", label: "XP", icon: Zap, format: (v) => `${v} XP` },
+  { metric: "lessons", label: "Số bài", icon: BookOpen, format: (v) => `${v} bài` },
+  { metric: "avg_score", label: "Điểm TB", icon: Target, format: (v) => `${Math.round(v)}%` },
+  { metric: "streak", label: "Chuỗi ngày", icon: Flame, format: (v) => `${v} ngày` },
+  { metric: "game", label: "Game thủ", icon: Gamepad2, format: (v) => `${v} XP` },
 ];
 
-const LEADERBOARD_TITLES: Record<LeaderboardMetric | "game", Record<number, string>> = {
+const LEADERBOARD_TITLES: Record<LeaderboardMetric | "game" | "career", Record<number, string>> = {
   xp: { 1: "Bậc thầy tài chính", 2: "Chuyên gia đầu tư", 3: "Nhà đầu tư tài năng", 4: "Kiện tướng tích lũy", 5: "Thợ săn XP" },
   lessons: { 1: "Vua sách giáo khoa", 2: "Thủ kho tri thức", 3: "Máy học không ngừng", 4: "Mọt sách chính hiệu", 5: "Người đọc thông thái" },
   avg_score: { 1: "Thần chính xác", 2: "Đại sư câu hỏi", 3: "Bậc thầy câu hỏi", 4: "Chiến thần IQ", 5: "Kẻ hủy diệt đáp án" },
   streak: { 1: "Huyền thoại chuỗi ngày", 2: "Lửa không tắt", 3: "Kiên trì vàng", 4: "Ngọn lửa đam mê", 5: "Học đều mỗi ngày" },
   badges: { 1: "Bộ sưu tập huy hiệu", 2: "Thợ săn huy hiệu", 3: "Người mở khóa", 4: "Nhà sưu tầm vĩ đại", 5: "Danh hiệu đầy mình" },
   game: { 1: "Huyền thoại trò chơi", 2: "Đại kiện tướng tài chính", 3: "Cao thủ toàn năng", 4: "Thần bài tài chính", 5: "Kỷ lục gia trò chơi" },
+  career: { 1: "Huyền thoại sự nghiệp", 2: "Lãnh đạo tương lai", 3: "Chuyên gia lộ trình", 4: "Kiến trúc sư sự nghiệp", 5: "Tiên phong ngành" },
 };
 
 const PODIUM_ORDER = [3, 1, 0, 2, 4];
 
-function getLeaderboardTitle(metric: LeaderboardMetric | "game", rank: number): string | null {
+function getLeaderboardTitle(metric: LeaderboardMetric | "game" | "career", rank: number): string | null {
   return LEADERBOARD_TITLES[metric]?.[rank] ?? null;
 }
 
-function getLeaderboardHonor(metric: LeaderboardMetric | "game", rank: number) {
+function getLeaderboardHonor(metric: LeaderboardMetric | "game" | "career", rank: number) {
   const title = getLeaderboardTitle(metric, rank);
-  const defaults = {
-    badge: "Ngôi sao nổi bật",
-    nickname: "Người chơi đáng chú ý",
-  };
 
-  const byMetric: Record<LeaderboardMetric | "game", Record<number, { badge: string; nickname: string }>> = {
+  const byMetric: Record<LeaderboardMetric | "game" | "career", Record<number, { badge: string; nickname: string }>> = {
     xp: {
       1: { badge: "Vương miện XP", nickname: "Hiền giả Phố Wall" },
       2: { badge: "Huy chương bạc", nickname: "Chiến lược gia vốn" },
       3: { badge: "Huy chương đồng", nickname: "Người leo đỉnh thị trường" },
       4: { badge: "Top 4", nickname: "Người tạo đà" },
       5: { badge: "Top 5", nickname: "Danh mục thăng hạng" },
+      6: { badge: "Top 6 Cao Cấp", nickname: "💼 Chuyên Viên Đầu Tư" },
+      7: { badge: "Top 7 Đột Phá", nickname: "📊 Bậc Thầy Phân Tích" },
+      8: { badge: "Top 8 Tiềm Năng", nickname: "🏛️ Chiến Binh Phố Wall" },
+      9: { badge: "Top 9 Thợ Săn", nickname: "💎 Thợ Săn Cổ Phiếu" },
+      10: { badge: "Top 10 Danh Giá", nickname: "📈 Chuyên Gia Tài Chính" },
+      11: { badge: "Top 11 Sút Tố", nickname: "🚀 Sói Biển Đầu Tư" },
+      12: { badge: "Top 12 Bản Lĩnh", nickname: "🏆 Huyền Thoại Tích Lũy" },
+      13: { badge: "Top 13 Kiên Cường", nickname: "🎯 Tay Đua Kiến Thức" },
+      14: { badge: "Top 14 Bền Vững", nickname: "🛡️ Hiệp Sĩ An Toàn" },
+      15: { badge: "Top 15 Thần Tốc", nickname: "⚡ Thần Tốc Học Tập" },
+      16: { badge: "Top 16 Tiên Tri", nickname: "🔮 Tiên Tri Thị Trường" },
+      17: { badge: "Top 17 Quản Lý", nickname: "💼 Nhà Quản Lý Quỹ" },
+      18: { badge: "Top 18 Triển Vọng", nickname: "🎓 Thạc Sĩ Tài Chính" },
+      19: { badge: "Top 19 Nỗ Lực", nickname: "🛡️ Bậc Thầy Rủi Rủi" },
+      20: { badge: "Top 20 Vinh Danh", nickname: "🌟 Ngôi Sao Triển Vọng" },
     },
     lessons: {
       1: { badge: "Vương miện bài học", nickname: "Vua bài học" },
@@ -77,6 +188,21 @@ function getLeaderboardHonor(metric: LeaderboardMetric | "game", rank: number) {
       3: { badge: "Huy chương đồng", nickname: "Máy học bền bỉ" },
       4: { badge: "Top 4", nickname: "Người chạy trang" },
       5: { badge: "Top 5", nickname: "Độc giả tập trung" },
+      6: { badge: "Top 6 Mọt Sách", nickname: "📚 Học Giả Cần Mẫn" },
+      7: { badge: "Top 7 Đột Phá", nickname: "📖 Thủ Kho Giáo Trình" },
+      8: { badge: "Top 8 Siêu Cấp", nickname: "💡 Bậc Thầy Nhận Thức" },
+      9: { badge: "Top 9 Tích Lũy", nickname: "🎓 Học Viên Siêu Cấp" },
+      10: { badge: "Top 10 Uy Tín", nickname: "🌟 Tiên Phong Học Tập" },
+      11: { badge: "Top 11 Đam Mê", nickname: "✍️ Tay Viết Ghi Chú" },
+      12: { badge: "Top 12 Nhẫn Nại", nickname: "🏆 Chiến Binh Đọc Sách" },
+      13: { badge: "Top 13 Bền Bỉ", nickname: "🔎 Kẻ Tìm Tòi Tri Thức" },
+      14: { badge: "Top 14 Tinh Anh", nickname: "🧠 Bộ Ốc Tài Chính" },
+      15: { badge: "Top 15 Tích Cực", nickname: "⚡ Học Viên Năng Lượng" },
+      16: { badge: "Top 16 Uy Nghiêm", nickname: "📕 Đội Trưởng Kiến Thức" },
+      17: { badge: "Top 17 Vững Vàng", nickname: "💼 Chuyên Viên Nghiên Cứu" },
+      18: { badge: "Top 18 Siêu Tốc", nickname: "🚀 Tên Lửa Tri Thức" },
+      19: { badge: "Top 19 Chăm Chỉ", nickname: "🌟 Tinh Tú Tích Lũy" },
+      20: { badge: "Top 20 Vinh Dự", nickname: "🎖️ Học Viên Tiêu Biểu" },
     },
     avg_score: {
       1: { badge: "Vương miện câu hỏi", nickname: "Nhà tiên tri đáp án" },
@@ -84,6 +210,21 @@ function getLeaderboardHonor(metric: LeaderboardMetric | "game", rank: number) {
       3: { badge: "Huy chương đồng", nickname: "Người giải sắc bén" },
       4: { badge: "Top 4", nickname: "Người đọc tín hiệu" },
       5: { badge: "Top 5", nickname: "Thợ săn đáp án" },
+      6: { badge: "Top 6 Chuẩn Xác", nickname: "🎯 Xạ Thủ Quiz" },
+      7: { badge: "Top 7 Sắc Báo", nickname: "🔍 Thấu Thị Đáp Án" },
+      8: { badge: "Top 8 Thông Thái", nickname: "🧠 Thần Đồng Logic" },
+      9: { badge: "Top 9 Đỉnh Cao", nickname: "💎 Bậc Thầy Trắc Nghiệm" },
+      10: { badge: "Top 10 Tuyệt Đối", nickname: "🏆 Kỷ Lục Gia Quiz" },
+      11: { badge: "Top 11 Uy Tín", nickname: "⚡ Phản Xạ Thần Tốc" },
+      12: { badge: "Top 12 Bản Lĩnh", nickname: "🔮 Tiên Tri Đúng 100%" },
+      13: { badge: "Top 13 Vững Vàng", nickname: "🛡️ Khiên Thần Không Sai" },
+      14: { badge: "Top 14 Sáng Tạo", nickname: "💡 Bậc Thầy Phân Tích" },
+      15: { badge: "Top 15 Tinh Anh", nickname: "🎓 Thầy Quiz Phố Wall" },
+      16: { badge: "Top 16 Thần Tốc", nickname: "🚀 Tên Lửa Đáp Án" },
+      17: { badge: "Top 17 Kiên Cường", nickname: "⭐ Ngôi Sao Trắc Nghiệm" },
+      18: { badge: "Top 18 Nhạy Báo", nickname: "🔍 Cảm Nhận Đáp Án" },
+      19: { badge: "Top 19 Sắc Thảo", nickname: "🎯 Bậc Thầy Điểm Tuyệt Đối" },
+      20: { badge: "Top 20 Vinh Danh", nickname: "🎖️ Kiện Tướng Trắc Nghiệm" },
     },
     streak: {
       1: { badge: "Vương miện chuỗi ngày", nickname: "Người khổng lồ bền bỉ" },
@@ -91,6 +232,21 @@ function getLeaderboardHonor(metric: LeaderboardMetric | "game", rank: number) {
       3: { badge: "Huy chương đồng", nickname: "Chiến binh mỗi ngày" },
       4: { badge: "Top 4", nickname: "Người xây nếp học" },
       5: { badge: "Top 5", nickname: "Người rèn thói quen" },
+      6: { badge: "Top 6 Bền Bỉ", nickname: "🔥 Ngọn Lửa Bất Diệt" },
+      7: { badge: "Top 7 Kiên Trì", nickname: "⚡ Chuỗi Ngày Thần Tốc" },
+      8: { badge: "Top 8 Kỷ Luật", nickname: "🛡️ Kỷ Luật Thép" },
+      9: { badge: "Top 9 Tự Giác", nickname: "🏆 Hiệp Sĩ Mỗi Ngày" },
+      10: { badge: "Top 10 Đẳng Cấp", nickname: "🌟 Chiến Thần Học Đều" },
+      11: { badge: "Top 11 Nỗ Lực", nickname: "💪 Bền Bỉ Không Ngừng" },
+      12: { badge: "Top 12 Dũng Cảm", nickname: "🚀 Tên Lửa Thói Quen" },
+      13: { badge: "Top 13 Đam Mê", nickname: "🔥 Trái Tim Nhiệt Huyết" },
+      14: { badge: "Top 14 Vững Bước", nickname: "🎯 Bậc Thầy Tự Học" },
+      15: { badge: "Top 15 Trung Thành", nickname: "🎓 Học Viên Chăm Chút" },
+      16: { badge: "Top 16 Tiên Phong", nickname: "⭐ Ngôi Sao Kiên Trì" },
+      17: { badge: "Top 17 Vượt Khó", nickname: "🛡️ Bậc Thầy Thói Quen" },
+      18: { badge: "Top 18 Bền Vững", nickname: "🔮 Ngọn Đuốc Tri Thức" },
+      19: { badge: "Top 19 Năng Lượng", nickname: "⚡ Năng Lượng Đỉnh Cao" },
+      20: { badge: "Top 20 Vinh Danh", nickname: "🎖️ Tinh Anh Mỗi Ngày" },
     },
     badges: {
       1: { badge: "Vương miện huy hiệu", nickname: "Hoàng đế huy hiệu" },
@@ -98,6 +254,21 @@ function getLeaderboardHonor(metric: LeaderboardMetric | "game", rank: number) {
       3: { badge: "Huy chương đồng", nickname: "Thợ săn thành tựu" },
       4: { badge: "Top 4", nickname: "Nhà sưu tầm danh xưng" },
       5: { badge: "Top 5", nickname: "Người tìm vinh danh" },
+      6: { badge: "Top 6 Sưu Tầm", nickname: "💎 Đại Sưu Tập Huy Hiệu" },
+      7: { badge: "Top 7 Đột Phá", nickname: "🏆 Thợ Săn Huy Chương" },
+      8: { badge: "Top 8 Tinh Anh", nickname: "🌟 Bậc Thầy Thành Tựu" },
+      9: { badge: "Top 9 Uy Tín", nickname: "🛡️ Thủ Kho Huy Hiệu" },
+      10: { badge: "Top 10 Đẳng Cấp", nickname: "🎓 Chuyên Gia Mở Khóa" },
+      11: { badge: "Top 11 Đam Mê", nickname: "⚡ Thần Tốc Sưu Tầm" },
+      12: { badge: "Top 12 Bản Lĩnh", nickname: "🚀 Tên Lửa Thành Tựu" },
+      13: { badge: "Top 13 Vững Vàng", nickname: "🎯 Sạ Thủ Danh Hiệu" },
+      14: { badge: "Top 14 Tích Cực", nickname: "🔥 Ngọn Lửa Vinh Danh" },
+      15: { badge: "Top 15 Khám Phá", nickname: "🔮 Kẻ Mở Khóa Bí Ẩn" },
+      16: { badge: "Top 16 Uy Nghiêm", nickname: "💼 Nhà Quản Lý Huy Chương" },
+      17: { badge: "Top 17 Nỗ Lực", nickname: "⭐ Ngôi Sao Sưu Tầm" },
+      18: { badge: "Top 18 Bền Vững", nickname: "🛡️ Hiệp Sĩ Thành Tựu" },
+      19: { badge: "Top 19 Tiềm Năng", nickname: "⚡ Tinh Anh Mở Khóa" },
+      20: { badge: "Top 20 Vinh Danh", nickname: "🎖️ Danh Hiệu Hoàng Gia" },
     },
     game: {
       1: { badge: "Vương miện trò chơi", nickname: "Huyền thoại vương quốc" },
@@ -105,66 +276,149 @@ function getLeaderboardHonor(metric: LeaderboardMetric | "game", rank: number) {
       3: { badge: "Huy chương đồng", nickname: "Bậc thầy đấu trường" },
       4: { badge: "Top 4", nickname: "Người phá nhiệm vụ" },
       5: { badge: "Top 5", nickname: "Kỵ sĩ XP" },
+      6: { badge: "Top 6 Cao Thủ", nickname: "🎮 Kỷ Lục Gia BCTC" },
+      7: { badge: "Top 7 Bản Lĩnh", nickname: "⚡ Thần Tốc Nối Từ" },
+      8: { badge: "Top 8 Siêu Cấp", nickname: "🏛️ Trùm Sàn NYSE" },
+      9: { badge: "Top 9 Chiến Thần", nickname: "🐂 Sát Thủ Bò Tót" },
+      10: { badge: "Top 10 Đẳng Cấp", nickname: "🏆 Chiến Thần PvP 1v1" },
+      11: { badge: "Top 11 Đột Phá", nickname: "🎯 Bậc Thầy Bán Khống" },
+      12: { badge: "Top 12 Thần Tốc", nickname: "🚀 Tay Đua Nến Nhật" },
+      13: { badge: "Top 13 Tinh Anh", nickname: "💼 Sói Bất Động Sản" },
+      14: { badge: "Top 14 Phản Xạ", nickname: "⚡ Bậc Thầy Algo" },
+      15: { badge: "Top 15 Thợ Săn", nickname: "💎 Thợ Săn Thẻ VN30" },
+      16: { badge: "Top 16 Bản Lĩnh", nickname: "🎓 Huyền Thoại Mini Game" },
+      17: { badge: "Top 17 Uy Nghiêm", nickname: "🛡️ Hiệp Sĩ Bảng Lô" },
+      18: { badge: "Top 18 Sáng Tạo", nickname: "🔮 Tiên Tri Đồ Thị" },
+      19: { badge: "Top 19 Tiềm Năng", nickname: "🔥 Ngôi Sao Đấu Trường" },
+      20: { badge: "Top 20 Vinh Danh", nickname: "🎖️ Cao Thủ Phố Wall" },
+    },
+    career: {
+      1: { badge: "Vương miện Sự nghiệp", nickname: "🏆 Huyền Thoại Sự Nghiệp Phố Wall" },
+      2: { badge: "Huy chương bạc", nickname: "💼 Chuyên Viên Phân Tích Kế Thừa" },
+      3: { badge: "Huy chương đồng", nickname: "🏛️ Chuyên Gia Định Giá & M&A" },
+      4: { badge: "Top 4 Lộ Trình", nickname: "📊 Bậc Thầy Phân Tích BCTC" },
+      5: { badge: "Top 5 Định Hướng", nickname: "🚀 Sói Biển Đầu Tư & Quản Lý" },
+      6: { badge: "Top 6 Định Hướng", nickname: "💼 Senior Financial Analyst" },
+      7: { badge: "Top 7 Lộ Trình", nickname: "📈 Portfolio Manager" },
+      8: { badge: "Top 8 Định Hướng", nickname: "🏛️ Investment Banking Analyst" },
+      9: { badge: "Top 9 Bản Lĩnh", nickname: "📊 Chief Accountant Track" },
+      10: { badge: "Top 10 Tinh Anh", nickname: "🎓 CFA Track Candidate" },
+      11: { badge: "Top 11 Đột Phá", nickname: "🛡️ Risk Management Specialist" },
+      12: { badge: "Top 12 Tiềm Năng", nickname: "💎 Private Equity Associate" },
+      13: { badge: "Top 13 Tiên Phong", nickname: "🚀 Head of FP&A Track" },
+      14: { badge: "Top 14 Định Hướng", nickname: "⚡ Quant Researcher" },
+      15: { badge: "Top 15 Tích Cực", nickname: "💼 Corporate Finance Officer" },
+      16: { badge: "Top 16 Uy Nghiêm", nickname: "🏆 Chief Financial Officer (CFO)" },
+      17: { badge: "Top 17 Vững Vàng", nickname: "⭐ Senior Credit Officer" },
+      18: { badge: "Top 18 Nhạy Báo", nickname: "🔍 Valuation Specialist" },
+      19: { badge: "Top 19 Sáng Tạo", nickname: "🎯 Wealth Management Leader" },
+      20: { badge: "Top 20 Vinh Danh", nickname: "🎖️ Tinh Anh Sự Nghiệp" },
     },
   };
 
+  const dynamicFallback = {
+    badge: `Top #${rank}`,
+    nickname: `Thành Viên Tích Cực #${rank}`,
+  };
+
+  const honor = byMetric[metric]?.[rank] ?? dynamicFallback;
+
   return {
-    title: title ?? defaults.badge,
-    ...(byMetric[metric]?.[rank] ?? defaults),
+    title: title ?? honor.badge,
+    ...honor,
   };
 }
 
 function getPodiumHeight(rank: number) {
-  if (rank === 1) return "h-14";
-  if (rank === 2) return "h-12";
-  if (rank === 3) return "h-10";
-  return "h-8";
+  if (rank === 1) return "h-16";
+  if (rank === 2) return "h-13";
+  if (rank === 3) return "h-11";
+  return "h-9";
+}
+
+// Custom Styled Metallic Badges
+function RankBadgePill({ rank, badgeText }: { rank: number; badgeText: string }) {
+  if (rank === 1) {
+    return (
+      <div className="inline-flex items-center gap-1 rounded-full bg-gradient-to-r from-amber-500 via-yellow-400 to-amber-500 px-2 py-0.5 text-[9px] font-black uppercase tracking-wider text-amber-950 shadow-md ring-1 ring-amber-300">
+        <Crown className="h-3 w-3 fill-amber-950 text-amber-950" />
+        <span>{badgeText}</span>
+      </div>
+    );
+  }
+  if (rank === 2) {
+    return (
+      <div className="inline-flex items-center gap-1 rounded-full bg-gradient-to-r from-slate-300 via-slate-100 to-slate-400 px-2 py-0.5 text-[9px] font-black uppercase tracking-wider text-slate-900 shadow ring-1 ring-slate-300">
+        <Medal className="h-3 w-3 text-slate-800" />
+        <span>{badgeText}</span>
+      </div>
+    );
+  }
+  if (rank === 3) {
+    return (
+      <div className="inline-flex items-center gap-1 rounded-full bg-gradient-to-r from-amber-700 via-amber-600 to-orange-700 px-2 py-0.5 text-[9px] font-black uppercase tracking-wider text-amber-50 shadow ring-1 ring-amber-600">
+        <Award className="h-3 w-3 text-amber-50" />
+        <span>{badgeText}</span>
+      </div>
+    );
+  }
+  return (
+    <div className="inline-flex items-center gap-1 rounded-full bg-gradient-to-r from-stone-100 to-stone-200 border border-stone-300 px-2 py-0.5 text-[9px] font-extrabold uppercase tracking-wider text-stone-700 shadow-2xs">
+      <Star className="h-2.5 w-2.5 text-stone-500" />
+      <span>{badgeText}</span>
+    </div>
+  );
 }
 
 function getPodiumTone(rank: number) {
   if (rank === 1) {
     return {
-      card: "border-amber-300 bg-gradient-to-b from-amber-50 via-white to-amber-50/70",
-      pedestal: "from-amber-500/30 via-yellow-400/20 to-transparent border-amber-300/70",
-      chip: "bg-amber-500 text-white",
+      card: "border-amber-300/80 bg-gradient-to-b from-amber-100/90 via-amber-50/50 to-white shadow-xl shadow-amber-500/10 ring-2 ring-amber-400/30",
+      pedestal: "from-amber-500/40 via-amber-400/25 to-amber-300/10 border-amber-400/80",
+      chip: "bg-gradient-to-r from-amber-500 to-yellow-500 text-amber-950 font-black shadow-md",
       value: "text-amber-700",
+      pedestalLabel: "1st",
     };
   }
   if (rank === 2) {
     return {
-      card: "border-slate-300 bg-gradient-to-b from-slate-50 via-white to-slate-50/70",
-      pedestal: "from-slate-400/30 via-slate-300/15 to-transparent border-slate-300/70",
-      chip: "bg-slate-500 text-white",
+      card: "border-slate-300 bg-gradient-to-b from-slate-100/90 via-slate-50/50 to-white shadow-lg shadow-slate-500/10 ring-1 ring-slate-300/50",
+      pedestal: "from-slate-400/35 via-slate-300/20 to-slate-200/10 border-slate-300/80",
+      chip: "bg-gradient-to-r from-slate-400 to-slate-600 text-white font-black shadow",
       value: "text-slate-700",
+      pedestalLabel: "2nd",
     };
   }
   if (rank === 3) {
     return {
-      card: "border-orange-300 bg-gradient-to-b from-orange-50 via-white to-orange-50/70",
-      pedestal: "from-orange-500/25 via-amber-400/15 to-transparent border-orange-300/70",
-      chip: "bg-orange-500 text-white",
+      card: "border-amber-700/30 bg-gradient-to-b from-amber-100/60 via-amber-50/40 to-white shadow-md shadow-orange-500/10 ring-1 ring-amber-600/30",
+      pedestal: "from-amber-700/30 via-orange-400/15 to-amber-300/10 border-amber-600/70",
+      chip: "bg-gradient-to-r from-amber-700 to-orange-600 text-white font-black shadow",
       value: "text-orange-700",
+      pedestalLabel: "3rd",
     };
   }
   if (rank === 4) {
     return {
-      card: "border-violet-200 bg-gradient-to-b from-violet-50 via-white to-violet-50/70",
+      card: "border-violet-200 bg-gradient-to-b from-violet-50/70 via-white to-violet-50/30 shadow-sm",
       pedestal: "from-violet-400/20 via-violet-300/10 to-transparent border-violet-200/70",
-      chip: "bg-violet-500 text-white",
+      chip: "bg-violet-600 text-white font-black",
       value: "text-violet-700",
+      pedestalLabel: "4th",
     };
   }
   return {
-    card: "border-emerald-200 bg-gradient-to-b from-emerald-50 via-white to-emerald-50/70",
+    card: "border-emerald-200 bg-gradient-to-b from-emerald-50/70 via-white to-emerald-50/30 shadow-sm",
     pedestal: "from-emerald-400/20 via-emerald-300/10 to-transparent border-emerald-200/70",
-    chip: "bg-emerald-500 text-white",
+    chip: "bg-emerald-600 text-white font-black",
     value: "text-emerald-700",
+    pedestalLabel: "5th",
   };
 }
 
 export default function Leaderboard({ userId, compact = false }: { userId?: string; compact?: boolean }) {
-  const [metric, setMetric] = useState<LeaderboardMetric | "game">("xp");
-  const [entries, setEntries] = useState<LeaderboardRow[]>([]);
+  const [metric, setMetric] = useState<LeaderboardMetric | "game" | "career">("xp");
+  const [entries, setEntries] = useState<(LeaderboardRow & { careerTitle?: string; careerEmoji?: string })[]>([]);
   const [myRank, setMyRank] = useState<{ rank: number; value: number } | null>(null);
   const [loading, setLoading] = useState(true);
   const [switching, setSwitching] = useState(false);
@@ -177,7 +431,7 @@ export default function Leaderboard({ userId, compact = false }: { userId?: stri
 
     (async () => {
       try {
-        let top: LeaderboardRow[] = [];
+        let top: (LeaderboardRow & { careerTitle?: string; careerEmoji?: string })[] = [];
         let mine: { rank: number; value: number } | null = null;
 
         if (metric === "game") {
@@ -191,6 +445,20 @@ export default function Leaderboard({ userId, compact = false }: { userId?: stri
           if (userId) {
             const myIndex = gameRows.findIndex((r) => r.user_id === userId);
             if (myIndex !== -1) mine = { rank: myIndex + 1, value: gameRows[myIndex].totalXp };
+          }
+        } else if (metric === "career") {
+          const careerRows = await getCareerLeaderboard(20);
+          top = careerRows.map((row) => ({
+            user_id: row.user_id,
+            value: row.value,
+            name: row.name,
+            avatarUrl: row.avatarUrl,
+            careerTitle: row.careerTitle,
+            careerEmoji: row.careerEmoji,
+          }));
+          if (userId) {
+            const myIndex = careerRows.findIndex((r) => r.user_id === userId);
+            if (myIndex !== -1) mine = { rank: myIndex + 1, value: careerRows[myIndex].value };
           }
         } else {
           const [topRows, mineRank] = await Promise.all([
@@ -228,45 +496,57 @@ export default function Leaderboard({ userId, compact = false }: { userId?: stri
 
   if (compact) {
     return (
-      <div className="rounded-[28px] border border-stone-200 bg-white p-5 shadow-[0_20px_50px_-35px_rgba(15,23,42,0.18)] lg:p-6">
-        <div className="flex items-start justify-between gap-3 border-b border-stone-200 pb-4">
+      <div className="rounded-[28px] border border-stone-200 bg-white p-4 sm:p-5 shadow-[0_20px_50px_-35px_rgba(15,23,42,0.18)]">
+        <div className="flex items-start justify-between gap-3 border-b border-stone-200/80 pb-4">
           <div>
-            <div className="inline-flex items-center gap-2 rounded-full border border-amber-200 bg-amber-50 px-3 py-1 text-[11px] font-extrabold uppercase tracking-[0.18em] text-amber-700">
-              <Trophy className="h-3.5 w-3.5" />
+            <div className="inline-flex items-center gap-1.5 rounded-full border border-amber-300 bg-amber-50 px-3 py-1 text-[11px] font-extrabold uppercase tracking-[0.16em] text-amber-700 shadow-xs">
+              <Trophy className="h-3.5 w-3.5 fill-amber-400 text-amber-600" />
               BXH
             </div>
-            <h2 className="mt-3 text-2xl font-black tracking-tight text-stone-900">Bảng xếp hạng</h2>
+            <h2 className="mt-2.5 text-2xl font-black tracking-tight text-stone-900">Bảng xếp hạng</h2>
           </div>
-          <div className="inline-flex items-center gap-2 rounded-2xl border border-emerald-200 bg-emerald-50 px-3 py-2 text-xs font-bold text-emerald-700">
-            <Sparkles className="h-4 w-4" />
+          <div className="inline-flex items-center gap-1.5 rounded-2xl border border-emerald-200 bg-emerald-50 px-3 py-1.5 text-xs font-bold text-emerald-700 shadow-xs">
+            <Sparkles className="h-3.5 w-3.5 text-emerald-600" />
             {activeTab.label}
           </div>
         </div>
 
-        <div className="mt-4 flex gap-1 overflow-x-auto rounded-2xl bg-stone-100 p-1 scrollbar-none">
-          {TABS.map((tab) => (
-            <button
-              key={tab.metric}
-              onClick={() => {
-                if (tab.metric !== metric) setMetric(tab.metric);
-              }}
-              className={`shrink-0 rounded-2xl px-3 py-2 text-xs font-bold transition ${
-                metric === tab.metric ? "bg-white text-stone-900 shadow-sm" : "text-stone-500 hover:text-stone-800"
-              }`}
-            >
-              {tab.label}
-            </button>
-          ))}
+        {/* Tab Selection */}
+        <div className="mt-4 flex gap-1 overflow-x-auto rounded-2xl bg-stone-100/90 p-1 scrollbar-none">
+          {TABS.map((tab) => {
+            const Icon = tab.icon;
+            const isActive = metric === tab.metric;
+            return (
+              <button
+                key={tab.metric}
+                onClick={() => {
+                  if (tab.metric !== metric) setMetric(tab.metric);
+                }}
+                className={`flex shrink-0 items-center gap-1.5 rounded-xl px-3 py-2 text-xs font-bold transition-all ${
+                  isActive
+                    ? "bg-white text-stone-900 shadow-md ring-1 ring-stone-200/60"
+                    : "text-stone-500 hover:bg-white/50 hover:text-stone-800"
+                }`}
+              >
+                <Icon className={`h-3.5 w-3.5 ${isActive ? "text-amber-500" : "text-stone-400"}`} />
+                <span>{tab.label}</span>
+              </button>
+            );
+          })}
         </div>
 
         {loading ? (
-          <p className="mt-5 text-sm text-stone-500">Đang tải BXH...</p>
+          <div className="mt-8 flex flex-col items-center justify-center py-10">
+            <div className="h-8 w-8 animate-spin rounded-full border-4 border-amber-400 border-t-transparent" />
+            <p className="mt-3 text-xs font-semibold text-stone-500">Đang tải BXH...</p>
+          </div>
         ) : entries.length === 0 ? (
-          <p className="mt-5 text-sm text-stone-500">Chưa có đủ dữ liệu xếp hạng.</p>
+          <p className="mt-6 py-8 text-center text-sm text-stone-500">Chưa có đủ dữ liệu xếp hạng.</p>
         ) : (
-          <div className={`mt-5 space-y-3 transition-opacity duration-150 ${switching ? "opacity-40" : "opacity-100"}`}>
-            <div className="pb-2">
-              <div className="mx-auto grid grid-cols-5 items-end gap-1.5 px-0">
+          <div className={`mt-5 space-y-4 transition-opacity duration-150 ${switching ? "opacity-40" : "opacity-100"}`}>
+            {/* Podium Top 5 */}
+            <div className="pt-6 pb-2 overflow-x-auto scrollbar-none">
+              <div className="mx-auto grid min-w-[340px] grid-cols-5 items-end gap-1.5 px-0.5">
                 {PODIUM_ORDER.map((podiumIndex) => {
                   const entry = podiumEntries[podiumIndex];
                   if (!entry) return null;
@@ -277,82 +557,112 @@ export default function Leaderboard({ userId, compact = false }: { userId?: stri
 
                   return (
                     <Link key={entry.user_id} href={href} className="group flex min-w-0 flex-col items-center">
-                      <div className={`w-full rounded-2xl border px-1.5 py-3 text-center shadow-sm transition-transform duration-200 group-hover:-translate-y-1 ${tone.card} ${isChampion ? "scale-[1.02]" : ""}`}>
-                        <div className="mx-auto mb-2 flex h-11 w-11 items-center justify-center rounded-full border-4 border-white bg-white shadow-sm">
-                          <LeaderboardAvatar name={entry.name} avatarUrl={entry.avatarUrl} size={isChampion ? 40 : 34} />
+                      <div className={`w-full rounded-2xl border px-1.5 py-3 text-center transition-all duration-200 group-hover:-translate-y-1 ${tone.card} ${isChampion ? "scale-[1.03] z-10" : ""}`}>
+                        {/* Avatar with Frame */}
+                        <div className="mx-auto mb-2 flex justify-center">
+                          <AvatarWithFrame rank={rank} name={entry.name} avatarUrl={entry.avatarUrl} size={isChampion ? 44 : 36} />
                         </div>
-                        <div className={`mx-auto mb-1.5 inline-flex h-6 min-w-6 items-center justify-center rounded-full px-2 text-[10px] font-black ${tone.chip}`}>
+
+                        {/* Rank Badge */}
+                        <div className={`mx-auto mb-1.5 inline-flex h-5 min-w-5 items-center justify-center rounded-full px-1.5 text-[10px] font-black ${tone.chip}`}>
                           #{rank}
                         </div>
-                        <div className="mb-1.5 max-w-full rounded-full border border-white/90 bg-white/80 px-1.5 py-0.5 text-[8px] font-extrabold uppercase leading-tight text-stone-600">
-                          {getLeaderboardHonor(metric, rank).badge}
+
+                        {/* Honor Badge Pill */}
+                        <div className="mb-1 flex justify-center">
+                          <RankBadgePill rank={rank} badgeText={getLeaderboardHonor(metric, rank).badge} />
                         </div>
-                        <p className="text-xs font-black leading-tight text-stone-900 break-words">{entry.name}</p>
-                        <p className="mt-1 text-[8px] font-extrabold uppercase leading-tight text-stone-500 break-words">
-                          {getLeaderboardHonor(metric, rank).nickname}
+
+                        <p className="text-xs font-black leading-tight text-stone-900 line-clamp-1 break-words">{entry.name}</p>
+                        <p className="mt-0.5 text-[8px] font-extrabold uppercase leading-tight text-emerald-600 dark:text-emerald-400 line-clamp-1 break-words">
+                          {entry.careerTitle ? `${entry.careerEmoji || "💼"} ${entry.careerTitle}` : getLeaderboardHonor(metric, rank).nickname}
                         </p>
                         <p className={`mt-1 text-[11px] font-black leading-tight ${tone.value}`}>{activeTab.format(entry.value)}</p>
-                        {getLeaderboardTitle(metric, rank) && (
-                          <p className="mt-1 text-[8px] font-bold leading-tight text-stone-500 break-words">
-                            {getLeaderboardTitle(metric, rank)}
-                          </p>
-                        )}
                       </div>
-                      <div className={`mt-1.5 w-full rounded-t-2xl border-x border-t bg-gradient-to-t ${tone.pedestal} ${getPodiumHeight(rank)}`} />
+
+                      {/* 3D Pedestal Step Base */}
+                      <div className={`mt-1 w-full rounded-t-xl border-x border-t bg-gradient-to-t ${tone.pedestal} ${getPodiumHeight(rank)} flex items-center justify-center font-black text-[10px] uppercase text-stone-400/80 shadow-xs`}>
+                        {tone.pedestalLabel}
+                      </div>
                     </Link>
                   );
                 })}
               </div>
             </div>
 
-            <div className="border-t border-stone-200 pt-3">
-              <p className="mb-3 text-xs font-extrabold uppercase tracking-[0.16em] text-stone-500">Các vị trí tiếp theo</p>
+            {/* Sub-ranks #6+ Framed Cards */}
+            <div className="border-t border-stone-200/80 pt-3">
+              <div className="mb-3 flex items-center justify-between">
+                <p className="text-xs font-extrabold uppercase tracking-[0.16em] text-stone-500">Các vị trí vinh danh tiếp theo</p>
+                <span className="text-[10px] font-black text-amber-600 bg-amber-50 px-2 py-0.5 rounded-full border border-amber-200">
+                  TOP 6 - 20
+                </span>
+              </div>
             </div>
 
-            {entries.slice(5, 10).map((entry, idx) => {
-              const rank = idx + 1;
-              const actualRank = idx + 6;
-              const href = entry.user_id === userId ? "/profile" : `/nguoi-hoc/${entry.user_id}`;
-              const isCurrent = entry.user_id === userId;
-              const tone = isCurrent ? "border-emerald-200 bg-emerald-50/70" : "border-stone-200 bg-white";
+            <div className="space-y-2">
+              {entries.slice(5, 10).map((entry, idx) => {
+                const actualRank = idx + 6;
+                const href = entry.user_id === userId ? "/profile" : `/nguoi-hoc/${entry.user_id}`;
+                const isCurrent = entry.user_id === userId;
+                const honor = getLeaderboardHonor(metric, actualRank);
 
-              return (
-                <Link
-                  key={entry.user_id}
-                  href={href}
-                  className={`flex items-center gap-3 rounded-2xl border px-3.5 py-3 transition hover:border-stone-300 ${tone}`}
-                >
-                  <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-stone-100 font-black text-stone-700">
-                    #{actualRank}
-                  </div>
-                  <LeaderboardAvatar name={entry.name} avatarUrl={entry.avatarUrl} size={38} />
-                  <div className="min-w-0 flex-1">
-                    <p className="truncate text-sm font-black text-stone-900">{entry.name}</p>
-                    <p className="truncate text-[11px] font-extrabold uppercase tracking-[0.14em] text-stone-600">
-                      {getLeaderboardHonor(metric, actualRank).nickname}
-                    </p>
-                    <p className="truncate text-xs text-stone-500">{getLeaderboardTitle(metric, actualRank) ?? "Nổi bật"}</p>
-                  </div>
-                  <div className="text-right">
-                    <p className="text-[10px] font-extrabold uppercase tracking-[0.14em] text-stone-500">
-                      {getLeaderboardHonor(metric, actualRank).badge}
-                    </p>
-                    <p className="text-sm font-black text-stone-900">{activeTab.format(entry.value)}</p>
-                  </div>
-                </Link>
-              );
-            })}
+                return (
+                  <Link
+                    key={entry.user_id}
+                    href={href}
+                    className={`flex items-center justify-between gap-3 rounded-2xl border p-2.5 transition-all shadow-xs group ${
+                      isCurrent
+                        ? "border-emerald-300 bg-gradient-to-r from-emerald-50 via-white to-emerald-50/80 ring-2 ring-emerald-400/50 shadow-md"
+                        : "border-stone-200/90 bg-gradient-to-r from-stone-50/80 via-white to-amber-50/20 hover:border-amber-300 hover:shadow-md hover:-translate-y-0.5"
+                    }`}
+                  >
+                    <div className="flex items-center gap-2.5 min-w-0">
+                      {/* Metallic Rank Shield Badge */}
+                      <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br from-stone-100 to-stone-200 font-black text-xs text-stone-700 shadow-inner border border-stone-300/80 group-hover:scale-105 transition-transform">
+                        #{actualRank}
+                      </div>
 
+                      {/* Framed Avatar */}
+                      <AvatarWithFrame rank={actualRank} name={entry.name} avatarUrl={entry.avatarUrl} size={36} />
+
+                      <div className="min-w-0 flex-1">
+                        <p className="truncate text-xs font-black text-stone-900 group-hover:text-amber-700 transition-colors">{entry.name}</p>
+                        <p className="truncate text-[9px] font-extrabold uppercase tracking-wider text-emerald-600 dark:text-emerald-400">
+                          {entry.careerTitle ? `${entry.careerEmoji || "💼"} ${entry.careerTitle}` : honor.nickname}
+                        </p>
+                      </div>
+                    </div>
+
+                    <div className="text-right shrink-0">
+                      {/* Framed Badge Tag */}
+                      <div className="inline-flex items-center gap-1 rounded-full bg-gradient-to-r from-amber-500/10 via-amber-400/20 to-amber-500/10 px-2 py-0.5 text-[9px] font-black uppercase text-amber-800 border border-amber-300/50 mb-0.5">
+                        <Star className="h-2.5 w-2.5 fill-amber-500 text-amber-500" />
+                        <span>{honor.badge}</span>
+                      </div>
+                      <p className="text-xs font-black text-stone-900">{activeTab.format(entry.value)}</p>
+                    </div>
+                  </Link>
+                );
+              })}
+            </div>
+
+            {/* User MyRank Banner */}
             {myRank && (
-              <div className="rounded-2xl border border-dashed border-stone-300 bg-stone-50 px-4 py-3">
+              <div className="rounded-2xl border border-dashed border-amber-300 bg-gradient-to-r from-amber-50/80 via-yellow-50/40 to-amber-50/80 px-4 py-3 shadow-xs">
                 <div className="flex items-center justify-between gap-3">
-                  <div>
-                    <p className="text-sm font-black text-stone-900">Hạng của bạn</p>
-                    <p className="text-xs text-stone-500">Theo chỉ số {activeTab.label.toLowerCase()}</p>
+                  <div className="flex items-center gap-2.5">
+                    <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-amber-400 text-amber-950 shadow">
+                      <Trophy className="h-4 w-4 fill-amber-950 text-amber-950" />
+                    </div>
+                    <div>
+                      <p className="text-xs font-black text-stone-900">Hạng của bạn</p>
+                      <p className="text-[10px] font-semibold text-stone-500">Chỉ số {activeTab.label.toLowerCase()}</p>
+                    </div>
                   </div>
                   <div className="text-right">
-                    <p className="text-base font-black text-emerald-700">#{myRank.rank}</p>
-                    <p className="text-xs font-bold text-stone-500">{activeTab.format(myRank.value)}</p>
+                    <p className="text-sm font-black text-amber-600">#{myRank.rank}</p>
+                    <p className="text-xs font-extrabold text-stone-700">{activeTab.format(myRank.value)}</p>
                   </div>
                 </div>
               </div>
@@ -364,45 +674,57 @@ export default function Leaderboard({ userId, compact = false }: { userId?: stri
   }
 
   return (
-    <div className="rounded-[28px] border border-stone-200 bg-white p-5 shadow-[0_20px_50px_-35px_rgba(15,23,42,0.22)] sm:p-6 lg:p-7">
+    <div className="rounded-[28px] border border-stone-200 bg-white p-5 sm:p-6 lg:p-7 shadow-[0_20px_50px_-35px_rgba(15,23,42,0.22)]">
       <div className="flex flex-col gap-4 border-b border-stone-200 pb-5 sm:flex-row sm:items-end sm:justify-between">
         <div>
-          <div className="inline-flex items-center gap-2 rounded-full border border-amber-200 bg-amber-50 px-3 py-1 text-[11px] font-extrabold uppercase tracking-[0.18em] text-amber-700">
-            <Trophy className="h-3.5 w-3.5" />
+          <div className="inline-flex items-center gap-2 rounded-full border border-amber-300 bg-amber-50 px-3.5 py-1 text-[11px] font-extrabold uppercase tracking-[0.18em] text-amber-700 shadow-xs">
+            <Trophy className="h-3.5 w-3.5 fill-amber-400 text-amber-600" />
             Vinh Danh BXH
           </div>
-          <h2 className="mt-3 text-3xl font-black tracking-tight text-stone-900 sm:text-4xl">Top 5 nổi bật</h2>
+          <h2 className="mt-2.5 text-3xl font-black tracking-tight text-stone-900 sm:text-4xl">Top 5 nổi bật</h2>
         </div>
-        <div className="inline-flex items-center gap-2 rounded-2xl border border-emerald-200 bg-emerald-50 px-3.5 py-2 text-sm font-bold text-emerald-700">
-          <Sparkles className="h-4 w-4" />
+        <div className="inline-flex items-center gap-2 rounded-2xl border border-emerald-200 bg-emerald-50 px-3.5 py-2 text-sm font-bold text-emerald-700 shadow-xs">
+          <Sparkles className="h-4 w-4 text-emerald-600" />
           {activeTab.label}
         </div>
       </div>
 
-      <div className="mt-5 flex gap-1 rounded-2xl bg-stone-100 p-1 overflow-x-auto scrollbar-none">
-        {TABS.map((tab) => (
-          <button
-            key={tab.metric}
-            onClick={() => {
-              if (tab.metric !== metric) setMetric(tab.metric);
-            }}
-            className={`shrink-0 rounded-2xl px-4 py-2 text-sm font-bold transition ${
-              metric === tab.metric ? "bg-white text-stone-900 shadow-sm" : "text-stone-500 hover:text-stone-800"
-            }`}
-          >
-            {tab.label}
-          </button>
-        ))}
+      {/* Tabs */}
+      <div className="mt-5 flex gap-1.5 overflow-x-auto rounded-2xl bg-stone-100 p-1.5 scrollbar-none">
+        {TABS.map((tab) => {
+          const Icon = tab.icon;
+          const isActive = metric === tab.metric;
+          return (
+            <button
+              key={tab.metric}
+              onClick={() => {
+                if (tab.metric !== metric) setMetric(tab.metric);
+              }}
+              className={`flex shrink-0 items-center gap-2 rounded-xl px-4 py-2.5 text-sm font-bold transition-all ${
+                isActive
+                  ? "bg-white text-stone-900 shadow-md ring-1 ring-stone-200/80"
+                  : "text-stone-500 hover:bg-white/60 hover:text-stone-800"
+              }`}
+            >
+              <Icon className={`h-4 w-4 ${isActive ? "text-amber-500" : "text-stone-400"}`} />
+              <span>{tab.label}</span>
+            </button>
+          );
+        })}
       </div>
 
       {loading ? (
-        <p className="mt-6 text-sm text-stone-500">Đang tải BXH...</p>
+        <div className="mt-12 flex flex-col items-center justify-center py-12">
+          <div className="h-10 w-10 animate-spin rounded-full border-4 border-amber-400 border-t-transparent" />
+          <p className="mt-4 text-sm font-semibold text-stone-500">Đang tải danh sách vinh danh...</p>
+        </div>
       ) : entries.length === 0 ? (
-        <p className="mt-6 text-sm text-stone-500">Chưa có đủ dữ liệu xếp hạng.</p>
+        <p className="mt-8 py-12 text-center text-sm text-stone-500">Chưa có đủ dữ liệu xếp hạng.</p>
       ) : (
         <div className={`transition-opacity duration-150 ${switching ? "opacity-40" : "opacity-100"}`}>
-          <div className="mt-8 pb-2">
-            <div className="mx-auto grid grid-cols-5 items-end justify-center gap-2 px-0">
+          {/* Top 5 Podium */}
+          <div className="mt-8 pt-6 pb-2 overflow-x-auto scrollbar-none">
+            <div className="mx-auto grid min-w-[500px] grid-cols-5 items-end justify-center gap-2 px-1">
               {PODIUM_ORDER.map((podiumIndex) => {
                 const entry = podiumEntries[podiumIndex];
                 if (!entry) return null;
@@ -413,87 +735,113 @@ export default function Leaderboard({ userId, compact = false }: { userId?: stri
 
                 return (
                   <Link key={entry.user_id} href={href} className="group flex min-w-0 flex-col items-center">
-                    <div className={`w-full rounded-[22px] border px-2 py-3.5 text-center shadow-sm transition-transform duration-200 group-hover:-translate-y-1 ${tone.card} ${isChampion ? "mb-0 scale-[1.02]" : "mb-1"}`}>
-                      <div className="mx-auto mb-2.5 flex h-14 w-14 items-center justify-center rounded-full border-4 border-white bg-white shadow-md">
-                        <LeaderboardAvatar name={entry.name} avatarUrl={entry.avatarUrl} size={isChampion ? 48 : 44} />
+                    <div className={`w-full rounded-[24px] border px-2.5 py-4 text-center transition-all duration-200 group-hover:-translate-y-1.5 ${tone.card} ${isChampion ? "scale-[1.04] z-10" : ""}`}>
+                      {/* Avatar with Frame */}
+                      <div className="mx-auto mb-3 flex justify-center">
+                        <AvatarWithFrame rank={rank} name={entry.name} avatarUrl={entry.avatarUrl} size={isChampion ? 52 : 44} />
                       </div>
-                      <div className={`mx-auto mb-1.5 inline-flex h-7 min-w-7 items-center justify-center rounded-full px-2 text-xs font-black ${tone.chip}`}>
+
+                      {/* Rank Chip */}
+                      <div className={`mx-auto mb-2 inline-flex h-6 min-w-6 items-center justify-center rounded-full px-2 text-xs font-black ${tone.chip}`}>
                         #{rank}
                       </div>
-                      <div className="mb-1.5 max-w-full rounded-full border border-white/90 bg-white/85 px-2 py-1 text-[8px] font-extrabold uppercase leading-tight text-stone-700">
-                        {getLeaderboardHonor(metric, rank).badge}
+
+                      {/* Badge Pill */}
+                      <div className="mb-1.5 flex justify-center">
+                        <RankBadgePill rank={rank} badgeText={getLeaderboardHonor(metric, rank).badge} />
                       </div>
-                      <p className="text-sm font-black leading-tight text-stone-900 break-words">{entry.name}</p>
-                      <p className="mt-1 text-[9px] font-extrabold uppercase leading-tight text-stone-500 break-words">
-                        {getLeaderboardHonor(metric, rank).nickname}
+
+                      <p className="text-sm font-black leading-tight text-stone-900 line-clamp-1 break-words">{entry.name}</p>
+                      <p className="mt-1 text-[9px] font-extrabold uppercase leading-tight text-emerald-600 dark:text-emerald-400 line-clamp-1 break-words">
+                        {entry.careerTitle ? `${entry.careerEmoji || "💼"} ${entry.careerTitle}` : getLeaderboardHonor(metric, rank).nickname}
                       </p>
-                      <p className={`mt-1 text-sm font-black ${tone.value}`}>{activeTab.format(entry.value)}</p>
-                      {getLeaderboardTitle(metric, rank) && (
-                        <p className="mt-1.5 text-[9px] font-bold leading-tight text-stone-500 break-words">
-                          {getLeaderboardTitle(metric, rank)}
-                        </p>
-                      )}
+                      <p className={`mt-1.5 text-sm font-black ${tone.value}`}>{activeTab.format(entry.value)}</p>
                     </div>
-                    <div className={`mt-2 w-full rounded-t-[20px] border-x border-t bg-gradient-to-t ${tone.pedestal} ${getPodiumHeight(rank)}`} />
+
+                    {/* Pedestal Step */}
+                    <div className={`mt-1.5 w-full rounded-t-[20px] border-x border-t bg-gradient-to-t ${tone.pedestal} ${getPodiumHeight(rank)} flex items-center justify-center font-black text-xs uppercase text-stone-400/80 shadow-xs`}>
+                      {tone.pedestalLabel}
+                    </div>
                   </Link>
                 );
               })}
             </div>
           </div>
 
-          <div className="mt-8 rounded-[26px] border border-stone-200 bg-stone-50/70 p-4 sm:p-5">
-            <div className="mb-4 flex items-center gap-2">
-              <BookOpen className="h-4 w-4 text-stone-500" />
-              <h3 className="text-sm font-black uppercase tracking-[0.16em] text-stone-600">Các vị trí tiếp theo</h3>
+          {/* Remaining Ranks #6+ Framed Cards */}
+          <div className="mt-8 rounded-[26px] border border-stone-200/80 bg-stone-50/70 p-4 sm:p-5">
+            <div className="mb-4 flex items-center justify-between border-b border-stone-200/60 pb-3">
+              <div className="flex items-center gap-2">
+                <BookOpen className="h-4 w-4 text-amber-600" />
+                <h3 className="text-xs font-black uppercase tracking-[0.16em] text-stone-600">Các vị trí vinh danh tiếp theo</h3>
+              </div>
+              <span className="text-[10px] font-black text-amber-700 bg-amber-100/70 px-2.5 py-0.5 rounded-full border border-amber-300/60">
+                BẢNG VINH DANH #6 - #20
+              </span>
             </div>
 
-            <div className="space-y-2">
+            <div className="space-y-2.5">
               {remainingEntries.map((entry, idx) => {
                 const rank = idx + 6;
                 const href = entry.user_id === userId ? "/profile" : `/nguoi-hoc/${entry.user_id}`;
                 const isCurrent = entry.user_id === userId;
+                const honor = getLeaderboardHonor(metric, rank);
+
                 return (
                   <Link
                     key={entry.user_id}
                     href={href}
-                    className={`flex items-center justify-between rounded-2xl border px-3.5 py-3 text-sm transition ${
+                    className={`flex items-center justify-between gap-4 rounded-2xl border p-3 transition-all shadow-xs group ${
                       isCurrent
-                        ? "border-emerald-200 bg-emerald-50"
-                        : "border-white bg-white hover:border-stone-200 hover:bg-stone-50"
+                        ? "border-emerald-300 bg-gradient-to-r from-emerald-50 via-white to-emerald-50/90 ring-2 ring-emerald-400/60 shadow-md"
+                        : "border-stone-200/90 bg-gradient-to-r from-stone-50/90 via-white to-amber-50/30 hover:border-amber-300 hover:shadow-md hover:-translate-y-0.5"
                     }`}
                   >
                     <div className="flex min-w-0 items-center gap-3">
-                      <div className="flex h-8 w-8 items-center justify-center rounded-xl bg-stone-100 font-black text-stone-600">#{rank}</div>
-                      <LeaderboardAvatar name={entry.name} avatarUrl={entry.avatarUrl} size={30} />
+                      {/* Metallic Rank Shield Badge */}
+                      <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br from-stone-100 via-stone-50 to-amber-100/60 font-black text-xs text-stone-700 shadow-inner border border-stone-300/80 group-hover:scale-105 transition-transform">
+                        #{rank}
+                      </div>
+
+                      {/* Avatar with Custom Frame */}
+                      <AvatarWithFrame rank={rank} name={entry.name} avatarUrl={entry.avatarUrl} size={38} />
+
                       <div className="min-w-0">
-                        <p className="truncate font-bold text-stone-900">{entry.name}</p>
-                        <p className="truncate text-[11px] font-extrabold uppercase tracking-[0.14em] text-stone-600">
-                          {getLeaderboardHonor(metric, rank).nickname}
+                        <p className="truncate font-black text-stone-900 group-hover:text-amber-700 transition-colors">{entry.name}</p>
+                        <p className="truncate text-[11px] font-extrabold uppercase tracking-wider text-emerald-600 dark:text-emerald-400">
+                          {entry.careerTitle ? `${entry.careerEmoji || "💼"} ${entry.careerTitle}` : honor.nickname}
                         </p>
-                        <p className="truncate text-xs text-stone-500">{getLeaderboardTitle(metric, rank) ?? "Nổi bật"}</p>
                       </div>
                     </div>
-                    <div className="text-right">
-                      <p className="text-[10px] font-extrabold uppercase tracking-[0.14em] text-stone-500">
-                        {getLeaderboardHonor(metric, rank).badge}
-                      </p>
-                      <p className={`font-black ${isCurrent ? "text-emerald-700" : "text-stone-700"}`}>{activeTab.format(entry.value)}</p>
+
+                    <div className="text-right shrink-0">
+                      <div className="inline-flex items-center gap-1 rounded-full bg-gradient-to-r from-amber-500/10 via-amber-400/20 to-amber-500/10 px-2.5 py-0.5 text-[10px] font-black uppercase text-amber-800 border border-amber-300/50 mb-0.5">
+                        <Star className="h-2.5 w-2.5 fill-amber-500 text-amber-500" />
+                        <span>{honor.badge}</span>
+                      </div>
+                      <p className={`font-black ${isCurrent ? "text-emerald-700" : "text-stone-800"}`}>{activeTab.format(entry.value)}</p>
                     </div>
                   </Link>
                 );
               })}
             </div>
 
+            {/* My Rank Footer */}
             {myRank && (
-              <div className="mt-4 rounded-2xl border border-dashed border-stone-300 bg-white px-4 py-3">
+              <div className="mt-4 rounded-2xl border border-dashed border-amber-300 bg-gradient-to-r from-amber-50/80 via-yellow-50/40 to-amber-50/80 px-4 py-3 shadow-xs">
                 <div className="flex items-center justify-between gap-3">
-                  <div>
-                    <p className="text-sm font-black text-stone-900">Hạng của bạn</p>
-                    <p className="text-xs text-stone-500">Theo chỉ số {activeTab.label.toLowerCase()}</p>
+                  <div className="flex items-center gap-3">
+                    <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br from-amber-400 to-yellow-500 text-amber-950 shadow">
+                      <Trophy className="h-5 w-5 fill-amber-950 text-amber-950" />
+                    </div>
+                    <div>
+                      <p className="text-sm font-black text-stone-900">Hạng của bạn</p>
+                      <p className="text-xs text-stone-500">Theo chỉ số {activeTab.label.toLowerCase()}</p>
+                    </div>
                   </div>
                   <div className="text-right">
-                    <p className="text-base font-black text-emerald-700">#{myRank.rank}</p>
-                    <p className="text-xs font-bold text-stone-500">{activeTab.format(myRank.value)}</p>
+                    <p className="text-base font-black text-amber-600">#{myRank.rank}</p>
+                    <p className="text-xs font-extrabold text-stone-700">{activeTab.format(myRank.value)}</p>
                   </div>
                 </div>
               </div>

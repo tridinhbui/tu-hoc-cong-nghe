@@ -3,8 +3,8 @@
 import React, { useState, useEffect } from "react";
 import { useSearchParams } from "next/navigation";
 import Image from "next/image";
-import { motion } from "framer-motion";
-import { ChevronLeft } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
+import { ChevronLeft, Coins, Zap, Trophy, Lock, Flame, Shield, Sparkles, ShoppingBag, Layers, Activity, Clock, Crown, Compass } from "lucide-react";
 import { createClient } from "@/lib/supabase";
 import { getRequiredLevelForBuilding } from "@/lib/levels";
 import { toast } from "sonner";
@@ -32,9 +32,11 @@ interface OrganicBuilding {
   borderColor: string;
   textColor: string;
   badgeBg: string;
-  posClass: string; // Legacy mobile/absolute positioning hint.
+  posClass: string;
   desktopClass: string;
   imageSrc?: string;
+  isUnderConstruction?: boolean;
+  minLevel?: number;
 }
 
 interface EquipmentRow {
@@ -54,9 +56,9 @@ const ORGANIC_BUILDINGS: OrganicBuilding[] = [
     subtitle: "Săn Bò Tót Tăng Trưởng 1,000,000 HP",
     emoji: "🐂",
     badge: "🏛️ NYSE CENTRAL",
-    bgLight: "bg-gradient-to-b from-amber-500/10 to-red-500/10",
-    borderColor: "border-amber-400",
-    textColor: "text-amber-700",
+    bgLight: "bg-gradient-to-br from-amber-500/15 via-red-500/10 to-amber-500/5",
+    borderColor: "border-amber-400 ring-2 ring-amber-400/40 shadow-lg shadow-amber-500/10",
+    textColor: "text-amber-700 dark:text-amber-400",
     badgeBg: "bg-gradient-to-r from-amber-500 to-red-500 text-white font-black",
     posClass: "top-4 left-1/2 -translate-x-1/2 sm:top-6",
     desktopClass: "lg:col-start-2 lg:row-start-1",
@@ -68,10 +70,10 @@ const ORGANIC_BUILDINGS: OrganicBuilding[] = [
     subtitle: "Đánh Boss bằng câu hỏi từ bài bạn đã học",
     emoji: "🧠",
     badge: "🏛️ NYSE CENTRAL",
-    bgLight: "bg-gradient-to-b from-sky-50 to-emerald-50",
-    borderColor: "border-sky-300",
-    textColor: "text-sky-700",
-    badgeBg: "bg-sky-500 text-white",
+    bgLight: "bg-gradient-to-br from-sky-50 via-emerald-50/50 to-sky-100/30",
+    borderColor: "border-sky-300 ring-1 ring-sky-400/30",
+    textColor: "text-sky-700 dark:text-sky-400",
+    badgeBg: "bg-gradient-to-r from-sky-500 to-emerald-500 text-white font-black",
     posClass: "top-20 left-6 sm:left-12",
     desktopClass: "lg:col-start-1 lg:row-start-2",
   },
@@ -82,9 +84,9 @@ const ORGANIC_BUILDINGS: OrganicBuilding[] = [
     subtitle: "Tất Cả Game Phân Loại BCTC & Nối Thuật Ngữ",
     emoji: "🏛️",
     badge: "🔥 TỔNG HỢP MINI GAME",
-    bgLight: "bg-gradient-to-b from-amber-500/20 via-orange-500/20 to-red-500/20",
-    borderColor: "border-amber-400 ring-4 ring-amber-500/80 shadow-[0_0_50px_rgba(245,158,11,0.85)]",
-    textColor: "text-amber-700",
+    bgLight: "bg-gradient-to-br from-amber-500/25 via-orange-500/20 to-red-500/25",
+    borderColor: "border-amber-400 ring-4 ring-amber-500/80 shadow-[0_0_40px_rgba(245,158,11,0.6)]",
+    textColor: "text-amber-800 dark:text-amber-300 font-black",
     badgeBg: "bg-gradient-to-r from-amber-500 via-orange-500 to-red-500 text-white font-black animate-pulse",
     posClass: "top-64 left-1/2 -translate-x-1/2 sm:top-60 scale-110 sm:scale-125 z-30",
     desktopClass: "lg:col-start-2 lg:row-start-3",
@@ -92,13 +94,13 @@ const ORGANIC_BUILDINGS: OrganicBuilding[] = [
   },
   {
     id: "weekly-challenge",
-    name: "Quảng Trường Times Square Financial Hub",
+    name: "Quảng Trường Times Square Hub",
     subtitle: "Case Study Doanh Nghiệp & Bảng Tin Neon Phố Wall",
     emoji: "🏙️",
     badge: "🏙️ TIMES SQUARE",
-    bgLight: "bg-gradient-to-b from-indigo-950/80 via-purple-950/70 to-rose-950/80 text-white",
-    borderColor: "border-purple-400 ring-2 ring-purple-500/50 shadow-[0_0_30px_rgba(168,85,247,0.6)]",
-    textColor: "text-purple-600 font-extrabold",
+    bgLight: "bg-gradient-to-br from-purple-50 via-indigo-50 to-pink-50",
+    borderColor: "border-purple-300 ring-1 ring-purple-400/40 shadow-sm",
+    textColor: "text-purple-900 font-black",
     badgeBg: "bg-gradient-to-r from-violet-600 via-purple-500 to-rose-600 text-white font-black animate-pulse",
     posClass: "top-[320px] left-8 sm:left-20",
     desktopClass: "lg:col-start-1 lg:row-start-4",
@@ -112,23 +114,23 @@ const ORGANIC_BUILDINGS: OrganicBuilding[] = [
     subtitle: "Hedge Fund Clan & Đua Top Bài Học",
     emoji: "🏰",
     badge: "🏰 HEDGE FUND QUARTER",
-    bgLight: "bg-gradient-to-b from-purple-50 to-indigo-50",
-    borderColor: "border-purple-400",
-    textColor: "text-purple-600",
-    badgeBg: "bg-purple-500 text-white",
+    bgLight: "bg-gradient-to-br from-purple-50 via-indigo-50/50 to-purple-100/30",
+    borderColor: "border-purple-400 ring-1 ring-purple-400/30",
+    textColor: "text-purple-700 dark:text-purple-400",
+    badgeBg: "bg-gradient-to-r from-purple-600 to-indigo-600 text-white font-black",
     posClass: "top-[320px] right-8 sm:right-20",
     desktopClass: "lg:col-start-3 lg:row-start-4",
   },
   {
     id: "cards",
     name: "Bảo Tàng Thẻ VN30",
-    subtitle: "Bộ Sưu Tập 30 Thẻ Doanh Nghiệp",
+    subtitle: "Bộ Sưu Tập 30 Thẻ Doanh Nghiệp 3D",
     emoji: "📇",
     badge: "🏰 HEDGE FUND QUARTER",
-    bgLight: "bg-gradient-to-b from-sky-50 to-cyan-50",
-    borderColor: "border-sky-400",
-    textColor: "text-sky-600",
-    badgeBg: "bg-sky-500 text-white",
+    bgLight: "bg-gradient-to-br from-sky-50 via-cyan-50/50 to-teal-100/30",
+    borderColor: "border-sky-400 ring-1 ring-sky-400/30",
+    textColor: "text-sky-700 dark:text-sky-400",
+    badgeBg: "bg-gradient-to-r from-sky-500 to-cyan-500 text-white font-black",
     posClass: "top-[480px] left-12 sm:left-28",
     desktopClass: "lg:col-start-1 lg:row-start-6",
   },
@@ -138,23 +140,121 @@ const ORGANIC_BUILDINGS: OrganicBuilding[] = [
     subtitle: "Trang Bị Dụng Cụ & Tủ Đồ RPG",
     emoji: "💼",
     badge: "🏰 HEDGE FUND QUARTER",
-    bgLight: "bg-gradient-to-b from-amber-50 to-yellow-50",
-    borderColor: "border-amber-400",
-    textColor: "text-amber-600",
-    badgeBg: "bg-amber-500 text-white",
+    bgLight: "bg-gradient-to-br from-amber-50 via-yellow-50/50 to-orange-100/30",
+    borderColor: "border-amber-400 ring-1 ring-amber-400/30",
+    textColor: "text-amber-700 dark:text-amber-400",
+    badgeBg: "bg-gradient-to-r from-amber-500 to-yellow-500 text-white font-black",
     posClass: "top-[480px] right-12 sm:right-28",
     desktopClass: "lg:col-start-3 lg:row-start-6",
+  },
+
+  // 🏗️ KHU VỰC 4: VÙNG ĐẤT TÀI CHÍNH TOÀN CẦU MỞ RỘNG (ĐANG THI CÔNG & KHÓA)
+  {
+    id: "fed-vault",
+    name: "Ngân Hàng Fed Vault",
+    subtitle: "Kho Thỏi Vàng & Điều Hành Lãi Suất Vĩ Mô",
+    emoji: "🏦",
+    badge: "🏦 FED VAULT • LÊN LEVEL 15",
+    bgLight: "bg-gradient-to-br from-amber-50/80 via-yellow-50 to-stone-100",
+    borderColor: "border-amber-400/80 border-dashed ring-1 ring-amber-400/40",
+    textColor: "text-stone-800 dark:text-stone-300 font-black",
+    badgeBg: "bg-gradient-to-r from-amber-600 to-stone-700 text-white font-black",
+    posClass: "top-[620px] left-1/2 -translate-x-1/2",
+    desktopClass: "lg:col-start-2 lg:row-start-7",
+    isUnderConstruction: true,
+    minLevel: 15,
+  },
+  {
+    id: "silicon-bay",
+    name: "Đảo Silicon FinTech Bay",
+    subtitle: "Venture Capital & Algo AI Trading",
+    emoji: "🌐",
+    badge: "🚀 SILICON BAY • LÊN LEVEL 20",
+    bgLight: "bg-gradient-to-br from-cyan-50/80 via-teal-50 to-blue-50",
+    borderColor: "border-cyan-400/80 border-dashed ring-1 ring-cyan-400/40",
+    textColor: "text-cyan-900 font-black",
+    badgeBg: "bg-gradient-to-r from-cyan-600 via-teal-600 to-blue-600 text-white font-black",
+    posClass: "top-[760px] left-8 sm:left-20",
+    desktopClass: "lg:col-start-1 lg:row-start-8",
+    isUnderConstruction: true,
+    minLevel: 20,
+  },
+  {
+    id: "capitol-hill",
+    name: "Tòa Capitol Hill Policy",
+    subtitle: "Luật Tài Chính & Chính Sách Thuế Toàn Cầu",
+    emoji: "🏛️",
+    badge: "🏛️ CAPITOL HILL • LÊN LEVEL 25",
+    bgLight: "bg-gradient-to-br from-indigo-50/80 via-purple-50 to-violet-50",
+    borderColor: "border-indigo-400/80 border-dashed ring-1 ring-indigo-400/40",
+    textColor: "text-indigo-900 font-black",
+    badgeBg: "bg-gradient-to-r from-indigo-600 to-purple-600 text-white font-black",
+    posClass: "top-[760px] right-8 sm:right-20",
+    desktopClass: "lg:col-start-3 lg:row-start-8",
+    isUnderConstruction: true,
+    minLevel: 25,
+  },
+  {
+    id: "cme-commodities",
+    name: "Sàn Hàng Hóa Chicago CME",
+    subtitle: "Hợp Đồng Tương Lai Dầu Mỏ & Vàng CME",
+    emoji: "🛢️",
+    badge: "🌾 CME COMMODITY • LÊN LEVEL 30",
+    bgLight: "bg-gradient-to-br from-emerald-50/80 via-green-50 to-teal-50",
+    borderColor: "border-emerald-400/80 border-dashed ring-1 ring-emerald-400/40",
+    textColor: "text-emerald-900 font-black",
+    badgeBg: "bg-gradient-to-r from-emerald-600 to-teal-600 text-white font-black",
+    posClass: "top-[900px] left-12 sm:left-28",
+    desktopClass: "lg:col-start-1 lg:row-start-9",
+    isUnderConstruction: true,
+    minLevel: 30,
+  },
+  {
+    id: "swiss-haven",
+    name: "Đại Lộ Thụy Sĩ Wealth Haven",
+    subtitle: "Quản Lý Tài Sản Triệu Đô & Quỹ Gia Tộc",
+    emoji: "💎",
+    badge: "💎 SWISS HAVEN • LÊN LEVEL 35",
+    bgLight: "bg-gradient-to-br from-rose-50/80 via-pink-50 to-slate-50",
+    borderColor: "border-rose-400/80 border-dashed ring-1 ring-rose-400/40",
+    textColor: "text-rose-900 font-black",
+    badgeBg: "bg-gradient-to-r from-rose-600 via-pink-600 to-slate-700 text-white font-black",
+    posClass: "top-[900px] right-12 sm:right-28",
+    desktopClass: "lg:col-start-3 lg:row-start-9",
+    isUnderConstruction: true,
+    minLevel: 35,
+  },
+  {
+    id: "singapore-dock",
+    name: "Cảng Thương Mại Singapore",
+    subtitle: "Tài Chính Chuỗi Cung Ứng & Tín Dụng L/C",
+    emoji: "🚢",
+    badge: "🚢 SINGAPORE DOCK • LÊN LEVEL 40",
+    bgLight: "bg-gradient-to-br from-blue-50/80 via-sky-50 to-indigo-50",
+    borderColor: "border-blue-400/80 border-dashed ring-1 ring-blue-400/40",
+    textColor: "text-blue-900 font-black",
+    badgeBg: "bg-gradient-to-r from-blue-600 to-indigo-600 text-white font-black",
+    posClass: "top-[1040px] left-1/2 -translate-x-1/2",
+    desktopClass: "lg:col-start-2 lg:row-start-10",
+    isUnderConstruction: true,
+    minLevel: 40,
   },
 ];
 
 const BUILDING_AVATAR_POSITIONS: Record<string, { x: number; y: number }> = {
-  "world-boss": { x: 50, y: 13 },
-  pvp: { x: 18, y: 34 },
-  arcade: { x: 50, y: 50 },
-  "weekly-challenge": { x: 18, y: 68 },
-  guilds: { x: 82, y: 68 },
-  cards: { x: 18, y: 88 },
-  shop: { x: 82, y: 88 },
+  "world-boss": { x: 50, y: 8 },
+  pvp: { x: 18, y: 18 },
+  arcade: { x: 50, y: 28 },
+  "weekly-challenge": { x: 18, y: 38 },
+  guilds: { x: 82, y: 38 },
+  cards: { x: 18, y: 50 },
+  shop: { x: 82, y: 50 },
+  "fed-vault": { x: 50, y: 60 },
+  "silicon-bay": { x: 18, y: 70 },
+  "capitol-hill": { x: 82, y: 70 },
+  "cme-commodities": { x: 18, y: 82 },
+  "swiss-haven": { x: 82, y: 82 },
+  "singapore-dock": { x: 50, y: 92 },
 };
 
 export default function FinancialRpgWorldMap() {
@@ -165,15 +265,15 @@ export default function FinancialRpgWorldMap() {
   const [user, setUser] = useState<{ id?: string; email?: string } | null>(null);
   const [level, setLevel] = useState(1);
   const [coins, setCoins] = useState(0);
+  const [energy, setEnergy] = useState(100);
   const [equippedGear, setEquippedGear] = useState<CharacterEquipments>({});
-  const [showPvpModal, setShowPvpModal] = useState(false);
-  const [hoveredBuildingPos, setHoveredBuildingPos] = useState<{ x: number; y: number } | null>(null);
+  const [avatarPos, setAvatarPos] = useState<{ x: number; y: number }>({ x: 50, y: 50 });
+  const [isMoving, setIsMoving] = useState(false);
+
   const [discoveredBuildings, setDiscoveredBuildings] = useState<string[]>(() => {
     if (typeof window === "undefined") return ["world-boss", "arcade"];
-
     const saved = localStorage.getItem("thtcdn_discovered_buildings");
     if (!saved) return ["world-boss", "arcade"];
-
     try {
       const parsed = JSON.parse(saved);
       return Array.isArray(parsed) && parsed.length > 0 ? parsed : ["world-boss", "arcade"];
@@ -196,10 +296,10 @@ export default function FinancialRpgWorldMap() {
           .eq("id", data.user.id)
           .single()
           .then(({ data: profile }) => {
-              if (profile) {
-                setLevel(profile.current_level || 1);
-                setCoins(profile.coins || 0);
-                if (profile.discovered_buildings && Array.isArray(profile.discovered_buildings) && profile.discovered_buildings.length > 0) {
+            if (profile) {
+              setLevel(profile.current_level || 1);
+              setCoins(profile.coins || 0);
+              if (profile.discovered_buildings && Array.isArray(profile.discovered_buildings) && profile.discovered_buildings.length > 0) {
                 setDiscoveredBuildings(profile.discovered_buildings);
                 if (typeof window !== "undefined") {
                   localStorage.setItem("thtcdn_discovered_buildings", JSON.stringify(profile.discovered_buildings));
@@ -235,12 +335,14 @@ export default function FinancialRpgWorldMap() {
       }
     });
 
-    // Check URL query parameter building
     if (typeof window !== "undefined") {
       const params = new URLSearchParams(window.location.search);
       const bParam = params.get("building");
       if (bParam) {
         setSelectedBuilding(bParam);
+        if (BUILDING_AVATAR_POSITIONS[bParam]) {
+          setAvatarPos(BUILDING_AVATAR_POSITIONS[bParam]);
+        }
       }
     }
 
@@ -248,6 +350,7 @@ export default function FinancialRpgWorldMap() {
       const detail = (e as CustomEvent<{ coins: number }>).detail;
       if (detail && typeof detail.coins === "number") setCoins(detail.coins);
     };
+
     window.addEventListener("thtcdn:coin-updated", handleCoinUpdate);
     return () => window.removeEventListener("thtcdn:coin-updated", handleCoinUpdate);
   }, []);
@@ -262,6 +365,12 @@ export default function FinancialRpgWorldMap() {
   };
 
   const handleBuildingClick = (id: string) => {
+    const targetPos = BUILDING_AVATAR_POSITIONS[id] ?? { x: 50, y: 50 };
+    
+    // Start Hero Movement animation towards target building
+    setIsMoving(true);
+    setAvatarPos(targetPos);
+
     const isDiscovered = discoveredBuildings.includes(id);
 
     // Fog Discovery Unveil Event & LocalStorage Persistence
@@ -281,51 +390,140 @@ export default function FinancialRpgWorldMap() {
       }
     }
 
-    const reqLevel = getRequiredLevelForBuilding(id);
-    if (level < reqLevel) {
-      toast.error(`🔒 Công trình này yêu cầu Level ${reqLevel}! Hãy hoàn thành thêm bài học để mở khóa.`);
-      return;
-    }
+    const targetBuilding = ORGANIC_BUILDINGS.find((b) => b.id === id);
+    const reqLevel = targetBuilding?.minLevel ?? getRequiredLevelForBuilding(id);
 
-    setSelectedBuilding(id);
-    if (typeof window !== "undefined") {
-      const url = new URL(window.location.href);
-      url.searchParams.set("building", id);
-      window.history.replaceState({}, "", url.toString());
-    }
+    // Allow pathfinding movement, then check level lock or proceed
+    setTimeout(() => {
+      setIsMoving(false);
+
+      if (targetBuilding?.isUnderConstruction) {
+        toast.info(`🏗️ Vùng đất "${targetBuilding.name}" đang trong quá trình mở rộng & thi công! Yêu cầu Level ${reqLevel} để khám phá.`);
+        return;
+      }
+
+      if (level < reqLevel) {
+        toast.error(`🔒 Công trình này yêu cầu Level ${reqLevel}! Hãy hoàn thành thêm bài học để mở khóa.`);
+        return;
+      }
+
+      setSelectedBuilding(id);
+      if (typeof window !== "undefined") {
+        const url = new URL(window.location.href);
+        url.searchParams.set("building", id);
+        window.history.replaceState({}, "", url.toString());
+      }
+    }, 450);
   };
 
   return (
-    <div className="min-h-screen bg-white text-stone-900 p-4 sm:p-6 relative overflow-x-hidden transition-colors duration-500">
-      {/* Bloomberg Terminal Style Market Ticker Tape */}
-      <div className="bg-stone-950 text-amber-400 py-1.5 px-4 -mx-4 -mt-4 sm:-mx-6 sm:-mt-6 mb-4 text-[11px] font-mono border-b border-amber-500/30 overflow-hidden relative z-0 shadow-md flex items-center justify-between">
+    <div className="min-h-screen bg-gradient-to-b from-amber-50/70 via-stone-50 to-emerald-50/50 text-stone-900 p-3 sm:p-5 relative overflow-x-hidden transition-colors duration-500 font-sans">
+      {/* 👑 Top Gaming HUD Bar (Light Mode) */}
+      <div className="max-w-6xl mx-auto mb-4 bg-white/95 backdrop-blur-xl border border-amber-300/90 rounded-2xl p-2.5 sm:p-3.5 shadow-[0_10px_30px_-10px_rgba(245,158,11,0.2)] flex flex-wrap items-center justify-between gap-3 relative z-30">
+        {/* Left Player Level & Info */}
+        <div className="flex items-center gap-3">
+          <div className="relative">
+            <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-amber-400 via-yellow-400 to-amber-500 p-[2px] shadow-sm">
+              <div className="w-full h-full rounded-[10px] bg-amber-500 flex items-center justify-center font-black text-white text-sm shadow-xs">
+                Lv.{level}
+              </div>
+            </div>
+            <div className="absolute -top-1.5 -right-1.5 flex h-4 w-4 items-center justify-center rounded-full bg-amber-500 text-white shadow-xs">
+              <Crown className="h-2.5 w-2.5 fill-white text-white" />
+            </div>
+          </div>
+
+          <div>
+            <div className="flex items-center gap-1.5">
+              <h2 className="text-xs font-black uppercase text-amber-900 tracking-wider">Đế Chế Wall Street</h2>
+              <span className="text-[9px] font-black uppercase bg-emerald-100 text-emerald-800 px-2 py-0.5 rounded-full border border-emerald-300">
+                Online
+              </span>
+            </div>
+            <p className="text-[10px] text-stone-600 font-semibold">Tập sự Phố Wall • 3D RPG Kingdom</p>
+          </div>
+        </div>
+
+        {/* Center Currencies & Energy Bar */}
+        <div className="flex items-center gap-3 sm:gap-5 text-xs font-black">
+          {/* Coins / Capital */}
+          <div className="flex items-center gap-2 bg-amber-50/90 border border-amber-200/90 px-3 py-1.5 rounded-xl shadow-xs">
+            <div className="flex h-5 w-5 items-center justify-center rounded-full bg-amber-500 text-white shadow-xs">
+              <Coins className="h-3.5 w-3.5 fill-white" />
+            </div>
+            <div>
+              <p className="text-[9px] font-extrabold uppercase text-amber-800/80 leading-none">Vốn Đầu Tư</p>
+              <p className="text-xs font-black text-amber-900 leading-tight">{coins.toLocaleString()} Coins</p>
+            </div>
+          </div>
+
+          {/* Energy Bar */}
+          <div className="flex items-center gap-2 bg-sky-50/90 border border-sky-200/90 px-3 py-1.5 rounded-xl shadow-xs">
+            <div className="flex h-5 w-5 items-center justify-center rounded-full bg-sky-500 text-white shadow-xs">
+              <Zap className="h-3.5 w-3.5 fill-white" />
+            </div>
+            <div>
+              <p className="text-[9px] font-extrabold uppercase text-sky-800/80 leading-none">Năng Lượng</p>
+              <div className="flex items-center gap-1.5 mt-0.5">
+                <div className="w-16 h-2 bg-stone-200 rounded-full overflow-hidden border border-sky-300 p-[1px]">
+                  <div className="h-full bg-gradient-to-r from-sky-400 to-emerald-400 rounded-full w-[100%] animate-pulse" />
+                </div>
+                <span className="text-[10px] font-black text-sky-900">100%</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Right Quick Nav Dock */}
+        <div className="flex items-center gap-1.5 shrink-0">
+          <button
+            onClick={() => handleBuildingClick("shop")}
+            className="flex items-center gap-1 bg-gradient-to-r from-amber-500 to-yellow-500 hover:from-amber-600 hover:to-yellow-600 text-white px-2.5 py-1.5 rounded-xl text-xs font-black shadow-md transition-all cursor-pointer active:scale-95"
+            title="Tiệm Đồ Executive"
+          >
+            <ShoppingBag className="w-3.5 h-3.5" />
+            <span className="hidden sm:inline">Tiệm Đồ</span>
+          </button>
+
+          <button
+            onClick={() => handleBuildingClick("cards")}
+            className="flex items-center gap-1 bg-white hover:bg-stone-50 text-stone-800 border border-stone-300 px-2.5 py-1.5 rounded-xl text-xs font-black shadow-xs transition-all cursor-pointer active:scale-95"
+            title="Bảo Tàng Thẻ VN30"
+          >
+            <Layers className="w-3.5 h-3.5 text-sky-600" />
+            <span className="hidden sm:inline">Bộ Thẻ</span>
+          </button>
+        </div>
+      </div>
+
+      {/* Wall Street Bloomberg Terminal LED Ticker Tape (Deep Black) */}
+      <div className="bg-stone-950 border-y border-emerald-500/30 text-emerald-400 py-2 px-4 -mx-3 -mt-2 sm:-mx-5 sm:-mt-3 mb-4 text-[11px] font-mono shadow-md overflow-hidden relative z-10 flex items-center justify-between">
         <div className="flex items-center gap-6 whitespace-nowrap overflow-x-auto scrollbar-none">
-          <span className="font-bold text-white flex items-center gap-1 shrink-0">
-            <span className="w-2 h-2 rounded-full bg-emerald-500 animate-ping inline-block" /> WALL STREET FEED
+          <span className="font-black text-amber-400 bg-amber-950/80 px-2 py-0.5 rounded border border-amber-500/40 flex items-center gap-1.5 shrink-0">
+            <span className="w-2 h-2 rounded-full bg-amber-400 animate-ping inline-block" /> WALL ST. TICKER
           </span>
-          <span className="shrink-0">📈 VN-INDEX: 1,285.40 (+1.45%)</span>
-          <span className="shrink-0 text-amber-300 font-bold">🐂 SĂN BOSS NYSE: 1,000,000 HP</span>
-          <span className="shrink-0 text-sky-300 font-bold">🧠 ĐẤU TRƯỜNG SOLO: BOSS KIẾN THỨC ĐANG CHỜ</span>
-          <span className="shrink-0 text-emerald-300 font-bold">💼 HEDGE FUND CLAN: TOP #1 WALL STREET</span>
+          <span className="shrink-0 font-bold text-emerald-400">📈 VN-INDEX: 1,285.40 (+1.45%)</span>
+          <span className="shrink-0 font-bold text-amber-300">🐂 BOSS SÀN NYSE: 850,000 / 1,000,000 HP (85%)</span>
+          <span className="shrink-0 font-bold text-cyan-300">🏙️ TIMES SQUARE: CASE STUDY CASE #12 HOẠT ĐỘNG</span>
+          <span className="shrink-0 font-bold text-purple-300">💼 HEDGE FUND CLAN: TOP #1 WALL STREET</span>
         </div>
       </div>
 
       {!selectedBuilding && (
         <>
-          {/* Wall Street Photo Background - only on town map */}
-          <div className="absolute inset-0 pointer-events-none opacity-14 z-0 overflow-hidden">
+          {/* Wall Street Photo Background (Ultra Vivid & High Clarity) */}
+          <div className="absolute inset-0 pointer-events-none opacity-70 z-0 overflow-hidden">
             <Image
               src="/wallstreet-bg.jpg"
               alt="Wall Street Background"
               fill
-              className="object-cover blur-[1px] grayscale"
+              className="object-cover blur-0 contrast-[1.08] brightness-[1.02]"
               priority
             />
           </div>
 
-          {/* Light Theme Background Pattern */}
-          <div className="absolute inset-0 bg-white/75 pointer-events-none z-0" />
-          <div className="absolute inset-0 bg-[radial-gradient(#e5e7eb_1px,transparent_1px)] [background-size:24px_24px] pointer-events-none opacity-25 z-0" />
+          <div className="absolute inset-0 bg-gradient-to-b from-white/10 via-transparent to-white/20 pointer-events-none z-0" />
+          <div className="absolute inset-0 bg-[radial-gradient(#10b981_1.5px,transparent_1.5px)] [background-size:32px_32px] pointer-events-none opacity-[0.05] z-0" />
         </>
       )}
 
@@ -333,57 +531,74 @@ export default function FinancialRpgWorldMap() {
       <div className="max-w-6xl mx-auto z-10 relative">
         {!selectedBuilding ? (
           <div>
-            {/* World Map Header */}
-            <div className="text-center mb-6">
-              <span className="text-xs font-black uppercase tracking-widest text-amber-600 bg-amber-50 px-3 py-1 rounded-full border border-amber-200">
-                🐂 Wall Street Trading Hub
-              </span>
-              <h1 className="text-2xl sm:text-3xl font-black mt-2 text-stone-900">
-                Đế Chế Tài Chính Wall Street
-              </h1>
-              <p className="text-xs text-stone-500 mt-1">
-                Khám phá Sàn NYSE, Săn Boss Cá Mập M&A, Đua Top Quỹ Đầu Tư Hedge Fund & Tháp Kỹ Năng CFA!
-              </p>
-            </div>
-
             {/* Mobile / Tablet View: Categorized District Grids */}
-            <div className="md:hidden space-y-6">
-              {["🏛️ NYSE CENTRAL", "🏢 TRADER SIMULATOR", "🏰 HEDGE FUND QUARTER"].map((districtName) => {
-                const districtBuildings = ORGANIC_BUILDINGS.filter((b) => b.badge === districtName);
+            <div className="md:hidden space-y-5">
+              {["🏛️ NYSE CENTRAL", "🔥 TỔNG HỢP MINI GAME", "🏙️ TIMES SQUARE", "🏰 HEDGE FUND QUARTER", "🏦 FED VAULT", "🚀 SILICON BAY", "🏛️ CAPITOL HILL", "🌾 CME COMMODITY", "💎 SWISS HAVEN", "🚢 SINGAPORE DOCK"].map((districtBadge) => {
+                const districtBuildings = ORGANIC_BUILDINGS.filter((b) => b.badge.includes(districtBadge.split(" ")[1] || districtBadge.split(" ")[0] || ""));
                 if (districtBuildings.length === 0) return null;
                 return (
-                  <div key={districtName} className="space-y-3">
+                  <div key={districtBadge} className="space-y-2.5">
                     <div className="flex items-center gap-2 px-1">
-                      <span className="text-xs font-black uppercase tracking-wider text-amber-700 bg-amber-50 px-3 py-1 rounded-full border border-amber-200 shadow-2xs">
-                        {districtName}
+                      <span className="text-[11px] font-black uppercase tracking-wider text-amber-900 bg-amber-100 px-3 py-1 rounded-full border border-amber-300 shadow-xs">
+                        {districtBadge}
                       </span>
-                      <div className="h-px bg-stone-200 flex-1" />
+                      <div className="h-px bg-amber-300/40 flex-1" />
                     </div>
 
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                       {districtBuildings.map((b) => {
                         const isDiscovered = discoveredBuildings.includes(b.id);
+                        const reqLevel = b.minLevel ?? getRequiredLevelForBuilding(b.id);
+                        const isLocked = level < reqLevel;
+
                         return (
                           <motion.div
                             key={b.id}
                             whileHover={{ scale: 1.02 }}
                             whileTap={{ scale: 0.98 }}
                             onClick={() => handleBuildingClick(b.id)}
-                            className={`${b.bgLight} border-2 ${b.borderColor} rounded-3xl p-4 shadow-md cursor-pointer flex items-center gap-3.5 group backdrop-blur-md transition-all relative overflow-hidden active:scale-95 touch-manipulation min-h-[72px]`}
+                            className={`bg-white/95 border-2 border-amber-300/90 rounded-3xl p-4 shadow-md cursor-pointer flex items-center gap-3.5 group backdrop-blur-md transition-all relative overflow-hidden active:scale-95 touch-manipulation min-h-[90px]`}
                           >
+                            {/* Fog Unveil Overlay */}
                             {!isDiscovered && (
-                              <div className="absolute inset-0 bg-gradient-to-br from-amber-100/95 to-amber-50/95 z-30 flex items-center justify-between px-4 border-2 border-dashed border-amber-400">
+                              <div className="absolute inset-0 bg-white/95 backdrop-blur-md z-30 flex items-center justify-between px-4 border-2 border-dashed border-amber-400">
                                 <div className="flex items-center gap-2">
                                   <span className="text-xl animate-bounce">☁️</span>
                                   <div>
-                                    <p className="text-[10px] font-black text-amber-800">VÙNG ĐẤT CHƯA GIẢI MÃ</p>
-                                    <p className="text-[9px] font-extrabold text-amber-600">Click mở (+5 Coins)</p>
+                                    <p className="text-[10px] font-black text-amber-900">VÙNG ĐẤT CHƯA GIẢI MÃ</p>
+                                    <p className="text-[9px] font-extrabold text-amber-700">Click mở (+5 Coins)</p>
                                   </div>
                                 </div>
                               </div>
                             )}
 
-                            <div className="w-12 h-12 rounded-2xl bg-white border border-stone-200 flex items-center justify-center text-2xl shadow-sm shrink-0 group-hover:rotate-12 transition-transform overflow-hidden relative">
+                            {/* Under Construction Overlay */}
+                            {b.isUnderConstruction && isDiscovered && (
+                              <div className="absolute inset-0 bg-stone-900/85 backdrop-blur-xs z-25 flex items-center justify-between px-4 border-2 border-dashed border-amber-400 text-white">
+                                <div className="flex items-center gap-2">
+                                  <span className="text-xl animate-pulse">🏗️</span>
+                                  <div>
+                                    <p className="text-xs font-black text-amber-300 uppercase">ĐANG THI CÔNG</p>
+                                    <p className="text-[9px] font-bold text-stone-300">Khóa • Yêu cầu Lv.{reqLevel}</p>
+                                  </div>
+                                </div>
+                              </div>
+                            )}
+
+                            {/* Locked Chain Overlay */}
+                            {isLocked && !b.isUnderConstruction && isDiscovered && (
+                              <div className="absolute inset-0 bg-stone-100/95 backdrop-blur-xs z-25 flex items-center justify-between px-4 border-2 border-dashed border-stone-300">
+                                <div className="flex items-center gap-2 text-stone-600">
+                                  <Lock className="w-5 h-5 text-amber-600 animate-pulse shrink-0" />
+                                  <div>
+                                    <p className="text-xs font-black text-amber-800 uppercase">Khóa Lv.{reqLevel}</p>
+                                    <p className="text-[9px] font-bold text-stone-500">Yêu cầu hoàn thành bài học</p>
+                                  </div>
+                                </div>
+                              </div>
+                            )}
+
+                            <div className="w-15 h-15 rounded-2xl bg-amber-50 border-2 border-amber-300 flex items-center justify-center text-3xl shadow-md shrink-0 group-hover:rotate-12 transition-transform overflow-hidden relative">
                               {b.imageSrc ? (
                                 <Image src={b.imageSrc} alt={b.name} fill className="object-cover" />
                               ) : (
@@ -392,10 +607,10 @@ export default function FinancialRpgWorldMap() {
                             </div>
 
                             <div className="min-w-0 flex-1">
-                              <h3 className={`text-sm font-black ${b.textColor} truncate`}>
+                              <h3 className="text-sm font-black text-stone-900 truncate">
                                 {b.name}
                               </h3>
-                              <p className="text-[10px] text-stone-500 truncate mt-0.5">
+                              <p className="text-[10px] text-stone-600 truncate mt-0.5">
                                 {b.subtitle}
                               </p>
                             </div>
@@ -408,104 +623,206 @@ export default function FinancialRpgWorldMap() {
               })}
             </div>
 
-            {/* Desktop View: Grid Town Map. Real grid tracks prevent cards from overlapping at any zoom/width. */}
-            <div className="hidden md:block relative max-w-4xl mx-auto rounded-3xl border-2 border-amber-300/70 p-5 shadow-xl overflow-hidden bg-white backdrop-blur-xl">
-              <div className="pointer-events-none absolute inset-0 bg-white" />
-              <div className="pointer-events-none absolute inset-5 rounded-[28px] bg-[radial-gradient(#f59e0b_1px,transparent_1px)] [background-size:28px_28px] opacity-[0.045]" />
-              <svg className="pointer-events-none absolute inset-0 z-10 h-full w-full" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
-                <path d="M50 18 C44 26 30 26 18 34" fill="none" stroke="#38bdf8" strokeWidth="1.15" strokeLinecap="round" strokeDasharray="3 3" opacity="0.85" />
-                <path d="M18 34 C28 45 38 47 50 50" fill="none" stroke="#34d399" strokeWidth="1.1" strokeLinecap="round" strokeDasharray="3 3" opacity="0.75" />
-                <path d="M50 18 C58 29 73 34 82 68" fill="none" stroke="#c084fc" strokeWidth="1.1" strokeLinecap="round" strokeDasharray="3 3" opacity="0.76" />
-                <path d="M50 50 C36 59 26 62 18 68" fill="none" stroke="#c084fc" strokeWidth="1.1" strokeLinecap="round" strokeDasharray="3 3" opacity="0.76" />
-                <path d="M50 50 C62 57 74 60 82 68" fill="none" stroke="#f59e0b" strokeWidth="1.1" strokeLinecap="round" strokeDasharray="3 3" opacity="0.78" />
-                <path d="M18 68 C28 78 38 84 18 88" fill="none" stroke="#0ea5e9" strokeWidth="1" strokeLinecap="round" strokeDasharray="3 3" opacity="0.65" />
-                <path d="M82 68 C76 78 72 84 82 88" fill="none" stroke="#f59e0b" strokeWidth="1" strokeLinecap="round" strokeDasharray="3 3" opacity="0.65" />
-              </svg>
+            {/* Pan & Drag Hint Banner for Desktop Map */}
+            <div className="hidden md:flex items-center justify-between mb-3 px-2">
+              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-amber-100/90 text-amber-900 border border-amber-300 text-xs font-black shadow-xs">
+                <Compass className="w-4 h-4 text-amber-700 animate-spin-slow" />
+                <span>💡 Kéo tự do (Canva Drag & Pan) để di chuyển bản đồ không cần cuộn trang web!</span>
+              </div>
+              <span className="text-xs font-black text-emerald-800 bg-emerald-100 px-3 py-1 rounded-full border border-emerald-300 shadow-2xs">
+                13 VÙNG ĐẤT TÀI CHÍNH
+              </span>
+            </div>
+
+            {/* 🏰 Desktop 3D Isometric RPG World Map Container (Fixed Viewport Canva Canvas) */}
+            <div className="hidden md:block relative max-w-5xl mx-auto rounded-[36px] border-2 border-amber-300 shadow-[0_20px_60px_-15px_rgba(245,158,11,0.25)] overflow-hidden bg-gradient-to-b from-white/95 via-amber-50/30 to-emerald-50/40 backdrop-blur-2xl transition-all duration-300 h-[640px]">
+              
+              {/* Canva Navigation Badge Overlay */}
+              <div className="absolute top-4 left-4 z-40 flex items-center gap-2 pointer-events-none">
+                <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-stone-900/90 text-amber-300 text-xs font-black shadow-lg backdrop-blur-md border border-amber-500/40">
+                  <span>🖐️ Canva Drag Canvas (Kéo tự do 360°)</span>
+                </span>
+              </div>
+
+              {/* Inner Draggable Canva Canvas Container */}
               <motion.div
-                className="pointer-events-none absolute z-50 -ml-6 -mt-6"
-                animate={{
-                  left: `${hoveredBuildingPos?.x ?? 50}%`,
-                  top: `${hoveredBuildingPos?.y ?? 50}%`,
-                }}
-                transition={{ type: "spring", stiffness: 95, damping: 16 }}
+                drag
+                dragConstraints={{ left: -380, right: 380, top: -750, bottom: 80 }}
+                dragElastic={0.08}
+                whileTap={{ cursor: "grabbing" }}
+                className="w-full h-full cursor-grab active:cursor-grabbing relative p-6 sm:p-8 select-none"
+                style={{ touchAction: "none" }}
               >
-                <div className="rounded-full bg-white/95 p-1 shadow-[0_12px_30px_-12px_rgba(15,23,42,0.45)] ring-2 ring-emerald-300/80">
-                  <FinanceCharacterAvatar size="md" level={level} equipments={equippedGear} />
+                {/* Isometric Perspective Grid Layer */}
+                <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(#10b981_1.5px,transparent_1.5px)] [background-size:36px_36px] opacity-[0.12]" />
+
+                {/* ⚡ Dynamic Animated Laser Energy Flow Paths (SVG Laser Lines) */}
+                <svg className="pointer-events-none absolute inset-0 z-10 h-full w-full" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
+                  <defs>
+                    {/* Glowing Laser Color Gradients */}
+                    <linearGradient id="laser-gold" x1="0%" y1="0%" x2="100%" y2="100%">
+                      <stop offset="0%" stopColor="#f59e0b" stopOpacity="0.9" />
+                      <stop offset="50%" stopColor="#d97706" stopOpacity="1" />
+                      <stop offset="100%" stopColor="#b45309" stopOpacity="0.9" />
+                    </linearGradient>
+                    <linearGradient id="laser-purple" x1="0%" y1="0%" x2="100%" y2="100%">
+                      <stop offset="0%" stopColor="#a855f7" stopOpacity="0.9" />
+                      <stop offset="100%" stopColor="#7e22ce" stopOpacity="0.9" />
+                    </linearGradient>
+                    <linearGradient id="laser-sky" x1="0%" y1="0%" x2="100%" y2="100%">
+                      <stop offset="0%" stopColor="#0ea5e9" stopOpacity="0.9" />
+                      <stop offset="100%" stopColor="#0284c7" stopOpacity="0.9" />
+                    </linearGradient>
+                  </defs>
+
+                  {/* Animated Base Dash Paths */}
+                  <path d="M50 18 C44 26 30 26 18 34" fill="none" stroke="url(#laser-sky)" strokeWidth="2.2" strokeLinecap="round" strokeDasharray="4 4" className="animate-[pulse_2s_infinite]" opacity="0.9" />
+                  <path d="M18 34 C28 45 38 47 50 50" fill="none" stroke="url(#laser-sky)" strokeWidth="2.2" strokeLinecap="round" strokeDasharray="4 4" opacity="0.85" />
+                  <path d="M50 18 C58 29 73 34 82 68" fill="none" stroke="url(#laser-purple)" strokeWidth="2.2" strokeLinecap="round" strokeDasharray="4 4" opacity="0.9" />
+                  <path d="M50 50 C36 59 26 62 18 68" fill="none" stroke="url(#laser-purple)" strokeWidth="2.2" strokeLinecap="round" strokeDasharray="4 4" opacity="0.9" />
+                  <path d="M50 50 C62 57 74 60 82 68" fill="none" stroke="url(#laser-gold)" strokeWidth="2.5" strokeLinecap="round" strokeDasharray="5 5" className="animate-[pulse_1.5s_infinite]" opacity="0.95" />
+                  <path d="M18 68 C28 78 38 84 18 88" fill="none" stroke="url(#laser-sky)" strokeWidth="2" strokeLinecap="round" strokeDasharray="4 4" opacity="0.8" />
+                  <path d="M82 68 C76 78 72 84 82 88" fill="none" stroke="url(#laser-gold)" strokeWidth="2.2" strokeLinecap="round" strokeDasharray="4 4" opacity="0.85" />
+                </svg>
+
+                {/* 🏃 Smooth Interactive Hero Pathfinding Marker (Slightly Smaller) */}
+                <motion.div
+                  className="pointer-events-none absolute z-50 -ml-5 -mt-5"
+                  animate={{
+                    left: `${avatarPos.x}%`,
+                    top: `${avatarPos.y}%`,
+                  }}
+                  transition={{ type: "spring", stiffness: 85, damping: 15 }}
+                >
+                  <div className="relative">
+                    {/* Hero Pulsing Halo Glow */}
+                    <div className="absolute -inset-1.5 rounded-full bg-gradient-to-r from-amber-400 to-yellow-500 opacity-75 blur-xs animate-pulse" />
+                    
+                    <div className="relative rounded-full bg-white p-0.5 shadow-md ring-2 ring-amber-400">
+                      <FinanceCharacterAvatar size="sm" level={level} equipments={equippedGear} />
+                    </div>
+
+                    {/* Hero Level Badge Pill */}
+                    <div className="absolute -bottom-2 left-1/2 -translate-x-1/2 bg-gradient-to-r from-amber-500 to-yellow-500 text-white text-[8px] font-black uppercase px-1.5 py-0.5 rounded-full shadow ring-1 ring-white whitespace-nowrap">
+                      Lv.{level}
+                    </div>
+                  </div>
+                </motion.div>
+
+                {/* 🏛️ 3D Isometric Building Grid (Enlarged Images & Cards) */}
+                <div className="relative grid grid-cols-2 gap-x-6 gap-y-7 lg:grid-cols-3">
+                  {ORGANIC_BUILDINGS.map((b) => {
+                    const isDiscovered = discoveredBuildings.includes(b.id);
+                    const reqLevel = b.minLevel ?? getRequiredLevelForBuilding(b.id);
+                    const isLocked = level < reqLevel;
+                    const isCenter = b.id === "arcade";
+
+                    return (
+                      <motion.div
+                        key={b.id}
+                        whileHover={{ scale: 1.04, y: -6, rotate: 0.5 }}
+                        whileTap={{ scale: 0.95 }}
+                        onClick={() => handleBuildingClick(b.id)}
+                        onMouseEnter={() => setAvatarPos(BUILDING_AVATAR_POSITIONS[b.id] ?? { x: 50, y: 50 })}
+                        className={`relative ${b.desktopClass} ${isCenter ? "md:col-span-2 lg:col-span-1" : ""} min-h-[130px] bg-white/95 border-2 ${b.borderColor} rounded-[28px] p-5 shadow-lg hover:shadow-2xl cursor-pointer flex items-center gap-4 group w-full z-20 backdrop-blur-xl transition-all overflow-hidden`}
+                      >
+                        {/* Special Effects & Flames */}
+                        {b.id === "arcade" && (
+                          <div className="absolute -top-1 -right-1 z-40 text-lg animate-bounce pointer-events-none drop-shadow-md">
+                            🔥
+                          </div>
+                        )}
+
+                        {/* 🔴 Live Status & Boss HP Badge Overlays */}
+                        {b.id === "world-boss" && (
+                          <div className="absolute top-2 right-2.5 z-30 flex items-center gap-1 rounded-full bg-red-100 px-2.5 py-0.5 text-[9px] font-black text-red-700 border border-red-300 shadow-xs">
+                            <span className="w-1.5 h-1.5 rounded-full bg-red-600 animate-ping" />
+                            <span>BOSS 85% HP</span>
+                          </div>
+                        )}
+
+                        {b.id === "weekly-challenge" && (
+                          <div className="absolute top-2 right-2.5 z-30 flex items-center gap-1 rounded-full bg-purple-100 px-2.5 py-0.5 text-[9px] font-black text-purple-700 border border-purple-300 shadow-xs animate-pulse">
+                            <Sparkles className="w-2.5 h-2.5 text-purple-600" />
+                            <span>HOT CASE STUDY</span>
+                          </div>
+                        )}
+
+                        {/* Fog Unveil Overlay */}
+                        {!isDiscovered && (
+                          <div className="absolute inset-0 bg-white/95 backdrop-blur-md z-30 flex flex-col items-center justify-center p-2 text-center border-2 border-dashed border-amber-400 group-hover:bg-white/90 transition-all">
+                            <span className="text-2xl mb-1 animate-bounce">☁️</span>
+                            <span className="text-[10px] font-black text-amber-900 uppercase tracking-wider">
+                              VÙNG ĐẤT CHƯA GIẢI MÃ
+                            </span>
+                            <span className="text-[9px] font-extrabold text-amber-700 mt-0.5">
+                              Click mở sương mù (+5 Coins)
+                            </span>
+                          </div>
+                        )}
+
+                        {/* Under Construction Overlay */}
+                        {b.isUnderConstruction && isDiscovered && (
+                          <div className="absolute inset-0 bg-stone-900/85 backdrop-blur-xs z-25 flex flex-col items-center justify-center p-2 text-center border-2 border-dashed border-amber-500/80 text-white">
+                            <span className="text-2xl mb-1 animate-pulse">🏗️</span>
+                            <span className="text-xs font-black uppercase text-amber-300 tracking-wider">
+                              ĐANG THI CÔNG
+                            </span>
+                            <span className="text-[9px] font-extrabold text-stone-300 mt-0.5">
+                              Khóa • Yêu cầu Lv.{reqLevel}
+                            </span>
+                          </div>
+                        )}
+
+                        {/* Locked Overlay */}
+                        {isLocked && !b.isUnderConstruction && isDiscovered && (
+                          <div className="absolute inset-0 bg-stone-100/95 backdrop-blur-xs z-25 flex flex-col items-center justify-center p-2 text-center border-2 border-dashed border-stone-300">
+                            <div className="flex items-center gap-1.5 text-amber-700">
+                              <Lock className="w-4 h-4 text-amber-600 animate-pulse" />
+                              <span className="text-xs font-black uppercase">Khóa Lv.{reqLevel}</span>
+                            </div>
+                            <span className="text-[9px] font-bold text-stone-500 mt-0.5">Hoàn thành bài học để mở</span>
+                          </div>
+                        )}
+
+                        <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-2xl bg-amber-50 border-2 border-amber-300 flex items-center justify-center text-4xl shadow-md shrink-0 group-hover:rotate-6 transition-transform overflow-hidden relative">
+                          {b.imageSrc ? (
+                            <Image src={b.imageSrc} alt={b.name} fill className="object-cover" />
+                          ) : (
+                            b.emoji
+                          )}
+                        </div>
+
+                        <div className="min-w-0 flex-1">
+                          <span className={`max-w-full truncate text-[9px] font-black uppercase px-2 py-0.5 rounded-full ${b.badgeBg} inline-block mb-1 shadow-sm`}>
+                            {b.badge}
+                          </span>
+                          <h3 className={`text-sm sm:text-base font-black text-stone-900 truncate`}>
+                            {b.name}
+                          </h3>
+                          <p className="text-[10px] sm:text-xs text-stone-600 truncate mt-0.5">
+                            {b.subtitle}
+                          </p>
+                        </div>
+                      </motion.div>
+                    );
+                  })}
                 </div>
               </motion.div>
-              <div className="relative grid grid-cols-2 gap-x-5 gap-y-6 lg:grid-cols-3 lg:grid-rows-[auto_auto_auto_auto_auto_auto]">
-                {ORGANIC_BUILDINGS.map((b, idx) => {
-                  const isDiscovered = discoveredBuildings.includes(b.id);
-                  const isCenter = b.id === "arcade";
-
-                  return (
-                    <motion.div
-                      key={b.id}
-                      whileHover={{ scale: 1.03, y: -4 }}
-                      whileTap={{ scale: 0.95 }}
-                      onClick={() => handleBuildingClick(b.id)}
-                      onMouseEnter={() => setHoveredBuildingPos(BUILDING_AVATAR_POSITIONS[b.id] ?? null)}
-                      className={`relative ${b.desktopClass} ${isCenter ? "md:col-span-2 lg:col-span-1" : ""} min-h-[100px] bg-white/95 border-2 ${b.borderColor} rounded-3xl p-4 shadow-xl cursor-pointer flex items-center gap-3 group w-full z-20 backdrop-blur-md transition-all overflow-hidden`}
-                    >
-                      {b.id === "arcade" && (
-                        <div className="absolute -top-1 -right-1 z-40 text-base animate-bounce pointer-events-none drop-shadow-md">
-                          🔥
-                        </div>
-                      )}
-                      {b.id === "arcade" && (
-                        <div className="absolute -bottom-1 -left-1 z-40 text-base animate-pulse pointer-events-none drop-shadow-md">
-                          🔥
-                        </div>
-                      )}
-                      {!isDiscovered && (
-                        <div className="absolute inset-0 bg-gradient-to-br from-amber-100/90 via-amber-50/95 to-amber-100/90 backdrop-blur-xs z-30 flex flex-col items-center justify-center p-2 text-center border-2 border-dashed border-amber-400/80 group-hover:bg-amber-100/70 transition-all">
-                          <span className="text-xl mb-1 animate-bounce">☁️</span>
-                          <span className="text-[10px] font-black text-amber-800 leading-tight">
-                            VÙNG ĐẤT CHƯA GIẢI MÃ
-                          </span>
-                          <span className="text-[9px] font-extrabold text-amber-600 mt-0.5">
-                            Click mở sương mù (+5 Coins)
-                          </span>
-                        </div>
-                      )}
-
-                      <div className="w-12 h-12 rounded-2xl bg-white border border-stone-200 flex items-center justify-center text-3xl shadow-sm shrink-0 group-hover:rotate-12 transition-transform overflow-hidden relative">
-                        {b.imageSrc ? (
-                          <Image src={b.imageSrc} alt={b.name} fill className="object-cover" />
-                        ) : (
-                          b.emoji
-                        )}
-                      </div>
-
-                      <div className="min-w-0 flex-1">
-                        <span className={`max-w-full truncate text-[9px] font-black uppercase px-2 py-0.5 rounded-full ${b.badgeBg} inline-block mb-1 shadow-sm`}>
-                          {b.badge}
-                        </span>
-                        <h3 className={`text-sm font-black ${b.textColor} truncate`}>
-                          {b.name}
-                        </h3>
-                        <p className="text-[10px] text-stone-500 truncate">
-                          {b.subtitle}
-                        </p>
-                      </div>
-                    </motion.div>
-                  );
-                })}
-              </div>
             </div>
           </div>
         ) : (
-          /* Active Building Interactive View */
+          /* Active Building Interactive Modal View (Light Mode) */
           <div className="min-h-[calc(100vh-8.5rem)] sm:min-h-[calc(100vh-9rem)] flex flex-col">
-            <div className="mb-6 flex flex-col items-start gap-3 sm:flex-row sm:items-center sm:justify-between">
+            <div className="mb-5 flex flex-col items-start gap-3 sm:flex-row sm:items-center sm:justify-between">
               <button
                 onClick={handleCloseBuilding}
-                className="inline-flex items-center gap-2 text-xs font-extrabold text-stone-700 bg-white border border-stone-300 hover:bg-stone-100 px-4 py-2 rounded-2xl transition-all cursor-pointer shadow-md"
+                className="inline-flex items-center gap-2 text-xs font-extrabold text-stone-800 bg-white border border-stone-300 hover:bg-stone-50 px-4 py-2 rounded-2xl transition-all cursor-pointer shadow-md"
               >
-                <ChevronLeft className="w-4 h-4" /> Quay Lại Bản Đồ Thị Trấn
+                <ChevronLeft className="w-4 h-4 text-amber-600" /> Quay Lại Bản Đồ Đấu Trường
               </button>
               
-              <span className="text-[11px] sm:text-xs font-black text-stone-500 uppercase tracking-widest leading-tight">
+              <span className="text-[11px] sm:text-xs font-black text-amber-800 uppercase tracking-widest leading-tight">
                 Đang mở: {ORGANIC_BUILDINGS.find((b) => b.id === selectedBuilding)?.name}
               </span>
             </div>
@@ -521,9 +838,9 @@ export default function FinancialRpgWorldMap() {
                 onClose={handleCloseBuilding}
               />
             ) : (
-              <div className="flex-1 min-h-0 bg-white border border-stone-200 rounded-3xl p-3 sm:p-4 shadow-sm overflow-hidden">
+              <div className="flex-1 min-h-0 bg-white border border-stone-200 rounded-3xl p-3 sm:p-4 shadow-xl overflow-hidden text-stone-900">
                 {selectedBuilding === "world-boss" && (
-                <WorldBossRaidWidget userId={user?.id || ""} userLevel={level} equipments={equippedGear} />
+                  <WorldBossRaidWidget userId={user?.id || ""} userLevel={level} equipments={equippedGear} />
                 )}
                 {selectedBuilding === "guilds" && (
                   <FinancialGuildWidget userId={user?.id || ""} />

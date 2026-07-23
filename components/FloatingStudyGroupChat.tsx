@@ -224,8 +224,6 @@ export default function FloatingStudyGroupChat({ isOpen: controlledIsOpen, onOpe
     }
   }
 
-  if (!room) return null;
-
   const pinnedMessage = messages.find((m) => m.is_pinned) ?? null;
   const scrollMessages = messages.filter((m) => !m.is_pinned);
 
@@ -234,16 +232,21 @@ export default function FloatingStudyGroupChat({ isOpen: controlledIsOpen, onOpe
       {!hideTrigger && (
         <button
           onClick={() => {
+            if (!room) {
+              window.location.href = "/nhom-hoc";
+              return;
+            }
             setOpen((v) => !v);
             trackFeatureClick("floating_study_chat_toggle", { label: open ? "close" : "open" });
           }}
           aria-label="Chat nhóm học"
-          title={`Nhóm ${topicLabel(room.topic)}`}
-          className="fixed bottom-24 right-4 sm:bottom-24 sm:right-6 z-50 w-14 h-14 rounded-full shadow-xl flex items-center justify-center transition-all duration-300 cursor-pointer select-none bg-emerald-600 hover:bg-emerald-500 hover:scale-110"
+          title={room ? `Nhóm ${topicLabel(room.topic)}` : "Tham gia Nhóm Học"}
+          className="fixed bottom-21 right-4 sm:bottom-23 sm:right-6 z-50 w-14 h-14 rounded-full bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-500 hover:to-teal-500 text-white shadow-xl hover:scale-108 transition-all duration-200 flex items-center justify-center border-2 border-white dark:border-stone-800 cursor-pointer select-none group"
         >
-          <Users className="w-6 h-6 text-white" />
+          <Users className="w-6 h-6 text-white transition-transform group-hover:scale-110" />
+
           {unreadCount > 0 && !open && (
-            <span className="absolute -top-1 -right-1 min-w-[20px] h-5 px-1 rounded-full bg-red-500 text-white text-[10px] font-extrabold flex items-center justify-center border-2 border-white dark:border-stone-950">
+            <span className="absolute -top-1 -right-1 min-w-[20px] h-5 px-1.5 rounded-full bg-rose-600 text-white text-[10px] font-black flex items-center justify-center border-2 border-white shadow-md z-10">
               {unreadCount > 9 ? "9+" : unreadCount}
             </span>
           )}
@@ -269,8 +272,8 @@ export default function FloatingStudyGroupChat({ isOpen: controlledIsOpen, onOpe
               <Users className="w-4.5 h-4.5 text-white" />
             </div>
             <div className="flex-1 min-w-0">
-              <p className="text-white font-bold text-[13px] tracking-tight truncate">Nhóm {topicLabel(room.topic)}</p>
-              <p className="text-emerald-100/90 text-[10px] font-medium mt-0.5">{room.member_count}/{room.max_members} thành viên hoạt động</p>
+              <p className="text-white font-bold text-[13px] tracking-tight truncate">Nhóm {room ? topicLabel(room.topic) : "Học tập"}</p>
+              <p className="text-emerald-100/90 text-[10px] font-medium mt-0.5">{room?.member_count ?? 1}/{room?.max_members ?? 5} thành viên hoạt động</p>
             </div>
             <button
               onClick={() => setOpen(false)}

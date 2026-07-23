@@ -4,9 +4,10 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { toast } from "sonner";
-import { ArrowLeft, Flame, MessageCircle, Send, SmilePlus, Trash2 } from "lucide-react";
+import { ArrowLeft, Flame, MessageCircle, Send, SmilePlus, Trash2, Image as ImageIcon, X } from "lucide-react";
 import { createClient } from "@/lib/supabase";
 import EmojiPicker from "@/components/EmojiPicker";
+import { uploadChatImage, isAllowedChatImage } from "@/lib/supabase-chat";
 import {
   createComment,
   createManualPost,
@@ -71,6 +72,8 @@ export default function CommunityFeedClient({ embedded = false }: { embedded?: b
   const [loadingMore, setLoadingMore] = useState(false);
   const [hasMore, setHasMore] = useState(true);
   const [content, setContent] = useState("");
+  const [pendingImage, setPendingImage] = useState<File | null>(null);
+  const [imagePreview, setImagePreview] = useState<string | null>(null);
   const [posting, setPosting] = useState(false);
   const [openComments, setOpenComments] = useState<Record<number, boolean>>({});
   const [commentsByPost, setCommentsByPost] = useState<Record<number, CommunityPostComment[]>>({});
@@ -79,6 +82,26 @@ export default function CommunityFeedClient({ embedded = false }: { embedded?: b
   const [postingComment, setPostingComment] = useState<Record<number, boolean>>({});
   const [reactionPickerFor, setReactionPickerFor] = useState<number | null>(null);
   const userIdRef = useRef<string | null>(null);
+  const fileInputRef = useRef<HTMLInputElement>(null);
+
+  const handleImageSelect = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+    const invalid = isAllowedChatImage(file);
+    if (invalid) {
+      toast.error(invalid);
+      return;
+    }
+    setPendingImage(file);
+    setImagePreview(URL.createObjectURL(file));
+  };
+
+  const clearPendingImage = () => {
+    setPendingImage(null);
+    if (imagePreview) URL.revokeObjectURL(imagePreview);
+    setImagePreview(null);
+    if (fileInputRef.current) fileInputRef.current.value = "";
+  };
 
   const refreshFeed = useCallback(async () => {
     const feed = await getCommunityFeed();
@@ -145,12 +168,18 @@ export default function CommunityFeedClient({ embedded = false }: { embedded?: b
   }, [loadingMore, posts]);
 
   const handlePost = async () => {
-    if (!user || !content.trim() || posting) return;
+    if (!user || (!content.trim() && !pendingImage) || posting) return;
     setPosting(true);
     try {
-      await createManualPost(user.id, content);
+      let imageUrl: string | undefined = undefined;
+      if (pendingImage) {
+        imageUrl = await uploadChatImage(user.id, pendingImage);
+      }
+      await createManualPost(user.id, content, imageUrl);
       setContent("");
+      clearPendingImage();
       await refreshFeed();
+      toast.success("Đã đăng bài chia sẻ!");
     } catch (error) {
       toast.error(error instanceof Error ? error.message : "Không đăng được bài. Vui lòng thử lại.");
     } finally {
@@ -279,26 +308,78 @@ export default function CommunityFeedClient({ embedded = false }: { embedded?: b
 
       <div className={`${embedded ? "" : "max-w-2xl mx-auto"} px-4 py-6`}>
         {user && (
-          <div className="bg-white dark:bg-stone-900 border-2 border-stone-200 dark:border-stone-800 rounded-2xl p-4 mb-6">
+          <div className="bg-white dark:bg-stone-900 border-2 border-stone-200 dark:border-stone-800 rounded-3xl p-4 sm:p-5 mb-6 shadow-sm">
+            <div className="flex flex-wrap items-center gap-1.5 mb-3">
+              <span className="text-[10px] font-black uppercase text-stone-400 mr-1">Chủ đề:</span>
+              {[
+                { label: "💡 Mẹo tài chính", tag: "#MeoTaiChinh " },
+                { label: "📈 Phân tích", tag: "#PhanTich " },
+                { label: "🎯 Thành tựu", tag: "#ThanhTuu " },
+                { label: "❓ Hỏi đáp", tag: "#HoiDap " },
+              ].map((topic) => (
+                <button
+                  key={topic.label}
+                  type="button"
+                  onClick={() => setContent((prev) => (prev.includes(topic.tag) ? prev : `${topic.tag}${prev}`))}
+                  className="px-2.5 py-1 rounded-full bg-stone-100 dark:bg-stone-800 hover:bg-emerald-50 hover:text-emerald-700 dark:hover:bg-emerald-950 text-[11px] font-bold text-stone-600 dark:text-stone-300 transition-colors cursor-pointer"
+                >
+                  {topic.label}
+                </button>
+              ))}
+            </div>
+
+            <input
+              ref={fileInputRef}
+              type="file"
+              accept="image/*"
+              onChange={handleImageSelect}
+              className="hidden"
+            />
+
             <textarea
               value={content}
               onChange={(e) => setContent(e.target.value)}
-              placeholder="Chia sẻ cảm nghĩ hoặc thành quả học tập hôm nay..."
+              placeholder="Chia sẻ cảm nghĩ, mẹo đầu tư hoặc hình ảnh thành quả học tập hôm nay..."
               maxLength={500}
-              rows={2}
-              className="w-full resize-none px-3 py-2 rounded-lg border border-stone-200 dark:border-stone-700 bg-white dark:bg-stone-800 text-stone-900 dark:text-stone-100 text-sm focus:outline-none focus:border-stone-500"
+              rows={2.5}
+              className="w-full resize-none px-3.5 py-2.5 rounded-2xl border border-stone-200 dark:border-stone-700 bg-stone-50/50 dark:bg-stone-800/50 text-stone-900 dark:text-stone-100 text-sm focus:outline-none focus:border-emerald-500 focus:bg-white transition-all"
             />
-            <div className="flex items-center justify-between mt-2">
-              <div className="flex items-center gap-2">
+
+            {/* Image Preview Thumbnail */}
+            {imagePreview && (
+              <div className="relative mt-2.5 rounded-2xl overflow-hidden border border-stone-200 dark:border-stone-700 max-h-48 bg-stone-100 dark:bg-stone-800 w-fit">
+                <img src={imagePreview} alt="Preview" className="h-44 w-auto object-cover rounded-2xl" />
+                <button
+                  type="button"
+                  onClick={clearPendingImage}
+                  className="absolute top-2 right-2 flex h-6 w-6 items-center justify-center rounded-full bg-stone-900/70 text-white hover:bg-stone-900 transition-colors cursor-pointer"
+                  title="Xóa ảnh"
+                >
+                  <X className="h-3.5 w-3.5" />
+                </button>
+              </div>
+            )}
+
+            <div className="flex items-center justify-between mt-3">
+              <div className="flex items-center gap-1.5">
                 <EmojiPicker onSelect={(emoji) => setContent((prev) => prev + emoji)} />
-                <span className="text-xs text-stone-400">{content.length}/500</span>
+                <button
+                  type="button"
+                  onClick={() => fileInputRef.current?.click()}
+                  className="p-2 rounded-xl hover:bg-stone-100 dark:hover:bg-stone-800 text-stone-500 hover:text-emerald-600 dark:text-stone-400 dark:hover:text-emerald-400 transition-colors cursor-pointer flex items-center gap-1 text-xs font-bold"
+                  title="Đính kèm hình ảnh"
+                >
+                  <ImageIcon className="w-4 h-4 text-emerald-600 dark:text-emerald-400" />
+                  <span className="hidden sm:inline">Thêm ảnh</span>
+                </button>
+                <span className="text-xs text-stone-400 ml-1">{content.length}/500</span>
               </div>
               <button
                 onClick={handlePost}
-                disabled={posting || !content.trim()}
-                className="flex items-center gap-1.5 px-4 py-2 rounded-lg bg-stone-900 dark:bg-stone-100 text-white dark:text-stone-900 text-sm font-bold disabled:opacity-40 transition"
+                disabled={posting || (!content.trim() && !pendingImage)}
+                className="flex items-center gap-1.5 px-4.5 py-2 rounded-xl bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-500 hover:to-teal-500 text-white text-sm font-black disabled:opacity-40 transition-all shadow-sm active:scale-95 cursor-pointer"
               >
-                <Send className="w-3.5 h-3.5" /> Đăng
+                <Send className="w-3.5 h-3.5" /> {posting ? "Đang tải ảnh..." : "Đăng"}
               </button>
             </div>
           </div>
@@ -326,9 +407,22 @@ export default function CommunityFeedClient({ embedded = false }: { embedded?: b
                       )}
                       <span className="text-xs text-stone-400 dark:text-stone-500">{timeAgo(post.created_at)}</span>
                     </div>
-                    <p className="text-sm text-stone-800 dark:text-stone-200 mt-1 whitespace-pre-wrap break-words">
-                      {post.content}
-                    </p>
+                    {post.content && (
+                      <p className="text-sm text-stone-800 dark:text-stone-200 mt-1 whitespace-pre-wrap break-words">
+                        {post.content}
+                      </p>
+                    )}
+
+                    {/* Attached Image Rendering */}
+                    {post.metadata && typeof post.metadata === "object" && "image_url" in post.metadata && Boolean(post.metadata.image_url) && (
+                      <div className="mt-3 relative rounded-2xl overflow-hidden border border-stone-200 dark:border-stone-800 max-h-96 bg-stone-950/5 dark:bg-stone-950/40">
+                        <img
+                          src={String(post.metadata.image_url)}
+                          alt="Bài đăng của người dùng"
+                          className="w-full h-auto max-h-96 object-contain rounded-2xl"
+                        />
+                      </div>
+                    )}
 
                     {post.reaction_summary.length > 0 && (
                       <div className="mt-3 flex flex-wrap items-center gap-2">
@@ -354,20 +448,17 @@ export default function CommunityFeedClient({ embedded = false }: { embedded?: b
                     )}
 
                     <div className="mt-3 flex flex-wrap items-center gap-2 border-t border-stone-100 pt-3 dark:border-stone-800">
-                      <div
-                        className="relative"
-                        onMouseLeave={() => setReactionPickerFor((current) => (current === post.id ? null : current))}
-                      >
+                      <div className="relative">
                         <button
+                          type="button"
                           onClick={() => {
                             if (!user) return;
                             setReactionPickerFor((current) => (current === post.id ? null : post.id));
                           }}
-                          onMouseEnter={() => user && setReactionPickerFor(post.id)}
                           disabled={!user}
-                          className={`inline-flex items-center gap-2 rounded-full px-3 py-1.5 text-xs font-semibold transition ${
+                          className={`inline-flex items-center gap-2 rounded-full px-3 py-1.5 text-xs font-semibold transition cursor-pointer ${
                             post.my_reaction
-                              ? "bg-emerald-50 text-emerald-700"
+                              ? "bg-emerald-50 text-emerald-700 border border-emerald-200"
                               : "bg-stone-100 text-stone-600 hover:bg-stone-200 dark:bg-stone-800 dark:text-stone-300"
                           }`}
                         >
@@ -376,14 +467,17 @@ export default function CommunityFeedClient({ embedded = false }: { embedded?: b
                         </button>
 
                         {reactionPickerFor === post.id && user && (
-                          <div className="absolute left-0 top-full z-20 mt-2 flex items-center gap-1 rounded-full border border-stone-200 bg-white p-2 shadow-xl dark:border-stone-700 dark:bg-stone-900">
+                          <div className="absolute left-0 bottom-full mb-1.5 z-30 flex items-center gap-1.5 rounded-full border border-stone-200 bg-white p-1.5 shadow-xl dark:border-stone-700 dark:bg-stone-900 animate-in fade-in zoom-in-95 duration-150">
                             {REACTION_OPTIONS.map((emoji) => (
                               <button
                                 key={emoji}
                                 type="button"
-                                onClick={() => void handleReact(post, emoji)}
-                                className={`rounded-full px-2 py-1 text-lg transition hover:bg-stone-100 dark:hover:bg-stone-800 ${
-                                  post.my_reaction === emoji ? "bg-emerald-50" : ""
+                                onClick={() => {
+                                  void handleReact(post, emoji);
+                                  setReactionPickerFor(null);
+                                }}
+                                className={`rounded-full p-1.5 text-lg transition hover:scale-125 hover:bg-stone-100 dark:hover:bg-stone-800 active:scale-95 cursor-pointer ${
+                                  post.my_reaction === emoji ? "bg-emerald-100/70" : ""
                                 }`}
                               >
                                 {emoji}

@@ -281,50 +281,51 @@ export default function LearningAnalytics({ hideLeaderboardTab = false }: { hide
         initial="hidden"
         animate="visible"
         variants={fadeUp}
-        className="relative overflow-hidden rounded-[28px] border border-stone-200/80 bg-white p-5"
+        className="relative overflow-hidden rounded-[26px] border border-stone-200/80 bg-white p-4 sm:p-5 shadow-xs"
       >
         <div className="absolute inset-x-0 top-0 h-[3px] bg-gradient-to-r from-emerald-500 via-teal-500 to-sky-500" />
-        <div className="grid gap-4 xl:grid-cols-[minmax(0,1fr)_240px]">
-          <div className="min-w-0">
-            <div className="inline-flex items-center gap-2 rounded-full border border-emerald-200 bg-emerald-50 px-3.5 py-1.5 text-[10px] font-extrabold uppercase tracking-[0.18em] text-emerald-700">
+        <div className="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
+          <div className="min-w-0 flex-1">
+            <div className="inline-flex items-center gap-1.5 rounded-full border border-emerald-200 bg-emerald-50 px-3 py-1 text-[10px] font-extrabold uppercase tracking-[0.16em] text-emerald-700">
               <Sparkles className="h-3.5 w-3.5 text-emerald-600" />
               Cá nhân
             </div>
-            <h2 className="mt-4 text-2xl font-extrabold leading-tight tracking-tight text-stone-950 sm:text-3xl">
+            <h2 className="mt-2 text-xl sm:text-2xl font-black leading-tight tracking-tight text-stone-900">
               Nhịp học hiện tại
             </h2>
 
-            <div className="mt-5 grid gap-3 md:grid-cols-3">
+            <div className="mt-3 flex flex-wrap gap-2">
               {insights.map((insight, index) => (
                 <div
                   key={index}
-                  className="rounded-2xl border border-stone-200 bg-stone-50/80 px-4 py-3 text-xs font-bold text-stone-700"
+                  className="rounded-xl border border-stone-200/90 bg-stone-50/80 px-3 py-1.5 text-xs font-bold text-stone-700 shadow-2xs"
                 >
-                  <p>{insight}</p>
+                  {insight}
                 </div>
               ))}
             </div>
           </div>
 
-          <div className="rounded-[24px] border border-stone-200 bg-stone-50/70 p-2.5">
-            <div className="rounded-[20px] border border-white bg-white/90 p-3 shadow-sm">
-              <div className="space-y-2.5">
-                <SummaryStat
-                  label="Chuỗi"
-                  value={`${analytics.streakDays} ngày`}
-                  hint={`Kỷ lục ${analytics.longestStreak}`}
-                />
-                <SummaryStat
-                  label="Điểm quiz"
-                  value={`${analytics.averageQuizScore}%`}
-                  hint={`${analytics.totalLessonsCompleted} bài`}
-                />
-                <SummaryStat
-                  label="Giờ học"
-                  value={analytics.bestStudyHour !== null ? formatHour(analytics.bestStudyHour) : "Chưa rõ"}
-                  hint={analytics.peakStudyWindow}
-                />
-              </div>
+          {/* Compact Horizontal Quick Stats */}
+          <div className="grid grid-cols-3 gap-2 shrink-0 sm:gap-3">
+            <div className="rounded-2xl border border-stone-200/80 bg-gradient-to-b from-stone-50/80 to-white p-2.5 sm:p-3 text-center min-w-[85px]">
+              <p className="text-[9px] font-extrabold uppercase tracking-wider text-stone-400">Chuỗi</p>
+              <p className="mt-1 text-lg font-black text-stone-900">{analytics.streakDays} ngày</p>
+              <p className="text-[9px] font-semibold text-stone-500">Kỷ kỷ {analytics.longestStreak}</p>
+            </div>
+
+            <div className="rounded-2xl border border-stone-200/80 bg-gradient-to-b from-stone-50/80 to-white p-2.5 sm:p-3 text-center min-w-[85px]">
+              <p className="text-[9px] font-extrabold uppercase tracking-wider text-stone-400">Điểm Quiz</p>
+              <p className="mt-1 text-lg font-black text-emerald-600">{analytics.averageQuizScore}%</p>
+              <p className="text-[9px] font-semibold text-stone-500">{analytics.totalLessonsCompleted} bài</p>
+            </div>
+
+            <div className="rounded-2xl border border-stone-200/80 bg-gradient-to-b from-stone-50/80 to-white p-2.5 sm:p-3 text-center min-w-[85px]">
+              <p className="text-[9px] font-extrabold uppercase tracking-wider text-stone-400">Giờ Học</p>
+              <p className="mt-1 text-lg font-black text-stone-900">
+                {analytics.bestStudyHour !== null ? formatHour(analytics.bestStudyHour) : "Chưa rõ"}
+              </p>
+              <p className="text-[9px] font-semibold text-stone-500 truncate">{analytics.peakStudyWindow}</p>
             </div>
           </div>
         </div>

@@ -267,3 +267,32 @@ export function getStreakBonusXP(streak: number): number {
   if (streak >= 3) return 5;   // 3+ day streak: 5 bonus XP
   return 0;
 }
+
+/**
+ * Freeze streak manually (uses 1 streak freeze protection)
+ */
+export async function freezeStreakManually(userId: string): Promise<UserStreak> {
+  const supabase = createClient();
+  const currentStreak = await getUserStreak(userId);
+  const freezesUsed = currentStreak?.freezes_used ?? 0;
+  
+  if (freezesUsed >= MAX_STREAK_FREEZES) {
+    throw new Error("Bạn đã dùng hết 3 lượt bảo vệ Streak miễn phí!");
+  }
+  
+  const today = new Date().toISOString().split("T")[0];
+  const payload = {
+    freezes_used: freezesUsed + 1,
+    last_activity_date: today,
+  };
+
+  const { data, error } = await supabase
+    .from("user_streaks")
+    .update(payload)
+    .eq("user_id", userId)
+    .select()
+    .single();
+
+  if (error) throw handleSupabaseError(error);
+  return data as UserStreak;
+}

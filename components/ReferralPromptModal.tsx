@@ -64,12 +64,13 @@ export default function ReferralPromptModal() {
             animate={{ scale: 1 }}
             exit={{ scale: 0 }}
             onClick={() => setOpen(true)}
-            className="fixed bottom-42 right-4 sm:bottom-42 sm:right-6 z-40 w-14 h-14 rounded-full bg-emerald-600 hover:bg-emerald-700 shadow-lg hover:shadow-xl hover:scale-105 transition flex items-center justify-center group text-white"
+            title="Mời bạn học cùng"
+            className="fixed bottom-37 right-4 sm:bottom-40 sm:right-6 z-50 w-14 h-14 rounded-full bg-gradient-to-r from-amber-500 to-yellow-500 hover:from-amber-400 hover:to-yellow-400 text-white shadow-xl hover:scale-108 transition-all duration-200 flex items-center justify-center border-2 border-white dark:border-stone-800 cursor-pointer select-none group"
           >
-            <Gift className="w-6 h-6" />
-            <span className="absolute top-0.5 right-0.5 w-3.5 h-3.5 rounded-full bg-amber-400 border-2 border-white dark:border-stone-900" />
-            <div className="absolute bottom-full right-0 mb-2 bg-stone-900 dark:bg-stone-800 text-white text-xs px-3 py-2 rounded-lg whitespace-nowrap opacity-0 group-hover:opacity-100 transition">
-              Mời bạn học cùng
+            <Gift className="w-6 h-6 text-white transition-transform group-hover:rotate-12" />
+            <span className="absolute -top-0.5 -right-0.5 w-3.5 h-3.5 rounded-full bg-red-500 border-2 border-white shadow-xs animate-pulse" />
+            <div className="absolute bottom-full right-0 mb-2 bg-stone-900 text-white text-xs px-2.5 py-1 rounded-xl shadow-xl whitespace-nowrap opacity-0 group-hover:opacity-100 transition font-bold border border-stone-700 pointer-events-none">
+              Mời bạn nhận Quà
             </div>
           </motion.button>
         )}

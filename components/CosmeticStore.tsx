@@ -6,6 +6,7 @@ import { toast } from "sonner";
 import { ShoppingBag, Check, Zap } from "lucide-react";
 import FinanceCharacterAvatar, { CharacterEquipments, ITEM_DESCRIPTIONS } from "@/components/FinanceCharacterAvatar";
 import GoldCoinIcon from "@/components/GoldCoinIcon";
+import CharacterCustomizerModal from "@/components/CharacterCustomizerModal";
 
 interface CosmeticItem {
   id: string;
@@ -18,6 +19,7 @@ interface CosmeticItem {
 
 export default function CosmeticStore({ userId, onBack }: { userId: string; onBack?: () => void }) {
   const supabase = createClient();
+  const [showCustomizer, setShowCustomizer] = useState(false);
   const [items] = useState<CosmeticItem[]>([
     { id: "weapon_valuation_pen", asset_type: "weapon", name: "Bút Định Giá Thần Kỳ", description: "Bút thần gia tăng 20% sát thương khi giải câu hỏi định giá.", rarity: "rare", price: 150 },
     { id: "weapon_lbo_sword", asset_type: "weapon", name: "Kiếm Phân Tích LBO", description: "Vũ khí sắc bén chém tan các cấu trúc nợ phức tạp.", rarity: "epic", price: 350 },
@@ -204,13 +206,26 @@ export default function CosmeticStore({ userId, onBack }: { userId: string; onBa
         </div>
 
         {/* Live RPG Character Preview */}
-        <div className="flex flex-col items-center">
-          <span className="text-[10px] font-bold text-stone-400 uppercase tracking-wider mb-2">
+        <div className="flex flex-col items-center gap-2">
+          <span className="text-[10px] font-bold text-stone-400 uppercase tracking-wider">
             Ngoại hình hiện tại
           </span>
           <FinanceCharacterAvatar level={userLevel} equipments={equippedGear} size="md" />
+          <button
+            onClick={() => setShowCustomizer(true)}
+            className="mt-1 bg-gradient-to-r from-amber-500 to-yellow-500 hover:brightness-110 text-stone-950 text-xs font-black px-3.5 py-1.5 rounded-xl transition-all shadow-sm flex items-center gap-1.5 cursor-pointer"
+          >
+            🎨 Tùy Chỉnh Nhân Vật 2.5D
+          </button>
         </div>
       </div>
+
+      <CharacterCustomizerModal
+        userId={userId}
+        userLevel={userLevel}
+        isOpen={showCustomizer}
+        onClose={() => setShowCustomizer(false)}
+      />
 
       {/* Items Grid */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
