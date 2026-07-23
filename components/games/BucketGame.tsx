@@ -161,6 +161,8 @@ export default function BucketGame({ userId, gameType, difficulty = "trung-binh"
     } else {
       setCombo(0); // Reset combo
       soundManager.playWrong();
+      const targetBucketLabel = config.buckets.find((b) => b.id === item.bucket)?.label || "nhóm đúng";
+      toast.error(`💡 Khoản mục "${item.term}" thuộc về: ${targetBucketLabel}!`);
       setItems((prev) => prev.map((it) => (it.id === itemId && it.scored === null ? { ...it, scored: false } : it)));
       setSelectedId(null);
       setWrongFlashId(itemId);
@@ -361,9 +363,16 @@ export default function BucketGame({ userId, gameType, difficulty = "trung-binh"
                       : "border-stone-200 bg-stone-50/40 hover:bg-stone-50/80"
                   }`}
                 >
-                  <p className="text-[10px] font-extrabold text-stone-500 uppercase tracking-widest mb-3 pb-1.5 border-b border-stone-200/55">
-                    {bucket.label}
-                  </p>
+                  <div className="flex justify-between items-center pb-1.5 border-b border-stone-200/55 mb-3">
+                    <p className="text-[10px] font-extrabold text-stone-500 uppercase tracking-widest">
+                      {bucket.label}
+                    </p>
+                    {selectedId !== null && (
+                      <span className="text-[10px] font-black text-emerald-600 bg-emerald-50 px-2 py-0.5 rounded-full border border-emerald-200 animate-pulse">
+                        + Chạm để thả
+                      </span>
+                    )}
+                  </div>
                   <div className="flex flex-wrap gap-2">
                     {bucketItems.map((item) => (
                       <span key={item.id} className="rounded-lg border border-emerald-250 bg-emerald-50/60 text-emerald-700 px-3 py-1.5 text-xs font-extrabold shadow-sm transition-transform duration-250 hover:scale-105">
@@ -371,6 +380,18 @@ export default function BucketGame({ userId, gameType, difficulty = "trung-binh"
                       </span>
                     ))}
                   </div>
+                  {selectedId !== null && (
+                    <button
+                      type="button"
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        attemptPlace(selectedId, bucket.id);
+                      }}
+                      className="mt-3 w-full py-2 px-3 rounded-xl bg-emerald-500 hover:bg-emerald-600 text-white text-xs font-extrabold shadow-sm active:scale-95 transition-all cursor-pointer flex items-center justify-center gap-1.5"
+                    >
+                      <span>+ Thả khoản mục vào đây</span>
+                    </button>
+                  )}
                 </div>
               );
             })}
