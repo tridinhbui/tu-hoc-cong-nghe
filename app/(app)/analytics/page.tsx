@@ -71,10 +71,10 @@ export default function AnalyticsPage() {
         </div>
 
         <div className="grid gap-6 lg:grid-cols-12 lg:items-start">
-          <div className="lg:col-span-7 min-w-0">
+          <div className="lg:col-span-5 min-w-0">
             <LearningAnalytics hideLeaderboardTab />
           </div>
-          <div className="lg:col-span-5 min-w-0">
+          <div className="lg:col-span-7 min-w-0">
             <div className="lg:sticky lg:top-6">
               <Leaderboard userId={userId} compact />
             </div>

@@ -364,7 +364,7 @@ export default function LearningAnalytics({ hideLeaderboardTab = false }: { hide
       {/* Tab Contents */}
       {activeSection === "overview" && (
         <div className="space-y-6">
-          <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-2">
+          <div className="grid gap-3.5 grid-cols-2 sm:grid-cols-2">
             <MetricCard
               icon={<Flame className="h-5 w-5" />}
               label="Chuỗi ngày"
@@ -399,7 +399,7 @@ export default function LearningAnalytics({ hideLeaderboardTab = false }: { hide
             />
           </div>
 
-          <div className="grid gap-6 lg:grid-cols-[1.2fr_0.8fr]">
+          <div className="grid gap-6 grid-cols-1">
             <motion.section
               custom={0.08}
               initial="hidden"
