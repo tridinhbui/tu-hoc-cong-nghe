@@ -1,69 +1,31 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useMemo, useState, useEffect } from "react";
 import { createClient } from "@/lib/supabase";
-import { Sparkles, Lock } from "lucide-react";
+import { Sparkles, Lock, Trophy, Zap } from "lucide-react";
+import { FINANCE_CARDS, type FinanceCardRarity } from "@/lib/finance-cards";
 
-interface FinanceCard {
-  id: string;
-  name: string;
-  rarity: "common" | "rare" | "epic" | "legendary";
-  domain_type: string;
-  description: string;
-  metadata: {
-    ticker: string;
-    industry: string;
-    advantage: string;
-    metrics: string[];
-  };
-}
+const rarityLabel: Record<FinanceCardRarity, string> = {
+  common: "Phổ thông",
+  rare: "Hiếm",
+  epic: "Sử thi",
+  legendary: "Huyền thoại",
+};
 
 export default function FinanceCardCollection({ userId }: { userId: string }) {
   const supabase = createClient();
-  const [cards, setCards] = useState<FinanceCard[]>([
-    {
-      id: "card-fpt",
-      name: "Tập đoàn FPT",
-      rarity: "rare",
-      domain_type: "valuation",
-      description: "Đại diện công nghệ hàng đầu Việt Nam hoạt động trong mảng CNTT, Viễn thông và Giáo dục.",
-      metadata: {
-        ticker: "FPT",
-        industry: "Công nghệ",
-        advantage: "Quy mô kinh tế, chi phí nhân lực công nghệ cạnh tranh quốc tế, hệ sinh thái giáo dục khép kín.",
-        metrics: ["Tăng trưởng doanh thu ký mới mảng IT", "P/E forward", "Biên lợi nhuận gộp mảng công nghệ"]
-      }
-    },
-    {
-      id: "card-vnm",
-      name: "Vinamilk",
-      rarity: "epic",
-      domain_type: "accounting",
-      description: "Cổ phiếu tiêu dùng phòng thủ biểu tượng với thị phần sữa vượt trội tại Việt Nam.",
-      metadata: {
-        ticker: "VNM",
-        industry: "FMCG / Sữa",
-        advantage: "Thương hiệu quốc gia cực mạnh, hệ thống phân phối rộng khắp toàn quốc.",
-        metrics: ["Biên lợi nhuận gộp", "ROE duy trì cao", "Dòng tiền tự do dồi dào"]
-      }
-    },
-    {
-      id: "card-vcb",
-      name: "Vietcombank",
-      rarity: "legendary",
-      domain_type: "corporate_finance",
-      description: "Anh cả ngành ngân hàng Việt Nam với chi phí vốn CASA cực thấp.",
-      metadata: {
-        ticker: "VCB",
-        industry: "Ngân hàng",
-        advantage: "Chi phí huy động vốn CASA thấp nhất hệ thống, tỷ lệ nợ xấu được kiểm soát chặt chẽ nhất.",
-        metrics: ["NIM (Biên lãi thuần)", "Tỷ lệ CASA", "Tỷ lệ bao phủ nợ xấu (LLRC)"]
-      }
-    }
-  ]);
-
   const [unlockedCardKeys, setUnlockedCardKeys] = useState<Set<string>>(new Set());
   const [loading, setLoading] = useState(true);
+  const progress = Math.round((unlockedCardKeys.size / FINANCE_CARDS.length) * 100);
+  const rarityCounts = useMemo(() => {
+    return FINANCE_CARDS.reduce<Record<FinanceCardRarity, number>>(
+      (acc, card) => {
+        if (unlockedCardKeys.has(card.id)) acc[card.rarity] += 1;
+        return acc;
+      },
+      { common: 0, rare: 0, epic: 0, legendary: 0 }
+    );
+  }, [unlockedCardKeys]);
 
   useEffect(() => {
     async function loadInventory() {
@@ -83,21 +45,48 @@ export default function FinanceCardCollection({ userId }: { userId: string }) {
       }
     }
     loadInventory();
+
+    const handleCardDrop = () => loadInventory();
+    window.addEventListener("thtcdn:finance-card-dropped", handleCardDrop);
+    return () => window.removeEventListener("thtcdn:finance-card-dropped", handleCardDrop);
   }, [userId, supabase]);
 
   if (loading) return <div className="text-center p-4">Đang tải bộ sưu tập thẻ...</div>;
 
   return (
-    <div className="bg-white dark:bg-stone-900 border border-stone-200 dark:border-stone-850 rounded-2xl p-6 shadow-sm mt-6">
-      <h3 className="text-lg font-bold text-stone-900 dark:text-stone-100 mb-1 flex items-center gap-2">
-        📇 Bộ Sưu Tập Thẻ Doanh Nghiệp (Finance Cards)
-      </h3>
-      <p className="text-xs text-stone-500 dark:text-stone-400 mb-6">
-        Sưu tầm thẻ các tập đoàn hàng đầu Việt Nam bằng cách hoàn thành bài học, quiz và đạt thành tựu xuất sắc.
-      </p>
+    <div className="bg-white border border-stone-200 rounded-3xl p-4 sm:p-5 shadow-sm">
+      <div className="flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
+        <div>
+          <div className="inline-flex items-center gap-2 rounded-full border border-sky-200 bg-sky-50 px-3 py-1 text-[10px] font-black uppercase tracking-wider text-sky-700">
+            <Trophy className="h-3.5 w-3.5" /> Bảo tàng VN30
+          </div>
+          <h3 className="mt-2 text-xl font-black text-stone-950">Bộ sưu tập thẻ doanh nghiệp</h3>
+          <p className="mt-1 max-w-2xl text-xs text-stone-500">
+            Học xong bài hoặc làm quiz tốt có cơ hội rơi thẻ ngẫu nhiên. Tối đa 3 thẻ/ngày, điểm càng cao tỉ lệ càng lớn.
+          </p>
+        </div>
+        <div className="min-w-[220px] rounded-2xl border border-emerald-200 bg-emerald-50 p-3">
+          <div className="flex items-center justify-between text-xs font-extrabold text-emerald-800">
+            <span>{unlockedCardKeys.size}/{FINANCE_CARDS.length} thẻ</span>
+            <span>{progress}%</span>
+          </div>
+          <div className="mt-2 h-2 rounded-full bg-white">
+            <div className="h-full rounded-full bg-emerald-500" style={{ width: `${progress}%` }} />
+          </div>
+        </div>
+      </div>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
-        {cards.map((card) => {
+      <div className="mt-4 grid grid-cols-2 gap-2 sm:grid-cols-4">
+        {(Object.keys(rarityCounts) as FinanceCardRarity[]).map((rarity) => (
+          <div key={rarity} className="rounded-2xl border border-stone-200 bg-stone-50 px-3 py-2">
+            <p className="text-[10px] font-black uppercase text-stone-400">{rarityLabel[rarity]}</p>
+            <p className="mt-1 text-lg font-black text-stone-900">{rarityCounts[rarity]}</p>
+          </div>
+        ))}
+      </div>
+
+      <div className="mt-5 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        {FINANCE_CARDS.map((card) => {
           const isUnlocked = unlockedCardKeys.has(card.id);
           
           const borderRarity = 
@@ -117,14 +106,14 @@ export default function FinanceCardCollection({ userId }: { userId: string }) {
               {/* Rarity & Ticker */}
               <div className="flex items-center justify-between">
                 <span className="text-[10px] uppercase font-bold tracking-wider text-stone-400">
-                  {card.metadata.industry}
+                  {card.sector}
                 </span>
                 <span className={`text-[10px] font-black uppercase px-2 py-0.5 rounded-full ${
                   card.rarity === "legendary" ? "bg-amber-100 text-amber-800 dark:bg-amber-950/40 dark:text-amber-300" :
                   card.rarity === "epic" ? "bg-purple-100 text-purple-800 dark:bg-purple-950/40 dark:text-purple-300" :
                   "bg-sky-100 text-sky-800 dark:bg-sky-950/40 dark:text-sky-300"
                 }`}>
-                  {card.metadata.ticker}
+                  {card.ticker}
                 </span>
               </div>
 
@@ -136,7 +125,7 @@ export default function FinanceCardCollection({ userId }: { userId: string }) {
                   </div>
                   <h4 className="font-bold text-stone-700 dark:text-stone-400">{card.name}</h4>
                   <p className="text-[10px] text-stone-400 dark:text-stone-500 mt-1">
-                    Đạt mốc bài học định giá hoặc mở hộp quà may mắn để mở khóa
+                    Học bài, làm quiz tốt hoặc mở thưởng may mắn để mở khóa
                   </p>
                 </div>
               ) : (
@@ -153,20 +142,25 @@ export default function FinanceCardCollection({ userId }: { userId: string }) {
                   <div className="bg-white dark:bg-stone-900/60 p-2.5 rounded-xl border dark:border-stone-850 space-y-1">
                     <span className="text-[9px] uppercase font-bold text-stone-400 block">Lợi thế cạnh tranh:</span>
                     <p className="text-[10px] text-stone-700 dark:text-stone-300 font-medium leading-normal">
-                      {card.metadata.advantage}
+                      {card.advantage}
                     </p>
                   </div>
 
                   <div>
                     <span className="text-[9px] uppercase font-bold text-stone-400 block mb-1">Chỉ số tài chính trọng tâm:</span>
                     <div className="flex flex-wrap gap-1">
-                      {card.metadata.metrics.map((m, i) => (
+                      {card.metrics.map((m, i) => (
                         <span key={i} className="text-[9px] bg-stone-100 dark:bg-stone-800 text-stone-600 dark:text-stone-400 px-2 py-0.5 rounded">
                           {m}
                         </span>
                       ))}
                     </div>
                   </div>
+                </div>
+              )}
+              {isUnlocked && (
+                <div className="mt-2 flex items-center gap-1 text-[10px] font-black text-emerald-700">
+                  <Zap className="h-3 w-3" /> Đã mở trong tủ sưu tầm
                 </div>
               )}
             </div>

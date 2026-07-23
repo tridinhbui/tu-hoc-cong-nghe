@@ -32,7 +32,8 @@ interface OrganicBuilding {
   borderColor: string;
   textColor: string;
   badgeBg: string;
-  posClass: string; // Organic position offsets
+  posClass: string; // Legacy mobile/absolute positioning hint.
+  desktopClass: string;
   imageSrc?: string;
 }
 
@@ -58,6 +59,7 @@ const ORGANIC_BUILDINGS: OrganicBuilding[] = [
     textColor: "text-amber-700",
     badgeBg: "bg-gradient-to-r from-amber-500 to-red-500 text-white font-black",
     posClass: "top-4 left-1/2 -translate-x-1/2 sm:top-6",
+    desktopClass: "lg:col-start-2 lg:row-start-1",
     imageSrc: "/charging-bull.jpg",
   },
   {
@@ -71,6 +73,7 @@ const ORGANIC_BUILDINGS: OrganicBuilding[] = [
     textColor: "text-sky-700",
     badgeBg: "bg-sky-500 text-white",
     posClass: "top-20 left-6 sm:left-12",
+    desktopClass: "lg:col-start-1 lg:row-start-2",
   },
   // KHU VỰC 2: TRUNG TÂM LUYỆN TẬP BCTC & KHÁI NIỆM
   {
@@ -84,6 +87,7 @@ const ORGANIC_BUILDINGS: OrganicBuilding[] = [
     textColor: "text-amber-700",
     badgeBg: "bg-gradient-to-r from-amber-500 via-orange-500 to-red-500 text-white font-black animate-pulse",
     posClass: "top-64 left-1/2 -translate-x-1/2 sm:top-60 scale-110 sm:scale-125 z-30",
+    desktopClass: "lg:col-start-2 lg:row-start-3",
     imageSrc: "/nyse-building.jpg",
   },
   {
@@ -97,6 +101,7 @@ const ORGANIC_BUILDINGS: OrganicBuilding[] = [
     textColor: "text-purple-600 font-extrabold",
     badgeBg: "bg-gradient-to-r from-violet-600 via-purple-500 to-rose-600 text-white font-black animate-pulse",
     posClass: "top-[320px] left-8 sm:left-20",
+    desktopClass: "lg:col-start-1 lg:row-start-4",
     imageSrc: "/times-square.jpg",
   },
 
@@ -112,6 +117,7 @@ const ORGANIC_BUILDINGS: OrganicBuilding[] = [
     textColor: "text-purple-600",
     badgeBg: "bg-purple-500 text-white",
     posClass: "top-[320px] right-8 sm:right-20",
+    desktopClass: "lg:col-start-3 lg:row-start-4",
   },
   {
     id: "cards",
@@ -124,6 +130,7 @@ const ORGANIC_BUILDINGS: OrganicBuilding[] = [
     textColor: "text-sky-600",
     badgeBg: "bg-sky-500 text-white",
     posClass: "top-[480px] left-12 sm:left-28",
+    desktopClass: "lg:col-start-1 lg:row-start-6",
   },
   {
     id: "shop",
@@ -136,8 +143,19 @@ const ORGANIC_BUILDINGS: OrganicBuilding[] = [
     textColor: "text-amber-600",
     badgeBg: "bg-amber-500 text-white",
     posClass: "top-[480px] right-12 sm:right-28",
+    desktopClass: "lg:col-start-3 lg:row-start-6",
   },
 ];
+
+const BUILDING_AVATAR_POSITIONS: Record<string, { x: number; y: number }> = {
+  "world-boss": { x: 50, y: 13 },
+  pvp: { x: 18, y: 34 },
+  arcade: { x: 50, y: 50 },
+  "weekly-challenge": { x: 18, y: 68 },
+  guilds: { x: 82, y: 68 },
+  cards: { x: 18, y: 88 },
+  shop: { x: 82, y: 88 },
+};
 
 export default function FinancialRpgWorldMap() {
   const searchParams = useSearchParams();
@@ -149,7 +167,7 @@ export default function FinancialRpgWorldMap() {
   const [coins, setCoins] = useState(0);
   const [equippedGear, setEquippedGear] = useState<CharacterEquipments>({});
   const [showPvpModal, setShowPvpModal] = useState(false);
-  const [hoveredBuildingPos, setHoveredBuildingPos] = useState<{ x: number; y: number } | null>({ x: 400, y: 100 });
+  const [hoveredBuildingPos, setHoveredBuildingPos] = useState<{ x: number; y: number } | null>(null);
   const [discoveredBuildings, setDiscoveredBuildings] = useState<string[]>(() => {
     if (typeof window === "undefined") return ["world-boss", "arcade"];
 
@@ -295,12 +313,12 @@ export default function FinancialRpgWorldMap() {
       {!selectedBuilding && (
         <>
           {/* Wall Street Photo Background - only on town map */}
-          <div className="absolute inset-0 pointer-events-none opacity-55 z-0 overflow-hidden">
+          <div className="absolute inset-0 pointer-events-none opacity-35 z-0 overflow-hidden">
             <Image
               src="/wallstreet-bg.jpg"
               alt="Wall Street Background"
               fill
-              className="object-cover blur-[1px]"
+              className="object-cover blur-[1px] grayscale"
               priority
             />
           </div>
@@ -389,61 +407,43 @@ export default function FinancialRpgWorldMap() {
               })}
             </div>
 
-            {/* Desktop View: Clean Glassmorphic Town Map Box */}
-            <div className="hidden md:block relative min-h-[640px] max-w-4xl mx-auto rounded-3xl border-2 border-amber-300/70 p-6 shadow-2xl overflow-hidden bg-white/92 backdrop-blur-xl">
-              
-              {/* Connecting Winding SVG Paths */}
-              <svg className="absolute inset-0 w-full h-full pointer-events-none opacity-40">
-                <path d="M 200 60 Q 400 120 600 80" stroke="#f59e0b" strokeWidth="3" strokeDasharray="6 6" fill="none" />
-                <path d="M 120 120 Q 220 280 400 240" stroke="#10b981" strokeWidth="3" strokeDasharray="6 6" fill="none" />
-                <path d="M 680 140 Q 580 280 400 240" stroke="#8b5cf6" strokeWidth="3" strokeDasharray="6 6" fill="none" />
-                <path d="M 400 240 Q 200 360 160 440" stroke="#6366f1" strokeWidth="3" strokeDasharray="6 6" fill="none" />
-                <path d="M 400 240 Q 600 360 640 440" stroke="#0284c7" strokeWidth="3" strokeDasharray="6 6" fill="none" />
+            {/* Desktop View: Grid Town Map. Real grid tracks prevent cards from overlapping at any zoom/width. */}
+            <div className="hidden md:block relative max-w-4xl mx-auto rounded-3xl border-2 border-amber-300/70 p-5 shadow-2xl overflow-hidden bg-white/98 backdrop-blur-xl">
+              <div className="pointer-events-none absolute inset-5 rounded-[28px] bg-[radial-gradient(#f59e0b_1px,transparent_1px)] [background-size:28px_28px] opacity-[0.05]" />
+              <svg className="pointer-events-none absolute inset-0 z-10 h-full w-full" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
+                <path d="M50 18 C44 26 30 26 18 34" fill="none" stroke="#38bdf8" strokeWidth="0.6" strokeDasharray="2 2" opacity="0.65" />
+                <path d="M18 34 C28 45 38 47 50 50" fill="none" stroke="#34d399" strokeWidth="0.6" strokeDasharray="2 2" opacity="0.55" />
+                <path d="M50 18 C58 29 73 34 82 68" fill="none" stroke="#c084fc" strokeWidth="0.6" strokeDasharray="2 2" opacity="0.55" />
+                <path d="M50 50 C36 59 26 62 18 68" fill="none" stroke="#c084fc" strokeWidth="0.6" strokeDasharray="2 2" opacity="0.55" />
+                <path d="M50 50 C62 57 74 60 82 68" fill="none" stroke="#f59e0b" strokeWidth="0.6" strokeDasharray="2 2" opacity="0.55" />
+                <path d="M18 68 C28 78 38 84 18 88" fill="none" stroke="#0ea5e9" strokeWidth="0.6" strokeDasharray="2 2" opacity="0.45" />
+                <path d="M82 68 C76 78 72 84 82 88" fill="none" stroke="#f59e0b" strokeWidth="0.6" strokeDasharray="2 2" opacity="0.45" />
               </svg>
-
-              {/* Wandering Character Sprite */}
               <motion.div
+                className="pointer-events-none absolute z-30 -ml-5 -mt-5"
                 animate={{
-                  x: hoveredBuildingPos ? hoveredBuildingPos.x : 380,
-                  y: hoveredBuildingPos ? hoveredBuildingPos.y : 220,
+                  left: `${hoveredBuildingPos?.x ?? 50}%`,
+                  top: `${hoveredBuildingPos?.y ?? 50}%`,
                 }}
-                transition={{ type: "spring", stiffness: 100, damping: 15 }}
-                className="absolute z-30 pointer-events-none -ml-5 -mt-5 hidden md:block"
+                transition={{ type: "spring", stiffness: 95, damping: 16 }}
               >
-                <div className="relative group">
-                  <div className="w-10 h-10 rounded-full bg-white ring-4 ring-amber-400 shadow-xl flex items-center justify-center animate-bounce">
-                    <FinanceCharacterAvatar level={level} equipments={equippedGear} size="xs" />
-                  </div>
-                  <span className="absolute -bottom-4 left-1/2 -translate-x-1/2 text-[8px] font-black uppercase tracking-wider px-1.5 py-0.5 rounded-full bg-stone-950 text-amber-400 whitespace-nowrap shadow-md">
-                    Bạn
-                  </span>
+                <div className="scale-75 drop-shadow-xl">
+                  <FinanceCharacterAvatar size="md" level={level} equipments={equippedGear} />
                 </div>
               </motion.div>
-
-              {/* Scattered Organic Building Cards */}
-              <div className="relative w-full h-full min-h-[600px]">
+              <div className="relative grid grid-cols-2 gap-x-5 gap-y-6 lg:grid-cols-3 lg:grid-rows-[auto_auto_auto_auto_auto_auto]">
                 {ORGANIC_BUILDINGS.map((b, idx) => {
-                  const offsets = [
-                    { x: 380, y: 30 },
-                    { x: 80, y: 120 },
-                    { x: 600, y: 140 },
-                    { x: 380, y: 260 },
-                    { x: 100, y: 440 },
-                    { x: 380, y: 460 },
-                    { x: 620, y: 440 },
-                    { x: 380, y: 550 },
-                  ];
-                  const pos = offsets[idx] || { x: 380, y: 200 };
                   const isDiscovered = discoveredBuildings.includes(b.id);
+                  const isCenter = b.id === "arcade";
 
                   return (
                     <motion.div
                       key={b.id}
-                      whileHover={{ scale: 1.08, y: -6, rotate: idx % 2 === 0 ? 1.5 : -1.5 }}
+                      whileHover={{ scale: 1.03, y: -4 }}
                       whileTap={{ scale: 0.95 }}
-                      onMouseEnter={() => setHoveredBuildingPos(pos)}
                       onClick={() => handleBuildingClick(b.id)}
-                      className={`absolute ${b.posClass} bg-white/95 border-2 ${b.borderColor} rounded-3xl p-4 shadow-2xl cursor-pointer flex items-center gap-3 group w-64 z-20 backdrop-blur-md transition-all overflow-hidden`}
+                      onMouseEnter={() => setHoveredBuildingPos(BUILDING_AVATAR_POSITIONS[b.id] ?? null)}
+                      className={`relative ${b.desktopClass} ${isCenter ? "md:col-span-2 lg:col-span-1" : ""} min-h-[100px] bg-white/95 border-2 ${b.borderColor} rounded-3xl p-4 shadow-xl cursor-pointer flex items-center gap-3 group w-full z-20 backdrop-blur-md transition-all overflow-hidden`}
                     >
                       {b.id === "arcade" && (
                         <div className="absolute -top-1 -right-1 z-40 text-base animate-bounce pointer-events-none drop-shadow-md">
@@ -476,7 +476,7 @@ export default function FinancialRpgWorldMap() {
                       </div>
 
                       <div className="min-w-0 flex-1">
-                        <span className={`text-[9px] font-black uppercase px-2 py-0.5 rounded-full ${b.badgeBg} inline-block mb-1 shadow-sm`}>
+                        <span className={`max-w-full truncate text-[9px] font-black uppercase px-2 py-0.5 rounded-full ${b.badgeBg} inline-block mb-1 shadow-sm`}>
                           {b.badge}
                         </span>
                         <h3 className={`text-sm font-black ${b.textColor} truncate`}>

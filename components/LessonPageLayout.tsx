@@ -22,6 +22,7 @@ import { getLessonProgress } from "@/lib/supabase-progress";
 import { queueOfflineCompletion, removeOfflineCompletion } from "@/lib/offline-sync";
 import { recalculateUserStats } from "@/lib/supabase-user";
 import { updateStreak, MAX_STREAK_FREEZES } from "@/lib/supabase-streak";
+import { maybeAwardFinanceCardDrop } from "@/lib/finance-cards";
 import { getReadingProgress, updateReadingProgress } from "@/lib/supabase-reading";
 import { recordQuizMistake } from "@/lib/quiz-mistakes";
 import { getRecallItemsAction } from "@/lib/recall-actions";
@@ -622,6 +623,13 @@ export default function LessonPageLayout({ lesson, quiz, children }: Props) {
       if (streakResult.freezeUsedThisUpdate) {
         const remaining = MAX_STREAK_FREEZES - (streakResult.freezes_used ?? 0);
         toast.info(`🧊 Bạn đã lỡ mất 1 ngày, nhưng chuỗi ${streakResult.current_streak} ngày vẫn được giữ nguyên nhờ lượt bảo vệ chuỗi (còn ${remaining} lượt).`);
+      }
+      const cardDrop = await maybeAwardFinanceCardDrop(uid, finalScore);
+      if (cardDrop.dropped && cardDrop.card) {
+        toast.success(`📇 Rơi thẻ mới: ${cardDrop.card.ticker} - ${cardDrop.card.name}!`);
+        if (typeof window !== "undefined") {
+          window.dispatchEvent(new CustomEvent("thtcdn:finance-card-dropped", { detail: cardDrop.card }));
+        }
       }
     } catch (error) {
       console.error("Error updating stats/streak after completion (lesson still saved):", error);

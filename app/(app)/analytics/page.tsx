@@ -58,7 +58,7 @@ export default function AnalyticsPage() {
         </Link>
       </div>
 
-      <div className="max-w-[1280px] mx-auto px-5 pb-8 sm:px-6">
+      <div className="max-w-[1480px] mx-auto px-5 pb-8 sm:px-6">
         <div className="mb-6 rounded-[28px] border border-stone-200 bg-white px-5 py-5 shadow-[0_20px_50px_-35px_rgba(15,23,42,0.22)] sm:px-7 sm:py-6">
           <div className="flex flex-wrap items-end justify-between gap-4">
             <div>
@@ -70,12 +70,12 @@ export default function AnalyticsPage() {
           </div>
         </div>
 
-        <div className="grid gap-6 xl:grid-cols-12 xl:items-start">
-          <div className="xl:col-span-7 min-w-0">
+        <div className="grid gap-6 2xl:grid-cols-12 2xl:items-start">
+          <div className="2xl:col-span-7 min-w-0">
             <LearningAnalytics hideLeaderboardTab />
           </div>
-          <div className="xl:col-span-5 min-w-0">
-            <div className="xl:sticky xl:top-6">
+          <div className="2xl:col-span-5 min-w-0">
+            <div className="2xl:sticky 2xl:top-6">
               <Leaderboard userId={userId} compact />
             </div>
           </div>
