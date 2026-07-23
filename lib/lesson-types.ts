@@ -49,6 +49,17 @@ export type LessonSectionBlock =
   | { type: "callout"; label: string; text: string }
   | { type: "comparison"; left: { label: string; text: string }; right: { label: string; text: string } }
   | { type: "conceptTable"; title: string; subtitle?: string; concepts: { vi: string; en: string; def: string }[] }
+  | {
+      type: "formula";
+      title?: string;
+      label?: string;
+      numerator?: string;
+      denominator?: string;
+      multiplier?: string;
+      equation?: string;
+      variables?: { symbol: string; name: string; description?: string }[];
+      example?: { title?: string; calculation: string; result: string; explanation?: string };
+    }
   | { type: "closing"; lines: string[] };
 
 export interface Lesson {

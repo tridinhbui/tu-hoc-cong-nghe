@@ -1,6 +1,7 @@
 import React from "react";
 import type { LessonSectionBlock } from "@/lib/lesson-types";
 import { highlightGlossaryTerms } from "@/components/GlossaryTerm";
+import FormulaBlock from "@/components/FormulaBlock";
 
 export default function LessonSections({ sections }: { sections: LessonSectionBlock[] }) {
   // Shared across the whole lesson body so a term already highlighted once
@@ -86,6 +87,21 @@ export default function LessonSections({ sections }: { sections: LessonSectionBl
                   ))}
                 </div>
               </div>
+            );
+
+          case "formula":
+            return (
+              <FormulaBlock
+                key={i}
+                title={block.title}
+                label={block.label}
+                numerator={block.numerator}
+                denominator={block.denominator}
+                multiplier={block.multiplier}
+                equation={block.equation}
+                variables={block.variables}
+                example={block.example}
+              />
             );
 
           case "closing":
