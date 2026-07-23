@@ -610,6 +610,9 @@ export default function LessonPageLayout({ lesson, quiz, children }: Props) {
       console.error("Error updating stats/streak after completion (lesson still saved):", error);
     }
 
+    if (typeof window !== "undefined") {
+      window.dispatchEvent(new CustomEvent("thtcdn:xp-gained", { detail: { xp: 10, label: "Hoàn thành bài học!" } }));
+    }
     toast.success("Đã lưu tiến độ bài học!");
     return true;
   }

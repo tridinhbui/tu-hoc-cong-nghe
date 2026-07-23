@@ -101,6 +101,9 @@ export default function StageMilestoneExamModal({
     if (passed) {
       const { ok, errorMessage } = await savePassedMilestone(userId, trackId, stageLabel, finalScoreRatio);
       if (ok) {
+        if (typeof window !== "undefined") {
+          window.dispatchEvent(new CustomEvent("thtcdn:xp-gained", { detail: { xp: 50, label: "Vượt ải xuất sắc!" } }));
+        }
         toast.success(`Chúc mừng! Bạn đã vượt ải ${stageLabel} thành công và nhận +50 XP! 🏆🌟`);
         await earnChest(userId, "milestone_exam");
         toast.info("Đặc quyền vượt ải: Nhận thêm 1 Rương Quà Tài Chính! 🎁");

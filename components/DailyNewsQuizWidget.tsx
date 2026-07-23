@@ -195,6 +195,9 @@ export default function DailyNewsQuizWidget({ userId, compact = false }: DailyNe
       try {
         const awarded = await claimQuestReward(userId, "daily_news_quiz", todayKey, 15);
         if (awarded) {
+          if (typeof window !== "undefined") {
+            window.dispatchEvent(new CustomEvent("thtcdn:xp-gained", { detail: { xp: 15, label: "Thử thách tin tức hàng ngày!" } }));
+          }
           toast.success("Chúc mừng! Bạn đã trả lời chính xác tình huống tin tức hôm nay và nhận +15 XP! 🏆📰");
         } else {
           toast.success("Chính xác! (XP hôm nay đã được ghi nhận trước đó) 🏆📰");
