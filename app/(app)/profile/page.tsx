@@ -24,6 +24,7 @@ import { createClient } from "@/lib/supabase";
 import { getLevelByXp, getLevelProgress, getXpToNextLevel } from "@/lib/levels";
 import { getMyLeaderboardRank, getUserProfile, recalculateUserStats, type UserProfile } from "@/lib/supabase-user";
 import { getEligibleUserBadges, type UserBadge } from "@/lib/supabase-badges";
+import { getUnlockedCosmetics } from "@/lib/chests";
 import { getMyGameTitles, type EarnedGameTitle } from "@/lib/games";
 import { getMyJourney, type JourneyMilestone } from "@/lib/journey";
 import { getUserStreak, type UserStreak } from "@/lib/supabase-streak";
@@ -223,19 +224,32 @@ export default function ProfilePage() {
   const [activeTheme, setActiveTheme] = useState<string | null>(null);
 
   useEffect(() => {
-    if (!user?.id) return;
-    const loadProfileRewards = () => {
+    const userId = user?.id;
+    if (!userId) return;
+    // Owned titles/themes come from the server (chest wins + shop
+    // purchases both land in user_chests - see lib/chests.ts's
+    // getUnlockedCosmetics), not localStorage. Which one is currently
+    // *equipped* stays a device-local preference (no server column for
+    // that), so activeTitle/activeTheme keep reading localStorage.
+    const loadUnlockedCosmetics = () => {
+      getUnlockedCosmetics(userId)
+        .then((cosmetics) => {
+          setUnlockedTitles(cosmetics.titles);
+          setUnlockedThemes(cosmetics.themes);
+        })
+        .catch((error) => console.error("Error loading unlocked cosmetics:", error));
+    };
+    const loadEquippedSelection = () => {
       if (typeof window !== "undefined") {
-        setUnlockedTitles(JSON.parse(window.localStorage.getItem(`thtcdn_unlocked_titles_${user.id}`) ?? "[]"));
-        setActiveTitle(window.localStorage.getItem(`thtcdn_active_title_${user.id}`));
-        setUnlockedThemes(JSON.parse(window.localStorage.getItem(`thtcdn_unlocked_themes_${user.id}`) ?? "[]"));
-        setActiveTheme(window.localStorage.getItem(`thtcdn_active_theme_${user.id}`));
+        setActiveTitle(window.localStorage.getItem(`thtcdn_active_title_${userId}`));
+        setActiveTheme(window.localStorage.getItem(`thtcdn_active_theme_${userId}`));
       }
     };
-    loadProfileRewards();
-    window.addEventListener("thtcdn_profile_updated", loadProfileRewards);
+    loadUnlockedCosmetics();
+    loadEquippedSelection();
+    window.addEventListener("thtcdn_profile_updated", loadUnlockedCosmetics);
     return () => {
-      window.removeEventListener("thtcdn_profile_updated", loadProfileRewards);
+      window.removeEventListener("thtcdn_profile_updated", loadUnlockedCosmetics);
     };
   }, [user?.id]);
 

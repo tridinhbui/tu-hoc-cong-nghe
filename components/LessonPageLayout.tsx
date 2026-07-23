@@ -35,6 +35,7 @@ import LessonFeedbackInline from "@/components/LessonFeedbackInline";
 import LessonTableOfContents from "@/components/LessonTableOfContents";
 import { getLessonDisplayLabel } from "@/lib/lesson-labels";
 import ShareCompletionButton from "@/components/ShareCompletionButton";
+import WisdomCardFlip from "@/components/WisdomCardFlip";
 
 export interface QuizQuestion {
   question: string;
@@ -1102,6 +1103,7 @@ export default function LessonPageLayout({ lesson, quiz, children }: Props) {
                     </button>
                   ))}
                 </div>
+                <WisdomCardFlip />
                 <div className="grid grid-cols-2 gap-3 pt-2">
                   <Link href="/dashboard" className="py-3.5 rounded-xl border border-stone-200 dark:border-stone-700 text-stone-600 dark:text-stone-400 text-sm font-bold text-center hover:bg-stone-50 dark:hover:bg-stone-800 transition-colors">
                     Dashboard

@@ -12,7 +12,7 @@ function isMissingTableError(error: { code?: string; message?: string } | null):
   return isDbMissing || isNetworkOrConnection;
 }
 
-export type ChestSource = "weekly_quest" | "milestone_exam" | "daily_login";
+export type ChestSource = "weekly_quest" | "milestone_exam" | "daily_login" | "shop_purchase";
 export type ChestRewardType = "title" | "xp" | "theme";
 
 export interface ChestReward {
@@ -22,7 +22,10 @@ export interface ChestReward {
   xp: number; // 0 for non-xp rewards
 }
 
-const CHEST_REWARDS: ChestReward[] = [
+// Exported so lib/shop.ts can build its catalog from these exact
+// title/theme strings instead of retyping them - keeps a reward "meaning"
+// the same thing whether won from a chest or bought directly in the shop.
+export const CHEST_REWARDS: ChestReward[] = [
   { type: "title", value: "Chiến thần tích lũy", desc: "Danh hiệu tôn vinh kỷ luật tích sản", xp: 0 },
   { type: "title", value: "Kẻ hủy diệt nợ nần", desc: "Danh hiệu dành cho người làm chủ tài chính", xp: 0 },
   { type: "title", value: "Sói già phố Wall", desc: "Danh hiệu của bậc thầy phân tích thị trường", xp: 0 },
