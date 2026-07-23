@@ -159,6 +159,10 @@ export async function claimQuestReward(
     .insert([{ user_id: userId, quest_type: questType, day_key: dayKey, xp_earned: xpEarned }]);
 
   if (error) {
+    if (error.code === "23505") {
+      // Unique constraint violation (already claimed today) - return false silently
+      return false;
+    }
     if (isMissingTableError(error)) {
       // Fallback: save to LocalStorage
       if (typeof window !== "undefined") {
