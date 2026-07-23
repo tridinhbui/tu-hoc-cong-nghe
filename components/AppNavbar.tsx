@@ -19,6 +19,8 @@ import { usePresenceHeartbeat } from "@/lib/use-presence-heartbeat";
 import { trackFeatureClick } from "@/lib/feature-events";
 import LevelUpModal from "@/components/LevelUpModal";
 import QuickShopModal from "@/components/QuickShopModal";
+import { getMyCareerGoal } from "@/lib/supabase-career-goals";
+import { FINANCE_CAREERS } from "@/lib/finance-careers";
 
 interface NavProfile {
   full_name: string | null;
@@ -60,10 +62,38 @@ export default function AppNavbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [signingOut, setSigningOut] = useState(false);
   const [showQuickShop, setShowQuickShop] = useState(false);
+  const [careerGoalId, setCareerGoalId] = useState<string | null>(null);
   const desktopDropdownRef = useRef<HTMLDivElement>(null);
   const mobileDropdownRef = useRef<HTMLDivElement>(null);
 
   useRoutePrefetch(["/dashboard", "/analytics", "/bxh", "/profile", "/ban-be", "/nhom-hoc", "/cong-dong", "/su-nghiep", "/ghi-chu", "/cong-cu", "/game", "/settings", "/tai-lieu", "/kiem-tra", "/cfa"]);
+
+  useEffect(() => {
+    const loadGoal = async () => {
+      if (userId) {
+        const g = await getMyCareerGoal(userId).catch(() => null);
+        if (g) {
+          setCareerGoalId(g);
+          return;
+        }
+      }
+      if (typeof window !== "undefined") {
+        const local = localStorage.getItem("thtcdn_career_goal") || localStorage.getItem("active_career_goal");
+        setCareerGoalId(local);
+      }
+    };
+    void loadGoal();
+
+    function handleCareerGoalUpdate(e: Event) {
+      const detail = (e as CustomEvent<{ careerId: string | null }>).detail;
+      setCareerGoalId(detail?.careerId ?? null);
+    }
+
+    window.addEventListener("thtcdn:career-goal-updated", handleCareerGoalUpdate);
+    return () => {
+      window.removeEventListener("thtcdn:career-goal-updated", handleCareerGoalUpdate);
+    };
+  }, [userId]);
 
   useEffect(() => {
     const supabase = createClient();
@@ -275,10 +305,23 @@ export default function AppNavbar() {
                       Check-in
                     </span>
                   )}
-                  {isCareer && !hasPendingNewsQuiz && (
-                    <span className="absolute right-3 top-3 flex h-2 w-2">
-                      <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
-                    </span>
+                  {isCareer && (
+                    (() => {
+                      const chosen = FINANCE_CAREERS.find((c) => c.id === careerGoalId);
+                      if (chosen) {
+                        return (
+                          <span className="inline-flex items-center gap-1 text-[9px] font-black uppercase tracking-wider px-2 py-0.5 rounded-full bg-emerald-600 text-white shadow-2xs">
+                            {chosen.emoji} {chosen.title.split(" ")[0]}
+                          </span>
+                        );
+                      }
+                      return (
+                        <span className="inline-flex items-center gap-1 text-[9px] font-black uppercase tracking-wider px-2 py-0.5 rounded-full bg-amber-500 text-white shadow-2xs animate-pulse">
+                          <span className="w-1.5 h-1.5 rounded-full bg-white animate-ping" />
+                          Chưa chọn
+                        </span>
+                      );
+                    })()
                   )}
                 </Link>
               );

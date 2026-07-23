@@ -652,15 +652,19 @@ export default function JobSearchClient() {
       setTrackedGoal(null);
       setCompletedItems([]);
       localStorage.removeItem("active_career_goal");
+      localStorage.removeItem("thtcdn_career_goal");
       localStorage.removeItem("active_career_completed_items");
       toast.info("Đã hủy theo dõi mục tiêu sự nghiệp.");
+      window.dispatchEvent(new CustomEvent("thtcdn:career-goal-updated", { detail: { careerId: null } }));
       if (userId) void clearCareerGoal(userId).catch((error) => console.error("Error clearing career goal:", error));
     } else {
       setTrackedGoal(careerId);
       setCompletedItems([]);
       localStorage.setItem("active_career_goal", careerId);
+      localStorage.setItem("thtcdn_career_goal", careerId);
       localStorage.setItem("active_career_completed_items", JSON.stringify([]));
       toast.success(`🎯 Đã đặt làm Mục tiêu Sự nghiệp mới!`);
+      window.dispatchEvent(new CustomEvent("thtcdn:career-goal-updated", { detail: { careerId } }));
       if (userId) void setCareerGoal(userId, careerId).catch((error) => console.error("Error saving career goal:", error));
     }
   };
@@ -829,6 +833,73 @@ export default function JobSearchClient() {
 
       {/* Main Content Area */}
       <div className="max-w-7xl mx-auto px-6 py-8">
+        {/* ── HIGHLIGHTED TARGET CAREER GOAL BANNER AT TOP ───────────────── */}
+        {trackedGoal ? (
+          (() => {
+            const goalCareer = FINANCE_CAREERS.find((c) => c.id === trackedGoal);
+            if (!goalCareer) return null;
+            return (
+              <div className="bg-gradient-to-r from-stone-900 via-stone-900 to-emerald-950 border-2 border-emerald-500/60 rounded-3xl p-6 text-white shadow-xl mb-8 relative overflow-hidden">
+                <div className="absolute top-0 right-0 w-64 h-64 bg-emerald-500/10 rounded-full blur-3xl pointer-events-none" />
+                <div className="relative z-10 flex flex-col md:flex-row md:items-center justify-between gap-6">
+                  <div className="flex items-start gap-4">
+                    <div className="w-16 h-16 rounded-2xl bg-white/10 border border-white/20 flex items-center justify-center text-3xl shrink-0 shadow-inner">
+                      {goalCareer.emoji}
+                    </div>
+                    <div>
+                      <div className="flex items-center gap-2 flex-wrap">
+                        <span className="text-[10px] font-black uppercase text-emerald-400 tracking-widest bg-emerald-950/80 px-3 py-1 rounded-full border border-emerald-500/40">
+                          🎯 Mục tiêu sự nghiệp bạn đã chọn
+                        </span>
+                        {goalCareer.id === "non-finance-learner" && (
+                          <span className="text-[10px] font-black uppercase text-amber-300 tracking-widest bg-amber-950/80 px-2.5 py-1 rounded-full border border-amber-500/40">
+                            🌱 Học viên ngoài ngành
+                          </span>
+                        )}
+                      </div>
+                      <h2 className="text-xl sm:text-2xl font-black text-white mt-2">
+                        {goalCareer.title} <span className="text-stone-400 text-base font-normal">({goalCareer.englishTitle})</span>
+                      </h2>
+                      <p className="text-xs sm:text-sm text-stone-300 mt-1 max-w-2xl leading-relaxed">
+                        {goalCareer.summary}
+                      </p>
+                    </div>
+                  </div>
+
+                  <div className="flex items-center gap-3 shrink-0 flex-wrap sm:flex-nowrap">
+                    <button
+                      onClick={() => handleSelectCareer(goalCareer)}
+                      className="px-4 py-2.5 bg-emerald-500 hover:bg-emerald-400 font-bold text-xs rounded-xl transition-all shadow-md text-stone-950 cursor-pointer"
+                    >
+                      Xem lộ trình chi tiết →
+                    </button>
+                    <button
+                      onClick={() => handleTrackGoal(goalCareer.id)}
+                      className="px-3.5 py-2.5 bg-stone-800 hover:bg-stone-700 text-stone-300 font-bold text-xs rounded-xl border border-stone-700 transition-colors cursor-pointer"
+                    >
+                      Bỏ chọn mục tiêu
+                    </button>
+                  </div>
+                </div>
+              </div>
+            );
+          })()
+        ) : (
+          <div className="bg-amber-500/10 dark:bg-amber-950/40 border-2 border-amber-400/60 dark:border-amber-700/60 rounded-3xl p-5 mb-8 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+            <div className="flex items-start sm:items-center gap-3.5">
+              <span className="text-3xl p-2.5 bg-amber-500/20 rounded-2xl shrink-0">🎯</span>
+              <div>
+                <h3 className="text-sm font-black text-amber-900 dark:text-amber-200">
+                  Bạn chưa chọn Mục tiêu Sự nghiệp!
+                </h3>
+                <p className="text-xs text-amber-800/80 dark:text-amber-300 mt-0.5 leading-relaxed">
+                  Hãy bấm chọn 1 vị trí bên dưới (hoặc chọn <strong>"Học viên / Người ngoài ngành 🌱"</strong> nếu bạn học để quản lý tài chính cá nhân) để hệ thống theo dõi tiến độ dành riêng cho bạn.
+                </p>
+              </div>
+            </div>
+          </div>
+        )}
+
         <CareerRoadmapMap careers={FINANCE_CAREERS} onSelectCareer={handleSelectCareer} />
 
         <div className="grid grid-cols-1 md:grid-cols-12 gap-8 items-start">

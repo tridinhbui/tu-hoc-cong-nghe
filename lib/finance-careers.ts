@@ -54,6 +54,44 @@ export interface FinanceCareer {
 
 export const FINANCE_CAREERS: FinanceCareer[] = [
   {
+    id: "non-finance-learner",
+    title: "Học viên / Người ngoài ngành",
+    englishTitle: "Non-Finance Learner & Personal Investor",
+    emoji: "🌱",
+    accentFrom: "#10b981",
+    accentTo: "#059669",
+    summary: "Dành cho người học tài chính phục vụ quản lý tài sản cá nhân, làm chủ gia đình, kinh doanh tự do, hoặc bổ sung kiến thức quản trị không thuộc chuyên ngành tài chính.",
+    responsibilities: [
+      "Quản lý tài chính cá nhân và tài sản gia đình hiệu quả",
+      "Đánh giá các cơ hội đầu tư cá nhân (cổ phiếu, bất động sản, tiết kiệm, chứng chỉ quỹ)",
+      "Hiểu và kiểm soát dòng tiền cá nhân / hộ kinh doanh",
+      "Đọc hiểu bức tranh tài chính để đưa ra quyết định thông minh trong cuộc sống",
+    ],
+    skills: ["Quản lý ngân sách cá nhân", "Đọc hiểu cơ bản BCTC", "Đầu tư giá trị", "Tư duy dòng tiền", "Kiểm soát rủi ro"],
+    entryLevel: "Mọi đối tượng - không yêu cầu bằng cấp hay kinh nghiệm tài chính",
+    salaryHint: "Tự do tài chính cá nhân • Tăng trưởng tài sản bền vững",
+    searchKeyword: "Người ngoài ngành",
+    relatedLessonSlugs: ["tai-chinh-la-gi", "tien-la-gi", "thu-nhap-chi-phi-tiet-kiem", "dong-tien", "tai-san-tieu-san", "lai-suat-la-gi", "lai-don-lai-kep"],
+    dayInLife: "Dành 15-20 phút mỗi ngày học bài mới, lập ngân sách cá nhân, phân bổ vốn vào các tài sản an toàn và theo dõi tích lũy tài sản ròng (Net worth).",
+    careerPath: ["Người mới bắt đầu", "Nhà đầu tư cá nhân thông thái", "Tự chủ tài chính"],
+    requiredTools: ["Ứng dụng Tự Học Tài Chính", "Excel/Notion tài chính cá nhân", "App ngân hàng & chứng khoán"],
+    certifications: ["Bằng chứng nhận Tự Học Tài Chính"],
+    entryDifficulty: 1,
+    stressLevel: 1,
+    wlb: 5,
+    avatar3d: "/careers/financial-analyst.jpg",
+    pros: "Ứng dụng ngay vào cuộc sống thực tế, giúp bảo vệ tài sản gia đình khỏi lạm phát và bẫy tài chính.",
+    cons: "Cần duy trì kỷ luật cá nhân dài hạn.",
+    applicationTips: "Tập trung hoàn thành 20 bài học nền tảng Tài chính cá nhân.",
+    category: "advisory",
+    traits: {
+      analytical: 3,
+      compliance: 4,
+      clientFacing: 3,
+      quantitative: 2
+    }
+  },
+  {
     id: "financial-analyst",
     title: "Chuyên viên Phân tích Tài chính",
     englishTitle: "Financial Analyst",
