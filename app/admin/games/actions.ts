@@ -1,6 +1,15 @@
 "use server";
 
 import { createServerSupabaseClient } from "@/lib/supabase-server";
+import { createAdminClient } from "@/lib/supabase-admin";
+
+async function getAdminOrServerSupabase() {
+  try {
+    return createAdminClient();
+  } catch {
+    return await createServerSupabaseClient();
+  }
+}
 
 export interface GameSessionStats {
   totalGamesPlayed: number;
@@ -19,7 +28,7 @@ export interface GameSessionStats {
 }
 
 export async function getGameSessionStats(): Promise<GameSessionStats> {
-  const supabase = await createServerSupabaseClient();
+  const supabase = await getAdminOrServerSupabase();
 
   try {
     // Total games played
@@ -115,7 +124,7 @@ export async function getGameSessionStats(): Promise<GameSessionStats> {
 }
 
 export async function getGamePerformanceByType(gameType: string) {
-  const supabase = await createServerSupabaseClient();
+  const supabase = await getAdminOrServerSupabase();
 
   try {
     const { data, error } = await supabase
