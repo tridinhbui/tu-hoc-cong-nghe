@@ -12,6 +12,7 @@ import { toast } from "sonner";
 function GlossaryTermSpan({ term, en }: { term: string; en: string }) {
   const [open, setOpen] = useState(false);
   const [userId, setUserId] = useState<string | null>(null);
+  const [saveState, setSaveState] = useState<"idle" | "saving" | "saved" | "error">("idle");
   const rootRef = useRef<HTMLSpanElement>(null);
 
   useEffect(() => {
@@ -38,10 +39,12 @@ function GlossaryTermSpan({ term, en }: { term: string; en: string }) {
 
   const handleSaveFlashcard = async (e: React.MouseEvent) => {
     e.stopPropagation();
+    if (saveState === "saving" || saveState === "saved") return;
     if (!userId) {
       toast.error("Vui lòng đăng nhập để lưu thẻ!");
       return;
     }
+    setSaveState("saving");
     const card = {
       term,
       definition: `Thuật ngữ tiếng Anh: ${en}. Được lưu từ bài học hệ thống.`,
@@ -53,8 +56,14 @@ function GlossaryTermSpan({ term, en }: { term: string; en: string }) {
     const ok = await saveFlashcard(userId, card);
     if (ok) {
       toast.success(`Đã thêm "${term}" vào Flashcards! 🗂️`);
-      setOpen(false);
+      setSaveState("saved");
+      // Keep the tooltip open a moment so the "✓ Đã lưu" confirmation is
+      // actually seen at the point of interaction, instead of closing
+      // immediately and relying solely on a toast the user's attention
+      // (still on the mid-paragraph tooltip) may not be on.
+      setTimeout(() => setOpen(false), 900);
     } else {
+      setSaveState("error");
       toast.error("Không thể lưu thẻ.");
     }
   };
@@ -63,8 +72,14 @@ function GlossaryTermSpan({ term, en }: { term: string; en: string }) {
     <span ref={rootRef} className="relative inline-block group/term">
       <button
         type="button"
-        onClick={() => setOpen((current) => !current)}
-        onFocus={() => setOpen(true)}
+        onClick={() => {
+          setOpen((current) => !current);
+          setSaveState("idle");
+        }}
+        onFocus={() => {
+          setOpen(true);
+          setSaveState("idle");
+        }}
         className="border-b border-dotted border-stone-400 dark:border-stone-500 cursor-help focus:outline-none"
       >
         {term}
@@ -76,9 +91,22 @@ function GlossaryTermSpan({ term, en }: { term: string; en: string }) {
         <button
           type="button"
           onClick={handleSaveFlashcard}
-          className="text-[9px] font-extrabold uppercase tracking-wider bg-emerald-500 hover:bg-emerald-600 text-white px-2 py-1 rounded cursor-pointer shadow-sm active:scale-95 transition-all"
+          disabled={saveState === "saving" || saveState === "saved"}
+          className={`text-[9px] font-extrabold uppercase tracking-wider px-2 py-1 rounded shadow-sm active:scale-95 transition-all ${
+            saveState === "saved"
+              ? "bg-emerald-700 text-white cursor-default"
+              : saveState === "error"
+                ? "bg-rose-500 hover:bg-rose-600 text-white cursor-pointer"
+                : "bg-emerald-500 hover:bg-emerald-600 text-white cursor-pointer"
+          }`}
         >
-          + 🗂️ Lưu Flashcard
+          {saveState === "saving"
+            ? "Đang lưu..."
+            : saveState === "saved"
+              ? "✓ Đã lưu"
+              : saveState === "error"
+                ? "⚠ Thử lại"
+                : "+ 🗂️ Lưu Flashcard"}
         </button>
       </span>
     </span>
