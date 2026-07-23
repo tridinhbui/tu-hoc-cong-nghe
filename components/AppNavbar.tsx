@@ -212,6 +212,16 @@ export default function AppNavbar() {
     .toUpperCase()
     .slice(0, 2);
 
+  const toggleMobileMenu = () => {
+    setDropdownOpen(false);
+    setMobileMenuOpen((v) => !v);
+  };
+
+  const toggleProfileDropdown = () => {
+    setMobileMenuOpen(false);
+    setDropdownOpen((v) => !v);
+  };
+
   return (
     <>
       <aside className="hidden lg:flex fixed inset-y-0 left-0 z-40 w-64 overflow-visible bg-white/96 dark:bg-stone-950/96 border-r border-stone-200 dark:border-stone-800 backdrop-blur">
@@ -307,7 +317,7 @@ export default function AppNavbar() {
             ) : (
               <div className="relative overflow-visible" ref={desktopDropdownRef}>
                 <button
-                  onClick={() => setDropdownOpen((v) => !v)}
+                  onClick={toggleProfileDropdown}
                   className="flex w-full items-center gap-3 rounded-2xl border border-stone-200 bg-white px-3 py-3 text-left transition-colors hover:bg-stone-50 dark:border-stone-800 dark:bg-stone-900 dark:hover:bg-stone-800"
                 >
                   {isValidAvatar(profile.avatar_url) ? (
@@ -352,177 +362,216 @@ export default function AppNavbar() {
         </div>
       </aside>
 
-      <div className="lg:hidden border-b border-stone-200 dark:border-stone-800 sticky top-0 bg-white/95 dark:bg-stone-950/95 backdrop-blur z-30">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 py-3 sm:py-4 flex items-center justify-between gap-3 sm:gap-6">
-        <Link href="/dashboard" className="flex items-center gap-2.5 flex-shrink-0">
-          <Logo size={30} />
-          <span className="hidden sm:inline text-base font-bold text-stone-900 dark:text-stone-100 whitespace-nowrap">Tự Học Tài Chính</span>
-        </Link>
-
-        <div className="flex items-center gap-2 md:gap-2.5 flex-shrink-0">
-          <Link
-            href="/tai-lieu"
-            className={`flex items-center gap-1.5 text-xs lg:text-sm font-bold px-2.5 lg:px-3 py-2 rounded-xl border transition-all duration-200 whitespace-nowrap ${
-              pathname === "/tai-lieu"
-                ? "bg-rose-50 dark:bg-rose-950/40 text-rose-700 dark:text-rose-300 border-rose-300 dark:border-rose-800"
-                : "bg-rose-50/70 dark:bg-rose-950/20 text-rose-700 dark:text-rose-300 border-rose-200 dark:border-rose-900/50 hover:bg-rose-100 dark:hover:bg-rose-950/30"
-            }`}
-          >
-            <FileText className="w-4 h-4 text-rose-500 dark:text-rose-400 shrink-0" />
-            <span className="hidden sm:inline">Tài liệu Miễn phí</span>
-            <span className="sm:hidden text-[10px]">Tài liệu</span>
+      <header className="lg:hidden border-b border-stone-200 dark:border-stone-800 sticky top-0 bg-white/95 dark:bg-stone-950/95 backdrop-blur z-50">
+        <div className="max-w-6xl mx-auto px-3 sm:px-6 py-2.5 sm:py-3 flex items-center justify-between gap-2 sm:gap-4">
+          <Link href="/dashboard" className="flex items-center gap-2 shrink-0">
+            <Logo size={28} />
+            <span className="hidden xs:inline sm:inline text-sm sm:text-base font-bold text-stone-900 dark:text-stone-100 whitespace-nowrap">Tự Học Tài Chính</span>
           </Link>
 
-          {profile && (
-            <button
-              onClick={() => setShowQuickShop(true)}
-              className="flex items-center gap-1 text-xs lg:text-sm font-black px-2.5 lg:px-3 py-2 rounded-xl bg-amber-50 dark:bg-amber-950/40 text-amber-600 dark:text-amber-400 border border-amber-200 dark:border-amber-900 hover:bg-amber-100/80 transition-colors shadow-sm cursor-pointer whitespace-nowrap"
-              title="Số dư Coin tích lũy - Bấm để mở Cửa hàng Nhanh"
+          <div className="flex items-center gap-1.5 sm:gap-2.5 shrink-0">
+            <Link
+              href="/tai-lieu"
+              className={`flex items-center gap-1 text-xs font-bold px-2 sm:px-3 py-1.5 sm:py-2 rounded-xl border transition-all duration-200 whitespace-nowrap ${
+                pathname === "/tai-lieu"
+                  ? "bg-rose-50 dark:bg-rose-950/40 text-rose-700 dark:text-rose-300 border-rose-300 dark:border-rose-800"
+                  : "bg-rose-50/70 dark:bg-rose-950/20 text-rose-700 dark:text-rose-300 border-rose-200 dark:border-rose-900/50 hover:bg-rose-100 dark:hover:bg-rose-950/30"
+              }`}
             >
-              <GoldCoinIcon className="w-4.5 h-4.5 lg:w-5 lg:h-5" />
-              <span className="font-black text-amber-600 dark:text-amber-400">{profile.coins ?? 0}</span>
-            </button>
-          )}
-          <button
-            onClick={() => setMobileMenuOpen((v) => !v)}
-            className="flex items-center justify-center w-9 h-9 rounded-lg border border-stone-200 dark:border-stone-800 text-stone-600 dark:text-stone-400 hover:bg-stone-50 dark:hover:bg-stone-900 transition-colors"
-            aria-label="Mở menu"
-            aria-expanded={mobileMenuOpen}
-          >
-            {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
-          </button>
+              <FileText className="w-3.5 h-3.5 text-rose-500 dark:text-rose-400 shrink-0" />
+              <span className="hidden sm:inline">Tài liệu Miễn phí</span>
+              <span className="sm:hidden text-[11px]">Tài liệu</span>
+            </Link>
 
-          {!profile ? (
-            <div className="w-10 h-10 bg-stone-200 dark:bg-stone-700 rounded-full animate-pulse" />
-          ) : (
-            <div className="relative" ref={mobileDropdownRef}>
+            {profile && (
               <button
-                onClick={() => setDropdownOpen((v) => !v)}
-                className="flex items-center gap-2 p-1 rounded-full hover:bg-stone-100 dark:hover:bg-stone-800 transition-colors"
+                onClick={() => setShowQuickShop(true)}
+                className="flex items-center gap-1 text-xs font-black px-2 sm:px-2.5 py-1.5 sm:py-2 rounded-xl bg-amber-50 dark:bg-amber-950/40 text-amber-600 dark:text-amber-400 border border-amber-200 dark:border-amber-900 hover:bg-amber-100/80 transition-colors shadow-xs cursor-pointer whitespace-nowrap"
+                title="Số dư Coin tích lũy - Bấm để mở Cửa hàng Nhanh"
               >
-                {isValidAvatar(profile.avatar_url) ? (
-                  <Image src={profile.avatar_url} alt={displayName} width={40} height={40} className="w-10 h-10 rounded-full object-cover" />
-                ) : (
-                  <div className="w-10 h-10 rounded-full bg-emerald-500 flex items-center justify-center text-white font-bold text-sm">
-                    {initials || "?"}
+                <GoldCoinIcon className="w-4 h-4" />
+                <span className="font-black text-amber-600 dark:text-amber-400">{profile.coins ?? 0}</span>
+              </button>
+            )}
+            
+            <button
+              onClick={toggleMobileMenu}
+              className="flex items-center justify-center w-8 h-8 sm:w-9 sm:h-9 rounded-lg border border-stone-200 dark:border-stone-800 text-stone-600 dark:text-stone-400 hover:bg-stone-50 dark:hover:bg-stone-900 transition-colors shrink-0"
+              aria-label="Mở menu"
+              aria-expanded={mobileMenuOpen}
+            >
+              {mobileMenuOpen ? <X className="w-5 h-5 text-rose-500" /> : <Menu className="w-5 h-5" />}
+            </button>
+
+            {!profile ? (
+              <div className="w-8 h-8 sm:w-9 sm:h-9 bg-stone-200 dark:bg-stone-700 rounded-full animate-pulse shrink-0" />
+            ) : (
+              <div className="relative shrink-0" ref={mobileDropdownRef}>
+                <button
+                  onClick={toggleProfileDropdown}
+                  className="flex items-center p-0.5 rounded-full hover:bg-stone-100 dark:hover:bg-stone-800 transition-colors"
+                >
+                  {isValidAvatar(profile.avatar_url) ? (
+                    <Image src={profile.avatar_url} alt={displayName} width={34} height={34} className="w-8 h-8 sm:w-9 sm:h-9 rounded-full object-cover" />
+                  ) : (
+                    <div className="w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-emerald-500 flex items-center justify-center text-white font-bold text-xs">
+                      {initials || "?"}
+                    </div>
+                  )}
+                </button>
+
+                {dropdownOpen && (
+                  <div className="absolute right-0 mt-2 w-[min(16rem,calc(100vw-2rem))] bg-white dark:bg-stone-900 rounded-xl border border-stone-200 dark:border-stone-800 shadow-xl z-50 p-3.5">
+                    <div className="flex gap-2.5 mb-3 pb-3 border-b border-stone-100 dark:border-stone-800 items-center">
+                      {isValidAvatar(profile.avatar_url) ? (
+                        <Image src={profile.avatar_url} alt={displayName} width={36} height={36} className="w-9 h-9 rounded-full object-cover shrink-0" />
+                      ) : (
+                        <div className="w-9 h-9 rounded-full bg-emerald-500 flex items-center justify-center text-white font-bold text-xs shrink-0">{initials || "?"}</div>
+                      )}
+                      <div className="flex-1 min-w-0">
+                        <p className="font-bold text-stone-900 dark:text-stone-100 truncate text-xs">{profile.full_name || "Người dùng"}</p>
+                        <p className="text-[11px] text-stone-500 dark:text-stone-400 truncate">{profile.email}</p>
+                      </div>
+                    </div>
+
+                    <div className="space-y-1 mb-2">
+                      <button type="button" onClick={() => handleDropdownNavigate("/profile")} className="block w-full rounded-lg px-3 py-1.5 text-left text-xs font-semibold text-stone-900 transition hover:bg-stone-50 dark:text-stone-100 dark:hover:bg-stone-800">
+                        Hồ sơ
+                      </button>
+                      <button type="button" onClick={() => handleDropdownNavigate("/ban-be")} className="block w-full rounded-lg px-3 py-1.5 text-left text-xs font-semibold text-stone-900 transition hover:bg-stone-50 dark:text-stone-100 dark:hover:bg-stone-800">
+                        Bạn bè
+                      </button>
+                      <button type="button" onClick={() => handleDropdownNavigate("/settings")} className="block w-full rounded-lg px-3 py-1.5 text-left text-xs font-semibold text-stone-900 transition hover:bg-stone-50 dark:text-stone-100 dark:hover:bg-stone-800">
+                        Cài đặt
+                      </button>
+                    </div>
+
+                    <button
+                      onClick={handleSignOut}
+                      disabled={signingOut}
+                      className="w-full px-3 py-1.5 text-xs font-bold text-rose-600 dark:text-rose-400 hover:bg-rose-50 dark:hover:bg-rose-950/50 rounded-lg transition disabled:opacity-50 text-left"
+                    >
+                      {signingOut ? "Đang đăng xuất..." : "Đăng xuất"}
+                    </button>
                   </div>
                 )}
-              </button>
+              </div>
+            )}
+          </div>
+        </div>
 
-              {dropdownOpen && (
-                <div className="absolute right-0 mt-2 w-[min(18rem,calc(100vw-2rem))] bg-white dark:bg-stone-900 rounded-xl border border-stone-200 dark:border-stone-800 shadow-lg z-40 p-4">
-                  <div className="flex gap-3 mb-4 pb-4 border-b border-stone-100 dark:border-stone-800">
+        {mobileMenuOpen && (
+          <>
+            {/* Backdrop filter overlay to prevent background click interference */}
+            <div
+              className="fixed inset-0 top-[53px] bg-stone-950/40 backdrop-blur-xs z-30 lg:hidden"
+              onClick={() => setMobileMenuOpen(false)}
+            />
+
+            {/* Mobile Drawer Dropdown anchored below top header */}
+            <div className="absolute top-full left-0 right-0 bg-white/98 dark:bg-stone-950/98 border-b border-stone-200 dark:border-stone-800 px-4 sm:px-6 py-3.5 space-y-1.5 shadow-2xl max-h-[calc(100vh-4rem)] overflow-y-auto z-40 lg:hidden backdrop-blur-md">
+              {profile && (
+                <div className="flex items-center justify-between gap-3 p-3 mb-2 rounded-xl bg-stone-50 dark:bg-stone-900 border border-stone-200/80 dark:border-stone-800">
+                  <div className="flex items-center gap-2.5 min-w-0">
                     {isValidAvatar(profile.avatar_url) ? (
-                      <Image src={profile.avatar_url} alt={displayName} width={44} height={44} className="w-11 h-11 rounded-full object-cover" />
+                      <Image src={profile.avatar_url} alt={displayName} width={36} height={36} className="w-9 h-9 rounded-full object-cover shrink-0" />
                     ) : (
-                      <div className="w-11 h-11 rounded-full bg-emerald-500 flex items-center justify-center text-white font-bold">{initials || "?"}</div>
+                      <div className="w-9 h-9 rounded-full bg-emerald-500 flex items-center justify-center text-white font-bold text-xs shrink-0">
+                        {initials || "?"}
+                      </div>
                     )}
-                    <div className="flex-1 min-w-0">
-                      <p className="font-bold text-stone-900 dark:text-stone-100 truncate">{profile.full_name || "Người dùng"}</p>
-                      <p className="text-xs text-stone-500 dark:text-stone-400 truncate">{profile.email}</p>
+                    <div className="min-w-0">
+                      <p className="font-bold text-xs text-stone-900 dark:text-stone-100 truncate">{profile.full_name || "Người dùng"}</p>
+                      <p className="text-[10px] text-stone-500 dark:text-stone-400 truncate">Cấp {profile.current_level ?? 1} • {profile.total_xp ?? 0} XP</p>
                     </div>
                   </div>
-
-                  <div className="space-y-1 mb-2">
-                    <button type="button" onClick={() => handleDropdownNavigate("/profile")} className="block w-full rounded-lg px-3 py-2 text-left text-sm font-semibold text-stone-900 transition hover:bg-stone-50 dark:text-stone-100 dark:hover:bg-stone-800">
-                      Hồ sơ
-                    </button>
-                    <button type="button" onClick={() => handleDropdownNavigate("/ban-be")} className="block w-full rounded-lg px-3 py-2 text-left text-sm font-semibold text-stone-900 transition hover:bg-stone-50 dark:text-stone-100 dark:hover:bg-stone-800">
-                      Bạn bè
-                    </button>
-                    <button type="button" onClick={() => handleDropdownNavigate("/settings")} className="block w-full rounded-lg px-3 py-2 text-left text-sm font-semibold text-stone-900 transition hover:bg-stone-50 dark:text-stone-100 dark:hover:bg-stone-800">
-                      Cài đặt
-                    </button>
-                  </div>
-
                   <button
-                    onClick={handleSignOut}
-                    disabled={signingOut}
-                    className="w-full px-4 py-2 text-sm font-bold text-rose-600 dark:text-rose-400 hover:bg-rose-50 dark:hover:bg-rose-950/50 rounded-lg transition disabled:opacity-50"
+                    onClick={() => {
+                      setMobileMenuOpen(false);
+                      setShowQuickShop(true);
+                    }}
+                    className="flex items-center gap-1 text-xs font-black px-2.5 py-1.5 rounded-lg bg-amber-100 dark:bg-amber-950/60 text-amber-700 dark:text-amber-300 border border-amber-300 dark:border-amber-800 shrink-0"
                   >
-                    {signingOut ? "Đang đăng xuất..." : "Đăng xuất"}
+                    <GoldCoinIcon className="w-3.5 h-3.5" />
+                    <span>{profile.coins ?? 0}</span>
                   </button>
                 </div>
               )}
-            </div>
-          )}
-        </div>
-      </div>
 
-      {mobileMenuOpen && (
-        <div className="lg:hidden border-t border-stone-200 dark:border-stone-800 px-4 sm:px-6 py-3 space-y-1.5 bg-white dark:bg-stone-950">
-          <Link
-            href="/tai-lieu"
-            onClick={() => setMobileMenuOpen(false)}
-            className={`group relative flex items-center gap-2 text-sm font-bold px-3 py-2.5 rounded-lg transition-all duration-200 ${
-              pathname === "/tai-lieu"
-                ? "bg-rose-500/15 dark:bg-rose-950/40 text-rose-700 dark:text-rose-300 border border-rose-500/25"
-                : "bg-rose-50/80 dark:bg-rose-950/20 text-rose-600 dark:text-rose-450 border border-rose-200/50 dark:border-rose-900/40 hover:bg-rose-100/60 dark:hover:bg-rose-950/30"
-            }`}
-          >
-            <FileText className="w-4 h-4 text-rose-550 shrink-0" />
-            Tài liệu Miễn phí
-          </Link>
-
-          {NAV_LINKS.map(({ href, label, icon: Icon }) => {
-            const active = pathname === href;
-            const isGame = href === "/game";
-            const isCareer = href === "/su-nghiep";
-            const isNhomHoc = href === "/nhom-hoc";
-            return (
               <Link
-                key={href}
-                href={href}
-                onClick={() => {
-                  setMobileMenuOpen(false);
-                  trackFeatureClick("nav_click", { label: href });
-                }}
-                className={`group relative flex items-center justify-between text-sm font-bold px-3 py-2.5 rounded-lg transition-all duration-200 ${
-                  active
-                    ? isGame
-                      ? "bg-amber-500/15 dark:bg-amber-950/40 text-amber-700 dark:text-amber-300 border border-amber-500/25"
-                      : isCareer
-                        ? "bg-indigo-500/15 dark:bg-indigo-950/40 text-indigo-700 dark:text-indigo-300 border border-indigo-500/25"
-                        : "bg-emerald-50 dark:bg-emerald-950/40 text-emerald-700 dark:text-emerald-300"
-                    : isGame
-                      ? "bg-amber-50/80 dark:bg-amber-950/20 text-amber-600 dark:text-amber-400 border border-amber-200/50 dark:border-amber-900/40 hover:bg-amber-100/60 dark:hover:bg-amber-950/30"
-                      : isNhomHoc && hasPendingStudyGroupCheckin
-                        ? "bg-amber-50 text-amber-800 border border-amber-300 dark:bg-amber-950/40 dark:text-amber-300"
-                        : isCareer
-                          ? "bg-indigo-50/80 dark:bg-indigo-950/20 text-indigo-650 dark:text-indigo-400 border border-indigo-200/50 dark:border-indigo-900/40 hover:bg-indigo-100/60 dark:hover:bg-indigo-950/30"
-                          : "text-stone-600 dark:text-stone-400 hover:bg-stone-100 dark:hover:bg-stone-900"
+                href="/tai-lieu"
+                onClick={() => setMobileMenuOpen(false)}
+                className={`group relative flex items-center gap-2.5 text-sm font-bold px-3 py-2.5 rounded-xl transition-all duration-200 ${
+                  pathname === "/tai-lieu"
+                    ? "bg-rose-500/15 dark:bg-rose-950/40 text-rose-700 dark:text-rose-300 border border-rose-500/25"
+                    : "bg-rose-50/80 dark:bg-rose-950/20 text-rose-600 dark:text-rose-400 border border-rose-200/50 dark:border-rose-900/40 hover:bg-rose-100/60 dark:hover:bg-rose-950/30"
                 }`}
               >
-                <div className="flex items-center gap-2">
-                  <Icon className={`w-4 h-4 transition-transform duration-200 group-hover:scale-110 ${isGame ? "text-amber-500" : isCareer ? "text-indigo-500 dark:text-indigo-450" : isNhomHoc && hasPendingStudyGroupCheckin ? "text-amber-600 animate-bounce" : ""}`} />
-                  <span className="flex items-center gap-1.5">
-                    {label}
-                    {isGame && <Flame className="w-3.5 h-3.5 text-orange-500" />}
-                  </span>
-                </div>
-
-                {isNhomHoc && hasPendingStudyGroupCheckin && (
-                  <span className="inline-flex items-center gap-1 text-[9px] font-black uppercase tracking-wider px-2 py-0.5 rounded-full bg-amber-500 text-white shadow-2xs animate-pulse">
-                    Check-in
-                  </span>
-                )}
-                {isGame && (
-                  <span className="flex h-2 w-2">
-                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-amber-400 opacity-75"></span>
-                    <span className="relative inline-flex rounded-full h-2 w-2 bg-amber-500"></span>
-                  </span>
-                )}
-                {isCareer && (
-                  <span className="flex h-2 w-2">
-                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-indigo-400 opacity-75"></span>
-                    <span className="relative inline-flex rounded-full h-2 w-2 bg-indigo-500"></span>
-                  </span>
-                )}
+                <FileText className="w-4 h-4 text-rose-500 shrink-0" />
+                Tài liệu Miễn phí
               </Link>
-            );
-          })}
-        </div>
-      )}
+
+              {NAV_LINKS.map(({ href, label, icon: Icon }) => {
+                const active = pathname === href;
+                const isGame = href === "/game";
+                const isCareer = href === "/su-nghiep";
+                const isNhomHoc = href === "/nhom-hoc";
+                return (
+                  <Link
+                    key={href}
+                    href={href}
+                    onClick={() => {
+                      setMobileMenuOpen(false);
+                      trackFeatureClick("nav_click", { label: href });
+                    }}
+                    className={`group relative flex items-center justify-between text-sm font-bold px-3 py-2.5 rounded-xl transition-all duration-200 ${
+                      active
+                        ? isGame
+                          ? "bg-amber-500/15 dark:bg-amber-950/40 text-amber-700 dark:text-amber-300 border border-amber-500/25"
+                          : isCareer
+                            ? "bg-indigo-500/15 dark:bg-indigo-950/40 text-indigo-700 dark:text-indigo-300 border border-indigo-500/25"
+                            : "bg-emerald-50 dark:bg-emerald-950/40 text-emerald-700 dark:text-emerald-300 border border-emerald-200/50 dark:border-emerald-900/40"
+                        : isGame
+                          ? "bg-amber-50/80 dark:bg-amber-950/20 text-amber-600 dark:text-amber-400 border border-amber-200/50 dark:border-amber-900/40 hover:bg-amber-100/60 dark:hover:bg-amber-950/30"
+                          : isNhomHoc && hasPendingStudyGroupCheckin
+                            ? "bg-amber-50 text-amber-800 border border-amber-300 dark:bg-amber-950/40 dark:text-amber-300"
+                            : isCareer
+                              ? "bg-indigo-50/80 dark:bg-indigo-950/20 text-indigo-650 dark:text-indigo-400 border border-indigo-200/50 dark:border-indigo-900/40 hover:bg-indigo-100/60 dark:hover:bg-indigo-950/30"
+                              : "text-stone-600 dark:text-stone-400 hover:bg-stone-100 dark:hover:bg-stone-900"
+                    }`}
+                  >
+                    <div className="flex items-center gap-2.5">
+                      <Icon className={`w-4 h-4 transition-transform duration-200 group-hover:scale-110 ${isGame ? "text-amber-500" : isCareer ? "text-indigo-500 dark:text-indigo-450" : isNhomHoc && hasPendingStudyGroupCheckin ? "text-amber-600 animate-bounce" : ""}`} />
+                      <span className="flex items-center gap-1.5">
+                        {label}
+                        {isGame && <Flame className="w-3.5 h-3.5 text-orange-500" />}
+                      </span>
+                    </div>
+
+                    {isNhomHoc && hasPendingStudyGroupCheckin && (
+                      <span className="inline-flex items-center gap-1 text-[9px] font-black uppercase tracking-wider px-2 py-0.5 rounded-full bg-amber-500 text-white shadow-2xs animate-pulse">
+                        Check-in
+                      </span>
+                    )}
+                    {isGame && (
+                      <span className="flex h-2 w-2">
+                        <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-amber-400 opacity-75"></span>
+                        <span className="relative inline-flex rounded-full h-2 w-2 bg-amber-500"></span>
+                      </span>
+                    )}
+                    {isCareer && (
+                      <span className="flex h-2 w-2">
+                        <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-indigo-400 opacity-75"></span>
+                        <span className="relative inline-flex rounded-full h-2 w-2 bg-indigo-500"></span>
+                      </span>
+                    )}
+                  </Link>
+                );
+              })}
+            </div>
+          </>
+        )}
+      </header>
 
       {celebrateLevel !== null && (
         <LevelUpModal level={celebrateLevel} userName={profile?.full_name || "Học viên"} onClose={dismiss} />
@@ -531,8 +580,6 @@ export default function AppNavbar() {
       {showQuickShop && userId && (
         <QuickShopModal userId={userId} onClose={() => setShowQuickShop(false)} />
       )}
-
-      </div>
     </>
   );
 }
