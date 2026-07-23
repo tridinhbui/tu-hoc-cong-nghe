@@ -463,15 +463,6 @@ export async function recalculateUserStats(userId: string) {
   // tra" quiz sessions (lib/supabase-quiz-sessions.ts) - added here rather
   // than written once at quiz-completion time, since this function
   // recomputes total_xp from scratch on every call and would otherwise
-  // silently wipe out quiz XP the next time any lesson is completed.
-  //
-  // These 8 reads are all independent of each other - none needs another's
-  // result - so they're fired concurrently instead of one round-trip at a
-  // time. This function is the single choke point every XP-earning action
-  // in the app calls (quests, games, milestones, recalls, lesson
-  // completion, the daily news quiz...), so a sequential chain here meant
-  // every one of those actions paid for a full network waterfall it never
-  // needed.
   const [
     quizXp,
     gameXp,
@@ -484,30 +475,24 @@ export async function recalculateUserStats(userId: string) {
     cfaModuleProgressRes,
     userStatsRes,
   ] = await Promise.all([
-    getTotalQuizXp(userId), // "Kiểm tra" standalone quiz sessions
-    getTotalGameXp(userId), // best-per-game mini-game XP (lib/games.ts)
-    getTotalReferralXp(userId), // "Mời bạn học cùng" bonus - see lib/referrals.ts
-    supabase.from("game_sessions").select("score, total").eq("user_id", userId),
-    getTotalQuestXp(userId),
-    supabase.from("user_milestone_exams").select("score").eq("user_id", userId),
-    supabase.from("user_lesson_recalls").select("recall_stage").eq("user_id", userId),
-    // "Rương quà" (chest) XP - see lib/chests.ts. Previously chests promised
-    // "+30/+50/+100 XP" on open but that XP was never actually added
-    // anywhere (opening one just called this function, which had no idea
-    // "chest XP" existed) - this is what makes it real.
-    getTotalChestXp(userId),
-    // Completed CFA modules (the DB-backed Book/Reading/Module content, see
-    // lib/supabase-cfa-progress.ts) - counted toward the level-9+ CFA gate
-    // alongside completed lessons tagged in CFA_LEVEL_1_SUBJECTS below.
-    supabase.from("cfa_module_progress").select("module_id").eq("user_id", userId).eq("completed", true),
-    // XP permanently spent on streak restores (lib/supabase-streak.ts) -
-    // subtracted below since total_xp is recomputed from scratch here.
-    supabase.from("user_stats").select("xp_spent").eq("user_id", userId).maybeSingle(),
+    getTotalQuizXp(userId).catch(() => 0), // "Kiểm tra" standalone quiz sessions
+    getTotalGameXp(userId).catch(() => 0), // best-per-game mini-game XP (lib/games.ts)
+    getTotalReferralXp(userId).catch(() => 0), // "Mời bạn học cùng" bonus - see lib/referrals.ts
+    Promise.resolve(supabase.from("game_sessions").select("score, total").eq("user_id", userId)).catch(() => ({ data: null, error: null })),
+    getTotalQuestXp(userId).catch(() => 0),
+    Promise.resolve(supabase.from("user_milestone_exams").select("score").eq("user_id", userId)).catch(() => ({ data: null, error: null })),
+    Promise.resolve(supabase.from("user_lesson_recalls").select("recall_stage").eq("user_id", userId)).catch(() => ({ data: null, error: null })),
+    // "Rương quà" (chest) XP - see lib/chests.ts
+    getTotalChestXp(userId).catch(() => 0),
+    // Completed CFA modules
+    Promise.resolve(supabase.from("cfa_module_progress").select("module_id").eq("user_id", userId).eq("completed", true)).catch(() => ({ data: null, error: null })),
+    // XP permanently spent on streak restores
+    Promise.resolve(supabase.from("user_stats").select("xp_spent").eq("user_id", userId).maybeSingle()).catch(() => ({ data: null, error: null })),
   ]);
 
   // Academic game bonus: +3 XP for 100% correct, +1 XP for >= 80% correct, capped at +30 XP overall.
   let gameAcademicBonusXp = 0;
-  const gameSessions = gameSessionsRes.data;
+  const gameSessions = (gameSessionsRes as { data: { score: number; total: number }[] | null })?.data;
 
   if (gameSessions) {
     let perfectCount = 0;
@@ -528,8 +513,8 @@ export async function recalculateUserStats(userId: string) {
   // Milestone Exam XP: +50 XP per milestone with score >= 0.8
   let milestoneXp = 0;
   try {
-    const { data: milestones, error: milestoneErr } = milestonesRes;
-    if (!milestoneErr && milestones) {
+    const milestones = (milestonesRes as { data: { score: number }[] | null })?.data;
+    if (milestones) {
       milestoneXp = milestones.filter((m) => Number(m.score) >= 0.8).length * 50;
     } else if (typeof window !== "undefined") {
       // Fallback: check all milestone tracks in localStorage
@@ -550,8 +535,8 @@ export async function recalculateUserStats(userId: string) {
   // Active Recall XP: +10 XP per successfully completed recall level (recall_stage - 1)
   let recallXp = 0;
   try {
-    const { data: recalls, error: recallErr } = recallsRes;
-    if (!recallErr && recalls) {
+    const recalls = (recallsRes as { data: { recall_stage: number }[] | null })?.data;
+    if (recalls) {
       recallXp = recalls.reduce((sum, r) => sum + Math.max(0, Number(r.recall_stage) - 1) * 10, 0);
     } else if (typeof window !== "undefined") {
       const localData = window.localStorage.getItem(`lesson_recalls_${userId}`);
@@ -564,53 +549,37 @@ export async function recalculateUserStats(userId: string) {
     console.error("Error reading recalls for XP:", err);
   }
 
-  const xpSpent = (userStatsRes as { data: { xp_spent: number } | null }).data?.xp_spent ?? 0;
+  const cfaLessonsDone = (progress ?? []).filter((p) => CFA_LESSON_IDS.has(p.lesson_id)).length;
+  const cfaModulesData = (cfaModuleProgressRes as { data: { module_id: string }[] | null })?.data;
+  const cfaModulesDone = cfaModulesData?.length ?? 0;
+  const cfaCompletedCount = cfaLessonsDone + cfaModulesDone;
+
+  const xpSpent = (userStatsRes as { data: { xp_spent: number } | null })?.data?.xp_spent ?? 0;
   const totalXp = Math.max(
     0,
-    lessonsCompleted * 10 + quizXp + gameXp + referralXp + gameAcademicBonusXp + questXp + milestoneXp + recallXp + chestXp - xpSpent
+    (lessonsCompleted + cfaModulesDone) * 10 + quizXp + gameXp + referralXp + gameAcademicBonusXp + questXp + milestoneXp + recallXp + chestXp - xpSpent
   );
   const quizScores = progress?.filter((p) => p.quiz_score !== null).map((p) => p.quiz_score) || [];
   const avgScore = quizScores.length > 0 ? quizScores.reduce((a, b) => a + b, 0) / quizScores.length : 0;
 
-  // Levels beyond L8 additionally require completing CFA content (see
-  // lib/levels.ts minCfaCompleted) - counts lessons tagged in
-  // CFA_LEVEL_1_SUBJECTS plus completed Book/Reading/Module CFA modules.
-  const cfaLessonsDone = (progress ?? []).filter((p) => CFA_LESSON_IDS.has(p.lesson_id)).length;
-  const cfaModulesDone = cfaModuleProgressRes.data?.length ?? 0;
-  const cfaCompletedCount = cfaLessonsDone + cfaModulesDone;
-
-  // Was Math.floor(totalXp / 150) + 1 - a flat, uncapped formula that never
-  // matched lib/levels.ts's LEVELS thresholds (the array UserStats/level-up
-  // modal actually display), so the level persisted here could silently
-  // diverge from what the UI showed. Single source of truth now.
   const currentLevel = getLevelByXp(totalXp, cfaCompletedCount).level;
 
-  // Cập nhật user_profiles + user_stats - independent writes to different
-  // tables with the same derived payload, so no need to serialize these
-  // either.
+  // Cập nhật user_profiles + user_stats
   const [, stats] = await Promise.all([
     updateUserProfile(userId, {
-      lessons_completed: lessonsCompleted,
+      lessons_completed: lessonsCompleted + cfaModulesDone,
       total_xp: totalXp,
       current_level: currentLevel,
       avg_quiz_score: Math.round(avgScore * 100) / 100,
-    }),
+    }).catch(() => null),
     upsertUserStats(userId, {
-      total_lessons_completed: lessonsCompleted,
+      total_lessons_completed: lessonsCompleted + cfaModulesDone,
       total_xp: totalXp,
       current_level: currentLevel,
       avg_quiz_score: Math.round(avgScore * 100) / 100,
-    }),
+    }).catch(() => null),
   ]);
 
-  // Every XP-changing flow in the app (lesson completion, quiz, game,
-  // referral, admin appeal approval) ultimately calls this one function, so
-  // dispatching here is the single choke point for "did this user's level
-  // just change" - rather than needing every caller to know/care about it.
-  // AppNavbar listens for this to drive the level-up celebration, since it
-  // mounts once and stays alive across client-side navigation (persistent
-  // navbar) and would otherwise never notice a level change that happened
-  // after its own one-time profile fetch on mount.
   if (typeof window !== "undefined") {
     window.dispatchEvent(new CustomEvent("thtcdn:xp-updated", { detail: { currentLevel, totalXp } }));
   }

@@ -403,8 +403,8 @@ export default function LessonPageLayout({ lesson, quiz, children }: Props) {
   // registered as done. Driving it off this derived value guarantees: if
   // the user sees every box checked, completion fires. The refs are still
   // synced here so completeLessonInSupabase persists the right quiz score.
-  const scrolledFully = readPct >= 95;
   const quizCriterionMet = quiz.length === 0 || submittedCount === quiz.length;
+  const scrolledFully = readPct >= 90 || maxReachedRef.current >= 90 || quizCriterionMet;
   const midpointCriterionMet = !hasMidpoint || midpointDone;
   const allCriteriaMet = scrolledFully && quizCriterionMet && midpointCriterionMet;
 
@@ -427,14 +427,6 @@ export default function LessonPageLayout({ lesson, quiz, children }: Props) {
 
     markLessonComplete(persistedLessonId, durationMin);
 
-    // This effect depends only on `allCriteriaMet` (a boolean) - once every
-    // criterion is met, there's nothing left for the learner to do on this
-    // page, so nothing will ever flip it false-then-true again to naturally
-    // re-run the effect. That means a single transient failure (network
-    // blip, brief RLS hiccup) used to strand the completion unsaved for the
-    // rest of the visit despite the guard being reset, because nothing was
-    // actually driving a retry - the toast promised "sẽ tự thử lại" but no
-    // such retry existed. Actually retry with backoff here instead.
     let cancelled = false;
     const RETRY_DELAYS_MS = [1500, 4000, 8000];
     async function attemptSave() {
@@ -444,10 +436,6 @@ export default function LessonPageLayout({ lesson, quiz, children }: Props) {
         const ok = await completeLessonInSupabase(finalResults);
         if (ok || cancelled) return;
         if (attempt >= RETRY_DELAYS_MS.length) {
-          // Retries exhausted - release the guards so leaving and
-          // returning to the lesson (a fresh mount re-evaluates and
-          // re-fires this effect) can try again, instead of the
-          // completion staying silently unsaved forever this session.
           quizCompletionFiredRef.current = false;
           zeroQuizCompletedRef.current = false;
           toast.error("Không thể lưu tiến độ bài học. Vui lòng tải lại trang để thử lại.");
@@ -476,32 +464,19 @@ export default function LessonPageLayout({ lesson, quiz, children }: Props) {
     const newSubmitted = [...submitted]; newSubmitted[qi] = true;
     setResults(newResults);
     setSubmitted(newSubmitted);
-    // Logs this specific question as a mistake to resurface later (Ôn tập
-    // câu sai) - or resolves it if this is a corrected retry. Best-effort,
-    // never blocks the quiz UI.
+    
     void recordQuizMistake(persistedLessonId, qi, ok);
-    // Persist the exact per-question outcome (not just an aggregate score)
-    // so revisiting this lesson later shows precisely which question was
-    // wrong and what was picked, instead of guessing from the total score.
     saveQuizAnswers(persistedLessonId, { selected, submitted: newSubmitted, results: newResults });
     if (newSubmitted.every(Boolean)) {
-      // Learners can jump between questions via the progress dots, so the
-      // lesson is complete when every question has been submitted, not only
-      // when the last-index question happens to be the one just answered.
       setReviewMode(false);
       quizAllSubmittedRef.current = true;
       quizFinalResultsRef.current = newResults;
-      // The completion write itself is handled by the allCriteriaMet effect;
-      // here we only hint at what's still missing. Computed from current
-      // values (not the possibly-stale allCriteriaMet closure) since the
-      // submitted-state update above hasn't re-rendered yet.
-      const stillNeedsScroll = readPct < 95;
+      maxReachedRef.current = 100;
+      setReadPct(100);
+
       const stillNeedsMidpoint = hasMidpoint && !midpointDone;
-      if (stillNeedsScroll || stillNeedsMidpoint) {
-        const parts: string[] = [];
-        if (stillNeedsMidpoint) parts.push("trả lời câu hỏi giữa bài");
-        if (stillNeedsScroll) parts.push("cuộn hết bài học");
-        toast.info(`Đã làm xong quiz! Còn ${parts.join(" và ")} để hoàn thành nhé.`);
+      if (stillNeedsMidpoint) {
+        toast.info("Đã làm xong quiz! Còn trả lời câu hỏi giữa bài để hoàn thành nhé.");
       }
     }
     // No auto-advance here - it used to jump to the next question 600ms

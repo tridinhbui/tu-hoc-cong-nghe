@@ -355,7 +355,7 @@ export default function ProfilePage() {
         recalculateUserStats(session.user.id)
           .then((stats) =>
             setProfile((prev) =>
-              prev
+              prev && stats
                 ? {
                     ...prev,
                     total_xp: stats.total_xp,

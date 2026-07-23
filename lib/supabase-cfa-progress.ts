@@ -1,6 +1,7 @@
 import { createClient } from "@/lib/supabase";
 import { handleSupabaseError } from "@/lib/errors";
 import { scheduleCfaModuleRecall } from "@/lib/supabase-cfa-features";
+import { recalculateUserStats } from "@/lib/supabase-user";
 
 export interface CfaModuleProgress {
   id: number;
@@ -14,9 +15,6 @@ export interface CfaModuleProgress {
   updated_at: string;
 }
 
-// CFA modules live in the separate Book/Reading/Module tables, not
-// lib/lessons-data, so their ids share no guaranteed disjoint range with
-// lesson_id in user_progress - kept in a dedicated table instead.
 export async function getCfaModuleProgress(userId: string, moduleId: string) {
   const supabase = createClient();
   const { data, error } = await supabase
@@ -52,7 +50,6 @@ export async function markCfaModuleComplete(
 
   if (error) throw handleSupabaseError(error);
 
-  // Same "completing a lesson enters the spaced-repetition queue" behavior
-  // as markLessonComplete -> scheduleLessonRecall for personal-finance lessons.
   await scheduleCfaModuleRecall(userId, moduleId, 1);
+  void recalculateUserStats(userId).catch(() => {});
 }
