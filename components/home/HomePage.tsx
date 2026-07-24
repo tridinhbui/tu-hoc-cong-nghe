@@ -411,7 +411,7 @@ export default function HomePage() {
         </div>
 
         {/* ── NAV ── */}
-        <header className="sticky top-0 z-40 bg-white/80 dark:bg-stone-950/80 backdrop-blur-md border-b border-stone-100 dark:border-stone-900">
+        <header className="sticky top-0 z-40 bg-white/80 dark:bg-stone-950/80 backdrop-blur-sm border-b border-stone-100 dark:border-stone-900">
           <div className="max-w-6xl mx-auto px-6 py-3.5 flex items-center justify-between">
             <div className="flex items-center gap-2.5">
               <Logo size={26} />
@@ -454,7 +454,7 @@ export default function HomePage() {
                   initial={{ opacity: 0, y: 14 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.45, ease: "easeOut" }}
-                  className="mb-5 inline-flex items-center gap-1.5 rounded-full border border-emerald-200/80 bg-white/80 px-3 py-1 text-[10px] font-black uppercase tracking-[0.16em] text-emerald-700 backdrop-blur dark:border-emerald-900 dark:bg-stone-950/55 dark:text-emerald-300"
+                  className="mb-5 inline-flex items-center gap-1.5 rounded-full border border-emerald-200/80 bg-white/80 px-3 py-1 text-[10px] font-black uppercase tracking-[0.16em] text-emerald-700 backdrop-blur-sm dark:border-emerald-900 dark:bg-stone-950/55 dark:text-emerald-300"
                 >
                   <span className="relative flex w-1.5 h-1.5">
                     <span className="animate-ping absolute inline-flex w-full h-full rounded-full bg-emerald-400 opacity-75" />
@@ -513,7 +513,7 @@ export default function HomePage() {
                   initial={{ opacity: 0, y: 14 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.45, ease: "easeOut", delay: 0.24 }}
-                  className="w-full rounded-[1.35rem] border border-stone-200/80 bg-white/70 px-4 py-3.5 shadow-[0_22px_44px_-30px_rgba(16,185,129,0.35)] backdrop-blur dark:border-stone-800 dark:bg-stone-950/45 sm:w-fit sm:px-5"
+                  className="w-full rounded-[1.35rem] border border-stone-200/80 bg-white/70 px-4 py-3.5 shadow-[0_22px_44px_-30px_rgba(16,185,129,0.35)] backdrop-blur-sm dark:border-stone-800 dark:bg-stone-950/45 sm:w-fit sm:px-5"
                 >
                   <div className="mb-3 inline-flex items-center gap-2 rounded-full border border-emerald-200/80 bg-white/80 px-2.5 py-1 text-[10px] font-bold uppercase tracking-[0.18em] text-emerald-700 dark:border-emerald-900/50 dark:bg-stone-900/60 dark:text-emerald-300">
                     <span className="relative flex w-1.5 h-1.5">
@@ -568,7 +568,7 @@ export default function HomePage() {
                       </div>
                     </div>
 
-                    <div className="mt-5 rounded-[1.6rem] border border-white/12 bg-white/10 p-4 backdrop-blur-md">
+                    <div className="mt-5 rounded-[1.6rem] border border-white/12 bg-white/10 p-4 backdrop-blur-sm">
                       <div className="flex items-center justify-between gap-4">
                         <div>
                           <p className="text-[10px] font-black uppercase tracking-[0.18em] text-stone-300">Hôm nay trong hệ</p>
@@ -582,7 +582,7 @@ export default function HomePage() {
                     </div>
 
                     <div className="mt-4 grid gap-3 sm:grid-cols-[1.15fr_0.85fr]">
-                      <div className="rounded-[1.45rem] border border-white/12 bg-stone-950/45 p-4 backdrop-blur">
+                      <div className="rounded-[1.45rem] border border-white/12 bg-stone-950/45 p-4 backdrop-blur-sm">
                         <div className="mb-3 flex items-center justify-between gap-2">
                           <div>
                             <p className="text-[10px] font-black uppercase tracking-[0.16em] text-stone-400">Hành trình học</p>
@@ -613,12 +613,12 @@ export default function HomePage() {
                       </div>
 
                       <div className="space-y-3">
-                        <div className="rounded-[1.45rem] border border-white/12 bg-white/10 p-4 backdrop-blur">
+                        <div className="rounded-[1.45rem] border border-white/12 bg-white/10 p-4 backdrop-blur-sm">
                           <p className="text-[10px] font-black uppercase tracking-[0.16em] text-stone-300">Cộng đồng</p>
                           <p className="mt-2 text-sm font-black text-white">FinSocial + Học nhóm</p>
                           <p className="mt-1 text-xs leading-relaxed text-stone-300">Đọc phân tích ngắn, hỏi đáp nhanh, giữ nhịp với nhóm học mỗi ngày.</p>
                         </div>
-                        <div className="rounded-[1.45rem] border border-white/12 bg-white/10 p-4 backdrop-blur">
+                        <div className="rounded-[1.45rem] border border-white/12 bg-white/10 p-4 backdrop-blur-sm">
                           <p className="text-[10px] font-black uppercase tracking-[0.16em] text-stone-300">Game Kingdom</p>
                           <p className="mt-2 text-sm font-black text-white">Mở khóa bằng kiến thức</p>
                           <div className="mt-2 h-1.5 overflow-hidden rounded-full bg-white/10">
@@ -681,7 +681,7 @@ export default function HomePage() {
         </section>
 
         {/* ── SOCIAL PROOF ── */}
-        <section className="landing-band landing-band-glass landing-band-divider backdrop-blur-md py-16 lg:py-20 relative border-y border-stone-150/40 dark:border-stone-850/40">
+        <section className="landing-band landing-band-glass landing-band-divider backdrop-blur-sm py-16 lg:py-20 relative border-y border-stone-150/40 dark:border-stone-850/40">
           <div className="max-w-6xl mx-auto px-6 grid lg:grid-cols-[minmax(0,1.2fr)_360px] gap-6 items-start">
             <ScrollReveal>
               <p className="text-xs font-black text-emerald-600 dark:text-emerald-400 uppercase tracking-widest mb-2">
@@ -1006,7 +1006,7 @@ export default function HomePage() {
         </section>
 
         {/* ── METHOD (Spaced Repetition) ── */}
-        <section className="bg-stone-50/50 dark:bg-stone-900/20 backdrop-blur-md py-16 lg:py-20 border-y border-stone-150/40 dark:border-stone-850/40">
+        <section className="bg-stone-50/50 dark:bg-stone-900/20 backdrop-blur-sm py-16 lg:py-20 border-y border-stone-150/40 dark:border-stone-850/40">
           <div className="max-w-6xl mx-auto px-6">
             <ScrollReveal className="max-w-2xl mb-10">
               <p className="text-xs font-black text-emerald-600 dark:text-emerald-400 uppercase tracking-widest mb-2">
@@ -1070,7 +1070,7 @@ export default function HomePage() {
         {/* ── VISION & MISSION ── */}
         <section className="relative max-w-6xl mx-auto px-6 pb-16 lg:pb-20">
           <ScrollReveal>
-            <div className="rounded-[20px] border border-stone-200/80 dark:border-stone-800/85 bg-white/70 dark:bg-stone-900/60 backdrop-blur-xl p-8 lg:p-10 shadow-[0_14px_34px_-26px_rgba(28,25,23,0.12)] dark:shadow-[0_14px_34px_-26px_rgba(0,0,0,0.28)]">
+            <div className="rounded-[20px] border border-stone-200/80 dark:border-stone-800/85 bg-white/70 dark:bg-stone-900/60 backdrop-blur-sm p-8 lg:p-10 shadow-[0_14px_34px_-26px_rgba(28,25,23,0.12)] dark:shadow-[0_14px_34px_-26px_rgba(0,0,0,0.28)]">
               <div className="grid gap-8 lg:grid-cols-[minmax(0,1.35fr)_minmax(320px,0.95fr)] lg:items-start">
                 <div>
                   <p className="mb-4 inline-flex items-center gap-2 text-xs font-black text-emerald-600 dark:text-emerald-400 uppercase tracking-widest">
@@ -1126,7 +1126,7 @@ export default function HomePage() {
                 </div>
 
                 <div className="lg:self-center lg:translate-y-4">
-                  <div className="rounded-[20px] border border-emerald-200/70 dark:border-emerald-900/40 bg-gradient-to-b from-emerald-50/50 to-teal-50/30 dark:from-emerald-950/20 dark:to-teal-950/10 p-6 shadow-[0_14px_30px_-26px_rgba(16,185,129,0.18)]">
+                  <div className="rounded-[20px] border border-emerald-200/70 dark:border-emerald-900/40 bg-gradient-to-b from-emerald-50/50 to-teal-50/30 dark:from-emerald-950/20 dark:to-teal-950/10 p-6 shadow-[0_14px_30px_-26px_rgba(16,185,129,0.18)] backdrop-blur-sm">
                     <p className="mb-4 inline-flex items-center gap-2 text-xs font-black text-emerald-700 dark:text-emerald-300 uppercase tracking-widest">
                       <span className="inline-flex h-6 w-6 items-center justify-center rounded-full bg-white/80 text-sm shadow-sm ring-1 ring-emerald-200/80 dark:bg-stone-950/30 dark:ring-emerald-900/40">
                         🇻🇳
@@ -1195,7 +1195,7 @@ export default function HomePage() {
 
         {/* ── FINAL CTA ── */}
         <section className="relative overflow-hidden bg-stone-900 dark:bg-stone-950">
-          <div className="pointer-events-none absolute -bottom-24 left-1/2 -translate-x-1/2 w-[36rem] h-[36rem] rounded-full bg-emerald-500/20 blur-3xl" />
+          <div className="pointer-events-none absolute -bottom-24 left-1/2 -translate-x-1/2 w-[36rem] h-[36rem] rounded-full bg-emerald-500/20 blur-2xl" />
           <ScrollReveal className="relative max-w-3xl mx-auto px-6 py-20 text-center">
             <ShieldCheck className="w-10 h-10 text-emerald-400 mx-auto mb-4" />
             <h2 className="text-3xl lg:text-4xl font-bold text-white mb-4">Sẵn sàng hiểu tiền bạc của chính mình?</h2>
