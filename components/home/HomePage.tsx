@@ -16,6 +16,9 @@ import {
   Gamepad2,
   Users,
   MessageSquareMore,
+  Crown,
+  Trophy,
+  Zap,
 } from "lucide-react";
 import { getTotalUserCount, getTotalCompletedLessonsCount } from "@/lib/supabase-user";
 import { animateCountTo } from "@/lib/animate-count";
@@ -100,6 +103,27 @@ const FEATURE_SHOWCASE = [
     href: "/login?mode=signup",
     cta: "Tham gia FinSocial",
     bullets: ["Đăng bản tin ngắn", "Lọc chủ đề", "Bình luận và thả cảm xúc"],
+  },
+] as const;
+
+const KINGDOM_BUILDINGS = [
+  {
+    name: "Goldman Sachs",
+    label: "Đấu trường định giá",
+    image: "/rpg/goldman_sachs.png",
+    progress: "72%",
+  },
+  {
+    name: "Fed Reserve",
+    label: "Thử thách lãi suất",
+    image: "/rpg/fed_reserve.jpg",
+    progress: "48%",
+  },
+  {
+    name: "Singapore Dock",
+    label: "Cảng dòng tiền",
+    image: "/rpg/singapore_dock.jpg",
+    progress: "65%",
   },
 ] as const;
 
@@ -435,6 +459,163 @@ export default function HomePage() {
           </ScrollReveal>
           <ScrollReveal delay={0.08}>
             <ProductPreview />
+          </ScrollReveal>
+        </section>
+
+        {/* ── GAME KINGDOM PREVIEW ── */}
+        <section className="relative max-w-6xl mx-auto px-6 py-14 lg:py-18">
+          <ScrollReveal className="max-w-3xl mb-8">
+            <p className="text-xs font-black text-amber-600 dark:text-amber-400 uppercase tracking-widest mb-2">
+              Xem trước Game Kingdom
+            </p>
+            <h2 className="text-3xl lg:text-4xl font-black text-stone-900 dark:text-stone-100">
+              Một vương quốc tài chính để bạn mở khóa bằng kiến thức
+            </h2>
+            <p className="mt-3 text-stone-600 dark:text-stone-400 leading-relaxed">
+              Game Kingdom biến việc học thành nhiệm vụ: hoàn thành bài, làm quiz, chơi mini game và mở dần các công trình
+              tài chính. Hình ảnh bên dưới dùng trực tiếp các asset trong game để người mới thấy rõ mình sẽ bước vào đâu.
+            </p>
+          </ScrollReveal>
+
+          <ScrollReveal delay={0.08}>
+            <div className="overflow-hidden rounded-[1.75rem] border border-stone-200 bg-white shadow-[0_40px_100px_-45px_rgba(120,53,15,0.35)] dark:border-stone-800 dark:bg-stone-900">
+              <div className="flex flex-wrap items-center gap-x-3 gap-y-2 border-b border-stone-100 bg-stone-50 px-4 py-2.5 dark:border-stone-850 dark:bg-stone-950/60">
+                <div className="flex min-w-0 flex-1 items-center gap-3">
+                  <div className="flex shrink-0 gap-1.5">
+                    <span className="h-2.5 w-2.5 rounded-full bg-stone-300 dark:bg-stone-700" />
+                    <span className="h-2.5 w-2.5 rounded-full bg-stone-300 dark:bg-stone-700" />
+                    <span className="h-2.5 w-2.5 rounded-full bg-stone-300 dark:bg-stone-700" />
+                  </div>
+                  <div className="min-w-0 flex-1 truncate rounded-full border border-stone-200 bg-white px-4 py-1 text-center text-[11px] font-semibold text-stone-400 dark:border-stone-800 dark:bg-stone-900 dark:text-stone-500">
+                    tuhoctaichinh.vn/game
+                  </div>
+                </div>
+                <div className="flex shrink-0 gap-1 rounded-full border border-stone-200 bg-white p-0.5 dark:border-stone-800 dark:bg-stone-900">
+                  <span className="rounded-full bg-stone-900 px-2.5 py-1 text-[10px] font-bold text-white dark:bg-stone-100 dark:text-stone-900">
+                    Kingdom
+                  </span>
+                  <span className="rounded-full px-2.5 py-1 text-[10px] font-bold text-stone-400 dark:text-stone-500">
+                    Mini game
+                  </span>
+                </div>
+              </div>
+
+              <div className="relative min-h-[520px] overflow-hidden bg-stone-950 p-4 sm:p-6 lg:p-8">
+                <Image
+                  src="/wallstreet-nyse-header.jpg"
+                  alt="Sàn giao dịch tài chính làm nền cho Game Kingdom"
+                  fill
+                  sizes="100vw"
+                  className="object-cover opacity-45"
+                />
+                <div className="absolute inset-0 bg-gradient-to-br from-stone-950/95 via-stone-950/55 to-amber-950/45" />
+                <div className="absolute inset-0 bg-[radial-gradient(#f59e0b_1px,transparent_1px)] [background-size:22px_22px] opacity-20" />
+
+                <div className="relative grid gap-5 lg:grid-cols-[minmax(0,1.15fr)_340px]">
+                  <div className="min-w-0">
+                    <div className="mb-4 flex flex-wrap items-center justify-between gap-3">
+                      <div>
+                        <div className="inline-flex items-center gap-2 rounded-full border border-amber-400/35 bg-amber-400/10 px-3 py-1 text-[11px] font-black uppercase tracking-[0.16em] text-amber-200">
+                          <Crown className="h-3.5 w-3.5" />
+                          Vương quốc Game Tài Chính
+                        </div>
+                        <h3 className="mt-3 text-2xl font-black text-white sm:text-3xl">
+                          Bản đồ nhiệm vụ hôm nay
+                        </h3>
+                      </div>
+                      <div className="rounded-2xl border border-emerald-400/30 bg-emerald-400/10 px-4 py-3 text-right backdrop-blur">
+                        <p className="text-[10px] font-black uppercase tracking-[0.16em] text-emerald-200">XP phiên chơi</p>
+                        <p className="mt-1 text-2xl font-black tabular-nums text-white">+240 XP</p>
+                      </div>
+                    </div>
+
+                    <div className="grid gap-3 sm:grid-cols-3">
+                      {KINGDOM_BUILDINGS.map((building, i) => (
+                        <div
+                          key={building.name}
+                          className="group overflow-hidden rounded-2xl border border-white/15 bg-white/10 shadow-2xl backdrop-blur transition duration-300 hover:-translate-y-1 hover:border-amber-300/60"
+                        >
+                          <div className="relative aspect-[4/3] overflow-hidden">
+                            <Image
+                              src={building.image}
+                              alt={`${building.name} trong Game Kingdom`}
+                              fill
+                              sizes="(max-width: 1024px) 100vw, 24vw"
+                              className="object-cover transition duration-500 group-hover:scale-105"
+                            />
+                            <div className="absolute inset-0 bg-gradient-to-t from-stone-950/80 via-transparent to-transparent" />
+                            <div className="absolute bottom-3 left-3 right-3">
+                              <p className="text-sm font-black text-white">{building.name}</p>
+                              <p className="text-[11px] font-semibold text-amber-100">{building.label}</p>
+                            </div>
+                          </div>
+                          <div className="p-3">
+                            <div className="mb-2 flex items-center justify-between text-[10px] font-black uppercase tracking-[0.12em] text-stone-300">
+                              <span>Mở khóa</span>
+                              <span className="text-amber-200">{building.progress}</span>
+                            </div>
+                            <div className="h-1.5 overflow-hidden rounded-full bg-white/15">
+                              <div className="h-full rounded-full bg-gradient-to-r from-amber-300 to-emerald-300" style={{ width: building.progress }} />
+                            </div>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+
+                    <div className="mt-4 grid gap-3 sm:grid-cols-3">
+                      {[
+                        ["Mini game", "Ghép khái niệm, phân loại tài sản, trả lời nhanh"],
+                        ["Nhiệm vụ", "Hoàn thành bài học để nhận XP và mở công trình"],
+                        ["Danh hiệu", "Leo hạng Game thủ và khoe thành tích học tập"],
+                      ].map(([title, text]) => (
+                        <div key={title} className="rounded-2xl border border-white/10 bg-stone-950/45 p-4 backdrop-blur">
+                          <p className="text-sm font-black text-white">{title}</p>
+                          <p className="mt-1 text-xs leading-relaxed text-stone-300">{text}</p>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+
+                  <aside className="rounded-[1.5rem] border border-white/15 bg-white/10 p-4 backdrop-blur-xl">
+                    <div className="relative mx-auto mb-4 h-36 w-36">
+                      <div className="absolute inset-0 rounded-full bg-amber-300/25 blur-2xl" />
+                      <Image
+                        src="/charging-bull-3d.png"
+                        alt="Linh vật bò tài chính trong Game Kingdom"
+                        fill
+                        sizes="144px"
+                        className="object-contain drop-shadow-2xl"
+                      />
+                    </div>
+                    <div className="rounded-2xl border border-amber-300/30 bg-amber-300/10 p-4">
+                      <div className="flex items-center gap-2">
+                        <Trophy className="h-4 w-4 text-amber-200" />
+                        <p className="text-sm font-black text-white">Nhiệm vụ nổi bật</p>
+                      </div>
+                      <div className="mt-3 space-y-2">
+                        {[
+                          "Hoàn thành 1 bài học tài chính",
+                          "Thắng 1 mini game bất kỳ",
+                          "Đạt 100% ở quiz nhanh",
+                        ].map((task, i) => (
+                          <div key={task} className="flex items-center gap-2 rounded-xl bg-stone-950/45 px-3 py-2 text-xs font-semibold text-stone-200">
+                            <span className={`h-2.5 w-2.5 rounded-full ${i === 0 ? "bg-emerald-300" : "bg-amber-300"}`} />
+                            {task}
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                    <Link
+                      href="/login?mode=signup"
+                      className="mt-4 inline-flex w-full items-center justify-center gap-2 rounded-2xl bg-white px-5 py-3 text-sm font-black text-stone-950 shadow-lg transition hover:bg-amber-50"
+                    >
+                      <Zap className="h-4 w-4 text-amber-500" />
+                      Vào Game Kingdom
+                    </Link>
+                  </aside>
+                </div>
+              </div>
+            </div>
           </ScrollReveal>
         </section>
 
