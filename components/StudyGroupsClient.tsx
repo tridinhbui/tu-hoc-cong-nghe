@@ -658,8 +658,8 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
                 </div>
               </div>
 
-              {/* RIGHT COLUMN: Full-Height Group Chat Box */}
-              <div className="lg:col-span-5 flex flex-col h-full min-h-0 bg-white dark:bg-stone-900 border border-stone-200 dark:border-stone-800 rounded-2xl overflow-hidden shadow-xl p-3 sm:p-3.5">
+              {/* RIGHT COLUMN: Group Chat Box Matched to 3D Stage Height */}
+              <div className="lg:col-span-5 flex flex-col h-full max-h-[60vh] sm:max-h-[460px] min-h-0 bg-white dark:bg-stone-900 border border-stone-200 dark:border-stone-800 rounded-2xl overflow-hidden shadow-xl p-3 sm:p-3.5 my-auto">
                 <h3 className="text-xs font-black text-stone-900 dark:text-stone-100 uppercase tracking-widest mb-2 shrink-0 flex items-center justify-between">
                   <span>💬 Trò chuyện nhóm</span>
                   <span className="text-[10px] font-bold text-emerald-600 dark:text-emerald-400 bg-emerald-50 dark:bg-emerald-950/60 px-2 py-0.5 rounded-full border border-emerald-200 dark:border-emerald-800">
