@@ -242,62 +242,62 @@ export default function InteractiveEcosystemShowcase() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -15 }}
             transition={{ duration: 0.3 }}
-            className="overflow-hidden rounded-3xl border-2 border-emerald-400/60 bg-white shadow-xl text-stone-900 p-5 sm:p-7 relative"
+            className="overflow-hidden rounded-2xl border border-stone-200 bg-white shadow-md text-stone-900 p-3.5 sm:p-4.5 relative font-sans"
           >
-            <div className="flex flex-wrap items-center justify-between gap-3 pb-4 border-b border-stone-200">
+            <div className="flex flex-wrap items-center justify-between gap-2 pb-3 border-b border-stone-100">
               <div className="flex items-center gap-2">
-                <span className="p-2 rounded-xl bg-emerald-100 text-emerald-700 font-black">🎯</span>
+                <span className="p-1.5 rounded-lg bg-emerald-50 text-emerald-700 font-black text-sm">🎯</span>
                 <div>
-                  <h4 className="text-base font-black text-stone-900">Lộ Trình Học Tài Chính Cá Nhân & CFA</h4>
-                  <p className="text-xs text-stone-500 font-medium">Thực hành Active Recall đố nhanh ngay tại chỗ</p>
+                  <h4 className="text-xs sm:text-sm font-black text-stone-900">Lộ Trình Học Tài Chính Cá Nhân & CFA</h4>
+                  <p className="text-[11px] text-stone-500 font-medium">Thực hành Active Recall đố nhanh ngay tại chỗ</p>
                 </div>
               </div>
-              <div className="px-3 py-1 rounded-full bg-emerald-50 border border-emerald-300 text-emerald-700 font-black text-xs">
+              <div className="px-2.5 py-0.5 rounded-full bg-emerald-50 border border-emerald-200 text-emerald-700 font-black text-[11px]">
                 Điểm tích lũy: +{quizScore} XP
               </div>
             </div>
 
-            <div className="mt-5 grid gap-6 lg:grid-cols-12 items-center">
+            <div className="mt-3.5 grid gap-4 lg:grid-cols-12 items-stretch">
               {/* Left Column: Progress Roadmap Steps */}
-              <div className="lg:col-span-6 space-y-3">
+              <div className="lg:col-span-6 space-y-2">
                 {[
                   { step: "Chặng 1", title: "Vỡ lòng Tài chính & Quản lý Tiền mặt", status: "Đã hoàn thành 100%", active: false },
                   { step: "Chặng 2", title: "Báo cáo Tài chính & Phân tích Chỉ số ROE/PE", status: "Đang học (80%)", active: true },
                   { step: "Chặng 3", title: "Định giá Cổ phiếu & Mô hình DCF", status: "Khóa (Cần đỗ Chặng 2)", active: false },
-                ].map((item, idx) => (
+                ].map((item) => (
                   <div
                     key={item.step}
-                    className={`p-4 rounded-2xl border transition-all ${
+                    className={`p-2.5 sm:p-3 rounded-xl border transition-all ${
                       item.active
-                        ? "border-emerald-500 bg-emerald-50/80 shadow-md ring-2 ring-emerald-400/30"
-                        : "border-stone-200 bg-stone-50/60"
+                        ? "border-emerald-500 bg-emerald-50/70 shadow-xs ring-1 ring-emerald-400/30"
+                        : "border-stone-200/80 bg-stone-50/50"
                     }`}
                   >
-                    <div className="flex items-center justify-between text-xs font-black">
+                    <div className="flex items-center justify-between text-[10px] font-black">
                       <span className={item.active ? "text-emerald-700" : "text-stone-500"}>{item.step}</span>
-                      <span className={item.active ? "text-emerald-600 bg-white px-2 py-0.5 rounded-full border border-emerald-300" : "text-stone-400"}>
+                      <span className={item.active ? "text-emerald-700 bg-white px-2 py-0.5 rounded-full border border-emerald-300" : "text-stone-400"}>
                         {item.status}
                       </span>
                     </div>
-                    <p className="text-sm font-black text-stone-900 mt-1">{item.title}</p>
+                    <p className="text-xs font-black text-stone-900 mt-0.5">{item.title}</p>
                   </div>
                 ))}
               </div>
 
               {/* Right Column: Mini Interactive Quiz Sampler */}
-              <div className="lg:col-span-6 p-5 rounded-2xl border-2 border-emerald-300 bg-gradient-to-br from-emerald-50/60 to-teal-50/40 space-y-4">
+              <div className="lg:col-span-6 p-3.5 rounded-xl border border-emerald-200/90 bg-gradient-to-br from-emerald-50/40 to-teal-50/20 space-y-2.5">
                 <div className="flex items-center justify-between">
-                  <span className="text-[10px] font-black uppercase text-emerald-800 bg-emerald-200/80 px-2.5 py-0.5 rounded-full">
+                  <span className="text-[9px] font-black uppercase text-emerald-800 bg-emerald-100/90 px-2 py-0.5 rounded-full">
                     ⚡ ACTIVE RECALL SAMPLER
                   </span>
-                  <span className="text-xs font-bold text-stone-500">Câu 1/1</span>
+                  <span className="text-[11px] font-bold text-stone-500">Câu 1/1</span>
                 </div>
 
-                <p className="text-xs sm:text-sm font-black text-stone-900 leading-snug">
+                <p className="text-xs font-black text-stone-900 leading-snug">
                   ❓ Khi một doanh nghiệp có dòng tiền CFO âm liên tục 3 năm nhưng lợi nhuận ròng vẫn dương, đâu là nguyên nhân chính?
                 </p>
 
-                <div className="space-y-2">
+                <div className="space-y-1.5">
                   {[
                     "Doanh nghiệp bán hàng ghi nhận doanh thu nhưng chưa thu được tiền (Phải thu tăng)",
                     "Doanh nghiệp vừa nhận khoản đầu tư lớn từ cổ đông",
@@ -313,10 +313,10 @@ export default function InteractiveEcosystemShowcase() {
                           setSelectedAnswer(oIdx);
                           if (isCorrect) setQuizScore(45);
                         }}
-                        className={`w-full text-left p-3 rounded-xl text-xs font-bold transition-all border cursor-pointer ${
+                        className={`w-full text-left p-2 sm:p-2.5 rounded-lg text-[11px] font-bold transition-all border cursor-pointer ${
                           isSelected
                             ? isCorrect
-                              ? "bg-emerald-500 text-stone-950 border-emerald-400 shadow-md font-black"
+                              ? "bg-emerald-500 text-stone-950 border-emerald-400 shadow-xs font-black"
                               : "bg-rose-500 text-white border-rose-400"
                             : "bg-white text-stone-800 border-stone-200 hover:border-emerald-400"
                         }`}
@@ -328,7 +328,7 @@ export default function InteractiveEcosystemShowcase() {
                 </div>
 
                 {selectedAnswer !== null && (
-                  <div className="p-3 rounded-xl bg-white border border-emerald-300 text-xs font-medium text-stone-800 animate-in fade-in">
+                  <div className="p-2 rounded-lg bg-white border border-emerald-300 text-[11px] font-medium text-stone-800 animate-in fade-in">
                     {selectedAnswer === 0 ? (
                       <span className="text-emerald-700 font-bold">🎉 Chính xác! +45 XP. Dòng tiền CFO phản ánh tiền thực về két.</span>
                     ) : (

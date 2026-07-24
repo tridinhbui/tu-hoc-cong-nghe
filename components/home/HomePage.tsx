@@ -941,9 +941,9 @@ export default function HomePage() {
         <SubtleWaveDivider />
 
         {/* ── FEATURE SHOWCASE ── */}
-        <section className="landing-band landing-band-emerald landing-band-divider relative py-16 lg:py-20 border-y border-stone-150/40 dark:border-stone-850/40">
+        <section className="landing-band landing-band-emerald landing-band-divider relative py-6 sm:py-8 font-sans border-y border-stone-200/80 dark:border-stone-850/80">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <ScrollReveal className="max-w-3xl mb-10">
+            <ScrollReveal className="max-w-3xl mb-4">
               <p className="text-xs font-black text-emerald-600 dark:text-emerald-400 uppercase tracking-widest mb-2">
                 Không chỉ là bài học
               </p>
