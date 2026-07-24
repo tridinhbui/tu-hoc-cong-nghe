@@ -261,7 +261,21 @@ export default function HomePage() {
 
   return (
     <div className="relative min-h-screen overflow-x-hidden bg-stone-950 transition-colors duration-300">
-      <div className="bg-white dark:bg-stone-950 bg-[linear-gradient(to_right,#80808007_1px,transparent_1px),linear-gradient(to_bottom,#80808007_1px,transparent_1px)] bg-[size:20px_20px]">
+      <div className="bg-stone-50/60 dark:bg-stone-950 relative overflow-hidden">
+        {/* Stripe-style Ambient Radial Glow Beam, Grid Mesh & Floating Blur Orbs */}
+        <div className="pointer-events-none absolute inset-0 z-0 overflow-hidden">
+          {/* Top Radial Beam */}
+          <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[1100px] h-[650px] bg-[radial-gradient(ellipse_60%_50%_at_50%_0%,rgba(16,185,129,0.22),rgba(20,184,166,0.08)_50%,transparent_100%)] opacity-90" />
+
+          {/* Floating Glowing Blur Orbs (● blur) */}
+          <div className="absolute -top-36 -left-36 w-[560px] h-[560px] rounded-full bg-emerald-400/22 blur-[130px] animate-pulse" />
+          <div className="absolute top-[380px] -right-36 w-[500px] h-[500px] rounded-full bg-teal-400/20 blur-[130px]" />
+          <div className="absolute top-[42%] left-1/2 -translate-x-1/2 w-[700px] h-[700px] rounded-full bg-emerald-400/15 blur-[150px]" />
+          <div className="absolute top-[70%] -left-44 w-[580px] h-[580px] rounded-full bg-sky-400/15 blur-[140px]" />
+
+          {/* Stripe SVG Fine Grid Pattern */}
+          <div className="absolute inset-0 bg-[linear-gradient(to_right,#10b98112_1px,transparent_1px),linear-gradient(to_bottom,#10b98112_1px,transparent_1px)] bg-[size:3rem_3rem] [mask-image:radial-gradient(ellipse_80%_80%_at_50%_20%,#000_65%,transparent_100%)]" />
+        </div>
       <style>{`
         @keyframes landing-aurora-drift {
           0% { transform: translate3d(-2%, -1%, 0) scale(1); }
