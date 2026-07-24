@@ -362,20 +362,20 @@ export default function CommunityFeedClient({ embedded = false }: { embedded?: b
       {!embedded && (
         <div className="border-b border-stone-200 dark:border-stone-800 bg-white dark:bg-stone-950">
           <div className="max-w-6xl mx-auto px-4 sm:px-6 py-5">
-            <Link href="/nhom-hoc" className="text-stone-500 dark:text-stone-400 hover:opacity-70 text-sm font-semibold flex items-center gap-1 w-fit">
-              <ArrowLeft className="w-4 h-4" /> Quay lại
+            <Link href="/dashboard" className="text-stone-500 dark:text-stone-400 hover:opacity-70 text-sm font-semibold flex items-center gap-1 w-fit">
+              <ArrowLeft className="w-4 h-4" /> Về Dashboard
             </Link>
             <div className="mt-4 flex flex-col lg:flex-row lg:items-end lg:justify-between gap-4">
               <div>
                 <div className="inline-flex items-center gap-2 rounded-full border border-emerald-200 bg-emerald-50 px-3 py-1 text-[11px] font-black uppercase tracking-[0.16em] text-emerald-700 dark:border-emerald-900 dark:bg-emerald-950/40 dark:text-emerald-300">
                   <MessageCircle className="h-3.5 w-3.5" />
-                  Bên dưới Học nhóm
+                  Feed cộng đồng
                 </div>
                 <h1 className="mt-3 text-2xl sm:text-3xl font-black tracking-tight text-stone-950 dark:text-stone-50">
                   Bảng tin cộng đồng
                 </h1>
                 <p className="mt-1.5 max-w-2xl text-sm font-medium text-stone-500 dark:text-stone-400">
-                  Feed chia sẻ mẹo học, câu hỏi, phân tích ngắn, hình ảnh thành tựu và cập nhật streak của mọi người.
+                  Nơi đăng bản tin ngắn, câu hỏi, phân tích, ảnh thành tựu và cập nhật học tập của mọi người.
                 </p>
               </div>
               <div className="grid grid-cols-3 gap-2 sm:min-w-[360px]">

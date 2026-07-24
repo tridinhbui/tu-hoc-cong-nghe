@@ -1,7 +1,7 @@
-import CommunityFeedClient from "@/components/CommunityFeedClient";
+import { redirect } from "next/navigation";
 
 export const dynamic = "force-dynamic";
 
 export default function StudyGroupCommunityFeedPage() {
-  return <CommunityFeedClient />;
+  redirect("/bang-tin");
 }

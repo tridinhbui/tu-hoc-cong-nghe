@@ -6,7 +6,7 @@ import Image from "next/image";
 import { isValidAvatar } from "@/lib/avatar-utils";
 import { usePathname, useRouter } from "next/navigation";
 import { toast } from "sonner";
-import { FileText, BarChart3, StickyNote, GraduationCap, Gamepad2, Menu, X, Briefcase, Home, Flame, Users } from "lucide-react";
+import { FileText, BarChart3, StickyNote, GraduationCap, Gamepad2, Menu, X, Briefcase, Home, Flame, Users, MessageSquareMore } from "lucide-react";
 import { createClient } from "@/lib/supabase";
 import GoldCoinIcon from "@/components/GoldCoinIcon";
 import { useRoutePrefetch } from "@/lib/use-route-prefetch";
@@ -39,6 +39,7 @@ const NAV_LINKS = [
   { href: "/ghi-chu", label: "Ghi chú", icon: StickyNote },
   { href: "/kiem-tra", label: "Kiểm tra", icon: GraduationCap },
   { href: "/nhom-hoc", label: "Học nhóm", icon: Users },
+  { href: "/bang-tin", label: "Bảng tin", icon: MessageSquareMore },
   { href: "/su-nghiep", label: "Sự nghiệp", icon: Briefcase },
 ];
 
@@ -66,7 +67,7 @@ export default function AppNavbar() {
   const desktopDropdownRef = useRef<HTMLDivElement>(null);
   const mobileDropdownRef = useRef<HTMLDivElement>(null);
 
-  useRoutePrefetch(["/dashboard", "/analytics", "/bxh", "/profile", "/ban-be", "/nhom-hoc", "/cong-dong", "/su-nghiep", "/ghi-chu", "/cong-cu", "/game", "/settings", "/tai-lieu", "/kiem-tra", "/cfa"]);
+  useRoutePrefetch(["/dashboard", "/analytics", "/bxh", "/profile", "/ban-be", "/nhom-hoc", "/bang-tin", "/cong-dong", "/su-nghiep", "/ghi-chu", "/cong-cu", "/game", "/settings", "/tai-lieu", "/kiem-tra", "/cfa"]);
 
   useEffect(() => {
     // Read local storage immediately on mount
