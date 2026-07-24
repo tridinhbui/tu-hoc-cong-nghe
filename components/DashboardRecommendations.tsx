@@ -235,25 +235,15 @@ export default function DashboardRecommendations({ lessonsMeta, completed, userI
               animation: rec-card-in 0.35s ease-out both;
             }
           `}</style>
-          <button
-            type="button"
-            onClick={() => setCollapsed(!collapsed)}
-            aria-expanded={!collapsed}
-            className={`w-full flex items-center justify-between flex-shrink-0 cursor-pointer text-left focus:outline-none ${collapsed ? "" : "mb-3"}`}
-          >
+          <div className="w-full flex items-center justify-between flex-shrink-0 mb-3">
             <div className="flex items-center gap-2">
               <Sparkles className="w-4 h-4 text-stone-400" />
               <h2 className="text-sm font-bold text-stone-900 dark:text-stone-100">Gợi ý hôm nay</h2>
             </div>
-            {collapsed ? (
-              <ChevronDown className="w-4 h-4 text-stone-400 dark:text-stone-500" />
-            ) : (
-              <ChevronUp className="w-4 h-4 text-stone-400 dark:text-stone-500" />
-            )}
-          </button>
+          </div>
 
           {/* Scrollable Container */}
-          <div className={collapsed ? "hidden" : "block"}>
+          <div>
             <>
               <div className="relative group/rec-slider w-full">
                 {/* Left Arrow Button */}
@@ -387,24 +377,14 @@ export default function DashboardRecommendations({ lessonsMeta, completed, userI
       {/* 🔥 Bài học Đang hot */}
       {hotItems.length > 0 && (
         <section className={`flex flex-col overflow-hidden w-full relative ${primaryItems.length > 0 ? "border-t border-stone-150 pt-4" : ""}`}>
-          <button
-            type="button"
-            onClick={() => setHotCollapsed(!hotCollapsed)}
-            aria-expanded={!hotCollapsed}
-            className={`w-full flex items-center justify-between flex-shrink-0 cursor-pointer text-left focus:outline-none ${hotCollapsed ? "" : "mb-3"}`}
-          >
+          <div className="w-full flex items-center justify-between flex-shrink-0 mb-3">
             <div className="flex items-center gap-2">
               <Flame className="w-4 h-4 text-stone-400" />
               <h2 className="text-sm font-bold text-stone-900 dark:text-stone-100">Đang hot tuần này</h2>
             </div>
-            {hotCollapsed ? (
-              <ChevronDown className="w-4 h-4 text-stone-400 dark:text-stone-500" />
-            ) : (
-              <ChevronUp className="w-4 h-4 text-stone-400 dark:text-stone-500" />
-            )}
-          </button>
+          </div>
           
-          <div className={hotCollapsed ? "hidden" : "block"}>
+          <div>
             <>
               <div className="relative group/rec-slider w-full">
                 {/* Left Arrow Button */}

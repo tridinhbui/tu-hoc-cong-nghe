@@ -246,29 +246,20 @@ export default function CombinedRewardsWidget({ userId, defaultExpanded = false,
 
   return (
     <div className={`bg-white dark:bg-stone-900 rounded-2xl shadow-sm overflow-hidden ${compact ? "border border-stone-200 min-h-[320px] flex flex-col" : ""}`}>
-      {/* Header - Always visible */}
-      <button
-        onClick={() => setIsExpanded(!isExpanded)}
-        className={`w-full flex items-center hover:bg-stone-50 dark:hover:bg-stone-950/30 transition-colors ${compact ? "px-4 py-3" : "px-3.5 py-2"}`}
-      >
+      {/* Header - Always visible, permanently expanded */}
+      <div className={`w-full flex items-center ${compact ? "px-4 py-3" : "px-3.5 py-2"}`}>
         <div className="flex items-center gap-2 min-w-0">
           <Gift className="w-4.5 h-4.5 text-stone-500" />
           <span className={`${compact ? "text-sm" : "text-[15px]"} font-bold text-stone-900 dark:text-stone-100`}>Nhiệm vụ</span>
-          {isExpanded ? (
-            <ChevronUp className="w-4 h-4 text-stone-400 dark:text-stone-500 shrink-0" />
-          ) : (
-            <ChevronDown className="w-4 h-4 text-stone-400 dark:text-stone-500 shrink-0" />
-          )}
           {chestCount > 0 && (
             <span className="text-[10px] font-black bg-rose-50 text-rose-600 border border-rose-100 px-2 py-0.5 rounded-full">
               {chestCount} rương
             </span>
           )}
         </div>
-      </button>
+      </div>
 
-      {isExpanded && (
-        <div className={`border-t border-stone-100 dark:border-stone-850 ${compact ? "flex-1 flex flex-col min-h-0" : ""}`}>
+      <div className={`border-t border-stone-100 dark:border-stone-850 ${compact ? "flex-1 flex flex-col min-h-0" : ""}`}>
           {/* Tabs */}
           <div className={`flex gap-1 bg-stone-50/50 dark:bg-stone-950/35 overflow-x-auto scrollbar-none ${compact ? "p-2" : "p-1.5"}`}>
             <button
@@ -448,7 +439,6 @@ export default function CombinedRewardsWidget({ userId, defaultExpanded = false,
             )}
           </div>
         </div>
-      )}
 
       {/* Reward Reveal Overlay */}
       {opening && rewardReveal && (

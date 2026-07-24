@@ -189,10 +189,7 @@ export default function DailyQuestsWidget({ userId, embedded = false, onQuestsLo
       )}
 
       {!embedded && (
-      <button
-        onClick={() => setCollapsed((v) => !v)}
-        className="w-full flex items-center justify-between mb-4 relative z-10 cursor-pointer"
-      >
+      <div className="w-full flex items-center justify-between mb-4 relative z-10">
         <div className="flex items-center gap-2">
           <div className="w-8 h-8 rounded-xl bg-amber-50 dark:bg-amber-950/40 text-amber-600 dark:text-amber-450 flex items-center justify-center">
             <Sparkles className="w-4 h-4" />
@@ -208,16 +205,10 @@ export default function DailyQuestsWidget({ userId, embedded = false, onQuestsLo
           <span className="text-[11px] font-extrabold px-2.5 py-1 rounded-full bg-stone-50 dark:bg-stone-950/60 text-stone-600 dark:text-stone-450 border border-stone-100 dark:border-stone-800">
             Đạt {completedQuestsCount}/3
           </span>
-          {collapsed ? (
-            <ChevronDown className="w-4 h-4 text-stone-400 dark:text-stone-500" />
-          ) : (
-            <ChevronUp className="w-4 h-4 text-stone-400 dark:text-stone-500" />
-          )}
         </div>
-      </button>
+      </div>
       )}
 
-      {(embedded || !collapsed) && (
       <div className="space-y-2.5 relative z-10 max-h-[205px] overflow-y-auto pr-1 custom-scrollbar">
         <style>{`
           @keyframes pulseGlow {
@@ -327,7 +318,6 @@ export default function DailyQuestsWidget({ userId, embedded = false, onQuestsLo
           );
         })}
       </div>
-      )}
     </div>
   );
 }

@@ -206,89 +206,92 @@ export default function CfaTrackView({ subjects, completedLessonIds }: Props) {
 
   return (
     <div className="py-2">
-      {/* ─── ALWAYS VISIBLE TOP BANNERS ─── */}
-      <div className="space-y-4 mb-6">
-        {/* 🎯 CFA Global Continuation Summary Banner */}
-        <div className="bg-gradient-to-r from-emerald-950 via-stone-900 to-teal-950 border-2 border-emerald-500/50 rounded-3xl p-6 text-white shadow-xl">
-          <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
-            <div className="space-y-1.5 flex-1">
-              <div className="flex flex-wrap items-center gap-2">
-                <span className="text-[10px] font-black uppercase tracking-widest bg-emerald-500/20 text-emerald-300 px-3 py-1 rounded-full border border-emerald-500/40">
-                  🎯 THEO DÕI TIẾN ĐỘ CFA LEVEL I
-                </span>
-                <span className="text-[10px] font-black uppercase tracking-widest bg-stone-800 text-stone-300 px-2.5 py-1 rounded-full border border-stone-700">
-                  Đã học {totalCompletedCfa}/{totalCfaLessons} bài ({overallPct}%)
-                </span>
-              </div>
-              <h2 className="text-xl font-extrabold text-white">
-                {nextGlobalLesson ? `Bài tiếp theo: ${nextGlobalLesson.title}` : "🎉 Bạn đã hoàn thành toàn bộ lộ trình CFA!"}
-              </h2>
-              <p className="text-xs text-stone-300">
-                {nextGlobalLesson
-                  ? `Môn: ${nextGlobalLesson.subjectName} • Nhấn nút bên phải để học ngay!`
-                  : "Chúc mừng bạn! Bạn đã hoàn thành tất cả bài học CFA Level I."}
-              </p>
-
-              {/* Progress bar */}
-              <div className="w-full h-2.5 bg-stone-800 rounded-full overflow-hidden mt-3">
-                <div
-                  className="h-full bg-gradient-to-r from-emerald-500 to-teal-400 rounded-full transition-all duration-500"
-                  style={{ width: `${overallPct}%` }}
-                />
-              </div>
+      {/* ─── ALWAYS VISIBLE TOP BANNERS (3 COLUMNS 1/3 EACH) ─── */}
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
+        {/* 🎯 CFA Global Continuation Summary Banner (1/3) */}
+        <div className="bg-gradient-to-br from-emerald-950 via-stone-900 to-teal-950 border-2 border-emerald-500/50 rounded-3xl p-5 text-white shadow-xl flex flex-col justify-between">
+          <div className="space-y-2">
+            <div className="flex flex-wrap items-center gap-1.5">
+              <span className="text-[9px] font-black uppercase tracking-widest bg-emerald-500/20 text-emerald-300 px-2.5 py-0.5 rounded-full border border-emerald-500/40">
+                🎯 TIẾN ĐỘ CFA LEVEL I
+              </span>
+              <span className="text-[9px] font-black uppercase tracking-widest bg-stone-800 text-stone-300 px-2 py-0.5 rounded-full border border-stone-700">
+                {totalCompletedCfa}/{totalCfaLessons} ({overallPct}%)
+              </span>
             </div>
+            <h2 className="text-sm font-extrabold text-white leading-snug line-clamp-2">
+              {nextGlobalLesson ? `Bài tiếp theo: ${nextGlobalLesson.title}` : "🎉 Đã hoàn thành toàn bộ lộ trình CFA!"}
+            </h2>
+            <p className="text-[11px] text-stone-300 line-clamp-2 leading-relaxed">
+              {nextGlobalLesson
+                ? `Môn: ${nextGlobalLesson.subjectName}`
+                : "Chúc mừng bạn đã hoàn thành CFA Level I."}
+            </p>
 
-            {nextGlobalLesson && (
-              <Link
-                href={`/bai-hoc/${nextGlobalLesson.slug}`}
-                className="px-6 py-3.5 bg-gradient-to-r from-emerald-500 to-teal-500 hover:from-emerald-400 hover:to-teal-400 font-extrabold text-sm text-stone-950 rounded-2xl transition-all shadow-lg hover:scale-105 shrink-0 cursor-pointer flex items-center gap-2"
-              >
-                <PlayCircle className="w-5 h-5 fill-stone-950 text-emerald-400" />
-                <span>Học tiếp bài tiếp theo →</span>
-              </Link>
-            )}
+            <div className="w-full h-2 bg-stone-800 rounded-full overflow-hidden mt-2">
+              <div
+                className="h-full bg-gradient-to-r from-emerald-500 to-teal-400 rounded-full transition-all duration-500"
+                style={{ width: `${overallPct}%` }}
+              />
+            </div>
           </div>
+
+          {nextGlobalLesson && (
+            <Link
+              href={`/bai-hoc/${nextGlobalLesson.slug}`}
+              className="mt-4 px-4 py-2.5 bg-gradient-to-r from-emerald-500 to-teal-500 hover:from-emerald-400 hover:to-teal-400 font-extrabold text-xs text-stone-950 rounded-xl transition-all shadow-md shrink-0 cursor-pointer flex items-center justify-center gap-1.5 w-full text-center"
+            >
+              <PlayCircle className="w-4 h-4 fill-stone-950 text-emerald-400" />
+              <span>Học tiếp bài tiếp theo →</span>
+            </Link>
+          )}
         </div>
 
-        {/* 📇 CFA Glossary Flashcards Banner */}
-        <div className="bg-gradient-to-r from-amber-500/10 via-indigo-500/10 to-amber-500/10 border-2 border-amber-400/60 dark:border-amber-700/60 rounded-3xl p-5 flex flex-col sm:flex-row items-center justify-between gap-4">
-          <div className="flex items-center gap-3.5">
-            <span className="text-3xl p-2.5 bg-amber-500/20 rounded-2xl shrink-0">📇</span>
-            <div>
-              <h3 className="text-base font-extrabold text-stone-900 dark:text-stone-100 flex items-center gap-2">
-                Bộ Thẻ Thuật Ngữ CFA Song Ngữ En-Vi
-                <span className="text-[10px] font-black uppercase text-amber-600 bg-amber-100 dark:bg-amber-950 px-2 py-0.5 rounded-full">FLASHCARD 3D</span>
-              </h3>
-              <p className="text-xs text-stone-600 dark:text-stone-400 mt-0.5">
-                500+ thuật ngữ tiếng Anh chuyên ngành CFA kèm định nghĩa tiếng Việt chuẩn, công thức toán và phát âm chuẩn En-US.
-              </p>
+        {/* 📇 CFA Glossary Flashcards Banner (1/3) */}
+        <div className="bg-gradient-to-br from-stone-900 via-amber-950/40 to-stone-900 border-2 border-amber-400/60 dark:border-amber-700/60 rounded-3xl p-5 text-white shadow-xl flex flex-col justify-between">
+          <div className="space-y-2">
+            <div className="flex items-center gap-2">
+              <span className="text-2xl">📇</span>
+              <span className="text-[9px] font-black uppercase text-amber-400 bg-amber-950/80 px-2 py-0.5 rounded-full border border-amber-400/40">
+                FLASHCARD 3D
+              </span>
             </div>
+            <h3 className="text-sm font-extrabold text-white leading-snug">
+              Bộ Thẻ Thuật Ngữ CFA Song Ngữ
+            </h3>
+            <p className="text-[11px] text-stone-300 leading-relaxed line-clamp-3">
+              500+ thuật ngữ tiếng Anh chuyên ngành CFA kèm định nghĩa tiếng Việt chuẩn, công thức toán và phát âm chuẩn En-US.
+            </p>
           </div>
+
           <Link
             href="/cfa/flashcards"
-            className="px-5 py-2.5 bg-amber-500 hover:bg-amber-600 font-extrabold text-xs text-white rounded-xl transition-all shadow-md shrink-0 cursor-pointer flex items-center gap-1.5"
+            className="mt-4 px-4 py-2.5 bg-amber-500 hover:bg-amber-600 font-extrabold text-xs text-white rounded-xl transition-all shadow-md shrink-0 cursor-pointer flex items-center justify-center gap-1.5 w-full text-center"
           >
             <span>Mở Flashcard 3D →</span>
           </Link>
         </div>
 
-        {/* 📐 CFA Formula Cheat Sheet Banner */}
-        <div className="bg-gradient-to-r from-stone-900 via-stone-900 to-amber-950 border-2 border-amber-500/50 rounded-3xl p-5 text-white flex flex-col sm:flex-row items-center justify-between gap-4 shadow-lg">
-          <div className="flex items-center gap-3.5">
-            <span className="text-3xl p-2.5 bg-amber-500/20 rounded-2xl shrink-0">📐</span>
-            <div>
-              <h3 className="text-base font-extrabold text-white flex items-center gap-2">
-                Sổ Tay Công Thức CFA Level 1
-                <span className="text-[10px] font-black uppercase text-amber-400 bg-amber-950 px-2 py-0.5 rounded-full border border-amber-500/40">CHEAT SHEET</span>
-              </h3>
-              <p className="text-xs text-stone-300 mt-0.5">
-                Tổng hợp 100% công thức thi CFA (TVM, WACC, DuPont 3-step/5-step, Duration, FCFF/FCFE, CAPM...) với phân số tầng &amp; nút copy công thức.
-              </p>
+        {/* 📐 CFA Formula Cheat Sheet Banner (1/3) */}
+        <div className="bg-gradient-to-br from-stone-900 via-stone-900 to-amber-950 border-2 border-amber-500/50 rounded-3xl p-5 text-white shadow-xl flex flex-col justify-between">
+          <div className="space-y-2">
+            <div className="flex items-center gap-2">
+              <span className="text-2xl">📐</span>
+              <span className="text-[9px] font-black uppercase text-amber-400 bg-amber-950 px-2 py-0.5 rounded-full border border-amber-500/40">
+                CHEAT SHEET
+              </span>
             </div>
+            <h3 className="text-sm font-extrabold text-white leading-snug">
+              Sổ Tay Công Thức CFA Level 1
+            </h3>
+            <p className="text-[11px] text-stone-300 leading-relaxed line-clamp-3">
+              Tổng hợp 100% công thức thi CFA (TVM, WACC, DuPont 3-step/5-step, Duration, FCFF/FCFE, CAPM...) với phân số tầng.
+            </p>
           </div>
+
           <Link
             href="/cfa/formulas"
-            className="px-5 py-2.5 bg-amber-500 hover:bg-amber-400 font-extrabold text-xs text-stone-950 rounded-xl transition-all shadow-md shrink-0 cursor-pointer flex items-center gap-1.5"
+            className="mt-4 px-4 py-2.5 bg-amber-500 hover:bg-amber-400 font-extrabold text-xs text-stone-950 rounded-xl transition-all shadow-md shrink-0 cursor-pointer flex items-center justify-center gap-1.5 w-full text-center"
           >
             <span>Xem Sổ Tay Công Thức →</span>
           </Link>
