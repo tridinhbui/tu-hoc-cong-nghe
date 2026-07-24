@@ -6,7 +6,7 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import { toast } from "sonner";
-import { ArrowLeft, Shuffle, Users, LogOut, Send, CornerUpLeft, Smile, X, MoreVertical, Trash2, Copy, Pin, PinOff, CheckCheck, Pencil } from "lucide-react";
+import { ArrowLeft, ArrowRight, Shuffle, Users, LogOut, Send, CornerUpLeft, Smile, X, MoreVertical, Trash2, Copy, Pin, PinOff, CheckCheck, Pencil } from "lucide-react";
 import { createClient } from "@/lib/supabase";
 import {
   STUDY_ROOM_TOPICS,
@@ -561,7 +561,7 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
 
             {/* Main 2-Column Split View */}
             <div className="flex-1 min-h-0 grid grid-cols-1 lg:grid-cols-12 gap-3 sm:gap-4 overflow-hidden">
-              {/* LEFT COLUMN: Compact 3D Spatial Table Stage with Interactive Drag Control */}
+              {/* LEFT COLUMN: 3D Spatial Table Stage Flex-Fill Height (~70% Viewport Height) */}
               <div
                 onMouseDown={handleStageMouseDown}
                 onMouseMove={handleStageMouseMove}
@@ -572,7 +572,7 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
                 onTouchEnd={handleStageMouseUp}
                 className={`lg:col-span-7 ${
                   mobileTab === "3d" ? "flex" : "hidden lg:flex"
-                } flex-col h-full max-h-[60vh] sm:max-h-[460px] min-h-0 rounded-2xl border border-stone-800 bg-stone-950 p-3 sm:p-3.5 shadow-2xl relative overflow-hidden text-white justify-between select-none my-auto transition-colors ${
+                } flex-col h-full min-h-[500px] flex-1 rounded-2xl border border-stone-800 bg-stone-950 p-3.5 sm:p-4 shadow-2xl relative overflow-hidden text-white justify-between select-none transition-colors ${
                   isDragging3D ? "cursor-grabbing border-emerald-500/70" : "cursor-grab"
                 }`}
                 style={{ perspective: "800px", perspectiveOrigin: "50% 45%" }}
@@ -792,11 +792,11 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
                 </div>
               </div>
 
-              {/* RIGHT COLUMN: Group Chat Box Matched to 3D Stage Height */}
+              {/* RIGHT COLUMN: Group Chat Box Flex-Fill Height */}
               <div
                 className={`lg:col-span-5 ${
                   mobileTab === "chat" ? "flex" : "hidden lg:flex"
-                } flex-col h-full max-h-[60vh] sm:max-h-[460px] min-h-0 bg-white dark:bg-stone-900 border border-stone-200 dark:border-stone-800 rounded-2xl overflow-hidden shadow-xl p-3 sm:p-3.5 my-auto`}
+                } flex-col h-full min-h-[500px] flex-1 bg-white dark:bg-stone-900 border border-stone-200 dark:border-stone-800 rounded-2xl overflow-hidden shadow-xl p-3 sm:p-3.5`}
               >
                 <h3 className="text-xs font-black text-stone-900 dark:text-stone-100 uppercase tracking-widest mb-2 shrink-0 flex items-center justify-between">
                   <span>💬 Trò chuyện nhóm</span>
@@ -1063,8 +1063,36 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
                 <Send className="w-4 h-4" />
               </button>
             </div>
-          </div>
-          </div>
+            </div>
+            </div>
+
+            {/* Bottom Group Daily Recommended Lesson Widget */}
+            <div className="bg-gradient-to-r from-emerald-950 via-stone-900 to-emerald-950 border border-emerald-500/30 rounded-2xl p-3 sm:p-3.5 shrink-0 flex flex-col sm:flex-row items-center justify-between gap-3 text-white shadow-lg">
+              <div className="flex items-center gap-3">
+                <span className="w-9 h-9 rounded-xl bg-emerald-500/20 text-emerald-400 border border-emerald-400/40 flex items-center justify-center text-lg shrink-0 shadow-xs">
+                  🎯
+                </span>
+                <div>
+                  <div className="flex items-center gap-2">
+                    <span className="text-[9px] font-black uppercase tracking-widest text-emerald-400 bg-emerald-950 px-2 py-0.5 rounded-full border border-emerald-500/40">
+                      MỤC TIÊU CẢ PHÒNG HÔM NAY
+                    </span>
+                    <span className="text-[10px] font-bold text-amber-300">🔥 Thưởng +50 XP / bài</span>
+                  </div>
+                  <p className="text-xs sm:text-sm font-black text-stone-100 mt-1">
+                    Bài 12: Phân Tích Báo Cáo Dòng Tiền & Khả Năng Thanh Toán
+                  </p>
+                </div>
+              </div>
+
+              <Link
+                href="/dashboard"
+                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-emerald-500 hover:bg-emerald-400 text-stone-950 font-black px-4 py-2 rounded-xl text-xs transition-all shadow-md active:scale-95 shrink-0 cursor-pointer"
+              >
+                <span>Vào Học Bài Này Ngay</span>
+                <ArrowRight className="w-3.5 h-3.5" />
+              </Link>
+            </div>
           </div>
         ) : (
           <div className="space-y-6">
