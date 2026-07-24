@@ -370,13 +370,13 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
       </div>
       )}
 
-      <div className={`${embedded ? "h-full flex flex-col overflow-hidden" : "max-w-7xl mx-auto px-4 py-4 h-[calc(100vh-2rem)] flex flex-col overflow-hidden"}`}>
+      <div className={`${embedded ? "h-full flex flex-col overflow-hidden" : "max-w-7xl mx-auto px-3 sm:px-4 py-3 min-h-[calc(100vh-4rem)] flex flex-col font-sans"}`}>
         {myRoom ? (
-          <div className="h-full flex flex-col min-h-0 overflow-hidden space-y-3">
+          <div className="h-full flex flex-col min-h-0 space-y-3">
             {/* Top Room Info & Goal Bar */}
-            <div className="bg-white dark:bg-stone-900 border-2 border-stone-200 dark:border-stone-800 rounded-2xl px-4 py-2.5 shrink-0 flex items-center justify-between gap-3 shadow-sm">
+            <div className="bg-white dark:bg-stone-900 border border-stone-200 dark:border-stone-800 rounded-2xl px-4 py-2.5 shrink-0 flex items-center justify-between gap-3 shadow-xs">
               <div className="flex items-center gap-3 min-w-0">
-                <span className="w-8 h-8 rounded-xl bg-gradient-to-br from-emerald-500 to-teal-600 text-white font-black flex items-center justify-center text-xs shrink-0 shadow-xs">
+                <span className="w-8 h-8 rounded-xl bg-emerald-600 text-white font-black flex items-center justify-center text-xs shrink-0 shadow-xs">
                   👥
                 </span>
                 <div className="min-w-0">
@@ -386,7 +386,7 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
                   <div className="flex items-center gap-2 mt-0.5">
                     <div className="w-24 sm:w-36 h-2 rounded-full bg-stone-100 dark:bg-stone-800 overflow-hidden">
                       <div
-                        className="h-full rounded-full bg-gradient-to-r from-emerald-500 to-teal-500 transition-all duration-500"
+                        className="h-full rounded-full bg-emerald-500 transition-all duration-500"
                         style={{ width: `${Math.min(100, (myRoom.weekly_xp_progress / Math.max(1, myRoom.weekly_xp_goal)) * 100)}%` }}
                       />
                     </div>
@@ -409,49 +409,49 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
               </div>
             </div>
 
-            {/* Main 2-Column Split View (1-Page / Fit-Screen) */}
-            <div className="flex-1 min-h-0 grid grid-cols-1 lg:grid-cols-12 gap-3 sm:gap-4 overflow-hidden">
+            {/* Main 2-Column Split View */}
+            <div className="flex-1 min-h-0 grid grid-cols-1 lg:grid-cols-12 gap-3 sm:gap-4">
               {/* LEFT COLUMN: 3D Isometric Roundtable Stage */}
-              <div className="lg:col-span-7 flex flex-col h-full min-h-0 rounded-3xl border-2 border-emerald-500/40 bg-gradient-to-b from-stone-900 via-stone-950 to-emerald-950/80 p-4 shadow-2xl relative overflow-hidden text-white justify-between">
+              <div className="lg:col-span-7 flex flex-col min-h-[380px] sm:min-h-[420px] rounded-2xl border border-stone-800 bg-stone-950 p-3.5 shadow-xl relative overflow-hidden text-white justify-between">
                 {/* 3D Perspective Grid Background */}
-                <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(#10b981_1.5px,transparent_1.5px)] [background-size:24px_24px] opacity-[0.18]" />
-                <div className="pointer-events-none absolute -top-24 left-1/2 -translate-x-1/2 w-96 h-48 bg-emerald-500/20 rounded-full blur-3xl" />
+                <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(#10b981_1.5px,transparent_1.5px)] [background-size:24px_24px] opacity-[0.14]" />
+                <div className="pointer-events-none absolute -top-24 left-1/2 -translate-x-1/2 w-96 h-48 bg-emerald-500/15 rounded-full blur-3xl" />
 
                 {/* Stage Header Controls */}
                 <div className="relative z-10 flex items-center justify-between shrink-0 mb-1">
                   <div className="flex items-center gap-2">
-                    <span className="text-[10px] font-black uppercase tracking-widest text-emerald-300 bg-emerald-950/80 px-2.5 py-1 rounded-full border border-emerald-500/40 backdrop-blur-md">
+                    <span className="text-[10px] font-black uppercase tracking-widest text-emerald-300 bg-emerald-950/80 px-2.5 py-0.5 rounded-full border border-emerald-500/40 backdrop-blur-md">
                       🛋️ BÀN HỌC 3D · {topicLabel(myRoom.topic).toUpperCase()}
                     </span>
                   </div>
 
                   {/* Quick Cheer Actions Bar */}
-                  <div className="flex items-center gap-1 bg-stone-900/80 backdrop-blur-md px-2 py-1 rounded-2xl border border-stone-700/60 shadow-md">
+                  <div className="flex items-center gap-1 bg-stone-900/90 backdrop-blur-md px-2 py-0.5 rounded-xl border border-stone-800 shadow-xs">
                     <span className="text-[9px] font-bold text-stone-400 mr-1 hidden sm:inline">Cổ vũ:</span>
                     <button
                       onClick={() => void handleQuickCheer("👋 Đập tay cổ vũ mọi người cùng học bài nào!")}
-                      className="hover:scale-130 transition-transform p-1 text-xs cursor-pointer"
+                      className="hover:scale-125 transition-transform p-1 text-xs cursor-pointer"
                       title="Đập tay 👋"
                     >
                       👋
                     </button>
                     <button
                       onClick={() => void handleQuickCheer("❤️ Bắn tim yêu thương tiếp năng lượng học tập!")}
-                      className="hover:scale-130 transition-transform p-1 text-xs cursor-pointer"
+                      className="hover:scale-125 transition-transform p-1 text-xs cursor-pointer"
                       title="Bắn tim ❤️"
                     >
                       ❤️
                     </button>
                     <button
                       onClick={() => void handleQuickCheer("🔔 Ới ời cả nhóm ơi vào làm bài thôi nào!")}
-                      className="hover:scale-130 transition-transform p-1 text-xs cursor-pointer"
+                      className="hover:scale-125 transition-transform p-1 text-xs cursor-pointer"
                       title="Nhắc học 🔔"
                     >
                       🔔
                     </button>
                     <button
                       onClick={() => void handleQuickCheer("🔥 Tiếp sức cháy hết mình hôm nay!")}
-                      className="hover:scale-130 transition-transform p-1 text-xs cursor-pointer"
+                      className="hover:scale-125 transition-transform p-1 text-xs cursor-pointer"
                       title="Tiếp sức 🔥"
                     >
                       🔥
@@ -460,20 +460,20 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
                 </div>
 
                 {/* Center 3D Isometric Study Desk & Radially Positioned Member Seats */}
-                <div className="relative flex-1 min-h-0 w-full flex items-center justify-center my-auto">
+                <div className="relative flex-1 min-h-[280px] w-full flex items-center justify-center my-auto">
                   {/* Central 3D Roundtable */}
-                  <div className="relative w-40 h-40 sm:w-48 sm:h-48 rounded-full bg-gradient-to-b from-stone-800/90 via-amber-950/90 to-stone-900 border-4 border-amber-500/60 shadow-[0_0_60px_rgba(245,158,11,0.3)] flex flex-col items-center justify-center text-center p-3 z-10 shrink-0">
-                    <div className="absolute inset-2 rounded-full border border-dashed border-amber-400/40 animate-spin-slow pointer-events-none" />
+                  <div className="relative w-32 h-32 sm:w-40 sm:h-40 rounded-full bg-gradient-to-b from-stone-850 via-stone-900 to-stone-950 border-2 border-emerald-500/60 shadow-[0_0_40px_rgba(16,185,129,0.2)] flex flex-col items-center justify-center text-center p-2 z-10 shrink-0">
+                    <div className="absolute inset-1.5 rounded-full border border-dashed border-emerald-400/30 animate-spin-slow pointer-events-none" />
                     
                     <div className="relative z-10">
-                      <span className="text-2xl sm:text-3xl mb-0.5 animate-bounce inline-block">🔮</span>
-                      <p className="text-[9px] sm:text-[10px] font-black text-amber-300 uppercase tracking-widest">
+                      <span className="text-xl sm:text-2xl mb-0.5 inline-block">🔮</span>
+                      <p className="text-[8px] sm:text-[9px] font-black text-emerald-300 uppercase tracking-widest">
                         BÀN HỌC {topicLabel(myRoom.topic).toUpperCase()}
                       </p>
-                      <p className="text-xs sm:text-sm font-black text-white mt-0.5">
+                      <p className="text-xs font-black text-white mt-0.5">
                         {myRoom.weekly_xp_progress} / {myRoom.weekly_xp_goal} XP
                       </p>
-                      <span className="mt-1 inline-block text-[9px] font-extrabold text-emerald-300 bg-emerald-950/80 px-2 py-0.5 rounded-full border border-emerald-500/40">
+                      <span className="mt-0.5 inline-block text-[8px] font-extrabold text-emerald-300 bg-emerald-950/80 px-2 py-0.2 rounded-full border border-emerald-500/30">
                         ⚡ +15% BONUS
                       </span>
                     </div>
@@ -482,11 +482,11 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
                   {/* 🪑 Seated Member Pods Positioned Radially Around the Table */}
                   {(() => {
                     const seatClasses = [
-                      "absolute -top-1 left-1/2 -translate-x-1/2 z-20", // Seat 0: Top Center
-                      "absolute top-6 left-1 sm:left-3 z-20",            // Seat 1: Top Left
-                      "absolute top-6 right-1 sm:right-3 z-20",          // Seat 2: Top Right
-                      "absolute bottom-1 left-2 sm:left-6 z-20",         // Seat 3: Bottom Left
-                      "absolute bottom-1 right-2 sm:right-6 z-20",       // Seat 4: Bottom Right
+                      "absolute top-1 left-1/2 -translate-x-1/2 z-20", // Seat 0: Top Center
+                      "absolute top-3 left-1 sm:left-4 z-20",           // Seat 1: Top Left
+                      "absolute top-3 right-1 sm:right-4 z-20",         // Seat 2: Top Right
+                      "absolute bottom-1 left-1 sm:left-4 z-20",        // Seat 3: Bottom Left
+                      "absolute bottom-1 right-1 sm:right-4 z-20",      // Seat 4: Bottom Right
                     ];
 
                     const sortedMembers = [...myRoomMembers].sort((a, b) => b.weekly_lessons - a.weekly_lessons);
@@ -499,29 +499,29 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
                         return (
                           <div
                             key={member.user_id}
-                            className={`${posClass} flex flex-col items-center text-center p-2 rounded-2xl border transition-all duration-300 w-24 sm:w-28 bg-stone-900/90 backdrop-blur-md ${
+                            className={`${posClass} flex flex-col items-center text-center p-1.5 rounded-xl border transition-all duration-300 w-20 sm:w-24 bg-stone-900/90 backdrop-blur-md ${
                               isMe
-                                ? "border-emerald-400 bg-emerald-950/80 shadow-[0_0_20px_rgba(16,185,129,0.4)] scale-105"
-                                : "border-stone-700/80 hover:border-amber-400/60"
+                                ? "border-emerald-400 bg-emerald-950/80 shadow-[0_0_15px_rgba(16,185,129,0.4)] scale-105"
+                                : "border-stone-800 hover:border-emerald-400/60"
                             }`}
                           >
                             {/* Top Learner Crown */}
                             {idx === 0 && (
-                              <span className="absolute -top-3 text-base animate-bounce drop-shadow-md z-30" title="Top 1 Bài học tuần này">
+                              <span className="absolute -top-3 text-sm animate-bounce drop-shadow-md z-30" title="Top 1 Bài học tuần này">
                                 👑
                               </span>
                             )}
 
                             <div className="relative mb-0.5">
-                              <div className={`rounded-full p-0.5 ${isMe ? "ring-2 ring-emerald-400" : "ring-1 ring-amber-400/50"}`}>
-                                <Avatar name={member.full_name} avatarUrl={member.avatar_url} size={34} />
+                              <div className={`rounded-full p-0.5 ${isMe ? "ring-2 ring-emerald-400" : "ring-1 ring-stone-700"}`}>
+                                <Avatar name={member.full_name} avatarUrl={member.avatar_url} size={28} />
                               </div>
-                              <span className="absolute -bottom-1 left-1/2 -translate-x-1/2 text-[7px] font-black uppercase text-white bg-amber-600 px-1 py-0.1 rounded-full shadow-xs whitespace-nowrap">
+                              <span className="absolute -bottom-1 left-1/2 -translate-x-1/2 text-[7px] font-black uppercase text-white bg-emerald-600 px-1 py-0.1 rounded-full shadow-xs whitespace-nowrap">
                                 Lv.{member.current_level}
                               </span>
                             </div>
 
-                            <p className="text-[9px] sm:text-[10px] font-black text-white truncate max-w-[80px]" title={member.full_name || "Thành viên"}>
+                            <p className="text-[9px] font-black text-white truncate max-w-[70px]" title={member.full_name || "Thành viên"}>
                               {member.full_name || "Thành viên"}{isMe ? " (Bạn)" : ""}
                             </p>
                             <span className="text-[8px] font-extrabold text-emerald-400 mt-0.5">
@@ -534,9 +534,9 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
                       return (
                         <div
                           key={`empty-${idx}`}
-                          className={`${posClass} flex flex-col items-center justify-center p-2 rounded-2xl border border-dashed border-stone-700/60 bg-stone-900/40 text-stone-500 text-center w-24 sm:w-28 min-h-[80px] backdrop-blur-xs`}
+                          className={`${posClass} flex flex-col items-center justify-center p-1.5 rounded-xl border border-dashed border-stone-800 bg-stone-900/40 text-stone-500 text-center w-20 sm:w-24 min-h-[70px] backdrop-blur-xs`}
                         >
-                          <span className="text-sm mb-0.5 opacity-50">🪑</span>
+                          <span className="text-xs mb-0.5 opacity-50">🪑</span>
                           <span className="text-[8px] font-bold text-stone-400 uppercase">Ghế trống</span>
                         </div>
                       );
