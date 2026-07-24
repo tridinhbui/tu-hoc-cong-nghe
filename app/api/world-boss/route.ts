@@ -31,6 +31,15 @@ const FALLBACK_WORLD_BOSS = {
   ]
 };
 
+function shuffleArray<T>(arr: T[]): T[] {
+  const a = [...arr];
+  for (let i = a.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [a[i], a[j]] = [a[j], a[i]];
+  }
+  return a;
+}
+
 export async function GET(request: NextRequest) {
   const supabase = await createServerSupabaseClient();
 
@@ -43,6 +52,24 @@ export async function GET(request: NextRequest) {
     .maybeSingle();
 
   const activeBoss = boss || FALLBACK_WORLD_BOSS;
+
+  // Shuffle question list and each question's option order so correct answer isn't always A
+  const shuffledQuestions = shuffleArray(
+    (activeBoss.questions || []).map((q: any) => {
+      const order = shuffleArray(q.options.map((_: any, i: number) => i));
+      const correct = order.indexOf(q.correct ?? 0);
+      return {
+        ...q,
+        options: order.map((idx: any) => q.options[Number(idx)]),
+        correct,
+      };
+    })
+  );
+
+  const bossWithShuffledQuestions = {
+    ...activeBoss,
+    questions: shuffledQuestions,
+  };
 
   // Lấy Top 10 Leaderboard Sát thương
   const { data: logs } = await supabase
@@ -65,7 +92,7 @@ export async function GET(request: NextRequest) {
   ];
 
   return NextResponse.json({
-    boss: activeBoss,
+    boss: bossWithShuffledQuestions,
     leaderboard
   });
 }

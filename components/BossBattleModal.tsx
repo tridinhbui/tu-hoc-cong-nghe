@@ -58,8 +58,20 @@ export default function BossBattleModal({
   const [selectedOption, setSelectedOption] = useState<number | null>(null);
   const [battleState, setBattleState] = useState<"fighting" | "hit_boss" | "hit_hero" | "victory" | "defeat">("fighting");
 
-  const currentQ = questions[currentQuestionIndex];
-  const maxQ = questions.length;
+  const shuffledQuestions = React.useMemo(() => {
+    return questions.map((q) => {
+      const order = q.options.map((_, i) => i).sort(() => Math.random() - 0.5);
+      const correct = order.indexOf(q.correct);
+      return {
+        ...q,
+        options: order.map((i) => q.options[i]),
+        correct,
+      };
+    }).sort(() => Math.random() - 0.5);
+  }, [questions]);
+
+  const currentQ = shuffledQuestions[currentQuestionIndex] || questions[currentQuestionIndex];
+  const maxQ = shuffledQuestions.length;
   const dmgPerHit = Math.ceil(100 / maxQ);
 
   const handleAnswer = (optionIndex: number) => {

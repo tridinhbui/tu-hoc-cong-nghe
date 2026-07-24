@@ -78,6 +78,24 @@ export default function WorldBossRaidWidget({
   const [heroHp, setHeroHp] = useState(100);
 
   const handleStartRaid = () => {
+    // Client-side option reshuffling safeguard to guarantee answer positions A, B, C are randomly distributed
+    if (boss?.questions) {
+      const reshuffledQuestions = boss.questions.map((q) => {
+        const order = q.options.map((_, i) => i).sort(() => Math.random() - 0.5);
+        const correct = order.indexOf(q.correct);
+        return {
+          ...q,
+          options: order.map((i) => q.options[i]),
+          correct,
+        };
+      }).sort(() => Math.random() - 0.5);
+
+      setBoss({
+        ...boss,
+        questions: reshuffledQuestions,
+      });
+    }
+
     setInCombat(true);
     setQIndex(0);
     setSelectedOpt(null);

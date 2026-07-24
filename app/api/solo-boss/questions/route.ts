@@ -48,10 +48,13 @@ export async function GET() {
     if (!lesson) continue;
 
     for (const question of lesson.quiz as QuizQuestion[]) {
+      const order = shuffle(question.options.map((_, i) => i));
+      const correct = order.indexOf(question.correct);
+
       questions.push({
         prompt: question.question,
-        options: question.options,
-        correct: question.correct,
+        options: order.map((i) => question.options[i]),
+        correct,
         explanation: question.explanation,
         lessonTitle: lesson.title,
       });
