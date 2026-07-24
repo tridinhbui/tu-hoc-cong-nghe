@@ -513,7 +513,7 @@ export default function HomePage() {
                   <span className="bg-gradient-to-r from-emerald-600 to-teal-500 bg-clip-text text-transparent dark:from-emerald-300 dark:to-teal-200">
                     tài chính
                   </span>
-                  ,<br />học như đang lên cấp
+                  ,<br />cùng bắt đầu từ con số 0
                 </motion.h1>
 
                 <motion.p
