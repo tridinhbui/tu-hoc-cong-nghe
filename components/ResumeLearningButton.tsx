@@ -310,18 +310,18 @@ export default function ResumeLearningButton({ activeTrack }: ResumeLearningButt
           <ChevronUp className="w-4 h-4" />
         </button>
 
-        <div className="flex items-start gap-4 relative z-10">
+        <div className="flex items-start gap-3 sm:gap-4 relative z-10">
           {/* Avatar with energetic pulsing halo */}
-          <div className="relative w-12 h-12 flex-shrink-0 mt-0.5">
+          <div className="relative w-10 h-10 sm:w-12 sm:h-12 flex-shrink-0 mt-0.5">
             <span className="absolute inset-0 rounded-full bg-emerald-400/30 dark:bg-emerald-400/20 animate-ping [animation-duration:2.2s]" />
-            <div className="relative w-12 h-12 rounded-full overflow-hidden border-2 border-emerald-300 dark:border-emerald-700 shadow-md bg-stone-100 dark:bg-stone-850">
-              <TaiTaiAvatar size={48} />
+            <div className="relative w-10 h-10 sm:w-12 sm:h-12 rounded-full overflow-hidden border-2 border-emerald-300 dark:border-emerald-700 shadow-md bg-stone-100 dark:bg-stone-850 flex items-center justify-center">
+              <TaiTaiAvatar size={44} />
             </div>
             {/* Online status indicator */}
-            <span className="absolute bottom-0 right-0 w-3.5 h-3.5 rounded-full bg-emerald-500 border-2 border-white dark:border-stone-900 shadow-sm" />
+            <span className="absolute bottom-0 right-0 w-3 h-3 sm:w-3.5 sm:h-3.5 rounded-full bg-emerald-500 border-2 border-white dark:border-stone-900 shadow-sm" />
           </div>
 
-          <div className="flex-1 min-w-0 pr-6">
+          <div className="flex-1 min-w-0 pr-5 sm:pr-8">
             {/* Header Labels */}
             <div className="flex items-center gap-2 flex-wrap mb-2">
               <span className="text-[10px] font-black text-emerald-800 dark:text-emerald-300 uppercase tracking-widest bg-emerald-100/80 dark:bg-emerald-950/60 border border-emerald-200/80 dark:border-emerald-800 px-2.5 py-0.5 rounded-lg shadow-2xs">
@@ -354,7 +354,7 @@ export default function ResumeLearningButton({ activeTrack }: ResumeLearningButt
             )}
 
             {/* Lesson Target Sub-Card inside the hero banner */}
-            <div className="mt-3.5 bg-white/90 dark:bg-stone-950/70 border-2 border-emerald-200 dark:border-emerald-900/60 group-hover:border-emerald-400 dark:group-hover:border-emerald-600 rounded-2xl p-3.5 flex items-center justify-between gap-3.5 shadow-xs transition-all duration-300">
+            <div className="mt-3.5 bg-white/90 dark:bg-stone-950/70 border-2 border-emerald-200 dark:border-emerald-900/60 group-hover:border-emerald-400 dark:group-hover:border-emerald-600 rounded-2xl p-3 sm:p-3.5 flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3 shadow-xs transition-all duration-300">
               <div className="min-w-0 flex-1">
                 <span className="text-[9px] font-black text-emerald-600 dark:text-emerald-400 uppercase tracking-wider block mb-0.5">
                   ▶ Bài học đang tiếp tục
@@ -368,7 +368,7 @@ export default function ResumeLearningButton({ activeTrack }: ResumeLearningButt
               </div>
 
               {/* Eye-Catching Glowing Hero CTA button */}
-              <div className="flex items-center gap-1.5 text-xs font-black bg-gradient-to-r from-emerald-500 via-teal-500 to-emerald-600 hover:from-emerald-400 hover:to-teal-500 text-white px-4 py-2.5 rounded-xl transition-all duration-300 shadow-[0_0_20px_rgba(16,185,129,0.5)] group-hover:shadow-[0_0_28px_rgba(16,185,129,0.7)] border border-emerald-300/50 shrink-0 group-hover:scale-105 active:scale-95">
+              <div className="flex items-center justify-center gap-1.5 text-xs font-black bg-gradient-to-r from-emerald-500 via-teal-500 to-emerald-600 hover:from-emerald-400 hover:to-teal-500 text-white px-4 py-2.5 rounded-xl transition-all duration-300 shadow-[0_0_20px_rgba(16,185,129,0.5)] group-hover:shadow-[0_0_28px_rgba(16,185,129,0.7)] border border-emerald-300/50 w-full sm:w-auto text-center shrink-0 group-hover:scale-[1.02] active:scale-95">
                 ▶ TIẾP TỤC HỌC NGAY
               </div>
             </div>
