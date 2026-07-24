@@ -44,9 +44,9 @@ export default function ScrollytellingPinnedSection() {
   const activeStep = useTransform(scrollYProgress, [0, 0.33, 0.66, 1], [0, 1, 2, 2]);
 
   return (
-    <section ref={containerRef} className="relative h-[300vh] font-sans bg-white dark:bg-stone-950">
-      {/* 100vh Sticky Viewport Frame */}
-      <div className="sticky top-0 h-screen w-full flex flex-col justify-between overflow-hidden border-y border-stone-200/80 dark:border-stone-850/80 px-3 sm:px-6 lg:px-8 py-4 sm:py-6">
+    <section ref={containerRef} className="relative h-[250vh] font-sans bg-white dark:bg-stone-950">
+      {/* 1/2 VH Sticky Viewport Frame (Approx 50-55vh Height) */}
+      <div className="sticky top-16 sm:top-20 h-[52vh] sm:h-[55vh] min-h-[360px] max-h-[460px] w-full flex flex-col justify-between overflow-hidden border-y border-stone-200/80 dark:border-stone-850/80 px-3 sm:px-6 lg:px-8 py-3.5 sm:py-5 shadow-xs">
         
         {/* Top Scrolly Progress Navigation Bar */}
         <div className="w-full max-w-4xl mx-auto flex items-center justify-between shrink-0 mb-2 z-30">

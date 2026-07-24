@@ -615,7 +615,7 @@ export default function HomePage() {
             />
           </div>
 
-          <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-10 pb-12 sm:pt-14 sm:pb-16 lg:pt-16 lg:pb-20">
+          <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-6 pb-8 sm:pt-8 sm:pb-10">
             <div className="grid items-center gap-8 lg:gap-12 lg:grid-cols-12">
               <div className="lg:col-span-7 max-w-2xl">
                 <motion.div
@@ -851,7 +851,7 @@ export default function HomePage() {
         </section>
 
         {/* ── PRODUCT PREVIEW ── */}
-        <section className="landing-band landing-band-soft landing-band-divider relative py-14 lg:py-16">
+        <section className="landing-band landing-band-soft landing-band-divider relative py-6 sm:py-8">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <ScrollReveal className="max-w-2xl mb-8">
             <p className="text-xs font-black text-emerald-600 dark:text-emerald-400 uppercase tracking-widest mb-2">
@@ -897,7 +897,7 @@ export default function HomePage() {
         </section>
 
         {/* ── SOCIAL PROOF ── */}
-        <section className="bg-white dark:bg-stone-950 py-8 sm:py-10 relative border-y border-stone-200/80 dark:border-stone-850/80 font-sans">
+        <section className="bg-white dark:bg-stone-950 py-5 sm:py-6 relative border-y border-stone-200/80 dark:border-stone-850/80 font-sans">
           <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
             <ScrollReveal className="text-center mb-5">
               <p className="text-[11px] font-black text-emerald-600 dark:text-emerald-400 uppercase tracking-widest mb-1">
@@ -1052,7 +1052,7 @@ export default function HomePage() {
         <ScrollytellingPinnedSection />
 
         {/* ── VISION & MISSION ── */}
-        <section className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-16 lg:pb-20">
+        <section className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-10">
           <ScrollReveal>
             <div className="animated-border-card rounded-[20px] border border-stone-200/80 dark:border-stone-800/85 bg-white/70 dark:bg-stone-900/60 backdrop-blur-sm p-8 lg:p-10 shadow-[0_14px_34px_-26px_rgba(28,25,23,0.12)] dark:shadow-[0_14px_34px_-26px_rgba(0,0,0,0.28)]">
               <div className="grid gap-8 lg:grid-cols-[minmax(0,1.35fr)_minmax(320px,0.95fr)] lg:items-start">
