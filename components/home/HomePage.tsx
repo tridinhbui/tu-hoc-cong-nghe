@@ -30,6 +30,7 @@ import ProductPreview from "@/components/home/ProductPreview";
 import TrackPreviewPanel from "@/components/login/TrackPreviewPanel";
 import PublicLeaderboardPreview from "@/components/login/PublicLeaderboardPreview";
 import { useRoutePrefetch } from "@/lib/use-route-prefetch";
+import { getLeaderboardByMetric, type LeaderboardRow } from "@/lib/supabase-user";
 
 // Each pain point is framed as the visitor's actual internal objection
 // before signing up for yet another "learn finance" product - not a
@@ -158,6 +159,7 @@ export default function HomePage() {
   const [displayedUserCount, setDisplayedUserCount] = useState(0);
   const [displayedLessonCount, setDisplayedLessonCount] = useState(0);
   const [displayedCompletedCount, setDisplayedCompletedCount] = useState(0);
+  const [publicLeaderboard, setPublicLeaderboard] = useState<LeaderboardRow[]>([]);
   const [heroSpotlight, setHeroSpotlight] = useState({ x: 50, y: 35 });
   // Plain (non-animated) rounded-down count for inline copy ("360+ bài
   // học..." in the hero paragraph and pain-point card) - the animated
@@ -169,6 +171,32 @@ export default function HomePage() {
   const completedCountLoadedRef = useRef(false);
   const heroParallaxX = (heroSpotlight.x - 50) / 10;
   const heroParallaxY = (heroSpotlight.y - 35) / 10;
+  const heroChartBars = [
+    {
+      label: "Người học",
+      value: displayedUserCount,
+      max: Math.max(displayedUserCount, displayedCompletedCount, displayedLessonCount, 1000),
+      tone: "from-emerald-300 to-emerald-500",
+    },
+    {
+      label: "Bài học",
+      value: displayedLessonCount,
+      max: Math.max(displayedUserCount, displayedCompletedCount, displayedLessonCount, 1000),
+      tone: "from-cyan-300 to-emerald-400",
+    },
+    {
+      label: "Hoàn thành",
+      value: displayedCompletedCount,
+      max: Math.max(displayedUserCount, displayedCompletedCount, displayedLessonCount, 1000),
+      tone: "from-amber-200 to-amber-400",
+    },
+    {
+      label: "Top XP",
+      value: publicLeaderboard[0]?.value ?? 0,
+      max: Math.max(displayedUserCount, displayedCompletedCount, displayedLessonCount, publicLeaderboard[0]?.value ?? 0, 1000),
+      tone: "from-orange-300 to-amber-500",
+    },
+  ];
 
   useRoutePrefetch(["/login", "/login?mode=signup", `/bai-hoc/${TRACKS.personal.previewSlug}`], { delayMs: 500 });
 
@@ -242,6 +270,18 @@ export default function HomePage() {
     return () => {
       cancelledRef.current = true;
       window.clearInterval(intervalId);
+    };
+  }, []);
+
+  useEffect(() => {
+    let cancelled = false;
+    getLeaderboardByMetric("xp", 4)
+      .then((rows) => {
+        if (!cancelled) setPublicLeaderboard(rows);
+      })
+      .catch((error) => console.error("Error loading homepage leaderboard data:", error));
+    return () => {
+      cancelled = true;
     };
   }, []);
 
@@ -610,20 +650,14 @@ export default function HomePage() {
                           </div>
                         </div>
                         <div className="flex h-44 items-end gap-2 rounded-[1.35rem] border border-white/10 bg-stone-950/45 px-4 pb-4 pt-6">
-                          {[
-                            { label: "T2", value: 44, tone: "from-emerald-300 to-emerald-500" },
-                            { label: "T3", value: 58, tone: "from-cyan-300 to-emerald-400" },
-                            { label: "T4", value: 72, tone: "from-amber-200 to-amber-400" },
-                            { label: "T5", value: 60, tone: "from-emerald-300 to-teal-400" },
-                            { label: "T6", value: 82, tone: "from-amber-300 to-orange-400" },
-                            { label: "T7", value: 90, tone: "from-emerald-200 to-emerald-500" },
-                          ].map((bar, index) => (
+                          {heroChartBars.map((bar, index) => (
                             <div key={bar.label} className="group flex flex-1 flex-col items-center gap-2">
                               <div className="relative h-full w-full">
+                                <div className="absolute inset-x-1 bottom-0 h-full rounded-t-[18px] bg-white/5" />
                                 <div
                                   className={`absolute inset-x-1 bottom-0 rounded-t-[18px] bg-gradient-to-t ${bar.tone} shadow-[0_18px_24px_-20px_rgba(16,185,129,0.45)]`}
                                   style={{
-                                    height: `${bar.value}%`,
+                                    height: `${Math.max(16, (bar.value / bar.max) * 100)}%`,
                                     transform: `perspective(600px) translate3d(${(index - 2.5) * 1.2}px, ${(heroParallaxY * index) / 18}px, 0) rotateX(16deg)`,
                                     transformOrigin: "bottom center",
                                   }}
@@ -637,8 +671,8 @@ export default function HomePage() {
                         <div className="mt-3 grid grid-cols-3 gap-2">
                           {[
                             ["Bài học", displayedLessonCount.toLocaleString("vi-VN")],
-                            ["Quiz đúng", `${Math.max(72, Math.min(98, displayedCompletedCount % 100))}%`],
-                            ["XP hôm nay", "+240"],
+                            ["Quiz đúng", `${Math.max(72, Math.min(98, (displayedCompletedCount % 100) || 78))}%`],
+                            ["XP top", `${publicLeaderboard[0]?.value?.toLocaleString("vi-VN") ?? "0"} XP`],
                           ].map(([label, value]) => (
                             <div key={label} className="rounded-[16px] border border-white/10 bg-white/8 px-3 py-2">
                               <p className="text-[10px] font-black uppercase tracking-[0.14em] text-stone-400">{label}</p>
