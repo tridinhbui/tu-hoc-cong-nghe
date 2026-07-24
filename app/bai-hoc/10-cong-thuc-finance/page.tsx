@@ -79,7 +79,7 @@ const formulas = [
 export default function TenCongThucPage() {
   return (
     <LessonPageLayout lesson={LESSON} quiz={QUIZ}>
-      <div className="space-y-8 text-stone-700 leading-relaxed">
+      <div className="space-y-8 text-stone-700 dark:text-stone-300 leading-relaxed">
 
         <section className="space-y-4">
           <h2 className="text-xl font-bold text-stone-900 dark:text-stone-100">Tại sao cần nhớ 10 công thức này?</h2>
@@ -89,7 +89,7 @@ export default function TenCongThucPage() {
 
         <section className="space-y-4">
           <h2 className="text-xl font-bold text-stone-900 dark:text-stone-100">Dòng chảy từ Revenue → FCF</h2>
-          <div className="bg-stone-50 rounded-2xl p-5 space-y-1 font-mono text-sm">
+          <div className="bg-stone-50 dark:bg-stone-900 border border-stone-200 dark:border-stone-800 rounded-2xl p-5 space-y-1 font-mono text-sm">
             {[
               { label: "Revenue", op: "" },
               { label: "− COGS", op: "↓" },
@@ -108,8 +108,8 @@ export default function TenCongThucPage() {
               { label: "− CapEx", op: "↓" },
               { label: "= Free Cash Flow (FCF)", op: "" },
             ].map(r => (
-              <div key={r.label} className="flex items-center gap-2 py-0.5 text-stone-700">
-                <span className="w-3 text-center text-stone-300">{r.op}</span>
+              <div key={r.label} className="flex items-center gap-2 py-0.5 text-stone-800 dark:text-stone-200">
+                <span className="w-3 text-center text-stone-400 dark:text-stone-500">{r.op}</span>
                 <span>{r.label}</span>
               </div>
             ))}
@@ -120,10 +120,10 @@ export default function TenCongThucPage() {
           <h2 className="text-xl font-bold text-stone-900 dark:text-stone-100">10 công thức - chi tiết</h2>
           <div className="space-y-3">
             {formulas.map(f => (
-              <div key={f.id} className="border border-stone-200 rounded-xl p-4">
-                <div className="font-bold text-sm text-stone-800">{f.name}</div>
-                <div className="font-mono text-xs mt-0.5 text-stone-500">{f.formula}</div>
-                <p className="text-sm mt-2 text-stone-600 leading-relaxed">{f.note}</p>
+              <div key={f.id} className="border border-stone-200 dark:border-stone-800 bg-white dark:bg-stone-900 rounded-xl p-4">
+                <div className="font-bold text-sm text-stone-800 dark:text-stone-100">{f.name}</div>
+                <div className="font-mono text-xs mt-0.5 text-emerald-600 dark:text-emerald-400 font-semibold">{f.formula}</div>
+                <p className="text-sm mt-2 text-stone-600 dark:text-stone-300 leading-relaxed">{f.note}</p>
               </div>
             ))}
           </div>
@@ -131,8 +131,8 @@ export default function TenCongThucPage() {
 
         <section className="space-y-4">
           <h2 className="text-xl font-bold text-stone-900 dark:text-stone-100">FPT - Áp dụng thực tế</h2>
-          <div className="bg-stone-900 rounded-2xl p-5 text-sm space-y-2">
-            <div className="text-stone-500 text-xs font-bold uppercase tracking-widest mb-3">FPT Corporation - Ước tính 2023</div>
+          <div className="bg-stone-900 dark:bg-stone-900 border border-stone-800 rounded-2xl p-5 text-sm space-y-2">
+            <div className="text-amber-400 text-xs font-bold uppercase tracking-widest mb-3">FPT Corporation - Ước tính 2023</div>
             {[
               { label: "Revenue", val: "~55,000 tỷ" },
               { label: "Gross Profit", val: "~18,000 tỷ (GPM ~33%)" },
@@ -143,16 +143,16 @@ export default function TenCongThucPage() {
               { label: "EV/EBITDA", val: "~15x (phù hợp tech VN)" },
             ].map(r => (
               <div key={r.label} className="flex justify-between py-1.5 border-b border-stone-800 last:border-0">
-                <span className="text-stone-500">{r.label}</span>
+                <span className="text-stone-400">{r.label}</span>
                 <span className="text-white font-semibold">{r.val}</span>
               </div>
             ))}
           </div>
         </section>
 
-        <div className="border-l-2 border-stone-300 pl-4 space-y-2">
+        <div className="border-l-2 border-stone-300 dark:border-stone-700 pl-4 space-y-2">
           <h3 className="font-bold text-stone-800 dark:text-stone-200 mb-3">3 điều cần nhớ</h3>
-          <div className="space-y-1 text-sm text-stone-700">
+          <div className="space-y-1 text-sm text-stone-700 dark:text-stone-300">
             <div> - Revenue → Gross Profit → EBITDA → EBIT → NI → OCF → FCF là một dòng chảy liên thông</div>
             <div> - EV/EBITDA trung lập với đòn bẩy - dùng để so sánh giữa các công ty</div>
             <div> - FCF là cơ sở của mọi mô hình định giá DCF - quan trọng nhất trong finance</div>

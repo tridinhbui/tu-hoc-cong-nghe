@@ -67,11 +67,11 @@ export default function Page() {
   return (
     <LessonPageLayout lesson={meta} quiz={quiz}>
       <h2 className="text-2xl font-bold text-stone-900 dark:text-stone-100 mb-2">Đánh giá thương vụ đầu tư - thực chiến</h2>
-      <p className="text-stone-600 text-sm mb-6 italic">Khung phân tích một thương vụ như nhà đầu tư tư nhân: hiểu doanh nghiệp, đọc số, soi rủi ro và chọn điểm thoát.</p>
+      <p className="text-stone-600 dark:text-stone-400 text-sm mb-6 italic">Khung phân tích một thương vụ như nhà đầu tư tư nhân: hiểu doanh nghiệp, đọc số, soi rủi ro và chọn điểm thoát.</p>
 
-      <section className="mb-8 rounded-xl border border-orange-100 bg-orange-50 p-4">
-        <h3 className="text-sm font-bold uppercase tracking-wide text-orange-800 mb-2">Nói đơn giản</h3>
-        <p className="text-sm leading-relaxed text-stone-700">
+      <section className="mb-8 rounded-xl border border-orange-200 dark:border-orange-900/60 bg-orange-50 dark:bg-orange-950/40 p-4">
+        <h3 className="text-sm font-bold uppercase tracking-wide text-orange-800 dark:text-orange-300 mb-2">Nói đơn giản</h3>
+        <p className="text-sm leading-relaxed text-stone-700 dark:text-stone-200">
           Một thương vụ tốt không chỉ là “công ty hay”. Nhà đầu tư phải biết mua với giá nào, dùng bao nhiêu nợ, dòng tiền có trả được nợ không, và sau vài năm có thể bán lại cho ai.
         </p>
       </section>
@@ -101,15 +101,15 @@ export default function Page() {
               questions: ["Rủi ro chính là gì?", "Kịch bản xấu nhất ra sao?", "Có còn dư địa trả nợ không?", "Dấu hiệu cảnh báo nào?"],
             },
           ].map(step => (
-            <div key={step.n} className="border border-stone-200 rounded-xl p-4">
+            <div key={step.n} className="border border-stone-200 dark:border-stone-800 bg-white dark:bg-stone-900 rounded-xl p-4">
               <div className="flex items-center gap-3 mb-3">
-                <div className="w-7 h-7 bg-stone-800 text-white rounded-lg flex items-center justify-center font-bold text-xs flex-shrink-0">{step.n}</div>
-                <div className="font-bold text-stone-800 text-sm">{step.title}</div>
+                <div className="w-7 h-7 bg-stone-800 dark:bg-stone-700 text-white rounded-lg flex items-center justify-center font-bold text-xs flex-shrink-0">{step.n}</div>
+                <div className="font-bold text-stone-800 dark:text-stone-200 text-sm">{step.title}</div>
               </div>
               <div className="grid grid-cols-2 gap-1">
                 {step.questions.map((q, i) => (
-                  <div key={i} className="text-xs text-stone-600 flex gap-1">
-                    <span className="text-stone-500">→</span>{q}
+                  <div key={i} className="text-xs text-stone-600 dark:text-stone-400 flex gap-1">
+                    <span className="text-stone-500 dark:text-stone-400">→</span>{q}
                   </div>
                 ))}
               </div>
@@ -126,9 +126,9 @@ export default function Page() {
             { title: "Trả bớt nợ", desc: "Dòng tiền dùng để giảm nợ → phần giá trị thuộc về cổ đông tăng lên" },
             { title: "Bán ra ở định giá cao hơn", desc: "Mua vào rẻ hơn, bán ra ở mức định giá tốt hơn" },
           ].map(d => (
-            <div key={d.title} className="bg-stone-800 rounded-xl p-4">
+            <div key={d.title} className="bg-stone-800 dark:bg-stone-900 border border-stone-700 dark:border-stone-800 rounded-xl p-4">
               <div className="text-white font-bold text-xs mb-1">{d.title}</div>
-              <div className="text-stone-500 text-xs">{d.desc}</div>
+              <div className="text-stone-300 dark:text-stone-400 text-xs">{d.desc}</div>
             </div>
           ))}
         </div>
@@ -151,9 +151,9 @@ export default function Page() {
               a: "MOIC cho biết nhân vốn bao nhiêu lần, còn IRR cho biết tốc độ sinh lời mỗi năm. Nhân 3 lần vốn trong 3 năm tốt hơn nhiều so với nhân 3 lần vốn trong 7 năm.",
             },
           ].map((item, i) => (
-            <div key={i} className="bg-white border border-stone-200 rounded-xl p-4">
-              <div className="font-semibold text-stone-800 text-sm mb-2">Q: {item.q}</div>
-              <div className="text-stone-600 text-sm leading-relaxed border-t border-stone-100 pt-2 mt-2">A: {item.a}</div>
+            <div key={i} className="bg-white dark:bg-stone-900 border border-stone-200 dark:border-stone-800 rounded-xl p-4">
+              <div className="font-semibold text-stone-800 dark:text-stone-200 text-sm mb-2">Q: {item.q}</div>
+              <div className="text-stone-600 dark:text-stone-400 text-sm leading-relaxed border-t border-stone-100 dark:border-stone-800 pt-2 mt-2">A: {item.a}</div>
             </div>
           ))}
         </div>
@@ -161,8 +161,8 @@ export default function Page() {
 
       <section>
         <h3 className="text-lg font-bold text-stone-800 dark:text-stone-200 mb-3">Dấu hiệu cảnh báo cần chú ý</h3>
-        <div className="border-l-2 border-stone-300 pl-4 space-y-2">
-          <div className="space-y-1 text-sm text-stone-700">
+        <div className="border-l-2 border-stone-300 dark:border-stone-700 pl-4 space-y-2">
+          <div className="space-y-1 text-sm text-stone-700 dark:text-stone-300">
             {[
               "Một khách hàng chiếm hơn 30% doanh thu",
               "Phụ thuộc quá nhiều vào một cá nhân chủ chốt",

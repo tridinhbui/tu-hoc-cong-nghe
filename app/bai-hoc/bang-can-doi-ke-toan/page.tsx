@@ -71,7 +71,7 @@ const QUIZ: QuizQuestion[] = [
 export default function BalanceSheetPage() {
   return (
     <LessonPageLayout lesson={LESSON} quiz={QUIZ}>
-      <div className="space-y-8 text-stone-700 leading-relaxed">
+      <div className="space-y-8 text-stone-700 dark:text-stone-300 leading-relaxed">
 
         <section className="space-y-4">
           <h2 className="text-xl font-bold text-stone-900 dark:text-stone-100">Bảng cân đối kế toán là gì?</h2>
@@ -90,10 +90,10 @@ export default function BalanceSheetPage() {
               { title: "Vốn chủ sở hữu (Equity)", sub: "Phần còn lại thuộc về cổ đông",
                 items: ["Vốn góp (paid-in capital): cổ phần phát hành", "Lợi nhuận giữ lại (retained earnings): lãi tích lũy qua các năm"] },
             ].map(s => (
-              <div key={s.title} className="border border-stone-200 rounded-xl p-4">
-                <div className="font-bold text-sm text-stone-800 mb-0.5">{s.title}</div>
-                <div className="text-xs text-stone-500 mb-2">{s.sub}</div>
-                {s.items.map(t => <div key={t} className="text-xs text-stone-600 flex gap-2 mt-1"><span> - </span><span>{t}</span></div>)}
+              <div key={s.title} className="border border-stone-200 dark:border-stone-800 bg-white dark:bg-stone-900 rounded-xl p-4">
+                <div className="font-bold text-sm text-stone-800 dark:text-stone-100 mb-0.5">{s.title}</div>
+                <div className="text-xs text-stone-500 dark:text-stone-400 mb-2">{s.sub}</div>
+                {s.items.map(t => <div key={t} className="text-xs text-stone-600 dark:text-stone-300 flex gap-2 mt-1"><span> - </span><span>{t}</span></div>)}
               </div>
             ))}
           </div>
@@ -101,10 +101,10 @@ export default function BalanceSheetPage() {
 
         <section className="space-y-4">
           <h2 className="text-xl font-bold text-stone-900 dark:text-stone-100">Bảng Cân Đối - minh họa</h2>
-          <div className="border border-stone-200 rounded-xl p-5 space-y-4">
+          <div className="border border-stone-200 dark:border-stone-800 bg-white dark:bg-stone-900 rounded-xl p-5 space-y-4">
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
               <div className="space-y-2">
-                <div className="text-xs font-bold text-stone-500 uppercase tracking-widest">TÀI SẢN</div>
+                <div className="text-xs font-bold text-emerald-600 dark:text-emerald-400 uppercase tracking-widest">TÀI SẢN</div>
                 {[
                   { label: "Tiền mặt", val: "50 tỷ" },
                   { label: "Phải thu", val: "80 tỷ" },
@@ -112,23 +112,22 @@ export default function BalanceSheetPage() {
                   { label: "PP&E", val: "200 tỷ" },
                 ].map(r => (
                   <div key={r.label} className="flex justify-between text-sm">
-                    <span className="text-stone-600">{r.label}</span>
-                    <span className="text-stone-800 font-medium">{r.val}</span>
+                    <span className="text-stone-600 dark:text-stone-400">{r.label}</span>
+                    <span className="text-stone-800 dark:text-stone-200 font-medium">{r.val}</span>
                   </div>
                 ))}
-                <div className="border-t border-stone-200 pt-2 flex justify-between text-sm font-bold">
-                  <span className="text-stone-700">Tổng tài sản</span>
-                  <span className="text-stone-900">390 tỷ</span>
+                <div className="border-t border-stone-200 dark:border-stone-800 pt-2 flex justify-between text-sm font-bold">
+                  <span className="text-stone-700 dark:text-stone-300">Tổng tài sản</span>
+                  <span className="text-emerald-600 dark:text-emerald-400">390 tỷ</span>
                 </div>
               </div>
               <div className="space-y-2">
-                <div className="text-xs font-bold text-stone-500 uppercase tracking-widest">NGUỒN VỐN</div>
+                <div className="text-xs font-bold text-amber-600 dark:text-amber-400 uppercase tracking-widest">NGUỒN VỐN</div>
                 {[
                   { label: "Nợ phải trả", val: "150 tỷ" },
                   { label: "Vốn chủ sở hữu", val: "240 tỷ" },
                 ].map(r => (
                   <div key={r.label} className="flex justify-between text-sm">
-                    <span className="text-stone-600">{r.label}</span>
                     <span className="text-stone-800 font-medium">{r.val}</span>
                   </div>
                 ))}

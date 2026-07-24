@@ -83,12 +83,12 @@ function ValuationFootballField() {
   const toPercent = (v: number) => ((v - min) / (max - min)) * 100;
 
   return (
-    <div className="bg-gradient-to-br from-cyan-50 to-teal-50 rounded-2xl p-5 border border-cyan-100 my-6">
-      <h3 className="font-bold text-cyan-800 mb-4 text-sm">⚽ Football Field Valuation Chart</h3>
+    <div className="bg-gradient-to-br from-cyan-50 to-teal-50 dark:from-cyan-950/30 dark:to-teal-950/20 rounded-2xl p-5 border border-cyan-200 dark:border-cyan-900/60 my-6">
+      <h3 className="font-bold text-cyan-900 dark:text-cyan-200 mb-4 text-sm">⚽ Football Field Valuation Chart</h3>
       <div className="flex gap-2 mb-5">
         {(["base", "bull", "bear"] as const).map(s => (
           <button key={s} onClick={() => setScenario(s)}
-            className={`flex-1 py-2 rounded-xl text-xs font-bold transition-all ${scenario === s ? "bg-cyan-600 text-white" : "bg-white text-stone-500 border border-stone-200"}`}>
+            className={`flex-1 py-2 rounded-xl text-xs font-bold transition-all ${scenario === s ? "bg-cyan-600 text-white" : "bg-white dark:bg-stone-900 text-stone-600 dark:text-stone-300 border border-stone-200 dark:border-stone-800"}`}>
             {s === "base" ? " Base" : s === "bull" ? "🐂 Bull" : "🐻 Bear"}
           </button>
         ))}
@@ -101,11 +101,11 @@ function ValuationFootballField() {
           { label: "Precedent Tx", range: s.precedent, color: "#0e7490" },
         ].map(item => (
           <div key={item.label}>
-            <div className="flex justify-between text-xs text-stone-500 mb-1">
+            <div className="flex justify-between text-xs text-stone-600 dark:text-stone-400 mb-1">
               <span className="font-semibold">{item.label}</span>
               <span>{item.range[0]}–{item.range[1]} nghìn tỷ</span>
             </div>
-            <div className="h-6 bg-stone-100 rounded-lg relative overflow-hidden">
+            <div className="h-6 bg-stone-100 dark:bg-stone-800 rounded-lg relative overflow-hidden">
               <div className="absolute h-full rounded-lg transition-all duration-500"
                 style={{
                   left: `${toPercent(item.range[0])}%`,
@@ -117,10 +117,10 @@ function ValuationFootballField() {
           </div>
         ))}
       </div>
-      <div className="flex justify-between text-[10px] text-stone-500 mt-2 px-1">
+      <div className="flex justify-between text-[10px] text-stone-500 dark:text-stone-400 mt-2 px-1">
         <span>40</span><span>80</span><span>120</span><span>160</span><span>180</span>
       </div>
-      <p className="text-xs text-stone-500 text-center mt-2">{s.label}: giá trị mục tiêu trong nghìn tỷ VNĐ</p>
+      <p className="text-xs text-stone-600 dark:text-stone-400 text-center mt-2">{s.label}: giá trị mục tiêu trong nghìn tỷ VNĐ</p>
     </div>
   );
 }
@@ -129,11 +129,11 @@ export default function Page() {
   return (
     <LessonPageLayout lesson={meta} quiz={quiz}>
       <h2 className="text-2xl font-bold text-stone-900 dark:text-stone-100 mb-2">Fair Value - 3 Cách Định Giá</h2>
-      <p className="text-stone-600 text-sm mb-6 italic">Không có con số định giá "đúng" - chỉ có giả định tốt và giả định tệ</p>
+      <p className="text-stone-600 dark:text-stone-400 text-sm mb-6 italic">Không có con số định giá "đúng" - chỉ có giả định tốt và giả định tệ</p>
 
       <section className="mb-8">
         <h3 className="text-lg font-bold text-stone-800 dark:text-stone-200 mb-3"> Fair Value là gì?</h3>
-        <p className="text-stone-600 leading-relaxed mb-4">
+        <p className="text-stone-700 dark:text-stone-300 leading-relaxed mb-4">
           Fair Value = giá mà một tài sản sẽ được giao dịch giữa hai bên hiểu biết, sẵn lòng và không bị ép buộc. Trong thực tế, định giá là <strong>nghệ thuật</strong> nhiều hơn khoa học - kết quả phụ thuộc vào giả định.
         </p>
 
@@ -143,33 +143,30 @@ export default function Page() {
               num: "01", title: "Income Approach", method: "DCF",
               desc: "Chiết khấu tất cả dòng tiền tương lai về hiện tại. Phản ánh intrinsic value.",
               pros: "Fundamental, không phụ thuộc thị trường", cons: "Rất nhạy cảm với discount rate và terminal value",
-              color: "cyan",
             },
             {
               num: "02", title: "Market Approach", method: "Trading Comps / Precedent Tx",
               desc: "So sánh với doanh nghiệp tương đương đang giao dịch hoặc đã được mua lại.",
               pros: "Reflect thực tế thị trường, dễ justify", cons: "Cần tìm được peer group thực sự tương đồng",
-              color: "teal",
             },
             {
               num: "03", title: "Asset Approach", method: "NAV / Book Value",
               desc: "Giá trị = tổng tài sản trừ tổng nợ. Phù hợp với holding company, BĐS.",
               pros: "Rõ ràng, dựa trên số liệu thực", cons: "Bỏ qua earning power và intangible assets",
-              color: "sky",
             },
           ].map(a => (
-            <div key={a.num} className={`bg-${a.color}-50 rounded-xl p-5 border border-${a.color}-100`}>
+            <div key={a.num} className="bg-emerald-50 dark:bg-emerald-950/30 rounded-xl p-5 border border-emerald-200 dark:border-emerald-900/50">
               <div className="flex items-center gap-3 mb-3">
-                <span className={`text-xs font-bold text-${a.color}-600 bg-${a.color}-100 px-2 py-1 rounded-full`}>{a.num}</span>
+                <span className="text-xs font-bold text-emerald-800 dark:text-emerald-300 bg-emerald-200 dark:bg-emerald-900/60 px-2 py-1 rounded-full">{a.num}</span>
                 <div>
-                  <div className="font-bold text-stone-800">{a.title}</div>
-                  <div className={`text-xs text-${a.color}-600 font-semibold`}>{a.method}</div>
+                  <div className="font-bold text-stone-800 dark:text-stone-100">{a.title}</div>
+                  <div className="text-xs text-emerald-700 dark:text-emerald-400 font-semibold">{a.method}</div>
                 </div>
               </div>
-              <p className="text-stone-600 text-sm mb-3">{a.desc}</p>
+              <p className="text-stone-700 dark:text-stone-300 text-sm mb-3">{a.desc}</p>
               <div className="grid grid-cols-2 gap-2 text-xs">
-                <div className="bg-white rounded-lg p-2"><span className="text-stone-700 font-bold"> </span>{a.pros}</div>
-                <div className="bg-white rounded-lg p-2"><span className="text-stone-700 font-bold">✗ </span>{a.cons}</div>
+                <div className="bg-white dark:bg-stone-900 border border-stone-200 dark:border-stone-800 rounded-lg p-2 text-stone-700 dark:text-stone-300"><span className="text-emerald-600 dark:text-emerald-400 font-bold">✓ </span>{a.pros}</div>
+                <div className="bg-white dark:bg-stone-900 border border-stone-200 dark:border-stone-800 rounded-lg p-2 text-stone-700 dark:text-stone-300"><span className="text-rose-600 dark:text-rose-400 font-bold">✗ </span>{a.cons}</div>
               </div>
             </div>
           ))}
@@ -183,13 +180,13 @@ export default function Page() {
         <div className="overflow-x-auto">
           <table className="w-full text-sm">
             <thead>
-              <tr className="bg-stone-100">
-                <th className="text-left p-2 rounded-l-lg font-semibold text-stone-600">Multiple</th>
-                <th className="text-left p-2 font-semibold text-stone-600">Công thức</th>
-                <th className="text-left p-2 rounded-r-lg font-semibold text-stone-600">Dùng cho</th>
+              <tr className="bg-stone-100 dark:bg-stone-800">
+                <th className="text-left p-2 rounded-l-lg font-semibold text-stone-700 dark:text-stone-300">Multiple</th>
+                <th className="text-left p-2 font-semibold text-stone-700 dark:text-stone-300">Công thức</th>
+                <th className="text-left p-2 rounded-r-lg font-semibold text-stone-700 dark:text-stone-300">Dùng cho</th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-stone-100">
+            <tbody className="divide-y divide-stone-100 dark:divide-stone-800">
               {[
                 { m: "EV/EBITDA", f: "Enterprise Value / EBITDA", use: "Phổ biến nhất trong M&A" },
                 { m: "P/E", f: "Price / EPS", use: "So sánh cổ phiếu ngành consumer" },
@@ -197,9 +194,9 @@ export default function Page() {
                 { m: "P/B", f: "Price / Book Value", use: "Ngân hàng, BĐS" },
               ].map(r => (
                 <tr key={r.m}>
-                  <td className="p-2 font-mono font-bold text-cyan-700">{r.m}</td>
-                  <td className="p-2 text-stone-600 text-xs">{r.f}</td>
-                  <td className="p-2 text-stone-500 text-xs">{r.use}</td>
+                  <td className="p-2 font-mono font-bold text-cyan-600 dark:text-cyan-400">{r.m}</td>
+                  <td className="p-2 text-stone-700 dark:text-stone-300 text-xs">{r.f}</td>
+                  <td className="p-2 text-stone-600 dark:text-stone-400 text-xs">{r.use}</td>
                 </tr>
               ))}
             </tbody>
@@ -216,9 +213,9 @@ export default function Page() {
             "Peer group không thực sự comparable - khác ngành, khác cycle",
             "Quên điều chỉnh cho illiquidity discount (công ty private)",
           ].map((p, i) => (
-            <div key={i} className="flex gap-3 bg-stone-50 rounded-lg p-3 text-sm border border-stone-200">
-              <span className="text-stone-700">⚠️</span>
-              <span className="text-stone-700">{p}</span>
+            <div key={i} className="flex gap-3 bg-stone-50 dark:bg-stone-900 rounded-lg p-3 text-sm border border-stone-200 dark:border-stone-800">
+              <span className="text-amber-500">⚠️</span>
+              <span className="text-stone-700 dark:text-stone-300">{p}</span>
             </div>
           ))}
         </div>

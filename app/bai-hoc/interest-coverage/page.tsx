@@ -70,36 +70,36 @@ function ICRSimulator() {
   const icr = interest > 0 ? ebit / interest : 0;
 
   const getStatus = () => {
-    if (icr >= 3) return { label: "An toàn", color: "text-stone-700 bg-stone-50", bar: "bg-stone-50" };
-    if (icr >= 1.5) return { label: "Trung bình - cần theo dõi", color: "text-stone-700 bg-stone-50", bar: "bg-stone-50" };
-    if (icr >= 1) return { label: "Rủi ro cao", color: "text-stone-700 bg-stone-50", bar: "bg-stone-50" };
-    return { label: "Nguy hiểm - có thể default", color: "text-stone-700 bg-stone-50", bar: "bg-stone-50" };
+    if (icr >= 3) return { label: "An toàn", color: "text-emerald-700 dark:text-emerald-400 bg-emerald-50 dark:bg-emerald-950/40", bar: "bg-emerald-500" };
+    if (icr >= 1.5) return { label: "Trung bình - cần theo dõi", color: "text-amber-700 dark:text-amber-400 bg-amber-50 dark:bg-amber-950/40", bar: "bg-amber-500" };
+    if (icr >= 1) return { label: "Rủi ro cao", color: "text-orange-700 dark:text-orange-400 bg-orange-50 dark:bg-orange-950/40", bar: "bg-orange-500" };
+    return { label: "Nguy hiểm - có thể default", color: "text-rose-700 dark:text-rose-400 bg-rose-50 dark:bg-rose-950/40", bar: "bg-rose-500" };
   };
 
   const status = getStatus();
 
   return (
-    <div className="bg-gradient-to-br from-teal-50 to-cyan-50 rounded-2xl p-5 border border-stone-200 my-6">
-      <h3 className="font-bold text-stone-700 mb-4 text-sm">🛡️ ICR Simulator</h3>
+    <div className="bg-gradient-to-br from-teal-50 to-cyan-50 dark:from-teal-950/30 dark:to-cyan-950/20 rounded-2xl p-5 border border-stone-200 dark:border-stone-800 my-6">
+      <h3 className="font-bold text-stone-800 dark:text-stone-100 mb-4 text-sm">🛡️ ICR Simulator</h3>
       <div className="grid grid-cols-2 gap-4 mb-5">
         <div>
-          <label className="text-xs font-semibold text-stone-600 block mb-1">EBIT ({ebit} tỷ)</label>
+          <label className="text-xs font-semibold text-stone-600 dark:text-stone-300 block mb-1">EBIT ({ebit} tỷ)</label>
           <input type="range" min={50} max={1000} step={50} value={ebit} onChange={e => setEbit(+e.target.value)} className="w-full accent-teal-500" />
         </div>
         <div>
-          <label className="text-xs font-semibold text-stone-600 block mb-1">Interest Expense ({interest} tỷ)</label>
+          <label className="text-xs font-semibold text-stone-600 dark:text-stone-300 block mb-1">Interest Expense ({interest} tỷ)</label>
           <input type="range" min={10} max={500} step={10} value={interest} onChange={e => setInterest(+e.target.value)} className="w-full accent-teal-500" />
         </div>
       </div>
 
-      <div className="bg-white rounded-xl p-4 mb-4">
-        <div className="font-mono text-sm text-center mb-3 text-stone-600">
-          ICR = EBIT / Interest = {ebit} / {interest} = <span className="text-stone-700 font-bold text-xl">{icr.toFixed(1)}x</span>
+      <div className="bg-white dark:bg-stone-900 border border-stone-200 dark:border-stone-800 rounded-xl p-4 mb-4">
+        <div className="font-mono text-sm text-center mb-3 text-stone-600 dark:text-stone-300">
+          ICR = EBIT / Interest = {ebit} / {interest} = <span className="text-stone-900 dark:text-stone-100 font-bold text-xl">{icr.toFixed(1)}x</span>
         </div>
-        <div className="h-4 bg-stone-100 rounded-full overflow-hidden mb-2">
+        <div className="h-4 bg-stone-100 dark:bg-stone-800 rounded-full overflow-hidden mb-2">
           <div className={`h-full ${status.bar} rounded-full transition-all`} style={{ width: `${Math.min(100, (icr / 5) * 100)}%` }} />
         </div>
-        <div className="flex justify-between text-xs text-stone-500 mb-3">
+        <div className="flex justify-between text-xs text-stone-500 dark:text-stone-400 mb-3">
           <span>0x</span><span>1.5x</span><span>3x</span><span>5x+</span>
         </div>
         <div className={`text-center py-2 rounded-xl text-sm font-bold ${status.color}`}>{status.label}</div>
@@ -107,13 +107,13 @@ function ICRSimulator() {
 
       <div className="grid grid-cols-3 gap-2 text-center">
         {[
-          { label: "< 1.5x", desc: "Nguy hiểm", bg: "bg-stone-50 border-stone-200" },
-          { label: "1.5–3x", desc: "Trung bình", bg: "bg-stone-50 border-stone-200" },
-          { label: "> 3x", desc: "An toàn", bg: "bg-stone-50 border-stone-200" },
+          { label: "< 1.5x", desc: "Nguy hiểm", bg: "bg-rose-50 dark:bg-rose-950/30 border-rose-200 dark:border-rose-900 text-rose-800 dark:text-rose-300" },
+          { label: "1.5–3x", desc: "Trung bình", bg: "bg-amber-50 dark:bg-amber-950/30 border-amber-200 dark:border-amber-900 text-amber-800 dark:text-amber-300" },
+          { label: "> 3x", desc: "An toàn", bg: "bg-emerald-50 dark:bg-emerald-950/30 border-emerald-200 dark:border-emerald-900 text-emerald-800 dark:text-emerald-300" },
         ].map(b => (
           <div key={b.label} className={`rounded-lg p-2 border text-xs ${b.bg}`}>
-            <div className="font-bold text-stone-700">{b.label}</div>
-            <div className="text-stone-500">{b.desc}</div>
+            <div className="font-bold">{b.label}</div>
+            <div className="text-[10px] opacity-90">{b.desc}</div>
           </div>
         ))}
       </div>
@@ -125,15 +125,15 @@ export default function Page() {
   return (
     <LessonPageLayout lesson={meta} quiz={quiz}>
       <h2 className="text-2xl font-bold text-stone-900 dark:text-stone-100 mb-2">Interest Coverage Ratio (ICR)</h2>
-      <p className="text-stone-600 text-sm mb-6 italic">Chỉ số đầu tiên lender kiểm tra khi đánh giá khả năng trả nợ</p>
+      <p className="text-stone-600 dark:text-stone-400 text-sm mb-6 italic">Chỉ số đầu tiên lender kiểm tra khi đánh giá khả năng trả nợ</p>
 
       <section className="mb-8">
         <h3 className="text-lg font-bold text-stone-800 dark:text-stone-200 mb-3">📐 Công thức và ý nghĩa</h3>
-        <div className="bg-stone-50 text-white rounded-xl p-5 text-center mb-4">
+        <div className="bg-emerald-900 text-white border border-emerald-800 rounded-xl p-5 text-center mb-4">
           <div className="font-mono text-xl font-bold mb-1">ICR = EBIT ÷ Interest Expense</div>
-          <p className="text-stone-700 text-sm">Lợi nhuận trước lãi vay gấp bao nhiêu lần tiền lãi phải trả</p>
+          <p className="text-emerald-200 text-sm">Lợi nhuận trước lãi vay gấp bao nhiêu lần tiền lãi phải trả</p>
         </div>
-        <p className="text-stone-600 leading-relaxed mb-3">
+        <p className="text-stone-700 dark:text-stone-300 leading-relaxed mb-3">
           ICR = 3x nghĩa là: với mỗi 1 đồng lãi vay phải trả, doanh nghiệp tạo ra 3 đồng EBIT. Cushion 2 đồng này là "safety margin" - cho phép doanh nghiệp chịu đựng được khó khăn mà không vỡ nợ.
         </p>
       </section>

@@ -70,20 +70,20 @@ function FCFAnimation() {
   const fcf = ocf - capex;
 
   return (
-    <div className="bg-white border-2 border-stone-200 rounded-3xl p-6 space-y-5 my-6">
-      <div className="text-sm font-bold text-stone-700">Dòng tiền tự do = Dòng tiền kinh doanh − Chi đầu tư tài sản</div>
+    <div className="bg-white dark:bg-stone-900 border-2 border-stone-200 dark:border-stone-800 rounded-3xl p-6 space-y-5 my-6">
+      <div className="text-sm font-bold text-stone-800 dark:text-stone-100">Dòng tiền tự do = Dòng tiền kinh doanh − Chi đầu tư tài sản</div>
       <div className="space-y-4">
         <div>
           <div className="flex justify-between text-sm mb-1.5">
-            <span className="text-stone-600">Dòng tiền kinh doanh</span>
-            <span className="font-bold text-stone-700">+{ocf} tỷ</span>
+            <span className="text-stone-600 dark:text-stone-400">Dòng tiền kinh doanh</span>
+            <span className="font-bold text-emerald-600 dark:text-emerald-400">+{ocf} tỷ</span>
           </div>
           <input type="range" min={0} max={300} value={ocf} onChange={e => setOcf(+e.target.value)} className="w-full accent-emerald-600" />
         </div>
         <div>
           <div className="flex justify-between text-sm mb-1.5">
-            <span className="text-stone-600">Chi đầu tư tài sản dài hạn</span>
-            <span className="font-bold text-stone-700">−{capex} tỷ</span>
+            <span className="text-stone-600 dark:text-stone-400">Chi đầu tư tài sản dài hạn</span>
+            <span className="font-bold text-rose-600 dark:text-rose-400">−{capex} tỷ</span>
           </div>
           <input type="range" min={0} max={250} value={capex} onChange={e => setCapex(+e.target.value)} className="w-full accent-rose-500" />
         </div>
@@ -91,21 +91,21 @@ function FCFAnimation() {
 
       {/* Center-zero bar */}
       <div className="space-y-2">
-        <div className="flex justify-between text-xs text-stone-500">
+        <div className="flex justify-between text-xs text-stone-500 dark:text-stone-400">
           <span>Âm nhiều</span><span>Điểm 0</span><span>Dương nhiều</span>
         </div>
-        <div className="h-8 bg-stone-100 rounded-full relative overflow-hidden">
-          <div className="absolute inset-y-0 left-1/2 w-0.5 bg-stone-300 z-10" />
+        <div className="h-8 bg-stone-100 dark:bg-stone-800 rounded-full relative overflow-hidden">
+          <div className="absolute inset-y-0 left-1/2 w-0.5 bg-stone-300 dark:bg-stone-600 z-10" />
           {fcf >= 0
-            ? <div className="absolute inset-y-1 rounded-full bg-stone-50 transition-all duration-500" style={{ left: "50%", width: `${Math.min(48, (fcf / 200) * 48)}%` }} />
-            : <div className="absolute inset-y-1 rounded-full bg-stone-50 transition-all duration-500" style={{ right: "50%", width: `${Math.min(48, (Math.abs(fcf) / 200) * 48)}%` }} />}
+            ? <div className="absolute inset-y-1 rounded-full bg-emerald-500 transition-all duration-500" style={{ left: "50%", width: `${Math.min(48, (fcf / 200) * 48)}%` }} />
+            : <div className="absolute inset-y-1 rounded-full bg-rose-500 transition-all duration-500" style={{ right: "50%", width: `${Math.min(48, (Math.abs(fcf) / 200) * 48)}%` }} />}
         </div>
       </div>
 
-      <div className={`rounded-2xl p-4 border-2 text-center ${fcf >= 0 ? "bg-stone-50 border-stone-200" : "bg-stone-50 border-stone-200"}`}>
-        <div className="text-xs text-stone-500 mb-1">Dòng tiền tự do</div>
-        <div className={`text-3xl font-bold ${fcf >= 0 ? "text-stone-700" : "text-stone-700"}`}>{fcf > 0 ? "+" : ""}{fcf} tỷ</div>
-        <div className="text-sm mt-1 text-stone-500">
+      <div className={`rounded-2xl p-4 border-2 text-center ${fcf >= 0 ? "bg-emerald-50 dark:bg-emerald-950/40 border-emerald-200 dark:border-emerald-900" : "bg-rose-50 dark:bg-rose-950/40 border-rose-200 dark:border-rose-900"}`}>
+        <div className="text-xs text-stone-500 dark:text-stone-400 mb-1">Dòng tiền tự do</div>
+        <div className={`text-3xl font-bold ${fcf >= 0 ? "text-emerald-700 dark:text-emerald-400" : "text-rose-700 dark:text-rose-400"}`}>{fcf > 0 ? "+" : ""}{fcf} tỷ</div>
+        <div className="text-sm mt-1 text-stone-700 dark:text-stone-300">
           {fcf > 100 ? "Dư tiền nhiều - có thể trả cổ tức, mua lại cổ phiếu hoặc mua công ty khác" :
            fcf > 0 ? "Dương - doanh nghiệp tự nuôi được mình" :
            fcf > -50 ? "Âm nhẹ - đang đầu tư, cần theo dõi" :
@@ -114,8 +114,8 @@ function FCFAnimation() {
       </div>
 
       <div className="grid grid-cols-2 gap-3 text-sm">
-        <button onClick={() => { setOcf(200); setCapex(50); }} className="border border-stone-200 rounded-xl p-2 hover:bg-stone-50 text-stone-600 text-xs">Công ty phần mềm<br/><span className="text-stone-500">Tạo tiền cao, đầu tư tài sản thấp</span></button>
-        <button onClick={() => { setOcf(300); setCapex(280); }} className="border border-stone-200 rounded-xl p-2 hover:bg-stone-50 text-stone-600 text-xs">Nhà máy sản xuất<br/><span className="text-stone-500">Tạo tiền cao nhưng phải đầu tư lớn</span></button>
+        <button onClick={() => { setOcf(200); setCapex(50); }} className="border border-stone-200 dark:border-stone-800 rounded-xl p-2 bg-stone-50 dark:bg-stone-950 text-stone-800 dark:text-stone-200 text-xs">Công ty phần mềm<br/><span className="text-stone-500 dark:text-stone-400">Tạo tiền cao, đầu tư tài sản thấp</span></button>
+        <button onClick={() => { setOcf(300); setCapex(280); }} className="border border-stone-200 dark:border-stone-800 rounded-xl p-2 bg-stone-50 dark:bg-stone-950 text-stone-800 dark:text-stone-200 text-xs">Nhà máy sản xuất<br/><span className="text-stone-500 dark:text-stone-400">Tạo tiền cao nhưng phải đầu tư lớn</span></button>
       </div>
     </div>
   );
@@ -124,12 +124,12 @@ function FCFAnimation() {
 export default function FreeCashFlowPage() {
   return (
     <LessonPageLayout lesson={LESSON} quiz={QUIZ}>
-      <div className="space-y-8 text-stone-700 leading-relaxed">
+      <div className="space-y-8 text-stone-700 dark:text-stone-300 leading-relaxed">
 
         <section className="space-y-4">
-          <div className="rounded-xl border border-emerald-100 bg-emerald-50 p-4">
-            <h3 className="text-sm font-bold uppercase tracking-wide text-emerald-800 mb-2">Hiểu nhanh</h3>
-            <p className="text-sm leading-relaxed text-stone-700">
+          <div className="rounded-xl border border-emerald-200 dark:border-emerald-900/60 bg-emerald-50 dark:bg-emerald-950/40 p-4">
+            <h3 className="text-sm font-bold uppercase tracking-wide text-emerald-800 dark:text-emerald-300 mb-2">Hiểu nhanh</h3>
+            <p className="text-sm leading-relaxed text-stone-700 dark:text-stone-200">
               Dòng tiền tự do là số tiền doanh nghiệp còn lại sau khi đã chi phần cần thiết để duy trì và phát triển hoạt động. Lãi trên giấy chưa đủ; quan trọng là cuối cùng còn bao nhiêu tiền thật.
             </p>
           </div>

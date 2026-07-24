@@ -111,15 +111,15 @@ const cashflowSections = [
 export default function BaoLuuChuyenPage() {
   return (
     <LessonPageLayout lesson={LESSON} quiz={QUIZ}>
-      <div className="space-y-8 text-stone-700 leading-relaxed">
+      <div className="space-y-8 text-stone-700 dark:text-stone-300 leading-relaxed">
 
         <section className="space-y-4">
           <h2 className="text-xl font-bold text-stone-900 dark:text-stone-100">Lợi nhuận là câu chuyện kế toán, tiền mặt là sức khỏe thật</h2>
           <p>Câu này tóm gọn lý do Báo cáo Lưu chuyển Tiền tệ tồn tại. Lợi nhuận trên báo cáo lãi lỗ có thể bị ảnh hưởng bởi chính sách kế toán như ghi nhận doanh thu, khấu hao, dự phòng nợ xấu. Tiền mặt trong tài khoản thì khó “trang điểm” hơn.</p>
           <p>BCLCTT trả lời câu hỏi đơn giản nhưng quan trọng nhất: <strong>tiền đã đi đâu trong kỳ này?</strong></p>
-          <div className="rounded-xl border border-cyan-100 bg-cyan-50 p-4">
-            <h3 className="text-sm font-bold uppercase tracking-wide text-cyan-800 mb-2">Hiểu nhanh</h3>
-            <p className="text-sm leading-relaxed text-stone-700">
+          <div className="rounded-xl border border-cyan-200 dark:border-cyan-900/60 bg-cyan-50 dark:bg-cyan-950/40 p-4">
+            <h3 className="text-sm font-bold uppercase tracking-wide text-cyan-800 dark:text-cyan-300 mb-2">Hiểu nhanh</h3>
+            <p className="text-sm leading-relaxed text-stone-700 dark:text-stone-200">
               OCF là dòng tiền kinh doanh, CFI là dòng tiền đầu tư, CFF là dòng tiền tài chính. Ba phần này cộng lại cho biết tiền mặt của doanh nghiệp tăng hay giảm trong kỳ.
             </p>
           </div>
@@ -135,9 +135,9 @@ export default function BaoLuuChuyenPage() {
               { step: "± Thay đổi vốn lưu động", note: "Phải thu tăng = tiền chưa về. Phải trả tăng = chưa trả tiền. Tồn kho tăng = tiền đã nằm trong hàng." },
               { step: "= Dòng tiền kinh doanh", note: "Tiền mặt thực tế từ hoạt động kinh doanh" },
             ].map(r => (
-              <div key={r.step} className="pl-4 border-l-2 border-stone-200 text-stone-700">
+              <div key={r.step} className="pl-4 border-l-2 border-stone-200 dark:border-stone-700 text-stone-800 dark:text-stone-200">
                 <div>{r.step}</div>
-                {r.note && <div className="text-xs text-stone-500 font-sans">{r.note}</div>}
+                {r.note && <div className="text-xs text-stone-500 dark:text-stone-400 font-sans">{r.note}</div>}
               </div>
             ))}
           </div>
@@ -145,8 +145,8 @@ export default function BaoLuuChuyenPage() {
 
         <section className="space-y-4">
           <h2 className="text-xl font-bold text-stone-900 dark:text-stone-100">Từ lợi nhuận ròng đến dòng tiền kinh doanh - ví dụ</h2>
-          <div className="bg-stone-900 rounded-2xl p-4 space-y-1.5">
-            <div className="text-stone-500 text-xs font-bold uppercase tracking-widest mb-2">Phương pháp gián tiếp (ví dụ minh họa)</div>
+          <div className="bg-stone-900 dark:bg-stone-900 border border-stone-800 rounded-2xl p-4 space-y-1.5">
+            <div className="text-amber-400 text-xs font-bold uppercase tracking-widest mb-2">Phương pháp gián tiếp (ví dụ minh họa)</div>
             {[
               { label: "Lợi nhuận ròng", val: "+100 tỷ" },
               { label: "+ Khấu hao (không dùng tiền mặt)", val: "+30 tỷ" },
@@ -155,13 +155,13 @@ export default function BaoLuuChuyenPage() {
               { label: "± Thay đổi Tồn kho", val: "−15 tỷ" },
             ].map(r => (
               <div key={r.label} className="flex justify-between items-center text-sm">
-                <span className="text-stone-500 text-xs">{r.label}</span>
-                <span className="font-bold text-sm text-stone-300">{r.val}</span>
+                <span className="text-stone-400 text-xs">{r.label}</span>
+                <span className="font-bold text-sm text-stone-200">{r.val}</span>
               </div>
             ))}
             <div className="border-t border-stone-700 pt-2 flex justify-between items-center">
               <span className="text-white font-bold text-sm">= Dòng tiền kinh doanh</span>
-              <span className="font-bold text-xl text-stone-200">+95 tỷ</span>
+              <span className="font-bold text-xl text-emerald-400">+95 tỷ</span>
             </div>
           </div>
         </section>
@@ -169,26 +169,26 @@ export default function BaoLuuChuyenPage() {
         <section className="space-y-4">
           <h2 className="text-xl font-bold text-stone-900 dark:text-stone-100">3 phần của Báo cáo lưu chuyển tiền tệ</h2>
           {cashflowSections.map(sec => (
-            <div key={sec.key} className="border border-stone-200 rounded-xl p-5 space-y-4">
+            <div key={sec.key} className="border border-stone-200 dark:border-stone-800 bg-white dark:bg-stone-900 rounded-xl p-5 space-y-4">
               <div>
-                <div className="font-bold text-base text-stone-800">{sec.title}</div>
-                <p className="text-sm text-stone-600 mt-1">{sec.desc}</p>
+                <div className="font-bold text-base text-stone-800 dark:text-stone-100">{sec.title}</div>
+                <p className="text-sm text-stone-600 dark:text-stone-400 mt-1">{sec.desc}</p>
               </div>
               <div className="space-y-2">
                 {sec.items.map(item => (
-                  <div key={item.label} className="flex justify-between items-center bg-stone-50 rounded-xl px-3 py-2.5">
-                    <span className="text-stone-600 text-xs">{item.label}</span>
-                    <span className="font-bold text-sm text-stone-700">{item.val}</span>
+                  <div key={item.label} className="flex justify-between items-center bg-stone-50 dark:bg-stone-950 rounded-xl px-3 py-2.5">
+                    <span className="text-stone-600 dark:text-stone-400 text-xs">{item.label}</span>
+                    <span className="font-bold text-sm text-stone-800 dark:text-stone-200">{item.val}</span>
                   </div>
                 ))}
-                <div className="flex justify-between items-center rounded-xl px-3 py-2.5 font-bold border border-stone-200 bg-stone-50">
-                  <span className="text-stone-700">= Tổng</span>
-                  <span className="text-stone-800">{sec.total}</span>
+                <div className="flex justify-between items-center rounded-xl px-3 py-2.5 font-bold border border-stone-200 dark:border-stone-800 bg-stone-100 dark:bg-stone-800">
+                  <span className="text-stone-700 dark:text-stone-300">= Tổng</span>
+                  <span className="text-stone-900 dark:text-stone-100">{sec.total}</span>
                 </div>
               </div>
               <div className="space-y-1">
-                <div className="border-l-2 border-stone-300 pl-3 text-xs text-stone-600">Tốt: {sec.signalGood}</div>
-                <div className="border-l-2 border-stone-300 pl-3 text-xs text-stone-600">Cảnh báo: {sec.signalBad}</div>
+                <div className="border-l-2 border-emerald-500 pl-3 text-xs text-stone-600 dark:text-stone-300">Tốt: {sec.signalGood}</div>
+                <div className="border-l-2 border-amber-500 pl-3 text-xs text-stone-600 dark:text-stone-300">Cảnh báo: {sec.signalBad}</div>
               </div>
             </div>
           ))}
@@ -202,10 +202,10 @@ export default function BaoLuuChuyenPage() {
               { range: "0.8-1.2 lần", tag: "Bình thường", desc: "Phần lớn lợi nhuận chuyển được thành tiền" },
               { range: "Dưới 0.5 lần", tag: "Cảnh báo", desc: "Tiền kẹt trong vốn lưu động hoặc có vấn đề kế toán" },
             ].map(r => (
-              <div key={r.range} className="border border-stone-200 rounded-xl p-4">
-                <div className="font-mono text-xs font-bold text-stone-800 mb-1">{r.range}</div>
-                <div className="font-semibold text-sm text-stone-700 mb-1">{r.tag}</div>
-                <p className="text-xs text-stone-500">{r.desc}</p>
+              <div key={r.range} className="border border-stone-200 dark:border-stone-800 bg-white dark:bg-stone-900 rounded-xl p-4">
+                <div className="font-mono text-xs font-bold text-emerald-600 dark:text-emerald-400 mb-1">{r.range}</div>
+                <div className="font-semibold text-sm text-stone-800 dark:text-stone-100 mb-1">{r.tag}</div>
+                <p className="text-xs text-stone-500 dark:text-stone-400">{r.desc}</p>
               </div>
             ))}
           </div>
@@ -213,8 +213,8 @@ export default function BaoLuuChuyenPage() {
 
         <section className="space-y-4">
           <h2 className="text-xl font-bold text-stone-900 dark:text-stone-100">Vinamilk - Đọc BCLCTT thực tế</h2>
-          <div className="bg-stone-900 rounded-2xl p-5 text-sm space-y-3">
-            <div className="text-stone-500 text-xs font-bold uppercase tracking-widest">Vinamilk (VNM) - BCLCTT 2023 (ước lượng minh họa)</div>
+          <div className="bg-stone-900 border border-stone-800 rounded-2xl p-5 text-sm space-y-3">
+            <div className="text-amber-400 text-xs font-bold uppercase tracking-widest">Vinamilk (VNM) - BCLCTT 2023 (ước lượng minh họa)</div>
             {[
               { label: "Dòng tiền kinh doanh", val: "+3,200 tỷ", note: "Kinh doanh lành mạnh, tiền về đều đặn" },
               { label: "Dòng tiền đầu tư", val: "−1,800 tỷ", note: "Đầu tư mở rộng sản xuất" },
@@ -223,19 +223,19 @@ export default function BaoLuuChuyenPage() {
             ].map(r => (
               <div key={r.label} className="border-b border-stone-800 pb-3 last:border-0">
                 <div className="flex justify-between">
-                  <span className="text-stone-500">{r.label}</span>
+                  <span className="text-stone-400">{r.label}</span>
                   <span className="font-bold text-white">{r.val}</span>
                 </div>
-                <div className="text-stone-500 text-xs mt-0.5">{r.note}</div>
+                <div className="text-stone-400 text-xs mt-0.5">{r.note}</div>
               </div>
             ))}
           </div>
-          <p className="text-sm text-stone-500">Dòng tiền kinh doanh / lợi nhuận ròng khoảng 1.2 lần → chất lượng lợi nhuận tốt. Dòng tiền tài chính âm vì Vinamilk trả cổ tức cao - dấu hiệu doanh nghiệp trưởng thành, không cần vay thêm để hoạt động.</p>
+          <p className="text-sm text-stone-600 dark:text-stone-400">Dòng tiền kinh doanh / lợi nhuận ròng khoảng 1.2 lần → chất lượng lợi nhuận tốt. Dòng tiền tài chính âm vì Vinamilk trả cổ tức cao - dấu hiệu doanh nghiệp trưởng thành, không cần vay thêm để hoạt động.</p>
         </section>
 
-        <div className="border-l-2 border-stone-300 pl-4 space-y-2">
+        <div className="border-l-2 border-stone-300 dark:border-stone-700 pl-4 space-y-2">
           <h3 className="font-bold text-stone-800 dark:text-stone-200 mb-3">3 điều cần nhớ</h3>
-          <div className="space-y-1 text-sm text-stone-700">
+          <div className="space-y-1 text-sm text-stone-700 dark:text-stone-300">
             <div> - BCLCTT = dòng tiền kinh doanh + dòng tiền đầu tư + dòng tiền tài chính = thay đổi tiền mặt trong kỳ</div>
             <div> - Dòng tiền kinh doanh cao hơn lợi nhuận ròng thường là dấu hiệu chất lượng lợi nhuận tốt</div>
             <div> - Lợi nhuận có thể đẹp trên giấy, nhưng dòng tiền mới cho biết doanh nghiệp có thật sự tạo tiền hay không</div>
