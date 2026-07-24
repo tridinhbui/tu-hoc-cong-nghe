@@ -824,8 +824,8 @@ export default function HomePage() {
         </section>
 
         {/* ── SOCIAL PROOF ── */}
-        <section className="landing-band landing-band-glass landing-band-divider backdrop-blur-sm py-12 lg:py-16 relative border-y border-stone-150/40 dark:border-stone-850/40 font-sans">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid gap-5 lg:grid-cols-[minmax(0,1fr)_minmax(280px,310px)] lg:items-start">
+        <section className="landing-band landing-band-glass landing-band-divider backdrop-blur-sm py-6 sm:py-8 relative border-y border-stone-150/40 dark:border-stone-850/40 font-sans">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid gap-4 lg:grid-cols-[minmax(0,1fr)_minmax(260px,290px)] lg:items-start">
             <ScrollReveal>
               <p className="text-xs font-black text-emerald-600 dark:text-emerald-400 uppercase tracking-widest mb-1.5">
                 Cộng đồng thật

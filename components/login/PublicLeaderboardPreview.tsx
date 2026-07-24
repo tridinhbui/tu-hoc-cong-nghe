@@ -81,9 +81,9 @@ export default function PublicLeaderboardPreview() {
   const podium = [top[1] || top[0], top[0], top[2] || top[0]].filter(Boolean);
 
   const podiumMeta = [
-    { rank: 2, height: "h-16 sm:h-20", tone: "from-slate-300 via-slate-200 to-slate-100 text-slate-900 border-slate-300", ring: "ring-slate-300", title: "BẠC 🥈" },
-    { rank: 1, height: "h-22 sm:h-26", tone: "from-amber-400 via-amber-300 to-yellow-100 text-amber-950 border-amber-400", ring: "ring-amber-300", title: "VÀNG 🥇" },
-    { rank: 3, height: "h-14 sm:h-16", tone: "from-orange-300 via-amber-200 to-orange-100 text-orange-950 border-orange-300", ring: "ring-orange-300", title: "ĐỒNG 🥉" },
+    { rank: 2, height: "h-8 sm:h-10", tone: "from-slate-300 via-slate-200 to-slate-100 text-slate-900 border-slate-300", ring: "ring-slate-300", title: "BẠC 🥈" },
+    { rank: 1, height: "h-12 sm:h-14", tone: "from-amber-400 via-amber-300 to-yellow-100 text-amber-950 border-amber-400", ring: "ring-amber-300", title: "VÀNG 🥇" },
+    { rank: 3, height: "h-6 sm:h-8", tone: "from-orange-300 via-amber-200 to-orange-100 text-orange-950 border-orange-300", ring: "ring-orange-300", title: "ĐỒNG 🥉" },
   ];
 
   function handleCheerUser(userId: string, e: React.MouseEvent) {
@@ -158,94 +158,93 @@ export default function PublicLeaderboardPreview() {
       </div>
 
       {/* Main Body */}
-      <div className="p-3.5 sm:p-4 space-y-3 font-sans">
+      <div className="p-2.5 sm:p-3 space-y-2 font-sans">
         {/* Podium Stage Box */}
-        <div className="rounded-2xl border border-stone-200/80 dark:border-stone-800 bg-stone-50/70 dark:bg-stone-950/40 p-3 sm:p-4 relative overflow-hidden">
-          <div className="mb-2 flex items-center justify-between">
+        <div className="rounded-2xl border border-stone-200/80 dark:border-stone-800 bg-stone-50/70 dark:bg-stone-950/40 p-2.5 sm:p-3 relative overflow-hidden">
+          <div className="mb-1.5 flex items-center justify-between">
             <div>
-              <p className="text-[10px] font-black uppercase tracking-widest text-emerald-600 dark:text-emerald-400">
+              <p className="text-[9px] font-black uppercase tracking-widest text-emerald-600 dark:text-emerald-400">
                 BỤC VINH QUANG 🏆
               </p>
-              <p className="text-xs sm:text-sm font-black text-stone-900 dark:text-stone-100 mt-0.5">
+              <p className="text-xs font-black text-stone-900 dark:text-stone-100 mt-0.5">
                 {metric === "xp" && "Học viên xuất sắc nhất tuần này"}
                 {metric === "streak" && "Top học viên kiên trì giữ chuỗi streak"}
                 {metric === "lessons" && "Học viên chinh phục nhiều bài học nhất"}
               </p>
             </div>
-            <Crown className="w-6 h-6 text-amber-400 animate-bounce shrink-0" />
+            <Crown className="w-5 h-5 text-amber-400 animate-bounce shrink-0" />
           </div>
 
           {/* 3D Animated Podium Grid */}
-          <div className="grid grid-cols-3 items-end gap-2 sm:gap-3 min-h-[150px] pt-2">
+          <div className="grid grid-cols-3 items-end gap-1.5 sm:gap-2 min-h-[90px] pt-1">
             {podium.map((entry, idx) => {
               const meta = podiumMeta[idx];
               const userCheers = cheers[entry.user_id] || 0;
-              const isSelected = selectedUser?.user_id === entry.user_id;
 
               return (
                 <motion.div
                   key={entry.user_id + metric}
-                  initial={{ opacity: 0, y: 20 }}
+                  initial={{ opacity: 0, y: 15 }}
                   animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.35, delay: idx * 0.08 }}
+                  transition={{ duration: 0.3, delay: idx * 0.06 }}
                   onClick={() => setSelectedUser(entry)}
                   className="group cursor-pointer flex flex-col items-center relative"
                 >
                   {/* Floating User Avatar Pod */}
-                  <div className="relative mb-2 flex flex-col items-center">
+                  <div className="relative mb-1 flex flex-col items-center">
                     {meta.rank === 1 && (
-                      <span className="absolute -top-6 text-xl animate-bounce z-20">👑</span>
+                      <span className="absolute -top-4 text-sm animate-bounce z-20">👑</span>
                     )}
 
                     <div className="relative">
-                      <div className={`absolute -inset-2 rounded-full bg-gradient-to-r ${meta.tone} opacity-50 blur-md group-hover:opacity-100 transition-opacity`} />
+                      <div className={`absolute -inset-1.5 rounded-full bg-gradient-to-r ${meta.tone} opacity-40 blur-xs group-hover:opacity-100 transition-opacity`} />
                       {isValidAvatar(entry.avatarUrl) ? (
                         <Image
                           src={entry.avatarUrl}
                           alt={entry.name}
-                          width={56}
-                          height={56}
-                          className={`relative h-12 w-12 sm:h-14 sm:w-14 rounded-full border-2 border-white dark:border-stone-900 object-cover shadow-lg ring-4 ${meta.ring}`}
+                          width={40}
+                          height={40}
+                          className={`relative h-9 w-9 sm:h-10 sm:w-10 rounded-full border-2 border-white dark:border-stone-900 object-cover shadow-md ring-2 ${meta.ring}`}
                         />
                       ) : (
                         <div
-                          className={`relative flex h-12 w-12 sm:h-14 sm:w-14 items-center justify-center rounded-full border-2 border-white dark:border-stone-900 bg-gradient-to-br ${meta.tone} text-base font-black shadow-lg ring-4 ${meta.ring}`}
+                          className={`relative flex h-9 w-9 sm:h-10 sm:w-10 items-center justify-center rounded-full border-2 border-white dark:border-stone-900 bg-gradient-to-br ${meta.tone} text-xs font-black shadow-md ring-2 ${meta.ring}`}
                         >
                           {entry.name.trim().charAt(0).toUpperCase() || "?"}
                         </div>
                       )}
                       <span
-                        className={`absolute -bottom-1 -right-1 flex h-6 w-6 items-center justify-center rounded-full border-2 border-white dark:border-stone-900 bg-gradient-to-br ${meta.tone} text-xs font-black shadow-md`}
+                        className={`absolute -bottom-0.5 -right-0.5 flex h-4 w-4 items-center justify-center rounded-full border border-white dark:border-stone-900 bg-gradient-to-br ${meta.tone} text-[9px] font-black shadow-xs`}
                       >
                         {meta.rank}
                       </span>
                     </div>
 
-                    <p className="mt-2 text-xs sm:text-sm font-black text-stone-900 dark:text-stone-100 text-center truncate max-w-[90px] sm:max-w-[120px]">
+                    <p className="mt-1 text-[11px] font-black text-stone-900 dark:text-stone-100 text-center truncate max-w-[80px] sm:max-w-[100px] leading-none">
                       {entry.name}
                     </p>
-                    <p className="text-[10px] sm:text-xs font-bold text-emerald-600 dark:text-emerald-400">
+                    <p className="text-[9px] font-bold text-emerald-600 dark:text-emerald-400 mt-0.5">
                       {getMetricUnit(entry.value)}
                     </p>
 
-                    {/* Interactive Cheer Button on Hover/Touch */}
+                    {/* Interactive Cheer Button */}
                     <button
                       onClick={(e) => handleCheerUser(entry.user_id, e)}
-                      className="mt-1 inline-flex items-center gap-1 text-[9px] font-black px-2 py-0.5 rounded-full bg-rose-50 dark:bg-rose-950/80 border border-rose-300 dark:border-rose-800 text-rose-600 dark:text-rose-300 hover:scale-110 active:scale-95 transition-transform shadow-xs"
+                      className="mt-0.5 inline-flex items-center gap-0.5 text-[8px] font-black px-1.5 py-0.2 rounded-full bg-rose-50 dark:bg-rose-950/80 border border-rose-300 dark:border-rose-800 text-rose-600 dark:text-rose-300 hover:scale-105 active:scale-95 transition-transform shadow-2xs"
                       title="Bấm để cổ vũ học viên"
                     >
-                      <Heart className="w-3 h-3 fill-rose-500 text-rose-500" />
+                      <Heart className="w-2.5 h-2.5 fill-rose-500 text-rose-500" />
                       <span>{userCheers > 0 ? `+${userCheers}` : "Thả tim"}</span>
                     </button>
                   </div>
 
                   {/* 3D Pillar */}
                   <div
-                    className={`w-full rounded-t-2xl bg-gradient-to-b ${meta.tone} border-t-2 ${meta.tone} flex items-center justify-center p-2 shadow-inner backdrop-blur-md transition-all duration-300 group-hover:brightness-110 ${meta.height}`}
+                    className={`w-full rounded-t-xl bg-gradient-to-b ${meta.tone} border-t-2 ${meta.tone} flex items-center justify-center p-1 shadow-inner backdrop-blur-md transition-all duration-300 group-hover:brightness-110 ${meta.height}`}
                   >
                     <div className="text-center">
-                      <Medal className="mx-auto w-5 h-5 sm:w-6 sm:h-6 opacity-90" />
-                      <p className="mt-0.5 text-[10px] font-black uppercase tracking-wider">{meta.title}</p>
+                      <Medal className="mx-auto w-3.5 h-3.5 sm:w-4 sm:h-4 opacity-90" />
+                      <p className="text-[8px] font-black uppercase tracking-wider">{meta.title}</p>
                     </div>
                   </div>
                 </motion.div>
