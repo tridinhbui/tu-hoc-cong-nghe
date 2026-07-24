@@ -3,6 +3,7 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { AnimatePresence, motion } from "framer-motion";
 import { toast } from "sonner";
 import {
   ArrowLeft,
@@ -27,6 +28,7 @@ import {
   X,
   Zap,
   Clock3,
+  ChevronDown,
   CircleGauge,
 } from "lucide-react";
 import { createClient } from "@/lib/supabase";
@@ -46,10 +48,54 @@ import {
   type CommunityPostComment,
 } from "@/lib/supabase-community";
 import { isValidAvatar } from "@/lib/avatar-utils";
+import { animateCountTo } from "@/lib/animate-count";
 
 interface SessionUser {
   id: string;
   user_metadata?: { full_name?: string; avatar_url?: string };
+}
+
+function AnimatedCounter({ value, className = "" }: { value: number; className?: string }) {
+  const [displayValue, setDisplayValue] = useState(0);
+  const cancelledRef = useRef(false);
+
+  useEffect(() => {
+    cancelledRef.current = false;
+    animateCountTo(value, setDisplayValue, cancelledRef);
+    return () => {
+      cancelledRef.current = true;
+    };
+  }, [value]);
+
+  return <span className={`tabular-nums ${className}`}>{displayValue.toLocaleString("vi-VN")}</span>;
+}
+
+function FeedSkeleton() {
+  return (
+    <div className="space-y-4 py-2">
+      {Array.from({ length: 3 }, (_, index) => (
+        <div
+          key={index}
+          className="overflow-hidden rounded-[24px] bg-white p-5 shadow-[0_16px_34px_-28px_rgba(15,23,42,0.22)] ring-1 ring-stone-100/70 dark:bg-stone-900/85 dark:ring-stone-800/60"
+        >
+          <div className="flex items-start gap-4">
+            <div className="h-11 w-11 shrink-0 animate-pulse rounded-full bg-stone-200 dark:bg-stone-800" />
+            <div className="min-w-0 flex-1">
+              <div className="h-4 w-36 animate-pulse rounded-full bg-stone-200 dark:bg-stone-800" />
+              <div className="mt-4 space-y-2">
+                <div className="h-3 w-full animate-pulse rounded-full bg-stone-100 dark:bg-stone-800" />
+                <div className="h-3 w-4/5 animate-pulse rounded-full bg-stone-100 dark:bg-stone-800" />
+              </div>
+              <div className="mt-5 flex gap-2">
+                <div className="h-8 w-28 animate-pulse rounded-full bg-stone-100 dark:bg-stone-800" />
+                <div className="h-8 w-24 animate-pulse rounded-full bg-stone-100 dark:bg-stone-800" />
+              </div>
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+  );
 }
 
 function Avatar({ name, avatarUrl }: { name?: string | null; avatarUrl?: string | null }) {
@@ -241,6 +287,9 @@ export default function CommunityFeedClient({ embedded = false }: { embedded?: b
   const [loadingComments, setLoadingComments] = useState<Record<number, boolean>>({});
   const [postingComment, setPostingComment] = useState<Record<number, boolean>>({});
   const [reactionPickerFor, setReactionPickerFor] = useState<number | null>(null);
+  const [reactionBurstFor, setReactionBurstFor] = useState<number | null>(null);
+  const [topicMenuOpen, setTopicMenuOpen] = useState(false);
+  const [templateMenuOpen, setTemplateMenuOpen] = useState(false);
   const userIdRef = useRef<string | null>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
 
@@ -380,6 +429,10 @@ export default function CommunityFeedClient({ embedded = false }: { embedded?: b
     );
 
     setReactionPickerFor(null);
+    if (!sameReaction) {
+      setReactionBurstFor(post.id);
+      window.setTimeout(() => setReactionBurstFor((current) => (current === post.id ? null : current)), 650);
+    }
     try {
       if (sameReaction) {
         await removeReaction(post.id, user.id);
@@ -481,8 +534,34 @@ export default function CommunityFeedClient({ embedded = false }: { embedded?: b
 
   return (
     <div className={shellClass}>
+      <style>{`
+        @keyframes finsocial-gradient-drift {
+          0% { background-position: 0% 50%; }
+          100% { background-position: 100% 50%; }
+        }
+        @keyframes finsocial-shimmer {
+          0% { transform: translateX(-120%); }
+          100% { transform: translateX(220%); }
+        }
+        .finsocial-hero-gradient {
+          background-size: 220% 220%;
+          animation: finsocial-gradient-drift 18s ease-in-out infinite alternate;
+        }
+        .finsocial-progress-shimmer {
+          position: relative;
+          overflow: hidden;
+        }
+        .finsocial-progress-shimmer::after {
+          content: "";
+          position: absolute;
+          inset: 0;
+          width: 42%;
+          background: linear-gradient(90deg, transparent, rgba(255,255,255,0.42), transparent);
+          animation: finsocial-shimmer 2.6s ease-in-out infinite;
+        }
+      `}</style>
       {!embedded && (
-        <div className="border-b border-stone-200/70 bg-white/90 backdrop-blur-xl dark:border-stone-800/70 dark:bg-stone-950/85">
+        <div className="finsocial-hero-gradient border-b border-stone-200/70 bg-[radial-gradient(circle_at_16%_20%,rgba(16,185,129,0.10),transparent_26%),radial-gradient(circle_at_88%_12%,rgba(59,130,246,0.10),transparent_24%),linear-gradient(120deg,rgba(255,255,255,0.94),rgba(250,250,249,0.88),rgba(255,255,255,0.94))] backdrop-blur-xl dark:border-stone-800/70 dark:bg-[radial-gradient(circle_at_16%_20%,rgba(16,185,129,0.14),transparent_26%),radial-gradient(circle_at_88%_12%,rgba(139,92,246,0.12),transparent_24%),linear-gradient(120deg,rgba(12,10,9,0.92),rgba(28,25,23,0.88),rgba(12,10,9,0.92))]">
           <div className="max-w-6xl mx-auto px-4 sm:px-6 py-6">
             <Link href="/dashboard" className="text-stone-500 dark:text-stone-400 hover:opacity-70 text-sm font-semibold flex items-center gap-1 w-fit">
               <ArrowLeft className="w-4 h-4" /> Về Dashboard
@@ -506,15 +585,19 @@ export default function CommunityFeedClient({ embedded = false }: { embedded?: b
                   { label: "Cảm xúc", value: totalReactions },
                   { label: "Bình luận", value: totalComments },
                 ].map((item) => (
-                  <div
+                  <motion.div
                     key={item.label}
                     className={`rounded-[18px] px-3 py-3 text-center shadow-[0_10px_22px_-22px_rgba(15,23,42,0.16)] ${item.label === "Bài viết" ? "bg-sky-50 dark:bg-sky-950/25" : item.label === "Cảm xúc" ? "bg-amber-50 dark:bg-amber-950/25" : "bg-violet-50 dark:bg-violet-950/25"}`}
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    whileHover={{ y: -4 }}
+                    transition={{ type: "spring", stiffness: 360, damping: 26 }}
                   >
                     <p className={`text-2xl font-black ${item.label === "Bài viết" ? "text-sky-600 dark:text-sky-300" : item.label === "Cảm xúc" ? "text-amber-600 dark:text-amber-300" : "text-violet-600 dark:text-violet-300"}`}>
-                      {item.value}
+                      <AnimatedCounter value={item.value} />
                     </p>
                     <p className="text-[10px] font-bold uppercase tracking-wide text-stone-400">{item.label}</p>
-                  </div>
+                  </motion.div>
                 ))}
               </div>
             </div>
@@ -526,26 +609,38 @@ export default function CommunityFeedClient({ embedded = false }: { embedded?: b
         <main className="min-w-0">
         {!embedded && (
           <div className="mb-5 grid gap-3 sm:grid-cols-[1.1fr_0.9fr_0.9fr]">
-            <div className="rounded-[22px] bg-white p-4 shadow-[0_14px_30px_-26px_rgba(15,23,42,0.2)] dark:bg-stone-900/80">
+            <motion.div
+              className="rounded-[22px] bg-white p-4 shadow-[0_14px_30px_-26px_rgba(15,23,42,0.2)] dark:bg-stone-900/80"
+              whileHover={{ y: -4 }}
+              transition={{ type: "spring", stiffness: 360, damping: 28 }}
+            >
               <div className="flex items-center gap-3">
                   <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-stone-100 text-stone-700 ring-1 ring-stone-200 dark:bg-stone-800 dark:text-stone-200 dark:ring-stone-700">
                     <CircleGauge className="h-5 w-5" />
                   </div>
                   <div>
                   <p className="text-[11px] font-black uppercase tracking-[0.16em] text-stone-500 dark:text-stone-400">Streak học tập</p>
-                  <p className="mt-1 text-xl font-black text-stone-950 dark:text-stone-50">{Math.max(0, featuredStreak)} ngày nổi bật</p>
+                  <p className="mt-1 text-xl font-black text-stone-950 dark:text-stone-50"><AnimatedCounter value={Math.max(0, featuredStreak)} /> ngày nổi bật</p>
                 </div>
               </div>
               <div className="mt-3 h-2 overflow-hidden rounded-full bg-stone-100 dark:bg-stone-800">
-                <div className="h-full w-[72%] rounded-full bg-gradient-to-r from-emerald-500 via-teal-400 to-emerald-300 transition-all duration-500" />
+                <div className="finsocial-progress-shimmer h-full w-[72%] rounded-full bg-gradient-to-r from-emerald-500 via-teal-400 to-sky-400 transition-all duration-500" />
               </div>
-            </div>
-            <div className="rounded-[22px] bg-white p-4 shadow-[0_14px_30px_-26px_rgba(15,23,42,0.2)] dark:bg-stone-900/80">
+            </motion.div>
+            <motion.div
+              className="rounded-[22px] bg-white p-4 shadow-[0_14px_30px_-26px_rgba(15,23,42,0.2)] dark:bg-stone-900/80"
+              whileHover={{ y: -4 }}
+              transition={{ type: "spring", stiffness: 360, damping: 28 }}
+            >
               <p className="text-[11px] font-black uppercase tracking-[0.16em] text-stone-400">Chủ đề hoạt động</p>
-              <p className="mt-2 text-2xl font-black text-sky-600 dark:text-sky-300">{activeTopics}</p>
+              <p className="mt-2 text-2xl font-black text-sky-600 dark:text-sky-300"><AnimatedCounter value={activeTopics} /></p>
               <p className="mt-1 text-sm text-stone-500 dark:text-stone-400">đang có nội dung mới trong feed</p>
-            </div>
-            <div className="rounded-[22px] bg-white p-4 shadow-[0_14px_30px_-26px_rgba(15,23,42,0.2)] dark:bg-stone-900/80">
+            </motion.div>
+            <motion.div
+              className="rounded-[22px] bg-white p-4 shadow-[0_14px_30px_-26px_rgba(15,23,42,0.2)] dark:bg-stone-900/80"
+              whileHover={{ y: -4 }}
+              transition={{ type: "spring", stiffness: 360, damping: 28 }}
+            >
               <p className="text-[11px] font-black uppercase tracking-[0.16em] text-stone-400">Hoạt động hôm nay</p>
             <div className="mt-3 grid grid-cols-7 gap-1.5">
               {Array.from({ length: 14 }, (_, i) => (
@@ -565,7 +660,7 @@ export default function CommunityFeedClient({ embedded = false }: { embedded?: b
                 />
               ))}
             </div>
-            </div>
+            </motion.div>
           </div>
         )}
 
@@ -587,11 +682,14 @@ export default function CommunityFeedClient({ embedded = false }: { embedded?: b
                 (() => {
                   const spotlightTone = getToneStyles(getPostAccentTone(post));
                   return (
-                    <button
+                    <motion.button
                       key={`${label}-${post.id}`}
                       type="button"
                       onClick={() => void toggleComments(post.id)}
                       className={`group rounded-[20px] p-3 text-left shadow-[0_8px_18px_-18px_rgba(15,23,42,0.18)] transition duration-200 ease-out hover:-translate-y-1 hover:bg-white dark:hover:bg-stone-900 ${spotlightTone.softSurface} ${spotlightTone.border}`}
+                      whileHover={{ y: -4 }}
+                      whileTap={{ scale: 0.98 }}
+                      transition={{ type: "spring", stiffness: 360, damping: 26 }}
                     >
                       <div className="flex items-center gap-2">
                         <Icon className={`h-4 w-4 ${spotlightTone.icon}`} />
@@ -601,7 +699,7 @@ export default function CommunityFeedClient({ embedded = false }: { embedded?: b
                         {post.content || "Bài viết có hình ảnh"}
                       </p>
                       <p className="mt-2 text-[10px] font-medium text-stone-400">{post.user_name} · {post.reaction_count} cảm xúc</p>
-                    </button>
+                    </motion.button>
                   );
                 })()
               ))}
@@ -621,14 +719,17 @@ export default function CommunityFeedClient({ embedded = false }: { embedded?: b
                   className="w-full rounded-[18px] bg-stone-100/80 py-3 pl-10 pr-3 text-sm font-medium text-stone-900 outline-none transition duration-200 ease-out focus:bg-white focus:ring-2 focus:ring-emerald-400/25 dark:bg-stone-950/75 dark:text-stone-100"
                 />
               </div>
-              <button
+              <motion.button
                 type="button"
                 onClick={() => void refreshFeed()}
                 className="inline-flex items-center justify-center gap-2 rounded-[18px] bg-stone-100 px-4 py-2.5 text-sm font-bold text-stone-700 transition duration-200 ease-out hover:-translate-y-0.5 hover:bg-stone-200 dark:bg-stone-800 dark:text-stone-200 dark:hover:bg-stone-700"
+                whileHover={{ y: -2 }}
+                whileTap={{ scale: 0.97 }}
+                transition={{ type: "spring", stiffness: 420, damping: 24 }}
               >
                 <RefreshCw className="h-4 w-4" />
                 Làm mới
-              </button>
+              </motion.button>
             </div>
             <div className="mt-3 flex gap-2 overflow-x-auto pb-1">
               {TOPICS.map((topic) => {
@@ -636,17 +737,21 @@ export default function CommunityFeedClient({ embedded = false }: { embedded?: b
                 const topicTone = getToneStyles(topic.tone);
                 const isActive = feedFilter === topic.id;
                 return (
-                  <button
+                  <motion.button
                     key={topic.id}
                     type="button"
                     onClick={() => setFeedFilter(topic.id)}
                     className={`inline-flex shrink-0 items-center gap-2 rounded-full border px-3 py-1.5 text-xs font-black transition duration-200 ease-out ${
                       isActive ? topicTone.chipActive : topicTone.chip
                     }`}
+                    layout
+                    whileHover={{ y: -2 }}
+                    whileTap={{ scale: 0.97 }}
+                    transition={{ type: "spring", stiffness: 420, damping: 28 }}
                   >
                     <Icon className={`h-3.5 w-3.5 ${isActive ? "text-white dark:text-stone-950" : topicTone.icon}`} />
                     {topic.label}
-                  </button>
+                  </motion.button>
                 );
               })}
             </div>
@@ -665,51 +770,111 @@ export default function CommunityFeedClient({ embedded = false }: { embedded?: b
                 Public feed
               </span>
             </div>
-            <div className="flex flex-wrap items-center gap-1.5 mb-3">
-              <span className="text-[10px] font-black uppercase text-stone-400 mr-1">Chủ đề:</span>
-              {TOPICS.filter((topic) => topic.id !== "all").map((topic) => {
+            <div className="mb-3 flex flex-wrap items-center gap-2">
+              {(() => {
+                const topic = getTopicMeta(selectedTopic);
                 const Icon = topic.icon;
                 const topicTone = getToneStyles(topic.tone);
-                const isActive = selectedTopic === topic.id;
                 return (
-                  <button
-                    key={topic.id}
-                    type="button"
-                    onClick={() => {
-                      setSelectedTopic(topic.id);
-                      setContent((prev) => (topic.tag && !prev.includes(topic.tag) ? `${topic.tag}${prev.replace(/^#\\S+\\s*/, "")}` : prev));
-                    }}
-                    className={`inline-flex items-center gap-1.5 rounded-full px-2.5 py-1 text-[11px] font-bold transition duration-200 ease-out cursor-pointer ${
-                      isActive ? topicTone.chipActive : topicTone.chip
-                    }`}
-                  >
-                    <Icon className={`h-3.5 w-3.5 ${isActive ? "text-white dark:text-stone-950" : topicTone.icon}`} />
-                    {topic.label}
-                  </button>
-              )})}
-            </div>
-
-              <div className="mb-3 rounded-[18px] bg-stone-50 p-3 dark:bg-stone-950/50">
-                <p className="mb-2 text-[10px] font-black uppercase tracking-[0.14em] text-stone-500 dark:text-stone-400">Mẫu đăng nhanh</p>
-                <div className="grid gap-2 sm:grid-cols-2">
-                {POST_TEMPLATES.map((template) => {
-                  const Icon = template.icon;
-                  const topicTone = getToneStyles(getTopicMeta(template.topic).tone);
-                  return (
-                    <button
-                      key={template.title}
+                  <div className="relative">
+                    <motion.button
                       type="button"
                       onClick={() => {
-                        setSelectedTopic(template.topic);
-                        setContent(template.text);
+                        setTopicMenuOpen((open) => !open);
+                        setTemplateMenuOpen(false);
                       }}
-                      className={`flex items-center gap-2 rounded-[16px] border px-3 py-2 text-left text-xs font-bold shadow-[0_10px_20px_-18px_rgba(15,23,42,0.16)] transition duration-200 ease-out hover:-translate-y-0.5 ${topicTone.softSurface} ${topicTone.border} ${topicTone.soft} hover:shadow-[0_14px_26px_-20px_rgba(15,23,42,0.18)]`}
+                      className={`inline-flex items-center gap-2 rounded-[16px] border px-3 py-2 text-xs font-black ${topicTone.chip}`}
+                      whileHover={{ y: -2 }}
+                      whileTap={{ scale: 0.97 }}
+                      transition={{ type: "spring", stiffness: 420, damping: 28 }}
                     >
-                      <Icon className={`h-3.5 w-3.5 shrink-0 ${topicTone.icon}`} />
-                      {template.title}
-                    </button>
-                  );
-                })}
+                      <Icon className={`h-3.5 w-3.5 ${topicTone.icon}`} />
+                      {topic.label}
+                      <ChevronDown className="h-3.5 w-3.5 opacity-60" />
+                    </motion.button>
+                    <AnimatePresence>
+                      {topicMenuOpen && (
+                        <motion.div
+                          initial={{ opacity: 0, y: 8, scale: 0.98 }}
+                          animate={{ opacity: 1, y: 0, scale: 1 }}
+                          exit={{ opacity: 0, y: 4, scale: 0.98 }}
+                          transition={{ duration: 0.16, ease: "easeOut" }}
+                          className="absolute left-0 top-full z-30 mt-2 w-56 rounded-[18px] bg-white p-1.5 shadow-[0_18px_34px_-24px_rgba(15,23,42,0.35)] ring-1 ring-stone-100 dark:bg-stone-900 dark:ring-stone-800"
+                        >
+                          {TOPICS.filter((item) => item.id !== "all").map((item) => {
+                            const ItemIcon = item.icon;
+                            const itemTone = getToneStyles(item.tone);
+                            const isActive = selectedTopic === item.id;
+                            return (
+                              <button
+                                key={item.id}
+                                type="button"
+                                onClick={() => {
+                                  setSelectedTopic(item.id);
+                                  setTopicMenuOpen(false);
+                                  setContent((prev) => (item.tag && !prev.includes(item.tag) ? `${item.tag}${prev.replace(/^#\\S+\\s*/, "")}` : prev));
+                                }}
+                                className={`flex w-full items-center gap-2 rounded-[14px] px-3 py-2 text-left text-xs font-bold transition hover:bg-stone-50 dark:hover:bg-stone-800 ${isActive ? itemTone.soft : "text-stone-600 dark:text-stone-300"}`}
+                              >
+                                <ItemIcon className={`h-3.5 w-3.5 ${itemTone.icon}`} />
+                                {item.label}
+                              </button>
+                            );
+                          })}
+                        </motion.div>
+                      )}
+                    </AnimatePresence>
+                  </div>
+                );
+              })()}
+
+              <div className="relative">
+                <motion.button
+                  type="button"
+                  onClick={() => {
+                    setTemplateMenuOpen((open) => !open);
+                    setTopicMenuOpen(false);
+                  }}
+                  className="inline-flex items-center gap-2 rounded-[16px] bg-stone-100 px-3 py-2 text-xs font-black text-stone-600 transition hover:bg-stone-200 dark:bg-stone-800 dark:text-stone-300 dark:hover:bg-stone-700"
+                  whileHover={{ y: -2 }}
+                  whileTap={{ scale: 0.97 }}
+                  transition={{ type: "spring", stiffness: 420, damping: 28 }}
+                >
+                  <Lightbulb className="h-3.5 w-3.5 text-amber-500" />
+                  Mẫu nhanh
+                  <ChevronDown className="h-3.5 w-3.5 opacity-60" />
+                </motion.button>
+                <AnimatePresence>
+                  {templateMenuOpen && (
+                    <motion.div
+                      initial={{ opacity: 0, y: 8, scale: 0.98 }}
+                      animate={{ opacity: 1, y: 0, scale: 1 }}
+                      exit={{ opacity: 0, y: 4, scale: 0.98 }}
+                      transition={{ duration: 0.16, ease: "easeOut" }}
+                      className="absolute left-0 top-full z-30 mt-2 w-64 rounded-[18px] bg-white p-1.5 shadow-[0_18px_34px_-24px_rgba(15,23,42,0.35)] ring-1 ring-stone-100 dark:bg-stone-900 dark:ring-stone-800"
+                    >
+                      {POST_TEMPLATES.map((template) => {
+                        const Icon = template.icon;
+                        const topicTone = getToneStyles(getTopicMeta(template.topic).tone);
+                        return (
+                          <button
+                            key={template.title}
+                            type="button"
+                            onClick={() => {
+                              setSelectedTopic(template.topic);
+                              setContent(template.text);
+                              setTemplateMenuOpen(false);
+                            }}
+                            className="flex w-full items-center gap-2 rounded-[14px] px-3 py-2 text-left text-xs font-bold text-stone-600 transition hover:bg-stone-50 dark:text-stone-300 dark:hover:bg-stone-800"
+                          >
+                            <Icon className={`h-3.5 w-3.5 shrink-0 ${topicTone.icon}`} />
+                            {template.title}
+                          </button>
+                        );
+                      })}
+                    </motion.div>
+                  )}
+                </AnimatePresence>
               </div>
             </div>
 
@@ -748,37 +913,44 @@ export default function CommunityFeedClient({ embedded = false }: { embedded?: b
             <div className="flex items-center justify-between mt-3">
               <div className="flex items-center gap-1.5">
                 <EmojiPicker onSelect={(emoji) => setContent((prev) => prev + emoji)} />
-                <button
+                <motion.button
                   type="button"
                   onClick={() => fileInputRef.current?.click()}
                 className="inline-flex items-center gap-1 rounded-[16px] bg-stone-100 px-3 py-2 text-xs font-bold text-stone-600 transition duration-200 ease-out hover:-translate-y-0.5 hover:bg-stone-200 dark:bg-stone-800 dark:text-stone-300 dark:hover:bg-stone-700"
                   title="Đính kèm hình ảnh"
+                  whileHover={{ y: -2 }}
+                  whileTap={{ scale: 0.97 }}
+                  transition={{ type: "spring", stiffness: 420, damping: 24 }}
                 >
                   <ImageIcon className="w-4 h-4 text-emerald-600 dark:text-emerald-400" />
                   <span className="hidden sm:inline">Thêm ảnh</span>
-                </button>
+                </motion.button>
                 <span className={`text-xs ml-1 ${content.length > 440 ? "text-amber-600 font-bold" : "text-stone-400"}`}>{content.length}/500</span>
               </div>
-              <button
+              <motion.button
                 onClick={handlePost}
                 disabled={posting || (!content.trim() && !pendingImage)}
                 className="group inline-flex items-center gap-2 rounded-[16px] bg-stone-950 px-5 py-2.5 text-sm font-black text-white shadow-[0_16px_34px_-24px_rgba(15,23,42,0.45)] transition duration-200 ease-out hover:-translate-y-0.5 hover:bg-stone-800 disabled:opacity-40 cursor-pointer"
+                whileHover={{ y: posting || (!content.trim() && !pendingImage) ? 0 : -2 }}
+                whileTap={{ scale: 0.97 }}
+                transition={{ type: "spring", stiffness: 420, damping: 24 }}
               >
                 <Send className="w-3.5 h-3.5 transition-transform group-hover:translate-x-0.5" /> {posting ? "Đang tải..." : "Đăng"}
-              </button>
+              </motion.button>
             </div>
           </div>
         )}
 
         {loading ? (
-          <p className="text-center text-sm text-stone-400 py-12">Đang tải...</p>
+          <FeedSkeleton />
         ) : visiblePosts.length === 0 ? (
           <p className="text-center text-sm text-stone-400 py-12">
             Chưa có bài chia sẻ nào phù hợp bộ lọc này.
           </p>
         ) : (
           <div className="space-y-4">
-            {visiblePosts.map((post) => {
+            <AnimatePresence initial={false}>
+            {visiblePosts.map((post, index) => {
               const category = getPostCategory(post);
               const topic = getTopicMeta(category);
               const TopicIcon = topic.icon;
@@ -787,9 +959,14 @@ export default function CommunityFeedClient({ embedded = false }: { embedded?: b
               const BadgeIcon = badge.icon;
               const badgeTone = getToneStyles(badge.tone);
               return (
-              <div
+              <motion.div
                 key={post.id}
                 className="group rounded-[24px] bg-white p-5 shadow-[0_16px_34px_-28px_rgba(15,23,42,0.22)] ring-1 ring-stone-100/70 transition duration-200 ease-out hover:-translate-y-1 hover:shadow-[0_20px_42px_-26px_rgba(15,23,42,0.28)] dark:bg-stone-900/85 dark:ring-stone-800/60"
+                initial={{ opacity: 0, y: 18 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -8 }}
+                whileHover={{ y: -4 }}
+                transition={{ type: "spring", stiffness: 340, damping: 28, delay: Math.min(index * 0.08, 0.32) }}
               >
                 <div className="flex items-start gap-4">
                   <Avatar name={post.user_name} avatarUrl={post.user_avatar} />
@@ -860,7 +1037,7 @@ export default function CommunityFeedClient({ embedded = false }: { embedded?: b
 
                     <div className="mt-4 flex flex-wrap items-center gap-2 border-t border-stone-100 pt-4 dark:border-stone-800">
                       <div className="relative">
-                        <button
+                        <motion.button
                           type="button"
                           onClick={() => {
                             if (!user) return;
@@ -872,10 +1049,35 @@ export default function CommunityFeedClient({ embedded = false }: { embedded?: b
                               ? "bg-emerald-50 text-emerald-700 shadow-[0_10px_20px_-18px_rgba(16,185,129,0.35)]"
                               : "bg-stone-100 text-stone-600 hover:-translate-y-0.5 hover:bg-stone-200 dark:bg-stone-800 dark:text-stone-300"
                           }`}
+                          whileHover={{ y: -2 }}
+                          whileTap={{ scale: 0.96 }}
+                          transition={{ type: "spring", stiffness: 420, damping: 24 }}
                         >
                           <span className="text-sm leading-none">{post.my_reaction ?? "👍"}</span>
                           <span>{post.my_reaction ? "Đã thả cảm xúc" : "Thả cảm xúc"}</span>
-                        </button>
+                        </motion.button>
+
+                        <AnimatePresence>
+                          {reactionBurstFor === post.id && (
+                            <div className="pointer-events-none absolute left-6 top-0 z-20">
+                              {["bg-emerald-400", "bg-sky-400", "bg-amber-400", "bg-violet-400", "bg-red-400"].map((color, particleIndex) => (
+                                <motion.span
+                                  key={`${post.id}-${color}`}
+                                  className={`absolute h-1.5 w-1.5 rounded-full ${color}`}
+                                  initial={{ opacity: 0.9, scale: 0.9, x: 0, y: 0 }}
+                                  animate={{
+                                    opacity: 0,
+                                    scale: [1, 1.35, 0.7],
+                                    x: [-18, -7, 7, 18, 26][particleIndex],
+                                    y: [-18, -30, -24, -34, -20][particleIndex],
+                                  }}
+                                  exit={{ opacity: 0 }}
+                                  transition={{ duration: 0.62, ease: "easeOut" }}
+                                />
+                              ))}
+                            </div>
+                          )}
+                        </AnimatePresence>
 
                         {reactionPickerFor === post.id && user && (
                           <div className="absolute left-0 bottom-full z-30 mb-1.5 flex items-center gap-1.5 rounded-full bg-white p-1.5 shadow-[0_12px_24px_-18px_rgba(15,23,42,0.24)] dark:bg-stone-900 animate-in fade-in zoom-in-95 duration-150">
@@ -898,15 +1100,18 @@ export default function CommunityFeedClient({ embedded = false }: { embedded?: b
                         )}
                       </div>
 
-                      <button
+                      <motion.button
                         type="button"
                         onClick={() => void toggleComments(post.id)}
                         className="inline-flex items-center gap-2 rounded-full bg-stone-100 px-3.5 py-2 text-xs font-semibold text-stone-600 transition duration-200 ease-out hover:-translate-y-0.5 hover:bg-stone-200 dark:bg-stone-800 dark:text-stone-300"
+                        whileHover={{ y: -2 }}
+                        whileTap={{ scale: 0.96 }}
+                        transition={{ type: "spring", stiffness: 420, damping: 24 }}
                       >
                         <MessageCircle className="h-3.5 w-3.5" />
                         <span>Bình luận</span>
                         <span>{post.comment_count}</span>
-                      </button>
+                      </motion.button>
 
                       {user?.id === post.user_id && (
                         <button
@@ -993,8 +1198,9 @@ export default function CommunityFeedClient({ embedded = false }: { embedded?: b
                     )}
                   </div>
                 </div>
-              </div>
+              </motion.div>
             )})}
+            </AnimatePresence>
 
             {hasMore && (
               <button

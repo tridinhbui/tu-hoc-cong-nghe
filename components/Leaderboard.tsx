@@ -9,6 +9,8 @@ import { getCombinedGameLeaderboard } from "@/lib/games";
 import { getCareerLeaderboard, type CareerLeaderboardRow } from "@/lib/finance-careers";
 import { isValidAvatar } from "@/lib/avatar-utils";
 
+type LeaderboardUiMetric = LeaderboardMetric | "mastery" | "game" | "career" | "cfa" | "community";
+
 function LeaderboardAvatar({ name, avatarUrl, size = 36 }: { name: string; avatarUrl: string | null; size?: number }) {
   if (isValidAvatar(avatarUrl)) {
     return (
@@ -132,8 +134,9 @@ function AvatarWithFrame({ rank, name, avatarUrl, size = 44 }: { rank: number; n
   );
 }
 
-const TABS: { metric: LeaderboardMetric | "game" | "career" | "cfa" | "community"; label: string; icon: any; format: (v: number) => string }[] = [
+const TABS: { metric: LeaderboardUiMetric; label: string; icon: any; format: (v: number) => string }[] = [
   { metric: "xp", label: "XP Tổng", icon: Zap, format: (v) => `${v} XP` },
+  { metric: "mastery", label: "Năng lực thật", icon: ShieldCheck, format: (v) => `${Math.round(v)} điểm` },
   { metric: "lessons", label: "Số bài", icon: BookOpen, format: (v) => `${v} bài` },
   { metric: "avg_score", label: "Điểm TB", icon: Target, format: (v) => `${Math.round(v)}%` },
   { metric: "streak", label: "Chuỗi ngày", icon: Flame, format: (v) => `${v} ngày` },
@@ -144,8 +147,9 @@ const TABS: { metric: LeaderboardMetric | "game" | "career" | "cfa" | "community
   { metric: "game", label: "Game thủ", icon: Gamepad2, format: (v) => `${v} XP` },
 ];
 
-const LEADERBOARD_TITLES: Record<LeaderboardMetric | "game" | "career" | "cfa" | "community", Record<number, string>> = {
+const LEADERBOARD_TITLES: Record<LeaderboardUiMetric, Record<number, string>> = {
   xp: { 1: "Bậc thầy tài chính", 2: "Chuyên gia đầu tư", 3: "Nhà đầu tư tài năng", 4: "Kiện tướng tích lũy", 5: "Thợ săn XP" },
+  mastery: { 1: "Năng lực thật số 1", 2: "Kiểm tra chuẩn xác", 3: "Nền tảng vững", 4: "Tư duy chắc", 5: "Học thật hiểu thật" },
   lessons: { 1: "Vua sách giáo khoa", 2: "Thủ kho tri thức", 3: "Máy học không ngừng", 4: "Mọt sách chính hiệu", 5: "Người đọc thông thái" },
   avg_score: { 1: "Thần chính xác", 2: "Đại sư câu hỏi", 3: "Bậc thầy câu hỏi", 4: "Chiến thần IQ", 5: "Kẻ hủy diệt đáp án" },
   streak: { 1: "Huyền thoại chuỗi ngày", 2: "Lửa không tắt", 3: "Kiên trì vàng", 4: "Ngọn lửa đam mê", 5: "Học đều mỗi ngày" },
@@ -158,11 +162,11 @@ const LEADERBOARD_TITLES: Record<LeaderboardMetric | "game" | "career" | "cfa" |
 
 const PODIUM_ORDER = [3, 1, 0, 2, 4];
 
-function getLeaderboardTitle(metric: LeaderboardMetric | "game" | "career" | "cfa" | "community", rank: number): string | null {
+function getLeaderboardTitle(metric: LeaderboardUiMetric, rank: number): string | null {
   return LEADERBOARD_TITLES[metric]?.[rank] ?? null;
 }
 
-function getLeaderboardHonor(metric: LeaderboardMetric | "game" | "career" | "cfa" | "community", rank: number) {
+function getLeaderboardHonor(metric: LeaderboardUiMetric, rank: number) {
   const title = getLeaderboardTitle(metric, rank);
 
   const byMetric: Record<string, Record<number, { badge: string; nickname: string }>> = {
@@ -187,6 +191,13 @@ function getLeaderboardHonor(metric: LeaderboardMetric | "game" | "career" | "cf
       18: { badge: "Top 18 Triển Vọng", nickname: "🎓 Thạc Sĩ Tài Chính" },
       19: { badge: "Top 19 Nỗ Lực", nickname: "🛡️ Bậc Thầy Rủi Rủi" },
       20: { badge: "Top 20 Vinh Danh", nickname: "🌟 Ngôi Sao Triển Vọng" },
+    },
+    mastery: {
+      1: { badge: "Sát hạch vàng", nickname: "Học thật hiểu thật" },
+      2: { badge: "Sát hạch bạc", nickname: "Nền tảng rất chắc" },
+      3: { badge: "Sát hạch đồng", nickname: "Tư duy kiểm tra tốt" },
+      4: { badge: "Top 4", nickname: "Người học có chất lượng" },
+      5: { badge: "Top 5", nickname: "Điểm kiểm tra ổn định" },
     },
     lessons: {
       1: { badge: "Vương miện bài học", nickname: "Vua bài học" },
@@ -423,7 +434,7 @@ function getPodiumTone(rank: number) {
 }
 
 export default function Leaderboard({ userId, compact = false }: { userId?: string; compact?: boolean }) {
-  const [metric, setMetric] = useState<LeaderboardMetric | "game" | "career" | "cfa" | "community">("xp");
+  const [metric, setMetric] = useState<LeaderboardUiMetric>("xp");
   const [entries, setEntries] = useState<(LeaderboardRow & { careerTitle?: string; careerEmoji?: string })[]>([]);
   const [myRank, setMyRank] = useState<{ rank: number; value: number } | null>(null);
   const [loading, setLoading] = useState(true);
@@ -441,7 +452,14 @@ export default function Leaderboard({ userId, compact = false }: { userId?: stri
         let top: (LeaderboardRow & { careerTitle?: string; careerEmoji?: string })[] = [];
         let mine: { rank: number; value: number } | null = null;
 
-        if (metric === "game") {
+        if (metric === "mastery") {
+          const [topRows, mineRank] = await Promise.all([
+            getLeaderboardByMetric("avg_score", 20),
+            userId ? getMyLeaderboardRank("avg_score", userId) : Promise.resolve(null),
+          ]);
+          top = topRows.filter((row) => row.value > 0);
+          mine = mineRank;
+        } else if (metric === "game") {
           const gameRows = await getCombinedGameLeaderboard(50);
           top = gameRows.slice(0, 20).map((row) => ({
             user_id: row.user_id,
@@ -587,6 +605,22 @@ export default function Leaderboard({ userId, compact = false }: { userId?: stri
             })}
           </div>
         </div>
+
+        {metric === "mastery" && (
+          <div className="mt-3 rounded-2xl border border-emerald-200 bg-gradient-to-r from-emerald-50 via-white to-sky-50 px-4 py-3 shadow-xs">
+            <div className="flex items-start gap-2.5">
+              <div className="mt-0.5 flex h-8 w-8 shrink-0 items-center justify-center rounded-xl bg-emerald-600 text-white shadow-sm">
+                <ShieldCheck className="h-4 w-4" />
+              </div>
+              <div>
+                <p className="text-xs font-black text-stone-900">Bảng này ưu tiên kiến thức thật</p>
+                <p className="mt-0.5 text-[11px] font-medium leading-relaxed text-stone-500">
+                  XP đo độ chăm học; bảng Năng lực thật dựa trên điểm kiểm tra để phản ánh mức hiểu bài. Bước tiếp theo nên là sát hạch bắt buộc trước khi xác nhận lên cấp.
+                </p>
+              </div>
+            </div>
+          </div>
+        )}
 
         {loading ? (
           <div className="mt-8 flex flex-col items-center justify-center py-10">

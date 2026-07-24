@@ -5,7 +5,7 @@ import Image from "next/image";
 import { isValidAvatar } from "@/lib/avatar-utils";
 import TaiTaiAvatar from "@/components/TaiTaiAvatar";
 import { toast } from "sonner";
-import { Users, Send, X, ImagePlus, Trash2, CornerUpLeft, MoreVertical } from "lucide-react";
+import { Users, Send, X, ImagePlus, Trash2, CornerUpLeft, MoreVertical, Copy, Pin, PinOff, CheckCheck, Pencil } from "lucide-react";
 import { createClient } from "@/lib/supabase";
 import { trackFeatureClick } from "@/lib/feature-events";
 import { uploadChatImage, isAllowedChatImage } from "@/lib/supabase-chat";
@@ -20,6 +20,8 @@ import {
   requestStudyRoomBot,
   sendRoomMessage,
   deleteRoomMessage,
+  updateRoomMessage,
+  setRoomMessagePinned,
   subscribeToRoomMessages,
   type StudyRoomSummary,
   type StudyRoomMessage,
@@ -121,18 +123,12 @@ export default function FloatingStudyGroupChat({ isOpen: controlledIsOpen, onOpe
     void init();
   }, []);
 
-  const handleDeleteStudyMessage = async (msgId: number) => {
-    setMessages((prev) => prev.filter((m) => m.id !== msgId));
-    toast.success("🗑️ Đã thu hồi tin nhắn khỏi nhóm học!");
-    await deleteRoomMessage(msgId).catch((error) => console.error("Error deleting room message:", error));
-  };
-
   useEffect(() => {
     if (!room) return;
     const unsubscribe = subscribeToRoomMessages(
       room.room_id,
       (message) => {
-        setMessages((prev) => (prev.some((m) => m.id === message.id) ? prev : [...prev, message]));
+        setMessages((prev) => (prev.some((m) => m.id === message.id) ? prev.map((m) => (m.id === message.id ? message : m)) : [...prev, message]));
         setOpen((currentlyOpen) => {
           if (!currentlyOpen) setUnreadCount((c) => c + 1);
           return currentlyOpen;
@@ -191,8 +187,30 @@ export default function FloatingStudyGroupChat({ isOpen: controlledIsOpen, onOpe
   }
 
   const [replyingTo, setReplyingTo] = useState<{ id: number; senderName: string; content: string } | null>(null);
+  const [editingMessage, setEditingMessage] = useState<{ id: number; content: string } | null>(null);
   const [reactions, setReactions] = useState<Record<number, Record<string, string[]>>>({});
   const [activeMenuMsgId, setActiveMenuMsgId] = useState<number | null>(null);
+
+  async function copyMessageText(content: string) {
+    const text = content.trim();
+    if (!text) return;
+    try {
+      await navigator.clipboard.writeText(text);
+      toast.success("Đã sao chép tin nhắn");
+    } catch {
+      toast.error("Không sao chép được tin nhắn");
+    }
+  }
+
+  async function togglePinMessage(msg: StudyRoomMessage) {
+    try {
+      const updated = await setRoomMessagePinned(msg.id, !msg.is_pinned);
+      setMessages((prev) => prev.map((m) => (m.id === updated.id ? updated : m)));
+      toast.success(updated.is_pinned ? "Đã ghim tin nhắn" : "Đã bỏ ghim tin nhắn");
+    } catch (error) {
+      toast.error(error instanceof Error ? error.message : "Không cập nhật được ghim");
+    }
+  }
 
   const toggleReaction = (msgId: number, emoji: string) => {
     if (!userId) return;
@@ -218,6 +236,23 @@ export default function FloatingStudyGroupChat({ isOpen: controlledIsOpen, onOpe
   async function handleSend() {
     const rawContent = input.trim();
     if ((!rawContent && !pendingImage) || !room || !userId) return;
+
+    if (editingMessage) {
+      if (!rawContent) return;
+      setSending(true);
+      try {
+        const updated = await updateRoomMessage(editingMessage.id, rawContent);
+        setMessages((prev) => prev.map((m) => (m.id === updated.id ? updated : m)));
+        setInput("");
+        setEditingMessage(null);
+        toast.success("Đã chỉnh sửa tin nhắn");
+      } catch (error) {
+        toast.error(error instanceof Error ? error.message : "Không sửa được tin nhắn");
+      } finally {
+        setSending(false);
+      }
+      return;
+    }
 
     let finalContent = rawContent;
     if (replyingTo && rawContent) {
@@ -468,7 +503,6 @@ export default function FloatingStudyGroupChat({ isOpen: controlledIsOpen, onOpe
                                 ))}
                               </div>
 
-                              {/* Reply Option */}
                               <button
                                 onClick={() => {
                                   setReplyingTo({ id: msg.id, senderName: isMine ? "bạn" : senderName, content: msg.content });
@@ -480,8 +514,43 @@ export default function FloatingStudyGroupChat({ isOpen: controlledIsOpen, onOpe
                                 <span>Trả lời tin nhắn</span>
                               </button>
 
-                              {/* Delete / Recall Option */}
-                              {(isMine || userId) && (
+                              <button
+                                onClick={() => {
+                                  void togglePinMessage(msg);
+                                  setActiveMenuMsgId(null);
+                                }}
+                                className="w-full flex items-center gap-2 px-2 py-1.5 rounded-xl hover:bg-amber-50 dark:hover:bg-amber-950/40 text-stone-800 dark:text-stone-200 font-bold transition-colors text-left text-[11px]"
+                              >
+                                {msg.is_pinned ? <PinOff className="w-3 h-3 text-amber-600 dark:text-amber-400" /> : <Pin className="w-3 h-3 text-amber-600 dark:text-amber-400" />}
+                                <span>{msg.is_pinned ? "Bỏ ghim tin nhắn" : "Ghim tin nhắn"}</span>
+                              </button>
+
+                              <button
+                                onClick={() => {
+                                  void copyMessageText(mainText || msg.content);
+                                  setActiveMenuMsgId(null);
+                                }}
+                                className="w-full flex items-center gap-2 px-2 py-1.5 rounded-xl hover:bg-sky-50 dark:hover:bg-sky-950/40 text-stone-800 dark:text-stone-200 font-bold transition-colors text-left text-[11px]"
+                              >
+                                <Copy className="w-3 h-3 text-sky-600 dark:text-sky-400" />
+                                <span>Sao chép</span>
+                              </button>
+
+                              {isMine && (
+                                <>
+                                <button
+                                  onClick={() => {
+                                    setEditingMessage({ id: msg.id, content: mainText || msg.content });
+                                    setInput(mainText || msg.content);
+                                    setReplyingTo(null);
+                                    setActiveMenuMsgId(null);
+                                  }}
+                                  className="w-full flex items-center gap-2 px-2 py-1.5 rounded-xl hover:bg-sky-50 dark:hover:bg-sky-950/40 text-stone-800 dark:text-stone-200 font-bold transition-colors text-left text-[11px]"
+                                >
+                                  <Pencil className="w-3 h-3 text-sky-600 dark:text-sky-400" />
+                                  <span>Sửa tin nhắn</span>
+                                </button>
+
                                 <button
                                   onClick={async () => {
                                     setActiveMenuMsgId(null);
@@ -498,6 +567,7 @@ export default function FloatingStudyGroupChat({ isOpen: controlledIsOpen, onOpe
                                   <Trash2 className="w-3 h-3 text-rose-500" />
                                   <span>Thu hồi tin nhắn</span>
                                 </button>
+                                </>
                               )}
                             </div>
                           )}
@@ -528,6 +598,13 @@ export default function FloatingStudyGroupChat({ isOpen: controlledIsOpen, onOpe
                           </div>
                         )}
 
+                        {isMine && (
+                          <div className="mt-1 flex items-center justify-end gap-1 text-[9px] font-bold text-stone-400 dark:text-stone-500">
+                            <CheckCheck className="h-3 w-3 text-emerald-500" />
+                            <span>{members.size > 1 ? "Đã nhận trong nhóm" : "Đã gửi"}</span>
+                          </div>
+                        )}
+
                       </div>
                     </div>
                   </div>
@@ -550,6 +627,24 @@ export default function FloatingStudyGroupChat({ isOpen: controlledIsOpen, onOpe
                   onClick={() => setReplyingTo(null)}
                   className="text-stone-400 hover:text-stone-700 dark:hover:text-stone-200 p-0.5 rounded-full cursor-pointer"
                   title="Hủy trả lời"
+                >
+                  <X className="w-3.5 h-3.5" />
+                </button>
+              </div>
+            )}
+            {editingMessage && (
+              <div className="flex items-center justify-between gap-2 px-3 py-1.5 rounded-xl bg-sky-50 dark:bg-sky-950/40 border border-sky-200 dark:border-sky-800 text-xs text-stone-800 dark:text-stone-200 mb-2">
+                <div className="min-w-0 flex-1">
+                  <span className="font-bold text-sky-600 dark:text-sky-400">Đang sửa tin nhắn:</span>
+                  <p className="truncate text-[10px] text-stone-600 dark:text-stone-400 mt-0.2">{editingMessage.content}</p>
+                </div>
+                <button
+                  onClick={() => {
+                    setEditingMessage(null);
+                    setInput("");
+                  }}
+                  className="text-stone-400 hover:text-stone-700 dark:hover:text-stone-200 p-0.5 rounded-full cursor-pointer"
+                  title="Hủy sửa"
                 >
                   <X className="w-3.5 h-3.5" />
                 </button>
@@ -597,7 +692,7 @@ export default function FloatingStudyGroupChat({ isOpen: controlledIsOpen, onOpe
                   }
                 }}
                 onPaste={handlePaste}
-                placeholder="Nhắn gì đó cho nhóm... hoặc /taitai"
+                placeholder={editingMessage ? "Chỉnh lại nội dung tin nhắn..." : "Nhắn gì đó cho nhóm... hoặc /taitai"}
                 maxLength={2000}
                 className="flex-1 min-w-0 px-3 py-2 border border-stone-100 dark:border-stone-850/40 bg-stone-50/50 dark:bg-stone-950/60 text-stone-900 dark:text-stone-100 rounded-xl text-xs focus:outline-none focus:border-emerald-400 dark:focus:border-emerald-700 focus:bg-white dark:focus:bg-stone-950 transition-all placeholder:text-stone-400"
               />

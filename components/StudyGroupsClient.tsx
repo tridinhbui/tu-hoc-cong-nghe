@@ -5,7 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { toast } from "sonner";
-import { ArrowLeft, Shuffle, Users, LogOut, Send, CornerUpLeft, Smile, X, MoreVertical, Trash2 } from "lucide-react";
+import { ArrowLeft, Shuffle, Users, LogOut, Send, CornerUpLeft, Smile, X, MoreVertical, Trash2, Copy, Pin, PinOff, CheckCheck, Pencil } from "lucide-react";
 import { createClient } from "@/lib/supabase";
 import {
   STUDY_ROOM_TOPICS,
@@ -20,6 +20,8 @@ import {
   requestStudyRoomBot,
   sendRoomMessage,
   deleteRoomMessage,
+  updateRoomMessage,
+  setRoomMessagePinned,
   subscribeToRoomMessages,
 } from "@/lib/supabase-study-rooms";
 import { trackFeatureClick } from "@/lib/feature-events";
@@ -166,9 +168,15 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
       })
       .catch((error) => console.error("Error loading room messages:", error));
 
-    const unsubscribe = subscribeToRoomMessages(myRoom.room_id, (message) => {
-      setMessages((prev) => (prev.some((m) => m.id === message.id) ? prev : [...prev, message]));
-    });
+    const unsubscribe = subscribeToRoomMessages(
+      myRoom.room_id,
+      (message) => {
+        setMessages((prev) => (prev.some((m) => m.id === message.id) ? prev.map((m) => (m.id === message.id ? message : m)) : [...prev, message]));
+      },
+      (deletedId) => {
+        setMessages((prev) => prev.filter((m) => m.id !== deletedId));
+      }
+    );
 
     return () => {
       cancelled = true;
@@ -181,8 +189,30 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
   }, [messages]);
 
   const [replyingTo, setReplyingTo] = useState<{ id: number; senderName: string; content: string } | null>(null);
+  const [editingMessage, setEditingMessage] = useState<{ id: number; content: string } | null>(null);
   const [reactions, setReactions] = useState<Record<number, Record<string, string[]>>>({});
   const [activeMenuMsgId, setActiveMenuMsgId] = useState<number | null>(null);
+
+  async function copyMessageText(content: string) {
+    const text = content.trim();
+    if (!text) return;
+    try {
+      await navigator.clipboard.writeText(text);
+      toast.success("Đã sao chép tin nhắn");
+    } catch {
+      toast.error("Không sao chép được tin nhắn");
+    }
+  }
+
+  async function togglePinMessage(msg: StudyRoomMessage) {
+    try {
+      const updated = await setRoomMessagePinned(msg.id, !msg.is_pinned);
+      setMessages((prev) => prev.map((m) => (m.id === updated.id ? updated : m)));
+      toast.success(updated.is_pinned ? "Đã ghim tin nhắn" : "Đã bỏ ghim tin nhắn");
+    } catch (error) {
+      toast.error(error instanceof Error ? error.message : "Không cập nhật được ghim");
+    }
+  }
 
   const toggleReaction = (msgId: number, emoji: string) => {
     if (!user?.id) return;
@@ -208,6 +238,22 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
   async function handleSendMessage() {
     const rawContent = messageInput.trim();
     if (!rawContent || !myRoom || !user || sendingMessage) return;
+
+    if (editingMessage) {
+      setSendingMessage(true);
+      try {
+        const updated = await updateRoomMessage(editingMessage.id, rawContent);
+        setMessages((prev) => prev.map((m) => (m.id === updated.id ? updated : m)));
+        setMessageInput("");
+        setEditingMessage(null);
+        toast.success("Đã chỉnh sửa tin nhắn");
+      } catch (error) {
+        toast.error(error instanceof Error ? error.message : "Không sửa được tin nhắn");
+      } finally {
+        setSendingMessage(false);
+      }
+      return;
+    }
 
     let finalContent = rawContent;
     if (replyingTo) {
@@ -619,7 +665,6 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
                                 ))}
                               </div>
 
-                              {/* Reply Option */}
                               <button
                                 onClick={() => {
                                   setReplyingTo({ id: msg.id, senderName: isMine ? "bạn" : senderName, content: msg.content });
@@ -631,8 +676,43 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
                                 <span>Trả lời tin nhắn</span>
                               </button>
 
-                              {/* Delete / Recall Option */}
-                              {(isMine || user?.id) && (
+                              <button
+                                onClick={() => {
+                                  void togglePinMessage(msg);
+                                  setActiveMenuMsgId(null);
+                                }}
+                                className="w-full flex items-center gap-2 px-2.5 py-1.5 rounded-xl hover:bg-amber-50 dark:hover:bg-amber-950/40 text-stone-800 dark:text-stone-200 font-bold transition-colors text-left"
+                              >
+                                {msg.is_pinned ? <PinOff className="w-3.5 h-3.5 text-amber-600 dark:text-amber-400" /> : <Pin className="w-3.5 h-3.5 text-amber-600 dark:text-amber-400" />}
+                                <span>{msg.is_pinned ? "Bỏ ghim tin nhắn" : "Ghim tin nhắn"}</span>
+                              </button>
+
+                              <button
+                                onClick={() => {
+                                  void copyMessageText(mainText || msg.content);
+                                  setActiveMenuMsgId(null);
+                                }}
+                                className="w-full flex items-center gap-2 px-2.5 py-1.5 rounded-xl hover:bg-sky-50 dark:hover:bg-sky-950/40 text-stone-800 dark:text-stone-200 font-bold transition-colors text-left"
+                              >
+                                <Copy className="w-3.5 h-3.5 text-sky-600 dark:text-sky-400" />
+                                <span>Sao chép</span>
+                              </button>
+
+                              {isMine && (
+                                <>
+                                <button
+                                  onClick={() => {
+                                    setEditingMessage({ id: msg.id, content: mainText || msg.content });
+                                    setMessageInput(mainText || msg.content);
+                                    setReplyingTo(null);
+                                    setActiveMenuMsgId(null);
+                                  }}
+                                  className="w-full flex items-center gap-2 px-2.5 py-1.5 rounded-xl hover:bg-sky-50 dark:hover:bg-sky-950/40 text-stone-800 dark:text-stone-200 font-bold transition-colors text-left"
+                                >
+                                  <Pencil className="w-3.5 h-3.5 text-sky-600 dark:text-sky-400" />
+                                  <span>Sửa tin nhắn</span>
+                                </button>
+
                                 <button
                                   onClick={async () => {
                                     setActiveMenuMsgId(null);
@@ -649,6 +729,7 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
                                   <Trash2 className="w-3.5 h-3.5 text-rose-500" />
                                   <span>Thu hồi tin nhắn</span>
                                 </button>
+                                </>
                               )}
                             </div>
                           )}
@@ -679,6 +760,12 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
                           })}
                         </div>
                       )}
+                      {isMine && (
+                        <div className="mt-1 flex items-center justify-end gap-1 text-[10px] font-bold text-stone-400 dark:text-stone-500">
+                          <CheckCheck className="h-3.5 w-3.5 text-emerald-500" />
+                          <span>{myRoomMembers.length > 1 ? "Đã nhận trong nhóm" : "Đã gửi"}</span>
+                        </div>
+                      )}
                     </div>
                   );
                 })
@@ -702,6 +789,24 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
                 </button>
               </div>
             )}
+            {editingMessage && (
+              <div className="flex items-center justify-between gap-2 px-3 py-2 rounded-xl bg-sky-50 dark:bg-sky-950/40 border border-sky-200 dark:border-sky-800 text-xs text-stone-800 dark:text-stone-200 mt-2">
+                <div className="min-w-0 flex-1">
+                  <span className="font-bold text-sky-600 dark:text-sky-400">Đang sửa tin nhắn:</span>
+                  <p className="truncate text-[11px] text-stone-600 dark:text-stone-400 mt-0.5">{editingMessage.content}</p>
+                </div>
+                <button
+                  onClick={() => {
+                    setEditingMessage(null);
+                    setMessageInput("");
+                  }}
+                  className="text-stone-400 hover:text-stone-700 dark:hover:text-stone-200 p-1 rounded-full cursor-pointer"
+                  title="Hủy sửa"
+                >
+                  <X className="w-3.5 h-3.5" />
+                </button>
+              </div>
+            )}
 
             <div className="flex items-center gap-2 mt-3">
               <input
@@ -714,7 +819,7 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
                     void handleSendMessage();
                   }
                 }}
-                placeholder={replyingTo ? `Viết câu trả lời cho ${replyingTo.senderName}...` : "Nhắn gì đó cho nhóm... hoặc /taitai"}
+                placeholder={editingMessage ? "Chỉnh lại nội dung tin nhắn..." : replyingTo ? `Viết câu trả lời cho ${replyingTo.senderName}...` : "Nhắn gì đó cho nhóm... hoặc /taitai"}
                 maxLength={2000}
                 className="flex-1 px-3.5 py-2.5 rounded-xl border border-stone-200 dark:border-stone-800 bg-white dark:bg-stone-900 text-sm text-stone-900 dark:text-stone-100 placeholder:text-stone-400 focus:outline-none focus:ring-2 focus:ring-emerald-400/50"
               />

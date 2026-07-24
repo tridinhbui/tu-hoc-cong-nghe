@@ -173,13 +173,46 @@ export async function requestStudyRoomBot(roomId: number, command: string): Prom
 }
 
 export async function deleteRoomMessage(messageId: number): Promise<boolean> {
-  const supabase = createClient();
-  const { error } = await supabase
-    .from("study_room_messages")
-    .delete()
-    .eq("id", messageId);
-  if (error) throw handleSupabaseError(error);
+  const response = await fetch(`/api/study-room-messages/${messageId}`, {
+    method: "DELETE",
+  });
+
+  const payload = (await response.json().catch(() => null)) as { error?: string } | null;
+  if (!response.ok) {
+    throw new Error(payload?.error || "Không thu hồi được tin nhắn");
+  }
+
   return true;
+}
+
+export async function updateRoomMessage(messageId: number, content: string): Promise<StudyRoomMessage> {
+  const response = await fetch(`/api/study-room-messages/${messageId}`, {
+    method: "PATCH",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ content }),
+  });
+
+  const payload = (await response.json().catch(() => null)) as { message?: StudyRoomMessage; error?: string } | null;
+  if (!response.ok || !payload?.message) {
+    throw new Error(payload?.error || "Không sửa được tin nhắn");
+  }
+
+  return payload.message;
+}
+
+export async function setRoomMessagePinned(messageId: number, pinned: boolean): Promise<StudyRoomMessage> {
+  const response = await fetch(`/api/study-room-messages/${messageId}`, {
+    method: "PATCH",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ isPinned: pinned }),
+  });
+
+  const payload = (await response.json().catch(() => null)) as { message?: StudyRoomMessage; error?: string } | null;
+  if (!response.ok || !payload?.message) {
+    throw new Error(payload?.error || "Không cập nhật được ghim");
+  }
+
+  return payload.message;
 }
 
 export function subscribeToRoomMessages(
@@ -196,6 +229,16 @@ export function subscribeToRoomMessages(
       "postgres_changes",
       {
         event: "INSERT",
+        schema: "public",
+        table: "study_room_messages",
+        filter: `room_id=eq.${roomId}`,
+      },
+      (payload) => onMessage(payload.new as StudyRoomMessage)
+    )
+    .on(
+      "postgres_changes",
+      {
+        event: "UPDATE",
         schema: "public",
         table: "study_room_messages",
         filter: `room_id=eq.${roomId}`,

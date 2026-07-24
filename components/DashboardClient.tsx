@@ -850,7 +850,7 @@ export default function DashboardClient({ lessonsMeta }: { lessonsMeta: LessonMe
                           Bản đồ Cấp độ Học viên
                         </h3>
                         <p className="text-[10px] text-stone-500 dark:text-stone-400 mt-0.5">
-                          Bấm vào một cấp độ để xem các thành viên đang ở đó
+                          XP là tiến độ học; sát hạch và điểm kiểm tra mới xác nhận năng lực thật
                         </p>
                       </div>
                       <div className="flex flex-wrap items-center gap-2.5 text-left sm:text-right self-start sm:self-auto">
@@ -898,8 +898,12 @@ export default function DashboardClient({ lessonsMeta }: { lessonsMeta: LessonMe
                             <ChevronRight className="w-4 h-4" />
                           </button>
 
-                          <div ref={levelStripRef} className="overflow-x-auto pb-2 -mx-1 px-1 no-scrollbar">
-                            <div className="flex items-stretch gap-0 min-w-max">
+                          <div
+                            ref={levelStripRef}
+                            className="overflow-x-auto pb-2 -mx-1 px-1 no-scrollbar overscroll-x-contain [contain:paint] [backface-visibility:hidden] [transform:translateZ(0)]"
+                            style={{ WebkitOverflowScrolling: "touch" }}
+                          >
+                            <div className="flex items-stretch gap-0 min-w-max [backface-visibility:hidden]">
                               {LEVELS.map((lvl, idx) => {
                                 const isUserCurrent = currentUserLevel === lvl.level;
                                 const isPassed = currentUserLevel > lvl.level;
@@ -909,16 +913,16 @@ export default function DashboardClient({ lessonsMeta }: { lessonsMeta: LessonMe
                                 const isOpen = openLevel === lvl.level;
 
                                 return (
-                                  <div key={lvl.level} className="flex items-stretch animate-fade-in">
+                                  <div key={lvl.level} className="flex items-stretch sm:animate-fade-in [backface-visibility:hidden]">
                                     {idx > 0 && (
                                       <div className={`w-7 sm:w-9 h-0.5 self-end mb-[42px] shrink-0 ${isReached ? "bg-emerald-400 dark:bg-emerald-600" : "bg-stone-200 dark:bg-stone-850"}`} />
                                     )}
                                     <div className="flex flex-col items-center gap-2 shrink-0">
-                                      <div className="w-12 h-12 sm:w-[64px] sm:h-[64px] relative flex items-center justify-center select-none pointer-events-none overflow-hidden rounded-full border border-stone-200/50 dark:border-stone-800/50 bg-stone-50 dark:bg-stone-850 shadow-inner">
+                                      <div className="w-12 h-12 sm:w-[64px] sm:h-[64px] relative flex items-center justify-center select-none pointer-events-none overflow-hidden rounded-full border border-stone-200/50 dark:border-stone-800/50 bg-stone-50 dark:bg-stone-850 shadow-inner [backface-visibility:hidden] [transform:translateZ(0)]">
                                         <img
                                           src={`/levels/level${lvl.level}.jpg`}
                                           alt={lvl.name}
-                                          className={`w-full h-full object-cover transition-all duration-300 ${
+                                          className={`w-full h-full object-cover transform-gpu [backface-visibility:hidden] transition-all duration-300 ${
                                             isReached ? "scale-[1.08] hover:scale-[1.15]" : "grayscale opacity-40 contrast-75"
                                           }`}
                                         />
@@ -926,7 +930,7 @@ export default function DashboardClient({ lessonsMeta }: { lessonsMeta: LessonMe
 
                                       <button
                                         onClick={() => setActiveTooltipLevel((prev) => (prev === lvl.level ? null : lvl.level))}
-                                        className={`relative text-left rounded-xl border p-1.5 w-[84px] h-[88px] shrink-0 bg-white dark:bg-stone-900 transition-all cursor-pointer flex flex-col ${
+                                        className={`relative text-left rounded-xl border p-1.5 w-[84px] h-[88px] shrink-0 bg-white dark:bg-stone-900 transition-all cursor-pointer flex flex-col [backface-visibility:hidden] ${
                                           isReached
                                             ? `${accent.border} ${isOpen ? `shadow-md scale-[1.02] ${accent.glow}` : isUserCurrent ? `shadow-sm ${accent.glow}` : ""}`
                                             : "border-stone-150 dark:border-stone-855 opacity-60 grayscale hover:opacity-90 hover:grayscale-0"
@@ -934,7 +938,7 @@ export default function DashboardClient({ lessonsMeta }: { lessonsMeta: LessonMe
                                       >
                                         {isUserCurrent && (
                                           <span className="absolute -top-1 -left-1 flex w-3 h-3">
-                                            <span className={`animate-ping absolute inline-flex w-full h-full rounded-full opacity-75 ${accent.solid}`} />
+                                            <span className={`hidden sm:inline-flex sm:animate-ping absolute w-full h-full rounded-full opacity-75 ${accent.solid}`} />
                                             <span className={`relative inline-flex w-3 h-3 rounded-full border-2 border-white dark:border-stone-900 ${accent.solid}`} />
                                           </span>
                                         )}

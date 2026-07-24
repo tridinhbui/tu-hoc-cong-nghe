@@ -254,6 +254,8 @@ const BUILDING_AVATAR_POSITIONS: Record<string, { x: number; y: number }> = {
   "singapore-dock": { x: 50, y: 92 },
 };
 
+const MAP_BUILDINGS = ORGANIC_BUILDINGS.filter((building) => building.id !== "shop");
+
 export default function FinancialRpgWorldMap() {
   const searchParams = useSearchParams();
   const initialBuilding = searchParams.get("building");
@@ -531,7 +533,7 @@ export default function FinancialRpgWorldMap() {
             {/* Mobile / Tablet View: Categorized District Grids */}
             <div className="md:hidden space-y-5">
               {["🏛️ NYSE CENTRAL", "🔥 TỔNG HỢP MINI GAME", "🏙️ TIMES SQUARE", "🏰 HEDGE FUND QUARTER", "🏦 FED VAULT", "🚀 SILICON BAY", "🏛️ CAPITOL HILL", "🌾 CME COMMODITY", "💎 SWISS HAVEN", "🚢 SINGAPORE DOCK"].map((districtBadge) => {
-                const districtBuildings = ORGANIC_BUILDINGS.filter((b) => b.badge.includes(districtBadge.split(" ")[1] || districtBadge.split(" ")[0] || ""));
+                const districtBuildings = MAP_BUILDINGS.filter((b) => b.badge.includes(districtBadge.split(" ")[1] || districtBadge.split(" ")[0] || ""));
                 if (districtBuildings.length === 0) return null;
                 return (
                   <div key={districtBadge} className="space-y-2.5">
@@ -627,7 +629,7 @@ export default function FinancialRpgWorldMap() {
                 <span>💡 Kéo tự do (Canva Drag & Pan) để di chuyển bản đồ không cần cuộn trang web!</span>
               </div>
               <span className="text-xs font-black text-emerald-800 bg-emerald-100 px-3 py-1 rounded-full border border-emerald-300 shadow-2xs">
-                13 VÙNG ĐẤT TÀI CHÍNH
+                12 VÙNG ĐẤT TÀI CHÍNH
               </span>
             </div>
 
@@ -637,9 +639,36 @@ export default function FinancialRpgWorldMap() {
               {/* Canva Navigation Badge Overlay */}
               <div className="absolute top-4 left-4 z-40 flex items-center gap-2 pointer-events-none">
                 <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-stone-900/90 text-amber-300 text-xs font-black shadow-lg backdrop-blur-md border border-amber-500/40">
-                  <span>🖐️ Canva Drag Canvas (Kéo tự do 360° • Xem trọn vẹn 13 vùng đất)</span>
+                  <span>🖐️ Canva Drag Canvas (Kéo tự do 360° • Xem trọn vẹn 12 vùng đất)</span>
                 </span>
               </div>
+
+              <motion.button
+                type="button"
+                onClick={() => handleBuildingClick("shop")}
+                whileHover={{ y: -4, scale: 1.02 }}
+                whileTap={{ scale: 0.97 }}
+                className="absolute right-4 top-4 z-[45] w-[230px] rounded-[24px] border border-amber-300/90 bg-white/92 p-3 text-left shadow-[0_18px_42px_-24px_rgba(146,64,14,0.45)] backdrop-blur-xl transition-all"
+                title="Mở tủ trang bị"
+              >
+                <div className="flex items-center gap-3">
+                  <div className="relative flex h-13 w-13 shrink-0 items-center justify-center rounded-2xl bg-gradient-to-br from-amber-100 via-yellow-50 to-orange-100 ring-1 ring-amber-300 shadow-inner">
+                    <ShoppingBag className="h-6 w-6 text-amber-700" />
+                    <span className="absolute -right-1 -top-1 flex h-4 w-4 items-center justify-center rounded-full bg-emerald-500 text-[9px] font-black text-white ring-2 ring-white">
+                      {Object.keys(equippedGear).length}
+                    </span>
+                  </div>
+                  <div className="min-w-0">
+                    <p className="text-[9px] font-black uppercase tracking-[0.16em] text-amber-700">Tủ trang bị</p>
+                    <h3 className="truncate text-sm font-black text-stone-950">Executive Gear</h3>
+                    <p className="mt-0.5 truncate text-[10px] font-semibold text-stone-500">Cố định ngoài bản đồ nhiệm vụ</p>
+                  </div>
+                </div>
+                <div className="mt-2 flex items-center justify-between rounded-2xl bg-amber-50/80 px-3 py-2 ring-1 ring-amber-200/80">
+                  <span className="text-[10px] font-extrabold text-amber-900">Mở cửa hàng & tủ đồ</span>
+                  <span className="text-[10px] font-black text-amber-700">→</span>
+                </div>
+              </motion.button>
 
               {/* Inner Draggable Canva Canvas Container */}
               <motion.div
@@ -708,7 +737,7 @@ export default function FinancialRpgWorldMap() {
 
                 {/* 🏛️ 3D Isometric Building Grid (Enlarged Images & Cards) */}
                 <div className="relative grid grid-cols-2 gap-x-6 gap-y-7 lg:grid-cols-3">
-                  {ORGANIC_BUILDINGS.map((b) => {
+                  {MAP_BUILDINGS.map((b) => {
                     const isDiscovered = discoveredBuildings.includes(b.id);
                     const reqLevel = b.minLevel ?? getRequiredLevelForBuilding(b.id);
                     const isLocked = level < reqLevel;
