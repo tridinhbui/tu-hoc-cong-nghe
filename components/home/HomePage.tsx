@@ -33,7 +33,6 @@ import TrackPreviewPanel from "@/components/login/TrackPreviewPanel";
 import PublicLeaderboardPreview from "@/components/login/PublicLeaderboardPreview";
 import InteractiveKingdomPreview from "@/components/home/InteractiveKingdomPreview";
 import InteractiveEcosystemShowcase from "@/components/home/InteractiveEcosystemShowcase";
-import ScrollPinnedSection from "@/components/home/ScrollPinnedSection";
 import ScrollytellingPinnedSection from "@/components/home/ScrollytellingPinnedSection";
 import { useRoutePrefetch } from "@/lib/use-route-prefetch";
 
@@ -971,84 +970,7 @@ export default function HomePage() {
 
         <SoftFadeDivider />
 
-        {/* ── PAIN POINTS / TRUST (STICKY SCROLL PINNED SECTION) ── */}
-        <ScrollPinnedSection
-          badge={
-            <p className="text-[11px] font-black text-emerald-600 dark:text-emerald-400 uppercase tracking-widest flex items-center gap-1.5">
-              <Sparkles className="w-3.5 h-3.5 text-emerald-500 animate-pulse" />
-              Vì sao học viên chọn ở lại
-            </p>
-          }
-          title={
-            <>
-              Những lo lắng thường gặp khi tự học{" "}
-              <span className="text-emerald-600 dark:text-emerald-400">tài chính</span>
-            </>
-          }
-          theme="soft"
-        >
-          {PAIN_POINTS.map(({ icon: Icon, worry, answer }, i) => (
-            <motion.div
-              key={worry}
-              whileHover={{ y: -6, scale: 1.01 }}
-              transition={{ type: "spring", stiffness: 350, damping: 25 }}
-              className="h-full rounded-2xl border border-stone-200/90 dark:border-stone-800 bg-white dark:bg-stone-900 p-4 sm:p-5 shadow-sm hover:border-emerald-400/80 hover:shadow-md transition-all duration-300 relative overflow-hidden group flex flex-col justify-between"
-            >
-              <div className="absolute -top-10 -right-10 w-24 h-24 bg-emerald-400/10 rounded-full blur-xl group-hover:scale-150 transition-transform duration-500 pointer-events-none" />
-
-              <div>
-                <div className="flex items-center justify-between mb-3">
-                  <span className="inline-flex w-9 h-9 rounded-xl bg-gradient-to-br from-emerald-100 to-teal-100 dark:from-emerald-950 dark:to-teal-950 items-center justify-center border border-emerald-300/60 dark:border-emerald-800/60 text-emerald-600 dark:text-emerald-300 shadow-xs group-hover:scale-105 transition-transform">
-                    <Icon className="w-4 h-4" />
-                  </span>
-                  <span className="text-[10px] font-black uppercase tracking-wider text-emerald-700 dark:text-emerald-400 bg-emerald-50 dark:bg-emerald-950/60 px-2.5 py-0.5 rounded-full border border-emerald-200 dark:border-emerald-800">
-                    Giải pháp #0{i + 1}
-                  </span>
-                </div>
-
-                <p className="text-sm font-black text-stone-900 dark:text-stone-100 mb-2 leading-snug">
-                  “{worry}”
-                </p>
-              </div>
-
-              <div className="mt-3 pt-3 border-t border-stone-100 dark:border-stone-800/80 bg-stone-50/70 dark:bg-stone-950/40 -mx-4 -mb-4 p-3.5">
-                <p className="text-xs font-medium text-stone-700 dark:text-stone-300 leading-relaxed flex items-start gap-2">
-                  <CheckCircle2 className="w-4 h-4 text-emerald-500 shrink-0 mt-0.5" />
-                  <span>{answer.replace("{count}", String(lessonCountFloor ?? 360))}</span>
-                </p>
-              </div>
-            </motion.div>
-          ))}
-        </ScrollPinnedSection>
-
-        {/* ── METHOD / SPACED REPETITION (STICKY SCROLL PINNED SECTION) ── */}
-        <ScrollPinnedSection
-          badge={
-            <p className="text-[11px] font-black text-emerald-600 dark:text-emerald-400 uppercase tracking-widest">
-              Phương pháp học
-            </p>
-          }
-          title="Spaced Repetition - học ít, nhớ lâu"
-          description="Không phải mẹo riêng của chúng tôi - đây là phương pháp ôn tập ngắt quãng được khoa học nhận thức nghiên cứu kỹ nhất, dựa trên đường cong quên lãng (Ebbinghaus forgetting curve)."
-          theme="light"
-        >
-          {METHOD_STEPS.map(({ step, title, text }) => (
-            <div
-              key={step}
-              className="h-full rounded-2xl bg-white dark:bg-stone-900 border border-stone-200/90 dark:border-stone-800 p-5 shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-200 ease-out flex flex-col justify-between"
-            >
-              <div>
-                <div className="w-8 h-8 rounded-xl bg-gradient-to-r from-emerald-500 to-teal-500 text-white font-black text-xs flex items-center justify-center mb-3 shadow-xs">
-                  {step}
-                </div>
-                <p className="font-black text-stone-900 dark:text-stone-100 text-sm mb-1.5">{title}</p>
-                <p className="text-xs text-stone-600 dark:text-stone-400 leading-relaxed font-medium">{text}</p>
-              </div>
-            </div>
-          ))}
-        </ScrollPinnedSection>
-
-        {/* ── 3-PANEL FULL SCREEN SCROLLYTELLING PINNED SECTION ── */}
+        {/* ── UNIFIED 3-PANEL PINNED SCROLLYTELLING SECTION (QUICK & FLUID 160VH) ── */}
         <ScrollytellingPinnedSection />
 
         {/* ── VISION & MISSION ── */}
