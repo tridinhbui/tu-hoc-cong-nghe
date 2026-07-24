@@ -192,6 +192,7 @@ const ORGANIC_BUILDINGS: OrganicBuilding[] = [
     badgeBg: "bg-gradient-to-r from-indigo-600 to-purple-600 text-white font-black",
     posClass: "top-[760px] right-8 sm:right-20",
     desktopClass: "lg:col-start-3 lg:row-start-8",
+    imageSrc: "/rpg/empire_state_building.jpg",
   },
   {
     id: "cme-commodities",
