@@ -564,6 +564,33 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
               </div>
             </div>
 
+            {/* 💡 Group Attendance & Daily Quest Guidance Banner */}
+            <div className="mb-3 px-3.5 py-2.5 rounded-2xl bg-gradient-to-r from-amber-500/15 via-emerald-500/15 to-teal-500/15 border border-amber-500/40 text-xs font-medium text-stone-800 dark:text-stone-200 flex flex-wrap items-center justify-between gap-2 shadow-xs">
+              <div className="flex items-center gap-2 min-w-0">
+                <span className="w-7 h-7 rounded-xl bg-amber-500 text-white flex items-center justify-center font-black text-sm shrink-0 shadow-xs">
+                  📍
+                </span>
+                <div>
+                  <p className="font-extrabold text-stone-900 dark:text-stone-100 flex items-center gap-1.5">
+                    <span>Hướng dẫn Điểm Danh Nhóm Học:</span>
+                    <span className="text-[10px] font-black text-amber-700 dark:text-amber-300 bg-amber-100 dark:bg-amber-950/80 px-2 py-0.5 rounded-full border border-amber-300 dark:border-amber-800">
+                      Tự động 100%
+                    </span>
+                  </p>
+                  <p className="text-stone-600 dark:text-stone-300 text-[11px] leading-tight mt-0.5">
+                    👉 Chỉ cần <strong>nhắn ít nhất 1 tin nhắn vào khung Chat nhóm</strong> (hoặc bấm nút <strong>Cổ vũ 👋 ❤️ 🔥</strong> trên bàn 3D) để tự động điểm danh &amp; cộng tiến độ rương thưởng nhóm hôm nay!
+                  </p>
+                </div>
+              </div>
+              <button
+                type="button"
+                onClick={() => void handleQuickCheer("👋 Đã điểm danh phòng học hôm nay! Chúc cả nhóm học tốt nhé!")}
+                className="px-3 py-1.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-black transition-all shadow-xs cursor-pointer shrink-0 active:scale-95 flex items-center gap-1"
+              >
+                <span>👋 Bấm điểm danh ngay</span>
+              </button>
+            </div>
+
             {/* Main 2-Column Split View */}
             <div className="flex-1 min-h-0 grid grid-cols-1 lg:grid-cols-12 gap-3 sm:gap-4 overflow-hidden">
               {/* LEFT COLUMN: 3D Spatial Table Stage 80% Viewport Height with Mouse Wheel Zoom */}
@@ -806,12 +833,16 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
                   mobileTab === "chat" ? "flex" : "hidden lg:flex"
                 } flex-col h-[78vh] min-h-[560px] sm:min-h-[640px] flex-1 bg-white dark:bg-stone-900 border border-stone-200 dark:border-stone-800 rounded-2xl overflow-hidden shadow-xl p-3 sm:p-3.5`}
               >
-                <h3 className="text-xs font-black text-stone-900 dark:text-stone-100 uppercase tracking-widest mb-2 shrink-0 flex items-center justify-between">
+                <h3 className="text-xs font-black text-stone-900 dark:text-stone-100 uppercase tracking-widest mb-1.5 shrink-0 flex items-center justify-between">
                   <span>💬 Trò chuyện nhóm</span>
                   <span className="text-[10px] font-bold text-emerald-600 dark:text-emerald-400 bg-emerald-50 dark:bg-emerald-950/60 px-2 py-0.5 rounded-full border border-emerald-200 dark:border-emerald-800">
                     Live
                   </span>
                 </h3>
+                <div className="mb-2 px-2.5 py-1 rounded-xl bg-emerald-50 dark:bg-emerald-950/30 border border-emerald-200 dark:border-emerald-900 shrink-0 text-[10px] text-emerald-800 dark:text-emerald-300 font-semibold flex items-center gap-1">
+                  <span>💡</span>
+                  <span>Nhắn 1 tin nhắn bất kỳ lên chat để tự động ghi nhận điểm danh nhóm hôm nay!</span>
+                </div>
                 {pinnedMessage && (
                   <div className="mb-2 px-3 py-1.5 rounded-xl bg-amber-50 dark:bg-amber-950/30 border border-amber-200 dark:border-amber-900 shrink-0">
                     <p className="text-[9px] font-extrabold text-amber-700 dark:text-amber-400">Tài Tài · Quản lý nhóm · Đã ghim</p>
