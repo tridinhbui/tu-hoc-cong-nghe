@@ -63,6 +63,7 @@ import WorldBossRaidWidget from "@/components/WorldBossRaidWidget";
 import FinancialGuildWidget from "@/components/FinancialGuildWidget";
 import PvpDuelModal from "@/components/PvpDuelModal";
 import DashboardStreakWidget from "@/components/DashboardStreakWidget";
+import AiPromptSandboxWidget from "@/components/AiPromptSandboxWidget";
 
 
 
@@ -86,6 +87,9 @@ const STAGE_THEMES: Record<string, { emoji: string; bg: string; text: string; ba
   "professional-Chặng 8": { emoji: "⚖️", bg: "bg-stone-50 dark:bg-stone-900/60 border border-stone-200 dark:border-stone-800", text: "text-stone-600 dark:text-stone-400", barColor: "bg-stone-400" },
   "professional-Chặng 9": { emoji: "🔄", bg: "bg-stone-50 dark:bg-stone-900/60 border border-stone-200 dark:border-stone-800", text: "text-stone-600 dark:text-stone-400", barColor: "bg-stone-400" },
   "professional-Chặng 10": { emoji: "👑", bg: "bg-stone-50 dark:bg-stone-900/60 border border-stone-200 dark:border-stone-800", text: "text-stone-600 dark:text-stone-400", barColor: "bg-stone-400" },
+  "professional-Chặng 11": { emoji: "🏛️", bg: "bg-stone-50 dark:bg-stone-900/60 border border-stone-200 dark:border-stone-800", text: "text-stone-600 dark:text-stone-400", barColor: "bg-stone-400" },
+  "professional-Chặng 12": { emoji: "🧬", bg: "bg-stone-50 dark:bg-stone-900/60 border border-stone-200 dark:border-stone-800", text: "text-stone-600 dark:text-stone-400", barColor: "bg-stone-400" },
+  "professional-Chặng 13": { emoji: "🤖", bg: "bg-emerald-50/60 dark:bg-emerald-950/40 border border-emerald-300 dark:border-emerald-800", text: "text-emerald-700 dark:text-emerald-300", barColor: "bg-emerald-500" },
 };
 
 // Slim projection of Lesson - just enough to render the dashboard listing,
@@ -1389,6 +1393,9 @@ export default function DashboardClient({ lessonsMeta }: { lessonsMeta: LessonMe
               </div>
             </div>
           </div>
+
+          {/* ── AI Prompt Sandbox Widget for Professional / AI Track ── */}
+          {activeTrack === "professional" && <AiPromptSandboxWidget />}
 
           {/* ── Stages + lessons ── */}
           <div data-tour="stage-list" className="space-y-6 mt-8">
