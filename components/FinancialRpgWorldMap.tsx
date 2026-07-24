@@ -78,6 +78,7 @@ const ORGANIC_BUILDINGS: OrganicBuilding[] = [
     badgeBg: "bg-gradient-to-r from-sky-500 to-emerald-500 text-white font-black",
     posClass: "top-20 left-6 sm:left-12",
     desktopClass: "lg:col-start-1 lg:row-start-2",
+    imageSrc: "/images/dau-truong-kien-thuc.jpg",
   },
   // KHU VỰC 2: TRUNG TÂM LUYỆN TẬP BCTC & KHÁI NIỆM
   {

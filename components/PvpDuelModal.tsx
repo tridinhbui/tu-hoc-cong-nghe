@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useEffect, useMemo, useState } from "react";
+import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 import { Brain, CheckCircle2, Shield, Sparkles, Trophy, X, XCircle } from "lucide-react";
 import FinanceCharacterAvatar, { CharacterEquipments } from "@/components/FinanceCharacterAvatar";
@@ -222,6 +223,22 @@ export default function PvpDuelModal({
       <AnimatePresence mode="wait">
         {battleState === "intro" ? (
           <motion.div key="intro" className={embedded ? "space-y-5" : "space-y-6"} initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
+            <div className="relative h-44 sm:h-52 w-full rounded-2xl overflow-hidden border border-sky-200/80 shadow-md">
+              <Image
+                src="/images/dau-truong-kien-thuc.jpg"
+                alt="Đấu Trường Kiến Thức"
+                fill
+                className="object-cover object-center"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-stone-950/90 via-stone-950/40 to-transparent" />
+              <div className="absolute bottom-3 left-4 right-4 text-white">
+                <span className="text-[10px] font-black uppercase tracking-widest text-amber-300 bg-black/40 px-2.5 py-0.5 rounded-md backdrop-blur-sm border border-amber-300/30">
+                  ⚔️ ARENA OF KNOWLEDGE
+                </span>
+                <h4 className="text-lg sm:text-xl font-black text-white mt-1 drop-shadow">Chinh phục Thách đấu & Bẻ giáp Boss</h4>
+              </div>
+            </div>
+
             <div className={`grid ${embedded ? "grid-cols-1 sm:grid-cols-[auto_1fr]" : "md:grid-cols-[auto_1fr]"} gap-4 items-center bg-gradient-to-br from-sky-50 to-emerald-50 border border-sky-100 ${embedded ? "p-4" : "p-5 sm:p-6"} rounded-2xl`}>
               <div className={embedded ? "justify-self-center sm:justify-self-start" : ""}>
                 <FinanceCharacterAvatar level={userLevel} equipments={equipments} size={embedded ? "sm" : "md"} />

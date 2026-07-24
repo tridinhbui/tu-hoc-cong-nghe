@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Image from "next/image";
 import { toast } from "sonner";
 import { Gamepad2, Trophy, History as HistoryIcon, ArrowLeft, Crown, Volume2, VolumeX, Swords, Building2 } from "lucide-react";
 import { useAuthGate } from "@/lib/use-auth-gate";
@@ -170,23 +171,35 @@ export default function GameHubClient() {
             <CombinedGameLeaderboard />
           ) : hubTab === "pvp" ? (
             <div className="space-y-6">
-              <div className="bg-gradient-to-r from-red-950 via-stone-900 to-rose-950 border-2 border-rose-500/50 rounded-3xl p-6 text-white shadow-xl flex flex-col sm:flex-row items-center justify-between gap-4">
-                <div className="space-y-1">
-                  <span className="text-[10px] font-black uppercase tracking-widest bg-rose-500/20 text-rose-300 px-3 py-1 rounded-full border border-rose-500/40">
-                    ⚔️ ĐẤU TRƯỜNG TRI THỨC 1V1
-                  </span>
-                  <h3 className="text-xl font-extrabold text-white mt-2">Thách đấu Solo PVP & Đo đạc Tỷ lệ Thắng</h3>
-                  <p className="text-xs text-stone-300">
-                    Thi đấu kiến thức trực tiếp 1v1, tích lũy trận thắng và leo bảng xếp hạng Cao thủ Solo PVP.
-                  </p>
+              <div className="relative rounded-3xl overflow-hidden border-2 border-amber-500/40 shadow-2xl group min-h-[220px] flex flex-col justify-end p-6 sm:p-8">
+                <Image
+                  src="/images/dau-truong-kien-thuc.jpg"
+                  alt="Đấu Trường Kiến Thức"
+                  fill
+                  className="object-cover object-center group-hover:scale-105 transition-transform duration-700"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-stone-950 via-stone-950/80 to-transparent" />
+
+                <div className="relative z-10 flex flex-col sm:flex-row items-start sm:items-end justify-between gap-4">
+                  <div className="space-y-1.5 max-w-xl">
+                    <span className="inline-flex items-center gap-1.5 text-[10px] font-black uppercase tracking-widest bg-amber-500/20 text-amber-300 px-3 py-1 rounded-full border border-amber-400/40 backdrop-blur-md">
+                      ⚔️ ĐẤU TRƯỜNG TRI THỨC 1V1
+                    </span>
+                    <h3 className="text-2xl sm:text-3xl font-black text-white tracking-tight drop-shadow-md">
+                      Thách đấu Solo PVP & Đo đạc Tỷ lệ Thắng
+                    </h3>
+                    <p className="text-xs sm:text-sm text-stone-200 font-medium leading-relaxed drop-shadow">
+                      Thi đấu kiến thức trực tiếp 1v1, tích lũy trận thắng và leo bảng xếp hạng Cao thủ Solo PVP.
+                    </p>
+                  </div>
+                  <button
+                    onClick={() => setShowPvpModal(true)}
+                    className="px-6 py-3.5 bg-gradient-to-r from-amber-500 via-orange-500 to-amber-600 hover:from-amber-400 hover:to-amber-500 text-stone-950 font-black text-sm rounded-2xl shadow-xl hover:scale-105 transition-all shrink-0 cursor-pointer flex items-center gap-2 border border-amber-300/50"
+                  >
+                    <Swords className="w-5 h-5 text-stone-950" />
+                    <span>Vào trận Solo 1v1 ngay →</span>
+                  </button>
                 </div>
-                <button
-                  onClick={() => setShowPvpModal(true)}
-                  className="px-6 py-3.5 bg-gradient-to-r from-rose-500 to-pink-500 hover:from-rose-400 hover:to-pink-400 text-white font-extrabold text-sm rounded-2xl shadow-lg hover:scale-105 transition-all shrink-0 cursor-pointer flex items-center gap-2"
-                >
-                  <Swords className="w-5 h-5" />
-                  <span>Vào trận Solo 1v1 ngay →</span>
-                </button>
               </div>
 
               <ModeLeaderboard
