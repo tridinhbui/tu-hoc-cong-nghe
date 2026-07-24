@@ -5674,14 +5674,14 @@ export const lessons = [
       }
     ]
   },
-    {
+      {
   "id": 1261,
   "day": 1261,
   "slug": "tong-quan-ai-in-finance-khong-can-code",
   "title": "Nhập môn AI in Finance Không Cần Code: Bức Tranh Tổng Quan 2026",
   "track": "professional",
   "difficulty": "de",
-  "estimatedMinutes": 14,
+  "estimatedMinutes": 16,
   "subtitle": "Khám phá cách người không chuyên lập trình làm chủ AI (ChatGPT, Claude, DeepSeek) để xử lý 80% công việc tài chính",
   "practicePrompt": {
     "question": "Lợi ích lớn nhất của chuyên viên tài chính Không Chuyên Tech (Non-Tech) khi ứng dụng các trợ lý AI thế hệ mới (ChatGPT / Claude / DeepSeek) là gì?",
@@ -5711,11 +5711,11 @@ export const lessons = [
     },
     {
       "type": "heading",
-      "text": "1. Sự Khác Biệt Giữa AI Cổ Điển & AI Ngôn Ngữ Nối Tiếp (LLMs)"
+      "text": "1. Sự Khác Biệt Giữa AI Cổ Điển & Generative AI (LLMs)"
     },
     {
       "type": "paragraph",
-      "text": "Trước đây, muốn dùng AI bạn phải học lập trình Python, toán ma trận và thuật toán phức tạp. Ngày nay, các mô hình Generative AI (ChatGPT, Claude) cho phép bạn giao tiếp trực tiếp bằng ngôn ngữ tự nhiên hàng ngày."
+      "text": "Trước năm 2023, ứng dụng AI vào tài chính là 'đặc quyền' của các kỹ sư lập trình Quant. Bạn phải viết hàng trăm dòng code Python, xử lý ma trận toán học phức tạp. Nhưng từ năm 2026, các mô hình Generative AI (ChatGPT, Claude 3.5 Sonnet, DeepSeek R1) cho phép bạn giao tiếp trực tiếp bằng tiếng Việt hoặc tiếng Anh tự nhiên."
     },
     {
       "type": "heading",
@@ -5723,7 +5723,15 @@ export const lessons = [
     },
     {
       "type": "paragraph",
-      "text": "Bao gồm: (1) Đọc & Tóm tắt tài liệu BCTC/Nghị quyết; (2) Trích xuất số liệu từ PDF sang Excel; (3) Tính toán chỉ số & chạy mô hình định giá; (4) Phân tích tin tức & viết báo cáo khuyến nghị; (5) Soạn thảo Email & Slide thuyết trình."
+      "text": "• Trích xuất dữ liệu BCTC: Tải file PDF 50 trang vào AI, yêu cầu lọc nhanh bảng Cân đối kế toán.\n• Phân tích rủi ro kế toán: Tự động soi mục Thuyết minh để tìm nợ xấu và các khoản nợ tiềm tàng.\n• Định giá cổ phiếu tự động: Nhập giả định P/E, WACC để AI chạy mô hình định giá từng bước.\n• Phân tích tâm lý thị trường: Quét tin tức Bloomberg, VnExpress để chấm điểm lạc quan/bi quan.\n• Viết báo cáo khuyến nghị: Xuất bản báo cáo 1 trang (One-pager) và dàn ý Slide thuyết trình."
+    },
+    {
+      "type": "heading",
+      "text": "3. Mẫu Prompt Nhập Môn 'Copy-Paste Dùng Ngay'"
+    },
+    {
+      "type": "paragraph",
+      "text": "Dán câu lệnh sau vào ChatGPT hoặc Claude để dùng ngay:\n'Bạn là chuyên viên phân tích tài chính cao cấp. Hãy đọc bài viết sau [Dán link/văn bản] và cho tôi biết: (1) 3 điểm sáng tài chính; (2) 2 rủi ro cần theo dõi; (3) Tác động tới giá cổ phiếu ngắn hạn dưới dạng 3 gạch đầu dòng ngắn gọn.'"
     },
     {
       "type": "closing",
@@ -5741,7 +5749,7 @@ export const lessons = [
   "title": "Kỹ thuật Prompt Engineering Căn Bản: Khung R-C-T-O Thần Thánh",
   "track": "professional",
   "difficulty": "de",
-  "estimatedMinutes": 15,
+  "estimatedMinutes": 16,
   "subtitle": "Làm chủ công thức câu lệnh 4 thành phần để AI đưa ra câu trả lời chuẩn xác 100% cho bài toán tài chính",
   "practicePrompt": {
     "question": "Công thức ra lệnh Prompt R-C-T-O dành cho dân tài chính bao gồm 4 thành phần cốt lõi nào?",
@@ -5775,15 +5783,23 @@ export const lessons = [
     },
     {
       "type": "paragraph",
-      "text": "R (Role): Đặt vai trò chuyên gia (CFO, Senior Analyst). C (Context): Cung cấp dữ liệu đầu vào. T (Task): Chỉ rõ hành động cần làm. O (Output): Quy định định dạng trả về (Bảng Excel, bullet point, đoạn văn)."
+      "text": "• Role (Vai trò): Định hình tư duy cho AI. Ví dụ: 'Bạn là Trưởng phòng Thẩm định Tín dụng Ngân hàng'.\n• Context (Ngữ cảnh): Dữ liệu BCTC, số liệu lợi nhuận, hoàn cảnh vĩ mô.\n• Task (Nhiệm vụ): Yêu cầu hành động rõ ràng như 'Tính tỷ lệ nợ/vốn' hoặc 'Đánh giá khả năng trả nợ'.\n• Output (Định dạng): Quy định định dạng trả về: Bảng Excel, 3 gạch đầu dòng, hoặc báo cáo 1 trang."
     },
     {
       "type": "heading",
-      "text": "2. Kỹ Thuật Giao Bài Tập Theo Từng Nấc (Step-by-Step Instruction)"
+      "text": "2. So Sánh Prompt Dở vs Prompt Chuẩn R-C-T-O"
     },
     {
       "type": "paragraph",
-      "text": "Thay vì dồn 10 câu hỏi vào 1 Prompt, hãy chia nhỏ quy trình làm việc thành các bước nối tiếp để AI không bị quá tải và giữ độ chính xác cao nhất."
+      "text": "• Prompt dở: 'Cổ phiếu VNM có mua được không?' ➔ AI trả lời lý thuyết chung chung 500 từ.\n• Prompt chuẩn R-C-T-O: '[Role]: Giám đốc Quỹ. [Context]: VNM doanh thu 60.000 tỷ, cổ tức 8%/năm. [Task]: Đánh giá xem VNM có phù hợp cho danh mục phòng thủ không. [Output]: Trả lời Ngắn/Dài hạn dưới dạng 2 bảng so sánh.' ➔ AI trả lời sắc bén như chuyên gia."
+    },
+    {
+      "type": "heading",
+      "text": "3. Kỹ Thuật Giao Bài Tập Theo Từng Nấc (Step-by-Step Instruction)"
+    },
+    {
+      "type": "paragraph",
+      "text": "Thay vì dồn 10 câu hỏi vào 1 Prompt làm AI bị rối, hãy chia nhỏ quy trình làm việc thành các bước nối tiếp: Bước 1 lọc số liệu ➔ Bước 2 tính chỉ số ➔ Bước 3 đưa ra kết luận."
     },
     {
       "type": "closing",
@@ -5801,7 +5817,7 @@ export const lessons = [
   "title": "Prompt Nâng Cao: Chain-of-Thought (CoT) & Tự Động Định Giá Cổ Phiếu",
   "track": "professional",
   "difficulty": "trung-binh",
-  "estimatedMinutes": 16,
+  "estimatedMinutes": 17,
   "subtitle": "Ép AI suy luận từng bước toán học để tự chạy mô hình định giá DCF & P/E mà không lo tính sai",
   "practicePrompt": {
     "question": "Kỹ thuật Prompt 'Chain-of-Thought' (Chuỗi suy luận) giúp giải quyết triệt để rủi ro tính toán sai của AI như thế nào?",
@@ -5831,19 +5847,27 @@ export const lessons = [
     },
     {
       "type": "heading",
-      "text": "1. Nguyên Lý Chain-of-Thought (CoT)"
+      "text": "1. Câu Thần Chú 'Chain-of-Thought'"
     },
     {
       "type": "paragraph",
-      "text": "Bằng cách yêu cầu AI: 'Bước 1: Tính Chi phí vốn WACC... Bước 2: Chiết khấu dòng tiền FCF... Bước 3: Tính giá trị còn lại Terminal Value...', AI sẽ thực hiện chính xác từng phép tính đơn lẻ."
+      "text": "Khi dán số liệu BCTC vào AI, luôn thêm câu thần chú: 'Hãy suy luận và tính toán từng bước một (Let's think step-by-step). Hãy trình bày phép tính trung gian trước khi đưa ra đáp số cuối cùng'."
     },
     {
       "type": "heading",
-      "text": "2. Mẫu Prompt Định Giá Cổ Phiếu Chuẩn Cho Dân Non-Tech"
+      "text": "2. Mẫu Prompt Định Giá Cổ Phiếu DCF Thực Chiến"
     },
     {
       "type": "paragraph",
-      "text": "Cung cấp mẫu Prompt chứa sẵn công thức định giá P/E, P/B và DCF. Bạn chỉ cần thay con số doanh thu, lợi nhuận là AI sẽ tự động xuất ra bảng định giá hoàn chỉnh."
+      "text": "[Role]: Chuyên viên Định giá Quỹ.\n[Context]: Cổ phiếu FPT có FCF_2025 = 4.500 tỷ. Tăng trưởng FCF 3 năm tới là 12%/năm. WACC = 10.5%, g = 3%.\n[Task]: Áp dụng mô hình chiết khấu dòng tiền DCF. Hãy suy luận từng bước (Step-by-Step):\n• Bước 1: Tính FCF từ năm 2026 đến 2028 và chiết khấu về hiện tại.\n• Bước 2: Tính Giá trị còn lại Terminal Value.\n• Bước 3: Tổng hợp Enterprise Value.\n[Output]: Xuất ra bảng kết quả từng bước rõ ràng."
+    },
+    {
+      "type": "heading",
+      "text": "3. Thẩm Định Giả Định (Sensitivity Analysis)"
+    },
+    {
+      "type": "paragraph",
+      "text": "Sau khi AI định giá xong, bạn chỉ cần ra lệnh tiếp: 'Hãy chạy cho tôi bảng phân tích độ nhạy (Sensitivity Table) nếu WACC thay đổi từ 9.5% đến 11.5% và g thay đổi từ 2.5% đến 3.5%'. AI sẽ vẽ bảng 2 chiều ngay lập tức!"
     },
     {
       "type": "closing",
@@ -5861,7 +5885,7 @@ export const lessons = [
   "title": "Đọc & Bóc Tách Báo Cáo Tài Chính (PDF 10-K, BCTC) Trong 30 Giây Với AI",
   "track": "professional",
   "difficulty": "trung-binh",
-  "estimatedMinutes": 15,
+  "estimatedMinutes": 16,
   "subtitle": "Tuyệt chiêu Upload file PDF BCTC lên ChatGPT/Claude để tự động lọc 5 rủi ro kế toán & điểm bất thường",
   "practicePrompt": {
     "question": "Khi Upload file PDF Báo cáo tài chính quý 50 trang vào AI, Prompt nào giúp bạn phát hiện nhanh nhất các rủi ro kế toán ẩn giấu?",
@@ -5891,19 +5915,27 @@ export const lessons = [
     },
     {
       "type": "heading",
-      "text": "1. Quy Trình Upload & Xử Lý File PDF BCTC"
+      "text": "1. 3 Bước Upload & Đọc File BCTC PDF"
     },
     {
       "type": "paragraph",
-      "text": "Hướng dẫn chọn file PDF dạng Text chuẩn, cách khoanh vùng các trang chứa Bảng Cân Đối Kế Toán, Báo Cáo Kế Toán Quản Trị và Thuyết Minh trọng yếu."
+      "text": "• Bước 1: Tải file BCTC kiểm toán PDF từ Vietstock / Cafef.\n• Bước 2: Bấm biểu tượng đính kèm (Paperclip) trên ChatGPT hoặc Claude 3.5 Sonnet.\n• Bước 3: Dán Prompt chuyên dụng lọc thông tin."
     },
     {
       "type": "heading",
-      "text": "2. Bộ Prompt 'Soi' Rủi Ro Kế Toán"
+      "text": "2. Mẫu Prompt 'Soi' Rủi Ro Kế Toán Ẩn Giấu"
     },
     {
       "type": "paragraph",
-      "text": "Hệ thống Prompts mẫu chuyên dùng để kiểm tra: Tỷ lệ Dòng tiền OCF/Lợi nhuận, Biến động Phải thu khách hàng quá hạn, và Chi phí vốn hóa bất thường."
+      "text": "[Role]: Kiểm toán viên cao cấp.\n[Context]: File BCTC đính kèm.\n[Task]: Đọc kỹ phần Thuyết minh BCTC và trả lời 3 câu hỏi:\n1. Các khoản Phải thu ngắn hạn có tăng bất thường so với Doanh thu không?\n2. Nợ vay ngắn hạn đến hạn trả trong 12 tháng tới là bao nhiêu? Tiền mặt hiện có đủ trả không?\n3. Có giao dịch nào đáng chú ý với các Bên liên quan không?\n[Output]: Xuất kết quả dưới dạng 3 mục màu đỏ nếu có rủi ro."
+    },
+    {
+      "type": "heading",
+      "text": "3. Tuyệt Chiêu Đối Chiếu Lợi Nhuận vs Dòng Tiền (OCF)"
+    },
+    {
+      "type": "paragraph",
+      "text": "Ra lệnh tiếp cho AI: 'Tính tỷ lệ Dòng tiền hoạt động kinh doanh (OCF) trên Lợi nhuận sau thuế (NI) trong 3 năm qua. Nếu OCF/NI < 0.8, hãy đưa ra lời cảnh báo về chất lượng lợi nhuận'."
     },
     {
       "type": "closing",
@@ -5921,7 +5953,7 @@ export const lessons = [
   "title": "Tóm Tắt Biên Bản ĐHĐCĐ & Tài Liệu Cuộc Họp 4 Tiếng Trong 1 Phút",
   "track": "professional",
   "difficulty": "de",
-  "estimatedMinutes": 14,
+  "estimatedMinutes": 15,
   "subtitle": "Rút gọn văn bản họp ĐHĐCĐ, ghi âm cuộc họp thành 5 thông điệp lãnh đạo & kế hoạch chia cổ tức",
   "practicePrompt": {
     "question": "Để trích xuất được những thông tin 'đắt giá' nhất từ tài liệu ĐHĐCĐ kéo dài hàng chục trang, bạn nên yêu cầu AI tập trung vào yếu tố nào?",
@@ -5951,19 +5983,19 @@ export const lessons = [
     },
     {
       "type": "heading",
-      "text": "1. Kỹ Thuật Xử Lý Văn Bản & File Ghi Âm ĐHĐCĐ"
+      "text": "1. 4 Trụ Cột Thông Tin Cần Rút Gọn Từ ĐHĐCĐ"
     },
     {
       "type": "paragraph",
-      "text": "Chuyển đổi file ghi âm cuộc họp thành văn bản (speech-to-text) và sử dụng AI để phân loại các chủ đề chính: Tài chính, Nhân sự, Thị trường, Dự án mới."
+      "text": "• Kế hoạch Kinh doanh: Target Doanh thu & Lợi nhuận sau thuế năm mới.\n• Chính sách Cổ tức: Tỷ lệ cổ tức tiền mặt vs cổ tức cổ phiếu, thời gian chi trả.\n• Hoạt động M&A & Dự án mới: Mở rộng nhà máy, phát hành thêm cổ phiếu.\n• Phiên Q&A Thảo luận: Những câu hỏi hóc húa của quỹ đầu tư và câu trả lời của Chủ tịch."
     },
     {
       "type": "heading",
-      "text": "2. Mẫu Prompt Bóc Tách Tín Hiệu Ban Lãnh Đạo"
+      "text": "2. Mẫu Prompt Bóc Tách Biên Bản ĐHĐCĐ Super Fast"
     },
     {
       "type": "paragraph",
-      "text": "Bộ câu lệnh chuyên sâu giúp phân tích thái độ tự tin hay né tránh của Chủ tịch/CEO trước các câu hỏi hóc húa của cổ đông về nợ vay và lợi nhuận."
+      "text": "[Role]: Chuyên viên Phân tích Đầu tư Quỹ.\n[Context]: Biên bản / Tài liệu ĐHĐCĐ đính kèm.\n[Task]: Đọc và tóm tắt thành 4 phần:\n1. Kế hoạch Lợi nhuận năm tới (So sánh % với năm trước).\n2. Tỷ lệ cổ tức tiền mặt.\n3. 3 Dự án động lực tăng trưởng mới.\n4. Tóm tắt 2 câu hỏi cổ đông quan trọng nhất và phần trả lời của Ban lãnh đạo.\n[Output]: Xuất ra dạng bảng tóm tắt 1 trang màn hình."
     },
     {
       "type": "closing",
@@ -5984,7 +6016,7 @@ export const lessons = [
   "estimatedMinutes": 16,
   "subtitle": "Dùng Prompt phân tích bài báo VnExpress, Vietstock, Bloomberg để xếp loại chỉ số Sentiment Lạc quan/Bi quan",
   "practicePrompt": {
-    "question": "Chỉ số Cảm xúc Tin tức (News Sentiment Score) từ -1 đến +1 do AI phân tích giúp nhà đầu tư cá nhân có lợi thế gì?",
+    "question": "Chỉ số Cảm xúc Tin tức (News Sentiment Score) từ -10 đến +10 do AI phân tích giúp nhà đầu tư cá nhân có lợi thế gì?",
     "options": [
       "Đo lường định lượng mức độ lạc quan/bi quan của truyền thông đối với một cổ phiếu, giúp nhận biết tâm lý đám đông để tránh đu đỉnh/bắt đáy vội vàng",
       "Thay thế hoàn toàn bảng giá chứng khoán",
@@ -6011,19 +6043,19 @@ export const lessons = [
     },
     {
       "type": "heading",
-      "text": "1. Nguyên Lý Đánh Giá Sentiment Không Cần Code"
+      "text": "1. Định Lượng Tâm Lý Tin Tức (News Sentiment)"
     },
     {
       "type": "paragraph",
-      "text": "Hướng dẫn cài đặt tiêu chí đánh giá cho AI: Phân tích từ khóa sắc thái (Bullish/Bearish), trọng số của nguồn tin uy tín và bản chất sự kiện."
+      "text": "Khi dán 5 bài báo mới nhất về 1 cổ phiếu vào AI, bạn có thể yêu cầu AI quy đổi toàn bộ nội dung thành một con số Sentiment Index từ -10 (Cực kỳ Bi quan) đến +10 (Cực kỳ Lạc quan)."
     },
     {
       "type": "heading",
-      "text": "2. Mẫu Prompt Tạo Chỉ Số Tâm Lý Cổ Phiếu"
+      "text": "2. Mẫu Prompt Chấm Điểm Sentiment Cổ Phiếu"
     },
     {
       "type": "paragraph",
-      "text": "Prompt mẫu giúp AI xuất ra kết quả: (1) Điểm Sentiment (-10 đến +10); (2) Lý do chính; (3) Khuyến nghị hành động dành cho nhà đầu tư."
+      "text": "[Role]: Chuyên viên Quant Sentiment.\n[Context]: Các đoạn văn bài báo sau [Dán nội dung tin tức].\n[Task]: Đọc và đánh giá sắc thái tin tức:\n1. Chấm điểm Sentiment từ -10 đến +10.\n2. Liệt kê 2 yếu tố tác động Tích cực và 2 yếu tố Tiêu cực.\n3. Đánh giá xem đây là tin tức tác động Ngắn hạn (1-2 tuần) hay Dài hạn (> 6 tháng).\n[Output]: Trả lời dưới dạng Bảng tóm tắt."
     },
     {
       "type": "closing",
@@ -6041,7 +6073,7 @@ export const lessons = [
   "title": "Thiết Kế Custom GPT / Claude Project Làm Trợ Lý Tài Chính Cá Nhân",
   "track": "professional",
   "difficulty": "de",
-  "estimatedMinutes": 15,
+  "estimatedMinutes": 16,
   "subtitle": "Tự tay tạo 'Trợ lý ảo Tài chính' không cần code: Nạp tri thức báo cáo ngành, khẩu vị rủi ro và quy tắc đầu tư",
   "practicePrompt": {
     "question": "Tính năng Custom GPTs (hoặc Claude Projects) mang lại lợi ích đặc biệt nào cho người dùng tài chính Non-Tech?",
@@ -6071,19 +6103,19 @@ export const lessons = [
     },
     {
       "type": "heading",
-      "text": "1. Hướng Dẫn Tạo Custom GPT/Project Trong 5 Phút"
+      "text": "1. 3 Bước Tạo Trợ Lý AI Riêng Trên Claude / ChatGPT"
     },
     {
       "type": "paragraph",
-      "text": "Các bước từng bước không cần code: Đặt tên, viết phần Instructions (Hướng dẫn hành vi), tải lên tập tin tri thức (Knowledge files PDF/Excel)."
+      "text": "• Bước 1: Vào mục Create GPT (trên ChatGPT) hoặc New Project (trên Claude).\n• Bước 2: Viết câu lệnh System Instructions quy định tính cách & quy tắc đầu tư.\n• Bước 3: Tải lên các file PDF báo cáo phân tích ngành, BCTC quý làm Kho tri thức (Knowledge Base)."
     },
     {
       "type": "heading",
-      "text": "2. Cấu Hình Bộ Quy Tắc Đầu Tư Cá Nhân"
+      "text": "2. Mẫu System Instructions Quy Tắc Đầu Tư"
     },
     {
       "type": "paragraph",
-      "text": "Cài đặt các bộ lọc nghiêm ngặt vào AI: 'Chỉ gợi ý cổ phiếu có P/E < 15, ROE > 15%, nợ/vốn chủ sở hữu < 1'. AI sẽ tự động từ chối các cổ phiếu không đạt chuẩn."
+      "text": "'Bạn là Trợ lý Phân tích Cổ phiếu của tôi. Bộ quy tắc lọc cổ phiếu của tôi gồm:\n1. Chỉ xem xét cổ phiếu có P/E < 15, ROE > 15% và Tỷ lệ nợ/Vốn CSH < 1.0.\n2. Luôn cảnh báo rủi ro đầu tiên trước khi nói về cơ hội lợi nhuận.\n3. Trả lời bằng phong cách ngắn gọn, súc tích, dùng bảng biểu khi tính toán con số.'"
     },
     {
       "type": "closing",
@@ -6101,7 +6133,7 @@ export const lessons = [
   "title": "Tự Động Hóa Viết Báo Cáo Phân Tích Đầu Tư & Slide Thuyết Minh Với AI",
   "track": "professional",
   "difficulty": "de",
-  "estimatedMinutes": 14,
+  "estimatedMinutes": 15,
   "subtitle": "Prompt đóng vai Equity Research Analyst lập báo cáo khuyến nghị Mua/Bán & cấu trúc bài thuyết trình chuyên nghiệp",
   "practicePrompt": {
     "question": "Để AI xuất ra một bản Báo cáo Phân tích Đầu tư chuyên nghiệp đạt chuẩn các quỹ Phố Wall, cấu trúc Prompt cần những mục nào?",
@@ -6131,11 +6163,11 @@ export const lessons = [
     },
     {
       "type": "heading",
-      "text": "1. Mẫu Prompt Lập Báo Cáo Phân Tích Cổ Phiếu One-Pager"
+      "text": "1. Mẫu Prompt Lập Báo Cáo Phân Tích Cổ Phiếu 1 Trang (One-Pager)"
     },
     {
       "type": "paragraph",
-      "text": "Cung cấp mẫu Prompt chuẩn hóa giúp AI tổng hợp luận điểm Mua/Bán, rủi ro chính, bảng tóm tắt chỉ số tài chính 3 năm gần nhất."
+      "text": "[Role]: Senior Equity Research Analyst.\n[Context]: Số liệu BCTC & Giá cổ phiếu FPT hiện tại 130.000đ.\n[Task]: Viết báo cáo khuyến nghị đầu tư gồm 4 phần:\n1. Luận điểm đầu tư chính (Investment Thesis - 3 ý).\n2. Phân tích sức khỏe tài chính & lợi thế cạnh tranh Moat.\n3. Định giá P/E & DCF (Mức giá mục tiêu target price).\n4. Khuyến nghị Mua / Nắm giữ / Bán kèm vùng giá giải ngân.\n[Output]: Trình bày chỉn chu chuẩn mẫu quỹ đầu tư."
     },
     {
       "type": "heading",
@@ -6143,7 +6175,7 @@ export const lessons = [
     },
     {
       "type": "paragraph",
-      "text": "Yêu cầu AI cô đọng nội dung báo cáo thành dàn ý 5 Slide thuyết trình (Slide 1: Tổng quan, Slide 2: Động lực tăng trưởng, Slide 3: Sức khỏe BCTC, Slide 4: Định giá, Slide 5: Khuyến nghị)."
+      "text": "Ra lệnh tiếp: 'Hãy chuyển toàn bộ bài báo cáo trên thành dàn ý 5 Slide thuyết trình Powerpoint. Mỗi Slide ghi rõ: Tiêu đề, 3 Bullet points nội dung chính và Gợi ý hình ảnh/biểu đồ minh họa'."
     },
     {
       "type": "closing",
@@ -6161,7 +6193,7 @@ export const lessons = [
   "title": "Kiểm Tra Xác Thực (Fact-Checking) & Tránh 'Ảo Giác AI' (Hallucination)",
   "track": "professional",
   "difficulty": "trung-binh",
-  "estimatedMinutes": 15,
+  "estimatedMinutes": 16,
   "subtitle": "Tuyệt chiêu soi lỗi AI bịa số liệu tài chính, bắt AI trích dẫn nguồn trang/dòng cụ thể và quy trình thẩm định 3 bước",
   "practicePrompt": {
     "question": "Hiện tượng 'Ảo giác AI' (AI Hallucination) trong tài chính là gì và nguyên tắc số 1 để phòng tránh là gì?",
@@ -6191,19 +6223,27 @@ export const lessons = [
     },
     {
       "type": "heading",
-      "text": "1. Bản Chất Của AI Hallucination Trong Tài Chính"
+      "text": "1. Bản Chất Của Ảo Giác AI (AI Hallucination)"
     },
     {
       "type": "paragraph",
-      "text": "Giải thích tại sao AI lại bịa số: Do AI hoạt động theo cơ chế dự đoán từ tiếp theo xác suất cao nhất, không phải máy tính tìm kiếm cơ sở dữ liệu thuần túy."
+      "text": "AI hoạt động theo cơ chế dự báo từ tiếp theo dựa trên xác suất, không phải phần mềm tra cứu cơ sở dữ liệu cứng. Nếu bị thiếu dữ liệu, AI có xu hướng 'tự sáng tác' con số cho hợp logic."
     },
     {
       "type": "heading",
-      "text": "2. Quy Trình 3 Bước Thẩm Định Số Liệu AI"
+      "text": "2. Câu Thần Chú Phòng Chống AI Bịa Số"
     },
     {
       "type": "paragraph",
-      "text": "Bước 1: Ép AI trích dẫn chính xác số trang/dòng. Bước 2: So sánh chéo 2 mô hình AI (ChatGPT vs Claude). Bước 3: Đối soát lại với nguồn dữ liệu gốc chính thống."
+      "text": "Luôn dán câu lệnh bảo vệ này vào cuối Prompt:\n'LƯU Ý AN TOÀN: Bạn chỉ được sử dụng các con số có trong tài liệu đính kèm. Nếu không tìm thấy thông tin, hãy ghi rõ 'Không có dữ liệu trong tài liệu' chứ KHÔNG ĐƯỢC TỰ BỊA CON SỐ. Với mỗi con số đưa ra, hãy trích dẫn vị trí [Trang X, Dòng Y]'."
+    },
+    {
+      "type": "heading",
+      "text": "3. Quy Trình Thẩm Định 3 Bước (Trust, but Verify)"
+    },
+    {
+      "type": "paragraph",
+      "text": "1. Đối soát con số trọng yếu (Doanh thu, Nợ vay) với BCTC gốc.\n2. Hỏi chéo 2 AI khác nhau (ChatGPT vs Claude 3.5).\n3. Kiểm tra logic toán học của kết quả cuối cùng."
     },
     {
       "type": "closing",
@@ -6221,7 +6261,7 @@ export const lessons = [
   "title": "Bộ Thư Viện Prompt Mẫu Thực Chiến Cho Dân Ngân Hàng & Đầu Tư",
   "track": "professional",
   "difficulty": "de",
-  "estimatedMinutes": 16,
+  "estimatedMinutes": 17,
   "subtitle": "Tổng hợp 20+ Prompts 'Copy-Paste Dùng Ngay' cho Chứng khoán, Ngân hàng, BĐS, Kế toán & Quản lý tài sản",
   "practicePrompt": {
     "question": "Cách tốt nhất để lưu trữ và biến Thư viện Prompt mẫu (Prompt Library) thành vũ khí tăng năng suất làm việc hàng ngày của bạn là gì?",
@@ -6251,11 +6291,11 @@ export const lessons = [
     },
     {
       "type": "heading",
-      "text": "1. Thư Viện Prompt Cho Phân Tích Cổ Phiếu & Đầu Tư"
+      "text": "1. Thư Viện Prompt Phân Tích Cổ Phiếu & Đầu Tư"
     },
     {
       "type": "paragraph",
-      "text": "Các Prompts mẫu: So sánh 2 cổ phiếu cùng ngành, Lọc 3 động lực tăng trưởng cốt lõi, Định giá Nhanh P/E và Phân tích Mô hình Swot Doanh nghiệp."
+      "text": "• Prompt So Sánh 2 Cổ Phiếu Cùng Ngành: '[Role]: CIO. [Task]: So sánh FPT vs CMG về ROE, P/E, Tốc độ tăng trưởng. Xuất bảng so sánh và đưa ra kết luận.'\n• Prompt Lọc Động Lực Tăng Trưởng: 'Lọc 3 Catalyst ngắn hạn có thể giúp cổ phiếu bứt phá trong quý 3/2026.'\n• Prompt Định Giá Nhanh P/E: 'Tính P/E dự phóng dựa trên kế hoạch lợi nhuận mới công bố và so sánh với P/E trung bình 5 năm của cổ phiếu.'"
     },
     {
       "type": "heading",
@@ -6263,7 +6303,7 @@ export const lessons = [
     },
     {
       "type": "paragraph",
-      "text": "Các Prompts mẫu: Thẩm định hồ sơ vay cá nhân, Viết Email tư vấn đầu tư cho khách hàng VIP, Soát lỗi báo cáo quản trị và Lập kế hoạch tài chính cá nhân."
+      "text": "• Prompt Thẩm Định Hồ Sơ Vay: '[Role]: Bank Credit Officer. Phân tích khả năng trả nợ của khách hàng cá nhân có thu nhập 50 triệu/tháng và nợ vay 2 tỷ.'\n• Prompt Soát Lỗi Báo Cáo Quản Trị: 'So sánh bảng chi phí thực tế vs Ngân sách dự toán, chỉ ra 3 khoản mục vượt chi lớn nhất.'\n• Prompt Lập Kế Hoạch Tài Chính Cá Nhân: 'Thiết kế danh mục đầu tư tích sản 10 triệu/tháng cho mục tiêu mua nhà sau 5 năm.'"
     },
     {
       "type": "closing",
