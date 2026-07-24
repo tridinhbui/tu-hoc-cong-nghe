@@ -357,32 +357,32 @@ function getPodiumHeight(rank: number) {
 function RankBadgePill({ rank, badgeText }: { rank: number; badgeText: string }) {
   if (rank === 1) {
     return (
-      <div className="inline-flex items-center gap-1 rounded-full bg-gradient-to-r from-amber-500 via-yellow-400 to-amber-500 px-2 py-0.5 text-[9px] font-black uppercase tracking-wider text-amber-950 shadow-md ring-1 ring-amber-300">
-        <Crown className="h-3 w-3 fill-amber-950 text-amber-950" />
-        <span>{badgeText}</span>
+      <div className="inline-flex max-w-full items-center gap-1 rounded-full bg-gradient-to-r from-amber-500 via-yellow-400 to-amber-500 px-2 py-0.5 text-[9px] font-black uppercase tracking-wider text-amber-950 shadow-md ring-1 ring-amber-300">
+        <Crown className="h-3 w-3 shrink-0 fill-amber-950 text-amber-950" />
+        <span className="truncate">{badgeText}</span>
       </div>
     );
   }
   if (rank === 2) {
     return (
-      <div className="inline-flex items-center gap-1 rounded-full bg-gradient-to-r from-slate-300 via-slate-100 to-slate-400 px-2 py-0.5 text-[9px] font-black uppercase tracking-wider text-slate-900 shadow ring-1 ring-slate-300">
-        <Medal className="h-3 w-3 text-slate-800" />
-        <span>{badgeText}</span>
+      <div className="inline-flex max-w-full items-center gap-1 rounded-full bg-gradient-to-r from-slate-300 via-slate-100 to-slate-400 px-2 py-0.5 text-[9px] font-black uppercase tracking-wider text-slate-900 shadow ring-1 ring-slate-300">
+        <Medal className="h-3 w-3 shrink-0 text-slate-800" />
+        <span className="truncate">{badgeText}</span>
       </div>
     );
   }
   if (rank === 3) {
     return (
-      <div className="inline-flex items-center gap-1 rounded-full bg-gradient-to-r from-amber-700 via-amber-600 to-orange-700 px-2 py-0.5 text-[9px] font-black uppercase tracking-wider text-amber-50 shadow ring-1 ring-amber-600">
-        <Award className="h-3 w-3 text-amber-50" />
-        <span>{badgeText}</span>
+      <div className="inline-flex max-w-full items-center gap-1 rounded-full bg-gradient-to-r from-amber-700 via-amber-600 to-orange-700 px-2 py-0.5 text-[9px] font-black uppercase tracking-wider text-amber-50 shadow ring-1 ring-amber-600">
+        <Award className="h-3 w-3 shrink-0 text-amber-50" />
+        <span className="truncate">{badgeText}</span>
       </div>
     );
   }
   return (
-    <div className="inline-flex items-center gap-1 rounded-full bg-gradient-to-r from-stone-100 to-stone-200 border border-stone-300 px-2 py-0.5 text-[9px] font-extrabold uppercase tracking-wider text-stone-700 shadow-2xs">
-      <Star className="h-2.5 w-2.5 text-stone-500" />
-      <span>{badgeText}</span>
+    <div className="inline-flex max-w-full items-center gap-1 rounded-full bg-gradient-to-r from-stone-100 to-stone-200 dark:from-stone-800 dark:to-stone-800 border border-stone-300 dark:border-stone-700 px-2 py-0.5 text-[9px] font-extrabold uppercase tracking-wider text-stone-700 dark:text-stone-300 shadow-2xs">
+      <Star className="h-2.5 w-2.5 shrink-0 text-stone-500" />
+      <span className="truncate">{badgeText}</span>
     </div>
   );
 }
