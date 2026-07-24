@@ -1119,23 +1119,23 @@ export default function DashboardClient({ lessonsMeta }: { lessonsMeta: LessonMe
               one-line subtitle added specifically to match professional's,
               which was shortened to a single inline badge to compensate). */}
           <div id="lo-trinh" data-tour="track-selector" className="grid grid-cols-1 sm:grid-cols-4 gap-3.5 mb-8 items-stretch scroll-mt-24">
-            {/* Card 1: Tài chính Nghề Nghiệp (Indigo Blue Accent) */}
+            {/* Card 1: Tài chính Nghề Nghiệp */}
             <button
               type="button"
               onClick={() => setDashboardTab("career")}
               className={`w-full h-full flex flex-col text-left rounded-2xl border-2 px-5 py-4 transition-all duration-300 relative overflow-hidden backdrop-blur-md ${
                 activeDashboardTab === "career"
-                  ? "border-stone-300 bg-white text-stone-900 ring-1 ring-stone-200 shadow-md"
-                  : "border-stone-200/90 dark:border-stone-800/90 bg-white/90 dark:bg-stone-900/80 text-stone-700 dark:text-stone-300 hover:border-stone-300 shadow-xs hover:shadow-md"
+                  ? "border-stone-300 bg-white text-stone-900 ring-1 ring-stone-200 shadow-sm"
+                  : "border-stone-200/80 dark:border-stone-800/90 bg-white/95 dark:bg-stone-900/80 text-stone-700 dark:text-stone-300 hover:border-stone-300 shadow-xs hover:shadow-sm"
               }`}
             >
-              <div className="h-1 w-full bg-emerald-500 absolute top-0 left-0 right-0" />
+              <div className="h-0.5 w-full bg-emerald-500/70 absolute top-0 left-0 right-0" />
               <div className="flex items-center gap-2 flex-wrap mt-1">
-                <div className="text-base font-extrabold text-stone-900 dark:text-stone-100">
-                  💼 Tài chính Nghề Nghiệp
+                <div className="text-base font-extrabold tracking-tight text-stone-900 dark:text-stone-100">
+                  Tài chính Nghề Nghiệp
                 </div>
               </div>
-              <div className="text-xs mt-1.5 text-stone-500 dark:text-stone-400 font-medium">
+              <div className="text-xs mt-1.5 text-stone-500 dark:text-stone-400 font-normal">
                 14+ hướng đi nghề nghiệp
               </div>
             </button>
@@ -1147,17 +1147,17 @@ export default function DashboardClient({ lessonsMeta }: { lessonsMeta: LessonMe
                 onClick={() => setActiveTrack("personal")}
                 className={`w-full h-full flex flex-col text-left rounded-2xl border-2 px-5 py-4 transition-all duration-300 relative overflow-hidden backdrop-blur-md ${
                   activeDashboardTab === "personal"
-                    ? "border-stone-300 bg-white text-stone-900 ring-1 ring-stone-200 shadow-md"
-                    : "border-stone-200/90 dark:border-stone-800/90 bg-white/90 dark:bg-stone-900/80 text-stone-700 dark:text-stone-300 hover:border-stone-300 shadow-xs hover:shadow-md"
+                    ? "border-stone-300 bg-white text-stone-900 ring-1 ring-stone-200 shadow-sm"
+                    : "border-stone-200/80 dark:border-stone-800/90 bg-white/95 dark:bg-stone-900/80 text-stone-700 dark:text-stone-300 hover:border-stone-300 shadow-xs hover:shadow-sm"
                 }`}
               >
-                <div className="h-1 w-full bg-amber-500 absolute top-0 left-0 right-0" />
+                <div className="h-0.5 w-full bg-amber-500/70 absolute top-0 left-0 right-0" />
                 <div className="flex items-center gap-2 flex-wrap mt-1">
-                  <div className="text-base font-extrabold text-stone-900 dark:text-stone-100">
-                    🪙 {TRACK_PERSONAL.title}
+                  <div className="text-base font-extrabold tracking-tight text-stone-900 dark:text-stone-100">
+                    {TRACK_PERSONAL.title}
                   </div>
                 </div>
-                <div className="text-xs mt-1.5 text-stone-500 dark:text-stone-400 font-medium">
+                <div className="text-xs mt-1.5 text-stone-500 dark:text-stone-400 font-normal">
                   ~{TRACK_PERSONAL.estimatedHours} giờ học nền tảng
                 </div>
                 <div className="sm:hidden text-xs mt-2 leading-snug text-stone-500 dark:text-stone-400">
@@ -1189,17 +1189,17 @@ export default function DashboardClient({ lessonsMeta }: { lessonsMeta: LessonMe
                 onClick={() => setActiveTrack("professional")}
                 className={`w-full h-full flex flex-col text-left rounded-2xl border-2 px-5 py-4 transition-all duration-300 relative overflow-hidden backdrop-blur-md ${
                   activeDashboardTab === "professional"
-                    ? "border-stone-300 bg-white text-stone-900 ring-1 ring-stone-200 shadow-md"
-                    : "border-stone-200/90 dark:border-stone-800/90 bg-white/90 dark:bg-stone-900/80 text-stone-700 dark:text-stone-300 hover:border-stone-300 shadow-xs hover:shadow-md"
+                    ? "border-stone-300 bg-white text-stone-900 ring-1 ring-stone-200 shadow-sm"
+                    : "border-stone-200/80 dark:border-stone-800/90 bg-white/95 dark:bg-stone-900/80 text-stone-700 dark:text-stone-300 hover:border-stone-300 shadow-xs hover:shadow-sm"
                 }`}
               >
-                <div className="h-1 w-full bg-emerald-500 absolute top-0 left-0 right-0" />
+                <div className="h-0.5 w-full bg-emerald-500/70 absolute top-0 left-0 right-0" />
                 <div className="flex items-center gap-2 flex-wrap mt-1">
-                  <div className="text-base font-extrabold text-stone-900 dark:text-stone-100">
-                    🏢 {TRACK_PROFESSIONAL.title}
+                  <div className="text-base font-extrabold tracking-tight text-stone-900 dark:text-stone-100">
+                    {TRACK_PROFESSIONAL.title}
                   </div>
                 </div>
-                <div className="text-xs mt-1.5 text-stone-500 dark:text-stone-400 font-medium">
+                <div className="text-xs mt-1.5 text-stone-500 dark:text-stone-400 font-normal">
                   180 bài chuyên sâu
                 </div>
                 <div className="sm:hidden text-xs mt-2 leading-snug text-stone-500 dark:text-stone-400">
@@ -1230,17 +1230,17 @@ export default function DashboardClient({ lessonsMeta }: { lessonsMeta: LessonMe
               onClick={() => setActiveTrack("cfa")}
               className={`w-full h-full flex flex-col text-left rounded-2xl border-2 px-5 py-4 transition-all duration-300 relative overflow-hidden backdrop-blur-md ${
                 activeDashboardTab === "cfa"
-                  ? "border-stone-300 bg-white text-stone-900 ring-1 ring-stone-200 shadow-md"
-                  : "border-stone-200/90 dark:border-stone-800/90 bg-white/90 dark:bg-stone-900/80 text-stone-700 dark:text-stone-300 hover:border-stone-300 shadow-xs hover:shadow-md"
+                  ? "border-stone-300 bg-white text-stone-900 ring-1 ring-stone-200 shadow-sm"
+                  : "border-stone-200/80 dark:border-stone-800/90 bg-white/95 dark:bg-stone-900/80 text-stone-700 dark:text-stone-300 hover:border-stone-300 shadow-xs hover:shadow-sm"
               }`}
             >
-              <div className="h-1 w-full bg-violet-500 absolute top-0 left-0 right-0" />
+              <div className="h-0.5 w-full bg-violet-500/70 absolute top-0 left-0 right-0" />
               <div className="flex items-center gap-2 flex-wrap mt-1">
-                <div className="text-base font-extrabold text-stone-900 dark:text-stone-100">
-                  🎓 Tài chính chứng chỉ
+                <div className="text-base font-extrabold tracking-tight text-stone-900 dark:text-stone-100">
+                  Tài chính chứng chỉ
                 </div>
               </div>
-              <div className="text-xs mt-1.5 text-stone-500 dark:text-stone-400 font-medium">
+              <div className="text-xs mt-1.5 text-stone-500 dark:text-stone-400 font-normal">
                 CFA Level I · ~{TRACKS.cfa.estimatedHours} giờ học
               </div>
             </button>
@@ -1277,7 +1277,8 @@ export default function DashboardClient({ lessonsMeta }: { lessonsMeta: LessonMe
                     }`}
                   >
                     <div className={`text-sm font-bold flex items-center gap-1.5 ${isActive ? "text-white dark:text-stone-900" : "text-stone-900 dark:text-stone-100"}`}>
-                      <span>{branch.emoji}</span> {branch.label}
+                      <span className="text-stone-400 dark:text-stone-500">{branch.emoji}</span>
+                      {branch.label}
                     </div>
                     <div className={`text-[11px] mt-0.5 ${isActive ? "text-stone-300 dark:text-stone-600" : "text-stone-500 dark:text-stone-400"}`}>
                       {branch.subtitle}
@@ -1458,9 +1459,9 @@ export default function DashboardClient({ lessonsMeta }: { lessonsMeta: LessonMe
                       <span className="text-base sm:text-lg font-extrabold text-stone-900 dark:text-stone-100 flex-1 leading-snug">{stage.name}</span>
                       {isCurrentMilestonePassed ? (
                         <div className="flex items-center gap-2">
-                          <span className="flex items-center gap-1 text-xs font-bold text-emerald-600 dark:text-emerald-450 shrink-0 bg-emerald-50 dark:bg-emerald-950/40 px-2.5 py-1 rounded-lg border border-emerald-200/40">
-                            🌟 Đã vượt ải
-                          </span>
+                      <span className="flex items-center gap-1 text-xs font-bold text-stone-600 dark:text-stone-300 shrink-0 bg-stone-100 dark:bg-stone-800 px-2.5 py-1 rounded-lg">
+                        Đã vượt ải
+                      </span>
                           <span
                             role="button"
                             onClick={(e) => {

@@ -288,6 +288,15 @@ export default function HomePage() {
   return (
     <div className="relative min-h-screen overflow-x-hidden bg-white dark:bg-stone-950 bg-[linear-gradient(to_right,#80808007_1px,transparent_1px),linear-gradient(to_bottom,#80808007_1px,transparent_1px)] bg-[size:20px_20px] transition-colors duration-300">
       <style>{`
+        @keyframes landing-aurora-drift {
+          0% { transform: translate3d(-2%, -1%, 0) scale(1); }
+          50% { transform: translate3d(2%, 1.5%, 0) scale(1.03); }
+          100% { transform: translate3d(-1%, 2%, 0) scale(1.01); }
+        }
+        @keyframes landing-orbit-drift {
+          0% { transform: translate3d(0, 0, 0) rotate(0deg); }
+          100% { transform: translate3d(0, -16px, 0) rotate(360deg); }
+        }
         @keyframes landing-grid-drift {
           0% { transform: translate3d(0, 0, 0); }
           100% { transform: translate3d(24px, 18px, 0); }
@@ -333,6 +342,12 @@ export default function HomePage() {
         }
         .landing-drift-grid {
           animation: landing-grid-drift 18s linear infinite alternate;
+        }
+        .landing-aurora {
+          animation: landing-aurora-drift 16s ease-in-out infinite alternate;
+        }
+        .landing-orbit {
+          animation: landing-orbit-drift 24s linear infinite;
         }
         .landing-glow {
           animation: landing-pulse-glow 8s ease-in-out infinite;
@@ -419,6 +434,11 @@ export default function HomePage() {
       {/* Ambient background glows - fixed page-level, not nested inside any section */}
       <div className="pointer-events-none absolute inset-0 landing-texture z-0" />
       <div className="pointer-events-none absolute inset-0 landing-drift-grid bg-[linear-gradient(to_right,rgba(15,23,42,0.04)_1px,transparent_1px),linear-gradient(to_bottom,rgba(15,23,42,0.04)_1px,transparent_1px)] bg-[size:28px_28px] z-0" />
+      <div className="pointer-events-none absolute inset-0 landing-aurora z-0 opacity-70">
+        <div className="absolute left-[8%] top-[8%] h-[22rem] w-[22rem] rounded-full bg-emerald-400/10 blur-[120px] dark:bg-emerald-500/10" />
+        <div className="absolute right-[12%] top-[20%] h-[20rem] w-[20rem] rounded-full bg-teal-400/10 blur-[120px] dark:bg-teal-500/10" />
+        <div className="absolute left-[46%] top-[48%] h-[26rem] w-[26rem] rounded-full bg-amber-400/10 blur-[140px] dark:bg-amber-400/10" />
+      </div>
       <div className="pointer-events-none absolute top-[10%] left-[5%] w-[450px] h-[450px] rounded-full bg-emerald-500/10 dark:bg-emerald-500/5 blur-[120px] z-0 landing-glow" />
       <div className="pointer-events-none absolute top-[45%] right-[8%] w-[550px] h-[550px] rounded-full bg-teal-500/10 dark:bg-teal-500/5 blur-[150px] z-0 landing-glow" />
       <div className="pointer-events-none absolute top-[75%] left-[12%] w-[500px] h-[500px] rounded-full bg-indigo-500/10 dark:bg-indigo-500/5 blur-[130px] z-0 landing-glow" />
@@ -477,7 +497,7 @@ export default function HomePage() {
 
         {/* ── HERO ── */}
         <section
-          className="relative overflow-hidden"
+          className="relative overflow-hidden landing-band landing-band-soft"
           onMouseMove={(e) => {
             const rect = (e.currentTarget as HTMLElement).getBoundingClientRect();
             const x = ((e.clientX - rect.left) / rect.width) * 100;
@@ -511,9 +531,9 @@ export default function HomePage() {
             <div className="grid items-center gap-10 lg:grid-cols-[minmax(0,1.08fr)_minmax(360px,0.92fr)]">
               <div className="max-w-2xl">
                 <motion.div
-                  initial={{ opacity: 0, y: 14 }}
+                  initial={{ opacity: 0, y: 16, filter: "blur(8px)" }}
                   animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.45, ease: "easeOut" }}
+                  transition={{ duration: 0.55, ease: "easeOut" }}
                   className="mb-5 inline-flex items-center gap-1.5 rounded-full border border-emerald-200/80 bg-white/80 px-3 py-1 text-[10px] font-black uppercase tracking-[0.16em] text-emerald-700 backdrop-blur-sm dark:border-emerald-900 dark:bg-stone-950/55 dark:text-emerald-300"
                 >
                   <span className="relative flex w-1.5 h-1.5">
@@ -524,9 +544,9 @@ export default function HomePage() {
                 </motion.div>
 
                 <motion.h1
-                  initial={{ opacity: 0, y: 14 }}
+                  initial={{ opacity: 0, y: 18, filter: "blur(10px)" }}
                   animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.45, ease: "easeOut", delay: 0.06 }}
+                  transition={{ duration: 0.6, ease: "easeOut", delay: 0.06 }}
                   className="mb-4 max-w-3xl text-[3.25rem] font-black leading-[0.92] tracking-tight text-stone-950 dark:text-stone-50 lg:text-[4.6rem]"
                 >
                   Bước vào thế giới{" "}
@@ -537,9 +557,9 @@ export default function HomePage() {
                 </motion.h1>
 
                 <motion.p
-                  initial={{ opacity: 0, y: 14 }}
+                  initial={{ opacity: 0, y: 18, filter: "blur(10px)" }}
                   animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.45, ease: "easeOut", delay: 0.12 }}
+                  transition={{ duration: 0.6, ease: "easeOut", delay: 0.12 }}
                   className="mb-8 max-w-xl text-[15px] leading-7 text-stone-650 dark:text-stone-300 sm:text-lg"
                 >
                   {lessonCountFloor ?? 360}+ bài học - 100% miễn phí vĩnh viễn - giáo trình thiết kế riêng cho người Việt học tài chính cá
@@ -548,9 +568,9 @@ export default function HomePage() {
                 </motion.p>
 
                 <motion.div
-                  initial={{ opacity: 0, y: 14 }}
+                  initial={{ opacity: 0, y: 18, filter: "blur(8px)" }}
                   animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.45, ease: "easeOut", delay: 0.18 }}
+                  transition={{ duration: 0.55, ease: "easeOut", delay: 0.18 }}
                   className="mb-10 flex flex-wrap items-center gap-3"
                 >
                   <Link
@@ -599,13 +619,13 @@ export default function HomePage() {
                 </motion.div>
               </div>
 
-              <motion.div
-                initial={{ opacity: 0, x: 24, scale: 0.96 }}
-                animate={{ opacity: 1, x: 0, scale: 1 }}
-                transition={{ duration: 0.55, ease: "easeOut", delay: 0.18 }}
-                className="relative hidden justify-center lg:flex"
-              >
-                <div className="landing-float relative w-full max-w-[520px] overflow-hidden rounded-[20px] border border-stone-200/80 bg-stone-950 text-white shadow-[0_18px_44px_-30px_rgba(15,23,42,0.36)] dark:border-stone-800 transition-all duration-200 ease-out hover:-translate-y-1 hover:scale-[1.01]">
+                <motion.div
+                  initial={{ opacity: 0, x: 24, scale: 0.96, filter: "blur(10px)" }}
+                  animate={{ opacity: 1, x: 0, scale: 1, filter: "blur(0px)" }}
+                  transition={{ duration: 0.7, ease: "easeOut", delay: 0.18 }}
+                  className="relative hidden justify-center lg:flex"
+                >
+                <div className="landing-float relative w-full max-w-[520px] overflow-hidden rounded-[20px] border border-stone-200/80 bg-stone-950 text-white shadow-[0_18px_44px_-30px_rgba(15,23,42,0.36)] dark:border-stone-800 transition-all duration-300 ease-out hover:-translate-y-1 hover:scale-[1.01] hover:shadow-[0_22px_50px_-28px_rgba(15,23,42,0.4)]">
                   <div className="absolute inset-0">
                     <Image
                       src="/charging-bull.jpg"
@@ -618,10 +638,10 @@ export default function HomePage() {
                   </div>
 
                   <div
-                    className="relative p-6"
-                    style={{
-                      transform: `perspective(1200px) translate3d(${heroParallaxX * 0.5}px, ${heroParallaxY * 0.35}px, 0)`,
-                    }}
+                      className="relative p-6"
+                      style={{
+                        transform: `perspective(1200px) translate3d(${heroParallaxX * 0.5}px, ${heroParallaxY * 0.35}px, 0)`,
+                      }}
                   >
                     <div className="flex items-center justify-between gap-3">
                       <div className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/10 px-3 py-1 text-[10px] font-black uppercase tracking-[0.16em] text-emerald-200 backdrop-blur">
@@ -835,13 +855,13 @@ export default function HomePage() {
         <section className="landing-band landing-band-dark landing-band-divider relative py-14 lg:py-18">
           <div className="max-w-6xl mx-auto px-6">
           <ScrollReveal className="max-w-3xl mb-8">
-            <p className="text-xs font-black text-amber-600 dark:text-amber-400 uppercase tracking-widest mb-2">
+            <p className="text-xs font-black text-amber-300 uppercase tracking-widest mb-2 drop-shadow-[0_1px_2px_rgba(0,0,0,0.55)]">
               Xem trước Game Kingdom
             </p>
-            <h2 className="text-3xl lg:text-4xl font-black text-stone-900 dark:text-stone-100">
+            <h2 className="text-3xl lg:text-4xl font-black text-white drop-shadow-[0_2px_8px_rgba(0,0,0,0.45)]">
               Một vương quốc tài chính để bạn mở khóa bằng kiến thức
             </h2>
-            <p className="mt-3 max-w-xl text-sm text-stone-600 dark:text-stone-400 leading-relaxed sm:text-base">
+            <p className="mt-3 max-w-xl text-sm leading-relaxed text-stone-200/90 drop-shadow-[0_1px_2px_rgba(0,0,0,0.55)] sm:text-base">
               Game Kingdom biến việc học thành nhiệm vụ: hoàn thành bài, làm quiz, chơi mini game và mở dần các công trình
               tài chính. Hình ảnh bên dưới dùng trực tiếp các asset trong game để người mới thấy rõ mình sẽ bước vào đâu.
             </p>
@@ -885,16 +905,16 @@ export default function HomePage() {
                   <div className="min-w-0">
                     <div className="mb-4 flex flex-wrap items-center justify-between gap-3">
                       <div>
-                        <div className="inline-flex items-center gap-2 rounded-full border border-amber-400/35 bg-amber-400/10 px-3 py-1 text-[11px] font-black uppercase tracking-[0.16em] text-amber-200">
+                        <div className="inline-flex items-center gap-2 rounded-full border border-amber-300/45 bg-amber-300/15 px-3 py-1 text-[11px] font-black uppercase tracking-[0.16em] text-amber-100 shadow-[0_10px_26px_-18px_rgba(251,191,36,0.35)]">
                           <Crown className="h-3.5 w-3.5" />
                           Vương quốc Game Tài Chính
                         </div>
-                        <h3 className="mt-3 text-2xl font-black text-white sm:text-3xl">
+                        <h3 className="mt-3 text-2xl font-black text-white drop-shadow-[0_2px_8px_rgba(0,0,0,0.45)] sm:text-3xl">
                           Bản đồ nhiệm vụ hôm nay
                         </h3>
                       </div>
-                      <div className="rounded-[18px] border border-emerald-400/30 bg-emerald-400/10 px-4 py-3 text-right backdrop-blur">
-                        <p className="text-[10px] font-black uppercase tracking-[0.16em] text-emerald-200">XP phiên chơi</p>
+                      <div className="rounded-[18px] border border-emerald-400/35 bg-emerald-400/12 px-4 py-3 text-right backdrop-blur shadow-[0_12px_28px_-22px_rgba(16,185,129,0.35)]">
+                        <p className="text-[10px] font-black uppercase tracking-[0.16em] text-emerald-100">XP phiên chơi</p>
                         <p className="mt-1 text-2xl font-black tabular-nums text-white">+240 XP</p>
                       </div>
                     </div>
@@ -915,8 +935,8 @@ export default function HomePage() {
                             />
                             <div className="absolute inset-0 bg-gradient-to-t from-stone-950/80 via-transparent to-transparent" />
                             <div className="absolute bottom-3 left-3 right-3">
-                              <p className="text-sm font-black text-white">{building.name}</p>
-                              <p className="text-[11px] font-semibold text-amber-100">{building.label}</p>
+                              <p className="text-sm font-black text-white drop-shadow-[0_2px_6px_rgba(0,0,0,0.55)]">{building.name}</p>
+                              <p className="text-[11px] font-semibold text-amber-100 drop-shadow-[0_1px_4px_rgba(0,0,0,0.45)]">{building.label}</p>
                             </div>
                           </div>
                           <div className="p-3">
@@ -959,7 +979,7 @@ export default function HomePage() {
                     </div>
                     <div className="rounded-[18px] border border-amber-300/30 bg-amber-300/10 p-4">
                       <div className="flex items-center gap-2">
-                        <Trophy className="icon-bounce h-4 w-4 text-amber-200" />
+                        <Trophy className="icon-bounce h-4 w-4 text-amber-100" />
                         <p className="text-sm font-black text-white">Nhiệm vụ nổi bật</p>
                       </div>
                       <div className="mt-3 space-y-2">
@@ -977,7 +997,7 @@ export default function HomePage() {
                     </div>
                     <Link
                       href="/login?mode=signup"
-                      className="mt-4 inline-flex w-full items-center justify-center gap-2 rounded-[18px] bg-white px-5 py-3 text-sm font-black text-stone-950 shadow-[0_12px_28px_-20px_rgba(15,23,42,0.24)] transition hover:bg-amber-50"
+                      className="mt-4 inline-flex w-full items-center justify-center gap-2 rounded-[18px] bg-white px-5 py-3 text-sm font-black text-stone-950 shadow-[0_12px_28px_-20px_rgba(15,23,42,0.24)] transition hover:-translate-y-0.5 hover:bg-amber-50"
                     >
                       <Zap className="h-4 w-4 text-amber-500" />
                       Vào Game Kingdom

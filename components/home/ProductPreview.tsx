@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { CheckCircle2, Circle, Flame, Trophy, Sparkles } from "lucide-react";
+import { CheckCircle2, Circle, Flame, Trophy } from "lucide-react";
 
 type Tab = "dashboard" | "lesson";
 
@@ -94,9 +94,8 @@ export default function ProductPreview() {
                     <p className="text-[10px] font-black uppercase tracking-widest text-stone-400 dark:text-stone-500">Cấp độ 6</p>
                     <p className="text-sm font-extrabold text-stone-900 dark:text-stone-100">Nhà phân tích</p>
                   </div>
-                  <span className="inline-flex items-center gap-1 text-[11px] font-black text-white bg-gradient-to-r from-emerald-500 to-teal-500 rounded-full px-2.5 py-1">
+                  <span className="inline-flex items-center gap-1.5 text-[11px] font-black text-white bg-gradient-to-r from-emerald-500 to-teal-500 rounded-full px-2.5 py-1">
                     <span className="preview-live-dot h-1.5 w-1.5 rounded-full bg-white/90" />
-                    <Sparkles className="w-3 h-3" />
                     1,240 XP
                   </span>
                 </div>
@@ -141,7 +140,6 @@ export default function ProductPreview() {
                 <div className="rounded-[20px] border border-stone-200/80 dark:border-stone-800 bg-white dark:bg-stone-900 p-5 shadow-[0_12px_28px_-24px_rgba(15,23,42,0.2)]">
                   <p className="text-[10px] font-black uppercase tracking-widest text-stone-400 dark:text-stone-500 mb-2.5 flex items-center gap-1.5">
                     <span className="preview-live-dot h-1.5 w-1.5 rounded-full bg-emerald-500" />
-                    <Trophy className="w-3.5 h-3.5 text-amber-500" />
                     Top tuần này
                   </p>
                   <div className="space-y-2">

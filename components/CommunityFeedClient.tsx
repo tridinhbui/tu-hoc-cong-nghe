@@ -26,6 +26,8 @@ import {
   TrendingUp,
   X,
   Zap,
+  Clock3,
+  CircleGauge,
 } from "lucide-react";
 import { createClient } from "@/lib/supabase";
 import EmojiPicker from "@/components/EmojiPicker";
@@ -64,10 +66,10 @@ function Avatar({ name, avatarUrl }: { name?: string | null; avatarUrl?: string 
       alt={name || "User"}
       width={40}
       height={40}
-      className="rounded-full object-cover border border-stone-200 dark:border-stone-700 flex-shrink-0"
+      className="rounded-full object-cover ring-2 ring-white shadow-[0_8px_18px_-16px_rgba(15,23,42,0.35)] flex-shrink-0"
     />
   ) : (
-    <div className="w-10 h-10 rounded-full bg-stone-200 dark:bg-stone-700 text-stone-700 dark:text-stone-300 font-extrabold flex items-center justify-center border border-stone-300 dark:border-stone-600 flex-shrink-0">
+    <div className="w-11 h-11 rounded-full bg-stone-200 dark:bg-stone-700 text-stone-700 dark:text-stone-300 font-extrabold flex items-center justify-center ring-2 ring-white shadow-[0_8px_18px_-16px_rgba(15,23,42,0.35)] flex-shrink-0">
       {initials}
     </div>
   );
@@ -392,6 +394,8 @@ export default function CommunityFeedClient({ embedded = false }: { embedded?: b
   });
   const totalReactions = posts.reduce((sum, post) => sum + post.reaction_count, 0);
   const totalComments = posts.reduce((sum, post) => sum + post.comment_count, 0);
+  const activeTopics = TOPICS.filter((topic) => posts.some((post) => getPostCategory(post) === topic.id && topic.id !== "all")).length;
+  const featuredStreak = posts.find((post) => post.kind === "streak")?.reaction_count ?? 0;
   const hotPosts = [...posts]
     .sort((a, b) => b.reaction_count + b.comment_count * 2 - (a.reaction_count + a.comment_count * 2))
     .slice(0, 3);
@@ -408,32 +412,32 @@ export default function CommunityFeedClient({ embedded = false }: { embedded?: b
   return (
     <div className={shellClass}>
       {!embedded && (
-        <div className="border-b border-stone-200 dark:border-stone-800 bg-white dark:bg-stone-950">
-          <div className="max-w-6xl mx-auto px-4 sm:px-6 py-5">
+        <div className="border-b border-stone-200/70 bg-white/90 backdrop-blur-xl dark:border-stone-800/70 dark:bg-stone-950/85">
+          <div className="max-w-6xl mx-auto px-4 sm:px-6 py-6">
             <Link href="/dashboard" className="text-stone-500 dark:text-stone-400 hover:opacity-70 text-sm font-semibold flex items-center gap-1 w-fit">
               <ArrowLeft className="w-4 h-4" /> Về Dashboard
             </Link>
-            <div className="mt-4 flex flex-col lg:flex-row lg:items-end lg:justify-between gap-4">
-              <div>
-                <div className="inline-flex items-center gap-2 rounded-full border border-emerald-200 bg-emerald-50 px-3 py-1 text-[11px] font-black uppercase tracking-[0.16em] text-emerald-700 dark:border-emerald-900 dark:bg-emerald-950/40 dark:text-emerald-300">
+            <div className="mt-5 flex flex-col gap-5 lg:flex-row lg:items-end lg:justify-between">
+              <div className="max-w-2xl">
+                <div className="inline-flex items-center gap-2 rounded-full bg-stone-100 px-3 py-1 text-[11px] font-black uppercase tracking-[0.16em] text-stone-700 dark:bg-stone-800 dark:text-stone-200">
                   <MessageCircle className="h-3.5 w-3.5" />
                   FinSocial
                 </div>
-                <h1 className="mt-3 text-2xl sm:text-3xl font-black tracking-tight text-stone-950 dark:text-stone-50">
+                <h1 className="mt-3 text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight text-stone-950 dark:text-stone-50">
                   FinSocial
                 </h1>
-                <p className="mt-1.5 max-w-2xl text-sm font-medium text-stone-500 dark:text-stone-400">
+                <p className="mt-2 max-w-2xl text-sm sm:text-base leading-relaxed text-stone-500 dark:text-stone-400">
                   Mạng xã hội học tài chính: đăng bản tin ngắn, câu hỏi, phân tích, ảnh thành tựu và cập nhật học tập của mọi người.
                 </p>
               </div>
-              <div className="grid grid-cols-3 gap-2 sm:min-w-[360px]">
+              <div className="grid grid-cols-3 gap-3 sm:min-w-[420px]">
                 {[
                   { label: "Bài viết", value: posts.length },
                   { label: "Cảm xúc", value: totalReactions },
                   { label: "Bình luận", value: totalComments },
                 ].map((item) => (
-                  <div key={item.label} className="rounded-2xl border border-stone-200 bg-stone-50 px-3 py-2 text-center dark:border-stone-800 dark:bg-stone-900">
-                    <p className="text-lg font-black text-stone-950 dark:text-stone-50">{item.value}</p>
+                  <div key={item.label} className="rounded-[18px] bg-stone-50 px-3 py-3 text-center shadow-[0_10px_22px_-22px_rgba(15,23,42,0.16)] dark:bg-stone-900/70">
+                    <p className="text-2xl font-black text-stone-950 dark:text-stone-50">{item.value}</p>
                     <p className="text-[10px] font-bold uppercase tracking-wide text-stone-400">{item.label}</p>
                   </div>
                 ))}
@@ -443,18 +447,53 @@ export default function CommunityFeedClient({ embedded = false }: { embedded?: b
         </div>
       )}
 
-      <div className={`${embedded ? "" : "max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-[minmax(0,1fr)_320px] gap-6"} px-4 sm:px-6 py-6`}>
+      <div className={`${embedded ? "" : "max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-[minmax(0,1fr)_300px] gap-6"} px-4 sm:px-6 py-6`}>
         <main className="min-w-0">
+        {!embedded && (
+          <div className="mb-5 grid gap-3 sm:grid-cols-[1.1fr_0.9fr_0.9fr]">
+            <div className="rounded-[22px] bg-white p-4 shadow-[0_14px_30px_-26px_rgba(15,23,42,0.2)] dark:bg-stone-900/80">
+              <div className="flex items-center gap-3">
+                  <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-stone-100 text-stone-700 ring-1 ring-stone-200 dark:bg-stone-800 dark:text-stone-200 dark:ring-stone-700">
+                    <CircleGauge className="h-5 w-5" />
+                  </div>
+                  <div>
+                  <p className="text-[11px] font-black uppercase tracking-[0.16em] text-stone-500 dark:text-stone-400">Streak học tập</p>
+                  <p className="mt-1 text-xl font-black text-stone-950 dark:text-stone-50">{Math.max(0, featuredStreak)} ngày nổi bật</p>
+                </div>
+              </div>
+              <div className="mt-3 h-2 overflow-hidden rounded-full bg-stone-100 dark:bg-stone-800">
+                <div className="h-full w-[72%] rounded-full bg-gradient-to-r from-emerald-500 via-teal-400 to-emerald-300 transition-all duration-500" />
+              </div>
+            </div>
+            <div className="rounded-[22px] bg-white p-4 shadow-[0_14px_30px_-26px_rgba(15,23,42,0.2)] dark:bg-stone-900/80">
+              <p className="text-[11px] font-black uppercase tracking-[0.16em] text-stone-400">Chủ đề hoạt động</p>
+              <p className="mt-2 text-2xl font-black text-stone-950 dark:text-stone-50">{activeTopics}</p>
+              <p className="mt-1 text-sm text-stone-500 dark:text-stone-400">đang có nội dung mới trong feed</p>
+            </div>
+            <div className="rounded-[22px] bg-white p-4 shadow-[0_14px_30px_-26px_rgba(15,23,42,0.2)] dark:bg-stone-900/80">
+              <p className="text-[11px] font-black uppercase tracking-[0.16em] text-stone-400">Hoạt động hôm nay</p>
+              <div className="mt-3 grid grid-cols-7 gap-1.5">
+                {Array.from({ length: 14 }, (_, i) => (
+                  <span
+                    key={i}
+                    className={`h-3 rounded-[6px] ${i % 4 === 0 ? "bg-emerald-500/80" : i % 3 === 0 ? "bg-emerald-300/80" : "bg-stone-200 dark:bg-stone-700"}`}
+                  />
+                ))}
+              </div>
+            </div>
+          </div>
+        )}
+
         {!embedded && spotlightItems.length > 0 && (
-          <div className="mb-4 rounded-[20px] border border-emerald-200/80 bg-gradient-to-r from-emerald-50 to-teal-50 p-4 shadow-[0_10px_26px_-22px_rgba(16,185,129,0.26)] dark:border-emerald-900/60 dark:from-emerald-950/35 dark:to-teal-950/20">
+          <div className="mb-5 rounded-[24px] bg-white/90 p-4 shadow-[0_14px_30px_-26px_rgba(15,23,42,0.2)] ring-1 ring-stone-100/60 dark:bg-stone-900/75 dark:ring-stone-800/60">
             <div className="mb-3 flex items-center justify-between gap-3">
               <div className="flex items-center gap-2">
-                <span className="flex h-9 w-9 items-center justify-center rounded-[18px] bg-white text-emerald-700 shadow-[0_8px_18px_-18px_rgba(15,23,42,0.2)] ring-1 ring-emerald-100 dark:bg-stone-950/60 dark:text-emerald-300 dark:ring-emerald-900">
+                <span className="flex h-10 w-10 items-center justify-center rounded-[18px] bg-stone-100 text-stone-700 shadow-[0_8px_18px_-18px_rgba(15,23,42,0.2)] ring-1 ring-stone-200 dark:bg-stone-800 dark:text-stone-200 dark:ring-stone-700">
                   <Sparkles className="h-4.5 w-4.5" />
                 </span>
                 <div>
                   <h2 className="text-sm font-black uppercase tracking-[0.14em] text-stone-950 dark:text-stone-50">Nổi bật hôm nay</h2>
-                  <p className="text-xs font-semibold text-stone-500 dark:text-stone-400">Các bài đáng đọc để bắt nhịp cộng đồng nhanh hơn</p>
+                  <p className="text-xs font-medium text-stone-500 dark:text-stone-400">Các bài đáng mở đầu để bắt nhịp nhanh</p>
                 </div>
               </div>
             </div>
@@ -464,16 +503,16 @@ export default function CommunityFeedClient({ embedded = false }: { embedded?: b
                   key={`${label}-${post.id}`}
                   type="button"
                   onClick={() => void toggleComments(post.id)}
-                  className="rounded-[20px] border border-white/70 bg-white/80 p-3 text-left shadow-[0_8px_18px_-18px_rgba(15,23,42,0.18)] transition hover:-translate-y-0.5 hover:border-emerald-200 dark:border-stone-800 dark:bg-stone-950/45"
+                  className="group rounded-[20px] bg-stone-50/80 p-3 text-left shadow-[0_8px_18px_-18px_rgba(15,23,42,0.18)] transition duration-200 ease-out hover:-translate-y-1 hover:bg-white dark:bg-stone-950/45 dark:hover:bg-stone-900"
                 >
                   <div className="flex items-center gap-2">
                     <Icon className="h-4 w-4 text-emerald-600 dark:text-emerald-300" />
                     <span className="text-[10px] font-black uppercase tracking-wide text-emerald-700 dark:text-emerald-300">{label}</span>
                   </div>
-                  <p className="mt-2 line-clamp-2 text-xs font-semibold leading-relaxed text-stone-700 dark:text-stone-300">
+                  <p className="mt-2 line-clamp-2 text-xs font-medium leading-relaxed text-stone-700 dark:text-stone-300">
                     {post.content || "Bài viết có hình ảnh"}
                   </p>
-                  <p className="mt-2 text-[10px] font-bold text-stone-400">{post.user_name} · {post.reaction_count} cảm xúc</p>
+                  <p className="mt-2 text-[10px] font-medium text-stone-400">{post.user_name} · {post.reaction_count} cảm xúc</p>
                 </button>
               ))}
             </div>
@@ -481,7 +520,7 @@ export default function CommunityFeedClient({ embedded = false }: { embedded?: b
         )}
 
         {!embedded && (
-          <div className="mb-4 rounded-[20px] border border-stone-200/80 bg-white p-3 shadow-[0_10px_24px_-24px_rgba(15,23,42,0.22)] dark:border-stone-800 dark:bg-stone-900">
+          <div className="mb-4 rounded-[24px] bg-white p-3.5 shadow-[0_14px_30px_-26px_rgba(15,23,42,0.22)] ring-1 ring-stone-100/70 dark:bg-stone-900/85 dark:ring-stone-800/60">
             <div className="flex flex-col sm:flex-row gap-3">
               <div className="relative flex-1">
                 <Search className="pointer-events-none absolute left-3.5 top-1/2 h-4 w-4 -translate-y-1/2 text-stone-400" />
@@ -489,13 +528,13 @@ export default function CommunityFeedClient({ embedded = false }: { embedded?: b
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
                   placeholder="Tìm bài viết, người đăng, chủ đề..."
-                  className="w-full rounded-[18px] border border-stone-200 bg-stone-50 py-2.5 pl-10 pr-3 text-sm font-medium text-stone-900 outline-none transition focus:border-emerald-500 focus:bg-white dark:border-stone-700 dark:bg-stone-950 dark:text-stone-100"
+                  className="w-full rounded-[18px] bg-stone-100/80 py-3 pl-10 pr-3 text-sm font-medium text-stone-900 outline-none transition duration-200 ease-out focus:bg-white focus:ring-2 focus:ring-emerald-400/25 dark:bg-stone-950/75 dark:text-stone-100"
                 />
               </div>
               <button
                 type="button"
                 onClick={() => void refreshFeed()}
-                className="inline-flex items-center justify-center gap-2 rounded-[18px] border border-stone-200 bg-white px-4 py-2.5 text-sm font-bold text-stone-600 transition hover:bg-stone-50 dark:border-stone-700 dark:bg-stone-900 dark:text-stone-300"
+                className="inline-flex items-center justify-center gap-2 rounded-[18px] bg-stone-100 px-4 py-2.5 text-sm font-bold text-stone-700 transition duration-200 ease-out hover:-translate-y-0.5 hover:bg-stone-200 dark:bg-stone-800 dark:text-stone-200 dark:hover:bg-stone-700"
               >
                 <RefreshCw className="h-4 w-4" />
                 Làm mới
@@ -510,10 +549,10 @@ export default function CommunityFeedClient({ embedded = false }: { embedded?: b
                     key={topic.id}
                     type="button"
                     onClick={() => setFeedFilter(topic.id)}
-                    className={`inline-flex shrink-0 items-center gap-2 rounded-full border px-3 py-1.5 text-xs font-black transition ${
+                    className={`inline-flex shrink-0 items-center gap-2 rounded-full border px-3 py-1.5 text-xs font-black transition duration-200 ease-out ${
                       isActive
-                        ? "border-stone-900 bg-stone-900 text-white dark:border-stone-100 dark:bg-stone-100 dark:text-stone-900"
-                        : "border-stone-200 bg-stone-50 text-stone-600 hover:border-stone-400 dark:border-stone-800 dark:bg-stone-950 dark:text-stone-300"
+                        ? "border-stone-300 bg-stone-200 text-stone-900 shadow-[0_8px_18px_-18px_rgba(15,23,42,0.16)] dark:border-stone-700 dark:bg-stone-800 dark:text-stone-100"
+                        : "border-transparent bg-stone-100 text-stone-600 hover:-translate-y-0.5 hover:bg-stone-200 dark:bg-stone-900/70 dark:text-stone-300 dark:hover:bg-stone-800"
                     }`}
                   >
                     <Icon className="h-3.5 w-3.5" />
@@ -526,11 +565,12 @@ export default function CommunityFeedClient({ embedded = false }: { embedded?: b
         )}
 
         {user && (
-          <div className="bg-white dark:bg-stone-900 border border-stone-200/80 dark:border-stone-800 rounded-[20px] p-4 sm:p-5 mb-6 shadow-[0_10px_24px_-24px_rgba(15,23,42,0.2)]">
+          <div className="group relative mb-6 overflow-hidden rounded-[24px] bg-white p-5 shadow-[0_18px_40px_-30px_rgba(15,23,42,0.24)] ring-1 ring-stone-100/80 transition duration-200 ease-out hover:-translate-y-0.5 hover:shadow-[0_22px_44px_-28px_rgba(15,23,42,0.28)] dark:bg-stone-900/90 dark:ring-stone-800/60">
             <div className="mb-4 flex items-start justify-between gap-3">
               <div>
                 <p className="text-xs font-black uppercase tracking-[0.14em] text-emerald-600 dark:text-emerald-400">Tạo bài viết</p>
-                <h2 className="mt-1 text-lg font-black text-stone-950 dark:text-stone-50">Bạn học được gì hôm nay?</h2>
+                <h2 className="mt-1 text-2xl font-black text-stone-950 dark:text-stone-50">Bạn học được gì hôm nay?</h2>
+                <p className="mt-1 text-sm text-stone-500 dark:text-stone-400">Chia sẻ ngắn, rõ ý, có thể kèm ảnh hoặc ví dụ để feed dễ đọc hơn.</p>
               </div>
               <span className="hidden sm:inline-flex items-center gap-1 rounded-full bg-stone-100 px-2.5 py-1 text-[10px] font-black uppercase text-stone-500 dark:bg-stone-800 dark:text-stone-400">
                 Public feed
@@ -549,10 +589,10 @@ export default function CommunityFeedClient({ embedded = false }: { embedded?: b
                       setSelectedTopic(topic.id);
                       setContent((prev) => (topic.tag && !prev.includes(topic.tag) ? `${topic.tag}${prev.replace(/^#\\S+\\s*/, "")}` : prev));
                     }}
-                    className={`inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full border text-[11px] font-bold transition-colors cursor-pointer ${
+                    className={`inline-flex items-center gap-1.5 rounded-full px-2.5 py-1 text-[11px] font-bold transition duration-200 ease-out cursor-pointer ${
                       isActive
-                        ? "border-emerald-300 bg-emerald-50 text-emerald-700 dark:border-emerald-800 dark:bg-emerald-950/50 dark:text-emerald-300"
-                        : "border-transparent bg-stone-100 text-stone-600 hover:bg-emerald-50 hover:text-emerald-700 dark:bg-stone-800 dark:text-stone-300 dark:hover:bg-emerald-950"
+                        ? "bg-stone-200 text-stone-900 shadow-[0_8px_18px_-18px_rgba(15,23,42,0.16)] dark:bg-stone-700 dark:text-stone-50"
+                        : "bg-stone-100 text-stone-600 hover:-translate-y-0.5 hover:bg-stone-200 hover:text-stone-800 dark:bg-stone-800 dark:text-stone-300 dark:hover:bg-stone-700"
                     }`}
                   >
                     <Icon className="h-3.5 w-3.5" />
@@ -561,9 +601,9 @@ export default function CommunityFeedClient({ embedded = false }: { embedded?: b
               )})}
             </div>
 
-            <div className="mb-3 rounded-[18px] border border-stone-200 bg-stone-50 p-3 dark:border-stone-800 dark:bg-stone-950/50">
-              <p className="mb-2 text-[10px] font-black uppercase tracking-[0.14em] text-stone-500 dark:text-stone-400">Mẫu đăng nhanh</p>
-              <div className="grid gap-2 sm:grid-cols-2">
+              <div className="mb-3 rounded-[18px] bg-stone-50 p-3 dark:bg-stone-950/50">
+                <p className="mb-2 text-[10px] font-black uppercase tracking-[0.14em] text-stone-500 dark:text-stone-400">Mẫu đăng nhanh</p>
+                <div className="grid gap-2 sm:grid-cols-2">
                 {POST_TEMPLATES.map((template) => {
                   const Icon = template.icon;
                   return (
@@ -574,7 +614,7 @@ export default function CommunityFeedClient({ embedded = false }: { embedded?: b
                         setSelectedTopic(template.topic);
                         setContent(template.text);
                       }}
-                      className="flex items-center gap-2 rounded-[16px] border border-stone-200 bg-white px-3 py-2 text-left text-xs font-bold text-stone-600 transition hover:border-emerald-300 hover:bg-emerald-50 hover:text-emerald-700 dark:border-stone-800 dark:bg-stone-900 dark:text-stone-300"
+                      className="flex items-center gap-2 rounded-[16px] bg-white px-3 py-2 text-left text-xs font-bold text-stone-600 shadow-[0_10px_20px_-18px_rgba(15,23,42,0.16)] transition duration-200 ease-out hover:-translate-y-0.5 hover:bg-stone-100 hover:text-stone-800 dark:bg-stone-900 dark:text-stone-300 dark:hover:bg-stone-800"
                     >
                       <Icon className="h-3.5 w-3.5 shrink-0" />
                       {template.title}
@@ -598,17 +638,17 @@ export default function CommunityFeedClient({ embedded = false }: { embedded?: b
               placeholder="Chia sẻ cảm nghĩ, mẹo đầu tư hoặc hình ảnh thành quả học tập hôm nay..."
               maxLength={500}
               rows={2.5}
-              className="w-full resize-none px-3.5 py-2.5 rounded-[18px] border border-stone-200 dark:border-stone-700 bg-stone-50/50 dark:bg-stone-800/50 text-stone-900 dark:text-stone-100 text-sm focus:outline-none focus:border-emerald-500 focus:bg-white transition-all"
+              className="w-full resize-none rounded-[18px] bg-stone-100/80 px-4 py-3 text-sm text-stone-900 outline-none transition duration-200 ease-out placeholder:text-stone-400 focus:bg-white focus:ring-2 focus:ring-emerald-400/20 dark:bg-stone-800/60 dark:text-stone-100 dark:placeholder:text-stone-500"
             />
 
             {/* Image Preview Thumbnail */}
             {imagePreview && (
-              <div className="relative mt-2.5 rounded-[18px] overflow-hidden border border-stone-200 dark:border-stone-700 max-h-48 bg-stone-100 dark:bg-stone-800 w-fit">
+              <div className="relative mt-2.5 w-fit overflow-hidden rounded-[18px] bg-stone-100 shadow-[0_12px_26px_-22px_rgba(15,23,42,0.2)] dark:bg-stone-800">
                 <img src={imagePreview} alt="Preview" className="h-44 w-auto object-cover rounded-[18px]" />
                 <button
                   type="button"
                   onClick={clearPendingImage}
-                  className="absolute top-2 right-2 flex h-6 w-6 items-center justify-center rounded-full bg-stone-900/70 text-white hover:bg-stone-900 transition-colors cursor-pointer"
+                className="absolute right-2 top-2 flex h-7 w-7 items-center justify-center rounded-full bg-stone-900/75 text-white transition duration-200 ease-out hover:scale-105 hover:bg-stone-950 cursor-pointer"
                   title="Xóa ảnh"
                 >
                   <X className="h-3.5 w-3.5" />
@@ -622,7 +662,7 @@ export default function CommunityFeedClient({ embedded = false }: { embedded?: b
                 <button
                   type="button"
                   onClick={() => fileInputRef.current?.click()}
-                  className="p-2 rounded-[16px] hover:bg-stone-100 dark:hover:bg-stone-800 text-stone-500 hover:text-emerald-600 dark:text-stone-400 dark:hover:text-emerald-400 transition-colors cursor-pointer flex items-center gap-1 text-xs font-bold"
+                className="inline-flex items-center gap-1 rounded-[16px] bg-stone-100 px-3 py-2 text-xs font-bold text-stone-600 transition duration-200 ease-out hover:-translate-y-0.5 hover:bg-stone-200 dark:bg-stone-800 dark:text-stone-300 dark:hover:bg-stone-700"
                   title="Đính kèm hình ảnh"
                 >
                   <ImageIcon className="w-4 h-4 text-emerald-600 dark:text-emerald-400" />
@@ -633,9 +673,9 @@ export default function CommunityFeedClient({ embedded = false }: { embedded?: b
               <button
                 onClick={handlePost}
                 disabled={posting || (!content.trim() && !pendingImage)}
-                className="flex items-center gap-1.5 px-4.5 py-2 rounded-[16px] bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-500 hover:to-teal-500 text-white text-sm font-black disabled:opacity-40 transition-all shadow-[0_10px_22px_-20px_rgba(16,185,129,0.35)] active:scale-95 cursor-pointer"
+                className="group inline-flex items-center gap-2 rounded-[16px] bg-stone-950 px-5 py-2.5 text-sm font-black text-white shadow-[0_16px_34px_-24px_rgba(15,23,42,0.45)] transition duration-200 ease-out hover:-translate-y-0.5 hover:bg-stone-800 disabled:opacity-40 cursor-pointer"
               >
-                <Send className="w-3.5 h-3.5" /> {posting ? "Đang tải ảnh..." : "Đăng"}
+                <Send className="w-3.5 h-3.5 transition-transform group-hover:translate-x-0.5" /> {posting ? "Đang tải..." : "Đăng"}
               </button>
             </div>
           </div>
@@ -656,13 +696,16 @@ export default function CommunityFeedClient({ embedded = false }: { embedded?: b
               const badge = getUserBadge(post);
               const BadgeIcon = badge.icon;
               return (
-              <div key={post.id} className="bg-white dark:bg-stone-900 border border-stone-200/80 dark:border-stone-800 rounded-[20px] p-4 sm:p-5 shadow-[0_10px_24px_-24px_rgba(15,23,42,0.2)]">
-                <div className="flex items-start gap-3">
+              <div
+                key={post.id}
+                className="group rounded-[24px] bg-white p-5 shadow-[0_16px_34px_-28px_rgba(15,23,42,0.22)] ring-1 ring-stone-100/70 transition duration-200 ease-out hover:-translate-y-1 hover:shadow-[0_20px_42px_-26px_rgba(15,23,42,0.28)] dark:bg-stone-900/85 dark:ring-stone-800/60"
+              >
+                <div className="flex items-start gap-4">
                   <Avatar name={post.user_name} avatarUrl={post.user_avatar} />
                   <div className="flex-1 min-w-0">
                     <div className="flex items-start justify-between gap-3">
-                      <div className="flex items-center gap-2 flex-wrap">
-                        <span className="font-bold text-sm text-stone-900 dark:text-stone-100">{post.user_name}</span>
+                      <div className="flex flex-wrap items-center gap-2">
+                        <span className="text-sm font-black text-stone-950 dark:text-stone-50">{post.user_name}</span>
                       <span className={`inline-flex items-center gap-1 rounded-full px-2 py-0.5 text-[10px] font-black ${badge.className}`}>
                         <BadgeIcon className="h-3 w-3" />
                         {badge.label}
@@ -672,7 +715,10 @@ export default function CommunityFeedClient({ embedded = false }: { embedded?: b
                           <Flame className="w-3 h-3" /> Streak
                         </span>
                       )}
-                      <span className="text-xs text-stone-400 dark:text-stone-500">{timeAgo(post.created_at)}</span>
+                      <span className="flex items-center gap-1 text-xs text-stone-400 dark:text-stone-500">
+                        <Clock3 className="h-3 w-3" />
+                        {timeAgo(post.created_at)}
+                      </span>
                       </div>
                       {category !== "all" && (
                         <span className="inline-flex shrink-0 items-center gap-1 rounded-full bg-stone-100 px-2.5 py-1 text-[10px] font-black uppercase text-stone-500 dark:bg-stone-800 dark:text-stone-400">
@@ -682,31 +728,31 @@ export default function CommunityFeedClient({ embedded = false }: { embedded?: b
                       )}
                     </div>
                     {post.content && (
-                      <p className="text-sm text-stone-800 dark:text-stone-200 mt-1 whitespace-pre-wrap break-words">
+                      <p className="mt-2 whitespace-pre-wrap break-words text-[15px] leading-7 text-stone-800 dark:text-stone-100">
                         {post.content}
                       </p>
                     )}
 
                     {/* Attached Image Rendering */}
                     {post.metadata && typeof post.metadata === "object" && "image_url" in post.metadata && Boolean(post.metadata.image_url) && (
-                      <div className="mt-3 relative rounded-[18px] overflow-hidden border border-stone-200 dark:border-stone-800 max-h-96 bg-stone-950/5 dark:bg-stone-950/40">
+                      <div className="mt-4 relative overflow-hidden rounded-[20px] bg-stone-950/5 shadow-[0_12px_28px_-24px_rgba(15,23,42,0.22)] dark:bg-stone-950/40">
                         <img
                           src={String(post.metadata.image_url)}
                           alt="Bài đăng của người dùng"
-                          className="w-full h-auto max-h-96 object-contain rounded-[18px]"
+                          className="w-full h-auto max-h-96 object-contain"
                         />
                       </div>
                     )}
 
                     {post.reaction_summary.length > 0 && (
-                      <div className="mt-3 flex flex-wrap items-center gap-2">
+                      <div className="mt-4 flex flex-wrap items-center gap-2">
                         {post.reaction_summary.slice(0, 4).map((reaction) => (
                           <span
                             key={`${post.id}-${reaction.emoji}`}
-                            className={`inline-flex items-center gap-1 rounded-full border px-2.5 py-1 text-xs font-semibold ${
+                            className={`inline-flex items-center gap-1 rounded-full px-3 py-1.5 text-xs font-semibold shadow-[0_8px_18px_-18px_rgba(15,23,42,0.16)] transition duration-200 ease-out hover:-translate-y-0.5 ${
                               post.my_reaction === reaction.emoji
-                                ? "border-emerald-200 bg-emerald-50 text-emerald-700"
-                                : "border-stone-200 bg-stone-50 text-stone-600"
+                                ? "bg-stone-200 text-stone-900 dark:bg-stone-700 dark:text-stone-50"
+                                : "bg-stone-100 text-stone-600 dark:bg-stone-800 dark:text-stone-300"
                             }`}
                           >
                             <span>{reaction.emoji}</span>
@@ -714,14 +760,14 @@ export default function CommunityFeedClient({ embedded = false }: { embedded?: b
                           </span>
                         ))}
                         {post.reaction_count > 0 && (
-                          <span className="text-xs text-stone-400">
+                          <span className="text-xs font-medium text-stone-400">
                             {post.reaction_count} cảm xúc
                           </span>
                         )}
                       </div>
                     )}
 
-                    <div className="mt-3 flex flex-wrap items-center gap-2 border-t border-stone-100 pt-3 dark:border-stone-800">
+                    <div className="mt-4 flex flex-wrap items-center gap-2 border-t border-stone-100 pt-4 dark:border-stone-800">
                       <div className="relative">
                         <button
                           type="button"
@@ -730,10 +776,10 @@ export default function CommunityFeedClient({ embedded = false }: { embedded?: b
                             setReactionPickerFor((current) => (current === post.id ? null : post.id));
                           }}
                           disabled={!user}
-                          className={`inline-flex items-center gap-2 rounded-full px-3 py-1.5 text-xs font-semibold transition cursor-pointer ${
+                          className={`inline-flex items-center gap-2 rounded-full px-3.5 py-2 text-xs font-semibold transition duration-200 ease-out cursor-pointer ${
                             post.my_reaction
-                              ? "bg-emerald-50 text-emerald-700 border border-emerald-200"
-                              : "bg-stone-100 text-stone-600 hover:bg-stone-200 dark:bg-stone-800 dark:text-stone-300"
+                              ? "bg-emerald-50 text-emerald-700 shadow-[0_10px_20px_-18px_rgba(16,185,129,0.35)]"
+                              : "bg-stone-100 text-stone-600 hover:-translate-y-0.5 hover:bg-stone-200 dark:bg-stone-800 dark:text-stone-300"
                           }`}
                         >
                           <span className="text-sm leading-none">{post.my_reaction ?? "👍"}</span>
@@ -741,7 +787,7 @@ export default function CommunityFeedClient({ embedded = false }: { embedded?: b
                         </button>
 
                         {reactionPickerFor === post.id && user && (
-                          <div className="absolute left-0 bottom-full mb-1.5 z-30 flex items-center gap-1.5 rounded-full border border-stone-200 bg-white p-1.5 shadow-[0_12px_24px_-18px_rgba(15,23,42,0.24)] dark:border-stone-700 dark:bg-stone-900 animate-in fade-in zoom-in-95 duration-150">
+                          <div className="absolute left-0 bottom-full z-30 mb-1.5 flex items-center gap-1.5 rounded-full bg-white p-1.5 shadow-[0_12px_24px_-18px_rgba(15,23,42,0.24)] dark:bg-stone-900 animate-in fade-in zoom-in-95 duration-150">
                             {REACTION_OPTIONS.map((emoji) => (
                               <button
                                 key={emoji}
@@ -750,7 +796,7 @@ export default function CommunityFeedClient({ embedded = false }: { embedded?: b
                                   void handleReact(post, emoji);
                                   setReactionPickerFor(null);
                                 }}
-                                className={`rounded-full p-1.5 text-lg transition hover:scale-125 hover:bg-stone-100 dark:hover:bg-stone-800 active:scale-95 cursor-pointer ${
+                                className={`rounded-full p-1.5 text-lg transition duration-150 ease-out hover:scale-125 hover:bg-stone-100 dark:hover:bg-stone-800 active:scale-95 cursor-pointer ${
                                   post.my_reaction === emoji ? "bg-emerald-100/70" : ""
                                 }`}
                               >
@@ -764,7 +810,7 @@ export default function CommunityFeedClient({ embedded = false }: { embedded?: b
                       <button
                         type="button"
                         onClick={() => void toggleComments(post.id)}
-                        className="inline-flex items-center gap-2 rounded-full bg-stone-100 px-3 py-1.5 text-xs font-semibold text-stone-600 transition hover:bg-stone-200 dark:bg-stone-800 dark:text-stone-300"
+                        className="inline-flex items-center gap-2 rounded-full bg-stone-100 px-3.5 py-2 text-xs font-semibold text-stone-600 transition duration-200 ease-out hover:-translate-y-0.5 hover:bg-stone-200 dark:bg-stone-800 dark:text-stone-300"
                       >
                         <MessageCircle className="h-3.5 w-3.5" />
                         <span>Bình luận</span>
@@ -774,7 +820,7 @@ export default function CommunityFeedClient({ embedded = false }: { embedded?: b
                       {user?.id === post.user_id && (
                         <button
                           onClick={() => handleDelete(post.id)}
-                          className="inline-flex items-center gap-2 rounded-full px-3 py-1.5 text-xs font-semibold text-stone-400 transition hover:bg-rose-50 hover:text-rose-600"
+                          className="inline-flex items-center gap-2 rounded-full px-3.5 py-2 text-xs font-semibold text-stone-400 transition duration-200 ease-out hover:-translate-y-0.5 hover:bg-rose-50 hover:text-rose-600"
                         >
                           <Trash2 className="w-3.5 h-3.5" /> Xoá
                         </button>
@@ -782,11 +828,11 @@ export default function CommunityFeedClient({ embedded = false }: { embedded?: b
                     </div>
 
                     {openComments[post.id] && (
-                      <div className="mt-4 rounded-[18px] bg-stone-50 p-3 dark:bg-stone-950/60">
+                      <div className="mt-4 rounded-[20px] bg-stone-50 p-3.5 dark:bg-stone-950/60">
                         {user && (
                           <div className="mb-3 flex items-start gap-2">
                             <Avatar name={user.user_metadata?.full_name ?? "Bạn"} avatarUrl={user.user_metadata?.avatar_url ?? null} />
-                            <div className="flex-1 rounded-[18px] border border-stone-200 bg-white p-2 dark:border-stone-700 dark:bg-stone-900">
+                            <div className="flex-1 rounded-[18px] bg-white p-3 shadow-[0_8px_18px_-18px_rgba(15,23,42,0.16)] dark:bg-stone-900">
                               <textarea
                                 value={commentDrafts[post.id] ?? ""}
                                 onChange={(e) => setCommentDrafts((prev) => ({ ...prev, [post.id]: e.target.value }))}
@@ -800,8 +846,8 @@ export default function CommunityFeedClient({ embedded = false }: { embedded?: b
                                   <button
                                     type="button"
                                     onClick={() => setCommentDrafts((prev) => ({ ...prev, [post.id]: `${prev[post.id] ?? ""}✨` }))}
-                                    className="inline-flex items-center gap-1 rounded-full px-2 py-1 hover:bg-stone-100 dark:hover:bg-stone-800"
-                                  >
+                                  className="inline-flex items-center gap-1 rounded-full px-2 py-1 transition hover:bg-stone-100 dark:hover:bg-stone-800"
+                                >
                                     <SmilePlus className="h-3.5 w-3.5" />
                                     Gợi ý emoji
                                   </button>
@@ -811,7 +857,7 @@ export default function CommunityFeedClient({ embedded = false }: { embedded?: b
                                   type="button"
                                   disabled={postingComment[post.id] || !(commentDrafts[post.id] ?? "").trim()}
                                   onClick={() => void handleComment(post.id)}
-                                  className="inline-flex items-center gap-1.5 rounded-full bg-stone-900 px-3 py-1.5 text-xs font-bold text-white transition disabled:opacity-40 dark:bg-stone-100 dark:text-stone-900"
+                                  className="inline-flex items-center gap-1.5 rounded-full bg-stone-900 px-3.5 py-2 text-xs font-bold text-white shadow-[0_10px_22px_-18px_rgba(15,23,42,0.35)] transition duration-200 ease-out hover:-translate-y-0.5 disabled:opacity-40 dark:bg-stone-100 dark:text-stone-900"
                                 >
                                   <Send className="h-3.5 w-3.5" />
                                   Gửi
@@ -828,11 +874,11 @@ export default function CommunityFeedClient({ embedded = false }: { embedded?: b
                         ) : (
                           <div className="space-y-2">
                             {(commentsByPost[post.id] ?? []).map((comment) => (
-                              <div key={comment.id} className="flex items-start gap-2 rounded-[18px] bg-white p-3 dark:bg-stone-900">
+                              <div key={comment.id} className="flex items-start gap-3 rounded-[20px] bg-white p-3.5 shadow-[0_8px_18px_-18px_rgba(15,23,42,0.12)] dark:bg-stone-900">
                                 <Avatar name={comment.user_name} avatarUrl={comment.user_avatar} />
                                 <div className="min-w-0 flex-1">
                                   <div className="flex items-center gap-2 flex-wrap">
-                                    <span className="text-sm font-bold text-stone-900 dark:text-stone-100">{comment.user_name}</span>
+                                    <span className="text-sm font-black text-stone-900 dark:text-stone-100">{comment.user_name}</span>
                                     <span className="text-xs text-stone-400">{timeAgo(comment.created_at)}</span>
                                   </div>
                                   <p className="mt-1 text-sm text-stone-700 dark:text-stone-200 whitespace-pre-wrap break-words">
@@ -843,7 +889,7 @@ export default function CommunityFeedClient({ embedded = false }: { embedded?: b
                                   <button
                                     type="button"
                                     onClick={() => void handleDeleteComment(post.id, comment.id)}
-                                    className="rounded-full p-1.5 text-stone-400 transition hover:bg-rose-50 hover:text-rose-500"
+                                    className="rounded-full p-1.5 text-stone-400 transition duration-150 ease-out hover:bg-rose-50 hover:text-rose-500"
                                   >
                                     <Trash2 className="h-3.5 w-3.5" />
                                   </button>
@@ -874,19 +920,19 @@ export default function CommunityFeedClient({ embedded = false }: { embedded?: b
 
         {!embedded && (
           <aside className="space-y-4 lg:sticky lg:top-24 self-start">
-            <div className="rounded-[20px] border border-stone-200/80 bg-white p-5 shadow-[0_10px_24px_-24px_rgba(15,23,42,0.2)] dark:border-stone-800 dark:bg-stone-900">
+            <div className="rounded-[22px] bg-white p-4.5 shadow-[0_14px_30px_-26px_rgba(15,23,42,0.18)] ring-1 ring-stone-100/70 dark:bg-stone-900/80 dark:ring-stone-800/60">
               <div className="flex items-center gap-2">
                 <ShieldCheck className="h-5 w-5 text-emerald-600" />
                 <h2 className="text-sm font-black uppercase tracking-[0.14em] text-stone-900 dark:text-stone-100">Luật feed</h2>
               </div>
-              <div className="mt-4 space-y-3 text-sm font-medium text-stone-600 dark:text-stone-300">
-                <p>Viết ngắn, có ích, tôn trọng người học khác.</p>
-                <p>Không đăng khuyến nghị mua bán chắc chắn, không chia sẻ dữ liệu cá nhân hoặc tài liệu mật.</p>
-                <p>Một bài hay nên có: điều học được, ví dụ, câu hỏi hoặc nguồn cần kiểm chứng.</p>
+              <div className="mt-3 space-y-2 text-sm text-stone-600 dark:text-stone-300">
+                <p>Ngắn, có ích, tôn trọng nhau.</p>
+                <p>Không khuyến nghị chắc chắn, không chia sẻ dữ liệu mật.</p>
+                <p>Ưu tiên bài có ý chính, ví dụ hoặc nguồn cần kiểm chứng.</p>
               </div>
             </div>
 
-            <div className="rounded-[20px] border border-stone-200/80 bg-white p-5 shadow-[0_10px_24px_-24px_rgba(15,23,42,0.2)] dark:border-stone-800 dark:bg-stone-900">
+            <div className="rounded-[22px] bg-white p-4.5 shadow-[0_14px_30px_-26px_rgba(15,23,42,0.18)] ring-1 ring-stone-100/70 dark:bg-stone-900/80 dark:ring-stone-800/60">
               <div className="mb-4 flex items-center justify-between">
                 <h2 className="text-sm font-black uppercase tracking-[0.14em] text-stone-900 dark:text-stone-100">Đang nổi bật</h2>
                 <TrendingUp className="h-5 w-5 text-amber-500" />
@@ -916,7 +962,7 @@ export default function CommunityFeedClient({ embedded = false }: { embedded?: b
               )}
             </div>
 
-            <div className="rounded-[20px] border border-stone-200/80 bg-white p-5 shadow-[0_10px_24px_-24px_rgba(15,23,42,0.2)] dark:border-stone-800 dark:bg-stone-900">
+            <div className="rounded-[22px] bg-white p-4.5 shadow-[0_14px_30px_-26px_rgba(15,23,42,0.18)] ring-1 ring-stone-100/70 dark:bg-stone-900/80 dark:ring-stone-800/60">
               <div className="flex items-center gap-2">
                 <Bookmark className="h-5 w-5 text-sky-600" />
                 <h2 className="text-sm font-black uppercase tracking-[0.14em] text-stone-900 dark:text-stone-100">Gợi ý đăng bài</h2>
