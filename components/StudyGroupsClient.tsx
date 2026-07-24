@@ -421,12 +421,12 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
 
             {/* Main 2-Column Split View */}
             <div className="flex-1 min-h-0 grid grid-cols-1 lg:grid-cols-12 gap-3 sm:gap-4 overflow-hidden">
-              {/* LEFT COLUMN: Interactive 3D Spatial Table Map Stage */}
+              {/* LEFT COLUMN: Compact 3D Spatial Table Stage (Height ~2/3 viewport height) */}
               <div
                 onMouseMove={handleStageMouseMove}
                 onMouseLeave={() => setStageMousePos({ x: 0, y: 0 })}
-                className="lg:col-span-7 flex flex-col h-full min-h-0 rounded-2xl border border-stone-800 bg-stone-950 p-3 sm:p-3.5 shadow-2xl relative overflow-hidden text-white justify-between select-none"
-                style={{ perspective: "1000px", perspectiveOrigin: "50% 45%" }}
+                className="lg:col-span-7 flex flex-col h-full max-h-[60vh] sm:max-h-[460px] min-h-0 rounded-2xl border border-stone-800 bg-stone-950 p-3 sm:p-3.5 shadow-2xl relative overflow-hidden text-white justify-between select-none my-auto"
+                style={{ perspective: "800px", perspectiveOrigin: "50% 45%" }}
               >
                 {/* Ambient Radial Lighting & Starfield Grid Background */}
                 <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(#10b981_1.5px,transparent_1.5px)] [background-size:20px_20px] opacity-[0.14]" />
@@ -436,7 +436,7 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
                 <div className="relative z-30 flex items-center justify-between shrink-0 mb-1">
                   <div className="flex items-center gap-2">
                     <span className="text-[10px] font-black uppercase tracking-widest text-emerald-300 bg-emerald-950/80 px-2.5 py-0.5 rounded-full border border-emerald-500/40 backdrop-blur-md">
-                      🌐 INTERACTIVE 3D MAP · {topicLabel(myRoom.topic).toUpperCase()}
+                      🌐 BÀN HỌC 3D · {topicLabel(myRoom.topic).toUpperCase()}
                     </span>
                     <button
                       type="button"
@@ -482,11 +482,11 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
                   </div>
                 </div>
 
-                {/* ── 3D SPATIAL TILT CONTAINER (3-DIMENSIONAL PERSPECTIVE CANVAS) ── */}
+                {/* ── 3D SPATIAL TILT CONTAINER (Intimate & Cozy Spatial Desk) ── */}
                 <motion.div
                   animate={{
-                    rotateX: 42 - stageMousePos.y * 12,
-                    rotateY: stageMousePos.x * 16 + viewAngle3D,
+                    rotateX: 16 - stageMousePos.y * 6,
+                    rotateY: stageMousePos.x * 12 + viewAngle3D,
                   }}
                   transition={{ type: "spring", stiffness: 220, damping: 24 }}
                   className="relative flex-1 min-h-0 w-full flex items-center justify-center my-auto transition-transform duration-200"
@@ -494,47 +494,47 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
                 >
                   {/* Outer 3D Grid Floor Ring */}
                   <div
-                    className="absolute inset-4 rounded-full border border-dashed border-emerald-500/25 pointer-events-none"
-                    style={{ transform: "translateZ(-30px)" }}
+                    className="absolute inset-8 rounded-full border border-dashed border-emerald-500/25 pointer-events-none"
+                    style={{ transform: "translateZ(-20px)" }}
                   />
 
                   {/* Central 3D Interactive Spatial Roundtable Map */}
                   <motion.div
                     whileHover={{ scale: 1.05, rotateZ: 3 }}
-                    className="relative w-32 h-32 sm:w-40 sm:h-40 rounded-full bg-gradient-to-b from-stone-800 via-emerald-950/80 to-stone-950 border-2 border-emerald-400/80 shadow-[0_0_60px_rgba(16,185,129,0.35)] flex flex-col items-center justify-center text-center p-2 z-10 shrink-0 cursor-pointer"
+                    className="relative w-28 h-28 sm:w-34 sm:h-34 rounded-full bg-gradient-to-b from-stone-800 via-emerald-950/80 to-stone-950 border-2 border-emerald-400/80 shadow-[0_0_40px_rgba(16,185,129,0.35)] flex flex-col items-center justify-center text-center p-2 z-10 shrink-0 cursor-pointer"
                     style={{ transform: "translateZ(10px)" }}
                     onClick={() => {
                       toast.success("🔮 Đã nạp năng lượng 3D Spatial Boost cho cả phòng!");
                     }}
                   >
-                    <div className="absolute inset-1.5 rounded-full border border-dashed border-emerald-300/40 animate-spin-slow pointer-events-none" />
+                    <div className="absolute inset-1 rounded-full border border-dashed border-emerald-300/40 animate-spin-slow pointer-events-none" />
 
                     <div className="relative z-10">
                       <motion.span
-                        animate={{ y: [0, -4, 0], scale: [1, 1.1, 1] }}
+                        animate={{ y: [0, -3, 0], scale: [1, 1.08, 1] }}
                         transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
-                        className="text-xl sm:text-2xl mb-0.5 inline-block drop-shadow-[0_0_12px_rgba(16,185,129,0.8)]"
+                        className="text-lg sm:text-xl mb-0.5 inline-block drop-shadow-[0_0_12px_rgba(16,185,129,0.8)]"
                       >
                         🔮
                       </motion.span>
                       <p className="text-[8px] sm:text-[9px] font-black text-emerald-300 uppercase tracking-widest">
-                        BÀN HỌC 3D · MAP
+                        BÀN HỌC 3D
                       </p>
                       <p className="text-xs font-black text-white mt-0.5">
                         {myRoom.weekly_xp_progress} / {myRoom.weekly_xp_goal} XP
                       </p>
                       <span className="mt-0.5 inline-block text-[8px] font-extrabold text-emerald-300 bg-emerald-950/90 px-2 py-0.2 rounded-full border border-emerald-400/40 shadow-xs">
-                        ⚡ 3D SPATIAL BOOST
+                        ⚡ SPATIAL BOOST
                       </span>
                     </div>
                   </motion.div>
 
                   {/* 4 Interactive Holographic 3D Landmarks on Map Floor */}
                   {[
-                    { id: "valuation", name: "Tháp Định Giá", icon: "🏰", pos: "absolute top-2 left-6 sm:left-10" },
-                    { id: "trading", name: "Sàn Giao Dịch", icon: "🏛️", pos: "absolute top-2 right-6 sm:right-10" },
-                    { id: "cashflow", name: "Cảng Dòng Tiền", icon: "⚓", pos: "absolute bottom-2 left-6 sm:left-10" },
-                    { id: "fed", name: "Trạm Lãi Suất", icon: "⚡", pos: "absolute bottom-2 right-6 sm:right-10" },
+                    { id: "valuation", name: "Định Giá", icon: "🏰", pos: "absolute top-1 left-2 sm:left-6" },
+                    { id: "trading", name: "Giao Dịch", icon: "🏛️", pos: "absolute top-1 right-2 sm:right-6" },
+                    { id: "cashflow", name: "Dòng Tiền", icon: "⚓", pos: "absolute bottom-1 left-2 sm:left-6" },
+                    { id: "fed", name: "Lãi Suất", icon: "⚡", pos: "absolute bottom-1 right-2 sm:right-6" },
                   ].map((node) => (
                     <motion.button
                       key={node.id}
@@ -543,23 +543,23 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
                         setActiveMapNode(node.id);
                         toast.success(`Đã kích hoạt trạm 3D [${node.name}]! +15% XP cho cả phòng.`);
                       }}
-                      whileHover={{ scale: 1.25, translateZ: 40 }}
-                      className={`${node.pos} z-15 flex items-center gap-1 bg-stone-900/80 backdrop-blur-md px-2 py-0.5 rounded-full border border-emerald-500/40 text-[9px] font-black text-emerald-300 shadow-md cursor-pointer transition-all`}
-                      style={{ transform: "translateZ(15px)" }}
+                      whileHover={{ scale: 1.2, translateZ: 30 }}
+                      className={`${node.pos} z-15 flex items-center gap-1 bg-stone-900/90 backdrop-blur-md px-2 py-0.5 rounded-full border border-emerald-500/40 text-[9px] font-black text-emerald-300 shadow-md cursor-pointer transition-all`}
+                      style={{ transform: "translateZ(12px)" }}
                     >
                       <span>{node.icon}</span>
                       <span className="hidden sm:inline">{node.name}</span>
                     </motion.button>
                   ))}
 
-                  {/* 🪑 3D ELEVATED MEMBER POD SEATS (FLOATING IN 3D SPACE) */}
+                  {/* 🪑 TIGHTLY POSITIONED MEMBER POD SEATS (SÁT LẠI GẦN NHAU HƠN) */}
                   {(() => {
                     const seatClasses = [
-                      "absolute top-0 left-1/2 -translate-x-1/2 z-20", // Seat 0: Top Center
-                      "absolute top-2 left-1 sm:left-3 z-20",            // Seat 1: Top Left
-                      "absolute top-2 right-1 sm:right-3 z-20",          // Seat 2: Top Right
-                      "absolute bottom-1 left-1 sm:left-3 z-20",         // Seat 3: Bottom Left
-                      "absolute bottom-1 right-1 sm:right-3 z-20",       // Seat 4: Bottom Right
+                      "absolute -top-5 left-1/2 -translate-x-1/2 z-20", // Seat 0: Top Center (Sát ngay phía trên bàn)
+                      "absolute top-4 left-3 sm:left-6 z-20",            // Seat 1: Top Left
+                      "absolute top-4 right-3 sm:right-6 z-20",          // Seat 2: Top Right
+                      "absolute bottom-2 left-3 sm:left-6 z-20",         // Seat 3: Bottom Left
+                      "absolute bottom-2 right-3 sm:right-6 z-20",       // Seat 4: Bottom Right
                     ];
 
                     const sortedMembers = [...myRoomMembers].sort((a, b) => b.weekly_lessons - a.weekly_lessons);
@@ -572,13 +572,13 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
                         return (
                           <motion.div
                             key={member.user_id}
-                            style={{ transform: "translateZ(35px)" }}
-                            whileHover={{ scale: 1.15, translateZ: 55 }}
-                            animate={{ y: [0, -3, 0] }}
+                            style={{ transform: "translateZ(25px)" }}
+                            whileHover={{ scale: 1.12, translateZ: 40 }}
+                            animate={{ y: [0, -2, 0] }}
                             transition={{ duration: 2.5 + idx * 0.4, repeat: Infinity, ease: "easeInOut" }}
-                            className={`${posClass} flex flex-col items-center text-center p-1 sm:p-1.5 rounded-xl border transition-all duration-300 w-18 sm:w-22 bg-stone-900/95 backdrop-blur-md shadow-[0_16px_30px_rgba(0,0,0,0.7)] ${
+                            className={`${posClass} flex flex-col items-center text-center p-1 sm:p-1.5 rounded-xl border transition-all duration-300 w-18 sm:w-22 bg-stone-900/95 backdrop-blur-md shadow-[0_12px_24px_rgba(0,0,0,0.6)] ${
                               isMe
-                                ? "border-emerald-400 bg-emerald-950/90 shadow-[0_0_20px_rgba(16,185,129,0.5)] ring-2 ring-emerald-400/50"
+                                ? "border-emerald-400 bg-emerald-950/90 shadow-[0_0_18px_rgba(16,185,129,0.5)] ring-2 ring-emerald-400/50"
                                 : "border-stone-700 hover:border-emerald-400/70"
                             }`}
                           >
@@ -591,7 +591,7 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
 
                             <div className="relative mb-0.5">
                               <div className={`rounded-full p-0.5 ${isMe ? "ring-2 ring-emerald-400" : "ring-1 ring-stone-700"}`}>
-                                <Avatar name={member.full_name} avatarUrl={member.avatar_url} size={26} />
+                                <Avatar name={member.full_name} avatarUrl={member.avatar_url} size={24} />
                               </div>
                               <span className="absolute -bottom-1 left-1/2 -translate-x-1/2 text-[7px] font-black uppercase text-white bg-emerald-600 px-1 py-0.1 rounded-full shadow-xs whitespace-nowrap">
                                 Lv.{member.current_level}
@@ -611,8 +611,8 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
                       return (
                         <motion.div
                           key={`empty-${idx}`}
-                          style={{ transform: "translateZ(20px)" }}
-                          className={`${posClass} flex flex-col items-center justify-center p-1 sm:p-1.5 rounded-xl border border-dashed border-stone-800 bg-stone-900/40 text-stone-500 text-center w-18 sm:w-22 min-h-[64px] backdrop-blur-xs`}
+                          style={{ transform: "translateZ(15px)" }}
+                          className={`${posClass} flex flex-col items-center justify-center p-1 sm:p-1.5 rounded-xl border border-dashed border-stone-800 bg-stone-900/40 text-stone-500 text-center w-18 sm:w-22 min-h-[60px] backdrop-blur-xs`}
                         >
                           <span className="text-xs mb-0.5 opacity-50">🪑</span>
                           <span className="text-[8px] font-bold text-stone-400 uppercase">Ghế trống</span>
@@ -624,7 +624,7 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
 
                 {/* Footer hint */}
                 <div className="relative z-30 shrink-0 text-center text-[10px] text-stone-400 font-semibold pt-1">
-                  💡 Di chuột để nghiêng 3D · Bấm các trạm 3D Map để nhận Spatial Boost!
+                  💡 Di chuột để nghiêng nhẹ · Các thành viên ngồi quanh bàn cùng học bài!
                 </div>
               </div>
 
