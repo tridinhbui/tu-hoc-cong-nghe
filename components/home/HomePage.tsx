@@ -424,7 +424,7 @@ export default function HomePage() {
             </div>
             <Link
               href="/login"
-              className="cta-electric group inline-flex items-center gap-2 rounded-xl border border-emerald-200 dark:border-emerald-800 bg-gradient-to-r from-emerald-500 to-teal-500 px-4 py-2.5 text-sm font-bold text-white shadow-lg shadow-emerald-500/20 transition-all hover:shadow-xl hover:shadow-emerald-500/25"
+              className="cta-electric group inline-flex items-center gap-2 rounded-[20px] border border-emerald-200/80 dark:border-emerald-800 bg-gradient-to-r from-emerald-500 to-teal-500 px-4 py-2.5 text-sm font-bold text-white shadow-[0_12px_28px_-20px_rgba(16,185,129,0.35)] transition-all hover:shadow-[0_16px_34px_-22px_rgba(16,185,129,0.45)]"
             >
               Vào học ngay
               <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-0.5" />
@@ -495,14 +495,14 @@ export default function HomePage() {
                 >
                   <Link
                     href="/login?mode=signup"
-                    className="cta-electric group inline-flex items-center gap-2 rounded-xl bg-stone-950 px-6 py-3.5 text-base font-black text-white shadow-[0_24px_54px_-24px_rgba(15,23,42,0.55)] transition-all active:scale-[0.98] hover:bg-stone-900 dark:bg-stone-100 dark:text-stone-900 dark:hover:bg-white"
+                    className="cta-electric group inline-flex items-center gap-2 rounded-[20px] bg-stone-950 px-6 py-3.5 text-base font-black text-white shadow-[0_16px_34px_-24px_rgba(15,23,42,0.38)] transition-all active:scale-[0.98] hover:bg-stone-900 dark:bg-stone-100 dark:text-stone-900 dark:hover:bg-white"
                   >
                     Bắt đầu học miễn phí
                     <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-0.5" />
                   </Link>
                   <a
                     href={`/bai-hoc/${TRACKS.personal.previewSlug}`}
-                    className="inline-flex items-center gap-2 rounded-xl border border-stone-200/80 bg-white/70 px-5 py-3 text-sm font-bold text-stone-900 backdrop-blur transition-colors hover:bg-white dark:border-stone-700 dark:bg-stone-950/45 dark:text-stone-100 dark:hover:bg-stone-900"
+                    className="inline-flex items-center gap-2 rounded-[20px] border border-stone-200/80 bg-white/70 px-5 py-3 text-sm font-bold text-stone-900 backdrop-blur transition-colors hover:bg-white dark:border-stone-700 dark:bg-stone-950/45 dark:text-stone-100 dark:hover:bg-stone-900"
                   >
                     <PlayCircle className="w-4 h-4" />
                     Xem thử bài học
@@ -545,7 +545,7 @@ export default function HomePage() {
                 transition={{ duration: 0.55, ease: "easeOut", delay: 0.18 }}
                 className="relative hidden justify-center lg:flex"
               >
-                <div className="landing-float relative w-full max-w-[520px] overflow-hidden rounded-[2.3rem] border border-stone-200/80 bg-stone-950 text-white shadow-[0_45px_110px_-40px_rgba(15,23,42,0.55)] dark:border-stone-800">
+                <div className="landing-float relative w-full max-w-[520px] overflow-hidden rounded-[20px] border border-stone-200/80 bg-stone-950 text-white shadow-[0_18px_44px_-30px_rgba(15,23,42,0.36)] dark:border-stone-800">
                   <div className="absolute inset-0">
                     <Image
                       src="/charging-bull.jpg"
@@ -574,7 +574,7 @@ export default function HomePage() {
                           <p className="text-[10px] font-black uppercase tracking-[0.18em] text-stone-300">Hôm nay trong hệ</p>
                           <p className="mt-1 text-2xl font-black text-white">{displayedCompletedCount.toLocaleString("vi-VN")} lượt hoàn thành</p>
                         </div>
-                        <div className="rounded-2xl border border-emerald-300/25 bg-emerald-400/10 px-3 py-2 text-right">
+                        <div className="rounded-[18px] border border-emerald-300/25 bg-emerald-400/10 px-3 py-2 text-right">
                           <p className="text-[10px] font-black uppercase tracking-[0.14em] text-emerald-200">Streak cộng đồng</p>
                           <p className="mt-1 text-xl font-black text-white">18 ngày</p>
                         </div>
@@ -600,7 +600,7 @@ export default function HomePage() {
                           ].map((item, index) => (
                             <div
                               key={item}
-                              className={`rounded-xl border px-3 py-2.5 text-xs font-semibold ${
+                              className={`rounded-[16px] border px-3 py-2.5 text-xs font-semibold ${
                                 index < 2
                                   ? "border-emerald-300/25 bg-emerald-400/10 text-emerald-50"
                                   : "border-white/10 bg-white/5 text-stone-300"
@@ -710,7 +710,7 @@ export default function HomePage() {
                     "Không quảng cáo xen giữa bài học",
                     "Nội dung được cập nhật và mở rộng liên tục",
                   ].map((line) => (
-                    <div key={line} className="flex items-start gap-2.5 rounded-2xl border border-stone-100 bg-stone-50/80 px-3.5 py-3 dark:border-stone-800 dark:bg-stone-950/40">
+                    <div key={line} className="flex items-start gap-2.5 rounded-[18px] border border-stone-100 bg-stone-50/80 px-3.5 py-3 dark:border-stone-800 dark:bg-stone-950/40">
                       <CheckCircle2 className="w-4 h-4 text-emerald-500 flex-shrink-0 mt-0.5" />
                       <span className="text-sm text-stone-600 dark:text-stone-400 font-medium leading-relaxed">{line}</span>
                     </div>
@@ -723,7 +723,7 @@ export default function HomePage() {
                     { label: "Huy hiệu", value: "Preview thành tích học tập" },
                     { label: "Cập nhật live", value: "Thể hiện người đang hoạt động" },
                   ].map((item) => (
-                    <div key={item.label} className="rounded-2xl border border-emerald-100 bg-emerald-50/60 px-3.5 py-3 dark:border-emerald-900/50 dark:bg-emerald-950/20">
+                    <div key={item.label} className="rounded-[18px] border border-emerald-100 bg-emerald-50/60 px-3.5 py-3 dark:border-emerald-900/50 dark:bg-emerald-950/20">
                       <p className="text-[10px] font-black uppercase tracking-[0.14em] text-emerald-700 dark:text-emerald-300">
                         {item.label}
                       </p>
@@ -736,7 +736,7 @@ export default function HomePage() {
 
                 <Link
                   href="/login?mode=signup"
-                  className="mt-5 inline-flex w-full items-center justify-center gap-2 rounded-2xl bg-stone-900 px-4 py-3 text-sm font-black text-white transition hover:bg-emerald-600 dark:bg-stone-100 dark:text-stone-900 dark:hover:bg-emerald-300"
+                  className="mt-5 inline-flex w-full items-center justify-center gap-2 rounded-[18px] bg-stone-900 px-4 py-3 text-sm font-black text-white transition hover:bg-emerald-600 dark:bg-stone-100 dark:text-stone-900 dark:hover:bg-emerald-300"
                 >
                   Vào học cùng cộng đồng
                   <ArrowRight className="w-4 h-4" />
@@ -763,7 +763,7 @@ export default function HomePage() {
           </ScrollReveal>
 
           <ScrollReveal delay={0.08}>
-            <div className="overflow-hidden rounded-[1.75rem] border border-stone-200 bg-white shadow-[0_40px_100px_-45px_rgba(120,53,15,0.35)] dark:border-stone-800 dark:bg-stone-900">
+            <div className="overflow-hidden rounded-[20px] border border-stone-200/80 bg-white shadow-[0_18px_44px_-30px_rgba(120,53,15,0.24)] dark:border-stone-800 dark:bg-stone-900">
               <div className="flex flex-wrap items-center gap-x-3 gap-y-2 border-b border-stone-100 bg-stone-50 px-4 py-2.5 dark:border-stone-850 dark:bg-stone-950/60">
                 <div className="flex min-w-0 flex-1 items-center gap-3">
                   <div className="flex shrink-0 gap-1.5">
@@ -808,7 +808,7 @@ export default function HomePage() {
                           Bản đồ nhiệm vụ hôm nay
                         </h3>
                       </div>
-                      <div className="rounded-2xl border border-emerald-400/30 bg-emerald-400/10 px-4 py-3 text-right backdrop-blur">
+                      <div className="rounded-[18px] border border-emerald-400/30 bg-emerald-400/10 px-4 py-3 text-right backdrop-blur">
                         <p className="text-[10px] font-black uppercase tracking-[0.16em] text-emerald-200">XP phiên chơi</p>
                         <p className="mt-1 text-2xl font-black tabular-nums text-white">+240 XP</p>
                       </div>
@@ -818,7 +818,7 @@ export default function HomePage() {
                       {KINGDOM_BUILDINGS.map((building, i) => (
                         <div
                           key={building.name}
-                          className="group overflow-hidden rounded-2xl border border-white/15 bg-white/10 shadow-2xl backdrop-blur transition duration-300 hover:-translate-y-1 hover:border-amber-300/60"
+                          className="group overflow-hidden rounded-[20px] border border-white/15 bg-white/10 shadow-[0_16px_34px_-26px_rgba(0,0,0,0.4)] backdrop-blur transition duration-300 hover:-translate-y-1 hover:border-amber-300/60"
                         >
                           <div className="relative aspect-[4/3] overflow-hidden">
                             <Image
@@ -853,7 +853,7 @@ export default function HomePage() {
                         ["Nhiệm vụ", "Hoàn thành bài học để nhận XP và mở công trình"],
                         ["Danh hiệu", "Leo hạng Game thủ và khoe thành tích học tập"],
                       ].map(([title, text]) => (
-                        <div key={title} className="rounded-2xl border border-white/10 bg-stone-950/45 p-4 backdrop-blur">
+                        <div key={title} className="rounded-[18px] border border-white/10 bg-stone-950/45 p-4 backdrop-blur">
                           <p className="text-sm font-black text-white">{title}</p>
                           <p className="mt-1 text-xs leading-relaxed text-stone-300">{text}</p>
                         </div>
@@ -872,7 +872,7 @@ export default function HomePage() {
                         className="object-contain drop-shadow-2xl"
                       />
                     </div>
-                    <div className="rounded-2xl border border-amber-300/30 bg-amber-300/10 p-4">
+                    <div className="rounded-[18px] border border-amber-300/30 bg-amber-300/10 p-4">
                       <div className="flex items-center gap-2">
                         <Trophy className="h-4 w-4 text-amber-200" />
                         <p className="text-sm font-black text-white">Nhiệm vụ nổi bật</p>
@@ -883,7 +883,7 @@ export default function HomePage() {
                           "Thắng 1 mini game bất kỳ",
                           "Đạt 100% ở quiz nhanh",
                         ].map((task, i) => (
-                          <div key={task} className="flex items-center gap-2 rounded-xl bg-stone-950/45 px-3 py-2 text-xs font-semibold text-stone-200">
+                          <div key={task} className="flex items-center gap-2 rounded-[16px] bg-stone-950/45 px-3 py-2 text-xs font-semibold text-stone-200">
                             <span className={`h-2.5 w-2.5 rounded-full ${i === 0 ? "bg-emerald-300" : "bg-amber-300"}`} />
                             {task}
                           </div>
@@ -892,7 +892,7 @@ export default function HomePage() {
                     </div>
                     <Link
                       href="/login?mode=signup"
-                      className="mt-4 inline-flex w-full items-center justify-center gap-2 rounded-2xl bg-white px-5 py-3 text-sm font-black text-stone-950 shadow-lg transition hover:bg-amber-50"
+                      className="mt-4 inline-flex w-full items-center justify-center gap-2 rounded-[18px] bg-white px-5 py-3 text-sm font-black text-stone-950 shadow-[0_12px_28px_-20px_rgba(15,23,42,0.24)] transition hover:bg-amber-50"
                     >
                       <Zap className="h-4 w-4 text-amber-500" />
                       Vào Game Kingdom
@@ -924,7 +924,7 @@ export default function HomePage() {
             <div className="grid gap-5 lg:grid-cols-3">
               {FEATURE_SHOWCASE.map(({ eyebrow, title, text, image, alt, icon: Icon, href, cta, bullets }, i) => (
                 <ScrollReveal key={eyebrow} delay={i * 0.08}>
-                  <article className="group h-full overflow-hidden rounded-[2rem] border border-stone-200 dark:border-stone-800 bg-white dark:bg-stone-950 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_24px_60px_-35px_rgba(16,185,129,0.45)]">
+                  <article className="group h-full overflow-hidden rounded-[20px] border border-stone-200/80 dark:border-stone-800 bg-white dark:bg-stone-950 shadow-[0_10px_24px_-24px_rgba(15,23,42,0.2)] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_16px_36px_-24px_rgba(16,185,129,0.28)]">
                     <div className="relative aspect-[16/10] overflow-hidden bg-stone-100 dark:bg-stone-900">
                       <Image
                         src={image}
@@ -934,7 +934,7 @@ export default function HomePage() {
                         className="object-cover transition-transform duration-500 group-hover:scale-105"
                       />
                       <div className="absolute inset-0 bg-gradient-to-t from-stone-950/70 via-stone-950/10 to-transparent" />
-                      <div className="absolute left-4 top-4 inline-flex items-center gap-2 rounded-2xl border border-white/25 bg-stone-950/70 px-3 py-2 text-xs font-black text-white backdrop-blur">
+                      <div className="absolute left-4 top-4 inline-flex items-center gap-2 rounded-[18px] border border-white/25 bg-stone-950/70 px-3 py-2 text-xs font-black text-white backdrop-blur">
                         <Icon className="h-4 w-4 text-emerald-300" />
                         {eyebrow}
                       </div>
@@ -990,8 +990,8 @@ export default function HomePage() {
           <div className="grid sm:grid-cols-2 gap-4">
             {PAIN_POINTS.map(({ icon: Icon, worry, answer }, i) => (
               <ScrollReveal key={worry} delay={i * 0.08}>
-                <div className="h-full rounded-3xl border border-stone-200 dark:border-stone-800 bg-white/70 dark:bg-stone-900/60 backdrop-blur-md p-6 hover:border-emerald-500/50 dark:hover:border-emerald-850 hover:shadow-md transition-all duration-300 group hover:-translate-y-1">
-                  <span className="inline-flex w-12 h-12 rounded-2xl bg-gradient-to-br from-emerald-50 to-teal-50 dark:from-emerald-950/40 dark:to-teal-950/20 items-center justify-center mb-4 border border-emerald-100/60 dark:border-emerald-900/30 transition-transform group-hover:scale-110">
+                <div className="h-full rounded-[20px] border border-stone-200/80 dark:border-stone-800 bg-white/70 dark:bg-stone-900/60 backdrop-blur-md p-6 hover:border-emerald-500/50 dark:hover:border-emerald-850 hover:shadow-[0_12px_28px_-24px_rgba(15,23,42,0.18)] transition-all duration-300 group hover:-translate-y-1">
+                  <span className="inline-flex w-12 h-12 rounded-[18px] bg-gradient-to-br from-emerald-50 to-teal-50 dark:from-emerald-950/40 dark:to-teal-950/20 items-center justify-center mb-4 border border-emerald-100/60 dark:border-emerald-900/30 transition-transform group-hover:scale-110">
                     <Icon className="w-5 h-5 text-emerald-600 dark:text-emerald-400" />
                   </span>
                   <p className="text-sm font-bold text-stone-500 dark:text-stone-500 italic mb-2">“{worry}”</p>
@@ -1024,8 +1024,8 @@ export default function HomePage() {
             <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
               {METHOD_STEPS.map(({ step, title, text }, i) => (
                 <ScrollReveal key={step} delay={i * 0.08}>
-                  <div className="h-full rounded-3xl bg-white/70 dark:bg-stone-900/60 backdrop-blur-md border border-stone-200 dark:border-stone-800 p-6 hover:shadow-md hover:-translate-y-1 transition-all duration-300">
-                    <div className="w-8 h-8 rounded-lg bg-gradient-to-r from-emerald-500 to-teal-500 text-white font-black text-sm flex items-center justify-center mb-4 shadow-lg shadow-emerald-500/20">
+                  <div className="h-full rounded-[20px] bg-white/70 dark:bg-stone-900/60 backdrop-blur-md border border-stone-200/80 dark:border-stone-800 p-6 hover:shadow-[0_12px_28px_-24px_rgba(15,23,42,0.18)] hover:-translate-y-1 transition-all duration-300">
+                    <div className="w-8 h-8 rounded-[14px] bg-gradient-to-r from-emerald-500 to-teal-500 text-white font-black text-sm flex items-center justify-center mb-4 shadow-[0_10px_22px_-18px_rgba(16,185,129,0.35)]">
                       {step}
                     </div>
                     <p className="font-extrabold text-stone-900 dark:text-stone-100 mb-2">{title}</p>
@@ -1055,7 +1055,7 @@ export default function HomePage() {
           <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {AUDIENCES.map((item, i) => (
               <ScrollReveal key={item.title} delay={i * 0.05}>
-                <div className="h-full rounded-3xl border border-stone-200 dark:border-stone-800 bg-white/70 dark:bg-stone-900/60 backdrop-blur-md p-6 hover:border-emerald-500/50 dark:hover:border-emerald-800/80 hover:shadow-[0_15px_45px_-10px_rgba(16,185,129,0.15)] transition-all duration-300 hover:-translate-y-1.5">
+                <div className="h-full rounded-[20px] border border-stone-200/80 dark:border-stone-800 bg-white/70 dark:bg-stone-900/60 backdrop-blur-md p-6 hover:border-emerald-500/50 dark:hover:border-emerald-800/80 hover:shadow-[0_12px_28px_-24px_rgba(16,185,129,0.16)] transition-all duration-300 hover:-translate-y-1.5">
                   <div className="inline-flex items-center gap-2 rounded-full border border-emerald-200/70 bg-emerald-50/70 dark:border-emerald-900/40 dark:bg-emerald-950/20 px-3 py-1 text-[11px] font-bold uppercase tracking-[0.18em] text-emerald-700 dark:text-emerald-300 mb-4">
                     Phù hợp
                   </div>
@@ -1070,7 +1070,7 @@ export default function HomePage() {
         {/* ── VISION & MISSION ── */}
         <section className="relative max-w-6xl mx-auto px-6 pb-16 lg:pb-20">
           <ScrollReveal>
-            <div className="rounded-[2.5rem] border border-stone-200/80 dark:border-stone-800/85 bg-white/70 dark:bg-stone-900/60 backdrop-blur-xl p-8 lg:p-10 shadow-[0_35px_90px_-40px_rgba(28,25,23,0.15)] dark:shadow-[0_35px_90px_-40px_rgba(0,0,0,0.4)]">
+            <div className="rounded-[20px] border border-stone-200/80 dark:border-stone-800/85 bg-white/70 dark:bg-stone-900/60 backdrop-blur-xl p-8 lg:p-10 shadow-[0_14px_34px_-26px_rgba(28,25,23,0.12)] dark:shadow-[0_14px_34px_-26px_rgba(0,0,0,0.28)]">
               <div className="grid gap-8 lg:grid-cols-[minmax(0,1.35fr)_minmax(320px,0.95fr)] lg:items-start">
                 <div>
                   <p className="mb-4 inline-flex items-center gap-2 text-xs font-black text-emerald-600 dark:text-emerald-400 uppercase tracking-widest">
@@ -1084,7 +1084,7 @@ export default function HomePage() {
                   </h2>
 
                   <div className="mt-7 grid gap-4 sm:grid-cols-3">
-                    <div className="rounded-2xl border border-emerald-200/50 dark:border-emerald-900/40 bg-emerald-50/50 dark:bg-emerald-950/20 px-5 py-5 transition-all hover:scale-[1.02]">
+                    <div className="rounded-[18px] border border-emerald-200/50 dark:border-emerald-900/40 bg-emerald-50/50 dark:bg-emerald-950/20 px-5 py-5 transition-all hover:scale-[1.02]">
                       <div className="text-[10px] font-black uppercase tracking-[0.18em] text-emerald-700 dark:text-emerald-300">
                         Hiểu biết cơ bản
                       </div>
@@ -1095,7 +1095,7 @@ export default function HomePage() {
                         đạt ngưỡng hiểu biết tài chính cơ bản.
                       </p>
                     </div>
-                    <div className="rounded-2xl border border-stone-200/80 dark:border-stone-800 bg-stone-50/50 dark:bg-stone-900/30 px-5 py-5 transition-all hover:scale-[1.02]">
+                    <div className="rounded-[18px] border border-stone-200/80 dark:border-stone-800 bg-stone-50/50 dark:bg-stone-900/30 px-5 py-5 transition-all hover:scale-[1.02]">
                       <div className="text-[10px] font-black uppercase tracking-[0.18em] text-stone-500 dark:text-stone-400">
                         Khoảng trống còn lại
                       </div>
@@ -1106,7 +1106,7 @@ export default function HomePage() {
                         vẫn chưa đạt mức nền tảng.
                       </p>
                     </div>
-                    <div className="rounded-2xl border border-stone-200/80 dark:border-stone-800 bg-stone-50/50 dark:bg-stone-900/30 px-5 py-5 transition-all hover:scale-[1.02]">
+                    <div className="rounded-[18px] border border-stone-200/80 dark:border-stone-800 bg-stone-50/50 dark:bg-stone-900/30 px-5 py-5 transition-all hover:scale-[1.02]">
                       <div className="text-[10px] font-black uppercase tracking-[0.18em] text-stone-500 dark:text-stone-400">
                         Tiếp cận năm 2024
                       </div>
@@ -1119,14 +1119,14 @@ export default function HomePage() {
                     </div>
                   </div>
 
-                  <div className="mt-6 rounded-2xl bg-stone-50/60 dark:bg-stone-900/30 px-5 py-4 text-sm leading-relaxed text-stone-600 dark:text-stone-400 border border-stone-150/40 dark:border-stone-850/40">
+                  <div className="mt-6 rounded-[18px] bg-stone-50/60 dark:bg-stone-900/30 px-5 py-4 text-sm leading-relaxed text-stone-600 dark:text-stone-400 border border-stone-150/40 dark:border-stone-850/40">
                     Vấn đề không nằm ở việc người học thiếu cố gắng, mà ở chỗ kiến thức tài chính thường còn khó, rời
                     rạc và xa nhu cầu thực tế.
                   </div>
                 </div>
 
                 <div className="lg:self-center lg:translate-y-4">
-                  <div className="rounded-[2.2rem] border border-emerald-200/70 dark:border-emerald-900/40 bg-gradient-to-b from-emerald-50/50 to-teal-50/30 dark:from-emerald-950/20 dark:to-teal-950/10 p-6 shadow-[0_22px_48px_-36px_rgba(16,185,129,0.28)]">
+                  <div className="rounded-[20px] border border-emerald-200/70 dark:border-emerald-900/40 bg-gradient-to-b from-emerald-50/50 to-teal-50/30 dark:from-emerald-950/20 dark:to-teal-950/10 p-6 shadow-[0_14px_30px_-26px_rgba(16,185,129,0.18)]">
                     <p className="mb-4 inline-flex items-center gap-2 text-xs font-black text-emerald-700 dark:text-emerald-300 uppercase tracking-widest">
                       <span className="inline-flex h-6 w-6 items-center justify-center rounded-full bg-white/80 text-sm shadow-sm ring-1 ring-emerald-200/80 dark:bg-stone-950/30 dark:ring-emerald-900/40">
                         🇻🇳
@@ -1134,7 +1134,7 @@ export default function HomePage() {
                       Tầm nhìn và sứ mệnh
                     </p>
                     <div className="grid gap-3.5">
-                      <div className="rounded-xl bg-white/60 dark:bg-stone-950/20 px-4 py-4 border border-stone-150/30 dark:border-stone-850/30">
+                      <div className="rounded-[18px] bg-white/60 dark:bg-stone-950/20 px-4 py-4 border border-stone-150/30 dark:border-stone-850/30">
                         <div className="text-[10px] font-black uppercase tracking-[0.18em] text-stone-500 dark:text-stone-400">
                           Mục tiêu
                         </div>
@@ -1142,7 +1142,7 @@ export default function HomePage() {
                           Xây giáo trình miễn phí, rõ ràng và đủ sâu cho người học cá nhân lẫn người đi theo nghề.
                         </p>
                       </div>
-                      <div className="rounded-xl bg-emerald-100/45 dark:bg-emerald-900/20 px-4 py-4 border border-emerald-200/20">
+                      <div className="rounded-[18px] bg-emerald-100/45 dark:bg-emerald-900/20 px-4 py-4 border border-emerald-200/20">
                         <div className="text-[10px] font-black uppercase tracking-[0.18em] text-emerald-700 dark:text-emerald-300">
                           Tinh thần
                         </div>
@@ -1175,7 +1175,7 @@ export default function HomePage() {
           </ScrollReveal>
 
           <ScrollReveal delay={0.08} className="mt-6">
-            <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 rounded-2xl border border-emerald-100 dark:border-emerald-900/40 bg-emerald-50/70 dark:bg-emerald-950/20 px-5 py-4">
+            <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 rounded-[18px] border border-emerald-100 dark:border-emerald-900/40 bg-emerald-50/70 dark:bg-emerald-950/20 px-5 py-4">
               <div>
                 <p className="text-sm font-bold text-stone-900 dark:text-stone-100">Chưa chắc nên đi track nào?</p>
                 <p className="text-sm text-stone-600 dark:text-stone-400 mt-1">
@@ -1184,7 +1184,7 @@ export default function HomePage() {
               </div>
               <Link
                 href="/login?mode=signup"
-                className="inline-flex items-center justify-center gap-2 rounded-xl bg-stone-900 hover:bg-stone-800 dark:bg-stone-100 dark:hover:bg-white px-5 py-3 text-sm font-bold text-white dark:text-stone-900 transition-colors whitespace-nowrap"
+                className="inline-flex items-center justify-center gap-2 rounded-[18px] bg-stone-900 hover:bg-stone-800 dark:bg-stone-100 dark:hover:bg-white px-5 py-3 text-sm font-bold text-white dark:text-stone-900 transition-colors whitespace-nowrap"
               >
                 Tạo hành trình học
                 <ArrowRight className="w-4 h-4" />
@@ -1204,7 +1204,7 @@ export default function HomePage() {
             </p>
             <Link
               href="/login?mode=signup"
-              className="inline-flex items-center gap-2 bg-white hover:bg-stone-100 text-stone-900 font-bold px-7 py-4 rounded-xl transition-all shadow-lg active:scale-[0.98]"
+              className="inline-flex items-center gap-2 bg-white hover:bg-stone-100 text-stone-900 font-bold px-7 py-4 rounded-[18px] transition-all shadow-[0_12px_28px_-20px_rgba(15,23,42,0.24)] active:scale-[0.98]"
             >
               Bắt đầu học miễn phí
               <ArrowRight className="w-4 h-4" />

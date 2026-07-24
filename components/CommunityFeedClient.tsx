@@ -446,10 +446,10 @@ export default function CommunityFeedClient({ embedded = false }: { embedded?: b
       <div className={`${embedded ? "" : "max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-[minmax(0,1fr)_320px] gap-6"} px-4 sm:px-6 py-6`}>
         <main className="min-w-0">
         {!embedded && spotlightItems.length > 0 && (
-          <div className="mb-4 rounded-3xl border border-emerald-200 bg-gradient-to-r from-emerald-50 to-teal-50 p-4 shadow-sm dark:border-emerald-900/60 dark:from-emerald-950/35 dark:to-teal-950/20">
+          <div className="mb-4 rounded-[20px] border border-emerald-200/80 bg-gradient-to-r from-emerald-50 to-teal-50 p-4 shadow-[0_10px_26px_-22px_rgba(16,185,129,0.26)] dark:border-emerald-900/60 dark:from-emerald-950/35 dark:to-teal-950/20">
             <div className="mb-3 flex items-center justify-between gap-3">
               <div className="flex items-center gap-2">
-                <span className="flex h-9 w-9 items-center justify-center rounded-2xl bg-white text-emerald-700 shadow-sm ring-1 ring-emerald-100 dark:bg-stone-950/60 dark:text-emerald-300 dark:ring-emerald-900">
+                <span className="flex h-9 w-9 items-center justify-center rounded-[18px] bg-white text-emerald-700 shadow-[0_8px_18px_-18px_rgba(15,23,42,0.2)] ring-1 ring-emerald-100 dark:bg-stone-950/60 dark:text-emerald-300 dark:ring-emerald-900">
                   <Sparkles className="h-4.5 w-4.5" />
                 </span>
                 <div>
@@ -464,7 +464,7 @@ export default function CommunityFeedClient({ embedded = false }: { embedded?: b
                   key={`${label}-${post.id}`}
                   type="button"
                   onClick={() => void toggleComments(post.id)}
-                  className="rounded-2xl border border-white/70 bg-white/80 p-3 text-left shadow-sm transition hover:-translate-y-0.5 hover:border-emerald-200 dark:border-stone-800 dark:bg-stone-950/45"
+                  className="rounded-[20px] border border-white/70 bg-white/80 p-3 text-left shadow-[0_8px_18px_-18px_rgba(15,23,42,0.18)] transition hover:-translate-y-0.5 hover:border-emerald-200 dark:border-stone-800 dark:bg-stone-950/45"
                 >
                   <div className="flex items-center gap-2">
                     <Icon className="h-4 w-4 text-emerald-600 dark:text-emerald-300" />
@@ -481,7 +481,7 @@ export default function CommunityFeedClient({ embedded = false }: { embedded?: b
         )}
 
         {!embedded && (
-          <div className="mb-4 rounded-3xl border border-stone-200 bg-white p-3 shadow-sm dark:border-stone-800 dark:bg-stone-900">
+          <div className="mb-4 rounded-[20px] border border-stone-200/80 bg-white p-3 shadow-[0_10px_24px_-24px_rgba(15,23,42,0.22)] dark:border-stone-800 dark:bg-stone-900">
             <div className="flex flex-col sm:flex-row gap-3">
               <div className="relative flex-1">
                 <Search className="pointer-events-none absolute left-3.5 top-1/2 h-4 w-4 -translate-y-1/2 text-stone-400" />
@@ -489,13 +489,13 @@ export default function CommunityFeedClient({ embedded = false }: { embedded?: b
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
                   placeholder="Tìm bài viết, người đăng, chủ đề..."
-                  className="w-full rounded-2xl border border-stone-200 bg-stone-50 py-2.5 pl-10 pr-3 text-sm font-medium text-stone-900 outline-none transition focus:border-emerald-500 focus:bg-white dark:border-stone-700 dark:bg-stone-950 dark:text-stone-100"
+                  className="w-full rounded-[18px] border border-stone-200 bg-stone-50 py-2.5 pl-10 pr-3 text-sm font-medium text-stone-900 outline-none transition focus:border-emerald-500 focus:bg-white dark:border-stone-700 dark:bg-stone-950 dark:text-stone-100"
                 />
               </div>
               <button
                 type="button"
                 onClick={() => void refreshFeed()}
-                className="inline-flex items-center justify-center gap-2 rounded-2xl border border-stone-200 bg-white px-4 py-2.5 text-sm font-bold text-stone-600 transition hover:bg-stone-50 dark:border-stone-700 dark:bg-stone-900 dark:text-stone-300"
+                className="inline-flex items-center justify-center gap-2 rounded-[18px] border border-stone-200 bg-white px-4 py-2.5 text-sm font-bold text-stone-600 transition hover:bg-stone-50 dark:border-stone-700 dark:bg-stone-900 dark:text-stone-300"
               >
                 <RefreshCw className="h-4 w-4" />
                 Làm mới
@@ -526,7 +526,7 @@ export default function CommunityFeedClient({ embedded = false }: { embedded?: b
         )}
 
         {user && (
-          <div className="bg-white dark:bg-stone-900 border-2 border-stone-200 dark:border-stone-800 rounded-3xl p-4 sm:p-5 mb-6 shadow-sm">
+          <div className="bg-white dark:bg-stone-900 border border-stone-200/80 dark:border-stone-800 rounded-[20px] p-4 sm:p-5 mb-6 shadow-[0_10px_24px_-24px_rgba(15,23,42,0.2)]">
             <div className="mb-4 flex items-start justify-between gap-3">
               <div>
                 <p className="text-xs font-black uppercase tracking-[0.14em] text-emerald-600 dark:text-emerald-400">Tạo bài viết</p>
@@ -542,26 +542,26 @@ export default function CommunityFeedClient({ embedded = false }: { embedded?: b
                 const Icon = topic.icon;
                 const isActive = selectedTopic === topic.id;
                 return (
-                <button
-                  key={topic.id}
-                  type="button"
-                  onClick={() => {
-                    setSelectedTopic(topic.id);
-                    setContent((prev) => (topic.tag && !prev.includes(topic.tag) ? `${topic.tag}${prev.replace(/^#\\S+\\s*/, "")}` : prev));
-                  }}
-                  className={`inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full border text-[11px] font-bold transition-colors cursor-pointer ${
-                    isActive
-                      ? "border-emerald-300 bg-emerald-50 text-emerald-700 dark:border-emerald-800 dark:bg-emerald-950/50 dark:text-emerald-300"
-                      : "border-transparent bg-stone-100 text-stone-600 hover:bg-emerald-50 hover:text-emerald-700 dark:bg-stone-800 dark:text-stone-300 dark:hover:bg-emerald-950"
-                  }`}
-                >
-                  <Icon className="h-3.5 w-3.5" />
-                  {topic.label}
-                </button>
+                  <button
+                    key={topic.id}
+                    type="button"
+                    onClick={() => {
+                      setSelectedTopic(topic.id);
+                      setContent((prev) => (topic.tag && !prev.includes(topic.tag) ? `${topic.tag}${prev.replace(/^#\\S+\\s*/, "")}` : prev));
+                    }}
+                    className={`inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full border text-[11px] font-bold transition-colors cursor-pointer ${
+                      isActive
+                        ? "border-emerald-300 bg-emerald-50 text-emerald-700 dark:border-emerald-800 dark:bg-emerald-950/50 dark:text-emerald-300"
+                        : "border-transparent bg-stone-100 text-stone-600 hover:bg-emerald-50 hover:text-emerald-700 dark:bg-stone-800 dark:text-stone-300 dark:hover:bg-emerald-950"
+                    }`}
+                  >
+                    <Icon className="h-3.5 w-3.5" />
+                    {topic.label}
+                  </button>
               )})}
             </div>
 
-            <div className="mb-3 rounded-2xl border border-stone-200 bg-stone-50 p-3 dark:border-stone-800 dark:bg-stone-950/50">
+            <div className="mb-3 rounded-[18px] border border-stone-200 bg-stone-50 p-3 dark:border-stone-800 dark:bg-stone-950/50">
               <p className="mb-2 text-[10px] font-black uppercase tracking-[0.14em] text-stone-500 dark:text-stone-400">Mẫu đăng nhanh</p>
               <div className="grid gap-2 sm:grid-cols-2">
                 {POST_TEMPLATES.map((template) => {
@@ -574,7 +574,7 @@ export default function CommunityFeedClient({ embedded = false }: { embedded?: b
                         setSelectedTopic(template.topic);
                         setContent(template.text);
                       }}
-                      className="flex items-center gap-2 rounded-xl border border-stone-200 bg-white px-3 py-2 text-left text-xs font-bold text-stone-600 transition hover:border-emerald-300 hover:bg-emerald-50 hover:text-emerald-700 dark:border-stone-800 dark:bg-stone-900 dark:text-stone-300"
+                      className="flex items-center gap-2 rounded-[16px] border border-stone-200 bg-white px-3 py-2 text-left text-xs font-bold text-stone-600 transition hover:border-emerald-300 hover:bg-emerald-50 hover:text-emerald-700 dark:border-stone-800 dark:bg-stone-900 dark:text-stone-300"
                     >
                       <Icon className="h-3.5 w-3.5 shrink-0" />
                       {template.title}
@@ -598,13 +598,13 @@ export default function CommunityFeedClient({ embedded = false }: { embedded?: b
               placeholder="Chia sẻ cảm nghĩ, mẹo đầu tư hoặc hình ảnh thành quả học tập hôm nay..."
               maxLength={500}
               rows={2.5}
-              className="w-full resize-none px-3.5 py-2.5 rounded-2xl border border-stone-200 dark:border-stone-700 bg-stone-50/50 dark:bg-stone-800/50 text-stone-900 dark:text-stone-100 text-sm focus:outline-none focus:border-emerald-500 focus:bg-white transition-all"
+              className="w-full resize-none px-3.5 py-2.5 rounded-[18px] border border-stone-200 dark:border-stone-700 bg-stone-50/50 dark:bg-stone-800/50 text-stone-900 dark:text-stone-100 text-sm focus:outline-none focus:border-emerald-500 focus:bg-white transition-all"
             />
 
             {/* Image Preview Thumbnail */}
             {imagePreview && (
-              <div className="relative mt-2.5 rounded-2xl overflow-hidden border border-stone-200 dark:border-stone-700 max-h-48 bg-stone-100 dark:bg-stone-800 w-fit">
-                <img src={imagePreview} alt="Preview" className="h-44 w-auto object-cover rounded-2xl" />
+              <div className="relative mt-2.5 rounded-[18px] overflow-hidden border border-stone-200 dark:border-stone-700 max-h-48 bg-stone-100 dark:bg-stone-800 w-fit">
+                <img src={imagePreview} alt="Preview" className="h-44 w-auto object-cover rounded-[18px]" />
                 <button
                   type="button"
                   onClick={clearPendingImage}
@@ -622,7 +622,7 @@ export default function CommunityFeedClient({ embedded = false }: { embedded?: b
                 <button
                   type="button"
                   onClick={() => fileInputRef.current?.click()}
-                  className="p-2 rounded-xl hover:bg-stone-100 dark:hover:bg-stone-800 text-stone-500 hover:text-emerald-600 dark:text-stone-400 dark:hover:text-emerald-400 transition-colors cursor-pointer flex items-center gap-1 text-xs font-bold"
+                  className="p-2 rounded-[16px] hover:bg-stone-100 dark:hover:bg-stone-800 text-stone-500 hover:text-emerald-600 dark:text-stone-400 dark:hover:text-emerald-400 transition-colors cursor-pointer flex items-center gap-1 text-xs font-bold"
                   title="Đính kèm hình ảnh"
                 >
                   <ImageIcon className="w-4 h-4 text-emerald-600 dark:text-emerald-400" />
@@ -633,7 +633,7 @@ export default function CommunityFeedClient({ embedded = false }: { embedded?: b
               <button
                 onClick={handlePost}
                 disabled={posting || (!content.trim() && !pendingImage)}
-                className="flex items-center gap-1.5 px-4.5 py-2 rounded-xl bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-500 hover:to-teal-500 text-white text-sm font-black disabled:opacity-40 transition-all shadow-sm active:scale-95 cursor-pointer"
+                className="flex items-center gap-1.5 px-4.5 py-2 rounded-[16px] bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-500 hover:to-teal-500 text-white text-sm font-black disabled:opacity-40 transition-all shadow-[0_10px_22px_-20px_rgba(16,185,129,0.35)] active:scale-95 cursor-pointer"
               >
                 <Send className="w-3.5 h-3.5" /> {posting ? "Đang tải ảnh..." : "Đăng"}
               </button>
@@ -656,7 +656,7 @@ export default function CommunityFeedClient({ embedded = false }: { embedded?: b
               const badge = getUserBadge(post);
               const BadgeIcon = badge.icon;
               return (
-              <div key={post.id} className="bg-white dark:bg-stone-900 border border-stone-200 dark:border-stone-800 rounded-3xl p-4 sm:p-5 shadow-sm">
+              <div key={post.id} className="bg-white dark:bg-stone-900 border border-stone-200/80 dark:border-stone-800 rounded-[20px] p-4 sm:p-5 shadow-[0_10px_24px_-24px_rgba(15,23,42,0.2)]">
                 <div className="flex items-start gap-3">
                   <Avatar name={post.user_name} avatarUrl={post.user_avatar} />
                   <div className="flex-1 min-w-0">
@@ -689,11 +689,11 @@ export default function CommunityFeedClient({ embedded = false }: { embedded?: b
 
                     {/* Attached Image Rendering */}
                     {post.metadata && typeof post.metadata === "object" && "image_url" in post.metadata && Boolean(post.metadata.image_url) && (
-                      <div className="mt-3 relative rounded-2xl overflow-hidden border border-stone-200 dark:border-stone-800 max-h-96 bg-stone-950/5 dark:bg-stone-950/40">
+                      <div className="mt-3 relative rounded-[18px] overflow-hidden border border-stone-200 dark:border-stone-800 max-h-96 bg-stone-950/5 dark:bg-stone-950/40">
                         <img
                           src={String(post.metadata.image_url)}
                           alt="Bài đăng của người dùng"
-                          className="w-full h-auto max-h-96 object-contain rounded-2xl"
+                          className="w-full h-auto max-h-96 object-contain rounded-[18px]"
                         />
                       </div>
                     )}
@@ -741,7 +741,7 @@ export default function CommunityFeedClient({ embedded = false }: { embedded?: b
                         </button>
 
                         {reactionPickerFor === post.id && user && (
-                          <div className="absolute left-0 bottom-full mb-1.5 z-30 flex items-center gap-1.5 rounded-full border border-stone-200 bg-white p-1.5 shadow-xl dark:border-stone-700 dark:bg-stone-900 animate-in fade-in zoom-in-95 duration-150">
+                          <div className="absolute left-0 bottom-full mb-1.5 z-30 flex items-center gap-1.5 rounded-full border border-stone-200 bg-white p-1.5 shadow-[0_12px_24px_-18px_rgba(15,23,42,0.24)] dark:border-stone-700 dark:bg-stone-900 animate-in fade-in zoom-in-95 duration-150">
                             {REACTION_OPTIONS.map((emoji) => (
                               <button
                                 key={emoji}
@@ -782,11 +782,11 @@ export default function CommunityFeedClient({ embedded = false }: { embedded?: b
                     </div>
 
                     {openComments[post.id] && (
-                      <div className="mt-4 rounded-2xl bg-stone-50 p-3 dark:bg-stone-950/60">
+                      <div className="mt-4 rounded-[18px] bg-stone-50 p-3 dark:bg-stone-950/60">
                         {user && (
                           <div className="mb-3 flex items-start gap-2">
                             <Avatar name={user.user_metadata?.full_name ?? "Bạn"} avatarUrl={user.user_metadata?.avatar_url ?? null} />
-                            <div className="flex-1 rounded-2xl border border-stone-200 bg-white p-2 dark:border-stone-700 dark:bg-stone-900">
+                            <div className="flex-1 rounded-[18px] border border-stone-200 bg-white p-2 dark:border-stone-700 dark:bg-stone-900">
                               <textarea
                                 value={commentDrafts[post.id] ?? ""}
                                 onChange={(e) => setCommentDrafts((prev) => ({ ...prev, [post.id]: e.target.value }))}
@@ -828,7 +828,7 @@ export default function CommunityFeedClient({ embedded = false }: { embedded?: b
                         ) : (
                           <div className="space-y-2">
                             {(commentsByPost[post.id] ?? []).map((comment) => (
-                              <div key={comment.id} className="flex items-start gap-2 rounded-2xl bg-white p-3 dark:bg-stone-900">
+                              <div key={comment.id} className="flex items-start gap-2 rounded-[18px] bg-white p-3 dark:bg-stone-900">
                                 <Avatar name={comment.user_name} avatarUrl={comment.user_avatar} />
                                 <div className="min-w-0 flex-1">
                                   <div className="flex items-center gap-2 flex-wrap">
@@ -874,7 +874,7 @@ export default function CommunityFeedClient({ embedded = false }: { embedded?: b
 
         {!embedded && (
           <aside className="space-y-4 lg:sticky lg:top-24 self-start">
-            <div className="rounded-3xl border border-stone-200 bg-white p-5 shadow-sm dark:border-stone-800 dark:bg-stone-900">
+            <div className="rounded-[20px] border border-stone-200/80 bg-white p-5 shadow-[0_10px_24px_-24px_rgba(15,23,42,0.2)] dark:border-stone-800 dark:bg-stone-900">
               <div className="flex items-center gap-2">
                 <ShieldCheck className="h-5 w-5 text-emerald-600" />
                 <h2 className="text-sm font-black uppercase tracking-[0.14em] text-stone-900 dark:text-stone-100">Luật feed</h2>
@@ -886,7 +886,7 @@ export default function CommunityFeedClient({ embedded = false }: { embedded?: b
               </div>
             </div>
 
-            <div className="rounded-3xl border border-stone-200 bg-white p-5 shadow-sm dark:border-stone-800 dark:bg-stone-900">
+            <div className="rounded-[20px] border border-stone-200/80 bg-white p-5 shadow-[0_10px_24px_-24px_rgba(15,23,42,0.2)] dark:border-stone-800 dark:bg-stone-900">
               <div className="mb-4 flex items-center justify-between">
                 <h2 className="text-sm font-black uppercase tracking-[0.14em] text-stone-900 dark:text-stone-100">Đang nổi bật</h2>
                 <TrendingUp className="h-5 w-5 text-amber-500" />
@@ -896,7 +896,7 @@ export default function CommunityFeedClient({ embedded = false }: { embedded?: b
               ) : (
                 <div className="space-y-3">
                   {hotPosts.map((post, index) => (
-                    <div key={post.id} className="rounded-2xl bg-stone-50 p-3 dark:bg-stone-950/60">
+                    <div key={post.id} className="rounded-[18px] bg-stone-50 p-3 dark:bg-stone-950/60">
                       <div className="flex items-center gap-2">
                         <span className="flex h-6 w-6 items-center justify-center rounded-full bg-stone-900 text-xs font-black text-white dark:bg-stone-100 dark:text-stone-900">
                           {index + 1}
@@ -916,7 +916,7 @@ export default function CommunityFeedClient({ embedded = false }: { embedded?: b
               )}
             </div>
 
-            <div className="rounded-3xl border border-stone-200 bg-white p-5 shadow-sm dark:border-stone-800 dark:bg-stone-900">
+            <div className="rounded-[20px] border border-stone-200/80 bg-white p-5 shadow-[0_10px_24px_-24px_rgba(15,23,42,0.2)] dark:border-stone-800 dark:bg-stone-900">
               <div className="flex items-center gap-2">
                 <Bookmark className="h-5 w-5 text-sky-600" />
                 <h2 className="text-sm font-black uppercase tracking-[0.14em] text-stone-900 dark:text-stone-100">Gợi ý đăng bài</h2>
@@ -932,7 +932,7 @@ export default function CommunityFeedClient({ embedded = false }: { embedded?: b
                     key={idea}
                     type="button"
                     onClick={() => setContent((prev) => (prev ? prev : idea))}
-                    className="rounded-2xl border border-stone-200 bg-stone-50 px-3 py-2 text-left text-xs font-bold text-stone-600 transition hover:border-emerald-300 hover:bg-emerald-50 hover:text-emerald-700 dark:border-stone-800 dark:bg-stone-950 dark:text-stone-300"
+                    className="rounded-[18px] border border-stone-200 bg-stone-50 px-3 py-2 text-left text-xs font-bold text-stone-600 transition hover:border-emerald-300 hover:bg-emerald-50 hover:text-emerald-700 dark:border-stone-800 dark:bg-stone-950 dark:text-stone-300"
                   >
                     {idea}
                   </button>

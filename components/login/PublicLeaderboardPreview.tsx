@@ -41,7 +41,7 @@ export default function PublicLeaderboardPreview() {
   ];
 
   return (
-    <div className="overflow-hidden rounded-[1.75rem] border border-stone-200 bg-white shadow-[0_30px_80px_-45px_rgba(16,185,129,0.45)] dark:border-stone-800 dark:bg-stone-900">
+    <div className="overflow-hidden rounded-[20px] border border-stone-200/80 bg-white shadow-[0_16px_40px_-28px_rgba(16,185,129,0.28)] dark:border-stone-800 dark:bg-stone-900">
       <style>{`
         @keyframes leaderboard-podium-float {
           0%, 100% { transform: translateY(0px); }
@@ -84,7 +84,7 @@ export default function PublicLeaderboardPreview() {
       </div>
 
       <div className="p-4">
-        <div className="rounded-[1.5rem] border border-stone-100 bg-stone-50/80 p-4 dark:border-stone-800 dark:bg-stone-950/35">
+        <div className="rounded-[20px] border border-stone-100 bg-stone-50/80 p-4 dark:border-stone-800 dark:bg-stone-950/35">
           <div className="mb-4 flex items-center justify-between gap-3">
             <div>
               <p className="text-xs font-black uppercase tracking-[0.16em] text-stone-500 dark:text-stone-400">
@@ -110,10 +110,10 @@ export default function PublicLeaderboardPreview() {
                         alt={entry.name}
                         width={48}
                         height={48}
-                        className={`relative h-12 w-12 rounded-full border-2 border-white object-cover shadow-lg ring-4 ${meta.ring} dark:border-stone-900`}
+                        className={`relative h-12 w-12 rounded-full border border-white object-cover shadow-[0_10px_24px_-18px_rgba(15,23,42,0.28)] ring-4 ${meta.ring} dark:border-stone-900`}
                       />
                     ) : (
-                      <div className={`relative flex h-12 w-12 items-center justify-center rounded-full border-2 border-white bg-gradient-to-br ${meta.tone} text-sm font-black shadow-lg ring-4 ${meta.ring} dark:border-stone-900`}>
+                      <div className={`relative flex h-12 w-12 items-center justify-center rounded-full border border-white bg-gradient-to-br ${meta.tone} text-sm font-black shadow-[0_10px_24px_-18px_rgba(15,23,42,0.28)] ring-4 ${meta.ring} dark:border-stone-900`}>
                         {entry.name.trim().charAt(0).toUpperCase() || "?"}
                       </div>
                     )}
@@ -127,7 +127,7 @@ export default function PublicLeaderboardPreview() {
                   <p className="text-[10px] font-bold text-stone-500 dark:text-stone-400">
                     {entry.value.toLocaleString("vi-VN")} XP
                   </p>
-                  <div className={`leaderboard-soft-glow mt-2 flex w-full items-end justify-center rounded-t-2xl bg-gradient-to-b ${meta.tone} px-2 pb-3 pt-2 shadow-inner ${meta.height}`}>
+                  <div className={`leaderboard-soft-glow mt-2 flex w-full items-end justify-center rounded-t-[20px] bg-gradient-to-b ${meta.tone} px-2 pb-3 pt-2 shadow-inner ${meta.height}`}>
                     <div className="text-center">
                       <Medal className="mx-auto h-5 w-5 opacity-80" />
                       <p className="mt-1 text-[10px] font-black uppercase tracking-wide">{meta.title}</p>
@@ -141,7 +141,7 @@ export default function PublicLeaderboardPreview() {
 
         <div className="mt-3 grid gap-2 sm:grid-cols-3">
           {badgePreview.map(({ icon: Icon, label, value }) => (
-            <div key={label} className="leaderboard-badge-pulse rounded-2xl border border-stone-100 bg-white px-3 py-2.5 dark:border-stone-800 dark:bg-stone-950/40">
+            <div key={label} className="leaderboard-badge-pulse rounded-[20px] border border-stone-100 bg-white px-3 py-2.5 dark:border-stone-800 dark:bg-stone-950/40 shadow-[0_8px_20px_-18px_rgba(15,23,42,0.2)]">
               <div className="flex items-center gap-2">
                 <span className="flex h-8 w-8 items-center justify-center rounded-xl bg-emerald-50 text-emerald-600 ring-1 ring-emerald-100 dark:bg-emerald-950/30 dark:text-emerald-300 dark:ring-emerald-900">
                   <Icon className="h-4 w-4" />
@@ -157,7 +157,7 @@ export default function PublicLeaderboardPreview() {
 
         <div className="mt-3 grid grid-cols-2 gap-x-3 gap-y-2.5 sm:grid-cols-3">
           {top.slice(0, 6).map((entry, idx) => (
-            <div key={entry.user_id} className="flex min-w-0 items-center gap-2 rounded-2xl border border-stone-100 bg-stone-50/70 px-2.5 py-2 dark:border-stone-800 dark:bg-stone-800/40">
+            <div key={entry.user_id} className="flex min-w-0 items-center gap-2 rounded-[18px] border border-stone-100 bg-stone-50/70 px-2.5 py-2 dark:border-stone-800 dark:bg-stone-800/40 shadow-[0_8px_20px_-18px_rgba(15,23,42,0.14)]">
               <div className="relative flex-shrink-0">
                 {isValidAvatar(entry.avatarUrl) ? (
                   <Image

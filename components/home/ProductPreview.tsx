@@ -22,7 +22,7 @@ export default function ProductPreview() {
   const [tab, setTab] = useState<Tab>("dashboard");
 
   return (
-    <div className="rounded-[1.75rem] border border-stone-200 dark:border-stone-800 bg-white dark:bg-stone-900 shadow-[0_40px_100px_-45px_rgba(16,24,40,0.35)] overflow-hidden">
+    <div className="rounded-[20px] border border-stone-200/80 dark:border-stone-800 bg-white dark:bg-stone-900 shadow-[0_18px_44px_-28px_rgba(15,23,42,0.24)] overflow-hidden">
       <style>{`
         @keyframes preview-progress-pulse {
           0%, 100% { transform: scaleX(0.94); opacity: 0.82; }
@@ -88,7 +88,7 @@ export default function ProductPreview() {
               transition={{ duration: 0.25 }}
               className="grid grid-cols-1 gap-4 sm:grid-cols-[1.3fr_1fr]"
             >
-              <div className="preview-card-float rounded-2xl border border-stone-200 dark:border-stone-800 bg-white dark:bg-stone-900 p-4">
+              <div className="preview-card-float rounded-[20px] border border-stone-200/80 dark:border-stone-800 bg-white dark:bg-stone-900 p-5 shadow-[0_12px_28px_-24px_rgba(15,23,42,0.22)]">
                 <div className="flex items-center justify-between mb-3">
                   <div>
                     <p className="text-[10px] font-black uppercase tracking-widest text-stone-400 dark:text-stone-500">Cấp độ 6</p>
@@ -129,7 +129,7 @@ export default function ProductPreview() {
               </div>
 
               <div className="grid gap-4">
-                <div className="preview-card-float rounded-2xl border border-orange-100 dark:border-orange-950/40 bg-orange-50/60 dark:bg-orange-950/10 p-4 flex items-center gap-3">
+                <div className="preview-card-float rounded-[20px] border border-orange-100/80 dark:border-orange-950/40 bg-orange-50/60 dark:bg-orange-950/10 p-5 flex items-center gap-3 shadow-[0_12px_28px_-24px_rgba(249,115,22,0.18)]">
                   <div className="w-10 h-10 rounded-full bg-orange-100 dark:bg-orange-950/40 flex items-center justify-center shrink-0">
                     <Flame className="w-5 h-5 text-orange-500" />
                   </div>
@@ -138,7 +138,7 @@ export default function ProductPreview() {
                     <p className="text-[11px] font-semibold text-stone-500 dark:text-stone-400 mt-0.5">chuỗi học liên tục</p>
                   </div>
                 </div>
-                <div className="rounded-2xl border border-stone-200 dark:border-stone-800 bg-white dark:bg-stone-900 p-4">
+                <div className="rounded-[20px] border border-stone-200/80 dark:border-stone-800 bg-white dark:bg-stone-900 p-5 shadow-[0_12px_28px_-24px_rgba(15,23,42,0.2)]">
                   <p className="text-[10px] font-black uppercase tracking-widest text-stone-400 dark:text-stone-500 mb-2.5 flex items-center gap-1.5">
                     <span className="preview-live-dot h-1.5 w-1.5 rounded-full bg-emerald-500" />
                     <Trophy className="w-3.5 h-3.5 text-amber-500" />
@@ -168,7 +168,7 @@ export default function ProductPreview() {
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -6 }}
               transition={{ duration: 0.25 }}
-              className="rounded-2xl border border-stone-200 dark:border-stone-800 bg-white dark:bg-stone-900 p-5"
+              className="rounded-[20px] border border-stone-200/80 dark:border-stone-800 bg-white dark:bg-stone-900 p-5 shadow-[0_12px_28px_-24px_rgba(15,23,42,0.2)]"
             >
               <p className="text-[10px] font-black uppercase tracking-widest text-emerald-600 dark:text-emerald-400 mb-2">
                 Chặng 2 · Bài 14
@@ -179,7 +179,7 @@ export default function ProductPreview() {
               <p className="text-xs text-stone-600 dark:text-stone-400 leading-relaxed mb-4">
                 Lãi kép không chỉ cộng dồn lãi vào gốc - nó khiến khoảng cách giữa bắt đầu sớm và bắt đầu muộn lớn hơn nhiều so với trực giác thông thường...
               </p>
-              <div className="rounded-xl border border-stone-200 dark:border-stone-800 bg-stone-50 dark:bg-stone-950/40 p-4 mb-4">
+              <div className="rounded-[18px] border border-stone-200/80 dark:border-stone-800 bg-stone-50 dark:bg-stone-950/40 p-4 mb-4">
                 <p className="text-[11px] font-black uppercase tracking-widest text-stone-400 dark:text-stone-500 mb-2">Câu hỏi nhanh</p>
                 <p className="text-xs font-bold text-stone-900 dark:text-stone-100 mb-3">
                   Đầu tư 1 triệu/tháng từ năm 25 tuổi khác gì so với bắt đầu từ năm 35 tuổi?
