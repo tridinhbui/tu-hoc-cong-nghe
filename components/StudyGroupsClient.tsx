@@ -98,6 +98,70 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
   const dragStartRef = useRef<{ x: number; y: number }>({ x: 0, y: 0 });
   const rotationStartRef = useRef<{ x: number; y: number }>({ x: 20, y: 0 });
 
+  // 1. Mobile Viewport Segmented Tab Toggle state ("3d" | "chat")
+  const [mobileTab, setMobileTab] = useState<"3d" | "chat">("3d");
+
+  // 2. Focus Lofi Audio Player state & Web Audio synth engine
+  const [lofiPlaying, setLofiPlaying] = useState(false);
+  const [lofiTrack, setLofiTrack] = useState<"lofi" | "rain" | "waves">("lofi");
+  const [isMicMuted, setIsMicMuted] = useState(true);
+  const audioCtxRef = useRef<AudioContext | null>(null);
+  const gainNodeRef = useRef<GainNode | null>(null);
+  const noiseSourceRef = useRef<AudioBufferSourceNode | null>(null);
+
+  // 3. Group Daily Quests & 3D Chest Reward state
+  const [questProgress, setQuestProgress] = useState({ done: 2, total: 3 });
+  const [isChestUnlocked, setIsChestUnlocked] = useState(false);
+
+  const toggleLofiMusic = () => {
+    if (lofiPlaying) {
+      if (gainNodeRef.current) gainNodeRef.current.gain.value = 0;
+      if (noiseSourceRef.current) {
+        try { noiseSourceRef.current.stop(); } catch {}
+      }
+      setLofiPlaying(false);
+      toast.info("🔇 Đã tắt nhạc Focus Lofi");
+      return;
+    }
+
+    try {
+      const AudioCtx = window.AudioContext || (window as unknown as { webkitAudioContext: typeof AudioContext }).webkitAudioContext;
+      if (!audioCtxRef.current) audioCtxRef.current = new AudioCtx();
+      const ctx = audioCtxRef.current;
+      if (ctx.state === "suspended") void ctx.resume();
+
+      const gain = ctx.createGain();
+      gain.gain.setValueAtTime(0.06, ctx.currentTime);
+      gain.connect(ctx.destination);
+      gainNodeRef.current = gain;
+
+      if (lofiTrack === "lofi") {
+        [220, 277.18, 329.63, 440].forEach((freq) => {
+          const osc = ctx.createOscillator();
+          osc.type = "sine";
+          osc.frequency.setValueAtTime(freq, ctx.currentTime);
+          osc.connect(gain);
+          osc.start();
+        });
+      } else {
+        const bufferSize = ctx.sampleRate * 2;
+        const buffer = ctx.createBuffer(1, bufferSize, ctx.sampleRate);
+        const data = buffer.getChannelData(0);
+        for (let i = 0; i < bufferSize; i++) data[i] = (Math.random() * 2 - 1) * 0.08;
+        const noise = ctx.createBufferSource();
+        noise.buffer = buffer;
+        noise.loop = true;
+        noise.connect(gain);
+        noise.start();
+        noiseSourceRef.current = noise;
+      }
+      setLofiPlaying(true);
+      toast.success(`🎧 Đã bật nhạc Focus [${lofiTrack.toUpperCase()}] Chill!`);
+    } catch {
+      toast.error("Không thể khởi chạy nhạc Lofi");
+    }
+  };
+
   const handleStageMouseDown = (e: React.MouseEvent<HTMLDivElement> | React.TouchEvent<HTMLDivElement>) => {
     setIsDragging3D(true);
     const clientX = "touches" in e ? e.touches[0].clientX : e.clientX;
@@ -403,9 +467,9 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
       <div className={`${embedded ? "h-full flex flex-col overflow-hidden" : "max-w-7xl mx-auto px-3 sm:px-4 py-3 min-h-[calc(100vh-4rem)] flex flex-col font-sans"}`}>
         {myRoom ? (
           <div className="h-full flex flex-col min-h-0 space-y-3">
-            {/* Top Room Info & Goal Bar */}
-            <div className="bg-white dark:bg-stone-900 border border-stone-200 dark:border-stone-800 rounded-2xl px-4 py-2.5 shrink-0 flex items-center justify-between gap-3 shadow-xs">
-              <div className="flex items-center gap-3 min-w-0">
+            {/* Top Room Info, Lofi Audio & Mobile Segmented Tab Bar */}
+            <div className="bg-white dark:bg-stone-900 border border-stone-200 dark:border-stone-800 rounded-2xl px-3 sm:px-4 py-2 shrink-0 flex items-center justify-between gap-2 sm:gap-3 shadow-xs">
+              <div className="flex items-center gap-2.5 min-w-0">
                 <span className="w-8 h-8 rounded-xl bg-emerald-600 text-white font-black flex items-center justify-center text-xs shrink-0 shadow-xs">
                   👥
                 </span>
@@ -414,7 +478,7 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
                     Phòng {topicLabel(myRoom.topic)} · {myRoom.member_count}/{myRoom.max_members} thành viên
                   </h2>
                   <div className="flex items-center gap-2 mt-0.5">
-                    <div className="w-24 sm:w-36 h-2 rounded-full bg-stone-100 dark:bg-stone-800 overflow-hidden">
+                    <div className="w-20 sm:w-32 h-2 rounded-full bg-stone-100 dark:bg-stone-800 overflow-hidden">
                       <div
                         className="h-full rounded-full bg-emerald-500 transition-all duration-500"
                         style={{ width: `${Math.min(100, (myRoom.weekly_xp_progress / Math.max(1, myRoom.weekly_xp_goal)) * 100)}%` }}
@@ -427,11 +491,67 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
                 </div>
               </div>
 
-              <div className="flex items-center gap-2 shrink-0">
+              {/* Center/Right Action Bar: Lofi Focus Sound + Mic Toggle + Mobile Segmented Tab Toggle */}
+              <div className="flex items-center gap-1.5 sm:gap-2 shrink-0">
+                {/* 🎧 Lofi Chill Focus Audio Button */}
+                <button
+                  type="button"
+                  onClick={toggleLofiMusic}
+                  className={`inline-flex items-center gap-1 px-2 py-1 rounded-xl text-[10px] font-extrabold border transition-all cursor-pointer ${
+                    lofiPlaying
+                      ? "bg-emerald-500 text-white border-emerald-400 animate-pulse shadow-xs"
+                      : "bg-stone-100 dark:bg-stone-800 text-stone-700 dark:text-stone-300 border-stone-200 dark:border-stone-700 hover:bg-stone-200"
+                  }`}
+                  title="Bật/Tắt nhạc Lofi Chill tập trung"
+                >
+                  <span>🎧</span>
+                  <span className="hidden sm:inline">{lofiPlaying ? "Nhạc Lofi: Đang phát" : "Nhạc Lofi Chill"}</span>
+                </button>
+
+                {/* 🎙️ Mic Status Toggle */}
+                <button
+                  type="button"
+                  onClick={() => {
+                    setIsMicMuted((prev) => !prev);
+                    toast.info(isMicMuted ? "🎙️ Đã bật micro phòng học" : "🔇 Đã tắt micro phòng học");
+                  }}
+                  className={`inline-flex items-center gap-1 px-2 py-1 rounded-xl text-[10px] font-extrabold border transition-all cursor-pointer ${
+                    !isMicMuted
+                      ? "bg-emerald-600 text-white border-emerald-500"
+                      : "bg-stone-100 dark:bg-stone-800 text-stone-500 dark:text-stone-400 border-stone-200 dark:border-stone-700"
+                  }`}
+                  title="Bật/Tắt Micro"
+                >
+                  <span>{isMicMuted ? "🔇" : "🎙️"}</span>
+                  <span className="hidden md:inline">{isMicMuted ? "Mic: Tắt" : "Mic: Mở"}</span>
+                </button>
+
+                {/* 📱 Mobile Segmented Tab Control (< lg screens) */}
+                <div className="lg:hidden flex bg-stone-100 dark:bg-stone-800 p-0.5 rounded-xl border border-stone-200 dark:border-stone-700 text-[10px] font-extrabold">
+                  <button
+                    type="button"
+                    onClick={() => setMobileTab("3d")}
+                    className={`px-2 py-0.5 rounded-lg transition-all ${
+                      mobileTab === "3d" ? "bg-white dark:bg-stone-900 text-emerald-600 dark:text-emerald-400 shadow-xs" : "text-stone-500"
+                    }`}
+                  >
+                    🛋️ Bàn 3D
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => setMobileTab("chat")}
+                    className={`px-2 py-0.5 rounded-lg transition-all ${
+                      mobileTab === "chat" ? "bg-white dark:bg-stone-900 text-emerald-600 dark:text-emerald-400 shadow-xs" : "text-stone-500"
+                    }`}
+                  >
+                    💬 Chat
+                  </button>
+                </div>
+
                 <button
                   onClick={handleLeave}
                   disabled={busy}
-                  className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl border border-stone-200 dark:border-stone-800 text-xs font-bold text-stone-600 dark:text-stone-400 hover:bg-stone-100 dark:hover:bg-stone-800 transition-colors disabled:opacity-60 cursor-pointer"
+                  className="inline-flex items-center gap-1 px-2.5 py-1 sm:px-3 sm:py-1.5 rounded-xl border border-stone-200 dark:border-stone-800 text-xs font-bold text-stone-600 dark:text-stone-400 hover:bg-stone-100 dark:hover:bg-stone-800 transition-colors disabled:opacity-60 cursor-pointer"
                 >
                   <LogOut className="w-3.5 h-3.5" />
                   <span className="hidden sm:inline">Rời phòng</span>
@@ -450,7 +570,9 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
                 onTouchStart={handleStageMouseDown}
                 onTouchMove={handleStageMouseMove}
                 onTouchEnd={handleStageMouseUp}
-                className={`lg:col-span-7 flex flex-col h-full max-h-[60vh] sm:max-h-[460px] min-h-0 rounded-2xl border border-stone-800 bg-stone-950 p-3 sm:p-3.5 shadow-2xl relative overflow-hidden text-white justify-between select-none my-auto transition-colors ${
+                className={`lg:col-span-7 ${
+                  mobileTab === "3d" ? "flex" : "hidden lg:flex"
+                } flex-col h-full max-h-[60vh] sm:max-h-[460px] min-h-0 rounded-2xl border border-stone-800 bg-stone-950 p-3 sm:p-3.5 shadow-2xl relative overflow-hidden text-white justify-between select-none my-auto transition-colors ${
                   isDragging3D ? "cursor-grabbing border-emerald-500/70" : "cursor-grab"
                 }`}
                 style={{ perspective: "800px", perspectiveOrigin: "50% 45%" }}
@@ -553,9 +675,21 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
                       <p className="text-xs font-black text-white mt-0.5">
                         {myRoom.weekly_xp_progress} / {myRoom.weekly_xp_goal} XP
                       </p>
-                      <span className="mt-0.5 inline-block text-[8px] font-extrabold text-emerald-300 bg-emerald-950/90 px-2 py-0.2 rounded-full border border-emerald-400/40 shadow-xs">
-                        ⚡ SPATIAL BOOST
-                      </span>
+                      <button
+                        type="button"
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          setIsChestUnlocked(true);
+                          toast.success("🎁 Đã mở Rương Nhiệm Vụ Nhóm! Cả phòng được thưởng +150 XP Bonus 🎉");
+                        }}
+                        className={`mt-1 inline-flex items-center gap-1 text-[8px] font-extrabold px-2 py-0.5 rounded-full border transition-all cursor-pointer ${
+                          isChestUnlocked
+                            ? "bg-amber-500 text-stone-950 border-amber-300 shadow-md"
+                            : "bg-emerald-950/90 text-emerald-300 border-emerald-400/40 hover:bg-emerald-800"
+                        }`}
+                      >
+                        <span>{isChestUnlocked ? "👑 Rương Đã Mở" : "🎁 Nhận Rương XP"}</span>
+                      </button>
                     </div>
                   </motion.div>
 
@@ -659,7 +793,11 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
               </div>
 
               {/* RIGHT COLUMN: Group Chat Box Matched to 3D Stage Height */}
-              <div className="lg:col-span-5 flex flex-col h-full max-h-[60vh] sm:max-h-[460px] min-h-0 bg-white dark:bg-stone-900 border border-stone-200 dark:border-stone-800 rounded-2xl overflow-hidden shadow-xl p-3 sm:p-3.5 my-auto">
+              <div
+                className={`lg:col-span-5 ${
+                  mobileTab === "chat" ? "flex" : "hidden lg:flex"
+                } flex-col h-full max-h-[60vh] sm:max-h-[460px] min-h-0 bg-white dark:bg-stone-900 border border-stone-200 dark:border-stone-800 rounded-2xl overflow-hidden shadow-xl p-3 sm:p-3.5 my-auto`}
+              >
                 <h3 className="text-xs font-black text-stone-900 dark:text-stone-100 uppercase tracking-widest mb-2 shrink-0 flex items-center justify-between">
                   <span>💬 Trò chuyện nhóm</span>
                   <span className="text-[10px] font-bold text-emerald-600 dark:text-emerald-400 bg-emerald-50 dark:bg-emerald-950/60 px-2 py-0.5 rounded-full border border-emerald-200 dark:border-emerald-800">
