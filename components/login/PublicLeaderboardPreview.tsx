@@ -81,9 +81,9 @@ export default function PublicLeaderboardPreview() {
   const podium = [top[1] || top[0], top[0], top[2] || top[0]].filter(Boolean);
 
   const podiumMeta = [
-    { rank: 2, height: "h-24 sm:h-28", tone: "from-slate-300 via-slate-200 to-slate-100 text-slate-900 border-slate-300", ring: "ring-slate-300", title: "BẠC 🥈" },
-    { rank: 1, height: "h-32 sm:h-36", tone: "from-amber-400 via-amber-300 to-yellow-100 text-amber-950 border-amber-400", ring: "ring-amber-300", title: "VÀNG 🥇" },
-    { rank: 3, height: "h-20 sm:h-24", tone: "from-orange-300 via-amber-200 to-orange-100 text-orange-950 border-orange-300", ring: "ring-orange-300", title: "ĐỒNG 🥉" },
+    { rank: 2, height: "h-16 sm:h-20", tone: "from-slate-300 via-slate-200 to-slate-100 text-slate-900 border-slate-300", ring: "ring-slate-300", title: "BẠC 🥈" },
+    { rank: 1, height: "h-22 sm:h-26", tone: "from-amber-400 via-amber-300 to-yellow-100 text-amber-950 border-amber-400", ring: "ring-amber-300", title: "VÀNG 🥇" },
+    { rank: 3, height: "h-14 sm:h-16", tone: "from-orange-300 via-amber-200 to-orange-100 text-orange-950 border-orange-300", ring: "ring-orange-300", title: "ĐỒNG 🥉" },
   ];
 
   function handleCheerUser(userId: string, e: React.MouseEvent) {
@@ -158,25 +158,25 @@ export default function PublicLeaderboardPreview() {
       </div>
 
       {/* Main Body */}
-      <div className="p-4 sm:p-6 space-y-5">
+      <div className="p-3.5 sm:p-4 space-y-3 font-sans">
         {/* Podium Stage Box */}
-        <div className="rounded-3xl border border-stone-200/80 dark:border-stone-800 bg-stone-50/70 dark:bg-stone-950/40 p-4 sm:p-6 relative overflow-hidden">
-          <div className="mb-4 flex items-center justify-between">
+        <div className="rounded-2xl border border-stone-200/80 dark:border-stone-800 bg-stone-50/70 dark:bg-stone-950/40 p-3 sm:p-4 relative overflow-hidden">
+          <div className="mb-2 flex items-center justify-between">
             <div>
-              <p className="text-xs font-black uppercase tracking-widest text-emerald-600 dark:text-emerald-400">
+              <p className="text-[10px] font-black uppercase tracking-widest text-emerald-600 dark:text-emerald-400">
                 BỤC VINH QUANG 🏆
               </p>
-              <p className="text-sm sm:text-base font-black text-stone-900 dark:text-stone-100 mt-0.5">
+              <p className="text-xs sm:text-sm font-black text-stone-900 dark:text-stone-100 mt-0.5">
                 {metric === "xp" && "Học viên xuất sắc nhất tuần này"}
                 {metric === "streak" && "Top học viên kiên trì giữ chuỗi streak"}
                 {metric === "lessons" && "Học viên chinh phục nhiều bài học nhất"}
               </p>
             </div>
-            <Crown className="w-8 h-8 text-amber-400 animate-bounce shrink-0" />
+            <Crown className="w-6 h-6 text-amber-400 animate-bounce shrink-0" />
           </div>
 
           {/* 3D Animated Podium Grid */}
-          <div className="grid grid-cols-3 items-end gap-2 sm:gap-4 min-h-[220px] pt-4">
+          <div className="grid grid-cols-3 items-end gap-2 sm:gap-3 min-h-[150px] pt-2">
             {podium.map((entry, idx) => {
               const meta = podiumMeta[idx];
               const userCheers = cheers[entry.user_id] || 0;
