@@ -380,14 +380,27 @@ export default function HomePage() {
 
         {/* ── HERO ── */}
         <section className="relative overflow-hidden">
-          <div className="relative max-w-6xl mx-auto px-6 pt-16 pb-14 lg:pt-24 lg:pb-20">
-            <div className="grid items-center gap-10 lg:grid-cols-[minmax(0,1.05fr)_minmax(320px,0.95fr)]">
+          <div className="absolute inset-0">
+            <Image
+              src="/times-square.jpg"
+              alt="Bối cảnh tài chính hiện đại"
+              fill
+              sizes="100vw"
+              className="object-cover object-center opacity-[0.16]"
+              priority
+            />
+            <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_20%,rgba(16,185,129,0.16),transparent_26%),radial-gradient(circle_at_85%_25%,rgba(245,158,11,0.15),transparent_24%),linear-gradient(135deg,rgba(255,255,255,0.9),rgba(247,250,252,0.8)_40%,rgba(240,253,250,0.62)_100%)] dark:bg-[radial-gradient(circle_at_20%_20%,rgba(16,185,129,0.18),transparent_26%),radial-gradient(circle_at_85%_25%,rgba(245,158,11,0.16),transparent_24%),linear-gradient(135deg,rgba(9,9,11,0.92),rgba(15,23,42,0.84)_40%,rgba(6,78,59,0.46)_100%)]" />
+            <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(15,23,42,0.04)_1px,transparent_1px),linear-gradient(to_bottom,rgba(15,23,42,0.04)_1px,transparent_1px)] bg-[size:32px_32px] opacity-60" />
+          </div>
+
+          <div className="relative max-w-6xl mx-auto px-6 pt-14 pb-14 lg:pt-20 lg:pb-20">
+            <div className="grid items-center gap-10 lg:grid-cols-[minmax(0,1.08fr)_minmax(360px,0.92fr)]">
               <div className="max-w-2xl">
                 <motion.div
                   initial={{ opacity: 0, y: 14 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.45, ease: "easeOut" }}
-                  className="inline-flex items-center gap-1.5 rounded-full border border-emerald-200 dark:border-emerald-900 bg-emerald-50 dark:bg-emerald-950/40 px-3 py-1 text-[11px] font-bold text-emerald-700 dark:text-emerald-400 mb-4"
+                  className="mb-4 inline-flex items-center gap-1.5 rounded-full border border-emerald-200/80 bg-white/80 px-3 py-1 text-[11px] font-bold text-emerald-700 backdrop-blur dark:border-emerald-900 dark:bg-stone-950/55 dark:text-emerald-300"
                 >
                   <span className="relative flex w-1.5 h-1.5">
                     <span className="animate-ping absolute inline-flex w-full h-full rounded-full bg-emerald-400 opacity-75" />
@@ -400,20 +413,20 @@ export default function HomePage() {
                   initial={{ opacity: 0, y: 14 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.45, ease: "easeOut", delay: 0.06 }}
-                  className="text-5xl lg:text-6xl font-black text-stone-900 dark:text-stone-100 leading-[0.98] mb-5 tracking-tight"
+                  className="mb-5 max-w-3xl text-5xl font-black leading-[0.95] tracking-tight text-stone-950 dark:text-stone-50 lg:text-[4.3rem]"
                 >
-                  Hiểu{" "}
-                  <span className="bg-gradient-to-r from-emerald-600 to-teal-500 dark:from-emerald-400 dark:to-teal-300 bg-clip-text text-transparent">
-                    tiền bạc
+                  Bước vào thế giới{" "}
+                  <span className="bg-gradient-to-r from-emerald-600 to-teal-500 bg-clip-text text-transparent dark:from-emerald-300 dark:to-teal-200">
+                    tài chính
                   </span>
-                  ,<br />quản lý tài sản
+                  ,<br />học như đang lên cấp
                 </motion.h1>
 
                 <motion.p
                   initial={{ opacity: 0, y: 14 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.45, ease: "easeOut", delay: 0.12 }}
-                  className="text-base sm:text-lg text-stone-600 dark:text-stone-400 leading-relaxed mb-7 max-w-xl"
+                  className="mb-7 max-w-2xl text-base leading-relaxed text-stone-650 dark:text-stone-300 sm:text-lg"
                 >
                   {lessonCountFloor ?? 360}+ bài học - 100% miễn phí vĩnh viễn - giáo trình thiết kế riêng cho người Việt học tài chính cá
                   nhân, CFA, lập kế hoạch tài chính, đầu tư, kế toán và tài chính chuyên nghiệp. Học theo phương pháp
@@ -424,18 +437,18 @@ export default function HomePage() {
                   initial={{ opacity: 0, y: 14 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.45, ease: "easeOut", delay: 0.18 }}
-                  className="flex flex-wrap items-center gap-3 mb-8"
+                  className="mb-8 flex flex-wrap items-center gap-3"
                 >
                   <Link
                     href="/login?mode=signup"
-                    className="cta-electric group inline-flex items-center gap-2 bg-stone-900 hover:bg-stone-800 dark:bg-stone-100 dark:hover:bg-white text-white dark:text-stone-900 font-bold px-6 py-3.5 rounded-xl transition-all shadow-lg shadow-stone-900/10 active:scale-[0.98]"
+                    className="cta-electric group inline-flex items-center gap-2 rounded-xl bg-stone-950 px-6 py-3.5 font-bold text-white shadow-[0_24px_54px_-24px_rgba(15,23,42,0.55)] transition-all active:scale-[0.98] hover:bg-stone-900 dark:bg-stone-100 dark:text-stone-900 dark:hover:bg-white"
                   >
                     Bắt đầu học miễn phí
-                    <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
+                    <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-0.5" />
                   </Link>
                   <a
                     href={`/bai-hoc/${TRACKS.personal.previewSlug}`}
-                    className="inline-flex items-center gap-2 border border-stone-200 dark:border-stone-700 hover:bg-stone-50 dark:hover:bg-stone-900 text-stone-900 dark:text-stone-100 font-bold px-6 py-3.5 rounded-xl transition-colors"
+                    className="inline-flex items-center gap-2 rounded-xl border border-stone-200/80 bg-white/70 px-6 py-3.5 font-bold text-stone-900 backdrop-blur transition-colors hover:bg-white dark:border-stone-700 dark:bg-stone-950/45 dark:text-stone-100 dark:hover:bg-stone-900"
                   >
                     <PlayCircle className="w-4 h-4" />
                     Xem thử bài học
@@ -446,7 +459,7 @@ export default function HomePage() {
                   initial={{ opacity: 0, y: 14 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.45, ease: "easeOut", delay: 0.24 }}
-                  className="rounded-2xl border border-stone-200 dark:border-stone-800 bg-stone-50/60 dark:bg-stone-900/40 px-4 sm:px-5 py-3.5 w-full sm:w-fit"
+                  className="w-full rounded-[1.35rem] border border-stone-200/80 bg-white/70 px-4 py-3.5 shadow-[0_22px_44px_-30px_rgba(16,185,129,0.35)] backdrop-blur dark:border-stone-800 dark:bg-stone-950/45 sm:w-fit sm:px-5"
                 >
                   <div className="mb-3 inline-flex items-center gap-2 rounded-full border border-emerald-200/80 bg-white/80 px-2.5 py-1 text-[10px] font-bold uppercase tracking-[0.18em] text-emerald-700 dark:border-emerald-900/50 dark:bg-stone-900/60 dark:text-emerald-300">
                     <span className="relative flex w-1.5 h-1.5">
@@ -456,17 +469,17 @@ export default function HomePage() {
                     Live cập nhật trực tiếp
                   </div>
                   <div className="flex items-stretch divide-x divide-stone-200 dark:divide-stone-800">
-                    <div className="pr-3 sm:pr-6 min-w-0">
+                    <div className="min-w-0 pr-3 sm:pr-6">
                       <LiveNumber value={displayedUserCount} className="text-lg sm:text-2xl" />
-                      <p className="text-[10px] sm:text-[11px] font-semibold text-stone-500 dark:text-stone-400 mt-0.5">người học</p>
+                      <p className="mt-0.5 text-[10px] font-semibold text-stone-500 dark:text-stone-400 sm:text-[11px]">người học</p>
                     </div>
-                    <div className="px-3 sm:px-6 min-w-0">
+                    <div className="min-w-0 px-3 sm:px-6">
                       <LiveNumber value={displayedLessonCount} className="text-lg sm:text-2xl" />
-                      <p className="text-[10px] sm:text-[11px] font-semibold text-stone-500 dark:text-stone-400 mt-0.5">bài học</p>
+                      <p className="mt-0.5 text-[10px] font-semibold text-stone-500 dark:text-stone-400 sm:text-[11px]">bài học</p>
                     </div>
-                    <div className="pl-3 sm:pl-6 min-w-0">
+                    <div className="min-w-0 pl-3 sm:pl-6">
                       <LiveNumber value={displayedCompletedCount} className="text-lg sm:text-2xl" />
-                      <p className="text-[10px] sm:text-[11px] font-semibold text-stone-500 dark:text-stone-400 mt-0.5 whitespace-nowrap sm:whitespace-normal">đã hoàn thành</p>
+                      <p className="mt-0.5 whitespace-nowrap text-[10px] font-semibold text-stone-500 dark:text-stone-400 sm:whitespace-normal sm:text-[11px]">đã hoàn thành</p>
                     </div>
                   </div>
                 </motion.div>
@@ -476,43 +489,89 @@ export default function HomePage() {
                 initial={{ opacity: 0, x: 24, scale: 0.96 }}
                 animate={{ opacity: 1, x: 0, scale: 1 }}
                 transition={{ duration: 0.55, ease: "easeOut", delay: 0.18 }}
-                className="relative hidden lg:flex justify-center"
+                className="relative hidden justify-center lg:flex"
               >
-                <div className="landing-float relative w-full max-w-[480px] rounded-[2.5rem] border border-emerald-100/80 dark:border-emerald-900/40 bg-white/80 dark:bg-stone-900/60 p-8 shadow-[0_35px_90px_-45px_rgba(16,185,129,0.35)] backdrop-blur transition-all hover:shadow-[0_45px_100px_-40px_rgba(16,185,129,0.42)]">
-                  <div className="absolute inset-x-10 top-8 h-24 rounded-full bg-emerald-300/25 dark:bg-emerald-700/15 blur-3xl" />
-                  <div className="relative flex flex-col items-center text-center">
-                    <div className="relative w-56 h-56 group cursor-pointer mb-2">
-                      <div className="absolute inset-0 scale-125 rounded-full bg-emerald-200/20 dark:bg-emerald-800/10 blur-2xl transition-all duration-300 group-hover:scale-135" />
-                      <motion.img
-                        animate={{ y: [0, -10, 0] }}
-                        transition={{ repeat: Infinity, duration: 4, ease: "easeInOut" }}
-                        src="/logo.png"
-                        alt="Tự Học Tài Chính"
-                        className="w-full h-full object-contain relative z-10 transition-transform duration-300 group-hover:scale-105 p-6"
-                      />
-                      <motion.div
-                        animate={{ y: [0, 6, 0] }}
-                        transition={{ repeat: Infinity, duration: 5, ease: "easeInOut" }}
-                        className="absolute -top-3 -left-3 w-12 h-12 rounded-full overflow-hidden border-2 border-white dark:border-stone-900 shadow-md bg-stone-50 select-none pointer-events-none"
-                      >
-                        <img src="/levels/level3.jpg" alt="" className="w-full h-full object-cover" />
-                      </motion.div>
-                      <motion.div
-                        animate={{ y: [0, -6, 0] }}
-                        transition={{ repeat: Infinity, duration: 4.5, ease: "easeInOut", delay: 0.5 }}
-                        className="absolute -bottom-2 -right-2 w-14 h-14 rounded-full overflow-hidden border-2 border-white dark:border-stone-900 shadow-md bg-stone-50 select-none pointer-events-none"
-                      >
-                        <img src="/levels/level9.jpg" alt="" className="w-full h-full object-cover" />
-                      </motion.div>
+                <div className="landing-float relative w-full max-w-[520px] overflow-hidden rounded-[2.3rem] border border-stone-200/80 bg-stone-950 text-white shadow-[0_45px_110px_-40px_rgba(15,23,42,0.55)] dark:border-stone-800">
+                  <div className="absolute inset-0">
+                    <Image
+                      src="/charging-bull.jpg"
+                      alt="Charging bull"
+                      fill
+                      sizes="520px"
+                      className="object-cover object-center opacity-60"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-br from-stone-950/92 via-stone-950/58 to-emerald-950/55" />
+                  </div>
+
+                  <div className="relative p-6">
+                    <div className="flex items-center justify-between gap-3">
+                      <div className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/10 px-3 py-1 text-[10px] font-black uppercase tracking-[0.16em] text-emerald-200 backdrop-blur">
+                        <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-emerald-300" />
+                        Trung tâm chỉ huy
+                      </div>
+                      <div className="rounded-full border border-amber-300/30 bg-amber-300/10 px-3 py-1 text-[10px] font-black uppercase tracking-[0.16em] text-amber-100">
+                        Live Mode
+                      </div>
                     </div>
 
-                    <div className="mt-8 w-full rounded-2xl border border-stone-200/80 dark:border-stone-800 bg-stone-50/80 dark:bg-stone-950/40 px-4 py-3">
-                      <p className="text-[11px] font-extrabold uppercase tracking-[0.22em] text-stone-500 dark:text-stone-400">
-                        Học tập thông minh hơn
-                      </p>
-                      <p className="mt-2 text-sm leading-relaxed text-stone-700 dark:text-stone-300">
-                        Trợ lý Tài Tài đồng hành, giao diện tối giản và lộ trình rõ ràng ở mỗi bước học.
-                      </p>
+                    <div className="mt-5 rounded-[1.6rem] border border-white/12 bg-white/10 p-4 backdrop-blur-md">
+                      <div className="flex items-center justify-between gap-4">
+                        <div>
+                          <p className="text-[10px] font-black uppercase tracking-[0.18em] text-stone-300">Hôm nay trong hệ</p>
+                          <p className="mt-1 text-2xl font-black text-white">{displayedCompletedCount.toLocaleString("vi-VN")} lượt hoàn thành</p>
+                        </div>
+                        <div className="rounded-2xl border border-emerald-300/25 bg-emerald-400/10 px-3 py-2 text-right">
+                          <p className="text-[10px] font-black uppercase tracking-[0.14em] text-emerald-200">Streak cộng đồng</p>
+                          <p className="mt-1 text-xl font-black text-white">18 ngày</p>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div className="mt-4 grid gap-3 sm:grid-cols-[1.15fr_0.85fr]">
+                      <div className="rounded-[1.45rem] border border-white/12 bg-stone-950/45 p-4 backdrop-blur">
+                        <div className="mb-3 flex items-center justify-between gap-2">
+                          <div>
+                            <p className="text-[10px] font-black uppercase tracking-[0.16em] text-stone-400">Hành trình học</p>
+                            <p className="mt-1 text-sm font-black text-white">Lộ trình đang mở khóa</p>
+                          </div>
+                          <div className="rounded-full bg-emerald-400/10 px-2.5 py-1 text-[10px] font-black text-emerald-200">
+                            72% tiến độ
+                          </div>
+                        </div>
+                        <div className="space-y-2">
+                          {[
+                            "Hiểu báo cáo tài chính cơ bản",
+                            "Đọc nhanh P/E, ROE, dòng tiền",
+                            "Bắt đầu với định giá doanh nghiệp",
+                          ].map((item, index) => (
+                            <div
+                              key={item}
+                              className={`rounded-xl border px-3 py-2.5 text-xs font-semibold ${
+                                index < 2
+                                  ? "border-emerald-300/25 bg-emerald-400/10 text-emerald-50"
+                                  : "border-white/10 bg-white/5 text-stone-300"
+                              }`}
+                            >
+                              {item}
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+
+                      <div className="space-y-3">
+                        <div className="rounded-[1.45rem] border border-white/12 bg-white/10 p-4 backdrop-blur">
+                          <p className="text-[10px] font-black uppercase tracking-[0.16em] text-stone-300">Cộng đồng</p>
+                          <p className="mt-2 text-sm font-black text-white">FinSocial + Học nhóm</p>
+                          <p className="mt-1 text-xs leading-relaxed text-stone-300">Đọc phân tích ngắn, hỏi đáp nhanh, giữ nhịp với nhóm học mỗi ngày.</p>
+                        </div>
+                        <div className="rounded-[1.45rem] border border-white/12 bg-white/10 p-4 backdrop-blur">
+                          <p className="text-[10px] font-black uppercase tracking-[0.16em] text-stone-300">Game Kingdom</p>
+                          <p className="mt-2 text-sm font-black text-white">Mở khóa bằng kiến thức</p>
+                          <div className="mt-2 h-1.5 overflow-hidden rounded-full bg-white/10">
+                            <div className="preview-progress-live h-full w-3/4 rounded-full bg-gradient-to-r from-amber-300 to-emerald-300" />
+                          </div>
+                        </div>
+                      </div>
                     </div>
                   </div>
                 </div>
