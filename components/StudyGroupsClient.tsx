@@ -93,10 +93,15 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
   const [messageInput, setMessageInput] = useState("");
   const [sendingMessage, setSendingMessage] = useState(false);
   const [rotation3D, setRotation3D] = useState<{ x: number; y: number }>({ x: 20, y: 0 });
+  const [zoom3D, setZoom3D] = useState<number>(1.0);
   const [isDragging3D, setIsDragging3D] = useState(false);
   const [activeMapNode, setActiveMapNode] = useState<string | null>(null);
   const dragStartRef = useRef<{ x: number; y: number }>({ x: 0, y: 0 });
   const rotationStartRef = useRef<{ x: number; y: number }>({ x: 20, y: 0 });
+
+  const handleStageWheel = (e: React.WheelEvent<HTMLDivElement>) => {
+    setZoom3D((prev) => Math.max(0.6, Math.min(1.85, prev - e.deltaY * 0.0015)));
+  };
 
   // 1. Mobile Viewport Segmented Tab Toggle state ("3d" | "chat")
   const [mobileTab, setMobileTab] = useState<"3d" | "chat">("3d");
@@ -561,7 +566,7 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
 
             {/* Main 2-Column Split View */}
             <div className="flex-1 min-h-0 grid grid-cols-1 lg:grid-cols-12 gap-3 sm:gap-4 overflow-hidden">
-              {/* LEFT COLUMN: 3D Spatial Table Stage Flex-Fill Height (~70% Viewport Height) */}
+              {/* LEFT COLUMN: 3D Spatial Table Stage 80% Viewport Height with Mouse Wheel Zoom */}
               <div
                 onMouseDown={handleStageMouseDown}
                 onMouseMove={handleStageMouseMove}
@@ -570,9 +575,10 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
                 onTouchStart={handleStageMouseDown}
                 onTouchMove={handleStageMouseMove}
                 onTouchEnd={handleStageMouseUp}
+                onWheel={handleStageWheel}
                 className={`lg:col-span-7 ${
                   mobileTab === "3d" ? "flex" : "hidden lg:flex"
-                } flex-col h-full min-h-[500px] flex-1 rounded-2xl border border-stone-800 bg-stone-950 p-3.5 sm:p-4 shadow-2xl relative overflow-hidden text-white justify-between select-none transition-colors ${
+                } flex-col h-[78vh] min-h-[560px] sm:min-h-[640px] flex-1 rounded-2xl border border-stone-800 bg-stone-950 p-3.5 sm:p-4 shadow-2xl relative overflow-hidden text-white justify-between select-none transition-colors ${
                   isDragging3D ? "cursor-grabbing border-emerald-500/70" : "cursor-grab"
                 }`}
                 style={{ perspective: "800px", perspectiveOrigin: "50% 45%" }}
@@ -583,7 +589,7 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
 
                 {/* Stage Header Controls */}
                 <div className="relative z-30 flex items-center justify-between shrink-0 mb-1">
-                  <div className="flex items-center gap-2">
+                  <div className="flex items-center gap-1.5 sm:gap-2">
                     <span className="text-[10px] font-black uppercase tracking-widest text-emerald-300 bg-emerald-950/80 px-2.5 py-0.5 rounded-full border border-emerald-500/40 backdrop-blur-md">
                       🌐 BÀN HỌC 3D · {topicLabel(myRoom.topic).toUpperCase()}
                     </span>
@@ -592,11 +598,12 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
                       onClick={(e) => {
                         e.stopPropagation();
                         setRotation3D({ x: 20, y: 0 });
+                        setZoom3D(1.0);
                       }}
                       className="text-[9px] font-bold text-stone-300 bg-stone-900/90 hover:bg-stone-800 px-2 py-0.5 rounded-full border border-stone-700 transition-all cursor-pointer"
-                      title="Đặt lại góc 3D ban đầu"
+                      title="Đặt lại góc 3D và độ Zoom"
                     >
-                      🔄 Đặt lại góc 3D
+                      🔄 Góc & Zoom ({Math.round(zoom3D * 100)}%)
                     </button>
                   </div>
 
@@ -634,11 +641,12 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
                   </div>
                 </div>
 
-                {/* ── 3D SPATIAL DRAG ROTATION CANVAS ── */}
+                {/* ── 3D SPATIAL DRAG ROTATION & MOUSE WHEEL ZOOM CANVAS ── */}
                 <motion.div
                   animate={{
                     rotateX: rotation3D.x,
                     rotateY: rotation3D.y,
+                    scale: zoom3D,
                   }}
                   transition={isDragging3D ? { type: "tween", duration: 0 } : { type: "spring", stiffness: 200, damping: 20 }}
                   className="relative flex-1 min-h-0 w-full flex items-center justify-center my-auto transition-transform duration-200"
@@ -788,15 +796,15 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
 
                 {/* Footer hint */}
                 <div className="relative z-30 shrink-0 text-center text-[10px] text-stone-400 font-semibold pt-1">
-                  🖐️ Nhấn giữ & Kéo chuột để xoay không gian 3D 360° · Bấm 🔄 để đặt lại góc
+                  🖐️ Kéo chuột để xoay 3D 360° · 🔍 Lăn chuột để Zoom in/out · Bấm 🔄 để đặt lại góc ({Math.round(zoom3D * 100)}%)
                 </div>
               </div>
 
-              {/* RIGHT COLUMN: Group Chat Box Flex-Fill Height */}
+              {/* RIGHT COLUMN: Group Chat Box Matched 80% Viewport Height */}
               <div
                 className={`lg:col-span-5 ${
                   mobileTab === "chat" ? "flex" : "hidden lg:flex"
-                } flex-col h-full min-h-[500px] flex-1 bg-white dark:bg-stone-900 border border-stone-200 dark:border-stone-800 rounded-2xl overflow-hidden shadow-xl p-3 sm:p-3.5`}
+                } flex-col h-[78vh] min-h-[560px] sm:min-h-[640px] flex-1 bg-white dark:bg-stone-900 border border-stone-200 dark:border-stone-800 rounded-2xl overflow-hidden shadow-xl p-3 sm:p-3.5`}
               >
                 <h3 className="text-xs font-black text-stone-900 dark:text-stone-100 uppercase tracking-widest mb-2 shrink-0 flex items-center justify-between">
                   <span>💬 Trò chuyện nhóm</span>
