@@ -136,6 +136,7 @@ const ORGANIC_BUILDINGS: OrganicBuilding[] = [
     badgeBg: "bg-gradient-to-r from-sky-500 to-cyan-500 text-white font-black",
     posClass: "top-[480px] left-12 sm:left-28",
     desktopClass: "lg:col-start-1 lg:row-start-6",
+    imageSrc: "/rpg/vn30-market.png",
   },
   {
     id: "shop",
