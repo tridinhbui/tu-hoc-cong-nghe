@@ -44,9 +44,9 @@ export default function LeaderboardPage() {
         <div className="mb-6 rounded-[28px] border border-stone-200 bg-white px-5 py-5 shadow-[0_20px_50px_-35px_rgba(15,23,42,0.22)] sm:px-7 sm:py-6">
           <div className="mt-4 flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
             <div>
-              <h1 className="text-3xl font-black tracking-tight text-stone-900 sm:text-4xl">Cộng đồng</h1>
+              <h1 className="text-3xl font-black tracking-tight text-stone-900 sm:text-4xl">FinSocial</h1>
               <p className="mt-2 max-w-2xl text-sm leading-6 text-stone-600 sm:text-base">
-                Feed cộng đồng vẫn nằm riêng ở đây, còn BXH chính đã được gộp vào trang Thống kê.
+                FinSocial là khu vực riêng để mọi người chia sẻ bản tin, câu hỏi và phân tích ngắn.
               </p>
             </div>
             <div className="inline-flex items-center gap-2 rounded-2xl border border-emerald-200 bg-emerald-50 px-3.5 py-2 text-sm font-bold text-emerald-700">

@@ -39,7 +39,7 @@ const NAV_LINKS = [
   { href: "/ghi-chu", label: "Ghi chú", icon: StickyNote },
   { href: "/kiem-tra", label: "Kiểm tra", icon: GraduationCap },
   { href: "/nhom-hoc", label: "Học nhóm", icon: Users },
-  { href: "/bang-tin", label: "Bảng tin", icon: MessageSquareMore },
+  { href: "/finsocial", label: "FinSocial", icon: MessageSquareMore },
   { href: "/su-nghiep", label: "Sự nghiệp", icon: Briefcase },
 ];
 
@@ -67,7 +67,7 @@ export default function AppNavbar() {
   const desktopDropdownRef = useRef<HTMLDivElement>(null);
   const mobileDropdownRef = useRef<HTMLDivElement>(null);
 
-  useRoutePrefetch(["/dashboard", "/analytics", "/bxh", "/profile", "/ban-be", "/nhom-hoc", "/bang-tin", "/cong-dong", "/su-nghiep", "/ghi-chu", "/cong-cu", "/game", "/settings", "/tai-lieu", "/kiem-tra", "/cfa"]);
+  useRoutePrefetch(["/dashboard", "/analytics", "/bxh", "/profile", "/ban-be", "/nhom-hoc", "/finsocial", "/bang-tin", "/cong-dong", "/su-nghiep", "/ghi-chu", "/cong-cu", "/game", "/settings", "/tai-lieu", "/kiem-tra", "/cfa"]);
 
   useEffect(() => {
     // Read local storage immediately on mount
