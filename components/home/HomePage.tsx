@@ -1160,17 +1160,17 @@ export default function HomePage() {
       </div>
 
       {/* ── FINAL CTA ── */}
-        <section className="relative overflow-hidden bg-stone-900 dark:bg-stone-950">
-          <div className="pointer-events-none absolute -bottom-24 left-1/2 -translate-x-1/2 w-[36rem] h-[36rem] rounded-full bg-emerald-500/20 blur-2xl" />
-          <ScrollReveal className="relative max-w-3xl mx-auto px-6 py-20 text-center">
-            <ShieldCheck className="icon-bounce w-10 h-10 text-emerald-400 mx-auto mb-4" />
-            <h2 className="text-3xl lg:text-4xl font-bold text-white mb-4">Sẵn sàng hiểu tiền bạc của chính mình?</h2>
-            <p className="text-stone-300 leading-relaxed mb-8 max-w-xl mx-auto">
+        <section className="relative overflow-hidden bg-stone-950 border-t border-stone-850">
+          <div className="pointer-events-none absolute -bottom-24 left-1/2 -translate-x-1/2 w-[36rem] h-[36rem] rounded-full bg-emerald-500/15 blur-2xl" />
+          <ScrollReveal className="relative max-w-3xl mx-auto px-6 py-8 sm:py-10 text-center">
+            <ShieldCheck className="icon-bounce w-7 h-7 text-emerald-400 mx-auto mb-2" />
+            <h2 className="text-2xl sm:text-3xl font-black text-white mb-1.5">Sẵn sàng hiểu tiền bạc của chính mình?</h2>
+            <p className="text-xs sm:text-sm text-stone-300 leading-relaxed mb-4 max-w-xl mx-auto font-medium">
               Không mất phí, không cần thẻ, học ngay trong 30 giây.
             </p>
             <Link
               href="/login?mode=signup"
-              className="inline-flex items-center gap-2 bg-white hover:bg-stone-100 text-stone-900 font-bold px-7 py-4 rounded-[18px] transition-all shadow-[0_12px_28px_-20px_rgba(15,23,42,0.24)] active:scale-[0.98]"
+              className="inline-flex items-center gap-2 bg-white hover:bg-stone-100 text-stone-950 font-black px-6 py-2.5 rounded-2xl transition-all shadow-md active:scale-[0.98] text-xs sm:text-sm cursor-pointer"
             >
               Bắt đầu học miễn phí
               <ArrowRight className="icon-micro w-4 h-4" />
@@ -1179,9 +1179,9 @@ export default function HomePage() {
         </section>
 
         {/* ── RICH FOOTER ── */}
-        <footer className="bg-stone-950 text-stone-300 border-t border-stone-800/80 relative z-10 pt-12 pb-8">
+        <footer className="bg-stone-950 text-stone-300 border-t border-stone-850 relative z-10 pt-6 pb-6 font-sans">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-12 pb-10 border-b border-stone-850">
+            <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-12 pb-6 border-b border-stone-850">
               {/* Col 1: Brand Info */}
               <div className="lg:col-span-5 space-y-4">
                 <div className="flex items-center gap-2.5">
