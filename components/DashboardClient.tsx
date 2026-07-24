@@ -42,6 +42,7 @@ import KnowledgeChallengeModal from "@/components/KnowledgeChallengeModal";
 import StageMilestoneExamModal from "@/components/StageMilestoneExamModal";
 import CertificateModal from "@/components/CertificateModal";
 import { TRACK_PERSONAL, TRACK_PROFESSIONAL, isLessonInRange, PROFESSIONAL_BRANCHES, type ProfessionalBranchId } from "@/lib/track-stages";
+import { getLessonShortTitle } from "@/lib/lesson-labels";
 import { BONUS_CATEGORIES, BONUS_CATEGORY_ORDER } from "@/lib/bonus-lesson-categories";
 import { CFA_LEVEL_1_SUBJECTS } from "@/lib/cfa-track";
 import { TRACKS } from "@/lib/tracks";
@@ -364,29 +365,47 @@ export default function DashboardClient({ lessonsMeta }: { lessonsMeta: LessonMe
   // loop below used to call sorted.filter() again for every stage (twice -
   // once more for the previous stage's milestone check) and every part, on
   // every single render.
-  const { lessonOrdinal, lessonsByStageLabel, lessonsByPartKey } = useMemo(() => {
+  const { lessonOrdinal, stageDisplayLabels, lessonsByStageLabel, lessonsByPartKey } = useMemo(() => {
     const ordinal = new Map<number, number>();
+    const stageLabelsMap = new Map<string, string>();
     const byStage = new Map<string, LessonMeta[]>();
     const byPart = new Map<string, LessonMeta[]>();
+
+    const branchStages = activeTrack === "professional"
+      ? track.stages.filter((s) => (PROFESSIONAL_BRANCHES.find((b) => b.id === professionalBranch)!.stageLabels as readonly string[]).includes(s.label))
+      : track.stages;
+
     let n = 0;
-    for (const stage of track.stages) {
+    branchStages.forEach((stage, displayIdx) => {
+      const customLabel = `Chặng ${displayIdx + 1}`;
+      stageLabelsMap.set(stage.label, customLabel);
+
       byStage.set(
         stage.label,
         sorted.filter((l) => isLessonInRange(l.id, stage) && (!l.track || l.track === activeTrack))
       );
+
       for (const part of stage.parts) {
         const partLessons = sorted.filter(
           (l) => isLessonInRange(l.id, part) && (!l.track || l.track === activeTrack)
         );
         byPart.set(`${stage.label}::${part.name}`, partLessons);
         for (const l of partLessons) {
-          n += 1;
-          ordinal.set(l.id, n);
+          if (!ordinal.has(l.id)) {
+            n += 1;
+            ordinal.set(l.id, n);
+          }
         }
       }
-    }
-    return { lessonOrdinal: ordinal, lessonsByStageLabel: byStage, lessonsByPartKey: byPart };
-  }, [sorted, track, activeTrack]);
+    });
+
+    return {
+      lessonOrdinal: ordinal,
+      stageDisplayLabels: stageLabelsMap,
+      lessonsByStageLabel: byStage,
+      lessonsByPartKey: byPart,
+    };
+  }, [sorted, track, activeTrack, professionalBranch]);
 
   const toggleStage = (key: string) => {
     setOpenStages((prev) => {
@@ -1453,7 +1472,7 @@ export default function DashboardClient({ lessonsMeta }: { lessonsMeta: LessonMe
                           ? "bg-emerald-500 text-white"
                           : `${theme.bg} ${theme.text}`
                       }`}>
-                        {stage.label}
+                        {stageDisplayLabels.get(stage.label) || stage.label}
                       </span>
                       {stage.isNew && (
                         <span className="text-[10px] font-black text-white bg-gradient-to-r from-rose-500 to-orange-500 px-2 py-0.5 rounded-full shrink-0 animate-pulse">

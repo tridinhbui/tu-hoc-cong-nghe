@@ -43,7 +43,7 @@ export const TRACK_PERSONAL = {
       // Foundation-first: know your own numbers before learning any theory.
       // Ids 263-268 sort after 262 but stages render in array order, so this
       // block appears first on the dashboard as intended.
-      label: "Chặng 0",
+      label: "Chặng 1",
       name: "Biết mình trước khi học: audit, ngân sách, quỹ khẩn cấp, nợ",
       days: [263, 268] as [number, number],
       available: true,
@@ -53,7 +53,7 @@ export const TRACK_PERSONAL = {
       ],
     },
     {
-      label: "Chặng 1",
+      label: "Chặng 2",
       name: "Tư duy tiền bạc và tài chính cơ bản",
       days: [1, 20] as [number, number],
       available: true,
@@ -63,7 +63,7 @@ export const TRACK_PERSONAL = {
       ],
     },
     {
-      label: "Chặng 2",
+      label: "Chặng 3",
       name: "Cổ phiếu, ETF và quỹ đầu tư",
       days: [201, 220] as [number, number],
       available: true,
@@ -76,7 +76,7 @@ export const TRACK_PERSONAL = {
       ],
     },
     {
-      label: "Chặng 3",
+      label: "Chặng 4",
       name: "Trái phiếu và các công cụ cố định",
       days: [221, 240] as [number, number],
       available: true,
@@ -86,7 +86,7 @@ export const TRACK_PERSONAL = {
       ],
     },
     {
-      label: "Chặng 4",
+      label: "Chặng 5",
       name: "Danh mục đầu tư và kế hoạch hưu trí",
       days: [241, 262] as [number, number],
       available: true,
@@ -96,7 +96,7 @@ export const TRACK_PERSONAL = {
       ],
     },
     {
-      label: "Chặng 5",
+      label: "Chặng 6",
       name: "Chiến lược đầu tư cá nhân",
       days: [269, 278] as [number, number],
       available: true,
@@ -106,7 +106,7 @@ export const TRACK_PERSONAL = {
       ],
     },
     {
-      label: "Chặng 6",
+      label: "Chặng 7",
       name: "Quản lý tài sản & hưu trí",
       days: [279, 288] as [number, number],
       available: true,
@@ -116,7 +116,7 @@ export const TRACK_PERSONAL = {
       ],
     },
     {
-      label: "Chặng 7",
+      label: "Chặng 8",
       name: "Nhà ở, bảo vệ tài sản và các quyết định tài chính lớn",
       days: [289, 298] as [number, number],
       available: true,
@@ -127,7 +127,7 @@ export const TRACK_PERSONAL = {
       ],
     },
     {
-      label: "Chặng 8",
+      label: "Chặng 9",
       name: "Tâm lý học tài chính hành vi (Behavioral Finance)",
       days: [1235, 1240] as [number, number],
       available: true,
