@@ -248,7 +248,8 @@ export default function HomePage() {
   }, []);
 
   return (
-    <div className="relative min-h-screen overflow-x-hidden bg-white dark:bg-stone-950 bg-[linear-gradient(to_right,#80808007_1px,transparent_1px),linear-gradient(to_bottom,#80808007_1px,transparent_1px)] bg-[size:20px_20px] transition-colors duration-300">
+    <div className="relative min-h-screen overflow-x-hidden bg-stone-950 transition-colors duration-300">
+      <div className="bg-white dark:bg-stone-950 bg-[linear-gradient(to_right,#80808007_1px,transparent_1px),linear-gradient(to_bottom,#80808007_1px,transparent_1px)] bg-[size:20px_20px]">
       <style>{`
         @keyframes landing-aurora-drift {
           0% { transform: translate3d(-2%, -1%, 0) scale(1); }
@@ -1101,8 +1102,9 @@ export default function HomePage() {
             </div>
           </ScrollReveal>
         </section>
+      </div>
 
-        {/* ── FINAL CTA ── */}
+      {/* ── FINAL CTA ── */}
         <section className="relative overflow-hidden bg-stone-900 dark:bg-stone-950">
           <div className="pointer-events-none absolute -bottom-24 left-1/2 -translate-x-1/2 w-[36rem] h-[36rem] rounded-full bg-emerald-500/20 blur-2xl" />
           <ScrollReveal className="relative max-w-3xl mx-auto px-6 py-20 text-center">
