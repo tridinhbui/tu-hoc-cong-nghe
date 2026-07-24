@@ -830,7 +830,7 @@ export default function FinancialRpgWorldMap() {
                 onClose={handleCloseBuilding}
               />
             ) : (
-              <div className="flex-1 min-h-0 bg-white border border-stone-200 rounded-3xl p-3 sm:p-4 shadow-xl overflow-hidden text-stone-900">
+              <div className="flex-1 min-h-0 w-full overflow-hidden text-stone-900">
                 {selectedBuilding === "world-boss" && (
                   <WorldBossRaidWidget userId={user?.id || ""} userLevel={level} equipments={equippedGear} />
                 )}
