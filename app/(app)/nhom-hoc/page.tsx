@@ -17,12 +17,12 @@ export default function StudyGroupsPage() {
             src="/images/study-group-cover.jpg"
             alt="Wall Street NYSE Trading Floor"
             fill
-            className="object-cover object-center brightness-[0.7] contrast-[1.05] scale-105"
+            className="object-cover object-center brightness-[0.92] contrast-[1.1] scale-105"
             priority
           />
-          {/* Gradient Overlay for Submerged Depth & Legibility */}
-          <div className="absolute inset-0 bg-gradient-to-r from-stone-950/85 via-stone-950/65 to-stone-950/75 backdrop-blur-[0.5px]" />
-          <div className="absolute inset-0 bg-gradient-to-b from-stone-950/30 via-transparent to-stone-950" />
+          {/* Soft Gradient Overlay for text legibility */}
+          <div className="absolute inset-0 bg-gradient-to-r from-stone-950/65 via-stone-950/35 to-stone-950/50" />
+          <div className="absolute inset-0 bg-gradient-to-b from-stone-950/20 via-transparent to-stone-950/80" />
         </div>
 
         {/* 3D Perspective Grid Background */}
