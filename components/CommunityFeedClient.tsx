@@ -292,6 +292,7 @@ export default function CommunityFeedClient({ embedded = false }: { embedded?: b
   const [topicMenuOpen, setTopicMenuOpen] = useState(false);
   const [templateMenuOpen, setTemplateMenuOpen] = useState(false);
   const [rulesOpen, setRulesOpen] = useState(false);
+  const [isComposeModalOpen, setIsComposeModalOpen] = useState(false);
   const userIdRef = useRef<string | null>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
 
@@ -379,7 +380,15 @@ export default function CommunityFeedClient({ embedded = false }: { embedded?: b
   }, [loadingMore, posts]);
 
   const handlePost = async () => {
-    if (!user || (!content.trim() && !pendingImage) || posting) return;
+    if (!user) {
+      toast.error("Vui lòng đăng nhập để đăng bài.");
+      return;
+    }
+    const text = content.trim();
+    if (!text && !pendingImage) {
+      toast.error("Vui lòng nhập nội dung hoặc chọn hình ảnh.");
+      return;
+    }
     setPosting(true);
     try {
       let imageUrl: string | undefined = undefined;
@@ -391,6 +400,7 @@ export default function CommunityFeedClient({ embedded = false }: { embedded?: b
       });
       setContent("");
       clearPendingImage();
+      setIsComposeModalOpen(false);
       await refreshFeed();
       toast.success("Đã đăng bài chia sẻ!");
     } catch (error) {
@@ -721,186 +731,186 @@ export default function CommunityFeedClient({ embedded = false }: { embedded?: b
         )}
 
         {user && (
-          <div className="group relative mb-6 overflow-hidden rounded-[24px] bg-white p-5 shadow-[0_18px_40px_-30px_rgba(15,23,42,0.24)] ring-1 ring-stone-100/80 transition duration-200 ease-out hover:-translate-y-0.5 hover:shadow-[0_22px_44px_-28px_rgba(15,23,42,0.28)] dark:bg-stone-900/90 dark:ring-stone-800/60">
-            <div className="mb-4 flex items-start justify-between gap-3">
-              <div>
-                <p className="text-xs font-black uppercase tracking-[0.14em] text-emerald-600 dark:text-emerald-400">Tạo bài viết</p>
-                <h2 className="mt-1 text-2xl font-black text-stone-950 dark:text-stone-50">Bạn học được gì hôm nay?</h2>
-                <p className="mt-1 text-sm text-stone-500 dark:text-stone-400">Chia sẻ góc nhìn, phân tích hay câu hỏi của bạn để thảo luận cùng cộng đồng.</p>
-              </div>
-              <span className="hidden sm:inline-flex items-center gap-1 rounded-full bg-stone-100 px-2.5 py-1 text-[10px] font-black uppercase text-stone-500 dark:bg-stone-800 dark:text-stone-400">
-                Public feed
-              </span>
-            </div>
-            <div className="mb-3 flex flex-wrap items-center gap-2">
-              {(() => {
-                const topic = getTopicMeta(selectedTopic);
-                const Icon = topic.icon;
-                const topicTone = getToneStyles(topic.tone);
-                return (
-                  <div className="relative">
-                    <motion.button
-                      type="button"
-                      onClick={() => {
-                        setTopicMenuOpen((open) => !open);
-                        setTemplateMenuOpen(false);
-                      }}
-                      className={`inline-flex items-center gap-2 rounded-[16px] border px-3 py-2 text-xs font-black ${topicTone.chip}`}
-                      whileHover={{ y: -2 }}
-                      whileTap={{ scale: 0.97 }}
-                      transition={{ type: "spring", stiffness: 420, damping: 28 }}
-                    >
-                      <Icon className={`h-3.5 w-3.5 ${topicTone.icon}`} />
-                      {topic.label}
-                      <ChevronDown className="h-3.5 w-3.5 opacity-60" />
-                    </motion.button>
-                    <AnimatePresence>
-                      {topicMenuOpen && (
-                        <motion.div
-                          initial={{ opacity: 0, y: 8, scale: 0.98 }}
-                          animate={{ opacity: 1, y: 0, scale: 1 }}
-                          exit={{ opacity: 0, y: 4, scale: 0.98 }}
-                          transition={{ duration: 0.16, ease: "easeOut" }}
-                          className="absolute left-0 top-full z-30 mt-2 w-56 rounded-[18px] bg-white p-1.5 shadow-[0_18px_34px_-24px_rgba(15,23,42,0.35)] ring-1 ring-stone-100 dark:bg-stone-900 dark:ring-stone-800"
-                        >
-                          {TOPICS.filter((item) => item.id !== "all").map((item) => {
-                            const ItemIcon = item.icon;
-                            const itemTone = getToneStyles(item.tone);
-                            const isActive = selectedTopic === item.id;
-                            return (
-                              <button
-                                key={item.id}
-                                type="button"
-                                onClick={() => {
-                                  setSelectedTopic(item.id);
-                                  setTopicMenuOpen(false);
-                                  setContent((prev) => (item.tag && !prev.includes(item.tag) ? `${item.tag}${prev.replace(/^#\\S+\\s*/, "")}` : prev));
-                                }}
-                                className={`flex w-full items-center gap-2 rounded-[14px] px-3 py-2 text-left text-xs font-bold transition hover:bg-stone-50 dark:hover:bg-stone-800 ${isActive ? itemTone.soft : "text-stone-600 dark:text-stone-300"}`}
-                              >
-                                <ItemIcon className={`h-3.5 w-3.5 ${itemTone.icon}`} />
-                                {item.label}
-                              </button>
-                            );
-                          })}
-                        </motion.div>
-                      )}
-                    </AnimatePresence>
-                  </div>
-                );
-              })()}
-
-              <div className="relative">
-                <motion.button
-                  type="button"
-                  onClick={() => {
-                    setTemplateMenuOpen((open) => !open);
-                    setTopicMenuOpen(false);
-                  }}
-                  className="inline-flex items-center gap-2 rounded-[16px] bg-stone-100 px-3 py-2 text-xs font-black text-stone-600 transition hover:bg-stone-200 dark:bg-stone-800 dark:text-stone-300 dark:hover:bg-stone-700"
-                  whileHover={{ y: -2 }}
-                  whileTap={{ scale: 0.97 }}
-                  transition={{ type: "spring", stiffness: 420, damping: 28 }}
-                >
-                  <Lightbulb className="h-3.5 w-3.5 text-amber-500" />
-                  Mẫu nhanh
-                  <ChevronDown className="h-3.5 w-3.5 opacity-60" />
-                </motion.button>
-                <AnimatePresence>
-                  {templateMenuOpen && (
-                    <motion.div
-                      initial={{ opacity: 0, y: 8, scale: 0.98 }}
-                      animate={{ opacity: 1, y: 0, scale: 1 }}
-                      exit={{ opacity: 0, y: 4, scale: 0.98 }}
-                      transition={{ duration: 0.16, ease: "easeOut" }}
-                      className="absolute left-0 top-full z-30 mt-2 w-64 rounded-[18px] bg-white p-1.5 shadow-[0_18px_34px_-24px_rgba(15,23,42,0.35)] ring-1 ring-stone-100 dark:bg-stone-900 dark:ring-stone-800"
-                    >
-                      {POST_TEMPLATES.map((template) => {
-                        const Icon = template.icon;
-                        const topicTone = getToneStyles(getTopicMeta(template.topic).tone);
-                        return (
-                          <button
-                            key={template.title}
-                            type="button"
-                            onClick={() => {
-                              setSelectedTopic(template.topic);
-                              setContent(template.text);
-                              setTemplateMenuOpen(false);
-                            }}
-                            className="flex w-full items-center gap-2 rounded-[14px] px-3 py-2 text-left text-xs font-bold text-stone-600 transition hover:bg-stone-50 dark:text-stone-300 dark:hover:bg-stone-800"
-                          >
-                            <Icon className={`h-3.5 w-3.5 shrink-0 ${topicTone.icon}`} />
-                            {template.title}
-                          </button>
-                        );
-                      })}
-                    </motion.div>
-                  )}
-                </AnimatePresence>
-              </div>
-            </div>
-
-            <input
-              ref={fileInputRef}
-              type="file"
-              accept="image/*"
-              onChange={handleImageSelect}
-              className="hidden"
-            />
-
-            <textarea
-              value={content}
-              onChange={(e) => setContent(e.target.value)}
-              placeholder="Chia sẻ cảm nghĩ, mẹo đầu tư hoặc hình ảnh thành quả học tập hôm nay..."
-              maxLength={500}
-              rows={2.5}
-              className="w-full resize-none rounded-[18px] bg-stone-100/80 px-4 py-3 text-sm text-stone-900 outline-none transition duration-200 ease-out placeholder:text-stone-400 focus:bg-white focus:ring-2 focus:ring-emerald-400/20 dark:bg-stone-800/60 dark:text-stone-100 dark:placeholder:text-stone-500"
-            />
-
-            {/* Image Preview Thumbnail */}
-            {imagePreview && (
-              <div className="relative mt-2.5 w-fit overflow-hidden rounded-[18px] bg-stone-100 shadow-[0_12px_26px_-22px_rgba(15,23,42,0.2)] dark:bg-stone-800">
-                <img src={imagePreview} alt="Preview" className="h-44 w-auto object-cover rounded-[18px]" />
+          <>
+            {/* Facebook-style Composer Trigger Bar */}
+            <div className="mb-6 rounded-[22px] bg-white p-3.5 sm:p-4 shadow-sm ring-1 ring-stone-200/80 dark:bg-stone-900 dark:ring-stone-800 font-sans">
+              <div className="flex items-center gap-3">
+                <Avatar name={user.user_metadata?.full_name || "Thành viên"} avatarUrl={user.user_metadata?.avatar_url} />
                 <button
                   type="button"
-                  onClick={clearPendingImage}
-                className="absolute right-2 top-2 flex h-7 w-7 items-center justify-center rounded-full bg-stone-900/75 text-white transition duration-200 ease-out hover:scale-105 hover:bg-stone-950 cursor-pointer"
-                  title="Xóa ảnh"
+                  onClick={() => setIsComposeModalOpen(true)}
+                  className="flex-1 rounded-full bg-stone-100 dark:bg-stone-800/80 px-4 py-2.5 text-left text-xs sm:text-sm font-medium text-stone-500 dark:text-stone-400 hover:bg-stone-200/70 dark:hover:bg-stone-750 transition-colors cursor-pointer"
                 >
-                  <X className="h-3.5 w-3.5" />
+                  {(user.user_metadata?.full_name || "Bạn").split(" ").pop()} ơi, bạn đang nghĩ gì thế?
                 </button>
               </div>
-            )}
 
-            <div className="flex items-center justify-between mt-3">
-              <div className="flex items-center gap-1.5">
-                <EmojiPicker onSelect={(emoji) => setContent((prev) => prev + emoji)} />
-                <motion.button
+              <div className="mt-3 pt-2.5 border-t border-stone-100 dark:border-stone-800 flex items-center justify-around sm:justify-between px-1">
+                <button
                   type="button"
-                  onClick={() => fileInputRef.current?.click()}
-                className="inline-flex items-center gap-1 rounded-[16px] bg-stone-100 px-3 py-2 text-xs font-bold text-stone-600 transition duration-200 ease-out hover:-translate-y-0.5 hover:bg-stone-200 dark:bg-stone-800 dark:text-stone-300 dark:hover:bg-stone-700"
-                  title="Đính kèm hình ảnh"
-                  whileHover={{ y: -2 }}
-                  whileTap={{ scale: 0.97 }}
-                  transition={{ type: "spring", stiffness: 420, damping: 24 }}
+                  onClick={() => setIsComposeModalOpen(true)}
+                  className="flex items-center gap-2 rounded-xl px-3 py-1.5 text-xs font-bold text-stone-600 dark:text-stone-300 hover:bg-stone-100 dark:hover:bg-stone-800 transition-colors cursor-pointer"
                 >
-                  <ImageIcon className="w-4 h-4 text-emerald-600 dark:text-emerald-400" />
-                  <span className="hidden sm:inline">Thêm ảnh</span>
-                </motion.button>
-                <span className={`text-xs ml-1 ${content.length > 440 ? "text-amber-600 font-bold" : "text-stone-400"}`}>{content.length}/500</span>
+                  <ImageIcon className="w-4 h-4 text-emerald-500" />
+                  <span>Ảnh / Video</span>
+                </button>
+                <button
+                  type="button"
+                  onClick={() => setIsComposeModalOpen(true)}
+                  className="flex items-center gap-2 rounded-xl px-3 py-1.5 text-xs font-bold text-stone-600 dark:text-stone-300 hover:bg-stone-100 dark:hover:bg-stone-800 transition-colors cursor-pointer"
+                >
+                  <Lightbulb className="w-4 h-4 text-amber-500" />
+                  <span>Chủ đề</span>
+                </button>
+                <button
+                  type="button"
+                  onClick={() => setIsComposeModalOpen(true)}
+                  className="flex items-center gap-2 rounded-xl px-3 py-1.5 text-xs font-bold text-stone-600 dark:text-stone-300 hover:bg-stone-100 dark:hover:bg-stone-800 transition-colors cursor-pointer"
+                >
+                  <SmilePlus className="w-4 h-4 text-yellow-500" />
+                  <span>Cảm xúc</span>
+                </button>
               </div>
-              <motion.button
-                onClick={handlePost}
-                disabled={posting || (!content.trim() && !pendingImage)}
-                className="group inline-flex items-center gap-2 rounded-[16px] bg-stone-950 px-5 py-2.5 text-sm font-black text-white shadow-[0_16px_34px_-24px_rgba(15,23,42,0.45)] transition duration-200 ease-out hover:-translate-y-0.5 hover:bg-stone-800 disabled:opacity-40 cursor-pointer"
-                whileHover={{ y: posting || (!content.trim() && !pendingImage) ? 0 : -2 }}
-                whileTap={{ scale: 0.97 }}
-                transition={{ type: "spring", stiffness: 420, damping: 24 }}
-              >
-                <Send className="w-3.5 h-3.5 transition-transform group-hover:translate-x-0.5" /> {posting ? "Đang tải..." : "Đăng"}
-              </motion.button>
             </div>
-          </div>
+
+            {/* ── FACEBOOK-STYLE CREATE POST MODAL POPUP ── */}
+            <AnimatePresence>
+              {isComposeModalOpen && (
+                <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 bg-black/65 backdrop-blur-xs font-sans">
+                  <motion.div
+                    initial={{ opacity: 0, scale: 0.95, y: 12 }}
+                    animate={{ opacity: 1, scale: 1, y: 0 }}
+                    exit={{ opacity: 0, scale: 0.95, y: 12 }}
+                    transition={{ duration: 0.2, ease: "easeOut" }}
+                    className="relative w-full max-w-lg rounded-2xl bg-white dark:bg-stone-900 shadow-2xl border border-stone-200 dark:border-stone-800 overflow-hidden flex flex-col max-h-[90vh]"
+                  >
+                    {/* Modal Header */}
+                    <div className="flex items-center justify-between px-4 py-3 border-b border-stone-100 dark:border-stone-800 relative">
+                      <h3 className="w-full text-center text-base font-black text-stone-900 dark:text-stone-100">
+                        Tạo bài viết
+                      </h3>
+                      <button
+                        type="button"
+                        onClick={() => setIsComposeModalOpen(false)}
+                        className="absolute right-3.5 top-1/2 -translate-y-1/2 flex h-8 w-8 items-center justify-center rounded-full bg-stone-100 hover:bg-stone-200 dark:bg-stone-800 dark:hover:bg-stone-700 text-stone-600 dark:text-stone-300 transition-colors cursor-pointer"
+                      >
+                        <X className="w-4 h-4" />
+                      </button>
+                    </div>
+
+                    {/* Modal Body (Scrollable) */}
+                    <div className="p-4 overflow-y-auto space-y-4 flex-1">
+                      {/* User Profile & Audience Dropdowns */}
+                      <div className="flex items-center gap-3">
+                        <Avatar name={user?.user_metadata?.full_name || "Thành viên"} avatarUrl={user?.user_metadata?.avatar_url} />
+                        <div>
+                          <p className="text-sm font-black text-stone-900 dark:text-stone-100">
+                            {user?.user_metadata?.full_name || "Thành viên FinSocial"}
+                          </p>
+                          <div className="flex flex-wrap items-center gap-1.5 mt-1">
+                            {/* Topic Dropdown */}
+                            <div className="relative">
+                              <button
+                                type="button"
+                                onClick={() => setTopicMenuOpen((open) => !open)}
+                                className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-stone-100 dark:bg-stone-800 text-[11px] font-extrabold text-stone-700 dark:text-stone-300 border border-stone-200 dark:border-stone-700 hover:bg-stone-200 dark:hover:bg-stone-700 transition-colors cursor-pointer"
+                              >
+                                <span>💡 {getTopicMeta(selectedTopic).label}</span>
+                                <ChevronDown className="w-3 h-3 opacity-60" />
+                              </button>
+                              <AnimatePresence>
+                                {topicMenuOpen && (
+                                  <motion.div
+                                    initial={{ opacity: 0, y: 6, scale: 0.98 }}
+                                    animate={{ opacity: 1, y: 0, scale: 1 }}
+                                    exit={{ opacity: 0, y: 4, scale: 0.98 }}
+                                    className="absolute left-0 top-full z-40 mt-1 w-52 rounded-xl bg-white p-1 shadow-lg ring-1 ring-stone-200 dark:bg-stone-900 dark:ring-stone-800"
+                                  >
+                                    {TOPICS.filter((item) => item.id !== "all").map((item) => (
+                                      <button
+                                        key={item.id}
+                                        type="button"
+                                        onClick={() => {
+                                          setSelectedTopic(item.id);
+                                          setTopicMenuOpen(false);
+                                        }}
+                                        className="flex w-full items-center gap-2 rounded-lg px-2.5 py-1.5 text-xs font-bold text-stone-700 dark:text-stone-300 hover:bg-stone-100 dark:hover:bg-stone-800"
+                                      >
+                                        {item.label}
+                                      </button>
+                                    ))}
+                                  </motion.div>
+                                )}
+                              </AnimatePresence>
+                            </div>
+                            <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-emerald-50 dark:bg-emerald-950/40 text-[11px] font-extrabold text-emerald-700 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-900/50">
+                              🌐 Công khai
+                            </span>
+                          </div>
+                        </div>
+                      </div>
+
+                      {/* Main Large Text Area (Comfortable Unlimited Writing) */}
+                      <textarea
+                        value={content}
+                        onChange={(e) => setContent(e.target.value)}
+                        placeholder={`${(user?.user_metadata?.full_name || "Bạn").split(" ").pop()} ơi, bạn đang nghĩ gì thế?`}
+                        rows={6}
+                        autoFocus
+                        className="w-full resize-none border-0 text-base sm:text-lg text-stone-900 dark:text-stone-100 placeholder:text-stone-400 dark:placeholder:text-stone-500 focus:outline-none bg-transparent"
+                      />
+
+                      {/* Image Preview Area */}
+                      {imagePreview && (
+                        <div className="relative overflow-hidden rounded-xl border border-stone-200 dark:border-stone-800 bg-stone-50 dark:bg-stone-950/60 max-h-60">
+                          <img src={imagePreview} alt="Preview" className="w-full h-auto max-h-56 object-cover rounded-xl" />
+                          <button
+                            type="button"
+                            onClick={clearPendingImage}
+                            className="absolute right-2 top-2 flex h-7 w-7 items-center justify-center rounded-full bg-stone-900/80 text-white hover:bg-stone-950 transition-colors cursor-pointer"
+                          >
+                            <X className="w-4 h-4" />
+                          </button>
+                        </div>
+                      )}
+
+                      {/* Add-ons Toolbar Box (Facebook Style "Thêm vào bài viết của bạn") */}
+                      <div className="flex items-center justify-between rounded-xl border border-stone-200 dark:border-stone-800 p-3 bg-stone-50/70 dark:bg-stone-950/40">
+                        <span className="text-xs font-black text-stone-700 dark:text-stone-300">
+                          Thêm vào bài viết của bạn
+                        </span>
+                        <div className="flex items-center gap-1.5">
+                          <input ref={fileInputRef} type="file" accept="image/*" onChange={handleImageSelect} className="hidden" />
+                          <button
+                            type="button"
+                            onClick={() => fileInputRef.current?.click()}
+                            className="p-2 rounded-full hover:bg-emerald-50 dark:hover:bg-emerald-950/40 text-emerald-600 dark:text-emerald-400 transition-colors cursor-pointer"
+                            title="Thêm ảnh"
+                          >
+                            <ImageIcon className="w-5 h-5" />
+                          </button>
+                          <EmojiPicker onSelect={(emoji) => setContent((prev) => prev + emoji)} />
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Modal Footer / Submit Button */}
+                    <div className="p-3 border-t border-stone-100 dark:border-stone-800 bg-stone-50/40 dark:bg-stone-950/20">
+                      <button
+                        type="button"
+                        onClick={handlePost}
+                        disabled={posting || (!content.trim() && !pendingImage)}
+                        className="w-full rounded-xl bg-emerald-600 hover:bg-emerald-500 disabled:opacity-40 text-white font-black text-sm py-2.5 transition-all shadow-md active:scale-[0.99] flex items-center justify-center gap-2 cursor-pointer"
+                      >
+                        <Send className="w-4 h-4" />
+                        {posting ? "Đang đăng..." : "Đăng bài"}
+                      </button>
+                    </div>
+                  </motion.div>
+                </div>
+              )}
+            </AnimatePresence>
+          </>
         )}
 
         {loading ? (
