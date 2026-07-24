@@ -6,12 +6,13 @@ import Link from "next/link";
 import { toast } from "sonner";
 import {
   ArrowLeft,
+  Award,
   BarChart3,
   Bookmark,
-  Camera,
   Flame,
   HelpCircle,
   Image as ImageIcon,
+  Lightbulb,
   MessageCircle,
   Newspaper,
   RefreshCw,
@@ -24,6 +25,7 @@ import {
   Trash2,
   TrendingUp,
   X,
+  Zap,
 } from "lucide-react";
 import { createClient } from "@/lib/supabase";
 import EmojiPicker from "@/components/EmojiPicker";
@@ -82,16 +84,45 @@ function timeAgo(dateString: string): string {
   return `${days} ngày trước`;
 }
 
-const REACTION_OPTIONS = ["👍", "❤️", "🔥", "😂", "👏", "😮"];
+const REACTION_OPTIONS = ["💡 Hay", "🧠 Cần phản biện", "❓ Cùng thắc mắc", "📌 Đã lưu", "🔥 Rất thực tế"];
 const TOPICS = [
   { id: "all", label: "Tất cả", shortLabel: "Tất cả", icon: Newspaper, tag: "", tone: "stone" },
   { id: "meo-tai-chinh", label: "Mẹo tài chính", shortLabel: "Mẹo", icon: Sparkles, tag: "#MeoTaiChinh ", tone: "emerald" },
   { id: "phan-tich", label: "Phân tích", shortLabel: "Phân tích", icon: BarChart3, tag: "#PhanTich ", tone: "sky" },
   { id: "thanh-tuu", label: "Thành tựu", shortLabel: "Thành tựu", icon: Target, tag: "#ThanhTuu ", tone: "amber" },
   { id: "hoi-dap", label: "Hỏi đáp", shortLabel: "Hỏi đáp", icon: HelpCircle, tag: "#HoiDap ", tone: "rose" },
+  { id: "tin-nong", label: "Tin nóng", shortLabel: "Tin nóng", icon: Flame, tag: "#TinNong ", tone: "orange" },
+  { id: "ai-finance", label: "AI tài chính", shortLabel: "AI Finance", icon: Zap, tag: "#AITaiChinh ", tone: "violet" },
 ] as const;
 
 type TopicId = (typeof TOPICS)[number]["id"];
+
+const POST_TEMPLATES = [
+  {
+    title: "Hỏi đáp",
+    topic: "hoi-dap" as TopicId,
+    icon: HelpCircle,
+    text: "#HoiDap Mình chưa hiểu phần này:\n- Khái niệm/câu hỏi:\n- Mình đã thử hiểu là:\n- Nhờ mọi người sửa giúp:",
+  },
+  {
+    title: "Phân tích nhanh",
+    topic: "phan-tich" as TopicId,
+    icon: BarChart3,
+    text: "#PhanTich Luận điểm của mình:\n- Điểm chính:\n- Số liệu/nguồn mình dùng:\n- Rủi ro cần phản biện:",
+  },
+  {
+    title: "Take-away bài học",
+    topic: "meo-tai-chinh" as TopicId,
+    icon: Lightbulb,
+    text: "#MeoTaiChinh Hôm nay mình học được:\n- Ý chính:\n- Ví dụ đời thực:\n- Mình sẽ áp dụng bằng cách:",
+  },
+  {
+    title: "Khoảnh khắc tiến bộ",
+    topic: "thanh-tuu" as TopicId,
+    icon: Target,
+    text: "#ThanhTuu Thành tựu hôm nay:\n- Mình đã hoàn thành:\n- Điều thấy tự hào:\n- Mục tiêu tiếp theo:",
+  },
+] as const;
 
 function getPostCategory(post: CommunityFeedPost): TopicId {
   const metadataCategory = post.metadata && typeof post.metadata === "object" ? String(post.metadata.category ?? "") : "";
@@ -101,12 +132,21 @@ function getPostCategory(post: CommunityFeedPost): TopicId {
   if (content.includes("#PhanTich")) return "phan-tich";
   if (content.includes("#ThanhTuu")) return "thanh-tuu";
   if (content.includes("#HoiDap")) return "hoi-dap";
+  if (content.includes("#TinNong")) return "tin-nong";
+  if (content.includes("#AITaiChinh")) return "ai-finance";
   if (post.kind === "streak") return "thanh-tuu";
   return "all";
 }
 
 function getTopicMeta(topicId: TopicId) {
   return TOPICS.find((topic) => topic.id === topicId) ?? TOPICS[0];
+}
+
+function getUserBadge(post: CommunityFeedPost) {
+  if (post.kind === "streak") return { label: "Giữ streak", icon: Flame, className: "bg-orange-50 text-orange-700 dark:bg-orange-950/35 dark:text-orange-300" };
+  if (post.comment_count >= 3) return { label: "Đang được bàn luận", icon: MessageCircle, className: "bg-sky-50 text-sky-700 dark:bg-sky-950/35 dark:text-sky-300" };
+  if (post.reaction_count >= 5) return { label: "Bài viết nổi bật", icon: Award, className: "bg-amber-50 text-amber-700 dark:bg-amber-950/35 dark:text-amber-300" };
+  return { label: "Thành viên FinSocial", icon: ShieldCheck, className: "bg-emerald-50 text-emerald-700 dark:bg-emerald-950/35 dark:text-emerald-300" };
 }
 
 export default function CommunityFeedClient({ embedded = false }: { embedded?: boolean }) {
@@ -355,6 +395,14 @@ export default function CommunityFeedClient({ embedded = false }: { embedded?: b
   const hotPosts = [...posts]
     .sort((a, b) => b.reaction_count + b.comment_count * 2 - (a.reaction_count + a.comment_count * 2))
     .slice(0, 3);
+  const questionPost = posts.find((post) => getPostCategory(post) === "hoi-dap");
+  const analysisPost = posts.find((post) => getPostCategory(post) === "phan-tich");
+  const achievementPost = posts.find((post) => getPostCategory(post) === "thanh-tuu" || post.kind === "streak");
+  const spotlightItems = [
+    questionPost && { label: "Câu hỏi cần trả lời", post: questionPost, icon: HelpCircle },
+    analysisPost && { label: "Phân tích đáng đọc", post: analysisPost, icon: BarChart3 },
+    achievementPost && { label: "Thành tựu mới", post: achievementPost, icon: Target },
+  ].filter((item): item is { label: string; post: CommunityFeedPost; icon: typeof HelpCircle } => Boolean(item));
   const shellClass = embedded ? "" : "min-h-screen bg-stone-50 dark:bg-stone-950";
 
   return (
@@ -397,6 +445,41 @@ export default function CommunityFeedClient({ embedded = false }: { embedded?: b
 
       <div className={`${embedded ? "" : "max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-[minmax(0,1fr)_320px] gap-6"} px-4 sm:px-6 py-6`}>
         <main className="min-w-0">
+        {!embedded && spotlightItems.length > 0 && (
+          <div className="mb-4 rounded-3xl border border-emerald-200 bg-gradient-to-r from-emerald-50 to-teal-50 p-4 shadow-sm dark:border-emerald-900/60 dark:from-emerald-950/35 dark:to-teal-950/20">
+            <div className="mb-3 flex items-center justify-between gap-3">
+              <div className="flex items-center gap-2">
+                <span className="flex h-9 w-9 items-center justify-center rounded-2xl bg-white text-emerald-700 shadow-sm ring-1 ring-emerald-100 dark:bg-stone-950/60 dark:text-emerald-300 dark:ring-emerald-900">
+                  <Sparkles className="h-4.5 w-4.5" />
+                </span>
+                <div>
+                  <h2 className="text-sm font-black uppercase tracking-[0.14em] text-stone-950 dark:text-stone-50">Nổi bật hôm nay</h2>
+                  <p className="text-xs font-semibold text-stone-500 dark:text-stone-400">Các bài đáng đọc để bắt nhịp cộng đồng nhanh hơn</p>
+                </div>
+              </div>
+            </div>
+            <div className="grid gap-2 sm:grid-cols-3">
+              {spotlightItems.map(({ label, post, icon: Icon }) => (
+                <button
+                  key={`${label}-${post.id}`}
+                  type="button"
+                  onClick={() => void toggleComments(post.id)}
+                  className="rounded-2xl border border-white/70 bg-white/80 p-3 text-left shadow-sm transition hover:-translate-y-0.5 hover:border-emerald-200 dark:border-stone-800 dark:bg-stone-950/45"
+                >
+                  <div className="flex items-center gap-2">
+                    <Icon className="h-4 w-4 text-emerald-600 dark:text-emerald-300" />
+                    <span className="text-[10px] font-black uppercase tracking-wide text-emerald-700 dark:text-emerald-300">{label}</span>
+                  </div>
+                  <p className="mt-2 line-clamp-2 text-xs font-semibold leading-relaxed text-stone-700 dark:text-stone-300">
+                    {post.content || "Bài viết có hình ảnh"}
+                  </p>
+                  <p className="mt-2 text-[10px] font-bold text-stone-400">{post.user_name} · {post.reaction_count} cảm xúc</p>
+                </button>
+              ))}
+            </div>
+          </div>
+        )}
+
         {!embedded && (
           <div className="mb-4 rounded-3xl border border-stone-200 bg-white p-3 shadow-sm dark:border-stone-800 dark:bg-stone-900">
             <div className="flex flex-col sm:flex-row gap-3">
@@ -478,6 +561,29 @@ export default function CommunityFeedClient({ embedded = false }: { embedded?: b
               )})}
             </div>
 
+            <div className="mb-3 rounded-2xl border border-stone-200 bg-stone-50 p-3 dark:border-stone-800 dark:bg-stone-950/50">
+              <p className="mb-2 text-[10px] font-black uppercase tracking-[0.14em] text-stone-500 dark:text-stone-400">Mẫu đăng nhanh</p>
+              <div className="grid gap-2 sm:grid-cols-2">
+                {POST_TEMPLATES.map((template) => {
+                  const Icon = template.icon;
+                  return (
+                    <button
+                      key={template.title}
+                      type="button"
+                      onClick={() => {
+                        setSelectedTopic(template.topic);
+                        setContent(template.text);
+                      }}
+                      className="flex items-center gap-2 rounded-xl border border-stone-200 bg-white px-3 py-2 text-left text-xs font-bold text-stone-600 transition hover:border-emerald-300 hover:bg-emerald-50 hover:text-emerald-700 dark:border-stone-800 dark:bg-stone-900 dark:text-stone-300"
+                    >
+                      <Icon className="h-3.5 w-3.5 shrink-0" />
+                      {template.title}
+                    </button>
+                  );
+                })}
+              </div>
+            </div>
+
             <input
               ref={fileInputRef}
               type="file"
@@ -547,6 +653,8 @@ export default function CommunityFeedClient({ embedded = false }: { embedded?: b
               const category = getPostCategory(post);
               const topic = getTopicMeta(category);
               const TopicIcon = topic.icon;
+              const badge = getUserBadge(post);
+              const BadgeIcon = badge.icon;
               return (
               <div key={post.id} className="bg-white dark:bg-stone-900 border border-stone-200 dark:border-stone-800 rounded-3xl p-4 sm:p-5 shadow-sm">
                 <div className="flex items-start gap-3">
@@ -555,6 +663,10 @@ export default function CommunityFeedClient({ embedded = false }: { embedded?: b
                     <div className="flex items-start justify-between gap-3">
                       <div className="flex items-center gap-2 flex-wrap">
                         <span className="font-bold text-sm text-stone-900 dark:text-stone-100">{post.user_name}</span>
+                      <span className={`inline-flex items-center gap-1 rounded-full px-2 py-0.5 text-[10px] font-black ${badge.className}`}>
+                        <BadgeIcon className="h-3 w-3" />
+                        {badge.label}
+                      </span>
                       {post.kind === "streak" && (
                         <span className="flex items-center gap-1 text-[10px] font-bold text-orange-600 dark:text-orange-400 bg-orange-50 dark:bg-orange-950/30 px-2 py-0.5 rounded-full">
                           <Flame className="w-3 h-3" /> Streak
