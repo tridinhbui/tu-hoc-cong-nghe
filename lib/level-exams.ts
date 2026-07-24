@@ -26,7 +26,7 @@ export const LEVEL_EXAMS: Record<number, LevelExamConfig> = {
     level: 2,
     title: "Bài Thi Thâm Nhập - Cấp 2: Học Viên Tài Chính",
     badgeEmoji: "🎒",
-    minPassPercentage: 85,
+    minPassPercentage: 60,
     timeLimitSeconds: 180,
     penaltyXpIfOverdue: 30,
     questions: [
@@ -57,7 +57,7 @@ export const LEVEL_EXAMS: Record<number, LevelExamConfig> = {
     level: 3,
     title: "Bài Thi Thấu Hiểu - Cấp 3: Nhà Đầu Tư Thực Chiến",
     badgeEmoji: "💼",
-    minPassPercentage: 85,
+    minPassPercentage: 60,
     timeLimitSeconds: 240,
     penaltyXpIfOverdue: 60,
     questions: [
@@ -98,7 +98,7 @@ export const LEVEL_EXAMS: Record<number, LevelExamConfig> = {
     level: 4,
     title: "Bài Thi Chuyên Sâu - Cấp 4: Nhà Phân Tích Tài Chính",
     badgeEmoji: "📊",
-    minPassPercentage: 85,
+    minPassPercentage: 60,
     timeLimitSeconds: 300,
     penaltyXpIfOverdue: 100,
     questions: [
@@ -219,7 +219,7 @@ for (let lvl = 7; lvl <= 15; lvl++) {
       level: lvl,
       title: `Bài Thi Tối Cao - Cấp ${lvl}: Thách Thấu Định Cấp Tài Chính`,
       badgeEmoji: lvl >= 13 ? "🪐" : lvl >= 10 ? "💎" : "🔥",
-      minPassPercentage: 90,
+      minPassPercentage: 60,
       timeLimitSeconds: 360,
       penaltyXpIfOverdue: 100 + lvl * 40,
       questions: [

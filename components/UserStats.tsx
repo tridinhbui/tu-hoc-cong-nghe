@@ -419,7 +419,7 @@ export default function UserStats({
               <span className="text-lg">🛡️</span>
               <div>
                 <p className="leading-tight text-white drop-shadow-sm font-extrabold text-[11px]">BÀI THI THĂNG CẤP KHẮT KHE (LEVEL {nextLevel.level})</p>
-                <p className="text-[10px] text-emerald-100 font-bold">Cần thi đỗ ≥ 85% điểm trắc nghiệm để thăng hạng</p>
+                <p className="text-[10px] text-emerald-100 font-bold">Cần thi đỗ ≥ 60% điểm trắc nghiệm để thăng hạng</p>
               </div>
             </div>
             <span className="px-3 py-1 rounded-xl bg-stone-950 text-emerald-400 text-[10px] font-black tracking-wide shrink-0">
