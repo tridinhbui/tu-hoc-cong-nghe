@@ -170,7 +170,12 @@ export default function PairGame({ userId, gameType, difficulty = "trung-binh", 
     const r = rightCards[rightIdx];
     if (!l || !r || l.matched || r.matched) return;
 
-    if (leftIdx === rightIdx) {
+    const isMatch =
+      leftIdx === rightIdx ||
+      round[leftIdx]?.right.trim().toLowerCase() === round[rightIdx]?.right.trim().toLowerCase() ||
+      round[leftIdx]?.left.trim().toLowerCase() === round[rightIdx]?.left.trim().toLowerCase();
+
+    if (isMatch) {
       const nextCombo = combo + 1;
       setCombo(nextCombo);
       if (nextCombo >= 2) {

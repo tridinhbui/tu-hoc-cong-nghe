@@ -513,7 +513,24 @@ export function getPairConfig(gameType: GameType, difficulty: GameDifficulty = "
 
 export function pickPairRound(gameType: GameType, difficulty: GameDifficulty = "trung-binh"): { left: string; right: string }[] {
   const cfg = getPairConfig(gameType, difficulty);
-  return [...cfg.pool].sort(() => Math.random() - 0.5).slice(0, Math.min(cfg.roundSize, cfg.pool.length));
+  const shuffled = [...cfg.pool].sort(() => Math.random() - 0.5);
+
+  const result: { left: string; right: string }[] = [];
+  const usedLeft = new Set<string>();
+  const usedRight = new Set<string>();
+
+  for (const pair of shuffled) {
+    const leftKey = pair.left.trim().toLowerCase();
+    const rightKey = pair.right.trim().toLowerCase();
+    if (!usedLeft.has(leftKey) && !usedRight.has(rightKey)) {
+      usedLeft.add(leftKey);
+      usedRight.add(rightKey);
+      result.push(pair);
+      if (result.length >= cfg.roundSize) break;
+    }
+  }
+
+  return result;
 }
 
 // ─── Session recording / leaderboard / history ─────────────────────────────
