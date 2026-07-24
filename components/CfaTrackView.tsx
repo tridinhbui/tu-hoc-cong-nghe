@@ -196,6 +196,30 @@ export default function CfaTrackView({ subjects, completedLessonIds }: Props) {
     });
   }
 
+  const { totalCfaLessons, totalCompletedCfa, overallPct, nextGlobalLesson } = useMemo(() => {
+    let total = 0;
+    let completed = 0;
+    let nextLessonInfo: { slug: string; title: string; subjectName: string } | null = null;
+
+    for (const item of subjects) {
+      total += item.lessons.length;
+      completed += item.completedCount;
+      if (!nextLessonInfo && item.nextLessonSlug) {
+        const nextL = item.lessons.find((l) => !completedSet.has(l.id));
+        if (nextL) {
+          nextLessonInfo = {
+            slug: nextL.slug,
+            title: nextL.title,
+            subjectName: item.subject.name,
+          };
+        }
+      }
+    }
+
+    const pct = total > 0 ? Math.round((completed / total) * 100) : 0;
+    return { totalCfaLessons: total, totalCompletedCfa: completed, overallPct: pct, nextGlobalLesson: nextLessonInfo };
+  }, [subjects, completedSet]);
+
   // ─── Mode switcher: browse the DB-backed Book/Reading/Module library, or
   // review by the 10 official CFA Level I subjects (cross-referencing
   // existing personal/professional lessons hand-tagged in lib/cfa-track.ts,
@@ -227,6 +251,47 @@ export default function CfaTrackView({ subjects, completedLessonIds }: Props) {
   if (viewMode === "subjects") {
     return (
       <div className="py-2">
+        {/* 🎯 CFA Global Continuation Summary Banner */}
+        <div className="mb-6 bg-gradient-to-r from-emerald-950 via-stone-900 to-teal-950 border-2 border-emerald-500/50 rounded-3xl p-6 text-white shadow-xl">
+          <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+            <div className="space-y-1.5 flex-1">
+              <div className="flex items-center gap-2">
+                <span className="text-[10px] font-black uppercase tracking-widest bg-emerald-500/20 text-emerald-300 px-3 py-1 rounded-full border border-emerald-500/40">
+                  🎯 THEO DÕI TIẾN ĐỘ CFA LEVEL I
+                </span>
+                <span className="text-[10px] font-black uppercase tracking-widest bg-stone-800 text-stone-300 px-2.5 py-1 rounded-full border border-stone-700">
+                  Đã học {totalCompletedCfa}/{totalCfaLessons} bài ({overallPct}%)
+                </span>
+              </div>
+              <h2 className="text-xl font-extrabold text-white">
+                {nextGlobalLesson ? `Bài tiếp theo: ${nextGlobalLesson.title}` : "🎉 Bạn đã hoàn thành toàn bộ lộ trình CFA!"}
+              </h2>
+              <p className="text-xs text-stone-300">
+                {nextGlobalLesson
+                  ? `Môn: ${nextGlobalLesson.subjectName} • Nhấn nút bên phải để học ngay!`
+                  : "Chúc mừng bạn! Bạn đã hoàn thành tất cả bài học CFA Level I."}
+              </p>
+
+              {/* Progress bar */}
+              <div className="w-full h-2.5 bg-stone-800 rounded-full overflow-hidden mt-3">
+                <div
+                  className="h-full bg-gradient-to-r from-emerald-500 to-teal-400 rounded-full transition-all duration-500"
+                  style={{ width: `${overallPct}%` }}
+                />
+              </div>
+            </div>
+
+            {nextGlobalLesson && (
+              <Link
+                href={`/bai-hoc/${nextGlobalLesson.slug}`}
+                className="px-6 py-3.5 bg-gradient-to-r from-emerald-500 to-teal-500 hover:from-emerald-400 hover:to-teal-400 font-extrabold text-sm text-stone-950 rounded-2xl transition-all shadow-lg hover:scale-105 shrink-0 cursor-pointer flex items-center gap-2"
+              >
+                <PlayCircle className="w-5 h-5 fill-stone-950 text-emerald-400" />
+                <span>Học tiếp bài tiếp theo →</span>
+              </Link>
+            )}
+          </div>
+        </div>
         {/* 📇 CFA Glossary Flashcards Banner */}
         <div className="mb-4 bg-gradient-to-r from-amber-500/10 via-indigo-500/10 to-amber-500/10 border-2 border-amber-400/60 dark:border-amber-700/60 rounded-3xl p-5 flex flex-col sm:flex-row items-center justify-between gap-4">
           <div className="flex items-center gap-3.5">
@@ -333,26 +398,41 @@ export default function CfaTrackView({ subjects, completedLessonIds }: Props) {
                       className="overflow-hidden"
                     >
                       <div className="p-4 pt-0 space-y-2.5">
-                        {lessons.map((lesson) => {
-                          const isDone = completedSet.has(lesson.id);
-                          return (
-                            <Link
-                              key={lesson.id}
-                              href={`/bai-hoc/${lesson.slug}`}
-                              className="flex items-center gap-3 p-3.5 rounded-xl border border-stone-150 dark:border-stone-800/70 bg-stone-50/60 dark:bg-stone-900/40 hover:border-emerald-400 dark:hover:border-emerald-600 hover:bg-white dark:hover:bg-stone-900 transition-all group"
-                            >
-                              {isDone ? (
-                                <CheckCircle2 className="w-4 h-4 text-emerald-500 shrink-0" />
-                              ) : (
-                                <Circle className="w-4 h-4 text-stone-300 dark:text-stone-700 shrink-0" />
-                              )}
-                              <span className="flex-1 min-w-0 text-sm font-bold text-stone-800 dark:text-stone-200 leading-snug group-hover:text-emerald-700 dark:group-hover:text-emerald-400 transition-colors">
-                                {lesson.title}
-                              </span>
-                              <ChevronRight className="w-4 h-4 text-stone-300 dark:text-stone-600 group-hover:text-emerald-500 group-hover:translate-x-0.5 transition-all shrink-0" />
-                            </Link>
-                          );
-                        })}
+                        {(() => {
+                          const nextUndoneId = lessons.find((l) => !completedSet.has(l.id))?.id;
+                          return lessons.map((lesson) => {
+                            const isDone = completedSet.has(lesson.id);
+                            const isNext = lesson.id === nextUndoneId;
+                            return (
+                              <Link
+                                key={lesson.id}
+                                href={`/bai-hoc/${lesson.slug}`}
+                                className={`flex items-center gap-3 p-3.5 rounded-xl border transition-all group ${
+                                  isNext
+                                    ? "border-emerald-500 bg-emerald-50/60 dark:bg-emerald-950/40 shadow-sm ring-2 ring-emerald-500/20"
+                                    : "border-stone-150 dark:border-stone-800/70 bg-stone-50/60 dark:bg-stone-900/40 hover:border-emerald-400 dark:hover:border-emerald-600 hover:bg-white dark:hover:bg-stone-900"
+                                }`}
+                              >
+                                {isDone ? (
+                                  <CheckCircle2 className="w-4 h-4 text-emerald-500 shrink-0" />
+                                ) : isNext ? (
+                                  <PlayCircle className="w-4 h-4 text-emerald-600 dark:text-emerald-400 shrink-0 animate-pulse" />
+                                ) : (
+                                  <Circle className="w-4 h-4 text-stone-300 dark:text-stone-700 shrink-0" />
+                                )}
+                                <span className="flex-1 min-w-0 text-sm font-bold text-stone-800 dark:text-stone-200 leading-snug group-hover:text-emerald-700 dark:group-hover:text-emerald-400 transition-colors flex items-center justify-between gap-2">
+                                  <span>{lesson.title}</span>
+                                  {isNext && (
+                                    <span className="text-[10px] font-black uppercase tracking-wider text-emerald-800 dark:text-emerald-300 bg-emerald-200/80 dark:bg-emerald-900 px-2 py-0.5 rounded-full shrink-0">
+                                      👉 BÀI TIẾP THEO
+                                    </span>
+                                  )}
+                                </span>
+                                <ChevronRight className="w-4 h-4 text-stone-300 dark:text-stone-600 group-hover:text-emerald-500 group-hover:translate-x-0.5 transition-all shrink-0" />
+                              </Link>
+                            );
+                          });
+                        })()}
                       </div>
                     </motion.div>
                   )}
