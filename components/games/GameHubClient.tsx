@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { toast } from "sonner";
-import { Gamepad2, Trophy, History as HistoryIcon, ArrowLeft, Crown, Volume2, VolumeX } from "lucide-react";
+import { Gamepad2, Trophy, History as HistoryIcon, ArrowLeft, Crown, Volume2, VolumeX, Swords, Building2 } from "lucide-react";
 import { useAuthGate } from "@/lib/use-auth-gate";
 import { trackFeatureClick } from "@/lib/feature-events";
 import { GAMES, GAME_DIFFICULTIES, getGameMeta, type GameType, type GameDifficulty } from "@/lib/games";
@@ -15,9 +15,12 @@ import BucketGame from "@/components/games/BucketGame";
 import PairGame from "@/components/games/PairGame";
 import CombinedGameLeaderboard from "@/components/games/CombinedGameLeaderboard";
 import GameLessonRecommendation from "@/components/games/GameLessonRecommendation";
+import PvpDuelModal from "@/components/PvpDuelModal";
+import FinancialGuildWidget from "@/components/FinancialGuildWidget";
+import ModeLeaderboard from "@/components/games/ModeLeaderboard";
 
 type InnerTab = "play" | "leaderboard" | "history";
-type HubTab = "games" | "combined";
+type HubTab = "games" | "pvp" | "guild" | "combined";
 
 const ACCENT: Record<string, { grad: string; ring: string; chip: string; glow: string; shadow: string }> = {
   emerald: {
@@ -85,6 +88,7 @@ export default function GameHubClient() {
   const [innerTab, setInnerTab] = useState<InnerTab>("play");
   const [hubTab, setHubTab] = useState<HubTab>("games");
   const [soundsEnabled, setSoundsEnabled] = useState(() => soundManager.isEnabled());
+  const [showPvpModal, setShowPvpModal] = useState(false);
 
   const [lastResult, setLastResult] = useState<{ gameType: GameType; score: number; total: number } | null>(null);
 
@@ -137,9 +141,11 @@ export default function GameHubClient() {
             Kéo thả nhanh, nhớ lâu - vượt 70% mỗi ván để nhận XP và leo bảng xếp hạng riêng của từng game.
           </p>
 
-          <div className="flex gap-1 sm:gap-1.5 mb-5 bg-stone-100 rounded-xl p-1 sm:p-1.5 max-w-xs">
+          <div className="flex gap-1 sm:gap-1.5 mb-5 bg-stone-100 rounded-xl p-1 sm:p-1.5 max-w-lg overflow-x-auto scrollbar-none">
             {[
               { id: "games" as const, label: "Các game", icon: Gamepad2 },
+              { id: "pvp" as const, label: "Solo PVP 1v1", icon: Swords },
+              { id: "guild" as const, label: "Quỹ Mô Phỏng", icon: Building2 },
               { id: "combined" as const, label: "BXH tổng hợp", icon: Crown },
             ].map(({ id, label, icon: Icon }) => (
               <button
@@ -148,7 +154,7 @@ export default function GameHubClient() {
                   setHubTab(id);
                   trackFeatureClick("game_hub_tab_click", { label: id });
                 }}
-                className={`flex-1 flex items-center justify-center gap-1.5 text-xs font-bold px-2 sm:px-3 py-2 sm:py-2.5 rounded-lg transition-all ${
+                className={`flex-1 flex items-center justify-center gap-1.5 text-xs font-bold px-2 sm:px-3 py-2 sm:py-2.5 rounded-lg transition-all shrink-0 ${
                   hubTab === id
                     ? "bg-white text-stone-900 shadow-sm"
                     : "text-stone-500 hover:text-stone-700"
@@ -162,6 +168,37 @@ export default function GameHubClient() {
 
           {hubTab === "combined" ? (
             <CombinedGameLeaderboard />
+          ) : hubTab === "pvp" ? (
+            <div className="space-y-6">
+              <div className="bg-gradient-to-r from-red-950 via-stone-900 to-rose-950 border-2 border-rose-500/50 rounded-3xl p-6 text-white shadow-xl flex flex-col sm:flex-row items-center justify-between gap-4">
+                <div className="space-y-1">
+                  <span className="text-[10px] font-black uppercase tracking-widest bg-rose-500/20 text-rose-300 px-3 py-1 rounded-full border border-rose-500/40">
+                    ⚔️ ĐẤU TRƯỜNG TRI THỨC 1V1
+                  </span>
+                  <h3 className="text-xl font-extrabold text-white mt-2">Thách đấu Solo PVP & Đo đạc Tỷ lệ Thắng</h3>
+                  <p className="text-xs text-stone-300">
+                    Thi đấu kiến thức trực tiếp 1v1, tích lũy trận thắng và leo bảng xếp hạng Cao thủ Solo PVP.
+                  </p>
+                </div>
+                <button
+                  onClick={() => setShowPvpModal(true)}
+                  className="px-6 py-3.5 bg-gradient-to-r from-rose-500 to-pink-500 hover:from-rose-400 hover:to-pink-400 text-white font-extrabold text-sm rounded-2xl shadow-lg hover:scale-105 transition-all shrink-0 cursor-pointer flex items-center gap-2"
+                >
+                  <Swords className="w-5 h-5" />
+                  <span>Vào trận Solo 1v1 ngay →</span>
+                </button>
+              </div>
+
+              <ModeLeaderboard
+                gameType="pvp-duel"
+                title="⚔️ BXH Cao thủ Thách đấu Solo PVP (Số trận thắng & Winrate %)"
+                emptyLabel="Chưa có dữ liệu thách đấu. Hãy bấm nút phía trên để bắt đầu ván Solo PVP đầu tiên!"
+              />
+            </div>
+          ) : hubTab === "guild" ? (
+            <div className="space-y-6">
+              <FinancialGuildWidget userId={userId} />
+            </div>
           ) : (
             <div className="grid sm:grid-cols-2 gap-4">
               {GAMES.map((g) => {
@@ -214,6 +251,14 @@ export default function GameHubClient() {
             </div>
           )}
         </div>
+
+        {showPvpModal && (
+          <PvpDuelModal
+            userId={userId}
+            userLevel={1}
+            onClose={() => setShowPvpModal(false)}
+          />
+        )}
       </div>
     );
   }
