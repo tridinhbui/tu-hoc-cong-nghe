@@ -409,15 +409,17 @@ export default function HomePage() {
             Vietnamese-flag red/yellow, same commitment message previously
             further down in the Social Proof section (moved here, not
             duplicated). */}
+        {/* Top banner - pushed to the very top of the page per request, in
+            Vietnamese-flag red/yellow */}
         <div className="relative overflow-hidden bg-[#DA251D]">
           <div className="pointer-events-none absolute -top-8 -right-8 text-[100px] leading-none text-[#FFCD00]/10 select-none">
             ★
           </div>
-          <div className="relative max-w-6xl mx-auto px-6 py-2.5 flex flex-col gap-2 text-center sm:flex-row sm:items-center sm:justify-center sm:gap-3 sm:text-left">
+          <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-2.5 flex flex-col gap-1.5 text-center sm:flex-row sm:items-center sm:justify-center sm:gap-3 sm:text-left">
             <span className="hidden sm:inline text-lg leading-none text-[#FFCD00]" aria-hidden="true">
               ★
             </span>
-            <p className="text-sm font-semibold text-white/90 leading-relaxed">
+            <p className="text-xs sm:text-sm font-semibold text-white/95 leading-relaxed">
               Cam kết toàn bộ bài học tại đây <strong className="text-[#FFCD00]">miễn phí mãi mãi</strong> vì sự phát
               triển của cộng đồng học tài chính cá nhân, CFA, lập kế hoạch tài chính, đầu tư, và người làm tài chính
               tại Việt Nam.
@@ -426,7 +428,7 @@ export default function HomePage() {
               href="https://www.facebook.com/share/g/1C2jTdsgF5/"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center justify-center gap-1.5 text-sm font-black text-white hover:underline whitespace-nowrap"
+              className="inline-flex items-center justify-center gap-1.5 text-xs sm:text-sm font-black text-white hover:underline whitespace-nowrap shrink-0"
             >
               Tham gia group Facebook
               <ArrowRight className="icon-micro w-4 h-4" />
@@ -435,20 +437,20 @@ export default function HomePage() {
         </div>
 
         {/* ── NAV ── */}
-        <header className="sticky top-0 z-40 bg-white/80 dark:bg-stone-950/80 backdrop-blur-sm border-b border-stone-100 dark:border-stone-900">
-          <div className="max-w-6xl mx-auto px-6 py-3.5 flex items-center justify-between">
+        <header className="sticky top-0 z-40 bg-white/85 dark:bg-stone-950/85 backdrop-blur-md border-b border-stone-100 dark:border-stone-900">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3.5 flex items-center justify-between">
             <div className="flex items-center gap-2.5">
-              <Logo size={26} />
-              <span className="text-sm font-black text-stone-700 dark:text-stone-300 uppercase tracking-widest hidden sm:inline-flex items-center gap-2">
+              <Logo size={28} />
+              <span className="text-sm sm:text-base font-black text-stone-800 dark:text-stone-200 uppercase tracking-widest flex items-center gap-2">
                 Tự Học Tài Chính
-                <span className="text-[9px] font-black text-emerald-600 dark:text-emerald-400 bg-emerald-50 dark:bg-emerald-950/40 px-2 py-0.5 rounded border border-emerald-200/50">
+                <span className="text-[9px] font-black text-emerald-600 dark:text-emerald-400 bg-emerald-50 dark:bg-emerald-950/40 px-2 py-0.5 rounded border border-emerald-200/50 hidden xs:inline-block">
                   🇻🇳 VIỆT NAM
                 </span>
               </span>
             </div>
             <Link
               href="/login"
-              className="cta-electric group inline-flex items-center gap-2 rounded-[20px] border border-emerald-200/80 dark:border-emerald-800 bg-gradient-to-r from-emerald-500 to-teal-500 px-4 py-2.5 text-sm font-bold text-white shadow-[0_12px_28px_-20px_rgba(16,185,129,0.35)] transition-all hover:shadow-[0_16px_34px_-22px_rgba(16,185,129,0.45)]"
+              className="cta-electric group inline-flex items-center gap-2 rounded-2xl border border-emerald-200/80 dark:border-emerald-800 bg-gradient-to-r from-emerald-500 to-teal-500 px-4.5 py-2.5 text-sm font-bold text-white shadow-[0_12px_28px_-20px_rgba(16,185,129,0.35)] transition-all hover:shadow-[0_16px_34px_-22px_rgba(16,185,129,0.45)]"
             >
               Vào học ngay
               <ArrowRight className="icon-micro w-4 h-4 transition-transform group-hover:translate-x-0.5" />
@@ -488,14 +490,14 @@ export default function HomePage() {
             />
           </div>
 
-          <div className="relative max-w-6xl mx-auto px-6 pt-14 pb-14 lg:pt-20 lg:pb-20">
-            <div className="grid items-center gap-10 lg:grid-cols-[minmax(0,1.08fr)_minmax(360px,0.92fr)]">
-              <div className="max-w-2xl">
+          <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-10 pb-12 sm:pt-14 sm:pb-16 lg:pt-16 lg:pb-20">
+            <div className="grid items-center gap-8 lg:gap-12 lg:grid-cols-12">
+              <div className="lg:col-span-7 max-w-2xl">
                 <motion.div
                   initial={{ opacity: 0, y: 16 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.55, ease: "easeOut" }}
-                  className="mb-5 inline-flex items-center gap-1.5 rounded-full border border-emerald-200/80 bg-white/80 px-3 py-1 text-[10px] font-black uppercase tracking-[0.16em] text-emerald-700 backdrop-blur-sm dark:border-emerald-900 dark:bg-stone-950/55 dark:text-emerald-300"
+                  className="mb-4 inline-flex items-center gap-1.5 rounded-full border border-emerald-200/80 bg-white/80 px-3.5 py-1 text-[10px] sm:text-[11px] font-black uppercase tracking-[0.14em] text-emerald-700 backdrop-blur-sm dark:border-emerald-900 dark:bg-stone-950/55 dark:text-emerald-300"
                 >
                   <span className="relative flex w-1.5 h-1.5">
                     <span className="animate-ping absolute inline-flex w-full h-full rounded-full bg-emerald-400 opacity-75" />
@@ -508,7 +510,7 @@ export default function HomePage() {
                   initial={{ opacity: 0, y: 18 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.6, ease: "easeOut", delay: 0.06 }}
-                  className="mb-4 max-w-3xl text-[3.25rem] font-black leading-[0.92] tracking-tight text-stone-950 [filter:none] dark:text-stone-50 lg:text-[4.6rem]"
+                  className="mb-4 text-[2.5rem] sm:text-[3.6rem] lg:text-[3.8rem] xl:text-[4.4rem] font-black leading-[1.02] tracking-tight text-stone-950 dark:text-stone-50"
                 >
                   Bước vào thế giới{" "}
                   <span className="bg-gradient-to-r from-emerald-600 to-teal-500 bg-clip-text text-transparent dark:from-emerald-300 dark:to-teal-200">
@@ -584,7 +586,7 @@ export default function HomePage() {
                   initial={{ opacity: 0, x: 24, scale: 0.96, filter: "blur(10px)" }}
                   animate={{ opacity: 1, x: 0, scale: 1, filter: "blur(0px)" }}
                   transition={{ duration: 0.7, ease: "easeOut", delay: 0.18 }}
-                  className="relative hidden justify-center lg:flex"
+                  className="lg:col-span-5 relative flex justify-center w-full mt-6 lg:mt-0"
                 >
                 <div className="landing-float relative w-full max-w-[590px] overflow-hidden rounded-[20px] border border-stone-200/80 bg-stone-950 text-white shadow-[0_26px_70px_-34px_rgba(15,23,42,0.58)] dark:border-stone-800 transition-all duration-300 ease-out hover:-translate-y-1 hover:scale-[1.01] hover:shadow-[0_30px_78px_-34px_rgba(15,23,42,0.62)]">
                   <div className="absolute inset-0">
@@ -725,7 +727,7 @@ export default function HomePage() {
 
         {/* ── PRODUCT PREVIEW ── */}
         <section className="landing-band landing-band-soft landing-band-divider relative py-14 lg:py-16">
-          <div className="max-w-6xl mx-auto px-6">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <ScrollReveal className="max-w-2xl mb-8">
             <p className="text-xs font-black text-emerald-600 dark:text-emerald-400 uppercase tracking-widest mb-2">
               Xem trước giao diện thật
@@ -771,7 +773,7 @@ export default function HomePage() {
 
         {/* ── SOCIAL PROOF ── */}
         <section className="landing-band landing-band-glass landing-band-divider backdrop-blur-sm py-16 lg:py-20 relative border-y border-stone-150/40 dark:border-stone-850/40">
-          <div className="max-w-6xl mx-auto px-6 grid gap-6 lg:grid-cols-[minmax(0,1.18fr)_minmax(360px,360px)] lg:items-stretch">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid gap-6 lg:grid-cols-[minmax(0,1.18fr)_minmax(360px,360px)] lg:items-stretch">
             <ScrollReveal className="h-full">
               <p className="text-xs font-black text-emerald-600 dark:text-emerald-400 uppercase tracking-widest mb-2">
                 Cộng đồng thật
@@ -838,7 +840,7 @@ export default function HomePage() {
 
         {/* ── GAME KINGDOM PREVIEW ── */}
         <section className="landing-band landing-band-dark landing-band-divider relative py-14 lg:py-18">
-          <div className="max-w-6xl mx-auto px-6">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <ScrollReveal className="max-w-3xl mb-8">
             <p className="text-xs font-black text-amber-200 uppercase tracking-widest mb-2 drop-shadow-[0_1px_2px_rgba(0,0,0,0.7)]">
               Xem trước Game Kingdom
@@ -997,7 +999,7 @@ export default function HomePage() {
 
         {/* ── FEATURE SHOWCASE ── */}
         <section className="landing-band landing-band-emerald landing-band-divider relative py-16 lg:py-20 border-y border-stone-150/40 dark:border-stone-850/40">
-          <div className="max-w-6xl mx-auto px-6">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <ScrollReveal className="max-w-3xl mb-10">
               <p className="text-xs font-black text-emerald-600 dark:text-emerald-400 uppercase tracking-widest mb-2">
                 Không chỉ là bài học
@@ -1067,7 +1069,7 @@ export default function HomePage() {
 
         {/* ── PAIN POINTS / TRUST ── */}
         <section className="landing-band landing-band-soft relative py-16 lg:py-20">
-          <div className="max-w-6xl mx-auto px-6">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <ScrollReveal className="max-w-2xl mb-10">
             <p className="text-xs font-black text-emerald-600 dark:text-emerald-400 uppercase tracking-widest mb-2">
               Vì sao học viên chọn ở lại
@@ -1097,7 +1099,7 @@ export default function HomePage() {
 
         {/* ── METHOD (Spaced Repetition) ── */}
         <section className="bg-stone-50/50 dark:bg-stone-900/20 backdrop-blur-sm py-16 lg:py-20 border-y border-stone-150/40 dark:border-stone-850/40">
-          <div className="max-w-6xl mx-auto px-6">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <ScrollReveal className="max-w-2xl mb-10">
               <p className="text-xs font-black text-emerald-600 dark:text-emerald-400 uppercase tracking-widest mb-2">
                 Phương pháp học
@@ -1128,7 +1130,7 @@ export default function HomePage() {
         </section>
 
         {/* ── WHO IT IS FOR ── */}
-        <section className="relative max-w-6xl mx-auto px-6 py-16 lg:py-20">
+        <section className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 lg:py-20">
           <ScrollReveal className="max-w-2xl mb-10">
             <p className="text-xs font-black text-emerald-600 dark:text-emerald-400 uppercase tracking-widest mb-2">
               Đối tượng phù hợp
@@ -1158,7 +1160,7 @@ export default function HomePage() {
         </section>
 
         {/* ── VISION & MISSION ── */}
-        <section className="relative max-w-6xl mx-auto px-6 pb-16 lg:pb-20">
+        <section className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-16 lg:pb-20">
           <ScrollReveal>
             <div className="animated-border-card rounded-[20px] border border-stone-200/80 dark:border-stone-800/85 bg-white/70 dark:bg-stone-900/60 backdrop-blur-sm p-8 lg:p-10 shadow-[0_14px_34px_-26px_rgba(28,25,23,0.12)] dark:shadow-[0_14px_34px_-26px_rgba(0,0,0,0.28)]">
               <div className="grid gap-8 lg:grid-cols-[minmax(0,1.35fr)_minmax(320px,0.95fr)] lg:items-start">
@@ -1250,7 +1252,7 @@ export default function HomePage() {
         </section>
 
         {/* ── TRACKS ── */}
-        <section className="max-w-6xl mx-auto px-6 py-16 lg:py-20">
+        <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 lg:py-20">
           <ScrollReveal className="max-w-2xl mb-8">
             <p className="text-xs font-extrabold text-emerald-600 dark:text-emerald-400 uppercase tracking-widest mb-2">
               Lộ trình
@@ -1303,7 +1305,7 @@ export default function HomePage() {
         </section>
 
         {/* ── FOOTER ── */}
-        <footer className="max-w-6xl mx-auto px-6 py-8 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-stone-400 dark:text-stone-600">
+        <footer className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-stone-400 dark:text-stone-600">
           <div className="flex items-center gap-2">
             <Logo size={18} />
             Tự Học Tài Chính

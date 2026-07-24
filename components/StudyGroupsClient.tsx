@@ -131,6 +131,17 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
     }
   }
 
+  async function handleQuickCheer(text: string) {
+    if (!myRoom || !user || sendingMessage) return;
+    try {
+      const sent = await sendRoomMessage(myRoom.room_id, user.id, text);
+      setMessages((prev) => (prev.some((m) => m.id === sent.id) ? prev : [...prev, sent]));
+      toast.success("Đã gửi lời cổ vũ đến cả nhóm! 🎉");
+    } catch {
+      toast.error("Không thể gửi lời cổ vũ");
+    }
+  }
+
   useEffect(() => {
     const init = async () => {
       const {
@@ -359,227 +370,201 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
       </div>
       )}
 
-      <div className={`${embedded ? "" : "max-w-4xl mx-auto px-6 py-8"}`}>
+      <div className={`${embedded ? "h-full flex flex-col overflow-hidden" : "max-w-7xl mx-auto px-4 py-4 h-[calc(100vh-2rem)] flex flex-col overflow-hidden"}`}>
         {myRoom ? (
-          <div className="space-y-6">
-          <div className="bg-white dark:bg-stone-900 border-2 border-stone-200 dark:border-stone-800 rounded-2xl p-6">
-            <p className="text-xs text-stone-500 dark:text-stone-400 bg-stone-50 dark:bg-stone-800/50 border border-dashed border-stone-200 dark:border-stone-700 rounded-lg px-3.5 py-2.5 mb-5">
-              Bạn đang ở nhóm ngẫu nhiên tuần này - có thể tự đổi nhóm bất kỳ lúc nào bằng cách rời phòng và chọn phòng khác.
-            </p>
-            <div className="flex items-center justify-between gap-3 flex-wrap">
-              <div>
-                <p className="text-xs font-extrabold text-emerald-700 dark:text-emerald-400 uppercase tracking-widest">
-                  Phòng học của bạn
-                </p>
-                <h2 className="text-lg font-extrabold text-stone-900 dark:text-stone-100 mt-1">
-                  {topicLabel(myRoom.topic)} · {myRoom.member_count}/{myRoom.max_members} thành viên
-                </h2>
-              </div>
-              <button
-                onClick={handleLeave}
-                disabled={busy}
-                className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-lg border border-stone-200 dark:border-stone-800 text-sm font-bold text-stone-600 dark:text-stone-400 hover:bg-stone-50 dark:hover:bg-stone-800 transition-colors disabled:opacity-60"
-              >
-                <LogOut className="w-4 h-4" />
-                Rời phòng
-              </button>
-            </div>
-
-            <div className="mt-5">
-              <div className="flex items-center justify-between text-xs font-bold text-stone-500 dark:text-stone-400 mb-1.5">
-                <span>Mục tiêu XP cả nhóm tuần này</span>
-              <span>{myRoom.weekly_xp_progress} / {myRoom.weekly_xp_goal} XP</span>
-              </div>
-              <div className="h-2.5 rounded-full bg-stone-100 dark:bg-stone-800 overflow-hidden">
-                <div
-                  className="h-full rounded-full bg-gradient-to-r from-emerald-500 to-teal-500 transition-all duration-500"
-                  style={{ width: `${Math.min(100, (myRoom.weekly_xp_progress / Math.max(1, myRoom.weekly_xp_goal)) * 100)}%` }}
-                />
-              </div>
-            </div>
-
-            <div className="mt-6">
-              <div className="flex items-center justify-between gap-3 mb-4">
-                <h3 className="text-sm font-extrabold text-stone-900 dark:text-stone-100 uppercase tracking-widest flex items-center gap-2">
-                  <span>🛋️ Phòng Học Nhóm 3D</span>
-                </h3>
-
-                {/* View Mode Toggle Switcher */}
-                <div className="inline-flex rounded-xl bg-stone-100 dark:bg-stone-800 p-1 border border-stone-200 dark:border-stone-700 text-xs font-extrabold">
-                  <button
-                    onClick={() => setRoomViewMode("3d")}
-                    className={`px-3 py-1.5 rounded-lg transition-all cursor-pointer ${
-                      roomViewMode === "3d"
-                        ? "bg-white dark:bg-stone-900 text-emerald-600 dark:text-emerald-400 shadow-2xs"
-                        : "text-stone-500 hover:text-stone-800 dark:hover:text-stone-200"
-                    }`}
-                  >
-                    🛋️ Bàn Tròn 3D
-                  </button>
-                  <button
-                    onClick={() => setRoomViewMode("list")}
-                    className={`px-3 py-1.5 rounded-lg transition-all cursor-pointer ${
-                      roomViewMode === "list"
-                        ? "bg-white dark:bg-stone-900 text-emerald-600 dark:text-emerald-400 shadow-2xs"
-                        : "text-stone-500 hover:text-stone-800 dark:hover:text-stone-200"
-                    }`}
-                  >
-                    📊 Danh Sách
-                  </button>
-                </div>
-              </div>
-
-              {roomViewMode === "3d" ? (
-                /* 🏰 3D Isometric Roundtable Virtual Desk Stage */
-                <div className="relative rounded-3xl border-2 border-emerald-500/40 bg-gradient-to-b from-stone-900 via-stone-950 to-emerald-950/70 p-5 sm:p-7 shadow-2xl overflow-hidden text-white">
-                  {/* 3D Perspective Grid Background */}
-                  <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(#10b981_1.5px,transparent_1.5px)] [background-size:28px_28px] opacity-[0.15]" />
-                  
-                  {/* Top Ambient Glow */}
-                  <div className="pointer-events-none absolute -top-24 left-1/2 -translate-x-1/2 w-96 h-48 bg-emerald-500/20 rounded-full blur-3xl" />
-
-                  {/* 🔮 Center 3D Isometric Study Desk & Radially Positioned Member Seats */}
-                  <div className="relative mx-auto w-full max-w-xl h-[420px] sm:h-[460px] flex items-center justify-center my-2">
-                    {/* Central 3D Roundtable */}
-                    <div className="relative w-44 h-44 sm:w-56 sm:h-56 rounded-full bg-gradient-to-b from-stone-800/90 via-amber-950/90 to-stone-900 border-4 border-amber-500/60 shadow-[0_0_60px_rgba(245,158,11,0.3)] flex flex-col items-center justify-center text-center p-4 z-10">
-                      <div className="absolute inset-2.5 rounded-full border border-dashed border-amber-400/40 animate-spin-slow pointer-events-none" />
-                      
-                      <div className="relative z-10">
-                        <span className="text-3xl mb-1 animate-bounce inline-block">🔮</span>
-                        <p className="text-[10px] font-black text-amber-300 uppercase tracking-widest">
-                          BÀN HỌC {topicLabel(myRoom.topic).toUpperCase()}
-                        </p>
-                        <p className="text-xs sm:text-sm font-black text-white mt-1">
-                          {myRoom.weekly_xp_progress} / {myRoom.weekly_xp_goal} XP
-                        </p>
-                        <span className="mt-1 inline-block text-[9px] font-extrabold text-emerald-300 bg-emerald-950/80 px-2 py-0.5 rounded-full border border-emerald-500/40">
-                          ⚡ +15% XP BONUS
-                        </span>
-                      </div>
+          <div className="h-full flex flex-col min-h-0 overflow-hidden space-y-3">
+            {/* Top Room Info & Goal Bar */}
+            <div className="bg-white dark:bg-stone-900 border-2 border-stone-200 dark:border-stone-800 rounded-2xl px-4 py-2.5 shrink-0 flex items-center justify-between gap-3 shadow-sm">
+              <div className="flex items-center gap-3 min-w-0">
+                <span className="w-8 h-8 rounded-xl bg-gradient-to-br from-emerald-500 to-teal-600 text-white font-black flex items-center justify-center text-xs shrink-0 shadow-xs">
+                  👥
+                </span>
+                <div className="min-w-0">
+                  <h2 className="text-xs sm:text-sm font-black text-stone-900 dark:text-stone-100 truncate">
+                    Phòng {topicLabel(myRoom.topic)} · {myRoom.member_count}/{myRoom.max_members} thành viên
+                  </h2>
+                  <div className="flex items-center gap-2 mt-0.5">
+                    <div className="w-24 sm:w-36 h-2 rounded-full bg-stone-100 dark:bg-stone-800 overflow-hidden">
+                      <div
+                        className="h-full rounded-full bg-gradient-to-r from-emerald-500 to-teal-500 transition-all duration-500"
+                        style={{ width: `${Math.min(100, (myRoom.weekly_xp_progress / Math.max(1, myRoom.weekly_xp_goal)) * 100)}%` }}
+                      />
                     </div>
-
-                    {/* 🪑 5 Seated Member Pods Positioned Radially Around the Table */}
-                    {(() => {
-                      const seatClasses = [
-                        "absolute -top-2 left-1/2 -translate-x-1/2 z-20", // Seat 0: Top Center
-                        "absolute top-8 left-1 sm:left-3 z-20",            // Seat 1: Top Left
-                        "absolute top-8 right-1 sm:right-3 z-20",          // Seat 2: Top Right
-                        "absolute bottom-2 left-3 sm:left-8 z-20",         // Seat 3: Bottom Left
-                        "absolute bottom-2 right-3 sm:right-8 z-20",       // Seat 4: Bottom Right
-                      ];
-
-                      const sortedMembers = [...myRoomMembers].sort((a, b) => b.weekly_lessons - a.weekly_lessons);
-
-                      return seatClasses.map((posClass, idx) => {
-                        const member = sortedMembers[idx];
-                        const isMe = member?.user_id === user?.id;
-
-                        if (member) {
-                          return (
-                            <div
-                              key={member.user_id}
-                              className={`${posClass} flex flex-col items-center text-center p-2 sm:p-2.5 rounded-2xl border transition-all duration-300 w-28 sm:w-32 bg-stone-900/90 backdrop-blur-md ${
-                                isMe
-                                  ? "border-emerald-400 bg-emerald-950/80 shadow-[0_0_25px_rgba(16,185,129,0.4)] scale-105"
-                                  : "border-stone-700/80 hover:border-amber-400/60"
-                              }`}
-                            >
-                              {/* Top Learner Crown / Rank Badge */}
-                              {idx === 0 && (
-                                <span className="absolute -top-3.5 text-lg animate-bounce drop-shadow-md z-30" title="Top 1 Bài học tuần này">
-                                  👑
-                                </span>
-                              )}
-
-                              <div className="relative mb-1">
-                                <div className={`rounded-full p-1 ${isMe ? "ring-2 ring-emerald-400" : "ring-1 ring-amber-400/50"}`}>
-                                  <Avatar name={member.full_name} avatarUrl={member.avatar_url} size={40} />
-                                </div>
-                                <span className="absolute -bottom-1 left-1/2 -translate-x-1/2 text-[8px] font-black uppercase text-white bg-amber-600 px-1.5 py-0.2 rounded-full shadow-xs whitespace-nowrap">
-                                  Lv.{member.current_level}
-                                </span>
-                              </div>
-
-                              <p className="text-[10px] sm:text-[11px] font-black text-white truncate max-w-[90px]" title={member.full_name || "Thành viên"}>
-                                {member.full_name || "Thành viên"}{isMe ? " (Bạn)" : ""}
-                              </p>
-                              <span className="text-[9px] font-extrabold text-emerald-400 mt-0.5">
-                                🔥 {member.weekly_lessons} bài
-                              </span>
-                            </div>
-                          );
-                        }
-
-                        return (
-                          <div
-                            key={`empty-${idx}`}
-                            className={`${posClass} flex flex-col items-center justify-center p-2 rounded-2xl border border-dashed border-stone-700/60 bg-stone-900/40 text-stone-500 text-center w-28 sm:w-32 min-h-[90px] backdrop-blur-xs`}
-                          >
-                            <span className="text-base mb-0.5 opacity-50">🪑</span>
-                            <span className="text-[9px] font-bold text-stone-400 uppercase">Ghế trống</span>
-                            <span className="text-[8px] font-medium text-stone-500 mt-0.5">Đang chờ ghép</span>
-                          </div>
-                        );
-                      });
-                    })()}
+                    <span className="text-[10px] font-extrabold text-emerald-600 dark:text-emerald-400 shrink-0">
+                      {myRoom.weekly_xp_progress}/{myRoom.weekly_xp_goal} XP
+                    </span>
                   </div>
                 </div>
-              ) : (
-                /* Standard Member List View */
-                <div className="space-y-2">
-                  {[...myRoomMembers]
-                    .sort((a, b) => b.weekly_lessons - a.weekly_lessons)
-                    .map((member, idx) => (
-                      <div
-                        key={member.user_id}
-                        className={`flex items-center gap-3 rounded-xl border px-3.5 py-2.5 ${
-                          member.user_id === user?.id
-                            ? "border-emerald-300 dark:border-emerald-800 bg-emerald-50/60 dark:bg-emerald-950/20"
-                            : "border-stone-200 dark:border-stone-800"
-                        }`}
-                      >
-                        <span className="text-xs font-extrabold text-stone-400 dark:text-stone-500 w-4 text-center shrink-0">
-                          {idx + 1}
-                        </span>
-                        <Avatar name={member.full_name} avatarUrl={member.avatar_url} />
-                        <div className="flex-1 min-w-0">
-                          <p className="text-sm font-bold text-stone-900 dark:text-stone-100 truncate">
-                            {member.full_name || "Người dùng"}{member.user_id === user?.id ? " (Bạn)" : ""}
-                          </p>
-                          <p className="text-[11px] text-stone-400 dark:text-stone-500">
-                            Level {member.current_level} · {member.total_xp} XP tổng
-                          </p>
-                        </div>
-                        <div className="text-right shrink-0">
-                          <p className="text-sm font-extrabold text-emerald-600 dark:text-emerald-400">
-                            {member.weekly_lessons} bài
-                          </p>
-                          <p className="text-[10px] text-stone-400 dark:text-stone-500">tuần này</p>
-                        </div>
-                      </div>
-                    ))}
-                </div>
-              )}
-
-              {myMemberRow && myRoom.member_count < myRoom.max_members && (
-                <p className="text-xs text-stone-400 dark:text-stone-500 mt-3">
-                  Còn {myRoom.max_members - myRoom.member_count} chỗ trống - phòng sẽ tự nhận thêm thành viên mới ghép ngẫu nhiên vào chủ đề này.
-                </p>
-              )}
-            </div>
-          </div>
-
-          <div className="bg-white dark:bg-stone-900 border-2 border-stone-200 dark:border-stone-800 rounded-2xl p-6">
-            <h3 className="text-sm font-extrabold text-stone-900 dark:text-stone-100 uppercase tracking-widest mb-3">
-              Trò chuyện nhóm
-            </h3>
-            {pinnedMessage && (
-              <div className="mb-3 px-3.5 py-2.5 rounded-xl bg-amber-50 dark:bg-amber-950/30 border border-amber-200 dark:border-amber-900">
-                <p className="text-[10px] font-extrabold text-amber-700 dark:text-amber-400 mb-0.5">Tài Tài · Quản lý nhóm · Đã ghim</p>
-                <p className="text-xs text-stone-800 dark:text-stone-200 leading-relaxed">{pinnedMessage.content}</p>
               </div>
-            )}
-            <div className="h-72 overflow-y-auto rounded-xl border border-stone-200 dark:border-stone-800 bg-stone-50/50 dark:bg-stone-950/40 p-3 space-y-2.5">
+
+              <div className="flex items-center gap-2 shrink-0">
+                <button
+                  onClick={handleLeave}
+                  disabled={busy}
+                  className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl border border-stone-200 dark:border-stone-800 text-xs font-bold text-stone-600 dark:text-stone-400 hover:bg-stone-100 dark:hover:bg-stone-800 transition-colors disabled:opacity-60 cursor-pointer"
+                >
+                  <LogOut className="w-3.5 h-3.5" />
+                  <span className="hidden sm:inline">Rời phòng</span>
+                </button>
+              </div>
+            </div>
+
+            {/* Main 2-Column Split View (1-Page / Fit-Screen) */}
+            <div className="flex-1 min-h-0 grid grid-cols-1 lg:grid-cols-12 gap-3 sm:gap-4 overflow-hidden">
+              {/* LEFT COLUMN: 3D Isometric Roundtable Stage */}
+              <div className="lg:col-span-7 flex flex-col h-full min-h-0 rounded-3xl border-2 border-emerald-500/40 bg-gradient-to-b from-stone-900 via-stone-950 to-emerald-950/80 p-4 shadow-2xl relative overflow-hidden text-white justify-between">
+                {/* 3D Perspective Grid Background */}
+                <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(#10b981_1.5px,transparent_1.5px)] [background-size:24px_24px] opacity-[0.18]" />
+                <div className="pointer-events-none absolute -top-24 left-1/2 -translate-x-1/2 w-96 h-48 bg-emerald-500/20 rounded-full blur-3xl" />
+
+                {/* Stage Header Controls */}
+                <div className="relative z-10 flex items-center justify-between shrink-0 mb-1">
+                  <div className="flex items-center gap-2">
+                    <span className="text-[10px] font-black uppercase tracking-widest text-emerald-300 bg-emerald-950/80 px-2.5 py-1 rounded-full border border-emerald-500/40 backdrop-blur-md">
+                      🛋️ BÀN HỌC 3D · {topicLabel(myRoom.topic).toUpperCase()}
+                    </span>
+                  </div>
+
+                  {/* Quick Cheer Actions Bar */}
+                  <div className="flex items-center gap-1 bg-stone-900/80 backdrop-blur-md px-2 py-1 rounded-2xl border border-stone-700/60 shadow-md">
+                    <span className="text-[9px] font-bold text-stone-400 mr-1 hidden sm:inline">Cổ vũ:</span>
+                    <button
+                      onClick={() => void handleQuickCheer("👋 Đập tay cổ vũ mọi người cùng học bài nào!")}
+                      className="hover:scale-130 transition-transform p-1 text-xs cursor-pointer"
+                      title="Đập tay 👋"
+                    >
+                      👋
+                    </button>
+                    <button
+                      onClick={() => void handleQuickCheer("❤️ Bắn tim yêu thương tiếp năng lượng học tập!")}
+                      className="hover:scale-130 transition-transform p-1 text-xs cursor-pointer"
+                      title="Bắn tim ❤️"
+                    >
+                      ❤️
+                    </button>
+                    <button
+                      onClick={() => void handleQuickCheer("🔔 Ới ời cả nhóm ơi vào làm bài thôi nào!")}
+                      className="hover:scale-130 transition-transform p-1 text-xs cursor-pointer"
+                      title="Nhắc học 🔔"
+                    >
+                      🔔
+                    </button>
+                    <button
+                      onClick={() => void handleQuickCheer("🔥 Tiếp sức cháy hết mình hôm nay!")}
+                      className="hover:scale-130 transition-transform p-1 text-xs cursor-pointer"
+                      title="Tiếp sức 🔥"
+                    >
+                      🔥
+                    </button>
+                  </div>
+                </div>
+
+                {/* Center 3D Isometric Study Desk & Radially Positioned Member Seats */}
+                <div className="relative flex-1 min-h-0 w-full flex items-center justify-center my-auto">
+                  {/* Central 3D Roundtable */}
+                  <div className="relative w-40 h-40 sm:w-48 sm:h-48 rounded-full bg-gradient-to-b from-stone-800/90 via-amber-950/90 to-stone-900 border-4 border-amber-500/60 shadow-[0_0_60px_rgba(245,158,11,0.3)] flex flex-col items-center justify-center text-center p-3 z-10 shrink-0">
+                    <div className="absolute inset-2 rounded-full border border-dashed border-amber-400/40 animate-spin-slow pointer-events-none" />
+                    
+                    <div className="relative z-10">
+                      <span className="text-2xl sm:text-3xl mb-0.5 animate-bounce inline-block">🔮</span>
+                      <p className="text-[9px] sm:text-[10px] font-black text-amber-300 uppercase tracking-widest">
+                        BÀN HỌC {topicLabel(myRoom.topic).toUpperCase()}
+                      </p>
+                      <p className="text-xs sm:text-sm font-black text-white mt-0.5">
+                        {myRoom.weekly_xp_progress} / {myRoom.weekly_xp_goal} XP
+                      </p>
+                      <span className="mt-1 inline-block text-[9px] font-extrabold text-emerald-300 bg-emerald-950/80 px-2 py-0.5 rounded-full border border-emerald-500/40">
+                        ⚡ +15% BONUS
+                      </span>
+                    </div>
+                  </div>
+
+                  {/* 🪑 Seated Member Pods Positioned Radially Around the Table */}
+                  {(() => {
+                    const seatClasses = [
+                      "absolute -top-1 left-1/2 -translate-x-1/2 z-20", // Seat 0: Top Center
+                      "absolute top-6 left-1 sm:left-3 z-20",            // Seat 1: Top Left
+                      "absolute top-6 right-1 sm:right-3 z-20",          // Seat 2: Top Right
+                      "absolute bottom-1 left-2 sm:left-6 z-20",         // Seat 3: Bottom Left
+                      "absolute bottom-1 right-2 sm:right-6 z-20",       // Seat 4: Bottom Right
+                    ];
+
+                    const sortedMembers = [...myRoomMembers].sort((a, b) => b.weekly_lessons - a.weekly_lessons);
+
+                    return seatClasses.map((posClass, idx) => {
+                      const member = sortedMembers[idx];
+                      const isMe = member?.user_id === user?.id;
+
+                      if (member) {
+                        return (
+                          <div
+                            key={member.user_id}
+                            className={`${posClass} flex flex-col items-center text-center p-2 rounded-2xl border transition-all duration-300 w-24 sm:w-28 bg-stone-900/90 backdrop-blur-md ${
+                              isMe
+                                ? "border-emerald-400 bg-emerald-950/80 shadow-[0_0_20px_rgba(16,185,129,0.4)] scale-105"
+                                : "border-stone-700/80 hover:border-amber-400/60"
+                            }`}
+                          >
+                            {/* Top Learner Crown */}
+                            {idx === 0 && (
+                              <span className="absolute -top-3 text-base animate-bounce drop-shadow-md z-30" title="Top 1 Bài học tuần này">
+                                👑
+                              </span>
+                            )}
+
+                            <div className="relative mb-0.5">
+                              <div className={`rounded-full p-0.5 ${isMe ? "ring-2 ring-emerald-400" : "ring-1 ring-amber-400/50"}`}>
+                                <Avatar name={member.full_name} avatarUrl={member.avatar_url} size={34} />
+                              </div>
+                              <span className="absolute -bottom-1 left-1/2 -translate-x-1/2 text-[7px] font-black uppercase text-white bg-amber-600 px-1 py-0.1 rounded-full shadow-xs whitespace-nowrap">
+                                Lv.{member.current_level}
+                              </span>
+                            </div>
+
+                            <p className="text-[9px] sm:text-[10px] font-black text-white truncate max-w-[80px]" title={member.full_name || "Thành viên"}>
+                              {member.full_name || "Thành viên"}{isMe ? " (Bạn)" : ""}
+                            </p>
+                            <span className="text-[8px] font-extrabold text-emerald-400 mt-0.5">
+                              🔥 {member.weekly_lessons} bài
+                            </span>
+                          </div>
+                        );
+                      }
+
+                      return (
+                        <div
+                          key={`empty-${idx}`}
+                          className={`${posClass} flex flex-col items-center justify-center p-2 rounded-2xl border border-dashed border-stone-700/60 bg-stone-900/40 text-stone-500 text-center w-24 sm:w-28 min-h-[80px] backdrop-blur-xs`}
+                        >
+                          <span className="text-sm mb-0.5 opacity-50">🪑</span>
+                          <span className="text-[8px] font-bold text-stone-400 uppercase">Ghế trống</span>
+                        </div>
+                      );
+                    });
+                  })()}
+                </div>
+
+                {/* Footer hint */}
+                <div className="relative z-10 shrink-0 text-center text-[10px] text-stone-400 font-semibold pt-1">
+                  💡 Bấm nút cổ vũ góc trên để tương tác nhanh với nhóm!
+                </div>
+              </div>
+
+              {/* RIGHT COLUMN: Full-Height Group Chat Box */}
+              <div className="lg:col-span-5 flex flex-col h-full min-h-0 bg-white dark:bg-stone-900 border-2 border-stone-200 dark:border-stone-800 rounded-3xl overflow-hidden shadow-xl p-3.5">
+                <h3 className="text-xs font-black text-stone-900 dark:text-stone-100 uppercase tracking-widest mb-2 shrink-0 flex items-center justify-between">
+                  <span>💬 Trò chuyện nhóm</span>
+                  <span className="text-[10px] font-bold text-emerald-600 dark:text-emerald-400 bg-emerald-50 dark:bg-emerald-950/60 px-2 py-0.5 rounded-full border border-emerald-200 dark:border-emerald-800">
+                    Live
+                  </span>
+                </h3>
+                {pinnedMessage && (
+                  <div className="mb-2 px-3 py-1.5 rounded-xl bg-amber-50 dark:bg-amber-950/30 border border-amber-200 dark:border-amber-900 shrink-0">
+                    <p className="text-[9px] font-extrabold text-amber-700 dark:text-amber-400">Tài Tài · Quản lý nhóm · Đã ghim</p>
+                    <p className="text-[11px] text-stone-800 dark:text-stone-200 leading-snug truncate">{pinnedMessage.content}</p>
+                  </div>
+                )}
+                <div className="flex-1 min-h-0 overflow-y-auto rounded-xl border border-stone-200 dark:border-stone-800 bg-stone-50/50 dark:bg-stone-950/40 p-3 space-y-2.5">
               {scrollMessages.length === 0 ? (
                 <p className="text-xs text-stone-400 dark:text-stone-500 text-center py-8">
                   Chưa có tin nhắn nào. Chào các thành viên trong nhóm nhé!
@@ -832,6 +817,7 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
                 <Send className="w-4 h-4" />
               </button>
             </div>
+          </div>
           </div>
           </div>
         ) : (
