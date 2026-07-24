@@ -179,6 +179,7 @@ const ORGANIC_BUILDINGS: OrganicBuilding[] = [
     badgeBg: "bg-gradient-to-r from-cyan-600 via-teal-600 to-blue-600 text-white font-black",
     posClass: "top-[760px] left-8 sm:left-20",
     desktopClass: "lg:col-start-1 lg:row-start-8",
+    imageSrc: "/rpg/silicon_valley.png",
   },
   {
     id: "capitol-hill",
