@@ -562,18 +562,19 @@ export default function CommunityFeedClient({ embedded = false }: { embedded?: b
       `}</style>
       {!embedded && (
         <div className="relative overflow-hidden border-b border-stone-800 bg-stone-950 text-white">
-          {/* Saigon Skyline Background Image */}
+          {/* Saigon Skyline Background Image (Crisp & High Clarity) */}
           <div className="absolute inset-0 pointer-events-none overflow-hidden">
             <Image
               src="/saigon-skyline.jpg"
               alt="Saigon Skyline background"
               fill
               priority
+              quality={95}
               sizes="100vw"
-              className="object-cover opacity-40 brightness-90 contrast-110 blur-[2px] scale-105"
+              className="object-cover opacity-70 brightness-105 contrast-105 scale-100"
             />
-            <div className="absolute inset-0 bg-gradient-to-r from-stone-950/95 via-stone-950/80 to-emerald-950/90" />
-            <div className="absolute inset-0 bg-gradient-to-t from-stone-950 via-transparent to-stone-950/40" />
+            <div className="absolute inset-0 bg-gradient-to-r from-stone-950/85 via-stone-950/55 to-emerald-950/70" />
+            <div className="absolute inset-0 bg-gradient-to-t from-stone-950 via-transparent to-stone-950/30" />
           </div>
 
           <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 py-8 sm:py-10">
