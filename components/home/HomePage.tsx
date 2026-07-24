@@ -1121,19 +1121,90 @@ export default function HomePage() {
           </ScrollReveal>
         </section>
 
-        {/* ── FOOTER ── */}
-        <footer className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-stone-400 dark:text-stone-600">
-          <div className="flex items-center gap-2">
-            <Logo size={18} />
-            Tự Học Tài Chính
-          </div>
-          <div className="flex items-center gap-4">
-            <Link href="/dieu-khoan" className="hover:text-stone-600 dark:hover:text-stone-400">
-              Điều khoản sử dụng
-            </Link>
-            <Link href="/chinh-sach-bao-mat" className="hover:text-stone-600 dark:hover:text-stone-400">
-              Chính sách bảo mật
-            </Link>
+        {/* ── RICH FOOTER ── */}
+        <footer className="bg-stone-950 text-stone-300 border-t border-stone-800/80 relative z-10 pt-12 pb-8">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-12 pb-10 border-b border-stone-850">
+              {/* Col 1: Brand Info */}
+              <div className="lg:col-span-5 space-y-4">
+                <div className="flex items-center gap-2.5">
+                  <Logo size={32} />
+                  <span className="text-lg font-black tracking-tight text-white">Tự Học Tài Chính</span>
+                </div>
+                <p className="text-xs text-stone-400 leading-relaxed max-w-sm">
+                  Nền tảng tự học tài chính cá nhân, tài chính doanh nghiệp và CFA miễn phí 100%. Giúp người Việt làm chủ tiền bạc bằng phương pháp Spaced Repetition và Game Kingdom.
+                </p>
+                <div className="inline-flex items-center gap-2 rounded-full border border-emerald-500/30 bg-emerald-950/60 px-3 py-1 text-[11px] font-bold text-emerald-400">
+                  <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
+                  <span>Cộng đồng 430+ bài học & Quiz tương tác</span>
+                </div>
+              </div>
+
+              {/* Col 2: Lộ trình */}
+              <div className="lg:col-span-2 space-y-3">
+                <p className="text-xs font-black uppercase tracking-widest text-white">Lộ trình học</p>
+                <ul className="space-y-2 text-xs text-stone-400 font-semibold">
+                  <li>
+                    <Link href="/dashboard" className="hover:text-emerald-400 transition-colors">Tài chính cá nhân</Link>
+                  </li>
+                  <li>
+                    <Link href="/dashboard" className="hover:text-emerald-400 transition-colors">Tài chính doanh nghiệp</Link>
+                  </li>
+                  <li>
+                    <Link href="/dashboard" className="hover:text-emerald-400 transition-colors">Chứng chỉ CFA Level 1</Link>
+                  </li>
+                  <li>
+                    <Link href="/game" className="hover:text-emerald-400 transition-colors">Game Kingdom RPG</Link>
+                  </li>
+                </ul>
+              </div>
+
+              {/* Col 3: Hệ sinh thái */}
+              <div className="lg:col-span-3 space-y-3">
+                <p className="text-xs font-black uppercase tracking-widest text-white">Hệ sinh thái</p>
+                <ul className="space-y-2 text-xs text-stone-400 font-semibold">
+                  <li>
+                    <Link href="/nhom-hoc" className="hover:text-emerald-400 transition-colors flex items-center gap-1.5">
+                      <span>Phòng Học Nhóm (3D)</span>
+                      <span className="text-[9px] font-bold text-amber-400 bg-amber-950 px-1.5 py-0.2 rounded-md">Hot</span>
+                    </Link>
+                  </li>
+                  <li>
+                    <Link href="/finsocial" className="hover:text-emerald-400 transition-colors">FinSocial - Feed Bài Viết</Link>
+                  </li>
+                  <li>
+                    <Link href="/su-nghiep" className="hover:text-emerald-400 transition-colors">Bản Đồ Sự Nghiệp Tài Chính</Link>
+                  </li>
+                  <li>
+                    <Link href="/shop" className="hover:text-emerald-400 transition-colors">Cửa Hàng Cosmetic & Avatar</Link>
+                  </li>
+                </ul>
+              </div>
+
+              {/* Col 4: Pháp lý & Hỗ trợ */}
+              <div className="lg:col-span-2 space-y-3">
+                <p className="text-xs font-black uppercase tracking-widest text-white">Hỗ trợ & Pháp lý</p>
+                <ul className="space-y-2 text-xs text-stone-400 font-semibold">
+                  <li>
+                    <Link href="/dieu-khoan" className="hover:text-emerald-400 transition-colors">Điều khoản sử dụng</Link>
+                  </li>
+                  <li>
+                    <Link href="/chinh-sach-bao-mat" className="hover:text-emerald-400 transition-colors">Chính sách bảo mật</Link>
+                  </li>
+                  <li>
+                    <Link href="/login" className="hover:text-emerald-400 transition-colors">Đăng nhập / Đăng ký</Link>
+                  </li>
+                </ul>
+              </div>
+            </div>
+
+            {/* Bottom copyright line */}
+            <div className="pt-6 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-stone-500 font-semibold">
+              <p>© 2026 Tự Học Tài Chính. Tất cả quyền được bảo lưu.</p>
+              <p className="flex items-center gap-1 text-[11px] text-stone-400">
+                <span>Học tài chính miễn phí cho người Việt 🇻🇳</span>
+              </p>
+            </div>
           </div>
         </footer>
       </div>

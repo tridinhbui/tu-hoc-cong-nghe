@@ -561,42 +561,56 @@ export default function CommunityFeedClient({ embedded = false }: { embedded?: b
         }
       `}</style>
       {!embedded && (
-        <div className="finsocial-hero-gradient border-b border-stone-200/70 bg-[radial-gradient(circle_at_16%_20%,rgba(16,185,129,0.10),transparent_26%),radial-gradient(circle_at_88%_12%,rgba(59,130,246,0.10),transparent_24%),linear-gradient(120deg,rgba(255,255,255,0.94),rgba(250,250,249,0.88),rgba(255,255,255,0.94))] backdrop-blur-xl dark:border-stone-800/70 dark:bg-[radial-gradient(circle_at_16%_20%,rgba(16,185,129,0.14),transparent_26%),radial-gradient(circle_at_88%_12%,rgba(139,92,246,0.12),transparent_24%),linear-gradient(120deg,rgba(12,10,9,0.92),rgba(28,25,23,0.88),rgba(12,10,9,0.92))]">
-          <div className="max-w-6xl mx-auto px-4 sm:px-6 py-6">
-            <Link href="/dashboard" className="text-stone-500 dark:text-stone-400 hover:opacity-70 text-sm font-semibold flex items-center gap-1 w-fit">
+        <div className="relative overflow-hidden border-b border-stone-800 bg-stone-950 text-white">
+          {/* Saigon Skyline Background Image */}
+          <div className="absolute inset-0 pointer-events-none overflow-hidden">
+            <Image
+              src="/saigon-skyline.jpg"
+              alt="Saigon Skyline background"
+              fill
+              priority
+              sizes="100vw"
+              className="object-cover opacity-40 brightness-90 contrast-110 blur-[2px] scale-105"
+            />
+            <div className="absolute inset-0 bg-gradient-to-r from-stone-950/95 via-stone-950/80 to-emerald-950/90" />
+            <div className="absolute inset-0 bg-gradient-to-t from-stone-950 via-transparent to-stone-950/40" />
+          </div>
+
+          <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 py-8 sm:py-10">
+            <Link href="/dashboard" className="text-stone-300 hover:text-white text-sm font-semibold flex items-center gap-1.5 w-fit bg-stone-900/60 px-3 py-1.5 rounded-full backdrop-blur-md border border-stone-800 transition-colors">
               <ArrowLeft className="w-4 h-4" /> Về Dashboard
             </Link>
-            <div className="mt-5 flex flex-col gap-5 lg:flex-row lg:items-end lg:justify-between">
+            <div className="mt-5 flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
               <div className="max-w-2xl">
-                <div className="inline-flex items-center gap-2 rounded-full bg-stone-100 px-3 py-1 text-[11px] font-black uppercase tracking-[0.16em] text-stone-700 dark:bg-stone-800 dark:text-stone-200">
-                  <MessageCircle className="h-3.5 w-3.5" />
-                  FinSocial
+                <div className="inline-flex items-center gap-2 rounded-full border border-emerald-400/40 bg-emerald-950/80 px-3.5 py-1 text-[11px] font-black uppercase tracking-[0.18em] text-emerald-300 backdrop-blur-md shadow-lg">
+                  <MessageCircle className="h-3.5 w-3.5 text-emerald-400" />
+                  Mạng Xã Hội Học Tài Chính
                 </div>
-                <h1 className="mt-3 text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight text-stone-950 dark:text-stone-50">
-                  FinSocial
+                <h1 className="mt-3 text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight text-white drop-shadow-md">
+                  FinSocial Feed
                 </h1>
-                <p className="mt-2 max-w-2xl text-sm sm:text-base leading-relaxed text-stone-500 dark:text-stone-400">
-                  Mạng xã hội học tài chính: đăng bản tin ngắn, câu hỏi, phân tích, ảnh thành tựu và cập nhật học tập của mọi người.
+                <p className="mt-2.5 max-w-xl text-sm sm:text-base leading-relaxed text-stone-200 drop-shadow-sm font-medium">
+                  Nơi cộng đồng chia sẻ bản tin ngắn, câu hỏi, phân tích BCTC thực tế và ăn mừng thành tựu học tập mỗi ngày.
                 </p>
               </div>
               <div className="grid grid-cols-3 gap-3 sm:min-w-[420px]">
                 {[
-                  { label: "Bài viết", value: posts.length },
-                  { label: "Cảm xúc", value: totalReactions },
-                  { label: "Bình luận", value: totalComments },
+                  { label: "Bài viết", value: posts.length, color: "text-sky-300 bg-stone-900/80 border-sky-500/30" },
+                  { label: "Cảm xúc", value: totalReactions, color: "text-amber-300 bg-stone-900/80 border-amber-500/30" },
+                  { label: "Bình luận", value: totalComments, color: "text-emerald-300 bg-stone-900/80 border-emerald-500/30" },
                 ].map((item) => (
                   <motion.div
                     key={item.label}
-                    className={`rounded-[18px] px-3 py-3 text-center shadow-[0_10px_22px_-22px_rgba(15,23,42,0.16)] ${item.label === "Bài viết" ? "bg-sky-50 dark:bg-sky-950/25" : item.label === "Cảm xúc" ? "bg-amber-50 dark:bg-amber-950/25" : "bg-violet-50 dark:bg-violet-950/25"}`}
+                    className={`rounded-2xl px-4 py-3.5 text-center border backdrop-blur-md shadow-xl ${item.color}`}
                     initial={{ opacity: 0, y: 10 }}
                     animate={{ opacity: 1, y: 0 }}
                     whileHover={{ y: -4 }}
                     transition={{ type: "spring", stiffness: 360, damping: 26 }}
                   >
-                    <p className={`text-2xl font-black ${item.label === "Bài viết" ? "text-sky-600 dark:text-sky-300" : item.label === "Cảm xúc" ? "text-amber-600 dark:text-amber-300" : "text-violet-600 dark:text-violet-300"}`}>
+                    <p className={`text-2xl sm:text-3xl font-black ${item.color.split(" ")[0]}`}>
                       <AnimatedCounter value={item.value} />
                     </p>
-                    <p className="text-[10px] font-bold uppercase tracking-wide text-stone-400">{item.label}</p>
+                    <p className="text-[10px] font-black uppercase tracking-widest text-stone-300 mt-0.5">{item.label}</p>
                   </motion.div>
                 ))}
               </div>
@@ -1080,23 +1094,30 @@ export default function CommunityFeedClient({ embedded = false }: { embedded?: b
                         </AnimatePresence>
 
                         {reactionPickerFor === post.id && user && (
-                          <div className="absolute left-0 bottom-full z-30 mb-1.5 flex items-center gap-1.5 rounded-full bg-white p-1.5 shadow-[0_12px_24px_-18px_rgba(15,23,42,0.24)] dark:bg-stone-900 animate-in fade-in zoom-in-95 duration-150">
-                            {REACTION_OPTIONS.map((emoji) => (
+                          <motion.div
+                            initial={{ opacity: 0, y: 8, scale: 0.95 }}
+                            animate={{ opacity: 1, y: 0, scale: 1 }}
+                            exit={{ opacity: 0, y: 8, scale: 0.95 }}
+                            className="absolute left-0 bottom-full z-50 mb-2.5 flex items-center gap-1.5 rounded-2xl bg-white/95 dark:bg-stone-900/95 p-1.5 shadow-[0_16px_40px_rgba(0,0,0,0.3)] border border-stone-200 dark:border-stone-700 backdrop-blur-md whitespace-nowrap"
+                          >
+                            {REACTION_OPTIONS.map((item) => (
                               <button
-                                key={emoji}
+                                key={item}
                                 type="button"
                                 onClick={() => {
-                                  void handleReact(post, emoji);
+                                  void handleReact(post, item);
                                   setReactionPickerFor(null);
                                 }}
-                                className={`rounded-full p-1.5 text-lg transition duration-150 ease-out hover:scale-125 hover:bg-stone-100 dark:hover:bg-stone-800 active:scale-95 cursor-pointer ${
-                                  post.my_reaction === emoji ? "bg-emerald-100/70" : ""
+                                className={`flex items-center gap-1 px-2.5 py-1.5 rounded-xl text-xs font-bold transition-all duration-150 hover:scale-105 active:scale-95 cursor-pointer shrink-0 ${
+                                  post.my_reaction === item
+                                    ? "bg-emerald-100 text-emerald-800 dark:bg-emerald-950 dark:text-emerald-300 border border-emerald-300 dark:border-emerald-800"
+                                    : "bg-stone-100 dark:bg-stone-800 text-stone-700 dark:text-stone-200 hover:bg-stone-200 dark:hover:bg-stone-700"
                                 }`}
                               >
-                                {emoji}
+                                <span>{item}</span>
                               </button>
                             ))}
-                          </div>
+                          </motion.div>
                         )}
                       </div>
 
