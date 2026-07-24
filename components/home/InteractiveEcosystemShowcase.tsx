@@ -5,7 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 import {
-  Gamepad2,
+  GraduationCap,
   Users,
   MessageSquareMore,
   ArrowRight,
@@ -21,12 +21,13 @@ import {
   TrendingUp,
   ThumbsUp,
   Bookmark,
+  Target,
+  BookOpen,
 } from "lucide-react";
-import InteractiveKingdomPreview from "@/components/home/InteractiveKingdomPreview";
 
-type TabId = "game" | "study-group" | "finsocial";
+type TabId = "roadmap" | "study-group" | "finsocial";
 
-// Sample Posts for FinSocial Preview
+// Sample Posts for FinSocial Preview (Light Mode Theme)
 const FINSOCIAL_POSTS = [
   {
     id: "p1",
@@ -63,7 +64,11 @@ const FINSOCIAL_POSTS = [
 ];
 
 export default function InteractiveEcosystemShowcase() {
-  const [activeTab, setActiveTab] = useState<TabId>("game");
+  const [activeTab, setActiveTab] = useState<TabId>("roadmap");
+
+  // Active Recall Quiz Sampler State for Roadmap Tab
+  const [selectedAnswer, setSelectedAnswer] = useState<number | null>(null);
+  const [quizScore, setQuizScore] = useState<number>(0);
 
   // Study Group Interactive Mock State
   const [cheerLog, setCheerLog] = useState<{ id: string; user: string; text: string }[]>([
@@ -112,57 +117,57 @@ export default function InteractiveEcosystemShowcase() {
     <div className="space-y-8">
       {/* Top 3 Interactive Feature Selection Cards */}
       <div className="grid gap-4 sm:grid-cols-3">
-        {/* Card 1: Game Kingdom */}
+        {/* Card 1: Lộ Trình Học chuẩn Active Recall */}
         <div
-          onClick={() => setActiveTab("game")}
-          className={`animated-border-card group cursor-pointer overflow-hidden rounded-[22px] border-2 transition-all duration-300 backdrop-blur-md p-5 flex flex-col justify-between ${
-            activeTab === "game"
-              ? "border-amber-400 bg-amber-950/20 dark:bg-amber-950/40 shadow-[0_12px_36px_-16px_rgba(245,158,11,0.35)] ring-2 ring-amber-400/40 scale-[1.01]"
-              : "border-stone-200 dark:border-stone-800 bg-white/80 dark:bg-stone-900/80 hover:border-amber-400/60 hover:bg-white dark:hover:bg-stone-900"
+          onClick={() => setActiveTab("roadmap")}
+          className={`animated-border-card group cursor-pointer overflow-hidden rounded-3xl border-2 transition-all duration-300 backdrop-blur-md p-5 flex flex-col justify-between ${
+            activeTab === "roadmap"
+              ? "border-emerald-500 bg-emerald-50/80 shadow-[0_12px_36px_-16px_rgba(16,185,129,0.35)] ring-2 ring-emerald-400/40 scale-[1.01]"
+              : "border-stone-200 dark:border-stone-800 bg-white hover:border-emerald-400/60"
           }`}
         >
           <div>
             <div className="flex items-center justify-between mb-3">
-              <span className="inline-flex items-center gap-1.5 rounded-full border border-amber-300/40 bg-amber-500/10 px-3 py-1 text-[11px] font-black uppercase text-amber-600 dark:text-amber-300">
-                <Gamepad2 className="w-3.5 h-3.5 text-amber-500" />
-                Game Kingdom
+              <span className="inline-flex items-center gap-1.5 rounded-full border border-emerald-300 bg-emerald-100/80 px-3 py-1 text-[11px] font-black uppercase text-emerald-800">
+                <Target className="w-3.5 h-3.5 text-emerald-600" />
+                Lộ Trình Ôn Cấp
               </span>
-              {activeTab === "game" && (
+              {activeTab === "roadmap" && (
                 <span className="relative flex h-2.5 w-2.5">
-                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-amber-400 opacity-75" />
-                  <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-amber-500" />
+                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
+                  <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-500" />
                 </span>
               )}
             </div>
-            <h3 className="text-base sm:text-lg font-black text-stone-950 dark:text-stone-50 leading-snug">
-              Học tài chính như mở bản đồ vương quốc
+            <h3 className="text-base sm:text-lg font-black text-stone-900 leading-snug">
+              Học tài chính theo lộ trình chặng chuẩn hóa
             </h3>
-            <p className="mt-2 text-xs text-stone-600 dark:text-stone-400 leading-relaxed">
-              Làm nhiệm vụ, thử thách mini game, tích lũy XP và mở khóa các công trình tài chính thực tế.
+            <p className="mt-2 text-xs text-stone-600 leading-relaxed">
+              Tích hợp Active Recall chủ động, theo dõi tiến độ từng chặng từ vỡ lòng đến chuyên sâu.
             </p>
           </div>
 
-          <div className="mt-4 pt-3 border-t border-stone-200/60 dark:border-stone-800/60 flex items-center justify-between text-xs font-black">
-            <span className={activeTab === "game" ? "text-amber-600 dark:text-amber-400" : "text-stone-400"}>
-              {activeTab === "game" ? "● Đang xem Live Preview" : "Bấm để xem thử"}
+          <div className="mt-4 pt-3 border-t border-emerald-200/60 flex items-center justify-between text-xs font-black">
+            <span className={activeTab === "roadmap" ? "text-emerald-700" : "text-stone-400"}>
+              {activeTab === "roadmap" ? "● Đang xem Live Preview" : "Bấm để xem thử"}
             </span>
-            <ArrowRight className={`w-4 h-4 transition-transform ${activeTab === "game" ? "translate-x-1 text-amber-500" : "text-stone-400 group-hover:translate-x-1"}`} />
+            <ArrowRight className={`w-4 h-4 transition-transform ${activeTab === "roadmap" ? "translate-x-1 text-emerald-600" : "text-stone-400 group-hover:translate-x-1"}`} />
           </div>
         </div>
 
-        {/* Card 2: Học nhóm */}
+        {/* Card 2: Học nhóm 3D */}
         <div
           onClick={() => setActiveTab("study-group")}
-          className={`animated-border-card group cursor-pointer overflow-hidden rounded-[22px] border-2 transition-all duration-300 backdrop-blur-md p-5 flex flex-col justify-between ${
+          className={`animated-border-card group cursor-pointer overflow-hidden rounded-3xl border-2 transition-all duration-300 backdrop-blur-md p-5 flex flex-col justify-between ${
             activeTab === "study-group"
-              ? "border-emerald-400 bg-emerald-950/20 dark:bg-emerald-950/40 shadow-[0_12px_36px_-16px_rgba(16,185,129,0.35)] ring-2 ring-emerald-400/40 scale-[1.01]"
-              : "border-stone-200 dark:border-stone-800 bg-white/80 dark:bg-stone-900/80 hover:border-emerald-400/60 hover:bg-white dark:hover:bg-stone-900"
+              ? "border-emerald-500 bg-emerald-50/80 shadow-[0_12px_36px_-16px_rgba(16,185,129,0.35)] ring-2 ring-emerald-400/40 scale-[1.01]"
+              : "border-stone-200 dark:border-stone-800 bg-white hover:border-emerald-400/60"
           }`}
         >
           <div>
             <div className="flex items-center justify-between mb-3">
-              <span className="inline-flex items-center gap-1.5 rounded-full border border-emerald-300/40 bg-emerald-500/10 px-3 py-1 text-[11px] font-black uppercase text-emerald-600 dark:text-emerald-300">
-                <Users className="w-3.5 h-3.5 text-emerald-500" />
+              <span className="inline-flex items-center gap-1.5 rounded-full border border-emerald-300 bg-emerald-100/80 px-3 py-1 text-[11px] font-black uppercase text-emerald-800">
+                <Users className="w-3.5 h-3.5 text-emerald-600" />
                 Học Nhóm (3D)
               </span>
               {activeTab === "study-group" && (
@@ -172,35 +177,35 @@ export default function InteractiveEcosystemShowcase() {
                 </span>
               )}
             </div>
-            <h3 className="text-base sm:text-lg font-black text-stone-950 dark:text-stone-50 leading-snug">
+            <h3 className="text-base sm:text-lg font-black text-stone-900 leading-snug">
               Phòng học chung không để bạn tự học 1 mình
             </h3>
-            <p className="mt-2 text-xs text-stone-600 dark:text-stone-400 leading-relaxed">
+            <p className="mt-2 text-xs text-stone-600 leading-relaxed">
               Bàn tròn 3D ảo, ghép nhóm theo chủ đề, check-in nhận XP và khung chat nhóm tương tác.
             </p>
           </div>
 
-          <div className="mt-4 pt-3 border-t border-stone-200/60 dark:border-stone-800/60 flex items-center justify-between text-xs font-black">
-            <span className={activeTab === "study-group" ? "text-emerald-600 dark:text-emerald-400" : "text-stone-400"}>
+          <div className="mt-4 pt-3 border-t border-emerald-200/60 flex items-center justify-between text-xs font-black">
+            <span className={activeTab === "study-group" ? "text-emerald-700" : "text-stone-400"}>
               {activeTab === "study-group" ? "● Đang xem Live Preview" : "Bấm để xem thử"}
             </span>
-            <ArrowRight className={`w-4 h-4 transition-transform ${activeTab === "study-group" ? "translate-x-1 text-emerald-500" : "text-stone-400 group-hover:translate-x-1"}`} />
+            <ArrowRight className={`w-4 h-4 transition-transform ${activeTab === "study-group" ? "translate-x-1 text-emerald-600" : "text-stone-400 group-hover:translate-x-1"}`} />
           </div>
         </div>
 
         {/* Card 3: FinSocial */}
         <div
           onClick={() => setActiveTab("finsocial")}
-          className={`animated-border-card group cursor-pointer overflow-hidden rounded-[22px] border-2 transition-all duration-300 backdrop-blur-md p-5 flex flex-col justify-between ${
+          className={`animated-border-card group cursor-pointer overflow-hidden rounded-3xl border-2 transition-all duration-300 backdrop-blur-md p-5 flex flex-col justify-between ${
             activeTab === "finsocial"
-              ? "border-sky-400 bg-sky-950/20 dark:bg-sky-950/40 shadow-[0_12px_36px_-16px_rgba(56,189,248,0.35)] ring-2 ring-sky-400/40 scale-[1.01]"
-              : "border-stone-200 dark:border-stone-800 bg-white/80 dark:bg-stone-900/80 hover:border-sky-400/60 hover:bg-white dark:hover:bg-stone-900"
+              ? "border-sky-500 bg-sky-50/80 shadow-[0_12px_36px_-16px_rgba(56,189,248,0.35)] ring-2 ring-sky-400/40 scale-[1.01]"
+              : "border-stone-200 dark:border-stone-800 bg-white hover:border-sky-400/60"
           }`}
         >
           <div>
             <div className="flex items-center justify-between mb-3">
-              <span className="inline-flex items-center gap-1.5 rounded-full border border-sky-300/40 bg-sky-500/10 px-3 py-1 text-[11px] font-black uppercase text-sky-600 dark:text-sky-300">
-                <MessageSquareMore className="w-3.5 h-3.5 text-sky-500" />
+              <span className="inline-flex items-center gap-1.5 rounded-full border border-sky-300 bg-sky-100/80 px-3 py-1 text-[11px] font-black uppercase text-sky-800">
+                <MessageSquareMore className="w-3.5 h-3.5 text-sky-600" />
                 FinSocial
               </span>
               {activeTab === "finsocial" && (
@@ -210,39 +215,133 @@ export default function InteractiveEcosystemShowcase() {
                 </span>
               )}
             </div>
-            <h3 className="text-base sm:text-lg font-black text-stone-950 dark:text-stone-50 leading-snug">
+            <h3 className="text-base sm:text-lg font-black text-stone-900 leading-snug">
               Mạng xã hội học tài chính chia sẻ bài ngắn
             </h3>
-            <p className="mt-2 text-xs text-stone-600 dark:text-stone-400 leading-relaxed">
+            <p className="mt-2 text-xs text-stone-600 leading-relaxed">
               Feed tin tức bài viết ngắn, hỏi đáp thực tế, thảo luận phân tích BCTC và thả cảm xúc.
             </p>
           </div>
 
-          <div className="mt-4 pt-3 border-t border-stone-200/60 dark:border-stone-800/60 flex items-center justify-between text-xs font-black">
-            <span className={activeTab === "finsocial" ? "text-sky-600 dark:text-sky-400" : "text-stone-400"}>
+          <div className="mt-4 pt-3 border-t border-sky-200/60 flex items-center justify-between text-xs font-black">
+            <span className={activeTab === "finsocial" ? "text-sky-700" : "text-stone-400"}>
               {activeTab === "finsocial" ? "● Đang xem Live Preview" : "Bấm để xem thử"}
             </span>
-            <ArrowRight className={`w-4 h-4 transition-transform ${activeTab === "finsocial" ? "translate-x-1 text-sky-500" : "text-stone-400 group-hover:translate-x-1"}`} />
+            <ArrowRight className={`w-4 h-4 transition-transform ${activeTab === "finsocial" ? "translate-x-1 text-sky-600" : "text-stone-400 group-hover:translate-x-1"}`} />
           </div>
         </div>
       </div>
 
-      {/* Main Dynamic Stage Display */}
+      {/* Main Dynamic Stage Display (PURE LIGHT MODE THEME) */}
       <AnimatePresence mode="wait">
-        {/* VIEW 1: GAME KINGDOM */}
-        {activeTab === "game" && (
+        {/* VIEW 1: ROADMAP & ACTIVE RECALL SAMPLER (LIGHT MODE) */}
+        {activeTab === "roadmap" && (
           <motion.div
-            key="game-stage"
+            key="roadmap-stage"
             initial={{ opacity: 0, y: 15 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -15 }}
             transition={{ duration: 0.3 }}
+            className="overflow-hidden rounded-3xl border-2 border-emerald-400/60 bg-white shadow-xl text-stone-900 p-5 sm:p-7 relative"
           >
-            <InteractiveKingdomPreview />
+            <div className="flex flex-wrap items-center justify-between gap-3 pb-4 border-b border-stone-200">
+              <div className="flex items-center gap-2">
+                <span className="p-2 rounded-xl bg-emerald-100 text-emerald-700 font-black">🎯</span>
+                <div>
+                  <h4 className="text-base font-black text-stone-900">Lộ Trình Học Tài Chính Cá Nhân & CFA</h4>
+                  <p className="text-xs text-stone-500 font-medium">Thực hành Active Recall đố nhanh ngay tại chỗ</p>
+                </div>
+              </div>
+              <div className="px-3 py-1 rounded-full bg-emerald-50 border border-emerald-300 text-emerald-700 font-black text-xs">
+                Điểm tích lũy: +{quizScore} XP
+              </div>
+            </div>
+
+            <div className="mt-5 grid gap-6 lg:grid-cols-12 items-center">
+              {/* Left Column: Progress Roadmap Steps */}
+              <div className="lg:col-span-6 space-y-3">
+                {[
+                  { step: "Chặng 1", title: "Vỡ lòng Tài chính & Quản lý Tiền mặt", status: "Đã hoàn thành 100%", active: false },
+                  { step: "Chặng 2", title: "Báo cáo Tài chính & Phân tích Chỉ số ROE/PE", status: "Đang học (80%)", active: true },
+                  { step: "Chặng 3", title: "Định giá Cổ phiếu & Mô hình DCF", status: "Khóa (Cần đỗ Chặng 2)", active: false },
+                ].map((item, idx) => (
+                  <div
+                    key={item.step}
+                    className={`p-4 rounded-2xl border transition-all ${
+                      item.active
+                        ? "border-emerald-500 bg-emerald-50/80 shadow-md ring-2 ring-emerald-400/30"
+                        : "border-stone-200 bg-stone-50/60"
+                    }`}
+                  >
+                    <div className="flex items-center justify-between text-xs font-black">
+                      <span className={item.active ? "text-emerald-700" : "text-stone-500"}>{item.step}</span>
+                      <span className={item.active ? "text-emerald-600 bg-white px-2 py-0.5 rounded-full border border-emerald-300" : "text-stone-400"}>
+                        {item.status}
+                      </span>
+                    </div>
+                    <p className="text-sm font-black text-stone-900 mt-1">{item.title}</p>
+                  </div>
+                ))}
+              </div>
+
+              {/* Right Column: Mini Interactive Quiz Sampler */}
+              <div className="lg:col-span-6 p-5 rounded-2xl border-2 border-emerald-300 bg-gradient-to-br from-emerald-50/60 to-teal-50/40 space-y-4">
+                <div className="flex items-center justify-between">
+                  <span className="text-[10px] font-black uppercase text-emerald-800 bg-emerald-200/80 px-2.5 py-0.5 rounded-full">
+                    ⚡ ACTIVE RECALL SAMPLER
+                  </span>
+                  <span className="text-xs font-bold text-stone-500">Câu 1/1</span>
+                </div>
+
+                <p className="text-xs sm:text-sm font-black text-stone-900 leading-snug">
+                  ❓ Khi một doanh nghiệp có dòng tiền CFO âm liên tục 3 năm nhưng lợi nhuận ròng vẫn dương, đâu là nguyên nhân chính?
+                </p>
+
+                <div className="space-y-2">
+                  {[
+                    "Doanh nghiệp bán hàng ghi nhận doanh thu nhưng chưa thu được tiền (Phải thu tăng)",
+                    "Doanh nghiệp vừa nhận khoản đầu tư lớn từ cổ đông",
+                    "Doanh nghiệp chi trả cổ tức quá mức",
+                  ].map((opt, oIdx) => {
+                    const isCorrect = oIdx === 0;
+                    const isSelected = selectedAnswer === oIdx;
+
+                    return (
+                      <button
+                        key={opt}
+                        onClick={() => {
+                          setSelectedAnswer(oIdx);
+                          if (isCorrect) setQuizScore(45);
+                        }}
+                        className={`w-full text-left p-3 rounded-xl text-xs font-bold transition-all border cursor-pointer ${
+                          isSelected
+                            ? isCorrect
+                              ? "bg-emerald-500 text-stone-950 border-emerald-400 shadow-md font-black"
+                              : "bg-rose-500 text-white border-rose-400"
+                            : "bg-white text-stone-800 border-stone-200 hover:border-emerald-400"
+                        }`}
+                      >
+                        {opt}
+                      </button>
+                    );
+                  })}
+                </div>
+
+                {selectedAnswer !== null && (
+                  <div className="p-3 rounded-xl bg-white border border-emerald-300 text-xs font-medium text-stone-800 animate-in fade-in">
+                    {selectedAnswer === 0 ? (
+                      <span className="text-emerald-700 font-bold">🎉 Chính xác! +45 XP. Dòng tiền CFO phản ánh tiền thực về két.</span>
+                    ) : (
+                      <span className="text-rose-600 font-bold">❌ Chưa chính xác. Đáp án đúng là Phải thu gia tăng mạnh!</span>
+                    )}
+                  </div>
+                )}
+              </div>
+            </div>
           </motion.div>
         )}
 
-        {/* VIEW 2: HỌC NHÓM 3D & LIVE CHAT PREVIEW */}
+        {/* VIEW 2: HỌC NHÓM 3D & LIVE CHAT PREVIEW (LIGHT MODE) */}
         {activeTab === "study-group" && (
           <motion.div
             key="study-stage"
@@ -250,29 +349,17 @@ export default function InteractiveEcosystemShowcase() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -15 }}
             transition={{ duration: 0.3 }}
-            className="overflow-hidden rounded-3xl border-2 border-emerald-500/40 bg-stone-950 shadow-[0_24px_60px_-20px_rgba(16,185,129,0.3)] text-white relative p-4 sm:p-6 lg:p-8"
+            className="overflow-hidden rounded-3xl border-2 border-emerald-400/60 bg-white shadow-xl text-stone-900 p-4 sm:p-6 lg:p-8 relative"
           >
-            {/* Ambient Background */}
-            <div className="absolute inset-0 pointer-events-none">
-              <Image
-                src="/images/study-group-cover.jpg"
-                alt="Study group background"
-                fill
-                sizes="100vw"
-                className="object-cover opacity-25 brightness-75"
-              />
-              <div className="absolute inset-0 bg-gradient-to-b from-stone-950/90 via-stone-950/80 to-emerald-950/90" />
-            </div>
-
-            <div className="relative z-10 grid gap-6 lg:grid-cols-12 items-stretch">
-              {/* Left Column: 3D Roundtable Stage Preview */}
-              <div className="lg:col-span-7 flex flex-col justify-between rounded-3xl border-2 border-emerald-500/40 bg-gradient-to-b from-stone-900 via-stone-950 to-emerald-950/80 p-5 shadow-2xl relative overflow-hidden text-white min-h-[420px]">
+            <div className="grid gap-6 lg:grid-cols-12 items-stretch">
+              {/* Left Column: 3D Roundtable Stage Preview (Light Theme) */}
+              <div className="lg:col-span-7 flex flex-col justify-between rounded-3xl border-2 border-emerald-300 bg-gradient-to-b from-emerald-50/80 via-teal-50/40 to-stone-50 p-5 shadow-sm relative overflow-hidden text-stone-900 min-h-[420px]">
                 <div className="flex items-center justify-between shrink-0 mb-2">
-                  <span className="text-[10px] font-black uppercase tracking-widest text-emerald-300 bg-emerald-950/80 px-3 py-1 rounded-full border border-emerald-500/40 backdrop-blur-md">
+                  <span className="text-[10px] font-black uppercase tracking-widest text-emerald-800 bg-emerald-100 px-3 py-1 rounded-full border border-emerald-300">
                     🛋️ BÀN HỌC 3D · TÀI CHÍNH CÁ NHÂN
                   </span>
-                  <div className="flex items-center gap-1 bg-stone-900/80 backdrop-blur-md px-2 py-1 rounded-2xl border border-stone-700/60 shadow-md">
-                    <span className="text-[9px] font-bold text-stone-400 mr-1">Nút Cổ Vũ:</span>
+                  <div className="flex items-center gap-1 bg-white px-2 py-1 rounded-2xl border border-stone-200 shadow-xs">
+                    <span className="text-[9px] font-bold text-stone-500 mr-1">Cổ Vũ:</span>
                     {["👋", "❤️", "🔔", "🔥"].map((emoji) => (
                       <button
                         key={emoji}
@@ -287,21 +374,20 @@ export default function InteractiveEcosystemShowcase() {
 
                 {/* Center 3D Roundtable */}
                 <div className="relative flex-1 min-h-[260px] flex items-center justify-center my-auto">
-                  <div className="relative w-40 h-40 sm:w-48 sm:h-48 rounded-full bg-gradient-to-b from-stone-800/90 via-amber-950/90 to-stone-900 border-4 border-amber-500/60 shadow-[0_0_60px_rgba(245,158,11,0.3)] flex flex-col items-center justify-center text-center p-3 z-10 shrink-0">
-                    <div className="absolute inset-2 rounded-full border border-dashed border-amber-400/40 animate-spin-slow pointer-events-none" />
+                  <div className="relative w-40 h-40 sm:w-48 sm:h-48 rounded-full bg-gradient-to-b from-amber-100 via-amber-50 to-emerald-50 border-4 border-amber-400 shadow-xl flex flex-col items-center justify-center text-center p-3 z-10 shrink-0">
                     <span className="text-3xl mb-0.5 animate-bounce inline-block">🔮</span>
-                    <p className="text-[10px] font-black text-amber-300 uppercase tracking-widest">
+                    <p className="text-[10px] font-black text-amber-800 uppercase tracking-widest">
                       BÀN HỌC PHÒNG #102
                     </p>
-                    <p className="text-xs sm:text-sm font-black text-white mt-0.5">
+                    <p className="text-xs sm:text-sm font-black text-stone-900 mt-0.5">
                       480 / 500 XP
                     </p>
-                    <span className="mt-1 inline-block text-[9px] font-extrabold text-emerald-300 bg-emerald-950/80 px-2 py-0.5 rounded-full border border-emerald-500/40">
+                    <span className="mt-1 inline-block text-[9px] font-extrabold text-emerald-800 bg-emerald-200/80 px-2 py-0.5 rounded-full border border-emerald-400">
                       ⚡ +15% XP BONUS
                     </span>
                   </div>
 
-                  {/* Seated Pods */}
+                  {/* Seated Pods (Light Theme) */}
                   {[
                     { name: "Hà Tường Vy", level: 5, lessons: 42, top: true, pos: "absolute -top-1 left-1/2 -translate-x-1/2" },
                     { name: "Hà Hồng", level: 2, lessons: 6, pos: "absolute top-6 left-2 sm:left-4" },
@@ -311,81 +397,77 @@ export default function InteractiveEcosystemShowcase() {
                   ].map((m) => (
                     <div
                       key={m.name}
-                      className={`${m.pos} flex flex-col items-center text-center p-2 rounded-2xl border transition-all duration-300 w-24 sm:w-28 bg-stone-900/90 backdrop-blur-md ${
+                      className={`${m.pos} flex flex-col items-center text-center p-2 rounded-2xl border transition-all duration-300 w-24 sm:w-28 bg-white shadow-md ${
                         m.me
-                          ? "border-emerald-400 bg-emerald-950/80 shadow-[0_0_20px_rgba(16,185,129,0.4)] scale-105"
-                          : "border-stone-700/80 hover:border-amber-400/60"
+                          ? "border-emerald-500 bg-emerald-50 ring-2 ring-emerald-400/40 scale-105"
+                          : "border-stone-200 hover:border-emerald-400"
                       }`}
                     >
                       {m.top && <span className="absolute -top-3 text-base animate-bounce drop-shadow-md z-30">👑</span>}
-                      <div className="w-8 h-8 rounded-full bg-emerald-500/20 border border-emerald-400 flex items-center justify-center font-black text-xs text-white mb-0.5">
+                      <div className="w-8 h-8 rounded-full bg-emerald-100 border border-emerald-400 flex items-center justify-center font-black text-xs text-emerald-900 mb-0.5">
                         {m.name.slice(0, 2).toUpperCase()}
                       </div>
-                      <p className="text-[9px] font-black text-white truncate max-w-[80px]">{m.name}</p>
-                      <span className="text-[8px] font-extrabold text-emerald-400 mt-0.5">🔥 {m.lessons} bài</span>
+                      <p className="text-[9px] font-black text-stone-900 truncate max-w-[80px]">{m.name}</p>
+                      <span className="text-[8px] font-extrabold text-emerald-700 mt-0.5">🔥 {m.lessons} bài</span>
                     </div>
                   ))}
                 </div>
 
-                <div className="relative z-10 text-center text-[10px] text-stone-400 font-semibold pt-1">
-                  💡 Bấm thử các nút cổ vũ phía trên để gửi tin nhắn tương tác trực tiếp sang khung chat!
+                <div className="relative z-10 text-center text-[10px] text-stone-500 font-semibold pt-1">
+                  💡 Bấm thử các nút cổ vũ phía trên để gửi tin nhắn tương tác trực tiếp!
                 </div>
               </div>
 
-              {/* Right Column: Group Chat Simulator */}
-              <div className="lg:col-span-5 flex flex-col justify-between rounded-3xl border-2 border-stone-800 bg-stone-900 p-4 shadow-xl text-white min-h-[420px]">
-                <div className="flex items-center justify-between border-b border-stone-800 pb-3 mb-3">
-                  <h4 className="text-xs font-black uppercase text-stone-200 tracking-wider flex items-center gap-2">
+              {/* Right Column: Group Chat Simulator (Light Theme) */}
+              <div className="lg:col-span-5 flex flex-col justify-between rounded-3xl border-2 border-stone-200 bg-stone-50 p-4 shadow-sm text-stone-900 min-h-[420px]">
+                <div className="flex items-center justify-between border-b border-stone-200 pb-3 mb-3">
+                  <h4 className="text-xs font-black uppercase text-stone-800 tracking-wider flex items-center gap-2">
                     <span>💬 Trò chuyện nhóm Live</span>
                   </h4>
-                  <span className="text-[10px] font-bold text-emerald-400 bg-emerald-950 px-2 py-0.5 rounded-full border border-emerald-800">
+                  <span className="text-[10px] font-bold text-emerald-700 bg-emerald-100 px-2 py-0.5 rounded-full border border-emerald-300">
                     Online
                   </span>
                 </div>
 
                 {/* Message Log */}
-                <div className="flex-1 overflow-y-auto space-y-2.5 max-h-[280px] pr-1 scrollbar-thin">
-                  <div className="p-2.5 rounded-2xl bg-amber-950/40 border border-amber-900 text-xs">
-                    <p className="text-[9px] font-black text-amber-400">Tài Tài · Quản lý nhóm</p>
-                    <p className="text-[11px] text-stone-200 mt-0.5">Cập nhật hôm nay: Hà Tường Vy, Hà Hồng đã học bài. Cùng cố gắng nhé!</p>
+                <div className="flex-1 overflow-y-auto space-y-2.5 max-h-[280px] pr-1">
+                  <div className="p-2.5 rounded-2xl bg-amber-50 border border-amber-200 text-xs">
+                    <p className="text-[9px] font-black text-amber-800">Tài Tài · Quản lý nhóm</p>
+                    <p className="text-[11px] text-stone-700 mt-0.5">Cập nhật hôm nay: Hà Tường Vy, Hà Hồng đã học bài. Cùng cố gắng nhé!</p>
                   </div>
 
-                  {cheerLog.map((item) => (
+                  {cheerLog.map((log) => (
                     <div
-                      key={item.id}
-                      className={`flex flex-col ${item.user === "Bạn" ? "items-end" : "items-start"}`}
+                      key={log.id}
+                      className={`p-2.5 rounded-2xl text-xs shadow-xs border ${
+                        log.user === "Bạn"
+                          ? "bg-emerald-500 text-stone-950 font-bold border-emerald-400 ml-4"
+                          : "bg-white border-stone-200 text-stone-800 mr-4"
+                      }`}
                     >
-                      <div
-                        className={`rounded-2xl px-3 py-2 text-xs max-w-[85%] ${
-                          item.user === "Bạn"
-                            ? "bg-emerald-600 text-white rounded-tr-xs"
-                            : "bg-stone-800 text-stone-100 rounded-tl-xs border border-stone-700"
-                        }`}
-                      >
-                        {item.user !== "Bạn" && (
-                          <p className="text-[9px] font-bold text-emerald-400 mb-0.5">{item.user}</p>
-                        )}
-                        <p>{item.text}</p>
-                      </div>
+                      <p className={`text-[9px] font-black ${log.user === "Bạn" ? "text-stone-950" : "text-emerald-700"}`}>
+                        {log.user}
+                      </p>
+                      <p className="mt-0.5 leading-relaxed">{log.text}</p>
                     </div>
                   ))}
                 </div>
 
-                {/* Interactive Input Bar */}
-                <div className="mt-3 pt-3 border-t border-stone-800 flex items-center gap-2">
+                {/* Input Controls */}
+                <div className="mt-3 pt-3 border-t border-stone-200 flex items-center gap-2">
                   <input
                     type="text"
                     value={cheerInput}
                     onChange={(e) => setCheerInput(e.target.value)}
                     onKeyDown={(e) => e.key === "Enter" && handleSendGroupMsg()}
-                    placeholder="Viết tin nhắn thử nghiệm..."
-                    className="flex-1 px-3 py-2 rounded-xl bg-stone-950 border border-stone-800 text-xs text-white placeholder:text-stone-500 focus:outline-none focus:border-emerald-400"
+                    placeholder="Gửi lời chúc, hỏi bài..."
+                    className="flex-1 px-3 py-2 text-xs bg-white border border-stone-200 rounded-xl text-stone-900 placeholder:text-stone-400 outline-none focus:border-emerald-400"
                   />
                   <button
                     onClick={handleSendGroupMsg}
-                    className="p-2 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-stone-950 font-black cursor-pointer transition-colors"
+                    className="p-2 rounded-xl bg-emerald-500 text-stone-950 font-bold hover:bg-emerald-400 transition-colors cursor-pointer"
                   >
-                    <Send className="w-4 h-4" />
+                    <Send className="w-3.5 h-3.5" />
                   </button>
                 </div>
               </div>
@@ -393,124 +475,91 @@ export default function InteractiveEcosystemShowcase() {
           </motion.div>
         )}
 
-        {/* VIEW 3: FINSOCIAL FEED PREVIEW */}
+        {/* VIEW 3: FINSOCIAL LIVE FEED PREVIEW (LIGHT MODE) */}
         {activeTab === "finsocial" && (
           <motion.div
-            key="finsocial-stage"
+            key="social-stage"
             initial={{ opacity: 0, y: 15 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -15 }}
             transition={{ duration: 0.3 }}
-            className="overflow-hidden rounded-3xl border-2 border-sky-500/40 bg-stone-950 shadow-[0_24px_60px_-20px_rgba(56,189,248,0.3)] text-white relative p-4 sm:p-6 lg:p-8"
+            className="overflow-hidden rounded-3xl border-2 border-sky-400/60 bg-white shadow-xl text-stone-900 p-5 sm:p-7 relative space-y-4"
           >
-            {/* Ambient Background */}
-            <div className="absolute inset-0 pointer-events-none">
-              <Image
-                src="/wallstreet-bg.jpg"
-                alt="FinSocial background"
-                fill
-                sizes="100vw"
-                className="object-cover opacity-20 brightness-75"
-              />
-              <div className="absolute inset-0 bg-gradient-to-b from-stone-950/90 via-stone-950/80 to-sky-950/90" />
+            <div className="flex flex-wrap items-center justify-between gap-3 pb-4 border-b border-stone-200">
+              <div className="flex items-center gap-2">
+                <span className="p-2 rounded-xl bg-sky-100 text-sky-700 font-black">💬</span>
+                <div>
+                  <h4 className="text-base font-black text-stone-900">FinSocial Feed Trực Tuyến</h4>
+                  <p className="text-xs text-stone-500 font-medium">Bấm thử nút Thả tim ❤️ tương tác với bài viết thực tế</p>
+                </div>
+              </div>
+
+              <Link
+                href="/finsocial"
+                className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl bg-sky-500 hover:bg-sky-400 text-stone-950 font-black text-xs transition-colors cursor-pointer"
+              >
+                <span>Vào FinSocial Feed</span>
+                <ArrowRight className="w-4 h-4" />
+              </Link>
             </div>
 
-            <div className="relative z-10 max-w-4xl mx-auto space-y-4">
-              <div className="flex flex-wrap items-center justify-between gap-3 border-b border-stone-800 pb-4">
-                <div>
-                  <div className="inline-flex items-center gap-2 rounded-full border border-sky-400/40 bg-sky-950/80 px-3.5 py-1 text-[11px] font-black uppercase tracking-[0.16em] text-sky-300 backdrop-blur-md">
-                    <MessageSquareMore className="h-3.5 w-3.5 text-sky-400" />
-                    <span>FINSOCIAL FEED · BÀI VIẾT & HỎI ĐÁP THỰC TẾ</span>
-                  </div>
-                  <h3 className="text-xl sm:text-2xl font-black text-white mt-2">
-                    Cộng đồng thảo luận kiến thức tài chính
-                  </h3>
-                </div>
-
-                <Link
-                  href="/login?mode=signup"
-                  className="inline-flex items-center gap-2 rounded-2xl bg-gradient-to-r from-sky-400 to-emerald-400 px-4.5 py-2.5 text-xs font-black text-stone-950 shadow-md hover:brightness-110 transition-all cursor-pointer"
-                >
-                  <span>Tham gia FinSocial ngay</span>
-                  <ArrowRight className="w-4 h-4" />
-                </Link>
-              </div>
-
-              {/* Feed Posts List */}
-              <div className="grid gap-4 sm:grid-cols-2">
-                {FINSOCIAL_POSTS.map((post) => {
-                  const likeData = postLikes[post.id] || { count: post.likes, liked: false };
-                  return (
-                    <motion.div
-                      key={post.id}
-                      whileHover={{ scale: 1.015 }}
-                      className="rounded-3xl border-2 border-stone-800 bg-stone-900/90 p-5 backdrop-blur-xl shadow-xl flex flex-col justify-between"
-                    >
-                      <div>
-                        {/* Author Header */}
-                        <div className="flex items-center justify-between mb-3">
-                          <div className="flex items-center gap-2.5">
-                            <div className="w-9 h-9 rounded-full bg-sky-500/20 border border-sky-400 flex items-center justify-center font-black text-xs text-sky-300">
-                              {post.author.slice(0, 2).toUpperCase()}
-                            </div>
-                            <div>
-                              <p className="text-xs font-black text-white flex items-center gap-1.5">
-                                {post.author}
-                                <span className="text-[9px] font-extrabold text-sky-400 bg-sky-950 px-1.5 py-0.2 rounded-full border border-sky-800">
-                                  Lv.{post.level}
-                                </span>
-                              </p>
-                              <p className="text-[10px] text-stone-400">{post.role} · {post.time}</p>
-                            </div>
+            {/* Post Feed List (Light Theme) */}
+            <div className="grid gap-4 sm:grid-cols-2">
+              {FINSOCIAL_POSTS.map((post) => {
+                const likeData = postLikes[post.id] || { count: post.likes, liked: false };
+                return (
+                  <div
+                    key={post.id}
+                    className="p-4 rounded-2xl border border-stone-200 bg-stone-50/60 shadow-sm hover:border-sky-300 transition-all flex flex-col justify-between"
+                  >
+                    <div>
+                      <div className="flex items-center justify-between mb-2">
+                        <div className="flex items-center gap-2">
+                          <div className="w-8 h-8 rounded-full bg-sky-100 border border-sky-400 flex items-center justify-center font-black text-xs text-sky-800">
+                            {post.author.slice(0, 2).toUpperCase()}
+                          </div>
+                          <div>
+                            <p className="text-xs font-black text-stone-900 leading-tight">{post.author}</p>
+                            <p className="text-[10px] text-stone-500 font-medium">{post.role}</p>
                           </div>
                         </div>
-
-                        {/* Content */}
-                        <h4 className="text-sm font-black text-white mb-2 leading-snug">
-                          {post.title}
-                        </h4>
-                        <p className="text-xs text-stone-300 leading-relaxed bg-stone-950/50 p-3 rounded-2xl border border-stone-800/80 mb-3">
-                          {post.content}
-                        </p>
-
-                        <div className="flex flex-wrap gap-1.5 mb-4">
-                          {post.tags.map((t) => (
-                            <span key={t} className="text-[10px] font-bold text-sky-300 bg-sky-950/60 border border-sky-500/30 px-2 py-0.5 rounded-md">
-                              {t}
-                            </span>
-                          ))}
-                        </div>
+                        <span className="text-[10px] font-bold text-sky-700 bg-sky-100 px-2 py-0.5 rounded-full border border-sky-200">
+                          {post.topic}
+                        </span>
                       </div>
 
-                      {/* Interactive Actions Footer */}
-                      <div className="pt-3 border-t border-stone-800/80 flex items-center justify-between text-xs font-bold text-stone-400">
-                        <button
-                          onClick={() => toggleLike(post.id)}
-                          className={`flex items-center gap-1.5 px-3 py-1.5 rounded-xl border transition-all cursor-pointer ${
-                            likeData.liked
-                              ? "bg-rose-950/80 border-rose-500 text-rose-400 shadow-[0_0_15px_rgba(244,63,94,0.3)]"
-                              : "bg-stone-950 border-stone-800 hover:border-rose-400/50 hover:text-rose-300"
-                          }`}
-                        >
-                          <Heart className={`w-3.5 h-3.5 ${likeData.liked ? "fill-rose-500 text-rose-500" : ""}`} />
-                          <span>{likeData.count} Thả tim</span>
-                        </button>
+                      <h5 className="text-xs font-black text-stone-900 mb-1 leading-snug">{post.title}</h5>
+                      <p className="text-[11px] text-stone-600 leading-relaxed line-clamp-3 mb-2">{post.content}</p>
 
-                        <div className="flex items-center gap-3">
-                          <span className="flex items-center gap-1 hover:text-stone-200">
-                            <MessageCircle className="w-3.5 h-3.5" />
-                            {post.comments}
+                      <div className="flex flex-wrap gap-1 mb-3">
+                        {post.tags.map((tag) => (
+                          <span key={tag} className="text-[9px] font-bold text-sky-700 bg-white px-2 py-0.5 rounded-md border border-stone-200">
+                            {tag}
                           </span>
-                          <span className="flex items-center gap-1 hover:text-stone-200">
-                            <Share2 className="w-3.5 h-3.5" />
-                            {post.shares}
-                          </span>
-                        </div>
+                        ))}
                       </div>
-                    </motion.div>
-                  );
-                })}
-              </div>
+                    </div>
+
+                    <div className="pt-2 border-t border-stone-200 flex items-center justify-between text-xs">
+                      <button
+                        onClick={() => toggleLike(post.id)}
+                        className={`flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-black transition-all cursor-pointer ${
+                          likeData.liked
+                            ? "bg-rose-500 text-white shadow-sm"
+                            : "bg-white text-stone-700 border border-stone-200 hover:border-rose-400"
+                        }`}
+                      >
+                        <Heart className={`w-3.5 h-3.5 ${likeData.liked ? "fill-white" : "text-rose-500"}`} />
+                        <span>{likeData.count}</span>
+                      </button>
+
+                      <span className="text-[10px] font-bold text-stone-500">
+                        {post.comments} bình luận · {post.shares} chia sẻ
+                      </span>
+                    </div>
+                  </div>
+                );
+              })}
             </div>
           </motion.div>
         )}

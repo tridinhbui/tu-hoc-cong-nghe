@@ -874,8 +874,8 @@ export default function HomePage() {
                 Học, chơi, hỏi đáp và chia sẻ trong cùng một hệ sinh thái tài chính
               </h2>
               <p className="mt-3 max-w-xl text-sm text-stone-600 dark:text-stone-400 leading-relaxed sm:text-base">
-                Sau khi tạo tài khoản, bạn không chỉ đi qua lộ trình bài học. Bạn còn có Game Kingdom để luyện phản xạ,
-                Học nhóm để giữ nhịp, và FinSocial để trao đổi kiến thức với cộng đồng.
+                Sau khi tạo tài khoản, bạn không chỉ đi qua lộ trình bài học. Bạn còn có Lộ trình Active Recall ôn tập chủ động,
+                Học nhóm 3D để giữ nhịp, và FinSocial để trao đổi kiến thức với cộng đồng.
               </p>
             </ScrollReveal>
 
