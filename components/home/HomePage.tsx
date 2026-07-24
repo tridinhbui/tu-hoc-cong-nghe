@@ -440,6 +440,8 @@ export default function HomePage() {
         .landing-ticker {
           animation: ticker-drift 26s linear infinite;
           width: max-content;
+          will-change: transform;
+          transform: translateZ(0);
         }
         .cta-electric {
           position: relative;

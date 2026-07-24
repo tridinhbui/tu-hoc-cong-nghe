@@ -35,7 +35,10 @@ export default function ProductPreview() {
   }, []);
 
   return (
-    <div className="animated-border-card relative overflow-hidden rounded-[20px] border border-stone-200/80 bg-white shadow-[0_18px_44px_-28px_rgba(15,23,42,0.24)] dark:border-stone-800 dark:bg-stone-900">
+    <div
+      style={{ contain: "layout paint" }}
+      className="animated-border-card relative overflow-hidden rounded-[20px] border border-stone-200/80 bg-white shadow-[0_18px_44px_-28px_rgba(15,23,42,0.24)] dark:border-stone-800 dark:bg-stone-900 transform-gpu will-change-transform"
+    >
       <style>{`
         @keyframes preview-progress-pulse {
           0%, 100% { transform: scaleX(0.94); opacity: 0.82; }
@@ -52,15 +55,19 @@ export default function ProductPreview() {
         .preview-progress-live {
           transform-origin: left center;
           animation: preview-progress-pulse 3.4s ease-in-out infinite;
+          will-change: transform;
         }
         .preview-live-dot {
           animation: preview-live-blink 1.8s ease-in-out infinite;
+          will-change: opacity;
         }
         .preview-card-float {
           animation: preview-card-drift 4.6s ease-in-out infinite;
+          will-change: transform;
         }
         .preview-scan-line {
           animation: preview-card-drift 5.8s ease-in-out infinite;
+          will-change: transform;
         }
       `}</style>
       <div className="pointer-events-none absolute inset-0 opacity-60">
@@ -68,8 +75,7 @@ export default function ProductPreview() {
         <div className="absolute right-[-12%] bottom-[-18%] h-56 w-56 rounded-full bg-teal-400/10 blur-3xl" />
         <div className="preview-scan-line absolute inset-x-0 top-0 h-24 bg-[linear-gradient(180deg,rgba(255,255,255,0.28),transparent)] opacity-40" />
       </div>
-      {/* Browser chrome - wraps to two rows on narrow viewports instead of
-          the URL pill/tab switcher fighting for space on one line. */}
+      {/* Browser chrome */}
       <div className="flex flex-wrap items-center gap-x-3 gap-y-2 border-b border-stone-100 dark:border-stone-850 bg-stone-50 dark:bg-stone-950/60 px-4 py-2.5">
         <div className="flex items-center gap-3 flex-1 min-w-0">
           <div className="flex gap-1.5 shrink-0">
@@ -98,7 +104,7 @@ export default function ProductPreview() {
         </div>
       </div>
 
-      <div className="p-5 sm:p-6 bg-[#FAFAFC] dark:bg-stone-950 min-h-[340px]">
+      <div className="p-4 sm:p-5 bg-[#FAFAFC] dark:bg-stone-950 h-[330px] sm:h-[350px] overflow-hidden relative">
         <AnimatePresence mode="wait">
           {tab === "dashboard" ? (
             <motion.div
