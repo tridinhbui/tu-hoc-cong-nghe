@@ -21,6 +21,25 @@ export interface FlashcardAlbum {
 
 export const FLASHCARD_ALBUMS: FlashcardAlbum[] = [
   {
+    id: "cfa-level-1-terms",
+    title: "CFA Level I - Thuật ngữ & Công thức",
+    description: "Bộ thuật ngữ En-Vi chuẩn thi CFA Level 1 (FSA, Quant, Corporate, Ethics, Equity, Derivatives...)",
+    emoji: "🎓",
+    gradient: "from-amber-500 via-orange-500 to-indigo-600",
+    cards: [
+      { term: "Return on Equity (ROE)", definition: "Net Income / Average Equity - Đo lường hiệu quả sử dụng vốn cổ đông để tạo ra lợi nhuận ròng." },
+      { term: "Free Cash Flow to Firm (FCFF)", definition: "Dòng tiền tự do sẵn sàng trả cho cả chủ nợ & cổ đông sau chi phí hoạt động và đầu tư CapEx (FCFF = NI + NCC + Int(1-T) - FCInv - WCInv)." },
+      { term: "DuPont Analysis (3-step)", definition: "ROE = Net Profit Margin × Asset Turnover × Financial Leverage - Phân tách ROE để tìm động lực sinh lời." },
+      { term: "Time Value of Money (TVM)", definition: "Giá trị thời gian của tiền - Một đồng hôm nay luôn có giá trị hơn một đồng trong tương lai do khả năng sinh lời." },
+      { term: "Capital Asset Pricing Model (CAPM)", definition: "E(R) = Rf + Beta × [E(Rm) - Rf] - Mô hình định giá tài sản vốn tính tỷ suất sinh lời đòi hỏi theo rủi ro hệ thống." },
+      { term: "Weighted Average Cost of Capital (WACC)", definition: "WACC = (Wd × Rd × (1-T)) + (Wp × Rp) + (We × Re) - Chi phí vốn bình quân gia quyền tối thiểu cần đạt." },
+      { term: "Ethical & Professional Standards (Code of Ethics)", definition: "Bộ quy tắc đạo đức nghề nghiệp CFA bắt buộc đối với các nhà phân tích tài chính trên toàn cầu." },
+      { term: "Modigliani-Miller Theorem", definition: "Định lý MM: Trong thị trường hoàn hảo (không thuế, không chi phí phá sản), giá trị doanh nghiệp không phụ thuộc cấu trúc vốn." },
+      { term: "Duration (Macaulay / Modified)", definition: "Độ nhạy giá trái phiếu trước sự thay đổi của lãi suất - Duration càng cao, giá trái phiếu càng nhạy cảm với lãi suất." },
+      { term: "Sharpe Ratio", definition: "(Rp - Rf) / StdDev(p) - Tỷ số đo lường hiệu quả đầu tư trên một đơn vị rủi ro tổng thể." },
+    ],
+  },
+  {
     id: "ke-toan-co-ban",
     title: "Kế toán cơ bản",
     description: "Thuật ngữ nền tảng để đọc hiểu 3 báo cáo tài chính",
