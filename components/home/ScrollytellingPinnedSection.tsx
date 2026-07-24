@@ -127,6 +127,19 @@ export default function ScrollytellingPinnedSection() {
     return () => clearInterval(timer);
   }, [isPaused]);
 
+  // Mouse wheel scroll to flip tabs smoothly
+  const handleWheel = (e: React.WheelEvent<HTMLDivElement>) => {
+    if (Math.abs(e.deltaY) < 15) return;
+
+    if (e.deltaY > 0 && activeTab < PANELS.length - 1) {
+      setActiveTab((prev) => prev + 1);
+      setIsPaused(true);
+    } else if (e.deltaY < 0 && activeTab > 0) {
+      setActiveTab((prev) => prev - 1);
+      setIsPaused(true);
+    }
+  };
+
   const currentPanel = PANELS[activeTab];
 
   return (
@@ -174,8 +187,9 @@ export default function ScrollytellingPinnedSection() {
           </div>
         </div>
 
-        {/* Dynamic Panel Content Stage (Zero Empty Space Gap!) */}
+        {/* Dynamic Panel Content Stage (Support Wheel Scroll & Zero Empty Space Gap!) */}
         <div
+          onWheel={handleWheel}
           onMouseEnter={() => setIsPaused(true)}
           onMouseLeave={() => setIsPaused(false)}
           className="relative min-h-[380px] sm:min-h-[340px] rounded-3xl border border-stone-200/90 dark:border-stone-800 bg-stone-50/50 dark:bg-stone-900/40 p-5 sm:p-8 shadow-sm overflow-hidden"
