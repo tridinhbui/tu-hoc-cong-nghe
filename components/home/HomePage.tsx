@@ -19,6 +19,8 @@ import {
   Crown,
   Trophy,
   Zap,
+  ChevronLeft,
+  ChevronRight,
 } from "lucide-react";
 import { getTotalUserCount, getTotalCompletedLessonsCount } from "@/lib/supabase-user";
 import { animateCountTo } from "@/lib/animate-count";
@@ -188,6 +190,73 @@ function SubtleWaveDivider({ flip = false }: { flip?: boolean }) {
 function SoftFadeDivider() {
   return (
     <div className="w-full h-12 pointer-events-none bg-gradient-to-b from-transparent via-emerald-500/10 dark:via-emerald-400/5 to-transparent my-[-1px]" />
+  );
+}
+
+function HorizontalSnapSlider({ children }: { children: React.ReactNode }) {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const [canScrollLeft, setCanScrollLeft] = useState(false);
+  const [canScrollRight, setCanScrollRight] = useState(true);
+
+  const checkScroll = () => {
+    if (!containerRef.current) return;
+    const { scrollLeft, scrollWidth, clientWidth } = containerRef.current;
+    setCanScrollLeft(scrollLeft > 10);
+    setCanScrollRight(scrollLeft < scrollWidth - clientWidth - 10);
+  };
+
+  useEffect(() => {
+    checkScroll();
+    const el = containerRef.current;
+    if (!el) return;
+    el.addEventListener("scroll", checkScroll);
+    window.addEventListener("resize", checkScroll);
+    return () => {
+      el.removeEventListener("scroll", checkScroll);
+      window.removeEventListener("resize", checkScroll);
+    };
+  }, []);
+
+  const scrollByAmount = (direction: "left" | "right") => {
+    if (!containerRef.current) return;
+    const amount = containerRef.current.clientWidth * 0.75;
+    containerRef.current.scrollBy({
+      left: direction === "left" ? -amount : amount,
+      behavior: "smooth",
+    });
+  };
+
+  return (
+    <div className="relative group/slider">
+      {canScrollLeft && (
+        <button
+          type="button"
+          onClick={() => scrollByAmount("left")}
+          className="absolute -left-3 top-1/2 -translate-y-1/2 z-20 flex h-9 w-9 items-center justify-center rounded-full bg-white/90 dark:bg-stone-800/90 text-stone-700 dark:text-stone-200 border border-stone-200 dark:border-stone-700 shadow-md backdrop-blur-md hover:scale-110 active:scale-95 transition-all cursor-pointer"
+          aria-label="Cuộn trái"
+        >
+          <ChevronLeft className="w-5 h-5" />
+        </button>
+      )}
+
+      {canScrollRight && (
+        <button
+          type="button"
+          onClick={() => scrollByAmount("right")}
+          className="absolute -right-3 top-1/2 -translate-y-1/2 z-20 flex h-9 w-9 items-center justify-center rounded-full bg-white/90 dark:bg-stone-800/90 text-stone-700 dark:text-stone-200 border border-stone-200 dark:border-stone-700 shadow-md backdrop-blur-md hover:scale-110 active:scale-95 transition-all cursor-pointer"
+          aria-label="Cuộn phải"
+        >
+          <ChevronRight className="w-5 h-5" />
+        </button>
+      )}
+
+      <div
+        ref={containerRef}
+        className="flex gap-3.5 overflow-x-auto snap-x snap-mandatory scrollbar-none scroll-smooth pb-3 pt-1 px-1"
+      >
+        {children}
+      </div>
+    </div>
   );
 }
 
@@ -959,9 +1028,9 @@ export default function HomePage() {
               </h2>
             </ScrollReveal>
 
-            <div className="grid sm:grid-cols-2 gap-3 sm:gap-3.5">
+            <HorizontalSnapSlider>
               {PAIN_POINTS.map(({ icon: Icon, worry, answer }, i) => (
-                <ScrollReveal key={worry} delay={i * 0.05}>
+                <div key={worry} className="snap-center shrink-0 w-[85vw] sm:w-[360px] md:w-[380px]">
                   <motion.div
                     whileHover={{ y: -6, scale: 1.01 }}
                     transition={{ type: "spring", stiffness: 350, damping: 25 }}
@@ -991,9 +1060,9 @@ export default function HomePage() {
                       </p>
                     </div>
                   </motion.div>
-                </ScrollReveal>
+                </div>
               ))}
-            </div>
+            </HorizontalSnapSlider>
           </div>
         </section>
 
@@ -1015,9 +1084,9 @@ export default function HomePage() {
               </p>
             </ScrollReveal>
 
-            <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-3.5">
-              {METHOD_STEPS.map(({ step, title, text }, i) => (
-                <ScrollReveal key={step} delay={i * 0.08}>
+            <HorizontalSnapSlider>
+              {METHOD_STEPS.map(({ step, title, text }) => (
+                <div key={step} className="snap-center shrink-0 w-[80vw] sm:w-[280px] md:w-[300px]">
                   <div className="animated-border-card h-full rounded-2xl bg-white/70 dark:bg-stone-900/60 backdrop-blur-md border border-stone-200/80 dark:border-stone-800 p-4 hover:shadow-lg hover:-translate-y-1 transition-all duration-200 ease-out">
                     <div className="w-7 h-7 rounded-xl bg-gradient-to-r from-emerald-500 to-teal-500 text-white font-black text-xs flex items-center justify-center mb-3 shadow-xs">
                       {step}
@@ -1025,9 +1094,9 @@ export default function HomePage() {
                     <p className="font-extrabold text-stone-900 dark:text-stone-100 text-xs sm:text-sm mb-1">{title}</p>
                     <p className="text-xs text-stone-600 dark:text-stone-400 leading-relaxed font-medium">{text}</p>
                   </div>
-                </ScrollReveal>
+                </div>
               ))}
-            </div>
+            </HorizontalSnapSlider>
           </div>
         </section>
 
@@ -1042,9 +1111,9 @@ export default function HomePage() {
             </h2>
           </ScrollReveal>
 
-          <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+          <HorizontalSnapSlider>
             {AUDIENCES.map((item, i) => (
-              <ScrollReveal key={item.title} delay={i * 0.04}>
+              <div key={item.title} className="snap-center shrink-0 w-[80vw] sm:w-[310px] md:w-[330px]">
                 <motion.div
                   whileHover={{ y: -6, scale: 1.01 }}
                   transition={{ type: "spring", stiffness: 350, damping: 25 }}
@@ -1070,9 +1139,9 @@ export default function HomePage() {
                     <ArrowRight className="w-3 h-3 group-hover:translate-x-1 transition-transform" />
                   </div>
                 </motion.div>
-              </ScrollReveal>
+              </div>
             ))}
-          </div>
+          </HorizontalSnapSlider>
         </section>
 
         {/* ── VISION & MISSION ── */}
