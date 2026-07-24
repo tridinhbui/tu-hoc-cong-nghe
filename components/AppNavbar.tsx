@@ -256,14 +256,14 @@ export default function AppNavbar() {
 
   return (
     <>
-      <aside className="hidden lg:flex fixed inset-y-0 left-0 z-40 w-64 overflow-visible bg-white/96 dark:bg-stone-950/96 border-r border-stone-200 dark:border-stone-800 backdrop-blur">
-        <div className="flex h-full w-full flex-col px-4 py-5 overflow-visible">
-          <Link href="/dashboard" className="flex items-center gap-3 px-3 py-2.5 rounded-2xl">
+      <aside className="hidden lg:flex fixed inset-y-0 left-0 z-40 w-64 bg-white/96 dark:bg-stone-950/96 border-r border-stone-200 dark:border-stone-800 backdrop-blur">
+        <div className="flex h-full w-full flex-col px-3.5 py-4 overflow-y-auto scrollbar-none">
+          <Link href="/dashboard" className="flex items-center gap-3 px-3 py-2 rounded-2xl shrink-0">
             <Logo size={30} />
             <span className="text-base font-bold text-stone-900 dark:text-stone-100">Tự Học Tài Chính</span>
           </Link>
 
-          <nav className="mt-5 flex flex-col gap-1.5">
+          <nav className="mt-4 flex flex-col gap-1 shrink-0">
             {NAV_LINKS.map(({ href, label, icon: Icon }) => {
               const active = pathname === href;
               const isGame = href === "/game";
@@ -275,7 +275,7 @@ export default function AppNavbar() {
                   key={href}
                   href={href}
                   onClick={() => trackFeatureClick("nav_click", { label: href })}
-                  className={`group relative flex items-center gap-2.5 rounded-2xl px-3.5 py-2.5 text-sm font-bold transition-all duration-200 ${
+                  className={`group relative flex items-center gap-2.5 rounded-2xl px-3 py-2 text-sm font-bold transition-all duration-200 ${
                     isGame
                       ? "border border-amber-200 bg-amber-50 text-amber-700 shadow-sm hover:bg-amber-100/70"
                       : isKiemTra && hasPendingNewsQuiz
@@ -319,7 +319,7 @@ export default function AppNavbar() {
 
             <Link
               href="/tai-lieu"
-              className={`mt-2 flex items-center gap-3 rounded-2xl border px-3.5 py-3 text-sm font-bold transition-all duration-200 ${
+              className={`mt-1.5 flex items-center gap-3 rounded-2xl border px-3 py-2.5 text-sm font-bold transition-all duration-200 ${
                 pathname === "/tai-lieu"
                   ? "bg-rose-50 text-rose-700 border-rose-300 dark:bg-rose-950/40 dark:text-rose-300 dark:border-rose-800"
                   : "bg-rose-50/70 text-rose-700 border-rose-200 hover:bg-rose-100 dark:bg-rose-950/20 dark:text-rose-300 dark:border-rose-900/50"
@@ -330,11 +330,11 @@ export default function AppNavbar() {
             </Link>
           </nav>
 
-          <div className="mt-auto space-y-3 px-1">
+          <div className="mt-auto pt-4 space-y-2.5 shrink-0" ref={desktopDropdownRef}>
             {profile && (
               <button
                 onClick={() => setShowQuickShop(true)}
-                className="flex w-full items-center justify-between rounded-2xl border border-amber-200 bg-amber-50 px-3.5 py-3 text-sm font-black text-amber-700 shadow-sm transition-colors hover:bg-amber-100/80 dark:border-amber-900 dark:bg-amber-950/40 dark:text-amber-400"
+                className="flex w-full items-center justify-between rounded-2xl border border-amber-200 bg-amber-50 px-3 py-2.5 text-sm font-black text-amber-700 shadow-sm transition-colors hover:bg-amber-100/80 dark:border-amber-900 dark:bg-amber-950/40 dark:text-amber-400"
                 title="Số dư Coin tích lũy - Bấm để mở Cửa hàng Nhanh"
               >
                 <span className="flex items-center gap-2">
@@ -346,46 +346,43 @@ export default function AppNavbar() {
             )}
 
             {!profile ? (
-              <div className="h-14 rounded-2xl bg-stone-100 dark:bg-stone-900 animate-pulse" />
+              <div className="h-12 rounded-2xl bg-stone-100 dark:bg-stone-900 animate-pulse" />
             ) : (
-              <div className="relative overflow-visible" ref={desktopDropdownRef}>
+              <div>
                 <button
                   onClick={toggleProfileDropdown}
-                  className="flex w-full items-center gap-3 rounded-2xl border border-stone-200 bg-white px-3 py-3 text-left transition-colors hover:bg-stone-50 dark:border-stone-800 dark:bg-stone-900 dark:hover:bg-stone-800"
+                  className="flex w-full items-center gap-2.5 rounded-2xl border border-stone-200 bg-white px-2.5 py-2.5 text-left transition-colors hover:bg-stone-50 dark:border-stone-800 dark:bg-stone-900 dark:hover:bg-stone-800 cursor-pointer"
                 >
                   {isValidAvatar(profile.avatar_url) ? (
-                    <Image src={profile.avatar_url} alt={displayName} width={40} height={40} className="w-10 h-10 rounded-full object-cover shrink-0" />
+                    <Image src={profile.avatar_url} alt={displayName} width={36} height={36} className="w-9 h-9 rounded-full object-cover shrink-0" />
                   ) : (
-                    <div className="w-10 h-10 rounded-full bg-emerald-500 flex items-center justify-center text-white font-bold text-sm shrink-0">
+                    <div className="w-9 h-9 rounded-full bg-emerald-500 flex items-center justify-center text-white font-bold text-xs shrink-0">
                       {initials || "?"}
                     </div>
                   )}
                   <div className="min-w-0 flex-1">
-                    <p className="truncate text-sm font-bold text-stone-900 dark:text-stone-100">{profile.full_name || "Người dùng"}</p>
-                    <p className="truncate text-xs text-stone-500 dark:text-stone-400">{profile.email}</p>
+                    <p className="truncate text-xs font-bold text-stone-900 dark:text-stone-100">{profile.full_name || "Người dùng"}</p>
+                    <p className="truncate text-[11px] text-stone-500 dark:text-stone-400">{profile.email}</p>
                   </div>
                 </button>
 
                 {dropdownOpen && (
-                  <div className="absolute left-full bottom-0 ml-3 w-64 bg-white dark:bg-stone-900 rounded-2xl border border-stone-200 dark:border-stone-800 shadow-xl z-[80] p-4 pointer-events-auto">
-                    <div className="space-y-1 mb-2">
-                      <button type="button" onClick={() => handleDropdownNavigate("/profile")} className="block w-full rounded-lg px-3 py-2 text-left text-sm font-semibold text-stone-900 transition hover:bg-stone-50 dark:text-stone-100 dark:hover:bg-stone-800">
-                        Hồ sơ
-                      </button>
-                      <button type="button" onClick={() => handleDropdownNavigate("/ban-be")} className="block w-full rounded-lg px-3 py-2 text-left text-sm font-semibold text-stone-900 transition hover:bg-stone-50 dark:text-stone-100 dark:hover:bg-stone-800">
-                        Bạn bè
-                      </button>
-                      <button type="button" onClick={() => handleDropdownNavigate("/settings")} className="block w-full rounded-lg px-3 py-2 text-left text-sm font-semibold text-stone-900 transition hover:bg-stone-50 dark:text-stone-100 dark:hover:bg-stone-800">
-                        Cài đặt
-                      </button>
-                    </div>
-
+                  <div className="mt-2 space-y-1 rounded-2xl border border-stone-200 dark:border-stone-800 bg-stone-50/90 dark:bg-stone-900/90 p-2 shadow-sm animate-[fadeIn_0.15s_ease-out]">
+                    <button type="button" onClick={() => handleDropdownNavigate("/profile")} className="block w-full rounded-xl px-3 py-2 text-left text-xs font-bold text-stone-800 transition hover:bg-white dark:text-stone-200 dark:hover:bg-stone-800">
+                      👤 Hồ sơ cá nhân
+                    </button>
+                    <button type="button" onClick={() => handleDropdownNavigate("/ban-be")} className="block w-full rounded-xl px-3 py-2 text-left text-xs font-bold text-stone-800 transition hover:bg-white dark:text-stone-200 dark:hover:bg-stone-800">
+                      👥 Bạn bè & Kết nối
+                    </button>
+                    <button type="button" onClick={() => handleDropdownNavigate("/settings")} className="block w-full rounded-xl px-3 py-2 text-left text-xs font-bold text-stone-800 transition hover:bg-white dark:text-stone-200 dark:hover:bg-stone-800">
+                      ⚙️ Cài đặt tài khoản
+                    </button>
                     <button
                       onClick={handleSignOut}
                       disabled={signingOut}
-                      className="w-full px-4 py-2 text-sm font-bold text-rose-600 dark:text-rose-400 hover:bg-rose-50 dark:hover:bg-rose-950/50 rounded-lg transition disabled:opacity-50"
+                      className="block w-full rounded-xl px-3 py-2 text-left text-xs font-bold text-rose-600 transition hover:bg-rose-50 dark:text-rose-400 dark:hover:bg-rose-950/50 disabled:opacity-50"
                     >
-                      {signingOut ? "Đang đăng xuất..." : "Đăng xuất"}
+                      🚪 {signingOut ? "Đang đăng xuất..." : "Đăng xuất"}
                     </button>
                   </div>
                 )}
