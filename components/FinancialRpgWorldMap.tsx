@@ -207,6 +207,7 @@ const ORGANIC_BUILDINGS: OrganicBuilding[] = [
     badgeBg: "bg-gradient-to-r from-emerald-600 to-teal-600 text-white font-black",
     posClass: "top-[900px] left-12 sm:left-28",
     desktopClass: "lg:col-start-1 lg:row-start-9",
+    imageSrc: "/rpg/chicago-board-of-trade.png",
   },
   {
     id: "swiss-haven",
