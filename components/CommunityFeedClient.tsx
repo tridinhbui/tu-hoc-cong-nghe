@@ -4,7 +4,27 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { toast } from "sonner";
-import { ArrowLeft, Flame, MessageCircle, Send, SmilePlus, Trash2, Image as ImageIcon, X } from "lucide-react";
+import {
+  ArrowLeft,
+  BarChart3,
+  Bookmark,
+  Camera,
+  Flame,
+  HelpCircle,
+  Image as ImageIcon,
+  MessageCircle,
+  Newspaper,
+  RefreshCw,
+  Search,
+  Send,
+  ShieldCheck,
+  SmilePlus,
+  Sparkles,
+  Target,
+  Trash2,
+  TrendingUp,
+  X,
+} from "lucide-react";
 import { createClient } from "@/lib/supabase";
 import EmojiPicker from "@/components/EmojiPicker";
 import { uploadChatImage, isAllowedChatImage } from "@/lib/supabase-chat";
@@ -63,6 +83,31 @@ function timeAgo(dateString: string): string {
 }
 
 const REACTION_OPTIONS = ["👍", "❤️", "🔥", "😂", "👏", "😮"];
+const TOPICS = [
+  { id: "all", label: "Tất cả", shortLabel: "Tất cả", icon: Newspaper, tag: "", tone: "stone" },
+  { id: "meo-tai-chinh", label: "Mẹo tài chính", shortLabel: "Mẹo", icon: Sparkles, tag: "#MeoTaiChinh ", tone: "emerald" },
+  { id: "phan-tich", label: "Phân tích", shortLabel: "Phân tích", icon: BarChart3, tag: "#PhanTich ", tone: "sky" },
+  { id: "thanh-tuu", label: "Thành tựu", shortLabel: "Thành tựu", icon: Target, tag: "#ThanhTuu ", tone: "amber" },
+  { id: "hoi-dap", label: "Hỏi đáp", shortLabel: "Hỏi đáp", icon: HelpCircle, tag: "#HoiDap ", tone: "rose" },
+] as const;
+
+type TopicId = (typeof TOPICS)[number]["id"];
+
+function getPostCategory(post: CommunityFeedPost): TopicId {
+  const metadataCategory = post.metadata && typeof post.metadata === "object" ? String(post.metadata.category ?? "") : "";
+  if (TOPICS.some((topic) => topic.id === metadataCategory)) return metadataCategory as TopicId;
+  const content = post.content || "";
+  if (content.includes("#MeoTaiChinh")) return "meo-tai-chinh";
+  if (content.includes("#PhanTich")) return "phan-tich";
+  if (content.includes("#ThanhTuu")) return "thanh-tuu";
+  if (content.includes("#HoiDap")) return "hoi-dap";
+  if (post.kind === "streak") return "thanh-tuu";
+  return "all";
+}
+
+function getTopicMeta(topicId: TopicId) {
+  return TOPICS.find((topic) => topic.id === topicId) ?? TOPICS[0];
+}
 
 export default function CommunityFeedClient({ embedded = false }: { embedded?: boolean }) {
   const supabase = createClient();
@@ -74,6 +119,9 @@ export default function CommunityFeedClient({ embedded = false }: { embedded?: b
   const [content, setContent] = useState("");
   const [pendingImage, setPendingImage] = useState<File | null>(null);
   const [imagePreview, setImagePreview] = useState<string | null>(null);
+  const [selectedTopic, setSelectedTopic] = useState<TopicId>("meo-tai-chinh");
+  const [feedFilter, setFeedFilter] = useState<TopicId>("all");
+  const [searchQuery, setSearchQuery] = useState("");
   const [posting, setPosting] = useState(false);
   const [openComments, setOpenComments] = useState<Record<number, boolean>>({});
   const [commentsByPost, setCommentsByPost] = useState<Record<number, CommunityPostComment[]>>({});
@@ -175,7 +223,9 @@ export default function CommunityFeedClient({ embedded = false }: { embedded?: b
       if (pendingImage) {
         imageUrl = await uploadChatImage(user.id, pendingImage);
       }
-      await createManualPost(user.id, content, imageUrl);
+      await createManualPost(user.id, content, imageUrl, {
+        category: selectedTopic,
+      });
       setContent("");
       clearPendingImage();
       await refreshFeed();
@@ -290,42 +340,142 @@ export default function CommunityFeedClient({ embedded = false }: { embedded?: b
     }
   };
 
+  const visiblePosts = posts.filter((post) => {
+    const category = getPostCategory(post);
+    const matchesTopic = feedFilter === "all" || category === feedFilter;
+    const query = searchQuery.trim().toLowerCase();
+    const matchesSearch =
+      !query ||
+      post.content.toLowerCase().includes(query) ||
+      post.user_name.toLowerCase().includes(query);
+    return matchesTopic && matchesSearch;
+  });
+  const totalReactions = posts.reduce((sum, post) => sum + post.reaction_count, 0);
+  const totalComments = posts.reduce((sum, post) => sum + post.comment_count, 0);
+  const hotPosts = [...posts]
+    .sort((a, b) => b.reaction_count + b.comment_count * 2 - (a.reaction_count + a.comment_count * 2))
+    .slice(0, 3);
+  const shellClass = embedded ? "" : "min-h-screen bg-stone-50 dark:bg-stone-950";
+
   return (
-    <div className={embedded ? "" : "min-h-screen bg-stone-50 dark:bg-stone-950"}>
+    <div className={shellClass}>
       {!embedded && (
         <div className="border-b border-stone-200 dark:border-stone-800 bg-white dark:bg-stone-950">
-          <div className="max-w-2xl mx-auto px-4 py-4">
-            <Link href="/dashboard" className="text-stone-500 dark:text-stone-400 hover:opacity-70 text-sm font-semibold flex items-center gap-1 w-fit">
+          <div className="max-w-6xl mx-auto px-4 sm:px-6 py-5">
+            <Link href="/nhom-hoc" className="text-stone-500 dark:text-stone-400 hover:opacity-70 text-sm font-semibold flex items-center gap-1 w-fit">
               <ArrowLeft className="w-4 h-4" /> Quay lại
             </Link>
-            <h1 className="text-2xl font-bold mt-2 text-stone-900 dark:text-stone-100">Cộng đồng</h1>
-            <p className="text-sm text-stone-500 dark:text-stone-400 mt-1">
-              Chia sẻ thành quả và cổ vũ những người học khác.
-            </p>
+            <div className="mt-4 flex flex-col lg:flex-row lg:items-end lg:justify-between gap-4">
+              <div>
+                <div className="inline-flex items-center gap-2 rounded-full border border-emerald-200 bg-emerald-50 px-3 py-1 text-[11px] font-black uppercase tracking-[0.16em] text-emerald-700 dark:border-emerald-900 dark:bg-emerald-950/40 dark:text-emerald-300">
+                  <MessageCircle className="h-3.5 w-3.5" />
+                  Bên dưới Học nhóm
+                </div>
+                <h1 className="mt-3 text-2xl sm:text-3xl font-black tracking-tight text-stone-950 dark:text-stone-50">
+                  Bảng tin cộng đồng
+                </h1>
+                <p className="mt-1.5 max-w-2xl text-sm font-medium text-stone-500 dark:text-stone-400">
+                  Feed chia sẻ mẹo học, câu hỏi, phân tích ngắn, hình ảnh thành tựu và cập nhật streak của mọi người.
+                </p>
+              </div>
+              <div className="grid grid-cols-3 gap-2 sm:min-w-[360px]">
+                {[
+                  { label: "Bài viết", value: posts.length },
+                  { label: "Cảm xúc", value: totalReactions },
+                  { label: "Bình luận", value: totalComments },
+                ].map((item) => (
+                  <div key={item.label} className="rounded-2xl border border-stone-200 bg-stone-50 px-3 py-2 text-center dark:border-stone-800 dark:bg-stone-900">
+                    <p className="text-lg font-black text-stone-950 dark:text-stone-50">{item.value}</p>
+                    <p className="text-[10px] font-bold uppercase tracking-wide text-stone-400">{item.label}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
           </div>
         </div>
       )}
 
-      <div className={`${embedded ? "" : "max-w-2xl mx-auto"} px-4 py-6`}>
+      <div className={`${embedded ? "" : "max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-[minmax(0,1fr)_320px] gap-6"} px-4 sm:px-6 py-6`}>
+        <main className="min-w-0">
+        {!embedded && (
+          <div className="mb-4 rounded-3xl border border-stone-200 bg-white p-3 shadow-sm dark:border-stone-800 dark:bg-stone-900">
+            <div className="flex flex-col sm:flex-row gap-3">
+              <div className="relative flex-1">
+                <Search className="pointer-events-none absolute left-3.5 top-1/2 h-4 w-4 -translate-y-1/2 text-stone-400" />
+                <input
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
+                  placeholder="Tìm bài viết, người đăng, chủ đề..."
+                  className="w-full rounded-2xl border border-stone-200 bg-stone-50 py-2.5 pl-10 pr-3 text-sm font-medium text-stone-900 outline-none transition focus:border-emerald-500 focus:bg-white dark:border-stone-700 dark:bg-stone-950 dark:text-stone-100"
+                />
+              </div>
+              <button
+                type="button"
+                onClick={() => void refreshFeed()}
+                className="inline-flex items-center justify-center gap-2 rounded-2xl border border-stone-200 bg-white px-4 py-2.5 text-sm font-bold text-stone-600 transition hover:bg-stone-50 dark:border-stone-700 dark:bg-stone-900 dark:text-stone-300"
+              >
+                <RefreshCw className="h-4 w-4" />
+                Làm mới
+              </button>
+            </div>
+            <div className="mt-3 flex gap-2 overflow-x-auto pb-1">
+              {TOPICS.map((topic) => {
+                const Icon = topic.icon;
+                const isActive = feedFilter === topic.id;
+                return (
+                  <button
+                    key={topic.id}
+                    type="button"
+                    onClick={() => setFeedFilter(topic.id)}
+                    className={`inline-flex shrink-0 items-center gap-2 rounded-full border px-3 py-1.5 text-xs font-black transition ${
+                      isActive
+                        ? "border-stone-900 bg-stone-900 text-white dark:border-stone-100 dark:bg-stone-100 dark:text-stone-900"
+                        : "border-stone-200 bg-stone-50 text-stone-600 hover:border-stone-400 dark:border-stone-800 dark:bg-stone-950 dark:text-stone-300"
+                    }`}
+                  >
+                    <Icon className="h-3.5 w-3.5" />
+                    {topic.label}
+                  </button>
+                );
+              })}
+            </div>
+          </div>
+        )}
+
         {user && (
           <div className="bg-white dark:bg-stone-900 border-2 border-stone-200 dark:border-stone-800 rounded-3xl p-4 sm:p-5 mb-6 shadow-sm">
+            <div className="mb-4 flex items-start justify-between gap-3">
+              <div>
+                <p className="text-xs font-black uppercase tracking-[0.14em] text-emerald-600 dark:text-emerald-400">Tạo bài viết</p>
+                <h2 className="mt-1 text-lg font-black text-stone-950 dark:text-stone-50">Bạn học được gì hôm nay?</h2>
+              </div>
+              <span className="hidden sm:inline-flex items-center gap-1 rounded-full bg-stone-100 px-2.5 py-1 text-[10px] font-black uppercase text-stone-500 dark:bg-stone-800 dark:text-stone-400">
+                Public feed
+              </span>
+            </div>
             <div className="flex flex-wrap items-center gap-1.5 mb-3">
               <span className="text-[10px] font-black uppercase text-stone-400 mr-1">Chủ đề:</span>
-              {[
-                { label: "💡 Mẹo tài chính", tag: "#MeoTaiChinh " },
-                { label: "📈 Phân tích", tag: "#PhanTich " },
-                { label: "🎯 Thành tựu", tag: "#ThanhTuu " },
-                { label: "❓ Hỏi đáp", tag: "#HoiDap " },
-              ].map((topic) => (
+              {TOPICS.filter((topic) => topic.id !== "all").map((topic) => {
+                const Icon = topic.icon;
+                const isActive = selectedTopic === topic.id;
+                return (
                 <button
-                  key={topic.label}
+                  key={topic.id}
                   type="button"
-                  onClick={() => setContent((prev) => (prev.includes(topic.tag) ? prev : `${topic.tag}${prev}`))}
-                  className="px-2.5 py-1 rounded-full bg-stone-100 dark:bg-stone-800 hover:bg-emerald-50 hover:text-emerald-700 dark:hover:bg-emerald-950 text-[11px] font-bold text-stone-600 dark:text-stone-300 transition-colors cursor-pointer"
+                  onClick={() => {
+                    setSelectedTopic(topic.id);
+                    setContent((prev) => (topic.tag && !prev.includes(topic.tag) ? `${topic.tag}${prev.replace(/^#\\S+\\s*/, "")}` : prev));
+                  }}
+                  className={`inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full border text-[11px] font-bold transition-colors cursor-pointer ${
+                    isActive
+                      ? "border-emerald-300 bg-emerald-50 text-emerald-700 dark:border-emerald-800 dark:bg-emerald-950/50 dark:text-emerald-300"
+                      : "border-transparent bg-stone-100 text-stone-600 hover:bg-emerald-50 hover:text-emerald-700 dark:bg-stone-800 dark:text-stone-300 dark:hover:bg-emerald-950"
+                  }`}
                 >
+                  <Icon className="h-3.5 w-3.5" />
                   {topic.label}
                 </button>
-              ))}
+              )})}
             </div>
 
             <input
@@ -372,7 +522,7 @@ export default function CommunityFeedClient({ embedded = false }: { embedded?: b
                   <ImageIcon className="w-4 h-4 text-emerald-600 dark:text-emerald-400" />
                   <span className="hidden sm:inline">Thêm ảnh</span>
                 </button>
-                <span className="text-xs text-stone-400 ml-1">{content.length}/500</span>
+                <span className={`text-xs ml-1 ${content.length > 440 ? "text-amber-600 font-bold" : "text-stone-400"}`}>{content.length}/500</span>
               </div>
               <button
                 onClick={handlePost}
@@ -387,25 +537,37 @@ export default function CommunityFeedClient({ embedded = false }: { embedded?: b
 
         {loading ? (
           <p className="text-center text-sm text-stone-400 py-12">Đang tải...</p>
-        ) : posts.length === 0 ? (
+        ) : visiblePosts.length === 0 ? (
           <p className="text-center text-sm text-stone-400 py-12">
-            Chưa có bài chia sẻ nào. Hãy là người đầu tiên!
+            Chưa có bài chia sẻ nào phù hợp bộ lọc này.
           </p>
         ) : (
-          <div className="space-y-3">
-            {posts.map((post) => (
-              <div key={post.id} className="bg-white dark:bg-stone-900 border-2 border-stone-200 dark:border-stone-800 rounded-3xl p-4 sm:p-5">
+          <div className="space-y-4">
+            {visiblePosts.map((post) => {
+              const category = getPostCategory(post);
+              const topic = getTopicMeta(category);
+              const TopicIcon = topic.icon;
+              return (
+              <div key={post.id} className="bg-white dark:bg-stone-900 border border-stone-200 dark:border-stone-800 rounded-3xl p-4 sm:p-5 shadow-sm">
                 <div className="flex items-start gap-3">
                   <Avatar name={post.user_name} avatarUrl={post.user_avatar} />
                   <div className="flex-1 min-w-0">
-                    <div className="flex items-center gap-2 flex-wrap">
-                      <span className="font-bold text-sm text-stone-900 dark:text-stone-100">{post.user_name}</span>
+                    <div className="flex items-start justify-between gap-3">
+                      <div className="flex items-center gap-2 flex-wrap">
+                        <span className="font-bold text-sm text-stone-900 dark:text-stone-100">{post.user_name}</span>
                       {post.kind === "streak" && (
                         <span className="flex items-center gap-1 text-[10px] font-bold text-orange-600 dark:text-orange-400 bg-orange-50 dark:bg-orange-950/30 px-2 py-0.5 rounded-full">
                           <Flame className="w-3 h-3" /> Streak
                         </span>
                       )}
                       <span className="text-xs text-stone-400 dark:text-stone-500">{timeAgo(post.created_at)}</span>
+                      </div>
+                      {category !== "all" && (
+                        <span className="inline-flex shrink-0 items-center gap-1 rounded-full bg-stone-100 px-2.5 py-1 text-[10px] font-black uppercase text-stone-500 dark:bg-stone-800 dark:text-stone-400">
+                          <TopicIcon className="h-3 w-3" />
+                          {topic.shortLabel}
+                        </span>
+                      )}
                     </div>
                     {post.content && (
                       <p className="text-sm text-stone-800 dark:text-stone-200 mt-1 whitespace-pre-wrap break-words">
@@ -583,7 +745,7 @@ export default function CommunityFeedClient({ embedded = false }: { embedded?: b
                   </div>
                 </div>
               </div>
-            ))}
+            )})}
 
             {hasMore && (
               <button
@@ -595,6 +757,77 @@ export default function CommunityFeedClient({ embedded = false }: { embedded?: b
               </button>
             )}
           </div>
+        )}
+        </main>
+
+        {!embedded && (
+          <aside className="space-y-4 lg:sticky lg:top-24 self-start">
+            <div className="rounded-3xl border border-stone-200 bg-white p-5 shadow-sm dark:border-stone-800 dark:bg-stone-900">
+              <div className="flex items-center gap-2">
+                <ShieldCheck className="h-5 w-5 text-emerald-600" />
+                <h2 className="text-sm font-black uppercase tracking-[0.14em] text-stone-900 dark:text-stone-100">Luật feed</h2>
+              </div>
+              <div className="mt-4 space-y-3 text-sm font-medium text-stone-600 dark:text-stone-300">
+                <p>Viết ngắn, có ích, tôn trọng người học khác.</p>
+                <p>Không đăng khuyến nghị mua bán chắc chắn, không chia sẻ dữ liệu cá nhân hoặc tài liệu mật.</p>
+                <p>Một bài hay nên có: điều học được, ví dụ, câu hỏi hoặc nguồn cần kiểm chứng.</p>
+              </div>
+            </div>
+
+            <div className="rounded-3xl border border-stone-200 bg-white p-5 shadow-sm dark:border-stone-800 dark:bg-stone-900">
+              <div className="mb-4 flex items-center justify-between">
+                <h2 className="text-sm font-black uppercase tracking-[0.14em] text-stone-900 dark:text-stone-100">Đang nổi bật</h2>
+                <TrendingUp className="h-5 w-5 text-amber-500" />
+              </div>
+              {hotPosts.length === 0 ? (
+                <p className="text-sm text-stone-400">Chưa có bài nổi bật.</p>
+              ) : (
+                <div className="space-y-3">
+                  {hotPosts.map((post, index) => (
+                    <div key={post.id} className="rounded-2xl bg-stone-50 p-3 dark:bg-stone-950/60">
+                      <div className="flex items-center gap-2">
+                        <span className="flex h-6 w-6 items-center justify-center rounded-full bg-stone-900 text-xs font-black text-white dark:bg-stone-100 dark:text-stone-900">
+                          {index + 1}
+                        </span>
+                        <p className="truncate text-sm font-bold text-stone-900 dark:text-stone-100">{post.user_name}</p>
+                      </div>
+                      <p className="mt-2 line-clamp-2 text-xs font-medium leading-relaxed text-stone-500 dark:text-stone-400">
+                        {post.content || "Bài viết có hình ảnh"}
+                      </p>
+                      <div className="mt-2 flex items-center gap-3 text-[11px] font-bold text-stone-400">
+                        <span>{post.reaction_count} cảm xúc</span>
+                        <span>{post.comment_count} bình luận</span>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              )}
+            </div>
+
+            <div className="rounded-3xl border border-stone-200 bg-white p-5 shadow-sm dark:border-stone-800 dark:bg-stone-900">
+              <div className="flex items-center gap-2">
+                <Bookmark className="h-5 w-5 text-sky-600" />
+                <h2 className="text-sm font-black uppercase tracking-[0.14em] text-stone-900 dark:text-stone-100">Gợi ý đăng bài</h2>
+              </div>
+              <div className="mt-4 grid gap-2">
+                {[
+                  "Hôm nay mình hiểu ra...",
+                  "Mình đang kẹt ở câu hỏi...",
+                  "Một mẹo học BCTC của mình là...",
+                  "Ảnh thành quả/streak hôm nay:",
+                ].map((idea) => (
+                  <button
+                    key={idea}
+                    type="button"
+                    onClick={() => setContent((prev) => (prev ? prev : idea))}
+                    className="rounded-2xl border border-stone-200 bg-stone-50 px-3 py-2 text-left text-xs font-bold text-stone-600 transition hover:border-emerald-300 hover:bg-emerald-50 hover:text-emerald-700 dark:border-stone-800 dark:bg-stone-950 dark:text-stone-300"
+                  >
+                    {idea}
+                  </button>
+                ))}
+              </div>
+            </div>
+          </aside>
         )}
       </div>
     </div>

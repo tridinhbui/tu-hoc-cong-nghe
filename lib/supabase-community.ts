@@ -59,7 +59,12 @@ export async function getCommunityFeed(beforeId?: number, limit = 20): Promise<C
 
 const MANUAL_POST_COOLDOWN_MINUTES = 60;
 
-export async function createManualPost(userId: string, content: string, imageUrl?: string): Promise<void> {
+export async function createManualPost(
+  userId: string,
+  content: string,
+  imageUrl?: string,
+  metadata?: Record<string, unknown>
+): Promise<void> {
   const trimmed = content.trim();
   if (!trimmed && !imageUrl) throw new Error("Bài viết phải có nội dung hoặc hình ảnh.");
   if (trimmed.length > 500) throw new Error("Nội dung tối đa 500 ký tự.");
@@ -83,8 +88,8 @@ export async function createManualPost(userId: string, content: string, imageUrl
     kind: "manual",
     content: trimmed,
   };
-  if (imageUrl) {
-    payload.metadata = { image_url: imageUrl };
+  if (imageUrl || metadata) {
+    payload.metadata = { ...(metadata ?? {}), ...(imageUrl ? { image_url: imageUrl } : {}) };
   }
 
   const { error } = await supabase.from("community_posts").insert(payload);
