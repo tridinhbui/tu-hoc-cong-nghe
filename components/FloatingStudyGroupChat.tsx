@@ -441,7 +441,7 @@ export default function FloatingStudyGroupChat({ isOpen: controlledIsOpen, onOpe
                             {initials(member?.full_name)}
                           </div>
                         ))}
-                      <div className="max-w-[78%]">
+                      <div className="relative max-w-[78%]">
                         {!isMine && (
                           <p className="text-[9px] font-bold text-stone-450 dark:text-stone-500 mb-0.5 ml-1">
                             {senderName}
@@ -474,10 +474,10 @@ export default function FloatingStudyGroupChat({ isOpen: controlledIsOpen, onOpe
                         </div>
 
                         {/* 3-Dots Menu Trigger Button */}
-                        <div className="relative">
+                        <div className={isMine ? "absolute right-full top-1/2 mr-1 -translate-y-1/2" : "relative"}>
                           <button
                             onClick={() => setActiveMenuMsgId(activeMenuMsgId === msg.id ? null : msg.id)}
-                            className="opacity-0 group-hover:opacity-100 transition-all duration-200 p-1 rounded-full hover:bg-stone-200 dark:hover:bg-stone-700 text-stone-500 dark:text-stone-400 cursor-pointer shadow-xs bg-white/90 dark:bg-stone-800/90 border border-stone-200/80 dark:border-stone-700 mt-1"
+                            className={`${isMine ? "opacity-70" : "opacity-0 mt-1"} group-hover:opacity-100 transition-all duration-200 p-1 rounded-full hover:bg-stone-200 dark:hover:bg-stone-700 text-stone-500 dark:text-stone-400 cursor-pointer shadow-xs bg-white/90 dark:bg-stone-800/90 border border-stone-200/80 dark:border-stone-700 hover:scale-105`}
                             title="Tùy chọn tin nhắn"
                           >
                             <MoreVertical className="w-3 h-3" />
@@ -601,7 +601,7 @@ export default function FloatingStudyGroupChat({ isOpen: controlledIsOpen, onOpe
                         {isMine && (
                           <div className="mt-1 flex items-center justify-end gap-1 text-[9px] font-bold text-stone-400 dark:text-stone-500">
                             <CheckCheck className="h-3 w-3 text-emerald-500" />
-                            <span>{members.size > 1 ? "Đã nhận trong nhóm" : "Đã gửi"}</span>
+                            <span>{members.size > 1 ? "Đã xem" : "Đã gửi"}</span>
                           </div>
                         )}
 

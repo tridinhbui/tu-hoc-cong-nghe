@@ -639,7 +639,7 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
                         <div className="relative">
                           <button
                             onClick={() => setActiveMenuMsgId(activeMenuMsgId === msg.id ? null : msg.id)}
-                            className="opacity-0 group-hover:opacity-100 transition-all duration-200 p-1.5 rounded-full hover:bg-stone-200 dark:hover:bg-stone-700 text-stone-500 dark:text-stone-400 cursor-pointer shadow-xs bg-white/90 dark:bg-stone-800/90 border border-stone-200/80 dark:border-stone-700"
+                            className={`${isMine ? "opacity-70" : "opacity-0"} group-hover:opacity-100 transition-all duration-200 p-1.5 rounded-full hover:bg-stone-200 dark:hover:bg-stone-700 text-stone-500 dark:text-stone-400 cursor-pointer shadow-xs bg-white/90 dark:bg-stone-800/90 border border-stone-200/80 dark:border-stone-700 hover:scale-105`}
                             title="Tùy chọn tin nhắn"
                           >
                             <MoreVertical className="w-3.5 h-3.5" />
@@ -763,7 +763,7 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
                       {isMine && (
                         <div className="mt-1 flex items-center justify-end gap-1 text-[10px] font-bold text-stone-400 dark:text-stone-500">
                           <CheckCheck className="h-3.5 w-3.5 text-emerald-500" />
-                          <span>{myRoomMembers.length > 1 ? "Đã nhận trong nhóm" : "Đã gửi"}</span>
+                          <span>{myRoomMembers.length > 1 ? "Đã xem" : "Đã gửi"}</span>
                         </div>
                       )}
                     </div>
