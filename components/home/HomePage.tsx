@@ -167,6 +167,8 @@ export default function HomePage() {
   const [previewTrack, setPreviewTrack] = useState<TrackId>("personal");
   const userCountLoadedRef = useRef(false);
   const completedCountLoadedRef = useRef(false);
+  const heroParallaxX = (heroSpotlight.x - 50) / 10;
+  const heroParallaxY = (heroSpotlight.y - 35) / 10;
 
   useRoutePrefetch(["/login", "/login?mode=signup", `/bai-hoc/${TRACKS.personal.previewSlug}`], { delayMs: 500 });
 
@@ -575,7 +577,12 @@ export default function HomePage() {
                     <div className="absolute inset-0 bg-gradient-to-br from-stone-950/92 via-stone-950/58 to-emerald-950/55" />
                   </div>
 
-                  <div className="relative p-6">
+                  <div
+                    className="relative p-6"
+                    style={{
+                      transform: `perspective(1200px) translate3d(${heroParallaxX * 0.5}px, ${heroParallaxY * 0.35}px, 0)`,
+                    }}
+                  >
                     <div className="flex items-center justify-between gap-3">
                       <div className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/10 px-3 py-1 text-[10px] font-black uppercase tracking-[0.16em] text-emerald-200 backdrop-blur">
                         <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-emerald-300" />
@@ -586,62 +593,88 @@ export default function HomePage() {
                       </div>
                     </div>
 
-                    <div className="mt-5 rounded-[1.6rem] border border-white/12 bg-white/10 p-4 backdrop-blur-sm">
-                      <div className="flex items-center justify-between gap-4">
-                        <div>
-                          <p className="text-[10px] font-black uppercase tracking-[0.18em] text-stone-300">Hôm nay trong hệ</p>
-                          <p className="mt-1 text-2xl font-black text-white">{displayedCompletedCount.toLocaleString("vi-VN")} lượt hoàn thành</p>
-                        </div>
-                        <div className="rounded-[18px] border border-emerald-300/25 bg-emerald-400/10 px-3 py-2 text-right">
-                          <p className="text-[10px] font-black uppercase tracking-[0.14em] text-emerald-200">Streak cộng đồng</p>
-                          <p className="mt-1 text-xl font-black text-white">18 ngày</p>
-                        </div>
-                      </div>
-                    </div>
-
-                    <div className="mt-4 grid gap-3 sm:grid-cols-[1.15fr_0.85fr]">
-                      <div className="rounded-[1.45rem] border border-white/12 bg-stone-950/45 p-4 backdrop-blur-sm">
+                    <div className="mt-5 grid gap-3 sm:grid-cols-[1.15fr_0.85fr]">
+                      <div
+                        className="rounded-[1.6rem] border border-white/12 bg-white/10 p-4 backdrop-blur-sm"
+                        style={{
+                          transform: `perspective(1200px) translate3d(${heroParallaxX * 0.8}px, ${heroParallaxY * 0.6}px, 0) rotateY(${heroParallaxX * 0.45}deg)`,
+                        }}
+                      >
                         <div className="mb-3 flex items-center justify-between gap-2">
                           <div>
-                            <p className="text-[10px] font-black uppercase tracking-[0.16em] text-stone-400">Hành trình học</p>
-                            <p className="mt-1 text-sm font-black text-white">Lộ trình đang mở khóa</p>
+                            <p className="text-[10px] font-black uppercase tracking-[0.16em] text-stone-400">Biểu đồ 3D</p>
+                            <p className="mt-1 text-sm font-black text-white">Tiến độ học trong tuần</p>
                           </div>
                           <div className="rounded-full bg-emerald-400/10 px-2.5 py-1 text-[10px] font-black text-emerald-200">
                             72% tiến độ
                           </div>
                         </div>
-                        <div className="space-y-2">
+                        <div className="flex h-44 items-end gap-2 rounded-[1.35rem] border border-white/10 bg-stone-950/45 px-4 pb-4 pt-6">
                           {[
-                            "Hiểu báo cáo tài chính cơ bản",
-                            "Đọc nhanh P/E, ROE, dòng tiền",
-                            "Bắt đầu với định giá doanh nghiệp",
-                          ].map((item, index) => (
-                            <div
-                              key={item}
-                              className={`rounded-[16px] border px-3 py-2.5 text-xs font-semibold ${
-                                index < 2
-                                  ? "border-emerald-300/25 bg-emerald-400/10 text-emerald-50"
-                                  : "border-white/10 bg-white/5 text-stone-300"
-                              }`}
-                            >
-                              {item}
+                            { label: "T2", value: 44, tone: "from-emerald-300 to-emerald-500" },
+                            { label: "T3", value: 58, tone: "from-cyan-300 to-emerald-400" },
+                            { label: "T4", value: 72, tone: "from-amber-200 to-amber-400" },
+                            { label: "T5", value: 60, tone: "from-emerald-300 to-teal-400" },
+                            { label: "T6", value: 82, tone: "from-amber-300 to-orange-400" },
+                            { label: "T7", value: 90, tone: "from-emerald-200 to-emerald-500" },
+                          ].map((bar, index) => (
+                            <div key={bar.label} className="group flex flex-1 flex-col items-center gap-2">
+                              <div className="relative h-full w-full">
+                                <div
+                                  className={`absolute inset-x-1 bottom-0 rounded-t-[18px] bg-gradient-to-t ${bar.tone} shadow-[0_18px_24px_-20px_rgba(16,185,129,0.45)]`}
+                                  style={{
+                                    height: `${bar.value}%`,
+                                    transform: `perspective(600px) translate3d(${(index - 2.5) * 1.2}px, ${(heroParallaxY * index) / 18}px, 0) rotateX(16deg)`,
+                                    transformOrigin: "bottom center",
+                                  }}
+                                />
+                                <div className="absolute inset-x-1 bottom-0 h-4 rounded-b-[18px] bg-white/15 blur-[1px]" />
+                              </div>
+                              <span className="text-[10px] font-black uppercase tracking-[0.14em] text-stone-300">{bar.label}</span>
+                            </div>
+                          ))}
+                        </div>
+                        <div className="mt-3 grid grid-cols-3 gap-2">
+                          {[
+                            ["Bài học", displayedLessonCount.toLocaleString("vi-VN")],
+                            ["Quiz đúng", `${Math.max(72, Math.min(98, displayedCompletedCount % 100))}%`],
+                            ["XP hôm nay", "+240"],
+                          ].map(([label, value]) => (
+                            <div key={label} className="rounded-[16px] border border-white/10 bg-white/8 px-3 py-2">
+                              <p className="text-[10px] font-black uppercase tracking-[0.14em] text-stone-400">{label}</p>
+                              <p className="mt-1 text-sm font-black text-white">{value}</p>
                             </div>
                           ))}
                         </div>
                       </div>
 
                       <div className="space-y-3">
-                        <div className="rounded-[1.45rem] border border-white/12 bg-white/10 p-4 backdrop-blur-sm">
+                        <div
+                          className="rounded-[1.45rem] border border-white/12 bg-white/10 p-4 backdrop-blur-sm"
+                          style={{
+                            transform: `perspective(1200px) translate3d(${heroParallaxX * 1.1}px, ${heroParallaxY * 0.8}px, 0) rotateY(${heroParallaxX * 0.7}deg)`,
+                          }}
+                        >
                           <p className="text-[10px] font-black uppercase tracking-[0.16em] text-stone-300">Cộng đồng</p>
                           <p className="mt-2 text-sm font-black text-white">FinSocial + Học nhóm</p>
                           <p className="mt-1 text-xs leading-relaxed text-stone-300">Đọc phân tích ngắn, hỏi đáp nhanh, giữ nhịp với nhóm học mỗi ngày.</p>
                         </div>
-                        <div className="rounded-[1.45rem] border border-white/12 bg-white/10 p-4 backdrop-blur-sm">
+                        <div
+                          className="rounded-[1.45rem] border border-white/12 bg-white/10 p-4 backdrop-blur-sm"
+                          style={{
+                            transform: `perspective(1200px) translate3d(${heroParallaxX * 1.6}px, ${heroParallaxY * 1.15}px, 0) rotateY(${heroParallaxX * 0.9}deg)`,
+                          }}
+                        >
                           <p className="text-[10px] font-black uppercase tracking-[0.16em] text-stone-300">Game Kingdom</p>
                           <p className="mt-2 text-sm font-black text-white">Mở khóa bằng kiến thức</p>
                           <div className="mt-2 h-1.5 overflow-hidden rounded-full bg-white/10">
                             <div className="preview-progress-live h-full w-3/4 rounded-full bg-gradient-to-r from-amber-300 to-emerald-300" />
                           </div>
+                        </div>
+                        <div className="rounded-[1.45rem] border border-emerald-300/20 bg-emerald-400/10 p-4 backdrop-blur-sm">
+                          <p className="text-[10px] font-black uppercase tracking-[0.16em] text-emerald-200">Bản xem trước</p>
+                          <p className="mt-2 text-sm font-black text-white">Card lơ lửng + parallax</p>
+                          <p className="mt-1 text-xs leading-relaxed text-stone-300">Di chuột qua hero để thấy lớp sáng và độ nổi thay đổi nhẹ theo vị trí con trỏ.</p>
                         </div>
                       </div>
                     </div>
@@ -716,7 +749,7 @@ export default function HomePage() {
             </ScrollReveal>
 
             <ScrollReveal delay={0.1}>
-              <div className="rounded-[1.75rem] border border-stone-200 bg-white p-5 shadow-sm dark:border-stone-800 dark:bg-stone-900">
+              <div className="animated-border-card rounded-[1.75rem] border border-stone-200 bg-white p-5 shadow-sm dark:border-stone-800 dark:bg-stone-900">
                 <div className="inline-flex items-center gap-2 rounded-full border border-emerald-200 bg-emerald-50 px-3 py-1 text-[10px] font-black uppercase tracking-[0.16em] text-emerald-700 dark:border-emerald-900 dark:bg-emerald-950/30 dark:text-emerald-300">
                   <Sparkles className="icon-bounce h-3.5 w-3.5" />
                   Vì sao cộng đồng này giữ chân người học
@@ -942,7 +975,7 @@ export default function HomePage() {
             <div className="grid gap-5 lg:grid-cols-3">
               {FEATURE_SHOWCASE.map(({ eyebrow, title, text, image, alt, icon: Icon, href, cta, bullets }, i) => (
                 <ScrollReveal key={eyebrow} delay={i * 0.08}>
-                  <article className="group h-full overflow-hidden rounded-[20px] border border-stone-200/80 dark:border-stone-800 bg-white dark:bg-stone-950 shadow-[0_10px_24px_-24px_rgba(15,23,42,0.2)] transition-all duration-200 ease-out hover:-translate-y-1 hover:shadow-[0_14px_30px_-24px_rgba(16,185,129,0.22)]">
+                  <article className="animated-border-card group h-full overflow-hidden rounded-[20px] border border-stone-200/80 dark:border-stone-800 bg-white dark:bg-stone-950 shadow-[0_10px_24px_-24px_rgba(15,23,42,0.2)] transition-all duration-200 ease-out hover:-translate-y-1 hover:shadow-[0_14px_30px_-24px_rgba(16,185,129,0.22)]">
                     <div className="relative aspect-[16/10] overflow-hidden bg-stone-100 dark:bg-stone-900">
                       <Image
                         src={image}
@@ -1088,7 +1121,7 @@ export default function HomePage() {
         {/* ── VISION & MISSION ── */}
         <section className="relative max-w-6xl mx-auto px-6 pb-16 lg:pb-20">
           <ScrollReveal>
-            <div className="rounded-[20px] border border-stone-200/80 dark:border-stone-800/85 bg-white/70 dark:bg-stone-900/60 backdrop-blur-sm p-8 lg:p-10 shadow-[0_14px_34px_-26px_rgba(28,25,23,0.12)] dark:shadow-[0_14px_34px_-26px_rgba(0,0,0,0.28)]">
+            <div className="animated-border-card rounded-[20px] border border-stone-200/80 dark:border-stone-800/85 bg-white/70 dark:bg-stone-900/60 backdrop-blur-sm p-8 lg:p-10 shadow-[0_14px_34px_-26px_rgba(28,25,23,0.12)] dark:shadow-[0_14px_34px_-26px_rgba(0,0,0,0.28)]">
               <div className="grid gap-8 lg:grid-cols-[minmax(0,1.35fr)_minmax(320px,0.95fr)] lg:items-start">
                 <div>
                   <p className="mb-4 inline-flex items-center gap-2 text-xs font-black text-emerald-600 dark:text-emerald-400 uppercase tracking-widest">
@@ -1102,7 +1135,7 @@ export default function HomePage() {
                   </h2>
 
                   <div className="mt-7 grid gap-4 sm:grid-cols-3">
-                    <div className="rounded-[18px] border border-emerald-200/50 dark:border-emerald-900/40 bg-emerald-50/50 dark:bg-emerald-950/20 px-5 py-5 transition-all duration-200 ease-out hover:scale-[1.02]">
+                    <div className="animated-border-card rounded-[18px] border border-emerald-200/50 dark:border-emerald-900/40 bg-emerald-50/50 dark:bg-emerald-950/20 px-5 py-5 transition-all duration-200 ease-out hover:scale-[1.02]">
                       <div className="text-[10px] font-black uppercase tracking-[0.18em] text-emerald-700 dark:text-emerald-300">
                         Hiểu biết cơ bản
                       </div>
@@ -1113,7 +1146,7 @@ export default function HomePage() {
                         đạt ngưỡng hiểu biết tài chính cơ bản.
                       </p>
                     </div>
-                    <div className="rounded-[18px] border border-stone-200/80 dark:border-stone-800 bg-stone-50/50 dark:bg-stone-900/30 px-5 py-5 transition-all duration-200 ease-out hover:scale-[1.02]">
+                    <div className="animated-border-card rounded-[18px] border border-stone-200/80 dark:border-stone-800 bg-stone-50/50 dark:bg-stone-900/30 px-5 py-5 transition-all duration-200 ease-out hover:scale-[1.02]">
                       <div className="text-[10px] font-black uppercase tracking-[0.18em] text-stone-500 dark:text-stone-400">
                         Khoảng trống còn lại
                       </div>
@@ -1124,7 +1157,7 @@ export default function HomePage() {
                         vẫn chưa đạt mức nền tảng.
                       </p>
                     </div>
-                    <div className="rounded-[18px] border border-stone-200/80 dark:border-stone-800 bg-stone-50/50 dark:bg-stone-900/30 px-5 py-5 transition-all duration-200 ease-out hover:scale-[1.02]">
+                    <div className="animated-border-card rounded-[18px] border border-stone-200/80 dark:border-stone-800 bg-stone-50/50 dark:bg-stone-900/30 px-5 py-5 transition-all duration-200 ease-out hover:scale-[1.02]">
                       <div className="text-[10px] font-black uppercase tracking-[0.18em] text-stone-500 dark:text-stone-400">
                         Tiếp cận năm 2024
                       </div>
@@ -1137,14 +1170,14 @@ export default function HomePage() {
                     </div>
                   </div>
 
-                  <div className="mt-6 rounded-[18px] bg-stone-50/60 dark:bg-stone-900/30 px-5 py-4 text-sm leading-relaxed text-stone-600 dark:text-stone-400 border border-stone-150/40 dark:border-stone-850/40">
+                  <div className="animated-border-card mt-6 rounded-[18px] bg-stone-50/60 dark:bg-stone-900/30 px-5 py-4 text-sm leading-relaxed text-stone-600 dark:text-stone-400 border border-stone-150/40 dark:border-stone-850/40">
                     Vấn đề không nằm ở việc người học thiếu cố gắng, mà ở chỗ kiến thức tài chính thường còn khó, rời
                     rạc và xa nhu cầu thực tế.
                   </div>
                 </div>
 
                 <div className="lg:self-center lg:translate-y-4">
-                  <div className="rounded-[20px] border border-emerald-200/70 dark:border-emerald-900/40 bg-gradient-to-b from-emerald-50/50 to-teal-50/30 dark:from-emerald-950/20 dark:to-teal-950/10 p-6 shadow-[0_14px_30px_-26px_rgba(16,185,129,0.18)] backdrop-blur-sm">
+                  <div className="animated-border-card rounded-[20px] border border-emerald-200/70 dark:border-emerald-900/40 bg-gradient-to-b from-emerald-50/50 to-teal-50/30 dark:from-emerald-950/20 dark:to-teal-950/10 p-6 shadow-[0_14px_30px_-26px_rgba(16,185,129,0.18)] backdrop-blur-sm">
                     <p className="mb-4 inline-flex items-center gap-2 text-xs font-black text-emerald-700 dark:text-emerald-300 uppercase tracking-widest">
                       <span className="inline-flex h-6 w-6 items-center justify-center rounded-full bg-white/80 text-sm shadow-sm ring-1 ring-emerald-200/80 dark:bg-stone-950/30 dark:ring-emerald-900/40">
                         🇻🇳
