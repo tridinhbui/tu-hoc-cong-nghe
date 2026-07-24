@@ -4,6 +4,11 @@ import { handleSupabaseError } from "@/lib/errors";
 import { scheduleLessonRecall } from "@/lib/supabase-recalls";
 import { recalculateUserStats } from "@/lib/supabase-user";
 
+export async function addXpToUser(userId: string, xpAmount: number): Promise<void> {
+  if (!userId) return;
+  await recalculateUserStats(userId).catch(() => {});
+}
+
 export interface UserProgress {
   id: number;
   user_id: string;

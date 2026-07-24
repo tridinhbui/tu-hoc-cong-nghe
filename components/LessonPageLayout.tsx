@@ -846,6 +846,46 @@ export default function LessonPageLayout({ lesson, quiz, children }: Props) {
               <StageTipsBanner lessonId={persistedLessonId} lessonTitle={lesson.title} />
             </div>
 
+            {/* 📺 Lesson Video Player / Curated Video Section */}
+            <div className="my-6 rounded-2xl overflow-hidden border-2 border-stone-900 dark:border-stone-700 bg-stone-900 text-white p-5 shadow-lg">
+              <div className="flex items-center justify-between mb-3">
+                <div className="flex items-center gap-2">
+                  <span className="w-7 h-7 rounded-lg bg-rose-500/20 border border-rose-500/40 flex items-center justify-center text-rose-400 font-bold text-xs">▶️</span>
+                  <h3 className="text-sm font-extrabold text-white uppercase tracking-wider">Video Bài Giảng Trực Quan</h3>
+                </div>
+                <span className="text-[10px] font-bold text-stone-400 bg-stone-800 px-2 py-0.5 rounded">Minh họa trực quan</span>
+              </div>
+
+              {(() => {
+                const vUrl = (lesson as { videoUrl?: string }).videoUrl;
+                return vUrl ? (
+                  <div className="aspect-video w-full rounded-xl overflow-hidden border border-stone-800 bg-black">
+                    <iframe
+                      src={vUrl.includes("youtube.com/watch?v=") ? vUrl.replace("watch?v=", "embed/") : vUrl}
+                      title={lesson.title}
+                      className="w-full h-full"
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                      allowFullScreen
+                    />
+                  </div>
+                ) : (
+                  <div className="bg-stone-950 p-4 rounded-xl border border-stone-800/80 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs">
+                    <p className="text-stone-300">
+                      🎬 Bài học này hỗ trợ xem video minh họa trực quan trên YouTube.
+                    </p>
+                    <a
+                      href={`https://www.youtube.com/results?search_query=T%E1%BB%B1+h%E1%BB%8Dc+t%C3%A0i+ch%C3%ADnh+${encodeURIComponent(lesson.title)}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="px-4 py-2 rounded-xl bg-rose-600 hover:bg-rose-500 font-bold text-white transition-all shadow-md shrink-0 flex items-center gap-1.5 cursor-pointer"
+                    >
+                      <span>▶ Xem Video Bài Giảng trên YouTube</span>
+                    </a>
+                  </div>
+                );
+              })()}
+            </div>
+
             {/* Content - `zoom` (not fontSize) so the reading-size control
                 rescales every lesson page uniformly regardless of the
                 explicit Tailwind text-sm/lg/xl classes each hand-written

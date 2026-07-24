@@ -21,6 +21,8 @@ import GameHubClient from "@/components/games/GameHubClient";
 import CandlestickGame from "@/components/games/CandlestickGame";
 import MaSpeedrunGame from "@/components/games/MaSpeedrunGame";
 import AlgoTraderGame from "@/components/games/AlgoTraderGame";
+import FedVaultWidget from "@/components/FedVaultWidget";
+import GoldmanSachsWidget from "@/components/GoldmanSachsWidget";
 
 interface OrganicBuilding {
   id: string;
@@ -107,19 +109,20 @@ const ORGANIC_BUILDINGS: OrganicBuilding[] = [
     imageSrc: "/times-square.jpg",
   },
 
-  // KHU VỰC 3: QUỸ ĐẦU TƯ & DỤNG CỤ
+  // KHU VỰC 3: QUỸ ĐẦU TƯ & NGÂN HÀNG ĐẦU TƯ
   {
-    id: "guilds",
-    name: "Quỹ Đầu Tư Wall Street",
-    subtitle: "Hedge Fund Clan & Đua Top Bài Học",
-    emoji: "🏰",
-    badge: "🏰 HEDGE FUND QUARTER",
-    bgLight: "bg-gradient-to-br from-purple-50 via-indigo-50/50 to-purple-100/30",
-    borderColor: "border-purple-400 ring-1 ring-purple-400/30",
-    textColor: "text-purple-700 dark:text-purple-400",
-    badgeBg: "bg-gradient-to-r from-purple-600 to-indigo-600 text-white font-black",
+    id: "goldman-sachs",
+    name: "Tập Đoàn Goldman Sachs Investment Bank",
+    subtitle: "Đấu Trường M&A Dealmaking, Định Giá & IPO Pitching",
+    emoji: "🏛️",
+    badge: "🏛️ GOLDMAN SACHS WALL ST.",
+    bgLight: "bg-gradient-to-br from-slate-50 via-sky-50 to-indigo-50",
+    borderColor: "border-sky-400 ring-2 ring-sky-400/40 shadow-lg shadow-sky-500/10",
+    textColor: "text-sky-800 dark:text-sky-300 font-black",
+    badgeBg: "bg-gradient-to-r from-sky-600 via-indigo-600 to-slate-800 text-white font-black",
     posClass: "top-[320px] right-8 sm:right-20",
     desktopClass: "lg:col-start-3 lg:row-start-4",
+    imageSrc: "/rpg/goldman_sachs.png",
   },
   {
     id: "cards",
@@ -148,96 +151,85 @@ const ORGANIC_BUILDINGS: OrganicBuilding[] = [
     desktopClass: "lg:col-start-3 lg:row-start-6",
   },
 
-  // 🏗️ KHU VỰC 4: VÙNG ĐẤT TÀI CHÍNH TOÀN CẦU MỞ RỘNG (ĐANG THI CÔNG & KHÓA)
+  // 🏗️ KHU VỰC 4: VÙNG ĐẤT TÀI CHÍNH TOÀN CẦU
   {
     id: "fed-vault",
-    name: "Ngân Hàng Fed Vault",
-    subtitle: "Kho Thỏi Vàng & Điều Hành Lãi Suất Vĩ Mô",
+    name: "Cục Dự Trữ Liên Bang Fed",
+    subtitle: "Kho Thỏi Vàng & Mô Phỏng Lãi Suất Vĩ Mô",
     emoji: "🏦",
-    badge: "🏦 FED VAULT • LÊN LEVEL 15",
+    badge: "🏛️ US FEDERAL RESERVE",
     bgLight: "bg-gradient-to-br from-amber-50/80 via-yellow-50 to-stone-100",
-    borderColor: "border-amber-400/80 border-dashed ring-1 ring-amber-400/40",
-    textColor: "text-stone-800 dark:text-stone-300 font-black",
+    borderColor: "border-amber-400 ring-2 ring-amber-400/40 shadow-lg shadow-amber-500/10",
+    textColor: "text-amber-800 dark:text-amber-300 font-black",
     badgeBg: "bg-gradient-to-r from-amber-600 to-stone-700 text-white font-black",
     posClass: "top-[620px] left-1/2 -translate-x-1/2",
     desktopClass: "lg:col-start-2 lg:row-start-7",
-    isUnderConstruction: true,
-    minLevel: 15,
+    imageSrc: "/rpg/fed_reserve.jpg",
   },
   {
     id: "silicon-bay",
     name: "Đảo Silicon FinTech Bay",
     subtitle: "Venture Capital & Algo AI Trading",
     emoji: "🌐",
-    badge: "🚀 SILICON BAY • LÊN LEVEL 20",
+    badge: "🚀 SILICON BAY",
     bgLight: "bg-gradient-to-br from-cyan-50/80 via-teal-50 to-blue-50",
-    borderColor: "border-cyan-400/80 border-dashed ring-1 ring-cyan-400/40",
+    borderColor: "border-cyan-400 ring-1 ring-cyan-400/40",
     textColor: "text-cyan-900 font-black",
     badgeBg: "bg-gradient-to-r from-cyan-600 via-teal-600 to-blue-600 text-white font-black",
     posClass: "top-[760px] left-8 sm:left-20",
     desktopClass: "lg:col-start-1 lg:row-start-8",
-    isUnderConstruction: true,
-    minLevel: 20,
   },
   {
     id: "capitol-hill",
     name: "Tòa Capitol Hill Policy",
     subtitle: "Luật Tài Chính & Chính Sách Thuế Toàn Cầu",
     emoji: "🏛️",
-    badge: "🏛️ CAPITOL HILL • LÊN LEVEL 25",
+    badge: "🏛️ CAPITOL HILL",
     bgLight: "bg-gradient-to-br from-indigo-50/80 via-purple-50 to-violet-50",
-    borderColor: "border-indigo-400/80 border-dashed ring-1 ring-indigo-400/40",
+    borderColor: "border-indigo-400 ring-1 ring-indigo-400/40",
     textColor: "text-indigo-900 font-black",
     badgeBg: "bg-gradient-to-r from-indigo-600 to-purple-600 text-white font-black",
     posClass: "top-[760px] right-8 sm:right-20",
     desktopClass: "lg:col-start-3 lg:row-start-8",
-    isUnderConstruction: true,
-    minLevel: 25,
   },
   {
     id: "cme-commodities",
     name: "Sàn Hàng Hóa Chicago CME",
     subtitle: "Hợp Đồng Tương Lai Dầu Mỏ & Vàng CME",
     emoji: "🛢️",
-    badge: "🌾 CME COMMODITY • LÊN LEVEL 30",
+    badge: "🌾 CME COMMODITY",
     bgLight: "bg-gradient-to-br from-emerald-50/80 via-green-50 to-teal-50",
-    borderColor: "border-emerald-400/80 border-dashed ring-1 ring-emerald-400/40",
+    borderColor: "border-emerald-400 ring-1 ring-emerald-400/40",
     textColor: "text-emerald-900 font-black",
     badgeBg: "bg-gradient-to-r from-emerald-600 to-teal-600 text-white font-black",
     posClass: "top-[900px] left-12 sm:left-28",
     desktopClass: "lg:col-start-1 lg:row-start-9",
-    isUnderConstruction: true,
-    minLevel: 30,
   },
   {
     id: "swiss-haven",
     name: "Đại Lộ Thụy Sĩ Wealth Haven",
     subtitle: "Quản Lý Tài Sản Triệu Đô & Quỹ Gia Tộc",
     emoji: "💎",
-    badge: "💎 SWISS HAVEN • LÊN LEVEL 35",
+    badge: "💎 SWISS HAVEN",
     bgLight: "bg-gradient-to-br from-rose-50/80 via-pink-50 to-slate-50",
-    borderColor: "border-rose-400/80 border-dashed ring-1 ring-rose-400/40",
+    borderColor: "border-rose-400 ring-1 ring-rose-400/40",
     textColor: "text-rose-900 font-black",
     badgeBg: "bg-gradient-to-r from-rose-600 via-pink-600 to-slate-700 text-white font-black",
     posClass: "top-[900px] right-12 sm:right-28",
     desktopClass: "lg:col-start-3 lg:row-start-9",
-    isUnderConstruction: true,
-    minLevel: 35,
   },
   {
     id: "singapore-dock",
     name: "Cảng Thương Mại Singapore",
     subtitle: "Tài Chính Chuỗi Cung Ứng & Tín Dụng L/C",
     emoji: "🚢",
-    badge: "🚢 SINGAPORE DOCK • LÊN LEVEL 40",
+    badge: "🚢 SINGAPORE DOCK",
     bgLight: "bg-gradient-to-br from-blue-50/80 via-sky-50 to-indigo-50",
-    borderColor: "border-blue-400/80 border-dashed ring-1 ring-blue-400/40",
+    borderColor: "border-blue-400 ring-1 ring-blue-400/40",
     textColor: "text-blue-900 font-black",
     badgeBg: "bg-gradient-to-r from-blue-600 to-indigo-600 text-white font-black",
     posClass: "top-[1040px] left-1/2 -translate-x-1/2",
     desktopClass: "lg:col-start-2 lg:row-start-10",
-    isUnderConstruction: true,
-    minLevel: 40,
   },
 ];
 
@@ -842,6 +834,12 @@ export default function FinancialRpgWorldMap() {
                 {selectedBuilding === "world-boss" && (
                   <WorldBossRaidWidget userId={user?.id || ""} userLevel={level} equipments={equippedGear} />
                 )}
+                {selectedBuilding === "goldman-sachs" && (
+                  <GoldmanSachsWidget userId={user?.id || ""} />
+                )}
+                {selectedBuilding === "fed-vault" && (
+                  <FedVaultWidget userId={user?.id || ""} />
+                )}
                 {selectedBuilding === "guilds" && (
                   <FinancialGuildWidget userId={user?.id || ""} />
                 )}
@@ -863,8 +861,20 @@ export default function FinancialRpgWorldMap() {
                 {selectedBuilding === "ma-speedrun" && (
                   <MaSpeedrunGame onBack={handleCloseBuilding} completedLessonIds={completedLessonIds} />
                 )}
-                {selectedBuilding === "algo-game" && (
+                {(selectedBuilding === "algo-game" || selectedBuilding === "silicon-bay") && (
                   <AlgoTraderGame onBack={handleCloseBuilding} />
+                )}
+                {selectedBuilding === "capitol-hill" && (
+                  <WeeklyChallengeWidget userId={user?.id || ""} />
+                )}
+                {selectedBuilding === "cme-commodities" && (
+                  <CandlestickGame onBack={handleCloseBuilding} completedLessonIds={completedLessonIds} />
+                )}
+                {selectedBuilding === "swiss-haven" && (
+                  <FinanceCardCollection userId={user?.id || ""} />
+                )}
+                {selectedBuilding === "singapore-dock" && (
+                  <MaSpeedrunGame onBack={handleCloseBuilding} completedLessonIds={completedLessonIds} />
                 )}
               </div>
             )}
