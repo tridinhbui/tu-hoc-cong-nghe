@@ -234,6 +234,7 @@ const ORGANIC_BUILDINGS: OrganicBuilding[] = [
     badgeBg: "bg-gradient-to-r from-blue-600 to-indigo-600 text-white font-black",
     posClass: "top-[1040px] left-1/2 -translate-x-1/2",
     desktopClass: "lg:col-start-2 lg:row-start-10",
+    imageSrc: "/rpg/singapore_dock.jpg",
   },
 ];
 
