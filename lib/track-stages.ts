@@ -277,12 +277,13 @@ export const TRACK_PROFESSIONAL = {
     {
       label: "Chặng 13",
       name: "AI trong Tài chính: Dùng ChatGPT/Claude để đọc báo cáo, phân tích và viết memo",
-      days: [1261, 1270] as [number, number],
+      days: [1261, 1280] as [number, number],
       available: true,
       isNew: true,
       parts: [
-        { name: "Bắt đầu an toàn: giao việc cho AI, đọc BCTC và tóm tắt họp", days: [1261, 1265] as [number, number] },
-        { name: "Ứng dụng thực tế: tin tức, trợ lý riêng, báo cáo và project cuối chặng", days: [1266, 1270] as [number, number] },
+        { name: "Bắt đầu an toàn: AI làm gì, đọc tin và đọc BCTC", days: [1261, 1266] as [number, number] },
+        { name: "Thực hành: họp, tin tức, trợ lý riêng và viết memo", days: [1267, 1273] as [number, number] },
+        { name: "Project cuối chặng: thư viện câu lệnh và quy trình kiểm chứng", days: [1274, 1280] as [number, number] },
       ],
     },
   ] satisfies Stage[],
