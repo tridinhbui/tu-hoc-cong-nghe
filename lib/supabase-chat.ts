@@ -113,6 +113,26 @@ export async function deleteChatMessage(messageId: number, userId: string): Prom
   return true;
 }
 
+export async function updateChatMessage(messageId: number, content: string): Promise<ChatMessage | null> {
+  const supabase = createClient();
+  const { data, error } = await supabase
+    .from("chat_messages")
+    .update({ content })
+    .eq("id", messageId)
+    .select()
+    .single();
+
+  if (error) {
+    if (!isMissingTableError(error)) {
+      throw handleSupabaseError(error);
+    }
+    return null;
+  }
+
+  return data as ChatMessage;
+}
+
+
 // Fires on new messages, updates, and DELETE events (when a message is recalled)
 export function subscribeToChatMessages(
   userId: string,
