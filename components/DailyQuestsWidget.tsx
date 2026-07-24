@@ -167,12 +167,12 @@ export default function DailyQuestsWidget({ userId, embedded = false, onQuestsLo
 
   if (loading) {
     return (
-      <div className={embedded ? "space-y-4 animate-pulse" : "rounded-2xl border border-stone-200 dark:border-stone-800 bg-white dark:bg-stone-900 p-5 shadow-sm space-y-4 animate-pulse"}>
-        <div className="h-5 bg-stone-200 dark:bg-stone-800 rounded w-1/3" />
+      <div className={embedded ? "space-y-4 animate-pulse" : "rounded-[20px] border border-stone-200/80 dark:border-stone-800 bg-white dark:bg-stone-900 p-5 shadow-[0_10px_24px_-24px_rgba(15,23,42,0.2)] space-y-4 animate-pulse"}>
+        <div className="h-5 skeleton-premium rounded w-1/3" />
         <div className="space-y-2">
-          <div className="h-10 bg-stone-200 dark:bg-stone-800 rounded-xl" />
-          <div className="h-10 bg-stone-200 dark:bg-stone-800 rounded-xl" />
-          <div className="h-10 bg-stone-200 dark:bg-stone-800 rounded-xl" />
+          <div className="h-10 skeleton-premium rounded-[18px]" />
+          <div className="h-10 skeleton-premium rounded-[18px]" />
+          <div className="h-10 skeleton-premium rounded-[18px]" />
         </div>
       </div>
     );
@@ -295,10 +295,10 @@ export default function DailyQuestsWidget({ userId, embedded = false, onQuestsLo
                   <button
                     onClick={() => handleClaim(quest)}
                     disabled={claimingId !== null}
-                    className="w-full sm:w-auto justify-center px-3 py-1.5 text-[10.5px] font-black rounded-lg bg-gradient-to-r from-amber-500 via-orange-500 to-amber-600 text-white shadow-[0_3px_8px_-2px_rgba(245,158,11,0.45)] hover:scale-105 active:scale-95 transition-all animate-bounce cursor-pointer flex items-center gap-1"
-                  >
-                    Nhận +{quest.xpReward} XP <Gift className="w-3.5 h-3.5" />
-                  </button>
+                className="button-premium w-full sm:w-auto justify-center px-3 py-1.5 text-[10.5px] font-black rounded-[16px] bg-gradient-to-r from-amber-500 via-orange-500 to-amber-600 text-white shadow-[0_3px_8px_-2px_rgba(245,158,11,0.45)] hover:scale-[1.02] active:scale-95 transition-all cursor-pointer flex items-center gap-1 focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-amber-500/15"
+                >
+                  Nhận +{quest.xpReward} XP <Gift className="w-3.5 h-3.5" />
+                </button>
                 ) : (
                   <>
                     <span className="text-[10px] font-black text-stone-600 dark:text-stone-400 bg-stone-50 dark:bg-stone-950/40 px-2 py-1 rounded-lg border border-stone-200/50 dark:border-stone-850">
@@ -307,7 +307,7 @@ export default function DailyQuestsWidget({ userId, embedded = false, onQuestsLo
                     <button
                       onClick={() => goToQuestAction(quest.id, router)}
                       title="Đi làm nhiệm vụ này ngay"
-                      className="group/btn inline-flex items-center gap-1.5 text-[10.5px] font-bold text-white bg-emerald-600 hover:bg-emerald-700 px-3 py-1.5 rounded-lg transition-all duration-200 cursor-pointer shadow-xs active:scale-95 shrink-0"
+                      className="button-premium group/btn inline-flex items-center gap-1.5 text-[10.5px] font-bold text-white bg-emerald-600 hover:bg-emerald-700 px-3 py-1.5 rounded-[16px] transition-all duration-200 cursor-pointer shadow-[0_8px_18px_-16px_rgba(16,185,129,0.35)] active:scale-95 shrink-0 focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-emerald-500/15"
                     >
                       Làm ngay <ArrowRight className="w-3.5 h-3.5 group-hover/btn:translate-x-0.5 transition-transform" />
                     </button>

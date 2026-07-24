@@ -368,7 +368,7 @@ function LoginForm() {
                 <button
                   onClick={handleGoogleLogin}
                   disabled={loading}
-                  className="w-full border border-stone-200 dark:border-stone-700 hover:bg-stone-50 dark:hover:bg-stone-800 text-stone-900 dark:text-stone-100 py-3.5 rounded-2xl font-bold text-base transition-colors disabled:opacity-60 flex items-center justify-center gap-2"
+                className="button-premium w-full border border-stone-200 dark:border-stone-700 hover:bg-stone-50 dark:hover:bg-stone-800 text-stone-900 dark:text-stone-100 py-3.5 rounded-2xl font-bold text-base transition-colors disabled:opacity-60 flex items-center justify-center gap-2 focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-stone-900/5"
                 >
                   <svg className="w-5 h-5" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                     <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/>
@@ -406,7 +406,7 @@ function LoginForm() {
                       value={email}
                       onChange={(e) => setEmail(e.target.value)}
                       placeholder="email@vi-du.com"
-                      className="w-full px-4 py-3 rounded-xl border border-stone-200 dark:border-stone-700 bg-white dark:bg-stone-800 focus:border-stone-400 dark:focus:border-stone-500 focus:ring-1 focus:ring-stone-900/5 focus:outline-none text-stone-900 dark:text-stone-100 text-base placeholder:text-stone-300 dark:placeholder:text-stone-600"
+                      className="input-premium w-full px-4 py-3 text-base text-stone-900 dark:text-stone-100 placeholder:text-stone-300 dark:placeholder:text-stone-600 dark:bg-stone-800 dark:border-stone-700"
                     />
                   </div>
 
@@ -419,7 +419,7 @@ function LoginForm() {
                   <button
                     type="submit"
                     disabled={loading}
-                    className="w-full bg-stone-900 hover:bg-stone-800 dark:bg-stone-100 dark:hover:bg-white text-white dark:text-stone-900 py-4 rounded-xl font-bold text-base transition-colors disabled:opacity-60 mt-2"
+                    className="button-premium w-full bg-stone-900 hover:bg-stone-800 dark:bg-stone-100 dark:hover:bg-white text-white dark:text-stone-900 py-4 rounded-2xl font-bold text-base transition-colors disabled:opacity-60 mt-2 focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-stone-900/5"
                   >
                     {loading ? "Đang gửi..." : "Gửi email đặt lại mật khẩu"}
                   </button>
@@ -437,7 +437,7 @@ function LoginForm() {
                       value={name}
                       onChange={(e) => setName(e.target.value)}
                       placeholder="Nguyễn Văn A"
-                      className="w-full px-4 py-3 rounded-xl border border-stone-200 dark:border-stone-700 bg-white dark:bg-stone-800 focus:border-stone-400 dark:focus:border-stone-500 focus:ring-1 focus:ring-stone-900/5 focus:outline-none text-stone-900 dark:text-stone-100 text-base placeholder:text-stone-300 dark:placeholder:text-stone-600"
+                      className="input-premium w-full px-4 py-3 text-base text-stone-900 dark:text-stone-100 placeholder:text-stone-300 dark:placeholder:text-stone-600 dark:bg-stone-800 dark:border-stone-700"
                     />
                   </div>
                 )}
@@ -451,7 +451,7 @@ function LoginForm() {
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     placeholder="email@vi-du.com"
-                    className="w-full px-4 py-3 rounded-xl border border-stone-200 dark:border-stone-700 bg-white dark:bg-stone-800 focus:border-stone-400 dark:focus:border-stone-500 focus:ring-1 focus:ring-stone-900/5 focus:outline-none text-stone-900 dark:text-stone-100 text-base placeholder:text-stone-300 dark:placeholder:text-stone-600"
+                    className="input-premium w-full px-4 py-3 text-base text-stone-900 dark:text-stone-100 placeholder:text-stone-300 dark:placeholder:text-stone-600 dark:bg-stone-800 dark:border-stone-700"
                   />
                 </div>
 
@@ -479,7 +479,7 @@ function LoginForm() {
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
                     placeholder="••••••"
-                    className="w-full px-4 py-3 rounded-xl border border-stone-200 dark:border-stone-700 bg-white dark:bg-stone-800 focus:border-stone-400 dark:focus:border-stone-500 focus:ring-1 focus:ring-stone-900/5 focus:outline-none text-stone-900 dark:text-stone-100 text-base placeholder:text-stone-300 dark:placeholder:text-stone-600"
+                    className="input-premium w-full px-4 py-3 text-base text-stone-900 dark:text-stone-100 placeholder:text-stone-300 dark:placeholder:text-stone-600 dark:bg-stone-800 dark:border-stone-700"
                   />
                 </div>
 
@@ -498,7 +498,7 @@ function LoginForm() {
                 <button
                   type="submit"
                   disabled={loading || !!cooldownUntil}
-                  className="w-full bg-stone-900 hover:bg-stone-800 dark:bg-stone-100 dark:hover:bg-white text-white dark:text-stone-900 py-4 rounded-2xl font-bold text-base transition-colors disabled:opacity-60 mt-2"
+                    className="button-premium w-full bg-stone-900 hover:bg-stone-800 dark:bg-stone-100 dark:hover:bg-white text-white dark:text-stone-900 py-4 rounded-2xl font-bold text-base transition-colors disabled:opacity-60 mt-2 focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-stone-900/5"
                 >
                   {loading
                     ? "Đang xử lý..."

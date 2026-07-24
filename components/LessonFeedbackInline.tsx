@@ -25,7 +25,7 @@ export default function LessonFeedbackInline({ lessonId, userId }: Props) {
 
   if (status === "sent") {
     return (
-      <div className="bg-emerald-50 dark:bg-emerald-950/50 border border-emerald-200 dark:border-emerald-900 rounded-2xl p-6 text-center">
+      <div className="bg-emerald-50 dark:bg-emerald-950/50 border border-emerald-200 dark:border-emerald-900 rounded-[20px] p-6 text-center shadow-[0_10px_24px_-24px_rgba(16,185,129,0.18)]">
         <div className="text-4xl mb-3">🎉</div>
         <p className="font-bold text-emerald-900 dark:text-emerald-400 text-lg mb-2">Cảm ơn bạn rất nhiều!</p>
         <p className="text-emerald-700 dark:text-emerald-500 text-sm">Góp ý của bạn giúp bọn mình cải thiện từng bài học.</p>
@@ -34,7 +34,7 @@ export default function LessonFeedbackInline({ lessonId, userId }: Props) {
   }
 
   return (
-    <div className="bg-white dark:bg-stone-900 border border-stone-200 dark:border-stone-800 rounded-2xl p-6">
+    <div className="bg-white dark:bg-stone-900 border border-stone-200 dark:border-stone-800 rounded-[20px] p-6 shadow-[0_10px_24px_-24px_rgba(15,23,42,0.18)]">
       <div className="flex items-start gap-4 mb-5">
         <div className="w-12 h-12 rounded-full bg-stone-100 dark:bg-stone-800 flex items-center justify-center flex-shrink-0">
           <span className="text-2xl">💬</span>
@@ -56,7 +56,7 @@ export default function LessonFeedbackInline({ lessonId, userId }: Props) {
             onMouseEnter={() => setHoverRating(star)}
             onMouseLeave={() => setHoverRating(0)}
             aria-label={`${star} sao`}
-            className="text-4xl transition-transform hover:scale-110 cursor-pointer"
+            className="text-4xl transition-transform duration-200 ease-out hover:scale-110 active:scale-95 cursor-pointer focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-amber-400/10 rounded-full"
           >
             <span className={star <= shownRating ? "text-amber-400" : "text-stone-200 dark:text-stone-700"}>
               ★
@@ -70,13 +70,13 @@ export default function LessonFeedbackInline({ lessonId, userId }: Props) {
         onChange={(e) => setComment(e.target.value)}
         rows={4}
         placeholder="Bạn có góp ý gì về bài học này? (không bắt buộc)"
-        className="w-full px-4 py-3 rounded-xl border border-stone-200 dark:border-stone-700 bg-white dark:bg-stone-800 text-base text-stone-900 dark:text-stone-100 placeholder:text-stone-500 focus:outline-none focus:border-stone-400 focus:ring-2 focus:ring-stone-100 dark:focus:ring-stone-700 transition-all resize-none mb-4"
+        className="input-premium w-full px-4 py-3 text-base text-stone-900 dark:text-stone-100 placeholder:text-stone-500 dark:bg-stone-800 resize-none mb-4"
       />
 
       <button
         onClick={handleSubmit}
         disabled={rating === 0 || status === "sending"}
-        className={`w-full py-3 rounded-xl text-sm font-bold text-white transition-colors cursor-pointer ${
+        className={`button-premium w-full py-3 rounded-[18px] text-sm font-bold text-white transition-colors cursor-pointer focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-stone-900/5 ${
           rating > 0 && status !== "sending"
             ? "bg-stone-900 hover:bg-stone-700 dark:bg-stone-100 dark:text-stone-900 dark:hover:bg-white"
             : "bg-stone-200 dark:bg-stone-800 text-stone-500 dark:text-stone-600 cursor-not-allowed"

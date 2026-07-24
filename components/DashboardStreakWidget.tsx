@@ -68,7 +68,7 @@ export default function DashboardStreakWidget({ userId }: { userId: string }) {
       {/* Interactive Streak Card Button */}
       <div
         onClick={() => setShowModal(true)}
-        className="flex items-center gap-2.5 rounded-xl border border-stone-200 dark:border-stone-800 bg-white dark:bg-stone-900 px-3 py-1.5 shadow-2xs hover:bg-stone-50 dark:hover:bg-stone-800 transition-colors cursor-pointer group select-none"
+        className="flex items-center gap-2.5 rounded-[18px] border border-stone-200 dark:border-stone-800 bg-white dark:bg-stone-900 px-3 py-1.5 shadow-[0_8px_18px_-18px_rgba(15,23,42,0.14)] hover:bg-stone-50 dark:hover:bg-stone-800 transition-all duration-200 ease-out hover:-translate-y-0.5 cursor-pointer group select-none focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-sky-500/10"
         title="Bấm để xem cơ chế Bảo vệ & Freeze Streak"
       >
         <div className={`flex h-8 w-8 shrink-0 items-center justify-center rounded-lg ${streak > 0 ? "bg-gradient-to-br from-amber-500 to-orange-500 text-white shadow-2xs" : "bg-stone-100 dark:bg-stone-800 text-stone-400"}`}>
@@ -92,18 +92,18 @@ export default function DashboardStreakWidget({ userId }: { userId: string }) {
       {/* 🧊 STREAK PROTECTION & FREEZE MODAL */}
       {showModal && (
         <div className="fixed inset-0 z-[9999] flex items-center justify-center bg-stone-950/75 p-4 backdrop-blur-md animate-in fade-in duration-200">
-          <div className="relative w-full max-w-lg max-h-[90vh] overflow-y-auto overflow-x-hidden rounded-3xl border-2 border-sky-300 dark:border-sky-800 bg-white p-6 shadow-2xl dark:bg-stone-900 space-y-5">
+        <div className="relative w-full max-w-lg max-h-[90vh] overflow-y-auto overflow-x-hidden rounded-[20px] border border-sky-300/80 dark:border-sky-800 bg-white p-6 shadow-[0_20px_50px_-30px_rgba(15,23,42,0.32)] dark:bg-stone-900 space-y-5">
             {/* Close Button */}
             <button
               onClick={() => setShowModal(false)}
-              className="absolute top-4 right-4 flex h-8 w-8 items-center justify-center rounded-full bg-stone-100 text-stone-500 hover:bg-stone-200 dark:bg-stone-800 dark:text-stone-400 transition-colors cursor-pointer"
+              className="absolute top-4 right-4 flex h-8 w-8 items-center justify-center rounded-full bg-stone-100 text-stone-500 hover:bg-stone-200 dark:bg-stone-800 dark:text-stone-400 transition-all duration-200 ease-out hover:scale-105 cursor-pointer focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-stone-900/5"
             >
               <X className="h-4 w-4" />
             </button>
 
             {/* Header */}
             <div className="flex items-center gap-3 border-b border-stone-100 dark:border-stone-800 pb-4">
-              <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-gradient-to-br from-sky-400 via-blue-500 to-indigo-600 text-white shadow-md">
+              <div className="flex h-12 w-12 items-center justify-center rounded-[18px] bg-gradient-to-br from-sky-400 via-blue-500 to-indigo-600 text-white shadow-[0_12px_24px_-18px_rgba(59,130,246,0.35)]">
                 <Snowflake className="h-6 w-6 animate-spin-slow" />
               </div>
               <div>
@@ -118,7 +118,7 @@ export default function DashboardStreakWidget({ userId }: { userId: string }) {
             </div>
 
             {/* Status Summary Pill */}
-            <div className="rounded-2xl border border-sky-200 dark:border-sky-900 bg-gradient-to-r from-sky-50 via-blue-50/50 to-indigo-50 dark:from-sky-950/40 dark:to-stone-900 p-4 flex items-center justify-between">
+            <div className="rounded-[18px] border border-sky-200 dark:border-sky-900 bg-gradient-to-r from-sky-50 via-blue-50/50 to-indigo-50 dark:from-sky-950/40 dark:to-stone-900 p-4 flex items-center justify-between shadow-[0_10px_24px_-24px_rgba(59,130,246,0.18)]">
               <div>
                 <p className="text-xs font-black text-stone-900 dark:text-stone-100">Trạng thái bảo vệ hiện tại</p>
                 <p className="text-xs font-extrabold text-sky-700 dark:text-sky-300 mt-0.5">
@@ -126,7 +126,7 @@ export default function DashboardStreakWidget({ userId }: { userId: string }) {
                 </p>
               </div>
               <div className="text-right">
-                <span className="text-xs font-black text-orange-600 bg-white dark:bg-stone-800 px-3 py-1.5 rounded-xl border border-orange-200 shadow-2xs">
+                <span className="text-xs font-black text-orange-600 bg-white dark:bg-stone-800 px-3 py-1.5 rounded-[16px] border border-orange-200 shadow-[0_8px_18px_-18px_rgba(249,115,22,0.2)]">
                   🔥 {streak} ngày
                 </span>
               </div>
@@ -134,8 +134,8 @@ export default function DashboardStreakWidget({ userId }: { userId: string }) {
 
             {/* Feature Explanations */}
             <div className="space-y-3">
-              <div className="rounded-2xl border border-stone-200 dark:border-stone-800 p-3.5 flex items-start gap-3 bg-stone-50/50 dark:bg-stone-850/40">
-                <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-xl bg-sky-100 text-sky-600 dark:bg-sky-900 dark:text-sky-300 font-bold text-sm">
+              <div className="rounded-[18px] border border-stone-200 dark:border-stone-800 p-3.5 flex items-start gap-3 bg-stone-50/50 dark:bg-stone-850/40 shadow-[0_8px_18px_-18px_rgba(15,23,42,0.14)]">
+                <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-[14px] bg-sky-100 text-sky-600 dark:bg-sky-900 dark:text-sky-300 font-bold text-sm">
                   1
                 </div>
                 <div>
@@ -146,8 +146,8 @@ export default function DashboardStreakWidget({ userId }: { userId: string }) {
                 </div>
               </div>
 
-              <div className="rounded-2xl border border-stone-200 dark:border-stone-800 p-3.5 flex items-start gap-3 bg-stone-50/50 dark:bg-stone-850/40">
-                <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-xl bg-blue-100 text-blue-600 dark:bg-blue-900 dark:text-blue-300 font-bold text-sm">
+              <div className="rounded-[18px] border border-stone-200 dark:border-stone-800 p-3.5 flex items-start gap-3 bg-stone-50/50 dark:bg-stone-850/40 shadow-[0_8px_18px_-18px_rgba(15,23,42,0.14)]">
+                <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-[14px] bg-blue-100 text-blue-600 dark:bg-blue-900 dark:text-blue-300 font-bold text-sm">
                   2
                 </div>
                 <div>
@@ -158,8 +158,8 @@ export default function DashboardStreakWidget({ userId }: { userId: string }) {
                 </div>
               </div>
 
-              <div className="rounded-2xl border border-stone-200 dark:border-stone-800 p-3.5 flex items-start gap-3 bg-stone-50/50 dark:bg-stone-850/40">
-                <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-xl bg-amber-100 text-amber-600 dark:bg-amber-900 dark:text-amber-300 font-bold text-sm">
+              <div className="rounded-[18px] border border-stone-200 dark:border-stone-800 p-3.5 flex items-start gap-3 bg-stone-50/50 dark:bg-stone-850/40 shadow-[0_8px_18px_-18px_rgba(15,23,42,0.14)]">
+                <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-[14px] bg-amber-100 text-amber-600 dark:bg-amber-900 dark:text-amber-300 font-bold text-sm">
                   3
                 </div>
                 <div>
@@ -177,7 +177,7 @@ export default function DashboardStreakWidget({ userId }: { userId: string }) {
                 type="button"
                 onClick={handleManualFreeze}
                 disabled={freezing || freezesLeft <= 0}
-                className="w-full py-3.5 rounded-2xl font-black text-xs uppercase tracking-wider text-white bg-gradient-to-r from-sky-600 via-blue-600 to-indigo-600 hover:from-sky-500 hover:to-indigo-500 disabled:opacity-50 transition-all shadow-md active:scale-98 cursor-pointer flex items-center justify-center gap-2"
+                className="button-premium w-full py-3.5 rounded-[18px] font-black text-xs uppercase tracking-wider text-white bg-gradient-to-r from-sky-600 via-blue-600 to-indigo-600 hover:from-sky-500 hover:to-indigo-500 disabled:opacity-50 transition-all shadow-[0_12px_28px_-20px_rgba(59,130,246,0.3)] active:scale-[0.98] cursor-pointer flex items-center justify-center gap-2 focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-sky-500/10"
               >
                 <Snowflake className="w-4 h-4" />
                 <span>{freezing ? "Đang bảo vệ..." : "🧊 Đóng Băng Chuỗi Ngay (Freeze Streak)"}</span>
