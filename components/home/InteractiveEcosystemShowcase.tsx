@@ -116,118 +116,118 @@ export default function InteractiveEcosystemShowcase() {
   return (
     <div className="space-y-8">
       {/* Top 3 Interactive Feature Selection Cards */}
-      <div className="grid gap-4 sm:grid-cols-3">
+      <div className="grid gap-4 sm:grid-cols-3 font-sans">
         {/* Card 1: Lộ Trình Học chuẩn Active Recall */}
         <div
           onClick={() => setActiveTab("roadmap")}
-          className={`animated-border-card group cursor-pointer overflow-hidden rounded-3xl border-2 transition-all duration-300 backdrop-blur-md p-5 flex flex-col justify-between ${
+          className={`group cursor-pointer overflow-hidden rounded-2xl border transition-all duration-300 p-4.5 flex flex-col justify-between ${
             activeTab === "roadmap"
-              ? "border-emerald-500 bg-emerald-50/80 shadow-[0_12px_36px_-16px_rgba(16,185,129,0.35)] ring-2 ring-emerald-400/40 scale-[1.01]"
-              : "border-stone-200 dark:border-stone-800 bg-white hover:border-emerald-400/60"
+              ? "border-emerald-500 bg-white shadow-md ring-1 ring-emerald-400/50"
+              : "border-stone-200/90 dark:border-stone-800 bg-white/80 hover:border-emerald-400/60"
           }`}
         >
           <div>
-            <div className="flex items-center justify-between mb-3">
-              <span className="inline-flex items-center gap-1.5 rounded-full border border-emerald-300 bg-emerald-100/80 px-3 py-1 text-[11px] font-black uppercase text-emerald-800">
-                <Target className="w-3.5 h-3.5 text-emerald-600" />
+            <div className="flex items-center justify-between mb-2.5">
+              <span className="inline-flex items-center gap-1.5 rounded-full border border-emerald-200 bg-emerald-50 px-2.5 py-0.5 text-[10px] font-black uppercase text-emerald-700">
+                <Target className="w-3 h-3 text-emerald-600" />
                 Lộ Trình Ôn Cấp
               </span>
               {activeTab === "roadmap" && (
-                <span className="relative flex h-2.5 w-2.5">
+                <span className="relative flex h-2 w-2">
                   <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
-                  <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-500" />
+                  <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500" />
                 </span>
               )}
             </div>
-            <h3 className="text-base sm:text-lg font-black text-stone-900 leading-snug">
+            <h3 className="text-sm sm:text-base font-black text-stone-900 leading-snug">
               Học tài chính theo lộ trình chặng chuẩn hóa
             </h3>
-            <p className="mt-2 text-xs text-stone-600 leading-relaxed">
+            <p className="mt-1.5 text-xs text-stone-600 leading-relaxed font-medium">
               Tích hợp Active Recall chủ động, theo dõi tiến độ từng chặng từ vỡ lòng đến chuyên sâu.
             </p>
           </div>
 
-          <div className="mt-4 pt-3 border-t border-emerald-200/60 flex items-center justify-between text-xs font-black">
-            <span className={activeTab === "roadmap" ? "text-emerald-700" : "text-stone-400"}>
+          <div className="mt-3 pt-2.5 border-t border-stone-100 flex items-center justify-between text-[11px] font-bold">
+            <span className={activeTab === "roadmap" ? "text-emerald-700 font-extrabold" : "text-stone-400"}>
               {activeTab === "roadmap" ? "● Đang xem Live Preview" : "Bấm để xem thử"}
             </span>
-            <ArrowRight className={`w-4 h-4 transition-transform ${activeTab === "roadmap" ? "translate-x-1 text-emerald-600" : "text-stone-400 group-hover:translate-x-1"}`} />
+            <ArrowRight className={`w-3.5 h-3.5 transition-transform ${activeTab === "roadmap" ? "translate-x-1 text-emerald-600" : "text-stone-400 group-hover:translate-x-1"}`} />
           </div>
         </div>
 
         {/* Card 2: Học nhóm 3D */}
         <div
           onClick={() => setActiveTab("study-group")}
-          className={`animated-border-card group cursor-pointer overflow-hidden rounded-3xl border-2 transition-all duration-300 backdrop-blur-md p-5 flex flex-col justify-between ${
+          className={`group cursor-pointer overflow-hidden rounded-2xl border transition-all duration-300 p-4.5 flex flex-col justify-between ${
             activeTab === "study-group"
-              ? "border-emerald-500 bg-emerald-50/80 shadow-[0_12px_36px_-16px_rgba(16,185,129,0.35)] ring-2 ring-emerald-400/40 scale-[1.01]"
-              : "border-stone-200 dark:border-stone-800 bg-white hover:border-emerald-400/60"
+              ? "border-emerald-500 bg-white shadow-md ring-1 ring-emerald-400/50"
+              : "border-stone-200/90 dark:border-stone-800 bg-white/80 hover:border-emerald-400/60"
           }`}
         >
           <div>
-            <div className="flex items-center justify-between mb-3">
-              <span className="inline-flex items-center gap-1.5 rounded-full border border-emerald-300 bg-emerald-100/80 px-3 py-1 text-[11px] font-black uppercase text-emerald-800">
-                <Users className="w-3.5 h-3.5 text-emerald-600" />
+            <div className="flex items-center justify-between mb-2.5">
+              <span className="inline-flex items-center gap-1.5 rounded-full border border-emerald-200 bg-emerald-50 px-2.5 py-0.5 text-[10px] font-black uppercase text-emerald-700">
+                <Users className="w-3 h-3 text-emerald-600" />
                 Học Nhóm (3D)
               </span>
               {activeTab === "study-group" && (
-                <span className="relative flex h-2.5 w-2.5">
+                <span className="relative flex h-2 w-2">
                   <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
-                  <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-500" />
+                  <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500" />
                 </span>
               )}
             </div>
-            <h3 className="text-base sm:text-lg font-black text-stone-900 leading-snug">
+            <h3 className="text-sm sm:text-base font-black text-stone-900 leading-snug">
               Phòng học chung không để bạn tự học 1 mình
             </h3>
-            <p className="mt-2 text-xs text-stone-600 leading-relaxed">
+            <p className="mt-1.5 text-xs text-stone-600 leading-relaxed font-medium">
               Bàn tròn 3D ảo, ghép nhóm theo chủ đề, check-in nhận XP và khung chat nhóm tương tác.
             </p>
           </div>
 
-          <div className="mt-4 pt-3 border-t border-emerald-200/60 flex items-center justify-between text-xs font-black">
-            <span className={activeTab === "study-group" ? "text-emerald-700" : "text-stone-400"}>
+          <div className="mt-3 pt-2.5 border-t border-stone-100 flex items-center justify-between text-[11px] font-bold">
+            <span className={activeTab === "study-group" ? "text-emerald-700 font-extrabold" : "text-stone-400"}>
               {activeTab === "study-group" ? "● Đang xem Live Preview" : "Bấm để xem thử"}
             </span>
-            <ArrowRight className={`w-4 h-4 transition-transform ${activeTab === "study-group" ? "translate-x-1 text-emerald-600" : "text-stone-400 group-hover:translate-x-1"}`} />
+            <ArrowRight className={`w-3.5 h-3.5 transition-transform ${activeTab === "study-group" ? "translate-x-1 text-emerald-600" : "text-stone-400 group-hover:translate-x-1"}`} />
           </div>
         </div>
 
-        {/* Card 3: FinSocial */}
+        {/* Card 3: FinSocial Feed */}
         <div
           onClick={() => setActiveTab("finsocial")}
-          className={`animated-border-card group cursor-pointer overflow-hidden rounded-3xl border-2 transition-all duration-300 backdrop-blur-md p-5 flex flex-col justify-between ${
+          className={`group cursor-pointer overflow-hidden rounded-2xl border transition-all duration-300 p-4.5 flex flex-col justify-between ${
             activeTab === "finsocial"
-              ? "border-sky-500 bg-sky-50/80 shadow-[0_12px_36px_-16px_rgba(56,189,248,0.35)] ring-2 ring-sky-400/40 scale-[1.01]"
-              : "border-stone-200 dark:border-stone-800 bg-white hover:border-sky-400/60"
+              ? "border-emerald-500 bg-white shadow-md ring-1 ring-emerald-400/50"
+              : "border-stone-200/90 dark:border-stone-800 bg-white/80 hover:border-emerald-400/60"
           }`}
         >
           <div>
-            <div className="flex items-center justify-between mb-3">
-              <span className="inline-flex items-center gap-1.5 rounded-full border border-sky-300 bg-sky-100/80 px-3 py-1 text-[11px] font-black uppercase text-sky-800">
-                <MessageSquareMore className="w-3.5 h-3.5 text-sky-600" />
+            <div className="flex items-center justify-between mb-2.5">
+              <span className="inline-flex items-center gap-1.5 rounded-full border border-emerald-200 bg-emerald-50 px-2.5 py-0.5 text-[10px] font-black uppercase text-emerald-700">
+                <MessageSquareMore className="w-3 h-3 text-emerald-600" />
                 FinSocial
               </span>
               {activeTab === "finsocial" && (
-                <span className="relative flex h-2.5 w-2.5">
-                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-sky-400 opacity-75" />
-                  <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-sky-500" />
+                <span className="relative flex h-2 w-2">
+                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
+                  <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500" />
                 </span>
               )}
             </div>
-            <h3 className="text-base sm:text-lg font-black text-stone-900 leading-snug">
-              Mạng xã hội học tài chính chia sẻ bài ngắn
+            <h3 className="text-sm sm:text-base font-black text-stone-900 leading-snug">
+              Mạng xã hội học tài chính chia sẻ bài học
             </h3>
-            <p className="mt-2 text-xs text-stone-600 leading-relaxed">
+            <p className="mt-1.5 text-xs text-stone-600 leading-relaxed font-medium">
               Feed tin tức bài viết ngắn, hỏi đáp thực tế, thảo luận phân tích BCTC và thả cảm xúc.
             </p>
           </div>
 
-          <div className="mt-4 pt-3 border-t border-sky-200/60 flex items-center justify-between text-xs font-black">
-            <span className={activeTab === "finsocial" ? "text-sky-700" : "text-stone-400"}>
+          <div className="mt-3 pt-2.5 border-t border-stone-100 flex items-center justify-between text-[11px] font-bold">
+            <span className={activeTab === "finsocial" ? "text-emerald-700 font-extrabold" : "text-stone-400"}>
               {activeTab === "finsocial" ? "● Đang xem Live Preview" : "Bấm để xem thử"}
             </span>
-            <ArrowRight className={`w-4 h-4 transition-transform ${activeTab === "finsocial" ? "translate-x-1 text-sky-600" : "text-stone-400 group-hover:translate-x-1"}`} />
+            <ArrowRight className={`w-3.5 h-3.5 transition-transform ${activeTab === "finsocial" ? "translate-x-1 text-emerald-600" : "text-stone-400 group-hover:translate-x-1"}`} />
           </div>
         </div>
       </div>
