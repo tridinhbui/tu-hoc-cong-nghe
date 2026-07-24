@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { motion } from "framer-motion";
 import {
   GraduationCap,
@@ -12,6 +13,9 @@ import {
   PlayCircle,
   ShieldCheck,
   CheckCircle2,
+  Gamepad2,
+  Users,
+  MessageSquareMore,
 } from "lucide-react";
 import { getTotalUserCount, getTotalCompletedLessonsCount } from "@/lib/supabase-user";
 import { animateCountTo } from "@/lib/animate-count";
@@ -58,6 +62,45 @@ const METHOD_STEPS = [
   { step: "2", title: "Làm quiz ngay sau đó", text: "Active recall - tự nhớ lại thay vì đọc lại, giúp kiến thức bám sâu hơn." },
   { step: "3", title: "Hệ thống nhắc ôn đúng lúc", text: "Trước khi bạn kịp quên (~5 và ~12 bài sau), một câu hỏi ôn lại xuất hiện." },
   { step: "4", title: "Nhớ lâu, không học vẹt", text: "Kiến thức được củng cố nhiều lần theo đúng đường cong quên lãng (forgetting curve)." },
+] as const;
+
+const FEATURE_SHOWCASE = [
+  {
+    eyebrow: "Game Kingdom",
+    title: "Học tài chính như mở bản đồ vương quốc",
+    text:
+      "Vào Game Kingdom để làm nhiệm vụ, mở công trình, thử mini game tài chính và kiếm XP. Người mới không chỉ đọc lý thuyết, mà được luyện phản xạ qua tình huống ngắn: phân loại tài sản, ghép khái niệm, xử lý câu hỏi nhanh và theo dõi điểm.",
+    image: "/rpg/empire_state_building.jpg",
+    alt: "Thành phố tài chính dùng làm bối cảnh cho Game Kingdom",
+    icon: Gamepad2,
+    href: "/login?mode=signup",
+    cta: "Khám phá Game Kingdom",
+    bullets: ["Nhiệm vụ hằng ngày", "Mini game có điểm XP", "Bảng xếp hạng game thủ"],
+  },
+  {
+    eyebrow: "Học nhóm",
+    title: "Có phòng học chung để không phải tự học một mình",
+    text:
+      "Hệ thống ghép bạn vào phòng học theo chủ đề, có check-in mỗi ngày và trò chuyện nhóm. Đây là nơi hỏi nhanh, chia sẻ tiến độ, nhắc nhau học đều và biến việc tự học tài chính thành một thói quen có đồng đội.",
+    image: "/images/study-group-cover.jpg",
+    alt: "Không gian học nhóm tài chính với bối cảnh giao dịch phố Wall",
+    icon: Users,
+    href: "/login?mode=signup",
+    cta: "Vào học nhóm",
+    bullets: ["Ghép nhóm theo chủ đề", "Check-in nhận XP", "Chat nhóm có bot hỗ trợ"],
+  },
+  {
+    eyebrow: "FinSocial",
+    title: "Mạng xã hội học tài chính cho bài viết ngắn và câu hỏi thật",
+    text:
+      "FinSocial là feed riêng để đăng bản tin học tập, câu hỏi, phân tích ngắn, ảnh thành tựu và bình luận. Người mới có thể đọc cách người khác suy nghĩ, còn người học sâu hơn có nơi luyện viết phân tích tài chính bằng ngôn ngữ dễ hiểu.",
+    image: "/wallstreet-bg.jpg",
+    alt: "Bối cảnh phố Wall đại diện cho mạng xã hội học tài chính FinSocial",
+    icon: MessageSquareMore,
+    href: "/login?mode=signup",
+    cta: "Tham gia FinSocial",
+    bullets: ["Đăng bản tin ngắn", "Lọc chủ đề", "Bình luận và thả cảm xúc"],
+  },
 ] as const;
 
 const AUDIENCES = [
@@ -393,6 +436,76 @@ export default function HomePage() {
           <ScrollReveal delay={0.08}>
             <ProductPreview />
           </ScrollReveal>
+        </section>
+
+        {/* ── FEATURE SHOWCASE ── */}
+        <section className="relative py-16 lg:py-20 bg-stone-50/70 dark:bg-stone-900/25 border-y border-stone-150/40 dark:border-stone-850/40">
+          <div className="max-w-6xl mx-auto px-6">
+            <ScrollReveal className="max-w-3xl mb-10">
+              <p className="text-xs font-black text-emerald-600 dark:text-emerald-400 uppercase tracking-widest mb-2">
+                Không chỉ là bài học
+              </p>
+              <h2 className="text-3xl lg:text-4xl font-black text-stone-900 dark:text-stone-100">
+                Học, chơi, hỏi đáp và chia sẻ trong cùng một hệ sinh thái tài chính
+              </h2>
+              <p className="mt-3 text-stone-600 dark:text-stone-400 leading-relaxed">
+                Sau khi tạo tài khoản, bạn không chỉ đi qua lộ trình bài học. Bạn còn có Game Kingdom để luyện phản xạ,
+                Học nhóm để giữ nhịp, và FinSocial để trao đổi kiến thức với cộng đồng.
+              </p>
+            </ScrollReveal>
+
+            <div className="grid gap-5 lg:grid-cols-3">
+              {FEATURE_SHOWCASE.map(({ eyebrow, title, text, image, alt, icon: Icon, href, cta, bullets }, i) => (
+                <ScrollReveal key={eyebrow} delay={i * 0.08}>
+                  <article className="group h-full overflow-hidden rounded-[2rem] border border-stone-200 dark:border-stone-800 bg-white dark:bg-stone-950 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_24px_60px_-35px_rgba(16,185,129,0.45)]">
+                    <div className="relative aspect-[16/10] overflow-hidden bg-stone-100 dark:bg-stone-900">
+                      <Image
+                        src={image}
+                        alt={alt}
+                        fill
+                        sizes="(max-width: 1024px) 100vw, 33vw"
+                        className="object-cover transition-transform duration-500 group-hover:scale-105"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-stone-950/70 via-stone-950/10 to-transparent" />
+                      <div className="absolute left-4 top-4 inline-flex items-center gap-2 rounded-2xl border border-white/25 bg-stone-950/70 px-3 py-2 text-xs font-black text-white backdrop-blur">
+                        <Icon className="h-4 w-4 text-emerald-300" />
+                        {eyebrow}
+                      </div>
+                    </div>
+
+                    <div className="p-5">
+                      <h3 className="text-xl font-black leading-tight text-stone-950 dark:text-stone-50">
+                        {title}
+                      </h3>
+                      <p className="mt-3 text-sm leading-relaxed text-stone-600 dark:text-stone-400">
+                        {text}
+                      </p>
+
+                      <div className="mt-4 flex flex-wrap gap-2">
+                        {bullets.map((bullet) => (
+                          <span
+                            key={bullet}
+                            className="inline-flex items-center gap-1.5 rounded-full border border-emerald-100 bg-emerald-50 px-3 py-1 text-[11px] font-bold text-emerald-800 dark:border-emerald-900/50 dark:bg-emerald-950/30 dark:text-emerald-300"
+                          >
+                            <CheckCircle2 className="h-3.5 w-3.5" />
+                            {bullet}
+                          </span>
+                        ))}
+                      </div>
+
+                      <Link
+                        href={href}
+                        className="mt-5 inline-flex items-center gap-2 text-sm font-black text-stone-950 transition-colors hover:text-emerald-700 dark:text-stone-100 dark:hover:text-emerald-300"
+                      >
+                        {cta}
+                        <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
+                      </Link>
+                    </div>
+                  </article>
+                </ScrollReveal>
+              ))}
+            </div>
+          </div>
         </section>
 
         {/* ── SOCIAL PROOF ── */}
