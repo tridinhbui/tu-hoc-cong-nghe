@@ -34,6 +34,7 @@ import PublicLeaderboardPreview from "@/components/login/PublicLeaderboardPrevie
 import InteractiveKingdomPreview from "@/components/home/InteractiveKingdomPreview";
 import InteractiveEcosystemShowcase from "@/components/home/InteractiveEcosystemShowcase";
 import ScrollPinnedSection from "@/components/home/ScrollPinnedSection";
+import ScrollytellingPinnedSection from "@/components/home/ScrollytellingPinnedSection";
 import { useRoutePrefetch } from "@/lib/use-route-prefetch";
 
 // Each pain point is framed as the visitor's actual internal objection
@@ -1047,49 +1048,8 @@ export default function HomePage() {
           ))}
         </ScrollPinnedSection>
 
-        {/* ── WHO IT IS FOR (STICKY SCROLL PINNED SECTION) ── */}
-        <ScrollPinnedSection
-          badge={
-            <p className="text-[11px] font-black text-emerald-600 dark:text-emerald-400 uppercase tracking-widest">
-              Đối tượng phù hợp
-            </p>
-          }
-          title={
-            <>
-              Nền tảng này dành cho <span className="text-emerald-600 dark:text-emerald-400">ai?</span>
-            </>
-          }
-          theme="emerald"
-        >
-          {AUDIENCES.map((item) => (
-            <motion.div
-              key={item.title}
-              whileHover={{ y: -6, scale: 1.01 }}
-              transition={{ type: "spring", stiffness: 350, damping: 25 }}
-              className="h-full rounded-2xl border border-stone-200/90 dark:border-stone-800 bg-white dark:bg-stone-900 p-4 sm:p-5 shadow-sm hover:border-emerald-400/80 hover:shadow-md transition-all duration-300 relative overflow-hidden group flex flex-col justify-between"
-            >
-              <div className="absolute -top-8 -right-8 w-20 h-20 bg-emerald-400/10 rounded-full blur-xl group-hover:scale-150 transition-transform duration-500 pointer-events-none" />
-
-              <div>
-                <div className="flex items-center justify-between mb-3">
-                  <span className="text-xl p-2 rounded-xl bg-emerald-50 dark:bg-emerald-950/60 border border-emerald-200 dark:border-emerald-800 shadow-xs group-hover:scale-105 transition-transform">
-                    {item.icon}
-                  </span>
-                  <span className="text-[10px] font-black uppercase tracking-wider text-emerald-700 dark:text-emerald-300 bg-emerald-100/70 dark:bg-emerald-950/60 px-2.5 py-0.5 rounded-full border border-emerald-300 dark:border-emerald-800">
-                    {item.tag}
-                  </span>
-                </div>
-                <h3 className="text-sm font-black text-stone-900 dark:text-stone-100 mb-1">{item.title}</h3>
-                <p className="text-xs leading-relaxed text-stone-600 dark:text-stone-400 font-medium">{item.text}</p>
-              </div>
-
-              <div className="mt-4 pt-2.5 border-t border-stone-100 dark:border-stone-800 text-[11px] font-extrabold text-emerald-600 dark:text-emerald-400 flex items-center justify-between">
-                <span>Khóa học 100% Miễn phí</span>
-                <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
-              </div>
-            </motion.div>
-          ))}
-        </ScrollPinnedSection>
+        {/* ── 3-PANEL FULL SCREEN SCROLLYTELLING PINNED SECTION ── */}
+        <ScrollytellingPinnedSection />
 
         {/* ── VISION & MISSION ── */}
         <section className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-16 lg:pb-20">
