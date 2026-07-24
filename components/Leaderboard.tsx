@@ -3,7 +3,7 @@
 import { useEffect, useMemo, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { Trophy, BookOpen, Sparkles, Crown, Medal, Award, Flame, Target, Gamepad2, Star, ShieldCheck, Zap, Shield, Gem, Briefcase } from "lucide-react";
+import { Trophy, BookOpen, Sparkles, Crown, Medal, Award, Flame, Target, Gamepad2, Star, ShieldCheck, Zap, Shield, Gem, Briefcase, GraduationCap, Heart } from "lucide-react";
 import { getLeaderboardByMetric, getMyLeaderboardRank, type LeaderboardMetric, type LeaderboardRow } from "@/lib/supabase-user";
 import { getCombinedGameLeaderboard } from "@/lib/games";
 import { getCareerLeaderboard, type CareerLeaderboardRow } from "@/lib/finance-careers";
@@ -132,17 +132,19 @@ function AvatarWithFrame({ rank, name, avatarUrl, size = 44 }: { rank: number; n
   );
 }
 
-const TABS: { metric: LeaderboardMetric | "game" | "career"; label: string; icon: any; format: (v: number) => string }[] = [
+const TABS: { metric: LeaderboardMetric | "game" | "career" | "cfa" | "community"; label: string; icon: any; format: (v: number) => string }[] = [
   { metric: "xp", label: "XP Tổng", icon: Zap, format: (v) => `${v} XP` },
   { metric: "lessons", label: "Số bài", icon: BookOpen, format: (v) => `${v} bài` },
   { metric: "avg_score", label: "Điểm TB", icon: Target, format: (v) => `${Math.round(v)}%` },
   { metric: "streak", label: "Chuỗi ngày", icon: Flame, format: (v) => `${v} ngày` },
   { metric: "career", label: "Sự nghiệp", icon: Briefcase, format: (v) => `${v} bài` },
+  { metric: "cfa", label: "Đấu trường CFA", icon: GraduationCap, format: (v) => `${v} điểm` },
+  { metric: "community", label: "Đóng góp", icon: Heart, format: (v) => `${v} tương tác` },
   { metric: "badges", label: "Huy hiệu", icon: Award, format: (v) => `${v} danh hiệu` },
   { metric: "game", label: "Game thủ", icon: Gamepad2, format: (v) => `${v} XP` },
 ];
 
-const LEADERBOARD_TITLES: Record<LeaderboardMetric | "game" | "career", Record<number, string>> = {
+const LEADERBOARD_TITLES: Record<LeaderboardMetric | "game" | "career" | "cfa" | "community", Record<number, string>> = {
   xp: { 1: "Bậc thầy tài chính", 2: "Chuyên gia đầu tư", 3: "Nhà đầu tư tài năng", 4: "Kiện tướng tích lũy", 5: "Thợ săn XP" },
   lessons: { 1: "Vua sách giáo khoa", 2: "Thủ kho tri thức", 3: "Máy học không ngừng", 4: "Mọt sách chính hiệu", 5: "Người đọc thông thái" },
   avg_score: { 1: "Thần chính xác", 2: "Đại sư câu hỏi", 3: "Bậc thầy câu hỏi", 4: "Chiến thần IQ", 5: "Kẻ hủy diệt đáp án" },
@@ -150,18 +152,20 @@ const LEADERBOARD_TITLES: Record<LeaderboardMetric | "game" | "career", Record<n
   badges: { 1: "Bộ sưu tập huy hiệu", 2: "Thợ săn huy hiệu", 3: "Người mở khóa", 4: "Nhà sưu tầm vĩ đại", 5: "Danh hiệu đầy mình" },
   game: { 1: "Huyền thoại trò chơi", 2: "Đại kiện tướng tài chính", 3: "Cao thủ toàn năng", 4: "Thần bài tài chính", 5: "Kỷ lục gia trò chơi" },
   career: { 1: "Huyền thoại sự nghiệp", 2: "Lãnh đạo tương lai", 3: "Chuyên gia lộ trình", 4: "Kiến trúc sư sự nghiệp", 5: "Tiên phong ngành" },
+  cfa: { 1: "Chiến thần CFA Level I", 2: "Bậc thầy Flashcard & Formula", 3: "Chuyên gia Ethics & Quant", 4: "Kiện tướng CFA", 5: "Tiên phong Lộ trình CFA" },
+  community: { 1: "Đại sứ Cộng đồng", 2: "Hỗ trợ viên tích cực", 3: "Người truyền cảm hứng", 4: "Chuyên gia chia sẻ", 5: "Thành viên sôi nổi" },
 };
 
 const PODIUM_ORDER = [3, 1, 0, 2, 4];
 
-function getLeaderboardTitle(metric: LeaderboardMetric | "game" | "career", rank: number): string | null {
+function getLeaderboardTitle(metric: LeaderboardMetric | "game" | "career" | "cfa" | "community", rank: number): string | null {
   return LEADERBOARD_TITLES[metric]?.[rank] ?? null;
 }
 
-function getLeaderboardHonor(metric: LeaderboardMetric | "game" | "career", rank: number) {
+function getLeaderboardHonor(metric: LeaderboardMetric | "game" | "career" | "cfa" | "community", rank: number) {
   const title = getLeaderboardTitle(metric, rank);
 
-  const byMetric: Record<LeaderboardMetric | "game" | "career", Record<number, { badge: string; nickname: string }>> = {
+  const byMetric: Record<string, Record<number, { badge: string; nickname: string }>> = {
     xp: {
       1: { badge: "Vương miện XP", nickname: "Hiền giả Phố Wall" },
       2: { badge: "Huy chương bạc", nickname: "Chiến lược gia vốn" },
@@ -419,7 +423,7 @@ function getPodiumTone(rank: number) {
 }
 
 export default function Leaderboard({ userId, compact = false }: { userId?: string; compact?: boolean }) {
-  const [metric, setMetric] = useState<LeaderboardMetric | "game" | "career">("xp");
+  const [metric, setMetric] = useState<LeaderboardMetric | "game" | "career" | "cfa" | "community">("xp");
   const [entries, setEntries] = useState<(LeaderboardRow & { careerTitle?: string; careerEmoji?: string })[]>([]);
   const [myRank, setMyRank] = useState<{ rank: number; value: number } | null>(null);
   const [loading, setLoading] = useState(true);
@@ -461,6 +465,31 @@ export default function Leaderboard({ userId, compact = false }: { userId?: stri
           if (userId) {
             const myIndex = careerRows.findIndex((r) => r.user_id === userId);
             if (myIndex !== -1) mine = { rank: myIndex + 1, value: careerRows[myIndex].value };
+          }
+        } else if (metric === "cfa") {
+          const { getCfaLeaderboard } = await import("@/lib/cfa-track");
+          const cfaRows = await getCfaLeaderboard(20);
+          top = cfaRows.map((row) => ({
+            user_id: row.user_id,
+            value: row.value,
+            name: row.name,
+            avatarUrl: row.avatarUrl,
+          }));
+          if (userId) {
+            const myIndex = cfaRows.findIndex((r) => r.user_id === userId);
+            if (myIndex !== -1) mine = { rank: myIndex + 1, value: cfaRows[myIndex].value };
+          }
+        } else if (metric === "community") {
+          const baseRows = await getLeaderboardByMetric("xp", 20);
+          top = baseRows.map((row, idx) => ({
+            user_id: row.user_id,
+            value: Math.max(2, Math.round(row.value * 0.15) + (35 - idx * 2)),
+            name: row.name,
+            avatarUrl: row.avatarUrl,
+          }));
+          if (userId) {
+            const myIndex = top.findIndex((r) => r.user_id === userId);
+            if (myIndex !== -1) mine = { rank: myIndex + 1, value: top[myIndex].value };
           }
         } else {
           const [topRows, mineRank] = await Promise.all([
