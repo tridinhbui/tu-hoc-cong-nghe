@@ -454,7 +454,7 @@ export default function HomePage() {
                   initial={{ opacity: 0, y: 14 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.45, ease: "easeOut" }}
-                  className="mb-4 inline-flex items-center gap-1.5 rounded-full border border-emerald-200/80 bg-white/80 px-3 py-1 text-[11px] font-bold text-emerald-700 backdrop-blur dark:border-emerald-900 dark:bg-stone-950/55 dark:text-emerald-300"
+                  className="mb-5 inline-flex items-center gap-1.5 rounded-full border border-emerald-200/80 bg-white/80 px-3 py-1 text-[10px] font-black uppercase tracking-[0.16em] text-emerald-700 backdrop-blur dark:border-emerald-900 dark:bg-stone-950/55 dark:text-emerald-300"
                 >
                   <span className="relative flex w-1.5 h-1.5">
                     <span className="animate-ping absolute inline-flex w-full h-full rounded-full bg-emerald-400 opacity-75" />
@@ -467,7 +467,7 @@ export default function HomePage() {
                   initial={{ opacity: 0, y: 14 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.45, ease: "easeOut", delay: 0.06 }}
-                  className="mb-5 max-w-3xl text-5xl font-black leading-[0.95] tracking-tight text-stone-950 dark:text-stone-50 lg:text-[4.3rem]"
+                  className="mb-4 max-w-3xl text-[3.25rem] font-black leading-[0.92] tracking-tight text-stone-950 dark:text-stone-50 lg:text-[4.6rem]"
                 >
                   Bước vào thế giới{" "}
                   <span className="bg-gradient-to-r from-emerald-600 to-teal-500 bg-clip-text text-transparent dark:from-emerald-300 dark:to-teal-200">
@@ -480,7 +480,7 @@ export default function HomePage() {
                   initial={{ opacity: 0, y: 14 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.45, ease: "easeOut", delay: 0.12 }}
-                  className="mb-7 max-w-2xl text-base leading-relaxed text-stone-650 dark:text-stone-300 sm:text-lg"
+                  className="mb-8 max-w-xl text-[15px] leading-7 text-stone-650 dark:text-stone-300 sm:text-lg"
                 >
                   {lessonCountFloor ?? 360}+ bài học - 100% miễn phí vĩnh viễn - giáo trình thiết kế riêng cho người Việt học tài chính cá
                   nhân, CFA, lập kế hoạch tài chính, đầu tư, kế toán và tài chính chuyên nghiệp. Học theo phương pháp
@@ -491,18 +491,18 @@ export default function HomePage() {
                   initial={{ opacity: 0, y: 14 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.45, ease: "easeOut", delay: 0.18 }}
-                  className="mb-8 flex flex-wrap items-center gap-3"
+                  className="mb-10 flex flex-wrap items-center gap-3"
                 >
                   <Link
                     href="/login?mode=signup"
-                    className="cta-electric group inline-flex items-center gap-2 rounded-xl bg-stone-950 px-6 py-3.5 font-bold text-white shadow-[0_24px_54px_-24px_rgba(15,23,42,0.55)] transition-all active:scale-[0.98] hover:bg-stone-900 dark:bg-stone-100 dark:text-stone-900 dark:hover:bg-white"
+                    className="cta-electric group inline-flex items-center gap-2 rounded-xl bg-stone-950 px-6 py-3.5 text-base font-black text-white shadow-[0_24px_54px_-24px_rgba(15,23,42,0.55)] transition-all active:scale-[0.98] hover:bg-stone-900 dark:bg-stone-100 dark:text-stone-900 dark:hover:bg-white"
                   >
                     Bắt đầu học miễn phí
                     <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-0.5" />
                   </Link>
                   <a
                     href={`/bai-hoc/${TRACKS.personal.previewSlug}`}
-                    className="inline-flex items-center gap-2 rounded-xl border border-stone-200/80 bg-white/70 px-6 py-3.5 font-bold text-stone-900 backdrop-blur transition-colors hover:bg-white dark:border-stone-700 dark:bg-stone-950/45 dark:text-stone-100 dark:hover:bg-stone-900"
+                    className="inline-flex items-center gap-2 rounded-xl border border-stone-200/80 bg-white/70 px-5 py-3 text-sm font-bold text-stone-900 backdrop-blur transition-colors hover:bg-white dark:border-stone-700 dark:bg-stone-950/45 dark:text-stone-100 dark:hover:bg-stone-900"
                   >
                     <PlayCircle className="w-4 h-4" />
                     Xem thử bài học
@@ -525,15 +525,15 @@ export default function HomePage() {
                   <div className="flex items-stretch divide-x divide-stone-200 dark:divide-stone-800">
                     <div className="min-w-0 pr-3 sm:pr-6">
                       <LiveNumber value={displayedUserCount} className="text-lg sm:text-2xl" />
-                      <p className="mt-0.5 text-[10px] font-semibold text-stone-500 dark:text-stone-400 sm:text-[11px]">người học</p>
+                      <p className="mt-0.5 text-[10px] font-bold uppercase tracking-wide text-stone-500 dark:text-stone-400 sm:text-[11px]">người học</p>
                     </div>
                     <div className="min-w-0 px-3 sm:px-6">
                       <LiveNumber value={displayedLessonCount} className="text-lg sm:text-2xl" />
-                      <p className="mt-0.5 text-[10px] font-semibold text-stone-500 dark:text-stone-400 sm:text-[11px]">bài học</p>
+                      <p className="mt-0.5 text-[10px] font-bold uppercase tracking-wide text-stone-500 dark:text-stone-400 sm:text-[11px]">bài học</p>
                     </div>
                     <div className="min-w-0 pl-3 sm:pl-6">
                       <LiveNumber value={displayedCompletedCount} className="text-lg sm:text-2xl" />
-                      <p className="mt-0.5 whitespace-nowrap text-[10px] font-semibold text-stone-500 dark:text-stone-400 sm:whitespace-normal sm:text-[11px]">đã hoàn thành</p>
+                      <p className="mt-0.5 whitespace-nowrap text-[10px] font-bold uppercase tracking-wide text-stone-500 dark:text-stone-400 sm:whitespace-normal sm:text-[11px]">đã hoàn thành</p>
                     </div>
                   </div>
                 </motion.div>
@@ -644,7 +644,7 @@ export default function HomePage() {
             <h2 className="text-3xl lg:text-4xl font-black text-stone-900 dark:text-stone-100">
               Đây là những gì bạn sẽ dùng mỗi ngày
             </h2>
-            <p className="mt-3 text-stone-600 dark:text-stone-400 leading-relaxed">
+            <p className="mt-3 max-w-xl text-sm text-stone-600 dark:text-stone-400 leading-relaxed sm:text-base">
               Không chỉ là bài đọc dài - dashboard theo dõi tiến độ thật, quiz sau mỗi bài, và cấp độ/XP để biết mình đang ở đâu.
             </p>
           </ScrollReveal>
@@ -690,7 +690,7 @@ export default function HomePage() {
               <h2 className="max-w-3xl text-3xl font-black text-stone-900 dark:text-stone-100 mb-4 leading-snug">
                 Học viên nổi bật đang học mỗi ngày, từ tài chính cá nhân đến CFA và nghề nghiệp tài chính
               </h2>
-              <p className="max-w-2xl text-sm leading-relaxed text-stone-600 dark:text-stone-400 mb-5">
+              <p className="max-w-xl text-sm leading-relaxed text-stone-600 dark:text-stone-400 mb-5">
                 Đây không phải bảng số liệu trang trí. Người mới vào có thể nhìn ngay ai đang học thật, ai giữ được nhịp đều,
                 và cảm giác tiến bộ trong hệ thống trông ra sao.
               </p>
@@ -756,7 +756,7 @@ export default function HomePage() {
             <h2 className="text-3xl lg:text-4xl font-black text-stone-900 dark:text-stone-100">
               Một vương quốc tài chính để bạn mở khóa bằng kiến thức
             </h2>
-            <p className="mt-3 text-stone-600 dark:text-stone-400 leading-relaxed">
+            <p className="mt-3 max-w-xl text-sm text-stone-600 dark:text-stone-400 leading-relaxed sm:text-base">
               Game Kingdom biến việc học thành nhiệm vụ: hoàn thành bài, làm quiz, chơi mini game và mở dần các công trình
               tài chính. Hình ảnh bên dưới dùng trực tiếp các asset trong game để người mới thấy rõ mình sẽ bước vào đâu.
             </p>
@@ -915,7 +915,7 @@ export default function HomePage() {
               <h2 className="text-3xl lg:text-4xl font-black text-stone-900 dark:text-stone-100">
                 Học, chơi, hỏi đáp và chia sẻ trong cùng một hệ sinh thái tài chính
               </h2>
-              <p className="mt-3 text-stone-600 dark:text-stone-400 leading-relaxed">
+              <p className="mt-3 max-w-xl text-sm text-stone-600 dark:text-stone-400 leading-relaxed sm:text-base">
                 Sau khi tạo tài khoản, bạn không chỉ đi qua lộ trình bài học. Bạn còn có Game Kingdom để luyện phản xạ,
                 Học nhóm để giữ nhịp, và FinSocial để trao đổi kiến thức với cộng đồng.
               </p>
