@@ -944,53 +944,49 @@ export default function HomePage() {
         <SoftFadeDivider />
 
         {/* ── PAIN POINTS / TRUST ── */}
-        <section className="landing-band landing-band-soft relative py-16 lg:py-20">
+        <section className="landing-band landing-band-soft relative py-6 sm:py-8 font-sans">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <ScrollReveal className="max-w-2xl mb-10">
-              <p className="text-xs font-black text-emerald-600 dark:text-emerald-400 uppercase tracking-widest mb-2 flex items-center gap-2">
-                <Sparkles className="w-4 h-4 text-emerald-500 animate-pulse" />
+            <ScrollReveal className="max-w-2xl mb-3">
+              <p className="text-[11px] font-black text-emerald-600 dark:text-emerald-400 uppercase tracking-widest mb-1 flex items-center gap-1.5">
+                <Sparkles className="w-3.5 h-3.5 text-emerald-500 animate-pulse" />
                 Vì sao học viên chọn ở lại
               </p>
-              <h2 className="text-3xl lg:text-4xl font-black text-stone-900 dark:text-stone-100">
+              <h2 className="text-2xl sm:text-3xl font-black text-stone-900 dark:text-stone-100">
                 Những lo lắng thường gặp khi tự học{" "}
                 <span className="bg-gradient-to-r from-[#00D084] to-[#00B8FF] bg-clip-text text-transparent">
                   tài chính
                 </span>
               </h2>
-              <p className="mt-2 text-sm text-stone-600 dark:text-stone-400">
-                Chúng tôi thiết kế từng tính năng để giải quyết trực tiếp những điểm nghẽn của người tự học.
-              </p>
             </ScrollReveal>
 
-            <div className="grid sm:grid-cols-2 gap-5">
+            <div className="grid sm:grid-cols-2 gap-3 sm:gap-3.5">
               {PAIN_POINTS.map(({ icon: Icon, worry, answer }, i) => (
-                <ScrollReveal key={worry} delay={i * 0.08}>
+                <ScrollReveal key={worry} delay={i * 0.05}>
                   <motion.div
                     whileHover={{ y: -6, scale: 1.01 }}
                     transition={{ type: "spring", stiffness: 350, damping: 25 }}
-                    className="animated-border-card h-full rounded-3xl border-2 border-stone-200/80 dark:border-stone-800 bg-white dark:bg-stone-900 p-6 shadow-md hover:border-emerald-400/80 hover:shadow-xl transition-all duration-300 relative overflow-hidden group flex flex-col justify-between"
+                    className="animated-border-card h-full rounded-2xl border border-stone-200/80 dark:border-stone-800 bg-white dark:bg-stone-900 p-3.5 sm:p-4 shadow-sm hover:border-emerald-400/80 hover:shadow-lg transition-all duration-300 relative overflow-hidden group flex flex-col justify-between"
                   >
-                    {/* Ambient Glow */}
-                    <div className="absolute -top-12 -right-12 w-32 h-32 bg-emerald-400/10 rounded-full blur-2xl group-hover:scale-150 transition-transform duration-500 pointer-events-none" />
+                    <div className="absolute -top-10 -right-10 w-24 h-24 bg-emerald-400/10 rounded-full blur-xl group-hover:scale-150 transition-transform duration-500 pointer-events-none" />
 
                     <div>
-                      <div className="flex items-center justify-between mb-4">
-                        <span className="inline-flex w-12 h-12 rounded-2xl bg-gradient-to-br from-emerald-100 to-teal-100 dark:from-emerald-950 dark:to-teal-950 items-center justify-center border border-emerald-300/60 dark:border-emerald-800/60 text-emerald-600 dark:text-emerald-300 shadow-xs group-hover:scale-110 transition-transform">
-                          <Icon className="w-6 h-6" />
+                      <div className="flex items-center justify-between mb-2">
+                        <span className="inline-flex w-9 h-9 rounded-xl bg-gradient-to-br from-emerald-100 to-teal-100 dark:from-emerald-950 dark:to-teal-950 items-center justify-center border border-emerald-300/60 dark:border-emerald-800/60 text-emerald-600 dark:text-emerald-300 shadow-xs group-hover:scale-105 transition-transform">
+                          <Icon className="w-4 h-4" />
                         </span>
-                        <span className="text-[10px] font-black uppercase tracking-widest text-emerald-700 dark:text-emerald-400 bg-emerald-50 dark:bg-emerald-950/60 px-3 py-1 rounded-full border border-emerald-200 dark:border-emerald-800">
+                        <span className="text-[9px] font-black uppercase tracking-wider text-emerald-700 dark:text-emerald-400 bg-emerald-50 dark:bg-emerald-950/60 px-2.5 py-0.5 rounded-full border border-emerald-200 dark:border-emerald-800">
                           Giải pháp #0{i + 1}
                         </span>
                       </div>
 
-                      <p className="text-base font-black text-stone-900 dark:text-stone-100 mb-2 leading-snug">
+                      <p className="text-xs sm:text-sm font-black text-stone-900 dark:text-stone-100 mb-1 leading-snug">
                         “{worry}”
                       </p>
                     </div>
 
-                    <div className="mt-4 pt-4 border-t border-stone-100 dark:border-stone-800/80 bg-stone-50/70 dark:bg-stone-950/40 -mx-6 -mb-6 p-5">
-                      <p className="text-xs sm:text-sm font-medium text-stone-700 dark:text-stone-300 leading-relaxed flex items-start gap-2">
-                        <CheckCircle2 className="w-4 h-4 text-emerald-500 shrink-0 mt-0.5" />
+                    <div className="mt-2.5 pt-2.5 border-t border-stone-100 dark:border-stone-800/80 bg-stone-50/70 dark:bg-stone-950/40 -mx-3.5 -mb-3.5 p-3">
+                      <p className="text-xs font-medium text-stone-700 dark:text-stone-300 leading-normal flex items-start gap-1.5">
+                        <CheckCircle2 className="w-3.5 h-3.5 text-emerald-500 shrink-0 mt-0.5" />
                         <span>{answer.replace("{count}", String(lessonCountFloor ?? 360))}</span>
                       </p>
                     </div>
@@ -1004,30 +1000,30 @@ export default function HomePage() {
         <SubtleWaveDivider flip />
 
         {/* ── METHOD (Spaced Repetition) ── */}
-        <section className="bg-stone-50/50 dark:bg-stone-900/20 backdrop-blur-sm py-16 lg:py-20 border-y border-stone-150/40 dark:border-stone-850/40">
+        <section className="bg-stone-50/50 dark:bg-stone-900/20 backdrop-blur-sm py-12 lg:py-16 border-y border-stone-150/40 dark:border-stone-850/40 font-sans">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <ScrollReveal className="max-w-2xl mb-10">
-              <p className="text-xs font-black text-emerald-600 dark:text-emerald-400 uppercase tracking-widest mb-2">
+            <ScrollReveal className="max-w-2xl mb-8">
+              <p className="text-[11px] font-black text-emerald-600 dark:text-emerald-400 uppercase tracking-widest mb-1">
                 Phương pháp học
               </p>
-              <h2 className="text-3xl lg:text-4xl font-black text-stone-900 dark:text-stone-100 mb-3">
+              <h2 className="text-2xl sm:text-3xl font-black text-stone-900 dark:text-stone-100 mb-2">
                 Spaced Repetition - học ít, nhớ lâu
               </h2>
-              <p className="text-stone-600 dark:text-stone-400 leading-relaxed font-medium">
+              <p className="text-xs sm:text-sm text-stone-600 dark:text-stone-400 leading-relaxed font-medium">
                 Không phải mẹo riêng của chúng tôi - đây là phương pháp ôn tập ngắt quãng được khoa học nhận thức
                 nghiên cứu kỹ nhất, dựa trên đường cong quên lãng (Ebbinghaus forgetting curve).
               </p>
             </ScrollReveal>
 
-            <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+            <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-3.5">
               {METHOD_STEPS.map(({ step, title, text }, i) => (
                 <ScrollReveal key={step} delay={i * 0.08}>
-                  <div className="animated-border-card h-full rounded-[20px] bg-white/70 dark:bg-stone-900/60 backdrop-blur-md border border-stone-200/80 dark:border-stone-800 p-6 hover:shadow-[0_12px_28px_-24px_rgba(15,23,42,0.18)] hover:-translate-y-1 transition-all duration-200 ease-out">
-                    <div className="w-8 h-8 rounded-[14px] bg-gradient-to-r from-emerald-500 to-teal-500 text-white font-black text-sm flex items-center justify-center mb-4 shadow-[0_10px_22px_-18px_rgba(16,185,129,0.35)] transition-transform duration-200 ease-out group-hover:scale-[1.02]">
+                  <div className="animated-border-card h-full rounded-2xl bg-white/70 dark:bg-stone-900/60 backdrop-blur-md border border-stone-200/80 dark:border-stone-800 p-4 hover:shadow-lg hover:-translate-y-1 transition-all duration-200 ease-out">
+                    <div className="w-7 h-7 rounded-xl bg-gradient-to-r from-emerald-500 to-teal-500 text-white font-black text-xs flex items-center justify-center mb-3 shadow-xs">
                       {step}
                     </div>
-                    <p className="font-extrabold text-stone-900 dark:text-stone-100 mb-2">{title}</p>
-                    <p className="text-xs sm:text-sm text-stone-600 dark:text-stone-400 leading-relaxed font-medium">{text}</p>
+                    <p className="font-extrabold text-stone-900 dark:text-stone-100 text-xs sm:text-sm mb-1">{title}</p>
+                    <p className="text-xs text-stone-600 dark:text-stone-400 leading-relaxed font-medium">{text}</p>
                   </div>
                 </ScrollReveal>
               ))}
@@ -1036,46 +1032,42 @@ export default function HomePage() {
         </section>
 
         {/* ── WHO IT IS FOR ── */}
-        <section className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 lg:py-20">
-          <ScrollReveal className="max-w-2xl mb-10">
-            <p className="text-xs font-black text-emerald-600 dark:text-emerald-400 uppercase tracking-widest mb-2">
+        <section className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8 font-sans">
+          <ScrollReveal className="max-w-2xl mb-3">
+            <p className="text-[11px] font-black text-emerald-600 dark:text-emerald-400 uppercase tracking-widest mb-1">
               Đối tượng phù hợp
             </p>
-            <h2 className="text-3xl lg:text-4xl font-black text-stone-900 dark:text-stone-100">
-              Nền tảng này dành cho ai?
+            <h2 className="text-2xl sm:text-3xl font-black text-stone-900 dark:text-stone-100">
+              Nền tảng này dành cho <span className="bg-gradient-to-r from-[#00D084] to-[#00B8FF] bg-clip-text text-transparent">ai?</span>
             </h2>
-            <p className="mt-3 text-stone-600 dark:text-stone-400 leading-relaxed">
-              Mục tiêu của chúng tôi là đem kiến thức tài chính đến với nhiều nhóm người học khác nhau, từ tự học cá
-              nhân đến lộ trình nghề nghiệp chuyên sâu.
-            </p>
           </ScrollReveal>
 
-          <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+          <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
             {AUDIENCES.map((item, i) => (
-              <ScrollReveal key={item.title} delay={i * 0.05}>
+              <ScrollReveal key={item.title} delay={i * 0.04}>
                 <motion.div
-                  whileHover={{ y: -6, scale: 1.02 }}
+                  whileHover={{ y: -6, scale: 1.01 }}
                   transition={{ type: "spring", stiffness: 350, damping: 25 }}
-                  className="animated-border-card h-full rounded-3xl border-2 border-stone-200/80 dark:border-stone-800 bg-white dark:bg-stone-900 p-6 shadow-md hover:border-emerald-400/80 hover:shadow-xl transition-all duration-300 relative overflow-hidden group flex flex-col justify-between"
+                  className="animated-border-card h-full rounded-2xl border border-stone-200/80 dark:border-stone-800 bg-white dark:bg-stone-900 p-3.5 sm:p-4 shadow-sm hover:border-emerald-400/80 hover:shadow-lg transition-all duration-300 relative overflow-hidden group flex flex-col justify-between"
                 >
-                  <div className="absolute -top-10 -right-10 w-28 h-28 bg-emerald-400/10 rounded-full blur-2xl group-hover:scale-150 transition-transform duration-500 pointer-events-none" />
+                  <div className="absolute -top-8 -right-8 w-20 h-20 bg-emerald-400/10 rounded-full blur-xl group-hover:scale-150 transition-transform duration-500 pointer-events-none" />
 
                   <div>
-                    <div className="flex items-center justify-between mb-4">
-                      <span className="text-2xl p-2.5 rounded-2xl bg-emerald-50 dark:bg-emerald-950/60 border border-emerald-200 dark:border-emerald-800 shadow-xs group-hover:scale-110 transition-transform">
+                    <div className="flex items-center justify-between mb-2">
+                      <span className="text-lg p-1.5 rounded-xl bg-emerald-50 dark:bg-emerald-950/60 border border-emerald-200 dark:border-emerald-800 shadow-xs group-hover:scale-105 transition-transform">
                         {item.icon}
                       </span>
-                      <span className="text-[10px] font-black uppercase tracking-widest text-emerald-700 dark:text-emerald-300 bg-emerald-100/70 dark:bg-emerald-950/60 px-3 py-1 rounded-full border border-emerald-300 dark:border-emerald-800">
+                      <span className="text-[9px] font-black uppercase tracking-wider text-emerald-700 dark:text-emerald-300 bg-emerald-100/70 dark:bg-emerald-950/60 px-2.5 py-0.5 rounded-full border border-emerald-300 dark:border-emerald-800">
                         {item.tag}
                       </span>
                     </div>
-                    <h3 className="text-base sm:text-lg font-black text-stone-900 dark:text-stone-100">{item.title}</h3>
-                    <p className="mt-2 text-xs sm:text-sm leading-relaxed text-stone-600 dark:text-stone-400 font-medium">{item.text}</p>
+                    <h3 className="text-xs sm:text-sm font-black text-stone-900 dark:text-stone-100">{item.title}</h3>
+                    <p className="mt-1 text-xs leading-snug line-clamp-2 text-stone-600 dark:text-stone-400 font-medium">{item.text}</p>
                   </div>
 
-                  <div className="mt-4 pt-3 border-t border-stone-100 dark:border-stone-800 text-[11px] font-extrabold text-emerald-600 dark:text-emerald-400 flex items-center justify-between">
+                  <div className="mt-2.5 pt-2 border-t border-stone-100 dark:border-stone-800 text-[10px] font-extrabold text-emerald-600 dark:text-emerald-400 flex items-center justify-between">
                     <span>Khóa học 100% Miễn phí</span>
-                    <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
+                    <ArrowRight className="w-3 h-3 group-hover:translate-x-1 transition-transform" />
                   </div>
                 </motion.div>
               </ScrollReveal>
