@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import Image from "next/image";
+import { Award, Crown, Medal, ShieldCheck, Sparkles, Trophy } from "lucide-react";
 import { getLeaderboardByMetric, type LeaderboardRow } from "@/lib/supabase-user";
 import { isValidAvatar } from "@/lib/avatar-utils";
 
@@ -27,76 +28,140 @@ export default function PublicLeaderboardPreview() {
 
   if (top.length === 0) return null;
 
+  const podium = [top[1], top[0], top[2]].filter(Boolean);
+  const podiumMeta = [
+    { rank: 2, height: "h-24", tone: "from-slate-200 to-slate-100 text-slate-800", ring: "ring-slate-200", title: "Bạc" },
+    { rank: 1, height: "h-32", tone: "from-amber-300 to-yellow-100 text-amber-950", ring: "ring-amber-200", title: "Vàng" },
+    { rank: 3, height: "h-20", tone: "from-orange-200 to-amber-100 text-orange-950", ring: "ring-orange-200", title: "Đồng" },
+  ];
+  const badgePreview = [
+    { icon: Trophy, label: "Top XP tuần", value: `${top[0]?.value?.toLocaleString("vi-VN") ?? 0} XP` },
+    { icon: ShieldCheck, label: "Chuỗi học", value: "Duy trì mỗi ngày" },
+    { icon: Award, label: "Huy hiệu", value: "Nhà phân tích" },
+  ];
+
   return (
-    <div className="rounded-2xl border border-stone-200 dark:border-stone-800 bg-white dark:bg-stone-900 px-4 py-3">
-      <div className="flex items-center gap-1.5 mb-2.5 text-[10px] font-extrabold text-stone-500 dark:text-stone-400 uppercase tracking-widest">
-        <span className="relative flex w-1.5 h-1.5">
-          <span className="animate-ping absolute inline-flex w-full h-full rounded-full bg-emerald-400 opacity-75" />
-          <span className="relative inline-flex rounded-full w-1.5 h-1.5 bg-emerald-500" />
-        </span>
-        Học viên nổi bật · số liệu thật, cập nhật trực tiếp
-      </div>
-      <div className="grid grid-cols-2 gap-x-3 gap-y-2.5 sm:grid-cols-3">
-        {top.map((entry, idx) => (
-          <div key={entry.user_id} className="flex items-center gap-2 min-w-0 rounded-2xl border border-stone-100 bg-stone-50/70 px-2.5 py-2 dark:border-stone-800 dark:bg-stone-800/40">
-            <div className="relative flex-shrink-0">
-              {idx < 3 && (
-                <span
-                  className={`pointer-events-none absolute -inset-1.5 rounded-full blur-[1px] opacity-80 animate-pulse ${
-                    idx === 0
-                      ? "bg-gradient-to-r from-amber-300/70 via-yellow-200/40 to-amber-400/20"
-                      : idx === 1
-                        ? "bg-gradient-to-r from-slate-300/70 via-slate-200/40 to-slate-400/20"
-                        : "bg-gradient-to-r from-amber-200/70 via-orange-100/35 to-amber-300/20"
-                  }`}
-                  aria-hidden="true"
-                />
-              )}
-              {idx < 3 && (
-                <span
-                  className="pointer-events-none absolute -inset-1 rounded-full border border-white/70 dark:border-stone-900/80 opacity-60"
-                  aria-hidden="true"
-                />
-              )}
-              {idx < 3 && (
-                <span
-                  className="pointer-events-none absolute -inset-0.5 rounded-full bg-gradient-to-r from-transparent via-white/80 to-transparent opacity-0 animate-[shimmer_1.8s_ease-in-out_infinite]"
-                  aria-hidden="true"
-                />
-              )}
-              {isValidAvatar(entry.avatarUrl) ? (
-                <Image
-                  src={entry.avatarUrl}
-                  alt={entry.name}
-                  width={28}
-                  height={28}
-                  className="w-7 h-7 rounded-full object-cover border border-stone-200 dark:border-stone-700"
-                />
-              ) : (
-                <div className="w-7 h-7 rounded-full flex items-center justify-center bg-stone-200 dark:bg-stone-700 text-stone-600 dark:text-stone-300 text-[11px] font-extrabold">
-                  {entry.name.trim().charAt(0).toUpperCase() || "?"}
-                </div>
-              )}
-              <span
-                className={`absolute -bottom-1 -right-1 w-4 h-4 rounded-full flex items-center justify-center text-[8px] font-extrabold border border-white dark:border-stone-900 ${
-                  idx === 0
-                    ? "bg-amber-300 text-amber-900"
-                    : idx === 1
-                      ? "bg-gray-300 text-gray-900"
-                      : "bg-amber-100 text-amber-800"
-                }`}
-              >
-                {idx + 1}
-              </span>
-            </div>
-            <div className="min-w-0">
-              <p className="text-xs font-bold text-stone-900 dark:text-stone-100 truncate">
-                {entry.name}
-              </p>
-              <p className="text-[10px] text-stone-500 dark:text-stone-400">{entry.value} XP</p>
-            </div>
+    <div className="overflow-hidden rounded-[1.75rem] border border-stone-200 bg-white shadow-[0_30px_80px_-45px_rgba(16,185,129,0.45)] dark:border-stone-800 dark:bg-stone-900">
+      <div className="border-b border-stone-100 bg-gradient-to-r from-emerald-50 to-teal-50 px-4 py-3 dark:border-stone-800 dark:from-emerald-950/35 dark:to-teal-950/20">
+        <div className="flex items-center justify-between gap-3">
+          <div className="flex items-center gap-2">
+            <span className="relative flex h-2 w-2">
+              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-75" />
+              <span className="relative inline-flex h-2 w-2 rounded-full bg-emerald-500" />
+            </span>
+            <p className="text-[10px] font-black uppercase tracking-widest text-emerald-700 dark:text-emerald-300">
+              Bảng vinh danh live
+            </p>
           </div>
-        ))}
+          <div className="inline-flex items-center gap-1.5 rounded-full bg-white/80 px-2.5 py-1 text-[10px] font-black text-stone-600 ring-1 ring-emerald-100 dark:bg-stone-950/50 dark:text-stone-300 dark:ring-emerald-900">
+            <Sparkles className="h-3.5 w-3.5 text-emerald-500" />
+            Cập nhật trực tiếp
+          </div>
+        </div>
+      </div>
+
+      <div className="p-4">
+        <div className="rounded-[1.5rem] border border-stone-100 bg-stone-50/80 p-4 dark:border-stone-800 dark:bg-stone-950/35">
+          <div className="mb-4 flex items-center justify-between gap-3">
+            <div>
+              <p className="text-xs font-black uppercase tracking-[0.16em] text-stone-500 dark:text-stone-400">
+                Bục vinh quang
+              </p>
+              <p className="mt-1 text-sm font-bold text-stone-900 dark:text-stone-100">
+                Top học viên theo XP
+              </p>
+            </div>
+            <Crown className="h-7 w-7 text-amber-400" />
+          </div>
+
+          <div className="grid min-h-[190px] grid-cols-3 items-end gap-2">
+            {podium.map((entry, idx) => {
+              const meta = podiumMeta[idx];
+              return (
+                <div key={entry.user_id} className="flex min-w-0 flex-col items-center">
+                  <div className="relative mb-2">
+                    <span className={`absolute -inset-1.5 rounded-full bg-gradient-to-r ${meta.tone} opacity-70 blur-md`} />
+                    {isValidAvatar(entry.avatarUrl) ? (
+                      <Image
+                        src={entry.avatarUrl}
+                        alt={entry.name}
+                        width={48}
+                        height={48}
+                        className={`relative h-12 w-12 rounded-full border-2 border-white object-cover shadow-lg ring-4 ${meta.ring} dark:border-stone-900`}
+                      />
+                    ) : (
+                      <div className={`relative flex h-12 w-12 items-center justify-center rounded-full border-2 border-white bg-gradient-to-br ${meta.tone} text-sm font-black shadow-lg ring-4 ${meta.ring} dark:border-stone-900`}>
+                        {entry.name.trim().charAt(0).toUpperCase() || "?"}
+                      </div>
+                    )}
+                    <span className={`absolute -bottom-1 -right-1 flex h-6 w-6 items-center justify-center rounded-full border-2 border-white bg-gradient-to-br ${meta.tone} text-[10px] font-black shadow-sm dark:border-stone-900`}>
+                      {meta.rank}
+                    </span>
+                  </div>
+                  <p className="max-w-full truncate text-center text-xs font-black text-stone-900 dark:text-stone-100">
+                    {entry.name}
+                  </p>
+                  <p className="text-[10px] font-bold text-stone-500 dark:text-stone-400">
+                    {entry.value.toLocaleString("vi-VN")} XP
+                  </p>
+                  <div className={`mt-2 flex w-full items-end justify-center rounded-t-2xl bg-gradient-to-b ${meta.tone} px-2 pb-3 pt-2 shadow-inner ${meta.height}`}>
+                    <div className="text-center">
+                      <Medal className="mx-auto h-5 w-5 opacity-80" />
+                      <p className="mt-1 text-[10px] font-black uppercase tracking-wide">{meta.title}</p>
+                    </div>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+
+        <div className="mt-3 grid gap-2 sm:grid-cols-3">
+          {badgePreview.map(({ icon: Icon, label, value }) => (
+            <div key={label} className="rounded-2xl border border-stone-100 bg-white px-3 py-2.5 dark:border-stone-800 dark:bg-stone-950/40">
+              <div className="flex items-center gap-2">
+                <span className="flex h-8 w-8 items-center justify-center rounded-xl bg-emerald-50 text-emerald-600 ring-1 ring-emerald-100 dark:bg-emerald-950/30 dark:text-emerald-300 dark:ring-emerald-900">
+                  <Icon className="h-4 w-4" />
+                </span>
+                <div className="min-w-0">
+                  <p className="truncate text-[10px] font-black uppercase tracking-wide text-stone-400">{label}</p>
+                  <p className="truncate text-xs font-bold text-stone-900 dark:text-stone-100">{value}</p>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        <div className="mt-3 grid grid-cols-2 gap-x-3 gap-y-2.5 sm:grid-cols-3">
+          {top.slice(0, 6).map((entry, idx) => (
+            <div key={entry.user_id} className="flex min-w-0 items-center gap-2 rounded-2xl border border-stone-100 bg-stone-50/70 px-2.5 py-2 dark:border-stone-800 dark:bg-stone-800/40">
+              <div className="relative flex-shrink-0">
+                {isValidAvatar(entry.avatarUrl) ? (
+                  <Image
+                    src={entry.avatarUrl}
+                    alt={entry.name}
+                    width={28}
+                    height={28}
+                    className="h-7 w-7 rounded-full border border-stone-200 object-cover dark:border-stone-700"
+                  />
+                ) : (
+                  <div className="flex h-7 w-7 items-center justify-center rounded-full bg-stone-200 text-[11px] font-extrabold text-stone-600 dark:bg-stone-700 dark:text-stone-300">
+                    {entry.name.trim().charAt(0).toUpperCase() || "?"}
+                  </div>
+                )}
+                <span className="absolute -bottom-1 -right-1 flex h-4 w-4 items-center justify-center rounded-full border border-white bg-stone-900 text-[8px] font-extrabold text-white dark:border-stone-900">
+                  {idx + 1}
+                </span>
+              </div>
+              <div className="min-w-0">
+                <p className="truncate text-xs font-bold text-stone-900 dark:text-stone-100">
+                  {entry.name}
+                </p>
+                <p className="text-[10px] text-stone-500 dark:text-stone-400">{entry.value.toLocaleString("vi-VN")} XP</p>
+              </div>
+            </div>
+          ))}
+        </div>
       </div>
       <style>{`
         @keyframes shimmer {
