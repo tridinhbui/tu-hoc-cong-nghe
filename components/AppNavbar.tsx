@@ -69,17 +69,18 @@ export default function AppNavbar() {
   useRoutePrefetch(["/dashboard", "/analytics", "/bxh", "/profile", "/ban-be", "/nhom-hoc", "/cong-dong", "/su-nghiep", "/ghi-chu", "/cong-cu", "/game", "/settings", "/tai-lieu", "/kiem-tra", "/cfa"]);
 
   useEffect(() => {
+    // Read local storage immediately on mount
+    if (typeof window !== "undefined") {
+      const local = localStorage.getItem("active_career_goal") || localStorage.getItem("thtcdn_career_goal") || localStorage.getItem("user_career_goal");
+      if (local) setCareerGoalId(local);
+    }
+
     const loadGoal = async () => {
       if (userId) {
         const g = await getMyCareerGoal(userId).catch(() => null);
         if (g) {
           setCareerGoalId(g);
-          return;
         }
-      }
-      if (typeof window !== "undefined") {
-        const local = localStorage.getItem("thtcdn_career_goal") || localStorage.getItem("active_career_goal");
-        setCareerGoalId(local);
       }
     };
     void loadGoal();

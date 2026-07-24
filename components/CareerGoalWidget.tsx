@@ -19,25 +19,31 @@ export default function CareerGoalWidget({ userId }: { userId?: string }) {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    if (!userId) {
-      setLoading(false);
-      return;
-    }
     let cancelled = false;
-    getMyCareerGoal(userId)
-      .then(async (id) => {
-        if (cancelled) return;
-        setCareerId(id);
-        if (!id) return;
-        const career = FINANCE_CAREERS.find((c) => c.id === id);
-        if (!career) return;
-        const p = await getCareerLessonProgress(career.relatedLessonSlugs);
-        if (!cancelled) setProgress(p);
-      })
-      .catch((error) => console.error("Error loading career goal:", error))
-      .finally(() => {
-        if (!cancelled) setLoading(false);
-      });
+    let localId: string | null = null;
+    if (typeof window !== "undefined") {
+      localId = localStorage.getItem("active_career_goal") || localStorage.getItem("thtcdn_career_goal") || localStorage.getItem("user_career_goal");
+      if (localId) setCareerId(localId);
+    }
+
+    const loadData = async () => {
+      const dbId = userId ? await getMyCareerGoal(userId).catch(() => null) : null;
+      const targetId = dbId || localId;
+      if (cancelled) return;
+
+      if (targetId) {
+        setCareerId(targetId);
+        const career = FINANCE_CAREERS.find((c) => c.id === targetId);
+        if (career) {
+          const p = await getCareerLessonProgress(career.relatedLessonSlugs);
+          if (!cancelled) setProgress(p);
+        }
+      }
+      if (!cancelled) setLoading(false);
+    };
+
+    void loadData();
+
     return () => {
       cancelled = true;
     };
