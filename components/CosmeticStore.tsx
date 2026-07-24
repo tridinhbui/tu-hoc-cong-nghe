@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
+import Image from "next/image";
 import { createClient } from "@/lib/supabase";
 import { toast } from "sonner";
 import { ShoppingBag, Check, Zap } from "lucide-react";
@@ -183,6 +184,25 @@ export default function CosmeticStore({ userId, onBack }: { userId: string; onBa
           </button>
         </div>
       )}
+
+      {/* Wolf of Wall Street Hero Banner */}
+      <div className="relative w-full h-36 sm:h-44 rounded-2xl overflow-hidden mb-6 border border-stone-200 dark:border-stone-800 shadow-md">
+        <Image
+          src="/rpg/wolf_of_wall_street.jpg"
+          alt="The Wolf of Wall Street Executive Store"
+          fill
+          className="object-cover object-center brightness-[0.85] contrast-[1.05]"
+          priority
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-stone-950/90 via-stone-950/40 to-transparent flex flex-col justify-end p-4 text-white">
+          <span className="text-[10px] font-black uppercase tracking-widest text-amber-400 bg-stone-950/60 backdrop-blur-md px-2.5 py-0.5 rounded-md w-fit border border-amber-400/30">
+            🐺 WOLF OF WALL STREET ARSENAL
+          </span>
+          <h3 className="text-lg sm:text-xl font-black text-white mt-1 drop-shadow-md">
+            Tiệm Đồ & Tủ Đồ RPG Phố Wall
+          </h3>
+        </div>
+      </div>
 
       {/* Top Banner & RPG Character Preview */}
       <div className="flex flex-col lg:flex-row items-center justify-between gap-6 border-b pb-6 mb-6">

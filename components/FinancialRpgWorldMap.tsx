@@ -149,6 +149,7 @@ const ORGANIC_BUILDINGS: OrganicBuilding[] = [
     badgeBg: "bg-gradient-to-r from-amber-500 to-yellow-500 text-white font-black",
     posClass: "top-[480px] right-12 sm:right-28",
     desktopClass: "lg:col-start-3 lg:row-start-6",
+    imageSrc: "/rpg/wolf_of_wall_street.jpg",
   },
 
   // 🏗️ KHU VỰC 4: VÙNG ĐẤT TÀI CHÍNH TOÀN CẦU
