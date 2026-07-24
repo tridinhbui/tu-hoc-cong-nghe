@@ -85,7 +85,7 @@ export default function ProductPreview() {
               initial={{ opacity: 0, y: 6 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -6 }}
-              transition={{ duration: 0.25 }}
+              transition={{ duration: 0.2, ease: "easeOut" }}
               className="grid grid-cols-1 gap-4 sm:grid-cols-[1.3fr_1fr]"
             >
               <div className="preview-card-float rounded-[20px] border border-stone-200/80 dark:border-stone-800 bg-white dark:bg-stone-900 p-5 shadow-[0_12px_28px_-24px_rgba(15,23,42,0.22)]">
@@ -167,7 +167,7 @@ export default function ProductPreview() {
               initial={{ opacity: 0, y: 6 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -6 }}
-              transition={{ duration: 0.25 }}
+              transition={{ duration: 0.2, ease: "easeOut" }}
               className="rounded-[20px] border border-stone-200/80 dark:border-stone-800 bg-white dark:bg-stone-900 p-5 shadow-[0_12px_28px_-24px_rgba(15,23,42,0.2)]"
             >
               <p className="text-[10px] font-black uppercase tracking-widest text-emerald-600 dark:text-emerald-400 mb-2">
