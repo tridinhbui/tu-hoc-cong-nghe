@@ -393,8 +393,9 @@ export default function HomePage() {
       `}</style>
       {/* Ambient background glows - fixed page-level, not nested inside any section */}
       <div className="pointer-events-none absolute inset-0 landing-texture z-0" />
-      <div className="pointer-events-none absolute inset-0 landing-drift-grid bg-[linear-gradient(to_right,rgba(15,23,42,0.04)_1px,transparent_1px),linear-gradient(to_bottom,rgba(15,23,42,0.04)_1px,transparent_1px)] bg-[size:28px_28px] z-0" />
-      <div className="pointer-events-none absolute inset-0 landing-aurora z-0 opacity-70">
+      <div className="pointer-events-none absolute inset-0 z-0 bg-[radial-gradient(circle_at_12%_18%,rgba(16,185,129,0.12),transparent_28%),radial-gradient(circle_at_78%_12%,rgba(20,184,166,0.10),transparent_26%),linear-gradient(180deg,rgba(236,253,245,0.28),rgba(255,255,255,0.18)_38%,rgba(240,253,250,0.34))]" />
+      <div className="pointer-events-none absolute inset-0 landing-drift-grid bg-[linear-gradient(to_right,rgba(15,23,42,0.05)_1px,transparent_1px),linear-gradient(to_bottom,rgba(15,23,42,0.05)_1px,transparent_1px)] bg-[size:28px_28px] z-0" />
+      <div className="pointer-events-none absolute inset-0 landing-aurora z-0 opacity-90">
         <div className="absolute left-[8%] top-[8%] h-[22rem] w-[22rem] rounded-full bg-emerald-400/10 blur-[120px] dark:bg-emerald-500/10" />
         <div className="absolute right-[12%] top-[20%] h-[20rem] w-[20rem] rounded-full bg-teal-400/10 blur-[120px] dark:bg-teal-500/10" />
         <div className="absolute left-[46%] top-[48%] h-[26rem] w-[26rem] rounded-full bg-amber-400/10 blur-[140px] dark:bg-amber-400/10" />
@@ -585,20 +586,21 @@ export default function HomePage() {
                   transition={{ duration: 0.7, ease: "easeOut", delay: 0.18 }}
                   className="relative hidden justify-center lg:flex"
                 >
-                <div className="landing-float relative w-full max-w-[520px] overflow-hidden rounded-[20px] border border-stone-200/80 bg-stone-950 text-white shadow-[0_18px_44px_-30px_rgba(15,23,42,0.36)] dark:border-stone-800 transition-all duration-300 ease-out hover:-translate-y-1 hover:scale-[1.01] hover:shadow-[0_22px_50px_-28px_rgba(15,23,42,0.4)]">
+                <div className="landing-float relative w-full max-w-[590px] overflow-hidden rounded-[20px] border border-stone-200/80 bg-stone-950 text-white shadow-[0_26px_70px_-34px_rgba(15,23,42,0.58)] dark:border-stone-800 transition-all duration-300 ease-out hover:-translate-y-1 hover:scale-[1.01] hover:shadow-[0_30px_78px_-34px_rgba(15,23,42,0.62)]">
                   <div className="absolute inset-0">
                     <Image
-                      src="/charging-bull.jpg"
-                      alt="Charging bull"
+                      src="/boss-wallstreet-bull.png"
+                      alt="Wall Street bull boss"
                       fill
                       sizes="520px"
-                      className="object-cover object-center opacity-60"
+                      className="object-cover object-center opacity-55"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-br from-stone-950/92 via-stone-950/58 to-emerald-950/55" />
+                    <div className="absolute inset-0 bg-[radial-gradient(circle_at_18%_18%,rgba(16,185,129,0.24),transparent_28%),linear-gradient(115deg,rgba(15,23,42,0.96),rgba(15,23,42,0.76)_44%,rgba(6,78,59,0.62))]" />
+                    <div className="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-stone-950/90 to-transparent" />
                   </div>
 
                   <div
-                      className="relative p-6"
+                      className="relative p-5 xl:p-6"
                       style={{
                         transform: `perspective(1200px) translate3d(${heroParallaxX * 0.5}px, ${heroParallaxY * 0.35}px, 0)`,
                       }}
@@ -613,9 +615,9 @@ export default function HomePage() {
                       </div>
                     </div>
 
-                    <div className="mt-5 grid gap-3 sm:grid-cols-[1.15fr_0.85fr]">
+                    <div className="mt-5 grid gap-3 xl:grid-cols-[minmax(0,1.08fr)_minmax(190px,0.82fr)]">
                       <div
-                        className="rounded-[1.6rem] border border-white/12 bg-white/10 p-4 backdrop-blur-sm"
+                        className="rounded-[1.6rem] border border-white/12 bg-white/10 p-3.5 backdrop-blur-sm xl:p-4"
                         style={{
                           transform: `perspective(1200px) translate3d(${heroParallaxX * 0.8}px, ${heroParallaxY * 0.6}px, 0) rotateY(${heroParallaxX * 0.45}deg)`,
                         }}
@@ -623,18 +625,18 @@ export default function HomePage() {
                         <div className="mb-3 flex items-center justify-between gap-2">
                           <div>
                             <p className="text-[10px] font-black uppercase tracking-[0.16em] text-emerald-200">Bài học hôm nay</p>
-                            <p className="mt-1 text-lg font-black leading-tight text-white">Đọc chỉ số P/E trong 5 phút</p>
+                            <p className="mt-1 text-base font-black leading-tight text-white xl:text-lg">Đọc chỉ số P/E trong 5 phút</p>
                           </div>
-                          <div className="rounded-full bg-emerald-400/10 px-2.5 py-1 text-[10px] font-black text-emerald-200">
+                          <div className="shrink-0 rounded-full bg-emerald-400/10 px-2.5 py-1 text-[10px] font-black text-emerald-200">
                             72% hiểu bài
                           </div>
                         </div>
-                        <div className="rounded-[1.35rem] border border-white/10 bg-stone-950/45 p-4">
-                          <div className="rounded-[18px] bg-white/8 p-3">
+                        <div className="rounded-[1.35rem] border border-white/10 bg-stone-950/45 p-3">
+                          <div className="rounded-[18px] bg-white/8 p-2.5">
                             <div className="flex items-start justify-between gap-3">
                               <div>
                                 <p className="text-[10px] font-black uppercase tracking-[0.14em] text-stone-400">Ví dụ trong bài</p>
-                                <p className="mt-1 text-sm font-bold leading-snug text-white">
+                                <p className="mt-1 text-[13px] font-bold leading-snug text-white">
                                   Công ty A có EPS = 5.000đ, giá cổ phiếu = 75.000đ. P/E bằng bao nhiêu?
                                 </p>
                               </div>
@@ -646,20 +648,20 @@ export default function HomePage() {
                                 ["EPS", "5.000đ"],
                                 ["P/E", "15 lần"],
                               ].map(([label, value]) => (
-                                <div key={label} className="rounded-[14px] bg-stone-950/45 px-2 py-2">
+                                <div key={label} className="rounded-[14px] bg-stone-950/45 px-1.5 py-2">
                                   <p className="text-[9px] font-black uppercase tracking-[0.12em] text-stone-500">{label}</p>
-                                  <p className="mt-1 text-sm font-black text-white">{value}</p>
+                                  <p className="mt-1 text-[13px] font-black leading-tight text-white">{value}</p>
                                 </div>
                               ))}
                             </div>
                           </div>
                           <div className="mt-3 space-y-2">
                             {[
-                              ["1", "P/E thấp chưa chắc rẻ nếu lợi nhuận đang giảm"],
-                              ["2", "So sánh P/E trong cùng ngành sẽ có ý nghĩa hơn"],
-                              ["3", "Luôn kiểm tra chất lượng lợi nhuận bằng dòng tiền"],
+                              ["1", "P/E thấp chưa chắc rẻ nếu lợi nhuận giảm"],
+                              ["2", "So sánh P/E trong cùng ngành sẽ ý nghĩa hơn"],
+                              ["3", "Kiểm tra chất lượng lợi nhuận bằng dòng tiền"],
                             ].map(([step, text]) => (
-                              <div key={step} className="flex items-center gap-2 rounded-[14px] bg-white/7 px-3 py-2 text-xs font-bold text-stone-200">
+                              <div key={step} className="flex items-center gap-2 rounded-[14px] bg-white/7 px-2.5 py-2 text-[11px] font-bold leading-snug text-stone-200">
                                 <span className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-emerald-300/15 text-[10px] text-emerald-100">{step}</span>
                                 {text}
                               </div>
@@ -674,15 +676,15 @@ export default function HomePage() {
                           ].map(([label, value]) => (
                             <div key={label} className="rounded-[16px] border border-white/10 bg-white/8 px-3 py-2">
                               <p className="text-[10px] font-black uppercase tracking-[0.14em] text-stone-400">{label}</p>
-                              <p className="mt-1 text-sm font-black text-white">{value}</p>
+                              <p className="mt-1 text-[13px] font-black leading-tight text-white">{value}</p>
                             </div>
                           ))}
                         </div>
                       </div>
 
-                      <div className="space-y-3">
+                      <div className="grid gap-3 sm:grid-cols-3 xl:block xl:space-y-3">
                         <div
-                          className="rounded-[1.45rem] border border-white/12 bg-white/10 p-4 backdrop-blur-sm"
+                          className="rounded-[1.45rem] border border-white/12 bg-white/10 p-3.5 backdrop-blur-sm xl:p-4"
                           style={{
                             transform: `perspective(1200px) translate3d(${heroParallaxX * 1.1}px, ${heroParallaxY * 0.8}px, 0) rotateY(${heroParallaxX * 0.7}deg)`,
                           }}
@@ -695,7 +697,7 @@ export default function HomePage() {
                           </div>
                         </div>
                         <div
-                          className="rounded-[1.45rem] border border-white/12 bg-white/10 p-4 backdrop-blur-sm"
+                          className="rounded-[1.45rem] border border-white/12 bg-white/10 p-3.5 backdrop-blur-sm xl:p-4"
                           style={{
                             transform: `perspective(1200px) translate3d(${heroParallaxX * 1.6}px, ${heroParallaxY * 1.15}px, 0) rotateY(${heroParallaxX * 0.9}deg)`,
                           }}
@@ -707,7 +709,7 @@ export default function HomePage() {
                             <div className="preview-progress-live h-full w-3/4 rounded-full bg-gradient-to-r from-amber-300 to-emerald-300" />
                           </div>
                         </div>
-                        <div className="rounded-[1.45rem] border border-emerald-300/20 bg-emerald-400/10 p-4 backdrop-blur-sm">
+                        <div className="rounded-[1.45rem] border border-emerald-300/20 bg-emerald-400/10 p-3.5 backdrop-blur-sm xl:p-4">
                           <p className="text-[10px] font-black uppercase tracking-[0.16em] text-emerald-200">Ghi chú mẫu</p>
                           <p className="mt-2 text-sm font-black text-white">Không mua chỉ vì P/E thấp</p>
                           <p className="mt-1 text-xs leading-relaxed text-stone-300">Luôn hỏi: lợi nhuận có bền không, dòng tiền có thật không?</p>
