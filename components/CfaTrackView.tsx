@@ -228,7 +228,7 @@ export default function CfaTrackView({ subjects, completedLessonIds }: Props) {
     return (
       <div className="py-2">
         {/* 📇 CFA Glossary Flashcards Banner */}
-        <div className="mb-6 bg-gradient-to-r from-amber-500/10 via-indigo-500/10 to-amber-500/10 border-2 border-amber-400/60 dark:border-amber-700/60 rounded-3xl p-5 flex flex-col sm:flex-row items-center justify-between gap-4">
+        <div className="mb-4 bg-gradient-to-r from-amber-500/10 via-indigo-500/10 to-amber-500/10 border-2 border-amber-400/60 dark:border-amber-700/60 rounded-3xl p-5 flex flex-col sm:flex-row items-center justify-between gap-4">
           <div className="flex items-center gap-3.5">
             <span className="text-3xl p-2.5 bg-amber-500/20 rounded-2xl shrink-0">📇</span>
             <div>
@@ -246,6 +246,28 @@ export default function CfaTrackView({ subjects, completedLessonIds }: Props) {
             className="px-5 py-2.5 bg-amber-500 hover:bg-amber-600 font-extrabold text-xs text-white rounded-xl transition-all shadow-md shrink-0 cursor-pointer flex items-center gap-1.5"
           >
             <span>Mở Flashcard 3D →</span>
+          </Link>
+        </div>
+
+        {/* 📐 CFA Formula Cheat Sheet Banner */}
+        <div className="mb-6 bg-gradient-to-r from-stone-900 via-stone-900 to-amber-950 border-2 border-amber-500/50 rounded-3xl p-5 text-white flex flex-col sm:flex-row items-center justify-between gap-4 shadow-lg">
+          <div className="flex items-center gap-3.5">
+            <span className="text-3xl p-2.5 bg-amber-500/20 rounded-2xl shrink-0">📐</span>
+            <div>
+              <h3 className="text-base font-extrabold text-white flex items-center gap-2">
+                Sổ Tay Công Thức CFA Level 1
+                <span className="text-[10px] font-black uppercase text-amber-400 bg-amber-950 px-2 py-0.5 rounded-full border border-amber-500/40">CHEAT SHEET</span>
+              </h3>
+              <p className="text-xs text-stone-300 mt-0.5">
+                Tổng hợp 100% công thức thi CFA (TVM, WACC, DuPont 3-step/5-step, Duration, FCFF/FCFE, CAPM...) với phân số tầng &amp; nút copy công thức.
+              </p>
+            </div>
+          </div>
+          <Link
+            href="/cfa/formulas"
+            className="px-5 py-2.5 bg-amber-500 hover:bg-amber-400 font-extrabold text-xs text-stone-950 rounded-xl transition-all shadow-md shrink-0 cursor-pointer flex items-center gap-1.5"
+          >
+            <span>Xem Sổ Tay Công Thức →</span>
           </Link>
         </div>
 
