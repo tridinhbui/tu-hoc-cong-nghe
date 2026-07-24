@@ -178,7 +178,7 @@ export default function LeaderboardSection({ userId }: LeaderboardSectionProps) 
   const myRankInTop10 = userId !== undefined && entries.some((e) => e.user_id === userId);
 
   return (
-    <div className="rounded-2xl border border-stone-200/80 dark:border-stone-800 bg-white dark:bg-stone-900 p-5 sm:p-6">
+    <div className="rounded-2xl border border-stone-200/90 dark:border-stone-800 bg-white/95 dark:bg-stone-900 p-5 sm:p-6">
       <div className="mb-4">
         <p className="text-xs font-extrabold text-stone-500 dark:text-stone-400 uppercase tracking-widest">Bảng xếp hạng</p>
         <p className="mt-1 text-sm text-stone-500 dark:text-stone-400">Chọn một loại bảng xếp hạng để xem chi tiết.</p>
@@ -189,7 +189,7 @@ export default function LeaderboardSection({ userId }: LeaderboardSectionProps) 
           type="button"
           onClick={() => tabsRef.current?.scrollBy({ left: -160, behavior: "smooth" })}
           aria-label="Cuộn sang trái"
-          className="absolute -left-1 top-1/2 -translate-y-1/2 z-10 w-6 h-6 rounded-full bg-white dark:bg-stone-900 border border-stone-200 dark:border-stone-700 shadow-sm flex items-center justify-center text-stone-500 dark:text-stone-400 hover:text-stone-900 dark:hover:text-stone-100 cursor-pointer"
+          className="absolute -left-1 top-1/2 -translate-y-1/2 z-10 w-6 h-6 rounded-full bg-white/95 dark:bg-stone-900 border border-stone-200 dark:border-stone-700 shadow-sm flex items-center justify-center text-stone-500 dark:text-stone-400 hover:text-stone-900 dark:hover:text-stone-100 cursor-pointer"
         >
           <ChevronLeft className="w-3.5 h-3.5" />
         </button>
@@ -204,7 +204,7 @@ export default function LeaderboardSection({ userId }: LeaderboardSectionProps) 
               className={`shrink-0 px-3.5 py-1.5 rounded-full text-xs font-black transition-all cursor-pointer select-none ${
                 activeTab === t.id
                   ? "bg-emerald-600 dark:bg-emerald-500 text-white shadow-sm"
-                  : "bg-white dark:bg-stone-900 text-stone-600 dark:text-stone-400 border border-stone-200 dark:border-stone-800/80 hover:bg-stone-50 dark:hover:bg-stone-850"
+                  : "bg-white/95 dark:bg-stone-900 text-stone-600 dark:text-stone-400 border border-stone-200 dark:border-stone-800/80 hover:bg-stone-50 dark:hover:bg-stone-800"
               }`}
             >
               {t.label}
@@ -215,7 +215,7 @@ export default function LeaderboardSection({ userId }: LeaderboardSectionProps) 
           type="button"
           onClick={() => tabsRef.current?.scrollBy({ left: 160, behavior: "smooth" })}
           aria-label="Cuộn sang phải"
-          className="absolute -right-1 top-1/2 -translate-y-1/2 z-10 w-6 h-6 rounded-full bg-white dark:bg-stone-900 border border-stone-200 dark:border-stone-700 shadow-sm flex items-center justify-center text-stone-500 dark:text-stone-400 hover:text-stone-900 dark:hover:text-stone-100 cursor-pointer"
+          className="absolute -right-1 top-1/2 -translate-y-1/2 z-10 w-6 h-6 rounded-full bg-white/95 dark:bg-stone-900 border border-stone-200 dark:border-stone-700 shadow-sm flex items-center justify-center text-stone-500 dark:text-stone-400 hover:text-stone-900 dark:hover:text-stone-100 cursor-pointer"
         >
           <ChevronRight className="w-3.5 h-3.5" />
         </button>
@@ -239,7 +239,7 @@ export default function LeaderboardSection({ userId }: LeaderboardSectionProps) 
                   className={`group flex items-center justify-between px-3.5 py-2.5 rounded-xl text-sm transition-all ${
                     isCurrent
                       ? "bg-emerald-50 dark:bg-emerald-950/50 border border-emerald-200 dark:border-emerald-900"
-                      : "bg-white dark:bg-stone-900 border border-stone-200 dark:border-stone-800 hover:border-emerald-300 dark:hover:border-emerald-700"
+                      : "bg-white/95 dark:bg-stone-900 border border-stone-200 dark:border-stone-800 hover:border-emerald-300 dark:hover:border-emerald-700"
                   }`}
                 >
                   <div className="flex items-center gap-3 min-w-0">

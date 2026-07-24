@@ -59,13 +59,13 @@ export default function AnalyticsPage() {
       </div>
 
       <div className="max-w-[1480px] mx-auto px-5 pb-8 sm:px-6">
-        <div className="mb-6 rounded-[28px] border border-stone-200 bg-white px-5 py-5 shadow-[0_20px_50px_-35px_rgba(15,23,42,0.22)] sm:px-7 sm:py-6">
+        <div className="mb-6 rounded-[28px] border border-stone-200/90 dark:border-stone-800 bg-white/95 dark:bg-stone-900 px-5 py-5 shadow-[0_20px_50px_-35px_rgba(15,23,42,0.22)] sm:px-7 sm:py-6">
           <div className="flex flex-wrap items-end justify-between gap-4">
             <div>
-              <div className="inline-flex items-center gap-2 rounded-full border border-emerald-200 bg-emerald-50 px-3 py-1 text-[11px] font-extrabold uppercase tracking-[0.18em] text-emerald-700">
+              <div className="inline-flex items-center gap-2 rounded-full border border-emerald-200 dark:border-emerald-900 bg-emerald-50 dark:bg-emerald-950/60 px-3 py-1 text-[11px] font-extrabold uppercase tracking-[0.18em] text-emerald-700 dark:text-emerald-400">
                 Thống kê
               </div>
-              <h1 className="mt-4 text-3xl font-black tracking-tight text-stone-900 sm:text-4xl">Thống kê & BXH</h1>
+              <h1 className="mt-4 text-3xl font-black tracking-tight text-stone-900 dark:text-stone-100 sm:text-4xl">Thống kê & BXH</h1>
             </div>
           </div>
         </div>

@@ -390,45 +390,50 @@ function RankBadgePill({ rank, badgeText }: { rank: number; badgeText: string })
 function getPodiumTone(rank: number) {
   if (rank === 1) {
     return {
-      card: "border-amber-300/80 bg-gradient-to-b from-amber-100/90 via-amber-50/50 to-white shadow-xl shadow-amber-500/10 ring-2 ring-amber-400/30",
+      card: "border-amber-300/80 dark:border-amber-500/50 bg-gradient-to-b from-amber-100/90 via-amber-50/50 to-white dark:from-amber-950/60 dark:via-amber-900/40 dark:to-stone-900 shadow-xl shadow-amber-500/10 ring-2 ring-amber-400/30",
       pedestal: "from-amber-500/40 via-amber-400/25 to-amber-300/10 border-amber-400/80",
       chip: "bg-gradient-to-r from-amber-500 to-yellow-500 text-amber-950 font-black shadow-md",
-      value: "text-amber-700",
+      name: "text-stone-900 dark:text-amber-100",
+      value: "text-amber-700 dark:text-amber-300",
       pedestalLabel: "1st",
     };
   }
   if (rank === 2) {
     return {
-      card: "border-slate-300 bg-gradient-to-b from-slate-100/90 via-slate-50/50 to-white shadow-lg shadow-slate-500/10 ring-1 ring-slate-300/50",
+      card: "border-slate-300 dark:border-slate-700 bg-gradient-to-b from-slate-100/90 via-slate-50/50 to-white dark:from-slate-900/80 dark:via-slate-900/40 dark:to-stone-900 shadow-lg shadow-slate-500/10 ring-1 ring-slate-300/50",
       pedestal: "from-slate-400/35 via-slate-300/20 to-slate-200/10 border-slate-300/80",
       chip: "bg-gradient-to-r from-slate-400 to-slate-600 text-white font-black shadow",
-      value: "text-slate-700",
+      name: "text-stone-900 dark:text-slate-100",
+      value: "text-slate-700 dark:text-slate-300",
       pedestalLabel: "2nd",
     };
   }
   if (rank === 3) {
     return {
-      card: "border-amber-700/30 bg-gradient-to-b from-amber-100/60 via-amber-50/40 to-white shadow-md shadow-orange-500/10 ring-1 ring-amber-600/30",
+      card: "border-amber-700/30 dark:border-amber-700/60 bg-gradient-to-b from-amber-100/60 via-amber-50/40 to-white dark:from-amber-950/40 dark:via-amber-950/20 dark:to-stone-900 shadow-md shadow-orange-500/10 ring-1 ring-amber-600/30",
       pedestal: "from-amber-700/30 via-orange-400/15 to-amber-300/10 border-amber-600/70",
       chip: "bg-gradient-to-r from-amber-700 to-orange-600 text-white font-black shadow",
-      value: "text-orange-700",
+      name: "text-stone-900 dark:text-amber-200",
+      value: "text-orange-700 dark:text-amber-400",
       pedestalLabel: "3rd",
     };
   }
   if (rank === 4) {
     return {
-      card: "border-violet-200 bg-gradient-to-b from-violet-50/70 via-white to-violet-50/30 shadow-sm",
+      card: "border-violet-200 dark:border-violet-900 bg-gradient-to-b from-violet-50/70 via-white to-violet-50/30 dark:from-violet-950/40 dark:via-stone-900 dark:to-stone-900 shadow-sm",
       pedestal: "from-violet-400/20 via-violet-300/10 to-transparent border-violet-200/70",
       chip: "bg-violet-600 text-white font-black",
-      value: "text-violet-700",
+      name: "text-stone-900 dark:text-violet-200",
+      value: "text-violet-700 dark:text-violet-400",
       pedestalLabel: "4th",
     };
   }
   return {
-    card: "border-emerald-200 bg-gradient-to-b from-emerald-50/70 via-white to-emerald-50/30 shadow-sm",
+    card: "border-emerald-200 dark:border-emerald-900 bg-gradient-to-b from-emerald-50/70 via-white to-emerald-50/30 dark:from-emerald-950/40 dark:via-stone-900 dark:to-stone-900 shadow-sm",
     pedestal: "from-emerald-400/20 via-emerald-300/10 to-transparent border-emerald-200/70",
     chip: "bg-emerald-600 text-white font-black",
-    value: "text-emerald-700",
+    name: "text-stone-900 dark:text-emerald-200",
+    value: "text-emerald-700 dark:text-emerald-400",
     pedestalLabel: "5th",
   };
 }
@@ -546,17 +551,17 @@ export default function Leaderboard({ userId, compact = false }: { userId?: stri
 
   if (compact) {
     return (
-      <div className="rounded-[28px] border border-stone-200 bg-white p-4 sm:p-5 shadow-[0_20px_50px_-35px_rgba(15,23,42,0.18)]">
-        <div className="flex items-start justify-between gap-3 border-b border-stone-200/80 pb-4">
+      <div className="rounded-[28px] border border-stone-200/90 dark:border-stone-800 bg-white/95 dark:bg-stone-900 p-4 sm:p-5 shadow-[0_20px_50px_-35px_rgba(15,23,42,0.18)]">
+        <div className="flex items-start justify-between gap-3 border-b border-stone-200/80 dark:border-stone-800 pb-4">
           <div>
-            <div className="inline-flex items-center gap-1.5 rounded-full border border-amber-300 bg-amber-50 px-3 py-1 text-[11px] font-extrabold uppercase tracking-[0.16em] text-amber-700 shadow-xs">
-              <Trophy className="h-3.5 w-3.5 fill-amber-400 text-amber-600" />
+            <div className="inline-flex items-center gap-1.5 rounded-full border border-amber-300 dark:border-amber-700 bg-amber-50 dark:bg-amber-950/60 px-3 py-1 text-[11px] font-extrabold uppercase tracking-[0.16em] text-amber-700 dark:text-amber-400 shadow-xs">
+              <Trophy className="h-3.5 w-3.5 fill-amber-400 text-amber-600 dark:text-amber-400" />
               BXH
             </div>
-            <h2 className="mt-2.5 text-2xl font-black tracking-tight text-stone-900">Bảng xếp hạng</h2>
+            <h2 className="mt-2.5 text-2xl font-black tracking-tight text-stone-900 dark:text-stone-100">Bảng xếp hạng</h2>
           </div>
-          <div className="inline-flex items-center gap-1.5 rounded-2xl border border-emerald-200 bg-emerald-50 px-3 py-1.5 text-xs font-bold text-emerald-700 shadow-xs">
-            <Sparkles className="h-3.5 w-3.5 text-emerald-600" />
+          <div className="inline-flex items-center gap-1.5 rounded-2xl border border-emerald-200 dark:border-emerald-900 bg-emerald-50 dark:bg-emerald-950/60 px-3 py-1.5 text-xs font-bold text-emerald-700 dark:text-emerald-400 shadow-xs">
+            <Sparkles className="h-3.5 w-3.5 text-emerald-600 dark:text-emerald-400" />
             {activeTab.label}
           </div>
         </div>
@@ -607,14 +612,14 @@ export default function Leaderboard({ userId, compact = false }: { userId?: stri
         </div>
 
         {metric === "mastery" && (
-          <div className="mt-3 rounded-2xl border border-emerald-200 bg-gradient-to-r from-emerald-50 via-white to-sky-50 px-4 py-3 shadow-xs">
+          <div className="mt-3 rounded-2xl border border-emerald-200 dark:border-emerald-900 bg-gradient-to-r from-emerald-50 via-white to-sky-50 dark:from-emerald-950/50 dark:via-stone-900 dark:to-sky-950/30 px-4 py-3 shadow-xs">
             <div className="flex items-start gap-2.5">
               <div className="mt-0.5 flex h-8 w-8 shrink-0 items-center justify-center rounded-xl bg-emerald-600 text-white shadow-sm">
                 <ShieldCheck className="h-4 w-4" />
               </div>
               <div>
-                <p className="text-xs font-black text-stone-900">Bảng này ưu tiên kiến thức thật</p>
-                <p className="mt-0.5 text-[11px] font-medium leading-relaxed text-stone-500">
+                <p className="text-xs font-black text-stone-900 dark:text-stone-100">Bảng này ưu tiên kiến thức thật</p>
+                <p className="mt-0.5 text-[11px] font-medium leading-relaxed text-stone-500 dark:text-stone-400">
                   XP đo độ chăm học; bảng Năng lực thật dựa trên điểm kiểm tra để phản ánh mức hiểu bài. Bước tiếp theo nên là sát hạch bắt buộc trước khi xác nhận lên cấp.
                 </p>
               </div>
@@ -625,10 +630,10 @@ export default function Leaderboard({ userId, compact = false }: { userId?: stri
         {loading ? (
           <div className="mt-8 flex flex-col items-center justify-center py-10">
             <div className="h-8 w-8 animate-spin rounded-full border-4 border-amber-400 border-t-transparent" />
-            <p className="mt-3 text-xs font-semibold text-stone-500">Đang tải BXH...</p>
+            <p className="mt-3 text-xs font-semibold text-stone-500 dark:text-stone-400">Đang tải BXH...</p>
           </div>
         ) : entries.length === 0 ? (
-          <p className="mt-6 py-8 text-center text-sm text-stone-500">Chưa có đủ dữ liệu xếp hạng.</p>
+          <p className="mt-6 py-8 text-center text-sm text-stone-500 dark:text-stone-400">Chưa có đủ dữ liệu xếp hạng.</p>
         ) : (
           <div className={`mt-5 space-y-4 transition-opacity duration-150 ${switching ? "opacity-40" : "opacity-100"}`}>
             {/* Podium Top 5 */}
@@ -660,7 +665,7 @@ export default function Leaderboard({ userId, compact = false }: { userId?: stri
                           <RankBadgePill rank={rank} badgeText={getLeaderboardHonor(metric, rank).badge} />
                         </div>
 
-                        <p className="text-xs font-black leading-tight text-stone-900 line-clamp-1 break-words">{entry.name}</p>
+                        <p className={`text-xs font-black leading-tight line-clamp-1 break-words ${tone.name}`}>{entry.name}</p>
                         <p className="mt-0.5 text-[8px] font-extrabold uppercase leading-tight text-emerald-600 dark:text-emerald-400 line-clamp-1 break-words">
                           {entry.careerTitle ? `${entry.careerEmoji || "💼"} ${entry.careerTitle}` : getLeaderboardHonor(metric, rank).nickname}
                         </p>
@@ -678,10 +683,10 @@ export default function Leaderboard({ userId, compact = false }: { userId?: stri
             </div>
 
             {/* Sub-ranks #6+ Framed Cards */}
-            <div className="border-t border-stone-200/80 pt-3">
+            <div className="border-t border-stone-200/80 dark:border-stone-800 pt-3">
               <div className="mb-3 flex items-center justify-between">
-                <p className="text-xs font-extrabold uppercase tracking-[0.16em] text-stone-500">Các vị trí vinh danh tiếp theo</p>
-                <span className="text-[10px] font-black text-amber-600 bg-amber-50 px-2 py-0.5 rounded-full border border-amber-200">
+                <p className="text-xs font-extrabold uppercase tracking-[0.16em] text-stone-500 dark:text-stone-400">Các vị trí vinh danh tiếp theo</p>
+                <span className="text-[10px] font-black text-amber-600 dark:text-amber-400 bg-amber-50 dark:bg-amber-950/60 px-2 py-0.5 rounded-full border border-amber-200 dark:border-amber-800">
                   TOP 6 - 20
                 </span>
               </div>
@@ -700,13 +705,13 @@ export default function Leaderboard({ userId, compact = false }: { userId?: stri
                     href={href}
                     className={`flex items-center justify-between gap-3 rounded-2xl border p-2.5 transition-all shadow-xs group ${
                       isCurrent
-                        ? "border-emerald-300 bg-gradient-to-r from-emerald-50 via-white to-emerald-50/80 ring-2 ring-emerald-400/50 shadow-md"
-                        : "border-stone-200/90 bg-gradient-to-r from-stone-50/80 via-white to-amber-50/20 hover:border-amber-300 hover:shadow-md hover:-translate-y-0.5"
+                        ? "border-emerald-300 dark:border-emerald-800 bg-gradient-to-r from-emerald-50 via-white to-emerald-50/80 dark:from-emerald-950/50 dark:via-stone-900 dark:to-emerald-950/30 ring-2 ring-emerald-400/50 shadow-md"
+                        : "border-stone-200/90 dark:border-stone-800 bg-gradient-to-r from-stone-50/80 via-white to-amber-50/20 dark:from-stone-900 dark:via-stone-900 dark:to-stone-900 hover:border-amber-300 dark:hover:border-amber-700 hover:shadow-md hover:-translate-y-0.5"
                     }`}
                   >
                     <div className="flex items-center gap-2.5 min-w-0">
                       {/* Metallic Rank Shield Badge */}
-                      <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br from-stone-100 to-stone-200 font-black text-xs text-stone-700 shadow-inner border border-stone-300/80 group-hover:scale-105 transition-transform">
+                      <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br from-stone-100 to-stone-200 dark:from-stone-800 dark:to-stone-700 font-black text-xs text-stone-700 dark:text-stone-200 shadow-inner border border-stone-300/80 dark:border-stone-700 group-hover:scale-105 transition-transform">
                         #{actualRank}
                       </div>
 
@@ -714,7 +719,7 @@ export default function Leaderboard({ userId, compact = false }: { userId?: stri
                       <AvatarWithFrame rank={actualRank} name={entry.name} avatarUrl={entry.avatarUrl} size={36} />
 
                       <div className="min-w-0 flex-1">
-                        <p className="truncate text-xs font-black text-stone-900 group-hover:text-amber-700 transition-colors">{entry.name}</p>
+                        <p className="truncate text-xs font-black text-stone-900 dark:text-stone-100 group-hover:text-amber-600 dark:group-hover:text-amber-400 transition-colors">{entry.name}</p>
                         <p className="truncate text-[9px] font-extrabold uppercase tracking-wider text-emerald-600 dark:text-emerald-400">
                           {entry.careerTitle ? `${entry.careerEmoji || "💼"} ${entry.careerTitle}` : honor.nickname}
                         </p>
@@ -723,11 +728,11 @@ export default function Leaderboard({ userId, compact = false }: { userId?: stri
 
                     <div className="text-right shrink-0">
                       {/* Framed Badge Tag */}
-                      <div className="inline-flex items-center gap-1 rounded-full bg-gradient-to-r from-amber-500/10 via-amber-400/20 to-amber-500/10 px-2 py-0.5 text-[9px] font-black uppercase text-amber-800 border border-amber-300/50 mb-0.5">
+                      <div className="inline-flex items-center gap-1 rounded-full bg-gradient-to-r from-amber-500/10 via-amber-400/20 to-amber-500/10 dark:from-amber-950/60 dark:to-amber-900/40 px-2 py-0.5 text-[9px] font-black uppercase text-amber-800 dark:text-amber-300 border border-amber-300/50 dark:border-amber-800 mb-0.5">
                         <Star className="h-2.5 w-2.5 fill-amber-500 text-amber-500" />
                         <span>{honor.badge}</span>
                       </div>
-                      <p className="text-xs font-black text-stone-900">{activeTab.format(entry.value)}</p>
+                      <p className="text-xs font-black text-stone-900 dark:text-stone-100">{activeTab.format(entry.value)}</p>
                     </div>
                   </Link>
                 );
@@ -736,20 +741,20 @@ export default function Leaderboard({ userId, compact = false }: { userId?: stri
 
             {/* User MyRank Banner */}
             {myRank && (
-              <div className="rounded-2xl border border-dashed border-amber-300 bg-gradient-to-r from-amber-50/80 via-yellow-50/40 to-amber-50/80 px-4 py-3 shadow-xs">
+              <div className="rounded-2xl border border-dashed border-amber-300 dark:border-amber-700/80 bg-gradient-to-r from-amber-50/80 via-yellow-50/40 to-amber-50/80 dark:from-amber-950/50 dark:via-amber-900/30 dark:to-amber-950/50 px-4 py-3 shadow-xs">
                 <div className="flex items-center justify-between gap-3">
                   <div className="flex items-center gap-2.5">
                     <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-amber-400 text-amber-950 shadow">
                       <Trophy className="h-4 w-4 fill-amber-950 text-amber-950" />
                     </div>
                     <div>
-                      <p className="text-xs font-black text-stone-900">Hạng của bạn</p>
-                      <p className="text-[10px] font-semibold text-stone-500">Chỉ số {activeTab.label.toLowerCase()}</p>
+                      <p className="text-xs font-black text-stone-900 dark:text-stone-100">Hạng của bạn</p>
+                      <p className="text-[10px] font-semibold text-stone-500 dark:text-stone-400">Chỉ số {activeTab.label.toLowerCase()}</p>
                     </div>
                   </div>
                   <div className="text-right">
-                    <p className="text-sm font-black text-amber-600">#{myRank.rank}</p>
-                    <p className="text-xs font-extrabold text-stone-700">{activeTab.format(myRank.value)}</p>
+                    <p className="text-sm font-black text-amber-600 dark:text-amber-400">#{myRank.rank}</p>
+                    <p className="text-xs font-extrabold text-stone-700 dark:text-stone-300">{activeTab.format(myRank.value)}</p>
                   </div>
                 </div>
               </div>

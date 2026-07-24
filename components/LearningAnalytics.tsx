@@ -281,16 +281,16 @@ export default function LearningAnalytics({ hideLeaderboardTab = false }: { hide
         initial="hidden"
         animate="visible"
         variants={fadeUp}
-        className="relative overflow-hidden rounded-[26px] border border-stone-200/80 bg-white p-4 sm:p-5 shadow-xs"
+        className="relative overflow-hidden rounded-[26px] border border-stone-200/90 dark:border-stone-800 bg-white/95 dark:bg-stone-900 p-4 sm:p-5 shadow-xs"
       >
         <div className="absolute inset-x-0 top-0 h-[3px] bg-gradient-to-r from-emerald-500 via-teal-500 to-sky-500" />
         <div className="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
           <div className="min-w-0 flex-1">
-            <div className="inline-flex items-center gap-1.5 rounded-full border border-emerald-200 bg-emerald-50 px-3 py-1 text-[10px] font-extrabold uppercase tracking-[0.16em] text-emerald-700">
-              <Sparkles className="h-3.5 w-3.5 text-emerald-600" />
+            <div className="inline-flex items-center gap-1.5 rounded-full border border-emerald-200 dark:border-emerald-900 bg-emerald-50 dark:bg-emerald-950/60 px-3 py-1 text-[10px] font-extrabold uppercase tracking-[0.16em] text-emerald-700 dark:text-emerald-400">
+              <Sparkles className="h-3.5 w-3.5 text-emerald-600 dark:text-emerald-400" />
               Cá nhân
             </div>
-            <h2 className="mt-2 text-xl sm:text-2xl font-black leading-tight tracking-tight text-stone-900">
+            <h2 className="mt-2 text-xl sm:text-2xl font-black leading-tight tracking-tight text-stone-900 dark:text-stone-100">
               Nhịp học hiện tại
             </h2>
 
@@ -298,7 +298,7 @@ export default function LearningAnalytics({ hideLeaderboardTab = false }: { hide
               {insights.map((insight, index) => (
                 <div
                   key={index}
-                  className="rounded-xl border border-stone-200/90 bg-stone-50/80 px-3 py-1.5 text-xs font-bold text-stone-700 shadow-2xs"
+                  className="rounded-xl border border-stone-200/90 dark:border-stone-800 bg-stone-50/80 dark:bg-stone-800/80 px-3 py-1.5 text-xs font-bold text-stone-700 dark:text-stone-300 shadow-2xs"
                 >
                   {insight}
                 </div>
@@ -308,21 +308,21 @@ export default function LearningAnalytics({ hideLeaderboardTab = false }: { hide
 
           {/* Compact Horizontal Quick Stats */}
           <div className="grid grid-cols-3 gap-2 shrink-0 sm:gap-3">
-            <div className="rounded-2xl border border-stone-200/80 bg-gradient-to-b from-stone-50/80 to-white p-2.5 sm:p-3 text-center min-w-[85px]">
-              <p className="text-[9px] font-extrabold uppercase tracking-wider text-stone-400">Chuỗi</p>
-              <p className="mt-1 text-lg font-black text-stone-900">{analytics.streakDays} ngày</p>
-              <p className="text-[9px] font-semibold text-stone-500">Kỷ kỷ {analytics.longestStreak}</p>
+            <div className="rounded-2xl border border-stone-200/80 dark:border-stone-800 bg-gradient-to-b from-stone-50/80 to-white dark:from-stone-800/60 dark:to-stone-900 p-2.5 sm:p-3 text-center min-w-[85px]">
+              <p className="text-[9px] font-extrabold uppercase tracking-wider text-stone-400 dark:text-stone-400">Chuỗi</p>
+              <p className="mt-1 text-lg font-black text-stone-900 dark:text-stone-100">{analytics.streakDays} ngày</p>
+              <p className="text-[9px] font-semibold text-stone-500 dark:text-stone-400">Kỷ lục {analytics.longestStreak}</p>
             </div>
 
-            <div className="rounded-2xl border border-stone-200/80 bg-gradient-to-b from-stone-50/80 to-white p-2.5 sm:p-3 text-center min-w-[85px]">
-              <p className="text-[9px] font-extrabold uppercase tracking-wider text-stone-400">Điểm Quiz</p>
-              <p className="mt-1 text-lg font-black text-emerald-600">{analytics.averageQuizScore}%</p>
-              <p className="text-[9px] font-semibold text-stone-500">{analytics.totalLessonsCompleted} bài</p>
+            <div className="rounded-2xl border border-stone-200/80 dark:border-stone-800 bg-gradient-to-b from-stone-50/80 to-white dark:from-stone-800/60 dark:to-stone-900 p-2.5 sm:p-3 text-center min-w-[85px]">
+              <p className="text-[9px] font-extrabold uppercase tracking-wider text-stone-400 dark:text-stone-400">Điểm Quiz</p>
+              <p className="mt-1 text-lg font-black text-emerald-600 dark:text-emerald-400">{analytics.averageQuizScore}%</p>
+              <p className="text-[9px] font-semibold text-stone-500 dark:text-stone-400">{analytics.totalLessonsCompleted} bài</p>
             </div>
 
-            <div className="rounded-2xl border border-stone-200/80 bg-gradient-to-b from-stone-50/80 to-white p-2.5 sm:p-3 text-center min-w-[85px]">
-              <p className="text-[9px] font-extrabold uppercase tracking-wider text-stone-400">Giờ Học</p>
-              <p className="mt-1 text-lg font-black text-stone-900">
+            <div className="rounded-2xl border border-stone-200/80 dark:border-stone-800 bg-gradient-to-b from-stone-50/80 to-white dark:from-stone-800/60 dark:to-stone-900 p-2.5 sm:p-3 text-center min-w-[85px]">
+              <p className="text-[9px] font-extrabold uppercase tracking-wider text-stone-400 dark:text-stone-400">Giờ Học</p>
+              <p className="mt-1 text-lg font-black text-stone-900 dark:text-stone-100">
                 {analytics.bestStudyHour !== null ? formatHour(analytics.bestStudyHour) : "Chưa rõ"}
               </p>
               <p className="text-[9px] font-semibold text-stone-500 truncate">{analytics.peakStudyWindow}</p>
