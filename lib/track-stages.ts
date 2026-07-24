@@ -276,13 +276,13 @@ export const TRACK_PROFESSIONAL = {
     },
     {
       label: "Chặng 13",
-      name: "AI in Finance: Trí tuệ nhân tạo, Algorithmic Trading & FinTech",
+      name: "AI in Finance cho người Không Chuyên Tech: Prompt Engineering & Trợ lý AI",
       days: [1261, 1270] as [number, number],
       available: true,
       isNew: true,
       parts: [
-        { name: "Tổng quan AI & Trading Thuật Toán", days: [1261, 1265] as [number, number] },
-        { name: "Generative AI, NLP & Tương Lai Tài Chính 2030", days: [1266, 1270] as [number, number] },
+        { name: "Prompt Engineering & Bóc Tách BCTC Tự Động", days: [1261, 1265] as [number, number] },
+        { name: "Trợ Lý AI, Phân Tích Tin Tức & Bộ Prompts Thực Chiến", days: [1266, 1270] as [number, number] },
       ],
     },
   ] satisfies Stage[],
