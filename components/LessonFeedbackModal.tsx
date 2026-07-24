@@ -108,10 +108,10 @@ export default function LessonFeedbackModal({ open, onClose, lessonId, userId }:
                 <button
                   onClick={handleSubmit}
                   disabled={rating === 0 || status === "sending"}
-                  className={`flex-1 py-3 rounded-xl text-sm font-bold text-white transition-colors cursor-pointer ${
+                  className={`flex-1 py-3 rounded-xl text-sm font-bold transition-all cursor-pointer ${
                     rating > 0 && status !== "sending"
-                      ? "bg-stone-900 hover:bg-stone-700 dark:bg-stone-100 dark:text-stone-900 dark:hover:bg-white"
-                      : "bg-stone-200 dark:bg-stone-800 text-stone-500 dark:text-stone-600 cursor-not-allowed"
+                      ? "bg-emerald-600 hover:bg-emerald-500 dark:bg-emerald-500 dark:hover:bg-emerald-400 text-white dark:text-stone-950 shadow-md active:scale-98"
+                      : "bg-stone-200 dark:bg-stone-800 text-stone-400 dark:text-stone-500 cursor-not-allowed"
                   }`}
                 >
                   {status === "sending" ? "Đang gửi..." : "Gửi đánh giá"}

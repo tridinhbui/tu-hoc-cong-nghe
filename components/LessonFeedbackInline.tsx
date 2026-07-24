@@ -76,10 +76,10 @@ export default function LessonFeedbackInline({ lessonId, userId }: Props) {
       <button
         onClick={handleSubmit}
         disabled={rating === 0 || status === "sending"}
-        className={`button-premium w-full py-3 rounded-[18px] text-sm font-bold text-white transition-colors cursor-pointer focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-stone-900/5 ${
+        className={`w-full py-3 rounded-[18px] text-sm font-bold transition-all cursor-pointer focus-visible:outline-none ${
           rating > 0 && status !== "sending"
-            ? "bg-stone-900 hover:bg-stone-700 dark:bg-stone-100 dark:text-stone-900 dark:hover:bg-white"
-            : "bg-stone-200 dark:bg-stone-800 text-stone-500 dark:text-stone-600 cursor-not-allowed"
+            ? "bg-emerald-600 hover:bg-emerald-500 dark:bg-emerald-500 dark:hover:bg-emerald-400 text-white dark:text-stone-950 shadow-md active:scale-98"
+            : "bg-stone-200 dark:bg-stone-800 text-stone-400 dark:text-stone-500 cursor-not-allowed"
         }`}
       >
         {status === "sending" ? "Đang gửi..." : "Gửi đánh giá"}

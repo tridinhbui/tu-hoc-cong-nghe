@@ -148,9 +148,10 @@ export default function LessonPageLayout({ lesson, quiz, children }: Props) {
   // changed from Settings since the last visit) - "sepia" needs a light
   // base to look right, "dark" should actually be dark.
   useEffect(() => {
-    setTheme(readingMode === "dark" ? "dark" : "light");
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+    if (readingMode === "dark") {
+      setTheme("dark");
+    }
+  }, [readingMode]);
   const [quizCollapsed, setQuizCollapsed] = useState(false);
   const articleRef = useRef<HTMLElement>(null);
   const bottomSentinelRef = useRef<HTMLDivElement>(null);
