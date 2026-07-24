@@ -542,7 +542,7 @@ export default function HomePage() {
                   className="mb-4 text-[2.5rem] sm:text-[3.6rem] lg:text-[3.8rem] xl:text-[4.4rem] font-black leading-[1.02] tracking-tight text-stone-950 dark:text-stone-50"
                 >
                   Bước vào thế giới{" "}
-                  <span className="bg-gradient-to-r from-emerald-600 to-teal-500 bg-clip-text text-transparent dark:from-emerald-300 dark:to-teal-200">
+                  <span className="bg-gradient-to-r from-[#00D084] to-[#00B8FF] bg-clip-text text-transparent font-black">
                     tài chính
                   </span>
                   ,<br />cùng bắt đầu từ con số 0
@@ -897,7 +897,10 @@ export default function HomePage() {
                 Không chỉ là bài học
               </p>
               <h2 className="text-3xl lg:text-4xl font-black text-stone-900 dark:text-stone-100">
-                Học, chơi, hỏi đáp và chia sẻ trong cùng một hệ sinh thái tài chính
+                Học, chơi, hỏi đáp và chia sẻ trong cùng một{" "}
+                <span className="bg-gradient-to-r from-[#00D084] to-[#00B8FF] bg-clip-text text-transparent">
+                  hệ sinh thái tài chính
+                </span>
               </h2>
               <p className="mt-3 max-w-xl text-sm text-stone-600 dark:text-stone-400 leading-relaxed sm:text-base">
                 Sau khi tạo tài khoản, bạn không chỉ đi qua lộ trình bài học. Bạn còn có Lộ trình Active Recall ôn tập chủ động,
@@ -920,7 +923,10 @@ export default function HomePage() {
                 Vì sao học viên chọn ở lại
               </p>
               <h2 className="text-3xl lg:text-4xl font-black text-stone-900 dark:text-stone-100">
-                Những lo lắng thường gặp khi tự học tài chính
+                Những lo lắng thường gặp khi tự học{" "}
+                <span className="bg-gradient-to-r from-[#00D084] to-[#00B8FF] bg-clip-text text-transparent">
+                  tài chính
+                </span>
               </h2>
               <p className="mt-2 text-sm text-stone-600 dark:text-stone-400">
                 Chúng tôi thiết kế từng tính năng để giải quyết trực tiếp những điểm nghẽn của người tự học.
