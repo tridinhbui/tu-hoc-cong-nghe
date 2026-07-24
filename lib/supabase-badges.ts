@@ -61,8 +61,15 @@ async function getEarnedCareerBadgeKeys(
 ): Promise<string[]> {
   const earned: string[] = [];
 
-  const [{ data: goalRow }, { data: quizRow }] = await Promise.all([
-    supabase.from("user_career_goals").select("career_id").eq("user_id", userId).maybeSingle(),
+  const [goalRow, { data: quizRow }] = await Promise.all([
+    (async () => {
+      try {
+        const { data } = await supabase.from("user_career_goals").select("career_id").eq("user_id", userId).maybeSingle();
+        return data;
+      } catch {
+        return null;
+      }
+    })(),
     supabase
       .from("user_quest_completions")
       .select("quest_type")
