@@ -98,15 +98,9 @@ export default function PublicLeaderboardPreview() {
   }
 
   return (
-    <div className="animated-border-card relative overflow-hidden rounded-3xl border-2 border-emerald-500/40 bg-white dark:bg-stone-900 shadow-[0_20px_50px_-20px_rgba(16,185,129,0.3)]">
-      {/* Background Ambient Glow */}
-      <div className="pointer-events-none absolute inset-0 opacity-70">
-        <div className="absolute left-[-10%] top-[-10%] h-56 w-56 rounded-full bg-emerald-400/20 blur-3xl animate-pulse" />
-        <div className="absolute right-[-10%] bottom-[-10%] h-64 w-64 rounded-full bg-amber-400/20 blur-3xl animate-pulse" />
-      </div>
-
+    <div className="overflow-hidden rounded-2xl border border-stone-200 bg-white dark:border-stone-800 dark:bg-stone-900 shadow-sm relative font-sans">
       {/* Header Bar with Live Indicator & Metric Tabs */}
-      <div className="border-b border-stone-200/80 dark:border-stone-800 bg-gradient-to-r from-emerald-50/90 via-teal-50/80 to-emerald-50/90 dark:from-emerald-950/50 dark:via-teal-950/40 dark:to-emerald-950/50 px-4 py-3 sm:px-6">
+      <div className="border-b border-stone-100 dark:border-stone-800 bg-stone-50/60 dark:bg-stone-950/40 px-4 py-3 sm:px-6">
         <div className="flex flex-wrap items-center justify-between gap-3">
           <div className="flex items-center gap-2.5">
             <span className="relative flex h-2.5 w-2.5">

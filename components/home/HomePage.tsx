@@ -893,68 +893,23 @@ export default function HomePage() {
         </section>
 
         {/* ── SOCIAL PROOF ── */}
-        <section className="landing-band landing-band-glass landing-band-divider backdrop-blur-sm py-6 sm:py-8 relative border-y border-stone-150/40 dark:border-stone-850/40 font-sans">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid gap-4 lg:grid-cols-[minmax(0,1fr)_minmax(260px,290px)] lg:items-start">
-            <ScrollReveal>
-              <p className="text-xs font-black text-emerald-600 dark:text-emerald-400 uppercase tracking-widest mb-1.5">
+        <section className="bg-white dark:bg-stone-950 py-8 sm:py-10 relative border-y border-stone-200/80 dark:border-stone-850/80 font-sans">
+          <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <ScrollReveal className="text-center mb-5">
+              <p className="text-[11px] font-black text-emerald-600 dark:text-emerald-400 uppercase tracking-widest mb-1">
                 Cộng đồng thật
               </p>
-              <h2 className="max-w-3xl text-2xl sm:text-3xl font-black text-stone-900 dark:text-stone-100 mb-2 leading-snug">
-                Học viên nổi bật đang học mỗi ngày, từ tài chính cá nhân đến CFA và nghề nghiệp tài chính
+              <h2 className="text-2xl sm:text-3xl font-black text-stone-900 dark:text-stone-100 mb-2 leading-snug">
+                Học viên nổi bật đang học mỗi ngày
               </h2>
-              <p className="max-w-xl text-xs sm:text-sm leading-relaxed text-stone-600 dark:text-stone-400 mb-4">
+              <p className="max-w-xl mx-auto text-xs sm:text-sm leading-relaxed text-stone-600 dark:text-stone-400">
                 Đây không phải bảng số liệu trang trí. Người mới vào có thể nhìn ngay ai đang học thật, ai giữ được nhịp đều,
                 và cảm giác tiến bộ trong hệ thống trông ra sao.
               </p>
-              <PublicLeaderboardPreview />
             </ScrollReveal>
 
-            <ScrollReveal delay={0.1}>
-              <div className="animated-border-card flex flex-col rounded-3xl border border-stone-200 bg-white p-4 shadow-sm dark:border-stone-800 dark:bg-stone-900">
-                <div className="inline-flex w-fit items-center gap-2 rounded-full border border-emerald-200 bg-emerald-50 px-3 py-1 text-[10px] font-black uppercase tracking-[0.16em] text-emerald-700 dark:border-emerald-900 dark:bg-emerald-950/30 dark:text-emerald-300">
-                  <Sparkles className="icon-bounce h-3.5 w-3.5" />
-                  Vì sao cộng đồng này giữ chân người học
-                </div>
-
-                <div className="mt-3 space-y-2">
-                  {[
-                    "Không dùng thử giới hạn ngày",
-                    "Không quảng cáo xen giữa bài học",
-                    "Nội dung được cập nhật và mở rộng liên tục",
-                  ].map((line) => (
-                    <div key={line} className="flex items-start gap-2 rounded-xl border border-stone-100 bg-stone-50/80 px-3 py-2 dark:border-stone-800 dark:bg-stone-950/40">
-                      <CheckCircle2 className="icon-micro w-3.5 h-3.5 text-emerald-500 flex-shrink-0 mt-0.5" />
-                      <span className="text-xs text-stone-600 dark:text-stone-400 font-medium leading-normal">{line}</span>
-                    </div>
-                  ))}
-
-                  <div className="grid gap-2 pt-1 sm:grid-cols-2">
-                    {[
-                      { label: "Bục vinh quang", value: "Top 3 theo XP thật" },
-                      { label: "Huy hiệu", value: "Preview thành tích học tập" },
-                      { label: "Cập nhật live", value: "Người đang hoạt động" },
-                      { label: "Nhịp học", value: "Giữ đều mỗi ngày" },
-                    ].map((item) => (
-                      <div key={item.label} className="rounded-xl border border-emerald-100 bg-emerald-50/60 px-2.5 py-2 dark:border-emerald-900/50 dark:bg-emerald-950/20">
-                        <p className="text-[9px] font-black uppercase tracking-[0.12em] text-emerald-700 dark:text-emerald-300">
-                          {item.label}
-                        </p>
-                        <p className="mt-0.5 text-xs font-bold text-stone-900 dark:text-stone-100 truncate">
-                          {item.value}
-                        </p>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-
-                <Link
-                  href="/login?mode=signup"
-                  className="mt-3.5 inline-flex w-full items-center justify-center gap-2 rounded-2xl bg-stone-900 px-4 py-2.5 text-xs font-black text-white transition hover:bg-emerald-600 dark:bg-stone-100 dark:text-stone-900 dark:hover:bg-emerald-300 shadow-md cursor-pointer"
-                >
-                  Vào học cùng cộng đồng
-                  <ArrowRight className="icon-micro w-3.5 h-3.5" />
-                </Link>
-              </div>
+            <ScrollReveal delay={0.05}>
+              <PublicLeaderboardPreview />
             </ScrollReveal>
           </div>
         </section>
