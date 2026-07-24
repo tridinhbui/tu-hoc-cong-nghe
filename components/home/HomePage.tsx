@@ -318,6 +318,60 @@ export default function HomePage() {
           transform: translateY(-2px) scale(1.01);
           box-shadow: 0 18px 44px -22px rgba(16,185,129,0.65);
         }
+        .landing-band {
+          position: relative;
+          overflow: hidden;
+          isolation: isolate;
+        }
+        .landing-band::before {
+          content: "";
+          position: absolute;
+          inset: 0;
+          pointer-events: none;
+          z-index: 0;
+        }
+        .landing-band > * {
+          position: relative;
+          z-index: 1;
+        }
+        .landing-band-soft::before {
+          background:
+            linear-gradient(180deg, rgba(255,255,255,0.78), rgba(248,250,252,0.45)),
+            radial-gradient(circle at 18% 22%, rgba(16,185,129,0.08), transparent 26%),
+            radial-gradient(circle at 82% 74%, rgba(20,184,166,0.07), transparent 24%);
+        }
+        .landing-band-glass::before {
+          background:
+            linear-gradient(180deg, rgba(248,250,252,0.88), rgba(255,255,255,0.58)),
+            linear-gradient(to right, rgba(15,23,42,0.04) 1px, transparent 1px),
+            linear-gradient(to bottom, rgba(15,23,42,0.04) 1px, transparent 1px);
+          background-size: auto, 30px 30px, 30px 30px;
+        }
+        .landing-band-emerald::before {
+          background:
+            linear-gradient(180deg, rgba(236,253,245,0.92), rgba(255,255,255,0.68)),
+            radial-gradient(circle at 20% 30%, rgba(16,185,129,0.12), transparent 24%),
+            radial-gradient(circle at 78% 72%, rgba(5,150,105,0.08), transparent 22%);
+        }
+        .landing-band-dark::before {
+          background:
+            linear-gradient(180deg, rgba(12,18,28,0.92), rgba(12,18,28,0.78)),
+            radial-gradient(circle at 18% 24%, rgba(245,158,11,0.12), transparent 20%),
+            radial-gradient(circle at 78% 68%, rgba(16,185,129,0.1), transparent 24%);
+        }
+        .landing-band-divider::after {
+          content: "";
+          position: absolute;
+          left: 50%;
+          bottom: -1px;
+          width: min(92vw, 1120px);
+          height: 96px;
+          transform: translateX(-50%);
+          background: linear-gradient(180deg, rgba(255,255,255,0), rgba(16,185,129,0.06) 48%, rgba(255,255,255,0));
+          filter: blur(18px);
+          pointer-events: none;
+          z-index: 0;
+        }
       `}</style>
       {/* Ambient background glows - fixed page-level, not nested inside any section */}
       <div className="pointer-events-none absolute inset-0 landing-texture z-0" />
@@ -581,7 +635,8 @@ export default function HomePage() {
         </section>
 
         {/* ── PRODUCT PREVIEW ── */}
-        <section className="relative max-w-6xl mx-auto px-6 py-14 lg:py-16">
+        <section className="landing-band landing-band-soft landing-band-divider relative py-14 lg:py-16">
+          <div className="max-w-6xl mx-auto px-6">
           <ScrollReveal className="max-w-2xl mb-8">
             <p className="text-xs font-black text-emerald-600 dark:text-emerald-400 uppercase tracking-widest mb-2">
               Xem trước giao diện thật
@@ -622,10 +677,11 @@ export default function HomePage() {
                 ))}
             </div>
           </div>
+          </div>
         </section>
 
         {/* ── SOCIAL PROOF ── */}
-        <section className="bg-stone-50/50 dark:bg-stone-900/20 backdrop-blur-md py-16 lg:py-20 relative border-y border-stone-150/40 dark:border-stone-850/40">
+        <section className="landing-band landing-band-glass landing-band-divider backdrop-blur-md py-16 lg:py-20 relative border-y border-stone-150/40 dark:border-stone-850/40">
           <div className="max-w-6xl mx-auto px-6 grid lg:grid-cols-[minmax(0,1.2fr)_360px] gap-6 items-start">
             <ScrollReveal>
               <p className="text-xs font-black text-emerald-600 dark:text-emerald-400 uppercase tracking-widest mb-2">
@@ -691,7 +747,8 @@ export default function HomePage() {
         </section>
 
         {/* ── GAME KINGDOM PREVIEW ── */}
-        <section className="relative max-w-6xl mx-auto px-6 py-14 lg:py-18">
+        <section className="landing-band landing-band-dark landing-band-divider relative py-14 lg:py-18">
+          <div className="max-w-6xl mx-auto px-6">
           <ScrollReveal className="max-w-3xl mb-8">
             <p className="text-xs font-black text-amber-600 dark:text-amber-400 uppercase tracking-widest mb-2">
               Xem trước Game Kingdom
@@ -845,10 +902,11 @@ export default function HomePage() {
               </div>
             </div>
           </ScrollReveal>
+          </div>
         </section>
 
         {/* ── FEATURE SHOWCASE ── */}
-        <section className="relative py-16 lg:py-20 bg-stone-50/70 dark:bg-stone-900/25 border-y border-stone-150/40 dark:border-stone-850/40">
+        <section className="landing-band landing-band-emerald landing-band-divider relative py-16 lg:py-20 border-y border-stone-150/40 dark:border-stone-850/40">
           <div className="max-w-6xl mx-auto px-6">
             <ScrollReveal className="max-w-3xl mb-10">
               <p className="text-xs font-black text-emerald-600 dark:text-emerald-400 uppercase tracking-widest mb-2">
@@ -918,7 +976,8 @@ export default function HomePage() {
         </section>
 
         {/* ── PAIN POINTS / TRUST ── */}
-        <section className="relative max-w-6xl mx-auto px-6 py-16 lg:py-20">
+        <section className="landing-band landing-band-soft relative py-16 lg:py-20">
+          <div className="max-w-6xl mx-auto px-6">
           <ScrollReveal className="max-w-2xl mb-10">
             <p className="text-xs font-black text-emerald-600 dark:text-emerald-400 uppercase tracking-widest mb-2">
               Vì sao học viên chọn ở lại
@@ -942,6 +1001,7 @@ export default function HomePage() {
                 </div>
               </ScrollReveal>
             ))}
+          </div>
           </div>
         </section>
 
