@@ -47,7 +47,7 @@ export default function StudyGroupsPage() {
                 Học Nhóm & Mạng Xã Hội Phố Wall
               </h1>
               <p className="mt-1.5 text-xs sm:text-sm text-stone-200 leading-relaxed max-w-2xl font-semibold drop-shadow-md">
-                Ghép nhóm chat 5 người quanh bàn học 3D, cùng đua mục tiêu XP tuần & thảo luận bài viết trên MXH chung.
+                Trò chuyện nhóm • Nhắn 1 tin mỗi ngày để hoàn thành check-in &amp; nhận thưởng XP.
               </p>
             </div>
 
@@ -77,10 +77,10 @@ export default function StudyGroupsPage() {
                 </div>
                 <div>
                   <h2 className="text-sm font-black uppercase tracking-[0.16em] text-stone-800 dark:text-stone-200">
-                    Phòng học nhóm chủ đề
+                    Trò chuyện nhóm
                   </h2>
                   <p className="text-xs font-semibold text-stone-500 dark:text-stone-400">
-                    Ghép nhóm 5 người, chat riêng & đua Top XP hàng tuần
+                    Nhắn 1 tin mỗi ngày để hoàn thành check-in
                   </p>
                 </div>
               </div>
