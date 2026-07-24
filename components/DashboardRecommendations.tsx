@@ -2,11 +2,12 @@
 
 import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
-import { Sparkles, Flame, TrendingUp, Target, BookOpen, Gamepad2, ChevronDown, ChevronUp, ChevronLeft, ChevronRight } from "lucide-react";
+import { Sparkles, Flame, TrendingUp, Target, BookOpen, Gamepad2, ChevronDown, ChevronUp, ChevronLeft, ChevronRight, Radio } from "lucide-react";
 import type { LessonMeta } from "./DashboardClient";
 import { GAMES } from "@/lib/games";
 import { getIllustrativeCount } from "@/lib/illustrative-stats";
 import { getWeekSeed, pickRotatingWindow } from "@/lib/content-rotation";
+import { getTotalCompletedLessonsCount } from "@/lib/supabase-user";
 
 interface DashboardRecommendationsProps {
   lessonsMeta: LessonMeta[];
@@ -68,6 +69,7 @@ export default function DashboardRecommendations({ lessonsMeta, completed, userI
   const [selectedGoal, setSelectedGoal] = useState<string | null>(null);
   const [scrollProgress, setScrollProgress] = useState(0);
   const [hotScrollProgress, setHotScrollProgress] = useState(0);
+  const [liveCompletedCount, setLiveCompletedCount] = useState<number | null>(null);
   const scrollContainerRef = useRef<HTMLDivElement>(null);
   const hotScrollContainerRef = useRef<HTMLDivElement>(null);
 
@@ -88,6 +90,36 @@ export default function DashboardRecommendations({ lessonsMeta, completed, userI
       window.removeEventListener("thtcdn_goal_updated", loadGoal);
     };
   }, [goalKey]);
+
+  useEffect(() => {
+    let cancelled = false;
+
+    const loadCompletedCount = async () => {
+      try {
+        const count = await getTotalCompletedLessonsCount();
+        if (!cancelled && typeof count === "number") {
+          setLiveCompletedCount(count);
+        }
+      } catch (error) {
+        console.error("Error loading live completed lessons count:", error);
+      }
+    };
+
+    void loadCompletedCount();
+    const intervalId = window.setInterval(() => {
+      void loadCompletedCount();
+    }, 30000);
+
+    window.addEventListener("thtcdn:xp-gained", loadCompletedCount);
+    window.addEventListener("thtcdn_weekly_quests_updated", loadCompletedCount);
+
+    return () => {
+      cancelled = true;
+      window.clearInterval(intervalId);
+      window.removeEventListener("thtcdn:xp-gained", loadCompletedCount);
+      window.removeEventListener("thtcdn_weekly_quests_updated", loadCompletedCount);
+    };
+  }, []);
 
   // Determine active topics and trending slugs based on user's target goal.
   // "Đang hot tuần này" picks a rotating window out of a larger pool (see
@@ -241,6 +273,33 @@ export default function DashboardRecommendations({ lessonsMeta, completed, userI
               <h2 className="text-sm font-bold text-stone-900 dark:text-stone-100">Gợi ý hôm nay</h2>
             </div>
           </div>
+
+          {liveCompletedCount !== null && (
+            <div className="mb-3 rounded-2xl border border-emerald-200 bg-gradient-to-r from-emerald-50 to-teal-50 px-3.5 py-3 dark:border-emerald-900/60 dark:from-emerald-950/35 dark:to-teal-950/20">
+              <div className="flex items-center justify-between gap-3">
+                <div className="min-w-0">
+                  <div className="flex items-center gap-2">
+                    <span className="inline-flex items-center gap-1 rounded-full bg-white/80 px-2 py-0.5 text-[9px] font-black uppercase tracking-[0.16em] text-emerald-700 ring-1 ring-emerald-200 dark:bg-stone-950/50 dark:text-emerald-300 dark:ring-emerald-900">
+                      <Radio className="h-3 w-3 animate-pulse" />
+                      Live
+                    </span>
+                    <p className="truncate text-[11px] font-black uppercase tracking-[0.14em] text-emerald-800 dark:text-emerald-300">
+                      Cộng đồng đang học
+                    </p>
+                  </div>
+                  <p className="mt-1 text-xs font-semibold text-stone-600 dark:text-stone-400">
+                    Tổng số bài học đã được hoàn thành trên hệ thống
+                  </p>
+                </div>
+                <div className="shrink-0 text-right">
+                  <p className="text-2xl font-black tabular-nums leading-none text-stone-950 dark:text-stone-50">
+                    {liveCompletedCount.toLocaleString("vi-VN")}
+                  </p>
+                  <p className="mt-1 text-[10px] font-bold text-emerald-700 dark:text-emerald-300">bài học</p>
+                </div>
+              </div>
+            </div>
+          )}
 
           {/* Scrollable Container */}
           <div>
