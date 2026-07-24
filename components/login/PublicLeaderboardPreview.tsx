@@ -41,7 +41,7 @@ export default function PublicLeaderboardPreview() {
   ];
 
   return (
-    <div className="overflow-hidden rounded-[20px] border border-stone-200/80 bg-white shadow-[0_16px_40px_-28px_rgba(16,185,129,0.28)] dark:border-stone-800 dark:bg-stone-900">
+    <div className="animated-border-card overflow-hidden rounded-[20px] border border-stone-200/80 bg-white shadow-[0_16px_40px_-28px_rgba(16,185,129,0.28)] dark:border-stone-800 dark:bg-stone-900">
       <style>{`
         @keyframes leaderboard-podium-float {
           0%, 100% { transform: translateY(0px); }

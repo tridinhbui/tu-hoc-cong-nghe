@@ -22,7 +22,7 @@ export default function ProductPreview() {
   const [tab, setTab] = useState<Tab>("dashboard");
 
   return (
-    <div className="rounded-[20px] border border-stone-200/80 dark:border-stone-800 bg-white dark:bg-stone-900 shadow-[0_18px_44px_-28px_rgba(15,23,42,0.24)] overflow-hidden">
+    <div className="animated-border-card rounded-[20px] border border-stone-200/80 dark:border-stone-800 bg-white dark:bg-stone-900 shadow-[0_18px_44px_-28px_rgba(15,23,42,0.24)] overflow-hidden">
       <style>{`
         @keyframes preview-progress-pulse {
           0%, 100% { transform: scaleX(0.94); opacity: 0.82; }

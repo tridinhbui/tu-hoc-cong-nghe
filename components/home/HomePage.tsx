@@ -1008,7 +1008,7 @@ export default function HomePage() {
           <div className="grid sm:grid-cols-2 gap-4">
             {PAIN_POINTS.map(({ icon: Icon, worry, answer }, i) => (
               <ScrollReveal key={worry} delay={i * 0.08}>
-                <div className="h-full rounded-[20px] border border-stone-200/80 dark:border-stone-800 bg-white/70 dark:bg-stone-900/60 backdrop-blur-md p-6 hover:border-emerald-500/50 dark:hover:border-emerald-850 hover:shadow-[0_12px_28px_-24px_rgba(15,23,42,0.18)] transition-all duration-200 ease-out group hover:-translate-y-1">
+                <div className="animated-border-card h-full rounded-[20px] border border-stone-200/80 dark:border-stone-800 bg-white/70 dark:bg-stone-900/60 backdrop-blur-md p-6 hover:border-emerald-500/50 dark:hover:border-emerald-850 hover:shadow-[0_12px_28px_-24px_rgba(15,23,42,0.18)] transition-all duration-200 ease-out group hover:-translate-y-1">
                   <span className="inline-flex w-12 h-12 rounded-[18px] bg-gradient-to-br from-emerald-50 to-teal-50 dark:from-emerald-950/40 dark:to-teal-950/20 items-center justify-center mb-4 border border-emerald-100/60 dark:border-emerald-900/30 transition-transform duration-200 ease-out group-hover:scale-[1.02]">
                     <Icon className="w-5 h-5 text-emerald-600 dark:text-emerald-400" />
                   </span>
@@ -1042,7 +1042,7 @@ export default function HomePage() {
             <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
               {METHOD_STEPS.map(({ step, title, text }, i) => (
                 <ScrollReveal key={step} delay={i * 0.08}>
-                  <div className="h-full rounded-[20px] bg-white/70 dark:bg-stone-900/60 backdrop-blur-md border border-stone-200/80 dark:border-stone-800 p-6 hover:shadow-[0_12px_28px_-24px_rgba(15,23,42,0.18)] hover:-translate-y-1 transition-all duration-200 ease-out">
+                  <div className="animated-border-card h-full rounded-[20px] bg-white/70 dark:bg-stone-900/60 backdrop-blur-md border border-stone-200/80 dark:border-stone-800 p-6 hover:shadow-[0_12px_28px_-24px_rgba(15,23,42,0.18)] hover:-translate-y-1 transition-all duration-200 ease-out">
                     <div className="w-8 h-8 rounded-[14px] bg-gradient-to-r from-emerald-500 to-teal-500 text-white font-black text-sm flex items-center justify-center mb-4 shadow-[0_10px_22px_-18px_rgba(16,185,129,0.35)] transition-transform duration-200 ease-out group-hover:scale-[1.02]">
                       {step}
                     </div>
@@ -1073,7 +1073,7 @@ export default function HomePage() {
           <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {AUDIENCES.map((item, i) => (
               <ScrollReveal key={item.title} delay={i * 0.05}>
-                <div className="h-full rounded-[20px] border border-stone-200/80 dark:border-stone-800 bg-white/70 dark:bg-stone-900/60 backdrop-blur-md p-6 hover:border-emerald-500/50 dark:hover:border-emerald-800/80 hover:shadow-[0_12px_28px_-24px_rgba(16,185,129,0.16)] transition-all duration-200 ease-out hover:-translate-y-1.5">
+                <div className="animated-border-card h-full rounded-[20px] border border-stone-200/80 dark:border-stone-800 bg-white/70 dark:bg-stone-900/60 backdrop-blur-md p-6 hover:border-emerald-500/50 dark:hover:border-emerald-800/80 hover:shadow-[0_12px_28px_-24px_rgba(16,185,129,0.16)] transition-all duration-200 ease-out hover:-translate-y-1.5">
                   <div className="inline-flex items-center gap-2 rounded-full border border-emerald-200/70 bg-emerald-50/70 dark:border-emerald-900/40 dark:bg-emerald-950/20 px-3 py-1 text-[11px] font-bold uppercase tracking-[0.18em] text-emerald-700 dark:text-emerald-300 mb-4">
                     Phù hợp
                   </div>
