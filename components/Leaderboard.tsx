@@ -132,11 +132,13 @@ function AvatarWithFrame({ rank, name, avatarUrl, size = 44 }: { rank: number; n
   );
 }
 
-const TABS: { metric: LeaderboardMetric | "game"; label: string; icon: any; format: (v: number) => string }[] = [
-  { metric: "xp", label: "XP", icon: Zap, format: (v) => `${v} XP` },
+const TABS: { metric: LeaderboardMetric | "game" | "career"; label: string; icon: any; format: (v: number) => string }[] = [
+  { metric: "xp", label: "XP Tổng", icon: Zap, format: (v) => `${v} XP` },
   { metric: "lessons", label: "Số bài", icon: BookOpen, format: (v) => `${v} bài` },
   { metric: "avg_score", label: "Điểm TB", icon: Target, format: (v) => `${Math.round(v)}%` },
   { metric: "streak", label: "Chuỗi ngày", icon: Flame, format: (v) => `${v} ngày` },
+  { metric: "career", label: "Sự nghiệp", icon: Briefcase, format: (v) => `${v} bài` },
+  { metric: "badges", label: "Huy hiệu", icon: Award, format: (v) => `${v} danh hiệu` },
   { metric: "game", label: "Game thủ", icon: Gamepad2, format: (v) => `${v} XP` },
 ];
 
