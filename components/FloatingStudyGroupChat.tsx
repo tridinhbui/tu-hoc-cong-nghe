@@ -5,7 +5,7 @@ import Image from "next/image";
 import { isValidAvatar } from "@/lib/avatar-utils";
 import TaiTaiAvatar from "@/components/TaiTaiAvatar";
 import { toast } from "sonner";
-import { Users, Send, X, ImagePlus, Trash2 } from "lucide-react";
+import { Users, Send, X, ImagePlus, Trash2, CornerUpLeft } from "lucide-react";
 import { createClient } from "@/lib/supabase";
 import { trackFeatureClick } from "@/lib/feature-events";
 import { uploadChatImage, isAllowedChatImage } from "@/lib/supabase-chat";
@@ -25,6 +25,8 @@ import {
   type StudyRoomMessage,
   type StudyRoomMember,
 } from "@/lib/supabase-study-rooms";
+
+const REACTION_EMOJIS = ["👍", "❤️", "🔥", "🚀", "💡", "😂"];
 
 function topicLabel(topic: string) {
   return STUDY_ROOM_TOPICS.find((t) => t.id === topic)?.label ?? topic;
@@ -188,21 +190,46 @@ export default function FloatingStudyGroupChat({ isOpen: controlledIsOpen, onOpe
     if (file) pickImage(file);
   }
 
+  const [replyingTo, setReplyingTo] = useState<{ id: number; senderName: string; content: string } | null>(null);
+  const [reactions, setReactions] = useState<Record<number, Record<string, string[]>>>({});
+
+  const toggleReaction = (msgId: number, emoji: string) => {
+    if (!userId) return;
+    setReactions((prev) => {
+      const msgReactions = prev[msgId] || {};
+      const userList = msgReactions[emoji] || [];
+      const hasReacted = userList.includes(userId);
+      const updatedUsers = hasReacted
+        ? userList.filter((id) => id !== userId)
+        : [...userList, userId];
+
+      const newMsgReactions = { ...msgReactions };
+      if (updatedUsers.length > 0) {
+        newMsgReactions[emoji] = updatedUsers;
+      } else {
+        delete newMsgReactions[emoji];
+      }
+
+      return { ...prev, [msgId]: newMsgReactions };
+    });
+  };
+
   async function handleSend() {
-    const content = input.trim();
-    // Note: deliberately NOT gating this on `sending`. Each call captures its
-    // own `content`/`imageFile` snapshot below, so overlapping sends (e.g. the
-    // user types and hits Enter again before a slow previous send resolves)
-    // are independent and safe - they just both go out. Blocking on `sending`
-    // used to make the second Enter press a silent no-op: it wouldn't clear
-    // the input or send anything, which read as "the box won't clear so I can
-    // type the next message" on a slow connection.
-    if ((!content && !pendingImage) || !room || !userId) return;
-    if (content && !pendingImage && isStudyRoomBotCommand(content)) {
+    const rawContent = input.trim();
+    if ((!rawContent && !pendingImage) || !room || !userId) return;
+
+    let finalContent = rawContent;
+    if (replyingTo && rawContent) {
+      const cleanContent = replyingTo.content.replace(/^↩️ \[Trả lời [^\]]+\]:\s*"/, "").replace(/"$/, "");
+      finalContent = `↩️ [Trả lời ${replyingTo.senderName}]: "${cleanContent.slice(0, 45)}..."\n${rawContent}`;
+    }
+
+    if (rawContent && !pendingImage && isStudyRoomBotCommand(rawContent)) {
       setSending(true);
       setInput("");
+      setReplyingTo(null);
       try {
-        const botMessage = await requestStudyRoomBot(room.room_id, content);
+        const botMessage = await requestStudyRoomBot(room.room_id, rawContent);
         setMessages((prev) => (prev.some((m) => m.id === botMessage.id) ? prev : [...prev, botMessage]));
       } catch (error) {
         toast.error(error instanceof Error ? error.message : "Không gọi được Tài Tài");
@@ -213,6 +240,7 @@ export default function FloatingStudyGroupChat({ isOpen: controlledIsOpen, onOpe
     }
     setSending(true);
     setInput("");
+    setReplyingTo(null);
     const imageFile = pendingImage;
     clearPendingImage();
 
@@ -221,13 +249,7 @@ export default function FloatingStudyGroupChat({ isOpen: controlledIsOpen, onOpe
       if (imageFile) {
         imageUrl = await uploadChatImage(userId, imageFile);
       }
-      const sent = await sendRoomMessage(room.room_id, userId, content, imageUrl);
-      // Append immediately instead of waiting on the Realtime postgres_changes
-      // subscription to echo the insert back - that round trip can lag or
-      // (if Realtime replication hiccups) never arrive at all, which is what
-      // made sent messages appear stuck until a full page reload re-fetched
-      // history. subscribeToRoomMessages already dedupes by id, so if the
-      // Realtime event does arrive later it's a no-op here.
+      const sent = await sendRoomMessage(room.room_id, userId, finalContent, imageUrl);
       setMessages((prev) => (prev.some((m) => m.id === sent.id) ? prev : [...prev, sent]));
       trackFeatureClick("floating_study_chat_send", { label: String(room.room_id) });
     } catch (error) {
@@ -353,59 +375,129 @@ export default function FloatingStudyGroupChat({ isOpen: controlledIsOpen, onOpe
                 }
                 const isMine = msg.sender_id === userId;
                 const member = msg.sender_id ? members.get(msg.sender_id) : null;
+                const senderName = member?.full_name || "Thành viên";
+                const msgReactions = reactions[msg.id] || {};
+
+                // Check if message contains a quote reply
+                const isQuoteReply = msg.content && msg.content.startsWith("↩️ [Trả lời ");
+                let quoteHeader = "";
+                let mainText = msg.content || "";
+                if (isQuoteReply && msg.content) {
+                  const lines = msg.content.split("\n");
+                  quoteHeader = lines[0];
+                  mainText = lines.slice(1).join("\n");
+                }
+
                 return (
-                  <div key={msg.id} className={`flex items-end gap-2 ${isMine ? "justify-end" : "justify-start"}`}>
-                    {!isMine &&
-                      (isValidAvatar(member?.avatar_url) ? (
-                        <Image
-                          src={member.avatar_url}
-                          alt={member.full_name || "Thành viên"}
-                          width={24}
-                          height={24}
-                          className="rounded-full object-cover flex-shrink-0 mb-0.5 border border-stone-100 dark:border-stone-850"
-                        />
-                      ) : (
-                        <div className="w-6 h-6 rounded-full bg-stone-200 dark:bg-stone-700 text-stone-600 dark:text-stone-300 text-[9px] font-extrabold flex items-center justify-center flex-shrink-0 mb-0.5 border border-stone-150 dark:border-stone-800">
-                          {initials(member?.full_name)}
-                        </div>
-                      ))}
-                    <div className="max-w-[75%]">
-                      {!isMine && (
-                        <p className="text-[9px] font-bold text-stone-450 dark:text-stone-500 mb-0.5 ml-1">
-                          {member?.full_name || "Thành viên"}
-                        </p>
-                      )}
-                      <div
-                        className={`rounded-2xl px-3.5 py-2.5 text-[12px] leading-relaxed shadow-xs ${
-                          isMine
-                            ? "bg-gradient-to-br from-emerald-700 to-teal-600 text-white rounded-tr-sm"
-                            : "bg-white dark:bg-stone-850/90 text-stone-800 dark:text-stone-100 rounded-tl-sm"
-                        }`}
-                      >
-                        {msg.image_url && (
-                          // eslint-disable-next-line @next/next/no-img-element
-                          <img
-                            src={msg.image_url}
-                            alt="Đính kèm"
-                            className="max-w-full max-h-40 rounded-lg mb-2 object-contain cursor-pointer hover:opacity-95 transition-opacity"
-                            onClick={() => window.open(msg.image_url!, "_blank")}
+                  <div key={msg.id} className={`group relative flex flex-col ${isMine ? "items-end" : "items-start"}`}>
+                    <div className={`flex items-end gap-1.5 ${isMine ? "flex-row-reverse" : "flex-row"}`}>
+                      {!isMine &&
+                        (isValidAvatar(member?.avatar_url) ? (
+                          <Image
+                            src={member.avatar_url}
+                            alt={senderName}
+                            width={24}
+                            height={24}
+                            className="rounded-full object-cover flex-shrink-0 mb-0.5 border border-stone-100 dark:border-stone-850"
                           />
+                        ) : (
+                          <div className="w-6 h-6 rounded-full bg-stone-200 dark:bg-stone-700 text-stone-600 dark:text-stone-300 text-[9px] font-extrabold flex items-center justify-center flex-shrink-0 mb-0.5 border border-stone-150 dark:border-stone-800">
+                            {initials(member?.full_name)}
+                          </div>
+                        ))}
+                      <div className="max-w-[78%]">
+                        {!isMine && (
+                          <p className="text-[9px] font-bold text-stone-450 dark:text-stone-500 mb-0.5 ml-1">
+                            {senderName}
+                          </p>
                         )}
-                        {msg.content && <p className="whitespace-pre-wrap break-words">{msg.content}</p>}
-                      </div>
-                      {isMine && (
-                        <div className="flex items-center justify-end gap-1 mt-0.5">
-                          <button
-                            type="button"
-                            onClick={() => handleDeleteStudyMessage(msg.id)}
-                            className="text-[9px] font-bold text-rose-500 hover:text-rose-600 transition-colors flex items-center gap-0.5 cursor-pointer"
-                            title="Thu hồi &amp; xóa khỏi DB"
-                          >
-                            <Trash2 className="w-2.5 h-2.5" />
-                            <span>Thu hồi</span>
-                          </button>
+                        <div
+                          className={`relative rounded-2xl px-3.5 py-2.5 text-[12px] leading-relaxed shadow-xs ${
+                            isMine
+                              ? "bg-gradient-to-br from-emerald-700 to-teal-600 text-white rounded-tr-xs"
+                              : "bg-white dark:bg-stone-850/90 text-stone-800 dark:text-stone-100 rounded-tl-xs"
+                          }`}
+                        >
+                          {/* Quoted Message Box */}
+                          {isQuoteReply && (
+                            <div className="mb-1.5 p-1.5 rounded-lg border-l-2 border-emerald-400 bg-black/10 dark:bg-white/10 text-[11px] font-medium leading-snug">
+                              <p className="opacity-90 font-bold">{quoteHeader}</p>
+                            </div>
+                          )}
+
+                          {msg.image_url && (
+                            // eslint-disable-next-line @next/next/no-img-element
+                            <img
+                              src={msg.image_url}
+                              alt="Đính kèm"
+                              className="max-w-full max-h-40 rounded-lg mb-2 object-contain cursor-pointer hover:opacity-95 transition-opacity"
+                              onClick={() => window.open(msg.image_url!, "_blank")}
+                            />
+                          )}
+                          {mainText && <p className="whitespace-pre-wrap break-words">{mainText}</p>}
                         </div>
-                      )}
+
+                        {/* Hover Quick Action Toolbar: Reply & Reactions */}
+                        <div className="opacity-0 group-hover:opacity-100 transition-opacity flex items-center gap-1 mt-1 bg-white/95 dark:bg-stone-800/95 border border-stone-200 dark:border-stone-700 px-1.5 py-0.5 rounded-full shadow-md backdrop-blur-xs z-10 w-fit">
+                          <button
+                            onClick={() => setReplyingTo({ id: msg.id, senderName: isMine ? "bạn" : senderName, content: msg.content })}
+                            className="p-0.5 hover:bg-stone-100 dark:hover:bg-stone-700 rounded-full text-stone-600 dark:text-stone-300 transition-colors"
+                            title="Trả lời tin nhắn"
+                          >
+                            <CornerUpLeft className="w-3 h-3" />
+                          </button>
+                          <div className="h-2.5 w-px bg-stone-300 dark:bg-stone-700" />
+                          {REACTION_EMOJIS.slice(0, 4).map((emoji) => (
+                            <button
+                              key={emoji}
+                              onClick={() => toggleReaction(msg.id, emoji)}
+                              className="text-[11px] p-0.5 hover:scale-125 transition-transform"
+                              title={`Thả cảm xúc ${emoji}`}
+                            >
+                              {emoji}
+                            </button>
+                          ))}
+                        </div>
+
+                        {/* Display Active Reaction Badges */}
+                        {Object.keys(msgReactions).length > 0 && (
+                          <div className={`flex flex-wrap gap-1 mt-1 ${isMine ? "justify-end" : "justify-start"}`}>
+                            {Object.entries(msgReactions).map(([emoji, userIds]) => {
+                              const count = userIds.length;
+                              if (count === 0) return null;
+                              const hasMyReaction = userId ? userIds.includes(userId) : false;
+                              return (
+                                <button
+                                  key={emoji}
+                                  onClick={() => toggleReaction(msg.id, emoji)}
+                                  className={`inline-flex items-center gap-1 text-[9px] font-bold px-1.5 py-0.2 rounded-full border transition-all ${
+                                    hasMyReaction
+                                      ? "bg-emerald-50 dark:bg-emerald-950 border-emerald-300 text-emerald-700 dark:text-emerald-300 shadow-2xs"
+                                      : "bg-white dark:bg-stone-900 border-stone-200 dark:border-stone-800 text-stone-700 dark:text-stone-300"
+                                  }`}
+                                >
+                                  <span>{emoji}</span>
+                                  <span>{count}</span>
+                                </button>
+                              );
+                            })}
+                          </div>
+                        )}
+
+                        {isMine && (
+                          <div className="flex items-center justify-end gap-1 mt-0.5">
+                            <button
+                              type="button"
+                              onClick={() => handleDeleteStudyMessage(msg.id)}
+                              className="text-[9px] font-bold text-rose-500 hover:text-rose-600 transition-colors flex items-center gap-0.5 cursor-pointer"
+                              title="Thu hồi &amp; xóa khỏi DB"
+                            >
+                              <Trash2 className="w-2.5 h-2.5" />
+                              <span>Thu hồi</span>
+                            </button>
+                          </div>
+                        )}
+                      </div>
                     </div>
                   </div>
                 );
@@ -416,6 +508,22 @@ export default function FloatingStudyGroupChat({ isOpen: controlledIsOpen, onOpe
 
           {/* Input Box */}
           <div className="p-3 bg-white dark:bg-stone-900 border-t border-stone-100 dark:border-stone-850/40 shrink-0">
+            {/* Replying Banner Preview */}
+            {replyingTo && (
+              <div className="flex items-center justify-between gap-2 px-3 py-1.5 rounded-xl bg-emerald-50 dark:bg-emerald-950/40 border border-emerald-200 dark:border-emerald-800 text-xs text-stone-800 dark:text-stone-200 mb-2">
+                <div className="min-w-0 flex-1">
+                  <span className="font-bold text-emerald-600 dark:text-emerald-400">💬 Đang trả lời {replyingTo.senderName}:</span>
+                  <p className="truncate text-[10px] text-stone-600 dark:text-stone-400 mt-0.2">{replyingTo.content}</p>
+                </div>
+                <button
+                  onClick={() => setReplyingTo(null)}
+                  className="text-stone-400 hover:text-stone-700 dark:hover:text-stone-200 p-0.5 rounded-full cursor-pointer"
+                  title="Hủy trả lời"
+                >
+                  <X className="w-3.5 h-3.5" />
+                </button>
+              </div>
+            )}
             {pendingImagePreview && (
               <div className="relative inline-block mb-2 group">
                 {/* eslint-disable-next-line @next/next/no-img-element */}

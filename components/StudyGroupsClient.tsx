@@ -5,7 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { toast } from "sonner";
-import { ArrowLeft, Shuffle, Users, LogOut, Send } from "lucide-react";
+import { ArrowLeft, Shuffle, Users, LogOut, Send, CornerUpLeft, Smile, X } from "lucide-react";
 import { createClient } from "@/lib/supabase";
 import {
   STUDY_ROOM_TOPICS,
@@ -33,6 +33,8 @@ import {
 interface SessionUser {
   id: string;
 }
+
+const REACTION_EMOJIS = ["👍", "❤️", "🔥", "🚀", "💡", "😂"];
 
 function Avatar({ name, avatarUrl, size = 36 }: { name?: string | null; avatarUrl?: string | null; size?: number }) {
   const initials = (name || "U")
@@ -177,14 +179,46 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [messages]);
 
+  const [replyingTo, setReplyingTo] = useState<{ id: number; senderName: string; content: string } | null>(null);
+  const [reactions, setReactions] = useState<Record<number, Record<string, string[]>>>({});
+
+  const toggleReaction = (msgId: number, emoji: string) => {
+    if (!user?.id) return;
+    setReactions((prev) => {
+      const msgReactions = prev[msgId] || {};
+      const userList = msgReactions[emoji] || [];
+      const hasReacted = userList.includes(user.id);
+      const updatedUsers = hasReacted
+        ? userList.filter((id) => id !== user.id)
+        : [...userList, user.id];
+
+      const newMsgReactions = { ...msgReactions };
+      if (updatedUsers.length > 0) {
+        newMsgReactions[emoji] = updatedUsers;
+      } else {
+        delete newMsgReactions[emoji];
+      }
+
+      return { ...prev, [msgId]: newMsgReactions };
+    });
+  };
+
   async function handleSendMessage() {
-    const content = messageInput.trim();
-    if (!content || !myRoom || !user || sendingMessage) return;
-    if (isStudyRoomBotCommand(content)) {
+    const rawContent = messageInput.trim();
+    if (!rawContent || !myRoom || !user || sendingMessage) return;
+
+    let finalContent = rawContent;
+    if (replyingTo) {
+      const cleanContent = replyingTo.content.replace(/^↩️ \[Trả lời [^\]]+\]:\s*"/, "").replace(/"$/, "");
+      finalContent = `↩️ [Trả lời ${replyingTo.senderName}]: "${cleanContent.slice(0, 45)}..."\n${rawContent}`;
+    }
+
+    if (isStudyRoomBotCommand(rawContent)) {
       setSendingMessage(true);
       setMessageInput("");
+      setReplyingTo(null);
       try {
-        const botMessage = await requestStudyRoomBot(myRoom.room_id, content);
+        const botMessage = await requestStudyRoomBot(myRoom.room_id, rawContent);
         setMessages((prev) => (prev.some((m) => m.id === botMessage.id) ? prev : [...prev, botMessage]));
       } catch (error) {
         toast.error(error instanceof Error ? error.message : "Không gọi được Tài Tài");
@@ -193,10 +227,12 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
       }
       return;
     }
+
     setSendingMessage(true);
     try {
-      await sendRoomMessage(myRoom.room_id, user.id, content);
+      await sendRoomMessage(myRoom.room_id, user.id, finalContent);
       setMessageInput("");
+      setReplyingTo(null);
     } catch (error) {
       toast.error(error instanceof Error ? error.message : "Không gửi được tin nhắn");
     } finally {
@@ -514,26 +550,114 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
                   }
                   const isMine = msg.sender_id === user?.id;
                   const sender = msg.sender_id ? memberById.get(msg.sender_id) : undefined;
+                  const senderName = sender?.full_name || "Thành viên";
+                  const msgReactions = reactions[msg.id] || {};
+
+                  // Check if message contains a quote reply
+                  const isQuoteReply = msg.content.startsWith("↩️ [Trả lời ");
+                  let quoteHeader = "";
+                  let mainText = msg.content;
+                  if (isQuoteReply) {
+                    const lines = msg.content.split("\n");
+                    quoteHeader = lines[0];
+                    mainText = lines.slice(1).join("\n");
+                  }
+
                   return (
-                    <div key={msg.id} className={`flex ${isMine ? "justify-end" : "justify-start"}`}>
-                      <div className={`max-w-[75%] rounded-xl px-3 py-2 ${
-                        isMine
-                          ? "bg-stone-900 dark:bg-stone-100 text-white dark:text-stone-900"
-                          : "bg-white dark:bg-stone-900 border border-stone-200 dark:border-stone-800 text-stone-900 dark:text-stone-100"
-                      }`}>
-                        {!isMine && (
-                          <p className="text-[10px] font-bold text-emerald-600 dark:text-emerald-400 mb-0.5">
-                            {sender?.full_name || "Thành viên"}
-                          </p>
-                        )}
-                        <p className="text-sm break-words">{msg.content}</p>
+                    <div key={msg.id} className={`group relative flex flex-col ${isMine ? "items-end" : "items-start"}`}>
+                      <div className={`flex items-center gap-1.5 max-w-[82%] ${isMine ? "flex-row-reverse" : "flex-row"}`}>
+                        <div className={`relative rounded-2xl px-3.5 py-2 shadow-2xs ${
+                          isMine
+                            ? "bg-stone-900 dark:bg-stone-100 text-white dark:text-stone-900 rounded-tr-xs"
+                            : "bg-white dark:bg-stone-900 border border-stone-200 dark:border-stone-800 text-stone-900 dark:text-stone-100 rounded-tl-xs"
+                        }`}>
+                          {!isMine && (
+                            <p className="text-[10px] font-bold text-emerald-600 dark:text-emerald-400 mb-0.5">
+                              {senderName}
+                            </p>
+                          )}
+
+                          {/* Quoted Message Box */}
+                          {isQuoteReply && (
+                            <div className="mb-1.5 p-1.5 rounded-lg border-l-2 border-emerald-400 bg-emerald-500/10 text-[11px] font-medium leading-snug">
+                              <p className="opacity-90 font-bold">{quoteHeader}</p>
+                            </div>
+                          )}
+
+                          <p className="text-sm break-words">{mainText}</p>
+                        </div>
+
+                        {/* Hover Action Bar: Quick Reply & Emoji Reactions */}
+                        <div className="opacity-0 group-hover:opacity-100 transition-opacity flex items-center gap-1 bg-white/90 dark:bg-stone-800/90 border border-stone-200 dark:border-stone-700 p-1 rounded-full shadow-md backdrop-blur-xs z-10">
+                          <button
+                            onClick={() => setReplyingTo({ id: msg.id, senderName: isMine ? "bạn" : senderName, content: msg.content })}
+                            className="p-1 hover:bg-stone-100 dark:hover:bg-stone-700 rounded-full text-stone-600 dark:text-stone-300 transition-colors"
+                            title="Trả lời tin nhắn này"
+                          >
+                            <CornerUpLeft className="w-3.5 h-3.5" />
+                          </button>
+                          <div className="h-3 w-px bg-stone-300 dark:bg-stone-700" />
+                          {REACTION_EMOJIS.slice(0, 4).map((emoji) => (
+                            <button
+                              key={emoji}
+                              onClick={() => toggleReaction(msg.id, emoji)}
+                              className="text-xs p-0.5 hover:scale-125 transition-transform"
+                              title={`Thả cảm xúc ${emoji}`}
+                            >
+                              {emoji}
+                            </button>
+                          ))}
+                        </div>
                       </div>
+
+                      {/* Displayed Active Emoji Reactions */}
+                      {Object.keys(msgReactions).length > 0 && (
+                        <div className={`flex flex-wrap gap-1 mt-1 ${isMine ? "justify-end" : "justify-start"}`}>
+                          {Object.entries(msgReactions).map(([emoji, userIds]) => {
+                            const count = userIds.length;
+                            if (count === 0) return null;
+                            const hasMyReaction = user?.id ? userIds.includes(user.id) : false;
+                            return (
+                              <button
+                                key={emoji}
+                                onClick={() => toggleReaction(msg.id, emoji)}
+                                className={`inline-flex items-center gap-1 text-[10px] font-bold px-2 py-0.5 rounded-full border transition-all ${
+                                  hasMyReaction
+                                    ? "bg-emerald-50 dark:bg-emerald-950 border-emerald-300 text-emerald-700 dark:text-emerald-300 shadow-2xs"
+                                    : "bg-white dark:bg-stone-900 border-stone-200 dark:border-stone-800 text-stone-700 dark:text-stone-300"
+                                }`}
+                              >
+                                <span>{emoji}</span>
+                                <span>{count}</span>
+                              </button>
+                            );
+                          })}
+                        </div>
+                      )}
                     </div>
                   );
                 })
               )}
               <div ref={messagesEndRef} />
             </div>
+
+            {/* Replying Banner Preview */}
+            {replyingTo && (
+              <div className="flex items-center justify-between gap-2 px-3 py-2 rounded-xl bg-emerald-50 dark:bg-emerald-950/40 border border-emerald-200 dark:border-emerald-800 text-xs text-stone-800 dark:text-stone-200 mt-2">
+                <div className="min-w-0 flex-1">
+                  <span className="font-bold text-emerald-600 dark:text-emerald-400">💬 Đang trả lời {replyingTo.senderName}:</span>
+                  <p className="truncate text-[11px] text-stone-600 dark:text-stone-400 mt-0.5">{replyingTo.content}</p>
+                </div>
+                <button
+                  onClick={() => setReplyingTo(null)}
+                  className="text-stone-400 hover:text-stone-700 dark:hover:text-stone-200 p-1 rounded-full cursor-pointer"
+                  title="Hủy trả lời"
+                >
+                  <X className="w-3.5 h-3.5" />
+                </button>
+              </div>
+            )}
+
             <div className="flex items-center gap-2 mt-3">
               <input
                 type="text"
@@ -545,7 +669,7 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
                     void handleSendMessage();
                   }
                 }}
-                placeholder="Nhắn gì đó cho nhóm... hoặc /taitai"
+                placeholder={replyingTo ? `Viết câu trả lời cho ${replyingTo.senderName}...` : "Nhắn gì đó cho nhóm... hoặc /taitai"}
                 maxLength={2000}
                 className="flex-1 px-3.5 py-2.5 rounded-xl border border-stone-200 dark:border-stone-800 bg-white dark:bg-stone-900 text-sm text-stone-900 dark:text-stone-100 placeholder:text-stone-400 focus:outline-none focus:ring-2 focus:ring-emerald-400/50"
               />
