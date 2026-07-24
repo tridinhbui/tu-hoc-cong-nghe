@@ -581,7 +581,7 @@ export default function FlashcardClient({ userId: propUserId, initialCards, embe
                       transform: `translateX(${swipeOffset}px) rotate(${swipeOffset * 0.05}deg)`,
                       cursor: isDragging ? "grabbing" : "grab",
                     }}
-                    className={`relative w-full max-w-sm min-h-[300px] rounded-[28px] border-2 p-6 flex flex-col items-center justify-center text-center transition-shadow select-none bg-white dark:bg-stone-900 shadow-xl ${
+                    className={`relative w-full max-w-sm min-h-[300px] rounded-[28px] border-2 p-6 flex flex-col items-center justify-center text-center transition-shadow select-none bg-white/95 dark:bg-stone-900 shadow-xl ${
                       swipeOffset > 40
                         ? "border-emerald-400 bg-emerald-50/[0.04] dark:bg-emerald-950/[0.05]"
                         : swipeOffset < -40
@@ -641,7 +641,7 @@ export default function FlashcardClient({ userId: propUserId, initialCards, embe
                     </button>
                     <button
                       onClick={() => handleSM2Action(3)}
-                      className="flex flex-col items-center gap-1 py-3 text-xs font-bold rounded-2xl border border-stone-250 dark:border-stone-850 bg-white dark:bg-stone-900 text-stone-700 dark:text-stone-300 hover:scale-[1.04] hover:shadow-md active:scale-95 transition-all cursor-pointer"
+                      className="flex flex-col items-center gap-1 py-3 text-xs font-bold rounded-2xl border border-stone-250 dark:border-stone-850 bg-white/95 dark:bg-stone-900 text-stone-700 dark:text-stone-300 hover:scale-[1.04] hover:shadow-md active:scale-95 transition-all cursor-pointer"
                     >
                       <span className="text-lg leading-none">👍</span> Vừa phải
                     </button>

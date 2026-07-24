@@ -158,7 +158,7 @@ export default function DocumentsList({ documents, currentUserId }: { documents:
                   setOpenDoc(doc);
                   trackFeatureClick("document_open", { label: doc.file_name });
                 }}
-                className="group text-left rounded-2xl border border-stone-200 dark:border-stone-800 hover:border-stone-400 dark:hover:border-stone-600 hover:shadow-lg dark:hover:shadow-stone-900/50 transition-all overflow-hidden bg-white dark:bg-stone-900"
+                className="group text-left rounded-2xl border border-stone-200 dark:border-stone-800 hover:border-stone-400 dark:hover:border-stone-600 hover:shadow-lg dark:hover:shadow-stone-900/50 transition-all overflow-hidden bg-white/95 dark:bg-stone-900"
               >
                 {/* Cover image or icon */}
                 {doc.image_url ? (

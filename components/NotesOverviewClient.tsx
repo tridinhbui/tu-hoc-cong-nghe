@@ -137,7 +137,7 @@ export default function NotesOverviewClient({ lessonsById, userId, initialNotes,
                 const lessonInfo = lessonsById[lessonId];
                 const lessonNotes = grouped.get(lessonId)!;
                 return (
-                  <div key={lessonId} className="bg-white dark:bg-stone-900 border-2 border-stone-200 dark:border-stone-800 rounded-xl overflow-hidden">
+                  <div key={lessonId} className="bg-white/95 dark:bg-stone-900 border-2 border-stone-200 dark:border-stone-800 rounded-xl overflow-hidden">
                     <div className="px-5 py-3 border-b border-stone-200 dark:border-stone-800 flex items-center justify-between bg-stone-50 dark:bg-stone-800/50">
                       {lessonInfo ? (
                         <Link href={`/bai-hoc/${lessonInfo.slug}`} className="font-bold text-stone-900 dark:text-stone-100 hover:underline">
