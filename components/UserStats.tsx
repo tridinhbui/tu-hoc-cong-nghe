@@ -41,7 +41,15 @@ const LEVEL_EMOJIS: Record<number, string> = {
   7: "🔥", // Chuyên gia Tài chính
   8: "💎", // Bậc thầy Tài chính
   9: "🎓", // Chuyên viên CFA
+  10: "🦁", // Huyền thoại Đầu tư
+  11: "🏛️", // Giám đốc Quỹ Hedge Fund
+  12: "🌐", // Quản lý Danh mục Chiến lược
+  13: "🚀", // Bậc thầy Phân tích Thị trường
+  14: "⚡", // Lãnh đạo Tài chính Tối cao
+  15: "🔱", // Đại Thuyền trưởng Phố Wall
 };
+
+import RigorousLevelExamModal from "@/components/RigorousLevelExamModal";
 
 export default function UserStats({
   xp,
@@ -58,6 +66,9 @@ export default function UserStats({
   const xpToNext = getXpToNextLevel(xp);
   const progress = getLevelProgress(xp);
   const cfaGateRemaining = nextLevel ? getCfaGateRemaining(nextLevel, cfaCompleted) : 0;
+
+  const [showExamModal, setShowExamModal] = useState(false);
+  const [selectedExamLevel, setSelectedExamLevel] = useState<number>(2);
 
   const [levelStats, setLevelStats] = useState<LevelStats | null>(null);
   const [openLevelTooltip, setOpenLevelTooltip] = useState<number | null>(null);
@@ -392,6 +403,42 @@ export default function UserStats({
             <span>👑 Bạn đã đạt cấp độ tối đa! Chúc mừng {currentLevel.name}!</span>
           </div>
         </div>
+      )}
+
+      {/* Level Exam Gatekeeper Banner */}
+      {nextLevel && (
+        <div className="mt-3 relative z-10 pt-2 border-t border-stone-100 dark:border-stone-800">
+          <button
+            onClick={() => {
+              setSelectedExamLevel(nextLevel.level);
+              setShowExamModal(true);
+            }}
+            className="w-full flex items-center justify-between p-3 rounded-2xl bg-gradient-to-r from-emerald-500 via-teal-500 to-emerald-600 hover:from-emerald-400 hover:to-teal-400 text-stone-950 font-black text-xs transition-all shadow-md hover:scale-[1.01] cursor-pointer"
+          >
+            <div className="flex items-center gap-2 text-left">
+              <span className="text-lg">🛡️</span>
+              <div>
+                <p className="leading-tight text-white drop-shadow-sm font-extrabold text-[11px]">BÀI THI THĂNG CẤP KHẮT KHE (LEVEL {nextLevel.level})</p>
+                <p className="text-[10px] text-emerald-100 font-bold">Cần thi đỗ ≥ 85% điểm trắc nghiệm để thăng hạng</p>
+              </div>
+            </div>
+            <span className="px-3 py-1 rounded-xl bg-stone-950 text-emerald-400 text-[10px] font-black tracking-wide shrink-0">
+              VÀO THI NGAY →
+            </span>
+          </button>
+        </div>
+      )}
+
+      {showExamModal && userId && (
+        <RigorousLevelExamModal
+          levelToTest={selectedExamLevel}
+          userId={userId}
+          onClose={() => setShowExamModal(false)}
+          onExamPassed={(lvl) => {
+            setShowExamModal(false);
+            toast.success(`Chúc mừng bạn đã vượt qua bài thi khắt khe Level ${lvl}!`);
+          }}
+        />
       )}
 
       <style>{`

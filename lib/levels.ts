@@ -1,15 +1,21 @@
 /* ─── User Level System ─────────────────────────────────────────── */
 
 export const LEVELS = [
-  { level: 1, name: "Tò mò", minXp: 0, color: "stone" },
-  { level: 2, name: "Học viên", minXp: 100, color: "stone" },
-  { level: 3, name: "Nhà đầu tư", minXp: 300, color: "stone" },
-  { level: 4, name: "Nhà phân tích", minXp: 600, color: "stone" },
-  { level: 5, name: "Cố vấn Tài chính", minXp: 1200, color: "stone" },
-  { level: 6, name: "Thạo thủ Tài chính", minXp: 2000, color: "emerald" },
-  { level: 7, name: "Chuyên gia Tài chính", minXp: 3200, color: "emerald" },
-  { level: 8, name: "Bậc thầy Tài chính", minXp: 5000, color: "amber" },
-  { level: 9, name: "Chuyên viên CFA", minXp: 7000, minCfaCompleted: 5, color: "amber" },
+  { level: 1, name: "Tò mò", minXp: 0, color: "stone", emoji: "🌱" },
+  { level: 2, name: "Học viên", minXp: 100, color: "stone", emoji: "🎒" },
+  { level: 3, name: "Nhà đầu tư", minXp: 300, color: "stone", emoji: "💼" },
+  { level: 4, name: "Nhà phân tích", minXp: 600, color: "stone", emoji: "📊" },
+  { level: 5, name: "Cố vấn Tài chính", minXp: 1200, color: "stone", emoji: "🛡️" },
+  { level: 6, name: "Thạo thủ Tài chính", minXp: 2000, color: "emerald", emoji: "👑" },
+  { level: 7, name: "Chuyên gia Tài chính", minXp: 3200, color: "emerald", emoji: "🔥" },
+  { level: 8, name: "Bậc thầy Tài chính", minXp: 5000, color: "amber", emoji: "💎" },
+  { level: 9, name: "Chuyên viên CFA", minXp: 7500, minCfaCompleted: 5, color: "amber", emoji: "🎓" },
+  { level: 10, name: "Huyền thoại Đầu tư", minXp: 10500, color: "rose", emoji: "🦁" },
+  { level: 11, name: "Giám đốc Quỹ Hedge Fund", minXp: 14500, color: "purple", emoji: "🏛️" },
+  { level: 12, name: "Quản lý Danh mục Chiến lược", minXp: 19500, color: "indigo", emoji: "🌐" },
+  { level: 13, name: "Bậc thầy Phân tích Thị trường", minXp: 25500, color: "sky", emoji: "🚀" },
+  { level: 14, name: "Lãnh đạo Tài chính Tối cao", minXp: 32500, color: "teal", emoji: "⚡" },
+  { level: 15, name: "Đại Thuyền trưởng Phố Wall", minXp: 40000, color: "amber", emoji: "🔱" },
 ];
 
 /** Mở khóa tất cả mọi công trình Game Kingdom từ Level 1 */
@@ -118,16 +124,16 @@ export function getLevelProgress(currentXp: number) {
   if (!nextLevel) return 100; // Max level reached
 
   const xpInCurrentLevel = currentXp - currentLevel.minXp;
-  const xpNeededForLevel = nextLevel.minXp - currentLevel.minXp;
+  const xpNeededForLevel = nextLevel.minXp - currentXp;
 
   return Math.round((xpInCurrentLevel / xpNeededForLevel) * 100);
 }
 
-/* ─── XP Constants ──────────────────────────────────────────────── */
+/* ─── XP Constants (Chống lạm phát XP) ───────────────────────────────── */
 
 export const XP_VALUES = {
-  LESSON_COMPLETED: 100, // Tăng lên 100 XP cơ bản theo thiết kế mới
-  QUIZ_ANSWERED: 5,
-  QUIZ_PERFECT: 50, // Hoàn thành 100% quiz nhận 50 XP bonus
+  LESSON_COMPLETED: 40, // Thắt chặt lại 40 XP thay vì 100 XP
+  QUIZ_ANSWERED: 2,     // 2 XP cho mỗi câu quiz đúng
+  QUIZ_PERFECT: 15,     // 15 XP thưởng hoàn thành 100% quiz
 };
 
