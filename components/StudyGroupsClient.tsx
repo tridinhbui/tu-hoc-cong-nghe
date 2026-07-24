@@ -92,15 +92,35 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
   const [messages, setMessages] = useState<StudyRoomMessage[]>([]);
   const [messageInput, setMessageInput] = useState("");
   const [sendingMessage, setSendingMessage] = useState(false);
-  const [viewAngle3D, setViewAngle3D] = useState<number>(0);
-  const [stageMousePos, setStageMousePos] = useState<{ x: number; y: number }>({ x: 0, y: 0 });
+  const [rotation3D, setRotation3D] = useState<{ x: number; y: number }>({ x: 20, y: 0 });
+  const [isDragging3D, setIsDragging3D] = useState(false);
   const [activeMapNode, setActiveMapNode] = useState<string | null>(null);
+  const dragStartRef = useRef<{ x: number; y: number }>({ x: 0, y: 0 });
+  const rotationStartRef = useRef<{ x: number; y: number }>({ x: 20, y: 0 });
 
-  const handleStageMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
-    const rect = e.currentTarget.getBoundingClientRect();
-    const x = ((e.clientX - rect.left) / rect.width - 0.5) * 2; // -1 to 1
-    const y = ((e.clientY - rect.top) / rect.height - 0.5) * 2; // -1 to 1
-    setStageMousePos({ x, y });
+  const handleStageMouseDown = (e: React.MouseEvent<HTMLDivElement> | React.TouchEvent<HTMLDivElement>) => {
+    setIsDragging3D(true);
+    const clientX = "touches" in e ? e.touches[0].clientX : e.clientX;
+    const clientY = "touches" in e ? e.touches[0].clientY : e.clientY;
+    dragStartRef.current = { x: clientX, y: clientY };
+    rotationStartRef.current = { ...rotation3D };
+  };
+
+  const handleStageMouseMove = (e: React.MouseEvent<HTMLDivElement> | React.TouchEvent<HTMLDivElement>) => {
+    if (!isDragging3D) return;
+    const clientX = "touches" in e ? e.touches[0].clientX : e.clientX;
+    const clientY = "touches" in e ? e.touches[0].clientY : e.clientY;
+    const deltaX = clientX - dragStartRef.current.x;
+    const deltaY = clientY - dragStartRef.current.y;
+
+    setRotation3D({
+      x: Math.max(-10, Math.min(65, rotationStartRef.current.x - deltaY * 0.4)),
+      y: rotationStartRef.current.y + deltaX * 0.5,
+    });
+  };
+
+  const handleStageMouseUp = () => {
+    setIsDragging3D(false);
   };
   const messagesEndRef = useRef<HTMLDivElement>(null);
 
@@ -421,11 +441,18 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
 
             {/* Main 2-Column Split View */}
             <div className="flex-1 min-h-0 grid grid-cols-1 lg:grid-cols-12 gap-3 sm:gap-4 overflow-hidden">
-              {/* LEFT COLUMN: Compact 3D Spatial Table Stage (Height ~2/3 viewport height) */}
+              {/* LEFT COLUMN: Compact 3D Spatial Table Stage with Interactive Drag Control */}
               <div
+                onMouseDown={handleStageMouseDown}
                 onMouseMove={handleStageMouseMove}
-                onMouseLeave={() => setStageMousePos({ x: 0, y: 0 })}
-                className="lg:col-span-7 flex flex-col h-full max-h-[60vh] sm:max-h-[460px] min-h-0 rounded-2xl border border-stone-800 bg-stone-950 p-3 sm:p-3.5 shadow-2xl relative overflow-hidden text-white justify-between select-none my-auto"
+                onMouseUp={handleStageMouseUp}
+                onMouseLeave={handleStageMouseUp}
+                onTouchStart={handleStageMouseDown}
+                onTouchMove={handleStageMouseMove}
+                onTouchEnd={handleStageMouseUp}
+                className={`lg:col-span-7 flex flex-col h-full max-h-[60vh] sm:max-h-[460px] min-h-0 rounded-2xl border border-stone-800 bg-stone-950 p-3 sm:p-3.5 shadow-2xl relative overflow-hidden text-white justify-between select-none my-auto transition-colors ${
+                  isDragging3D ? "cursor-grabbing border-emerald-500/70" : "cursor-grab"
+                }`}
                 style={{ perspective: "800px", perspectiveOrigin: "50% 45%" }}
               >
                 {/* Ambient Radial Lighting & Starfield Grid Background */}
@@ -440,11 +467,14 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
                     </span>
                     <button
                       type="button"
-                      onClick={() => setViewAngle3D((prev) => (prev + 45) % 360)}
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        setRotation3D({ x: 20, y: 0 });
+                      }}
                       className="text-[9px] font-bold text-stone-300 bg-stone-900/90 hover:bg-stone-800 px-2 py-0.5 rounded-full border border-stone-700 transition-all cursor-pointer"
-                      title="Xoay góc nhìn 3D"
+                      title="Đặt lại góc 3D ban đầu"
                     >
-                      📐 Xoay 3D ({viewAngle3D}°)
+                      🔄 Đặt lại góc 3D
                     </button>
                   </div>
 
@@ -482,13 +512,13 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
                   </div>
                 </div>
 
-                {/* ── 3D SPATIAL TILT CONTAINER (Intimate & Cozy Spatial Desk) ── */}
+                {/* ── 3D SPATIAL DRAG ROTATION CANVAS ── */}
                 <motion.div
                   animate={{
-                    rotateX: 16 - stageMousePos.y * 6,
-                    rotateY: stageMousePos.x * 12 + viewAngle3D,
+                    rotateX: rotation3D.x,
+                    rotateY: rotation3D.y,
                   }}
-                  transition={{ type: "spring", stiffness: 220, damping: 24 }}
+                  transition={isDragging3D ? { type: "tween", duration: 0 } : { type: "spring", stiffness: 200, damping: 20 }}
                   className="relative flex-1 min-h-0 w-full flex items-center justify-center my-auto transition-transform duration-200"
                   style={{ transformStyle: "preserve-3d" }}
                 >
@@ -624,7 +654,7 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
 
                 {/* Footer hint */}
                 <div className="relative z-30 shrink-0 text-center text-[10px] text-stone-400 font-semibold pt-1">
-                  💡 Di chuột để nghiêng nhẹ · Các thành viên ngồi quanh bàn cùng học bài!
+                  🖐️ Nhấn giữ & Kéo chuột để xoay không gian 3D 360° · Bấm 🔄 để đặt lại góc
                 </div>
               </div>
 
