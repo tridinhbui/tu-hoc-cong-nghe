@@ -695,10 +695,10 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
 
                   {/* 4 Interactive Holographic 3D Landmarks on Map Floor */}
                   {[
-                    { id: "valuation", name: "Định Giá", icon: "🏰", pos: "absolute top-1 left-2 sm:left-6" },
-                    { id: "trading", name: "Giao Dịch", icon: "🏛️", pos: "absolute top-1 right-2 sm:right-6" },
-                    { id: "cashflow", name: "Dòng Tiền", icon: "⚓", pos: "absolute bottom-1 left-2 sm:left-6" },
-                    { id: "fed", name: "Lãi Suất", icon: "⚡", pos: "absolute bottom-1 right-2 sm:right-6" },
+                    { id: "valuation", name: "Định Giá", icon: "🏰", pos: "absolute top-2 left-[20%] sm:left-[28%]" },
+                    { id: "trading", name: "Giao Dịch", icon: "🏛️", pos: "absolute top-2 right-[20%] sm:right-[28%]" },
+                    { id: "cashflow", name: "Dòng Tiền", icon: "⚓", pos: "absolute bottom-2 left-[20%] sm:left-[28%]" },
+                    { id: "fed", name: "Lãi Suất", icon: "⚡", pos: "absolute bottom-2 right-[20%] sm:right-[28%]" },
                   ].map((node) => (
                     <motion.button
                       key={node.id}
@@ -716,14 +716,14 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
                     </motion.button>
                   ))}
 
-                  {/* 🪑 TIGHTLY POSITIONED MEMBER POD SEATS (SÁT LẠI GẦN NHAU HƠN) */}
+                  {/* 🪑 INTIMATE COZY MEMBER POD SEATS (KÉO SÁT NGỒI XUNG QUANH BÀN TRÒN 3D) */}
                   {(() => {
                     const seatClasses = [
-                      "absolute -top-5 left-1/2 -translate-x-1/2 z-20", // Seat 0: Top Center (Sát ngay phía trên bàn)
-                      "absolute top-4 left-3 sm:left-6 z-20",            // Seat 1: Top Left
-                      "absolute top-4 right-3 sm:right-6 z-20",          // Seat 2: Top Right
-                      "absolute bottom-2 left-3 sm:left-6 z-20",         // Seat 3: Bottom Left
-                      "absolute bottom-2 right-3 sm:right-6 z-20",       // Seat 4: Bottom Right
+                      "absolute top-2 sm:top-4 left-1/2 -translate-x-1/2 z-20",       // Seat 0: Top Center (Sát ngay phía trên bàn)
+                      "absolute top-8 sm:top-10 left-[18%] sm:left-[26%] z-20",         // Seat 1: Top Left (Kéo sát vào phía bàn)
+                      "absolute top-8 sm:top-10 right-[18%] sm:right-[26%] z-20",       // Seat 2: Top Right (Kéo sát vào phía bàn)
+                      "absolute bottom-4 sm:bottom-6 left-[18%] sm:left-[26%] z-20",    // Seat 3: Bottom Left (Kéo sát vào phía bàn)
+                      "absolute bottom-4 sm:bottom-6 right-[18%] sm:right-[26%] z-20",  // Seat 4: Bottom Right (Kéo sát vào phía bàn)
                     ];
 
                     const sortedMembers = [...myRoomMembers].sort((a, b) => b.weekly_lessons - a.weekly_lessons);
