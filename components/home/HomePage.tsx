@@ -1183,21 +1183,7 @@ export default function HomePage() {
           </ScrollReveal>
         </section>
 
-        {/* ── TRACKS ── */}
-        <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 lg:py-20">
-          <ScrollReveal className="max-w-2xl mb-8">
-            <p className="text-xs font-extrabold text-emerald-600 dark:text-emerald-400 uppercase tracking-widest mb-2">
-              Lộ trình
-            </p>
-            <h2 className="text-3xl lg:text-4xl font-bold text-stone-900 dark:text-stone-100">
-              Chọn lộ trình phù hợp với bạn
-            </h2>
-          </ScrollReveal>
 
-          <ScrollReveal className="max-w-2xl">
-            <TrackPreviewPanel previewTrack={previewTrack} setPreviewTrack={setPreviewTrack} />
-          </ScrollReveal>
-        </section>
       </div>
 
       {/* ── FINAL CTA ── */}
