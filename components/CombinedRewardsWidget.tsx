@@ -270,10 +270,10 @@ export default function CombinedRewardsWidget({ userId, defaultExpanded = false,
       {isExpanded && (
         <div className={`border-t border-stone-100 dark:border-stone-850 ${compact ? "flex-1 flex flex-col min-h-0" : ""}`}>
           {/* Tabs */}
-          <div className={`flex gap-1 bg-stone-50/50 dark:bg-stone-950/35 ${compact ? "p-2" : "p-1.5"}`}>
+          <div className={`flex gap-1 bg-stone-50/50 dark:bg-stone-950/35 overflow-x-auto scrollbar-none ${compact ? "p-2" : "p-1.5"}`}>
             <button
               onClick={() => setActiveTab("daily")}
-              className={`flex-1 text-[10.5px] px-2 py-1.5 rounded-lg transition-all relative overflow-hidden flex items-center justify-center gap-1 ${
+              className={`flex-1 text-[10px] sm:text-[10.5px] px-1.5 sm:px-2 py-1.5 rounded-lg transition-all relative overflow-hidden shrink-0 flex items-center justify-center gap-1 ${
                 activeTab === "daily"
                   ? "bg-white dark:bg-stone-900 text-stone-900 dark:text-stone-100 shadow-sm font-black"
                   : dailyQuests.length > 0 && dailyQuests.some((q) => !q.claimed)
@@ -288,7 +288,7 @@ export default function CombinedRewardsWidget({ userId, defaultExpanded = false,
             </button>
             <button
               onClick={() => setActiveTab("chests")}
-              className={`flex-1 text-[10.5px] font-black px-2 py-1.5 rounded-lg transition-all relative overflow-hidden flex items-center justify-center gap-1.5 ${
+              className={`flex-1 text-[10px] sm:text-[10.5px] font-black px-1.5 sm:px-2 py-1.5 rounded-lg transition-all relative overflow-hidden shrink-0 flex items-center justify-center gap-1.5 ${
                 activeTab === "chests"
                   ? "bg-white dark:bg-stone-900 text-stone-900 dark:text-stone-100 shadow-sm border border-stone-200 dark:border-stone-800"
                   : chestCount > 0
@@ -304,13 +304,13 @@ export default function CombinedRewardsWidget({ userId, defaultExpanded = false,
             </button>
             <button
               onClick={() => setActiveTab("weekly")}
-              className={`flex-1 text-[10px] font-bold px-2 py-1.5 rounded-lg transition-all ${
+              className={`flex-1 text-[10px] sm:text-[10.5px] font-black px-1.5 sm:px-2 py-1.5 rounded-lg transition-all relative overflow-hidden shrink-0 flex items-center justify-center gap-1.5 ${
                 activeTab === "weekly"
-                  ? "bg-white dark:bg-stone-900 text-stone-900 dark:text-stone-100 shadow-sm"
-                  : "text-stone-500 dark:text-stone-400 hover:text-stone-700 dark:hover:text-stone-300"
+                  ? "bg-white dark:bg-stone-900 text-stone-900 dark:text-stone-100 shadow-sm border border-stone-200 dark:border-stone-800"
+                  : "text-stone-500 dark:text-stone-400 hover:text-stone-700 dark:hover:text-stone-300 font-bold"
               }`}
             >
-              Nhiệm Vụ Tuần
+              <span>Nhiệm Vụ Tuần</span>
             </button>
           </div>
 

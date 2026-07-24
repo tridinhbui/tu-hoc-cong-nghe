@@ -240,7 +240,7 @@ export default function DailyQuestsWidget({ userId, embedded = false, onQuestsLo
           return (
             <div
               key={quest.id}
-              className={`p-3 rounded-2xl border transition-all duration-300 group/item flex items-center gap-3.5 ${
+              className={`p-3 rounded-2xl border transition-all duration-300 group/item flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-2.5 sm:gap-3.5 ${
                 quest.claimed
                   ? "bg-stone-500/[0.01] dark:bg-stone-950/[0.01] border-stone-150 dark:border-stone-850 opacity-60"
                   : isDone
@@ -248,52 +248,54 @@ export default function DailyQuestsWidget({ userId, embedded = false, onQuestsLo
                   : "bg-white dark:bg-stone-900 border-stone-200 dark:border-stone-800 hover:border-emerald-500/40 dark:hover:border-emerald-500/30 hover:shadow-[0_4px_12px_-4px_rgba(16,185,129,0.06)]"
               }`}
             >
-              {/* Left Icon Area */}
-              <div className="shrink-0">
-                {quest.claimed ? (
-                  <div className="w-9 h-9 rounded-xl bg-emerald-50 dark:bg-emerald-950/20 text-emerald-500 flex items-center justify-center border border-emerald-100 dark:border-emerald-900/30">
-                    <CheckCircle2 className="w-4.5 h-4.5" />
-                  </div>
-                ) : (
-                  (() => {
-                    let IconComponent = BookOpen;
-                    let colorClass = "bg-indigo-50 dark:bg-indigo-950/30 text-indigo-500 border-indigo-100 dark:border-indigo-900/20";
-                    if (quest.id === "daily_2") {
-                      IconComponent = Gamepad2;
-                      colorClass = "bg-sky-50 dark:bg-sky-950/30 text-sky-500 border-sky-100 dark:border-sky-900/20";
-                    } else if (quest.id === "daily_3") {
-                      IconComponent = Award;
-                      colorClass = "bg-amber-50 dark:bg-amber-950/30 text-amber-600 dark:text-amber-400 border-amber-100 dark:border-amber-900/20";
-                    }
-                    return (
-                      <div className={`w-9 h-9 rounded-xl border flex items-center justify-center transition-transform group-hover/item:scale-105 duration-300 ${colorClass}`}>
-                        <IconComponent className="w-4.5 h-4.5" />
-                      </div>
-                    );
-                  })()
-                )}
-              </div>
+              <div className="flex items-center gap-3 min-w-0 flex-1">
+                {/* Left Icon Area */}
+                <div className="shrink-0">
+                  {quest.claimed ? (
+                    <div className="w-8 h-8 sm:w-9 sm:h-9 rounded-xl bg-emerald-50 dark:bg-emerald-950/20 text-emerald-500 flex items-center justify-center border border-emerald-100 dark:border-emerald-900/30">
+                      <CheckCircle2 className="w-4 h-4 sm:w-4.5 sm:h-4.5" />
+                    </div>
+                  ) : (
+                    (() => {
+                      let IconComponent = BookOpen;
+                      let colorClass = "bg-indigo-50 dark:bg-indigo-950/30 text-indigo-500 border-indigo-100 dark:border-indigo-900/20";
+                      if (quest.id === "daily_2") {
+                        IconComponent = Gamepad2;
+                        colorClass = "bg-sky-50 dark:bg-sky-950/30 text-sky-500 border-sky-100 dark:border-sky-900/20";
+                      } else if (quest.id === "daily_3") {
+                        IconComponent = Award;
+                        colorClass = "bg-amber-50 dark:bg-amber-950/30 text-amber-600 dark:text-amber-400 border-amber-100 dark:border-amber-900/20";
+                      }
+                      return (
+                        <div className={`w-8 h-8 sm:w-9 sm:h-9 rounded-xl border flex items-center justify-center transition-transform group-hover/item:scale-105 duration-300 ${colorClass}`}>
+                          <IconComponent className="w-4 h-4 sm:w-4.5 sm:h-4.5" />
+                        </div>
+                      );
+                    })()
+                  )}
+                </div>
 
-              {/* Text Info */}
-              <div className="min-w-0 flex-1">
-                <p className={`text-xs sm:text-sm font-extrabold transition-colors duration-250 ${
-                  quest.claimed 
-                    ? "text-stone-400 line-through" 
-                    : isDone 
-                    ? "text-amber-600 dark:text-amber-450" 
-                    : "text-stone-900 dark:text-stone-100 group-hover/item:text-emerald-600 dark:group-hover/item:text-emerald-450"
-                }`}>
-                  {quest.title}
-                </p>
-                <p className={`text-[10px] mt-0.5 leading-snug transition-colors duration-250 line-clamp-1 ${
-                  quest.claimed
-                    ? "text-stone-400"
-                    : "text-stone-500 dark:text-stone-400 group-hover/item:text-stone-700 dark:group-hover/item:text-stone-355"
-                }`}>{quest.description}</p>
+                {/* Text Info */}
+                <div className="min-w-0 flex-1">
+                  <p className={`text-xs sm:text-sm font-extrabold transition-colors duration-250 leading-snug ${
+                    quest.claimed 
+                      ? "text-stone-400 line-through" 
+                      : isDone 
+                      ? "text-amber-600 dark:text-amber-450" 
+                      : "text-stone-900 dark:text-stone-100 group-hover/item:text-emerald-600 dark:group-hover/item:text-emerald-450"
+                  }`}>
+                    {quest.title}
+                  </p>
+                  <p className={`text-[10px] mt-0.5 leading-snug transition-colors duration-250 line-clamp-1 ${
+                    quest.claimed
+                      ? "text-stone-400"
+                      : "text-stone-500 dark:text-stone-400 group-hover/item:text-stone-700 dark:group-hover/item:text-stone-355"
+                  }`}>{quest.description}</p>
+                </div>
               </div>
 
               {/* Action Buttons */}
-              <div className="shrink-0 flex items-center gap-2">
+              <div className="shrink-0 flex items-center justify-between sm:justify-end gap-2 w-full sm:w-auto pt-1 sm:pt-0 border-t sm:border-t-0 border-stone-100 dark:border-stone-800/60">
                 {quest.claimed ? (
                   <span className="text-[10px] font-black text-emerald-600 dark:text-emerald-450 bg-emerald-50 dark:bg-emerald-950/30 px-2.5 py-1.5 rounded-lg border border-emerald-100 dark:border-emerald-900/30 uppercase tracking-wider">
                     Đã nhận
@@ -302,7 +304,7 @@ export default function DailyQuestsWidget({ userId, embedded = false, onQuestsLo
                   <button
                     onClick={() => handleClaim(quest)}
                     disabled={claimingId !== null}
-                    className="px-3 py-1.5 text-[10.5px] font-black rounded-lg bg-gradient-to-r from-amber-500 via-orange-500 to-amber-600 text-white shadow-[0_3px_8px_-2px_rgba(245,158,11,0.45)] hover:scale-105 active:scale-95 transition-all animate-bounce cursor-pointer flex items-center gap-1"
+                    className="w-full sm:w-auto justify-center px-3 py-1.5 text-[10.5px] font-black rounded-lg bg-gradient-to-r from-amber-500 via-orange-500 to-amber-600 text-white shadow-[0_3px_8px_-2px_rgba(245,158,11,0.45)] hover:scale-105 active:scale-95 transition-all animate-bounce cursor-pointer flex items-center gap-1"
                   >
                     Nhận +{quest.xpReward} XP <Gift className="w-3.5 h-3.5" />
                   </button>
