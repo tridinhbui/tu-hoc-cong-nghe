@@ -28,7 +28,7 @@ export const TRACKS = {
       "Chặng 6-7 - Định giá cổ phiếu, trái phiếu và tín dụng",
       "Chặng 8-9 - Danh mục đầu tư và công cụ phái sinh",
       "Chặng 11 - Vận hành tài chính doanh nghiệp hiện đại (sắp ra mắt)",
-      "Chặng 13 - AI in Finance, Prompt Engineering và trợ lý phân tích",
+      "Chặng 13 - AI trong tài chính: đọc báo cáo, phân tích tin và viết memo",
     ],
     previewSlug: "ke-toan-la-gi",
     previewLabel: "Day 21: Kế toán là ngôn ngữ của kinh doanh",

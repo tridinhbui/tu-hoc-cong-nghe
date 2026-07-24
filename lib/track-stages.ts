@@ -276,13 +276,13 @@ export const TRACK_PROFESSIONAL = {
     },
     {
       label: "Chặng 13",
-      name: "AI in Finance cho người Không Chuyên Tech: Prompt Engineering & Trợ lý AI",
+      name: "AI trong Tài chính: Dùng ChatGPT/Claude để đọc báo cáo, phân tích và viết memo",
       days: [1261, 1270] as [number, number],
       available: true,
       isNew: true,
       parts: [
-        { name: "Prompt Engineering & Bóc Tách BCTC Tự Động", days: [1261, 1265] as [number, number] },
-        { name: "Trợ Lý AI, Phân Tích Tin Tức & Bộ Prompts Thực Chiến", days: [1266, 1270] as [number, number] },
+        { name: "Bắt đầu an toàn: giao việc cho AI, đọc BCTC và tóm tắt họp", days: [1261, 1265] as [number, number] },
+        { name: "Ứng dụng thực tế: tin tức, trợ lý riêng, báo cáo và project cuối chặng", days: [1266, 1270] as [number, number] },
       ],
     },
   ] satisfies Stage[],
@@ -305,8 +305,8 @@ export const PROFESSIONAL_BRANCHES = [
   },
   {
     id: "ai",
-    label: "AI in Finance",
-    subtitle: "Prompt Engineering, bóc tách BCTC, trợ lý AI & automation",
+    label: "AI trong tài chính",
+    subtitle: "Dùng ChatGPT/Claude để đọc báo cáo, phân tích tin và viết memo",
     emoji: "🤖",
     stageLabels: ["Chặng 13"],
   },
