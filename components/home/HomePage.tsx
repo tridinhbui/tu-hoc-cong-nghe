@@ -462,6 +462,44 @@ export default function HomePage() {
           </ScrollReveal>
         </section>
 
+        {/* ── SOCIAL PROOF ── */}
+        <section className="bg-stone-50/50 dark:bg-stone-900/20 backdrop-blur-md py-16 lg:py-20 relative border-y border-stone-150/40 dark:border-stone-850/40">
+          <div className="max-w-6xl mx-auto px-6 grid lg:grid-cols-2 gap-8 items-start">
+            <ScrollReveal>
+              <p className="text-xs font-black text-emerald-600 dark:text-emerald-400 uppercase tracking-widest mb-2">
+                Cộng đồng thật
+              </p>
+              <h2 className="text-3xl font-black text-stone-900 dark:text-stone-100 mb-4 leading-snug">
+                Học viên nổi bật đang học mỗi ngày, từ tài chính cá nhân đến CFA và nghề nghiệp tài chính
+              </h2>
+              <PublicLeaderboardPreview />
+            </ScrollReveal>
+
+            <ScrollReveal delay={0.1}>
+              <ul className="space-y-3">
+                {[
+                  "Không dùng thử giới hạn ngày",
+                  "Không quảng cáo xen giữa bài học",
+                  "Nội dung được cập nhật và mở rộng liên tục",
+                ].map((line) => (
+                  <li key={line} className="flex items-center gap-2.5 text-sm text-stone-600 dark:text-stone-400 font-medium">
+                    <CheckCircle2 className="w-4 h-4 text-emerald-500 flex-shrink-0" />
+                    {line}
+                  </li>
+                ))}
+              </ul>
+
+              <Link
+                href="/login?mode=signup"
+                className="mt-6 inline-flex items-center gap-2 text-sm font-black text-emerald-700 dark:text-emerald-400 hover:text-emerald-800 dark:hover:text-emerald-300 transition-colors"
+              >
+                Vào học cùng cộng đồng
+                <ArrowRight className="w-4 h-4" />
+              </Link>
+            </ScrollReveal>
+          </div>
+        </section>
+
         {/* ── GAME KINGDOM PREVIEW ── */}
         <section className="relative max-w-6xl mx-auto px-6 py-14 lg:py-18">
           <ScrollReveal className="max-w-3xl mb-8">
@@ -686,44 +724,6 @@ export default function HomePage() {
                 </ScrollReveal>
               ))}
             </div>
-          </div>
-        </section>
-
-        {/* ── SOCIAL PROOF ── */}
-        <section className="bg-stone-50/50 dark:bg-stone-900/20 backdrop-blur-md py-16 lg:py-20 relative border-y border-stone-150/40 dark:border-stone-850/40">
-          <div className="max-w-6xl mx-auto px-6 grid lg:grid-cols-2 gap-8 items-start">
-            <ScrollReveal>
-              <p className="text-xs font-black text-emerald-600 dark:text-emerald-400 uppercase tracking-widest mb-2">
-                Cộng đồng thật
-              </p>
-              <h2 className="text-3xl font-black text-stone-900 dark:text-stone-100 mb-4 leading-snug">
-                Học viên nổi bật đang học mỗi ngày, từ tài chính cá nhân đến CFA và nghề nghiệp tài chính
-              </h2>
-              <PublicLeaderboardPreview />
-            </ScrollReveal>
-
-            <ScrollReveal delay={0.1}>
-              <ul className="space-y-3">
-                {[
-                  "Không dùng thử giới hạn ngày",
-                  "Không quảng cáo xen giữa bài học",
-                  "Nội dung được cập nhật và mở rộng liên tục",
-                ].map((line) => (
-                  <li key={line} className="flex items-center gap-2.5 text-sm text-stone-600 dark:text-stone-400 font-medium">
-                    <CheckCircle2 className="w-4 h-4 text-emerald-500 flex-shrink-0" />
-                    {line}
-                  </li>
-                ))}
-              </ul>
-
-              <Link
-                href="/login?mode=signup"
-                className="mt-6 inline-flex items-center gap-2 text-sm font-black text-emerald-700 dark:text-emerald-400 hover:text-emerald-800 dark:hover:text-emerald-300 transition-colors"
-              >
-                Vào học cùng cộng đồng
-                <ArrowRight className="w-4 h-4" />
-              </Link>
-            </ScrollReveal>
           </div>
         </section>
 
