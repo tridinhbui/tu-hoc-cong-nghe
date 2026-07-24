@@ -7,7 +7,19 @@ import InteractiveMoneyVsAsset from "./InteractiveMoneyVsAsset";
 import InteractiveCashFlowSimulator from "./InteractiveCashFlowSimulator";
 import InteractiveInflationCalculator from "./InteractiveInflationCalculator";
 
-export type WidgetType = "interest-rate" | "supply-demand" | "profit-calc" | "roe" | "bond" | "money-vs-asset" | "cash-flow-simulator" | "inflation-calculator";
+export type WidgetType =
+  | "interest-rate"
+  | "supply-demand"
+  | "profit-calc"
+  | "roe"
+  | "bond"
+  | "money-vs-asset"
+  | "cash-flow-simulator"
+  | "inflation-calculator"
+  | "process"
+  | "budget"
+  | "chart"
+  | "risk";
 
 export default function InteractiveWidget({ type }: { type: WidgetType }) {
   switch (type) {

@@ -37,13 +37,9 @@ import LessonTableOfContents from "@/components/LessonTableOfContents";
 import { getLessonDisplayLabel } from "@/lib/lesson-labels";
 import ShareCompletionButton from "@/components/ShareCompletionButton";
 import WisdomCardFlip from "@/components/WisdomCardFlip";
+import type { QuizQuestion } from "@/lib/lesson-types";
 
-export interface QuizQuestion {
-  question: string;
-  options: string[];
-  correct: number;
-  explanation: string;
-}
+export type { QuizQuestion };
 
 export interface LessonMeta {
   id: number;

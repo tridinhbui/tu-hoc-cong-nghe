@@ -58,7 +58,7 @@ export async function getQuizMistakesReviewAction(userId: string): Promise<QuizM
       question: question.question,
       options: question.options,
       correct: question.correct,
-      explanation: question.explanation,
+      explanation: question.explanation ?? "",
       wrongCount: row.wrong_count,
       lastAttemptAt: row.last_attempt_at,
     });

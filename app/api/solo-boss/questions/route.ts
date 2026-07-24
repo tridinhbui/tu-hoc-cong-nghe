@@ -55,7 +55,7 @@ export async function GET() {
         prompt: question.question,
         options: order.map((i) => question.options[i]),
         correct,
-        explanation: question.explanation,
+        explanation: question.explanation ?? "",
         lessonTitle: lesson.title,
       });
     }

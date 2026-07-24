@@ -122,7 +122,7 @@ export async function GET(request: NextRequest) {
         question: q.question,
         options: q.options,
         correct: q.correct,
-        explanation: q.explanation,
+        explanation: q.explanation ?? "",
       });
     }
   }

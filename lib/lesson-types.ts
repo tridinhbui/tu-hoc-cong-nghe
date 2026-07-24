@@ -34,7 +34,7 @@ export interface QuizQuestion {
   question: string;
   options: string[];
   correct: number;
-  explanation: string;
+  explanation?: string;
 }
 
 // Rich, hand-written content blocks for a lesson's article body.
@@ -64,10 +64,12 @@ export type LessonSectionBlock =
 
 export interface Lesson {
   id: number;
+  day?: number;
   slug: string;
   title: string;
   subtitle: string;
   duration: string;
+  estimatedMinutes?: number;
   difficulty: Difficulty;
   emoji: string;
   openingQuestion: string;
@@ -92,7 +94,11 @@ export interface Lesson {
     | "bond"
     | "money-vs-asset"
     | "cash-flow-simulator"
-    | "inflation-calculator";
+    | "inflation-calculator"
+    | "process"
+    | "budget"
+    | "chart"
+    | "risk";
   realWorldExample: {
     company: string;
     description: string;
