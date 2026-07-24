@@ -237,6 +237,9 @@ export default function FinancialGuildWidget({ userId }: { userId: string }) {
 
   const filteredStocks = selectedSector === "all" ? stocks : stocks.filter((s) => s.sector === selectedSector);
 
+  const [showGuide, setShowGuide] = useState(true);
+
+  // Time Simulator Advance Buttons
   return (
     <div className="h-full min-h-0 bg-white border-2 border-amber-200 rounded-3xl p-5 sm:p-7 shadow-xl text-stone-900 relative overflow-hidden flex flex-col">
       {/* Visual Background Lighting */}
@@ -259,17 +262,25 @@ export default function FinancialGuildWidget({ userId }: { userId: string }) {
           </h2>
         </div>
 
-        {/* Time Simulator Advance Buttons */}
+        {/* Time Simulator Advance Buttons & Guide Toggle */}
         <div className="flex items-center gap-2 flex-wrap">
           <button
+            onClick={() => setShowGuide(!showGuide)}
+            className="bg-amber-50 hover:bg-amber-100 text-amber-900 border border-amber-300 font-bold text-xs px-3.5 py-2.5 rounded-xl transition-all shadow-2xs flex items-center gap-1.5 cursor-pointer"
+          >
+            <BookOpen className="w-4 h-4 text-amber-700" />
+            <span>{showGuide ? "Ẩn hướng dẫn" : "📖 Hướng dẫn cách chơi"}</span>
+          </button>
+
+          <button
             onClick={() => advanceDays(7)}
-            className="bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-400 hover:to-amber-500 text-stone-950 font-black text-xs px-4 py-2.5 rounded-xl transition-all shadow-md flex items-center gap-1.5 cursor-pointer"
+            className="bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-400 hover:to-amber-500 text-stone-950 font-black text-xs px-4 py-2.5 rounded-xl transition-all shadow-md flex items-center gap-1.5 cursor-pointer active:scale-95"
           >
             <Calendar className="w-4 h-4" /> Tua +7 Ngày
           </button>
           <button
             onClick={() => advanceDays(30)}
-            className="bg-gradient-to-r from-emerald-500 to-teal-500 hover:from-emerald-400 hover:to-teal-400 text-stone-950 font-black text-xs px-4 py-2.5 rounded-xl transition-all shadow-md flex items-center gap-1.5 cursor-pointer"
+            className="bg-gradient-to-r from-emerald-500 to-teal-500 hover:from-emerald-400 hover:to-teal-400 text-stone-950 font-black text-xs px-4 py-2.5 rounded-xl transition-all shadow-md flex items-center gap-1.5 cursor-pointer active:scale-95"
           >
             <Zap className="w-4 h-4" /> Tua +30 Ngày
           </button>
@@ -284,6 +295,70 @@ export default function FinancialGuildWidget({ userId }: { userId: string }) {
       </div>
 
       <div className="flex-1 min-h-0 overflow-y-auto pr-1">
+        {/* 📖 GAME PLAY GUIDE ACCORDION BANNER */}
+        <AnimatePresence>
+          {showGuide && (
+            <motion.div
+              initial={{ opacity: 0, height: 0 }}
+              animate={{ opacity: 1, height: "auto" }}
+              exit={{ opacity: 0, height: 0 }}
+              className="mb-6 rounded-2xl border-2 border-amber-300 bg-gradient-to-br from-amber-50/90 via-orange-50/50 to-amber-50/80 p-4 sm:p-5 shadow-md overflow-hidden text-stone-900"
+            >
+              <div className="flex items-center justify-between gap-3 mb-3 border-b border-amber-200/80 pb-2.5">
+                <div className="flex items-center gap-2">
+                  <span className="text-xl">💡</span>
+                  <h4 className="text-sm font-black uppercase text-amber-900 tracking-wider">
+                    Hướng Dẫn Chi Tiết Cách Chơi Mô Phỏng Quỹ Đầu Tư
+                  </h4>
+                </div>
+                <button
+                  onClick={() => setShowGuide(false)}
+                  className="text-stone-400 hover:text-stone-700 text-xs font-extrabold cursor-pointer"
+                >
+                  ✕ Đóng
+                </button>
+              </div>
+
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 text-xs">
+                <div className="bg-white/95 border border-amber-200 rounded-xl p-3 shadow-2xs space-y-1">
+                  <span className="text-[10px] font-black text-amber-800 uppercase tracking-wider block">
+                    1️⃣ Vốn Ban Đầu 1 Tỷ
+                  </span>
+                  <p className="text-stone-700 font-semibold leading-relaxed">
+                    Bạn được cấp <strong className="text-amber-800">1,000,000,000 VNĐ</strong> tiền mặt ban đầu để đóng vai Quản lý Quỹ Hedge Fund chuyên nghiệp.
+                  </p>
+                </div>
+
+                <div className="bg-white/95 border border-emerald-200 rounded-xl p-3 shadow-2xs space-y-1">
+                  <span className="text-[10px] font-black text-emerald-800 uppercase tracking-wider block">
+                    2️⃣ Mua / Bán VN30
+                  </span>
+                  <p className="text-stone-700 font-semibold leading-relaxed">
+                    Chọn các mã cổ phiếu đầu ngành (<strong className="text-emerald-800">FPT, VNM, HPG, TCB...</strong>) bấm <strong className="text-emerald-700">MUA</strong> giải ngân hoặc <strong className="text-rose-600">BÁN</strong> chốt lời.
+                  </p>
+                </div>
+
+                <div className="bg-white/95 border border-sky-200 rounded-xl p-3 shadow-2xs space-y-1">
+                  <span className="text-[10px] font-black text-sky-800 uppercase tracking-wider block">
+                    3️⃣ Tua Thời Gian & Tin Tức
+                  </span>
+                  <p className="text-stone-700 font-semibold leading-relaxed">
+                    Bấm <strong className="text-sky-800">Tua +7 Ngày</strong> hoặc <strong className="text-sky-800">+30 Ngày</strong> để theo dõi biến động giá cổ phiếu & phản ứng với các tin vĩ mô.
+                  </p>
+                </div>
+
+                <div className="bg-white/95 border border-purple-200 rounded-xl p-3 shadow-2xs space-y-1">
+                  <span className="text-[10px] font-black text-purple-800 uppercase tracking-wider block">
+                    4️⃣ Đua Top BXH & Thưởng
+                  </span>
+                  <p className="text-stone-700 font-semibold leading-relaxed">
+                    Tăng trưởng giá trị tổng quỹ để leo Top trên <strong className="text-purple-800">BXH Quỹ Server</strong> + tích lũy XP & Coin thưởng.
+                  </p>
+                </div>
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
       {/* Fund Capital Dashboard Card */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
         <div className="bg-amber-50/70 border border-amber-200 p-4 rounded-2xl">
