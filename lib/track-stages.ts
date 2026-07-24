@@ -264,15 +264,6 @@ export const TRACK_PROFESSIONAL = {
       ],
     },
     {
-      // IDs 1241-1243 and 1250-1252 are NOT contiguous (1244-1249 in between
-      // belong to unrelated career cross-reference lessons, tagged with no
-      // explicit track) - the stage-level `days` field only spans [1241,1243]
-      // intentionally, so isLessonIdInTrack's professional-track fallback
-      // check doesn't accidentally sweep in those unrelated career lessons.
-      // All 6 lessons here carry an explicit `track: "professional"` already,
-      // so they don't depend on this range for their own classification -
-      // only the two `parts` below (with their own tight day ranges) matter
-      // for where they actually render.
       label: "Chặng 12",
       name: "Tâm lý học tài chính hành vi nâng cao (Behavioral Finance)",
       days: [1241, 1243] as [number, number],
@@ -283,15 +274,20 @@ export const TRACK_PROFESSIONAL = {
         { name: "Quản lý danh mục & thiết kế sản phẩm", days: [1250, 1252] as [number, number] },
       ],
     },
+    {
+      label: "Chặng 13",
+      name: "AI in Finance: Trí tuệ nhân tạo, Algorithmic Trading & FinTech",
+      days: [1261, 1270] as [number, number],
+      available: true,
+      isNew: true,
+      parts: [
+        { name: "Tổng quan AI & Trading Thuật Toán", days: [1261, 1265] as [number, number] },
+        { name: "Generative AI, NLP & Tương Lai Tài Chính 2030", days: [1266, 1270] as [number, number] },
+      ],
+    },
   ] satisfies Stage[],
 };
 
-// TRACK_PROFESSIONAL's 11 stages presented as 2 choosable branches, purely
-// a presentation-layer split (no lesson ids/tracks change - a lesson's
-// track membership still comes from its stage's day range, same as
-// before). Chặng 1-5 (accounting/valuation fundamentals) + 11 (FP&A/
-// treasury/cost accounting) read as corporate-finance-flavored; Chặng 6-10
-// (equities/bonds/portfolios/derivatives) read as investment-flavored.
 export const PROFESSIONAL_BRANCHES = [
   {
     id: "corporate",
