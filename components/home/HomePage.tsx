@@ -406,7 +406,7 @@ export default function HomePage() {
               className="inline-flex items-center justify-center gap-1.5 text-sm font-black text-white hover:underline whitespace-nowrap"
             >
               Tham gia group Facebook
-              <ArrowRight className="w-4 h-4" />
+              <ArrowRight className="icon-micro w-4 h-4" />
             </a>
           </div>
         </div>
@@ -428,7 +428,7 @@ export default function HomePage() {
               className="cta-electric group inline-flex items-center gap-2 rounded-[20px] border border-emerald-200/80 dark:border-emerald-800 bg-gradient-to-r from-emerald-500 to-teal-500 px-4 py-2.5 text-sm font-bold text-white shadow-[0_12px_28px_-20px_rgba(16,185,129,0.35)] transition-all hover:shadow-[0_16px_34px_-22px_rgba(16,185,129,0.45)]"
             >
               Vào học ngay
-              <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-0.5" />
+              <ArrowRight className="icon-micro w-4 h-4 transition-transform group-hover:translate-x-0.5" />
             </Link>
           </div>
         </header>
@@ -516,7 +516,7 @@ export default function HomePage() {
                     className="cta-electric group inline-flex items-center gap-2 rounded-[20px] bg-stone-950 px-6 py-3.5 text-base font-black text-white shadow-[0_16px_34px_-24px_rgba(15,23,42,0.38)] transition-all duration-200 ease-out hover:-translate-y-1 hover:scale-[1.015] active:scale-[0.98] hover:bg-stone-900 dark:bg-stone-100 dark:text-stone-900 dark:hover:bg-white"
                   >
                     Bắt đầu học miễn phí
-                    <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-0.5" />
+                    <ArrowRight className="icon-micro w-4 h-4 transition-transform group-hover:translate-x-0.5" />
                   </Link>
                   <a
                     href={`/bai-hoc/${TRACKS.personal.previewSlug}`}
@@ -718,7 +718,7 @@ export default function HomePage() {
             <ScrollReveal delay={0.1}>
               <div className="rounded-[1.75rem] border border-stone-200 bg-white p-5 shadow-sm dark:border-stone-800 dark:bg-stone-900">
                 <div className="inline-flex items-center gap-2 rounded-full border border-emerald-200 bg-emerald-50 px-3 py-1 text-[10px] font-black uppercase tracking-[0.16em] text-emerald-700 dark:border-emerald-900 dark:bg-emerald-950/30 dark:text-emerald-300">
-                  <Sparkles className="h-3.5 w-3.5" />
+                  <Sparkles className="icon-bounce h-3.5 w-3.5" />
                   Vì sao cộng đồng này giữ chân người học
                 </div>
 
@@ -729,7 +729,7 @@ export default function HomePage() {
                     "Nội dung được cập nhật và mở rộng liên tục",
                   ].map((line) => (
                     <div key={line} className="flex items-start gap-2.5 rounded-[18px] border border-stone-100 bg-stone-50/80 px-3.5 py-3 dark:border-stone-800 dark:bg-stone-950/40">
-                      <CheckCircle2 className="w-4 h-4 text-emerald-500 flex-shrink-0 mt-0.5" />
+                      <CheckCircle2 className="icon-micro w-4 h-4 text-emerald-500 flex-shrink-0 mt-0.5" />
                       <span className="text-sm text-stone-600 dark:text-stone-400 font-medium leading-relaxed">{line}</span>
                     </div>
                   ))}
@@ -757,7 +757,7 @@ export default function HomePage() {
                   className="mt-5 inline-flex w-full items-center justify-center gap-2 rounded-[18px] bg-stone-900 px-4 py-3 text-sm font-black text-white transition hover:bg-emerald-600 dark:bg-stone-100 dark:text-stone-900 dark:hover:bg-emerald-300"
                 >
                   Vào học cùng cộng đồng
-                  <ArrowRight className="w-4 h-4" />
+                  <ArrowRight className="icon-micro w-4 h-4" />
                 </Link>
               </div>
             </ScrollReveal>
@@ -892,7 +892,7 @@ export default function HomePage() {
                     </div>
                     <div className="rounded-[18px] border border-amber-300/30 bg-amber-300/10 p-4">
                       <div className="flex items-center gap-2">
-                        <Trophy className="h-4 w-4 text-amber-200" />
+                        <Trophy className="icon-bounce h-4 w-4 text-amber-200" />
                         <p className="text-sm font-black text-white">Nhiệm vụ nổi bật</p>
                       </div>
                       <div className="mt-3 space-y-2">
@@ -972,7 +972,7 @@ export default function HomePage() {
                             key={bullet}
                             className="inline-flex items-center gap-1.5 rounded-full border border-emerald-100 bg-emerald-50 px-3 py-1 text-[11px] font-bold text-emerald-800 dark:border-emerald-900/50 dark:bg-emerald-950/30 dark:text-emerald-300"
                           >
-                            <CheckCircle2 className="h-3.5 w-3.5" />
+                            <CheckCircle2 className="icon-micro h-3.5 w-3.5" />
                             {bullet}
                           </span>
                         ))}
@@ -983,7 +983,7 @@ export default function HomePage() {
                         className="mt-5 inline-flex items-center gap-2 text-sm font-black text-stone-950 transition-colors hover:text-emerald-700 dark:text-stone-100 dark:hover:text-emerald-300"
                       >
                         {cta}
-                        <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
+                        <ArrowRight className="icon-micro h-4 w-4 transition-transform group-hover:translate-x-0.5" />
                       </Link>
                     </div>
                   </article>
@@ -1215,7 +1215,7 @@ export default function HomePage() {
         <section className="relative overflow-hidden bg-stone-900 dark:bg-stone-950">
           <div className="pointer-events-none absolute -bottom-24 left-1/2 -translate-x-1/2 w-[36rem] h-[36rem] rounded-full bg-emerald-500/20 blur-2xl" />
           <ScrollReveal className="relative max-w-3xl mx-auto px-6 py-20 text-center">
-            <ShieldCheck className="w-10 h-10 text-emerald-400 mx-auto mb-4" />
+            <ShieldCheck className="icon-bounce w-10 h-10 text-emerald-400 mx-auto mb-4" />
             <h2 className="text-3xl lg:text-4xl font-bold text-white mb-4">Sẵn sàng hiểu tiền bạc của chính mình?</h2>
             <p className="text-stone-300 leading-relaxed mb-8 max-w-xl mx-auto">
               Không mất phí, không cần thẻ, học ngay trong 30 giây.
@@ -1225,7 +1225,7 @@ export default function HomePage() {
               className="inline-flex items-center gap-2 bg-white hover:bg-stone-100 text-stone-900 font-bold px-7 py-4 rounded-[18px] transition-all shadow-[0_12px_28px_-20px_rgba(15,23,42,0.24)] active:scale-[0.98]"
             >
               Bắt đầu học miễn phí
-              <ArrowRight className="w-4 h-4" />
+              <ArrowRight className="icon-micro w-4 h-4" />
             </Link>
           </ScrollReveal>
         </section>
