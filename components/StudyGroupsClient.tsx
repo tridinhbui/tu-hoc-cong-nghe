@@ -410,9 +410,9 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
             </div>
 
             {/* Main 2-Column Split View */}
-            <div className="flex-1 min-h-0 grid grid-cols-1 lg:grid-cols-12 gap-3 sm:gap-4">
+            <div className="flex-1 min-h-0 grid grid-cols-1 lg:grid-cols-12 gap-3 sm:gap-4 overflow-hidden">
               {/* LEFT COLUMN: 3D Isometric Roundtable Stage */}
-              <div className="lg:col-span-7 flex flex-col min-h-[380px] sm:min-h-[420px] rounded-2xl border border-stone-800 bg-stone-950 p-3.5 shadow-xl relative overflow-hidden text-white justify-between">
+              <div className="lg:col-span-7 flex flex-col h-full min-h-0 rounded-2xl border border-stone-800 bg-stone-950 p-3 sm:p-3.5 shadow-xl relative overflow-hidden text-white justify-between">
                 {/* 3D Perspective Grid Background */}
                 <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(#10b981_1.5px,transparent_1.5px)] [background-size:24px_24px] opacity-[0.14]" />
                 <div className="pointer-events-none absolute -top-24 left-1/2 -translate-x-1/2 w-96 h-48 bg-emerald-500/15 rounded-full blur-3xl" />
@@ -460,13 +460,13 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
                 </div>
 
                 {/* Center 3D Isometric Study Desk & Radially Positioned Member Seats */}
-                <div className="relative flex-1 min-h-[280px] w-full flex items-center justify-center my-auto">
+                <div className="relative flex-1 min-h-0 w-full flex items-center justify-center my-auto">
                   {/* Central 3D Roundtable */}
-                  <div className="relative w-32 h-32 sm:w-40 sm:h-40 rounded-full bg-gradient-to-b from-stone-850 via-stone-900 to-stone-950 border-2 border-emerald-500/60 shadow-[0_0_40px_rgba(16,185,129,0.2)] flex flex-col items-center justify-center text-center p-2 z-10 shrink-0">
+                  <div className="relative w-28 h-28 sm:w-36 sm:h-36 rounded-full bg-gradient-to-b from-stone-850 via-stone-900 to-stone-950 border-2 border-emerald-500/60 shadow-[0_0_40px_rgba(16,185,129,0.2)] flex flex-col items-center justify-center text-center p-2 z-10 shrink-0">
                     <div className="absolute inset-1.5 rounded-full border border-dashed border-emerald-400/30 animate-spin-slow pointer-events-none" />
                     
                     <div className="relative z-10">
-                      <span className="text-xl sm:text-2xl mb-0.5 inline-block">🔮</span>
+                      <span className="text-lg sm:text-2xl mb-0.5 inline-block">🔮</span>
                       <p className="text-[8px] sm:text-[9px] font-black text-emerald-300 uppercase tracking-widest">
                         BÀN HỌC {topicLabel(myRoom.topic).toUpperCase()}
                       </p>
@@ -483,10 +483,10 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
                   {(() => {
                     const seatClasses = [
                       "absolute top-1 left-1/2 -translate-x-1/2 z-20", // Seat 0: Top Center
-                      "absolute top-3 left-1 sm:left-4 z-20",           // Seat 1: Top Left
-                      "absolute top-3 right-1 sm:right-4 z-20",         // Seat 2: Top Right
-                      "absolute bottom-1 left-1 sm:left-4 z-20",        // Seat 3: Bottom Left
-                      "absolute bottom-1 right-1 sm:right-4 z-20",      // Seat 4: Bottom Right
+                      "absolute top-2 left-1 sm:left-3 z-20",           // Seat 1: Top Left
+                      "absolute top-2 right-1 sm:right-3 z-20",         // Seat 2: Top Right
+                      "absolute bottom-1 left-1 sm:left-3 z-20",        // Seat 3: Bottom Left
+                      "absolute bottom-1 right-1 sm:right-3 z-20",      // Seat 4: Bottom Right
                     ];
 
                     const sortedMembers = [...myRoomMembers].sort((a, b) => b.weekly_lessons - a.weekly_lessons);
@@ -499,7 +499,7 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
                         return (
                           <div
                             key={member.user_id}
-                            className={`${posClass} flex flex-col items-center text-center p-1.5 rounded-xl border transition-all duration-300 w-20 sm:w-24 bg-stone-900/90 backdrop-blur-md ${
+                            className={`${posClass} flex flex-col items-center text-center p-1 sm:p-1.5 rounded-xl border transition-all duration-300 w-18 sm:w-22 bg-stone-900/90 backdrop-blur-md ${
                               isMe
                                 ? "border-emerald-400 bg-emerald-950/80 shadow-[0_0_15px_rgba(16,185,129,0.4)] scale-105"
                                 : "border-stone-800 hover:border-emerald-400/60"
@@ -507,21 +507,21 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
                           >
                             {/* Top Learner Crown */}
                             {idx === 0 && (
-                              <span className="absolute -top-3 text-sm animate-bounce drop-shadow-md z-30" title="Top 1 Bài học tuần này">
+                              <span className="absolute -top-3 text-xs animate-bounce drop-shadow-md z-30" title="Top 1 Bài học tuần này">
                                 👑
                               </span>
                             )}
 
                             <div className="relative mb-0.5">
                               <div className={`rounded-full p-0.5 ${isMe ? "ring-2 ring-emerald-400" : "ring-1 ring-stone-700"}`}>
-                                <Avatar name={member.full_name} avatarUrl={member.avatar_url} size={28} />
+                                <Avatar name={member.full_name} avatarUrl={member.avatar_url} size={26} />
                               </div>
                               <span className="absolute -bottom-1 left-1/2 -translate-x-1/2 text-[7px] font-black uppercase text-white bg-emerald-600 px-1 py-0.1 rounded-full shadow-xs whitespace-nowrap">
                                 Lv.{member.current_level}
                               </span>
                             </div>
 
-                            <p className="text-[9px] font-black text-white truncate max-w-[70px]" title={member.full_name || "Thành viên"}>
+                            <p className="text-[9px] font-black text-white truncate max-w-[64px]" title={member.full_name || "Thành viên"}>
                               {member.full_name || "Thành viên"}{isMe ? " (Bạn)" : ""}
                             </p>
                             <span className="text-[8px] font-extrabold text-emerald-400 mt-0.5">
@@ -534,7 +534,7 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
                       return (
                         <div
                           key={`empty-${idx}`}
-                          className={`${posClass} flex flex-col items-center justify-center p-1.5 rounded-xl border border-dashed border-stone-800 bg-stone-900/40 text-stone-500 text-center w-20 sm:w-24 min-h-[70px] backdrop-blur-xs`}
+                          className={`${posClass} flex flex-col items-center justify-center p-1 sm:p-1.5 rounded-xl border border-dashed border-stone-800 bg-stone-900/40 text-stone-500 text-center w-18 sm:w-22 min-h-[64px] backdrop-blur-xs`}
                         >
                           <span className="text-xs mb-0.5 opacity-50">🪑</span>
                           <span className="text-[8px] font-bold text-stone-400 uppercase">Ghế trống</span>
@@ -551,7 +551,7 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
               </div>
 
               {/* RIGHT COLUMN: Full-Height Group Chat Box */}
-              <div className="lg:col-span-5 flex flex-col h-full min-h-0 bg-white dark:bg-stone-900 border-2 border-stone-200 dark:border-stone-800 rounded-3xl overflow-hidden shadow-xl p-3.5">
+              <div className="lg:col-span-5 flex flex-col h-full min-h-0 bg-white dark:bg-stone-900 border border-stone-200 dark:border-stone-800 rounded-2xl overflow-hidden shadow-xl p-3 sm:p-3.5">
                 <h3 className="text-xs font-black text-stone-900 dark:text-stone-100 uppercase tracking-widest mb-2 shrink-0 flex items-center justify-between">
                   <span>💬 Trò chuyện nhóm</span>
                   <span className="text-[10px] font-bold text-emerald-600 dark:text-emerald-400 bg-emerald-50 dark:bg-emerald-950/60 px-2 py-0.5 rounded-full border border-emerald-200 dark:border-emerald-800">
