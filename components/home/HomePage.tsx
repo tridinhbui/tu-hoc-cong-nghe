@@ -30,7 +30,6 @@ import ProductPreview from "@/components/home/ProductPreview";
 import TrackPreviewPanel from "@/components/login/TrackPreviewPanel";
 import PublicLeaderboardPreview from "@/components/login/PublicLeaderboardPreview";
 import { useRoutePrefetch } from "@/lib/use-route-prefetch";
-import { getLeaderboardByMetric, type LeaderboardRow } from "@/lib/supabase-user";
 
 // Each pain point is framed as the visitor's actual internal objection
 // before signing up for yet another "learn finance" product - not a
@@ -159,7 +158,6 @@ export default function HomePage() {
   const [displayedUserCount, setDisplayedUserCount] = useState(0);
   const [displayedLessonCount, setDisplayedLessonCount] = useState(0);
   const [displayedCompletedCount, setDisplayedCompletedCount] = useState(0);
-  const [publicLeaderboard, setPublicLeaderboard] = useState<LeaderboardRow[]>([]);
   const [heroSpotlight, setHeroSpotlight] = useState({ x: 50, y: 35 });
   // Plain (non-animated) rounded-down count for inline copy ("360+ bài
   // học..." in the hero paragraph and pain-point card) - the animated
@@ -171,32 +169,6 @@ export default function HomePage() {
   const completedCountLoadedRef = useRef(false);
   const heroParallaxX = (heroSpotlight.x - 50) / 10;
   const heroParallaxY = (heroSpotlight.y - 35) / 10;
-  const heroChartBars = [
-    {
-      label: "Người học",
-      value: displayedUserCount,
-      max: Math.max(displayedUserCount, displayedCompletedCount, displayedLessonCount, 1000),
-      tone: "from-emerald-300 to-emerald-500",
-    },
-    {
-      label: "Bài học",
-      value: displayedLessonCount,
-      max: Math.max(displayedUserCount, displayedCompletedCount, displayedLessonCount, 1000),
-      tone: "from-cyan-300 to-emerald-400",
-    },
-    {
-      label: "Hoàn thành",
-      value: displayedCompletedCount,
-      max: Math.max(displayedUserCount, displayedCompletedCount, displayedLessonCount, 1000),
-      tone: "from-amber-200 to-amber-400",
-    },
-    {
-      label: "Top XP",
-      value: publicLeaderboard[0]?.value ?? 0,
-      max: Math.max(displayedUserCount, displayedCompletedCount, displayedLessonCount, publicLeaderboard[0]?.value ?? 0, 1000),
-      tone: "from-orange-300 to-amber-500",
-    },
-  ];
 
   useRoutePrefetch(["/login", "/login?mode=signup", `/bai-hoc/${TRACKS.personal.previewSlug}`], { delayMs: 500 });
 
@@ -270,18 +242,6 @@ export default function HomePage() {
     return () => {
       cancelledRef.current = true;
       window.clearInterval(intervalId);
-    };
-  }, []);
-
-  useEffect(() => {
-    let cancelled = false;
-    getLeaderboardByMetric("xp", 4)
-      .then((rows) => {
-        if (!cancelled) setPublicLeaderboard(rows);
-      })
-      .catch((error) => console.error("Error loading homepage leaderboard data:", error));
-    return () => {
-      cancelled = true;
     };
   }, []);
 
@@ -646,10 +606,10 @@ export default function HomePage() {
                     <div className="flex items-center justify-between gap-3">
                       <div className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/10 px-3 py-1 text-[10px] font-black uppercase tracking-[0.16em] text-emerald-200 backdrop-blur">
                         <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-emerald-300" />
-                        Trung tâm chỉ huy
+                        Đang học thật
                       </div>
                       <div className="rounded-full border border-amber-300/30 bg-amber-300/10 px-3 py-1 text-[10px] font-black uppercase tracking-[0.16em] text-amber-100">
-                        Live Mode
+                        Bài 24
                       </div>
                     </div>
 
@@ -662,37 +622,55 @@ export default function HomePage() {
                       >
                         <div className="mb-3 flex items-center justify-between gap-2">
                           <div>
-                            <p className="text-[10px] font-black uppercase tracking-[0.16em] text-stone-400">Biểu đồ 3D</p>
-                            <p className="mt-1 text-sm font-black text-white">Tiến độ học trong tuần</p>
+                            <p className="text-[10px] font-black uppercase tracking-[0.16em] text-emerald-200">Bài học hôm nay</p>
+                            <p className="mt-1 text-lg font-black leading-tight text-white">Đọc chỉ số P/E trong 5 phút</p>
                           </div>
                           <div className="rounded-full bg-emerald-400/10 px-2.5 py-1 text-[10px] font-black text-emerald-200">
-                            72% tiến độ
+                            72% hiểu bài
                           </div>
                         </div>
-                        <div className="flex h-44 items-end gap-2 rounded-[1.35rem] border border-white/10 bg-stone-950/45 px-4 pb-4 pt-6">
-                          {heroChartBars.map((bar, index) => (
-                            <div key={bar.label} className="group flex flex-1 flex-col items-center gap-2">
-                              <div className="relative h-full w-full">
-                                <div className="absolute inset-x-1 bottom-0 h-full rounded-t-[18px] bg-white/5" />
-                                <div
-                                  className={`absolute inset-x-1 bottom-0 rounded-t-[18px] bg-gradient-to-t ${bar.tone} shadow-[0_18px_24px_-20px_rgba(16,185,129,0.45)]`}
-                                  style={{
-                                    height: `${Math.max(16, (bar.value / bar.max) * 100)}%`,
-                                    transform: `perspective(600px) translate3d(${(index - 2.5) * 1.2}px, ${(heroParallaxY * index) / 18}px, 0) rotateX(16deg)`,
-                                    transformOrigin: "bottom center",
-                                  }}
-                                />
-                                <div className="absolute inset-x-1 bottom-0 h-4 rounded-b-[18px] bg-white/15 blur-[1px]" />
+                        <div className="rounded-[1.35rem] border border-white/10 bg-stone-950/45 p-4">
+                          <div className="rounded-[18px] bg-white/8 p-3">
+                            <div className="flex items-start justify-between gap-3">
+                              <div>
+                                <p className="text-[10px] font-black uppercase tracking-[0.14em] text-stone-400">Ví dụ trong bài</p>
+                                <p className="mt-1 text-sm font-bold leading-snug text-white">
+                                  Công ty A có EPS = 5.000đ, giá cổ phiếu = 75.000đ. P/E bằng bao nhiêu?
+                                </p>
                               </div>
-                              <span className="text-[10px] font-black uppercase tracking-[0.14em] text-stone-300">{bar.label}</span>
+                              <div className="rounded-full bg-amber-300/15 px-2 py-1 text-[10px] font-black text-amber-100">P/E</div>
                             </div>
-                          ))}
+                            <div className="mt-3 grid grid-cols-3 gap-2 text-center">
+                              {[
+                                ["Giá", "75.000đ"],
+                                ["EPS", "5.000đ"],
+                                ["P/E", "15 lần"],
+                              ].map(([label, value]) => (
+                                <div key={label} className="rounded-[14px] bg-stone-950/45 px-2 py-2">
+                                  <p className="text-[9px] font-black uppercase tracking-[0.12em] text-stone-500">{label}</p>
+                                  <p className="mt-1 text-sm font-black text-white">{value}</p>
+                                </div>
+                              ))}
+                            </div>
+                          </div>
+                          <div className="mt-3 space-y-2">
+                            {[
+                              ["1", "P/E thấp chưa chắc rẻ nếu lợi nhuận đang giảm"],
+                              ["2", "So sánh P/E trong cùng ngành sẽ có ý nghĩa hơn"],
+                              ["3", "Luôn kiểm tra chất lượng lợi nhuận bằng dòng tiền"],
+                            ].map(([step, text]) => (
+                              <div key={step} className="flex items-center gap-2 rounded-[14px] bg-white/7 px-3 py-2 text-xs font-bold text-stone-200">
+                                <span className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-emerald-300/15 text-[10px] text-emerald-100">{step}</span>
+                                {text}
+                              </div>
+                            ))}
+                          </div>
                         </div>
                         <div className="mt-3 grid grid-cols-3 gap-2">
                           {[
-                            ["Bài học", displayedLessonCount.toLocaleString("vi-VN")],
+                            ["Bài học", "5 phút"],
                             ["Quiz đúng", `${Math.max(72, Math.min(98, (displayedCompletedCount % 100) || 78))}%`],
-                            ["XP top", `${publicLeaderboard[0]?.value?.toLocaleString("vi-VN") ?? "0"} XP`],
+                            ["Ôn lại", "Sau 5 bài"],
                           ].map(([label, value]) => (
                             <div key={label} className="rounded-[16px] border border-white/10 bg-white/8 px-3 py-2">
                               <p className="text-[10px] font-black uppercase tracking-[0.14em] text-stone-400">{label}</p>
@@ -709,9 +687,12 @@ export default function HomePage() {
                             transform: `perspective(1200px) translate3d(${heroParallaxX * 1.1}px, ${heroParallaxY * 0.8}px, 0) rotateY(${heroParallaxX * 0.7}deg)`,
                           }}
                         >
-                          <p className="text-[10px] font-black uppercase tracking-[0.16em] text-stone-300">Cộng đồng</p>
-                          <p className="mt-2 text-sm font-black text-white">FinSocial + Học nhóm</p>
-                          <p className="mt-1 text-xs leading-relaxed text-stone-300">Đọc phân tích ngắn, hỏi đáp nhanh, giữ nhịp với nhóm học mỗi ngày.</p>
+                          <p className="text-[10px] font-black uppercase tracking-[0.16em] text-stone-300">Quiz nhanh</p>
+                          <p className="mt-2 text-sm font-black text-white">P/E = Giá / EPS?</p>
+                          <div className="mt-3 space-y-2">
+                            <div className="rounded-full bg-emerald-300/18 px-3 py-2 text-xs font-black text-emerald-100">Đúng: 15 lần</div>
+                            <div className="rounded-full bg-white/8 px-3 py-2 text-xs font-bold text-stone-300">Sai: 0,15 lần</div>
+                          </div>
                         </div>
                         <div
                           className="rounded-[1.45rem] border border-white/12 bg-white/10 p-4 backdrop-blur-sm"
@@ -719,16 +700,17 @@ export default function HomePage() {
                             transform: `perspective(1200px) translate3d(${heroParallaxX * 1.6}px, ${heroParallaxY * 1.15}px, 0) rotateY(${heroParallaxX * 0.9}deg)`,
                           }}
                         >
-                          <p className="text-[10px] font-black uppercase tracking-[0.16em] text-stone-300">Game Kingdom</p>
-                          <p className="mt-2 text-sm font-black text-white">Mở khóa bằng kiến thức</p>
+                          <p className="text-[10px] font-black uppercase tracking-[0.16em] text-stone-300">Flashcard</p>
+                          <p className="mt-2 text-sm font-black text-white">P/E là gì?</p>
+                          <p className="mt-1 text-xs leading-relaxed text-stone-300">Số năm lợi nhuận hiện tại cần để hoàn vốn nếu mọi thứ giữ nguyên.</p>
                           <div className="mt-2 h-1.5 overflow-hidden rounded-full bg-white/10">
                             <div className="preview-progress-live h-full w-3/4 rounded-full bg-gradient-to-r from-amber-300 to-emerald-300" />
                           </div>
                         </div>
                         <div className="rounded-[1.45rem] border border-emerald-300/20 bg-emerald-400/10 p-4 backdrop-blur-sm">
-                          <p className="text-[10px] font-black uppercase tracking-[0.16em] text-emerald-200">Bản xem trước</p>
-                          <p className="mt-2 text-sm font-black text-white">Card lơ lửng + parallax</p>
-                          <p className="mt-1 text-xs leading-relaxed text-stone-300">Di chuột qua hero để thấy lớp sáng và độ nổi thay đổi nhẹ theo vị trí con trỏ.</p>
+                          <p className="text-[10px] font-black uppercase tracking-[0.16em] text-emerald-200">Ghi chú mẫu</p>
+                          <p className="mt-2 text-sm font-black text-white">Không mua chỉ vì P/E thấp</p>
+                          <p className="mt-1 text-xs leading-relaxed text-stone-300">Luôn hỏi: lợi nhuận có bền không, dòng tiền có thật không?</p>
                         </div>
                       </div>
                     </div>
