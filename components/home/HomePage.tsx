@@ -1205,24 +1205,6 @@ export default function HomePage() {
           <ScrollReveal className="max-w-2xl">
             <TrackPreviewPanel previewTrack={previewTrack} setPreviewTrack={setPreviewTrack} />
           </ScrollReveal>
-
-          <ScrollReveal delay={0.08} className="mt-6">
-            <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 rounded-[18px] border border-emerald-100 dark:border-emerald-900/40 bg-emerald-50/70 dark:bg-emerald-950/20 px-5 py-4">
-              <div>
-                <p className="text-sm font-bold text-stone-900 dark:text-stone-100">Chưa chắc nên đi track nào?</p>
-                <p className="text-sm text-stone-600 dark:text-stone-400 mt-1">
-                  Tạo tài khoản và vào thẳng bài đầu tiên, hệ thống sẽ giúp bạn chỉnh lại hành trình sau.
-                </p>
-              </div>
-              <Link
-                href="/login?mode=signup"
-                className="inline-flex items-center justify-center gap-2 rounded-[18px] bg-stone-900 hover:bg-stone-800 dark:bg-stone-100 dark:hover:bg-white px-5 py-3 text-sm font-bold text-white dark:text-stone-900 transition-colors whitespace-nowrap"
-              >
-                Tạo hành trình học
-                <ArrowRight className="w-4 h-4" />
-              </Link>
-            </div>
-          </ScrollReveal>
         </section>
       </div>
 
