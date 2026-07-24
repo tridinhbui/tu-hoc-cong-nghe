@@ -30,6 +30,7 @@ import ProductPreview from "@/components/home/ProductPreview";
 import TrackPreviewPanel from "@/components/login/TrackPreviewPanel";
 import PublicLeaderboardPreview from "@/components/login/PublicLeaderboardPreview";
 import InteractiveKingdomPreview from "@/components/home/InteractiveKingdomPreview";
+import InteractiveEcosystemShowcase from "@/components/home/InteractiveEcosystemShowcase";
 import { useRoutePrefetch } from "@/lib/use-route-prefetch";
 
 // Each pain point is framed as the visitor's actual internal objection
@@ -877,57 +878,9 @@ export default function HomePage() {
               </p>
             </ScrollReveal>
 
-            <div className="grid gap-5 lg:grid-cols-3">
-              {FEATURE_SHOWCASE.map(({ eyebrow, title, text, image, alt, icon: Icon, href, cta, bullets }, i) => (
-                <ScrollReveal key={eyebrow} delay={i * 0.08}>
-                  <article className="animated-border-card group h-full overflow-hidden rounded-[20px] border border-stone-200/80 dark:border-stone-800 bg-white dark:bg-stone-950 shadow-[0_10px_24px_-24px_rgba(15,23,42,0.2)] transition-all duration-200 ease-out hover:-translate-y-1 hover:shadow-[0_14px_30px_-24px_rgba(16,185,129,0.22)]">
-                    <div className="relative aspect-[16/10] overflow-hidden bg-stone-100 dark:bg-stone-900">
-                      <Image
-                        src={image}
-                        alt={alt}
-                        fill
-                        sizes="(max-width: 1024px) 100vw, 33vw"
-                        className="object-cover transition-transform duration-200 ease-out group-hover:scale-[1.02]"
-                      />
-                      <div className="absolute inset-0 bg-gradient-to-t from-stone-950/70 via-stone-950/10 to-transparent" />
-                      <div className="absolute left-4 top-4 inline-flex items-center gap-2 rounded-[18px] border border-white/25 bg-stone-950/70 px-3 py-2 text-xs font-black text-white backdrop-blur">
-                        <Icon className="h-4 w-4 text-emerald-300" />
-                        {eyebrow}
-                      </div>
-                    </div>
-
-                    <div className="p-5">
-                      <h3 className="text-xl font-black leading-tight text-stone-950 dark:text-stone-50">
-                        {title}
-                      </h3>
-                      <p className="mt-3 text-sm leading-relaxed text-stone-600 dark:text-stone-400">
-                        {text}
-                      </p>
-
-                      <div className="mt-4 flex flex-wrap gap-2">
-                        {bullets.map((bullet) => (
-                          <span
-                            key={bullet}
-                            className="inline-flex items-center gap-1.5 rounded-full border border-emerald-100 bg-emerald-50 px-3 py-1 text-[11px] font-bold text-emerald-800 dark:border-emerald-900/50 dark:bg-emerald-950/30 dark:text-emerald-300"
-                          >
-                            <CheckCircle2 className="icon-micro h-3.5 w-3.5" />
-                            {bullet}
-                          </span>
-                        ))}
-                      </div>
-
-                      <Link
-                        href={href}
-                        className="mt-5 inline-flex items-center gap-2 text-sm font-black text-stone-950 transition-colors hover:text-emerald-700 dark:text-stone-100 dark:hover:text-emerald-300"
-                      >
-                        {cta}
-                        <ArrowRight className="icon-micro h-4 w-4 transition-transform group-hover:translate-x-0.5" />
-                      </Link>
-                    </div>
-                  </article>
-                </ScrollReveal>
-              ))}
-            </div>
+            <ScrollReveal delay={0.08}>
+              <InteractiveEcosystemShowcase />
+            </ScrollReveal>
           </div>
         </section>
 
