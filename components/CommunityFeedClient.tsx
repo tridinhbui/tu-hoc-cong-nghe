@@ -29,6 +29,7 @@ import {
   Zap,
   Clock3,
   ChevronDown,
+  ChevronUp,
   CircleGauge,
 } from "lucide-react";
 import { createClient } from "@/lib/supabase";
@@ -290,6 +291,7 @@ export default function CommunityFeedClient({ embedded = false }: { embedded?: b
   const [reactionBurstFor, setReactionBurstFor] = useState<number | null>(null);
   const [topicMenuOpen, setTopicMenuOpen] = useState(false);
   const [templateMenuOpen, setTemplateMenuOpen] = useState(false);
+  const [rulesOpen, setRulesOpen] = useState(false);
   const userIdRef = useRef<string | null>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
 
@@ -622,62 +624,7 @@ export default function CommunityFeedClient({ embedded = false }: { embedded?: b
 
       <div className={`${embedded ? "" : "max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-[minmax(0,1fr)_300px] gap-6"} px-4 sm:px-6 py-6`}>
         <main className="min-w-0">
-        {!embedded && (
-          <div className="mb-5 grid gap-3 sm:grid-cols-[1.1fr_0.9fr_0.9fr]">
-            <motion.div
-              className="rounded-[22px] bg-white p-4 shadow-[0_14px_30px_-26px_rgba(15,23,42,0.2)] dark:bg-stone-900/80"
-              whileHover={{ y: -4 }}
-              transition={{ type: "spring", stiffness: 360, damping: 28 }}
-            >
-              <div className="flex items-center gap-3">
-                  <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-stone-100 text-stone-700 ring-1 ring-stone-200 dark:bg-stone-800 dark:text-stone-200 dark:ring-stone-700">
-                    <CircleGauge className="h-5 w-5" />
-                  </div>
-                  <div>
-                  <p className="text-[11px] font-black uppercase tracking-[0.16em] text-stone-500 dark:text-stone-400">Streak học tập</p>
-                  <p className="mt-1 text-xl font-black text-stone-950 dark:text-stone-50"><AnimatedCounter value={Math.max(0, featuredStreak)} /> ngày nổi bật</p>
-                </div>
-              </div>
-              <div className="mt-3 h-2 overflow-hidden rounded-full bg-stone-100 dark:bg-stone-800">
-                <div className="finsocial-progress-shimmer h-full w-[72%] rounded-full bg-gradient-to-r from-emerald-500 via-teal-400 to-sky-400 transition-all duration-500" />
-              </div>
-            </motion.div>
-            <motion.div
-              className="rounded-[22px] bg-white p-4 shadow-[0_14px_30px_-26px_rgba(15,23,42,0.2)] dark:bg-stone-900/80"
-              whileHover={{ y: -4 }}
-              transition={{ type: "spring", stiffness: 360, damping: 28 }}
-            >
-              <p className="text-[11px] font-black uppercase tracking-[0.16em] text-stone-400">Chủ đề hoạt động</p>
-              <p className="mt-2 text-2xl font-black text-sky-600 dark:text-sky-300"><AnimatedCounter value={activeTopics} /></p>
-              <p className="mt-1 text-sm text-stone-500 dark:text-stone-400">đang có nội dung mới trong feed</p>
-            </motion.div>
-            <motion.div
-              className="rounded-[22px] bg-white p-4 shadow-[0_14px_30px_-26px_rgba(15,23,42,0.2)] dark:bg-stone-900/80"
-              whileHover={{ y: -4 }}
-              transition={{ type: "spring", stiffness: 360, damping: 28 }}
-            >
-              <p className="text-[11px] font-black uppercase tracking-[0.16em] text-stone-400">Hoạt động hôm nay</p>
-            <div className="mt-3 grid grid-cols-7 gap-1.5">
-              {Array.from({ length: 14 }, (_, i) => (
-                <span
-                  key={i}
-                  className={`h-3 rounded-[6px] ${
-                    i % 7 === 0
-                      ? "bg-red-500/75"
-                      : i % 6 === 0
-                        ? "bg-violet-500/75"
-                        : i % 4 === 0
-                          ? "bg-sky-500/75"
-                          : i % 3 === 0
-                            ? "bg-amber-400/80"
-                            : "bg-emerald-500/80"
-                  }`}
-                />
-              ))}
-            </div>
-            </motion.div>
-          </div>
-        )}
+
 
         {!embedded && spotlightItems.length > 0 && (
           <div className="mb-5 rounded-[24px] bg-white/90 p-4 shadow-[0_14px_30px_-26px_rgba(15,23,42,0.2)] ring-1 ring-stone-100/60 dark:bg-stone-900/75 dark:ring-stone-800/60">
@@ -779,7 +726,7 @@ export default function CommunityFeedClient({ embedded = false }: { embedded?: b
               <div>
                 <p className="text-xs font-black uppercase tracking-[0.14em] text-emerald-600 dark:text-emerald-400">Tạo bài viết</p>
                 <h2 className="mt-1 text-2xl font-black text-stone-950 dark:text-stone-50">Bạn học được gì hôm nay?</h2>
-                <p className="mt-1 text-sm text-stone-500 dark:text-stone-400">Chia sẻ ngắn, rõ ý, có thể kèm ảnh hoặc ví dụ để feed dễ đọc hơn.</p>
+                <p className="mt-1 text-sm text-stone-500 dark:text-stone-400">Chia sẻ góc nhìn, phân tích hay câu hỏi của bạn để thảo luận cùng cộng đồng.</p>
               </div>
               <span className="hidden sm:inline-flex items-center gap-1 rounded-full bg-stone-100 px-2.5 py-1 text-[10px] font-black uppercase text-stone-500 dark:bg-stone-800 dark:text-stone-400">
                 Public feed
@@ -1239,16 +1186,33 @@ export default function CommunityFeedClient({ embedded = false }: { embedded?: b
 
         {!embedded && (
           <aside className="space-y-4 lg:sticky lg:top-24 self-start">
-            <div className="rounded-[22px] bg-white p-4.5 shadow-[0_14px_30px_-26px_rgba(15,23,42,0.18)] ring-1 ring-stone-100/70 dark:bg-stone-900/80 dark:ring-stone-800/60">
-              <div className="flex items-center gap-2">
-                <ShieldCheck className="h-5 w-5 text-emerald-600" />
-                <h2 className="text-sm font-black uppercase tracking-[0.14em] text-stone-900 dark:text-stone-100">Luật feed</h2>
-              </div>
-              <div className="mt-3 space-y-2 text-sm text-stone-600 dark:text-stone-300">
-                <p>Ngắn, có ích, tôn trọng nhau.</p>
-                <p>Không khuyến nghị chắc chắn, không chia sẻ dữ liệu mật.</p>
-                <p>Ưu tiên bài có ý chính, ví dụ hoặc nguồn cần kiểm chứng.</p>
-              </div>
+            <div className="rounded-[22px] bg-white p-4 shadow-[0_14px_30px_-26px_rgba(15,23,42,0.18)] ring-1 ring-stone-100/70 dark:bg-stone-900/80 dark:ring-stone-800/60">
+              <button
+                type="button"
+                onClick={() => setRulesOpen((prev) => !prev)}
+                className="w-full flex items-center justify-between gap-2 text-left cursor-pointer"
+              >
+                <div className="flex items-center gap-2">
+                  <ShieldCheck className="h-5 w-5 text-emerald-600" />
+                  <h2 className="text-sm font-black uppercase tracking-[0.14em] text-stone-900 dark:text-stone-100">Luật feed</h2>
+                </div>
+                {rulesOpen ? <ChevronUp className="h-4 w-4 text-stone-400" /> : <ChevronDown className="h-4 w-4 text-stone-400" />}
+              </button>
+
+              <AnimatePresence>
+                {rulesOpen && (
+                  <motion.div
+                    initial={{ opacity: 0, height: 0 }}
+                    animate={{ opacity: 1, height: "auto" }}
+                    exit={{ opacity: 0, height: 0 }}
+                    className="overflow-hidden mt-3 pt-3 border-t border-stone-100 dark:border-stone-800 space-y-2 text-xs font-medium text-stone-600 dark:text-stone-300"
+                  >
+                    <p>• Hữu ích, tích cực, tôn trọng nhau.</p>
+                    <p>• Không khuyến nghị chắc chắn, không chia sẻ dữ liệu mật.</p>
+                    <p>• Ưu tiên bài viết chi tiết, có ví dụ hoặc nguồn cần kiểm chứng.</p>
+                  </motion.div>
+                )}
+              </AnimatePresence>
             </div>
 
             <div className="rounded-[22px] bg-white p-4.5 shadow-[0_14px_30px_-26px_rgba(15,23,42,0.18)] ring-1 ring-stone-100/70 dark:bg-stone-900/80 dark:ring-stone-800/60">
