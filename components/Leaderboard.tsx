@@ -1,9 +1,9 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useState, useRef } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { Trophy, BookOpen, Sparkles, Crown, Medal, Award, Flame, Target, Gamepad2, Star, ShieldCheck, Zap, Shield, Gem, Briefcase, GraduationCap, Heart } from "lucide-react";
+import { Trophy, BookOpen, Sparkles, Crown, Medal, Award, Flame, Target, Gamepad2, Star, ShieldCheck, Zap, Shield, Gem, Briefcase, GraduationCap, Heart, ChevronLeft, ChevronRight } from "lucide-react";
 import { getLeaderboardByMetric, getMyLeaderboardRank, type LeaderboardMetric, type LeaderboardRow } from "@/lib/supabase-user";
 import { getCombinedGameLeaderboard } from "@/lib/games";
 import { getCareerLeaderboard, type CareerLeaderboardRow } from "@/lib/finance-careers";
@@ -428,6 +428,7 @@ export default function Leaderboard({ userId, compact = false }: { userId?: stri
   const [myRank, setMyRank] = useState<{ rank: number; value: number } | null>(null);
   const [loading, setLoading] = useState(true);
   const [switching, setSwitching] = useState(false);
+  const leadTabsRef = useRef<HTMLDivElement>(null);
 
   const activeTab = TABS.find((t) => t.metric === metric)!;
 
@@ -543,27 +544,48 @@ export default function Leaderboard({ userId, compact = false }: { userId?: stri
         </div>
 
         {/* Tab Selection */}
-        <div className="mt-4 flex gap-1 overflow-x-auto rounded-2xl bg-stone-100/90 p-1 scrollbar-none">
-          {TABS.map((tab) => {
-            const Icon = tab.icon;
-            const isActive = metric === tab.metric;
-            return (
-              <button
-                key={tab.metric}
-                onClick={() => {
-                  if (tab.metric !== metric) setMetric(tab.metric);
-                }}
-                className={`flex shrink-0 items-center gap-1.5 rounded-xl px-3 py-2 text-xs font-bold transition-all ${
-                  isActive
-                    ? "bg-white text-stone-900 shadow-md ring-1 ring-stone-200/60"
-                    : "text-stone-500 hover:bg-white/50 hover:text-stone-800"
-                }`}
-              >
-                <Icon className={`h-3.5 w-3.5 ${isActive ? "text-amber-500" : "text-stone-400"}`} />
-                <span>{tab.label}</span>
-              </button>
-            );
-          })}
+        <div className="relative mt-4 group/lead-tabs">
+          <button
+            type="button"
+            onClick={() => leadTabsRef.current?.scrollBy({ left: -160, behavior: "smooth" })}
+            className="absolute -left-2.5 top-1/2 -translate-y-1/2 z-10 w-7 h-7 rounded-full bg-white dark:bg-stone-800 border border-stone-200 dark:border-stone-700 shadow-md flex items-center justify-center text-stone-600 dark:text-stone-300 hover:bg-stone-50 dark:hover:bg-stone-700 transition-all cursor-pointer hidden sm:flex"
+            aria-label="Cuộn sang trái"
+          >
+            <ChevronLeft className="w-4 h-4" />
+          </button>
+          <button
+            type="button"
+            onClick={() => leadTabsRef.current?.scrollBy({ left: 160, behavior: "smooth" })}
+            className="absolute -right-2.5 top-1/2 -translate-y-1/2 z-10 w-7 h-7 rounded-full bg-white dark:bg-stone-800 border border-stone-200 dark:border-stone-700 shadow-md flex items-center justify-center text-stone-600 dark:text-stone-300 hover:bg-stone-50 dark:hover:bg-stone-700 transition-all cursor-pointer hidden sm:flex"
+            aria-label="Cuộn sang phải"
+          >
+            <ChevronRight className="w-4 h-4" />
+          </button>
+          <div
+            ref={leadTabsRef}
+            className="flex gap-1 overflow-x-auto rounded-2xl bg-stone-100/90 dark:bg-stone-900/90 p-1 scrollbar-none px-2 sm:px-4"
+          >
+            {TABS.map((tab) => {
+              const Icon = tab.icon;
+              const isActive = metric === tab.metric;
+              return (
+                <button
+                  key={tab.metric}
+                  onClick={() => {
+                    if (tab.metric !== metric) setMetric(tab.metric);
+                  }}
+                  className={`flex shrink-0 whitespace-nowrap items-center gap-1.5 rounded-xl px-3 py-2 text-xs font-bold transition-all cursor-pointer ${
+                    isActive
+                      ? "bg-white dark:bg-stone-800 text-stone-900 dark:text-white shadow-md ring-1 ring-stone-200/60 dark:ring-stone-700 font-extrabold"
+                      : "text-stone-500 dark:text-stone-400 hover:bg-white/50 dark:hover:bg-stone-800/50 hover:text-stone-800 dark:hover:text-stone-200"
+                  }`}
+                >
+                  <Icon className={`h-3.5 w-3.5 ${isActive ? "text-amber-500" : "text-stone-400"}`} />
+                  <span>{tab.label}</span>
+                </button>
+              );
+            })}
+          </div>
         </div>
 
         {loading ? (
