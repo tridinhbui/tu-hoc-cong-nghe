@@ -206,31 +206,29 @@ export default function CfaTrackView({ subjects, completedLessonIds }: Props) {
 
   return (
     <div className="py-2">
-      {/* ─── ALWAYS VISIBLE TOP BANNERS (3 COLUMNS 1/3 EACH) ─── */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
+      {/* ─── ALWAYS VISIBLE TOP BANNERS (LIGHT MODE, LOW HEIGHT 1/3 EACH) ─── */}
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-3.5 mb-5">
         {/* 🎯 CFA Global Continuation Summary Banner (1/3) */}
-        <div className="bg-gradient-to-br from-emerald-950 via-stone-900 to-teal-950 border-2 border-emerald-500/50 rounded-3xl p-5 text-white shadow-xl flex flex-col justify-between">
-          <div className="space-y-2">
+        <div className="bg-white dark:bg-stone-900 border border-stone-200/80 dark:border-stone-800 rounded-2xl p-4 shadow-2xs hover:shadow-xs transition-all flex flex-col justify-between">
+          <div className="space-y-1.5">
             <div className="flex flex-wrap items-center gap-1.5">
-              <span className="text-[9px] font-black uppercase tracking-widest bg-emerald-500/20 text-emerald-300 px-2.5 py-0.5 rounded-full border border-emerald-500/40">
+              <span className="text-[9px] font-black uppercase tracking-wider bg-emerald-50 dark:bg-emerald-950/50 text-emerald-700 dark:text-emerald-300 px-2 py-0.5 rounded-md border border-emerald-200/60 dark:border-emerald-800/60">
                 🎯 TIẾN ĐỘ CFA LEVEL I
               </span>
-              <span className="text-[9px] font-black uppercase tracking-widest bg-stone-800 text-stone-300 px-2 py-0.5 rounded-full border border-stone-700">
+              <span className="text-[9px] font-extrabold text-stone-500 dark:text-stone-400 bg-stone-100 dark:bg-stone-800 px-2 py-0.5 rounded-md">
                 {totalCompletedCfa}/{totalCfaLessons} ({overallPct}%)
               </span>
             </div>
-            <h2 className="text-sm font-extrabold text-white leading-snug line-clamp-2">
-              {nextGlobalLesson ? `Bài tiếp theo: ${nextGlobalLesson.title}` : "🎉 Đã hoàn thành toàn bộ lộ trình CFA!"}
+            <h2 className="text-xs sm:text-sm font-extrabold text-stone-900 dark:text-stone-100 leading-snug line-clamp-1">
+              {nextGlobalLesson ? `Bài tiếp: ${nextGlobalLesson.title}` : "🎉 Đã hoàn thành lộ trình CFA!"}
             </h2>
-            <p className="text-[11px] text-stone-300 line-clamp-2 leading-relaxed">
-              {nextGlobalLesson
-                ? `Môn: ${nextGlobalLesson.subjectName}`
-                : "Chúc mừng bạn đã hoàn thành CFA Level I."}
+            <p className="text-[10px] text-stone-500 dark:text-stone-400 line-clamp-1">
+              {nextGlobalLesson ? `Môn: ${nextGlobalLesson.subjectName}` : "Hoàn thành tất cả bài học CFA Level I."}
             </p>
 
-            <div className="w-full h-2 bg-stone-800 rounded-full overflow-hidden mt-2">
+            <div className="w-full h-1.5 bg-stone-100 dark:bg-stone-800 rounded-full overflow-hidden mt-1.5">
               <div
-                className="h-full bg-gradient-to-r from-emerald-500 to-teal-400 rounded-full transition-all duration-500"
+                className="h-full bg-emerald-500 rounded-full transition-all duration-500"
                 style={{ width: `${overallPct}%` }}
               />
             </div>
@@ -239,59 +237,59 @@ export default function CfaTrackView({ subjects, completedLessonIds }: Props) {
           {nextGlobalLesson && (
             <Link
               href={`/bai-hoc/${nextGlobalLesson.slug}`}
-              className="mt-4 px-4 py-2.5 bg-gradient-to-r from-emerald-500 to-teal-500 hover:from-emerald-400 hover:to-teal-400 font-extrabold text-xs text-stone-950 rounded-xl transition-all shadow-md shrink-0 cursor-pointer flex items-center justify-center gap-1.5 w-full text-center"
+              className="mt-3 px-3 py-2 bg-emerald-600 hover:bg-emerald-700 font-bold text-xs text-white rounded-xl transition-all shadow-2xs shrink-0 cursor-pointer flex items-center justify-center gap-1.5 w-full text-center active:scale-95"
             >
-              <PlayCircle className="w-4 h-4 fill-stone-950 text-emerald-400" />
+              <PlayCircle className="w-3.5 h-3.5 text-white" />
               <span>Học tiếp bài tiếp theo →</span>
             </Link>
           )}
         </div>
 
         {/* 📇 CFA Glossary Flashcards Banner (1/3) */}
-        <div className="bg-gradient-to-br from-stone-900 via-amber-950/40 to-stone-900 border-2 border-amber-400/60 dark:border-amber-700/60 rounded-3xl p-5 text-white shadow-xl flex flex-col justify-between">
-          <div className="space-y-2">
-            <div className="flex items-center gap-2">
-              <span className="text-2xl">📇</span>
-              <span className="text-[9px] font-black uppercase text-amber-400 bg-amber-950/80 px-2 py-0.5 rounded-full border border-amber-400/40">
+        <div className="bg-white dark:bg-stone-900 border border-stone-200/80 dark:border-stone-800 rounded-2xl p-4 shadow-2xs hover:shadow-xs transition-all flex flex-col justify-between">
+          <div className="space-y-1.5">
+            <div className="flex items-center gap-1.5">
+              <span className="text-lg">📇</span>
+              <span className="text-[9px] font-black uppercase text-amber-700 dark:text-amber-300 bg-amber-50 dark:bg-amber-950/50 px-2 py-0.5 rounded-md border border-amber-200/60 dark:border-amber-800/60">
                 FLASHCARD 3D
               </span>
             </div>
-            <h3 className="text-sm font-extrabold text-white leading-snug">
+            <h3 className="text-xs sm:text-sm font-extrabold text-stone-900 dark:text-stone-100 leading-snug">
               Bộ Thẻ Thuật Ngữ CFA Song Ngữ
             </h3>
-            <p className="text-[11px] text-stone-300 leading-relaxed line-clamp-3">
-              500+ thuật ngữ tiếng Anh chuyên ngành CFA kèm định nghĩa tiếng Việt chuẩn, công thức toán và phát âm chuẩn En-US.
+            <p className="text-[10px] text-stone-500 dark:text-stone-400 line-clamp-2 leading-normal">
+              500+ thuật ngữ En-Vi kèm định nghĩa, công thức &amp; phát âm En-US.
             </p>
           </div>
 
           <Link
             href="/cfa/flashcards"
-            className="mt-4 px-4 py-2.5 bg-amber-500 hover:bg-amber-600 font-extrabold text-xs text-white rounded-xl transition-all shadow-md shrink-0 cursor-pointer flex items-center justify-center gap-1.5 w-full text-center"
+            className="mt-3 px-3 py-2 bg-amber-500 hover:bg-amber-600 font-bold text-xs text-white rounded-xl transition-all shadow-2xs shrink-0 cursor-pointer flex items-center justify-center gap-1.5 w-full text-center active:scale-95"
           >
             <span>Mở Flashcard 3D →</span>
           </Link>
         </div>
 
         {/* 📐 CFA Formula Cheat Sheet Banner (1/3) */}
-        <div className="bg-gradient-to-br from-stone-900 via-stone-900 to-amber-950 border-2 border-amber-500/50 rounded-3xl p-5 text-white shadow-xl flex flex-col justify-between">
-          <div className="space-y-2">
-            <div className="flex items-center gap-2">
-              <span className="text-2xl">📐</span>
-              <span className="text-[9px] font-black uppercase text-amber-400 bg-amber-950 px-2 py-0.5 rounded-full border border-amber-500/40">
+        <div className="bg-white dark:bg-stone-900 border border-stone-200/80 dark:border-stone-800 rounded-2xl p-4 shadow-2xs hover:shadow-xs transition-all flex flex-col justify-between">
+          <div className="space-y-1.5">
+            <div className="flex items-center gap-1.5">
+              <span className="text-lg">📐</span>
+              <span className="text-[9px] font-black uppercase text-indigo-700 dark:text-indigo-300 bg-indigo-50 dark:bg-indigo-950/50 px-2 py-0.5 rounded-md border border-indigo-200/60 dark:border-indigo-800/60">
                 CHEAT SHEET
               </span>
             </div>
-            <h3 className="text-sm font-extrabold text-white leading-snug">
+            <h3 className="text-xs sm:text-sm font-extrabold text-stone-900 dark:text-stone-100 leading-snug">
               Sổ Tay Công Thức CFA Level 1
             </h3>
-            <p className="text-[11px] text-stone-300 leading-relaxed line-clamp-3">
-              Tổng hợp 100% công thức thi CFA (TVM, WACC, DuPont 3-step/5-step, Duration, FCFF/FCFE, CAPM...) với phân số tầng.
+            <p className="text-[10px] text-stone-500 dark:text-stone-400 line-clamp-2 leading-normal">
+              Tổng hợp 100% công thức thi CFA (TVM, WACC, DuPont, Duration, CAPM...).
             </p>
           </div>
 
           <Link
             href="/cfa/formulas"
-            className="mt-4 px-4 py-2.5 bg-amber-500 hover:bg-amber-400 font-extrabold text-xs text-stone-950 rounded-xl transition-all shadow-md shrink-0 cursor-pointer flex items-center justify-center gap-1.5 w-full text-center"
+            className="mt-3 px-3 py-2 bg-stone-900 hover:bg-stone-800 dark:bg-stone-100 dark:hover:bg-white text-white dark:text-stone-900 font-bold text-xs rounded-xl transition-all shadow-2xs shrink-0 cursor-pointer flex items-center justify-center gap-1.5 w-full text-center active:scale-95"
           >
             <span>Xem Sổ Tay Công Thức →</span>
           </Link>
