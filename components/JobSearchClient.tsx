@@ -789,6 +789,14 @@ export default function JobSearchClient() {
   function handleSelectCareer(career: FinanceCareer) {
     setSelected(career);
     setMobileDetailOpen(true);
+    if (typeof window !== "undefined") {
+      setTimeout(() => {
+        const el = document.getElementById("career-detail-panel");
+        if (el) {
+          el.scrollIntoView({ behavior: "smooth", block: "start" });
+        }
+      }, 50);
+    }
   }
 
   function getStressColor(level: number) {
@@ -1105,7 +1113,7 @@ export default function JobSearchClient() {
           </div>
 
           {/* RIGHT COLUMN: Detail View (Desktop) */}
-          <div className="hidden md:block md:col-span-7 lg:col-span-8">
+          <div id="career-detail-panel" className="hidden md:block md:col-span-7 lg:col-span-8">
             <div className="bg-white dark:bg-stone-900/80 rounded-3xl border-2 border-stone-200 dark:border-stone-800/80 p-8 shadow-xl relative overflow-hidden backdrop-blur-md min-h-[70vh]">
               {/* Background gradient blur */}
               <div 

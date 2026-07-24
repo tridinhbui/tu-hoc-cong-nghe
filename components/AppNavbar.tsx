@@ -306,23 +306,11 @@ export default function AppNavbar() {
                       Check-in
                     </span>
                   )}
-                  {isCareer && (
-                    (() => {
-                      const chosen = FINANCE_CAREERS.find((c) => c.id === careerGoalId);
-                      if (chosen) {
-                        return (
-                          <span className="inline-flex items-center gap-1 text-[9px] font-black uppercase tracking-wider px-2 py-0.5 rounded-full bg-emerald-600 text-white shadow-2xs">
-                            {chosen.emoji} {chosen.title.split(" ")[0]}
-                          </span>
-                        );
-                      }
-                      return (
-                        <span className="inline-flex items-center gap-1 text-[9px] font-black uppercase tracking-wider px-2 py-0.5 rounded-full bg-amber-500 text-white shadow-2xs animate-pulse">
-                          <span className="w-1.5 h-1.5 rounded-full bg-white animate-ping" />
-                          Chưa chọn
-                        </span>
-                      );
-                    })()
+                  {isCareer && !careerGoalId && (
+                    <span className="inline-flex items-center gap-1 text-[9px] font-black uppercase tracking-wider px-2 py-0.5 rounded-full bg-amber-500 text-white shadow-2xs animate-pulse">
+                      <span className="w-1.5 h-1.5 rounded-full bg-white animate-ping" />
+                      Chưa chọn
+                    </span>
                   )}
                 </Link>
               );
@@ -603,7 +591,7 @@ export default function AppNavbar() {
                         <span className="relative inline-flex rounded-full h-2 w-2 bg-amber-500"></span>
                       </span>
                     )}
-                    {isCareer && (
+                    {isCareer && !careerGoalId && (
                       <span className="flex h-2 w-2">
                         <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-indigo-400 opacity-75"></span>
                         <span className="relative inline-flex rounded-full h-2 w-2 bg-indigo-500"></span>
