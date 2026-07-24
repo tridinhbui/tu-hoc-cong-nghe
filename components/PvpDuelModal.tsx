@@ -157,7 +157,7 @@ export default function PvpDuelModal({
         const data = await res.json();
         if (cancelled) return;
 
-        const xp = data.xpReward ?? (resultWon ? 150 : 30);
+        const xp = data.xpReward ?? (resultWon ? 50 : 10);
         const coins = Math.max(0, data.coinDelta ?? 0);
         setResultReward({ xp, coins });
         window.dispatchEvent(new CustomEvent("thtcdn:coin-updated", { detail: { coins: data.newCoins } }));
@@ -167,7 +167,7 @@ export default function PvpDuelModal({
         if (!cancelled) {
           console.error(err);
           try {
-            const fallbackXp = resultWon ? 120 : 25;
+            const fallbackXp = resultWon ? 50 : 10;
             await recordCustomGameSession(userId, "solo-knowledge-boss", score, totalQuestions, fallbackXp);
             await recalculateUserStats(userId);
             setResultReward({ xp: fallbackXp, coins: 0 });

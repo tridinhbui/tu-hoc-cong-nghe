@@ -114,8 +114,8 @@ export async function POST(request: NextRequest) {
   } | null;
 
   const bossId = body?.bossId || FALLBACK_WORLD_BOSS.id;
-  const damageDealt = Number(body?.damageDealt ?? 0);
-  const score = Number(body?.score ?? 0);
+  const score = Math.max(0, Math.min(15, Math.floor(Number(body?.score ?? 0))));
+  const damageDealt = score * 1000;
 
   if (damageDealt <= 0) {
     return NextResponse.json({ error: "No damage dealt" }, { status: 400 });
@@ -147,7 +147,7 @@ export async function POST(request: NextRequest) {
   }
 
   // 2. Thưởng XP & Coins cho User
-  const xpReward = score * 80;
+  const xpReward = Math.min(50, Math.max(0, score * 5));
   const coinReward = score * 35;
 
   const { data: profile } = await supabase

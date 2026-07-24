@@ -90,7 +90,7 @@ export default function WeeklyChallengeWidget({ userId }: { userId: string }) {
     let xp = 0;
     let coins = 0;
     if (ratio >= 0.6) {
-      xp = Math.round(activeCase.xpReward * (ratio >= 0.9 ? 1.25 : 1.0));
+      xp = Math.min(50, Math.round(activeCase.xpReward * (ratio >= 0.9 ? 1.25 : 1.0)));
       coins = Math.round(activeCase.coinReward * (ratio >= 0.9 ? 1.25 : 1.0));
       setRewardEarned({ xp, coins });
 
@@ -239,7 +239,7 @@ export default function WeeklyChallengeWidget({ userId }: { userId: string }) {
                 Thưởng XP
               </span>
               <span className="mt-1 inline-flex items-center gap-1 text-sm font-black text-emerald-700">
-                <Sparkles className="w-3.5 h-3.5" /> +{activeCase.xpReward}
+                <Sparkles className="w-3.5 h-3.5" /> +{Math.min(50, activeCase.xpReward)}
               </span>
             </div>
             <div className="rounded-2xl border border-amber-200 bg-amber-50/70 px-3 py-3">
@@ -288,7 +288,7 @@ export default function WeeklyChallengeWidget({ userId }: { userId: string }) {
 
             <div className="flex items-center gap-4 text-xs font-bold text-stone-500 pt-3 border-t border-purple-200">
               <span className="flex items-center gap-1 text-emerald-600">
-                <Sparkles className="w-4 h-4" /> Thưởng tối đa: +{activeCase.xpReward} XP
+                <Sparkles className="w-4 h-4" /> Thưởng tối đa: +{Math.min(50, activeCase.xpReward)} XP
               </span>
               <span className="flex items-center gap-1 text-amber-600">
                 <GoldCoinIcon className="w-4 h-4" /> +{activeCase.coinReward} Coins

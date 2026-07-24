@@ -48,8 +48,9 @@ export async function POST(request: NextRequest) {
   } | null;
 
   const wagerCoins = Math.max(10, Math.min(200, Number(body?.wagerCoins ?? 50)));
-  const isWin = Boolean(body?.isWin);
   const score = Number(body?.score ?? 0);
+  const safeScore = Math.max(0, Math.min(5, Math.floor(score)));
+  const isWin = safeScore >= 4;
 
   // Lấy số coins hiện tại
   const { data: profile } = await supabase
@@ -59,7 +60,7 @@ export async function POST(request: NextRequest) {
     .single();
 
   const currentCoins = profile?.coins ?? 0;
-  const xpReward = isWin ? 150 : 30;
+  const xpReward = isWin ? 50 : 10;
 
   if (currentCoins < wagerCoins && !isWin) {
     return NextResponse.json({ error: "Insufficient coins" }, { status: 400 });
@@ -82,13 +83,13 @@ export async function POST(request: NextRequest) {
     challenger_id: user.id,
     winner_id: isWin ? user.id : null,
     wager_coins: wagerCoins,
-    challenger_score: score,
+    challenger_score: safeScore,
   });
 
   await supabase.from("game_sessions").insert({
     user_id: user.id,
     game_type: "pvp-duel",
-    score,
+    score: safeScore,
     total: 5,
     xp_earned: xpReward,
   });

@@ -203,11 +203,12 @@ export function getGameRelatedLessons(gameType: GameType): RelatedLesson[] {
 // XP just for participating, but doesn't need to be perfect either.
 const PASS_RATIO = 0.7;
 const XP_PER_CORRECT = 2;
+const MAX_GAME_XP_PER_TYPE = 50;
 
 export function computeGameXp(score: number, total: number): number {
   if (total <= 0) return 0;
   if (score / total < PASS_RATIO) return 0;
-  return Math.min(50, score * XP_PER_CORRECT);
+  return Math.min(MAX_GAME_XP_PER_TYPE, score * XP_PER_CORRECT);
 }
 
 // ─── Game 1 content: financial statement line items ────────────────────────
@@ -577,17 +578,18 @@ export async function recordCustomGameSession(
   total: number,
   xpEarned: number
 ): Promise<void> {
+  const safeXpEarned = Math.max(0, Math.min(MAX_GAME_XP_PER_TYPE, Math.round(xpEarned)));
   const supabase = createClient();
   const { error } = await supabase
     .from("game_sessions")
-    .insert([{ user_id: userId, game_type: gameType, score, total, xp_earned: xpEarned }]);
+    .insert([{ user_id: userId, game_type: gameType, score, total, xp_earned: safeXpEarned }]);
 
   if (error && !isMissingTableError(error)) throw handleSupabaseError(error);
 
   if (typeof window !== "undefined") {
     window.dispatchEvent(new Event("thtcdn_game_session_recorded"));
-    if (xpEarned > 0) {
-      window.dispatchEvent(new CustomEvent("thtcdn:xp-gained", { detail: { xp: xpEarned, label: "Trò chơi tài chính!" } }));
+    if (safeXpEarned > 0) {
+      window.dispatchEvent(new CustomEvent("thtcdn:xp-gained", { detail: { xp: safeXpEarned, label: "Trò chơi tài chính!" } }));
     }
   }
 
@@ -617,7 +619,8 @@ export async function getTotalGameXp(userId: string): Promise<number> {
   const bestByGame = new Map<string, number>();
   for (const row of (data ?? []) as { game_type: string; xp_earned: number }[]) {
     const cur = bestByGame.get(row.game_type) ?? 0;
-    if (row.xp_earned > cur) bestByGame.set(row.game_type, row.xp_earned);
+    const safeXp = Math.max(0, Math.min(MAX_GAME_XP_PER_TYPE, Number(row.xp_earned) || 0));
+    if (safeXp > cur) bestByGame.set(row.game_type, safeXp);
   }
   return Array.from(bestByGame.values()).reduce((sum, v) => sum + v, 0);
 }

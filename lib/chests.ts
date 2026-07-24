@@ -31,8 +31,8 @@ export const CHEST_REWARDS: ChestReward[] = [
   { type: "title", value: "Sói già phố Wall", desc: "Danh hiệu của bậc thầy phân tích thị trường", xp: 0 },
   { type: "title", value: "Đại gia lãi kép", desc: "Danh hiệu dành cho tín đồ dòng tiền dài hạn", xp: 0 },
   { type: "title", value: "Bậc thầy định giá", desc: "Danh hiệu của chuyên gia đọc báo cáo tài chính", xp: 0 },
-  { type: "xp", value: "30", desc: "Cộng ngay +30 XP vào tổng điểm tích lũy", xp: 30 },
-  { type: "xp", value: "50", desc: "Cộng ngay +50 XP vào tổng điểm tích lũy", xp: 50 },
+  { type: "xp", value: "10", desc: "Cộng nhẹ +10 XP vào tổng điểm tích lũy", xp: 10 },
+  { type: "xp", value: "15", desc: "Cộng nhẹ +15 XP vào tổng điểm tích lũy", xp: 15 },
   { type: "theme", value: "gold", desc: "Mở khóa Giao diện Hoàng Kim quý tộc", xp: 0 },
   { type: "theme", value: "emerald", desc: "Mở khóa Giao diện Ngọc Lục Bảo đặc biệt", xp: 0 },
 ];

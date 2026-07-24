@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { createServerSupabaseClient } from "@/lib/supabase-server";
 import { createAdminClient } from "@/lib/supabase-admin";
 import { verifyQuestionToken } from "@/lib/quiz-tokens";
-import { computeQuizXp } from "@/lib/supabase-quiz-sessions";
+import { STANDALONE_QUIZ_DAILY_XP_CAP, computeQuizXp } from "@/lib/supabase-quiz-sessions";
 
 // Server-authoritative grading for both the standalone /kiem-tra quiz and
 // the lesson-unlock gate challenge (components/KnowledgeChallengeModal.tsx).
@@ -96,7 +96,16 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ error: "Invalid track/difficulty" }, { status: 400 });
   }
 
-  const xpEarned = computeQuizXp(score, total);
+  const todayStart = new Date();
+  todayStart.setHours(0, 0, 0, 0);
+  const { data: todayRows } = await admin
+    .from("user_quiz_sessions")
+    .select("xp_earned")
+    .eq("user_id", user.id)
+    .gte("completed_at", todayStart.toISOString());
+  const earnedToday = (todayRows ?? []).reduce((sum, row) => sum + (Number(row.xp_earned) || 0), 0);
+  const remainingDailyXp = Math.max(0, STANDALONE_QUIZ_DAILY_XP_CAP - earnedToday);
+  const xpEarned = Math.min(computeQuizXp(score, total), remainingDailyXp);
   const { error } = await admin
     .from("user_quiz_sessions")
     .insert([{ user_id: user.id, track, difficulty, score, total, xp_earned: xpEarned }]);

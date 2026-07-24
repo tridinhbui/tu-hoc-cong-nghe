@@ -29,9 +29,20 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ error: "Invalid parameters" }, { status: 400 });
   }
 
-  // 1. Calculate XP Earned
-  const baseXp = 100;
-  const quizBonus = Math.floor(score * 0.5); // Tối đa 50 XP
+  const existingProgress = await supabase
+    .from("user_progress")
+    .select("completed")
+    .eq("user_id", user.id)
+    .eq("lesson_id", lessonId)
+    .eq("completed", true)
+    .maybeSingle();
+  const alreadyCompleted = Boolean(existingProgress.data?.completed);
+
+  // 1. Calculate XP Earned. Keep this legacy endpoint aligned with the
+  // canonical recalculateUserStats formula: lessons are worth 10 XP once,
+  // while high quiz scores improve avg_score rather than minting large XP.
+  const baseXp = alreadyCompleted ? 0 : 10;
+  const quizBonus = !alreadyCompleted && score >= 80 ? 5 : 0;
   
   // Tính Streak Bonus (lấy từ database hoặc mặc định)
   const { data: streakRow } = await supabase
@@ -40,12 +51,12 @@ export async function POST(request: NextRequest) {
     .eq("user_id", user.id)
     .maybeSingle();
   const currentStreak = streakRow?.current_streak ?? 1;
-  const streakBonus = Math.min(currentStreak, 7) * 5; // Tối đa 35 XP
+  const streakBonus = !alreadyCompleted && currentStreak >= 7 ? 5 : 0;
 
   // Tính Time Bonus
-  const timeBonus = (timeSpentSeconds >= 300 && timeSpentSeconds <= 1200) ? 15 : 0;
+  const timeBonus = 0;
 
-  const xpEarned = baseXp + quizBonus + streakBonus + timeBonus;
+  const xpEarned = Math.min(20, baseXp + quizBonus + streakBonus + timeBonus);
 
   // 2. Update user_progress
   const { error: progressError } = await supabase

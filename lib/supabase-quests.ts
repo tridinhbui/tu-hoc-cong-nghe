@@ -131,7 +131,7 @@ export async function getDailyQuests(userId: string, dayKey: string): Promise<Qu
       description: "Ghé thăm nền tảng hôm nay",
       target: 1,
       current: 1,
-      xpReward: 5,
+      xpReward: 0,
       claimed: claimedSet.has("daily_4"),
     },
     {
@@ -140,7 +140,7 @@ export async function getDailyQuests(userId: string, dayKey: string): Promise<Qu
       description: "Tiến vào thế giới Game Tài Chính hôm nay",
       target: 1,
       current: 1,
-      xpReward: 2,
+      xpReward: 0,
       claimed: claimedSet.has("daily_game"),
     },
   ];
@@ -209,7 +209,6 @@ export async function getTotalQuestXp(userId: string): Promise<number> {
               if (item === "daily_1") total += 10;
               else if (item === "daily_2") total += 5;
               else if (item === "daily_3") total += 15;
-              else if (item === "daily_4") total += 5;
               else if (item === "daily_news_quiz") total += 15;
             });
           } catch {}

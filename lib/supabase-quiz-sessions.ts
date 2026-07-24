@@ -19,6 +19,7 @@ function isMissingTableError(error: { code?: string } | null): boolean {
 // feels proportional to "reviewed material across a whole track" rather
 // than "read one lesson".
 const XP_PER_CORRECT_ANSWER = 5;
+export const STANDALONE_QUIZ_DAILY_XP_CAP = 30;
 
 export function computeQuizXp(score: number, total: number): number {
   if (total <= 0) return 0;

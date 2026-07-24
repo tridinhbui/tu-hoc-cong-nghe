@@ -71,7 +71,7 @@ export default function FinancialGuildWidget({ userId }: { userId: string }) {
     const nextFundValue = nextCash + nextStockValue;
     const returnPct = ((nextFundValue - INITIAL_CASH) / INITIAL_CASH) * 100;
     const score = Math.max(0, Math.round(returnPct * 100 + nextDay * 5));
-    const xpEarned = returnPct <= 0 ? 0 : Math.min(220, Math.max(20, Math.round(returnPct * 9 + nextDay / 2)));
+    const xpEarned = returnPct <= 0 ? 0 : Math.min(50, Math.max(10, Math.round(returnPct * 3 + nextDay / 5)));
 
     try {
       await recordCustomGameSession(userId, "vn30-fund-sim", score, 5000, xpEarned);

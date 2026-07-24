@@ -116,12 +116,12 @@ export async function POST(request: NextRequest) {
 
   if (score >= 3) { // Phải đạt tối thiểu 3/5 câu để nhận thưởng
     const difficultyMultiplier = challenge.difficulty === "gold" ? 1.0 : challenge.difficulty === "silver" ? 0.5 : 0.25;
-    xpEarned = challenge.xp_reward;
+    xpEarned = Math.min(50, challenge.xp_reward);
     coinsEarned = challenge.coin_reward;
 
     // Làm đúng 5/5 ngay lần đầu: Nhân hệ số 1.5 XP
     if (score === 5) {
-      xpEarned = Math.floor(xpEarned * 1.5);
+      xpEarned = Math.min(50, Math.floor(xpEarned * 1.5));
     }
   }
 
