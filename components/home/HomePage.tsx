@@ -962,18 +962,18 @@ export default function HomePage() {
         <SoftFadeDivider />
 
         {/* ── GAME KINGDOM PREVIEW ── */}
-        <section className="landing-band landing-band-dark landing-band-divider relative py-14 lg:py-18">
+        <section className="landing-band landing-band-dark landing-band-divider relative py-6 sm:py-8 font-sans">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <ScrollReveal className="max-w-3xl mb-8">
-            <p className="text-xs font-black text-amber-200 uppercase tracking-widest mb-2 drop-shadow-[0_1px_2px_rgba(0,0,0,0.7)]">
+          <ScrollReveal className="max-w-3xl mb-3">
+            <p className="text-[11px] font-black text-amber-200 uppercase tracking-widest mb-1 drop-shadow-[0_1px_2px_rgba(0,0,0,0.7)]">
               Xem trước Game Kingdom
             </p>
-            <h2 className="text-3xl lg:text-4xl font-black text-white drop-shadow-[0_3px_10px_rgba(0,0,0,0.72)]">
+            <h2 className="text-2xl sm:text-3xl font-black text-white drop-shadow-[0_3px_10px_rgba(0,0,0,0.72)]">
               Một vương quốc tài chính để bạn mở khóa bằng kiến thức
             </h2>
-            <p className="mt-3 max-w-xl text-sm leading-relaxed text-stone-100 drop-shadow-[0_1px_2px_rgba(0,0,0,0.75)] sm:text-base">
+            <p className="mt-1.5 max-w-xl text-xs sm:text-sm leading-relaxed text-stone-200 drop-shadow-[0_1px_2px_rgba(0,0,0,0.75)]">
               Game Kingdom biến việc học thành nhiệm vụ: hoàn thành bài, làm quiz, chơi mini game và mở dần các công trình
-              tài chính. Hình ảnh bên dưới dùng trực tiếp các asset trong game để người mới thấy rõ mình sẽ bước vào đâu.
+              tài chính.
             </p>
           </ScrollReveal>
 

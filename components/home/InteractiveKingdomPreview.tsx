@@ -194,7 +194,7 @@ export default function InteractiveKingdomPreview() {
       </div>
 
       {/* Main Interactive Stage Body */}
-      <div className="relative min-h-[520px] lg:min-h-[560px] p-4 sm:p-6 lg:p-8 flex flex-col justify-between overflow-hidden">
+      <div className="relative min-h-[380px] lg:min-h-[420px] p-3 sm:p-4 lg:p-5 flex flex-col justify-between overflow-hidden">
         {/* Ambient Wall Street & Particle Background */}
         <div className="absolute inset-0 pointer-events-none">
           <Image
@@ -209,13 +209,13 @@ export default function InteractiveKingdomPreview() {
         </div>
 
         {/* Top Header Bar inside Stage */}
-        <div className="relative z-10 flex flex-wrap items-center justify-between gap-4 mb-4">
+        <div className="relative z-10 flex flex-wrap items-center justify-between gap-3 mb-3">
           <div>
-            <div className="inline-flex items-center gap-2 rounded-full border border-amber-400/50 bg-amber-950/80 px-3.5 py-1 text-[11px] font-black uppercase tracking-[0.16em] text-amber-300 shadow-lg backdrop-blur-md">
-              <Crown className="h-3.5 w-3.5 text-amber-400" />
+            <div className="inline-flex items-center gap-1.5 rounded-full border border-amber-400/50 bg-amber-950/80 px-3 py-0.5 text-[10px] font-black uppercase tracking-[0.14em] text-amber-300 shadow-md backdrop-blur-md">
+              <Crown className="h-3 w-3 text-amber-400" />
               <span>VƯƠNG QUỐC GAME TÀI CHÍNH INTERACTIVE</span>
             </div>
-            <h3 className="mt-2 text-xl sm:text-2xl font-black text-white drop-shadow-md">
+            <h3 className="mt-1 text-lg sm:text-xl font-black text-white drop-shadow-md">
               {activeTab === "map" && "Bản đồ nhiệm vụ & Công trình"}
               {activeTab === "minigame" && "Thử phản xạ active recall trực tiếp"}
               {activeTab === "boss" && "Đấu trường Săn Boss Phố Wall"}
@@ -227,11 +227,11 @@ export default function InteractiveKingdomPreview() {
             key={userXp}
             initial={{ scale: 1.15 }}
             animate={{ scale: 1 }}
-            className="rounded-2xl border border-emerald-400/50 bg-emerald-950/80 px-4 py-2.5 text-right backdrop-blur-md shadow-[0_0_25px_rgba(16,185,129,0.3)] shrink-0"
+            className="rounded-xl border border-emerald-400/50 bg-emerald-950/80 px-3 py-1.5 text-right backdrop-blur-md shadow-[0_0_20px_rgba(16,185,129,0.25)] shrink-0"
           >
-            <p className="text-[10px] font-black uppercase tracking-widest text-emerald-300">XP Tích lũy</p>
-            <p className="text-xl sm:text-2xl font-black tabular-nums text-white flex items-center gap-1.5 justify-end">
-              <Zap className="w-5 h-5 text-amber-400 fill-amber-400 animate-bounce" />
+            <p className="text-[9px] font-black uppercase tracking-widest text-emerald-300">XP Tích lũy</p>
+            <p className="text-lg sm:text-xl font-black tabular-nums text-white flex items-center gap-1 justify-end">
+              <Zap className="w-4 h-4 text-amber-400 fill-amber-400 animate-bounce" />
               +{userXp} XP
             </p>
           </motion.div>
@@ -239,24 +239,24 @@ export default function InteractiveKingdomPreview() {
 
         {/* TAB 1: INTERACTIVE KINGDOM MAP VIEW */}
         {activeTab === "map" && (
-          <div className="relative z-10 grid gap-6 lg:grid-cols-12 items-center flex-1">
+          <div className="relative z-10 grid gap-4 lg:grid-cols-12 items-stretch flex-1">
             {/* Left: Building Cards Grid with Click Selection */}
-            <div className="lg:col-span-8 grid gap-3.5 sm:grid-cols-2">
+            <div className="lg:col-span-8 grid gap-2.5 sm:grid-cols-2">
               {KINGDOM_BUILDINGS.map((b) => {
                 const isSelected = selectedBuilding.id === b.id;
                 return (
                   <motion.div
                     key={b.id}
-                    whileHover={{ scale: 1.02, translateY: -3 }}
+                    whileHover={{ scale: 1.01, translateY: -2 }}
                     whileTap={{ scale: 0.98 }}
                     onClick={() => setSelectedBuilding(b)}
-                    className={`relative cursor-pointer overflow-hidden rounded-2xl border-2 transition-all duration-300 backdrop-blur-md p-3.5 ${
+                    className={`relative cursor-pointer overflow-hidden rounded-xl border-2 transition-all duration-300 backdrop-blur-md p-2 sm:p-2.5 ${
                       isSelected
-                        ? "border-amber-400 bg-amber-950/80 shadow-[0_0_30px_rgba(245,158,11,0.4)] ring-2 ring-amber-400/50"
+                        ? "border-amber-400 bg-amber-950/80 shadow-[0_0_20px_rgba(245,158,11,0.35)] ring-1 ring-amber-400/50"
                         : "border-stone-800 bg-stone-900/80 hover:border-amber-400/50 hover:bg-stone-900/95"
                     }`}
                   >
-                    <div className="relative aspect-[16/9] w-full overflow-hidden rounded-xl mb-3">
+                    <div className="relative h-24 sm:h-28 w-full overflow-hidden rounded-lg mb-2">
                       <Image
                         src={b.image}
                         alt={b.name}
@@ -266,21 +266,21 @@ export default function InteractiveKingdomPreview() {
                         }`}
                       />
                       <div className="absolute inset-0 bg-gradient-to-t from-stone-950 via-stone-950/30 to-transparent" />
-                      <span className="absolute top-2 left-2 text-[9px] font-black uppercase text-white bg-amber-600/90 px-2 py-0.5 rounded-md backdrop-blur-md border border-amber-400/40">
+                      <span className="absolute top-1.5 left-1.5 text-[8px] font-black uppercase text-white bg-amber-600/90 px-1.5 py-0.5 rounded backdrop-blur-md border border-amber-400/40">
                         {b.badge}
                       </span>
-                      <div className="absolute bottom-2 left-2.5 right-2.5">
-                        <p className="text-sm font-black text-white drop-shadow-md truncate">{b.name}</p>
-                        <p className="text-[10px] font-semibold text-amber-300 truncate">{b.subtitle}</p>
+                      <div className="absolute bottom-1.5 left-2 right-2">
+                        <p className="text-xs font-black text-white drop-shadow-md truncate">{b.name}</p>
+                        <p className="text-[9px] font-semibold text-amber-300 truncate">{b.subtitle}</p>
                       </div>
                     </div>
 
-                    <div className="flex items-center justify-between text-[10px] font-black uppercase tracking-wider text-stone-300">
+                    <div className="flex items-center justify-between text-[9px] font-black uppercase tracking-wider text-stone-300">
                       <span>Mở khóa ở Lv.{b.minLevel}</span>
                       <span className="text-emerald-400">+{b.xpReward} XP</span>
                     </div>
 
-                    <div className="mt-1.5 h-1.5 w-full rounded-full bg-stone-800 overflow-hidden">
+                    <div className="mt-1 h-1 w-full rounded-full bg-stone-800 overflow-hidden">
                       <div
                         className="h-full rounded-full bg-gradient-to-r from-amber-400 to-emerald-400 transition-all duration-500"
                         style={{ width: b.progress }}
@@ -295,9 +295,9 @@ export default function InteractiveKingdomPreview() {
             <div className="lg:col-span-4 h-full">
               <motion.div
                 key={selectedBuilding.id}
-                initial={{ opacity: 0, x: 20 }}
+                initial={{ opacity: 0, x: 15 }}
                 animate={{ opacity: 1, x: 0 }}
-                className="h-full flex flex-col justify-between rounded-3xl border-2 border-amber-400/60 bg-stone-900/90 p-5 backdrop-blur-xl shadow-2xl relative overflow-hidden"
+                className="h-full flex flex-col justify-between rounded-2xl border-2 border-amber-400/60 bg-stone-900/90 p-3.5 sm:p-4 backdrop-blur-xl shadow-xl relative overflow-hidden"
               >
                 <div className="absolute top-0 right-0 p-6 pointer-events-none opacity-10 text-6xl">
                   🏛️
