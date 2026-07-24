@@ -631,22 +631,22 @@ export default function FinancialRpgWorldMap() {
             </div>
 
             {/* 🏰 Desktop 3D Isometric RPG World Map Container (Fixed Viewport Canva Canvas) */}
-            <div className="hidden md:block relative max-w-5xl mx-auto rounded-[36px] border-2 border-amber-300 shadow-[0_20px_60px_-15px_rgba(245,158,11,0.25)] overflow-hidden bg-gradient-to-b from-white/95 via-amber-50/30 to-emerald-50/40 backdrop-blur-2xl transition-all duration-300 h-[640px]">
+            <div className="hidden md:block relative max-w-6xl mx-auto rounded-[36px] border-2 border-amber-300 shadow-[0_20px_60px_-15px_rgba(245,158,11,0.25)] overflow-hidden bg-gradient-to-b from-white/95 via-amber-50/30 to-emerald-50/40 backdrop-blur-2xl transition-all duration-300 h-[720px] sm:h-[780px]">
               
               {/* Canva Navigation Badge Overlay */}
               <div className="absolute top-4 left-4 z-40 flex items-center gap-2 pointer-events-none">
                 <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-stone-900/90 text-amber-300 text-xs font-black shadow-lg backdrop-blur-md border border-amber-500/40">
-                  <span>🖐️ Canva Drag Canvas (Kéo tự do 360°)</span>
+                  <span>🖐️ Canva Drag Canvas (Kéo tự do 360° • Xem trọn vẹn 13 vùng đất)</span>
                 </span>
               </div>
 
               {/* Inner Draggable Canva Canvas Container */}
               <motion.div
                 drag
-                dragConstraints={{ left: -380, right: 380, top: -750, bottom: 80 }}
+                dragConstraints={{ left: -550, right: 550, top: -1150, bottom: 550 }}
                 dragElastic={0.08}
                 whileTap={{ cursor: "grabbing" }}
-                className="w-full h-full cursor-grab active:cursor-grabbing relative p-6 sm:p-8 select-none"
+                className="w-full h-full cursor-grab active:cursor-grabbing relative p-6 sm:p-10 select-none"
                 style={{ touchAction: "none" }}
               >
                 {/* Isometric Perspective Grid Layer */}
