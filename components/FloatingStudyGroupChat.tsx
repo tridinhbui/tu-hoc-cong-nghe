@@ -5,7 +5,7 @@ import Image from "next/image";
 import { isValidAvatar } from "@/lib/avatar-utils";
 import TaiTaiAvatar from "@/components/TaiTaiAvatar";
 import { toast } from "sonner";
-import { Users, Send, X, ImagePlus, Trash2, CornerUpLeft } from "lucide-react";
+import { Users, Send, X, ImagePlus, Trash2, CornerUpLeft, MoreVertical } from "lucide-react";
 import { createClient } from "@/lib/supabase";
 import { trackFeatureClick } from "@/lib/feature-events";
 import { uploadChatImage, isAllowedChatImage } from "@/lib/supabase-chat";
@@ -192,6 +192,7 @@ export default function FloatingStudyGroupChat({ isOpen: controlledIsOpen, onOpe
 
   const [replyingTo, setReplyingTo] = useState<{ id: number; senderName: string; content: string } | null>(null);
   const [reactions, setReactions] = useState<Record<number, Record<string, string[]>>>({});
+  const [activeMenuMsgId, setActiveMenuMsgId] = useState<number | null>(null);
 
   const toggleReaction = (msgId: number, emoji: string) => {
     if (!userId) return;
@@ -437,26 +438,69 @@ export default function FloatingStudyGroupChat({ isOpen: controlledIsOpen, onOpe
                           {mainText && <p className="whitespace-pre-wrap break-words">{mainText}</p>}
                         </div>
 
-                        {/* Hover Quick Action Toolbar: Reply & Reactions */}
-                        <div className="opacity-0 group-hover:opacity-100 transition-opacity flex items-center gap-1 mt-1 bg-white/95 dark:bg-stone-800/95 border border-stone-200 dark:border-stone-700 px-1.5 py-0.5 rounded-full shadow-md backdrop-blur-xs z-10 w-fit">
+                        {/* 3-Dots Menu Trigger Button */}
+                        <div className="relative">
                           <button
-                            onClick={() => setReplyingTo({ id: msg.id, senderName: isMine ? "bạn" : senderName, content: msg.content })}
-                            className="p-0.5 hover:bg-stone-100 dark:hover:bg-stone-700 rounded-full text-stone-600 dark:text-stone-300 transition-colors"
-                            title="Trả lời tin nhắn"
+                            onClick={() => setActiveMenuMsgId(activeMenuMsgId === msg.id ? null : msg.id)}
+                            className="opacity-0 group-hover:opacity-100 transition-all duration-200 p-1 rounded-full hover:bg-stone-200 dark:hover:bg-stone-700 text-stone-500 dark:text-stone-400 cursor-pointer shadow-xs bg-white/90 dark:bg-stone-800/90 border border-stone-200/80 dark:border-stone-700 mt-1"
+                            title="Tùy chọn tin nhắn"
                           >
-                            <CornerUpLeft className="w-3 h-3" />
+                            <MoreVertical className="w-3 h-3" />
                           </button>
-                          <div className="h-2.5 w-px bg-stone-300 dark:bg-stone-700" />
-                          {REACTION_EMOJIS.slice(0, 4).map((emoji) => (
-                            <button
-                              key={emoji}
-                              onClick={() => toggleReaction(msg.id, emoji)}
-                              className="text-[11px] p-0.5 hover:scale-125 transition-transform"
-                              title={`Thả cảm xúc ${emoji}`}
-                            >
-                              {emoji}
-                            </button>
-                          ))}
+
+                          {/* 3-Dots Dropdown Popup Menu */}
+                          {activeMenuMsgId === msg.id && (
+                            <div className={`absolute bottom-full mb-1 z-50 min-w-[155px] bg-white dark:bg-stone-900 rounded-2xl p-1.5 shadow-xl border border-stone-200 dark:border-stone-800 backdrop-blur-md text-xs space-y-1 ${isMine ? "right-0" : "left-0"}`}>
+                              {/* Quick Emoji Reaction Row */}
+                              <div className="flex items-center justify-between px-1.5 py-1 bg-stone-50 dark:bg-stone-800/60 rounded-xl mb-1 border border-stone-100 dark:border-stone-700/50">
+                                {REACTION_EMOJIS.map((emoji) => (
+                                  <button
+                                    key={emoji}
+                                    onClick={() => {
+                                      toggleReaction(msg.id, emoji);
+                                      setActiveMenuMsgId(null);
+                                    }}
+                                    className="hover:scale-130 transition-transform p-0.5 text-[11px]"
+                                    title={`Thả ${emoji}`}
+                                  >
+                                    {emoji}
+                                  </button>
+                                ))}
+                              </div>
+
+                              {/* Reply Option */}
+                              <button
+                                onClick={() => {
+                                  setReplyingTo({ id: msg.id, senderName: isMine ? "bạn" : senderName, content: msg.content });
+                                  setActiveMenuMsgId(null);
+                                }}
+                                className="w-full flex items-center gap-2 px-2 py-1.5 rounded-xl hover:bg-emerald-50 dark:hover:bg-emerald-950/40 text-stone-800 dark:text-stone-200 font-bold transition-colors text-left text-[11px]"
+                              >
+                                <CornerUpLeft className="w-3 h-3 text-emerald-600 dark:text-emerald-400" />
+                                <span>Trả lời tin nhắn</span>
+                              </button>
+
+                              {/* Delete / Recall Option */}
+                              {(isMine || userId) && (
+                                <button
+                                  onClick={async () => {
+                                    setActiveMenuMsgId(null);
+                                    try {
+                                      await deleteRoomMessage(msg.id);
+                                      setMessages((prev) => prev.filter((m) => m.id !== msg.id));
+                                      toast.success("Đã thu hồi tin nhắn thành công!");
+                                    } catch (err) {
+                                      toast.error("Không thể thu hồi tin nhắn này");
+                                    }
+                                  }}
+                                  className="w-full flex items-center gap-2 px-2 py-1.5 rounded-xl hover:bg-rose-50 dark:hover:bg-rose-950/40 text-rose-600 dark:text-rose-400 font-bold transition-colors text-left text-[11px]"
+                                >
+                                  <Trash2 className="w-3 h-3 text-rose-500" />
+                                  <span>Thu hồi tin nhắn</span>
+                                </button>
+                              )}
+                            </div>
+                          )}
                         </div>
 
                         {/* Display Active Reaction Badges */}
