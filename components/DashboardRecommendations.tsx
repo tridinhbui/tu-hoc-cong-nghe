@@ -247,7 +247,7 @@ export default function DashboardRecommendations({ lessonsMeta, completed, userI
   if (primaryItems.length === 0 && hotItems.length === 0) return null;
 
   return (
-    <div className="w-full rounded-3xl border border-stone-200 dark:border-stone-800 bg-white dark:bg-stone-900 p-4 shadow-sm space-y-4">
+    <div className="w-full rounded-3xl border border-stone-200/90 dark:border-stone-800 bg-white/95 dark:bg-stone-900 p-4 shadow-sm space-y-4">
       {/* 💡 Gợi ý hôm nay */}
       {primaryItems.length > 0 && (
         <section className="flex flex-col overflow-hidden w-full relative">

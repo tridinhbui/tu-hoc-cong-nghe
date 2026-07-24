@@ -860,7 +860,7 @@ export default function DashboardClient({ lessonsMeta }: { lessonsMeta: LessonMe
             ];
 
             return (
-              <div className="rounded-[24px] border border-stone-200 dark:border-stone-800 bg-white dark:bg-stone-900 p-4 sm:p-5 shadow-sm">
+              <div className="rounded-[24px] border border-stone-200/90 dark:border-stone-800 bg-white/95 dark:bg-stone-900 p-4 sm:p-5 shadow-sm">
                 <div className="grid grid-cols-1 gap-3 xl:grid-cols-[minmax(0,1fr)_288px] xl:items-start">
                   <div className="min-w-0">
                     <div className="relative z-10 mb-2.5 flex flex-col justify-between gap-2 sm:flex-row sm:items-center">
@@ -1148,7 +1148,7 @@ export default function DashboardClient({ lessonsMeta }: { lessonsMeta: LessonMe
               onClick={() => setDashboardTab("career")}
               className={`w-full h-full flex flex-col text-left rounded-2xl border-2 px-5 py-4 transition-all duration-300 relative overflow-hidden backdrop-blur-md ${
                 activeDashboardTab === "career"
-                  ? "border-emerald-500/80 bg-white dark:bg-stone-900 text-stone-900 dark:text-stone-100 ring-2 ring-emerald-500/20 dark:ring-emerald-400/30 shadow-md font-extrabold"
+                  ? "border-emerald-500/80 bg-white/95 dark:bg-stone-900 text-stone-900 dark:text-stone-100 ring-2 ring-emerald-500/20 dark:ring-emerald-400/30 shadow-md font-extrabold"
                   : "border-stone-200/80 dark:border-stone-800/90 bg-white/95 dark:bg-stone-900/80 text-stone-700 dark:text-stone-300 hover:border-stone-300 dark:hover:border-stone-700 shadow-xs hover:shadow-sm"
               }`}
             >
@@ -1170,7 +1170,7 @@ export default function DashboardClient({ lessonsMeta }: { lessonsMeta: LessonMe
                 onClick={() => setActiveTrack("personal")}
                 className={`w-full h-full flex flex-col text-left rounded-2xl border-2 px-5 py-4 transition-all duration-300 relative overflow-hidden backdrop-blur-md ${
                   activeDashboardTab === "personal"
-                    ? "border-amber-500/80 bg-white dark:bg-stone-900 text-stone-900 dark:text-stone-100 ring-2 ring-amber-500/20 dark:ring-amber-400/30 shadow-md font-extrabold"
+                    ? "border-amber-500/80 bg-white/95 dark:bg-stone-900 text-stone-900 dark:text-stone-100 ring-2 ring-amber-500/20 dark:ring-amber-400/30 shadow-md font-extrabold"
                     : "border-stone-200/80 dark:border-stone-800/90 bg-white/95 dark:bg-stone-900/80 text-stone-700 dark:text-stone-300 hover:border-stone-300 dark:hover:border-stone-700 shadow-xs hover:shadow-sm"
                 }`}
               >
@@ -1212,7 +1212,7 @@ export default function DashboardClient({ lessonsMeta }: { lessonsMeta: LessonMe
                 onClick={() => setActiveTrack("professional")}
                 className={`w-full h-full flex flex-col text-left rounded-2xl border-2 px-5 py-4 transition-all duration-300 relative overflow-hidden backdrop-blur-md ${
                   activeDashboardTab === "professional"
-                    ? "border-emerald-500/80 bg-white dark:bg-stone-900 text-stone-900 dark:text-stone-100 ring-2 ring-emerald-500/20 dark:ring-emerald-400/30 shadow-md font-extrabold"
+                    ? "border-emerald-500/80 bg-white/95 dark:bg-stone-900 text-stone-900 dark:text-stone-100 ring-2 ring-emerald-500/20 dark:ring-emerald-400/30 shadow-md font-extrabold"
                     : "border-stone-200/80 dark:border-stone-800/90 bg-white/95 dark:bg-stone-900/80 text-stone-700 dark:text-stone-300 hover:border-stone-300 dark:hover:border-stone-700 shadow-xs hover:shadow-sm"
                 }`}
               >
@@ -1253,7 +1253,7 @@ export default function DashboardClient({ lessonsMeta }: { lessonsMeta: LessonMe
               onClick={() => setActiveTrack("cfa")}
               className={`w-full h-full flex flex-col text-left rounded-2xl border-2 px-5 py-4 transition-all duration-300 relative overflow-hidden backdrop-blur-md ${
                 activeDashboardTab === "cfa"
-                  ? "border-violet-500/80 bg-white dark:bg-stone-900 text-stone-900 dark:text-stone-100 ring-2 ring-violet-500/20 dark:ring-violet-400/30 shadow-md font-extrabold"
+                  ? "border-violet-500/80 bg-white/95 dark:bg-stone-900 text-stone-900 dark:text-stone-100 ring-2 ring-violet-500/20 dark:ring-violet-400/30 shadow-md font-extrabold"
                   : "border-stone-200/80 dark:border-stone-800/90 bg-white/95 dark:bg-stone-900/80 text-stone-700 dark:text-stone-300 hover:border-stone-300 dark:hover:border-stone-700 shadow-xs hover:shadow-sm"
               }`}
             >
