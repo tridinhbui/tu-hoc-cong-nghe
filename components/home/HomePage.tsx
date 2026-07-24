@@ -168,6 +168,29 @@ const AUDIENCES = [
   },
 ] as const;
 
+function SubtleWaveDivider({ flip = false }: { flip?: boolean }) {
+  return (
+    <div className={`w-full overflow-hidden leading-none pointer-events-none opacity-45 dark:opacity-20 my-[-1px] ${flip ? "rotate-180" : ""}`}>
+      <svg
+        className="relative block w-full h-7 sm:h-10 text-emerald-500/30 dark:text-emerald-400/15"
+        viewBox="0 0 1200 120"
+        preserveAspectRatio="none"
+      >
+        <path
+          d="M0,0 C150,90 350,-40 500,40 C650,120 900,10 1200,40 L1200,120 L0,120 Z"
+          fill="currentColor"
+        />
+      </svg>
+    </div>
+  );
+}
+
+function SoftFadeDivider() {
+  return (
+    <div className="w-full h-12 pointer-events-none bg-gradient-to-b from-transparent via-emerald-500/10 dark:via-emerald-400/5 to-transparent my-[-1px]" />
+  );
+}
+
 export default function HomePage() {
   const [displayedUserCount, setDisplayedUserCount] = useState(0);
   const [displayedLessonCount, setDisplayedLessonCount] = useState(0);
@@ -867,6 +890,8 @@ export default function HomePage() {
           </div>
         </section>
 
+        <SoftFadeDivider />
+
         {/* ── GAME KINGDOM PREVIEW ── */}
         <section className="landing-band landing-band-dark landing-band-divider relative py-14 lg:py-18">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -888,6 +913,8 @@ export default function HomePage() {
           </ScrollReveal>
         </div>
       </section>
+
+        <SubtleWaveDivider />
 
         {/* ── FEATURE SHOWCASE ── */}
         <section className="landing-band landing-band-emerald landing-band-divider relative py-16 lg:py-20 border-y border-stone-150/40 dark:border-stone-850/40">
@@ -913,6 +940,8 @@ export default function HomePage() {
             </ScrollReveal>
           </div>
         </section>
+
+        <SoftFadeDivider />
 
         {/* ── PAIN POINTS / TRUST ── */}
         <section className="landing-band landing-band-soft relative py-16 lg:py-20">
@@ -971,6 +1000,8 @@ export default function HomePage() {
             </div>
           </div>
         </section>
+
+        <SubtleWaveDivider flip />
 
         {/* ── METHOD (Spaced Repetition) ── */}
         <section className="bg-stone-50/50 dark:bg-stone-900/20 backdrop-blur-sm py-16 lg:py-20 border-y border-stone-150/40 dark:border-stone-850/40">
