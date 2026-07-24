@@ -64,7 +64,7 @@ const ORGANIC_BUILDINGS: OrganicBuilding[] = [
     badgeBg: "bg-gradient-to-r from-amber-500 to-red-500 text-white font-black",
     posClass: "top-4 left-1/2 -translate-x-1/2 sm:top-6",
     desktopClass: "lg:col-start-2 lg:row-start-1",
-    imageSrc: "/charging-bull.jpg",
+    imageSrc: "/boss-wallstreet-bull.png",
   },
   {
     id: "pvp",

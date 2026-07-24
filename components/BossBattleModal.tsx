@@ -176,8 +176,8 @@ export default function BossBattleModal({
               className="relative w-24 h-24 sm:w-28 sm:h-28 flex items-center justify-center"
             >
               <Image
-                src="/charging-bull-3d.png"
-                alt="3D Wall Street Bull Boss"
+                src="/boss-wallstreet-bull.png"
+                alt="Wall Street bull boss"
                 width={112}
                 height={112}
                 className="w-full h-full object-contain drop-shadow-[0_0_18px_rgba(245,158,11,0.6)]"

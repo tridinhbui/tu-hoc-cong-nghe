@@ -365,8 +365,8 @@ export default function WorldBossRaidWidget({
                       >
                         <div className="relative w-16 h-16 sm:w-20 sm:h-20 shrink-0">
                           <Image
-                            src="/charging-bull-3d.png"
-                            alt="3D Wall Street Bull Boss"
+                            src="/boss-wallstreet-bull.png"
+                            alt="Wall Street bull boss"
                             width={80}
                             height={80}
                             className="w-full h-full object-contain drop-shadow-[0_0_15px_rgba(245,158,11,0.5)]"
