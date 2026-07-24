@@ -464,38 +464,66 @@ export default function HomePage() {
 
         {/* ── SOCIAL PROOF ── */}
         <section className="bg-stone-50/50 dark:bg-stone-900/20 backdrop-blur-md py-16 lg:py-20 relative border-y border-stone-150/40 dark:border-stone-850/40">
-          <div className="max-w-6xl mx-auto px-6 grid lg:grid-cols-2 gap-8 items-start">
+          <div className="max-w-6xl mx-auto px-6 grid lg:grid-cols-[minmax(0,1.2fr)_360px] gap-6 items-start">
             <ScrollReveal>
               <p className="text-xs font-black text-emerald-600 dark:text-emerald-400 uppercase tracking-widest mb-2">
                 Cộng đồng thật
               </p>
-              <h2 className="text-3xl font-black text-stone-900 dark:text-stone-100 mb-4 leading-snug">
+              <h2 className="max-w-3xl text-3xl font-black text-stone-900 dark:text-stone-100 mb-4 leading-snug">
                 Học viên nổi bật đang học mỗi ngày, từ tài chính cá nhân đến CFA và nghề nghiệp tài chính
               </h2>
+              <p className="max-w-2xl text-sm leading-relaxed text-stone-600 dark:text-stone-400 mb-5">
+                Đây không phải bảng số liệu trang trí. Người mới vào có thể nhìn ngay ai đang học thật, ai giữ được nhịp đều,
+                và cảm giác tiến bộ trong hệ thống trông ra sao.
+              </p>
               <PublicLeaderboardPreview />
             </ScrollReveal>
 
             <ScrollReveal delay={0.1}>
-              <ul className="space-y-3">
-                {[
-                  "Không dùng thử giới hạn ngày",
-                  "Không quảng cáo xen giữa bài học",
-                  "Nội dung được cập nhật và mở rộng liên tục",
-                ].map((line) => (
-                  <li key={line} className="flex items-center gap-2.5 text-sm text-stone-600 dark:text-stone-400 font-medium">
-                    <CheckCircle2 className="w-4 h-4 text-emerald-500 flex-shrink-0" />
-                    {line}
-                  </li>
-                ))}
-              </ul>
+              <div className="rounded-[1.75rem] border border-stone-200 bg-white p-5 shadow-sm dark:border-stone-800 dark:bg-stone-900">
+                <div className="inline-flex items-center gap-2 rounded-full border border-emerald-200 bg-emerald-50 px-3 py-1 text-[10px] font-black uppercase tracking-[0.16em] text-emerald-700 dark:border-emerald-900 dark:bg-emerald-950/30 dark:text-emerald-300">
+                  <Sparkles className="h-3.5 w-3.5" />
+                  Vì sao cộng đồng này giữ chân người học
+                </div>
 
-              <Link
-                href="/login?mode=signup"
-                className="mt-6 inline-flex items-center gap-2 text-sm font-black text-emerald-700 dark:text-emerald-400 hover:text-emerald-800 dark:hover:text-emerald-300 transition-colors"
-              >
-                Vào học cùng cộng đồng
-                <ArrowRight className="w-4 h-4" />
-              </Link>
+                <div className="mt-4 space-y-3">
+                  {[
+                    "Không dùng thử giới hạn ngày",
+                    "Không quảng cáo xen giữa bài học",
+                    "Nội dung được cập nhật và mở rộng liên tục",
+                  ].map((line) => (
+                    <div key={line} className="flex items-start gap-2.5 rounded-2xl border border-stone-100 bg-stone-50/80 px-3.5 py-3 dark:border-stone-800 dark:bg-stone-950/40">
+                      <CheckCircle2 className="w-4 h-4 text-emerald-500 flex-shrink-0 mt-0.5" />
+                      <span className="text-sm text-stone-600 dark:text-stone-400 font-medium leading-relaxed">{line}</span>
+                    </div>
+                  ))}
+                </div>
+
+                <div className="mt-4 grid gap-2 sm:grid-cols-2 lg:grid-cols-1">
+                  {[
+                    { label: "Bục vinh quang", value: "Top 3 theo XP thật" },
+                    { label: "Huy hiệu", value: "Preview thành tích học tập" },
+                    { label: "Cập nhật live", value: "Thể hiện người đang hoạt động" },
+                  ].map((item) => (
+                    <div key={item.label} className="rounded-2xl border border-emerald-100 bg-emerald-50/60 px-3.5 py-3 dark:border-emerald-900/50 dark:bg-emerald-950/20">
+                      <p className="text-[10px] font-black uppercase tracking-[0.14em] text-emerald-700 dark:text-emerald-300">
+                        {item.label}
+                      </p>
+                      <p className="mt-1 text-sm font-bold text-stone-900 dark:text-stone-100">
+                        {item.value}
+                      </p>
+                    </div>
+                  ))}
+                </div>
+
+                <Link
+                  href="/login?mode=signup"
+                  className="mt-5 inline-flex w-full items-center justify-center gap-2 rounded-2xl bg-stone-900 px-4 py-3 text-sm font-black text-white transition hover:bg-emerald-600 dark:bg-stone-100 dark:text-stone-900 dark:hover:bg-emerald-300"
+                >
+                  Vào học cùng cộng đồng
+                  <ArrowRight className="w-4 h-4" />
+                </Link>
+              </div>
             </ScrollReveal>
           </div>
         </section>
