@@ -860,7 +860,7 @@ export default function DashboardClient({ lessonsMeta }: { lessonsMeta: LessonMe
             ];
 
             return (
-              <div className="rounded-[24px] border border-stone-200 bg-white px-4 py-3 shadow-sm sm:px-5 sm:py-3.5">
+              <div className="rounded-[24px] border border-stone-200 dark:border-stone-800 bg-white dark:bg-stone-900 p-4 sm:p-5 shadow-sm">
                 <div className="grid grid-cols-1 gap-3 xl:grid-cols-[minmax(0,1fr)_288px] xl:items-start">
                   <div className="min-w-0">
                     <div className="relative z-10 mb-2.5 flex flex-col justify-between gap-2 sm:flex-row sm:items-center">
@@ -1044,7 +1044,7 @@ export default function DashboardClient({ lessonsMeta }: { lessonsMeta: LessonMe
                     </div>
                   </div>
 
-                  <div className="min-w-0 rounded-[24px] border border-stone-200/90 bg-stone-50/85 p-3 xl:p-3.5">
+                  <div className="min-w-0 rounded-[24px] border border-stone-200/90 dark:border-stone-800 bg-stone-50/85 dark:bg-stone-900/80 p-3 xl:p-3.5">
                     <UserStats
                       xp={userXp}
                       lessonsCompleted={totalDone}
@@ -1148,8 +1148,8 @@ export default function DashboardClient({ lessonsMeta }: { lessonsMeta: LessonMe
               onClick={() => setDashboardTab("career")}
               className={`w-full h-full flex flex-col text-left rounded-2xl border-2 px-5 py-4 transition-all duration-300 relative overflow-hidden backdrop-blur-md ${
                 activeDashboardTab === "career"
-                  ? "border-stone-300 bg-white text-stone-900 ring-1 ring-stone-200 shadow-sm"
-                  : "border-stone-200/80 dark:border-stone-800/90 bg-white/95 dark:bg-stone-900/80 text-stone-700 dark:text-stone-300 hover:border-stone-300 shadow-xs hover:shadow-sm"
+                  ? "border-emerald-500/80 bg-white dark:bg-stone-900 text-stone-900 dark:text-stone-100 ring-2 ring-emerald-500/20 dark:ring-emerald-400/30 shadow-md font-extrabold"
+                  : "border-stone-200/80 dark:border-stone-800/90 bg-white/95 dark:bg-stone-900/80 text-stone-700 dark:text-stone-300 hover:border-stone-300 dark:hover:border-stone-700 shadow-xs hover:shadow-sm"
               }`}
             >
               <div className="h-0.5 w-full bg-emerald-500/70 absolute top-0 left-0 right-0" />
@@ -1170,8 +1170,8 @@ export default function DashboardClient({ lessonsMeta }: { lessonsMeta: LessonMe
                 onClick={() => setActiveTrack("personal")}
                 className={`w-full h-full flex flex-col text-left rounded-2xl border-2 px-5 py-4 transition-all duration-300 relative overflow-hidden backdrop-blur-md ${
                   activeDashboardTab === "personal"
-                    ? "border-stone-300 bg-white text-stone-900 ring-1 ring-stone-200 shadow-sm"
-                    : "border-stone-200/80 dark:border-stone-800/90 bg-white/95 dark:bg-stone-900/80 text-stone-700 dark:text-stone-300 hover:border-stone-300 shadow-xs hover:shadow-sm"
+                    ? "border-amber-500/80 bg-white dark:bg-stone-900 text-stone-900 dark:text-stone-100 ring-2 ring-amber-500/20 dark:ring-amber-400/30 shadow-md font-extrabold"
+                    : "border-stone-200/80 dark:border-stone-800/90 bg-white/95 dark:bg-stone-900/80 text-stone-700 dark:text-stone-300 hover:border-stone-300 dark:hover:border-stone-700 shadow-xs hover:shadow-sm"
                 }`}
               >
                 <div className="h-0.5 w-full bg-amber-500/70 absolute top-0 left-0 right-0" />
@@ -1212,8 +1212,8 @@ export default function DashboardClient({ lessonsMeta }: { lessonsMeta: LessonMe
                 onClick={() => setActiveTrack("professional")}
                 className={`w-full h-full flex flex-col text-left rounded-2xl border-2 px-5 py-4 transition-all duration-300 relative overflow-hidden backdrop-blur-md ${
                   activeDashboardTab === "professional"
-                    ? "border-stone-300 bg-white text-stone-900 ring-1 ring-stone-200 shadow-sm"
-                    : "border-stone-200/80 dark:border-stone-800/90 bg-white/95 dark:bg-stone-900/80 text-stone-700 dark:text-stone-300 hover:border-stone-300 shadow-xs hover:shadow-sm"
+                    ? "border-emerald-500/80 bg-white dark:bg-stone-900 text-stone-900 dark:text-stone-100 ring-2 ring-emerald-500/20 dark:ring-emerald-400/30 shadow-md font-extrabold"
+                    : "border-stone-200/80 dark:border-stone-800/90 bg-white/95 dark:bg-stone-900/80 text-stone-700 dark:text-stone-300 hover:border-stone-300 dark:hover:border-stone-700 shadow-xs hover:shadow-sm"
                 }`}
               >
                 <div className="h-0.5 w-full bg-emerald-500/70 absolute top-0 left-0 right-0" />
@@ -1253,8 +1253,8 @@ export default function DashboardClient({ lessonsMeta }: { lessonsMeta: LessonMe
               onClick={() => setActiveTrack("cfa")}
               className={`w-full h-full flex flex-col text-left rounded-2xl border-2 px-5 py-4 transition-all duration-300 relative overflow-hidden backdrop-blur-md ${
                 activeDashboardTab === "cfa"
-                  ? "border-stone-300 bg-white text-stone-900 ring-1 ring-stone-200 shadow-sm"
-                  : "border-stone-200/80 dark:border-stone-800/90 bg-white/95 dark:bg-stone-900/80 text-stone-700 dark:text-stone-300 hover:border-stone-300 shadow-xs hover:shadow-sm"
+                  ? "border-violet-500/80 bg-white dark:bg-stone-900 text-stone-900 dark:text-stone-100 ring-2 ring-violet-500/20 dark:ring-violet-400/30 shadow-md font-extrabold"
+                  : "border-stone-200/80 dark:border-stone-800/90 bg-white/95 dark:bg-stone-900/80 text-stone-700 dark:text-stone-300 hover:border-stone-300 dark:hover:border-stone-700 shadow-xs hover:shadow-sm"
               }`}
             >
               <div className="h-0.5 w-full bg-violet-500/70 absolute top-0 left-0 right-0" />

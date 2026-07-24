@@ -171,10 +171,10 @@ function SummaryStat({
   hint: string;
 }) {
   return (
-    <div className="rounded-2xl border border-stone-200/80 bg-white px-4 py-4">
-      <p className="text-[10px] font-extrabold uppercase tracking-[0.18em] text-stone-400">{label}</p>
-      <p className="mt-2 text-2xl font-black tracking-tight text-stone-900">{value}</p>
-      <p className="mt-1 text-xs leading-5 text-stone-500">{hint}</p>
+    <div className="rounded-2xl border border-stone-200/80 dark:border-stone-800 bg-white dark:bg-stone-900 px-4 py-4">
+      <p className="text-[10px] font-extrabold uppercase tracking-[0.18em] text-stone-400 dark:text-stone-500">{label}</p>
+      <p className="mt-2 text-2xl font-black tracking-tight text-stone-900 dark:text-stone-100">{value}</p>
+      <p className="mt-1 text-xs leading-5 text-stone-500 dark:text-stone-400">{hint}</p>
     </div>
   );
 }
