@@ -227,6 +227,28 @@ export default function CfaTrackView({ subjects, completedLessonIds }: Props) {
   if (viewMode === "subjects") {
     return (
       <div className="py-2">
+        {/* 📇 CFA Glossary Flashcards Banner */}
+        <div className="mb-6 bg-gradient-to-r from-amber-500/10 via-indigo-500/10 to-amber-500/10 border-2 border-amber-400/60 dark:border-amber-700/60 rounded-3xl p-5 flex flex-col sm:flex-row items-center justify-between gap-4">
+          <div className="flex items-center gap-3.5">
+            <span className="text-3xl p-2.5 bg-amber-500/20 rounded-2xl shrink-0">📇</span>
+            <div>
+              <h3 className="text-base font-extrabold text-stone-900 dark:text-stone-100 flex items-center gap-2">
+                Bộ Thẻ Thuật Ngữ CFA Song Ngữ En-Vi
+                <span className="text-[10px] font-black uppercase text-amber-600 bg-amber-100 dark:bg-amber-950 px-2 py-0.5 rounded-full">FLASHCARD 3D</span>
+              </h3>
+              <p className="text-xs text-stone-600 dark:text-stone-400 mt-0.5">
+                500+ thuật ngữ tiếng Anh chuyên ngành CFA kèm định nghĩa tiếng Việt chuẩn, công thức toán và phát âm chuẩn En-US.
+              </p>
+            </div>
+          </div>
+          <Link
+            href="/cfa/flashcards"
+            className="px-5 py-2.5 bg-amber-500 hover:bg-amber-600 font-extrabold text-xs text-white rounded-xl transition-all shadow-md shrink-0 cursor-pointer flex items-center gap-1.5"
+          >
+            <span>Mở Flashcard 3D →</span>
+          </Link>
+        </div>
+
         {modeSwitcher}
         <div className="space-y-3">
           {subjects.map(({ subject, lessons, completedCount, nextLessonSlug }) => {
