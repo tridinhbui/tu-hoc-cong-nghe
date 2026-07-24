@@ -14,15 +14,15 @@ export default function StudyGroupsPage() {
         {/* Wall Street NYSE Trading Floor Background Photo */}
         <div className="absolute inset-0 pointer-events-none z-0">
           <Image
-            src="/wallstreet-nyse-header.jpg"
+            src="/images/study-group-cover.jpg"
             alt="Wall Street NYSE Trading Floor"
             fill
-            className="object-cover object-center brightness-[0.45] contrast-[1.12] scale-105"
+            className="object-cover object-center brightness-[0.7] contrast-[1.05] scale-105"
             priority
           />
           {/* Gradient Overlay for Submerged Depth & Legibility */}
-          <div className="absolute inset-0 bg-gradient-to-r from-stone-950/90 via-stone-950/75 to-stone-950/85 backdrop-blur-[1px]" />
-          <div className="absolute inset-0 bg-gradient-to-b from-stone-950/40 via-transparent to-stone-950" />
+          <div className="absolute inset-0 bg-gradient-to-r from-stone-950/85 via-stone-950/65 to-stone-950/75 backdrop-blur-[0.5px]" />
+          <div className="absolute inset-0 bg-gradient-to-b from-stone-950/30 via-transparent to-stone-950" />
         </div>
 
         {/* 3D Perspective Grid Background */}
