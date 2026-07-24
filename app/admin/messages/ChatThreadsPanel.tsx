@@ -2,10 +2,10 @@
 
 import { useEffect, useRef, useState } from "react";
 import { toast } from "sonner";
-import { MessageCircle, Send, ImagePlus, X, Loader2 } from "lucide-react";
+import { MessageCircle, Send, ImagePlus, X, Loader2, Trash2 } from "lucide-react";
 import type { ChatThread, ChatThreadMessage } from "@/lib/admin/chat";
 import { sendAdminChatReplyAction, markThreadReadAction, getChatThreadMessagesAction, getChatThreadsAction } from "./actions";
-import { uploadChatImage, isAllowedChatImage } from "@/lib/supabase-chat";
+import { uploadChatImage, isAllowedChatImage, deleteChatMessage } from "@/lib/supabase-chat";
 import { createClient } from "@/lib/supabase";
 import EmptyState from "@/components/admin/EmptyState";
 import EmojiPicker from "@/components/EmojiPicker";
@@ -147,6 +147,13 @@ export default function ChatThreadsPanel({ threads: initialThreads }: { threads:
     }
   }
 
+  const handleAdminDeleteMessage = async (msgId: number) => {
+    if (!activeUserId) return;
+    setMessages((prev) => prev.filter((m) => m.id !== msgId));
+    toast.success("🗑️ Đã thu hồi và xóa vĩnh viễn tin nhắn khỏi DB!");
+    await deleteChatMessage(msgId, activeUserId).catch((error) => console.error("Error deleting message:", error));
+  };
+
   if (threads.length === 0) {
     return <EmptyState icon={MessageCircle} title="Chưa có cuộc trò chuyện nào" description="Tin nhắn từ khung chat trực tiếp của người dùng sẽ hiện ở đây." />;
   }
@@ -220,8 +227,21 @@ export default function ChatThreadsPanel({ threads: initialThreads }: { threads:
                         {new Date(m.created_at).toLocaleTimeString("vi-VN", { hour: "2-digit", minute: "2-digit" })}
                       </p>
                     </div>
-                    {m.sender === "admin" && m.id === lastAdminMsgId && m.read && (
-                      <span className="text-[10px] text-stone-400 dark:text-stone-500 mt-0.5 mr-1">Đã xem</span>
+                    {m.sender === "admin" && (
+                      <div className="flex items-center gap-2 mt-0.5 mr-1">
+                        {m.id === lastAdminMsgId && m.read && (
+                          <span className="text-[10px] text-stone-400 dark:text-stone-500">Đã xem</span>
+                        )}
+                        <button
+                          type="button"
+                          onClick={() => handleAdminDeleteMessage(m.id)}
+                          className="text-[9px] font-bold text-rose-500 hover:text-rose-600 flex items-center gap-0.5 cursor-pointer"
+                          title="Thu hồi &amp; xóa khỏi DB"
+                        >
+                          <Trash2 className="w-2.5 h-2.5" />
+                          <span>Thu hồi</span>
+                        </button>
+                      </div>
                     )}
                   </div>
                 ))

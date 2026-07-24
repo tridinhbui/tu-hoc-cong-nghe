@@ -5,7 +5,7 @@ import Image from "next/image";
 import { isValidAvatar } from "@/lib/avatar-utils";
 import TaiTaiAvatar from "@/components/TaiTaiAvatar";
 import { toast } from "sonner";
-import { Users, Send, X, ImagePlus } from "lucide-react";
+import { Users, Send, X, ImagePlus, Trash2 } from "lucide-react";
 import { createClient } from "@/lib/supabase";
 import { trackFeatureClick } from "@/lib/feature-events";
 import { uploadChatImage, isAllowedChatImage } from "@/lib/supabase-chat";
@@ -19,6 +19,7 @@ import {
   isStudyRoomBotCommand,
   requestStudyRoomBot,
   sendRoomMessage,
+  deleteRoomMessage,
   subscribeToRoomMessages,
   type StudyRoomSummary,
   type StudyRoomMessage,
@@ -118,15 +119,27 @@ export default function FloatingStudyGroupChat({ isOpen: controlledIsOpen, onOpe
     void init();
   }, []);
 
+  const handleDeleteStudyMessage = async (msgId: number) => {
+    setMessages((prev) => prev.filter((m) => m.id !== msgId));
+    toast.success("🗑️ Đã thu hồi tin nhắn khỏi nhóm học!");
+    await deleteRoomMessage(msgId).catch((error) => console.error("Error deleting room message:", error));
+  };
+
   useEffect(() => {
     if (!room) return;
-    const unsubscribe = subscribeToRoomMessages(room.room_id, (message) => {
-      setMessages((prev) => (prev.some((m) => m.id === message.id) ? prev : [...prev, message]));
-      setOpen((currentlyOpen) => {
-        if (!currentlyOpen) setUnreadCount((c) => c + 1);
-        return currentlyOpen;
-      });
-    });
+    const unsubscribe = subscribeToRoomMessages(
+      room.room_id,
+      (message) => {
+        setMessages((prev) => (prev.some((m) => m.id === message.id) ? prev : [...prev, message]));
+        setOpen((currentlyOpen) => {
+          if (!currentlyOpen) setUnreadCount((c) => c + 1);
+          return currentlyOpen;
+        });
+      },
+      (deletedId) => {
+        setMessages((prev) => prev.filter((m) => m.id !== deletedId));
+      }
+    );
     return unsubscribe;
   }, [room]);
 
@@ -380,6 +393,19 @@ export default function FloatingStudyGroupChat({ isOpen: controlledIsOpen, onOpe
                         )}
                         {msg.content && <p className="whitespace-pre-wrap break-words">{msg.content}</p>}
                       </div>
+                      {isMine && (
+                        <div className="flex items-center justify-end gap-1 mt-0.5">
+                          <button
+                            type="button"
+                            onClick={() => handleDeleteStudyMessage(msg.id)}
+                            className="text-[9px] font-bold text-rose-500 hover:text-rose-600 transition-colors flex items-center gap-0.5 cursor-pointer"
+                            title="Thu hồi &amp; xóa khỏi DB"
+                          >
+                            <Trash2 className="w-2.5 h-2.5" />
+                            <span>Thu hồi</span>
+                          </button>
+                        </div>
+                      )}
                     </div>
                   </div>
                 );

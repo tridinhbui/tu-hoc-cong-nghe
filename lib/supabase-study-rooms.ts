@@ -172,7 +172,21 @@ export async function requestStudyRoomBot(roomId: number, command: string): Prom
   return payload.message;
 }
 
-export function subscribeToRoomMessages(roomId: number, onMessage: (message: StudyRoomMessage) => void) {
+export async function deleteRoomMessage(messageId: number): Promise<boolean> {
+  const supabase = createClient();
+  const { error } = await supabase
+    .from("study_room_messages")
+    .delete()
+    .eq("id", messageId);
+  if (error) throw handleSupabaseError(error);
+  return true;
+}
+
+export function subscribeToRoomMessages(
+  roomId: number,
+  onMessage: (message: StudyRoomMessage) => void,
+  onDelete?: (messageId: number) => void
+) {
   const supabase = createClient();
   const channelName = `study_room_messages:${roomId}:${++studyRoomRealtimeSubscriptionSeq}`;
 
@@ -187,6 +201,20 @@ export function subscribeToRoomMessages(roomId: number, onMessage: (message: Stu
         filter: `room_id=eq.${roomId}`,
       },
       (payload) => onMessage(payload.new as StudyRoomMessage)
+    )
+    .on(
+      "postgres_changes",
+      {
+        event: "DELETE",
+        schema: "public",
+        table: "study_room_messages",
+        filter: `room_id=eq.${roomId}`,
+      },
+      (payload) => {
+        if (onDelete && payload.old && (payload.old as { id?: number }).id) {
+          onDelete((payload.old as { id: number }).id);
+        }
+      }
     )
     .subscribe();
 

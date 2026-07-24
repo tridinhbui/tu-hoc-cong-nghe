@@ -97,12 +97,27 @@ export async function sendMessage(
   return data as ChatMessage;
 }
 
-// Fires on both new messages and read-receipt updates (the `read` column
-// flipping true) so the widget can upsert: append if it's a new id, or patch
-// the existing message in place to show a "seen" indicator live.
+export async function deleteChatMessage(messageId: number, userId: string): Promise<boolean> {
+  const supabase = createClient();
+  const { error } = await supabase
+    .from("chat_messages")
+    .delete()
+    .eq("id", messageId);
+
+  if (error) {
+    if (!isMissingTableError(error)) {
+      throw handleSupabaseError(error);
+    }
+    return false;
+  }
+  return true;
+}
+
+// Fires on new messages, updates, and DELETE events (when a message is recalled)
 export function subscribeToChatMessages(
   userId: string,
-  onMessage: (message: ChatMessage) => void
+  onMessage: (message: ChatMessage) => void,
+  onDelete?: (messageId: number) => void
 ) {
   const supabase = createClient();
 
@@ -130,6 +145,20 @@ export function subscribeToChatMessages(
       },
       (payload) => {
         onMessage(payload.new as ChatMessage);
+      }
+    )
+    .on(
+      "postgres_changes",
+      {
+        event: "DELETE",
+        schema: "public",
+        table: "chat_messages",
+        filter: `user_id=eq.${userId}`,
+      },
+      (payload) => {
+        if (onDelete && payload.old && (payload.old as { id?: number }).id) {
+          onDelete((payload.old as { id: number }).id);
+        }
       }
     )
     .subscribe();

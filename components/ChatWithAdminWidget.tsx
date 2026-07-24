@@ -2,7 +2,7 @@
 
 import { useState, useRef, useEffect, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Send, X, ImagePlus, Loader2 } from "lucide-react";
+import { Send, X, ImagePlus, Loader2, Trash2 } from "lucide-react";
 import { toast } from "sonner";
 import { createClient } from "@/lib/supabase";
 import Logo from "@/components/Logo";
@@ -16,6 +16,7 @@ import {
   uploadChatImage,
   isAllowedChatImage,
   markMessagesSeenByUser,
+  deleteChatMessage,
   type ChatMessage,
 } from "@/lib/supabase-chat";
 
@@ -77,22 +78,35 @@ export default function ChatWithAdminWidget({ isOpen: controlledIsOpen, onOpenCh
       .catch((error) => console.error("Error loading community shoutout:", error));
   }, [isOpen]);
 
+  const handleDeleteMessage = async (msgId: number) => {
+    if (!userId) return;
+    setMessages((prev) => prev.filter((m) => m.id !== msgId));
+    toast.success("🗑️ Đã thu hồi và xóa vĩnh viễn tin nhắn khỏi DB!");
+    await deleteChatMessage(msgId, userId).catch((error) => console.error("Error deleting message:", error));
+  };
+
   useEffect(() => {
     if (!isOpen || !userId) return;
 
-    const unsubscribe = subscribeToChatMessages(userId, (message) => {
-      setMessages((prev) => {
-        const existingIdx = prev.findIndex((m) => m.id === message.id);
-        if (existingIdx === -1) return [...prev, message];
-        // UPDATE event (e.g. admin marked our message as read) - patch in place.
-        const next = [...prev];
-        next[existingIdx] = message;
-        return next;
-      });
-      // A fresh admin message arrived while the chat is open - mark it seen
-      // immediately instead of waiting for the next load.
-      if (message.sender === "admin") void markMessagesSeenByUser(userId);
-    });
+    const unsubscribe = subscribeToChatMessages(
+      userId,
+      (message) => {
+        setMessages((prev) => {
+          const existingIdx = prev.findIndex((m) => m.id === message.id);
+          if (existingIdx === -1) return [...prev, message];
+          // UPDATE event (e.g. admin marked our message as read) - patch in place.
+          const next = [...prev];
+          next[existingIdx] = message;
+          return next;
+        });
+        // A fresh admin message arrived while the chat is open - mark it seen
+        // immediately instead of waiting for the next load.
+        if (message.sender === "admin") void markMessagesSeenByUser(userId);
+      },
+      (deletedId) => {
+        setMessages((prev) => prev.filter((m) => m.id !== deletedId));
+      }
+    );
 
     return unsubscribe;
   }, [isOpen, userId]);
@@ -292,10 +306,23 @@ export default function ChatWithAdminWidget({ isOpen: controlledIsOpen, onOpenCh
                       )}
                       <p className="whitespace-pre-wrap break-words">{msg.content}</p>
                     </div>
-                    {msg.sender === "user" && msg.id === lastUserMsgId && (
-                      <span className="text-[9px] text-stone-450 dark:text-stone-550 font-bold mt-1 mr-1">
-                        {msg.read ? "Đã xem" : "Đã gửi"}
-                      </span>
+                    {msg.sender === "user" && (
+                      <div className="flex items-center gap-2 mt-1 mr-1">
+                        {msg.id === lastUserMsgId && (
+                          <span className="text-[9px] text-stone-450 dark:text-stone-550 font-bold">
+                            {msg.read ? "Đã xem" : "Đã gửi"}
+                          </span>
+                        )}
+                        <button
+                          type="button"
+                          onClick={() => handleDeleteMessage(msg.id)}
+                          className="text-[9px] font-bold text-rose-500 hover:text-rose-600 transition-colors flex items-center gap-0.5 cursor-pointer"
+                          title="Thu hồi &amp; xóa khỏi DB"
+                        >
+                          <Trash2 className="w-2.5 h-2.5" />
+                          <span>Thu hồi</span>
+                        </button>
+                      </div>
                     )}
                   </div>
                 ));
