@@ -91,8 +91,8 @@ export default function DashboardStreakWidget({ userId }: { userId: string }) {
 
       {/* 🧊 STREAK PROTECTION & FREEZE MODAL */}
       {showModal && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-stone-900/60 p-4 backdrop-blur-xs animate-in fade-in duration-200">
-          <div className="relative w-full max-w-lg rounded-3xl border border-stone-200 bg-white p-6 shadow-2xl dark:border-stone-800 dark:bg-stone-900 space-y-5">
+        <div className="fixed inset-0 z-[9999] flex items-center justify-center bg-stone-950/75 p-4 backdrop-blur-md animate-in fade-in duration-200">
+          <div className="relative w-full max-w-lg max-h-[90vh] overflow-y-auto overflow-x-hidden rounded-3xl border-2 border-sky-300 dark:border-sky-800 bg-white p-6 shadow-2xl dark:bg-stone-900 space-y-5">
             {/* Close Button */}
             <button
               onClick={() => setShowModal(false)}
