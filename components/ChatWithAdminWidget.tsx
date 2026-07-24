@@ -441,11 +441,11 @@ export default function ChatWithAdminWidget({
                     className={`group relative flex flex-col ${isMine ? "items-end" : "items-start"}`}
                   >
                     <div className={`flex items-end gap-1.5 ${isMine ? "flex-row-reverse" : "flex-row"}`}>
-                      <div className="relative max-w-[80%]">
+                      <div className="relative max-w-[85%] w-fit min-w-0">
                         <div
-                          className={`relative rounded-2xl px-3.5 py-2.5 text-[12px] leading-relaxed shadow-xs ${
+                          className={`relative rounded-2xl px-3.5 py-2 text-[12px] leading-relaxed shadow-xs w-fit ${
                             isMine
-                              ? "bg-gradient-to-br from-stone-900 to-stone-800 dark:from-white dark:to-stone-100 text-white dark:text-stone-900 rounded-tr-xs"
+                              ? "bg-stone-900 dark:bg-stone-100 text-white dark:text-stone-900 rounded-tr-xs"
                               : "bg-white dark:bg-stone-800/90 text-stone-800 dark:text-stone-100 border border-stone-100 dark:border-stone-850/60 rounded-tl-xs"
                           }`}
                         >
@@ -607,9 +607,9 @@ export default function ChatWithAdminWidget({
 
                         {/* Message Status */}
                         {isMine && (
-                          <div className="mt-1 flex items-center justify-end gap-1 text-[9px] font-bold text-stone-400 dark:text-stone-500">
-                            <CheckCheck className={`h-3 w-3 ${msg.read ? "text-emerald-500" : "text-stone-400"}`} />
-                            <span>{msg.read ? "Đã xem" : "Đã gửi"}</span>
+                          <div className="mt-1 flex items-center justify-end gap-1 text-[9px] font-bold text-stone-400 dark:text-stone-500 whitespace-nowrap">
+                            <CheckCheck className={`h-3 w-3 shrink-0 ${msg.read ? "text-emerald-500" : "text-stone-400"}`} />
+                            <span className="whitespace-nowrap">{msg.read ? "Đã xem" : "Đã gửi"}</span>
                           </div>
                         )}
                       </div>

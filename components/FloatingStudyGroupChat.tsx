@@ -441,17 +441,17 @@ export default function FloatingStudyGroupChat({ isOpen: controlledIsOpen, onOpe
                             {initials(member?.full_name)}
                           </div>
                         ))}
-                      <div className="relative max-w-[78%]">
+                      <div className="relative max-w-[85%] w-fit min-w-0">
                         {!isMine && (
                           <p className="text-[9px] font-bold text-stone-450 dark:text-stone-500 mb-0.5 ml-1">
                             {senderName}
                           </p>
                         )}
                         <div
-                          className={`relative rounded-2xl px-3.5 py-2.5 text-[12px] leading-relaxed shadow-xs ${
+                          className={`relative rounded-2xl px-3.5 py-2 text-[12px] leading-relaxed shadow-xs w-fit ${
                             isMine
-                              ? "bg-gradient-to-br from-emerald-700 to-teal-600 text-white rounded-tr-xs"
-                              : "bg-white dark:bg-stone-850/90 text-stone-800 dark:text-stone-100 rounded-tl-xs"
+                              ? "bg-emerald-700 dark:bg-emerald-600 text-white rounded-tr-xs"
+                              : "bg-white dark:bg-stone-850/90 text-stone-800 dark:text-stone-100 rounded-tl-xs border border-stone-100 dark:border-stone-800"
                           }`}
                         >
                           {/* Quoted Message Box */}
@@ -599,9 +599,9 @@ export default function FloatingStudyGroupChat({ isOpen: controlledIsOpen, onOpe
                         )}
 
                         {isMine && (
-                          <div className="mt-1 flex items-center justify-end gap-1 text-[9px] font-bold text-stone-400 dark:text-stone-500">
-                            <CheckCheck className="h-3 w-3 text-emerald-500" />
-                            <span>{members.size > 1 ? "Đã xem" : "Đã gửi"}</span>
+                          <div className="mt-1 flex items-center justify-end gap-1 text-[9px] font-bold text-stone-400 dark:text-stone-500 whitespace-nowrap">
+                            <CheckCheck className="h-3 w-3 text-emerald-500 shrink-0" />
+                            <span className="whitespace-nowrap">{members.size > 1 ? "Đã xem" : "Đã gửi"}</span>
                           </div>
                         )}
 

@@ -598,8 +598,8 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
 
                   return (
                     <div key={msg.id} className={`group relative flex flex-col ${isMine ? "items-end" : "items-start"}`}>
-                      <div className={`flex items-center gap-1.5 max-w-[82%] ${isMine ? "flex-row-reverse" : "flex-row"}`}>
-                        <div className={`relative rounded-2xl px-3.5 py-2 shadow-2xs ${
+                      <div className={`flex items-center gap-1.5 max-w-[85%] w-fit min-w-0 ${isMine ? "flex-row-reverse" : "flex-row"}`}>
+                        <div className={`relative rounded-2xl px-3.5 py-2 shadow-2xs w-fit ${
                           isMine
                             ? "bg-stone-900 dark:bg-stone-100 text-white dark:text-stone-900 rounded-tr-xs"
                             : "bg-white dark:bg-stone-900 border border-stone-200 dark:border-stone-800 text-stone-900 dark:text-stone-100 rounded-tl-xs"
@@ -746,9 +746,9 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
                         </div>
                       )}
                       {isMine && (
-                        <div className="mt-1 flex items-center justify-end gap-1 text-[10px] font-bold text-stone-400 dark:text-stone-500">
-                          <CheckCheck className="h-3.5 w-3.5 text-emerald-500" />
-                          <span>{myRoomMembers.length > 1 ? "Đã xem" : "Đã gửi"}</span>
+                        <div className="mt-1 flex items-center justify-end gap-1 text-[10px] font-bold text-stone-400 dark:text-stone-500 whitespace-nowrap">
+                          <CheckCheck className="h-3.5 w-3.5 text-emerald-500 shrink-0" />
+                          <span className="whitespace-nowrap">{myRoomMembers.length > 1 ? "Đã xem" : "Đã gửi"}</span>
                         </div>
                       )}
                     </div>
