@@ -917,10 +917,8 @@ export default function HomePage() {
           </div>
         </section>
 
-        <SoftFadeDivider />
-
         {/* ── GAME KINGDOM PREVIEW ── */}
-        <section className="landing-band landing-band-dark landing-band-divider relative py-6 sm:py-8 font-sans">
+        <section className="landing-band landing-band-dark landing-band-divider relative py-5 sm:py-6 font-sans">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <ScrollReveal className="max-w-3xl mb-3">
             <p className="text-[11px] font-black text-amber-200 uppercase tracking-widest mb-1 drop-shadow-[0_1px_2px_rgba(0,0,0,0.7)]">
@@ -941,10 +939,8 @@ export default function HomePage() {
         </div>
       </section>
 
-        <SubtleWaveDivider />
-
         {/* ── FEATURE SHOWCASE ── */}
-        <section className="landing-band landing-band-emerald landing-band-divider relative py-6 sm:py-8 font-sans border-y border-stone-200/80 dark:border-stone-850/80">
+        <section className="landing-band landing-band-emerald landing-band-divider relative py-5 sm:py-6 font-sans border-y border-stone-200/80 dark:border-stone-850/80">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <ScrollReveal className="max-w-3xl mb-4">
               <p className="text-xs font-black text-emerald-600 dark:text-emerald-400 uppercase tracking-widest mb-2">
@@ -974,89 +970,75 @@ export default function HomePage() {
         <ScrollytellingPinnedSection />
 
         {/* ── VISION & MISSION ── */}
-        <section className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-10">
+        <section className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-5 sm:py-6">
           <ScrollReveal>
-            <div className="animated-border-card rounded-[20px] border border-stone-200/80 dark:border-stone-800/85 bg-white/70 dark:bg-stone-900/60 backdrop-blur-sm p-8 lg:p-10 shadow-[0_14px_34px_-26px_rgba(28,25,23,0.12)] dark:shadow-[0_14px_34px_-26px_rgba(0,0,0,0.28)]">
-              <div className="grid gap-8 lg:grid-cols-[minmax(0,1.35fr)_minmax(320px,0.95fr)] lg:items-start">
+            <div className="animated-border-card rounded-[20px] border border-stone-200/80 dark:border-stone-800/85 bg-white/70 dark:bg-stone-900/60 backdrop-blur-sm p-5 sm:p-6 shadow-sm">
+              <div className="grid gap-6 lg:grid-cols-[minmax(0,1.35fr)_minmax(300px,0.95fr)] lg:items-center">
                 <div>
-                  <p className="mb-4 inline-flex items-center gap-2 text-xs font-black text-emerald-600 dark:text-emerald-400 uppercase tracking-widest">
-                    <span className="inline-flex h-6 w-6 items-center justify-center rounded-full bg-emerald-50 text-sm shadow-sm ring-1 ring-emerald-200/80 dark:bg-emerald-950/40 dark:ring-emerald-900/50">
+                  <p className="mb-2 inline-flex items-center gap-2 text-xs font-black text-emerald-600 dark:text-emerald-400 uppercase tracking-widest">
+                    <span className="inline-flex h-5 w-5 items-center justify-center rounded-full bg-emerald-50 text-xs shadow-xs border border-emerald-200/80 dark:bg-emerald-950/40 dark:border-emerald-900/50">
                       🇻🇳
                     </span>
                     Vì sao chúng tôi làm
                   </p>
-                  <h2 className="max-w-2xl text-2xl sm:text-3xl lg:text-4xl font-black tracking-tight text-stone-900 dark:text-stone-100 leading-tight">
+                  <h2 className="max-w-xl text-xl sm:text-2xl font-black tracking-tight text-stone-900 dark:text-stone-100 leading-snug">
                     Hiểu biết tài chính ở Việt Nam đang cải thiện, nhưng khoảng trống nền tảng vẫn còn rất lớn.
                   </h2>
 
-                  <div className="mt-7 grid gap-4 sm:grid-cols-3">
-                    <div className="animated-border-card rounded-[18px] border border-emerald-200/50 dark:border-emerald-900/40 bg-emerald-50/50 dark:bg-emerald-950/20 px-5 py-5 transition-all duration-200 ease-out hover:scale-[1.02]">
-                      <div className="text-[10px] font-black uppercase tracking-[0.18em] text-emerald-700 dark:text-emerald-300">
+                  <div className="mt-4 grid gap-3 sm:grid-cols-3">
+                    <div className="rounded-xl border border-emerald-200/50 dark:border-emerald-900/40 bg-emerald-50/50 dark:bg-emerald-950/20 p-3">
+                      <div className="text-[9px] font-black uppercase tracking-wider text-emerald-700 dark:text-emerald-300">
                         Hiểu biết cơ bản
                       </div>
-                      <div className="mt-3 text-4xl sm:text-5xl font-black tracking-tight bg-gradient-to-r from-emerald-600 to-teal-500 dark:from-emerald-400 dark:to-teal-300 bg-clip-text text-transparent">
+                      <div className="mt-1 text-2xl font-black text-emerald-600 dark:text-emerald-400">
                         24%
                       </div>
-                      <p className="mt-2 text-xs sm:text-sm leading-relaxed text-stone-600 dark:text-stone-300">
-                        đạt ngưỡng hiểu biết tài chính cơ bản.
+                      <p className="mt-1 text-[11px] leading-snug text-stone-600 dark:text-stone-300">
+                        đạt ngưỡng cơ bản.
                       </p>
                     </div>
-                    <div className="animated-border-card rounded-[18px] border border-stone-200/80 dark:border-stone-800 bg-stone-50/50 dark:bg-stone-900/30 px-5 py-5 transition-all duration-200 ease-out hover:scale-[1.02]">
-                      <div className="text-[10px] font-black uppercase tracking-[0.18em] text-stone-500 dark:text-stone-400">
-                        Khoảng trống còn lại
+                    <div className="rounded-xl border border-stone-200/80 dark:border-stone-800 bg-stone-50/50 dark:bg-stone-900/30 p-3">
+                      <div className="text-[9px] font-black uppercase tracking-wider text-stone-500 dark:text-stone-400">
+                        Khoảng trống
                       </div>
-                      <div className="mt-3 text-4xl sm:text-5xl font-black tracking-tight text-stone-800 dark:text-stone-100">
+                      <div className="mt-1 text-2xl font-black text-stone-800 dark:text-stone-100">
                         3/4
                       </div>
-                      <p className="mt-2 text-xs sm:text-sm leading-relaxed text-stone-600 dark:text-stone-300">
-                        vẫn chưa đạt mức nền tảng.
+                      <p className="mt-1 text-[11px] leading-snug text-stone-600 dark:text-stone-300">
+                        chưa đạt nền tảng.
                       </p>
                     </div>
-                    <div className="animated-border-card rounded-[18px] border border-stone-200/80 dark:border-stone-800 bg-stone-50/50 dark:bg-stone-900/30 px-5 py-5 transition-all duration-200 ease-out hover:scale-[1.02]">
-                      <div className="text-[10px] font-black uppercase tracking-[0.18em] text-stone-500 dark:text-stone-400">
-                        Tiếp cận năm 2024
+                    <div className="rounded-xl border border-stone-200/80 dark:border-stone-800 bg-stone-50/50 dark:bg-stone-900/30 p-3">
+                      <div className="text-[9px] font-black uppercase tracking-wider text-stone-500 dark:text-stone-400">
+                        Tiếp cận 2024
                       </div>
-                      <div className="mt-3 text-4xl sm:text-5xl font-black tracking-tight text-stone-800 dark:text-stone-100">
+                      <div className="mt-1 text-2xl font-black text-stone-800 dark:text-stone-100">
                         70,6%
                       </div>
-                      <p className="mt-2 text-xs sm:text-sm leading-relaxed text-stone-600 dark:text-stone-300">
-                        đã có tài khoản tài chính hoặc tiền di động.
+                      <p className="mt-1 text-[11px] leading-snug text-stone-600 dark:text-stone-300">
+                        có tài khoản tài chính.
                       </p>
                     </div>
-                  </div>
-
-                  <div className="animated-border-card mt-6 rounded-[18px] bg-stone-50/60 dark:bg-stone-900/30 px-5 py-4 text-sm leading-relaxed text-stone-600 dark:text-stone-400 border border-stone-150/40 dark:border-stone-850/40">
-                    Vấn đề không nằm ở việc người học thiếu cố gắng, mà ở chỗ kiến thức tài chính thường còn khó, rời
-                    rạc và xa nhu cầu thực tế.
                   </div>
                 </div>
 
-                <div className="lg:self-center lg:translate-y-4">
-                  <div className="animated-border-card rounded-[20px] border border-emerald-200/70 dark:border-emerald-900/40 bg-gradient-to-b from-emerald-50/50 to-teal-50/30 dark:from-emerald-950/20 dark:to-teal-950/10 p-6 shadow-[0_14px_30px_-26px_rgba(16,185,129,0.18)] backdrop-blur-sm">
-                    <p className="mb-4 inline-flex items-center gap-2 text-xs font-black text-emerald-700 dark:text-emerald-300 uppercase tracking-widest">
-                      <span className="inline-flex h-6 w-6 items-center justify-center rounded-full bg-white/80 text-sm shadow-sm ring-1 ring-emerald-200/80 dark:bg-stone-950/30 dark:ring-emerald-900/40">
-                        🇻🇳
-                      </span>
-                      Tầm nhìn và sứ mệnh
+                <div>
+                  <div className="rounded-xl border border-emerald-200/70 dark:border-emerald-900/40 bg-gradient-to-b from-emerald-50/50 to-teal-50/30 dark:from-emerald-950/20 dark:to-teal-950/10 p-4 shadow-xs">
+                    <p className="mb-2 inline-flex items-center gap-1.5 text-xs font-black text-emerald-700 dark:text-emerald-300 uppercase tracking-widest">
+                      <span>🇻🇳</span>
+                      Tầm nhìn & Sứ mệnh
                     </p>
-                    <div className="grid gap-3.5">
-                      <div className="rounded-[18px] bg-white/60 dark:bg-stone-950/20 px-4 py-4 border border-stone-150/30 dark:border-stone-850/30">
-                        <div className="text-[10px] font-black uppercase tracking-[0.18em] text-stone-500 dark:text-stone-400">
-                          Mục tiêu
-                        </div>
-                        <p className="mt-2 text-sm leading-relaxed text-stone-700 dark:text-stone-300">
-                          Xây giáo trình miễn phí, rõ ràng và đủ sâu cho người học cá nhân lẫn người đi theo nghề.
-                        </p>
-                      </div>
-                      <div className="rounded-[18px] bg-emerald-100/45 dark:bg-emerald-900/20 px-4 py-4 border border-emerald-200/20">
-                        <div className="text-[10px] font-black uppercase tracking-[0.18em] text-emerald-700 dark:text-emerald-300">
-                          Tinh thần
-                        </div>
-                        <p className="mt-2 text-sm leading-relaxed font-bold text-emerald-750 dark:text-emerald-300">
-                          Làm vì cộng đồng, duy trì miễn phí và giúp kiến thức tài chính trở nên gần gũi hơn với mọi
-                          người.
-                        </p>
-                      </div>
+                    <p className="text-xs leading-relaxed text-stone-700 dark:text-stone-300 font-medium">
+                      Xây dựng giáo trình tài chính 100% miễn phí, rõ ràng và đủ sâu cho người học Việt Nam. Giúp việc tự học tài chính trở nên gần gũi, thực tế và bền vững.
+                    </p>
+                    <div className="mt-3">
+                      <Link
+                        href="/login?mode=signup"
+                        className="cta-electric inline-flex items-center gap-2 rounded-xl bg-stone-950 px-4 py-2 text-xs font-black text-white hover:bg-stone-900 dark:bg-emerald-500 dark:text-stone-950 dark:hover:bg-emerald-400 transition-all cursor-pointer"
+                      >
+                        Bắt đầu học miễn phí
+                        <ArrowRight className="w-3.5 h-3.5" />
+                      </Link>
                     </div>
                   </div>
                 </div>
@@ -1064,28 +1046,7 @@ export default function HomePage() {
             </div>
           </ScrollReveal>
         </section>
-
-
       </div>
-
-      {/* ── FINAL CTA ── */}
-        <section className="relative overflow-hidden bg-stone-950 border-t border-stone-850">
-          <div className="pointer-events-none absolute -bottom-24 left-1/2 -translate-x-1/2 w-[36rem] h-[36rem] rounded-full bg-emerald-500/15 blur-2xl" />
-          <ScrollReveal className="relative max-w-3xl mx-auto px-6 py-8 sm:py-10 text-center">
-            <ShieldCheck className="icon-bounce w-7 h-7 text-emerald-400 mx-auto mb-2" />
-            <h2 className="text-2xl sm:text-3xl font-black text-white mb-1.5">Sẵn sàng hiểu tiền bạc của chính mình?</h2>
-            <p className="text-xs sm:text-sm text-stone-300 leading-relaxed mb-4 max-w-xl mx-auto font-medium">
-              Không mất phí, không cần thẻ, học ngay trong 30 giây.
-            </p>
-            <Link
-              href="/login?mode=signup"
-              className="inline-flex items-center gap-2 bg-white hover:bg-stone-100 text-stone-950 font-black px-6 py-2.5 rounded-2xl transition-all shadow-md active:scale-[0.98] text-xs sm:text-sm cursor-pointer"
-            >
-              Bắt đầu học miễn phí
-              <ArrowRight className="icon-micro w-4 h-4" />
-            </Link>
-          </ScrollReveal>
-        </section>
 
         {/* ── RICH FOOTER ── */}
         <footer className="bg-stone-950 text-stone-300 border-t border-stone-850 relative z-10 pt-6 pb-6 font-sans">
