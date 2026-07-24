@@ -59,7 +59,7 @@ export default function FormulaBlock({
   };
 
   return (
-    <div className="my-8 border-2 border-stone-900 dark:border-amber-500/40 rounded-2xl bg-white dark:bg-stone-900 shadow-lg overflow-hidden transition-all">
+    <div className="my-8 border-2 border-stone-900 dark:border-amber-500/40 rounded-2xl bg-white/95 dark:bg-stone-900 shadow-lg overflow-hidden transition-all">
       {/* Header Bar */}
       <div className="bg-stone-900 dark:bg-stone-950 px-5 py-3.5 flex items-center justify-between border-b border-stone-800">
         <div className="flex items-center gap-2.5">
@@ -135,7 +135,7 @@ export default function FormulaBlock({
             {variables.map((v) => (
               <div
                 key={v.symbol}
-                className="flex items-start gap-2.5 bg-white dark:bg-stone-850 p-2.5 rounded-xl border border-stone-200/80 dark:border-stone-700/80 text-xs shadow-2xs"
+                className="flex items-start gap-2.5 bg-white/95 dark:bg-stone-800 p-2.5 rounded-xl border border-stone-200/80 dark:border-stone-700/80 text-xs shadow-2xs"
               >
                 <span className="font-mono font-bold text-amber-700 dark:text-amber-300 bg-amber-50 dark:bg-amber-950/60 px-2 py-0.5 rounded border border-amber-200 dark:border-amber-800/60 shrink-0">
                   {v.symbol}

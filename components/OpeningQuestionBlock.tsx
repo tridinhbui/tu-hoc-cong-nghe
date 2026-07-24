@@ -25,7 +25,7 @@ export default function OpeningQuestionBlock({
 
   return (
     <div className="space-y-4">
-      <div className="text-[10px] font-bold text-stone-500 dark:text-stone-400 uppercase tracking-wider">
+      <div className="text-[10px] font-extrabold text-stone-500 dark:text-stone-300 uppercase tracking-widest">
         Bắt đầu bằng một câu hỏi
       </div>
       <p className="text-stone-800 dark:text-stone-300 font-semibold leading-relaxed text-base">

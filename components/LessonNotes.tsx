@@ -117,7 +117,7 @@ export default function LessonNotes({ lessonId, lessonSlug }: LessonNotesProps) 
   }
 
   return (
-    <div className="bg-white dark:bg-stone-900 border-2 border-stone-200 dark:border-stone-800 rounded-xl overflow-hidden">
+    <div className="bg-white/95 dark:bg-stone-900 border-2 border-stone-200 dark:border-stone-800 rounded-xl overflow-hidden">
       {/* Header */}
       <div className="px-5 py-4 border-b border-stone-200 dark:border-stone-800 flex items-center justify-between">
         <div className="flex items-center gap-2">

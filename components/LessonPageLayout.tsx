@@ -947,7 +947,7 @@ export default function LessonPageLayout({ lesson, quiz, children }: Props) {
             />
 
             {/* Quiz progress - collapsible */}
-            <div className="bg-white dark:bg-stone-900 rounded-2xl border-2 border-stone-300 dark:border-stone-700 overflow-hidden">
+            <div className="bg-white/95 dark:bg-stone-900 rounded-2xl border-2 border-stone-300 dark:border-stone-700 overflow-hidden">
               <button
                 onClick={() => setQuizCollapsed(!quizCollapsed)}
                 className="w-full flex items-center justify-between p-4 hover:bg-stone-50 dark:hover:bg-stone-800 transition-colors"
@@ -980,7 +980,7 @@ export default function LessonPageLayout({ lesson, quiz, children }: Props) {
 
             {/* Active question */}
             {!finished || reviewMode ? (
-              <div className="bg-white dark:bg-stone-900 rounded-2xl border-2 border-stone-300 dark:border-stone-700 p-8 space-y-6">
+              <div className="bg-white/95 dark:bg-stone-900 rounded-2xl border-2 border-stone-300 dark:border-stone-700 p-8 space-y-6">
                 <div>
                   <div className="flex items-center justify-between mb-4">
                     <span className="text-sm font-extrabold text-stone-700 dark:text-stone-300 uppercase tracking-wider bg-stone-100 dark:bg-stone-800 px-3 py-1 rounded-lg">
@@ -999,7 +999,7 @@ export default function LessonPageLayout({ lesson, quiz, children }: Props) {
                   {q.options.map((opt, oi) => {
                     const isSelected = qSelected === oi;
                     const isCorrectOpt = oi === q.correct;
-                    let cls = "border-2 border-stone-300 dark:border-stone-700 bg-white dark:bg-stone-900 text-stone-900 dark:text-stone-100 hover:border-stone-400 dark:hover:border-stone-600 hover:bg-stone-50 dark:hover:bg-stone-800";
+                    let cls = "border-2 border-stone-300 dark:border-stone-700 bg-white/95 dark:bg-stone-900 text-stone-900 dark:text-stone-100 hover:border-stone-400 dark:hover:border-stone-600 hover:bg-stone-50 dark:hover:bg-stone-800";
                     if (qSubmitted) {
                       if (isCorrectOpt) cls = "border-2 border-emerald-500 bg-emerald-50 dark:bg-emerald-950/50 text-emerald-900 dark:text-emerald-400 font-semibold";
                       else if (isSelected) cls = "border-2 border-rose-500 bg-rose-50 dark:bg-rose-950/50 text-rose-900 dark:text-rose-400 font-semibold";
