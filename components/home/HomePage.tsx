@@ -244,10 +244,87 @@ export default function HomePage() {
 
   return (
     <div className="relative min-h-screen overflow-x-hidden bg-white dark:bg-stone-950 bg-[linear-gradient(to_right,#80808007_1px,transparent_1px),linear-gradient(to_bottom,#80808007_1px,transparent_1px)] bg-[size:20px_20px] transition-colors duration-300">
+      <style>{`
+        @keyframes landing-grid-drift {
+          0% { transform: translate3d(0, 0, 0); }
+          100% { transform: translate3d(24px, 18px, 0); }
+        }
+        @keyframes landing-float {
+          0%, 100% { transform: translateY(0px); }
+          50% { transform: translateY(-8px); }
+        }
+        @keyframes landing-pulse-glow {
+          0%, 100% { opacity: 0.45; transform: scale(1); }
+          50% { opacity: 0.78; transform: scale(1.08); }
+        }
+        @keyframes ticker-drift {
+          0% { transform: translateX(0); }
+          100% { transform: translateX(-50%); }
+        }
+        @keyframes spotlight-sweep {
+          0% { transform: translateX(-130%) skewX(-18deg); opacity: 0; }
+          20% { opacity: 0.18; }
+          100% { transform: translateX(240%) skewX(-18deg); opacity: 0; }
+        }
+        .landing-texture::before {
+          content: "";
+          position: absolute;
+          inset: -5%;
+          background-image:
+            radial-gradient(circle at 20% 25%, rgba(16,185,129,0.08), transparent 24%),
+            radial-gradient(circle at 78% 18%, rgba(245,158,11,0.08), transparent 22%),
+            radial-gradient(circle at 62% 72%, rgba(20,184,166,0.07), transparent 26%);
+          pointer-events: none;
+        }
+        .landing-texture::after {
+          content: "";
+          position: absolute;
+          inset: 0;
+          opacity: 0.08;
+          background-image:
+            radial-gradient(rgba(15,23,42,0.35) 0.6px, transparent 0.6px),
+            linear-gradient(120deg, transparent 0%, rgba(255,255,255,0.8) 45%, transparent 100%);
+          background-size: 16px 16px, 100% 100%;
+          mix-blend-mode: multiply;
+          pointer-events: none;
+        }
+        .landing-drift-grid {
+          animation: landing-grid-drift 18s linear infinite alternate;
+        }
+        .landing-glow {
+          animation: landing-pulse-glow 8s ease-in-out infinite;
+        }
+        .landing-float {
+          animation: landing-float 5.5s ease-in-out infinite;
+        }
+        .landing-ticker {
+          animation: ticker-drift 26s linear infinite;
+          width: max-content;
+        }
+        .cta-electric {
+          position: relative;
+          overflow: hidden;
+        }
+        .cta-electric::after {
+          content: "";
+          position: absolute;
+          inset: -40%;
+          background: linear-gradient(110deg, transparent 34%, rgba(255,255,255,0.32) 48%, transparent 62%);
+          transform: translateX(-140%) skewX(-18deg);
+          animation: spotlight-sweep 3.8s ease-in-out infinite;
+          pointer-events: none;
+        }
+        .cta-electric:hover {
+          transform: translateY(-2px) scale(1.01);
+          box-shadow: 0 18px 44px -22px rgba(16,185,129,0.65);
+        }
+      `}</style>
       {/* Ambient background glows - fixed page-level, not nested inside any section */}
-      <div className="pointer-events-none absolute top-[10%] left-[5%] w-[450px] h-[450px] rounded-full bg-emerald-500/10 dark:bg-emerald-500/5 blur-[120px] z-0" />
-      <div className="pointer-events-none absolute top-[45%] right-[8%] w-[550px] h-[550px] rounded-full bg-teal-500/10 dark:bg-teal-500/5 blur-[150px] z-0" />
-      <div className="pointer-events-none absolute top-[75%] left-[12%] w-[500px] h-[500px] rounded-full bg-indigo-500/10 dark:bg-indigo-500/5 blur-[130px] z-0" />
+      <div className="pointer-events-none absolute inset-0 landing-texture z-0" />
+      <div className="pointer-events-none absolute inset-0 landing-drift-grid bg-[linear-gradient(to_right,rgba(15,23,42,0.04)_1px,transparent_1px),linear-gradient(to_bottom,rgba(15,23,42,0.04)_1px,transparent_1px)] bg-[size:28px_28px] z-0" />
+      <div className="pointer-events-none absolute top-[10%] left-[5%] w-[450px] h-[450px] rounded-full bg-emerald-500/10 dark:bg-emerald-500/5 blur-[120px] z-0 landing-glow" />
+      <div className="pointer-events-none absolute top-[45%] right-[8%] w-[550px] h-[550px] rounded-full bg-teal-500/10 dark:bg-teal-500/5 blur-[150px] z-0 landing-glow" />
+      <div className="pointer-events-none absolute top-[75%] left-[12%] w-[500px] h-[500px] rounded-full bg-indigo-500/10 dark:bg-indigo-500/5 blur-[130px] z-0 landing-glow" />
 
       <div className="relative z-10">
         {/* Top banner - pushed to the very top of the page per request, in
@@ -293,7 +370,7 @@ export default function HomePage() {
             </div>
             <Link
               href="/login"
-              className="group inline-flex items-center gap-2 rounded-xl border border-emerald-200 dark:border-emerald-800 bg-gradient-to-r from-emerald-500 to-teal-500 px-4 py-2.5 text-sm font-bold text-white shadow-lg shadow-emerald-500/20 transition-all hover:-translate-y-0.5 hover:shadow-xl hover:shadow-emerald-500/25"
+              className="cta-electric group inline-flex items-center gap-2 rounded-xl border border-emerald-200 dark:border-emerald-800 bg-gradient-to-r from-emerald-500 to-teal-500 px-4 py-2.5 text-sm font-bold text-white shadow-lg shadow-emerald-500/20 transition-all hover:shadow-xl hover:shadow-emerald-500/25"
             >
               Vào học ngay
               <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-0.5" />
@@ -351,7 +428,7 @@ export default function HomePage() {
                 >
                   <Link
                     href="/login?mode=signup"
-                    className="group inline-flex items-center gap-2 bg-stone-900 hover:bg-stone-800 dark:bg-stone-100 dark:hover:bg-white text-white dark:text-stone-900 font-bold px-6 py-3.5 rounded-xl transition-all shadow-lg shadow-stone-900/10 active:scale-[0.98]"
+                    className="cta-electric group inline-flex items-center gap-2 bg-stone-900 hover:bg-stone-800 dark:bg-stone-100 dark:hover:bg-white text-white dark:text-stone-900 font-bold px-6 py-3.5 rounded-xl transition-all shadow-lg shadow-stone-900/10 active:scale-[0.98]"
                   >
                     Bắt đầu học miễn phí
                     <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
@@ -401,7 +478,7 @@ export default function HomePage() {
                 transition={{ duration: 0.55, ease: "easeOut", delay: 0.18 }}
                 className="relative hidden lg:flex justify-center"
               >
-                <div className="relative w-full max-w-[480px] rounded-[2.5rem] border border-emerald-100/80 dark:border-emerald-900/40 bg-white/80 dark:bg-stone-900/60 p-8 shadow-[0_35px_90px_-45px_rgba(16,185,129,0.35)] backdrop-blur transition-all hover:shadow-[0_45px_100px_-40px_rgba(16,185,129,0.42)]">
+                <div className="landing-float relative w-full max-w-[480px] rounded-[2.5rem] border border-emerald-100/80 dark:border-emerald-900/40 bg-white/80 dark:bg-stone-900/60 p-8 shadow-[0_35px_90px_-45px_rgba(16,185,129,0.35)] backdrop-blur transition-all hover:shadow-[0_45px_100px_-40px_rgba(16,185,129,0.42)]">
                   <div className="absolute inset-x-10 top-8 h-24 rounded-full bg-emerald-300/25 dark:bg-emerald-700/15 blur-3xl" />
                   <div className="relative flex flex-col items-center text-center">
                     <div className="relative w-56 h-56 group cursor-pointer mb-2">
@@ -460,6 +537,32 @@ export default function HomePage() {
           <ScrollReveal delay={0.08}>
             <ProductPreview />
           </ScrollReveal>
+          <div className="mt-5 overflow-hidden rounded-full border border-stone-200/80 bg-white/80 px-3 py-2 text-[11px] font-black uppercase tracking-[0.16em] text-stone-500 shadow-sm dark:border-stone-800 dark:bg-stone-900/60 dark:text-stone-400">
+            <div className="landing-ticker flex items-center gap-10">
+              {[
+                "Live XP cập nhật",
+                "Bảng xếp hạng theo tuần",
+                "Hệ thống ôn tập ngắt quãng",
+                "Game Kingdom mở theo tiến độ",
+                "FinSocial phản biện ý tưởng",
+                "Học nhóm giữ nhịp mỗi ngày",
+              ]
+                .concat([
+                  "Live XP cập nhật",
+                  "Bảng xếp hạng theo tuần",
+                  "Hệ thống ôn tập ngắt quãng",
+                  "Game Kingdom mở theo tiến độ",
+                  "FinSocial phản biện ý tưởng",
+                  "Học nhóm giữ nhịp mỗi ngày",
+                ])
+                .map((item, index) => (
+                  <span key={`${item}-${index}`} className="inline-flex items-center gap-2">
+                    <span className="h-1.5 w-1.5 rounded-full bg-emerald-500" />
+                    {item}
+                  </span>
+                ))}
+            </div>
+          </div>
         </section>
 
         {/* ── SOCIAL PROOF ── */}

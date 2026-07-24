@@ -42,6 +42,29 @@ export default function PublicLeaderboardPreview() {
 
   return (
     <div className="overflow-hidden rounded-[1.75rem] border border-stone-200 bg-white shadow-[0_30px_80px_-45px_rgba(16,185,129,0.45)] dark:border-stone-800 dark:bg-stone-900">
+      <style>{`
+        @keyframes leaderboard-podium-float {
+          0%, 100% { transform: translateY(0px); }
+          50% { transform: translateY(-4px); }
+        }
+        @keyframes leaderboard-soft-glow {
+          0%, 100% { box-shadow: 0 0 0 rgba(16,185,129,0.0); }
+          50% { box-shadow: 0 12px 32px rgba(245,158,11,0.16); }
+        }
+        @keyframes leaderboard-badge-pulse {
+          0%, 100% { transform: scale(1); opacity: 0.92; }
+          50% { transform: scale(1.04); opacity: 1; }
+        }
+        .leaderboard-podium-float {
+          animation: leaderboard-podium-float 4.8s ease-in-out infinite;
+        }
+        .leaderboard-soft-glow {
+          animation: leaderboard-soft-glow 4.2s ease-in-out infinite;
+        }
+        .leaderboard-badge-pulse {
+          animation: leaderboard-badge-pulse 3s ease-in-out infinite;
+        }
+      `}</style>
       <div className="border-b border-stone-100 bg-gradient-to-r from-emerald-50 to-teal-50 px-4 py-3 dark:border-stone-800 dark:from-emerald-950/35 dark:to-teal-950/20">
         <div className="flex items-center justify-between gap-3">
           <div className="flex items-center gap-2">
@@ -78,7 +101,7 @@ export default function PublicLeaderboardPreview() {
             {podium.map((entry, idx) => {
               const meta = podiumMeta[idx];
               return (
-                <div key={entry.user_id} className="flex min-w-0 flex-col items-center">
+                <div key={entry.user_id} className="leaderboard-podium-float flex min-w-0 flex-col items-center">
                   <div className="relative mb-2">
                     <span className={`absolute -inset-1.5 rounded-full bg-gradient-to-r ${meta.tone} opacity-70 blur-md`} />
                     {isValidAvatar(entry.avatarUrl) ? (
@@ -104,7 +127,7 @@ export default function PublicLeaderboardPreview() {
                   <p className="text-[10px] font-bold text-stone-500 dark:text-stone-400">
                     {entry.value.toLocaleString("vi-VN")} XP
                   </p>
-                  <div className={`mt-2 flex w-full items-end justify-center rounded-t-2xl bg-gradient-to-b ${meta.tone} px-2 pb-3 pt-2 shadow-inner ${meta.height}`}>
+                  <div className={`leaderboard-soft-glow mt-2 flex w-full items-end justify-center rounded-t-2xl bg-gradient-to-b ${meta.tone} px-2 pb-3 pt-2 shadow-inner ${meta.height}`}>
                     <div className="text-center">
                       <Medal className="mx-auto h-5 w-5 opacity-80" />
                       <p className="mt-1 text-[10px] font-black uppercase tracking-wide">{meta.title}</p>
@@ -118,7 +141,7 @@ export default function PublicLeaderboardPreview() {
 
         <div className="mt-3 grid gap-2 sm:grid-cols-3">
           {badgePreview.map(({ icon: Icon, label, value }) => (
-            <div key={label} className="rounded-2xl border border-stone-100 bg-white px-3 py-2.5 dark:border-stone-800 dark:bg-stone-950/40">
+            <div key={label} className="leaderboard-badge-pulse rounded-2xl border border-stone-100 bg-white px-3 py-2.5 dark:border-stone-800 dark:bg-stone-950/40">
               <div className="flex items-center gap-2">
                 <span className="flex h-8 w-8 items-center justify-center rounded-xl bg-emerald-50 text-emerald-600 ring-1 ring-emerald-100 dark:bg-emerald-950/30 dark:text-emerald-300 dark:ring-emerald-900">
                   <Icon className="h-4 w-4" />
