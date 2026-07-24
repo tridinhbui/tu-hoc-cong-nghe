@@ -303,6 +303,13 @@ export const PROFESSIONAL_BRANCHES = [
     emoji: "📈",
     stageLabels: ["Chặng 6", "Chặng 7", "Chặng 8", "Chặng 9", "Chặng 10", "Chặng 12"],
   },
+  {
+    id: "ai",
+    label: "AI in Finance",
+    subtitle: "Prompt Engineering, bóc tách BCTC, trợ lý AI & automation",
+    emoji: "🤖",
+    stageLabels: ["Chặng 13"],
+  },
 ] as const;
 
 export type ProfessionalBranchId = (typeof PROFESSIONAL_BRANCHES)[number]["id"];

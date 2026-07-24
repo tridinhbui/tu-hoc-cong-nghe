@@ -63,7 +63,6 @@ import WorldBossRaidWidget from "@/components/WorldBossRaidWidget";
 import FinancialGuildWidget from "@/components/FinancialGuildWidget";
 import PvpDuelModal from "@/components/PvpDuelModal";
 import DashboardStreakWidget from "@/components/DashboardStreakWidget";
-import AiPromptSandboxWidget from "@/components/AiPromptSandboxWidget";
 
 
 
@@ -1260,11 +1259,11 @@ export default function DashboardClient({ lessonsMeta }: { lessonsMeta: LessonMe
             </div>
           )}
 
-          {/* "Tài chính chuyên ngành" split into 2 choosable branches -
-              purely filters which of TRACK_PROFESSIONAL's 10 stages show,
+          {/* "Tài chính chuyên ngành" split into focused branches -
+              purely filters which of TRACK_PROFESSIONAL's stages show,
               same lessons/locking/XP either way. */}
           {activeDashboardTab === "professional" && (
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-6">
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 mb-6">
               {PROFESSIONAL_BRANCHES.map((branch) => {
                 const isActive = professionalBranch === branch.id;
                 return (
@@ -1393,9 +1392,6 @@ export default function DashboardClient({ lessonsMeta }: { lessonsMeta: LessonMe
               </div>
             </div>
           </div>
-
-          {/* ── AI Prompt Sandbox Widget for Professional / AI Track ── */}
-          {activeTrack === "professional" && <AiPromptSandboxWidget />}
 
           {/* ── Stages + lessons ── */}
           <div data-tour="stage-list" className="space-y-6 mt-8">

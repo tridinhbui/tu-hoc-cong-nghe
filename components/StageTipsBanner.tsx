@@ -114,6 +114,12 @@ const STAGE_TIPS: Record<string, string[]> = {
     "Accretion/dilution analysis trả lời câu hỏi: thương vụ M&A này làm EPS công ty mua tăng hay giảm - phụ thuộc cách tài trợ (tiền mặt, nợ, hay phát hành cổ phiếu).",
     "Exit strategy (IPO, bán lại, chia cổ tức đặc biệt) phải được nhà đầu tư private equity nghĩ đến ngay từ ngày đầu tư, không phải lúc sắp thoái vốn.",
   ],
+  "professional-Chặng 13": [
+    "AI in Finance không thay thế tư duy tài chính; nó khuếch đại người biết đặt câu hỏi, kiểm chứng nguồn và hiểu bản chất con số.",
+    "Prompt tốt phải có vai trò, dữ liệu, nhiệm vụ, định dạng đầu ra và ràng buộc nguồn - nếu thiếu một phần, output rất dễ hay nhưng khó dùng.",
+    "Khi dùng AI đọc BCTC, hãy bắt AI trích nguồn trang/dòng cho từng con số và ghi 'Không tìm thấy dữ liệu' nếu tài liệu không có.",
+    "AI mạnh nhất trong workflow: đọc tài liệu, bóc số, tìm rủi ro, viết bản nháp; quyết định đầu tư cuối cùng vẫn cần con người chịu trách nhiệm.",
+  ],
   bonus: [
     "Case study thực tế là nơi lý thuyết gặp thực tế lộn xộn - số liệu công ty thật hiếm khi gọn gàng như ví dụ trong sách giáo khoa.",
     "Đọc báo cáo tài chính của một công ty thật khác hẳn đọc ví dụ minh họa - luôn có ngữ cảnh ngành, chu kỳ kinh tế, và quyết định quản trị ẩn phía sau con số.",
