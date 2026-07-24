@@ -634,7 +634,7 @@ export default function HomePage() {
                   className="mb-4 text-[2.5rem] sm:text-[3.6rem] lg:text-[3.8rem] xl:text-[4.4rem] font-black leading-[1.02] tracking-tight text-stone-950 dark:text-stone-50"
                 >
                   Bước vào thế giới{" "}
-                  <span className="bg-gradient-to-r from-[#00D084] to-[#00B8FF] bg-clip-text text-transparent font-black">
+                  <span className="text-emerald-600 dark:text-emerald-400 font-black">
                     tài chính
                   </span>
                   ,<br />cùng bắt đầu từ con số 0
@@ -949,7 +949,7 @@ export default function HomePage() {
               </p>
               <h2 className="text-3xl lg:text-4xl font-black text-stone-900 dark:text-stone-100">
                 Học, chơi, hỏi đáp và chia sẻ trong cùng một{" "}
-                <span className="bg-gradient-to-r from-[#00D084] to-[#00B8FF] bg-clip-text text-transparent">
+                <span className="text-emerald-600 dark:text-emerald-400">
                   hệ sinh thái tài chính
                 </span>
               </h2>
@@ -977,7 +977,7 @@ export default function HomePage() {
               </p>
               <h2 className="text-2xl sm:text-3xl font-black text-stone-900 dark:text-stone-100">
                 Những lo lắng thường gặp khi tự học{" "}
-                <span className="bg-gradient-to-r from-[#00D084] to-[#00B8FF] bg-clip-text text-transparent">
+                <span className="text-emerald-600 dark:text-emerald-400">
                   tài chính
                 </span>
               </h2>
@@ -1062,7 +1062,7 @@ export default function HomePage() {
               Đối tượng phù hợp
             </p>
             <h2 className="text-2xl sm:text-3xl font-black text-stone-900 dark:text-stone-100">
-              Nền tảng này dành cho <span className="bg-gradient-to-r from-[#00D084] to-[#00B8FF] bg-clip-text text-transparent">ai?</span>
+              Nền tảng này dành cho <span className="text-emerald-600 dark:text-emerald-400">ai?</span>
             </h2>
           </ScrollReveal>
 
