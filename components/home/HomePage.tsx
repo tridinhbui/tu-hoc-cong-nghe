@@ -531,7 +531,7 @@ export default function HomePage() {
             <div className="grid items-center gap-10 lg:grid-cols-[minmax(0,1.08fr)_minmax(360px,0.92fr)]">
               <div className="max-w-2xl">
                 <motion.div
-                  initial={{ opacity: 0, y: 16, filter: "blur(8px)" }}
+                  initial={{ opacity: 0, y: 16 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.55, ease: "easeOut" }}
                   className="mb-5 inline-flex items-center gap-1.5 rounded-full border border-emerald-200/80 bg-white/80 px-3 py-1 text-[10px] font-black uppercase tracking-[0.16em] text-emerald-700 backdrop-blur-sm dark:border-emerald-900 dark:bg-stone-950/55 dark:text-emerald-300"
@@ -544,10 +544,10 @@ export default function HomePage() {
                 </motion.div>
 
                 <motion.h1
-                  initial={{ opacity: 0, y: 18, filter: "blur(10px)" }}
+                  initial={{ opacity: 0, y: 18 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.6, ease: "easeOut", delay: 0.06 }}
-                  className="mb-4 max-w-3xl text-[3.25rem] font-black leading-[0.92] tracking-tight text-stone-950 dark:text-stone-50 lg:text-[4.6rem]"
+                  className="mb-4 max-w-3xl text-[3.25rem] font-black leading-[0.92] tracking-tight text-stone-950 [filter:none] dark:text-stone-50 lg:text-[4.6rem]"
                 >
                   Bước vào thế giới{" "}
                   <span className="bg-gradient-to-r from-emerald-600 to-teal-500 bg-clip-text text-transparent dark:from-emerald-300 dark:to-teal-200">
@@ -557,10 +557,10 @@ export default function HomePage() {
                 </motion.h1>
 
                 <motion.p
-                  initial={{ opacity: 0, y: 18, filter: "blur(10px)" }}
+                  initial={{ opacity: 0, y: 18 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.6, ease: "easeOut", delay: 0.12 }}
-                  className="mb-8 max-w-xl text-[15px] leading-7 text-stone-650 dark:text-stone-300 sm:text-lg"
+                  className="mb-8 max-w-xl text-[15px] leading-7 text-stone-650 [filter:none] dark:text-stone-300 sm:text-lg"
                 >
                   {lessonCountFloor ?? 360}+ bài học - 100% miễn phí vĩnh viễn - giáo trình thiết kế riêng cho người Việt học tài chính cá
                   nhân, CFA, lập kế hoạch tài chính, đầu tư, kế toán và tài chính chuyên nghiệp. Học theo phương pháp
@@ -568,10 +568,10 @@ export default function HomePage() {
                 </motion.p>
 
                 <motion.div
-                  initial={{ opacity: 0, y: 18, filter: "blur(8px)" }}
+                  initial={{ opacity: 0, y: 18 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.55, ease: "easeOut", delay: 0.18 }}
-                  className="mb-10 flex flex-wrap items-center gap-3"
+                  className="mb-10 flex flex-wrap items-center gap-3 [filter:none]"
                 >
                   <Link
                     href="/login?mode=signup"
