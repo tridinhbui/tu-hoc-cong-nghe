@@ -1,12 +1,15 @@
 "use client";
 
+import { useEffect, type Dispatch, type SetStateAction } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { PlayCircle } from "lucide-react";
 import { TRACKS, type TrackId } from "@/lib/tracks";
 
+const TRACK_IDS = Object.keys(TRACKS) as TrackId[];
+
 interface TrackPreviewPanelProps {
   previewTrack: TrackId;
-  setPreviewTrack: (id: TrackId) => void;
+  setPreviewTrack: Dispatch<SetStateAction<TrackId>>;
   compact?: boolean;
 }
 
@@ -16,16 +19,34 @@ export default function TrackPreviewPanel({ previewTrack, setPreviewTrack, compa
   const track = TRACKS[previewTrack];
   const trackEffortLabel = (hours: number) => `~${hours} giờ học`;
 
+  useEffect(() => {
+    let cancelled = false;
+    const timer = window.setInterval(() => {
+      if (cancelled) return;
+      setPreviewTrack((current: TrackId) => {
+        const idx = TRACK_IDS.indexOf(current);
+        return TRACK_IDS[(idx + 1) % TRACK_IDS.length];
+      });
+    }, compact ? 6000 : 5400);
+
+    return () => {
+      cancelled = true;
+      window.clearInterval(timer);
+    };
+  }, [compact, setPreviewTrack]);
+
   return (
     <div className={`border-2 border-stone-200 dark:border-stone-800 rounded-2xl overflow-hidden ${compact ? "mb-8" : ""}`}>
       <div className={`grid ${Object.keys(TRACKS).length === 3 ? "grid-cols-3" : "grid-cols-2"}`}>
-        {(Object.keys(TRACKS) as TrackId[]).map((id, index) => {
+        {TRACK_IDS.map((id, index) => {
           const t = TRACKS[id];
           const isActive = previewTrack === id;
           return (
-            <button
+            <motion.button
               key={id}
               onClick={() => setPreviewTrack(id)}
+              whileTap={{ scale: 0.99 }}
+              whileHover={{ y: -1 }}
               className={`relative text-left transition-colors cursor-pointer ${compact ? "px-4 py-3" : "px-5 py-4"} ${
                 isActive
                   ? "bg-stone-900 dark:bg-stone-100 text-white dark:text-stone-900"
@@ -44,7 +65,14 @@ export default function TrackPreviewPanel({ previewTrack, setPreviewTrack, compa
               {t.estimatedHours > 0 && (
                 <div className={`opacity-70 ${compact ? "text-xs mt-0.5" : "text-xs mt-0.5"}`}>{trackEffortLabel(t.estimatedHours)}</div>
               )}
-            </button>
+              {isActive && (
+                <motion.div
+                  className="absolute inset-x-3 bottom-1 h-0.5 rounded-full bg-emerald-400/70 dark:bg-emerald-500/70"
+                  layoutId={compact ? "track-indicator-compact" : "track-indicator"}
+                  transition={{ type: "spring", stiffness: 360, damping: 26 }}
+                />
+              )}
+            </motion.button>
           );
         })}
       </div>
@@ -52,10 +80,10 @@ export default function TrackPreviewPanel({ previewTrack, setPreviewTrack, compa
       <AnimatePresence mode="wait">
         <motion.div
           key={previewTrack}
-          initial={{ opacity: 0, y: compact ? 4 : 6 }}
+          initial={{ opacity: 0, y: compact ? 6 : 8, scale: 0.985 }}
           animate={{ opacity: 1, y: 0 }}
-          exit={{ opacity: 0, y: compact ? -4 : -6 }}
-          transition={{ duration: 0.18 }}
+          exit={{ opacity: 0, y: compact ? -6 : -8, scale: 0.985 }}
+          transition={{ duration: 0.28, ease: "easeOut" }}
           className={compact ? "p-4 space-y-3" : "p-5 xl:p-6 space-y-3"}
         >
           {!compact && (
@@ -81,7 +109,13 @@ export default function TrackPreviewPanel({ previewTrack, setPreviewTrack, compa
             }`}
           >
             <div className="flex items-center gap-3 min-w-0">
-              <PlayCircle className={`flex-shrink-0 text-white/90 ${compact ? "w-6 h-6" : "w-7 h-7"}`} />
+              <motion.div
+                animate={{ rotate: 360 }}
+                transition={{ duration: 7, repeat: Infinity, ease: "linear" }}
+                className="flex-shrink-0"
+              >
+                <PlayCircle className={`text-white/90 ${compact ? "w-6 h-6" : "w-7 h-7"}`} />
+              </motion.div>
               <div className="min-w-0">
                 <div className={`font-extrabold text-white uppercase tracking-wider ${compact ? "text-[11px]" : "text-xs"}`}>
                   {track.previewSlug

@@ -528,19 +528,6 @@ export default function FloatingStudyGroupChat({ isOpen: controlledIsOpen, onOpe
                           </div>
                         )}
 
-                        {isMine && (
-                          <div className="flex items-center justify-end gap-1 mt-0.5">
-                            <button
-                              type="button"
-                              onClick={() => handleDeleteStudyMessage(msg.id)}
-                              className="text-[9px] font-bold text-rose-500 hover:text-rose-600 transition-colors flex items-center gap-0.5 cursor-pointer"
-                              title="Thu hồi &amp; xóa khỏi DB"
-                            >
-                              <Trash2 className="w-2.5 h-2.5" />
-                              <span>Thu hồi</span>
-                            </button>
-                          </div>
-                        )}
                       </div>
                     </div>
                   </div>

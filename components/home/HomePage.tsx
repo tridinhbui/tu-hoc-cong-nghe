@@ -787,8 +787,8 @@ export default function HomePage() {
 
         {/* ── SOCIAL PROOF ── */}
         <section className="landing-band landing-band-glass landing-band-divider backdrop-blur-sm py-16 lg:py-20 relative border-y border-stone-150/40 dark:border-stone-850/40">
-          <div className="max-w-6xl mx-auto px-6 grid lg:grid-cols-[minmax(0,1.2fr)_360px] gap-6 items-start">
-            <ScrollReveal>
+          <div className="max-w-6xl mx-auto px-6 grid gap-6 lg:grid-cols-[minmax(0,1.18fr)_minmax(360px,360px)] lg:items-stretch">
+            <ScrollReveal className="h-full">
               <p className="text-xs font-black text-emerald-600 dark:text-emerald-400 uppercase tracking-widest mb-2">
                 Cộng đồng thật
               </p>
@@ -802,14 +802,14 @@ export default function HomePage() {
               <PublicLeaderboardPreview />
             </ScrollReveal>
 
-            <ScrollReveal delay={0.1}>
-              <div className="animated-border-card rounded-[1.75rem] border border-stone-200 bg-white p-5 shadow-sm dark:border-stone-800 dark:bg-stone-900">
-                <div className="inline-flex items-center gap-2 rounded-full border border-emerald-200 bg-emerald-50 px-3 py-1 text-[10px] font-black uppercase tracking-[0.16em] text-emerald-700 dark:border-emerald-900 dark:bg-emerald-950/30 dark:text-emerald-300">
+            <ScrollReveal delay={0.1} className="h-full">
+              <div className="animated-border-card flex h-full flex-col rounded-[1.75rem] border border-stone-200 bg-white p-5 shadow-sm dark:border-stone-800 dark:bg-stone-900">
+                <div className="inline-flex w-fit items-center gap-2 rounded-full border border-emerald-200 bg-emerald-50 px-3 py-1 text-[10px] font-black uppercase tracking-[0.16em] text-emerald-700 dark:border-emerald-900 dark:bg-emerald-950/30 dark:text-emerald-300">
                   <Sparkles className="icon-bounce h-3.5 w-3.5" />
                   Vì sao cộng đồng này giữ chân người học
                 </div>
 
-                <div className="mt-4 space-y-3">
+                <div className="mt-4 flex-1 space-y-3">
                   {[
                     "Không dùng thử giới hạn ngày",
                     "Không quảng cáo xen giữa bài học",
@@ -820,23 +820,24 @@ export default function HomePage() {
                       <span className="text-sm text-stone-600 dark:text-stone-400 font-medium leading-relaxed">{line}</span>
                     </div>
                   ))}
-                </div>
 
-                <div className="mt-4 grid gap-2 sm:grid-cols-2 lg:grid-cols-1">
-                  {[
-                    { label: "Bục vinh quang", value: "Top 3 theo XP thật" },
-                    { label: "Huy hiệu", value: "Preview thành tích học tập" },
-                    { label: "Cập nhật live", value: "Thể hiện người đang hoạt động" },
-                  ].map((item) => (
-                    <div key={item.label} className="rounded-[18px] border border-emerald-100 bg-emerald-50/60 px-3.5 py-3 dark:border-emerald-900/50 dark:bg-emerald-950/20">
-                      <p className="text-[10px] font-black uppercase tracking-[0.14em] text-emerald-700 dark:text-emerald-300">
-                        {item.label}
-                      </p>
-                      <p className="mt-1 text-sm font-bold text-stone-900 dark:text-stone-100">
-                        {item.value}
-                      </p>
-                    </div>
-                  ))}
+                  <div className="grid gap-2 pt-1 sm:grid-cols-2">
+                    {[
+                      { label: "Bục vinh quang", value: "Top 3 theo XP thật" },
+                      { label: "Huy hiệu", value: "Preview thành tích học tập" },
+                      { label: "Cập nhật live", value: "Người đang hoạt động" },
+                      { label: "Nhịp học", value: "Giữ đều mỗi ngày" },
+                    ].map((item) => (
+                      <div key={item.label} className="rounded-[18px] border border-emerald-100 bg-emerald-50/60 px-3.5 py-3 dark:border-emerald-900/50 dark:bg-emerald-950/20">
+                        <p className="text-[10px] font-black uppercase tracking-[0.14em] text-emerald-700 dark:text-emerald-300">
+                          {item.label}
+                        </p>
+                        <p className="mt-1 text-sm font-bold text-stone-900 dark:text-stone-100">
+                          {item.value}
+                        </p>
+                      </div>
+                    ))}
+                  </div>
                 </div>
 
                 <Link
@@ -855,13 +856,13 @@ export default function HomePage() {
         <section className="landing-band landing-band-dark landing-band-divider relative py-14 lg:py-18">
           <div className="max-w-6xl mx-auto px-6">
           <ScrollReveal className="max-w-3xl mb-8">
-            <p className="text-xs font-black text-amber-300 uppercase tracking-widest mb-2 drop-shadow-[0_1px_2px_rgba(0,0,0,0.55)]">
+            <p className="text-xs font-black text-amber-200 uppercase tracking-widest mb-2 drop-shadow-[0_1px_2px_rgba(0,0,0,0.7)]">
               Xem trước Game Kingdom
             </p>
-            <h2 className="text-3xl lg:text-4xl font-black text-white drop-shadow-[0_2px_8px_rgba(0,0,0,0.45)]">
+            <h2 className="text-3xl lg:text-4xl font-black text-white drop-shadow-[0_3px_10px_rgba(0,0,0,0.72)]">
               Một vương quốc tài chính để bạn mở khóa bằng kiến thức
             </h2>
-            <p className="mt-3 max-w-xl text-sm leading-relaxed text-stone-200/90 drop-shadow-[0_1px_2px_rgba(0,0,0,0.55)] sm:text-base">
+            <p className="mt-3 max-w-xl text-sm leading-relaxed text-stone-100 drop-shadow-[0_1px_2px_rgba(0,0,0,0.75)] sm:text-base">
               Game Kingdom biến việc học thành nhiệm vụ: hoàn thành bài, làm quiz, chơi mini game và mở dần các công trình
               tài chính. Hình ảnh bên dưới dùng trực tiếp các asset trong game để người mới thấy rõ mình sẽ bước vào đâu.
             </p>

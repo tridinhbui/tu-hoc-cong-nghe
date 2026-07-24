@@ -92,8 +92,8 @@ const TOPICS = [
   { id: "meo-tai-chinh", label: "Mẹo tài chính", shortLabel: "Mẹo", icon: Sparkles, tag: "#MeoTaiChinh ", tone: "emerald" },
   { id: "phan-tich", label: "Phân tích", shortLabel: "Phân tích", icon: BarChart3, tag: "#PhanTich ", tone: "sky" },
   { id: "thanh-tuu", label: "Thành tựu", shortLabel: "Thành tựu", icon: Target, tag: "#ThanhTuu ", tone: "amber" },
-  { id: "hoi-dap", label: "Hỏi đáp", shortLabel: "Hỏi đáp", icon: HelpCircle, tag: "#HoiDap ", tone: "rose" },
-  { id: "tin-nong", label: "Tin nóng", shortLabel: "Tin nóng", icon: Flame, tag: "#TinNong ", tone: "orange" },
+  { id: "hoi-dap", label: "Hỏi đáp", shortLabel: "Hỏi đáp", icon: HelpCircle, tag: "#HoiDap ", tone: "orange" },
+  { id: "tin-nong", label: "Tin nóng", shortLabel: "Tin nóng", icon: Flame, tag: "#TinNong ", tone: "red" },
   { id: "ai-finance", label: "AI tài chính", shortLabel: "AI Finance", icon: Zap, tag: "#AITaiChinh ", tone: "violet" },
 ] as const;
 
@@ -144,11 +144,81 @@ function getTopicMeta(topicId: TopicId) {
   return TOPICS.find((topic) => topic.id === topicId) ?? TOPICS[0];
 }
 
+const TONE_STYLES = {
+  emerald: {
+    chip: "border-emerald-200 bg-emerald-50 text-emerald-700 dark:border-emerald-900 dark:bg-emerald-950/30 dark:text-emerald-300",
+    chipActive: "border-emerald-300 bg-emerald-500 text-white shadow-[0_10px_22px_-18px_rgba(16,185,129,0.45)] dark:border-emerald-700 dark:bg-emerald-400 dark:text-stone-950",
+    soft: "bg-emerald-50 text-emerald-700 dark:bg-emerald-950/35 dark:text-emerald-300",
+    softSurface: "bg-emerald-50/70 dark:bg-emerald-950/20",
+    icon: "text-emerald-600 dark:text-emerald-300",
+    border: "border-emerald-200/70 dark:border-emerald-900/50",
+  },
+  sky: {
+    chip: "border-sky-200 bg-sky-50 text-sky-700 dark:border-sky-900 dark:bg-sky-950/30 dark:text-sky-300",
+    chipActive: "border-sky-300 bg-sky-500 text-white shadow-[0_10px_22px_-18px_rgba(59,130,246,0.45)] dark:border-sky-700 dark:bg-sky-400 dark:text-stone-950",
+    soft: "bg-sky-50 text-sky-700 dark:bg-sky-950/35 dark:text-sky-300",
+    softSurface: "bg-sky-50/70 dark:bg-sky-950/20",
+    icon: "text-sky-600 dark:text-sky-300",
+    border: "border-sky-200/70 dark:border-sky-900/50",
+  },
+  amber: {
+    chip: "border-amber-200 bg-amber-50 text-amber-700 dark:border-amber-900 dark:bg-amber-950/30 dark:text-amber-300",
+    chipActive: "border-amber-300 bg-amber-500 text-white shadow-[0_10px_22px_-18px_rgba(245,158,11,0.45)] dark:border-amber-700 dark:bg-amber-400 dark:text-stone-950",
+    soft: "bg-amber-50 text-amber-700 dark:bg-amber-950/35 dark:text-amber-300",
+    softSurface: "bg-amber-50/70 dark:bg-amber-950/20",
+    icon: "text-amber-600 dark:text-amber-300",
+    border: "border-amber-200/70 dark:border-amber-900/50",
+  },
+  orange: {
+    chip: "border-orange-200 bg-orange-50 text-orange-700 dark:border-orange-900 dark:bg-orange-950/30 dark:text-orange-300",
+    chipActive: "border-orange-300 bg-orange-500 text-white shadow-[0_10px_22px_-18px_rgba(249,115,22,0.45)] dark:border-orange-700 dark:bg-orange-400 dark:text-stone-950",
+    soft: "bg-orange-50 text-orange-700 dark:bg-orange-950/35 dark:text-orange-300",
+    softSurface: "bg-orange-50/70 dark:bg-orange-950/20",
+    icon: "text-orange-600 dark:text-orange-300",
+    border: "border-orange-200/70 dark:border-orange-900/50",
+  },
+  red: {
+    chip: "border-red-200 bg-red-50 text-red-700 dark:border-red-900 dark:bg-red-950/30 dark:text-red-300",
+    chipActive: "border-red-300 bg-red-500 text-white shadow-[0_10px_22px_-18px_rgba(239,68,68,0.45)] dark:border-red-700 dark:bg-red-400 dark:text-stone-950",
+    soft: "bg-red-50 text-red-700 dark:bg-red-950/35 dark:text-red-300",
+    softSurface: "bg-red-50/70 dark:bg-red-950/20",
+    icon: "text-red-600 dark:text-red-300",
+    border: "border-red-200/70 dark:border-red-900/50",
+  },
+  violet: {
+    chip: "border-violet-200 bg-violet-50 text-violet-700 dark:border-violet-900 dark:bg-violet-950/30 dark:text-violet-300",
+    chipActive: "border-violet-300 bg-violet-500 text-white shadow-[0_10px_22px_-18px_rgba(139,92,246,0.45)] dark:border-violet-700 dark:bg-violet-400 dark:text-stone-950",
+    soft: "bg-violet-50 text-violet-700 dark:bg-violet-950/35 dark:text-violet-300",
+    softSurface: "bg-violet-50/70 dark:bg-violet-950/20",
+    icon: "text-violet-600 dark:text-violet-300",
+    border: "border-violet-200/70 dark:border-violet-900/50",
+  },
+  stone: {
+    chip: "border-stone-200 bg-stone-100 text-stone-600 dark:border-stone-800 dark:bg-stone-900/70 dark:text-stone-300",
+    chipActive: "border-stone-300 bg-stone-200 text-stone-900 shadow-[0_8px_18px_-18px_rgba(15,23,42,0.16)] dark:border-stone-700 dark:bg-stone-800 dark:text-stone-100",
+    soft: "bg-stone-50 text-stone-600 dark:bg-stone-950/35 dark:text-stone-300",
+    softSurface: "bg-stone-50/80 dark:bg-stone-950/35",
+    icon: "text-stone-600 dark:text-stone-300",
+    border: "border-stone-200/70 dark:border-stone-800/50",
+  },
+} as const;
+
+type ToneKey = keyof typeof TONE_STYLES;
+
+function getToneStyles(tone: string) {
+  return TONE_STYLES[(tone as ToneKey) in TONE_STYLES ? (tone as ToneKey) : "stone"];
+}
+
 function getUserBadge(post: CommunityFeedPost) {
-  if (post.kind === "streak") return { label: "Giữ streak", icon: Flame, className: "bg-orange-50 text-orange-700 dark:bg-orange-950/35 dark:text-orange-300" };
-  if (post.comment_count >= 3) return { label: "Đang được bàn luận", icon: MessageCircle, className: "bg-sky-50 text-sky-700 dark:bg-sky-950/35 dark:text-sky-300" };
-  if (post.reaction_count >= 5) return { label: "Bài viết nổi bật", icon: Award, className: "bg-amber-50 text-amber-700 dark:bg-amber-950/35 dark:text-amber-300" };
-  return { label: "Thành viên FinSocial", icon: ShieldCheck, className: "bg-emerald-50 text-emerald-700 dark:bg-emerald-950/35 dark:text-emerald-300" };
+  if (post.kind === "streak") return { label: "Giữ streak", icon: Flame, tone: "emerald" as ToneKey };
+  if (post.comment_count >= 3) return { label: "Đang được bàn luận", icon: MessageCircle, tone: "sky" as ToneKey };
+  if (post.reaction_count >= 5) return { label: "Bài viết nổi bật", icon: Award, tone: "amber" as ToneKey };
+  return { label: "Thành viên FinSocial", icon: ShieldCheck, tone: "emerald" as ToneKey };
+}
+
+function getPostAccentTone(post: CommunityFeedPost): ToneKey {
+  const category = getPostCategory(post);
+  return getTopicMeta(category).tone as ToneKey;
 }
 
 export default function CommunityFeedClient({ embedded = false }: { embedded?: boolean }) {
@@ -436,8 +506,13 @@ export default function CommunityFeedClient({ embedded = false }: { embedded?: b
                   { label: "Cảm xúc", value: totalReactions },
                   { label: "Bình luận", value: totalComments },
                 ].map((item) => (
-                  <div key={item.label} className="rounded-[18px] bg-stone-50 px-3 py-3 text-center shadow-[0_10px_22px_-22px_rgba(15,23,42,0.16)] dark:bg-stone-900/70">
-                    <p className="text-2xl font-black text-stone-950 dark:text-stone-50">{item.value}</p>
+                  <div
+                    key={item.label}
+                    className={`rounded-[18px] px-3 py-3 text-center shadow-[0_10px_22px_-22px_rgba(15,23,42,0.16)] ${item.label === "Bài viết" ? "bg-sky-50 dark:bg-sky-950/25" : item.label === "Cảm xúc" ? "bg-amber-50 dark:bg-amber-950/25" : "bg-violet-50 dark:bg-violet-950/25"}`}
+                  >
+                    <p className={`text-2xl font-black ${item.label === "Bài viết" ? "text-sky-600 dark:text-sky-300" : item.label === "Cảm xúc" ? "text-amber-600 dark:text-amber-300" : "text-violet-600 dark:text-violet-300"}`}>
+                      {item.value}
+                    </p>
                     <p className="text-[10px] font-bold uppercase tracking-wide text-stone-400">{item.label}</p>
                   </div>
                 ))}
@@ -467,19 +542,29 @@ export default function CommunityFeedClient({ embedded = false }: { embedded?: b
             </div>
             <div className="rounded-[22px] bg-white p-4 shadow-[0_14px_30px_-26px_rgba(15,23,42,0.2)] dark:bg-stone-900/80">
               <p className="text-[11px] font-black uppercase tracking-[0.16em] text-stone-400">Chủ đề hoạt động</p>
-              <p className="mt-2 text-2xl font-black text-stone-950 dark:text-stone-50">{activeTopics}</p>
+              <p className="mt-2 text-2xl font-black text-sky-600 dark:text-sky-300">{activeTopics}</p>
               <p className="mt-1 text-sm text-stone-500 dark:text-stone-400">đang có nội dung mới trong feed</p>
             </div>
             <div className="rounded-[22px] bg-white p-4 shadow-[0_14px_30px_-26px_rgba(15,23,42,0.2)] dark:bg-stone-900/80">
               <p className="text-[11px] font-black uppercase tracking-[0.16em] text-stone-400">Hoạt động hôm nay</p>
-              <div className="mt-3 grid grid-cols-7 gap-1.5">
-                {Array.from({ length: 14 }, (_, i) => (
-                  <span
-                    key={i}
-                    className={`h-3 rounded-[6px] ${i % 4 === 0 ? "bg-emerald-500/80" : i % 3 === 0 ? "bg-emerald-300/80" : "bg-stone-200 dark:bg-stone-700"}`}
-                  />
-                ))}
-              </div>
+            <div className="mt-3 grid grid-cols-7 gap-1.5">
+              {Array.from({ length: 14 }, (_, i) => (
+                <span
+                  key={i}
+                  className={`h-3 rounded-[6px] ${
+                    i % 7 === 0
+                      ? "bg-red-500/75"
+                      : i % 6 === 0
+                        ? "bg-violet-500/75"
+                        : i % 4 === 0
+                          ? "bg-sky-500/75"
+                          : i % 3 === 0
+                            ? "bg-amber-400/80"
+                            : "bg-emerald-500/80"
+                  }`}
+                />
+              ))}
+            </div>
             </div>
           </div>
         )}
@@ -499,21 +584,26 @@ export default function CommunityFeedClient({ embedded = false }: { embedded?: b
             </div>
             <div className="grid gap-2 sm:grid-cols-3">
               {spotlightItems.map(({ label, post, icon: Icon }) => (
-                <button
-                  key={`${label}-${post.id}`}
-                  type="button"
-                  onClick={() => void toggleComments(post.id)}
-                  className="group rounded-[20px] bg-stone-50/80 p-3 text-left shadow-[0_8px_18px_-18px_rgba(15,23,42,0.18)] transition duration-200 ease-out hover:-translate-y-1 hover:bg-white dark:bg-stone-950/45 dark:hover:bg-stone-900"
-                >
-                  <div className="flex items-center gap-2">
-                    <Icon className="h-4 w-4 text-emerald-600 dark:text-emerald-300" />
-                    <span className="text-[10px] font-black uppercase tracking-wide text-emerald-700 dark:text-emerald-300">{label}</span>
-                  </div>
-                  <p className="mt-2 line-clamp-2 text-xs font-medium leading-relaxed text-stone-700 dark:text-stone-300">
-                    {post.content || "Bài viết có hình ảnh"}
-                  </p>
-                  <p className="mt-2 text-[10px] font-medium text-stone-400">{post.user_name} · {post.reaction_count} cảm xúc</p>
-                </button>
+                (() => {
+                  const spotlightTone = getToneStyles(getPostAccentTone(post));
+                  return (
+                    <button
+                      key={`${label}-${post.id}`}
+                      type="button"
+                      onClick={() => void toggleComments(post.id)}
+                      className={`group rounded-[20px] p-3 text-left shadow-[0_8px_18px_-18px_rgba(15,23,42,0.18)] transition duration-200 ease-out hover:-translate-y-1 hover:bg-white dark:hover:bg-stone-900 ${spotlightTone.softSurface} ${spotlightTone.border}`}
+                    >
+                      <div className="flex items-center gap-2">
+                        <Icon className={`h-4 w-4 ${spotlightTone.icon}`} />
+                        <span className={`text-[10px] font-black uppercase tracking-wide ${spotlightTone.icon}`}>{label}</span>
+                      </div>
+                      <p className="mt-2 line-clamp-2 text-xs font-medium leading-relaxed text-stone-700 dark:text-stone-300">
+                        {post.content || "Bài viết có hình ảnh"}
+                      </p>
+                      <p className="mt-2 text-[10px] font-medium text-stone-400">{post.user_name} · {post.reaction_count} cảm xúc</p>
+                    </button>
+                  );
+                })()
               ))}
             </div>
           </div>
@@ -543,6 +633,7 @@ export default function CommunityFeedClient({ embedded = false }: { embedded?: b
             <div className="mt-3 flex gap-2 overflow-x-auto pb-1">
               {TOPICS.map((topic) => {
                 const Icon = topic.icon;
+                const topicTone = getToneStyles(topic.tone);
                 const isActive = feedFilter === topic.id;
                 return (
                   <button
@@ -550,12 +641,10 @@ export default function CommunityFeedClient({ embedded = false }: { embedded?: b
                     type="button"
                     onClick={() => setFeedFilter(topic.id)}
                     className={`inline-flex shrink-0 items-center gap-2 rounded-full border px-3 py-1.5 text-xs font-black transition duration-200 ease-out ${
-                      isActive
-                        ? "border-stone-300 bg-stone-200 text-stone-900 shadow-[0_8px_18px_-18px_rgba(15,23,42,0.16)] dark:border-stone-700 dark:bg-stone-800 dark:text-stone-100"
-                        : "border-transparent bg-stone-100 text-stone-600 hover:-translate-y-0.5 hover:bg-stone-200 dark:bg-stone-900/70 dark:text-stone-300 dark:hover:bg-stone-800"
+                      isActive ? topicTone.chipActive : topicTone.chip
                     }`}
                   >
-                    <Icon className="h-3.5 w-3.5" />
+                    <Icon className={`h-3.5 w-3.5 ${isActive ? "text-white dark:text-stone-950" : topicTone.icon}`} />
                     {topic.label}
                   </button>
                 );
@@ -580,6 +669,7 @@ export default function CommunityFeedClient({ embedded = false }: { embedded?: b
               <span className="text-[10px] font-black uppercase text-stone-400 mr-1">Chủ đề:</span>
               {TOPICS.filter((topic) => topic.id !== "all").map((topic) => {
                 const Icon = topic.icon;
+                const topicTone = getToneStyles(topic.tone);
                 const isActive = selectedTopic === topic.id;
                 return (
                   <button
@@ -590,12 +680,10 @@ export default function CommunityFeedClient({ embedded = false }: { embedded?: b
                       setContent((prev) => (topic.tag && !prev.includes(topic.tag) ? `${topic.tag}${prev.replace(/^#\\S+\\s*/, "")}` : prev));
                     }}
                     className={`inline-flex items-center gap-1.5 rounded-full px-2.5 py-1 text-[11px] font-bold transition duration-200 ease-out cursor-pointer ${
-                      isActive
-                        ? "bg-stone-200 text-stone-900 shadow-[0_8px_18px_-18px_rgba(15,23,42,0.16)] dark:bg-stone-700 dark:text-stone-50"
-                        : "bg-stone-100 text-stone-600 hover:-translate-y-0.5 hover:bg-stone-200 hover:text-stone-800 dark:bg-stone-800 dark:text-stone-300 dark:hover:bg-stone-700"
+                      isActive ? topicTone.chipActive : topicTone.chip
                     }`}
                   >
-                    <Icon className="h-3.5 w-3.5" />
+                    <Icon className={`h-3.5 w-3.5 ${isActive ? "text-white dark:text-stone-950" : topicTone.icon}`} />
                     {topic.label}
                   </button>
               )})}
@@ -606,6 +694,7 @@ export default function CommunityFeedClient({ embedded = false }: { embedded?: b
                 <div className="grid gap-2 sm:grid-cols-2">
                 {POST_TEMPLATES.map((template) => {
                   const Icon = template.icon;
+                  const topicTone = getToneStyles(getTopicMeta(template.topic).tone);
                   return (
                     <button
                       key={template.title}
@@ -614,9 +703,9 @@ export default function CommunityFeedClient({ embedded = false }: { embedded?: b
                         setSelectedTopic(template.topic);
                         setContent(template.text);
                       }}
-                      className="flex items-center gap-2 rounded-[16px] bg-white px-3 py-2 text-left text-xs font-bold text-stone-600 shadow-[0_10px_20px_-18px_rgba(15,23,42,0.16)] transition duration-200 ease-out hover:-translate-y-0.5 hover:bg-stone-100 hover:text-stone-800 dark:bg-stone-900 dark:text-stone-300 dark:hover:bg-stone-800"
+                      className={`flex items-center gap-2 rounded-[16px] border px-3 py-2 text-left text-xs font-bold shadow-[0_10px_20px_-18px_rgba(15,23,42,0.16)] transition duration-200 ease-out hover:-translate-y-0.5 ${topicTone.softSurface} ${topicTone.border} ${topicTone.soft} hover:shadow-[0_14px_26px_-20px_rgba(15,23,42,0.18)]`}
                     >
-                      <Icon className="h-3.5 w-3.5 shrink-0" />
+                      <Icon className={`h-3.5 w-3.5 shrink-0 ${topicTone.icon}`} />
                       {template.title}
                     </button>
                   );
@@ -693,8 +782,10 @@ export default function CommunityFeedClient({ embedded = false }: { embedded?: b
               const category = getPostCategory(post);
               const topic = getTopicMeta(category);
               const TopicIcon = topic.icon;
+              const topicTone = getToneStyles(topic.tone);
               const badge = getUserBadge(post);
               const BadgeIcon = badge.icon;
+              const badgeTone = getToneStyles(badge.tone);
               return (
               <div
                 key={post.id}
@@ -704,14 +795,14 @@ export default function CommunityFeedClient({ embedded = false }: { embedded?: b
                   <Avatar name={post.user_name} avatarUrl={post.user_avatar} />
                   <div className="flex-1 min-w-0">
                     <div className="flex items-start justify-between gap-3">
-                      <div className="flex flex-wrap items-center gap-2">
+                    <div className="flex flex-wrap items-center gap-2">
                         <span className="text-sm font-black text-stone-950 dark:text-stone-50">{post.user_name}</span>
-                      <span className={`inline-flex items-center gap-1 rounded-full px-2 py-0.5 text-[10px] font-black ${badge.className}`}>
+                      <span className={`inline-flex items-center gap-1 rounded-full px-2 py-0.5 text-[10px] font-black ${badgeTone.soft}`}>
                         <BadgeIcon className="h-3 w-3" />
                         {badge.label}
                       </span>
                       {post.kind === "streak" && (
-                        <span className="flex items-center gap-1 text-[10px] font-bold text-orange-600 dark:text-orange-400 bg-orange-50 dark:bg-orange-950/30 px-2 py-0.5 rounded-full">
+                        <span className="flex items-center gap-1 text-[10px] font-bold text-emerald-600 dark:text-emerald-300 bg-emerald-50 dark:bg-emerald-950/30 px-2 py-0.5 rounded-full">
                           <Flame className="w-3 h-3" /> Streak
                         </span>
                       )}
@@ -721,8 +812,8 @@ export default function CommunityFeedClient({ embedded = false }: { embedded?: b
                       </span>
                       </div>
                       {category !== "all" && (
-                        <span className="inline-flex shrink-0 items-center gap-1 rounded-full bg-stone-100 px-2.5 py-1 text-[10px] font-black uppercase text-stone-500 dark:bg-stone-800 dark:text-stone-400">
-                          <TopicIcon className="h-3 w-3" />
+                        <span className={`inline-flex shrink-0 items-center gap-1 rounded-full px-2.5 py-1 text-[10px] font-black uppercase ${topicTone.chip}`}>
+                          <TopicIcon className={`h-3 w-3 ${topicTone.icon}`} />
                           {topic.shortLabel}
                         </span>
                       )}

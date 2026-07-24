@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { CheckCircle2, Circle, Flame, Trophy } from "lucide-react";
 
@@ -21,8 +21,21 @@ const TABS: { id: Tab; label: string }[] = [
 export default function ProductPreview() {
   const [tab, setTab] = useState<Tab>("dashboard");
 
+  useEffect(() => {
+    const tabs: Tab[] = ["dashboard", "lesson"];
+    let cancelled = false;
+    const timer = window.setInterval(() => {
+      if (cancelled) return;
+      setTab((current) => tabs[(tabs.indexOf(current) + 1) % tabs.length]);
+    }, 5200);
+    return () => {
+      cancelled = true;
+      window.clearInterval(timer);
+    };
+  }, []);
+
   return (
-    <div className="animated-border-card rounded-[20px] border border-stone-200/80 dark:border-stone-800 bg-white dark:bg-stone-900 shadow-[0_18px_44px_-28px_rgba(15,23,42,0.24)] overflow-hidden">
+    <div className="animated-border-card relative overflow-hidden rounded-[20px] border border-stone-200/80 bg-white shadow-[0_18px_44px_-28px_rgba(15,23,42,0.24)] dark:border-stone-800 dark:bg-stone-900">
       <style>{`
         @keyframes preview-progress-pulse {
           0%, 100% { transform: scaleX(0.94); opacity: 0.82; }
@@ -46,7 +59,15 @@ export default function ProductPreview() {
         .preview-card-float {
           animation: preview-card-drift 4.6s ease-in-out infinite;
         }
+        .preview-scan-line {
+          animation: preview-card-drift 5.8s ease-in-out infinite;
+        }
       `}</style>
+      <div className="pointer-events-none absolute inset-0 opacity-60">
+        <div className="absolute left-[-10%] top-[-15%] h-44 w-44 rounded-full bg-emerald-400/10 blur-3xl" />
+        <div className="absolute right-[-12%] bottom-[-18%] h-56 w-56 rounded-full bg-teal-400/10 blur-3xl" />
+        <div className="preview-scan-line absolute inset-x-0 top-0 h-24 bg-[linear-gradient(180deg,rgba(255,255,255,0.28),transparent)] opacity-40" />
+      </div>
       {/* Browser chrome - wraps to two rows on narrow viewports instead of
           the URL pill/tab switcher fighting for space on one line. */}
       <div className="flex flex-wrap items-center gap-x-3 gap-y-2 border-b border-stone-100 dark:border-stone-850 bg-stone-50 dark:bg-stone-950/60 px-4 py-2.5">
@@ -65,9 +86,9 @@ export default function ProductPreview() {
             <button
               key={t.id}
               onClick={() => setTab(t.id)}
-              className={`text-[10px] font-bold px-2.5 py-1 rounded-full transition-all whitespace-nowrap ${
+              className={`text-[10px] font-bold px-2.5 py-1 rounded-full transition-all duration-200 whitespace-nowrap ${
                 tab === t.id
-                  ? "bg-stone-900 dark:bg-stone-100 text-white dark:text-stone-900"
+                  ? "bg-stone-900 dark:bg-stone-100 text-white dark:text-stone-900 shadow-[0_8px_18px_-14px_rgba(15,23,42,0.45)]"
                   : "text-stone-400 dark:text-stone-500 hover:text-stone-600 dark:hover:text-stone-300"
               }`}
             >
@@ -82,13 +103,17 @@ export default function ProductPreview() {
           {tab === "dashboard" ? (
             <motion.div
               key="dashboard"
-              initial={{ opacity: 0, y: 6 }}
+              initial={{ opacity: 0, y: 8, scale: 0.985 }}
               animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -6 }}
-              transition={{ duration: 0.2, ease: "easeOut" }}
+              exit={{ opacity: 0, y: -8, scale: 0.985 }}
+              transition={{ duration: 0.28, ease: "easeOut" }}
               className="grid grid-cols-1 gap-4 sm:grid-cols-[1.3fr_1fr]"
             >
-              <div className="preview-card-float rounded-[20px] border border-stone-200/80 dark:border-stone-800 bg-white dark:bg-stone-900 p-5 shadow-[0_12px_28px_-24px_rgba(15,23,42,0.22)]">
+              <motion.div
+                className="preview-card-float rounded-[20px] border border-stone-200/80 dark:border-stone-800 bg-white dark:bg-stone-900 p-5 shadow-[0_12px_28px_-24px_rgba(15,23,42,0.22)]"
+                animate={{ y: [0, -3, 0] }}
+                transition={{ duration: 4.8, repeat: Infinity, ease: "easeInOut" }}
+              >
                 <div className="flex items-center justify-between mb-3">
                   <div>
                     <p className="text-[10px] font-black uppercase tracking-widest text-stone-400 dark:text-stone-500">Cấp độ 6</p>
@@ -100,7 +125,11 @@ export default function ProductPreview() {
                   </span>
                 </div>
                 <div className="h-2 rounded-full bg-stone-100 dark:bg-stone-800 overflow-hidden mb-4">
-                  <div className="preview-progress-live h-full w-2/3 rounded-full bg-gradient-to-r from-emerald-500 to-teal-500" />
+                  <motion.div
+                    className="preview-progress-live h-full w-2/3 rounded-full bg-gradient-to-r from-emerald-500 to-teal-500"
+                    animate={{ boxShadow: ["0 0 0 rgba(16,185,129,0)", "0 0 18px rgba(16,185,129,0.35)", "0 0 0 rgba(16,185,129,0)"] }}
+                    transition={{ duration: 2.8, repeat: Infinity, ease: "easeInOut" }}
+                  />
                 </div>
                 <div className="space-y-2">
                   {[
@@ -108,13 +137,16 @@ export default function ProductPreview() {
                     { title: "Đọc chỉ số P/E trong 5 phút", done: true },
                     { title: "ETF và quỹ chỉ số: khác gì cổ phiếu lẻ", done: false },
                   ].map((l) => (
-                    <div
+                    <motion.div
                       key={l.title}
                       className={`flex items-center gap-2.5 min-w-0 rounded-xl border px-3 py-2.5 text-xs font-semibold ${
                         l.done
                           ? "border-emerald-200 dark:border-emerald-900 bg-emerald-50/60 dark:bg-emerald-950/30 text-emerald-800 dark:text-emerald-300"
                           : "border-stone-200 dark:border-stone-800 text-stone-600 dark:text-stone-400"
                       }`}
+                      initial={{ opacity: 0, x: -8 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      transition={{ duration: 0.28, delay: l.done ? 0.05 : 0.12 }}
                     >
                       {l.done ? (
                         <CheckCircle2 className="w-4 h-4 text-emerald-500 shrink-0" />
@@ -122,13 +154,17 @@ export default function ProductPreview() {
                         <Circle className="w-4 h-4 text-stone-300 dark:text-stone-700 shrink-0" />
                       )}
                       <span className="truncate min-w-0 flex-1">{l.title}</span>
-                    </div>
+                    </motion.div>
                   ))}
                 </div>
-              </div>
+              </motion.div>
 
               <div className="grid gap-4">
-                <div className="preview-card-float rounded-[20px] border border-orange-100/80 dark:border-orange-950/40 bg-orange-50/60 dark:bg-orange-950/10 p-5 flex items-center gap-3 shadow-[0_12px_28px_-24px_rgba(249,115,22,0.18)]">
+                <motion.div
+                  className="preview-card-float rounded-[20px] border border-orange-100/80 dark:border-orange-950/40 bg-orange-50/60 dark:bg-orange-950/10 p-5 flex items-center gap-3 shadow-[0_12px_28px_-24px_rgba(249,115,22,0.18)]"
+                  animate={{ y: [0, -2, 0] }}
+                  transition={{ duration: 5.2, repeat: Infinity, ease: "easeInOut", delay: 0.2 }}
+                >
                   <div className="w-10 h-10 rounded-full bg-orange-100 dark:bg-orange-950/40 flex items-center justify-center shrink-0">
                     <Flame className="w-5 h-5 text-orange-500" />
                   </div>
@@ -136,8 +172,12 @@ export default function ProductPreview() {
                     <p className="text-lg font-black text-orange-600 dark:text-orange-400 leading-none">18 ngày</p>
                     <p className="text-[11px] font-semibold text-stone-500 dark:text-stone-400 mt-0.5">chuỗi học liên tục</p>
                   </div>
-                </div>
-                <div className="rounded-[20px] border border-stone-200/80 dark:border-stone-800 bg-white dark:bg-stone-900 p-5 shadow-[0_12px_28px_-24px_rgba(15,23,42,0.2)]">
+                </motion.div>
+                <motion.div
+                  className="rounded-[20px] border border-stone-200/80 dark:border-stone-800 bg-white dark:bg-stone-900 p-5 shadow-[0_12px_28px_-24px_rgba(15,23,42,0.2)]"
+                  animate={{ y: [0, 2, 0] }}
+                  transition={{ duration: 5.6, repeat: Infinity, ease: "easeInOut", delay: 0.1 }}
+                >
                   <p className="text-[10px] font-black uppercase tracking-widest text-stone-400 dark:text-stone-500 mb-2.5 flex items-center gap-1.5">
                     <span className="preview-live-dot h-1.5 w-1.5 rounded-full bg-emerald-500" />
                     Top tuần này
@@ -148,24 +188,30 @@ export default function ProductPreview() {
                       { name: "Đức Huy", xp: "1,940" },
                       { name: "Bạn", xp: "1,240" },
                     ].map((row, i) => (
-                      <div key={row.name} className="flex items-center justify-between text-xs">
+                      <motion.div
+                        key={row.name}
+                        className="flex items-center justify-between text-xs"
+                        initial={{ opacity: 0, x: 6 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        transition={{ duration: 0.25, delay: 0.05 + i * 0.06 }}
+                      >
                         <span className={`font-bold ${row.name === "Bạn" ? "text-emerald-700 dark:text-emerald-400" : "text-stone-700 dark:text-stone-300"}`}>
                           {i + 1}. {row.name}
                         </span>
                         <span className="text-stone-400 dark:text-stone-500 font-semibold">{row.xp} XP</span>
-                      </div>
+                      </motion.div>
                     ))}
                   </div>
-                </div>
+                </motion.div>
               </div>
             </motion.div>
           ) : (
             <motion.div
               key="lesson"
-              initial={{ opacity: 0, y: 6 }}
+              initial={{ opacity: 0, y: 8, scale: 0.985 }}
               animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -6 }}
-              transition={{ duration: 0.2, ease: "easeOut" }}
+              exit={{ opacity: 0, y: -8, scale: 0.985 }}
+              transition={{ duration: 0.28, ease: "easeOut" }}
               className="rounded-[20px] border border-stone-200/80 dark:border-stone-800 bg-white dark:bg-stone-900 p-5 shadow-[0_12px_28px_-24px_rgba(15,23,42,0.2)]"
             >
               <p className="text-[10px] font-black uppercase tracking-widest text-emerald-600 dark:text-emerald-400 mb-2">
@@ -185,16 +231,19 @@ export default function ProductPreview() {
                 <div className="space-y-1.5">
                   {["Không khác nhiều nếu tổng tiền góp bằng nhau", "Bắt đầu sớm hơn có thể tạo ra chênh lệch gấp đôi vào lúc nghỉ hưu"].map(
                     (opt, i) => (
-                      <div
+                      <motion.div
                         key={opt}
                         className={`text-[11px] font-semibold rounded-lg px-3 py-2 border ${
                           i === 1
                             ? "border-emerald-300 dark:border-emerald-800 bg-emerald-50 dark:bg-emerald-950/30 text-emerald-800 dark:text-emerald-300"
                             : "border-stone-200 dark:border-stone-800 text-stone-500 dark:text-stone-400"
                         }`}
+                        initial={{ opacity: 0, x: -6 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        transition={{ duration: 0.25, delay: i * 0.08 }}
                       >
                         {opt}
-                      </div>
+                      </motion.div>
                     )
                   )}
                 </div>
