@@ -38,7 +38,8 @@ import CareerRoadmapMap from "@/components/CareerRoadmapMap";
 import { SUGGESTED_JOB_KEYWORDS } from "@/lib/job-search-links";
 
 // Beautiful custom 3D card tilt and glow component
-function CareerAvatar({ career, size = 110, className = "" }: { career: FinanceCareer; size?: number; className?: string }) {
+function CareerAvatar({ career, size = 110, className = "" }: { career?: FinanceCareer | null; size?: number; className?: string }) {
+  if (!career) return null;
   return (
     <div
       className={`relative shrink-0 transition-transform duration-300 [transform-style:preserve-3d] hover:[transform:rotateY(10deg)_rotateX(-6deg)] ${className}`}
@@ -48,14 +49,14 @@ function CareerAvatar({ career, size = 110, className = "" }: { career: FinanceC
       <div
         className="absolute inset-0 rounded-2xl opacity-40 blur-xl transition-all duration-300 group-hover:opacity-70 z-0"
         style={{
-          background: `radial-gradient(circle, ${career.accentFrom}, ${career.accentTo})`,
+          background: `radial-gradient(circle, ${career.accentFrom || "#34d399"}, ${career.accentTo || "#0d9488"})`,
         }}
       />
       {/* Background glass sphere style */}
       <div
         className="absolute inset-0 rounded-2xl border border-white/20 dark:border-stone-800/80 overflow-hidden shadow-lg z-10"
         style={{
-          background: `linear-gradient(135deg, ${career.accentFrom}20, ${career.accentTo}35)`,
+          background: `linear-gradient(135deg, ${career.accentFrom || "#34d399"}20, ${career.accentTo || "#0d9488"}35)`,
         }}
       >
         <div
@@ -64,11 +65,17 @@ function CareerAvatar({ career, size = 110, className = "" }: { career: FinanceC
             background: `radial-gradient(circle at 35% 30%, #ffffff 0%, transparent 60%)`,
           }}
         />
-        <img
-          src={career.avatar3d}
-          alt={career.title}
-          className="w-full h-full object-cover select-none relative z-10"
-        />
+        {career.avatar3d ? (
+          <img
+            src={career.avatar3d}
+            alt={career.title || "Career"}
+            className="w-full h-full object-cover select-none relative z-10"
+          />
+        ) : (
+          <div className="w-full h-full flex items-center justify-center text-3xl select-none relative z-10">
+            {career.emoji || "💼"}
+          </div>
+        )}
       </div>
     </div>
   );
@@ -276,15 +283,21 @@ const CATEGORIES = [
 ];
 
 // SVG Radar Chart for role traits visualization
-function CareerRadarChart({ traits, color = "#0d9488" }: { traits: { analytical: number; compliance: number; clientFacing: number; quantitative: number }; color?: string }) {
+function CareerRadarChart({ traits, color = "#0d9488" }: { traits?: { analytical?: number; compliance?: number; clientFacing?: number; quantitative?: number } | null; color?: string }) {
+  const safeTraits = {
+    analytical: traits?.analytical ?? 3,
+    compliance: traits?.compliance ?? 3,
+    clientFacing: traits?.clientFacing ?? 3,
+    quantitative: traits?.quantitative ?? 3,
+  };
   const cx = 100;
   const cy = 100;
   const R = 70;
   
-  const pAnalytical = { x: cx, y: cy - R * (traits.analytical / 5) };
-  const pQuantitative = { x: cx + R * (traits.quantitative / 5), y: cy };
-  const pClientFacing = { x: cx, y: cy + R * (traits.clientFacing / 5) };
-  const pCompliance = { x: cx - R * (traits.compliance / 5), y: cy };
+  const pAnalytical = { x: cx, y: cy - R * (safeTraits.analytical / 5) };
+  const pQuantitative = { x: cx + R * (safeTraits.quantitative / 5), y: cy };
+  const pClientFacing = { x: cx, y: cy + R * (safeTraits.clientFacing / 5) };
+  const pCompliance = { x: cx - R * (safeTraits.compliance / 5), y: cy };
   
   const pointsString = `${pAnalytical.x},${pAnalytical.y} ${pQuantitative.x},${pQuantitative.y} ${pClientFacing.x},${pClientFacing.y} ${pCompliance.x},${pCompliance.y}`;
   
@@ -1214,7 +1227,7 @@ export default function JobSearchClient() {
                       <h4 className="text-xs font-black uppercase text-amber-600 dark:text-amber-400 tracking-wider">Tiến độ chuẩn bị sự nghiệp</h4>
                     </div>
                     <span className="text-xs font-black text-amber-600 dark:text-amber-400">
-                      {Math.round(((completedItems.filter(i => [...selected.skills, ...selected.certifications].includes(i)).length) / (selected.skills.length + selected.certifications.length || 1)) * 100)}%
+                      {Math.round(((completedItems.filter(i => [...(selected.skills || []), ...(selected.certifications || [])].includes(i)).length) / ((selected.skills?.length || 0) + (selected.certifications?.length || 0) || 1)) * 100)}%
                     </span>
                   </div>
                   
@@ -1222,7 +1235,7 @@ export default function JobSearchClient() {
                     <motion.div
                       className="h-full bg-amber-500 rounded-full"
                       initial={{ width: 0 }}
-                      animate={{ width: `${((completedItems.filter(i => [...selected.skills, ...selected.certifications].includes(i)).length) / (selected.skills.length + selected.certifications.length || 1)) * 100}%` }}
+                      animate={{ width: `${((completedItems.filter(i => [...(selected.skills || []), ...(selected.certifications || [])].includes(i)).length) / ((selected.skills?.length || 0) + (selected.certifications?.length || 0) || 1)) * 100}%` }}
                       transition={{ duration: 0.4 }}
                     />
                   </div>
@@ -1232,9 +1245,9 @@ export default function JobSearchClient() {
                   </p>
                   
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 max-h-36 overflow-y-auto pr-1">
-                    {[...selected.skills, ...selected.certifications].map((item) => {
+                    {[...(selected.skills || []), ...(selected.certifications || [])].map((item) => {
                       const isChecked = completedItems.includes(item);
-                      const isCert = selected.certifications.includes(item);
+                      const isCert = (selected.certifications || []).includes(item);
                       return (
                         <label 
                           key={item}
@@ -1568,7 +1581,7 @@ export default function JobSearchClient() {
 
       {/* MOBILE FULL-SCREEN BOTTOM SHEET / MODAL */}
       <AnimatePresence>
-        {mobileDetailOpen && (
+        {mobileDetailOpen && selected && (
           <motion.div 
             className="fixed inset-0 z-50 md:hidden bg-black/60 backdrop-blur-sm flex items-end justify-center"
             initial={{ opacity: 0 }}
@@ -1666,21 +1679,21 @@ export default function JobSearchClient() {
                       <h4 className="text-[10px] font-black uppercase text-amber-600 dark:text-amber-400 tracking-wider">Tiến độ chuẩn bị sự nghiệp</h4>
                     </div>
                     <span className="text-[10px] font-black text-amber-600 dark:text-amber-400">
-                      {Math.round(((completedItems.filter(i => [...selected.skills, ...selected.certifications].includes(i)).length) / (selected.skills.length + selected.certifications.length || 1)) * 100)}%
+                      {Math.round(((completedItems.filter(i => [...(selected.skills || []), ...(selected.certifications || [])].includes(i)).length) / ((selected.skills?.length || 0) + (selected.certifications?.length || 0) || 1)) * 100)}%
                     </span>
                   </div>
                   
                   <div className="w-full h-1 bg-stone-250 dark:bg-stone-800 rounded-full overflow-hidden mb-3">
                     <div
                       className="h-full bg-amber-500 rounded-full transition-all duration-300"
-                      style={{ width: `${((completedItems.filter(i => [...selected.skills, ...selected.certifications].includes(i)).length) / (selected.skills.length + selected.certifications.length || 1)) * 100}%` }}
+                      style={{ width: `${((completedItems.filter(i => [...(selected.skills || []), ...(selected.certifications || [])].includes(i)).length) / ((selected.skills?.length || 0) + (selected.certifications?.length || 0) || 1)) * 100}%` }}
                     />
                   </div>
                   
                   <div className="space-y-1.5 max-h-32 overflow-y-auto pr-1">
-                    {[...selected.skills, ...selected.certifications].map((item) => {
+                    {[...(selected.skills || []), ...(selected.certifications || [])].map((item) => {
                       const isChecked = completedItems.includes(item);
-                      const isCert = selected.certifications.includes(item);
+                      const isCert = (selected.certifications || []).includes(item);
                       return (
                         <label 
                           key={item}
