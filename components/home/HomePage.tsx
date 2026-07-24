@@ -158,6 +158,7 @@ export default function HomePage() {
   const [displayedUserCount, setDisplayedUserCount] = useState(0);
   const [displayedLessonCount, setDisplayedLessonCount] = useState(0);
   const [displayedCompletedCount, setDisplayedCompletedCount] = useState(0);
+  const [heroSpotlight, setHeroSpotlight] = useState({ x: 50, y: 35 });
   // Plain (non-animated) rounded-down count for inline copy ("360+ bài
   // học..." in the hero paragraph and pain-point card) - the animated
   // displayedLessonCount above counts up from 0 on load, which reads fine
@@ -433,7 +434,18 @@ export default function HomePage() {
         </header>
 
         {/* ── HERO ── */}
-        <section className="relative overflow-hidden">
+        <section
+          className="relative overflow-hidden"
+          onMouseMove={(e) => {
+            const rect = (e.currentTarget as HTMLElement).getBoundingClientRect();
+            const x = ((e.clientX - rect.left) / rect.width) * 100;
+            const y = ((e.clientY - rect.top) / rect.height) * 100;
+            setHeroSpotlight({
+              x: Math.max(10, Math.min(90, x)),
+              y: Math.max(10, Math.min(90, y)),
+            });
+          }}
+        >
           <div className="absolute inset-0">
             <Image
               src="/times-square.jpg"
@@ -445,6 +457,12 @@ export default function HomePage() {
             />
             <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_20%,rgba(16,185,129,0.16),transparent_26%),radial-gradient(circle_at_85%_25%,rgba(245,158,11,0.15),transparent_24%),linear-gradient(135deg,rgba(255,255,255,0.9),rgba(247,250,252,0.8)_40%,rgba(240,253,250,0.62)_100%)] dark:bg-[radial-gradient(circle_at_20%_20%,rgba(16,185,129,0.18),transparent_26%),radial-gradient(circle_at_85%_25%,rgba(245,158,11,0.16),transparent_24%),linear-gradient(135deg,rgba(9,9,11,0.92),rgba(15,23,42,0.84)_40%,rgba(6,78,59,0.46)_100%)]" />
             <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(15,23,42,0.04)_1px,transparent_1px),linear-gradient(to_bottom,rgba(15,23,42,0.04)_1px,transparent_1px)] bg-[size:32px_32px] opacity-60" />
+            <div
+              className="pointer-events-none absolute inset-0 opacity-70 transition-[background-position] duration-300 ease-out"
+              style={{
+                background: `radial-gradient(circle at ${heroSpotlight.x}% ${heroSpotlight.y}%, rgba(255,255,255,0.34), transparent 22%), radial-gradient(circle at ${heroSpotlight.x}% ${heroSpotlight.y}%, rgba(16,185,129,0.14), transparent 32%)`,
+              }}
+            />
           </div>
 
           <div className="relative max-w-6xl mx-auto px-6 pt-14 pb-14 lg:pt-20 lg:pb-20">
@@ -495,14 +513,14 @@ export default function HomePage() {
                 >
                   <Link
                     href="/login?mode=signup"
-                    className="cta-electric group inline-flex items-center gap-2 rounded-[20px] bg-stone-950 px-6 py-3.5 text-base font-black text-white shadow-[0_16px_34px_-24px_rgba(15,23,42,0.38)] transition-all active:scale-[0.98] hover:bg-stone-900 dark:bg-stone-100 dark:text-stone-900 dark:hover:bg-white"
+                    className="cta-electric group inline-flex items-center gap-2 rounded-[20px] bg-stone-950 px-6 py-3.5 text-base font-black text-white shadow-[0_16px_34px_-24px_rgba(15,23,42,0.38)] transition-all duration-200 ease-out hover:-translate-y-1 hover:scale-[1.015] active:scale-[0.98] hover:bg-stone-900 dark:bg-stone-100 dark:text-stone-900 dark:hover:bg-white"
                   >
                     Bắt đầu học miễn phí
                     <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-0.5" />
                   </Link>
                   <a
                     href={`/bai-hoc/${TRACKS.personal.previewSlug}`}
-                    className="inline-flex items-center gap-2 rounded-[20px] border border-stone-200/80 bg-white/70 px-5 py-3 text-sm font-bold text-stone-900 backdrop-blur transition-colors hover:bg-white dark:border-stone-700 dark:bg-stone-950/45 dark:text-stone-100 dark:hover:bg-stone-900"
+                    className="inline-flex items-center gap-2 rounded-[20px] border border-stone-200/80 bg-white/70 px-5 py-3 text-sm font-bold text-stone-900 backdrop-blur transition-all duration-200 ease-out hover:-translate-y-1 hover:scale-[1.015] hover:bg-white dark:border-stone-700 dark:bg-stone-950/45 dark:text-stone-100 dark:hover:bg-stone-900"
                   >
                     <PlayCircle className="w-4 h-4" />
                     Xem thử bài học
@@ -545,7 +563,7 @@ export default function HomePage() {
                 transition={{ duration: 0.55, ease: "easeOut", delay: 0.18 }}
                 className="relative hidden justify-center lg:flex"
               >
-                <div className="landing-float relative w-full max-w-[520px] overflow-hidden rounded-[20px] border border-stone-200/80 bg-stone-950 text-white shadow-[0_18px_44px_-30px_rgba(15,23,42,0.36)] dark:border-stone-800">
+                <div className="landing-float relative w-full max-w-[520px] overflow-hidden rounded-[20px] border border-stone-200/80 bg-stone-950 text-white shadow-[0_18px_44px_-30px_rgba(15,23,42,0.36)] dark:border-stone-800 transition-all duration-200 ease-out hover:-translate-y-1 hover:scale-[1.01]">
                   <div className="absolute inset-0">
                     <Image
                       src="/charging-bull.jpg"
