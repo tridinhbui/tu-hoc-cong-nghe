@@ -30,6 +30,28 @@ export function shuffleArray<T>(array: T[]): T[] {
   return arr;
 }
 
+/** Lấy ngẫu nhiên N câu hỏi từ ngân hàng câu hỏi của Level, đồng thời xáo trộn thứ tự các lựa chọn A, B, C, D */
+export function getRandomizedExamQuestions(level: number, sampleCount: number = 5): ExamQuestion[] {
+  const config = LEVEL_EXAMS[level];
+  if (!config || !config.questions || config.questions.length === 0) return [];
+
+  const sampled = shuffleArray(config.questions).slice(0, sampleCount);
+
+  return sampled.map((q) => {
+    const originalOptions = q.options;
+    const correctText = originalOptions[q.correctIndex];
+
+    const shuffledOptions = shuffleArray(originalOptions);
+    const newCorrectIndex = shuffledOptions.indexOf(correctText);
+
+    return {
+      ...q,
+      options: shuffledOptions,
+      correctIndex: newCorrectIndex,
+    };
+  });
+}
+
 // Ngân hàng câu hỏi bài thi thăng cấp khắt khe đầy đủ từ Level 2 đến Level 15
 export const LEVEL_EXAMS: Record<number, LevelExamConfig> = {
   2: {

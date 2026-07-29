@@ -1,5 +1,5 @@
 import { describe, it, expect } from "vitest";
-import { LEVEL_EXAMS, shuffleArray } from "@/lib/level-exams";
+import { LEVEL_EXAMS, shuffleArray, getRandomizedExamQuestions } from "@/lib/level-exams";
 
 describe("LEVEL_EXAMS Question Bank & Rigorous Standards", () => {
   it("defines exam configurations for all levels from 2 to 15", () => {
@@ -29,5 +29,15 @@ describe("LEVEL_EXAMS Question Bank & Rigorous Standards", () => {
     const shuffled = shuffleArray(original);
     expect(shuffled).toHaveLength(original.length);
     expect(shuffled.sort()).toEqual(original.sort());
+  });
+
+  it("randomizes exam questions and updates correctIndex accordingly", () => {
+    const randomized = getRandomizedExamQuestions(5, 5);
+    expect(randomized).toHaveLength(5);
+    randomized.forEach((q) => {
+      expect(q.correctIndex).toBeGreaterThanOrEqual(0);
+      expect(q.correctIndex).toBeLessThan(q.options.length);
+      expect(q.options[q.correctIndex]).toBeTruthy();
+    });
   });
 });
