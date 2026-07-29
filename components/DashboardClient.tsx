@@ -31,6 +31,8 @@ import SmartRemediationWidget from "@/components/SmartRemediationWidget";
 import OnlineUsersWidget from "@/components/OnlineUsersWidget";
 import CareerGoalWidget from "@/components/CareerGoalWidget";
 import ReferralPromptModal from "@/components/ReferralPromptModal";
+import DiagnosticPlacementModal from "@/components/DiagnosticPlacementModal";
+import TopicMasteryWidget from "@/components/TopicMasteryWidget";
 import CombinedRewardsWidget from "@/components/CombinedRewardsWidget";
 import CareerLearningPathClient from "@/components/CareerLearningPathClient";
 import { hasCompletedOnboarding, completeOnboarding } from "@/lib/supabase-onboarding";
@@ -216,6 +218,16 @@ export default function DashboardClient({ lessonsMeta }: { lessonsMeta: LessonMe
   const [equippedGear, setEquippedGear] = useState<CharacterEquipments>({});
   const [showBossBattle, setShowBossBattle] = useState(false);
   const [showPvpModal, setShowPvpModal] = useState(false);
+  const [showPlacementModal, setShowPlacementModal] = useState(false);
+
+  useEffect(() => {
+    if (user?.id) {
+      try {
+        const saved = localStorage.getItem(`thtcdn_placement_test_${user.id}`);
+        if (!saved) setShowPlacementModal(true);
+      } catch (e) {}
+    }
+  }, [user?.id]);
 
   useEffect(() => {
     function handleGlobalClick(event: MouseEvent | TouchEvent) {
@@ -670,7 +682,7 @@ export default function DashboardClient({ lessonsMeta }: { lessonsMeta: LessonMe
         <div className="relative w-16 h-16">
           <span className="absolute inset-0 rounded-full bg-emerald-400/30 animate-ping" />
           <span className="absolute -inset-1.5 rounded-full border-4 border-emerald-500/70 border-t-transparent animate-spin" />
-          <div className="relative w-16 h-16 rounded-full overflow-hidden bg-stone-150 dark:bg-stone-850">
+          <div className="relative w-16 h-16 rounded-full overflow-hidden bg-stone-100 dark:bg-stone-800">
             <TaiTaiAvatar size={64} />
           </div>
         </div>
@@ -841,10 +853,11 @@ export default function DashboardClient({ lessonsMeta }: { lessonsMeta: LessonMe
 
         {/* ── Unified Dashboard Grid ── */}
         <div className="max-w-6xl mx-auto space-y-5 min-w-0">
+          <TopicMasteryWidget />
 
           {user?.id && (() => {
             const currentUserLevel = getLevelByXp(userXp, cfaCompletedForLevel).level;
-            const levelProgress = getLevelProgress(userXp);
+            const levelProgress = getLevelProgress(userXp, cfaCompletedForLevel);
             const openLevel = activeTooltipLevel;
 
             const ACCENTS = [
@@ -934,10 +947,10 @@ export default function DashboardClient({ lessonsMeta }: { lessonsMeta: LessonMe
                                 return (
                                   <div key={lvl.level} className="flex items-stretch sm:animate-fade-in [backface-visibility:hidden]">
                                     {idx > 0 && (
-                                      <div className={`w-7 sm:w-9 h-0.5 self-end mb-[42px] shrink-0 ${isReached ? "bg-emerald-400 dark:bg-emerald-600" : "bg-stone-200 dark:bg-stone-850"}`} />
+                                      <div className={`w-7 sm:w-9 h-0.5 self-end mb-[42px] shrink-0 ${isReached ? "bg-emerald-400 dark:bg-emerald-600" : "bg-stone-200 dark:bg-stone-800"}`} />
                                     )}
                                     <div className="flex flex-col items-center gap-2 shrink-0">
-                                      <div className="w-12 h-12 sm:w-[64px] sm:h-[64px] relative flex items-center justify-center select-none pointer-events-none overflow-hidden rounded-full border border-stone-200/50 dark:border-stone-800/50 bg-stone-50 dark:bg-stone-850 shadow-inner [backface-visibility:hidden] [transform:translateZ(0)]">
+                                      <div className="w-12 h-12 sm:w-[64px] sm:h-[64px] relative flex items-center justify-center select-none pointer-events-none overflow-hidden rounded-full border border-stone-200/50 dark:border-stone-800/50 bg-stone-50 dark:bg-stone-800 shadow-inner [backface-visibility:hidden] [transform:translateZ(0)]">
                                         <img
                                           src={`/levels/level${lvl.level}.jpg`}
                                           alt={lvl.name}
@@ -952,7 +965,7 @@ export default function DashboardClient({ lessonsMeta }: { lessonsMeta: LessonMe
                                         className={`relative text-left rounded-xl border p-1.5 w-[84px] h-[88px] shrink-0 bg-white dark:bg-stone-900 transition-all cursor-pointer flex flex-col [backface-visibility:hidden] ${
                                           isReached
                                             ? `${accent.border} ${isOpen ? `shadow-md scale-[1.02] ${accent.glow}` : isUserCurrent ? `shadow-sm ${accent.glow}` : ""}`
-                                            : "border-stone-150 dark:border-stone-855 opacity-60 grayscale hover:opacity-90 hover:grayscale-0"
+                                            : "border-stone-100 dark:border-stone-855 opacity-60 grayscale hover:opacity-90 hover:grayscale-0"
                                         }`}
                                       >
                                         {isUserCurrent && (
@@ -1020,7 +1033,7 @@ export default function DashboardClient({ lessonsMeta }: { lessonsMeta: LessonMe
                                           <span className="flex-1 min-w-0 text-sm font-bold text-stone-800 dark:text-stone-200 truncate">
                                             {m.name}
                                           </span>
-                                          <span className="text-xs font-black text-emerald-600 dark:text-emerald-450 shrink-0">
+                                          <span className="text-xs font-black text-emerald-600 dark:text-emerald-400 shrink-0">
                                             {m.xp} XP
                                           </span>
                                         </Link>
@@ -1456,7 +1469,7 @@ export default function DashboardClient({ lessonsMeta }: { lessonsMeta: LessonMe
                 {/* Stage header - click to expand/collapse */}
                 {(() => {
                   const themeKey = `${activeTrack}-${stage.label}`;
-                  const theme = STAGE_THEMES[themeKey] || { emoji: "📖", bg: "bg-stone-150 dark:bg-stone-800", text: "text-stone-900 dark:text-stone-100", barColor: "bg-stone-500" };
+                  const theme = STAGE_THEMES[themeKey] || { emoji: "📖", bg: "bg-stone-100 dark:bg-stone-800", text: "text-stone-900 dark:text-stone-100", barColor: "bg-stone-500" };
                   const percent = stageLessons.length ? (stageDone / stageLessons.length) * 100 : 0;
                   return (
                     <button
@@ -1491,7 +1504,7 @@ export default function DashboardClient({ lessonsMeta }: { lessonsMeta: LessonMe
                               e.stopPropagation();
                               setSelectedCertStage({ label: stage.label, name: stage.name });
                             }}
-                            className="flex items-center gap-1 text-[11px] font-black text-white shrink-0 bg-gradient-to-r from-amber-500 to-amber-650 hover:from-amber-600 hover:to-amber-700 px-2.5 py-1 rounded-lg shadow-sm shadow-amber-500/20 active:scale-95 transition-all cursor-pointer"
+                            className="flex items-center gap-1 text-[11px] font-black text-white shrink-0 bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-600 hover:to-amber-700 px-2.5 py-1 rounded-lg shadow-sm shadow-amber-500/20 active:scale-95 transition-all cursor-pointer"
                           >
                             📜 Nhận Chứng Chỉ
                           </span>
@@ -1510,7 +1523,7 @@ export default function DashboardClient({ lessonsMeta }: { lessonsMeta: LessonMe
                       )}
                       {stage.available && stageLessons.length > 0 && (
                         <div className="flex items-center gap-3 shrink-0 ml-auto sm:ml-0">
-                          <div className="w-16 h-1.5 bg-stone-150 dark:bg-stone-800 rounded-full overflow-hidden hidden sm:block">
+                          <div className="w-16 h-1.5 bg-stone-100 dark:bg-stone-800 rounded-full overflow-hidden hidden sm:block">
                             <div className={`h-full ${isCurrentMilestonePassed ? "bg-emerald-500" : theme.barColor}`} style={{ width: `${percent}%` }} />
                           </div>
                           <span className={`text-sm font-bold px-3 py-1 rounded-lg ${
@@ -1775,7 +1788,7 @@ export default function DashboardClient({ lessonsMeta }: { lessonsMeta: LessonMe
 
                 {/* Milestone Exam Banner (if current stage is completed but milestone is not passed) */}
                 {stageOpen && stage.available && stageLessons.length > 0 && !isStageLockedByMilestone && stageDone === stageLessons.length && !passedMilestones.some((m) => m.stage_label === stage.label) && (
-                  <div className="mt-4 p-5 rounded-2xl border border-amber-350 bg-amber-500/[0.04] dark:border-amber-950/40 flex flex-col sm:flex-row items-center justify-between gap-4">
+                  <div className="mt-4 p-5 rounded-2xl border border-amber-300 bg-amber-500/[0.04] dark:border-amber-950/40 flex flex-col sm:flex-row items-center justify-between gap-4">
                     <div className="min-w-0 flex-1">
                       <h4 className="text-xs font-bold text-amber-800 dark:text-amber-400 flex items-center gap-1.5">
                         🏆 Đã đủ điều kiện Thi Vượt Ải {stage.label}
@@ -2073,6 +2086,14 @@ export default function DashboardClient({ lessonsMeta }: { lessonsMeta: LessonMe
           equipments={equippedGear}
           completedLessonCount={completed.length}
           onClose={() => setShowPvpModal(false)}
+        />
+      )}
+
+      {user?.id && (
+        <DiagnosticPlacementModal
+          userId={user.id}
+          isOpen={showPlacementModal}
+          onClose={() => setShowPlacementModal(false)}
         />
       )}
     </div>

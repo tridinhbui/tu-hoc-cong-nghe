@@ -6,7 +6,7 @@ import Image from "next/image";
 import { isValidAvatar } from "@/lib/avatar-utils";
 import { usePathname, useRouter } from "next/navigation";
 import { toast } from "sonner";
-import { FileText, BarChart3, StickyNote, GraduationCap, Gamepad2, Menu, X, Briefcase, Home, Flame, Users, MessageSquareMore } from "lucide-react";
+import { FileText, BarChart3, StickyNote, GraduationCap, Gamepad2, Menu, X, Briefcase, Home, Flame, Users, MessageSquareMore, Search } from "lucide-react";
 import { createClient } from "@/lib/supabase";
 import GoldCoinIcon from "@/components/GoldCoinIcon";
 import { useRoutePrefetch } from "@/lib/use-route-prefetch";
@@ -19,6 +19,7 @@ import { usePresenceHeartbeat } from "@/lib/use-presence-heartbeat";
 import { trackFeatureClick } from "@/lib/feature-events";
 import LevelUpModal from "@/components/LevelUpModal";
 import QuickShopModal from "@/components/QuickShopModal";
+import GlobalSearchModal from "@/components/GlobalSearchModal";
 import { getMyCareerGoal } from "@/lib/supabase-career-goals";
 import { FINANCE_CAREERS } from "@/lib/finance-careers";
 
@@ -63,6 +64,7 @@ export default function AppNavbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [signingOut, setSigningOut] = useState(false);
   const [showQuickShop, setShowQuickShop] = useState(false);
+  const [searchModalOpen, setSearchModalOpen] = useState(false);
   const [careerGoalId, setCareerGoalId] = useState<string | null>(null);
   const desktopDropdownRef = useRef<HTMLDivElement>(null);
   const mobileDropdownRef = useRef<HTMLDivElement>(null);
@@ -263,7 +265,21 @@ export default function AppNavbar() {
             <span className="text-base font-bold text-stone-900 dark:text-stone-100">Tự Học Tài Chính</span>
           </Link>
 
-          <nav className="mt-4 flex flex-col gap-1 shrink-0">
+          <button
+            type="button"
+            onClick={() => setSearchModalOpen(true)}
+            className="mt-3 flex items-center justify-between w-full px-3 py-2 rounded-2xl bg-stone-100 dark:bg-stone-900 border border-stone-200 dark:border-stone-800 text-xs font-bold text-stone-500 hover:bg-stone-200 dark:hover:bg-stone-800 transition-all cursor-pointer"
+          >
+            <span className="flex items-center gap-2">
+              <Search className="w-3.5 h-3.5 text-stone-400" />
+              <span>Tìm kiếm...</span>
+            </span>
+            <kbd className="px-1.5 py-0.5 rounded-md bg-white dark:bg-stone-800 text-[10px] font-mono border border-stone-200 dark:border-stone-700 shadow-2xs">
+              ⌘K
+            </kbd>
+          </button>
+
+          <nav className="mt-3 flex flex-col gap-1 shrink-0">
             {NAV_LINKS.map(({ href, label, icon: Icon }) => {
               const active = pathname === href;
               const isGame = href === "/game";
@@ -566,12 +582,12 @@ export default function AppNavbar() {
                           : isNhomHoc && hasPendingStudyGroupCheckin
                             ? "bg-amber-50 text-amber-800 border border-amber-300 dark:bg-amber-950/40 dark:text-amber-300"
                             : isCareer
-                              ? "bg-indigo-50/80 dark:bg-indigo-950/20 text-indigo-650 dark:text-indigo-400 border border-indigo-200/50 dark:border-indigo-900/40 hover:bg-indigo-100/60 dark:hover:bg-indigo-950/30"
+                              ? "bg-indigo-50/80 dark:bg-indigo-950/20 text-indigo-600 dark:text-indigo-400 border border-indigo-200/50 dark:border-indigo-900/40 hover:bg-indigo-100/60 dark:hover:bg-indigo-950/30"
                               : "text-stone-600 dark:text-stone-400 hover:bg-stone-100 dark:hover:bg-stone-900"
                     }`}
                   >
                     <div className="flex items-center gap-2.5">
-                      <Icon className={`w-4 h-4 transition-transform duration-200 group-hover:scale-110 ${isGame ? "text-amber-500" : isCareer ? "text-indigo-500 dark:text-indigo-450" : isNhomHoc && hasPendingStudyGroupCheckin ? "text-amber-600 animate-bounce" : ""}`} />
+                      <Icon className={`w-4 h-4 transition-transform duration-200 group-hover:scale-110 ${isGame ? "text-amber-500" : isCareer ? "text-indigo-500 dark:text-indigo-400" : isNhomHoc && hasPendingStudyGroupCheckin ? "text-amber-600 animate-bounce" : ""}`} />
                       <span className="flex items-center gap-1.5">
                         {label}
                         {isGame && <Flame className="w-3.5 h-3.5 text-orange-500" />}
@@ -610,6 +626,8 @@ export default function AppNavbar() {
       {showQuickShop && userId && (
         <QuickShopModal userId={userId} onClose={() => setShowQuickShop(false)} />
       )}
+
+      <GlobalSearchModal isOpen={searchModalOpen} onClose={() => setSearchModalOpen(false)} />
     </>
   );
 }

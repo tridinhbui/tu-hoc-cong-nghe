@@ -141,6 +141,22 @@ export default function LessonPageLayout({ lesson, quiz, children }: Props) {
   const [userId, setUserId]       = useState<string | null>(null);
   const [recallItems, setRecallItems] = useState<RecallItem[]>([]);
   const [highlights, setHighlights] = useState<LessonHighlight[]>([]);
+  // Admin-set video URL lives in its own table (see lib/supabase-lesson-videos.ts)
+  // rather than the static lesson data, so it's fetched separately here instead
+  // of adding a DB round-trip to the shared getLessonBySlug hot path.
+  const [adminVideoUrl, setAdminVideoUrl] = useState<string | null>(null);
+  useEffect(() => {
+    let cancelled = false;
+    fetch(`/api/lessons/${lesson.id}/video`)
+      .then((res) => (res.ok ? res.json() : null))
+      .then((data) => {
+        if (!cancelled && data?.videoUrl) setAdminVideoUrl(data.videoUrl);
+      })
+      .catch(() => {});
+    return () => {
+      cancelled = true;
+    };
+  }, [lesson.id]);
   const [fontScale, setFontScale] = useState(() => (typeof window === "undefined" ? 1.125 : loadFontScale()));
   const [readingMode, setReadingMode] = useState<ReadingMode>(() => (typeof window === "undefined" ? "light" : loadReadingMode()));
   // Keeps the underlying light/dark theme in sync with a previously-chosen
@@ -854,11 +870,25 @@ export default function LessonPageLayout({ lesson, quiz, children }: Props) {
               </div>
 
               {(() => {
-                const vUrl = (lesson as { videoUrl?: string }).videoUrl;
+                const vUrl = adminVideoUrl ?? (lesson as { videoUrl?: string }).videoUrl;
+                // Admins may enter a full watch URL, a youtu.be link, or just
+                // the bare video ID (see app/admin/videos placeholder text) -
+                // normalize all of those to a real embeddable URL instead of
+                // only handling the one "youtube.com/watch?v=" shape.
+                const embedSrc = (() => {
+                  if (!vUrl) return "";
+                  if (vUrl.includes("/embed/")) return vUrl;
+                  const watchMatch = vUrl.match(/[?&]v=([^&]+)/);
+                  if (watchMatch) return `https://www.youtube.com/embed/${watchMatch[1]}`;
+                  const pathMatch = vUrl.match(/youtu\.be\/([^?&/]+)/);
+                  if (pathMatch) return `https://www.youtube.com/embed/${pathMatch[1]}`;
+                  if (/^[\w-]{6,}$/.test(vUrl)) return `https://www.youtube.com/embed/${vUrl}`;
+                  return vUrl;
+                })();
                 return vUrl ? (
                   <div className="aspect-video w-full rounded-xl overflow-hidden border border-stone-800 bg-black">
                     <iframe
-                      src={vUrl.includes("youtube.com/watch?v=") ? vUrl.replace("watch?v=", "embed/") : vUrl}
+                      src={embedSrc}
                       title={lesson.title}
                       className="w-full h-full"
                       allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
@@ -1127,7 +1157,15 @@ export default function LessonPageLayout({ lesson, quiz, children }: Props) {
                   ))}
                 </div>
                 <WisdomCardFlip />
-                <div className="grid grid-cols-2 gap-3 pt-2">
+                {results.some((r) => !r) && (
+                  <Link
+                    href="/on-tap-cau-sai"
+                    className="w-full inline-flex items-center justify-center gap-2 py-3 rounded-xl bg-amber-500 hover:bg-amber-400 text-stone-950 text-xs sm:text-sm font-black transition-colors cursor-pointer shadow-sm"
+                  >
+                    🔄 Ôn Lại Câu Vừa Sai Ngay (Flashcard 3D)
+                  </Link>
+                )}
+                <div className="grid grid-cols-2 gap-3 pt-1">
                   <Link href="/dashboard" className="py-3.5 rounded-xl border border-stone-200 dark:border-stone-700 text-stone-600 dark:text-stone-400 text-sm font-bold text-center hover:bg-stone-50 dark:hover:bg-stone-800 transition-colors">
                     Dashboard
                   </Link>
