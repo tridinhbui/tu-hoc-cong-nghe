@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import dynamic from "next/dynamic";
-import { Wallet, PiggyBank, ShieldAlert, TrendingUp, Sparkles } from "lucide-react";
+import { Wallet, PiggyBank, ShieldAlert, TrendingUp, Sparkles, Building2 } from "lucide-react";
 import { useAuthGate } from "@/lib/use-auth-gate";
 
 // Only one tab renders at a time - lazy-load each so switching tabs is what
@@ -15,8 +15,9 @@ const BudgetCalculator = dynamic(() => import("@/components/tools/BudgetCalculat
 const EmergencyFundCalculator = dynamic(() => import("@/components/tools/EmergencyFundCalculator"), { loading: () => LOADING });
 const CompoundInterestSimulator = dynamic(() => import("@/components/tools/CompoundInterestSimulator"), { loading: () => LOADING });
 const FirePlanner = dynamic(() => import("@/components/tools/FirePlanner"), { loading: () => LOADING });
+const ValuationDCFCalculator = dynamic(() => import("@/components/tools/ValuationDCFCalculator"), { loading: () => LOADING });
 
-type Tab = "net-worth" | "budget" | "emergency-fund" | "compound-interest" | "fire-planner";
+type Tab = "net-worth" | "budget" | "emergency-fund" | "compound-interest" | "fire-planner" | "valuation-dcf";
 
 const TABS: { id: Tab; label: string; icon: typeof Wallet }[] = [
   { id: "net-worth", label: "Tài sản ròng", icon: Wallet },
@@ -24,13 +25,11 @@ const TABS: { id: Tab; label: string; icon: typeof Wallet }[] = [
   { id: "emergency-fund", label: "Quỹ khẩn cấp", icon: ShieldAlert },
   { id: "compound-interest", label: "Giả lập Lãi kép", icon: TrendingUp },
   { id: "fire-planner", label: "Kế hoạch FIRE", icon: Sparkles },
+  { id: "valuation-dcf", label: "Định giá DCF & WACC", icon: Building2 },
 ];
 
-// Hub for the personal-finance tools that turn lesson concepts (net worth,
-// budgeting, emergency fund sizing) into something learners apply to their
-// own numbers, save, and revisit - instead of the concept living only in
-// the lesson text. See app/bai-hoc/audit-tai-chinh-ca-nhan for the lesson
-// this pairs with.
+// Hub for the personal-finance & corporate-valuation tools that turn lesson
+// concepts into interactive calculators.
 export default function CongCuClient() {
   const { userId, checking } = useAuthGate();
   const [tab, setTab] = useState<Tab>("net-worth");
@@ -48,13 +47,13 @@ export default function CongCuClient() {
       <div className="max-w-3xl mx-auto px-4 sm:px-6 py-8">
         <div className="mb-6">
           <p className="text-xs font-extrabold text-emerald-600 dark:text-emerald-400 uppercase tracking-widest mb-1">
-            Công cụ cá nhân
+            Công cụ tài chính & Định giá
           </p>
           <h1 className="text-2xl font-bold text-stone-900 dark:text-stone-100">
-            Áp dụng lên số liệu của chính bạn
+            Áp dụng số liệu vào thực tế
           </h1>
           <p className="text-sm text-stone-500 dark:text-stone-400 mt-1">
-            Nhập số thật, hệ thống tính và lưu lại - không chỉ đọc lý thuyết.
+            Mô phỏng tài chính cá nhân & định giá doanh nghiệp chuẩn CFA.
           </p>
         </div>
 
@@ -63,7 +62,7 @@ export default function CongCuClient() {
             <button
               key={id}
               onClick={() => setTab(id)}
-              className={`flex-1 min-w-fit flex items-center justify-center gap-1.5 text-xs sm:text-sm font-bold px-3 py-2.5 rounded-lg transition-all whitespace-nowrap ${
+              className={`flex-1 min-w-fit flex items-center justify-center gap-1.5 text-xs sm:text-sm font-bold px-3 py-2.5 rounded-lg transition-all whitespace-nowrap cursor-pointer ${
                 tab === id
                   ? "bg-white dark:bg-stone-800 text-stone-900 dark:text-stone-100 shadow-sm"
                   : "text-stone-500 dark:text-stone-400 hover:text-stone-700 dark:hover:text-stone-300"
@@ -80,6 +79,7 @@ export default function CongCuClient() {
         {tab === "emergency-fund" && <EmergencyFundCalculator userId={userId} />}
         {tab === "compound-interest" && <CompoundInterestSimulator />}
         {tab === "fire-planner" && <FirePlanner />}
+        {tab === "valuation-dcf" && <ValuationDCFCalculator />}
       </div>
     </div>
   );
