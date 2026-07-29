@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import { toast } from "sonner";
 import { Search, Play, ExternalLink, Trash2, Save } from "lucide-react";
 import type { LessonMeta } from "@/lib/lesson-types";
+import { saveLessonVideoAction, deleteLessonVideoAction } from "./actions";
 
 interface LessonWithVideo {
   id: number;
@@ -14,6 +15,18 @@ interface LessonWithVideo {
 
 interface VideosAdminClientProps {
   lessonsMeta: LessonMeta[];
+}
+
+// Admins may paste a full watch/embed/share URL or just the bare ID -
+// normalize to the ID so the preview link always resolves correctly
+// (naively taking the last "/" segment breaks on "watch?v=ID" URLs, since
+// that has no "/" before the ID).
+function extractYouTubeId(input: string): string {
+  const watchMatch = input.match(/[?&]v=([^&]+)/);
+  if (watchMatch) return watchMatch[1];
+  const pathMatch = input.match(/(?:youtu\.be\/|embed\/)([^?&/]+)/);
+  if (pathMatch) return pathMatch[1];
+  return input.split("/").pop() || input;
 }
 
 export default function VideosAdminClient({ lessonsMeta }: VideosAdminClientProps) {
@@ -40,8 +53,7 @@ export default function VideosAdminClient({ lessonsMeta }: VideosAdminClientProp
   const handleSaveVideo = async (lessonId: number) => {
     try {
       setSaving(true);
-      // TODO: Replace with actual API call to save video URL
-      // await saveVideoUrl(lessonId, editingUrl);
+      await saveLessonVideoAction(lessonId, editingUrl);
 
       setLessons(lessons.map((l) =>
         l.id === lessonId ? { ...l, videoUrl: editingUrl } : l
@@ -61,8 +73,7 @@ export default function VideosAdminClient({ lessonsMeta }: VideosAdminClientProp
 
     try {
       setSaving(true);
-      // TODO: Replace with actual API call
-      // await deleteVideoUrl(lessonId);
+      await deleteLessonVideoAction(lessonId);
 
       setLessons(lessons.map((l) =>
         l.id === lessonId ? { ...l, videoUrl: undefined } : l
@@ -133,7 +144,7 @@ export default function VideosAdminClient({ lessonsMeta }: VideosAdminClientProp
                         />
                       ) : lesson.videoUrl ? (
                         <a
-                          href={`https://youtube.com/watch?v=${lesson.videoUrl.split("/").pop()}`}
+                          href={`https://youtube.com/watch?v=${extractYouTubeId(lesson.videoUrl)}`}
                           target="_blank"
                           rel="noopener noreferrer"
                           className="text-indigo-600 dark:text-indigo-400 hover:underline flex items-center gap-1"

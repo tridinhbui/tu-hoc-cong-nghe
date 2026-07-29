@@ -1,11 +1,13 @@
 import { Play } from "lucide-react";
 import { getLessonsMeta } from "@/lib/lessons-loader";
+import { getAllLessonVideoUrls } from "@/lib/supabase-lesson-videos";
 import VideosAdminClient from "./VideosAdminClient";
 
 export const dynamic = "force-dynamic";
 
 export default async function VideosAdminPage() {
-  const lessonsMeta = await getLessonsMeta();
+  const [lessonsMeta, videoUrls] = await Promise.all([getLessonsMeta(), getAllLessonVideoUrls()]);
+  const lessonsWithVideo = lessonsMeta.map((l) => ({ ...l, videoUrl: videoUrls[l.id] }));
 
   return (
     <div>
@@ -19,7 +21,7 @@ export default async function VideosAdminPage() {
         </div>
       </div>
 
-      <VideosAdminClient lessonsMeta={lessonsMeta} />
+      <VideosAdminClient lessonsMeta={lessonsWithVideo} />
     </div>
   );
 }

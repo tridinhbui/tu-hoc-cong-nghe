@@ -183,7 +183,7 @@ export default function CharacterCustomizerModal({
                     <button
                       key={p.name}
                       onClick={() => setConfig(p.config)}
-                      className="bg-stone-850 hover:bg-stone-800 border border-stone-700 hover:border-amber-400 text-stone-200 text-[10px] font-bold p-2 rounded-xl text-center transition-all flex flex-col items-center gap-1"
+                      className="bg-stone-800 hover:bg-stone-800 border border-stone-700 hover:border-amber-400 text-stone-200 text-[10px] font-bold p-2 rounded-xl text-center transition-all flex flex-col items-center gap-1"
                     >
                       <span className="text-base">{p.icon}</span>
                       <span className="truncate w-full">{p.name}</span>
@@ -230,7 +230,7 @@ export default function CharacterCustomizerModal({
                           className={`p-3 rounded-2xl border-2 font-bold text-xs flex items-center justify-center gap-2 transition-all ${
                             config.gender === "male"
                               ? "bg-amber-500/20 border-amber-400 text-amber-300 font-black"
-                              : "bg-stone-850 border-stone-800 text-stone-400 hover:border-stone-700"
+                              : "bg-stone-800 border-stone-800 text-stone-400 hover:border-stone-700"
                           }`}
                         >
                           <span className="text-lg">👨</span> Nam (Male)
@@ -240,7 +240,7 @@ export default function CharacterCustomizerModal({
                           className={`p-3 rounded-2xl border-2 font-bold text-xs flex items-center justify-center gap-2 transition-all ${
                             config.gender === "female"
                               ? "bg-amber-500/20 border-amber-400 text-amber-300 font-black"
-                              : "bg-stone-850 border-stone-800 text-stone-400 hover:border-stone-700"
+                              : "bg-stone-800 border-stone-800 text-stone-400 hover:border-stone-700"
                           }`}
                         >
                           <span className="text-lg">👩</span> Nữ (Female)
@@ -289,7 +289,7 @@ export default function CharacterCustomizerModal({
                               className={`p-3 rounded-2xl border-2 text-left text-xs font-bold transition-all flex items-center gap-2 ${
                                 isSelected
                                   ? "bg-amber-500/20 border-amber-400 text-amber-300 font-black"
-                                  : "bg-stone-850 border-stone-800 text-stone-300 hover:border-stone-700"
+                                  : "bg-stone-800 border-stone-800 text-stone-300 hover:border-stone-700"
                               }`}
                             >
                               <span className="text-base">{h.iconEmoji}</span>
@@ -339,7 +339,7 @@ export default function CharacterCustomizerModal({
                             className={`p-3 rounded-2xl border-2 text-left text-xs font-bold transition-all flex items-center gap-2 ${
                               config.faceShape === f.id
                                 ? "bg-amber-500/20 border-amber-400 text-amber-300 font-black"
-                                : "bg-stone-850 border-stone-800 text-stone-300 hover:border-stone-700"
+                                : "bg-stone-800 border-stone-800 text-stone-300 hover:border-stone-700"
                             }`}
                           >
                             <span>{f.iconEmoji}</span>
@@ -360,7 +360,7 @@ export default function CharacterCustomizerModal({
                             className={`p-3 rounded-2xl border-2 text-left text-xs font-bold transition-all flex items-center gap-2 ${
                               config.eyeExpression === e.id
                                 ? "bg-amber-500/20 border-amber-400 text-amber-300 font-black"
-                                : "bg-stone-850 border-stone-800 text-stone-300 hover:border-stone-700"
+                                : "bg-stone-800 border-stone-800 text-stone-300 hover:border-stone-700"
                             }`}
                           >
                             <span>{e.iconEmoji}</span>
@@ -385,8 +385,8 @@ export default function CharacterCustomizerModal({
                                 config.glasses === g.id
                                   ? "bg-amber-500/20 border-amber-400 text-amber-300 font-black"
                                   : isLocked
-                                  ? "bg-stone-950 border-stone-850 opacity-40 cursor-not-allowed text-stone-500"
-                                  : "bg-stone-850 border-stone-800 text-stone-300 hover:border-stone-700"
+                                  ? "bg-stone-950 border-stone-800 opacity-40 cursor-not-allowed text-stone-500"
+                                  : "bg-stone-800 border-stone-800 text-stone-300 hover:border-stone-700"
                               }`}
                             >
                               <div className="flex items-center gap-2 truncate">
@@ -412,7 +412,7 @@ export default function CharacterCustomizerModal({
                               className={`p-3 rounded-2xl border-2 text-left text-xs font-bold transition-all flex items-center gap-2 ${
                                 config.beard === b.id
                                   ? "bg-amber-500/20 border-amber-400 text-amber-300 font-black"
-                                  : "bg-stone-850 border-stone-800 text-stone-300 hover:border-stone-700"
+                                  : "bg-stone-800 border-stone-800 text-stone-300 hover:border-stone-700"
                               }`}
                             >
                               <span>{b.iconEmoji}</span>
@@ -443,8 +443,8 @@ export default function CharacterCustomizerModal({
                                 config.outfitStyle === o.id
                                   ? "bg-amber-500/20 border-amber-400 text-amber-300 font-black"
                                   : isLocked
-                                  ? "bg-stone-950 border-stone-850 opacity-40 cursor-not-allowed text-stone-500"
-                                  : "bg-stone-850 border-stone-800 text-stone-300 hover:border-stone-700"
+                                  ? "bg-stone-950 border-stone-800 opacity-40 cursor-not-allowed text-stone-500"
+                                  : "bg-stone-800 border-stone-800 text-stone-300 hover:border-stone-700"
                               }`}
                             >
                               <div className="flex items-center gap-2">
@@ -500,8 +500,8 @@ export default function CharacterCustomizerModal({
                                 config.accessory === a.id
                                   ? "bg-amber-500/20 border-amber-400 text-amber-300 font-black"
                                   : isLocked
-                                  ? "bg-stone-950 border-stone-850 opacity-40 cursor-not-allowed text-stone-500"
-                                  : "bg-stone-850 border-stone-800 text-stone-300 hover:border-stone-700"
+                                  ? "bg-stone-950 border-stone-800 opacity-40 cursor-not-allowed text-stone-500"
+                                  : "bg-stone-800 border-stone-800 text-stone-300 hover:border-stone-700"
                               }`}
                             >
                               <div className="flex items-center gap-2">
@@ -534,8 +534,8 @@ export default function CharacterCustomizerModal({
                                 config.background === bg.id
                                   ? "bg-amber-500/20 border-amber-400 text-amber-300 font-black"
                                   : isLocked
-                                  ? "bg-stone-950 border-stone-850 opacity-40 cursor-not-allowed text-stone-500"
-                                  : "bg-stone-850 border-stone-800 text-stone-300 hover:border-stone-700"
+                                  ? "bg-stone-950 border-stone-800 opacity-40 cursor-not-allowed text-stone-500"
+                                  : "bg-stone-800 border-stone-800 text-stone-300 hover:border-stone-700"
                               }`}
                             >
                               <div className="flex items-center gap-2">

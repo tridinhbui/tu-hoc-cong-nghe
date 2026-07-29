@@ -139,7 +139,7 @@ export default function LessonRecallWidget({ userId }: LessonRecallWidgetProps) 
   return (
     <div className={`rounded-2xl border shadow-sm overflow-hidden relative transition-all ${
       hasWarning
-        ? 'border-red-300 dark:border-red-900/60 bg-red-50/40 dark:bg-red-950/30'
+        ? 'border-red-300 dark:border-red-800/70 bg-red-50 dark:bg-stone-900'
         : 'border-stone-200/80 dark:border-stone-800/80 bg-white dark:bg-stone-900'
     }`}>
       {hasWarning && <div className="absolute top-0 right-0 w-24 h-24 bg-red-500/[0.03] rounded-full blur-2xl pointer-events-none" />}
@@ -149,29 +149,29 @@ export default function LessonRecallWidget({ userId }: LessonRecallWidgetProps) 
         onClick={() => setCollapsed(!collapsed)}
         className={`w-full flex items-center justify-between gap-2 p-4 cursor-pointer transition-all ${
           hasWarning
-            ? 'hover:bg-red-100/30 dark:hover:bg-red-950/40'
+            ? 'hover:bg-red-100/60 dark:hover:bg-red-950/20'
             : 'hover:bg-stone-50/50 dark:hover:bg-stone-950/30'
         }`}
       >
-        <div className="flex items-center gap-2 min-w-0">
-          <div className={`w-8 h-8 rounded-xl flex items-center justify-center shrink-0 ${
-            hasWarning
-              ? 'bg-red-100 dark:bg-red-950/40 text-red-600 dark:text-red-400 animate-pulse'
-              : 'bg-emerald-50 dark:bg-emerald-950/40 text-emerald-600 dark:text-emerald-400 animate-spin-slow'
+          <div className="flex items-center gap-2 min-w-0">
+            <div className={`w-8 h-8 rounded-xl flex items-center justify-center shrink-0 ${
+              hasWarning
+                ? 'bg-red-100 dark:bg-red-950/50 text-red-700 dark:text-red-300 animate-pulse'
+                : 'bg-emerald-50 dark:bg-emerald-950/40 text-emerald-600 dark:text-emerald-400 animate-spin-slow'
           }`}>
             {hasWarning ? <AlertCircle className="w-4 h-4" /> : <RefreshCw className="w-4 h-4" />}
           </div>
           <div className="text-left min-w-0">
             <h3 className={`text-sm font-extrabold truncate ${
               hasWarning
-                ? 'text-red-700 dark:text-red-300'
-                : 'text-stone-900 dark:text-stone-150'
+                ? 'text-red-800 dark:text-red-200'
+                : 'text-stone-900 dark:text-stone-100'
             }`}>
               CẦN ÔN LẠI GÌ {hasWarning && `(${dueRecalls.length})`}
             </h3>
             <p className={`text-[10px] mt-0.5 truncate ${
               hasWarning
-                ? 'text-red-600/80 dark:text-red-400/70'
+                ? 'text-red-700 dark:text-red-300'
                 : 'text-stone-500 dark:text-stone-400'
             }`}>
               {hasWarning ? 'Có bài học cần ôn tập ngay' : 'Các bài học đã đến chu kỳ ôn tập'}
@@ -195,7 +195,7 @@ export default function LessonRecallWidget({ userId }: LessonRecallWidgetProps) 
             {dueRecalls.slice(0, 3).map((item) => (
               <div
                 key={item.lessonId}
-                className="flex items-center justify-between gap-3 p-3 bg-stone-50/50 dark:bg-stone-950/30 rounded-xl border border-stone-150 dark:border-stone-850 hover:border-stone-250 dark:hover:border-stone-750 transition-all"
+                className="flex items-center justify-between gap-3 p-3 bg-white dark:bg-stone-800 rounded-xl border border-stone-200 dark:border-stone-700 hover:border-stone-300 dark:hover:border-stone-600 transition-all"
               >
                 <div className="min-w-0 flex-1">
                   <p className="text-xs font-extrabold text-stone-900 dark:text-stone-100 truncate">
@@ -214,7 +214,7 @@ export default function LessonRecallWidget({ userId }: LessonRecallWidgetProps) 
               </div>
             ))}
             {dueRecalls.length > 3 && (
-              <p className="text-[10px] text-stone-450 dark:text-stone-500 text-center font-bold">
+              <p className="text-[10px] text-stone-400 dark:text-stone-500 text-center font-bold">
                 Còn {dueRecalls.length - 3} bài khác đang chờ ôn tập
               </p>
             )}
@@ -227,30 +227,30 @@ export default function LessonRecallWidget({ userId }: LessonRecallWidgetProps) 
             <span className="text-xs font-extrabold text-stone-900 dark:text-stone-100 truncate max-w-[70%]">
               Ôn tập: {activeItem.lessonTitle}
             </span>
-            <span className="text-[10px] font-extrabold text-stone-450 bg-stone-100 dark:bg-stone-950 px-2 py-0.5 rounded-md shrink-0">
+            <span className="text-[10px] font-extrabold text-stone-600 dark:text-stone-300 bg-stone-100 dark:bg-stone-800 px-2 py-0.5 rounded-md shrink-0">
               Câu {currentQIndex + 1}/{questions.length}
             </span>
           </div>
 
           {questions[currentQIndex] && (
             <div className="space-y-4">
-              <p className="text-xs font-bold text-stone-800 dark:text-stone-250 leading-relaxed">
+              <p className="text-xs font-bold text-stone-900 dark:text-stone-100 leading-relaxed">
                 {questions[currentQIndex].question}
               </p>
 
               <div className="space-y-2">
                 {questions[currentQIndex].options.map((opt: string, i: number) => {
-                  let btnCls = "border-stone-200 dark:border-stone-800 bg-white dark:bg-stone-900 text-stone-700 dark:text-stone-300 hover:border-stone-300 dark:hover:border-stone-700";
+                  let btnCls = "border-stone-200 dark:border-stone-700 bg-white dark:bg-stone-800 text-stone-800 dark:text-stone-100 hover:border-stone-300 dark:hover:border-stone-500";
                   if (answersChecked) {
                     if (i === questions[currentQIndex].correct) {
-                      btnCls = "border-emerald-500 bg-emerald-50 dark:bg-emerald-950/40 text-emerald-800 dark:text-emerald-450 font-bold";
+                      btnCls = "border-emerald-500 bg-emerald-50 dark:bg-emerald-950/50 text-emerald-900 dark:text-emerald-200 font-bold";
                     } else if (i === selectedOpt) {
-                      btnCls = "border-rose-500 bg-rose-50 dark:bg-rose-950/40 text-rose-800 dark:text-rose-405";
+                      btnCls = "border-rose-500 bg-rose-50 dark:bg-rose-950/50 text-rose-900 dark:text-rose-200";
                     } else {
                       btnCls = "border-stone-100 dark:border-stone-800 opacity-60";
                     }
                   } else if (selectedOpt === i) {
-                    btnCls = "border-stone-900 dark:border-stone-100 bg-stone-50 dark:bg-stone-800 text-stone-900 dark:text-stone-100 border-2 font-bold";
+                    btnCls = "border-stone-900 dark:border-stone-100 bg-stone-100 dark:bg-stone-800 text-stone-950 dark:text-white border-2 font-bold";
                   }
 
                   return (
@@ -279,8 +279,8 @@ export default function LessonRecallWidget({ userId }: LessonRecallWidgetProps) 
                 <div className="space-y-3">
                   <div className={`p-3 rounded-xl text-[10px] leading-relaxed border ${
                     selectedOpt === questions[currentQIndex].correct
-                      ? "bg-emerald-50/20 border-emerald-100 dark:border-emerald-900/30 text-emerald-800 dark:text-emerald-400"
-                      : "bg-rose-50/20 border-rose-100 dark:border-rose-900/30 text-rose-800 dark:text-rose-400"
+                      ? "bg-emerald-50 border-emerald-200 dark:bg-emerald-950/50 dark:border-emerald-800 text-emerald-900 dark:text-emerald-200"
+                      : "bg-rose-50 border-rose-200 dark:bg-rose-950/50 dark:border-rose-800 text-rose-900 dark:text-rose-200"
                   }`}>
                     <p className="font-bold mb-0.5">
                       {selectedOpt === questions[currentQIndex].correct ? "Đúng rồi! 🎉" : "Chưa đúng!"}

@@ -29,7 +29,7 @@ export default function EmojiPicker({ onSelect }: { onSelect: (emoji: string) =>
         type="button"
         onClick={() => setOpen((v) => !v)}
         title="Chọn emoji"
-        className="p-2 border border-stone-105 dark:border-stone-850/50 text-stone-500 dark:text-stone-400 hover:text-stone-900 dark:hover:text-stone-100 rounded-xl transition flex-shrink-0 active:scale-95"
+        className="p-2 border border-stone-105 dark:border-stone-800/50 text-stone-500 dark:text-stone-400 hover:text-stone-900 dark:hover:text-stone-100 rounded-xl transition flex-shrink-0 active:scale-95"
       >
         <Smile className="w-4.5 h-4.5" />
       </button>

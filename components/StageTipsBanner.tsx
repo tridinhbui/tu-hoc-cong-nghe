@@ -228,7 +228,7 @@ export default function StageTipsBanner({ lessonId, lessonTitle }: Props) {
               <span className="absolute -inset-1 rounded-full border-2 border-emerald-400/60 animate-spin [animation-duration:1.4s] [border-top-color:transparent] [border-left-color:transparent]" />
             </>
           )}
-          <div className="relative w-8 h-8 rounded-full overflow-hidden bg-stone-850">
+          <div className="relative w-8 h-8 rounded-full overflow-hidden bg-stone-800">
             <TaiTaiAvatar size={32} />
           </div>
         </div>

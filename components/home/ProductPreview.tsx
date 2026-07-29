@@ -76,7 +76,7 @@ export default function ProductPreview() {
         <div className="preview-scan-line absolute inset-x-0 top-0 h-24 bg-[linear-gradient(180deg,rgba(255,255,255,0.28),transparent)] opacity-40" />
       </div>
       {/* Browser chrome */}
-      <div className="flex flex-wrap items-center gap-x-3 gap-y-2 border-b border-stone-100 dark:border-stone-850 bg-stone-50 dark:bg-stone-950/60 px-4 py-2.5">
+      <div className="flex flex-wrap items-center gap-x-3 gap-y-2 border-b border-stone-100 dark:border-stone-800 bg-stone-50 dark:bg-stone-950/60 px-4 py-2.5">
         <div className="flex items-center gap-3 flex-1 min-w-0">
           <div className="flex gap-1.5 shrink-0">
             <span className="w-2.5 h-2.5 rounded-full bg-stone-300 dark:bg-stone-700" />

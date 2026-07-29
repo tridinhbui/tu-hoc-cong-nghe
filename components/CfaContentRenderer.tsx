@@ -115,7 +115,7 @@ export default function CfaContentRenderer({ content }: { content: string }) {
   const blocks = content.split(/\$\$([\s\S]+?)\$\$/g);
 
   return (
-    <div className="space-y-4 text-sm text-stone-750 dark:text-stone-300 leading-relaxed font-normal">
+    <div className="space-y-4 text-sm text-stone-700 dark:text-stone-300 leading-relaxed font-normal">
       {blocks.map((block, index) => {
         if (index % 2 === 1) {
           return <KatexDisplay key={index} tex={block} />;
@@ -158,7 +158,7 @@ export default function CfaContentRenderer({ content }: { content: string }) {
                       ))}
                     </tr>
                   </thead>
-                  <tbody className="divide-y divide-stone-100 dark:divide-stone-850 bg-white dark:bg-stone-900">
+                  <tbody className="divide-y divide-stone-100 dark:divide-stone-800 bg-white dark:bg-stone-900">
                     {bodyRows.map((row, rIdx) => (
                       <tr key={rIdx} className="hover:bg-stone-50/50 dark:hover:bg-stone-800/20 transition-colors odd:bg-white even:bg-stone-50/30 dark:odd:bg-stone-900 dark:even:bg-stone-900/30">
                         {row.map((col, cIdx) => (
@@ -214,7 +214,7 @@ export default function CfaContentRenderer({ content }: { content: string }) {
           } else if (trimmed.startsWith("### ")) {
             flushList(`list-h3-${i}`);
             renderedElements.push(
-              <h3 key={i} className="text-sm font-extrabold text-stone-850 dark:text-stone-200 mt-4 mb-1.5">
+              <h3 key={i} className="text-sm font-extrabold text-stone-800 dark:text-stone-200 mt-4 mb-1.5">
                 {renderInlineStyles(trimmed.slice(4))}
               </h3>
             );

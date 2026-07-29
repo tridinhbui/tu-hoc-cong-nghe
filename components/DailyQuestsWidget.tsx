@@ -191,18 +191,18 @@ export default function DailyQuestsWidget({ userId, embedded = false, onQuestsLo
       {!embedded && (
       <div className="w-full flex items-center justify-between mb-4 relative z-10">
         <div className="flex items-center gap-2">
-          <div className="w-8 h-8 rounded-xl bg-amber-50 dark:bg-amber-950/40 text-amber-600 dark:text-amber-450 flex items-center justify-center">
+          <div className="w-8 h-8 rounded-xl bg-amber-50 dark:bg-amber-950/40 text-amber-600 dark:text-amber-400 flex items-center justify-center">
             <Sparkles className="w-4 h-4" />
           </div>
           <div className="text-left">
-            <h3 className="text-sm font-extrabold text-stone-900 dark:text-stone-150">Nhiệm vụ hàng ngày</h3>
-            <p className="text-[10px] text-stone-450 dark:text-stone-400 font-bold uppercase tracking-wider flex items-center gap-1 mt-0.5">
+            <h3 className="text-sm font-extrabold text-stone-900 dark:text-stone-100">Nhiệm vụ hàng ngày</h3>
+            <p className="text-[10px] text-stone-400 dark:text-stone-400 font-bold uppercase tracking-wider flex items-center gap-1 mt-0.5">
               <Calendar className="w-3 h-3" /> {dayKey}
             </p>
           </div>
         </div>
         <div className="flex items-center gap-2">
-          <span className="text-[11px] font-extrabold px-2.5 py-1 rounded-full bg-stone-50 dark:bg-stone-950/60 text-stone-600 dark:text-stone-450 border border-stone-100 dark:border-stone-800">
+          <span className="text-[11px] font-extrabold px-2.5 py-1 rounded-full bg-stone-50 dark:bg-stone-950/60 text-stone-600 dark:text-stone-400 border border-stone-100 dark:border-stone-800">
             Đạt {completedQuestsCount}/3
           </span>
         </div>
@@ -233,7 +233,7 @@ export default function DailyQuestsWidget({ userId, embedded = false, onQuestsLo
               key={quest.id}
               className={`p-3 rounded-2xl border transition-all duration-300 group/item flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-2.5 sm:gap-3.5 ${
                 quest.claimed
-                  ? "bg-stone-500/[0.01] dark:bg-stone-950/[0.01] border-stone-150 dark:border-stone-850 opacity-60"
+                  ? "bg-stone-500/[0.01] dark:bg-stone-950/[0.01] border-stone-100 dark:border-stone-800 opacity-60"
                   : isDone
                   ? "bg-amber-500/[0.02] dark:bg-amber-500/[0.01] border-amber-300 dark:border-amber-800 shadow-sm shadow-amber-500/5 animate-[pulseGlow_2.5s_infinite]"
                   : "bg-white dark:bg-stone-900 border-stone-200 dark:border-stone-800 hover:border-emerald-500/40 dark:hover:border-emerald-500/30 hover:shadow-[0_4px_12px_-4px_rgba(16,185,129,0.06)]"
@@ -272,8 +272,8 @@ export default function DailyQuestsWidget({ userId, embedded = false, onQuestsLo
                     quest.claimed 
                       ? "text-stone-400 line-through" 
                       : isDone 
-                      ? "text-amber-600 dark:text-amber-450" 
-                      : "text-stone-900 dark:text-stone-100 group-hover/item:text-emerald-600 dark:group-hover/item:text-emerald-450"
+                      ? "text-amber-600 dark:text-amber-400" 
+                      : "text-stone-900 dark:text-stone-100 group-hover/item:text-emerald-600 dark:group-hover/item:text-emerald-400"
                   }`}>
                     {quest.title}
                   </p>
@@ -288,7 +288,7 @@ export default function DailyQuestsWidget({ userId, embedded = false, onQuestsLo
               {/* Action Buttons */}
               <div className="shrink-0 flex items-center justify-between sm:justify-end gap-2 w-full sm:w-auto pt-1 sm:pt-0 border-t sm:border-t-0 border-stone-100 dark:border-stone-800/60">
                 {quest.claimed ? (
-                  <span className="text-[10px] font-black text-emerald-600 dark:text-emerald-450 bg-emerald-50 dark:bg-emerald-950/30 px-2.5 py-1.5 rounded-lg border border-emerald-100 dark:border-emerald-900/30 uppercase tracking-wider">
+                  <span className="text-[10px] font-black text-emerald-600 dark:text-emerald-400 bg-emerald-50 dark:bg-emerald-950/30 px-2.5 py-1.5 rounded-lg border border-emerald-100 dark:border-emerald-900/30 uppercase tracking-wider">
                     Đã nhận
                   </span>
                 ) : isDone ? (
@@ -301,7 +301,7 @@ export default function DailyQuestsWidget({ userId, embedded = false, onQuestsLo
                 </button>
                 ) : (
                   <>
-                    <span className="text-[10px] font-black text-stone-600 dark:text-stone-400 bg-stone-50 dark:bg-stone-950/40 px-2 py-1 rounded-lg border border-stone-200/50 dark:border-stone-850">
+                    <span className="text-[10px] font-black text-stone-600 dark:text-stone-400 bg-stone-50 dark:bg-stone-950/40 px-2 py-1 rounded-lg border border-stone-200/50 dark:border-stone-800">
                       +{quest.xpReward} XP
                     </span>
                     <button

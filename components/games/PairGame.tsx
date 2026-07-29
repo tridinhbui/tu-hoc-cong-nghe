@@ -277,7 +277,7 @@ export default function PairGame({ userId, gameType, difficulty = "trung-binh", 
 
       <div className="flex flex-wrap items-center justify-between gap-3 mb-5 relative z-10 pb-4 border-b border-stone-200/50">
         <div className="min-w-0">
-          <p className="text-xs sm:text-sm font-black text-stone-850 flex items-center gap-2">
+          <p className="text-xs sm:text-sm font-black text-stone-800 flex items-center gap-2">
             <span>Đã ghép {matchedCount}/{round.length} cặp</span>
             {combo >= 2 && (
               <motion.span 
@@ -305,7 +305,7 @@ export default function PairGame({ userId, gameType, difficulty = "trung-binh", 
                   ? "bg-sky-500 border-sky-400 text-white animate-pulse"
                   : freezeUsed
                     ? "opacity-40 bg-stone-100 border-stone-200 text-stone-400 cursor-not-allowed"
-                    : "bg-sky-50 border-sky-200 text-sky-650 hover:bg-sky-100/50"
+                    : "bg-sky-50 border-sky-200 text-sky-600 hover:bg-sky-100/50"
               }`}
               title="Đóng băng thời gian (5 giây)"
             >
@@ -321,7 +321,7 @@ export default function PairGame({ userId, gameType, difficulty = "trung-binh", 
               className={`w-9 h-9 rounded-xl border flex items-center justify-center transition-all cursor-pointer ${
                 helper5050Used
                   ? "opacity-40 bg-stone-100 border-stone-200 text-stone-400 cursor-not-allowed"
-                  : "bg-indigo-50 border-indigo-200 text-indigo-650 hover:bg-indigo-100/50"
+                  : "bg-indigo-50 border-indigo-200 text-indigo-600 hover:bg-indigo-100/50"
               }`}
               title="Quyền trợ giúp 50/50 (Tự ghép 2 cặp)"
             >

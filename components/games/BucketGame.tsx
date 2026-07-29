@@ -199,7 +199,7 @@ export default function BucketGame({ userId, gameType, difficulty = "trung-binh"
 
       <div className="flex flex-wrap items-center justify-between gap-3 mb-5 relative z-10 pb-4 border-b border-stone-200/50">
         <div className="min-w-0">
-          <p className="text-xs sm:text-sm font-black text-stone-850 flex items-center gap-2">
+          <p className="text-xs sm:text-sm font-black text-stone-800 flex items-center gap-2">
             <span>Đã xếp đúng {placedCount}/{total}</span>
             {combo >= 2 && (
               <motion.span 
@@ -227,7 +227,7 @@ export default function BucketGame({ userId, gameType, difficulty = "trung-binh"
                   ? "bg-sky-500 border-sky-400 text-white animate-pulse"
                   : freezeUsed
                     ? "opacity-40 bg-stone-100 border-stone-200 text-stone-400 cursor-not-allowed"
-                    : "bg-sky-50 border-sky-200 text-sky-650 hover:bg-sky-100/50"
+                    : "bg-sky-50 border-sky-200 text-sky-600 hover:bg-sky-100/50"
               }`}
               title="Đóng băng thời gian (5 giây)"
             >
@@ -243,7 +243,7 @@ export default function BucketGame({ userId, gameType, difficulty = "trung-binh"
               className={`w-9 h-9 rounded-xl border flex items-center justify-center transition-all cursor-pointer ${
                 helper5050Used
                   ? "opacity-40 bg-stone-100 border-stone-200 text-stone-400 cursor-not-allowed"
-                  : "bg-indigo-50 border-indigo-200 text-indigo-650 hover:bg-indigo-100/50"
+                  : "bg-indigo-50 border-indigo-200 text-indigo-600 hover:bg-indigo-100/50"
               }`}
               title="Quyền trợ giúp 50/50 (Tự xếp 2 mục)"
             >
@@ -333,7 +333,7 @@ export default function BucketGame({ userId, gameType, difficulty = "trung-binh"
                         ? "bg-shake border-red-500 bg-red-50/50 text-red-700 shadow-[0_0_12px_rgba(239,68,68,0.2)]"
                         : isSelected
                         ? "border-emerald-500 bg-emerald-50/50 text-emerald-700 shadow-[0_0_12px_rgba(16,185,129,0.2)] scale-[1.04]"
-                        : "border-stone-200 bg-white text-stone-800 hover:border-emerald-350 hover:shadow"
+                        : "border-stone-200 bg-white text-stone-800 hover:border-emerald-300 hover:shadow"
                     }`}
                   >
                     {item.term}
@@ -375,7 +375,7 @@ export default function BucketGame({ userId, gameType, difficulty = "trung-binh"
                   </div>
                   <div className="flex flex-wrap gap-2">
                     {bucketItems.map((item) => (
-                      <span key={item.id} className="rounded-lg border border-emerald-250 bg-emerald-50/60 text-emerald-700 px-3 py-1.5 text-xs font-extrabold shadow-sm transition-transform duration-250 hover:scale-105">
+                      <span key={item.id} className="rounded-lg border border-emerald-200 bg-emerald-50/60 text-emerald-700 px-3 py-1.5 text-xs font-extrabold shadow-sm transition-transform duration-250 hover:scale-105">
                         {item.term}
                       </span>
                     ))}

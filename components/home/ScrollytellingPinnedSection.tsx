@@ -143,7 +143,7 @@ export default function ScrollytellingPinnedSection() {
   const currentPanel = PANELS[activeTab];
 
   return (
-    <section className="relative w-full font-sans bg-white dark:bg-stone-950 py-8 sm:py-12 border-y border-stone-200/80 dark:border-stone-850/80">
+    <section className="relative w-full font-sans bg-white dark:bg-stone-950 py-8 sm:py-12 border-y border-stone-200/80 dark:border-stone-800/80">
       <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Top Header & Segmented Tab Controller */}

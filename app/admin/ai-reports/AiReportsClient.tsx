@@ -62,7 +62,7 @@ export default function AiReportsClient({ initialReports }: AiReportsClientProps
               <tr key={report.id} className="hover:bg-stone-50/50 dark:hover:bg-stone-900/50 transition-colors">
                 <td className="px-6 py-4">
                   <div className="font-semibold text-stone-900 dark:text-stone-100">{report.user_name}</div>
-                  <div className="text-xs text-stone-500 dark:text-stone-450">{report.user_email}</div>
+                  <div className="text-xs text-stone-500 dark:text-stone-400">{report.user_email}</div>
                 </td>
                 <td className="px-6 py-4 max-w-sm">
                   <p className="italic bg-rose-50 dark:bg-rose-950/20 border-l-2 border-rose-400 text-stone-700 dark:text-stone-300 px-2.5 py-1.5 rounded-r-md text-xs line-clamp-3">

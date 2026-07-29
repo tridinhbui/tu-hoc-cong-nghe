@@ -392,7 +392,7 @@ export default function CfaTrackView({ subjects, completedLessonIds }: Props) {
                                 className={`flex items-center gap-3 p-3.5 rounded-xl border transition-all group ${
                                   isNext
                                     ? "border-emerald-500 bg-emerald-50/60 dark:bg-emerald-950/40 shadow-sm ring-2 ring-emerald-500/20"
-                                    : "border-stone-150 dark:border-stone-800/70 bg-stone-50/60 dark:bg-stone-900/40 hover:border-emerald-400 dark:hover:border-emerald-600 hover:bg-white dark:hover:bg-stone-900"
+                                    : "border-stone-100 dark:border-stone-800/70 bg-stone-50/60 dark:bg-stone-900/40 hover:border-emerald-400 dark:hover:border-emerald-600 hover:bg-white dark:hover:bg-stone-900"
                                 }`}
                               >
                                 {isDone ? (
@@ -473,7 +473,7 @@ export default function CfaTrackView({ subjects, completedLessonIds }: Props) {
                       onClick={() => toggleReading(reading.id)}
                       className="w-full flex items-center gap-3 cursor-pointer text-left border-b border-stone-100 dark:border-stone-800/40 pb-3 mb-4 transition-all"
                     >
-                      <span className="text-xs font-extrabold px-3 py-1.5 rounded-lg bg-stone-150 dark:bg-stone-800 text-stone-900 dark:text-stone-100 shrink-0">
+                      <span className="text-xs font-extrabold px-3 py-1.5 rounded-lg bg-stone-100 dark:bg-stone-800 text-stone-900 dark:text-stone-100 shrink-0">
                         {reading.code}
                       </span>
                       <span className="text-base sm:text-lg font-extrabold text-stone-900 dark:text-stone-100 flex-1 leading-snug">

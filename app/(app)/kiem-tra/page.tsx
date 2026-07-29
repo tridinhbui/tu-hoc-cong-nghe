@@ -14,6 +14,7 @@ const TRACKS: { id: QuizTrack; label: string; desc: string }[] = [
   { id: "personal", label: "Tài chính cá nhân", desc: "Tư duy tiền bạc, đầu tư, danh mục, hưu trí" },
   { id: "professional", label: "Tài chính chuyên ngành", desc: "Kế toán, định giá, trái phiếu, phái sinh" },
   { id: "cfa", label: "Tài chính chứng chỉ", desc: "CFA Level I - 10 môn thi chính thức" },
+  { id: "ib", label: "Investment Banking", desc: "Ôn luyện technical interview từ IB question bank" },
 ];
 
 const DIFFICULTIES: { id: QuizDifficulty; label: string }[] = [
@@ -252,7 +253,7 @@ export default function KiemTraPage() {
                           className={`w-full text-left rounded-2xl border-2 p-3.5 transition-all duration-200 cursor-pointer flex items-start justify-between gap-3 ${
                             selected
                               ? "border-emerald-500 bg-gradient-to-r from-emerald-50/90 to-teal-50/40 dark:from-emerald-950/60 dark:to-stone-900 ring-2 ring-emerald-400/30 text-stone-900 dark:text-stone-100 shadow-sm"
-                              : "border-stone-200 dark:border-stone-800 hover:border-stone-300 dark:hover:border-stone-700 bg-stone-50/50 dark:bg-stone-850/40 text-stone-700 dark:text-stone-300"
+                              : "border-stone-200 dark:border-stone-800 hover:border-stone-300 dark:hover:border-stone-700 bg-stone-50/50 dark:bg-stone-800/40 text-stone-700 dark:text-stone-300"
                           }`}
                         >
                           <div className="min-w-0 flex-1">
@@ -288,7 +289,7 @@ export default function KiemTraPage() {
                           className={`rounded-xl border-2 px-3 py-2.5 text-xs font-extrabold transition-all cursor-pointer text-center ${
                             selected
                               ? "border-stone-900 dark:border-stone-100 bg-stone-900 dark:bg-stone-100 text-white dark:text-stone-900 shadow-sm"
-                              : "border-stone-200 dark:border-stone-800 text-stone-600 dark:text-stone-400 hover:border-stone-300 dark:hover:border-stone-700 bg-stone-50/50 dark:bg-stone-850/40"
+                              : "border-stone-200 dark:border-stone-800 text-stone-600 dark:text-stone-400 hover:border-stone-300 dark:hover:border-stone-700 bg-stone-50/50 dark:bg-stone-800/40"
                           }`}
                         >
                           {d.label}
@@ -432,6 +433,13 @@ export default function KiemTraPage() {
                 <p className="text-xs font-bold text-stone-500 dark:text-stone-400 uppercase tracking-wide mb-2">Ôn lại các bài có câu sai</p>
                 {Array.from(new Set(questions.filter((_, i) => !results[i]).map((qq) => qq.lessonId))).map((lessonId) => {
                   const lq = questions.find((qq) => qq.lessonId === lessonId)!;
+                  if (lq.lessonSlug === "ib-question-bank") {
+                    return (
+                      <p key={lessonId} className="block text-sm text-stone-700 dark:text-stone-300">
+                        → {lq.lessonTitle}
+                      </p>
+                    );
+                  }
                   return (
                     <Link key={lessonId} href={`/bai-hoc/${lq.lessonSlug}`} className="block text-sm text-stone-700 dark:text-stone-300 hover:underline">
                       → {lq.lessonTitle}

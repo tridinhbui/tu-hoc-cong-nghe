@@ -459,7 +459,7 @@ export default function ProfilePage() {
         )}
 
         {/* Premium Dark Hero Header */}
-        <div className="relative overflow-hidden rounded-2xl bg-stone-900 dark:bg-stone-950 text-white p-6 sm:p-8 shadow-lg border border-stone-850">
+        <div className="relative overflow-hidden rounded-2xl bg-stone-900 dark:bg-stone-950 text-white p-6 sm:p-8 shadow-lg border border-stone-800">
           <div className="absolute top-0 right-0 w-64 h-64 bg-emerald-500/10 rounded-full blur-3xl pointer-events-none" />
           <div className="absolute bottom-0 left-1/3 w-72 h-72 bg-teal-500/5 rounded-full blur-3xl pointer-events-none" />
 
@@ -530,7 +530,7 @@ export default function ProfilePage() {
                 {profile?.total_xp || 0} XP <span className="text-stone-500 font-normal">({levelProgress}%)</span>
               </div>
             </div>
-            <div className="h-2 rounded-full bg-white/10 dark:bg-stone-850 overflow-hidden">
+            <div className="h-2 rounded-full bg-white/10 dark:bg-stone-800 overflow-hidden">
               <div
                 className="h-full rounded-full bg-emerald-500 transition-all duration-500"
                 style={{ width: `${levelProgress}%` }}
@@ -546,9 +546,9 @@ export default function ProfilePage() {
           <div className="space-y-6 min-w-0">
             
             {/* Track Progress Summary Card */}
-            <div className="bg-white dark:bg-stone-900 border border-stone-200 dark:border-stone-850 rounded-2xl p-5 sm:p-6 shadow-sm">
+            <div className="bg-white dark:bg-stone-900 border border-stone-200 dark:border-stone-800 rounded-2xl p-5 sm:p-6 shadow-sm">
               <div className="flex items-start gap-4 mb-5 border-b border-stone-100 dark:border-stone-800 pb-4">
-                <div className="w-10 h-10 rounded-xl bg-emerald-50 dark:bg-emerald-950/40 text-emerald-600 dark:text-emerald-450 flex items-center justify-center flex-shrink-0">
+                <div className="w-10 h-10 rounded-xl bg-emerald-50 dark:bg-emerald-950/40 text-emerald-600 dark:text-emerald-400 flex items-center justify-center flex-shrink-0">
                   <Target className="w-5 h-5" />
                 </div>
                 <div className="min-w-0">
@@ -565,7 +565,7 @@ export default function ProfilePage() {
                       key={track.track}
                       className={`rounded-xl border p-4 transition-all ${
                         isCurrent
-                          ? "border-emerald-250 dark:border-emerald-900/60 bg-emerald-50/20 dark:bg-emerald-950/5 shadow-[0_8px_20px_-12px_rgba(16,185,129,0.15)]"
+                          ? "border-emerald-200 dark:border-emerald-900/60 bg-emerald-50/20 dark:bg-emerald-950/5 shadow-[0_8px_20px_-12px_rgba(16,185,129,0.15)]"
                           : "border-stone-200 dark:border-stone-800/80 bg-stone-50/40 dark:bg-stone-900/10"
                       }`}
                     >
@@ -593,9 +593,9 @@ export default function ProfilePage() {
                         </div>
                       </div>
 
-                      <div className="h-2 rounded-full bg-stone-200 dark:bg-stone-850 overflow-hidden">
+                      <div className="h-2 rounded-full bg-stone-200 dark:bg-stone-800 overflow-hidden">
                         <div
-                          className={`h-full rounded-full transition-all duration-300 ${isCurrent ? "bg-emerald-500" : "bg-stone-450 dark:bg-stone-600"}`}
+                          className={`h-full rounded-full transition-all duration-300 ${isCurrent ? "bg-emerald-500" : "bg-stone-400 dark:bg-stone-600"}`}
                           style={{ width: `${track.percent}%` }}
                         />
                       </div>
@@ -606,7 +606,7 @@ export default function ProfilePage() {
             </div>
 
             {/* Recent Lessons Card */}
-            <div className="bg-white dark:bg-stone-900 border border-stone-200 dark:border-stone-850 rounded-2xl p-5 sm:p-6 shadow-sm">
+            <div className="bg-white dark:bg-stone-900 border border-stone-200 dark:border-stone-800 rounded-2xl p-5 sm:p-6 shadow-sm">
               <div className="flex items-start gap-4 mb-5 border-b border-stone-100 dark:border-stone-800 pb-4">
                 <div className="w-10 h-10 rounded-xl bg-amber-550/10 text-amber-600 dark:text-amber-400 flex items-center justify-center flex-shrink-0">
                   <BookOpen className="w-5 h-5" />
@@ -627,7 +627,7 @@ export default function ProfilePage() {
                     <Link
                       key={`${lesson.id}-${lesson.completedAt ?? "pending"}`}
                       href={`/bai-hoc/${lesson.slug}`}
-                      className="flex items-center justify-between gap-3 rounded-xl border border-stone-150 dark:border-stone-800/80 px-4 py-3 hover:bg-stone-50/70 dark:hover:bg-stone-800/50 transition-colors group"
+                      className="flex items-center justify-between gap-3 rounded-xl border border-stone-100 dark:border-stone-800/80 px-4 py-3 hover:bg-stone-50/70 dark:hover:bg-stone-800/50 transition-colors group"
                     >
                       <div className="min-w-0 flex-1">
                         <p className="text-xs sm:text-sm font-bold text-stone-900 dark:text-stone-100 group-hover:text-emerald-600 dark:group-hover:text-emerald-400 transition-colors truncate">
@@ -653,9 +653,9 @@ export default function ProfilePage() {
             </div>
 
             {/* Learning Journey Timeline Card */}
-            <div className="bg-white dark:bg-stone-900 border border-stone-200 dark:border-stone-850 rounded-2xl p-5 sm:p-6 shadow-sm">
+            <div className="bg-white dark:bg-stone-900 border border-stone-200 dark:border-stone-800 rounded-2xl p-5 sm:p-6 shadow-sm">
               <div className="flex items-start gap-4 mb-5 border-b border-stone-100 dark:border-stone-800 pb-4">
-                <div className="w-10 h-10 rounded-xl bg-violet-50 dark:bg-violet-950/40 text-violet-650 dark:text-violet-400 flex items-center justify-center flex-shrink-0">
+                <div className="w-10 h-10 rounded-xl bg-violet-50 dark:bg-violet-950/40 text-violet-600 dark:text-violet-400 flex items-center justify-center flex-shrink-0">
                   <Target className="w-5 h-5 text-violet-500" />
                 </div>
                 <div className="min-w-0">
@@ -670,7 +670,7 @@ export default function ProfilePage() {
                 </p>
               ) : (
                 <div className="relative pl-6 max-h-[350px] overflow-y-auto pr-2 scrollbar-thin scrollbar-thumb-stone-200 dark:scrollbar-thumb-stone-800">
-                  <div className="absolute left-[11px] top-2 bottom-2 w-0.5 bg-stone-200 dark:bg-stone-850" aria-hidden="true" />
+                  <div className="absolute left-[11px] top-2 bottom-2 w-0.5 bg-stone-200 dark:bg-stone-800" aria-hidden="true" />
                   <div className="space-y-4">
                     {[...milestones].reverse().map((m, i) => (
                       <div key={`${m.type}-${m.date}-${i}`} className="relative">
@@ -679,8 +679,8 @@ export default function ProfilePage() {
                         >
                           {m.emoji}
                         </span>
-                        <div className="bg-stone-50/50 dark:bg-stone-950/20 border border-stone-150 dark:border-stone-800/80 rounded-xl px-4 py-2.5 ml-2.5">
-                          <p className="text-[9px] font-black text-stone-450 dark:text-stone-500 mb-0.5">{formatDate(m.date)}</p>
+                        <div className="bg-stone-50/50 dark:bg-stone-950/20 border border-stone-100 dark:border-stone-800/80 rounded-xl px-4 py-2.5 ml-2.5">
+                          <p className="text-[9px] font-black text-stone-400 dark:text-stone-500 mb-0.5">{formatDate(m.date)}</p>
                           <p className="font-extrabold text-stone-900 dark:text-stone-100 text-xs">{m.title}</p>
                           <p className="text-[10px] text-stone-500 dark:text-stone-400 mt-0.5">{m.description}</p>
                         </div>
@@ -696,40 +696,40 @@ export default function ProfilePage() {
           <div className="space-y-6 min-w-0">
 
             {/* Unified Key Stats Grid */}
-            <div className="bg-white dark:bg-stone-900 border border-stone-200 dark:border-stone-850 rounded-2xl p-5 shadow-sm">
+            <div className="bg-white dark:bg-stone-900 border border-stone-200 dark:border-stone-800 rounded-2xl p-5 shadow-sm">
               <h4 className="text-sm font-extrabold text-stone-900 dark:text-stone-100 mb-4 tracking-tight">Thống kê tóm tắt</h4>
               <div className="grid grid-cols-2 gap-2 sm:gap-3">
                 <div className="min-w-0 bg-stone-50/70 dark:bg-stone-900/30 border border-stone-200/50 dark:border-stone-800 rounded-xl p-3.5">
-                  <span className="text-[10px] font-extrabold text-stone-450 dark:text-stone-500 uppercase tracking-wider block mb-1">Thời gian học</span>
+                  <span className="text-[10px] font-extrabold text-stone-400 dark:text-stone-500 uppercase tracking-wider block mb-1">Thời gian học</span>
                   <p className="text-base font-extrabold text-stone-900 dark:text-stone-100 truncate">{studyMinutes} phút</p>
-                  <p className="text-[10px] text-stone-455 dark:text-stone-450 mt-0.5 truncate">{lessonsStarted} bài đã mở</p>
+                  <p className="text-[10px] text-stone-455 dark:text-stone-400 mt-0.5 truncate">{lessonsStarted} bài đã mở</p>
                 </div>
                 <div className="min-w-0 bg-stone-50/70 dark:bg-stone-900/30 border border-stone-200/50 dark:border-stone-800 rounded-xl p-3.5">
-                  <span className="text-[10px] font-extrabold text-stone-450 dark:text-stone-500 uppercase tracking-wider block mb-1">Xếp hạng tuần</span>
+                  <span className="text-[10px] font-extrabold text-stone-400 dark:text-stone-500 uppercase tracking-wider block mb-1">Xếp hạng tuần</span>
                   <p className="text-base font-extrabold text-stone-900 dark:text-stone-100 truncate">{xpRank ? `#${xpRank.rank}` : "Chưa xếp hạng"}</p>
-                  <p className="text-[10px] text-stone-455 dark:text-stone-450 mt-0.5 truncate">{xpRank ? `${xpRank.value} XP` : "Học tiếp để lên hạng"}</p>
+                  <p className="text-[10px] text-stone-455 dark:text-stone-400 mt-0.5 truncate">{xpRank ? `${xpRank.value} XP` : "Học tiếp để lên hạng"}</p>
                 </div>
                 <div className="min-w-0 bg-stone-50/70 dark:bg-stone-900/30 border border-stone-200/50 dark:border-stone-800 rounded-xl p-3.5">
-                  <span className="text-[10px] font-extrabold text-stone-450 dark:text-stone-500 uppercase tracking-wider block mb-1">Nhịp học streak</span>
+                  <span className="text-[10px] font-extrabold text-stone-400 dark:text-stone-500 uppercase tracking-wider block mb-1">Nhịp học streak</span>
                   <p className="text-base font-extrabold text-stone-900 dark:text-stone-100 truncate">{streak?.current_streak || 0} ngày</p>
-                  <p className="text-[10px] text-stone-455 dark:text-stone-450 mt-0.5 truncate">Kỷ lục {streak?.longest_streak || 0} ngày</p>
+                  <p className="text-[10px] text-stone-455 dark:text-stone-400 mt-0.5 truncate">Kỷ lục {streak?.longest_streak || 0} ngày</p>
                 </div>
                 <div className="min-w-0 bg-stone-50/70 dark:bg-stone-900/30 border border-stone-200/50 dark:border-stone-800 rounded-xl p-3.5">
-                  <span className="text-[10px] font-extrabold text-stone-450 dark:text-stone-500 uppercase tracking-wider block mb-1">Ghi chú & Flag</span>
+                  <span className="text-[10px] font-extrabold text-stone-400 dark:text-stone-500 uppercase tracking-wider block mb-1">Ghi chú & Flag</span>
                   <p className="text-base font-extrabold text-stone-900 dark:text-stone-100 truncate">{notesCount} Note</p>
-                  <p className="text-[10px] text-stone-455 dark:text-stone-450 mt-0.5 truncate">{flaggedLessonCount} bài tự đánh dấu</p>
+                  <p className="text-[10px] text-stone-455 dark:text-stone-400 mt-0.5 truncate">{flaggedLessonCount} bài tự đánh dấu</p>
                 </div>
               </div>
             </div>
 
             {/* Achievements & Badges */}
-            <div className="bg-white dark:bg-stone-900 border border-stone-200 dark:border-stone-850 rounded-2xl p-5 shadow-sm">
+            <div className="bg-white dark:bg-stone-900 border border-stone-200 dark:border-stone-800 rounded-2xl p-5 shadow-sm">
               <div className="flex items-center justify-between mb-4 border-b border-stone-100 dark:border-stone-800 pb-3">
                 <h4 className="text-sm font-extrabold text-stone-900 dark:text-stone-100 flex items-center gap-1.5">
                   <Trophy className="w-4 h-4 text-amber-500" />
                   Huy hiệu & Danh hiệu
                 </h4>
-                <span className="text-[10px] font-extrabold text-stone-450 dark:text-stone-500 bg-stone-100 dark:bg-stone-800 px-2 py-0.5 rounded">
+                <span className="text-[10px] font-extrabold text-stone-400 dark:text-stone-500 bg-stone-100 dark:bg-stone-800 px-2 py-0.5 rounded">
                   Tổng {badges.length + gameTitles.length}
                 </span>
               </div>
@@ -739,12 +739,12 @@ export default function ProfilePage() {
                   {gameTitles.map((t) => (
                     <div
                       key={t.gameType}
-                      className="flex items-center gap-3 rounded-xl border border-amber-250 dark:border-amber-900/60 bg-amber-50/30 dark:bg-amber-950/10 px-3.5 py-2.5"
+                      className="flex items-center gap-3 rounded-xl border border-amber-200 dark:border-amber-900/60 bg-amber-50/30 dark:bg-amber-950/10 px-3.5 py-2.5"
                     >
                       <span className="text-xl flex-shrink-0">{t.gameEmoji}</span>
                       <div className="min-w-0 flex-1">
                         <p className="text-xs font-extrabold text-amber-700 dark:text-amber-400 truncate">{t.title}</p>
-                        <p className="text-[10px] text-stone-500 dark:text-stone-450 truncate">{t.gameLabel}</p>
+                        <p className="text-[10px] text-stone-500 dark:text-stone-400 truncate">{t.gameLabel}</p>
                       </div>
                       <span className="text-[10px] font-extrabold text-amber-600 dark:text-amber-500 shrink-0">Hạng #{t.rank}</span>
                     </div>
@@ -775,7 +775,7 @@ export default function ProfilePage() {
             </div>
 
             {/* Unlocked Titles & Themes */}
-            <div className="bg-white dark:bg-stone-900 border border-stone-200 dark:border-stone-850 rounded-2xl p-5 shadow-sm">
+            <div className="bg-white dark:bg-stone-900 border border-stone-200 dark:border-stone-800 rounded-2xl p-5 shadow-sm">
               <h4 className="text-sm font-extrabold text-stone-900 dark:text-stone-100 flex items-center gap-1.5 border-b border-stone-100 dark:border-stone-800 pb-3 mb-4">
                 <Sparkles className="w-4 h-4 text-rose-500 animate-pulse" />
                 Vật phẩm Rương Quà
@@ -787,7 +787,7 @@ export default function ProfilePage() {
                   Danh hiệu ({unlockedTitles.length})
                 </h5>
                 {unlockedTitles.length === 0 ? (
-                  <p className="text-xs text-stone-500 dark:text-stone-450 italic">
+                  <p className="text-xs text-stone-500 dark:text-stone-400 italic">
                     Chưa mở khóa danh hiệu nào. Mở rương quà ở Dashboard để kiếm danh hiệu!
                   </p>
                 ) : (
@@ -818,7 +818,7 @@ export default function ProfilePage() {
                   Giao diện ({unlockedThemes.length})
                 </h5>
                 {unlockedThemes.length === 0 ? (
-                  <p className="text-xs text-stone-500 dark:text-stone-450 italic">
+                  <p className="text-xs text-stone-500 dark:text-stone-400 italic">
                     Chưa mở khóa giao diện nào.
                   </p>
                 ) : (
@@ -850,7 +850,7 @@ export default function ProfilePage() {
 
             {/* Bookmarked Lessons Card */}
             {bookmarks.length > 0 && (
-              <div className="bg-white dark:bg-stone-900 border border-stone-200 dark:border-stone-850 rounded-2xl p-5 shadow-sm">
+              <div className="bg-white dark:bg-stone-900 border border-stone-200 dark:border-stone-800 rounded-2xl p-5 shadow-sm">
                 <h4 className="text-sm font-extrabold text-stone-900 dark:text-stone-100 mb-3.5 flex items-center gap-1.5">
                   <Bookmark className="w-4 h-4 text-emerald-500" />
                   Bài học đã lưu ({bookmarks.length})
@@ -860,9 +860,9 @@ export default function ProfilePage() {
                     <Link
                       key={bookmark.id}
                       href={`/bai-hoc/${bookmark.lesson_slug}`}
-                      className="flex items-center justify-between gap-2.5 rounded-xl border border-stone-150 dark:border-stone-800/80 px-3 py-2.5 hover:bg-stone-50 dark:hover:bg-stone-800/50 transition-colors group"
+                      className="flex items-center justify-between gap-2.5 rounded-xl border border-stone-100 dark:border-stone-800/80 px-3 py-2.5 hover:bg-stone-50 dark:hover:bg-stone-800/50 transition-colors group"
                     >
-                      <span className="text-xs font-bold text-stone-850 dark:text-stone-200 group-hover:text-emerald-600 dark:group-hover:text-emerald-400 transition-colors truncate">
+                      <span className="text-xs font-bold text-stone-800 dark:text-stone-200 group-hover:text-emerald-600 dark:group-hover:text-emerald-400 transition-colors truncate">
                         {bookmark.lesson_title}
                       </span>
                       <Bookmark className="w-3.5 h-3.5 text-amber-550 shrink-0" />
@@ -874,7 +874,7 @@ export default function ProfilePage() {
 
             {/* Flagged Lessons Shortcuts */}
             {flaggedLessons.length > 0 && (
-              <div className="bg-white dark:bg-stone-900 border border-stone-200 dark:border-stone-850 rounded-2xl p-5 shadow-sm">
+              <div className="bg-white dark:bg-stone-900 border border-stone-200 dark:border-stone-800 rounded-2xl p-5 shadow-sm">
                 <h4 className="text-sm font-extrabold text-stone-900 dark:text-stone-100 mb-3.5 flex items-center gap-1.5">
                   <CheckCircle2 className="w-4 h-4 text-amber-500" />
                   Bài tự đánh dấu ({flaggedLessonCount})
@@ -884,9 +884,9 @@ export default function ProfilePage() {
                     <Link
                       key={lesson.lesson_id}
                       href={`/bai-hoc/${lesson.lesson_slug}`}
-                      className="flex items-center justify-between gap-3 rounded-xl border border-stone-150 dark:border-stone-800/80 px-3 py-2.5 hover:bg-stone-50 dark:hover:bg-stone-800/50 transition-colors group"
+                      className="flex items-center justify-between gap-3 rounded-xl border border-stone-100 dark:border-stone-800/80 px-3 py-2.5 hover:bg-stone-50 dark:hover:bg-stone-800/50 transition-colors group"
                     >
-                      <span className="text-xs font-bold text-stone-850 dark:text-stone-200 group-hover:text-emerald-600 dark:group-hover:text-emerald-400 transition-colors truncate">
+                      <span className="text-xs font-bold text-stone-800 dark:text-stone-200 group-hover:text-emerald-600 dark:group-hover:text-emerald-400 transition-colors truncate">
                         {lesson.lesson_title}
                       </span>
                       <CheckCircle2 className="w-4 h-4 shrink-0 text-emerald-600 dark:text-emerald-400" />

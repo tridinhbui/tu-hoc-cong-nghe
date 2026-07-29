@@ -245,12 +245,12 @@ export default function DailyNewsQuizWidget({ userId, compact = false }: DailyNe
   if (!activeQuiz) return null;
 
   return (
-    <div className={`bg-white dark:bg-stone-900 border border-stone-250 dark:border-stone-800 overflow-hidden shadow-sm ${compact ? "rounded-2xl" : "rounded-3xl"}`}>
+    <div className={`bg-white dark:bg-stone-900 border border-stone-200 dark:border-stone-800 overflow-hidden shadow-sm ${compact ? "rounded-2xl" : "rounded-3xl"}`}>
       {/* Header */}
       <button
         onClick={() => setCollapsed(!collapsed)}
         className={`w-full flex items-center justify-between cursor-pointer text-left focus:outline-none ${
-          collapsed ? "" : "border-b border-stone-150 dark:border-stone-800"
+          collapsed ? "" : "border-b border-stone-100 dark:border-stone-800"
         } ${compact ? "px-4 py-3" : "px-6 py-4"}`}
       >
         <div className="flex items-center gap-2.5">
@@ -280,9 +280,9 @@ export default function DailyNewsQuizWidget({ userId, compact = false }: DailyNe
       {!collapsed && (
         <div className={compact ? "p-4 space-y-3" : "p-6 space-y-4"}>
           {/* News snippet box */}
-          <div className={`bg-stone-50 dark:bg-stone-950 border border-stone-150 dark:border-stone-850/80 ${compact ? "rounded-xl p-3" : "rounded-2xl p-4"}`}>
+          <div className={`bg-stone-50 dark:bg-stone-950 border border-stone-100 dark:border-stone-800/80 ${compact ? "rounded-xl p-3" : "rounded-2xl p-4"}`}>
             <div className="flex items-center gap-1.5 mb-2 flex-wrap">
-              <span className="text-[9px] font-extrabold bg-sky-100 dark:bg-sky-950/60 text-sky-850 dark:text-sky-400 px-2 py-0.5 rounded uppercase">
+              <span className="text-[9px] font-extrabold bg-sky-100 dark:bg-sky-950/60 text-sky-800 dark:text-sky-400 px-2 py-0.5 rounded uppercase">
                 {practiceMode ? "Tình huống luyện tập" : "Điểm tin hôm nay"}
               </span>
               {/* NEWS_QUIZZES above is a hand-authored, fixed set of scenarios
@@ -293,7 +293,7 @@ export default function DailyNewsQuizWidget({ userId, compact = false }: DailyNe
                 📰 Tình huống mô phỏng để luyện tư duy - không phải tin thật
               </span>
             </div>
-            <h4 className={`font-black text-stone-900 dark:text-stone-150 leading-snug ${compact ? "text-[11px]" : "text-xs"}`}>
+            <h4 className={`font-black text-stone-900 dark:text-stone-100 leading-snug ${compact ? "text-[11px]" : "text-xs"}`}>
               {activeQuiz.newsTitle}
             </h4>
             {!compact && (
@@ -327,10 +327,10 @@ export default function DailyNewsQuizWidget({ userId, compact = false }: DailyNe
                       showSuccess
                         ? "border-emerald-500 bg-emerald-500/[0.04] dark:bg-emerald-950/20 text-emerald-900 dark:text-emerald-400 font-bold"
                         : showFailure
-                        ? "border-rose-500 bg-rose-500/[0.04] dark:bg-rose-950/20 text-rose-900 dark:text-rose-450"
+                        ? "border-rose-500 bg-rose-500/[0.04] dark:bg-rose-950/20 text-rose-900 dark:text-rose-400"
                         : isSelected
                         ? "border-sky-500 bg-sky-500/[0.02] text-sky-900 dark:text-sky-400 font-bold"
-                        : "border-stone-200 dark:border-stone-850 hover:border-stone-300 dark:hover:border-stone-700 bg-white dark:bg-stone-900 text-stone-700 dark:text-stone-300"
+                        : "border-stone-200 dark:border-stone-800 hover:border-stone-300 dark:hover:border-stone-700 bg-white dark:bg-stone-900 text-stone-700 dark:text-stone-300"
                     }`}
                   >
                     <span className="mt-0.5 shrink-0">
@@ -370,7 +370,7 @@ export default function DailyNewsQuizWidget({ userId, compact = false }: DailyNe
                 <Award className={`w-4 h-4 ${activeIsCorrect ? "text-emerald-500" : "text-stone-400"}`} />
                 <span>{activeIsCorrect ? "Trả lời chính xác!" : `Đáp án đúng là ${String.fromCharCode(65 + activeQuiz.correctIndex)}`}</span>
               </h5>
-              <p className="text-[11px] text-stone-650 dark:text-stone-400 leading-relaxed">
+              <p className="text-[11px] text-stone-600 dark:text-stone-400 leading-relaxed">
                 {activeQuiz.explanation}
               </p>
             </div>

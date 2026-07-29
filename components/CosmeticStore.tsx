@@ -201,7 +201,7 @@ export default function CosmeticStore({ userId, onBack }: { userId: string; onBa
   if (loading) return <div className="text-center p-4">Đang tải cửa hàng vật phẩm...</div>;
 
   return (
-    <div className={`bg-white dark:bg-stone-900 rounded-2xl ${onBack ? "p-2 sm:p-4 mt-0 shadow-none border-0" : "p-6 mt-6 border border-stone-200 dark:border-stone-850 shadow-sm"}`}>
+    <div className={`bg-white dark:bg-stone-900 rounded-2xl ${onBack ? "p-2 sm:p-4 mt-0 shadow-none border-0" : "p-6 mt-6 border border-stone-200 dark:border-stone-800 shadow-sm"}`}>
       
       {onBack && (
         <div className="mb-4">

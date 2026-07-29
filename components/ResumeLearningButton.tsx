@@ -95,7 +95,7 @@ export default function ResumeLearningButton({ activeTrack }: ResumeLearningButt
         <div className="relative w-8 h-8 flex-shrink-0">
           <span className="absolute inset-0 rounded-full bg-emerald-400/30 animate-ping" />
           <span className="absolute -inset-0.5 rounded-full border border-emerald-400/60 border-t-transparent animate-spin" />
-          <div className="relative w-8 h-8 rounded-full overflow-hidden bg-stone-100 dark:bg-stone-850">
+          <div className="relative w-8 h-8 rounded-full overflow-hidden bg-stone-100 dark:bg-stone-800">
             <TaiTaiAvatar size={32} />
           </div>
         </div>
@@ -179,10 +179,10 @@ export default function ResumeLearningButton({ activeTrack }: ResumeLearningButt
         <Link
           href={`/bai-hoc/${nextLesson.slug}`}
           onClick={() => trackFeatureClick("resume_learning_click", { label: nextLesson.slug })}
-          className="group flex items-center gap-3 bg-white dark:bg-stone-900 border border-stone-200 dark:border-stone-850 hover:border-emerald-400 dark:hover:border-emerald-600 rounded-2xl px-3 py-2.5 transition-all"
+          className="group flex items-center gap-3 bg-white dark:bg-stone-900 border border-stone-200 dark:border-stone-800 hover:border-emerald-400 dark:hover:border-emerald-600 rounded-2xl px-3 py-2.5 transition-all"
         >
           <div className="relative w-8 h-8 flex-shrink-0">
-            <div className="relative w-8 h-8 rounded-full overflow-hidden border border-emerald-100 dark:border-emerald-900/50 bg-stone-100 dark:bg-stone-850">
+            <div className="relative w-8 h-8 rounded-full overflow-hidden border border-emerald-100 dark:border-emerald-900/50 bg-stone-100 dark:bg-stone-800">
               <TaiTaiAvatar size={32} />
             </div>
             <span className="absolute bottom-0 right-0 w-2.5 h-2.5 rounded-full bg-emerald-500 border-2 border-white dark:border-stone-900" />
@@ -218,7 +218,7 @@ export default function ResumeLearningButton({ activeTrack }: ResumeLearningButt
   if (completedCount === 0) {
     return (
       <div className="flex flex-col h-full justify-between">
-        <div className="relative bg-white dark:bg-stone-900 border border-stone-200 dark:border-stone-850 rounded-2xl p-4 sm:p-5">
+        <div className="relative bg-white dark:bg-stone-900 border border-stone-200 dark:border-stone-800 rounded-2xl p-4 sm:p-5">
           <button
             onClick={toggleCollapsed}
             aria-label="Thu gọn"
@@ -230,17 +230,17 @@ export default function ResumeLearningButton({ activeTrack }: ResumeLearningButt
           <div className="flex items-start gap-3.5 pr-6">
             <div className="relative w-11 h-11 flex-shrink-0 mt-0.5">
               <span className="absolute inset-0 rounded-full bg-emerald-400/20 dark:bg-emerald-400/10 animate-ping [animation-duration:2.5s]" />
-              <div className="relative w-11 h-11 rounded-full overflow-hidden border border-emerald-100 dark:border-emerald-900/50 shadow-sm bg-stone-100 dark:bg-stone-850">
+              <div className="relative w-11 h-11 rounded-full overflow-hidden border border-emerald-100 dark:border-emerald-900/50 shadow-sm bg-stone-100 dark:bg-stone-800">
                 <TaiTaiAvatar size={44} />
               </div>
               <span className="absolute bottom-0 right-0 w-3 h-3 rounded-full bg-emerald-500 border-2 border-white dark:border-stone-900" />
             </div>
 
             <div className="flex-1 min-w-0">
-              <span className="text-[9px] font-extrabold text-emerald-700 dark:text-emerald-350 uppercase tracking-widest bg-emerald-50 dark:bg-emerald-950/40 px-2 py-0.5 rounded-md">
+              <span className="text-[9px] font-extrabold text-emerald-700 dark:text-emerald-300 uppercase tracking-widest bg-emerald-50 dark:bg-emerald-950/40 px-2 py-0.5 rounded-md">
                 Hướng dẫn nhanh 3 bước
               </span>
-              <p className="mt-1.5 text-stone-850 dark:text-stone-100 text-sm sm:text-[15px] font-bold leading-relaxed">
+              <p className="mt-1.5 text-stone-800 dark:text-stone-100 text-sm sm:text-[15px] font-bold leading-relaxed">
                 "Chào{firstName ? ` ${firstName}` : ""}! Lần đầu học tài chính đúng không? Đi theo 3 bước này là bạn có nền tảng ngay trong hôm nay."
               </p>
             </div>
@@ -255,7 +255,7 @@ export default function ResumeLearningButton({ activeTrack }: ResumeLearningButt
               <span className="shrink-0 w-6 h-6 rounded-full bg-stone-900 dark:bg-stone-100 text-white dark:text-stone-900 text-[11px] font-extrabold flex items-center justify-center">1</span>
               <div className="flex-1 min-w-0">
                 <p className="text-xs sm:text-sm font-extrabold text-stone-900 dark:text-stone-50">Chọn lộ trình phù hợp</p>
-                <p className="text-[10px] text-stone-450 dark:text-stone-500 font-bold mt-0.5">Cá nhân hay chuyên ngành - chọn đúng ngay từ đầu</p>
+                <p className="text-[10px] text-stone-400 dark:text-stone-500 font-bold mt-0.5">Cá nhân hay chuyên ngành - chọn đúng ngay từ đầu</p>
               </div>
               <Map className="w-4 h-4 text-stone-400 group-hover:text-emerald-500 shrink-0" />
             </a>
@@ -268,7 +268,7 @@ export default function ResumeLearningButton({ activeTrack }: ResumeLearningButt
               <span className="shrink-0 w-6 h-6 rounded-full bg-emerald-600 text-white text-[11px] font-extrabold flex items-center justify-center">2</span>
               <div className="flex-1 min-w-0">
                 <p className="text-xs sm:text-sm font-extrabold text-stone-900 dark:text-stone-50 truncate">Học bài đầu tiên: {nextLessonShortTitle}</p>
-                <p className="text-[10px] text-stone-450 dark:text-stone-500 font-bold mt-0.5">{nextLesson.duration} thôi - đủ để tạo đà</p>
+                <p className="text-[10px] text-stone-400 dark:text-stone-500 font-bold mt-0.5">{nextLesson.duration} thôi - đủ để tạo đà</p>
               </div>
               <span className="shrink-0 text-[11px] font-extrabold bg-emerald-600 group-hover:bg-emerald-500 text-white px-3 py-1.5 rounded-xl transition-all">▶ Học</span>
             </Link>
@@ -281,7 +281,7 @@ export default function ResumeLearningButton({ activeTrack }: ResumeLearningButt
               <span className="shrink-0 w-6 h-6 rounded-full bg-stone-900 dark:bg-stone-100 text-white dark:text-stone-900 text-[11px] font-extrabold flex items-center justify-center">3</span>
               <div className="flex-1 min-w-0">
                 <p className="text-xs sm:text-sm font-extrabold text-stone-900 dark:text-stone-50">Xem bảng xếp hạng & giữ streak</p>
-                <p className="text-[10px] text-stone-450 dark:text-stone-500 font-bold mt-0.5">Học đều mỗi ngày để leo hạng</p>
+                <p className="text-[10px] text-stone-400 dark:text-stone-500 font-bold mt-0.5">Học đều mỗi ngày để leo hạng</p>
               </div>
               <ArrowRight className="w-4 h-4 text-stone-400 group-hover:text-amber-500 shrink-0" />
             </Link>
@@ -313,7 +313,7 @@ export default function ResumeLearningButton({ activeTrack }: ResumeLearningButt
           {/* Avatar with soft energetic halo */}
           <div className="relative w-10 h-10 sm:w-12 sm:h-12 flex-shrink-0 mt-0.5">
             <span className="absolute inset-0 rounded-full bg-emerald-400/20 dark:bg-emerald-400/10 animate-ping [animation-duration:2.5s]" />
-            <div className="relative w-10 h-10 sm:w-12 sm:h-12 rounded-full overflow-hidden border-2 border-stone-200 dark:border-stone-700 shadow-sm bg-stone-100 dark:bg-stone-850 flex items-center justify-center">
+            <div className="relative w-10 h-10 sm:w-12 sm:h-12 rounded-full overflow-hidden border-2 border-stone-200 dark:border-stone-700 shadow-sm bg-stone-100 dark:bg-stone-800 flex items-center justify-center">
               <TaiTaiAvatar size={44} />
             </div>
             {/* Online status indicator */}
@@ -379,7 +379,7 @@ export default function ResumeLearningButton({ activeTrack }: ResumeLearningButt
         <div className="mt-2 rounded-2xl border border-stone-200 dark:border-stone-800 bg-white dark:bg-stone-900 p-4 shadow-sm">
           <div className="flex items-start gap-3">
             <div className="relative w-9 h-9 flex-shrink-0 mt-0.5">
-              <div className="relative w-9 h-9 rounded-full overflow-hidden border border-emerald-100 dark:border-emerald-900/50 bg-stone-100 dark:bg-stone-850">
+              <div className="relative w-9 h-9 rounded-full overflow-hidden border border-emerald-100 dark:border-emerald-900/50 bg-stone-100 dark:bg-stone-800">
                 <TaiTaiAvatar size={36} />
               </div>
               <span className="absolute bottom-0 right-0 w-2.5 h-2.5 rounded-full bg-emerald-500 border-2 border-white dark:border-stone-900" />
@@ -441,7 +441,7 @@ export default function ResumeLearningButton({ activeTrack }: ResumeLearningButt
                   <p className="text-[11px] text-stone-700 dark:text-stone-300 mt-2 leading-relaxed">
                     {criticalMistake.explanation}
                   </p>
-                  <p className="text-[11px] font-bold text-emerald-700 dark:text-emerald-350 mt-2 leading-relaxed">
+                  <p className="text-[11px] font-bold text-emerald-700 dark:text-emerald-300 mt-2 leading-relaxed">
                     Gợi ý của Tài Tài: {criticalMistake.recommendedAction}
                   </p>
                   <div className="flex flex-wrap gap-2 mt-3">

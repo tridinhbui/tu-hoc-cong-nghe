@@ -108,17 +108,17 @@ export function getNextLevel(currentLevel: number) {
   return LEVELS.find((l) => l.level === currentLevel + 1);
 }
 
-export function getXpToNextLevel(currentXp: number) {
-  const currentLevel = getLevelByXp(currentXp);
+export function getXpToNextLevel(currentXp: number, cfaCompleted: number = 0) {
+  const currentLevel = getLevelByXp(currentXp, cfaCompleted);
   const nextLevel = getNextLevel(currentLevel.level);
 
   if (!nextLevel) return 0; // Already at max level
 
-  return nextLevel.minXp - currentXp;
+  return Math.max(0, nextLevel.minXp - currentXp);
 }
 
-export function getLevelProgress(currentXp: number) {
-  const currentLevel = getLevelByXp(currentXp);
+export function getLevelProgress(currentXp: number, cfaCompleted: number = 0) {
+  const currentLevel = getLevelByXp(currentXp, cfaCompleted);
   const nextLevel = getNextLevel(currentLevel.level);
 
   if (!nextLevel) return 100; // Max level reached
@@ -126,7 +126,8 @@ export function getLevelProgress(currentXp: number) {
   const xpInCurrentLevel = currentXp - currentLevel.minXp;
   const xpNeededForLevel = nextLevel.minXp - currentLevel.minXp;
 
-  return Math.round((xpInCurrentLevel / xpNeededForLevel) * 100);
+  const progress = Math.round((xpInCurrentLevel / xpNeededForLevel) * 100);
+  return Math.min(100, Math.max(0, progress));
 }
 
 /* ─── XP Constants (Chống lạm phát XP) ───────────────────────────────── */
@@ -136,4 +137,3 @@ export const XP_VALUES = {
   QUIZ_ANSWERED: 2,     // 2 XP cho mỗi câu quiz đúng
   QUIZ_PERFECT: 15,     // 15 XP thưởng hoàn thành 100% quiz
 };
-

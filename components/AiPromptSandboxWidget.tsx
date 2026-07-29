@@ -173,7 +173,7 @@ export default function AiPromptSandboxWidget() {
               className={`flex items-center gap-2 p-2.5 rounded-2xl border text-left transition-all cursor-pointer ${
                 isSelected
                   ? "border-emerald-500 bg-emerald-50/80 dark:bg-emerald-950/40 text-emerald-900 dark:text-emerald-100 font-extrabold shadow-2xs"
-                  : "border-stone-200 dark:border-stone-800 bg-stone-50/50 dark:bg-stone-850/40 text-stone-600 dark:text-stone-400 hover:bg-stone-100 dark:hover:bg-stone-800"
+                  : "border-stone-200 dark:border-stone-800 bg-stone-50/50 dark:bg-stone-800/40 text-stone-600 dark:text-stone-400 hover:bg-stone-100 dark:hover:bg-stone-800"
               }`}
             >
               <Icon className={`w-4 h-4 shrink-0 ${isSelected ? "text-emerald-600 dark:text-emerald-400" : "text-stone-400"}`} />

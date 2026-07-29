@@ -2,6 +2,7 @@ import { createServerSupabaseClient } from "@/lib/supabase-server";
 import { getLessonById, getLessonsMeta } from "@/lib/lessons-loader";
 import { TRACK_PERSONAL, TRACK_PROFESSIONAL, isLessonInRange } from "@/lib/track-stages";
 import { CFA_LEVEL_1_SUBJECTS } from "@/lib/cfa-track";
+import { IB_QUESTION_BANK } from "@/lib/ib-question-bank";
 import { signQuestionToken } from "@/lib/quiz-tokens";
 import { NextRequest, NextResponse } from "next/server";
 
@@ -50,6 +51,22 @@ async function idsForTrack(track: "personal" | "professional" | "cfa"): Promise<
   return new Set(ids);
 }
 
+function ibQuestionsForDifficulty(difficulty: string | null): Omit<ChallengeQuestion, "lessonSlug" | "token">[] {
+  const questions =
+    difficulty && difficulty !== "tat-ca" && DIFFICULTY_LABELS[difficulty]
+      ? IB_QUESTION_BANK.filter((q) => q.difficulty === difficulty)
+      : IB_QUESTION_BANK;
+
+  return questions.map((q) => ({
+    lessonId: -q.id,
+    lessonTitle: `IB Question Bank · ${q.category}`,
+    question: q.question,
+    options: q.options,
+    correct: q.correct,
+    explanation: q.explanation,
+  }));
+}
+
 // Builds a randomized mini-quiz. Two modes:
 // - No track/difficulty query params (the dashboard's quick "Thử thách
 //   kiến thức" nudge): pulled from every lesson the user has actually
@@ -75,6 +92,26 @@ export async function GET(request: NextRequest) {
   const difficulty = searchParams.get("difficulty");
 
   let sourceIds: number[];
+
+  if (track === "ib") {
+    const pool = ibQuestionsForDifficulty(difficulty);
+    if (pool.length === 0) {
+      return NextResponse.json({ questions: [], totalAvailable: 0 });
+    }
+    const picked = shuffle(pool).slice(0, Math.min(QUESTION_COUNT, pool.length));
+    const questions = picked.map((q) => {
+      const order = shuffle(q.options.map((_, i) => i));
+      const correct = order.indexOf(q.correct);
+      return {
+        ...q,
+        lessonSlug: "ib-question-bank",
+        options: order.map((i) => q.options[i]),
+        correct,
+        token: signQuestionToken({ lessonId: q.lessonId, correct }),
+      };
+    });
+    return NextResponse.json({ questions, totalAvailable: pool.length });
+  }
 
   if (track === "personal" || track === "professional" || track === "cfa") {
     const trackIds = await idsForTrack(track);

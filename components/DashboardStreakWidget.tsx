@@ -134,7 +134,7 @@ export default function DashboardStreakWidget({ userId }: { userId: string }) {
 
             {/* Feature Explanations */}
             <div className="space-y-3">
-              <div className="rounded-[18px] border border-stone-200 dark:border-stone-800 p-3.5 flex items-start gap-3 bg-stone-50/50 dark:bg-stone-850/40 shadow-[0_8px_18px_-18px_rgba(15,23,42,0.14)]">
+              <div className="rounded-[18px] border border-stone-200 dark:border-stone-800 p-3.5 flex items-start gap-3 bg-stone-50/50 dark:bg-stone-800/40 shadow-[0_8px_18px_-18px_rgba(15,23,42,0.14)]">
                 <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-[14px] bg-sky-100 text-sky-600 dark:bg-sky-900 dark:text-sky-300 font-bold text-sm">
                   1
                 </div>
@@ -146,7 +146,7 @@ export default function DashboardStreakWidget({ userId }: { userId: string }) {
                 </div>
               </div>
 
-              <div className="rounded-[18px] border border-stone-200 dark:border-stone-800 p-3.5 flex items-start gap-3 bg-stone-50/50 dark:bg-stone-850/40 shadow-[0_8px_18px_-18px_rgba(15,23,42,0.14)]">
+              <div className="rounded-[18px] border border-stone-200 dark:border-stone-800 p-3.5 flex items-start gap-3 bg-stone-50/50 dark:bg-stone-800/40 shadow-[0_8px_18px_-18px_rgba(15,23,42,0.14)]">
                 <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-[14px] bg-blue-100 text-blue-600 dark:bg-blue-900 dark:text-blue-300 font-bold text-sm">
                   2
                 </div>
@@ -158,7 +158,7 @@ export default function DashboardStreakWidget({ userId }: { userId: string }) {
                 </div>
               </div>
 
-              <div className="rounded-[18px] border border-stone-200 dark:border-stone-800 p-3.5 flex items-start gap-3 bg-stone-50/50 dark:bg-stone-850/40 shadow-[0_8px_18px_-18px_rgba(15,23,42,0.14)]">
+              <div className="rounded-[18px] border border-stone-200 dark:border-stone-800 p-3.5 flex items-start gap-3 bg-stone-50/50 dark:bg-stone-800/40 shadow-[0_8px_18px_-18px_rgba(15,23,42,0.14)]">
                 <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-[14px] bg-amber-100 text-amber-600 dark:bg-amber-900 dark:text-amber-300 font-bold text-sm">
                   3
                 </div>

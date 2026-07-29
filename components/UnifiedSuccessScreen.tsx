@@ -50,7 +50,7 @@ export default function UnifiedSuccessScreen({
         </p>
 
         {/* XP & Level Summary */}
-        <div className="bg-stone-50 dark:bg-stone-950/40 border border-stone-250/10 rounded-2xl p-4 my-6 space-y-3">
+        <div className="bg-stone-50 dark:bg-stone-950/40 border border-stone-200/10 rounded-2xl p-4 my-6 space-y-3">
           <div className="flex justify-between items-center text-sm">
             <span className="text-stone-500 dark:text-stone-400 font-medium">XP tích lũy được:</span>
             <span className="font-extrabold text-emerald-600 dark:text-emerald-400">+{xpEarned} XP</span>
@@ -111,7 +111,7 @@ export default function UnifiedSuccessScreen({
         <div className="space-y-2 mt-6">
           <button
             onClick={onClose}
-            className="w-full bg-stone-900 dark:bg-white text-white dark:text-stone-900 font-extrabold py-3.5 rounded-xl flex items-center justify-center gap-1.5 hover:bg-stone-850 dark:hover:bg-stone-100 transition-colors shadow-sm"
+            className="w-full bg-stone-900 dark:bg-white text-white dark:text-stone-900 font-extrabold py-3.5 rounded-xl flex items-center justify-center gap-1.5 hover:bg-stone-800 dark:hover:bg-stone-100 transition-colors shadow-sm"
           >
             Tiếp tục lộ trình <ArrowRight className="w-4 h-4" />
           </button>

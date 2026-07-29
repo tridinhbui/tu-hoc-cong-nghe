@@ -39,7 +39,7 @@ export default function ScrollPinnedSection({
 
   return (
     <section ref={containerRef} className={`relative h-[220vh] font-sans ${bgClasses}`}>
-      <div className="sticky top-0 flex h-screen flex-col justify-center overflow-hidden border-y border-stone-200/70 dark:border-stone-850/70">
+      <div className="sticky top-0 flex h-screen flex-col justify-center overflow-hidden border-y border-stone-200/70 dark:border-stone-800/70">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
           {/* Section Header (Pinned at Top) */}
           <div className="mb-6 max-w-2xl">

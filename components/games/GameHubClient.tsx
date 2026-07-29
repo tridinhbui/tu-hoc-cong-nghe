@@ -246,7 +246,7 @@ export default function GameHubClient() {
                           <span className="text-[10px] font-extrabold text-amber-600 bg-amber-50 px-2 py-0.5 rounded-full">
                             ⭐ Tối đa +50 XP/ván
                           </span>
-                          <span className="text-[10px] font-bold text-stone-450 flex items-center gap-1">
+                          <span className="text-[10px] font-bold text-stone-400 flex items-center gap-1">
                             👥 {getIllustrativeCount(g.id, 8, 140)} đang chơi
                           </span>
                         </div>

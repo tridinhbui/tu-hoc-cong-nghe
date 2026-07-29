@@ -82,13 +82,13 @@ function TypingBanner() {
   return (
     <div className="mb-6 p-4 rounded-xl border border-rose-100 dark:border-rose-950/40 bg-rose-50/20 dark:bg-rose-950/5 flex items-center gap-3">
       <span className="flex h-2 w-2 relative shrink-0">
-        <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-rose-450 opacity-75"></span>
+        <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-rose-400 opacity-75"></span>
         <span className="relative inline-flex rounded-full h-2 w-2 bg-rose-500"></span>
       </span>
       <p className="text-xs font-bold text-stone-600 dark:text-stone-300">
         <span className="text-rose-600/60 dark:text-rose-400/50 mr-1.5 font-bold uppercase tracking-wider">Đang cập nhật:</span>
         <span className="text-rose-600 dark:text-rose-400 font-extrabold">{currentText}</span>
-        <span className="animate-pulse font-extrabold text-rose-650 dark:text-rose-400">|</span>
+        <span className="animate-pulse font-extrabold text-rose-600 dark:text-rose-400">|</span>
       </p>
     </div>
   );

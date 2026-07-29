@@ -147,7 +147,7 @@ export default function FirePlanner() {
         </div>
 
         {/* Results Column */}
-        <div className="bg-amber-500/[0.02] dark:bg-amber-500/[0.01] rounded-2xl p-5 border border-stone-200 dark:border-stone-850 flex flex-col justify-between space-y-4">
+        <div className="bg-amber-500/[0.02] dark:bg-amber-500/[0.01] rounded-2xl p-5 border border-stone-200 dark:border-stone-800 flex flex-col justify-between space-y-4">
           <div className="space-y-4">
             <div className="space-y-0.5">
               <span className="text-[10px] font-bold text-stone-500 dark:text-stone-400 block uppercase">
@@ -161,7 +161,7 @@ export default function FirePlanner() {
               <span className="text-[10px] font-bold text-stone-500 dark:text-stone-400 block uppercase">
                 Mục tiêu quỹ tài sản FIRE cần tích lũy
               </span>
-              <span className="text-xl font-black text-amber-600 dark:text-amber-450">
+              <span className="text-xl font-black text-amber-600 dark:text-amber-400">
                 {formatVND(fireTarget)}
               </span>
               <span className="text-[10px] text-stone-400 block">

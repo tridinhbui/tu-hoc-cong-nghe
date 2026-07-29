@@ -108,7 +108,7 @@ export default function RewardChestWidget({ userId }: RewardChestWidgetProps) {
   };
 
   return (
-    <div className="bg-white border border-stone-250 rounded-3xl p-5 shadow-sm space-y-4">
+    <div className="bg-white border border-stone-200 rounded-3xl p-5 shadow-sm space-y-4">
       {/* Shaking Animation CSS */}
       <style>{`
         @keyframes shake {
@@ -140,7 +140,7 @@ export default function RewardChestWidget({ userId }: RewardChestWidgetProps) {
       </div>
 
       {chests > 0 ? (
-        <div className="text-center py-4 bg-stone-50 rounded-2xl border border-stone-150 space-y-3">
+        <div className="text-center py-4 bg-stone-50 rounded-2xl border border-stone-100 space-y-3">
           <button
             onClick={handleOpenChest}
             disabled={opening}
@@ -160,14 +160,14 @@ export default function RewardChestWidget({ userId }: RewardChestWidgetProps) {
           </div>
         </div>
       ) : (
-        <div className="text-center py-5 text-stone-450 text-[11px] leading-relaxed">
+        <div className="text-center py-5 text-stone-400 text-[11px] leading-relaxed">
           Không có rương nào chưa mở. Hoàn thành nhiệm vụ hàng ngày hoặc thi vượt ải chặng để kiếm rương kho báu! 🏆
         </div>
       )}
 
       {/* Reward Reveal Panel */}
       {opening && rewardReveal && (
-        <div className="mt-4 rounded-3xl border border-stone-250 bg-white p-6 text-center shadow-xl relative space-y-5 animate-[scaleIn_0.3s_ease-out]">
+        <div className="mt-4 rounded-3xl border border-stone-200 bg-white p-6 text-center shadow-xl relative space-y-5 animate-[scaleIn_0.3s_ease-out]">
             <div className="w-16 h-16 mx-auto bg-amber-500 rounded-full flex items-center justify-center text-white shadow-lg animate-bounce">
               <Sparkles className="w-8 h-8 text-white" />
             </div>

@@ -4,7 +4,7 @@ export default function AdminLoading() {
       {/* Header Skeleton */}
       <div className="space-y-2">
         <div className="h-7 w-64 bg-stone-200 dark:bg-stone-800 rounded-lg" />
-        <div className="h-4 w-96 bg-stone-150 dark:bg-stone-850 rounded-md" />
+        <div className="h-4 w-96 bg-stone-100 dark:bg-stone-800 rounded-md" />
       </div>
 
       {/* Stats Cards Skeleton */}

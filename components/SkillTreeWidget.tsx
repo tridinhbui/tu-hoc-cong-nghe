@@ -30,7 +30,7 @@ export default function SkillTreeWidget({ completedLessonIds, unlockedLessonIds 
   };
 
   return (
-    <div className="bg-white dark:bg-stone-900 border border-stone-200 dark:border-stone-850 rounded-2xl p-6 shadow-sm mt-6">
+    <div className="bg-white dark:bg-stone-900 border border-stone-200 dark:border-stone-800 rounded-2xl p-6 shadow-sm mt-6">
       <h3 className="text-lg font-bold text-stone-900 dark:text-stone-100 mb-2">
         🌲 Cây Kỹ Năng Tài Chính (Finance Skill Tree)
       </h3>
@@ -88,7 +88,7 @@ export default function SkillTreeWidget({ completedLessonIds, unlockedLessonIds 
                         ? "bg-emerald-100 text-emerald-800 dark:bg-emerald-900/40 dark:text-emerald-300"
                         : status === "in_progress"
                         ? "bg-amber-100 text-amber-800 dark:bg-amber-900/40 dark:text-amber-300"
-                        : "bg-stone-150 text-stone-600 dark:bg-stone-800 dark:text-stone-400"
+                        : "bg-stone-100 text-stone-600 dark:bg-stone-800 dark:text-stone-400"
                     }`}
                   >
                     {status === "completed" ? "Đã học" : status === "in_progress" ? "Đang học" : "Đang khóa"}

@@ -368,7 +368,7 @@ export default function DashboardRecommendations({ lessonsMeta, completed, userI
                               {lesson.title}
                             </h3>
                           </div>
-                          <p className="text-[10px] text-stone-450 dark:text-stone-500 mt-2.5 line-clamp-1">
+                          <p className="text-[10px] text-stone-400 dark:text-stone-500 mt-2.5 line-clamp-1">
                             {lesson.subtitle}
                           </p>
                           <p className="text-[9px] text-emerald-600 dark:text-emerald-400 mt-1.5 font-bold">
@@ -397,8 +397,8 @@ export default function DashboardRecommendations({ lessonsMeta, completed, userI
                       >
                         <div>
                           <div className="flex items-center gap-1.5 mb-2">
-                            <div className="w-5.5 h-5.5 rounded-lg flex items-center justify-center bg-stone-100 dark:bg-stone-850 text-stone-700 dark:text-stone-300 transition-transform duration-300 group-hover:scale-110 group-hover:rotate-6">
-                              <Gamepad2 className="w-3 h-3 text-amber-600 dark:text-amber-450" />
+                            <div className="w-5.5 h-5.5 rounded-lg flex items-center justify-center bg-stone-100 dark:bg-stone-800 text-stone-700 dark:text-stone-300 transition-transform duration-300 group-hover:scale-110 group-hover:rotate-6">
+                              <Gamepad2 className="w-3 h-3 text-amber-600 dark:text-amber-400" />
                             </div>
                             <span className="text-[10px] font-extrabold text-stone-600 dark:text-stone-455 uppercase tracking-wider">
                               Mini Game {game.emoji}
@@ -408,7 +408,7 @@ export default function DashboardRecommendations({ lessonsMeta, completed, userI
                             {game.title}
                           </h3>
                         </div>
-                        <p className="text-[10px] text-stone-450 dark:text-stone-500 mt-2.5 line-clamp-1">
+                        <p className="text-[10px] text-stone-400 dark:text-stone-500 mt-2.5 line-clamp-1">
                           {game.description}
                         </p>
                       </Link>
@@ -422,7 +422,7 @@ export default function DashboardRecommendations({ lessonsMeta, completed, userI
                 <div className="mt-2.5 flex justify-center">
                   <div className="w-16 h-1 bg-stone-100 dark:bg-stone-800/80 rounded-full relative">
                     <div 
-                      className="absolute top-0 bottom-0 left-0 w-6 bg-emerald-500 dark:bg-emerald-450 rounded-full transition-transform duration-100 ease-out"
+                      className="absolute top-0 bottom-0 left-0 w-6 bg-emerald-500 dark:bg-emerald-400 rounded-full transition-transform duration-100 ease-out"
                       style={{ transform: `translateX(${(scrollProgress / 100) * (64 - 24)}px)` }}
                     />
                   </div>
@@ -435,7 +435,7 @@ export default function DashboardRecommendations({ lessonsMeta, completed, userI
 
       {/* 🔥 Bài học Đang hot */}
       {hotItems.length > 0 && (
-        <section className={`flex flex-col overflow-hidden w-full relative ${primaryItems.length > 0 ? "border-t border-stone-150 pt-4" : ""}`}>
+        <section className={`flex flex-col overflow-hidden w-full relative ${primaryItems.length > 0 ? "border-t border-stone-100 pt-4" : ""}`}>
           <div className="w-full flex items-center justify-between flex-shrink-0 mb-3">
             <div className="flex items-center gap-2">
               <Flame className="w-4 h-4 text-stone-400" />
@@ -522,9 +522,9 @@ export default function DashboardRecommendations({ lessonsMeta, completed, userI
               {/* Custom Scroll Indicator */}
               {hotItems.length > 1 && (
                 <div className="mt-2.5 flex justify-center">
-                  <div className="w-16 h-1 bg-stone-100 dark:bg-stone-850 rounded-full relative">
+                  <div className="w-16 h-1 bg-stone-100 dark:bg-stone-800 rounded-full relative">
                     <div 
-                      className="absolute top-0 bottom-0 left-0 w-6 bg-rose-500 dark:bg-rose-450 rounded-full transition-transform duration-100 ease-out"
+                      className="absolute top-0 bottom-0 left-0 w-6 bg-rose-500 dark:bg-rose-400 rounded-full transition-transform duration-100 ease-out"
                       style={{ transform: `translateX(${(hotScrollProgress / 100) * (64 - 24)}px)` }}
                     />
                   </div>

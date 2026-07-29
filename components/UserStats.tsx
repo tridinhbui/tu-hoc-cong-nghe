@@ -64,8 +64,8 @@ export default function UserStats({
   const [cfaCompleted, setCfaCompleted] = useState(0);
   const currentLevel = getLevelByXp(xp, cfaCompleted);
   const nextLevel = getNextLevel(currentLevel.level);
-  const xpToNext = getXpToNextLevel(xp);
-  const progress = getLevelProgress(xp);
+  const xpToNext = getXpToNextLevel(xp, cfaCompleted);
+  const progress = getLevelProgress(xp, cfaCompleted);
   const cfaGateRemaining = nextLevel ? getCfaGateRemaining(nextLevel, cfaCompleted) : 0;
 
   const [showExamModal, setShowExamModal] = useState(false);
@@ -213,7 +213,7 @@ export default function UserStats({
       className={`relative overflow-hidden transition-all duration-300 group ${
         embedded
           ? `${sidebar ? "p-0" : "p-0"}`
-          : `bg-white dark:bg-stone-900 border border-stone-200 dark:border-stone-850 rounded-3xl shadow-sm hover:shadow-lg ${sidebar ? "p-4" : "p-4 sm:p-5"}`
+          : `bg-white dark:bg-stone-900 border border-stone-200 dark:border-stone-800 rounded-3xl shadow-sm hover:shadow-lg ${sidebar ? "p-4" : "p-4 sm:p-5"}`
       }`}
     >
       {/* Subtle background glow bubbles for gamified accent */}
@@ -235,7 +235,7 @@ export default function UserStats({
           <FinanceCharacterAvatar level={currentLevel.level} equipments={equippedGear} size="xs" />
         </motion.div>
         <div className="min-w-0 flex-1">
-          <span className="text-[8px] sm:text-[9px] font-black text-stone-450 dark:text-stone-400 uppercase tracking-widest block leading-none">
+          <span className="text-[8px] sm:text-[9px] font-black text-stone-400 dark:text-stone-400 uppercase tracking-widest block leading-none">
             Cấp độ {currentLevel.level} / {LEVELS.length}
           </span>
           <h3 className={`font-black text-stone-950 dark:text-white mt-0.5 tracking-tight leading-none truncate ${
@@ -307,7 +307,7 @@ export default function UserStats({
             <div className="flex items-center gap-1 mt-1 truncate">
               <BookOpen className="w-3.5 h-3.5 text-sky-500 dark:text-sky-400 shrink-0" />
               <span className={`font-black text-stone-950 dark:text-stone-50 ${sidebar ? "text-xs" : "text-sm sm:text-base"}`}>{lessonsCompleted}</span>
-              <span className="text-[9px] font-bold text-stone-450 dark:text-stone-500">/ {totalLessons}</span>
+              <span className="text-[9px] font-bold text-stone-400 dark:text-stone-500">/ {totalLessons}</span>
             </div>
           </div>
         </div>
@@ -318,14 +318,14 @@ export default function UserStats({
             <span className="text-[8px] sm:text-[9px] font-black text-stone-500 dark:text-stone-400 uppercase tracking-wider block">Quiz TB</span>
             <div className="flex items-center gap-1 mt-1">
               <Target className="w-3.5 h-3.5 text-emerald-500 dark:text-emerald-400 shrink-0" />
-              <span className={`font-black text-emerald-600 dark:text-emerald-450 ${sidebar ? "text-xs" : "text-sm sm:text-base"}`}>{Math.round(avgQuizScore)}%</span>
+              <span className={`font-black text-emerald-600 dark:text-emerald-400 ${sidebar ? "text-xs" : "text-sm sm:text-base"}`}>{Math.round(avgQuizScore)}%</span>
             </div>
           </div>
           <div className="min-w-0 rounded-xl bg-indigo-50/50 dark:bg-indigo-950/15 border border-indigo-100/70 dark:border-indigo-900/30 px-2.5 py-1.5">
             <span className="text-[8px] sm:text-[9px] font-black text-stone-500 dark:text-stone-400 uppercase tracking-wider block">Tiến cấp</span>
             <div className="flex items-center gap-1 mt-1 truncate">
               <TrendingUp className="w-3.5 h-3.5 text-indigo-500 dark:text-indigo-400 shrink-0" />
-              <span className={`font-black text-indigo-650 dark:text-indigo-400 ${sidebar ? "text-xs" : "text-sm sm:text-base"}`}>{xpToNext > 0 ? `+${xpToNext} XP` : "Tối đa"}</span>
+              <span className={`font-black text-indigo-600 dark:text-indigo-400 ${sidebar ? "text-xs" : "text-sm sm:text-base"}`}>{xpToNext > 0 ? `+${xpToNext} XP` : "Tối đa"}</span>
             </div>
           </div>
         </div>
@@ -355,10 +355,10 @@ export default function UserStats({
 
       {/* Level Progress Bar & Alert Banner */}
       {nextLevel && (
-        <div className="mt-0.5 pt-2 border-t border-stone-150 dark:border-stone-800/80 relative z-10">
-          <div className="flex items-center justify-between text-[10px] mb-1 font-bold text-stone-500 dark:text-stone-450">
-            <span>Tiến độ cấp {currentLevel.level} <span className="text-emerald-600 dark:text-emerald-450">({Math.round(progress)}%)</span></span>
-            <span className="inline-flex items-center gap-1 text-stone-600 dark:text-stone-350">
+        <div className="mt-0.5 pt-2 border-t border-stone-100 dark:border-stone-800/80 relative z-10">
+          <div className="flex items-center justify-between text-[10px] mb-1 font-bold text-stone-500 dark:text-stone-400">
+            <span>Tiến độ cấp {currentLevel.level} <span className="text-emerald-600 dark:text-emerald-400">({Math.round(progress)}%)</span></span>
+            <span className="inline-flex items-center gap-1 text-stone-600 dark:text-stone-300">
               Cấp {nextLevel.level}: {nextLevel.name} <span>{LEVEL_EMOJIS[nextLevel.level] || "🌱"}</span>
             </span>
           </div>
@@ -399,8 +399,8 @@ export default function UserStats({
       )}
 
       {!nextLevel && (
-        <div className="mt-2.5 pt-2.5 border-t border-stone-150 dark:border-stone-800/80 relative z-10">
-          <div className="p-3 bg-amber-50/40 dark:bg-amber-950/10 border border-amber-200/50 dark:border-amber-900/30 rounded-xl flex items-center gap-2 text-xs text-amber-700 dark:text-amber-350 font-bold">
+        <div className="mt-2.5 pt-2.5 border-t border-stone-100 dark:border-stone-800/80 relative z-10">
+          <div className="p-3 bg-amber-50/40 dark:bg-amber-950/10 border border-amber-200/50 dark:border-amber-900/30 rounded-xl flex items-center gap-2 text-xs text-amber-700 dark:text-amber-300 font-bold">
             <span>👑 Bạn đã đạt cấp độ tối đa! Chúc mừng {currentLevel.name}!</span>
           </div>
         </div>

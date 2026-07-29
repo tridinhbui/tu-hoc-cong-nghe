@@ -367,7 +367,7 @@ export default function InteractiveKingdomPreview() {
               <div className="space-y-2.5">
                 {currentQuestion.options.map((opt, idx) => {
                   const isSelected = selectedOption === idx;
-                  let btnStyle = "border-stone-700 bg-stone-950/70 hover:border-emerald-400/60 hover:bg-stone-850";
+                  let btnStyle = "border-stone-700 bg-stone-950/70 hover:border-emerald-400/60 hover:bg-stone-800";
 
                   if (answered) {
                     if (opt.correct) {

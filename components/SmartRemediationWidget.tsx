@@ -51,7 +51,7 @@ export default function SmartRemediationWidget({ userId, lessonsMeta }: SmartRem
       <div className="absolute top-0 right-0 w-24 h-24 bg-rose-500/[0.03] rounded-full blur-2xl pointer-events-none" />
 
       <div className="flex gap-3.5 items-start">
-        <div className="w-10 h-10 rounded-xl bg-rose-100 dark:bg-rose-950 text-rose-600 dark:text-rose-450 flex items-center justify-center shrink-0">
+        <div className="w-10 h-10 rounded-xl bg-rose-100 dark:bg-rose-950 text-rose-600 dark:text-rose-400 flex items-center justify-center shrink-0">
           <AlertCircle className="w-5.5 h-5.5" />
         </div>
         
@@ -66,7 +66,7 @@ export default function SmartRemediationWidget({ userId, lessonsMeta }: SmartRem
               </span>
             </div>
             
-            <h4 className="text-xs font-bold text-stone-900 dark:text-stone-150 mt-1.5 leading-snug">
+            <h4 className="text-xs font-bold text-stone-900 dark:text-stone-100 mt-1.5 leading-snug">
               Tài Tài phát hiện bạn làm sai {row.wrong_count} lần trong bài &quot;{lesson.title}&quot;
             </h4>
             <p className="text-[10px] text-stone-500 dark:text-stone-400 mt-1 leading-relaxed">

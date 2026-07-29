@@ -131,7 +131,7 @@ export default function FinanceCharacterAvatar({
 
   return (
     <div
-      className={`relative flex items-center justify-center rounded-3xl border border-emerald-200/80 dark:border-emerald-800/60 bg-gradient-to-b from-white via-emerald-50/40 to-amber-50/30 dark:from-stone-900 dark:via-stone-850 dark:to-stone-900 shadow-md ${containerSize} p-3 transition-all duration-300 group`}
+      className={`relative flex items-center justify-center rounded-3xl border border-emerald-200/80 dark:border-emerald-800/60 bg-gradient-to-b from-white via-emerald-50/40 to-amber-50/30 dark:from-stone-900 dark:via-stone-800 dark:to-stone-900 shadow-md ${containerSize} p-3 transition-all duration-300 group`}
     >
       {/* Soft Ambient Light Glow */}
       <div className="absolute inset-0 rounded-3xl bg-gradient-to-tr from-emerald-400/10 via-amber-400/5 to-teal-400/10 blur-md pointer-events-none" />
@@ -153,7 +153,7 @@ export default function FinanceCharacterAvatar({
             isLarge ? "w-28 h-28 text-5xl" : isSmall ? "w-14 h-14 text-2xl" : "w-20 h-20 text-3xl"
           }`}
         >
-          <div className="w-full h-full rounded-full bg-gradient-to-br from-emerald-50 to-teal-50 dark:from-stone-850 dark:to-stone-900 flex items-center justify-center relative">
+          <div className="w-full h-full rounded-full bg-gradient-to-br from-emerald-50 to-teal-50 dark:from-stone-800 dark:to-stone-900 flex items-center justify-center relative">
             🧑‍💼
             {/* Glasses Overlay */}
             {equipments.accessory === "acc_glasses" && (

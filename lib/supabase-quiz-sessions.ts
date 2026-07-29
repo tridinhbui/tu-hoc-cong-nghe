@@ -1,7 +1,7 @@
 import { createClient } from "@/lib/supabase";
 import { handleSupabaseError } from "@/lib/errors";
 
-export type QuizTrack = "personal" | "professional" | "cfa";
+export type QuizTrack = "personal" | "professional" | "cfa" | "ib";
 export type QuizDifficulty = "de" | "trung-binh" | "kho" | "tat-ca";
 
 // "Table not found in schema cache" (PostgREST) or "relation does not

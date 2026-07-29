@@ -76,12 +76,12 @@ export default function CertificateModal({ stageLabel, stageName, userName, onCl
 
   return (
     <div className="fixed inset-0 bg-black/80 backdrop-blur-sm flex items-center justify-center z-50 p-4 animate-[fadeIn_0.2s_ease-out]">
-      <div className="bg-stone-900 border border-stone-850 rounded-3xl w-full max-w-4xl p-6 md:p-8 flex flex-col items-center shadow-2xl relative animate-[scaleIn_0.3s_ease-out] text-white">
+      <div className="bg-stone-900 border border-stone-800 rounded-3xl w-full max-w-4xl p-6 md:p-8 flex flex-col items-center shadow-2xl relative animate-[scaleIn_0.3s_ease-out] text-white">
         
         {/* Close Button */}
         <button
           onClick={onClose}
-          className="absolute top-4 right-4 w-9 h-9 rounded-full bg-stone-800 hover:bg-stone-750 text-stone-400 hover:text-white flex items-center justify-center transition-colors cursor-pointer"
+          className="absolute top-4 right-4 w-9 h-9 rounded-full bg-stone-800 hover:bg-stone-700 text-stone-400 hover:text-white flex items-center justify-center transition-colors cursor-pointer"
         >
           <X className="w-5 h-5" />
         </button>
@@ -229,7 +229,7 @@ export default function CertificateModal({ stageLabel, stageName, userName, onCl
           <button
             onClick={handleShare}
             disabled={sharing}
-            className="flex-1 py-3.5 bg-stone-800 hover:bg-stone-750 disabled:opacity-60 text-white rounded-2xl text-xs font-black uppercase tracking-wider transition-all flex items-center justify-center gap-2 cursor-pointer focus:outline-none"
+            className="flex-1 py-3.5 bg-stone-800 hover:bg-stone-700 disabled:opacity-60 text-white rounded-2xl text-xs font-black uppercase tracking-wider transition-all flex items-center justify-center gap-2 cursor-pointer focus:outline-none"
           >
             {sharing ? (
               <span className="w-4 h-4 border-2 border-white/20 border-t-white rounded-full animate-spin" />

@@ -121,15 +121,15 @@ export default function StageMilestoneExamModal({
 
   return (
     <div className="fixed inset-0 bg-black/60 backdrop-blur-sm flex items-center justify-center z-50 p-4 animate-[fadeIn_0.2s_ease-out]">
-      <div className="bg-white dark:bg-stone-900 border border-stone-250 dark:border-stone-800 rounded-3xl w-full max-w-lg overflow-hidden shadow-2xl relative flex flex-col max-h-[90vh]">
+      <div className="bg-white dark:bg-stone-900 border border-stone-200 dark:border-stone-800 rounded-3xl w-full max-w-lg overflow-hidden shadow-2xl relative flex flex-col max-h-[90vh]">
         
         {/* Header */}
-        <div className="flex items-center justify-between px-6 py-4.5 border-b border-stone-150 dark:border-stone-800/80">
+        <div className="flex items-center justify-between px-6 py-4.5 border-b border-stone-100 dark:border-stone-800/80">
           <div>
             <span className="text-[10px] font-extrabold px-2.5 py-1 rounded-full bg-amber-50 dark:bg-amber-950/40 text-amber-700 dark:text-amber-400 uppercase tracking-wider">
               Kỳ thi vượt ải {stageLabel}
             </span>
-            <h3 className="text-sm font-extrabold text-stone-900 dark:text-stone-150 mt-1">{stageName}</h3>
+            <h3 className="text-sm font-extrabold text-stone-900 dark:text-stone-100 mt-1">{stageName}</h3>
           </div>
           <button onClick={onClose} className="p-1.5 hover:bg-stone-50 dark:hover:bg-stone-800 rounded-xl text-stone-400 hover:text-stone-900 dark:hover:text-stone-100 transition-colors">
             <X className="w-5 h-5" />
@@ -176,7 +176,7 @@ export default function StageMilestoneExamModal({
             </div>
           ) : (
             <div className="space-y-5">
-              <div className="flex justify-between items-center text-[10px] font-extrabold text-stone-450 dark:text-stone-500 uppercase tracking-widest bg-stone-50 dark:bg-stone-950 px-3 py-1.5 rounded-lg border border-stone-150 dark:border-stone-850">
+              <div className="flex justify-between items-center text-[10px] font-extrabold text-stone-400 dark:text-stone-500 uppercase tracking-widest bg-stone-50 dark:bg-stone-950 px-3 py-1.5 rounded-lg border border-stone-100 dark:border-stone-800">
                 <span>CÂU {currentQIndex + 1} / {questions.length}</span>
                 <span>Đúng tối thiểu: 12/15 câu</span>
               </div>
@@ -190,10 +190,10 @@ export default function StageMilestoneExamModal({
 
               <div className="space-y-2.5">
                 {questions[currentQIndex].options.map((opt: string, i: number) => {
-                  let btnCls = "border-stone-200 dark:border-stone-800 bg-white dark:bg-stone-900 text-stone-750 dark:text-stone-300 hover:border-stone-300 dark:hover:border-stone-700";
+                  let btnCls = "border-stone-200 dark:border-stone-800 bg-white dark:bg-stone-900 text-stone-700 dark:text-stone-300 hover:border-stone-300 dark:hover:border-stone-700";
                   if (answersChecked) {
                     if (i === questions[currentQIndex].correct) {
-                      btnCls = "border-emerald-500 bg-emerald-50 dark:bg-emerald-950/40 text-emerald-800 dark:text-emerald-450 font-bold";
+                      btnCls = "border-emerald-500 bg-emerald-50 dark:bg-emerald-950/40 text-emerald-800 dark:text-emerald-400 font-bold";
                     } else if (i === selectedOpt) {
                       btnCls = "border-rose-500 bg-rose-50 dark:bg-rose-950/40 text-rose-800 dark:text-rose-405";
                     } else {
@@ -231,7 +231,7 @@ export default function StageMilestoneExamModal({
                 <div className="space-y-4">
                   <div className={`p-4 rounded-2xl text-xs leading-relaxed border ${
                     selectedOpt === questions[currentQIndex].correct
-                      ? "bg-emerald-50/20 border-emerald-100 dark:border-emerald-900/30 text-emerald-800 dark:text-emerald-450"
+                      ? "bg-emerald-50/20 border-emerald-100 dark:border-emerald-900/30 text-emerald-800 dark:text-emerald-400"
                       : "bg-rose-50/20 border-rose-100 dark:border-rose-900/30 text-rose-800 dark:text-rose-400"
                   }`}>
                     <p className="font-bold mb-1">

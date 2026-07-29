@@ -100,7 +100,7 @@ export default function FinanceCardCollection({ userId }: { userId: string }) {
               className={`border-2 rounded-2xl p-4 flex flex-col justify-between relative overflow-hidden transition-all shadow-md ${
                 isUnlocked 
                   ? `${borderRarity} bg-gradient-to-b from-white to-stone-50 dark:from-stone-900 dark:to-stone-950` 
-                  : "border-stone-200 bg-stone-50/50 dark:border-stone-850 dark:bg-stone-900/40 opacity-70"
+                  : "border-stone-200 bg-stone-50/50 dark:border-stone-800 dark:bg-stone-900/40 opacity-70"
               }`}
             >
               {/* Rarity & Ticker */}
@@ -139,7 +139,7 @@ export default function FinanceCardCollection({ userId }: { userId: string }) {
                     </p>
                   </div>
 
-                  <div className="bg-white dark:bg-stone-900/60 p-2.5 rounded-xl border dark:border-stone-850 space-y-1">
+                  <div className="bg-white dark:bg-stone-900/60 p-2.5 rounded-xl border dark:border-stone-800 space-y-1">
                     <span className="text-[9px] uppercase font-bold text-stone-400 block">Lợi thế cạnh tranh:</span>
                     <p className="text-[10px] text-stone-700 dark:text-stone-300 font-medium leading-normal">
                       {card.advantage}

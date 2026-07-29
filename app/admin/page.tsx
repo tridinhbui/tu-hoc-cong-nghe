@@ -205,7 +205,7 @@ export default async function AdminOverviewPage() {
                   const barHeightPercent = Math.round((day.count / maxDau) * 100);
                   return (
                     <div key={idx} className="flex-1 flex flex-col items-center group h-full justify-end">
-                      <div className="text-[10px] font-bold text-stone-850 dark:text-stone-300 opacity-0 group-hover:opacity-100 transition-opacity mb-1">
+                      <div className="text-[10px] font-bold text-stone-800 dark:text-stone-300 opacity-0 group-hover:opacity-100 transition-opacity mb-1">
                         {day.count}
                       </div>
                       <div
@@ -262,7 +262,7 @@ export default async function AdminOverviewPage() {
               </div>
             </div>
           </div>
-          <div className="pt-4 border-t border-stone-100 dark:border-stone-800 text-[10px] text-stone-450 text-center">
+          <div className="pt-4 border-t border-stone-100 dark:border-stone-800 text-[10px] text-stone-400 text-center">
             Tổng cộng: {totalUsers} tài khoản người học.
           </div>
         </div>

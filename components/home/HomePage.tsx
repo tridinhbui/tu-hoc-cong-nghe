@@ -647,7 +647,7 @@ export default function HomePage() {
                   initial={{ opacity: 0, y: 18 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.6, ease: "easeOut", delay: 0.12 }}
-                  className="mb-8 max-w-xl text-[15px] leading-7 text-stone-650 [filter:none] dark:text-stone-300 sm:text-lg"
+                  className="mb-8 max-w-xl text-[15px] leading-7 text-stone-600 [filter:none] dark:text-stone-300 sm:text-lg"
                 >
                   {lessonCountFloor ?? 360}+ bài học - 100% miễn phí vĩnh viễn - giáo trình thiết kế riêng cho người Việt học tài chính cá
                   nhân, CFA, lập kế hoạch tài chính, đầu tư, kế toán và tài chính chuyên nghiệp. Học theo phương pháp
@@ -896,7 +896,7 @@ export default function HomePage() {
         </section>
 
         {/* ── SOCIAL PROOF ── */}
-        <section className="bg-white dark:bg-stone-950 py-5 sm:py-6 relative border-y border-stone-200/80 dark:border-stone-850/80 font-sans">
+        <section className="bg-white dark:bg-stone-950 py-5 sm:py-6 relative border-y border-stone-200/80 dark:border-stone-800/80 font-sans">
           <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
             <ScrollReveal className="text-center mb-5">
               <p className="text-[11px] font-black text-emerald-600 dark:text-emerald-400 uppercase tracking-widest mb-1">
@@ -940,7 +940,7 @@ export default function HomePage() {
       </section>
 
         {/* ── FEATURE SHOWCASE ── */}
-        <section className="landing-band landing-band-emerald landing-band-divider relative py-5 sm:py-6 font-sans border-y border-stone-200/80 dark:border-stone-850/80">
+        <section className="landing-band landing-band-emerald landing-band-divider relative py-5 sm:py-6 font-sans border-y border-stone-200/80 dark:border-stone-800/80">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <ScrollReveal className="max-w-3xl mb-4">
               <p className="text-xs font-black text-emerald-600 dark:text-emerald-400 uppercase tracking-widest mb-2">
@@ -1049,9 +1049,9 @@ export default function HomePage() {
       </div>
 
         {/* ── RICH FOOTER ── */}
-        <footer className="bg-stone-950 text-stone-300 border-t border-stone-850 relative z-10 pt-6 pb-6 font-sans">
+        <footer className="bg-stone-950 text-stone-300 border-t border-stone-800 relative z-10 pt-6 pb-6 font-sans">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-12 pb-6 border-b border-stone-850">
+            <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-12 pb-6 border-b border-stone-800">
               {/* Col 1: Brand Info */}
               <div className="lg:col-span-5 space-y-4">
                 <div className="flex items-center gap-2.5">

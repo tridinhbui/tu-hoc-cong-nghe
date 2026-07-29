@@ -259,7 +259,7 @@ export default function CombinedRewardsWidget({ userId, defaultExpanded = false,
         </div>
       </div>
 
-      <div className={`border-t border-stone-100 dark:border-stone-850 ${compact ? "flex-1 flex flex-col min-h-0" : ""}`}>
+      <div className={`border-t border-stone-100 dark:border-stone-800 ${compact ? "flex-1 flex flex-col min-h-0" : ""}`}>
           {/* Tabs */}
           <div className={`flex gap-1 bg-stone-50/50 dark:bg-stone-950/35 overflow-x-auto scrollbar-none ${compact ? "p-2" : "p-1.5"}`}>
             <button
@@ -284,7 +284,7 @@ export default function CombinedRewardsWidget({ userId, defaultExpanded = false,
                   ? "bg-white dark:bg-stone-900 text-stone-900 dark:text-stone-100 shadow-sm border border-stone-200 dark:border-stone-800"
                   : chestCount > 0
                   ? "bg-rose-50/70 dark:bg-rose-950/30 text-rose-600 dark:text-rose-400 border border-rose-200 dark:border-rose-900/50 font-black"
-                  : "text-stone-500 dark:text-stone-400 hover:text-rose-500 dark:hover:text-rose-450 hover:bg-rose-500/5"
+                  : "text-stone-500 dark:text-stone-400 hover:text-rose-500 dark:hover:text-rose-400 hover:bg-rose-500/5"
               }`}
             >
               <span>Rương Quà</span>
@@ -334,7 +334,7 @@ export default function CombinedRewardsWidget({ userId, defaultExpanded = false,
                 `}</style>
 
                 {chestCount > 0 ? (
-                  <div className="text-center py-4 bg-stone-50 dark:bg-stone-950 rounded-2xl border border-stone-150 dark:border-stone-850/80 space-y-3">
+                  <div className="text-center py-4 bg-stone-50 dark:bg-stone-950 rounded-2xl border border-stone-100 dark:border-stone-800/80 space-y-3">
                     <button
                       onClick={handleOpenChest}
                       disabled={opening}
@@ -350,13 +350,13 @@ export default function CombinedRewardsWidget({ userId, defaultExpanded = false,
                     </div>
                   </div>
                 ) : (
-                  <div className="text-center py-5 text-stone-450 dark:text-stone-550 text-[10px] leading-relaxed">
+                  <div className="text-center py-5 text-stone-400 dark:text-stone-550 text-[10px] leading-relaxed">
                     Không có rương nào chưa mở. Hoàn thành nhiệm vụ hàng ngày hoặc thi vượt ải chặng để kiếm rương kho báu! 🏆
                   </div>
                 )}
 
                 {/* Rương tri thức tuần - Weekly Chest Tracker inside Chests Tab */}
-                <div className="mt-4 pt-4 border-t border-stone-150 dark:border-stone-850/80 flex items-center justify-between gap-3">
+                <div className="mt-4 pt-4 border-t border-stone-100 dark:border-stone-800/80 flex items-center justify-between gap-3">
                   <div className="min-w-0">
                     <span className="text-[10px] font-black uppercase tracking-wider flex items-center gap-1.5 bg-gradient-to-r from-rose-500 to-pink-500 bg-clip-text text-transparent animate-pulse mb-1">
                       <Gift className="w-3.5 h-3.5 text-rose-500" /> Rương tri thức tuần
@@ -370,7 +370,7 @@ export default function CombinedRewardsWidget({ userId, defaultExpanded = false,
                     disabled={weeklyClaimed || dailyQuests.filter((q) => q.current >= q.target).length < 3}
                     className={`px-4 py-2 text-[10px] font-black rounded-xl transition-all duration-200 border shrink-0 flex items-center justify-center gap-1.5 ${
                       weeklyClaimed
-                        ? "bg-stone-100 dark:bg-stone-950 text-stone-450 border-stone-200 dark:border-stone-850"
+                        ? "bg-stone-100 dark:bg-stone-950 text-stone-400 border-stone-200 dark:border-stone-800"
                         : dailyQuests.filter((q) => q.current >= q.target).length >= 3
                         ? "bg-gradient-to-r from-rose-500 to-pink-500 text-white border-rose-500 shadow-[0_4px_10px_-3px_rgba(244,63,94,0.4)] hover:scale-105 active:scale-95 cursor-pointer animate-pulse"
                         : "bg-stone-50 dark:bg-stone-900 text-stone-400 border-stone-200 dark:border-stone-800 cursor-not-allowed"
@@ -418,7 +418,7 @@ export default function CombinedRewardsWidget({ userId, defaultExpanded = false,
 
                 {allQuestsDone ? (
                   isEpicClaimed ? (
-                    <div className="mt-4 p-3 bg-stone-50 dark:bg-stone-950 border border-stone-150 dark:border-stone-850 rounded-2xl text-center text-[10px] text-stone-450 dark:text-stone-550 font-bold flex items-center justify-center gap-1.5">
+                    <div className="mt-4 p-3 bg-stone-50 dark:bg-stone-950 border border-stone-100 dark:border-stone-800 rounded-2xl text-center text-[10px] text-stone-400 dark:text-stone-550 font-bold flex items-center justify-center gap-1.5">
                       <CheckCircle2 className="w-4 h-4 text-emerald-500" /> Đã nhận phần thưởng tuần này!
                     </div>
                   ) : (
@@ -431,7 +431,7 @@ export default function CombinedRewardsWidget({ userId, defaultExpanded = false,
                     </button>
                   )
                 ) : (
-                  <div className="mt-4 p-3 bg-stone-50 dark:bg-stone-950 border border-stone-150 dark:border-stone-850 rounded-2xl text-center text-[10px] text-stone-400 dark:text-stone-550 font-bold">
+                  <div className="mt-4 p-3 bg-stone-50 dark:bg-stone-950 border border-stone-100 dark:border-stone-800 rounded-2xl text-center text-[10px] text-stone-400 dark:text-stone-550 font-bold">
                     🔒 Hoàn thành cả 3 nhiệm vụ để mở khóa +3 rương quà
                   </div>
                 )}
@@ -443,7 +443,7 @@ export default function CombinedRewardsWidget({ userId, defaultExpanded = false,
       {/* Reward Reveal Overlay */}
       {opening && rewardReveal && (
         <div className="fixed inset-0 bg-black/60 backdrop-blur-sm flex items-center justify-center z-50 p-4 animate-[fadeIn_0.2s_ease-out]">
-          <div className="bg-white dark:bg-stone-900 border border-stone-250 dark:border-stone-850 rounded-3xl w-full max-w-sm p-6 text-center shadow-2xl relative space-y-5 animate-[scaleIn_0.3s_ease-out]">
+          <div className="bg-white dark:bg-stone-900 border border-stone-200 dark:border-stone-800 rounded-3xl w-full max-w-sm p-6 text-center shadow-2xl relative space-y-5 animate-[scaleIn_0.3s_ease-out]">
             <div className="w-16 h-16 mx-auto bg-amber-500 rounded-full flex items-center justify-center text-white shadow-lg animate-bounce">
               {rewardReveal.type === "xp" ? <Zap className="w-8 h-8 text-white" /> : <Sparkles className="w-8 h-8 text-white" />}
             </div>

@@ -129,11 +129,11 @@ function getPlaceholderImageUrl(category: string): string {
             Mẫu biểu, ebook, checklist và công cụ hỗ trợ hành trình học tài chính của bạn - tải về hoàn toàn miễn phí không giới hạn.
             Đóng góp tài liệu của riêng bạn để chia sẻ cho cộng đồng nhé!
           </p>
-          <div className="mt-4 p-4 rounded-xl border border-rose-250 dark:border-rose-900/60 bg-rose-50/50 dark:bg-rose-950/20 flex items-start gap-3 shadow-[0_0_12px_rgba(244,63,94,0.05)]">
+          <div className="mt-4 p-4 rounded-xl border border-rose-200 dark:border-rose-900/60 bg-rose-50/50 dark:bg-rose-950/20 flex items-start gap-3 shadow-[0_0_12px_rgba(244,63,94,0.05)]">
             <Gift className="w-5 h-5 text-rose-500 shrink-0 mt-0.5 animate-bounce" />
             <div>
-              <p className="text-xs font-black text-rose-700 dark:text-rose-450 uppercase tracking-wider">Món quà tri thức từ cộng đồng</p>
-              <p className="text-xs text-rose-600/90 dark:text-rose-350 mt-1 leading-relaxed">
+              <p className="text-xs font-black text-rose-700 dark:text-rose-400 uppercase tracking-wider">Món quà tri thức từ cộng đồng</p>
+              <p className="text-xs text-rose-600/90 dark:text-rose-300 mt-1 leading-relaxed">
                 Tất cả tài liệu, ebook, biểu mẫu Excel và checklist tại đây đều được chia sẻ hoàn toàn miễn phí để phục vụ mục đích học tập cá nhân.
               </p>
             </div>

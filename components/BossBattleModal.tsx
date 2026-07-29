@@ -268,7 +268,7 @@ export default function BossBattleModal({
                 const isSelected = selectedOption === oIdx;
                 const isCorrect = oIdx === currentQ.correct;
 
-                let btnBg = "bg-stone-850 border-stone-800 hover:border-amber-500/50";
+                let btnBg = "bg-stone-800 border-stone-800 hover:border-amber-500/50";
                 if (selectedOption !== null) {
                   if (isSelected && isCorrect) btnBg = "bg-emerald-950/60 border-emerald-500 text-emerald-300";
                   else if (isSelected && !isCorrect) btnBg = "bg-rose-950/60 border-rose-500 text-rose-300";

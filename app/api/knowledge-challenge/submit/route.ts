@@ -17,7 +17,7 @@ import { STANDALONE_QUIZ_DAILY_XP_CAP, computeQuizXp } from "@/lib/supabase-quiz
 
 const MAX_ANSWERS = 50;
 const GATE_PASS_RATIO = 0.6;
-const VALID_TRACKS = new Set(["personal", "professional", "cfa"]);
+const VALID_TRACKS = new Set(["personal", "professional", "cfa", "ib"]);
 const VALID_DIFFICULTIES = new Set(["de", "trung-binh", "kho", "tat-ca"]);
 
 interface AnswerInput {

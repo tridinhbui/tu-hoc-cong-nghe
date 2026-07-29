@@ -476,7 +476,7 @@ export default function OnTapCauSaiClient() {
                       {item.options.map((opt, oi) => {
                         const isCorrectOpt = oi === item.correct;
                         const chosen = state.picked === oi;
-                        let cls = "border-stone-200 dark:border-stone-700 bg-white dark:bg-stone-850 hover:border-stone-300 dark:hover:border-stone-500";
+                        let cls = "border-stone-200 dark:border-stone-700 bg-white dark:bg-stone-800 hover:border-stone-300 dark:hover:border-stone-500";
                         if (answered) {
                           if (isCorrectOpt) cls = "border-emerald-400 dark:border-emerald-700 bg-emerald-50 dark:bg-emerald-950/50 font-black";
                           else if (chosen) cls = "border-rose-400 dark:border-rose-700 bg-rose-50 dark:bg-rose-950/50";

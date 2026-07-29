@@ -319,14 +319,14 @@ export default function FlashcardClient({ userId: propUserId, initialCards, embe
         {!embedded && (
           <Link
             href="/dashboard"
-            className="inline-flex items-center gap-1.5 text-sm font-bold text-stone-600 dark:text-stone-400 hover:text-stone-900 dark:hover:text-stone-105 hover:bg-stone-100 dark:hover:bg-stone-850 rounded-xl px-3 py-2 -ml-3 mb-3 transition-all"
+            className="inline-flex items-center gap-1.5 text-sm font-bold text-stone-600 dark:text-stone-400 hover:text-stone-900 dark:hover:text-stone-105 hover:bg-stone-100 dark:hover:bg-stone-800 rounded-xl px-3 py-2 -ml-3 mb-3 transition-all"
           >
             <ArrowLeft className="w-4 h-4" /> Quay lại
           </Link>
         )}
 
         {/* Hero header */}
-        <div className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-emerald-600 via-emerald-600 to-teal-700 dark:from-emerald-800 dark:via-emerald-850 dark:to-teal-900 p-5 sm:p-7 mb-6 shadow-lg">
+        <div className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-emerald-600 via-emerald-600 to-teal-700 dark:from-emerald-800 dark:via-emerald-800 dark:to-teal-900 p-5 sm:p-7 mb-6 shadow-lg">
           <div className="absolute top-0 right-0 w-56 h-56 bg-white/10 rounded-full blur-3xl pointer-events-none -mr-16 -mt-16" />
           <div className="absolute bottom-0 left-1/4 w-40 h-40 bg-teal-300/10 rounded-full blur-2xl pointer-events-none" />
 
@@ -411,7 +411,7 @@ export default function FlashcardClient({ userId: propUserId, initialCards, embe
         {showBulkPanel && (
           <div className="mb-6 p-5 rounded-2xl border border-stone-200 dark:border-stone-800 bg-white dark:bg-stone-900 shadow-sm space-y-4 animate-[fadeIn_0.2s_ease-out]">
             <div className="flex items-center justify-between gap-3">
-              <h3 className="text-sm font-extrabold text-stone-900 dark:text-stone-150">Nhập/Xuất hàng loạt</h3>
+              <h3 className="text-sm font-extrabold text-stone-900 dark:text-stone-100">Nhập/Xuất hàng loạt</h3>
               <button
                 onClick={handleExport}
                 className="inline-flex items-center gap-1.5 text-[11px] font-bold text-stone-500 dark:text-stone-400 hover:text-stone-800 dark:hover:text-stone-200 transition-colors"
@@ -428,7 +428,7 @@ export default function FlashcardClient({ userId: propUserId, initialCards, embe
                 placeholder={"Lãi kép | Lãi tính trên cả gốc lẫn lãi tích luỹ trước đó\nWACC | Chi phí vốn bình quân gia quyền"}
                 value={bulkText}
                 onChange={(e) => setBulkText(e.target.value)}
-                className="w-full text-sm px-3.5 py-2.5 rounded-xl border border-stone-200 dark:border-stone-850 bg-stone-50/40 dark:bg-stone-950/30 text-stone-900 dark:text-stone-100 focus:outline-none focus:border-emerald-500 font-mono"
+                className="w-full text-sm px-3.5 py-2.5 rounded-xl border border-stone-200 dark:border-stone-800 bg-stone-50/40 dark:bg-stone-950/30 text-stone-900 dark:text-stone-100 focus:outline-none focus:border-emerald-500 font-mono"
               />
               {bulkText.trim() && (
                 <p className="text-[11px] text-stone-400 dark:text-stone-500 mt-1.5">
@@ -465,7 +465,7 @@ export default function FlashcardClient({ userId: propUserId, initialCards, embe
 
         {showAddForm && (
           <form onSubmit={handleAddCard} className="mb-6 p-5 rounded-2xl border border-stone-200 dark:border-stone-800 bg-white dark:bg-stone-900 shadow-sm space-y-4 animate-[fadeIn_0.2s_ease-out]">
-            <h3 className="text-sm font-extrabold text-stone-900 dark:text-stone-150">Tạo thẻ ghi nhớ mới</h3>
+            <h3 className="text-sm font-extrabold text-stone-900 dark:text-stone-100">Tạo thẻ ghi nhớ mới</h3>
             <div className="space-y-3">
               <div>
                 <label className="block text-[10px] font-extrabold text-stone-400 dark:text-stone-500 uppercase tracking-widest mb-1.5">Thuật ngữ / Từ vựng</label>
@@ -475,7 +475,7 @@ export default function FlashcardClient({ userId: propUserId, initialCards, embe
                   placeholder="Ví dụ: Lãi đơn"
                   value={newTerm}
                   onChange={(e) => setNewTerm(e.target.value)}
-                  className="w-full text-sm px-3.5 py-2.5 rounded-xl border border-stone-200 dark:border-stone-850 bg-stone-50/40 dark:bg-stone-950/30 text-stone-900 dark:text-stone-100 focus:outline-none focus:border-emerald-500"
+                  className="w-full text-sm px-3.5 py-2.5 rounded-xl border border-stone-200 dark:border-stone-800 bg-stone-50/40 dark:bg-stone-950/30 text-stone-900 dark:text-stone-100 focus:outline-none focus:border-emerald-500"
                 />
               </div>
               <div>
@@ -486,7 +486,7 @@ export default function FlashcardClient({ userId: propUserId, initialCards, embe
                   placeholder="Giải thích ngắn gọn để bạn dễ ôn tập và ghi nhớ..."
                   value={newDef}
                   onChange={(e) => setNewDef(e.target.value)}
-                  className="w-full text-sm px-3.5 py-2.5 rounded-xl border border-stone-200 dark:border-stone-850 bg-stone-50/40 dark:bg-stone-950/30 text-stone-900 dark:text-stone-100 focus:outline-none focus:border-emerald-500"
+                  className="w-full text-sm px-3.5 py-2.5 rounded-xl border border-stone-200 dark:border-stone-800 bg-stone-50/40 dark:bg-stone-950/30 text-stone-900 dark:text-stone-100 focus:outline-none focus:border-emerald-500"
                 />
               </div>
             </div>
@@ -543,11 +543,11 @@ export default function FlashcardClient({ userId: propUserId, initialCards, embe
             <div className="flex flex-col items-center">
               {currentCard && (
                 <div className="w-full max-w-sm mb-3">
-                  <div className="flex items-center justify-between text-[10px] font-extrabold text-stone-450 dark:text-stone-500 uppercase tracking-wider mb-1.5 px-0.5">
+                  <div className="flex items-center justify-between text-[10px] font-extrabold text-stone-400 dark:text-stone-500 uppercase tracking-wider mb-1.5 px-0.5">
                     <span>Đang ôn tập</span>
                     <span>Còn {dueCards.length} thẻ</span>
                   </div>
-                  <div className="h-1.5 rounded-full bg-stone-150 dark:bg-stone-800 overflow-hidden">
+                  <div className="h-1.5 rounded-full bg-stone-100 dark:bg-stone-800 overflow-hidden">
                     <div
                       className="h-full rounded-full bg-gradient-to-r from-emerald-500 to-teal-500 transition-all duration-500"
                       style={{
@@ -641,13 +641,13 @@ export default function FlashcardClient({ userId: propUserId, initialCards, embe
                     </button>
                     <button
                       onClick={() => handleSM2Action(3)}
-                      className="flex flex-col items-center gap-1 py-3 text-xs font-bold rounded-2xl border border-stone-250 dark:border-stone-850 bg-white/95 dark:bg-stone-900 text-stone-700 dark:text-stone-300 hover:scale-[1.04] hover:shadow-md active:scale-95 transition-all cursor-pointer"
+                      className="flex flex-col items-center gap-1 py-3 text-xs font-bold rounded-2xl border border-stone-200 dark:border-stone-800 bg-white/95 dark:bg-stone-900 text-stone-700 dark:text-stone-300 hover:scale-[1.04] hover:shadow-md active:scale-95 transition-all cursor-pointer"
                     >
                       <span className="text-lg leading-none">👍</span> Vừa phải
                     </button>
                     <button
                       onClick={() => handleSM2Action(5)}
-                      className="flex flex-col items-center gap-1 py-3 text-xs font-bold rounded-2xl border border-emerald-250 dark:border-emerald-900 bg-emerald-50/40 dark:bg-emerald-950/20 text-emerald-600 dark:text-emerald-400 hover:scale-[1.04] hover:shadow-md active:scale-95 transition-all cursor-pointer"
+                      className="flex flex-col items-center gap-1 py-3 text-xs font-bold rounded-2xl border border-emerald-200 dark:border-emerald-900 bg-emerald-50/40 dark:bg-emerald-950/20 text-emerald-600 dark:text-emerald-400 hover:scale-[1.04] hover:shadow-md active:scale-95 transition-all cursor-pointer"
                     >
                       <span className="text-lg leading-none">⭐️</span> Dễ nhớ
                     </button>
@@ -665,7 +665,7 @@ export default function FlashcardClient({ userId: propUserId, initialCards, embe
             </div>
 
             {/* Manage Cards Zone */}
-            <div className="border-t border-stone-150 dark:border-stone-800/80 pt-6">
+            <div className="border-t border-stone-100 dark:border-stone-800/80 pt-6">
               <div className="flex items-center justify-between mb-4">
                 <h3 className="text-xs font-extrabold text-stone-500 dark:text-stone-400 uppercase tracking-widest">Danh sách từ vựng hiện tại</h3>
                 <span className="text-[10px] font-bold text-stone-400 dark:text-stone-500">{cards.length} thẻ</span>
@@ -677,7 +677,7 @@ export default function FlashcardClient({ userId: propUserId, initialCards, embe
                   return (
                     <div
                       key={c.term}
-                      className="group p-4 rounded-2xl border border-stone-200 dark:border-stone-850 bg-white dark:bg-stone-900 shadow-sm hover:shadow-md hover:border-stone-300 dark:hover:border-stone-700 transition-all"
+                      className="group p-4 rounded-2xl border border-stone-200 dark:border-stone-800 bg-white dark:bg-stone-900 shadow-sm hover:shadow-md hover:border-stone-300 dark:hover:border-stone-700 transition-all"
                     >
                       <div className="flex justify-between gap-4 items-start">
                         <div className="min-w-0 flex-1">
@@ -686,7 +686,7 @@ export default function FlashcardClient({ userId: propUserId, initialCards, embe
                             {isDue ? (
                               <span className="text-[9px] font-extrabold px-1.5 py-0.5 rounded-full bg-amber-50 dark:bg-amber-950/40 text-amber-700 dark:text-amber-400 border border-amber-200/50">Đến hạn</span>
                             ) : (
-                              <span className="text-[9px] font-extrabold px-1.5 py-0.5 rounded-full bg-stone-50 dark:bg-stone-950/40 text-stone-500 border border-stone-150">Đã ôn</span>
+                              <span className="text-[9px] font-extrabold px-1.5 py-0.5 rounded-full bg-stone-50 dark:bg-stone-950/40 text-stone-500 border border-stone-100">Đã ôn</span>
                             )}
                             {c.repetitions >= 5 && (
                               <span className="text-[9px] font-extrabold px-1.5 py-0.5 rounded-full bg-emerald-50 dark:bg-emerald-950/40 text-emerald-700 dark:text-emerald-400 border border-emerald-200/50 flex items-center gap-0.5">
@@ -705,7 +705,7 @@ export default function FlashcardClient({ userId: propUserId, initialCards, embe
                         </button>
                       </div>
                       {/* Mastery progress (repetitions towards 5 = "mastered") */}
-                      <div className="h-1 rounded-full bg-stone-100 dark:bg-stone-850 overflow-hidden mt-3">
+                      <div className="h-1 rounded-full bg-stone-100 dark:bg-stone-800 overflow-hidden mt-3">
                         <div
                           className={`h-full rounded-full transition-all duration-300 ${mastery >= 100 ? "bg-emerald-500" : "bg-teal-400"}`}
                           style={{ width: `${mastery}%` }}

@@ -125,7 +125,7 @@ export default function WeeklyQuestsWidget({ userId }: WeeklyQuestsWidgetProps) 
   };
 
   return (
-    <div className="bg-white dark:bg-stone-900 border border-stone-250 dark:border-stone-850 rounded-3xl p-5 shadow-sm space-y-4">
+    <div className="bg-white dark:bg-stone-900 border border-stone-200 dark:border-stone-800 rounded-3xl p-5 shadow-sm space-y-4">
       {/* Title */}
       <div className="flex items-center justify-between border-b border-stone-100 dark:border-stone-800 pb-3">
         <div>
@@ -199,7 +199,7 @@ export default function WeeklyQuestsWidget({ userId }: WeeklyQuestsWidgetProps) 
       {/* Epic Chest Claim Button */}
       {allQuestsDone ? (
         isEpicClaimed ? (
-          <div className="p-3 bg-stone-50 dark:bg-stone-950 border border-stone-150 dark:border-stone-850 rounded-2xl text-center text-[10px] text-stone-450 dark:text-stone-550 font-bold flex items-center justify-center gap-1.5">
+          <div className="p-3 bg-stone-50 dark:bg-stone-950 border border-stone-100 dark:border-stone-800 rounded-2xl text-center text-[10px] text-stone-400 dark:text-stone-550 font-bold flex items-center justify-center gap-1.5">
             <CheckCircle2 className="w-4 h-4 text-emerald-500" />
             Đã nhận phần thưởng tuần này!
           </div>
@@ -214,7 +214,7 @@ export default function WeeklyQuestsWidget({ userId }: WeeklyQuestsWidgetProps) 
           </button>
         )
       ) : (
-        <div className="p-3 bg-stone-50 dark:bg-stone-950 border border-stone-150 dark:border-stone-850 rounded-2xl text-center text-[10px] text-stone-400 dark:text-stone-550 font-bold">
+        <div className="p-3 bg-stone-50 dark:bg-stone-950 border border-stone-100 dark:border-stone-800 rounded-2xl text-center text-[10px] text-stone-400 dark:text-stone-550 font-bold">
           🔒 Rương Sử Thi đang bị khóa
         </div>
       )}

@@ -49,7 +49,7 @@ export default function TrackPreviewPanel({ previewTrack, setPreviewTrack, compa
               className={`relative text-left transition-all cursor-pointer ${compact ? "px-3.5 py-2.5" : "px-5 py-3.5"} ${
                 isActive
                   ? "bg-stone-950 text-white dark:bg-stone-100 dark:text-stone-900 shadow-xs"
-                  : "bg-white/80 dark:bg-stone-900/60 text-stone-500 dark:text-stone-400 hover:bg-stone-100/60 dark:hover:bg-stone-850"
+                  : "bg-white/80 dark:bg-stone-900/60 text-stone-500 dark:text-stone-400 hover:bg-stone-100/60 dark:hover:bg-stone-800"
               }`}
             >
               {id === "cfa" && (

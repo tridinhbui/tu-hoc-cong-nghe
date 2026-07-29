@@ -69,7 +69,7 @@ export default function GoalSelectionBanner({ userId }: GoalSelectionBannerProps
   const activeGoalInfo = GOALS.find((g) => g.id === selectedGoal);
 
   return (
-    <div className="bg-white dark:bg-stone-900 border border-stone-250 dark:border-stone-850 rounded-3xl overflow-hidden shadow-sm">
+    <div className="bg-white dark:bg-stone-900 border border-stone-200 dark:border-stone-800 rounded-3xl overflow-hidden shadow-sm">
       {/* Active Goal Summary - Collapsible */}
       {!showSelector && activeGoalInfo ? (
         <>
@@ -85,7 +85,7 @@ export default function GoalSelectionBanner({ userId }: GoalSelectionBannerProps
                 <span className="text-[9px] font-extrabold uppercase tracking-widest text-stone-400 dark:text-stone-500 block">
                   Mục tiêu hiện tại của bạn
                 </span>
-                <h4 className="text-xs font-black text-stone-900 dark:text-stone-150 mt-0.5">
+                <h4 className="text-xs font-black text-stone-900 dark:text-stone-100 mt-0.5">
                   {activeGoalInfo.name}
                 </h4>
               </div>
@@ -96,7 +96,7 @@ export default function GoalSelectionBanner({ userId }: GoalSelectionBannerProps
                   e.stopPropagation();
                   setShowSelector(true);
                 }}
-                className="px-3.5 py-1.5 text-[10px] font-extrabold bg-stone-100 hover:bg-stone-200 dark:bg-stone-850 dark:hover:bg-stone-800 text-stone-750 dark:text-stone-300 rounded-lg transition-colors flex items-center gap-1 cursor-pointer focus:outline-none"
+                className="px-3.5 py-1.5 text-[10px] font-extrabold bg-stone-100 hover:bg-stone-200 dark:bg-stone-800 dark:hover:bg-stone-800 text-stone-700 dark:text-stone-300 rounded-lg transition-colors flex items-center gap-1 cursor-pointer focus:outline-none"
               >
                 <Shuffle className="w-3.5 h-3.5" />
                 <span>Thay đổi</span>
@@ -134,7 +134,7 @@ export default function GoalSelectionBanner({ userId }: GoalSelectionBannerProps
                   className={`text-left p-4.5 rounded-2xl border transition-all flex flex-col justify-between space-y-3 cursor-pointer focus:outline-none ${
                     isSelected
                       ? "border-emerald-500 bg-emerald-500/[0.03] dark:bg-emerald-950/20"
-                      : "border-stone-200 dark:border-stone-850 hover:border-stone-300 dark:hover:border-stone-750 bg-white dark:bg-stone-900"
+                      : "border-stone-200 dark:border-stone-800 hover:border-stone-300 dark:hover:border-stone-700 bg-white dark:bg-stone-900"
                   }`}
                 >
                   <div className="flex items-center justify-between w-full">
@@ -146,7 +146,7 @@ export default function GoalSelectionBanner({ userId }: GoalSelectionBannerProps
                     )}
                   </div>
                   <div>
-                    <h4 className="text-xs font-black text-stone-900 dark:text-stone-150 leading-snug">
+                    <h4 className="text-xs font-black text-stone-900 dark:text-stone-100 leading-snug">
                       {g.name}
                     </h4>
                     <p className="text-[10px] text-stone-500 dark:text-stone-405 mt-1 leading-normal">

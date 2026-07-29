@@ -319,8 +319,8 @@ function CareerRadarChart({ traits, color = "#0d9488" }: { traits?: { analytical
             />
           );
         })}
-        <line x1={cx - R} y1={cy} x2={cx + R} y2={cy} stroke="currentColor" className="text-stone-200 dark:text-stone-850" strokeWidth="1" />
-        <line x1={cx} y1={cy - R} x2={cx} y2={cy + R} stroke="currentColor" className="text-stone-200 dark:text-stone-850" strokeWidth="1" />
+        <line x1={cx - R} y1={cy} x2={cx + R} y2={cy} stroke="currentColor" className="text-stone-200 dark:text-stone-800" strokeWidth="1" />
+        <line x1={cx} y1={cy - R} x2={cx} y2={cy + R} stroke="currentColor" className="text-stone-200 dark:text-stone-800" strokeWidth="1" />
         
         <text x={cx} y={cy - R - 6} textAnchor="middle" className="text-[8px] font-black fill-stone-500 dark:fill-stone-400">PHÂN TÍCH</text>
         <text x={cx + R + 6} y={cy + 3} textAnchor="start" className="text-[8px] font-black fill-stone-500 dark:fill-stone-400">Đ.LƯỢNG</text>
@@ -361,7 +361,7 @@ function ComparisonModal({
   return (
     <div className="fixed inset-0 bg-black/70 backdrop-blur-sm z-50 flex items-center justify-center p-4" onClick={onClose}>
       <motion.div 
-        className="bg-white dark:bg-stone-900 rounded-3xl border-2 border-stone-200 dark:border-stone-850 w-full max-w-4xl max-h-[90vh] overflow-y-auto p-6 sm:p-8 relative shadow-2xl"
+        className="bg-white dark:bg-stone-900 rounded-3xl border-2 border-stone-200 dark:border-stone-800 w-full max-w-4xl max-h-[90vh] overflow-y-auto p-6 sm:p-8 relative shadow-2xl"
         initial={{ scale: 0.95, opacity: 0 }}
         animate={{ scale: 1, opacity: 1 }}
         exit={{ scale: 0.95, opacity: 0 }}
@@ -370,7 +370,7 @@ function ComparisonModal({
       >
         <button
           onClick={onClose}
-          className="absolute top-4 right-4 w-8 h-8 rounded-full bg-stone-100 dark:bg-stone-850 text-stone-500 dark:text-stone-400 hover:text-stone-900 dark:hover:text-stone-100 flex items-center justify-center transition-colors cursor-pointer"
+          className="absolute top-4 right-4 w-8 h-8 rounded-full bg-stone-100 dark:bg-stone-800 text-stone-500 dark:text-stone-400 hover:text-stone-900 dark:hover:text-stone-100 flex items-center justify-center transition-colors cursor-pointer"
         >
           <X className="w-4 h-4" />
         </button>
@@ -386,7 +386,7 @@ function ComparisonModal({
                 <img src={careerA.avatar3d} alt={careerA.title} className="w-full h-full object-cover" />
               </div>
               <div>
-                <span className="text-[9px] font-black uppercase tracking-wider px-2 py-0.5 rounded bg-emerald-100 dark:bg-emerald-950/40 text-emerald-700 dark:text-emerald-450">Hiện tại</span>
+                <span className="text-[9px] font-black uppercase tracking-wider px-2 py-0.5 rounded bg-emerald-100 dark:bg-emerald-950/40 text-emerald-700 dark:text-emerald-400">Hiện tại</span>
                 <h3 className="text-base font-black text-stone-900 dark:text-stone-50 leading-tight mt-0.5">{careerA.title}</h3>
                 <p className="text-xs text-stone-400 dark:text-stone-500 font-bold">{careerA.englishTitle}</p>
               </div>
@@ -426,7 +426,7 @@ function ComparisonModal({
                   <span className="font-extrabold text-stone-400 block text-[9px] uppercase tracking-wider">Công cụ chính</span>
                   <div className="flex flex-wrap gap-1 mt-1">
                     {careerA.requiredTools.map(t => (
-                      <span key={t} className="px-1.5 py-0.5 rounded bg-emerald-50 dark:bg-emerald-950/20 text-[10px] font-bold text-emerald-700 dark:text-emerald-450">{t}</span>
+                      <span key={t} className="px-1.5 py-0.5 rounded bg-emerald-50 dark:bg-emerald-950/20 text-[10px] font-bold text-emerald-700 dark:text-emerald-400">{t}</span>
                     ))}
                   </div>
                 </div>
@@ -523,14 +523,14 @@ function ComparisonModal({
                       points={`100,${100 - r} ${100 + r},100 ${100},${100 + r} ${100 - r},100`}
                       fill="none"
                       stroke="currentColor"
-                      className="text-stone-200 dark:text-stone-850"
+                      className="text-stone-200 dark:text-stone-800"
                       strokeWidth="1"
                       strokeDasharray={lvl < 5 ? "2,2" : "none"}
                     />
                   );
                 })}
-                <line x1={30} y1={100} x2={170} y2={100} stroke="currentColor" className="text-stone-200 dark:text-stone-850" strokeWidth="1" />
-                <line x1={100} y1={30} x2={100} y2={170} stroke="currentColor" className="text-stone-200 dark:text-stone-850" strokeWidth="1" />
+                <line x1={30} y1={100} x2={170} y2={100} stroke="currentColor" className="text-stone-200 dark:text-stone-800" strokeWidth="1" />
+                <line x1={100} y1={30} x2={100} y2={170} stroke="currentColor" className="text-stone-200 dark:text-stone-800" strokeWidth="1" />
 
                 <text x={100} y={22} textAnchor="middle" className="text-[8px] font-black fill-stone-550 dark:fill-stone-400">PHÂN TÍCH</text>
                 <text x={178} y={103} textAnchor="start" className="text-[8px] font-black fill-stone-550 dark:fill-stone-400">ĐỊNH LƯỢNG</text>
@@ -957,10 +957,10 @@ export default function JobSearchClient() {
                     <h4 className="text-xs font-black uppercase tracking-wider">Trắc nghiệm Hướng nghiệp</h4>
                   </div>
                   <p className="hidden sm:block text-xs text-stone-500 dark:text-stone-400 mt-1.5 leading-relaxed">
-                    Trả lời 5 câu hỏi để định hướng xem bạn phù hợp nhất với vị trí tài chính nào và nhận ngay <strong className="text-emerald-600 dark:text-emerald-450 font-black">+50 XP</strong>.
+                    Trả lời 5 câu hỏi để định hướng xem bạn phù hợp nhất với vị trí tài chính nào và nhận ngay <strong className="text-emerald-600 dark:text-emerald-400 font-black">+50 XP</strong>.
                   </p>
                   <p className="sm:hidden text-[10px] text-stone-500 dark:text-stone-400 mt-1 leading-relaxed">
-                    Trả lời nhanh 5 câu hỏi nhận ngay <strong className="text-emerald-600 dark:text-emerald-450 font-black">+50 XP</strong>.
+                    Trả lời nhanh 5 câu hỏi nhận ngay <strong className="text-emerald-600 dark:text-emerald-400 font-black">+50 XP</strong>.
                   </p>
                   <button
                     onClick={startQuiz}
@@ -975,7 +975,7 @@ export default function JobSearchClient() {
                     <SearchCode className="w-4 h-4 text-emerald-500" />
                     <h4 className="text-xs font-black uppercase tracking-wider">Hướng nghiệp của bạn</h4>
                   </div>
-                  <div className="mt-2 p-2.5 rounded-xl bg-stone-50 dark:bg-stone-950/30 border border-stone-200/40 dark:border-stone-850 text-xs">
+                  <div className="mt-2 p-2.5 rounded-xl bg-stone-50 dark:bg-stone-950/30 border border-stone-200/40 dark:border-stone-800 text-xs">
                     <span className="text-[9px] font-black uppercase text-stone-400 dark:text-stone-550 block mb-0.5">Phù hợp nhất:</span>
                     <span className="font-extrabold text-stone-805 dark:text-stone-200 block leading-tight">{quizResult?.split(" - ")[0]}</span>
                   </div>
@@ -1039,7 +1039,7 @@ export default function JobSearchClient() {
                       className={`shrink-0 px-3.5 py-1.5 rounded-full text-xs font-black transition-all cursor-pointer select-none ${
                         isCatSelected
                           ? "bg-emerald-600 dark:bg-emerald-500 text-white shadow-sm"
-                          : "bg-white dark:bg-stone-900 text-stone-600 dark:text-stone-400 border border-stone-200 dark:border-stone-800/80 hover:bg-stone-50 dark:hover:bg-stone-850"
+                          : "bg-white dark:bg-stone-900 text-stone-600 dark:text-stone-400 border border-stone-200 dark:border-stone-800/80 hover:bg-stone-50 dark:hover:bg-stone-800"
                       }`}
                     >
                       {cat.label}
@@ -1137,7 +1137,7 @@ export default function JobSearchClient() {
               />
               
               {/* Header Details Panel */}
-              <div className="flex flex-col lg:flex-row gap-6 items-start pb-6 border-b border-stone-150 dark:border-stone-800">
+              <div className="flex flex-col lg:flex-row gap-6 items-start pb-6 border-b border-stone-100 dark:border-stone-800">
                 <CareerAvatar career={selected} size={110} />
                 <div className="flex-1 min-w-0">
                   <div className="flex flex-wrap items-center gap-2.5">
@@ -1151,7 +1151,7 @@ export default function JobSearchClient() {
                     </span>
                     <span className="text-xs text-stone-400 dark:text-stone-500 font-extrabold">• Dải lương: {selected.salaryHint}</span>
                   </div>
-                  <p className="text-[10px] text-stone-350 dark:text-stone-600 font-semibold mt-1">
+                  <p className="text-[10px] text-stone-300 dark:text-stone-600 font-semibold mt-1">
                     * Mức lương chỉ mang tính ước tính tham khảo, thay đổi theo công ty, khu vực và kinh nghiệm thực tế - không phải số liệu khảo sát chính thức.
                   </p>
                   <h2 className="text-2xl font-black text-stone-900 dark:text-stone-50 mt-2 leading-tight">
@@ -1165,7 +1165,7 @@ export default function JobSearchClient() {
               </div>
 
               {/* Metrics & Radar Chart Section */}
-              <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 mt-6 pb-6 border-b border-stone-150 dark:border-stone-800">
+              <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 mt-6 pb-6 border-b border-stone-100 dark:border-stone-800">
                 {/* Left Side: Stats & Goal Tracking */}
                 <div className="lg:col-span-7 flex flex-col justify-between space-y-4">
                   <div className="grid grid-cols-3 gap-3">
@@ -1205,7 +1205,7 @@ export default function JobSearchClient() {
                       onClick={() => {
                         setCompareModalOpen(true);
                       }}
-                      className="py-2.5 px-4 rounded-xl border border-stone-200 dark:border-stone-800 text-stone-750 dark:text-stone-300 text-xs font-black hover:bg-stone-50 dark:hover:bg-stone-950 transition-all cursor-pointer flex items-center justify-center gap-1.5 active:scale-[0.98]"
+                      className="py-2.5 px-4 rounded-xl border border-stone-200 dark:border-stone-800 text-stone-700 dark:text-stone-300 text-xs font-black hover:bg-stone-50 dark:hover:bg-stone-950 transition-all cursor-pointer flex items-center justify-center gap-1.5 active:scale-[0.98]"
                     >
                       ⚖️ So sánh vị trí
                     </button>
@@ -1253,7 +1253,7 @@ export default function JobSearchClient() {
                           key={item}
                           className={`flex items-start gap-2.5 p-2 rounded-lg border text-[11px] font-bold transition-all cursor-pointer select-none ${
                             isChecked
-                              ? "bg-white dark:bg-stone-900 border-amber-400 text-stone-850 dark:text-stone-200 shadow-sm"
+                              ? "bg-white dark:bg-stone-900 border-amber-400 text-stone-800 dark:text-stone-200 shadow-sm"
                               : "bg-white/40 dark:bg-stone-900/20 border-stone-200/50 dark:border-stone-800/50 text-stone-400 hover:border-stone-300"
                           }`}
                         >
@@ -1350,7 +1350,7 @@ export default function JobSearchClient() {
                         {/* Pros & Cons split layout */}
                         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
                           <div className="bg-emerald-50/20 dark:bg-emerald-950/10 p-5 rounded-2xl border border-emerald-500/10 shadow-sm">
-                            <h4 className="text-xs font-black uppercase text-emerald-600 dark:text-emerald-450 tracking-wider mb-2 flex items-center gap-1.5">
+                            <h4 className="text-xs font-black uppercase text-emerald-600 dark:text-emerald-400 tracking-wider mb-2 flex items-center gap-1.5">
                               <ThumbsUp className="w-4 h-4" />
                               Ưu điểm chính
                             </h4>
@@ -1360,7 +1360,7 @@ export default function JobSearchClient() {
                           </div>
                           
                           <div className="bg-rose-50/20 dark:bg-rose-950/10 p-5 rounded-2xl border border-rose-500/10 shadow-sm">
-                            <h4 className="text-xs font-black uppercase text-rose-600 dark:text-rose-450 tracking-wider mb-2 flex items-center gap-1.5">
+                            <h4 className="text-xs font-black uppercase text-rose-600 dark:text-rose-400 tracking-wider mb-2 flex items-center gap-1.5">
                               <ThumbsDown className="w-4 h-4" />
                               Nhược điểm & Thách thức
                             </h4>
@@ -1414,7 +1414,7 @@ export default function JobSearchClient() {
                                   >
                                     {idx + 1}
                                   </div>
-                                  <h4 className={`text-sm font-black transition-colors ${isStepActive ? "text-indigo-650 dark:text-indigo-400" : "text-stone-900 dark:text-stone-100"}`}>{step}</h4>
+                                  <h4 className={`text-sm font-black transition-colors ${isStepActive ? "text-indigo-600 dark:text-indigo-400" : "text-stone-900 dark:text-stone-100"}`}>{step}</h4>
                                   <p className="text-[9px] uppercase font-black tracking-wider text-stone-400 dark:text-stone-550 mt-0.5">
                                     {idx === 0 ? "Khởi đầu" : idx === selected.careerPath.length - 1 ? "Mục tiêu dài hạn" : "Nấc thang phát triển"}
                                   </p>
@@ -1434,12 +1434,12 @@ export default function JobSearchClient() {
                                 <span className="font-extrabold text-indigo-700 dark:text-indigo-300 uppercase tracking-wide">
                                   Bậc {selectedPathStep + 1}: {selected.careerPath[selectedPathStep]}
                                 </span>
-                                <span className="font-black text-stone-450 uppercase tracking-widest text-[9px]">
+                                <span className="font-black text-stone-400 uppercase tracking-widest text-[9px]">
                                   {selectedPathStep === 0 ? "0 - 2 năm" : selectedPathStep === 1 ? "2 - 5 năm" : selectedPathStep === 2 ? "5 - 8 năm" : "8+ năm"}
                                 </span>
                               </div>
                               <p className="text-stone-600 dark:text-stone-300 leading-relaxed mb-2 font-semibold">
-                                <strong className="text-stone-800 dark:text-stone-250">Trọng tâm: </strong>
+                                <strong className="text-stone-800 dark:text-stone-200">Trọng tâm: </strong>
                                 {selectedPathStep === 0 
                                   ? "Học hỏi quy trình, xử lý số liệu thô, thực thi các nghiệp vụ cơ bản dưới sự kèm cặp sát sao." 
                                   : selectedPathStep === 1 
@@ -1472,7 +1472,7 @@ export default function JobSearchClient() {
                           </h3>
                           <div className="space-y-3">
                             {selected.certifications.map((cert, idx) => (
-                              <div key={idx} className="flex items-center gap-3 p-3.5 bg-stone-50 dark:bg-stone-950/40 rounded-xl border border-stone-200/50 dark:border-stone-850">
+                              <div key={idx} className="flex items-center gap-3 p-3.5 bg-stone-50 dark:bg-stone-950/40 rounded-xl border border-stone-200/50 dark:border-stone-800">
                                 <Award className="w-5 h-5 text-amber-500 shrink-0" />
                                 <span className="text-xs font-bold text-stone-700 dark:text-stone-300">{cert}</span>
                               </div>
@@ -1523,7 +1523,7 @@ export default function JobSearchClient() {
 
                     {activeTab === "search" && (
                       <div className="space-y-6">
-                        <div className="bg-stone-50 dark:bg-stone-950/40 p-5 rounded-2xl border border-stone-200/40 dark:border-stone-850">
+                        <div className="bg-stone-50 dark:bg-stone-950/40 p-5 rounded-2xl border border-stone-200/40 dark:border-stone-800">
                           <h4 className="text-xs font-black uppercase text-stone-400 dark:text-stone-500">Từ khóa tìm kiếm gợi ý:</h4>
                           <p className="text-lg font-black text-stone-800 dark:text-stone-200 mt-1">"{selected.searchKeyword}"</p>
                           <p className="text-xs text-stone-400 mt-1">Hệ thống sẽ tự động tìm kiếm trực tiếp trên các nền tảng tuyển dụng lớn theo từ khóa này.</p>
@@ -1590,7 +1590,7 @@ export default function JobSearchClient() {
             onClick={() => setMobileDetailOpen(false)}
           >
             <motion.div
-              className="bg-white dark:bg-stone-950 w-full max-h-[92vh] rounded-t-3xl overflow-y-auto p-6 relative border-t-2 border-stone-200 dark:border-stone-850"
+              className="bg-white dark:bg-stone-950 w-full max-h-[92vh] rounded-t-3xl overflow-y-auto p-6 relative border-t-2 border-stone-200 dark:border-stone-800"
               initial={{ y: "100%" }}
               animate={{ y: 0 }}
               exit={{ y: "100%" }}
@@ -1603,13 +1603,13 @@ export default function JobSearchClient() {
               {/* Close Button */}
               <button
                 onClick={() => setMobileDetailOpen(false)}
-                className="absolute top-4 right-4 w-8 h-8 rounded-full bg-stone-100 dark:bg-stone-850 text-stone-500 dark:text-stone-400 hover:text-stone-900 dark:hover:text-stone-100 flex items-center justify-center transition-colors"
+                className="absolute top-4 right-4 w-8 h-8 rounded-full bg-stone-100 dark:bg-stone-800 text-stone-500 dark:text-stone-400 hover:text-stone-900 dark:hover:text-stone-100 flex items-center justify-center transition-colors"
               >
                 <X className="w-4 h-4" />
               </button>
 
               {/* Mobile Header */}
-              <div className="flex gap-4 items-center pb-5 border-b border-stone-100 dark:border-stone-850">
+              <div className="flex gap-4 items-center pb-5 border-b border-stone-100 dark:border-stone-800">
                 <CareerAvatar career={selected} size={80} />
                 <div className="min-w-0 flex-1">
                   <span 
@@ -1634,17 +1634,17 @@ export default function JobSearchClient() {
 
               {/* Mobile stats */}
               <div className="grid grid-cols-3 gap-3 mt-4">
-                <div className="bg-stone-50 dark:bg-stone-900/40 p-3 rounded-xl border border-stone-200/50 dark:border-stone-850 text-center">
+                <div className="bg-stone-50 dark:bg-stone-900/40 p-3 rounded-xl border border-stone-200/50 dark:border-stone-800 text-center">
                   <p className="text-[9px] uppercase font-bold text-stone-400">Độ khó</p>
-                  <p className="text-sm font-black text-stone-850 dark:text-stone-200 mt-1">{selected.entryDifficulty}/5</p>
+                  <p className="text-sm font-black text-stone-800 dark:text-stone-200 mt-1">{selected.entryDifficulty}/5</p>
                 </div>
-                <div className="bg-stone-50 dark:bg-stone-900/40 p-3 rounded-xl border border-stone-200/50 dark:border-stone-850 text-center">
+                <div className="bg-stone-50 dark:bg-stone-900/40 p-3 rounded-xl border border-stone-200/50 dark:border-stone-800 text-center">
                   <p className="text-[9px] uppercase font-bold text-stone-400">Áp lực</p>
-                  <p className="text-sm font-black text-stone-850 dark:text-stone-200 mt-1">{selected.stressLevel}/5</p>
+                  <p className="text-sm font-black text-stone-800 dark:text-stone-200 mt-1">{selected.stressLevel}/5</p>
                 </div>
-                <div className="bg-stone-50 dark:bg-stone-900/40 p-3 rounded-xl border border-stone-200/50 dark:border-stone-850 text-center">
+                <div className="bg-stone-50 dark:bg-stone-900/40 p-3 rounded-xl border border-stone-200/50 dark:border-stone-800 text-center">
                   <p className="text-[9px] uppercase font-bold text-stone-400">Cân bằng</p>
-                  <p className="text-sm font-black text-stone-850 dark:text-stone-200 mt-1">{selected.wlb}/5</p>
+                  <p className="text-sm font-black text-stone-800 dark:text-stone-200 mt-1">{selected.wlb}/5</p>
                 </div>
               </div>
 
@@ -1664,7 +1664,7 @@ export default function JobSearchClient() {
                   onClick={() => {
                     setCompareModalOpen(true);
                   }}
-                  className="py-2 px-3 rounded-xl border border-stone-200 dark:border-stone-800 text-stone-750 dark:text-stone-300 text-[10px] font-black hover:bg-stone-50 dark:hover:bg-stone-950 transition-all cursor-pointer flex items-center justify-center gap-1.5 active:scale-[0.98]"
+                  className="py-2 px-3 rounded-xl border border-stone-200 dark:border-stone-800 text-stone-700 dark:text-stone-300 text-[10px] font-black hover:bg-stone-50 dark:hover:bg-stone-950 transition-all cursor-pointer flex items-center justify-center gap-1.5 active:scale-[0.98]"
                 >
                   ⚖️ So sánh
                 </button>
@@ -1683,7 +1683,7 @@ export default function JobSearchClient() {
                     </span>
                   </div>
                   
-                  <div className="w-full h-1 bg-stone-250 dark:bg-stone-800 rounded-full overflow-hidden mb-3">
+                  <div className="w-full h-1 bg-stone-200 dark:bg-stone-800 rounded-full overflow-hidden mb-3">
                     <div
                       className="h-full bg-amber-500 rounded-full transition-all duration-300"
                       style={{ width: `${((completedItems.filter(i => [...(selected.skills || []), ...(selected.certifications || [])].includes(i)).length) / ((selected.skills?.length || 0) + (selected.certifications?.length || 0) || 1)) * 100}%` }}
@@ -1699,7 +1699,7 @@ export default function JobSearchClient() {
                           key={item}
                           className={`flex items-start gap-2 p-1.5 rounded-lg border text-[10px] font-bold transition-all cursor-pointer select-none ${
                             isChecked
-                              ? "bg-white dark:bg-stone-900 border-amber-400 text-stone-850 dark:text-stone-200 shadow-sm"
+                              ? "bg-white dark:bg-stone-900 border-amber-400 text-stone-800 dark:text-stone-200 shadow-sm"
                               : "bg-white/40 dark:bg-stone-900/20 border-stone-200/50 dark:border-stone-800/50 text-stone-400"
                           }`}
                         >
@@ -1736,7 +1736,7 @@ export default function JobSearchClient() {
                       key={tab.id}
                       onClick={() => setActiveTab(tab.id as any)}
                       className={`flex items-center gap-1.5 px-3.5 py-2.5 text-[10px] font-black uppercase tracking-wider relative shrink-0 transition-colors select-none ${
-                        isActive ? "text-emerald-500 dark:text-emerald-400" : "text-stone-450 dark:text-stone-500 hover:text-stone-600"
+                        isActive ? "text-emerald-500 dark:text-emerald-400" : "text-stone-400 dark:text-stone-500 hover:text-stone-600"
                       }`}
                     >
                       <tab.icon className="w-3.5 h-3.5" />
@@ -1789,14 +1789,14 @@ export default function JobSearchClient() {
                       <div className="space-y-4">
                         <div className="grid grid-cols-1 gap-3">
                           <div className="p-4 bg-emerald-50/20 dark:bg-emerald-950/10 rounded-2xl border border-emerald-500/10">
-                            <span className="text-[9px] font-black text-emerald-600 dark:text-emerald-450 block mb-1 flex items-center gap-1">
+                            <span className="text-[9px] font-black text-emerald-600 dark:text-emerald-400 block mb-1 flex items-center gap-1">
                               <ThumbsUp className="w-3.5 h-3.5" />
                               ƯU ĐIỂM
                             </span>
                             <p className="text-xs text-stone-700 dark:text-stone-300 leading-relaxed">{selected.pros}</p>
                           </div>
                           <div className="p-4 bg-rose-50/20 dark:bg-rose-950/10 rounded-2xl border border-rose-500/10">
-                            <span className="text-[9px] font-black text-rose-600 dark:text-rose-450 block mb-1 flex items-center gap-1">
+                            <span className="text-[9px] font-black text-rose-600 dark:text-rose-400 block mb-1 flex items-center gap-1">
                               <ThumbsDown className="w-3.5 h-3.5" />
                               NHƯỢC ĐIỂM
                             </span>
@@ -1817,10 +1817,10 @@ export default function JobSearchClient() {
                       <div className="space-y-4">
                         <div>
                           <h4 className="text-[10px] font-extrabold uppercase tracking-widest text-stone-400 dark:text-stone-500 mb-1">Lộ trình thăng tiến</h4>
-                          <p className="text-[9px] text-stone-450 dark:text-stone-500 font-bold mb-3 italic">
+                          <p className="text-[9px] text-stone-400 dark:text-stone-500 font-bold mb-3 italic">
                             (Nhấp vào từng cấp độ để xem bí quyết)
                           </p>
-                          <div className="relative border-l border-stone-200 dark:border-stone-850 ml-3 pl-5 space-y-3 py-1">
+                          <div className="relative border-l border-stone-200 dark:border-stone-800 ml-3 pl-5 space-y-3 py-1">
                             {selected.careerPath.map((step, idx) => {
                               const isStepActive = selectedPathStep === idx;
                               return (
@@ -1843,7 +1843,7 @@ export default function JobSearchClient() {
                                   >
                                     {idx + 1}
                                   </div>
-                                  <h4 className={`text-xs font-black transition-colors ${isStepActive ? "text-indigo-650 dark:text-indigo-400" : "text-stone-900 dark:text-stone-100"}`}>{step}</h4>
+                                  <h4 className={`text-xs font-black transition-colors ${isStepActive ? "text-indigo-600 dark:text-indigo-400" : "text-stone-900 dark:text-stone-100"}`}>{step}</h4>
                                 </button>
                               );
                             })}
@@ -1861,7 +1861,7 @@ export default function JobSearchClient() {
                               <span className="font-extrabold text-indigo-700 dark:text-indigo-300 uppercase tracking-wide">
                                 Bậc {selectedPathStep + 1}: {selected.careerPath[selectedPathStep]}
                               </span>
-                              <span className="font-black text-stone-450 uppercase tracking-widest text-[8px]">
+                              <span className="font-black text-stone-400 uppercase tracking-widest text-[8px]">
                                 {selectedPathStep === 0 ? "0-2 năm" : selectedPathStep === 1 ? "2-5 năm" : selectedPathStep === 2 ? "5-8 năm" : "8+ năm"}
                               </span>
                             </div>
@@ -1890,11 +1890,11 @@ export default function JobSearchClient() {
                             </div>
                           </motion.div>
                         )}
-                        <div className="pt-3 border-t border-stone-150 dark:border-stone-850">
+                        <div className="pt-3 border-t border-stone-100 dark:border-stone-800">
                           <h4 className="text-[10px] font-extrabold uppercase tracking-widest text-stone-400 dark:text-stone-500 mb-2">Chứng chỉ khuyên học</h4>
                           <div className="flex flex-wrap gap-1.5">
                             {selected.certifications.map((cert) => (
-                              <span key={cert} className="text-[10px] font-bold px-2.5 py-1 rounded bg-stone-100 dark:bg-stone-850 text-stone-700 dark:text-stone-300 flex items-center gap-1">
+                              <span key={cert} className="text-[10px] font-bold px-2.5 py-1 rounded bg-stone-100 dark:bg-stone-800 text-stone-700 dark:text-stone-300 flex items-center gap-1">
                                 <Award className="w-3.5 h-3.5 text-amber-500" />
                                 {cert}
                               </span>
@@ -1910,7 +1910,7 @@ export default function JobSearchClient() {
                           <h4 className="text-[10px] font-extrabold uppercase tracking-widest text-stone-400 dark:text-stone-500 mb-2">Kỹ năng chuyên môn & Mềm</h4>
                           <div className="flex flex-wrap gap-1.5">
                             {selected.skills.map((skill) => (
-                              <span key={skill} className="text-[10px] font-semibold px-2 py-1 rounded bg-stone-100 dark:bg-stone-850 text-stone-700 dark:text-stone-300">
+                              <span key={skill} className="text-[10px] font-semibold px-2 py-1 rounded bg-stone-100 dark:bg-stone-800 text-stone-700 dark:text-stone-300">
                                 {skill}
                               </span>
                             ))}
@@ -1920,7 +1920,7 @@ export default function JobSearchClient() {
                           <h4 className="text-[10px] font-extrabold uppercase tracking-widest text-stone-400 dark:text-stone-500 mb-2">Hệ thống & Công cụ</h4>
                           <div className="flex flex-wrap gap-1.5">
                             {selected.requiredTools.map((tool) => (
-                              <span key={tool} className="text-[10px] font-semibold px-2 py-1 rounded bg-emerald-50 dark:bg-emerald-950/20 text-emerald-700 dark:text-emerald-450 border border-emerald-100/50 dark:border-emerald-900/30 flex items-center gap-1">
+                              <span key={tool} className="text-[10px] font-semibold px-2 py-1 rounded bg-emerald-50 dark:bg-emerald-950/20 text-emerald-700 dark:text-emerald-400 border border-emerald-100/50 dark:border-emerald-900/30 flex items-center gap-1">
                                 <Terminal className="w-3 h-3" />
                                 {tool}
                               </span>
@@ -1932,7 +1932,7 @@ export default function JobSearchClient() {
 
                     {activeTab === "search" && (
                       <div className="space-y-4">
-                        <div className="bg-stone-50 dark:bg-stone-900/40 p-4 rounded-xl border border-stone-200/50 dark:border-stone-850">
+                        <div className="bg-stone-50 dark:bg-stone-900/40 p-4 rounded-xl border border-stone-200/50 dark:border-stone-800">
                           <span className="text-[9px] font-bold text-stone-400 uppercase">Từ khóa tìm kiếm gợi ý:</span>
                           <p className="text-sm font-black text-stone-800 dark:text-stone-200 mt-0.5">"{selected.searchKeyword}"</p>
                         </div>
@@ -2013,7 +2013,7 @@ export default function JobSearchClient() {
                   <button
                     key={i}
                     onClick={() => handleAnswerSelect(opt.type)}
-                    className="w-full text-left p-4 rounded-2xl border border-stone-200 dark:border-stone-800 hover:border-emerald-500 dark:hover:border-emerald-400 hover:bg-stone-50 dark:hover:bg-stone-900/60 transition-all font-semibold text-xs text-stone-850 dark:text-stone-250 cursor-pointer flex items-start"
+                    className="w-full text-left p-4 rounded-2xl border border-stone-200 dark:border-stone-800 hover:border-emerald-500 dark:hover:border-emerald-400 hover:bg-stone-50 dark:hover:bg-stone-900/60 transition-all font-semibold text-xs text-stone-800 dark:text-stone-200 cursor-pointer flex items-start"
                   >
                     <span className="inline-block w-5 h-5 rounded-full bg-stone-100 dark:bg-stone-800 text-center leading-5 text-[10px] font-bold mr-3 text-stone-500 dark:text-stone-400 shrink-0">
                       {String.fromCharCode(65 + i)}

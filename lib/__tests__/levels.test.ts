@@ -79,6 +79,10 @@ describe("getLevelProgress", () => {
     // Level 1 -> 2 spans 0-100 xp; 50 xp in is 50%.
     expect(getLevelProgress(50)).toBe(50);
   });
+
+  it("clamps progress at 100% when XP is past a gated next level", () => {
+    expect(getLevelProgress(9000, 0)).toBe(100);
+  });
 });
 
 describe("Domain Mastery Calculations", () => {
@@ -107,5 +111,4 @@ describe("Domain Mastery Calculations", () => {
     expect(calculateOverallLevel(domainLevels)).toBe(11);
   });
 });
-
 

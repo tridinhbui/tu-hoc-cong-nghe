@@ -39,8 +39,8 @@ export default function OnlineUsersWidget() {
   if (!loading && count === 0) return null;
 
   return (
-    <div className="bg-white dark:bg-stone-900 border border-stone-250 dark:border-stone-800 rounded-3xl shadow-sm overflow-hidden">
-      <div className="px-5 py-4 border-b border-stone-150 dark:border-stone-800 flex items-center gap-2.5">
+    <div className="bg-white dark:bg-stone-900 border border-stone-200 dark:border-stone-800 rounded-3xl shadow-sm overflow-hidden">
+      <div className="px-5 py-4 border-b border-stone-100 dark:border-stone-800 flex items-center gap-2.5">
         <div className="rounded-xl bg-emerald-50 dark:bg-emerald-950/30 text-emerald-600 dark:text-emerald-400 flex items-center justify-center shrink-0 w-8 h-8">
           <Users className="w-4.5 h-4.5" />
         </div>
@@ -62,7 +62,7 @@ export default function OnlineUsersWidget() {
             <div
               key={u.userId}
               title={u.name}
-              className="flex items-center gap-1.5 bg-stone-50 dark:bg-stone-800/60 border border-stone-150 dark:border-stone-800 rounded-full pl-1 pr-2.5 py-1"
+              className="flex items-center gap-1.5 bg-stone-50 dark:bg-stone-800/60 border border-stone-100 dark:border-stone-800 rounded-full pl-1 pr-2.5 py-1"
             >
               <div className="relative w-5 h-5 rounded-full overflow-hidden bg-stone-200 dark:bg-stone-700 flex-shrink-0">
                 {isValidAvatar(u.avatarUrl) ? (

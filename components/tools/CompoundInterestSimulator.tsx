@@ -61,7 +61,7 @@ export default function CompoundInterestSimulator() {
   return (
     <div className="bg-white dark:bg-stone-900 border border-stone-200 dark:border-stone-800 rounded-2xl p-6 shadow-sm space-y-6">
       <div className="flex items-center gap-2.5 pb-4 border-b border-stone-100 dark:border-stone-800">
-        <div className="w-10 h-10 rounded-xl bg-emerald-50 dark:bg-emerald-950/30 text-emerald-600 dark:text-emerald-450 flex items-center justify-center">
+        <div className="w-10 h-10 rounded-xl bg-emerald-50 dark:bg-emerald-950/30 text-emerald-600 dark:text-emerald-400 flex items-center justify-center">
           <TrendingUp className="w-5 h-5" />
         </div>
         <div>
@@ -149,7 +149,7 @@ export default function CompoundInterestSimulator() {
               <span className="text-[10px] font-bold text-stone-500 dark:text-stone-400 block uppercase">
                 Tiền lãi sinh ra
               </span>
-              <span className="text-sm font-extrabold text-emerald-600 dark:text-emerald-450">
+              <span className="text-sm font-extrabold text-emerald-600 dark:text-emerald-400">
                 {formatVND(totalInterest)}
               </span>
             </div>
@@ -235,7 +235,7 @@ export default function CompoundInterestSimulator() {
               <span className="flex items-center gap-1.5 text-stone-600 dark:text-stone-400">
                 <span className="w-2.5 h-2.5 bg-stone-300 dark:bg-stone-700 rounded" /> Tiền gốc đóng góp
               </span>
-              <span className="flex items-center gap-1.5 text-emerald-600 dark:text-emerald-450">
+              <span className="flex items-center gap-1.5 text-emerald-600 dark:text-emerald-400">
                 <span className="w-2.5 h-2.5 bg-emerald-500 rounded" /> Tiền lãi sinh ra
               </span>
             </div>

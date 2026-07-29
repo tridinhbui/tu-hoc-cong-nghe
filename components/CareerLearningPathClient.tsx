@@ -118,7 +118,7 @@ export default function CareerLearningPathClient({
                 className="group text-left rounded-2xl border-2 border-stone-200 dark:border-stone-800 bg-white dark:bg-stone-900 p-4 hover:border-emerald-500 dark:hover:border-emerald-500 hover:shadow-lg transition-all"
               >
                 <div className="flex items-center gap-3.5 mb-2.5">
-                  <div className="relative w-13 h-13 rounded-2xl overflow-hidden shrink-0 shadow-sm border border-stone-150 dark:border-stone-750 group-hover:scale-105 transition-transform duration-300">
+                  <div className="relative w-13 h-13 rounded-2xl overflow-hidden shrink-0 shadow-sm border border-stone-100 dark:border-stone-700 group-hover:scale-105 transition-transform duration-300">
                     <Image
                       src={meta.image}
                       alt={meta.label}
