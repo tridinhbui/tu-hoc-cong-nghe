@@ -1,7 +1,11 @@
 import { createClient } from "@/lib/supabase";
 import { handleSupabaseError } from "@/lib/errors";
 
-export type QuizTrack = "personal" | "professional" | "cfa" | "ib";
+// "mock-interview" is a full timed interview run from
+// components/MockInterviewModal.tsx, kept distinct from the 5-question "ib"
+// drill on /kiem-tra because Interview readiness weights the two very
+// differently (lib/career-competency.ts).
+export type QuizTrack = "personal" | "professional" | "cfa" | "ib" | "mock-interview";
 export type QuizDifficulty = "de" | "trung-binh" | "kho" | "tat-ca";
 
 // "Table not found in schema cache" (PostgREST) or "relation does not

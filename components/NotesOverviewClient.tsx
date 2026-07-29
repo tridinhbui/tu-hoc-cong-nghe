@@ -178,7 +178,7 @@ export default function NotesOverviewClient({ lessonsById, userId, initialNotes,
                             <>
                               <NoteContent content={note.content} />
                               <div className="flex items-center justify-between mt-2">
-                                <span className="text-[11px] text-stone-400 dark:text-stone-550">
+                                <span className="text-[11px] text-stone-400 dark:text-stone-500">
                                   {new Date(note.updated_at).toLocaleDateString("vi-VN")}
                                 </span>
                                 <div className="flex gap-2 opacity-100 transition-opacity sm:opacity-0 sm:group-hover:opacity-100">

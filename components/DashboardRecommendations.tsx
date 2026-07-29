@@ -400,7 +400,7 @@ export default function DashboardRecommendations({ lessonsMeta, completed, userI
                             <div className="w-5.5 h-5.5 rounded-lg flex items-center justify-center bg-stone-100 dark:bg-stone-800 text-stone-700 dark:text-stone-300 transition-transform duration-300 group-hover:scale-110 group-hover:rotate-6">
                               <Gamepad2 className="w-3 h-3 text-amber-600 dark:text-amber-400" />
                             </div>
-                            <span className="text-[10px] font-extrabold text-stone-600 dark:text-stone-455 uppercase tracking-wider">
+                            <span className="text-[10px] font-extrabold text-stone-600 dark:text-stone-400 uppercase tracking-wider">
                               Mini Game {game.emoji}
                             </span>
                           </div>
@@ -494,7 +494,7 @@ export default function DashboardRecommendations({ lessonsMeta, completed, userI
                             <div className="w-5.5 h-5.5 rounded-lg flex items-center justify-center bg-rose-100 dark:bg-rose-900/50 text-rose-500 transition-transform duration-300 group-hover:scale-110 group-hover:rotate-3">
                               <Flame className="w-3 h-3 animate-pulse" />
                             </div>
-                            <span className="text-[10px] font-extrabold text-rose-600 dark:text-rose-455 uppercase tracking-wider">
+                            <span className="text-[10px] font-extrabold text-rose-600 dark:text-rose-400 uppercase tracking-wider">
                               Đang hot
                             </span>
                             {isDone && (
@@ -507,7 +507,7 @@ export default function DashboardRecommendations({ lessonsMeta, completed, userI
                             {lesson.title}
                           </h3>
                         </div>
-                        <p className="text-[10px] text-stone-455 dark:text-stone-500 mt-2.5 line-clamp-1">
+                        <p className="text-[10px] text-stone-400 dark:text-stone-500 mt-2.5 line-clamp-1">
                           {lesson.subtitle}
                         </p>
                         <p className="text-[9px] text-rose-500 dark:text-rose-400 mt-1.5 font-bold">

@@ -1,0 +1,82 @@
+"use client";
+
+import { createContext, useCallback, useContext, useMemo, useState, type ReactNode } from "react";
+import { useRouter } from "next/navigation";
+import { getDictionary, type Dictionary } from "./index";
+import {
+  DEFAULT_LOCALE,
+  LOCALE_COOKIE,
+  LOCALE_COOKIE_MAX_AGE,
+  type Locale,
+} from "./locales";
+
+interface I18nValue {
+  locale: Locale;
+  /** The whole dictionary. Accessed as `t.nav.students` rather than
+   *  `t("nav.students")` so a typo is a compile error, not a blank label. */
+  t: Dictionary;
+  setLocale: (next: Locale) => void;
+}
+
+const I18nContext = createContext<I18nValue | null>(null);
+
+export function I18nProvider({
+  initialLocale,
+  children,
+}: {
+  initialLocale: Locale;
+  children: ReactNode;
+}) {
+  // Seeded from the server-read cookie, so the first client render already
+  // matches the server HTML - no hydration mismatch, no flash of Vietnamese
+  // for an English reader.
+  const [locale, setLocaleState] = useState<Locale>(initialLocale);
+  const router = useRouter();
+
+  const setLocale = useCallback(
+    (next: Locale) => {
+      setLocaleState(next);
+      // Written from the client rather than through a route handler: there is
+      // nothing sensitive here, and skipping the round-trip means the UI
+      // switches instantly. Not HttpOnly for the same reason - the client is
+      // the writer. SameSite=Lax so it survives normal navigation.
+      document.cookie = `${LOCALE_COOKIE}=${next}; path=/; max-age=${LOCALE_COOKIE_MAX_AGE}; samesite=lax`;
+      document.documentElement.lang = next;
+      // Re-renders server components with the new cookie, so any server-rendered
+      // strings catch up too. Client components already re-rendered via state.
+      router.refresh();
+    },
+    [router]
+  );
+
+  const value = useMemo<I18nValue>(
+    () => ({ locale, t: getDictionary(locale), setLocale }),
+    [locale, setLocale]
+  );
+
+  return <I18nContext.Provider value={value}>{children}</I18nContext.Provider>;
+}
+
+/** Throws outside the provider rather than silently falling back, so a
+ *  component mounted outside the tree is caught in development instead of
+ *  quietly rendering Vietnamese for an English reader. */
+export function useI18n(): I18nValue {
+  const ctx = useContext(I18nContext);
+  if (!ctx) {
+    throw new Error("useI18n must be used inside <I18nProvider> (mounted in app/layout.tsx)");
+  }
+  return ctx;
+}
+
+/** For the handful of shared components that may render outside the provider
+ *  (error boundaries, standalone widgets). Falls back to the default locale. */
+export function useI18nOptional(): I18nValue {
+  const ctx = useContext(I18nContext);
+  return (
+    ctx ?? {
+      locale: DEFAULT_LOCALE,
+      t: getDictionary(DEFAULT_LOCALE),
+      setLocale: () => {},
+    }
+  );
+}

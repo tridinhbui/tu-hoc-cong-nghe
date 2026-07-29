@@ -75,7 +75,7 @@ export default function FirePlanner() {
                 type="number"
                 value={currentAge}
                 onChange={(e) => setCurrentAge(Math.max(1, Number(e.target.value)))}
-                className="w-full px-3 py-2 text-sm rounded-xl border border-stone-200 dark:border-stone-800 bg-stone-55 dark:bg-stone-950 text-stone-900 dark:text-stone-100 focus:outline-none focus:border-amber-500"
+                className="w-full px-3 py-2 text-sm rounded-xl border border-stone-200 dark:border-stone-800 bg-stone-50 dark:bg-stone-950 text-stone-900 dark:text-stone-100 focus:outline-none focus:border-amber-500"
               />
             </div>
             <div>
@@ -86,7 +86,7 @@ export default function FirePlanner() {
                 type="number"
                 value={targetAge}
                 onChange={(e) => setTargetAge(Math.max(currentAge + 1, Number(e.target.value)))}
-                className="w-full px-3 py-2 text-sm rounded-xl border border-stone-200 dark:border-stone-800 bg-stone-55 dark:bg-stone-950 text-stone-900 dark:text-stone-100 focus:outline-none focus:border-amber-500"
+                className="w-full px-3 py-2 text-sm rounded-xl border border-stone-200 dark:border-stone-800 bg-stone-50 dark:bg-stone-950 text-stone-900 dark:text-stone-100 focus:outline-none focus:border-amber-500"
               />
             </div>
           </div>
@@ -99,7 +99,7 @@ export default function FirePlanner() {
               type="number"
               value={monthlyExpense}
               onChange={(e) => setMonthlyExpense(Math.max(0, Number(e.target.value)))}
-              className="w-full px-3 py-2 text-sm rounded-xl border border-stone-200 dark:border-stone-800 bg-stone-55 dark:bg-stone-950 text-stone-900 dark:text-stone-100 focus:outline-none focus:border-amber-500"
+              className="w-full px-3 py-2 text-sm rounded-xl border border-stone-200 dark:border-stone-800 bg-stone-50 dark:bg-stone-950 text-stone-900 dark:text-stone-100 focus:outline-none focus:border-amber-500"
             />
             <span className="text-[11px] text-stone-400 mt-1 block">
               {formatVND(monthlyExpense)} / tháng
@@ -116,7 +116,7 @@ export default function FirePlanner() {
                 step="0.5"
                 value={investmentReturn}
                 onChange={(e) => setInvestmentReturn(Math.max(0, Number(e.target.value)))}
-                className="w-full px-2 py-1.5 text-xs rounded-lg border border-stone-200 dark:border-stone-800 bg-stone-55 dark:bg-stone-950 text-stone-900 dark:text-stone-100 focus:outline-none focus:border-amber-500"
+                className="w-full px-2 py-1.5 text-xs rounded-lg border border-stone-200 dark:border-stone-800 bg-stone-50 dark:bg-stone-950 text-stone-900 dark:text-stone-100 focus:outline-none focus:border-amber-500"
               />
             </div>
             <div>
@@ -128,7 +128,7 @@ export default function FirePlanner() {
                 step="0.5"
                 value={inflationRate}
                 onChange={(e) => setInflationRate(Math.max(0, Number(e.target.value)))}
-                className="w-full px-2 py-1.5 text-xs rounded-lg border border-stone-200 dark:border-stone-800 bg-stone-55 dark:bg-stone-950 text-stone-900 dark:text-stone-100 focus:outline-none focus:border-amber-500"
+                className="w-full px-2 py-1.5 text-xs rounded-lg border border-stone-200 dark:border-stone-800 bg-stone-50 dark:bg-stone-950 text-stone-900 dark:text-stone-100 focus:outline-none focus:border-amber-500"
               />
             </div>
             <div>
@@ -140,7 +140,7 @@ export default function FirePlanner() {
                 step="0.1"
                 value={safeWithdrawalRate}
                 onChange={(e) => setSafeWithdrawalRate(Math.max(0.1, Number(e.target.value)))}
-                className="w-full px-2 py-1.5 text-xs rounded-lg border border-stone-200 dark:border-stone-800 bg-stone-55 dark:bg-stone-950 text-stone-900 dark:text-stone-100 focus:outline-none focus:border-amber-500"
+                className="w-full px-2 py-1.5 text-xs rounded-lg border border-stone-200 dark:border-stone-800 bg-stone-50 dark:bg-stone-950 text-stone-900 dark:text-stone-100 focus:outline-none focus:border-amber-500"
               />
             </div>
           </div>

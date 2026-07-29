@@ -8,6 +8,8 @@ import "./globals.css";
 import ThemeLoader from "@/components/ThemeLoader";
 import GlobalChatWrapper from "@/components/GlobalChatWrapper";
 import { getLessonsMeta } from "@/lib/lessons-loader";
+import { getServerLocale } from "@/lib/i18n/server";
+import { I18nProvider } from "@/lib/i18n/context";
 
 const plusJakartaSans = Plus_Jakarta_Sans({
   subsets: ["vietnamese", "latin"],
@@ -56,18 +58,26 @@ export async function generateMetadata(): Promise<Metadata> {
   };
 }
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+// Async so it can read the locale cookie. The theme needs an inline script
+// because it lives in localStorage, which the server can't see - the locale is
+// a cookie, so it arrives with the request and the first HTML is already
+// correct. No init script, no flash, no hydration mismatch.
+export default async function RootLayout({ children }: { children: React.ReactNode }) {
+  const locale = await getServerLocale();
+
   return (
-    <html lang="vi" className={`${plusJakartaSans.variable}`} suppressHydrationWarning>
+    <html lang={locale} className={`${plusJakartaSans.variable}`} suppressHydrationWarning>
       <head>
         {/* Applies the saved/system theme before first paint to avoid a flash of the wrong theme. */}
         <script dangerouslySetInnerHTML={{ __html: THEME_INIT_SCRIPT }} />
       </head>
       <body className="min-h-screen bg-[#FAFAFC] dark:bg-stone-950 text-stone-900 dark:text-stone-100 antialiased font-sans transition-colors" suppressHydrationWarning>
+        <I18nProvider initialLocale={locale}>
         <ThemeLoader />
         {children}
         <GlobalChatWrapper />
         <Toaster position="top-right" richColors closeButton />
+        </I18nProvider>
         <Analytics />
         <SpeedInsights />
       </body>

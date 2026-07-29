@@ -17,9 +17,19 @@ from (
 where r.id = first_member.room_id
   and r.leader_id is null;
 
-alter table public.user_chests drop constraint if exists user_chests_source_check;
-alter table public.user_chests add constraint user_chests_source_check
-  check (source in ('weekly_quest', 'milestone_exam', 'daily_login', 'shop_purchase', 'study_group'));
+-- Guarded: user_chests is created by 20260731_user_chests.sql, which sorts
+-- AFTER this file. On the database this was written against the table already
+-- existed, but a run from scratch (staging, CI, a fresh clone) reaches this
+-- line first and aborts the whole migration with "relation does not exist".
+-- 20260816_bound_xp_ledger_sources.sql re-asserts the full source list after
+-- the table definitely exists, so skipping here loses nothing.
+do $$ begin
+  if to_regclass('public.user_chests') is not null then
+    alter table public.user_chests drop constraint if exists user_chests_source_check;
+    alter table public.user_chests add constraint user_chests_source_check
+      check (source in ('weekly_quest', 'milestone_exam', 'daily_login', 'shop_purchase', 'study_group'));
+  end if;
+end $$;
 
 create table if not exists public.study_room_checkins (
   id bigint generated always as identity primary key,

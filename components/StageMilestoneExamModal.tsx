@@ -195,7 +195,7 @@ export default function StageMilestoneExamModal({
                     if (i === questions[currentQIndex].correct) {
                       btnCls = "border-emerald-500 bg-emerald-50 dark:bg-emerald-950/40 text-emerald-800 dark:text-emerald-400 font-bold";
                     } else if (i === selectedOpt) {
-                      btnCls = "border-rose-500 bg-rose-50 dark:bg-rose-950/40 text-rose-800 dark:text-rose-405";
+                      btnCls = "border-rose-500 bg-rose-50 dark:bg-rose-950/40 text-rose-800 dark:text-rose-400";
                     } else {
                       btnCls = "border-stone-100 dark:border-stone-800 opacity-60";
                     }

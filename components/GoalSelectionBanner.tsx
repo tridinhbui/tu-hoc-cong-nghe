@@ -149,7 +149,7 @@ export default function GoalSelectionBanner({ userId }: GoalSelectionBannerProps
                     <h4 className="text-xs font-black text-stone-900 dark:text-stone-100 leading-snug">
                       {g.name}
                     </h4>
-                    <p className="text-[10px] text-stone-500 dark:text-stone-405 mt-1 leading-normal">
+                    <p className="text-[10px] text-stone-500 dark:text-stone-400 mt-1 leading-normal">
                       {g.desc}
                     </p>
                   </div>

@@ -21,7 +21,8 @@ import {
   Lightbulb,
   SearchCode,
   ThumbsUp,
-  ThumbsDown
+  ThumbsDown,
+  TrendingUp
 } from "lucide-react";
 import { toast } from "sonner";
 import { FINANCE_CAREERS, type FinanceCareer } from "@/lib/finance-careers";
@@ -35,6 +36,7 @@ import { getMyCareerGoal, setCareerGoal, clearCareerGoal } from "@/lib/supabase-
 import { getCareerLessonProgress, type CareerLessonProgress } from "@/lib/career-lesson-progress";
 import { CheckCircle2, Circle, BookOpen } from "lucide-react";
 import CareerRoadmapMap from "@/components/CareerRoadmapMap";
+import CareerProfilePanel from "@/components/CareerProfilePanel";
 import { SUGGESTED_JOB_KEYWORDS } from "@/lib/job-search-links";
 
 // Beautiful custom 3D card tilt and glow component
@@ -397,15 +399,15 @@ function ComparisonModal({
               <div className="grid grid-cols-3 gap-2 py-2 border-y border-stone-200/50 dark:border-stone-800/50">
                 <div className="text-center">
                   <span className="text-[10px] text-stone-400 block font-bold">Độ khó</span>
-                  <span className="text-sm font-black text-stone-805 dark:text-stone-200">{careerA.entryDifficulty}/5</span>
+                  <span className="text-sm font-black text-stone-800 dark:text-stone-200">{careerA.entryDifficulty}/5</span>
                 </div>
                 <div className="text-center">
                   <span className="text-[10px] text-stone-400 block font-bold">Áp lực</span>
-                  <span className="text-sm font-black text-stone-805 dark:text-stone-200">{careerA.stressLevel}/5</span>
+                  <span className="text-sm font-black text-stone-800 dark:text-stone-200">{careerA.stressLevel}/5</span>
                 </div>
                 <div className="text-center">
                   <span className="text-[10px] text-stone-400 block font-bold">Cân bằng</span>
-                  <span className="text-sm font-black text-stone-805 dark:text-stone-200">{careerA.wlb}/5</span>
+                  <span className="text-sm font-black text-stone-800 dark:text-stone-200">{careerA.wlb}/5</span>
                 </div>
               </div>
 
@@ -465,15 +467,15 @@ function ComparisonModal({
                 <div className="grid grid-cols-3 gap-2 py-2 border-y border-stone-200/50 dark:border-stone-800/50">
                   <div className="text-center">
                     <span className="text-[10px] text-stone-400 block font-bold">Độ khó</span>
-                    <span className="text-sm font-black text-stone-805 dark:text-stone-200">{careerB.entryDifficulty}/5</span>
+                    <span className="text-sm font-black text-stone-800 dark:text-stone-200">{careerB.entryDifficulty}/5</span>
                   </div>
                   <div className="text-center">
                     <span className="text-[10px] text-stone-400 block font-bold">Áp lực</span>
-                    <span className="text-sm font-black text-stone-805 dark:text-stone-200">{careerB.stressLevel}/5</span>
+                    <span className="text-sm font-black text-stone-800 dark:text-stone-200">{careerB.stressLevel}/5</span>
                   </div>
                   <div className="text-center">
                     <span className="text-[10px] text-stone-400 block font-bold">Cân bằng</span>
-                    <span className="text-sm font-black text-stone-805 dark:text-stone-200">{careerB.wlb}/5</span>
+                    <span className="text-sm font-black text-stone-800 dark:text-stone-200">{careerB.wlb}/5</span>
                   </div>
                 </div>
 
@@ -532,10 +534,10 @@ function ComparisonModal({
                 <line x1={30} y1={100} x2={170} y2={100} stroke="currentColor" className="text-stone-200 dark:text-stone-800" strokeWidth="1" />
                 <line x1={100} y1={30} x2={100} y2={170} stroke="currentColor" className="text-stone-200 dark:text-stone-800" strokeWidth="1" />
 
-                <text x={100} y={22} textAnchor="middle" className="text-[8px] font-black fill-stone-550 dark:fill-stone-400">PHÂN TÍCH</text>
-                <text x={178} y={103} textAnchor="start" className="text-[8px] font-black fill-stone-550 dark:fill-stone-400">ĐỊNH LƯỢNG</text>
-                <text x={100} y={184} textAnchor="middle" className="text-[8px] font-black fill-stone-550 dark:fill-stone-400">GIAO TIẾP</text>
-                <text x={22} y={103} textAnchor="end" className="text-[8px] font-black fill-stone-550 dark:fill-stone-400">TUÂN THỦ</text>
+                <text x={100} y={22} textAnchor="middle" className="text-[8px] font-black fill-stone-500 dark:fill-stone-400">PHÂN TÍCH</text>
+                <text x={178} y={103} textAnchor="start" className="text-[8px] font-black fill-stone-500 dark:fill-stone-400">ĐỊNH LƯỢNG</text>
+                <text x={100} y={184} textAnchor="middle" className="text-[8px] font-black fill-stone-500 dark:fill-stone-400">GIAO TIẾP</text>
+                <text x={22} y={103} textAnchor="end" className="text-[8px] font-black fill-stone-500 dark:fill-stone-400">TUÂN THỦ</text>
 
                 <polygon
                   points={`100,${100 - 70 * (careerA.traits.analytical / 5)} ${100 + 70 * (careerA.traits.quantitative / 5)},100 ${100},${100 + 70 * (careerA.traits.clientFacing / 5)} ${100 - 70 * (careerA.traits.compliance / 5)},100`}
@@ -575,7 +577,7 @@ export default function JobSearchClient() {
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("all");
   const categoryTabsRef = useRef<HTMLDivElement>(null);
-  const [activeTab, setActiveTab] = useState<"daily" | "insights" | "path" | "skills" | "search">("daily");
+  const [activeTab, setActiveTab] = useState<"daily" | "insights" | "path" | "skills" | "profile" | "search">("daily");
   const [mobileDetailOpen, setMobileDetailOpen] = useState(false);
   
   // Custom states for P2 features
@@ -952,7 +954,7 @@ export default function JobSearchClient() {
               
               {!quizCompleted ? (
                 <div>
-                  <div className="flex items-center gap-2 text-stone-900 dark:text-stone-550">
+                  <div className="flex items-center gap-2 text-stone-900 dark:text-stone-500">
                     <Sparkles className="w-4 h-4 text-amber-500 animate-pulse animate-duration-1000" />
                     <h4 className="text-xs font-black uppercase tracking-wider">Trắc nghiệm Hướng nghiệp</h4>
                   </div>
@@ -971,13 +973,13 @@ export default function JobSearchClient() {
                 </div>
               ) : (
                 <div>
-                  <div className="flex items-center gap-2 text-stone-900 dark:text-stone-550">
+                  <div className="flex items-center gap-2 text-stone-900 dark:text-stone-500">
                     <SearchCode className="w-4 h-4 text-emerald-500" />
                     <h4 className="text-xs font-black uppercase tracking-wider">Hướng nghiệp của bạn</h4>
                   </div>
                   <div className="mt-2 p-2.5 rounded-xl bg-stone-50 dark:bg-stone-950/30 border border-stone-200/40 dark:border-stone-800 text-xs">
-                    <span className="text-[9px] font-black uppercase text-stone-400 dark:text-stone-550 block mb-0.5">Phù hợp nhất:</span>
-                    <span className="font-extrabold text-stone-805 dark:text-stone-200 block leading-tight">{quizResult?.split(" - ")[0]}</span>
+                    <span className="text-[9px] font-black uppercase text-stone-400 dark:text-stone-500 block mb-0.5">Phù hợp nhất:</span>
+                    <span className="font-extrabold text-stone-800 dark:text-stone-200 block leading-tight">{quizResult?.split(" - ")[0]}</span>
                   </div>
 
                   {quizRecommendedCareerIds.length > 0 && (
@@ -1096,7 +1098,7 @@ export default function JobSearchClient() {
 
                       {/* Info text */}
                       <div className="min-w-0 flex-1">
-                        <h3 className="text-sm font-black text-stone-950 dark:text-stone-550 leading-tight flex items-center gap-1.5">
+                        <h3 className="text-sm font-black text-stone-950 dark:text-stone-500 leading-tight flex items-center gap-1.5">
                           {career.title}
                         </h3>
                         <p className="text-xs text-stone-400 dark:text-stone-500 font-bold mt-0.5">{career.englishTitle}</p>
@@ -1282,6 +1284,7 @@ export default function JobSearchClient() {
                   { id: "insights", label: "Lời khuyên & Ưu/Nhược", icon: Lightbulb },
                   { id: "path", label: "Lộ trình & Chứng chỉ", icon: Award },
                   { id: "skills", label: "Kỹ năng & Công cụ", icon: Terminal },
+                  { id: "profile", label: "Hồ sơ năng lực", icon: TrendingUp },
                   { id: "search", label: "Tìm việc ngay", icon: Search }
                 ].map((tab) => {
                   const isActive = activeTab === tab.id;
@@ -1391,7 +1394,7 @@ export default function JobSearchClient() {
                           <p className="text-[10px] text-stone-400 dark:text-stone-500 font-bold mb-3 italic">
                             (Nhấp vào từng cấp độ để xem bí quyết thăng tiến)
                           </p>
-                          <div className="relative border-l-2 border-stone-200 dark:border-stone-855 ml-4 pl-6 space-y-4 py-2">
+                          <div className="relative border-l-2 border-stone-200 dark:border-stone-800 ml-4 pl-6 space-y-4 py-2">
                             {selected.careerPath.map((step, idx) => {
                               const isStepActive = selectedPathStep === idx;
                               return (
@@ -1415,7 +1418,7 @@ export default function JobSearchClient() {
                                     {idx + 1}
                                   </div>
                                   <h4 className={`text-sm font-black transition-colors ${isStepActive ? "text-indigo-600 dark:text-indigo-400" : "text-stone-900 dark:text-stone-100"}`}>{step}</h4>
-                                  <p className="text-[9px] uppercase font-black tracking-wider text-stone-400 dark:text-stone-550 mt-0.5">
+                                  <p className="text-[9px] uppercase font-black tracking-wider text-stone-400 dark:text-stone-500 mt-0.5">
                                     {idx === 0 ? "Khởi đầu" : idx === selected.careerPath.length - 1 ? "Mục tiêu dài hạn" : "Nấc thang phát triển"}
                                   </p>
                                 </button>
@@ -1519,6 +1522,10 @@ export default function JobSearchClient() {
                           </div>
                         </div>
                       </div>
+                    )}
+
+                    {activeTab === "profile" && (
+                      <CareerProfilePanel userId={userId} careerId={selected.id} />
                     )}
 
                     {activeTab === "search" && (
@@ -1728,6 +1735,7 @@ export default function JobSearchClient() {
                   { id: "insights", label: "Lời khuyên", icon: Lightbulb },
                   { id: "path", label: "Lộ trình", icon: Award },
                   { id: "skills", label: "Kỹ năng", icon: Terminal },
+                  { id: "profile", label: "Hồ sơ", icon: TrendingUp },
                   { id: "search", label: "Tìm việc", icon: Search }
                 ].map((tab) => {
                   const isActive = activeTab === tab.id;
@@ -1928,6 +1936,10 @@ export default function JobSearchClient() {
                           </div>
                         </div>
                       </div>
+                    )}
+
+                    {activeTab === "profile" && (
+                      <CareerProfilePanel userId={userId} careerId={selected.id} />
                     )}
 
                     {activeTab === "search" && (

@@ -5,6 +5,7 @@ import { getTotalGameXp } from "@/lib/games";
 import { getTotalReferralXp, rewardMyReferralIfPending } from "@/lib/referrals";
 import { getTotalQuestXp } from "@/lib/supabase-quests";
 import { getTotalChestXp } from "@/lib/chests";
+import { getTotalCareerMissionXp } from "@/lib/career-profile";
 import { getLevelByXp } from "@/lib/levels";
 import { CFA_LEVEL_1_SUBJECTS } from "@/lib/cfa-track";
 
@@ -474,6 +475,7 @@ export async function recalculateUserStats(userId: string) {
     chestXp,
     cfaModuleProgressRes,
     userStatsRes,
+    careerMissionXp,
   ] = await Promise.all([
     getTotalQuizXp(userId).catch(() => 0), // "Kiểm tra" standalone quiz sessions
     getTotalGameXp(userId).catch(() => 0), // best-per-game mini-game XP (lib/games.ts)
@@ -488,6 +490,11 @@ export async function recalculateUserStats(userId: string) {
     Promise.resolve(supabase.from("cfa_module_progress").select("module_id").eq("user_id", userId).eq("completed", true)).catch(() => ({ data: null, error: null })),
     // XP permanently spent on streak restores
     Promise.resolve(supabase.from("user_stats").select("xp_spent").eq("user_id", userId).maybeSingle()).catch(() => ({ data: null, error: null })),
+    // Weekly Career Mission payouts - see lib/weekly-career-mission.ts. The
+    // ledger is written only by app/api/career-profile/claim/route.ts, which
+    // re-derives both the amount and the "is it actually complete" check
+    // server-side, so the sum needs no extra cap here.
+    getTotalCareerMissionXp(userId).catch(() => 0),
   ]);
 
   // Academic game bonus: +3 XP for 100% correct, +1 XP for >= 80% correct, capped at +30 XP overall.
@@ -561,10 +568,15 @@ export async function recalculateUserStats(userId: string) {
   const cfaModulesDone = cfaModulesData?.length ?? 0;
   const cfaCompletedCount = cfaLessonsDone + cfaModulesDone;
 
-  const xpSpent = (userStatsRes as { data: { xp_spent: number } | null })?.data?.xp_spent ?? 0;
+  // Clamped at 0 because this value is *subtracted*: user_stats.xp_spent has
+  // no CHECK and the client holds UPDATE on the table, so a negative value
+  // would flip the minus into a bonus and mint XP without touching any
+  // activity table. 20260816_bound_xp_ledger_sources.sql adds the DB-side
+  // constraint; this keeps the formula honest before that migration lands.
+  const xpSpent = Math.max(0, (userStatsRes as { data: { xp_spent: number } | null })?.data?.xp_spent ?? 0);
   const totalXp = Math.max(
     0,
-    (lessonsCompleted + cfaModulesDone) * 10 + quizXp + gameXp + referralXp + gameAcademicBonusXp + questXp + milestoneXp + recallXp + chestXp - xpSpent
+    (lessonsCompleted + cfaModulesDone) * 10 + quizXp + gameXp + referralXp + gameAcademicBonusXp + questXp + milestoneXp + recallXp + chestXp + careerMissionXp - xpSpent
   );
   const quizScores = progress?.filter((p) => p.quiz_score !== null).map((p) => p.quiz_score) || [];
   const avgScore = quizScores.length > 0 ? quizScores.reduce((a, b) => a + b, 0) / quizScores.length : 0;

@@ -6,7 +6,10 @@ import Image from "next/image";
 import { isValidAvatar } from "@/lib/avatar-utils";
 import { usePathname, useRouter } from "next/navigation";
 import { toast } from "sonner";
-import { FileText, BarChart3, StickyNote, GraduationCap, Gamepad2, Menu, X, Briefcase, Home, Flame, Users, MessageSquareMore, Search } from "lucide-react";
+import { FileText, BarChart3, StickyNote, GraduationCap, Gamepad2, Menu, X, Briefcase, Home, Flame, Users, MessageSquareMore, Search, type LucideIcon } from "lucide-react";
+import { useI18n } from "@/lib/i18n/context";
+import type { Dictionary } from "@/lib/i18n";
+import LanguageSwitcher from "@/components/LanguageSwitcher";
 import { createClient } from "@/lib/supabase";
 import GoldCoinIcon from "@/components/GoldCoinIcon";
 import { useRoutePrefetch } from "@/lib/use-route-prefetch";
@@ -33,15 +36,22 @@ interface NavProfile {
   coins?: number;
 }
 
-const NAV_LINKS = [
+// `labelKey` indexes into the nav section of the dictionary; `label` is for
+// the entries that are proper nouns and read the same in both languages, so
+// translating them would only make the product harder to talk about.
+type NavLink =
+  | { href: string; label: string; labelKey?: never; icon: LucideIcon }
+  | { href: string; labelKey: keyof Dictionary["nav"]; label?: never; icon: LucideIcon };
+
+const NAV_LINKS: NavLink[] = [
   { href: "/dashboard", label: "Dashboard", icon: Home },
   { href: "/game", label: "Game", icon: Gamepad2 },
-  { href: "/analytics", label: "Thống kê", icon: BarChart3 },
-  { href: "/ghi-chu", label: "Ghi chú", icon: StickyNote },
-  { href: "/kiem-tra", label: "Kiểm tra", icon: GraduationCap },
-  { href: "/nhom-hoc", label: "Học nhóm", icon: Users },
+  { href: "/analytics", labelKey: "stats", icon: BarChart3 },
+  { href: "/ghi-chu", labelKey: "notes", icon: StickyNote },
+  { href: "/kiem-tra", labelKey: "quiz", icon: GraduationCap },
+  { href: "/nhom-hoc", labelKey: "studyGroup", icon: Users },
   { href: "/finsocial", label: "FinSocial", icon: MessageSquareMore },
-  { href: "/su-nghiep", label: "Sự nghiệp", icon: Briefcase },
+  { href: "/su-nghiep", labelKey: "career", icon: Briefcase },
 ];
 
 // Single, persistent top navbar for every signed-in page (mounted once in
@@ -57,6 +67,7 @@ const NAV_LINKS = [
 export default function AppNavbar() {
   const router = useRouter();
   const pathname = usePathname();
+  const { t } = useI18n();
   const [profile, setProfile] = useState<NavProfile | null>(null);
   const [userId, setUserId] = useState<string | null>(null);
   const [mistakeCount, setMistakeCount] = useState(0);
@@ -128,7 +139,7 @@ export default function AppNavbar() {
       void claimPendingReferral();
       claimDailyLoginChest(user.id)
         .then((granted) => {
-          if (granted) toast.success("🎁 Quà đăng nhập hôm nay đã sẵn sàng - mở ở mục Nhiệm vụ & Rương quà!");
+          if (granted) toast.success(t.nav.dailyGiftReady);
         })
         .catch(() => {});
     });
@@ -280,7 +291,8 @@ export default function AppNavbar() {
           </button>
 
           <nav className="mt-3 flex flex-col gap-1 shrink-0">
-            {NAV_LINKS.map(({ href, label, icon: Icon }) => {
+            {NAV_LINKS.map(({ href, label, labelKey, icon: Icon }) => {
+              const navLabel = labelKey ? t.nav[labelKey] : label;
               const active = pathname === href;
               const isGame = href === "/game";
               const isCareer = href === "/su-nghiep";
@@ -304,7 +316,7 @@ export default function AppNavbar() {
                   }`}
                 >
                   <Icon className={`h-4 w-4 shrink-0 ${isGame ? "text-amber-600" : isCareer ? "text-emerald-600 dark:text-emerald-400" : isKiemTra && hasPendingNewsQuiz ? "text-rose-500 animate-pulse" : isNhomHoc && hasPendingStudyGroupCheckin ? "text-amber-600 animate-bounce" : ""}`} />
-                  <span className="flex-1">{isGame ? "Game Kingdom" : label}</span>
+                  <span className="flex-1">{isGame ? "Game Kingdom" : navLabel}</span>
                   {isGame && (
                     <span className="inline-flex items-center gap-1 text-[9px] font-bold uppercase tracking-wider px-1.5 py-0.5 rounded-full bg-white text-amber-700 border border-amber-200">
                       <Flame className="h-2.5 w-2.5 text-orange-500" />
@@ -393,12 +405,18 @@ export default function AppNavbar() {
                     <button type="button" onClick={() => handleDropdownNavigate("/settings")} className="block w-full rounded-xl px-3 py-2 text-left text-xs font-bold text-stone-800 transition hover:bg-white dark:text-stone-200 dark:hover:bg-stone-800">
                       ⚙️ Cài đặt tài khoản
                     </button>
+                    <div className="flex items-center justify-between gap-2 rounded-xl px-3 py-2">
+                      <span className="text-xs font-bold text-stone-800 dark:text-stone-200">
+                        🌐 {t.language.label}
+                      </span>
+                      <LanguageSwitcher compact />
+                    </div>
                     <button
                       onClick={handleSignOut}
                       disabled={signingOut}
                       className="block w-full rounded-xl px-3 py-2 text-left text-xs font-bold text-rose-600 transition hover:bg-rose-50 dark:text-rose-400 dark:hover:bg-rose-950/50 disabled:opacity-50"
                     >
-                      🚪 {signingOut ? "Đang đăng xuất..." : "Đăng xuất"}
+                      🚪 {signingOut ? t.nav.signingOut : t.nav.signOut}
                     </button>
                   </div>
                 )}
@@ -443,7 +461,7 @@ export default function AppNavbar() {
             <button
               onClick={toggleMobileMenu}
               className="flex items-center justify-center w-8 h-8 sm:w-9 sm:h-9 rounded-lg border border-stone-200 dark:border-stone-800 text-stone-600 dark:text-stone-400 hover:bg-stone-50 dark:hover:bg-stone-900 transition-colors shrink-0"
-              aria-label="Mở menu"
+              aria-label={t.nav.openMenu}
               aria-expanded={mobileMenuOpen}
             >
               {mobileMenuOpen ? <X className="w-5 h-5 text-rose-500" /> : <Menu className="w-5 h-5" />}
@@ -497,7 +515,7 @@ export default function AppNavbar() {
                       disabled={signingOut}
                       className="w-full px-3 py-1.5 text-xs font-bold text-rose-600 dark:text-rose-400 hover:bg-rose-50 dark:hover:bg-rose-950/50 rounded-lg transition disabled:opacity-50 text-left"
                     >
-                      {signingOut ? "Đang đăng xuất..." : "Đăng xuất"}
+                      {signingOut ? t.nav.signingOut : t.nav.signOut}
                     </button>
                   </div>
                 )}
@@ -557,7 +575,8 @@ export default function AppNavbar() {
                 Tài liệu Miễn phí
               </Link>
 
-              {NAV_LINKS.map(({ href, label, icon: Icon }) => {
+              {NAV_LINKS.map(({ href, label, labelKey, icon: Icon }) => {
+              const navLabel = labelKey ? t.nav[labelKey] : label;
                 const active = pathname === href;
                 const isGame = href === "/game";
                 const isCareer = href === "/su-nghiep";
@@ -589,7 +608,7 @@ export default function AppNavbar() {
                     <div className="flex items-center gap-2.5">
                       <Icon className={`w-4 h-4 transition-transform duration-200 group-hover:scale-110 ${isGame ? "text-amber-500" : isCareer ? "text-indigo-500 dark:text-indigo-400" : isNhomHoc && hasPendingStudyGroupCheckin ? "text-amber-600 animate-bounce" : ""}`} />
                       <span className="flex items-center gap-1.5">
-                        {label}
+                        {navLabel}
                         {isGame && <Flame className="w-3.5 h-3.5 text-orange-500" />}
                       </span>
                     </div>
@@ -620,7 +639,7 @@ export default function AppNavbar() {
       </header>
 
       {celebrateLevel !== null && (
-        <LevelUpModal level={celebrateLevel} userName={profile?.full_name || "Học viên"} onClose={dismiss} />
+        <LevelUpModal level={celebrateLevel} userName={profile?.full_name || t.nav.students} onClose={dismiss} />
       )}
 
       {showQuickShop && userId && (

@@ -616,7 +616,7 @@ export default function LearningAnalytics({ hideLeaderboardTab = false }: { hide
                           <span className="h-2.5 w-2.5 rounded-full" style={{ backgroundColor: item.color }} />
                           <span className="font-bold text-stone-800 dark:text-stone-200">{item.label}</span>
                         </div>
-                        <span className="font-extrabold text-stone-900 dark:text-stone-55">{item.value} bài ({Math.round(width)}%)</span>
+                        <span className="font-extrabold text-stone-900 dark:text-stone-50">{item.value} bài ({Math.round(width)}%)</span>
                       </div>
                       <div className="h-2.5 rounded-full bg-stone-100 dark:bg-stone-800 overflow-hidden">
                         <motion.div

@@ -14,6 +14,7 @@ import { fileURLToPath } from "url";
 import path from "path";
 import { createRequire } from "module";
 import { applyLessonOverrides } from "../lib/lesson-quiz-overrides.js";
+import { balanceLessonQuizzes, assertBalancePreservedAnswers } from "../lib/lesson-quiz-balance.js";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const root = path.resolve(__dirname, "..");
@@ -64,7 +65,7 @@ function loadLocalModule(rawPath) {
 }
 
 const { lessons: rawLessons } = loadLocalModule(path.join(root, "lib/lessons.ts"));
-const lessons = applyLessonOverrides(rawLessons)
+const cleanedLessons = applyLessonOverrides(rawLessons)
   .filter(Boolean)
   .map((lesson) => {
     if (!lesson || !Array.isArray(lesson.quiz)) return lesson;
@@ -87,6 +88,13 @@ const lessons = applyLessonOverrides(rawLessons)
       sections: [...(Array.isArray(lesson.sections) ? lesson.sections : []), ...straySections],
     };
   });
+
+// Last step before writing: spread the correct answers evenly across option
+// slots (see lib/lesson-quiz-balance.js for why). The assertion is the point -
+// it fails the build if the reorder ever detached `correct` from the answer
+// the author actually wrote.
+const lessons = balanceLessonQuizzes(cleanedLessons);
+assertBalancePreservedAnswers(cleanedLessons, lessons);
 
 if (!Array.isArray(lessons) || lessons.length === 0) {
   throw new Error(`Expected a non-empty lessons array, got: ${typeof lessons}`);

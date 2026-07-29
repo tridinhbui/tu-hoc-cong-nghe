@@ -9,7 +9,7 @@ import Leaderboard from "@/components/Leaderboard";
 
 const LearningAnalytics = dynamicImport(
   () => import("@/components/LearningAnalytics"),
-  { ssr: false, loading: () => <div className="text-center py-20 text-xs text-stone-505 dark:text-stone-400">Đang tải phân tích học tập...</div> }
+  { ssr: false, loading: () => <div className="text-center py-20 text-xs text-stone-500 dark:text-stone-400">Đang tải phân tích học tập...</div> }
 );
 
 // Auth-gated and reads Supabase env vars at render time - never prerender statically.

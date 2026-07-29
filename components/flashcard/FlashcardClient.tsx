@@ -319,7 +319,7 @@ export default function FlashcardClient({ userId: propUserId, initialCards, embe
         {!embedded && (
           <Link
             href="/dashboard"
-            className="inline-flex items-center gap-1.5 text-sm font-bold text-stone-600 dark:text-stone-400 hover:text-stone-900 dark:hover:text-stone-105 hover:bg-stone-100 dark:hover:bg-stone-800 rounded-xl px-3 py-2 -ml-3 mb-3 transition-all"
+            className="inline-flex items-center gap-1.5 text-sm font-bold text-stone-600 dark:text-stone-400 hover:text-stone-900 dark:hover:text-stone-100 hover:bg-stone-100 dark:hover:bg-stone-800 rounded-xl px-3 py-2 -ml-3 mb-3 transition-all"
           >
             <ArrowLeft className="w-4 h-4" /> Quay lại
           </Link>

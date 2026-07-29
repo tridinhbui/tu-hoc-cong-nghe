@@ -771,17 +771,17 @@ export default function LessonPageLayout({ lesson, quiz, children }: Props) {
               <div className={`text-sm font-extrabold uppercase tracking-widest ${c.text} mb-3`}>
                 {lessonLabel} · {lesson.difficulty}
               </div>
-              <h1 className="text-3xl sm:text-5xl font-extrabold text-stone-950 dark:text-stone-100 leading-tight mb-4">
+              <h1 className="text-3xl sm:text-5xl font-extrabold text-stone-950 dark:text-white leading-tight mb-4">
                 {lesson.title}
               </h1>
-              <p className="text-stone-700 dark:text-stone-200 text-lg sm:text-xl leading-relaxed">{lesson.subtitle}</p>
+              <p className="text-stone-700 dark:text-stone-100 text-lg sm:text-xl leading-relaxed">{lesson.subtitle}</p>
               <div className="mt-7 pt-5 border-t-2 border-stone-300 dark:border-stone-700 space-y-4">
-                <div className="flex items-center gap-4 text-base text-stone-700 dark:text-stone-200 font-semibold">
+                <div className="flex items-center gap-4 text-base text-stone-700 dark:text-stone-100 font-semibold">
                   <span>{lesson.duration} đọc</span>
                   <span>·</span>
                   <span>{quiz.length} câu quiz</span>
                   <span>·</span>
-                  <span className="font-bold text-stone-900 dark:text-stone-100">
+                  <span className="font-bold text-stone-900 dark:text-white">
                     {readPct === 0
                       ? "Chưa bắt đầu"
                       : readPct >= 100
@@ -797,8 +797,8 @@ export default function LessonPageLayout({ lesson, quiz, children }: Props) {
                   />
                 </div>
                 {readPct > 0 && readPct < 100 && (
-                  <p className="text-sm text-stone-700 dark:text-stone-200 font-semibold">
-                    Còn khoảng <strong className="text-stone-900 dark:text-stone-100">~{remainMin} phút</strong> để đọc xong
+                  <p className="text-sm text-stone-700 dark:text-stone-100 font-semibold">
+                    Còn khoảng <strong className="text-stone-900 dark:text-white">~{remainMin} phút</strong> để đọc xong
                   </p>
                 )}
                 {(() => {

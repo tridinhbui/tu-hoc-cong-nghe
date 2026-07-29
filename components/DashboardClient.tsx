@@ -873,7 +873,11 @@ export default function DashboardClient({ lessonsMeta }: { lessonsMeta: LessonMe
             return (
               <div className="rounded-[24px] border border-stone-200/90 dark:border-stone-800 bg-white/95 dark:bg-stone-900 p-4 sm:p-5 shadow-sm">
                 <div className="grid grid-cols-1 gap-3 xl:grid-cols-[minmax(0,1fr)_288px] xl:items-start">
-                  <div className="min-w-0">
+                  {/* self-stretch (not the grid's items-start) so this column
+                      fills the row height set by the taller UserStats sidebar -
+                      otherwise the level strip sits at the top and dumps all the
+                      leftover height as dead space under the avatars. */}
+                  <div className="min-w-0 xl:self-stretch xl:flex xl:flex-col">
                     <div className="relative z-10 mb-2.5 flex flex-col justify-between gap-2 sm:flex-row sm:items-center">
                       <div>
                         <h3 className="text-[15px] font-bold text-stone-900 dark:text-stone-100">
@@ -904,7 +908,12 @@ export default function DashboardClient({ lessonsMeta }: { lessonsMeta: LessonMe
                       </div>
                     </div>
 
-                    <div className="relative z-10">
+                    {/* Fills the row height the taller UserStats sidebar sets.
+                        The progress bar stays pinned under the heading; only the
+                        level strip below it centers in the leftover space, so the
+                        slack reads as padding around the avatars rather than a
+                        void at the bottom of the card. */}
+                    <div className="relative z-10 xl:flex-1 xl:flex xl:flex-col">
                         <div className="w-full h-1 bg-stone-100 dark:bg-stone-800 rounded-full overflow-hidden mb-2.5">
                           <div
                             className="h-full bg-gradient-to-r from-emerald-500 to-teal-500 rounded-full transition-all duration-500"
@@ -912,7 +921,7 @@ export default function DashboardClient({ lessonsMeta }: { lessonsMeta: LessonMe
                           />
                         </div>
 
-                        <div className="relative group/level-strip">
+                        <div className="relative group/level-strip xl:flex-1 xl:flex xl:items-center">
                           <button
                             onClick={() => levelStripRef.current?.scrollBy({ left: -220, behavior: "smooth" })}
                             className="hidden sm:flex absolute -left-3 top-1/2 -translate-y-1/2 z-10 w-7 h-7 rounded-full bg-white dark:bg-stone-900 border border-stone-200 dark:border-stone-700 shadow-md items-center justify-center text-stone-600 dark:text-stone-300 hover:bg-stone-50 dark:hover:bg-stone-800 transition-all opacity-0 group-hover/level-strip:opacity-100"
@@ -930,7 +939,7 @@ export default function DashboardClient({ lessonsMeta }: { lessonsMeta: LessonMe
 
                           <div
                             ref={levelStripRef}
-                            className="overflow-x-auto pb-2 -mx-1 px-1 no-scrollbar overscroll-x-contain [contain:paint] [backface-visibility:hidden] [transform:translateZ(0)]"
+                            className="overflow-x-auto pb-2 -mx-1 px-1 no-scrollbar overscroll-x-contain [contain:paint] [backface-visibility:hidden] [transform:translateZ(0)] xl:flex-1 xl:min-w-0"
                             style={{ WebkitOverflowScrolling: "touch" }}
                           >
                             <div className="flex items-stretch gap-0 min-w-max [backface-visibility:hidden]">
@@ -963,7 +972,7 @@ export default function DashboardClient({ lessonsMeta }: { lessonsMeta: LessonMe
                                         className={`relative text-left rounded-xl border p-1.5 w-[84px] h-[88px] shrink-0 bg-white dark:bg-stone-900 transition-all cursor-pointer flex flex-col [backface-visibility:hidden] ${
                                           isReached
                                             ? `${accent.border} ${isOpen ? `shadow-md scale-[1.02] ${accent.glow}` : isUserCurrent ? `shadow-sm ${accent.glow}` : ""}`
-                                            : "border-stone-100 dark:border-stone-855 opacity-60 grayscale hover:opacity-90 hover:grayscale-0"
+                                            : "border-stone-100 dark:border-stone-800 opacity-60 grayscale hover:opacity-90 hover:grayscale-0"
                                         }`}
                                       >
                                         {isUserCurrent && (
@@ -980,7 +989,7 @@ export default function DashboardClient({ lessonsMeta }: { lessonsMeta: LessonMe
                                             <span className={`text-[7px] font-black uppercase text-white px-1 py-0.5 rounded-full ${accent.solid}`}>Bạn</span>
                                           )}
                                         </div>
-                                        <p className={`text-[10px] font-extrabold mt-0.5 leading-snug line-clamp-2 flex-1 ${isReached ? "text-stone-900 dark:text-stone-100" : "text-stone-500 dark:text-stone-550"}`}>
+                                        <p className={`text-[10px] font-extrabold mt-0.5 leading-snug line-clamp-2 flex-1 ${isReached ? "text-stone-900 dark:text-stone-100" : "text-stone-500 dark:text-stone-500"}`}>
                                           {lvl.name}
                                         </p>
                                         <p className="text-[9px] text-stone-400 dark:text-stone-500 mt-0.5">{lvl.minXp} XP</p>
@@ -1791,7 +1800,7 @@ export default function DashboardClient({ lessonsMeta }: { lessonsMeta: LessonMe
                       <h4 className="text-xs font-bold text-amber-800 dark:text-amber-400 flex items-center gap-1.5">
                         🏆 Đã đủ điều kiện Thi Vượt Ải {stage.label}
                       </h4>
-                      <p className="text-[10px] text-stone-500 dark:text-stone-405 mt-1 leading-relaxed">
+                      <p className="text-[10px] text-stone-500 dark:text-stone-400 mt-1 leading-relaxed">
                         Chúc mừng bạn đã học xong tất cả bài học trong chặng này! Hãy vượt qua bài thi trắc nghiệm cột mốc (15 câu) để nhận <strong>+50 XP</strong> và mở khóa chặng sau.
                       </p>
                     </div>
@@ -1812,7 +1821,7 @@ export default function DashboardClient({ lessonsMeta }: { lessonsMeta: LessonMe
                 {stageOpen && stage.available && isStageLockedByMilestone && (
                   <div className="border-2 border-dashed border-rose-200/60 dark:border-rose-950/40 rounded-2xl px-5 py-8 text-center bg-rose-500/[0.02] relative overflow-hidden">
                     <div className="flex flex-col items-center gap-3">
-                      <div className="w-12 h-12 rounded-2xl bg-rose-55 dark:bg-rose-950/60 text-rose-500 flex items-center justify-center animate-pulse">
+                      <div className="w-12 h-12 rounded-2xl bg-rose-50 dark:bg-rose-950/60 text-rose-500 flex items-center justify-center animate-pulse">
                         <Lock className="w-6 h-6" />
                       </div>
                       <div>

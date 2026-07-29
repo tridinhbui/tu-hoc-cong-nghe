@@ -485,7 +485,7 @@ export default function ProfilePage() {
                   <span className="inline-flex items-center rounded-full bg-white/10 dark:bg-stone-800 px-3 py-1 text-[10px] font-extrabold uppercase tracking-widest text-emerald-300">
                     {currentTrackLabel}
                   </span>
-                  <span className="inline-flex items-center rounded-full bg-emerald-550/20 px-3 py-1 text-[10px] font-extrabold uppercase tracking-widest text-emerald-300">
+                  <span className="inline-flex items-center rounded-full bg-emerald-500/20 px-3 py-1 text-[10px] font-extrabold uppercase tracking-widest text-emerald-300">
                     Level {currentLevel.level} · {currentLevel.name}
                   </span>
                 </div>
@@ -574,7 +574,7 @@ export default function ProfilePage() {
                           <div className="flex items-center gap-1.5 flex-wrap">
                             <p className="text-xs sm:text-sm font-extrabold text-stone-900 dark:text-stone-100">{track.title}</p>
                             {isCurrent && (
-                              <span className="inline-flex rounded bg-emerald-100/70 dark:bg-emerald-950 text-emerald-800 dark:text-emerald-455 px-1.5 py-0.5 text-[9px] font-extrabold uppercase tracking-wider">
+                              <span className="inline-flex rounded bg-emerald-100/70 dark:bg-emerald-950 text-emerald-800 dark:text-emerald-400 px-1.5 py-0.5 text-[9px] font-extrabold uppercase tracking-wider">
                                 Đang học
                               </span>
                             )}
@@ -587,7 +587,7 @@ export default function ProfilePage() {
                           <p className="text-xs sm:text-sm font-extrabold text-stone-900 dark:text-stone-100">
                             {track.completed}/{track.total} bài
                           </p>
-                          <p className="text-[10px] text-stone-455 dark:text-stone-500 mt-0.5">
+                          <p className="text-[10px] text-stone-400 dark:text-stone-500 mt-0.5">
                             {track.percent}% · ~{track.estimatedHours} giờ
                           </p>
                         </div>
@@ -608,7 +608,7 @@ export default function ProfilePage() {
             {/* Recent Lessons Card */}
             <div className="bg-white dark:bg-stone-900 border border-stone-200 dark:border-stone-800 rounded-2xl p-5 sm:p-6 shadow-sm">
               <div className="flex items-start gap-4 mb-5 border-b border-stone-100 dark:border-stone-800 pb-4">
-                <div className="w-10 h-10 rounded-xl bg-amber-550/10 text-amber-600 dark:text-amber-400 flex items-center justify-center flex-shrink-0">
+                <div className="w-10 h-10 rounded-xl bg-amber-500/10 text-amber-600 dark:text-amber-400 flex items-center justify-center flex-shrink-0">
                   <BookOpen className="w-5 h-5" />
                 </div>
                 <div className="min-w-0">
@@ -633,7 +633,7 @@ export default function ProfilePage() {
                         <p className="text-xs sm:text-sm font-bold text-stone-900 dark:text-stone-100 group-hover:text-emerald-600 dark:group-hover:text-emerald-400 transition-colors truncate">
                           {lesson.title}
                         </p>
-                        <p className="text-[10px] text-stone-455 dark:text-stone-500 mt-0.5">
+                        <p className="text-[10px] text-stone-400 dark:text-stone-500 mt-0.5">
                           {lesson.completedAt ? `Hoàn thành ngày ${new Date(lesson.completedAt).toLocaleDateString("vi-VN")}` : "Không rõ ngày"}
                         </p>
                       </div>
@@ -642,7 +642,7 @@ export default function ProfilePage() {
                           <span className="text-xs font-extrabold text-stone-900 dark:text-stone-100">
                             {lesson.quizScore !== null && lesson.quizScore !== undefined ? `${Math.round(lesson.quizScore)}%` : "N/A"}
                           </span>
-                          <p className="text-[9px] text-stone-455 dark:text-stone-500">Đọc & Quiz</p>
+                          <p className="text-[9px] text-stone-400 dark:text-stone-500">Đọc & Quiz</p>
                         </div>
                         <ArrowRight className="w-3.5 h-3.5 text-stone-400 group-hover:text-emerald-500 transition-colors" />
                       </div>
@@ -665,7 +665,7 @@ export default function ProfilePage() {
               </div>
 
               {milestones.length === 0 ? (
-                <p className="text-xs text-stone-550 dark:text-stone-400 py-2">
+                <p className="text-xs text-stone-500 dark:text-stone-400 py-2">
                   Chưa có cột mốc nào để hiển thị. Hãy tiếp tục học để tạo cột mốc đầu tiên nhé!
                 </p>
               ) : (
@@ -702,22 +702,22 @@ export default function ProfilePage() {
                 <div className="min-w-0 bg-stone-50/70 dark:bg-stone-900/30 border border-stone-200/50 dark:border-stone-800 rounded-xl p-3.5">
                   <span className="text-[10px] font-extrabold text-stone-400 dark:text-stone-500 uppercase tracking-wider block mb-1">Thời gian học</span>
                   <p className="text-base font-extrabold text-stone-900 dark:text-stone-100 truncate">{studyMinutes} phút</p>
-                  <p className="text-[10px] text-stone-455 dark:text-stone-400 mt-0.5 truncate">{lessonsStarted} bài đã mở</p>
+                  <p className="text-[10px] text-stone-400 dark:text-stone-400 mt-0.5 truncate">{lessonsStarted} bài đã mở</p>
                 </div>
                 <div className="min-w-0 bg-stone-50/70 dark:bg-stone-900/30 border border-stone-200/50 dark:border-stone-800 rounded-xl p-3.5">
                   <span className="text-[10px] font-extrabold text-stone-400 dark:text-stone-500 uppercase tracking-wider block mb-1">Xếp hạng tuần</span>
                   <p className="text-base font-extrabold text-stone-900 dark:text-stone-100 truncate">{xpRank ? `#${xpRank.rank}` : "Chưa xếp hạng"}</p>
-                  <p className="text-[10px] text-stone-455 dark:text-stone-400 mt-0.5 truncate">{xpRank ? `${xpRank.value} XP` : "Học tiếp để lên hạng"}</p>
+                  <p className="text-[10px] text-stone-400 dark:text-stone-400 mt-0.5 truncate">{xpRank ? `${xpRank.value} XP` : "Học tiếp để lên hạng"}</p>
                 </div>
                 <div className="min-w-0 bg-stone-50/70 dark:bg-stone-900/30 border border-stone-200/50 dark:border-stone-800 rounded-xl p-3.5">
                   <span className="text-[10px] font-extrabold text-stone-400 dark:text-stone-500 uppercase tracking-wider block mb-1">Nhịp học streak</span>
                   <p className="text-base font-extrabold text-stone-900 dark:text-stone-100 truncate">{streak?.current_streak || 0} ngày</p>
-                  <p className="text-[10px] text-stone-455 dark:text-stone-400 mt-0.5 truncate">Kỷ lục {streak?.longest_streak || 0} ngày</p>
+                  <p className="text-[10px] text-stone-400 dark:text-stone-400 mt-0.5 truncate">Kỷ lục {streak?.longest_streak || 0} ngày</p>
                 </div>
                 <div className="min-w-0 bg-stone-50/70 dark:bg-stone-900/30 border border-stone-200/50 dark:border-stone-800 rounded-xl p-3.5">
                   <span className="text-[10px] font-extrabold text-stone-400 dark:text-stone-500 uppercase tracking-wider block mb-1">Ghi chú & Flag</span>
                   <p className="text-base font-extrabold text-stone-900 dark:text-stone-100 truncate">{notesCount} Note</p>
-                  <p className="text-[10px] text-stone-455 dark:text-stone-400 mt-0.5 truncate">{flaggedLessonCount} bài tự đánh dấu</p>
+                  <p className="text-[10px] text-stone-400 dark:text-stone-400 mt-0.5 truncate">{flaggedLessonCount} bài tự đánh dấu</p>
                 </div>
               </div>
             </div>
@@ -865,7 +865,7 @@ export default function ProfilePage() {
                       <span className="text-xs font-bold text-stone-800 dark:text-stone-200 group-hover:text-emerald-600 dark:group-hover:text-emerald-400 transition-colors truncate">
                         {bookmark.lesson_title}
                       </span>
-                      <Bookmark className="w-3.5 h-3.5 text-amber-550 shrink-0" />
+                      <Bookmark className="w-3.5 h-3.5 text-amber-500 shrink-0" />
                     </Link>
                   ))}
                 </div>

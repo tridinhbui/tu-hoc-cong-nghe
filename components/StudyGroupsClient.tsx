@@ -39,6 +39,7 @@ import {
 } from "@/lib/supabase-study-rooms";
 import { trackFeatureClick } from "@/lib/feature-events";
 import { isValidAvatar } from "@/lib/avatar-utils";
+import { useStudyRoomVoice } from "@/lib/use-study-room-voice";
 import {
   type StudyRoomMission,
   type StudyRoomMember,
@@ -123,6 +124,28 @@ function formatShortTime(iso: string) {
   });
 }
 
+// ── Geometry of the 3D study room ──────────────────────────────────────
+//
+// The room is built out of real CSS 3D surfaces (a floor plane and three
+// walls inside one `preserve-3d` world) rather than a flat panel with a dot
+// grid, so rotating the camera actually walks around the space. All numbers
+// below are *virtual* pixels at zoom 1: the whole world is scaled down by a
+// breakpoint class on its wrapper, which is what lets one set of coordinates
+// serve a 375px phone and a 1440px desktop without a second layout.
+const ROOM_W = 560;
+const ROOM_D = 460;
+const ROOM_H = 300;
+/** Floor height below the world origin. Walls sit on it, characters stand on it. */
+const FLOOR_Y = 130;
+const SEAT_RADIUS = 175;
+/** Seat angles around the table, in degrees, 0 = nearest the camera.
+ *
+ *  Deliberately not a plain `idx * 72`: the top learner takes the far side
+ *  (180°, the "head" of the table, fully visible) and the near-centre slot
+ *  is left empty, so the camera looks *into* the circle instead of at the
+ *  back of whoever drew seat one. */
+const SEAT_ANGLES = [180, 108, 252, 36, 324];
+
 // "Học cùng nhóm": small (default cap 5) topic-based groups, either
 // randomly matched into an open room or picked manually from the browse
 // list - unlike the 1:1 referral loop this is meant to stay ongoing (a
@@ -151,6 +174,10 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
   const [activeMapNode, setActiveMapNode] = useState<string | null>(null);
   const dragStartRef = useRef<{ x: number; y: number }>({ x: 0, y: 0 });
   const rotationStartRef = useRef<{ x: number; y: number }>({ x: 20, y: 0 });
+  /** Whether the current pointer gesture belongs to the stage yet - see
+   *  handleStageMouseDown. Kept in a ref so the decision survives the moves
+   *  that happen before React re-renders. */
+  const gestureRef = useRef<{ active: boolean; captured: boolean }>({ active: false, captured: false });
 
   const handleStageWheel = (e: React.WheelEvent<HTMLDivElement>) => {
     setZoom3D((prev) => Math.max(0.6, Math.min(1.85, prev - e.deltaY * 0.0015)));
@@ -162,10 +189,13 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
   // 2. Focus Lofi Audio Player state & Web Audio synth engine
   const [lofiPlaying, setLofiPlaying] = useState(false);
   const [lofiTrack, setLofiTrack] = useState<"lofi" | "rain" | "waves">("lofi");
-  const [isMicMuted, setIsMicMuted] = useState(true);
   const audioCtxRef = useRef<AudioContext | null>(null);
   const gainNodeRef = useRef<GainNode | null>(null);
   const noiseSourceRef = useRef<AudioBufferSourceNode | null>(null);
+
+  // 2b. Room voice chat (LiveKit). Opt-in, audio-only, mic starts muted -
+  // see the header comment in lib/use-study-room-voice.ts.
+  const voice = useStudyRoomVoice(myRoom?.room_id ?? null);
 
   // 3. Group Daily Quests & 3D Chest Reward state
   const [isChestUnlocked, setIsChestUnlocked] = useState(false);
@@ -287,19 +317,45 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
   };
 
   const handleStageMouseDown = (e: React.MouseEvent<HTMLDivElement> | React.TouchEvent<HTMLDivElement>) => {
-    setIsDragging3D(true);
-    const clientX = "touches" in e ? e.touches[0].clientX : e.clientX;
-    const clientY = "touches" in e ? e.touches[0].clientY : e.clientY;
+    const isTouch = "touches" in e;
+    const clientX = isTouch ? e.touches[0].clientX : e.clientX;
+    const clientY = isTouch ? e.touches[0].clientY : e.clientY;
     dragStartRef.current = { x: clientX, y: clientY };
     rotationStartRef.current = { ...rotation3D };
+    // A mouse press over the stage can only mean "rotate", so it captures
+    // straight away. A finger press can't: the stage fills most of a phone
+    // screen, and the overwhelmingly common gesture on it is scrolling past
+    // to the rest of the page. Touch therefore starts *uncommitted* and has
+    // to prove horizontal intent in handleStageMouseMove before it steals
+    // the gesture - without this, every scroll spun the room to a random
+    // angle and left the seats unreadable.
+    gestureRef.current = { active: true, captured: !isTouch };
+    if (!isTouch) setIsDragging3D(true);
   };
 
+  /** Horizontal travel, in px, that separates "spin the room" from "scroll". */
+  const DRAG_INTENT_PX = 12;
+
   const handleStageMouseMove = (e: React.MouseEvent<HTMLDivElement> | React.TouchEvent<HTMLDivElement>) => {
-    if (!isDragging3D) return;
+    const gesture = gestureRef.current;
+    if (!gesture.active) return;
+
     const clientX = "touches" in e ? e.touches[0].clientX : e.clientX;
     const clientY = "touches" in e ? e.touches[0].clientY : e.clientY;
     const deltaX = clientX - dragStartRef.current.x;
     const deltaY = clientY - dragStartRef.current.y;
+
+    if (!gesture.captured) {
+      if (Math.abs(deltaY) > Math.abs(deltaX) && Math.abs(deltaY) >= DRAG_INTENT_PX) {
+        // Committed to a vertical scroll - stay out of the way for the rest
+        // of this touch rather than re-testing on every move event.
+        gesture.active = false;
+        return;
+      }
+      if (Math.abs(deltaX) < DRAG_INTENT_PX) return;
+      gesture.captured = true;
+      setIsDragging3D(true);
+    }
 
     setRotation3D({
       x: Math.max(-10, Math.min(65, rotationStartRef.current.x - deltaY * 0.4)),
@@ -308,6 +364,7 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
   };
 
   const handleStageMouseUp = () => {
+    gestureRef.current = { active: false, captured: false };
     setIsDragging3D(false);
   };
   const messagesEndRef = useRef<HTMLDivElement>(null);
@@ -799,23 +856,71 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
                   <span className="hidden sm:inline">{lofiPlaying ? "Nhạc Lofi: Đang phát" : "Nhạc Lofi Chill"}</span>
                 </button>
 
-                {/* 🎙️ Mic Status Toggle */}
-                <button
-                  type="button"
-                  onClick={() => {
-                    setIsMicMuted((prev) => !prev);
-                    toast.info(isMicMuted ? "🎙️ Đã bật micro phòng học" : "🔇 Đã tắt micro phòng học");
-                  }}
-                  className={`inline-flex items-center gap-1 px-2 py-1 rounded-xl text-[10px] font-extrabold border transition-all cursor-pointer ${
-                    !isMicMuted
-                      ? "bg-emerald-600 text-white border-emerald-500"
-                      : "bg-stone-100 dark:bg-stone-800 text-stone-500 dark:text-stone-400 border-stone-200 dark:border-stone-700"
-                  }`}
-                  title="Bật/Tắt Micro"
-                >
-                  <span>{isMicMuted ? "🔇" : "🎙️"}</span>
-                  <span className="hidden md:inline">{isMicMuted ? "Mic: Tắt" : "Mic: Mở"}</span>
-                </button>
+                {/* 🎙️ Voice chat - opt in, then unmute. Two separate steps on
+                    purpose: rooms are re-matched with strangers every Monday,
+                    so nothing connects and no microphone opens until the user
+                    asks for it twice. */}
+                {voice.status === "connected" ? (
+                  <>
+                    <button
+                      type="button"
+                      onClick={() => void voice.toggleMic()}
+                      className={`inline-flex items-center gap-1 px-2 py-1 rounded-xl text-[10px] font-extrabold border transition-all cursor-pointer ${
+                        voice.micEnabled
+                          ? "bg-emerald-600 text-white border-emerald-500"
+                          : "bg-stone-100 dark:bg-stone-800 text-stone-500 dark:text-stone-400 border-stone-200 dark:border-stone-700"
+                      }`}
+                      title="Bật/Tắt Micro"
+                    >
+                      <span>{voice.micEnabled ? "🎙️" : "🔇"}</span>
+                      <span className="hidden md:inline">{voice.micEnabled ? "Mic: Mở" : "Mic: Tắt"}</span>
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => void voice.leave()}
+                      className="inline-flex items-center gap-1 px-2 py-1 rounded-xl text-[10px] font-extrabold border bg-rose-500 text-white border-rose-400 transition-all cursor-pointer"
+                      title="Rời voice"
+                    >
+                      <span>📴</span>
+                      <span className="hidden md:inline">Rời voice ({voice.participantIds.length})</span>
+                    </button>
+                    {voice.needsAudioUnlock && (
+                      <button
+                        type="button"
+                        onClick={() => void voice.unlockAudio()}
+                        className="inline-flex items-center gap-1 px-2 py-1 rounded-xl text-[10px] font-extrabold border bg-amber-500 text-stone-950 border-amber-400 animate-pulse cursor-pointer"
+                        title="Trình duyệt đang chặn tự phát âm thanh"
+                      >
+                        🔈 Bấm để nghe
+                      </button>
+                    )}
+                  </>
+                ) : (
+                  <button
+                    type="button"
+                    onClick={() => void voice.join()}
+                    disabled={voice.status === "connecting" || voice.status === "unavailable"}
+                    className={`inline-flex items-center gap-1 px-2 py-1 rounded-xl text-[10px] font-extrabold border transition-all cursor-pointer disabled:opacity-60 disabled:cursor-not-allowed ${
+                      voice.status === "unavailable"
+                        ? "bg-stone-100 dark:bg-stone-800 text-stone-400 border-stone-200 dark:border-stone-700"
+                        : "bg-stone-100 dark:bg-stone-800 text-stone-700 dark:text-stone-300 border-stone-200 dark:border-stone-700 hover:bg-stone-200"
+                    }`}
+                    title={
+                      voice.status === "unavailable"
+                        ? "Voice chưa được cấu hình trên máy chủ"
+                        : "Vào kênh thoại của phòng (mic tắt sẵn)"
+                    }
+                  >
+                    <span>🎙️</span>
+                    <span className="hidden md:inline">
+                      {voice.status === "connecting"
+                        ? "Đang vào..."
+                        : voice.status === "unavailable"
+                        ? "Voice chưa bật"
+                        : "Vào voice"}
+                    </span>
+                  </button>
+                )}
 
                 {/* 📱 Mobile Segmented Tab Control (< lg screens) */}
                 <div className="lg:hidden flex bg-stone-100 dark:bg-stone-800 p-0.5 rounded-xl border border-stone-200 dark:border-stone-700 text-[10px] font-extrabold">
@@ -925,14 +1030,15 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
                 onWheel={handleStageWheel}
                 className={`lg:col-span-7 ${
                   mobileTab === "3d" ? "flex" : "hidden lg:flex"
-                } flex-col h-[78vh] min-h-[560px] sm:min-h-[640px] flex-1 rounded-2xl border border-stone-800 bg-stone-950 p-3.5 sm:p-4 shadow-2xl relative overflow-hidden text-white justify-between select-none transition-colors ${
+                } flex-col h-[64vh] min-h-[440px] sm:h-[74vh] sm:min-h-[600px] lg:h-[78vh] lg:min-h-[640px] flex-1 rounded-2xl border border-stone-800 bg-stone-950 p-3 sm:p-4 shadow-2xl relative overflow-hidden text-white justify-between select-none transition-colors ${
                   isDragging3D ? "cursor-grabbing border-emerald-500/70" : "cursor-grab"
                 }`}
-                style={{ perspective: "800px", perspectiveOrigin: "50% 45%" }}
+                // touchAction "pan-y" is the other half of the scroll fix in
+                // handleStageMouseDown: the browser keeps vertical panning
+                // (the page scrolls normally over the room) and hands us the
+                // horizontal axis, which is the one we turn into rotation.
+                style={{ perspective: "900px", perspectiveOrigin: "50% 38%", touchAction: "pan-y" }}
               >
-                {/* Ambient Radial Lighting & Starfield Grid Background */}
-                <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(#10b981_1.5px,transparent_1.5px)] [background-size:20px_20px] opacity-[0.14]" />
-                <div className="pointer-events-none absolute -top-24 left-1/2 -translate-x-1/2 w-96 h-48 bg-emerald-500/20 rounded-full blur-3xl animate-pulse" />
 
                 {/* Stage Header Controls */}
                 <div className="relative z-30 flex items-center justify-between shrink-0 mb-1">
@@ -988,167 +1094,408 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
                   </div>
                 </div>
 
-                {/* ── 3D SPATIAL DRAG ROTATION & MOUSE WHEEL ZOOM CANVAS ── */}
-                <motion.div
-                  animate={{
-                    rotateX: rotation3D.x,
-                    rotateY: rotation3D.y,
-                    scale: zoom3D,
-                  }}
-                  transition={isDragging3D ? { type: "tween", duration: 0 } : { type: "spring", stiffness: 200, damping: 20 }}
-                  className="relative flex-1 min-h-0 w-full flex items-center justify-center my-auto transition-transform duration-200"
-                  style={{ transformStyle: "preserve-3d" }}
-                >
-                  {/* Outer 3D Grid Floor Ring */}
+                {/* ── THE ROOM ────────────────────────────────────────────
+                    A floor plane and three walls inside one `preserve-3d`
+                    world, with everything else standing on the floor, so
+                    dragging the camera genuinely walks around the space
+                    instead of skewing a flat panel.
+
+                    Anything carrying a hand-written `style.transform` below
+                    must NOT also take a framer transform prop (animate={{y}},
+                    whileHover={{scale}}) - framer writes the whole transform
+                    string and would drop the placement. Where both are needed
+                    the placement lives on a plain wrapper and the animation on
+                    a child. */}
+                <div className="relative flex-1 min-h-0 w-full flex items-center justify-center overflow-hidden">
+                  {/* Lamp bloom and vignette stay outside the world: light is
+                      screen-space, it shouldn't rotate with the furniture. */}
+                  <div className="pointer-events-none absolute inset-0 z-20 bg-[radial-gradient(ellipse_at_50%_32%,transparent_38%,rgba(0,0,0,0.6)_100%)]" />
+
+                  {/* One set of virtual coordinates, three screen sizes. */}
                   <div
-                    className="absolute inset-8 rounded-full border border-dashed border-emerald-500/25 pointer-events-none"
-                    style={{ transform: "translateZ(-20px)" }}
-                  />
-
-                  {/* Central 3D Interactive Spatial Roundtable Map */}
-                  <motion.div
-                    whileHover={{ scale: 1.05, rotateZ: 3 }}
-                    className="relative w-28 h-28 sm:w-34 sm:h-34 rounded-full bg-gradient-to-b from-stone-800 via-emerald-950/80 to-stone-950 border-2 border-emerald-400/80 shadow-[0_0_40px_rgba(16,185,129,0.35)] flex flex-col items-center justify-center text-center p-2 z-10 shrink-0 cursor-pointer"
-                    style={{ transform: "translateZ(10px)" }}
-                    onClick={() => {
-                      toast.success("🔮 Đã nạp năng lượng 3D Spatial Boost cho cả phòng!");
-                    }}
+                    className="scale-[0.5] sm:scale-[0.7] lg:scale-[0.9]"
+                    style={{ transformStyle: "preserve-3d" }}
                   >
-                    <div className="absolute inset-1 rounded-full border border-dashed border-emerald-300/40 animate-spin-slow pointer-events-none" />
-
-                    <div className="relative z-10">
-                      <motion.span
-                        animate={{ y: [0, -3, 0], scale: [1, 1.08, 1] }}
-                        transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
-                        className="text-lg sm:text-xl mb-0.5 inline-block drop-shadow-[0_0_12px_rgba(16,185,129,0.8)]"
-                      >
-                        🔮
-                      </motion.span>
-                      <p className="text-[8px] sm:text-[9px] font-black text-emerald-300 uppercase tracking-widest">
-                        BÀN HỌC 3D
-                      </p>
-                      <p className="text-xs font-black text-white mt-0.5">
-                        {myRoom.weekly_xp_progress} / {myRoom.weekly_xp_goal} XP
-                      </p>
-                      <button
-                        type="button"
-                        onClick={(e) => {
-                          e.stopPropagation();
-                          void handleClaimGroupReward();
-                        }}
-                        disabled={!allMissionsDone || rewardClaimed || claimingReward}
-                        className={`mt-1 inline-flex items-center gap-1 text-[8px] font-extrabold px-2 py-0.5 rounded-full border transition-all cursor-pointer ${
-                          rewardClaimed || isChestUnlocked
-                            ? "bg-amber-500 text-stone-950 border-amber-300 shadow-md"
-                            : !allMissionsDone
-                            ? "bg-stone-900/90 text-stone-500 border-stone-700 cursor-not-allowed"
-                            : "bg-emerald-950/90 text-emerald-300 border-emerald-400/40 hover:bg-emerald-800"
-                        }`}
-                      >
-                        <span>{rewardClaimed || isChestUnlocked ? "👑 Rương Đã Mở" : claimingReward ? "Đang mở..." : "🎁 Nhận Rương"}</span>
-                      </button>
-                    </div>
-                  </motion.div>
-
-                  {/* 4 Interactive Holographic 3D Landmarks on Map Floor */}
-                  {[
-                    { id: "valuation", name: "Định Giá", icon: "🏰", pos: "absolute top-2 left-[20%] sm:left-[28%]" },
-                    { id: "trading", name: "Giao Dịch", icon: "🏛️", pos: "absolute top-2 right-[20%] sm:right-[28%]" },
-                    { id: "cashflow", name: "Dòng Tiền", icon: "⚓", pos: "absolute bottom-2 left-[20%] sm:left-[28%]" },
-                    { id: "fed", name: "Lãi Suất", icon: "⚡", pos: "absolute bottom-2 right-[20%] sm:right-[28%]" },
-                  ].map((node) => (
-                    <motion.button
-                      key={node.id}
-                      type="button"
-                      onClick={() => {
-                        setActiveMapNode(node.id);
-                        toast.success(`Đã kích hoạt trạm 3D [${node.name}]! +15% XP cho cả phòng.`);
-                      }}
-                      whileHover={{ scale: 1.2, translateZ: 30 }}
-                      className={`${node.pos} z-15 flex items-center gap-1 bg-stone-900/90 backdrop-blur-md px-2 py-0.5 rounded-full border border-emerald-500/40 text-[9px] font-black text-emerald-300 shadow-md cursor-pointer transition-all`}
-                      style={{ transform: "translateZ(12px)" }}
+                    <motion.div
+                      animate={{ rotateX: rotation3D.x, rotateY: rotation3D.y, scale: zoom3D }}
+                      transition={
+                        isDragging3D
+                          ? { type: "tween", duration: 0 }
+                          : { type: "spring", stiffness: 200, damping: 20 }
+                      }
+                      className="relative"
+                      style={{ width: ROOM_W, height: ROOM_H, transformStyle: "preserve-3d" }}
                     >
-                      <span>{node.icon}</span>
-                      <span className="hidden sm:inline">{node.name}</span>
-                    </motion.button>
-                  ))}
+                      {/* ── FLOOR ── */}
+                      <div
+                        className="absolute left-1/2 top-1/2"
+                        style={{
+                          width: ROOM_W,
+                          height: ROOM_D,
+                          transform: `translate(-50%, -50%) translateY(${FLOOR_Y}px) rotateX(90deg)`,
+                          backgroundImage:
+                            "repeating-linear-gradient(90deg, rgba(255,255,255,0.05) 0 2px, transparent 2px 48px), repeating-linear-gradient(0deg, rgba(0,0,0,0.4) 0 2px, transparent 2px 96px), linear-gradient(180deg, #1c1917 0%, #0a0908 100%)",
+                          boxShadow: "inset 0 0 140px rgba(0,0,0,0.95)",
+                        }}
+                      >
+                        {/* Pool of lamplight on the boards */}
+                        <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[400px] h-[400px] rounded-full bg-[radial-gradient(circle,rgba(16,185,129,0.26)_0%,rgba(16,185,129,0.07)_45%,transparent_72%)]" />
+                        {/* Rug under the table */}
+                        <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[430px] h-[430px] rounded-full border border-emerald-500/20 bg-emerald-950/30" />
+                        <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[340px] h-[340px] rounded-full border border-dashed border-emerald-400/25" />
+                      </div>
 
-                  {/* 🪑 INTIMATE COZY MEMBER POD SEATS (KÉO SÁT NGỒI XUNG QUANH BÀN TRÒN 3D) */}
-                  {(() => {
-                    const seatClasses = [
-                      "absolute top-2 sm:top-4 left-1/2 -translate-x-1/2 z-20",       // Seat 0: Top Center (Sát ngay phía trên bàn)
-                      "absolute top-8 sm:top-10 left-[18%] sm:left-[26%] z-20",         // Seat 1: Top Left (Kéo sát vào phía bàn)
-                      "absolute top-8 sm:top-10 right-[18%] sm:right-[26%] z-20",       // Seat 2: Top Right (Kéo sát vào phía bàn)
-                      "absolute bottom-4 sm:bottom-6 left-[18%] sm:left-[26%] z-20",    // Seat 3: Bottom Left (Kéo sát vào phía bàn)
-                      "absolute bottom-4 sm:bottom-6 right-[18%] sm:right-[26%] z-20",  // Seat 4: Bottom Right (Kéo sát vào phía bàn)
-                    ];
+                      {/* ── BACK WALL ── */}
+                      <div
+                        className="absolute left-1/2 top-1/2 overflow-hidden"
+                        style={{
+                          width: ROOM_W,
+                          height: ROOM_H,
+                          transform: `translate(-50%, -50%) translateY(${FLOOR_Y - ROOM_H / 2}px) translateZ(-${ROOM_D / 2}px)`,
+                          background: "linear-gradient(180deg, #0a0908 0%, #1c1917 60%, #292524 100%)",
+                        }}
+                      >
+                        {/* Window onto a night skyline */}
+                        <div className="absolute top-9 left-12 w-[152px] h-[94px] rounded-md border-2 border-stone-700 bg-[linear-gradient(165deg,#0b3b33_0%,#052e2b_55%,#03211f_100%)] shadow-[0_0_46px_rgba(16,185,129,0.28)]">
+                          <div className="absolute inset-0 grid grid-cols-2 grid-rows-2">
+                            <div className="border-r border-b border-stone-700/70" />
+                            <div className="border-b border-stone-700/70" />
+                            <div className="border-r border-stone-700/70" />
+                            <div />
+                          </div>
+                        </div>
+                        {/* Wall clock */}
+                        <div className="absolute top-12 right-[92px] w-10 h-10 rounded-full border-2 border-stone-700 bg-stone-900 shadow-inner">
+                          <span className="absolute left-1/2 top-1/2 w-[1px] h-3 -translate-x-1/2 -translate-y-full bg-stone-500" />
+                          <span className="absolute left-1/2 top-1/2 w-2.5 h-[1px] bg-stone-500" />
+                        </div>
+                        {/* Whiteboard */}
+                        <div className="absolute bottom-[92px] right-8 w-[148px] h-[80px] rounded-md border-2 border-stone-700 bg-stone-800/80 p-2.5">
+                          <div className="h-1.5 w-2/3 rounded-full bg-emerald-500/60" />
+                          <div className="mt-2 h-1.5 w-1/2 rounded-full bg-stone-600" />
+                          <div className="mt-2 h-1.5 w-3/5 rounded-full bg-stone-600" />
+                          <div className="mt-2 h-1.5 w-1/3 rounded-full bg-stone-600" />
+                        </div>
+                        {/* Baseboard */}
+                        <div className="absolute bottom-0 left-0 right-0 h-3.5 bg-stone-800 border-t border-stone-700" />
+                      </div>
 
-                    const sortedMembers = [...myRoomMembers].sort((a, b) => b.weekly_lessons - a.weekly_lessons);
+                      {/* ── SIDE WALLS ── */}
+                      {([-1, 1] as const).map((side) => (
+                        <div
+                          key={side}
+                          className="absolute left-1/2 top-1/2 overflow-hidden"
+                          style={{
+                            width: ROOM_D,
+                            height: ROOM_H,
+                            transform: `translate(-50%, -50%) translateY(${FLOOR_Y - ROOM_H / 2}px) translateX(${
+                              side * (ROOM_W / 2)
+                            }px) rotateY(${side * -90}deg)`,
+                            background:
+                              side === -1
+                                ? "linear-gradient(90deg, #0a0908 0%, #191614 100%)"
+                                : "linear-gradient(270deg, #0a0908 0%, #191614 100%)",
+                          }}
+                        >
+                          <div className="absolute bottom-0 left-0 right-0 h-3.5 bg-stone-800 border-t border-stone-700" />
+                        </div>
+                      ))}
 
-                    return seatClasses.map((posClass, idx) => {
-                      const member = sortedMembers[idx];
-                      const isMe = member?.user_id === user?.id;
+                      {/* ── PENDANT LAMP ── */}
+                      <div
+                        className="absolute left-1/2 top-1/2 pointer-events-none"
+                        style={{ transform: `translate(-50%, -50%) translateY(-118px) rotateY(${-rotation3D.y}deg)` }}
+                      >
+                        <div className="w-px h-14 mx-auto bg-stone-700" />
+                        <div className="w-16 h-7 mx-auto rounded-b-[32px] bg-gradient-to-b from-stone-700 to-stone-900 border border-stone-600 shadow-[0_10px_60px_rgba(16,185,129,0.55)]" />
+                        <div className="w-7 h-2.5 mx-auto -mt-1 rounded-full bg-emerald-200/90 blur-[5px]" />
+                      </div>
 
-                      if (member) {
-                        return (
-                          <motion.div
-                            key={member.user_id}
-                            style={{ transform: "translateZ(25px)" }}
-                            whileHover={{ scale: 1.12, translateZ: 40 }}
-                            animate={{ y: [0, -2, 0] }}
-                            transition={{ duration: 2.5 + idx * 0.4, repeat: Infinity, ease: "easeInOut" }}
-                            className={`${posClass} flex flex-col items-center text-center p-1 sm:p-1.5 rounded-xl border transition-all duration-300 w-18 sm:w-22 bg-stone-900/95 backdrop-blur-md shadow-[0_12px_24px_rgba(0,0,0,0.6)] ${
-                              isMe
-                                ? "border-emerald-400 bg-emerald-950/90 shadow-[0_0_18px_rgba(16,185,129,0.5)] ring-2 ring-emerald-400/50"
-                                : "border-stone-700 hover:border-emerald-400/70"
+                      {/* ── ROUND TABLE ── */}
+                      {/* Pedestal, turned to face the camera so it keeps
+                          reading as a solid column at any yaw. */}
+                      <div
+                        className="absolute left-1/2 top-1/2 rounded-b-lg border-x border-stone-700 bg-gradient-to-b from-stone-700 via-stone-800 to-stone-950"
+                        style={{
+                          width: 48,
+                          height: 74,
+                          transform: `translate(-50%, -50%) translateY(${FLOOR_Y - 37}px) rotateY(${-rotation3D.y}deg)`,
+                        }}
+                      />
+                      {/* Tabletop, lying flat on its pedestal */}
+                      <div
+                        className="absolute left-1/2 top-1/2 rounded-full border-2 border-emerald-400/60 cursor-pointer"
+                        style={{
+                          width: 208,
+                          height: 208,
+                          transform: `translate(-50%, -50%) translateY(${FLOOR_Y - 74}px) rotateX(90deg)`,
+                          background:
+                            "radial-gradient(circle at 38% 32%, #2c2724 0%, #1c1917 48%, #0a0908 100%)",
+                          boxShadow: "0 0 70px rgba(16,185,129,0.38)",
+                        }}
+                        onClick={() => toast.success("🔮 Đã nạp năng lượng 3D Spatial Boost cho cả phòng!")}
+                      >
+                        <div className="absolute inset-5 rounded-full border border-dashed border-emerald-300/30 animate-spin [animation-duration:20s]" />
+                        <div className="absolute inset-[38%] rounded-full bg-emerald-500/15 blur-md" />
+                      </div>
+
+                      {/* Holographic panel projected over the table. The one
+                          place text must stay legible, so it billboards to the
+                          camera rather than lying on the tabletop where the
+                          pitch would crush it to a sliver. */}
+                      <div
+                        className="absolute left-1/2 top-1/2"
+                        style={{
+                          transform: `translate(-50%, -50%) translateY(-4px) rotateY(${-rotation3D.y}deg) rotateX(${-rotation3D.x}deg)`,
+                        }}
+                      >
+                        <motion.div
+                          animate={{ y: [0, -5, 0] }}
+                          transition={{ duration: 3.5, repeat: Infinity, ease: "easeInOut" }}
+                          className="w-44 rounded-2xl border border-emerald-400/50 bg-stone-950/85 backdrop-blur-md px-3 py-2.5 text-center shadow-[0_0_40px_rgba(16,185,129,0.45)]"
+                        >
+                          <p className="text-[8px] font-black uppercase tracking-[0.2em] text-emerald-300">
+                            🔮 Bàn học 3D
+                          </p>
+                          <p className="text-sm font-black text-white mt-0.5 tabular-nums">
+                            {myRoom.weekly_xp_progress} / {myRoom.weekly_xp_goal} XP
+                          </p>
+                          <div className="mt-1.5 h-1.5 rounded-full bg-stone-800 overflow-hidden">
+                            <div
+                              className="h-full rounded-full bg-emerald-400 transition-all duration-500"
+                              style={{
+                                width: `${Math.min(
+                                  100,
+                                  Math.round((myRoom.weekly_xp_progress / Math.max(1, myRoom.weekly_xp_goal)) * 100)
+                                )}%`,
+                              }}
+                            />
+                          </div>
+                          <button
+                            type="button"
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              void handleClaimGroupReward();
+                            }}
+                            disabled={!allMissionsDone || rewardClaimed || claimingReward}
+                            className={`mt-2 w-full inline-flex items-center justify-center gap-1 text-[9px] font-extrabold px-2 py-1 rounded-full border transition-all cursor-pointer ${
+                              rewardClaimed || isChestUnlocked
+                                ? "bg-amber-500 text-stone-950 border-amber-300 shadow-md"
+                                : !allMissionsDone
+                                ? "bg-stone-900/90 text-stone-500 border-stone-700 cursor-not-allowed"
+                                : "bg-emerald-950/90 text-emerald-300 border-emerald-400/40 hover:bg-emerald-800"
                             }`}
                           >
-                            {/* Top Learner Crown */}
-                            {idx === 0 && (
-                              <span className="absolute -top-3 text-xs animate-bounce drop-shadow-md z-30" title="Top 1 Bài học tuần này">
-                                👑
-                              </span>
-                            )}
-
-                            <div className="relative mb-0.5">
-                              <div className={`rounded-full p-0.5 ${isMe ? "ring-2 ring-emerald-400" : "ring-1 ring-stone-700"}`}>
-                                <Avatar name={member.full_name} avatarUrl={member.avatar_url} size={24} />
-                              </div>
-                              <span className="absolute -bottom-1 left-1/2 -translate-x-1/2 text-[7px] font-black uppercase text-white bg-emerald-600 px-1 py-0.1 rounded-full shadow-xs whitespace-nowrap">
-                                Lv.{member.current_level}
-                              </span>
-                            </div>
-
-                            <p className="text-[9px] font-black text-white truncate max-w-[64px]" title={member.full_name || "Thành viên"}>
-                              {member.full_name || "Thành viên"}{isMe ? " (Bạn)" : ""}
-                            </p>
-                            <span className="text-[7px] font-black text-amber-300 mt-0.5 truncate max-w-[70px]">
-                              {memberRole(member)}
-                            </span>
-                            <span className="text-[8px] font-extrabold text-emerald-400">
-                              🔥 {member.weekly_lessons} bài
-                            </span>
-                          </motion.div>
-                        );
-                      }
-
-                      return (
-                        <motion.div
-                          key={`empty-${idx}`}
-                          style={{ transform: "translateZ(15px)" }}
-                          className={`${posClass} flex flex-col items-center justify-center p-1 sm:p-1.5 rounded-xl border border-dashed border-stone-800 bg-stone-900/40 text-stone-500 text-center w-18 sm:w-22 min-h-[60px] backdrop-blur-xs`}
-                        >
-                          <span className="text-xs mb-0.5 opacity-50">🪑</span>
-                          <span className="text-[8px] font-bold text-stone-400 uppercase">Ghế trống</span>
+                            {rewardClaimed || isChestUnlocked
+                              ? "👑 Rương Đã Mở"
+                              : claimingReward
+                              ? "Đang mở..."
+                              : "🎁 Nhận Rương"}
+                          </button>
                         </motion.div>
-                      );
-                    });
-                  })()}
-                </motion.div>
+                      </div>
+
+                      {/* ── HOLO PYLONS around the room ── */}
+                      {[
+                        { id: "valuation", name: "Định Giá", icon: "🏰", angle: 42 },
+                        { id: "trading", name: "Giao Dịch", icon: "🏛️", angle: 138 },
+                        { id: "cashflow", name: "Dòng Tiền", icon: "⚓", angle: 222 },
+                        { id: "fed", name: "Lãi Suất", icon: "⚡", angle: 318 },
+                      ].map((node) => (
+                        <div
+                          key={node.id}
+                          className="absolute left-1/2 top-1/2"
+                          style={{
+                            transform: `translate(-50%, -50%) rotateY(${node.angle}deg) translateZ(248px) translateY(${
+                              FLOOR_Y - 46
+                            }px) rotateY(${-node.angle - rotation3D.y}deg)`,
+                          }}
+                        >
+                          <button
+                            type="button"
+                            onClick={() => {
+                              setActiveMapNode(node.id);
+                              toast.success(`Đã kích hoạt trạm 3D [${node.name}]! +15% XP cho cả phòng.`);
+                            }}
+                            className={`flex flex-col items-center gap-1 px-2.5 py-1.5 rounded-xl border backdrop-blur-md text-[9px] font-black shadow-lg cursor-pointer transition-all hover:scale-110 ${
+                              activeMapNode === node.id
+                                ? "border-emerald-300 bg-emerald-900/90 text-emerald-200 shadow-[0_0_24px_rgba(16,185,129,0.6)]"
+                                : "border-emerald-500/40 bg-stone-900/90 text-emerald-300"
+                            }`}
+                          >
+                            <span className="text-sm leading-none">{node.icon}</span>
+                            <span className="whitespace-nowrap">{node.name}</span>
+                          </button>
+                          {/* Beam down to the floor, so the pylon reads as
+                              planted in the room rather than floating. */}
+                          <div className="w-px h-11 mx-auto bg-gradient-to-b from-emerald-400/60 to-transparent" />
+                        </div>
+                      ))}
+
+                      {/* ── MEMBERS SEATED AROUND THE TABLE ── */}
+                      {(() => {
+                        const sortedMembers = [...myRoomMembers].sort((a, b) => b.weekly_lessons - a.weekly_lessons);
+
+                        return SEAT_ANGLES.map((angle, idx) => {
+                          const member = sortedMembers[idx];
+                          const isMe = member?.user_id === user?.id;
+                          // LiveKit participant identity is the Supabase user
+                          // id (see the token route), so voice state maps onto
+                          // seats without a second lookup table.
+                          const inVoice = member ? voice.participantIds.includes(member.user_id) : false;
+                          const isSpeaking = member ? voice.speakingIds.includes(member.user_id) : false;
+
+                          // Real ring placement: swing out to the seat angle,
+                          // then push away from the table centre.
+                          const place = `translate(-50%, -50%) rotateY(${angle}deg) translateZ(${SEAT_RADIUS}px)`;
+                          // Then undo the seat angle *and* the camera's yaw, so
+                          // the figure keeps facing the viewer as the room
+                          // spins. Pitch is deliberately left alone - a standee
+                          // that leans back with the camera reads as standing
+                          // on the floor; one that stays bolt upright reads as
+                          // a sticker pasted on the lens.
+                          const face = `rotateY(${-angle - rotation3D.y}deg)`;
+
+                          return (
+                            <div key={member?.user_id ?? `empty-${idx}`}>
+                              {/* Contact shadow, painted flat on the floor */}
+                              <div
+                                className="absolute left-1/2 top-1/2 rounded-full bg-black/70 blur-[6px] pointer-events-none"
+                                style={{
+                                  width: member ? 62 : 46,
+                                  height: member ? 24 : 18,
+                                  transform: `${place} translateY(${FLOOR_Y - 1}px) rotateX(90deg)`,
+                                }}
+                              />
+
+                              {member ? (
+                                <div
+                                  className="absolute left-1/2 top-1/2"
+                                  style={{ transform: `${place} translateY(${FLOOR_Y - 78}px) ${face}` }}
+                                >
+                                  <motion.div
+                                    animate={{ y: [0, -3, 0] }}
+                                    transition={{
+                                      duration: 2.6 + idx * 0.35,
+                                      repeat: Infinity,
+                                      ease: "easeInOut",
+                                    }}
+                                    className="flex flex-col items-center"
+                                  >
+                                    {/* Name plate */}
+                                    <div
+                                      className={`mb-1 px-2 py-0.5 rounded-full border whitespace-nowrap shadow-md ${
+                                        isMe
+                                          ? "bg-emerald-500 border-emerald-300 text-stone-950"
+                                          : "bg-stone-900/95 border-stone-700 text-white"
+                                      }`}
+                                    >
+                                      <span className="text-[9px] font-black">
+                                        {member.full_name || "Thành viên"}
+                                        {isMe ? " (Bạn)" : ""}
+                                      </span>
+                                    </div>
+
+                                    {/* Head */}
+                                    <div className="relative">
+                                      {idx === 0 && (
+                                        <span
+                                          className="absolute -top-4 left-1/2 -translate-x-1/2 text-base animate-bounce"
+                                          title="Top 1 bài học tuần này"
+                                        >
+                                          👑
+                                        </span>
+                                      )}
+                                      {/* Speaking halo. Rendered behind the
+                                          head rather than as a ring on it, so
+                                          "who is talking" is readable at the
+                                          size a phone actually shows a seat. */}
+                                      {isSpeaking && (
+                                        <span className="absolute -inset-2 rounded-full bg-emerald-400/40 blur-md animate-pulse pointer-events-none" />
+                                      )}
+                                      <div
+                                        className={`relative rounded-full p-0.5 bg-stone-900 shadow-[0_8px_18px_rgba(0,0,0,0.7)] ${
+                                          isSpeaking
+                                            ? "ring-[3px] ring-emerald-300"
+                                            : isMe
+                                            ? "ring-2 ring-emerald-400"
+                                            : "ring-2 ring-stone-700"
+                                        }`}
+                                      >
+                                        <Avatar name={member.full_name} avatarUrl={member.avatar_url} size={44} />
+                                      </div>
+                                      {inVoice && (
+                                        <span
+                                          className="absolute -right-1 -bottom-1 w-4 h-4 rounded-full bg-emerald-600 border border-emerald-300 text-[8px] flex items-center justify-center shadow-md"
+                                          title="Đang ở trong voice"
+                                        >
+                                          🎙️
+                                        </span>
+                                      )}
+                                    </div>
+
+                                    {/* Shoulders / torso */}
+                                    <div
+                                      className={`-mt-2 w-[56px] h-[44px] rounded-t-[28px] rounded-b-sm border-t border-x shadow-[0_10px_20px_rgba(0,0,0,0.6)] ${
+                                        isMe
+                                          ? "bg-gradient-to-b from-emerald-500 to-emerald-700 border-emerald-300"
+                                          : "bg-gradient-to-b from-stone-600 to-stone-800 border-stone-500"
+                                      }`}
+                                    />
+
+                                    {/* Chair back and legs */}
+                                    <div className="w-[68px] h-2.5 -mt-0.5 rounded-md bg-stone-800 border border-stone-700" />
+                                    <div className="flex gap-9">
+                                      <span className="w-[3px] h-4 bg-stone-800 rounded-b-sm" />
+                                      <span className="w-[3px] h-4 bg-stone-800 rounded-b-sm" />
+                                    </div>
+
+                                    {/* Stats */}
+                                    <div className="mt-1 flex items-center gap-1">
+                                      <span className="px-1.5 py-0.5 rounded-full bg-emerald-600 text-[8px] font-black text-white">
+                                        Lv.{member.current_level}
+                                      </span>
+                                      <span className="text-[9px] font-black text-emerald-300">
+                                        🔥 {member.weekly_lessons}
+                                      </span>
+                                    </div>
+                                    <span className="text-[8px] font-black text-amber-300 truncate max-w-[92px]">
+                                      {memberRole(member)}
+                                    </span>
+                                  </motion.div>
+                                </div>
+                              ) : (
+                                /* Empty seat: the chair on its own, so the gap
+                                   reads as "room for one more" rather than a
+                                   rendering hole. */
+                                <div
+                                  className="absolute left-1/2 top-1/2 flex flex-col items-center"
+                                  style={{ transform: `${place} translateY(${FLOOR_Y - 34}px) ${face}` }}
+                                >
+                                  <div className="w-[52px] h-[34px] rounded-t-xl border border-dashed border-stone-700 bg-stone-900/50" />
+                                  <div className="w-[62px] h-2 rounded-md bg-stone-800/80 border border-stone-700" />
+                                  <div className="flex gap-8">
+                                    <span className="w-[3px] h-4 bg-stone-800/80" />
+                                    <span className="w-[3px] h-4 bg-stone-800/80" />
+                                  </div>
+                                  <span className="mt-1 text-[8px] font-bold uppercase text-stone-500">Ghế trống</span>
+                                </div>
+                              )}
+                            </div>
+                          );
+                        });
+                      })()}
+                    </motion.div>
+                  </div>
+                </div>
 
                 {/* Footer hint */}
                 <div className="relative z-30 shrink-0 text-center text-[10px] text-stone-400 font-semibold pt-1">
-                  🖐️ Kéo chuột để xoay 3D 360° · 🔍 Lăn chuột để Zoom in/out · Bấm 🔄 để đặt lại góc ({Math.round(zoom3D * 100)}%)
+                  <span className="hidden sm:inline">
+                    🖐️ Kéo chuột để xoay phòng 360° · 🔍 Lăn chuột để Zoom · Bấm 🔄 để về góc gốc
+                  </span>
+                  <span className="sm:hidden">👉 Vuốt ngang để xoay phòng · vuốt dọc để cuộn trang</span>
+                  <span className="ml-1 tabular-nums">({Math.round(zoom3D * 100)}%)</span>
                 </div>
               </div>
 

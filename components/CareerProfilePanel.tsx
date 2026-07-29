@@ -1,0 +1,505 @@
+"use client";
+
+import { useCallback, useEffect, useMemo, useState } from "react";
+import Link from "next/link";
+import { toast } from "sonner";
+import {
+  Award,
+  CheckCircle2,
+  Gift,
+  Loader2,
+  Mic,
+  Plus,
+  Target,
+  Trash2,
+  TrendingUp,
+} from "lucide-react";
+import { COMPETENCIES, type CompetencyScore } from "@/lib/career-competency";
+import { CERTIFICATION_TARGETS } from "@/lib/career-skill-gap";
+import { FINANCE_CAREERS } from "@/lib/finance-careers";
+import {
+  CV_BULLET_MAX_LENGTH,
+  CV_BULLET_MIN_LENGTH,
+  addCvBullet,
+  claimCareerMission,
+  deleteCvBullet,
+  fetchCareerProfile,
+  type CareerProfileResponse,
+} from "@/lib/career-profile";
+import { recalculateUserStats } from "@/lib/supabase-user";
+import MockInterviewModal from "@/components/MockInterviewModal";
+
+// The three /su-nghiep career surfaces in one panel, because all three read
+// from the same GET /api/career-profile response: the competency profile
+// ("Kiến thức tài chính 72%..."), the Job Skill Gap against a chosen target,
+// and the Weekly Career Mission list. Splitting them into three components
+// would mean three fetches of the same aggregation.
+//
+// Everything rendered here is derived server-side; the panel holds no score
+// state of its own, and every write (claim, CV bullet) is followed by a
+// refetch rather than a local patch, so the numbers can't drift from what
+// the next page load would show.
+
+interface CareerProfilePanelProps {
+  userId: string | null;
+  /** Career currently open on the page - the default Job Skill Gap target. */
+  careerId: string;
+}
+
+const SCORE_BY_ID = (scores: CompetencyScore[]) => new Map(scores.map((s) => [s.id, s]));
+
+function Bar({ percent, color }: { percent: number; color: string }) {
+  return (
+    <div className="h-2 w-full rounded-full bg-stone-100 dark:bg-stone-800 overflow-hidden">
+      <div
+        className="h-full rounded-full transition-all duration-500"
+        style={{ width: `${Math.max(2, percent)}%`, background: color }}
+      />
+    </div>
+  );
+}
+
+export default function CareerProfilePanel({ userId, careerId }: CareerProfilePanelProps) {
+  const [data, setData] = useState<CareerProfileResponse | null>(null);
+  const [loading, setLoading] = useState(true);
+  const [failed, setFailed] = useState(false);
+  const [targetId, setTargetId] = useState<string>(careerId);
+  const [claimingId, setClaimingId] = useState<string | null>(null);
+  const [bulletDraft, setBulletDraft] = useState("");
+  const [savingBullet, setSavingBullet] = useState(false);
+  const [interviewOpen, setInterviewOpen] = useState(false);
+
+  // Following the career the user clicks in the list keeps the gap panel
+  // answering the question they're currently asking ("what if I went for
+  // this one?") without a second selector to keep in sync.
+  useEffect(() => setTargetId(careerId), [careerId]);
+
+  const load = useCallback(async () => {
+    if (!userId) {
+      setLoading(false);
+      return;
+    }
+    setLoading(true);
+    try {
+      setData(await fetchCareerProfile(targetId));
+      setFailed(false);
+    } catch (error) {
+      console.error("Error loading career profile:", error);
+      setFailed(true);
+    }
+    setLoading(false);
+  }, [userId, targetId]);
+
+  useEffect(() => {
+    void load();
+  }, [load]);
+
+  const scores = useMemo(() => SCORE_BY_ID(data?.competencies ?? []), [data]);
+
+  async function handleClaim(missionId: string) {
+    setClaimingId(missionId);
+    try {
+      const res = await claimCareerMission(missionId);
+      if (res.claimed) {
+        toast.success(`Đã nhận +${res.xpEarned} XP · +${res.coinEarned} xu`);
+        // XP is summed from the claim ledger rather than written by the
+        // route, so the recalc is what actually moves the user's total.
+        if (userId) await recalculateUserStats(userId).catch(() => {});
+      }
+      await load();
+    } catch (error) {
+      toast.error(error instanceof Error ? error.message : "Không nhận được thưởng");
+    }
+    setClaimingId(null);
+  }
+
+  async function handleAddBullet() {
+    if (!userId) return;
+    setSavingBullet(true);
+    try {
+      await addCvBullet(userId, targetId, bulletDraft);
+      setBulletDraft("");
+      toast.success("Đã lưu CV bullet");
+      await load();
+    } catch (error) {
+      toast.error(error instanceof Error ? error.message : "Không lưu được bullet");
+    }
+    setSavingBullet(false);
+  }
+
+  async function handleDeleteBullet(id: number) {
+    try {
+      await deleteCvBullet(id);
+      await load();
+    } catch (error) {
+      toast.error(error instanceof Error ? error.message : "Không xoá được bullet");
+    }
+  }
+
+  if (!userId) {
+    return (
+      <div className="p-6 rounded-2xl border-2 border-dashed border-stone-200 dark:border-stone-800 text-center">
+        <p className="text-sm font-bold text-stone-500 dark:text-stone-400">
+          Đăng nhập để xem hồ sơ năng lực nghề nghiệp của bạn.
+        </p>
+        <Link
+          href="/login"
+          className="inline-block mt-3 px-4 py-2 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-white text-xs font-black transition-colors"
+        >
+          Đăng nhập
+        </Link>
+      </div>
+    );
+  }
+
+  if (loading && !data) {
+    return (
+      <div className="py-16 flex flex-col items-center gap-3 text-stone-500 dark:text-stone-400">
+        <Loader2 className="w-6 h-6 animate-spin" />
+        <p className="text-xs font-bold">Đang tính hồ sơ năng lực...</p>
+      </div>
+    );
+  }
+
+  if (failed || !data) {
+    return (
+      <div className="py-12 flex flex-col items-center gap-3">
+        <p className="text-sm font-bold text-stone-500 dark:text-stone-400">
+          Không tải được hồ sơ năng lực.
+        </p>
+        <button
+          onClick={() => void load()}
+          className="px-4 py-2 rounded-xl bg-stone-900 dark:bg-stone-100 text-white dark:text-stone-900 text-xs font-black cursor-pointer"
+        >
+          Thử lại
+        </button>
+      </div>
+    );
+  }
+
+  const { skillGap, missions, cvBullets } = data;
+
+  return (
+    <div className="space-y-8">
+      {/* 1. Competency profile ------------------------------------------ */}
+      <section>
+        <div className="flex items-center justify-between gap-3 mb-4">
+          <h3 className="text-xs font-extrabold uppercase tracking-widest text-stone-400 dark:text-stone-500 flex items-center gap-1.5">
+            <TrendingUp className="w-4 h-4 text-emerald-500" />
+            Hồ sơ năng lực
+          </h3>
+          <span className="text-[11px] font-bold text-stone-400 dark:text-stone-500">
+            {data.totalLessonsCompleted} bài đã hoàn thành
+          </span>
+        </div>
+
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
+          {COMPETENCIES.map((competency) => {
+            const score = scores.get(competency.id);
+            return (
+              <div
+                key={competency.id}
+                className="p-4 rounded-2xl border border-stone-200 dark:border-stone-800 bg-white dark:bg-stone-950/40"
+              >
+                <div className="flex items-baseline justify-between gap-2">
+                  <span className="text-sm font-black text-stone-900 dark:text-stone-100">
+                    {competency.label}
+                  </span>
+                  <span className="text-lg font-black tabular-nums" style={{ color: competency.color }}>
+                    {score?.score ?? 0}%
+                  </span>
+                </div>
+                <p className="mt-1 text-[11px] text-stone-500 dark:text-stone-400 leading-relaxed">
+                  {competency.blurb}
+                </p>
+                <div className="mt-2.5">
+                  <Bar percent={score?.score ?? 0} color={competency.color} />
+                </div>
+                <div className="mt-2.5 flex flex-wrap items-center gap-x-3 gap-y-1">
+                  {(score?.parts ?? []).map((part) => (
+                    <span key={part.label} className="text-[10px] font-bold text-stone-400 dark:text-stone-500">
+                      {part.label}: <span className="text-stone-600 dark:text-stone-300">{part.value}</span>
+                    </span>
+                  ))}
+                </div>
+                <Link
+                  href={competency.actionHref}
+                  className="inline-block mt-3 text-[11px] font-black text-emerald-600 dark:text-emerald-400 hover:underline"
+                >
+                  {competency.actionLabel} →
+                </Link>
+              </div>
+            );
+          })}
+        </div>
+
+        <button
+          onClick={() => setInterviewOpen(true)}
+          className="mt-4 w-full sm:w-auto inline-flex items-center justify-center gap-2 px-5 py-3 rounded-2xl bg-indigo-500 hover:bg-indigo-400 text-white text-xs font-black shadow-sm transition-colors cursor-pointer"
+        >
+          <Mic className="w-4 h-4" />
+          Làm mock interview (10 câu, có tính giờ)
+        </button>
+      </section>
+
+      {/* 2. Job Skill Gap ------------------------------------------------ */}
+      <section>
+        <div className="flex flex-wrap items-center justify-between gap-3 mb-4">
+          <h3 className="text-xs font-extrabold uppercase tracking-widest text-stone-400 dark:text-stone-500 flex items-center gap-1.5">
+            <Target className="w-4 h-4 text-violet-500" />
+            Job Skill Gap
+          </h3>
+          <select
+            value={targetId}
+            onChange={(e) => setTargetId(e.target.value)}
+            className="px-3 py-2 rounded-xl border border-stone-200 dark:border-stone-800 bg-white dark:bg-stone-900 text-xs font-bold text-stone-700 dark:text-stone-200 cursor-pointer"
+          >
+            <optgroup label="Chứng chỉ">
+              {Object.entries(CERTIFICATION_TARGETS).map(([id, cert]) => (
+                <option key={id} value={id}>
+                  {cert.emoji} {cert.label}
+                </option>
+              ))}
+            </optgroup>
+            <optgroup label="Nghề nghiệp">
+              {FINANCE_CAREERS.map((career) => (
+                <option key={career.id} value={career.id}>
+                  {career.emoji} {career.title}
+                </option>
+              ))}
+            </optgroup>
+          </select>
+        </div>
+
+        {!skillGap ? (
+          <p className="text-sm font-bold text-stone-500 dark:text-stone-400">
+            Chọn một mục tiêu ở trên để xem bạn còn thiếu gì.
+          </p>
+        ) : (
+          <>
+            <div className="p-4 rounded-2xl bg-violet-50/50 dark:bg-violet-950/10 border border-violet-500/15 flex items-center gap-4">
+              <span className="text-3xl font-black text-violet-600 dark:text-violet-400 tabular-nums">
+                {skillGap.readiness}%
+              </span>
+              <p className="text-[11px] font-bold text-stone-600 dark:text-stone-400 leading-relaxed">
+                mức sẵn sàng cho mục tiêu này. Các nhóm còn thiếu được xếp trên cùng - đó là việc
+                đáng làm tiếp theo.
+              </p>
+            </div>
+
+            <div className="mt-3 space-y-2">
+              {skillGap.items.map((item) => (
+                <div
+                  key={item.domain}
+                  className={`p-3.5 rounded-2xl border ${
+                    item.met
+                      ? "border-emerald-500/25 bg-emerald-50/40 dark:bg-emerald-950/10"
+                      : "border-stone-200 dark:border-stone-800 bg-white dark:bg-stone-950/40"
+                  }`}
+                >
+                  <div className="flex items-center justify-between gap-2">
+                    <span className="text-xs font-black text-stone-900 dark:text-stone-100 flex items-center gap-1.5">
+                      {item.met && <CheckCircle2 className="w-3.5 h-3.5 text-emerald-500" />}
+                      {item.label}
+                      {item.priority === "must" && !item.met && (
+                        <span className="px-1.5 py-0.5 rounded-md bg-rose-500/15 text-rose-600 dark:text-rose-400 text-[9px] uppercase tracking-wider">
+                          bắt buộc
+                        </span>
+                      )}
+                    </span>
+                    <span className="text-[11px] font-black tabular-nums text-stone-500 dark:text-stone-400 shrink-0">
+                      {item.current}% / {item.target}%
+                    </span>
+                  </div>
+                  <div className="mt-2">
+                    <Bar percent={item.current} color={item.met ? "#10b981" : "#7c3aed"} />
+                  </div>
+                  <p className="mt-2 text-[11px] text-stone-500 dark:text-stone-400 leading-relaxed">
+                    {item.met
+                      ? `Đã đạt yêu cầu về ${item.gapHint}.`
+                      : `Còn thiếu ${item.gapHint} · học thêm ~${item.lessonsToGo} bài.`}
+                  </p>
+                </div>
+              ))}
+            </div>
+          </>
+        )}
+      </section>
+
+      {/* 3. Weekly Career Mission ---------------------------------------- */}
+      <section>
+        <div className="flex flex-wrap items-center justify-between gap-3 mb-4">
+          <h3 className="text-xs font-extrabold uppercase tracking-widest text-stone-400 dark:text-stone-500 flex items-center gap-1.5">
+            <Award className="w-4 h-4 text-amber-500" />
+            Nhiệm vụ nghề nghiệp tuần này
+          </h3>
+          <span className="text-[11px] font-bold text-stone-400 dark:text-stone-500">
+            {missions.completedCount}/{missions.missions.length} · {missions.weekKey}
+          </span>
+        </div>
+
+        <div className="space-y-2">
+          {missions.missions.map((mission) => {
+            const percent = Math.min(100, Math.round((mission.current / mission.target) * 100));
+            return (
+              <div
+                key={mission.id}
+                className="p-4 rounded-2xl border border-stone-200 dark:border-stone-800 bg-white dark:bg-stone-950/40"
+              >
+                <div className="flex items-start justify-between gap-3">
+                  <div className="min-w-0">
+                    <p className="text-xs font-black text-stone-900 dark:text-stone-100">{mission.title}</p>
+                    <p className="mt-1 text-[11px] text-stone-500 dark:text-stone-400 leading-relaxed">
+                      {mission.description}
+                    </p>
+                  </div>
+                  <span className="text-[11px] font-black tabular-nums text-stone-500 dark:text-stone-400 shrink-0">
+                    {Math.min(mission.current, mission.target)}/{mission.target} {mission.unit}
+                  </span>
+                </div>
+
+                <div className="mt-2.5">
+                  <Bar percent={percent} color={mission.completed ? "#10b981" : "#f59e0b"} />
+                </div>
+
+                <div className="mt-3 flex items-center justify-between gap-3">
+                  <span className="text-[11px] font-black text-amber-600 dark:text-amber-400">
+                    +{mission.xpReward} XP · +{mission.coinReward} xu
+                  </span>
+                  {mission.claimed ? (
+                    <span className="text-[11px] font-black text-emerald-600 dark:text-emerald-400 flex items-center gap-1">
+                      <CheckCircle2 className="w-3.5 h-3.5" />
+                      Đã nhận
+                    </span>
+                  ) : mission.claimable ? (
+                    <button
+                      onClick={() => void handleClaim(mission.id)}
+                      disabled={claimingId === mission.id}
+                      className="px-4 py-2 rounded-xl bg-amber-500 hover:bg-amber-400 disabled:opacity-60 text-white text-[11px] font-black inline-flex items-center gap-1.5 transition-colors cursor-pointer"
+                    >
+                      {claimingId === mission.id ? (
+                        <Loader2 className="w-3.5 h-3.5 animate-spin" />
+                      ) : (
+                        <Gift className="w-3.5 h-3.5" />
+                      )}
+                      Nhận thưởng
+                    </button>
+                  ) : mission.id === "mock_interview" ? (
+                    <button
+                      onClick={() => setInterviewOpen(true)}
+                      className="px-4 py-2 rounded-xl bg-stone-100 dark:bg-stone-800 text-stone-700 dark:text-stone-200 text-[11px] font-black transition-colors cursor-pointer"
+                    >
+                      {mission.ctaLabel}
+                    </button>
+                  ) : (
+                    <Link
+                      href={mission.href}
+                      className="px-4 py-2 rounded-xl bg-stone-100 dark:bg-stone-800 text-stone-700 dark:text-stone-200 text-[11px] font-black transition-colors"
+                    >
+                      {mission.ctaLabel}
+                    </Link>
+                  )}
+                </div>
+              </div>
+            );
+          })}
+        </div>
+
+        <div
+          className={`mt-3 p-4 rounded-2xl border flex flex-wrap items-center justify-between gap-3 ${
+            missions.perfectWeek.unlocked
+              ? "border-amber-500/30 bg-amber-50/50 dark:bg-amber-950/10"
+              : "border-dashed border-stone-200 dark:border-stone-800"
+          }`}
+        >
+          <div>
+            <p className="text-xs font-black text-stone-900 dark:text-stone-100">
+              🏆 Tuần hoàn hảo · +{missions.perfectWeek.xpReward} XP · +{missions.perfectWeek.coinReward} xu
+            </p>
+            <p className="mt-1 text-[11px] text-stone-500 dark:text-stone-400">
+              Hoàn thành cả {missions.missions.length} nhiệm vụ trong tuần.
+            </p>
+          </div>
+          {missions.perfectWeek.claimed ? (
+            <span className="text-[11px] font-black text-emerald-600 dark:text-emerald-400">Đã nhận</span>
+          ) : (
+            <button
+              onClick={() => void handleClaim("perfect_week")}
+              disabled={!missions.perfectWeek.claimable || claimingId === "perfect_week"}
+              className="px-4 py-2 rounded-xl bg-amber-500 hover:bg-amber-400 disabled:opacity-50 disabled:cursor-not-allowed text-white text-[11px] font-black transition-colors cursor-pointer"
+            >
+              {claimingId === "perfect_week" ? "Đang nhận..." : "Nhận thưởng"}
+            </button>
+          )}
+        </div>
+      </section>
+
+      {/* 4. CV bullets ---------------------------------------------------- */}
+      <section>
+        <h3 className="text-xs font-extrabold uppercase tracking-widest text-stone-400 dark:text-stone-500 flex items-center gap-1.5 mb-3">
+          <Plus className="w-4 h-4 text-sky-500" />
+          CV bullets
+        </h3>
+        <p className="text-[11px] text-stone-500 dark:text-stone-400 leading-relaxed mb-3">
+          Mỗi bullet theo công thức <strong>Hành động - Con số - Kết quả</strong>. Ví dụ: "Dựng mô
+          hình DCF 3 báo cáo cho 5 công ty niêm yết, rút ngắn thời gian định giá từ 3 ngày xuống 1
+          ngày."
+        </p>
+
+        <textarea
+          value={bulletDraft}
+          onChange={(e) => setBulletDraft(e.target.value.slice(0, CV_BULLET_MAX_LENGTH))}
+          rows={3}
+          placeholder="Viết một bullet cho CV của bạn..."
+          className="w-full px-4 py-3 rounded-2xl border border-stone-200 dark:border-stone-800 bg-white dark:bg-stone-950/40 text-xs text-stone-800 dark:text-stone-200 leading-relaxed resize-none focus:outline-none focus:border-sky-400"
+        />
+        <div className="mt-2 flex items-center justify-between gap-3">
+          <span className="text-[10px] font-bold text-stone-400 dark:text-stone-500 tabular-nums">
+            {bulletDraft.trim().length}/{CV_BULLET_MAX_LENGTH} · tối thiểu {CV_BULLET_MIN_LENGTH}
+          </span>
+          <button
+            onClick={() => void handleAddBullet()}
+            disabled={savingBullet || bulletDraft.trim().length < CV_BULLET_MIN_LENGTH}
+            className="px-4 py-2 rounded-xl bg-sky-500 hover:bg-sky-400 disabled:opacity-50 disabled:cursor-not-allowed text-white text-[11px] font-black transition-colors cursor-pointer"
+          >
+            {savingBullet ? "Đang lưu..." : "Thêm bullet"}
+          </button>
+        </div>
+
+        <div className="mt-3 space-y-2">
+          {cvBullets.length === 0 ? (
+            <p className="text-[11px] font-bold text-stone-400 dark:text-stone-500">
+              Chưa có bullet nào. Viết 3 bullet trong tuần để hoàn thành nhiệm vụ.
+            </p>
+          ) : (
+            cvBullets.map((bullet) => (
+              <div
+                key={bullet.id}
+                className="p-3.5 rounded-2xl border border-stone-200 dark:border-stone-800 bg-white dark:bg-stone-950/40 flex items-start gap-3"
+              >
+                <p className="flex-1 text-xs text-stone-700 dark:text-stone-300 leading-relaxed">
+                  {bullet.content}
+                </p>
+                <button
+                  onClick={() => void handleDeleteBullet(bullet.id)}
+                  aria-label="Xoá bullet"
+                  className="w-8 h-8 rounded-xl bg-stone-100 dark:bg-stone-800 text-stone-400 hover:text-rose-500 flex items-center justify-center shrink-0 transition-colors cursor-pointer"
+                >
+                  <Trash2 className="w-3.5 h-3.5" />
+                </button>
+              </div>
+            ))
+          )}
+        </div>
+      </section>
+
+      {interviewOpen && (
+        <MockInterviewModal
+          userId={userId}
+          onClose={() => setInterviewOpen(false)}
+          onFinished={() => void load()}
+        />
+      )}
+    </div>
+  );
+}

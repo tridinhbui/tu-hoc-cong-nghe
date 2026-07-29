@@ -18,6 +18,7 @@ const TRACK_LABEL: Record<QuizTrack, string> = {
   professional: "Tài chính chuyên ngành",
   cfa: "Tài chính chứng chỉ",
   ib: "Investment Banking",
+  "mock-interview": "Phỏng vấn thử",
 };
 
 const DIFFICULTY_LABEL: Record<QuizDifficulty, string> = {

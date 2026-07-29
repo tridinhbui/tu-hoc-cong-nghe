@@ -280,7 +280,7 @@ export default function DailyQuestsWidget({ userId, embedded = false, onQuestsLo
                   <p className={`text-[10px] mt-0.5 leading-snug transition-colors duration-250 line-clamp-1 ${
                     quest.claimed
                       ? "text-stone-400"
-                      : "text-stone-500 dark:text-stone-400 group-hover/item:text-stone-700 dark:group-hover/item:text-stone-355"
+                      : "text-stone-500 dark:text-stone-400 group-hover/item:text-stone-700 dark:group-hover/item:text-stone-300"
                   }`}>{quest.description}</p>
                 </div>
               </div>

@@ -1,7 +1,12 @@
 import { NextRequest, NextResponse } from "next/server";
 import { createServerSupabaseClient } from "@/lib/supabase-server";
 import { createAdminClient } from "@/lib/supabase-admin";
-import { getQuestXpReward, ONCE_ONLY_QUESTS } from "@/lib/quest-rewards";
+import {
+  getQuestXpReward,
+  getWeekStartKey,
+  ONCE_ONLY_QUESTS,
+  WEEKLY_QUEST_XP_CAP,
+} from "@/lib/quest-rewards";
 
 // Server-authoritative quest claiming. user_quest_completions used to be
 // insertable straight from the browser with a client-supplied xp_earned
@@ -64,9 +69,30 @@ export async function POST(request: NextRequest) {
   }
 
   const admin = createAdminClient();
+
+  // Weekly budget for repeatable quests. Mirrors the daily cap on standalone
+  // quiz sessions (STANDALONE_QUIZ_DAILY_XP_CAP): the row is still written so
+  // the quest reads as claimed and can't be retried, the XP is just clamped
+  // to whatever budget is left. One-time quests are outside the budget -
+  // they can't be farmed, and career_assessment shouldn't be crowded out by
+  // a week of dailies.
+  let awardedXp = xpEarned;
+  if (!ONCE_ONLY_QUESTS.has(questType) && xpEarned > 0) {
+    const weekStart = getWeekStartKey();
+    const { data: weekRows } = await admin
+      .from("user_quest_completions")
+      .select("xp_earned, quest_type")
+      .eq("user_id", user.id)
+      .gte("day_key", weekStart);
+    const earnedThisWeek = (weekRows ?? [])
+      .filter((row) => !ONCE_ONLY_QUESTS.has(row.quest_type as string))
+      .reduce((sum, row) => sum + (Number(row.xp_earned) || 0), 0);
+    awardedXp = Math.max(0, Math.min(xpEarned, WEEKLY_QUEST_XP_CAP - earnedThisWeek));
+  }
+
   const { error } = await admin
     .from("user_quest_completions")
-    .insert([{ user_id: user.id, quest_type: questType, day_key: dayKey, xp_earned: xpEarned }]);
+    .insert([{ user_id: user.id, quest_type: questType, day_key: dayKey, xp_earned: awardedXp }]);
 
   if (error) {
     // 23505 = already claimed (user_quest_completions_unique). Not an error
@@ -79,5 +105,8 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ error: error.message, code: error.code }, { status: 500 });
   }
 
-  return NextResponse.json({ claimed: true, xpEarned });
+  // awardedXp, not xpEarned - the caller shows the number actually banked, so
+  // a learner who has spent the week's quest budget sees "+0 XP" instead of a
+  // toast promising XP that recalculateUserStats will never count.
+  return NextResponse.json({ claimed: true, xpEarned: awardedXp });
 }

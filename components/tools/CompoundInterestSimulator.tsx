@@ -81,7 +81,7 @@ export default function CompoundInterestSimulator() {
               type="number"
               value={initialAmount}
               onChange={(e) => setInitialAmount(Math.max(0, Number(e.target.value)))}
-              className="w-full px-3 py-2 text-sm rounded-xl border border-stone-200 dark:border-stone-800 bg-stone-55 dark:bg-stone-950 text-stone-900 dark:text-stone-100 focus:outline-none focus:border-emerald-500"
+              className="w-full px-3 py-2 text-sm rounded-xl border border-stone-200 dark:border-stone-800 bg-stone-50 dark:bg-stone-950 text-stone-900 dark:text-stone-100 focus:outline-none focus:border-emerald-500"
             />
             <span className="text-[11px] text-stone-400 mt-1 block">
               {formatVND(initialAmount)}
@@ -96,7 +96,7 @@ export default function CompoundInterestSimulator() {
               type="number"
               value={monthlyContribution}
               onChange={(e) => setMonthlyContribution(Math.max(0, Number(e.target.value)))}
-              className="w-full px-3 py-2 text-sm rounded-xl border border-stone-200 dark:border-stone-800 bg-stone-55 dark:bg-stone-950 text-stone-900 dark:text-stone-100 focus:outline-none focus:border-emerald-500"
+              className="w-full px-3 py-2 text-sm rounded-xl border border-stone-200 dark:border-stone-800 bg-stone-50 dark:bg-stone-950 text-stone-900 dark:text-stone-100 focus:outline-none focus:border-emerald-500"
             />
             <span className="text-[11px] text-stone-400 mt-1 block">
               {formatVND(monthlyContribution)}
@@ -114,7 +114,7 @@ export default function CompoundInterestSimulator() {
                 max="50"
                 value={years}
                 onChange={(e) => setYears(Math.min(50, Math.max(1, Number(e.target.value))))}
-                className="w-full px-3 py-2 text-sm rounded-xl border border-stone-200 dark:border-stone-800 bg-stone-55 dark:bg-stone-950 text-stone-900 dark:text-stone-100 focus:outline-none focus:border-emerald-500"
+                className="w-full px-3 py-2 text-sm rounded-xl border border-stone-200 dark:border-stone-800 bg-stone-50 dark:bg-stone-950 text-stone-900 dark:text-stone-100 focus:outline-none focus:border-emerald-500"
               />
             </div>
             <div>
@@ -128,7 +128,7 @@ export default function CompoundInterestSimulator() {
                 max="30"
                 value={interestRate}
                 onChange={(e) => setInterestRate(Math.min(30, Math.max(0, Number(e.target.value))))}
-                className="w-full px-3 py-2 text-sm rounded-xl border border-stone-200 dark:border-stone-800 bg-stone-55 dark:bg-stone-950 text-stone-900 dark:text-stone-100 focus:outline-none focus:border-emerald-500"
+                className="w-full px-3 py-2 text-sm rounded-xl border border-stone-200 dark:border-stone-800 bg-stone-50 dark:bg-stone-950 text-stone-900 dark:text-stone-100 focus:outline-none focus:border-emerald-500"
               />
             </div>
           </div>

@@ -51,7 +51,9 @@ async function idsForTrack(track: "personal" | "professional" | "cfa"): Promise<
   return new Set(ids);
 }
 
-function ibQuestionsForDifficulty(difficulty: string | null): Omit<ChallengeQuestion, "lessonSlug" | "token">[] {
+type IbPoolQuestion = Omit<ChallengeQuestion, "lessonSlug" | "token"> & { category: string };
+
+function ibQuestionsForDifficulty(difficulty: string | null): IbPoolQuestion[] {
   const questions =
     difficulty && difficulty !== "tat-ca" && DIFFICULTY_LABELS[difficulty]
       ? IB_QUESTION_BANK.filter((q) => q.difficulty === difficulty)
@@ -60,11 +62,45 @@ function ibQuestionsForDifficulty(difficulty: string | null): Omit<ChallengeQues
   return questions.map((q) => ({
     lessonId: -q.id,
     lessonTitle: `IB Question Bank · ${q.category}`,
+    category: q.category,
     question: q.question,
     options: q.options,
     correct: q.correct,
     explanation: q.explanation,
   }));
+}
+
+// How many questions one mock interview run asks. Long enough to feel like
+// a real screen (and to be a meaningful "Interview readiness" signal),
+// short enough to finish in one sitting.
+const MOCK_INTERVIEW_QUESTION_COUNT = 10;
+
+// Round-robins the shuffled pool by category so a 10-question interview
+// touches as many different question types as the bank has, instead of
+// asking five variations of the same behavioral prompt.
+function pickAcrossCategories(pool: IbPoolQuestion[], count: number): IbPoolQuestion[] {
+  const byCategory = new Map<string, IbPoolQuestion[]>();
+  for (const q of shuffle(pool)) {
+    const bucket = byCategory.get(q.category);
+    if (bucket) bucket.push(q);
+    else byCategory.set(q.category, [q]);
+  }
+
+  const buckets = shuffle(Array.from(byCategory.values()));
+  const picked: IbPoolQuestion[] = [];
+  let exhausted = false;
+  while (picked.length < count && !exhausted) {
+    exhausted = true;
+    for (const bucket of buckets) {
+      if (picked.length >= count) break;
+      const next = bucket.pop();
+      if (next) {
+        picked.push(next);
+        exhausted = false;
+      }
+    }
+  }
+  return picked;
 }
 
 // Builds a randomized mini-quiz. Two modes:
@@ -93,12 +129,19 @@ export async function GET(request: NextRequest) {
 
   let sourceIds: number[];
 
-  if (track === "ib") {
+  if (track === "ib" || track === "mock-interview") {
     const pool = ibQuestionsForDifficulty(difficulty);
     if (pool.length === 0) {
       return NextResponse.json({ questions: [], totalAvailable: 0 });
     }
-    const picked = shuffle(pool).slice(0, Math.min(QUESTION_COUNT, pool.length));
+    // A mock interview is longer and deliberately spread across the bank's
+    // categories (technical, behavioral, "why banking", deal experience...),
+    // the way a real screen moves between topics - rather than the 5 random
+    // questions the /kiem-tra drill serves, which can all land in one category.
+    const picked =
+      track === "mock-interview"
+        ? pickAcrossCategories(pool, MOCK_INTERVIEW_QUESTION_COUNT)
+        : shuffle(pool).slice(0, Math.min(QUESTION_COUNT, pool.length));
     const questions = picked.map((q) => {
       const order = shuffle(q.options.map((_, i) => i));
       const correct = order.indexOf(q.correct);

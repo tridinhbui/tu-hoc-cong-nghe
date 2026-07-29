@@ -346,11 +346,11 @@ export default function CombinedRewardsWidget({ userId, defaultExpanded = false,
                     </button>
                     <div className="space-y-1">
                       <p className="text-xs font-bold text-stone-800 dark:text-stone-200">Bạn có rương quà chưa mở!</p>
-                      <p className="text-[10px] text-stone-400 dark:text-stone-550">Nhấn vào rương để mở khóa danh hiệu và phần thưởng</p>
+                      <p className="text-[10px] text-stone-400 dark:text-stone-500">Nhấn vào rương để mở khóa danh hiệu và phần thưởng</p>
                     </div>
                   </div>
                 ) : (
-                  <div className="text-center py-5 text-stone-400 dark:text-stone-550 text-[10px] leading-relaxed">
+                  <div className="text-center py-5 text-stone-400 dark:text-stone-500 text-[10px] leading-relaxed">
                     Không có rương nào chưa mở. Hoàn thành nhiệm vụ hàng ngày hoặc thi vượt ải chặng để kiếm rương kho báu! 🏆
                   </div>
                 )}
@@ -362,7 +362,7 @@ export default function CombinedRewardsWidget({ userId, defaultExpanded = false,
                       <Gift className="w-3.5 h-3.5 text-rose-500" /> Rương tri thức tuần
                     </span>
                     <p className="text-[11.5px] font-bold text-stone-600 dark:text-stone-300">
-                      Đã hoàn thành: <span className="text-rose-550 dark:text-rose-400 font-black">{dailyQuests.filter((q) => q.current >= q.target).length}/3</span> nhiệm vụ hôm nay
+                      Đã hoàn thành: <span className="text-rose-500 dark:text-rose-400 font-black">{dailyQuests.filter((q) => q.current >= q.target).length}/3</span> nhiệm vụ hôm nay
                     </p>
                   </div>
                   <button
@@ -418,7 +418,7 @@ export default function CombinedRewardsWidget({ userId, defaultExpanded = false,
 
                 {allQuestsDone ? (
                   isEpicClaimed ? (
-                    <div className="mt-4 p-3 bg-stone-50 dark:bg-stone-950 border border-stone-100 dark:border-stone-800 rounded-2xl text-center text-[10px] text-stone-400 dark:text-stone-550 font-bold flex items-center justify-center gap-1.5">
+                    <div className="mt-4 p-3 bg-stone-50 dark:bg-stone-950 border border-stone-100 dark:border-stone-800 rounded-2xl text-center text-[10px] text-stone-400 dark:text-stone-500 font-bold flex items-center justify-center gap-1.5">
                       <CheckCircle2 className="w-4 h-4 text-emerald-500" /> Đã nhận phần thưởng tuần này!
                     </div>
                   ) : (
@@ -431,7 +431,7 @@ export default function CombinedRewardsWidget({ userId, defaultExpanded = false,
                     </button>
                   )
                 ) : (
-                  <div className="mt-4 p-3 bg-stone-50 dark:bg-stone-950 border border-stone-100 dark:border-stone-800 rounded-2xl text-center text-[10px] text-stone-400 dark:text-stone-550 font-bold">
+                  <div className="mt-4 p-3 bg-stone-50 dark:bg-stone-950 border border-stone-100 dark:border-stone-800 rounded-2xl text-center text-[10px] text-stone-400 dark:text-stone-500 font-bold">
                     🔒 Hoàn thành cả 3 nhiệm vụ để mở khóa +3 rương quà
                   </div>
                 )}
