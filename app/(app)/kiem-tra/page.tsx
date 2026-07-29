@@ -2,20 +2,36 @@
 
 import { useEffect, useState, useCallback } from "react";
 import Link from "next/link";
-import { ChevronLeft, Sparkles, CheckCircle2 } from "lucide-react";
+import { BriefcaseBusiness, CheckCircle2, ChevronLeft, Clock3, Sparkles, Target, Trophy } from "lucide-react";
 import { createClient } from "@/lib/supabase";
-import type { ChallengeQuestion } from "@/app/api/knowledge-challenge/route";
 import { submitQuizSession, computeQuizXp, type QuizTrack, type QuizDifficulty, type QuizAnswerSubmission } from "@/lib/supabase-quiz-sessions";
 import { recalculateUserStats } from "@/lib/supabase-user";
 import TaiTaiQuizSuggestion from "@/components/TaiTaiQuizSuggestion";
 import DailyNewsQuizWidget from "@/components/DailyNewsQuizWidget";
 
+interface ChallengeQuestion {
+  lessonId: number;
+  lessonTitle: string;
+  lessonSlug: string;
+  question: string;
+  options: string[];
+  correct: number;
+  explanation: string;
+  token: string;
+}
+
 const TRACKS: { id: QuizTrack; label: string; desc: string }[] = [
   { id: "personal", label: "Tài chính cá nhân", desc: "Tư duy tiền bạc, đầu tư, danh mục, hưu trí" },
   { id: "professional", label: "Tài chính chuyên ngành", desc: "Kế toán, định giá, trái phiếu, phái sinh" },
   { id: "cfa", label: "Tài chính chứng chỉ", desc: "CFA Level I - 10 môn thi chính thức" },
-  { id: "ib", label: "Investment Banking", desc: "Ôn luyện technical interview từ IB question bank" },
 ];
+
+const IB_DIFFICULTY_COPY: Record<QuizDifficulty, string> = {
+  "tat-ca": "Full mixed drill",
+  de: "Foundation screen",
+  "trung-binh": "Analyst round",
+  kho: "Pressure round",
+};
 
 const DIFFICULTIES: { id: QuizDifficulty; label: string }[] = [
   { id: "tat-ca", label: "Tất cả" },
@@ -96,6 +112,14 @@ export default function KiemTraPage() {
   const allDone = submitted && activeQ === questions.length - 1;
   const score = results.filter(Boolean).length;
   const passed = questions.length > 0 && score >= Math.ceil(questions.length * PASS_RATIO);
+  const isIbQuiz = track === "ib";
+  const progressPct = questions.length > 0 ? Math.round(((activeQ + (submitted ? 1 : 0)) / questions.length) * 100) : 0;
+
+  function startSelectedQuiz(nextTrack: QuizTrack, nextDifficulty: QuizDifficulty = difficulty) {
+    setTrack(nextTrack);
+    setDifficulty(nextDifficulty);
+    void startQuiz(nextTrack, nextDifficulty);
+  }
 
   async function finalizeQuiz() {
     if (!userId || recording || xpAwarded !== null) return;
@@ -309,7 +333,7 @@ export default function KiemTraPage() {
 
                 {/* Start Action Button */}
                 <button
-                  onClick={() => void startQuiz()}
+                  onClick={() => startSelectedQuiz(track, difficulty)}
                   className="w-full py-4 rounded-2xl font-black text-sm uppercase tracking-wider text-white bg-gradient-to-r from-emerald-600 via-teal-600 to-emerald-600 hover:from-emerald-500 hover:to-teal-500 shadow-lg shadow-emerald-500/20 active:scale-98 transition-all cursor-pointer flex items-center justify-center gap-2"
                 >
                   <span>🚀 Bắt Đầu Kiểm Tra Ngay</span>
@@ -317,6 +341,79 @@ export default function KiemTraPage() {
                 </button>
               </div>
             </div>
+
+            <section className="lg:col-span-12 rounded-3xl border border-stone-800 bg-stone-950 text-white overflow-hidden shadow-2xl">
+              <div className="grid grid-cols-1 lg:grid-cols-12">
+                <div className="lg:col-span-7 p-5 sm:p-6 lg:p-7">
+                  <div className="inline-flex items-center gap-2 rounded-full border border-amber-400/40 bg-amber-400/10 px-3 py-1 text-[10px] font-black uppercase tracking-[0.18em] text-amber-300">
+                    <BriefcaseBusiness className="h-3.5 w-3.5" />
+                    Investment Banking Interview Drill
+                  </div>
+                  <h2 className="mt-4 text-2xl sm:text-3xl font-black tracking-tight">
+                    Luyện technical interview như một vòng analyst thật
+                  </h2>
+                  <p className="mt-2 max-w-2xl text-sm font-semibold leading-relaxed text-stone-300">
+                    Tách riêng từ bộ 400 IB Questions: Accounting, Valuation, DCF, M&A, LBO và behavioral logic. Mỗi lượt là một mini interview 5 câu, có chấm điểm và giải thích ngay.
+                  </p>
+
+                  <div className="mt-5 grid grid-cols-3 gap-2.5">
+                    {[
+                      { icon: Target, label: "Question bank", value: "400 câu" },
+                      { icon: Clock3, label: "Mỗi lượt", value: "3-5 phút" },
+                      { icon: Trophy, label: "Thưởng", value: "+XP" },
+                    ].map((item) => {
+                      const Icon = item.icon;
+                      return (
+                        <div key={item.label} className="rounded-2xl border border-stone-800 bg-stone-900 px-3 py-3">
+                          <Icon className="h-4 w-4 text-amber-300" />
+                          <p className="mt-2 text-[9px] font-black uppercase tracking-wider text-stone-500">{item.label}</p>
+                          <p className="mt-0.5 text-sm font-black text-white">{item.value}</p>
+                        </div>
+                      );
+                    })}
+                  </div>
+                </div>
+
+                <div className="lg:col-span-5 border-t lg:border-t-0 lg:border-l border-stone-800 bg-stone-900/70 p-5 sm:p-6 lg:p-7">
+                  <p className="text-xs font-black uppercase tracking-widest text-stone-400">Chọn vòng phỏng vấn</p>
+                  <div className="mt-3 grid grid-cols-2 gap-2">
+                    {DIFFICULTIES.map((d) => {
+                      const selected = difficulty === d.id && track === "ib";
+                      return (
+                        <button
+                          key={d.id}
+                          type="button"
+                          onClick={() => {
+                            setTrack("ib");
+                            setDifficulty(d.id);
+                          }}
+                          className={`rounded-2xl border px-3 py-3 text-left transition-all cursor-pointer ${
+                            selected
+                              ? "border-amber-300 bg-amber-300 text-stone-950 shadow-lg shadow-amber-500/10"
+                              : "border-stone-700 bg-stone-950/60 text-stone-200 hover:border-stone-500"
+                          }`}
+                        >
+                          <span className="block text-xs font-black">{d.label}</span>
+                          <span className={`mt-1 block text-[10px] font-bold ${selected ? "text-stone-800" : "text-stone-500"}`}>
+                            {IB_DIFFICULTY_COPY[d.id]}
+                          </span>
+                        </button>
+                      );
+                    })}
+                  </div>
+                  <button
+                    type="button"
+                    onClick={() => startSelectedQuiz("ib", difficulty)}
+                    className="mt-4 w-full rounded-2xl bg-amber-400 px-4 py-4 text-sm font-black uppercase tracking-wider text-stone-950 shadow-lg shadow-amber-500/20 transition-all hover:bg-amber-300 active:scale-[0.98] cursor-pointer"
+                  >
+                    Bắt đầu IB drill →
+                  </button>
+                  <p className="mt-3 text-[11px] font-semibold leading-relaxed text-stone-400">
+                    Gợi ý: dùng “Trung bình” cho mock analyst round, dùng “Khó” khi muốn luyện áp lực trước interview.
+                  </p>
+                </div>
+              </div>
+            </section>
           </div>
         )}
 
@@ -346,27 +443,68 @@ export default function KiemTraPage() {
         )}
 
         {stage === "ready" && q && (
-          <div className="space-y-5">
-            <div className="flex items-center justify-between">
-              <span className="text-xs font-extrabold text-stone-500 dark:text-stone-400 uppercase tracking-wide">
-                Câu {activeQ + 1} / {questions.length}
-              </span>
-              <span className="text-xs text-stone-400 dark:text-stone-500 truncate max-w-[60%]">{q.lessonTitle}</span>
+          <div className={`mx-auto space-y-5 ${isIbQuiz ? "max-w-4xl rounded-3xl border border-stone-800 bg-stone-950 p-4 sm:p-6 text-white shadow-2xl" : "max-w-2xl"}`}>
+            <div className={isIbQuiz ? "rounded-2xl border border-stone-800 bg-stone-900 p-4" : ""}>
+              <div className="flex flex-wrap items-center justify-between gap-3">
+                <span className={`text-xs font-extrabold uppercase tracking-wide ${isIbQuiz ? "text-amber-300" : "text-stone-500 dark:text-stone-400"}`}>
+                  {isIbQuiz ? "IB Interview Drill" : `Câu ${activeQ + 1} / ${questions.length}`}
+                </span>
+                <span className={`text-xs truncate max-w-[60%] ${isIbQuiz ? "text-stone-400" : "text-stone-400 dark:text-stone-500"}`}>{q.lessonTitle}</span>
+              </div>
+              {isIbQuiz && (
+                <div className="mt-3 grid grid-cols-3 gap-2">
+                  <div className="rounded-xl bg-stone-950 px-3 py-2">
+                    <p className="text-[9px] font-black uppercase tracking-wider text-stone-500">Câu hỏi</p>
+                    <p className="text-sm font-black text-white">{activeQ + 1}/{questions.length}</p>
+                  </div>
+                  <div className="rounded-xl bg-stone-950 px-3 py-2">
+                    <p className="text-[9px] font-black uppercase tracking-wider text-stone-500">Đúng</p>
+                    <p className="text-sm font-black text-emerald-300">{score}</p>
+                  </div>
+                  <div className="rounded-xl bg-stone-950 px-3 py-2">
+                    <p className="text-[9px] font-black uppercase tracking-wider text-stone-500">Round</p>
+                    <p className="text-sm font-black text-amber-300">{IB_DIFFICULTY_COPY[difficulty]}</p>
+                  </div>
+                </div>
+              )}
+              <div className={`mt-3 h-2 rounded-full overflow-hidden ${isIbQuiz ? "bg-stone-800" : "bg-stone-100 dark:bg-stone-800"}`}>
+                <div
+                  className={`h-full rounded-full transition-all duration-500 ${isIbQuiz ? "bg-amber-300" : "bg-emerald-500"}`}
+                  style={{ width: `${Math.max(6, progressPct)}%` }}
+                />
+              </div>
             </div>
 
-            <p className="font-bold text-stone-900 dark:text-stone-100 text-lg leading-relaxed select-text">{q.question}</p>
+            <div className={isIbQuiz ? "rounded-2xl border border-stone-800 bg-white p-4 sm:p-5 text-stone-950" : ""}>
+              {isIbQuiz && (
+                <p className="mb-2 text-[10px] font-black uppercase tracking-[0.18em] text-amber-700">
+                  Interviewer asks
+                </p>
+              )}
+              <p className={`font-bold text-lg leading-relaxed select-text ${isIbQuiz ? "text-stone-950" : "text-stone-900 dark:text-stone-100"}`}>{q.question}</p>
+            </div>
 
             <div className="space-y-2">
               {q.options.map((opt, oi) => {
                 const isSelected = selected === oi;
                 const isCorrectOpt = oi === q.correct;
-                let cls = "border-2 border-stone-300 dark:border-stone-700 bg-white dark:bg-stone-900 text-stone-900 dark:text-stone-100 hover:border-stone-400 dark:hover:border-stone-600";
+                let cls = isIbQuiz
+                  ? "border-2 border-stone-700 bg-stone-900 text-stone-100 hover:border-amber-300 hover:bg-stone-800"
+                  : "border-2 border-stone-300 dark:border-stone-700 bg-white dark:bg-stone-900 text-stone-900 dark:text-stone-100 hover:border-stone-400 dark:hover:border-stone-600";
                 if (submitted) {
-                  if (isCorrectOpt) cls = "border-2 border-emerald-500 bg-emerald-50 dark:bg-emerald-950/50 text-emerald-900 dark:text-emerald-400 font-semibold";
-                  else if (isSelected) cls = "border-2 border-rose-500 bg-rose-50 dark:bg-rose-950/50 text-rose-900 dark:text-rose-400 font-semibold";
-                  else cls = "border-2 border-stone-200 dark:border-stone-800 bg-stone-50 dark:bg-stone-900/50 text-stone-500 dark:text-stone-400";
+                  if (isCorrectOpt) cls = isIbQuiz
+                    ? "border-2 border-emerald-400 bg-emerald-400 text-stone-950 font-black"
+                    : "border-2 border-emerald-500 bg-emerald-50 dark:bg-emerald-950/50 text-emerald-900 dark:text-emerald-400 font-semibold";
+                  else if (isSelected) cls = isIbQuiz
+                    ? "border-2 border-rose-400 bg-rose-500 text-white font-black"
+                    : "border-2 border-rose-500 bg-rose-50 dark:bg-rose-950/50 text-rose-900 dark:text-rose-400 font-semibold";
+                  else cls = isIbQuiz
+                    ? "border-2 border-stone-800 bg-stone-900/60 text-stone-500"
+                    : "border-2 border-stone-200 dark:border-stone-800 bg-stone-50 dark:bg-stone-900/50 text-stone-500 dark:text-stone-400";
                 } else if (isSelected) {
-                  cls = "border-2 border-stone-900 dark:border-stone-100 bg-stone-900 dark:bg-stone-100 text-white dark:text-stone-900 font-semibold";
+                  cls = isIbQuiz
+                    ? "border-2 border-amber-300 bg-amber-300 text-stone-950 font-black shadow-lg shadow-amber-500/10"
+                    : "border-2 border-stone-900 dark:border-stone-100 bg-stone-900 dark:bg-stone-100 text-white dark:text-stone-900 font-semibold";
                 }
                 return (
                   <button
@@ -383,7 +521,7 @@ export default function KiemTraPage() {
 
             {submitted && (
               <div className={`rounded-xl p-4 text-sm leading-relaxed border ${results[activeQ] ? "bg-emerald-50 dark:bg-emerald-950/50 border-emerald-100 dark:border-emerald-900 text-emerald-800 dark:text-emerald-400" : "bg-rose-50 dark:bg-rose-950/50 border-rose-100 dark:border-rose-900 text-rose-800 dark:text-rose-400"}`}>
-                <p className="font-bold mb-1">{results[activeQ] ? `Chính xác! +${XP_PER_QUESTION} XP` : "Giải thích:"}</p>
+                <p className="font-bold mb-1">{results[activeQ] ? (isIbQuiz ? `Good answer. +${XP_PER_QUESTION} XP` : `Chính xác! +${XP_PER_QUESTION} XP`) : "Giải thích:"}</p>
                 <p>{q.explanation}</p>
               </div>
             )}
@@ -392,13 +530,19 @@ export default function KiemTraPage() {
               <button
                 disabled={selected === null}
                 onClick={verify}
-                className={`w-full py-4 rounded-xl font-extrabold text-base uppercase tracking-wide text-white cursor-pointer flex items-center justify-center gap-2 ${selected !== null ? "bg-stone-900 dark:bg-stone-100 dark:text-stone-900 hover:opacity-90" : "bg-stone-200 dark:bg-stone-700 text-stone-500 dark:text-stone-400 cursor-not-allowed"}`}
+                className={`w-full py-4 rounded-xl font-extrabold text-base uppercase tracking-wide cursor-pointer flex items-center justify-center gap-2 ${
+                  selected !== null
+                    ? isIbQuiz
+                      ? "bg-amber-300 text-stone-950 hover:bg-amber-200"
+                      : "bg-stone-900 dark:bg-stone-100 dark:text-stone-900 text-white hover:opacity-90"
+                    : "bg-stone-200 dark:bg-stone-700 text-stone-500 dark:text-stone-400 cursor-not-allowed"
+                }`}
               >
                 <CheckCircle2 className="w-5 h-5" />
-                Kiểm tra đáp án
+                {isIbQuiz ? "Chốt câu trả lời" : "Kiểm tra đáp án"}
               </button>
             ) : (
-              <button onClick={next} className="w-full py-4 rounded-xl font-extrabold text-base uppercase tracking-wide text-white bg-stone-900 dark:bg-stone-100 dark:text-stone-900 hover:opacity-90 cursor-pointer">
+              <button onClick={next} className={`w-full py-4 rounded-xl font-extrabold text-base uppercase tracking-wide cursor-pointer ${isIbQuiz ? "bg-white text-stone-950 hover:bg-stone-100" : "text-white bg-stone-900 dark:bg-stone-100 dark:text-stone-900 hover:opacity-90"}`}>
                 {allDone ? "Xem kết quả →" : "Câu tiếp theo →"}
               </button>
             )}
@@ -406,16 +550,37 @@ export default function KiemTraPage() {
         )}
 
         {stage === "done" && (
-          <div className="text-center space-y-5">
+          <div className={`mx-auto text-center space-y-5 ${isIbQuiz ? "max-w-3xl rounded-3xl border border-stone-800 bg-stone-950 p-5 sm:p-7 text-white shadow-2xl" : "max-w-2xl"}`}>
             <div className="text-5xl">{score === questions.length ? "🏆" : score >= questions.length * 0.7 ? "🎉" : "💪"}</div>
             <div>
-              <h3 className="font-bold text-stone-900 dark:text-stone-100 text-xl">Hoàn thành bài kiểm tra!</h3>
-              <p className="text-stone-500 dark:text-stone-400 text-sm mt-1">{score}/{questions.length} câu đúng {passed ? "· Đạt" : ""}</p>
+              <h3 className={`font-bold text-xl ${isIbQuiz ? "text-white" : "text-stone-900 dark:text-stone-100"}`}>
+                {isIbQuiz ? "Hoàn thành IB interview drill!" : "Hoàn thành bài kiểm tra!"}
+              </h3>
+              <p className={`text-sm mt-1 ${isIbQuiz ? "text-stone-400" : "text-stone-500 dark:text-stone-400"}`}>
+                {score}/{questions.length} câu đúng {passed ? "· Đạt" : ""}
+              </p>
             </div>
 
-            <div className="rounded-2xl border-2 border-emerald-200 dark:border-emerald-900 bg-emerald-50 dark:bg-emerald-950/40 p-5">
-              <p className="text-xs font-bold text-emerald-700 dark:text-emerald-400 uppercase tracking-wide mb-1">XP nhận được</p>
-              <p className="text-3xl font-extrabold text-emerald-700 dark:text-emerald-400">
+            {isIbQuiz && (
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-2.5">
+                <div className="rounded-2xl border border-stone-800 bg-stone-900 p-4">
+                  <p className="text-[10px] font-black uppercase tracking-wider text-stone-500">Interview readiness</p>
+                  <p className="mt-1 text-2xl font-black text-amber-300">{Math.round((score / Math.max(1, questions.length)) * 100)}%</p>
+                </div>
+                <div className="rounded-2xl border border-stone-800 bg-stone-900 p-4">
+                  <p className="text-[10px] font-black uppercase tracking-wider text-stone-500">Round</p>
+                  <p className="mt-1 text-sm font-black text-white">{IB_DIFFICULTY_COPY[difficulty]}</p>
+                </div>
+                <div className="rounded-2xl border border-stone-800 bg-stone-900 p-4">
+                  <p className="text-[10px] font-black uppercase tracking-wider text-stone-500">Next action</p>
+                  <p className="mt-1 text-sm font-black text-emerald-300">{passed ? "Lên độ khó" : "Ôn câu sai"}</p>
+                </div>
+              </div>
+            )}
+
+            <div className={`rounded-2xl border-2 p-5 ${isIbQuiz ? "border-amber-300/40 bg-amber-300/10" : "border-emerald-200 dark:border-emerald-900 bg-emerald-50 dark:bg-emerald-950/40"}`}>
+              <p className={`text-xs font-bold uppercase tracking-wide mb-1 ${isIbQuiz ? "text-amber-300" : "text-emerald-700 dark:text-emerald-400"}`}>XP nhận được</p>
+              <p className={`text-3xl font-extrabold ${isIbQuiz ? "text-amber-300" : "text-emerald-700 dark:text-emerald-400"}`}>
                 {xpAwarded === null ? "..." : `+${xpAwarded} XP`}
               </p>
             </div>
@@ -429,13 +594,15 @@ export default function KiemTraPage() {
             </div>
 
             {questions.some((_, i) => !results[i]) && (
-              <div className="text-left bg-stone-50 dark:bg-stone-800 rounded-xl p-4 space-y-1.5">
-                <p className="text-xs font-bold text-stone-500 dark:text-stone-400 uppercase tracking-wide mb-2">Ôn lại các bài có câu sai</p>
+              <div className={`text-left rounded-xl p-4 space-y-1.5 ${isIbQuiz ? "bg-stone-900 border border-stone-800" : "bg-stone-50 dark:bg-stone-800"}`}>
+                <p className="text-xs font-bold text-stone-500 dark:text-stone-400 uppercase tracking-wide mb-2">
+                  {isIbQuiz ? "Deal notes cần ôn lại" : "Ôn lại các bài có câu sai"}
+                </p>
                 {Array.from(new Set(questions.filter((_, i) => !results[i]).map((qq) => qq.lessonId))).map((lessonId) => {
                   const lq = questions.find((qq) => qq.lessonId === lessonId)!;
                   if (lq.lessonSlug === "ib-question-bank") {
                     return (
-                      <p key={lessonId} className="block text-sm text-stone-700 dark:text-stone-300">
+                      <p key={lessonId} className={`block text-sm ${isIbQuiz ? "text-stone-300" : "text-stone-700 dark:text-stone-300"}`}>
                         → {lq.lessonTitle}
                       </p>
                     );
@@ -450,11 +617,11 @@ export default function KiemTraPage() {
             )}
 
             <div className="grid grid-cols-2 gap-3 pt-2">
-              <Link href="/dashboard" className="py-3 rounded-xl border border-stone-200 dark:border-stone-700 text-stone-600 dark:text-stone-400 text-sm font-bold hover:bg-stone-50 dark:hover:bg-stone-800 text-center">
+              <Link href="/dashboard" className={`py-3 rounded-xl border text-sm font-bold text-center ${isIbQuiz ? "border-stone-700 text-stone-300 hover:bg-stone-900" : "border-stone-200 dark:border-stone-700 text-stone-600 dark:text-stone-400 hover:bg-stone-50 dark:hover:bg-stone-800"}`}>
                 Về Dashboard
               </Link>
-              <button onClick={() => setStage("setup")} className="py-3 rounded-xl text-white text-sm font-bold bg-stone-900 dark:bg-stone-100 dark:text-stone-900 hover:opacity-90 cursor-pointer">
-                Kiểm tra mới
+              <button onClick={() => setStage("setup")} className={`py-3 rounded-xl text-sm font-bold hover:opacity-90 cursor-pointer ${isIbQuiz ? "bg-amber-300 text-stone-950" : "text-white bg-stone-900 dark:bg-stone-100 dark:text-stone-900"}`}>
+                {isIbQuiz ? "Drill mới" : "Kiểm tra mới"}
               </button>
             </div>
           </div>
