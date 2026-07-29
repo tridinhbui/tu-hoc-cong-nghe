@@ -9,6 +9,7 @@ export const en: Dictionary = {
     quiz: "Quiz",
     notes: "Notes",
     studyGroup: "Study groups",
+    technicalInterview: "Technical Interview",
     career: "Careers",
     stats: "Stats",
     openMenu: "Open menu",

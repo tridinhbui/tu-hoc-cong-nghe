@@ -200,6 +200,16 @@ export async function getDocumentCount(): Promise<number> {
   return count ?? 0;
 }
 
+export async function getPendingDocumentCount(): Promise<number> {
+  const supabase = createAdminClient();
+  const { count, error } = await supabase
+    .from("documents")
+    .select("*", { count: "exact", head: true })
+    .eq("status", "pending");
+  if (error) return 0;
+  return count ?? 0;
+}
+
 export async function uploadDocument(params: {
   title: string;
   description: string;

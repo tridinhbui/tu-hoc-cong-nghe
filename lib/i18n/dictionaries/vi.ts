@@ -14,6 +14,7 @@ export const vi = {
     quiz: "Kiểm tra",
     notes: "Ghi chú",
     studyGroup: "Học nhóm",
+    technicalInterview: "Phỏng vấn kỹ thuật",
     career: "Sự nghiệp",
     stats: "Thống kê",
     openMenu: "Mở menu",

@@ -49,7 +49,7 @@ const NAV_LINKS: NavLink[] = [
   { href: "/analytics", labelKey: "stats", icon: BarChart3 },
   { href: "/ghi-chu", labelKey: "notes", icon: StickyNote },
   { href: "/kiem-tra", labelKey: "quiz", icon: GraduationCap },
-  { href: "/phong-van-ky-thuat", label: "Technical Interview", icon: BriefcaseBusiness },
+  { href: "/phong-van-ky-thuat", labelKey: "technicalInterview", icon: BriefcaseBusiness },
   { href: "/nhom-hoc", labelKey: "studyGroup", icon: Users },
   { href: "/finsocial", label: "FinSocial", icon: MessageSquareMore },
   { href: "/su-nghiep", labelKey: "career", icon: Briefcase },
@@ -533,8 +533,19 @@ export default function AppNavbar() {
               onClick={() => setMobileMenuOpen(false)}
             />
 
-            {/* Mobile Drawer Dropdown anchored below top header */}
-            <div className="absolute top-full left-0 right-0 bg-white/98 dark:bg-stone-950/98 border-b border-stone-200 dark:border-stone-800 px-4 sm:px-6 py-3.5 space-y-1.5 shadow-2xl max-h-[calc(100vh-4rem)] overflow-y-auto z-40 lg:hidden backdrop-blur-md">
+            {/* Mobile Drawer Dropdown anchored below top header.
+                Was `absolute` (containing block = the sticky <header> above).
+                `position: absolute` inside `position: sticky` is a
+                combination WebKit has historically resolved inconsistently -
+                some iOS Safari versions don't treat sticky as establishing a
+                containing block for absolute descendants, so the dropdown's
+                left/right/top could resolve against the wrong box, rendering
+                it shifted/clipped relative to the actual screen while
+                Chromium (used for local testing) renders it correctly. The
+                backdrop right above already uses `fixed` for exactly this
+                reason - matching it removes the ambiguity instead of relying
+                on sticky-as-containing-block at all. */}
+            <div className="fixed left-0 right-0 top-[53px] bg-white/98 dark:bg-stone-950/98 border-b border-stone-200 dark:border-stone-800 px-4 sm:px-6 py-3.5 space-y-1.5 shadow-2xl max-h-[calc(100vh-4rem)] overflow-y-auto z-40 lg:hidden backdrop-blur-md">
               {profile && (
                 <div className="flex items-center justify-between gap-3 p-3 mb-2 rounded-xl bg-stone-50 dark:bg-stone-900 border border-stone-200/80 dark:border-stone-800">
                   <div className="flex items-center gap-2.5 min-w-0">

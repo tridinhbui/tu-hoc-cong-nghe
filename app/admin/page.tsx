@@ -16,10 +16,13 @@ import { getUnreadChatCount } from "@/lib/admin/chat";
 import { getUserCount } from "@/lib/admin/users";
 import { getLessonCount } from "@/lib/admin/lessons";
 import { getPendingUnlockCount } from "@/lib/admin/unlock-requests";
-import { getDocumentCount } from "@/lib/admin/documents";
+import { getDocumentCount, getPendingDocumentCount } from "@/lib/admin/documents";
+import { getPendingAppealCount } from "@/lib/admin/appeals";
+import { getOpenBugReportCount } from "@/lib/admin/bugs";
 import { getSystemAnalytics } from "@/lib/admin/analytics";
 import { getFeatureEventStats } from "@/lib/admin/feature-events";
 import FeatureEventsPanel from "@/components/admin/FeatureEventsPanel";
+import NeedsActionPanel from "@/components/admin/NeedsActionPanel";
 
 export const dynamic = "force-dynamic";
 
@@ -31,6 +34,9 @@ export default async function AdminOverviewPage() {
     lessonCount,
     pendingUnlocks,
     documentCount,
+    pendingDocuments,
+    pendingAppeals,
+    openBugReports,
     analyticsResult,
     featureEventStats,
   ] = await Promise.all([
@@ -40,6 +46,9 @@ export default async function AdminOverviewPage() {
     getLessonCount().catch(() => 0),
     getPendingUnlockCount().catch(() => 0),
     getDocumentCount().catch(() => 0),
+    getPendingDocumentCount().catch(() => 0),
+    getPendingAppealCount().catch(() => 0),
+    getOpenBugReportCount().catch(() => 0),
     getSystemAnalytics().catch(() => null),
     getFeatureEventStats(30).catch(() => []),
   ]);
@@ -113,6 +122,15 @@ export default async function AdminOverviewPage() {
           Trạng thái tổng thể, chỉ số phân tích người dùng & hiệu suất học tập realtime.
         </p>
       </div>
+
+      {/* Needs Action - the one panel that's a to-do list, not a history */}
+      <NeedsActionPanel
+        pendingAppeals={pendingAppeals}
+        openBugReports={openBugReports}
+        pendingUnlocks={pendingUnlocks}
+        pendingDocuments={pendingDocuments}
+        unreadMessages={unreadMessages + unreadChat}
+      />
 
       {/* Overview Quick Stats Cards */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4">

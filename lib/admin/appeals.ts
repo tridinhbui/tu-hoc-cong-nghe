@@ -16,6 +16,16 @@ export interface AdminLessonAppeal {
   reviewed_at: string | null;
 }
 
+export async function getPendingAppealCount(): Promise<number> {
+  const supabase = createAdminClient();
+  const { count, error } = await supabase
+    .from("lesson_completion_appeals")
+    .select("*", { count: "exact", head: true })
+    .eq("status", "pending");
+  if (error) return 0;
+  return count ?? 0;
+}
+
 export async function listAppeals(status: "pending" | "approved" | "rejected" | "all" = "pending"): Promise<AdminLessonAppeal[]> {
   const supabase = createAdminClient();
 

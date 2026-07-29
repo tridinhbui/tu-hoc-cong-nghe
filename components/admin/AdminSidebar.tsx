@@ -19,20 +19,42 @@ import {
   Play,
 } from "lucide-react";
 
+export interface AdminBadgeCounts {
+  messages: number;
+  unlocks: number;
+  documents: number;
+  appeals: number;
+}
+
 const NAV_ITEMS = [
   { href: "/admin", label: "Tổng quan", icon: LayoutDashboard, exact: true },
-  { href: "/admin/messages", label: "Tin nhắn & Thông báo", icon: MessageSquare },
-  { href: "/admin/appeals", label: "Khiếu nại & Báo lỗi AI", icon: ShieldQuestion },
+  { href: "/admin/messages", label: "Tin nhắn & Thông báo", icon: MessageSquare, badgeKey: "messages" as const },
+  { href: "/admin/appeals", label: "Khiếu nại & Báo lỗi AI", icon: ShieldQuestion, badgeKey: "appeals" as const },
   { href: "/admin/users", label: "Người dùng", icon: Users },
-  { href: "/admin/lessons", label: "Bài học", icon: BookOpen },
+  { href: "/admin/lessons", label: "Bài học", icon: BookOpen, badgeKey: "unlocks" as const },
   { href: "/admin/videos", label: "Video", icon: Play },
   { href: "/admin/games", label: "Trò chơi", icon: Gamepad2 },
   { href: "/admin/cfa-library", label: "Thư viện CFA", icon: GraduationCap },
-  { href: "/admin/documents", label: "Tài liệu", icon: FileText },
+  { href: "/admin/documents", label: "Tài liệu", icon: FileText, badgeKey: "documents" as const },
   { href: "/admin/settings", label: "Cài đặt", icon: Settings },
 ];
 
-export default function AdminSidebar({ adminEmail }: { adminEmail: string }) {
+function NavBadge({ count }: { count: number }) {
+  if (count <= 0) return null;
+  return (
+    <span className="ml-auto shrink-0 inline-flex items-center justify-center min-w-[18px] h-[18px] px-1 rounded-full bg-rose-500 text-white text-[10px] font-bold">
+      {count > 99 ? "99+" : count}
+    </span>
+  );
+}
+
+export default function AdminSidebar({
+  adminEmail,
+  badgeCounts,
+}: {
+  adminEmail: string;
+  badgeCounts?: AdminBadgeCounts;
+}) {
   const pathname = usePathname();
   const router = useRouter();
   const [mobileOpen, setMobileOpen] = useState(false);
@@ -52,6 +74,7 @@ export default function AdminSidebar({ adminEmail }: { adminEmail: string }) {
       {NAV_ITEMS.map((item) => {
         const Icon = item.icon;
         const active = isActive(item.href, item.exact);
+        const count = item.badgeKey && badgeCounts ? badgeCounts[item.badgeKey] : 0;
         return (
           <Link
             key={item.href}
@@ -66,6 +89,7 @@ export default function AdminSidebar({ adminEmail }: { adminEmail: string }) {
           >
             <Icon className="w-4 h-4 flex-shrink-0" />
             {item.label}
+            <NavBadge count={count} />
           </Link>
         );
       })}

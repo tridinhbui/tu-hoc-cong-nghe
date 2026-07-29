@@ -101,6 +101,16 @@ export async function getBugReportMessages(reportId: number): Promise<BugReportM
   return data as BugReportMessage[];
 }
 
+export async function getOpenBugReportCount(): Promise<number> {
+  const supabase = createAdminClient();
+  const { count, error } = await supabase
+    .from("bug_reports")
+    .select("*", { count: "exact", head: true })
+    .neq("status", "fixed");
+  if (error) return 0;
+  return count ?? 0;
+}
+
 export async function updateBugReportStatus(reportId: number, status: BugStatus) {
   const supabase = createAdminClient();
   const { error } = await supabase

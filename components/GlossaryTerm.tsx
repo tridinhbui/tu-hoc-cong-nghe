@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useEffect, useRef, useState } from "react";
+import { useRouter } from "next/navigation";
 import { findGlossaryMatches } from "@/lib/finance-glossary";
 import { createClient } from "@/lib/supabase";
 import { saveFlashcard, getFlashcards } from "@/lib/supabase-flashcards";
@@ -33,6 +34,7 @@ function updateSavedTermCache(userId: string, term: string) {
 
 // Dotted-underline term with an interactive tooltip showing English translation & instant Flashcard saving
 function GlossaryTermSpan({ term, en }: { term: string; en: string }) {
+  const router = useRouter();
   const [open, setOpen] = useState(false);
   const [userId, setUserId] = useState<string | null>(null);
   const [isSaved, setIsSaved] = useState<boolean>(false);
@@ -123,7 +125,18 @@ function GlossaryTermSpan({ term, en }: { term: string; en: string }) {
       updateSavedTermCache(currentUserId, term);
       setIsSaved(true);
       setSaveState("saved");
-      toast.success(`Đã thêm "${term}" vào bộ Flashcards của bạn! 🗂️✨`);
+      // The toast used to just say the card was added, without saying where
+      // "bộ Flashcards của bạn" actually is - and the review page lives at
+      // /cfa/flashcards, which has no navbar entry, so a learner saving terms
+      // from a lesson had no way to find them again. A reader asked exactly
+      // that: "làm sao để ôn tập những từ đã lưu ạ". The action makes the
+      // toast the answer instead of a dead end.
+      toast.success(`Đã thêm "${term}" vào bộ Flashcards của bạn! 🗂️✨`, {
+        action: {
+          label: "Ôn tập ngay",
+          onClick: () => router.push("/cfa/flashcards"),
+        },
+      });
       
       if (typeof window !== "undefined") {
         window.dispatchEvent(new CustomEvent("thtcdn:xp-gained", { detail: { xp: 5, label: "Tạo Flashcard mới!" } }));

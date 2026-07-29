@@ -60,7 +60,36 @@ export function calculateSM2(
   };
 }
 
-// Fetch all flashcards for a user
+function localKey(userId: string) {
+  return `flashcards_${userId}`;
+}
+
+function readLocal(userId: string): Flashcard[] {
+  if (typeof window === "undefined") return [];
+  try {
+    const raw = window.localStorage.getItem(localKey(userId));
+    return raw ? (JSON.parse(raw) as Flashcard[]) : [];
+  } catch {
+    return [];
+  }
+}
+
+// Fetch all flashcards for a user.
+//
+// Reported by a learner: "flash card lưu từ mà k sài đc" - saving a term
+// appeared to work, but the review list came up empty. Cause was an
+// asymmetry between this function and saveFlashcard: saveFlashcard falls back
+// to localStorage on ANY error and returns true (so the UI says "saved"),
+// while this one only fell back on isMissingTableError. A permission error -
+// 42501, which is exactly what user_flashcards returned before
+// 20260730_missing_grants_flashcards_recalls.sql granted table privileges -
+// therefore wrote to localStorage but read back an empty array. The card was
+// saved, just nowhere the app would ever look.
+//
+// Now the two agree: any failure reads from the same place any failure
+// writes to. And when the database recovers, cards stranded in localStorage
+// are merged in and pushed back up, so a learner who saved terms during the
+// outage doesn't silently lose them.
 export async function getFlashcards(userId: string): Promise<Flashcard[]> {
   const supabase = createClient();
   const { data, error } = await supabase
@@ -69,19 +98,50 @@ export async function getFlashcards(userId: string): Promise<Flashcard[]> {
     .eq("user_id", userId);
 
   if (error) {
-    if (isMissingTableError(error)) {
-      // Fallback: Read from LocalStorage
-      if (typeof window !== "undefined") {
-        const localData = window.localStorage.getItem(`flashcards_${userId}`);
-        return localData ? (JSON.parse(localData) as Flashcard[]) : [];
-      }
-      return [];
+    if (!isMissingTableError(error)) {
+      console.error("Error reading flashcards, falling back to LocalStorage:", error);
     }
-    console.error("Error reading flashcards:", error);
-    return [];
+    return readLocal(userId);
   }
 
-  return (data ?? []) as Flashcard[];
+  const remote = (data ?? []) as Flashcard[];
+  const local = readLocal(userId);
+  if (local.length === 0) return remote;
+
+  const remoteTerms = new Set(remote.map((c) => c.term));
+  const stranded = local.filter((c) => !remoteTerms.has(c.term));
+  if (stranded.length === 0) {
+    // Everything local is now server-side; drop the shadow copy so it can't
+    // resurrect cards the learner later deletes.
+    if (typeof window !== "undefined") window.localStorage.removeItem(localKey(userId));
+    return remote;
+  }
+
+  // Best-effort re-upload. Deliberately not awaited through saveFlashcard -
+  // that would recurse back into this function.
+  void supabase
+    .from("user_flashcards")
+    .upsert(
+      stranded.map((c) => ({
+        user_id: userId,
+        term: c.term,
+        definition: c.definition,
+        interval: c.interval,
+        ease_factor: c.ease_factor,
+        repetitions: c.repetitions,
+        next_review_at: c.next_review_at,
+      })),
+      { onConflict: "user_id,term" }
+    )
+    .then(({ error: syncError }) => {
+      if (!syncError && typeof window !== "undefined") {
+        window.localStorage.removeItem(localKey(userId));
+      }
+    });
+
+  // Returned immediately either way, so the learner sees their saved terms on
+  // this render rather than after a successful round trip.
+  return [...remote, ...stranded];
 }
 
 // Add or update a flashcard
@@ -177,31 +237,32 @@ export async function saveFlashcardsBulk(userId: string, cards: { term: string; 
   const { error, count } = await supabase.from("user_flashcards").insert(rows, { count: "exact" });
 
   if (error) {
-    if (isMissingTableError(error)) {
-      if (typeof window !== "undefined") {
-        try {
-          const list = await getFlashcards(userId);
-          const existingTerms = new Set(list.map((c) => c.term));
-          const toInsertLocal = Array.from(dedup.values()).filter((c) => !existingTerms.has(c.term));
-          const skippedLocal = dedup.size - toInsertLocal.length;
-          
-          if (toInsertLocal.length === 0) return { added: 0, skipped: skippedLocal };
-          
-          const newCards = toInsertLocal.map((c) => ({
-            term: c.term,
-            definition: c.definition,
-            interval: 1,
-            ease_factor: 2.5,
-            repetitions: 0,
-            next_review_at: new Date().toISOString(),
-          }));
-          
-          const updatedList = [...list, ...newCards];
-          window.localStorage.setItem(`flashcards_${userId}`, JSON.stringify(updatedList));
-          return { added: newCards.length, skipped: skippedLocal };
-        } catch (e) {
-          console.error("Local storage fallback error in bulk save:", e);
-        }
+    // Any error, not just a missing table - see the note on getFlashcards.
+    // A bulk import that lands only in localStorage is fine as long as the
+    // read path looks there too, which it now does.
+    if (typeof window !== "undefined") {
+      try {
+        const list = await getFlashcards(userId);
+        const existingTerms = new Set(list.map((c) => c.term));
+        const toInsertLocal = Array.from(dedup.values()).filter((c) => !existingTerms.has(c.term));
+        const skippedLocal = dedup.size - toInsertLocal.length;
+
+        if (toInsertLocal.length === 0) return { added: 0, skipped: skippedLocal };
+
+        const newCards = toInsertLocal.map((c) => ({
+          term: c.term,
+          definition: c.definition,
+          interval: 1,
+          ease_factor: 2.5,
+          repetitions: 0,
+          next_review_at: new Date().toISOString(),
+        }));
+
+        const updatedList = [...list, ...newCards];
+        window.localStorage.setItem(localKey(userId), JSON.stringify(updatedList));
+        return { added: newCards.length, skipped: skippedLocal };
+      } catch (e) {
+        console.error("Local storage fallback error in bulk save:", e);
       }
     }
     console.error("Error bulk-saving flashcards:", error);
@@ -220,13 +281,14 @@ export async function deleteFlashcard(userId: string, term: string): Promise<boo
     .eq("term", term);
 
   if (error) {
-    if (isMissingTableError(error)) {
-      if (typeof window !== "undefined") {
-        const list = await getFlashcards(userId);
-        const filtered = list.filter((c) => c.term !== term);
-        window.localStorage.setItem(`flashcards_${userId}`, JSON.stringify(filtered));
-        return true;
-      }
+    // Any error, for the same reason as the read/write paths above. Without
+    // this, a delete that failed on the server left the card in localStorage,
+    // and getFlashcards' merge would faithfully resurrect it on next load.
+    if (typeof window !== "undefined") {
+      const list = await getFlashcards(userId);
+      const filtered = list.filter((c) => c.term !== term);
+      window.localStorage.setItem(localKey(userId), JSON.stringify(filtered));
+      return true;
     }
     console.error("Error deleting flashcard:", error);
     return false;

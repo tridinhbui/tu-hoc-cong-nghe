@@ -53,7 +53,22 @@ export const TRACK_PERSONAL = {
       ],
     },
     {
+      // Placed second on purpose: you cannot budget, size an emergency fund
+      // or plan debt repayment without knowing your actual take-home pay,
+      // which is what this chặng computes. Ids 1301-1308 sit above every
+      // existing block so no renumbering (and no progress loss) is needed.
       label: "Chặng 2",
+      name: "Thuế TNCN & Lương thực nhận",
+      days: [1301, 1308] as [number, number],
+      available: true,
+      isNew: true,
+      parts: [
+        { name: "Từ lương gross đến lương net", days: [1301, 1304] as [number, number] },
+        { name: "Cải cách 2026, quyết toán và thu nhập ngoài lương", days: [1305, 1308] as [number, number] },
+      ],
+    },
+    {
+      label: "Chặng 3",
       name: "Tư duy tiền bạc và tài chính cơ bản",
       days: [1, 20] as [number, number],
       available: true,
@@ -63,7 +78,7 @@ export const TRACK_PERSONAL = {
       ],
     },
     {
-      label: "Chặng 3",
+      label: "Chặng 4",
       name: "Cổ phiếu, ETF và quỹ đầu tư",
       days: [201, 220] as [number, number],
       available: true,
@@ -76,7 +91,7 @@ export const TRACK_PERSONAL = {
       ],
     },
     {
-      label: "Chặng 4",
+      label: "Chặng 5",
       name: "Trái phiếu và các công cụ cố định",
       days: [221, 240] as [number, number],
       available: true,
@@ -86,7 +101,7 @@ export const TRACK_PERSONAL = {
       ],
     },
     {
-      label: "Chặng 5",
+      label: "Chặng 6",
       name: "Danh mục đầu tư và kế hoạch hưu trí",
       days: [241, 262] as [number, number],
       available: true,
@@ -96,7 +111,7 @@ export const TRACK_PERSONAL = {
       ],
     },
     {
-      label: "Chặng 6",
+      label: "Chặng 7",
       name: "Chiến lược đầu tư cá nhân",
       days: [269, 278] as [number, number],
       available: true,
@@ -106,7 +121,7 @@ export const TRACK_PERSONAL = {
       ],
     },
     {
-      label: "Chặng 7",
+      label: "Chặng 8",
       name: "Quản lý tài sản & hưu trí",
       days: [279, 288] as [number, number],
       available: true,
@@ -116,7 +131,7 @@ export const TRACK_PERSONAL = {
       ],
     },
     {
-      label: "Chặng 8",
+      label: "Chặng 9",
       name: "Nhà ở, bảo vệ tài sản và các quyết định tài chính lớn",
       days: [289, 298] as [number, number],
       available: true,
@@ -127,7 +142,7 @@ export const TRACK_PERSONAL = {
       ],
     },
     {
-      label: "Chặng 9",
+      label: "Chặng 10",
       name: "Tâm lý học tài chính hành vi (Behavioral Finance)",
       days: [1235, 1240] as [number, number],
       available: true,
@@ -295,6 +310,22 @@ export const TRACK_PROFESSIONAL = {
       isNew: true,
       parts: [
         { name: "Tài chính Bất động sản, Trái phiếu doanh nghiệp, Startup VC, Quản trị rủi ro VaR & Đầu tư ESG", days: [801, 805] as [number, number], extraLessonIds: [801, 802, 803, 804, 805] },
+      ],
+    },
+    {
+      // Hands-on modelling is the core hard skill behind the analyst/IB path
+      // that Chặng 10 introduces, so it sits at the end as the applied
+      // capstone. Text lessons target structure, statement linkage and the
+      // judgment behind assumptions - the parts that transfer through prose.
+      label: "Chặng 15",
+      name: "Mô hình tài chính thực hành (Financial Modeling)",
+      days: [1311, 1320] as [number, number],
+      available: true,
+      isNew: true,
+      parts: [
+        { name: "Cấu trúc, doanh thu và mô hình 3 báo cáo", days: [1311, 1313] as [number, number] },
+        { name: "Bảng hỗ trợ, nợ vay và định giá DCF", days: [1314, 1317] as [number, number] },
+        { name: "LBO, kiểm tra mô hình và project cuối chặng", days: [1318, 1320] as [number, number] },
       ],
     },
   ] satisfies Stage[],

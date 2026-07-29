@@ -29,10 +29,25 @@
   --color-danger-bg: #FEF2F2;
 }
 
+/* Belt-and-suspenders against horizontal-overflow bugs like the mobile
+   navbar drawer shifting off-screen on iOS Safari (see AppNavbar.tsx). Only
+   `app/(app)/layout.tsx` had `overflow-x-hidden`, on a div nested well
+   inside <body> - that stops normal-flow content from widening the page,
+   but `position: fixed` descendants are sized against the LAYOUT viewport,
+   which a nested wrapper's overflow-x-hidden does not constrain on iOS
+   Safari. Setting it here, on the actual root elements, does. Any
+   intentional horizontal scroller (e.g. the level-map strip) keeps working -
+   it scrolls within its own `overflow-x-auto` container regardless of what
+   ancestors above it do. */
+html {
+  overflow-x: hidden;
+}
+
 body {
   background-color: var(--color-bg-base);
   color: #1A1A1E;
   font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+  overflow-x: hidden;
 }
 
 .dark body {
