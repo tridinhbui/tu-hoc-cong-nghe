@@ -59,11 +59,16 @@ async function loadIndex(): Promise<LessonMeta[] | null> {
   }
 }
 
+import { ADVANCED_MASTERCLASS_LESSONS } from "./advanced-masterclass-lessons";
+
 /**
  * Get a single lesson by slug with minimal bundle impact
  * Only loads the lessons module when called
  */
 export async function getLessonBySlug(slug: string): Promise<Lesson | undefined> {
+  const masterclass = ADVANCED_MASTERCLASS_LESSONS.find((m) => m.slug === slug);
+  if (masterclass) return masterclass;
+
   try {
     const raw = await readFile(path.join(lessonsDataDir, `${slug}.json`), "utf8");
     const lesson = JSON.parse(raw) as Lesson;
@@ -78,13 +83,11 @@ export async function getLessonBySlug(slug: string): Promise<Lesson | undefined>
 /**
  * Get lesson by ID with minimal bundle impact - resolves id -> slug via the
  * cheap generated index, then reuses getLessonBySlug's fast per-file read.
- * Callers that look up many ids in a loop (e.g. building a quiz question
- * pool across a whole track, up to ~250 lessons) previously each fell
- * through to loadLessons(), which dynamic-imports the full ~2MB
- * lib/lessons.ts module on a cold instance - exactly the multi-hundred-ms
- * parse cost the index/per-file split exists to avoid.
  */
 export async function getLessonById(id: number): Promise<Lesson | undefined> {
+  const masterclass = ADVANCED_MASTERCLASS_LESSONS.find((m) => m.id === id);
+  if (masterclass) return masterclass;
+
   const index = await loadIndex();
   const slug = index?.find((l) => l.id === id)?.slug;
   if (slug) {
@@ -100,20 +103,33 @@ export async function getLessonById(id: number): Promise<Lesson | undefined> {
  * This is the most efficient way to load lesson data for listings
  */
 export async function getLessonsMeta(): Promise<LessonMeta[]> {
+  const masterclassMeta: LessonMeta[] = ADVANCED_MASTERCLASS_LESSONS.map((m) => ({
+    id: m.id,
+    slug: m.slug,
+    title: m.title,
+    subtitle: m.subtitle,
+    duration: m.duration,
+    difficulty: m.difficulty,
+    track: "professional",
+  }));
+
   const index = await loadIndex();
-  if (index) return index;
+  if (index) return [...index, ...masterclassMeta];
 
   const lessons = await loadLessons();
-  return lessons.map((l) => ({
-    id: l.id,
-    slug: l.slug,
-    title: l.title,
-    subtitle: l.subtitle,
-    duration: l.duration,
-    difficulty: l.difficulty,
-    track: l.track,
-    isFundamental: l.isFundamental,
-  }));
+  return [
+    ...lessons.map((l) => ({
+      id: l.id,
+      slug: l.slug,
+      title: l.title,
+      subtitle: l.subtitle,
+      duration: l.duration,
+      difficulty: l.difficulty,
+      track: l.track,
+      isFundamental: l.isFundamental,
+    })),
+    ...masterclassMeta,
+  ];
 }
 
 /**

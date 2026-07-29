@@ -775,7 +775,7 @@ export default function JobSearchClient() {
         localStorage.setItem(`career_quiz_recommended_${userId}`, JSON.stringify(ranked));
 
         // Claim the 50 XP quest reward
-        claimQuestReward(userId, "career_assessment", "once", 50)
+        claimQuestReward(userId, "career_assessment", "once")
           .then((success) => {
             if (success) {
               toast.success("Chúc mừng! Bạn đã nhận được +50 XP cho Trắc nghiệm Hướng nghiệp! 🧭");

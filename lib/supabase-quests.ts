@@ -1,4 +1,5 @@
 import { createClient } from "./supabase";
+import { QUEST_XP_REWARDS } from "./quest-rewards";
 import { recalculateUserStats } from "./supabase-user";
 
 export interface Quest {
@@ -92,7 +93,7 @@ export async function getDailyQuests(userId: string, dayKey: string): Promise<Qu
       description: "Hoàn thành 1 bài học bất kỳ",
       target: 1,
       current: Math.min(1, completedTodayCount),
-      xpReward: 10,
+      xpReward: QUEST_XP_REWARDS.daily_1,
       claimed: claimedSet.has("daily_1"),
     },
     {
@@ -101,7 +102,7 @@ export async function getDailyQuests(userId: string, dayKey: string): Promise<Qu
       description: "Vào học nhóm & gửi 1 tin nhắn check-in hôm nay",
       target: 1,
       current: hasCheckedInStudyGroup ? 1 : 0,
-      xpReward: 10,
+      xpReward: QUEST_XP_REWARDS.daily_study_group,
       claimed: claimedSet.has("daily_study_group"),
     },
     {
@@ -110,7 +111,7 @@ export async function getDailyQuests(userId: string, dayKey: string): Promise<Qu
       description: "Chơi ít nhất 1 ván mini game bất kỳ",
       target: 1,
       current: Math.min(1, gamesPlayedCount),
-      xpReward: 5,
+      xpReward: QUEST_XP_REWARDS.daily_2,
       claimed: claimedSet.has("daily_2"),
     },
     {
@@ -119,7 +120,7 @@ export async function getDailyQuests(userId: string, dayKey: string): Promise<Qu
       description: "Đạt điểm số 100% trong bất kỳ mini game nào",
       target: 1,
       current: Math.min(1, perfectGamesCount),
-      xpReward: 15,
+      xpReward: QUEST_XP_REWARDS.daily_3,
       claimed: claimedSet.has("daily_3"),
     },
     {
@@ -131,7 +132,7 @@ export async function getDailyQuests(userId: string, dayKey: string): Promise<Qu
       description: "Ghé thăm nền tảng hôm nay",
       target: 1,
       current: 1,
-      xpReward: 0,
+      xpReward: QUEST_XP_REWARDS.daily_4,
       claimed: claimedSet.has("daily_4"),
     },
     {
@@ -140,29 +141,39 @@ export async function getDailyQuests(userId: string, dayKey: string): Promise<Qu
       description: "Tiến vào thế giới Game Tài Chính hôm nay",
       target: 1,
       current: 1,
-      xpReward: 0,
+      xpReward: QUEST_XP_REWARDS.daily_game,
       claimed: claimedSet.has("daily_game"),
     },
   ];
 }
 
-// Records quest completion claim in database
+// Records quest completion claim via the server-authoritative route.
+//
+// The XP amount is NOT sent - app/api/quests/claim derives it from
+// lib/quest-rewards.ts. This used to insert straight into
+// user_quest_completions with a client-supplied xp_earned, which
+// recalculateUserStats sums into total_xp, so devtools could mint arbitrary
+// XP. Direct insert is revoked in
+// supabase/migrations/20260813_harden_quest_and_recall_xp.sql.
 export async function claimQuestReward(
   userId: string,
   questType: string,
-  dayKey: string,
-  xpEarned: number
+  dayKey: string
 ): Promise<boolean> {
-  const supabase = createClient();
-  const { error } = await supabase
-    .from("user_quest_completions")
-    .insert([{ user_id: userId, quest_type: questType, day_key: dayKey, xp_earned: xpEarned }]);
+  const res = await fetch("/api/quests/claim", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ questType, dayKey }),
+  });
+  const payload = (await res.json().catch(() => null)) as
+    | { claimed?: boolean; error?: string; code?: string }
+    | null;
 
-  if (error) {
-    if (error.code === "23505") {
-      // Unique constraint violation (already claimed today) - return false silently
-      return false;
-    }
+  if (res.ok) {
+    // false = already claimed; no XP moved, so skip the recompute.
+    if (!payload?.claimed) return false;
+  } else {
+    const error = { code: payload?.code, message: payload?.error };
     if (isMissingTableError(error)) {
       // Fallback: save to LocalStorage
       if (typeof window !== "undefined") {

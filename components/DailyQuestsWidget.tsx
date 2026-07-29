@@ -110,7 +110,7 @@ export default function DailyQuestsWidget({ userId, embedded = false, onQuestsLo
     setClaimingId(quest.id);
 
     try {
-      const ok = await claimQuestReward(userId, quest.id, dayKey, quest.xpReward);
+      const ok = await claimQuestReward(userId, quest.id, dayKey);
       if (ok) {
         if (typeof window !== "undefined") {
           window.dispatchEvent(new CustomEvent("thtcdn:xp-gained", { detail: { xp: quest.xpReward, label: "Thưởng nhiệm vụ!" } }));

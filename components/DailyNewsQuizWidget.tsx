@@ -193,7 +193,7 @@ export default function DailyNewsQuizWidget({ userId, compact = false }: DailyNe
       // "news quiz", so the total_xp formula had no term for it and the
       // "+15 XP" toast never actually added anything.
       try {
-        const awarded = await claimQuestReward(userId, "daily_news_quiz", todayKey, 15);
+        const awarded = await claimQuestReward(userId, "daily_news_quiz", todayKey);
         if (awarded) {
           if (typeof window !== "undefined") {
             window.dispatchEvent(new CustomEvent("thtcdn:xp-gained", { detail: { xp: 15, label: "Thử thách tin tức hàng ngày!" } }));

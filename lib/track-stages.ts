@@ -286,6 +286,17 @@ export const TRACK_PROFESSIONAL = {
         { name: "Project cuối chặng: thư viện câu lệnh và quy trình kiểm chứng", days: [1274, 1280] as [number, number] },
       ],
     },
+    {
+      label: "Chặng 14",
+      name: "Masterclass Chuyên Đề: Bất Động Sản, Trái Phiếu, Startup VC, VaR & ESG",
+      days: [801, 805] as [number, number],
+      extraLessonIds: [801, 802, 803, 804, 805],
+      available: true,
+      isNew: true,
+      parts: [
+        { name: "Tài chính Bất động sản, Trái phiếu doanh nghiệp, Startup VC, Quản trị rủi ro VaR & Đầu tư ESG", days: [801, 805] as [number, number], extraLessonIds: [801, 802, 803, 804, 805] },
+      ],
+    },
   ] satisfies Stage[],
 };
 

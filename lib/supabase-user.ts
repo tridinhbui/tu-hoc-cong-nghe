@@ -532,6 +532,13 @@ export async function recalculateUserStats(userId: string) {
     console.error("Error reading milestones for XP:", err);
   }
 
+  // lib/track-stages.ts defines 26 stage labels across both tracks, so 1300
+  // is the ceiling a real account can reach. track_id/stage_label are free
+  // text written from the client, so this bounds the damage if someone gets
+  // past the row cap in 20260813_harden_quest_and_recall_xp.sql (and bounds
+  // the localStorage fallback path above, which has no DB constraint at all).
+  milestoneXp = Math.min(1300, milestoneXp);
+
   // Active Recall XP: +10 XP per successfully completed recall level (recall_stage - 1)
   let recallXp = 0;
   try {
