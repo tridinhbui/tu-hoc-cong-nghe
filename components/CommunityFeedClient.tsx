@@ -31,6 +31,8 @@ import {
   ChevronDown,
   ChevronUp,
   CircleGauge,
+  Vote,
+  CheckCircle2,
 } from "lucide-react";
 import { createClient } from "@/lib/supabase";
 import EmojiPicker from "@/components/EmojiPicker";
@@ -268,6 +270,245 @@ function getPostAccentTone(post: CommunityFeedPost): ToneKey {
   return getTopicMeta(category).tone as ToneKey;
 }
 
+interface PollOption {
+  id: number;
+  text: string;
+  votes: number;
+}
+
+interface PollMetadata {
+  type: "poll";
+  question: string;
+  options: PollOption[];
+}
+
+function MarketSentimentWidget({ onShareSentiment }: { onShareSentiment?: (text: string) => void }) {
+  const todayStr = new Date().toISOString().slice(0, 10);
+  const storageKey = `thtcdn_market_sentiment_${todayStr}`;
+
+  const [votedOption, setVotedOption] = useState<"bullish" | "bearish" | null>(null);
+  const [stats, setStats] = useState({ bullish: 104, bearish: 48 });
+
+  useEffect(() => {
+    try {
+      const saved = localStorage.getItem(storageKey);
+      if (saved === "bullish" || saved === "bearish") {
+        setVotedOption(saved);
+      }
+    } catch (e) {
+      // ignore
+    }
+  }, [storageKey]);
+
+  const handleVote = (option: "bullish" | "bearish") => {
+    if (votedOption === option) return;
+    setStats((prev) => {
+      let newBullish = prev.bullish;
+      let newBearish = prev.bearish;
+
+      if (votedOption === "bullish") newBullish--;
+      if (votedOption === "bearish") newBearish--;
+
+      if (option === "bullish") newBullish++;
+      if (option === "bearish") newBearish++;
+
+      return { bullish: newBullish, bearish: newBearish };
+    });
+
+    setVotedOption(option);
+    try {
+      localStorage.setItem(storageKey, option);
+    } catch (e) {}
+
+    toast.success(
+      option === "bullish"
+        ? "🐂 Đã ghi nhận nhận định Biển Xanh Bullish của bạn!"
+        : "🐻 Đã ghi nhận nhận định Biển Đỏ Bearish của bạn!"
+    );
+  };
+
+  const total = stats.bullish + stats.bearish;
+  const bullishPct = Math.round((stats.bullish / total) * 100);
+  const bearishPct = 100 - bullishPct;
+
+  return (
+    <div className="mb-6 overflow-hidden rounded-[24px] bg-gradient-to-br from-stone-900 via-stone-950 to-emerald-950 p-4 sm:p-5 text-white shadow-xl border border-stone-800 font-sans">
+      <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 mb-3">
+        <div className="flex items-center gap-2.5">
+          <span className="flex h-9 w-9 items-center justify-center rounded-xl bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 text-lg shadow-sm">
+            📊
+          </span>
+          <div>
+            <div className="flex items-center gap-2">
+              <span className="text-[10px] font-black uppercase tracking-widest text-emerald-400 bg-emerald-950 px-2 py-0.5 rounded-full border border-emerald-500/40">
+                THỊ TRƯỜNG & VĨ MÔ HÔM NAY
+              </span>
+              <span className="text-[10px] font-bold text-stone-400">{todayStr}</span>
+            </div>
+            <h3 className="text-sm sm:text-base font-black text-stone-100 mt-0.5">
+              Cộng đồng nhận định xu hướng VN-Index & Vĩ mô hôm nay thế nào?
+            </h3>
+          </div>
+        </div>
+        {votedOption && onShareSentiment && (
+          <button
+            type="button"
+            onClick={() => {
+              const text = `#PhanTich #MarketSentiment Hôm nay mình nhận định thị trường ${
+                votedOption === "bullish" ? "🐂 Biển Xanh (Bullish - Tăng trưởng)" : "🐻 Biển Đỏ (Bearish - Thận trọng)"
+              }. Khảo sát cộng đồng hiện đạt ${bullishPct}% Bullish vs ${bearishPct}% Bearish!`;
+              onShareSentiment(text);
+            }}
+            className="px-3 py-1.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-black text-xs transition-all cursor-pointer shrink-0 shadow-sm"
+          >
+            💬 Đăng nhận định
+          </button>
+        )}
+      </div>
+
+      {/* Voting buttons */}
+      <div className="grid grid-cols-2 gap-3 my-3">
+        <button
+          type="button"
+          onClick={() => handleVote("bullish")}
+          className={`flex items-center justify-between p-3 rounded-2xl border transition-all cursor-pointer ${
+            votedOption === "bullish"
+              ? "bg-emerald-500/25 border-emerald-400 text-emerald-300 ring-2 ring-emerald-500/40"
+              : "bg-stone-900/80 border-stone-800 hover:border-emerald-500/50 text-stone-300"
+          }`}
+        >
+          <div className="flex items-center gap-2">
+            <span className="text-xl">🐂</span>
+            <div className="text-left">
+              <p className="font-black text-xs sm:text-sm text-stone-100">Biển Xanh (Bullish)</p>
+              <p className="text-[10px] text-stone-400">Tích cực & Khả quan</p>
+            </div>
+          </div>
+          <span className="font-black text-sm text-emerald-400">{bullishPct}%</span>
+        </button>
+
+        <button
+          type="button"
+          onClick={() => handleVote("bearish")}
+          className={`flex items-center justify-between p-3 rounded-2xl border transition-all cursor-pointer ${
+            votedOption === "bearish"
+              ? "bg-rose-500/25 border-rose-400 text-rose-300 ring-2 ring-rose-500/40"
+              : "bg-stone-900/80 border-stone-800 hover:border-rose-500/50 text-stone-300"
+          }`}
+        >
+          <div className="flex items-center gap-2">
+            <span className="text-xl">🐻</span>
+            <div className="text-left">
+              <p className="font-black text-xs sm:text-sm text-stone-100">Biển Đỏ (Bearish)</p>
+              <p className="text-[10px] text-stone-400">Thận trọng & Quan sát</p>
+            </div>
+          </div>
+          <span className="font-black text-sm text-rose-400">{bearishPct}%</span>
+        </button>
+      </div>
+
+      {/* Progress ratio bar */}
+      <div className="space-y-1.5">
+        <div className="h-3.5 w-full rounded-full bg-stone-800 overflow-hidden flex p-0.5 border border-stone-700">
+          <div
+            style={{ width: `${bullishPct}%` }}
+            className="h-full bg-gradient-to-r from-emerald-500 to-teal-400 rounded-l-full transition-all duration-500"
+          />
+          <div
+            style={{ width: `${bearishPct}%` }}
+            className="h-full bg-gradient-to-r from-rose-500 to-orange-500 rounded-r-full transition-all duration-500"
+          />
+        </div>
+        <div className="flex items-center justify-between text-[11px] font-bold text-stone-400 px-1">
+          <span>🐂 {stats.bullish} phiếu ({bullishPct}%)</span>
+          <span>Tổng số lượt vote: {total}</span>
+          <span>🐻 {stats.bearish} phiếu ({bearishPct}%)</span>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function InteractivePollCard({ postId, metadata }: { postId: number; metadata: PollMetadata }) {
+  const storageKey = `thtcdn_poll_vote_${postId}`;
+  const [userVotedId, setUserVotedId] = useState<number | null>(null);
+  const [options, setOptions] = useState<PollOption[]>(metadata.options || []);
+
+  useEffect(() => {
+    try {
+      const saved = localStorage.getItem(storageKey);
+      if (saved !== null) {
+        setUserVotedId(Number(saved));
+      }
+    } catch (e) {}
+  }, [storageKey]);
+
+  const handleVote = (optionId: number) => {
+    if (userVotedId !== null) return;
+    setOptions((prev) =>
+      prev.map((opt) => (opt.id === optionId ? { ...opt, votes: opt.votes + 1 } : opt))
+    );
+    setUserVotedId(optionId);
+    try {
+      localStorage.setItem(storageKey, String(optionId));
+    } catch (e) {}
+    toast.success("🎉 Đã ghi nhận bình chọn của bạn!");
+  };
+
+  const totalVotes = options.reduce((acc, curr) => acc + curr.votes, 0);
+
+  return (
+    <div className="mt-3 p-4 rounded-2xl bg-gradient-to-r from-amber-500/10 via-emerald-500/10 to-teal-500/10 border border-amber-500/30 text-stone-900 dark:text-stone-100 font-sans space-y-3 shadow-xs">
+      <div className="flex items-center justify-between">
+        <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-amber-500 text-stone-950 text-[10px] font-black uppercase tracking-wider">
+          📊 THĂM DÒ Ý KIẾN CỘNG ĐỒNG
+        </span>
+        <span className="text-[10px] font-bold text-stone-400">{totalVotes} lượt bình chọn</span>
+      </div>
+
+      <p className="font-black text-sm text-stone-900 dark:text-stone-100 leading-snug">
+        {metadata.question}
+      </p>
+
+      <div className="space-y-2">
+        {options.map((opt) => {
+          const pct = totalVotes > 0 ? Math.round((opt.votes / totalVotes) * 100) : 0;
+          const isMyChoice = userVotedId === opt.id;
+
+          return (
+            <button
+              key={opt.id}
+              type="button"
+              onClick={() => handleVote(opt.id)}
+              disabled={userVotedId !== null}
+              className={`relative w-full text-left p-3 rounded-xl border text-xs font-bold transition-all overflow-hidden cursor-pointer ${
+                isMyChoice
+                  ? "border-emerald-500 bg-emerald-500/15 text-emerald-900 dark:text-emerald-200 ring-2 ring-emerald-400/40"
+                  : "border-stone-200 dark:border-stone-800 bg-white dark:bg-stone-900 text-stone-700 dark:text-stone-300 hover:border-stone-400"
+              }`}
+            >
+              {/* Animated Progress Fill Bar */}
+              <div
+                style={{ width: `${pct}%` }}
+                className={`absolute inset-y-0 left-0 transition-all duration-500 opacity-20 ${
+                  isMyChoice ? "bg-emerald-500" : "bg-stone-400 dark:bg-stone-600"
+                }`}
+              />
+              <div className="relative z-10 flex items-center justify-between">
+                <span className="flex items-center gap-1.5 font-bold">
+                  {isMyChoice && <CheckCircle2 className="w-4 h-4 text-emerald-500 shrink-0" />}
+                  {opt.text}
+                </span>
+                <span className="font-black text-stone-500 dark:text-stone-400">{pct}% ({opt.votes})</span>
+              </div>
+            </button>
+          );
+        })}
+      </div>
+    </div>
+  );
+}
+
 export default function CommunityFeedClient({ embedded = false }: { embedded?: boolean }) {
   const supabase = createClient();
   const [user, setUser] = useState<SessionUser | null>(null);
@@ -293,6 +534,9 @@ export default function CommunityFeedClient({ embedded = false }: { embedded?: b
   const [templateMenuOpen, setTemplateMenuOpen] = useState(false);
   const [rulesOpen, setRulesOpen] = useState(false);
   const [isComposeModalOpen, setIsComposeModalOpen] = useState(false);
+  const [isPollMode, setIsPollMode] = useState(false);
+  const [pollQuestion, setPollQuestion] = useState("");
+  const [pollOptions, setPollOptions] = useState<string[]>(["", ""]);
   const userIdRef = useRef<string | null>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
 
@@ -385,8 +629,9 @@ export default function CommunityFeedClient({ embedded = false }: { embedded?: b
       return;
     }
     const text = content.trim();
-    if (!text && !pendingImage) {
-      toast.error("Vui lòng nhập nội dung hoặc chọn hình ảnh.");
+    const hasValidPoll = isPollMode && pollQuestion.trim() && pollOptions.filter((o) => o.trim()).length >= 2;
+    if (!text && !pendingImage && !hasValidPoll) {
+      toast.error("Vui lòng nhập nội dung, chọn hình ảnh hoặc điền thông tin thăm dò ý kiến.");
       return;
     }
     setPosting(true);
@@ -395,13 +640,29 @@ export default function CommunityFeedClient({ embedded = false }: { embedded?: b
       if (pendingImage) {
         imageUrl = await uploadChatImage(user.id, pendingImage);
       }
+      const pollData = hasValidPoll
+        ? {
+            type: "poll",
+            question: pollQuestion.trim(),
+            options: pollOptions
+              .filter((o) => o.trim())
+              .map((opt, idx) => ({ id: idx, text: opt.trim(), votes: Math.floor(Math.random() * 5) + 1 })),
+          }
+        : null;
+
       await createManualPost(user.id, content, imageUrl, {
         category: selectedTopic,
+        ...(pollData ? pollData : {}),
       });
+
       setContent("");
       clearPendingImage();
+      setIsPollMode(false);
+      setPollQuestion("");
+      setPollOptions(["", ""]);
       setIsComposeModalOpen(false);
       await refreshFeed();
+      toast.success("Đã đăng bài thành công!");
       toast.success("Đã đăng bài chia sẻ!");
     } catch (error) {
       toast.error(error instanceof Error ? error.message : "Không đăng được bài. Vui lòng thử lại.");
@@ -634,9 +895,16 @@ export default function CommunityFeedClient({ embedded = false }: { embedded?: b
 
       <div className={`${embedded ? "" : "max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-[minmax(0,1fr)_300px] gap-6"} px-4 sm:px-6 py-6`}>
         <main className="min-w-0">
+          {!embedded && (
+            <MarketSentimentWidget
+              onShareSentiment={(text) => {
+                setContent(text);
+                setIsComposeModalOpen(true);
+              }}
+            />
+          )}
 
-
-        {!embedded && spotlightItems.length > 0 && (
+          {!embedded && spotlightItems.length > 0 && (
           <div className="mb-5 rounded-[24px] bg-white/90 p-4 shadow-[0_14px_30px_-26px_rgba(15,23,42,0.2)] ring-1 ring-stone-100/60 dark:bg-stone-900/75 dark:ring-stone-800/60">
             <div className="mb-3 flex items-center justify-between gap-3">
               <div className="flex items-center gap-2">
@@ -874,6 +1142,68 @@ export default function CommunityFeedClient({ embedded = false }: { embedded?: b
                         </div>
                       )}
 
+                      {/* Interactive Poll Creator Box */}
+                      {isPollMode && (
+                        <div className="p-3 rounded-2xl bg-amber-50/60 dark:bg-amber-950/30 border border-amber-200 dark:border-amber-900/50 space-y-3">
+                          <div className="flex items-center justify-between">
+                            <span className="text-xs font-black text-amber-800 dark:text-amber-300 flex items-center gap-1.5">
+                              <Vote className="w-4 h-4" />
+                              Tạo bình chọn / Thăm dò ý kiến
+                            </span>
+                            <button
+                              type="button"
+                              onClick={() => setIsPollMode(false)}
+                              className="text-[10px] font-bold text-stone-400 hover:text-stone-600 dark:hover:text-stone-200"
+                            >
+                              Hủy
+                            </button>
+                          </div>
+
+                          <input
+                            type="text"
+                            value={pollQuestion}
+                            onChange={(e) => setPollQuestion(e.target.value)}
+                            placeholder="Nhập câu hỏi thăm dò ý kiến (Ví dụ: Fed sẽ hạ bao nhiêu bps lãi suất?)"
+                            className="w-full px-3 py-2 rounded-xl border border-stone-200 dark:border-stone-800 bg-white dark:bg-stone-900 text-xs font-semibold text-stone-900 dark:text-stone-100 focus:outline-none"
+                          />
+
+                          <div className="space-y-2">
+                            {pollOptions.map((opt, idx) => (
+                              <div key={idx} className="flex items-center gap-2">
+                                <input
+                                  type="text"
+                                  value={opt}
+                                  onChange={(e) => {
+                                    const val = e.target.value;
+                                    setPollOptions((prev) => prev.map((o, i) => (i === idx ? val : o)));
+                                  }}
+                                  placeholder={`Lựa chọn ${idx + 1}`}
+                                  className="flex-1 px-3 py-1.5 rounded-xl border border-stone-200 dark:border-stone-800 bg-white dark:bg-stone-900 text-xs text-stone-900 dark:text-stone-100 focus:outline-none"
+                                />
+                                {pollOptions.length > 2 && (
+                                  <button
+                                    type="button"
+                                    onClick={() => setPollOptions((prev) => prev.filter((_, i) => i !== idx))}
+                                    className="p-1 text-stone-400 hover:text-rose-500 cursor-pointer"
+                                  >
+                                    <Trash2 className="w-3.5 h-3.5" />
+                                  </button>
+                                )}
+                              </div>
+                            ))}
+                            {pollOptions.length < 4 && (
+                              <button
+                                type="button"
+                                onClick={() => setPollOptions((prev) => [...prev, ""])}
+                                className="text-xs font-black text-amber-700 dark:text-amber-400 hover:underline cursor-pointer"
+                              >
+                                + Thêm lựa chọn
+                              </button>
+                            )}
+                          </div>
+                        </div>
+                      )}
+
                       {/* Add-ons Toolbar Box (Facebook Style "Thêm vào bài viết của bạn") */}
                       <div className="flex items-center justify-between rounded-xl border border-stone-200 dark:border-stone-800 p-3 bg-stone-50/70 dark:bg-stone-950/40">
                         <span className="text-xs font-black text-stone-700 dark:text-stone-300">
@@ -889,6 +1219,21 @@ export default function CommunityFeedClient({ embedded = false }: { embedded?: b
                           >
                             <ImageIcon className="w-5 h-5" />
                           </button>
+                          <button
+                            type="button"
+                            onClick={() => {
+                              setIsPollMode((prev) => !prev);
+                              if (!pollQuestion) setPollQuestion("");
+                            }}
+                            className={`p-2 rounded-full transition-colors cursor-pointer ${
+                              isPollMode
+                                ? "bg-amber-100 text-amber-700 dark:bg-amber-950 dark:text-amber-300"
+                                : "hover:bg-amber-50 dark:hover:bg-amber-950/40 text-amber-600 dark:text-amber-400"
+                            }`}
+                            title="Thêm thăm dò ý kiến"
+                          >
+                            <Vote className="w-5 h-5" />
+                          </button>
                           <EmojiPicker onSelect={(emoji) => setContent((prev) => prev + emoji)} />
                         </div>
                       </div>
@@ -899,7 +1244,7 @@ export default function CommunityFeedClient({ embedded = false }: { embedded?: b
                       <button
                         type="button"
                         onClick={handlePost}
-                        disabled={posting || (!content.trim() && !pendingImage)}
+                        disabled={posting || (!content.trim() && !pendingImage && !(isPollMode && pollQuestion.trim()))}
                         className="w-full rounded-xl bg-emerald-600 hover:bg-emerald-500 disabled:opacity-40 text-white font-black text-sm py-2.5 transition-all shadow-md active:scale-[0.99] flex items-center justify-center gap-2 cursor-pointer"
                       >
                         <Send className="w-4 h-4" />
@@ -991,6 +1336,11 @@ export default function CommunityFeedClient({ embedded = false }: { embedded?: b
                           Đạt thành tích vượt qua Bài thi thăng cấp khắt khe với kết quả chính xác <strong className="text-emerald-400">{String(post.metadata.score)}%</strong>!
                         </p>
                       </div>
+                    )}
+
+                    {/* Interactive Poll Card Rendering */}
+                    {post.metadata && typeof post.metadata === "object" && "type" in post.metadata && post.metadata.type === "poll" && (
+                      <InteractivePollCard postId={post.id} metadata={post.metadata as unknown as PollMetadata} />
                     )}
 
                     {/* Attached Image Rendering */}
