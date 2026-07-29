@@ -973,6 +973,26 @@ export default function CommunityFeedClient({ embedded = false }: { embedded?: b
                       </p>
                     )}
 
+                    {/* Special Achievement Certificate Card */}
+                    {post.metadata && typeof post.metadata === "object" && "type" in post.metadata && post.metadata.type === "level_up_achievement" && (
+                      <div className="mt-3.5 p-4 rounded-2xl bg-gradient-to-r from-emerald-950 via-stone-900 to-teal-950 border border-emerald-500/40 text-white space-y-2 shadow-lg">
+                        <div className="flex items-center gap-3">
+                          <span className="text-3xl">{String(post.metadata.emoji || "🏆")}</span>
+                          <div>
+                            <span className="inline-block px-2 py-0.5 rounded-md bg-emerald-500/20 text-emerald-300 text-[10px] font-black uppercase tracking-wider border border-emerald-400/30">
+                              Chứng Nhận Thăng Cấp
+                            </span>
+                            <h4 className="font-black text-sm text-white mt-0.5">
+                              Cấp {String(post.metadata.level)}: {String(post.metadata.level_name)}
+                            </h4>
+                          </div>
+                        </div>
+                        <p className="text-xs text-stone-300 font-medium">
+                          Đạt thành tích vượt qua Bài thi thăng cấp khắt khe với kết quả chính xác <strong className="text-emerald-400">{String(post.metadata.score)}%</strong>!
+                        </p>
+                      </div>
+                    )}
+
                     {/* Attached Image Rendering */}
                     {post.metadata && typeof post.metadata === "object" && "image_url" in post.metadata && Boolean(post.metadata.image_url) && (
                       <div className="mt-4 relative overflow-hidden rounded-[20px] bg-stone-950/5 shadow-[0_12px_28px_-24px_rgba(15,23,42,0.22)] dark:bg-stone-950/40">

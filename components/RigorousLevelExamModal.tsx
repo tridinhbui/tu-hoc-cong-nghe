@@ -199,9 +199,38 @@ export default function RigorousLevelExamModal({
                 </p>
 
                 {passed ? (
-                  <div className="p-4 rounded-2xl bg-emerald-50 dark:bg-emerald-950/60 border border-emerald-200 dark:border-emerald-800 text-xs text-emerald-800 dark:text-emerald-300 space-y-1 font-medium text-left">
-                    <p className="font-black text-sm text-emerald-900 dark:text-emerald-200">🎉 Bạn chính thức thăng thâm niên Cấp độ {levelToTest} ({levelMeta.name})!</p>
-                    <p>Trạng thái thi đỗ đã được ghi nhận trong hồ sơ và duy trì chứng nhận trong 14 ngày tới.</p>
+                  <div className="p-4 rounded-2xl bg-emerald-50 dark:bg-emerald-950/60 border border-emerald-200 dark:border-emerald-800 text-xs text-emerald-800 dark:text-emerald-300 space-y-3 font-medium text-left">
+                    <div>
+                      <p className="font-black text-sm text-emerald-900 dark:text-emerald-200">🎉 Bạn chính thức thăng thâm niên Cấp độ {levelToTest} ({levelMeta.name})!</p>
+                      <p className="mt-0.5">Trạng thái thi đỗ đã được ghi nhận trong hồ sơ và duy trì chứng nhận trong 14 ngày tới.</p>
+                    </div>
+                    <button
+                      type="button"
+                      onClick={async () => {
+                        try {
+                          const { createManualPost } = await import("@/lib/supabase-community");
+                          await createManualPost(
+                            userId,
+                            `🏆 Tôi vừa xuất sắc vượt qua Bài Thi Thăng Cấp Khắt Khe - Cấp độ ${levelToTest}: ${levelMeta.name} với điểm số ${scorePercentage}%! 🔥 #ThanhTuu #LevelUp`,
+                            undefined,
+                            {
+                              type: "level_up_achievement",
+                              level: levelToTest,
+                              level_name: levelMeta.name,
+                              score: scorePercentage,
+                              emoji: levelMeta.emoji,
+                            }
+                          );
+                          toast.success("Đã chia sẻ thành tích lên FinSocial! (+10 XP)");
+                        } catch (err: any) {
+                          toast.error(err.message || "Không thể chia sẻ bài đăng lúc này.");
+                        }
+                      }}
+                      className="w-full py-2.5 px-4 rounded-xl bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-500 hover:to-teal-500 text-white font-black text-xs flex items-center justify-center gap-2 shadow-md cursor-pointer transition-all active:scale-98"
+                    >
+                      <Sparkles className="w-4 h-4" />
+                      <span>Chia sẻ chiến tích lên FinSocial (+10 XP)</span>
+                    </button>
                   </div>
                 ) : (
                   <div className="p-4 rounded-2xl bg-rose-50 dark:bg-rose-950/60 border border-rose-200 dark:border-rose-800 text-xs text-rose-800 dark:text-rose-300 space-y-1 font-medium text-left">
