@@ -28,19 +28,19 @@ export default function OpeningQuestionBlock({
       <div className="text-[10px] font-extrabold text-stone-500 dark:text-stone-300 uppercase tracking-widest">
         Bắt đầu bằng một câu hỏi
       </div>
-      <p className="text-stone-800 dark:text-stone-300 font-semibold leading-relaxed text-base">
+      <p className="text-stone-800 dark:text-stone-100 font-bold leading-relaxed text-base sm:text-lg">
         {question}
       </p>
 
       <div className="space-y-2.5">
         {options.map((opt, i) => {
-          let btnCls = "border-stone-200 dark:border-stone-800 bg-white dark:bg-stone-900 text-stone-700 dark:text-stone-300 hover:border-stone-300 dark:hover:border-stone-700 hover:bg-stone-50/30 dark:hover:bg-stone-800/30";
+          let btnCls = "border-stone-200 dark:border-stone-800 bg-white/95 dark:bg-stone-900 text-stone-800 dark:text-stone-100 hover:border-stone-400 dark:hover:border-stone-600 hover:bg-stone-50 dark:hover:bg-stone-800/60 font-medium";
           if (submitted) {
-            if (i === correct) btnCls = "border-emerald-500 bg-emerald-50 dark:bg-emerald-950/50 text-emerald-800 dark:text-emerald-400 font-semibold";
-            else if (i === selected) btnCls = "border-rose-500 bg-rose-50 dark:bg-rose-950/50 text-rose-800 dark:text-rose-400";
-            else btnCls = "border-stone-100 dark:border-stone-800 bg-stone-50/20 dark:bg-stone-900/20 text-stone-500 dark:text-stone-400 opacity-60";
+            if (i === correct) btnCls = "border-emerald-500 bg-emerald-50 dark:bg-emerald-950/50 text-emerald-900 dark:text-emerald-300 font-bold";
+            else if (i === selected) btnCls = "border-rose-500 bg-rose-50 dark:bg-rose-950/50 text-rose-900 dark:text-rose-300 font-bold";
+            else btnCls = "border-stone-100 dark:border-stone-850 bg-stone-50/20 dark:bg-stone-900/20 text-stone-500 dark:text-stone-400 opacity-60";
           } else if (selected === i) {
-            btnCls = "border-stone-900 dark:border-stone-100 bg-stone-100 dark:bg-stone-800 text-stone-900 dark:text-stone-100 font-semibold border-2";
+            btnCls = "border-stone-900 dark:border-stone-100 bg-stone-100 dark:bg-stone-800 text-stone-900 dark:text-stone-100 font-bold border-2";
           }
 
           return (
@@ -50,12 +50,12 @@ export default function OpeningQuestionBlock({
               onClick={() => setSelected(i)}
               className={`w-full text-left px-4 py-3.5 rounded-xl border text-sm transition-all flex items-center gap-3 cursor-pointer ${btnCls}`}
             >
-              <span className={`w-5 h-5 rounded-lg text-[10px] font-bold flex items-center justify-center border ${
-                selected === i ? "bg-white/80 dark:bg-stone-900/80 border-current" : "bg-stone-50 dark:bg-stone-800 text-stone-500 dark:text-stone-400 border-stone-200 dark:border-stone-700"
+              <span className={`w-6 h-6 rounded-lg text-xs font-black flex items-center justify-center border shrink-0 ${
+                selected === i ? "bg-white/80 dark:bg-stone-900/80 border-current" : "bg-stone-100 dark:bg-stone-800 text-stone-700 dark:text-stone-200 border-stone-200 dark:border-stone-700"
               }`}>
                 {["A", "B", "C", "D"][i]}
               </span>
-              <span>{opt}</span>
+              <span className="leading-snug">{opt}</span>
             </button>
           );
         })}

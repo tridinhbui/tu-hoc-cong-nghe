@@ -124,7 +124,7 @@ export function getLevelProgress(currentXp: number) {
   if (!nextLevel) return 100; // Max level reached
 
   const xpInCurrentLevel = currentXp - currentLevel.minXp;
-  const xpNeededForLevel = nextLevel.minXp - currentXp;
+  const xpNeededForLevel = nextLevel.minXp - currentLevel.minXp;
 
   return Math.round((xpInCurrentLevel / xpNeededForLevel) * 100);
 }
