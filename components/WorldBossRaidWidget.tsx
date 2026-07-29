@@ -44,6 +44,7 @@ export default function WorldBossRaidWidget({
   const [leaderboard, setLeaderboard] = useState<LeaderboardEntry[]>([]);
   const [loading, setLoading] = useState(true);
   const [inCombat, setInCombat] = useState(false);
+  const [showBossGuide, setShowBossGuide] = useState(false);
   
   // Combat State
   const [qIndex, setQIndex] = useState(0);
@@ -197,13 +198,37 @@ export default function WorldBossRaidWidget({
           </div>
         </div>
 
-        <button
-          onClick={handleStartRaid}
-          className="w-full md:w-auto bg-gradient-to-r from-red-500 via-orange-400 to-amber-300 text-white font-black text-sm px-6 py-3.5 rounded-2xl shadow-[0_18px_40px_rgba(249,115,22,0.28)] hover:scale-[1.02] transition-all flex items-center justify-center gap-2 border border-orange-200 cursor-pointer shrink-0"
-        >
-          <Swords className="w-5 h-5 text-white" /> Săn Boss Server Ngay!
-        </button>
+        <div className="flex flex-col sm:flex-row items-center gap-2 w-full md:w-auto">
+          <button
+            onClick={() => setShowBossGuide((prev) => !prev)}
+            className="w-full sm:w-auto bg-stone-100 dark:bg-stone-800 text-stone-700 dark:text-stone-300 font-bold text-xs px-4 py-3.5 rounded-2xl hover:bg-stone-200 cursor-pointer flex items-center justify-center gap-1.5 shrink-0"
+          >
+            📖 Hướng dẫn săn Boss
+          </button>
+
+          <button
+            onClick={handleStartRaid}
+            className="w-full sm:w-auto bg-gradient-to-r from-red-500 via-orange-400 to-amber-300 text-white font-black text-sm px-6 py-3.5 rounded-2xl shadow-[0_18px_40px_rgba(249,115,22,0.28)] hover:scale-[1.02] transition-all flex items-center justify-center gap-2 border border-orange-200 cursor-pointer shrink-0"
+          >
+            <Swords className="w-5 h-5 text-white" /> Săn Boss Server Ngay!
+          </button>
+        </div>
       </div>
+
+      {/* World Boss How-to-Play Guide Box */}
+      {showBossGuide && (
+        <div className="mb-6 p-4 rounded-2xl bg-gradient-to-r from-red-50 to-orange-50 dark:from-red-950/30 dark:to-orange-950/30 border border-red-200 dark:border-red-900/50 text-xs text-stone-800 dark:text-stone-200 space-y-2">
+          <h4 className="font-black text-sm text-red-700 dark:text-red-300 flex items-center gap-1.5">
+            ⚔️ Thể lệ & Cách chơi Sự Kiện Săn Boss Server:
+          </h4>
+          <ul className="list-disc list-inside space-y-1 font-semibold text-stone-700 dark:text-stone-300">
+            <li><strong>Thanh máu gộp 1,000,000 HP</strong>: Toàn bộ học viên trên toàn server cùng tấn công để rút máu World Boss.</li>
+            <li><strong>Sát thương chiến đấu</strong>: Mỗi câu trả lời trắc nghiệm đúng gây 5,000 Sát thương + Bonus dựa trên tốc độ trả lời & cấp độ nhân vật.</li>
+            <li><strong>Phản công của Boss</strong>: Trả lời sai sẽ bị Boss phản công trừ 25 HP của Nhân vật. Quá 3 câu sai trận đánh sẽ kết thúc.</li>
+            <li><strong>Phần thưởng Bảng Xếp Hạng</strong>: Top 10 học viên gây sát thương cao nhất tuần nhận <strong>+500 Coins</strong> + <strong>Huy hiệu dũng sĩ săn Boss</strong>!</li>
+          </ul>
+        </div>
+      )}
 
       {/* Shared Server HP Bar */}
       <div className="bg-white border border-red-100 rounded-2xl p-4 mb-6 space-y-2 shadow-sm">
