@@ -36,6 +36,11 @@ export const ITEM_DESCRIPTIONS: Record<string, { name: string; type: keyof Chara
   
   pet_bull: { name: "Linh vật Bò Tăng Trưởng", type: "companion", icon: "🐂" },
   pet_bear: { name: "Gấu Tiết Kiệm Thần Kỳ", type: "companion", icon: "🐻" },
+
+  booster_xp_24h: { name: "Thẻ X2 XP Booster (24h)", type: "accessory", icon: "⚡" },
+  title_vip_diamond: { name: "Huy Hiệu VIP Kim Cương", type: "accessory", icon: "💎" },
+  chat_effect_dragon_fire: { name: "Khung Chat Rồng Lửa", type: "accessory", icon: "🔥" },
+  chat_effect_diamond_glow: { name: "Khung Chat Kim Cương", type: "accessory", icon: "💎" },
 };
 
 export default function FinanceCharacterAvatar({

@@ -11,7 +11,7 @@ import CharacterCustomizerModal from "@/components/CharacterCustomizerModal";
 
 interface CosmeticItem {
   id: string;
-  asset_type: "weapon" | "armor" | "accessory" | "companion" | "avatar_frame" | "title";
+  asset_type: "weapon" | "armor" | "accessory" | "companion" | "avatar_frame" | "title" | "booster" | "chat_effect";
   name: string;
   description: string;
   rarity: "common" | "rare" | "epic" | "legendary";
@@ -21,7 +21,12 @@ interface CosmeticItem {
 export default function CosmeticStore({ userId, onBack }: { userId: string; onBack?: () => void }) {
   const supabase = createClient();
   const [showCustomizer, setShowCustomizer] = useState(false);
+  const [selectedCategory, setSelectedCategory] = useState<string>("all");
   const [items] = useState<CosmeticItem[]>([
+    { id: "booster_xp_24h", asset_type: "booster", name: "⚡ Thẻ X2 XP Booster (24 giờ)", description: "Kích hoạt nhân đôi 100% XP nhận được khi hoàn thành bài học & bài thi trong 24 giờ tiếp theo.", rarity: "legendary", price: 250 },
+    { id: "title_vip_diamond", asset_type: "title", name: "💎 Huy Hiệu VIP Kim Cương", description: "Vinh danh danh hiệu VIP Kim Cương sáng lấp lánh trên Bảng Xếp Hạng & Hồ Sơ Cá Nhân.", rarity: "legendary", price: 500 },
+    { id: "chat_effect_dragon_fire", asset_type: "chat_effect", name: "🔥 Khung Chat Rồng Lửa (Phòng 3D)", description: "Đính kèm hiệu ứng ngọn lửa rồng rực rỡ xung quanh tin nhắn của bạn trong Phòng Học Nhóm 3D.", rarity: "epic", price: 300 },
+    { id: "chat_effect_diamond_glow", asset_type: "chat_effect", name: "💎 Khung Chat Kim Cương Vô Cực", description: "Hiệu ứng viền kim cương lấp lánh ánh hào quang khi trò chuyện trong phòng học 3D.", rarity: "legendary", price: 450 },
     { id: "weapon_valuation_pen", asset_type: "weapon", name: "Bút Định Giá Thần Kỳ", description: "Bút thần gia tăng 20% sát thương khi giải câu hỏi định giá.", rarity: "rare", price: 150 },
     { id: "weapon_lbo_sword", asset_type: "weapon", name: "Kiếm Phân Tích LBO", description: "Vũ khí sắc bén chém tan các cấu trúc nợ phức tạp.", rarity: "epic", price: 350 },
     { id: "armor_risk_shield", asset_type: "armor", name: "Khiên Quản Trị Rủi Ro", description: "Bảo vệ tài khoản khỏi các cú sụt giảm thị trường.", rarity: "rare", price: 200 },
@@ -136,6 +141,30 @@ export default function CosmeticStore({ userId, onBack }: { userId: string; onBa
   };
 
   const handleToggleEquip = async (item: CosmeticItem) => {
+    // Special activation for boosters / badges / chat effects
+    if (item.asset_type === "booster") {
+      const expiry = Date.now() + 24 * 60 * 60 * 1000;
+      try {
+        localStorage.setItem(`thtcdn_xp_booster_until_${userId}`, String(expiry));
+      } catch (e) {}
+      toast.success(`⚡ Đã kích hoạt Thẻ X2 XP Booster (24 giờ)! Bạn sẽ nhận gấp đôi XP khi hoàn thành bài học!`);
+      return;
+    }
+    if (item.asset_type === "title") {
+      try {
+        localStorage.setItem(`thtcdn_vip_badge_${userId}`, "💎 VIP Kim Cương");
+      } catch (e) {}
+      toast.success(`💎 Đã trang bị Huy Hiệu VIP Kim Cương lên Hồ Sơ Cá Nhân & Bảng Xếp Hạng!`);
+      return;
+    }
+    if (item.asset_type === "chat_effect") {
+      try {
+        localStorage.setItem(`thtcdn_active_chat_effect_${userId}`, item.id);
+      } catch (e) {}
+      toast.success(`🎉 Đã trang bị ${item.name} cho Phòng Học Nhóm 3D!`);
+      return;
+    }
+
     const slot = item.asset_type as keyof CharacterEquipments;
     const isCurrentlyEquipped = equippedGear[slot] === item.id;
 
@@ -247,9 +276,39 @@ export default function CosmeticStore({ userId, onBack }: { userId: string; onBa
         onClose={() => setShowCustomizer(false)}
       />
 
+      {/* Shop Category Tabs */}
+      <div className="flex flex-wrap items-center gap-2 mb-6 border-b border-stone-200 dark:border-stone-800 pb-3">
+        {[
+          { id: "all", label: "🔮 Tất cả vật phẩm" },
+          { id: "booster", label: "⚡ X2 XP Booster" },
+          { id: "title", label: "💎 Danh Hiệu VIP" },
+          { id: "chat_effect", label: "🔥 Hiệu Ứng Chat 3D" },
+          { id: "rpg", label: "⚔️ Trang Bị RPG" },
+        ].map((tab) => (
+          <button
+            key={tab.id}
+            type="button"
+            onClick={() => setSelectedCategory(tab.id)}
+            className={`px-3 py-1.5 rounded-xl text-xs font-black transition-all cursor-pointer ${
+              selectedCategory === tab.id
+                ? "bg-amber-500 text-stone-950 shadow-sm"
+                : "bg-stone-100 dark:bg-stone-800 text-stone-600 dark:text-stone-300 hover:bg-stone-200 dark:hover:bg-stone-700"
+            }`}
+          >
+            {tab.label}
+          </button>
+        ))}
+      </div>
+
       {/* Items Grid */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-        {items.map((item) => {
+        {items
+          .filter((item) => {
+            if (selectedCategory === "all") return true;
+            if (selectedCategory === "rpg") return ["weapon", "armor", "accessory", "companion"].includes(item.asset_type);
+            return item.asset_type === selectedCategory;
+          })
+          .map((item) => {
           const owned = ownedAssets.has(item.id);
           const slot = item.asset_type as keyof CharacterEquipments;
           const isEquipped = equippedGear[slot] === item.id;

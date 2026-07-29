@@ -123,6 +123,18 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
   const [pomoSeconds, setPomoSeconds] = useState(25 * 60);
   const [pomoRunning, setPomoRunning] = useState(false);
 
+  // Active Chat Effect from Shop
+  const [activeChatEffect, setActiveChatEffect] = useState<string | null>(null);
+
+  useEffect(() => {
+    if (user?.id) {
+      try {
+        const effect = localStorage.getItem(`thtcdn_active_chat_effect_${user.id}`);
+        if (effect) setActiveChatEffect(effect);
+      } catch (e) {}
+    }
+  }, [user?.id]);
+
   // 5. Right Column Sub-tab: "chat" | "notes" | "quiz"
   const [chatSubTab, setChatSubTab] = useState<"chat" | "notes" | "quiz">("chat");
 
@@ -1008,11 +1020,18 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
                     mainText = lines.slice(1).join("\n");
                   }
 
+                  const isDragon = isMine && activeChatEffect === "chat_effect_dragon_fire";
+                  const isDiamond = isMine && activeChatEffect === "chat_effect_diamond_glow";
+
                   return (
                     <div key={msg.id} className={`group relative flex flex-col ${isMine ? "items-end" : "items-start"}`}>
                       <div className={`flex items-center gap-1.5 max-w-[85%] w-fit min-w-0 ${isMine ? "flex-row-reverse" : "flex-row"}`}>
                         <div className={`relative rounded-2xl px-3.5 py-2 shadow-2xs w-fit ${
-                          isMine
+                          isDragon
+                            ? "bg-gradient-to-r from-orange-600 to-amber-600 text-white rounded-tr-xs border-2 border-amber-400 shadow-[0_0_12px_rgba(249,115,22,0.7)]"
+                            : isDiamond
+                            ? "bg-gradient-to-r from-cyan-600 via-teal-600 to-emerald-600 text-white rounded-tr-xs border-2 border-cyan-300 shadow-[0_0_12px_rgba(34,211,238,0.7)]"
+                            : isMine
                             ? "bg-stone-900 dark:bg-stone-100 text-white dark:text-stone-900 rounded-tr-xs"
                             : "bg-white dark:bg-stone-900 border border-stone-200 dark:border-stone-800 text-stone-900 dark:text-stone-100 rounded-tl-xs"
                         }`}>
