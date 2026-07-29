@@ -2,7 +2,7 @@ import { createServerSupabaseClient } from "@/lib/supabase-server";
 import { getLessonById, getLessonsMeta } from "@/lib/lessons-loader";
 import { TRACK_PERSONAL, TRACK_PROFESSIONAL, isLessonInRange } from "@/lib/track-stages";
 import { CFA_LEVEL_1_SUBJECTS } from "@/lib/cfa-track";
-import { IB_QUESTION_BANK } from "@/lib/ib-question-bank";
+import { IB_TECHNICAL_QUESTIONS } from "@/lib/ib-question-bank";
 import { signQuestionToken } from "@/lib/quiz-tokens";
 import { NextRequest, NextResponse } from "next/server";
 
@@ -53,11 +53,15 @@ async function idsForTrack(track: "personal" | "professional" | "cfa"): Promise<
 
 type IbPoolQuestion = Omit<ChallengeQuestion, "lessonSlug" | "token"> & { category: string };
 
+// Draws from IB_TECHNICAL_QUESTIONS, never the full bank: behavioral
+// questions ("Walk me through your resume", "Why banking?") have no single
+// right answer, so scoring a multiple-choice guess at one is meaningless.
+// They're served un-scored by the behavioral prep surface instead.
 function ibQuestionsForDifficulty(difficulty: string | null): IbPoolQuestion[] {
   const questions =
     difficulty && difficulty !== "tat-ca" && DIFFICULTY_LABELS[difficulty]
-      ? IB_QUESTION_BANK.filter((q) => q.difficulty === difficulty)
-      : IB_QUESTION_BANK;
+      ? IB_TECHNICAL_QUESTIONS.filter((q) => q.difficulty === difficulty)
+      : IB_TECHNICAL_QUESTIONS;
 
   return questions.map((q) => ({
     lessonId: -q.id,

@@ -1,3 +1,5 @@
+import { IB_QUESTION_OVERRIDES } from "@/lib/ib-question-overrides";
+
 export interface IbQuestion {
   id: number;
   category: string;
@@ -16,14 +18,45 @@ export interface IbCategoryCount {
   count: number;
 }
 
-/** Question count per category, largest first - what the /kiem-tra IB card
- *  shows so "400 IB Questions" isn't just a number, but a list of the actual
- *  sections (Accounting, Valuation, DCF, M&A, LBO, behavioral...) a learner
- *  will be drilled on. */
-export function getIbCategoryCounts(): IbCategoryCount[] {
+/** Categories whose questions have no single correct answer - "Walk me
+ *  through your resume", "Why banking?", "Tell me about a failure". Forcing
+ *  these into a 4-option multiple choice makes the drill dishonest: it has to
+ *  invent three "wrong" ways to describe your own career. They're served as
+ *  un-scored prep cards instead (question + the coaching framework that lives
+ *  in `explanation`), and are excluded from every scored drill. */
+export const IB_BEHAVIORAL_CATEGORIES: ReadonlySet<string> = new Set([
+  "Analytical / Attention to Detail",
+  "Background / Personal",
+  '"Career Changer"',
+  "Commitment",
+  "Culture",
+  '"Future"',
+  "Strengths / Weaknesses",
+  "Team / Leadership",
+  "Understanding Banking",
+  '"Warren Buffett"',
+  '"Why Banking?"',
+  '"Failure"',
+  '"Outside the Box"',
+  "Discussing Transaction Experience",
+]);
+
+export function isBehavioralCategory(category: string): boolean {
+  return IB_BEHAVIORAL_CATEGORIES.has(category);
+}
+
+/** Strips the literal quote characters a few categories carry as emphasis. */
+export function formatCategoryLabel(category: string): string {
+  return category.replace(/^"|"$/g, "");
+}
+
+/** Question count per category, largest first. Pass a question list to scope
+ *  it - the technical drill and the behavioral prep surface each show their
+ *  own sections rather than one combined list that no single mode serves. */
+export function getIbCategoryCounts(questions: IbQuestion[] = IB_QUESTION_BANK): IbCategoryCount[] {
   const counts = new Map<string, number>();
-  for (const q of IB_QUESTION_BANK) {
-    const label = q.category.replace(/^"|"$/g, "");
+  for (const q of questions) {
+    const label = formatCategoryLabel(q.category);
     counts.set(label, (counts.get(label) ?? 0) + 1);
   }
   return Array.from(counts.entries())
@@ -31,7 +64,10 @@ export function getIbCategoryCounts(): IbCategoryCount[] {
     .sort((a, b) => b.count - a.count);
 }
 
-export const IB_QUESTION_BANK: IbQuestion[] = [
+// Raw scraped data. Not exported - consumers get IB_QUESTION_BANK below,
+// which has the hand-authored option rewrites applied on top (see
+// lib/ib-question-overrides.ts for why those are needed).
+const RAW_IB_QUESTION_BANK: IbQuestion[] = [
   {
     "id": 1,
     "category": "Analytical / Attention to Detail",
@@ -166,11 +202,11 @@ export const IB_QUESTION_BANK: IbQuestion[] = [
     "options": [
       "There are 2 common mistakes: 1. Saying something like Wall Street, American Psycho, or Liar's Poker that indicates you're a boring person. 2. Saying something like Harry Potter that indicates you're borderline illiterate. Pick something in the middle - above p...",
       "Be prepared for this if you list any common languages on your resume (Spanish, French, Italian, German, Chinese, Japanese, etc.) or if you happen to \"get lucky\" and your interviewer is a native speaker in one of the languages you've listed....",
-      "You should really go through all the lessons on telling your \"story\" right here first: http://breakingintowallstreet.com/biws/category/01-tell-your-story/ Start at \"the beginning\" - if you're in college, that might be where you grew up or where you went to high school....",
+      "Start at \"the beginning\" - if you're in college, that might be where you grew up or where you went to high school....",
       "Say that you looked at a lot of places, but settled on wherever you went due to its excellent academic reputation, its strong business/finance/economics program, or something of that nature...."
     ],
     "correct": 2,
-    "explanation": "You should really go through all the lessons on telling your \"story\" right here first: http://breakingintowallstreet.com/biws/category/01-tell-your-story/ Start at \"the beginning\" - if you're in college, that might be where you grew up or where you went to high school. For anyone in business school or beyond, it might be where you went to undergraduate, your first job, or even where you went to business school. Then, go through how you first became interested in finance/business, how your interest developed over the years via the specific internships / jobs / other experiences you had and conclude with a strong statement about why you're interviewing today. Aim for 2-3 minutes - if you go on longer than this, the interviewer may get bored or impatient. Also, do not look at your resume when going through your \"story.\" The 4 most important points: 1. Be chronological. 2. Show how each experience along the way led you in the direction of finance. 3. State why you're here interviewing today. 4. Aim for 2-3 minutes. What are the most common mistakes with the \"Walk me through your resume\" question? 1. Going out of order chronologically. 2. Too much exposition - don't start off by saying, \"I've had a lot of great experiences.\" 3. Being too short (under 1 minute) or too long (over 5 minutes). 4. Not sounding certain you want to do banking/finance. 5. Listing your experiences rather than giving a logical transition between each one. Again, I highly recommend going through all the video tutorials on this very question - because your \"story\" is the most important part of any interview: http://breakingintowallstreet.com/biws/category/01-tell-your-story/"
+    "explanation": "Start at \"the beginning\" - if you're in college, that might be where you grew up or where you went to high school. For anyone in business school or beyond, it might be where you went to undergraduate, your first job, or even where you went to business school. Then, go through how you first became interested in finance/business, how your interest developed over the years via the specific internships / jobs / other experiences you had and conclude with a strong statement about why you're interviewing today. Aim for 2-3 minutes - if you go on longer than this, the interviewer may get bored or impatient. Also, do not look at your resume when going through your \"story.\" The 4 most important points: 1. Be chronological. 2. Show how each experience along the way led you in the direction of finance. 3. State why you're here interviewing today. 4. Aim for 2-3 minutes. What are the most common mistakes with the \"Walk me through your resume\" question? 1. Going out of order chronologically. 2. Too much exposition - don't start off by saying, \"I've had a lot of great experiences.\" 3. Being too short (under 1 minute) or too long (over 5 minutes). 4. Not sounding certain you want to do banking/finance. 5. Listing your experiences rather than giving a logical transition between each one."
   },
   {
     "id": 11,
@@ -193,7 +229,7 @@ export const IB_QUESTION_BANK: IbQuestion[] = [
     "question": "I noticed you studied abroad in [Location]. Can you tell me about that experience and why you went there?",
     "options": [
       "Obviously, don't say anything illegal or questionable/controversial. If you have anything interesting or not very common (hang gliding, directing movies, bungee jumping) you should bring that up....",
-      "You should really go through all the lessons on telling your \"story\" right here first: http://breakingintowallstreet.com/biws/category/01-tell-your-story/ Start at \"the beginning\" - if you're in college, that might be where you grew up or where you went to high school....",
+      "Start at \"the beginning\" - if you're in college, that might be where you grew up or where you went to high school....",
       "I would not say anything economics/finance-related - it sounds too artificial. Tell them about something you were actually interested in - even if it's not directly related to banking....",
       "Emphasize you did a lot academically rather than partying 24/7. Many study abroad programs do, in fact, involve partying 24/7, but you don't want to admit this...."
     ],
@@ -221,7 +257,7 @@ export const IB_QUESTION_BANK: IbQuestion[] = [
     "question": "Where else did you apply for school? Did you get in anywhere else?",
     "options": [
       "I would not say anything economics/finance-related - it sounds too artificial. Tell them about something you were actually interested in - even if it's not directly related to banking....",
-      "You should really go through all the lessons on telling your \"story\" right here first: http://breakingintowallstreet.com/biws/category/01-tell-your-story/ Start at \"the beginning\" - if you're in college, that might be where you grew up or where you went to high school....",
+      "Start at \"the beginning\" - if you're in college, that might be where you grew up or where you went to high school....",
       "You applied to a number of top schools and got in at other places, but you went through a careful decision-making process and settled on your school for a very good reason....",
       "Emphasize you did a lot academically rather than partying 24/7. Many study abroad programs do, in fact, involve partying 24/7, but you don't want to admit this...."
     ],
@@ -237,7 +273,7 @@ export const IB_QUESTION_BANK: IbQuestion[] = [
       "If it was something related to business/economics, you can discuss your interest in those fields; for other majors, you can emphasize how you liked the challenge and/or had a personal interest in the field, but also took the time to learn the basics of business/finance on your ow...",
       "Be prepared for this if you list any common languages on your resume (Spanish, French, Italian, German, Chinese, Japanese, etc.) or if you happen to \"get lucky\" and your interviewer is a native speaker in one of the languages you've listed....",
       "Obviously, don't say anything illegal or questionable/controversial. If you have anything interesting or not very common (hang gliding, directing movies, bungee jumping) you should bring that up....",
-      "You should really go through all the lessons on telling your \"story\" right here first: http://breakingintowallstreet.com/biws/category/01-tell-your-story/ Start at \"the beginning\" - if you're in college, that might be where you grew up or where you went to high school...."
+      "Start at \"the beginning\" - if you're in college, that might be where you grew up or where you went to high school...."
     ],
     "correct": 1,
     "explanation": "Be prepared for this if you list any common languages on your resume (Spanish, French, Italian, German, Chinese, Japanese, etc.) or if you happen to \"get lucky\" and your interviewer is a native speaker in one of the languages you've listed. I would suggest some practice discussing your work experience in whatever language(s) you've listed and making sure you can speak intelligently, at least briefly, about what you've done. If you really don't know much, just tell them upfront rather than making a fool of yourself and trying to talk about EBITDA when you don't know the word for it - I speak from experience on this one."
@@ -251,7 +287,7 @@ export const IB_QUESTION_BANK: IbQuestion[] = [
       "Emphasize you did a lot academically rather than partying 24/7. Many study abroad programs do, in fact, involve partying 24/7, but you don't want to admit this....",
       "Obviously, don't say anything illegal or questionable/controversial. If you have anything interesting or not very common (hang gliding, directing movies, bungee jumping) you should bring that up....",
       "There are 2 common mistakes: 1. Saying something like Wall Street, American Psycho, or Liar's Poker that indicates you're a boring person. 2. Saying something like Harry Potter that indicates you're borderline illiterate. Pick something in the middle - above p...",
-      "You should really go through all the lessons on telling your \"story\" right here first: http://breakingintowallstreet.com/biws/category/01-tell-your-story/ Start at \"the beginning\" - if you're in college, that might be where you grew up or where you went to high school...."
+      "Start at \"the beginning\" - if you're in college, that might be where you grew up or where you went to high school...."
     ],
     "correct": 1,
     "explanation": "Obviously, don't say anything illegal or questionable/controversial. If you have anything interesting or not very common (hang gliding, directing movies, bungee jumping) you should bring that up. Otherwise, just be honest and if you really like watching football (North American football for international readers) or other sports, just talk about your interest in those."
@@ -2256,7 +2292,7 @@ export const IB_QUESTION_BANK: IbQuestion[] = [
       "Bankers can advise either the debtor (the company itself) or the creditors (anyone that has lent the company) money...."
     ],
     "correct": 1,
-    "explanation": "The purpose of an LBO model here is not to determine the private equity firm's IRR, but rather to figure out how quickly the company can pay off its debt obligations as well as what kind of IRR any new debt/equity investors can expect. Other than that, it's not much different from the \"standard\" LBO model - the mechanics are the same, but you have different kinds of debt (e.g. Debtor-in-Possession), possibly more tranches, and the returns will probably be lower because it's a distressed company, though occasionally \"bargain\" deals can turn out to be very profitable. One structural difference is that a distressed company LBO is more likely to take the form of an asset purchase rather than a stock purchase. Technical Questions & Answers Technical Questions no longer consist entirely of \"How would you value a company?\" and \"How does Depreciation going up by $10 affect all the statements?\" Sure, you may still get these questions - and we do cover them in detail below. But these days interviewers are going beyond the basics that everyone knows and asking questions that make you think instead. There are an infinite number of Technical Questions and it's impossible to list everything you might encounter here - but these are the most common basic and advanced questions you might get. For Technical Questions there is almost always a \"right answer\" so we'll go through exact answers here as well. If you find yourself not knowing the answer to a Technical Question, you shouldn't try to fake it - just admit that you don't know rather than stumbling through the answer. There are a few exceptions - you really do need to know the basic concepts, like simple accounting and valuation. For more advanced modeling, there's more leeway to say that you don't have much experience or don't know the specific answer. If you want to learn everything behind the questions here in-depth, you should check out the Financial Modeling Program at a special, members-only discounted rate right here: http://breakingintowallstreet.com/biws/financial-modeling-members-discount/ You must be logged into the site to view that page."
+    "explanation": "The purpose of an LBO model here is not to determine the private equity firm's IRR, but rather to figure out how quickly the company can pay off its debt obligations as well as what kind of IRR any new debt/equity investors can expect. Other than that, it's not much different from the \"standard\" LBO model - the mechanics are the same, but you have different kinds of debt (e.g. Debtor-in-Possession), possibly more tranches, and the returns will probably be lower because it's a distressed company, though occasionally \"bargain\" deals can turn out to be very profitable. One structural difference is that a distressed company LBO is more likely to take the form of an asset purchase rather than a stock purchase. Technical Questions & Answers Technical Questions no longer consist entirely of \"How would you value a company?\" and \"How does Depreciation going up by $10 affect all the statements?\" Sure, you may still get these questions - and we do cover them in detail below. But these days interviewers are going beyond the basics that everyone knows and asking questions that make you think instead. There are an infinite number of Technical Questions and it's impossible to list everything you might encounter here - but these are the most common basic and advanced questions you might get. For Technical Questions there is almost always a \"right answer\" so we'll go through exact answers here as well. If you find yourself not knowing the answer to a Technical Question, you shouldn't try to fake it - just admit that you don't know rather than stumbling through the answer. There are a few exceptions - you really do need to know the basic concepts, like simple accounting and valuation. For more advanced modeling, there's more leeway to say that you don't have much experience or don't know the specific answer."
   },
   {
     "id": 160,
@@ -5563,3 +5599,33 @@ export const IB_QUESTION_BANK: IbQuestion[] = [
     "explanation": "First, fill the 3 liter bucket and pour it into the 5 liter one. Then, re-fill the 3 liter bucket and pour it into the 5 liter bucket until it's full - that leaves 1 liter in the 3 liter bucket and 5 in the 5 liter bucket. Then, pour out the 5 liter bucket so nothing is left and pour the 1 liter of water from the 3 liter bucket into the 5 liter bucket. Finally, fill the 3 liter bucket completely and pour it into the 5 liter bucket - since it already has 1 liter of water, you'll get exactly 4 liters. For this type of question, it's easiest to use deductive reasoning to get the answer. You know you can't possibly get 4 liters of water in the 3 liter bucket - it has to be in the 5 liter bucket. Since you can easily get 3 liters of water, that tells you that the \"trick\" will involve isolating the remaining 1 liter and getting it into the 5 liter bucket. So then the question comes down to how to get the 1 liter of water in the 3 liter bucket. You know it has to involve pouring water into the 5 liter bucket, and that leads you in the right direction."
   }
 ];
+
+/** The bank consumers actually read: raw scraped questions with any
+ *  hand-authored option rewrite applied. `explanation` is never overridden -
+ *  it survived the scrape intact and stays the teaching content shown after
+ *  the learner answers. Ids without an override fall back to the raw options
+ *  unchanged, so rewriting the bank can proceed batch by batch. */
+export const IB_QUESTION_BANK: IbQuestion[] = RAW_IB_QUESTION_BANK.map((q) => {
+  const override = IB_QUESTION_OVERRIDES[q.id];
+  return override ? { ...q, options: override.options, correct: override.correct } : q;
+});
+
+/** Technical questions - the ones with a single defensible right answer, so
+ *  the only ones a scored multiple-choice drill may draw from. */
+export const IB_TECHNICAL_QUESTIONS: IbQuestion[] = IB_QUESTION_BANK.filter(
+  (q) => !isBehavioralCategory(q.category)
+);
+
+/** Fit/behavioral questions, served as un-scored prep cards. `options` and
+ *  `correct` on these are meaningless scrape artifacts and must not be
+ *  rendered - only `question` and `explanation` (the coaching framework). */
+export const IB_BEHAVIORAL_QUESTIONS: IbQuestion[] = IB_QUESTION_BANK.filter((q) =>
+  isBehavioralCategory(q.category)
+);
+
+/** How many *technical* questions still carry the machine-truncated scraped
+ *  options - the remaining rewrite backlog. Behavioral questions are excluded
+ *  because their options are never shown, so rewriting them is pointless. */
+export const IB_REWRITE_PENDING_COUNT = IB_TECHNICAL_QUESTIONS.filter(
+  (q) => !IB_QUESTION_OVERRIDES[q.id]
+).length;

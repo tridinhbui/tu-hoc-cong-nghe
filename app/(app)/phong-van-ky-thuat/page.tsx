@@ -6,7 +6,8 @@ import { BriefcaseBusiness, ChevronLeft, CheckCircle2, Clock3, Target, Trophy } 
 import { createClient } from "@/lib/supabase";
 import { submitQuizSession, computeQuizXp, type QuizDifficulty, type QuizAnswerSubmission } from "@/lib/supabase-quiz-sessions";
 import { recalculateUserStats } from "@/lib/supabase-user";
-import { getIbCategoryCounts } from "@/lib/ib-question-bank";
+import { getIbCategoryCounts, IB_TECHNICAL_QUESTIONS, IB_BEHAVIORAL_QUESTIONS } from "@/lib/ib-question-bank";
+import BehavioralPrepPanel from "@/components/BehavioralPrepPanel";
 
 // Standalone "Technical Interview" drill - split out of /kiem-tra (which
 // stays the general-purpose knowledge-check page) because the 400-question
@@ -48,9 +49,14 @@ const PASS_RATIO = 0.6;
 
 type Stage = "setup" | "loading" | "empty" | "error" | "ready" | "done";
 
+/** Technical is a scored MCQ drill; behavioral is un-scored prep. They can't
+ *  share a flow because only one of them has right answers. */
+type Mode = "technical" | "behavioral";
+
 export default function TechnicalInterviewPage() {
   const supabase = createClient();
   const [userId, setUserId] = useState<string | null>(null);
+  const [mode, setMode] = useState<Mode>("technical");
   const [difficulty, setDifficulty] = useState<QuizDifficulty>("tat-ca");
   const [stage, setStage] = useState<Stage>("setup");
   const [questions, setQuestions] = useState<ChallengeQuestion[]>([]);
@@ -62,8 +68,11 @@ export default function TechnicalInterviewPage() {
   const [xpAwarded, setXpAwarded] = useState<number | null>(null);
   const [recording, setRecording] = useState(false);
 
-  const categoryCounts = getIbCategoryCounts();
-  const totalQuestions = categoryCounts.reduce((sum, c) => sum + c.count, 0);
+  // Technical only - the behavioral sections are listed by BehavioralPrepPanel
+  // under its own mode, since they're a different kind of practice.
+  const categoryCounts = getIbCategoryCounts(IB_TECHNICAL_QUESTIONS);
+  const totalQuestions = IB_TECHNICAL_QUESTIONS.length;
+  const behavioralCount = IB_BEHAVIORAL_QUESTIONS.length;
 
   useEffect(() => {
     supabase.auth.getUser().then(({ data }) => setUserId(data.user?.id ?? null));
@@ -166,14 +175,45 @@ export default function TechnicalInterviewPage() {
               </p>
             </div>
           </div>
-          <div className="hidden sm:inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-emerald-200 dark:border-emerald-900 bg-emerald-50 dark:bg-emerald-950/40 text-emerald-700 dark:text-emerald-300 text-xs font-extrabold">
-            <span>Thưởng +{XP_PER_QUESTION} XP / câu đúng</span>
-          </div>
+          {mode === "technical" && (
+            <div className="hidden sm:inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-emerald-200 dark:border-emerald-900 bg-emerald-50 dark:bg-emerald-950/40 text-emerald-700 dark:text-emerald-300 text-xs font-extrabold">
+              <span>Thưởng +{XP_PER_QUESTION} XP / câu đúng</span>
+            </div>
+          )}
         </div>
       </div>
 
       <div className="max-w-6xl mx-auto px-4 sm:px-6 py-6 sm:py-8">
-        {stage === "setup" && (
+        {/* Mode switch. Hidden mid-drill so a half-finished scored run can't be
+            abandoned by an accidental tab click. */}
+        {(stage === "setup" || mode === "behavioral") && (
+          <div className="mb-6 inline-flex p-1 rounded-2xl border border-stone-200 dark:border-stone-800 bg-stone-100 dark:bg-stone-900">
+            <button
+              onClick={() => setMode("technical")}
+              className={`px-4 py-2 rounded-xl text-xs font-black transition-colors cursor-pointer ${
+                mode === "technical"
+                  ? "bg-white dark:bg-stone-800 text-stone-900 dark:text-stone-100 shadow-sm"
+                  : "text-stone-500 dark:text-stone-400 hover:text-stone-800 dark:hover:text-stone-200"
+              }`}
+            >
+              Technical · {totalQuestions} câu
+            </button>
+            <button
+              onClick={() => setMode("behavioral")}
+              className={`px-4 py-2 rounded-xl text-xs font-black transition-colors cursor-pointer ${
+                mode === "behavioral"
+                  ? "bg-white dark:bg-stone-800 text-stone-900 dark:text-stone-100 shadow-sm"
+                  : "text-stone-500 dark:text-stone-400 hover:text-stone-800 dark:hover:text-stone-200"
+              }`}
+            >
+              Behavioral · {behavioralCount} câu
+            </button>
+          </div>
+        )}
+
+        {mode === "behavioral" && <BehavioralPrepPanel />}
+
+        {mode === "technical" && stage === "setup" && (
           <div className="space-y-6">
             <section className="rounded-3xl border border-stone-200 dark:border-stone-800 bg-white dark:bg-stone-900 overflow-hidden shadow-sm">
               <div className="grid grid-cols-1 lg:grid-cols-12">
@@ -267,9 +307,9 @@ export default function TechnicalInterviewPage() {
           </div>
         )}
 
-        {stage === "loading" && <p className="text-center text-stone-500 dark:text-stone-400 py-16">Đang chuẩn bị câu hỏi...</p>}
+        {mode === "technical" && stage === "loading" && <p className="text-center text-stone-500 dark:text-stone-400 py-16">Đang chuẩn bị câu hỏi...</p>}
 
-        {stage === "error" && (
+        {mode === "technical" && stage === "error" && (
           <div className="text-center py-16 space-y-4">
             <p className="text-stone-500 dark:text-stone-400">Không thể tải bài kiểm tra lúc này. Vui lòng thử lại sau.</p>
             <button onClick={() => setStage("setup")} className="text-sm font-bold text-stone-700 dark:text-stone-300 underline cursor-pointer">
@@ -278,7 +318,7 @@ export default function TechnicalInterviewPage() {
           </div>
         )}
 
-        {stage === "empty" && (
+        {mode === "technical" && stage === "empty" && (
           <div className="text-center py-16 space-y-4">
             <p className="text-stone-500 dark:text-stone-400">Chưa có câu hỏi nào cho độ khó này. Thử độ khó khác nhé.</p>
             <button onClick={() => setStage("setup")} className="text-sm font-bold text-stone-700 dark:text-stone-300 underline cursor-pointer">
@@ -287,7 +327,7 @@ export default function TechnicalInterviewPage() {
           </div>
         )}
 
-        {stage === "ready" && q && (
+        {mode === "technical" && stage === "ready" && q && (
           <div className="mx-auto max-w-4xl space-y-5 rounded-3xl border border-stone-200 dark:border-stone-800 bg-white dark:bg-stone-900 p-4 sm:p-6 shadow-sm">
             <div className="rounded-2xl border border-stone-200 dark:border-stone-800 bg-stone-50 dark:bg-stone-950 p-4">
               <div className="flex flex-wrap items-center justify-between gap-3">
@@ -378,7 +418,7 @@ export default function TechnicalInterviewPage() {
           </div>
         )}
 
-        {stage === "done" && (
+        {mode === "technical" && stage === "done" && (
           <div className="mx-auto max-w-3xl text-center space-y-5 rounded-3xl border border-stone-200 dark:border-stone-800 bg-white dark:bg-stone-900 p-5 sm:p-7 shadow-sm">
             <div className="text-5xl">{score === questions.length ? "🏆" : score >= questions.length * 0.7 ? "🎉" : "💪"}</div>
             <div>
