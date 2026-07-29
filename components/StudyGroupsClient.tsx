@@ -10,32 +10,60 @@ import { ArrowLeft, ArrowRight, Shuffle, Users, LogOut, Send, CornerUpLeft, Smil
 import { createClient } from "@/lib/supabase";
 import {
   STUDY_ROOM_TOPICS,
+  addStudyRoomNote,
+  claimStudyRoomWeeklyReward,
+  deleteStudyRoomNote,
   getMyStudyRoom,
   getStudyRoomMembers,
+  getStudyRoomMissions,
+  getStudyRoomNotes,
+  getStudyRoomPomodoro,
+  getStudyRoomQuizAttempts,
+  getStudyRoomReactions,
   getStudyRooms,
   isStudyRoomBotCommand,
   joinOrCreateStudyRoom,
   joinStudyRoom,
   leaveStudyRoom,
+  recordStudyRoomCheckin,
+  recordStudyRoomQuizAttempt,
   getRoomMessages,
   requestStudyRoomBot,
   sendRoomMessage,
+  setStudyRoomPomodoro,
   deleteRoomMessage,
   updateRoomMessage,
   setRoomMessagePinned,
   subscribeToRoomMessages,
+  toggleStudyRoomReaction,
 } from "@/lib/supabase-study-rooms";
 import { trackFeatureClick } from "@/lib/feature-events";
 import { isValidAvatar } from "@/lib/avatar-utils";
+import type { ChallengeQuestion } from "@/app/api/knowledge-challenge/route";
 import {
+  type StudyRoomMission,
   type StudyRoomMember,
   type StudyRoomMessage,
+  type StudyRoomNote,
+  type StudyRoomPomodoro,
+  type StudyRoomQuizAttempt,
   type StudyRoomSummary,
   type StudyRoomTopic,
 } from "@/lib/supabase-study-rooms";
 
 interface SessionUser {
   id: string;
+}
+
+interface GroupQuizQuestion {
+  lessonId: number;
+  lessonTitle: string;
+  lessonSlug: string;
+  question: string;
+  options: string[];
+  correct: number;
+  explanation: string;
+  token: string;
 }
 
 const REACTION_EMOJIS = ["👍", "❤️", "🔥", "🚀", "💡", "😂"];
@@ -68,6 +96,32 @@ function Avatar({ name, avatarUrl, size = 36 }: { name?: string | null; avatarUr
 
 function topicLabel(topic: StudyRoomTopic) {
   return STUDY_ROOM_TOPICS.find((t) => t.id === topic)?.label ?? topic;
+}
+
+function missionIcon(key: StudyRoomMission["mission_key"]) {
+  if (key === "lessons") return "📚";
+  if (key === "quizzes") return "⚡";
+  return "📍";
+}
+
+function noteColorClass(color: string) {
+  const colors: Record<string, string> = {
+    emerald: "bg-emerald-50 dark:bg-emerald-950/50 border-emerald-200 dark:border-emerald-800 text-emerald-950 dark:text-emerald-100",
+    amber: "bg-amber-50 dark:bg-amber-950/50 border-amber-200 dark:border-amber-800 text-amber-950 dark:text-amber-100",
+    sky: "bg-sky-50 dark:bg-sky-950/50 border-sky-200 dark:border-sky-800 text-sky-950 dark:text-sky-100",
+    rose: "bg-rose-50 dark:bg-rose-950/50 border-rose-200 dark:border-rose-800 text-rose-950 dark:text-rose-100",
+    violet: "bg-violet-50 dark:bg-violet-950/50 border-violet-200 dark:border-violet-800 text-violet-950 dark:text-violet-100",
+  };
+  return colors[color] ?? colors.emerald;
+}
+
+function formatShortTime(iso: string) {
+  return new Date(iso).toLocaleString("vi-VN", {
+    day: "2-digit",
+    month: "2-digit",
+    hour: "2-digit",
+    minute: "2-digit",
+  });
 }
 
 // "Học cùng nhóm": small (default cap 5) topic-based groups, either
@@ -115,8 +169,9 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
   const noiseSourceRef = useRef<AudioBufferSourceNode | null>(null);
 
   // 3. Group Daily Quests & 3D Chest Reward state
-  const [questProgress, setQuestProgress] = useState({ done: 2, total: 3 });
   const [isChestUnlocked, setIsChestUnlocked] = useState(false);
+  const [missions, setMissions] = useState<StudyRoomMission[]>([]);
+  const [claimingReward, setClaimingReward] = useState(false);
 
   // 4. Group Co-Pomodoro Timer State (25m Focus / 5m Break)
   const [pomoMode, setPomoMode] = useState<"focus" | "break">("focus");
@@ -139,44 +194,16 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
   const [chatSubTab, setChatSubTab] = useState<"chat" | "notes" | "quiz">("chat");
 
   // 6. Shared Group Sticky Notes State
-  const [stickyNotes, setStickyNotes] = useState<Array<{ id: string; author: string; content: string; color: string; createdAt: string }>>([
-    {
-      id: "note-1",
-      author: "Tài Tài Bot",
-      content: "📌 Mẹo học CFA: Công thức WACC = (E/V * Ke) + (D/V * Kd * (1 - t)). Nhớ tính chi phí nợ sau thuế nhé!",
-      color: "bg-amber-100 dark:bg-amber-950/70 border-amber-300 dark:border-amber-800 text-amber-900 dark:text-amber-200",
-      createdAt: "Vừa xong",
-    },
-  ]);
+  const [stickyNotes, setStickyNotes] = useState<StudyRoomNote[]>([]);
   const [newNoteText, setNewNoteText] = useState("");
 
   // 7. Group Quiz Challenge State
   const [groupQuizAnswers, setGroupQuizAnswers] = useState<Record<number, number>>({});
   const [groupQuizSubmitted, setGroupQuizSubmitted] = useState(false);
   const [groupQuizScore, setGroupQuizScore] = useState<number | null>(null);
-
-  const groupQuizQuestions = useMemo(() => [
-    {
-      q: "Tài sản ngắn hạn nào có tính thanh khoản cao nhất?",
-      options: ["Hàng tồn kho", "Tiền mặt & Tiền gửi", "Nhà xưởng", "Phải thu khách hàng"],
-      correct: 1,
-    },
-    {
-      q: "Mô hình DuPont 3 yếu tố phân rã ROE thành:",
-      options: [
-        "Net Profit Margin x Asset Turnover x Equity Multiplier",
-        "P/E x P/B x EPS",
-        "Doanh thu x Lợi nhuận x Vốn",
-        "ROA x ROE x ROS",
-      ],
-      correct: 0,
-    },
-    {
-      q: "Khi Lãi suất điều hành tăng, giá trái phiếu cố định có xu hướng:",
-      options: ["Tăng lên", "Giảm xuống", "Không đổi", "Tăng gấp đôi"],
-      correct: 1,
-    },
-  ], []);
+  const [groupQuizQuestions, setGroupQuizQuestions] = useState<GroupQuizQuestion[]>([]);
+  const [loadingGroupQuiz, setLoadingGroupQuiz] = useState(false);
+  const [quizAttempts, setQuizAttempts] = useState<StudyRoomQuizAttempt[]>([]);
 
   // Co-Pomodoro Countdown Effect
   useEffect(() => {
@@ -189,10 +216,12 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
           if (pomoMode === "focus") {
             setPomoMode("break");
             setPomoSeconds(5 * 60);
+            if (myRoom?.room_id) void setStudyRoomPomodoro(myRoom.room_id, "break", false, 5 * 60, 5 * 60).catch(() => {});
             toast.success("☕ Hết 25 phút học tập! Cả nhóm nghỉ giải lao 5 phút (+15 XP Tập trung nhóm)! 🎉");
           } else {
             setPomoMode("focus");
             setPomoSeconds(25 * 60);
+            if (myRoom?.room_id) void setStudyRoomPomodoro(myRoom.room_id, "focus", false, 25 * 60, 25 * 60).catch(() => {});
             toast.info("🎯 Hết giờ nghỉ! Bắt đầu phiên 25 phút tập trung tiếp theo!");
           }
           return 0;
@@ -201,7 +230,7 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
       });
     }, 1000);
     return () => clearInterval(interval);
-  }, [pomoRunning, pomoMode]);
+  }, [pomoRunning, pomoMode, myRoom?.room_id]);
 
   function formatPomoTime(secs: number) {
     const m = Math.floor(secs / 60);
@@ -296,6 +325,40 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
 
   const pinnedMessage = useMemo(() => messages.find((m) => m.is_pinned) ?? null, [messages]);
   const scrollMessages = useMemo(() => messages.filter((m) => !m.is_pinned), [messages]);
+  const allMissionsDone = missions.length > 0 && missions.every((m) => m.completed);
+  const rewardClaimed = missions.some((m) => m.reward_claimed);
+  const groupStreakWeeks = missions[0]?.streak_weeks ?? 0;
+  const isPermanentRoom = missions[0]?.is_permanent ?? false;
+  const roomLeaderId = missions[0]?.leader_id ?? myRoomMembers[0]?.user_id ?? null;
+
+  function hydratePomodoro(row: StudyRoomPomodoro | null) {
+    if (!row) return;
+    let remaining = row.remaining_seconds;
+    if (row.is_running && row.started_at) {
+      const elapsed = Math.floor((Date.now() - new Date(row.started_at).getTime()) / 1000);
+      remaining = Math.max(0, row.remaining_seconds - elapsed);
+    }
+    setPomoMode(row.mode);
+    setPomoRunning(row.is_running && remaining > 0);
+    setPomoSeconds(remaining);
+  }
+
+  async function refreshRoomEngagement(roomId = myRoom?.room_id) {
+    if (!roomId) return;
+    const [missionRows, noteRows, attemptRows, pomodoroRow, reactionRows] = await Promise.all([
+      getStudyRoomMissions(roomId),
+      getStudyRoomNotes(roomId),
+      getStudyRoomQuizAttempts(roomId),
+      getStudyRoomPomodoro(roomId),
+      getStudyRoomReactions(roomId),
+    ]);
+    setMissions(missionRows);
+    setStickyNotes(noteRows);
+    setQuizAttempts(attemptRows);
+    hydratePomodoro(pomodoroRow);
+    setReactions(reactionRows);
+    setIsChestUnlocked(missionRows.length > 0 && missionRows.every((m) => m.completed) && missionRows.some((m) => m.reward_claimed));
+  }
 
   async function refreshMyRoom() {
     const room = await getMyStudyRoom();
@@ -326,6 +389,7 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
     try {
       const sent = await sendRoomMessage(myRoom.room_id, user.id, text);
       setMessages((prev) => (prev.some((m) => m.id === sent.id) ? prev : [...prev, sent]));
+      void refreshRoomEngagement(myRoom.room_id).catch(() => {});
       toast.success("Đã gửi lời cổ vũ đến cả nhóm! 🎉");
     } catch {
       toast.error("Không thể gửi lời cổ vũ");
@@ -360,12 +424,18 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
   useEffect(() => {
     if (!myRoom) {
       setMessages([]);
+      setMissions([]);
+      setStickyNotes([]);
+      setQuizAttempts([]);
+      setGroupQuizQuestions([]);
       return;
     }
     let cancelled = false;
-    getRoomMessages(myRoom.room_id)
-      .then((list) => {
-        if (!cancelled) setMessages(list);
+    Promise.all([getRoomMessages(myRoom.room_id), refreshRoomEngagement(myRoom.room_id)])
+      .then(([list]) => {
+        if (!cancelled) {
+          setMessages(list);
+        }
       })
       .catch((error) => console.error("Error loading room messages:", error));
 
@@ -373,6 +443,7 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
       myRoom.room_id,
       (message) => {
         setMessages((prev) => (prev.some((m) => m.id === message.id) ? prev.map((m) => (m.id === message.id ? message : m)) : [...prev, message]));
+        void getStudyRoomMissions(myRoom.room_id).then(setMissions).catch(() => {});
       },
       (deletedId) => {
         setMessages((prev) => prev.filter((m) => m.id !== deletedId));
@@ -384,6 +455,29 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
       unsubscribe();
     };
   }, [myRoom?.room_id]);
+
+  useEffect(() => {
+    if (!myRoom) return;
+    let cancelled = false;
+    setLoadingGroupQuiz(true);
+    fetch(`/api/knowledge-challenge?track=${myRoom.topic}&difficulty=tat-ca`)
+      .then((res) => (res.ok ? res.json() : Promise.reject(new Error("failed"))))
+      .then((data) => {
+        if (cancelled) return;
+        const picked = ((data.questions ?? []) as GroupQuizQuestion[]).slice(0, 3);
+        setGroupQuizQuestions(picked);
+        setGroupQuizAnswers({});
+        setGroupQuizSubmitted(false);
+        setGroupQuizScore(null);
+      })
+      .catch((error) => console.error("Error loading group quiz:", error))
+      .finally(() => {
+        if (!cancelled) setLoadingGroupQuiz(false);
+      });
+    return () => {
+      cancelled = true;
+    };
+  }, [myRoom?.room_id, myRoom?.topic]);
 
   useEffect(() => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
@@ -415,26 +509,114 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
     }
   }
 
-  const toggleReaction = (msgId: number, emoji: string) => {
-    if (!user?.id) return;
-    setReactions((prev) => {
-      const msgReactions = prev[msgId] || {};
-      const userList = msgReactions[emoji] || [];
-      const hasReacted = userList.includes(user.id);
-      const updatedUsers = hasReacted
-        ? userList.filter((id) => id !== user.id)
-        : [...userList, user.id];
-
-      const newMsgReactions = { ...msgReactions };
-      if (updatedUsers.length > 0) {
-        newMsgReactions[emoji] = updatedUsers;
-      } else {
-        delete newMsgReactions[emoji];
-      }
-
-      return { ...prev, [msgId]: newMsgReactions };
-    });
+  const toggleReaction = async (msgId: number, emoji: string) => {
+    if (!user?.id || !myRoom) return;
+    try {
+      const next = await toggleStudyRoomReaction(myRoom.room_id, msgId, emoji);
+      setReactions(next);
+    } catch (error) {
+      toast.error(error instanceof Error ? error.message : "Không thả reaction được");
+    }
   };
+
+  async function handleManualCheckin() {
+    if (!myRoom) return;
+    try {
+      await recordStudyRoomCheckin(myRoom.room_id, "manual");
+      await refreshRoomEngagement(myRoom.room_id);
+      toast.success("Đã điểm danh hôm nay. Tiến độ nhiệm vụ nhóm đã cập nhật!");
+    } catch (error) {
+      toast.error(error instanceof Error ? error.message : "Không điểm danh được lúc này");
+    }
+  }
+
+  async function handleTogglePomodoro() {
+    if (!myRoom) return;
+    const nextRunning = !pomoRunning;
+    const duration = pomoMode === "focus" ? 25 * 60 : 5 * 60;
+    const remaining = pomoSeconds > 0 ? pomoSeconds : duration;
+    try {
+      const row = await setStudyRoomPomodoro(myRoom.room_id, pomoMode, nextRunning, duration, remaining);
+      hydratePomodoro(row);
+      if (nextRunning) void recordStudyRoomCheckin(myRoom.room_id, "pomodoro").catch(() => {});
+      toast.info(nextRunning ? "Đã bắt đầu Pomodoro sync cho cả phòng" : "Đã tạm dừng Pomodoro nhóm");
+    } catch (error) {
+      toast.error(error instanceof Error ? error.message : "Không cập nhật được Pomodoro nhóm");
+    }
+  }
+
+  async function handleClaimGroupReward() {
+    if (!myRoom || claimingReward) return;
+    setClaimingReward(true);
+    try {
+      const result = await claimStudyRoomWeeklyReward(myRoom.room_id);
+      await refreshRoomEngagement(myRoom.room_id);
+      if (result.ok) {
+        setIsChestUnlocked(true);
+        toast.success(result.message);
+      } else {
+        toast.error(result.message);
+      }
+    } catch (error) {
+      toast.error(error instanceof Error ? error.message : "Không mở được rương nhóm");
+    } finally {
+      setClaimingReward(false);
+    }
+  }
+
+  async function handleAddNote() {
+    if (!myRoom || !user?.id || !newNoteText.trim()) return;
+    const noteColors = ["emerald", "amber", "sky", "rose", "violet"];
+    const color = noteColors[stickyNotes.length % noteColors.length];
+    try {
+      const note = await addStudyRoomNote(myRoom.room_id, user.id, newNoteText.trim(), color);
+      setStickyNotes((prev) => [note, ...prev]);
+      setNewNoteText("");
+      void refreshRoomEngagement(myRoom.room_id).catch(() => {});
+      toast.success("Đã dán ghi chú mới lên bảng nhóm!");
+    } catch (error) {
+      toast.error(error instanceof Error ? error.message : "Không lưu được ghi chú");
+    }
+  }
+
+  async function handleDeleteNote(noteId: number) {
+    try {
+      await deleteStudyRoomNote(noteId);
+      setStickyNotes((prev) => prev.filter((note) => note.id !== noteId));
+      toast.success("Đã xóa ghi chú");
+    } catch (error) {
+      toast.error(error instanceof Error ? error.message : "Không xóa được ghi chú");
+    }
+  }
+
+  async function handleSubmitGroupQuiz() {
+    if (!myRoom || groupQuizQuestions.length === 0) return;
+    let correct = 0;
+    groupQuizQuestions.forEach((q, idx) => {
+      if (groupQuizAnswers[idx] === q.correct) correct++;
+    });
+    const score = Math.round((correct / groupQuizQuestions.length) * 100);
+    setGroupQuizScore(score);
+    setGroupQuizSubmitted(true);
+    try {
+      await recordStudyRoomQuizAttempt(myRoom.room_id, myRoom.topic, correct, groupQuizQuestions.length);
+      await refreshRoomEngagement(myRoom.room_id);
+      if (score >= 80) {
+        toast.success(`Quiz nhóm đạt ${score}%. Đã cộng tiến độ nhiệm vụ tuần!`);
+      } else {
+        toast.info(`Quiz nhóm đạt ${score}%. Cứ làm tiếp, tiến độ quiz tuần vẫn được ghi nhận.`);
+      }
+    } catch (error) {
+      toast.error(error instanceof Error ? error.message : "Không lưu được điểm quiz nhóm");
+    }
+  }
+
+  function memberRole(member: StudyRoomMember) {
+    if (member.user_id === roomLeaderId) return "Trưởng nhóm";
+    if (member.current_level >= 10) return "Mentor";
+    if (member.weekly_lessons >= 3) return "Tích cực";
+    return "Thành viên";
+  }
 
   async function handleSendMessage() {
     const rawContent = messageInput.trim();
@@ -1268,11 +1450,12 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
                   setStickyNotes((prev) => [
                     ...prev,
                     {
-                      id: `note-${Date.now()}`,
-                      author: user?.id ? "Bạn" : "Thành viên",
-                      content: newNoteText.trim(),
+                      id: Date.now(),
+                      room_id: myRoom?.room_id || 1,
+                      author_id: user?.id || "anon",
+                      content: `${user?.id ? "Bạn: " : ""}${newNoteText.trim()}`,
                       color: "bg-emerald-50 dark:bg-emerald-950/60 border-emerald-200 dark:border-emerald-800 text-emerald-900 dark:text-emerald-200",
-                      createdAt: "Vừa xong",
+                      created_at: new Date().toISOString(),
                     },
                   ]);
                   setNewNoteText("");
@@ -1286,10 +1469,10 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
 
             <div className="flex-1 overflow-y-auto space-y-2.5 pr-1">
               {stickyNotes.map((note) => (
-                <div key={note.id} className={`p-3 rounded-2xl border ${note.color} text-xs space-y-1 shadow-xs`}>
+                <div key={note.id} className={`p-3 rounded-2xl border ${note.color || "bg-stone-50 dark:bg-stone-900 border-stone-200 dark:border-stone-800"} text-xs space-y-1 shadow-xs`}>
                   <div className="flex items-center justify-between font-black text-[10px] opacity-80">
-                    <span>📌 {note.author}</span>
-                    <span>{note.createdAt}</span>
+                    <span>📌 Ghi chú</span>
+                    <span>{new Date(note.created_at).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}</span>
                   </div>
                   <p className="font-semibold leading-relaxed">{note.content}</p>
                 </div>
@@ -1315,7 +1498,7 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
                 {groupQuizQuestions.map((q, qIdx) => (
                   <div key={qIdx} className="p-3 rounded-2xl border border-stone-200 dark:border-stone-800 bg-stone-50 dark:bg-stone-950/50 space-y-2 text-xs">
                     <p className="font-black text-stone-900 dark:text-stone-100">
-                      Câu {qIdx + 1}: {q.q}
+                      Câu {qIdx + 1}: {q.question || (q as unknown as { q: string }).q}
                     </p>
                     <div className="space-y-1.5">
                       {q.options.map((opt, optIdx) => (

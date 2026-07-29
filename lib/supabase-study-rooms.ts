@@ -41,6 +41,58 @@ export interface StudyRoomMessage {
   is_pinned: boolean;
 }
 
+export interface StudyRoomMission {
+  mission_key: "lessons" | "quizzes" | "checkins";
+  title: string;
+  description: string;
+  current_value: number;
+  target_value: number;
+  completed: boolean;
+  streak_weeks: number;
+  is_permanent: boolean;
+  reward_claimed: boolean;
+  leader_id: string | null;
+}
+
+export interface StudyRoomNote {
+  id: number;
+  room_id: number;
+  author_id: string;
+  content: string;
+  color: string;
+  created_at: string;
+  author_name?: string | null;
+}
+
+export interface StudyRoomPomodoro {
+  room_id: number;
+  mode: "focus" | "break";
+  is_running: boolean;
+  duration_seconds: number;
+  remaining_seconds: number;
+  started_at: string | null;
+  updated_by: string | null;
+  updated_at: string;
+}
+
+export interface StudyRoomQuizAttempt {
+  id: number;
+  room_id: number;
+  user_id: string;
+  track: string;
+  score: number;
+  total: number;
+  percent: number;
+  created_at: string;
+}
+
+export interface StudyRoomRewardClaimResult {
+  ok: boolean;
+  message: string;
+  streak_weeks: number;
+  is_permanent: boolean;
+}
+
 const STUDY_ROOM_BOT_COMMANDS = new Set(["/taitai", "/tai", "/bot", "/rules", "/luat"]);
 
 function isMissingTableError(error: { code?: string } | null) {
@@ -150,7 +202,165 @@ export async function sendRoomMessage(
     window.dispatchEvent(new CustomEvent("thtcdn:study-group-checkin", { detail: { senderId, dayKey: todayKey } }));
   }
 
+  void recordStudyRoomCheckin(roomId, "chat").catch(() => {});
+
   return data as StudyRoomMessage;
+}
+
+export async function recordStudyRoomCheckin(roomId: number, source = "chat"): Promise<boolean> {
+  const supabase = createClient();
+  const { data, error } = await supabase.rpc("record_study_room_checkin", { p_room_id: roomId, p_source: source });
+  if (error) {
+    if (isMissingTableError(error)) return false;
+    throw handleSupabaseError(error);
+  }
+  return Boolean(data);
+}
+
+export async function getStudyRoomMissions(roomId: number): Promise<StudyRoomMission[]> {
+  const supabase = createClient();
+  const { data, error } = await supabase.rpc("get_study_room_mission_status", { p_room_id: roomId });
+  if (error) {
+    if (isMissingTableError(error)) return [];
+    throw handleSupabaseError(error);
+  }
+  return (data ?? []) as StudyRoomMission[];
+}
+
+export async function claimStudyRoomWeeklyReward(roomId: number): Promise<StudyRoomRewardClaimResult> {
+  const supabase = createClient();
+  const { data, error } = await supabase.rpc("claim_study_room_weekly_reward", { p_room_id: roomId });
+  if (error) throw handleSupabaseError(error);
+  const rows = (data ?? []) as StudyRoomRewardClaimResult[];
+  return rows[0] ?? { ok: false, message: "Không nhận được phản hồi từ máy chủ.", streak_weeks: 0, is_permanent: false };
+}
+
+export async function getStudyRoomNotes(roomId: number): Promise<StudyRoomNote[]> {
+  const supabase = createClient();
+  const { data, error } = await supabase
+    .from("study_room_notes")
+    .select("id, room_id, author_id, content, color, created_at")
+    .eq("room_id", roomId)
+    .order("created_at", { ascending: false });
+  if (error) {
+    if (isMissingTableError(error)) return [];
+    throw handleSupabaseError(error);
+  }
+  return (data ?? []) as StudyRoomNote[];
+}
+
+export async function addStudyRoomNote(roomId: number, authorId: string, content: string, color = "emerald"): Promise<StudyRoomNote> {
+  const supabase = createClient();
+  const { data, error } = await supabase
+    .from("study_room_notes")
+    .insert({ room_id: roomId, author_id: authorId, content: content.trim(), color })
+    .select("id, room_id, author_id, content, color, created_at")
+    .single();
+  if (error) throw handleSupabaseError(error);
+  void recordStudyRoomCheckin(roomId, "note").catch(() => {});
+  return data as StudyRoomNote;
+}
+
+export async function deleteStudyRoomNote(noteId: number): Promise<void> {
+  const supabase = createClient();
+  const { error } = await supabase.from("study_room_notes").delete().eq("id", noteId);
+  if (error) throw handleSupabaseError(error);
+}
+
+export async function getStudyRoomPomodoro(roomId: number): Promise<StudyRoomPomodoro | null> {
+  const supabase = createClient();
+  const { data, error } = await supabase
+    .from("study_room_pomodoro")
+    .select("*")
+    .eq("room_id", roomId)
+    .maybeSingle();
+  if (error) {
+    if (isMissingTableError(error)) return null;
+    throw handleSupabaseError(error);
+  }
+  return data as StudyRoomPomodoro | null;
+}
+
+export async function setStudyRoomPomodoro(
+  roomId: number,
+  mode: "focus" | "break",
+  isRunning: boolean,
+  durationSeconds: number,
+  remainingSeconds: number
+): Promise<StudyRoomPomodoro> {
+  const supabase = createClient();
+  const { data, error } = await supabase.rpc("set_study_room_pomodoro", {
+    p_room_id: roomId,
+    p_mode: mode,
+    p_is_running: isRunning,
+    p_duration_seconds: durationSeconds,
+    p_remaining_seconds: remainingSeconds,
+  });
+  if (error) throw handleSupabaseError(error);
+  return data as StudyRoomPomodoro;
+}
+
+export async function recordStudyRoomQuizAttempt(
+  roomId: number,
+  track: string,
+  score: number,
+  total: number
+): Promise<StudyRoomQuizAttempt> {
+  const supabase = createClient();
+  const { data, error } = await supabase.rpc("record_study_room_quiz_attempt", {
+    p_room_id: roomId,
+    p_track: track,
+    p_score: score,
+    p_total: total,
+  });
+  if (error) throw handleSupabaseError(error);
+  return data as StudyRoomQuizAttempt;
+}
+
+export async function getStudyRoomQuizAttempts(roomId: number): Promise<StudyRoomQuizAttempt[]> {
+  const supabase = createClient();
+  const weekStart = new Date();
+  weekStart.setDate(weekStart.getDate() - weekStart.getDay());
+  weekStart.setHours(0, 0, 0, 0);
+  const { data, error } = await supabase
+    .from("study_room_quiz_attempts")
+    .select("*")
+    .eq("room_id", roomId)
+    .gte("created_at", weekStart.toISOString())
+    .order("created_at", { ascending: false });
+  if (error) {
+    if (isMissingTableError(error)) return [];
+    throw handleSupabaseError(error);
+  }
+  return (data ?? []) as StudyRoomQuizAttempt[];
+}
+
+export async function getStudyRoomReactions(roomId: number): Promise<Record<number, Record<string, string[]>>> {
+  const supabase = createClient();
+  const { data, error } = await supabase.rpc("get_study_room_reactions", { p_room_id: roomId });
+  if (error) {
+    if (isMissingTableError(error)) return {};
+    throw handleSupabaseError(error);
+  }
+  const grouped: Record<number, Record<string, string[]>> = {};
+  for (const row of (data ?? []) as { message_id: number; emoji: string; user_ids: string[] }[]) {
+    grouped[row.message_id] ??= {};
+    grouped[row.message_id][row.emoji] = row.user_ids ?? [];
+  }
+  return grouped;
+}
+
+export async function toggleStudyRoomReaction(roomId: number, messageId: number, emoji: string): Promise<Record<number, Record<string, string[]>>> {
+  const supabase = createClient();
+  const { data, error } = await supabase.rpc("toggle_study_room_message_reaction", { p_message_id: messageId, p_emoji: emoji });
+  if (error) throw handleSupabaseError(error);
+  const grouped: Record<number, Record<string, string[]>> = {};
+  for (const row of (data ?? []) as { message_id: number; emoji: string; user_ids: string[] }[]) {
+    grouped[row.message_id] ??= {};
+    grouped[row.message_id][row.emoji] = row.user_ids ?? [];
+  }
+  if (!Object.keys(grouped).length) return getStudyRoomReactions(roomId);
+  return grouped;
 }
 
 export function isStudyRoomBotCommand(input: string): boolean {

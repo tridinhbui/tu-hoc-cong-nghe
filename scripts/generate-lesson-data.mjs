@@ -9,31 +9,62 @@
 // Re-run this any time lib/lessons.ts changes.
 
 import ts from "typescript";
-import { readFileSync, writeFileSync, mkdirSync, readdirSync, unlinkSync } from "fs";
+import { readFileSync, writeFileSync, mkdirSync, readdirSync, unlinkSync, existsSync } from "fs";
 import { fileURLToPath } from "url";
 import path from "path";
+import { createRequire } from "module";
 import { applyLessonOverrides } from "../lib/lesson-quiz-overrides.js";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const root = path.resolve(__dirname, "..");
-const source = readFileSync(path.join(root, "lib/lessons.ts"), "utf8");
+const nodeRequire = createRequire(import.meta.url);
 
-// Strip the two lines that only matter to the TS module system (server-only
-// guard + type re-exports) - we only need the runtime `lessons` array here.
-const stripped = source
-  .split(/\r?\n/)
-  .filter((line) => !line.includes('from "./lesson-types"') && line !== 'import "server-only";')
-  .join("\n");
+function resolveTsPath(p) {
+  if (existsSync(p)) return p;
+  if (existsSync(p + ".ts")) return p + ".ts";
+  if (existsSync(p + ".tsx")) return p + ".tsx";
+  return p;
+}
 
-let { outputText } = ts.transpileModule(stripped, {
-  compilerOptions: { module: ts.ModuleKind.CommonJS, target: ts.ScriptTarget.ES2020 },
-});
+// Cache of already-executed local TS modules, keyed by resolved absolute
+// path, so a file imported from multiple places is only transpiled/run once.
+const localModuleCache = new Map();
 
-outputText = outputText.replace("exports. = exports.lessons = void 0;", "exports.lessons = void 0;");
+// Transpiles and executes a local .ts module the same hand-rolled way as
+// lib/lessons.ts itself (no real TS/Node loader in this script - just
+// ts.transpileModule + `new Function`). Any *relative* import it in turn
+// pulls in (e.g. lib/lessons.ts importing lib/advanced-masterclass-lessons.ts)
+// is resolved the same way, recursively - only bare specifiers (npm
+// packages, Node builtins) fall through to a real `require`. This keeps
+// adding a new local lesson-data file a one-line `import` in lessons.ts,
+// with no matching change needed here.
+function loadLocalModule(rawPath) {
+  const resolved = resolveTsPath(rawPath);
+  if (localModuleCache.has(resolved)) return localModuleCache.get(resolved);
 
-const moduleObj = { exports: {} };
-new Function("exports", "module", outputText)(moduleObj.exports, moduleObj);
-const lessons = applyLessonOverrides(moduleObj.exports.lessons)
+  const src = readFileSync(resolved, "utf8");
+  const stripped = src
+    .split(/\r?\n/)
+    .filter((line) => !line.includes('from "./lesson-types"') && line !== 'import "server-only";')
+    .join("\n");
+
+  let { outputText } = ts.transpileModule(stripped, {
+    compilerOptions: { module: ts.ModuleKind.CommonJS, target: ts.ScriptTarget.ES2020 },
+  });
+  outputText = outputText.replace("exports. = exports.lessons = void 0;", "exports.lessons = void 0;");
+
+  const moduleObj = { exports: {} };
+  const dir = path.dirname(resolved);
+  const requireShim = (spec) =>
+    spec.startsWith(".") ? loadLocalModule(path.join(dir, spec)) : nodeRequire(spec);
+
+  new Function("exports", "module", "require", outputText)(moduleObj.exports, moduleObj, requireShim);
+  localModuleCache.set(resolved, moduleObj.exports);
+  return moduleObj.exports;
+}
+
+const { lessons: rawLessons } = loadLocalModule(path.join(root, "lib/lessons.ts"));
+const lessons = applyLessonOverrides(rawLessons)
   .filter(Boolean)
   .map((lesson) => {
     if (!lesson || !Array.isArray(lesson.quiz)) return lesson;

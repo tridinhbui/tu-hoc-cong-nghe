@@ -2062,9 +2062,13 @@ export default function DashboardClient({ lessonsMeta }: { lessonsMeta: LessonMe
             { prompt: "Tỷ lệ Nợ/Vốn chủ sở hữu (D/E) an toàn tuyệt đối thường nằm dưới mức nào?", options: ["1.0x", "5.0x", "10.0x"], correct: 0 }
           ]}
           onVictory={async ({ xp, coins }) => {
-            const newTotalXp = userXp + xp;
-            setUserXp(newTotalXp);
-            
+            // XP goes in as a game_sessions row, not a direct total_xp write.
+            // recalculateUserStats recomputes total_xp from scratch out of
+            // the sources it knows about, and boss battles weren't one - so
+            // the old direct write showed up, then silently vanished on the
+            // next recompute. Routing it through game_sessions also puts it
+            // under the same best-per-game_type 50 XP ceiling as every other
+            // game, instead of minting a parallel currency.
             const { data: profile } = await supabase
               .from("user_profiles")
               .select("coins")
@@ -2072,7 +2076,17 @@ export default function DashboardClient({ lessonsMeta }: { lessonsMeta: LessonMe
               .single();
             const newCoins = (profile?.coins || 0) + coins;
 
-            await supabase.from("user_profiles").update({ total_xp: newTotalXp, coins: newCoins }).eq("id", user.id);
+            await supabase.from("user_profiles").update({ coins: newCoins }).eq("id", user.id);
+            const userId = user.id;
+            if (!userId) return;
+            await supabase.from("game_sessions").insert({
+              user_id: userId,
+              game_type: "boss-battle",
+              score: 1,
+              total: 1,
+              xp_earned: xp,
+            });
+            await recalculateUserStats(userId).catch(() => {});
             window.dispatchEvent(new CustomEvent("thtcdn:coin-updated", { detail: { coins: newCoins } }));
             toast.success(`🎉 Hạ gục Boss thành công! Nhận +${xp} XP & 🪙 +${coins} Coins!`);
           }}

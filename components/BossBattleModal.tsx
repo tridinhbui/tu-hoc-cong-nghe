@@ -89,7 +89,10 @@ export default function BossBattleModal({
       setTimeout(() => {
         if (nextBossHp === 0 || currentQuestionIndex + 1 >= maxQ) {
           setBattleState("victory");
-          onVictory?.({ xp: 300, coins: 100 });
+          // 50 XP = the per-game_type ceiling the rest of the XP economy
+          // runs on (MAX_GAME_XP_PER_TYPE in lib/games.ts, enforced by a
+          // CHECK on game_sessions). The old 300 was ~30 lessons' worth.
+          onVictory?.({ xp: 50, coins: 100 });
         } else {
           setCurrentQuestionIndex((prev) => prev + 1);
           setSelectedOption(null);
@@ -108,7 +111,7 @@ export default function BossBattleModal({
         } else if (currentQuestionIndex + 1 >= maxQ) {
           if (bossHp <= 30) {
             setBattleState("victory");
-            onVictory?.({ xp: 200, coins: 50 });
+            onVictory?.({ xp: 30, coins: 50 });
           } else {
             setBattleState("defeat");
           }
@@ -212,7 +215,7 @@ export default function BossBattleModal({
             </p>
             <div className="bg-amber-950/40 border border-amber-800/60 rounded-xl p-3 inline-flex items-center gap-1.5">
               <span className="text-sm font-black text-amber-300 flex items-center gap-1">
-                🎁 Thưởng trận đấu: +300 XP & <GoldCoinIcon className="w-4 h-4" /> +100 Coins
+                🎁 Thưởng trận đấu: +50 XP & <GoldCoinIcon className="w-4 h-4" /> +100 Coins
               </span>
             </div>
             <button

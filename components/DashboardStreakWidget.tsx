@@ -1,7 +1,8 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { Flame, ShieldCheck, Snowflake, Sparkles, X, Info, CheckCircle2 } from "lucide-react";
+import { createPortal } from "react-dom";
+import { Flame, ShieldCheck, Snowflake, X } from "lucide-react";
 import { toast } from "sonner";
 import {
   getUserStreak,
@@ -19,6 +20,11 @@ export default function DashboardStreakWidget({ userId }: { userId: string }) {
   const [streakRow, setStreakRow] = useState<UserStreak | null>(null);
   const [showModal, setShowModal] = useState(false);
   const [freezing, setFreezing] = useState(false);
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   useEffect(() => {
     let cancelled = false;
@@ -43,6 +49,23 @@ export default function DashboardStreakWidget({ userId }: { userId: string }) {
     };
   }, [userId]);
 
+  // Lock body scroll when modal is open
+  useEffect(() => {
+    if (!showModal) return;
+    const originalOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setShowModal(false);
+    };
+    window.addEventListener("keydown", handleKeyDown);
+
+    return () => {
+      document.body.style.overflow = originalOverflow;
+      window.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [showModal]);
+
   const handleManualFreeze = async () => {
     if (freezesLeft <= 0) {
       toast.error("Bạn đã dùng hết 3 lượt bảo vệ Streak miễn phí!");
@@ -62,6 +85,113 @@ export default function DashboardStreakWidget({ userId }: { userId: string }) {
       setFreezing(false);
     }
   };
+
+  const modalContent = showModal && mounted ? (
+    createPortal(
+      <div
+        className="fixed inset-0 z-[99999] flex items-center justify-center bg-stone-950/80 p-4 backdrop-blur-md animate-in fade-in duration-200"
+        onClick={() => setShowModal(false)}
+      >
+        <div
+          className="relative w-full max-w-lg max-h-[90vh] overflow-y-auto overflow-x-hidden rounded-[24px] border border-sky-300/80 dark:border-sky-800 bg-white p-6 shadow-[0_25px_60px_-15px_rgba(0,0,0,0.5)] dark:bg-stone-900 space-y-5 my-auto"
+          onClick={(e) => e.stopPropagation()}
+        >
+          {/* Close Button */}
+          <button
+            type="button"
+            onClick={() => setShowModal(false)}
+            className="absolute top-4 right-4 flex h-8 w-8 items-center justify-center rounded-full bg-stone-100 text-stone-500 hover:bg-stone-200 dark:bg-stone-800 dark:text-stone-400 transition-all duration-200 ease-out hover:scale-105 cursor-pointer focus-visible:outline-none"
+          >
+            <X className="h-4 w-4" />
+          </button>
+
+          {/* Header */}
+          <div className="flex items-center gap-3 border-b border-stone-100 dark:border-stone-800 pb-4">
+            <div className="flex h-12 w-12 items-center justify-center rounded-[18px] bg-gradient-to-br from-sky-400 via-blue-500 to-indigo-600 text-white shadow-[0_12px_24px_-18px_rgba(59,130,246,0.35)] shrink-0">
+              <Snowflake className="h-6 w-6 animate-spin-slow" />
+            </div>
+            <div>
+              <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-[10px] font-black uppercase tracking-wider bg-sky-100 text-sky-700 dark:bg-sky-950 dark:text-sky-300">
+                <ShieldCheck className="w-3 h-3 text-sky-600" />
+                Streak Protection System
+              </span>
+              <h3 className="text-xl font-black text-stone-900 dark:text-stone-100 mt-1">
+                Cơ Chế Bảo Vệ & Đóng Băng Streak
+              </h3>
+            </div>
+          </div>
+
+          {/* Status Summary Pill */}
+          <div className="rounded-[18px] border border-sky-200 dark:border-sky-900 bg-gradient-to-r from-sky-50 via-blue-50/50 to-indigo-50 dark:from-sky-950/40 dark:to-stone-900 p-4 flex items-center justify-between shadow-xs">
+            <div>
+              <p className="text-xs font-black text-stone-900 dark:text-stone-100">Trạng thái bảo vệ hiện tại</p>
+              <p className="text-xs font-extrabold text-sky-700 dark:text-sky-300 mt-0.5">
+                Còn <strong>{freezesLeft} / {MAX_STREAK_FREEZES}</strong> lượt bảo vệ miễn phí
+              </p>
+            </div>
+            <div className="text-right">
+              <span className="text-xs font-black text-orange-600 dark:text-orange-400 bg-white dark:bg-stone-800 px-3 py-1.5 rounded-[16px] border border-orange-200 dark:border-orange-900 shadow-xs">
+                🔥 {streak} ngày
+              </span>
+            </div>
+          </div>
+
+          {/* Feature Explanations */}
+          <div className="space-y-3">
+            <div className="rounded-[18px] border border-stone-200 dark:border-stone-800 p-3.5 flex items-start gap-3 bg-stone-50/50 dark:bg-stone-800/40">
+              <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-[14px] bg-sky-100 text-sky-600 dark:bg-sky-900 dark:text-sky-300 font-bold text-sm">
+                1
+              </div>
+              <div>
+                <h4 className="text-xs font-black text-stone-900 dark:text-stone-100">🛡️ Tự Động Bảo Vệ Bằng Lá Chắn</h4>
+                <p className="text-xs text-stone-600 dark:text-stone-400 mt-1 leading-relaxed">
+                  Mỗi tài khoản có sẵn <strong>3 lượt bảo vệ Streak</strong>. Nếu bận 1 ngày không kịp học bài, hệ thống tự động trừ 1 lượt lá chắn để <strong>giữ nguyên chuỗi ngày</strong> mà không bị reset về 0.
+                </p>
+              </div>
+            </div>
+
+            <div className="rounded-[18px] border border-stone-200 dark:border-stone-800 p-3.5 flex items-start gap-3 bg-stone-50/50 dark:bg-stone-800/40">
+              <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-[14px] bg-blue-100 text-blue-600 dark:bg-blue-900 dark:text-blue-300 font-bold text-sm">
+                2
+              </div>
+              <div>
+                <h4 className="text-xs font-black text-stone-900 dark:text-stone-100">❄️ Chủ Động Băng Hà Chuỗi (Freeze Streak)</h4>
+                <p className="text-xs text-stone-600 dark:text-stone-400 mt-1 leading-relaxed">
+                  Chuẩn bị đi du lịch, nghỉ lễ hoặc lịch trình bận rộn? Bạn có thể <strong>chủ động bấm nút Freeze Streak</strong> bên dưới bất cứ lúc nào để bảo vệ Streak an toàn cho ngày hôm nay!
+                </p>
+              </div>
+            </div>
+
+            <div className="rounded-[18px] border border-stone-200 dark:border-stone-800 p-3.5 flex items-start gap-3 bg-stone-50/50 dark:bg-stone-800/40">
+              <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-[14px] bg-amber-100 text-amber-600 dark:bg-amber-900 dark:text-amber-300 font-bold text-sm">
+                3
+              </div>
+              <div>
+                <h4 className="text-xs font-black text-stone-900 dark:text-stone-100">⚡ Khôi Phục Chuỗi Đã Mất Bằng XP</h4>
+                <p className="text-xs text-stone-600 dark:text-stone-400 mt-1 leading-relaxed">
+                  Trong trường hợp đã dùng hết 3 lượt bảo vệ miễn phí, bạn vẫn có thể chuộc lại chuỗi kỷ lục đã mất bất kỳ lúc nào bằng điểm XP thưởng.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          {/* Freeze Action Button */}
+          <div className="pt-2">
+            <button
+              type="button"
+              onClick={handleManualFreeze}
+              disabled={freezing || freezesLeft <= 0}
+              className="button-premium w-full py-3.5 rounded-[18px] font-black text-xs uppercase tracking-wider text-white bg-gradient-to-r from-sky-600 via-blue-600 to-indigo-600 hover:from-sky-500 hover:to-indigo-500 disabled:opacity-50 transition-all shadow-md active:scale-[0.98] cursor-pointer flex items-center justify-center gap-2 focus-visible:outline-none"
+            >
+              <Snowflake className="w-4 h-4" />
+              <span>{freezing ? "Đang bảo vệ..." : "🧊 Đóng Băng Chuỗi Ngay (Freeze Streak)"}</span>
+            </button>
+          </div>
+        </div>
+      </div>,
+      document.body
+    )
+  ) : null;
 
   return (
     <>
@@ -89,103 +219,7 @@ export default function DashboardStreakWidget({ userId }: { userId: string }) {
         </div>
       </div>
 
-      {/* 🧊 STREAK PROTECTION & FREEZE MODAL */}
-      {showModal && (
-        <div className="fixed inset-0 z-[9999] flex items-center justify-center bg-stone-950/75 p-4 backdrop-blur-md animate-in fade-in duration-200">
-        <div className="relative w-full max-w-lg max-h-[90vh] overflow-y-auto overflow-x-hidden rounded-[20px] border border-sky-300/80 dark:border-sky-800 bg-white p-6 shadow-[0_20px_50px_-30px_rgba(15,23,42,0.32)] dark:bg-stone-900 space-y-5">
-            {/* Close Button */}
-            <button
-              onClick={() => setShowModal(false)}
-              className="absolute top-4 right-4 flex h-8 w-8 items-center justify-center rounded-full bg-stone-100 text-stone-500 hover:bg-stone-200 dark:bg-stone-800 dark:text-stone-400 transition-all duration-200 ease-out hover:scale-105 cursor-pointer focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-stone-900/5"
-            >
-              <X className="h-4 w-4" />
-            </button>
-
-            {/* Header */}
-            <div className="flex items-center gap-3 border-b border-stone-100 dark:border-stone-800 pb-4">
-              <div className="flex h-12 w-12 items-center justify-center rounded-[18px] bg-gradient-to-br from-sky-400 via-blue-500 to-indigo-600 text-white shadow-[0_12px_24px_-18px_rgba(59,130,246,0.35)]">
-                <Snowflake className="h-6 w-6 animate-spin-slow" />
-              </div>
-              <div>
-                <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-[10px] font-black uppercase tracking-wider bg-sky-100 text-sky-700 dark:bg-sky-950 dark:text-sky-300">
-                  <ShieldCheck className="w-3 h-3 text-sky-600" />
-                  Streak Protection System
-                </span>
-                <h3 className="text-xl font-black text-stone-900 dark:text-stone-100 mt-1">
-                  Cơ Chế Bảo Vệ & Đóng Băng Streak
-                </h3>
-              </div>
-            </div>
-
-            {/* Status Summary Pill */}
-            <div className="rounded-[18px] border border-sky-200 dark:border-sky-900 bg-gradient-to-r from-sky-50 via-blue-50/50 to-indigo-50 dark:from-sky-950/40 dark:to-stone-900 p-4 flex items-center justify-between shadow-[0_10px_24px_-24px_rgba(59,130,246,0.18)]">
-              <div>
-                <p className="text-xs font-black text-stone-900 dark:text-stone-100">Trạng thái bảo vệ hiện tại</p>
-                <p className="text-xs font-extrabold text-sky-700 dark:text-sky-300 mt-0.5">
-                  Còn <strong>{freezesLeft} / {MAX_STREAK_FREEZES}</strong> lượt bảo vệ miễn phí
-                </p>
-              </div>
-              <div className="text-right">
-                <span className="text-xs font-black text-orange-600 bg-white dark:bg-stone-800 px-3 py-1.5 rounded-[16px] border border-orange-200 shadow-[0_8px_18px_-18px_rgba(249,115,22,0.2)]">
-                  🔥 {streak} ngày
-                </span>
-              </div>
-            </div>
-
-            {/* Feature Explanations */}
-            <div className="space-y-3">
-              <div className="rounded-[18px] border border-stone-200 dark:border-stone-800 p-3.5 flex items-start gap-3 bg-stone-50/50 dark:bg-stone-800/40 shadow-[0_8px_18px_-18px_rgba(15,23,42,0.14)]">
-                <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-[14px] bg-sky-100 text-sky-600 dark:bg-sky-900 dark:text-sky-300 font-bold text-sm">
-                  1
-                </div>
-                <div>
-                  <h4 className="text-xs font-black text-stone-900 dark:text-stone-100">🛡️ Tự Động Bảo Vệ Bằng Lá Chắn</h4>
-                  <p className="text-xs text-stone-600 dark:text-stone-400 mt-1 leading-relaxed">
-                    Mỗi tài khoản có sẵn <strong>3 lượt bảo vệ Streak</strong>. Nếu bận 1 ngày không kịp học bài, hệ thống tự động trừ 1 lượt lá chắn để <strong>giữ nguyên chuỗi ngày</strong> mà không bị reset về 0.
-                  </p>
-                </div>
-              </div>
-
-              <div className="rounded-[18px] border border-stone-200 dark:border-stone-800 p-3.5 flex items-start gap-3 bg-stone-50/50 dark:bg-stone-800/40 shadow-[0_8px_18px_-18px_rgba(15,23,42,0.14)]">
-                <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-[14px] bg-blue-100 text-blue-600 dark:bg-blue-900 dark:text-blue-300 font-bold text-sm">
-                  2
-                </div>
-                <div>
-                  <h4 className="text-xs font-black text-stone-900 dark:text-stone-100">❄️ Chủ Động Băng Hà Chuỗi (Freeze Streak)</h4>
-                  <p className="text-xs text-stone-600 dark:text-stone-400 mt-1 leading-relaxed">
-                    Chuẩn bị đi du lịch, nghỉ lễ hoặc lịch trình bận rộn? Bạn có thể <strong>chủ động bấm nút Freeze Streak</strong> bên dưới bất cứ lúc nào để bảo vệ Streak an toàn cho ngày hôm nay!
-                  </p>
-                </div>
-              </div>
-
-              <div className="rounded-[18px] border border-stone-200 dark:border-stone-800 p-3.5 flex items-start gap-3 bg-stone-50/50 dark:bg-stone-800/40 shadow-[0_8px_18px_-18px_rgba(15,23,42,0.14)]">
-                <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-[14px] bg-amber-100 text-amber-600 dark:bg-amber-900 dark:text-amber-300 font-bold text-sm">
-                  3
-                </div>
-                <div>
-                  <h4 className="text-xs font-black text-stone-900 dark:text-stone-100">⚡ Khôi Phục Chuỗi Đã Mất Bằng XP</h4>
-                  <p className="text-xs text-stone-600 dark:text-stone-400 mt-1 leading-relaxed">
-                    Trong trường hợp đã dùng hết 3 lượt bảo vệ miễn phí, bạn vẫn có thể chuộc lại chuỗi kỷ lục đã mất bất kỳ lúc nào bằng điểm XP thưởng.
-                  </p>
-                </div>
-              </div>
-            </div>
-
-            {/* Freeze Action Button */}
-            <div className="pt-2">
-              <button
-                type="button"
-                onClick={handleManualFreeze}
-                disabled={freezing || freezesLeft <= 0}
-                className="button-premium w-full py-3.5 rounded-[18px] font-black text-xs uppercase tracking-wider text-white bg-gradient-to-r from-sky-600 via-blue-600 to-indigo-600 hover:from-sky-500 hover:to-indigo-500 disabled:opacity-50 transition-all shadow-[0_12px_28px_-20px_rgba(59,130,246,0.3)] active:scale-[0.98] cursor-pointer flex items-center justify-center gap-2 focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-sky-500/10"
-              >
-                <Snowflake className="w-4 h-4" />
-                <span>{freezing ? "Đang bảo vệ..." : "🧊 Đóng Băng Chuỗi Ngay (Freeze Streak)"}</span>
-              </button>
-            </div>
-          </div>
-        </div>
-      )}
+      {modalContent}
     </>
   );
 }
