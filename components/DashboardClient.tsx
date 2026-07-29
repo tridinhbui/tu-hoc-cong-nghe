@@ -32,7 +32,6 @@ import OnlineUsersWidget from "@/components/OnlineUsersWidget";
 import CareerGoalWidget from "@/components/CareerGoalWidget";
 import ReferralPromptModal from "@/components/ReferralPromptModal";
 import DiagnosticPlacementModal from "@/components/DiagnosticPlacementModal";
-import TopicMasteryWidget from "@/components/TopicMasteryWidget";
 import CombinedRewardsWidget from "@/components/CombinedRewardsWidget";
 import CareerLearningPathClient from "@/components/CareerLearningPathClient";
 import { hasCompletedOnboarding, completeOnboarding } from "@/lib/supabase-onboarding";
