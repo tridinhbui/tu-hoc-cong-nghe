@@ -118,6 +118,85 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
   const [questProgress, setQuestProgress] = useState({ done: 2, total: 3 });
   const [isChestUnlocked, setIsChestUnlocked] = useState(false);
 
+  // 4. Group Co-Pomodoro Timer State (25m Focus / 5m Break)
+  const [pomoMode, setPomoMode] = useState<"focus" | "break">("focus");
+  const [pomoSeconds, setPomoSeconds] = useState(25 * 60);
+  const [pomoRunning, setPomoRunning] = useState(false);
+
+  // 5. Right Column Sub-tab: "chat" | "notes" | "quiz"
+  const [chatSubTab, setChatSubTab] = useState<"chat" | "notes" | "quiz">("chat");
+
+  // 6. Shared Group Sticky Notes State
+  const [stickyNotes, setStickyNotes] = useState<Array<{ id: string; author: string; content: string; color: string; createdAt: string }>>([
+    {
+      id: "note-1",
+      author: "Tài Tài Bot",
+      content: "📌 Mẹo học CFA: Công thức WACC = (E/V * Ke) + (D/V * Kd * (1 - t)). Nhớ tính chi phí nợ sau thuế nhé!",
+      color: "bg-amber-100 dark:bg-amber-950/70 border-amber-300 dark:border-amber-800 text-amber-900 dark:text-amber-200",
+      createdAt: "Vừa xong",
+    },
+  ]);
+  const [newNoteText, setNewNoteText] = useState("");
+
+  // 7. Group Quiz Challenge State
+  const [groupQuizAnswers, setGroupQuizAnswers] = useState<Record<number, number>>({});
+  const [groupQuizSubmitted, setGroupQuizSubmitted] = useState(false);
+  const [groupQuizScore, setGroupQuizScore] = useState<number | null>(null);
+
+  const groupQuizQuestions = useMemo(() => [
+    {
+      q: "Tài sản ngắn hạn nào có tính thanh khoản cao nhất?",
+      options: ["Hàng tồn kho", "Tiền mặt & Tiền gửi", "Nhà xưởng", "Phải thu khách hàng"],
+      correct: 1,
+    },
+    {
+      q: "Mô hình DuPont 3 yếu tố phân rã ROE thành:",
+      options: [
+        "Net Profit Margin x Asset Turnover x Equity Multiplier",
+        "P/E x P/B x EPS",
+        "Doanh thu x Lợi nhuận x Vốn",
+        "ROA x ROE x ROS",
+      ],
+      correct: 0,
+    },
+    {
+      q: "Khi Lãi suất điều hành tăng, giá trái phiếu cố định có xu hướng:",
+      options: ["Tăng lên", "Giảm xuống", "Không đổi", "Tăng gấp đôi"],
+      correct: 1,
+    },
+  ], []);
+
+  // Co-Pomodoro Countdown Effect
+  useEffect(() => {
+    if (!pomoRunning) return;
+    const interval = setInterval(() => {
+      setPomoSeconds((prev) => {
+        if (prev <= 1) {
+          clearInterval(interval);
+          setPomoRunning(false);
+          if (pomoMode === "focus") {
+            setPomoMode("break");
+            setPomoSeconds(5 * 60);
+            toast.success("☕ Hết 25 phút học tập! Cả nhóm nghỉ giải lao 5 phút (+15 XP Tập trung nhóm)! 🎉");
+          } else {
+            setPomoMode("focus");
+            setPomoSeconds(25 * 60);
+            toast.info("🎯 Hết giờ nghỉ! Bắt đầu phiên 25 phút tập trung tiếp theo!");
+          }
+          return 0;
+        }
+        return prev - 1;
+      });
+    }, 1000);
+    return () => clearInterval(interval);
+  }, [pomoRunning, pomoMode]);
+
+  function formatPomoTime(secs: number) {
+    const m = Math.floor(secs / 60);
+    const s = secs % 60;
+    return `${m < 10 ? "0" : ""}${m}:${s < 10 ? "0" : ""}${s}`;
+  }
+
   const toggleLofiMusic = () => {
     if (lofiPlaying) {
       if (gainNodeRef.current) gainNodeRef.current.gain.value = 0;
@@ -496,8 +575,25 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
                 </div>
               </div>
 
-              {/* Center/Right Action Bar: Lofi Focus Sound + Mic Toggle + Mobile Segmented Tab Toggle */}
+              {/* Center/Right Action Bar: Group Co-Pomodoro + Lofi Focus Sound + Mic Toggle + Mobile Segmented Tab Toggle */}
               <div className="flex items-center gap-1.5 sm:gap-2 shrink-0">
+                {/* ⏱️ Group Co-Pomodoro Timer Widget */}
+                <div className="flex items-center gap-1.5 bg-stone-100 dark:bg-stone-800 px-2.5 py-1 rounded-xl border border-stone-200 dark:border-stone-700 text-[10px] font-mono font-black">
+                  <span className={pomoRunning ? "animate-pulse text-emerald-500" : "text-amber-500"}>
+                    {pomoMode === "focus" ? "🎯 25m" : "☕ 5m"}
+                  </span>
+                  <span className="text-stone-900 dark:text-stone-100 font-extrabold">{formatPomoTime(pomoSeconds)}</span>
+                  <button
+                    type="button"
+                    onClick={() => {
+                      setPomoRunning((prev) => !prev);
+                      toast.info(pomoRunning ? "⏸️ Đã tạm dừng Pomodoro nhóm" : "▶️ Bắt đầu phiên đếm ngược Pomodoro nhóm 25 phút!");
+                    }}
+                    className="ml-0.5 text-[9px] font-black uppercase text-emerald-600 dark:text-emerald-400 hover:underline cursor-pointer"
+                  >
+                    {pomoRunning ? "Tạm dừng" : "Bắt đầu"}
+                  </button>
+                </div>
                 {/* 🎧 Lofi Chill Focus Audio Button */}
                 <button
                   type="button"
@@ -833,23 +929,54 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
                   mobileTab === "chat" ? "flex" : "hidden lg:flex"
                 } flex-col h-[78vh] min-h-[560px] sm:min-h-[640px] flex-1 bg-white dark:bg-stone-900 border border-stone-200 dark:border-stone-800 rounded-2xl overflow-hidden shadow-xl p-3 sm:p-3.5`}
               >
-                <h3 className="text-xs font-black text-stone-900 dark:text-stone-100 uppercase tracking-widest mb-1.5 shrink-0 flex items-center justify-between">
-                  <span>💬 Trò chuyện nhóm</span>
+                {/* Sub-tab Navigation Header */}
+                <div className="flex items-center justify-between border-b border-stone-200 dark:border-stone-800 pb-2 mb-2 shrink-0">
+                  <div className="flex items-center gap-1 bg-stone-100 dark:bg-stone-800 p-0.5 rounded-xl border border-stone-200 dark:border-stone-700 text-[10px] font-black">
+                    <button
+                      type="button"
+                      onClick={() => setChatSubTab("chat")}
+                      className={`px-2.5 py-1 rounded-lg transition-all cursor-pointer ${
+                        chatSubTab === "chat" ? "bg-white dark:bg-stone-900 text-emerald-600 dark:text-emerald-400 shadow-xs font-black" : "text-stone-500 hover:text-stone-700"
+                      }`}
+                    >
+                      💬 Trò chuyện
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => setChatSubTab("notes")}
+                      className={`px-2.5 py-1 rounded-lg transition-all cursor-pointer ${
+                        chatSubTab === "notes" ? "bg-white dark:bg-stone-900 text-emerald-600 dark:text-emerald-400 shadow-xs font-black" : "text-stone-500 hover:text-stone-700"
+                      }`}
+                    >
+                      📌 Ghi chú ({stickyNotes.length})
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => setChatSubTab("quiz")}
+                      className={`px-2.5 py-1 rounded-lg transition-all cursor-pointer ${
+                        chatSubTab === "quiz" ? "bg-white dark:bg-stone-900 text-emerald-600 dark:text-emerald-400 shadow-xs font-black" : "text-stone-500 hover:text-stone-700"
+                      }`}
+                    >
+                      ⚡ Quiz Nhóm
+                    </button>
+                  </div>
                   <span className="text-[10px] font-bold text-emerald-600 dark:text-emerald-400 bg-emerald-50 dark:bg-emerald-950/60 px-2 py-0.5 rounded-full border border-emerald-200 dark:border-emerald-800">
                     Live
                   </span>
-                </h3>
-                <div className="mb-2 px-2.5 py-1 rounded-xl bg-emerald-50 dark:bg-emerald-950/30 border border-emerald-200 dark:border-emerald-900 shrink-0 text-[10px] text-emerald-800 dark:text-emerald-300 font-semibold flex items-center gap-1">
-                  <span>💡</span>
-                  <span>Nhắn 1 tin nhắn bất kỳ lên chat để tự động ghi nhận điểm danh nhóm hôm nay!</span>
                 </div>
-                {pinnedMessage && (
-                  <div className="mb-2 px-3 py-1.5 rounded-xl bg-amber-50 dark:bg-amber-950/30 border border-amber-200 dark:border-amber-900 shrink-0">
-                    <p className="text-[9px] font-extrabold text-amber-700 dark:text-amber-400">Tài Tài · Quản lý nhóm · Đã ghim</p>
-                    <p className="text-[11px] text-stone-800 dark:text-stone-200 leading-snug truncate">{pinnedMessage.content}</p>
-                  </div>
-                )}
-                <div className="flex-1 min-h-0 overflow-y-auto rounded-xl border border-stone-200 dark:border-stone-800 bg-stone-50/50 dark:bg-stone-950/40 p-3 space-y-2.5">
+                {chatSubTab === "chat" && (
+                  <div className="flex-1 flex flex-col min-h-0">
+                    <div className="mb-2 px-2.5 py-1 rounded-xl bg-emerald-50 dark:bg-emerald-950/30 border border-emerald-200 dark:border-emerald-900 shrink-0 text-[10px] text-emerald-800 dark:text-emerald-300 font-semibold flex items-center gap-1">
+                      <span>💡</span>
+                      <span>Nhắn 1 tin nhắn bất kỳ lên chat để tự động ghi nhận điểm danh nhóm hôm nay!</span>
+                    </div>
+                    {pinnedMessage && (
+                      <div className="mb-2 px-3 py-1.5 rounded-xl bg-amber-50 dark:bg-amber-950/30 border border-amber-200 dark:border-amber-900 shrink-0">
+                        <p className="text-[9px] font-extrabold text-amber-700 dark:text-amber-400">Tài Tài · Quản lý nhóm · Đã ghim</p>
+                        <p className="text-[11px] text-stone-800 dark:text-stone-200 leading-snug truncate">{pinnedMessage.content}</p>
+                      </div>
+                    )}
+                    <div className="flex-1 min-h-0 overflow-y-auto rounded-xl border border-stone-200 dark:border-stone-800 bg-stone-50/50 dark:bg-stone-950/40 p-3 space-y-2.5">
               {scrollMessages.length === 0 ? (
                 <p className="text-xs text-stone-400 dark:text-stone-500 text-center py-8">
                   Chưa có tin nhắn nào. Chào các thành viên trong nhóm nhé!
@@ -1102,10 +1229,144 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
                 <Send className="w-4 h-4" />
               </button>
             </div>
-            </div>
+          </div>
+        )}
+
+        {chatSubTab === "notes" && (
+          <div className="flex-1 flex flex-col min-h-0 space-y-3">
+            <div className="flex items-center gap-2 shrink-0">
+              <input
+                type="text"
+                value={newNoteText}
+                onChange={(e) => setNewNoteText(e.target.value)}
+                placeholder="Dán ghi chú công thức hoặc mẹo học cho cả nhóm..."
+                className="flex-1 px-3 py-2 rounded-xl border border-stone-200 dark:border-stone-800 bg-stone-50 dark:bg-stone-950 text-xs text-stone-900 dark:text-stone-100 placeholder:text-stone-400 focus:outline-none"
+              />
+              <button
+                type="button"
+                onClick={() => {
+                  if (!newNoteText.trim()) return;
+                  setStickyNotes((prev) => [
+                    ...prev,
+                    {
+                      id: `note-${Date.now()}`,
+                      author: user?.id ? "Bạn" : "Thành viên",
+                      content: newNoteText.trim(),
+                      color: "bg-emerald-50 dark:bg-emerald-950/60 border-emerald-200 dark:border-emerald-800 text-emerald-900 dark:text-emerald-200",
+                      createdAt: "Vừa xong",
+                    },
+                  ]);
+                  setNewNoteText("");
+                  toast.success("Đã dán ghi chú mới lên bảng nhóm!");
+                }}
+                className="px-3 py-2 rounded-xl bg-emerald-600 text-white font-black text-xs hover:bg-emerald-500 cursor-pointer shrink-0"
+              >
+                + Dán Ghi Chú
+              </button>
             </div>
 
-            {/* Bottom Group Daily Recommended Lesson Widget */}
+            <div className="flex-1 overflow-y-auto space-y-2.5 pr-1">
+              {stickyNotes.map((note) => (
+                <div key={note.id} className={`p-3 rounded-2xl border ${note.color} text-xs space-y-1 shadow-xs`}>
+                  <div className="flex items-center justify-between font-black text-[10px] opacity-80">
+                    <span>📌 {note.author}</span>
+                    <span>{note.createdAt}</span>
+                  </div>
+                  <p className="font-semibold leading-relaxed">{note.content}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
+
+        {chatSubTab === "quiz" && (
+          <div className="flex-1 flex flex-col min-h-0 overflow-y-auto p-1 space-y-3">
+            <div className="p-3.5 rounded-2xl bg-gradient-to-r from-amber-500/15 via-emerald-500/15 to-teal-500/15 border border-amber-500/40 text-xs space-y-1 shrink-0">
+              <p className="font-black text-stone-900 dark:text-stone-100 flex items-center gap-1.5">
+                <span>⚡ THỬ THÁCH 3 PHÚT NHÓM HÔM NAY</span>
+                <span className="px-2 py-0.5 rounded-full bg-amber-500 text-stone-950 text-[9px]">Thưởng Rương +150 XP</span>
+              </p>
+              <p className="text-stone-600 dark:text-stone-300 text-[11px]">
+                Cả nhóm đạt ≥ 80% điểm câu hỏi đúng để cùng mở Rương Kho Báu 3D!
+              </p>
+            </div>
+
+            {!groupQuizSubmitted ? (
+              <div className="space-y-4">
+                {groupQuizQuestions.map((q, qIdx) => (
+                  <div key={qIdx} className="p-3 rounded-2xl border border-stone-200 dark:border-stone-800 bg-stone-50 dark:bg-stone-950/50 space-y-2 text-xs">
+                    <p className="font-black text-stone-900 dark:text-stone-100">
+                      Câu {qIdx + 1}: {q.q}
+                    </p>
+                    <div className="space-y-1.5">
+                      {q.options.map((opt, optIdx) => (
+                        <button
+                          key={optIdx}
+                          type="button"
+                          onClick={() => setGroupQuizAnswers((prev) => ({ ...prev, [qIdx]: optIdx }))}
+                          className={`w-full text-left p-2 rounded-xl text-[11px] font-bold border transition-all cursor-pointer ${
+                            groupQuizAnswers[qIdx] === optIdx
+                              ? "bg-emerald-500 text-stone-950 border-emerald-400 font-black"
+                              : "bg-white dark:bg-stone-900 border-stone-200 dark:border-stone-800 text-stone-700 dark:text-stone-300"
+                          }`}
+                        >
+                          {opt}
+                        </button>
+                      ))}
+                    </div>
+                  </div>
+                ))}
+
+                <button
+                  type="button"
+                  onClick={() => {
+                    let correct = 0;
+                    groupQuizQuestions.forEach((q, idx) => {
+                      if (groupQuizAnswers[idx] === q.correct) correct++;
+                    });
+                    const score = Math.round((correct / groupQuizQuestions.length) * 100);
+                    setGroupQuizScore(score);
+                    setGroupQuizSubmitted(true);
+                    if (score >= 80) {
+                      setIsChestUnlocked(true);
+                      toast.success(`🎉 Xuất sắc! Nhóm đạt ${score}% điểm! Đã mở Rương Kho Báu 3D +150 XP!`);
+                    } else {
+                      toast.error(`Rất tiếc! Nhóm đạt ${score}% (Cần ≥ 80%). Thử làm lại nhé!`);
+                    }
+                  }}
+                  disabled={Object.keys(groupQuizAnswers).length < groupQuizQuestions.length}
+                  className="w-full py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 disabled:opacity-40 text-white font-black text-xs transition-all cursor-pointer shadow-md"
+                >
+                  Nộp Bài Thi Nhóm
+                </button>
+              </div>
+            ) : (
+              <div className="py-6 text-center space-y-3">
+                <div className="text-4xl">{groupQuizScore && groupQuizScore >= 80 ? "🎁" : "💪"}</div>
+                <h4 className="font-black text-sm text-stone-900 dark:text-stone-100">
+                  Kết quả Quiz Nhóm: {groupQuizScore}%
+                </h4>
+                <p className="text-xs text-stone-500 dark:text-stone-400">
+                  {groupQuizScore && groupQuizScore >= 80 ? "Cả phòng đã xuất sắc chinh phục thử thách & mở Rương 3D!" : "Hãy ôn lại kiến thức và bấm thi lại bên dưới!"}
+                </p>
+                <button
+                  type="button"
+                  onClick={() => {
+                    setGroupQuizSubmitted(false);
+                    setGroupQuizAnswers({});
+                  }}
+                  className="px-4 py-2 rounded-xl bg-stone-900 dark:bg-stone-100 text-white dark:text-stone-900 text-xs font-black cursor-pointer"
+                >
+                  Thử Lại
+                </button>
+              </div>
+            )}
+          </div>
+        )}
+              </div>
+            </div>
+
+      {/* Bottom Group Daily Recommended Lesson Widget */}
             <div className="bg-gradient-to-r from-emerald-950 via-stone-900 to-emerald-950 border border-emerald-500/30 rounded-2xl p-3 sm:p-3.5 shrink-0 flex flex-col sm:flex-row items-center justify-between gap-3 text-white shadow-lg">
               <div className="flex items-center gap-3">
                 <span className="w-9 h-9 rounded-xl bg-emerald-500/20 text-emerald-400 border border-emerald-400/40 flex items-center justify-center text-lg shrink-0 shadow-xs">
