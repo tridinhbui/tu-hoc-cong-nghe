@@ -12,7 +12,7 @@ function isMissingTableError(error: { code?: string; message?: string } | null):
   return isDbMissing || isNetworkOrConnection;
 }
 
-export type ChestSource = "weekly_quest" | "milestone_exam" | "daily_login" | "shop_purchase";
+export type ChestSource = "weekly_quest" | "milestone_exam" | "daily_login" | "shop_purchase" | "study_group";
 export type ChestRewardType = "title" | "xp" | "theme";
 
 export interface ChestReward {

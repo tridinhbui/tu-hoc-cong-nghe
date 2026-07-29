@@ -85,30 +85,37 @@ export default function DiagnosticPlacementModal({
     personal: {
       title: "Lộ Trình Tài Chính Cá Nhân",
       desc: "Phù hợp nhất cho người mới bắt đầu: Quản lý ngân sách 50/30/20, Quỹ khẩn cấp & Tích sản dài hạn.",
-      url: "/roadmap",
+      url: "/dashboard?track=personal",
       emoji: "🌱",
     },
     professional: {
       title: "Lộ Trình Phân Tích Doanh Nghiệp & Đầu Tư",
       desc: "Phù hợp cho người đã có nền tảng: Đọc BCTC, Phân tích chỉ số tài chính & Chiến lược đầu tư.",
-      url: "/roadmap",
+      url: "/dashboard?track=professional",
       emoji: "💼",
     },
     cfa: {
       title: "Lộ Trình Chuyên Sâu CFA & Corporate Finance",
       desc: "Phù hợp cho định hướng chuyên nghiệp: Mô hình định giá DCF, WACC, LBO & Chứng chỉ CFA Level 1.",
-      url: "/roadmap",
+      url: "/cfa",
       emoji: "🎓",
     },
     ai: {
       title: "Lộ Trình AI For Finance",
       desc: "Phù hợp cho tín đồ công nghệ: Ứng dụng Prompt Engineering & AI Agents trong phân tích tài chính.",
-      url: "/roadmap",
+      url: "/dashboard?track=professional",
       emoji: "🤖",
     },
   };
 
   const rec = trackNames[recommendedTrack];
+
+  const handleDismiss = () => {
+    try {
+      localStorage.setItem(`thtcdn_placement_test_${userId}`, "dismissed");
+    } catch (e) {}
+    onClose();
+  };
 
   const handleComplete = () => {
     try {
@@ -145,8 +152,9 @@ export default function DiagnosticPlacementModal({
             </div>
             <button
               type="button"
-              onClick={onClose}
-              className="p-1 rounded-full text-stone-400 hover:bg-stone-100 dark:hover:bg-stone-800 cursor-pointer"
+              onClick={handleDismiss}
+              className="p-1.5 rounded-full text-stone-400 hover:bg-stone-100 dark:hover:bg-stone-800 cursor-pointer transition-colors"
+              title="Bỏ qua"
             >
               <X className="w-4 h-4" />
             </button>
@@ -161,7 +169,13 @@ export default function DiagnosticPlacementModal({
                   <div className="space-y-4">
                     <div className="flex items-center justify-between text-xs font-black text-stone-400">
                       <span>Câu hỏi {currentIndex + 1} / {DIAGNOSTIC_QUESTIONS.length}</span>
-                      <span className="text-emerald-500 font-bold">Khảo sát nhanh</span>
+                      <button
+                        type="button"
+                        onClick={handleDismiss}
+                        className="text-[11px] font-bold text-stone-400 hover:text-stone-600 dark:hover:text-stone-200 underline cursor-pointer"
+                      >
+                        Để sau
+                      </button>
                     </div>
 
                     <p className="font-extrabold text-base text-stone-900 dark:text-stone-100 leading-snug">

@@ -15,16 +15,16 @@ interface SearchResultItem {
 
 const SAMPLE_LESSONS: SearchResultItem[] = [
   { id: "l-1", category: "lesson", title: "Audit Tài chính Cá nhân & Tích sản", desc: "Đánh giá bức tranh tài sản ròng và dòng tiền cá nhân.", url: "/bai-hoc/audit-tai-chinh-ca-nhan" },
-  { id: "l-2", category: "lesson", title: "Đọc Bảng Cân Đối Kế Toán Doanh Nghiệp", desc: "Tài sản = Nợ phải trả + Vốn chủ sở hữu.", url: "/roadmap" },
-  { id: "l-3", category: "lesson", title: "Phân tích Định giá Cổ phiếu DCF", desc: "Chiết khấu dòng tiền tự do FCF về hiện tại.", url: "/roadmap" },
-  { id: "l-4", category: "lesson", title: "Chi phí vốn WACC & Cấu trúc Nợ", desc: "Tính toán chi phí vốn bình quân gia quyền.", url: "/roadmap" },
+  { id: "l-2", category: "lesson", title: "Đọc Bảng Cân Đối Kế Toán Doanh Nghiệp", desc: "Tài sản = Nợ phải trả + Vốn chủ sở hữu.", url: "/dashboard" },
+  { id: "l-3", category: "lesson", title: "Phân tích Định giá Cổ phiếu DCF", desc: "Chiết khấu dòng tiền tự do FCF về hiện tại.", url: "/dashboard" },
+  { id: "l-4", category: "lesson", title: "Chi phí vốn WACC & Cấu trúc Nợ", desc: "Tính toán chi phí vốn bình quân gia quyền.", url: "/dashboard" },
 ];
 
 const SAMPLE_GLOSSARY: SearchResultItem[] = [
   { id: "g-dcf", category: "glossary", title: "DCF (Discounted Cash Flow)", desc: "Phương pháp chiết khấu dòng tiền tự do về hiện tại để định giá doanh nghiệp.", url: "/cong-cu" },
   { id: "g-wacc", category: "glossary", title: "WACC (Weighted Average Cost of Capital)", desc: "Chi phí vốn bình quân gia quyền đại diện cho tỷ lệ sinh lời tối thiểu cần đạt.", url: "/cong-cu" },
-  { id: "g-pe", category: "glossary", title: "P/E (Price to Earnings)", desc: "Hệ số giữa giá cổ phiếu và lợi nhuận trên mỗi cổ phiếu.", url: "/roadmap" },
-  { id: "g-roe", category: "glossary", title: "ROE (Return on Equity)", desc: "Tỷ suất lợi nhuận trên vốn chủ sở hữu đo lường hiệu quả sử dụng vốn.", url: "/roadmap" },
+  { id: "g-pe", category: "glossary", title: "P/E (Price to Earnings)", desc: "Hệ số giữa giá cổ phiếu và lợi nhuận trên mỗi cổ phiếu.", url: "/tai-lieu" },
+  { id: "g-roe", category: "glossary", title: "ROE (Return on Equity)", desc: "Tỷ suất lợi nhuận trên vốn chủ sở hữu đo lường hiệu quả sử dụng vốn.", url: "/tai-lieu" },
 ];
 
 const SAMPLE_TOOLS: SearchResultItem[] = [

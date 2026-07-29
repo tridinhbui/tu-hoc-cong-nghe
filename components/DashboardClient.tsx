@@ -853,7 +853,6 @@ export default function DashboardClient({ lessonsMeta }: { lessonsMeta: LessonMe
 
         {/* ── Unified Dashboard Grid ── */}
         <div className="max-w-6xl mx-auto space-y-5 min-w-0">
-          <TopicMasteryWidget />
 
           {user?.id && (() => {
             const currentUserLevel = getLevelByXp(userXp, cfaCompletedForLevel).level;

@@ -30,6 +30,7 @@ set xp_earned = case quest_type
   when 'daily_game' then 0
   when 'daily_news_quiz' then 15
   when 'career_assessment' then 50
+  -- weekly_chest / weekly_epic and anything unrecognized are ledger-only.
   else 0
 end
 where xp_earned is distinct from case quest_type
@@ -51,9 +52,20 @@ do $$ begin
 exception when duplicate_object then null;
 end $$;
 
--- app/api/quests/claim/route.ts is the only writer now (service-role).
-revoke insert on public.user_quest_completions from authenticated;
+-- INSERT is not revoked outright the way it was for user_quiz_sessions,
+-- because three call sites legitimately use this table as a plain
+-- idempotency ledger with xp_earned = 0 - the weekly chest in
+-- components/DailyQuestsWidget.tsx and the weekly chest/epic reward in
+-- components/CombinedRewardsWidget.tsx. They claim cosmetic rewards, not XP.
+--
+-- So the client keeps INSERT, but the policy pins the amount to zero. Any
+-- row that actually carries XP has to come from app/api/quests/claim, which
+-- writes with the service-role client and derives the number from
+-- lib/quest-rewards.ts.
 drop policy if exists "Users can insert their own quest completions" on public.user_quest_completions;
+create policy "Users can insert their own zero-XP quest ledger rows"
+  on public.user_quest_completions for insert
+  with check (auth.uid() = user_id and xp_earned = 0);
 
 -- 2. Lesson recalls -----------------------------------------------------
 

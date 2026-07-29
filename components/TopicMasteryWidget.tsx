@@ -5,7 +5,7 @@ import Link from "next/link";
 import { DOMAIN_NAMES, type DomainType } from "@/lib/levels";
 import { BrainCircuit, CheckCircle2, AlertCircle, ArrowRight, Sparkles } from "lucide-react";
 
-export default function TopicMasteryWidget() {
+export default function TopicMasteryWidget({ compact = false }: { compact?: boolean }) {
   // Mastery scores inspired by user's actual progress stats
   const [mastery] = useState<Record<DomainType, { score: number; level: string; totalLessons: number; done: number }>>({
     accounting: { score: 85, level: "Thành thục", totalLessons: 12, done: 10 },
@@ -18,29 +18,29 @@ export default function TopicMasteryWidget() {
   });
 
   return (
-    <div className="p-5 rounded-3xl bg-white dark:bg-stone-900 border border-stone-200 dark:border-stone-800 shadow-sm space-y-4 font-sans">
+    <div className={`rounded-3xl bg-white dark:bg-stone-900 border border-stone-200 dark:border-stone-800 shadow-sm space-y-4 font-sans ${compact ? "p-3.5 mt-3" : "p-5"}`}>
       <div className="flex items-center justify-between border-b border-stone-100 dark:border-stone-800 pb-3">
         <div className="flex items-center gap-2">
-          <span className="flex h-9 w-9 items-center justify-center rounded-xl bg-purple-100 dark:bg-purple-950/80 text-purple-600 dark:text-purple-400">
-            <BrainCircuit className="w-5 h-5" />
+          <span className="flex h-8 w-8 items-center justify-center rounded-xl bg-purple-100 dark:bg-purple-950/80 text-purple-600 dark:text-purple-400 shrink-0">
+            <BrainCircuit className="w-4 h-4" />
           </span>
           <div>
-            <h3 className="text-sm font-black text-stone-900 dark:text-stone-100">
-              Bản Đồ Độ Thành Thạo Kiến Thức (Topic Mastery)
+            <h3 className="text-xs sm:text-sm font-black text-stone-900 dark:text-stone-100 leading-snug">
+              Bản Đồ Độ Thành Thạo Kiến Thức
             </h3>
-            <p className="text-[11px] font-bold text-stone-400">Tự động phân tích điểm mạnh & điểm yếu</p>
+            <p className="text-[10px] font-bold text-stone-400">Phân tích điểm mạnh & điểm yếu cá nhân</p>
           </div>
         </div>
 
         <Link
-          href="/roadmap"
-          className="text-xs font-black text-emerald-600 dark:text-emerald-400 hover:underline flex items-center gap-1"
+          href="/analytics"
+          className="text-[11px] font-black text-emerald-600 dark:text-emerald-400 hover:underline flex items-center gap-1 shrink-0"
         >
-          Xem Lộ Trình <ArrowRight className="w-3.5 h-3.5" />
+          Chi tiết <ArrowRight className="w-3 h-3" />
         </Link>
       </div>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+      <div className={`grid gap-2.5 ${compact ? "grid-cols-1" : "grid-cols-1 sm:grid-cols-2"}`}>
         {(Object.entries(mastery) as [DomainType, typeof mastery[DomainType]][]).map(([key, item]) => {
           const isHigh = item.score >= 80;
           const isLow = item.score < 50;
@@ -48,14 +48,14 @@ export default function TopicMasteryWidget() {
           return (
             <div
               key={key}
-              className="p-3.5 rounded-2xl border border-stone-200 dark:border-stone-800 bg-stone-50/70 dark:bg-stone-950/50 space-y-2"
+              className="p-3 rounded-2xl border border-stone-200 dark:border-stone-800 bg-stone-50/70 dark:bg-stone-950/50 space-y-1.5"
             >
               <div className="flex items-center justify-between">
-                <span className="text-xs font-black text-stone-900 dark:text-stone-100">
+                <span className="text-[11px] font-black text-stone-900 dark:text-stone-100 truncate max-w-[170px]">
                   {DOMAIN_NAMES[key]}
                 </span>
                 <span
-                  className={`px-2 py-0.5 rounded-full text-[10px] font-black uppercase border ${
+                  className={`px-2 py-0.5 rounded-full text-[9px] font-black uppercase border ${
                     isHigh
                       ? "bg-emerald-100 dark:bg-emerald-950 text-emerald-700 dark:text-emerald-300 border-emerald-300 dark:border-emerald-800"
                       : isLow
@@ -68,7 +68,7 @@ export default function TopicMasteryWidget() {
               </div>
 
               {/* Progress fill */}
-              <div className="h-2 w-full rounded-full bg-stone-200 dark:bg-stone-800 overflow-hidden">
+              <div className="h-1.5 w-full rounded-full bg-stone-200 dark:bg-stone-800 overflow-hidden">
                 <div
                   style={{ width: `${item.score}%` }}
                   className={`h-full rounded-full transition-all duration-500 ${
@@ -77,9 +77,9 @@ export default function TopicMasteryWidget() {
                 />
               </div>
 
-              <div className="flex items-center justify-between text-[10px] text-stone-400 font-bold">
+              <div className="flex items-center justify-between text-[9px] text-stone-400 font-bold">
                 <span>Đã làm: {item.done} / {item.totalLessons} bài</span>
-                {isLow && <span className="text-rose-500 font-black">Khuyên dùng: Ôn lại</span>}
+                {isLow && <span className="text-rose-500 font-black">Nên ôn lại</span>}
               </div>
             </div>
           );

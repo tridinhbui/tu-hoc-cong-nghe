@@ -51,6 +51,7 @@ const LEVEL_EMOJIS: Record<number, string> = {
 
 import RigorousLevelExamModal from "@/components/RigorousLevelExamModal";
 import { LEVEL_EXAMS } from "@/lib/level-exams";
+import TopicMasteryWidget from "@/components/TopicMasteryWidget";
 
 export default function UserStats({
   xp,
@@ -429,6 +430,11 @@ export default function UserStats({
           </button>
         </div>
       )}
+
+      {/* Embedded Topic Mastery Heatmap within Personal Stats */}
+      <div className="relative z-10 pt-2 border-t border-stone-100 dark:border-stone-800/80">
+        <TopicMasteryWidget compact={true} />
+      </div>
 
       {showExamModal && userId && (
         <RigorousLevelExamModal

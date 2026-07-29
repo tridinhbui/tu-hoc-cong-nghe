@@ -39,7 +39,6 @@ import {
 } from "@/lib/supabase-study-rooms";
 import { trackFeatureClick } from "@/lib/feature-events";
 import { isValidAvatar } from "@/lib/avatar-utils";
-import type { ChallengeQuestion } from "@/app/api/knowledge-challenge/route";
 import {
   type StudyRoomMission,
   type StudyRoomMember,
@@ -779,10 +778,7 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
                   <span className="text-stone-900 dark:text-stone-100 font-extrabold">{formatPomoTime(pomoSeconds)}</span>
                   <button
                     type="button"
-                    onClick={() => {
-                      setPomoRunning((prev) => !prev);
-                      toast.info(pomoRunning ? "⏸️ Đã tạm dừng Pomodoro nhóm" : "▶️ Bắt đầu phiên đếm ngược Pomodoro nhóm 25 phút!");
-                    }}
+                    onClick={() => void handleTogglePomodoro()}
                     className="ml-0.5 text-[9px] font-black uppercase text-emerald-600 dark:text-emerald-400 hover:underline cursor-pointer"
                   >
                     {pomoRunning ? "Tạm dừng" : "Bắt đầu"}
@@ -862,23 +858,57 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
                 </span>
                 <div>
                   <p className="font-extrabold text-stone-900 dark:text-stone-100 flex items-center gap-1.5">
-                    <span>Hướng dẫn Điểm Danh Nhóm Học:</span>
+                    <span>Nhiệm vụ tuần của phòng học</span>
                     <span className="text-[10px] font-black text-amber-700 dark:text-amber-300 bg-amber-100 dark:bg-amber-950/80 px-2 py-0.5 rounded-full border border-amber-300 dark:border-amber-800">
-                      Tự động 100%
+                      {isPermanentRoom ? "Nhóm vĩnh viễn" : `${groupStreakWeeks}/3 tuần streak`}
                     </span>
                   </p>
                   <p className="text-stone-600 dark:text-stone-300 text-[11px] leading-tight mt-0.5">
-                    👉 Chỉ cần <strong>nhắn ít nhất 1 tin nhắn vào khung Chat nhóm</strong> (hoặc bấm nút <strong>Cổ vũ 👋 ❤️ 🔥</strong> trên bàn 3D) để tự động điểm danh &amp; cộng tiến độ rương thưởng nhóm hôm nay!
+                    Hoàn thành 3 nhiệm vụ để mở rương nhóm. Nhắn chat, dán note, làm quiz hoặc bật Pomodoro đều được tính là hoạt động nhóm.
                   </p>
                 </div>
               </div>
               <button
                 type="button"
-                onClick={() => void handleQuickCheer("👋 Đã điểm danh phòng học hôm nay! Chúc cả nhóm học tốt nhé!")}
+                onClick={() => void handleManualCheckin()}
                 className="px-3 py-1.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-black transition-all shadow-xs cursor-pointer shrink-0 active:scale-95 flex items-center gap-1"
               >
                 <span>👋 Bấm điểm danh ngay</span>
               </button>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-2.5">
+              {missions.length === 0 ? (
+                <div className="md:col-span-3 rounded-2xl border border-dashed border-stone-300 dark:border-stone-700 bg-stone-50 dark:bg-stone-900 px-4 py-3 text-xs font-bold text-stone-500 dark:text-stone-400">
+                  Chưa có dữ liệu nhiệm vụ tuần. Sau khi chạy migration mới, tiến độ sẽ tự lấy từ Supabase.
+                </div>
+              ) : (
+                missions.map((mission) => {
+                  const pct = Math.min(100, Math.round((mission.current_value / Math.max(1, mission.target_value)) * 100));
+                  return (
+                    <div key={mission.mission_key} className="rounded-2xl border border-stone-200 dark:border-stone-800 bg-white dark:bg-stone-900 px-3.5 py-3 shadow-xs">
+                      <div className="flex items-start justify-between gap-2">
+                        <div className="min-w-0">
+                          <p className="text-xs font-black text-stone-900 dark:text-stone-100 truncate">
+                            {missionIcon(mission.mission_key)} {mission.title}
+                          </p>
+                          <p className="text-[10px] text-stone-500 dark:text-stone-400 mt-0.5 line-clamp-2">{mission.description}</p>
+                        </div>
+                        <span className={`text-[10px] font-black px-2 py-0.5 rounded-full border shrink-0 ${
+                          mission.completed
+                            ? "bg-emerald-50 dark:bg-emerald-950 text-emerald-700 dark:text-emerald-300 border-emerald-200 dark:border-emerald-800"
+                            : "bg-amber-50 dark:bg-amber-950 text-amber-700 dark:text-amber-300 border-amber-200 dark:border-amber-800"
+                        }`}>
+                          {mission.current_value}/{mission.target_value}
+                        </span>
+                      </div>
+                      <div className="mt-2 h-2 rounded-full bg-stone-100 dark:bg-stone-800 overflow-hidden">
+                        <div className="h-full rounded-full bg-emerald-500 transition-all duration-500" style={{ width: `${pct}%` }} />
+                      </div>
+                    </div>
+                  );
+                })
+              )}
             </div>
 
             {/* Main 2-Column Split View */}
@@ -1004,16 +1034,18 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
                         type="button"
                         onClick={(e) => {
                           e.stopPropagation();
-                          setIsChestUnlocked(true);
-                          toast.success("🎁 Đã mở Rương Nhiệm Vụ Nhóm! Cả phòng được thưởng +150 XP Bonus 🎉");
+                          void handleClaimGroupReward();
                         }}
+                        disabled={!allMissionsDone || rewardClaimed || claimingReward}
                         className={`mt-1 inline-flex items-center gap-1 text-[8px] font-extrabold px-2 py-0.5 rounded-full border transition-all cursor-pointer ${
-                          isChestUnlocked
+                          rewardClaimed || isChestUnlocked
                             ? "bg-amber-500 text-stone-950 border-amber-300 shadow-md"
+                            : !allMissionsDone
+                            ? "bg-stone-900/90 text-stone-500 border-stone-700 cursor-not-allowed"
                             : "bg-emerald-950/90 text-emerald-300 border-emerald-400/40 hover:bg-emerald-800"
                         }`}
                       >
-                        <span>{isChestUnlocked ? "👑 Rương Đã Mở" : "🎁 Nhận Rương XP"}</span>
+                        <span>{rewardClaimed || isChestUnlocked ? "👑 Rương Đã Mở" : claimingReward ? "Đang mở..." : "🎁 Nhận Rương"}</span>
                       </button>
                     </div>
                   </motion.div>
@@ -1090,7 +1122,10 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
                             <p className="text-[9px] font-black text-white truncate max-w-[64px]" title={member.full_name || "Thành viên"}>
                               {member.full_name || "Thành viên"}{isMe ? " (Bạn)" : ""}
                             </p>
-                            <span className="text-[8px] font-extrabold text-emerald-400 mt-0.5">
+                            <span className="text-[7px] font-black text-amber-300 mt-0.5 truncate max-w-[70px]">
+                              {memberRole(member)}
+                            </span>
+                            <span className="text-[8px] font-extrabold text-emerald-400">
                               🔥 {member.weekly_lessons} bài
                             </span>
                           </motion.div>
@@ -1252,7 +1287,7 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
                                   <button
                                     key={emoji}
                                     onClick={() => {
-                                      toggleReaction(msg.id, emoji);
+                                      void toggleReaction(msg.id, emoji);
                                       setActiveMenuMsgId(null);
                                     }}
                                     className="hover:scale-130 transition-transform p-0.5"
@@ -1344,7 +1379,7 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
                             return (
                               <button
                                 key={emoji}
-                                onClick={() => toggleReaction(msg.id, emoji)}
+                                onClick={() => void toggleReaction(msg.id, emoji)}
                                 className={`inline-flex items-center gap-1 text-[10px] font-bold px-2 py-0.5 rounded-full border transition-all ${
                                   hasMyReaction
                                     ? "bg-emerald-50 dark:bg-emerald-950 border-emerald-300 text-emerald-700 dark:text-emerald-300 shadow-2xs"
@@ -1445,22 +1480,7 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
               />
               <button
                 type="button"
-                onClick={() => {
-                  if (!newNoteText.trim()) return;
-                  setStickyNotes((prev) => [
-                    ...prev,
-                    {
-                      id: Date.now(),
-                      room_id: myRoom?.room_id || 1,
-                      author_id: user?.id || "anon",
-                      content: `${user?.id ? "Bạn: " : ""}${newNoteText.trim()}`,
-                      color: "bg-emerald-50 dark:bg-emerald-950/60 border-emerald-200 dark:border-emerald-800 text-emerald-900 dark:text-emerald-200",
-                      created_at: new Date().toISOString(),
-                    },
-                  ]);
-                  setNewNoteText("");
-                  toast.success("Đã dán ghi chú mới lên bảng nhóm!");
-                }}
+                onClick={() => void handleAddNote()}
                 className="px-3 py-2 rounded-xl bg-emerald-600 text-white font-black text-xs hover:bg-emerald-500 cursor-pointer shrink-0"
               >
                 + Dán Ghi Chú
@@ -1468,15 +1488,37 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
             </div>
 
             <div className="flex-1 overflow-y-auto space-y-2.5 pr-1">
-              {stickyNotes.map((note) => (
-                <div key={note.id} className={`p-3 rounded-2xl border ${note.color || "bg-stone-50 dark:bg-stone-900 border-stone-200 dark:border-stone-800"} text-xs space-y-1 shadow-xs`}>
-                  <div className="flex items-center justify-between font-black text-[10px] opacity-80">
-                    <span>📌 Ghi chú</span>
-                    <span>{new Date(note.created_at).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}</span>
-                  </div>
-                  <p className="font-semibold leading-relaxed">{note.content}</p>
+              {stickyNotes.length === 0 ? (
+                <div className="h-full min-h-[180px] rounded-2xl border border-dashed border-stone-300 dark:border-stone-700 bg-stone-50 dark:bg-stone-950 flex items-center justify-center text-center px-6">
+                  <p className="text-xs font-bold text-stone-500 dark:text-stone-400">
+                    Chưa có ghi chú nào. Dán công thức, checklist hoặc câu hỏi để cả phòng cùng thấy.
+                  </p>
                 </div>
-              ))}
+              ) : (
+                stickyNotes.map((note) => {
+                  const author = memberById.get(note.author_id);
+                  const isAuthor = note.author_id === user?.id;
+                  return (
+                    <div key={note.id} className={`p-3 rounded-2xl border ${noteColorClass(note.color)} text-xs space-y-1 shadow-xs`}>
+                      <div className="flex items-center justify-between gap-2 font-black text-[10px] opacity-80">
+                        <span className="truncate">📌 {isAuthor ? "Bạn" : author?.full_name || "Thành viên"}</span>
+                        <span className="shrink-0">{formatShortTime(note.created_at)}</span>
+                      </div>
+                      <p className="font-semibold leading-relaxed whitespace-pre-wrap break-words">{note.content}</p>
+                      {isAuthor && (
+                        <button
+                          type="button"
+                          onClick={() => void handleDeleteNote(note.id)}
+                          className="mt-1 inline-flex items-center gap-1 text-[10px] font-black text-rose-600 dark:text-rose-300 hover:underline"
+                        >
+                          <Trash2 className="w-3 h-3" />
+                          Xóa
+                        </button>
+                      )}
+                    </div>
+                  );
+                })
+              )}
             </div>
           </div>
         )}
@@ -1489,54 +1531,50 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
                 <span className="px-2 py-0.5 rounded-full bg-amber-500 text-stone-950 text-[9px]">Thưởng Rương +150 XP</span>
               </p>
               <p className="text-stone-600 dark:text-stone-300 text-[11px]">
-                Cả nhóm đạt ≥ 80% điểm câu hỏi đúng để cùng mở Rương Kho Báu 3D!
+                Mỗi lần làm quiz sẽ ghi điểm từng thành viên và cộng tiến độ nhiệm vụ quiz tuần.
               </p>
             </div>
 
             {!groupQuizSubmitted ? (
               <div className="space-y-4">
-                {groupQuizQuestions.map((q, qIdx) => (
-                  <div key={qIdx} className="p-3 rounded-2xl border border-stone-200 dark:border-stone-800 bg-stone-50 dark:bg-stone-950/50 space-y-2 text-xs">
-                    <p className="font-black text-stone-900 dark:text-stone-100">
-                      Câu {qIdx + 1}: {q.question || (q as unknown as { q: string }).q}
-                    </p>
-                    <div className="space-y-1.5">
-                      {q.options.map((opt, optIdx) => (
-                        <button
-                          key={optIdx}
-                          type="button"
-                          onClick={() => setGroupQuizAnswers((prev) => ({ ...prev, [qIdx]: optIdx }))}
-                          className={`w-full text-left p-2 rounded-xl text-[11px] font-bold border transition-all cursor-pointer ${
-                            groupQuizAnswers[qIdx] === optIdx
-                              ? "bg-emerald-500 text-stone-950 border-emerald-400 font-black"
-                              : "bg-white dark:bg-stone-900 border-stone-200 dark:border-stone-800 text-stone-700 dark:text-stone-300"
-                          }`}
-                        >
-                          {opt}
-                        </button>
-                      ))}
-                    </div>
+                {loadingGroupQuiz ? (
+                  <div className="rounded-2xl border border-stone-200 dark:border-stone-800 bg-stone-50 dark:bg-stone-950 p-6 text-center text-xs font-bold text-stone-500">
+                    Đang lấy câu hỏi cho phòng...
                   </div>
-                ))}
+                ) : groupQuizQuestions.length === 0 ? (
+                  <div className="rounded-2xl border border-dashed border-stone-300 dark:border-stone-700 bg-stone-50 dark:bg-stone-950 p-6 text-center text-xs font-bold text-stone-500">
+                    Chưa có câu hỏi phù hợp cho chủ đề này.
+                  </div>
+                ) : (
+                  groupQuizQuestions.map((q, qIdx) => (
+                    <div key={`${q.lessonId}-${qIdx}`} className="p-3 rounded-2xl border border-stone-200 dark:border-stone-800 bg-stone-50 dark:bg-stone-950/50 space-y-2 text-xs">
+                      <p className="font-black text-stone-900 dark:text-stone-100">
+                        Câu {qIdx + 1}: {q.question}
+                      </p>
+                      <div className="space-y-1.5">
+                        {q.options.map((opt, optIdx) => (
+                          <button
+                            key={optIdx}
+                            type="button"
+                            onClick={() => setGroupQuizAnswers((prev) => ({ ...prev, [qIdx]: optIdx }))}
+                            className={`w-full text-left p-2 rounded-xl text-[11px] font-bold border transition-all cursor-pointer ${
+                              groupQuizAnswers[qIdx] === optIdx
+                                ? "bg-emerald-500 text-stone-950 border-emerald-400 font-black"
+                                : "bg-white dark:bg-stone-900 border-stone-200 dark:border-stone-800 text-stone-700 dark:text-stone-300"
+                            }`}
+                          >
+                            {opt}
+                          </button>
+                        ))}
+                      </div>
+                    </div>
+                  ))
+                )}
 
                 <button
                   type="button"
-                  onClick={() => {
-                    let correct = 0;
-                    groupQuizQuestions.forEach((q, idx) => {
-                      if (groupQuizAnswers[idx] === q.correct) correct++;
-                    });
-                    const score = Math.round((correct / groupQuizQuestions.length) * 100);
-                    setGroupQuizScore(score);
-                    setGroupQuizSubmitted(true);
-                    if (score >= 80) {
-                      setIsChestUnlocked(true);
-                      toast.success(`🎉 Xuất sắc! Nhóm đạt ${score}% điểm! Đã mở Rương Kho Báu 3D +150 XP!`);
-                    } else {
-                      toast.error(`Rất tiếc! Nhóm đạt ${score}% (Cần ≥ 80%). Thử làm lại nhé!`);
-                    }
-                  }}
-                  disabled={Object.keys(groupQuizAnswers).length < groupQuizQuestions.length}
+                  onClick={() => void handleSubmitGroupQuiz()}
+                  disabled={loadingGroupQuiz || groupQuizQuestions.length === 0 || Object.keys(groupQuizAnswers).length < groupQuizQuestions.length}
                   className="w-full py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 disabled:opacity-40 text-white font-black text-xs transition-all cursor-pointer shadow-md"
                 >
                   Nộp Bài Thi Nhóm
@@ -1549,7 +1587,7 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
                   Kết quả Quiz Nhóm: {groupQuizScore}%
                 </h4>
                 <p className="text-xs text-stone-500 dark:text-stone-400">
-                  {groupQuizScore && groupQuizScore >= 80 ? "Cả phòng đã xuất sắc chinh phục thử thách & mở Rương 3D!" : "Hãy ôn lại kiến thức và bấm thi lại bên dưới!"}
+                  {groupQuizScore && groupQuizScore >= 80 ? "Điểm rất ổn. Lượt này đã được lưu vào bảng quiz nhóm." : "Lượt này vẫn được tính vào nhiệm vụ quiz tuần, làm lại để cải thiện accuracy nhé."}
                 </p>
                 <button
                   type="button"
@@ -1561,6 +1599,24 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
                 >
                   Thử Lại
                 </button>
+              </div>
+            )}
+            {quizAttempts.length > 0 && (
+              <div className="rounded-2xl border border-stone-200 dark:border-stone-800 bg-stone-50 dark:bg-stone-950/50 p-3 space-y-2">
+                <p className="text-[10px] font-black uppercase tracking-widest text-stone-500 dark:text-stone-400">Điểm quiz tuần này</p>
+                {quizAttempts.slice(0, 5).map((attempt) => {
+                  const member = memberById.get(attempt.user_id);
+                  return (
+                    <div key={attempt.id} className="flex items-center justify-between gap-2 text-xs">
+                      <span className="font-bold text-stone-700 dark:text-stone-200 truncate">
+                        {attempt.user_id === user?.id ? "Bạn" : member?.full_name || "Thành viên"}
+                      </span>
+                      <span className="font-black text-emerald-600 dark:text-emerald-400 shrink-0">
+                        {attempt.score}/{attempt.total} · {attempt.percent}%
+                      </span>
+                    </div>
+                  );
+                })}
               </div>
             )}
           </div>
