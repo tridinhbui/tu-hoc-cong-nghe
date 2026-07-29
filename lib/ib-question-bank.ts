@@ -8,6 +8,29 @@ export interface IbQuestion {
   explanation: string;
 }
 
+export interface IbCategoryCount {
+  /** Cleaned for display - a handful of categories (e.g. "Career Changer")
+   *  carry literal quote characters in the source data as emphasis; those
+   *  read as a formatting glitch once rendered as a chip, so strip them. */
+  label: string;
+  count: number;
+}
+
+/** Question count per category, largest first - what the /kiem-tra IB card
+ *  shows so "400 IB Questions" isn't just a number, but a list of the actual
+ *  sections (Accounting, Valuation, DCF, M&A, LBO, behavioral...) a learner
+ *  will be drilled on. */
+export function getIbCategoryCounts(): IbCategoryCount[] {
+  const counts = new Map<string, number>();
+  for (const q of IB_QUESTION_BANK) {
+    const label = q.category.replace(/^"|"$/g, "");
+    counts.set(label, (counts.get(label) ?? 0) + 1);
+  }
+  return Array.from(counts.entries())
+    .map(([label, count]) => ({ label, count }))
+    .sort((a, b) => b.count - a.count);
+}
+
 export const IB_QUESTION_BANK: IbQuestion[] = [
   {
     "id": 1,

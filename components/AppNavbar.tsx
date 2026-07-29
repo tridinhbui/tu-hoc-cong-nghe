@@ -6,7 +6,7 @@ import Image from "next/image";
 import { isValidAvatar } from "@/lib/avatar-utils";
 import { usePathname, useRouter } from "next/navigation";
 import { toast } from "sonner";
-import { FileText, BarChart3, StickyNote, GraduationCap, Gamepad2, Menu, X, Briefcase, Home, Flame, Users, MessageSquareMore, Search, type LucideIcon } from "lucide-react";
+import { FileText, BarChart3, StickyNote, GraduationCap, Gamepad2, Menu, X, Briefcase, BriefcaseBusiness, Home, Flame, Users, MessageSquareMore, Search, type LucideIcon } from "lucide-react";
 import { useI18n } from "@/lib/i18n/context";
 import type { Dictionary } from "@/lib/i18n";
 import LanguageSwitcher from "@/components/LanguageSwitcher";
@@ -49,6 +49,7 @@ const NAV_LINKS: NavLink[] = [
   { href: "/analytics", labelKey: "stats", icon: BarChart3 },
   { href: "/ghi-chu", labelKey: "notes", icon: StickyNote },
   { href: "/kiem-tra", labelKey: "quiz", icon: GraduationCap },
+  { href: "/phong-van-ky-thuat", label: "Technical Interview", icon: BriefcaseBusiness },
   { href: "/nhom-hoc", labelKey: "studyGroup", icon: Users },
   { href: "/finsocial", label: "FinSocial", icon: MessageSquareMore },
   { href: "/su-nghiep", labelKey: "career", icon: Briefcase },
@@ -80,7 +81,7 @@ export default function AppNavbar() {
   const desktopDropdownRef = useRef<HTMLDivElement>(null);
   const mobileDropdownRef = useRef<HTMLDivElement>(null);
 
-  useRoutePrefetch(["/dashboard", "/analytics", "/bxh", "/profile", "/ban-be", "/nhom-hoc", "/finsocial", "/bang-tin", "/cong-dong", "/su-nghiep", "/ghi-chu", "/cong-cu", "/game", "/settings", "/tai-lieu", "/kiem-tra", "/cfa"]);
+  useRoutePrefetch(["/dashboard", "/analytics", "/bxh", "/profile", "/ban-be", "/nhom-hoc", "/finsocial", "/bang-tin", "/cong-dong", "/su-nghiep", "/ghi-chu", "/cong-cu", "/game", "/settings", "/tai-lieu", "/kiem-tra", "/phong-van-ky-thuat", "/cfa"]);
 
   useEffect(() => {
     // Read local storage immediately on mount
