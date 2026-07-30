@@ -829,4 +829,132 @@ export const IB_QUESTION_OVERRIDES: Record<number, IbQuestionOverride> = {
     ],
     correct: 0,
   },
+
+  // ── Valuation - Advanced ──────────────────────────────────────────────
+  260: {
+    options: [
+      "Broadly the same methodologies, but you use P/E and P/BV rather than EV-based multiples because banks have unusual capital structures, and you lean on bank-specific metrics such as Net Asset Value and a dividend discount model rather than a standard DCF.",
+      "Exactly the same as any other company - the methodologies are indifferent to industry, which is what makes them general-purpose.",
+      "Only a liquidation valuation applies, because a bank's value is entirely the sum of the loans on its balance sheet.",
+      "You use EV/EBITDA exclusively, since interest is the bank's core revenue line and must stay inside the metric.",
+    ],
+    correct: 0,
+  },
+  261: {
+    options: [
+      "You use public company comparables only, pick the most relevant multiple to estimate Enterprise Value, work back to Equity Value, then apply an IPO discount of roughly 10-15% and divide by the post-offering share count to get the price per share.",
+      "You run all three methodologies and average them, since an IPO price has to be defensible from every angle.",
+      "You use precedent transactions only, because an IPO is a sale of the company and should be priced off comparable sales.",
+      "You take the last private funding round's valuation and apply the market's average one-year return to it.",
+    ],
+    correct: 0,
+  },
+  262: {
+    options: [
+      "TTM = most recent fiscal year + the new partial period - the same partial period a year earlier. In April you'd take the latest fiscal year, add this year's Q1 and subtract last year's Q1.",
+      "TTM = most recent fiscal year + the new partial period, with no subtraction - the older quarter is already outside the twelve-month window.",
+      "TTM = the sum of the last four quarters reported, which is why calendarisation is only possible for companies reporting quarterly.",
+      "TTM = most recent fiscal year × the fraction of the year elapsed, annualised back up to twelve months.",
+    ],
+    correct: 0,
+  },
+  263: {
+    options: [
+      "You look at what buyers paid over the seller's undisturbed share price in comparable deals - a company trading at $10.00 acquired for $15.00 is a 50% premium - then apply the median premium from that set to your company's current share price.",
+      "You compare the buyer's share price before and after announcement, and the change is the premium paid.",
+      "You measure the gap between the deal price and the target's book value per share, which is the premium over what shareholders originally invested.",
+      "You take the difference between the precedent EBITDA multiple and the trading EBITDA multiple, which is the premium by definition.",
+    ],
+    correct: 0,
+  },
+  264: {
+    options: [
+      "You take the median historical P/E of the comparables, apply it to your company's forward projected EPS to get a future share price, then discount that back to today at the Cost of Equity.",
+      "You project the share price forward using the company's historical share price growth rate, with no discounting - the forecast is already in today's money.",
+      "You apply the forward P/E of the comparables to the company's trailing EPS, which removes the need to forecast anything.",
+      "You discount projected free cash flows at the WACC, which is what produces the implied future share price.",
+    ],
+    correct: 0,
+  },
+  265: {
+    options: [
+      "Every seller in an M&A premiums analysis must be public, since you need an unaffected share price to measure a premium against, and the set is usually much broader with looser industry and financial screens than a precedent transactions set.",
+      "M&A premiums analysis uses only private sellers, since public deals already have the premium reflected in the share price.",
+      "The selection criteria are identical - the two analyses differ only in what you compute from the same set of deals.",
+      "M&A premiums analysis uses a much narrower set, typically three to five deals, because premiums vary too widely to average across many.",
+    ],
+    correct: 0,
+  },
+  266: {
+    options: [
+      "You value each division against its own comparables and transactions, derive a separate multiple for each, and add the division values together to reach the total for the company.",
+      "You value the company as a whole and then allocate that total across divisions in proportion to their EBITDA contribution.",
+      "You apply the parent company's blended multiple to each division's EBITDA, which keeps the analysis internally consistent.",
+      "You value only the largest division and treat the rest as non-operating assets carried at book value.",
+    ],
+    correct: 0,
+  },
+  267: {
+    options: [
+      "You value them on the tax they'll save in future years and discount those savings back to today. Either assume the NOLs offset taxable income until exhausted, or apply the Section 382 annual limit in an acquisition.",
+      "You add the full face value of the NOL balance to Enterprise Value, since it is a tax asset the acquirer receives on closing and can draw against immediately.",
+      "You ignore them entirely - NOLs are a tax attribute disclosed in the footnotes and never bear on the valuation of the underlying operating business.",
+      "You subtract the NOL balance from Enterprise Value, because accumulated losses represent value the company has already destroyed and will never recover.",
+    ],
+    correct: 0,
+  },
+  268: {
+    options: [
+      "Either the report with the most detailed breakdown, or the one whose numbers sit in the middle of the range. You specifically do not pick reports based on which bank published them, including your own.",
+      "You always use your own bank's equity research, since that is the house view your team is expected to represent.",
+      "You use the most bullish report available, because it produces the strongest valuation to present to the client.",
+      "You average every available report, which removes analyst bias from the projections entirely.",
+    ],
+    correct: 0,
+  },
+  269: {
+    options: [
+      "Search the financial press and press releases, look at equity research covering the buyer around the announcement for analyst estimates of the seller's numbers, and check paid sources like Capital IQ and FactSet.",
+      "Estimate the missing figures by applying the buyer's own margins to the seller's revenue, which is the standard approximation.",
+      "Drop those transactions from the set - a precedent with incomplete data cannot be used under any circumstances.",
+      "Use the seller's book value in place of EBITDA, since the two are close enough for screening purposes.",
+    ],
+    correct: 0,
+  },
+  270: {
+    options: [
+      "Usually TTM for both, then one or two years forward. You're more willing to look further back and further forward for public comparables; for precedent transactions going more than a year forward is odd, because the information is more limited.",
+      "Five years back and five years forward for both, to smooth out any cyclicality in the underlying businesses.",
+      "Only the most recent fiscal year for both - trailing twelve month figures mix reporting periods and aren't comparable.",
+      "Forward-only for both sets, since valuation is about future performance and historical multiples are irrelevant.",
+    ],
+    correct: 0,
+  },
+  271: {
+    options: [
+      "Nothing forbids it, but it can mislead: arithmetic alone tends to give the 40% margin company the lower multiple whether or not it's genuinely worth less. You'd consider screening on margins and removing the outliers.",
+      "The 40% margin company is clearly undervalued at 8x, so the comparison correctly identifies a buying opportunity.",
+      "Nothing at all - multiples are margin-neutral by construction, which is the whole point of using EV/EBITDA.",
+      "The problem is that one uses Enterprise Value and the other Equity Value, which is what creates the 2x gap.",
+    ],
+    correct: 0,
+  },
+  272: {
+    options: [
+      "Same methodologies plus industry multiples like P/MCFE and P/NAV; you forecast commodity prices and reserves to build revenue, and use a Net Asset Value model running reserves to depletion rather than a standard DCF.",
+      "Exactly the same as a standard company, since oil and gas producers report under the same accounting rules as every other listed business.",
+      "Only a DCF applies here, because volatile commodity prices make every trading comparable and precedent transaction meaningless.",
+      "You value it purely on proven reserves at the current spot price, with no discounting for the years it takes to extract and sell them.",
+    ],
+    correct: 0,
+  },
+  273: {
+    options: [
+      "You use Price/FFO and Price/AFFO, which add back depreciation and strip out gains on property sales, alongside Net Asset Value - because real estate is asset-intensive and value depends on the cash flow specific properties generate.",
+      "You use EV/EBITDA exclusively, since property companies are simply capital-intensive operating businesses.",
+      "You value a REIT purely on its dividend yield, because REITs are legally required to distribute their income.",
+      "You use book value of the property portfolio, since real estate is carried on the balance sheet at market value.",
+    ],
+    correct: 0,
+  },
 };
