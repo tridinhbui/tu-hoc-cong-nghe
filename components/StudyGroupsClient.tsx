@@ -4,7 +4,7 @@ import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
 import { toast } from "sonner";
 import { ArrowLeft, ArrowRight, Shuffle, Users, LogOut, Send, CornerUpLeft, Smile, X, MoreVertical, Trash2, Copy, Pin, PinOff, CheckCheck, Pencil } from "lucide-react";
 import { createClient } from "@/lib/supabase";
@@ -37,6 +37,7 @@ import {
   updateRoomMessage,
   setRoomMessagePinned,
   subscribeToRoomMessages,
+  subscribeToStudyRoomMembers,
   toggleStudyRoomReaction,
 } from "@/lib/supabase-study-rooms";
 import { trackFeatureClick } from "@/lib/feature-events";
@@ -155,6 +156,64 @@ const SEAT_RADIUS = 175;
  *  back of whoever drew seat one. */
 const SEAT_ANGLES = [180, 108, 252, 36, 324];
 
+/** Camera limits, shared by the drag gesture, the wheel and the keyboard so the
+ *  three can never disagree about how far the room may be turned. Pitch stops
+ *  short of the floor plane at both ends: past ~65° the seats occlude each
+ *  other, below -10° the camera slides under the floor. */
+const PITCH_MIN = -10;
+const PITCH_MAX = 65;
+const ZOOM_MIN = 0.6;
+const ZOOM_MAX = 1.85;
+/** Per-keypress camera steps. Deliberately coarse - a keyboard user wants to
+ *  reach the far side of the table in a few presses, not sixty. */
+const KEY_YAW_STEP = 15;
+const KEY_PITCH_STEP = 8;
+const KEY_ZOOM_STEP = 0.12;
+
+/** Degrees of yaw per pixel of horizontal drag. Momentum reuses it so a flick
+ *  glides at exactly the speed the finger was already turning the room. */
+const YAW_DEG_PER_PX = 0.5;
+/** Minimum release speed (px/ms) that counts as a flick rather than a stop. */
+const MIN_FLICK_VELOCITY = 0.15;
+/** Velocity retained per 60fps frame, and the speed at which the glide ends.
+ *  0.94^60 ≈ 0.024, so a flick coasts for roughly a second. */
+const MOMENTUM_DECAY = 0.94;
+const MOMENTUM_STOP_VELOCITY = 0.02;
+
+/** How long a newly seated member stays highlighted. */
+const ARRIVAL_HIGHLIGHT_MS = 2600;
+/** Roster poll interval - see the live-roster effect for why it exists
+ *  alongside the realtime subscription. */
+const ROSTER_POLL_MS = 25_000;
+
+const clamp = (value: number, min: number, max: number) => Math.max(min, Math.min(max, value));
+
+/** Everything about a roster that the seats actually draw. The poll below
+ *  re-fetches every 25s whether or not anything moved; comparing this lets an
+ *  unchanged answer cost nothing instead of re-rendering the whole room. */
+const rosterSignature = (members: StudyRoomMember[]) =>
+  members
+    .map((m) => `${m.user_id}:${m.full_name}:${m.avatar_url}:${m.current_level}:${m.weekly_lessons}`)
+    .join("|");
+
+/** Study stations standing around the room. Each one can be lit up once per
+ *  session - the "+15% XP" is flavour, so the only real state worth keeping is
+ *  which ones this visitor has already touched, to stop the toast firing on
+ *  every idle click. */
+const QUICK_CHEERS = [
+  { emoji: "👋", label: "Đập tay", message: "👋 Đập tay cổ vũ mọi người cùng học bài nào!" },
+  { emoji: "❤️", label: "Bắn tim", message: "❤️ Bắn tim yêu thương tiếp năng lượng học tập!" },
+  { emoji: "🔔", label: "Nhắc học", message: "🔔 Ới ời cả nhóm ơi vào làm bài thôi nào!" },
+  { emoji: "🔥", label: "Tiếp sức", message: "🔥 Tiếp sức cháy hết mình hôm nay!" },
+] as const;
+
+const HOLO_PYLONS = [
+  { id: "valuation", name: "Định Giá", icon: "🏰", angle: 42 },
+  { id: "trading", name: "Giao Dịch", icon: "🏛️", angle: 138 },
+  { id: "cashflow", name: "Dòng Tiền", icon: "⚓", angle: 222 },
+  { id: "fed", name: "Lãi Suất", icon: "⚡", angle: 318 },
+] as const;
+
 // "Học cùng nhóm": small (default cap 5) topic-based groups, either
 // randomly matched into an open room or picked manually from the browse
 // list - unlike the 1:1 referral loop this is meant to stay ongoing (a
@@ -181,15 +240,121 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
   const [zoom3D, setZoom3D] = useState<number>(1.0);
   const [isDragging3D, setIsDragging3D] = useState(false);
   const [activeMapNode, setActiveMapNode] = useState<string | null>(null);
+  /** Pylons already lit this session, so a second click acknowledges instead of
+   *  re-announcing a boost that was never granted twice. */
+  const [litPylons, setLitPylons] = useState<Set<string>>(new Set());
+  /** Honour the OS "reduce motion" setting: every idle float, spin and pulse in
+   *  the room is decoration, so all of it is safe to simply switch off. A room
+   *  with five bobbing avatars, a spinning table ring and a breathing lamp is
+   *  exactly the kind of surface that setting exists for. */
+  const reduceMotion = useReducedMotion() ?? false;
+  /** Idle float for one seated member, staggered so the room doesn't pulse in
+   *  unison. Returns a static prop set when motion is reduced. */
+  const seatFloat = (idx: number) =>
+    reduceMotion
+      ? {}
+      : {
+          animate: { y: [0, -3, 0], rotate: [-0.8, 0.8, -0.8] },
+          transition: {
+            duration: 2.6 + idx * 0.35,
+            repeat: Infinity,
+            ease: "easeInOut" as const,
+          },
+        };
   const dragStartRef = useRef<{ x: number; y: number }>({ x: 0, y: 0 });
   const rotationStartRef = useRef<{ x: number; y: number }>({ x: 20, y: 0 });
   /** Whether the current pointer gesture belongs to the stage yet - see
    *  handleStageMouseDown. Kept in a ref so the decision survives the moves
    *  that happen before React re-renders. */
   const gestureRef = useRef<{ active: boolean; captured: boolean }>({ active: false, captured: false });
+  /** In-flight momentum frame, so a new grab can cut the glide short. */
+  const momentumRafRef = useRef<number | null>(null);
+  /** Rolling pointer sample used to derive a release velocity. `v` is px/ms,
+   *  smoothed, so one jittery final sample can't decide the whole glide. */
+  const flickRef = useRef<{ x: number; t: number; v: number }>({ x: 0, t: 0, v: 0 });
+
+  const stopMomentum = () => {
+    if (momentumRafRef.current !== null) {
+      cancelAnimationFrame(momentumRafRef.current);
+      momentumRafRef.current = null;
+    }
+  };
+
+  /** Coast the yaw to a stop after a flick. Nothing else about the camera
+   *  moves - pitch and zoom have no inertia, because neither is a gesture you
+   *  throw. */
+  const glideYaw = (initialVelocity: number) => {
+    let velocity = initialVelocity;
+    let last = performance.now();
+
+    const step = (now: number) => {
+      // A backgrounded tab can hand back a dt of seconds; clamping keeps the
+      // room from teleporting when the user returns to it.
+      const dt = Math.min(now - last, 32);
+      last = now;
+      setRotation3D((prev) => ({ ...prev, y: prev.y + velocity * dt * YAW_DEG_PER_PX }));
+      velocity *= Math.pow(MOMENTUM_DECAY, dt / 16.67);
+      if (Math.abs(velocity) < MOMENTUM_STOP_VELOCITY) {
+        momentumRafRef.current = null;
+        return;
+      }
+      momentumRafRef.current = requestAnimationFrame(step);
+    };
+
+    momentumRafRef.current = requestAnimationFrame(step);
+  };
+
+  useEffect(() => stopMomentum, []);
 
   const handleStageWheel = (e: React.WheelEvent<HTMLDivElement>) => {
-    setZoom3D((prev) => Math.max(0.6, Math.min(1.85, prev - e.deltaY * 0.0015)));
+    setZoom3D((prev) => clamp(prev - e.deltaY * 0.0015, ZOOM_MIN, ZOOM_MAX));
+  };
+
+  const resetCamera = () => {
+    setRotation3D({ x: 20, y: 0 });
+    setZoom3D(1.0);
+  };
+
+  /** Arrow keys orbit, +/- zoom, 0 resets. Without this the room could only be
+   *  turned by dragging, which left every seat but the near ones unreachable
+   *  for anyone not using a mouse or touchscreen. */
+  const handleStageKeyDown = (e: React.KeyboardEvent<HTMLDivElement>) => {
+    const nudge = (dx: number, dy: number) =>
+      setRotation3D((prev) => ({
+        x: clamp(prev.x + dx, PITCH_MIN, PITCH_MAX),
+        y: prev.y + dy,
+      }));
+
+    switch (e.key) {
+      case "ArrowLeft":
+        nudge(0, -KEY_YAW_STEP);
+        break;
+      case "ArrowRight":
+        nudge(0, KEY_YAW_STEP);
+        break;
+      case "ArrowUp":
+        nudge(KEY_PITCH_STEP, 0);
+        break;
+      case "ArrowDown":
+        nudge(-KEY_PITCH_STEP, 0);
+        break;
+      case "+":
+      case "=":
+        setZoom3D((prev) => clamp(prev + KEY_ZOOM_STEP, ZOOM_MIN, ZOOM_MAX));
+        break;
+      case "-":
+      case "_":
+        setZoom3D((prev) => clamp(prev - KEY_ZOOM_STEP, ZOOM_MIN, ZOOM_MAX));
+        break;
+      case "0":
+        resetCamera();
+        break;
+      default:
+        return;
+    }
+    // Only reached when a key was handled, so arrow-key page scrolling is
+    // suppressed over the stage but left alone everywhere else.
+    e.preventDefault();
   };
 
   // 1. Mobile Viewport Segmented Tab Toggle state ("3d" | "chat")
@@ -329,8 +494,11 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
     const isTouch = "touches" in e;
     const clientX = isTouch ? e.touches[0].clientX : e.clientX;
     const clientY = isTouch ? e.touches[0].clientY : e.clientY;
+    // Grabbing the room mid-glide should catch it, not fight it.
+    stopMomentum();
     dragStartRef.current = { x: clientX, y: clientY };
     rotationStartRef.current = { ...rotation3D };
+    flickRef.current = { x: clientX, t: performance.now(), v: 0 };
     // A mouse press over the stage can only mean "rotate", so it captures
     // straight away. A finger press can't: the stage fills most of a phone
     // screen, and the overwhelmingly common gesture on it is scrolling past
@@ -354,6 +522,8 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
     const deltaX = clientX - dragStartRef.current.x;
     const deltaY = clientY - dragStartRef.current.y;
 
+    const now = performance.now();
+
     if (!gesture.captured) {
       if (Math.abs(deltaY) > Math.abs(deltaX) && Math.abs(deltaY) >= DRAG_INTENT_PX) {
         // Committed to a vertical scroll - stay out of the way for the rest
@@ -364,17 +534,48 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
       if (Math.abs(deltaX) < DRAG_INTENT_PX) return;
       gesture.captured = true;
       setIsDragging3D(true);
+      // Restart velocity sampling here, not at mousedown: someone who presses,
+      // hesitates, then flicks would otherwise divide the flick by all the
+      // time they spent holding still, and get no momentum at all.
+      // (sampleMs is 0 on this pass, so the block below skips itself and the
+      // rotation still applies on the very move that captured the gesture.)
+      flickRef.current = { x: clientX, t: now, v: 0 };
+    }
+
+    const sampleMs = now - flickRef.current.t;
+    if (sampleMs > 0) {
+      const instant = (clientX - flickRef.current.x) / sampleMs;
+      flickRef.current = { x: clientX, t: now, v: flickRef.current.v * 0.6 + instant * 0.4 };
     }
 
     setRotation3D({
-      x: Math.max(-10, Math.min(65, rotationStartRef.current.x - deltaY * 0.4)),
-      y: rotationStartRef.current.y + deltaX * 0.5,
+      x: clamp(rotationStartRef.current.x - deltaY * 0.4, PITCH_MIN, PITCH_MAX),
+      y: rotationStartRef.current.y + deltaX * YAW_DEG_PER_PX,
     });
   };
 
   const handleStageMouseUp = () => {
+    const wasRotating = gestureRef.current.captured;
     gestureRef.current = { active: false, captured: false };
     setIsDragging3D(false);
+
+    // Consume the sample either way, so a later mouseleave that never rotated
+    // anything can't relaunch the previous drag's momentum.
+    const velocity = flickRef.current.v;
+    flickRef.current.v = 0;
+    if (wasRotating && !reduceMotion && Math.abs(velocity) >= MIN_FLICK_VELOCITY) {
+      glideYaw(velocity);
+    }
+  };
+
+  const handlePylonClick = (id: string, name: string) => {
+    setActiveMapNode(id);
+    if (litPylons.has(id)) {
+      toast.info(`Trạm [${name}] đã được thắp sáng trong phiên này.`);
+      return;
+    }
+    setLitPylons((prev) => new Set(prev).add(id));
+    toast.success(`Đã kích hoạt trạm 3D [${name}]! +15% XP cho cả phòng.`);
   };
   const messagesEndRef = useRef<HTMLDivElement>(null);
 
@@ -408,6 +609,87 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
     setPomoSeconds(remaining);
   }
 
+  /** Ids present in the roster on the previous fetch. Seeded by the first
+   *  successful load, so opening a room you were already in doesn't play five
+   *  join animations at once - after that, anything unseen genuinely just
+   *  walked in. */
+  const seenMemberIdsRef = useRef<Set<string> | null>(null);
+  /** Signature of the roster currently on screen - see rosterSignature. */
+  const rosterSignatureRef = useRef<string | null>(null);
+  const [arrivingIds, setArrivingIds] = useState<Set<string>>(new Set());
+  const arrivalTimerRef = useRef<number | null>(null);
+
+  useEffect(
+    () => () => {
+      if (arrivalTimerRef.current !== null) window.clearTimeout(arrivalTimerRef.current);
+    },
+    []
+  );
+
+  /** Swap in a freshly fetched roster, flagging anyone who wasn't in the last
+   *  one so their seat can announce itself. */
+  const applyRoster = useCallback((members: StudyRoomMember[]) => {
+    const signature = rosterSignature(members);
+    if (signature === rosterSignatureRef.current) return;
+    rosterSignatureRef.current = signature;
+
+    const previous = seenMemberIdsRef.current;
+    seenMemberIdsRef.current = new Set(members.map((m) => m.user_id));
+    setMyRoomMembers(members);
+
+    if (previous === null) return;
+    const arrivals = members.filter((m) => !previous.has(m.user_id));
+    if (arrivals.length === 0) return;
+
+    setArrivingIds(new Set(arrivals.map((m) => m.user_id)));
+    if (arrivalTimerRef.current !== null) window.clearTimeout(arrivalTimerRef.current);
+    arrivalTimerRef.current = window.setTimeout(() => setArrivingIds(new Set()), ARRIVAL_HIGHLIGHT_MS);
+
+    // One collapsed toast, not one per arrival: the Monday re-match can seat
+    // four strangers at once, and four stacked toasts would bury the room.
+    const names = arrivals.map((m) => m.full_name || "Thành viên");
+    toast.success(
+      names.length === 1
+        ? `${names[0]} vừa vào phòng học!`
+        : `${names.length} thành viên vừa vào phòng: ${names.join(", ")}`
+    );
+  }, []);
+
+  // Keep the seated roster live. It used to be fetched exactly three times -
+  // on mount and after a join - so anyone who arrived while you sat in the
+  // room never showed up: their seat kept reading "Ghế trống" even while
+  // their voice indicator lit up, because LiveKit presence updates live and
+  // the roster did not.
+  useEffect(() => {
+    const roomId = myRoom?.room_id;
+    if (!roomId) return;
+
+    let cancelled = false;
+    const pull = async () => {
+      try {
+        const members = await getStudyRoomMembers(roomId);
+        if (!cancelled) applyRoster(members);
+      } catch {
+        // A dropped roster refresh isn't worth interrupting anyone over; the
+        // next tick recovers.
+      }
+    };
+
+    const unsubscribe = subscribeToStudyRoomMembers(roomId, () => void pull());
+    // Realtime only fires if study_room_members is in the supabase_realtime
+    // publication. The poll is the floor: one RPC per interval, skipped while
+    // the tab is hidden, and it makes the roster converge either way.
+    const interval = window.setInterval(() => {
+      if (document.visibilityState === "visible") void pull();
+    }, ROSTER_POLL_MS);
+
+    return () => {
+      cancelled = true;
+      unsubscribe();
+      window.clearInterval(interval);
+    };
+  }, [myRoom?.room_id, applyRoster]);
+
   async function refreshRoomEngagement(roomId = myRoom?.room_id) {
     if (!roomId) return;
     const [missionRows, noteRows, attemptRows, pomodoroRow, reactionRows] = await Promise.all([
@@ -425,16 +707,21 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
     setIsChestUnlocked(missionRows.length > 0 && missionRows.every((m) => m.completed) && missionRows.some((m) => m.reward_claimed));
   }
 
-  async function refreshMyRoom() {
+  /** useCallback rather than a plain function because it now closes over
+   *  applyRoster, which makes it a reactive value the init effect has to
+   *  depend on. Both are stable, so nothing actually re-runs. */
+  const refreshMyRoom = useCallback(async () => {
     const room = await getMyStudyRoom();
     setMyRoom(room);
     if (room) {
       const members = await getStudyRoomMembers(room.room_id);
-      setMyRoomMembers(members);
+      applyRoster(members);
     } else {
+      seenMemberIdsRef.current = null;
+      rosterSignatureRef.current = null;
       setMyRoomMembers([]);
     }
-  }
+  }, [applyRoster]);
 
   async function refreshBrowseList(topic: StudyRoomTopic) {
     setLoadingRooms(true);
@@ -479,7 +766,7 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
       setLoading(false);
     };
     void init();
-  }, [router, supabase.auth]);
+  }, [router, supabase.auth, refreshMyRoom]);
 
   useEffect(() => {
     if (myRoom) return; // no need to browse while already in a room
@@ -911,6 +1198,8 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
       await leaveStudyRoom();
       toast.success("Đã rời phòng học");
       setMyRoom(null);
+      seenMemberIdsRef.current = null;
+      rosterSignatureRef.current = null;
       setMyRoomMembers([]);
       await refreshBrowseList(browseTopic);
     } catch (error) {
@@ -1175,7 +1464,11 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
                 onTouchMove={handleStageMouseMove}
                 onTouchEnd={handleStageMouseUp}
                 onWheel={handleStageWheel}
-                className={`lg:col-span-7 ${
+                onKeyDown={handleStageKeyDown}
+                tabIndex={0}
+                role="group"
+                aria-label="Phòng học 3D. Dùng phím mũi tên để xoay phòng, phím cộng và trừ để phóng to thu nhỏ, phím số 0 để đặt lại góc nhìn."
+                className={`lg:col-span-7 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-emerald-400 ${
                   mobileTab === "3d" ? "flex" : "hidden lg:flex"
                 } flex-col h-[64vh] min-h-[440px] sm:h-[74vh] sm:min-h-[600px] lg:h-[78vh] lg:min-h-[640px] flex-1 rounded-2xl border border-stone-800 bg-stone-950 p-3 sm:p-4 shadow-2xl relative overflow-hidden text-white justify-between select-none transition-colors ${
                   isDragging3D ? "cursor-grabbing border-emerald-500/70" : "cursor-grab"
@@ -1197,11 +1490,11 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
                       type="button"
                       onClick={(e) => {
                         e.stopPropagation();
-                        setRotation3D({ x: 20, y: 0 });
-                        setZoom3D(1.0);
+                        resetCamera();
                       }}
                       className="text-[9px] font-bold text-stone-300 bg-stone-900/90 hover:bg-stone-800 px-2 py-0.5 rounded-full border border-stone-700 transition-all cursor-pointer"
                       title="Đặt lại góc 3D và độ Zoom"
+                      aria-label={`Đặt lại góc nhìn 3D và độ phóng, hiện tại ${Math.round(zoom3D * 100)} phần trăm`}
                     >
                       🔄 Góc & Zoom ({Math.round(zoom3D * 100)}%)
                     </button>
@@ -1210,34 +1503,18 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
                   {/* Quick Cheer Actions Bar */}
                   <div className="flex items-center gap-1 bg-stone-900/90 backdrop-blur-md px-2 py-0.5 rounded-xl border border-stone-800 shadow-xs">
                     <span className="text-[9px] font-bold text-stone-400 mr-1 hidden sm:inline">Cổ vũ:</span>
-                    <button
-                      onClick={() => void handleQuickCheer("👋 Đập tay cổ vũ mọi người cùng học bài nào!")}
-                      className="hover:scale-125 transition-transform p-1 text-xs cursor-pointer"
-                      title="Đập tay 👋"
-                    >
-                      👋
-                    </button>
-                    <button
-                      onClick={() => void handleQuickCheer("❤️ Bắn tim yêu thương tiếp năng lượng học tập!")}
-                      className="hover:scale-125 transition-transform p-1 text-xs cursor-pointer"
-                      title="Bắn tim ❤️"
-                    >
-                      ❤️
-                    </button>
-                    <button
-                      onClick={() => void handleQuickCheer("🔔 Ới ời cả nhóm ơi vào làm bài thôi nào!")}
-                      className="hover:scale-125 transition-transform p-1 text-xs cursor-pointer"
-                      title="Nhắc học 🔔"
-                    >
-                      🔔
-                    </button>
-                    <button
-                      onClick={() => void handleQuickCheer("🔥 Tiếp sức cháy hết mình hôm nay!")}
-                      className="hover:scale-125 transition-transform p-1 text-xs cursor-pointer"
-                      title="Tiếp sức 🔥"
-                    >
-                      🔥
-                    </button>
+                    {QUICK_CHEERS.map((cheer) => (
+                      <button
+                        key={cheer.emoji}
+                        type="button"
+                        onClick={() => void handleQuickCheer(cheer.message)}
+                        className="hover:scale-125 transition-transform p-1 text-xs cursor-pointer"
+                        title={`${cheer.label} ${cheer.emoji}`}
+                        aria-label={`Gửi lời cổ vũ: ${cheer.label}`}
+                      >
+                        {cheer.emoji}
+                      </button>
+                    ))}
                   </div>
                 </div>
 
@@ -1323,6 +1600,32 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
                           <div className="mt-2 h-1.5 w-3/5 rounded-full bg-stone-600" />
                           <div className="mt-2 h-1.5 w-1/3 rounded-full bg-stone-600" />
                         </div>
+                        {/* Bookshelf, filling the one empty quadrant of the
+                            back wall (window top-left, clock top-right,
+                            whiteboard bottom-right). Book widths and hues are
+                            derived from the index so the shelves look stocked
+                            rather than tiled, with no random() to avoid a
+                            different room on every re-render. */}
+                        <div className="absolute bottom-[18px] left-10 w-[124px] rounded-sm border-2 border-stone-700 bg-stone-900/90 px-1 py-1 space-y-1">
+                          {[0, 1, 2].map((shelf) => (
+                            <div key={shelf} className="flex items-end gap-[2px] h-[22px] border-b border-stone-700/80">
+                              {Array.from({ length: 7 }).map((_, book) => {
+                                const seed = shelf * 7 + book;
+                                return (
+                                  <span
+                                    key={book}
+                                    className="rounded-t-[1px]"
+                                    style={{
+                                      width: 4 + (seed % 3) * 2,
+                                      height: 13 + (seed % 5) * 2,
+                                      background: `hsl(${(seed * 47) % 360} 34% ${26 + (seed % 3) * 7}%)`,
+                                    }}
+                                  />
+                                );
+                              })}
+                            </div>
+                          ))}
+                        </div>
                         {/* Baseboard */}
                         <div className="absolute bottom-0 left-0 right-0 h-3.5 bg-stone-800 border-t border-stone-700" />
                       </div>
@@ -1354,7 +1657,25 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
                         style={{ transform: `translate(-50%, -50%) translateY(-118px) rotateY(${-rotation3D.y}deg)` }}
                       >
                         <div className="w-px h-14 mx-auto bg-stone-700" />
-                        <div className="w-16 h-7 mx-auto rounded-b-[32px] bg-gradient-to-b from-stone-700 to-stone-900 border border-stone-600 shadow-[0_10px_60px_rgba(16,185,129,0.55)]" />
+                        {/* The shade owns no transform of its own, so it is
+                            free to take a framer animation - boxShadow only,
+                            which keeps the bloom alive without moving the
+                            fixture off its cord. */}
+                        <motion.div
+                          animate={
+                            reduceMotion
+                              ? undefined
+                              : {
+                                  boxShadow: [
+                                    "0 10px 60px rgba(16,185,129,0.55)",
+                                    "0 10px 78px rgba(16,185,129,0.75)",
+                                    "0 10px 60px rgba(16,185,129,0.55)",
+                                  ],
+                                }
+                          }
+                          transition={{ duration: 4.5, repeat: Infinity, ease: "easeInOut" }}
+                          className="w-16 h-7 mx-auto rounded-b-[32px] bg-gradient-to-b from-stone-700 to-stone-900 border border-stone-600 shadow-[0_10px_60px_rgba(16,185,129,0.55)]"
+                        />
                         <div className="w-7 h-2.5 mx-auto -mt-1 rounded-full bg-emerald-200/90 blur-[5px]" />
                       </div>
 
@@ -1369,8 +1690,13 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
                           transform: `translate(-50%, -50%) translateY(${FLOOR_Y - 37}px) rotateY(${-rotation3D.y}deg)`,
                         }}
                       />
-                      {/* Tabletop, lying flat on its pedestal */}
-                      <div
+                      {/* Tabletop, lying flat on its pedestal. A real <button>
+                          rather than a clickable div: it is the largest hit
+                          target in the room, and it was previously reachable
+                          only with a mouse. */}
+                      <button
+                        type="button"
+                        aria-label="Nạp năng lượng 3D Spatial Boost cho cả phòng"
                         className="absolute left-1/2 top-1/2 rounded-full border-2 border-emerald-400/60 cursor-pointer"
                         style={{
                           width: 208,
@@ -1382,9 +1708,13 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
                         }}
                         onClick={() => toast.success("🔮 Đã nạp năng lượng 3D Spatial Boost cho cả phòng!")}
                       >
-                        <div className="absolute inset-5 rounded-full border border-dashed border-emerald-300/30 animate-spin [animation-duration:20s]" />
+                        <div
+                          className={`absolute inset-5 rounded-full border border-dashed border-emerald-300/30 ${
+                            reduceMotion ? "" : "animate-spin [animation-duration:20s]"
+                          }`}
+                        />
                         <div className="absolute inset-[38%] rounded-full bg-emerald-500/15 blur-md" />
-                      </div>
+                      </button>
 
                       {/* Holographic panel projected over the table. The one
                           place text must stay legible, so it billboards to the
@@ -1397,7 +1727,7 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
                         }}
                       >
                         <motion.div
-                          animate={{ y: [0, -5, 0] }}
+                          animate={reduceMotion ? undefined : { y: [0, -5, 0] }}
                           transition={{ duration: 3.5, repeat: Infinity, ease: "easeInOut" }}
                           className="w-44 rounded-2xl border border-emerald-400/50 bg-stone-950/85 backdrop-blur-md px-3 py-2.5 text-center shadow-[0_0_40px_rgba(16,185,129,0.45)]"
                         >
@@ -1443,12 +1773,10 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
                       </div>
 
                       {/* ── HOLO PYLONS around the room ── */}
-                      {[
-                        { id: "valuation", name: "Định Giá", icon: "🏰", angle: 42 },
-                        { id: "trading", name: "Giao Dịch", icon: "🏛️", angle: 138 },
-                        { id: "cashflow", name: "Dòng Tiền", icon: "⚓", angle: 222 },
-                        { id: "fed", name: "Lãi Suất", icon: "⚡", angle: 318 },
-                      ].map((node) => (
+                      {HOLO_PYLONS.map((node) => {
+                        const isLit = litPylons.has(node.id);
+                        const isActive = activeMapNode === node.id;
+                        return (
                         <div
                           key={node.id}
                           className="absolute left-1/2 top-1/2"
@@ -1460,24 +1788,39 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
                         >
                           <button
                             type="button"
-                            onClick={() => {
-                              setActiveMapNode(node.id);
-                              toast.success(`Đã kích hoạt trạm 3D [${node.name}]! +15% XP cho cả phòng.`);
-                            }}
+                            onClick={() => handlePylonClick(node.id, node.name)}
+                            aria-pressed={isLit}
+                            aria-label={
+                              isLit
+                                ? `Trạm ${node.name} đã kích hoạt`
+                                : `Kích hoạt trạm ${node.name} để cộng 15% XP cho phòng`
+                            }
                             className={`flex flex-col items-center gap-1 px-2.5 py-1.5 rounded-xl border backdrop-blur-md text-[9px] font-black shadow-lg cursor-pointer transition-all hover:scale-110 ${
-                              activeMapNode === node.id
+                              isActive
                                 ? "border-emerald-300 bg-emerald-900/90 text-emerald-200 shadow-[0_0_24px_rgba(16,185,129,0.6)]"
+                                : isLit
+                                ? "border-emerald-400/70 bg-emerald-950/90 text-emerald-300 shadow-[0_0_14px_rgba(16,185,129,0.35)]"
                                 : "border-emerald-500/40 bg-stone-900/90 text-emerald-300"
                             }`}
                           >
                             <span className="text-sm leading-none">{node.icon}</span>
-                            <span className="whitespace-nowrap">{node.name}</span>
+                            <span className="whitespace-nowrap">
+                              {node.name}
+                              {isLit ? " ✓" : ""}
+                            </span>
                           </button>
                           {/* Beam down to the floor, so the pylon reads as
-                              planted in the room rather than floating. */}
-                          <div className="w-px h-11 mx-auto bg-gradient-to-b from-emerald-400/60 to-transparent" />
+                              planted in the room rather than floating. A lit
+                              station burns brighter - the only persistent
+                              reward for having found it. */}
+                          <div
+                            className={`w-px h-11 mx-auto bg-gradient-to-b to-transparent ${
+                              isLit ? "from-emerald-300" : "from-emerald-400/60"
+                            }`}
+                          />
                         </div>
-                      ))}
+                        );
+                      })}
 
                       {/* ── MEMBERS SEATED AROUND THE TABLE ── */}
                       {(() => {
@@ -1491,6 +1834,7 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
                           // seats without a second lookup table.
                           const inVoice = member ? voice.participantIds.includes(member.user_id) : false;
                           const isSpeaking = member ? voice.speakingIds.includes(member.user_id) : false;
+                          const isArriving = member ? arrivingIds.has(member.user_id) : false;
 
                           // Real ring placement: swing out to the seat angle,
                           // then push away from the table centre.
@@ -1521,18 +1865,38 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
                                   style={{ transform: `${place} translateY(${FLOOR_Y - 78}px) ${face}` }}
                                 >
                                   <motion.div
-                                    animate={{ y: [0, -3, 0] }}
-                                    transition={{
-                                      duration: 2.6 + idx * 0.35,
-                                      repeat: Infinity,
-                                      ease: "easeInOut",
-                                    }}
+                                    {...seatFloat(idx)}
                                     className="flex flex-col items-center"
                                   >
+                                  {/* Arrival pop lives on its own layer: the
+                                      parent already owns a looping y/rotate
+                                      float, and a second animate prop on the
+                                      same element would replace it. */}
+                                  <motion.div
+                                    animate={
+                                      reduceMotion || !isArriving ? { scale: 1 } : { scale: [0.45, 1.15, 1] }
+                                    }
+                                    transition={{ duration: 0.65, ease: "easeOut" }}
+                                    className="relative flex flex-col items-center"
+                                  >
+                                    {/* Absolutely positioned, not stacked above
+                                        the nameplate: the figure hangs off a
+                                        fixed anchor and flows downward, so a
+                                        badge in normal flow would push the
+                                        chair legs through the floor for as
+                                        long as it was shown, then snap back. */}
+                                    {isArriving && (
+                                      <span className="absolute -top-4 left-1/2 -translate-x-1/2 px-1.5 py-px rounded-full bg-amber-400 text-stone-950 text-[8px] font-black whitespace-nowrap shadow-md">
+                                        ✨ Vừa vào phòng
+                                      </span>
+                                    )}
+
                                     {/* Name plate */}
                                     <div
                                       className={`mb-1 px-2 py-0.5 rounded-full border whitespace-nowrap shadow-md ${
-                                        isMe
+                                        isArriving
+                                          ? "bg-amber-400 border-amber-200 text-stone-950"
+                                          : isMe
                                           ? "bg-emerald-500 border-emerald-300 text-stone-950"
                                           : "bg-stone-900/95 border-stone-700 text-white"
                                       }`}
@@ -1610,6 +1974,7 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
                                       {memberRole(member)}
                                     </span>
                                   </motion.div>
+                                  </motion.div>
                                 </div>
                               ) : (
                                 /* Empty seat: the chair on its own, so the gap
@@ -1639,9 +2004,9 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
                 {/* Footer hint */}
                 <div className="relative z-30 shrink-0 text-center text-[10px] text-stone-400 font-semibold pt-1">
                   <span className="hidden sm:inline">
-                    🖐️ Kéo chuột để xoay phòng 360° · 🔍 Lăn chuột để Zoom · Bấm 🔄 để về góc gốc
+                    🖐️ Kéo chuột để xoay phòng 360° · 🔍 Lăn chuột để Zoom · ⌨️ Phím mũi tên / +− / 0 · Bấm 🔄 để về góc gốc
                   </span>
-                  <span className="sm:hidden">👉 Vuốt ngang để xoay phòng · vuốt dọc để cuộn trang</span>
+                  <span className="sm:hidden">👉 Vuốt ngang để xoay (vẩy mạnh để quay tiếp) · vuốt dọc để cuộn trang</span>
                   <span className="ml-1 tabular-nums">({Math.round(zoom3D * 100)}%)</span>
                 </div>
               </div>

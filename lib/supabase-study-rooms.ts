@@ -1,7 +1,7 @@
 import { createClient } from "@/lib/supabase";
 import { handleSupabaseError } from "@/lib/errors";
+import { uniqueRealtimeTopic } from "@/lib/supabase-realtime-topic";
 
-let studyRoomRealtimeSubscriptionSeq = 0;
 
 export type StudyRoomTopic = "personal" | "professional" | "cfa";
 
@@ -478,13 +478,55 @@ export async function setRoomMessagePinned(messageId: number, pinned: boolean): 
   return payload.message;
 }
 
+/** Fires whenever someone joins or leaves the room.
+ *
+ *  Deliberately passes no payload: the seated roster comes from the
+ *  get_study_room_members RPC, which joins in display name, avatar, level and
+ *  the weekly lesson count. A raw study_room_members row carries none of that,
+ *  so the only useful thing a change event can say is "re-run the RPC".
+ *
+ *  A join is an INSERT; leaving stamps left_at, which is an UPDATE - both have
+ *  to be watched or half the transitions go unnoticed. */
+export function subscribeToStudyRoomMembers(roomId: number, onChange: () => void) {
+  const supabase = createClient();
+  const channelName = uniqueRealtimeTopic(`study_room_members:${roomId}`);
+
+  const channel = supabase
+    .channel(channelName)
+    .on(
+      "postgres_changes",
+      {
+        event: "INSERT",
+        schema: "public",
+        table: "study_room_members",
+        filter: `room_id=eq.${roomId}`,
+      },
+      () => onChange()
+    )
+    .on(
+      "postgres_changes",
+      {
+        event: "UPDATE",
+        schema: "public",
+        table: "study_room_members",
+        filter: `room_id=eq.${roomId}`,
+      },
+      () => onChange()
+    )
+    .subscribe();
+
+  return () => {
+    supabase.removeChannel(channel);
+  };
+}
+
 export function subscribeToRoomMessages(
   roomId: number,
   onMessage: (message: StudyRoomMessage) => void,
   onDelete?: (messageId: number) => void
 ) {
   const supabase = createClient();
-  const channelName = `study_room_messages:${roomId}:${++studyRoomRealtimeSubscriptionSeq}`;
+  const channelName = uniqueRealtimeTopic(`study_room_messages:${roomId}`);
 
   const channel = supabase
     .channel(channelName)
