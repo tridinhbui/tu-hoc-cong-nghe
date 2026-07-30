@@ -193,12 +193,18 @@ export default function DailyNewsQuizWidget({ userId, compact = false }: DailyNe
       // "news quiz", so the total_xp formula had no term for it and the
       // "+15 XP" toast never actually added anything.
       try {
-        const awarded = await claimQuestReward(userId, "daily_news_quiz", todayKey);
-        if (awarded) {
+        // xpEarned (not the hardcoded 15) is what actually landed - the
+        // weekly quest XP cap can clamp this lower, even to 0, once the
+        // week's budget is spent. See the matching fix in
+        // components/DailyQuestsWidget.tsx for the full story.
+        const { claimed, xpEarned } = await claimQuestReward(userId, "daily_news_quiz", todayKey);
+        if (claimed && xpEarned > 0) {
           if (typeof window !== "undefined") {
-            window.dispatchEvent(new CustomEvent("thtcdn:xp-gained", { detail: { xp: 15, label: "Thử thách tin tức hàng ngày!" } }));
+            window.dispatchEvent(new CustomEvent("thtcdn:xp-gained", { detail: { xp: xpEarned, label: "Thử thách tin tức hàng ngày!" } }));
           }
-          toast.success("Chúc mừng! Bạn đã trả lời chính xác tình huống tin tức hôm nay và nhận +15 XP! 🏆📰");
+          toast.success(`Chúc mừng! Bạn đã trả lời chính xác tình huống tin tức hôm nay và nhận +${xpEarned} XP! 🏆📰`);
+        } else if (claimed) {
+          toast.success("Chính xác! (Đã đạt giới hạn XP nhiệm vụ trong tuần này) 🏆📰");
         } else {
           toast.success("Chính xác! (XP hôm nay đã được ghi nhận trước đó) 🏆📰");
         }

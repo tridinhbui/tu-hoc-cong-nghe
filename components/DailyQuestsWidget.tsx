@@ -110,12 +110,22 @@ export default function DailyQuestsWidget({ userId, embedded = false, onQuestsLo
     setClaimingId(quest.id);
 
     try {
-      const ok = await claimQuestReward(userId, quest.id, dayKey);
-      if (ok) {
-        if (typeof window !== "undefined") {
-          window.dispatchEvent(new CustomEvent("thtcdn:xp-gained", { detail: { xp: quest.xpReward, label: "Thưởng nhiệm vụ!" } }));
+      const { claimed, xpEarned } = await claimQuestReward(userId, quest.id, dayKey);
+      if (claimed) {
+        // xpEarned, not quest.xpReward: the weekly quest XP cap
+        // (lib/quest-rewards.ts#WEEKLY_QUEST_XP_CAP) can leave the server
+        // banking less than the quest's nominal reward - even 0, once the
+        // week's budget is spent. Showing quest.xpReward here regardless was
+        // the exact bug behind "làm nhiệm vụ mà không thấy XP": the toast
+        // promised XP that never actually landed in total_xp.
+        if (xpEarned > 0 && typeof window !== "undefined") {
+          window.dispatchEvent(new CustomEvent("thtcdn:xp-gained", { detail: { xp: xpEarned, label: "Thưởng nhiệm vụ!" } }));
         }
-        toast.success(`Chúc mừng! Nhận thành công +${quest.xpReward} XP học thuật! 🌟`);
+        if (xpEarned > 0) {
+          toast.success(`Chúc mừng! Nhận thành công +${xpEarned} XP học thuật! 🌟`);
+        } else {
+          toast.success("Đã hoàn thành nhiệm vụ! (Đã đạt giới hạn XP nhiệm vụ trong tuần này, thử lại vào tuần sau)");
+        }
         setQuests((prev) => {
           const next = prev.map((q) => (q.id === quest.id ? { ...q, claimed: true } : q));
           onQuestsLoaded?.(next);

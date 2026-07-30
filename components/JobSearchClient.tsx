@@ -776,11 +776,13 @@ export default function JobSearchClient() {
         localStorage.setItem(`career_quiz_completed_${userId}`, resultString);
         localStorage.setItem(`career_quiz_recommended_${userId}`, JSON.stringify(ranked));
 
-        // Claim the 50 XP quest reward
+        // Claim the 50 XP quest reward. One-time (ONCE_ONLY_QUESTS), so it's
+        // outside the weekly quest XP cap - xpEarned here is always either
+        // 50 or 0 (already claimed), never a partial amount.
         claimQuestReward(userId, "career_assessment", "once")
-          .then((success) => {
-            if (success) {
-              toast.success("Chúc mừng! Bạn đã nhận được +50 XP cho Trắc nghiệm Hướng nghiệp! 🧭");
+          .then(({ claimed, xpEarned }) => {
+            if (claimed && xpEarned > 0) {
+              toast.success(`Chúc mừng! Bạn đã nhận được +${xpEarned} XP cho Trắc nghiệm Hướng nghiệp! 🧭`);
               void recalculateUserStats(userId).catch(() => {});
             }
           })

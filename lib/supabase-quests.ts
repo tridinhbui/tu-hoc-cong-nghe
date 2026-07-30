@@ -147,6 +147,20 @@ export async function getDailyQuests(userId: string, dayKey: string): Promise<Qu
   ];
 }
 
+export interface ClaimQuestResult {
+  /** false only means "already claimed today" - not an error. */
+  claimed: boolean;
+  /** What the server actually banked. Can be LESS than the quest's nominal
+   *  QUEST_XP_REWARDS value (even 0) if WEEKLY_QUEST_XP_CAP was already hit
+   *  this week - a learner can complete every daily quest correctly and
+   *  still see 0 XP from the later ones once the weekly budget runs out.
+   *  Callers must show THIS number, not the nominal one, or the toast
+   *  promises XP that recalculateUserStats will never actually add - which
+   *  is exactly the "did the quest, XP didn't move" report this was added
+   *  to fix. */
+  xpEarned: number;
+}
+
 // Records quest completion claim via the server-authoritative route.
 //
 // The XP amount is NOT sent - app/api/quests/claim derives it from
@@ -159,23 +173,32 @@ export async function claimQuestReward(
   userId: string,
   questType: string,
   dayKey: string
-): Promise<boolean> {
+): Promise<ClaimQuestResult> {
   const res = await fetch("/api/quests/claim", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ questType, dayKey }),
   });
   const payload = (await res.json().catch(() => null)) as
-    | { claimed?: boolean; error?: string; code?: string }
+    | { claimed?: boolean; xpEarned?: number; error?: string; code?: string }
     | null;
 
+  let xpEarned = 0;
+
   if (res.ok) {
-    // false = already claimed; no XP moved, so skip the recompute.
-    if (!payload?.claimed) return false;
+    // claimed: false = already claimed; no XP moved, so skip the recompute.
+    if (!payload?.claimed) return { claimed: false, xpEarned: 0 };
+    xpEarned = payload.xpEarned ?? 0;
   } else {
     const error = { code: payload?.code, message: payload?.error };
     if (isMissingTableError(error)) {
-      // Fallback: save to LocalStorage
+      // Fallback: save to LocalStorage. No server to ask "how much is left
+      // in the weekly budget," so this degraded path can't cap the amount -
+      // the caller gets the nominal reward, same as the pre-hardening
+      // behavior. Acceptable: this path only runs if the table itself is
+      // missing (an unmigrated environment), not in normal operation.
+      const { getQuestXpReward } = await import("./quest-rewards");
+      xpEarned = getQuestXpReward(questType) ?? 0;
       if (typeof window !== "undefined") {
         const storeKey = `quests_claimed_${userId}_${dayKey}`;
         const localClaims = window.localStorage.getItem(storeKey);
@@ -190,13 +213,13 @@ export async function claimQuestReward(
       }
     } else {
       console.error("Error saving quest claim:", error);
-      return false;
+      return { claimed: false, xpEarned: 0 };
     }
   }
 
   // Instantly recalculate user stats to reflect in total_xp
   void recalculateUserStats(userId).catch(() => {});
-  return true;
+  return { claimed: true, xpEarned };
 }
 
 // Calculates overall quest XP claimed by user
