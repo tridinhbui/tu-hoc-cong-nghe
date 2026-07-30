@@ -162,7 +162,7 @@ export default function CfaContentRenderer({ content }: { content: string }) {
                     {bodyRows.map((row, rIdx) => (
                       <tr key={rIdx} className="hover:bg-stone-50/50 dark:hover:bg-stone-800/20 transition-colors odd:bg-white even:bg-stone-50/30 dark:odd:bg-stone-900 dark:even:bg-stone-900/30">
                         {row.map((col, cIdx) => (
-                          <td key={cIdx} className="px-4 py-3 text-stone-600 dark:text-stone-400">
+                          <td key={cIdx} className="px-4 py-3 text-stone-700 dark:text-stone-200 font-medium">
                             {renderInlineStyles(col)}
                           </td>
                         ))}
@@ -214,14 +214,14 @@ export default function CfaContentRenderer({ content }: { content: string }) {
           } else if (trimmed.startsWith("### ")) {
             flushList(`list-h3-${i}`);
             renderedElements.push(
-              <h3 key={i} className="text-sm font-extrabold text-stone-800 dark:text-stone-200 mt-4 mb-1.5">
+              <h3 key={i} className="text-sm font-extrabold text-stone-800 dark:text-stone-100 mt-4 mb-1.5">
                 {renderInlineStyles(trimmed.slice(4))}
               </h3>
             );
           } else if (trimmed.startsWith("> ")) {
             flushList(`list-bq-${i}`);
             renderedElements.push(
-              <blockquote key={i} className="pl-4 border-l-4 border-stone-300 dark:border-stone-700 italic text-stone-600 dark:text-stone-400 my-3">
+              <blockquote key={i} className="pl-4 border-l-4 border-amber-400 italic text-stone-700 dark:text-stone-200 my-3 bg-stone-50/50 dark:bg-stone-900/50 py-1.5 pr-3 rounded-r-lg">
                 {renderInlineStyles(trimmed.slice(2))}
               </blockquote>
             );
