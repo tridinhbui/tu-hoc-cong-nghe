@@ -671,7 +671,12 @@ export default function JobSearchClient() {
       localStorage.removeItem("active_career_completed_items");
       toast.info("Đã hủy theo dõi mục tiêu sự nghiệp.");
       window.dispatchEvent(new CustomEvent("thtcdn:career-goal-updated", { detail: { careerId: null } }));
-      if (userId) void clearCareerGoal(userId).catch((error) => console.error("Error clearing career goal:", error));
+      if (userId) {
+        void clearCareerGoal(userId).catch((error) => {
+          console.error("Error clearing career goal:", error);
+          toast.error("Đã hủy trên máy này, nhưng chưa lưu được lên server - thử lại sau.");
+        });
+      }
     } else {
       setTrackedGoal(careerId);
       setCompletedItems([]);
@@ -680,7 +685,15 @@ export default function JobSearchClient() {
       localStorage.setItem("active_career_completed_items", JSON.stringify([]));
       toast.success(`🎯 Đã đặt làm Mục tiêu Sự nghiệp mới!`);
       window.dispatchEvent(new CustomEvent("thtcdn:career-goal-updated", { detail: { careerId } }));
-      if (userId) void setCareerGoal(userId, careerId).catch((error) => console.error("Error saving career goal:", error));
+      // A failed write used to be logged and forgotten while the success
+      // toast above stood - so a goal that never left the browser looked
+      // saved. Report it instead; the local copy still works for this device.
+      if (userId) {
+        void setCareerGoal(userId, careerId).catch((error) => {
+          console.error("Error saving career goal:", error);
+          toast.error("Chưa lưu được mục tiêu lên server - hiện chỉ áp dụng trên máy này.");
+        });
+      }
     }
   };
 
