@@ -161,19 +161,64 @@ export async function getStudyRoomMembers(roomId: number): Promise<StudyRoomMemb
 // functions, keyed by room_id instead of friendship_id. RLS restricts
 // read/insert to current (not-left) members of the room, see
 // supabase/migrations/20260719_study_room_weekly_match_and_chat.sql.
-export async function getRoomMessages(roomId: number): Promise<StudyRoomMessage[]> {
+/** How many messages one page of chat history holds. */
+export const ROOM_MESSAGE_PAGE_SIZE = 50;
+
+/** The most recent page of a room's messages, oldest-first for rendering.
+ *
+ *  Previously this selected every message a room had ever produced with no
+ *  limit, so an active room re-downloaded thousands of rows on every mount.
+ *  Pass `beforeId` to walk backwards through history (see the "load older"
+ *  handler in StudyGroupsClient). */
+export async function getRoomMessages(
+  roomId: number,
+  beforeId?: number,
+  limit = ROOM_MESSAGE_PAGE_SIZE
+): Promise<StudyRoomMessage[]> {
   const supabase = createClient();
-  const { data, error } = await supabase
+  // Ordered descending to take the *newest* page, then flipped for display -
+  // ascending + limit would return the oldest messages instead.
+  let query = supabase
     .from("study_room_messages")
     .select("*")
     .eq("room_id", roomId)
-    .order("created_at", { ascending: true });
+    .order("id", { ascending: false })
+    .limit(limit);
+
+  if (beforeId !== undefined) {
+    query = query.lt("id", beforeId);
+  }
+
+  const { data, error } = await query;
 
   if (error) {
     if (isMissingTableError(error)) return [];
     throw handleSupabaseError(error);
   }
-  return (data ?? []) as StudyRoomMessage[];
+  return ((data ?? []) as StudyRoomMessage[]).reverse();
+}
+
+/** The room's pinned message, fetched independently of the history page.
+ *
+ *  A pin is pinned precisely because it should stay visible, and it is often
+ *  old - so it frequently falls outside the newest page. Without this it
+ *  would silently vanish from the banner as soon as a room got chatty. */
+export async function getPinnedRoomMessage(roomId: number): Promise<StudyRoomMessage | null> {
+  const supabase = createClient();
+  const { data, error } = await supabase
+    .from("study_room_messages")
+    .select("*")
+    .eq("room_id", roomId)
+    .eq("is_pinned", true)
+    .order("id", { ascending: false })
+    .limit(1)
+    .maybeSingle();
+
+  if (error) {
+    if (isMissingTableError(error)) return null;
+    throw handleSupabaseError(error);
+  }
+  return (data as StudyRoomMessage) ?? null;
 }
 
 export async function sendRoomMessage(

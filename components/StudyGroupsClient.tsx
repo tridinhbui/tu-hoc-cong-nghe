@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
@@ -28,6 +28,8 @@ import {
   recordStudyRoomCheckin,
   recordStudyRoomQuizAttempt,
   getRoomMessages,
+  getPinnedRoomMessage,
+  ROOM_MESSAGE_PAGE_SIZE,
   requestStudyRoomBot,
   sendRoomMessage,
   setStudyRoomPomodoro,
@@ -494,11 +496,18 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
       return;
     }
     let cancelled = false;
-    Promise.all([getRoomMessages(myRoom.room_id), refreshRoomEngagement(myRoom.room_id)])
-      .then(([list]) => {
-        if (!cancelled) {
-          setMessages(list);
-        }
+    Promise.all([
+      getRoomMessages(myRoom.room_id),
+      getPinnedRoomMessage(myRoom.room_id),
+      refreshRoomEngagement(myRoom.room_id),
+    ])
+      .then(([list, pinned]) => {
+        if (cancelled) return;
+        // The pin is merged in rather than appended: it is usually already in
+        // the newest page, and duplicating it would render it twice.
+        const merged = pinned && !list.some((m) => m.id === pinned.id) ? [pinned, ...list] : list;
+        setMessages(merged);
+        setHasOlderMessages(list.length >= ROOM_MESSAGE_PAGE_SIZE);
       })
       .catch((error) => console.error("Error loading room messages:", error));
 
@@ -542,8 +551,69 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
     };
   }, [myRoom?.room_id, myRoom?.topic]);
 
+  const [hasOlderMessages, setHasOlderMessages] = useState(false);
+  const [loadingOlder, setLoadingOlder] = useState(false);
+  /** True while the reader is parked near the bottom of the log. */
+  const [isNearBottom, setIsNearBottom] = useState(true);
+  const [hasUnseenBelow, setHasUnseenBelow] = useState(false);
+  const scrollBoxRef = useRef<HTMLDivElement>(null);
+
+  /** Within this many px of the bottom still counts as "following along". */
+  const NEAR_BOTTOM_PX = 120;
+
+  const handleMessagesScroll = useCallback(() => {
+    const box = scrollBoxRef.current;
+    if (!box) return;
+    const distanceFromBottom = box.scrollHeight - box.scrollTop - box.clientHeight;
+    const near = distanceFromBottom <= NEAR_BOTTOM_PX;
+    setIsNearBottom(near);
+    if (near) setHasUnseenBelow(false);
+  }, []);
+
+  async function loadOlderMessages() {
+    const box = scrollBoxRef.current;
+    if (!myRoom || loadingOlder || !hasOlderMessages) return;
+
+    const oldest = messages.filter((m) => m.id > 0).reduce<number | null>((min, m) => (min === null || m.id < min ? m.id : min), null);
+    if (oldest === null) return;
+
+    setLoadingOlder(true);
+    const heightBefore = box?.scrollHeight ?? 0;
+    try {
+      const older = await getRoomMessages(myRoom.room_id, oldest);
+      setHasOlderMessages(older.length >= ROOM_MESSAGE_PAGE_SIZE);
+      if (older.length > 0) {
+        setMessages((prev) => {
+          const known = new Set(prev.map((m) => m.id));
+          return [...older.filter((m) => !known.has(m.id)), ...prev];
+        });
+        // Prepending content pushes everything down; restoring the delta keeps
+        // the message the reader was looking at under their eyes.
+        requestAnimationFrame(() => {
+          const el = scrollBoxRef.current;
+          if (el) el.scrollTop += el.scrollHeight - heightBefore;
+        });
+      }
+    } catch (error) {
+      console.error("Error loading older messages:", error);
+      toast.error("Không tải được tin nhắn cũ");
+    } finally {
+      setLoadingOlder(false);
+    }
+  }
+
+  // Auto-scroll only when the reader is already at the bottom. Yanking someone
+  // out of the history they are reading because a third party said "ok" is the
+  // single most irritating thing a chat log can do.
   useEffect(() => {
-    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+    if (isNearBottom) {
+      messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+    } else {
+      setHasUnseenBelow(true);
+    }
+    // isNearBottom is intentionally not a dependency: this should react to new
+    // messages, not to the reader scrolling around.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [messages]);
 
   /** Lookup for resolving reply_to_id against the loaded window. */
@@ -1629,7 +1699,23 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
                         <p className="text-[11px] text-stone-800 dark:text-stone-200 leading-snug truncate">{pinnedMessage.content}</p>
                       </div>
                     )}
-                    <div className="flex-1 min-h-0 overflow-y-auto rounded-xl border border-stone-200 dark:border-stone-800 bg-stone-50/50 dark:bg-stone-950/40 p-3 space-y-2.5">
+                    <div className="relative flex-1 min-h-0 flex flex-col">
+                    <div
+                      ref={scrollBoxRef}
+                      onScroll={handleMessagesScroll}
+                      className="flex-1 min-h-0 overflow-y-auto rounded-xl border border-stone-200 dark:border-stone-800 bg-stone-50/50 dark:bg-stone-950/40 p-3 space-y-2.5"
+                    >
+              {hasOlderMessages && (
+                <div className="flex justify-center pb-1">
+                  <button
+                    onClick={() => void loadOlderMessages()}
+                    disabled={loadingOlder}
+                    className="px-3 py-1 rounded-full bg-white dark:bg-stone-900 border border-stone-200 dark:border-stone-700 text-[10px] font-black text-stone-500 dark:text-stone-400 hover:text-emerald-600 disabled:opacity-60 cursor-pointer"
+                  >
+                    {loadingOlder ? "Đang tải..." : "↑ Xem tin nhắn cũ hơn"}
+                  </button>
+                </div>
+              )}
               {scrollMessages.length === 0 ? (
                 <p className="text-xs text-stone-400 dark:text-stone-500 text-center py-8">
                   Chưa có tin nhắn nào. Chào các thành viên trong nhóm nhé!
@@ -1724,7 +1810,9 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
                           <p className="text-sm break-words">{mainText}</p>
                         </div>
 
-                        {/* 3-Dots Menu Trigger Button */}
+                        {/* An optimistic bubble has no server row yet, so the
+                            edit/delete/pin menu would have nothing to act on. */}
+                        {!isPending && (
                         <div className="relative">
                           <button
                             onClick={() => setActiveMenuMsgId(activeMenuMsgId === msg.id ? null : msg.id)}
@@ -1823,7 +1911,34 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
                             </div>
                           )}
                         </div>
+                        )}
                       </div>
+
+                      {/* Send status. Only ever shown on your own optimistic
+                          bubbles - a confirmed message needs no annotation. */}
+                      {isPending && (
+                        <div className={`mt-0.5 flex items-center gap-2 ${isMine ? "justify-end" : "justify-start"}`}>
+                          {hasFailed ? (
+                            <>
+                              <span className="text-[10px] font-bold text-rose-500">Gửi không thành công</span>
+                              <button
+                                onClick={() => retryMessage(msg.id)}
+                                className="text-[10px] font-black text-emerald-600 dark:text-emerald-400 hover:underline cursor-pointer"
+                              >
+                                Thử lại
+                              </button>
+                              <button
+                                onClick={() => discardFailedMessage(msg.id)}
+                                className="text-[10px] font-bold text-stone-400 hover:text-stone-600 cursor-pointer"
+                              >
+                                Bỏ
+                              </button>
+                            </>
+                          ) : (
+                            <span className="text-[10px] font-semibold text-stone-400">Đang gửi...</span>
+                          )}
+                        </div>
+                      )}
 
                       {/* Displayed Active Emoji Reactions */}
                       {Object.keys(msgReactions).length > 0 && (
@@ -1860,6 +1975,21 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
                 })
               )}
               <div ref={messagesEndRef} />
+            </div>
+
+            {/* Shown only when new messages arrived while the reader was up in
+                the history - the alternative is silently yanking them down. */}
+            {hasUnseenBelow && (
+              <button
+                onClick={() => {
+                  messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+                  setHasUnseenBelow(false);
+                }}
+                className="absolute bottom-3 left-1/2 -translate-x-1/2 z-10 px-3 py-1.5 rounded-full bg-emerald-500 hover:bg-emerald-400 text-white text-[10px] font-black shadow-lg cursor-pointer"
+              >
+                ↓ Tin nhắn mới
+              </button>
+            )}
             </div>
 
             {/* Replying Banner Preview */}
