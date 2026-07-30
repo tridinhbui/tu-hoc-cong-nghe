@@ -1,10 +1,16 @@
 "use client";
 
-import { useState, useEffect, useMemo } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import { CheckCircle2, Clock, ShieldCheck, Sparkles, X, ArrowRight, RefreshCw, Trophy, AlertCircle, HelpCircle } from "lucide-react";
+import { useState, useEffect, useCallback } from "react";
+import { motion } from "framer-motion";
+import { CheckCircle2, Clock, ShieldCheck, Sparkles, X, ArrowRight, RefreshCw, Trophy, Loader2 } from "lucide-react";
 import { toast } from "sonner";
-import { LEVEL_EXAMS, saveUserPassedExam, shuffleArray, type LevelExamConfig, type ExamQuestion } from "@/lib/level-exams";
+import { LEVEL_EXAMS } from "@/lib/level-exams";
+import {
+  fetchLevelExam,
+  submitLevelExam,
+  type ServedExam,
+  type LevelExamResult,
+} from "@/lib/supabase-level-exams";
 import { LEVELS } from "@/lib/levels";
 
 interface RigorousLevelExamModalProps {
@@ -22,81 +28,102 @@ export default function RigorousLevelExamModal({
   onClose,
   onExamPassed,
 }: RigorousLevelExamModalProps) {
-  const baseExamConfig: LevelExamConfig = LEVEL_EXAMS[levelToTest] || LEVEL_EXAMS[2];
+  // Only for chrome that must render before the exam arrives (title, pass
+  // threshold). The questions themselves come from the server - the browser is
+  // never sent the answers, so it cannot grade or shortcut the exam.
+  const fallbackConfig = LEVEL_EXAMS[levelToTest] || LEVEL_EXAMS[2];
   const levelMeta = LEVELS.find((l) => l.level === levelToTest) || LEVELS[1];
 
-  // Trộn câu hỏi và các lựa chọn đáp án mỗi khi mở modal thi
-  const preparedQuestions = useMemo(() => {
-    return baseExamConfig.questions.map((q) => {
-      const originalCorrectOption = q.options[q.correctIndex];
-      const shuffledOptions = shuffleArray(q.options);
-      const newCorrectIndex = shuffledOptions.indexOf(originalCorrectOption);
-      return {
-        ...q,
-        options: shuffledOptions,
-        correctIndex: newCorrectIndex,
-      };
-    });
-  }, [baseExamConfig]);
-
+  const [exam, setExam] = useState<ServedExam | null>(null);
+  const [loadError, setLoadError] = useState<string | null>(null);
   const [answers, setAnswers] = useState<Record<number, number>>({});
-  const [timeLeft, setTimeLeft] = useState(baseExamConfig.timeLimitSeconds);
-  const [submitted, setSubmitted] = useState(false);
-  const [scorePercentage, setScorePercentage] = useState(0);
-  const [correctCount, setCorrectCount] = useState(0);
-  const [passed, setPassed] = useState(false);
+  const [timeLeft, setTimeLeft] = useState(fallbackConfig.timeLimitSeconds);
+  const [result, setResult] = useState<LevelExamResult | null>(null);
+  const [submitting, setSubmitting] = useState(false);
+
+  const submitted = result !== null;
+  const questions = exam?.questions ?? [];
+  const minPassPercentage = exam?.minPassPercentage ?? fallbackConfig.minPassPercentage;
+  const examTitle = exam?.title ?? fallbackConfig.title;
+
+  const loadExam = useCallback(async () => {
+    setLoadError(null);
+    setExam(null);
+    setAnswers({});
+    setResult(null);
+    try {
+      const served = await fetchLevelExam(levelToTest);
+      setExam(served);
+      setTimeLeft(served.timeLimitSeconds);
+    } catch (error) {
+      setLoadError(error instanceof Error ? error.message : "Không tải được đề thi.");
+    }
+  }, [levelToTest]);
+
+  useEffect(() => {
+    void loadExam();
+  }, [loadExam]);
+
+  const handleSubmitExam = useCallback(
+    async (auto = false) => {
+      if (submitted || submitting || !exam) return;
+
+      // Auto-submit on timeout still sends every slot: the server expects one
+      // answer per question and scores an unanswered slot as wrong.
+      const payload = exam.questions.map((question, idx) => ({
+        token: question.token,
+        selected: answers[idx] ?? -1,
+      }));
+
+      setSubmitting(true);
+      try {
+        const graded = await submitLevelExam(exam.level, payload);
+        setResult(graded);
+
+        if (graded.passed) {
+          onExamPassed(levelToTest);
+          toast.success(`Chúc mừng! Bạn đã thi đỗ xuất sắc Cấp độ ${levelToTest} (${graded.percent}%)!`);
+        } else if (graded.expired) {
+          toast.error("Đã quá thời gian làm bài nên kết quả không được tính. Bạn có thể thi lại.");
+        } else {
+          toast.error(
+            `Rất tiếc! Bạn đạt ${graded.percent}% (Yêu cầu thi đỗ: ≥ ${graded.minPassPercentage}%). Vui lòng ôn lại và thử lại!`
+          );
+        }
+      } catch (error) {
+        toast.error(error instanceof Error ? error.message : "Không nộp được bài thi.");
+        if (auto) setTimeLeft(0);
+      } finally {
+        setSubmitting(false);
+      }
+    },
+    [answers, exam, levelToTest, onExamPassed, submitted, submitting]
+  );
 
   // Countdown Timer
   useEffect(() => {
-    if (submitted) return;
+    if (submitted || !exam) return;
     const timer = setInterval(() => {
       setTimeLeft((prev) => {
         if (prev <= 1) {
           clearInterval(timer);
-          handleSubmitExam();
+          void handleSubmitExam(true);
           return 0;
         }
         return prev - 1;
       });
     }, 1000);
     return () => clearInterval(timer);
-  }, [submitted, answers]);
+  }, [submitted, exam, handleSubmitExam]);
 
   function handleSelectOption(qIdx: number, optionIdx: number) {
     if (submitted) return;
     setAnswers((prev) => ({ ...prev, [qIdx]: optionIdx }));
   }
 
-  function handleSubmitExam() {
-    if (submitted) return;
-
-    let correct = 0;
-    preparedQuestions.forEach((q, idx) => {
-      if (answers[idx] === q.correctIndex) {
-        correct++;
-      }
-    });
-
-    setCorrectCount(correct);
-    const percent = Math.round((correct / preparedQuestions.length) * 100);
-    setScorePercentage(percent);
-
-    const isPass = percent >= baseExamConfig.minPassPercentage;
-    setPassed(isPass);
-    setSubmitted(true);
-
-    if (isPass) {
-      saveUserPassedExam(userId, {
-        passedLevel: levelToTest,
-        passedAt: Date.now(),
-        score: percent,
-      });
-      onExamPassed(levelToTest);
-      toast.success(`Chúc mừng! Bạn đã thi đỗ xuất sắc Cấp độ ${levelToTest} (${percent}%)!`);
-    } else {
-      toast.error(`Rất tiếc! Bạn đạt ${percent}% (Yêu cầu thi đỗ: ≥ ${baseExamConfig.minPassPercentage}%). Vui lòng ôn lại và thử lại!`);
-    }
-  }
+  const correctCount = result?.correct ?? 0;
+  const scorePercentage = result?.percent ?? 0;
+  const passed = result?.passed ?? false;
 
   function formatTime(secs: number) {
     const mins = Math.floor(secs / 60);
@@ -115,14 +142,14 @@ export default function RigorousLevelExamModal({
         {/* Top Header */}
         <div className="border-b border-stone-200 dark:border-stone-800 bg-gradient-to-r from-emerald-950 via-stone-900 to-teal-950 px-6 py-4 text-white flex items-center justify-between shrink-0">
           <div className="flex items-center gap-3">
-            <span className="text-3xl">{levelMeta.emoji || baseExamConfig.badgeEmoji}</span>
+            <span className="text-3xl">{levelMeta.emoji || fallbackConfig.badgeEmoji || "🏆"}</span>
             <div>
               <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-emerald-500/20 border border-emerald-400/40 text-[10px] font-black uppercase text-emerald-300">
                 <ShieldCheck className="w-3 h-3 text-emerald-400" />
                 <span>{isRecertificationRetake ? "Thi Ôn Cấp Định Kỳ" : "Bài Thi Thăng Cấp Khắt Khe"}</span>
               </div>
               <h2 className="text-lg font-black tracking-tight text-white mt-1">
-                {baseExamConfig.title}
+                {examTitle}
               </h2>
             </div>
           </div>
@@ -139,7 +166,11 @@ export default function RigorousLevelExamModal({
         <div className="bg-emerald-50/70 dark:bg-emerald-950/40 border-b border-emerald-100 dark:border-emerald-900 px-6 py-2.5 flex items-center justify-between text-xs font-bold text-emerald-900 dark:text-emerald-300 shrink-0">
           <div className="flex items-center gap-2">
             <Trophy className="w-4 h-4 text-amber-500" />
-            <span>Yêu cầu đỗ: ≥ {baseExamConfig.minPassPercentage}% chính xác ({Math.ceil((baseExamConfig.minPassPercentage / 100) * preparedQuestions.length)}/{preparedQuestions.length} câu)</span>
+            <span>
+              Yêu cầu đỗ: ≥ {minPassPercentage}% chính xác
+              {questions.length > 0 &&
+                ` (${Math.ceil((minPassPercentage / 100) * questions.length)}/${questions.length} câu)`}
+            </span>
           </div>
           <div className={`flex items-center gap-1.5 font-mono px-3 py-1 rounded-full border shadow-xs ${timeLeft < 60 ? "bg-rose-500 text-white border-rose-400 animate-pulse font-black" : "bg-white dark:bg-stone-800 text-stone-900 dark:text-stone-100 border-stone-200 dark:border-stone-700"}`}>
             <Clock className="w-3.5 h-3.5" />
@@ -149,8 +180,24 @@ export default function RigorousLevelExamModal({
 
         {/* Questions & Result Body */}
         <div className="p-6 overflow-y-auto space-y-6 flex-1">
-          {!submitted ? (
-            preparedQuestions.map((q, qIdx) => (
+          {loadError ? (
+            <div className="py-12 text-center space-y-4">
+              <p className="text-sm font-bold text-rose-600 dark:text-rose-400">{loadError}</p>
+              <button
+                onClick={() => void loadExam()}
+                className="px-5 py-2.5 rounded-xl bg-emerald-500 text-stone-950 font-black text-xs hover:bg-emerald-400 cursor-pointer inline-flex items-center gap-2"
+              >
+                <RefreshCw className="w-4 h-4" />
+                Tải lại đề thi
+              </button>
+            </div>
+          ) : !exam ? (
+            <div className="py-16 flex flex-col items-center justify-center gap-3">
+              <Loader2 className="w-8 h-8 animate-spin text-emerald-500" />
+              <p className="text-xs font-semibold text-stone-500 dark:text-stone-400">Đang tải đề thi từ máy chủ...</p>
+            </div>
+          ) : !submitted ? (
+            questions.map((q, qIdx) => (
               <div
                 key={q.id || qIdx}
                 className="p-5 rounded-2xl border border-stone-200 dark:border-stone-800 bg-stone-50/60 dark:bg-stone-950/40 space-y-3"
@@ -195,8 +242,14 @@ export default function RigorousLevelExamModal({
                   {passed ? "Xác Nhận Đạt Bằng Cấp Thành Công!" : "Chưa Đạt Yêu Cầu Thi Cấp!"}
                 </h3>
                 <p className="text-sm text-stone-600 dark:text-stone-400">
-                  Kết quả: <span className="font-black text-emerald-600 dark:text-emerald-400 text-lg">{correctCount}/{preparedQuestions.length} câu đúng ({scorePercentage}%)</span> — Yêu cầu đỗ: ≥ {baseExamConfig.minPassPercentage}%
+                  Kết quả: <span className="font-black text-emerald-600 dark:text-emerald-400 text-lg">{correctCount}/{result?.total ?? questions.length} câu đúng ({scorePercentage}%)</span> — Yêu cầu đỗ: ≥ {result?.minPassPercentage ?? minPassPercentage}%
                 </p>
+
+                {result?.expired && (
+                  <p className="text-xs font-bold text-amber-700 dark:text-amber-400">
+                    ⏱ Bài thi được nộp sau khi hết thời gian nên không được tính là đỗ.
+                  </p>
+                )}
 
                 {passed ? (
                   <div className="p-4 rounded-2xl bg-emerald-50 dark:bg-emerald-950/60 border border-emerald-200 dark:border-emerald-800 text-xs text-emerald-800 dark:text-emerald-300 space-y-3 font-medium text-left">
@@ -245,9 +298,14 @@ export default function RigorousLevelExamModal({
                 <h4 className="text-xs font-black uppercase tracking-wider text-stone-500 dark:text-stone-400">
                   Phân tích đáp án chi tiết
                 </h4>
-                {preparedQuestions.map((q, qIdx) => {
+                {questions.map((q, qIdx) => {
                   const userAns = answers[qIdx];
-                  const isCorrect = userAns === q.correctIndex;
+                  // Correctness and the correct index come from the server's
+                  // grading response - the exam itself never carried them.
+                  const entry = result?.review[qIdx];
+                  const isCorrect = entry?.correct ?? false;
+                  const correctIndex = entry?.correctIndex ?? null;
+                  const explanation = result?.explanations[q.id] ?? "";
                   return (
                     <div
                       key={q.id || qIdx}
@@ -270,16 +328,16 @@ export default function RigorousLevelExamModal({
                         <p>
                           • Bạn chọn: <span className={`font-extrabold ${isCorrect ? "text-emerald-700 dark:text-emerald-400" : "text-rose-600 dark:text-rose-400"}`}>{userAns !== undefined ? q.options[userAns] : "Chưa chọn"}</span>
                         </p>
-                        {!isCorrect && (
+                        {!isCorrect && correctIndex !== null && (
                           <p>
-                            • Đáp án đúng: <span className="font-extrabold text-emerald-700 dark:text-emerald-400">{q.options[q.correctIndex]}</span>
+                            • Đáp án đúng: <span className="font-extrabold text-emerald-700 dark:text-emerald-400">{q.options[correctIndex]}</span>
                           </p>
                         )}
                       </div>
 
-                      {q.explanation && (
+                      {explanation && (
                         <div className="mt-2 p-2.5 rounded-xl bg-white dark:bg-stone-900 border border-stone-200 dark:border-stone-800 text-[11px] text-stone-600 dark:text-stone-400 italic">
-                          💡 <strong>Giải thích:</strong> {q.explanation}
+                          💡 <strong>Giải thích:</strong> {explanation}
                         </div>
                       )}
                     </div>
@@ -295,26 +353,31 @@ export default function RigorousLevelExamModal({
           {!submitted ? (
             <>
               <p className="text-xs text-stone-500 font-semibold">
-                Đã trả lời {Object.keys(answers).length}/{preparedQuestions.length} câu
+                Đã trả lời {Object.keys(answers).length}/{questions.length} câu
               </p>
               <button
-                onClick={handleSubmitExam}
-                disabled={Object.keys(answers).length < preparedQuestions.length}
+                onClick={() => void handleSubmitExam()}
+                disabled={!exam || submitting || Object.keys(answers).length < questions.length}
                 className="button-premium bg-emerald-500 hover:bg-emerald-400 text-stone-950 px-6 py-2.5 rounded-xl font-black text-xs transition-all disabled:opacity-50 cursor-pointer flex items-center gap-2 shadow-md"
               >
-                <span>Nộp Bài Thi Cấp</span>
-                <ArrowRight className="w-4 h-4" />
+                {submitting ? (
+                  <>
+                    <Loader2 className="w-4 h-4 animate-spin" />
+                    <span>Đang chấm bài...</span>
+                  </>
+                ) : (
+                  <>
+                    <span>Nộp Bài Thi Cấp</span>
+                    <ArrowRight className="w-4 h-4" />
+                  </>
+                )}
               </button>
             </>
           ) : (
             <div className="w-full flex justify-end gap-3">
               {!passed && (
                 <button
-                  onClick={() => {
-                    setSubmitted(false);
-                    setAnswers({});
-                    setTimeLeft(baseExamConfig.timeLimitSeconds);
-                  }}
+                  onClick={() => void loadExam()}
                   className="px-4 py-2.5 rounded-xl bg-stone-200 dark:bg-stone-800 text-stone-900 dark:text-stone-100 font-bold text-xs hover:bg-stone-300 dark:hover:bg-stone-700 cursor-pointer flex items-center gap-1.5"
                 >
                   <RefreshCw className="w-4 h-4" />
