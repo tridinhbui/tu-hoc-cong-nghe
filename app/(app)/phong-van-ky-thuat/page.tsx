@@ -8,6 +8,7 @@ import { submitQuizSession, computeQuizXp, type QuizDifficulty, type QuizAnswerS
 import { recalculateUserStats } from "@/lib/supabase-user";
 import { getIbCategoryCounts, IB_TECHNICAL_QUESTIONS, IB_BEHAVIORAL_QUESTIONS } from "@/lib/ib-question-bank";
 import BehavioralPrepPanel from "@/components/BehavioralPrepPanel";
+import IbWeakAreasPanel from "@/components/IbWeakAreasPanel";
 import { getCareersCoveredByBank, getTechnicalQuestionsForCareer } from "@/lib/ib-question-careers";
 import { FINANCE_CAREERS } from "@/lib/finance-careers";
 
@@ -66,6 +67,9 @@ export default function TechnicalInterviewPage() {
   // Set when re-drilling a single section after a run; cleared on any fresh
   // drill so it can't silently pin every later round to one topic.
   const [selectedSection, setSelectedSection] = useState<string | null>(null);
+  // Bumped when a run finishes, so the weak-areas panel picks up the rows
+  // the submit route just wrote instead of showing pre-drill numbers.
+  const [weakAreasKey, setWeakAreasKey] = useState(0);
   const [stage, setStage] = useState<Stage>("setup");
   const [questions, setQuestions] = useState<ChallengeQuestion[]>([]);
   const [activeQ, setActiveQ] = useState(0);
@@ -181,6 +185,7 @@ export default function TechnicalInterviewPage() {
       const result = await submitQuizSession("ib", difficulty, answers);
       await recalculateUserStats(userId);
       setXpAwarded(result.xpEarned);
+      setWeakAreasKey((k) => k + 1);
     } catch (error) {
       console.error("Error recording quiz session:", error);
       setXpAwarded(computeQuizXp(score, questions.length));
@@ -279,6 +284,12 @@ export default function TechnicalInterviewPage() {
 
         {mode === "technical" && stage === "setup" && (
           <div className="space-y-6">
+            <IbWeakAreasPanel
+              userId={userId}
+              onDrillSection={redrillSection}
+              refreshKey={weakAreasKey}
+            />
+
             {/* Which career's questions to drill.
                 The bank is Investment Banking's - 395 questions scraped from
                 an IB interview guide - but its accounting, valuation and DCF

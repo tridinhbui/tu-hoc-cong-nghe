@@ -193,7 +193,10 @@ export const COMPETENCIES: CompetencyDef[] = [
     label: "Interview readiness",
     blurb: "Mức sẵn sàng cho vòng phỏng vấn technical + behavioral",
     color: "#4f46e5",
-    actionHref: "/kiem-tra",
+    // The IB question bank moved off /kiem-tra to its own page; that route
+    // now serves lesson-track quizzes only, so this used to send anyone
+    // clicking "luyện phỏng vấn" to a page with no interview questions.
+    actionHref: "/phong-van-ky-thuat",
     actionLabel: "Luyện phỏng vấn",
   },
   {
@@ -209,7 +212,7 @@ export const COMPETENCIES: CompetencyDef[] = [
     label: "IB readiness",
     blurb: "Accounting - valuation - M&A - technical interview cho Investment Banking",
     color: "#be123c",
-    actionHref: "/kiem-tra",
+    actionHref: "/phong-van-ky-thuat",
     actionLabel: "Luyện IB technicals",
   },
 ];
