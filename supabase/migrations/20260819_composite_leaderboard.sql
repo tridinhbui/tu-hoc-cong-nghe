@@ -49,8 +49,10 @@ set search_path = public
 as $$
   with checkin_xp as (
     -- The daily check-in reward, deliberately excluded from the learning
-    -- component. Guarded with to_regclass because 'daily_login' only became a
-    -- valid source in 20260801_allow_daily_login_chest_source.sql.
+    -- component. 'daily_login' became a valid chest source in
+    -- 20260801_allow_daily_login_chest_source.sql; on data written before that
+    -- there simply are no matching rows, so this sums to 0 and nothing is
+    -- subtracted.
     select c.user_id, coalesce(sum(c.xp_earned), 0)::numeric as xp
     from public.user_chests c
     where c.source = 'daily_login'

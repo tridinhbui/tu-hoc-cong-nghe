@@ -260,6 +260,41 @@ export async function getCompositeLeaderboard(limit: number = 20): Promise<Leade
   }));
 }
 
+// Real community activity: posts + comments + reactions the learner made. See
+// 20260820_community_contribution_leaderboard.sql - this tab used to display a
+// number derived from XP, not from any community table.
+export async function getCommunityContributionLeaderboard(limit: number = 20): Promise<LeaderboardRow[]> {
+  const supabase = createClient();
+  const { data, error } = await supabase.rpc("get_community_contribution_leaderboard", { p_limit: limit });
+
+  if (error) {
+    if (isMissingTableError(error) || error.code === "PGRST202") return [];
+    throw handleSupabaseError(error);
+  }
+
+  return ((data ?? []) as { user_id: string; name: string; value: number; avatar_url: string | null }[]).map((row) => ({
+    user_id: row.user_id,
+    value: row.value ?? 0,
+    name: row.name || "Người học",
+    avatarUrl: row.avatar_url ?? null,
+  }));
+}
+
+export async function getMyCommunityContributionRank(
+  userId: string
+): Promise<{ rank: number; value: number } | null> {
+  const supabase = createClient();
+  const { data, error } = await supabase.rpc("get_my_community_contribution_rank", { p_user_id: userId });
+
+  if (error) {
+    if (isMissingTableError(error) || error.code === "PGRST202") return null;
+    throw handleSupabaseError(error);
+  }
+
+  const row = (data as { rank: number; value: number }[] | null)?.[0];
+  return row ? { rank: row.rank, value: row.value ?? 0 } : null;
+}
+
 export interface CompositeRank {
   rank: number;
   value: number;

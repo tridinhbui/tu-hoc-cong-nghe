@@ -62,7 +62,6 @@ export const en: Dictionary = {
   leaderboard: {
     compositeScore: "Composite score",
     totalXp: "Total XP",
-    trueMastery: "True mastery",
     lessonsCount: "Lessons",
     avgScore: "Avg. score",
     streakDays: "Streak",
@@ -103,9 +102,6 @@ export const en: Dictionary = {
     compositeAccuracy: "Avg. score",
     compositeStreak: "Streak",
 
-    masteryTitle: "This board favors real understanding",
-    masteryDesc:
-      "XP measures study effort; True Mastery is based on quiz scores instead, to reflect how well you actually understand the material. The next step should be a required assessment before confirming a level-up.",
 
     units: {
       outOf1000: "/1000",

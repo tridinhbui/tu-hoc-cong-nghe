@@ -75,7 +75,6 @@ export const vi = {
   leaderboard: {
     compositeScore: "Điểm tổng hợp",
     totalXp: "XP Tổng",
-    trueMastery: "Năng lực thật",
     lessonsCount: "Số bài",
     avgScore: "Điểm TB",
     streakDays: "Chuỗi ngày",
@@ -116,9 +115,6 @@ export const vi = {
     compositeAccuracy: "Điểm TB",
     compositeStreak: "Chuỗi ngày",
 
-    masteryTitle: "Bảng này ưu tiên kiến thức thật",
-    masteryDesc:
-      "XP đo độ chăm học; bảng Năng lực thật dựa trên điểm kiểm tra để phản ánh mức hiểu bài. Bước tiếp theo nên là sát hạch bắt buộc trước khi xác nhận lên cấp.",
 
     // Unit suffixes appended to a raw number by TABS[].format(). Kept short
     // since they render inline right after the digits ("1.234 XP", "82%").

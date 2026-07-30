@@ -5,7 +5,7 @@ import { getLessonsMeta } from "@/lib/lessons-loader";
 import { createServerSupabaseClient } from "@/lib/supabase-server";
 import NotesOverviewClient from "@/components/NotesOverviewClient";
 import FlashcardClient from "@/components/flashcard/FlashcardClient";
-import type { LessonNote } from "@/lib/supabase-notes";
+import { NOTES_PAGE_SIZE, type LessonNote } from "@/lib/supabase-notes";
 import type { Flashcard } from "@/lib/supabase-flashcards";
 
 // Auth-gated and reads Supabase env vars at render time - never prerender statically.
@@ -42,11 +42,15 @@ export default async function GhiChuPage() {
   // slow on every visit, not just the first one. Fetching both in parallel
   // here means the page can render with data already in hand.
   const [notesResult, flashcardsResult] = await Promise.all([
+    // First page only - NotesOverviewClient loads more on demand and queries
+    // the server directly when searching, so the whole notebook no longer has
+    // to travel with the page.
     supabase
       .from("lesson_notes")
       .select("*")
       .eq("user_id", user.id)
-      .order("updated_at", { ascending: false }),
+      .order("updated_at", { ascending: false })
+      .range(0, NOTES_PAGE_SIZE - 1),
     supabase
       .from("user_flashcards")
       .select("term, definition, interval, ease_factor, repetitions, next_review_at")

@@ -28,7 +28,7 @@ import { getUnlockedCosmetics } from "@/lib/chests";
 import { getMyGameTitles, type EarnedGameTitle } from "@/lib/games";
 import { getMyJourney, type JourneyMilestone } from "@/lib/journey";
 import { getUserStreak, type UserStreak } from "@/lib/supabase-streak";
-import { getAllUserNotes } from "@/lib/supabase-notes";
+import { countUserNotes } from "@/lib/supabase-notes";
 import { getUserLessonFlags } from "@/lib/supabase-lesson-flags";
 import { getUserBookmarks, type LessonBookmark } from "@/lib/supabase-bookmarks";
 import { TRACKS } from "@/lib/tracks";
@@ -299,7 +299,7 @@ export default function ProfilePage() {
           nextProfile,
           nextStreak,
           earnedBadges,
-          notes,
+          notesTotal,
           flags,
           bookmarksResponse,
           rank,
@@ -310,7 +310,7 @@ export default function ProfilePage() {
           getUserProfile(session.user.id),
           getUserStreak(session.user.id),
           getEligibleUserBadges(session.user.id),
-          getAllUserNotes(session.user.id),
+          countUserNotes(session.user.id),
           getUserLessonFlags(session.user.id),
           getUserBookmarks(session.user.id),
           getMyLeaderboardRank("xp", session.user.id),
@@ -367,7 +367,7 @@ export default function ProfilePage() {
             )
           )
           .catch((err) => console.error("Error recalculating user stats:", err));
-        setNotesCount(notes.length);
+        setNotesCount(notesTotal);
         setFlaggedLessonCount(flags.length);
         setFlaggedLessons(flags.slice(0, 4));
         setBookmarks(bookmarksResponse.slice(0, 6));

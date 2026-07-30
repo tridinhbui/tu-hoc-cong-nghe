@@ -9,6 +9,8 @@ import {
   getMyLeaderboardRank,
   getCompositeLeaderboard,
   getMyCompositeRank,
+  getCommunityContributionLeaderboard,
+  getMyCommunityContributionRank,
   type LeaderboardMetric,
   type LeaderboardRow,
   type CompositeRank,
@@ -20,7 +22,7 @@ import { useI18n } from "@/lib/i18n/context";
 import { format as formatI18n } from "@/lib/i18n";
 import type { Dictionary } from "@/lib/i18n";
 
-type LeaderboardUiMetric = LeaderboardMetric | "composite" | "mastery" | "game" | "career" | "cfa" | "community";
+type LeaderboardUiMetric = LeaderboardMetric | "composite" | "game" | "career" | "cfa" | "community";
 
 function LeaderboardAvatar({ name, avatarUrl, size = 36 }: { name: string; avatarUrl: string | null; size?: number }) {
   if (isValidAvatar(avatarUrl)) {
@@ -171,7 +173,7 @@ const TABS: {
   metric: LeaderboardUiMetric;
   labelKey: keyof Pick<
     Dictionary["leaderboard"],
-    "compositeScore" | "totalXp" | "trueMastery" | "lessonsCount" | "avgScore" | "streakDays" | "career" | "cfaArena" | "contribution" | "badgesLabel" | "gamer"
+    "compositeScore" | "totalXp" | "lessonsCount" | "avgScore" | "streakDays" | "career" | "cfaArena" | "contribution" | "badgesLabel" | "gamer"
   >;
   icon: any;
   format: (v: number, u: Dictionary["leaderboard"]["units"]) => string;
@@ -181,7 +183,6 @@ const TABS: {
   // is meant to be the headline "who is doing best overall" ranking.
   { metric: "composite", labelKey: "compositeScore", icon: ShieldCheck, format: (v, u) => `${v}${u.outOf1000}` },
   { metric: "xp", labelKey: "totalXp", icon: Zap, format: (v, u) => `${v} ${u.xp}` },
-  { metric: "mastery", labelKey: "trueMastery", icon: ShieldCheck, format: (v, u) => `${Math.round(v)} ${u.points}` },
   { metric: "lessons", labelKey: "lessonsCount", icon: BookOpen, format: (v, u) => `${v} ${u.lessons}` },
   { metric: "avg_score", labelKey: "avgScore", icon: Target, format: (v, u) => `${Math.round(v)}${u.percent}` },
   { metric: "streak", labelKey: "streakDays", icon: Flame, format: (v, u) => `${v} ${u.days}` },
@@ -195,7 +196,6 @@ const TABS: {
 const LEADERBOARD_TITLES: Record<LeaderboardUiMetric, Record<number, string>> = {
   composite: { 1: "Học viên toàn diện nhất", 2: "Toàn diện xuất sắc", 3: "Cân bằng và vững vàng", 4: "Nền tảng toàn diện", 5: "Học chắc, học đều" },
   xp: { 1: "Bậc thầy tài chính", 2: "Chuyên gia đầu tư", 3: "Nhà đầu tư tài năng", 4: "Kiện tướng tích lũy", 5: "Thợ săn XP" },
-  mastery: { 1: "Năng lực thật số 1", 2: "Kiểm tra chuẩn xác", 3: "Nền tảng vững", 4: "Tư duy chắc", 5: "Học thật hiểu thật" },
   lessons: { 1: "Vua sách giáo khoa", 2: "Thủ kho tri thức", 3: "Máy học không ngừng", 4: "Mọt sách chính hiệu", 5: "Người đọc thông thái" },
   avg_score: { 1: "Thần chính xác", 2: "Đại sư câu hỏi", 3: "Bậc thầy câu hỏi", 4: "Chiến thần IQ", 5: "Kẻ hủy diệt đáp án" },
   streak: { 1: "Huyền thoại chuỗi ngày", 2: "Lửa không tắt", 3: "Kiên trì vàng", 4: "Ngọn lửa đam mê", 5: "Học đều mỗi ngày" },
@@ -244,13 +244,6 @@ function getLeaderboardHonor(metric: LeaderboardUiMetric, rank: number) {
       18: { badge: "Top 18 Triển Vọng", nickname: "🎓 Thạc Sĩ Tài Chính" },
       19: { badge: "Top 19 Nỗ Lực", nickname: "🛡️ Bậc Thầy Rủi Rủi" },
       20: { badge: "Top 20 Vinh Danh", nickname: "🌟 Ngôi Sao Triển Vọng" },
-    },
-    mastery: {
-      1: { badge: "Sát hạch vàng", nickname: "Học thật hiểu thật" },
-      2: { badge: "Sát hạch bạc", nickname: "Nền tảng rất chắc" },
-      3: { badge: "Sát hạch đồng", nickname: "Tư duy kiểm tra tốt" },
-      4: { badge: "Top 4", nickname: "Người học có chất lượng" },
-      5: { badge: "Top 5", nickname: "Điểm kiểm tra ổn định" },
     },
     lessons: {
       1: { badge: "Vương miện bài học", nickname: "Vua bài học" },
@@ -521,13 +514,6 @@ export default function Leaderboard({ userId, compact = false }: { userId?: stri
           top = topRows;
           mine = mineRank;
           if (!cancelled) setMyComposite(mineRank);
-        } else if (metric === "mastery") {
-          const [topRows, mineRank] = await Promise.all([
-            getLeaderboardByMetric("avg_score", 20),
-            userId ? getMyLeaderboardRank("avg_score", userId) : Promise.resolve(null),
-          ]);
-          top = topRows.filter((row) => row.value > 0);
-          mine = mineRank;
         } else if (metric === "game") {
           const gameRows = await getCombinedGameLeaderboard(50);
           top = gameRows.slice(0, 20).map((row) => ({
@@ -568,17 +554,16 @@ export default function Leaderboard({ userId, compact = false }: { userId?: stri
             if (myIndex !== -1) mine = { rank: myIndex + 1, value: cfaRows[myIndex].value };
           }
         } else if (metric === "community") {
-          const baseRows = await getLeaderboardByMetric("xp", 20);
-          top = baseRows.map((row, idx) => ({
-            user_id: row.user_id,
-            value: Math.max(2, Math.round(row.value * 0.15) + (35 - idx * 2)),
-            name: row.name,
-            avatarUrl: row.avatarUrl,
-          }));
-          if (userId) {
-            const myIndex = top.findIndex((r) => r.user_id === userId);
-            if (myIndex !== -1) mine = { rank: myIndex + 1, value: top[myIndex].value };
-          }
+          // Real posts + comments + reactions. This branch previously derived a
+          // value from the XP leaderboard (total_xp * 0.15 plus a rank-based
+          // offset) and showed it as "X tương tác" - a number no community
+          // table had ever produced.
+          const [topRows, mineRank] = await Promise.all([
+            getCommunityContributionLeaderboard(20),
+            userId ? getMyCommunityContributionRank(userId) : Promise.resolve(null),
+          ]);
+          top = topRows;
+          mine = mineRank;
         } else {
           const [topRows, mineRank] = await Promise.all([
             getLeaderboardByMetric(metric as LeaderboardMetric, 20),
@@ -708,22 +693,6 @@ export default function Leaderboard({ userId, compact = false }: { userId?: stri
                     ))}
                   </div>
                 )}
-              </div>
-            </div>
-          </div>
-        )}
-
-        {metric === "mastery" && (
-          <div className="mt-3 rounded-2xl border border-emerald-200 dark:border-emerald-900 bg-gradient-to-r from-emerald-50 via-white to-sky-50 dark:from-emerald-950/50 dark:via-stone-900 dark:to-sky-950/30 px-4 py-3 shadow-xs">
-            <div className="flex items-start gap-2.5">
-              <div className="mt-0.5 flex h-8 w-8 shrink-0 items-center justify-center rounded-xl bg-emerald-600 text-white shadow-sm">
-                <ShieldCheck className="h-4 w-4" />
-              </div>
-              <div>
-                <p className="text-xs font-black text-stone-900 dark:text-stone-100">{t.leaderboard.masteryTitle}</p>
-                <p className="mt-0.5 text-[11px] font-medium leading-relaxed text-stone-500 dark:text-stone-400">
-                  {t.leaderboard.masteryDesc}
-                </p>
               </div>
             </div>
           </div>
