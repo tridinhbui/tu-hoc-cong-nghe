@@ -1,6 +1,7 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { createPortal } from "react-dom";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 import { Swords, Heart, ShieldAlert, Trophy, Sparkles, X } from "lucide-react";
@@ -52,7 +53,12 @@ export default function BossBattleModal({
   onVictory,
   onClose,
 }: BossBattleModalProps) {
+  const [mounted, setMounted] = useState(false);
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
   const [bossHp, setBossHp] = useState(100);
   const [heroHp, setHeroHp] = useState(100);
   const [selectedOption, setSelectedOption] = useState<number | null>(null);
@@ -124,8 +130,10 @@ export default function BossBattleModal({
     }
   };
 
-  return (
-    <div className="fixed inset-0 bg-stone-950/85 backdrop-blur-md z-50 flex items-center justify-center p-4">
+  if (!mounted) return null;
+
+  return createPortal(
+    <div className="fixed inset-0 bg-stone-950/85 backdrop-blur-md z-[9999] flex items-center justify-center p-4">
       <motion.div
         initial={{ opacity: 0, scale: 0.9 }}
         animate={{ opacity: 1, scale: 1 }}
@@ -292,6 +300,7 @@ export default function BossBattleModal({
           </div>
         )}
       </motion.div>
-    </div>
+    </div>,
+    document.body
   );
 }

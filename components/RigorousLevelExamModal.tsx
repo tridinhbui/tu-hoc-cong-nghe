@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect, useCallback } from "react";
+import { createPortal } from "react-dom";
 import { motion } from "framer-motion";
 import { CheckCircle2, Clock, ShieldCheck, Sparkles, X, ArrowRight, RefreshCw, Trophy, Loader2 } from "lucide-react";
 import { toast } from "sonner";
@@ -28,6 +29,7 @@ export default function RigorousLevelExamModal({
   onClose,
   onExamPassed,
 }: RigorousLevelExamModalProps) {
+  const [mounted, setMounted] = useState(false);
   // Only for chrome that must render before the exam arrives (title, pass
   // threshold). The questions themselves come from the server - the browser is
   // never sent the answers, so it cannot grade or shortcut the exam.
@@ -35,6 +37,10 @@ export default function RigorousLevelExamModal({
   const levelMeta = LEVELS.find((l) => l.level === levelToTest) || LEVELS[1];
 
   const [exam, setExam] = useState<ServedExam | null>(null);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
   const [loadError, setLoadError] = useState<string | null>(null);
   const [answers, setAnswers] = useState<Record<number, number>>({});
   const [timeLeft, setTimeLeft] = useState(fallbackConfig.timeLimitSeconds);
@@ -143,8 +149,10 @@ export default function RigorousLevelExamModal({
     return `${mins}:${s < 10 ? "0" : ""}${s}`;
   }
 
-  return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-stone-950/80 backdrop-blur-md animate-in fade-in duration-200">
+  if (!mounted) return null;
+
+  return createPortal(
+    <div className="fixed inset-0 z-[9999] flex items-center justify-center p-4 bg-stone-950/80 backdrop-blur-md animate-in fade-in duration-200">
       <motion.div
         initial={{ opacity: 0, scale: 0.95, y: 15 }}
         animate={{ opacity: 1, scale: 1, y: 0 }}
@@ -406,6 +414,7 @@ export default function RigorousLevelExamModal({
           )}
         </div>
       </motion.div>
-    </div>
+    </div>,
+    document.body
   );
 }

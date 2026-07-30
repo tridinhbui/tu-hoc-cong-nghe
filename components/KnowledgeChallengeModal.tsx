@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState, useCallback } from "react";
+import { createPortal } from "react-dom";
 import Link from "next/link";
 import { X, CheckCircle2 } from "lucide-react";
 import type { ChallengeQuestion } from "@/app/api/knowledge-challenge/route";
@@ -21,7 +22,12 @@ type LoadState = "loading" | "empty" | "ready" | "error";
 const PASS_RATIO = 0.6;
 
 export default function KnowledgeChallengeModal({ onClose, gate, onPassed }: KnowledgeChallengeModalProps) {
+  const [mounted, setMounted] = useState(false);
   const [state, setState] = useState<LoadState>("loading");
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
   const [questions, setQuestions] = useState<ChallengeQuestion[]>([]);
   const [activeQ, setActiveQ] = useState(0);
   const [selected, setSelected] = useState<number | null>(null);
@@ -115,8 +121,10 @@ export default function KnowledgeChallengeModal({ onClose, gate, onPassed }: Kno
     setSubmitted(false);
   }
 
-  return (
-    <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-black/50">
+  if (!mounted) return null;
+
+  return createPortal(
+    <div className="fixed inset-0 z-[9999] flex items-center justify-center p-4 bg-stone-950/80 backdrop-blur-md">
       <div className="bg-white rounded-2xl border-2 border-stone-300 w-full max-w-lg max-h-[90vh] overflow-y-auto">
         <div className="flex items-center justify-between px-6 py-4 border-b border-stone-200">
           <div>
@@ -284,6 +292,7 @@ export default function KnowledgeChallengeModal({ onClose, gate, onPassed }: Kno
           )}
         </div>
       </div>
-    </div>
+    </div>,
+    document.body
   );
 }

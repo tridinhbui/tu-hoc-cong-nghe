@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { createPortal } from "react-dom";
 import { toast } from "sonner";
 import { CheckCircle2, XCircle, Trophy, Sparkles, X, ChevronRight } from "lucide-react";
 import { savePassedMilestone } from "@/lib/supabase-milestones";
@@ -27,7 +28,12 @@ export default function StageMilestoneExamModal({
   onClose,
   onSuccess,
 }: StageMilestoneExamModalProps) {
+  const [mounted, setMounted] = useState(false);
   const [questions, setQuestions] = useState<any[]>([]);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
   const [loading, setLoading] = useState(true);
   const [currentQIndex, setCurrentQIndex] = useState(0);
   const [selectedOpt, setSelectedOpt] = useState<number | null>(null);
@@ -119,8 +125,10 @@ export default function StageMilestoneExamModal({
     setExamFinished(true);
   };
 
-  return (
-    <div className="fixed inset-0 bg-black/60 backdrop-blur-sm flex items-center justify-center z-50 p-4 animate-[fadeIn_0.2s_ease-out]">
+  if (!mounted) return null;
+
+  return createPortal(
+    <div className="fixed inset-0 bg-stone-950/80 backdrop-blur-md flex items-center justify-center z-[9999] p-4 animate-[fadeIn_0.2s_ease-out]">
       <div className="bg-white dark:bg-stone-900 border border-stone-200 dark:border-stone-800 rounded-3xl w-full max-w-lg overflow-hidden shadow-2xl relative flex flex-col max-h-[90vh]">
         
         {/* Header */}
@@ -252,6 +260,7 @@ export default function StageMilestoneExamModal({
           )}
         </div>
       </div>
-    </div>
+    </div>,
+    document.body
   );
 }
