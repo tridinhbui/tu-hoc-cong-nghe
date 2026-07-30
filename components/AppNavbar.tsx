@@ -428,10 +428,10 @@ export default function AppNavbar() {
       </aside>
 
       <header className="lg:hidden border-b border-stone-200 dark:border-stone-800 sticky top-0 bg-white/95 dark:bg-stone-950/95 backdrop-blur z-50">
-        <div className="max-w-6xl mx-auto px-3 sm:px-6 py-2.5 sm:py-3 flex items-center justify-between gap-2 sm:gap-4">
+        <div className="max-w-6xl mx-auto px-3 sm:px-6 py-2.5 sm:py-3 flex items-center justify-between gap-1.5 sm:gap-4 w-full overflow-hidden">
           <Link href="/dashboard" className="flex items-center gap-2 shrink-0">
             <Logo size={28} />
-            <span className="hidden xs:inline sm:inline text-sm sm:text-base font-bold text-stone-900 dark:text-stone-100 whitespace-nowrap">Tự Học Tài Chính</span>
+            <span className="hidden sm:inline text-sm sm:text-base font-bold text-stone-900 dark:text-stone-100 whitespace-nowrap">Tự Học Tài Chính</span>
           </Link>
 
           <div className="flex items-center gap-1.5 sm:gap-2.5 shrink-0">
@@ -529,23 +529,11 @@ export default function AppNavbar() {
           <>
             {/* Backdrop filter overlay to prevent background click interference */}
             <div
-              className="fixed inset-0 top-[53px] bg-stone-950/40 backdrop-blur-xs z-30 lg:hidden"
+              className="fixed inset-0 top-[50px] sm:top-[56px] bg-stone-950/40 backdrop-blur-xs z-30 lg:hidden"
               onClick={() => setMobileMenuOpen(false)}
             />
 
-            {/* Mobile Drawer Dropdown anchored below top header.
-                Was `absolute` (containing block = the sticky <header> above).
-                `position: absolute` inside `position: sticky` is a
-                combination WebKit has historically resolved inconsistently -
-                some iOS Safari versions don't treat sticky as establishing a
-                containing block for absolute descendants, so the dropdown's
-                left/right/top could resolve against the wrong box, rendering
-                it shifted/clipped relative to the actual screen while
-                Chromium (used for local testing) renders it correctly. The
-                backdrop right above already uses `fixed` for exactly this
-                reason - matching it removes the ambiguity instead of relying
-                on sticky-as-containing-block at all. */}
-            <div className="fixed left-0 right-0 top-[53px] bg-white/98 dark:bg-stone-950/98 border-b border-stone-200 dark:border-stone-800 px-4 sm:px-6 py-3.5 space-y-1.5 shadow-2xl max-h-[calc(100vh-4rem)] overflow-y-auto z-40 lg:hidden backdrop-blur-md">
+            <div className="fixed left-0 right-0 top-[50px] sm:top-[56px] bg-white/98 dark:bg-stone-950/98 border-b border-stone-200 dark:border-stone-800 px-4 sm:px-6 py-3.5 space-y-1.5 shadow-2xl max-h-[calc(100vh-3.5rem)] overflow-y-auto overscroll-contain z-40 lg:hidden backdrop-blur-md">
               {profile && (
                 <div className="flex items-center justify-between gap-3 p-3 mb-2 rounded-xl bg-stone-50 dark:bg-stone-900 border border-stone-200/80 dark:border-stone-800">
                   <div className="flex items-center gap-2.5 min-w-0">
