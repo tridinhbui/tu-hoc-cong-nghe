@@ -5,13 +5,14 @@ import Image from "next/image";
 import { isValidAvatar } from "@/lib/avatar-utils";
 import TaiTaiAvatar from "@/components/TaiTaiAvatar";
 import { toast } from "sonner";
-import { Users, Send, X, ImagePlus, Trash2, CornerUpLeft, MoreVertical, Copy, Pin, PinOff, CheckCheck, Pencil, Clock } from "lucide-react";
+import { Users, Send, X, ImagePlus, Paperclip, FileText, Download, Trash2, CornerUpLeft, MoreVertical, Copy, Pin, PinOff, CheckCheck, Pencil, Clock } from "lucide-react";
 import { createClient } from "@/lib/supabase";
 import { trackFeatureClick } from "@/lib/feature-events";
-import { uploadChatImage, isAllowedChatImage } from "@/lib/supabase-chat";
+import { uploadChatImage, isAllowedChatImage, uploadChatFile, isAllowedChatFile } from "@/lib/supabase-chat";
 import { announceWidgetOpened, onOtherWidgetOpened } from "@/lib/floating-widget-coordinator";
 import EmojiPicker from "@/components/EmojiPicker";
 import { motion } from "framer-motion";
+import { useDraggablePosition } from "@/lib/hooks/useDraggablePosition";
 import {
   STUDY_ROOM_TOPICS,
   getMyStudyRoom,
@@ -73,6 +74,7 @@ export default function FloatingStudyGroupChat({ isOpen: controlledIsOpen, onOpe
   const [members, setMembers] = useState<Map<string, StudyRoomMember>>(new Map());
   const [internalOpen, setInternalOpen] = useState(false);
   const [isBubbleDragging, setIsBubbleDragging] = useState(false);
+  const bubbleDrag = useDraggablePosition("thtcdn_study_group_chat_bubble_pos");
   const open = controlledIsOpen !== undefined ? controlledIsOpen : internalOpen;
   
   const setOpen = useCallback((openState: boolean | ((prev: boolean) => boolean)) => {
@@ -92,9 +94,11 @@ export default function FloatingStudyGroupChat({ isOpen: controlledIsOpen, onOpe
   const [sending, setSending] = useState(false);
   const [pendingImage, setPendingImage] = useState<File | null>(null);
   const [pendingImagePreview, setPendingImagePreview] = useState<string | null>(null);
+  const [pendingFile, setPendingFile] = useState<File | null>(null);
   const [isDraggingImage, setIsDraggingImage] = useState(false);
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
+  const docInputRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
     const init = async () => {
@@ -193,6 +197,21 @@ export default function FloatingStudyGroupChat({ isOpen: controlledIsOpen, onOpe
     if (fileInputRef.current) fileInputRef.current.value = "";
   }
 
+  function pickFile(file: File | null | undefined) {
+    if (!file) return;
+    const invalidReason = isAllowedChatFile(file);
+    if (invalidReason) {
+      toast.error(invalidReason);
+      return;
+    }
+    setPendingFile(file);
+  }
+
+  function clearPendingFile() {
+    setPendingFile(null);
+    if (docInputRef.current) docInputRef.current.value = "";
+  }
+
   function handlePaste(e: React.ClipboardEvent) {
     const file = Array.from(e.clipboardData.items)
       .find((item) => item.type.startsWith("image/"))
@@ -249,7 +268,7 @@ export default function FloatingStudyGroupChat({ isOpen: controlledIsOpen, onOpe
 
   async function handleSend() {
     const rawContent = input.trim();
-    if ((!rawContent && !pendingImage) || !room || !userId) return;
+    if ((!rawContent && !pendingImage && !pendingFile) || !room || !userId) return;
 
     if (editingMessage) {
       if (!rawContent) return;
@@ -273,7 +292,7 @@ export default function FloatingStudyGroupChat({ isOpen: controlledIsOpen, onOpe
     const finalContent = rawContent;
     const replyToId = replyingTo?.id ?? null;
 
-    if (rawContent && !pendingImage && isStudyRoomBotCommand(rawContent)) {
+    if (rawContent && !pendingImage && !pendingFile && isStudyRoomBotCommand(rawContent)) {
       setSending(true);
       setInput("");
       setReplyingTo(null);
@@ -292,7 +311,9 @@ export default function FloatingStudyGroupChat({ isOpen: controlledIsOpen, onOpe
     setReplyingTo(null);
     const imageFile = pendingImage;
     const localPreview = pendingImagePreview;
+    const docFile = pendingFile;
     clearPendingImage(true);
+    clearPendingFile();
 
     // Show the bubble immediately, then swap it for the server's row.
     const optimisticId = nextOptimisticId();
@@ -304,6 +325,8 @@ export default function FloatingStudyGroupChat({ isOpen: controlledIsOpen, onOpe
         sender_id: userId,
         content: finalContent,
         image_url: localPreview,
+        file_url: null,
+        file_name: docFile?.name ?? null,
         created_at: new Date().toISOString(),
         is_bot: false,
         is_pinned: false,
@@ -316,7 +339,11 @@ export default function FloatingStudyGroupChat({ isOpen: controlledIsOpen, onOpe
       if (imageFile) {
         imageUrl = await uploadChatImage(userId, imageFile);
       }
-      const sent = await sendRoomMessage(room.room_id, userId, finalContent, imageUrl, replyToId);
+      let fileMeta: { url: string; name: string } | null = null;
+      if (docFile) {
+        fileMeta = await uploadChatFile(userId, docFile);
+      }
+      const sent = await sendRoomMessage(room.room_id, userId, finalContent, imageUrl, replyToId, fileMeta);
       setMessages((prev) => {
         const withoutOptimistic = prev.filter((m) => m.id !== optimisticId);
         // The realtime subscription may have already delivered this row.
@@ -339,8 +366,25 @@ export default function FloatingStudyGroupChat({ isOpen: controlledIsOpen, onOpe
   return (
     <>
       {!hideTrigger && (
-        <button
-          onClick={() => {
+        <motion.button
+          drag
+          dragConstraints={{ left: -window.innerWidth + 80, right: 0, top: -window.innerHeight + 120, bottom: 0 }}
+          dragElastic={0.1}
+          dragMomentum={false}
+          onDragStart={() => {
+            setIsBubbleDragging(true);
+            bubbleDrag.onDragStart();
+          }}
+          onDragEnd={(event, info) => {
+            setTimeout(() => setIsBubbleDragging(false), 120);
+            bubbleDrag.onDragEnd(event, info);
+          }}
+          animate={{ x: bubbleDrag.offset.x, y: bubbleDrag.offset.y }}
+          onClick={(e) => {
+            if (isBubbleDragging) {
+              e.stopPropagation();
+              return;
+            }
             if (!room) {
               window.location.href = "/nhom-hoc";
               return;
@@ -349,17 +393,17 @@ export default function FloatingStudyGroupChat({ isOpen: controlledIsOpen, onOpe
             trackFeatureClick("floating_study_chat_toggle", { label: open ? "close" : "open" });
           }}
           aria-label="Chat nhóm học"
-          title={room ? `Nhóm ${topicLabel(room.topic)}` : "Tham gia Nhóm Học"}
-          className="fixed bottom-21 right-4 sm:bottom-23 sm:right-6 z-50 w-14 h-14 rounded-full bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-500 hover:to-teal-500 text-white shadow-xl hover:scale-108 transition-all duration-200 flex items-center justify-center border-2 border-white dark:border-stone-800 cursor-pointer select-none group"
+          title={room ? `Nhóm ${topicLabel(room.topic)} (Kéo thả để di chuyển)` : "Tham gia Nhóm Học"}
+          className="fixed bottom-21 right-4 sm:bottom-23 sm:right-6 z-50 w-14 h-14 rounded-full bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-500 hover:to-teal-500 text-white shadow-xl hover:scale-108 transition-all duration-200 flex items-center justify-center border-2 border-white dark:border-stone-800 cursor-grab active:cursor-grabbing select-none touch-none group"
         >
-          <Users className="w-6 h-6 text-white transition-transform group-hover:scale-110" />
+          <Users className="w-6 h-6 text-white transition-transform group-hover:scale-110 pointer-events-none" />
 
           {unreadCount > 0 && !open && (
-            <span className="absolute -top-1 -right-1 min-w-[20px] h-5 px-1.5 rounded-full bg-rose-600 text-white text-[10px] font-black flex items-center justify-center border-2 border-white shadow-md z-10">
+            <span className="absolute -top-1 -right-1 min-w-[20px] h-5 px-1.5 rounded-full bg-rose-600 text-white text-[10px] font-black flex items-center justify-center border-2 border-white shadow-md z-10 pointer-events-none">
               {unreadCount > 9 ? "9+" : unreadCount}
             </span>
           )}
-        </button>
+        </motion.button>
       )}
 
       {open && (
@@ -506,7 +550,11 @@ export default function FloatingStudyGroupChat({ isOpen: controlledIsOpen, onOpe
                                 <>
                                   <span className="block font-bold opacity-90">↩️ {repliedToName}</span>
                                   <span className="block truncate opacity-75">
-                                    {repliedTo.image_url && !repliedTo.content ? "[Hình ảnh]" : repliedTo.content}
+                                    {!repliedTo.content && repliedTo.image_url
+                                      ? "[Hình ảnh]"
+                                      : !repliedTo.content && repliedTo.file_name
+                                        ? `[Tệp: ${repliedTo.file_name}]`
+                                        : repliedTo.content}
                                   </span>
                                 </>
                               ) : (
@@ -523,6 +571,30 @@ export default function FloatingStudyGroupChat({ isOpen: controlledIsOpen, onOpe
                               className="max-w-full max-h-40 rounded-lg mb-2 object-contain cursor-pointer hover:opacity-95 transition-opacity"
                               onClick={() => window.open(msg.image_url!, "_blank")}
                             />
+                          )}
+                          {msg.file_name && (
+                            msg.file_url ? (
+                              <a
+                                href={msg.file_url}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                download={msg.file_name}
+                                className={`mb-2 flex items-center gap-2 rounded-lg px-2.5 py-2 text-[11px] font-medium transition-colors ${
+                                  isMine
+                                    ? "bg-white/15 hover:bg-white/25"
+                                    : "bg-stone-100 dark:bg-stone-900 hover:bg-stone-200 dark:hover:bg-stone-800"
+                                }`}
+                              >
+                                <FileText className="w-4 h-4 flex-shrink-0" />
+                                <span className="truncate flex-1">{msg.file_name}</span>
+                                <Download className="w-3.5 h-3.5 flex-shrink-0 opacity-70" />
+                              </a>
+                            ) : (
+                              <div className="mb-2 flex items-center gap-2 rounded-lg px-2.5 py-2 text-[11px] font-medium opacity-70 bg-black/10 dark:bg-white/10">
+                                <FileText className="w-4 h-4 flex-shrink-0 animate-pulse" />
+                                <span className="truncate flex-1">{msg.file_name} · Đang tải lên...</span>
+                              </div>
+                            )
                           )}
                           {mainText && <p className="whitespace-pre-wrap break-words">{mainText}</p>}
                         </div>
@@ -726,6 +798,18 @@ export default function FloatingStudyGroupChat({ isOpen: controlledIsOpen, onOpe
                 </button>
               </div>
             )}
+            {pendingFile && (
+              <div className="relative inline-flex items-center gap-1.5 mb-2 max-w-full pl-2 pr-6 py-1.5 rounded-lg border border-stone-300 dark:border-stone-700 bg-stone-50 dark:bg-stone-900 text-[11px] font-medium text-stone-700 dark:text-stone-200">
+                <FileText className="w-3.5 h-3.5 flex-shrink-0" />
+                <span className="truncate max-w-[180px]">{pendingFile.name}</span>
+                <button
+                  onClick={() => clearPendingFile()}
+                  className="absolute -top-1.5 -right-1.5 w-5 h-5 bg-red-500 hover:bg-red-600 text-white rounded-full flex items-center justify-center shadow transition-all border border-white dark:border-stone-950 active:scale-90"
+                >
+                  <X className="w-3 h-3" />
+                </button>
+              </div>
+            )}
             <div className="flex items-center gap-2">
               <input
                 ref={fileInputRef}
@@ -734,7 +818,14 @@ export default function FloatingStudyGroupChat({ isOpen: controlledIsOpen, onOpe
                 className="hidden"
                 onChange={(e) => pickImage(e.target.files?.[0])}
               />
-              
+              <input
+                ref={docInputRef}
+                type="file"
+                accept=".pdf,.doc,.docx,.xls,.xlsx,.ppt,.pptx,.txt,.csv,.zip"
+                className="hidden"
+                onChange={(e) => pickFile(e.target.files?.[0])}
+              />
+
               <button
                 onClick={() => fileInputRef.current?.click()}
                 title="Đính kèm ảnh"
@@ -742,7 +833,15 @@ export default function FloatingStudyGroupChat({ isOpen: controlledIsOpen, onOpe
               >
                 <ImagePlus className="w-4.5 h-4.5" />
               </button>
-              
+
+              <button
+                onClick={() => docInputRef.current?.click()}
+                title="Đính kèm tệp"
+                className="p-2 border border-stone-100 dark:border-stone-800/50 text-stone-500 dark:text-stone-400 hover:text-stone-800 dark:hover:text-stone-200 hover:bg-stone-50 dark:hover:bg-stone-800 rounded-xl transition flex-shrink-0 active:scale-95"
+              >
+                <Paperclip className="w-4.5 h-4.5" />
+              </button>
+
               <EmojiPicker onSelect={(emoji) => setInput((prev) => prev + emoji)} />
               
               <input
@@ -763,7 +862,7 @@ export default function FloatingStudyGroupChat({ isOpen: controlledIsOpen, onOpe
               
               <button
                 onClick={() => void handleSend()}
-                disabled={sending || (!input.trim() && !pendingImage)}
+                disabled={sending || (!input.trim() && !pendingImage && !pendingFile)}
                 className="p-2 bg-gradient-to-br from-emerald-700 to-teal-600 hover:from-emerald-600 hover:to-teal-500 text-white rounded-xl hover:shadow disabled:opacity-30 disabled:pointer-events-none transition flex-shrink-0 active:scale-95"
                 aria-label="Gửi tin nhắn"
               >

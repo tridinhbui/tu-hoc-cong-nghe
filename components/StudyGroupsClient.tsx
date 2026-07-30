@@ -1120,6 +1120,8 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
               sender_id: user.id,
               content,
               image_url: null,
+              file_url: null,
+              file_name: null,
               created_at: new Date().toISOString(),
               is_bot: false,
               is_pinned: false,
@@ -2168,7 +2170,11 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
                                 <>
                                   <span className="block font-bold opacity-90">↩️ {repliedToName}</span>
                                   <span className="block truncate opacity-75">
-                                    {repliedTo.image_url && !repliedTo.content ? "[Hình ảnh]" : repliedTo.content}
+                                    {!repliedTo.content && repliedTo.image_url
+                                      ? "[Hình ảnh]"
+                                      : !repliedTo.content && repliedTo.file_name
+                                        ? `[Tệp: ${repliedTo.file_name}]`
+                                        : repliedTo.content}
                                   </span>
                                 </>
                               ) : (

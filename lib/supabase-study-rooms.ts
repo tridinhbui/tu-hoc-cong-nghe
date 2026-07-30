@@ -36,6 +36,8 @@ export interface StudyRoomMessage {
   sender_id: string | null;
   content: string;
   image_url: string | null;
+  file_url: string | null;
+  file_name: string | null;
   created_at: string;
   is_bot: boolean;
   is_pinned: boolean;
@@ -226,7 +228,8 @@ export async function sendRoomMessage(
   senderId: string,
   content: string,
   imageUrl?: string | null,
-  replyToId?: number | null
+  replyToId?: number | null,
+  file?: { url: string; name: string } | null
 ): Promise<StudyRoomMessage> {
   const supabase = createClient();
   const insertPayload: any = {
@@ -239,6 +242,10 @@ export async function sendRoomMessage(
   }
   if (replyToId) {
     insertPayload.reply_to_id = replyToId;
+  }
+  if (file) {
+    insertPayload.file_url = file.url;
+    insertPayload.file_name = file.name;
   }
   const { data, error } = await supabase
     .from("study_room_messages")

@@ -54,6 +54,46 @@ export async function uploadChatImage(userId: string, file: File): Promise<strin
   return data.publicUrl;
 }
 
+const FILE_EXTENSION_ALLOWLIST = new Set([
+  "pdf",
+  "doc",
+  "docx",
+  "xls",
+  "xlsx",
+  "ppt",
+  "pptx",
+  "txt",
+  "csv",
+  "zip",
+]);
+const MAX_FILE_SIZE = 15 * 1024 * 1024; // 15MB - generous for a report/spreadsheet, small enough to not stall the chat
+
+export function isAllowedChatFile(file: File): string | null {
+  const ext = file.name.split(".").pop()?.toLowerCase() ?? "";
+  if (!FILE_EXTENSION_ALLOWLIST.has(ext)) {
+    return "Chỉ chấp nhận PDF, Word, Excel, PowerPoint, TXT, CSV hoặc ZIP.";
+  }
+  if (file.size > MAX_FILE_SIZE) return "Tệp vượt quá giới hạn 15MB.";
+  return null;
+}
+
+export async function uploadChatFile(userId: string, file: File): Promise<{ url: string; name: string }> {
+  const invalidReason = isAllowedChatFile(file);
+  if (invalidReason) throw new Error(invalidReason);
+
+  const supabase = createClient();
+  const ext = file.name.split(".").pop() || "bin";
+  const path = `${userId}/${Date.now()}-${Math.random().toString(36).slice(2, 8)}.${ext}`;
+
+  const { error } = await supabase.storage
+    .from("chat-images")
+    .upload(path, file, { contentType: file.type || "application/octet-stream" });
+  if (error) throw handleSupabaseError(error);
+
+  const { data } = supabase.storage.from("chat-images").getPublicUrl(path);
+  return { url: data.publicUrl, name: file.name };
+}
+
 export async function getChatHistory(userId: string) {
   const supabase = createClient();
   const { data, error } = await supabase

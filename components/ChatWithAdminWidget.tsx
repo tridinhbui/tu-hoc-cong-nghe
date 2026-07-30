@@ -24,6 +24,7 @@ import { createClient } from "@/lib/supabase";
 import Logo from "@/components/Logo";
 import EmojiPicker from "@/components/EmojiPicker";
 import { announceWidgetOpened, onOtherWidgetOpened } from "@/lib/floating-widget-coordinator";
+import { useDraggablePosition } from "@/lib/hooks/useDraggablePosition";
 import { getRandomCommunityShoutout } from "@/lib/supabase-user";
 import {
   getChatHistory,
@@ -64,6 +65,7 @@ export default function ChatWithAdminWidget({
   const isOpen = controlledIsOpen !== undefined ? controlledIsOpen : internalIsOpen;
   const [isExpanded, setIsExpanded] = useState(false);
   const [isWidgetDragging, setIsWidgetDragging] = useState(false);
+  const bubbleDrag = useDraggablePosition("thtcdn_admin_chat_bubble_pos");
 
   const setIsOpen = useCallback(
     (open: boolean | ((prev: boolean) => boolean)) => {
@@ -363,10 +365,16 @@ export default function ChatWithAdminWidget({
             dragConstraints={{ left: -window.innerWidth + 80, right: 0, top: -window.innerHeight + 120, bottom: 0 }}
             dragElastic={0.1}
             dragMomentum={false}
-            onDragStart={() => setIsWidgetDragging(true)}
-            onDragEnd={() => setTimeout(() => setIsWidgetDragging(false), 120)}
-            initial={{ scale: 0 }}
-            animate={{ scale: 1 }}
+            onDragStart={() => {
+              setIsWidgetDragging(true);
+              bubbleDrag.onDragStart();
+            }}
+            onDragEnd={(event, info) => {
+              setTimeout(() => setIsWidgetDragging(false), 120);
+              bubbleDrag.onDragEnd(event, info);
+            }}
+            initial={{ scale: 0, x: bubbleDrag.offset.x, y: bubbleDrag.offset.y }}
+            animate={{ scale: 1, x: bubbleDrag.offset.x, y: bubbleDrag.offset.y }}
             exit={{ scale: 0 }}
             onClick={(e) => {
               if (isWidgetDragging) {
