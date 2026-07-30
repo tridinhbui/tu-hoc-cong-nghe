@@ -19,6 +19,7 @@ import GameLessonRecommendation from "@/components/games/GameLessonRecommendatio
 import PvpDuelModal from "@/components/PvpDuelModal";
 import FinancialGuildWidget from "@/components/FinancialGuildWidget";
 import ModeLeaderboard from "@/components/games/ModeLeaderboard";
+import WallStreetMillionaireGame from "@/components/games/WallStreetMillionaireGame";
 
 type InnerTab = "play" | "leaderboard" | "history";
 type HubTab = "games" | "pvp" | "guild" | "combined";
@@ -90,6 +91,7 @@ export default function GameHubClient() {
   const [hubTab, setHubTab] = useState<HubTab>("games");
   const [soundsEnabled, setSoundsEnabled] = useState(() => soundManager.isEnabled());
   const [showPvpModal, setShowPvpModal] = useState(false);
+  const [showMillionaireModal, setShowMillionaireModal] = useState(false);
 
   const [lastResult, setLastResult] = useState<{ gameType: GameType; score: number; total: number } | null>(null);
 
@@ -213,7 +215,45 @@ export default function GameHubClient() {
               <FinancialGuildWidget userId={userId} />
             </div>
           ) : (
-            <div className="grid sm:grid-cols-2 gap-4">
+            <div className="space-y-6">
+              {/* Featured Wall Street Quiz Millionaire Banner */}
+              <div
+                onClick={() => {
+                  setShowMillionaireModal(true);
+                  trackFeatureClick("game_open_millionaire", { label: "wall-street-millionaire" });
+                }}
+                className="relative rounded-3xl overflow-hidden border-2 border-amber-500/50 bg-gradient-to-r from-slate-900 via-amber-950/60 to-slate-950 p-6 sm:p-7 shadow-xl cursor-pointer group hover:border-amber-400 hover:shadow-amber-500/20 transition-all duration-300"
+              >
+                <div className="relative z-10 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+                  <div className="flex items-center gap-4">
+                    <div className="w-14 h-14 rounded-2xl bg-amber-500/20 border-2 border-amber-400/60 flex items-center justify-center text-3xl shrink-0 shadow-lg group-hover:scale-110 group-hover:rotate-3 transition-transform">
+                      💰
+                    </div>
+                    <div>
+                      <div className="inline-flex items-center gap-1.5 rounded-full bg-amber-500/20 border border-amber-400/40 px-2.5 py-0.5 text-[10px] font-black text-amber-300 uppercase tracking-widest mb-1">
+                        🏆 GAME SHOW ĐẶC BIỆT
+                      </div>
+                      <h2 className="text-lg sm:text-xl font-black text-amber-100 group-hover:text-amber-300 transition-colors">
+                        Ai Là Triệu Phú Phố Wall
+                      </h2>
+                      <p className="text-xs text-stone-300 mt-1 max-w-lg leading-relaxed">
+                        15 câu hỏi chinh phục $1,000,000 vốn đầu tư! Sử dụng 3 quyền trợ giúp: 50:50, Hỏi Mascot Tài Tài & Khảo sát 1,000 Chuyên viên.
+                      </p>
+                    </div>
+                  </div>
+
+                  <button
+                    type="button"
+                    className="px-5 py-3 rounded-2xl bg-gradient-to-r from-amber-500 to-yellow-500 hover:from-amber-400 hover:to-yellow-400 text-stone-950 font-black text-xs sm:text-sm shadow-lg group-hover:scale-105 transition-all shrink-0 flex items-center gap-2 cursor-pointer"
+                  >
+                    <span>Vào Game Show</span>
+                    <span className="group-hover:translate-x-1 transition-transform">→</span>
+                  </button>
+                </div>
+              </div>
+
+              {/* Standard Mini Games Grid */}
+              <div className="grid sm:grid-cols-2 gap-4">
               {GAMES.map((g) => {
                 const a = ACCENT[g.accent] ?? ACCENT.emerald;
                 return (
@@ -262,6 +302,7 @@ export default function GameHubClient() {
                 );
               })}
             </div>
+            </div>
           )}
         </div>
 
@@ -270,6 +311,13 @@ export default function GameHubClient() {
             userId={userId}
             userLevel={1}
             onClose={() => setShowPvpModal(false)}
+          />
+        )}
+
+        {showMillionaireModal && (
+          <WallStreetMillionaireGame
+            userId={userId}
+            onClose={() => setShowMillionaireModal(false)}
           />
         )}
       </div>
