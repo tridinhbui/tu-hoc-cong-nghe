@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 import Link from "next/link";
 import { BriefcaseBusiness, ChevronLeft, CheckCircle2, Clock3, Target, Trophy } from "lucide-react";
 import { createClient } from "@/lib/supabase";
@@ -8,6 +8,8 @@ import { submitQuizSession, computeQuizXp, type QuizDifficulty, type QuizAnswerS
 import { recalculateUserStats } from "@/lib/supabase-user";
 import { getIbCategoryCounts, IB_TECHNICAL_QUESTIONS, IB_BEHAVIORAL_QUESTIONS } from "@/lib/ib-question-bank";
 import BehavioralPrepPanel from "@/components/BehavioralPrepPanel";
+import { getCareersCoveredByBank, getTechnicalQuestionsForCareer } from "@/lib/ib-question-careers";
+import { FINANCE_CAREERS } from "@/lib/finance-careers";
 
 // Standalone "Technical Interview" drill - split out of /kiem-tra (which
 // stays the general-purpose knowledge-check page) because the 400-question
@@ -58,8 +60,9 @@ export default function TechnicalInterviewPage() {
   const [userId, setUserId] = useState<string | null>(null);
   const [mode, setMode] = useState<Mode>("technical");
   const [difficulty, setDifficulty] = useState<QuizDifficulty>("tat-ca");
-  const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
-  const [selectedTrack, setSelectedTrack] = useState<string>("ib");
+  // Which career's slice of the bank to drill. null = the whole technical
+  // pool. Only careers the bank genuinely covers are offered.
+  const [selectedCareer, setSelectedCareer] = useState<string | null>(null);
   const [stage, setStage] = useState<Stage>("setup");
   const [questions, setQuestions] = useState<ChallengeQuestion[]>([]);
   const [activeQ, setActiveQ] = useState(0);
@@ -72,9 +75,34 @@ export default function TechnicalInterviewPage() {
 
   // Technical only - the behavioral sections are listed by BehavioralPrepPanel
   // under its own mode, since they're a different kind of practice.
-  const categoryCounts = getIbCategoryCounts(IB_TECHNICAL_QUESTIONS);
   const totalQuestions = IB_TECHNICAL_QUESTIONS.length;
   const behavioralCount = IB_BEHAVIORAL_QUESTIONS.length;
+
+  // Careers the bank genuinely covers, with real counts derived from the
+  // questions themselves. Titles come from FINANCE_CAREERS so the picker and
+  // the career pages can't drift apart.
+  const careerCoverage = useMemo(() => {
+    const titles = new Map(FINANCE_CAREERS.map((c) => [c.id, c.title]));
+    return getCareersCoveredByBank()
+      .filter((c) => titles.has(c.careerId))
+      .map((c) => ({ ...c, title: titles.get(c.careerId)! }));
+  }, []);
+
+  const uncoveredCount = FINANCE_CAREERS.length - careerCoverage.length;
+
+  // The section breakdown shown under the drill: scoped to the selected
+  // career so it reflects what that person will actually be asked.
+  const activeCategoryCounts = useMemo(
+    () =>
+      getIbCategoryCounts(
+        selectedCareer ? getTechnicalQuestionsForCareer(selectedCareer) : IB_TECHNICAL_QUESTIONS
+      ),
+    [selectedCareer]
+  );
+
+  const activeQuestionTotal = selectedCareer
+    ? activeCategoryCounts.reduce((sum, c) => sum + c.count, 0)
+    : totalQuestions;
 
   useEffect(() => {
     supabase.auth.getUser().then(({ data }) => setUserId(data.user?.id ?? null));
@@ -90,13 +118,17 @@ export default function TechnicalInterviewPage() {
     setAnswers([]);
     setXpAwarded(null);
     try {
-      const res = await fetch(`/api/knowledge-challenge?track=ib&difficulty=${effectiveDifficulty}`);
+      // The career filter has to happen server-side. The API already slices
+      // the pool down to five questions before responding, so filtering the
+      // response client-side left almost nothing - and matching a Vietnamese
+      // career title against an English `lessonTitle` matched nothing at all.
+      const careerParam = selectedCareer ? `&career=${encodeURIComponent(selectedCareer)}` : "";
+      const res = await fetch(
+        `/api/knowledge-challenge?track=ib&difficulty=${effectiveDifficulty}${careerParam}`
+      );
       if (!res.ok) throw new Error("failed");
       const data = await res.json();
-      let pool: ChallengeQuestion[] = data.questions || [];
-      if (selectedCategory) {
-        pool = pool.filter((q) => q.lessonTitle.toLowerCase().includes(selectedCategory.toLowerCase()));
-      }
+      const pool: ChallengeQuestion[] = data.questions || [];
       if (!pool || pool.length === 0) {
         setStage("empty");
         return;
@@ -108,7 +140,7 @@ export default function TechnicalInterviewPage() {
       console.error("Error loading technical interview drill:", error);
       setStage("error");
     }
-  }, [difficulty, selectedCategory]);
+  }, [difficulty, selectedCareer]);
 
   const q = questions[activeQ];
   const allDone = submitted && activeQ === questions.length - 1;
@@ -221,101 +253,68 @@ export default function TechnicalInterviewPage() {
 
         {mode === "technical" && stage === "setup" && (
           <div className="space-y-6">
-            {/* Career Track Picker */}
-            <div className="rounded-3xl border border-amber-200 dark:border-amber-900/60 bg-gradient-to-r from-amber-50/70 via-stone-50 to-orange-50/50 dark:from-stone-900 dark:via-stone-900 dark:to-stone-950 p-4 sm:p-6 shadow-xs">
-              <div className="flex flex-wrap items-center justify-between gap-3 mb-4">
-                <div>
-                  <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-amber-400/20 text-amber-800 dark:text-amber-300 text-xs font-black uppercase tracking-wider">
-                    <span>✨ Chọn lộ trình phỏng vấn theo vị trí</span>
-                  </div>
-                  <h3 className="text-lg font-black text-stone-900 dark:text-stone-100 mt-1">
-                    Bộ câu hỏi phỏng vấn chuẩn hóa theo từng vị trí ngành Tài chính
-                  </h3>
-                </div>
-                <div className="inline-flex items-center gap-2 rounded-xl bg-amber-400/10 border border-amber-300/50 dark:border-amber-800 px-3 py-1.5 text-xs font-bold text-amber-800 dark:text-amber-300">
-                  <span>🏆 IB Track: Theo cuốn "400 Questions IB Guide" Phố Wall</span>
-                </div>
+            {/* Which career's questions to drill.
+                The bank is Investment Banking's - 395 questions scraped from
+                an IB interview guide - but its accounting, valuation and DCF
+                sections are the shared core of most analytical finance roles,
+                so they're offered to those careers too via
+                lib/ib-question-careers.ts. Counts below are computed from the
+                bank, not hardcoded: an earlier version of this picker
+                advertised 120/95/85/110 questions for tracks that had no
+                questions at all, and clicking them showed an empty drill. */}
+            <div className="rounded-3xl border border-amber-200 dark:border-amber-900/60 bg-amber-50/50 dark:bg-stone-900 p-4 sm:p-6 shadow-xs">
+              <div className="flex flex-wrap items-center justify-between gap-3 mb-1">
+                <h3 className="text-lg font-black text-stone-900 dark:text-stone-100">
+                  Luyện theo vị trí bạn nhắm tới
+                </h3>
+                <span className="inline-flex items-center gap-2 rounded-xl bg-amber-400/10 border border-amber-300/50 dark:border-amber-800 px-3 py-1.5 text-xs font-bold text-amber-800 dark:text-amber-300">
+                  Nguồn: bộ 400 IB Interview Questions
+                </span>
               </div>
+              <p className="text-xs text-stone-600 dark:text-stone-400 mb-4 leading-relaxed">
+                Bộ câu hỏi này viết cho Ngân hàng Đầu tư, nhưng phần kế toán, định giá và DCF dùng chung được cho
+                nhiều vị trí phân tích khác. Chọn vị trí để chỉ luyện đúng phần liên quan.
+              </p>
 
-              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-5 gap-3">
-                {[
-                  {
-                    id: "ib",
-                    title: "Ngân hàng Đầu tư (IB)",
-                    highlight: "✨ Bộ 400 Questions IB Guide Phố Wall",
-                    icon: "🏦",
-                    desc: "DCF, LBO, M&A, Accretion/Dilution & 3 Báo cáo",
-                    count: totalQuestions,
-                  },
-                  {
-                    id: "equity-research",
-                    title: "Phân tích Cổ phiếu & Fund",
-                    highlight: "📈 Stock Pitching & Target Price",
-                    icon: "📊",
-                    desc: "Định giá P/E, P/B, EV/EBITDA & Thesis",
-                    count: 120,
-                  },
-                  {
-                    id: "corporate-finance",
-                    title: "Tài chính DN & FP&A",
-                    highlight: "🏢 Cash Flow & Budgeting",
-                    icon: "💼",
-                    desc: "WACC, Working Capital & Variance Analysis",
-                    count: 95,
-                  },
-                  {
-                    id: "banking-credit",
-                    title: "Ngân hàng & Tín dụng",
-                    highlight: "💳 Commercial Banking & 5Cs",
-                    icon: "🏛️",
-                    desc: "DSCR, LTV, Thẩm định nợ & Quản trị rủi ro",
-                    count: 85,
-                  },
-                  {
-                    id: "accounting-audit",
-                    title: "Kế toán & Kiểm toán",
-                    highlight: "🔍 VAS, IFRS & Audit Review",
-                    icon: "🧾",
-                    desc: "Bút toán điều chỉnh, VAS vs IFRS & BCTC",
-                    count: 110,
-                  },
-                ].map((track) => {
-                  const isTrackActive = (selectedTrack === track.id) || (!selectedTrack && track.id === "ib");
+              <div className="flex flex-wrap gap-1.5">
+                <button
+                  type="button"
+                  onClick={() => setSelectedCareer(null)}
+                  className={`px-3 py-1.5 rounded-full border text-xs font-bold transition-colors cursor-pointer ${
+                    selectedCareer === null
+                      ? "border-amber-500 bg-amber-400 text-stone-950 font-black"
+                      : "border-stone-200 dark:border-stone-800 bg-white dark:bg-stone-950 text-stone-600 dark:text-stone-300 hover:border-stone-300"
+                  }`}
+                >
+                  Tất cả · {totalQuestions}
+                </button>
+                {careerCoverage.map((c) => {
+                  const active = selectedCareer === c.careerId;
                   return (
                     <button
-                      key={track.id}
+                      key={c.careerId}
                       type="button"
-                      onClick={() => {
-                        setSelectedTrack(track.id);
-                        setSelectedCategory(track.id === "ib" ? null : track.title);
-                      }}
-                      className={`p-3.5 rounded-2xl border-2 text-left transition-all cursor-pointer flex flex-col justify-between ${
-                        isTrackActive
-                          ? "border-amber-400 bg-white dark:bg-stone-900 shadow-md ring-2 ring-amber-400/30"
-                          : "border-stone-200 dark:border-stone-800 bg-white/80 dark:bg-stone-900/60 hover:border-stone-300 dark:hover:border-stone-700"
+                      onClick={() => setSelectedCareer(active ? null : c.careerId)}
+                      title={c.categories.join(" · ")}
+                      className={`px-3 py-1.5 rounded-full border text-xs font-bold transition-colors cursor-pointer ${
+                        active
+                          ? "border-amber-500 bg-amber-400 text-stone-950 font-black"
+                          : "border-stone-200 dark:border-stone-800 bg-white dark:bg-stone-950 text-stone-600 dark:text-stone-300 hover:border-stone-300"
                       }`}
                     >
-                      <div>
-                        <div className="flex items-center justify-between gap-1 mb-2">
-                          <span className="text-xl">{track.icon}</span>
-                          <span className={`text-[10px] font-black px-2 py-0.5 rounded-full ${isTrackActive ? "bg-amber-400 text-stone-950" : "bg-stone-100 dark:bg-stone-800 text-stone-600 dark:text-stone-400"}`}>
-                            {track.count} câu
-                          </span>
-                        </div>
-                        <p className="text-xs font-black text-stone-900 dark:text-stone-100 leading-tight">
-                          {track.title}
-                        </p>
-                        <p className="text-[10px] font-extrabold text-amber-600 dark:text-amber-400 mt-1 line-clamp-1">
-                          {track.highlight}
-                        </p>
-                        <p className="text-[10px] font-medium text-stone-500 dark:text-stone-400 mt-1 leading-snug line-clamp-2">
-                          {track.desc}
-                        </p>
-                      </div>
+                      {c.title}
+                      <span className={active ? "text-stone-950 font-extrabold" : "text-stone-400 dark:text-stone-500"}>
+                        {" "}· {c.questionCount}
+                      </span>
                     </button>
                   );
                 })}
               </div>
+
+              <p className="mt-3 text-[11px] text-stone-500 dark:text-stone-400 leading-relaxed">
+                {uncoveredCount} / {FINANCE_CAREERS.length} vị trí khác chưa có bộ câu hỏi riêng — phần technical
+                của các nghề đó đang được xây dần.
+              </p>
             </div>
 
             <section className="rounded-3xl border border-stone-200 dark:border-stone-800 bg-white dark:bg-stone-900 overflow-hidden shadow-sm">
@@ -339,7 +338,7 @@ export default function TechnicalInterviewPage() {
 
                   <div className="mt-5 grid grid-cols-3 gap-2.5">
                     {[
-                      { icon: Target, label: "Question bank", value: `${totalQuestions} câu` },
+                      { icon: Target, label: "Question bank", value: `${activeQuestionTotal} câu` },
                       { icon: Clock3, label: "Mỗi lượt", value: "3-5 phút" },
                       { icon: Trophy, label: "Thưởng", value: "+XP" },
                     ].map((item) => {
@@ -358,39 +357,23 @@ export default function TechnicalInterviewPage() {
                       really made of, so a learner can see coverage instead of
                       a single opaque number. */}
                   <div className="mt-5">
-                    <div className="flex items-center justify-between mb-2">
-                      <p className="text-[10px] font-black uppercase tracking-wider text-stone-400 dark:text-stone-500">
-                        Luyện theo từng chủ đề chuyên sâu
-                      </p>
-                      {selectedCategory && (
-                        <button
-                          type="button"
-                          onClick={() => setSelectedCategory(null)}
-                          className="text-[11px] font-bold text-amber-600 dark:text-amber-400 hover:underline cursor-pointer"
-                        >
-                          Xóa bộ lọc (Hiện tất cả)
-                        </button>
-                      )}
-                    </div>
+                    <p className="text-[10px] font-black uppercase tracking-wider text-stone-400 dark:text-stone-500 mb-2">
+                      {selectedCareer ? "Các section bạn sẽ được hỏi" : "Các section trong bộ câu hỏi"}
+                    </p>
+                    {/* Read-only breakdown, not a filter. Filtering by a single
+                        category is done through the career picker above, which
+                        narrows server-side; a client-side chip filter could
+                        only ever act on the five questions already returned. */}
                     <div className="flex flex-wrap gap-1.5">
-                      {categoryCounts.map((c) => {
-                        const isCatSelected = selectedCategory === c.label;
-                        return (
-                          <button
-                            key={c.label}
-                            type="button"
-                            onClick={() => setSelectedCategory(isCatSelected ? null : c.label)}
-                            className={`inline-flex items-center gap-1 px-3 py-1.5 rounded-full border text-xs font-bold transition-all cursor-pointer ${
-                              isCatSelected
-                                ? "border-amber-500 bg-amber-400 text-stone-950 shadow-xs font-black"
-                                : "border-stone-200 dark:border-stone-800 bg-stone-50 dark:bg-stone-950 text-stone-600 dark:text-stone-300 hover:border-stone-300 dark:hover:border-stone-700"
-                            }`}
-                          >
-                            {c.label}
-                            <span className={isCatSelected ? "text-stone-950 font-extrabold" : "text-stone-400 dark:text-stone-500"}>· {c.count}</span>
-                          </button>
-                        );
-                      })}
+                      {activeCategoryCounts.map((c) => (
+                        <span
+                          key={c.label}
+                          className="inline-flex items-center gap-1 px-3 py-1.5 rounded-full border border-stone-200 dark:border-stone-800 bg-stone-50 dark:bg-stone-950 text-xs font-bold text-stone-600 dark:text-stone-300"
+                        >
+                          {c.label}
+                          <span className="text-stone-400 dark:text-stone-500">· {c.count}</span>
+                        </span>
+                      ))}
                     </div>
                   </div>
                 </div>
