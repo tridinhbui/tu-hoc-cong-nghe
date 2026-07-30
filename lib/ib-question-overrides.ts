@@ -271,6 +271,135 @@ export const IB_QUESTION_OVERRIDES: Record<number, IbQuestionOverride> = {
     correct: 0,
   },
 
+  146: {
+    options: [
+      "Use surplus balance sheet cash to retire debt below par, cutting future interest and obligations - the interest forgone on the cash is less than the interest saved. Accounting-wise the discount to par is booked as a gain on the income statement.",
+      "The company issues new shares to fund the buyback, and the discount to par is recorded directly in shareholders' equity.",
+      "It buys the debt to prevent a competitor acquiring its loans; the purchase is recorded as an investment asset at cost.",
+      "The discount to par is recorded as a loss, because the company is admitting its obligations were overstated.",
+    ],
+    correct: 0,
+  },
+  147: {
+    options: [
+      "Over-levered companies with cash on hand - typically ones taken private in leveraged buyouts during the boom years, now struggling with interest payments their earnings can't comfortably cover.",
+      "Cash-rich, debt-free companies looking to deploy surplus balance sheet cash productively.",
+      "High-growth companies, which buy back debt to free up covenant capacity for further expansion.",
+      "Companies already in Chapter 11, since the court permits debt repurchases at a discount during proceedings.",
+    ],
+    correct: 0,
+  },
+  148: {
+    options: [
+      "Because priority determines recovery. Secured creditors have first claim on the proceeds of any sale, so a lower-ranked creditor may find nothing left by the time the waterfall reaches them.",
+      "Because all creditors share losses pro rata regardless of seniority, so every lender takes the same haircut.",
+      "Because bankruptcy law caps creditor recoveries at 50% of face value in every proceeding.",
+      "Because creditors must forgive a portion of the debt before a company is permitted to file for Chapter 11.",
+    ],
+    correct: 0,
+  },
+  149: {
+    options: [
+      "To change the terms of the debt - interest, principal repayment schedule, covenants - rather than the amount outstanding. A restructuring does not by itself reduce how much debt the company owes.",
+      "To eliminate the debt entirely, which is what distinguishes a restructuring from a simple refinancing.",
+      "To convert all outstanding debt into equity, giving creditors ownership in exchange for their claims.",
+      "To sell enough assets to repay the debt in full, leaving the remaining business debt-free.",
+    ],
+    correct: 0,
+  },
+  150: {
+    options: [
+      "Restructuring is one possible outcome of a distressed situation. A distressed company might instead declare bankruptcy, liquidate, or sell itself - restructuring its debt is only one of the available paths.",
+      "They are the same thing described from the buyer's and the seller's perspective respectively.",
+      "Distressed M&A is one possible outcome of a restructuring, which is the broader process containing it.",
+      "Restructuring involves only the debt while distressed M&A involves only the equity - they never overlap.",
+    ],
+    correct: 0,
+  },
+  151: {
+    options: [
+      "An asset purchase takes literally just the assets. Assuming current liabilities as well means adjusting for the fact that a distressed company's working capital is usually stretched - unpaid payables and accrued expenses come across too.",
+      "The two are identical, since current liabilities always transfer with the assets they relate to.",
+      "Assuming current liabilities means taking on the company's long-term debt as well, which is the main difference.",
+      "An asset purchase transfers the legal entity while a current-liabilities-assumed basis does not.",
+    ],
+    correct: 0,
+  },
+  152: {
+    options: [
+      "It can't, directly. Market cap is not shareholders' equity - the share price doesn't change the book equity balance. A falling price only matters indirectly, for instance if it triggers a covenant or blocks the company from raising equity.",
+      "Shareholders' equity falls with the share price, and once it goes negative the company is insolvent and must file.",
+      "A falling share price automatically accelerates the company's debt under standard loan agreements.",
+      "The company must write down goodwill to match the lower market capitalisation, which can wipe out its equity.",
+    ],
+    correct: 0,
+  },
+  153: {
+    options: [
+      "They rise, often well beyond what's normal for the industry, because a distressed company struggles to pay its vendors and suppliers on time.",
+      "They fall, because suppliers demand cash on delivery once they lose confidence in the company.",
+      "They stay flat, since accounts payable days are set by contractual terms rather than by ability to pay.",
+      "They rise initially and then fall to zero, because suppliers stop extending any credit at all.",
+    ],
+    correct: 0,
+  },
+  154: {
+    options: [
+      "Investors may simply refuse. Lenders won't advance capital to a company that's too small or lacks a credible turnaround plan - and it's worse for equity, since equity holders rank last and would be wiped out first.",
+      "Securities regulations prohibit a company from raising capital once it has missed a debt payment.",
+      "Its existing creditors must unanimously approve any new capital raise, which they never do.",
+      "It can always raise capital - distressed companies simply pay a higher rate, so the constraint is price rather than access.",
+    ],
+    correct: 0,
+  },
+  155: {
+    options: [
+      "Higher in most cases, because you're adding back above-normal salaries, one-time legal and restructuring charges, and similar items that depress reported earnings.",
+      "Lower, because you have to strip out revenue the company is unlikely to collect from struggling customers.",
+      "The same - EBITDA is a standardised measure and isn't adjusted for a company's financial condition.",
+      "Lower, because distressed companies capitalise costs that should be expensed, which adjustment reverses.",
+    ],
+    correct: 0,
+  },
+  156: {
+    options: [
+      "No. With a distressed company it's especially important to look at cash flow on a debt-free basis, precisely because its debt service is abnormally high and would distort the picture.",
+      "Yes - levered cash flow is the right measure whenever a company carries an unusual amount of debt.",
+      "Yes, because a distressed company's equity is what's being valued, and levered cash flow gives Equity Value directly.",
+      "Neither works - a distressed company's cash flows are too volatile for any DCF to be meaningful.",
+    ],
+    correct: 0,
+  },
+  157: {
+    question:
+      "Let's say we're doing a Liquidation Valuation for a distressed company. Why can't we just use the Shareholders' Equity number for its value? Isn't that equal to Assets minus Liabilities?",
+    options: [
+      "Because book values aren't recovery values. In a liquidation you re-mark each asset to what it would actually fetch sold separately - you might assume only 50% recovery on receivables or inventory, for instance.",
+      "Because shareholders' equity excludes off-balance-sheet liabilities, which is the only adjustment a liquidation valuation makes.",
+      "Because shareholders' equity is stated net of tax while liquidation proceeds are pre-tax, so the two aren't comparable.",
+      "You can use it - shareholders' equity is by definition assets minus liabilities, which is exactly what's left for equity holders.",
+    ],
+    correct: 0,
+  },
+  158: {
+    options: [
+      "It varies enormously by industry and asset, but as a rough guide: cash near 100%, receivables and inventory recovering a substantial but partial fraction, and illiquid or specialised assets such as PP&E and intangibles recovering far less.",
+      "Roughly 100% across all asset classes, since liquidation sales are conducted at independently appraised fair value.",
+      "A flat 50% on every asset, which is the standard haircut applied in a liquidation valuation.",
+      "Intangibles recover the most because they can be sold to competitors, while cash recovers the least due to creditor claims on it.",
+    ],
+    correct: 0,
+  },
+  159: {
+    options: [
+      "The point isn't the sponsor's IRR - it's how quickly the company can repay its obligations, and what return new debt or equity investors might earn. You're testing debt capacity rather than pricing an acquisition.",
+      "It's identical to a standard LBO model - only the purchase price assumption changes to reflect the distress.",
+      "You model it with no debt at all, since a distressed company cannot support any additional leverage.",
+      "The goal is to maximise leverage, since a low purchase price allows an unusually aggressive capital structure.",
+    ],
+    correct: 0,
+  },
+
   // ── Accounting - Basic ────────────────────────────────────────────────
   160: {
     options: [
@@ -449,6 +578,124 @@ export const IB_QUESTION_OVERRIDES: Record<number, IbQuestionOverride> = {
       "Net Income falls $60 and cash falls $100, since a write-down reflects assets whose cash value has been permanently lost.",
       "Net Income falls $100 because write-downs are not tax-deductible, and cash is unaffected since the charge is non-cash.",
       "There is no Income Statement impact - the $100 is charged directly to Shareholders' Equity, and only the Balance Sheet changes.",
+    ],
+    correct: 0,
+  },
+
+  180: {
+    options: [
+      "Assuming the common case - a government equity investment - there's no income statement change. Cash rises $100 under financing on the cash flow statement, and on the balance sheet Cash is up $100 with Shareholders' Equity up $100.",
+      "Revenue rises $100 so Net Income rises $60 at a 40% tax rate, and Cash rises $60 on the balance sheet.",
+      "No income statement change, Cash rises $100, and Debt rises $100 - a bailout is always structured as a loan.",
+      "Cash rises $100 and Goodwill rises $100, since the government is paying above the fair value of what it receives.",
+    ],
+    correct: 0,
+  },
+  181: {
+    options: [
+      "It's counter-intuitive: writing down a liability is a gain, so Pre-Tax Income rises $100 and Net Income rises $60 at a 40% tax rate. On the cash flow statement you subtract out the $100 non-cash gain, so cash falls $40.",
+      "Writing down a liability is a loss, so Pre-Tax Income falls $100 and Net Income falls $60, with cash rising $40 once the non-cash charge is added back.",
+      "There's no income statement effect - the $100 simply moves from Liabilities to Shareholders' Equity on the balance sheet.",
+      "Pre-Tax Income rises $100 and Net Income rises $60, and cash rises $60 as well, since the company no longer has to repay the debt.",
+    ],
+    correct: 0,
+  },
+  182: {
+    options: [
+      "When it's paid upfront for a service delivered later - web-based subscription software, cell phone carriers selling annual contracts, magazine publishers selling subscriptions.",
+      "When the customer pays by credit card, since the revenue isn't recognised until the card processor settles.",
+      "When the customer pays in a foreign currency, which can't be recognised until it's converted.",
+      "When the sale is to a related party, which must be excluded from reported revenue entirely.",
+    ],
+    correct: 0,
+  },
+  183: {
+    options: [
+      "It sits in Deferred Revenue under Liabilities on the balance sheet, and converts into real revenue on the income statement over time as the service is actually delivered.",
+      "It sits in Accounts Receivable under Assets until the service is delivered, at which point it becomes revenue.",
+      "It goes straight into Retained Earnings, bypassing the income statement entirely.",
+      "It's recorded as Unearned Goodwill, an intangible asset amortised over the life of the contract.",
+    ],
+    correct: 0,
+  },
+  184: {
+    options: [
+      "Accounts receivable hasn't been collected in cash yet; deferred revenue has. Receivables are revenue the company is waiting to be paid for, deferred revenue is cash it's been paid but hasn't yet earned.",
+      "Deferred revenue hasn't been collected in cash yet while accounts receivable has - the two are the reverse of one another.",
+      "Both represent uncollected cash; they differ only in whether the customer is a business or a consumer.",
+      "Accounts receivable is a liability and deferred revenue is an asset, which is the fundamental distinction.",
+    ],
+    correct: 0,
+  },
+  185: {
+    options: [
+      "Typically 40-50 days, though it runs higher for companies selling high-value items and lower for smaller, low-transaction-value businesses.",
+      "Typically 5-10 days, since most customers now pay electronically at the point of sale.",
+      "Typically 90-120 days, which is the standard commercial payment term across industries.",
+      "There's no typical range - collection periods are set individually in each customer contract.",
+    ],
+    correct: 0,
+  },
+  186: {
+    options: [
+      "Cash-based accounting records revenue and expenses when cash actually moves; accrual accounting records revenue when collection is reasonably certain and matches expenses to the period the related revenue was earned.",
+      "Accrual accounting records revenue and expenses when cash moves, while cash-based accounting matches them to the period earned.",
+      "The two produce identical results over any full financial year and differ only in interim reporting.",
+      "Cash-based accounting is used for the income statement and accrual accounting for the balance sheet, within the same set of accounts.",
+    ],
+    correct: 0,
+  },
+  187: {
+    options: [
+      "Under cash-based accounting nothing is recorded until the card is charged, authorised and the funds land in the bank. Under accrual accounting revenue is recorded at the point of sale, with an offsetting receivable until the cash arrives.",
+      "Under cash-based accounting revenue is recorded at the point of sale; under accrual accounting it waits until the funds clear the bank.",
+      "Both record the revenue immediately at the point of sale, since a credit card payment is a guaranteed receivable.",
+      "Neither records revenue until the customer's credit card statement is settled at the end of the billing cycle.",
+    ],
+    correct: 0,
+  },
+  188: {
+    options: [
+      "If the asset has a useful life of more than a year you capitalise it onto the balance sheet and depreciate or amortise it over that life; otherwise you expense it on the income statement in the period.",
+      "If the purchase costs more than a set dollar threshold you capitalise it, regardless of how long it lasts.",
+      "You capitalise tangible purchases and expense intangible ones, since only physical assets belong on the balance sheet.",
+      "You capitalise anything paid for in cash and expense anything bought on credit.",
+    ],
+    correct: 0,
+  },
+  189: {
+    options: [
+      "Because non-cash charges such as intangibles amortisation, stock-based compensation and deferred revenue write-downs can understate true performance - so companies present a non-GAAP figure excluding them alongside the GAAP number.",
+      "Because GAAP is required for domestic reporting and non-GAAP for international investors, so both must be filed.",
+      "Because non-GAAP earnings are audited and GAAP earnings are not, so investors need both to assess reliability.",
+      "Because non-GAAP earnings include one-time gains that GAAP excludes, which gives a fuller picture of the year.",
+    ],
+    correct: 0,
+  },
+  190: {
+    options: [
+      "EBITDA ignores several real cash costs: heavy CapEx, high interest expense, one-time legal or restructuring charges, or a debt maturity the company simply can't refinance - any of which can sink a business with positive EBITDA.",
+      "It can't - a company with positive EBITDA over ten years is by definition solvent and cannot go bankrupt.",
+      "Because EBITDA excludes revenue recognised on credit, so the company was never actually collecting the cash.",
+      "Because positive EBITDA with negative net income triggers an automatic bankruptcy filing under accounting rules.",
+    ],
+    correct: 0,
+  },
+  191: {
+    options: [
+      "It's impaired when the acquirer reassesses the intangibles it bought - customers, brand, intellectual property - and concludes they're worth materially less than it paid, which usually signals the acquisition disappointed.",
+      "It's impaired automatically each year on a straight-line basis over the useful life of the acquisition.",
+      "It's impaired whenever the acquirer's own share price falls, since goodwill is marked to the parent's market value.",
+      "It's impaired when the acquired business is eventually sold, at which point the balance is written off in full.",
+    ],
+    correct: 0,
+  },
+  192: {
+    options: [
+      "Almost always because the company makes another acquisition, or is itself acquired and goodwill is recalculated in the new purchase accounting. An upward revaluation is technically possible but very rare.",
+      "It increases each year as the acquired business grows, since goodwill tracks the value of the customer relationships acquired.",
+      "It increases whenever the company's share price rises, because goodwill is marked to market at each reporting date.",
+      "It can never increase - goodwill only ever stays flat or is written down through impairment.",
     ],
     correct: 0,
   },
