@@ -127,9 +127,9 @@ export default function NotesOverviewClient({ lessonsById, userId, initialNotes,
       <div className={embedded ? "" : "max-w-2xl mx-auto px-6 py-8"}>
         {(
           notes.length === 0 ? (
-            <div className="text-center py-16 text-stone-500 dark:text-stone-400">
-              <p className="mb-2">Chưa có ghi chú nào.</p>
-              <p className="text-sm">Ghi chú bạn thêm khi học bài sẽ được tổng hợp ở đây.</p>
+            <div className="text-center py-16 text-stone-600 dark:text-stone-300">
+              <p className="mb-2 font-semibold">Chưa có ghi chú nào.</p>
+              <p className="text-sm text-stone-500 dark:text-stone-400">Ghi chú bạn thêm khi học bài sẽ được tổng hợp tự động ở đây.</p>
             </div>
           ) : (
             <div className="space-y-6">
@@ -137,56 +137,56 @@ export default function NotesOverviewClient({ lessonsById, userId, initialNotes,
                 const lessonInfo = lessonsById[lessonId];
                 const lessonNotes = grouped.get(lessonId)!;
                 return (
-                  <div key={lessonId} className="bg-white/95 dark:bg-stone-900 border-2 border-stone-200 dark:border-stone-800 rounded-xl overflow-hidden">
-                    <div className="px-5 py-3 border-b border-stone-200 dark:border-stone-800 flex items-center justify-between bg-stone-50 dark:bg-stone-800/50">
+                  <div key={lessonId} className="bg-white/95 dark:bg-stone-900 border border-stone-200 dark:border-stone-800 rounded-2xl overflow-hidden shadow-xs">
+                    <div className="px-5 py-3.5 border-b border-stone-200 dark:border-stone-800 flex items-center justify-between bg-stone-50/80 dark:bg-stone-850/80">
                       {lessonInfo ? (
-                        <Link href={`/bai-hoc/${lessonInfo.slug}`} className="font-bold text-stone-900 dark:text-stone-100 hover:underline">
+                        <Link href={`/bai-hoc/${lessonInfo.slug}`} className="font-extrabold text-stone-900 dark:text-stone-100 hover:text-emerald-600 dark:hover:text-emerald-400 transition-colors">
                           {lessonInfo.title}
                         </Link>
                       ) : (
-                        <span className="font-bold text-stone-500 dark:text-stone-400">Bài học #{lessonId}</span>
+                        <span className="font-bold text-stone-600 dark:text-stone-300">Bài học #{lessonId}</span>
                       )}
-                      <span className="text-xs text-stone-500 dark:text-stone-400">{lessonNotes.length} ghi chú</span>
+                      <span className="text-xs font-semibold text-stone-500 dark:text-stone-300 bg-stone-200/60 dark:bg-stone-800 px-2.5 py-1 rounded-full">{lessonNotes.length} ghi chú</span>
                     </div>
                     <div className="p-5 space-y-3">
                       {lessonNotes.map((note) => (
-                        <div key={note.id} className="bg-stone-50 dark:bg-stone-800 rounded-lg p-4 group">
+                        <div key={note.id} className="bg-stone-50 dark:bg-stone-800/80 border border-stone-200/60 dark:border-stone-700/60 rounded-xl p-4 group transition-colors">
                           {editingNoteId === note.id ? (
                             <div className="space-y-2">
                               <textarea
                                 value={editContent}
                                 onChange={(e) => setEditContent(e.target.value)}
-                                className="w-full px-3 py-2 rounded-lg border border-stone-300 dark:border-stone-600 bg-white dark:bg-stone-900 text-stone-900 dark:text-stone-100 text-sm resize-none"
+                                className="w-full px-3.5 py-2.5 rounded-xl border border-stone-300 dark:border-stone-600 bg-white dark:bg-stone-900 text-stone-900 dark:text-stone-100 text-sm resize-none focus:outline-none focus:ring-2 focus:ring-emerald-500"
                                 rows={3}
                                 autoFocus
                               />
                               {hasMathContent(editContent) && (
-                                <div className="px-3 py-2 rounded-lg bg-stone-100 dark:bg-stone-800 border border-dashed border-stone-300 dark:border-stone-600 overflow-x-auto">
+                                <div className="px-3.5 py-2.5 rounded-xl bg-stone-100 dark:bg-stone-900 border border-dashed border-stone-300 dark:border-stone-700 overflow-x-auto">
                                   <NoteContent content={editContent} />
                                 </div>
                               )}
-                              <div className="flex gap-2 justify-end">
-                                <button onClick={cancelEditing} className="px-3 py-1 text-sm text-stone-600 dark:text-stone-400 hover:text-stone-900 dark:hover:text-stone-200">
+                              <div className="flex gap-2 justify-end pt-1">
+                                <button onClick={cancelEditing} className="px-3 py-1.5 text-xs font-bold text-stone-600 dark:text-stone-300 hover:text-stone-900 dark:hover:text-white transition-colors">
                                   Hủy
                                 </button>
-                                <button onClick={() => saveEdit(note.id)} className="px-3 py-1 text-sm bg-stone-900 dark:bg-stone-100 text-white dark:text-stone-900 rounded-lg hover:opacity-90">
-                                  Lưu
+                                <button onClick={() => saveEdit(note.id)} className="px-3.5 py-1.5 text-xs font-bold bg-emerald-600 hover:bg-emerald-700 text-white rounded-lg transition-colors shadow-xs">
+                                  Lưu thay đổi
                                 </button>
                               </div>
                             </div>
                           ) : (
                             <>
                               <NoteContent content={note.content} />
-                              <div className="flex items-center justify-between mt-2">
-                                <span className="text-[11px] text-stone-400 dark:text-stone-500">
+                              <div className="flex items-center justify-between mt-3 pt-2 border-t border-stone-200/50 dark:border-stone-700/50">
+                                <span className="text-[11px] font-semibold text-stone-500 dark:text-stone-300">
                                   {new Date(note.updated_at).toLocaleDateString("vi-VN")}
                                 </span>
-                                <div className="flex gap-2 opacity-100 transition-opacity sm:opacity-0 sm:group-hover:opacity-100">
-                                  <button onClick={() => startEditing(note)} className="text-stone-500 hover:text-stone-700 dark:text-stone-400 dark:hover:text-stone-200" title="Sửa">
-                                    <Edit2 className="w-4 h-4" />
+                                <div className="flex items-center gap-3">
+                                  <button onClick={() => startEditing(note)} className="text-stone-500 hover:text-stone-800 dark:text-stone-300 dark:hover:text-white transition-colors" title="Sửa">
+                                    <Edit2 className="w-3.5 h-3.5" />
                                   </button>
-                                  <button onClick={() => removeNote(note.id)} className="text-stone-500 hover:text-red-600 dark:text-stone-400 dark:hover:text-red-400" title="Xóa">
-                                    <Trash2 className="w-4 h-4" />
+                                  <button onClick={() => removeNote(note.id)} className="text-stone-400 hover:text-rose-600 dark:text-stone-300 dark:hover:text-rose-400 transition-colors" title="Xóa">
+                                    <Trash2 className="w-3.5 h-3.5" />
                                   </button>
                                 </div>
                               </div>
