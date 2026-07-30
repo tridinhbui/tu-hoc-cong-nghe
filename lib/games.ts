@@ -35,6 +35,39 @@ export type SpecialGameType =
   | "snowball-racer"
   | "dcf-mastermind";
 
+// Special game metadata for non-bucket/pair games
+export interface SpecialGameMeta {
+  id: SpecialGameType;
+  title: string;
+  description: string;
+  emoji: string;
+  accent: "emerald" | "sky" | "amber" | "violet" | "rose" | "indigo" | "teal" | "cyan";
+}
+
+export const SPECIAL_GAMES: SpecialGameMeta[] = [
+  {
+    id: "wall-street-millionaire",
+    title: "Ai Là Triệu Phú Phố Wall",
+    description: "15 câu hỏi tài chính cấp độ cao kết hợp với cơ chế trợ giúp kiểu game show.",
+    emoji: "💰",
+    accent: "amber",
+  },
+  {
+    id: "dcf-mastermind",
+    title: "Đấu Trường Định Giá DCF & M&A",
+    description: "Phân tích 5 thương vụ M&A, xác định giá trị nội tại (Target Price) và phán quyết mua/né.",
+    emoji: "🧮",
+    accent: "indigo",
+  },
+  {
+    id: "snowball-racer",
+    title: "Đua Xe Lãi Kép & Hòn Tuyết Lăn",
+    description: "Lựa chọn chiến lược đầu tư qua 20 năm để đạt mục tiêu $1,000,000 thông qua sức mạnh lãi kép.",
+    emoji: "🏎️",
+    accent: "emerald",
+  },
+];
+
 export type AnyGameType = GameType | SpecialGameType;
 
 export type GameDifficulty = "de" | "trung-binh" | "kho";

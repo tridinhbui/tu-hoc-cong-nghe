@@ -7,7 +7,7 @@ import TaiTaiAvatar from "@/components/TaiTaiAvatar";
 import { useRouter, useSearchParams } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import { toast } from "sonner";
-import { CheckCircle2, Lock, CheckCheck, Bookmark, ChevronLeft, ChevronRight, Search, X } from "lucide-react";
+import { CheckCircle2, Lock, CheckCheck, Bookmark, BookOpen, ChevronLeft, ChevronRight, Search, X } from "lucide-react";
 import { useProgress } from "@/lib/client-hooks";
 import { mergeCompletedLessons } from "@/lib/progress";
 import { getIllustrativeCount } from "@/lib/illustrative-stats";
@@ -102,6 +102,9 @@ export interface LessonMeta {
   title: string;
   subtitle: string;
   duration: string;
+  // Computed whole-lesson time estimate (lib/lesson-reading.js). Falls back
+  // to the hand-authored `duration` string when absent.
+  totalMinutes?: number;
   difficulty: Difficulty;
   track?: "professional" | "personal" | "bonus";
   isFundamental?: boolean;
@@ -109,6 +112,16 @@ export interface LessonMeta {
   isVisible?: boolean;
 }
 
+
+// The time cost of a lesson, shown before it is opened. Prefers the
+// generated estimate (derived from the body's actual length) over the
+// hand-authored `duration` string, which was written per lesson and barely
+// varies with how long a lesson really is - 65% of lessons say "6 phút" or
+// "7 phút" regardless of body length, so it carries almost no signal about
+// which lesson is the short one.
+function formatLessonTime(lesson: { totalMinutes?: number; duration: string }): string {
+  return lesson.totalMinutes ? `${lesson.totalMinutes} phút` : lesson.duration;
+}
 
 // Local fast-path/fallback cache for the onboarding modal's "seen" state -
 // see handleOnboardingSkip for why this exists.
@@ -119,7 +132,19 @@ const ONBOARDING_LOCAL_KEY = "onboarding_seen_v1";
 let cachedSummary: DashboardSummary | null = null;
 let cachedLessonState: LessonState | null = null;
 
-export default function DashboardClient({ lessonsMeta }: { lessonsMeta: LessonMeta[] }) {
+// Two routes render this same component, differing only in which half of the
+// page they show:
+//   "overview" (/dashboard)  - level map, rewards, recommendations, career goal
+//   "lessons"  (/hoc-bai)    - the learning path itself: track selector,
+//                              stage/lesson accordion, bonus cases, plus the
+//                              study aids (resume, recall, mistakes, bookmarks)
+// Splitting by prop rather than extracting a component keeps all the shared
+// lesson state (completed ids, unlock modals, milestone exams, manual flags)
+// in one place - the accordion depends on nearly all of it.
+export type DashboardView = "overview" | "lessons";
+
+export default function DashboardClient({ lessonsMeta, view = "overview" }: { lessonsMeta: LessonMeta[]; view?: DashboardView }) {
+  const isLessonsView = view === "lessons";
   const router = useRouter();
   const searchParams = useSearchParams();
   const supabase = createClient();
@@ -844,10 +869,10 @@ export default function DashboardClient({ lessonsMeta }: { lessonsMeta: LessonMe
   })).filter((g) => g.lessons.length > 0);
 
   return (
-    <div className="min-h-screen bg-white dark:bg-stone-950">
+    <div className="min-h-screen xl:h-screen xl:overflow-hidden bg-white dark:bg-stone-950">
 
 
-      <div className="px-6 py-8">
+      <div className="px-4 py-4 sm:px-5 sm:py-5 xl:h-full xl:flex xl:flex-col xl:min-h-0">
         {/* ── Admin -> everyone broadcasts (maintenance, launches, policy
             changes) - shown above the streak/recall reminders since these
             are typically more time-sensitive. ── */}
@@ -861,10 +886,23 @@ export default function DashboardClient({ lessonsMeta }: { lessonsMeta: LessonMe
           />
         )}
 
-        {/* ── Unified Dashboard Grid ── */}
-        <div className="max-w-6xl mx-auto space-y-5 min-w-0">
+        {/* ── Unified Dashboard Grid ──
+            The overview is laid out as one viewport-height card ("1 hình chữ
+            nhật") on xl+: no page scroll, and any panel whose content is
+            taller than its cell scrolls inside itself instead. Below xl the
+            same panels just stack and the page scrolls normally - there is no
+            honest way to fit this much on a phone screen. */}
+        <div
+          className={`mx-auto w-full space-y-5 min-w-0 xl:flex-1 xl:min-h-0 xl:space-y-0 xl:rounded-[28px] xl:border xl:border-stone-200 xl:dark:border-stone-800 xl:bg-stone-50/60 xl:dark:bg-stone-900/40 xl:shadow-sm xl:p-3.5 ${
+            isLessonsView
+              ? "max-w-[1500px] xl:flex xl:flex-col"
+              : "max-w-[1500px] xl:grid xl:grid-cols-12 xl:grid-rows-[auto_minmax(0,1fr)] xl:gap-3.5"
+          }`}
+        >
 
-          {user?.id && (() => {
+          {/* Level map is progress/gamification, so it stays on the overview
+              route and is not repeated above the learning path. */}
+          {!isLessonsView && user?.id && (() => {
             const currentUserLevel = getLevelByXp(userXp, cfaCompletedForLevel).level;
             const levelProgress = getLevelProgress(userXp, cfaCompletedForLevel);
             const openLevel = activeTooltipLevel;
@@ -882,7 +920,7 @@ export default function DashboardClient({ lessonsMeta }: { lessonsMeta: LessonMe
             ];
 
             return (
-              <div className="rounded-[24px] border border-stone-200/90 dark:border-stone-800 bg-white/95 dark:bg-stone-900 p-4 sm:p-5 shadow-sm">
+              <div className="rounded-[24px] border border-stone-200/90 dark:border-stone-800 bg-white/95 dark:bg-stone-900 p-4 sm:p-5 shadow-sm xl:col-span-12 xl:min-h-0 xl:overflow-hidden">
                 <div className="grid grid-cols-1 gap-3 xl:grid-cols-[minmax(0,1fr)_288px] xl:items-start">
                   {/* self-stretch (not the grid's items-start) so this column
                       fills the row height set by the taller UserStats sidebar -
@@ -1091,7 +1129,7 @@ export default function DashboardClient({ lessonsMeta }: { lessonsMeta: LessonMe
             );
           })()}
 
-        <div className="grid grid-cols-1 xl:grid-cols-10 gap-4 sm:gap-5 items-start min-w-0">
+        <div className={`grid grid-cols-1 gap-4 sm:gap-5 min-w-0 ${isLessonsView ? "xl:flex-1 xl:min-h-0 xl:grid-cols-12 xl:gap-3.5" : "xl:col-span-12 xl:min-h-0 xl:grid-cols-12 xl:gap-3.5"}`}>
 
           {/* Left Column: Learning Path (7 columns on desktop xl+) */}
           {/* min-h keeps this column's height roughly stable across track
@@ -1099,27 +1137,57 @@ export default function DashboardClient({ lessonsMeta }: { lessonsMeta: LessonMe
               accordion) - without it, the sticky right sidebar (below)
               visibly jumps/flashes as the browser recalculates its
               scrollable range every time this column's height changes. */}
-          <div className="xl:col-span-7 space-y-5 min-w-0 xl:min-h-[1320px]">
+          <div className={`space-y-5 min-w-0 ${isLessonsView ? "xl:col-span-8 xl:min-h-0 xl:overflow-y-auto xl:pr-1.5" : "xl:col-span-4 xl:min-h-0 xl:overflow-y-auto xl:pr-0.5"}`}>
 
+            {/* On the overview route the learning path is replaced by a single
+                signpost to it - the whole point of the split is that there is
+                exactly one obvious place to go and study. */}
+            {!isLessonsView && (
+              <Link
+                href="/hoc-bai"
+                data-tour="hoc-bai-cta"
+                className="group block rounded-[24px] border-2 border-emerald-500/70 bg-gradient-to-br from-emerald-50 to-teal-50/60 dark:from-emerald-950/40 dark:to-stone-900 p-5 sm:p-6 shadow-sm hover:shadow-md hover:border-emerald-500 transition-all xl:h-full xl:flex xl:flex-col xl:justify-center"
+              >
+                <div className="flex items-center gap-4">
+                  <div className="w-12 h-12 shrink-0 rounded-2xl bg-emerald-500 text-white flex items-center justify-center shadow-md group-hover:scale-105 transition-transform">
+                    <BookOpen className="w-6 h-6" />
+                  </div>
+                  <div className="min-w-0 flex-1">
+                    <p className="text-base sm:text-lg font-extrabold text-stone-900 dark:text-stone-100">
+                      Vào Học bài
+                    </p>
+                    <p className="text-xs sm:text-sm text-stone-600 dark:text-stone-400 mt-0.5">
+                      Toàn bộ lộ trình, bài học và case chuyên sâu nằm ở một chỗ duy nhất
+                    </p>
+                  </div>
+                  <span className="shrink-0 text-2xl font-bold text-emerald-600 dark:text-emerald-400 group-hover:translate-x-1 transition-transform">
+                    ›
+                  </span>
+                </div>
+
+                <div className="mt-4 flex flex-wrap items-center gap-2">
+                  <span className="text-[11px] font-bold px-2.5 py-1 rounded-full bg-white/80 dark:bg-stone-900/80 text-stone-700 dark:text-stone-300 border border-stone-200 dark:border-stone-800">
+                    {completed.length}/{sorted.length} bài đã hoàn thành
+                  </span>
+                  <span className="text-[11px] font-bold px-2.5 py-1 rounded-full bg-white/80 dark:bg-stone-900/80 text-stone-700 dark:text-stone-300 border border-stone-200 dark:border-stone-800">
+                    4 lộ trình
+                  </span>
+                </div>
+              </Link>
+            )}
+
+            {isLessonsView && (
+            <>
             {/* Resume Learning Card */}
             <div data-tour="resume-learning">
               <ResumeLearningButton activeTrack={lastNonCfaTrack} />
             </div>
 
-            {/* Lesson Recall Scheduler Widget */}
-            {user?.id && (
-              <LessonRecallWidget userId={user.id} />
-            )}
-
-            {/* Mistake Review Alert */}
-            {user?.id && (
-              <MistakeReviewWidget userId={user.id} />
-            )}
-
-            {/* Smart Remediation (Quiz Mistake smart advice) */}
-            {user?.id && (
-              <SmartRemediationWidget userId={user.id} lessonsMeta={lessonsMeta} />
-            )}
+            {/* The recall / mistake / remediation widgets used to sit here, at
+                the top of this column. Now that the column is a fixed-height
+                scroll panel that would put them in front of the lesson list on
+                every visit, forcing a scroll past them to reach the stages -
+                they render in the right-hand column instead. */}
 
             {/* Bookmarks Section */}
             {bookmarks.length > 0 && (
@@ -1738,6 +1806,11 @@ export default function DashboardClient({ lessonsMeta }: { lessonsMeta: LessonMe
                                           {isFlagged ? "Bạn đã tự đánh dấu đã học bài này" : lesson.subtitle}
                                         </div>
                                         <div className="text-[11px] mt-0.5 text-stone-400 dark:text-stone-500 font-semibold">
+                                          {/* The time estimate also sits in the desktop meta
+                                              column to the right, which is `hidden sm:flex` -
+                                              so on mobile it would never be shown at all
+                                              without repeating it here. */}
+                                          <span className="sm:hidden">⏱ {formatLessonTime(lesson)} · </span>
                                           👥 {getIllustrativeCount(lesson.slug, 60, 480)} người đã học
                                         </div>
                                       </Link>
@@ -1763,7 +1836,7 @@ export default function DashboardClient({ lessonsMeta }: { lessonsMeta: LessonMe
                                       {/* Meta */}
                                       <div className="hidden sm:flex items-center gap-3 flex-shrink-0">
                                         <span className={`text-sm font-semibold ${isDone ? "text-emerald-700 dark:text-emerald-400" : isFlagged ? "text-sky-700 dark:text-sky-400" : "text-stone-600 dark:text-stone-400"}`}>
-                                          {lesson.duration}
+                                          {formatLessonTime(lesson)}
                                         </span>
                                         <span className={`text-sm font-bold rounded-lg px-3 py-1 ${
                                           isDone
@@ -1985,19 +2058,35 @@ export default function DashboardClient({ lessonsMeta }: { lessonsMeta: LessonMe
           )}
           </>
         )}
+      </>
+      )}
       </div>
 
           {/* Right: Cấp độ/streak/bài học, gợi ý hôm nay, thử thách tin tức, BXH (3 columns on desktop xl+, full width on mobile/tablet) */}
-          <div className="xl:col-span-3 xl:sticky xl:top-24 space-y-6 min-w-0">
-            {user?.id && (
-              <div className="lg:aspect-square min-h-[320px]">
+          <div className={`min-w-0 space-y-6 ${isLessonsView ? "xl:col-span-4 xl:min-h-0 xl:overflow-y-auto xl:pr-1.5" : "xl:space-y-0 xl:col-span-8 xl:min-h-0 xl:grid xl:grid-cols-2 xl:grid-rows-[minmax(0,1fr)_auto] xl:gap-3.5"}`}>
+            {/* Study aids, beside the lesson list rather than stacked on top of
+                it - see the note in the left column. */}
+            {isLessonsView && user?.id && (
+              <>
+                <LessonRecallWidget userId={user.id} />
+                <MistakeReviewWidget userId={user.id} />
+                <SmartRemediationWidget userId={user.id} lessonsMeta={lessonsMeta} />
+              </>
+            )}
+
+            {/* Rewards and the career goal picker are overview concerns; the
+                lessons route keeps only the "what to study next" widget. */}
+            {!isLessonsView && user?.id && (
+              <div className="lg:aspect-square min-h-[320px] xl:aspect-auto xl:min-h-0 xl:row-span-2 xl:overflow-y-auto">
                 <CombinedRewardsWidget userId={user.id} defaultExpanded={true} compact />
               </div>
             )}
             {user?.id && (
-              <DashboardRecommendations lessonsMeta={lessonsMeta} completed={completed} userId={user.id} />
+              <div className={isLessonsView ? undefined : "xl:min-h-0 xl:overflow-y-auto"}>
+                <DashboardRecommendations lessonsMeta={lessonsMeta} completed={completed} userId={user.id} />
+              </div>
             )}
-            <CareerGoalWidget userId={user?.id} />
+            {!isLessonsView && <CareerGoalWidget userId={user?.id} />}
           </div>
         </div>
       </div>
@@ -2011,7 +2100,7 @@ export default function DashboardClient({ lessonsMeta }: { lessonsMeta: LessonMe
       )}
 
       {/* One-time spotlight walkthrough for brand-new users */}
-      <DashboardTour userId={user?.id} />
+      <DashboardTour userId={user?.id} view={view} />
 
       {/* Unlock request modal - shown when clicking a locked lesson */}
       {unlockModalLesson && user?.id && (

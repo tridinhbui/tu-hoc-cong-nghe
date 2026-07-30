@@ -6,7 +6,7 @@ import Image from "next/image";
 import { isValidAvatar } from "@/lib/avatar-utils";
 import { usePathname, useRouter } from "next/navigation";
 import { toast } from "sonner";
-import { FileText, BarChart3, StickyNote, GraduationCap, Gamepad2, Menu, X, Briefcase, BriefcaseBusiness, Home, Flame, Users, MessageSquareMore, Search, type LucideIcon } from "lucide-react";
+import { FileText, BarChart3, StickyNote, GraduationCap, Gamepad2, Menu, X, Briefcase, BriefcaseBusiness, BookOpen, Home, Flame, Users, MessageSquareMore, Search, type LucideIcon } from "lucide-react";
 import { useI18n } from "@/lib/i18n/context";
 import type { Dictionary } from "@/lib/i18n";
 import LanguageSwitcher from "@/components/LanguageSwitcher";
@@ -46,6 +46,7 @@ type NavLink =
 
 const NAV_LINKS: NavLink[] = [
   { href: "/dashboard", label: "Dashboard", icon: Home },
+  { href: "/hoc-bai", label: "Học bài", icon: BookOpen },
   { href: "/game", label: "Game", icon: Gamepad2 },
   { href: "/analytics", labelKey: "stats", icon: BarChart3 },
   { href: "/ghi-chu", labelKey: "notes", icon: StickyNote },
@@ -82,7 +83,7 @@ export default function AppNavbar() {
   const desktopDropdownRef = useRef<HTMLDivElement>(null);
   const mobileDropdownRef = useRef<HTMLDivElement>(null);
 
-  useRoutePrefetch(["/dashboard", "/analytics", "/bxh", "/profile", "/ban-be", "/nhom-hoc", "/finsocial", "/bang-tin", "/cong-dong", "/su-nghiep", "/ghi-chu", "/cong-cu", "/game", "/settings", "/tai-lieu", "/kiem-tra", "/phong-van-ky-thuat", "/cfa"]);
+  useRoutePrefetch(["/dashboard", "/hoc-bai", "/analytics", "/bxh", "/profile", "/ban-be", "/nhom-hoc", "/finsocial", "/bang-tin", "/cong-dong", "/su-nghiep", "/ghi-chu", "/cong-cu", "/game", "/settings", "/tai-lieu", "/kiem-tra", "/phong-van-ky-thuat", "/cfa"]);
 
   useEffect(() => {
     // Read local storage immediately on mount
@@ -300,13 +301,18 @@ export default function AppNavbar() {
               const isCareer = href === "/su-nghiep";
               const isKiemTra = href === "/kiem-tra";
               const isNhomHoc = href === "/nhom-hoc";
+              const isHocBai = href === "/hoc-bai";
               return (
                 <Link
                   key={href}
                   href={href}
                   onClick={() => trackFeatureClick("nav_click", { label: href })}
                   className={`group relative flex items-center gap-2.5 rounded-2xl px-3 py-2 text-sm font-bold transition-all duration-200 ${
-                    isGame
+                    isHocBai
+                      ? active
+                        ? "border border-emerald-400 bg-emerald-100/80 text-emerald-800 shadow-sm dark:border-emerald-700 dark:bg-emerald-950/60 dark:text-emerald-300"
+                        : "border border-emerald-200 bg-emerald-50 text-emerald-700 shadow-sm hover:bg-emerald-100/70 dark:border-emerald-900 dark:bg-emerald-950/30 dark:text-emerald-400"
+                      : isGame
                       ? "border border-amber-200 bg-amber-50 text-amber-700 shadow-sm hover:bg-amber-100/70"
                       : isKiemTra && hasPendingNewsQuiz
                         ? "border border-rose-300/80 bg-gradient-to-r from-rose-50 to-orange-50/60 text-rose-700 shadow-xs hover:bg-rose-100/80 dark:border-rose-900 dark:from-rose-950/50 dark:to-stone-900 dark:text-rose-300"
@@ -317,7 +323,7 @@ export default function AppNavbar() {
                             : "text-stone-600 hover:bg-stone-100 hover:text-stone-900 dark:text-stone-400 dark:hover:bg-stone-900 dark:hover:text-stone-100"
                   }`}
                 >
-                  <Icon className={`h-4 w-4 shrink-0 ${isGame ? "text-amber-600" : isCareer ? "text-emerald-600 dark:text-emerald-400" : isKiemTra && hasPendingNewsQuiz ? "text-rose-500 animate-pulse" : isNhomHoc && hasPendingStudyGroupCheckin ? "text-amber-600 animate-bounce" : ""}`} />
+                  <Icon className={`h-4 w-4 shrink-0 ${isHocBai ? "text-emerald-600 dark:text-emerald-400" : isGame ? "text-amber-600" : isCareer ? "text-emerald-600 dark:text-emerald-400" : isKiemTra && hasPendingNewsQuiz ? "text-rose-500 animate-pulse" : isNhomHoc && hasPendingStudyGroupCheckin ? "text-amber-600 animate-bounce" : ""}`} />
                   <span className="flex-1">{isGame ? "Game Kingdom" : navLabel}</span>
                   {isGame && (
                     <span className="inline-flex items-center gap-1 text-[9px] font-bold uppercase tracking-wider px-1.5 py-0.5 rounded-full bg-white text-amber-700 border border-amber-200">
@@ -587,6 +593,7 @@ export default function AppNavbar() {
                 const isGame = href === "/game";
                 const isCareer = href === "/su-nghiep";
                 const isNhomHoc = href === "/nhom-hoc";
+                const isHocBai = href === "/hoc-bai";
                 return (
                   <Link
                     key={href}
@@ -596,7 +603,11 @@ export default function AppNavbar() {
                       trackFeatureClick("nav_click", { label: href });
                     }}
                     className={`group relative flex items-center justify-between text-sm font-bold px-3 py-2.5 rounded-xl transition-all duration-200 ${
-                      active
+                      isHocBai
+                        ? active
+                          ? "bg-emerald-100/80 dark:bg-emerald-950/60 text-emerald-800 dark:text-emerald-300 border border-emerald-400 dark:border-emerald-700"
+                          : "bg-emerald-50 dark:bg-emerald-950/30 text-emerald-700 dark:text-emerald-400 border border-emerald-200 dark:border-emerald-900 hover:bg-emerald-100/70"
+                      : active
                         ? isGame
                           ? "bg-amber-500/15 dark:bg-amber-950/40 text-amber-700 dark:text-amber-300 border border-amber-500/25"
                           : isCareer
@@ -612,7 +623,7 @@ export default function AppNavbar() {
                     }`}
                   >
                     <div className="flex items-center gap-2.5">
-                      <Icon className={`w-4 h-4 transition-transform duration-200 group-hover:scale-110 ${isGame ? "text-amber-500" : isCareer ? "text-indigo-500 dark:text-indigo-400" : isNhomHoc && hasPendingStudyGroupCheckin ? "text-amber-600 animate-bounce" : ""}`} />
+                      <Icon className={`w-4 h-4 transition-transform duration-200 group-hover:scale-110 ${isHocBai ? "text-emerald-600 dark:text-emerald-400" : isGame ? "text-amber-500" : isCareer ? "text-indigo-500 dark:text-indigo-400" : isNhomHoc && hasPendingStudyGroupCheckin ? "text-amber-600 animate-bounce" : ""}`} />
                       <span className="flex items-center gap-1.5">
                         {navLabel}
                         {isGame && <Flame className="w-3.5 h-3.5 text-orange-500" />}

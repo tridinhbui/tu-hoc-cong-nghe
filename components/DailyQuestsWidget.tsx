@@ -26,13 +26,22 @@ interface DailyQuestsWidgetProps {
 // here. Falls back to scrolling into view if the card hasn't finished
 // loading yet (skeleton has no anchor) or every lesson is already done
 // (completion banner also has no anchor). Game quests still route to /game.
+//
+// The resume card lives on /hoc-bai, not the dashboard, so on any other route
+// there is nothing to read or scroll to - navigate to /hoc-bai instead of
+// silently doing nothing.
 function goToQuestAction(questId: string, router: ReturnType<typeof useRouter>) {
   if (questId === "daily_1") {
-    const resumeLink = document.querySelector<HTMLAnchorElement>('[data-tour="resume-learning"] a[href^="/bai-hoc/"]');
+    const resumeCard = document.querySelector('[data-tour="resume-learning"]');
+    if (!resumeCard) {
+      router.push("/hoc-bai");
+      return;
+    }
+    const resumeLink = resumeCard.querySelector<HTMLAnchorElement>('a[href^="/bai-hoc/"]');
     if (resumeLink) {
       router.push(resumeLink.getAttribute("href")!);
     } else {
-      document.querySelector('[data-tour="resume-learning"]')?.scrollIntoView({ behavior: "smooth", block: "center" });
+      resumeCard.scrollIntoView({ behavior: "smooth", block: "center" });
     }
   } else {
     router.push("/game");

@@ -7,6 +7,7 @@ import { Trophy, HelpCircle, Users, Sparkles, CheckCircle2, XCircle, DollarSign,
 import { toast } from "sonner";
 import { soundManager } from "@/lib/sounds";
 import { recalculateUserStats } from "@/lib/supabase-user";
+import { recordCustomGameSession } from "@/lib/games";
 import { createPortal } from "react-dom";
 
 export interface MillionaireQuestion {
@@ -148,16 +149,16 @@ const MILLIONAIRE_QUESTIONS: MillionaireQuestion[] = [
     level: 9,
     prize: 16000,
     prizeText: "$16,000",
-    question: "Chỉ số Sharpe Ratio đo lường điều gì trong quản lý danh mục đầu tư?",
+    question: "Hiệu ứng 'Mean Reversion' trong phân tích kỹ thuật chứng khoán là gì?",
     options: [
-      "A. Tổng số tiền cổ tức nhận được",
-      "B. Mức lợi nhuận thặng dư thu được trên mỗi đơn vị rủi ro (Risk-adjusted return)",
-      "C. Tốc độ tăng trưởng doanh thu 5 năm",
-      "D. Số lượng mã cổ phiếu trong danh mục"
+      "A. Giá cổ phiếu luôn tăng trưởng theo hàm mũ",
+      "B. Giá cổ phiếu có xu hướng quay trở lại mức trung bình lịch sử sau khi lệch khỏi nó",
+      "C. Mỗi lần bán ra thì giá sẽ lên",
+      "D. Rủi ro hệ thống luôn bằng 1.0"
     ],
     correctIndex: 1,
-    explanation: "Sharpe Ratio = (Lợi nhuận danh mục - Lãi suất phi rủi ro) / Độ lệch chuẩn rủi ro.",
-    taiTaiHint: "Sharpe Ratio là thước đo lợi nhuận điều chỉnh theo rủi ro! Chọn B chuẩn."
+    explanation: "Mean Reversion là nguyên lý cho rằng sau khi biến động mạnh, giá cổ phiếu sẽ trở lại mức trung bình (average price) của nó.",
+    taiTaiHint: "Mean Reversion = Giá quay về mức trung bình. Chọn B để hiểu rõ chiến lược reversion trading!"
   },
   {
     level: 10,
@@ -179,16 +180,16 @@ const MILLIONAIRE_QUESTIONS: MillionaireQuestion[] = [
     level: 11,
     prize: 64000,
     prizeText: "$64,000",
-    question: "Khi đường cong lợi suất trái phiếu (Yield Curve) bị ĐẢO NGUỢC (Inverted), thị trường thường cảnh báo điều gì?",
+    question: "Khái niệm 'Free Cash Flow to Firm' (FCFF) khác với 'Free Cash Flow to Equity' (FCFE) ở điểm nào cốt lõi?",
     options: [
-      "A. Siêu lạm phát sắp xảy ra ngay lập tức",
-      "B. Tín hiệu suy thoái kinh tế (Recession) trong 12-18 tháng tới",
-      "C. Thị trường chứng khoán sẽ tăng bùng nổ 100%",
-      "D. Ngân hàng thương mại sẽ phá sản toàn bộ"
+      "A. FCFF không trừ chi phí lãi vay, FCFE có trừ và chia cho cổ đông",
+      "B. Chúng hoàn toàn giống nhau, chỉ là tên gọi khác",
+      "C. FCFF chỉ cho nhà đầu tư cổ phiếu, FCFE cho tất cả người nắm giữ chứng chỉ",
+      "D. FCFE được tính bằng doanh thu chia cho chi phí, FCFF tính bằng nợ chia vốn"
     ],
-    correctIndex: 1,
-    explanation: "Lợi suất ngắn hạn cao hơn dài hạn phản ánh sự lo ngại của thị trường về triển vọng kinh tế suy thoái.",
-    taiTaiHint: "Yield Curve bị đảo ngược là chỉ báo hàng đầu cảnh báo Suy thoái (Recession)! Chọn B."
+    correctIndex: 0,
+    explanation: "FCFF = lưu chuyển tiền cho cả công ty (trước lãi vay), FCFE = sau khi trả lãi vay, còn lại cho cổ đông. DCF định giá dùng cả hai tùy mục tiêu.",
+    taiTaiHint: "FCFF cho tất cả stakeholders (trước nợ), FCFE chỉ cho cổ đông (sau nợ)! Chọn A."
   },
   {
     level: 12,
@@ -209,16 +210,16 @@ const MILLIONAIRE_QUESTIONS: MillionaireQuestion[] = [
     level: 13,
     prize: 250000,
     prizeText: "$250,000",
-    question: "Mô hình Black-Scholes dùng biến số nào để tính giá trị lý thuyết của một Hợp đồng Quyền chọn (Option)?",
+    question: "Hiệu ứng 'Survivorship Bias' trong phân tích quỹ đầu tư có ý nghĩa gì đối với nhà đầu tư?",
     options: [
-      "A. Giá cơ sở, Giá thực hiện, Thời gian đáo hạn, Lãi suất phi rủi ro, Độ biến động nội hàm (Volatility)",
-      "B. Chỉ cần Giá cổ phiếu hiện tại và Lợi nhuận quý gần nhất",
-      "C. Chỉ số P/E và Tỷ lệ tăng trưởng doanh thu",
-      "D. Tổng nợ vay ngân hàng và giá tài sản cố định"
+      "A. Quỹ chỉ được gọi là 'sống sót' nếu có lợi nhuận dương",
+      "B. Dữ liệu lịch sử quỹ bị thiên vị vì các quỹ thất bại đã đóng cửa không được thống kê, làm lợi nhuận trung bình có vẻ tốt hơn thực tế",
+      "C. Quỹ càng cũ thì kết quả lịch sử càng đáng tin cậy",
+      "D. Các quỹ lớn nhất luôn có hiệu suất tốt nhất"
     ],
-    correctIndex: 0,
-    explanation: "Black-Scholes định giá Option dựa vào 5 tham số chính bao gồm Implied Volatility (σ).",
-    taiTaiHint: "Đáp án A bao gồm đủ 5 tham số cốt lõi của Black-Scholes! Chọn A."
+    correctIndex: 1,
+    explanation: "Survivorship Bias là vấn đề quan trọng: các quỹ thất bại bị loại khỏi cơ sở dữ liệu lịch sử, làm cho lợi nhuận trung bình ngành có vẻ cao hơn thực tế.",
+    taiTaiHint: "Chỉ những quỹ 'sống sót' được ghi lại, những quỹ thất bại biến mất = Survivorship Bias. Chọn B!"
   },
   {
     level: 14,
@@ -269,6 +270,9 @@ export default function WallStreetMillionaireGame({ userId, onClose }: WallStree
   const [usedTaiTai, setUsedTaiTai] = useState(false);
   const [usedAudience, setUsedAudience] = useState(false);
   
+  // Rules modal state
+  const [showRules, setShowRules] = useState(false);
+
   // Active Lifeline Modals/Overlays
   const [eliminatedIndices, setEliminatedIndices] = useState<number[]>([]);
   const [showTaiTaiModal, setShowTaiTaiModal] = useState(false);
@@ -353,7 +357,10 @@ export default function WallStreetMillionaireGame({ userId, onClose }: WallStree
           // WON 1 MILLION DOLLARS!
           setEarnedCash(1000000);
           setGameState("won");
-          if (userId) recalculateUserStats(userId);
+          if (userId) {
+            recordCustomGameSession(userId, "wall-street-millionaire", 15, 15, 50);
+            recalculateUserStats(userId);
+          }
         } else {
           // Move to next question after 1.8s
           setTimeout(() => {
@@ -373,7 +380,11 @@ export default function WallStreetMillionaireGame({ userId, onClose }: WallStree
         if (currentLevel >= 9) safePayout = 32000;
         else if (currentLevel >= 4) safePayout = 1000;
         setEarnedCash(safePayout);
-        if (userId) recalculateUserStats(userId);
+        if (userId) {
+          const xpEarned = Math.round((currentLevel / 15) * 50);
+          recordCustomGameSession(userId, "wall-street-millionaire", currentLevel, 15, xpEarned);
+          recalculateUserStats(userId);
+        }
       }
     }, 2200);
   };
@@ -386,7 +397,11 @@ export default function WallStreetMillionaireGame({ userId, onClose }: WallStree
     setGameState("banked");
     soundManager.playWin();
     toast.success(`Bạn đã quyết định dừng cuộc chơi và mang về ${MILLIONAIRE_QUESTIONS[currentLevel - 1]?.prizeText || "$0"}!`, { icon: "💰" });
-    if (userId) recalculateUserStats(userId);
+    if (userId) {
+      const xpEarned = Math.round((currentLevel / 15) * 50);
+      recordCustomGameSession(userId, "wall-street-millionaire", currentLevel, 15, xpEarned);
+      recalculateUserStats(userId);
+    }
   };
 
   if (!mounted) return null;

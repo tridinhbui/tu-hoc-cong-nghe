@@ -56,27 +56,34 @@ export default async function GhiChuPage() {
   const initialNotes = (notesResult.data ?? []) as LessonNote[];
   const initialCards = (flashcardsResult.data ?? []) as Flashcard[];
 
+  // Laid out as one viewport-height card on xl+ (matching the dashboard
+  // overview): the page itself never scrolls, and each of the two panels
+  // scrolls inside its own cell. Below xl they stack and the page scrolls,
+  // since neither panel is usable at a third of a phone screen.
   return (
-    <div className="min-h-screen bg-white dark:bg-stone-950">
-      <div className="border-b border-stone-200 dark:border-stone-800 bg-white dark:bg-stone-950">
-        <div className="max-w-6xl mx-auto px-6 py-4">
-          <Link
-            href="/dashboard"
-            className="inline-flex items-center gap-1.5 text-sm font-bold text-stone-600 dark:text-stone-400 hover:text-stone-900 dark:hover:text-stone-100 hover:bg-stone-100 dark:hover:bg-stone-800 rounded-lg px-3 py-2 -ml-3 transition-colors"
-          >
-            <ArrowLeft className="w-4 h-4" />
-            Quay lại
-          </Link>
-          <h1 className="text-xl font-bold text-stone-900 dark:text-stone-100 mt-2">Ghi chú</h1>
-        </div>
-      </div>
+    <div className="min-h-screen xl:h-screen xl:overflow-hidden bg-white dark:bg-stone-950">
+      <div className="px-4 py-4 sm:px-5 sm:py-5 xl:h-full xl:flex xl:flex-col xl:min-h-0">
+        <div className="mx-auto w-full max-w-[1500px] xl:flex-1 xl:min-h-0 xl:rounded-[28px] xl:border xl:border-stone-200 xl:dark:border-stone-800 xl:bg-stone-50/60 xl:dark:bg-stone-900/40 xl:shadow-sm xl:p-3.5 xl:grid xl:grid-cols-12 xl:grid-rows-[auto_minmax(0,1fr)] xl:gap-3.5">
+          <div className="flex items-center justify-between gap-3 mb-5 xl:mb-0 xl:col-span-12">
+            <div className="min-w-0">
+              <h1 className="text-xl font-bold text-stone-900 dark:text-stone-100">Ghi chú</h1>
+              <p className="text-xs text-stone-500 dark:text-stone-400 mt-0.5">
+                Ghi chú theo bài học và thẻ ghi nhớ ôn tập, nằm cạnh nhau trong một khung
+              </p>
+            </div>
+            <Link
+              href="/dashboard"
+              className="inline-flex shrink-0 items-center gap-1.5 text-sm font-bold text-stone-600 dark:text-stone-400 hover:text-stone-900 dark:hover:text-stone-100 hover:bg-stone-100 dark:hover:bg-stone-800 rounded-lg px-3 py-2 transition-colors"
+            >
+              <ArrowLeft className="w-4 h-4" />
+              Quay lại
+            </Link>
+          </div>
 
-      <div className="max-w-6xl mx-auto px-6 py-8">
-        <div className="grid grid-cols-1 gap-8 xl:grid-cols-[minmax(0,1fr)_minmax(380px,440px)] items-start">
-          <section className="min-w-0">
+          <section className="min-w-0 mb-8 xl:mb-0 xl:col-span-7 xl:min-h-0 xl:overflow-y-auto xl:rounded-[22px] xl:border xl:border-stone-200/80 xl:dark:border-stone-800 xl:bg-white xl:dark:bg-stone-900 xl:p-3.5">
             <NotesOverviewClient lessonsById={lessonsById} userId={user.id} initialNotes={initialNotes} embedded />
           </section>
-          <section className="min-w-0">
+          <section className="min-w-0 xl:col-span-5 xl:min-h-0 xl:overflow-y-auto xl:rounded-[22px] xl:border xl:border-stone-200/80 xl:dark:border-stone-800 xl:bg-white xl:dark:bg-stone-900 xl:p-3.5">
             <FlashcardClient userId={user.id} initialCards={initialCards} embedded />
           </section>
         </div>

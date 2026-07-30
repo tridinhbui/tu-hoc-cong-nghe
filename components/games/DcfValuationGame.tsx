@@ -7,6 +7,7 @@ import { Calculator, TrendingUp, DollarSign, ShieldAlert, Sparkles, Trophy, Rota
 import { toast } from "sonner";
 import { soundManager } from "@/lib/sounds";
 import { recalculateUserStats } from "@/lib/supabase-user";
+import { recordCustomGameSession } from "@/lib/games";
 
 interface CompanyDeal {
   id: string;
@@ -35,8 +36,8 @@ const DEALS: CompanyDeal[] = [
     netDebt: 300,
     shares: 100,
     currentPrice: 38.5,
-    isUndervalued: true, // EV = 250/(0.09-0.04) = 5000. EqV = 5000 - 300 = 4700. Price = 47.0 > 38.5
-    dealRationale: "Dòng tiền tự do dồi dào + chi phí vốn rẻ làm định giá thực đạt $47.0/cp, cao hơn 22% so với thị trường!"
+    isUndervalued: true,
+    dealRationale: "Dòng tiền tự do dồi dào + chi phí vốn rẻ làm định giá thực đạt $47.0/cp, cao hơn 22% so với thị trường! HOAC: Mô hình SaaS có recurring revenue ổn định."
   },
   {
     id: "consumer-staple",
@@ -49,8 +50,8 @@ const DEALS: CompanyDeal[] = [
     netDebt: 450,
     shares: 80,
     currentPrice: 28.0,
-    isUndervalued: false, // EV = 180/(0.11-0.03) = 2250. EqV = 2250 - 450 = 1800. Price = 22.5 < 28.0
-    dealRationale: "Nợ vay cao và chi phí vốn 11% khiến giá trị hợp lý chỉ là $22.5/cp. Thị trường đang bị ngáo giá 28$!"
+    isUndervalued: false,
+    dealRationale: "Nợ vay cao và chi phí vốn 11% khiến giá trị hợp lý chỉ là $22.5/cp. Thị trường định giá cổ phiếu quá cao tại mức $28!"
   },
   {
     id: "green-energy",
@@ -63,8 +64,8 @@ const DEALS: CompanyDeal[] = [
     netDebt: 800,
     shares: 120,
     currentPrice: 42.0,
-    isUndervalued: true, // EV = 320/(0.08-0.035) = 7111. EqV = 7111 - 800 = 6311. Price = 52.5 > 42.0
-    dealRationale: "Ngành năng lượng xanh hưởng lợi chi phí vốn rẻ 8%, định giá chuẩn đạt $52.5/cp!"
+    isUndervalued: true,
+    dealRationale: "Ngành năng lượng xanh hưởng lợi chính sách và chi phí vốn rẻ 8%, định giá DCF hợp lý đạt $52.5/cp!"
   },
   {
     id: "retail-chain",
@@ -77,8 +78,8 @@ const DEALS: CompanyDeal[] = [
     netDebt: 200,
     shares: 50,
     currentPrice: 32.0,
-    isUndervalued: false, // EV = 120/(0.10-0.02) = 1500. EqV = 1500 - 200 = 1300. Price = 26.0 < 32.0
-    dealRationale: "Tăng trưởng dài hạn chậm (2%) khiến định giá chỉ đạt $26.0/cp. Mua giá 32$ dễ bị đu đỉnh!"
+    isUndervalued: false,
+    dealRationale: "Bán lẻ truyền thống tăng trưởng chậm (2%), chị phí vốn cao -> định giá chỉ $26.0/cp. Giá thị trường $32 là quá cao!"
   },
   {
     id: "biotech-pharma",
@@ -91,8 +92,36 @@ const DEALS: CompanyDeal[] = [
     netDebt: 600,
     shares: 100,
     currentPrice: 35.0,
-    isUndervalued: true, // EV = 400/(0.12-0.04) = 5000. EqV = 5000 - 600 = 4400. Price = 44.0 > 35.0
-    dealRationale: "Doanh nghiệp sở hữu bằng sáng chế độc quyền, định giá hợp lý $44.0/cp vượt xa thị giá!"
+    isUndervalued: true,
+    dealRationale: "Công ty sở hữu bằng sáng chế độc quyền phát triển thuốc, định giá hợp lý $44.0/cp vượt xa giá thị trường!"
+  },
+  {
+    id: "fintech-disruptor",
+    name: "PayFlow Digital",
+    ticker: "PFD",
+    industry: "Fintech & Digital Payments",
+    fcffYear1: 180,
+    defaultWacc: 0.10,
+    defaultG: 0.05,
+    netDebt: 150,
+    shares: 90,
+    currentPrice: 24.0,
+    isUndervalued: true,
+    dealRationale: "Startup Fintech với tăng trưởng mạnh 5%/năm, WACC 10%, định giá DCF = $26.7/cp, cao hơn giá thị trường $24!"
+  },
+  {
+    id: "real-estate-reit",
+    name: "Golden Tower REIT",
+    ticker: "GTO",
+    industry: "Bất động sản & REIT",
+    fcffYear1: 150,
+    defaultWacc: 0.07,
+    defaultG: 0.02,
+    netDebt: 2000,
+    shares: 200,
+    currentPrice: 18.5,
+    isUndervalued: false,
+    dealRationale: "REIT có nợ khủng (LTV cao), chi phí vốn thấp nhưng tăng trưởng chậm -> định giá $17.1/cp, thị trường định giá cao hơn!"
   }
 ];
 
@@ -163,7 +192,12 @@ export default function DcfValuationGame({ userId, onClose }: { userId: string; 
     } else {
       soundManager.playWin();
       setGameState("finished");
-      if (userId) recalculateUserStats(userId);
+      if (userId) {
+        const maxScore = DEALS.length * 100;
+        const xpEarned = Math.round((score / maxScore) * 50);
+        recordCustomGameSession(userId, "dcf-mastermind", score, maxScore, xpEarned);
+        recalculateUserStats(userId);
+      }
     }
   };
 
@@ -182,7 +216,7 @@ export default function DcfValuationGame({ userId, onClose }: { userId: string; 
               <h2 className="text-base sm:text-lg font-black tracking-tight text-indigo-300 flex items-center gap-2">
                 Đấu Trường Định Giá DCF & M&A
                 <span className="text-xs px-2 py-0.5 rounded-full bg-indigo-500/20 text-indigo-300 border border-indigo-400/40 font-bold">
-                  Thương vụ {round + 1}/5
+                  Thương vụ {round + 1}/{DEALS.length}
                 </span>
               </h2>
               <p className="text-xs text-stone-400">Xác định Giá trị Nội tại (Target Price) & Phán quyết Mua / Né</p>
@@ -223,7 +257,7 @@ export default function DcfValuationGame({ userId, onClose }: { userId: string; 
 
             <div className="rounded-2xl bg-indigo-950/40 border border-indigo-500/30 px-6 py-4 text-center">
               <span className="text-xs uppercase font-extrabold text-indigo-400">Tổng điểm thương vụ đạt được</span>
-              <div className="text-3xl font-black text-indigo-300 mt-1">{score} / 500 ĐIỂM</div>
+              <div className="text-3xl font-black text-indigo-300 mt-1">{score} / 700 ĐIỂM</div>
             </div>
 
             <div className="flex gap-3 pt-2">

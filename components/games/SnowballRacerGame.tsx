@@ -7,6 +7,7 @@ import { Zap, TrendingUp, ShieldAlert, Sparkles, Trophy, RotateCcw, DollarSign, 
 import { toast } from "sonner";
 import { soundManager } from "@/lib/sounds";
 import { recalculateUserStats } from "@/lib/supabase-user";
+import { recordCustomGameSession } from "@/lib/games";
 
 interface Strategy {
   id: "safe" | "balanced font" | "growth" | "leveraged";
@@ -79,25 +80,31 @@ const QUIZ_BOOSTS: QuizBoost[] = [
     question: "Công thức tính Lãi Kép là gì?",
     options: ["FV = PV × (1 + r)^n", "FV = PV × r × n", "FV = PV + r + n", "FV = PV / (1 + r)"],
     correct: 0,
-    explanation: "Lãi kép nhân giá trị gốc với (1 + r) mũ số năm n."
+    explanation: "Lãi kép nhân giá trị gốc với (1 + r) mũ số năm n. Đây là công thức cơ bản của time value of money."
   },
   {
     question: "Quy tắc 72 dùng để tính nhanh điều gì?",
     options: ["Số năm để số tiền đầu tư tăng gấp đôi", "Số phần trăm thuế phải nộp", "Số mã cổ phiếu nên mua", "Tỷ lệ nợ an toàn"],
     correct: 0,
-    explanation: "Lấy 72 chia cho lãi suất (%) sẽ ra số năm vốn tăng gấp 2 lần."
+    explanation: "Lấy 72 chia cho lãi suất (%) sẽ ra số năm vốn tăng gấp 2 lần. Công cụ ước tính nhanh lãi kép."
   },
   {
-    question: "Với lãi suất 12%/năm, mất bao nhiêu năm để khoản đầu tư tăng gấp đôi?",
-    options: ["6 năm (72 / 12 = 6)", "12 năm", "10 năm", "4 năm"],
-    correct: 0,
-    explanation: "72 / 12 = 6 năm."
+    question: "Hiệu ứng 'Dollar-Cost Averaging' trong đầu tư định kỳ giúp gì?",
+    options: ["Loại bỏ hoàn toàn rủi ro thị trường", "Giảm thiểu tác động của biến động giá bằng cách đầu tư số tiền cố định định kỳ", "Tăng lợi nhuận lên 100% chắc chắn", "Không có tác dụng gì cả"],
+    correct: 1,
+    explanation: "Dollar-Cost Averaging giúp mua được cổ phiếu khi giá cao lẫn giá thấp, làm bình quân hóa chi phí mua vào."
   },
   {
-    question: "Động lực lớn nhất giúp Hòn tuyết lăn tài chính bùng nổ là gì?",
-    options: ["Thời gian tích lũy dài & Lợi nhuận tái đầu tư", "Thay đổi cổ phiếu liên tục hàng ngày", "Rút tiền mặt tiêu dùng sớm", "Vay nợ quá đà"],
+    question: "Với lãi suất 12%/năm, mất bao nhiêu năm để khoản đầu tư tăng gấp BỐNLẦN?",
+    options: ["12 năm (72/12×2 = 12)", "6 năm (72 / 12 = 6)", "24 năm", "4 năm (72/12/2=6)"],
     correct: 0,
-    explanation: "Thời gian dài + tái đầu tư liên tục tạo nên sức mạnh bùng nổ."
+    explanation: "Tăng gấp đôi lần 1 = 6 năm, tăng gấp đôi lần 2 = 6 năm nữa. Total = 12 năm để tăng 4 lần."
+  },
+  {
+    question: "Phân bổ danh mục (Asset Allocation) 60/40 (Cổ phiếu/Trái phiếu) có lợi ích gì?",
+    options: ["Tối đa hóa lợi nhuận hàng năm", "Cân bằng tăng trưởng và ổn định, giảm sức dao động (volatility)", "Loại bỏ hoàn toàn rủi ro", "Không cần thiết nếu đầu tư dài hạn"],
+    correct: 1,
+    explanation: "Phân bổ cân bằng giúp tận dụng tăng trưởng cổ phiếu trong năm tốt, nhưng có trái phiếu bảo vệ trong năm xấu."
   }
 ];
 
@@ -167,13 +174,20 @@ export default function SnowballRacerGame({ userId, onClose }: { userId: string;
     if (newWorth >= TARGET_NET_WORTH) {
       soundManager.playWin();
       setGameState("won");
-      if (userId) recalculateUserStats(userId);
+      if (userId) {
+        recordCustomGameSession(userId, "snowball-racer", year, 20, 50);
+        recalculateUserStats(userId);
+      }
       toast.success("BẠN ĐÃ CHẠM MỐC $1,000,000 LÃI KÉP!", { icon: "🏎️" });
     } else if (year >= 20) {
       // 20 years limit
       soundManager.playWrong();
       setGameState("lost");
-      if (userId) recalculateUserStats(userId);
+      if (userId) {
+        const xpEarned = Math.round((newWorth / TARGET_NET_WORTH) * 50);
+        recordCustomGameSession(userId, "snowball-racer", newWorth, TARGET_NET_WORTH, xpEarned);
+        recalculateUserStats(userId);
+      }
     } else {
       setYear((prev) => prev + 1);
       soundManager.playCorrect();
