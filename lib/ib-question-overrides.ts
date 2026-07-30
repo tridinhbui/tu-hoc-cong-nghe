@@ -702,34 +702,34 @@ export const IB_QUESTION_OVERRIDES: Record<number, IbQuestionOverride> = {
   // ── Accounting - Advanced ─────────────────────────────────────────────
   193: {
     options: [
-      "GAAP is accrual-based while tax accounting is closer to cash-based; GAAP typically uses straight-line depreciation where tax rules allow accelerated methods, and GAAP tracks assets and liabilities in far more detail than tax accounting needs to.",
+      "GAAP is accrual-based while tax accounting is closer to cash-based, and GAAP uses straight-line where tax allows accelerated.",
       "GAAP and tax accounting are identical in substance - they differ only in the forms filed and the deadlines for filing them.",
       "Tax accounting is accrual-based and GAAP is cash-based, which is why taxable income is usually higher than book income.",
-      "GAAP applies only to public companies and tax accounting only to private ones, so no single company ever maintains both sets of books.",
+      "GAAP applies only to public companies and tax accounting only to private ones, so no company keeps both sets.",
     ],
     correct: 0,
   },
   194: {
     options: [
-      "They come from temporary differences between what a company deducts for book purposes and for cash-tax purposes: a Deferred Tax Liability arises when book tax expense exceeds cash tax paid, and a Deferred Tax Asset when the company has paid more in cash tax than book expense.",
+      "Temporary differences between book and cash taxes: a DTL when book tax expense exceeds cash tax paid, a DTA when the reverse.",
       "They come from permanent differences such as tax-exempt interest, which is why they never reverse in future periods.",
       "They arise only when a company operates in more than one country and must reconcile competing national tax regimes.",
-      "A Deferred Tax Asset arises when cash tax paid exceeds book tax expense, and a Deferred Tax Liability arises for the same reason - the two labels are interchangeable.",
+      "A DTA arises when cash tax paid exceeds book tax expense, and a DTL arises for the same reason - the labels are interchangeable.",
     ],
     correct: 0,
   },
   195: {
     options: [
-      "Either bottoms-up - start from individual products or customers, average sale value, and unit growth - or tops-down: start from total market size, assume a market share, and work down to the company's revenue.",
+      "Either bottoms-up from products, customers and unit growth, or tops-down from market size and an assumed share.",
       "Always tops-down, since bottoms-up builds require internal data that public filings never disclose and so cannot be modeled.",
       "Apply a single blended growth rate to last year's revenue - segment-level builds introduce assumptions that make the model less reliable.",
-      "Derive revenue from the expense base by applying the company's historical operating margin in reverse.",
+      "Derive revenue from the expense base by applying the company's historical operating margin in reverse order.",
     ],
     correct: 0,
   },
   196: {
     options: [
-      "A true bottoms-up build starts at the department level - headcount, average salary, bonuses and benefits - usually tying headcount growth to revenue growth, then layers on the non-headcount costs.",
+      "Start at department level - headcount, salary, bonuses, benefits - tying headcount to revenue, then add non-headcount costs.",
       "Model every expense line as a fixed percentage of the prior year's expense, since operating costs move independently of revenue.",
       "Only Cost of Goods Sold needs to be modeled - SG&A and other operating expenses are non-cash and are added back anyway.",
       "Start from the target operating margin and back into total expenses, which guarantees the model matches management's guidance.",
@@ -738,7 +738,7 @@ export const IB_QUESTION_OVERRIDES: Record<number, IbQuestionOverride> = {
   },
   197: {
     options: [
-      "Fall back to estimates: apply a simple growth rate to total revenue when segment detail is missing, and model major expenses as percentages of revenue when employee-level data isn't disclosed.",
+      "Fall back to estimates: apply a growth rate to total revenue, and model major expenses as percentages of revenue.",
       "Stop the analysis - a model built on estimated inputs has no analytical value and should not be presented to a client.",
       "Substitute the figures of the closest public comparable company, since companies in the same industry report nearly identical economics.",
       "Assume revenue and every expense line stay flat, because holding inputs constant is the only assumption that can't be wrong.",
@@ -747,18 +747,18 @@ export const IB_QUESTION_OVERRIDES: Record<number, IbQuestionOverride> = {
   },
   198: {
     options: [
-      "Common Stock at par value, Retained Earnings (accumulated Net Income less dividends), Additional Paid-In Capital (stock-based compensation and stock created by option exercises), and Treasury Stock for shares the company has repurchased.",
+      "Common Stock at par, Retained Earnings, Additional Paid-In Capital, and Treasury Stock for shares repurchased.",
       "Cash, Accounts Receivable, Inventory and PP&E - the assets shareholders have a residual claim on.",
-      "Revenue, Operating Income and Net Income, which accumulate into equity at the end of each reporting period.",
-      "Long-term Debt, Accounts Payable and Deferred Revenue, since these represent capital the company has raised from outside parties.",
+      "Revenue, Operating Income and Net Income, which accumulate into equity at the end of each period.",
+      "Long-term Debt, Accounts Payable and Deferred Revenue, since these are capital raised from outside parties.",
     ],
     correct: 0,
   },
   199: {
     options: [
-      "Retained Earnings = prior Retained Earnings + Net Income - Dividends issued.",
-      "Retained Earnings = prior Retained Earnings + Revenue - Operating Expenses, since dividends are charged against Additional Paid-In Capital.",
-      "Retained Earnings = prior Retained Earnings + Net Income + Stock-Based Compensation, because share issuance adds to accumulated earnings.",
+      "Retained Earnings = prior Retained Earnings + Net Income - Dividends issued during the period.",
+      "Retained Earnings = prior Retained Earnings + Revenue - Operating Expenses, with dividends charged to APIC.",
+      "Retained Earnings = prior Retained Earnings + Net Income + Stock-Based Compensation.",
       "Retained Earnings = prior Retained Earnings + Cash Flow from Operations - Capital Expenditures.",
     ],
     correct: 0,
@@ -774,7 +774,7 @@ export const IB_QUESTION_OVERRIDES: Record<number, IbQuestionOverride> = {
   },
   201: {
     options: [
-      "It shows how each component of Shareholders' Equity rolls forward from the prior period. It isn't used heavily, but it helps when analyzing companies with unusual stock-based compensation or share issuance activity.",
+      "It shows how each component of Shareholders' Equity rolls forward from the prior period to this one.",
       "It is the primary statement for assessing solvency, and it replaces the Balance Sheet for companies reporting under IFRS.",
       "It reconciles Net Income to Cash Flow from Operations, which is why it sits between the Income Statement and the Cash Flow Statement.",
       "It is required only for companies in bankruptcy, to document how equity holders are being wiped out.",
@@ -783,16 +783,16 @@ export const IB_QUESTION_OVERRIDES: Record<number, IbQuestionOverride> = {
   },
   202: {
     options: [
-      "Restructuring charges, goodwill impairment, asset write-downs, bad debt expense, one-off legal and disaster costs. To qualify as an add-back the charge must be non-recurring and must have hit Operating Income in the first place.",
-      "Interest Expense, taxes and dividends - these are the standard EBITDA add-backs regardless of whether they recur.",
-      "Cost of Goods Sold and SG&A, since both are operating costs that a normalized earnings figure should exclude.",
-      "Any expense that reduced Net Income in the period, whether or not it is expected to recur, since EBITDA is meant to be a pre-expense measure.",
+      "Restructuring charges, goodwill impairment, asset write-downs, bad debt, one-off legal and disaster costs.",
+      "Interest Expense, taxes and dividends - the standard EBITDA add-backs whether or not they recur.",
+      "Cost of Goods Sold and SG&A, since both are operating costs a normalized figure should exclude.",
+      "Any expense that reduced Net Income in the period, whether or not it is expected to recur at all.",
     ],
     correct: 0,
   },
   203: {
     options: [
-      "Tie each to the driver it actually moves with: Accounts Receivable and Deferred Revenue as a percentage of revenue, Accounts Payable as a percentage of COGS, and Accrued Expenses as a percentage of operating expenses or SG&A.",
+      "Tie each to its driver: AR and Deferred Revenue off revenue, AP off COGS, Accrued Expenses off operating expenses.",
       "Hold every working capital line flat at its current balance, since these items net to zero over a full cycle anyway.",
       "Grow each line at the same rate as Net Income, which keeps the Balance Sheet consistent with profitability.",
       "Project them all as a percentage of total assets, because that is the denominator the Balance Sheet must ultimately balance to.",
@@ -801,7 +801,7 @@ export const IB_QUESTION_OVERRIDES: Record<number, IbQuestionOverride> = {
   },
   204: {
     options: [
-      "Simply, as a percentage of revenue or of the prior PP&E balance. More rigorously, build a PP&E schedule that splits assets by useful life, depreciates each straight-line, and sets CapEx from what the company needs to maintain and grow that asset base.",
+      "Simply, as a percentage of revenue or prior PP&E; or build a PP&E schedule by useful life and set CapEx from it.",
       "Set Depreciation equal to Capital Expenditures in every year, since assets are replaced as fast as they wear out.",
       "Project Depreciation off revenue but hold Capital Expenditures at zero, because CapEx is an investing item and does not belong in an operating model.",
       "Take both directly from the Income Statement, which reports the full amount of each in every period.",
@@ -810,7 +810,7 @@ export const IB_QUESTION_OVERRIDES: Record<number, IbQuestionOverride> = {
   },
   205: {
     options: [
-      "Quick approach: reduce Taxable Income by the NOLs usable that year and recompute tax while leaving Pre-Tax Income unchanged. Proper approach: build a book vs. cash tax schedule, with the difference accumulating in the Deferred Tax Liability.",
+      "Quick: cut Taxable Income by the usable NOLs and recompute tax. Proper: a book vs. cash tax schedule feeding the DTL.",
       "Reduce Pre-Tax Income directly by the full NOL balance in the first year, since losses may be carried forward without limit.",
       "NOLs have no effect on the three statements - they are disclosed only in the tax footnote and never touch reported figures.",
       "Add the NOL balance to Revenue as a tax credit, which flows through Net Income and increases cash in the period it is used.",
@@ -819,8 +819,8 @@ export const IB_QUESTION_OVERRIDES: Record<number, IbQuestionOverride> = {
   },
   206: {
     options: [
-      "Operating leases are shorter-term, convey no ownership, and their expense sits in operating expenses. Capital leases are longer-term, convey ownership rights, and are split into depreciation and interest with the obligation recorded as debt.",
-      "Capital leases are shorter-term and expensed in full each period, while operating leases are capitalized on the Balance Sheet and depreciated.",
+      "Operating leases are short-term with the expense in opex; capital leases convey ownership and split into depreciation and interest.",
+      "Capital leases are shorter-term and expensed in full, while operating leases are capitalized and depreciated.",
       "The two are accounting labels for the same arrangement and produce identical Income Statement and Balance Sheet treatment.",
       "Operating leases create a debt balance while capital leases do not, which is why operating leases increase Enterprise Value.",
     ],
@@ -828,7 +828,7 @@ export const IB_QUESTION_OVERRIDES: Record<number, IbQuestionOverride> = {
   },
   207: {
     options: [
-      "Because D&A can be embedded inside other Income Statement line items such as COGS rather than shown separately. Use the Cash Flow Statement figure when computing EBITDA, or you will undercount D&A.",
+      "Because D&A can be embedded in other lines such as COGS - use the Cash Flow Statement figure for EBITDA.",
       "Because the Income Statement reports D&A gross while the Cash Flow Statement reports it net of the related tax shield.",
       "Because the Income Statement uses tax depreciation and the Cash Flow Statement uses book depreciation, so the two never agree.",
       "It should never differ - if the two figures disagree, the financial statements contain an error and do not tie out.",
@@ -839,7 +839,7 @@ export const IB_QUESTION_OVERRIDES: Record<number, IbQuestionOverride> = {
   // ── Enterprise / Equity Value - Basic ─────────────────────────────────
   208: {
     options: [
-      "Enterprise Value is the value attributable to all investors in the business; Equity Value is only the slice belonging to shareholders. You look at both because Equity Value is the number the market quotes, while Enterprise Value is what the operating business itself is worth.",
+      "Enterprise Value is what the whole business is worth to all investors; Equity Value is only the shareholders' slice.",
       "They are two names for the same figure - Enterprise Value is the American convention and Equity Value the European one.",
       "Equity Value covers all investors including lenders, while Enterprise Value isolates the shareholders' claim after debt is repaid.",
       "Enterprise Value applies only to private companies and Equity Value only to listed ones, since private firms have no share price.",
@@ -848,9 +848,9 @@ export const IB_QUESTION_OVERRIDES: Record<number, IbQuestionOverride> = {
   },
   209: {
     options: [
-      "Enterprise Value, because it reflects what an acquirer actually pays - it includes the target's debt, which usually has to be repaid or refinanced on a change of control.",
-      "Equity Value, because the acquirer only ever writes a cheque to the target's shareholders and the debt stays with the target.",
-      "Neither - in an acquisition the only figure that matters is the premium over the target's undisturbed share price.",
+      "Enterprise Value - it reflects what an acquirer really pays, including debt that must be repaid on a change of control.",
+      "Equity Value, because the acquirer only ever writes a cheque to the target's shareholders and the debt simply stays with the target.",
+      "Neither - in an acquisition the only figure that matters is the premium over the target's undisturbed share price beforehand.",
       "Equity Value, because Enterprise Value double-counts the debt that is already reflected in the target's share price.",
     ],
     correct: 0,
@@ -859,32 +859,32 @@ export const IB_QUESTION_OVERRIDES: Record<number, IbQuestionOverride> = {
     options: [
       "EV = Equity Value + Debt + Preferred Stock + Minority Interest - Cash.",
       "EV = Equity Value + Cash - Debt - Preferred Stock - Minority Interest.",
-      "EV = Equity Value + Debt only - preferred stock and minority interest are equity-like and are already inside Equity Value.",
+      "EV = Equity Value + Debt only, since preferred and minority interest are equity-like.",
       "EV = Total Assets - Total Liabilities, adjusted to market value.",
     ],
     correct: 0,
   },
   211: {
     options: [
-      "Because once a company owns more than 50% of a subsidiary it consolidates 100% of that subsidiary's financials, so the metrics reflect value the parent doesn't fully own - adding Minority Interest keeps the numerator and denominator consistent.",
+      "Because the parent consolidates 100% of a majority-owned subsidiary, so adding Minority Interest keeps the metrics consistent.",
       "Because minority shareholders have a senior claim on the parent's assets, which makes their stake behave like debt.",
-      "Because minority interest represents cash held at subsidiaries that the parent cannot access, so it must be added back like restricted cash.",
+      "Because minority interest is cash held at subsidiaries the parent cannot access, so it's added back like restricted cash.",
       "You shouldn't add it - Minority Interest belongs to outside shareholders, so it is subtracted from Enterprise Value.",
     ],
     correct: 0,
   },
   212: {
     options: [
-      "Start from the basic share count and add the dilutive effect of in-the-money options (via the Treasury Stock Method) plus any other dilutive securities such as warrants, convertible debt and convertible preferred stock.",
+      "Start from basic shares and add in-the-money options via the Treasury Stock Method, plus warrants and convertibles.",
       "Add every option and convertible security outstanding to the basic share count, regardless of exercise or conversion price.",
       "Take the basic share count and add only the shares reserved under the company's equity incentive plan, whether granted or not.",
-      "Divide Equity Value by the current share price - the result is the fully diluted count by definition.",
+      "Divide Equity Value by the current share price - the result is the fully diluted count by definition here.",
     ],
     correct: 0,
   },
   213: {
     options: [
-      "$1,050. The 10 options are in-the-money, so exercising them creates 10 new shares and brings in $50 of proceeds, which repurchases 5 shares at $10 - a net 5 new shares, giving 105 shares at $10.",
+      "$1,050. The options are in-the-money; exercising creates 10 shares and the $50 of proceeds buys back 5, leaving 105.",
       "$1,100. All 10 options are in-the-money, so 10 new shares are added at $10 each with no offset for the exercise proceeds.",
       "$1,000. Options never change fully diluted equity value because the exercise proceeds always exactly offset the new shares issued.",
       "$1,050, arrived at by adding the $50 of exercise proceeds directly to the $1,000 basic equity value without changing the share count.",
@@ -893,7 +893,7 @@ export const IB_QUESTION_OVERRIDES: Record<number, IbQuestionOverride> = {
   },
   214: {
     options: [
-      "$1,000. The exercise price of $15 is above the $10 share price, so the options are out-of-the-money and have no dilutive effect.",
+      "$1,000. The $15 exercise price is above the $10 share price, so the options are out-of-the-money.",
       "$1,150. The 10 options add 10 shares regardless of exercise price, since they may still be exercised before expiry.",
       "$850. Out-of-the-money options represent a liability to the company and reduce fully diluted equity value.",
       "$1,050. Applying the Treasury Stock Method to the $15 exercise price yields a net 5 additional shares.",
@@ -902,7 +902,7 @@ export const IB_QUESTION_OVERRIDES: Record<number, IbQuestionOverride> = {
   },
   215: {
     options: [
-      "Cash is a non-operating asset and Equity Value already reflects it; intuitively, a buyer receives the seller's cash and so effectively pays less. It isn't perfectly accurate - some cash is needed to run the business and can't truly be swept out.",
+      "Cash is a non-operating asset that Equity Value already reflects; a buyer receives it and so effectively pays less for the company.",
       "Cash is subtracted because it is the most liquid asset and liquid assets are excluded from all valuation multiples by convention.",
       "It is always exactly accurate, because every dollar of cash on the balance sheet is available to the acquirer on closing.",
       "Cash should actually be added, not subtracted - a larger cash balance makes the business more valuable to a buyer.",
@@ -911,7 +911,7 @@ export const IB_QUESTION_OVERRIDES: Record<number, IbQuestionOverride> = {
   },
   216: {
     options: [
-      "Usually yes, since debt agreements typically require repayment or refinancing on a change of control, so the debt genuinely adds to what the buyer pays - but exceptions exist where debt can be assumed on its existing terms.",
+      "Usually yes - debt agreements typically require repayment on a change of control, though exceptions exist.",
       "Always, without exception - debt is a contractual obligation and is added to Equity Value in every situation.",
       "No - debt should never be added, because the target repays its own lenders out of its own cash flow after the deal closes.",
       "Only for investment-grade issuers; high-yield debt is excluded because it typically trades below par.",
@@ -920,16 +920,16 @@ export const IB_QUESTION_OVERRIDES: Record<number, IbQuestionOverride> = {
   },
   217: {
     options: [
-      "Yes - it happens when a company holds a very large cash balance relative to a very low market capitalisation, which you see with firms near bankruptcy and with financial institutions carrying big cash balances.",
+      "Yes - a very large cash balance against a very low market cap, seen near bankruptcy and at some financial institutions.",
       "No - Enterprise Value is the value of the whole business and a business cannot be worth less than nothing.",
-      "Yes, and it always signals an arbitrage opportunity, since a buyer could acquire the company and immediately extract more cash than they paid.",
+      "Yes, and it always signals an arbitrage opportunity - a buyer could acquire it and extract more cash than they paid.",
       "Yes, but only as a result of a calculation error, since Debt and Preferred Stock can only ever increase Enterprise Value.",
     ],
     correct: 0,
   },
   218: {
     options: [
-      "No. Equity Value is shares outstanding times share price, and neither of those can be negative.",
+      "No. Equity Value is shares outstanding times share price, and neither of those figures can ever be negative.",
       "Yes, whenever a company's liabilities exceed its assets - that is precisely what negative Shareholders' Equity means.",
       "Yes, but only for companies in liquidation, where the equity claim is formally extinguished.",
       "Yes, if the company has more debt than its market capitalisation, since the excess is charged against Equity Value.",
@@ -938,16 +938,16 @@ export const IB_QUESTION_OVERRIDES: Record<number, IbQuestionOverride> = {
   },
   219: {
     options: [
-      "Because Preferred Stock pays a fixed dividend and ranks ahead of common equity in a claim on assets, which makes it behave more like debt than like common stock.",
+      "Because Preferred Stock pays a fixed dividend and ranks ahead of common equity, which makes it behave like debt.",
       "Because preferred shareholders can convert into common stock at any time, so their shares are always counted as dilution.",
-      "Because Preferred Stock is a non-operating asset, so it is added for the same reason cash is subtracted.",
+      "Because Preferred Stock is a non-operating asset, so it is added for the same reason that cash is subtracted.",
       "You shouldn't add it - preferred shareholders are equity holders, so their stake is already inside Equity Value.",
     ],
     correct: 0,
   },
   220: {
     options: [
-      "If they're in-the-money (conversion price below the share price) treat them as additional dilution to Equity Value; if out-of-the-money, count their face value as Debt.",
+      "In-the-money, treat them as dilution to Equity Value; out-of-the-money, count their face value as Debt.",
       "Always count the full face value as Debt, since convertible bonds are legally debt instruments until conversion actually occurs.",
       "Always treat them as dilution to Equity Value, since the holder will convert eventually if the company survives.",
       "Exclude them entirely - convertibles are contingent instruments and are disclosed only in the footnotes.",
@@ -956,8 +956,8 @@ export const IB_QUESTION_OVERRIDES: Record<number, IbQuestionOverride> = {
   },
   221: {
     options: [
-      "The bonds are in-the-money ($100 share price vs. $50 conversion price), so treat them as shares: $10 million ÷ $1,000 par = 10,000 bonds, each converting into $1,000 ÷ $50 = 20 shares, giving 200,000 new shares and 1.2 million diluted shares.",
-      "Divide the $10 million by the $1,000 par value to get 10,000 bonds, and add those 10,000 as new shares, for 1.01 million diluted shares.",
+      "In-the-money, so: $10m ÷ $1,000 par = 10,000 bonds, each converting into 20 shares, giving 1.2 million diluted shares.",
+      "Divide $10 million by the $1,000 par value to get 10,000 bonds and add those as new shares, for 1.01 million.",
       "The bonds are out-of-the-money, so count the $10 million as Debt and leave diluted shares at 1 million.",
       "Divide the $10 million by the $100 share price to get 100,000 new shares, for 1.1 million diluted shares.",
     ],
@@ -965,7 +965,7 @@ export const IB_QUESTION_OVERRIDES: Record<number, IbQuestionOverride> = {
   },
   222: {
     options: [
-      "Equity Value is a market value; Shareholders' Equity is a book value. Equity Value can never be negative, while Shareholders' Equity can be any figure - and for healthy companies Equity Value normally far exceeds it.",
+      "Equity Value is a market value while Shareholders' Equity is a book value, and the two rarely coincide at all.",
       "They are the same measure computed from different statements - Equity Value off the Balance Sheet and Shareholders' Equity off the Income Statement.",
       "Shareholders' Equity is the market value and Equity Value is the book value, which is why Equity Value appears on the Balance Sheet.",
       "Equity Value includes debt while Shareholders' Equity excludes it, which is the only difference between the two.",
@@ -976,16 +976,16 @@ export const IB_QUESTION_OVERRIDES: Record<number, IbQuestionOverride> = {
   // ── Enterprise / Equity Value - Advanced ──────────────────────────────
   223: {
     options: [
-      "Yes - it's too simple. With real companies you also have to consider Net Operating Losses, long-term and equity investments, capital leases, unfunded pension obligations and other liabilities, several of which are treated like cash or like debt.",
+      "Yes - it's too simple. NOLs, long-term and equity investments, capital leases and pension obligations all belong in it too.",
       "No - the formula is complete, which is why it is the one convention every bank applies without adjustment.",
-      "Yes - the whole formula is wrong, because Enterprise Value should be computed as Total Assets less Total Liabilities at market value.",
+      "Yes - the formula is wrong: Enterprise Value should be Total Assets less Total Liabilities at market value.",
       "Yes - it fails only for financial institutions, and is exactly correct for every non-financial company.",
     ],
     correct: 0,
   },
   224: {
     options: [
-      "Technically market value for everything, but in practice market value is only obtainable for the Equity Value portion, so the remaining items are usually taken at book value off the company's filings.",
+      "Technically market value throughout, but in practice only Equity Value is observable, so the rest come off the filings.",
       "Book value throughout, because market values fluctuate daily and would make the multiple non-comparable across companies.",
       "Market value throughout, which is straightforward since debt, preferred stock and minority interest all trade on observable markets.",
       "Book value for Equity Value and market value for everything else, since the share price is the least reliable input.",
@@ -994,7 +994,7 @@ export const IB_QUESTION_OVERRIDES: Record<number, IbQuestionOverride> = {
   },
   225: {
     options: [
-      "There's no hard rule, but most bankers treat anything above roughly 10% as unusual and worth re-checking - for example a basic Equity Value of $100 million diluting to $115 million.",
+      "There's no hard rule, but most bankers treat anything above roughly 10% as unusual and worth re-checking.",
       "Anything above 1% is a red flag, since well-run companies avoid issuing dilutive securities at all.",
       "There is a formal threshold of 25% set by accounting standards, above which the dilution must be separately disclosed.",
       "The percentage is irrelevant - dilution is a mechanical calculation, so any result it produces is by definition reasonable.",
@@ -2519,19 +2519,19 @@ export const IB_QUESTION_OVERRIDES: Record<number, IbQuestionOverride> = {
   // ── Brain Teaser ──────────────────────────────────────────────────────
   392: {
     options: [
-      "It's impossible. Covering 60 miles at an average of 30 mph already takes 2 hours, and averaging 60 mph over those same 2 hours would mean travelling 120 miles, not 60.",
+      "It's impossible - covering 60 miles at 30 mph already uses the full 2 hours a 60 mph average would allow.",
       "90 mph - the driver has to make up the shortfall, so they need to travel at three times the original speed.",
       "120 mph, since doubling the average speed over a fixed distance requires doubling the instantaneous speed twice over.",
-      "60 mph - simply driving at the target average speed for the remainder of the journey achieves it.",
+      "60 mph - simply driving at the target average speed for the remainder of the journey is enough.",
     ],
     correct: 0,
   },
   393: {
     options: [
-      "142.5 degrees. The minute hand sits at 270 degrees from 12, and the hour hand has moved three-quarters of the way from 1 to 2, putting it at 52.5 degrees - a gap of 217.5 degrees, so the smaller angle is 142.5.",
+      "142.5 degrees - the hour hand has moved three-quarters of the way from 1 towards 2.",
       "120 degrees. The hour hand is at 1 and the minute hand at 9, which is four hour-marks apart at 30 degrees each.",
       "127.5 degrees, taking the hour hand as having moved a quarter of the way from 1 towards 2.",
-      "150 degrees, since the hands are five hour-marks apart at 30 degrees each.",
+      "150 degrees, since the two hands are five hour-marks apart at 30 degrees each.",
     ],
     correct: 0,
   },
@@ -2539,16 +2539,16 @@ export const IB_QUESTION_OVERRIDES: Record<number, IbQuestionOverride> = {
     question:
       "You have stacks of quarters, dimes, nickels and pennies ($0.25, $0.10, $0.05 and $0.01), with an unlimited number of coins in each stack. You can take coins from any stack in any amount and in any order. What is the greatest dollar value you can hold without being able to make change for a dollar?",
     options: [
-      "$1.19 - three quarters, four dimes and four pennies. A fourth quarter would make $1.00, a fifth dime would combine with two quarters to make $1.00, any nickel would complete $1.00 with the quarters and dimes, and a fifth penny would do the same.",
-      "$0.99 - anything at or above a dollar can obviously make change for a dollar, so ninety-nine cents is the ceiling.",
-      "$1.24 - four quarters minus a penny, which is the largest amount short of two full dollars in quarters.",
-      "$1.19, reached with four quarters, one dime, one nickel and four pennies, none of which combine to exactly a dollar.",
+      "$1.19 - three quarters, four dimes and four pennies; adding any further coin of any kind completes a dollar.",
+      "$0.99 - anything at or above a dollar can make change for a dollar, so 99 cents is the ceiling.",
+      "$1.24 - four quarters minus a penny, the largest amount short of two full dollars in quarters.",
+      "$1.19, reached with four quarters, one dime, one nickel and four pennies, none combining to a dollar.",
     ],
     correct: 0,
   },
   395: {
     options: [
-      "Fill the 3L and pour it into the 5L. Refill the 3L and top up the 5L, leaving 1L in the 3L. Empty the 5L, pour the 1L into it, then fill the 3L and add it - giving exactly 4L.",
+      "Fill the 3L into the 5L, refill the 3L and top up the 5L leaving 1L, empty the 5L, transfer the 1L, add a full 3L.",
       "Fill the 5L and pour it into the 3L, leaving 2L in the 5L. Empty the 3L, transfer the 2L across, then refill the 5L - giving exactly 4L.",
       "Fill the 3L twice into the 5L, which overflows by 1L, and the overflow leaves exactly 4L in the 5L bucket.",
       "It can't be done - with only 3L and 5L measures, every reachable quantity is a multiple of one or the other.",
