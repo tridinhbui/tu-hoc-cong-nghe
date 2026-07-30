@@ -124,6 +124,13 @@ function formatShortTime(iso: string) {
   });
 }
 
+// Optimistic message ids. Negative so they can never collide with a real
+// bigserial id, which is what lets the realtime subscription and the
+// optimistic bubble coexist in one list without deduplication guesswork.
+let optimisticIdCounter = -1;
+const nextOptimisticId = () => optimisticIdCounter--;
+const isPendingMessage = (msg: { id: number }) => msg.id < 0;
+
 // ── Geometry of the 3D study room ──────────────────────────────────────
 //
 // The room is built out of real CSS 3D surfaces (a floor plane and three
@@ -539,6 +546,17 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [messages]);
 
+  /** Lookup for resolving reply_to_id against the loaded window. */
+  const messageById = useMemo(() => new Map(messages.map((m) => [m.id, m])), [messages]);
+  /** Briefly flashes the message a reply jumped to, so the eye can find it. */
+  const [highlightedMsgId, setHighlightedMsgId] = useState<number | null>(null);
+  /** Optimistic bubbles whose send failed. They stay in the list rather than
+   *  vanishing - a message that disappears reads as "sent" to the eye, which
+   *  is the worst possible outcome when it wasn't. */
+  const [failedMessageIds, setFailedMessageIds] = useState<Set<number>>(new Set());
+  /** What each failed bubble needs in order to be sent again. */
+  const failedPayloadRef = useRef<Map<number, { content: string; replyToId: number | null }>>(new Map());
+
   const [replyingTo, setReplyingTo] = useState<{ id: number; senderName: string; content: string } | null>(null);
   const [editingMessage, setEditingMessage] = useState<{ id: number; content: string } | null>(null);
   const [reactions, setReactions] = useState<Record<number, Record<string, string[]>>>({});
@@ -694,11 +712,9 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
       return;
     }
 
-    let finalContent = rawContent;
-    if (replyingTo) {
-      const cleanContent = replyingTo.content.replace(/^↩️ \[Trả lời [^\]]+\]:\s*"/, "").replace(/"$/, "");
-      finalContent = `↩️ [Trả lời ${replyingTo.senderName}]: "${cleanContent.slice(0, 45)}..."\n${rawContent}`;
-    }
+    // The reply is a foreign key now, not a prefix baked into the text - so
+    // what gets stored is exactly what the user typed.
+    const replyToId = replyingTo?.id ?? null;
 
     if (isStudyRoomBotCommand(rawContent)) {
       setSendingMessage(true);
@@ -715,16 +731,77 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
       return;
     }
 
+    // The input is cleared up front and the bubble goes up immediately.
+    // Waiting for the round-trip left a visible gap on mobile data, and a
+    // gap after pressing send is indistinguishable from a failure - people
+    // press again, and the room gets the message twice.
+    setMessageInput("");
+    setReplyingTo(null);
+    void deliverMessage(rawContent, replyToId, nextOptimisticId());
+  }
+
+  /** Sends (or re-sends) one message, keeping its optimistic bubble in place
+   *  until the server confirms it or the attempt fails. */
+  async function deliverMessage(content: string, replyToId: number | null, optimisticId: number) {
+    if (!myRoom || !user) return;
+
+    setFailedMessageIds((prev) => {
+      if (!prev.has(optimisticId)) return prev;
+      const next = new Set(prev);
+      next.delete(optimisticId);
+      return next;
+    });
+
+    setMessages((prev) =>
+      prev.some((m) => m.id === optimisticId)
+        ? prev
+        : [
+            ...prev,
+            {
+              id: optimisticId,
+              room_id: myRoom.room_id,
+              sender_id: user.id,
+              content,
+              image_url: null,
+              created_at: new Date().toISOString(),
+              is_bot: false,
+              is_pinned: false,
+              reply_to_id: replyToId,
+            },
+          ]
+    );
+
     setSendingMessage(true);
     try {
-      await sendRoomMessage(myRoom.room_id, user.id, finalContent);
-      setMessageInput("");
-      setReplyingTo(null);
+      const sent = await sendRoomMessage(myRoom.room_id, user.id, content, null, replyToId);
+      failedPayloadRef.current.delete(optimisticId);
+      setMessages((prev) => {
+        const withoutOptimistic = prev.filter((m) => m.id !== optimisticId);
+        // The realtime subscription may have already delivered this row.
+        return withoutOptimistic.some((m) => m.id === sent.id) ? withoutOptimistic : [...withoutOptimistic, sent];
+      });
     } catch (error) {
-      toast.error(error instanceof Error ? error.message : "Không gửi được tin nhắn");
+      console.error("Error sending room message:", error);
+      failedPayloadRef.current.set(optimisticId, { content, replyToId });
+      setFailedMessageIds((prev) => new Set(prev).add(optimisticId));
     } finally {
       setSendingMessage(false);
     }
+  }
+
+  function retryMessage(optimisticId: number) {
+    const payload = failedPayloadRef.current.get(optimisticId);
+    if (payload) void deliverMessage(payload.content, payload.replyToId, optimisticId);
+  }
+
+  function discardFailedMessage(optimisticId: number) {
+    failedPayloadRef.current.delete(optimisticId);
+    setFailedMessageIds((prev) => {
+      const next = new Set(prev);
+      next.delete(optimisticId);
+      return next;
+    });
+    setMessages((prev) => prev.filter((m) => m.id !== optimisticId));
   }
 
   async function handleRandomMatch(topic: StudyRoomTopic) {
@@ -1574,21 +1651,33 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
                   const senderName = sender?.full_name || "Thành viên";
                   const msgReactions = reactions[msg.id] || {};
 
-                  // Check if message contains a quote reply
-                  const isQuoteReply = msg.content.startsWith("↩️ [Trả lời ");
-                  let quoteHeader = "";
-                  let mainText = msg.content;
-                  if (isQuoteReply) {
-                    const lines = msg.content.split("\n");
-                    quoteHeader = lines[0];
-                    mainText = lines.slice(1).join("\n");
-                  }
+                  // The quote is looked up live, so editing or deleting the
+                  // original updates every reply that points at it. `null`
+                  // here means the original is gone (reply_to_id was set to
+                  // null by the FK) or is older than the loaded window.
+                  const repliedTo = msg.reply_to_id ? messageById.get(msg.reply_to_id) ?? null : null;
+                  const repliedToName = repliedTo?.is_bot
+                    ? "Tài Tài"
+                    : repliedTo?.sender_id
+                    ? memberById.get(repliedTo.sender_id)?.full_name || "Thành viên"
+                    : null;
+                  const mainText = msg.content;
 
+                  const isPending = isPendingMessage(msg);
+                  const hasFailed = failedMessageIds.has(msg.id);
                   const isDragon = isMine && activeChatEffect === "chat_effect_dragon_fire";
                   const isDiamond = isMine && activeChatEffect === "chat_effect_diamond_glow";
 
                   return (
-                    <div key={msg.id} className={`group relative flex flex-col ${isMine ? "items-end" : "items-start"}`}>
+                    <div
+                      key={msg.id}
+                      id={`room-msg-${msg.id}`}
+                      className={`group relative flex flex-col transition-colors duration-500 ${
+                        isMine ? "items-end" : "items-start"
+                      } ${highlightedMsgId === msg.id ? "bg-emerald-500/15 rounded-2xl -mx-1 px-1 py-0.5" : ""} ${
+                        isPending && !hasFailed ? "opacity-60" : ""
+                      }`}
+                    >
                       <div className={`flex items-center gap-1.5 max-w-[85%] w-fit min-w-0 ${isMine ? "flex-row-reverse" : "flex-row"}`}>
                         <div className={`relative rounded-2xl px-3.5 py-2 shadow-2xs w-fit ${
                           isDragon
@@ -1605,11 +1694,31 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
                             </p>
                           )}
 
-                          {/* Quoted Message Box */}
-                          {isQuoteReply && (
-                            <div className="mb-1.5 p-1.5 rounded-lg border-l-2 border-emerald-400 bg-emerald-500/10 text-[11px] font-medium leading-snug">
-                              <p className="opacity-90 font-bold">{quoteHeader}</p>
-                            </div>
+                          {/* Quoted message - tap to jump to the original */}
+                          {msg.reply_to_id !== null && (
+                            <button
+                              type="button"
+                              onClick={() => {
+                                if (!repliedTo) return;
+                                const el = document.getElementById(`room-msg-${repliedTo.id}`);
+                                el?.scrollIntoView({ behavior: "smooth", block: "center" });
+                                setHighlightedMsgId(repliedTo.id);
+                                window.setTimeout(() => setHighlightedMsgId((cur) => (cur === repliedTo.id ? null : cur)), 1600);
+                              }}
+                              disabled={!repliedTo}
+                              className="mb-1.5 w-full text-left p-1.5 rounded-lg border-l-2 border-emerald-400 bg-emerald-500/10 text-[11px] font-medium leading-snug disabled:cursor-default"
+                            >
+                              {repliedTo ? (
+                                <>
+                                  <span className="block font-bold opacity-90">↩️ {repliedToName}</span>
+                                  <span className="block truncate opacity-75">
+                                    {repliedTo.image_url && !repliedTo.content ? "[Hình ảnh]" : repliedTo.content}
+                                  </span>
+                                </>
+                              ) : (
+                                <span className="block italic opacity-60">↩️ Tin nhắn đã bị xoá</span>
+                              )}
+                            </button>
                           )}
 
                           <p className="text-sm break-words">{mainText}</p>

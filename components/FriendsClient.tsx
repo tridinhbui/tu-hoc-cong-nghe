@@ -5,7 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
 import { toast } from "sonner";
-import { Check, MessageCircle, Search, Send, UserPlus, X, ArrowLeft } from "lucide-react";
+import { Check, MessageCircle, Search, Send, UserPlus, UserRound, X, ArrowLeft } from "lucide-react";
 import { createClient } from "@/lib/supabase";
 import ReferralCard from "@/components/ReferralCard";
 import {
@@ -326,15 +326,21 @@ export default function FriendsClient() {
                       key={account.id}
                       className="flex items-center gap-3 rounded-xl border border-stone-200 dark:border-stone-800 bg-stone-50 dark:bg-stone-800/50 p-3"
                     >
-                      <Avatar name={account.full_name || "Người dùng"} avatarUrl={account.avatar_url} />
-                      <div className="flex-1 min-w-0">
-                        <p className="text-sm font-bold text-stone-900 dark:text-stone-100 truncate">
-                          {account.full_name || "Người dùng"}
-                        </p>
-                        <p className="text-[11px] text-stone-400 dark:text-stone-500 mt-0.5">
-                          Level {account.current_level} · {account.total_xp} XP
-                        </p>
-                      </div>
+                      <Link
+                        href={`/nguoi-hoc/${account.id}`}
+                        className="flex flex-1 min-w-0 items-center gap-3 group"
+                        title="Xem hồ sơ"
+                      >
+                        <Avatar name={account.full_name || "Người dùng"} avatarUrl={account.avatar_url} />
+                        <div className="flex-1 min-w-0">
+                          <p className="text-sm font-bold text-stone-900 dark:text-stone-100 truncate group-hover:underline">
+                            {account.full_name || "Người dùng"}
+                          </p>
+                          <p className="text-[11px] text-stone-400 dark:text-stone-500 mt-0.5">
+                            Level {account.current_level} · {account.total_xp} XP
+                          </p>
+                        </div>
+                      </Link>
                       {relation?.direction === "friend" ? (
                         <button
                           onClick={() => {
@@ -388,14 +394,19 @@ export default function FriendsClient() {
               ) : (
                 incomingRequests.map((connection) => (
                   <div key={connection.friendship_id} className="rounded-xl border border-stone-200 dark:border-stone-800 p-3">
-                    <div className="flex items-center gap-3">
+                    <Link
+                      href={`/nguoi-hoc/${connection.user_id}`}
+                      className="flex items-center gap-3 group"
+                      title="Xem hồ sơ trước khi quyết định"
+                    >
                       <Avatar name={connection.full_name || "Người dùng"} avatarUrl={connection.avatar_url} />
                       <div className="flex-1 min-w-0">
-                        <p className="text-sm font-bold text-stone-900 dark:text-stone-100 truncate">
+                        <p className="text-sm font-bold text-stone-900 dark:text-stone-100 truncate group-hover:underline">
                           {connection.full_name || "Người dùng"}
                         </p>
+                        <p className="text-[11px] text-stone-400 dark:text-stone-500 mt-0.5">Xem hồ sơ</p>
                       </div>
-                    </div>
+                    </Link>
                     <div className="mt-3 flex gap-2">
                       <button
                         onClick={() => void handleRespond(connection.friendship_id, "accepted")}
@@ -431,19 +442,22 @@ export default function FriendsClient() {
                 <p className="text-xs text-stone-400">Chưa có bạn bè nào. Tìm và kết bạn để bắt đầu chat.</p>
               ) : (
                 acceptedFriends.map((connection) => (
-                  <button
+                  <div
                     key={connection.friendship_id}
-                    onClick={() => {
-                      setMessages([]);
-                      setActiveFriendshipId(connection.friendship_id);
-                    }}
-                    className={`w-full text-left rounded-xl border px-3 py-3 transition-colors ${
+                    className={`flex items-center gap-2 rounded-xl border px-3 py-3 transition-colors ${
                       currentFriendshipId === connection.friendship_id
                         ? "border-stone-900 dark:border-stone-100 bg-stone-100 dark:bg-stone-800"
                         : "border-stone-200 dark:border-stone-800 hover:bg-stone-50 dark:hover:bg-stone-800/50"
                     }`}
                   >
-                    <div className="flex items-center gap-3">
+                    <button
+                      onClick={() => {
+                        setMessages([]);
+                        setActiveFriendshipId(connection.friendship_id);
+                      }}
+                      className="flex flex-1 min-w-0 items-center gap-3 text-left cursor-pointer"
+                      title="Mở cuộc trò chuyện"
+                    >
                       <Avatar name={connection.full_name || "Người dùng"} avatarUrl={connection.avatar_url} />
                       <div className="min-w-0">
                         <p className="text-sm font-bold text-stone-900 dark:text-stone-100 truncate">
@@ -453,8 +467,16 @@ export default function FriendsClient() {
                           Level {connection.current_level} · {connection.total_xp} XP
                         </p>
                       </div>
-                    </div>
-                  </button>
+                    </button>
+                    <Link
+                      href={`/nguoi-hoc/${connection.user_id}`}
+                      className="shrink-0 p-2 rounded-lg text-stone-500 dark:text-stone-400 hover:bg-stone-200 dark:hover:bg-stone-700 hover:text-stone-900 dark:hover:text-stone-100 transition-colors"
+                      title="Xem hồ sơ"
+                      aria-label={`Xem hồ sơ của ${connection.full_name || "người dùng"}`}
+                    >
+                      <UserRound className="w-4 h-4" />
+                    </Link>
+                  </div>
                 ))
               )}
             </div>
@@ -488,15 +510,28 @@ export default function FriendsClient() {
           ) : (
             <>
               <div className="px-5 py-4 border-b border-stone-200 dark:border-stone-800 flex items-center gap-3">
-                <Avatar name={activeConnection.full_name || "Người dùng"} avatarUrl={activeConnection.avatar_url} size={44} />
-                <div className="min-w-0">
-                  <p className="text-sm font-bold text-stone-900 dark:text-stone-100 truncate">
-                    {activeConnection.full_name || "Người dùng"}
-                  </p>
-                  <p className="text-xs text-stone-500 dark:text-stone-400 truncate">
-                    Level {activeConnection.current_level} · {activeConnection.total_xp} XP
-                  </p>
-                </div>
+                <Link
+                  href={`/nguoi-hoc/${activeConnection.user_id}`}
+                  className="flex flex-1 min-w-0 items-center gap-3 group"
+                  title="Xem hồ sơ"
+                >
+                  <Avatar name={activeConnection.full_name || "Người dùng"} avatarUrl={activeConnection.avatar_url} size={44} />
+                  <div className="min-w-0">
+                    <p className="text-sm font-bold text-stone-900 dark:text-stone-100 truncate group-hover:underline">
+                      {activeConnection.full_name || "Người dùng"}
+                    </p>
+                    <p className="text-xs text-stone-500 dark:text-stone-400 truncate">
+                      Level {activeConnection.current_level} · {activeConnection.total_xp} XP
+                    </p>
+                  </div>
+                </Link>
+                <Link
+                  href={`/nguoi-hoc/${activeConnection.user_id}`}
+                  className="shrink-0 inline-flex items-center gap-1.5 px-3 py-2 rounded-lg border border-stone-200 dark:border-stone-700 text-xs font-bold text-stone-700 dark:text-stone-300 hover:bg-stone-100 dark:hover:bg-stone-800 transition-colors"
+                >
+                  <UserRound className="w-3.5 h-3.5" />
+                  Hồ sơ
+                </Link>
               </div>
 
               <div className="flex-1 overflow-y-auto px-5 py-4 space-y-3 bg-stone-50/70 dark:bg-stone-950/40">

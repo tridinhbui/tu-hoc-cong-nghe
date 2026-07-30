@@ -16,6 +16,8 @@ export interface CommunityFeedPost {
   content: string;
   metadata: Record<string, unknown> | null;
   created_at: string;
+  /** Null until the author edits the post. Drives the "đã chỉnh sửa" marker. */
+  edited_at: string | null;
   reaction_count: number;
   my_reaction: string | null;
   comment_count: number;
@@ -35,6 +37,7 @@ export interface CommunityPostComment {
   user_avatar: string | null;
   content: string;
   created_at: string;
+  edited_at: string | null;
 }
 
 export async function getCommunityFeed(beforeId?: number, limit = 20): Promise<CommunityFeedPost[]> {
@@ -104,6 +107,73 @@ export async function deleteOwnPost(postId: number): Promise<void> {
   const supabase = createClient();
   const { error } = await supabase.from("community_posts").delete().eq("id", postId);
   if (error && !isMissingTableError(error)) throw handleSupabaseError(error);
+}
+
+export const MANUAL_POST_MAX_LENGTH = 500;
+export const COMMENT_MAX_LENGTH = 300;
+
+/** True if this post is one the current user is allowed to edit.
+ *
+ *  Mirrors the RLS policy in 20260819_community_edit_own_content.sql rather
+ *  than being the security boundary itself - the database is. This exists so
+ *  the UI can hide a button that would fail, not to decide who may edit. */
+export function canEditPost(post: Pick<CommunityFeedPost, "user_id" | "kind">, userId: string | null): boolean {
+  return Boolean(userId) && post.user_id === userId && post.kind === "manual";
+}
+
+/** Edits the text of one's own manual post. `edited_at` is stamped here so
+ *  the feed can mark the post as changed - readers who already reacted
+ *  deserve to see that the text moved under them. */
+export async function updateOwnPost(postId: number, content: string): Promise<void> {
+  const trimmed = content.trim();
+  if (!trimmed) throw new Error("Nội dung không được để trống.");
+  if (trimmed.length > MANUAL_POST_MAX_LENGTH) {
+    throw new Error(`Nội dung tối đa ${MANUAL_POST_MAX_LENGTH} ký tự.`);
+  }
+
+  const supabase = createClient();
+  // No .eq("user_id", ...) or kind filter here on purpose: RLS already
+  // restricts this to the author's own manual, non-hidden posts, and
+  // duplicating the rule in the client would just be a second copy to drift.
+  const { data, error } = await supabase
+    .from("community_posts")
+    .update({ content: trimmed, edited_at: new Date().toISOString() })
+    .eq("id", postId)
+    .select("id");
+
+  if (error) {
+    if (isMissingTableError(error)) return;
+    throw handleSupabaseError(error);
+  }
+  // RLS refusals are not errors - they simply match zero rows. Without this
+  // check a blocked edit would look like a success and the UI would show the
+  // new text until the next reload silently reverted it.
+  if (!data || data.length === 0) {
+    throw new Error("Không sửa được bài viết này. Chỉ bài bạn tự đăng mới có thể chỉnh sửa.");
+  }
+}
+
+export async function updateOwnComment(commentId: number, content: string): Promise<void> {
+  const trimmed = content.trim();
+  if (!trimmed) throw new Error("Nội dung không được để trống.");
+  if (trimmed.length > COMMENT_MAX_LENGTH) {
+    throw new Error(`Bình luận tối đa ${COMMENT_MAX_LENGTH} ký tự.`);
+  }
+
+  const supabase = createClient();
+  const { data, error } = await supabase
+    .from("community_post_comments")
+    .update({ content: trimmed, edited_at: new Date().toISOString() })
+    .eq("id", commentId)
+    .select("id");
+
+  if (error) {
+    if (isMissingTableError(error)) return;
+    throw handleSupabaseError(error);
+  }
+  if (!data || data.length === 0) {
+    throw new Error("Không sửa được bình luận này.");
+  }
 }
 
 export async function reactToPost(postId: number, userId: string, emoji = "👍"): Promise<void> {

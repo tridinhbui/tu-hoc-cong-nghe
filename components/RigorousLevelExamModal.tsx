@@ -46,23 +46,35 @@ export default function RigorousLevelExamModal({
   const minPassPercentage = exam?.minPassPercentage ?? fallbackConfig.minPassPercentage;
   const examTitle = exam?.title ?? fallbackConfig.title;
 
-  const loadExam = useCallback(async () => {
+  // Bumped by retryExam to re-run the fetch below for a fresh attempt.
+  const [reloadKey, setReloadKey] = useState(0);
+
+  useEffect(() => {
+    let cancelled = false;
+    fetchLevelExam(levelToTest)
+      .then((served) => {
+        if (cancelled) return;
+        setExam(served);
+        setTimeLeft(served.timeLimitSeconds);
+        setLoadError(null);
+      })
+      .catch((error: unknown) => {
+        if (cancelled) return;
+        setLoadError(error instanceof Error ? error.message : "Không tải được đề thi.");
+      });
+    return () => {
+      cancelled = true;
+    };
+  }, [levelToTest, reloadKey]);
+
+  /** Fresh attempt: new questions, new tokens, cleared answers. */
+  const retryExam = useCallback(() => {
     setLoadError(null);
     setExam(null);
     setAnswers({});
     setResult(null);
-    try {
-      const served = await fetchLevelExam(levelToTest);
-      setExam(served);
-      setTimeLeft(served.timeLimitSeconds);
-    } catch (error) {
-      setLoadError(error instanceof Error ? error.message : "Không tải được đề thi.");
-    }
-  }, [levelToTest]);
-
-  useEffect(() => {
-    void loadExam();
-  }, [loadExam]);
+    setReloadKey((key) => key + 1);
+  }, []);
 
   const handleSubmitExam = useCallback(
     async (auto = false) => {
@@ -184,7 +196,7 @@ export default function RigorousLevelExamModal({
             <div className="py-12 text-center space-y-4">
               <p className="text-sm font-bold text-rose-600 dark:text-rose-400">{loadError}</p>
               <button
-                onClick={() => void loadExam()}
+                onClick={retryExam}
                 className="px-5 py-2.5 rounded-xl bg-emerald-500 text-stone-950 font-black text-xs hover:bg-emerald-400 cursor-pointer inline-flex items-center gap-2"
               >
                 <RefreshCw className="w-4 h-4" />
@@ -377,7 +389,7 @@ export default function RigorousLevelExamModal({
             <div className="w-full flex justify-end gap-3">
               {!passed && (
                 <button
-                  onClick={() => void loadExam()}
+                  onClick={retryExam}
                   className="px-4 py-2.5 rounded-xl bg-stone-200 dark:bg-stone-800 text-stone-900 dark:text-stone-100 font-bold text-xs hover:bg-stone-300 dark:hover:bg-stone-700 cursor-pointer flex items-center gap-1.5"
                 >
                   <RefreshCw className="w-4 h-4" />

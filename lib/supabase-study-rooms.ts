@@ -39,6 +39,10 @@ export interface StudyRoomMessage {
   created_at: string;
   is_bot: boolean;
   is_pinned: boolean;
+  /** Id of the message this one replies to, or null. Resolved against the
+   *  loaded list at render time rather than copied into `content`, so an edit
+   *  or deletion of the original is reflected in every quote of it. */
+  reply_to_id: number | null;
 }
 
 export interface StudyRoomMission {
@@ -176,7 +180,8 @@ export async function sendRoomMessage(
   roomId: number,
   senderId: string,
   content: string,
-  imageUrl?: string | null
+  imageUrl?: string | null,
+  replyToId?: number | null
 ): Promise<StudyRoomMessage> {
   const supabase = createClient();
   const insertPayload: any = {
@@ -186,6 +191,9 @@ export async function sendRoomMessage(
   };
   if (imageUrl) {
     insertPayload.image_url = imageUrl;
+  }
+  if (replyToId) {
+    insertPayload.reply_to_id = replyToId;
   }
   const { data, error } = await supabase
     .from("study_room_messages")

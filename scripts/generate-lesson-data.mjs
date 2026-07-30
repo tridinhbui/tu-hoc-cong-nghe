@@ -15,6 +15,7 @@ import path from "path";
 import { createRequire } from "module";
 import { applyLessonOverrides } from "../lib/lesson-quiz-overrides.js";
 import { balanceLessonQuizzes, assertBalancePreservedAnswers } from "../lib/lesson-quiz-balance.js";
+import { stripLessonDayPrefixes, assertDayPrefixStripPreservedTitles } from "../lib/lesson-day-prefix.js";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const root = path.resolve(__dirname, "..");
@@ -93,8 +94,14 @@ const cleanedLessons = applyLessonOverrides(rawLessons)
 // slots (see lib/lesson-quiz-balance.js for why). The assertion is the point -
 // it fails the build if the reorder ever detached `correct` from the answer
 // the author actually wrote.
-const lessons = balanceLessonQuizzes(cleanedLessons);
-assertBalancePreservedAnswers(cleanedLessons, lessons);
+const balancedLessons = balanceLessonQuizzes(cleanedLessons);
+assertBalancePreservedAnswers(cleanedLessons, balancedLessons);
+
+// Move the legacy "Tự học Tài chính Day N:" out of titles and into `day`
+// (see lib/lesson-day-prefix.js) - the number is still needed to key
+// RECALL_SCHEDULE, it just has no business being displayed as part of a title.
+const lessons = stripLessonDayPrefixes(balancedLessons);
+assertDayPrefixStripPreservedTitles(balancedLessons, lessons);
 
 if (!Array.isArray(lessons) || lessons.length === 0) {
   throw new Error(`Expected a non-empty lessons array, got: ${typeof lessons}`);
@@ -115,6 +122,9 @@ const index = lessons.map((l) => ({
   difficulty: l.difficulty,
   track: l.track,
   isFundamental: l.isFundamental,
+  // Carried into the slim index because lib/lesson-labels.ts reads it to key
+  // RECALL_SCHEDULE, and the dashboard only ever loads the index.
+  day: l.day,
 }));
 
 writeFileSync(path.join(outDir, "_index.json"), JSON.stringify(index));

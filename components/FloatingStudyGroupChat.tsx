@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState, useCallback } from "react";
+import { useEffect, useMemo, useRef, useState, useCallback } from "react";
 import Image from "next/image";
 import { isValidAvatar } from "@/lib/avatar-utils";
 import TaiTaiAvatar from "@/components/TaiTaiAvatar";
@@ -85,6 +85,8 @@ export default function FloatingStudyGroupChat({ isOpen: controlledIsOpen, onOpe
     });
   }, [onOpenChange]);
   const [messages, setMessages] = useState<StudyRoomMessage[]>([]);
+  /** Resolves reply_to_id against the loaded window - see the quote block below. */
+  const messageById = useMemo(() => new Map(messages.map((m) => [m.id, m])), [messages]);
   const [unreadCount, setUnreadCount] = useState(0);
   const [input, setInput] = useState("");
   const [sending, setSending] = useState(false);
@@ -266,11 +268,10 @@ export default function FloatingStudyGroupChat({ isOpen: controlledIsOpen, onOpe
       return;
     }
 
-    let finalContent = rawContent;
-    if (replyingTo && rawContent) {
-      const cleanContent = replyingTo.content.replace(/^↩️ \[Trả lời [^\]]+\]:\s*"/, "").replace(/"$/, "");
-      finalContent = `↩️ [Trả lời ${replyingTo.senderName}]: "${cleanContent.slice(0, 45)}..."\n${rawContent}`;
-    }
+    // Reply is a foreign key (reply_to_id), not a prefix pasted into the
+    // body - see 20260820_study_room_message_replies.sql.
+    const finalContent = rawContent;
+    const replyToId = replyingTo?.id ?? null;
 
     if (rawContent && !pendingImage && isStudyRoomBotCommand(rawContent)) {
       setSending(true);
@@ -306,6 +307,7 @@ export default function FloatingStudyGroupChat({ isOpen: controlledIsOpen, onOpe
         created_at: new Date().toISOString(),
         is_bot: false,
         is_pinned: false,
+        reply_to_id: replyToId,
       },
     ]);
 
@@ -314,7 +316,7 @@ export default function FloatingStudyGroupChat({ isOpen: controlledIsOpen, onOpe
       if (imageFile) {
         imageUrl = await uploadChatImage(userId, imageFile);
       }
-      const sent = await sendRoomMessage(room.room_id, userId, finalContent, imageUrl);
+      const sent = await sendRoomMessage(room.room_id, userId, finalContent, imageUrl, replyToId);
       setMessages((prev) => {
         const withoutOptimistic = prev.filter((m) => m.id !== optimisticId);
         // The realtime subscription may have already delivered this row.
@@ -451,15 +453,16 @@ export default function FloatingStudyGroupChat({ isOpen: controlledIsOpen, onOpe
                 const senderName = member?.full_name || "Thành viên";
                 const msgReactions = reactions[msg.id] || {};
 
-                // Check if message contains a quote reply
-                const isQuoteReply = msg.content && msg.content.startsWith("↩️ [Trả lời ");
-                let quoteHeader = "";
-                let mainText = msg.content || "";
-                if (isQuoteReply && msg.content) {
-                  const lines = msg.content.split("\n");
-                  quoteHeader = lines[0];
-                  mainText = lines.slice(1).join("\n");
-                }
+                // Quote resolved live from the original rather than copied
+                // into this message's text, so edits and deletions of the
+                // original propagate. null = original gone or out of window.
+                const repliedTo = msg.reply_to_id ? messageById.get(msg.reply_to_id) ?? null : null;
+                const repliedToName = repliedTo?.is_bot
+                  ? "Tài Tài"
+                  : repliedTo?.sender_id
+                  ? members.get(repliedTo.sender_id)?.full_name || "Thành viên"
+                  : null;
+                const mainText = msg.content || "";
 
                 return (
                   <div
@@ -496,10 +499,19 @@ export default function FloatingStudyGroupChat({ isOpen: controlledIsOpen, onOpe
                               : "bg-white dark:bg-stone-800/90 text-stone-800 dark:text-stone-100 rounded-tl-xs border border-stone-100 dark:border-stone-800"
                           }`}
                         >
-                          {/* Quoted Message Box */}
-                          {isQuoteReply && (
+                          {/* Quoted message, read live from the original */}
+                          {msg.reply_to_id !== null && (
                             <div className="mb-1.5 p-1.5 rounded-lg border-l-2 border-emerald-400 bg-black/10 dark:bg-white/10 text-[11px] font-medium leading-snug">
-                              <p className="opacity-90 font-bold">{quoteHeader}</p>
+                              {repliedTo ? (
+                                <>
+                                  <span className="block font-bold opacity-90">↩️ {repliedToName}</span>
+                                  <span className="block truncate opacity-75">
+                                    {repliedTo.image_url && !repliedTo.content ? "[Hình ảnh]" : repliedTo.content}
+                                  </span>
+                                </>
+                              ) : (
+                                <span className="block italic opacity-60">↩️ Tin nhắn đã bị xoá</span>
+                              )}
                             </div>
                           )}
 

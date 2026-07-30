@@ -238,6 +238,71 @@ export async function getLeaderboardByMetric(metric: LeaderboardMetric, limit: n
   }));
 }
 
+// The weighted "overall" score - see
+// supabase/migrations/20260819_composite_leaderboard.sql for the weights and
+// why each component is normalised the way it is.
+export async function getCompositeLeaderboard(limit: number = 20): Promise<LeaderboardRow[]> {
+  const supabase = createClient();
+  const { data, error } = await supabase.rpc("get_composite_leaderboard", { p_limit: limit });
+
+  if (error) {
+    // Migration not applied on this environment yet - the tab shows empty
+    // rather than taking down the whole leaderboard widget.
+    if (isMissingTableError(error) || error.code === "PGRST202") return [];
+    throw handleSupabaseError(error);
+  }
+
+  return ((data ?? []) as { user_id: string; name: string; value: number; avatar_url: string | null }[]).map((row) => ({
+    user_id: row.user_id,
+    value: row.value ?? 0,
+    name: row.name || "Người học",
+    avatarUrl: row.avatar_url ?? null,
+  }));
+}
+
+export interface CompositeRank {
+  rank: number;
+  value: number;
+  /** Component breakdown, so the UI can explain the score. */
+  learningXp: number;
+  examPoints: number;
+  accuracy: number;
+  streakDays: number;
+}
+
+export async function getMyCompositeRank(userId: string): Promise<CompositeRank | null> {
+  const supabase = createClient();
+  const { data, error } = await supabase.rpc("get_my_composite_rank", { p_user_id: userId });
+
+  if (error) {
+    if (isMissingTableError(error) || error.code === "PGRST202") return null;
+    throw handleSupabaseError(error);
+  }
+
+  const row = (
+    data as
+      | {
+          rank: number;
+          value: number;
+          learning_xp: number;
+          exam_points: number;
+          accuracy: number;
+          streak_days: number;
+        }[]
+      | null
+  )?.[0];
+  if (!row) return null;
+
+  return {
+    rank: row.rank,
+    value: row.value ?? 0,
+    learningXp: row.learning_xp ?? 0,
+    examPoints: row.exam_points ?? 0,
+    accuracy: row.accuracy ?? 0,
+    streakDays: row.streak_days ?? 0,
+  };
+}
+
 const SHOUTOUT_TEMPLATES = [
   (name: string, value: number) => `🎉 ${name} vừa đạt ${value} XP - một trong những học viên chăm chỉ nhất cộng đồng!`,
   (name: string, value: number) => `👏 Chúc mừng ${name} đã tích luỹ ${value} XP - hành trình học tập rất ấn tượng!`,

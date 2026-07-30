@@ -16,6 +16,11 @@ function isMissingTableError(error: { code?: string } | null) {
   return error?.code === "PGRST205";
 }
 
+// PGRST202 = RPC not found in schema cache (reaction migration not run yet)
+function isMissingFunctionError(error: { code?: string } | null) {
+  return error?.code === "PGRST202" || error?.code === "42883";
+}
+
 // image_url column not migrated yet on this environment - retry without it
 // rather than failing the whole read/write.
 function isMissingColumnError(error: { code?: string } | null) {
@@ -130,6 +135,45 @@ export async function updateChatMessage(messageId: number, content: string): Pro
   }
 
   return data as ChatMessage;
+}
+export type ChatReactionMap = Record<number, Record<string, string[]>>;
+
+function groupReactionRows(rows: unknown): ChatReactionMap {
+  const grouped: ChatReactionMap = {};
+  for (const row of (rows ?? []) as { message_id: number; emoji: string; user_ids: string[] }[]) {
+    grouped[row.message_id] ??= {};
+    grouped[row.message_id][row.emoji] = row.user_ids ?? [];
+  }
+  return grouped;
+}
+
+export async function getChatReactions(userId: string): Promise<ChatReactionMap> {
+  const supabase = createClient();
+  const { data, error } = await supabase.rpc("get_chat_message_reactions", { p_user_id: userId });
+  if (error) {
+    // Migration not applied yet on this environment - reactions degrade to
+    // absent rather than breaking the whole conversation load.
+    if (!isMissingTableError(error) && !isMissingFunctionError(error)) {
+      throw handleSupabaseError(error);
+    }
+    return {};
+  }
+  return groupReactionRows(data);
+}
+
+export async function toggleChatReaction(messageId: number, emoji: string): Promise<ChatReactionMap | null> {
+  const supabase = createClient();
+  const { data, error } = await supabase.rpc("toggle_chat_message_reaction", {
+    p_message_id: messageId,
+    p_emoji: emoji,
+  });
+  if (error) {
+    if (!isMissingTableError(error) && !isMissingFunctionError(error)) {
+      throw handleSupabaseError(error);
+    }
+    return null;
+  }
+  return groupReactionRows(data);
 }
 
 

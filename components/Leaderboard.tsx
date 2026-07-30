@@ -4,12 +4,20 @@ import { useEffect, useMemo, useState, useRef } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { Trophy, BookOpen, Sparkles, Crown, Medal, Award, Flame, Target, Gamepad2, Star, ShieldCheck, Zap, Shield, Gem, Briefcase, GraduationCap, Heart, ChevronLeft, ChevronRight } from "lucide-react";
-import { getLeaderboardByMetric, getMyLeaderboardRank, type LeaderboardMetric, type LeaderboardRow } from "@/lib/supabase-user";
+import {
+  getLeaderboardByMetric,
+  getMyLeaderboardRank,
+  getCompositeLeaderboard,
+  getMyCompositeRank,
+  type LeaderboardMetric,
+  type LeaderboardRow,
+  type CompositeRank,
+} from "@/lib/supabase-user";
 import { getCombinedGameLeaderboard } from "@/lib/games";
 import { getCareerLeaderboard, type CareerLeaderboardRow } from "@/lib/finance-careers";
 import { isValidAvatar } from "@/lib/avatar-utils";
 
-type LeaderboardUiMetric = LeaderboardMetric | "mastery" | "game" | "career" | "cfa" | "community";
+type LeaderboardUiMetric = LeaderboardMetric | "composite" | "mastery" | "game" | "career" | "cfa" | "community";
 
 function LeaderboardAvatar({ name, avatarUrl, size = 36 }: { name: string; avatarUrl: string | null; size?: number }) {
   if (isValidAvatar(avatarUrl)) {
@@ -135,6 +143,10 @@ function AvatarWithFrame({ rank, name, avatarUrl, size = 44 }: { rank: number; n
 }
 
 const TABS: { metric: LeaderboardUiMetric; label: string; icon: any; format: (v: number) => string }[] = [
+  // Default tab: the weighted overall score (see
+  // 20260819_composite_leaderboard.sql). Listed first because it, not raw XP,
+  // is meant to be the headline "who is doing best overall" ranking.
+  { metric: "composite", label: "Điểm tổng hợp", icon: ShieldCheck, format: (v) => `${v}/1000` },
   { metric: "xp", label: "XP Tổng", icon: Zap, format: (v) => `${v} XP` },
   { metric: "mastery", label: "Năng lực thật", icon: ShieldCheck, format: (v) => `${Math.round(v)} điểm` },
   { metric: "lessons", label: "Số bài", icon: BookOpen, format: (v) => `${v} bài` },
@@ -148,6 +160,7 @@ const TABS: { metric: LeaderboardUiMetric; label: string; icon: any; format: (v:
 ];
 
 const LEADERBOARD_TITLES: Record<LeaderboardUiMetric, Record<number, string>> = {
+  composite: { 1: "Học viên toàn diện nhất", 2: "Toàn diện xuất sắc", 3: "Cân bằng và vững vàng", 4: "Nền tảng toàn diện", 5: "Học chắc, học đều" },
   xp: { 1: "Bậc thầy tài chính", 2: "Chuyên gia đầu tư", 3: "Nhà đầu tư tài năng", 4: "Kiện tướng tích lũy", 5: "Thợ săn XP" },
   mastery: { 1: "Năng lực thật số 1", 2: "Kiểm tra chuẩn xác", 3: "Nền tảng vững", 4: "Tư duy chắc", 5: "Học thật hiểu thật" },
   lessons: { 1: "Vua sách giáo khoa", 2: "Thủ kho tri thức", 3: "Máy học không ngừng", 4: "Mọt sách chính hiệu", 5: "Người đọc thông thái" },
@@ -170,6 +183,13 @@ function getLeaderboardHonor(metric: LeaderboardUiMetric, rank: number) {
   const title = getLeaderboardTitle(metric, rank);
 
   const byMetric: Record<string, Record<number, { badge: string; nickname: string }>> = {
+    composite: {
+      1: { badge: "Vương miện toàn diện", nickname: "🏆 Học Viên Toàn Diện Số 1" },
+      2: { badge: "Huy chương bạc", nickname: "🎯 Cân Bằng Mọi Mặt" },
+      3: { badge: "Huy chương đồng", nickname: "🛡️ Nền Tảng Rất Chắc" },
+      4: { badge: "Top 4", nickname: "📚 Học Chắc Từng Bước" },
+      5: { badge: "Top 5", nickname: "⚖️ Vừa Đều Vừa Sâu" },
+    },
     xp: {
       1: { badge: "Vương miện XP", nickname: "Hiền giả Phố Wall" },
       2: { badge: "Huy chương bạc", nickname: "Chiến lược gia vốn" },
@@ -439,9 +459,11 @@ function getPodiumTone(rank: number) {
 }
 
 export default function Leaderboard({ userId, compact = false }: { userId?: string; compact?: boolean }) {
-  const [metric, setMetric] = useState<LeaderboardUiMetric>("xp");
+  const [metric, setMetric] = useState<LeaderboardUiMetric>("composite");
   const [entries, setEntries] = useState<(LeaderboardRow & { careerTitle?: string; careerEmoji?: string })[]>([]);
   const [myRank, setMyRank] = useState<{ rank: number; value: number } | null>(null);
+  // Component breakdown for the composite tab, so the score isn't opaque.
+  const [myComposite, setMyComposite] = useState<CompositeRank | null>(null);
   const [loading, setLoading] = useState(true);
   const [switching, setSwitching] = useState(false);
   const leadTabsRef = useRef<HTMLDivElement>(null);
@@ -457,7 +479,15 @@ export default function Leaderboard({ userId, compact = false }: { userId?: stri
         let top: (LeaderboardRow & { careerTitle?: string; careerEmoji?: string })[] = [];
         let mine: { rank: number; value: number } | null = null;
 
-        if (metric === "mastery") {
+        if (metric === "composite") {
+          const [topRows, mineRank] = await Promise.all([
+            getCompositeLeaderboard(20),
+            userId ? getMyCompositeRank(userId) : Promise.resolve(null),
+          ]);
+          top = topRows;
+          mine = mineRank;
+          if (!cancelled) setMyComposite(mineRank);
+        } else if (metric === "mastery") {
           const [topRows, mineRank] = await Promise.all([
             getLeaderboardByMetric("avg_score", 20),
             userId ? getMyLeaderboardRank("avg_score", userId) : Promise.resolve(null),
@@ -610,6 +640,44 @@ export default function Leaderboard({ userId, compact = false }: { userId?: stri
             })}
           </div>
         </div>
+
+        {metric === "composite" && (
+          <div className="mt-3 rounded-2xl border border-violet-200 dark:border-violet-900 bg-gradient-to-r from-violet-50 via-white to-emerald-50 dark:from-violet-950/50 dark:via-stone-900 dark:to-emerald-950/30 px-4 py-3 shadow-xs">
+            <div className="flex items-start gap-2.5">
+              <div className="mt-0.5 flex h-8 w-8 shrink-0 items-center justify-center rounded-xl bg-violet-600 text-white shadow-sm">
+                <ShieldCheck className="h-4 w-4" />
+              </div>
+              <div className="min-w-0">
+                <p className="text-xs font-black text-stone-900 dark:text-stone-100">Đánh giá toàn diện, nặng về kiến thức</p>
+                <p className="mt-0.5 text-[11px] font-medium leading-relaxed text-stone-500 dark:text-stone-400">
+                  Thang 1000 điểm, gồm: <strong>35%</strong> XP học hàng ngày (không tính điểm danh),{" "}
+                  <strong>30%</strong> bài thi thăng cấp, <strong>20%</strong> điểm kiểm tra trung bình,{" "}
+                  <strong>15%</strong> chuỗi ngày học. Chỉ tính bài thi được máy chủ chấm.
+                </p>
+                {myComposite && (
+                  <div className="mt-2 grid grid-cols-2 gap-1.5 sm:grid-cols-4">
+                    {[
+                      { label: "XP học", value: `${Math.round(myComposite.learningXp)}` },
+                      { label: "Thi thăng cấp", value: `${Math.round(myComposite.examPoints)}/1400` },
+                      { label: "Điểm TB", value: `${Math.round(myComposite.accuracy)}%` },
+                      { label: "Chuỗi ngày", value: `${Math.round(myComposite.streakDays)}` },
+                    ].map((item) => (
+                      <div
+                        key={item.label}
+                        className="rounded-xl border border-stone-200 dark:border-stone-800 bg-white/80 dark:bg-stone-900/80 px-2 py-1.5"
+                      >
+                        <p className="text-[9px] font-extrabold uppercase tracking-wide text-stone-400 dark:text-stone-500">
+                          {item.label}
+                        </p>
+                        <p className="text-[11px] font-black text-stone-900 dark:text-stone-100">{item.value}</p>
+                      </div>
+                    ))}
+                  </div>
+                )}
+              </div>
+            </div>
+          </div>
+        )}
 
         {metric === "mastery" && (
           <div className="mt-3 rounded-2xl border border-emerald-200 dark:border-emerald-900 bg-gradient-to-r from-emerald-50 via-white to-sky-50 dark:from-emerald-950/50 dark:via-stone-900 dark:to-sky-950/30 px-4 py-3 shadow-xs">

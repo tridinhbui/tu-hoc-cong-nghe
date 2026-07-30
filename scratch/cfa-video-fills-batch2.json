@@ -1,0 +1,15 @@
+{
+  "_readme": "Verified CFA Level I video mapping. UPDATE: these 4 entries were successfully applied to the production Module table after a transient write block cleared - see the CFA video-fill session for details. Kept here as a record.",
+  "mapping": {
+    "Tính chất lồi của trái phiếu": { "id": "uihWJaKROXc", "title": "Yield-Based Bond Convexity and Portfolio Properties (2025 CFA Level I - Fixed Income LM 12)", "publisher": "AnalystPrep" },
+    "Doanh nghiệp và cấu trúc thị trường": { "id": "V0465rIveto", "title": "The Firm and Market Structures (2024/2025 CFA Level I - Economics LM 1)", "publisher": "AnalystPrep" },
+    "Quản trị doanh nghiệp: Xung đột, cơ chế, rủi ro và lợi ích": { "id": "535QsiUC1UU", "title": "Introduction to Corporate Governance and Other ESG Considerations (2023 CFA Level I)", "publisher": "AnalystPrep" },
+    "Tính toán tỷ giá hối đoái": { "id": "JyrmJH0MVWg", "title": "Exchange Rate Calculations (2025 CFA Level I - Economics LM 8)", "publisher": "AnalystPrep" }
+  },
+  "verified_but_rejected_do_not_use": {
+    "EvQcH563NL8": "exists but embedding disabled (403)",
+    "EiPDSsIgas4": "exists but embedding disabled (403)",
+    "ICNe0Xqo138": "exists but embedding disabled (403)",
+    "k2v_ZVKr134": "dead/private (401)"
+  }
+}
