@@ -1314,4 +1314,222 @@ export const IB_QUESTION_OVERRIDES: Record<number, IbQuestionOverride> = {
     ],
     correct: 0,
   },
+
+  // ── Merger Model - Basic ──────────────────────────────────────────────
+  313: {
+    options: [
+      "Make assumptions about the price and the cash/stock/debt mix, project both companies' financials, combine the income statements with the acquisition effects, and see whether the buyer's EPS rises (accretive) or falls (dilutive).",
+      "Value both companies with a DCF, add the two Enterprise Values together, and the combined figure is the merged company's value.",
+      "Project the target's cash flows only, discount them at the buyer's WACC, and compare the result against the purchase price.",
+      "Combine both balance sheets, calculate the new debt-to-equity ratio, and use that to determine whether the deal can be financed.",
+    ],
+    correct: 0,
+  },
+  314: {
+    options: [
+      "It's mostly semantic - every deal has a buyer and a seller. \"Merger\" tends to describe two companies of similar size; \"acquisition\" implies the buyer is significantly larger.",
+      "In a merger both companies cease to exist and a new entity is formed; in an acquisition the target survives as an independent legal entity.",
+      "A merger is paid for in stock and an acquisition in cash - the consideration is what distinguishes the two.",
+      "A merger requires shareholder approval from both sides while an acquisition requires approval only from the target's shareholders.",
+    ],
+    correct: 0,
+  },
+  315: {
+    options: [
+      "To take market share by buying a competitor, to grow faster than it could organically, because it believes the target is undervalued, or to acquire the target's customers, technology or geographic reach.",
+      "Purely to reduce its tax bill, since acquisitions generate goodwill amortisation that shelters income.",
+      "Mainly to increase reported EPS, which is the only motive that reliably survives scrutiny in practice.",
+      "To diversify into unrelated industries, which is the strategy that consistently creates the most shareholder value.",
+    ],
+    correct: 0,
+  },
+  316: {
+    options: [
+      "When the Net Income the seller adds isn't enough to cover the buyer's foregone interest on cash, the extra interest on new debt, and the dilution from newly issued shares - plus acquisition effects such as intangibles amortisation.",
+      "Whenever the buyer pays a premium over the target's share price, since any premium destroys value by definition.",
+      "Whenever the target is unprofitable - a profitable target always makes a deal accretive.",
+      "Whenever the deal is paid for in cash, because cash leaving the balance sheet always reduces the buyer's earnings.",
+    ],
+    correct: 0,
+  },
+  317: {
+    options: [
+      "For a cash-and-debt deal, add up the new interest expense plus the interest forgone on cash and compare that against the seller's pre-tax income. For an all-stock deal, compare the two companies' P/E multiples instead.",
+      "Compare the two companies' EBITDA margins - the deal is accretive whenever the target's margin is higher.",
+      "Compare the purchase price against the target's book value; anything below book value is accretive.",
+      "There is no shortcut - accretion or dilution can only ever be determined by building the full model.",
+    ],
+    correct: 0,
+  },
+  318: {
+    options: [
+      "You can't tell without knowing it's an all-stock deal. In an all-cash or all-debt deal the two P/E multiples are irrelevant, because no shares are being issued.",
+      "Accretive - a buyer with a higher P/E acquiring a lower-P/E target is accretive under every financing structure.",
+      "Dilutive - paying for cheap earnings with expensive stock always reduces the buyer's EPS.",
+      "Neither - the P/E comparison determines only the premium, never whether the deal moves EPS.",
+    ],
+    correct: 0,
+  },
+  319: {
+    options: [
+      "In an all-stock deal, a buyer with the higher P/E gets accretion and a buyer with the lower P/E gets dilution. Intuitively: if you're paying more for earnings than the market pays for your own, you're giving up value.",
+      "In an all-stock deal, a buyer with the lower P/E gets accretion, because it acquires earnings more cheaply than the market values them.",
+      "The rule holds for all-cash deals rather than all-stock deals, since cash consideration is what makes the multiples comparable.",
+      "The comparison is between EV/EBITDA multiples rather than P/E, since EPS accretion is driven at the enterprise level.",
+    ],
+    correct: 0,
+  },
+  320: {
+    options: [
+      "Foregone interest on the cash spent, additional interest on any new debt, new shares outstanding if stock is issued, the seller's added net income, and acquisition effects such as amortisation of newly created intangibles.",
+      "Only the seller's added net income and the new shares issued - interest effects are financing items and stay out of the EPS calculation.",
+      "Only the change in goodwill, since that is the single balance sheet item an acquisition creates.",
+      "The buyer's revenue and expenses simply double, since two companies of similar size are being combined.",
+    ],
+    correct: 0,
+  },
+  321: {
+    options: [
+      "It may want to keep the cash for other uses or as a buffer if trading turns down, and if its own stock is near an all-time high, issuing shares can be the cheaper currency at that moment.",
+      "Because paying entirely in cash is prohibited above a certain deal size under securities regulations.",
+      "Because cash deals are always dilutive, whereas stock deals are always accretive.",
+      "Because using cash triggers an immediate tax charge for the buyer on the amount spent.",
+    ],
+    correct: 0,
+  },
+  322: {
+    options: [
+      "Because a strategic buyer can realise revenue and cost synergies by combining the target with its existing business, and those synergies raise what the target is worth to it. A PE firm can't, unless it already owns a complementary company.",
+      "Because private equity firms are legally capped on the multiple they may pay for any acquisition.",
+      "Because strategic acquirers have a lower cost of capital, and every deal is priced off the buyer's WACC.",
+      "Because private equity firms always pay in cash while strategics can pay in stock, which is inherently more valuable.",
+    ],
+    correct: 0,
+  },
+  323: {
+    options: [
+      "They capture what the buyer paid above the fair market value of the seller's identifiable net assets - roughly the equity purchase price less the seller's book value - covering things like brand, customer relationships and intellectual property.",
+      "They represent the cash the buyer spent on the acquisition, capitalised on the balance sheet rather than expensed.",
+      "They are created only when the buyer pays in stock, since stock consideration has no book value to offset.",
+      "They represent the target's accumulated retained earnings, transferred onto the buyer's balance sheet at closing.",
+    ],
+    correct: 0,
+  },
+  324: {
+    options: [
+      "Goodwill generally sits unchanged for years and isn't amortised - it moves only on impairment or another acquisition. Other Intangible Assets are amortised over a set life, and that amortisation reduces pre-tax income each period.",
+      "Goodwill is amortised over a set life while Other Intangibles sit unchanged until impaired - the opposite of the usual assumption.",
+      "Both are amortised on the same schedule; the distinction exists only for disclosure purposes.",
+      "Goodwill relates to tangible assets acquired at a premium, while Other Intangibles cover patents and trademarks only.",
+    ],
+    correct: 0,
+  },
+  325: {
+    options: [
+      "Yes - a Purchased In-Process R&D write-off, covering acquired R&D projects not yet complete, and a Deferred Revenue write-off, reducing the target's deferred revenue balance to its fair value at closing.",
+      "No - Goodwill and Other Intangibles between them capture every intangible effect of an acquisition.",
+      "Yes - the target's accumulated depreciation, which is written off in full and re-established at the acquisition date.",
+      "Yes - the buyer's own brand value, which must be revalued upward to reflect the enlarged business.",
+    ],
+    correct: 0,
+  },
+  326: {
+    options: [
+      "Cases where the combination is worth more than the two companies separately. Revenue synergies come from cross-selling or reaching new customers; cost synergies come from consolidating buildings, systems and redundant headcount.",
+      "Synergies are the premium the buyer pays over the target's share price, which is why they're also called the control premium.",
+      "Synergies are the tax savings created by the target's net operating losses transferring to the buyer.",
+      "Synergies are the reduction in the combined company's cost of capital that follows from being larger and more diversified.",
+    ],
+    correct: 0,
+  },
+  327: {
+    options: [
+      "Revenue synergies are added to combined revenue at an assumed margin, so they flow down through the income statement. Cost synergies are subtracted from the combined cost base, usually from COGS or operating expenses.",
+      "Both are added directly to combined net income, since that is where their effect ultimately lands.",
+      "Both are added to the purchase price, because the buyer is effectively paying for the value they create.",
+      "Revenue synergies reduce operating expenses and cost synergies increase revenue - the labels refer to where the benefit shows up, not its source.",
+    ],
+    correct: 0,
+  },
+  328: {
+    options: [
+      "Cost synergies. Nobody in M&A takes revenue synergies very seriously because they're so hard to predict, whereas consolidating buildings and cutting duplicated roles is far more concrete.",
+      "Revenue synergies, because growth creates more lasting value than one-off cost cuts.",
+      "They carry equal weight, which is why models always assume the same realisation rate for both.",
+      "Neither is taken seriously - synergies are excluded from merger models entirely because they can't be verified.",
+    ],
+    correct: 0,
+  },
+  329: {
+    options: [
+      "Cash, if resources were unlimited. Cash is the cheapest currency because the interest forgone on it is usually lower than the interest payable on new debt, and both are cheaper than the dilution from issuing stock.",
+      "Stock, because issuing shares costs nothing in cash and therefore has no effect on the buyer's earnings.",
+      "Debt, because interest is tax-deductible, which makes it the cheapest form of consideration in every case.",
+      "It makes no difference - the three are economically equivalent once the deal closes.",
+    ],
+    correct: 0,
+  },
+  330: {
+    options: [
+      "Look at comparable companies and precedent transactions: take the median Debt/EBITDA ratio from that set and apply it to the combined company's LTM EBITDA.",
+      "As much as the lenders will provide, since the constraint is availability of credit rather than any analytical limit.",
+      "Up to the target's total asset value, since assets serve as collateral for the acquisition debt.",
+      "A fixed maximum of 50% of the purchase price, which is the standard limit in acquisition financing.",
+    ],
+    correct: 0,
+  },
+  331: {
+    options: [
+      "With the same valuation methodologies. For a public target you also watch the premium over the current share price - typically 15-30% - since it has to be enough to win shareholder approval.",
+      "By taking the target's book value and adding a standard 20% control premium.",
+      "By whatever the buyer can afford given its debt capacity, since price is set by financing rather than by valuation.",
+      "By the target's last funding round or last traded price exactly, since paying any premium destroys value for the buyer.",
+    ],
+    correct: 0,
+  },
+  332: {
+    options: [
+      "A very large Goodwill and Other Intangibles balance gets created, and if the acquisition underperforms the buyer often has to take a substantial goodwill impairment charge later.",
+      "The buyer must restate the purchase price downward in the following period to match fair value.",
+      "Nothing shows up in the accounts - overpayment is only ever visible in the share price reaction.",
+      "The excess is recorded as a loss on the income statement immediately at closing.",
+    ],
+    correct: 0,
+  },
+  333: {
+    options: [
+      "The buyer's share price falls by the per-share equivalent of the $50 million of lost value - not necessarily by half - and depending on the structure the seller effectively receives only about half of what it expected.",
+      "The buyer's share price halves, since the acquired asset is now worth half what was paid for it.",
+      "Nothing changes for the buyer - the deal price was fixed at signing, so the market's later view is irrelevant.",
+      "The seller must return $50 million in cash to the buyer under standard purchase agreement terms.",
+    ],
+    correct: 0,
+  },
+  334: {
+    options: [
+      "Because integrating another company and actually realising the synergies is far harder in practice than on paper, and many deals are done for the wrong reasons - empire-building or pressure to grow - in the first place.",
+      "Because the accounting treatment of goodwill mechanically depresses the combined company's earnings for years afterwards.",
+      "Because regulators block most transactions before they can deliver their intended benefits.",
+      "Because buyers almost always underpay, and underpaying leaves the target's management unmotivated after closing.",
+    ],
+    correct: 0,
+  },
+  335: {
+    options: [
+      "It's a sanity check for testing assumptions, not a decision-maker. It might tell you a deal could be modestly accretive and is therefore worth exploring further - no company decides to transact on a model's output.",
+      "It sets the final purchase price, which is then presented to the target's board as a binding offer.",
+      "It has no role in negotiation - merger models are built only after signing, for internal reporting purposes.",
+      "It determines the financing mix, which the model optimises automatically to maximise accretion.",
+    ],
+    correct: 0,
+  },
+  336: {
+    options: [
+      "Purchase price, the cash/stock/debt mix, and revenue and expense synergies most commonly. Operating variables such as revenue growth or EBITDA margin come up too, though those are more often built into the model's scenarios.",
+      "Only the purchase price, since every other variable is fixed by the deal structure once terms are agreed.",
+      "The discount rate and the terminal multiple, which are the two inputs that drive any valuation output.",
+      "The target's historical growth rates, since sensitivities are run on what has already happened rather than on deal terms.",
+    ],
+    correct: 0,
+  },
 };
