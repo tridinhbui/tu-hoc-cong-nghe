@@ -512,4 +512,168 @@ export const IB_QUESTION_OVERRIDES: Record<number, IbQuestionOverride> = {
     ],
     correct: 0,
   },
+
+  // ── Valuation - Basic ─────────────────────────────────────────────────
+  226: {
+    options: [
+      "Comparable Companies, Precedent Transactions and Discounted Cash Flow analysis.",
+      "Comparable Companies, Leveraged Buyout analysis and Liquidation Valuation.",
+      "Discounted Cash Flow, Sum of the Parts and Replacement Value.",
+      "Book Value, Market Capitalisation and Enterprise Value.",
+    ],
+    correct: 0,
+  },
+  227: {
+    options: [
+      "There's no ranking that always holds. Precedent Transactions usually come out above Comparable Companies because of the control premium in an acquisition, but a DCF can land either way and is simply more variable than the other two.",
+      "DCF is always highest, then Precedent Transactions, then Comparable Companies - discounting future cash flows always captures more value than any market-based method.",
+      "Comparable Companies is always highest because public market multiples price in growth expectations that private deals never reflect.",
+      "Precedent Transactions is always lowest, since distressed sellers drag historical deal multiples below current trading levels.",
+    ],
+    correct: 0,
+  },
+  228: {
+    options: [
+      "When cash flows are unstable or unpredictable - an early-stage tech or biotech company - or when debt and working capital play a fundamentally different role, as with banks and financial institutions.",
+      "When the company is unprofitable, since a DCF cannot be built on negative earnings under any circumstances.",
+      "When the company is private, because a DCF requires an observable share price to compute the discount rate.",
+      "Whenever comparable companies exist - a DCF is only a fallback for businesses with no public peers.",
+    ],
+    correct: 0,
+  },
+  229: {
+    options: [
+      "Liquidation Valuation (asset value less liabilities), Replacement Value (cost to rebuild the asset base), LBO analysis, and Sum of the Parts for multi-division businesses.",
+      "Only the three core methods exist - anything else is a variation on Comparable Companies rather than a separate methodology.",
+      "Book Value, Par Value and Face Value, which together capture a company's accounting worth.",
+      "Dividend yield analysis and share buyback analysis, which are the standard supplements to the core three.",
+    ],
+    correct: 0,
+  },
+  230: {
+    options: [
+      "Mostly in bankruptcy, to see whether equity holders receive anything once debts are repaid - and to advise a struggling business on whether selling assets piecemeal beats selling the whole company.",
+      "For high-growth companies, since their asset base is the only part of the business that can be valued with confidence.",
+      "As the default method for any private company, because private firms have no market price to anchor a relative valuation.",
+      "Whenever a DCF produces a value below the current share price, as a sanity check on the discount rate.",
+    ],
+    correct: 0,
+  },
+  231: {
+    options: [
+      "When a company has genuinely unrelated divisions - a conglomerate such as GE with plastics, entertainment, energy, consumer finance and technology arms - so each division is valued with its own peer set and the results are added up.",
+      "When a company operates in a single industry but across several countries, so each geography can be valued separately.",
+      "When a company is being liquidated, since Sum of the Parts is another name for adding up asset sale proceeds.",
+      "Whenever a company has more than one product line, however closely related those product lines are.",
+    ],
+    correct: 0,
+  },
+  232: {
+    options: [
+      "Whenever you're looking at a leveraged buyout, and also to establish what a private equity firm could pay - which is usually less than a strategic buyer, so it tends to set a floor on the valuation range.",
+      "Whenever you need the highest possible valuation, since leverage magnifies returns and therefore the price a buyer can justify.",
+      "Only for companies already owned by a private equity firm, since an LBO analysis requires an existing debt structure to model.",
+      "As a replacement for the DCF whenever cash flows are too unpredictable to forecast.",
+    ],
+    correct: 0,
+  },
+  233: {
+    options: [
+      "EV/Revenue, EV/EBITDA, EV/EBIT, P/E (share price over earnings per share) and P/BV (share price over book value).",
+      "EV/Net Income, Equity Value/EBITDA, P/Revenue and Debt/Equity.",
+      "EV/Free Cash Flow, EV/Dividends, P/Cash and Revenue/Assets.",
+      "Only EV/EBITDA and P/E - the other ratios are industry-specific rather than general-purpose multiples.",
+    ],
+    correct: 0,
+  },
+  234: {
+    options: [
+      "Internet: EV/Unique Visitors, EV/Pageviews. Retail and airlines: EV/EBITDAR, which adds back rent. Energy: P/MCFE and P/NAV. Real estate: P/FFO.",
+      "Every industry uses EV/EBITDA - industry-specific multiples are a myth that comes up in interviews but not in practice.",
+      "Internet: P/E. Retail: EV/Revenue. Energy: EV/EBITDA. These are simply the standard multiples applied to different sectors.",
+      "Industry-specific multiples all pair Equity Value with an operating metric, because operating metrics belong to shareholders.",
+    ],
+    correct: 0,
+  },
+  235: {
+    options: [
+      "Because those scientists or subscribers are available to all the investors in the company, both debt and equity - and Enterprise Value is the figure that represents all of them. The logic has to be checked metric by metric, though.",
+      "Because Enterprise Value is always larger than Equity Value, which keeps industry multiples on a comparable scale across companies.",
+      "Because Equity Value fluctuates with the share price while Enterprise Value is fixed, making it the more stable numerator.",
+      "Because operational metrics like subscribers are recorded on the Balance Sheet, which is what Enterprise Value is derived from.",
+    ],
+    correct: 0,
+  },
+  236: {
+    options: [
+      "It could go either way, but usually the LBO gives a lower value: an LBO captures no value from the cash flows between year 1 and exit, valuing the business only on its terminal value, whereas a DCF credits every year's cash flow.",
+      "The DCF is always lower, because discounting at the WACC penalises distant cash flows more heavily than an LBO's return requirement does.",
+      "They always produce the same value when the same operating assumptions are used - the two are mathematically equivalent.",
+      "The LBO is always higher, because the debt used in the structure adds the value of the interest tax shield on top of the business value.",
+    ],
+    correct: 0,
+  },
+  237: {
+    options: [
+      "As a \"football field\" chart showing the valuation range each methodology implies - always a range rather than a single number.",
+      "As a single point estimate, since presenting a range signals that the analysis is not rigorous enough to defend.",
+      "As a ranked table listing the methodologies from highest to lowest value, with the highest presented as the recommendation.",
+      "As a pie chart splitting total value across the three methodologies by their relative weighting.",
+    ],
+    correct: 0,
+  },
+  238: {
+    options: [
+      "The same way you'd value a company: what comparable apple trees sell for (relative valuation) and the value of the cash flows the tree produces (intrinsic valuation). You can run a DCF on anything.",
+      "You couldn't - a DCF requires financial statements, so valuation methodologies don't apply to physical assets.",
+      "Only by replacement cost, since a tree produces no contractual cash flows that could be discounted.",
+      "By its liquidation value alone - the timber it would yield if cut down - because that is the only certain cash it generates.",
+    ],
+    correct: 0,
+  },
+  239: {
+    options: [
+      "Because EBITDA is available to all investors in the company, so it must be paired with Enterprise Value, which also represents all investors. Equity Value excludes the debt claim, so pairing the two compares apples to oranges.",
+      "Because EBITDA is a pre-tax figure and Equity Value is an after-tax figure, so the two are measured on inconsistent bases.",
+      "Because Equity Value changes daily with the share price while EBITDA is annual, so the ratio would never be stable.",
+      "You can use it - Equity Value/EBITDA is simply a less common presentation of the same relationship as EV/EBITDA.",
+    ],
+    correct: 0,
+  },
+  240: {
+    options: [
+      "Rarely - but it can happen when a company holds substantial hard assets while the market is severely undervaluing it for a specific reason such as an earnings miss, so its trading and transaction comps come out lower than its asset value.",
+      "Whenever a company is profitable, since profitable businesses always carry assets worth more than their going-concern value.",
+      "For high-growth technology companies, whose intangible assets are worth far more in a liquidation than as an operating business.",
+      "Never - by definition a liquidation value is the floor and can never exceed any other methodology.",
+    ],
+    correct: 0,
+  },
+  241: {
+    options: [
+      "With Comparable Companies and Precedent Transactions on creative multiples such as EV/Unique Visitors and EV/Pageviews. You would not attempt a far-in-the-future DCF, because you can't credibly forecast cash flows for a company that isn't yet generating any.",
+      "With a DCF projecting 20 years out, since a company with no current cash flows can only be valued on its long-run potential.",
+      "You couldn't value it at all - with no revenue there is no metric to attach a multiple to.",
+      "With a Liquidation Valuation, since the servers and office equipment are the only assets with a determinable value.",
+    ],
+    correct: 0,
+  },
+  242: {
+    options: [
+      "It depends which one: Unlevered Free Cash Flow excludes interest and so belongs to all investors, pairing with Enterprise Value; Levered Free Cash Flow is after interest and belongs to equity holders, pairing with Equity Value.",
+      "Enterprise Value for both, since Free Cash Flow is an operating measure regardless of how it is defined.",
+      "Equity Value for both, since Free Cash Flow is ultimately what is available to distribute to shareholders.",
+      "Neither - Free Cash Flow is used in a DCF and is never expressed as a multiple.",
+    ],
+    correct: 0,
+  },
+  243: {
+    options: [
+      "Rarely, but yes: large financial institutions with big cash balances can have negative Enterprise Values, so Equity Value/Revenue may be the only workable option - for instance when comparing financial and non-financial companies side by side.",
+      "Never, for the same reason as Equity Value/EBITDA - revenue is available to all investors, so it must pair with Enterprise Value.",
+      "Always - Equity Value/Revenue is in fact the standard revenue multiple, and EV/Revenue is the unusual variant.",
+      "Only for pre-revenue companies, where the denominator is small enough that the choice of numerator no longer matters.",
+    ],
+    correct: 0,
+  },
 };
