@@ -83,13 +83,13 @@ export const SKILL_DOMAINS: SkillDomain[] = [
     id: "modeling_excel",
     label: "Excel & Mô hình tài chính",
     gapHint: "dựng mô hình 3 báo cáo, LBO, bảng độ nhạy, dashboard Excel",
-    lessonIds: [116, 117, 139, 1024, 1028, 1102, 1103, 1105, 1106, 1202, 1203, 1256, 1272],
+    lessonIds: [116, 117, 139, 1024, 1028, 1102, 1103, 1105, 1106, 1202, 1203, 1256, 1272, ...range(1311, 1320), 1342],
   },
   {
     id: "ma",
     label: "M&A",
     gapHint: "M&A, synergy, deal structure, due diligence, LBO",
-    lessonIds: [108, 109, 110, 117, 118, 119, 1021, 1106, 1107, 1108, 1109, 1110, 1260],
+    lessonIds: [108, 109, 110, 117, 118, 119, 1021, 1103, 1106, 1107, 1108, 1109, 1110, 1260, 1318, 1337, 1338, 1339],
   },
   {
     id: "fixed_income",
@@ -119,13 +119,13 @@ export const SKILL_DOMAINS: SkillDomain[] = [
     id: "ethics",
     label: "Đạo đức nghề nghiệp",
     gapHint: "Code of Ethics, Standards of Conduct, GIPS",
-    lessonIds: [...range(1039, 1046)],
+    lessonIds: [...range(1039, 1046), ...range(1331, 1336)],
   },
   {
     id: "economics",
     label: "Kinh tế học",
     gapHint: "chu kỳ kinh tế, chính sách tiền tệ - tài khóa, tỷ giá",
-    lessonIds: [9, 146, 147, 148, ...range(1224, 1228), 1258],
+    lessonIds: [9, 146, 147, 148, ...range(1224, 1228), 1258, ...range(1321, 1326), 1340, 1341],
   },
   {
     id: "quant",

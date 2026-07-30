@@ -23,7 +23,7 @@ export const CFA_LEVEL_1_SUBJECTS: CfaSubject[] = [
     id: "ethics",
     name: "Ethical and Professional Standards",
     weight: "15–20%",
-    lessonIds: [1039, 1040, 1041, 1042, 1043, 1044, 1045, 1046],
+    lessonIds: [1039, 1040, 1041, 1042, 1043, 1044, 1045, 1046, 1331, 1332, 1333, 1334, 1335, 1336],
   },
   {
     id: "quant",
@@ -35,7 +35,7 @@ export const CFA_LEVEL_1_SUBJECTS: CfaSubject[] = [
     id: "economics",
     name: "Economics",
     weight: "6–9%",
-    lessonIds: [9, 146, 147, 148, 1224, 1225, 1226, 1227, 1228, 1321, 1322, 1323, 1324, 1325, 1326],
+    lessonIds: [9, 146, 147, 148, 1224, 1225, 1226, 1227, 1228, 1321, 1322, 1323, 1324, 1325, 1326, 1340, 1341],
   },
   {
     id: "fsa",
