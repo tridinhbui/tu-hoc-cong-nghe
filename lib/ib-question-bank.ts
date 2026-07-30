@@ -5607,7 +5607,13 @@ const RAW_IB_QUESTION_BANK: IbQuestion[] = [
  *  unchanged, so rewriting the bank can proceed batch by batch. */
 export const IB_QUESTION_BANK: IbQuestion[] = RAW_IB_QUESTION_BANK.map((q) => {
   const override = IB_QUESTION_OVERRIDES[q.id];
-  return override ? { ...q, options: override.options, correct: override.correct } : q;
+  if (!override) return q;
+  return {
+    ...q,
+    options: override.options,
+    correct: override.correct,
+    ...(override.question ? { question: override.question } : {}),
+  };
 });
 
 /** Technical questions - the ones with a single defensible right answer, so

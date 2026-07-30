@@ -25,6 +25,13 @@
 export interface IbQuestionOverride {
   options: string[];
   correct: number;
+  /** Only for the handful of questions the scrape cut mid-sentence, spilling
+   *  the tail of the prompt into the start of `explanation` (id 256 asks
+   *  "...the cost of depreciation and lease are the same" and the explanation
+   *  opens with "dollar amounts and everything else is held constant"). Where
+   *  set, this restores the full prompt; `explanation` keeps its spilled
+   *  opening, which reads fine as the first line of an answer. */
+  question?: string;
 }
 
 export const IB_QUESTION_OVERRIDES: Record<number, IbQuestionOverride> = {
@@ -673,6 +680,152 @@ export const IB_QUESTION_OVERRIDES: Record<number, IbQuestionOverride> = {
       "Never, for the same reason as Equity Value/EBITDA - revenue is available to all investors, so it must pair with Enterprise Value.",
       "Always - Equity Value/Revenue is in fact the standard revenue multiple, and EV/Revenue is the unusual variant.",
       "Only for pre-revenue companies, where the denominator is small enough that the choice of numerator no longer matters.",
+    ],
+    correct: 0,
+  },
+  244: {
+    options: [
+      "On three axes: industry classification, financial criteria such as revenue or EBITDA, and geography. For precedent transactions you also cap the lookback, usually to deals in the past one to two years.",
+      "Purely by market capitalisation, since companies of a similar size trade on similar multiples regardless of what they do.",
+      "By picking the companies with multiples closest to the target's, so the resulting range is tight and defensible.",
+      "By taking every listed company in the same country, since a broad sample is always more statistically reliable.",
+    ],
+    correct: 0,
+  },
+  245: {
+    options: [
+      "Take the median multiple from the set and apply it to the equivalent metric of the company you're valuing - for example a median precedent EBITDA multiple times your company's EBITDA.",
+      "Average the valuations produced by all three methodologies to arrive at a single blended value.",
+      "Take the highest multiple in the set, since that establishes the maximum an acquirer has been willing to pay.",
+      "Apply the target's own historical multiple to its current metric, which controls for company-specific factors.",
+    ],
+    correct: 0,
+  },
+  246: {
+    options: [
+      "In pitch books and client presentations, and in a Fairness Opinion - the document a bank produces near closing to support the view that the price its client is paying or receiving is reasonable.",
+      "Only internally, as a risk-management check - valuations are never shown to clients because they would create legal liability.",
+      "To set the company's share price on the exchange, which is why listed companies commission one each quarter.",
+      "Purely as an academic exercise during analyst training; live deals are priced by negotiation rather than valuation work.",
+    ],
+    correct: 0,
+  },
+  247: {
+    options: [
+      "Several reasons: it may have just beaten earnings expectations and re-rated, it may hold a competitive advantage not visible in the financials such as a key patent, or it may have just announced a favourable acquisition or new product.",
+      "It can't - companies with identical growth and profitability always trade on identical multiples, which is the premise comparable analysis rests on.",
+      "Because it has more debt, and leverage mechanically raises the EV/EBITDA multiple relative to unlevered peers.",
+      "Because it is larger, and size alone guarantees a premium regardless of any other characteristic.",
+    ],
+    correct: 0,
+  },
+  248: {
+    options: [
+      "No company is fully comparable to another; the stock market is emotional, so the multiples swing with the market on any given day; and thinly-traded small caps may have share prices that don't reflect their real value.",
+      "The main flaw is that public data is unreliable, since listed companies are not required to have their financials audited.",
+      "They are only flawed when fewer than ten peers exist - with a large enough sample the methodology has no weaknesses.",
+      "They systematically overvalue every company, because public markets always price in a control premium.",
+    ],
+    correct: 0,
+  },
+  249: {
+    options: [
+      "Use the 75th percentile or above rather than the median, add a premium to selected multiples, or run more aggressive projections. In practice you'd use one of these, not all three at once.",
+      "Add a fixed 20% control premium, which is the standard adjustment for any competitive advantage.",
+      "Exclude the weaker peers from the comparable set until the median rises to the level you consider appropriate.",
+      "You don't - a competitive advantage is qualitative and cannot be reflected in a valuation.",
+    ],
+    correct: 0,
+  },
+  250: {
+    options: [
+      "There's no rule requiring it, though usually you do because the middle of the set is the most defensible. For a distressed or underperforming company you might use the 25th percentile instead.",
+      "Yes, always - using anything other than the median makes the analysis subjective and indefensible.",
+      "No, you normally use the mean, since it uses every data point rather than discarding the tails.",
+      "You use the highest multiple for buy-side work and the lowest for sell-side work, depending on whose interest you represent.",
+    ],
+    correct: 0,
+  },
+  251: {
+    options: [
+      "Yes - when the M&A market and the public market are badly mismatched. If no public companies have been acquired recently but many small private ones have gone for very low valuations, precedents can come out below trading comps.",
+      "No - the control premium in an acquisition guarantees precedent transactions always exceed trading comparables.",
+      "Yes, but only when the precedent deals are all-stock, since stock consideration carries no premium.",
+      "Yes, whenever the precedent transactions are more than a year old, because older deals are always priced lower.",
+    ],
+    correct: 0,
+  },
+  252: {
+    options: [
+      "Past deals are rarely fully comparable - structure, target size and market sentiment all move the multiple - and the data is harder to find than for public comparables, especially for acquisitions of small private companies.",
+      "The only flaw is that they include a control premium, which can be removed with a standard 20% adjustment.",
+      "They are less reliable than trading comps purely because there are usually fewer of them, with no other material weakness.",
+      "They have no real flaws, which is why precedent transactions are treated as the single most authoritative methodology.",
+    ],
+    correct: 0,
+  },
+  253: {
+    options: [
+      "One sale process may have been far more competitive with more bidders, one target may have had recent bad news or a depressed share price and sold at a discount, or the two sat in industries with different median multiples.",
+      "It's impossible - identical financial profiles and the same acquirer must produce the same multiple.",
+      "One deal must have been all-cash and the other all-stock, which is the only factor that can double a multiple.",
+      "The acquirer must have made an error in one of the two valuations, since a 2x gap has no legitimate explanation.",
+    ],
+    correct: 0,
+  },
+  254: {
+    options: [
+      "Because EBITDA ignores capital expenditures, which are often large and very real - hence his line about the tooth fairy paying for CapEx. EBIT is after depreciation, so it partly reflects the cost of the asset base.",
+      "Because EBIT is calculated after interest, which makes it a better measure of what equity holders actually keep.",
+      "Because EBITDA is not a GAAP measure and therefore cannot legally be used in a published valuation.",
+      "Because EBIT multiples are consistently lower, giving a more conservative valuation in every industry.",
+    ],
+    correct: 0,
+  },
+  255: {
+    options: [
+      "P/E depends on capital structure while EV/EBIT and EV/EBITDA are capital-structure neutral, so P/E suits banks and financial institutions where interest is central. EV/EBIT is after D&A, making it the better fit for capital-intensive businesses.",
+      "All three are capital-structure neutral and interchangeable; the choice between them is purely a matter of house convention.",
+      "EV/EBITDA depends on capital structure while P/E does not, which is why P/E is the default for industrial companies.",
+      "EV/EBIT and EV/EBITDA are identical in practice, since depreciation and amortisation are non-cash and net to zero over time.",
+    ],
+    correct: 0,
+  },
+  256: {
+    question:
+      "If you were buying a vending machine business, would you pay a higher multiple for a business where you owned the machines and they depreciated normally, or one in which you leased the machines? The cost of depreciation and lease are the same dollar amounts and everything else is held constant.",
+    options: [
+      "A higher multiple for the leased business. The lease is an operating expense so it sits inside EBITDA, making EBITDA lower; depreciation is excluded from EBITDA, so the owned business shows higher EBITDA and therefore a lower multiple on the same Enterprise Value.",
+      "A higher multiple for the owned business, because owning the machines gives the buyer a hard asset base that a leased fleet does not.",
+      "The same multiple for both, because the question states the dollar cost is identical, so the two businesses are economically equivalent.",
+      "A higher multiple for the leased business, because leasing removes the machines from the Balance Sheet and therefore reduces Enterprise Value.",
+    ],
+    correct: 0,
+  },
+  257: {
+    options: [
+      "The same three methodologies, with adjustments: you might discount public comparable multiples by 10-15% or more for illiquidity, and there's no market price, so Cost of Equity and WACC inputs have to be estimated from public peers.",
+      "Only a DCF works, since a private company has no peers and no observable transaction history.",
+      "Exactly the same as a public company with no adjustments - the methodologies are indifferent to listing status.",
+      "Only book value applies, because without a share price there is no way to establish a market-based valuation.",
+    ],
+    correct: 0,
+  },
+  258: {
+    options: [
+      "Because a precedent transaction is the purchase of an entire company, and once acquired those shares are illiquid anyway - so no illiquidity discount is warranted. Trading comps price individual liquid shares, which is the thing a private company lacks.",
+      "Because precedent transactions already embed a control premium, which offsets the illiquidity discount exactly.",
+      "Because transaction data is less reliable than trading data, so applying a further adjustment would compound the error.",
+      "You should discount both equally - treating them differently introduces an inconsistency into the valuation.",
+    ],
+    correct: 0,
+  },
+  259: {
+    options: [
+      "Only as precedent transactions. They can't be used as public company comparables, or in the Cost of Equity and WACC build in a DCF, because they have no market cap and no observable Beta.",
+      "Yes, anywhere - private company financials work identically to public ones for every methodology.",
+      "No, never - a valuation may only reference publicly listed companies.",
+      "Only in a DCF, where private company margins can be used to build the projections.",
     ],
     correct: 0,
   },

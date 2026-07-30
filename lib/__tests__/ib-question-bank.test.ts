@@ -86,6 +86,25 @@ describe("rewritten questions (lib/ib-question-overrides.ts)", () => {
     expect(new Set(all).size).toBe(all.length);
   });
 
+  it("applies a question-text override where one is set", () => {
+    // The scrape cut five prompts mid-sentence, spilling the tail into the
+    // start of `explanation`. Overrides may restore the full prompt.
+    for (const id of overriddenIds) {
+      const restored = IB_QUESTION_OVERRIDES[id].question;
+      if (!restored) continue;
+      expect(IB_QUESTION_BANK.find((q) => q.id === id)!.question).toBe(restored);
+    }
+  });
+
+  it("leaves the prompt alone when no question override is set", () => {
+    const untouched = overriddenIds.filter((id) => !IB_QUESTION_OVERRIDES[id].question);
+    expect(untouched.length).toBeGreaterThan(0);
+    for (const id of untouched) {
+      const q = IB_QUESTION_BANK.find((x) => x.id === id)!;
+      expect(q.question.trim().length).toBeGreaterThan(0);
+    }
+  });
+
   it("keeps options close enough in length that length isn't a tell", () => {
     for (const q of rewritten) {
       const lengths = q.options.map((o) => o.length);
