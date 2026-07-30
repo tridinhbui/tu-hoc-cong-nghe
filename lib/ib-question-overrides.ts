@@ -1932,4 +1932,145 @@ export const IB_QUESTION_OVERRIDES: Record<number, IbQuestionOverride> = {
     ],
     correct: 0,
   },
+
+  // ── LBO Model - Advanced ──────────────────────────────────────────────
+  381: {
+    options: [
+      "Running from cheapest and most senior to most expensive and most junior: Revolver, Term Loan A, Term Loan B, Senior Notes, Subordinated Notes and Mezzanine. As you move down, interest rises, security falls, amortisation disappears and covenants loosen from maintenance to incurrence.",
+      "Running from cheapest to most expensive: Mezzanine, Subordinated Notes, Senior Notes, Term Loans and finally the Revolver, which is the most expensive because it can be drawn at will.",
+      "There are only two types - bank debt and high-yield debt - and any further distinction is a matter of the lender's name rather than the instrument.",
+      "All tranches carry the same interest rate and seniority; they differ only in maturity, which is what determines the repayment order.",
+    ],
+    correct: 0,
+  },
+  382: {
+    options: [
+      "Much like a merger model: you compute Goodwill, Other Intangibles and the write-ups the same way, then adjust the balance sheet for the cash used, capitalised financing fees, written-up assets and new debt.",
+      "You don't adjust the balance sheet at all in an LBO - the write-ups apply only in an M&A deal where two companies combine.",
+      "You write assets down rather than up, because the private equity firm is buying at a discount to fair value.",
+      "You revalue only the intangible assets; tangible assets stay at their existing book value throughout the holding period.",
+    ],
+    correct: 0,
+  },
+  383: {
+    options: [
+      "Lay out the interest and principal payments the lenders receive each year, then run an IRR starting from the original debt as a negative Year 0 amount, with the payments as positive inflows over the holding period.",
+      "Divide the total interest received over the holding period by the original principal - that annualised figure is the debt IRR.",
+      "Take the coupon rate on the debt, which by definition is the return the debt investors earn.",
+      "You can't calculate it - IRR applies only to equity, since debt returns are contractual rather than residual.",
+    ],
+    correct: 0,
+  },
+  384: {
+    options: [
+      "To keep management motivated and in place until exit, much like an earnout in an M&A deal. In the model it dilutes the private equity firm's stake at exit, reducing the proceeds and therefore the IRR.",
+      "To satisfy a regulatory requirement that management hold a minimum stake in any leveraged buyout.",
+      "To reduce the equity cheque the firm has to write at closing, since management funds part of the purchase price.",
+      "It has no effect on the model - the option pool is granted from the firm's own carried interest rather than company equity.",
+    ],
+    correct: 0,
+  },
+  385: {
+    options: [
+      "PIK debt requires no cash interest - the interest accrues to the principal, which grows over time. It preserves cash for the business, but the balance compounds, and a PIK toggle lets the company choose cash or accrual each period.",
+      "PIK debt requires interest to be paid in additional shares rather than cash, diluting the equity holders each period.",
+      "PIK debt carries a lower interest rate than bank debt because no cash payment is required, which is why firms prefer it.",
+      "PIK debt is repaid entirely at maturity with no interest at all, functioning as a zero-coupon instrument.",
+    ],
+    correct: 0,
+  },
+  386: {
+    options: [
+      "Incurrence covenants bar specific actions - taking on more than a set amount of debt, making acquisitions above a threshold, exceeding a CapEx limit. Maintenance covenants require ratios to be met each period, such as a maximum Debt/EBITDA or minimum interest coverage.",
+      "Incurrence covenants require ratios to be met every quarter, while maintenance covenants restrict specific actions such as asset sales.",
+      "Both are tested quarterly and differ only in whether the lender is a bank or a bondholder.",
+      "Incurrence covenants apply before the deal closes and maintenance covenants only afterwards, which is the whole distinction.",
+    ],
+    correct: 0,
+  },
+  387: {
+    options: [
+      "Usually not - a 338(h)(10) election requires the buyer to be a C corporation, and private equity firms are typically LLCs or limited partnerships that acquire through an LLC shell.",
+      "Yes, always - the election is available in any acquisition regardless of how the buyer is organised.",
+      "Usually not, because the election requires the seller to be a public company and most LBO targets are private.",
+      "Yes, but only where the target is itself an LLC, in which case the election passes through automatically.",
+    ],
+    correct: 0,
+  },
+  388: {
+    options: [
+      "Only Revolvers and Term Loans have them - high-yield debt has no prepayment option, so it's always zero. Work out the cash available from the beginning balance less the minimum cash balance and mandatory repayments, then apply it to the most senior tranche first.",
+      "Apply available cash to the most expensive tranche first, since repaying high-yield debt saves the most interest.",
+      "Optional repayments apply to every tranche equally, split in proportion to each one's share of total debt.",
+      "You repay the full cash balance each year, since holding cash in an LBO earns less than the interest it would save.",
+    ],
+    correct: 0,
+  },
+  389: {
+    options: [
+      "It covers the gap when mandatory repayments exceed the cash available: Revolver Borrowing = MAX(0, total mandatory repayment - cash flow available). It starts undrawn and is repaid first once cash flow recovers.",
+      "It funds the equity portion of the purchase price at closing and is repaid from the exit proceeds.",
+      "It is fully drawn at closing to maximise leverage, then amortised on a fixed schedule like a term loan.",
+      "It is the tranche repaid last, after all term loans and notes, because it is the cheapest form of debt.",
+    ],
+    correct: 0,
+  },
+  390: {
+    options: [
+      "Cost savings from headcount reductions hitting COGS or operating expenses, new depreciation from PP&E write-ups, new amortisation from intangible write-ups and capitalised financing fees, and the new interest expense from the LBO debt.",
+      "Only the new interest expense - operational changes are modelled separately and don't enter the income statement.",
+      "You replace the target's revenue with the private equity firm's projections and leave every expense line unchanged.",
+      "You remove depreciation and amortisation entirely, since an LBO is analysed on an EBITDA basis throughout.",
+    ],
+    correct: 0,
+  },
+  391: {
+    options: [
+      "Yes, and more often than you'd expect. High-yield lenders can be earning 10-15%, which is close to guaranteed if the debt is repaid. If they beat the sponsor's return, it tells you the deal underperformed - the company didn't grow or exit well enough to justify the equity risk.",
+      "No - equity is junior to debt, so equity holders always earn more in exchange for bearing more risk.",
+      "Yes, but only if the company defaults and the lenders take ownership through a restructuring.",
+      "Yes, and it indicates the deal was structured well, since cheap debt returns mean the sponsor kept more of the upside.",
+    ],
+    correct: 0,
+  },
+
+  // ── Brain Teaser ──────────────────────────────────────────────────────
+  392: {
+    options: [
+      "It's impossible. Covering 60 miles at an average of 30 mph already takes 2 hours, and averaging 60 mph over those same 2 hours would mean travelling 120 miles, not 60.",
+      "90 mph - the driver has to make up the shortfall, so they need to travel at three times the original speed.",
+      "120 mph, since doubling the average speed over a fixed distance requires doubling the instantaneous speed twice over.",
+      "60 mph - simply driving at the target average speed for the remainder of the journey achieves it.",
+    ],
+    correct: 0,
+  },
+  393: {
+    options: [
+      "142.5 degrees. The minute hand sits at 270 degrees from 12, and the hour hand has moved three-quarters of the way from 1 to 2, putting it at 52.5 degrees - a gap of 217.5 degrees, so the smaller angle is 142.5.",
+      "120 degrees. The hour hand is at 1 and the minute hand at 9, which is four hour-marks apart at 30 degrees each.",
+      "127.5 degrees, taking the hour hand as having moved a quarter of the way from 1 towards 2.",
+      "150 degrees, since the hands are five hour-marks apart at 30 degrees each.",
+    ],
+    correct: 0,
+  },
+  394: {
+    question:
+      "You have stacks of quarters, dimes, nickels and pennies ($0.25, $0.10, $0.05 and $0.01), with an unlimited number of coins in each stack. You can take coins from any stack in any amount and in any order. What is the greatest dollar value you can hold without being able to make change for a dollar?",
+    options: [
+      "$1.19 - three quarters, four dimes and four pennies. A fourth quarter would make $1.00, a fifth dime would combine with two quarters to make $1.00, any nickel would complete $1.00 with the quarters and dimes, and a fifth penny would do the same.",
+      "$0.99 - anything at or above a dollar can obviously make change for a dollar, so ninety-nine cents is the ceiling.",
+      "$1.24 - four quarters minus a penny, which is the largest amount short of two full dollars in quarters.",
+      "$1.19, reached with four quarters, one dime, one nickel and four pennies, none of which combine to exactly a dollar.",
+    ],
+    correct: 0,
+  },
+  395: {
+    options: [
+      "Fill the 3L and pour it into the 5L. Refill the 3L and top up the 5L, leaving 1L in the 3L. Empty the 5L, pour the 1L into it, then fill the 3L and add it - giving exactly 4L.",
+      "Fill the 5L and pour it into the 3L, leaving 2L in the 5L. Empty the 3L, transfer the 2L across, then refill the 5L - giving exactly 4L.",
+      "Fill the 3L twice into the 5L, which overflows by 1L, and the overflow leaves exactly 4L in the 5L bucket.",
+      "It can't be done - with only 3L and 5L measures, every reachable quantity is a multiple of one or the other.",
+    ],
+    correct: 0,
+  },
 };
