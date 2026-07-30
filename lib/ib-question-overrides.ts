@@ -35,6 +35,242 @@ export interface IbQuestionOverride {
 }
 
 export const IB_QUESTION_OVERRIDES: Record<number, IbQuestionOverride> = {
+  // ── Restructuring / Distressed M&A ────────────────────────────────────
+  120: {
+    options: [
+      "Restructuring bankers advise distressed companies - heading into bankruptcy, in it, or coming out - on changing their capital structure to avoid or exit bankruptcy, often alongside asset sales and new financing.",
+      "Restructuring bankers reorganise healthy companies' divisions into more efficient reporting structures, with no involvement in debt or bankruptcy.",
+      "Restructuring bankers act as court-appointed trustees who liquidate a bankrupt company's assets and distribute proceeds to creditors.",
+      "Restructuring bankers buy distressed debt for their own account and profit when the company recovers.",
+    ],
+    correct: 0,
+  },
+  121: {
+    options: [
+      "You advise either the debtor - the company itself - or the creditors who lent it money, much like sell-side versus buy-side in M&A. The two sides sit across the table from each other.",
+      "You advise either the shareholders or the bondholders, since those are the only two groups with a claim in a bankruptcy.",
+      "You advise either the bankruptcy court or the trustee, both of whom require independent financial expertise.",
+      "There is only one side - the restructuring adviser is legally required to act neutrally between all parties.",
+    ],
+    correct: 0,
+  },
+  122: {
+    options: [
+      "You build a specialised skill set that makes you more valuable, the work is often more technical than M&A, and you get broader exposure by seeing both the debt and equity sides of a capital structure.",
+      "Restructuring deals close faster than M&A deals, so you see more transactions and build a longer deal sheet.",
+      "The hours are considerably shorter than in M&A, because bankruptcy timetables are set by the court.",
+      "Restructuring is the only group that gives analysts direct client contact in their first year.",
+    ],
+    correct: 0,
+  },
+  123: {
+    options: [
+      "Beyond the legal exposure and stronger technical skills, it opens doors to distressed investment and special situations funds - a path most people outside restructuring never get access to.",
+      "It is the standard route into equity research, since both roles centre on analysing troubled companies.",
+      "It leads naturally into corporate law, since restructuring bankers qualify as insolvency practitioners.",
+      "It is the only group from which analysts are routinely promoted straight to managing director.",
+    ],
+    correct: 0,
+  },
+  124: {
+    options: [
+      "On highly specialised experience and relationships. Only a handful of banks have credible practices, so selection turns on their track record with similar situations rather than on a broad relationship or league table position.",
+      "By running a competitive fee auction, since a distressed company must minimise every cost it can.",
+      "By choosing whichever bank already provides its revolving credit facility, to keep the relationship in one place.",
+      "The bankruptcy court appoints the adviser, so the company has no say in the selection.",
+    ],
+    correct: 0,
+  },
+  125: {
+    options: [
+      "Because it can't meet its debt obligations or interest payments, creditors accelerate the debt and force the issue, an acquisition went badly, or the business simply lost the revenue that supported its capital structure.",
+      "Because its share price falls below the exchange's minimum listing threshold, which triggers an automatic filing.",
+      "Because its auditors issue a qualified opinion, which legally obliges the company to enter bankruptcy protection.",
+      "Because shareholders vote to wind the company up when they believe the equity has become worthless.",
+    ],
+    correct: 0,
+  },
+  126: {
+    options: [
+      "Refinance with fresh debt or equity, sell the company whole or in pieces, restructure its obligations to cut interest and repayments (including issuing PIK debt), or file for bankruptcy.",
+      "Only two: file for Chapter 7 liquidation, or persuade shareholders to inject new equity.",
+      "Only refinancing - once a company misses a payment, a sale or restructuring is legally barred until the default is cured.",
+      "Cut its dividend and reduce CapEx, which are the only levers available once lenders have lost confidence.",
+    ],
+    correct: 0,
+  },
+  127: {
+    options: [
+      "Refinancing is least disruptive and restores confidence, but attracting investors to a near-bankrupt company is hard. A sale may return something to shareholders but takes time. Restructuring keeps the business going but requires creditors to agree.",
+      "Refinancing is the easiest to execute since distressed companies attract lenders willing to price the risk, while a sale is nearly always impossible.",
+      "All three carry identical trade-offs, which is why the choice comes down to whichever the creditors prefer.",
+      "A sale is always best because it converts the business into cash immediately, removing all execution risk for shareholders.",
+    ],
+    correct: 0,
+  },
+  128: {
+    options: [
+      "They mirror the company's own options: lend more capital or take equity, offer conditional financing tied to cost cuts, agree to restructure the existing obligations, push for a sale, or force the company into bankruptcy.",
+      "Their only option is to force an immediate Chapter 7 liquidation and recover whatever the asset sale yields.",
+      "They must wait for the company to act - creditors have no ability to influence the outcome until a default is formally declared.",
+      "They can only sell their claims in the secondary market, since creditors are barred from negotiating directly with the debtor.",
+    ],
+    correct: 0,
+  },
+  129: {
+    options: [
+      "They're more complex, involve more parties, demand more specialised technical skills, and have to follow the bankruptcy code - the debtor's adviser may even need court approval for its own fees.",
+      "They're simpler than M&A because the price is set by the court rather than negotiated between the parties.",
+      "They differ only in the type of client; the process and the legal framework are identical to a standard M&A deal.",
+      "They involve fewer parties than an M&A deal, since shareholders have no standing once a company is distressed.",
+    ],
+    correct: 0,
+  },
+  130: {
+    options: [
+      "Chapter 7 is a liquidation - the company is beyond reorganising, so a trustee sells the assets and pays creditors in order of priority. Chapter 11 is a reorganisation, where the company keeps operating while it restructures its obligations.",
+      "Chapter 7 is a reorganisation and Chapter 11 a liquidation - the numbers refer to the order in which they were added to the code.",
+      "Chapter 7 applies to companies and Chapter 11 to individuals, which is the only substantive difference.",
+      "Both are liquidations; Chapter 11 simply allows a longer timetable for selling the assets.",
+    ],
+    correct: 0,
+  },
+  131: {
+    options: [
+      "It's new money lent to a company in bankruptcy that ranks ahead of all existing secured and unsecured claims. Lenders regard it as safe because of that priority and the tighter terms attached, which is what makes the company financeable at all.",
+      "It's financing provided by the existing shareholders to keep the company operating, ranking behind all other claims.",
+      "It's a government-backed loan facility available to any company that files for Chapter 11.",
+      "It's debt the company issued before filing, which is re-designated as senior once bankruptcy proceedings begin.",
+    ],
+    correct: 0,
+  },
+  132: {
+    options: [
+      "Raise COGS to reflect worse vendor terms as suppliers lose trust, add back the non-recurring legal and professional fees of the restructuring, normalise any above-market owner salaries, and adjust for asset sales and impairments.",
+      "Make no adjustments - the reported statements already reflect the company's distressed condition.",
+      "Remove all interest expense, since a distressed company will not be paying its debt service going forward.",
+      "Restate every asset at liquidation value, which is the only meaningful basis for a distressed business.",
+    ],
+    correct: 0,
+  },
+  133: {
+    options: [
+      "Mostly the same, except the excess-salary adjustment doesn't really apply - it's far harder for a public company to pay abnormal salaries in that way.",
+      "They differ completely; none of the private company adjustments carries over to a public company.",
+      "They are identical in every respect, since accounting standards apply equally to both.",
+      "Public companies need more adjustments, because their reported figures are audited and therefore more conservative.",
+    ],
+    correct: 0,
+  },
+  134: {
+    options: [
+      "Shareholders' equity - the book value - goes negative, which is common enough and also happens in LBOs and at persistently unprofitable companies. Equity market cap is a different thing and still can't go below zero.",
+      "Equity market cap goes negative, which is how the market prices a company whose debts exceed its assets.",
+      "Both shareholders' equity and equity market cap go negative, since the two move together.",
+      "Neither changes - the relationship between debt market value and assets has no bearing on the equity line.",
+    ],
+    correct: 0,
+  },
+  135: {
+    options: [
+      "New DIP lenders first, then secured creditors, then unsecured creditors, then subordinated debt, then mezzanine, then preferred shareholders, and common shareholders last.",
+      "Secured creditors first, then new DIP lenders, then common shareholders, with unsecured creditors and subordinated debt ranking last.",
+      "Common shareholders first as the owners of the business, followed by preferred shareholders and then the various classes of creditor.",
+      "All creditors rank equally and share the proceeds pro rata, with shareholders receiving whatever remains.",
+    ],
+    correct: 0,
+  },
+  136: {
+    options: [
+      "Look at the yields on comparable companies' bonds or their credit default swap spreads. You could also use the yield on the company's own existing debt, though that may understate the true cost.",
+      "Use the risk-free rate plus a standard distressed premium of 10%, which is the market convention.",
+      "Use the company's historical average interest rate, since that is what it has demonstrably been able to pay.",
+      "It can't be measured - a company that cannot issue debt has no cost of debt by definition.",
+    ],
+    correct: 0,
+  },
+  137: {
+    options: [
+      "You use the same methodologies but lean toward the lower end of the multiple range, apply the distressed accounting adjustments, and add liquidation valuation - which is often the most relevant method of all here.",
+      "You abandon the standard methodologies entirely and value the company purely on its liquidation proceeds.",
+      "You use the same methodologies unchanged, since valuation technique is independent of a company's financial health.",
+      "You use the upper end of the multiple range, to reflect the recovery potential a turnaround would deliver.",
+    ],
+    correct: 0,
+  },
+  138: {
+    options: [
+      "Even more of the value sits in the terminal value, since you typically model a few cash-flow-negative turnaround years first. You'd also sensitise around hitting or missing the projections and use a higher discount rate.",
+      "The terminal value matters less, because a distressed company's future beyond the projection period is too uncertain to include.",
+      "You use a lower discount rate, since a distressed company's assets are already written down to a conservative level.",
+      "A DCF can't be built at all for a distressed company, because negative cash flows make the arithmetic undefined.",
+    ],
+    correct: 0,
+  },
+  139: {
+    options: [
+      "It moves much faster because the company has to sell or go under, you may produce fewer upfront marketing materials in the interest of speed, and buyers negotiate harder knowing the seller has little leverage.",
+      "It moves more slowly, because every step requires court approval before the process can continue.",
+      "It follows exactly the same timetable and process as a healthy company sale - only the price differs.",
+      "You approach a single buyer rather than run a process, since confidentiality matters more when a company is distressed.",
+    ],
+    correct: 0,
+  },
+  140: {
+    options: [
+      "Yes - in a distressed sale you have almost no negotiating leverage, because you represent a company that may not survive. Competing bidders are effectively the only way to improve the price for your client.",
+      "No - in a distressed sale speed matters more than price, so a single committed buyer is preferable.",
+      "No - the price in a distressed sale is set by the creditors' recovery requirement, so competition can't move it.",
+      "Yes, but only because bankruptcy law requires a minimum number of bidders before a sale can be approved.",
+    ],
+    correct: 0,
+  },
+  141: {
+    options: [
+      "A stock purchase takes all shares plus every asset and liability, on and off balance sheet; an asset purchase takes only selected assets and liabilities. A distressed buyer strongly prefers an asset purchase, to leave the unwanted liabilities behind.",
+      "A stock purchase takes selected assets while an asset purchase takes the whole company - a distressed buyer prefers the stock purchase for the clean break.",
+      "A distressed buyer prefers a stock purchase, because acquiring the legal entity preserves the target's tax attributes and contracts.",
+      "The two are equivalent in a distressed sale, since bankruptcy law strips the liabilities either way.",
+    ],
+    correct: 0,
+  },
+  142: {
+    options: [
+      "Foreclosure, whether formal or informal; a general assignment as a faster alternative to bankruptcy; a Section 363 asset sale; or a Chapter 11 reorganisation or Chapter 7 liquidation.",
+      "Only two: the company either completes the sale or files for Chapter 7 and is liquidated.",
+      "The company can be nationalised, which is the standard outcome when a distressed sale fails.",
+      "The creditors automatically take ownership of the equity, which is the only alternative to a completed sale.",
+    ],
+    correct: 0,
+  },
+  143: {
+    options: [
+      "To attract more bids and increase competition, which drives the price up. This happens outside distressed sales too whenever a seller wants a broader field of buyers.",
+      "Because bankruptcy law requires public disclosure of any adviser engaged by a company in financial difficulty.",
+      "To reassure suppliers and customers that the company is solvent, which is the main purpose of the announcement.",
+      "Because the bank requires public attribution as a condition of taking on a distressed mandate.",
+    ],
+    correct: 0,
+  },
+  144: {
+    options: [
+      "Technically it depends, but in practice usually not. If a company is genuinely distressed its debts and obligations most likely exceed its asset value, so nothing is left once the creditors ahead of equity have been paid.",
+      "Yes, almost always - shareholders retain a statutory minimum claim on the proceeds of any distressed sale.",
+      "Yes, provided the company files under Chapter 11 rather than Chapter 7, which preserves the equity in full.",
+      "No, never - shareholders are legally barred from receiving anything once a company enters a distressed process.",
+    ],
+    correct: 0,
+  },
+  145: {
+    options: [
+      "Aggressive creditors often force it. If they won't agree to restructure the obligations, or a sale can't be closed out of court, they can accelerate the debt and push the company into Chapter 11.",
+      "The company's auditors initiate the filing once they conclude it can no longer continue as a going concern.",
+      "A stock exchange delisting automatically triggers a Chapter 11 filing for any listed company.",
+      "Shareholders force it, since Chapter 11 is the only process that gives equity holders a seat at the negotiating table.",
+    ],
+    correct: 0,
+  },
+
   // ── Accounting - Basic ────────────────────────────────────────────────
   160: {
     options: [
