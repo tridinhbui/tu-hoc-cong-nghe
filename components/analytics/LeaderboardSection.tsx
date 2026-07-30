@@ -13,11 +13,15 @@ import {
   getXpLeaderboardSince,
   getMyXpRankSince,
   getFriendsLeaderboard,
+  getCompetencyLeaderboard,
+  getMyCompetencyLeaderboardRank,
   type LeaderboardMetric,
   type LeaderboardRow,
 } from "@/lib/supabase-user";
 import { getCombinedGameLeaderboard } from "@/lib/games";
 import { isValidAvatar } from "@/lib/avatar-utils";
+import { COMPETENCY_LEADERBOARD_TABS } from "@/lib/competency-leaderboard";
+import type { CompetencyId } from "@/lib/career-competency";
 
 // Same avatar/rank-frame visual pattern as the compact dashboard widget
 // (components/Leaderboard.tsx) - kept as a separate component instead of
@@ -66,7 +70,7 @@ function RankAvatarFrame({ rank, children }: { rank: number; children: ReactNode
 
 const RANK_MEDALS: Record<number, string> = { 1: "🏆", 2: "🥈", 3: "🥉" };
 
-type TabId = LeaderboardMetric | "track_personal" | "track_professional" | "weekly" | "monthly" | "friends" | "game";
+type TabId = LeaderboardMetric | "track_personal" | "track_professional" | "weekly" | "monthly" | "friends" | "game" | CompetencyId;
 
 interface TabDef {
   id: TabId;
@@ -86,7 +90,10 @@ const TABS: TabDef[] = [
   { id: "monthly", label: "Tháng này", format: (v) => `${v} XP` },
   { id: "friends", label: "Bạn bè", format: (v) => `${v} XP` },
   { id: "game", label: "Game thủ", format: (v) => `${v} XP` },
+  ...COMPETENCY_LEADERBOARD_TABS.map((c) => ({ id: c.id as TabId, label: c.label, format: (v: number) => `${v} bài` })),
 ];
+
+const COMPETENCY_LESSON_IDS_BY_TAB = new Map(COMPETENCY_LEADERBOARD_TABS.map((c) => [c.id as TabId, c.lessonIds]));
 
 interface LeaderboardSectionProps {
   userId?: string;
@@ -131,9 +138,21 @@ async function loadTab(tabId: TabId, userId?: string): Promise<{ top: Leaderboar
     return { top: top.slice(0, 10), mine };
   }
 
+  const competencyLessonIds = COMPETENCY_LESSON_IDS_BY_TAB.get(tabId);
+  if (competencyLessonIds) {
+    const [top, mine] = await Promise.all([
+      getCompetencyLeaderboard(competencyLessonIds, 10),
+      userId ? getMyCompetencyLeaderboardRank(competencyLessonIds, userId) : Promise.resolve(null),
+    ]);
+    return { top, mine };
+  }
+
+  // Every other TabId variant returns above; what's left is a plain
+  // LeaderboardMetric ("xp" | "lessons" | "avg_score" | "streak" | "badges").
+  const metric = tabId as LeaderboardMetric;
   const [top, mine] = await Promise.all([
-    getLeaderboardByMetric(tabId, 10),
-    userId ? getMyLeaderboardRank(tabId, userId) : Promise.resolve(null),
+    getLeaderboardByMetric(metric, 10),
+    userId ? getMyLeaderboardRank(metric, userId) : Promise.resolve(null),
   ]);
   return { top, mine };
 }

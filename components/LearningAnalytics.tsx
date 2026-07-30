@@ -37,6 +37,7 @@ import { getUserAnalytics } from "@/lib/supabase-analytics";
 import { createClient } from "@/lib/supabase";
 import type { LearningAnalytics as LearningAnalyticsType } from "@/lib/supabase-analytics";
 import LeaderboardSection from "@/components/analytics/LeaderboardSection";
+import CompetencyStatsSection from "@/components/analytics/CompetencyStatsSection";
 
 const fadeUp = {
   hidden: { opacity: 0, y: 18 },
@@ -206,7 +207,7 @@ export default function LearningAnalytics({ hideLeaderboardTab = false }: { hide
   const [analytics, setAnalytics] = useState<LearningAnalyticsType | null>(null);
   const [loading, setLoading] = useState(true);
   const [userId, setUserId] = useState<string | undefined>(undefined);
-  const [activeSection, setActiveSection] = useState<"overview" | "knowledge" | "memory" | "leaderboard">(
+  const [activeSection, setActiveSection] = useState<"overview" | "knowledge" | "memory" | "competency" | "leaderboard">(
     !hideLeaderboardTab && initialTab === "leaderboard" ? "leaderboard" : "overview"
   );
 
@@ -337,6 +338,7 @@ export default function LearningAnalytics({ hideLeaderboardTab = false }: { hide
           { id: "overview", label: "Thống kê cá nhân" },
           { id: "knowledge", label: "Kiến thức & Kết quả" },
           { id: "memory", label: "Ghi chú & Hành động" },
+          { id: "competency", label: "Năng lực" },
           ...(!hideLeaderboardTab ? [{ id: "leaderboard", label: "Bảng xếp hạng" }] : []),
         ].map((tab) => {
           const isActive = activeSection === tab.id;
@@ -789,6 +791,8 @@ export default function LearningAnalytics({ hideLeaderboardTab = false }: { hide
           </div>
         </div>
       )}
+
+      {activeSection === "competency" && <CompetencyStatsSection userId={userId} />}
 
       {activeSection === "leaderboard" && <LeaderboardSection userId={userId} />}
     </div>

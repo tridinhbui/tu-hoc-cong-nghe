@@ -314,6 +314,41 @@ export async function getMyTrackLeaderboardRank(
   return row ? { rank: row.rank, value: row.value } : null;
 }
 
+// Ranks by count of completed lessons within a competency's lesson set (see
+// lib/competency-leaderboard.ts). Same shape as getTrackLeaderboard, just
+// keyed by an arbitrary lesson-id array instead of a track's day ranges.
+export async function getCompetencyLeaderboard(lessonIds: number[], limit: number = 10): Promise<LeaderboardRow[]> {
+  const supabase = createClient();
+  const { data, error } = await supabase.rpc("get_competency_leaderboard", { p_lesson_ids: lessonIds, p_limit: limit });
+
+  if (error && isMissingTableError(error)) return [];
+  if (error) throw handleSupabaseError(error);
+
+  return ((data ?? []) as { user_id: string; name: string; value: number; avatar_url: string | null }[]).map((row) => ({
+    user_id: row.user_id,
+    value: row.value ?? 0,
+    name: row.name || "Người học",
+    avatarUrl: row.avatar_url ?? null,
+  }));
+}
+
+export async function getMyCompetencyLeaderboardRank(
+  lessonIds: number[],
+  userId: string
+): Promise<{ rank: number; value: number } | null> {
+  const supabase = createClient();
+  const { data, error } = await supabase.rpc("get_my_competency_leaderboard_rank", {
+    p_lesson_ids: lessonIds,
+    p_user_id: userId,
+  });
+
+  if (error && isMissingTableError(error)) return null;
+  if (error) throw handleSupabaseError(error);
+
+  const row = (data as { rank: number; value: number }[] | null)?.[0];
+  return row ? { rank: row.rank, value: row.value } : null;
+}
+
 // XP earned since a given timestamp (lessons*10 + quiz + game xp) -
 // used for weekly/monthly leaderboards, same computation as
 // app/api/cron/send-weekly-digest/route.ts's getWeeklyStats, moved server-side.
