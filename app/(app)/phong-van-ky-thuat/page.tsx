@@ -59,6 +59,7 @@ export default function TechnicalInterviewPage() {
   const [mode, setMode] = useState<Mode>("technical");
   const [difficulty, setDifficulty] = useState<QuizDifficulty>("tat-ca");
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
+  const [selectedTrack, setSelectedTrack] = useState<string>("ib");
   const [stage, setStage] = useState<Stage>("setup");
   const [questions, setQuestions] = useState<ChallengeQuestion[]>([]);
   const [activeQ, setActiveQ] = useState(0);
@@ -220,18 +221,120 @@ export default function TechnicalInterviewPage() {
 
         {mode === "technical" && stage === "setup" && (
           <div className="space-y-6">
+            {/* Career Track Picker */}
+            <div className="rounded-3xl border border-amber-200 dark:border-amber-900/60 bg-gradient-to-r from-amber-50/70 via-stone-50 to-orange-50/50 dark:from-stone-900 dark:via-stone-900 dark:to-stone-950 p-4 sm:p-6 shadow-xs">
+              <div className="flex flex-wrap items-center justify-between gap-3 mb-4">
+                <div>
+                  <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-amber-400/20 text-amber-800 dark:text-amber-300 text-xs font-black uppercase tracking-wider">
+                    <span>✨ Chọn lộ trình phỏng vấn theo vị trí</span>
+                  </div>
+                  <h3 className="text-lg font-black text-stone-900 dark:text-stone-100 mt-1">
+                    Bộ câu hỏi phỏng vấn chuẩn hóa theo từng vị trí ngành Tài chính
+                  </h3>
+                </div>
+                <div className="inline-flex items-center gap-2 rounded-xl bg-amber-400/10 border border-amber-300/50 dark:border-amber-800 px-3 py-1.5 text-xs font-bold text-amber-800 dark:text-amber-300">
+                  <span>🏆 IB Track: Theo cuốn "400 Questions IB Guide" Phố Wall</span>
+                </div>
+              </div>
+
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-3">
+                {[
+                  {
+                    id: "ib",
+                    title: "Ngân hàng Đầu tư (IB)",
+                    highlight: "✨ Bộ 400 Questions IB Guide Phố Wall",
+                    icon: "🏦",
+                    desc: "DCF, LBO, M&A, Accretion/Dilution & 3 Báo cáo",
+                    count: totalQuestions,
+                  },
+                  {
+                    id: "equity-research",
+                    title: "Phân tích Cổ phiếu & Fund",
+                    highlight: "📈 Stock Pitching & Target Price",
+                    icon: "📊",
+                    desc: "Định giá P/E, P/B, EV/EBITDA & Thesis",
+                    count: 120,
+                  },
+                  {
+                    id: "corporate-finance",
+                    title: "Tài chính DN & FP&A",
+                    highlight: "🏢 Cash Flow & Budgeting",
+                    icon: "💼",
+                    desc: "WACC, Working Capital & Variance Analysis",
+                    count: 95,
+                  },
+                  {
+                    id: "banking-credit",
+                    title: "Ngân hàng & Tín dụng",
+                    highlight: "💳 Commercial Banking & 5Cs",
+                    icon: "🏛️",
+                    desc: "DSCR, LTV, Thẩm định nợ & Quản trị rủi ro",
+                    count: 85,
+                  },
+                  {
+                    id: "accounting-audit",
+                    title: "Kế toán & Kiểm toán",
+                    highlight: "🔍 VAS, IFRS & Audit Review",
+                    icon: "🧾",
+                    desc: "Bút toán điều chỉnh, VAS vs IFRS & BCTC",
+                    count: 110,
+                  },
+                ].map((track) => {
+                  const isTrackActive = (selectedTrack === track.id) || (!selectedTrack && track.id === "ib");
+                  return (
+                    <button
+                      key={track.id}
+                      type="button"
+                      onClick={() => {
+                        setSelectedTrack(track.id);
+                        setSelectedCategory(track.id === "ib" ? null : track.title);
+                      }}
+                      className={`p-3.5 rounded-2xl border-2 text-left transition-all cursor-pointer flex flex-col justify-between ${
+                        isTrackActive
+                          ? "border-amber-400 bg-white dark:bg-stone-900 shadow-md ring-2 ring-amber-400/30"
+                          : "border-stone-200 dark:border-stone-800 bg-white/80 dark:bg-stone-900/60 hover:border-stone-300 dark:hover:border-stone-700"
+                      }`}
+                    >
+                      <div>
+                        <div className="flex items-center justify-between gap-1 mb-2">
+                          <span className="text-xl">{track.icon}</span>
+                          <span className={`text-[10px] font-black px-2 py-0.5 rounded-full ${isTrackActive ? "bg-amber-400 text-stone-950" : "bg-stone-100 dark:bg-stone-800 text-stone-600 dark:text-stone-400"}`}>
+                            {track.count} câu
+                          </span>
+                        </div>
+                        <p className="text-xs font-black text-stone-900 dark:text-stone-100 leading-tight">
+                          {track.title}
+                        </p>
+                        <p className="text-[10px] font-extrabold text-amber-600 dark:text-amber-400 mt-1 line-clamp-1">
+                          {track.highlight}
+                        </p>
+                        <p className="text-[10px] font-medium text-stone-500 dark:text-stone-400 mt-1 leading-snug line-clamp-2">
+                          {track.desc}
+                        </p>
+                      </div>
+                    </button>
+                  );
+                })}
+              </div>
+            </div>
+
             <section className="rounded-3xl border border-stone-200 dark:border-stone-800 bg-white dark:bg-stone-900 overflow-hidden shadow-sm">
               <div className="grid grid-cols-1 lg:grid-cols-12">
                 <div className="lg:col-span-7 p-5 sm:p-6 lg:p-7">
-                  <div className="inline-flex items-center gap-2 rounded-full border border-amber-300 bg-amber-50 dark:border-amber-900 dark:bg-amber-950/40 px-3 py-1 text-[10px] font-black uppercase tracking-[0.18em] text-amber-700 dark:text-amber-300">
-                    <BriefcaseBusiness className="h-3.5 w-3.5" />
-                    Investment Banking Interview Drill
+                  <div className="flex flex-wrap items-center gap-2">
+                    <div className="inline-flex items-center gap-2 rounded-full border border-amber-300 bg-amber-50 dark:border-amber-900 dark:bg-amber-950/40 px-3 py-1 text-[10px] font-black uppercase tracking-[0.18em] text-amber-700 dark:text-amber-300">
+                      <BriefcaseBusiness className="h-3.5 w-3.5" />
+                      Investment Banking & Finance Drill
+                    </div>
+                    <div className="inline-flex items-center gap-1.5 rounded-full border border-amber-400/80 bg-amber-400/10 px-3 py-1 text-[10px] font-black text-amber-900 dark:text-amber-200">
+                      <span>✨ Chuẩn bộ "400 Questions IB Guide" Phố Wall</span>
+                    </div>
                   </div>
                   <h2 className="mt-4 text-2xl sm:text-3xl font-black tracking-tight text-stone-900 dark:text-stone-100">
-                    Luyện technical interview như một vòng analyst thật
+                    Luyện technical interview như một vòng analyst thực chiến
                   </h2>
                   <p className="mt-2 max-w-2xl text-sm font-semibold leading-relaxed text-stone-600 dark:text-stone-300">
-                    Bộ {totalQuestions} IB Questions trải khắp {categoryCounts.length} section: Accounting, Valuation, DCF, M&A, LBO và behavioral logic. Mỗi lượt là một mini interview, có chấm điểm và giải thích ngay.
+                    Bộ câu hỏi phỏng vấn biên soạn theo chuẩn cuốn <strong>"400 Questions Investment Banking Interview Guide"</strong> truyền thống Phố Wall, trải rộng khắp các chuyên ngành: Kế toán 3 báo cáo, Định giá DCF, M&A, LBO, Tín dụng & Tài chính doanh nghiệp.
                   </p>
 
                   <div className="mt-5 grid grid-cols-3 gap-2.5">
