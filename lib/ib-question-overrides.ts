@@ -2218,25 +2218,25 @@ export const IB_QUESTION_OVERRIDES: Record<number, IbQuestionOverride> = {
   // ── LBO Model - Basic ─────────────────────────────────────────────────
   359: {
     options: [
-      "Set the purchase price, debt/equity mix and interest rates; build the sources and uses and the new balance sheet; project operations and the debt paydown; then assume an exit multiple and compute the IRR to the private equity firm.",
-      "Project the target's free cash flows, discount them at WACC, and compare the resulting Enterprise Value against the purchase price.",
-      "Combine the buyer's and the target's income statements and check whether the acquirer's EPS rises or falls.",
+      "Set the price, leverage and rates; build sources and uses; project the debt paydown; then assume an exit multiple and solve for IRR.",
+      "Project the target's unlevered free cash flows, discount them at WACC, and compare the Enterprise Value against the purchase price paid.",
+      "Combine the buyer's and the target's income statements and check whether the acquirer's earnings per share rises or falls.",
       "Value the company on comparable LBO transactions, then apply the median leverage ratio to determine the equity cheque required.",
     ],
     correct: 0,
   },
   360: {
     options: [
-      "To boost the return on your own money. Borrowed money isn't yours - earning a given profit on a $2 billion equity cheque plus $3 billion of debt produces a far higher return than funding the whole $5 billion yourself.",
-      "Because debt is permanent capital that never has to be repaid, unlike equity which investors eventually redeem.",
-      "Because interest payments reduce the purchase price the seller receives, lowering the effective cost of the acquisition.",
+      "To boost the return on your own money - borrowed money isn't yours, so a smaller equity cheque earns more on the same profit.",
+      "Because debt is permanent capital that never has to be repaid, unlike equity which investors eventually redeem in full.",
+      "Because interest payments reduce the purchase price the seller receives, lowering the effective cost of the whole acquisition.",
       "Because lenders take on the operating risk of the business, leaving the equity holders exposed only to the interest cost.",
     ],
     correct: 0,
   },
   361: {
     options: [
-      "Purchase and exit multiples have the largest impact on returns, followed by the amount of leverage used, and then operational factors like revenue growth and EBITDA margins.",
+      "Purchase and exit multiples have the largest impact, then the amount of leverage, then operational factors like growth and margins.",
       "Revenue growth and EBITDA margins dominate, since operational improvement is what private equity firms actually control.",
       "The interest rate on the debt, since interest expense is the single largest cash outflow in the holding period.",
       "The length of the holding period, because IRR is calculated over time and nothing else affects it as directly.",
@@ -2245,26 +2245,26 @@ export const IB_QUESTION_OVERRIDES: Record<number, IbQuestionOverride> = {
   },
   362: {
     options: [
-      "The same way as anywhere else - from what comparable companies trade at and what multiples similar LBO transactions were done at - and you present a range through sensitivity tables rather than a single pair.",
+      "From what comparables trade at and what similar LBOs were done at, presented as a range through sensitivity tables.",
       "You set the exit multiple equal to the purchase multiple, since assuming multiple expansion is considered too aggressive to defend.",
-      "You derive both from the target IRR by back-solving, which guarantees the deal clears the firm's return hurdle.",
+      "You derive both from the target IRR by back-solving, which guarantees the deal clears the firm's own return hurdle.",
       "You use the highest multiple in the comparable set for the purchase and the lowest for the exit, to stress-test the deal.",
     ],
     correct: 0,
   },
   363: {
     options: [
-      "Stable, predictable cash flows in a low-risk business, limited ongoing CapEx needs, room to cut costs and lift margins, and ideally a strong management team already in place.",
+      "Stable, predictable cash flows, low CapEx needs, room to cut costs, and a strong management team already in place.",
       "High growth and heavy reinvestment needs, since rapid expansion is what generates the return over the holding period.",
-      "A large existing debt balance, which demonstrates the business can already support leverage.",
+      "A large existing debt balance, which demonstrates the business can already support a meaningful amount of leverage.",
       "Volatile cash flows, because the resulting low purchase price leaves the most room for multiple expansion at exit.",
     ],
     correct: 0,
   },
   364: {
     options: [
-      "Set a target IRR - say 25% - and back-solve for the purchase price that delivers it. It's called a floor valuation because a private equity firm generally pays less than a strategic buyer, who can also capture synergies.",
-      "Take the exit value and discount it at WACC; the result is the floor because it ignores any operational improvement.",
+      "Set a target IRR - say 25% - and back-solve for the purchase price that delivers it; a PE firm pays less than a strategic.",
+      "Take the exit value and discount it at WACC; the result is the floor because it ignores any operational improvement over the hold.",
       "It's called a floor valuation because leverage guarantees a minimum return regardless of how the business performs.",
       "You take the median multiple of comparable LBOs, which sets a floor because past deals bound what buyers will pay.",
     ],
@@ -2272,8 +2272,8 @@ export const IB_QUESTION_OVERRIDES: Record<number, IbQuestionOverride> = {
   },
   365: {
     options: [
-      "Taking out a mortgage to buy a house: the down payment is the investor equity, the mortgage is the debt, the interest payments are the debt interest, and selling the house later is the exit.",
-      "Buying shares on margin, where the broker's loan is the debt and the shares are the acquired company.",
+      "Taking out a mortgage: the down payment is the investor equity, the mortgage is the debt, and selling the house is the exit.",
+      "Buying shares on margin, where the broker's loan plays the role of the debt and the purchased shares are the acquired company itself.",
       "Leasing a car, where the monthly payments are the interest and the residual value at the end is the exit multiple.",
       "Starting a business with a partner, where your partner's contribution plays the role of the debt in the structure.",
     ],
@@ -2281,8 +2281,8 @@ export const IB_QUESTION_OVERRIDES: Record<number, IbQuestionOverride> = {
   },
   366: {
     options: [
-      "On the liabilities and equity side, the new debt is added and the existing shareholders' equity is wiped out and replaced by the private equity firm's contribution. On the assets side, cash is adjusted and Goodwill is created to balance.",
-      "Both sides are simply combined with the buyer's, the same way a merger model consolidates two balance sheets.",
+      "New debt is added and the old equity wiped out and replaced by the sponsor's cheque; Goodwill plugs the assets side.",
+      "Both sides are simply combined with the buyer's, the way a merger model consolidates the two balance sheets line by line.",
       "Only the assets side changes - the debt sits off balance sheet at the acquisition vehicle rather than at the company.",
       "Shareholders' equity is left in place and the new debt is added alongside it, which is what increases total capitalisation.",
     ],
@@ -2290,17 +2290,17 @@ export const IB_QUESTION_OVERRIDES: Record<number, IbQuestionOverride> = {
   },
   367: {
     options: [
-      "They represent the premium paid over the fair market value of the company, and they act as the plug that makes the change on the assets side balance the change on the liabilities and equity side.",
+      "They are the premium paid over fair market value, and they act as the plug that makes the balance sheet balance.",
       "They represent the interest that will be paid over the life of the debt, capitalised at the acquisition date.",
-      "They represent the private equity firm's equity contribution, recorded as an intangible until the exit.",
+      "They represent the private equity firm's equity contribution, recorded as an intangible until the eventual exit.",
       "They arise only if the target already carried goodwill, which then transfers across at its existing carrying value.",
     ],
     correct: 0,
   },
   368: {
     options: [
-      "Because the situations differ: a PE firm plans to exit in a few years, so it cares less about the relative expense of cash versus debt and more about using leverage to lift its return on a smaller equity cheque.",
-      "Because private equity firms are prohibited from using their own funds for more than half of any acquisition.",
+      "A PE firm exits in a few years, so it cares less about the cost of debt than about returns on a smaller cheque.",
+      "Because private equity firms are restricted from funding more than half of any acquisition with their own capital.",
       "Because debt is genuinely cheaper than cash for a financial buyer, whereas it is more expensive for a strategic one.",
       "Because using debt lets the firm avoid consolidating the portfolio company into its own financial statements.",
     ],
@@ -2308,44 +2308,44 @@ export const IB_QUESTION_OVERRIDES: Record<number, IbQuestionOverride> = {
   },
   369: {
     options: [
-      "There are shortcuts - a full balance sheet is sometimes skipped when bankers are pressed for time. You do need an income statement, enough of a cash flow statement to drive the debt paydown, and the debt schedule itself.",
-      "No shortcuts exist - all three statements plus the debt schedule are required for the model to balance.",
-      "You only ever need the income statement, since IRR depends on EBITDA at entry and at exit and nothing else.",
+      "There are shortcuts - the balance sheet is often skipped; you need an income statement, a cash flow and the debt schedule.",
+      "No shortcuts exist - all three statements plus a full debt schedule are required for the model to balance properly.",
+      "You only ever need the income statement, since IRR depends on EBITDA at entry and at exit and on nothing else in the model.",
       "You only need the cash flow statement, because debt repayment capacity is the sole driver of returns in an LBO.",
     ],
     correct: 0,
   },
   370: {
     options: [
-      "Look at comparable LBOs of similarly sized companies in the same industry and see what terms and how many tranches those deals used.",
-      "Take the target's EBITDA and multiply by six, which is the standard leverage ceiling across all industries.",
+      "Look at comparable LBOs of similar-sized companies in the same industry and see what terms and tranches they used.",
+      "Take the target's EBITDA and multiply by six, the standard leverage ceiling applied across essentially every industry.",
       "Raise as much as the target IRR requires, since more leverage always improves returns and lenders price the risk.",
-      "Match the target's existing debt balance, since that is demonstrably the amount the business can service.",
+      "Match the target's existing debt balance, since that is demonstrably the amount the business can already service.",
     ],
     correct: 0,
   },
   371: {
     options: [
-      "It depends entirely on the company, the industry and what comparable LBOs achieved - you'd look at debt comps showing the types, tranches and terms similarly sized companies in that sector obtained.",
-      "Leverage of 6x EBITDA and interest coverage of 2x are the universal thresholds lenders apply.",
-      "Any ratio is acceptable as long as the company generates positive free cash flow after interest.",
-      "Leverage should never exceed the industry's median EV/EBITDA multiple, which caps debt at the enterprise value.",
+      "It depends on the company, the industry and what comparable LBOs achieved - you'd look at debt comps for the sector.",
+      "Leverage of 6x EBITDA and interest coverage of 2x are the universal thresholds that lenders apply everywhere.",
+      "Any ratio is acceptable as long as the company still generates positive free cash flow after paying interest.",
+      "Leverage should never exceed the industry's median EV/EBITDA multiple, which effectively caps total debt at the enterprise value.",
     ],
     correct: 0,
   },
   372: {
     options: [
-      "High-yield debt carries higher interest, is usually fixed-rate with no amortisation and carries prepayment penalties, and has incurrence covenants; bank debt is cheaper, amortises, is often floating-rate and carries stricter maintenance covenants.",
-      "Bank debt carries the higher interest rate and stricter covenants, while high-yield debt is cheaper and more flexible.",
-      "They are economically identical and differ only in whether the lender is a bank or an institutional investor.",
+      "High-yield is pricier, fixed-rate, bullet-repaid with incurrence covenants; bank debt is cheaper, floating, amortising with maintenance covenants.",
+      "Bank debt carries the higher interest rate and the stricter covenants, while high-yield debt is cheaper and more flexible.",
+      "They are economically identical and differ only in whether the lender is a bank or an institutional bond investor.",
       "High-yield debt is secured against the company's assets while bank debt is unsecured, which is what drives the rate difference.",
     ],
     correct: 0,
   },
   373: {
     options: [
-      "When the firm wants the cheaper option because it's worried about covering interest, or when it's planning significant expansion or CapEx and doesn't want the restrictions high-yield terms would impose.",
-      "When the firm intends to refinance quickly, since bank debt can be repaid without penalty at any time.",
+      "When it wants the cheaper option because interest cover is tight, or plans CapEx that high-yield covenants would block.",
+      "When the firm intends to refinance quickly, since bank debt can usually be repaid without a prepayment penalty.",
       "When the company has volatile cash flows, because bank debt's maintenance covenants are more forgiving of a bad quarter.",
       "When interest rates are expected to rise, since bank debt is fixed-rate and locks in the current cost.",
     ],
@@ -2353,25 +2353,25 @@ export const IB_QUESTION_OVERRIDES: Record<number, IbQuestionOverride> = {
   },
   374: {
     options: [
-      "When the firm plans to refinance later, or doesn't think returns are especially sensitive to the interest cost, and has no major expansion plans that the tighter bank covenants would get in the way of.",
-      "When the firm wants the lowest possible interest cost over the holding period.",
-      "When the company's cash flows are highly predictable, since high-yield lenders require certainty of repayment.",
-      "When the deal is small, since high-yield issuance is only economic below a certain transaction size.",
+      "When it plans to refinance later, isn't sensitive to interest cost, and has no expansion bank covenants would block.",
+      "When the firm wants the lowest possible interest cost, since high-yield always prices below bank debt.",
+      "When the company's cash flows are highly predictable, since high-yield lenders demand a high degree of certainty of repayment.",
+      "When the deal is small, since a high-yield issue is only economic below a certain transaction size.",
     ],
     correct: 0,
   },
   375: {
     options: [
-      "Because mature, cash-flow-stable companies exist in almost every industry including technology - and some firms specialise, for instance in consolidating a fragmented sector or turning around distressed businesses.",
-      "Because technology companies always trade at low multiples, which guarantees multiple expansion at exit.",
+      "Mature, cash-flow-stable companies exist in every industry, and some firms specialise in consolidation or turnarounds.",
+      "Because technology companies trade at low multiples, which all but guarantees multiple expansion at the exit.",
       "Because riskier industries carry higher discount rates, and a higher discount rate mechanically raises IRR.",
-      "They wouldn't - private equity firms avoid technology entirely because the cash flows can't support leverage.",
+      "They wouldn't - private equity firms avoid technology because the cash flows cannot support leverage.",
     ],
     correct: 0,
   },
   376: {
     options: [
-      "Pay a lower purchase price, achieve a higher exit multiple, use more leverage, grow the business faster organically or by acquisition, or lift margins by cutting costs.",
+      "Pay less at entry, exit at a higher multiple, use more leverage, grow the business faster, or lift margins by cutting costs.",
       "Extend the holding period, since IRR compounds over time and a longer hold always produces a higher return.",
       "Pay a higher purchase price to secure a higher-quality asset, which will command a premium at exit.",
       "Reduce leverage, which lowers interest expense and leaves more cash available to distribute to the fund.",
@@ -2380,7 +2380,7 @@ export const IB_QUESTION_OVERRIDES: Record<number, IbQuestionOverride> = {
   },
   377: {
     options: [
-      "Interest on the debt is tax-deductible, so the company pays less tax and keeps more cash than it otherwise would at that level of pre-tax profit - though its cash flow is still lower than with no debt at all.",
+      "Interest on the debt is tax-deductible, so the company pays less tax and keeps more cash at the same pre-tax profit.",
       "The debt itself is tax-deductible, so the full principal reduces the company's taxable income over the holding period.",
       "It means the private equity firm pays no tax on its eventual capital gain, because the debt shelters the exit proceeds.",
       "It means the company's cash flow is higher with debt than without it, which is why leverage improves the business economically.",
@@ -2389,7 +2389,7 @@ export const IB_QUESTION_OVERRIDES: Record<number, IbQuestionOverride> = {
   },
   378: {
     options: [
-      "The portfolio company takes on new debt purely to fund a special dividend back to the private equity firm that owns it - the firm recovers part of its investment without selling the business.",
+      "The company takes on new debt purely to fund a special dividend back to the sponsor that owns it.",
       "The private equity firm injects fresh equity so the company can pay down its existing debt more quickly.",
       "The company issues new shares to the public and uses the proceeds to repay the acquisition debt.",
       "The company refinances its existing debt at a lower rate and pays the interest saving out as a dividend.",
@@ -2398,16 +2398,16 @@ export const IB_QUESTION_OVERRIDES: Record<number, IbQuestionOverride> = {
   },
   379: {
     options: [
-      "To boost returns. More leverage raises the return, and the recap lets the firm recover part of its equity investment early - a smaller effective equity outlay produces a higher IRR on the same exit.",
-      "To reduce the company's tax bill, since dividends paid to shareholders are deductible against corporate income.",
-      "To improve the company's credit rating ahead of an exit, by demonstrating it can raise new debt.",
-      "To return capital to the company's management team, who typically hold the majority of the equity.",
+      "To boost returns - the recap recovers part of the firm's equity early, and a smaller equity outlay lifts the IRR.",
+      "To reduce the company's tax bill, since dividends paid to shareholders are deductible against corporate taxable income.",
+      "To improve the company's credit rating ahead of an exit, by demonstrating that it can still raise new debt.",
+      "To return capital to the company's management team, who typically hold most of the equity themselves.",
     ],
     correct: 0,
   },
   380: {
     options: [
-      "No income statement change. On the balance sheet, debt rises and shareholders' equity falls by the same amount so it stays in balance. On the cash flow statement, the debt raised and the dividend paid both sit in financing and offset.",
+      "No income statement change; debt up and equity down on the balance sheet; the debt raised and dividend offset in financing.",
       "Net income falls by the dividend amount, and on the balance sheet both cash and shareholders' equity decline.",
       "No income statement change, but cash rises by the amount of new debt since the dividend is paid in the following period.",
       "Debt rises and cash rises on the balance sheet, with the dividend recorded as an expense on the income statement.",
@@ -2418,34 +2418,34 @@ export const IB_QUESTION_OVERRIDES: Record<number, IbQuestionOverride> = {
   // ── LBO Model - Advanced ──────────────────────────────────────────────
   381: {
     options: [
-      "Running from cheapest and most senior to most expensive and most junior: Revolver, Term Loan A, Term Loan B, Senior Notes, Subordinated Notes and Mezzanine. As you move down, interest rises, security falls, amortisation disappears and covenants loosen from maintenance to incurrence.",
-      "Running from cheapest to most expensive: Mezzanine, Subordinated Notes, Senior Notes, Term Loans and finally the Revolver, which is the most expensive because it can be drawn at will.",
-      "There are only two types - bank debt and high-yield debt - and any further distinction is a matter of the lender's name rather than the instrument.",
-      "All tranches carry the same interest rate and seniority; they differ only in maturity, which is what determines the repayment order.",
+      "Revolver, Term Loan A, Term Loan B, Senior Notes, Subordinated Notes, Mezzanine - going down, interest rises and security falls.",
+      "Running from cheapest to most expensive: Mezzanine, Subordinated Notes, Senior Notes, Term Loans, then the Revolver at the top.",
+      "There are only two types, bank debt and high-yield, and any further distinction is the lender's name rather than the instrument.",
+      "All tranches carry the same rate and seniority; they differ only in maturity, which is what sets the repayment order.",
     ],
     correct: 0,
   },
   382: {
     options: [
-      "Much like a merger model: you compute Goodwill, Other Intangibles and the write-ups the same way, then adjust the balance sheet for the cash used, capitalised financing fees, written-up assets and new debt.",
-      "You don't adjust the balance sheet at all in an LBO - the write-ups apply only in an M&A deal where two companies combine.",
-      "You write assets down rather than up, because the private equity firm is buying at a discount to fair value.",
+      "Much like a merger model: compute Goodwill and the write-ups the same way, then adjust for cash, fees and new debt.",
+      "You don't adjust the balance sheet in an LBO at all - write-ups apply only in a deal where two companies actually combine.",
+      "You write assets down rather than up, because the private equity firm is buying at a discount to their fair value.",
       "You revalue only the intangible assets; tangible assets stay at their existing book value throughout the holding period.",
     ],
     correct: 0,
   },
   383: {
     options: [
-      "Lay out the interest and principal payments the lenders receive each year, then run an IRR starting from the original debt as a negative Year 0 amount, with the payments as positive inflows over the holding period.",
+      "Lay out the interest and principal the lenders receive, then run IRR from the original debt as a negative Year 0.",
       "Divide the total interest received over the holding period by the original principal - that annualised figure is the debt IRR.",
-      "Take the coupon rate on the debt, which by definition is the return the debt investors earn.",
+      "Take the coupon rate on the debt, which by definition is the return that the debt investors end up earning.",
       "You can't calculate it - IRR applies only to equity, since debt returns are contractual rather than residual.",
     ],
     correct: 0,
   },
   384: {
     options: [
-      "To keep management motivated and in place until exit, much like an earnout in an M&A deal. In the model it dilutes the private equity firm's stake at exit, reducing the proceeds and therefore the IRR.",
+      "To keep management motivated until exit; in the model it dilutes the sponsor at exit and reduces its IRR.",
       "To satisfy a regulatory requirement that management hold a minimum stake in any leveraged buyout.",
       "To reduce the equity cheque the firm has to write at closing, since management funds part of the purchase price.",
       "It has no effect on the model - the option pool is granted from the firm's own carried interest rather than company equity.",
@@ -2454,7 +2454,7 @@ export const IB_QUESTION_OVERRIDES: Record<number, IbQuestionOverride> = {
   },
   385: {
     options: [
-      "PIK debt requires no cash interest - the interest accrues to the principal, which grows over time. It preserves cash for the business, but the balance compounds, and a PIK toggle lets the company choose cash or accrual each period.",
+      "PIK requires no cash interest - it accrues to the principal, which preserves cash but compounds the balance.",
       "PIK debt requires interest to be paid in additional shares rather than cash, diluting the equity holders each period.",
       "PIK debt carries a lower interest rate than bank debt because no cash payment is required, which is why firms prefer it.",
       "PIK debt is repaid entirely at maturity with no interest at all, functioning as a zero-coupon instrument.",
@@ -2463,17 +2463,17 @@ export const IB_QUESTION_OVERRIDES: Record<number, IbQuestionOverride> = {
   },
   386: {
     options: [
-      "Incurrence covenants bar specific actions - taking on more than a set amount of debt, making acquisitions above a threshold, exceeding a CapEx limit. Maintenance covenants require ratios to be met each period, such as a maximum Debt/EBITDA or minimum interest coverage.",
-      "Incurrence covenants require ratios to be met every quarter, while maintenance covenants restrict specific actions such as asset sales.",
-      "Both are tested quarterly and differ only in whether the lender is a bank or a bondholder.",
+      "Incurrence covenants bar actions - new debt above a cap, acquisitions, CapEx limits. Maintenance covenants require ratios each period.",
+      "Incurrence covenants require ratios to be met quarterly, while maintenance covenants restrict actions such as asset sales.",
+      "Both are tested quarterly and differ only in whether the lender is a bank or a bondholder in the market.",
       "Incurrence covenants apply before the deal closes and maintenance covenants only afterwards, which is the whole distinction.",
     ],
     correct: 0,
   },
   387: {
     options: [
-      "Usually not - a 338(h)(10) election requires the buyer to be a C corporation, and private equity firms are typically LLCs or limited partnerships that acquire through an LLC shell.",
-      "Yes, always - the election is available in any acquisition regardless of how the buyer is organised.",
+      "Usually not - the election requires a C corporation buyer, and PE firms are typically LLCs or limited partnerships.",
+      "Yes, always - the election is available in any acquisition regardless of how the buyer itself happens to be organised.",
       "Usually not, because the election requires the seller to be a public company and most LBO targets are private.",
       "Yes, but only where the target is itself an LLC, in which case the election passes through automatically.",
     ],
@@ -2481,17 +2481,17 @@ export const IB_QUESTION_OVERRIDES: Record<number, IbQuestionOverride> = {
   },
   388: {
     options: [
-      "Only Revolvers and Term Loans have them - high-yield debt has no prepayment option, so it's always zero. Work out the cash available from the beginning balance less the minimum cash balance and mandatory repayments, then apply it to the most senior tranche first.",
+      "Only Revolvers and Term Loans have them; work out the cash left after mandatory repayments and apply it to the most senior tranche first.",
       "Apply available cash to the most expensive tranche first, since repaying high-yield debt saves the most interest.",
-      "Optional repayments apply to every tranche equally, split in proportion to each one's share of total debt.",
+      "Optional repayments apply to every tranche equally, split in proportion to each one's share of the total debt.",
       "You repay the full cash balance each year, since holding cash in an LBO earns less than the interest it would save.",
     ],
     correct: 0,
   },
   389: {
     options: [
-      "It covers the gap when mandatory repayments exceed the cash available: Revolver Borrowing = MAX(0, total mandatory repayment - cash flow available). It starts undrawn and is repaid first once cash flow recovers.",
-      "It funds the equity portion of the purchase price at closing and is repaid from the exit proceeds.",
+      "It covers the gap when mandatory repayments exceed available cash flow; it starts undrawn and is repaid first.",
+      "It funds the equity portion of the purchase price at closing and is then repaid out of the eventual exit proceeds.",
       "It is fully drawn at closing to maximise leverage, then amortised on a fixed schedule like a term loan.",
       "It is the tranche repaid last, after all term loans and notes, because it is the cheapest form of debt.",
     ],
@@ -2499,18 +2499,18 @@ export const IB_QUESTION_OVERRIDES: Record<number, IbQuestionOverride> = {
   },
   390: {
     options: [
-      "Cost savings from headcount reductions hitting COGS or operating expenses, new depreciation from PP&E write-ups, new amortisation from intangible write-ups and capitalised financing fees, and the new interest expense from the LBO debt.",
+      "Cost savings from headcount cuts, new depreciation and amortisation from the write-ups, and interest on the LBO debt.",
       "Only the new interest expense - operational changes are modelled separately and don't enter the income statement.",
-      "You replace the target's revenue with the private equity firm's projections and leave every expense line unchanged.",
+      "You replace the target's revenue with the private equity firm's projections and leave every single expense line unchanged.",
       "You remove depreciation and amortisation entirely, since an LBO is analysed on an EBITDA basis throughout.",
     ],
     correct: 0,
   },
   391: {
     options: [
-      "Yes, and more often than you'd expect. High-yield lenders can be earning 10-15%, which is close to guaranteed if the debt is repaid. If they beat the sponsor's return, it tells you the deal underperformed - the company didn't grow or exit well enough to justify the equity risk.",
-      "No - equity is junior to debt, so equity holders always earn more in exchange for bearing more risk.",
-      "Yes, but only if the company defaults and the lenders take ownership through a restructuring.",
+      "Yes - high-yield lenders can earn 10-15% almost contractually; if they beat the sponsor, the deal underperformed.",
+      "No - equity is junior to debt, so equity holders always earn more in exchange for bearing the greater risk.",
+      "Yes, but only if the company defaults and the lenders take ownership through a formal restructuring.",
       "Yes, and it indicates the deal was structured well, since cheap debt returns mean the sponsor kept more of the upside.",
     ],
     correct: 0,
