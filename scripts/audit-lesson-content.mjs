@@ -110,10 +110,12 @@ console.log(`Total failing at least one check: ${total}`);
 // answering), each distractor is a mistake a learner actually makes - not an
 // absurdity like "luôn đúng 100%" that can be eliminated on sight - and one
 // distractor is longer than the correct option in ~3 of every 4 questions.
-const MAX_TELL_SHARE = 0.76;
+const MAX_TELL_SHARE = 0.746;
 
 /** A lesson fails when this share of its questions have the correct answer as
- *  the longest option. At 4 options, chance level is 25%. */
+ *  the longest option. At 4 options, chance level is 25%. A tie for longest
+ *  counts - three lessons passed the eyeball test and still failed here because
+ *  their correct option matched the longest distractor to the character. */
 const PER_LESSON_TELL_LIMIT = 0.75;
 const MIN_QUESTIONS_FOR_TELL_CHECK = 2;
 
