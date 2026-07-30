@@ -1103,4 +1103,150 @@ export const IB_QUESTION_OVERRIDES: Record<number, IbQuestionOverride> = {
     ],
     correct: 0,
   },
+  290: {
+    options: [
+      "Neither reliably - both depend heavily on your assumptions. The Multiples Method tends to be more variable, though, because exit multiples span a wider range than plausible long-term growth rates do.",
+      "Gordon Growth always gives the higher value, because a perpetual growth assumption compounds indefinitely while a multiple is capped.",
+      "The Multiples Method always gives the higher value, because market multiples embed growth expectations that Gordon Growth leaves out.",
+      "They always agree, since a given exit multiple implies a specific long-term growth rate and vice versa.",
+    ],
+    correct: 0,
+  },
+  291: {
+    options: [
+      "Today's median multiple may look nothing like the market's multiple five to ten years out, so it may be wrong by the time it's applied. That's why you show a range and run a sensitivity - it's especially unreliable for cyclical industries.",
+      "Trading multiples exclude the control premium, so a terminal multiple built from them systematically undervalues the business.",
+      "Comparable companies are usually larger than the company being valued, so their multiples are always too high to apply.",
+      "There is no flaw - the terminal multiple is applied at the end of the projection period, by which point today's multiples will have converged.",
+    ],
+    correct: 0,
+  },
+  292: {
+    options: [
+      "The standard rule of thumb is that if well over 50% of Enterprise Value comes from the Terminal Value, the DCF leans too heavily on assumptions. In practice almost every DCF trips this test - a Terminal Value under 50% is rare.",
+      "If the Terminal Value exceeds 20% of Enterprise Value, which is the accepted ceiling for a defensible DCF.",
+      "If the implied exit multiple differs from the current trading multiple by more than one turn of EBITDA.",
+      "You can't tell from the output - dependence on assumptions can only be assessed by re-running the model with different inputs.",
+    ],
+    correct: 0,
+  },
+  293: {
+    options: [
+      "Higher for the $500 million company. All else equal, smaller companies are expected to outperform larger ones and are treated as riskier - and adding a size premium would push its Cost of Equity higher still.",
+      "Higher for the $5 billion company, because large caps have more analyst coverage and therefore more price volatility.",
+      "Identical for both, since Cost of Equity depends on Beta and the risk-free rate, neither of which is a function of size.",
+      "Higher for the $5 billion company, because a larger equity base requires a larger absolute return to satisfy investors.",
+    ],
+    correct: 0,
+  },
+  294: {
+    options: [
+      "It depends on whether the capital structures match. If the percentages and rates are the same, WACC is higher for the $500 million company for the same size-risk reason; if the structures differ, the answer could go either way.",
+      "Always higher for the $500 million company, since WACC moves with Cost of Equity and small caps always carry the higher Cost of Equity.",
+      "Always higher for the $5 billion company, because large companies carry more debt in absolute terms and debt raises WACC.",
+      "Identical for both, because WACC is a weighted average and the weights normalise away any difference in company size.",
+    ],
+    correct: 0,
+  },
+  295: {
+    options: [
+      "More debt makes the company riskier, which raises Levered Beta - so all else equal, adding debt raises the Cost of Equity and reducing debt lowers it.",
+      "More debt lowers the Cost of Equity, because interest is tax-deductible and the tax shield accrues to shareholders.",
+      "There's no relationship - Cost of Equity is set by the risk-free rate and the equity risk premium, neither of which depends on leverage.",
+      "More debt raises the Cost of Equity only up to the point where the company becomes distressed, after which it falls again.",
+    ],
+    correct: 0,
+  },
+  296: {
+    question:
+      "Cost of Equity tells us what kind of return an equity investor can expect for investing in a given company - but what about dividends? Shouldn't we factor dividend yield into the formula?",
+    options: [
+      "No - dividend yield is already inside Beta. Beta describes returns relative to the market as a whole, and those market returns include dividends, so adding a yield term would double-count them.",
+      "Yes - you add the dividend yield to the CAPM result, since dividends are a component of shareholder return that Beta does not capture.",
+      "Yes, but only for companies that pay a dividend; for non-payers the standard CAPM formula applies unchanged.",
+      "No - dividends are a financing decision and have no bearing on the return an equity investor requires.",
+    ],
+    correct: 0,
+  },
+  297: {
+    options: [
+      "Cost of Equity = (Dividends per Share ÷ Share Price) + the growth rate of dividends. It's less common than CAPM but useful for dividend-heavy companies or when you lack reliable Beta data.",
+      "Cost of Equity = Net Income ÷ Shareholders' Equity, which is simply return on equity restated as a required return.",
+      "Cost of Equity = the company's WACC minus its after-tax Cost of Debt, weighted by the equity share of the capital structure.",
+      "There is no alternative - CAPM is the only method for deriving Cost of Equity.",
+    ],
+    correct: 0,
+  },
+  298: {
+    options: [
+      "The one without debt, up to a point. Debt is cheaper than equity because interest is tax-deductible and debt sits senior to equity in a liquidation, so adding some debt lowers WACC - though past a certain level the added risk reverses that.",
+      "The one with debt, because adding a second component to the capital structure can only increase the weighted average.",
+      "The one without debt, permanently - WACC falls continuously as leverage rises, with no point at which it turns back up.",
+      "They'd be identical, since WACC weights each component by its share of capital and the weights always sum to one.",
+    ],
+    correct: 0,
+  },
+  299: {
+    options: [
+      "Usually the 10% change in revenue, because it flows through every projected year and into the Terminal Value as well - though the honest answer starts with \"it depends.\"",
+      "The 1% change in the discount rate, since discounting compounds across every year of the projection.",
+      "They have identical impact, because a DCF is linear in both revenue and the discount rate.",
+      "Neither - both are second-order effects next to the choice of exit multiple, which drives the valuation.",
+    ],
+    correct: 0,
+  },
+  300: {
+    options: [
+      "Now the discount rate usually matters more, since a 1% move in it compounds across every year while a 1% revenue change is a much smaller absolute shift - though it could still go either way.",
+      "Revenue still matters more, because revenue changes affect the Terminal Value and discount rate changes do not.",
+      "They are exactly equivalent at 1%, which is why sensitivity tables always pair the two on the same scale.",
+      "Neither has a material effect at 1% - a DCF is only sensitive to changes above roughly 5%.",
+    ],
+    correct: 0,
+  },
+  301: {
+    options: [
+      "It's awkward, because a private company has no market cap and no Beta. You'd estimate WACC from comparable public companies, or from work already done by auditors or valuation specialists.",
+      "You use the company's actual interest rate on its debt as WACC, since that is its only observable cost of capital.",
+      "You can't - WACC is undefined for a private company, so private companies must be valued without a DCF.",
+      "You use the risk-free rate plus a flat 5% private company premium, which is the standard market convention.",
+    ],
+    correct: 0,
+  },
+  302: {
+    options: [
+      "Build your own projections, revise management's downward to something more conservative, or present a sensitivity table across growth rates and margins showing both management's case and a more conservative one.",
+      "Use management's projections as given - they have the best information about their own business, and substituting your own introduces bias.",
+      "Apply a flat 20% haircut to every line of management's model, which is the standard adjustment for optimism bias.",
+      "Abandon the DCF and rely on comparable companies instead, since a DCF is only valid with projections you fully believe.",
+    ],
+    correct: 0,
+  },
+  303: {
+    options: [
+      "Banks use debt as raw material for their products rather than reinvesting it in operations, interest is central to the business model, and working capital dominates the balance sheet - so unlevered free cash flow doesn't mean much. You'd use a dividend discount model instead.",
+      "Because banks are too heavily regulated for their future cash flows to be projected with any confidence.",
+      "Because banks report under a different accounting framework, so their financial statements can't be used to build a DCF.",
+      "You would - a DCF works perfectly well for a bank, it just needs a higher discount rate to reflect the sector's risk.",
+    ],
+    correct: 0,
+  },
+  304: {
+    options: [
+      "Revenue growth vs. terminal multiple, EBITDA margin vs. terminal multiple, terminal multiple vs. discount rate, and long-term growth rate vs. discount rate - but not terminal multiple against long-term growth rate, since those are two ways of setting the same thing.",
+      "Only revenue growth against EBITDA margin, since those are the two operating assumptions that drive the model.",
+      "Terminal multiple against long-term growth rate, which is the most informative pairing because both drive Terminal Value.",
+      "Any two inputs may be paired freely - there is no combination that produces a meaningless sensitivity table.",
+    ],
+    correct: 0,
+  },
+  305: {
+    options: [
+      "You don't account for it at all in an unlevered DCF. Principal repayment sits in Cash Flow from Financing, and unlevered free cash flow stops at Cash Flow from Operations less CapEx. It would only matter in a levered DCF, through the falling interest expense.",
+      "You subtract the annual principal repayment from Free Cash Flow, since it is a genuine cash outflow the company cannot avoid.",
+      "You add the repayment back, because reducing debt increases the value available to equity holders.",
+      "You reduce the Terminal Value by the remaining debt balance, which is how deleveraging is captured in a DCF.",
+    ],
+    correct: 0,
+  },
 };
