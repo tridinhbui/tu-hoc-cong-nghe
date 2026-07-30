@@ -1535,6 +1535,54 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
                       screen-space, it shouldn't rotate with the furniture. */}
                   <div className="pointer-events-none absolute inset-0 z-20 bg-[radial-gradient(ellipse_at_50%_32%,transparent_38%,rgba(0,0,0,0.6)_100%)]" />
 
+                  {/* Weekly goal + reward chest. Deliberately a HUD card in the
+                      corner rather than a billboard over the table: it is UI,
+                      not furniture, and at the table it sat exactly at head
+                      height - covering the two nearest faces and having its own
+                      XP figure covered by their nameplates in turn. Out here it
+                      also escapes the 3D rasterizer, so the text stays crisp
+                      instead of shimmering as the room turns. */}
+                  <div className="absolute left-0 bottom-0 z-30 w-40 rounded-2xl border border-emerald-400/40 bg-stone-950/85 backdrop-blur-md px-3 py-2.5 text-center shadow-[0_0_28px_rgba(16,185,129,0.25)]">
+                    <p className="text-[9px] font-black uppercase tracking-[0.18em] text-emerald-300">
+                      🔮 Mục tiêu tuần
+                    </p>
+                    <p className="text-sm font-black text-white mt-0.5 tabular-nums">
+                      {myRoom.weekly_xp_progress} / {myRoom.weekly_xp_goal} XP
+                    </p>
+                    <div className="mt-1.5 h-1.5 rounded-full bg-stone-800 overflow-hidden">
+                      <div
+                        className="h-full rounded-full bg-emerald-400 transition-all duration-500"
+                        style={{
+                          width: `${Math.min(
+                            100,
+                            Math.round((myRoom.weekly_xp_progress / Math.max(1, myRoom.weekly_xp_goal)) * 100)
+                          )}%`,
+                        }}
+                      />
+                    </div>
+                    <button
+                      type="button"
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        void handleClaimGroupReward();
+                      }}
+                      disabled={!allMissionsDone || rewardClaimed || claimingReward}
+                      className={`mt-2 w-full inline-flex items-center justify-center gap-1 text-[10px] font-extrabold px-2 py-1 rounded-full border transition-all cursor-pointer ${
+                        rewardClaimed || isChestUnlocked
+                          ? "bg-amber-500 text-stone-950 border-amber-300 shadow-md"
+                          : !allMissionsDone
+                          ? "bg-stone-900/90 text-stone-500 border-stone-700 cursor-not-allowed"
+                          : "bg-emerald-950/90 text-emerald-300 border-emerald-400/40 hover:bg-emerald-800"
+                      }`}
+                    >
+                      {rewardClaimed || isChestUnlocked
+                        ? "👑 Rương Đã Mở"
+                        : claimingReward
+                        ? "Đang mở..."
+                        : "🎁 Nhận Rương"}
+                    </button>
+                  </div>
+
                   {/* One set of virtual coordinates, three screen sizes. */}
                   <div
                     className="scale-[0.5] sm:scale-[0.7] lg:scale-[0.9]"
@@ -1563,7 +1611,7 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
                         }}
                       >
                         {/* Pool of lamplight on the boards */}
-                        <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[400px] h-[400px] rounded-full bg-[radial-gradient(circle,rgba(16,185,129,0.26)_0%,rgba(16,185,129,0.07)_45%,transparent_72%)]" />
+                        <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[400px] h-[400px] rounded-full bg-[radial-gradient(circle,rgba(16,185,129,0.17)_0%,rgba(16,185,129,0.05)_45%,transparent_72%)]" />
                         {/* Rug under the table */}
                         <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[430px] h-[430px] rounded-full border border-emerald-500/20 bg-emerald-950/30" />
                         <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[340px] h-[340px] rounded-full border border-dashed border-emerald-400/25" />
@@ -1667,14 +1715,14 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
                               ? undefined
                               : {
                                   boxShadow: [
-                                    "0 10px 60px rgba(16,185,129,0.55)",
-                                    "0 10px 78px rgba(16,185,129,0.75)",
-                                    "0 10px 60px rgba(16,185,129,0.55)",
+                                    "0 10px 60px rgba(16,185,129,0.36)",
+                                    "0 10px 78px rgba(16,185,129,0.48)",
+                                    "0 10px 60px rgba(16,185,129,0.36)",
                                   ],
                                 }
                           }
                           transition={{ duration: 4.5, repeat: Infinity, ease: "easeInOut" }}
-                          className="w-16 h-7 mx-auto rounded-b-[32px] bg-gradient-to-b from-stone-700 to-stone-900 border border-stone-600 shadow-[0_10px_60px_rgba(16,185,129,0.55)]"
+                          className="w-16 h-7 mx-auto rounded-b-[32px] bg-gradient-to-b from-stone-700 to-stone-900 border border-stone-600 shadow-[0_10px_60px_rgba(16,185,129,0.36)]"
                         />
                         <div className="w-7 h-2.5 mx-auto -mt-1 rounded-full bg-emerald-200/90 blur-[5px]" />
                       </div>
@@ -1704,7 +1752,7 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
                           transform: `translate(-50%, -50%) translateY(${FLOOR_Y - 74}px) rotateX(90deg)`,
                           background:
                             "radial-gradient(circle at 38% 32%, #2c2724 0%, #1c1917 48%, #0a0908 100%)",
-                          boxShadow: "0 0 70px rgba(16,185,129,0.38)",
+                          boxShadow: "0 0 54px rgba(16,185,129,0.22)",
                         }}
                         onClick={() => toast.success("🔮 Đã nạp năng lượng 3D Spatial Boost cho cả phòng!")}
                       >
@@ -1715,62 +1763,6 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
                         />
                         <div className="absolute inset-[38%] rounded-full bg-emerald-500/15 blur-md" />
                       </button>
-
-                      {/* Holographic panel projected over the table. The one
-                          place text must stay legible, so it billboards to the
-                          camera rather than lying on the tabletop where the
-                          pitch would crush it to a sliver. */}
-                      <div
-                        className="absolute left-1/2 top-1/2"
-                        style={{
-                          transform: `translate(-50%, -50%) translateY(-4px) rotateY(${-rotation3D.y}deg) rotateX(${-rotation3D.x}deg)`,
-                        }}
-                      >
-                        <motion.div
-                          animate={reduceMotion ? undefined : { y: [0, -5, 0] }}
-                          transition={{ duration: 3.5, repeat: Infinity, ease: "easeInOut" }}
-                          className="w-44 rounded-2xl border border-emerald-400/50 bg-stone-950/85 backdrop-blur-md px-3 py-2.5 text-center shadow-[0_0_40px_rgba(16,185,129,0.45)]"
-                        >
-                          <p className="text-[8px] font-black uppercase tracking-[0.2em] text-emerald-300">
-                            🔮 Bàn học 3D
-                          </p>
-                          <p className="text-sm font-black text-white mt-0.5 tabular-nums">
-                            {myRoom.weekly_xp_progress} / {myRoom.weekly_xp_goal} XP
-                          </p>
-                          <div className="mt-1.5 h-1.5 rounded-full bg-stone-800 overflow-hidden">
-                            <div
-                              className="h-full rounded-full bg-emerald-400 transition-all duration-500"
-                              style={{
-                                width: `${Math.min(
-                                  100,
-                                  Math.round((myRoom.weekly_xp_progress / Math.max(1, myRoom.weekly_xp_goal)) * 100)
-                                )}%`,
-                              }}
-                            />
-                          </div>
-                          <button
-                            type="button"
-                            onClick={(e) => {
-                              e.stopPropagation();
-                              void handleClaimGroupReward();
-                            }}
-                            disabled={!allMissionsDone || rewardClaimed || claimingReward}
-                            className={`mt-2 w-full inline-flex items-center justify-center gap-1 text-[9px] font-extrabold px-2 py-1 rounded-full border transition-all cursor-pointer ${
-                              rewardClaimed || isChestUnlocked
-                                ? "bg-amber-500 text-stone-950 border-amber-300 shadow-md"
-                                : !allMissionsDone
-                                ? "bg-stone-900/90 text-stone-500 border-stone-700 cursor-not-allowed"
-                                : "bg-emerald-950/90 text-emerald-300 border-emerald-400/40 hover:bg-emerald-800"
-                            }`}
-                          >
-                            {rewardClaimed || isChestUnlocked
-                              ? "👑 Rương Đã Mở"
-                              : claimingReward
-                              ? "Đang mở..."
-                              : "🎁 Nhận Rương"}
-                          </button>
-                        </motion.div>
-                      </div>
 
                       {/* ── HOLO PYLONS around the room ── */}
                       {HOLO_PYLONS.map((node) => {
@@ -1891,17 +1883,42 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
                                       </span>
                                     )}
 
-                                    {/* Name plate */}
+                                    {/* Level, streak and role sit *above* the
+                                        nameplate. They used to hang off the
+                                        bottom of the stack, below the chair
+                                        legs - which put them at floor level,
+                                        where the camera pitch smeared them into
+                                        the floor glow and the nearest seats
+                                        pushed them off the bottom of the stage.
+                                        Up here they have empty air to live in. */}
+                                    <div className="mb-0.5 flex items-center gap-1">
+                                      <span className="px-1.5 py-0.5 rounded-full bg-emerald-600 text-[9px] font-black text-white">
+                                        Lv.{member.current_level}
+                                      </span>
+                                      <span className="text-[9px] font-black text-emerald-300 whitespace-nowrap">
+                                        🔥 {member.weekly_lessons}
+                                      </span>
+                                    </div>
+                                    <span className="mb-1 text-[9px] font-black text-amber-300 truncate max-w-[100px]">
+                                      {memberRole(member)}
+                                    </span>
+
+                                    {/* Name plate. Capped and truncated: a full
+                                        Vietnamese name billboards to ~140px,
+                                        and five plates that wide collide into
+                                        one unreadable pile at any camera angle.
+                                        The full name is still in the title. */}
                                     <div
-                                      className={`mb-1 px-2 py-0.5 rounded-full border whitespace-nowrap shadow-md ${
+                                      className={`mb-1 max-w-[104px] px-2 py-0.5 rounded-full border shadow-md ${
                                         isArriving
                                           ? "bg-amber-400 border-amber-200 text-stone-950"
                                           : isMe
                                           ? "bg-emerald-500 border-emerald-300 text-stone-950"
                                           : "bg-stone-900/95 border-stone-700 text-white"
                                       }`}
+                                      title={member.full_name || "Thành viên"}
                                     >
-                                      <span className="text-[9px] font-black">
+                                      <span className="block truncate text-[9px] font-black">
                                         {member.full_name || "Thành viên"}
                                         {isMe ? " (Bạn)" : ""}
                                       </span>
@@ -1961,18 +1978,6 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
                                       <span className="w-[3px] h-4 bg-stone-800 rounded-b-sm" />
                                     </div>
 
-                                    {/* Stats */}
-                                    <div className="mt-1 flex items-center gap-1">
-                                      <span className="px-1.5 py-0.5 rounded-full bg-emerald-600 text-[8px] font-black text-white">
-                                        Lv.{member.current_level}
-                                      </span>
-                                      <span className="text-[9px] font-black text-emerald-300">
-                                        🔥 {member.weekly_lessons}
-                                      </span>
-                                    </div>
-                                    <span className="text-[8px] font-black text-amber-300 truncate max-w-[92px]">
-                                      {memberRole(member)}
-                                    </span>
                                   </motion.div>
                                   </motion.div>
                                 </div>
