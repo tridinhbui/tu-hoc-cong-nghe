@@ -29,13 +29,25 @@ export const CFA_LEVEL_1_SUBJECTS: CfaSubject[] = [
     id: "quant",
     name: "Quantitative Methods",
     weight: "6–9%",
-    lessonIds: [7, 10, 12, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90, 91, 164, 165, 166, 1037],
+    // 1421-1426 (chặng Phương pháp định lượng) là phần suy diễn thống kê và
+    // hồi quy của môn này. Trước khi có chúng, mục Quant chỉ trỏ ngược về các
+    // bài giá trị thời gian của tiền, tức mới phủ được một nửa đề cương.
+    lessonIds: [
+      7, 10, 12, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90, 91, 164, 165, 166, 1037, 1421, 1422, 1423,
+      1424, 1425, 1426,
+    ],
   },
   {
     id: "economics",
     name: "Economics",
     weight: "6–9%",
-    lessonIds: [9, 146, 147, 148, 1224, 1225, 1226, 1227, 1228, 1321, 1322, 1323, 1324, 1325, 1326, 1340, 1341],
+    // 1461, 1462, 1464: quan hệ ngang giá và phơi nhiễm tỷ giá - phần tỷ giá
+    // hối đoái của môn Economics. Bài 1463 (định giá xuyên biên giới) nằm ở
+    // môn Equity vì nó là bài về chi phí vốn, không phải về tỷ giá.
+    lessonIds: [
+      9, 146, 147, 148, 1224, 1225, 1226, 1227, 1228, 1321, 1322, 1323, 1324, 1325, 1326, 1340,
+      1341, 1461, 1462, 1464,
+    ],
   },
   {
     id: "fsa",
@@ -46,6 +58,9 @@ export const CFA_LEVEL_1_SUBJECTS: CfaSubject[] = [
       44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66,
       67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 80, 271, 1001, 1007, 1010, 1011, 1012, 1013, 1015,
       1018, 1022, 1023, 1026, 1035,
+      // Chuẩn mực kế toán, thuế thu nhập doanh nghiệp/thuế hoãn lại, và đọc
+      // báo cáo của định chế tài chính - ba nhóm bài đọc riêng của môn này.
+      1401, 1441, 1442, 1443, 1445,
     ],
   },
   {
@@ -55,6 +70,8 @@ export const CFA_LEVEL_1_SUBJECTS: CfaSubject[] = [
     lessonIds: [
       101, 102, 103, 104, 105, 106, 107, 108, 109, 110, 111, 112, 113, 114, 115, 116, 120, 1002,
       1014, 1017, 1020, 1021, 1024, 1028,
+      // 1454: quản trị công ty và giao dịch bên liên quan.
+      1454,
     ],
   },
   {
@@ -65,6 +82,9 @@ export const CFA_LEVEL_1_SUBJECTS: CfaSubject[] = [
       77, 78, 79, 121, 122, 123, 124, 125, 126, 127, 128, 129, 130, 131, 132, 133, 134, 135, 136,
       137, 138, 139, 140, 201, 202, 203, 204, 205, 206, 207, 208, 209, 210, 211, 213, 214, 218,
       219, 220, 269, 270, 1003, 1004, 1006, 1008, 1036,
+      // Tổ chức thị trường và phân loại thị trường (1451, 1452), định giá
+      // định chế tài chính (1402) và chi phí vốn xuyên biên giới (1463).
+      1402, 1451, 1452, 1463,
     ],
   },
   {
@@ -74,19 +94,29 @@ export const CFA_LEVEL_1_SUBJECTS: CfaSubject[] = [
     lessonIds: [
       141, 142, 143, 144, 145, 149, 150, 151, 152, 153, 154, 155, 156, 157, 158, 159, 160, 221,
       222, 223, 224, 225, 226, 227, 229, 230, 231, 232, 233, 234, 235, 236, 237, 238, 239, 240,
+      // 1289: duration và convexity. 1453: rủi ro tín dụng và rủi ro tái cấp
+      // vốn của trái phiếu doanh nghiệp, đọc qua một sự kiện tín dụng có thật.
+      1289, 1453,
     ],
   },
   {
     id: "derivatives",
     name: "Derivatives",
     weight: "5–8%",
-    lessonIds: [181, 182, 183, 184, 185, 186, 187, 188, 189, 190, 191, 192, 193, 194, 195, 196, 197, 198],
+    // 1411-1414 là phần định giá: không-arbitrage, put-call parity,
+    // Black-Scholes và các Greeks. Các bài 181-198 dừng ở mức khái niệm.
+    lessonIds: [
+      181, 182, 183, 184, 185, 186, 187, 188, 189, 190, 191, 192, 193, 194, 195, 196, 197, 198,
+      1411, 1412, 1413, 1414,
+    ],
   },
   {
     id: "alternatives",
     name: "Alternative Investments",
     weight: "7–10%",
-    lessonIds: [117, 118, 119, 178, 261, 276, 1005, 1009, 1025],
+    // 1471-1474: cấu trúc quỹ, phí và waterfall, các thước đo hiệu suất riêng
+    // của quỹ đóng, và thoái vốn - đúng nhóm bài đọc private equity của môn này.
+    lessonIds: [117, 118, 119, 178, 261, 276, 1005, 1009, 1025, 1286, 1471, 1472, 1473, 1474],
   },
   {
     id: "portfolio",
@@ -95,6 +125,9 @@ export const CFA_LEVEL_1_SUBJECTS: CfaSubject[] = [
     lessonIds: [
       96, 97, 98, 161, 162, 163, 167, 168, 169, 170, 171, 172, 173, 174, 175, 176, 177, 212, 215,
       228, 241, 242, 243, 244, 245, 272, 273, 274, 275, 277, 1029, 1031, 1032,
+      // Đo lường rủi ro (1217), cơ chế ETF (1288) và quy trình đầu tư của quỹ
+      // (1245) - ba bài trước đây chỉ tới được từ một career path.
+      1217, 1245, 1288,
     ],
   },
 ];
