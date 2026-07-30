@@ -432,7 +432,7 @@ export default function AppNavbar() {
         </div>
       </aside>
 
-      <header className="lg:hidden border-b border-stone-200 dark:border-stone-800 sticky top-0 bg-white/95 dark:bg-stone-950/95 backdrop-blur z-50">
+      <header className="lg:hidden relative border-b border-stone-200 dark:border-stone-800 sticky top-0 bg-white/95 dark:bg-stone-950/95 backdrop-blur z-50">
         <div className="max-w-6xl mx-auto px-3 sm:px-6 py-2.5 sm:py-3 flex items-center justify-between gap-1.5 sm:gap-4 w-full overflow-hidden">
           <Link href="/dashboard" className="flex items-center gap-2 shrink-0">
             <Logo size={28} />
@@ -534,13 +534,20 @@ export default function AppNavbar() {
 
         {mobileMenuOpen && (
           <>
-            {/* Backdrop filter overlay to prevent background click interference */}
+            {/* Drawer and its backdrop are `absolute` off the header, not
+                `fixed`. `fixed left-0 right-0` resolves against the layout
+                viewport, which on iOS Safari does not always match the visual
+                viewport once anything on the page overflows horizontally - the
+                drawer then renders shifted a hundred-odd px to the left of the
+                header it is supposed to hang from. Anchoring to the header's
+                own box makes that impossible, and drops the hardcoded
+                top-[50px]/[56px] header-height guesses at the same time. */}
             <div
-              className="fixed inset-0 top-[50px] sm:top-[56px] bg-stone-950/40 backdrop-blur-xs z-30 lg:hidden"
+              className="absolute left-0 right-0 top-full h-screen bg-stone-950/40 backdrop-blur-xs z-30 lg:hidden"
               onClick={() => setMobileMenuOpen(false)}
             />
 
-            <div className="fixed left-0 right-0 top-[50px] sm:top-[56px] bg-white/98 dark:bg-stone-950/98 border-b border-stone-200 dark:border-stone-800 px-4 sm:px-6 py-3.5 space-y-1.5 shadow-2xl max-h-[calc(100vh-3.5rem)] overflow-y-auto overscroll-contain z-40 lg:hidden backdrop-blur-md">
+            <div className="absolute left-0 right-0 top-full bg-white/98 dark:bg-stone-950/98 border-b border-stone-200 dark:border-stone-800 px-4 sm:px-6 py-3.5 space-y-1.5 shadow-2xl max-h-[calc(100dvh-4rem)] overflow-y-auto overscroll-contain z-40 lg:hidden backdrop-blur-md">
               {profile && (
                 <div className="flex items-center justify-between gap-3 p-3 mb-2 rounded-xl bg-stone-50 dark:bg-stone-900 border border-stone-200/80 dark:border-stone-800">
                   <div className="flex items-center gap-2.5 min-w-0">

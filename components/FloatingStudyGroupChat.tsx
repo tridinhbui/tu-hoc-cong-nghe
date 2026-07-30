@@ -74,7 +74,8 @@ export default function FloatingStudyGroupChat({ isOpen: controlledIsOpen, onOpe
   const [members, setMembers] = useState<Map<string, StudyRoomMember>>(new Map());
   const [internalOpen, setInternalOpen] = useState(false);
   const [isBubbleDragging, setIsBubbleDragging] = useState(false);
-  const bubbleDrag = useDraggablePosition("thtcdn_study_group_chat_bubble_pos");
+  const bubbleRef = useRef<HTMLButtonElement>(null);
+  const bubbleDrag = useDraggablePosition("thtcdn_study_group_chat_bubble_pos", bubbleRef);
   const open = controlledIsOpen !== undefined ? controlledIsOpen : internalOpen;
   
   const setOpen = useCallback((openState: boolean | ((prev: boolean) => boolean)) => {
@@ -367,6 +368,7 @@ export default function FloatingStudyGroupChat({ isOpen: controlledIsOpen, onOpe
     <>
       {!hideTrigger && (
         <motion.button
+          ref={bubbleRef}
           drag
           dragConstraints={{ left: -window.innerWidth + 80, right: 0, top: -window.innerHeight + 120, bottom: 0 }}
           dragElastic={0.1}
