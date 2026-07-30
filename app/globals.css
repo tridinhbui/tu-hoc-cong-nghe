@@ -325,6 +325,9 @@ input[type="range"]::-webkit-slider-thumb:hover {
   backface-visibility: hidden;
   -webkit-backface-visibility: hidden;
 }
+.transform-style-3d {
+  transform-style: preserve-3d;
+}
 .rotate-y-180 {
   transform: rotateY(180deg);
 }
