@@ -36,6 +36,7 @@ import CombinedRewardsWidget from "@/components/CombinedRewardsWidget";
 import CareerLearningPathClient from "@/components/CareerLearningPathClient";
 import { hasCompletedOnboarding, completeOnboarding } from "@/lib/supabase-onboarding";
 import { getUserProfile, recalculateUserStats, getLeaderboardByMetric, getCfaCompletedCount } from "@/lib/supabase-user";
+import { syncLocalLevelExams } from "@/lib/supabase-level-exams";
 import { getDashboardSummary, getLessonState, type DashboardSummary, type LessonState } from "@/lib/supabase-dashboard-optimized";
 import { getLevelByXp, getLevelProgress, LEVELS } from "@/lib/levels";
 import UnlockRequestModal from "@/components/UnlockRequestModal";
@@ -226,6 +227,16 @@ export default function DashboardClient({ lessonsMeta }: { lessonsMeta: LessonMe
         if (!saved) setShowPlacementModal(true);
       } catch (e) {}
     }
+  }, [user?.id]);
+
+  // Promotion exams used to live only in localStorage (see
+  // 20260818_user_level_exams.sql). Push any pre-existing local passes up once
+  // per session so nobody loses a level they already certified.
+  useEffect(() => {
+    if (!user?.id) return;
+    void syncLocalLevelExams(user.id).catch((error) =>
+      console.error("Error syncing local level exams:", error)
+    );
   }, [user?.id]);
 
   useEffect(() => {
@@ -1659,10 +1670,10 @@ export default function DashboardClient({ lessonsMeta }: { lessonsMeta: LessonMe
                                           </div>
                                         </div>
                                         <div className="flex-1 min-w-0">
-                                          <div className="text-base font-bold leading-snug text-stone-500 dark:text-stone-500">
+                                          <div className="text-base font-bold leading-snug text-stone-500 dark:text-stone-300">
                                             {lesson.title}
                                           </div>
-                                          <div className="text-sm mt-1 truncate text-stone-400 dark:text-stone-600">
+                                          <div className="text-sm mt-1 truncate text-stone-400 dark:text-stone-400">
                                             {isWaitingOnChallenge(lesson)
                                               ? "🎯 Vượt qua thử thách kiến thức để mở khoá"
                                               : "Yêu cầu hoàn thành bài trước - nhấn để nhắn admin mở khoá"}
@@ -1884,10 +1895,10 @@ export default function DashboardClient({ lessonsMeta }: { lessonsMeta: LessonMe
                               </div>
                             </div>
                             <div className="flex-1 min-w-0">
-                              <div className="text-base font-bold leading-snug text-stone-500 dark:text-stone-500">
+                              <div className="text-base font-bold leading-snug text-stone-500 dark:text-stone-300">
                                 {lesson.title}
                               </div>
-                              <div className="text-sm mt-0.5 truncate text-stone-400 dark:text-stone-600">
+                              <div className="text-sm mt-0.5 truncate text-stone-400 dark:text-stone-400">
                                 {isWaitingOnChallenge(lesson)
                                   ? "🎯 Vượt qua thử thách kiến thức để mở khoá"
                                   : "Yêu cầu hoàn thành bài trước - nhấn để nhắn admin mở khoá"}
