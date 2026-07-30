@@ -141,7 +141,9 @@ export const SKILL_DOMAINS: SkillDomain[] = [
     id: "fpa_budgeting",
     label: "FP&A & Ngân sách",
     gapHint: "lập ngân sách, rolling forecast, phân tích variance, KPI",
-    lessonIds: [...range(111, 115), 1202, 1203, 1204, 1205, 1206, 1210, 1213, 1214, 1257],
+    // Chặng 31 là phần lập kế hoạch đứng trước các sản phẩm đầu ra ở Chặng 11.
+    // 1513 (dòng tiền 13 tuần) cũng thuộc treasury nên nằm ở cả đây.
+    lessonIds: [...range(111, 115), 1202, 1203, 1204, 1205, 1206, 1210, 1213, 1214, 1257, ...range(1511, 1516)],
   },
   {
     id: "ethics",

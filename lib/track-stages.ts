@@ -629,6 +629,20 @@ export const TRACK_PROFESSIONAL = {
         { name: "Nhân quả, kể chuyện bằng dữ liệu và đạo đức dữ liệu", days: [1504, 1506] as [number, number] },
       ],
     },
+    {
+      // Chặng 11 dạy ngân sách, rolling forecast và variance - tức là các sản
+      // phẩm đầu ra của FP&A. Chặng này lo phần đứng trước: những con số ấy
+      // từ đâu ra, và nó là phần chiếm gần hết thời gian thật của nghề.
+      label: "Chặng 31",
+      name: "Lập kế hoạch tài chính vận hành",
+      days: [1511, 1516] as [number, number],
+      available: true,
+      isNew: true,
+      parts: [
+        { name: "Yếu tố dẫn dắt, kế hoạch nhân sự và dòng tiền 13 tuần", days: [1511, 1513] as [number, number] },
+        { name: "Kịch bản, phân bổ chi phí và nhịp báo cáo tháng", days: [1514, 1516] as [number, number] },
+      ],
+    },
   ] satisfies Stage[],
 };
 
@@ -642,7 +656,7 @@ export const PROFESSIONAL_BRANCHES = [
     label: "Tài chính doanh nghiệp",
     subtitle: "Kế toán, báo cáo tài chính, định giá, vận hành vốn & mô hình tài chính",
     emoji: "🏢",
-    stageLabels: ["Chặng 1", "Chặng 2", "Chặng 3", "Chặng 4", "Chặng 5", "Chặng 11", "Chặng 15", "Chặng 24"],
+    stageLabels: ["Chặng 1", "Chặng 2", "Chặng 3", "Chặng 4", "Chặng 5", "Chặng 11", "Chặng 15", "Chặng 24", "Chặng 31"],
   },
   {
     id: "investment",
