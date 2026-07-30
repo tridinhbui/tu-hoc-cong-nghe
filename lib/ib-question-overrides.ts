@@ -1532,4 +1532,204 @@ export const IB_QUESTION_OVERRIDES: Record<number, IbQuestionOverride> = {
     ],
     correct: 0,
   },
+
+  // ── Merger Model - Advanced ───────────────────────────────────────────
+  337: {
+    options: [
+      "Under purchase accounting the seller's shareholders' equity is wiped out and the premium over it becomes Goodwill on the combined balance sheet. Under pooling accounting you simply add the two equity balances together and no Goodwill arises.",
+      "Under pooling accounting the seller's equity is wiped out and Goodwill is created; under purchase accounting the two equity balances are simply combined.",
+      "The two produce identical balance sheets and differ only in how the transaction is disclosed in the footnotes.",
+      "Purchase accounting applies to cash deals and pooling accounting to stock deals, with the consideration determining which is used.",
+    ],
+    correct: 0,
+  },
+  338: {
+    options: [
+      "Take the target's revenue driver - say Yahoo earns $0.10 revenue per search - assume the buyer lifts it to its own higher rate, then multiply the improvement by the target's search volume to get the incremental revenue.",
+      "Take the combined revenue of both companies and apply an assumed synergy percentage, typically 5-10%, to arrive at the uplift.",
+      "Add the two companies' revenues together and apply the buyer's operating margin, since the margin difference is the synergy.",
+      "Take the premium paid over the target's market value and treat that as the revenue synergy the buyer must generate to justify it.",
+    ],
+    correct: 0,
+  },
+  339: {
+    options: [
+      "Work out the headcount overlap: if the buyer has 5,000 SG&A staff and the target 1,000, and only 200 of the target's are needed post-deal, the other 800 are eliminated - multiply by average salary and benefits to get the saving.",
+      "Take the combined SG&A of both companies and reduce it by a standard 20%, which is the accepted benchmark for expense synergies.",
+      "Subtract the target's total SG&A from the combined figure, since the buyer's existing team absorbs all of the target's functions.",
+      "Take the difference between the two companies' EBITDA margins and apply it to combined revenue.",
+    ],
+    correct: 0,
+  },
+  340: {
+    options: [
+      "Apply Section 382: allowable NOLs each year = equity purchase price × the highest adjusted long-term rate of the past three months. A $1 billion price at a 5% rate allows $50 million a year, so $250 million of NOLs would be used over five years.",
+      "The buyer inherits the full NOL balance and may use all of it in the first year to offset combined taxable income.",
+      "Apply Section 382: allowable NOLs each year = the seller's NOL balance × the long-term rate, so $250 million at 5% gives $12.5 million a year.",
+      "NOLs are extinguished on a change of control, so they never carry over to the buyer in any structure.",
+    ],
+    correct: 0,
+  },
+  341: {
+    options: [
+      "They arise when assets are written up or down in a transaction: a write-up creates a Deferred Tax Liability, and a write-down creates a Deferred Tax Asset, because the book basis moves while the tax basis does not.",
+      "They arise when assets are written up or down: a write-up creates a Deferred Tax Asset, and a write-down creates a Deferred Tax Liability.",
+      "They arise from the difference between the purchase price and the target's market capitalisation at announcement.",
+      "They arise only when the buyer and the seller are taxed in different jurisdictions and the rates have to be reconciled.",
+    ],
+    correct: 0,
+  },
+  342: {
+    options: [
+      "They feed into the Goodwill calculation on the pro-forma balance sheet. Deferred Tax Asset = asset write-down × tax rate; Deferred Tax Liability = asset write-up × tax rate. A $100 million write-up at 40% creates a $40 million DTL.",
+      "They feed into the Goodwill calculation, with Deferred Tax Asset = asset write-up × tax rate and Deferred Tax Liability = asset write-down × tax rate.",
+      "They are recorded on the income statement at closing rather than the balance sheet, so they don't affect Goodwill at all.",
+      "They offset each other exactly in every transaction, so the net effect on the balance sheet adjustment is always zero.",
+    ],
+    correct: 0,
+  },
+  343: {
+    options: [
+      "No - in an asset purchase the book basis of the assets always matches the tax basis. They arise in a stock purchase, where book values are written up or down but tax values aren't.",
+      "Yes - deferred taxes arise in every transaction structure, since the purchase price always differs from the assets' carrying value.",
+      "No - in an asset purchase the tax basis is unchanged while the book basis moves, which is precisely why no timing difference arises.",
+      "Yes, but only Deferred Tax Assets - an asset purchase can never create a Deferred Tax Liability.",
+    ],
+    correct: 0,
+  },
+  344: {
+    options: [
+      "Build a book vs. cash tax schedule: compute what the company owes on book pre-tax income, then what it actually pays in cash after NOLs and the newly created depreciation and amortisation - the difference flows through the DTL each year.",
+      "Amortise the opening DTL balance straight-line over the life of the acquired intangibles, with no separate tax schedule required.",
+      "Hold the DTL flat at its closing-date balance, since deferred taxes are a one-time purchase accounting entry.",
+      "Release the entire DTL into income in the first projected year, since the write-up is recognised immediately for tax purposes.",
+    ],
+    correct: 0,
+  },
+  345: {
+    options: [
+      "Goodwill = equity purchase price - seller book value + seller's existing Goodwill - asset write-ups - seller's existing DTL + write-down of seller's existing DTA + newly created DTL.",
+      "Goodwill = equity purchase price - seller book value + asset write-ups, since write-ups add to the premium being paid.",
+      "Goodwill = equity purchase price - seller book value, with deferred taxes and existing goodwill having no bearing on the calculation.",
+      "Goodwill = enterprise purchase price - seller total assets + seller total liabilities - asset write-ups + newly created DTA.",
+    ],
+    correct: 0,
+  },
+  346: {
+    options: [
+      "Because Deferred Tax Assets include NOLs, and you may use those NOLs post-transaction to shelter the combined company's taxable income. In an asset or 338(h)(10) purchase you assume the whole NOL balance goes to zero.",
+      "Because the seller's DTA is an intangible asset and all intangibles are written down to zero at closing.",
+      "Because a DTA represents taxes already paid, and the buyer cannot claim a refund for taxes it did not pay itself.",
+      "You don't write it down - the seller's existing DTA transfers to the buyer at its full carrying value in every structure.",
+    ],
+    correct: 0,
+  },
+  347: {
+    options: [
+      "It blends the two structures: legally a stock purchase, but treated as an asset purchase for tax. The seller still faces double taxation, while the buyer gets a stepped-up asset basis and the depreciation and amortisation deductions that come with it.",
+      "It converts an asset purchase into a stock purchase for tax purposes, letting the seller avoid double taxation entirely.",
+      "It allows the buyer to acquire only selected assets while still receiving the target's NOLs in full.",
+      "It is a filing that exempts the transaction from antitrust review when the deal falls below a size threshold.",
+    ],
+    correct: 0,
+  },
+  348: {
+    options: [
+      "It fixes the number of buyer shares each seller share converts into - say 1.5 buyer shares per seller share - rather than fixing a dollar value. That shifts the risk of the buyer's share price moving between signing and closing.",
+      "It is the ratio of the buyer's P/E to the seller's P/E, used to determine whether an all-stock deal will be accretive.",
+      "It is the proportion of the purchase price paid in stock rather than cash, expressed as a percentage of the total.",
+      "It converts the seller's share price into the buyer's currency in a cross-border deal, fixed at the closing-date exchange rate.",
+    ],
+    correct: 0,
+  },
+  349: {
+    options: [
+      "Purchase price and form of consideration, transaction structure (stock, asset or 338(h)(10)), treatment of options, reps and warranties, and the no-shop and go-shop provisions governing whether the seller may seek other bidders.",
+      "Only the purchase price and the closing date - everything else is covered by statute rather than negotiated in the agreement.",
+      "The synergy targets and the integration plan, since those determine whether the deal delivers its intended value.",
+      "The buyer's financing commitments and its board's fairness opinion, which together form the substance of the agreement.",
+    ],
+    correct: 0,
+  },
+  350: {
+    options: [
+      "A deferred payment contingent on the target hitting agreed financial or operational goals after closing. It's common with private companies and start-ups, and lets a buyer bridge a valuation gap without paying the full price upfront.",
+      "A payment the seller makes back to the buyer if the target misses its post-closing targets.",
+      "A clause allowing the buyer to walk away without penalty if the target's earnings fall before closing.",
+      "A retention bonus paid to the target's management to keep them in place through the integration period.",
+    ],
+    correct: 0,
+  },
+  351: {
+    options: [
+      "The mechanics are the same, but the structure is more likely to be an asset purchase or 338(h)(10) election, and a private seller has no EPS - so you only project down to Net Income on its income statement.",
+      "It can't be done - accretion/dilution requires both companies to have a share price and an EPS.",
+      "You use the private seller's book value per share in place of EPS, which makes the comparison directly equivalent.",
+      "The mechanics are the same, but you must assume an all-cash structure, since a private seller cannot receive listed stock.",
+    ],
+    correct: 0,
+  },
+  352: {
+    options: [
+      "Set EPS accretion/dilution to exactly $0.00 and back-solve for the synergies required to get there. It tells you whether the deal works mathematically - a large required number means the deal is a stretch.",
+      "Add the revenue and cost synergies together and divide by the purchase price, giving the synergy yield on the deal.",
+      "Calculate the synergies needed to cover the premium paid over the target's undisturbed share price.",
+      "Set the combined company's EPS equal to the target's standalone EPS and solve for the implied purchase price.",
+    ],
+    correct: 0,
+  },
+  353: {
+    options: [
+      "Combine the income statements as usual, then combine the balance sheets excluding the seller's shareholders' equity, make the pro-forma adjustments for goodwill, write-ups and new debt, and project the combined cash flow statement forward from there.",
+      "Combine all three statements line by line including the seller's shareholders' equity, then let the cash balance plug any difference.",
+      "You can't - a merger model is an income statement exercise, and the balance sheet and cash flow statement can't be combined pro-forma.",
+      "Combine the balance sheets first and derive the combined income statement from the change in retained earnings between periods.",
+    ],
+    correct: 0,
+  },
+  354: {
+    options: [
+      "It depends on the Purchase Agreement - the buyer may assume them, or let the seller cash them out where the per-share price exceeds the exercise price. If assumed, they convert into buyer shares at the exchange ratio and add to the diluted count.",
+      "They are always cancelled at closing without payment, since the target's securities cease to exist after the acquisition.",
+      "They are always cashed out at full face value regardless of exercise price, and the cost is added to the purchase price.",
+      "They are ignored in a merger model, because dilutive securities affect only the target's standalone valuation.",
+    ],
+    correct: 0,
+  },
+  355: {
+    options: [
+      "Stock purchase, asset purchase, and a 338(h)(10) election. A stock purchase transfers all assets and liabilities including off-balance-sheet items and taxes the seller at capital gains rates; an asset purchase lets the buyer select what it takes and step up the basis.",
+      "Cash purchase, stock purchase, and debt-financed purchase - the three structures are defined by the form of consideration.",
+      "Merger, tender offer, and hostile takeover, which are the three routes to acquiring control of a company.",
+      "Stock purchase, asset purchase, and reverse merger, the last being the standard route for taking a private company public.",
+    ],
+    correct: 0,
+  },
+  356: {
+    options: [
+      "The seller almost always prefers a stock purchase - it avoids double taxation and transfers the liabilities away. The buyer almost always prefers an asset purchase, to pick what it takes on and to get the tax deduction from the stepped-up basis.",
+      "Both prefer a stock purchase, which is why it is by far the most common structure in practice.",
+      "The seller prefers an asset purchase to retain its corporate shell, while the buyer prefers a stock purchase for the clean transfer.",
+      "Neither has a preference - the structure is determined by regulation rather than negotiated between the parties.",
+    ],
+    correct: 0,
+  },
+  357: {
+    options: [
+      "It compares how much revenue, EBITDA, pre-tax income and cash each side brings to the combination, to gauge what the ownership split of the combined company arguably should be.",
+      "It compares the synergies each side is expected to contribute, to determine how the benefits should be shared.",
+      "It measures how much each company contributed to the sector's growth over the past five years.",
+      "It allocates the purchase price across the target's divisions in proportion to the earnings each generates.",
+    ],
+    correct: 0,
+  },
+  358: {
+    options: [
+      "Under current rules you expense transaction and miscellaneous fees upfront, but capitalise financing fees and amortise them over the life of the debt. Previously all of them were capitalised and amortised.",
+      "You capitalise all of them and amortise over the life of the debt, which is the treatment current standards require.",
+      "You expense all of them upfront, since none of these costs creates a future economic benefit.",
+      "You add all of them to the purchase price and let them flow into Goodwill on the pro-forma balance sheet.",
+    ],
+    correct: 0,
+  },
 };
