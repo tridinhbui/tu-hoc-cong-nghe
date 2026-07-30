@@ -60,6 +60,7 @@ import {
 import { isValidAvatar } from "@/lib/avatar-utils";
 import { animateCountTo } from "@/lib/animate-count";
 import { timeAgo } from "@/lib/time-ago";
+import FollowButton from "@/components/FollowButton";
 
 interface SessionUser {
   id: string;
@@ -722,6 +723,15 @@ export default function CommunityFeedClient({ embedded = false }: { embedded?: b
       console.error("Error updating reaction:", error);
       void refreshFeed();
     }
+  };
+
+  // Following/unfollowing an author affects every one of their posts
+  // currently in view, not just the one the click came from - FollowButton
+  // already updated the server, this just keeps the rest of the feed's
+  // buttons in sync so scrolling past another post by the same person shows
+  // the same state instead of a stale one until the next refetch.
+  const handleFollowChange = (authorId: string, following: boolean) => {
+    setPosts((prev) => prev.map((p) => (p.user_id === authorId ? { ...p, is_following: following } : p)));
   };
 
   const handleDelete = async (postId: number) => {
@@ -1435,6 +1445,14 @@ export default function CommunityFeedClient({ embedded = false }: { embedded?: b
                         >
                           · đã chỉnh sửa
                         </span>
+                      )}
+                      {user && post.user_id !== user.id && (
+                        <FollowButton
+                          currentUserId={user.id}
+                          targetUserId={post.user_id}
+                          initialFollowing={post.is_following}
+                          onChange={(following) => handleFollowChange(post.user_id, following)}
+                        />
                       )}
                       </div>
                       {category !== "all" && (

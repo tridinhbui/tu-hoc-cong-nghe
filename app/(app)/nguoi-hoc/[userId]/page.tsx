@@ -5,6 +5,8 @@ import { notFound, redirect } from "next/navigation";
 import { createServerSupabaseClient } from "@/lib/supabase-server";
 import { getPublicUserProfile } from "@/lib/public-user-profile";
 import MessageUserButton from "@/components/MessageUserButton";
+import FollowButton from "@/components/FollowButton";
+import ProfileWallPosts from "@/components/ProfileWallPosts";
 
 export const dynamic = "force-dynamic";
 
@@ -52,6 +54,18 @@ export default async function PublicUserProfilePage({
   if (!profile) {
     notFound();
   }
+
+  // Fetched with the server client (not lib/supabase-follows.ts, which is
+  // built for the browser client and wouldn't carry this request's auth
+  // cookie) so the follow button and counts are correct on first paint -
+  // no flash from an initial "not following yet" before a client fetch
+  // resolves.
+  const [{ count: followerCount }, { count: followingCount }, { data: followRow }] = await Promise.all([
+    supabase.from("user_follows").select("follower_id", { count: "exact", head: true }).eq("followed_id", userId),
+    supabase.from("user_follows").select("followed_id", { count: "exact", head: true }).eq("follower_id", userId),
+    supabase.from("user_follows").select("follower_id").eq("follower_id", user.id).eq("followed_id", userId).maybeSingle(),
+  ]);
+  const isFollowing = Boolean(followRow);
 
   const initials = profile.displayName
     .split(" ")
@@ -121,7 +135,16 @@ export default async function PublicUserProfilePage({
                     Chưa có phần giới thiệu cá nhân.
                   </p>
                 )}
-                <div className="mt-5">
+                <div className="mt-3 flex items-center gap-4 text-sm text-stone-500 dark:text-stone-400">
+                  <span>
+                    <span className="font-extrabold text-stone-900 dark:text-stone-100">{followerCount ?? 0}</span> người theo dõi
+                  </span>
+                  <span>
+                    <span className="font-extrabold text-stone-900 dark:text-stone-100">{followingCount ?? 0}</span> đang theo dõi
+                  </span>
+                </div>
+                <div className="mt-5 flex items-center gap-2.5">
+                  <FollowButton currentUserId={user.id} targetUserId={userId} initialFollowing={isFollowing} size="md" />
                   <MessageUserButton targetUserId={userId} />
                 </div>
               </div>
@@ -284,6 +307,18 @@ export default async function PublicUserProfilePage({
                   ))}
                 </div>
               )}
+            </div>
+
+            <div className="bg-white dark:bg-stone-900 border-2 border-stone-200 dark:border-stone-800 rounded-2xl p-6">
+              <div className="flex items-center justify-between gap-3 mb-4">
+                <h3 className="text-lg font-extrabold text-stone-900 dark:text-stone-100">
+                  Bài đăng gần đây
+                </h3>
+                <Link href="/finsocial" className="text-xs font-bold text-emerald-600 dark:text-emerald-400 hover:underline">
+                  Xem FinSocial →
+                </Link>
+              </div>
+              <ProfileWallPosts userId={userId} />
             </div>
           </div>
         </div>

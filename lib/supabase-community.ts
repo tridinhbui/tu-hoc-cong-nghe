@@ -22,6 +22,12 @@ export interface CommunityFeedPost {
   my_reaction: string | null;
   comment_count: number;
   reaction_summary: CommunityReactionSummary[];
+  /** Whether the viewer already follows this post's author (see
+   *  supabase/migrations/20260822_user_follows.sql). Always `false` on rows
+   *  from getUserCommunityPosts (a profile wall) - that function doesn't
+   *  compute it, since the follow button there lives once in the page
+   *  header, not per-post. */
+  is_following: boolean;
 }
 
 export interface CommunityReactionSummary {
