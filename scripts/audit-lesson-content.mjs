@@ -179,6 +179,10 @@ console.log(
     `${String(totalLongest).padStart(5)} longest (${Math.round(tellShare * 100)}%)  ` +
     `ceiling ${Math.round(MAX_TELL_SHARE * 100)}%`
 );
+// Printed unrounded because the rounded percentage above has twice now been
+// read straight into MAX_TELL_SHARE, turning the gate red on the very batch
+// that lowered it: a displayed "75%" was an actual 75.4%, then 74.5%.
+console.log(`  exact share ${tellShare.toFixed(4)} — set MAX_TELL_SHARE no lower than this`);
 console.log(
   `  baseline: ${baseline.size} lessons grandfathered  ·  ` +
     `${unbaselined.length} not baselined  ·  ${fixedButStillBaselined.length} fixed but still listed`
