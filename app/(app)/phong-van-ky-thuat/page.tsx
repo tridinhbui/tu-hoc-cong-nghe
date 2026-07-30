@@ -9,6 +9,7 @@ import { recalculateUserStats } from "@/lib/supabase-user";
 import { getIbCategoryCounts, IB_TECHNICAL_QUESTIONS, IB_BEHAVIORAL_QUESTIONS } from "@/lib/ib-question-bank";
 import BehavioralPrepPanel from "@/components/BehavioralPrepPanel";
 import IbWeakAreasPanel from "@/components/IbWeakAreasPanel";
+import { recordQuizMistake } from "@/lib/quiz-mistakes";
 import { getCareersCoveredByBank, getTechnicalQuestionsForCareer } from "@/lib/ib-question-careers";
 import { FINANCE_CAREERS } from "@/lib/finance-careers";
 
@@ -209,6 +210,14 @@ export default function TechnicalInterviewPage() {
     });
     setAnswers((a) => [...a, { token: q.token, selected }]);
     setSubmitted(true);
+    // Feed the spaced-repetition review flow at /on-tap-cau-sai. Interview
+    // questions were absent from it entirely: nothing here ever called this,
+    // so a learner could miss the same DCF question every week and never see
+    // it again in review. `q.lessonId` is the negated bank id and
+    // questionIndex is 0 because each bank question stands alone rather than
+    // being the nth question of a lesson - the review action understands that
+    // convention. Fire-and-forget, same as the lesson quiz caller.
+    void recordQuizMistake(q.lessonId, 0, ok);
   }
 
   function next() {

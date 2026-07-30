@@ -300,7 +300,7 @@ export default function OnTapCauSaiClient() {
                           <div className="space-y-3">
                             <div className="flex items-center justify-between gap-2 border-b border-stone-100 dark:border-stone-800 pb-3">
                               <Link
-                                href={`/bai-hoc/${currentCardItem.lessonSlug}`}
+                                href={currentCardItem.href}
                                 className="text-xs font-black text-emerald-600 dark:text-emerald-400 hover:underline truncate"
                               >
                                 {currentCardItem.lessonLabel}: {currentCardItem.lessonTitle}
@@ -492,7 +492,7 @@ export default function OnTapCauSaiClient() {
                   >
                     <div className="flex items-center justify-between gap-3">
                       <Link
-                        href={`/bai-hoc/${item.lessonSlug}`}
+                        href={item.href}
                         className="inline-flex items-center gap-1 text-xs font-bold text-emerald-600 dark:text-emerald-400 hover:underline"
                       >
                         {item.lessonLabel}: {item.lessonTitle}
