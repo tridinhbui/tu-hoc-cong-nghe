@@ -5,12 +5,13 @@ import Image from "next/image";
 import { isValidAvatar } from "@/lib/avatar-utils";
 import TaiTaiAvatar from "@/components/TaiTaiAvatar";
 import { toast } from "sonner";
-import { Users, Send, X, ImagePlus, Trash2, CornerUpLeft, MoreVertical, Copy, Pin, PinOff, CheckCheck, Pencil } from "lucide-react";
+import { Users, Send, X, ImagePlus, Trash2, CornerUpLeft, MoreVertical, Copy, Pin, PinOff, CheckCheck, Pencil, Clock } from "lucide-react";
 import { createClient } from "@/lib/supabase";
 import { trackFeatureClick } from "@/lib/feature-events";
 import { uploadChatImage, isAllowedChatImage } from "@/lib/supabase-chat";
 import { announceWidgetOpened, onOtherWidgetOpened } from "@/lib/floating-widget-coordinator";
 import EmojiPicker from "@/components/EmojiPicker";
+import { motion } from "framer-motion";
 import {
   STUDY_ROOM_TOPICS,
   getMyStudyRoom,
@@ -43,6 +44,14 @@ function initials(name: string | null | undefined) {
     .slice(0, 2);
 }
 
+// Optimistic bubbles get a negative id so `id < 0` is enough to mark them as
+// still-in-flight - real rows use a positive identity sequence. Without them
+// the bubble only appeared after the insert round-tripped, which on a slow
+// connection read as the chat lagging behind what you typed.
+let optimisticIdCounter = -1;
+const nextOptimisticId = () => optimisticIdCounter--;
+const isPendingMessage = (msg: { id: number }) => msg.id < 0;
+
 const LAST_SEEN_ROOM_KEY = "thtcdn_study_room_last_seen_id";
 const LAST_READ_AT_KEY_PREFIX = "thtcdn_study_room_last_read_";
 
@@ -63,6 +72,7 @@ export default function FloatingStudyGroupChat({ isOpen: controlledIsOpen, onOpe
   const [room, setRoom] = useState<StudyRoomSummary | null>(null);
   const [members, setMembers] = useState<Map<string, StudyRoomMember>>(new Map());
   const [internalOpen, setInternalOpen] = useState(false);
+  const [isBubbleDragging, setIsBubbleDragging] = useState(false);
   const open = controlledIsOpen !== undefined ? controlledIsOpen : internalOpen;
   
   const setOpen = useCallback((openState: boolean | ((prev: boolean) => boolean)) => {
@@ -172,8 +182,10 @@ export default function FloatingStudyGroupChat({ isOpen: controlledIsOpen, onOpe
     setPendingImage(file);
   }
 
-  function clearPendingImage() {
-    if (pendingImagePreview) URL.revokeObjectURL(pendingImagePreview);
+  // keepPreviewUrl: the optimistic bubble reuses the object URL to render the
+  // attachment while the upload is in flight, so the caller revokes it later.
+  function clearPendingImage(keepPreviewUrl = false) {
+    if (pendingImagePreview && !keepPreviewUrl) URL.revokeObjectURL(pendingImagePreview);
     setPendingImage(null);
     setPendingImagePreview(null);
     if (fileInputRef.current) fileInputRef.current.value = "";
@@ -278,7 +290,24 @@ export default function FloatingStudyGroupChat({ isOpen: controlledIsOpen, onOpe
     setInput("");
     setReplyingTo(null);
     const imageFile = pendingImage;
-    clearPendingImage();
+    const localPreview = pendingImagePreview;
+    clearPendingImage(true);
+
+    // Show the bubble immediately, then swap it for the server's row.
+    const optimisticId = nextOptimisticId();
+    setMessages((prev) => [
+      ...prev,
+      {
+        id: optimisticId,
+        room_id: room.room_id,
+        sender_id: userId,
+        content: finalContent,
+        image_url: localPreview,
+        created_at: new Date().toISOString(),
+        is_bot: false,
+        is_pinned: false,
+      },
+    ]);
 
     try {
       let imageUrl: string | null = null;
@@ -286,11 +315,18 @@ export default function FloatingStudyGroupChat({ isOpen: controlledIsOpen, onOpe
         imageUrl = await uploadChatImage(userId, imageFile);
       }
       const sent = await sendRoomMessage(room.room_id, userId, finalContent, imageUrl);
-      setMessages((prev) => (prev.some((m) => m.id === sent.id) ? prev : [...prev, sent]));
+      setMessages((prev) => {
+        const withoutOptimistic = prev.filter((m) => m.id !== optimisticId);
+        // The realtime subscription may have already delivered this row.
+        return withoutOptimistic.some((m) => m.id === sent.id) ? withoutOptimistic : [...withoutOptimistic, sent];
+      });
       trackFeatureClick("floating_study_chat_send", { label: String(room.room_id) });
     } catch (error) {
+      setMessages((prev) => prev.filter((m) => m.id !== optimisticId));
+      setInput(rawContent);
       toast.error(error instanceof Error ? error.message : "Không gửi được tin nhắn");
     } finally {
+      if (localPreview) URL.revokeObjectURL(localPreview);
       setSending(false);
     }
   }
@@ -410,6 +446,7 @@ export default function FloatingStudyGroupChat({ isOpen: controlledIsOpen, onOpe
                   );
                 }
                 const isMine = msg.sender_id === userId;
+                const isPending = isPendingMessage(msg);
                 const member = msg.sender_id ? members.get(msg.sender_id) : null;
                 const senderName = member?.full_name || "Thành viên";
                 const msgReactions = reactions[msg.id] || {};
@@ -425,7 +462,12 @@ export default function FloatingStudyGroupChat({ isOpen: controlledIsOpen, onOpe
                 }
 
                 return (
-                  <div key={msg.id} className={`group relative flex flex-col ${isMine ? "items-end" : "items-start"}`}>
+                  <div
+                    key={msg.id}
+                    className={`group relative flex flex-col ${isMine ? "items-end" : "items-start"} ${
+                      isPending ? "opacity-60" : ""
+                    }`}
+                  >
                     <div className={`flex items-end gap-1.5 ${isMine ? "flex-row-reverse" : "flex-row"}`}>
                       {!isMine &&
                         (isValidAvatar(member?.avatar_url) ? (
@@ -473,8 +515,9 @@ export default function FloatingStudyGroupChat({ isOpen: controlledIsOpen, onOpe
                           {mainText && <p className="whitespace-pre-wrap break-words">{mainText}</p>}
                         </div>
 
-                        {/* 3-Dots Menu Trigger Button */}
-                        <div className={isMine ? "absolute right-full top-1/2 mr-1 -translate-y-1/2" : "relative"}>
+                        {/* 3-Dots Menu Trigger Button - hidden while in flight,
+                            since reply/pin/react all need a real row id. */}
+                        <div className={`${isPending ? "hidden" : ""} ${isMine ? "absolute right-full top-1/2 mr-1 -translate-y-1/2" : "relative"}`}>
                           <button
                             onClick={() => setActiveMenuMsgId(activeMenuMsgId === msg.id ? null : msg.id)}
                             className={`${isMine ? "opacity-70" : "opacity-0 mt-1"} group-hover:opacity-100 transition-all duration-200 p-1 rounded-full hover:bg-stone-200 dark:hover:bg-stone-700 text-stone-500 dark:text-stone-400 cursor-pointer shadow-xs bg-white/90 dark:bg-stone-800/90 border border-stone-200/80 dark:border-stone-700 hover:scale-105`}
@@ -600,8 +643,17 @@ export default function FloatingStudyGroupChat({ isOpen: controlledIsOpen, onOpe
 
                         {isMine && (
                           <div className="mt-1 flex items-center justify-end gap-1 text-[9px] font-bold text-stone-400 dark:text-stone-500 whitespace-nowrap">
-                            <CheckCheck className="h-3 w-3 text-emerald-500 shrink-0" />
-                            <span className="whitespace-nowrap">{members.size > 1 ? "Đã xem" : "Đã gửi"}</span>
+                            {isPending ? (
+                              <>
+                                <Clock className="h-3 w-3 text-stone-400 shrink-0 animate-pulse" />
+                                <span className="whitespace-nowrap">Đang gửi...</span>
+                              </>
+                            ) : (
+                              <>
+                                <CheckCheck className="h-3 w-3 text-emerald-500 shrink-0" />
+                                <span className="whitespace-nowrap">{members.size > 1 ? "Đã xem" : "Đã gửi"}</span>
+                              </>
+                            )}
                           </div>
                         )}
 
@@ -655,7 +707,7 @@ export default function FloatingStudyGroupChat({ isOpen: controlledIsOpen, onOpe
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img src={pendingImagePreview} alt="Preview" className="w-14 h-14 rounded-lg border border-stone-300 dark:border-stone-700 object-cover shadow-md" />
                 <button
-                  onClick={clearPendingImage}
+                  onClick={() => clearPendingImage()}
                   className="absolute -top-1.5 -right-1.5 w-5 h-5 bg-red-500 hover:bg-red-600 text-white rounded-full flex items-center justify-center shadow transition-all border border-white dark:border-stone-950 active:scale-90"
                 >
                   <X className="w-3 h-3" />

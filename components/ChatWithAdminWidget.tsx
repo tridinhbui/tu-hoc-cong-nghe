@@ -15,6 +15,9 @@ import {
   PinOff,
   CheckCheck,
   Pencil,
+  Maximize2,
+  Minimize2,
+  Clock,
 } from "lucide-react";
 import { toast } from "sonner";
 import { createClient } from "@/lib/supabase";
@@ -31,10 +34,20 @@ import {
   isAllowedChatImage,
   markMessagesSeenByUser,
   deleteChatMessage,
+  getChatReactions,
+  toggleChatReaction,
   type ChatMessage,
+  type ChatReactionMap,
 } from "@/lib/supabase-chat";
 
 const REACTION_EMOJIS = ["👍", "❤️", "🔥", "🚀", "💡", "😂"];
+
+// Optimistic bubbles get a negative id so `id < 0` marks them as in-flight -
+// real rows use a positive identity sequence. Without them the bubble only
+// appeared after the insert round-tripped, which read as the chat lagging.
+let optimisticIdCounter = -1;
+const nextOptimisticId = () => optimisticIdCounter--;
+const isPendingMessage = (msg: { id: number }) => msg.id < 0;
 
 interface ChatWithAdminWidgetProps {
   isOpen?: boolean;
@@ -49,6 +62,8 @@ export default function ChatWithAdminWidget({
 }: ChatWithAdminWidgetProps = {}) {
   const [internalIsOpen, setInternalIsOpen] = useState(false);
   const isOpen = controlledIsOpen !== undefined ? controlledIsOpen : internalIsOpen;
+  const [isExpanded, setIsExpanded] = useState(false);
+  const [isWidgetDragging, setIsWidgetDragging] = useState(false);
 
   const setIsOpen = useCallback(
     (open: boolean | ((prev: boolean) => boolean)) => {
@@ -77,7 +92,7 @@ export default function ChatWithAdminWidget({
   // Interactive Messenger-like states
   const [replyingTo, setReplyingTo] = useState<{ id: number; senderName: string; content: string } | null>(null);
   const [editingMessage, setEditingMessage] = useState<{ id: number; content: string } | null>(null);
-  const [reactions, setReactions] = useState<Record<number, Record<string, string[]>>>({});
+  const [reactions, setReactions] = useState<ChatReactionMap>({});
   const [activeMenuMsgId, setActiveMenuMsgId] = useState<number | null>(null);
   const [pinnedMsgId, setPinnedMsgId] = useState<number | null>(null);
 
@@ -126,8 +141,12 @@ export default function ChatWithAdminWidget({
     });
   }
 
-  const toggleReaction = (msgId: number, emoji: string) => {
+  const toggleReaction = async (msgId: number, emoji: string) => {
     if (!userId) return;
+
+    // Optimistic flip so the emoji lands instantly, then reconcile with the
+    // server's authoritative map (reactions are persisted, not local-only).
+    const previous = reactions;
     setReactions((prev) => {
       const msgReactions = prev[msgId] || {};
       const userList = msgReactions[emoji] || [];
@@ -145,6 +164,15 @@ export default function ChatWithAdminWidget({
 
       return { ...prev, [msgId]: newMsgReactions };
     });
+
+    try {
+      const saved = await toggleChatReaction(msgId, emoji);
+      if (saved) setReactions(saved);
+    } catch (error) {
+      console.error("Error toggling chat reaction:", error);
+      setReactions(previous);
+      toast.error("Không lưu được cảm xúc. Vui lòng thử lại.");
+    }
   };
 
   const handleDeleteMessage = async (msgId: number) => {
@@ -191,8 +219,15 @@ export default function ChatWithAdminWidget({
       if (!user) return;
 
       setUserId(user.id);
-      const history = await getChatHistory(user.id);
+      const [history, savedReactions] = await Promise.all([
+        getChatHistory(user.id),
+        getChatReactions(user.id).catch((error) => {
+          console.error("Error loading chat reactions:", error);
+          return {} as ChatReactionMap;
+        }),
+      ]);
       setMessages(history);
+      setReactions(savedReactions);
       hasLoadedHistoryRef.current = true;
       void markMessagesSeenByUser(user.id);
     } finally {
@@ -219,8 +254,10 @@ export default function ChatWithAdminWidget({
     setPendingImage(file);
   }
 
-  function clearPendingImage() {
-    if (pendingImagePreview) URL.revokeObjectURL(pendingImagePreview);
+  // keepPreviewUrl: the optimistic bubble reuses the object URL to render the
+  // attachment while the upload is in flight, so the caller revokes it later.
+  function clearPendingImage(keepPreviewUrl = false) {
+    if (pendingImagePreview && !keepPreviewUrl) URL.revokeObjectURL(pendingImagePreview);
     setPendingImage(null);
     setPendingImagePreview(null);
     if (fileInputRef.current) fileInputRef.current.value = "";
@@ -268,7 +305,23 @@ export default function ChatWithAdminWidget({
     setInput("");
     setReplyingTo(null);
     const imageFile = pendingImage;
-    clearPendingImage();
+    const localPreview = pendingImagePreview;
+    clearPendingImage(true);
+
+    // Show the bubble immediately, then swap it for the server's row.
+    const optimisticId = nextOptimisticId();
+    setMessages((prev) => [
+      ...prev,
+      {
+        id: optimisticId,
+        user_id: userId,
+        sender: "user",
+        content: finalContent,
+        image_url: localPreview,
+        read: false,
+        created_at: new Date().toISOString(),
+      },
+    ]);
 
     try {
       let imageUrl: string | null = null;
@@ -279,16 +332,19 @@ export default function ChatWithAdminWidget({
       }
 
       const saved = await sendMessage(userId, "user", finalContent, imageUrl);
-      if (saved) {
-        setMessages((prev) => {
-          if (prev.some((m) => m.id === saved.id)) return prev;
-          return [...prev, saved];
-        });
-      }
+      setMessages((prev) => {
+        const withoutOptimistic = prev.filter((m) => m.id !== optimisticId);
+        if (!saved) return withoutOptimistic;
+        // The realtime subscription may have already delivered this row.
+        return withoutOptimistic.some((m) => m.id === saved.id) ? withoutOptimistic : [...withoutOptimistic, saved];
+      });
     } catch (error) {
       console.error("Error sending chat image:", error);
+      setMessages((prev) => prev.filter((m) => m.id !== optimisticId));
+      setInput(rawContent);
       toast.error(error instanceof Error ? error.message : "Không gửi được tin nhắn. Vui lòng thử lại.");
     } finally {
+      if (localPreview) URL.revokeObjectURL(localPreview);
       setUploadingImage(false);
       setSending(false);
     }
@@ -303,17 +359,30 @@ export default function ChatWithAdminWidget({
       <AnimatePresence>
         {!isOpen && !hideTrigger && (
           <motion.button
+            drag
+            dragConstraints={{ left: -window.innerWidth + 80, right: 0, top: -window.innerHeight + 120, bottom: 0 }}
+            dragElastic={0.1}
+            dragMomentum={false}
+            onDragStart={() => setIsWidgetDragging(true)}
+            onDragEnd={() => setTimeout(() => setIsWidgetDragging(false), 120)}
             initial={{ scale: 0 }}
             animate={{ scale: 1 }}
             exit={{ scale: 0 }}
-            onClick={() => setIsOpen(true)}
+            onClick={(e) => {
+              if (isWidgetDragging) {
+                e.stopPropagation();
+                return;
+              }
+              setIsOpen(true);
+            }}
             aria-label="Admin Chatbot"
-            className="fixed bottom-6 right-4 sm:right-6 z-40 w-14 h-14 rounded-full bg-white dark:bg-stone-100 shadow-lg hover:shadow-xl hover:scale-105 transition flex items-center justify-center group overflow-hidden border border-stone-200 dark:border-stone-300 cursor-pointer"
+            title="Admin Chatbot (Kéo thả để di chuyển)"
+            className="fixed bottom-6 right-4 sm:right-6 z-40 w-14 h-14 rounded-full bg-white dark:bg-stone-100 shadow-lg hover:shadow-xl hover:scale-105 transition-transform flex items-center justify-center group overflow-hidden border border-stone-200 dark:border-stone-300 cursor-grab active:cursor-grabbing select-none touch-none"
           >
-            <Logo size={56} className="rounded-full" />
-            <span className="absolute top-0.5 right-0.5 w-3.5 h-3.5 rounded-full bg-emerald-500 border-2 border-white dark:border-stone-100" />
-            <div className="absolute bottom-full right-0 mb-2 bg-stone-900 dark:bg-stone-800 text-white text-xs px-3 py-2 rounded-lg whitespace-nowrap opacity-0 group-hover:opacity-100 transition shadow-md">
-              Admin Chatbot
+            <Logo size={56} className="rounded-full pointer-events-none" />
+            <span className="absolute top-0.5 right-0.5 w-3.5 h-3.5 rounded-full bg-emerald-500 border-2 border-white dark:border-stone-100 pointer-events-none" />
+            <div className="absolute bottom-full right-0 mb-2 bg-stone-900 dark:bg-stone-800 text-white text-xs px-3 py-2 rounded-lg whitespace-nowrap opacity-0 group-hover:opacity-100 transition shadow-md pointer-events-none">
+              Admin Chatbot (Kéo thả để di chuyển)
             </div>
           </motion.button>
         )}
@@ -326,7 +395,11 @@ export default function ChatWithAdminWidget({
             initial={{ opacity: 0, y: 20, scale: 0.95 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 20, scale: 0.95 }}
-            className="fixed inset-x-4 top-4 bottom-4 sm:inset-x-auto sm:top-auto sm:bottom-6 sm:right-6 z-50 sm:w-96 max-h-[calc(100dvh-2rem)] sm:max-h-[480px] bg-white dark:bg-stone-900 rounded-2xl shadow-[0_20px_50px_rgba(0,0,0,0.35)] border border-stone-100 dark:border-stone-800/80 flex flex-col overflow-hidden transition-all duration-300"
+            className={`fixed inset-x-4 top-4 bottom-4 z-50 bg-white dark:bg-stone-900 rounded-2xl shadow-[0_20px_50px_rgba(0,0,0,0.35)] border border-stone-100 dark:border-stone-800/80 flex flex-col overflow-hidden transition-all duration-300 ${
+              isExpanded
+                ? "sm:inset-x-auto sm:top-6 sm:bottom-6 sm:right-6 sm:w-[calc(100vw-3rem)] sm:max-w-2xl max-h-[calc(100dvh-2rem)] sm:max-h-[calc(100dvh-3rem)]"
+                : "sm:inset-x-auto sm:top-auto sm:bottom-6 sm:right-6 sm:w-96 max-h-[calc(100dvh-2rem)] sm:max-h-[480px]"
+            }`}
           >
             {/* Header */}
             <div className="bg-gradient-to-r from-stone-950 via-stone-900 to-stone-950 text-white px-4.5 py-4 flex items-center gap-3 border-b border-stone-100/10 shadow-sm shrink-0">
@@ -344,6 +417,14 @@ export default function ChatWithAdminWidget({
                   Đang hoạt động • Phản hồi siêu tốc
                 </p>
               </div>
+              <button
+                onClick={() => setIsExpanded((prev) => !prev)}
+                className="hidden sm:flex text-stone-400 hover:text-white hover:bg-white/10 p-1.5 rounded-xl transition-all flex-shrink-0 active:scale-95 cursor-pointer"
+                aria-label={isExpanded ? "Thu nhỏ chat" : "Phóng to chat"}
+                title={isExpanded ? "Thu nhỏ chat" : "Phóng to chat"}
+              >
+                {isExpanded ? <Minimize2 className="w-4 h-4" /> : <Maximize2 className="w-4 h-4" />}
+              </button>
               <button
                 onClick={() => setIsOpen(false)}
                 className="text-stone-400 hover:text-white hover:bg-white/10 p-1.5 rounded-xl transition-all flex-shrink-0 active:scale-95 cursor-pointer"
@@ -422,6 +503,7 @@ export default function ChatWithAdminWidget({
               )}
               {scrollMessages.map((msg) => {
                 const isMine = msg.sender === "user";
+                const isPending = isPendingMessage(msg);
                 const senderName = isMine ? "Bạn" : "Admin";
                 const msgReactions = reactions[msg.id] || {};
 
@@ -438,7 +520,9 @@ export default function ChatWithAdminWidget({
                 return (
                   <div
                     key={msg.id}
-                    className={`group relative flex flex-col ${isMine ? "items-end" : "items-start"}`}
+                    className={`group relative flex flex-col ${isMine ? "items-end" : "items-start"} ${
+                      isPending ? "opacity-60" : ""
+                    }`}
                   >
                     <div className={`flex items-end gap-1.5 ${isMine ? "flex-row-reverse" : "flex-row"}`}>
                       <div className="relative max-w-[85%] w-fit min-w-0">
@@ -474,8 +558,9 @@ export default function ChatWithAdminWidget({
                           {mainText && <p className="whitespace-pre-wrap break-words">{mainText}</p>}
                         </div>
 
-                        {/* 3-Dots Menu Trigger Button */}
-                        <div className={isMine ? "absolute right-full top-1/2 mr-1 -translate-y-1/2" : "absolute left-full top-1/2 ml-1 -translate-y-1/2"}>
+                        {/* 3-Dots Menu Trigger Button - hidden while in flight,
+                            since reply/pin/react all need a real row id. */}
+                        <div className={`${isPending ? "hidden" : ""} ${isMine ? "absolute right-full top-1/2 mr-1 -translate-y-1/2" : "absolute left-full top-1/2 ml-1 -translate-y-1/2"}`}>
                           <button
                             onClick={() => setActiveMenuMsgId(activeMenuMsgId === msg.id ? null : msg.id)}
                             className="opacity-0 group-hover:opacity-100 transition-all duration-200 p-1 rounded-full hover:bg-stone-200 dark:hover:bg-stone-700 text-stone-500 dark:text-stone-400 cursor-pointer shadow-xs bg-white/90 dark:bg-stone-800/90 border border-stone-200/80 dark:border-stone-700 hover:scale-105"
@@ -497,7 +582,7 @@ export default function ChatWithAdminWidget({
                                   <button
                                     key={emoji}
                                     onClick={() => {
-                                      toggleReaction(msg.id, emoji);
+                                      void toggleReaction(msg.id, emoji);
                                       setActiveMenuMsgId(null);
                                     }}
                                     className="hover:scale-130 transition-transform p-0.5 text-[11px] cursor-pointer"
@@ -590,7 +675,7 @@ export default function ChatWithAdminWidget({
                               return (
                                 <button
                                   key={emoji}
-                                  onClick={() => toggleReaction(msg.id, emoji)}
+                                  onClick={() => void toggleReaction(msg.id, emoji)}
                                   className={`inline-flex items-center gap-1 text-[9px] font-bold px-1.5 py-0.2 rounded-full border transition-all cursor-pointer ${
                                     hasMyReaction
                                       ? "bg-emerald-50 dark:bg-emerald-950 border-emerald-300 text-emerald-700 dark:text-emerald-300 shadow-2xs"
@@ -608,8 +693,17 @@ export default function ChatWithAdminWidget({
                         {/* Message Status */}
                         {isMine && (
                           <div className="mt-1 flex items-center justify-end gap-1 text-[9px] font-bold text-stone-400 dark:text-stone-500 whitespace-nowrap">
-                            <CheckCheck className={`h-3 w-3 shrink-0 ${msg.read ? "text-emerald-500" : "text-stone-400"}`} />
-                            <span className="whitespace-nowrap">{msg.read ? "Đã xem" : "Đã gửi"}</span>
+                            {isPending ? (
+                              <>
+                                <Clock className="h-3 w-3 shrink-0 text-stone-400 animate-pulse" />
+                                <span className="whitespace-nowrap">Đang gửi...</span>
+                              </>
+                            ) : (
+                              <>
+                                <CheckCheck className={`h-3 w-3 shrink-0 ${msg.read ? "text-emerald-500" : "text-stone-400"}`} />
+                                <span className="whitespace-nowrap">{msg.read ? "Đã xem" : "Đã gửi"}</span>
+                              </>
+                            )}
                           </div>
                         )}
                       </div>
@@ -674,7 +768,7 @@ export default function ChatWithAdminWidget({
                     className="w-14 h-14 rounded-lg object-cover border border-stone-100 dark:border-stone-800/50 shadow-md"
                   />
                   <button
-                    onClick={clearPendingImage}
+                    onClick={() => clearPendingImage()}
                     className="absolute -top-1.5 -right-1.5 w-5 h-5 bg-red-500 hover:bg-red-600 text-white rounded-full flex items-center justify-center shadow-md transition-colors border border-white dark:border-stone-950 active:scale-90 cursor-pointer"
                   >
                     <X className="w-3 h-3" />
