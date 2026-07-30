@@ -168,10 +168,15 @@ export const TRACK_PROFESSIONAL = {
       label: "Chặng 1",
       name: "Kế toán nền tảng",
       days: [21, 40] as [number, number],
+      extraLessonIds: [1244],
       available: true,
       parts: [
         { name: "Ngôn ngữ kế toán và bảng cân đối", days: [21, 30] as [number, number] },
-        { name: "Vốn lưu động và nguyên tắc ghi nhận", days: [31, 40] as [number, number] },
+        {
+          name: "Vốn lưu động và nguyên tắc ghi nhận",
+          days: [31, 40] as [number, number],
+          extraLessonIds: [1244],
+        },
       ],
     },
     {
@@ -208,10 +213,15 @@ export const TRACK_PROFESSIONAL = {
       label: "Chặng 5",
       name: "Tài chính doanh nghiệp",
       days: [101, 120] as [number, number],
+      extraLessonIds: [1247, 1257],
       available: true,
       parts: [
         { name: "Cơ cấu vốn và M&A", days: [101, 110] as [number, number] },
-        { name: "Vận hành vốn và tài chính khởi nghiệp", days: [111, 120] as [number, number] },
+        {
+          name: "Vận hành vốn và tài chính khởi nghiệp",
+          days: [111, 120] as [number, number],
+          extraLessonIds: [1247, 1257],
+        },
       ],
     },
     {
@@ -261,21 +271,34 @@ export const TRACK_PROFESSIONAL = {
       days: [1101, 1110] as [number, number],
       available: true,
       isNew: true,
-      extraLessonIds: [1021],
+      extraLessonIds: [1021, 1260],
       parts: [
         { name: "Chất lượng lợi nhuận, định giá tương đối và tín dụng", days: [1101, 1105] as [number, number] },
-        { name: "M&A, LBO và cơ chế giao dịch", days: [1106, 1110] as [number, number], extraLessonIds: [1021] },
+        {
+          name: "M&A, LBO và cơ chế giao dịch",
+          days: [1106, 1110] as [number, number],
+          extraLessonIds: [1021, 1260],
+        },
       ],
     },
     {
       label: "Chặng 11",
       name: "Vận hành tài chính doanh nghiệp hiện đại",
       days: [1201, 1210] as [number, number],
+      extraLessonIds: [1213, 1214, 1259],
       available: true,
       isNew: true,
       parts: [
-        { name: "FP&A & vận hành vốn", days: [1201, 1205] as [number, number] },
-        { name: "Treasury & quản trị tài chính", days: [1206, 1210] as [number, number] },
+        {
+          name: "FP&A & vận hành vốn",
+          days: [1201, 1205] as [number, number],
+          extraLessonIds: [1213, 1214],
+        },
+        {
+          name: "Treasury & quản trị tài chính",
+          days: [1206, 1210] as [number, number],
+          extraLessonIds: [1259],
+        },
       ],
     },
     {
@@ -353,23 +376,280 @@ export const TRACK_PROFESSIONAL = {
         { name: "Quản trị doanh nghiệp chuyên sâu", days: [1330, 1330] as [number, number] },
       ],
     },
+    {
+      // Track 2 had no macro stage at all, yet eleven finished CFA Economics
+      // lessons existed - reachable only from the CFA cross-reference page,
+      // never from the curriculum itself. They carried track: "bonus", which
+      // DashboardClient filters out of professional stages, so putting them
+      // here also required flipping that field in lib/lessons.ts.
+      label: "Chặng 17",
+      name: "Kinh tế học cho người làm tài chính",
+      days: [1321, 1326] as [number, number],
+      extraLessonIds: [1224, 1225, 1226, 1227, 1228, 1258],
+      available: true,
+      isNew: true,
+      parts: [
+        {
+          name: "Vi mô: cung cầu, chi phí doanh nghiệp và cấu trúc thị trường",
+          days: [1321, 1322] as [number, number],
+          extraLessonIds: [1228],
+        },
+        {
+          name: "Vĩ mô: AD/AS, tăng trưởng, chu kỳ và chính sách",
+          days: [1323, 1325] as [number, number],
+          extraLessonIds: [1224, 1225],
+        },
+        {
+          name: "Kinh tế quốc tế và đọc chỉ báo vĩ mô",
+          days: [1326, 1326] as [number, number],
+          extraLessonIds: [1226, 1227, 1258],
+        },
+      ],
+    },
+    {
+      // The whole Track 2 spine assumes a non-financial company, so it breaks
+      // silently on banks - the largest sector on the local market. 1401-1402
+      // are new; the rest already existed but were reachable only by learners
+      // who happened to pick the credit-analyst or compliance career path.
+      label: "Chặng 18",
+      name: "Ngân hàng, tín dụng và tuân thủ",
+      days: [1401, 1402] as [number, number],
+      extraLessonIds: [1218, 1222, 1248, 1253, 1254, 1256, 1281, 1282, 1283],
+      available: true,
+      isNew: true,
+      parts: [
+        { name: "Đọc và định giá một ngân hàng", days: [1401, 1402] as [number, number] },
+        {
+          name: "Tín dụng: thẩm định, chấm điểm và vốn",
+          days: [0, 0] as [number, number],
+          extraLessonIds: [1218, 1222, 1256],
+        },
+        {
+          name: "Tuân thủ, kiểm soát nội bộ và mô hình kinh doanh mới",
+          days: [0, 0] as [number, number],
+          extraLessonIds: [1248, 1253, 1254, 1281, 1282, 1283],
+        },
+      ],
+    },
+    {
+      // Chặng 9 stops at "what is an option". 1411-1414 answer the question
+      // every practitioner hits next - where the price comes from and what the
+      // position is sensitive to - and 1216/1217/1223 (previously career-path
+      // only) are the risk-management half of the same subject.
+      label: "Chặng 19",
+      name: "Định giá phái sinh và quản trị rủi ro thị trường",
+      days: [1411, 1414] as [number, number],
+      extraLessonIds: [1216, 1217, 1223],
+      available: true,
+      isNew: true,
+      parts: [
+        { name: "Định giá quyền chọn: từ không-arbitrage đến Greeks", days: [1411, 1414] as [number, number] },
+        {
+          name: "Đo lường và quản trị rủi ro thị trường",
+          days: [0, 0] as [number, number],
+          extraLessonIds: [1216, 1217, 1223],
+        },
+      ],
+    },
+    {
+      // Nine finished lessons that no learner following Track 2 in order ever
+      // met. Grouped here by what a buy-side analyst actually does end to end:
+      // research process, market plumbing, then the asset classes where the
+      // standard DCF/multiples toolkit does not apply.
+      label: "Chặng 20",
+      name: "Buy-side: quy trình nghiên cứu và định giá chuyên sâu",
+      days: [0, 0] as [number, number],
+      extraLessonIds: [1215, 1219, 1220, 1221, 1245, 1246, 1286, 1288, 1289],
+      available: true,
+      isNew: true,
+      parts: [
+        {
+          name: "Quy trình quỹ, luận điểm đầu tư và chiến lược định lượng",
+          days: [0, 0] as [number, number],
+          extraLessonIds: [1221, 1245, 1246, 1215],
+        },
+        {
+          name: "Cơ chế thị trường và công cụ",
+          days: [0, 0] as [number, number],
+          extraLessonIds: [1288, 1289],
+        },
+        {
+          name: "Định giá tài sản đặc thù: bất động sản, vô hình, REIT",
+          days: [0, 0] as [number, number],
+          extraLessonIds: [1219, 1220, 1286],
+        },
+      ],
+    },
+    {
+      // Same story: eight lessons covering the advisory/insurance side of the
+      // industry, previously visible only through two career paths.
+      label: "Chặng 21",
+      name: "Quản lý gia sản và bảo hiểm",
+      days: [0, 0] as [number, number],
+      extraLessonIds: [1232, 1233, 1234, 1249, 1255, 1284, 1285, 1287],
+      available: true,
+      isNew: true,
+      parts: [
+        {
+          name: "Quy trình hoạch định tài chính cho khách hàng",
+          days: [0, 0] as [number, number],
+          extraLessonIds: [1249, 1284, 1285, 1287],
+        },
+        {
+          name: "Bảo hiểm: định phí, tư vấn nhu cầu và quy định",
+          days: [0, 0] as [number, number],
+          extraLessonIds: [1255, 1232, 1233, 1234],
+        },
+      ],
+    },
+    {
+      label: "Chặng 22",
+      name: "Phương pháp định lượng (Quantitative Methods)",
+      days: [1421, 1426] as [number, number],
+      available: true,
+      isNew: true,
+      parts: [
+        { name: "Phân phối, mẫu và suy diễn thống kê", days: [1421, 1423] as [number, number] },
+        { name: "Hồi quy, chuỗi thời gian và kiểm chứng ngoài mẫu", days: [1424, 1426] as [number, number] },
+      ],
+    },
+    {
+      // Chặng 15 deliberately teaches modelling judgment in prose and says so.
+      // This is the execution half that recruiting actually tests.
+      label: "Chặng 23",
+      name: "Excel và dữ liệu cho phân tích tài chính",
+      days: [1431, 1436] as [number, number],
+      available: true,
+      isNew: true,
+      parts: [
+        { name: "Bàn phím, hàm tra cứu và dựng mô hình trong Excel", days: [1431, 1433] as [number, number] },
+        { name: "Kiểm tra, làm sạch dữ liệu và SQL", days: [1434, 1436] as [number, number] },
+      ],
+    },
+    {
+      // Track 2 dạy kế toán và thuế ở mức nguyên lý phổ quát. Hai lỗ hổng bối
+      // cảnh: không bài nào nói VAS khác IFRS ở đâu (trong khi doanh nghiệp
+      // niêm yết đang chuyển đổi), và tám bài thuế hiện có đều là thuế TNCN
+      // của track cá nhân - không bài nào về thuế doanh nghiệp.
+      label: "Chặng 24",
+      name: "Chuẩn mực kế toán và thuế doanh nghiệp Việt Nam",
+      days: [1441, 1445] as [number, number],
+      available: true,
+      isNew: true,
+      parts: [
+        { name: "VAS, IFRS và chuyển đổi chuẩn mực", days: [1441, 1442] as [number, number] },
+        { name: "Thuế doanh nghiệp và thuế hoãn lại", days: [1443, 1445] as [number, number] },
+      ],
+    },
+    {
+      label: "Chặng 25",
+      name: "Thị trường chứng khoán Việt Nam",
+      days: [1451, 1454] as [number, number],
+      available: true,
+      isNew: true,
+      parts: [
+        { name: "Cơ chế giao dịch và dòng vốn ngoại", days: [1451, 1452] as [number, number] },
+        { name: "Trái phiếu doanh nghiệp và quản trị công ty", days: [1453, 1454] as [number, number] },
+      ],
+    },
+    {
+      // Chặng 19 dạy phòng hộ tỷ giá ở mức công cụ và Chặng 17 dạy dòng vốn
+      // quốc tế ở mức vĩ mô, nhưng phần nối hai thứ đó - quan hệ ngang giá và
+      // hệ quả của chúng lên mô hình định giá - thì chưa có bài nào.
+      label: "Chặng 26",
+      name: "Tài chính quốc tế",
+      days: [1461, 1464] as [number, number],
+      available: true,
+      isNew: true,
+      parts: [
+        { name: "Quan hệ ngang giá: lãi suất và sức mua", days: [1461, 1462] as [number, number] },
+        { name: "Định giá xuyên biên giới và rủi ro tỷ giá trên báo cáo", days: [1463, 1464] as [number, number] },
+      ],
+    },
+    {
+      // App đã có bài về phía thương vụ (PE là gì, VC là gì, cap table, LBO).
+      // Chặng này bổ sung phía quỹ: tiền của ai, nhà quản lý được trả thế nào,
+      // và vì sao hiệu suất quỹ đóng cần bộ chỉ số riêng.
+      label: "Chặng 27",
+      name: "Private markets: cấu trúc và hiệu suất quỹ PE/VC",
+      days: [1471, 1474] as [number, number],
+      available: true,
+      isNew: true,
+      parts: [
+        { name: "Cấu trúc quỹ và cơ chế phân phối lợi nhuận", days: [1471, 1472] as [number, number] },
+        { name: "Đo hiệu suất và thoái vốn", days: [1473, 1474] as [number, number] },
+      ],
+    },
+    {
+      // Trang /phong-van-ky-thuat có ngân hàng câu hỏi nhưng không có bài học
+      // nào dạy phần kỹ năng đứng sau nó.
+      label: "Chặng 28",
+      name: "Kỹ năng nghề phân tích tài chính",
+      days: [1481, 1484] as [number, number],
+      available: true,
+      isNew: true,
+      parts: [
+        { name: "Viết memo và bảo vệ luận điểm", days: [1481, 1482] as [number, number] },
+        { name: "Bài kiểm tra dựng mô hình và lộ trình nghề", days: [1483, 1484] as [number, number] },
+      ],
+    },
   ] satisfies Stage[],
 };
 
+// A professional stage only renders on the dashboard if some branch lists its
+// label (DashboardClient filters track.stages by the active branch), so every
+// stage added above must appear in exactly one branch here or it is invisible
+// to learners - which is what had silently happened to Chặng 14, 15 and 16.
 export const PROFESSIONAL_BRANCHES = [
   {
     id: "corporate",
     label: "Tài chính doanh nghiệp",
-    subtitle: "Kế toán, báo cáo tài chính, định giá & tài chính doanh nghiệp",
+    subtitle: "Kế toán, báo cáo tài chính, định giá, vận hành vốn & mô hình tài chính",
     emoji: "🏢",
-    stageLabels: ["Chặng 1", "Chặng 2", "Chặng 3", "Chặng 4", "Chặng 5", "Chặng 11"],
+    stageLabels: ["Chặng 1", "Chặng 2", "Chặng 3", "Chặng 4", "Chặng 5", "Chặng 11", "Chặng 15", "Chặng 24"],
   },
   {
     id: "investment",
     label: "Tài chính đầu tư",
-    subtitle: "Cổ phiếu, trái phiếu, danh mục đầu tư & phái sinh",
+    subtitle: "Cổ phiếu, trái phiếu, danh mục, phái sinh, kinh tế học & quy trình buy-side",
     emoji: "📈",
-    stageLabels: ["Chặng 6", "Chặng 7", "Chặng 8", "Chặng 9", "Chặng 10", "Chặng 12"],
+    stageLabels: [
+      "Chặng 6",
+      "Chặng 7",
+      "Chặng 8",
+      "Chặng 9",
+      "Chặng 10",
+      "Chặng 12",
+      "Chặng 14",
+      "Chặng 16",
+      "Chặng 17",
+      "Chặng 19",
+      "Chặng 20",
+      "Chặng 25",
+      "Chặng 26",
+      "Chặng 27",
+    ],
+  },
+  {
+    id: "banking",
+    label: "Ngân hàng, bảo hiểm & tư vấn",
+    subtitle: "Đọc và định giá ngân hàng, tín dụng, tuân thủ, quản lý gia sản & bảo hiểm",
+    emoji: "🏦",
+    stageLabels: ["Chặng 18", "Chặng 21"],
+  },
+  {
+    id: "quant",
+    label: "Định lượng & dữ liệu",
+    subtitle: "Thống kê, hồi quy, chuỗi thời gian, Excel và SQL cho phân tích",
+    emoji: "📊",
+    stageLabels: ["Chặng 22", "Chặng 23"],
+  },
+  {
+    id: "craft",
+    label: "Kỹ năng nghề",
+    subtitle: "Viết memo, bảo vệ luận điểm, bài kiểm tra dựng mô hình và lộ trình nghề nghiệp",
+    emoji: "💼",
+    stageLabels: ["Chặng 28"],
   },
   {
     id: "ai",
