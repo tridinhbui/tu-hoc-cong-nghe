@@ -58,6 +58,7 @@ export default function TechnicalInterviewPage() {
   const [userId, setUserId] = useState<string | null>(null);
   const [mode, setMode] = useState<Mode>("technical");
   const [difficulty, setDifficulty] = useState<QuizDifficulty>("tat-ca");
+  const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
   const [stage, setStage] = useState<Stage>("setup");
   const [questions, setQuestions] = useState<ChallengeQuestion[]>([]);
   const [activeQ, setActiveQ] = useState(0);
@@ -91,18 +92,22 @@ export default function TechnicalInterviewPage() {
       const res = await fetch(`/api/knowledge-challenge?track=ib&difficulty=${effectiveDifficulty}`);
       if (!res.ok) throw new Error("failed");
       const data = await res.json();
-      if (!data.questions || data.questions.length === 0) {
+      let pool: ChallengeQuestion[] = data.questions || [];
+      if (selectedCategory) {
+        pool = pool.filter((q) => q.lessonTitle.toLowerCase().includes(selectedCategory.toLowerCase()));
+      }
+      if (!pool || pool.length === 0) {
         setStage("empty");
         return;
       }
-      setQuestions(data.questions);
-      setResults(new Array(data.questions.length).fill(false));
+      setQuestions(pool);
+      setResults(new Array(pool.length).fill(false));
       setStage("ready");
     } catch (error) {
       console.error("Error loading technical interview drill:", error);
       setStage("error");
     }
-  }, [difficulty]);
+  }, [difficulty, selectedCategory]);
 
   const q = questions[activeQ];
   const allDone = submitted && activeQ === questions.length - 1;
@@ -250,19 +255,39 @@ export default function TechnicalInterviewPage() {
                       really made of, so a learner can see coverage instead of
                       a single opaque number. */}
                   <div className="mt-5">
-                    <p className="text-[10px] font-black uppercase tracking-wider text-stone-400 dark:text-stone-500 mb-2">
-                      Các section trong bộ câu hỏi
-                    </p>
-                    <div className="flex flex-wrap gap-1.5">
-                      {categoryCounts.map((c) => (
-                        <span
-                          key={c.label}
-                          className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full border border-stone-200 dark:border-stone-800 bg-stone-50 dark:bg-stone-950 text-[11px] font-bold text-stone-600 dark:text-stone-300"
+                    <div className="flex items-center justify-between mb-2">
+                      <p className="text-[10px] font-black uppercase tracking-wider text-stone-400 dark:text-stone-500">
+                        Luyện theo từng chủ đề chuyên sâu
+                      </p>
+                      {selectedCategory && (
+                        <button
+                          type="button"
+                          onClick={() => setSelectedCategory(null)}
+                          className="text-[11px] font-bold text-amber-600 dark:text-amber-400 hover:underline cursor-pointer"
                         >
-                          {c.label}
-                          <span className="text-stone-400 dark:text-stone-500">· {c.count}</span>
-                        </span>
-                      ))}
+                          Xóa bộ lọc (Hiện tất cả)
+                        </button>
+                      )}
+                    </div>
+                    <div className="flex flex-wrap gap-1.5">
+                      {categoryCounts.map((c) => {
+                        const isCatSelected = selectedCategory === c.label;
+                        return (
+                          <button
+                            key={c.label}
+                            type="button"
+                            onClick={() => setSelectedCategory(isCatSelected ? null : c.label)}
+                            className={`inline-flex items-center gap-1 px-3 py-1.5 rounded-full border text-xs font-bold transition-all cursor-pointer ${
+                              isCatSelected
+                                ? "border-amber-500 bg-amber-400 text-stone-950 shadow-xs font-black"
+                                : "border-stone-200 dark:border-stone-800 bg-stone-50 dark:bg-stone-950 text-stone-600 dark:text-stone-300 hover:border-stone-300 dark:hover:border-stone-700"
+                            }`}
+                          >
+                            {c.label}
+                            <span className={isCatSelected ? "text-stone-950 font-extrabold" : "text-stone-400 dark:text-stone-500"}>· {c.count}</span>
+                          </button>
+                        );
+                      })}
                     </div>
                   </div>
                 </div>
