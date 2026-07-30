@@ -1315,52 +1315,52 @@ export const IB_QUESTION_OVERRIDES: Record<number, IbQuestionOverride> = {
   // ── Valuation - Advanced ──────────────────────────────────────────────
   260: {
     options: [
-      "Broadly the same methodologies, but you use P/E and P/BV rather than EV-based multiples because banks have unusual capital structures, and you lean on bank-specific metrics such as Net Asset Value and a dividend discount model rather than a standard DCF.",
+      "P/E and P/BV rather than EV-based multiples, bank-specific metrics like Net Asset Value, and a dividend discount model rather than a DCF.",
       "Exactly the same as any other company - the methodologies are indifferent to industry, which is what makes them general-purpose.",
-      "Only a liquidation valuation applies, because a bank's value is entirely the sum of the loans on its balance sheet.",
-      "You use EV/EBITDA exclusively, since interest is the bank's core revenue line and must stay inside the metric.",
+      "Only a liquidation valuation applies, because a bank's value is entirely the sum of the loans sitting on its balance sheet.",
+      "You use EV/EBITDA exclusively, since interest is the bank's core revenue line and has to stay inside the metric.",
     ],
     correct: 0,
   },
   261: {
     options: [
-      "You use public company comparables only, pick the most relevant multiple to estimate Enterprise Value, work back to Equity Value, then apply an IPO discount of roughly 10-15% and divide by the post-offering share count to get the price per share.",
-      "You run all three methodologies and average them, since an IPO price has to be defensible from every angle.",
-      "You use precedent transactions only, because an IPO is a sale of the company and should be priced off comparable sales.",
-      "You take the last private funding round's valuation and apply the market's average one-year return to it.",
+      "Public comparables only: estimate Enterprise Value from the chosen multiple, back into Equity Value, then divide by new shares.",
+      "You run all three methodologies and average them, since an IPO price has to be defensible from every possible angle.",
+      "You use precedent transactions only, because an IPO is a sale of the company and so should be priced off genuinely comparable sales.",
+      "You take the last private funding round's valuation and apply the market's average one-year return to that figure.",
     ],
     correct: 0,
   },
   262: {
     options: [
-      "TTM = most recent fiscal year + the new partial period - the same partial period a year earlier. In April you'd take the latest fiscal year, add this year's Q1 and subtract last year's Q1.",
-      "TTM = most recent fiscal year + the new partial period, with no subtraction - the older quarter is already outside the twelve-month window.",
-      "TTM = the sum of the last four quarters reported, which is why calendarisation is only possible for companies reporting quarterly.",
-      "TTM = most recent fiscal year × the fraction of the year elapsed, annualised back up to twelve months.",
+      "TTM = most recent fiscal year + the new partial period - the same period a year earlier; in April, add Q1 and drop last Q1.",
+      "TTM = most recent fiscal year + the new partial period, with no subtraction - the older quarter is already outside the window.",
+      "TTM = the sum of the last four quarters reported, which is why calendarisation only works for companies reporting quarterly.",
+      "TTM = most recent fiscal year × the fraction of the year elapsed, then annualised back up to twelve months.",
     ],
     correct: 0,
   },
   263: {
     options: [
-      "You look at what buyers paid over the seller's undisturbed share price in comparable deals - a company trading at $10.00 acquired for $15.00 is a 50% premium - then apply the median premium from that set to your company's current share price.",
-      "You compare the buyer's share price before and after announcement, and the change is the premium paid.",
-      "You measure the gap between the deal price and the target's book value per share, which is the premium over what shareholders originally invested.",
+      "You measure what buyers paid over the seller's undisturbed share price in comparable deals, then apply the median premium.",
+      "You compare the buyer's share price before and after announcement, and the change between them is the premium paid.",
+      "You measure the gap between the deal price and the target's book value per share, which is the premium over what shareholders invested.",
       "You take the difference between the precedent EBITDA multiple and the trading EBITDA multiple, which is the premium by definition.",
     ],
     correct: 0,
   },
   264: {
     options: [
-      "You take the median historical P/E of the comparables, apply it to your company's forward projected EPS to get a future share price, then discount that back to today at the Cost of Equity.",
-      "You project the share price forward using the company's historical share price growth rate, with no discounting - the forecast is already in today's money.",
+      "Take the median historical P/E of the comparables, apply it to forward EPS, then discount back at the Cost of Equity.",
+      "You project the share price forward using the company's historical share price growth rate, with no discounting applied.",
       "You apply the forward P/E of the comparables to the company's trailing EPS, which removes the need to forecast anything.",
-      "You discount projected free cash flows at the WACC, which is what produces the implied future share price.",
+      "You discount projected free cash flows at the WACC, which is what actually produces the implied future share price.",
     ],
     correct: 0,
   },
   265: {
     options: [
-      "Every seller in an M&A premiums analysis must be public, since you need an unaffected share price to measure a premium against, and the set is usually much broader with looser industry and financial screens than a precedent transactions set.",
+      "Every seller must be public, since you need an unaffected share price, and the set is broader with looser screens.",
       "M&A premiums analysis uses only private sellers, since public deals already have the premium reflected in the share price.",
       "The selection criteria are identical - the two analyses differ only in what you compute from the same set of deals.",
       "M&A premiums analysis uses a much narrower set, typically three to five deals, because premiums vary too widely to average across many.",
@@ -1369,43 +1369,43 @@ export const IB_QUESTION_OVERRIDES: Record<number, IbQuestionOverride> = {
   },
   266: {
     options: [
-      "You value each division against its own comparables and transactions, derive a separate multiple for each, and add the division values together to reach the total for the company.",
+      "Value each division against its own comparables, derive a multiple for each, then add the division values together.",
       "You value the company as a whole and then allocate that total across divisions in proportion to their EBITDA contribution.",
       "You apply the parent company's blended multiple to each division's EBITDA, which keeps the analysis internally consistent.",
-      "You value only the largest division and treat the rest as non-operating assets carried at book value.",
+      "You value only the largest division and treat all the rest as non-operating assets carried at book value.",
     ],
     correct: 0,
   },
   267: {
     options: [
-      "You value them on the tax they'll save in future years and discount those savings back to today. Either assume the NOLs offset taxable income until exhausted, or apply the Section 382 annual limit in an acquisition.",
-      "You add the full face value of the NOL balance to Enterprise Value, since it is a tax asset the acquirer receives on closing and can draw against immediately.",
-      "You ignore them entirely - NOLs are a tax attribute disclosed in the footnotes and never bear on the valuation of the underlying operating business.",
-      "You subtract the NOL balance from Enterprise Value, because accumulated losses represent value the company has already destroyed and will never recover.",
+      "Value them on the tax they'll save in future years and discount those savings back; or apply the Section 382 annual limit.",
+      "You add the full face value of the NOL balance to Enterprise Value, since the acquirer receives it at closing.",
+      "You ignore them entirely - NOLs are a footnote disclosure and never bear on the valuation of the operating business.",
+      "You subtract the NOL balance from Enterprise Value, because accumulated losses represent value already destroyed.",
     ],
     correct: 0,
   },
   268: {
     options: [
-      "Either the report with the most detailed breakdown, or the one whose numbers sit in the middle of the range. You specifically do not pick reports based on which bank published them, including your own.",
+      "Either the most detailed report, or the one whose numbers sit mid-range - never by which bank published it.",
       "You always use your own bank's equity research, since that is the house view your team is expected to represent.",
       "You use the most bullish report available, because it produces the strongest valuation to present to the client.",
-      "You average every available report, which removes analyst bias from the projections entirely.",
+      "You average every available report together, which strips analyst bias out of the projections entirely.",
     ],
     correct: 0,
   },
   269: {
     options: [
-      "Search the financial press and press releases, look at equity research covering the buyer around the announcement for analyst estimates of the seller's numbers, and check paid sources like Capital IQ and FactSet.",
+      "Search the financial press, look at equity research on the buyer around announcement, and check Capital IQ or FactSet.",
       "Estimate the missing figures by applying the buyer's own margins to the seller's revenue, which is the standard approximation.",
       "Drop those transactions from the set - a precedent with incomplete data cannot be used under any circumstances.",
-      "Use the seller's book value in place of EBITDA, since the two are close enough for screening purposes.",
+      "Use the seller's book value in place of EBITDA, since the two are close enough for screening purposes here.",
     ],
     correct: 0,
   },
   270: {
     options: [
-      "Usually TTM for both, then one or two years forward. You're more willing to look further back and further forward for public comparables; for precedent transactions going more than a year forward is odd, because the information is more limited.",
+      "Usually TTM for both, then one or two years forward; you look further out for comparables than for precedents.",
       "Five years back and five years forward for both, to smooth out any cyclicality in the underlying businesses.",
       "Only the most recent fiscal year for both - trailing twelve month figures mix reporting periods and aren't comparable.",
       "Forward-only for both sets, since valuation is about future performance and historical multiples are irrelevant.",
@@ -1414,25 +1414,25 @@ export const IB_QUESTION_OVERRIDES: Record<number, IbQuestionOverride> = {
   },
   271: {
     options: [
-      "Nothing forbids it, but it can mislead: arithmetic alone tends to give the 40% margin company the lower multiple whether or not it's genuinely worth less. You'd consider screening on margins and removing the outliers.",
+      "Nothing forbids it, but arithmetic tends to give the 40% margin company the lower multiple regardless of value.",
       "The 40% margin company is clearly undervalued at 8x, so the comparison correctly identifies a buying opportunity.",
-      "Nothing at all - multiples are margin-neutral by construction, which is the whole point of using EV/EBITDA.",
-      "The problem is that one uses Enterprise Value and the other Equity Value, which is what creates the 2x gap.",
+      "Nothing at all - multiples are margin-neutral by construction, which is the whole point of using EV/EBITDA here.",
+      "The problem is that one uses Enterprise Value and the other Equity Value, which is what creates the whole 2x gap.",
     ],
     correct: 0,
   },
   272: {
     options: [
-      "Same methodologies plus industry multiples like P/MCFE and P/NAV; you forecast commodity prices and reserves to build revenue, and use a Net Asset Value model running reserves to depletion rather than a standard DCF.",
-      "Exactly the same as a standard company, since oil and gas producers report under the same accounting rules as every other listed business.",
-      "Only a DCF applies here, because volatile commodity prices make every trading comparable and precedent transaction meaningless.",
-      "You value it purely on proven reserves at the current spot price, with no discounting for the years it takes to extract and sell them.",
+      "Same methodologies plus P/MCFE and P/NAV; you forecast commodity prices and reserves, and use a NAV model rather than a DCF.",
+      "Exactly the same as a standard company, since oil and gas producers report under the same accounting rules.",
+      "Only a DCF applies, because volatile commodity prices make trading comparables and precedents meaningless.",
+      "You value it purely on proven reserves at the current spot price, with no discounting for extraction time.",
     ],
     correct: 0,
   },
   273: {
     options: [
-      "You use Price/FFO and Price/AFFO, which add back depreciation and strip out gains on property sales, alongside Net Asset Value - because real estate is asset-intensive and value depends on the cash flow specific properties generate.",
+      "Price/FFO and Price/AFFO, which add back depreciation and strip out property sale gains, alongside Net Asset Value.",
       "You use EV/EBITDA exclusively, since property companies are simply capital-intensive operating businesses.",
       "You value a REIT purely on its dividend yield, because REITs are legally required to distribute their income.",
       "You use book value of the property portfolio, since real estate is carried on the balance sheet at market value.",
@@ -1735,7 +1735,7 @@ export const IB_QUESTION_OVERRIDES: Record<number, IbQuestionOverride> = {
   // ── Discounted Cash Flow - Advanced ───────────────────────────────────
   306: {
     options: [
-      "Because cash flow arrives evenly through the year rather than all on the last day. Without it you discount at periods 1, 2, 3...; with it you use 0.5, 1.5, 2.5..., which raises the valuation slightly.",
+      "Because cash flow arrives evenly through the year rather than all on the last day, so periods become 0.5, 1.5, 2.5.",
       "Because cash flow arrives entirely in the second half of the year for most businesses, so the periods shift from 1, 2, 3 to 1.5, 2.5, 3.5.",
       "Because it corrects for inflation between the valuation date and the mid-point of each projected year, which discounting alone misses.",
       "Because the first projected year is usually a partial year, so every subsequent period must be shifted by half a year to compensate.",
@@ -1744,25 +1744,25 @@ export const IB_QUESTION_OVERRIDES: Record<number, IbQuestionOverride> = {
   },
   307: {
     options: [
-      "Halve the stub period, then subtract 0.5 from each of the normal future periods. A Q4 stub whose normal periods run 0.25, 1.25, 2.25, 3.25 becomes 0.125, 0.75, 1.75, 2.75.",
+      "Halve the stub discount period, then subtract 0.5 from each of the normal future periods that follow.",
       "Halve every period including the future ones, so normal periods of 0.25, 1.25, 2.25, 3.25 become 0.125, 0.625, 1.125, 1.625.",
       "Leave the stub at 0.25 and subtract 0.5 from the future years only, giving periods of 0.25, 0.75, 1.75, 2.75.",
-      "Add 0.5 to the stub and leave the future periods unchanged, since the stub is the only partial period anywhere in the model.",
+      "Add 0.5 to the stub and leave the future periods unchanged, since the stub is the only partial period in the model.",
     ],
     correct: 0,
   },
   308: {
     options: [
-      "It differs by method. With the Multiples Method you add 0.5 back to the final-year discount period, because you're assuming a sale at year end. With Gordon Growth you use the final-year period as-is, since cash flows keep arriving through the year in perpetuity.",
+      "It differs by method: Multiples adds 0.5 to the final-year period; Gordon Growth uses the final-year period as-is.",
       "You add 0.5 back under both methods, since the Terminal Value is always realised at the end of the final year.",
-      "You use the final-year period unchanged under both methods - the mid-year convention applies only to the projected cash flows, never to the Terminal Value.",
-      "With the Multiples Method you use the period as-is and with Gordon Growth you add 0.5, because a perpetuity is valued from the year's midpoint.",
+      "You use the final-year period unchanged under both methods - mid-year applies only to the projected cash flows.",
+      "With Multiples you use the period as-is and with Gordon Growth you add 0.5, since a perpetuity starts mid-year.",
     ],
     correct: 0,
   },
   309: {
     options: [
-      "From Enterprise Value, add cash and subtract debt, preferred stock, minority interest and other debt-like items to get Equity Value; then divide by a diluted share count that is circular, because the options and warrants that dilute depend on the share price you're solving for.",
+      "Add cash and subtract debt, preferred and minority interest to get Equity Value, then divide by a circular diluted share count.",
       "From Enterprise Value, subtract cash and add debt to reach Equity Value, then divide by the basic shares outstanding.",
       "Divide Enterprise Value directly by the fully diluted share count - the debt and cash adjustments are already inside the discounted cash flows.",
       "From Enterprise Value, add cash and subtract debt, then divide by basic shares outstanding; options are excluded because they haven't been exercised yet.",
@@ -1771,7 +1771,7 @@ export const IB_QUESTION_OVERRIDES: Record<number, IbQuestionOverride> = {
   },
   310: {
     options: [
-      "Same mechanics as a DCF but on dividends: project earnings down to EPS, apply a payout ratio to get dividends per share, discount those at the Cost of Equity, add a terminal value based on a P/E multiple, and the result is Equity Value per share.",
+      "Same mechanics but on dividends: project EPS, apply a payout ratio, discount at the Cost of Equity, add a P/E terminal value.",
       "Same mechanics as a DCF but on dividends, discounted at WACC rather than the Cost of Equity, producing Enterprise Value.",
       "Project total dividends paid, discount them at the risk-free rate since dividends are contractually committed, and add the book value of equity.",
       "Project free cash flow as normal, then multiply the result by the dividend payout ratio to isolate the shareholders' portion.",
@@ -1780,7 +1780,7 @@ export const IB_QUESTION_OVERRIDES: Record<number, IbQuestionOverride> = {
   },
   311: {
     options: [
-      "It depends on moneyness. In-the-money convertible debt isn't counted as debt - it's treated as dilution, raising Equity Value. Out-of-the-money, you do count it as debt and use the convertible's interest rate for Cost of Debt.",
+      "It depends on moneyness: in-the-money counts as dilution rather than debt; out-of-the-money counts as debt.",
       "Yes, always count it as debt - it is a debt instrument until conversion actually happens, regardless of the share price.",
       "No, never count it as debt - convertibles are equity-linked, so they always belong in the equity portion of the capital structure.",
       "You split it in proportion to the conversion probability, weighting part as debt and part as equity in the Beta calculation.",
@@ -1789,10 +1789,10 @@ export const IB_QUESTION_OVERRIDES: Record<number, IbQuestionOverride> = {
   },
   312: {
     options: [
-      "Add $100 of CapEx in year 4, which cuts that year's Free Cash Flow by $100. Enterprise Value falls by the present value of that reduction - $100 ÷ (1 + discount rate)^4 - so the new Enterprise Value is $200 minus that amount.",
-      "Subtract the full $100 from Enterprise Value, giving $100, since the cash leaves the business regardless of when it happens.",
-      "Add $100 of CapEx in year 4 and subtract $100 from the Terminal Value as well, to reflect the asset being carried forward.",
-      "Make no change - a factory purchase is an investing activity, and Enterprise Value is unaffected by how the company deploys its cash.",
+      "Add $100 of CapEx in year 4; Enterprise Value falls by $100 ÷ (1 + discount rate)^4, taking it below the $200.",
+      "Subtract the full $100 from Enterprise Value, giving $100, since the cash leaves the business either way.",
+      "Add $100 of CapEx in year 4 and subtract $100 from the Terminal Value too, for the asset carried forward.",
+      "Make no change - a factory purchase is an investing activity, and Enterprise Value is unaffected by it.",
     ],
     correct: 0,
   },
