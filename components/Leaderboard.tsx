@@ -51,7 +51,7 @@ function LeaderboardAvatar({ name, avatarUrl, size = 36 }: { name: string; avata
 function AvatarWithFrame({ rank, name, avatarUrl, size = 44 }: { rank: number; name: string; avatarUrl: string | null; size?: number }) {
   if (rank === 1) {
     return (
-      <div className="relative inline-flex items-center justify-center pt-3.5">
+      <div className="relative inline-flex items-center justify-center pt-5">
         {/* Golden outer aura glow */}
         <div className="absolute -inset-3 animate-pulse rounded-full bg-gradient-to-r from-amber-400 via-yellow-300 to-amber-500 opacity-80 blur-md" />
         
@@ -62,9 +62,15 @@ function AvatarWithFrame({ rank, name, avatarUrl, size = 44 }: { rank: number; n
           </div>
         </div>
 
-        {/* 👑 Prominent Floating Gold Crown */}
-        <div className="absolute -top-3.5 left-1/2 -translate-x-1/2 flex items-center justify-center rounded-full bg-gradient-to-r from-amber-500 via-yellow-400 to-amber-600 px-2 py-1 text-amber-950 shadow-lg ring-2 ring-white">
-          <Crown className="h-4 w-4 fill-amber-300 text-amber-950 animate-bounce" />
+        {/* 👑 Prominent 3D Gold Crown Trophy */}
+        <div className="absolute -top-5 left-1/2 -translate-x-1/2 flex items-center justify-center w-8 h-8 rounded-full bg-amber-950 border-2 border-amber-400 shadow-xl overflow-hidden animate-bounce">
+          <Image
+            src="/trophy-gold-3d.jpg"
+            alt="Gold Crown Trophy 3D"
+            width={32}
+            height={32}
+            className="w-full h-full object-cover"
+          />
         </div>
 
         {/* Golden Star Particle */}
@@ -77,7 +83,7 @@ function AvatarWithFrame({ rank, name, avatarUrl, size = 44 }: { rank: number; n
 
   if (rank === 2) {
     return (
-      <div className="relative inline-flex items-center justify-center pt-1.5">
+      <div className="relative inline-flex items-center justify-center pt-4">
         {/* Silver outer glow */}
         <div className="absolute -inset-2.5 rounded-full bg-gradient-to-r from-slate-300 via-slate-100 to-slate-400 opacity-70 blur-md" />
 
@@ -88,9 +94,15 @@ function AvatarWithFrame({ rank, name, avatarUrl, size = 44 }: { rank: number; n
           </div>
         </div>
 
-        {/* Floating Silver Medal Crown */}
-        <div className="absolute -top-2.5 left-1/2 -translate-x-1/2 flex items-center justify-center rounded-full bg-gradient-to-r from-slate-400 via-slate-200 to-slate-500 px-1.5 py-0.5 text-slate-900 shadow ring-2 ring-white">
-          <Medal className="h-3.5 w-3.5 text-slate-900" />
+        {/* 🛡️ 3D Silver Trophy */}
+        <div className="absolute -top-4 left-1/2 -translate-x-1/2 flex items-center justify-center w-7 h-7 rounded-full bg-slate-950 border-2 border-slate-300 shadow-lg overflow-hidden">
+          <Image
+            src="/trophy-silver-3d.jpg"
+            alt="Silver Trophy 3D"
+            width={28}
+            height={28}
+            className="w-full h-full object-cover"
+          />
         </div>
       </div>
     );
@@ -98,7 +110,7 @@ function AvatarWithFrame({ rank, name, avatarUrl, size = 44 }: { rank: number; n
 
   if (rank === 3) {
     return (
-      <div className="relative inline-flex items-center justify-center pt-1.5">
+      <div className="relative inline-flex items-center justify-center pt-4">
         {/* Bronze outer glow */}
         <div className="absolute -inset-2.5 rounded-full bg-gradient-to-r from-amber-700 via-orange-400 to-amber-800 opacity-60 blur-md" />
 
@@ -109,9 +121,15 @@ function AvatarWithFrame({ rank, name, avatarUrl, size = 44 }: { rank: number; n
           </div>
         </div>
 
-        {/* Floating Bronze Shield Badge */}
-        <div className="absolute -top-2.5 left-1/2 -translate-x-1/2 flex items-center justify-center rounded-full bg-gradient-to-r from-amber-700 via-amber-500 to-orange-700 px-1.5 py-0.5 text-amber-100 shadow ring-2 ring-white">
-          <Award className="h-3.5 w-3.5 text-amber-100" />
+        {/* 🏆 3D Bronze Chalice Trophy */}
+        <div className="absolute -top-4 left-1/2 -translate-x-1/2 flex items-center justify-center w-7 h-7 rounded-full bg-amber-950 border-2 border-amber-600 shadow-lg overflow-hidden">
+          <Image
+            src="/trophy-bronze-3d.jpg"
+            alt="Bronze Trophy 3D"
+            width={28}
+            height={28}
+            className="w-full h-full object-cover"
+          />
         </div>
       </div>
     );
