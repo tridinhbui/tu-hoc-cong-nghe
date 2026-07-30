@@ -63,6 +63,9 @@ export default function TechnicalInterviewPage() {
   // Which career's slice of the bank to drill. null = the whole technical
   // pool. Only careers the bank genuinely covers are offered.
   const [selectedCareer, setSelectedCareer] = useState<string | null>(null);
+  // Set when re-drilling a single section after a run; cleared on any fresh
+  // drill so it can't silently pin every later round to one topic.
+  const [selectedSection, setSelectedSection] = useState<string | null>(null);
   const [stage, setStage] = useState<Stage>("setup");
   const [questions, setQuestions] = useState<ChallengeQuestion[]>([]);
   const [activeQ, setActiveQ] = useState(0);
@@ -108,8 +111,9 @@ export default function TechnicalInterviewPage() {
     supabase.auth.getUser().then(({ data }) => setUserId(data.user?.id ?? null));
   }, [supabase]);
 
-  const startQuiz = useCallback(async (overrideDifficulty?: QuizDifficulty) => {
+  const startQuiz = useCallback(async (overrideDifficulty?: QuizDifficulty, overrideSection?: string | null) => {
     const effectiveDifficulty = overrideDifficulty ?? difficulty;
+    setSelectedSection(overrideSection ?? null);
     setStage("loading");
     setActiveQ(0);
     setSelected(null);
@@ -123,8 +127,9 @@ export default function TechnicalInterviewPage() {
       // response client-side left almost nothing - and matching a Vietnamese
       // career title against an English `lessonTitle` matched nothing at all.
       const careerParam = selectedCareer ? `&career=${encodeURIComponent(selectedCareer)}` : "";
+      const sectionParam = overrideSection ? `&section=${encodeURIComponent(overrideSection)}` : "";
       const res = await fetch(
-        `/api/knowledge-challenge?track=ib&difficulty=${effectiveDifficulty}${careerParam}`
+        `/api/knowledge-challenge?track=ib&difficulty=${effectiveDifficulty}${careerParam}${sectionParam}`
       );
       if (!res.ok) throw new Error("failed");
       const data = await res.json();
@@ -141,6 +146,27 @@ export default function TechnicalInterviewPage() {
       setStage("error");
     }
   }, [difficulty, selectedCareer]);
+
+  /** Sections the learner got wrong in this run, most-missed first. The
+   *  category is parsed out of `lessonTitle`, which the API formats as
+   *  "IB Question Bank · <category>". */
+  const missedSections = useMemo(() => {
+    const counts = new Map<string, number>();
+    questions.forEach((question, i) => {
+      if (results[i]) return;
+      const label = question.lessonTitle.split("·").pop()?.trim();
+      if (!label) return;
+      counts.set(label, (counts.get(label) ?? 0) + 1);
+    });
+    return Array.from(counts.entries())
+      .map(([label, missed]) => ({ label, missed }))
+      .sort((a, b) => b.missed - a.missed);
+  }, [questions, results]);
+
+  const redrillSection = useCallback(
+    (label: string) => startQuiz(difficulty, label),
+    [startQuiz, difficulty]
+  );
 
   const q = questions[activeQ];
   const allDone = submitted && activeQ === questions.length - 1;
@@ -569,19 +595,32 @@ export default function TechnicalInterviewPage() {
               ))}
             </div>
 
-            {questions.some((_, i) => !results[i]) && (
-              <div className="text-left rounded-xl p-4 space-y-1.5 bg-stone-50 dark:bg-stone-950 border border-stone-200 dark:border-stone-800">
-                <p className="text-xs font-bold text-stone-500 dark:text-stone-400 uppercase tracking-wide mb-2">
-                  Deal notes cần ôn lại
+            {/* Sections missed in this run, each one clickable straight into
+                another drill of that section. This used to be a list of dead
+                <p> tags naming the category and offering nothing to do about
+                it. */}
+            {missedSections.length > 0 && (
+              <div className="text-left rounded-xl p-4 bg-stone-50 dark:bg-stone-950 border border-stone-200 dark:border-stone-800">
+                <p className="text-xs font-bold text-stone-500 dark:text-stone-400 uppercase tracking-wide mb-2.5">
+                  Section cần ôn lại
                 </p>
-                {Array.from(new Set(questions.filter((_, i) => !results[i]).map((qq) => qq.lessonId))).map((lessonId) => {
-                  const lq = questions.find((qq) => qq.lessonId === lessonId)!;
-                  return (
-                    <p key={lessonId} className="block text-sm text-stone-700 dark:text-stone-300">
-                      → {lq.lessonTitle}
-                    </p>
-                  );
-                })}
+                <div className="flex flex-wrap gap-1.5">
+                  {missedSections.map(({ label, missed }) => (
+                    <button
+                      key={label}
+                      type="button"
+                      onClick={() => void redrillSection(label)}
+                      className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full border border-amber-300 dark:border-amber-800 bg-amber-50 dark:bg-amber-950/30 text-xs font-bold text-amber-800 dark:text-amber-300 hover:bg-amber-100 dark:hover:bg-amber-950/50 transition-colors cursor-pointer"
+                    >
+                      {label}
+                      <span className="text-amber-600/80 dark:text-amber-400/80">· sai {missed}</span>
+                      <span aria-hidden>↻</span>
+                    </button>
+                  ))}
+                </div>
+                <p className="mt-2.5 text-[11px] text-stone-500 dark:text-stone-400">
+                  Bấm một section để luyện lại đúng phần đó.
+                </p>
               </div>
             )}
 

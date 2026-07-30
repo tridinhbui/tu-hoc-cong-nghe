@@ -46,6 +46,32 @@ function scoreAnswers(answers: AnswerInput[]): number {
   return score;
 }
 
+interface IbAttemptRow {
+  user_id: string;
+  question_id: number;
+  category: string;
+  correct: boolean;
+}
+
+/** One row per IB question answered, built from the *verified* token so the
+ *  category can't be forged. Answers whose token fails verification, or which
+ *  carry no category (lesson quizzes, or tokens minted before the field
+ *  existed), are skipped rather than recorded under a guessed topic. */
+function buildIbAttempts(userId: string, answers: AnswerInput[]): IbAttemptRow[] {
+  const rows: IbAttemptRow[] = [];
+  for (const answer of answers) {
+    const payload = verifyQuestionToken(answer.token);
+    if (!payload?.category || typeof payload.questionId !== "number") continue;
+    rows.push({
+      user_id: userId,
+      question_id: payload.questionId,
+      category: payload.category,
+      correct: payload.correct === answer.selected,
+    });
+  }
+  return rows;
+}
+
 export async function POST(request: NextRequest) {
   const supabase = await createServerSupabaseClient();
   const {
@@ -112,6 +138,19 @@ export async function POST(request: NextRequest) {
 
   if (error) {
     return NextResponse.json({ error: error.message }, { status: 500 });
+  }
+
+  // Per-question topic record, for the weak-areas breakdown. Deliberately
+  // after the session insert and deliberately not fatal: this is analytics,
+  // and losing it must never cost the learner their XP for the run. Also
+  // degrades quietly if the table hasn't been migrated in this environment
+  // yet, same as every other optional table in the codebase.
+  const ibAttempts = buildIbAttempts(user.id, answers);
+  if (ibAttempts.length > 0) {
+    const { error: attemptsError } = await admin.from("user_ib_question_attempts").insert(ibAttempts);
+    if (attemptsError) {
+      console.error("Error recording IB question attempts:", attemptsError.message);
+    }
   }
 
   return NextResponse.json({ score, total, xpEarned });

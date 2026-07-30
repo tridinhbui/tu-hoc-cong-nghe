@@ -2,7 +2,7 @@ import { createServerSupabaseClient } from "@/lib/supabase-server";
 import { getLessonById, getLessonsMeta } from "@/lib/lessons-loader";
 import { TRACK_PERSONAL, TRACK_PROFESSIONAL, isLessonInRange } from "@/lib/track-stages";
 import { CFA_LEVEL_1_SUBJECTS } from "@/lib/cfa-track";
-import { IB_TECHNICAL_QUESTIONS } from "@/lib/ib-question-bank";
+import { IB_TECHNICAL_QUESTIONS, formatCategoryLabel } from "@/lib/ib-question-bank";
 import { bankCoversCareer, getTechnicalQuestionsForCareer } from "@/lib/ib-question-careers";
 import { signQuestionToken } from "@/lib/quiz-tokens";
 import { NextRequest, NextResponse } from "next/server";
@@ -65,9 +65,24 @@ type IbPoolQuestion = Omit<ChallengeQuestion, "lessonSlug" | "token"> & { catego
 // uncovered career falls back to the full technical pool rather than
 // returning nothing, since a smaller relevant set is better than an empty
 // drill, and the UI already tells the learner what the bank does cover.
-function ibQuestionsForDifficulty(difficulty: string | null, career?: string | null): IbPoolQuestion[] {
-  const base =
+//
+// `section` narrows to a single category, which is what the "ôn lại section
+// này" button after a drill uses. It has to be applied here rather than by
+// filtering the response, because the pool is sliced to five questions below.
+function ibQuestionsForDifficulty(
+  difficulty: string | null,
+  career?: string | null,
+  section?: string | null
+): IbPoolQuestion[] {
+  let base =
     career && bankCoversCareer(career) ? getTechnicalQuestionsForCareer(career) : IB_TECHNICAL_QUESTIONS;
+
+  if (section) {
+    const scoped = base.filter((q) => formatCategoryLabel(q.category) === section);
+    // An unknown section falls back to the unscoped pool rather than serving
+    // an empty drill from a typo in a query string.
+    if (scoped.length > 0) base = scoped;
+  }
 
   const questions =
     difficulty && difficulty !== "tat-ca" && DIFFICULTY_LABELS[difficulty]
@@ -142,11 +157,12 @@ export async function GET(request: NextRequest) {
   const track = searchParams.get("track");
   const difficulty = searchParams.get("difficulty");
   const career = searchParams.get("career");
+  const section = searchParams.get("section");
 
   let sourceIds: number[];
 
   if (track === "ib" || track === "mock-interview") {
-    const pool = ibQuestionsForDifficulty(difficulty, career);
+    const pool = ibQuestionsForDifficulty(difficulty, career, section);
     if (pool.length === 0) {
       return NextResponse.json({ questions: [], totalAvailable: 0 });
     }
@@ -166,7 +182,16 @@ export async function GET(request: NextRequest) {
         lessonSlug: "ib-question-bank",
         options: order.map((i) => q.options[i]),
         correct,
-        token: signQuestionToken({ lessonId: q.lessonId, correct }),
+        // Category rides along inside the signed token rather than being
+        // sent back by the client, so the per-topic record the submit route
+        // writes can't be forged to hide a weak area. `lessonId` is the
+        // negated bank id (see above), so flip it back for questionId.
+        token: signQuestionToken({
+          lessonId: q.lessonId,
+          correct,
+          category: q.category,
+          questionId: -q.lessonId,
+        }),
       };
     });
     return NextResponse.json({ questions, totalAvailable: pool.length });

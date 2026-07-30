@@ -14,9 +14,18 @@ import { createHmac, timingSafeEqual } from "crypto";
 // Reuses SUPABASE_SERVICE_ROLE_KEY as the HMAC secret - it's already a
 // server-only secret never sent to the browser, so no new env var is
 // required for this to work.
-interface QuestionTokenPayload {
+export interface QuestionTokenPayload {
   lessonId: number;
   correct: number;
+  /** IB question bank category, carried so the submit route can record which
+   *  topic each answer belonged to - the client never sends this, so it can't
+   *  be forged to make a weak area look strong. Optional: lesson quizzes have
+   *  no category, and tokens minted before this field existed must still
+   *  verify rather than scoring every in-flight answer as wrong. */
+  category?: string;
+  /** The bank question's own id, so an attempt can be traced back to the
+   *  exact question. Only set for IB questions. */
+  questionId?: number;
 }
 
 function getSecret(): string {
@@ -50,7 +59,9 @@ export function verifyQuestionToken(token: string): QuestionTokenPayload | null 
     const payload = JSON.parse(Buffer.from(body, "base64url").toString());
     if (
       typeof payload?.lessonId === "number" &&
-      typeof payload?.correct === "number"
+      typeof payload?.correct === "number" &&
+      (payload.category === undefined || typeof payload.category === "string") &&
+      (payload.questionId === undefined || typeof payload.questionId === "number")
     ) {
       return payload;
     }
