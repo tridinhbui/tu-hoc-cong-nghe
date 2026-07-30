@@ -1091,15 +1091,15 @@ export default function DashboardClient({ lessonsMeta }: { lessonsMeta: LessonMe
             );
           })()}
 
-        <div className="grid grid-cols-1 lg:grid-cols-10 gap-4 sm:gap-5 items-start min-w-0">
+        <div className="grid grid-cols-1 xl:grid-cols-10 gap-4 sm:gap-5 items-start min-w-0">
 
-          {/* Left Column: Learning Path (7 columns on desktop) */}
+          {/* Left Column: Learning Path (7 columns on desktop xl+) */}
           {/* min-h keeps this column's height roughly stable across track
               switches (CFA's content is much shorter than the 10-stage
               accordion) - without it, the sticky right sidebar (below)
               visibly jumps/flashes as the browser recalculates its
               scrollable range every time this column's height changes. */}
-          <div className="lg:col-span-7 space-y-5 min-w-0 lg:min-h-[1320px]">
+          <div className="xl:col-span-7 space-y-5 min-w-0 xl:min-h-[1320px]">
 
             {/* Resume Learning Card */}
             <div data-tour="resume-learning">
@@ -1987,8 +1987,8 @@ export default function DashboardClient({ lessonsMeta }: { lessonsMeta: LessonMe
         )}
       </div>
 
-          {/* Right: Cấp độ/streak/bài học, gợi ý hôm nay, thử thách tin tức, BXH (3 columns on desktop grid of 10, full width on mobile) */}
-          <div className="lg:col-span-3 lg:sticky lg:top-24 space-y-6 min-w-0">
+          {/* Right: Cấp độ/streak/bài học, gợi ý hôm nay, thử thách tin tức, BXH (3 columns on desktop xl+, full width on mobile/tablet) */}
+          <div className="xl:col-span-3 xl:sticky xl:top-24 space-y-6 min-w-0">
             {user?.id && (
               <div className="lg:aspect-square min-h-[320px]">
                 <CombinedRewardsWidget userId={user.id} defaultExpanded={true} compact />
