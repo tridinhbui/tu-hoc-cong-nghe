@@ -957,4 +957,150 @@ export const IB_QUESTION_OVERRIDES: Record<number, IbQuestionOverride> = {
     ],
     correct: 0,
   },
+
+  // ── Discounted Cash Flow - Basic ──────────────────────────────────────
+  274: {
+    options: [
+      "Project the financials out five to ten years, get down to Free Cash Flow each year, discount those back at WACC, add the discounted Terminal Value, and that sum is Enterprise Value - from which you back into implied share price.",
+      "Project the financials out five years, sum the Free Cash Flows without discounting, and add the Terminal Value to get Enterprise Value.",
+      "Take the company's current Net Income, apply the peer group's median P/E multiple, and discount the result back at the Cost of Equity.",
+      "Discount the company's projected Net Income at WACC and add back the book value of its assets to get Enterprise Value.",
+    ],
+    correct: 0,
+  },
+  275: {
+    options: [
+      "Subtract COGS and operating expenses to get EBIT, multiply by (1 - tax rate), add back depreciation and other non-cash charges, then subtract CapEx and the change in Working Capital. Starting from EBIT gives you Unlevered Free Cash Flow.",
+      "Subtract COGS and operating expenses to get EBIT, subtract interest and taxes, then add back depreciation and subtract CapEx - which gives Unlevered Free Cash Flow.",
+      "Take Revenue, subtract every cash expense including CapEx, and the remainder is Free Cash Flow with no further adjustment needed.",
+      "Take EBITDA, subtract taxes at the full statutory rate, and subtract the change in Working Capital - depreciation is already excluded so no add-back applies.",
+    ],
+    correct: 0,
+  },
+  276: {
+    options: [
+      "Take Cash Flow from Operations and subtract CapEx, which gives Levered Free Cash Flow; to reach Unlevered, add back tax-adjusted Interest Expense and subtract tax-adjusted Interest Income.",
+      "Take Cash Flow from Operations and subtract CapEx, which gives Unlevered Free Cash Flow directly since operating cash flow is already before financing.",
+      "Take EBITDA and subtract CapEx - the two adjustments cancel out, giving the same figure by either route.",
+      "Take Net Income and add back every non-cash charge; CapEx is an investing item and is excluded from Free Cash Flow entirely.",
+    ],
+    correct: 0,
+  },
+  277: {
+    options: [
+      "Because that's about as far ahead as you can forecast with any credibility - under five years is too short to be useful, and beyond ten the projections become guesswork for most companies.",
+      "Because accounting standards require projections to cover exactly five or ten years for a valuation to be admissible.",
+      "Because the Terminal Value calculation is only mathematically valid at a five or ten year horizon.",
+      "Because most debt matures within ten years, so beyond that point the capital structure can no longer be modelled.",
+    ],
+    correct: 0,
+  },
+  278: {
+    options: [
+      "Normally WACC, though you'd use Cost of Equity instead if the DCF is built on Levered Free Cash Flow.",
+      "Always the Cost of Equity, since shareholders are the residual claimants and bear the real risk.",
+      "The company's average interest rate on its outstanding debt, which is its observable cost of capital.",
+      "The risk-free rate, since using anything higher would double-count risk already in the projections.",
+    ],
+    correct: 0,
+  },
+  279: {
+    options: [
+      "Cost of Equity × (% equity) + Cost of Debt × (% debt) × (1 - tax rate) + Cost of Preferred × (% preferred), where the percentages are each component's share of the capital structure.",
+      "Cost of Equity × (% equity) + Cost of Debt × (% debt) + Cost of Preferred × (% preferred), with no tax adjustment since taxes are already in the cash flows.",
+      "The simple average of the Cost of Equity and the Cost of Debt, weighted equally regardless of the actual capital structure.",
+      "Cost of Debt × (% debt) × (1 - tax rate) only, because equity has no contractual cost and is therefore free capital.",
+    ],
+    correct: 0,
+  },
+  280: {
+    options: [
+      "Cost of Equity = Risk-Free Rate + Beta × Equity Risk Premium, where the risk-free rate is the yield on a 10- or 20-year Treasury and the equity risk premium is how much stocks are expected to outperform risk-free assets.",
+      "Cost of Equity = Risk-Free Rate × Beta + Equity Risk Premium, so a higher Beta scales the entire base return.",
+      "Cost of Equity = Dividend per Share ÷ Share Price, which is the return shareholders actually receive each year.",
+      "Cost of Equity = Risk-Free Rate + Equity Risk Premium, with Beta applied only when the company carries debt.",
+    ],
+    correct: 0,
+  },
+  281: {
+    options: [
+      "Look up each comparable company's Beta, un-lever each one, take the median of the set, then re-lever it at your company's own capital structure - and use that Levered Beta in the Cost of Equity.",
+      "Look up each comparable company's Beta and take the median directly, since Beta already reflects the industry's risk profile.",
+      "Regress your own company's historical share price against the index; comparable companies are irrelevant to your Beta.",
+      "Un-lever your own company's Beta and use that, since the unlevered figure isolates pure business risk.",
+    ],
+    correct: 0,
+  },
+  282: {
+    options: [
+      "Because published Betas are levered to reflect each company's existing debt. Un-levering strips that out to isolate business risk, and re-levering applies your company's own capital structure - keeping the comparison apples-to-apples.",
+      "Because Beta is measured against a different index for each company, and un-levering rebases them all to a common benchmark.",
+      "Because Beta drifts toward 1.0 over time, and the un-lever/re-lever step corrects for that statistical bias.",
+      "You don't have to - un-levering and re-levering is a formality that leaves the median Beta essentially unchanged.",
+    ],
+    correct: 0,
+  },
+  283: {
+    options: [
+      "A technology company, because technology is seen as a riskier industry - its returns swing more with the market than a manufacturer's do.",
+      "A manufacturing company, because heavy fixed assets and high operating leverage make earnings more volatile.",
+      "They'd be identical, since Beta measures market risk and both are exposed to the same market.",
+      "A manufacturing company, because manufacturers typically carry more debt and Beta rises with leverage.",
+    ],
+    correct: 0,
+  },
+  284: {
+    options: [
+      "You get Equity Value rather than Enterprise Value, because Levered Free Cash Flow is what's left after debt investors have been paid their interest - so only equity holders have a claim on it.",
+      "You get Enterprise Value either way; the choice between levered and unlevered only changes the discount rate, not what the output represents.",
+      "You get Enterprise Value, but understated by the amount of debt, so you add the debt back at the end to correct it.",
+      "You get Equity Value, but only if the company has no preferred stock; otherwise the result is Enterprise Value.",
+    ],
+    correct: 0,
+  },
+  285: {
+    options: [
+      "Cost of Equity rather than WACC, because you're arriving at Equity Value and debt and preferred stock are no longer part of what you're valuing.",
+      "WACC, because it is always the correct discount rate for any discounted cash flow analysis.",
+      "The after-tax Cost of Debt, since interest has already been deducted from Levered Free Cash Flow.",
+      "The risk-free rate, because levered cash flow is contractually senior and therefore close to riskless.",
+    ],
+    correct: 0,
+  },
+  286: {
+    options: [
+      "Either apply an exit multiple to the company's final-year EBITDA, EBIT or Free Cash Flow, or use Gordon Growth: final-year Free Cash Flow × (1 + growth rate) ÷ (discount rate - growth rate).",
+      "Either apply an exit multiple to final-year EBITDA, or use Gordon Growth: final-year Free Cash Flow ÷ (growth rate - discount rate).",
+      "Sum all the projected Free Cash Flows beyond the forecast period and discount that total back at the risk-free rate.",
+      "Take the company's current Enterprise Value and grow it forward at the long-term growth rate to the end of the projection period.",
+    ],
+    correct: 0,
+  },
+  287: {
+    options: [
+      "In banking you almost always use the Multiples Method, because exit multiples come from comparable companies whereas a perpetual growth rate is largely guesswork. Gordon Growth is the fallback when there are no good comparables.",
+      "Gordon Growth is the standard, because it's grounded in economic theory rather than in whatever the market happens to be paying today.",
+      "You use Gordon Growth whenever the company is growing quickly, and the Multiples Method only for mature businesses.",
+      "The two always produce the same Terminal Value when set consistently, so the choice is purely a matter of presentation.",
+    ],
+    correct: 0,
+  },
+  288: {
+    options: [
+      "Something conservative like the country's long-term GDP growth rate or the rate of inflation. In a mature economy anything above about 5% would be aggressive, since most developed economies grow more slowly than that.",
+      "The company's own historical revenue growth rate, since that is the best available evidence of how fast it can grow.",
+      "The industry's projected growth rate over the next five years, extended into perpetuity.",
+      "The discount rate minus one or two percent, which keeps the Gordon Growth denominator from becoming too small.",
+    ],
+    correct: 0,
+  },
+  289: {
+    options: [
+      "Take the median of the comparable companies, or something near it - and always present a range of exit multiples and the resulting Terminal Values rather than committing to one number.",
+      "Take the highest multiple in the comparable set, since the Terminal Value should reflect the company at its most mature and valuable.",
+      "Use the multiple the company trades at today, since that is the market's own current assessment.",
+      "Derive it from the Gordon Growth result, so the two Terminal Value methods agree by construction.",
+    ],
+    correct: 0,
+  },
 };
