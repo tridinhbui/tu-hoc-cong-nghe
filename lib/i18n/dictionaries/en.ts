@@ -58,4 +58,64 @@ export const en: Dictionary = {
     notFound: "We couldn't find what you were looking for.",
     unauthorized: "Please sign in to continue.",
   },
+
+  leaderboard: {
+    compositeScore: "Composite score",
+    totalXp: "Total XP",
+    trueMastery: "True mastery",
+    lessonsCount: "Lessons",
+    avgScore: "Avg. score",
+    streakDays: "Streak",
+    career: "Career",
+    cfaArena: "CFA arena",
+    contribution: "Contribution",
+    badgesLabel: "Badges",
+    gamer: "Gamer",
+
+    scrollLeft: "Scroll left",
+    scrollRight: "Scroll right",
+
+    eyebrowCompact: "Leaderboard",
+    titleCompact: "Leaderboard",
+    eyebrowFull: "Leaderboard honors",
+    titleFull: "Top 5 standouts",
+
+    loadingCompact: "Loading leaderboard...",
+    loadingFull: "Loading the honor roll...",
+    empty: "Not enough ranking data yet.",
+
+    nextRanks: "Next honored ranks",
+    rangeCompact: "TOP 6-20",
+    rangeFull: "HONOR ROLL #6-#20",
+
+    yourRank: "Your rank",
+    byMetricCompact: "{metric} ranking",
+    byMetricFull: "By {metric}",
+
+    compositeTitle: "A well-rounded score, weighted toward mastery",
+    compositeDescPrefix: "Out of 1000 points:",
+    compositeDescXp: "daily learning XP (login streaks don't count),",
+    compositeDescExam: "level-up exams,",
+    compositeDescAccuracy: "average quiz score,",
+    compositeDescStreak: "streak days. Only server-graded exams count.",
+    compositeLearningXp: "Learning XP",
+    compositeExamPoints: "Level exams",
+    compositeAccuracy: "Avg. score",
+    compositeStreak: "Streak",
+
+    masteryTitle: "This board favors real understanding",
+    masteryDesc:
+      "XP measures study effort; True Mastery is based on quiz scores instead, to reflect how well you actually understand the material. The next step should be a required assessment before confirming a level-up.",
+
+    units: {
+      outOf1000: "/1000",
+      xp: "XP",
+      points: "pts",
+      lessons: "lessons",
+      percent: "%",
+      days: "days",
+      interactions: "interactions",
+      honors: "badges",
+    },
+  },
 };

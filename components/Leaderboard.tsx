@@ -714,10 +714,10 @@ export default function Leaderboard({ userId, compact = false }: { userId?: stri
         {loading ? (
           <div className="mt-8 flex flex-col items-center justify-center py-10">
             <div className="h-8 w-8 animate-spin rounded-full border-4 border-amber-400 border-t-transparent" />
-            <p className="mt-3 text-xs font-semibold text-stone-500 dark:text-stone-400">Đang tải BXH...</p>
+            <p className="mt-3 text-xs font-semibold text-stone-500 dark:text-stone-400">{t.leaderboard.loadingCompact}</p>
           </div>
         ) : entries.length === 0 ? (
-          <p className="mt-6 py-8 text-center text-sm text-stone-500 dark:text-stone-400">Chưa có đủ dữ liệu xếp hạng.</p>
+          <p className="mt-6 py-8 text-center text-sm text-stone-500 dark:text-stone-400">{t.leaderboard.empty}</p>
         ) : (
           <div className={`mt-5 space-y-4 transition-opacity duration-150 ${switching ? "opacity-40" : "opacity-100"}`}>
             {/* Podium Top 5 */}
@@ -769,9 +769,9 @@ export default function Leaderboard({ userId, compact = false }: { userId?: stri
             {/* Sub-ranks #6+ Framed Cards */}
             <div className="border-t border-stone-200/80 dark:border-stone-800 pt-3">
               <div className="mb-3 flex items-center justify-between">
-                <p className="text-xs font-extrabold uppercase tracking-[0.16em] text-stone-500 dark:text-stone-400">Các vị trí vinh danh tiếp theo</p>
+                <p className="text-xs font-extrabold uppercase tracking-[0.16em] text-stone-500 dark:text-stone-400">{t.leaderboard.nextRanks}</p>
                 <span className="text-[10px] font-black text-amber-600 dark:text-amber-400 bg-amber-50 dark:bg-amber-950/60 px-2 py-0.5 rounded-full border border-amber-200 dark:border-amber-800">
-                  TOP 6 - 20
+                  {t.leaderboard.rangeCompact}
                 </span>
               </div>
             </div>
@@ -832,8 +832,10 @@ export default function Leaderboard({ userId, compact = false }: { userId?: stri
                       <Trophy className="h-4 w-4 fill-amber-950 text-amber-950" />
                     </div>
                     <div>
-                      <p className="text-xs font-black text-stone-900 dark:text-stone-100">Hạng của bạn</p>
-                      <p className="text-[10px] font-semibold text-stone-500 dark:text-stone-400">Chỉ số {t.leaderboard[activeTab.labelKey].toLowerCase()}</p>
+                      <p className="text-xs font-black text-stone-900 dark:text-stone-100">{t.leaderboard.yourRank}</p>
+                      <p className="text-[10px] font-semibold text-stone-500 dark:text-stone-400">
+                        {formatI18n(t.leaderboard.byMetricCompact, { metric: t.leaderboard[activeTab.labelKey].toLowerCase() })}
+                      </p>
                     </div>
                   </div>
                   <div className="text-right">
@@ -855,9 +857,9 @@ export default function Leaderboard({ userId, compact = false }: { userId?: stri
         <div>
           <div className="inline-flex items-center gap-2 rounded-full border border-amber-300 bg-amber-50 px-3.5 py-1 text-[11px] font-extrabold uppercase tracking-[0.18em] text-amber-700 shadow-xs">
             <Trophy className="h-3.5 w-3.5 fill-amber-400 text-amber-600" />
-            Vinh Danh BXH
+            {t.leaderboard.eyebrowFull}
           </div>
-          <h2 className="mt-2.5 text-3xl font-black tracking-tight text-stone-900 sm:text-4xl">Top 5 nổi bật</h2>
+          <h2 className="mt-2.5 text-3xl font-black tracking-tight text-stone-900 sm:text-4xl">{t.leaderboard.titleFull}</h2>
         </div>
         <div className="inline-flex items-center gap-2 rounded-2xl border border-emerald-200 bg-emerald-50 px-3.5 py-2 text-sm font-bold text-emerald-700 shadow-xs">
           <Sparkles className="h-4 w-4 text-emerald-600" />
@@ -892,10 +894,10 @@ export default function Leaderboard({ userId, compact = false }: { userId?: stri
       {loading ? (
         <div className="mt-12 flex flex-col items-center justify-center py-12">
           <div className="h-10 w-10 animate-spin rounded-full border-4 border-amber-400 border-t-transparent" />
-          <p className="mt-4 text-sm font-semibold text-stone-500">Đang tải danh sách vinh danh...</p>
+          <p className="mt-4 text-sm font-semibold text-stone-500">{t.leaderboard.loadingFull}</p>
         </div>
       ) : entries.length === 0 ? (
-        <p className="mt-8 py-12 text-center text-sm text-stone-500">Chưa có đủ dữ liệu xếp hạng.</p>
+        <p className="mt-8 py-12 text-center text-sm text-stone-500">{t.leaderboard.empty}</p>
       ) : (
         <div className={`transition-opacity duration-150 ${switching ? "opacity-40" : "opacity-100"}`}>
           {/* Top 5 Podium */}
@@ -949,10 +951,10 @@ export default function Leaderboard({ userId, compact = false }: { userId?: stri
             <div className="mb-4 flex items-center justify-between border-b border-stone-200/60 pb-3">
               <div className="flex items-center gap-2">
                 <BookOpen className="h-4 w-4 text-amber-600" />
-                <h3 className="text-xs font-black uppercase tracking-[0.16em] text-stone-600">Các vị trí vinh danh tiếp theo</h3>
+                <h3 className="text-xs font-black uppercase tracking-[0.16em] text-stone-600">{t.leaderboard.nextRanks}</h3>
               </div>
               <span className="text-[10px] font-black text-amber-700 bg-amber-100/70 px-2.5 py-0.5 rounded-full border border-amber-300/60">
-                BẢNG VINH DANH #6 - #20
+                {t.leaderboard.rangeFull}
               </span>
             </div>
 
@@ -1011,8 +1013,10 @@ export default function Leaderboard({ userId, compact = false }: { userId?: stri
                       <Trophy className="h-5 w-5 fill-amber-950 text-amber-950" />
                     </div>
                     <div>
-                      <p className="text-sm font-black text-stone-900">Hạng của bạn</p>
-                      <p className="text-xs text-stone-500">Theo chỉ số {t.leaderboard[activeTab.labelKey].toLowerCase()}</p>
+                      <p className="text-sm font-black text-stone-900">{t.leaderboard.yourRank}</p>
+                      <p className="text-xs text-stone-500">
+                        {formatI18n(t.leaderboard.byMetricFull, { metric: t.leaderboard[activeTab.labelKey].toLowerCase() })}
+                      </p>
                     </div>
                   </div>
                   <div className="text-right">
