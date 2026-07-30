@@ -346,4 +346,170 @@ export const IB_QUESTION_OVERRIDES: Record<number, IbQuestionOverride> = {
     ],
     correct: 0,
   },
+
+  // ── Enterprise / Equity Value - Basic ─────────────────────────────────
+  208: {
+    options: [
+      "Enterprise Value is the value attributable to all investors in the business; Equity Value is only the slice belonging to shareholders. You look at both because Equity Value is the number the market quotes, while Enterprise Value is what the operating business itself is worth.",
+      "They are two names for the same figure - Enterprise Value is the American convention and Equity Value the European one.",
+      "Equity Value covers all investors including lenders, while Enterprise Value isolates the shareholders' claim after debt is repaid.",
+      "Enterprise Value applies only to private companies and Equity Value only to listed ones, since private firms have no share price.",
+    ],
+    correct: 0,
+  },
+  209: {
+    options: [
+      "Enterprise Value, because it reflects what an acquirer actually pays - it includes the target's debt, which usually has to be repaid or refinanced on a change of control.",
+      "Equity Value, because the acquirer only ever writes a cheque to the target's shareholders and the debt stays with the target.",
+      "Neither - in an acquisition the only figure that matters is the premium over the target's undisturbed share price.",
+      "Equity Value, because Enterprise Value double-counts the debt that is already reflected in the target's share price.",
+    ],
+    correct: 0,
+  },
+  210: {
+    options: [
+      "EV = Equity Value + Debt + Preferred Stock + Minority Interest - Cash.",
+      "EV = Equity Value + Cash - Debt - Preferred Stock - Minority Interest.",
+      "EV = Equity Value + Debt only - preferred stock and minority interest are equity-like and are already inside Equity Value.",
+      "EV = Total Assets - Total Liabilities, adjusted to market value.",
+    ],
+    correct: 0,
+  },
+  211: {
+    options: [
+      "Because once a company owns more than 50% of a subsidiary it consolidates 100% of that subsidiary's financials, so the metrics reflect value the parent doesn't fully own - adding Minority Interest keeps the numerator and denominator consistent.",
+      "Because minority shareholders have a senior claim on the parent's assets, which makes their stake behave like debt.",
+      "Because minority interest represents cash held at subsidiaries that the parent cannot access, so it must be added back like restricted cash.",
+      "You shouldn't add it - Minority Interest belongs to outside shareholders, so it is subtracted from Enterprise Value.",
+    ],
+    correct: 0,
+  },
+  212: {
+    options: [
+      "Start from the basic share count and add the dilutive effect of in-the-money options (via the Treasury Stock Method) plus any other dilutive securities such as warrants, convertible debt and convertible preferred stock.",
+      "Add every option and convertible security outstanding to the basic share count, regardless of exercise or conversion price.",
+      "Take the basic share count and add only the shares reserved under the company's equity incentive plan, whether granted or not.",
+      "Divide Equity Value by the current share price - the result is the fully diluted count by definition.",
+    ],
+    correct: 0,
+  },
+  213: {
+    options: [
+      "$1,050. The 10 options are in-the-money, so exercising them creates 10 new shares and brings in $50 of proceeds, which repurchases 5 shares at $10 - a net 5 new shares, giving 105 shares at $10.",
+      "$1,100. All 10 options are in-the-money, so 10 new shares are added at $10 each with no offset for the exercise proceeds.",
+      "$1,000. Options never change fully diluted equity value because the exercise proceeds always exactly offset the new shares issued.",
+      "$1,050, arrived at by adding the $50 of exercise proceeds directly to the $1,000 basic equity value without changing the share count.",
+    ],
+    correct: 0,
+  },
+  214: {
+    options: [
+      "$1,000. The exercise price of $15 is above the $10 share price, so the options are out-of-the-money and have no dilutive effect.",
+      "$1,150. The 10 options add 10 shares regardless of exercise price, since they may still be exercised before expiry.",
+      "$850. Out-of-the-money options represent a liability to the company and reduce fully diluted equity value.",
+      "$1,050. Applying the Treasury Stock Method to the $15 exercise price yields a net 5 additional shares.",
+    ],
+    correct: 0,
+  },
+  215: {
+    options: [
+      "Cash is a non-operating asset and Equity Value already reflects it; intuitively, a buyer receives the seller's cash and so effectively pays less. It isn't perfectly accurate - some cash is needed to run the business and can't truly be swept out.",
+      "Cash is subtracted because it is the most liquid asset and liquid assets are excluded from all valuation multiples by convention.",
+      "It is always exactly accurate, because every dollar of cash on the balance sheet is available to the acquirer on closing.",
+      "Cash should actually be added, not subtracted - a larger cash balance makes the business more valuable to a buyer.",
+    ],
+    correct: 0,
+  },
+  216: {
+    options: [
+      "Usually yes, since debt agreements typically require repayment or refinancing on a change of control, so the debt genuinely adds to what the buyer pays - but exceptions exist where debt can be assumed on its existing terms.",
+      "Always, without exception - debt is a contractual obligation and is added to Equity Value in every situation.",
+      "No - debt should never be added, because the target repays its own lenders out of its own cash flow after the deal closes.",
+      "Only for investment-grade issuers; high-yield debt is excluded because it typically trades below par.",
+    ],
+    correct: 0,
+  },
+  217: {
+    options: [
+      "Yes - it happens when a company holds a very large cash balance relative to a very low market capitalisation, which you see with firms near bankruptcy and with financial institutions carrying big cash balances.",
+      "No - Enterprise Value is the value of the whole business and a business cannot be worth less than nothing.",
+      "Yes, and it always signals an arbitrage opportunity, since a buyer could acquire the company and immediately extract more cash than they paid.",
+      "Yes, but only as a result of a calculation error, since Debt and Preferred Stock can only ever increase Enterprise Value.",
+    ],
+    correct: 0,
+  },
+  218: {
+    options: [
+      "No. Equity Value is shares outstanding times share price, and neither of those can be negative.",
+      "Yes, whenever a company's liabilities exceed its assets - that is precisely what negative Shareholders' Equity means.",
+      "Yes, but only for companies in liquidation, where the equity claim is formally extinguished.",
+      "Yes, if the company has more debt than its market capitalisation, since the excess is charged against Equity Value.",
+    ],
+    correct: 0,
+  },
+  219: {
+    options: [
+      "Because Preferred Stock pays a fixed dividend and ranks ahead of common equity in a claim on assets, which makes it behave more like debt than like common stock.",
+      "Because preferred shareholders can convert into common stock at any time, so their shares are always counted as dilution.",
+      "Because Preferred Stock is a non-operating asset, so it is added for the same reason cash is subtracted.",
+      "You shouldn't add it - preferred shareholders are equity holders, so their stake is already inside Equity Value.",
+    ],
+    correct: 0,
+  },
+  220: {
+    options: [
+      "If they're in-the-money (conversion price below the share price) treat them as additional dilution to Equity Value; if out-of-the-money, count their face value as Debt.",
+      "Always count the full face value as Debt, since convertible bonds are legally debt instruments until conversion actually occurs.",
+      "Always treat them as dilution to Equity Value, since the holder will convert eventually if the company survives.",
+      "Exclude them entirely - convertibles are contingent instruments and are disclosed only in the footnotes.",
+    ],
+    correct: 0,
+  },
+  221: {
+    options: [
+      "The bonds are in-the-money ($100 share price vs. $50 conversion price), so treat them as shares: $10 million ÷ $1,000 par = 10,000 bonds, each converting into $1,000 ÷ $50 = 20 shares, giving 200,000 new shares and 1.2 million diluted shares.",
+      "Divide the $10 million by the $1,000 par value to get 10,000 bonds, and add those 10,000 as new shares, for 1.01 million diluted shares.",
+      "The bonds are out-of-the-money, so count the $10 million as Debt and leave diluted shares at 1 million.",
+      "Divide the $10 million by the $100 share price to get 100,000 new shares, for 1.1 million diluted shares.",
+    ],
+    correct: 0,
+  },
+  222: {
+    options: [
+      "Equity Value is a market value; Shareholders' Equity is a book value. Equity Value can never be negative, while Shareholders' Equity can be any figure - and for healthy companies Equity Value normally far exceeds it.",
+      "They are the same measure computed from different statements - Equity Value off the Balance Sheet and Shareholders' Equity off the Income Statement.",
+      "Shareholders' Equity is the market value and Equity Value is the book value, which is why Equity Value appears on the Balance Sheet.",
+      "Equity Value includes debt while Shareholders' Equity excludes it, which is the only difference between the two.",
+    ],
+    correct: 0,
+  },
+
+  // ── Enterprise / Equity Value - Advanced ──────────────────────────────
+  223: {
+    options: [
+      "Yes - it's too simple. With real companies you also have to consider Net Operating Losses, long-term and equity investments, capital leases, unfunded pension obligations and other liabilities, several of which are treated like cash or like debt.",
+      "No - the formula is complete, which is why it is the one convention every bank applies without adjustment.",
+      "Yes - the whole formula is wrong, because Enterprise Value should be computed as Total Assets less Total Liabilities at market value.",
+      "Yes - it fails only for financial institutions, and is exactly correct for every non-financial company.",
+    ],
+    correct: 0,
+  },
+  224: {
+    options: [
+      "Technically market value for everything, but in practice market value is only obtainable for the Equity Value portion, so the remaining items are usually taken at book value off the company's filings.",
+      "Book value throughout, because market values fluctuate daily and would make the multiple non-comparable across companies.",
+      "Market value throughout, which is straightforward since debt, preferred stock and minority interest all trade on observable markets.",
+      "Book value for Equity Value and market value for everything else, since the share price is the least reliable input.",
+    ],
+    correct: 0,
+  },
+  225: {
+    options: [
+      "There's no hard rule, but most bankers treat anything above roughly 10% as unusual and worth re-checking - for example a basic Equity Value of $100 million diluting to $115 million.",
+      "Anything above 1% is a red flag, since well-run companies avoid issuing dilutive securities at all.",
+      "There is a formal threshold of 25% set by accounting standards, above which the dilution must be separately disclosed.",
+      "The percentage is irrelevant - dilution is a mechanical calculation, so any result it produces is by definition reasonable.",
+    ],
+    correct: 0,
+  },
 };
