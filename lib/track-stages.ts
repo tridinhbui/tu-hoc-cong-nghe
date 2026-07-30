@@ -328,6 +328,31 @@ export const TRACK_PROFESSIONAL = {
         { name: "LBO, kiểm tra mô hình và project cuối chặng", days: [1318, 1320] as [number, number] },
       ],
     },
+    {
+      // ESG had four lessons but no home in either track: 805 sat inside the
+      // Chặng 14 masterclass bundle, while 1229-1231 were reachable only by
+      // learners who happened to pick the "esg-analyst" career path. A learner
+      // working through Track 2 in order never met them. This stage gives the
+      // topic a proper sequence - the three existing foundation lessons first,
+      // then the four new ones covering what 805 doesn't: disclosure regimes,
+      // climate risk as financial risk, ESG inside a valuation model, and the
+      // governance pillar in depth.
+      label: "Chặng 16",
+      name: "Tài chính bền vững (ESG & Climate Finance)",
+      days: [1327, 1330] as [number, number],
+      extraLessonIds: [1229, 1230, 1231],
+      available: true,
+      isNew: true,
+      parts: [
+        {
+          name: "Nền tảng: ESG là gì, đánh giá và đầu tư theo ESG",
+          days: [1229, 1231] as [number, number],
+          extraLessonIds: [1229, 1230, 1231],
+        },
+        { name: "Quy định, rủi ro khí hậu và định giá", days: [1327, 1329] as [number, number] },
+        { name: "Quản trị doanh nghiệp chuyên sâu", days: [1330, 1330] as [number, number] },
+      ],
+    },
   ] satisfies Stage[],
 };
 
