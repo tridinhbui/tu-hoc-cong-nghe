@@ -35,7 +35,7 @@ export const CFA_LEVEL_1_SUBJECTS: CfaSubject[] = [
     id: "economics",
     name: "Economics",
     weight: "6–9%",
-    lessonIds: [9, 146, 147, 148, 1224, 1225, 1226, 1227, 1228, 1321, 1322],
+    lessonIds: [9, 146, 147, 148, 1224, 1225, 1226, 1227, 1228, 1321, 1322, 1323, 1324, 1325, 1326],
   },
   {
     id: "fsa",
