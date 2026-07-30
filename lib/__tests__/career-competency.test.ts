@@ -64,8 +64,18 @@ describe("computeCompetencyScores", () => {
   });
 
   it("gives full valuation only when both valuation and M&A lessons are done", () => {
+    // Asserts the property, not the arithmetic. Two earlier versions of this
+    // test hard-coded a number (75) and then re-derived one from
+    // computeDomainCoverage, and both broke on unrelated edits to the domain
+    // lesson lists - the second by a single point, because it rounded each
+    // domain's percentage before weighting while the implementation rounds once
+    // at the end. What the test is actually for is the ordering: valuation
+    // alone is worth at least its 0.75 weight but never full marks, because the
+    // remaining 0.25 needs M&A. The domains share lessons (an LBO lesson is
+    // both), so the exact figure moves with the catalog and is not the point.
     const valuationOnly = computeCompetencyScores(signals({ completedLessonIds: lessonsIn("valuation") }));
-    expect(scoreOf(valuationOnly, "valuation")).toBe(75); // 0.75 weight
+    expect(scoreOf(valuationOnly, "valuation")).toBeGreaterThanOrEqual(75);
+    expect(scoreOf(valuationOnly, "valuation")).toBeLessThan(100);
 
     const both = computeCompetencyScores(
       signals({ completedLessonIds: [...lessonsIn("valuation"), ...lessonsIn("ma")] })
