@@ -20,6 +20,7 @@ import PvpDuelModal from "@/components/PvpDuelModal";
 import FinancialGuildWidget from "@/components/FinancialGuildWidget";
 import ModeLeaderboard from "@/components/games/ModeLeaderboard";
 import WallStreetMillionaireGame from "@/components/games/WallStreetMillionaireGame";
+import SnowballRacerGame from "@/components/games/SnowballRacerGame";
 
 type InnerTab = "play" | "leaderboard" | "history";
 type HubTab = "games" | "pvp" | "guild" | "combined";
@@ -92,6 +93,7 @@ export default function GameHubClient() {
   const [soundsEnabled, setSoundsEnabled] = useState(() => soundManager.isEnabled());
   const [showPvpModal, setShowPvpModal] = useState(false);
   const [showMillionaireModal, setShowMillionaireModal] = useState(false);
+  const [showRacerModal, setShowRacerModal] = useState(false);
 
   const [lastResult, setLastResult] = useState<{ gameType: GameType; score: number; total: number } | null>(null);
 
@@ -252,6 +254,42 @@ export default function GameHubClient() {
                 </div>
               </div>
 
+              {/* Featured Snowball Racer Banner */}
+              <div
+                onClick={() => {
+                  setShowRacerModal(true);
+                  trackFeatureClick("game_open_racer", { label: "snowball-racer" });
+                }}
+                className="relative rounded-3xl overflow-hidden border-2 border-emerald-500/50 bg-gradient-to-r from-slate-900 via-emerald-950/60 to-slate-950 p-6 sm:p-7 shadow-xl cursor-pointer group hover:border-emerald-400 hover:shadow-emerald-500/20 transition-all duration-300"
+              >
+                <div className="relative z-10 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+                  <div className="flex items-center gap-4">
+                    <div className="w-14 h-14 rounded-2xl bg-emerald-500/20 border-2 border-emerald-400/60 flex items-center justify-center text-3xl shrink-0 shadow-lg group-hover:scale-110 group-hover:rotate-3 transition-transform">
+                      🏎️
+                    </div>
+                    <div>
+                      <div className="inline-flex items-center gap-1.5 rounded-full bg-emerald-500/20 border border-emerald-400/40 px-2.5 py-0.5 text-[10px] font-black text-emerald-300 uppercase tracking-widest mb-1">
+                        ⚡ GAME TỐC ĐỘ TÀI SẢN
+                      </div>
+                      <h2 className="text-lg sm:text-xl font-black text-emerald-100 group-hover:text-emerald-300 transition-colors">
+                        Đua Xe Lãi Kép & Hòn Tuyết Lăn
+                      </h2>
+                      <p className="text-xs text-stone-300 mt-1 max-w-lg leading-relaxed">
+                        Lựa chọn chiến lược phân bổ vốn (An toàn, Cân bằng, Tăng trưởng, Đòn bẩy), vượt biến động thị trường để đạt $1,000,000!
+                      </p>
+                    </div>
+                  </div>
+
+                  <button
+                    type="button"
+                    className="px-5 py-3 rounded-2xl bg-gradient-to-r from-emerald-500 to-teal-400 hover:from-emerald-400 hover:to-teal-300 text-stone-950 font-black text-xs sm:text-sm shadow-lg group-hover:scale-105 transition-all shrink-0 flex items-center gap-2 cursor-pointer"
+                  >
+                    <span>Tăng Tốc Ngay</span>
+                    <span className="group-hover:translate-x-1 transition-transform">→</span>
+                  </button>
+                </div>
+              </div>
+
               {/* Standard Mini Games Grid */}
               <div className="grid sm:grid-cols-2 gap-4">
               {GAMES.map((g) => {
@@ -318,6 +356,13 @@ export default function GameHubClient() {
           <WallStreetMillionaireGame
             userId={userId}
             onClose={() => setShowMillionaireModal(false)}
+          />
+        )}
+
+        {showRacerModal && (
+          <SnowballRacerGame
+            userId={userId}
+            onClose={() => setShowRacerModal(false)}
           />
         )}
       </div>

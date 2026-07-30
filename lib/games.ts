@@ -31,7 +31,8 @@ export type SpecialGameType =
   | "solo-knowledge-boss"
   | "vn30-fund-sim"
   | "pvp-duel"
-  | "wall-street-millionaire";
+  | "wall-street-millionaire"
+  | "snowball-racer";
 
 export type AnyGameType = GameType | SpecialGameType;
 
