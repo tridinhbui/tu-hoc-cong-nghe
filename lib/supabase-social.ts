@@ -1,5 +1,6 @@
 import { createClient } from "@/lib/supabase";
 import { handleSupabaseError } from "@/lib/errors";
+import { uniqueRealtimeTopic } from "@/lib/supabase-realtime-topic";
 
 export interface SearchAccountResult {
   id: string;
@@ -191,7 +192,7 @@ export function subscribeToSocialGraph(userId: string, onChange: () => void) {
   const supabase = createClient();
 
   const channel = supabase
-    .channel(`social_graph:${userId}`)
+    .channel(uniqueRealtimeTopic(`social_graph:${userId}`))
     .on(
       "postgres_changes",
       {
@@ -223,7 +224,7 @@ export function subscribeToDirectMessages(friendshipId: number, onMessage: (mess
   const supabase = createClient();
 
   const channel = supabase
-    .channel(`direct_messages:${friendshipId}`)
+    .channel(uniqueRealtimeTopic(`direct_messages:${friendshipId}`))
     .on(
       "postgres_changes",
       {

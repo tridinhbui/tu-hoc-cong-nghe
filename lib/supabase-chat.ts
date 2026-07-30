@@ -1,5 +1,6 @@
 import { createClient } from "@/lib/supabase";
 import { handleSupabaseError } from "@/lib/errors";
+import { uniqueRealtimeTopic } from "@/lib/supabase-realtime-topic";
 
 export interface ChatMessage {
   id: number;
@@ -186,7 +187,7 @@ export function subscribeToChatMessages(
   const supabase = createClient();
 
   const channel = supabase
-    .channel(`chat_messages:${userId}`)
+    .channel(uniqueRealtimeTopic(`chat_messages:${userId}`))
     .on(
       "postgres_changes",
       {

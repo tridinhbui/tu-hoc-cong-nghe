@@ -1,5 +1,6 @@
 import { createClient } from "@/lib/supabase";
 import { handleSupabaseError } from "@/lib/errors";
+import { uniqueRealtimeTopic } from "@/lib/supabase-realtime-topic";
 
 function isMissingTableError(error: { code?: string } | null): boolean {
   return error?.code === "PGRST205" || error?.code === "42P01" || error?.code === "PGRST202";
@@ -245,7 +246,7 @@ export async function deleteOwnComment(commentId: number): Promise<void> {
 export function subscribeToCommunityFeed(onChange: () => void) {
   const supabase = createClient();
   const channel = supabase
-    .channel("community_feed_live")
+    .channel(uniqueRealtimeTopic("community_feed_live"))
     .on(
       "postgres_changes",
       { event: "INSERT", schema: "public", table: "community_posts" },
@@ -363,7 +364,7 @@ export async function markNotificationsRead(userId: string, ids?: number[]): Pro
 export function subscribeToCommunityNotifications(userId: string, onChange: () => void) {
   const supabase = createClient();
   const channel = supabase
-    .channel(`community_notifications_${userId}`)
+    .channel(uniqueRealtimeTopic(`community_notifications:${userId}`))
     .on(
       "postgres_changes",
       { event: "INSERT", schema: "public", table: "community_notifications", filter: `recipient_id=eq.${userId}` },

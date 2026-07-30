@@ -1,5 +1,6 @@
 import { createClient } from "@/lib/supabase";
 import { handleSupabaseError } from "@/lib/errors";
+import { uniqueRealtimeTopic } from "@/lib/supabase-realtime-topic";
 
 export type BugStatus = "open" | "investigating" | "fixed";
 export type BugSeverity = "low" | "medium" | "high";
@@ -125,7 +126,7 @@ export function subscribeToUserBugReports(userId: string, onChange: () => void) 
   const supabase = createClient();
 
   const channel = supabase
-    .channel(`bug_reports:user:${userId}`)
+    .channel(uniqueRealtimeTopic(`bug_reports:user:${userId}`))
     .on(
       "postgres_changes",
       {
@@ -147,7 +148,7 @@ export function subscribeToBugReportMessages(reportId: number, onMessage: () => 
   const supabase = createClient();
 
   const channel = supabase
-    .channel(`bug_report_messages:${reportId}`)
+    .channel(uniqueRealtimeTopic(`bug_report_messages:${reportId}`))
     .on(
       "postgres_changes",
       {
