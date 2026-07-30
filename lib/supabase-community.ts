@@ -261,3 +261,111 @@ export function subscribeToCommunityFeed(onChange: () => void) {
     supabase.removeChannel(channel);
   };
 }
+
+// ─── Notifications ─────────────────────────────────────────────────────
+//
+// See supabase/migrations/20260821_community_notifications.sql. Rows are
+// only ever created by a database trigger (on comment/reaction insert), not
+// by the client - so there is no createNotification() here on purpose.
+
+export interface CommunityNotification {
+  id: number;
+  actor_id: string;
+  actor_name: string;
+  actor_avatar: string | null;
+  type: "comment" | "reaction";
+  post_id: number;
+  comment_id: number | null;
+  emoji: string | null;
+  created_at: string;
+  read_at: string | null;
+}
+
+interface CommunityNotificationRow {
+  id: number;
+  actor_id: string;
+  type: "comment" | "reaction";
+  post_id: number;
+  comment_id: number | null;
+  emoji: string | null;
+  created_at: string;
+  read_at: string | null;
+  actor: { full_name: string | null; avatar_url: string | null } | null;
+}
+
+export async function getNotifications(userId: string, limit = 20): Promise<CommunityNotification[]> {
+  const supabase = createClient();
+  const { data, error } = await supabase
+    .from("community_notifications")
+    .select("id, actor_id, type, post_id, comment_id, emoji, created_at, read_at, actor:actor_id(full_name, avatar_url)")
+    .eq("recipient_id", userId)
+    .order("created_at", { ascending: false })
+    .limit(limit);
+
+  if (error) {
+    if (isMissingTableError(error)) return [];
+    throw handleSupabaseError(error);
+  }
+
+  return ((data ?? []) as unknown as CommunityNotificationRow[]).map((row) => ({
+    id: row.id,
+    actor_id: row.actor_id,
+    actor_name: row.actor?.full_name || "Người học",
+    actor_avatar: row.actor?.avatar_url ?? null,
+    type: row.type,
+    post_id: row.post_id,
+    comment_id: row.comment_id,
+    emoji: row.emoji,
+    created_at: row.created_at,
+    read_at: row.read_at,
+  }));
+}
+
+export async function getUnreadNotificationCount(userId: string): Promise<number> {
+  const supabase = createClient();
+  const { count, error } = await supabase
+    .from("community_notifications")
+    .select("id", { count: "exact", head: true })
+    .eq("recipient_id", userId)
+    .is("read_at", null);
+
+  if (error) {
+    if (isMissingTableError(error)) return 0;
+    throw handleSupabaseError(error);
+  }
+  return count ?? 0;
+}
+
+/** Marks specific notifications read, or every unread one if `ids` is
+ *  omitted (the "mark all as read" case - opening the bell dropdown). */
+export async function markNotificationsRead(userId: string, ids?: number[]): Promise<void> {
+  const supabase = createClient();
+  let query = supabase
+    .from("community_notifications")
+    .update({ read_at: new Date().toISOString() })
+    .eq("recipient_id", userId)
+    .is("read_at", null);
+
+  if (ids && ids.length > 0) {
+    query = query.in("id", ids);
+  }
+
+  const { error } = await query;
+  if (error && !isMissingTableError(error)) throw handleSupabaseError(error);
+}
+
+export function subscribeToCommunityNotifications(userId: string, onChange: () => void) {
+  const supabase = createClient();
+  const channel = supabase
+    .channel(`community_notifications_${userId}`)
+    .on(
+      "postgres_changes",
+      { event: "INSERT", schema: "public", table: "community_notifications", filter: `recipient_id=eq.${userId}` },
+      () => onChange()
+    )
+    .subscribe();
+
+  return () => {
+    supabase.removeChannel(channel);
+  };
+}

@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { Suspense, useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { Users } from "lucide-react";
 import { createClient } from "@/lib/supabase";
@@ -55,7 +55,9 @@ export default function LeaderboardPage() {
             </div>
           </div>
         </div>
-        <CommunityFeedClient embedded />
+        <Suspense fallback={null}>
+          <CommunityFeedClient embedded />
+        </Suspense>
       </div>
     </div>
   );

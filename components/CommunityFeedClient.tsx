@@ -3,6 +3,7 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { useSearchParams } from "next/navigation";
 import { AnimatePresence, motion } from "framer-motion";
 import { toast } from "sonner";
 import {
@@ -58,6 +59,7 @@ import {
 } from "@/lib/supabase-community";
 import { isValidAvatar } from "@/lib/avatar-utils";
 import { animateCountTo } from "@/lib/animate-count";
+import { timeAgo } from "@/lib/time-ago";
 
 interface SessionUser {
   id: string;
@@ -128,17 +130,6 @@ function Avatar({ name, avatarUrl }: { name?: string | null; avatarUrl?: string 
       {initials}
     </div>
   );
-}
-
-function timeAgo(dateString: string): string {
-  const diffMs = Date.now() - new Date(dateString).getTime();
-  const minutes = Math.floor(diffMs / 60000);
-  if (minutes < 1) return "Vừa xong";
-  if (minutes < 60) return `${minutes} phút trước`;
-  const hours = Math.floor(minutes / 60);
-  if (hours < 24) return `${hours} giờ trước`;
-  const days = Math.floor(hours / 24);
-  return `${days} ngày trước`;
 }
 
 const REACTION_OPTIONS = ["💡 Hay", "🧠 Cần phản biện", "❓ Cùng thắc mắc", "📌 Đã lưu", "🔥 Rất thực tế"];
@@ -517,6 +508,7 @@ function InteractivePollCard({ postId, metadata }: { postId: number; metadata: P
 
 export default function CommunityFeedClient({ embedded = false }: { embedded?: boolean }) {
   const supabase = createClient();
+  const searchParams = useSearchParams();
   const [user, setUser] = useState<SessionUser | null>(null);
   const [posts, setPosts] = useState<CommunityFeedPost[]>([]);
   const [loading, setLoading] = useState(true);
@@ -867,6 +859,45 @@ export default function CommunityFeedClient({ embedded = false }: { embedded?: b
       setSavingCommentEdit(false);
     }
   };
+
+  // Deep-link support: NotificationBell links to /finsocial?post=<id> so
+  // tapping "X đã bình luận vào bài viết của bạn" lands directly on that
+  // post with its thread open, instead of dumping the reader at the top of
+  // a feed they'd then have to hunt through. Guarded by a ref (not just
+  // "already open") because `posts` gets a new array reference on every
+  // real-time refresh - without the ref, each refresh after the first would
+  // re-run this and could yank the reader's scroll position back down again
+  // while they're mid-read of something else entirely.
+  const handledDeepLinkRef = useRef<number | null>(null);
+  useEffect(() => {
+    const targetId = searchParams.get("post");
+    if (!targetId || posts.length === 0) return;
+    const postId = Number(targetId);
+    if (!Number.isFinite(postId) || handledDeepLinkRef.current === postId) return;
+    if (!posts.some((p) => p.id === postId)) return;
+    handledDeepLinkRef.current = postId;
+
+    // Clear anything that might be hiding the target post from the list.
+    setFeedFilter("all");
+    setSearchQuery("");
+    setOpenComments((prev) => ({ ...prev, [postId]: true }));
+
+    void (async () => {
+      setLoadingComments((prev) => ({ ...prev, [postId]: true }));
+      try {
+        const comments = await getCommunityPostComments(postId);
+        setCommentsByPost((prev) => ({ ...prev, [postId]: comments }));
+      } catch (error) {
+        console.error("Error loading comments for deep-linked post:", error);
+      } finally {
+        setLoadingComments((prev) => ({ ...prev, [postId]: false }));
+      }
+    })();
+
+    requestAnimationFrame(() => {
+      document.getElementById(`community-post-${postId}`)?.scrollIntoView({ behavior: "smooth", block: "center" });
+    });
+  }, [posts, searchParams]);
 
   const visiblePosts = posts.filter((post) => {
     const category = getPostCategory(post);
@@ -1368,6 +1399,7 @@ export default function CommunityFeedClient({ embedded = false }: { embedded?: b
               return (
               <motion.div
                 key={post.id}
+                id={`community-post-${post.id}`}
                 className="group rounded-[24px] bg-white p-5 shadow-[0_16px_34px_-28px_rgba(15,23,42,0.22)] ring-1 ring-stone-100/70 transition duration-200 ease-out hover:-translate-y-1 hover:shadow-[0_20px_42px_-26px_rgba(15,23,42,0.28)] dark:bg-stone-900/85 dark:ring-stone-800/60"
                 initial={{ opacity: 0, y: 18 }}
                 animate={{ opacity: 1, y: 0 }}

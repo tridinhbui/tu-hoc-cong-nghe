@@ -12,6 +12,7 @@ import type { Dictionary } from "@/lib/i18n";
 import LanguageSwitcher from "@/components/LanguageSwitcher";
 import { createClient } from "@/lib/supabase";
 import GoldCoinIcon from "@/components/GoldCoinIcon";
+import NotificationBell from "@/components/NotificationBell";
 import { useRoutePrefetch } from "@/lib/use-route-prefetch";
 import Logo from "@/components/Logo";
 import { getUnresolvedMistakeCount } from "@/lib/quiz-mistakes";
@@ -360,18 +361,21 @@ export default function AppNavbar() {
           </nav>
 
           <div className="mt-auto pt-4 space-y-2.5 shrink-0" ref={desktopDropdownRef}>
-            {profile && (
-              <button
-                onClick={() => setShowQuickShop(true)}
-                className="flex w-full items-center justify-between rounded-2xl border border-amber-200 bg-amber-50 px-3 py-2.5 text-sm font-black text-amber-700 shadow-sm transition-colors hover:bg-amber-100/80 dark:border-amber-900 dark:bg-amber-950/40 dark:text-amber-400"
-                title="Số dư Coin tích lũy - Bấm để mở Cửa hàng Nhanh"
-              >
-                <span className="flex items-center gap-2">
-                  <GoldCoinIcon className="w-5 h-5" />
-                  <span>Coins</span>
-                </span>
-                <span>{profile.coins ?? 0}</span>
-              </button>
+            {profile && userId && (
+              <div className="flex items-center gap-2">
+                <button
+                  onClick={() => setShowQuickShop(true)}
+                  className="flex flex-1 min-w-0 items-center justify-between rounded-2xl border border-amber-200 bg-amber-50 px-3 py-2.5 text-sm font-black text-amber-700 shadow-sm transition-colors hover:bg-amber-100/80 dark:border-amber-900 dark:bg-amber-950/40 dark:text-amber-400"
+                  title="Số dư Coin tích lũy - Bấm để mở Cửa hàng Nhanh"
+                >
+                  <span className="flex items-center gap-2">
+                    <GoldCoinIcon className="w-5 h-5" />
+                    <span>Coins</span>
+                  </span>
+                  <span>{profile.coins ?? 0}</span>
+                </button>
+                <NotificationBell userId={userId} />
+              </div>
             )}
 
             {!profile ? (
@@ -458,7 +462,9 @@ export default function AppNavbar() {
                 <span className="font-black text-amber-600 dark:text-amber-400">{profile.coins ?? 0}</span>
               </button>
             )}
-            
+
+            {profile && userId && <NotificationBell userId={userId} />}
+
             <button
               onClick={toggleMobileMenu}
               className="flex items-center justify-center w-8 h-8 sm:w-9 sm:h-9 rounded-lg border border-stone-200 dark:border-stone-800 text-stone-600 dark:text-stone-400 hover:bg-stone-50 dark:hover:bg-stone-900 transition-colors shrink-0"
