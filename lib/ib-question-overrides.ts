@@ -38,170 +38,170 @@ export const IB_QUESTION_OVERRIDES: Record<number, IbQuestionOverride> = {
   // ── Restructuring / Distressed M&A ────────────────────────────────────
   120: {
     options: [
-      "Restructuring bankers advise distressed companies - heading into bankruptcy, in it, or coming out - on changing their capital structure to avoid or exit bankruptcy, often alongside asset sales and new financing.",
-      "Restructuring bankers reorganise healthy companies' divisions into more efficient reporting structures, with no involvement in debt or bankruptcy.",
-      "Restructuring bankers act as court-appointed trustees who liquidate a bankrupt company's assets and distribute proceeds to creditors.",
-      "Restructuring bankers buy distressed debt for their own account and profit when the company recovers.",
+      "Restructuring bankers advise distressed companies - heading into bankruptcy, in it, or exiting it - on reshaping their capital structure.",
+      "Restructuring bankers reorganise healthy companies' divisions into more efficient reporting structures, with no involvement in debt.",
+      "Restructuring bankers act as court-appointed trustees who liquidate a bankrupt company's assets and pay out its creditors in order.",
+      "Restructuring bankers buy distressed debt for their own account and profit when the company recovers or is sold at a higher price.",
     ],
     correct: 0,
   },
   121: {
     options: [
-      "You advise either the debtor - the company itself - or the creditors who lent it money, much like sell-side versus buy-side in M&A. The two sides sit across the table from each other.",
-      "You advise either the shareholders or the bondholders, since those are the only two groups with a claim in a bankruptcy.",
-      "You advise either the bankruptcy court or the trustee, both of whom require independent financial expertise.",
-      "There is only one side - the restructuring adviser is legally required to act neutrally between all parties.",
+      "You advise either the debtor - the company itself - or its creditors, much as sell-side and buy-side split an M&A mandate.",
+      "You advise either the shareholders or the bondholders, since those are the only two groups that hold any claim at all in a bankruptcy.",
+      "You advise either the bankruptcy court or its appointed trustee, both of which require independent financial expertise.",
+      "There is only one side - a restructuring adviser must by law stay neutral between every party to the negotiation.",
     ],
     correct: 0,
   },
   122: {
     options: [
-      "You build a specialised skill set that makes you more valuable, the work is often more technical than M&A, and you get broader exposure by seeing both the debt and equity sides of a capital structure.",
-      "Restructuring deals close faster than M&A deals, so you see more transactions and build a longer deal sheet.",
-      "The hours are considerably shorter than in M&A, because bankruptcy timetables are set by the court.",
-      "Restructuring is the only group that gives analysts direct client contact in their first year.",
+      "You build a specialised skill set, the work is often more technical than M&A, and you see both the debt and equity sides.",
+      "Restructuring deals close faster than ordinary M&A deals, so you see more transactions and build a longer deal sheet much earlier.",
+      "The hours are considerably shorter than in M&A, because bankruptcy timetables are set by the court's calendar.",
+      "Restructuring is the only group that gives first-year analysts direct client contact from day one of a mandate.",
     ],
     correct: 0,
   },
   123: {
     options: [
-      "Beyond the legal exposure and stronger technical skills, it opens doors to distressed investment and special situations funds - a path most people outside restructuring never get access to.",
-      "It is the standard route into equity research, since both roles centre on analysing troubled companies.",
+      "Beyond the legal exposure and sharper technical skills, it opens doors to distressed and special situations funds.",
+      "It is the standard route into equity research, since both roles centre on analysing troubled and mispriced public companies.",
       "It leads naturally into corporate law, since restructuring bankers qualify as insolvency practitioners.",
-      "It is the only group from which analysts are routinely promoted straight to managing director.",
+      "It is the only group from which analysts are routinely promoted straight to managing director level.",
     ],
     correct: 0,
   },
   124: {
     options: [
-      "On highly specialised experience and relationships. Only a handful of banks have credible practices, so selection turns on their track record with similar situations rather than on a broad relationship or league table position.",
-      "By running a competitive fee auction, since a distressed company must minimise every cost it can.",
-      "By choosing whichever bank already provides its revolving credit facility, to keep the relationship in one place.",
-      "The bankruptcy court appoints the adviser, so the company has no say in the selection.",
+      "On highly specialised experience and relationships - only a handful of banks have a credible record in similar situations.",
+      "By running a competitive fee auction, since a distressed company has to minimise every cost it possibly can.",
+      "By picking whichever bank already provides its revolving credit facility, keeping the relationship in one place.",
+      "The bankruptcy court appoints the adviser, so the company itself has no say at all in the selection.",
     ],
     correct: 0,
   },
   125: {
     options: [
-      "Because it can't meet its debt obligations or interest payments, creditors accelerate the debt and force the issue, an acquisition went badly, or the business simply lost the revenue that supported its capital structure.",
-      "Because its share price falls below the exchange's minimum listing threshold, which triggers an automatic filing.",
-      "Because its auditors issue a qualified opinion, which legally obliges the company to enter bankruptcy protection.",
-      "Because shareholders vote to wind the company up when they believe the equity has become worthless.",
+      "It can't meet its interest or debt obligations, creditors accelerate the debt, an acquisition went badly, or revenue collapsed.",
+      "Its share price falls below the exchange's minimum listing threshold for a sustained period, which triggers an automatic filing.",
+      "Its auditors issue a qualified opinion, which legally obliges the company to enter bankruptcy protection.",
+      "Shareholders vote to wind the company up once they conclude that the equity has become worthless.",
     ],
     correct: 0,
   },
   126: {
     options: [
-      "Refinance with fresh debt or equity, sell the company whole or in pieces, restructure its obligations to cut interest and repayments (including issuing PIK debt), or file for bankruptcy.",
-      "Only two: file for Chapter 7 liquidation, or persuade shareholders to inject new equity.",
-      "Only refinancing - once a company misses a payment, a sale or restructuring is legally barred until the default is cured.",
-      "Cut its dividend and reduce CapEx, which are the only levers available once lenders have lost confidence.",
+      "Refinance with new debt or equity, sell whole or in pieces, restructure the obligations to cut interest, or file.",
+      "Only two: file for Chapter 7 liquidation, or persuade existing shareholders to inject fresh equity.",
+      "Only refinancing - once a payment has been missed, both a sale and a restructuring are barred until the default is cured.",
+      "Cut the dividend and reduce CapEx, the only levers left once its lenders have lost confidence in it.",
     ],
     correct: 0,
   },
   127: {
     options: [
-      "Refinancing is least disruptive and restores confidence, but attracting investors to a near-bankrupt company is hard. A sale may return something to shareholders but takes time. Restructuring keeps the business going but requires creditors to agree.",
-      "Refinancing is the easiest to execute since distressed companies attract lenders willing to price the risk, while a sale is nearly always impossible.",
-      "All three carry identical trade-offs, which is why the choice comes down to whichever the creditors prefer.",
-      "A sale is always best because it converts the business into cash immediately, removing all execution risk for shareholders.",
+      "Refinancing is least disruptive but hard to attract; a sale may return something to shareholders but is slow; restructuring needs creditor consent.",
+      "Refinancing is the easiest of the three, since distressed companies attract plenty of lenders willing to price the risk, while a sale is nearly always impossible.",
+      "All three carry identical trade-offs, which is why the choice comes down to whichever route the creditors happen to prefer.",
+      "A sale is always best because it converts the business to cash at once, removing execution risk for shareholders entirely.",
     ],
     correct: 0,
   },
   128: {
     options: [
-      "They mirror the company's own options: lend more capital or take equity, offer conditional financing tied to cost cuts, agree to restructure the existing obligations, push for a sale, or force the company into bankruptcy.",
-      "Their only option is to force an immediate Chapter 7 liquidation and recover whatever the asset sale yields.",
-      "They must wait for the company to act - creditors have no ability to influence the outcome until a default is formally declared.",
-      "They can only sell their claims in the secondary market, since creditors are barred from negotiating directly with the debtor.",
+      "They mirror the company's: lend more or take equity, offer conditional financing, restructure, push a sale, or force a filing.",
+      "Their only option is to force an immediate Chapter 7 liquidation and recover whatever the asset sale happens to yield.",
+      "They must wait for the company to act - creditors cannot influence the outcome until a default is formally declared.",
+      "They can only sell their claims in the secondary market, since creditors may not negotiate directly with a debtor.",
     ],
     correct: 0,
   },
   129: {
     options: [
-      "They're more complex, involve more parties, demand more specialised technical skills, and have to follow the bankruptcy code - the debtor's adviser may even need court approval for its own fees.",
-      "They're simpler than M&A because the price is set by the court rather than negotiated between the parties.",
-      "They differ only in the type of client; the process and the legal framework are identical to a standard M&A deal.",
-      "They involve fewer parties than an M&A deal, since shareholders have no standing once a company is distressed.",
+      "They're more complex, involve more parties, are more technical, and follow the bankruptcy code - even fees may need court approval.",
+      "They're considerably simpler than M&A, because the price is set by the court rather than being negotiated between the parties involved.",
+      "They differ only in the type of client - the process and the legal framework are identical to a standard M&A deal.",
+      "They involve fewer parties than an M&A deal, since shareholders lose all standing once a company is distressed.",
     ],
     correct: 0,
   },
   130: {
     options: [
-      "Chapter 7 is a liquidation - the company is beyond reorganising, so a trustee sells the assets and pays creditors in order of priority. Chapter 11 is a reorganisation, where the company keeps operating while it restructures its obligations.",
-      "Chapter 7 is a reorganisation and Chapter 11 a liquidation - the numbers refer to the order in which they were added to the code.",
-      "Chapter 7 applies to companies and Chapter 11 to individuals, which is the only substantive difference.",
-      "Both are liquidations; Chapter 11 simply allows a longer timetable for selling the assets.",
+      "Chapter 7 liquidates - a trustee sells the assets and pays creditors by priority. Chapter 11 reorganises while the company operates.",
+      "Chapter 7 is the reorganisation and Chapter 11 is the liquidation - the two numbers simply reflect the order in which they entered the code.",
+      "Chapter 7 applies to companies and Chapter 11 to individuals, which is the only substantive difference between them.",
+      "Both are liquidations - Chapter 11 simply allows a longer timetable over which to sell off the assets involved.",
     ],
     correct: 0,
   },
   131: {
     options: [
-      "It's new money lent to a company in bankruptcy that ranks ahead of all existing secured and unsecured claims. Lenders regard it as safe because of that priority and the tighter terms attached, which is what makes the company financeable at all.",
-      "It's financing provided by the existing shareholders to keep the company operating, ranking behind all other claims.",
-      "It's a government-backed loan facility available to any company that files for Chapter 11.",
-      "It's debt the company issued before filing, which is re-designated as senior once bankruptcy proceedings begin.",
+      "New money lent to a company in bankruptcy that outranks all existing claims - that priority is what makes it lendable.",
+      "Financing provided by the company's existing shareholders to keep it operating, ranking behind every other claim on the business.",
+      "A government-backed loan facility available to any company that has filed for Chapter 11 protection.",
+      "Debt issued before filing which is re-designated as senior once the bankruptcy proceedings formally begin.",
     ],
     correct: 0,
   },
   132: {
     options: [
-      "Raise COGS to reflect worse vendor terms as suppliers lose trust, add back the non-recurring legal and professional fees of the restructuring, normalise any above-market owner salaries, and adjust for asset sales and impairments.",
-      "Make no adjustments - the reported statements already reflect the company's distressed condition.",
+      "Raise COGS for worse vendor terms, add back one-off restructuring and legal fees, normalise owner salaries, adjust for asset sales.",
+      "Make no adjustments at all - the reported statements already reflect the company's distressed condition fully.",
       "Remove all interest expense, since a distressed company will not be paying its debt service going forward.",
-      "Restate every asset at liquidation value, which is the only meaningful basis for a distressed business.",
+      "Restate every asset at liquidation value, the only meaningful basis on which to judge a distressed business.",
     ],
     correct: 0,
   },
   133: {
     options: [
-      "Mostly the same, except the excess-salary adjustment doesn't really apply - it's far harder for a public company to pay abnormal salaries in that way.",
-      "They differ completely; none of the private company adjustments carries over to a public company.",
-      "They are identical in every respect, since accounting standards apply equally to both.",
-      "Public companies need more adjustments, because their reported figures are audited and therefore more conservative.",
+      "Mostly the same, except the excess-salary adjustment barely applies - a public company can rarely pay salaries that way.",
+      "They differ completely - not one of the private company adjustments described above carries over to a public company at all.",
+      "They are identical in every respect, since accounting standards apply equally to public and private firms.",
+      "Public companies need more adjustments, because their audited figures are more conservative to begin with.",
     ],
     correct: 0,
   },
   134: {
     options: [
-      "Shareholders' equity - the book value - goes negative, which is common enough and also happens in LBOs and at persistently unprofitable companies. Equity market cap is a different thing and still can't go below zero.",
+      "Shareholders' equity - book value - can go negative, as it also does in LBOs. Market cap still cannot fall below zero.",
       "Equity market cap goes negative, which is how the market prices a company whose debts exceed its assets.",
-      "Both shareholders' equity and equity market cap go negative, since the two move together.",
-      "Neither changes - the relationship between debt market value and assets has no bearing on the equity line.",
+      "Both shareholders' equity and equity market cap can go negative, since the two of them always move together in practice.",
+      "Neither changes - the relation between debt market value and assets has no bearing on the equity line.",
     ],
     correct: 0,
   },
   135: {
     options: [
-      "New DIP lenders first, then secured creditors, then unsecured creditors, then subordinated debt, then mezzanine, then preferred shareholders, and common shareholders last.",
-      "Secured creditors first, then new DIP lenders, then common shareholders, with unsecured creditors and subordinated debt ranking last.",
-      "Common shareholders first as the owners of the business, followed by preferred shareholders and then the various classes of creditor.",
-      "All creditors rank equally and share the proceeds pro rata, with shareholders receiving whatever remains.",
+      "DIP lenders, then secured, then unsecured, then subordinated, then mezzanine, then preferred, then common shareholders.",
+      "Secured creditors first, then the new DIP lenders, then common shareholders, with unsecured and subordinated debt ranking last.",
+      "Common shareholders first as the owners, then preferred shareholders, and only then the various creditor classes.",
+      "All creditors rank equally and share proceeds pro rata, with the shareholders receiving whatever is left over.",
     ],
     correct: 0,
   },
   136: {
     options: [
-      "Look at the yields on comparable companies' bonds or their credit default swap spreads. You could also use the yield on the company's own existing debt, though that may understate the true cost.",
-      "Use the risk-free rate plus a standard distressed premium of 10%, which is the market convention.",
+      "Look at yields on comparable companies' bonds or their CDS spreads; the yield on the company's own debt works but may understate it.",
+      "Use the risk-free rate plus a standard distressed premium of 10%, which is the accepted market convention.",
       "Use the company's historical average interest rate, since that is what it has demonstrably been able to pay.",
-      "It can't be measured - a company that cannot issue debt has no cost of debt by definition.",
+      "It can't be measured - a company that cannot issue new debt has no cost of debt by definition.",
     ],
     correct: 0,
   },
   137: {
     options: [
-      "You use the same methodologies but lean toward the lower end of the multiple range, apply the distressed accounting adjustments, and add liquidation valuation - which is often the most relevant method of all here.",
-      "You abandon the standard methodologies entirely and value the company purely on its liquidation proceeds.",
+      "Same methodologies, but lean to the low end of the multiple range, apply the distressed adjustments, and add liquidation valuation.",
+      "You abandon the standard methodologies entirely and value the company purely on the liquidation proceeds its assets would fetch today.",
       "You use the same methodologies unchanged, since valuation technique is independent of a company's financial health.",
-      "You use the upper end of the multiple range, to reflect the recovery potential a turnaround would deliver.",
+      "You use the upper end of the multiple range, to reflect the recovery potential a successful turnaround would deliver.",
     ],
     correct: 0,
   },
   138: {
     options: [
-      "Even more of the value sits in the terminal value, since you typically model a few cash-flow-negative turnaround years first. You'd also sensitise around hitting or missing the projections and use a higher discount rate.",
-      "The terminal value matters less, because a distressed company's future beyond the projection period is too uncertain to include.",
+      "Even more value sits in the terminal value, since you model loss-making turnaround years first; sensitise and use a higher discount rate.",
+      "The terminal value matters far less, because a distressed company's prospects beyond the projection period are too uncertain to be included at all.",
       "You use a lower discount rate, since a distressed company's assets are already written down to a conservative level.",
       "A DCF can't be built at all for a distressed company, because negative cash flows make the arithmetic undefined.",
     ],
@@ -209,163 +209,162 @@ export const IB_QUESTION_OVERRIDES: Record<number, IbQuestionOverride> = {
   },
   139: {
     options: [
-      "It moves much faster because the company has to sell or go under, you may produce fewer upfront marketing materials in the interest of speed, and buyers negotiate harder knowing the seller has little leverage.",
-      "It moves more slowly, because every step requires court approval before the process can continue.",
-      "It follows exactly the same timetable and process as a healthy company sale - only the price differs.",
-      "You approach a single buyer rather than run a process, since confidentiality matters more when a company is distressed.",
+      "It moves much faster because the company must sell or fail, marketing materials are thinner, and buyers negotiate harder.",
+      "It moves more slowly, because every single step of the process requires court approval before it can continue.",
+      "It follows exactly the same timetable and process as any healthy company sale - only the final price differs.",
+      "You approach a single buyer rather than run a broad process, since confidentiality matters far more when a company is distressed.",
     ],
     correct: 0,
   },
   140: {
     options: [
-      "Yes - in a distressed sale you have almost no negotiating leverage, because you represent a company that may not survive. Competing bidders are effectively the only way to improve the price for your client.",
+      "Yes - you have almost no leverage representing a company that may not survive, so competing bidders are the only way to lift the price.",
       "No - in a distressed sale speed matters more than price, so a single committed buyer is preferable.",
-      "No - the price in a distressed sale is set by the creditors' recovery requirement, so competition can't move it.",
+      "No - the price is set by the creditors' recovery requirement, so competition between bidders can't move it.",
       "Yes, but only because bankruptcy law requires a minimum number of bidders before a sale can be approved.",
     ],
     correct: 0,
   },
   141: {
     options: [
-      "A stock purchase takes all shares plus every asset and liability, on and off balance sheet; an asset purchase takes only selected assets and liabilities. A distressed buyer strongly prefers an asset purchase, to leave the unwanted liabilities behind.",
-      "A stock purchase takes selected assets while an asset purchase takes the whole company - a distressed buyer prefers the stock purchase for the clean break.",
+      "A stock purchase takes every asset and liability with the shares; an asset purchase takes only selected ones, which distressed buyers prefer.",
+      "A stock purchase takes selected assets while an asset purchase takes the whole company, so a distressed buyer prefers the stock purchase for a clean break.",
       "A distressed buyer prefers a stock purchase, because acquiring the legal entity preserves the target's tax attributes and contracts.",
-      "The two are equivalent in a distressed sale, since bankruptcy law strips the liabilities either way.",
+      "The two are equivalent in a distressed sale, since bankruptcy law strips out the liabilities either way.",
     ],
     correct: 0,
   },
   142: {
     options: [
-      "Foreclosure, whether formal or informal; a general assignment as a faster alternative to bankruptcy; a Section 363 asset sale; or a Chapter 11 reorganisation or Chapter 7 liquidation.",
-      "Only two: the company either completes the sale or files for Chapter 7 and is liquidated.",
-      "The company can be nationalised, which is the standard outcome when a distressed sale fails.",
-      "The creditors automatically take ownership of the equity, which is the only alternative to a completed sale.",
+      "Foreclosure, formal or informal; a general assignment as a faster alternative to bankruptcy; a Section 363 sale; Chapter 11 or 7.",
+      "Only two outcomes are possible here: the company either completes the sale to a buyer, or it files for Chapter 7 and is liquidated.",
+      "The company can be nationalised, which is the standard outcome whenever a distressed sale process fails to find a buyer.",
+      "The creditors automatically take ownership of the equity, which is the only real alternative to a completed sale.",
     ],
     correct: 0,
   },
   143: {
     options: [
-      "To attract more bids and increase competition, which drives the price up. This happens outside distressed sales too whenever a seller wants a broader field of buyers.",
+      "To attract more bids and increase competition, which drives the price up - sellers do this outside distressed sales too.",
       "Because bankruptcy law requires public disclosure of any adviser engaged by a company in financial difficulty.",
-      "To reassure suppliers and customers that the company is solvent, which is the main purpose of the announcement.",
-      "Because the bank requires public attribution as a condition of taking on a distressed mandate.",
+      "To reassure the company's suppliers and customers that it remains solvent, which is the entire purpose of the announcement.",
+      "Because the bank requires public attribution as a condition of taking on a distressed mandate at all.",
     ],
     correct: 0,
   },
   144: {
     options: [
-      "Technically it depends, but in practice usually not. If a company is genuinely distressed its debts and obligations most likely exceed its asset value, so nothing is left once the creditors ahead of equity have been paid.",
+      "Usually not. A genuinely distressed company's obligations exceed its asset value, so nothing is left once creditors ahead of equity are paid.",
       "Yes, almost always - shareholders retain a statutory minimum claim on the proceeds of any distressed sale.",
       "Yes, provided the company files under Chapter 11 rather than Chapter 7, which preserves the equity in full.",
-      "No, never - shareholders are legally barred from receiving anything once a company enters a distressed process.",
+      "No, never - shareholders are legally barred from receiving anything once a distressed process begins.",
     ],
     correct: 0,
   },
   145: {
     options: [
-      "Aggressive creditors often force it. If they won't agree to restructure the obligations, or a sale can't be closed out of court, they can accelerate the debt and push the company into Chapter 11.",
-      "The company's auditors initiate the filing once they conclude it can no longer continue as a going concern.",
-      "A stock exchange delisting automatically triggers a Chapter 11 filing for any listed company.",
-      "Shareholders force it, since Chapter 11 is the only process that gives equity holders a seat at the negotiating table.",
+      "Aggressive creditors force it - if they won't restructure and no sale closes, they accelerate the debt and push it into Chapter 11.",
+      "The company's auditors initiate the filing once they conclude that it can no longer continue as a going concern.",
+      "A stock exchange delisting automatically triggers a Chapter 11 filing for any company that is publicly listed.",
+      "Shareholders force it, since Chapter 11 is the only process that gives the equity holders a proper seat at the table with creditors.",
     ],
     correct: 0,
   },
-
   146: {
     options: [
-      "Use surplus balance sheet cash to retire debt below par, cutting future interest and obligations - the interest forgone on the cash is less than the interest saved. Accounting-wise the discount to par is booked as a gain on the income statement.",
-      "The company issues new shares to fund the buyback, and the discount to par is recorded directly in shareholders' equity.",
-      "It buys the debt to prevent a competitor acquiring its loans; the purchase is recorded as an investment asset at cost.",
-      "The discount to par is recorded as a loss, because the company is admitting its obligations were overstated.",
+      "Use surplus cash to retire debt below par - interest saved exceeds interest forgone, and the discount to par books as a gain.",
+      "The company issues new shares to fund the repurchase, and the whole discount to par is recorded directly in shareholders' equity.",
+      "It buys the debt to stop a competitor acquiring its loans, and the purchase is recorded as an investment asset at cost.",
+      "The discount to par is recorded as a loss, because the company is admitting that its obligations were overstated.",
     ],
     correct: 0,
   },
   147: {
     options: [
-      "Over-levered companies with cash on hand - typically ones taken private in leveraged buyouts during the boom years, now struggling with interest payments their earnings can't comfortably cover.",
-      "Cash-rich, debt-free companies looking to deploy surplus balance sheet cash productively.",
-      "High-growth companies, which buy back debt to free up covenant capacity for further expansion.",
+      "Over-levered companies that still hold cash - typically boom-era LBOs now struggling to cover their interest payments.",
+      "Cash-rich, debt-free companies that are looking to deploy surplus balance sheet cash somewhere productive.",
+      "High-growth companies, which buy back their own debt to free up covenant capacity for further expansion into new markets.",
       "Companies already in Chapter 11, since the court permits debt repurchases at a discount during proceedings.",
     ],
     correct: 0,
   },
   148: {
     options: [
-      "Because priority determines recovery. Secured creditors have first claim on the proceeds of any sale, so a lower-ranked creditor may find nothing left by the time the waterfall reaches them.",
+      "Because priority determines recovery - secured creditors have first claim, so a junior creditor may find nothing left in the waterfall.",
       "Because all creditors share losses pro rata regardless of seniority, so every lender takes the same haircut.",
       "Because bankruptcy law caps creditor recoveries at 50% of face value in every proceeding.",
-      "Because creditors must forgive a portion of the debt before a company is permitted to file for Chapter 11.",
+      "Because creditors must forgive part of the debt before a company is permitted to file for Chapter 11.",
     ],
     correct: 0,
   },
   149: {
     options: [
-      "To change the terms of the debt - interest, principal repayment schedule, covenants - rather than the amount outstanding. A restructuring does not by itself reduce how much debt the company owes.",
-      "To eliminate the debt entirely, which is what distinguishes a restructuring from a simple refinancing.",
-      "To convert all outstanding debt into equity, giving creditors ownership in exchange for their claims.",
-      "To sell enough assets to repay the debt in full, leaving the remaining business debt-free.",
+      "To change the terms - interest, repayment schedule, covenants - rather than the amount owed. It doesn't cut the debt itself.",
+      "To eliminate the debt entirely, which is what distinguishes a restructuring from a simple refinancing of it.",
+      "To convert all of the outstanding debt into equity, giving the creditors ownership of the whole business in exchange for their claims.",
+      "To sell off enough assets to repay the debt in full, leaving the remaining business entirely debt-free.",
     ],
     correct: 0,
   },
   150: {
     options: [
-      "Restructuring is one possible outcome of a distressed situation. A distressed company might instead declare bankruptcy, liquidate, or sell itself - restructuring its debt is only one of the available paths.",
-      "They are the same thing described from the buyer's and the seller's perspective respectively.",
+      "Restructuring is one possible outcome of distress - the company might instead file, liquidate, or sell itself outright.",
+      "They are the same thing, described from the buyer's and the seller's perspective respectively.",
       "Distressed M&A is one possible outcome of a restructuring, which is the broader process containing it.",
-      "Restructuring involves only the debt while distressed M&A involves only the equity - they never overlap.",
+      "Restructuring involves only the debt while distressed M&A involves only the equity, so the two never overlap in practice.",
     ],
     correct: 0,
   },
   151: {
     options: [
-      "An asset purchase takes literally just the assets. Assuming current liabilities as well means adjusting for the fact that a distressed company's working capital is usually stretched - unpaid payables and accrued expenses come across too.",
-      "The two are identical, since current liabilities always transfer with the assets they relate to.",
-      "Assuming current liabilities means taking on the company's long-term debt as well, which is the main difference.",
-      "An asset purchase transfers the legal entity while a current-liabilities-assumed basis does not.",
+      "An asset purchase takes only the assets; assuming current liabilities means the stretched payables and accruals come across too.",
+      "The two are identical, since current liabilities always transfer along with the assets that they relate to.",
+      "Assuming current liabilities means taking on the company's long-term debt as well, which is the main practical difference of the two.",
+      "An asset purchase transfers the legal entity itself while a current-liabilities-assumed basis does not.",
     ],
     correct: 0,
   },
   152: {
     options: [
-      "It can't, directly. Market cap is not shareholders' equity - the share price doesn't change the book equity balance. A falling price only matters indirectly, for instance if it triggers a covenant or blocks the company from raising equity.",
-      "Shareholders' equity falls with the share price, and once it goes negative the company is insolvent and must file.",
+      "It can't directly - market cap isn't book equity. A falling price only matters if it trips a covenant or blocks an equity raise.",
+      "Shareholders' equity falls with the share price, and once negative the company is insolvent and must file.",
       "A falling share price automatically accelerates the company's debt under standard loan agreements.",
-      "The company must write down goodwill to match the lower market capitalisation, which can wipe out its equity.",
+      "The company must write down goodwill to match its lower market capitalisation, which can wipe out equity.",
     ],
     correct: 0,
   },
   153: {
     options: [
-      "They rise, often well beyond what's normal for the industry, because a distressed company struggles to pay its vendors and suppliers on time.",
-      "They fall, because suppliers demand cash on delivery once they lose confidence in the company.",
-      "They stay flat, since accounts payable days are set by contractual terms rather than by ability to pay.",
-      "They rise initially and then fall to zero, because suppliers stop extending any credit at all.",
+      "They rise, often well beyond the industry norm, because a distressed company struggles to pay its vendors on time.",
+      "They fall, because suppliers demand cash on delivery as soon as they lose confidence in the company.",
+      "They stay flat, since payable days are set by contractual terms rather than by the ability to pay them.",
+      "They rise at first and then fall away to zero, because the suppliers stop extending any trade credit whatsoever to them.",
     ],
     correct: 0,
   },
   154: {
     options: [
-      "Investors may simply refuse. Lenders won't advance capital to a company that's too small or lacks a credible turnaround plan - and it's worse for equity, since equity holders rank last and would be wiped out first.",
-      "Securities regulations prohibit a company from raising capital once it has missed a debt payment.",
-      "Its existing creditors must unanimously approve any new capital raise, which they never do.",
+      "Investors may simply refuse - lenders won't fund a company with no credible plan, and equity holders rank last of all.",
+      "Securities regulations prohibit a company from raising any capital once it has missed a debt payment.",
+      "Its existing creditors must unanimously approve any new capital raise, which they never actually do.",
       "It can always raise capital - distressed companies simply pay a higher rate, so the constraint is price rather than access.",
     ],
     correct: 0,
   },
   155: {
     options: [
-      "Higher in most cases, because you're adding back above-normal salaries, one-time legal and restructuring charges, and similar items that depress reported earnings.",
-      "Lower, because you have to strip out revenue the company is unlikely to collect from struggling customers.",
-      "The same - EBITDA is a standardised measure and isn't adjusted for a company's financial condition.",
-      "Lower, because distressed companies capitalise costs that should be expensed, which adjustment reverses.",
+      "Higher in most cases, because you add back above-market salaries and one-off legal and restructuring charges.",
+      "Lower, because you have to strip out revenue the company is unlikely to collect from its struggling customers.",
+      "The same - EBITDA is a standardised measure and isn't adjusted for a company's financial condition at all.",
+      "Lower, because distressed companies capitalise costs that should be expensed, and the adjustment reverses that.",
     ],
     correct: 0,
   },
   156: {
     options: [
-      "No. With a distressed company it's especially important to look at cash flow on a debt-free basis, precisely because its debt service is abnormally high and would distort the picture.",
+      "No. With a distressed company it matters even more to look at cash flow debt-free, since its debt service is abnormally high.",
       "Yes - levered cash flow is the right measure whenever a company carries an unusual amount of debt.",
-      "Yes, because a distressed company's equity is what's being valued, and levered cash flow gives Equity Value directly.",
+      "Yes, because the equity is what's being valued and levered cash flow gives Equity Value directly.",
       "Neither works - a distressed company's cash flows are too volatile for any DCF to be meaningful.",
     ],
     correct: 0,
@@ -374,28 +373,28 @@ export const IB_QUESTION_OVERRIDES: Record<number, IbQuestionOverride> = {
     question:
       "Let's say we're doing a Liquidation Valuation for a distressed company. Why can't we just use the Shareholders' Equity number for its value? Isn't that equal to Assets minus Liabilities?",
     options: [
-      "Because book values aren't recovery values. In a liquidation you re-mark each asset to what it would actually fetch sold separately - you might assume only 50% recovery on receivables or inventory, for instance.",
-      "Because shareholders' equity excludes off-balance-sheet liabilities, which is the only adjustment a liquidation valuation makes.",
-      "Because shareholders' equity is stated net of tax while liquidation proceeds are pre-tax, so the two aren't comparable.",
-      "You can use it - shareholders' equity is by definition assets minus liabilities, which is exactly what's left for equity holders.",
+      "Because book values aren't recovery values - you re-mark each asset to what it would fetch alone, perhaps 50% on receivables.",
+      "Because shareholders' equity excludes off-balance-sheet liabilities, which is the only adjustment a liquidation makes.",
+      "Because shareholders' equity is stated net of tax while liquidation proceeds are pre-tax, so the two don't compare.",
+      "You can use it - shareholders' equity is by definition assets minus liabilities, which is exactly what is left for equity holders.",
     ],
     correct: 0,
   },
   158: {
     options: [
-      "It varies enormously by industry and asset, but as a rough guide: cash near 100%, receivables and inventory recovering a substantial but partial fraction, and illiquid or specialised assets such as PP&E and intangibles recovering far less.",
-      "Roughly 100% across all asset classes, since liquidation sales are conducted at independently appraised fair value.",
-      "A flat 50% on every asset, which is the standard haircut applied in a liquidation valuation.",
-      "Intangibles recover the most because they can be sold to competitors, while cash recovers the least due to creditor claims on it.",
+      "It varies hugely by asset: cash near 100%, receivables and inventory a partial fraction, PP&E and intangibles far less.",
+      "Roughly 100% across all of the asset classes, since liquidation sales are conducted at independently appraised fair value.",
+      "A flat 50% on every asset, which is the standard haircut applied in any liquidation valuation exercise.",
+      "Intangibles recover most because competitors will buy them, while cash recovers least due to creditor claims.",
     ],
     correct: 0,
   },
   159: {
     options: [
-      "The point isn't the sponsor's IRR - it's how quickly the company can repay its obligations, and what return new debt or equity investors might earn. You're testing debt capacity rather than pricing an acquisition.",
-      "It's identical to a standard LBO model - only the purchase price assumption changes to reflect the distress.",
+      "The point isn't the sponsor's IRR - it's how fast the company can repay, and what new investors might earn on fresh capital.",
+      "It's identical to a standard LBO model - the only thing that changes is the purchase price assumption reflecting the distress.",
       "You model it with no debt at all, since a distressed company cannot support any additional leverage.",
-      "The goal is to maximise leverage, since a low purchase price allows an unusually aggressive capital structure.",
+      "The goal is to maximise leverage, since a low purchase price allows an unusually aggressive structure.",
     ],
     correct: 0,
   },
@@ -403,7 +402,7 @@ export const IB_QUESTION_OVERRIDES: Record<number, IbQuestionOverride> = {
   // ── Accounting - Basic ────────────────────────────────────────────────
   160: {
     options: [
-      "Income Statement (revenue and expenses down to Net Income), Balance Sheet (Assets = Liabilities + Shareholders' Equity at a point in time), and Cash Flow Statement (Net Income adjusted for non-cash items and changes in working capital, plus investing and financing activity).",
+      "Income Statement (revenue down to Net Income), Balance Sheet (Assets = Liabilities + Equity at a point in time), and Cash Flow Statement.",
       "Income Statement, Statement of Retained Earnings, and Cash Flow Statement - the Balance Sheet is a supporting schedule rather than one of the three core statements.",
       "Balance Sheet, Cash Flow Statement, and Statement of Shareholders' Equity - the Income Statement is folded into the Balance Sheet through Retained Earnings.",
       "Income Statement, Balance Sheet, and Trial Balance - the Cash Flow Statement is derived from the other two and is not filed separately.",
@@ -412,7 +411,7 @@ export const IB_QUESTION_OVERRIDES: Record<number, IbQuestionOverride> = {
   },
   161: {
     options: [
-      "Income Statement: Revenue, COGS, SG&A, Operating Income, Pretax Income, Net Income. Balance Sheet: Cash, Accounts Receivable, Inventory, PP&E, Accounts Payable, Debt, Shareholders' Equity. Cash Flow Statement: Net Income, D&A, changes in working capital, CapEx, debt and equity issuance.",
+      "IS: Revenue, COGS, SG&A, Operating Income, Net Income. BS: Cash, AR, Inventory, PP&E, AP, Debt, Equity. CFS: Net Income, D&A, working capital, CapEx.",
       "Income Statement: Cash, Inventory, PP&E. Balance Sheet: Revenue, COGS, Operating Income. Cash Flow Statement: Dividends, buybacks and interest only.",
       "Income Statement: Revenue and Net Income only. Balance Sheet: Assets only, since Liabilities appear on the Cash Flow Statement. Cash Flow Statement: CapEx and dividends.",
       "All three statements share the same line items - Revenue, Expenses and Cash - and differ only in the time period each one covers.",
@@ -421,7 +420,7 @@ export const IB_QUESTION_OVERRIDES: Record<number, IbQuestionOverride> = {
   },
   162: {
     options: [
-      "Net Income flows from the Income Statement into the top of the Cash Flow Statement and into Shareholders' Equity; the Cash Flow Statement's ending Cash balance becomes Cash on the Balance Sheet, and changes in Balance Sheet items show up as working capital, investing and financing activity.",
+      "Net Income tops the Cash Flow Statement and lifts Equity; the ending Cash balance becomes Balance Sheet Cash, and Balance Sheet moves drive the middle.",
       "The three statements are prepared independently from the general ledger and are only reconciled once a year at audit, so there is no direct link between them.",
       "The Balance Sheet flows into the Income Statement through Retained Earnings, and the Cash Flow Statement is built entirely from the Income Statement without touching the Balance Sheet.",
       "Cash Flow from Operations flows into Revenue on the Income Statement, and Net Income becomes the ending Cash balance on the Balance Sheet.",
@@ -439,7 +438,7 @@ export const IB_QUESTION_OVERRIDES: Record<number, IbQuestionOverride> = {
   },
   164: {
     options: [
-      "The Income Statement and Balance Sheet, because with a beginning and ending Balance Sheet covering the same period as the Income Statement you can construct the Cash Flow Statement yourself.",
+      "The Income Statement and Balance Sheet - with a beginning and ending Balance Sheet you can build the Cash Flow Statement.",
       "The Cash Flow Statement and Balance Sheet, because Net Income can always be read directly off the top of the Cash Flow Statement.",
       "The Income Statement and Cash Flow Statement, because together they show both profitability and cash, and the Balance Sheet adds nothing that isn't already in them.",
       "The Balance Sheet and the Statement of Shareholders' Equity, because between them they capture every transaction the company recorded.",
@@ -448,7 +447,7 @@ export const IB_QUESTION_OVERRIDES: Record<number, IbQuestionOverride> = {
   },
   165: {
     options: [
-      "Operating Income falls $10 and Net Income falls $6 at a 40% tax rate; on the Cash Flow Statement Net Income is down $6 but the $10 non-cash Depreciation is added back, so cash rises $4; on the Balance Sheet PP&E falls $10, Cash rises $4, and Retained Earnings falls $6.",
+      "Operating Income -$10, Net Income -$6 at 40% tax; adding back the $10 non-cash charge leaves cash +$4, and PP&E -$10 against Retained Earnings -$6.",
       "Operating Income falls $10 and Net Income falls $10, since Depreciation is not tax-deductible; cash is unchanged because Depreciation never touches the Cash Flow Statement.",
       "Operating Income falls $10 and Net Income falls $6, and cash falls $6 as well, because the Depreciation charge represents money actually paid out during the period.",
       "There is no effect on any statement, because Depreciation is a non-cash expense and non-cash expenses are excluded from all three statements.",
@@ -475,7 +474,7 @@ export const IB_QUESTION_OVERRIDES: Record<number, IbQuestionOverride> = {
   },
   168: {
     options: [
-      "Operating Expenses rise $10 so Pre-Tax Income falls $10 and Net Income falls $6; on the Cash Flow Statement the $6 decline is offset by a $10 increase in the Accrued Compensation liability, so cash rises $4.",
+      "Operating Expenses +$10 so Net Income -$6; the $10 rise in Accrued Compensation offsets it, so cash is up $4.",
       "Operating Expenses rise $10 and Net Income falls $6, and cash falls $10 as well, because compensation is always paid out in the period it is accrued.",
       "There is no Income Statement impact because the compensation has not been paid yet - only the Balance Sheet changes, with Liabilities up $10.",
       "Operating Expenses rise $10 and Net Income falls $10, since accrued compensation is not deductible until it is actually paid in cash.",
@@ -484,7 +483,7 @@ export const IB_QUESTION_OVERRIDES: Record<number, IbQuestionOverride> = {
   },
   169: {
     options: [
-      "No Income Statement change. On the Cash Flow Statement the Inventory build reduces Cash Flow from Operations by $10; on the Balance Sheet Inventory is up $10 and Cash is down $10, so Assets are unchanged and the sheet balances.",
+      "No Income Statement change. The Inventory build cuts operating cash flow $10; Inventory +$10 against Cash -$10, so Assets are flat.",
       "COGS rises $10 so Net Income falls $6, and Cash falls $10 - buying inventory is an expense as soon as the cash leaves the business.",
       "No Income Statement change, and no Cash Flow Statement change either - only the Balance Sheet moves, with Inventory up $10 and Cash down $10.",
       "Inventory is up $10 and Cash is down $10, but Shareholders' Equity must also fall $10 to keep the Balance Sheet in balance.",
@@ -493,7 +492,7 @@ export const IB_QUESTION_OVERRIDES: Record<number, IbQuestionOverride> = {
   },
   170: {
     options: [
-      "Because the expense is only recognized when the goods are actually sold - until then the inventory sits on the Balance Sheet as an asset and is not yet a Cost of Goods Sold.",
+      "Because the expense is recognised only when the goods are sold - until then it sits on the Balance Sheet as an asset.",
       "Because Inventory is a working capital item, and working capital changes are recorded directly in Shareholders' Equity rather than in earnings.",
       "Because Inventory purchases are treated as capital expenditures, which never appear on the Income Statement in any period.",
       "It is affected - the Income Statement changes as soon as inventory is purchased, which is one of the most common misconceptions about the statements.",
@@ -511,7 +510,7 @@ export const IB_QUESTION_OVERRIDES: Record<number, IbQuestionOverride> = {
   },
   172: {
     options: [
-      "Depreciation of $10 and Interest Expense of $10 reduce Pre-Tax Income by $20, so Net Income falls $12 at a 40% tax rate; the $10 Depreciation is added back on the Cash Flow Statement, so cash falls $2, and PP&E is down $10.",
+      "Depreciation $10 plus Interest $10 cut Pre-Tax Income $20, so Net Income -$12; adding back the $10 leaves cash -$2 and PP&E -$10.",
       "Only the $10 of Interest Expense hits the Income Statement, since depreciation on debt-funded assets is capitalized rather than expensed; Net Income falls $6.",
       "Pre-Tax Income falls $20 and Net Income falls $12, and cash also falls $12, because both Depreciation and Interest are settled in cash during the year.",
       "Pre-Tax Income falls $10 from Interest only, and the factory's $10 of depreciation reduces Shareholders' Equity directly without touching the Income Statement.",
@@ -520,7 +519,7 @@ export const IB_QUESTION_OVERRIDES: Record<number, IbQuestionOverride> = {
   },
   173: {
     options: [
-      "The remaining $80 book value is written down on the Income Statement, cutting Net Income by $48 at a 40% tax rate; the write-down is non-cash so it is added back, and repaying the $100 loan is a financing outflow.",
+      "The remaining $80 book value is written off, cutting Net Income $48; it's non-cash so it's added back, and the $100 repayment is financing.",
       "The full original $100 is written down regardless of accumulated depreciation, reducing Net Income by $60, and the loan repayment has no statement impact.",
       "The $80 write-down reduces Net Income by $48 and reduces cash by $48 as well, since a write-down represents a real economic loss of cash.",
       "Nothing hits the Income Statement - the $80 is charged directly against Shareholders' Equity, and only the $100 loan repayment appears, under Investing activities.",
@@ -529,7 +528,7 @@ export const IB_QUESTION_OVERRIDES: Record<number, IbQuestionOverride> = {
   },
   174: {
     options: [
-      "No Income Statement change. Inventory rises $10 so Cash Flow from Operations falls $10; on the Balance Sheet Inventory is up $10 and Cash is down $10, leaving Assets flat.",
+      "No Income Statement change. Inventory +$10 cuts operating cash flow $10, and Cash -$10 leaves Assets flat.",
       "Revenue is unchanged but COGS rises $10, so Net Income falls $6 and cash falls $10.",
       "No changes to any statement, because ordering inventory is only a commitment until the goods are actually manufactured and sold.",
       "Inventory rises $10 and Accounts Payable rises $10, so cash is unaffected and the Balance Sheet balances without touching Cash.",
@@ -547,7 +546,7 @@ export const IB_QUESTION_OVERRIDES: Record<number, IbQuestionOverride> = {
   },
   176: {
     options: [
-      "Yes - most commonly after a leveraged buyout with a dividend recapitalization, where the owner has pulled out a large amount of equity, or when a company has sustained losses long enough to make Retained Earnings deeply negative.",
+      "Yes - most often after an LBO with a dividend recap, or after losses deep enough to push Retained Earnings well below zero.",
       "No - Shareholders' Equity is the residual of Assets minus Liabilities and is mathematically prevented from going below zero.",
       "Yes, but only for companies in formal bankruptcy proceedings, since solvency rules otherwise require equity to stay positive.",
       "Yes, and it always means the company is insolvent and must be liquidated, since Liabilities exceed Assets.",
@@ -556,7 +555,7 @@ export const IB_QUESTION_OVERRIDES: Record<number, IbQuestionOverride> = {
   },
   177: {
     options: [
-      "Working Capital = Current Assets - Current Liabilities. Positive Working Capital means the company can cover its short-term liabilities with its short-term assets; bankers watch the change in Operating Working Capital as a driver of cash flow.",
+      "Current Assets - Current Liabilities. Positive means short-term assets cover short-term obligations.",
       "Working Capital = Total Assets - Total Liabilities, and it measures the company's overall net worth available to shareholders.",
       "Working Capital = Cash + Accounts Receivable - Debt, and it is used mainly to size how much additional leverage a company can support.",
       "Working Capital = Revenue - Operating Expenses, and it is used as a proxy for operating cash flow when the Cash Flow Statement is unavailable.",
@@ -565,7 +564,7 @@ export const IB_QUESTION_OVERRIDES: Record<number, IbQuestionOverride> = {
   },
   178: {
     options: [
-      "Not necessarily - subscription businesses with large Deferred Revenue balances, and retailers that collect from customers before paying suppliers, both run negative Working Capital as a sign of strength rather than distress.",
+      "Not necessarily - subscription businesses with big Deferred Revenue, and retailers paid before they pay suppliers, run it as a strength.",
       "Yes, always - negative Working Capital means the company cannot meet its short-term obligations and is a reliable early warning of insolvency.",
       "It is meaningless on its own, because Working Capital is an accounting construct that has no relationship to how a business is actually funded.",
       "Not necessarily, but only for capital-intensive manufacturers, where large PP&E balances make the current ratio look artificially weak.",
@@ -584,7 +583,7 @@ export const IB_QUESTION_OVERRIDES: Record<number, IbQuestionOverride> = {
 
   180: {
     options: [
-      "Assuming the common case - a government equity investment - there's no income statement change. Cash rises $100 under financing on the cash flow statement, and on the balance sheet Cash is up $100 with Shareholders' Equity up $100.",
+      "Taking it as a government equity investment: no income statement change, Cash +$100, Equity +$100.",
       "Revenue rises $100 so Net Income rises $60 at a 40% tax rate, and Cash rises $60 on the balance sheet.",
       "No income statement change, Cash rises $100, and Debt rises $100 - a bailout is always structured as a loan.",
       "Cash rises $100 and Goodwill rises $100, since the government is paying above the fair value of what it receives.",
@@ -593,7 +592,7 @@ export const IB_QUESTION_OVERRIDES: Record<number, IbQuestionOverride> = {
   },
   181: {
     options: [
-      "It's counter-intuitive: writing down a liability is a gain, so Pre-Tax Income rises $100 and Net Income rises $60 at a 40% tax rate. On the cash flow statement you subtract out the $100 non-cash gain, so cash falls $40.",
+      "Counter-intuitively it's a gain: Net Income +$60 at 40% tax, but subtracting the $100 non-cash gain leaves cash -$40.",
       "Writing down a liability is a loss, so Pre-Tax Income falls $100 and Net Income falls $60, with cash rising $40 once the non-cash charge is added back.",
       "There's no income statement effect - the $100 simply moves from Liabilities to Shareholders' Equity on the balance sheet.",
       "Pre-Tax Income rises $100 and Net Income rises $60, and cash rises $60 as well, since the company no longer has to repay the debt.",
@@ -602,7 +601,7 @@ export const IB_QUESTION_OVERRIDES: Record<number, IbQuestionOverride> = {
   },
   182: {
     options: [
-      "When it's paid upfront for a service delivered later - web-based subscription software, cell phone carriers selling annual contracts, magazine publishers selling subscriptions.",
+      "Paid upfront for a service delivered later - subscription software, annual phone contracts.",
       "When the customer pays by credit card, since the revenue isn't recognised until the card processor settles.",
       "When the customer pays in a foreign currency, which can't be recognised until it's converted.",
       "When the sale is to a related party, which must be excluded from reported revenue entirely.",
@@ -620,7 +619,7 @@ export const IB_QUESTION_OVERRIDES: Record<number, IbQuestionOverride> = {
   },
   184: {
     options: [
-      "Accounts receivable hasn't been collected in cash yet; deferred revenue has. Receivables are revenue the company is waiting to be paid for, deferred revenue is cash it's been paid but hasn't yet earned.",
+      "Receivables are revenue not yet collected; deferred revenue is cash collected but not yet earned. Exact opposites.",
       "Deferred revenue hasn't been collected in cash yet while accounts receivable has - the two are the reverse of one another.",
       "Both represent uncollected cash; they differ only in whether the customer is a business or a consumer.",
       "Accounts receivable is a liability and deferred revenue is an asset, which is the fundamental distinction.",
@@ -629,7 +628,7 @@ export const IB_QUESTION_OVERRIDES: Record<number, IbQuestionOverride> = {
   },
   185: {
     options: [
-      "Typically 40-50 days, though it runs higher for companies selling high-value items and lower for smaller, low-transaction-value businesses.",
+      "Typically 40-50 days, higher for high-value items and lower for small-ticket businesses.",
       "Typically 5-10 days, since most customers now pay electronically at the point of sale.",
       "Typically 90-120 days, which is the standard commercial payment term across industries.",
       "There's no typical range - collection periods are set individually in each customer contract.",
@@ -638,7 +637,7 @@ export const IB_QUESTION_OVERRIDES: Record<number, IbQuestionOverride> = {
   },
   186: {
     options: [
-      "Cash-based accounting records revenue and expenses when cash actually moves; accrual accounting records revenue when collection is reasonably certain and matches expenses to the period the related revenue was earned.",
+      "Cash-based records when cash moves; accrual records revenue when collection is likely, matching expenses to it.",
       "Accrual accounting records revenue and expenses when cash moves, while cash-based accounting matches them to the period earned.",
       "The two produce identical results over any full financial year and differ only in interim reporting.",
       "Cash-based accounting is used for the income statement and accrual accounting for the balance sheet, within the same set of accounts.",
@@ -656,7 +655,7 @@ export const IB_QUESTION_OVERRIDES: Record<number, IbQuestionOverride> = {
   },
   188: {
     options: [
-      "If the asset has a useful life of more than a year you capitalise it onto the balance sheet and depreciate or amortise it over that life; otherwise you expense it on the income statement in the period.",
+      "Useful life over a year: capitalise it and depreciate over that life. Otherwise expense it in the period.",
       "If the purchase costs more than a set dollar threshold you capitalise it, regardless of how long it lasts.",
       "You capitalise tangible purchases and expense intangible ones, since only physical assets belong on the balance sheet.",
       "You capitalise anything paid for in cash and expense anything bought on credit.",
@@ -665,7 +664,7 @@ export const IB_QUESTION_OVERRIDES: Record<number, IbQuestionOverride> = {
   },
   189: {
     options: [
-      "Because non-cash charges such as intangibles amortisation, stock-based compensation and deferred revenue write-downs can understate true performance - so companies present a non-GAAP figure excluding them alongside the GAAP number.",
+      "Because non-cash charges - amortisation, stock comp, deferred revenue write-downs - understate performance.",
       "Because GAAP is required for domestic reporting and non-GAAP for international investors, so both must be filed.",
       "Because non-GAAP earnings are audited and GAAP earnings are not, so investors need both to assess reliability.",
       "Because non-GAAP earnings include one-time gains that GAAP excludes, which gives a fuller picture of the year.",
@@ -674,7 +673,7 @@ export const IB_QUESTION_OVERRIDES: Record<number, IbQuestionOverride> = {
   },
   190: {
     options: [
-      "EBITDA ignores several real cash costs: heavy CapEx, high interest expense, one-time legal or restructuring charges, or a debt maturity the company simply can't refinance - any of which can sink a business with positive EBITDA.",
+      "EBITDA ignores real cash costs: heavy CapEx, interest, one-off legal charges, or a maturity it can't refinance.",
       "It can't - a company with positive EBITDA over ten years is by definition solvent and cannot go bankrupt.",
       "Because EBITDA excludes revenue recognised on credit, so the company was never actually collecting the cash.",
       "Because positive EBITDA with negative net income triggers an automatic bankruptcy filing under accounting rules.",
@@ -692,7 +691,7 @@ export const IB_QUESTION_OVERRIDES: Record<number, IbQuestionOverride> = {
   },
   192: {
     options: [
-      "Almost always because the company makes another acquisition, or is itself acquired and goodwill is recalculated in the new purchase accounting. An upward revaluation is technically possible but very rare.",
+      "Almost always another acquisition, or being acquired and having goodwill recalculated. Upward revaluation is very rare.",
       "It increases each year as the acquired business grows, since goodwill tracks the value of the customer relationships acquired.",
       "It increases whenever the company's share price rises, because goodwill is marked to market at each reporting date.",
       "It can never increase - goodwill only ever stays flat or is written down through impairment.",
@@ -1015,7 +1014,7 @@ export const IB_QUESTION_OVERRIDES: Record<number, IbQuestionOverride> = {
   },
   227: {
     options: [
-      "There's no ranking that always holds. Precedent Transactions usually come out above Comparable Companies because of the control premium in an acquisition, but a DCF can land either way and is simply more variable than the other two.",
+      "There's no fixed ranking. Precedents usually top comps thanks to the control premium, but a DCF can land either way.",
       "DCF is always highest, then Precedent Transactions, then Comparable Companies - discounting future cash flows always captures more value than any market-based method.",
       "Comparable Companies is always highest because public market multiples price in growth expectations that private deals never reflect.",
       "Precedent Transactions is always lowest, since distressed sellers drag historical deal multiples below current trading levels.",
@@ -1024,7 +1023,7 @@ export const IB_QUESTION_OVERRIDES: Record<number, IbQuestionOverride> = {
   },
   228: {
     options: [
-      "When cash flows are unstable or unpredictable - an early-stage tech or biotech company - or when debt and working capital play a fundamentally different role, as with banks and financial institutions.",
+      "When cash flows are unstable or unpredictable, or when debt and working capital play a different role, as at banks.",
       "When the company is unprofitable, since a DCF cannot be built on negative earnings under any circumstances.",
       "When the company is private, because a DCF requires an observable share price to compute the discount rate.",
       "Whenever comparable companies exist - a DCF is only a fallback for businesses with no public peers.",
@@ -1033,7 +1032,7 @@ export const IB_QUESTION_OVERRIDES: Record<number, IbQuestionOverride> = {
   },
   229: {
     options: [
-      "Liquidation Valuation (asset value less liabilities), Replacement Value (cost to rebuild the asset base), LBO analysis, and Sum of the Parts for multi-division businesses.",
+      "Liquidation Valuation, Replacement Value, LBO analysis, and Sum of the Parts for multi-division businesses.",
       "Only the three core methods exist - anything else is a variation on Comparable Companies rather than a separate methodology.",
       "Book Value, Par Value and Face Value, which together capture a company's accounting worth.",
       "Dividend yield analysis and share buyback analysis, which are the standard supplements to the core three.",
@@ -1042,7 +1041,7 @@ export const IB_QUESTION_OVERRIDES: Record<number, IbQuestionOverride> = {
   },
   230: {
     options: [
-      "Mostly in bankruptcy, to see whether equity holders receive anything once debts are repaid - and to advise a struggling business on whether selling assets piecemeal beats selling the whole company.",
+      "Mostly in bankruptcy, to see whether equity holders get anything after debts - and whether piecemeal asset sales beat a whole-company sale.",
       "For high-growth companies, since their asset base is the only part of the business that can be valued with confidence.",
       "As the default method for any private company, because private firms have no market price to anchor a relative valuation.",
       "Whenever a DCF produces a value below the current share price, as a sanity check on the discount rate.",
@@ -1051,7 +1050,7 @@ export const IB_QUESTION_OVERRIDES: Record<number, IbQuestionOverride> = {
   },
   231: {
     options: [
-      "When a company has genuinely unrelated divisions - a conglomerate such as GE with plastics, entertainment, energy, consumer finance and technology arms - so each division is valued with its own peer set and the results are added up.",
+      "When divisions are genuinely unrelated, as at a conglomerate - each is valued on its own peer set, then summed.",
       "When a company operates in a single industry but across several countries, so each geography can be valued separately.",
       "When a company is being liquidated, since Sum of the Parts is another name for adding up asset sale proceeds.",
       "Whenever a company has more than one product line, however closely related those product lines are.",
@@ -1060,7 +1059,7 @@ export const IB_QUESTION_OVERRIDES: Record<number, IbQuestionOverride> = {
   },
   232: {
     options: [
-      "Whenever you're looking at a leveraged buyout, and also to establish what a private equity firm could pay - which is usually less than a strategic buyer, so it tends to set a floor on the valuation range.",
+      "For any leveraged buyout, and to establish what a PE firm could pay - usually less than a strategic, so it sets a floor.",
       "Whenever you need the highest possible valuation, since leverage magnifies returns and therefore the price a buyer can justify.",
       "Only for companies already owned by a private equity firm, since an LBO analysis requires an existing debt structure to model.",
       "As a replacement for the DCF whenever cash flows are too unpredictable to forecast.",
@@ -1069,7 +1068,7 @@ export const IB_QUESTION_OVERRIDES: Record<number, IbQuestionOverride> = {
   },
   233: {
     options: [
-      "EV/Revenue, EV/EBITDA, EV/EBIT, P/E (share price over earnings per share) and P/BV (share price over book value).",
+      "EV/Revenue, EV/EBITDA, EV/EBIT, P/E and P/BV (share price over book value).",
       "EV/Net Income, Equity Value/EBITDA, P/Revenue and Debt/Equity.",
       "EV/Free Cash Flow, EV/Dividends, P/Cash and Revenue/Assets.",
       "Only EV/EBITDA and P/E - the other ratios are industry-specific rather than general-purpose multiples.",
@@ -1087,7 +1086,7 @@ export const IB_QUESTION_OVERRIDES: Record<number, IbQuestionOverride> = {
   },
   235: {
     options: [
-      "Because those scientists or subscribers are available to all the investors in the company, both debt and equity - and Enterprise Value is the figure that represents all of them. The logic has to be checked metric by metric, though.",
+      "Because those scientists or subscribers serve all investors, debt and equity alike - which is what Enterprise Value represents.",
       "Because Enterprise Value is always larger than Equity Value, which keeps industry multiples on a comparable scale across companies.",
       "Because Equity Value fluctuates with the share price while Enterprise Value is fixed, making it the more stable numerator.",
       "Because operational metrics like subscribers are recorded on the Balance Sheet, which is what Enterprise Value is derived from.",
@@ -1096,7 +1095,7 @@ export const IB_QUESTION_OVERRIDES: Record<number, IbQuestionOverride> = {
   },
   236: {
     options: [
-      "It could go either way, but usually the LBO gives a lower value: an LBO captures no value from the cash flows between year 1 and exit, valuing the business only on its terminal value, whereas a DCF credits every year's cash flow.",
+      "Usually the LBO is lower: it captures no cash flow between year 1 and exit, valuing the business only on its terminal value.",
       "The DCF is always lower, because discounting at the WACC penalises distant cash flows more heavily than an LBO's return requirement does.",
       "They always produce the same value when the same operating assumptions are used - the two are mathematically equivalent.",
       "The LBO is always higher, because the debt used in the structure adds the value of the interest tax shield on top of the business value.",
@@ -1105,7 +1104,7 @@ export const IB_QUESTION_OVERRIDES: Record<number, IbQuestionOverride> = {
   },
   237: {
     options: [
-      "As a \"football field\" chart showing the valuation range each methodology implies - always a range rather than a single number.",
+      "As a \"football field\" chart showing the range each methodology implies - always a range, never a single number.",
       "As a single point estimate, since presenting a range signals that the analysis is not rigorous enough to defend.",
       "As a ranked table listing the methodologies from highest to lowest value, with the highest presented as the recommendation.",
       "As a pie chart splitting total value across the three methodologies by their relative weighting.",
@@ -1114,7 +1113,7 @@ export const IB_QUESTION_OVERRIDES: Record<number, IbQuestionOverride> = {
   },
   238: {
     options: [
-      "The same way you'd value a company: what comparable apple trees sell for (relative valuation) and the value of the cash flows the tree produces (intrinsic valuation). You can run a DCF on anything.",
+      "The same way as a company: what comparable trees sell for, and the value of the cash flows it produces. You can run a DCF on anything.",
       "You couldn't - a DCF requires financial statements, so valuation methodologies don't apply to physical assets.",
       "Only by replacement cost, since a tree produces no contractual cash flows that could be discounted.",
       "By its liquidation value alone - the timber it would yield if cut down - because that is the only certain cash it generates.",
@@ -1123,7 +1122,7 @@ export const IB_QUESTION_OVERRIDES: Record<number, IbQuestionOverride> = {
   },
   239: {
     options: [
-      "Because EBITDA is available to all investors in the company, so it must be paired with Enterprise Value, which also represents all investors. Equity Value excludes the debt claim, so pairing the two compares apples to oranges.",
+      "Because EBITDA serves all investors, so it pairs with Enterprise Value; Equity Value excludes the debt claim.",
       "Because EBITDA is a pre-tax figure and Equity Value is an after-tax figure, so the two are measured on inconsistent bases.",
       "Because Equity Value changes daily with the share price while EBITDA is annual, so the ratio would never be stable.",
       "You can use it - Equity Value/EBITDA is simply a less common presentation of the same relationship as EV/EBITDA.",
@@ -1132,7 +1131,7 @@ export const IB_QUESTION_OVERRIDES: Record<number, IbQuestionOverride> = {
   },
   240: {
     options: [
-      "Rarely - but it can happen when a company holds substantial hard assets while the market is severely undervaluing it for a specific reason such as an earnings miss, so its trading and transaction comps come out lower than its asset value.",
+      "Rarely - but possible when a company holds hard assets while the market severely undervalues it after an earnings miss.",
       "Whenever a company is profitable, since profitable businesses always carry assets worth more than their going-concern value.",
       "For high-growth technology companies, whose intangible assets are worth far more in a liquidation than as an operating business.",
       "Never - by definition a liquidation value is the floor and can never exceed any other methodology.",
@@ -1141,7 +1140,7 @@ export const IB_QUESTION_OVERRIDES: Record<number, IbQuestionOverride> = {
   },
   241: {
     options: [
-      "With Comparable Companies and Precedent Transactions on creative multiples such as EV/Unique Visitors and EV/Pageviews. You would not attempt a far-in-the-future DCF, because you can't credibly forecast cash flows for a company that isn't yet generating any.",
+      "With comps and precedents on creative multiples like EV/Unique Visitors - a far-future DCF isn't credible here.",
       "With a DCF projecting 20 years out, since a company with no current cash flows can only be valued on its long-run potential.",
       "You couldn't value it at all - with no revenue there is no metric to attach a multiple to.",
       "With a Liquidation Valuation, since the servers and office equipment are the only assets with a determinable value.",
@@ -1150,7 +1149,7 @@ export const IB_QUESTION_OVERRIDES: Record<number, IbQuestionOverride> = {
   },
   242: {
     options: [
-      "It depends which one: Unlevered Free Cash Flow excludes interest and so belongs to all investors, pairing with Enterprise Value; Levered Free Cash Flow is after interest and belongs to equity holders, pairing with Equity Value.",
+      "Depends which: Unlevered FCF excludes interest and pairs with Enterprise Value; Levered FCF is after interest and pairs with Equity Value.",
       "Enterprise Value for both, since Free Cash Flow is an operating measure regardless of how it is defined.",
       "Equity Value for both, since Free Cash Flow is ultimately what is available to distribute to shareholders.",
       "Neither - Free Cash Flow is used in a DCF and is never expressed as a multiple.",
@@ -1159,7 +1158,7 @@ export const IB_QUESTION_OVERRIDES: Record<number, IbQuestionOverride> = {
   },
   243: {
     options: [
-      "Rarely, but yes: large financial institutions with big cash balances can have negative Enterprise Values, so Equity Value/Revenue may be the only workable option - for instance when comparing financial and non-financial companies side by side.",
+      "Rarely, but yes: big financial institutions can have negative Enterprise Value, so Equity Value/Revenue may be the only option.",
       "Never, for the same reason as Equity Value/EBITDA - revenue is available to all investors, so it must pair with Enterprise Value.",
       "Always - Equity Value/Revenue is in fact the standard revenue multiple, and EV/Revenue is the unusual variant.",
       "Only for pre-revenue companies, where the denominator is small enough that the choice of numerator no longer matters.",
@@ -1168,7 +1167,7 @@ export const IB_QUESTION_OVERRIDES: Record<number, IbQuestionOverride> = {
   },
   244: {
     options: [
-      "On three axes: industry classification, financial criteria such as revenue or EBITDA, and geography. For precedent transactions you also cap the lookback, usually to deals in the past one to two years.",
+      "On industry, financial criteria such as revenue or EBITDA, and geography - plus a one-to-two-year cap for precedents.",
       "Purely by market capitalisation, since companies of a similar size trade on similar multiples regardless of what they do.",
       "By picking the companies with multiples closest to the target's, so the resulting range is tight and defensible.",
       "By taking every listed company in the same country, since a broad sample is always more statistically reliable.",
@@ -1177,7 +1176,7 @@ export const IB_QUESTION_OVERRIDES: Record<number, IbQuestionOverride> = {
   },
   245: {
     options: [
-      "Take the median multiple from the set and apply it to the equivalent metric of the company you're valuing - for example a median precedent EBITDA multiple times your company's EBITDA.",
+      "Take the median multiple from the set and apply it to your company's equivalent metric.",
       "Average the valuations produced by all three methodologies to arrive at a single blended value.",
       "Take the highest multiple in the set, since that establishes the maximum an acquirer has been willing to pay.",
       "Apply the target's own historical multiple to its current metric, which controls for company-specific factors.",
@@ -1186,7 +1185,7 @@ export const IB_QUESTION_OVERRIDES: Record<number, IbQuestionOverride> = {
   },
   246: {
     options: [
-      "In pitch books and client presentations, and in a Fairness Opinion - the document a bank produces near closing to support the view that the price its client is paying or receiving is reasonable.",
+      "In pitch books and client presentations, and in a Fairness Opinion - the document supporting that the price a client pays or receives is reasonable.",
       "Only internally, as a risk-management check - valuations are never shown to clients because they would create legal liability.",
       "To set the company's share price on the exchange, which is why listed companies commission one each quarter.",
       "Purely as an academic exercise during analyst training; live deals are priced by negotiation rather than valuation work.",
@@ -1195,7 +1194,7 @@ export const IB_QUESTION_OVERRIDES: Record<number, IbQuestionOverride> = {
   },
   247: {
     options: [
-      "Several reasons: it may have just beaten earnings expectations and re-rated, it may hold a competitive advantage not visible in the financials such as a key patent, or it may have just announced a favourable acquisition or new product.",
+      "It may have just beaten earnings, hold an advantage invisible in the financials such as a patent, or announced a good deal.",
       "It can't - companies with identical growth and profitability always trade on identical multiples, which is the premise comparable analysis rests on.",
       "Because it has more debt, and leverage mechanically raises the EV/EBITDA multiple relative to unlevered peers.",
       "Because it is larger, and size alone guarantees a premium regardless of any other characteristic.",
@@ -1204,7 +1203,7 @@ export const IB_QUESTION_OVERRIDES: Record<number, IbQuestionOverride> = {
   },
   248: {
     options: [
-      "No company is fully comparable to another; the stock market is emotional, so the multiples swing with the market on any given day; and thinly-traded small caps may have share prices that don't reflect their real value.",
+      "No company is truly comparable, the market is emotional so multiples swing daily, and thin small caps may be mispriced.",
       "The main flaw is that public data is unreliable, since listed companies are not required to have their financials audited.",
       "They are only flawed when fewer than ten peers exist - with a large enough sample the methodology has no weaknesses.",
       "They systematically overvalue every company, because public markets always price in a control premium.",
@@ -1213,7 +1212,7 @@ export const IB_QUESTION_OVERRIDES: Record<number, IbQuestionOverride> = {
   },
   249: {
     options: [
-      "Use the 75th percentile or above rather than the median, add a premium to selected multiples, or run more aggressive projections. In practice you'd use one of these, not all three at once.",
+      "Use the 75th percentile rather than the median, or add a premium to selected multiples.",
       "Add a fixed 20% control premium, which is the standard adjustment for any competitive advantage.",
       "Exclude the weaker peers from the comparable set until the median rises to the level you consider appropriate.",
       "You don't - a competitive advantage is qualitative and cannot be reflected in a valuation.",
@@ -1222,7 +1221,7 @@ export const IB_QUESTION_OVERRIDES: Record<number, IbQuestionOverride> = {
   },
   250: {
     options: [
-      "There's no rule requiring it, though usually you do because the middle of the set is the most defensible. For a distressed or underperforming company you might use the 25th percentile instead.",
+      "No rule requires it, though the middle of the set is most defensible; for a distressed company you might use the 25th percentile.",
       "Yes, always - using anything other than the median makes the analysis subjective and indefensible.",
       "No, you normally use the mean, since it uses every data point rather than discarding the tails.",
       "You use the highest multiple for buy-side work and the lowest for sell-side work, depending on whose interest you represent.",
@@ -1231,7 +1230,7 @@ export const IB_QUESTION_OVERRIDES: Record<number, IbQuestionOverride> = {
   },
   251: {
     options: [
-      "Yes - when the M&A market and the public market are badly mismatched. If no public companies have been acquired recently but many small private ones have gone for very low valuations, precedents can come out below trading comps.",
+      "Yes - when the M&A and public markets are mismatched: few public takeovers, many cheap small private deals.",
       "No - the control premium in an acquisition guarantees precedent transactions always exceed trading comparables.",
       "Yes, but only when the precedent deals are all-stock, since stock consideration carries no premium.",
       "Yes, whenever the precedent transactions are more than a year old, because older deals are always priced lower.",
@@ -1240,7 +1239,7 @@ export const IB_QUESTION_OVERRIDES: Record<number, IbQuestionOverride> = {
   },
   252: {
     options: [
-      "Past deals are rarely fully comparable - structure, target size and market sentiment all move the multiple - and the data is harder to find than for public comparables, especially for acquisitions of small private companies.",
+      "Past deals are rarely comparable - structure, size and sentiment all move the multiple - and data is scarce.",
       "The only flaw is that they include a control premium, which can be removed with a standard 20% adjustment.",
       "They are less reliable than trading comps purely because there are usually fewer of them, with no other material weakness.",
       "They have no real flaws, which is why precedent transactions are treated as the single most authoritative methodology.",
@@ -1249,7 +1248,7 @@ export const IB_QUESTION_OVERRIDES: Record<number, IbQuestionOverride> = {
   },
   253: {
     options: [
-      "One sale process may have been far more competitive with more bidders, one target may have had recent bad news or a depressed share price and sold at a discount, or the two sat in industries with different median multiples.",
+      "One process had more bidders, one target sold at a discount after bad news, or the industries differed.",
       "It's impossible - identical financial profiles and the same acquirer must produce the same multiple.",
       "One deal must have been all-cash and the other all-stock, which is the only factor that can double a multiple.",
       "The acquirer must have made an error in one of the two valuations, since a 2x gap has no legitimate explanation.",
@@ -1258,7 +1257,7 @@ export const IB_QUESTION_OVERRIDES: Record<number, IbQuestionOverride> = {
   },
   254: {
     options: [
-      "Because EBITDA ignores capital expenditures, which are often large and very real - hence his line about the tooth fairy paying for CapEx. EBIT is after depreciation, so it partly reflects the cost of the asset base.",
+      "Because EBITDA ignores capital expenditures, which are large and real - hence the tooth fairy line. EBIT is after depreciation.",
       "Because EBIT is calculated after interest, which makes it a better measure of what equity holders actually keep.",
       "Because EBITDA is not a GAAP measure and therefore cannot legally be used in a published valuation.",
       "Because EBIT multiples are consistently lower, giving a more conservative valuation in every industry.",
@@ -1267,7 +1266,7 @@ export const IB_QUESTION_OVERRIDES: Record<number, IbQuestionOverride> = {
   },
   255: {
     options: [
-      "P/E depends on capital structure while EV/EBIT and EV/EBITDA are capital-structure neutral, so P/E suits banks and financial institutions where interest is central. EV/EBIT is after D&A, making it the better fit for capital-intensive businesses.",
+      "P/E depends on capital structure while EV/EBIT and EV/EBITDA don't, so P/E suits banks; EV/EBIT is after D&A.",
       "All three are capital-structure neutral and interchangeable; the choice between them is purely a matter of house convention.",
       "EV/EBITDA depends on capital structure while P/E does not, which is why P/E is the default for industrial companies.",
       "EV/EBIT and EV/EBITDA are identical in practice, since depreciation and amortisation are non-cash and net to zero over time.",
@@ -1278,7 +1277,7 @@ export const IB_QUESTION_OVERRIDES: Record<number, IbQuestionOverride> = {
     question:
       "If you were buying a vending machine business, would you pay a higher multiple for a business where you owned the machines and they depreciated normally, or one in which you leased the machines? The cost of depreciation and lease are the same dollar amounts and everything else is held constant.",
     options: [
-      "A higher multiple for the leased business. The lease is an operating expense so it sits inside EBITDA, making EBITDA lower; depreciation is excluded from EBITDA, so the owned business shows higher EBITDA and therefore a lower multiple on the same Enterprise Value.",
+      "Higher for the leased business - the lease sits inside EBITDA and lowers it, so the owned business shows a lower multiple.",
       "A higher multiple for the owned business, because owning the machines gives the buyer a hard asset base that a leased fleet does not.",
       "The same multiple for both, because the question states the dollar cost is identical, so the two businesses are economically equivalent.",
       "A higher multiple for the leased business, because leasing removes the machines from the Balance Sheet and therefore reduces Enterprise Value.",
@@ -1287,7 +1286,7 @@ export const IB_QUESTION_OVERRIDES: Record<number, IbQuestionOverride> = {
   },
   257: {
     options: [
-      "The same three methodologies, with adjustments: you might discount public comparable multiples by 10-15% or more for illiquidity, and there's no market price, so Cost of Equity and WACC inputs have to be estimated from public peers.",
+      "The same three methodologies, but discount comps for illiquidity and estimate WACC inputs from public peers.",
       "Only a DCF works, since a private company has no peers and no observable transaction history.",
       "Exactly the same as a public company with no adjustments - the methodologies are indifferent to listing status.",
       "Only book value applies, because without a share price there is no way to establish a market-based valuation.",
@@ -1296,7 +1295,7 @@ export const IB_QUESTION_OVERRIDES: Record<number, IbQuestionOverride> = {
   },
   258: {
     options: [
-      "Because a precedent transaction is the purchase of an entire company, and once acquired those shares are illiquid anyway - so no illiquidity discount is warranted. Trading comps price individual liquid shares, which is the thing a private company lacks.",
+      "Because a precedent buys the whole company and those shares are illiquid anyway; trading comps price liquid individual shares.",
       "Because precedent transactions already embed a control premium, which offsets the illiquidity discount exactly.",
       "Because transaction data is less reliable than trading data, so applying a further adjustment would compound the error.",
       "You should discount both equally - treating them differently introduces an inconsistency into the valuation.",
@@ -1305,7 +1304,7 @@ export const IB_QUESTION_OVERRIDES: Record<number, IbQuestionOverride> = {
   },
   259: {
     options: [
-      "Only as precedent transactions. They can't be used as public company comparables, or in the Cost of Equity and WACC build in a DCF, because they have no market cap and no observable Beta.",
+      "Only as precedent transactions - not as public comps, nor in the WACC build.",
       "Yes, anywhere - private company financials work identically to public ones for every methodology.",
       "No, never - a valuation may only reference publicly listed companies.",
       "Only in a DCF, where private company margins can be used to build the projections.",
@@ -1444,7 +1443,7 @@ export const IB_QUESTION_OVERRIDES: Record<number, IbQuestionOverride> = {
   // ── Discounted Cash Flow - Basic ──────────────────────────────────────
   274: {
     options: [
-      "Project the financials out five to ten years, get down to Free Cash Flow each year, discount those back at WACC, add the discounted Terminal Value, and that sum is Enterprise Value - from which you back into implied share price.",
+      "Project five to ten years to Free Cash Flow, discount those back at WACC, add the discounted Terminal Value - that sum is Enterprise Value.",
       "Project the financials out five years, sum the Free Cash Flows without discounting, and add the Terminal Value to get Enterprise Value.",
       "Take the company's current Net Income, apply the peer group's median P/E multiple, and discount the result back at the Cost of Equity.",
       "Discount the company's projected Net Income at WACC and add back the book value of its assets to get Enterprise Value.",
@@ -1453,7 +1452,7 @@ export const IB_QUESTION_OVERRIDES: Record<number, IbQuestionOverride> = {
   },
   275: {
     options: [
-      "Subtract COGS and operating expenses to get EBIT, multiply by (1 - tax rate), add back depreciation and other non-cash charges, then subtract CapEx and the change in Working Capital. Starting from EBIT gives you Unlevered Free Cash Flow.",
+      "EBIT × (1 - tax rate), add back depreciation and other non-cash charges, then subtract CapEx and the change in Working Capital.",
       "Subtract COGS and operating expenses to get EBIT, subtract interest and taxes, then add back depreciation and subtract CapEx - which gives Unlevered Free Cash Flow.",
       "Take Revenue, subtract every cash expense including CapEx, and the remainder is Free Cash Flow with no further adjustment needed.",
       "Take EBITDA, subtract taxes at the full statutory rate, and subtract the change in Working Capital - depreciation is already excluded so no add-back applies.",
@@ -1462,7 +1461,7 @@ export const IB_QUESTION_OVERRIDES: Record<number, IbQuestionOverride> = {
   },
   276: {
     options: [
-      "Take Cash Flow from Operations and subtract CapEx, which gives Levered Free Cash Flow; to reach Unlevered, add back tax-adjusted Interest Expense and subtract tax-adjusted Interest Income.",
+      "Operating cash flow less CapEx gives Levered FCF; for Unlevered, add back tax-adjusted Interest Expense and subtract Interest Income.",
       "Take Cash Flow from Operations and subtract CapEx, which gives Unlevered Free Cash Flow directly since operating cash flow is already before financing.",
       "Take EBITDA and subtract CapEx - the two adjustments cancel out, giving the same figure by either route.",
       "Take Net Income and add back every non-cash charge; CapEx is an investing item and is excluded from Free Cash Flow entirely.",
@@ -1471,7 +1470,7 @@ export const IB_QUESTION_OVERRIDES: Record<number, IbQuestionOverride> = {
   },
   277: {
     options: [
-      "Because that's about as far ahead as you can forecast with any credibility - under five years is too short to be useful, and beyond ten the projections become guesswork for most companies.",
+      "That's about as far as you can forecast credibly - under five years is too short, beyond ten is guesswork.",
       "Because accounting standards require projections to cover exactly five or ten years for a valuation to be admissible.",
       "Because the Terminal Value calculation is only mathematically valid at a five or ten year horizon.",
       "Because most debt matures within ten years, so beyond that point the capital structure can no longer be modelled.",
@@ -1489,7 +1488,7 @@ export const IB_QUESTION_OVERRIDES: Record<number, IbQuestionOverride> = {
   },
   279: {
     options: [
-      "Cost of Equity × (% equity) + Cost of Debt × (% debt) × (1 - tax rate) + Cost of Preferred × (% preferred), where the percentages are each component's share of the capital structure.",
+      "Cost of Equity × (% equity) + Cost of Debt × (% debt) × (1 - tax rate) + Cost of Preferred × (% preferred).",
       "Cost of Equity × (% equity) + Cost of Debt × (% debt) + Cost of Preferred × (% preferred), with no tax adjustment since taxes are already in the cash flows.",
       "The simple average of the Cost of Equity and the Cost of Debt, weighted equally regardless of the actual capital structure.",
       "Cost of Debt × (% debt) × (1 - tax rate) only, because equity has no contractual cost and is therefore free capital.",
@@ -1498,7 +1497,7 @@ export const IB_QUESTION_OVERRIDES: Record<number, IbQuestionOverride> = {
   },
   280: {
     options: [
-      "Cost of Equity = Risk-Free Rate + Beta × Equity Risk Premium, where the risk-free rate is the yield on a 10- or 20-year Treasury and the equity risk premium is how much stocks are expected to outperform risk-free assets.",
+      "Risk-Free Rate + Beta × Equity Risk Premium, using a 10- or 20-year Treasury yield as the risk-free rate.",
       "Cost of Equity = Risk-Free Rate × Beta + Equity Risk Premium, so a higher Beta scales the entire base return.",
       "Cost of Equity = Dividend per Share ÷ Share Price, which is the return shareholders actually receive each year.",
       "Cost of Equity = Risk-Free Rate + Equity Risk Premium, with Beta applied only when the company carries debt.",
@@ -1507,7 +1506,7 @@ export const IB_QUESTION_OVERRIDES: Record<number, IbQuestionOverride> = {
   },
   281: {
     options: [
-      "Look up each comparable company's Beta, un-lever each one, take the median of the set, then re-lever it at your company's own capital structure - and use that Levered Beta in the Cost of Equity.",
+      "Un-lever each comparable's Beta, take the median, then re-lever at your company's own capital structure.",
       "Look up each comparable company's Beta and take the median directly, since Beta already reflects the industry's risk profile.",
       "Regress your own company's historical share price against the index; comparable companies are irrelevant to your Beta.",
       "Un-lever your own company's Beta and use that, since the unlevered figure isolates pure business risk.",
@@ -1516,7 +1515,7 @@ export const IB_QUESTION_OVERRIDES: Record<number, IbQuestionOverride> = {
   },
   282: {
     options: [
-      "Because published Betas are levered to reflect each company's existing debt. Un-levering strips that out to isolate business risk, and re-levering applies your company's own capital structure - keeping the comparison apples-to-apples.",
+      "Published Betas are levered to each company's own debt - un-levering isolates business risk, re-levering applies your company's.",
       "Because Beta is measured against a different index for each company, and un-levering rebases them all to a common benchmark.",
       "Because Beta drifts toward 1.0 over time, and the un-lever/re-lever step corrects for that statistical bias.",
       "You don't have to - un-levering and re-levering is a formality that leaves the median Beta essentially unchanged.",
@@ -1525,7 +1524,7 @@ export const IB_QUESTION_OVERRIDES: Record<number, IbQuestionOverride> = {
   },
   283: {
     options: [
-      "A technology company, because technology is seen as a riskier industry - its returns swing more with the market than a manufacturer's do.",
+      "A technology company - a riskier industry, whose returns swing more with the market.",
       "A manufacturing company, because heavy fixed assets and high operating leverage make earnings more volatile.",
       "They'd be identical, since Beta measures market risk and both are exposed to the same market.",
       "A manufacturing company, because manufacturers typically carry more debt and Beta rises with leverage.",
@@ -1534,7 +1533,7 @@ export const IB_QUESTION_OVERRIDES: Record<number, IbQuestionOverride> = {
   },
   284: {
     options: [
-      "You get Equity Value rather than Enterprise Value, because Levered Free Cash Flow is what's left after debt investors have been paid their interest - so only equity holders have a claim on it.",
+      "Equity Value, not Enterprise Value - levered FCF is what remains after debt investors are paid, so only equity has a claim.",
       "You get Enterprise Value either way; the choice between levered and unlevered only changes the discount rate, not what the output represents.",
       "You get Enterprise Value, but understated by the amount of debt, so you add the debt back at the end to correct it.",
       "You get Equity Value, but only if the company has no preferred stock; otherwise the result is Enterprise Value.",
@@ -1543,7 +1542,7 @@ export const IB_QUESTION_OVERRIDES: Record<number, IbQuestionOverride> = {
   },
   285: {
     options: [
-      "Cost of Equity rather than WACC, because you're arriving at Equity Value and debt and preferred stock are no longer part of what you're valuing.",
+      "Cost of Equity, not WACC - you're arriving at Equity Value, so debt and preferred are out of scope.",
       "WACC, because it is always the correct discount rate for any discounted cash flow analysis.",
       "The after-tax Cost of Debt, since interest has already been deducted from Levered Free Cash Flow.",
       "The risk-free rate, because levered cash flow is contractually senior and therefore close to riskless.",
@@ -1552,7 +1551,7 @@ export const IB_QUESTION_OVERRIDES: Record<number, IbQuestionOverride> = {
   },
   286: {
     options: [
-      "Either apply an exit multiple to the company's final-year EBITDA, EBIT or Free Cash Flow, or use Gordon Growth: final-year Free Cash Flow × (1 + growth rate) ÷ (discount rate - growth rate).",
+      "Apply an exit multiple to final-year EBITDA, EBIT or FCF, or use Gordon Growth: final-year FCF × (1 + g) ÷ (discount rate - g).",
       "Either apply an exit multiple to final-year EBITDA, or use Gordon Growth: final-year Free Cash Flow ÷ (growth rate - discount rate).",
       "Sum all the projected Free Cash Flows beyond the forecast period and discount that total back at the risk-free rate.",
       "Take the company's current Enterprise Value and grow it forward at the long-term growth rate to the end of the projection period.",
@@ -1561,7 +1560,7 @@ export const IB_QUESTION_OVERRIDES: Record<number, IbQuestionOverride> = {
   },
   287: {
     options: [
-      "In banking you almost always use the Multiples Method, because exit multiples come from comparable companies whereas a perpetual growth rate is largely guesswork. Gordon Growth is the fallback when there are no good comparables.",
+      "Almost always the Multiples Method - exit multiples come from real comparables, while a perpetual growth rate is guesswork.",
       "Gordon Growth is the standard, because it's grounded in economic theory rather than in whatever the market happens to be paying today.",
       "You use Gordon Growth whenever the company is growing quickly, and the Multiples Method only for mature businesses.",
       "The two always produce the same Terminal Value when set consistently, so the choice is purely a matter of presentation.",
@@ -1570,7 +1569,7 @@ export const IB_QUESTION_OVERRIDES: Record<number, IbQuestionOverride> = {
   },
   288: {
     options: [
-      "Something conservative like the country's long-term GDP growth rate or the rate of inflation. In a mature economy anything above about 5% would be aggressive, since most developed economies grow more slowly than that.",
+      "Something conservative - long-term GDP growth or inflation. Above roughly 5% is aggressive in a mature economy.",
       "The company's own historical revenue growth rate, since that is the best available evidence of how fast it can grow.",
       "The industry's projected growth rate over the next five years, extended into perpetuity.",
       "The discount rate minus one or two percent, which keeps the Gordon Growth denominator from becoming too small.",
@@ -1579,7 +1578,7 @@ export const IB_QUESTION_OVERRIDES: Record<number, IbQuestionOverride> = {
   },
   289: {
     options: [
-      "Take the median of the comparable companies, or something near it - and always present a range of exit multiples and the resulting Terminal Values rather than committing to one number.",
+      "The median of the comparable set, or near it - and always present a range rather than one number.",
       "Take the highest multiple in the comparable set, since the Terminal Value should reflect the company at its most mature and valuable.",
       "Use the multiple the company trades at today, since that is the market's own current assessment.",
       "Derive it from the Gordon Growth result, so the two Terminal Value methods agree by construction.",
@@ -1597,7 +1596,7 @@ export const IB_QUESTION_OVERRIDES: Record<number, IbQuestionOverride> = {
   },
   291: {
     options: [
-      "Today's median multiple may look nothing like the market's multiple five to ten years out, so it may be wrong by the time it's applied. That's why you show a range and run a sensitivity - it's especially unreliable for cyclical industries.",
+      "Today's median may look nothing like the market five to ten years out - hence the range and sensitivity, especially for cyclicals.",
       "Trading multiples exclude the control premium, so a terminal multiple built from them systematically undervalues the business.",
       "Comparable companies are usually larger than the company being valued, so their multiples are always too high to apply.",
       "There is no flaw - the terminal multiple is applied at the end of the projection period, by which point today's multiples will have converged.",
@@ -1606,7 +1605,7 @@ export const IB_QUESTION_OVERRIDES: Record<number, IbQuestionOverride> = {
   },
   292: {
     options: [
-      "The standard rule of thumb is that if well over 50% of Enterprise Value comes from the Terminal Value, the DCF leans too heavily on assumptions. In practice almost every DCF trips this test - a Terminal Value under 50% is rare.",
+      "Rule of thumb: if well over 50% of Enterprise Value is Terminal Value, it leans too hard on assumptions.",
       "If the Terminal Value exceeds 20% of Enterprise Value, which is the accepted ceiling for a defensible DCF.",
       "If the implied exit multiple differs from the current trading multiple by more than one turn of EBITDA.",
       "You can't tell from the output - dependence on assumptions can only be assessed by re-running the model with different inputs.",
@@ -1615,7 +1614,7 @@ export const IB_QUESTION_OVERRIDES: Record<number, IbQuestionOverride> = {
   },
   293: {
     options: [
-      "Higher for the $500 million company. All else equal, smaller companies are expected to outperform larger ones and are treated as riskier - and adding a size premium would push its Cost of Equity higher still.",
+      "Higher for the $500 million company - smaller is treated as riskier, and a size premium adds more.",
       "Higher for the $5 billion company, because large caps have more analyst coverage and therefore more price volatility.",
       "Identical for both, since Cost of Equity depends on Beta and the risk-free rate, neither of which is a function of size.",
       "Higher for the $5 billion company, because a larger equity base requires a larger absolute return to satisfy investors.",
@@ -1633,7 +1632,7 @@ export const IB_QUESTION_OVERRIDES: Record<number, IbQuestionOverride> = {
   },
   295: {
     options: [
-      "More debt makes the company riskier, which raises Levered Beta - so all else equal, adding debt raises the Cost of Equity and reducing debt lowers it.",
+      "More debt raises Levered Beta and so raises the Cost of Equity; less debt lowers it.",
       "More debt lowers the Cost of Equity, because interest is tax-deductible and the tax shield accrues to shareholders.",
       "There's no relationship - Cost of Equity is set by the risk-free rate and the equity risk premium, neither of which depends on leverage.",
       "More debt raises the Cost of Equity only up to the point where the company becomes distressed, after which it falls again.",
@@ -1644,7 +1643,7 @@ export const IB_QUESTION_OVERRIDES: Record<number, IbQuestionOverride> = {
     question:
       "Cost of Equity tells us what kind of return an equity investor can expect for investing in a given company - but what about dividends? Shouldn't we factor dividend yield into the formula?",
     options: [
-      "No - dividend yield is already inside Beta. Beta describes returns relative to the market as a whole, and those market returns include dividends, so adding a yield term would double-count them.",
+      "No - it's already inside Beta, which measures returns against a market whose own returns include dividends.",
       "Yes - you add the dividend yield to the CAPM result, since dividends are a component of shareholder return that Beta does not capture.",
       "Yes, but only for companies that pay a dividend; for non-payers the standard CAPM formula applies unchanged.",
       "No - dividends are a financing decision and have no bearing on the return an equity investor requires.",
@@ -1653,7 +1652,7 @@ export const IB_QUESTION_OVERRIDES: Record<number, IbQuestionOverride> = {
   },
   297: {
     options: [
-      "Cost of Equity = (Dividends per Share ÷ Share Price) + the growth rate of dividends. It's less common than CAPM but useful for dividend-heavy companies or when you lack reliable Beta data.",
+      "Cost of Equity = (Dividends per Share ÷ Share Price) + dividend growth rate - useful when Beta data is unreliable.",
       "Cost of Equity = Net Income ÷ Shareholders' Equity, which is simply return on equity restated as a required return.",
       "Cost of Equity = the company's WACC minus its after-tax Cost of Debt, weighted by the equity share of the capital structure.",
       "There is no alternative - CAPM is the only method for deriving Cost of Equity.",
@@ -1662,7 +1661,7 @@ export const IB_QUESTION_OVERRIDES: Record<number, IbQuestionOverride> = {
   },
   298: {
     options: [
-      "The one without debt, up to a point. Debt is cheaper than equity because interest is tax-deductible and debt sits senior to equity in a liquidation, so adding some debt lowers WACC - though past a certain level the added risk reverses that.",
+      "The one without debt, up to a point. Debt is cheaper - interest is tax-deductible and it sits senior - so some debt lowers WACC.",
       "The one with debt, because adding a second component to the capital structure can only increase the weighted average.",
       "The one without debt, permanently - WACC falls continuously as leverage rises, with no point at which it turns back up.",
       "They'd be identical, since WACC weights each component by its share of capital and the weights always sum to one.",
@@ -1671,7 +1670,7 @@ export const IB_QUESTION_OVERRIDES: Record<number, IbQuestionOverride> = {
   },
   299: {
     options: [
-      "Usually the 10% change in revenue, because it flows through every projected year and into the Terminal Value as well - though the honest answer starts with \"it depends.\"",
+      "Usually the 10% revenue change - it flows through every year and into the Terminal Value too.",
       "The 1% change in the discount rate, since discounting compounds across every year of the projection.",
       "They have identical impact, because a DCF is linear in both revenue and the discount rate.",
       "Neither - both are second-order effects next to the choice of exit multiple, which drives the valuation.",
@@ -1680,7 +1679,7 @@ export const IB_QUESTION_OVERRIDES: Record<number, IbQuestionOverride> = {
   },
   300: {
     options: [
-      "Now the discount rate usually matters more, since a 1% move in it compounds across every year while a 1% revenue change is a much smaller absolute shift - though it could still go either way.",
+      "Now the discount rate usually wins - a 1% move compounds across every year of the projection.",
       "Revenue still matters more, because revenue changes affect the Terminal Value and discount rate changes do not.",
       "They are exactly equivalent at 1%, which is why sensitivity tables always pair the two on the same scale.",
       "Neither has a material effect at 1% - a DCF is only sensitive to changes above roughly 5%.",
@@ -1689,7 +1688,7 @@ export const IB_QUESTION_OVERRIDES: Record<number, IbQuestionOverride> = {
   },
   301: {
     options: [
-      "It's awkward, because a private company has no market cap and no Beta. You'd estimate WACC from comparable public companies, or from work already done by auditors or valuation specialists.",
+      "Awkward - no market cap and no Beta, so you estimate WACC from public comparables or a specialist's prior work.",
       "You use the company's actual interest rate on its debt as WACC, since that is its only observable cost of capital.",
       "You can't - WACC is undefined for a private company, so private companies must be valued without a DCF.",
       "You use the risk-free rate plus a flat 5% private company premium, which is the standard market convention.",
@@ -1707,7 +1706,7 @@ export const IB_QUESTION_OVERRIDES: Record<number, IbQuestionOverride> = {
   },
   303: {
     options: [
-      "Banks use debt as raw material for their products rather than reinvesting it in operations, interest is central to the business model, and working capital dominates the balance sheet - so unlevered free cash flow doesn't mean much. You'd use a dividend discount model instead.",
+      "Debt is their raw material, interest is central, working capital dominates - use a dividend discount model.",
       "Because banks are too heavily regulated for their future cash flows to be projected with any confidence.",
       "Because banks report under a different accounting framework, so their financial statements can't be used to build a DCF.",
       "You would - a DCF works perfectly well for a bank, it just needs a higher discount rate to reflect the sector's risk.",
@@ -1716,7 +1715,7 @@ export const IB_QUESTION_OVERRIDES: Record<number, IbQuestionOverride> = {
   },
   304: {
     options: [
-      "Revenue growth vs. terminal multiple, EBITDA margin vs. terminal multiple, terminal multiple vs. discount rate, and long-term growth rate vs. discount rate - but not terminal multiple against long-term growth rate, since those are two ways of setting the same thing.",
+      "Revenue growth, EBITDA margin or discount rate against the terminal multiple - never multiple against growth.",
       "Only revenue growth against EBITDA margin, since those are the two operating assumptions that drive the model.",
       "Terminal multiple against long-term growth rate, which is the most informative pairing because both drive Terminal Value.",
       "Any two inputs may be paired freely - there is no combination that produces a meaningless sensitivity table.",
@@ -1725,7 +1724,7 @@ export const IB_QUESTION_OVERRIDES: Record<number, IbQuestionOverride> = {
   },
   305: {
     options: [
-      "You don't account for it at all in an unlevered DCF. Principal repayment sits in Cash Flow from Financing, and unlevered free cash flow stops at Cash Flow from Operations less CapEx. It would only matter in a levered DCF, through the falling interest expense.",
+      "You don't, in an unlevered DCF - repayment sits in financing, and unlevered FCF stops at operations less CapEx.",
       "You subtract the annual principal repayment from Free Cash Flow, since it is a genuine cash outflow the company cannot avoid.",
       "You add the repayment back, because reducing debt increases the value available to equity holders.",
       "You reduce the Terminal Value by the remaining debt balance, which is how deleveraging is captured in a DCF.",
