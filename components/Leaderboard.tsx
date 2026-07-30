@@ -16,6 +16,9 @@ import {
 import { getCombinedGameLeaderboard } from "@/lib/games";
 import { getCareerLeaderboard, type CareerLeaderboardRow } from "@/lib/finance-careers";
 import { isValidAvatar } from "@/lib/avatar-utils";
+import { useI18n } from "@/lib/i18n/context";
+import { format as formatI18n } from "@/lib/i18n";
+import type { Dictionary } from "@/lib/i18n";
 
 type LeaderboardUiMetric = LeaderboardMetric | "composite" | "mastery" | "game" | "career" | "cfa" | "community";
 
@@ -142,21 +145,33 @@ function AvatarWithFrame({ rank, name, avatarUrl, size = 44 }: { rank: number; n
   );
 }
 
-const TABS: { metric: LeaderboardUiMetric; label: string; icon: any; format: (v: number) => string }[] = [
+// `labelKey`/`format` both read from the dictionary rather than storing
+// translated text directly - TABS is a module-level const built once outside
+// any component, so it can't call useI18n() itself. Callers pass
+// t.leaderboard/t.leaderboard.units in at render time (see LB() below).
+const TABS: {
+  metric: LeaderboardUiMetric;
+  labelKey: keyof Pick<
+    Dictionary["leaderboard"],
+    "compositeScore" | "totalXp" | "trueMastery" | "lessonsCount" | "avgScore" | "streakDays" | "career" | "cfaArena" | "contribution" | "badgesLabel" | "gamer"
+  >;
+  icon: any;
+  format: (v: number, u: Dictionary["leaderboard"]["units"]) => string;
+}[] = [
   // Default tab: the weighted overall score (see
   // 20260819_composite_leaderboard.sql). Listed first because it, not raw XP,
   // is meant to be the headline "who is doing best overall" ranking.
-  { metric: "composite", label: "Điểm tổng hợp", icon: ShieldCheck, format: (v) => `${v}/1000` },
-  { metric: "xp", label: "XP Tổng", icon: Zap, format: (v) => `${v} XP` },
-  { metric: "mastery", label: "Năng lực thật", icon: ShieldCheck, format: (v) => `${Math.round(v)} điểm` },
-  { metric: "lessons", label: "Số bài", icon: BookOpen, format: (v) => `${v} bài` },
-  { metric: "avg_score", label: "Điểm TB", icon: Target, format: (v) => `${Math.round(v)}%` },
-  { metric: "streak", label: "Chuỗi ngày", icon: Flame, format: (v) => `${v} ngày` },
-  { metric: "career", label: "Sự nghiệp", icon: Briefcase, format: (v) => `${v} bài` },
-  { metric: "cfa", label: "Đấu trường CFA", icon: GraduationCap, format: (v) => `${v} điểm` },
-  { metric: "community", label: "Đóng góp", icon: Heart, format: (v) => `${v} tương tác` },
-  { metric: "badges", label: "Huy hiệu", icon: Award, format: (v) => `${v} danh hiệu` },
-  { metric: "game", label: "Game thủ", icon: Gamepad2, format: (v) => `${v} XP` },
+  { metric: "composite", labelKey: "compositeScore", icon: ShieldCheck, format: (v, u) => `${v}${u.outOf1000}` },
+  { metric: "xp", labelKey: "totalXp", icon: Zap, format: (v, u) => `${v} ${u.xp}` },
+  { metric: "mastery", labelKey: "trueMastery", icon: ShieldCheck, format: (v, u) => `${Math.round(v)} ${u.points}` },
+  { metric: "lessons", labelKey: "lessonsCount", icon: BookOpen, format: (v, u) => `${v} ${u.lessons}` },
+  { metric: "avg_score", labelKey: "avgScore", icon: Target, format: (v, u) => `${Math.round(v)}${u.percent}` },
+  { metric: "streak", labelKey: "streakDays", icon: Flame, format: (v, u) => `${v} ${u.days}` },
+  { metric: "career", labelKey: "career", icon: Briefcase, format: (v, u) => `${v} ${u.lessons}` },
+  { metric: "cfa", labelKey: "cfaArena", icon: GraduationCap, format: (v, u) => `${v} ${u.points}` },
+  { metric: "community", labelKey: "contribution", icon: Heart, format: (v, u) => `${v} ${u.interactions}` },
+  { metric: "badges", labelKey: "badgesLabel", icon: Award, format: (v, u) => `${v} ${u.honors}` },
+  { metric: "game", labelKey: "gamer", icon: Gamepad2, format: (v, u) => `${v} ${u.xp}` },
 ];
 
 const LEADERBOARD_TITLES: Record<LeaderboardUiMetric, Record<number, string>> = {
@@ -459,6 +474,7 @@ function getPodiumTone(rank: number) {
 }
 
 export default function Leaderboard({ userId, compact = false }: { userId?: string; compact?: boolean }) {
+  const { t } = useI18n();
   const [metric, setMetric] = useState<LeaderboardUiMetric>("composite");
   const [entries, setEntries] = useState<(LeaderboardRow & { careerTitle?: string; careerEmoji?: string })[]>([]);
   const [myRank, setMyRank] = useState<{ rank: number; value: number } | null>(null);
@@ -468,7 +484,7 @@ export default function Leaderboard({ userId, compact = false }: { userId?: stri
   const [switching, setSwitching] = useState(false);
   const leadTabsRef = useRef<HTMLDivElement>(null);
 
-  const activeTab = TABS.find((t) => t.metric === metric)!;
+  const activeTab = TABS.find((tab) => tab.metric === metric)!;
 
   useEffect(() => {
     let cancelled = false;
@@ -586,13 +602,13 @@ export default function Leaderboard({ userId, compact = false }: { userId?: stri
           <div>
             <div className="inline-flex items-center gap-1.5 rounded-full border border-amber-300 dark:border-amber-700 bg-amber-50 dark:bg-amber-950/60 px-3 py-1 text-[11px] font-extrabold uppercase tracking-[0.16em] text-amber-700 dark:text-amber-400 shadow-xs">
               <Trophy className="h-3.5 w-3.5 fill-amber-400 text-amber-600 dark:text-amber-400" />
-              BXH
+              {t.leaderboard.eyebrowCompact}
             </div>
-            <h2 className="mt-2.5 text-2xl font-black tracking-tight text-stone-900 dark:text-stone-100">Bảng xếp hạng</h2>
+            <h2 className="mt-2.5 text-2xl font-black tracking-tight text-stone-900 dark:text-stone-100">{t.leaderboard.titleCompact}</h2>
           </div>
           <div className="inline-flex items-center gap-1.5 rounded-2xl border border-emerald-200 dark:border-emerald-900 bg-emerald-50 dark:bg-emerald-950/60 px-3 py-1.5 text-xs font-bold text-emerald-700 dark:text-emerald-400 shadow-xs">
             <Sparkles className="h-3.5 w-3.5 text-emerald-600 dark:text-emerald-400" />
-            {activeTab.label}
+            {t.leaderboard[activeTab.labelKey]}
           </div>
         </div>
 
@@ -602,7 +618,7 @@ export default function Leaderboard({ userId, compact = false }: { userId?: stri
             type="button"
             onClick={() => leadTabsRef.current?.scrollBy({ left: -160, behavior: "smooth" })}
             className="absolute -left-2.5 top-1/2 -translate-y-1/2 z-10 w-7 h-7 rounded-full bg-white dark:bg-stone-800 border border-stone-200 dark:border-stone-700 shadow-md flex items-center justify-center text-stone-600 dark:text-stone-300 hover:bg-stone-50 dark:hover:bg-stone-700 transition-all cursor-pointer hidden sm:flex"
-            aria-label="Cuộn sang trái"
+            aria-label={t.leaderboard.scrollLeft}
           >
             <ChevronLeft className="w-4 h-4" />
           </button>
@@ -610,7 +626,7 @@ export default function Leaderboard({ userId, compact = false }: { userId?: stri
             type="button"
             onClick={() => leadTabsRef.current?.scrollBy({ left: 160, behavior: "smooth" })}
             className="absolute -right-2.5 top-1/2 -translate-y-1/2 z-10 w-7 h-7 rounded-full bg-white dark:bg-stone-800 border border-stone-200 dark:border-stone-700 shadow-md flex items-center justify-center text-stone-600 dark:text-stone-300 hover:bg-stone-50 dark:hover:bg-stone-700 transition-all cursor-pointer hidden sm:flex"
-            aria-label="Cuộn sang phải"
+            aria-label={t.leaderboard.scrollRight}
           >
             <ChevronRight className="w-4 h-4" />
           </button>
@@ -634,7 +650,7 @@ export default function Leaderboard({ userId, compact = false }: { userId?: stri
                   }`}
                 >
                   <Icon className={`h-3.5 w-3.5 ${isActive ? "text-amber-500" : "text-stone-400"}`} />
-                  <span>{tab.label}</span>
+                  <span>{t.leaderboard[tab.labelKey]}</span>
                 </button>
               );
             })}
@@ -648,19 +664,19 @@ export default function Leaderboard({ userId, compact = false }: { userId?: stri
                 <ShieldCheck className="h-4 w-4" />
               </div>
               <div className="min-w-0">
-                <p className="text-xs font-black text-stone-900 dark:text-stone-100">Đánh giá toàn diện, nặng về kiến thức</p>
+                <p className="text-xs font-black text-stone-900 dark:text-stone-100">{t.leaderboard.compositeTitle}</p>
                 <p className="mt-0.5 text-[11px] font-medium leading-relaxed text-stone-500 dark:text-stone-400">
-                  Thang 1000 điểm, gồm: <strong>35%</strong> XP học hàng ngày (không tính điểm danh),{" "}
-                  <strong>30%</strong> bài thi thăng cấp, <strong>20%</strong> điểm kiểm tra trung bình,{" "}
-                  <strong>15%</strong> chuỗi ngày học. Chỉ tính bài thi được máy chủ chấm.
+                  {t.leaderboard.compositeDescPrefix} <strong>35%</strong> {t.leaderboard.compositeDescXp}{" "}
+                  <strong>30%</strong> {t.leaderboard.compositeDescExam} <strong>20%</strong> {t.leaderboard.compositeDescAccuracy}{" "}
+                  <strong>15%</strong> {t.leaderboard.compositeDescStreak}
                 </p>
                 {myComposite && (
                   <div className="mt-2 grid grid-cols-2 gap-1.5 sm:grid-cols-4">
                     {[
-                      { label: "XP học", value: `${Math.round(myComposite.learningXp)}` },
-                      { label: "Thi thăng cấp", value: `${Math.round(myComposite.examPoints)}/1400` },
-                      { label: "Điểm TB", value: `${Math.round(myComposite.accuracy)}%` },
-                      { label: "Chuỗi ngày", value: `${Math.round(myComposite.streakDays)}` },
+                      { label: t.leaderboard.compositeLearningXp, value: `${Math.round(myComposite.learningXp)}` },
+                      { label: t.leaderboard.compositeExamPoints, value: `${Math.round(myComposite.examPoints)}/1400` },
+                      { label: t.leaderboard.compositeAccuracy, value: `${Math.round(myComposite.accuracy)}%` },
+                      { label: t.leaderboard.compositeStreak, value: `${Math.round(myComposite.streakDays)}` },
                     ].map((item) => (
                       <div
                         key={item.label}
@@ -686,9 +702,9 @@ export default function Leaderboard({ userId, compact = false }: { userId?: stri
                 <ShieldCheck className="h-4 w-4" />
               </div>
               <div>
-                <p className="text-xs font-black text-stone-900 dark:text-stone-100">Bảng này ưu tiên kiến thức thật</p>
+                <p className="text-xs font-black text-stone-900 dark:text-stone-100">{t.leaderboard.masteryTitle}</p>
                 <p className="mt-0.5 text-[11px] font-medium leading-relaxed text-stone-500 dark:text-stone-400">
-                  XP đo độ chăm học; bảng Năng lực thật dựa trên điểm kiểm tra để phản ánh mức hiểu bài. Bước tiếp theo nên là sát hạch bắt buộc trước khi xác nhận lên cấp.
+                  {t.leaderboard.masteryDesc}
                 </p>
               </div>
             </div>
@@ -737,7 +753,7 @@ export default function Leaderboard({ userId, compact = false }: { userId?: stri
                         <p className="mt-0.5 text-[8px] font-extrabold uppercase leading-tight text-emerald-600 dark:text-emerald-400 line-clamp-1 break-words">
                           {entry.careerTitle ? `${entry.careerEmoji || "💼"} ${entry.careerTitle}` : getLeaderboardHonor(metric, rank).nickname}
                         </p>
-                        <p className={`mt-1 text-[11px] font-black leading-tight ${tone.value}`}>{activeTab.format(entry.value)}</p>
+                        <p className={`mt-1 text-[11px] font-black leading-tight ${tone.value}`}>{activeTab.format(entry.value, t.leaderboard.units)}</p>
                       </div>
 
                       {/* 3D Pedestal Step Base */}
@@ -800,7 +816,7 @@ export default function Leaderboard({ userId, compact = false }: { userId?: stri
                         <Star className="h-2.5 w-2.5 fill-amber-500 text-amber-500" />
                         <span>{honor.badge}</span>
                       </div>
-                      <p className="text-xs font-black text-stone-900 dark:text-stone-100">{activeTab.format(entry.value)}</p>
+                      <p className="text-xs font-black text-stone-900 dark:text-stone-100">{activeTab.format(entry.value, t.leaderboard.units)}</p>
                     </div>
                   </Link>
                 );
@@ -817,12 +833,12 @@ export default function Leaderboard({ userId, compact = false }: { userId?: stri
                     </div>
                     <div>
                       <p className="text-xs font-black text-stone-900 dark:text-stone-100">Hạng của bạn</p>
-                      <p className="text-[10px] font-semibold text-stone-500 dark:text-stone-400">Chỉ số {activeTab.label.toLowerCase()}</p>
+                      <p className="text-[10px] font-semibold text-stone-500 dark:text-stone-400">Chỉ số {t.leaderboard[activeTab.labelKey].toLowerCase()}</p>
                     </div>
                   </div>
                   <div className="text-right">
                     <p className="text-sm font-black text-amber-600 dark:text-amber-400">#{myRank.rank}</p>
-                    <p className="text-xs font-extrabold text-stone-700 dark:text-stone-300">{activeTab.format(myRank.value)}</p>
+                    <p className="text-xs font-extrabold text-stone-700 dark:text-stone-300">{activeTab.format(myRank.value, t.leaderboard.units)}</p>
                   </div>
                 </div>
               </div>
@@ -845,7 +861,7 @@ export default function Leaderboard({ userId, compact = false }: { userId?: stri
         </div>
         <div className="inline-flex items-center gap-2 rounded-2xl border border-emerald-200 bg-emerald-50 px-3.5 py-2 text-sm font-bold text-emerald-700 shadow-xs">
           <Sparkles className="h-4 w-4 text-emerald-600" />
-          {activeTab.label}
+          {t.leaderboard[activeTab.labelKey]}
         </div>
       </div>
 
@@ -867,7 +883,7 @@ export default function Leaderboard({ userId, compact = false }: { userId?: stri
               }`}
             >
               <Icon className={`h-4 w-4 ${isActive ? "text-amber-500" : "text-stone-400"}`} />
-              <span>{tab.label}</span>
+              <span>{t.leaderboard[tab.labelKey]}</span>
             </button>
           );
         })}
@@ -915,7 +931,7 @@ export default function Leaderboard({ userId, compact = false }: { userId?: stri
                       <p className="mt-1 text-[9px] font-extrabold uppercase leading-tight text-emerald-600 dark:text-emerald-400 line-clamp-1 break-words">
                         {entry.careerTitle ? `${entry.careerEmoji || "💼"} ${entry.careerTitle}` : getLeaderboardHonor(metric, rank).nickname}
                       </p>
-                      <p className={`mt-1.5 text-sm font-black ${tone.value}`}>{activeTab.format(entry.value)}</p>
+                      <p className={`mt-1.5 text-sm font-black ${tone.value}`}>{activeTab.format(entry.value, t.leaderboard.units)}</p>
                     </div>
 
                     {/* Pedestal Step */}
@@ -979,7 +995,7 @@ export default function Leaderboard({ userId, compact = false }: { userId?: stri
                         <Star className="h-2.5 w-2.5 fill-amber-500 text-amber-500" />
                         <span>{honor.badge}</span>
                       </div>
-                      <p className={`font-black ${isCurrent ? "text-emerald-700" : "text-stone-800"}`}>{activeTab.format(entry.value)}</p>
+                      <p className={`font-black ${isCurrent ? "text-emerald-700" : "text-stone-800"}`}>{activeTab.format(entry.value, t.leaderboard.units)}</p>
                     </div>
                   </Link>
                 );
@@ -996,12 +1012,12 @@ export default function Leaderboard({ userId, compact = false }: { userId?: stri
                     </div>
                     <div>
                       <p className="text-sm font-black text-stone-900">Hạng của bạn</p>
-                      <p className="text-xs text-stone-500">Theo chỉ số {activeTab.label.toLowerCase()}</p>
+                      <p className="text-xs text-stone-500">Theo chỉ số {t.leaderboard[activeTab.labelKey].toLowerCase()}</p>
                     </div>
                   </div>
                   <div className="text-right">
                     <p className="text-base font-black text-amber-600">#{myRank.rank}</p>
-                    <p className="text-xs font-extrabold text-stone-700">{activeTab.format(myRank.value)}</p>
+                    <p className="text-xs font-extrabold text-stone-700">{activeTab.format(myRank.value, t.leaderboard.units)}</p>
                   </div>
                 </div>
               </div>
