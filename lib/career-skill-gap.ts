@@ -29,7 +29,7 @@ export interface SkillRequirement {
 
 export interface CareerLike {
   id: string;
-  category: "investment" | "accounting" | "banking" | "advisory";
+  category: "investment" | "accounting" | "banking" | "advisory" | "data";
   relatedCfaSubjectIds?: readonly string[];
 }
 
@@ -108,6 +108,10 @@ const CATEGORY_BASELINE: Record<CareerLike["category"], SkillRequirement[]> = {
   accounting: [must("accounting", 75), should("fpa_budgeting", 50), should("ethics", 40)],
   banking: [must("fixed_income", 60), must("accounting", 60), should("derivatives_risk", 40)],
   advisory: [must("personal_finance", 60), must("equity_portfolio", 50), should("ethics", 40)],
+  // Nhánh dữ liệu đứng trên nền định lượng chứ không phải nền định giá: một
+  // Data Analyst cần thống kê và kiểm định vững, còn kế toán chỉ ở mức đọc
+  // hiểu được số liệu mình đang xử lý.
+  data: [must("quant", 65), should("accounting", 40), should("ethics", 40)],
 };
 
 // Each CFA subject a career declares implies its domain should be on the

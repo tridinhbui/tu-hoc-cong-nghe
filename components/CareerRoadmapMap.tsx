@@ -28,9 +28,10 @@ const CATEGORY_META: Record<
   accounting: { label: "Kế toán & Kiểm soát", color: "#3b82f6", border: "border-blue-300 dark:border-blue-800", bg: "bg-blue-50 dark:bg-blue-950/30" },
   banking: { label: "Ngân hàng & Nguồn vốn", color: "#f59e0b", border: "border-amber-300 dark:border-amber-800", bg: "bg-amber-50 dark:bg-amber-950/30" },
   advisory: { label: "Dịch vụ & Tư vấn", color: "#8b5cf6", border: "border-violet-300 dark:border-violet-800", bg: "bg-violet-50 dark:bg-violet-950/30" },
+  data: { label: "Dữ liệu & Công nghệ", color: "#0ea5e9", border: "border-sky-300 dark:border-sky-800", bg: "bg-sky-50 dark:bg-sky-950/30" },
 };
 
-const CATEGORY_ORDER: FinanceCareer["category"][] = ["investment", "banking", "accounting", "advisory"];
+const CATEGORY_ORDER: FinanceCareer["category"][] = ["investment", "banking", "accounting", "advisory", "data"];
 
 const MIN_SCALE = 0.5;
 const MAX_SCALE = 1.6;

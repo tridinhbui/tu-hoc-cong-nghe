@@ -27,6 +27,7 @@ const CATEGORY_LABEL: Record<FinanceCareer["category"], string> = {
   accounting: "Kế toán",
   banking: "Ngân hàng",
   advisory: "Tư vấn",
+  data: "Dữ liệu",
 };
 
 // One extra filter layer before the (still 7-12 item) career grid, so
@@ -37,8 +38,11 @@ const CATEGORY_META: Record<FinanceCareer["category"], { label: string; descript
   accounting: { label: "Kế toán & Kiểm toán", description: "Ghi nhận, kiểm tra và đảm bảo tuân thủ sổ sách tài chính", emoji: "📒", image: "/careers/cat_accounting_3d.jpg", from: "#60a5fa", to: "#2563eb" },
   banking: { label: "Ngân hàng & Rủi ro", description: "Tín dụng, quản lý rủi ro, nguồn vốn, giao dịch", emoji: "🏦", image: "/careers/cat_banking_3d.jpg", from: "#f59e0b", to: "#d97706" },
   advisory: { label: "Tư vấn & Khách hàng cá nhân", description: "Môi giới, hoạch định tài chính cá nhân, quan hệ nhà đầu tư", emoji: "🤝", image: "/careers/cat_advisory_3d.jpg", from: "#f472b6", to: "#db2777" },
+  // Chưa có ảnh riêng cho danh mục này - đang mượn tạm ảnh của nhóm đầu tư.
+  // Thay bằng /careers/cat_data_3d.jpg khi có ảnh.
+  data: { label: "Dữ liệu & Công nghệ", description: "Phân tích dữ liệu, báo cáo tự phục vụ, hạ tầng và chất lượng dữ liệu", emoji: "🧮", image: "/careers/cat_investment_3d.jpg", from: "#38bdf8", to: "#0369a1" },
 };
-const CATEGORY_ORDER: FinanceCareer["category"][] = ["investment", "accounting", "banking", "advisory"];
+const CATEGORY_ORDER: FinanceCareer["category"][] = ["investment", "accounting", "banking", "advisory", "data"];
 
 // Entry-level and mixed ("Junior đến Senior") careers still have a way in;
 // pure "Senior - ..." entries are the destination after years of experience,

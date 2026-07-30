@@ -282,6 +282,7 @@ const CATEGORIES = [
   { id: "accounting", label: "Kế toán & Kiểm soát" },
   { id: "banking", label: "Ngân hàng & Nguồn vốn" },
   { id: "advisory", label: "Dịch vụ & Tư vấn" },
+  { id: "data", label: "Dữ liệu & Công nghệ" },
 ];
 
 // SVG Radar Chart for role traits visualization

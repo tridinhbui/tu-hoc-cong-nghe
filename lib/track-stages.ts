@@ -593,6 +593,35 @@ export const TRACK_PROFESSIONAL = {
         { name: "Bài kiểm tra dựng mô hình và lộ trình nghề", days: [1483, 1484] as [number, number] },
       ],
     },
+    {
+      // Chặng 23 dừng ở SQL cơ bản vì với một mô hình định giá thì Excel vẫn
+      // là công cụ đúng. Hai chặng này là phần công việc còn lại - phần mà
+      // bảng tính thành gánh nặng - và là nền cho ba nghề dữ liệu vừa thêm
+      // vào lib/finance-careers.ts.
+      label: "Chặng 29",
+      name: "Công cụ phân tích dữ liệu",
+      days: [1491, 1496] as [number, number],
+      available: true,
+      isNew: true,
+      parts: [
+        { name: "Chuyển từ bảng tính sang code, và làm sạch dữ liệu", days: [1491, 1493] as [number, number] },
+        { name: "Trực quan hóa, dashboard và SQL nâng cao", days: [1494, 1496] as [number, number] },
+      ],
+    },
+    {
+      // Phần khiến công cụ ở Chặng 29 có ích hay có hại: chọn đo cái gì, đọc
+      // con số ra sao, và ở đâu thì một phân tích đúng kỹ thuật vẫn dẫn tới
+      // kết luận sai.
+      label: "Chặng 30",
+      name: "Tư duy phân tích dữ liệu",
+      days: [1501, 1506] as [number, number],
+      available: true,
+      isNew: true,
+      parts: [
+        { name: "Chọn chỉ số, phân tích cohort và thử nghiệm A/B", days: [1501, 1503] as [number, number] },
+        { name: "Nhân quả, kể chuyện bằng dữ liệu và đạo đức dữ liệu", days: [1504, 1506] as [number, number] },
+      ],
+    },
   ] satisfies Stage[],
 };
 
@@ -643,6 +672,17 @@ export const PROFESSIONAL_BRANCHES = [
     subtitle: "Thống kê, hồi quy, chuỗi thời gian, Excel và SQL cho phân tích",
     emoji: "📊",
     stageLabels: ["Chặng 22", "Chặng 23"],
+  },
+  {
+    // Tách khỏi nhánh "quant" thay vì nối thêm vào đó: nhánh kia phục vụ
+    // người làm phân tích tài chính cần công cụ định lượng, còn nhánh này là
+    // lộ trình của ba nghề dữ liệu (data-analyst, bi-analyst, data-engineer)
+    // trong lib/finance-careers.ts - cùng dùng SQL nhưng đích đến khác nhau.
+    id: "data",
+    label: "Phân tích dữ liệu",
+    subtitle: "Python, làm sạch dữ liệu, dashboard, chọn chỉ số, thử nghiệm A/B và đạo đức dữ liệu",
+    emoji: "🧮",
+    stageLabels: ["Chặng 29", "Chặng 30"],
   },
   {
     id: "craft",

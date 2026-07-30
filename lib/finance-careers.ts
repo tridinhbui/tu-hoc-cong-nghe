@@ -48,7 +48,11 @@ export interface FinanceCareer {
   pros: string;
   cons: string;
   applicationTips: string;
-  category: "investment" | "accounting" | "banking" | "advisory";
+  // "data" là danh mục thứ năm, thêm sau bốn danh mục gốc. Mọi nơi hiển thị
+  // theo danh mục phải liệt kê đủ cả năm, nếu không nghề thuộc danh mục thiếu
+  // sẽ biến mất khỏi giao diện đó: components/CareerRoadmapMap.tsx,
+  // components/CareerLearningPathClient.tsx và components/JobSearchClient.tsx.
+  category: "investment" | "accounting" | "banking" | "advisory" | "data";
   traits: CareerTraits;
 }
 
@@ -1539,6 +1543,137 @@ export const FINANCE_CAREERS: FinanceCareer[] = [
     applicationTips: "Luyện phân tích CVP (chi phí - sản lượng - lợi nhuận) qua case study đơn giản, tìm hiểu cách một phần mềm ERP thực tế vận hành để hiểu quy trình dữ liệu kế toán quản trị.",
     category: "accounting",
     traits: { analytical: 4, compliance: 4, clientFacing: 2, quantitative: 3 },
+  },
+  // ── Dữ liệu & Công nghệ ────────────────────────────────────────────────
+  //
+  // Ba nghề dưới đây là nhánh "data" - danh mục thứ năm, thêm vào vì không
+  // nghề nào trong bốn danh mục cũ mô tả đúng chúng: một Data Engineer đặt
+  // trong "Đầu tư & Nghiên cứu" thì sai về bản chất công việc.
+  //
+  // Chúng cố ý KHÔNG chồng lấn với "quant" đã có: quant xây mô hình định giá
+  // và chiến lược giao dịch, còn ba nghề này phục vụ việc ra quyết định kinh
+  // doanh bằng dữ liệu. Cùng dùng SQL và Python, nhưng đích đến khác nhau.
+  //
+  // relatedLessonSlugs trỏ vào Chặng 29-30 (lib/data-tools-lessons.ts và
+  // lib/data-thinking-lessons.ts), cộng thêm các bài Excel/Định lượng đã có.
+  {
+    id: "data-analyst",
+    title: "Chuyên viên Phân tích Dữ liệu",
+    englishTitle: "Data Analyst",
+    emoji: "🧮",
+    accentFrom: "#38bdf8",
+    accentTo: "#0369a1",
+    summary: "Biến dữ liệu thô thành câu trả lời cho các quyết định kinh doanh: chọn chỉ số cần đo, tìm nguyên nhân đằng sau con số, và trình bày sao cho có người hành động theo.",
+    responsibilities: [
+      "Lấy và làm sạch dữ liệu từ nhiều hệ thống bằng SQL và Python",
+      "Xây dựng báo cáo và dashboard phục vụ quyết định định kỳ của các phòng ban",
+      "Thiết kế và đọc kết quả thử nghiệm A/B, phân tích cohort và hành vi khách hàng",
+      "Trình bày phát hiện kèm khuyến nghị hành động cho người không chuyên về dữ liệu",
+    ],
+    skills: ["SQL", "Python (pandas)", "Trực quan hóa dữ liệu", "Thống kê ứng dụng", "Kể chuyện bằng dữ liệu"],
+    entryLevel: "Fresh/Junior - cần SQL vững và tư duy thống kê cơ bản, không bắt buộc bằng công nghệ thông tin",
+    salaryHint: "12 - 22 triệu (Junior) • 30 - 55+ triệu (Senior)",
+    searchKeyword: "Data Analyst",
+    relatedLessonSlugs: [
+      "khi-nao-excel-het-du-va-chuyen-sang-python",
+      "dataframe-bang-du-lieu-trong-code",
+      "lam-sach-du-lieu-va-cai-gia-cua-du-lieu-ban",
+      "chon-chi-so-do-luong-va-vanity-metric",
+      "ab-testing-va-y-nghia-thong-ke",
+      "ke-chuyen-bang-du-lieu",
+    ],
+    relatedCfaSubjectIds: ["quant"],
+    dayInLife: "Sáng chạy lại truy vấn kiểm tra số liệu dashboard tuần, trưa họp với đội sản phẩm đọc kết quả một thử nghiệm A/B vừa đủ cỡ mẫu, chiều đào sâu nguyên nhân một chỉ số giữ chân khách hàng sụt giảm và viết ghi chú khuyến nghị.",
+    careerPath: ["Junior Data Analyst", "Senior Data Analyst", "Analytics Lead", "Head of Analytics"],
+    requiredTools: ["SQL", "Python (pandas)", "Power BI / Tableau / Looker", "Excel (Advanced)", "Git"],
+    certifications: ["Google Data Analytics Certificate", "Microsoft Power BI Data Analyst"],
+    entryDifficulty: 3,
+    stressLevel: 3,
+    wlb: 4,
+    avatar3d: "/careers/quant.jpg",
+    pros: "Nhu cầu tuyển dụng rộng ở gần như mọi ngành chứ không riêng tài chính, cửa vào tương đối mở cho người trái ngành nếu SQL vững, và công việc gắn trực tiếp với quyết định kinh doanh nên dễ thấy tác động.",
+    cons: "Phần lớn thời gian thực tế dành cho lấy và làm sạch dữ liệu chứ không phải phân tích, thường phải tự đi đòi dữ liệu từ nhiều phòng ban, và dễ bị biến thành nơi nhận yêu cầu xuất báo cáo nếu không chủ động định hình vai trò.",
+    applicationTips: "Làm một dự án thật từ đầu đến cuối với dữ liệu công khai: đặt câu hỏi, lấy dữ liệu bằng SQL, làm sạch, phân tích và viết kết luận một trang. Một dự án hoàn chỉnh có sức thuyết phục hơn nhiều chứng chỉ.",
+    category: "data",
+    traits: { analytical: 5, compliance: 2, clientFacing: 3, quantitative: 4 },
+  },
+  {
+    id: "bi-analyst",
+    title: "Chuyên viên Business Intelligence",
+    englishTitle: "Business Intelligence Analyst",
+    emoji: "📊",
+    accentFrom: "#818cf8",
+    accentTo: "#4338ca",
+    summary: "Xây dựng hệ thống báo cáo và dashboard mà cả tổ chức dùng chung: chuẩn hóa định nghĩa chỉ số, thiết kế mô hình dữ liệu cho báo cáo, và bảo đảm mọi phòng ban đọc cùng một con số.",
+    responsibilities: [
+      "Thiết kế và duy trì hệ thống dashboard dùng chung cho các phòng ban",
+      "Chuẩn hóa định nghĩa chỉ số để các bộ phận không tính ra hai con số khác nhau",
+      "Xây dựng mô hình dữ liệu phục vụ báo cáo (bảng sự kiện, bảng chiều)",
+      "Đào tạo người dùng nghiệp vụ tự khai thác báo cáo thay vì phải đặt yêu cầu",
+    ],
+    skills: ["Power BI / Tableau", "SQL", "Mô hình hóa dữ liệu cho báo cáo", "Thiết kế chỉ số (KPI)", "Giao tiếp với phòng ban nghiệp vụ"],
+    entryLevel: "Junior - cần SQL và một công cụ BI, ưu tiên người hiểu nghiệp vụ tài chính hoặc vận hành",
+    salaryHint: "13 - 24 triệu (Junior) • 30 - 55+ triệu (Senior)",
+    searchKeyword: "Business Intelligence Analyst",
+    relatedLessonSlugs: [
+      "dashboard-va-bao-cao-tu-phuc-vu",
+      "truc-quan-hoa-va-bieu-do-noi-doi",
+      "sql-nang-cao-join-va-window-function",
+      "chon-chi-so-do-luong-va-vanity-metric",
+      "power-query-lam-sach-du-lieu",
+    ],
+    dayInLife: "Sửa một dashboard bán hàng bị lệch số sau khi hệ thống nguồn đổi cấu trúc, thống nhất với phòng kế toán về cách tính doanh thu được ghi nhận, và hướng dẫn một trưởng nhóm tự lọc báo cáo theo khu vực.",
+    careerPath: ["BI Analyst", "Senior BI Analyst", "BI Lead", "Head of Data / Analytics Engineering Manager"],
+    requiredTools: ["Power BI", "Tableau", "SQL", "dbt", "Excel (Advanced)"],
+    certifications: ["Microsoft Power BI Data Analyst", "Tableau Desktop Specialist"],
+    entryDifficulty: 3,
+    stressLevel: 2.5,
+    wlb: 4,
+    avatar3d: "/careers/financial-analyst.jpg",
+    pros: "Sản phẩm làm ra được cả tổ chức dùng hằng ngày nên tác động rất dễ thấy, ít áp lực deadline đột xuất hơn các vai trò phân tích khác, và là vị trí hiểu bức tranh vận hành toàn công ty rõ nhất.",
+    cons: "Phần lớn tranh cãi quanh dashboard thực chất là tranh cãi về định nghĩa chỉ số giữa các phòng ban, công việc bảo trì báo cáo cũ chiếm nhiều thời gian hơn xây mới, và dễ bị xem là bộ phận hỗ trợ thay vì bộ phận phân tích.",
+    applicationTips: "Dựng một dashboard hoàn chỉnh từ dữ liệu công khai và viết kèm phần định nghĩa từng chỉ số. Chính phần định nghĩa - chứ không phải giao diện - là thứ phân biệt người làm BI thật với người chỉ biết dùng công cụ.",
+    category: "data",
+    traits: { analytical: 4, compliance: 3, clientFacing: 4, quantitative: 3 },
+  },
+  {
+    id: "data-engineer",
+    title: "Kỹ sư Dữ liệu",
+    englishTitle: "Data Engineer",
+    emoji: "🛠️",
+    accentFrom: "#2dd4bf",
+    accentTo: "#0f766e",
+    summary: "Xây dựng và vận hành hệ thống đưa dữ liệu từ các nguồn về kho dữ liệu một cách đáng tin cậy - phần hạ tầng mà mọi báo cáo và mô hình phía sau đều dựa vào.",
+    responsibilities: [
+      "Xây dựng và duy trì đường ống dữ liệu từ hệ thống nguồn về kho dữ liệu",
+      "Thiết kế cấu trúc kho dữ liệu và mô hình dữ liệu cho nhiều nhóm sử dụng",
+      "Giám sát chất lượng dữ liệu và xử lý khi đường ống hỏng hoặc số liệu lệch",
+      "Tối ưu chi phí lưu trữ và tốc độ truy vấn khi khối lượng dữ liệu tăng",
+    ],
+    skills: ["SQL nâng cao", "Python", "Kho dữ liệu (data warehouse)", "Điều phối luồng dữ liệu", "Kiểm soát chất lượng dữ liệu"],
+    entryLevel: "Junior - cần nền lập trình vững hơn hai vai trò còn lại, thường tuyển từ nền công nghệ thông tin",
+    salaryHint: "16 - 28 triệu (Junior) • 40 - 80+ triệu (Senior)",
+    searchKeyword: "Data Engineer",
+    relatedLessonSlugs: [
+      "sql-nang-cao-join-va-window-function",
+      "lam-sach-du-lieu-va-cai-gia-cua-du-lieu-ban",
+      "khi-nao-excel-het-du-va-chuyen-sang-python",
+      "dao-duc-du-lieu-va-thien-lech-thuat-toan",
+      "sql-co-ban-cho-dan-tai-chinh",
+    ],
+    dayInLife: "Sáng kiểm tra các đường ống chạy đêm và xử lý một luồng bị lỗi do hệ thống nguồn đổi định dạng ngày, chiều thiết kế lại một bảng đang bị truy vấn chậm và bổ sung kiểm tra chất lượng dữ liệu tự động.",
+    careerPath: ["Junior Data Engineer", "Data Engineer", "Senior Data Engineer", "Data Platform Lead"],
+    requiredTools: ["SQL", "Python", "Airflow", "dbt", "Snowflake / BigQuery", "Git"],
+    certifications: ["Google Professional Data Engineer", "AWS Certified Data Engineer"],
+    entryDifficulty: 4,
+    stressLevel: 3.5,
+    wlb: 3.5,
+    avatar3d: "/careers/quant.jpg",
+    pros: "Mức lương cao nhất trong ba nghề dữ liệu và nhu cầu tuyển dụng vượt nguồn cung, kỹ năng mang tính kỹ thuật thuần nên chuyển ngành dễ, và công việc có tiêu chuẩn đúng sai rõ ràng hơn phân tích.",
+    cons: "Phải trực xử lý sự cố khi đường ống hỏng ngoài giờ, công việc phần lớn vô hình cho tới lúc có lỗi, và cần nền lập trình vững hơn hẳn nên không phải cửa vào dễ cho người trái ngành.",
+    applicationTips: "Tự dựng một đường ống nhỏ nhưng đầy đủ: lấy dữ liệu từ một nguồn công khai theo lịch, làm sạch, nạp vào cơ sở dữ liệu, kèm kiểm tra chất lượng và cảnh báo khi lỗi. Quy trình hoàn chỉnh quan trọng hơn quy mô.",
+    category: "data",
+    traits: { analytical: 4, compliance: 3, clientFacing: 2, quantitative: 4 },
   },
 ];
 
