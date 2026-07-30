@@ -305,6 +305,13 @@ export const TRACK_PROFESSIONAL = {
       label: "Chặng 12",
       name: "Tâm lý học tài chính hành vi nâng cao (Behavioral Finance)",
       days: [1241, 1243] as [number, number],
+      // The second part below always pointed at 1250-1252, but membership is
+      // decided at stage level first, and the stage span stopped at 1243 - so
+      // those three lessons belonged to no stage at all and appeared nowhere
+      // in the learning path. The span cannot simply be widened to 1252:
+      // 1244 is Chặng 1's, 1247 is Chặng 5's, 1248 is Chặng 18's, and
+      // 1245/1246/1249 are Chặng 20 and 21's.
+      extraLessonIds: [1250, 1251, 1252],
       available: true,
       isNew: true,
       parts: [
