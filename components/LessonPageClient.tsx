@@ -8,6 +8,7 @@ import LessonPageLayout from "@/components/LessonPageLayout";
 import OpeningQuestionBlock from "@/components/OpeningQuestionBlock";
 import InteractiveWidget from "@/components/InteractiveWidget";
 import MidpointInteractive from "@/components/MidpointInteractive";
+import FreeRecallCard from "@/components/FreeRecallCard";
 import LessonSections from "@/components/LessonSections";
 import LessonVideoPlayer from "@/components/LessonVideoPlayer";
 import { highlightGlossaryTerms } from "@/components/GlossaryTerm";
@@ -139,6 +140,7 @@ export default function LessonPageClient({ lesson, nextLesson }: Props) {
     title: lesson.title,
     subtitle: lesson.subtitle,
     duration: lesson.duration,
+    readingMinutes: lesson.readingMinutes,
     difficulty: lesson.difficulty,
     emoji: lesson.emoji,
     slug: lesson.slug,
@@ -157,6 +159,24 @@ export default function LessonPageClient({ lesson, nextLesson }: Props) {
   const sidebarQuiz = hasMidpoint
     ? lesson.quiz.filter((_, i) => i !== midpointIndex)
     : lesson.quiz;
+
+  const checkpointNode = midpointQuestion ? (
+    <MidpointInteractive question={midpointQuestion} lessonId={lesson.id} />
+  ) : null;
+
+  // Where the check actually goes. It used to render after the entire body
+  // despite being described as "at ~50% of content" - which put it at ~90%
+  // of the article, so the people it exists to catch (the ones who quit
+  // partway) never reached it. `checkpointIndex` is precomputed per lesson
+  // by scripts/generate-lesson-data.mjs from the body's estimated reading
+  // time; it is -1 for lessons too short to be worth interrupting, and those
+  // keep the old after-the-body placement so their completion gate (which
+  // requires the midpoint check) is unchanged.
+  const inlineCheckpointIndex = lesson.checkpointIndex ?? -1;
+  const hasInlineCheckpoint =
+    checkpointNode !== null &&
+    inlineCheckpointIndex >= 0 &&
+    Boolean(lesson.sections && lesson.sections.length > 0);
 
   return (
     <div className="relative">
@@ -262,7 +282,11 @@ export default function LessonPageClient({ lesson, nextLesson }: Props) {
 
       {/* 2. Rich hand-written body (preferred) or fallback thin explanation block */}
       {lesson.sections && lesson.sections.length > 0 ? (
-        <LessonSections sections={lesson.sections} />
+        <LessonSections
+          sections={lesson.sections}
+          checkpoint={hasInlineCheckpoint ? checkpointNode : undefined}
+          checkpointAfterIndex={inlineCheckpointIndex}
+        />
       ) : (
         lesson.explanation && (
           <div className="space-y-3">
@@ -276,8 +300,11 @@ export default function LessonPageClient({ lesson, nextLesson }: Props) {
         )
       )}
 
-      {/* 2.5. Midpoint Interactive Activity (custom question per lesson, at ~50% of content) */}
-      {midpointQuestion && <MidpointInteractive question={midpointQuestion} lessonId={lesson.id} />}
+      {/* 2.5. Midpoint check - only reached here for lessons short enough
+          that findCheckpointIndex declined to interrupt them, or that have
+          no `sections` body to interrupt. Otherwise it was already rendered
+          inline at the halfway mark above. */}
+      {!hasInlineCheckpoint && checkpointNode}
 
       {/* 3. Diagram block */}
       {lesson.diagram && lesson.diagram.length > 0 && (
@@ -354,6 +381,17 @@ export default function LessonPageClient({ lesson, nextLesson }: Props) {
         );
       })()}
 
+      {/* 5.75 - 6. Everything that summarises the lesson, gated behind the
+          60-second free-recall exercise. The gate has to start here rather
+          than immediately above "Ghi nhớ nhanh": the summary card, the
+          application card and the review-loop card all restate the lesson's
+          key idea, so leaving them outside would hand the learner the
+          answers before asking them to recall anything. */}
+      <FreeRecallCard
+        lessonId={lesson.id}
+        lessonSlug={lesson.slug}
+        takeaways={lesson.keyTakeaways ?? []}
+      >
       {/* 5.75. Summary block */}
       {(() => {
         const summary = lesson.summary ?? buildDefaultSummary(lesson);
@@ -396,6 +434,7 @@ export default function LessonPageClient({ lesson, nextLesson }: Props) {
           </div>
         </div>
       )}
+      </FreeRecallCard>
     </LessonPageLayout>
     </div>
   );

@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
+import { useSearchParams } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   RotateCcw,
@@ -23,6 +24,7 @@ import { useAuthGate } from "@/lib/use-auth-gate";
 import { getQuizMistakesReviewAction, type QuizMistakeReviewItem } from "./actions";
 import { recordQuizMistake } from "@/lib/quiz-mistakes";
 import { calculateNextSRS, isDueForReview, type SRSItemState } from "@/lib/spaced-repetition";
+import { selectMorningReview } from "@/lib/morning-review";
 
 interface CardAnswerState {
   picked: number | null;
@@ -31,6 +33,8 @@ interface CardAnswerState {
 
 export default function OnTapCauSaiClient() {
   const { userId, checking } = useAuthGate();
+  // Set by the deep link in the 7:30 push notification.
+  const isMorningSession = useSearchParams().get("phien") === "sang";
   const [items, setItems] = useState<QuizMistakeReviewItem[]>([]);
   const [loading, setLoading] = useState(true);
   const [viewMode, setViewMode] = useState<"flashcard" | "list">("flashcard");
@@ -50,11 +54,18 @@ export default function OnTapCauSaiClient() {
     if (!userId) return;
     setLoading(true);
 
-    // Load local SRS map
+    // Load local SRS map. Kept in a local variable as well as in state
+    // because the morning session below needs it to rank items the moment
+    // the fetch resolves, and `srsMap` state would still be the previous
+    // render's value at that point.
+    let loadedSrs: Record<string, SRSItemState> = {};
     if (storageKey) {
       try {
         const saved = localStorage.getItem(storageKey);
-        if (saved) setSrsMap(JSON.parse(saved));
+        if (saved) {
+          loadedSrs = JSON.parse(saved);
+          setSrsMap(loadedSrs);
+        }
       } catch (e) {
         console.error("Error loading SRS map:", e);
       }
@@ -62,12 +73,19 @@ export default function OnTapCauSaiClient() {
 
     getQuizMistakesReviewAction(userId)
       .then((data) => {
-        setItems(data);
-        setCardAnswers(Object.fromEntries(data.map((it) => [itemKey(it), { picked: null, resolved: false }])));
+        // Arriving from the 7:30 push (app/api/cron/morning-review), the
+        // point is a bounded ~90-second session, not the full backlog - so
+        // trim to ten and interleave across lessons. The plain page keeps
+        // showing everything.
+        const sessionItems = isMorningSession ? selectMorningReview(data, loadedSrs) : data;
+        setItems(sessionItems);
+        setCardAnswers(
+          Object.fromEntries(sessionItems.map((it) => [itemKey(it), { picked: null, resolved: false }]))
+        );
       })
       .catch((err) => console.error("Error loading quiz mistakes:", err))
       .finally(() => setLoading(false));
-  }, [userId, storageKey]);
+  }, [userId, storageKey, isMorningSession]);
 
   function itemKey(item: QuizMistakeReviewItem) {
     return `${item.lessonId}-${item.questionIndex}`;
@@ -130,6 +148,23 @@ export default function OnTapCauSaiClient() {
   return (
     <div className="min-h-screen bg-stone-50 dark:bg-stone-950 font-sans text-stone-900 dark:text-stone-100 pb-12">
       <div className="max-w-3xl mx-auto px-4 sm:px-6 py-6 sm:py-8">
+        {/* Arriving from the 7:30 push: say why this is a short list, so a
+            trimmed session doesn't read as missing mistakes. */}
+        {isMorningSession && (
+          <div className="mb-6 rounded-2xl border-2 border-amber-300 dark:border-amber-900 bg-amber-50 dark:bg-amber-950/30 px-5 py-4">
+            <p className="text-xs font-black uppercase tracking-widest text-amber-700 dark:text-amber-500">
+              Phiên ôn buổi sáng
+            </p>
+            <p className="text-sm text-stone-700 dark:text-stone-300 mt-1 leading-relaxed">
+              {items.length} câu, trộn từ nhiều bài khác nhau - xen kẽ như vậy nhớ lâu hơn ôn dồn một bài.
+              Xong phiên này là đủ cho hôm nay.{" "}
+              <Link href="/on-tap-cau-sai" className="font-bold underline">
+                Xem toàn bộ câu sai
+              </Link>
+            </p>
+          </div>
+        )}
+
         {/* Header Title Bar */}
         <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 mb-6">
           <div>

@@ -96,6 +96,29 @@ export function getMidpointDone(lessonId: number): boolean {
   return localStorage.getItem(MIDPOINT_KEY_PREFIX + lessonId) === "1";
 }
 
+const FREE_RECALL_KEY_PREFIX = "thtcdn_free_recall_";
+
+/**
+ * Whether the learner has already done the 60-second free-recall exercise
+ * for this lesson.
+ *
+ * Only the fact that it happened is persisted - never what they wrote. The
+ * exercise asks people to dump whatever they remember, unedited, and that
+ * text is worth nothing to us once they have scored themselves against the
+ * key takeaways. Keeping it would be collecting personal notes for no
+ * reason; the only number worth having (how many takeaways they recalled)
+ * goes to feature_click_events instead.
+ */
+export function saveFreeRecallDone(lessonId: number) {
+  if (typeof window === "undefined") return;
+  localStorage.setItem(FREE_RECALL_KEY_PREFIX + lessonId, "1");
+}
+
+export function getFreeRecallDone(lessonId: number): boolean {
+  if (typeof window === "undefined") return false;
+  return localStorage.getItem(FREE_RECALL_KEY_PREFIX + lessonId) === "1";
+}
+
 export function markLessonComplete(lessonId: number, minutes: number) {
   const progress = getProgress();
   if (!progress.completedLessons.includes(lessonId)) {

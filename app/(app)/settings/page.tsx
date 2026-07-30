@@ -74,6 +74,8 @@ export default function SettingsPage() {
   const [weeklyDigestEnabled, setWeeklyDigestEnabled] = useState(false);
   const [savingWeeklyDigest, setSavingWeeklyDigest] = useState(false);
   const [browserRemindersEnabled, setBrowserRemindersEnabled] = useState(false);
+  const [morningReviewEnabled, setMorningReviewEnabled] = useState(false);
+  const [savingMorningReview, setSavingMorningReview] = useState(false);
   const [savingBrowserReminders, setSavingBrowserReminders] = useState(false);
 
   useEffect(() => {
@@ -107,6 +109,7 @@ export default function SettingsPage() {
         setEmailRemindersEnabled(notificationPrefs?.emailRemindersEnabled ?? false);
         setWeeklyDigestEnabled(notificationPrefs?.weeklyDigestEnabled ?? false);
         setBrowserRemindersEnabled(notificationPrefs?.browserRemindersEnabled ?? false);
+        setMorningReviewEnabled(notificationPrefs?.morningReviewEnabled ?? false);
       } catch (error) {
         console.error("Error loading notification preferences:", error);
       }
@@ -328,6 +331,34 @@ export default function SettingsPage() {
       showFlash("error", error instanceof Error ? error.message : "Không bật được thông báo trình duyệt.");
     } finally {
       setSavingBrowserReminders(false);
+    }
+  };
+
+  // Turning this on needs a push subscription just like the streak reminder
+  // does, but the two preferences stay independent: subscribeToPush is
+  // idempotent, and unsubscribing here would silently kill the evening
+  // reminder too, so it only ever removes the subscription when the other
+  // channel is off as well.
+  const handleToggleMorningReview = async () => {
+    if (!user?.id) return;
+    const next = !morningReviewEnabled;
+    setSavingMorningReview(true);
+    setFlash(null);
+
+    try {
+      if (next) {
+        await subscribeToPush(user.id);
+      } else if (!browserRemindersEnabled) {
+        await unsubscribeFromPush(user.id);
+      }
+      setMorningReviewEnabled(next);
+      await saveNotificationPreferences(user.id, { morningReviewEnabled: next });
+      showFlash("success", next ? "Đã bật phiên ôn 7:30 sáng." : "Đã tắt phiên ôn buổi sáng.");
+    } catch (error) {
+      console.error("Error toggling morning review push:", error);
+      showFlash("error", error instanceof Error ? error.message : "Không bật được phiên ôn buổi sáng.");
+    } finally {
+      setSavingMorningReview(false);
     }
   };
 
@@ -627,6 +658,31 @@ export default function SettingsPage() {
                       <div
                         className={`w-4 h-4 rounded-full bg-white transition-transform ${
                           browserRemindersEnabled ? "translate-x-7" : "translate-x-1"
+                        }`}
+                      />
+                    </button>
+                  </div>
+                )}
+
+                {isPushSupported() && (
+                  <div className="flex items-center justify-between gap-4 pt-4 border-t border-stone-100 dark:border-stone-800">
+                    <div>
+                      <p className="font-bold text-stone-900 dark:text-stone-100">10 câu ôn buổi sáng</p>
+                      <p className="text-sm text-stone-500 dark:text-stone-400 mt-1">
+                        7:30 mỗi sáng, một phiên ~90 giây gồm các câu bạn từng làm sai, trộn từ nhiều bài
+                      </p>
+                    </div>
+                    <button
+                      onClick={handleToggleMorningReview}
+                      disabled={savingMorningReview}
+                      aria-label={morningReviewEnabled ? "Tắt phiên ôn buổi sáng" : "Bật phiên ôn buổi sáng"}
+                      className={`w-14 h-7 rounded-full border-2 transition-colors flex items-center cursor-pointer disabled:opacity-60 flex-shrink-0 ${
+                        morningReviewEnabled ? "bg-emerald-600 border-emerald-700" : "bg-stone-200 border-stone-300"
+                      }`}
+                    >
+                      <div
+                        className={`w-4 h-4 rounded-full bg-white transition-transform ${
+                          morningReviewEnabled ? "translate-x-7" : "translate-x-1"
                         }`}
                       />
                     </button>

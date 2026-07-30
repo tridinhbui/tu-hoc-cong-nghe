@@ -46,6 +46,10 @@ export interface LessonMeta {
   title: string;
   subtitle: string;
   duration: string;
+  // Body-only reading estimate (lib/lesson-reading.js). Drives the "còn ~X
+  // phút" countdown, which tracks scrolling the article - so it must exclude
+  // the quiz, unlike the `totalMinutes` shown on dashboard cards.
+  readingMinutes?: number;
   difficulty: "Dễ" | "Trung bình" | "Khó";
   emoji: string;
   day: number;
@@ -192,7 +196,14 @@ export default function LessonPageLayout({ lesson, quiz, children }: Props) {
   const [hasMidpoint, setHasMidpoint] = useState(false);
   const [midpointDone, setMidpointDone] = useState(false);
 
+  // Kept parsed from the hand-authored `duration` string on purpose: this
+  // number is written into the user's recorded study time on completion, and
+  // swapping it for the (shorter, more accurate) computed estimate would
+  // make new completions incomparable to every completion already recorded.
   const durationMin = parseInt(lesson.duration) || 5;
+  // What the reader is actually shown. Falls back to durationMin for lessons
+  // that bypass the generator and so have no computed estimate.
+  const readingMin = lesson.readingMinutes ?? durationMin;
   const lessonLabel = lesson.label ?? getLessonDisplayLabel({ id: lesson.id, title: lesson.title, track: undefined });
 
   useEffect(() => {
@@ -400,7 +411,7 @@ export default function LessonPageLayout({ lesson, quiz, children }: Props) {
     }
   };
 
-  const remainMin = Math.max(0, Math.ceil(durationMin * (1 - readPct / 100)));
+  const remainMin = Math.max(0, Math.ceil(readingMin * (1 - readPct / 100)));
   const submittedCount = submitted.filter(Boolean).length;
   const score = results.filter(Boolean).length;
   const allDone = submittedCount === quiz.length;
@@ -733,7 +744,7 @@ export default function LessonPageLayout({ lesson, quiz, children }: Props) {
               <span className="text-xs font-bold text-stone-600 dark:text-stone-400">
                 {readPct < 100
                   ? readPct === 0
-                    ? `~${durationMin} phút đọc`
+                    ? `~${readingMin} phút đọc`
                     : `${readPct}% · còn ~${remainMin} phút`
                   : "Đọc xong!"}
               </span>

@@ -70,6 +70,19 @@ export interface Lesson {
   subtitle: string;
   duration: string;
   estimatedMinutes?: number;
+  // All three computed at build time by scripts/generate-lesson-data.mjs
+  // from the body's estimated reading time (see lib/lesson-reading.js) -
+  // absent on lessons that bypass that generator, e.g.
+  // ADVANCED_MASTERCLASS_LESSONS.
+  //
+  // readingMinutes covers the article body only (what the "còn X phút"
+  // progress label counts down); totalMinutes adds the opening question and
+  // quiz, and is what to show before someone opens the lesson.
+  readingMinutes?: number;
+  totalMinutes?: number;
+  // Index of the section block the mid-article "Dừng & Kiểm tra" check is
+  // rendered after; -1 when the lesson is too short to interrupt.
+  checkpointIndex?: number;
   difficulty: Difficulty;
   emoji: string;
   openingQuestion: string;
@@ -132,6 +145,10 @@ export interface LessonMeta {
   title: string;
   subtitle: string;
   duration: string;
+  // Computed whole-lesson estimate from the generated index; absent for
+  // lessons that bypass the generator (ADVANCED_MASTERCLASS_LESSONS), whose
+  // callers fall back to the hand-authored `duration` string.
+  totalMinutes?: number;
   difficulty: Difficulty;
   track?: "personal" | "professional" | "bonus";
   isFundamental?: boolean;

@@ -16,6 +16,7 @@ import { createRequire } from "module";
 import { applyLessonOverrides } from "../lib/lesson-quiz-overrides.js";
 import { balanceLessonQuizzes, assertBalancePreservedAnswers } from "../lib/lesson-quiz-balance.js";
 import { stripLessonDayPrefixes, assertDayPrefixStripPreservedTitles } from "../lib/lesson-day-prefix.js";
+import { estimateReadingMinutes, estimateLessonMinutes, findCheckpointIndex } from "../lib/lesson-reading.js";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const root = path.resolve(__dirname, "..");
@@ -100,8 +101,19 @@ assertBalancePreservedAnswers(cleanedLessons, balancedLessons);
 // Move the legacy "Tự học Tài chính Day N:" out of titles and into `day`
 // (see lib/lesson-day-prefix.js) - the number is still needed to key
 // RECALL_SCHEDULE, it just has no business being displayed as part of a title.
-const lessons = stripLessonDayPrefixes(balancedLessons);
-assertDayPrefixStripPreservedTitles(balancedLessons, lessons);
+const strippedLessons = stripLessonDayPrefixes(balancedLessons);
+assertDayPrefixStripPreservedTitles(balancedLessons, strippedLessons);
+
+// Derive both word-count numbers here rather than per request: `duration` is
+// a hand-written string ("10 phút") that drifts from the body it describes,
+// and the checkpoint position has to agree with the reading estimate because
+// both come from the same word count.
+const lessons = strippedLessons.map((lesson) => ({
+  ...lesson,
+  readingMinutes: estimateReadingMinutes(lesson),
+  totalMinutes: estimateLessonMinutes(lesson),
+  checkpointIndex: findCheckpointIndex(lesson.sections),
+}));
 
 if (!Array.isArray(lessons) || lessons.length === 0) {
   throw new Error(`Expected a non-empty lessons array, got: ${typeof lessons}`);
@@ -119,6 +131,9 @@ const index = lessons.map((l) => ({
   title: l.title,
   subtitle: l.subtitle,
   duration: l.duration,
+  // Whole-lesson time estimate, shown on dashboard cards so the time cost
+  // is visible before someone commits to opening a lesson.
+  totalMinutes: l.totalMinutes,
   difficulty: l.difficulty,
   track: l.track,
   isFundamental: l.isFundamental,

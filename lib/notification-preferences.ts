@@ -13,6 +13,10 @@ export interface NotificationPreferences {
   emailRemindersEnabled: boolean;
   browserRemindersEnabled: boolean;
   weeklyDigestEnabled: boolean;
+  // 7:30 interleaved review push - see app/api/cron/morning-review. Kept
+  // separate from browserRemindersEnabled (the 19:00 streak reminder) so
+  // turning one on never silently enables the other.
+  morningReviewEnabled: boolean;
 }
 
 export async function getNotificationPreferences(
@@ -21,7 +25,7 @@ export async function getNotificationPreferences(
   const supabase = createClient();
   const { data, error } = await supabase
     .from("notification_preferences")
-    .select("email_reminders_enabled, browser_reminders_enabled, weekly_digest_enabled")
+    .select("email_reminders_enabled, browser_reminders_enabled, weekly_digest_enabled, morning_review_enabled")
     .eq("user_id", userId)
     .maybeSingle();
 
@@ -35,6 +39,7 @@ export async function getNotificationPreferences(
     emailRemindersEnabled: Boolean(data.email_reminders_enabled),
     browserRemindersEnabled: Boolean(data.browser_reminders_enabled),
     weeklyDigestEnabled: Boolean(data.weekly_digest_enabled),
+    morningReviewEnabled: Boolean(data.morning_review_enabled),
   };
 }
 
@@ -56,6 +61,9 @@ export async function saveNotificationPreferences(
   }
   if (prefs.weeklyDigestEnabled !== undefined) {
     payload.weekly_digest_enabled = prefs.weeklyDigestEnabled;
+  }
+  if (prefs.morningReviewEnabled !== undefined) {
+    payload.morning_review_enabled = prefs.morningReviewEnabled;
   }
 
   const { error } = await supabase
