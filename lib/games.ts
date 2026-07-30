@@ -32,7 +32,8 @@ export type SpecialGameType =
   | "vn30-fund-sim"
   | "pvp-duel"
   | "wall-street-millionaire"
-  | "snowball-racer";
+  | "snowball-racer"
+  | "dcf-mastermind";
 
 export type AnyGameType = GameType | SpecialGameType;
 

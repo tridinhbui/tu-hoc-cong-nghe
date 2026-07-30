@@ -21,6 +21,7 @@ import FinancialGuildWidget from "@/components/FinancialGuildWidget";
 import ModeLeaderboard from "@/components/games/ModeLeaderboard";
 import WallStreetMillionaireGame from "@/components/games/WallStreetMillionaireGame";
 import SnowballRacerGame from "@/components/games/SnowballRacerGame";
+import DcfValuationGame from "@/components/games/DcfValuationGame";
 
 type InnerTab = "play" | "leaderboard" | "history";
 type HubTab = "games" | "pvp" | "guild" | "combined";
@@ -94,6 +95,7 @@ export default function GameHubClient() {
   const [showPvpModal, setShowPvpModal] = useState(false);
   const [showMillionaireModal, setShowMillionaireModal] = useState(false);
   const [showRacerModal, setShowRacerModal] = useState(false);
+  const [showDcfModal, setShowDcfModal] = useState(false);
 
   const [lastResult, setLastResult] = useState<{ gameType: GameType; score: number; total: number } | null>(null);
 
@@ -290,6 +292,42 @@ export default function GameHubClient() {
                 </div>
               </div>
 
+              {/* Featured DCF Valuation Mastermind Banner */}
+              <div
+                onClick={() => {
+                  setShowDcfModal(true);
+                  trackFeatureClick("game_open_dcf", { label: "dcf-mastermind" });
+                }}
+                className="relative rounded-3xl overflow-hidden border-2 border-indigo-500/50 bg-gradient-to-r from-slate-900 via-indigo-950/60 to-slate-950 p-6 sm:p-7 shadow-xl cursor-pointer group hover:border-indigo-400 hover:shadow-indigo-500/20 transition-all duration-300"
+              >
+                <div className="relative z-10 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+                  <div className="flex items-center gap-4">
+                    <div className="w-14 h-14 rounded-2xl bg-indigo-500/20 border-2 border-indigo-400/60 flex items-center justify-center text-3xl shrink-0 shadow-lg group-hover:scale-110 group-hover:rotate-3 transition-transform">
+                      🧮
+                    </div>
+                    <div>
+                      <div className="inline-flex items-center gap-1.5 rounded-full bg-indigo-500/20 border border-indigo-400/40 px-2.5 py-0.5 text-[10px] font-black text-indigo-300 uppercase tracking-widest mb-1">
+                        🎯 GAME THÂU TÓM M&A & ĐỊNH GIÁ
+                      </div>
+                      <h2 className="text-lg sm:text-xl font-black text-indigo-100 group-hover:text-indigo-300 transition-colors">
+                        Đấu Trường Định Giá DCF & M&A
+                      </h2>
+                      <p className="text-xs text-stone-300 mt-1 max-w-lg leading-relaxed">
+                        Thử thách 5 thương vụ thâu tóm doanh nghiệp! Điều chỉnh WACC & g, tính Target Price để đưa ra phán quyết MUA VÀO hay NÉ XA.
+                      </p>
+                    </div>
+                  </div>
+
+                  <button
+                    type="button"
+                    className="px-5 py-3 rounded-2xl bg-gradient-to-r from-indigo-500 to-purple-500 hover:from-indigo-400 hover:to-purple-400 text-stone-950 font-black text-xs sm:text-sm shadow-lg group-hover:scale-105 transition-all shrink-0 flex items-center gap-2 cursor-pointer"
+                  >
+                    <span>Vào Định Giá</span>
+                    <span className="group-hover:translate-x-1 transition-transform">→</span>
+                  </button>
+                </div>
+              </div>
+
               {/* Standard Mini Games Grid */}
               <div className="grid sm:grid-cols-2 gap-4">
               {GAMES.map((g) => {
@@ -363,6 +401,13 @@ export default function GameHubClient() {
           <SnowballRacerGame
             userId={userId}
             onClose={() => setShowRacerModal(false)}
+          />
+        )}
+
+        {showDcfModal && (
+          <DcfValuationGame
+            userId={userId}
+            onClose={() => setShowDcfModal(false)}
           />
         )}
       </div>
