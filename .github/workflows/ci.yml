@@ -22,3 +22,10 @@ jobs:
       - run: npm run typecheck
 
       - run: npm test
+
+      # Regenerates lib/lessons-data from lib/lessons.ts, then fails if any
+      # lesson is below the minimum content bar (quiz count, explanation
+      # length, opening question, and a diagram or interactiveType). Gating
+      # here rather than in prebuild keeps local dev loops unblocked while
+      # still catching new lessons that skip a diagram.
+      - run: npm run audit:lessons

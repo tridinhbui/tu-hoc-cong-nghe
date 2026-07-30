@@ -12,7 +12,8 @@
     "lint": "eslint",
     "typecheck": "tsc --noEmit",
     "test": "vitest run",
-    "test:e2e": "playwright test"
+    "test:e2e": "playwright test",
+    "audit:lessons": "node scripts/generate-lesson-data.mjs && node scripts/audit-lesson-content.mjs"
   },
   "dependencies": {
     "@napi-rs/canvas": "^1.0.2",

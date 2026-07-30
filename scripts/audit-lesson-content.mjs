@@ -3,8 +3,14 @@
 // report of which lessons fail which check, grouped by track so personal/
 // professional lessons (the main learning path) can be prioritized over bonus.
 //
-// Run with: node scripts/audit-lesson-content.mjs
+// Run with: npm run audit:lessons (or node scripts/audit-lesson-content.mjs).
 // Re-run after lib/lessons.ts changes + `node scripts/generate-lesson-data.mjs`.
+//
+// Exits 1 when any lesson fails, so this can gate a commit hook or CI step.
+// It used to always exit 0, which meant a newly authored lesson missing a
+// diagram could only be caught by someone reading the output - and every
+// batch of new lessons silently reintroduced failures. Pass --warn-only to
+// get the old behaviour when you want the report without the gate.
 
 import { readFileSync, readdirSync } from "fs";
 import { fileURLToPath } from "url";
@@ -69,3 +75,14 @@ for (const track of ["personal", "professional", "bonus"]) {
 const total = results.personal.length + results.professional.length + results.bonus.length;
 console.log(`\nTotal lessons checked: ${files.length}`);
 console.log(`Total failing at least one check: ${total}`);
+
+if (total > 0 && !process.argv.includes("--warn-only")) {
+  console.error(
+    `\n${total} lesson(s) below the minimum content bar. Each needs at least ` +
+      `${MIN_QUIZ_COUNT} quiz questions, a ${MIN_EXPLANATION_LEN}+ char explanation, ` +
+      `an openingQuestion with options, and either a diagram or an interactiveType.\n` +
+      `Fix them in lib/lessons.ts (or lib/lesson-quiz-overrides.js for slugs it ` +
+      `overrides), re-run scripts/generate-lesson-data.mjs, then run this again.`
+  );
+  process.exit(1);
+}
