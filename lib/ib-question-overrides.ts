@@ -1249,4 +1249,69 @@ export const IB_QUESTION_OVERRIDES: Record<number, IbQuestionOverride> = {
     ],
     correct: 0,
   },
+
+  // ── Discounted Cash Flow - Advanced ───────────────────────────────────
+  306: {
+    options: [
+      "Because cash flow arrives evenly through the year rather than all on the last day. Without it you discount at periods 1, 2, 3...; with it you use 0.5, 1.5, 2.5..., which raises the valuation slightly.",
+      "Because cash flow arrives entirely in the second half of the year for most businesses, so the periods shift from 1, 2, 3 to 1.5, 2.5, 3.5.",
+      "Because it corrects for inflation between the valuation date and the mid-point of each projected year, which discounting alone misses.",
+      "Because the first projected year is usually a partial year, so every subsequent period must be shifted by half a year to compensate.",
+    ],
+    correct: 0,
+  },
+  307: {
+    options: [
+      "Halve the stub period, then subtract 0.5 from each of the normal future periods. A Q4 stub whose normal periods run 0.25, 1.25, 2.25, 3.25 becomes 0.125, 0.75, 1.75, 2.75.",
+      "Halve every period including the future ones, so normal periods of 0.25, 1.25, 2.25, 3.25 become 0.125, 0.625, 1.125, 1.625.",
+      "Leave the stub at 0.25 and subtract 0.5 from the future years only, giving periods of 0.25, 0.75, 1.75, 2.75.",
+      "Add 0.5 to the stub and leave the future periods unchanged, since the stub is the only partial period anywhere in the model.",
+    ],
+    correct: 0,
+  },
+  308: {
+    options: [
+      "It differs by method. With the Multiples Method you add 0.5 back to the final-year discount period, because you're assuming a sale at year end. With Gordon Growth you use the final-year period as-is, since cash flows keep arriving through the year in perpetuity.",
+      "You add 0.5 back under both methods, since the Terminal Value is always realised at the end of the final year.",
+      "You use the final-year period unchanged under both methods - the mid-year convention applies only to the projected cash flows, never to the Terminal Value.",
+      "With the Multiples Method you use the period as-is and with Gordon Growth you add 0.5, because a perpetuity is valued from the year's midpoint.",
+    ],
+    correct: 0,
+  },
+  309: {
+    options: [
+      "From Enterprise Value, add cash and subtract debt, preferred stock, minority interest and other debt-like items to get Equity Value; then divide by a diluted share count that is circular, because the options and warrants that dilute depend on the share price you're solving for.",
+      "From Enterprise Value, subtract cash and add debt to reach Equity Value, then divide by the basic shares outstanding.",
+      "Divide Enterprise Value directly by the fully diluted share count - the debt and cash adjustments are already inside the discounted cash flows.",
+      "From Enterprise Value, add cash and subtract debt, then divide by basic shares outstanding; options are excluded because they haven't been exercised yet.",
+    ],
+    correct: 0,
+  },
+  310: {
+    options: [
+      "Same mechanics as a DCF but on dividends: project earnings down to EPS, apply a payout ratio to get dividends per share, discount those at the Cost of Equity, add a terminal value based on a P/E multiple, and the result is Equity Value per share.",
+      "Same mechanics as a DCF but on dividends, discounted at WACC rather than the Cost of Equity, producing Enterprise Value.",
+      "Project total dividends paid, discount them at the risk-free rate since dividends are contractually committed, and add the book value of equity.",
+      "Project free cash flow as normal, then multiply the result by the dividend payout ratio to isolate the shareholders' portion.",
+    ],
+    correct: 0,
+  },
+  311: {
+    options: [
+      "It depends on moneyness. In-the-money convertible debt isn't counted as debt - it's treated as dilution, raising Equity Value. Out-of-the-money, you do count it as debt and use the convertible's interest rate for Cost of Debt.",
+      "Yes, always count it as debt - it is a debt instrument until conversion actually happens, regardless of the share price.",
+      "No, never count it as debt - convertibles are equity-linked, so they always belong in the equity portion of the capital structure.",
+      "You split it in proportion to the conversion probability, weighting part as debt and part as equity in the Beta calculation.",
+    ],
+    correct: 0,
+  },
+  312: {
+    options: [
+      "Add $100 of CapEx in year 4, which cuts that year's Free Cash Flow by $100. Enterprise Value falls by the present value of that reduction - $100 ÷ (1 + discount rate)^4 - so the new Enterprise Value is $200 minus that amount.",
+      "Subtract the full $100 from Enterprise Value, giving $100, since the cash leaves the business regardless of when it happens.",
+      "Add $100 of CapEx in year 4 and subtract $100 from the Terminal Value as well, to reflect the asset being carried forward.",
+      "Make no change - a factory purchase is an investing activity, and Enterprise Value is unaffected by how the company deploys its cash.",
+    ],
+    correct: 0,
+  },
 };
