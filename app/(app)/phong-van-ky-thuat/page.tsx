@@ -218,9 +218,9 @@ export default function TechnicalInterviewPage() {
   }
 
   return (
-    <div className="min-h-screen bg-stone-50 dark:bg-stone-950 pb-16">
-      <div className="border-b border-stone-200 dark:border-stone-800 bg-white dark:bg-stone-950">
-        <div className="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between gap-4">
+    <div className="h-dvh overflow-hidden flex flex-col bg-stone-50 dark:bg-stone-950">
+      <div className="shrink-0 border-b border-stone-200 dark:border-stone-800 bg-white dark:bg-stone-950">
+        <div className="max-w-6xl mx-auto px-6 py-2.5 flex items-center justify-between gap-4">
           <div className="flex items-center gap-3">
             <Link
               href="/dashboard"
@@ -230,8 +230,8 @@ export default function TechnicalInterviewPage() {
               <ChevronLeft className="w-5 h-5" />
             </Link>
             <div>
-              <h1 className="text-2xl font-black text-stone-900 dark:text-stone-100 tracking-tight flex items-center gap-2">
-                <BriefcaseBusiness className="w-6 h-6 text-amber-500" />
+              <h1 className="text-xl font-black text-stone-900 dark:text-stone-100 tracking-tight flex items-center gap-2">
+                <BriefcaseBusiness className="w-5 h-5 text-amber-500" />
                 Technical Interview
               </h1>
               <p className="text-xs font-semibold text-stone-500 dark:text-stone-400 mt-0.5">
@@ -247,7 +247,7 @@ export default function TechnicalInterviewPage() {
         </div>
       </div>
 
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 py-6 sm:py-8">
+      <div className="flex-1 min-h-0 overflow-y-auto max-w-6xl mx-auto w-full px-4 sm:px-6 py-3 sm:py-4">
         {/* Mode switch. Hidden mid-drill so a half-finished scored run can't be
             abandoned by an accidental tab click. */}
         {(stage === "setup" || mode === "behavioral") && (

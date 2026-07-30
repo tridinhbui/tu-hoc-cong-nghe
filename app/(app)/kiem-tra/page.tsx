@@ -160,9 +160,9 @@ export default function KiemTraPage() {
   }
 
   return (
-    <div className="min-h-screen bg-stone-50 dark:bg-stone-950 pb-16">
-      <div className="border-b border-stone-200 dark:border-stone-800 bg-white dark:bg-stone-950">
-        <div className="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between gap-4">
+    <div className="h-dvh overflow-hidden flex flex-col bg-stone-50 dark:bg-stone-950">
+      <div className="shrink-0 border-b border-stone-200 dark:border-stone-800 bg-white dark:bg-stone-950">
+        <div className="max-w-6xl mx-auto px-6 py-2.5 flex items-center justify-between gap-4">
           <div className="flex items-center gap-3">
             <Link
               href="/dashboard"
@@ -172,7 +172,7 @@ export default function KiemTraPage() {
               <ChevronLeft className="w-5 h-5" />
             </Link>
             <div>
-              <h1 className="text-2xl font-black text-stone-900 dark:text-stone-100 tracking-tight">Kiểm tra kiến thức</h1>
+              <h1 className="text-xl font-black text-stone-900 dark:text-stone-100 tracking-tight">Kiểm tra kiến thức</h1>
               <p className="text-xs font-semibold text-stone-500 dark:text-stone-400 mt-0.5">
                 Thử thách tin tức vĩ mô hôm nay & tạo bài kiểm tra tự chọn
               </p>
@@ -186,20 +186,20 @@ export default function KiemTraPage() {
         </div>
       </div>
 
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 py-6 sm:py-8">
+      <div className="flex-1 min-h-0 overflow-y-auto max-w-6xl mx-auto w-full px-4 sm:px-6 py-3 sm:py-4">
         {stage === "setup" && (
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-stretch">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-3 lg:gap-4 items-stretch">
             {/* 📰 LEFT COLUMN: Daily Financial News Quiz */}
             <div className="lg:col-span-6 h-full flex flex-col">
-              <div className="rounded-3xl border border-rose-200/90 dark:border-rose-900/60 bg-gradient-to-b from-rose-50/80 via-white to-amber-50/40 dark:from-rose-950/40 dark:via-stone-900 dark:to-stone-950 p-5 sm:p-6 shadow-md h-full flex flex-col justify-between">
+              <div className="rounded-3xl border border-rose-200/90 dark:border-rose-900/60 bg-gradient-to-b from-rose-50/80 via-white to-amber-50/40 dark:from-rose-950/40 dark:via-stone-900 dark:to-stone-950 p-3.5 sm:p-4 shadow-md h-full flex flex-col justify-between">
                 <div>
-                  <div className="flex flex-wrap items-center justify-between gap-3 mb-4 pb-3 border-b border-rose-100 dark:border-rose-900/40">
+                  <div className="flex flex-wrap items-center justify-between gap-3 mb-2.5 pb-2 border-b border-rose-100 dark:border-rose-900/40">
                     <div>
                       <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-wider bg-rose-500 text-white shadow-2xs">
                         <span className="w-1.5 h-1.5 rounded-full bg-white animate-ping" />
                         <span>Bên Trái • Tin tức tài chính hôm nay</span>
                       </div>
-                      <h3 className="mt-2 text-lg font-black text-stone-900 dark:text-stone-100">
+                      <h3 className="mt-1.5 text-base font-black text-stone-900 dark:text-stone-100">
                         Thử Thách Bài Kiểm Tra Tin Tức Hằng Ngày
                       </h3>
                     </div>
@@ -216,7 +216,7 @@ export default function KiemTraPage() {
                     )}
                   </div>
 
-                  <p className="text-xs text-stone-600 dark:text-stone-400 mb-4 leading-relaxed">
+                  <p className="text-xs text-stone-600 dark:text-stone-400 mb-2.5 leading-snug">
                     Trả lời chính xác tình huống tin tức vĩ mô hôm nay để nhận <strong>+15 XP</strong> và giải tỏa biểu tượng cảnh báo 🔴 trên Navbar.
                   </p>
                 </div>
@@ -229,14 +229,14 @@ export default function KiemTraPage() {
 
             {/* 🎯 RIGHT COLUMN: Enhanced Test Creation Form */}
             <div className="lg:col-span-6 h-full flex flex-col">
-              <div className="rounded-3xl border border-stone-200/90 dark:border-stone-800 bg-white dark:bg-stone-900 p-5 sm:p-6 shadow-md space-y-5 h-full flex flex-col justify-between">
-                <div className="flex items-center justify-between border-b border-stone-100 dark:border-stone-800 pb-3.5">
+              <div className="rounded-3xl border border-stone-200/90 dark:border-stone-800 bg-white dark:bg-stone-900 p-3.5 sm:p-4 shadow-md space-y-3 h-full flex flex-col justify-between">
+                <div className="flex items-center justify-between border-b border-stone-100 dark:border-stone-800 pb-2">
                   <div>
                     <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-wider bg-emerald-100 dark:bg-emerald-950 text-emerald-700 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-800">
                       <Sparkles className="w-3.5 h-3.5 text-emerald-600" />
                       <span>Bên Phải • Tạo bài kiểm tra tự chọn</span>
                     </div>
-                    <h3 className="mt-2 text-lg font-black text-stone-900 dark:text-stone-100">
+                    <h3 className="mt-1.5 text-base font-black text-stone-900 dark:text-stone-100">
                       Tùy Chỉnh & Bắt Đầu Kiểm Tra
                     </h3>
                   </div>
@@ -255,10 +255,10 @@ export default function KiemTraPage() {
 
                 {/* Track Selector */}
                 <div>
-                  <label className="block text-xs font-black uppercase tracking-wider text-stone-500 dark:text-stone-400 mb-2.5">
+                  <label className="block text-xs font-black uppercase tracking-wider text-stone-500 dark:text-stone-400 mb-1.5">
                     1. Chọn phần kiến thức
                   </label>
-                  <div className="space-y-2.5">
+                  <div className="space-y-1.5">
                     {TRACKS.map((t) => {
                       const selected = track === t.id;
                       return (
@@ -266,7 +266,7 @@ export default function KiemTraPage() {
                           key={t.id}
                           type="button"
                           onClick={() => setTrack(t.id)}
-                          className={`w-full text-left rounded-2xl border-2 p-3.5 transition-all duration-200 cursor-pointer flex items-start justify-between gap-3 ${
+                          className={`w-full text-left rounded-2xl border-2 p-2.5 transition-all duration-200 cursor-pointer flex items-start justify-between gap-3 ${
                             selected
                               ? "border-emerald-500 bg-gradient-to-r from-emerald-50/90 to-teal-50/40 dark:from-emerald-950/60 dark:to-stone-900 ring-2 ring-emerald-400/30 text-stone-900 dark:text-stone-100 shadow-sm"
                               : "border-stone-200 dark:border-stone-800 hover:border-stone-300 dark:hover:border-stone-700 bg-stone-50/50 dark:bg-stone-800/40 text-stone-700 dark:text-stone-300"
@@ -281,7 +281,7 @@ export default function KiemTraPage() {
                                 </span>
                               )}
                             </div>
-                            <p className="text-xs mt-1 text-stone-500 dark:text-stone-400 leading-snug">{t.desc}</p>
+                            <p className="text-[11px] mt-0.5 text-stone-500 dark:text-stone-400 leading-snug">{t.desc}</p>
                           </div>
                         </button>
                       );
@@ -291,10 +291,10 @@ export default function KiemTraPage() {
 
                 {/* Difficulty Selector */}
                 <div>
-                  <label className="block text-xs font-black uppercase tracking-wider text-stone-500 dark:text-stone-400 mb-2.5">
+                  <label className="block text-xs font-black uppercase tracking-wider text-stone-500 dark:text-stone-400 mb-1.5">
                     2. Chọn độ khó
                   </label>
-                  <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
+                  <div className="grid grid-cols-2 sm:grid-cols-4 gap-1.5">
                     {DIFFICULTIES.map((d) => {
                       const selected = difficulty === d.id;
                       return (
@@ -302,7 +302,7 @@ export default function KiemTraPage() {
                           key={d.id}
                           type="button"
                           onClick={() => setDifficulty(d.id)}
-                          className={`rounded-xl border-2 px-3 py-2.5 text-xs font-extrabold transition-all cursor-pointer text-center ${
+                          className={`rounded-xl border-2 px-3 py-1.5 text-xs font-extrabold transition-all cursor-pointer text-center ${
                             selected
                               ? "border-stone-900 dark:border-stone-100 bg-stone-900 dark:bg-stone-100 text-white dark:text-stone-900 shadow-sm"
                               : "border-stone-200 dark:border-stone-800 text-stone-600 dark:text-stone-400 hover:border-stone-300 dark:hover:border-stone-700 bg-stone-50/50 dark:bg-stone-800/40"
@@ -316,7 +316,7 @@ export default function KiemTraPage() {
                 </div>
 
                 {/* XP Reward hint */}
-                <div className="rounded-2xl border border-emerald-200 dark:border-emerald-900/60 bg-emerald-50/80 dark:bg-emerald-950/40 p-3.5 flex items-center gap-3">
+                <div className="rounded-2xl border border-emerald-200 dark:border-emerald-900/60 bg-emerald-50/80 dark:bg-emerald-950/40 p-2.5 flex items-center gap-3">
                   <Sparkles className="w-4 h-4 text-emerald-600 dark:text-emerald-400 shrink-0" />
                   <p className="text-xs font-bold text-emerald-800 dark:text-emerald-300">
                     Mỗi câu đúng thưởng <strong>+{XP_PER_QUESTION} XP</strong> cộng ngay vào tài khoản!
@@ -326,7 +326,7 @@ export default function KiemTraPage() {
                 {/* Start Action Button */}
                 <button
                   onClick={() => startSelectedQuiz(track, difficulty)}
-                  className="w-full py-4 rounded-2xl font-black text-sm uppercase tracking-wider text-white bg-gradient-to-r from-emerald-600 via-teal-600 to-emerald-600 hover:from-emerald-500 hover:to-teal-500 shadow-lg shadow-emerald-500/20 active:scale-98 transition-all cursor-pointer flex items-center justify-center gap-2"
+                  className="w-full py-2.5 rounded-2xl font-black text-sm uppercase tracking-wider text-white bg-gradient-to-r from-emerald-600 via-teal-600 to-emerald-600 hover:from-emerald-500 hover:to-teal-500 shadow-lg shadow-emerald-500/20 active:scale-98 transition-all cursor-pointer flex items-center justify-center gap-2"
                 >
                   <span>🚀 Bắt Đầu Kiểm Tra Ngay</span>
                   <span>→</span>
@@ -336,18 +336,18 @@ export default function KiemTraPage() {
 
             <Link
               href="/phong-van-ky-thuat"
-              className="lg:col-span-12 group rounded-3xl border border-stone-200 dark:border-stone-800 bg-white dark:bg-stone-900 hover:border-amber-300 dark:hover:border-amber-800 transition-colors overflow-hidden shadow-sm flex items-center justify-between gap-4 p-5 sm:p-6"
+              className="lg:col-span-12 group rounded-3xl border border-stone-200 dark:border-stone-800 bg-white dark:bg-stone-900 hover:border-amber-300 dark:hover:border-amber-800 transition-colors overflow-hidden shadow-sm flex items-center justify-between gap-4 p-3 sm:p-3.5"
             >
               <div className="flex items-center gap-3">
-                <div className="w-11 h-11 rounded-2xl bg-amber-50 dark:bg-amber-950/40 border border-amber-200 dark:border-amber-900 flex items-center justify-center shrink-0">
-                  <BriefcaseBusiness className="h-5 w-5 text-amber-600 dark:text-amber-400" />
+                <div className="w-9 h-9 rounded-2xl bg-amber-50 dark:bg-amber-950/40 border border-amber-200 dark:border-amber-900 flex items-center justify-center shrink-0">
+                  <BriefcaseBusiness className="h-4.5 w-4.5 text-amber-600 dark:text-amber-400" />
                 </div>
                 <div>
                   <p className="text-[10px] font-black uppercase tracking-[0.18em] text-amber-600 dark:text-amber-400">
                     Investment Banking Interview Drill
                   </p>
-                  <h3 className="text-base font-black text-stone-900 dark:text-stone-100">Technical Interview</h3>
-                  <p className="text-xs text-stone-500 dark:text-stone-400 mt-0.5">400 IB Questions · Accounting, Valuation, DCF, M&A, LBO, behavioral</p>
+                  <h3 className="text-sm font-black text-stone-900 dark:text-stone-100">Technical Interview</h3>
+                  <p className="text-[11px] text-stone-500 dark:text-stone-400 mt-0.5">400 IB Questions · Accounting, Valuation, DCF, M&A, LBO, behavioral</p>
                 </div>
               </div>
               <span className="shrink-0 text-xs font-black text-amber-600 dark:text-amber-400 group-hover:translate-x-0.5 transition-transform">

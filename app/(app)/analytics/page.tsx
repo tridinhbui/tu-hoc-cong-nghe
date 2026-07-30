@@ -48,34 +48,26 @@ export default function AnalyticsPage() {
   }
 
   return (
-    <div className="min-h-screen bg-stone-50 dark:bg-stone-950 pb-20">
-      <div className="max-w-6xl mx-auto px-6 pt-8 pb-4">
-        <Link 
-          href="/dashboard" 
+    <div className="h-dvh overflow-hidden flex flex-col bg-stone-50 dark:bg-stone-950">
+      <div className="shrink-0 max-w-6xl mx-auto w-full px-6 pt-3 pb-2 flex items-center justify-between gap-4">
+        <Link
+          href="/dashboard"
           className="text-stone-500 dark:text-stone-400 hover:text-stone-800 dark:hover:text-stone-200 text-xs font-extrabold uppercase tracking-wider flex items-center gap-1"
         >
           ← Quay lại Dashboard
         </Link>
+        <div className="inline-flex items-center gap-2 rounded-full border border-emerald-200 dark:border-emerald-900 bg-emerald-50 dark:bg-emerald-950/60 px-3 py-1 text-[11px] font-extrabold uppercase tracking-[0.18em] text-emerald-700 dark:text-emerald-400">
+          Thống kê & BXH
+        </div>
       </div>
 
-      <div className="max-w-[1480px] mx-auto px-5 pb-8 sm:px-6">
-        <div className="mb-6 rounded-[28px] border border-stone-200/90 dark:border-stone-800 bg-white/95 dark:bg-stone-900 px-5 py-5 shadow-[0_20px_50px_-35px_rgba(15,23,42,0.22)] sm:px-7 sm:py-6">
-          <div className="flex flex-wrap items-end justify-between gap-4">
-            <div>
-              <div className="inline-flex items-center gap-2 rounded-full border border-emerald-200 dark:border-emerald-900 bg-emerald-50 dark:bg-emerald-950/60 px-3 py-1 text-[11px] font-extrabold uppercase tracking-[0.18em] text-emerald-700 dark:text-emerald-400">
-                Thống kê
-              </div>
-              <h1 className="mt-4 text-3xl font-black tracking-tight text-stone-900 dark:text-stone-100 sm:text-4xl">Thống kê & BXH</h1>
-            </div>
-          </div>
-        </div>
-
-        <div className="grid gap-6 xl:grid-cols-12 xl:items-start">
+      <div className="flex-1 min-h-0 overflow-y-auto max-w-[1480px] mx-auto w-full px-5 pb-4 sm:px-6">
+        <div className="grid gap-4 xl:grid-cols-12 xl:items-start">
           <div className="xl:col-span-5 min-w-0">
             <LearningAnalytics hideLeaderboardTab />
           </div>
           <div className="xl:col-span-7 min-w-0">
-            <div className="xl:sticky xl:top-6">
+            <div className="xl:sticky xl:top-3">
               <Leaderboard userId={userId} compact />
             </div>
           </div>
