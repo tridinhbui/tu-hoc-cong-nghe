@@ -111,7 +111,12 @@ const CATEGORY_BASELINE: Record<CareerLike["category"], SkillRequirement[]> = {
   // Nhánh dữ liệu đứng trên nền định lượng chứ không phải nền định giá: một
   // Data Analyst cần thống kê và kiểm định vững, còn kế toán chỉ ở mức đọc
   // hiểu được số liệu mình đang xử lý.
-  data: [must("quant", 65), should("accounting", 40), should("ethics", 40)],
+  //
+  // modeling_excel là bắt buộc chứ không phải nên có: nó chứa Chặng 29 (công
+  // cụ phân tích dữ liệu) cùng chặng Excel, tức là toàn bộ phần thao tác của
+  // ba nghề này. Thiếu nó thì học xong nửa lộ trình dữ liệu vẫn không có chỉ
+  // số nào nhúc nhích - đúng lỗi mà lượt nối domain này đi sửa.
+  data: [must("quant", 65), must("modeling_excel", 50), should("accounting", 40), should("ethics", 40)],
 };
 
 // Each CFA subject a career declares implies its domain should be on the

@@ -32,7 +32,8 @@ export type SkillDomainId =
   | "fpa_budgeting"
   | "ethics"
   | "economics"
-  | "quant";
+  | "quant"
+  | "ai_tools";
 
 export interface SkillDomain {
   id: SkillDomainId;
@@ -50,7 +51,9 @@ export const SKILL_DOMAINS: SkillDomain[] = [
     id: "personal_finance",
     label: "Tài chính cá nhân",
     gapHint: "ngân sách, quỹ khẩn cấp, kế hoạch tài chính cá nhân",
-    lessonIds: [...range(1, 20), ...range(241, 298)],
+    // 1301-1308 là chặng thuế TNCN; 1249/1284/1285 là quy trình hoạch định
+    // tài chính cá nhân - đều thuộc đây chứ không phải kế toán doanh nghiệp.
+    lessonIds: [...range(1, 20), ...range(241, 298), 1249, 1255, 1284, 1285, ...range(1301, 1308)],
   },
   {
     id: "accounting",
@@ -61,6 +64,12 @@ export const SKILL_DOMAINS: SkillDomain[] = [
       271,
       1001, 1007, 1010, 1011, 1012, 1013, 1015, 1016, 1018, 1019, 1022, 1023, 1026, 1027, 1035,
       1101, 1244, 1265, 1266,
+      // Chặng 24 (VAS/IFRS, thuế doanh nghiệp, thuế hoãn lại), đọc BCTC ngân
+      // hàng, và khung báo cáo ESG - đều là đọc và lập báo cáo.
+      1014, 1327, 1401, ...range(1441, 1445),
+      // 199/200 là hai bài tổng ôn khép lại track: đọc báo cáo rồi tự phân
+      // tích trọn vẹn một doanh nghiệp.
+      199, 200,
     ],
   },
   {
@@ -71,43 +80,62 @@ export const SKILL_DOMAINS: SkillDomain[] = [
       77, 78, 79,
       ...range(121, 140),
       803, 1002, 1003, 1004, 1006, 1008, 1009, 1036, 1102, 1103, 1105, 1219, 1220, 1271,
+      // Định giá ngân hàng (P/B, thu nhập thặng dư), REIT (FFO/AFFO), xuyên
+      // biên giới, và ESG đưa vào WACC - đều là biến thể của cùng một việc.
+      // 1481/1482 là viết và bảo vệ luận điểm định giá, nên đi kèm ở đây.
+      1286, 1329, 1402, 1463, 1481, 1482, 199, 200, 801,
     ],
   },
   {
     id: "corporate_finance",
     label: "Tài chính doanh nghiệp",
     gapHint: "cấu trúc vốn, WACC, chính sách cổ tức, quyết định đầu tư",
-    lessonIds: [...range(92, 120), 1017, 1020, 1038, 1209, 1243],
+    lessonIds: [...range(92, 120), 1017, 1020, 1038, 1209, 1243, 1247, 1253, 1259],
   },
   {
     id: "modeling_excel",
     label: "Excel & Mô hình tài chính",
     gapHint: "dựng mô hình 3 báo cáo, LBO, bảng độ nhạy, dashboard Excel",
-    lessonIds: [116, 117, 139, 1024, 1028, 1102, 1103, 1105, 1106, 1202, 1203, 1256, 1272, ...range(1311, 1320), 1342],
+    // Chặng 23 (Excel) và Chặng 29 (công cụ dữ liệu) đều là dựng và dò lỗi
+    // trên một file thật; 1483 là bài kiểm tra dựng mô hình trong tuyển dụng.
+    lessonIds: [
+      116, 117, 139, 1024, 1028, 1102, 1103, 1105, 1106, 1202, 1203, 1256, 1272,
+      ...range(1311, 1320), 1342, ...range(1431, 1436), 1483, ...range(1491, 1496),
+    ],
   },
   {
     id: "ma",
     label: "M&A",
     gapHint: "M&A, synergy, deal structure, due diligence, LBO",
-    lessonIds: [108, 109, 110, 117, 118, 119, 1021, 1103, 1106, 1107, 1108, 1109, 1110, 1260, 1318, 1337, 1338, 1339],
+    lessonIds: [108, 109, 110, 117, 118, 119, 1021, 1103, 1106, 1107, 1108, 1109, 1110, 1247, 1260, 1318, 1337, 1338, 1339],
   },
   {
     id: "fixed_income",
     label: "Trái phiếu & Tín dụng",
     gapHint: "trái phiếu, YTM, duration, credit spread, xếp hạng tín nhiệm",
-    lessonIds: [...range(141, 160), ...range(221, 240), 802, 1104, 1222],
+    lessonIds: [...range(141, 160), ...range(221, 240), 802, 1104, 1222, 1289, 1453],
   },
   {
     id: "equity_portfolio",
     label: "Cổ phiếu & Danh mục",
     gapHint: "phân tích cổ phiếu, xây danh mục, đo lường rủi ro - lợi nhuận",
-    lessonIds: [...range(161, 180), ...range(201, 220), 1032, 1221, 1242, 1245, 1250],
+    // Gồm cả tâm lý nhà đầu tư (Chặng 12) và ESG investing: cả hai đổi cách
+    // chọn và giữ danh mục chứ không phải một chủ đề tách rời. Chặng 25 (thị
+    // trường VN) và Chặng 27 (private markets) cũng là nơi danh mục được xây.
+    lessonIds: [
+      ...range(161, 180), ...range(201, 220), 1032, 1215, 1216, 1221,
+      ...range(1229, 1231), ...range(1235, 1242), 1245, 1250, 1251, 1252, 1287, 1288, 1031,
+      ...range(1451, 1454), ...range(1471, 1474), 805, 1025,
+    ],
   },
   {
     id: "derivatives_risk",
     label: "Phái sinh & Quản trị rủi ro",
     gapHint: "phái sinh, phòng hộ, VaR, stress testing, Basel",
-    lessonIds: [...range(181, 198), 804, 1029, 1207, 1208, 1217, 1218, 1223, 1254],
+    // Chặng 19 định giá quyền chọn là phái sinh đúng nghĩa; bảo hiểm và
+    // Solvency II là quản trị rủi ro có vốn pháp định; 1328 xử lý rủi ro khí
+    // hậu như một rủi ro tài chính, nên thuộc đây chứ không phải nhóm ESG.
+    lessonIds: [...range(181, 198), 804, 1029, 1207, 1208, 1217, 1218, 1223, 1232, 1234, 1254, 1328, ...range(1411, 1414), 1005],
   },
   {
     id: "fpa_budgeting",
@@ -118,20 +146,41 @@ export const SKILL_DOMAINS: SkillDomain[] = [
   {
     id: "ethics",
     label: "Đạo đức nghề nghiệp",
-    gapHint: "Code of Ethics, Standards of Conduct, GIPS",
-    lessonIds: [...range(1039, 1046), ...range(1331, 1336)],
+    gapHint: "Code of Ethics, Standards of Conduct, GIPS, AML/KYC, đạo đức dữ liệu",
+    // AML/KYC, quản trị doanh nghiệp, dùng AI có trách nhiệm và đạo đức dữ
+    // liệu đều là cùng một câu hỏi: cái gì được phép làm với thông tin và
+    // tiền của người khác.
+    lessonIds: [...range(1039, 1046), 1273, 1274, ...range(1281, 1283), ...range(1331, 1336), 1330, 1506],
   },
   {
     id: "economics",
     label: "Kinh tế học",
     gapHint: "chu kỳ kinh tế, chính sách tiền tệ - tài khóa, tỷ giá",
-    lessonIds: [9, 146, 147, 148, ...range(1224, 1228), 1258, ...range(1321, 1326), 1340, 1341],
+    // Chặng 26 là kinh tế học quốc tế (ngang giá lãi suất, PPP, rủi ro tỷ giá)
+    // - 1463 định giá xuyên biên giới nằm ở nhóm định giá vì nó là phép định
+    // giá, còn ba bài còn lại là cơ chế tỷ giá nên thuộc đây.
+    lessonIds: [9, 146, 147, 148, ...range(1224, 1228), 1258, ...range(1321, 1326), 1340, 1341, 1461, 1462, 1464],
   },
   {
     id: "quant",
     label: "Phương pháp định lượng",
-    gapHint: "giá trị thời gian của tiền, NPV/IRR, xác suất - thống kê",
-    lessonIds: [7, 10, ...range(81, 91), 1037, 1233, 1246],
+    gapHint: "giá trị thời gian của tiền, NPV/IRR, xác suất - thống kê, suy diễn từ dữ liệu",
+    // Chặng 22 (thống kê, hồi quy, chuỗi thời gian) và Chặng 30 (chọn chỉ số,
+    // cohort, A/B test, nhân quả) là cùng một bộ kỹ năng suy diễn, chỉ khác
+    // ngữ cảnh áp dụng. Đây cũng là nhóm mà ba nghề dữ liệu đặt yêu cầu vào,
+    // nên nếu thiếu chúng thì lộ trình dữ liệu không nuôi chính yêu cầu đó.
+    lessonIds: [7, 10, ...range(81, 91), 1033, 1037, 1233, 1246, ...range(1421, 1426), ...range(1501, 1505)],
+  },
+  {
+    // Chặng 13 có 20 bài và cho tới giờ không bài nào thuộc domain nào, nên
+    // học xong cả chặng vẫn không nhích được chỉ số năng lực nào. Nó không
+    // nhét vừa nhóm nào sẵn có: dùng AI để đọc báo cáo không phải kế toán,
+    // cũng không phải Excel. Domain riêng là cách trung thực hơn là ép nó
+    // vào một nhóm gần đúng.
+    id: "ai_tools",
+    label: "AI trong tài chính",
+    gapHint: "giao việc cho AI, đọc báo cáo và viết memo có kiểm chứng",
+    lessonIds: [...range(1261, 1280), 1034],
   },
 ];
 
