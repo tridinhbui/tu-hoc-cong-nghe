@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import { createPortal } from "react-dom";
 import { Gift, Sparkles, Trophy, CheckCircle2, Flame, BookOpen, ChevronDown, ChevronUp, Zap } from "lucide-react";
 import { toast } from "sonner";
 import { recalculateUserStats } from "@/lib/supabase-user";
@@ -30,8 +31,13 @@ interface CombinedRewardsWidgetProps {
 //    it was permanently stuck at 0/5. Now reads the real streak from
 //    user_streaks (the same source StreakDisplay/UserStats already show).
 export default function CombinedRewardsWidget({ userId, defaultExpanded = false, compact = false }: CombinedRewardsWidgetProps) {
+  const [mounted, setMounted] = useState(false);
   const [activeTab, setActiveTab] = useState<"daily" | "chests" | "weekly">("daily");
   const [isExpanded, setIsExpanded] = useState(defaultExpanded);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   // Chest state (now server-backed - see lib/chests.ts)
   const [chestCount, setChestCount] = useState<number>(0);
@@ -441,8 +447,8 @@ export default function CombinedRewardsWidget({ userId, defaultExpanded = false,
         </div>
 
       {/* Reward Reveal Overlay */}
-      {opening && rewardReveal && (
-        <div className="fixed inset-0 bg-black/60 backdrop-blur-sm flex items-center justify-center z-50 p-4 animate-[fadeIn_0.2s_ease-out]">
+      {opening && rewardReveal && mounted && createPortal(
+        <div className="fixed inset-0 bg-stone-950/80 backdrop-blur-md flex items-center justify-center z-[9999] p-4 animate-[fadeIn_0.2s_ease-out]">
           <div className="bg-white dark:bg-stone-900 border border-stone-200 dark:border-stone-800 rounded-3xl w-full max-w-sm p-6 text-center shadow-2xl relative space-y-5 animate-[scaleIn_0.3s_ease-out]">
             <div className="w-16 h-16 mx-auto bg-amber-500 rounded-full flex items-center justify-center text-white shadow-lg animate-bounce">
               {rewardReveal.type === "xp" ? <Zap className="w-8 h-8 text-white" /> : <Sparkles className="w-8 h-8 text-white" />}
@@ -463,7 +469,8 @@ export default function CombinedRewardsWidget({ userId, defaultExpanded = false,
               Thu thập phần quà <CheckCircle2 className="w-4 h-4 inline-block ml-1" />
             </button>
           </div>
-        </div>
+        </div>,
+        document.body
       )}
     </div>
   );

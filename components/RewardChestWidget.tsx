@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import { createPortal } from "react-dom";
 import { Gift, Sparkles, Trophy, CheckCircle2 } from "lucide-react";
 import { toast } from "sonner";
 import { recalculateUserStats } from "@/lib/supabase-user";
@@ -22,10 +23,15 @@ const REWARDS = [
 ];
 
 export default function RewardChestWidget({ userId }: RewardChestWidgetProps) {
+  const [mounted, setMounted] = useState(false);
   const [chests, setChests] = useState<number>(0);
   const [opening, setOpening] = useState<boolean>(false);
   const [shaking, setShaking] = useState<boolean>(false);
   const [rewardReveal, setRewardReveal] = useState<any | null>(null);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   const chestKey = `thtcdn_chests_${userId}`;
   const titlesKey = `thtcdn_unlocked_titles_${userId}`;
@@ -166,22 +172,23 @@ export default function RewardChestWidget({ userId }: RewardChestWidgetProps) {
       )}
 
       {/* Reward Reveal Panel */}
-      {opening && rewardReveal && (
-        <div className="mt-4 rounded-3xl border border-stone-200 bg-white p-6 text-center shadow-xl relative space-y-5 animate-[scaleIn_0.3s_ease-out]">
+      {opening && rewardReveal && mounted && createPortal(
+        <div className="fixed inset-0 bg-stone-950/80 backdrop-blur-md flex items-center justify-center z-[9999] p-4 animate-[fadeIn_0.2s_ease-out]">
+          <div className="bg-white dark:bg-stone-900 border border-stone-200 dark:border-stone-800 rounded-3xl w-full max-w-sm p-6 text-center shadow-2xl relative space-y-5 animate-[scaleIn_0.3s_ease-out]">
             <div className="w-16 h-16 mx-auto bg-amber-500 rounded-full flex items-center justify-center text-white shadow-lg animate-bounce">
               <Sparkles className="w-8 h-8 text-white" />
             </div>
 
             <div className="space-y-1">
-              <span className="text-[9px] font-extrabold uppercase tracking-widest text-amber-600">
+              <span className="text-[9px] font-extrabold uppercase tracking-widest text-amber-600 dark:text-amber-400">
                 Bạn đã mở rương nhận được
               </span>
-              <h3 className="text-lg font-black text-stone-900 flex items-center justify-center gap-1.5">
+              <h3 className="text-lg font-black text-stone-900 dark:text-stone-100 flex items-center justify-center gap-1.5">
                 {rewardReveal.type === "title" && <Trophy className="w-5 h-5 text-amber-500" />}
                 {rewardReveal.value}
                 {rewardReveal.type === "xp" && " XP"}
               </h3>
-              <p className="text-xs text-stone-500">
+              <p className="text-xs text-stone-500 dark:text-stone-400">
                 {rewardReveal.desc}
               </p>
             </div>
@@ -192,7 +199,9 @@ export default function RewardChestWidget({ userId }: RewardChestWidgetProps) {
             >
               Thu thập phần quà <CheckCircle2 className="w-4 h-4 inline-block ml-1" />
             </button>
-        </div>
+          </div>
+        </div>,
+        document.body
       )}
     </div>
   );
