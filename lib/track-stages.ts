@@ -643,6 +643,20 @@ export const TRACK_PROFESSIONAL = {
         { name: "Kịch bản, phân bổ chi phí và nhịp báo cáo tháng", days: [1514, 1516] as [number, number] },
       ],
     },
+    {
+      // Chặng 10 dạy vì sao mua, mua ai, trả bằng gì và vì sao hậu sáp nhập
+      // hay hỏng. Chặng này lo phần cơ khí ở giữa - và là phần mà bộ câu hỏi
+      // phỏng vấn IB hỏi nhiều nhất trong khi chưa có bài học nào dạy nó.
+      label: "Chặng 32",
+      name: "Cơ chế thương vụ M&A",
+      days: [1521, 1526] as [number, number],
+      available: true,
+      isNew: true,
+      parts: [
+        { name: "Pha loãng EPS, nguồn vốn và phân bổ giá mua", days: [1521, 1523] as [number, number] },
+        { name: "Thoái vốn, quy trình thương vụ và nghĩa vụ hội đồng", days: [1524, 1526] as [number, number] },
+      ],
+    },
   ] satisfies Stage[],
 };
 
@@ -678,6 +692,7 @@ export const PROFESSIONAL_BRANCHES = [
       "Chặng 25",
       "Chặng 26",
       "Chặng 27",
+      "Chặng 32",
     ],
   },
   {
