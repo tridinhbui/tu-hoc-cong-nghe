@@ -344,6 +344,8 @@ export const FINANCE_CAREERS: FinanceCareer[] = [
       "credit-analysis-co-ban-cho-nha-phan-tich",
       "financial-ratios-la-gi",
       "roa-chi-so",
+      "credit-default-swap-co-che-va-dinh-gia",
+      "chung-khoan-hoa-va-cau-truc-cdo",
     ],
     relatedCfaSubjectIds: ["fixedIncome", "fsa"],
     dayInLife: "Gặp gỡ khách hàng doanh nghiệp vay vốn, đi khảo sát thực tế tài sản thế chấp và nhà xưởng, lập tờ trình tín dụng đánh giá chi tiết khả năng trả nợ và dòng tiền dự kiến.",

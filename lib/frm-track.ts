@@ -73,10 +73,11 @@ export const FRM_SUBJECTS: FrmSubject[] = [
     name: "Credit Risk Measurement and Management",
     part: "II",
     weight: "20%",
-    // Gap: no lesson yet on CDS/credit derivatives, structured credit
-    // (CDO/securitization), counterparty credit risk/CVA, or portfolio
-    // credit risk models.
-    lessonIds: [144, 149, 151, 153, 224, 1104, 1222, 1256, 802],
+    // 1557-1559 (lib/frm-credit-current-lessons.ts) are purpose-built: CDS
+    // mechanics/pricing, securitization & CDO tranching, CVA & portfolio
+    // credit risk. Sovereign credit risk and structured-credit stress
+    // testing remain uncovered.
+    lessonIds: [144, 149, 151, 153, 224, 1104, 1222, 1256, 802, 1557, 1558, 1559],
   },
   {
     id: "operational-resilience",
@@ -109,9 +110,9 @@ export const FRM_SUBJECTS: FrmSubject[] = [
     name: "Current Issues in Financial Markets",
     part: "II",
     weight: "10%",
-    // Thin: none of these map precisely to GARP's actual current-issues
-    // reading list, they're the closest adjacent material (climate/ESG
-    // risk, fintech disruption, crypto).
-    lessonIds: [1328, 1327, 1253, 1025],
+    // 1560-1561 (lib/frm-credit-current-lessons.ts) are purpose-built:
+    // shadow banking, too-interconnected-to-fail. Still thin overall - GARP's
+    // reading list rotates yearly and most of it has no lesson yet.
+    lessonIds: [1328, 1327, 1253, 1025, 1560, 1561],
   },
 ];
