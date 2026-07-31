@@ -65,7 +65,8 @@ export default function ChatWithAdminWidget({
   const isOpen = controlledIsOpen !== undefined ? controlledIsOpen : internalIsOpen;
   const [isExpanded, setIsExpanded] = useState(false);
   const [isWidgetDragging, setIsWidgetDragging] = useState(false);
-  const bubbleDrag = useDraggablePosition("thtcdn_admin_chat_bubble_pos");
+  const bubbleRef = useRef<HTMLButtonElement>(null);
+  const bubbleDrag = useDraggablePosition("thtcdn_admin_chat_bubble_pos", bubbleRef);
 
   const setIsOpen = useCallback(
     (open: boolean | ((prev: boolean) => boolean)) => {
@@ -361,6 +362,7 @@ export default function ChatWithAdminWidget({
       <AnimatePresence>
         {!isOpen && !hideTrigger && (
           <motion.button
+            ref={bubbleRef}
             drag
             dragConstraints={{ left: -window.innerWidth + 80, right: 0, top: -window.innerHeight + 120, bottom: 0 }}
             dragElastic={0.1}
@@ -369,13 +371,16 @@ export default function ChatWithAdminWidget({
               setIsWidgetDragging(true);
               bubbleDrag.onDragStart();
             }}
-            onDragEnd={(event, info) => {
+            onDragEnd={() => {
               setTimeout(() => setIsWidgetDragging(false), 120);
-              bubbleDrag.onDragEnd(event, info);
+              bubbleDrag.onDragEnd();
             }}
-            initial={{ scale: 0, x: bubbleDrag.offset.x, y: bubbleDrag.offset.y }}
-            animate={{ scale: 1, x: bubbleDrag.offset.x, y: bubbleDrag.offset.y }}
+            // Only scale is animated. x/y stay out of initial/animate and live
+            // in style, owned by `drag` - see useDraggablePosition.
+            initial={{ scale: 0 }}
+            animate={{ scale: 1 }}
             exit={{ scale: 0 }}
+            style={{ x: bubbleDrag.x, y: bubbleDrag.y }}
             onClick={(e) => {
               if (isWidgetDragging) {
                 e.stopPropagation();
