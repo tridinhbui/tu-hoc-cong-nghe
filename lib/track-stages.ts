@@ -690,6 +690,21 @@ export const TRACK_PROFESSIONAL = {
         { name: "Liquidity and Treasury Risk: LCR/NSFR, CFP, ALM/IRRBB", days: [1539, 1541] as [number, number] },
       ],
     },
+    {
+      // Market Risk chiếm 20% FRM Part II nhưng chỉ có 5 bài mượn từ nơi khác
+      // (VaR nhập môn, duration, Greeks, implied vol). Phần lõi định lượng mà
+      // GARP kiểm tra - so sánh phương pháp VaR, kiểm định hậu nghiệm, ES,
+      // mô hình biến động, copula, stress testing - không có bài nào.
+      label: "Chặng 35",
+      name: "FRM: Rủi ro thị trường",
+      days: [1551, 1556] as [number, number],
+      available: true,
+      isNew: true,
+      parts: [
+        { name: "Tính VaR, kiểm định hậu nghiệm và Expected Shortfall", days: [1551, 1553] as [number, number] },
+        { name: "Mô hình biến động, phụ thuộc đuôi và stress testing", days: [1554, 1556] as [number, number] },
+      ],
+    },
   ] satisfies Stage[],
 };
 
@@ -733,7 +748,7 @@ export const PROFESSIONAL_BRANCHES = [
     label: "Ngân hàng, bảo hiểm & tư vấn",
     subtitle: "Đọc và định giá ngân hàng, tín dụng, tuân thủ, quản lý gia sản & bảo hiểm",
     emoji: "🏦",
-    stageLabels: ["Chặng 18", "Chặng 21", "Chặng 34"],
+    stageLabels: ["Chặng 18", "Chặng 21", "Chặng 34", "Chặng 35"],
   },
   {
     id: "quant",

@@ -138,7 +138,7 @@ export const SKILL_DOMAINS: SkillDomain[] = [
     // Chặng 19 định giá quyền chọn là phái sinh đúng nghĩa; bảo hiểm và
     // Solvency II là quản trị rủi ro có vốn pháp định; 1328 xử lý rủi ro khí
     // hậu như một rủi ro tài chính, nên thuộc đây chứ không phải nhóm ESG.
-    lessonIds: [...range(181, 198), 804, 1029, 1207, 1208, 1217, 1218, 1223, 1232, 1234, 1254, 1328, ...range(1411, 1414), 1005, ...range(1527, 1530), ...range(1537, 1541)],
+    lessonIds: [...range(181, 198), 804, 1029, 1207, 1208, 1217, 1218, 1223, 1232, 1234, 1254, 1328, ...range(1411, 1414), 1005, ...range(1527, 1530), ...range(1537, 1541), ...range(1551, 1553), 1556],
   },
   {
     id: "fpa_budgeting",
@@ -174,7 +174,7 @@ export const SKILL_DOMAINS: SkillDomain[] = [
     // cohort, A/B test, nhân quả) là cùng một bộ kỹ năng suy diễn, chỉ khác
     // ngữ cảnh áp dụng. Đây cũng là nhóm mà ba nghề dữ liệu đặt yêu cầu vào,
     // nên nếu thiếu chúng thì lộ trình dữ liệu không nuôi chính yêu cầu đó.
-    lessonIds: [7, 10, ...range(81, 91), 1033, 1037, 1233, 1246, ...range(1421, 1426), ...range(1501, 1505)],
+    lessonIds: [7, 10, ...range(81, 91), 1033, 1037, 1233, 1246, ...range(1421, 1426), ...range(1501, 1505), 1554, 1555],
   },
   {
     // Chặng 13 có 20 bài và cho tới giờ không bài nào thuộc domain nào, nên

@@ -63,7 +63,10 @@ export const FRM_SUBJECTS: FrmSubject[] = [
     name: "Market Risk Measurement and Management",
     part: "II",
     weight: "20%",
-    lessonIds: [1217, 804, 1289, 1413, 1414],
+    // 1551-1556 (lib/frm-market-risk-lessons.ts) là bài viết riêng cho môn
+    // này: ba phương pháp VaR, kiểm định hậu nghiệm, Expected Shortfall và
+    // tính nhất quán, EWMA/GARCH, copula & phụ thuộc đuôi, stress testing.
+    lessonIds: [1217, 804, 1289, 1413, 1414, 1551, 1552, 1553, 1554, 1555, 1556],
   },
   {
     id: "credit-risk",
