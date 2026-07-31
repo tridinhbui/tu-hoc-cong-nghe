@@ -108,8 +108,28 @@ assertDayPrefixStripPreservedTitles(balancedLessons, strippedLessons);
 // a hand-written string ("10 phút") that drifts from the body it describes,
 // and the checkpoint position has to agree with the reading estimate because
 // both come from the same word count.
+// Which track a lesson actually belongs to, resolved once here instead of
+// re-derived by every consumer. Only 257 of 570 lessons carry an explicit
+// `track`; the rest are decided by which stage's day range covers their id,
+// exactly as the dashboard decides it (lib/track-stages.ts).
+//
+// Written as a separate field rather than filled into `track`, because
+// lib/lesson-labels.ts branches on `track === "bonus"` being present-or-absent
+// and would change behaviour if the blanks were filled in.
+const { TRACK_PERSONAL, TRACK_PROFESSIONAL, isLessonInRange } = loadLocalModule(
+  path.join(root, "lib/track-stages.ts")
+);
+
+function resolveTrack(lesson) {
+  if (lesson.track) return lesson.track;
+  if (TRACK_PERSONAL.stages.some((stage) => isLessonInRange(lesson.id, stage))) return "personal";
+  if (TRACK_PROFESSIONAL.stages.some((stage) => isLessonInRange(lesson.id, stage))) return "professional";
+  return "bonus";
+}
+
 const lessons = strippedLessons.map((lesson) => ({
   ...lesson,
+  resolvedTrack: resolveTrack(lesson),
   readingMinutes: estimateReadingMinutes(lesson),
   totalMinutes: estimateLessonMinutes(lesson),
   checkpointIndex: findCheckpointIndex(lesson.sections),
@@ -136,6 +156,7 @@ const index = lessons.map((l) => ({
   totalMinutes: l.totalMinutes,
   difficulty: l.difficulty,
   track: l.track,
+  resolvedTrack: l.resolvedTrack,
   isFundamental: l.isFundamental,
   // Carried into the slim index because lib/lesson-labels.ts reads it to key
   // RECALL_SCHEDULE, and the dashboard only ever loads the index.

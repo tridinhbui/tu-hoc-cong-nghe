@@ -24,13 +24,17 @@ const MIN_QUIZ_COUNT = 2;
 const MIN_EXPLANATION_LEN = 150;
 
 function isPersonalOrProfessionalTrack(lesson) {
-  // Mirrors lib/track-stages.ts's day ranges: personal = 1-20, 201-288;
-  // professional = 21-200, 1036. Anything else (including explicit
-  // track: "bonus") is treated as bonus for prioritization purposes.
-  const id = lesson.id;
-  if ((id >= 1 && id <= 20) || (id >= 201 && id <= 288)) return "personal";
-  if ((id >= 21 && id <= 200) || id === 1036) return "professional";
-  return "bonus";
+  // `resolvedTrack` is computed by scripts/generate-lesson-data.mjs from the
+  // real stage ranges in lib/track-stages.ts.
+  //
+  // This used to re-declare those ranges here as "personal = 1-20, 201-288;
+  // professional = 21-200, 1036", which stopped being true a long time ago:
+  // every lesson at id 1000+ fell through to "bonus", so roughly thirteen
+  // professional stages - Định lượng, Excel, thị trường VN, private markets,
+  // the whole AI chặng - were reported under a bucket the report exists to
+  // deprioritize. The professional tell share read far healthier than it was
+  // and the bonus share far worse.
+  return lesson.resolvedTrack ?? "bonus";
 }
 
 function auditLesson(lesson) {
