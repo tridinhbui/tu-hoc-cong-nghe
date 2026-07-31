@@ -1,6 +1,7 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useLayoutEffect, useRef, useState } from "react";
+import { createPortal } from "react-dom";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
 import { Bell } from "lucide-react";
@@ -30,6 +31,54 @@ export default function NotificationBell({ userId }: { userId: string }) {
   const [notifications, setNotifications] = useState<CommunityNotification[] | null>(null);
   const [loading, setLoading] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
+  const buttonRef = useRef<HTMLButtonElement>(null);
+  const panelRef = useRef<HTMLDivElement>(null);
+  const [panelStyle, setPanelStyle] = useState<React.CSSProperties | null>(null);
+
+  /** The panel is positioned by hand into a body portal rather than left as an
+   *  `absolute` child, because both mount points break the simple version:
+   *
+   *  - In the desktop sidebar the bell sits in the `mt-auto` block pinned to
+   *    the bottom, so a panel opening downward runs off the viewport and the
+   *    list is unreadable. It has to flip upward there.
+   *  - In the mobile header the bell's container carries `overflow-hidden`
+   *    (needed so the row itself can't cause a horizontal scroll), which
+   *    clips any absolutely-positioned child. A portal escapes that without
+   *    AppNavbar having to relax the overflow rule. */
+  const positionPanel = useCallback(() => {
+    const button = buttonRef.current;
+    if (!button) return;
+    const rect = button.getBoundingClientRect();
+    const GAP = 8;
+    const MARGIN = 16;
+    const width = Math.min(352, window.innerWidth - MARGIN * 2);
+    const spaceBelow = window.innerHeight - rect.bottom - GAP - MARGIN;
+    const spaceAbove = rect.top - GAP - MARGIN;
+    const dropUp = spaceBelow < 240 && spaceAbove > spaceBelow;
+
+    setPanelStyle({
+      position: "fixed",
+      width,
+      // Right-aligned to the bell, then clamped so it can never hang off
+      // either edge on a narrow screen.
+      left: Math.min(Math.max(MARGIN, rect.right - width), window.innerWidth - width - MARGIN),
+      ...(dropUp
+        ? { bottom: window.innerHeight - rect.top + GAP, maxHeight: spaceAbove }
+        : { top: rect.bottom + GAP, maxHeight: spaceBelow }),
+    });
+  }, []);
+
+  useLayoutEffect(() => {
+    if (!open) return;
+    positionPanel();
+    window.addEventListener("resize", positionPanel);
+    // `true` so it also fires for scrolls inside the sidebar, not just the page.
+    window.addEventListener("scroll", positionPanel, true);
+    return () => {
+      window.removeEventListener("resize", positionPanel);
+      window.removeEventListener("scroll", positionPanel, true);
+    };
+  }, [open, positionPanel]);
 
   useEffect(() => {
     getUnreadNotificationCount(userId)
@@ -49,9 +98,13 @@ export default function NotificationBell({ userId }: { userId: string }) {
     if (!open) return;
 
     function handleClickOutside(event: MouseEvent) {
-      if (containerRef.current && !containerRef.current.contains(event.target as Node)) {
-        setOpen(false);
-      }
+      const target = event.target as Node;
+      // The panel lives in a body portal now, so it is no longer inside
+      // containerRef - checking only that ref would close the dropdown on
+      // every click landing on the dropdown itself.
+      if (containerRef.current?.contains(target)) return;
+      if (panelRef.current?.contains(target)) return;
+      setOpen(false);
     }
     document.addEventListener("mousedown", handleClickOutside);
     return () => document.removeEventListener("mousedown", handleClickOutside);
@@ -104,6 +157,7 @@ export default function NotificationBell({ userId }: { userId: string }) {
   return (
     <div className="relative" ref={containerRef}>
       <button
+        ref={buttonRef}
         type="button"
         onClick={() => void toggleOpen()}
         aria-label="Thông báo"
@@ -118,8 +172,12 @@ export default function NotificationBell({ userId }: { userId: string }) {
         )}
       </button>
 
-      {open && (
-        <div className="absolute right-0 mt-2 w-[min(22rem,calc(100vw-2rem))] max-h-[70vh] overflow-y-auto rounded-2xl border border-stone-200 dark:border-stone-800 bg-white dark:bg-stone-900 shadow-xl z-50">
+      {open && panelStyle && createPortal(
+        <div
+          ref={panelRef}
+          style={panelStyle}
+          className="overflow-y-auto overscroll-contain rounded-2xl border border-stone-200 dark:border-stone-800 bg-white dark:bg-stone-900 shadow-xl z-[60]"
+        >
           <div className="flex items-center justify-between gap-2 px-4 py-3 border-b border-stone-100 dark:border-stone-800">
             <p className="text-xs font-black uppercase tracking-wide text-stone-500 dark:text-stone-400">Thông báo</p>
             {unreadCount > 0 && (
@@ -172,7 +230,8 @@ export default function NotificationBell({ userId }: { userId: string }) {
               ))}
             </div>
           )}
-        </div>
+        </div>,
+        document.body
       )}
     </div>
   );
