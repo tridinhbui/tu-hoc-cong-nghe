@@ -7,6 +7,7 @@ import { createClient } from "@/lib/supabase";
 import { submitQuizSession, computeQuizXp, type QuizTrack, type QuizDifficulty, type QuizAnswerSubmission } from "@/lib/supabase-quiz-sessions";
 import { recalculateUserStats } from "@/lib/supabase-user";
 import TaiTaiQuizSuggestion from "@/components/TaiTaiQuizSuggestion";
+import StageSkipExamPanel from "@/components/StageSkipExamPanel";
 import DailyNewsQuizWidget from "@/components/DailyNewsQuizWidget";
 
 interface ChallengeQuestion {
@@ -332,6 +333,10 @@ export default function KiemTraPage() {
                   <span>→</span>
                 </button>
               </div>
+            </div>
+
+            <div className="lg:col-span-12">
+              <StageSkipExamPanel userId={userId} />
             </div>
 
             <Link

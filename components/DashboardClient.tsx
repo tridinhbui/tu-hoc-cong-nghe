@@ -1240,7 +1240,7 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
               how many content lines each one has (personal/CFA got a fun
               one-line subtitle added specifically to match professional's,
               which was shortened to a single inline badge to compensate). */}
-          <div id="lo-trinh" data-tour="track-selector" className="grid grid-cols-1 sm:grid-cols-4 gap-3.5 mb-8 items-stretch scroll-mt-24">
+          <div id="lo-trinh" data-tour="track-selector" className="grid grid-cols-1 sm:grid-cols-5 gap-3.5 mb-8 items-stretch scroll-mt-24">
             {/* Card 1: Tài chính Nghề Nghiệp */}
             <button
               type="button"
@@ -1366,6 +1366,25 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
                 CFA Level I · ~{TRACKS.cfa.estimatedHours} giờ học
               </div>
             </button>
+
+            {/* Card 5: FRM (Sky Blue Accent) - links out to its own page
+                rather than joining the activeTrack state machine above,
+                since it doesn't share that pattern's client-side lesson
+                fetch (see app/(app)/frm/page.tsx, a server component). */}
+            <Link
+              href="/frm"
+              className="w-full h-full flex flex-col text-left rounded-2xl border-2 px-5 py-4 transition-all duration-300 relative overflow-hidden backdrop-blur-md border-stone-200/80 dark:border-stone-800/90 bg-white/95 dark:bg-stone-900/80 text-stone-700 dark:text-stone-300 hover:border-sky-300 dark:hover:border-sky-700 shadow-xs hover:shadow-sm"
+            >
+              <div className="h-0.5 w-full bg-sky-500/70 absolute top-0 left-0 right-0" />
+              <div className="flex items-center gap-2 flex-wrap mt-1">
+                <div className="text-base font-extrabold tracking-tight text-stone-900 dark:text-stone-100">
+                  FRM
+                </div>
+              </div>
+              <div className="text-xs mt-1.5 text-stone-500 dark:text-stone-400 font-normal">
+                Financial Risk Manager · GARP Part I &amp; II
+              </div>
+            </Link>
           </div>
 
 
