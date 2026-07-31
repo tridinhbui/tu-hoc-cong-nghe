@@ -23,28 +23,39 @@ export const FRM_SUBJECTS: FrmSubject[] = [
     name: "Foundations of Risk Management",
     part: "I",
     weight: "20%",
-    lessonIds: [],
+    // Almost entirely uncovered by the existing pool: nothing here teaches
+    // ERM frameworks, risk governance/culture, the GARP Code of Conduct, or
+    // financial-disaster case studies - the actual bulk of this subject.
+    lessonIds: [1029],
   },
   {
     id: "quant-analysis",
     name: "Quantitative Analysis",
     part: "I",
     weight: "20%",
-    lessonIds: [],
+    // Near-complete: distributions, sampling/CI, hypothesis testing, simple
+    // & multiple regression, time series/backtesting - see lib/quant-methods-lessons.ts.
+    lessonIds: [1421, 1422, 1423, 1424, 1425, 1426],
   },
   {
     id: "financial-markets-products",
     name: "Financial Markets and Products",
     part: "I",
     weight: "30%",
-    lessonIds: [],
+    lessonIds: [
+      182, 183, 184, 185, 186, 187, 188, 189, 190, 191, 192, 193, 194, 195, 198,
+      1411, 1412, 1413, 1414, 1223,
+      141, 142, 143, 145, 149, 150, 152, 155, 157, 158, 159, 160,
+      176, 177, 178,
+      1401, 1402, 1227,
+    ],
   },
   {
     id: "valuation-risk-models",
     name: "Valuation and Risk Models",
     part: "I",
     weight: "30%",
-    lessonIds: [],
+    lessonIds: [1217, 804, 1289, 233, 227, 1218, 1412, 1413, 1414, 1104, 1222, 1256, 144, 151, 153, 224],
   },
   // ─── PART II ───
   {
@@ -52,41 +63,53 @@ export const FRM_SUBJECTS: FrmSubject[] = [
     name: "Market Risk Measurement and Management",
     part: "II",
     weight: "20%",
-    lessonIds: [],
+    lessonIds: [1217, 804, 1289, 1413, 1414],
   },
   {
     id: "credit-risk",
     name: "Credit Risk Measurement and Management",
     part: "II",
     weight: "20%",
-    lessonIds: [],
+    // Gap: no lesson yet on CDS/credit derivatives, structured credit
+    // (CDO/securitization), counterparty credit risk/CVA, or portfolio
+    // credit risk models.
+    lessonIds: [144, 149, 151, 153, 224, 1104, 1222, 1256, 802],
   },
   {
     id: "operational-resilience",
     name: "Operational Resilience and Risk Management",
     part: "II",
     weight: "20%",
-    lessonIds: [],
+    // Largest gap along with Foundations: no op-risk quantification (loss
+    // distribution approach), business continuity/disaster recovery,
+    // cyber/IT risk, third-party/vendor risk, or model risk management yet.
+    lessonIds: [1254],
   },
   {
     id: "liquidity-treasury",
     name: "Liquidity and Treasury Risk Measurement and Management",
     part: "II",
     weight: "15%",
-    lessonIds: [],
+    // Gap: no LCR/NSFR, funding risk, contingency funding plan, or bank
+    // treasury ALM content yet - 1401 is the closest existing lesson
+    // (bank financial statements, including LDR/CASA).
+    lessonIds: [1401],
   },
   {
     id: "investment-management",
     name: "Risk Management and Investment Management",
     part: "II",
     weight: "15%",
-    lessonIds: [],
+    lessonIds: [97, 169, 170, 171, 173, 174, 178, 1032, 1250, 1251],
   },
   {
     id: "current-issues",
     name: "Current Issues in Financial Markets",
     part: "II",
     weight: "10%",
-    lessonIds: [],
+    // Thin: none of these map precisely to GARP's actual current-issues
+    // reading list, they're the closest adjacent material (climate/ESG
+    // risk, fintech disruption, crypto).
+    lessonIds: [1328, 1327, 1253, 1025],
   },
 ];
