@@ -161,7 +161,12 @@ export default function KiemTraPage() {
   }
 
   return (
-    <div className="h-dvh overflow-hidden flex flex-col bg-stone-50 dark:bg-stone-950">
+    // APP_MOBILE_HEADER_H: 3.5rem is AppNavbar's mobile header (h-14). It is
+    // `sticky`, not `fixed`, so it occupies flow height above this page - a
+    // plain h-dvh here would make the document 100dvh + 3.5rem and scroll,
+    // which is exactly what pinning to one screen is meant to prevent. The
+    // desktop sidebar is `fixed` and costs no height, hence lg:h-dvh.
+    <div className="h-[calc(100dvh-3.5rem)] lg:h-dvh overflow-hidden flex flex-col bg-stone-50 dark:bg-stone-950">
       <div className="shrink-0 border-b border-stone-200 dark:border-stone-800 bg-white dark:bg-stone-950">
         <div className="max-w-6xl mx-auto px-6 py-2.5 flex items-center justify-between gap-4">
           <div className="flex items-center gap-3">

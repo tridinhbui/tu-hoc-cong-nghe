@@ -232,7 +232,9 @@ export default function TechnicalInterviewPage() {
   }
 
   return (
-    <div className="h-dvh overflow-hidden flex flex-col bg-stone-50 dark:bg-stone-950">
+    // Same one-screen contract as /kiem-tra - see APP_MOBILE_HEADER_H there
+    // for why the mobile height subtracts AppNavbar's sticky header.
+    <div className="h-[calc(100dvh-3.5rem)] lg:h-dvh overflow-hidden flex flex-col bg-stone-50 dark:bg-stone-950">
       <div className="shrink-0 border-b border-stone-200 dark:border-stone-800 bg-white dark:bg-stone-950">
         <div className="max-w-6xl mx-auto px-6 py-2.5 flex items-center justify-between gap-4">
           <div className="flex items-center gap-3">
