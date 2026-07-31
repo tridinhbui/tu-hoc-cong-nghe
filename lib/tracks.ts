@@ -44,7 +44,9 @@ export const TRACKS = {
     estimatedHours: 27,
     description: "Ánh xạ các bài học đã có sang đúng 10 môn thi CFA Level I chính thức - không tạo bài mới, không đổi số ngày của 2 track kia. Môn nào chưa có bài phù hợp sẽ được xây dần.",
     stages: [
-      "Ethics and Professional Standards - sẽ xây trong tương lai",
+      // Dòng này từng ghi "sẽ xây trong tương lai" và đã sai từ lúc 14 bài
+      // Ethics được ánh xạ vào môn này trong lib/cfa-track.ts.
+      "Ethics and Professional Standards",
       "Quantitative Methods, Economics",
       "Financial Statement Analysis, Corporate Issuers",
       "Equity Investments, Fixed Income",
