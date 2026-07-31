@@ -44,17 +44,48 @@ type NavLink =
   | { href: string; label: string; labelKey?: never; icon: LucideIcon }
   | { href: string; labelKey: keyof Dictionary["nav"]; label?: never; icon: LucideIcon };
 
-const NAV_LINKS: NavLink[] = [
-  { href: "/dashboard", label: "Dashboard", icon: Home },
-  { href: "/hoc-bai", label: "Học bài", icon: BookOpen },
-  { href: "/game", label: "Game", icon: Gamepad2 },
-  { href: "/analytics", labelKey: "stats", icon: BarChart3 },
-  { href: "/ghi-chu", labelKey: "notes", icon: StickyNote },
-  { href: "/kiem-tra", labelKey: "quiz", icon: GraduationCap },
-  { href: "/phong-van-ky-thuat", labelKey: "technicalInterview", icon: BriefcaseBusiness },
-  { href: "/nhom-hoc", labelKey: "studyGroup", icon: Users },
-  { href: "/finsocial", label: "FinSocial", icon: MessageSquareMore },
-  { href: "/su-nghiep", labelKey: "career", icon: Briefcase },
+/** Dashboard sits above the sections, ungrouped: it is the way back to the
+ *  overview rather than one destination among several. */
+const DASHBOARD_LINK: NavLink = { href: "/dashboard", label: "Dashboard", icon: Home };
+
+/** The nav is grouped by what the reader is trying to *do*, not by feature
+ *  age. Eleven flat entries gave no hint which of them belonged together, so
+ *  every visit meant re-reading the whole list. `titleKey` indexes the same
+ *  dictionary section as the item labels, so the headings translate too. */
+type NavSection = { titleKey: keyof Dictionary["nav"]; links: NavLink[] };
+
+const NAV_SECTIONS: NavSection[] = [
+  {
+    titleKey: "sectionLearn",
+    links: [
+      { href: "/hoc-bai", label: "Học bài", icon: BookOpen },
+      { href: "/kiem-tra", labelKey: "quiz", icon: GraduationCap },
+      { href: "/ghi-chu", labelKey: "notes", icon: StickyNote },
+    ],
+  },
+  {
+    titleKey: "sectionPractice",
+    links: [
+      { href: "/game", label: "Game", icon: Gamepad2 },
+      { href: "/phong-van-ky-thuat", labelKey: "technicalInterview", icon: BriefcaseBusiness },
+      { href: "/nhom-hoc", labelKey: "studyGroup", icon: Users },
+    ],
+  },
+  {
+    titleKey: "sectionCommunity",
+    links: [{ href: "/finsocial", label: "FinSocial", icon: MessageSquareMore }],
+  },
+  {
+    titleKey: "sectionProgress",
+    links: [
+      { href: "/analytics", labelKey: "stats", icon: BarChart3 },
+      { href: "/su-nghiep", labelKey: "career", icon: Briefcase },
+    ],
+  },
+  {
+    titleKey: "sectionResources",
+    links: [{ href: "/tai-lieu", label: "Tài liệu Miễn phí", icon: FileText }],
+  },
 ];
 
 // Single, persistent top navbar for every signed-in page (mounted once in
@@ -270,6 +301,79 @@ export default function AppNavbar() {
     setDropdownOpen((v) => !v);
   };
 
+  /** One nav row, shared by the ungrouped Dashboard link and every section
+   *  below it. Written once rather than per call site: the badge and
+   *  highlight rules already run to a dozen branches, and three copies of
+   *  them is how the desktop and mobile menus drifted apart before. */
+  const renderNavItem = ({ href, label, labelKey, icon: Icon }: NavLink, onNavigate?: () => void) => {
+    const navLabel = labelKey ? t.nav[labelKey] : label;
+    const active = pathname === href;
+    const isGame = href === "/game";
+    const isCareer = href === "/su-nghiep";
+    const isKiemTra = href === "/kiem-tra";
+    const isNhomHoc = href === "/nhom-hoc";
+    return (
+      <Link
+        key={href}
+        href={href}
+        onClick={() => {
+          onNavigate?.();
+          trackFeatureClick("nav_click", { label: href });
+        }}
+        className={`group relative flex items-center gap-2.5 rounded-2xl px-3 py-2 text-sm font-bold transition-all duration-200 ${
+          isGame
+            ? "border border-amber-200 bg-amber-50 text-amber-700 shadow-sm hover:bg-amber-100/70"
+            : isKiemTra && hasPendingNewsQuiz
+              ? "border border-rose-300/80 bg-gradient-to-r from-rose-50 to-orange-50/60 text-rose-700 shadow-xs hover:bg-rose-100/80 dark:border-rose-900 dark:from-rose-950/50 dark:to-stone-900 dark:text-rose-300"
+              : isNhomHoc && hasPendingStudyGroupCheckin
+                ? "border border-amber-300/80 bg-amber-50/80 text-amber-800 shadow-xs hover:bg-amber-100/80 dark:border-amber-900 dark:bg-amber-950/40 dark:text-amber-300"
+                : active
+                  ? "border border-emerald-200/70 bg-emerald-50 text-emerald-700 dark:border-emerald-800/60 dark:bg-emerald-950/40 dark:text-emerald-300"
+                  : "text-stone-600 hover:bg-stone-100 hover:text-stone-900 dark:text-stone-400 dark:hover:bg-stone-900 dark:hover:text-stone-100"
+        }`}
+      >
+        <Icon className={`h-4 w-4 shrink-0 ${isGame ? "text-amber-600" : isCareer ? "text-emerald-600 dark:text-emerald-400" : isKiemTra && hasPendingNewsQuiz ? "text-rose-500 animate-pulse" : isNhomHoc && hasPendingStudyGroupCheckin ? "text-amber-600 animate-bounce" : ""}`} />
+        <span className="flex-1">{isGame ? "Game Kingdom" : navLabel}</span>
+        {isGame && (
+          <span className="inline-flex items-center gap-1 text-[9px] font-bold uppercase tracking-wider px-1.5 py-0.5 rounded-full bg-white text-amber-700 border border-amber-200">
+            <Flame className="h-2.5 w-2.5 text-orange-500" />
+            HOT
+          </span>
+        )}
+        {isKiemTra && hasPendingNewsQuiz && (
+          <span className="inline-flex items-center gap-1 text-[9px] font-black uppercase tracking-wider px-2 py-0.5 rounded-full bg-rose-500 text-white shadow-xs animate-pulse">
+            <span className="w-1.5 h-1.5 rounded-full bg-white animate-ping" />
+            Tin mới
+          </span>
+        )}
+        {isNhomHoc && hasPendingStudyGroupCheckin && (
+          <span className="inline-flex items-center gap-1 text-[9px] font-black uppercase tracking-wider px-2 py-0.5 rounded-full bg-amber-500 text-white shadow-xs animate-pulse">
+            <span className="w-1.5 h-1.5 rounded-full bg-white animate-ping" />
+            Check-in
+          </span>
+        )}
+        {isCareer && !careerGoalId && (
+          <span className="inline-flex items-center gap-1 text-[9px] font-black uppercase tracking-wider px-2 py-0.5 rounded-full bg-amber-500 text-white shadow-2xs animate-pulse">
+            <span className="w-1.5 h-1.5 rounded-full bg-white animate-ping" />
+            Chưa chọn
+          </span>
+        )}
+      </Link>
+    );
+  };
+
+  /** The five grouped sections. `onNavigate` is how the mobile menu closes
+   *  itself on tap; the desktop sidebar passes nothing. */
+  const renderNavSections = (onNavigate?: () => void) =>
+    NAV_SECTIONS.map((section) => (
+      <div key={section.titleKey} className="mt-2.5 first:mt-1">
+        <p className="px-3 pb-1 text-[10px] font-black uppercase tracking-[0.14em] text-stone-400 dark:text-stone-500">
+          {t.nav[section.titleKey]}
+        </p>
+        <div className="flex flex-col gap-1">{section.links.map((link) => renderNavItem(link, onNavigate))}</div>
+      </div>
+    ));
+
   return (
     <>
       <aside className="hidden lg:flex fixed inset-y-0 left-0 z-40 w-64 bg-white/96 dark:bg-stone-950/96 border-r border-stone-200 dark:border-stone-800 backdrop-blur">
@@ -293,72 +397,9 @@ export default function AppNavbar() {
             </kbd>
           </button>
 
-          <nav className="mt-3 flex flex-col gap-1 shrink-0">
-            {NAV_LINKS.map(({ href, label, labelKey, icon: Icon }) => {
-              const navLabel = labelKey ? t.nav[labelKey] : label;
-              const active = pathname === href;
-              const isGame = href === "/game";
-              const isCareer = href === "/su-nghiep";
-              const isKiemTra = href === "/kiem-tra";
-              const isNhomHoc = href === "/nhom-hoc";
-              return (
-                <Link
-                  key={href}
-                  href={href}
-                  onClick={() => trackFeatureClick("nav_click", { label: href })}
-                  className={`group relative flex items-center gap-2.5 rounded-2xl px-3 py-2 text-sm font-bold transition-all duration-200 ${
-                    isGame
-                      ? "border border-amber-200 bg-amber-50 text-amber-700 shadow-sm hover:bg-amber-100/70"
-                      : isKiemTra && hasPendingNewsQuiz
-                        ? "border border-rose-300/80 bg-gradient-to-r from-rose-50 to-orange-50/60 text-rose-700 shadow-xs hover:bg-rose-100/80 dark:border-rose-900 dark:from-rose-950/50 dark:to-stone-900 dark:text-rose-300"
-                        : isNhomHoc && hasPendingStudyGroupCheckin
-                          ? "border border-amber-300/80 bg-amber-50/80 text-amber-800 shadow-xs hover:bg-amber-100/80 dark:border-amber-900 dark:bg-amber-950/40 dark:text-amber-300"
-                          : active
-                            ? "border border-emerald-200/70 bg-emerald-50 text-emerald-700 dark:border-emerald-800/60 dark:bg-emerald-950/40 dark:text-emerald-300"
-                            : "text-stone-600 hover:bg-stone-100 hover:text-stone-900 dark:text-stone-400 dark:hover:bg-stone-900 dark:hover:text-stone-100"
-                  }`}
-                >
-                  <Icon className={`h-4 w-4 shrink-0 ${isGame ? "text-amber-600" : isCareer ? "text-emerald-600 dark:text-emerald-400" : isKiemTra && hasPendingNewsQuiz ? "text-rose-500 animate-pulse" : isNhomHoc && hasPendingStudyGroupCheckin ? "text-amber-600 animate-bounce" : ""}`} />
-                  <span className="flex-1">{isGame ? "Game Kingdom" : navLabel}</span>
-                  {isGame && (
-                    <span className="inline-flex items-center gap-1 text-[9px] font-bold uppercase tracking-wider px-1.5 py-0.5 rounded-full bg-white text-amber-700 border border-amber-200">
-                      <Flame className="h-2.5 w-2.5 text-orange-500" />
-                      HOT
-                    </span>
-                  )}
-                  {isKiemTra && hasPendingNewsQuiz && (
-                    <span className="inline-flex items-center gap-1 text-[9px] font-black uppercase tracking-wider px-2 py-0.5 rounded-full bg-rose-500 text-white shadow-xs animate-pulse">
-                      <span className="w-1.5 h-1.5 rounded-full bg-white animate-ping" />
-                      Tin mới
-                    </span>
-                  )}
-                  {isNhomHoc && hasPendingStudyGroupCheckin && (
-                    <span className="inline-flex items-center gap-1 text-[9px] font-black uppercase tracking-wider px-2 py-0.5 rounded-full bg-amber-500 text-white shadow-xs animate-pulse">
-                      <span className="w-1.5 h-1.5 rounded-full bg-white animate-ping" />
-                      Check-in
-                    </span>
-                  )}
-                  {isCareer && !careerGoalId && (
-                    <span className="inline-flex items-center gap-1 text-[9px] font-black uppercase tracking-wider px-2 py-0.5 rounded-full bg-amber-500 text-white shadow-2xs animate-pulse">
-                      <span className="w-1.5 h-1.5 rounded-full bg-white animate-ping" />
-                      Chưa chọn
-                    </span>
-                  )}
-                </Link>
-              );
-            })}
-
-            <Link
-              href="/tai-lieu"
-              className={`mt-1.5 flex items-center gap-3 rounded-2xl px-3 py-2 text-sm font-bold transition-all duration-200 ${
-                pathname === "/tai-lieu"
-                  ? "border border-emerald-200/70 bg-emerald-50 text-emerald-700 dark:border-emerald-800/60 dark:bg-emerald-950/40 dark:text-emerald-300"
-                  : "text-stone-600 hover:bg-stone-100 hover:text-stone-900 dark:text-stone-400 dark:hover:bg-stone-900 dark:hover:text-stone-100"
-              }`}
-            >
-              <FileText className="w-4 h-4 shrink-0" />
-              <span className="flex-1">Tài liệu Miễn phí</span>
-            </Link>
+          <nav className="mt-3 flex flex-col shrink-0">
+            {renderNavItem(DASHBOARD_LINK)}
+            {renderNavSections()}
           </nav>
 
           <div className="mt-auto pt-4 space-y-2.5 shrink-0" ref={desktopDropdownRef}>
@@ -432,7 +473,7 @@ export default function AppNavbar() {
         </div>
       </aside>
 
-      <header className="lg:hidden border-b border-stone-200 dark:border-stone-800 sticky top-0 bg-white/95 dark:bg-stone-950/95 backdrop-blur z-50">
+      <header className="lg:hidden relative border-b border-stone-200 dark:border-stone-800 sticky top-0 bg-white/95 dark:bg-stone-950/95 backdrop-blur z-50">
         <div className="max-w-6xl mx-auto px-3 sm:px-6 py-2.5 sm:py-3 flex items-center justify-between gap-1.5 sm:gap-4 w-full overflow-hidden">
           <Link href="/dashboard" className="flex items-center gap-2 shrink-0">
             <Logo size={28} />
@@ -534,13 +575,20 @@ export default function AppNavbar() {
 
         {mobileMenuOpen && (
           <>
-            {/* Backdrop filter overlay to prevent background click interference */}
+            {/* Drawer and its backdrop are `absolute` off the header, not
+                `fixed`. `fixed left-0 right-0` resolves against the layout
+                viewport, which on iOS Safari does not always match the visual
+                viewport once anything on the page overflows horizontally - the
+                drawer then renders shifted a hundred-odd px to the left of the
+                header it is supposed to hang from. Anchoring to the header's
+                own box makes that impossible, and drops the hardcoded
+                top-[50px]/[56px] header-height guesses at the same time. */}
             <div
-              className="fixed inset-0 top-[50px] sm:top-[56px] bg-stone-950/40 backdrop-blur-xs z-30 lg:hidden"
+              className="absolute left-0 right-0 top-full h-screen bg-stone-950/40 backdrop-blur-xs z-30 lg:hidden"
               onClick={() => setMobileMenuOpen(false)}
             />
 
-            <div className="fixed left-0 right-0 top-[50px] sm:top-[56px] bg-white/98 dark:bg-stone-950/98 border-b border-stone-200 dark:border-stone-800 px-4 sm:px-6 py-3.5 space-y-1.5 shadow-2xl max-h-[calc(100vh-3.5rem)] overflow-y-auto overscroll-contain z-40 lg:hidden backdrop-blur-md">
+            <div className="absolute left-0 right-0 top-full bg-white/98 dark:bg-stone-950/98 border-b border-stone-200 dark:border-stone-800 px-4 sm:px-6 py-3.5 space-y-1.5 shadow-2xl max-h-[calc(100dvh-4rem)] overflow-y-auto overscroll-contain z-40 lg:hidden backdrop-blur-md">
               {profile && (
                 <div className="flex items-center justify-between gap-3 p-3 mb-2 rounded-xl bg-stone-50 dark:bg-stone-900 border border-stone-200/80 dark:border-stone-800">
                   <div className="flex items-center gap-2.5 min-w-0">
@@ -569,77 +617,8 @@ export default function AppNavbar() {
                 </div>
               )}
 
-              <Link
-                href="/tai-lieu"
-                onClick={() => setMobileMenuOpen(false)}
-                className={`group relative flex items-center gap-2.5 text-sm font-bold px-3 py-2.5 rounded-xl transition-all duration-200 ${
-                  pathname === "/tai-lieu"
-                    ? "bg-emerald-50 dark:bg-emerald-950/40 text-emerald-700 dark:text-emerald-300 border border-emerald-200/50 dark:border-emerald-900/40"
-                    : "text-stone-600 dark:text-stone-400 hover:bg-stone-100 dark:hover:bg-stone-900"
-                }`}
-              >
-                <FileText className="w-4 h-4 shrink-0" />
-                Tài liệu Miễn phí
-              </Link>
-
-              {NAV_LINKS.map(({ href, label, labelKey, icon: Icon }) => {
-              const navLabel = labelKey ? t.nav[labelKey] : label;
-                const active = pathname === href;
-                const isGame = href === "/game";
-                const isCareer = href === "/su-nghiep";
-                const isNhomHoc = href === "/nhom-hoc";
-                return (
-                  <Link
-                    key={href}
-                    href={href}
-                    onClick={() => {
-                      setMobileMenuOpen(false);
-                      trackFeatureClick("nav_click", { label: href });
-                    }}
-                    className={`group relative flex items-center justify-between text-sm font-bold px-3 py-2.5 rounded-xl transition-all duration-200 ${
-                      active
-                        ? isGame
-                          ? "bg-amber-500/15 dark:bg-amber-950/40 text-amber-700 dark:text-amber-300 border border-amber-500/25"
-                          : isCareer
-                            ? "bg-indigo-500/15 dark:bg-indigo-950/40 text-indigo-700 dark:text-indigo-300 border border-indigo-500/25"
-                            : "bg-emerald-50 dark:bg-emerald-950/40 text-emerald-700 dark:text-emerald-300 border border-emerald-200/50 dark:border-emerald-900/40"
-                        : isGame
-                          ? "bg-amber-50/80 dark:bg-amber-950/20 text-amber-600 dark:text-amber-400 border border-amber-200/50 dark:border-amber-900/40 hover:bg-amber-100/60 dark:hover:bg-amber-950/30"
-                          : isNhomHoc && hasPendingStudyGroupCheckin
-                            ? "bg-amber-50 text-amber-800 border border-amber-300 dark:bg-amber-950/40 dark:text-amber-300"
-                            : isCareer
-                              ? "bg-indigo-50/80 dark:bg-indigo-950/20 text-indigo-600 dark:text-indigo-400 border border-indigo-200/50 dark:border-indigo-900/40 hover:bg-indigo-100/60 dark:hover:bg-indigo-950/30"
-                              : "text-stone-600 dark:text-stone-400 hover:bg-stone-100 dark:hover:bg-stone-900"
-                    }`}
-                  >
-                    <div className="flex items-center gap-2.5">
-                      <Icon className={`w-4 h-4 transition-transform duration-200 group-hover:scale-110 ${isGame ? "text-amber-500" : isCareer ? "text-indigo-500 dark:text-indigo-400" : isNhomHoc && hasPendingStudyGroupCheckin ? "text-amber-600 animate-bounce" : ""}`} />
-                      <span className="flex items-center gap-1.5">
-                        {navLabel}
-                        {isGame && <Flame className="w-3.5 h-3.5 text-orange-500" />}
-                      </span>
-                    </div>
-
-                    {isNhomHoc && hasPendingStudyGroupCheckin && (
-                      <span className="inline-flex items-center gap-1 text-[9px] font-black uppercase tracking-wider px-2 py-0.5 rounded-full bg-amber-500 text-white shadow-2xs animate-pulse">
-                        Check-in
-                      </span>
-                    )}
-                    {isGame && (
-                      <span className="flex h-2 w-2">
-                        <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-amber-400 opacity-75"></span>
-                        <span className="relative inline-flex rounded-full h-2 w-2 bg-amber-500"></span>
-                      </span>
-                    )}
-                    {isCareer && !careerGoalId && (
-                      <span className="flex h-2 w-2">
-                        <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-indigo-400 opacity-75"></span>
-                        <span className="relative inline-flex rounded-full h-2 w-2 bg-indigo-500"></span>
-                      </span>
-                    )}
-                  </Link>
-                );
-              })}
+              {renderNavItem(DASHBOARD_LINK, () => setMobileMenuOpen(false))}
+              {renderNavSections(() => setMobileMenuOpen(false))}
             </div>
           </>
         )}

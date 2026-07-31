@@ -6,6 +6,11 @@ import type { Dictionary } from "./vi";
 export const en: Dictionary = {
   nav: {
     students: "Learners",
+    sectionLearn: "Learn",
+    sectionPractice: "Practice",
+    sectionCommunity: "Community",
+    sectionProgress: "Progress",
+    sectionResources: "Resources",
     quiz: "Quiz",
     notes: "Notes",
     studyGroup: "Study groups",

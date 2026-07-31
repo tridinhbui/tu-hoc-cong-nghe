@@ -11,6 +11,11 @@
 export const vi = {
   nav: {
     students: "Học viên",
+    sectionLearn: "Học tập",
+    sectionPractice: "Thực hành",
+    sectionCommunity: "Cộng đồng",
+    sectionProgress: "Tiến độ",
+    sectionResources: "Tài nguyên",
     quiz: "Kiểm tra",
     notes: "Ghi chú",
     studyGroup: "Học nhóm",
