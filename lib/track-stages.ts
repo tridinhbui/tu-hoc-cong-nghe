@@ -657,6 +657,21 @@ export const TRACK_PROFESSIONAL = {
         { name: "Thoái vốn, quy trình thương vụ và nghĩa vụ hội đồng", days: [1524, 1526] as [number, number] },
       ],
     },
+    {
+      // Có hai nghề kiểm toán trong lib/finance-careers.ts và trước chặng này
+      // cả kho chỉ có đúng một bài liên quan (1254, khung COSO). Lộ trình của
+      // nghề "Kiểm toán viên" gồm năm bài kế toán chung, không bài nào nói
+      // kiểm toán làm gì.
+      label: "Chặng 33",
+      name: "Kiểm toán: cách một báo cáo được xác nhận",
+      days: [1531, 1536] as [number, number],
+      available: true,
+      isNew: true,
+      parts: [
+        { name: "Ý kiến kiểm toán, trọng yếu và bằng chứng", days: [1531, 1533] as [number, number] },
+        { name: "Chọn mẫu, gian lận và ba tuyến phòng vệ", days: [1534, 1536] as [number, number] },
+      ],
+    },
   ] satisfies Stage[],
 };
 
@@ -670,7 +685,7 @@ export const PROFESSIONAL_BRANCHES = [
     label: "Tài chính doanh nghiệp",
     subtitle: "Kế toán, báo cáo tài chính, định giá, vận hành vốn & mô hình tài chính",
     emoji: "🏢",
-    stageLabels: ["Chặng 1", "Chặng 2", "Chặng 3", "Chặng 4", "Chặng 5", "Chặng 11", "Chặng 15", "Chặng 24", "Chặng 31"],
+    stageLabels: ["Chặng 1", "Chặng 2", "Chặng 3", "Chặng 4", "Chặng 5", "Chặng 11", "Chặng 15", "Chặng 24", "Chặng 31", "Chặng 33"],
   },
   {
     id: "investment",

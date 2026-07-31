@@ -70,6 +70,9 @@ export const SKILL_DOMAINS: SkillDomain[] = [
       // 199/200 là hai bài tổng ôn khép lại track: đọc báo cáo rồi tự phân
       // tích trọn vẹn một doanh nghiệp.
       199, 200,
+      // Chặng 33: kiểm toán là cách bộ báo cáo này được xác nhận, nên nó
+      // thuộc cùng nhóm với việc đọc và lập báo cáo.
+      ...range(1531, 1534), 1536,
     ],
   },
   {
@@ -152,7 +155,7 @@ export const SKILL_DOMAINS: SkillDomain[] = [
     // AML/KYC, quản trị doanh nghiệp, dùng AI có trách nhiệm và đạo đức dữ
     // liệu đều là cùng một câu hỏi: cái gì được phép làm với thông tin và
     // tiền của người khác.
-    lessonIds: [...range(1039, 1046), 1273, 1274, ...range(1281, 1283), ...range(1331, 1336), 1330, 1506],
+    lessonIds: [...range(1039, 1046), 1273, 1274, ...range(1281, 1283), ...range(1331, 1336), 1330, 1506, 1535, 1536],
   },
   {
     id: "economics",
