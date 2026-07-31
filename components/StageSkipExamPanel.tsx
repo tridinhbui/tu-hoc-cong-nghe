@@ -7,6 +7,8 @@ import { recalculateUserStats } from "@/lib/supabase-user";
 import {
   STAGE_EXAM_PASS_RATIO,
   STAGE_EXAM_QUESTION_COUNT,
+  STAGE_EXAM_RETRY_COOLDOWN_MS,
+  formatCooldown,
   type StageExamEligibility,
   type StageExamTrack,
 } from "@/lib/stage-exam";
@@ -89,6 +91,13 @@ export default function StageSkipExamPanel({ userId }: { userId: string | null }
         { cache: "no-store" }
       );
       const data = await res.json();
+      if (res.status === 429) {
+        // Cooldown after a failed attempt - the server won't hand out a fresh
+        // draw yet, which is what stops re-rolling until an easy set appears.
+        toast.error(data.message ?? "Chưa tới lượt thi lại.");
+        setView("pick");
+        return;
+      }
       if (!data.questions?.length) {
         toast.error("Chặng này chưa đủ câu hỏi để thi vượt.");
         setView("pick");
@@ -325,7 +334,8 @@ export default function StageSkipExamPanel({ userId }: { userId: string | null }
             </p>
           ) : (
             <p className="text-sm font-bold text-stone-600 dark:text-stone-400">
-              Chưa đạt — cần đúng từ {passPercent}%. Học qua chặng này rồi thi lại nhé.
+              Chưa đạt — cần đúng từ {passPercent}%. Học qua chặng này rồi quay lại sau{" "}
+              {formatCooldown(STAGE_EXAM_RETRY_COOLDOWN_MS)} nhé.
             </p>
           )}
           <button

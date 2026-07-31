@@ -10,6 +10,9 @@ import {
   passedStageExam,
   stageLessonIds,
   STAGE_EXAM_QUESTION_COUNT,
+  STAGE_EXAM_RETRY_COOLDOWN_MS,
+  retryCooldownRemaining,
+  formatCooldown,
   type StageExamEligibility,
   type StageExamTrack,
 } from "@/lib/stage-exam";
@@ -74,6 +77,29 @@ async function stageQuestionPool(lessonIds: number[]) {
   return pool;
 }
 
+/** When this learner last FAILED this stage, for the retry cooldown. Passes
+ *  don't gate anything - re-taking a stage you already passed is harmless. */
+async function lastFailedAt(
+  admin: ReturnType<typeof createAdminClient>,
+  userId: string,
+  track: string,
+  stageLabel: string
+): Promise<string | null> {
+  const { data, error } = await admin
+    .from("user_stage_exam_attempts")
+    .select("attempted_at")
+    .eq("user_id", userId)
+    .eq("track", track)
+    .eq("stage_label", stageLabel)
+    .eq("passed", false)
+    .order("attempted_at", { ascending: false })
+    .limit(1);
+  // Table not migrated yet: degrade to "no cooldown" rather than blocking
+  // every exam, same as every other optional table in this codebase.
+  if (error || !data?.length) return null;
+  return data[0].attempted_at as string;
+}
+
 export async function GET(request: NextRequest) {
   const supabase = await createServerSupabaseClient();
   const {
@@ -115,6 +141,19 @@ export async function GET(request: NextRequest) {
   const stage = findStage(track, stageLabel);
   if (!stage) {
     return NextResponse.json({ error: "Unknown stage" }, { status: 404 });
+  }
+
+  // Refuse to hand out a fresh draw while the cooldown is running. This is
+  // the control that actually matters: the farm is re-rolling the random 15
+  // until an easy set comes up, and that needs new questions each time.
+  const cooldownMs = retryCooldownRemaining(
+    await lastFailedAt(createAdminClient(), user.id, track, stage.label)
+  );
+  if (cooldownMs > 0) {
+    return NextResponse.json(
+      { error: "cooldown", cooldownMs, message: `Thi lại sau ${formatCooldown(cooldownMs)}.` },
+      { status: 429 }
+    );
   }
 
   const ids = stageLessonIds(stage, allLessonIds);
@@ -208,15 +247,30 @@ export async function POST(request: NextRequest) {
   }
 
   const passed = passedStageExam(score, counted);
+  const admin = createAdminClient();
+
+  // Log the attempt before anything else. A failure that isn't recorded is a
+  // failure with no cooldown, which is the whole exploit.
+  const { error: attemptError } = await admin.from("user_stage_exam_attempts").insert([
+    { user_id: user.id, track, stage_label: stage.label, score, total: counted, passed },
+  ]);
+  if (attemptError) {
+    console.error("Error logging stage exam attempt:", attemptError.message);
+  }
 
   if (!passed) {
-    return NextResponse.json({ score, total: counted, passed: false, creditedLessons: 0 });
+    return NextResponse.json({
+      score,
+      total: counted,
+      passed: false,
+      creditedLessons: 0,
+      retryAfterMs: STAGE_EXAM_RETRY_COOLDOWN_MS,
+    });
   }
 
   // Credit the whole stage. Only rows that don't already exist as completed
   // are written, so re-taking a passed exam doesn't reset completed_at or
   // re-trigger downstream recalculation for lessons already done.
-  const admin = createAdminClient();
   const { data: existing } = await admin
     .from("user_progress")
     .select("lesson_id")

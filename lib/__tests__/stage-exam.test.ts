@@ -8,6 +8,9 @@ import {
   STAGE_EXAM_PASS_RATIO,
   STAGE_EXAM_QUESTION_COUNT,
   MIN_QUESTIONS_FOR_STAGE_EXAM,
+  STAGE_EXAM_RETRY_COOLDOWN_MS,
+  retryCooldownRemaining,
+  formatCooldown,
 } from "@/lib/stage-exam";
 import type { Stage } from "@/lib/track-stages";
 
@@ -152,5 +155,51 @@ describe("buildEligibility", () => {
 
   it("requires enough questions to fill an exam without repeating", () => {
     expect(MIN_QUESTIONS_FOR_STAGE_EXAM).toBeGreaterThanOrEqual(STAGE_EXAM_QUESTION_COUNT);
+  });
+});
+
+describe("retryCooldownRemaining", () => {
+  const now = new Date("2026-07-30T12:00:00Z").getTime();
+
+  it("allows a retry when there is no prior failure", () => {
+    expect(retryCooldownRemaining(null, now)).toBe(0);
+  });
+
+  it("blocks immediately after a failure", () => {
+    const justNow = new Date(now - 1000).toISOString();
+    expect(retryCooldownRemaining(justNow, now)).toBeGreaterThan(0);
+  });
+
+  it("allows a retry once the cooldown has elapsed", () => {
+    const longAgo = new Date(now - STAGE_EXAM_RETRY_COOLDOWN_MS - 1).toISOString();
+    expect(retryCooldownRemaining(longAgo, now)).toBe(0);
+  });
+
+  it("allows a retry exactly at the boundary", () => {
+    const exactly = new Date(now - STAGE_EXAM_RETRY_COOLDOWN_MS).toISOString();
+    expect(retryCooldownRemaining(exactly, now)).toBe(0);
+  });
+
+  it("does not block on a clock skew that puts the failure in the future", () => {
+    // A future timestamp would otherwise produce a cooldown longer than the
+    // window, locking someone out for hours over a few seconds of drift.
+    const future = new Date(now + 60_000).toISOString();
+    expect(retryCooldownRemaining(future, now)).toBe(0);
+  });
+
+  it("ignores an unparseable timestamp rather than locking the learner out", () => {
+    expect(retryCooldownRemaining("not-a-date", now)).toBe(0);
+  });
+});
+
+describe("formatCooldown", () => {
+  it("reads in minutes under an hour, rounding up", () => {
+    expect(formatCooldown(60_000)).toBe("1 phút");
+    expect(formatCooldown(90_000)).toBe("2 phút");
+  });
+
+  it("reads in hours and minutes above an hour", () => {
+    expect(formatCooldown(60 * 60_000)).toBe("1 giờ");
+    expect(formatCooldown(65 * 60_000)).toBe("1 giờ 5 phút");
   });
 });
