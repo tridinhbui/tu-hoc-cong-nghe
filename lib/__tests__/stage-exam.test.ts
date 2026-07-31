@@ -1,6 +1,7 @@
 import { describe, it, expect } from "vitest";
 import {
   passedStageExam,
+  stageExamPassed,
   stageLessonIds,
   findStage,
   getTrackStages,
@@ -201,5 +202,42 @@ describe("formatCooldown", () => {
   it("reads in hours and minutes above an hour", () => {
     expect(formatCooldown(60 * 60_000)).toBe("1 giờ");
     expect(formatCooldown(65 * 60_000)).toBe("1 giờ 5 phút");
+  });
+});
+
+describe("stageExamPassed - the rule the route applies", () => {
+  it("passes a full paper at or above the ratio", () => {
+    expect(stageExamPassed(12, 15, 15)).toBe(true);
+    expect(stageExamPassed(15, 15, 15)).toBe(true);
+  });
+
+  it("fails a full paper below the ratio", () => {
+    expect(stageExamPassed(11, 15, 15)).toBe(false);
+  });
+
+  it("fails a single correct answer submitted alone", () => {
+    // The exploit this exists to close: before it, one correct answer scored
+    // 1/1, cleared the 80% ratio, and credited an entire chặng - 20+ lessons
+    // and the XP for all of them.
+    expect(stageExamPassed(1, 1, 15)).toBe(false);
+  });
+
+  it("fails a short paper even when every answer on it was right", () => {
+    expect(stageExamPassed(3, 3, 15)).toBe(false);
+    expect(stageExamPassed(14, 14, 15)).toBe(false);
+  });
+
+  it("fails an empty submission", () => {
+    expect(stageExamPassed(0, 0, 15)).toBe(false);
+  });
+
+  it("fails when the stage has no questions to expect", () => {
+    expect(stageExamPassed(0, 0, 0)).toBe(false);
+  });
+
+  it("accepts a shorter exam when the pool itself is small", () => {
+    // A 10-question pool serves a 10-question exam; 8 of 10 is a real pass.
+    expect(stageExamPassed(8, 10, 10)).toBe(true);
+    expect(stageExamPassed(7, 10, 10)).toBe(false);
   });
 });

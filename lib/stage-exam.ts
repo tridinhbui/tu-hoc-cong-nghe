@@ -84,6 +84,20 @@ export function passedStageExam(score: number, total: number): boolean {
   return score >= Math.ceil(total * STAGE_EXAM_PASS_RATIO);
 }
 
+/** The rule the route actually applies.
+ *
+ *  `counted` is how many valid, distinct answers survived grading, and it can
+ *  legitimately be lower than what was served (a token from another stage is
+ *  discarded). But the ratio alone is not enough: one correct answer scores
+ *  1/1, clears 80%, and would credit the whole chặng. So a submission must
+ *  also carry a full paper's worth of answers - anything shorter is a fail,
+ *  not a smaller exam graded on its own terms. */
+export function stageExamPassed(score: number, counted: number, expected: number): boolean {
+  if (expected <= 0) return false;
+  if (counted < expected) return false;
+  return passedStageExam(score, counted);
+}
+
 export interface StageExamEligibility {
   stageLabel: string;
   stageName: string;

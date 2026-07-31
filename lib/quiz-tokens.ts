@@ -26,6 +26,14 @@ export interface QuestionTokenPayload {
   /** The bank question's own id, so an attempt can be traced back to the
    *  exact question. Only set for IB questions. */
   questionId?: number;
+  /** Index of the question within its lesson's quiz array.
+   *
+   *  Present so that two different questions can never produce the same
+   *  token. Without it a payload is just {lessonId, correct} - so any two
+   *  questions from the same lesson whose correct answer lands on the same
+   *  index sign to byte-identical tokens, and a de-duplicating grader
+   *  discards one of them as a replay. */
+  questionIndex?: number;
 }
 
 function getSecret(): string {
@@ -61,7 +69,8 @@ export function verifyQuestionToken(token: string): QuestionTokenPayload | null 
       typeof payload?.lessonId === "number" &&
       typeof payload?.correct === "number" &&
       (payload.category === undefined || typeof payload.category === "string") &&
-      (payload.questionId === undefined || typeof payload.questionId === "number")
+      (payload.questionId === undefined || typeof payload.questionId === "number") &&
+      (payload.questionIndex === undefined || typeof payload.questionIndex === "number")
     ) {
       return payload;
     }

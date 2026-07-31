@@ -7,7 +7,7 @@ import {
   buildEligibility,
   findStage,
   getTrackStages,
-  passedStageExam,
+  stageExamPassed,
   stageLessonIds,
   STAGE_EXAM_QUESTION_COUNT,
   STAGE_EXAM_RETRY_COOLDOWN_MS,
@@ -173,7 +173,11 @@ export async function GET(request: NextRequest) {
       question: q.question,
       options: order.map((i) => q.options[i]),
       explanation: q.explanation,
-      token: signQuestionToken({ lessonId: q.lessonId, correct }),
+      // questionIndex is what makes each token unique: without it two
+      // questions from the same lesson sharing a correct-answer index sign
+      // to identical tokens, and the de-duplication below would silently
+      // discard one of them as a replay.
+      token: signQuestionToken({ lessonId: q.lessonId, correct, questionIndex: q.questionIndex }),
     };
   });
 
@@ -246,7 +250,13 @@ export async function POST(request: NextRequest) {
     if (payload.correct === answer.selected) score++;
   }
 
-  const passed = passedStageExam(score, counted);
+  // How many questions this stage's exam is worth. A submission has to carry
+  // that many valid, distinct answers before it can pass - otherwise sending
+  // a single correct answer scores 1/1, clears the 80% ratio, and credits the
+  // whole chặng. Anything short of a full paper is a fail, not a small paper.
+  const poolSize = (await stageQuestionPool(lessonIds)).length;
+  const expected = Math.min(STAGE_EXAM_QUESTION_COUNT, poolSize);
+  const passed = stageExamPassed(score, counted, expected);
   const admin = createAdminClient();
 
   // Log the attempt before anything else. A failure that isn't recorded is a
@@ -262,6 +272,7 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({
       score,
       total: counted,
+      expected,
       passed: false,
       creditedLessons: 0,
       retryAfterMs: STAGE_EXAM_RETRY_COOLDOWN_MS,
