@@ -23,10 +23,10 @@ export const FRM_SUBJECTS: FrmSubject[] = [
     name: "Foundations of Risk Management",
     part: "I",
     weight: "20%",
-    // Almost entirely uncovered by the existing pool: nothing here teaches
-    // ERM frameworks, risk governance/culture, the GARP Code of Conduct, or
-    // financial-disaster case studies - the actual bulk of this subject.
-    lessonIds: [1029],
+    // 1527-1529 (see lib/frm-lessons.ts) are purpose-built: ERM framework/
+    // three lines of defense, risk culture/incentive misalignment, and
+    // classic financial disasters (Barings, LTCM, 2008, subprime MBS).
+    lessonIds: [1029, 1527, 1528, 1529],
   },
   {
     id: "quant-analysis",
@@ -80,20 +80,19 @@ export const FRM_SUBJECTS: FrmSubject[] = [
     name: "Operational Resilience and Risk Management",
     part: "II",
     weight: "20%",
-    // Largest gap along with Foundations: no op-risk quantification (loss
-    // distribution approach), business continuity/disaster recovery,
-    // cyber/IT risk, third-party/vendor risk, or model risk management yet.
-    lessonIds: [1254],
+    // 1530, 1537, 1538 (see lib/frm-lessons.ts) are purpose-built: loss
+    // distribution approach, business continuity/disaster recovery/
+    // third-party risk, and model risk management.
+    lessonIds: [1254, 1530, 1537, 1538],
   },
   {
     id: "liquidity-treasury",
     name: "Liquidity and Treasury Risk Measurement and Management",
     part: "II",
     weight: "15%",
-    // Gap: no LCR/NSFR, funding risk, contingency funding plan, or bank
-    // treasury ALM content yet - 1401 is the closest existing lesson
-    // (bank financial statements, including LDR/CASA).
-    lessonIds: [1401],
+    // 1539-1541 (see lib/frm-lessons.ts) are purpose-built: LCR/NSFR,
+    // funding concentration risk & contingency funding plan, and ALM/IRRBB.
+    lessonIds: [1401, 1539, 1540, 1541],
   },
   {
     id: "investment-management",

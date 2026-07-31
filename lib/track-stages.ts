@@ -672,6 +672,24 @@ export const TRACK_PROFESSIONAL = {
         { name: "Chọn mẫu, gian lận và ba tuyến phòng vệ", days: [1534, 1536] as [number, number] },
       ],
     },
+    {
+      // Lấp 3/10 môn FRM gần như trống trơn trên /frm (xem lib/frm-track.ts):
+      // Foundations of Risk Management, Operational Resilience, và Liquidity
+      // and Treasury Risk. Ids 1531-1536 đã bị lib/audit-lessons.ts (Chặng
+      // 33) chiếm trước trong cùng một đợt commit song song, nên chặng này
+      // nhảy cóc qua đoạn đó - xem extraLessonIds.
+      label: "Chặng 34",
+      name: "FRM: Nền tảng, rủi ro vận hành & rủi ro thanh khoản",
+      days: [1527, 1530] as [number, number],
+      extraLessonIds: [1537, 1538, 1539, 1540, 1541],
+      available: true,
+      isNew: true,
+      parts: [
+        { name: "Foundations of Risk Management: ERM, văn hoá rủi ro, thảm hoạ kinh điển", days: [1527, 1529] as [number, number] },
+        { name: "Operational Resilience: LDA, BCP/DR, rủi ro mô hình & bên thứ ba", days: [1530, 1530] as [number, number], extraLessonIds: [1537, 1538] },
+        { name: "Liquidity and Treasury Risk: LCR/NSFR, CFP, ALM/IRRBB", days: [1539, 1541] as [number, number] },
+      ],
+    },
   ] satisfies Stage[],
 };
 
@@ -715,7 +733,7 @@ export const PROFESSIONAL_BRANCHES = [
     label: "Ngân hàng, bảo hiểm & tư vấn",
     subtitle: "Đọc và định giá ngân hàng, tín dụng, tuân thủ, quản lý gia sản & bảo hiểm",
     emoji: "🏦",
-    stageLabels: ["Chặng 18", "Chặng 21"],
+    stageLabels: ["Chặng 18", "Chặng 21", "Chặng 34"],
   },
   {
     id: "quant",
