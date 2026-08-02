@@ -86,12 +86,16 @@ describe("getTechnicalQuestionsForCareer", () => {
     // back to the full IB set - telling an aspiring financial coach that LBO
     // modelling is part of their interview would be worse than saying nothing.
     //
-    // Uses household-finance-planner rather than tax-advisory: tax-advisory was
-    // the example here until the career bank grew to cover it, at which point
-    // this test failed for the best possible reason. Pick a career the bank
-    // genuinely has nothing for, and expect to move this again as it fills in.
-    expect(getTechnicalQuestionsForCareer("household-finance-planner")).toEqual([]);
+    // The uncovered career is found at runtime rather than named. Naming one
+    // broke this test twice in a day: tax-advisory, then household-finance-
+    // planner, each time because the career bank grew to cover the example -
+    // the best possible reason for a test to fail, and a pointless one to keep
+    // paying for. An unknown id covers the case unconditionally; the real
+    // career, when one is still uncovered, covers it with a live example.
     expect(getTechnicalQuestionsForCareer("not-a-real-career")).toEqual([]);
+
+    const uncovered = [...careerIds].find((id) => !bankCoversCareer(id));
+    if (uncovered) expect(getTechnicalQuestionsForCareer(uncovered)).toEqual([]);
   });
 
   it("gives an auditor accounting and control questions but no deal mechanics", () => {
@@ -132,13 +136,34 @@ describe("getCareersCoveredByBank", () => {
     }
   });
 
-  it("covers well under half the career list - the gap is real and must not be hidden", () => {
-    // The reuse layer took coverage to 19 of 44 careers and the first
-    // career-specific bank added a few more. The gap is still large, and the
-    // UI must keep saying so rather than implying coverage that isn't there.
-    const covered = getCareersCoveredByBank().length;
-    expect(covered).toBeGreaterThan(1);
-    expect(covered).toBeLessThan(FINANCE_CAREERS.length);
+  it("reports coverage honestly - every career it names really has a drill's worth", () => {
+    // This test used to assert a gap: coverage had to be strictly below the
+    // career count, because the reuse layer reached 19 of 44 and the UI had to
+    // keep saying so rather than implying coverage that wasn't there. The
+    // career-specific banks have since closed that gap entirely - all 44 are
+    // covered - so asserting the gap still exists would now be asserting that
+    // nobody finished the work.
+    //
+    // What still matters is that the list cannot lie in the other direction:
+    // a career appears in it only if the bank genuinely holds enough questions
+    // to fill a drill, and every career that does appears.
+    const covered = getCareersCoveredByBank();
+    expect(covered.length).toBeGreaterThan(1);
+    expect(covered.length).toBeLessThanOrEqual(FINANCE_CAREERS.length);
+
+    for (const { careerId } of covered) {
+      expect(
+        getTechnicalQuestionsForCareer(careerId).length,
+        `${careerId} is listed as covered`
+      ).toBeGreaterThanOrEqual(MIN_QUESTIONS_FOR_CAREER_DRILL);
+    }
+
+    const listed = new Set(covered.map((c) => c.careerId));
+    for (const careerId of careerIds) {
+      if (getTechnicalQuestionsForCareer(careerId).length >= MIN_QUESTIONS_FOR_CAREER_DRILL) {
+        expect(listed.has(careerId), `${careerId} has questions but is not listed`).toBe(true);
+      }
+    }
   });
 
   it("names categories that exist in one of the banks", () => {
@@ -160,7 +185,13 @@ describe("bankCoversCareer", () => {
   });
 
   it("rejects careers with no coverage", () => {
-    expect(bankCoversCareer("household-finance-planner")).toBe(false);
-    expect(bankCoversCareer("financial-coach")).toBe(false);
+    // Same reason as above: derived, not named, so filling the bank in stops
+    // breaking the test that exists to describe the gap.
+    expect(bankCoversCareer("not-a-real-career")).toBe(false);
+
+    const uncovered = [...careerIds].filter((id) => !bankCoversCareer(id));
+    for (const id of uncovered) {
+      expect(getTechnicalQuestionsForCareer(id).length).toBeLessThan(MIN_QUESTIONS_FOR_CAREER_DRILL);
+    }
   });
 });
