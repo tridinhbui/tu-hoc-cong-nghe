@@ -44,8 +44,10 @@ than by reading:
 4. **No absurdity distractors.** `"Luôn tốt"`, `"Không ảnh hưởng"`,
    `"luôn đúng 100%"`, `"Không có khái niệm này"`, `"Tidak ada"` — these are
    blank space, not options. They are eliminated on sight and turn a
-   four-option question into a two-option one. Roughly 28% of the corpus still
-   contains one.
+   four-option question into a two-option one. Down from 28% of the corpus to
+   10% (228 questions across 181 lessons) - and unlike the length tell, nothing
+   measures this one yet, so it only shrinks when someone rewrites a lesson for
+   another reason.
 5. **Never contradict another lesson's correct answer.** Negative working
    capital is a *strength* for retail and subscription businesses (lesson 178),
    so it cannot be the wrong answer in lesson 50. Check the neighbouring

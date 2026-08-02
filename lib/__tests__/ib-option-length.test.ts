@@ -18,12 +18,26 @@ import { IB_TECHNICAL_QUESTIONS, isBehavioralCategory } from "@/lib/ib-question-
 // already done are held to chance level; the rest are covered only by the
 // whole-bank ratchet below, which may fall but never rise.
 
-/** Categories whose options have been rewritten to a uniform length band. */
+/** Categories whose options have been rewritten to a uniform length band.
+ *  Every technical category except Brain Teaser is now listed: the rewrite
+ *  finished, but the list was never caught up, leaving ten of them with no
+ *  per-category guard at all. Brain Teaser stays out - it is 4 questions of
+ *  riddles whose options are not finance claims and do not balance the same
+ *  way. */
 const REBALANCED_CATEGORIES = new Set([
   "Restructuring / Distressed M&A",
   "Valuation - Basic",
+  "Valuation - Advanced",
   "Accounting - Basic",
+  "Accounting - Advanced",
   "Discounted Cash Flow - Basic",
+  "Discounted Cash Flow - Advanced",
+  "Merger Model - Basic",
+  "Merger Model - Advanced",
+  "LBO Model - Basic",
+  "LBO Model - Advanced",
+  "Enterprise / Equity Value - Basic",
+  "Enterprise / Equity Value - Advanced",
 ]);
 
 /** With four options, "correct is longest" lands at ~25% by chance. 40% is
@@ -35,13 +49,24 @@ const MAX_LONGEST_SHARE = 0.4;
  *  the shortest is exactly as guessable. */
 const MAX_SHORTEST_SHARE = 0.4;
 
-/** Mean length of the correct option relative to the mean of all four. */
+/** Mean length of the correct option relative to the mean of all four, bounded
+ *  both ways. The floor matters as much as the ceiling: an average below 1
+ *  means the correct answer is reliably the *shorter* one, which is the same
+ *  tell upside down. */
 const MAX_MEAN_RATIO = 1.25;
+const MIN_MEAN_RATIO = 0.85;
 
-/** Snapshot of the un-rebalanced backlog. Ratchet only: rewriting more
- *  categories lowers this number, and nothing may raise it. Lower it as
- *  categories land. */
-const MAX_TOTAL_LONGEST = 168;
+/** Share checks need enough questions to mean anything. "Discounted Cash Flow -
+ *  Advanced" has 7: one question moves its share by 14 points, so 3 correct
+ *  answers landing shortest reads as 43% and trips a 40% ceiling that was set
+ *  for categories ten times the size. Small categories are held to the mean
+ *  ratio instead, which doesn't quantise like that. */
+const MIN_CATEGORY_SIZE_FOR_SHARE = 10;
+
+/** Whole-bank ceiling. Ratchet only: nothing may raise it. Sat at 168 long
+ *  after the bank reached 70 (chance level for 276 questions is ~69), which
+ *  left room for 98 questions to regress unnoticed. */
+const MAX_TOTAL_LONGEST = 70;
 
 interface CategoryStats {
   n: number;
@@ -88,9 +113,12 @@ describe("IB technical question options", () => {
     expect(stats, `no questions found for ${category}`).toBeDefined();
     if (!stats) return;
 
-    expect(stats.longest / stats.n).toBeLessThanOrEqual(MAX_LONGEST_SHARE);
-    expect(stats.shortest / stats.n).toBeLessThanOrEqual(MAX_SHORTEST_SHARE);
+    if (stats.n >= MIN_CATEGORY_SIZE_FOR_SHARE) {
+      expect(stats.longest / stats.n).toBeLessThanOrEqual(MAX_LONGEST_SHARE);
+      expect(stats.shortest / stats.n).toBeLessThanOrEqual(MAX_SHORTEST_SHARE);
+    }
     expect(stats.ratioSum / stats.n).toBeLessThanOrEqual(MAX_MEAN_RATIO);
+    expect(stats.ratioSum / stats.n).toBeGreaterThanOrEqual(MIN_MEAN_RATIO);
   });
 
   it("does not let the un-rebalanced backlog grow", () => {
