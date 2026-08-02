@@ -46,10 +46,16 @@ export const TRACK_PERSONAL = {
       label: "Chặng 1",
       name: "Biết mình trước khi học: audit, ngân sách, quỹ khẩn cấp, nợ",
       days: [263, 268] as [number, number],
+      // Ids 1351-1353 mở rộng chặng ở hai đầu: một bài đo chi tiêu đứng trước
+      // phần lập ngân sách, hai bài tự động hóa và bảo hiểm đứng sau. Dải
+      // 263-268 đã kín và 269 trở đi thuộc Chặng 7, nên không nới days được.
+      extraLessonIds: [1351, 1352, 1353],
       available: true,
       parts: [
+        { name: "Đo trước: theo dõi chi tiêu", days: [0, 0] as [number, number], extraLessonIds: [1351] },
         { name: "Audit tài chính và khẩu vị rủi ro", days: [263, 264] as [number, number] },
         { name: "Ngân sách, quỹ khẩn cấp, trả nợ và mục tiêu", days: [265, 268] as [number, number] },
+        { name: "Giữ kế hoạch sống sót: tự động hóa và bảo hiểm", days: [0, 0] as [number, number], extraLessonIds: [1352, 1353] },
       ],
     },
     {
