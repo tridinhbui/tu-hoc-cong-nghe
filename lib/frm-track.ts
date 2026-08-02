@@ -75,9 +75,10 @@ export const FRM_SUBJECTS: FrmSubject[] = [
     weight: "20%",
     // 1557-1559 (lib/frm-credit-current-lessons.ts) are purpose-built: CDS
     // mechanics/pricing, securitization & CDO tranching, CVA & portfolio
-    // credit risk. Sovereign credit risk and structured-credit stress
-    // testing remain uncovered.
-    lessonIds: [144, 149, 151, 153, 224, 1104, 1222, 1256, 802, 1557, 1558, 1559],
+    // credit risk. 1562 (lib/frm-sovereign-digital-lessons.ts) adds
+    // sovereign credit risk. Structured-credit stress testing remains
+    // uncovered.
+    lessonIds: [144, 149, 151, 153, 224, 1104, 1222, 1256, 802, 1557, 1558, 1559, 1562],
   },
   {
     id: "operational-resilience",
@@ -111,8 +112,10 @@ export const FRM_SUBJECTS: FrmSubject[] = [
     part: "II",
     weight: "10%",
     // 1560-1561 (lib/frm-credit-current-lessons.ts) are purpose-built:
-    // shadow banking, too-interconnected-to-fail. Still thin overall - GARP's
-    // reading list rotates yearly and most of it has no lesson yet.
-    lessonIds: [1328, 1327, 1253, 1025, 1560, 1561],
+    // shadow banking, too-interconnected-to-fail. 1563
+    // (lib/frm-sovereign-digital-lessons.ts) adds stablecoin/digital-asset
+    // systemic risk. Still thin overall - GARP's reading list rotates
+    // yearly and most of it has no lesson yet.
+    lessonIds: [1328, 1327, 1253, 1025, 1560, 1561, 1563],
   },
 ];

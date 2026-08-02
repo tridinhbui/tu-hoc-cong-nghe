@@ -706,17 +706,19 @@ export const TRACK_PROFESSIONAL = {
       ],
     },
     {
-      // Lấp phần rủi ro tín dụng nâng cao (CDS, chứng khoán hoá/CDO, CVA)
-      // và hai chủ đề Current Issues còn thiếu của FRM Part II. Xem
-      // lib/frm-track.ts's credit-risk/current-issues subjects.
+      // Lấp phần rủi ro tín dụng nâng cao (CDS, chứng khoán hoá/CDO, CVA,
+      // sovereign credit risk) và các chủ đề Current Issues còn thiếu của
+      // FRM Part II. Xem lib/frm-track.ts's credit-risk/current-issues
+      // subjects.
       label: "Chặng 36",
       name: "FRM: Tín dụng nâng cao & Vấn đề thời sự",
-      days: [1557, 1561] as [number, number],
+      days: [1557, 1563] as [number, number],
       available: true,
       isNew: true,
       parts: [
         { name: "CDS, chứng khoán hoá/CDO và rủi ro tín dụng đối tác (CVA)", days: [1557, 1559] as [number, number] },
-        { name: "Ngân hàng ngầm và rủi ro liên kết hệ thống", days: [1560, 1561] as [number, number] },
+        { name: "Ngân hàng ngầm, rủi ro liên kết hệ thống và tài sản số", days: [1560, 1561] as [number, number] },
+        { name: "Rủi ro tín dụng chủ quyền và stablecoin", days: [1562, 1563] as [number, number] },
       ],
     },
   ] satisfies Stage[],
