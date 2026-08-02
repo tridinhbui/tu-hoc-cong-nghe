@@ -83,9 +83,14 @@ describe("getTechnicalQuestionsForCareer", () => {
 
   it("returns nothing for a career the bank does not cover", () => {
     // An unmapped career must come back empty rather than silently falling
-    // back to the full IB set - telling an aspiring tax adviser that LBO
+    // back to the full IB set - telling an aspiring financial coach that LBO
     // modelling is part of their interview would be worse than saying nothing.
-    expect(getTechnicalQuestionsForCareer("tax-advisory")).toEqual([]);
+    //
+    // Uses household-finance-planner rather than tax-advisory: tax-advisory was
+    // the example here until the career bank grew to cover it, at which point
+    // this test failed for the best possible reason. Pick a career the bank
+    // genuinely has nothing for, and expect to move this again as it fills in.
+    expect(getTechnicalQuestionsForCareer("household-finance-planner")).toEqual([]);
     expect(getTechnicalQuestionsForCareer("not-a-real-career")).toEqual([]);
   });
 
@@ -155,7 +160,7 @@ describe("bankCoversCareer", () => {
   });
 
   it("rejects careers with no coverage", () => {
-    expect(bankCoversCareer("tax-advisory")).toBe(false);
+    expect(bankCoversCareer("household-finance-planner")).toBe(false);
     expect(bankCoversCareer("financial-coach")).toBe(false);
   });
 });
