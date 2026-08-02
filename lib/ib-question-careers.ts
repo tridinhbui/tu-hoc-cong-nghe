@@ -20,7 +20,7 @@ import { CAREER_TECHNICAL_QUESTIONS } from "@/lib/career-question-bank";
  *  covers the roles that core says nothing about. Both are filtered through
  *  the same category -> careers map below, so a new career bank becomes
  *  reachable by adding its categories here and nothing else. */
-const ALL_TECHNICAL_QUESTIONS: IbQuestion[] = [
+export const ALL_TECHNICAL_QUESTIONS: IbQuestion[] = [
   ...IB_TECHNICAL_QUESTIONS,
   ...CAREER_TECHNICAL_QUESTIONS,
 ];

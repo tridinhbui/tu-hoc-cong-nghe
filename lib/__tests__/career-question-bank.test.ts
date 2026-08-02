@@ -2,6 +2,7 @@ import { describe, expect, it } from "vitest";
 import { CAREER_TECHNICAL_QUESTIONS } from "@/lib/career-question-bank";
 import { IB_QUESTION_BANK } from "@/lib/ib-question-bank";
 import {
+  ALL_TECHNICAL_QUESTIONS,
   IB_CATEGORY_CAREERS,
   MIN_QUESTIONS_FOR_CAREER_DRILL,
   bankCoversCareer,
@@ -66,5 +67,41 @@ describe("career question bank", () => {
     for (const careerId of ["fund-manager", "treasury", "compliance-officer"]) {
       expect(bankCoversCareer(careerId), careerId).toBe(true);
     }
+  });
+});
+
+/**
+ * The mistake-review flow (app/(app)/on-tap-cau-sai/actions.ts) stores a wrong
+ * answer as a negative lesson_id holding the question id, then resolves it by
+ * looking that id up in a bank. A bank it does not know about does not throw -
+ * the row is dropped by a `continue`, so the mistake is written to the database
+ * and then never shown.
+ *
+ * That is exactly what happened here: 134 career-bank questions were being
+ * served and scored while the review lookup still read only IB_QUESTION_BANK.
+ * Type-checking passed, every test passed, and the only symptom was a review
+ * list that quietly skipped them.
+ *
+ * ALL_TECHNICAL_QUESTIONS is the single pool both the drill and the review
+ * lookup read, so a third bank wired into one and not the other fails here.
+ */
+describe("everything servable is also reviewable", () => {
+  it("resolves every question a career drill can serve", () => {
+    const reviewable = new Set(
+      [...IB_QUESTION_BANK, ...ALL_TECHNICAL_QUESTIONS].map((q) => q.id)
+    );
+    const servable = new Set(
+      (FINANCE_CAREERS as { id: string }[]).flatMap((c) =>
+        getTechnicalQuestionsForCareer(c.id).map((q) => q.id)
+      )
+    );
+    const orphaned = [...servable].filter((id) => !reviewable.has(id));
+    expect(orphaned, "câu hỏi giao được nhưng không tra lại được khi ôn tập").toEqual([]);
+  });
+
+  it("puts every career-bank question in the shared pool", () => {
+    const pool = new Set(ALL_TECHNICAL_QUESTIONS.map((q) => q.id));
+    const missing = CAREER_TECHNICAL_QUESTIONS.filter((q) => !pool.has(q.id)).map((q) => q.id);
+    expect(missing).toEqual([]);
   });
 });

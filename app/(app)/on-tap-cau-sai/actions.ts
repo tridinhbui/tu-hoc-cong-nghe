@@ -4,6 +4,8 @@ import { createServerSupabaseClient } from "@/lib/supabase-server";
 import { getLessonById } from "@/lib/lessons-loader";
 import { getLessonDisplayLabel, getLessonShortTitle } from "@/lib/lesson-labels";
 import { IB_QUESTION_BANK, formatCategoryLabel } from "@/lib/ib-question-bank";
+import { ALL_TECHNICAL_QUESTIONS } from "@/lib/ib-question-careers";
+import { CAREER_TECHNICAL_QUESTIONS } from "@/lib/career-question-bank";
 
 export interface QuizMistakeReviewItem {
   lessonId: number;
@@ -81,7 +83,18 @@ export async function getQuizMistakesReviewAction(userId: string): Promise<QuizM
   }
 
   if (ibRows.length > 0) {
-    const bankById = new Map(IB_QUESTION_BANK.map((q) => [q.id, q]));
+    // Both banks, not just the IB one. A wrong answer is stored as a negative
+    // lesson_id holding the question id and looked up by that id alone, so a
+    // bank missing from this map does not error - the `continue` below drops
+    // the row silently. That is what happened when lib/career-question-bank.ts
+    // landed: 134 questions were being served to learners, saved when answered
+    // wrong, and then never appearing in review.
+    // IB_QUESTION_BANK rather than its technical subset, so rows saved before
+    // the behavioral questions stopped being scored still resolve.
+    const bankById = new Map(
+      [...IB_QUESTION_BANK, ...ALL_TECHNICAL_QUESTIONS].map((q) => [q.id, q])
+    );
+    const careerQuestionIds = new Set(CAREER_TECHNICAL_QUESTIONS.map((q) => q.id));
     for (const row of ibRows) {
       const question = bankById.get(-row.lesson_id);
       // A question dropped from the bank falls out of review, same as an
@@ -90,7 +103,10 @@ export async function getQuizMistakesReviewAction(userId: string): Promise<QuizM
       items.push({
         lessonId: row.lesson_id,
         lessonSlug: "ib-question-bank",
-        lessonLabel: "IB Interview",
+        // The career bank covers fund management, treasury, ESG and the rest;
+        // labelling those "IB Interview" would tell a compliance candidate
+        // they got a banking question wrong.
+        lessonLabel: careerQuestionIds.has(question.id) ? "Câu hỏi theo nghề" : "IB Interview",
         lessonTitle: formatCategoryLabel(question.category),
         questionIndex: row.question_index,
         question: question.question,
