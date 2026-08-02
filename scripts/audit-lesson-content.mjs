@@ -136,7 +136,7 @@ const MAX_TELL_SHARE = 0.27;
  *  Counted only when the minimum is unique, since a tie for shortest still
  *  leaves the guesser a coin flip. Ceiling set just above the measured share:
  *  it exists to stop the drift getting worse, not to declare it fixed. */
-const MAX_SHORTEST_SHARE = 0.33;
+const MAX_SHORTEST_SHARE = 0.30;
 
 /** A lesson fails when this share of its questions have the correct answer as
  *  the longest option. At 4 options, chance level is 25%. A tie for longest
