@@ -124,7 +124,13 @@ export const CFA_LEVEL_1_SUBJECTS: CfaSubject[] = [
     weight: "7–10%",
     // 1471-1474: cấu trúc quỹ, phí và waterfall, các thước đo hiệu suất riêng
     // của quỹ đóng, và thoái vốn - đúng nhóm bài đọc private equity của môn này.
-    lessonIds: [117, 118, 119, 178, 261, 276, 1005, 1009, 1025, 1286, 1471, 1472, 1473, 1474],
+    // 1583-1590: hai bài xuyên suốt (đặc điểm chung, đo hiệu suất) rồi ba nhóm
+    // tài sản trước đó trống hoàn toàn - nợ tư nhân, hạ tầng, nông lâm nghiệp -
+    // cùng chiến lược hedge fund và tài sản số, hai mảng trước chỉ có một bài.
+    lessonIds: [
+      117, 118, 119, 178, 261, 276, 1005, 1009, 1025, 1286, 1471, 1472, 1473, 1474, 1583, 1584,
+      1585, 1586, 1587, 1588, 1589, 1590,
+    ],
   },
   {
     id: "portfolio",
