@@ -13,6 +13,17 @@
 // the UI says so rather than implying coverage that doesn't exist.
 
 import { IB_TECHNICAL_QUESTIONS, formatCategoryLabel, type IbQuestion } from "@/lib/ib-question-bank";
+import { CAREER_TECHNICAL_QUESTIONS } from "@/lib/career-question-bank";
+
+/** Every technical question a learner can be served, from both sources.
+ *  The IB bank covers the shared analytical core; lib/career-question-bank.ts
+ *  covers the roles that core says nothing about. Both are filtered through
+ *  the same category -> careers map below, so a new career bank becomes
+ *  reachable by adding its categories here and nothing else. */
+const ALL_TECHNICAL_QUESTIONS: IbQuestion[] = [
+  ...IB_TECHNICAL_QUESTIONS,
+  ...CAREER_TECHNICAL_QUESTIONS,
+];
 
 /** Career ids (from FINANCE_CAREERS) each technical category is useful for.
  *  Keys are the raw category strings as they appear in the bank. */
@@ -110,6 +121,14 @@ export const IB_CATEGORY_CAREERS: Record<string, readonly string[]> = {
 
   // Logic puzzles show up in quant and banking screens alike.
   "Brain Teaser": ["investment-banking", "quant", "pe-vc-analyst"],
+
+  // Nội dung viết riêng (lib/career-question-bank.ts). Ánh xạ hẹp có chủ ý:
+  // đây là kiến thức đặc thù của nghề, không phải phần lõi dùng chung, nên
+  // gán rộng ra sẽ lặp lại đúng sai lầm mà file này sinh ra để sửa.
+  "Quản lý quỹ - Phí & hiệu suất": ["fund-manager", "portfolio-analyst", "etf-fund-specialist"],
+  "Nguồn vốn - Thanh khoản & tỷ giá": ["treasury", "cfo-track", "fpa"],
+  "Tuân thủ - Quy định & kiểm soát": ["compliance-officer", "internal-audit", "auditor"],
+  "Định lượng - Xác suất & thống kê": ["quant", "data-analyst", "portfolio-analyst"],
 };
 
 /** Technical questions worth drilling for a given career. An unmapped career
@@ -117,7 +136,7 @@ export const IB_CATEGORY_CAREERS: Record<string, readonly string[]> = {
  *  rather than silently falling back to the full IB set, which would tell an
  *  aspiring auditor that LBO modelling is part of their interview. */
 export function getTechnicalQuestionsForCareer(careerId: string): IbQuestion[] {
-  return IB_TECHNICAL_QUESTIONS.filter((q) => IB_CATEGORY_CAREERS[q.category]?.includes(careerId));
+  return ALL_TECHNICAL_QUESTIONS.filter((q) => IB_CATEGORY_CAREERS[q.category]?.includes(careerId));
 }
 
 export interface CareerCoverage {
@@ -132,7 +151,7 @@ export interface CareerCoverage {
 export function getCareersCoveredByBank(): CareerCoverage[] {
   const byCareer = new Map<string, { count: number; categories: Map<string, number> }>();
 
-  for (const q of IB_TECHNICAL_QUESTIONS) {
+  for (const q of ALL_TECHNICAL_QUESTIONS) {
     for (const careerId of IB_CATEGORY_CAREERS[q.category] ?? []) {
       let entry = byCareer.get(careerId);
       if (!entry) {

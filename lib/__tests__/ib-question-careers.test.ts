@@ -1,5 +1,6 @@
 import { describe, it, expect } from "vitest";
 import { IB_TECHNICAL_QUESTIONS, getIbCategoryCounts } from "@/lib/ib-question-bank";
+import { CAREER_TECHNICAL_QUESTIONS } from "@/lib/career-question-bank";
 import {
   IB_CATEGORY_CAREERS,
   getTechnicalQuestionsForCareer,
@@ -13,8 +14,19 @@ import { FINANCE_CAREERS } from "@/lib/finance-careers";
 // and DCF sections are the shared core of most analytical finance roles.
 // These tests pin the reuse mapping so it can't drift from either the bank's
 // categories or the career list.
+//
+// Since lib/career-question-bank.ts landed there are two sources behind the
+// same mapping: the reused IB categories, and categories written for roles the
+// IB bank says nothing about. Several tests below used to assume one source -
+// that every mapped category exists in the IB bank, that investment-banking
+// belongs on all of them - and those assumptions are now wrong by design, so
+// they are scoped to the IB half rather than dropped.
 
 const careerIds = new Set(FINANCE_CAREERS.map((c) => c.id));
+
+/** Every question a career drill can serve, from both banks. */
+const ALL_TECHNICAL = [...IB_TECHNICAL_QUESTIONS, ...CAREER_TECHNICAL_QUESTIONS];
+const IB_CATEGORIES = new Set(IB_TECHNICAL_QUESTIONS.map((q) => q.category));
 
 describe("IB_CATEGORY_CAREERS mapping", () => {
   it("maps every technical category in the bank", () => {
@@ -24,8 +36,16 @@ describe("IB_CATEGORY_CAREERS mapping", () => {
     }
   });
 
-  it("does not map categories that no longer exist in the bank", () => {
-    const categories = new Set(IB_TECHNICAL_QUESTIONS.map((q) => q.category));
+  it("maps every category in the career-specific bank", () => {
+    // An unmapped category is content nobody can be served: the filter runs on
+    // exactly this map.
+    for (const category of new Set(CAREER_TECHNICAL_QUESTIONS.map((q) => q.category))) {
+      expect(IB_CATEGORY_CAREERS[category], `category "${category}" has no career mapping`).toBeDefined();
+    }
+  });
+
+  it("does not map categories that exist in neither bank", () => {
+    const categories = new Set(ALL_TECHNICAL.map((q) => q.category));
     for (const mapped of Object.keys(IB_CATEGORY_CAREERS)) {
       expect(categories.has(mapped), `mapping references unknown category "${mapped}"`).toBe(true);
     }
@@ -45,8 +65,12 @@ describe("IB_CATEGORY_CAREERS mapping", () => {
     }
   });
 
-  it("keeps investment-banking on every category - it is the bank's own role", () => {
+  it("keeps investment-banking on every IB category - it is that bank's own role", () => {
+    // Scoped to the IB half on purpose. "Quản lý quỹ - Phí & hiệu suất" is
+    // fund-management knowledge; putting IB on it would recreate the padding
+    // this mapping exists to avoid.
     for (const [category, ids] of Object.entries(IB_CATEGORY_CAREERS)) {
+      if (!IB_CATEGORIES.has(category)) continue;
       expect(ids, `category "${category}"`).toContain("investment-banking");
     }
   });
@@ -65,16 +89,18 @@ describe("getTechnicalQuestionsForCareer", () => {
     expect(getTechnicalQuestionsForCareer("not-a-real-career")).toEqual([]);
   });
 
-  it("gives an auditor accounting questions but no deal mechanics", () => {
+  it("gives an auditor accounting and control questions but no deal mechanics", () => {
     const questions = getTechnicalQuestionsForCareer("auditor");
     expect(questions.length).toBeGreaterThan(0);
     for (const q of questions) {
-      expect(q.category).toMatch(/^Accounting/);
+      expect(q.category, `auditor should not drill "${q.category}"`).not.toMatch(
+        /LBO|Merger|Restructuring/
+      );
     }
   });
 
   it("never returns a question outside the technical pool", () => {
-    const technicalIds = new Set(IB_TECHNICAL_QUESTIONS.map((q) => q.id));
+    const technicalIds = new Set(ALL_TECHNICAL.map((q) => q.id));
     for (const careerId of careerIds) {
       for (const q of getTechnicalQuestionsForCareer(careerId)) {
         expect(technicalIds.has(q.id)).toBe(true);
@@ -102,15 +128,16 @@ describe("getCareersCoveredByBank", () => {
   });
 
   it("covers well under half the career list - the gap is real and must not be hidden", () => {
-    // 40 of 41 careers have no bank of their own. The reuse layer widens that
-    // a little; it does not close it, and the UI must not imply otherwise.
+    // The reuse layer took coverage to 19 of 44 careers and the first
+    // career-specific bank added a few more. The gap is still large, and the
+    // UI must keep saying so rather than implying coverage that isn't there.
     const covered = getCareersCoveredByBank().length;
     expect(covered).toBeGreaterThan(1);
     expect(covered).toBeLessThan(FINANCE_CAREERS.length);
   });
 
-  it("names categories that exist in the bank", () => {
-    const labels = new Set(getIbCategoryCounts(IB_TECHNICAL_QUESTIONS).map((c) => c.label));
+  it("names categories that exist in one of the banks", () => {
+    const labels = new Set(getIbCategoryCounts(ALL_TECHNICAL).map((c) => c.label));
     for (const { categories } of getCareersCoveredByBank()) {
       for (const label of categories) {
         expect(labels.has(label), `unknown category label "${label}"`).toBe(true);

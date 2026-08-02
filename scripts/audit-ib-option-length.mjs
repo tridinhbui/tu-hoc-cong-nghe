@@ -92,6 +92,27 @@ const technical = raw
     };
   });
 
+// Ngân hàng viết riêng theo nghề (lib/career-question-bank.ts) đi qua đúng
+// route giao đề đó, nên nó phải chịu cùng phép đo. Bỏ nó ra ngoài thì cứ mỗi
+// nghề được viết bộ câu hỏi mới là một vùng không ai đo - đúng cách 25 nghề
+// trắng câu hỏi đã tồn tại lâu đến vậy mà không ai thấy.
+const careerSource = await readFile(path.join(root, "lib", "career-question-bank.ts"), "utf8");
+// extractArrayLiteral chạy qua JSON.parse, mà file kia có comment phân nhóm
+// theo nghề nằm ngay trong mảng - bỏ các dòng comment đi trước khi bóc tách.
+// Bộ IB là dữ liệu cào nên vốn đã đúng cú pháp JSON. File viết tay thì không:
+// nó có comment phân nhóm, key không đặt trong ngoặc kép, và dấu phẩy cuối -
+// cả ba đều hợp lệ trong TS và đều làm JSON.parse chết. Chuẩn hóa ở đây thay
+// vì bắt file dữ liệu viết tay phải trông như JSON.
+const careerLiteral = careerSource
+  .split("\n")
+  .filter((line) => !line.trimStart().startsWith("//"))
+  .join("\n")
+  .replace(/^(\s*)([A-Za-z_]\w*):/gm, '$1"$2":')
+  .replace(/,(\s*[}\]])/g, "$1");
+for (const q of extractArrayLiteral(careerLiteral, "CAREER_TECHNICAL_QUESTIONS")) {
+  technical.push({ id: q.id, category: q.category, options: q.options, correct: q.correct, overridden: false });
+}
+
 const byCategory = new Map();
 let longestTotal = 0;
 let shortestTotal = 0;
