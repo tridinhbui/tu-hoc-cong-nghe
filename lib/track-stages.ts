@@ -819,6 +819,21 @@ type TrackLessonLike = {
   track?: "personal" | "professional" | "bonus";
 };
 
+/**
+ * The single rule for "does this lesson belong to this track": an explicit
+ * `track` field wins, otherwise membership is derived from the stage day
+ * ranges. Most lessons carry no `track` (42% of them), so anything that
+ * compares `lesson.track === track` directly silently drops the majority of
+ * the curriculum - which is exactly what lib/lessons-loader's
+ * getLessonsByTrack used to do.
+ */
+export function lessonBelongsToTrack(
+  lesson: TrackLessonLike,
+  track: "personal" | "professional"
+): boolean {
+  return isExplicitlyInTrack(lesson, track);
+}
+
 function isExplicitlyInTrack(lesson: TrackLessonLike, track: "personal" | "professional"): boolean {
   if (lesson.track === "bonus") return false;
   if (lesson.track) return lesson.track === track;

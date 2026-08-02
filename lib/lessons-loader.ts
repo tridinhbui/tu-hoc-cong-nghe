@@ -3,6 +3,8 @@ import { readFile } from "fs/promises";
 import path from "path";
 import type { Lesson, Difficulty, QuizQuestion, LessonSectionBlock, LessonMeta, NextLessonMeta } from "./lesson-types";
 import { applyLessonOverrides } from "./lesson-quiz-overrides.js";
+import { balanceLessonQuizzes } from "./lesson-quiz-balance.js";
+import { lessonBelongsToTrack } from "./track-stages";
 
 /**
  * Dynamic lesson loader for code splitting.
@@ -44,7 +46,12 @@ export async function loadLessons(): Promise<Lesson[]> {
   }
 
   const { lessons } = await import("./lessons");
-  lessonsCache = applyLessonOverrides(lessons) as Lesson[];
+  // Mirror the generator's order exactly - overrides first, then balance.
+  // This path previously applied overrides and stopped, so whenever the
+  // generated data was missing it silently served the authored answer
+  // positions, which is the very skew lib/lesson-quiz-balance.js exists to
+  // remove.
+  lessonsCache = balanceLessonQuizzes(applyLessonOverrides(lessons)) as Lesson[];
   return lessonsCache;
 }
 
@@ -59,21 +66,38 @@ async function loadIndex(): Promise<LessonMeta[] | null> {
   }
 }
 
-import { ADVANCED_MASTERCLASS_LESSONS } from "./advanced-masterclass-lessons";
+// NOTE: ADVANCED_MASTERCLASS_LESSONS is deliberately NOT imported here.
+// lib/lessons.ts already spreads it into `lessons` (see its first entry), so
+// the generated data covers those five lessons like any other. The
+// short-circuits that used to sit in the three functions below - checking
+// that array first and returning its objects directly - predated that merge
+// and had since become actively harmful:
+//
+//   - getLessonsMeta() concatenated them onto the generated index, so the
+//     dashboard received five entries with duplicate ids AND slugs.
+//   - getLessonBySlug()/getLessonById() returned the RAW authored objects,
+//     bypassing the whole generator pipeline: applyLessonOverrides, the
+//     day-prefix strip, the computed reading/checkpoint fields, and -
+//     worst - balanceLessonQuizzes. All five shipped with every correct
+//     answer at index 1, the exact position tell the balancer exists to
+//     remove (see AGENTS.md).
 
 /**
  * Get a single lesson by slug with minimal bundle impact
  * Only loads the lessons module when called
  */
 export async function getLessonBySlug(slug: string): Promise<Lesson | undefined> {
-  const masterclass = ADVANCED_MASTERCLASS_LESSONS.find((m) => m.slug === slug);
-  if (masterclass) return masterclass;
-
   try {
     const raw = await readFile(path.join(lessonsDataDir, `${slug}.json`), "utf8");
-    const lesson = JSON.parse(raw) as Lesson;
-    const overridden = applyLessonOverrides([lesson])[0];
-    return overridden;
+    // Served as-is. scripts/generate-lesson-data.mjs already ran
+    // applyLessonOverrides over this content and THEN balanced the answer
+    // positions, in that order. Re-applying the overrides here replayed the
+    // authored `correct` indices on top of the balanced ones and undid the
+    // balancing entirely: 211 of 576 lessons were being served with every
+    // correct answer at index 0, against 11 in the generated data. Answering
+    // "A" to everything scored 100% on those, which feeds avg_quiz_score,
+    // the unlock gate, XP and the /su-nghiep competency percentages.
+    return JSON.parse(raw) as Lesson;
   } catch {
     const lessons = await loadLessons();
     return lessons.find((l) => l && l.slug === slug);
@@ -85,9 +109,6 @@ export async function getLessonBySlug(slug: string): Promise<Lesson | undefined>
  * cheap generated index, then reuses getLessonBySlug's fast per-file read.
  */
 export async function getLessonById(id: number): Promise<Lesson | undefined> {
-  const masterclass = ADVANCED_MASTERCLASS_LESSONS.find((m) => m.id === id);
-  if (masterclass) return masterclass;
-
   const index = await loadIndex();
   const slug = index?.find((l) => l.id === id)?.slug;
   if (slug) {
@@ -103,51 +124,48 @@ export async function getLessonById(id: number): Promise<Lesson | undefined> {
  * This is the most efficient way to load lesson data for listings
  */
 export async function getLessonsMeta(): Promise<LessonMeta[]> {
-  const masterclassMeta: LessonMeta[] = ADVANCED_MASTERCLASS_LESSONS.map((m) => ({
-    id: m.id,
-    slug: m.slug,
-    title: m.title,
-    subtitle: m.subtitle,
-    duration: m.duration,
-    difficulty: m.difficulty,
-    track: "professional",
-  }));
-
   const index = await loadIndex();
-  if (index) return [...index, ...masterclassMeta];
+  if (index) return index;
 
   const lessons = await loadLessons();
-  return [
-    ...lessons.map((l) => ({
-      id: l.id,
-      slug: l.slug,
-      title: l.title,
-      subtitle: l.subtitle,
-      duration: l.duration,
-      difficulty: l.difficulty,
-      track: l.track,
-      isFundamental: l.isFundamental,
-    })),
-    ...masterclassMeta,
-  ];
+  return lessons.map((l) => ({
+    id: l.id,
+    slug: l.slug,
+    title: l.title,
+    subtitle: l.subtitle,
+    duration: l.duration,
+    totalMinutes: l.totalMinutes,
+    difficulty: l.difficulty,
+    track: l.track,
+    isFundamental: l.isFundamental,
+  }));
 }
 
 /**
  * Get lessons by track with metadata only
  */
 export async function getLessonsByTrack(track: "personal" | "professional" | "bonus"): Promise<LessonMeta[]> {
-  const lessons = await loadLessons();
-  return lessons
-    .filter((l) => l.track === track)
-    .map((l) => ({
-      id: l.id,
-      slug: l.slug,
-      title: l.title,
-      subtitle: l.subtitle,
-      duration: l.duration,
-      difficulty: l.difficulty,
-      track: l.track,
-    }));
+  const index = (await loadIndex()) ?? (await loadLessons());
+
+  // "bonus" is the one track that only ever exists as an explicit field -
+  // case-study lessons sit outside the day-numbered curriculum by
+  // definition, so there is no stage range to derive them from. The other
+  // two go through the shared rule, because most lessons carry no `track`
+  // field at all and deriving from the stage ranges is how the dashboard,
+  // the profile page and the kiem-tra suggestion all resolve it.
+  const belongs = (lesson: { id: number; track?: "personal" | "professional" | "bonus" }) =>
+    track === "bonus" ? lesson.track === "bonus" : lessonBelongsToTrack(lesson, track);
+
+  return index.filter(belongs).map((l) => ({
+    id: l.id,
+    slug: l.slug,
+    title: l.title,
+    subtitle: l.subtitle,
+    duration: l.duration,
+    totalMinutes: l.totalMinutes,
+    difficulty: l.difficulty,
+    track: l.track,
+  }));
 }
 
 /**
