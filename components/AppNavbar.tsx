@@ -19,7 +19,6 @@ import { getUnresolvedMistakeCount } from "@/lib/quiz-mistakes";
 import { claimPendingReferral } from "@/lib/referrals";
 import { claimDailyLoginChest } from "@/lib/chests";
 import { useLevelUpWatcher } from "@/lib/use-level-up-watcher";
-import { usePresenceHeartbeat } from "@/lib/use-presence-heartbeat";
 import { trackFeatureClick } from "@/lib/feature-events";
 import LevelUpModal from "@/components/LevelUpModal";
 import QuickShopModal from "@/components/QuickShopModal";
@@ -243,7 +242,6 @@ export default function AppNavbar() {
   }, [userId]);
 
   const { celebrateLevel, dismiss } = useLevelUpWatcher(profile?.current_level);
-  usePresenceHeartbeat(userId);
 
   useEffect(() => {
     function handleClickOutside(event: MouseEvent) {

@@ -1,46 +1,39 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import Image from "next/image";
 import { Users } from "lucide-react";
-import { getOnlineUsers, getOnlineCount, type OnlineUser } from "@/lib/presence";
-import { isValidAvatar } from "@/lib/avatar-utils";
+import { getOnlineCount } from "@/lib/presence";
 
+/**
+ * Số người "đang học cùng lúc" trên dashboard.
+ *
+ * Widget này từng liệt kê cả avatar của những người đang online thật, đọc từ
+ * user_profiles.last_seen_at. Presence đã được gỡ (chỉ giữ chuông thông báo
+ * realtime), nên hàng avatar cũng đi theo - không còn nguồn dữ liệu nào cho
+ * nó, và trước đây nó vốn đã im lặng render rỗng bất cứ khi nào RPC không
+ * tồn tại trên production.
+ *
+ * Con số còn lại là số dựng, xem lib/presence.ts.
+ */
 export default function OnlineUsersWidget() {
-  const [users, setUsers] = useState<OnlineUser[]>([]);
-  const [count, setCount] = useState(0);
-  const [loading, setLoading] = useState(true);
+  const [count, setCount] = useState<number | null>(null);
 
   useEffect(() => {
-    let cancelled = false;
-    function load() {
-      Promise.all([getOnlineUsers(8), getOnlineCount()])
-        .then(([u, c]) => {
-          if (cancelled) return;
-          setUsers(u);
-          setCount(c);
-        })
-        .catch((err) => console.error("Error loading online users:", err))
-        .finally(() => {
-          if (!cancelled) setLoading(false);
-        });
-    }
-    load();
-    // Refresh periodically so the list stays roughly live without a full
-    // page reload - presence itself only changes as often as the 60s
-    // heartbeat, so no point polling faster than that.
-    const interval = window.setInterval(load, 60_000);
-    return () => {
-      cancelled = true;
-      window.clearInterval(interval);
-    };
+    setCount(getOnlineCount());
+    // Con số chỉ đổi theo khối 10 phút, nhưng vẫn làm mới mỗi phút để nó bước
+    // sang khối mới mà người dùng không phải tải lại trang.
+    const interval = window.setInterval(() => setCount(getOnlineCount()), 60_000);
+    return () => window.clearInterval(interval);
   }, []);
 
-  if (!loading && count === 0) return null;
+  // Tính trong effect chứ không phải lúc render, để markup phía máy chủ và lần
+  // hydrate đầu tiên khớp nhau - giờ trên máy chủ và trên máy người dùng có thể
+  // rơi vào hai khối khác nhau.
+  if (count === null) return null;
 
   return (
     <div className="bg-white dark:bg-stone-900 border border-stone-200 dark:border-stone-800 rounded-3xl shadow-sm overflow-hidden">
-      <div className="px-5 py-4 border-b border-stone-100 dark:border-stone-800 flex items-center gap-2.5">
+      <div className="px-5 py-4 flex items-center gap-2.5">
         <div className="rounded-xl bg-emerald-50 dark:bg-emerald-950/30 text-emerald-600 dark:text-emerald-400 flex items-center justify-center shrink-0 w-8 h-8">
           <Users className="w-4.5 h-4.5" />
         </div>
@@ -55,30 +48,6 @@ export default function OnlineUsersWidget() {
           <p className="text-[10px] text-stone-500 dark:text-stone-400 font-bold">{count} người đang học cùng lúc</p>
         </div>
       </div>
-
-      {users.length > 0 && (
-        <div className="p-4 flex flex-wrap gap-2">
-          {users.map((u) => (
-            <div
-              key={u.userId}
-              title={u.name}
-              className="flex items-center gap-1.5 bg-stone-50 dark:bg-stone-800/60 border border-stone-100 dark:border-stone-800 rounded-full pl-1 pr-2.5 py-1"
-            >
-              <div className="relative w-5 h-5 rounded-full overflow-hidden bg-stone-200 dark:bg-stone-700 flex-shrink-0">
-                {isValidAvatar(u.avatarUrl) ? (
-                  <Image src={u.avatarUrl} alt={u.name} fill sizes="20px" className="object-cover" />
-                ) : (
-                  <div className="w-full h-full flex items-center justify-center text-[9px] font-black text-stone-500 dark:text-stone-400">
-                    {u.name.charAt(0).toUpperCase()}
-                  </div>
-                )}
-                <span className="absolute -bottom-0.5 -right-0.5 w-1.5 h-1.5 rounded-full bg-emerald-500 ring-1 ring-white dark:ring-stone-900" />
-              </div>
-              <span className="text-[10px] font-bold text-stone-700 dark:text-stone-300 truncate max-w-[80px]">{u.name}</span>
-            </div>
-          ))}
-        </div>
-      )}
     </div>
   );
 }

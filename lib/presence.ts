@@ -1,56 +1,17 @@
-import { createClient } from "@/lib/supabase";
-
-function isMissingError(error: { code?: string; message?: string } | null): boolean {
-  if (!error) return true;
-  const isDbMissing = 
-    error.code === "PGRST205" || 
-    error.code === "PGRST204" || 
-    error.code === "42P01" || 
-    error.code === "42883" || 
-    error.code === "PGRST202" || 
-    error.code === "42703" ||
-    error.message?.includes("last_seen_at") ||
-    error.message?.includes("column");
-  const isNetworkOrConnection = 
-    error.message?.includes("Failed to fetch") || 
-    error.message?.includes("fetch failed") || 
-    error.message?.includes("TypeError") ||
-    (!error.code && !error.message);
-  return isDbMissing || isNetworkOrConnection;
-}
-
-/** Bumps the current user's last_seen_at - called periodically by usePresenceHeartbeat. */
-export async function pingPresence(userId: string): Promise<void> {
-  const supabase = createClient();
-  const { error } = await supabase
-    .from("user_profiles")
-    .update({ last_seen_at: new Date().toISOString() })
-    .eq("id", userId);
-  if (error && !isMissingError(error)) console.error("Error pinging presence:", error.message || error);
-}
-
-export interface OnlineUser {
-  userId: string;
-  name: string;
-  avatarUrl: string | null;
-  lastSeenAt: string;
-}
-
-export async function getOnlineUsers(limit = 12): Promise<OnlineUser[]> {
-  const supabase = createClient();
-  const { data, error } = await supabase.rpc("get_online_users", { p_limit: limit });
-  if (error) {
-    if (isMissingError(error)) return [];
-    console.error("Error loading online users:", error);
-    return [];
-  }
-  return ((data ?? []) as { user_id: string; name: string; avatar_url: string | null; last_seen_at: string }[]).map((row) => ({
-    userId: row.user_id,
-    name: row.name,
-    avatarUrl: row.avatar_url,
-    lastSeenAt: row.last_seen_at,
-  }));
-}
+// Số hiển thị cho widget "Đang online" trên dashboard.
+//
+// Trước đây đây là presence thật: mỗi client ghi user_profiles.last_seen_at
+// mỗi 60 giây, rồi đọc lại qua hai RPC get_online_users/get_online_count, và
+// con số hiển thị là max(số thật, một sàn dựng sẵn).
+//
+// Phần presence đã được gỡ bỏ theo quyết định sản phẩm: chỉ giữ chuông thông
+// báo realtime, không duy trì presence. Việc gỡ hẳn thay vì để nguyên là có
+// lý do - lib/presence.ts cũ nuốt lỗi "thiếu bảng/thiếu cột/thiếu hàm"
+// (42P01/42883/42703) và trả về 0 hoặc [], nên nếu migration presence không
+// chạy thì mỗi client vẫn bắn một UPDATE hỏng mỗi 60 giây, mãi mãi, và không
+// để lại dấu vết nào trong console.
+//
+// Con số còn lại là số dựng, có chủ đích, không phải dữ liệu người dùng.
 
 /** Sàn hiển thị của widget "đang học cùng lúc". */
 const FLOOR_MIN = 50;
@@ -67,8 +28,7 @@ function seededUnit(seed: number): number {
 }
 
 /**
- * Sàn mô phỏng cho số người đang học. Đây là con số dựng, có chủ đích, không
- * phải dữ liệu presence thật - `getOnlineCount` lấy max giữa nó và số thật.
+ * Sàn mô phỏng cho số người đang học.
  *
  * Bản trước gọi thẳng `Math.random()` mỗi lần, mà widget làm mới mỗi 60 giây,
  * nên con số nhảy 137 → 62 → 148 từng phút. Điều đó tự tố cáo chính nó: một
@@ -83,7 +43,7 @@ function seededUnit(seed: number): number {
  * `now` thì phần nhịp ngày đổi theo từng phút và con số lại nhích sau mỗi lần
  * widget làm mới - đúng cái đang muốn tránh.
  *
- * Tách riêng và thuần tuý để test được mà không cần mạng hay đồng hồ thật.
+ * Thuần tuý và nhận `now` làm tham số để test được mà không cần đồng hồ thật.
  */
 export function simulatedOnlineFloor(now: number): number {
   const bucket = Math.floor(now / BUCKET_MS);
@@ -107,9 +67,7 @@ export function simulatedOnlineFloor(now: number): number {
   return Math.round(FLOOR_MIN + t * (FLOOR_MAX - FLOOR_MIN));
 }
 
-export async function getOnlineCount(): Promise<number> {
-  const supabase = createClient();
-  const { data, error } = await supabase.rpc("get_online_count");
-  const realCount = (typeof data === "number" && !error) ? data : 0;
-  return Math.max(realCount, simulatedOnlineFloor(Date.now()));
+/** Không còn chạm cơ sở dữ liệu. Giữ tên cũ để widget không phải đổi ý niệm. */
+export function getOnlineCount(now: number = Date.now()): number {
+  return simulatedOnlineFloor(now);
 }
