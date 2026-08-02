@@ -102,7 +102,15 @@ console.log(`Total failing at least one check: ${total}`);
 // nothing" apart from "the corpus grew".
 //
 //   1. MAX_TELL_SHARE - the share of all questions with the tell. Immune to
-//      corpus growth, and ratchets down as batches land.
+//      corpus growth, and ratcheted down batch by batch from 0.91 while the
+//      rewrite ran. That ratchet is now retired: the corpus reached 24.8%,
+//      which IS chance level for four options, so there is nothing left to
+//      squeeze. It was briefly set to 0.2488 - two hundredths of a percent of
+//      headroom - and the next ordinary edit, five questions changing length
+//      somewhere in 2,418, turned CI red without anything having regressed.
+//      The ceiling now sits at 0.27: above the noise floor, far below the
+//      defect it was built to catch. Raise it only if the corpus grows a
+//      structurally different shape; never to make a red build pass.
 //   2. lesson-quiz-tell-baseline.json - the grandfathered list of lessons that
 //      currently fail per-lesson. A lesson NOT on that list must pass, so a
 //      newly authored lesson cannot add to the backlog. Nothing is ever added
@@ -114,7 +122,7 @@ console.log(`Total failing at least one check: ${total}`);
 // answering), each distractor is a mistake a learner actually makes - not an
 // absurdity like "luôn đúng 100%" that can be eliminated on sight - and one
 // distractor is longer than the correct option in ~3 of every 4 questions.
-const MAX_TELL_SHARE = 0.2488;
+const MAX_TELL_SHARE = 0.27;
 
 /** A lesson fails when this share of its questions have the correct answer as
  *  the longest option. At 4 options, chance level is 25%. A tie for longest
