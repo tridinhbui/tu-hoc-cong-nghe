@@ -37,6 +37,28 @@ export async function getLessonHighlights(userId: string, lessonId: number): Pro
   return data as LessonHighlight[];
 }
 
+/**
+ * Every highlight the learner has made, newest first, for the notebook page.
+ * Only `important` ones - `ai_flag` is a report about the content, not
+ * something the learner wants to revise.
+ */
+export async function getAllUserHighlights(userId: string): Promise<LessonHighlight[]> {
+  const supabase = createClient();
+  const { data, error } = await supabase
+    .from("lesson_highlights")
+    .select("*")
+    .eq("user_id", userId)
+    .eq("kind", "important")
+    .order("created_at", { ascending: false });
+
+  if (error) {
+    if (isMissingTableError(error)) return [];
+    throw handleSupabaseError(error);
+  }
+
+  return data as LessonHighlight[];
+}
+
 export async function createHighlight(
   userId: string,
   lessonId: number,

@@ -15,6 +15,7 @@ import LessonNotes from "@/components/LessonNotes";
 import TextHighlightMenu from "@/components/TextHighlightMenu";
 import LessonHighlightsList from "@/components/LessonHighlightsList";
 import { getLessonHighlights, type LessonHighlight } from "@/lib/lesson-highlights";
+import { useLessonHighlightPaint } from "@/lib/hooks/useLessonHighlightPaint";
 import { LessonCompletionContext } from "@/lib/lesson-completion-context";
 import { createClient } from "@/lib/supabase";
 import { markLessonComplete as markLessonCompleteSupabase } from "@/lib/supabase-progress";
@@ -174,6 +175,10 @@ export default function LessonPageLayout({ lesson, quiz, children }: Props) {
   }, [readingMode]);
   const [quizCollapsed, setQuizCollapsed] = useState(false);
   const articleRef = useRef<HTMLElement>(null);
+
+  // Paints the saved quotes back onto the lesson body, so a highlight shows
+  // where the learner made it rather than only in the list underneath.
+  useLessonHighlightPaint(articleRef, highlights);
   const bottomSentinelRef = useRef<HTMLDivElement>(null);
   const maxReachedRef = useRef(0);
   const savedMilestonesRef = useRef<Set<number>>(new Set());
