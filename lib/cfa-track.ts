@@ -23,7 +23,14 @@ export const CFA_LEVEL_1_SUBJECTS: CfaSubject[] = [
     id: "ethics",
     name: "Ethical and Professional Standards",
     weight: "15–20%",
-    lessonIds: [1039, 1040, 1041, 1042, 1043, 1044, 1045, 1046, 1331, 1332, 1333, 1334, 1335, 1336],
+    // 1571-1576: khung ra quyết định, niềm tin trong ngành, rồi chiều sâu của
+    // I(A), I(B), I(C) và mosaic theory. Ethics nặng nhất đề thi (15-20%) mà
+    // trước đó chỉ có 14 bài trong khi FSA có 77 - khoảng cách lớn nhất giữa
+    // trọng số và độ phủ của cả mười môn.
+    lessonIds: [
+      1039, 1040, 1041, 1042, 1043, 1044, 1045, 1046, 1331, 1332, 1333, 1334, 1335, 1336, 1571,
+      1572, 1573, 1574, 1575, 1576,
+    ],
   },
   {
     id: "quant",
