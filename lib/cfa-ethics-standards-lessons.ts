@@ -715,4 +715,700 @@ export const CFA_ETHICS_STANDARDS_LESSONS: Lesson[] = [
         "Kiểm ba câu hỏi: mảnh này có phải thông tin trọng yếu chưa công bố của một doanh nghiệp cụ thể không - không, đó là quan sát chung về ngành; nguồn có vi phạm nghĩa vụ bảo mật không - không, lưu lượng sân bay không phải bí mật kinh doanh của hãng nào; bạn có biết về vi phạm nào không - không có vi phạm nào để biết. Phương án đầu là hiểu nhầm phổ biến nhất: nói chuyện với người trong ngành chính là công việc của nhà phân tích.",
     },
   },
+  {
+    id: 1577,
+    slug: "cfa-ethics-standard-2b-thao-tung-thi-truong",
+    title: "CFA Ethics 21: Standard II(B) - Hai kiểu thao túng, và vì sao ý định là yếu tố quyết định",
+    subtitle: "Thao túng bằng giao dịch và thao túng bằng thông tin - cùng một hành vi có thể hợp lệ hoặc không",
+    duration: "10 phút",
+    difficulty: "Khó",
+    emoji: "🎭",
+    whyItMatters:
+      "Đây là Standard mà hành vi bên ngoài không quyết định được vi phạm hay không. Đặt lệnh rồi hủy là chuyện diễn ra hàng triệu lần mỗi ngày và hoàn toàn bình thường - thứ biến nó thành vi phạm là mục đích đằng sau, nên phải học cách đọc mục đích từ mô hình hành vi.",
+    openingQuestion:
+      "Một nhà giao dịch đặt lệnh mua lớn rồi hủy trước khi khớp, lặp lại nhiều lần trong phiên. Điều gì quyết định đây là thao túng hay giao dịch bình thường?",
+    openingOptions: [
+      "Số lượng lệnh bị hủy - vượt một ngưỡng nhất định thì thành vi phạm",
+      "Mục đích: đặt lệnh để tạo ảo giác về cung cầu nhằm dẫn dụ người khác, hay để thăm dò thanh khoản và điều chỉnh chiến lược thật",
+      "Giá trị của các lệnh đó so với vốn điều lệ của công ty chứng khoán",
+      "Việc nhà giao dịch có thực sự kiếm được lợi nhuận từ hành vi đó không",
+    ],
+    correctOption: 1,
+    explanation:
+      "Standard II(B) là một trong số ít Standards mà ý định nằm ngay trong định nghĩa vi phạm. Hủy lệnh là hoạt động hợp pháp và cần thiết: chiến lược thay đổi, giá dịch chuyển, thanh khoản không như dự kiến. Thứ tạo ra vi phạm là đặt lệnh mà bạn không có ý định khớp, nhằm làm người khác tin rằng có lực cầu hoặc lực cung không tồn tại. Vì ý định không quan sát trực tiếp được, cơ quan quản lý đọc nó qua mô hình hành vi: tỷ lệ hủy cực cao, lệnh đặt xa giá khớp rồi rút đúng khi giá tiến tới, và vị thế thật đi ngược hướng lệnh đang hiển thị. Lợi nhuận thực tế không phải điều kiện - thao túng thất bại vẫn là thao túng.",
+    diagram: [
+      { label: "Thao túng bằng giao dịch: lệnh giả, giao dịch vòng tròn", arrow: true },
+      { label: "Thao túng bằng thông tin: tung tin sai để dẫn dụ giá", arrow: true },
+      { label: "Ý định nằm trong định nghĩa vi phạm", arrow: true },
+      { label: "Đọc ý định qua mô hình hành vi, không qua lời khai" },
+    ],
+    interactiveType: "chart",
+    realWorldExample: {
+      company: "Ranh giới với hoạt động tạo lập thị trường",
+      description:
+        "Nhà tạo lập thị trường đặt và hủy lệnh liên tục theo đúng nghề của họ, và tỷ lệ hủy của họ rất cao. Điều đó không phải thao túng vì mục đích là duy trì báo giá hai chiều và quản trị rủi ro tồn kho, chứ không phải tạo ảo giác. Đây là lý do một chỉ số đơn lẻ như tỷ lệ hủy không bao giờ đủ để kết luận - phải xét cùng với việc bên đó có nghĩa vụ tạo lập không, và các lệnh đó có phục vụ nghĩa vụ ấy không.",
+    },
+    quiz: [
+      {
+        question: "Yếu tố nào nằm ngay trong định nghĩa vi phạm của Standard II(B)?",
+        options: [
+          "Ý định làm sai lệch giá hoặc khối lượng để đánh lừa thị trường",
+          "Mức lợi nhuận nhà giao dịch thu được từ chuỗi hành vi đó",
+          "Số lượng lệnh bị hủy trong một phiên giao dịch nhất định",
+          "Việc cơ quan quản lý đã phát hiện và lập biên bản hay chưa",
+        ],
+        correct: 0,
+        explanation:
+          "Chính vì ý định nằm trong định nghĩa mà cùng một chuỗi lệnh có thể hợp lệ với bên này và là vi phạm với bên kia.",
+      },
+      {
+        question: "Thao túng thất bại, không thu được lợi nhuận nào, thì sao?",
+        options: [
+          "Vẫn là vi phạm, vì lợi nhuận không phải điều kiện cấu thành",
+          "Không vi phạm, vì thị trường đã không bị ảnh hưởng trên thực tế",
+          "Chỉ vi phạm nếu có nhà đầu tư khác chứng minh được thiệt hại",
+          "Được xem là hành vi thử nghiệm chiến lược và không bị xử lý",
+        ],
+        correct: 0,
+        explanation:
+          "Chuẩn đánh giá là hành vi cộng ý định, không phải kết quả. Nếu tính theo kết quả thì mọi lần thao túng vụng về đều vô can.",
+      },
+      {
+        question: "Vì sao tỷ lệ hủy lệnh cao không tự nó chứng minh thao túng?",
+        options: [
+          "Vì nhà tạo lập thị trường hủy lệnh liên tục theo đúng nghề của họ",
+          "Vì hệ thống giao dịch tự động hủy lệnh khi hết phiên giao dịch",
+          "Vì quy định hiện hành không giới hạn số lệnh được phép hủy",
+          "Vì lệnh bị hủy không được ghi lại trong sổ lệnh của sàn",
+        ],
+        correct: 0,
+        explanation:
+          "Đây là lý do phải xét mô hình hành vi trong bối cảnh vai trò của bên giao dịch, chứ không đọc một chỉ số đơn lẻ.",
+      },
+      {
+        question: "Thao túng bằng thông tin khác thao túng bằng giao dịch ở chỗ nào?",
+        options: [
+          "Nó tác động lên giá qua việc lan truyền nhận định sai lệch",
+          "Nó chỉ áp dụng với thị trường trái phiếu chứ không phải cổ phiếu",
+          "Nó luôn được thực hiện bởi tổ chức chứ không phải cá nhân",
+          "Nó chỉ bị xử lý khi thông tin sai được đăng trên báo chí chính thống",
+        ],
+        correct: 0,
+        explanation:
+          "Hai kiểu cùng một mục đích và cùng bị cấm: một bên bóp méo tín hiệu qua sổ lệnh, bên kia qua nội dung được lan truyền.",
+      },
+      {
+        question: "Đăng nhận định lạc quan về cổ phiếu mình đang nắm giữ có vi phạm không?",
+        options: [
+          "Không, nếu nhận định có cơ sở thật và vị thế được công bố rõ",
+          "Có, mọi phát ngôn công khai về cổ phiếu mình nắm đều bị cấm",
+          "Không, vì mỗi người có quyền tự do bày tỏ quan điểm đầu tư",
+          "Có, trừ khi bạn bán hết vị thế trước khi đăng bài viết đó",
+        ],
+        correct: 0,
+        explanation:
+          "Vấn đề không nằm ở việc nói tốt về thứ mình sở hữu - đó là chuyện thường. Nó nằm ở nhận định không có cơ sở và ở việc giấu vị thế.",
+      },
+    ],
+    keyTakeaways: [
+      "Hai kiểu: thao túng bằng giao dịch và thao túng bằng thông tin",
+      "Ý định nằm trong định nghĩa vi phạm, nên cùng hành vi có thể hợp lệ hoặc không",
+      "Lợi nhuận không phải điều kiện - thao túng thất bại vẫn là thao túng",
+      "Đọc ý định qua mô hình hành vi: tỷ lệ hủy, thời điểm rút lệnh, vị thế thật",
+      "Tỷ lệ hủy cao không tự chứng minh gì - nhà tạo lập thị trường cũng vậy",
+    ],
+    practicePrompt: {
+      question:
+        "Cuối quý, một nhà quản lý quỹ mua thêm mạnh vào chính các mã đang chiếm tỷ trọng lớn trong danh mục, trong phiên cuối cùng. Đánh giá?",
+      options: [
+        "Hợp lệ vì mua vào tài sản mình đã tin tưởng là chiến lược nhất quán",
+        "Đáng ngờ là thao túng để đẩy giá trị danh mục cuối kỳ - hành vi có tên riêng trong ngành và bị Standard II(B) cấm",
+        "Chỉ vi phạm nếu quỹ đó tính phí hiệu suất trên NAV cuối kỳ",
+        "Hợp lệ vì giao dịch diễn ra công khai trên sàn tập trung",
+      ],
+      correct: 1,
+      explanation:
+        "Hành vi này được gọi là làm đẹp bảng điểm cuối kỳ, và nó vi phạm vì mục đích là đẩy giá tham chiếu chứ không phải xây dựng vị thế. Phương án ba gần đúng nhưng nhầm chỗ: phí hiệu suất giải thích động cơ, không phải điều kiện cấu thành - báo cáo hiệu suất đẹp lên đã đủ là lợi ích, kể cả khi không có đồng phí nào gắn vào.",
+    },
+  },
+  {
+    id: 1578,
+    slug: "cfa-ethics-standard-3b-doi-xu-cong-bang",
+    title: "CFA Ethics 22: Standard III(B) - Công bằng không có nghĩa là như nhau",
+    subtitle: "Phân bổ lệnh, phát hành báo cáo, và quyền được phục vụ khác nhau theo dịch vụ đã mua",
+    duration: "10 phút",
+    difficulty: "Trung bình",
+    emoji: "⚖️",
+    whyItMatters:
+      "Standard này hay bị đọc thành 'mọi khách hàng phải được đối xử giống hệt nhau', dẫn tới kết luận sai ở cả hai hướng. Hiểu đúng ranh giới giữa công bằng và đồng nhất là thứ quyết định cách bạn thiết kế quy trình phân bổ và phát hành báo cáo.",
+    openingQuestion:
+      "Công ty bạn có gói dịch vụ cao cấp trả phí cao hơn. Khách gói đó có được nhận báo cáo phân tích sớm hơn khách gói thường không?",
+    openingOptions: [
+      "Không, mọi khách hàng phải nhận thông tin cùng một thời điểm",
+      "Được, nếu chênh lệch dịch vụ được công bố trước và mọi khách trong cùng một gói được đối xử như nhau",
+      "Được, vì khách trả phí cao hơn thì đương nhiên nhận được nhiều hơn",
+      "Không, trừ khi khách gói thường đồng ý bằng văn bản với việc đó",
+    ],
+    correctOption: 1,
+    explanation:
+      "Chữ trong Standard là công bằng, không phải đồng nhất - và khác biệt đó có chủ ý. Ngành đầu tư có nhiều mức dịch vụ khác nhau, và bán một gói cao cấp không tự nó là vi phạm. Hai điều kiện biến nó thành hợp lệ: chênh lệch phải được công bố trước để khách gói thường biết mình đang mua gì và không mua gì; và trong cùng một nhóm dịch vụ thì không ai được ưu tiên hơn ai. Cái bị cấm là ưu tiên ngầm - cho một khách quen biết lệnh trước trong khi cả hai trả cùng mức phí, hoặc gọi điện cho vài khách lớn trước khi báo cáo phát hành cho tất cả.",
+    diagram: [
+      { label: "Công bằng ≠ đồng nhất: nhiều mức dịch vụ là hợp lệ", arrow: true },
+      { label: "Điều kiện 1: chênh lệch được công bố trước", arrow: true },
+      { label: "Điều kiện 2: trong cùng một nhóm thì không ai ưu tiên hơn ai", arrow: true },
+      { label: "Cái bị cấm là ưu tiên ngầm, không phải phân tầng dịch vụ" },
+    ],
+    interactiveType: "chart",
+    realWorldExample: {
+      company: "Phân bổ lệnh khi không đủ hàng",
+      description:
+        "Một đợt IPO hấp dẫn hoặc một lệnh lớn chỉ khớp được một phần đặt ra bài toán chia phần. Cách xử lý được chấp nhận trong ngành là phân bổ theo tỷ lệ đặt lệnh, quyết định bằng quy trình viết sẵn từ trước chứ không phán đoán tại chỗ, và cùng một mức giá bình quân cho mọi tài khoản trong nhóm. Điểm mấu chốt là quy trình phải tồn tại TRƯỚC khi có lệnh - một quy tắc nghĩ ra sau khi đã biết ai được lợi thì không còn là quy tắc.",
+    },
+    quiz: [
+      {
+        question: "Standard III(B) dùng chữ 'công bằng' thay vì 'đồng nhất' vì sao?",
+        options: [
+          "Vì nhiều mức dịch vụ khác nhau là hợp lệ nếu được công bố trước",
+          "Vì không thể phục vụ mọi khách hàng cùng lúc về mặt kỹ thuật",
+          "Vì khách hàng tổ chức luôn được ưu tiên hơn khách hàng cá nhân",
+          "Vì chữ đồng nhất chỉ áp dụng cho việc phân bổ lệnh giao dịch",
+        ],
+        correct: 0,
+        explanation:
+          "Cấm phân tầng dịch vụ sẽ cấm luôn cả mô hình kinh doanh hợp pháp. Standard cấm ưu tiên ngầm, không cấm bán nhiều gói khác nhau.",
+      },
+      {
+        question: "Gọi điện báo trước cho vài khách lớn rồi mới phát hành báo cáo cho tất cả là gì?",
+        options: [
+          "Vi phạm, vì đó là ưu tiên ngầm trong cùng một nhóm dịch vụ",
+          "Hợp lệ, vì khách lớn đóng góp phần lớn doanh thu của công ty",
+          "Hợp lệ nếu nội dung cuộc gọi trùng với nội dung báo cáo",
+          "Chỉ vi phạm nếu khách đó thực sự giao dịch trước khi báo cáo ra",
+        ],
+        correct: 0,
+        explanation:
+          "Đây là dạng vi phạm phổ biến nhất của Standard này, và nó thường không có ý xấu - chỉ là thói quen chăm sóc khách quan trọng.",
+      },
+      {
+        question: "Khi một lệnh lớn chỉ khớp được một phần, cách phân bổ nào phù hợp?",
+        options: [
+          "Theo tỷ lệ đặt lệnh, cùng giá bình quân, theo quy trình có sẵn",
+          "Ưu tiên tài khoản có quy mô lớn nhất để tối ưu chi phí giao dịch",
+          "Phân bổ cho tài khoản nào đặt lệnh sớm nhất trong ngày hôm đó",
+          "Giữ lại toàn bộ và chỉ phân bổ khi lệnh đã khớp hoàn toàn",
+        ],
+        correct: 0,
+        explanation:
+          "Ba yếu tố phải cùng có: tỷ lệ, giá bình quân chung, và quy trình viết trước. Thiếu yếu tố cuối thì hai yếu tố đầu vẫn có thể bị bẻ cong.",
+      },
+      {
+        question: "Vì sao quy trình phân bổ phải tồn tại trước khi có lệnh?",
+        options: [
+          "Vì quy tắc nghĩ ra sau khi biết ai được lợi thì không còn là quy tắc",
+          "Vì quy định buộc nộp quy trình cho cơ quan quản lý mỗi quý",
+          "Vì hệ thống giao dịch cần được cấu hình trước khi vào phiên",
+          "Vì khách hàng có quyền yêu cầu xem quy trình trước khi đặt lệnh",
+        ],
+        correct: 0,
+        explanation:
+          "Đây là nguyên tắc chung của mọi cơ chế chống thiên vị: quyết định luật chơi phải diễn ra trước khi biết luật đó có lợi cho ai.",
+      },
+      {
+        question: "Thay đổi khuyến nghị từ 'Mua' sang 'Bán' thì thông báo thế nào?",
+        options: [
+          "Thông báo đồng thời cho mọi khách đang nắm giữ khuyến nghị cũ",
+          "Chỉ cần cập nhật trong báo cáo định kỳ tiếp theo của công ty",
+          "Ưu tiên báo cho khách có vị thế lớn nhất để họ kịp xử lý",
+          "Đăng công khai trước rồi mới gửi bản chi tiết cho khách hàng",
+        ],
+        correct: 0,
+        explanation:
+          "Đảo chiều khuyến nghị là loại thông tin nhạy cảm nhất với thời điểm, nên đây là chỗ nghĩa vụ đối xử công bằng bị thử thách mạnh nhất.",
+      },
+    ],
+    keyTakeaways: [
+      "Công bằng không phải đồng nhất - phân tầng dịch vụ là hợp lệ",
+      "Hai điều kiện: công bố chênh lệch trước, và không ưu tiên ngầm trong cùng nhóm",
+      "Phân bổ lệnh: theo tỷ lệ, cùng giá bình quân, theo quy trình viết sẵn",
+      "Quy trình phải có TRƯỚC khi có lệnh, nếu không nó không phải quy trình",
+      "Đảo chiều khuyến nghị là lúc nghĩa vụ này bị thử thách mạnh nhất",
+    ],
+    practicePrompt: {
+      question:
+        "Bạn phát hiện một đồng nghiệp thường xuyên gọi cho ba khách quen ngay sau khi báo cáo được duyệt, trước giờ phát hành chính thức. Đây là gì?",
+      options: [
+        "Chăm sóc khách hàng bình thường, không liên quan tới Standard nào",
+        "Vi phạm Standard III(B): ba khách đó được ưu tiên ngầm so với các khách cùng gói dịch vụ",
+        "Vi phạm Standard II vì liên quan tới thông tin chưa công bố",
+        "Chỉ vi phạm nếu ba khách đó trả phí thấp hơn những khách khác",
+      ],
+      correct: 1,
+      explanation:
+        "Phương án đầu là cách chính người vi phạm thường tự mô tả hành vi của mình, và cũng là lý do dạng vi phạm này tồn tại lâu mà không ai nêu ra. Phương án ba nhầm Standard: báo cáo phân tích của chính công ty không phải thông tin nội bộ của tổ chức phát hành, nên đây là bài toán đối xử công bằng chứ không phải giao dịch nội gián.",
+    },
+  },
+  {
+    id: 1579,
+    slug: "cfa-ethics-standard-3d-trinh-bay-hieu-suat",
+    title: "CFA Ethics 23: Standard III(D) - Con số hiệu suất trung thực trông như thế nào",
+    subtitle: "Thiên lệch sống sót, chọn khoảng thời gian đẹp, và hiệu suất mô phỏng ngược",
+    duration: "10 phút",
+    difficulty: "Trung bình",
+    emoji: "📈",
+    whyItMatters:
+      "Hiệu suất là con số quyết định phần lớn dòng vốn, nên nó cũng là con số chịu áp lực bóp méo lớn nhất - và phần lớn cách bóp méo đều không cần nói dối một chữ nào. Học nhận diện chúng có ích cả khi bạn trình bày lẫn khi bạn đọc của người khác.",
+    openingQuestion:
+      "Một công ty quảng cáo 'các quỹ của chúng tôi trung bình lãi 14%/năm trong 10 năm qua', tính trên các quỹ hiện đang hoạt động. Vấn đề ở đâu?",
+    openingOptions: [
+      "Không có vấn đề nếu từng con số đều đúng và kiểm chứng được",
+      "Thiên lệch sống sót: các quỹ đóng cửa vì kết quả kém đã bị loại khỏi phép tính, nên con số trung bình bị đẩy lên",
+      "Vấn đề là mười năm quá dài để có ý nghĩa với nhà đầu tư mới",
+      "Vấn đề là chưa nêu rõ mức phí quản lý đã được trừ hay chưa",
+    ],
+    correctOption: 1,
+    explanation:
+      "Đây là dạng bóp méo tinh vi nhất vì không có con số nào sai. Mỗi quỹ còn sống thật sự đạt mức lãi đó; phép trung bình cũng tính đúng. Thứ sai là mẫu: các quỹ kém thường bị đóng hoặc sáp nhập, và khi biến mất khỏi danh sách thì chúng cũng biến mất khỏi phép tính. Kết quả là con số quảng cáo mô tả một nhóm mà nhà đầu tư mười năm trước không thể chọn được, vì lúc đó họ chưa biết quỹ nào sẽ sống sót. Standard III(D) yêu cầu trình bày công bằng và đầy đủ, và đó chính là lý do GIPS bắt buộc gộp toàn bộ tài khoản cùng chiến lược vào một composite thay vì để công ty tự chọn.",
+    diagram: [
+      { label: "Thiên lệch sống sót: quỹ kém rơi khỏi mẫu", arrow: true },
+      { label: "Chọn khoảng thời gian: bắt đầu ngay sau đáy", arrow: true },
+      { label: "Hiệu suất mô phỏng ngược: chiến lược tối ưu trên quá khứ", arrow: true },
+      { label: "Cả ba đều đúng từng con số mà vẫn gây hiểu nhầm" },
+    ],
+    interactiveType: "chart",
+    realWorldExample: {
+      company: "Hiệu suất mô phỏng ngược (backtest)",
+      description:
+        "Một chiến lược được tối ưu trên dữ liệu quá khứ gần như luôn cho kết quả đẹp, vì các tham số đã được chọn sau khi biết kết quả. Standard III(D) không cấm trình bày backtest, nhưng buộc ghi rõ rằng đây là kết quả mô phỏng chứ không phải hiệu suất thật của tiền thật - và ghi ở chỗ người đọc thấy, không phải chân trang. Trộn lẫn giai đoạn mô phỏng với giai đoạn vận hành thật thành một đường liền mạch là dạng trình bày sai lệch rõ ràng.",
+    },
+    quiz: [
+      {
+        question: "Thiên lệch sống sót làm sai lệch con số hiệu suất bằng cách nào?",
+        options: [
+          "Loại các quỹ kém khỏi mẫu, đẩy mức trung bình còn lại lên cao",
+          "Tính trùng lợi nhuận của cùng một tài khoản ở nhiều quỹ khác nhau",
+          "Bỏ qua phí quản lý khi tính lợi nhuận ròng cho nhà đầu tư",
+          "Dùng lợi nhuận danh nghĩa thay vì lợi nhuận đã trừ lạm phát",
+        ],
+        correct: 0,
+        explanation:
+          "Không con số nào sai, chỉ có mẫu là sai - và đó là lý do dạng bóp méo này khó bị bắt bằng cách kiểm tra số liệu.",
+      },
+      {
+        question: "Vì sao GIPS bắt buộc gộp mọi tài khoản cùng chiến lược vào một composite?",
+        options: [
+          "Để công ty không thể chỉ chọn những tài khoản có kết quả đẹp",
+          "Để giảm chi phí tính toán hiệu suất cho bộ phận vận hành quỹ",
+          "Để nhà đầu tư so sánh được giữa các công ty ở cùng quy mô vốn",
+          "Để cơ quan quản lý chỉ cần kiểm tra một con số duy nhất mỗi quý",
+        ],
+        correct: 0,
+        explanation:
+          "Composite là câu trả lời trực tiếp cho việc chọn lọc mẫu: nếu buộc phải gộp hết thì không còn gì để chọn.",
+      },
+      {
+        question: "Trình bày kết quả mô phỏng ngược (backtest) được phép không?",
+        options: [
+          "Được, nếu ghi rõ đó là mô phỏng và ghi ở chỗ người đọc thấy",
+          "Không, Standard III(D) cấm hoàn toàn mọi hình thức mô phỏng",
+          "Được, và không cần ghi chú nếu phương pháp đã công bố đầy đủ",
+          "Không, trừ khi chiến lược đó đã chạy thật ít nhất ba năm",
+        ],
+        correct: 0,
+        explanation:
+          "Vấn đề không nằm ở việc mô phỏng mà ở việc để người đọc tưởng đó là tiền thật. Ghi chú ở chân trang không đạt chuẩn 'công bằng và đầy đủ'.",
+      },
+      {
+        question: "Chọn ngày bắt đầu ngay sau một đợt sụp đổ để tính hiệu suất là gì?",
+        options: [
+          "Chọn khoảng thời gian có lợi - một dạng trình bày sai lệch",
+          "Cách làm chuẩn vì loại bỏ được giai đoạn bất thường của thị trường",
+          "Hợp lệ nếu ngày bắt đầu trùng với ngày quỹ chính thức hoạt động",
+          "Chỉ có vấn đề khi khoảng thời gian được chọn dưới ba năm",
+        ],
+        correct: 0,
+        explanation:
+          "Cách kiểm tra nhanh: thử dịch ngày bắt đầu sớm hơn hoặc muộn hơn vài tháng. Nếu con số đổi hẳn thì nó đang mô tả khoảng thời gian chứ không mô tả kỹ năng.",
+      },
+      {
+        question: "Nghĩa vụ cốt lõi mà Standard III(D) đặt ra là gì?",
+        options: [
+          "Trình bày hiệu suất một cách công bằng, chính xác và đầy đủ",
+          "Bảo đảm hiệu suất báo cáo vượt chỉ số tham chiếu của ngành",
+          "Công bố hiệu suất theo tần suất tối thiểu là mỗi quý một lần",
+          "Chỉ được trình bày hiệu suất đã qua kiểm toán độc lập xác nhận",
+        ],
+        correct: 0,
+        explanation:
+          "Ba chữ này gánh toàn bộ Standard: chính xác chặn nói dối, công bằng chặn chọn lọc mẫu, đầy đủ chặn việc bỏ đi phần bất lợi.",
+      },
+    ],
+    keyTakeaways: [
+      "Ba cách bóp méo phổ biến đều không cần một con số sai nào",
+      "Thiên lệch sống sót: quỹ kém rơi khỏi mẫu nên trung bình bị đẩy lên",
+      "Composite của GIPS tồn tại để triệt tiêu việc chọn lọc mẫu",
+      "Backtest được phép, nhưng phải ghi rõ là mô phỏng và ghi ở chỗ dễ thấy",
+      "Công bằng, chính xác, đầy đủ - ba chữ gánh toàn bộ Standard",
+    ],
+    practicePrompt: {
+      question:
+        "Tài liệu chào bán ghi: 'Chiến lược đạt 22%/năm giai đoạn 2015-2024', trong đó 2015-2019 là mô phỏng và 2020-2024 là vận hành thật, vẽ thành một đường liền. Đánh giá?",
+      options: [
+        "Hợp lệ vì cả hai giai đoạn đều được tính đúng phương pháp",
+        "Trình bày sai lệch: gộp mô phỏng với vận hành thật thành một đường khiến người đọc tưởng toàn bộ là tiền thật",
+        "Chỉ có vấn đề nếu giai đoạn mô phỏng cho kết quả cao hơn giai đoạn thật",
+        "Hợp lệ nếu có ghi chú nhỏ ở cuối tài liệu về giai đoạn mô phỏng",
+      ],
+      correct: 1,
+      explanation:
+        "Đường liền mạch là chính vấn đề, bất kể ghi chú. Nó phát đi thông điệp rằng một chiến lược đã hoạt động liên tục mười năm, trong khi một nửa thời gian đó không có đồng nào thật được đầu tư và các tham số đã được chọn sau khi biết kết quả. Phương án cuối là cách các tài liệu chào bán thật hay dùng, và nó không đạt chuẩn 'công bằng và đầy đủ'.",
+    },
+  },
+  {
+    id: 1580,
+    slug: "cfa-ethics-standard-4b-thu-lao-them",
+    title: "CFA Ethics 24: Standard IV(B) - Mọi khoản thu ngoài lương đều phải được nhà tuyển dụng biết",
+    subtitle: "Công việc phụ, thù lao từ khách hàng, và vì sao đồng ý bằng miệng không đủ",
+    duration: "9 phút",
+    difficulty: "Dễ",
+    emoji: "💼",
+    whyItMatters:
+      "Đây là Standard ngắn nhất và cũng dễ vi phạm nhất mà không nhận ra, vì phần lớn các khoản thu thêm đều bắt đầu từ thiện chí - dạy thêm một lớp, tư vấn giúp một người quen, nhận thưởng từ một khách hài lòng.",
+    openingQuestion:
+      "Một khách hàng hài lòng đề nghị thưởng riêng cho bạn nếu danh mục của họ vượt 15% năm tới. Bạn nên làm gì?",
+    openingOptions: [
+      "Từ chối vì mọi khoản thưởng từ khách hàng đều bị cấm tuyệt đối",
+      "Nhận nếu được nhà tuyển dụng đồng ý bằng văn bản, sau khi đã báo rõ bản chất, số tiền và thời hạn",
+      "Nhận vì đó là phần thưởng cho kết quả tốt của chính bạn",
+      "Nhận nhưng chỉ cần báo miệng cho quản lý trực tiếp là đủ",
+    ],
+    correctOption: 1,
+    explanation:
+      "Standard IV(B) không cấm nhận thù lao thêm - nó cấm nhận mà nhà tuyển dụng không biết. Lý do rất cụ thể: một khoản thưởng gắn với hiệu suất danh mục của một khách hàng tạo động cơ ưu tiên khách đó hơn các khách khác, và tạo động cơ gánh thêm rủi ro để chạm ngưỡng thưởng. Nhà tuyển dụng là bên duy nhất nhìn được toàn bộ danh mục khách hàng của bạn, nên họ phải là bên đánh giá xung đột này. Văn bản là bắt buộc chứ không phải hình thức: khi có tranh chấp sau này, đồng ý bằng miệng không phân biệt được với việc không hề xin phép.",
+    diagram: [
+      { label: "Mọi khoản thu ngoài lương, kể cả phi tiền mặt", arrow: true },
+      { label: "Báo rõ: bản chất, số tiền, thời hạn, bên chi trả", arrow: true },
+      { label: "Nhà tuyển dụng đồng ý BẰNG VĂN BẢN", arrow: true },
+      { label: "Rồi mới được nhận" },
+    ],
+    interactiveType: "chart",
+    realWorldExample: {
+      company: "Vì sao phạm vi rộng hơn tiền",
+      description:
+        "Standard IV(B) áp dụng cho mọi thứ có thể tạo xung đột với lợi ích của nhà tuyển dụng, không chỉ tiền mặt. Một vị trí trong hội đồng quản trị của doanh nghiệp khác, một công việc tư vấn cuối tuần, cổ phần trong một công ty khởi nghiệp mà bạn cũng đang phân tích - tất cả đều nằm trong phạm vi. Câu hỏi kiểm tra nhanh là: nếu nhà tuyển dụng biết chuyện này, họ có muốn biết không? Nếu câu trả lời là có, thì nghĩa vụ báo cáo đã phát sinh.",
+    },
+    quiz: [
+      {
+        question: "Standard IV(B) cấm điều gì?",
+        options: [
+          "Nhận thù lao thêm mà nhà tuyển dụng không biết và không đồng ý",
+          "Nhận bất kỳ khoản thù lao nào ngoài lương từ nhà tuyển dụng chính",
+          "Làm thêm công việc thứ hai trong cùng lĩnh vực tài chính đầu tư",
+          "Nhận quà tặng từ khách hàng có giá trị vượt mức trần quy định",
+        ],
+        correct: 0,
+        explanation:
+          "Trọng tâm là sự minh bạch với nhà tuyển dụng, không phải cấm kiếm thêm. Nhiều thỏa thuận hoàn toàn được chấp nhận sau khi báo cáo.",
+      },
+      {
+        question: "Vì sao đồng ý bằng miệng của quản lý không đủ?",
+        options: [
+          "Vì khi có tranh chấp, nó không phân biệt được với việc không xin phép",
+          "Vì quản lý trực tiếp không có thẩm quyền phê duyệt khoản thu thêm",
+          "Vì Standard yêu cầu phải có xác nhận của bộ phận pháp chế công ty",
+          "Vì thỏa thuận miệng không có giá trị pháp lý theo luật lao động",
+        ],
+        correct: 0,
+        explanation:
+          "Yêu cầu văn bản không phải thủ tục hành chính - nó là thứ duy nhất còn lại khi trí nhớ hai bên khác nhau sau hai năm.",
+      },
+      {
+        question: "Phạm vi của 'thù lao thêm' theo Standard IV(B) gồm những gì?",
+        options: [
+          "Mọi lợi ích có thể xung đột với nhà tuyển dụng, kể cả phi tiền mặt",
+          "Chỉ các khoản tiền mặt nhận trực tiếp từ khách hàng của công ty",
+          "Chỉ những khoản có giá trị vượt một phần trăm lương năm của bạn",
+          "Chỉ các khoản phát sinh từ hoạt động trong cùng ngành tài chính",
+        ],
+        correct: 0,
+        explanation:
+          "Ghế hội đồng quản trị, cổ phần khởi nghiệp, công việc tư vấn cuối tuần - đều nằm trong phạm vi dù không có đồng tiền mặt nào đổi tay ngay.",
+      },
+      {
+        question: "Vì sao thưởng gắn với hiệu suất của một khách hàng tạo xung đột?",
+        options: [
+          "Nó tạo động cơ ưu tiên khách đó và gánh thêm rủi ro để chạm ngưỡng",
+          "Nó khiến khách hàng khác phải trả mức phí quản lý cao hơn",
+          "Nó làm hiệu suất báo cáo của toàn bộ quỹ bị tính sai lệch",
+          "Nó buộc nhà quản lý phải công bố danh mục cho khách hàng đó",
+        ],
+        correct: 0,
+        explanation:
+          "Hai xung đột cùng lúc: lệch phân bổ sự chú ý giữa các khách, và lệch khẩu vị rủi ro so với mức khách hàng đã chọn.",
+      },
+      {
+        question: "Câu hỏi kiểm tra nhanh xem có phải báo cáo hay không là gì?",
+        options: [
+          "Nếu nhà tuyển dụng biết chuyện này, họ có muốn biết không",
+          "Khoản thu này có vượt quá một phần lương tháng của bạn không",
+          "Việc này có diễn ra trong giờ làm việc chính thức hay không",
+          "Bên chi trả có phải khách hàng hiện tại của công ty hay không",
+        ],
+        correct: 0,
+        explanation:
+          "Câu hỏi này bao được cả những trường hợp không có tiền và không trong giờ làm - đúng những trường hợp hay bị bỏ qua nhất.",
+      },
+    ],
+    keyTakeaways: [
+      "Không cấm kiếm thêm - cấm kiếm thêm mà nhà tuyển dụng không biết",
+      "Phải báo rõ bản chất, số tiền, thời hạn và bên chi trả",
+      "Đồng ý phải bằng văn bản; miệng không phân biệt được với không xin phép",
+      "Phạm vi gồm cả lợi ích phi tiền mặt: ghế HĐQT, cổ phần, tư vấn cuối tuần",
+      "Kiểm tra nhanh: nếu nhà tuyển dụng biết, họ có muốn biết không",
+    ],
+    practicePrompt: {
+      question:
+        "Bạn được mời dạy một khóa cuối tuần về phân tích tài chính, có thù lao, không liên quan tới khách hàng nào của công ty. Có cần báo không?",
+      options: [
+        "Không, vì hoàn toàn không liên quan tới khách hàng của công ty",
+        "Có: đây vẫn là thù lao ngoài lương và chiếm thời gian, năng lực chuyên môn mà nhà tuyển dụng có quyền biết để tự đánh giá",
+        "Không, vì diễn ra ngoài giờ làm việc chính thức",
+        "Chỉ cần báo nếu thù lao vượt một tháng lương của bạn",
+      ],
+      correct: 1,
+      explanation:
+        "Hai phương án 'không' đều dựa trên tiêu chí mà Standard không dùng: liên quan khách hàng, và trong hay ngoài giờ. Tiêu chí thật là có tạo ra xung đột tiềm tàng hay không, và bên đánh giá điều đó là nhà tuyển dụng chứ không phải bạn. Rất có thể họ đồng ý ngay - nhưng quyết định đó phải là của họ.",
+    },
+  },
+  {
+    id: 1581,
+    slug: "cfa-ethics-standard-5b-trao-doi-voi-khach-hang",
+    title: "CFA Ethics 25: Standard V(B) - Tách sự thật khỏi ý kiến khi nói với khách hàng",
+    subtitle: "Nêu rõ quy trình, giới hạn của mô hình, và những gì đã thay đổi kể từ lần trước",
+    duration: "10 phút",
+    difficulty: "Trung bình",
+    emoji: "💬",
+    whyItMatters:
+      "Phần lớn khiếu nại của khách hàng không đến từ việc mất tiền, mà từ việc mất tiền theo cách họ không hiểu và không được cảnh báo. Standard V(B) là Standard xử lý đúng khoảng cách đó.",
+    openingQuestion:
+      "Trong báo cáo, bạn viết: 'Doanh nghiệp sẽ đạt tăng trưởng doanh thu 25% năm tới nhờ nhà máy mới đi vào hoạt động'. Vấn đề ở đâu?",
+    openingOptions: [
+      "Không có vấn đề nếu phân tích của bạn thực sự dẫn tới con số đó",
+      "Câu này trình bày một dự báo như thể là sự thật - phải nêu rõ đây là ước tính của bạn và dựa trên giả định nào",
+      "Vấn đề là con số 25% quá cụ thể nên dễ bị sai",
+      "Vấn đề là chưa nêu rõ nguồn dữ liệu về nhà máy mới",
+    ],
+    correctOption: 1,
+    explanation:
+      "Chữ 'sẽ' làm toàn bộ khác biệt. Việc nhà máy đi vào hoạt động có thể là sự thật đã công bố; con số 25% thì luôn là ý kiến, dù được xây trên mô hình cẩn thận đến đâu. Standard V(B) yêu cầu phân biệt rõ hai loại này, vì khách hàng đọc chúng theo hai cách hoàn toàn khác nhau và ra quyết định khác nhau. Yêu cầu thứ hai của Standard đi xa hơn: phải nêu quy trình và giới hạn của phân tích - mô hình dựa trên giả định gì, giả định nào nhạy nhất, và điều gì sẽ khiến kết luận đổi. Một khách hàng biết dự báo phụ thuộc vào giá đầu vào sẽ phản ứng khác hẳn khi giá đầu vào tăng vọt.",
+    diagram: [
+      { label: "Tách rõ sự thật với ý kiến của mình", arrow: true },
+      { label: "Nêu quy trình và giả định chính của phân tích", arrow: true },
+      { label: "Nêu giới hạn: điều gì làm kết luận đổi", arrow: true },
+      { label: "Báo khi quy trình hoặc giả định thay đổi" },
+    ],
+    interactiveType: "chart",
+    realWorldExample: {
+      company: "Nghĩa vụ báo khi quy trình thay đổi",
+      description:
+        "Standard V(B) không chỉ áp dụng lúc trình bày lần đầu. Nếu quy trình đầu tư thay đổi - đổi mô hình định giá, đổi tiêu chí chọn cổ phiếu, đổi mức đòn bẩy tối đa - thì khách hàng phải được báo, kể cả khi kết quả vẫn tốt. Lý do là khách hàng đã chọn bạn dựa trên một quy trình cụ thể; đổi quy trình mà không nói là thay đổi sản phẩm họ đã mua mà không hỏi họ.",
+    },
+    quiz: [
+      {
+        question: "Standard V(B) yêu cầu phân biệt rõ hai thứ nào?",
+        options: [
+          "Sự thật và ý kiến của người phân tích",
+          "Dữ liệu quá khứ và dữ liệu dự báo tương lai",
+          "Khách hàng cá nhân và khách hàng tổ chức",
+          "Phân tích cơ bản và phân tích kỹ thuật",
+        ],
+        correct: 0,
+        explanation:
+          "Khách hàng đọc một sự thật và một ý kiến theo hai cách hoàn toàn khác nhau, nên trộn lẫn chúng làm hỏng chính quyết định của họ.",
+      },
+      {
+        question: "Vì sao phải nêu giới hạn của mô hình phân tích?",
+        options: [
+          "Để khách biết điều gì sẽ khiến kết luận thay đổi",
+          "Để giảm trách nhiệm pháp lý của người phân tích khi dự báo sai",
+          "Vì quy định buộc mọi báo cáo phải có phần cảnh báo rủi ro",
+          "Để khách hàng có thể tự xây lại mô hình đó cho riêng mình",
+        ],
+        correct: 0,
+        explanation:
+          "Mục đích là giúp khách phản ứng đúng khi điều kiện đổi, không phải để người phân tích tự bảo vệ - dù nó cũng có tác dụng đó.",
+      },
+      {
+        question: "Khi quy trình đầu tư thay đổi nhưng kết quả vẫn tốt thì sao?",
+        options: [
+          "Vẫn phải báo, vì khách đã chọn dựa trên quy trình cụ thể đó",
+          "Không cần báo, vì nghĩa vụ chỉ phát sinh khi kết quả xấu đi",
+          "Chỉ cần ghi trong báo cáo thường niên tiếp theo của quỹ",
+          "Chỉ cần báo nếu mức phí quản lý cũng thay đổi theo",
+        ],
+        correct: 0,
+        explanation:
+          "Đổi quy trình mà không nói là đổi sản phẩm khách đã mua mà không hỏi họ - kết quả tốt không làm điều đó hợp lệ.",
+      },
+      {
+        question: "Viết 'doanh nghiệp sẽ tăng trưởng 25%' thay vì 'chúng tôi ước tính 25%' là gì?",
+        options: [
+          "Trình bày một ý kiến như thể là sự thật",
+          "Cách viết súc tích được chấp nhận trong báo cáo phân tích",
+          "Chỉ là vấn đề văn phong, không liên quan tới Standard nào",
+          "Vi phạm Standard I(C) về trình bày sai trình độ chuyên môn",
+        ],
+        correct: 0,
+        explanation:
+          "Một chữ thay đổi cách khách đọc cả câu, và đó chính là thứ Standard V(B) nhắm tới - không phải văn phong mà là điều người đọc tin.",
+      },
+      {
+        question: "Với khách hàng cá nhân ít kinh nghiệm, nghĩa vụ này thay đổi thế nào?",
+        options: [
+          "Không đổi về bản chất, nhưng cách diễn đạt phải phù hợp để họ hiểu được",
+          "Nhẹ hơn, vì khách không có nền tảng để hiểu chi tiết kỹ thuật",
+          "Nặng hơn, phải trình bày toàn bộ mô hình định lượng đã sử dụng",
+          "Không áp dụng, vì Standard này chỉ dành cho khách hàng tổ chức",
+        ],
+        correct: 0,
+        explanation:
+          "Truyền đạt cho người không hiểu được thì chưa gọi là đã truyền đạt. Đơn giản hóa cách nói là bắt buộc; bỏ bớt nội dung thì không.",
+      },
+    ],
+    keyTakeaways: [
+      "Tách rõ sự thật với ý kiến - khách đọc hai loại đó theo hai cách khác nhau",
+      "Nêu quy trình, giả định chính, và điều gì sẽ làm kết luận đổi",
+      "Đổi quy trình phải báo, kể cả khi kết quả vẫn tốt",
+      "Một chữ 'sẽ' thay vì 'chúng tôi ước tính' đã đủ chuyển ý kiến thành sự thật",
+      "Với khách ít kinh nghiệm: đơn giản hóa cách nói, không bỏ bớt nội dung",
+    ],
+    practicePrompt: {
+      question:
+        "Bạn dùng một mô hình định giá cho kết quả rất nhạy với giả định tăng trưởng dài hạn. Nên trình bày thế nào với khách?",
+      options: [
+        "Chỉ đưa kết quả cuối cùng để tránh làm khách rối",
+        "Nêu rõ kết quả phụ thuộc mạnh vào giả định nào, và khoảng giá trị thay đổi ra sao khi giả định đó đổi",
+        "Đưa toàn bộ bảng tính để khách tự kiểm tra",
+        "Chọn giả định thận trọng nhất rồi chỉ báo con số đó",
+      ],
+      correct: 1,
+      explanation:
+        "Ba phương án còn lại đều là cách tránh né khác nhau: giấu bớt, đổ hết sang khách, hoặc thay khách quyết định mức thận trọng. Phương án đúng chuyển đúng thứ khách cần - biết kết quả mong manh ở chỗ nào - mà không bắt họ đọc mô hình. Bảng độ nhạy là cách chuẩn để làm việc đó.",
+    },
+  },
+  {
+    id: 1582,
+    slug: "cfa-ethics-standard-7b-dung-danh-xung-cfa",
+    title: "CFA Ethics 26: Standard VII(B) - Dùng đúng danh xưng CFA, và vì sao quy tắc chặt đến vậy",
+    subtitle: "Charterholder, candidate, và những cách diễn đạt nghe vô hại nhưng vi phạm",
+    duration: "9 phút",
+    difficulty: "Dễ",
+    emoji: "🎓",
+    whyItMatters:
+      "Đây là Standard mà một candidate có thể vi phạm ngay trước khi biết Standard nào tồn tại - chỉ bằng một dòng trên hồ sơ xin việc hoặc mạng nghề nghiệp. CFA Institute xử lý nhóm vi phạm này rất nghiêm vì nó chạm trực tiếp vào giá trị của danh xưng.",
+    openingQuestion:
+      "Bạn đã thi đỗ cả ba cấp độ nhưng chưa đủ kinh nghiệm làm việc yêu cầu. Bạn được ghi gì trên hồ sơ?",
+    openingOptions: [
+      "'CFA' - vì đã hoàn thành toàn bộ ba kỳ thi",
+      "Mô tả chính xác rằng đã đỗ cả ba cấp độ và đang hoàn thiện yêu cầu kinh nghiệm, nhưng chưa được dùng danh xưng CFA",
+      "'CFA (chờ cấp)' - vì chỉ còn thiếu thủ tục hành chính",
+      "Tùy chọn, miễn là không gây hiểu nhầm cho nhà tuyển dụng",
+    ],
+    correctOption: 1,
+    explanation:
+      "Danh xưng CFA chỉ thuộc về người đã hoàn thành cả ba kỳ thi, đủ kinh nghiệm làm việc theo yêu cầu, nộp đơn và được cấp - và duy trì tư cách thành viên. Thiếu bất kỳ điều kiện nào thì không được dùng, kể cả khi phần thi đã xong hết. Các biến thể như 'CFA (chờ cấp)' hay 'CFA Level III passed' đặt cạnh tên đều bị coi là vi phạm vì chúng tạo ấn tượng sở hữu danh xưng. Cách viết được chấp nhận là mô tả trạng thái bằng câu, trong phần kinh nghiệm hoặc học vấn, chứ không phải như một hậu tố sau tên.",
+    diagram: [
+      { label: "Đỗ cả ba kỳ thi", arrow: true },
+      { label: "Đủ kinh nghiệm làm việc theo yêu cầu", arrow: true },
+      { label: "Nộp đơn, được cấp, duy trì tư cách thành viên", arrow: true },
+      { label: "Đủ cả bốn mới được dùng danh xưng CFA" },
+    ],
+    interactiveType: "chart",
+    realWorldExample: {
+      company: "Vì sao không có 'CFA Level II' như một danh hiệu",
+      description:
+        "Cách viết được chấp nhận là 'CFA Level II candidate' - và chỉ khi bạn thực sự đã đăng ký hợp lệ cho kỳ thi Level II. Không tồn tại danh hiệu 'CFA Level II' như một thứ đã đạt được, vì các cấp độ là các chặng của một chương trình chứ không phải các chứng chỉ riêng. Việc đỗ một cấp độ cũng không được diễn đạt như một bằng cấp độc lập - nó là tiến độ, không phải kết quả cuối.",
+    },
+    quiz: [
+      {
+        question: "Điều kiện nào KHÔNG bắt buộc để được dùng danh xưng CFA?",
+        options: [
+          "Làm việc tại một tổ chức đã đăng ký với CFA Institute",
+          "Hoàn thành cả ba kỳ thi của chương trình CFA",
+          "Đáp ứng yêu cầu về số năm kinh nghiệm làm việc phù hợp",
+          "Duy trì tư cách thành viên của CFA Institute còn hiệu lực",
+        ],
+        correct: 0,
+        explanation:
+          "Điều kiện gắn với cá nhân chứ không với nơi làm việc. Ba điều kiện còn lại đều bắt buộc và thiếu một là không được dùng.",
+      },
+      {
+        question: "Đỗ cả ba kỳ thi nhưng chưa đủ kinh nghiệm thì được ghi thế nào?",
+        options: [
+          "Mô tả trạng thái bằng câu, không đặt CFA như hậu tố sau tên",
+          "Ghi 'CFA' vì phần khó nhất của chương trình đã hoàn thành",
+          "Ghi 'CFA (chờ cấp)' để thể hiện rõ đang ở giai đoạn cuối",
+          "Ghi 'CFA Level III' như một chứng chỉ riêng đã đạt được",
+        ],
+        correct: 0,
+        explanation:
+          "Mọi biến thể đặt cạnh tên đều tạo ấn tượng sở hữu danh xưng, và đó chính là thứ bị cấm.",
+      },
+      {
+        question: "Cách viết nào được chấp nhận cho một người đang thi Level II?",
+        options: [
+          "'CFA Level II candidate', nếu đã đăng ký hợp lệ cho kỳ thi đó",
+          "'CFA Level I' như một chứng chỉ đã đạt được ở cấp độ một",
+          "'CFA (đang học)' đặt ngay sau tên trên hồ sơ nghề nghiệp",
+          "'Ứng viên CFA' mà không cần nêu rõ đang ở cấp độ nào",
+        ],
+        correct: 0,
+        explanation:
+          "Chữ 'candidate' là bắt buộc, và nó phải đúng sự thật - đăng ký hợp lệ chứ không phải chỉ đang có ý định thi.",
+      },
+      {
+        question: "Vì sao không tồn tại danh hiệu 'CFA Level II'?",
+        options: [
+          "Vì các cấp độ là chặng của chương trình, không phải chứng chỉ",
+          "Vì CFA Institute chỉ cấp chứng chỉ cho Level I và Level III",
+          "Vì kết quả từng cấp độ không được lưu trữ sau khi thi xong",
+          "Vì tên các cấp độ đã được đăng ký nhãn hiệu bởi bên thứ ba",
+        ],
+        correct: 0,
+        explanation:
+          "Đây là lý do mọi cách diễn đạt biến một cấp độ thành bằng cấp độc lập đều sai - nó mô tả tiến độ như thể là kết quả cuối.",
+      },
+      {
+        question: "Vì sao CFA Institute xử lý nhóm vi phạm này rất nghiêm?",
+        options: [
+          "Vì danh xưng chỉ có giá trị khi nó thuộc về người đủ điều kiện",
+          "Vì đây là nhóm vi phạm gây thiệt hại tài chính lớn nhất cho khách hàng",
+          "Vì luật pháp nhiều nước hình sự hóa việc dùng sai danh xưng nghề nghiệp",
+          "Vì đây là nhóm vi phạm duy nhất có thể phát hiện tự động bằng hệ thống",
+        ],
+        correct: 0,
+        explanation:
+          "Danh xưng là một tín hiệu chất lượng, và tín hiệu chỉ có giá trị khi không ai phát nó ra được nếu chưa đủ điều kiện.",
+      },
+    ],
+    keyTakeaways: [
+      "Bốn điều kiện: đỗ ba kỳ thi, đủ kinh nghiệm, được cấp, duy trì tư cách thành viên",
+      "Thiếu một điều kiện thì không được dùng, kể cả khi đã thi xong hết",
+      "'CFA (chờ cấp)', 'CFA Level III' đặt cạnh tên đều là vi phạm",
+      "'CFA Level II candidate' được chấp nhận nếu đã đăng ký hợp lệ",
+      "Các cấp độ là chặng của một chương trình, không phải chứng chỉ riêng",
+    ],
+    practicePrompt: {
+      question:
+        "Trên trang mạng nghề nghiệp, bạn ghi tên mình kèm hậu tố 'CFA Level II Candidate' ngay sau họ tên. Đánh giá?",
+      options: [
+        "Hợp lệ vì đã ghi rõ chữ Candidate nên không gây hiểu nhầm",
+        "Không nên: hướng dẫn của CFA Institute yêu cầu mô tả trạng thái candidate trong phần nội dung, không đặt như hậu tố sau tên",
+        "Hợp lệ nếu bạn thực sự đã đăng ký kỳ thi Level II",
+        "Vi phạm vì không tồn tại khái niệm CFA Level II Candidate",
+      ],
+      correct: 1,
+      explanation:
+        "Đây là chỗ hai điều đúng dễ bị lẫn. 'CFA Level II candidate' là cách diễn đạt hợp lệ - nên phương án cuối sai. Nhưng vị trí đặt nó cũng bị quy định: hậu tố sau tên là chỗ dành cho danh xưng đã sở hữu, nên đặt tư cách candidate ở đó tạo đúng ấn tượng mà quy tắc muốn tránh, dù từng chữ đều đúng.",
+    },
+  },
 ];
