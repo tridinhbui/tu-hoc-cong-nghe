@@ -1,6 +1,8 @@
 import { describe, expect, it } from "vitest";
 import { readFileSync } from "node:fs";
 import { isLessonInRange, TRACK_PERSONAL, TRACK_PROFESSIONAL } from "@/lib/track-stages";
+import { CFA_LEVEL_1_SUBJECTS } from "@/lib/cfa-track";
+import { FRM_SUBJECTS } from "@/lib/frm-track";
 
 /**
  * A lesson reaches the learner only through a stage: the dashboard filters
@@ -78,5 +80,37 @@ describe("track stage coverage", () => {
       }
     }
     expect(stranded).toEqual([]);
+  });
+});
+
+/**
+ * The suite above deliberately exempts `bonus` lessons, on the grounds that
+ * they are reached from case-study surfaces rather than the day-by-day path.
+ * That exemption was doing more work than it looked: eleven lessons - the
+ * DuPont, inventory-turnover and retail case studies, three M&A nâng cao
+ * lessons, the sector-specific modelling lesson - belonged to no stage AND to
+ * no subject list either. They had a page and an id and no way in.
+ *
+ * So the rule is not "every lesson is in a stage" but "every lesson is
+ * reachable from something a learner can actually open": a track stage, a CFA
+ * subject, or an FRM subject.
+ */
+describe("every lesson is reachable from some path", () => {
+  it("leaves no lesson without a stage or subject", () => {
+    const reachable = new Set<number>();
+    for (const lesson of lessons) {
+      if (stagesFor(lesson.id).length > 0) reachable.add(lesson.id);
+    }
+    for (const subject of CFA_LEVEL_1_SUBJECTS) {
+      for (const id of subject.lessonIds) reachable.add(id);
+    }
+    for (const subject of FRM_SUBJECTS) {
+      for (const id of subject.lessonIds) reachable.add(id);
+    }
+
+    const orphans = lessons
+      .filter((l) => !reachable.has(l.id))
+      .map((l) => `[${l.id}] ${l.slug}`);
+    expect(orphans, "bài học không vào được từ lộ trình nào").toEqual([]);
   });
 });

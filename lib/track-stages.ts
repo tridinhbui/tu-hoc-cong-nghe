@@ -145,11 +145,16 @@ export const TRACK_PERSONAL = {
       label: "Chặng 10",
       name: "Tâm lý học tài chính hành vi (Behavioral Finance)",
       days: [1235, 1240] as [number, number],
+      extraLessonIds: [1030],
       available: true,
       isNew: true,
       parts: [
         { name: "Thiên kiến trong đầu tư cá nhân", days: [1235, 1237] as [number, number] },
-        { name: "Tiền bạc, thời gian và xây kỷ luật tài chính", days: [1238, 1240] as [number, number] },
+        {
+          name: "Tiền bạc, thời gian và xây kỷ luật tài chính",
+          days: [1238, 1240] as [number, number],
+          extraLessonIds: [1030],
+        },
       ],
     },
   ] satisfies Stage[],
@@ -213,10 +218,14 @@ export const TRACK_PROFESSIONAL = {
       label: "Chặng 5",
       name: "Tài chính doanh nghiệp",
       days: [101, 120] as [number, number],
-      extraLessonIds: [1247, 1257],
+      extraLessonIds: [1247, 1257, 1337, 1338, 1339],
       available: true,
       parts: [
-        { name: "Cơ cấu vốn và M&A", days: [101, 110] as [number, number] },
+        {
+          name: "Cơ cấu vốn và M&A",
+          days: [101, 110] as [number, number],
+          extraLessonIds: [1337, 1338, 1339],
+        },
         {
           name: "Vận hành vốn và tài chính khởi nghiệp",
           days: [111, 120] as [number, number],
@@ -350,12 +359,17 @@ export const TRACK_PROFESSIONAL = {
       label: "Chặng 15",
       name: "Mô hình tài chính thực hành (Financial Modeling)",
       days: [1311, 1320] as [number, number],
+      extraLessonIds: [1342],
       available: true,
       isNew: true,
       parts: [
         { name: "Cấu trúc, doanh thu và mô hình 3 báo cáo", days: [1311, 1313] as [number, number] },
         { name: "Bảng hỗ trợ, nợ vay và định giá DCF", days: [1314, 1317] as [number, number] },
-        { name: "LBO, kiểm tra mô hình và project cuối chặng", days: [1318, 1320] as [number, number] },
+        {
+          name: "LBO, kiểm tra mô hình và project cuối chặng",
+          days: [1318, 1320] as [number, number],
+          extraLessonIds: [1342],
+        },
       ],
     },
     {
