@@ -623,4 +623,473 @@ export const VN_MARKET_LESSONS: Lesson[] = [
       },
     ],
   },
+  {
+    id: 1455,
+    slug: "chi-so-vn-index-va-von-hoa-chi-phoi",
+    title: "Thị trường VN, Bài 5: VN-Index nói gì và giấu gì",
+    subtitle: "Vì sao chỉ số xanh mà phần lớn danh mục vẫn đỏ",
+    duration: "10 phút",
+    difficulty: "Trung bình",
+    emoji: "📊",
+    track: "professional",
+    whyItMatters:
+      "Chỉ số là thứ đầu tiên ai cũng nhìn và là thứ dễ hiểu sai nhất. Biết nó được tính bằng cách nào giải thích được hiện tượng quen thuộc: chỉ số tăng điểm trong khi phần lớn cổ phiếu giảm - và giúp bạn chọn đúng thước đo để so sánh hiệu suất của chính mình.",
+    openingQuestion: "VN-Index tăng 1% nghĩa là gì về mặt thị trường?",
+    openingOptions: [
+      "Phần lớn cổ phiếu trên sàn đã tăng giá trong phiên hôm đó",
+      "Tổng vốn hóa của rổ tính chỉ số tăng 1%, không nói gì về số mã tăng",
+      "Mọi cổ phiếu trong rổ đều tăng đúng 1% so với giá tham chiếu",
+      "Khối lượng giao dịch toàn thị trường đã tăng 1% so với phiên trước",
+    ],
+    correctOption: 1,
+    explanation:
+      "VN-Index là chỉ số vốn hóa gia quyền: mỗi cổ phiếu đóng góp theo quy mô vốn hóa chứ không theo đầu mã. Một mã vốn hóa rất lớn tăng trần có thể kéo chỉ số xanh trong khi hàng trăm mã nhỏ cùng giảm. Đây không phải lỗi của chỉ số - nó đo giá trị thị trường, không đo tỷ lệ cổ phiếu tăng giá. Nhưng nếu bạn dùng nó để đánh giá xem hôm nay thị trường tốt hay xấu với danh mục của mình thì nó có thể trả lời sai câu hỏi bạn đang hỏi.",
+    diagram: [
+      { label: "Giá từng cổ phiếu", arrow: true },
+      { label: "Nhân với vốn hóa tương ứng", arrow: true },
+      { label: "Cộng lại thành tổng vốn hóa rổ", arrow: true },
+      { label: "So với kỳ gốc ra chỉ số" },
+    ],
+    interactiveType: "chart",
+    realWorldExample: {
+      company: "Phiên chỉ số xanh, độ rộng đỏ",
+      description:
+        "Một kịch bản lặp đi lặp lại trên thị trường Việt Nam: VN-Index đóng cửa tăng điểm, báo chí đưa tin thị trường hồi phục, nhưng số mã giảm nhiều gấp đôi số mã tăng. Nguyên nhân là một vài mã vốn hóa lớn nhất - thường thuộc nhóm ngân hàng và bất động sản - đủ sức kéo cả chỉ số một mình. Nhà đầu tư cá nhân nắm danh mục cổ phiếu vừa và nhỏ hôm đó lỗ, dù chỉ số nói ngược lại.",
+    },
+    quiz: [
+      {
+        question: "Vì sao chỉ số có thể tăng khi phần lớn cổ phiếu giảm giá?",
+        options: [
+          "Vì chỉ số tính theo vốn hóa nên vài mã lớn có thể kéo cả rổ",
+          "Vì chỉ số chỉ tính các cổ phiếu tăng giá trong phiên giao dịch",
+          "Vì chỉ số được làm mượt bằng dữ liệu của nhiều phiên trước đó",
+          "Vì cổ phiếu giảm sàn bị loại khỏi công thức tính chỉ số hôm đó",
+        ],
+        correct: 0,
+        explanation:
+          "Vốn hóa gia quyền nghĩa là một mã chiếm 10% rổ có ảnh hưởng gấp một trăm lần mã chiếm 0,1%. Chỉ số trả lời câu hỏi tổng giá trị thị trường thay đổi ra sao, không trả lời câu hỏi bao nhiêu cổ phiếu tăng giá.",
+      },
+      {
+        question: "Chỉ số độ rộng thị trường (số mã tăng so với số mã giảm) bổ sung thông tin gì?",
+        options: [
+          "Cho biết đà tăng đến từ toàn thị trường hay chỉ vài mã lớn",
+          "Cho biết khối lượng giao dịch đã tăng hay giảm so với phiên trước",
+          "Cho biết nhà đầu tư nước ngoài đang mua ròng hay bán ròng",
+          "Cho biết mức biên độ dao động áp dụng cho phiên kế tiếp",
+        ],
+        correct: 0,
+        explanation:
+          "Chỉ số và độ rộng trả lời hai câu hỏi khác nhau, nên đọc cùng lúc mới đủ. Đà tăng có độ rộng hẹp - chỉ số lên nhờ vài mã - thường kém bền hơn đà tăng mà đa số cổ phiếu cùng tham gia.",
+      },
+      {
+        question: "VN30 khác VN-Index ở điểm nào?",
+        options: [
+          "VN30 chỉ gồm 30 mã lớn và thanh khoản nhất, có giới hạn tỷ trọng",
+          "VN30 tính theo số mã tăng giảm thay vì theo vốn hóa thị trường",
+          "VN30 chỉ bao gồm cổ phiếu ngân hàng và bất động sản niêm yết",
+          "VN30 được tính một lần cuối phiên còn VN-Index tính liên tục",
+        ],
+        correct: 0,
+        explanation:
+          "Giới hạn tỷ trọng là điểm đáng chú ý: nó ngăn một mã quá lớn chi phối toàn bộ chỉ số. Đây cũng là lý do VN30 thường được dùng làm tham chiếu cho sản phẩm phái sinh và quỹ chỉ số hơn là VN-Index.",
+      },
+      {
+        question: "Nhà đầu tư nên so sánh hiệu suất danh mục với chỉ số nào?",
+        options: [
+          "Chỉ số có cơ cấu gần nhất với danh mục mình đang nắm giữ",
+          "Luôn dùng VN-Index vì đó là chỉ số đại diện toàn thị trường",
+          "Chỉ số có mức tăng thấp nhất để dễ đạt kết quả vượt trội hơn",
+          "Không cần so sánh vì mỗi danh mục có mục tiêu riêng biệt",
+        ],
+        correct: 0,
+        explanation:
+          "So một danh mục toàn cổ phiếu vừa và nhỏ với VN-Index là so hai thứ khác nhau. Chọn tham chiếu sai khiến bạn tự khen hoặc tự trách nhầm, và che mất câu hỏi thật là danh mục có xứng đáng với rủi ro đã chịu hay không.",
+      },
+      {
+        question: "Vì sao một cổ phiếu mới niêm yết vốn hóa lớn có thể làm chỉ số nhảy bất thường?",
+        options: [
+          "Vì nó được cộng vào rổ với vốn hóa lớn dù chưa có lịch sử giá",
+          "Vì cổ phiếu mới niêm yết được áp biên độ rộng hơn trong phiên đầu",
+          "Vì nhà đầu tư nước ngoài luôn mua mạnh cổ phiếu mới lên sàn",
+          "Vì chỉ số phải được tính lại từ kỳ gốc mỗi khi có mã mới",
+        ],
+        correct: 0,
+        explanation:
+          "Cách xử lý mã mới vào rổ là một chi tiết kỹ thuật có ảnh hưởng thật tới con số chỉ số. Đây là lý do khi so sánh chỉ số qua các giai đoạn dài, cần biết rổ tính đã thay đổi thế nào chứ không chỉ nhìn đường biểu diễn.",
+      },
+    ],
+    keyTakeaways: [
+      "VN-Index là chỉ số vốn hóa gia quyền: vài mã lớn nhất có thể quyết định hướng của cả chỉ số",
+      "Chỉ số đo giá trị thị trường, độ rộng đo mức độ tham gia - hai câu hỏi khác nhau",
+      "VN30 giới hạn tỷ trọng từng mã nên ít bị một cổ phiếu chi phối hơn",
+      "Chọn sai chỉ số tham chiếu sẽ đánh giá sai hiệu suất của chính danh mục mình",
+    ],
+    practicePrompt: {
+      question:
+        "Danh mục của bạn gồm toàn cổ phiếu vốn hóa vừa. VN-Index tăng 8% trong năm còn danh mục bạn tăng 5%. Kết luận nào hợp lý nhất?",
+      options: [
+        "Danh mục kém hiệu quả và cần chuyển sang mua cổ phiếu vốn hóa lớn",
+        "Chưa kết luận được - cần so với chỉ số của nhóm vốn hóa vừa trước đã",
+        "Danh mục tốt vì vẫn tăng trưởng dương trong năm vừa qua",
+        "VN-Index đã bị thổi phồng nên con số 8% không đáng tin cậy",
+      ],
+      correct: 1,
+      explanation:
+        "Nếu nhóm vốn hóa vừa chỉ tăng 2% trong năm đó thì 5% là kết quả vượt trội chứ không phải thua kém. So sai tham chiếu dẫn tới quyết định sai: bán đúng thứ đang làm tốt để mua thứ vừa tăng mạnh.",
+    },
+    summary: {
+      keyIdea: "Chỉ số trả lời một câu hỏi cụ thể, và thường không phải câu hỏi bạn đang hỏi",
+      commonMistake: "Dùng VN-Index làm thước đo cho mọi danh mục bất kể cơ cấu",
+      action: "Tra tỷ trọng năm mã lớn nhất trong VN-Index và tính xem chúng chiếm bao nhiêu phần trăm chỉ số.",
+    },
+    application: {
+      title: "Đọc một phiên cho đúng",
+      message:
+        "Chỉ số hôm nay tăng nhờ bao nhiêu mã? Số mã tăng so với số mã giảm ra sao? Và danh mục của tôi giống rổ nào hơn - nhóm vốn hóa lớn hay nhóm vừa và nhỏ?",
+      secondary: "Nhiều nền tảng dữ liệu công bố sẵn số mã tăng, giảm và đóng góp điểm của từng cổ phiếu vào chỉ số.",
+    },
+    sections: [
+      {
+        type: "lead",
+        text: "Chỉ số là con số được trích dẫn nhiều nhất và bị hiểu sai nhiều nhất trên thị trường. Nó không phải nhiệt kế đo tâm trạng nhà đầu tư, cũng không phải trung bình của các cổ phiếu - nó là tổng giá trị của một rổ cụ thể, tính theo một công thức cụ thể.",
+      },
+      {
+        type: "conceptTable",
+        title: "Ba cách một chỉ số có thể được tính",
+        subtitle: "Công thức quyết định chỉ số phản ánh điều gì",
+        concepts: [
+          { vi: "Vốn hóa gia quyền", en: "Market-cap weighted", def: "Mỗi mã đóng góp theo quy mô vốn hóa. VN-Index thuộc loại này, nên vài mã lớn nhất có ảnh hưởng áp đảo." },
+          { vi: "Giá gia quyền", en: "Price weighted", def: "Mỗi mã đóng góp theo mức giá tuyệt đối, bất kể quy mô doanh nghiệp. Dow Jones là ví dụ kinh điển và cũng là lý do nó bị phê phán." },
+          { vi: "Bình quân đều", en: "Equal weighted", def: "Mỗi mã đóng góp như nhau. Phản ánh cổ phiếu trung bình sát hơn, nhưng đòi hỏi tái cân bằng liên tục nên ít dùng làm chỉ số chính." },
+        ],
+      },
+      {
+        type: "callout",
+        label: "Độ rộng là phần chỉ số không nói",
+        text: "Một phiên chỉ số tăng 1,5% với 120 mã tăng và 280 mã giảm kể một câu chuyện hoàn toàn khác so với phiên tăng 1,5% với 300 mã tăng. Cái đầu là vài trụ kéo, cái sau là cả thị trường đi lên. Chỉ nhìn con số chỉ số thì hai phiên đó trông giống hệt nhau.",
+      },
+      {
+        type: "closing",
+        lines: [
+          "Chỉ số là một thước đo, không phải toàn bộ sự thật về một phiên.",
+          "Bài sau nói về cơ chế khuếch đại cả hai chiều trên thị trường này: giao dịch ký quỹ.",
+        ],
+      },
+    ],
+  },
+  {
+    id: 1456,
+    slug: "giao-dich-ky-quy-va-call-margin",
+    title: "Thị trường VN, Bài 6: Ký quỹ và vòng xoáy call margin",
+    subtitle: "Cơ chế biến một phiên giảm thành nhiều phiên sàn liên tiếp",
+    duration: "11 phút",
+    difficulty: "Khó",
+    emoji: "⚠️",
+    track: "professional",
+    whyItMatters:
+      "Phần lớn các đợt giảm sâu trên thị trường Việt Nam đều có cùng một cơ chế khuếch đại phía sau. Hiểu nó giúp bạn đọc được vì sao giá rơi nhanh hơn tin xấu, và vì sao đáy thường xuất hiện sau khi lực bán cưỡng bức cạn chứ không phải khi tin tốt trở lại.",
+    openingQuestion: "Giao dịch ký quỹ làm gì với rủi ro của nhà đầu tư?",
+    openingOptions: [
+      "Giảm rủi ro vì công ty chứng khoán cùng chịu một phần khoản lỗ",
+      "Khuếch đại cả lãi lẫn lỗ, và thêm rủi ro bị bán cưỡng bức",
+      "Không đổi rủi ro, chỉ giúp mua được nhiều cổ phiếu hơn",
+      "Chỉ tăng rủi ro khi nhà đầu tư vay quá tỷ lệ cho phép",
+    ],
+    correctOption: 1,
+    explanation:
+      "Ký quỹ là vay tiền công ty chứng khoán để mua thêm cổ phiếu, lấy chính cổ phiếu làm tài sản bảo đảm. Nó nhân đôi hoặc hơn cả lãi lẫn lỗ - đó là phần ai cũng biết. Phần nguy hiểm hơn là rủi ro thứ hai mà mua bằng tiền tự có không hề có: khi giá giảm tới ngưỡng, bạn bị buộc bán ở đúng mức giá tệ nhất, không phải lúc bạn chọn. Bạn mất quyền quyết định thời điểm - thứ quý nhất của một nhà đầu tư dài hạn.",
+    diagram: [
+      { label: "Giá cổ phiếu giảm", arrow: true },
+      { label: "Tỷ lệ ký quỹ chạm ngưỡng", arrow: true },
+      { label: "Call margin: nộp thêm tiền hoặc bị bán", arrow: true },
+      { label: "Bán cưỡng bức đẩy giá giảm tiếp" },
+    ],
+    interactiveType: "risk",
+    realWorldExample: {
+      company: "Chuỗi phiên sàn liên tiếp",
+      description:
+        "Kịch bản này lặp lại ở mọi đợt giảm sâu: tin xấu làm giá rơi, nhóm dùng ký quỹ chạm ngưỡng và bị bán giải chấp, lực bán cưỡng bức đẩy giá xuống tiếp, kéo thêm nhóm ký quỹ khác vào ngưỡng. Vòng lặp tự nuôi nhau này không cần thêm tin xấu nào để tiếp tục - nó chỉ dừng khi lượng ký quỹ đã bị xả hết. Biên độ càng làm tình hình khó hơn vì cổ phiếu sàn không có bên mua, lệnh giải chấp không khớp được và bị dồn sang phiên sau.",
+    },
+    quiz: [
+      {
+        question: "Call margin xảy ra khi nào?",
+        options: [
+          "Khi tỷ lệ tài sản ròng trên tổng tài sản rơi xuống dưới ngưỡng duy trì",
+          "Khi nhà đầu tư muốn tăng thêm hạn mức vay ký quỹ đang có",
+          "Khi cổ phiếu trong danh mục bị tạm ngừng giao dịch trên sàn",
+          "Khi công ty chứng khoán thay đổi lãi suất cho vay ký quỹ",
+        ],
+        correct: 0,
+        explanation:
+          "Giá giảm làm giá trị tài sản bảo đảm co lại trong khi khoản vay giữ nguyên, nên tỷ lệ an toàn tụt xuống. Chạm ngưỡng thì phải nộp thêm tiền hoặc giảm dư nợ - và nếu không kịp, công ty chứng khoán bán thay bạn.",
+      },
+      {
+        question: "Vì sao bán giải chấp thường xảy ra ở đúng mức giá xấu nhất?",
+        options: [
+          "Vì nó bị kích hoạt bởi chính việc giá đã giảm sâu trước đó",
+          "Vì công ty chứng khoán cố tình bán ở giá thấp để thu phí cao hơn",
+          "Vì lệnh giải chấp bắt buộc phải đặt ở mức giá sàn của phiên",
+          "Vì quy định yêu cầu bán toàn bộ danh mục trong một phiên duy nhất",
+        ],
+        correct: 0,
+        explanation:
+          "Đây là điều làm ký quỹ khác hẳn việc tự dùng đòn bẩy có kỷ luật: thời điểm bán không do bạn chọn mà do mức giá quyết định. Cơ chế đảm bảo bạn luôn bán sau khi giá đã rơi, không bao giờ trước đó.",
+      },
+      {
+        question: "Nhà đầu tư mua 100 triệu tiền mặt và vay thêm 100 triệu. Cổ phiếu giảm 30%. Vốn tự có còn bao nhiêu?",
+        options: [
+          "40 triệu (= 200 × 0,7 − 100 nợ, tức mất 60%)",
+          "70 triệu (= 100 × 0,7, giảm đúng theo mức giá)",
+          "140 triệu (= 200 × 0,7, chưa trừ khoản vay)",
+          "100 triệu, vì khoản vay đã bù phần giảm giá",
+        ],
+        correct: 0,
+        explanation:
+          "Tài sản còn 140 triệu, trừ nợ 100 triệu còn 40 triệu vốn tự có. Giá giảm 30% nhưng vốn mất 60% - đòn bẩy hai lần nhân đôi mức thiệt hại, và đó là trước khi tính lãi vay.",
+      },
+      {
+        question: "Vì sao đáy thị trường thường xuất hiện khi tin tức vẫn còn rất xấu?",
+        options: [
+          "Vì lực bán cưỡng bức cạn trước khi tin tức chuyển biến tích cực",
+          "Vì cơ quan quản lý can thiệp trực tiếp để chặn đà giảm của thị trường",
+          "Vì nhà đầu tư nước ngoài luôn mua vào khi tin tức xấu nhất",
+          "Vì biên độ dao động tự động thu hẹp khi thị trường giảm quá sâu",
+        ],
+        correct: 0,
+        explanation:
+          "Bán giải chấp là lực bán không phụ thuộc vào việc người bán nghĩ gì về giá trị - họ buộc phải bán. Khi lượng ký quỹ đã bị xả hết, nguồn cung cưỡng bức biến mất và giá có thể ổn định lại dù chưa có tin tốt nào.",
+      },
+      {
+        question: "Cách quản trị rủi ro ký quỹ hợp lý nhất là gì?",
+        options: [
+          "Tính trước mức giá gây call margin và giữ khoảng đệm tới đó",
+          "Vay tối đa hạn mức để tận dụng hết đòn bẩy được cấp",
+          "Chỉ dùng ký quỹ với cổ phiếu vốn hóa lớn vì chúng không giảm sàn",
+          "Nộp thêm tiền mỗi khi bị call margin để giữ nguyên vị thế",
+        ],
+        correct: 0,
+        explanation:
+          "Biết trước giá nào thì bị gọi ký quỹ biến một cú sốc thành một con số đã tính. Nộp thêm tiền để giữ vị thế đang lỗ là cách nhanh nhất biến một khoản lỗ chịu được thành khoản lỗ không chịu nổi.",
+      },
+    ],
+    keyTakeaways: [
+      "Ký quỹ khuếch đại lãi lỗ, nhưng rủi ro thật là mất quyền chọn thời điểm bán",
+      "Bán giải chấp luôn xảy ra sau khi giá đã giảm, nên nó bán ở mức giá xấu theo thiết kế",
+      "Lực bán cưỡng bức tự nuôi nhau và không cần thêm tin xấu để tiếp tục",
+      "Quản trị ký quỹ nghĩa là tính trước mức giá gây call margin, không phải hy vọng không tới đó",
+    ],
+    practicePrompt: {
+      question:
+        "Bạn dùng ký quỹ và cổ phiếu giảm liên tiếp ba phiên sàn, không bán ra được vì không có bên mua. Vấn đề cốt lõi là gì?",
+      options: [
+        "Công ty chứng khoán đã cấp hạn mức ký quỹ cao hơn quy định cho phép",
+        "Nghĩa vụ trả nợ cố định trong khi tài sản bảo đảm vừa mất giá vừa mất thanh khoản",
+        "Biên độ dao động khiến bạn không được phép đặt lệnh bán trong ba phiên đó",
+        "Lãi suất vay ký quỹ tăng lên khi thị trường biến động mạnh hơn bình thường",
+      ],
+      correct: 1,
+      explanation:
+        "Hai rủi ro cộng hưởng đúng lúc: giá trị tài sản bảo đảm co lại và khả năng bán nó cũng biến mất, trong khi khoản vay không thay đổi một đồng. Đây là lý do quy mô ký quỹ nên được quyết định dựa trên thanh khoản của cổ phiếu, không chỉ dựa trên hạn mức được cấp.",
+    },
+    summary: {
+      keyIdea: "Đòn bẩy không chỉ nhân đôi khoản lỗ, nó còn tước mất quyền quyết định thời điểm",
+      formula: "Vốn tự có còn lại = Giá trị danh mục sau giảm − Dư nợ ký quỹ",
+      commonMistake: "Coi hạn mức ký quỹ được cấp là mức nên dùng",
+      action: "Tính mức giá làm bạn bị call margin ở vị thế hiện tại, rồi so với biên độ giảm của cổ phiếu đó trong ba năm qua.",
+    },
+    application: {
+      title: "Ba câu trước khi vay ký quỹ",
+      message:
+        "Giá giảm bao nhiêu phần trăm thì tôi bị gọi ký quỹ? Cổ phiếu này đã từng giảm sâu hơn mức đó chưa? Và nếu bị gọi đúng lúc tôi không có tiền mặt, chuyện gì xảy ra?",
+      secondary: "Một cổ phiếu từng giảm 50% trong quá khứ hoàn toàn có thể làm lại điều đó.",
+    },
+    sections: [
+      {
+        type: "lead",
+        text: "Ký quỹ được giới thiệu như một công cụ tăng hiệu quả sử dụng vốn, và về mặt số học thì đúng như vậy. Nhưng nó thêm vào danh mục một rủi ro hoàn toàn mới, không có trong bất kỳ mô hình đầu tư nào: khả năng bạn bị buộc bán ở thời điểm tệ nhất, bất kể bạn nghĩ gì về giá trị doanh nghiệp.",
+      },
+      {
+        type: "formula",
+        title: "Đòn bẩy nhân mức thiệt hại lên bao nhiêu",
+        equation: "% mất trên vốn tự có = % giá giảm × (Tổng tài sản ÷ Vốn tự có)",
+        variables: [
+          { symbol: "Tổng tài sản", name: "Giá trị danh mục", description: "Vốn tự có cộng khoản vay ký quỹ" },
+          { symbol: "Vốn tự có", name: "Phần tiền thật của bạn", description: "Phần còn lại sau khi trừ hết dư nợ" },
+        ],
+        example: {
+          title: "Vốn 100 triệu, vay thêm 100 triệu, cổ phiếu giảm 30%",
+          calculation: "Đòn bẩy = 200 ÷ 100 = 2 lần · Mất trên vốn = 30% × 2 = 60%",
+          result: "Vốn tự có còn 40 triệu",
+          explanation: "Và đó là chưa tính lãi vay. Giá cần tăng lại 150% từ đáy để vốn tự có về mốc cũ - trong khi cổ phiếu chỉ cần tăng 43% là về giá ban đầu.",
+        },
+      },
+      {
+        type: "callout",
+        label: "Vì sao vòng xoáy tự nuôi nhau",
+        text: "Bán giải chấp không phải quyết định đầu tư, nó là nghĩa vụ hợp đồng. Nhóm bị bán đẩy giá xuống, mức giá mới kéo nhóm tiếp theo chạm ngưỡng, và cứ thế. Không cần thêm tin xấu nào cho vòng lặp này tiếp diễn - điều đó giải thích vì sao mức giảm thường vượt xa quy mô của tin tức ban đầu.",
+      },
+      {
+        type: "closing",
+        lines: [
+          "Đòn bẩy đổi khả năng chờ đợi lấy khả năng khuếch đại - và khả năng chờ đợi mới là lợi thế lớn nhất của nhà đầu tư cá nhân.",
+          "Bài sau nói về hướng ngược lại: các công cụ giúp nhà đầu tư cá nhân đa dạng hóa mà không cần vốn lớn.",
+        ],
+      },
+    ],
+  },
+  {
+    id: 1457,
+    slug: "quy-mo-etf-noi-va-chung-chi-quy",
+    title: "Thị trường VN, Bài 7: Quỹ mở, ETF nội và chứng chỉ quỹ",
+    subtitle: "Cách tiếp cận đa dạng hóa khi vốn còn nhỏ",
+    duration: "10 phút",
+    difficulty: "Trung bình",
+    emoji: "🧺",
+    track: "professional",
+    whyItMatters:
+      "Đa dạng hóa là bữa trưa miễn phí duy nhất trong đầu tư, nhưng tự mua ba mươi mã cổ phiếu với vài chục triệu đồng thì phí và công sức ăn hết phần lợi ích. Quỹ là cách giải bài toán đó - nếu chọn đúng loại và đọc được phí.",
+    openingQuestion: "Vì sao nhà đầu tư vốn nhỏ khó tự đa dạng hóa?",
+    openingOptions: [
+      "Vì quy định giới hạn số mã cổ phiếu một cá nhân được nắm giữ",
+      "Vì chi phí giao dịch và công theo dõi trên mỗi mã gần như cố định",
+      "Vì cổ phiếu vốn hóa lớn chỉ bán cho nhà đầu tư tổ chức",
+      "Vì cần tối thiểu ba mươi mã mới được mở tài khoản chứng khoán",
+    ],
+    correctOption: 1,
+    explanation:
+      "Chia mười triệu đồng cho ba mươi mã cho ra những vị thế quá nhỏ để phí giao dịch không ăn mòn, và ba mươi doanh nghiệp là quá nhiều để một người theo dõi nghiêm túc. Quỹ giải quyết cả hai: gộp vốn của nhiều người để đạt quy mô, và tập trung việc theo dõi vào một đội ngũ. Cái giá là phí quản lý hằng năm - và với một quỹ chỉ số, phí đó chính là thứ quyết định phần lớn chênh lệch hiệu suất giữa các lựa chọn.",
+    diagram: [
+      { label: "Vốn nhỏ của nhiều nhà đầu tư", arrow: true },
+      { label: "Gộp lại thành quỹ quy mô lớn", arrow: true },
+      { label: "Mua rổ tài sản đa dạng", arrow: true },
+      { label: "Mỗi người sở hữu một phần của cả rổ" },
+    ],
+    interactiveType: "process",
+    realWorldExample: {
+      company: "Quỹ chỉ số so với quỹ chủ động",
+      description:
+        "Hai quỹ cùng đầu tư cổ phiếu Việt Nam, một bám chỉ số với phí thấp, một chủ động chọn mã với phí cao hơn đáng kể. Chênh lệch phí mỗi năm nghe nhỏ, nhưng nó là khoản trừ chắc chắn trong khi phần vượt trội chỉ là khả năng. Qua hai mươi năm, chênh lệch phí cộng dồn có thể lấy đi một phần đáng kể tài sản cuối cùng - và dữ liệu quốc tế cho thấy phần lớn quỹ chủ động không bù lại được khoản đó.",
+    },
+    quiz: [
+      {
+        question: "Quỹ mở và ETF khác nhau chủ yếu ở điểm nào?",
+        options: [
+          "ETF giao dịch trên sàn như cổ phiếu, quỹ mở khớp theo NAV cuối ngày",
+          "ETF chỉ dành cho nhà đầu tư tổ chức còn quỹ mở cho cá nhân",
+          "Quỹ mở luôn có phí thấp hơn ETF do không phải niêm yết",
+          "ETF bắt buộc nắm giữ tối thiểu một năm mới được bán ra",
+        ],
+        correct: 0,
+        explanation:
+          "Cơ chế giao dịch quyết định trải nghiệm thực tế: ETF mua bán trong phiên nên linh hoạt hơn, nhưng cũng dễ dẫn tới giao dịch quá nhiều. Quỹ mở khớp một giá mỗi ngày - bất tiện hơn, và với nhiều người thì đó lại là điều tốt.",
+      },
+      {
+        question: "Vì sao phí quản lý quan trọng hơn với quỹ chỉ số so với quỹ chủ động?",
+        options: [
+          "Vì hai quỹ chỉ số cùng bám một chỉ số thì phí là khác biệt chính",
+          "Vì quỹ chỉ số không được phép thu phí hiệu suất theo quy định",
+          "Vì phí của quỹ chỉ số được tính trên lợi nhuận thay vì trên tài sản",
+          "Vì quỹ chỉ số có chi phí giao dịch cao hơn quỹ chủ động nhiều",
+        ],
+        correct: 0,
+        explanation:
+          "Hai quỹ cùng bám VN30 sẽ cho danh mục gần như giống hệt nhau, nên thứ duy nhất bạn kiểm soát được khi chọn là phí. Với quỹ chủ động, phí cao có thể được biện minh bằng kết quả - vấn đề là phần lớn trường hợp thì không.",
+      },
+      {
+        question: "Quỹ 100 tỷ, phí quản lý 2%/năm, danh mục tăng 10%. Nhà đầu tư nhận bao nhiêu?",
+        options: [
+          "Khoảng 8% (= 10% lợi nhuận − 2% phí quản lý)",
+          "Đúng 10%, vì phí đã được trừ vào tài sản của quỹ",
+          "Khoảng 12% (= 10% + 2%, phí được hoàn lại cuối năm)",
+          "Khoảng 5%, vì phí được tính hai lần trong năm",
+        ],
+        correct: 0,
+        explanation:
+          "Phí quản lý trừ thẳng vào giá trị tài sản ròng nên nhà đầu tư nhận phần còn lại. Điểm đáng chú ý là phí thu trên tài sản chứ không trên lợi nhuận - năm quỹ lỗ, phí vẫn được thu đầy đủ.",
+      },
+      {
+        question: "Rủi ro riêng của ETF trên thị trường thanh khoản thấp là gì?",
+        options: [
+          "Giá giao dịch có thể lệch khỏi giá trị tài sản ròng của quỹ",
+          "Quỹ bị buộc giải thể khi thanh khoản xuống dưới ngưỡng quy định",
+          "Nhà đầu tư không được phép bán trong giai đoạn thị trường giảm",
+          "Phí quản lý tự động tăng lên khi thanh khoản thị trường giảm",
+        ],
+        correct: 0,
+        explanation:
+          "Cơ chế giữ giá ETF bám sát giá trị thật phụ thuộc vào bên tạo lập thị trường mua bán để hưởng chênh lệch. Khi tài sản cơ sở kém thanh khoản, cơ chế đó hoạt động yếu đi và khoảng lệch có thể rộng ra đúng lúc thị trường căng thẳng.",
+      },
+      {
+        question: "Chứng chỉ quỹ khác cổ phiếu ở điểm cốt lõi nào?",
+        options: [
+          "Nó đại diện cho một phần của rổ tài sản, không phải một doanh nghiệp",
+          "Nó không được mua bán tự do trên thị trường thứ cấp",
+          "Nó luôn được bảo đảm hoàn vốn gốc khi đáo hạn quỹ",
+          "Nó cho phép nhà đầu tư biểu quyết tại đại hội của các doanh nghiệp",
+        ],
+        correct: 0,
+        explanation:
+          "Mua một cổ phiếu là đặt cược vào một doanh nghiệp; mua chứng chỉ quỹ là mua một lát của nhiều doanh nghiệp cùng lúc. Đây chính là lý do quỹ là cách đa dạng hóa hiệu quả nhất khi vốn còn nhỏ.",
+      },
+    ],
+    keyTakeaways: [
+      "Quỹ giải bài toán quy mô: gộp vốn để đạt mức đa dạng hóa mà cá nhân khó tự làm",
+      "ETF giao dịch trong phiên, quỹ mở khớp một giá mỗi ngày - khác biệt về trải nghiệm chứ không về bản chất",
+      "Với quỹ chỉ số, phí là biến số quan trọng nhất vì danh mục gần như giống nhau",
+      "Phí quản lý thu trên tài sản, nên nó được trừ đều đặn cả những năm quỹ thua lỗ",
+    ],
+    practicePrompt: {
+      question:
+        "Hai quỹ cùng bám một chỉ số, một quỹ phí 0,5%/năm và một quỹ phí 1,8%/năm. Sau hai mươi năm, khác biệt ra sao?",
+      options: [
+        "Không đáng kể vì cả hai đều bám cùng một chỉ số tham chiếu",
+        "Chênh lệch phí cộng dồn lấy đi một phần đáng kể tài sản cuối cùng",
+        "Quỹ phí cao hơn sẽ bù lại bằng kết quả tốt hơn nhờ quản lý chặt hơn",
+        "Chỉ khác nhau trong năm đầu, sau đó hai quỹ hội tụ về cùng kết quả",
+      ],
+      correct: 1,
+      explanation:
+        "Chênh 1,3 điểm phần trăm mỗi năm nghe rất nhỏ, nhưng compounding khuếch đại phí đúng như cách nó khuếch đại lãi. Đây là biến số hiếm hoi trong đầu tư mà bạn kiểm soát được hoàn toàn trước khi bỏ tiền vào.",
+    },
+    summary: {
+      keyIdea: "Quỹ mua cho bạn sự đa dạng hóa; phí là cái giá, và nó là phần duy nhất chắc chắn",
+      commonMistake: "So sánh quỹ bằng hiệu suất năm ngoái thay vì bằng phí và cơ cấu danh mục",
+      action: "Tra tỷ lệ chi phí toàn phần của các quỹ bạn đang cân nhắc và so sánh trực tiếp với nhau.",
+    },
+    application: {
+      title: "Bốn câu khi chọn quỹ",
+      message:
+        "Quỹ này bám chỉ số nào hay chọn mã chủ động? Tỷ lệ chi phí toàn phần là bao nhiêu? Danh mục thực tế có giống điều quỹ tự mô tả không? Và tôi có mua được, bán được khi cần không?",
+      secondary: "Báo cáo định kỳ của quỹ công bố danh mục nắm giữ - đó là cách kiểm chứng một quỹ chủ động có thực sự chủ động hay không.",
+    },
+    sections: [
+      {
+        type: "lead",
+        text: "Toàn bộ lý thuyết danh mục giả định bạn nắm được nhiều tài sản cùng lúc. Với vài chục triệu đồng, tự làm điều đó bằng cổ phiếu riêng lẻ là bất khả thi về mặt chi phí. Quỹ tồn tại chính xác để lấp khoảng cách này.",
+      },
+      {
+        type: "comparison",
+        left: {
+          label: "Quỹ chỉ số",
+          text: "Bám một rổ có sẵn, không cần đội nghiên cứu chọn mã, nên phí thấp. Kết quả gần như chắc chắn xấp xỉ chỉ số trừ đi phí - nhàm chán và dự đoán được.",
+        },
+        right: {
+          label: "Quỹ chủ động",
+          text: "Chọn mã với mục tiêu vượt chỉ số, phí cao hơn để trả cho đội ngũ. Có khả năng vượt trội, và cũng có khả năng thua chỉ số sau khi trừ phí - dữ liệu dài hạn nghiêng về vế sau.",
+        },
+      },
+      {
+        type: "callout",
+        label: "Đọc phí cho đúng",
+        text: "Phí quản lý công bố thường không phải toàn bộ chi phí. Còn phí phát hành, phí mua lại nếu bán sớm, và chi phí giao dịch bên trong quỹ. Con số cần so sánh là tỷ lệ chi phí toàn phần, và nó thường nằm trong bản cáo bạch chứ không nằm trên trang quảng cáo.",
+      },
+      {
+        type: "closing",
+        lines: [
+          "Đa dạng hóa không đòi hỏi vốn lớn, chỉ đòi hỏi chọn đúng công cụ và đọc được phí.",
+          "Đây cũng là điểm khép lại chặng: thị trường Việt Nam có luật chơi riêng, nhưng nguyên tắc đầu tư thì không đổi.",
+        ],
+      },
+    ],
+  },
 ];

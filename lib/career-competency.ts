@@ -66,7 +66,7 @@ export const SKILL_DOMAINS: SkillDomain[] = [
       1101, 1244, 1265, 1266,
       // Chặng 24 (VAS/IFRS, thuế doanh nghiệp, thuế hoãn lại), đọc BCTC ngân
       // hàng, và khung báo cáo ESG - đều là đọc và lập báo cáo.
-      1014, 1327, 1401, ...range(1441, 1445),
+      1014, 1327, 1401, ...range(1441, 1448),
       // 199/200 là hai bài tổng ôn khép lại track: đọc báo cáo rồi tự phân
       // tích trọn vẹn một doanh nghiệp.
       199, 200,
@@ -128,7 +128,7 @@ export const SKILL_DOMAINS: SkillDomain[] = [
     lessonIds: [
       ...range(161, 180), ...range(201, 220), 1032, 1215, 1216, 1221,
       ...range(1229, 1231), ...range(1235, 1242), 1245, 1250, 1251, 1252, 1287, 1288, 1031,
-      ...range(1451, 1454), ...range(1471, 1474), 805, 1025,
+      ...range(1451, 1457), ...range(1471, 1474), 805, 1025,
     ],
   },
   {

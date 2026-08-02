@@ -554,23 +554,25 @@ export const TRACK_PROFESSIONAL = {
       // của track cá nhân - không bài nào về thuế doanh nghiệp.
       label: "Chặng 24",
       name: "Chuẩn mực kế toán và thuế doanh nghiệp Việt Nam",
-      days: [1441, 1445] as [number, number],
+      days: [1441, 1448] as [number, number],
       available: true,
       isNew: true,
       parts: [
         { name: "VAS, IFRS và chuyển đổi chuẩn mực", days: [1441, 1442] as [number, number] },
         { name: "Thuế doanh nghiệp và thuế hoãn lại", days: [1443, 1445] as [number, number] },
+        { name: "Chi phí được trừ, ưu đãi và thanh tra thuế", days: [1446, 1448] as [number, number] },
       ],
     },
     {
       label: "Chặng 25",
       name: "Thị trường chứng khoán Việt Nam",
-      days: [1451, 1454] as [number, number],
+      days: [1451, 1457] as [number, number],
       available: true,
       isNew: true,
       parts: [
         { name: "Cơ chế giao dịch và dòng vốn ngoại", days: [1451, 1452] as [number, number] },
         { name: "Trái phiếu doanh nghiệp và quản trị công ty", days: [1453, 1454] as [number, number] },
+        { name: "Chỉ số, đòn bẩy ký quỹ và quỹ đầu tư", days: [1455, 1457] as [number, number] },
       ],
     },
     {

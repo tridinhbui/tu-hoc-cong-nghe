@@ -792,4 +792,469 @@ export const VN_STANDARDS_TAX_LESSONS: Lesson[] = [
       },
     ],
   },
+  {
+    id: 1446,
+    slug: "chi-phi-duoc-tru-va-khong-duoc-tru",
+    title: "Chuẩn mực & Thuế, Bài 6: Chi phí được trừ và không được trừ",
+    subtitle: "Vì sao lợi nhuận kế toán và lợi nhuận tính thuế không bao giờ bằng nhau",
+    duration: "10 phút",
+    difficulty: "Trung bình",
+    emoji: "🧾",
+    track: "professional",
+    whyItMatters:
+      "Đọc một báo cáo tài chính mà không biết vì sao thuế phải nộp không khớp với lợi nhuận nhân thuế suất là bỏ sót một trong những dòng dễ gây hiểu lầm nhất. Khoảng cách đó không phải lỗi kế toán - nó là hai hệ thống quy tắc khác nhau đo cùng một doanh nghiệp.",
+    openingQuestion: "Vì sao lợi nhuận tính thuế thường khác lợi nhuận kế toán?",
+    openingOptions: [
+      "Vì kế toán và cơ quan thuế dùng hai kỳ báo cáo khác nhau trong năm",
+      "Vì luật thuế loại một số chi phí mà kế toán vẫn ghi nhận bình thường",
+      "Vì doanh nghiệp được chọn con số nào có lợi hơn để kê khai",
+      "Vì lợi nhuận kế toán luôn được làm tròn theo quy định công bố",
+    ],
+    correctOption: 1,
+    explanation:
+      "Kế toán đo hiệu quả kinh doanh và ghi nhận mọi chi phí thực sự phát sinh. Luật thuế đo cơ sở tính thuế và chỉ chấp nhận những chi phí đáp ứng điều kiện của nó - có hóa đơn chứng từ hợp lệ, phục vụ hoạt động sản xuất kinh doanh, và không vượt các mức khống chế. Chi phí bị loại không biến mất khỏi báo cáo tài chính; nó chỉ bị cộng ngược lại khi tính thu nhập chịu thuế. Đây là lý do thuế thực nộp gần như không bao giờ bằng lợi nhuận trước thuế nhân thuế suất.",
+    diagram: [
+      { label: "Lợi nhuận kế toán trước thuế", arrow: true },
+      { label: "Cộng lại chi phí không được trừ", arrow: true },
+      { label: "Trừ thu nhập được miễn", arrow: true },
+      { label: "Thu nhập tính thuế × thuế suất" },
+    ],
+    interactiveType: "process",
+    realWorldExample: {
+      company: "Doanh nghiệp báo lãi nhưng nộp thuế cao bất thường",
+      description:
+        "Một doanh nghiệp báo lợi nhuận trước thuế 10 tỷ nhưng nộp thuế tương đương thuế suất trên 30%. Nguyên nhân thường không phải sai sót mà là các khoản bị loại: chi phí không có hóa đơn hợp lệ, khoản chi vượt mức khống chế, khoản phạt vi phạm hành chính, hoặc lãi vay vượt trần khống chế đối với giao dịch liên kết. Với người phân tích, tỷ lệ thuế hiệu dụng lệch xa thuế suất danh nghĩa là một tín hiệu đáng đào sâu chứ không phải chi tiết kỹ thuật.",
+    },
+    quiz: [
+      {
+        question: "Chi phí không có hóa đơn chứng từ hợp lệ được xử lý thế nào?",
+        options: [
+          "Vẫn ghi vào báo cáo tài chính nhưng bị loại khi tính thuế",
+          "Bị xóa khỏi cả báo cáo tài chính lẫn tờ khai thuế",
+          "Được chấp nhận nếu doanh nghiệp giải trình bằng văn bản",
+          "Được trừ dần trong ba năm tiếp theo thay vì trừ ngay",
+        ],
+        correct: 0,
+        explanation:
+          "Hai hệ thống độc lập với nhau: kế toán ghi nhận thực tế phát sinh, thuế quyết định khoản nào được trừ. Chi phí bị loại làm tăng thu nhập tính thuế mà không làm đổi lợi nhuận kế toán đã công bố.",
+      },
+      {
+        question: "Khoản phạt vi phạm hành chính được xử lý ra sao khi tính thuế?",
+        options: [
+          "Không được trừ, vì cho trừ sẽ làm nhà nước gánh một phần tiền phạt",
+          "Được trừ toàn bộ vì đây là chi phí thực tế doanh nghiệp đã chi",
+          "Được trừ một nửa theo nguyên tắc chia sẻ rủi ro với nhà nước",
+          "Được trừ nếu doanh nghiệp đã nộp phạt đúng hạn quy định",
+        ],
+        correct: 0,
+        explanation:
+          "Logic ở đây là chính sách chứ không phải kế toán: mỗi đồng chi phí được trừ làm giảm thuế phải nộp, nên cho trừ tiền phạt đồng nghĩa nhà nước hoàn lại một phần khoản phạt vừa áp. Điều đó triệt tiêu tác dụng răn đe.",
+      },
+      {
+        question: "Tỷ lệ thuế hiệu dụng của một doanh nghiệp là gì?",
+        options: [
+          "Thuế thực nộp chia cho lợi nhuận kế toán trước thuế",
+          "Thuế suất danh nghĩa mà pháp luật quy định cho ngành đó",
+          "Thuế thực nộp chia cho tổng doanh thu trong kỳ báo cáo",
+          "Trung bình thuế suất của các quốc gia doanh nghiệp hoạt động",
+        ],
+        correct: 0,
+        explanation:
+          "Đây là con số cho biết doanh nghiệp thực sự trả bao nhiêu, thay vì con số luật quy định. Chênh lệch giữa hiệu dụng và danh nghĩa chính là tổng hợp của chi phí bị loại, thu nhập được miễn và các ưu đãi thuế đang hưởng.",
+      },
+      {
+        question: "Lợi nhuận trước thuế 20 tỷ, chi phí bị loại 3 tỷ, thuế suất 20%. Thuế phải nộp là bao nhiêu?",
+        options: [
+          "4,6 tỷ (= (20 + 3) × 20%, cộng lại phần bị loại)",
+          "4 tỷ (= 20 × 20%, tính trên lợi nhuận kế toán)",
+          "3,4 tỷ (= (20 − 3) × 20%, trừ phần bị loại)",
+          "0,6 tỷ (= 3 × 20%, chỉ tính trên phần bị loại)",
+        ],
+        correct: 0,
+        explanation:
+          "Chi phí bị loại được cộng ngược vào cơ sở tính thuế, không phải trừ ra. Thu nhập tính thuế là 23 tỷ, thuế 4,6 tỷ - và tỷ lệ thuế hiệu dụng là 23% chứ không phải 20%.",
+      },
+      {
+        question: "Vì sao người phân tích nên chú ý khi tỷ lệ thuế hiệu dụng thay đổi mạnh giữa các năm?",
+        options: [
+          "Vì nó có thể phản ánh ưu đãi sắp hết hạn hoặc khoản bị loại lớn",
+          "Vì thuế suất danh nghĩa được điều chỉnh lại hằng năm theo lạm phát",
+          "Vì doanh nghiệp được phép chọn tỷ lệ thuế áp dụng cho từng năm",
+          "Vì tỷ lệ thuế hiệu dụng quyết định mức cổ tức được phép chi trả",
+        ],
+        correct: 0,
+        explanation:
+          "Ưu đãi thuế có thời hạn, và năm hết ưu đãi thì lợi nhuận sau thuế tụt xuống dù kinh doanh không đổi. Dự báo lợi nhuận mà bỏ qua lịch trình ưu đãi là một trong những lỗi phổ biến khi định giá doanh nghiệp Việt Nam.",
+      },
+    ],
+    keyTakeaways: [
+      "Kế toán và thuế là hai hệ quy tắc độc lập đo cùng một doanh nghiệp, nên hai con số lợi nhuận khác nhau",
+      "Chi phí bị loại được cộng ngược vào thu nhập tính thuế, không bị xóa khỏi báo cáo tài chính",
+      "Tỷ lệ thuế hiệu dụng cho biết doanh nghiệp thực trả bao nhiêu, khác với thuế suất luật định",
+      "Thuế hiệu dụng biến động mạnh thường là dấu hiệu ưu đãi thay đổi hoặc có khoản bị loại lớn",
+    ],
+    practicePrompt: {
+      question:
+        "Bạn dự báo lợi nhuận sau thuế của một doanh nghiệp đang hưởng ưu đãi thuế sắp hết hạn. Điều gì dễ bị bỏ sót nhất?",
+      options: [
+        "Doanh thu sẽ giảm ngay khi ưu đãi thuế kết thúc theo lộ trình",
+        "Thuế hiệu dụng nhảy lên mức phổ thông, kéo lợi nhuận sau thuế xuống",
+        "Doanh nghiệp phải hoàn lại toàn bộ phần thuế đã được ưu đãi trước đó",
+        "Chi phí không được trừ sẽ tăng lên khi ưu đãi thuế chấm dứt",
+      ],
+      correct: 1,
+      explanation:
+        "Đây là một trong những cú hụt lợi nhuận dễ đoán trước nhất mà vẫn hay bị bỏ qua: hoạt động kinh doanh không đổi một chút nào, nhưng dòng thuế trong mô hình phải đổi. Lịch trình ưu đãi thường nằm trong thuyết minh báo cáo tài chính.",
+    },
+    summary: {
+      keyIdea: "Lợi nhuận kế toán và thu nhập tính thuế trả lời hai câu hỏi khác nhau",
+      formula: "Thu nhập tính thuế = Lợi nhuận kế toán + Chi phí không được trừ − Thu nhập được miễn",
+      commonMistake: "Nhân lợi nhuận trước thuế với thuế suất để ước tính thuế phải nộp",
+      action: "Tính tỷ lệ thuế hiệu dụng ba năm gần nhất của một doanh nghiệp niêm yết và tìm lời giải thích cho chênh lệch.",
+    },
+    application: {
+      title: "Đọc dòng thuế cho đúng",
+      message:
+        "Tỷ lệ thuế hiệu dụng của doanh nghiệp này là bao nhiêu, và nó lệch bao xa so với thuế suất phổ thông? Chênh lệch đó đến từ ưu đãi hay từ chi phí bị loại? Ưu đãi còn hiệu lực tới bao giờ?",
+      secondary: "Thuyết minh báo cáo tài chính thường có bảng đối chiếu giữa thuế theo thuế suất phổ thông và thuế thực tế.",
+    },
+    sections: [
+      {
+        type: "lead",
+        text: "Có hai bộ sổ hợp pháp cho cùng một doanh nghiệp, và chúng không mâu thuẫn nhau. Một bộ trả lời câu hỏi doanh nghiệp làm ăn ra sao, bộ kia trả lời câu hỏi doanh nghiệp phải nộp bao nhiêu. Hiểu chỗ hai bộ tách nhau là hiểu được một dòng mà rất nhiều mô hình dự báo làm sai.",
+      },
+      {
+        type: "conceptTable",
+        title: "Bốn nhóm chi phí hay bị loại",
+        subtitle: "Cơ chế thì bền, mức khống chế cụ thể thì thay đổi theo quy định từng thời kỳ",
+        concepts: [
+          { vi: "Thiếu chứng từ hợp lệ", en: "Insufficient documentation", def: "Khoản chi thật nhưng không có hóa đơn hoặc chứng từ đáp ứng yêu cầu. Đây là nhóm bị loại phổ biến nhất trong thực tế." },
+          { vi: "Vượt mức khống chế", en: "Capped expenses", def: "Một số loại chi phí chỉ được trừ tới một ngưỡng nhất định; phần vượt bị loại. Ngưỡng do quy định từng thời kỳ ấn định." },
+          { vi: "Khoản phạt", en: "Penalties", def: "Tiền phạt vi phạm hành chính không được trừ, vì cho trừ sẽ làm ngân sách gánh hộ một phần khoản phạt." },
+          { vi: "Không phục vụ kinh doanh", en: "Non-business expenses", def: "Khoản chi mang tính cá nhân hoặc không liên quan tới hoạt động sản xuất kinh doanh của doanh nghiệp." },
+        ],
+      },
+      {
+        type: "callout",
+        label: "Vì sao đây là việc của người phân tích, không chỉ của kế toán",
+        text: "Tỷ lệ thuế hiệu dụng là một trong những dòng dễ dự báo sai nhất trong mô hình tài chính. Một doanh nghiệp đang hưởng ưu đãi sẽ có lợi nhuận sau thuế đẹp hơn hẳn năng lực thật, và cú điều chỉnh khi ưu đãi hết hạn là một sự kiện đã biết trước ngày - chỉ cần đọc thuyết minh là thấy.",
+      },
+      {
+        type: "closing",
+        lines: [
+          "Thuế không phải một tỷ lệ cố định nhân vào lợi nhuận; nó là kết quả của một bộ quy tắc riêng.",
+          "Bài sau đi vào hai cơ chế định hình nghĩa vụ thuế của doanh nghiệp FDI tại Việt Nam: ưu đãi và chuyển giá.",
+        ],
+      },
+    ],
+  },
+  {
+    id: 1447,
+    slug: "uu-dai-thue-va-chuyen-gia",
+    title: "Chuẩn mực & Thuế, Bài 7: Ưu đãi thuế và giao dịch liên kết",
+    subtitle: "Hai cơ chế định hình nghĩa vụ thuế của doanh nghiệp có vốn nước ngoài",
+    duration: "10 phút",
+    difficulty: "Khó",
+    emoji: "🌐",
+    track: "professional",
+    whyItMatters:
+      "Việt Nam là nền kinh tế có tỷ trọng FDI rất lớn, nên hai chủ đề này quyết định lợi nhuận sau thuế của một phần đáng kể doanh nghiệp trong nước. Với người phân tích, chúng cũng là nơi lợi nhuận công bố dễ khác xa năng lực kinh doanh thật nhất.",
+    openingQuestion: "Ưu đãi thuế ảnh hưởng thế nào tới việc định giá một doanh nghiệp?",
+    openingOptions: [
+      "Không ảnh hưởng vì ưu đãi chỉ là chính sách hành chính tạm thời",
+      "Nâng lợi nhuận sau thuế trong thời gian ưu đãi, nên phải mô hình theo lịch trình",
+      "Làm giảm giá trị doanh nghiệp vì phụ thuộc vào chính sách nhà nước",
+      "Chỉ ảnh hưởng tới doanh nghiệp có vốn đầu tư nước ngoài",
+    ],
+    correctOption: 1,
+    explanation:
+      "Ưu đãi thuế có thời hạn: thường là một số năm miễn thuế, rồi một số năm giảm thuế, rồi về mức phổ thông. Lợi nhuận sau thuế trong giai đoạn ưu đãi không phản ánh năng lực dài hạn, và mô hình định giá nào lấy tỷ lệ thuế của năm hiện tại rồi kéo ra vô hạn sẽ thổi phồng giá trị doanh nghiệp một cách có hệ thống. Cách làm đúng là mô hình dòng thuế theo đúng lịch trình ưu đãi, rồi mới chiết khấu.",
+    diagram: [
+      { label: "Giai đoạn miễn thuế", arrow: true },
+      { label: "Giai đoạn giảm thuế", arrow: true },
+      { label: "Về thuế suất phổ thông", arrow: true },
+      { label: "Lợi nhuận sau thuế bậc thang theo lịch trình" },
+    ],
+    interactiveType: "process",
+    realWorldExample: {
+      company: "Doanh nghiệp FDI hết ưu đãi",
+      description:
+        "Một doanh nghiệp sản xuất FDI báo lợi nhuận sau thuế tăng đều nhiều năm, rồi đột ngột giảm mạnh dù doanh thu và biên gộp không đổi. Nguyên nhân nằm ở dòng thuế: giai đoạn miễn thuế kết thúc và doanh nghiệp bước sang giai đoạn giảm thuế, rồi vài năm sau về mức phổ thông. Với nhà đầu tư chỉ nhìn tăng trưởng lợi nhuận sau thuế trong quá khứ, cú giảm này trông như doanh nghiệp xấu đi - trong khi hoạt động kinh doanh không thay đổi gì.",
+    },
+    quiz: [
+      {
+        question: "Giao dịch liên kết là gì?",
+        options: [
+          "Giao dịch giữa các bên có quan hệ sở hữu hoặc kiểm soát lẫn nhau",
+          "Giao dịch giữa doanh nghiệp và cơ quan quản lý thuế địa phương",
+          "Giao dịch có giá trị vượt ngưỡng phải công bố thông tin ra thị trường",
+          "Giao dịch được thực hiện thông qua một ngân hàng trung gian",
+        ],
+        correct: 0,
+        explanation:
+          "Công ty mẹ bán nguyên liệu cho công ty con, hoặc thu phí bản quyền từ chi nhánh là những ví dụ điển hình. Vấn đề không nằm ở việc giao dịch tồn tại mà ở chỗ giá của nó do hai bên cùng một chủ tự đặt ra.",
+      },
+      {
+        question: "Nguyên tắc giá thị trường trong quản lý giao dịch liên kết yêu cầu gì?",
+        options: [
+          "Giá giữa các bên liên kết phải như giá giữa hai bên độc lập",
+          "Mọi giao dịch liên kết phải được cơ quan thuế phê duyệt trước",
+          "Doanh nghiệp phải chuyển toàn bộ lợi nhuận về công ty mẹ",
+          "Giá giao dịch liên kết phải thấp hơn giá thị trường ít nhất 10%",
+        ],
+        correct: 0,
+        explanation:
+          "Đây là nguyên tắc arm's length, nền tảng của mọi quy định chuyển giá trên thế giới. Nó không cấm giao dịch nội bộ tập đoàn, chỉ yêu cầu định giá như thể hai bên không có quan hệ với nhau.",
+      },
+      {
+        question: "Vì sao chuyển giá là mối quan tâm lớn với nền kinh tế nhiều FDI?",
+        options: [
+          "Vì giá nội bộ có thể dịch chuyển lợi nhuận sang nơi thuế suất thấp hơn",
+          "Vì giao dịch liên kết luôn có giá cao hơn giao dịch thông thường",
+          "Vì doanh nghiệp FDI không phải nộp thuế trong thời gian đầu hoạt động",
+          "Vì chuyển giá làm giảm lượng ngoại tệ chảy vào nền kinh tế trong nước",
+        ],
+        correct: 0,
+        explanation:
+          "Nâng giá nguyên liệu nhập từ công ty mẹ hoặc tính phí bản quyền cao sẽ đẩy chi phí lên và lợi nhuận xuống ở nơi có thuế suất cao. Doanh nghiệp báo lỗ triền miên ở Việt Nam mà vẫn liên tục mở rộng nhà máy là hình ảnh quen thuộc của vấn đề này.",
+      },
+      {
+        question: "Doanh nghiệp hưởng miễn thuế 4 năm rồi giảm 50% trong 9 năm. Mô hình định giá nên làm gì?",
+        options: [
+          "Mô hình dòng thuế theo đúng từng giai đoạn của lịch trình",
+          "Dùng tỷ lệ thuế của năm hiện tại cho toàn bộ giai đoạn dự báo",
+          "Bỏ qua ưu đãi vì nó không ảnh hưởng tới dòng tiền hoạt động",
+          "Dùng thuế suất phổ thông cho mọi năm để tính toán thận trọng",
+        ],
+        correct: 0,
+        explanation:
+          "Dùng tỷ lệ thuế năm hiện tại kéo ra vô hạn sẽ thổi phồng giá trị; dùng thuế suất phổ thông cho mọi năm lại bỏ mất phần giá trị thật của ưu đãi. Cách đúng là mô hình đúng từng bậc thang, kể cả khi nó làm bảng tính phức tạp hơn.",
+      },
+      {
+        question: "Hồ sơ xác định giá giao dịch liên kết phục vụ mục đích gì?",
+        options: [
+          "Chứng minh giá nội bộ phù hợp với giá giữa các bên độc lập",
+          "Xin phê duyệt của cơ quan thuế trước khi thực hiện giao dịch",
+          "Kê khai toàn bộ lợi nhuận chuyển về công ty mẹ trong kỳ",
+          "Đăng ký mức ưu đãi thuế mà doanh nghiệp được hưởng",
+        ],
+        correct: 0,
+        explanation:
+          "Nghĩa vụ chứng minh thuộc về doanh nghiệp: phải có phân tích so sánh cho thấy giá nội bộ nằm trong khoảng giá thị trường. Thiếu hồ sơ, cơ quan thuế có quyền ấn định lại giá và truy thu.",
+      },
+    ],
+    keyTakeaways: [
+      "Ưu đãi thuế có lịch trình bậc thang, nên lợi nhuận sau thuế trong giai đoạn ưu đãi không phản ánh năng lực dài hạn",
+      "Nguyên tắc giá thị trường yêu cầu định giá giao dịch nội bộ như giữa hai bên độc lập",
+      "Giá nội bộ có thể dịch chuyển lợi nhuận qua biên giới, nên đây là trọng tâm quản lý ở nền kinh tế nhiều FDI",
+      "Nghĩa vụ chứng minh giá hợp lý thuộc về doanh nghiệp, không phải cơ quan thuế",
+    ],
+    practicePrompt: {
+      question:
+        "Một doanh nghiệp FDI báo lỗ nhiều năm liên tiếp nhưng vẫn liên tục mở rộng công suất. Giả thuyết nào đáng kiểm tra trước?",
+      options: [
+        "Doanh nghiệp đang chấp nhận lỗ để giành thị phần dài hạn",
+        "Cấu trúc giao dịch liên kết có thể đang dịch chuyển lợi nhuận ra ngoài",
+        "Số liệu kế toán bị sai sót và cần được kiểm toán lại toàn bộ",
+        "Doanh nghiệp sắp rút khỏi thị trường nên đang thanh lý tài sản",
+      ],
+      correct: 1,
+      explanation:
+        "Lỗ thật thì không ai rót thêm vốn mở rộng năm này qua năm khác. Mâu thuẫn giữa báo cáo lỗ và hành vi đầu tư là dấu hiệu kinh điển khiến cơ quan thuế và người phân tích cùng nhìn vào cấu trúc giao dịch nội bộ.",
+    },
+    summary: {
+      keyIdea: "Nghĩa vụ thuế của doanh nghiệp FDI được định hình bởi lịch trình ưu đãi và cách định giá giao dịch nội bộ",
+      commonMistake: "Kéo tỷ lệ thuế của năm hiện tại ra toàn bộ giai đoạn dự báo",
+      action: "Tìm thuyết minh về ưu đãi thuế trong báo cáo của một doanh nghiệp FDI niêm yết và dựng lịch trình thuế theo từng năm.",
+    },
+    application: {
+      title: "Khi phân tích một doanh nghiệp FDI",
+      message:
+        "Doanh nghiệp đang ở giai đoạn nào của lịch trình ưu đãi? Tỷ trọng giao dịch với các bên liên kết là bao nhiêu? Và biên lợi nhuận có bất thường so với doanh nghiệp cùng ngành không có quan hệ liên kết?",
+      secondary: "Thuyết minh báo cáo tài chính bắt buộc công bố giao dịch với bên liên kết - đó là nơi bắt đầu.",
+    },
+    sections: [
+      {
+        type: "lead",
+        text: "Hai cơ chế trong bài này đều không xuất hiện trên báo cáo kết quả kinh doanh dưới dạng một dòng riêng, nhưng cả hai đều có thể quyết định phần lớn lợi nhuận sau thuế của một doanh nghiệp. Bỏ qua chúng khi phân tích một nền kinh tế nhiều FDI là bỏ qua một nửa câu chuyện.",
+      },
+      {
+        type: "comparison",
+        left: {
+          label: "Ưu đãi thuế",
+          text: "Hoàn toàn hợp pháp và được thiết kế có chủ đích để thu hút đầu tư. Vấn đề với người phân tích không phải tính hợp pháp mà là tính tạm thời: nó có ngày hết hạn ghi sẵn trong hồ sơ.",
+        },
+        right: {
+          label: "Chuyển giá",
+          text: "Bản thân giao dịch nội bộ là bình thường trong mọi tập đoàn. Ranh giới nằm ở giá: định giá theo mức thị trường thì hợp lệ, định giá lệch đi để dịch chuyển lợi nhuận thì không.",
+        },
+      },
+      {
+        type: "callout",
+        label: "Dấu hiệu đáng chú ý khi đọc báo cáo",
+        text: "Biên lợi nhuận thấp bất thường so với doanh nghiệp cùng ngành, tỷ trọng giao dịch với bên liên kết rất cao, hoặc chuỗi năm lỗ đi kèm mở rộng đầu tư - từng dấu hiệu riêng lẻ có thể vô hại, nhưng ba dấu hiệu cùng xuất hiện thì đáng đọc kỹ phần thuyết minh về bên liên kết.",
+      },
+      {
+        type: "closing",
+        lines: [
+          "Lợi nhuận công bố là kết quả của cả hoạt động kinh doanh lẫn cấu trúc thuế đứng sau nó.",
+          "Bài cuối chặng nói về nơi mọi thứ được kiểm chứng: quyết toán và thanh tra thuế.",
+        ],
+      },
+    ],
+  },
+  {
+    id: 1448,
+    slug: "quyet-toan-va-thanh-tra-thue",
+    title: "Chuẩn mực & Thuế, Bài 8: Quyết toán và thanh tra thuế",
+    subtitle: "Điều gì xảy ra khi cơ quan thuế kiểm tra lại những gì đã kê khai",
+    duration: "9 phút",
+    difficulty: "Trung bình",
+    emoji: "🔍",
+    track: "professional",
+    whyItMatters:
+      "Truy thu thuế là một khoản nợ tiềm tàng không nằm trên bảng cân đối cho tới khi nó thành hiện thực. Với người phân tích, biết cơ chế này giúp đọc được một dòng thuyết minh mà phần lớn người đọc lướt qua - và đôi khi nó lớn hơn cả lợi nhuận một năm.",
+    openingQuestion: "Vì sao rủi ro thuế không xuất hiện đầy đủ trên bảng cân đối kế toán?",
+    openingOptions: [
+      "Vì nghĩa vụ chỉ được ghi nhận khi đủ điều kiện chắc chắn và ước tính được",
+      "Vì cơ quan thuế cấm doanh nghiệp công bố thông tin về thanh tra",
+      "Vì thuế truy thu luôn được ghi thẳng vào vốn chủ sở hữu",
+      "Vì rủi ro thuế chỉ áp dụng cho doanh nghiệp chưa niêm yết",
+    ],
+    correctOption: 0,
+    explanation:
+      "Chuẩn mực kế toán yêu cầu ghi nhận một khoản dự phòng khi nghĩa vụ có khả năng phát sinh và ước tính được đáng tin cậy. Rủi ro thuế thường chưa đạt cả hai điều kiện cho tới khi có kết luận thanh tra - nên nó nằm ở phần thuyết minh dưới dạng nợ tiềm tàng chứ không phải một con số trên bảng cân đối. Đây là lý do một doanh nghiệp có thể trông lành mạnh cho tới ngày công bố khoản truy thu.",
+    diagram: [
+      { label: "Doanh nghiệp kê khai và nộp thuế", arrow: true },
+      { label: "Cơ quan thuế thanh tra trong thời hiệu", arrow: true },
+      { label: "Ấn định lại số thuế nếu có sai lệch", arrow: true },
+      { label: "Truy thu, tiền chậm nộp và phạt" },
+    ],
+    interactiveType: "process",
+    realWorldExample: {
+      company: "Khoản truy thu bất ngờ",
+      description:
+        "Doanh nghiệp công bố kết luận thanh tra thuế với số truy thu cộng tiền chậm nộp và phạt lên tới hàng trăm tỷ, cho các năm tài chính đã khép sổ và đã công bố lợi nhuận từ lâu. Cổ phiếu phản ứng mạnh không chỉ vì số tiền mà vì thông tin mới: nếu cách kê khai bị bác cho những năm đã kiểm tra, thì cách kê khai của những năm chưa kiểm tra cũng đang bị đặt câu hỏi. Rủi ro vì thế lớn hơn con số vừa công bố.",
+    },
+    quiz: [
+      {
+        question: "Thời hiệu thanh tra thuế nghĩa là gì?",
+        options: [
+          "Khoảng thời gian cơ quan thuế còn quyền kiểm tra và ấn định",
+          "Thời gian doanh nghiệp phải hoàn tất nộp thuế sau khi kê khai",
+          "Thời hạn doanh nghiệp được khiếu nại kết luận thanh tra thuế",
+          "Chu kỳ bắt buộc mà mọi doanh nghiệp phải được thanh tra một lần",
+        ],
+        correct: 0,
+        explanation:
+          "Khép sổ và công bố báo cáo không đồng nghĩa nghĩa vụ thuế đã chốt. Trong thời hiệu, những năm đã qua vẫn có thể được mở lại - nên rủi ro thuế tồn tại lâu hơn nhiều so với cảm nhận thông thường.",
+      },
+      {
+        question: "Truy thu thuế thường gồm những cấu phần nào?",
+        options: [
+          "Số thuế còn thiếu, tiền chậm nộp và tiền phạt vi phạm",
+          "Chỉ số thuế thiếu, các khoản khác được miễn",
+          "Số thuế thiếu và phần lợi nhuận phải hoàn lại",
+          "Số thuế thiếu nhân đôi theo nguyên tắc răn đe của luật thuế",
+        ],
+        correct: 0,
+        explanation:
+          "Ba cấu phần cộng lại thường lớn hơn nhiều so với con số thuế thiếu ban đầu, đặc biệt khi kỳ được kiểm tra đã cách đây vài năm - vì tiền chậm nộp tính theo ngày.",
+      },
+      {
+        question: "Nợ tiềm tàng về thuế được trình bày ở đâu trên báo cáo tài chính?",
+        options: [
+          "Ở phần thuyết minh chứ không phải trên bảng cân đối",
+          "Ở khoản mục nợ ngắn hạn trên bảng cân đối kế toán",
+          "Ở báo cáo lưu chuyển tiền tệ phần hoạt động tài chính",
+          "Không phải trình bày cho tới khi có kết luận chính thức",
+        ],
+        correct: 0,
+        explanation:
+          "Thuyết minh là nơi rủi ro chưa đủ điều kiện ghi nhận được nêu ra. Đây cũng là lý do đọc thuyết minh quan trọng không kém đọc các bảng số - phần rủi ro lớn nhất thường nằm ở đó.",
+      },
+      {
+        question: "Vì sao kết luận thanh tra cho năm cũ lại ảnh hưởng tới định giá hiện tại?",
+        options: [
+          "Vì cách kê khai các năm chưa kiểm tra cũng có thể bị bác",
+          "Vì doanh nghiệp phải lập lại toàn bộ báo cáo tài chính của các năm cũ",
+          "Vì cơ quan thuế sẽ đình chỉ hoạt động doanh nghiệp cho tới khi nộp đủ",
+          "Vì cổ đông được quyền yêu cầu hoàn lại cổ tức đã nhận các năm đó",
+        ],
+        correct: 0,
+        explanation:
+          "Thị trường phản ứng với thông tin chứ không chỉ với con số. Một cách xử lý thuế bị bác cho năm 2020 thường được áp dụng giống nhau ở các năm sau, nên khoản truy thu tiềm năng lớn hơn nhiều so với con số vừa công bố.",
+      },
+      {
+        question: "Doanh nghiệp bị truy thu 50 tỷ cho ba năm cũ, lợi nhuận sau thuế năm gần nhất là 80 tỷ. Cách đọc hợp lý nhất?",
+        options: [
+          "Kiểm tra xem cách kê khai đó còn áp dụng cho năm nay không",
+          "Coi đây là khoản một lần và bỏ qua khi định giá doanh nghiệp",
+          "Kết luận doanh nghiệp gian lận và loại khỏi danh mục theo dõi",
+          "Chờ tới khi doanh nghiệp nộp xong rồi mới đánh giá lại tình hình",
+        ],
+        correct: 0,
+        explanation:
+          "Câu hỏi quan trọng không phải 50 tỷ đã mất mà là cơ chế tạo ra nó đã dừng chưa. Nếu vẫn đang kê khai theo cách cũ thì đây là khoản chi phí định kỳ chưa được ghi nhận, không phải sự kiện một lần.",
+      },
+    ],
+    keyTakeaways: [
+      "Khép sổ không đồng nghĩa chốt nghĩa vụ thuế - trong thời hiệu, các năm cũ vẫn có thể được mở lại",
+      "Truy thu gồm thuế thiếu, tiền chậm nộp và phạt, nên tổng thường lớn hơn nhiều số thuế ban đầu",
+      "Rủi ro thuế nằm ở thuyết minh dưới dạng nợ tiềm tàng, không phải một dòng trên bảng cân đối",
+      "Kết luận cho năm cũ là thông tin về các năm chưa kiểm tra, nên tác động vượt xa con số công bố",
+    ],
+    practicePrompt: {
+      question:
+        "Bạn đọc thuyết minh và thấy doanh nghiệp đang trong quá trình thanh tra thuế nhưng chưa có kết luận. Nên xử lý thế nào trong mô hình định giá?",
+      options: [
+        "Bỏ qua vì chưa có số liệu chính thức để đưa vào mô hình",
+        "Dựng kịch bản với một khoản truy thu ước tính và xem định giá đổi bao nhiêu",
+        "Giả định khoản truy thu bằng đúng lợi nhuận một năm để thận trọng tối đa",
+        "Loại doanh nghiệp khỏi danh sách theo dõi cho tới khi có kết luận",
+      ],
+      correct: 1,
+      explanation:
+        "Không có con số chính thức không có nghĩa là không ước lượng được. Dựng kịch bản cho biết luận điểm đầu tư còn đứng vững tới mức truy thu nào - và đó là thứ hữu ích hơn nhiều so với việc chờ đợi hoặc bỏ qua.",
+    },
+    summary: {
+      keyIdea: "Nghĩa vụ thuế chỉ thực sự chốt khi hết thời hiệu thanh tra, không phải khi khép sổ",
+      commonMistake: "Coi khoản truy thu là sự kiện một lần mà không hỏi cơ chế tạo ra nó đã dừng chưa",
+      action: "Tìm mục nợ tiềm tàng trong thuyết minh của một doanh nghiệp niêm yết và xem có nội dung thuế nào không.",
+    },
+    application: {
+      title: "Đọc thuyết minh trước khi đọc bảng số",
+      message:
+        "Doanh nghiệp có đang bị thanh tra thuế không? Có khoản nợ tiềm tàng nào liên quan tới thuế không? Và nếu có khoản truy thu trong quá khứ, cách kê khai gây ra nó đã được thay đổi chưa?",
+      secondary: "Nợ tiềm tàng thường nằm ở nhóm thuyết minh cuối, sau các bảng số chi tiết.",
+    },
+    sections: [
+      {
+        type: "lead",
+        text: "Nộp tờ khai không phải điểm kết thúc của nghĩa vụ thuế mà là điểm bắt đầu của một khoảng thời gian trong đó cơ quan thuế còn quyền kiểm tra lại. Với người phân tích, khoảng thời gian đó là một vùng rủi ro không hiện lên ở bất kỳ con số nào trên bảng cân đối.",
+      },
+      {
+        type: "conceptTable",
+        title: "Ba lớp của một kết luận thanh tra",
+        subtitle: "Cơ chế thì bền; mức tiền chậm nộp và khung phạt thay đổi theo quy định từng thời kỳ",
+        concepts: [
+          { vi: "Thuế truy thu", en: "Additional tax assessed", def: "Phần thuế cơ quan thuế cho rằng doanh nghiệp còn thiếu sau khi loại các khoản không được trừ hoặc ấn định lại giá giao dịch." },
+          { vi: "Tiền chậm nộp", en: "Late payment interest", def: "Tính theo ngày kể từ hạn nộp gốc, nên kỳ được kiểm tra càng xa thì khoản này càng lớn - đôi khi vượt cả số thuế truy thu." },
+          { vi: "Tiền phạt", en: "Penalty", def: "Áp dụng theo mức độ vi phạm, từ khai sai tới trốn thuế. Đây là phần phản ánh đánh giá của cơ quan thuế về tính chất của sai phạm." },
+        ],
+      },
+      {
+        type: "callout",
+        label: "Vì sao con số công bố thường không phải toàn bộ rủi ro",
+        text: "Thanh tra thường chỉ kiểm tra một số kỳ nhất định. Nếu một cách xử lý bị bác cho những kỳ đó mà doanh nghiệp vẫn áp dụng cách tương tự cho các kỳ sau, thì khoản truy thu vừa công bố là một mẫu chứ không phải tổng. Câu hỏi đúng luôn là cơ chế đã dừng chưa, không phải con số là bao nhiêu.",
+      },
+      {
+        type: "closing",
+        lines: [
+          "Rủi ro thuế là nợ tiềm tàng: không thấy trên bảng cân đối cho tới lúc nó thành thật.",
+          "Khép lại chặng: chuẩn mực quyết định cách ghi nhận, luật thuế quyết định số phải nộp, và thanh tra quyết định điều đó có được giữ nguyên hay không.",
+        ],
+      },
+    ],
+  },
 ];
