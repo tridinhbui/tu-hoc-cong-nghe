@@ -114,7 +114,7 @@ console.log(`Total failing at least one check: ${total}`);
 // answering), each distractor is a mistake a learner actually makes - not an
 // absurdity like "luôn đúng 100%" that can be eliminated on sight - and one
 // distractor is longer than the correct option in ~3 of every 4 questions.
-const MAX_TELL_SHARE = 0.4529;
+const MAX_TELL_SHARE = 0.3891;
 
 /** A lesson fails when this share of its questions have the correct answer as
  *  the longest option. At 4 options, chance level is 25%. A tie for longest
@@ -193,6 +193,38 @@ console.log(
 );
 
 const tellFailures = [];
+
+// ── Slug trùng trong lesson-quiz-overrides.js ──────────────────────────────
+//
+// lessonOverrides là một object literal, nên khai báo cùng một slug hai lần
+// không phải lỗi - key sau lặng lẽ thắng key trước. Chuyện này đã xảy ra với
+// 27 slug: ai đó append một entry chỉ có `quiz` cho slug vốn đã override cả
+// bài, và diagram/sections/explanation/keyTakeaways/summary của 24 bài bị vứt.
+//
+// Không check nào ở trên bắt được: file vẫn parse, mọi lesson vẫn qua bar nội
+// dung (vì nó rơi về bản gốc trong lessons.ts), và phần đo tell chỉ đọc `quiz`
+// - đúng cái key mà entry thắng luôn có. Triệu chứng duy nhất là nội dung đã
+// biên tập âm thầm biến mất khỏi bài học.
+//
+// Đọc thẳng source thay vì import module: import xong thì các key trùng đã bị
+// gộp mất rồi, đúng thứ cần phát hiện.
+const overridesPath = path.join(root, "lib/lesson-quiz-overrides.js");
+const overridesSource = readFileSync(overridesPath, "utf8");
+const slugSeen = new Map();
+for (const match of overridesSource.matchAll(/^ {2}"([a-z0-9-]+)": patch\(\{$/gm)) {
+  slugSeen.set(match[1], (slugSeen.get(match[1]) ?? 0) + 1);
+}
+const duplicateSlugs = [...slugSeen].filter(([, n]) => n > 1);
+if (duplicateSlugs.length > 0) {
+  tellFailures.push(
+    `${duplicateSlugs.length} slug(s) khai báo nhiều lần trong lib/lesson-quiz-overrides.js - ` +
+      `entry sau lặng lẽ che entry trước, mọi key chỉ có ở entry trước sẽ mất:\n` +
+      duplicateSlugs.map(([slug, n]) => `    ${slug} (${n} entry)`).join("\n") +
+      `\n  Gộp chúng thành một entry. Xoá bớt entry là sai trừ khi đã đối chiếu ` +
+      `từng key - entry bị che thường chứa diagram/sections/explanation mà entry ` +
+      `thắng không có.`
+  );
+}
 
 if (tellShare > MAX_TELL_SHARE) {
   tellFailures.push(

@@ -1,115 +1,103 @@
--- Chẩn đoán realtime + presence. Chỉ đọc, không sửa gì.
+-- Chẩn đoán realtime. Chỉ đọc, chạy lại bao nhiêu lần cũng được.
 --
--- Toàn bộ phần truy vấn dữ liệu chạy qua EXECUTE động, vì bản trước tham chiếu
--- thẳng user_profiles.last_seen_at và chết ngay lúc parse trên chính môi trường
--- cần chẩn đoán nhất - nơi cột đó chưa tồn tại. Một script chẩn đoán không được
--- phép giả định thứ nó đang đi kiểm tra là có thật.
+-- Bổ sung cho verify_bell_realtime.sql: file kia chỉ trả lời "bảng đã vào
+-- publication chưa", file này trả lời phần còn lại khi chuông vẫn im dù
+-- publication đã đúng.
+--
+-- Bản trước còn kiểm tra presence (last_seen_at + get_online_users/
+-- get_online_count). Phần đó đã bỏ: presence được gỡ theo quyết định sản phẩm,
+-- nên đi tìm mấy đối tượng đó chỉ tạo ra một dòng ">>> THIẾU" vĩnh viễn cho
+-- thứ cố ý không tồn tại - đúng kiểu cảnh báo giả làm người đọc mất lòng tin
+-- vào cả bản báo cáo.
+--
+-- Bản trước cũng gom kết quả vào một bảng tạm bên trong một khối DO. Cách đó
+-- có một nhược điểm đã tự bộc lộ: chỉ cần một lỗi ở bất kỳ dòng nào là cả khối
+-- rollback và không thấy được gì, kể cả những mục đã chạy xong. Ở đây tách
+-- thành các câu lệnh rời, câu nào lỗi thì chỉ mất câu đó.
 
--- drop rồi create, không dùng "if not exists": nếu phiên trước còn bảng tạm với
--- cấu trúc khác thì "if not exists" giữ nguyên bảng cũ và insert bên dưới chết.
-drop table if exists _diag;
-create temp table _diag (
-  muc      text,
-  hang_muc text,
-  ket_qua  text
-);
+-- ── 1. Publication + replica identity ──────────────────────────────────────
+--
+-- Cột replica_identity là thứ verify_bell_realtime.sql không kiểm. Bảng vào
+-- publication rồi nhưng để "default" thì sự kiện DELETE chỉ mang theo khoá
+-- chính, nên filter trên cột khác (vd `user_id=eq.…`) không khớp được và RLS
+-- cũng không đánh giá được - sự kiện bị bỏ, vẫn im lặng như cũ.
+-- Cột can_replica_full = true là những bảng có handler DELETE hoặc event "*",
+-- tức là những bảng bắt buộc phải ở "full".
+select
+  t.tablename,
+  case when p.tablename is null then '>>> THIẾU trong publication' else 'OK' end
+    as trong_publication,
+  coalesce((
+    select case c.relreplident::text
+      when 'd' then 'default (chỉ PK)' when 'f' then 'full'
+      when 'n' then 'nothing' when 'i' then 'index'
+      else 'relreplident=' || c.relreplident::text end
+    from pg_class c
+    join pg_namespace ns on ns.oid = c.relnamespace
+    where ns.nspname = 'public' and c.relname = t.tablename
+  ), '>>> BẢNG KHÔNG TỒN TẠI') as replica_identity,
+  t.can_full as can_replica_full
+from (values
+  ('community_notifications', false),  -- chuông: chỉ nghe INSERT
+  ('community_posts',         false),  -- chỉ nghe INSERT
+  ('community_post_comments', true),   -- event "*"
+  ('community_post_reactions',true),   -- event "*"
+  ('chat_messages',           true),   -- có handler DELETE, filter user_id
+  ('user_friendships',        true),   -- event "*", filter user_a/user_b
+  ('direct_messages',         false),  -- chỉ nghe INSERT
+  ('study_room_members',      true),   -- event "*"
+  ('study_room_messages',     true),   -- event "*"
+  ('bug_reports',             false),
+  ('bug_report_messages',     false)
+) as t(tablename, can_full)
+left join pg_publication_tables p
+  on p.pubname = 'supabase_realtime'
+ and p.schemaname = 'public'
+ and p.tablename = t.tablename
+order by (p.tablename is not null), t.tablename;
 
+-- ── 2. Hai trigger sinh notification ───────────────────────────────────────
+--
+-- tgenabled là kiểu "char" chứ không phải text, nên phải ::text trước khi nối
+-- chuỗi - thiếu cast thì Postgres không chọn được toán tử || nào (lỗi 42725).
+select
+  t.tgname,
+  coalesce((
+    select case tg.tgenabled::text
+      when 'O' then 'bật'
+      when 'D' then '>>> ĐANG TẮT'
+      else 'tgenabled=' || tg.tgenabled::text end
+    from pg_trigger tg where tg.tgname = t.tgname
+  ), '>>> KHÔNG TỒN TẠI') as trang_thai
+from (values
+  ('community_post_comments_notify'),
+  ('community_post_reactions_notify')
+) as t(tgname);
+
+-- ── 3. Đã có notification nào được sinh ra chưa ────────────────────────────
+--
+-- Câu quyết định: nếu tổng = 0 thì lỗi nằm ở trigger chứ không phải realtime,
+-- và ALTER PUBLICATION sẽ không cứu được gì.
+--
+-- Chạy qua EXECUTE động vì bảng có thể chưa tồn tại trên môi trường chưa apply
+-- migration community_notifications - tham chiếu tĩnh sẽ làm sập câu lệnh ngay
+-- lúc parse, đúng trên môi trường cần chẩn đoán nhất.
 do $$
 declare
-  t text;
-  n bigint;
-  has_col boolean;
-  tables text[] := array[
-    'community_notifications', 'community_posts', 'community_post_comments',
-    'community_post_reactions', 'chat_messages', 'user_friendships',
-    'direct_messages', 'study_room_members', 'study_room_messages',
-    'bug_reports', 'bug_report_messages'
-  ];
+  tong bigint;
+  chua_doc bigint;
+  moi_nhat text;
 begin
-  -- 1. Bảng nào đang thực sự phát realtime.
-  --    in_publication = false nghĩa là mọi .on("postgres_changes") cho bảng đó
-  --    im lặng không bao giờ bắn.
-  foreach t in array tables loop
-    if to_regclass('public.' || t) is null then
-      insert into _diag values ('1. realtime', t, 'BẢNG CHƯA TỒN TẠI');
-    else
-      insert into _diag values (
-        '1. realtime',
-        t,
-        -- ::text ở mọi nhánh: relreplident cũng là kiểu "char", và mọi thứ ở đây
-        -- đều đi vào toán tử || nên để kiểu unknown/"char" là tự chuốc 42725.
-        case when exists (
-          select 1 from pg_publication_tables
-          where pubname = 'supabase_realtime' and schemaname = 'public' and tablename = t
-        ) then 'trong publication'::text else '>>> THIẾU trong publication'::text end
-        || ' | replica identity: '::text ||
-        coalesce((
-          select case c.relreplident::text
-            when 'd' then 'default (chỉ PK)'::text when 'f' then 'full'::text
-            when 'n' then 'nothing'::text when 'i' then 'index'::text
-            else 'relreplident=' || c.relreplident::text end
-          from pg_class c join pg_namespace ns on ns.oid = c.relnamespace
-          where ns.nspname = 'public' and c.relname = t
-        ), '?'::text)
-      );
-    end if;
-  end loop;
-
-  -- 2. Presence: cột và hai RPC.
-  has_col := exists (
-    select 1 from information_schema.columns
-    where table_schema = 'public' and table_name = 'user_profiles' and column_name = 'last_seen_at'
-  );
-  insert into _diag values ('2. presence', 'cột last_seen_at',
-    case when has_col then 'có' else '>>> THIẾU' end);
-  insert into _diag values ('2. presence', 'rpc get_online_users',
-    case when exists (select 1 from pg_proc p join pg_namespace ns on ns.oid = p.pronamespace
-                      where ns.nspname = 'public' and p.proname = 'get_online_users')
-         then 'có' else '>>> THIẾU' end);
-  insert into _diag values ('2. presence', 'rpc get_online_count',
-    case when exists (select 1 from pg_proc p join pg_namespace ns on ns.oid = p.pronamespace
-                      where ns.nspname = 'public' and p.proname = 'get_online_count')
-         then 'có' else '>>> THIẾU' end);
-
-  -- 3. Presence có dữ liệu thật không - chỉ hỏi được khi cột đã tồn tại.
-  --    Cột có mà online_5min = 0 thì heartbeat không ghi được (nghi RLS/grant),
-  --    khác hẳn với trường hợp thiếu cột (thiếu migration).
-  if has_col then
-    execute 'select count(*) from public.user_profiles where last_seen_at > now() - interval ''5 minutes''' into n;
-    insert into _diag values ('3. dữ liệu presence', 'online trong 5 phút', n::text);
-    execute 'select count(*) from public.user_profiles where last_seen_at is not null' into n;
-    insert into _diag values ('3. dữ liệu presence', 'từng có last_seen_at', n::text);
-    execute 'select coalesce(max(last_seen_at)::text, ''(chưa có)'') from public.user_profiles' into t;
-    insert into _diag values ('3. dữ liệu presence', 'gần nhất', t);
-  else
-    insert into _diag values ('3. dữ liệu presence', '(bỏ qua)', 'chưa có cột last_seen_at');
-  end if;
-
-  -- 4. Chuông: đã có notification nào được sinh ra chưa.
-  --    Bảng rỗng => lỗi nằm ở trigger, ALTER PUBLICATION sẽ không cứu được gì.
   if to_regclass('public.community_notifications') is null then
-    insert into _diag values ('4. chuông', '(bỏ qua)', 'chưa có bảng community_notifications');
-  else
-    execute 'select count(*) from public.community_notifications' into n;
-    insert into _diag values ('4. chuông', 'tổng notification', n::text);
-    execute 'select count(*) from public.community_notifications where read_at is null' into n;
-    insert into _diag values ('4. chuông', 'chưa đọc', n::text);
-    execute 'select coalesce(max(created_at)::text, ''(chưa có)'') from public.community_notifications' into t;
-    insert into _diag values ('4. chuông', 'mới nhất', t);
+    raise notice 'community_notifications: BẢNG KHÔNG TỒN TẠI';
+    return;
   end if;
-
-  -- 5. Hai trigger sinh notification.
-  --    tgenabled là kiểu "char" chứ không phải text, nên phải ::text trước khi
-  --    nối chuỗi - nếu không Postgres không chọn được toán tử || nào (42725).
-  for t in select unnest(array['community_post_comments_notify', 'community_post_reactions_notify']) loop
-    insert into _diag values ('5. trigger', t,
-      coalesce((select case tg.tgenabled::text
-                         when 'O' then 'bật'
-                         when 'D' then '>>> ĐANG TẮT'
-                         else 'tgenabled=' || tg.tgenabled::text
-                       end
-                from pg_trigger tg where tg.tgname = t), '>>> KHÔNG TỒN TẠI'));
-  end loop;
+  execute 'select count(*) from public.community_notifications' into tong;
+  execute 'select count(*) from public.community_notifications where read_at is null' into chua_doc;
+  execute 'select coalesce(max(created_at)::text, ''(chưa có)'') from public.community_notifications'
+    into moi_nhat;
+  raise notice 'community_notifications: tổng=%, chưa đọc=%, mới nhất=%', tong, chua_doc, moi_nhat;
+  if tong = 0 then
+    raise notice '>>> Bảng rỗng: lỗi ở TRIGGER, không phải realtime.';
+  end if;
 end $$;
-
-select * from _diag order by muc, hang_muc;
