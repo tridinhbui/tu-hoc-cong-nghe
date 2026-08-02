@@ -132,6 +132,10 @@ export const IB_CATEGORY_CAREERS: Record<string, readonly string[]> = {
   "ESG - Khung báo cáo & định giá": ["esg-analyst", "portfolio-analyst", "ir-specialist"],
   "Trái phiếu - Giao dịch & lãi suất": ["fixed-income-trader", "treasury", "portfolio-analyst"],
   "Môi giới - Sản phẩm & khách hàng": ["stockbroker", "retail-banking-rm", "personal-financial-advisor"],
+  "Vĩ mô - Chính sách & chu kỳ": ["macro-research-analyst", "fixed-income-trader", "treasury"],
+  "Thuế - Doanh nghiệp & cá nhân": ["tax-advisory", "accountant", "cfo-track"],
+  "Bảo hiểm - Định phí & rủi ro": ["insurance-actuarial", "insurance-financial-advisor"],
+  "Tín dụng tiêu dùng - Chấm điểm & thu hồi": ["consumer-credit-analyst", "credit-officer", "retail-banking-rm"],
 };
 
 /** Technical questions worth drilling for a given career. An unmapped career

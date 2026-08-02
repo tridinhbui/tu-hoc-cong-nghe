@@ -122,7 +122,7 @@ export const CAREER_TECHNICAL_QUESTIONS: IbQuestion[] = [
       "Tổng tài sản trừ nợ, chia cho số chứng chỉ lưu hành",
       "Tổng tài sản chia cho số chứng chỉ quỹ, chưa trừ nợ phải trả",
       "Tổng vốn góp ban đầu chia cho số chứng chỉ quỹ đã phát hành",
-      "Giá khớp lệnh của chứng chỉ quỹ trên sàn vào cuối phiên",
+      "Giá khớp lệnh trên sàn vào cuối phiên",
     ],
     correct: 0,
     explanation:
@@ -184,7 +184,7 @@ export const CAREER_TECHNICAL_QUESTIONS: IbQuestion[] = [
     options: [
       "Bảo đảm doanh nghiệp đủ tiền trả nghĩa vụ đến hạn",
       "Lập báo cáo tài chính hợp nhất và làm việc với kiểm toán",
-      "Tối đa hóa lợi nhuận đầu tư từ khoản tiền mặt nhàn rỗi",
+      "Tối đa hóa lợi nhuận từ tiền nhàn rỗi",
       "Phân tích hiệu quả từng dòng sản phẩm và từng thị trường",
     ],
     correct: 0,
@@ -336,7 +336,7 @@ export const CAREER_TECHNICAL_QUESTIONS: IbQuestion[] = [
     question: "KYC (Know Your Customer) trong định chế tài chính nhằm mục đích gì?",
     options: [
       "Xác minh danh tính và nguồn gốc tiền của khách",
-      "Đánh giá khả năng sinh lời của từng nhóm khách hàng",
+      "Đánh giá khả năng sinh lời của khách",
       "Xếp hạng mức độ hài lòng của khách hàng với dịch vụ",
       "Xác định hạn mức tín dụng tối đa cấp cho khách hàng",
     ],
@@ -656,7 +656,7 @@ export const CAREER_TECHNICAL_QUESTIONS: IbQuestion[] = [
     question: "Green bond khác trái phiếu doanh nghiệp thông thường ở điểm nào?",
     options: [
       "Vốn huy động bị ràng buộc vào dự án xanh xác định",
-      "Được miễn hoàn toàn thuế thu nhập từ lãi cho nhà đầu tư",
+      "Được miễn thuế thu nhập từ lãi",
       "Kỳ hạn luôn dài hơn trái phiếu doanh nghiệp thông thường",
       "Lãi suất thấp hơn do được chính phủ bảo lãnh thanh toán",
     ],
@@ -703,7 +703,7 @@ export const CAREER_TECHNICAL_QUESTIONS: IbQuestion[] = [
       "Định nghĩa thống nhất hoạt động nào là bền vững",
       "Ấn định mức thuế carbon áp dụng cho từng ngành sản xuất",
       "Cấp chứng nhận cho các quỹ đầu tư bền vững tại châu Âu",
-      "Xếp hạng tín nhiệm ESG cho từng doanh nghiệp niêm yết",
+      "Xếp hạng ESG cho doanh nghiệp niêm yết",
     ],
     correct: 0,
     explanation:
@@ -982,5 +982,553 @@ export const CAREER_TECHNICAL_QUESTIONS: IbQuestion[] = [
     correct: 0,
     explanation:
       "Churning là xung đột lợi ích phí-theo-lệnh bị đẩy tới mức lạm dụng: khuyến nghị mua bán liên tục không vì chiến lược nào của khách mà vì phí. Dấu hiệu nhận biết là vòng quay danh mục cao bất thường trong khi tỷ trọng tài sản gần như không đổi.",
+  },
+
+  // ── Chuyên viên Nghiên cứu Vĩ mô ─────────────────────────────────────────
+  {
+    id: 5064,
+    category: "Vĩ mô - Chính sách & chu kỳ",
+    difficulty: "de",
+    question: "Lạm phát lõi (core CPI) khác CPI toàn phần ở điểm nào?",
+    options: [
+      "Loại bỏ nhóm thực phẩm và năng lượng vì biến động mạnh",
+      "Chỉ tính giá hàng hóa sản xuất trong nước, bỏ hàng nhập",
+      "Được tính theo quý thay vì theo tháng như CPI toàn phần",
+      "Chỉ áp dụng cho rổ hàng hóa của khu vực thành thị lớn",
+    ],
+    correct: 0,
+    explanation:
+      "Giá thực phẩm và năng lượng dao động theo thời tiết và địa chính trị, những thứ chính sách tiền tệ không tác động được. Lõi vì thế phản ánh áp lực giá bền vững hơn - nhưng người dân trải nghiệm CPI toàn phần, nên ngân hàng trung ương phải theo dõi cả hai.",
+  },
+  {
+    id: 5065,
+    category: "Vĩ mô - Chính sách & chu kỳ",
+    difficulty: "trung-binh",
+    question: "Lãi suất điều hành tăng tác động tới nền kinh tế qua kênh nào trước tiên?",
+    options: [
+      "Chi phí vay tăng, làm chậm tiêu dùng và đầu tư",
+      "Tiền lương danh nghĩa của người lao động tăng theo lãi suất",
+      "Thu ngân sách nhà nước tăng nhờ thuế thu nhập cao hơn",
+      "Giá hàng nhập khẩu giảm nhờ tỷ giá đổi",
+    ],
+    correct: 0,
+    explanation:
+      "Kênh lãi suất là kênh trực tiếp nhất: vay đắt lên thì doanh nghiệp hoãn dự án và hộ gia đình hoãn mua nhà, mua xe. Các kênh khác - tỷ giá, giá tài sản, kỳ vọng - đều có thật nhưng chậm hơn và gián tiếp hơn.",
+  },
+  {
+    id: 5066,
+    category: "Vĩ mô - Chính sách & chu kỳ",
+    difficulty: "trung-binh",
+    question: "Chính sách tài khóa khác chính sách tiền tệ ở điểm nào?",
+    options: [
+      "Tài khóa dùng thuế và chi tiêu công, tiền tệ dùng lãi suất và cung tiền",
+      "Tài khóa do ngân hàng trung ương điều hành, tiền tệ do quốc hội",
+      "Tài khóa chỉ áp dụng khi suy thoái, tiền tệ khi tăng trưởng",
+      "Tài khóa tác động ngay, tiền tệ luôn có độ trễ nhiều năm",
+    ],
+    correct: 0,
+    explanation:
+      "Hai công cụ nằm ở hai cơ quan khác nhau với hai loại độ trễ khác nhau: tài khóa cần quy trình lập pháp nên chậm ban hành nhưng tác động nhanh khi đã tiêu; tiền tệ quyết định nhanh nhưng ngấm vào nền kinh tế sau nhiều quý.",
+  },
+  {
+    id: 5067,
+    category: "Vĩ mô - Chính sách & chu kỳ",
+    difficulty: "trung-binh",
+    question: "Đường Phillips mô tả quan hệ giữa hai biến số nào?",
+    options: [
+      "Đánh đổi ngắn hạn giữa thất nghiệp và lạm phát",
+      "Liên hệ giữa ngân sách và cán cân thương mại",
+      "Tương quan giữa lãi suất ngắn hạn và lãi suất dài hạn",
+      "Quan hệ giữa cung tiền và tốc độ tăng trưởng GDP thực",
+    ],
+    correct: 0,
+    explanation:
+      "Chữ then chốt là NGẮN HẠN. Quan hệ đánh đổi này gãy đổ trong thập niên 1970 khi lạm phát và thất nghiệp cùng cao, và lời giải thích - kỳ vọng lạm phát dịch chuyển cả đường cong - chính là nền tảng của việc neo kỳ vọng ngày nay.",
+  },
+  {
+    id: 5068,
+    category: "Vĩ mô - Chính sách & chu kỳ",
+    difficulty: "kho",
+    question: "Vì sao ngân hàng trung ương coi trọng kỳ vọng lạm phát đến vậy?",
+    options: [
+      "Vì kỳ vọng tự hiện thực hóa qua đàm phán lương và giá",
+      "Vì kỳ vọng lạm phát được đưa vào công thức tính GDP",
+      "Vì luật buộc phải công bố kỳ vọng lạm phát hằng quý",
+      "Vì kỳ vọng quyết định trực tiếp mức tỷ giá hối đoái",
+    ],
+    correct: 0,
+    explanation:
+      "Nếu doanh nghiệp tin giá sẽ tăng 8%, họ đặt giá bán tăng 8% và người lao động đòi lương tăng 8% - lạm phát thành hiện thực chỉ vì mọi người tin nó sẽ đến. Đây là lý do một ngân hàng trung ương mất uy tín phải trả giá đắt hơn nhiều để kéo lạm phát xuống.",
+  },
+  {
+    id: 5069,
+    category: "Vĩ mô - Chính sách & chu kỳ",
+    difficulty: "de",
+    question: "Chỉ báo dẫn dắt (leading indicator) như PMI khác chỉ báo trễ ở chỗ nào?",
+    options: [
+      "Chỉ số thay đổi trước khi nền kinh tế thực sự đổi chiều hướng",
+      "Chỉ số phản ánh tình trạng kinh tế ở thời điểm hiện tại",
+      "Chỉ số do các tổ chức quốc tế công bố mỗi năm một lần",
+      "Chỉ số chỉ xác nhận xu hướng sau khi nó đã diễn ra",
+    ],
+    correct: 0,
+    explanation:
+      "PMI hỏi người quản lý mua hàng về đơn hàng sắp tới, nên nó phản ứng trước sản lượng thực tế. Thất nghiệp thì ngược lại - doanh nghiệp sa thải sau khi đã yếu đi một thời gian, nên nó xác nhận suy thoái chứ không báo trước.",
+  },
+  {
+    id: 5070,
+    category: "Vĩ mô - Chính sách & chu kỳ",
+    difficulty: "trung-binh",
+    question: "Cán cân thương mại thặng dư kéo dài tạo áp lực gì lên tỷ giá?",
+    options: [
+      "Tăng cầu nội tệ, tạo áp lực lên giá đồng nội tệ",
+      "Không ảnh hưởng vì tỷ giá do ngân hàng trung ương định",
+      "Giảm cầu nội tệ vì hàng xuất khẩu rẻ hơn tương đối",
+      "Làm lãi suất trong nước tăng để hút vốn ngoại vào",
+    ],
+    correct: 0,
+    explanation:
+      "Bên mua hàng xuất khẩu phải đổi ngoại tệ lấy nội tệ để thanh toán, nên thặng dư kéo dài đẩy cầu nội tệ lên. Đây cũng là cơ chế tự điều chỉnh: nội tệ lên giá làm hàng xuất khẩu đắt hơn và dần thu hẹp chính khoản thặng dư đó.",
+  },
+  {
+    id: 5071,
+    category: "Vĩ mô - Chính sách & chu kỳ",
+    difficulty: "de",
+    question: "Stagflation mô tả tình trạng nào của nền kinh tế?",
+    options: [
+      "Lạm phát cao đi cùng tăng trưởng trì trệ",
+      "Tăng trưởng nhanh nhưng cán cân thương mại thâm hụt",
+      "Giảm phát kéo dài đi cùng thất nghiệp rất thấp",
+      "Lạm phát cao đi cùng tăng trưởng nóng",
+    ],
+    correct: 0,
+    explanation:
+      "Đây là tình huống khó xử nhất với ngân hàng trung ương: hạ lãi suất để cứu tăng trưởng thì lạm phát tệ hơn, nâng lãi suất để chặn lạm phát thì tăng trưởng tệ hơn. Nguyên nhân thường là cú sốc phía cung, như giá dầu vọt lên.",
+  },
+  {
+    id: 5072,
+    category: "Vĩ mô - Chính sách & chu kỳ",
+    difficulty: "kho",
+    question: "Vì sao chính sách tiền tệ có độ trễ dài trước khi ngấm vào nền kinh tế?",
+    options: [
+      "Vì quyết định đầu tư và tiêu dùng phản ứng chậm",
+      "Vì luật quy định chính sách chỉ hiệu lực sau mười hai tháng",
+      "Vì số liệu thống kê được công bố chậm hơn thực tế vài năm",
+      "Vì ngân hàng trung ương chỉ họp một lần mỗi năm",
+    ],
+    correct: 0,
+    explanation:
+      "Một dự án nhà máy đã khởi công không dừng lại vì lãi suất tăng, và hợp đồng vay cũ vẫn chạy theo điều khoản cũ. Độ trễ điển hình được ước lượng khoảng bốn đến tám quý, nên chính sách hôm nay nhắm vào nền kinh tế của một hai năm nữa chứ không phải hôm nay.",
+  },
+
+  // ── Chuyên viên Tư vấn Thuế ──────────────────────────────────────────────
+  {
+    id: 5073,
+    category: "Thuế - Doanh nghiệp & cá nhân",
+    difficulty: "trung-binh",
+    question: "Thuế thu nhập doanh nghiệp hoãn lại phát sinh từ đâu?",
+    options: [
+      "Chênh lệch tạm thời giữa sổ kế toán và sổ thuế",
+      "Khoản thuế bị truy thu sau đợt thanh tra của cơ quan thuế",
+      "Thuế nhà thầu nước ngoài chưa kê khai trong kỳ báo cáo",
+      "Phần thuế xin gia hạn nộp sang năm sau",
+    ],
+    correct: 0,
+    explanation:
+      "Kế toán và thuế ghi nhận cùng một khoản ở hai thời điểm khác nhau - khấu hao là ví dụ điển hình. Chênh lệch đó tự triệt tiêu theo thời gian, nên nó tạo ra tài sản hoặc nợ thuế hoãn lại chứ không phải một khoản thuế thật phải nộp ngay.",
+  },
+  {
+    id: 5074,
+    category: "Thuế - Doanh nghiệp & cá nhân",
+    difficulty: "trung-binh",
+    question: "Áp dụng khấu hao nhanh cho mục đích thuế mang lại lợi ích gì?",
+    options: [
+      "Hoãn nghĩa vụ thuế, tạo lợi ích về giá trị thời gian",
+      "Cho phép ghi nhận tài sản với giá trị cao hơn thực tế",
+      "Giảm tổng số thuế phải nộp trong suốt đời tài sản",
+      "Tăng lợi nhuận kế toán ngay trong năm đầu sử dụng",
+    ],
+    correct: 0,
+    explanation:
+      "Tổng số thuế qua cả đời tài sản không đổi - khấu hao nhanh chỉ dời nghĩa vụ về sau. Nhưng một đồng thuế nộp năm thứ năm rẻ hơn một đồng nộp năm nay, nên giá trị hiện tại của nghĩa vụ giảm xuống. Đây là lợi ích về dòng tiền, không phải về số tiền.",
+  },
+  {
+    id: 5075,
+    category: "Thuế - Doanh nghiệp & cá nhân",
+    difficulty: "trung-binh",
+    question: "Thuế suất hiệu dụng khác thuế suất danh nghĩa thế nào?",
+    options: [
+      "Hiệu dụng là mức thuế thực nộp trên lợi nhuận trước thuế kế toán",
+      "Hai mức luôn bằng nhau nếu doanh nghiệp tuân thủ đúng luật",
+      "Hiệu dụng chỉ áp dụng với doanh nghiệp có vốn nước ngoài",
+      "Hiệu dụng là mức trần do pháp luật quy định cho ngành",
+    ],
+    correct: 0,
+    explanation:
+      "Thuế suất danh nghĩa là con số trong luật; hiệu dụng là con số doanh nghiệp thực trả sau ưu đãi, lỗ chuyển sang, thu nhập miễn thuế và chênh lệch giữa các quốc gia. Khoảng cách giữa hai con số này là chỗ người phân tích nên đọc kỹ thuyết minh.",
+  },
+  {
+    id: 5076,
+    category: "Thuế - Doanh nghiệp & cá nhân",
+    difficulty: "de",
+    question: "Hiệp định tránh đánh thuế hai lần giải quyết vấn đề gì?",
+    options: [
+      "Cùng một khoản thu nhập bị đánh thuế ở hai quốc gia khác nhau",
+      "Thuế giá trị gia tăng bị tính trùng qua các khâu phân phối",
+      "Cá nhân có hai nguồn thu nhập từ hai công việc khác nhau",
+      "Doanh nghiệp phải nộp thuế hai lần trong cùng một năm",
+    ],
+    correct: 0,
+    explanation:
+      "Không có hiệp định thì cả nước phát sinh thu nhập lẫn nước cư trú đều có quyền đánh thuế cùng một khoản. Hiệp định phân định quyền đánh thuế và cho khấu trừ phần đã nộp ở nước kia, nếu không thì đầu tư xuyên biên giới sẽ bị đánh thuế nặng tới mức không khả thi.",
+  },
+  {
+    id: 5077,
+    category: "Thuế - Doanh nghiệp & cá nhân",
+    difficulty: "de",
+    question: "Thuế GTGT khác thuế thu nhập doanh nghiệp ở bản chất nào?",
+    options: [
+      "GTGT đánh vào tiêu dùng, TNDN đánh vào lợi nhuận",
+      "GTGT chỉ áp dụng cho hàng nhập khẩu vào trong nước",
+      "GTGT tính theo năm, TNDN tính theo từng giao dịch",
+      "GTGT do doanh nghiệp chịu, TNDN do người mua chịu",
+    ],
+    correct: 0,
+    explanation:
+      "Doanh nghiệp thu hộ GTGT từ người mua rồi nộp lại phần chênh sau khi khấu trừ đầu vào, nên gánh nặng cuối cùng nằm ở người tiêu dùng. TNDN thì đánh thẳng vào lợi nhuận của chính doanh nghiệp - hai loại thuế có người chịu thật khác nhau.",
+  },
+  {
+    id: 5078,
+    category: "Thuế - Doanh nghiệp & cá nhân",
+    difficulty: "trung-binh",
+    question: "Vì sao lá chắn thuế từ lãi vay làm tăng giá trị doanh nghiệp?",
+    options: [
+      "Vì lãi vay được trừ trước khi tính thu nhập chịu thuế",
+      "Vì lãi vay làm giảm doanh thu chịu thuế giá trị gia tăng",
+      "Vì lãi vay được hoàn lại một phần từ ngân sách nhà nước",
+      "Vì lãi vay được ghi nhận là chi phí vốn hóa vào tài sản",
+    ],
+    correct: 0,
+    explanation:
+      "Mỗi đồng lãi vay tiết kiệm được một khoản thuế bằng lãi vay nhân thuế suất, và dòng tiết kiệm đó thuộc về chủ sở hữu. Đây là lập luận cốt lõi cho việc dùng nợ - nhưng nó chỉ có giá trị khi doanh nghiệp còn lợi nhuận để mà khấu trừ.",
+  },
+  {
+    id: 5079,
+    category: "Thuế - Doanh nghiệp & cá nhân",
+    difficulty: "trung-binh",
+    question: "Cơ chế chuyển lỗ về sau (loss carryforward) cho phép doanh nghiệp làm gì?",
+    options: [
+      "Bù lỗ năm trước vào lợi nhuận chịu thuế các năm sau",
+      "Ghi nhận khoản lỗ đó thành tài sản vô hình trên bảng cân đối",
+      "Yêu cầu cơ quan thuế hoàn lại thuế đã nộp những năm trước",
+      "Chuyển khoản lỗ sang cho công ty mẹ gánh",
+    ],
+    correct: 0,
+    explanation:
+      "Không có cơ chế này, một doanh nghiệp lỗ 100 năm nay rồi lãi 100 năm sau vẫn phải nộp thuế trên 100 dù thực chất hòa vốn. Chuyển lỗ về sau làm phẳng gánh nặng thuế qua chu kỳ, và nó cũng là thứ tạo ra tài sản thuế hoãn lại trên bảng cân đối.",
+  },
+  {
+    id: 5080,
+    category: "Thuế - Doanh nghiệp & cá nhân",
+    difficulty: "de",
+    question: "Thuế thu nhập cá nhân lũy tiến từng phần nghĩa là gì?",
+    options: [
+      "Mỗi bậc thu nhập chịu thuế suất riêng của bậc đó",
+      "Toàn bộ thu nhập chịu thuế suất của bậc cao nhất đạt tới",
+      "Người có thu nhập cao được áp một mức cố định duy nhất",
+      "Thuế suất tăng dần theo số năm người nộp đã đi làm",
+    ],
+    correct: 0,
+    explanation:
+      "Đây là hiểu nhầm phổ biến nhất về thuế thu nhập: lên bậc mới không làm toàn bộ thu nhập bị đánh thuế cao hơn, chỉ phần vượt ngưỡng chịu mức mới. Vì vậy tăng lương không bao giờ khiến thu nhập sau thuế giảm đi.",
+  },
+  {
+    id: 5081,
+    category: "Thuế - Doanh nghiệp & cá nhân",
+    difficulty: "kho",
+    question: "Vì sao ưu đãi thuế cho dự án đầu tư thường kèm điều kiện thời hạn?",
+    options: [
+      "Để khuyến khích đầu tư mà không mất thu ngân sách mãi",
+      "Vì doanh nghiệp chỉ cần ưu đãi trong giai đoạn xây dựng",
+      "Vì cơ quan thuế không đủ nhân lực theo dõi dài hạn hơn",
+      "Vì luật quốc tế cấm ưu đãi thuế kéo dài quá năm năm",
+    ],
+    correct: 0,
+    explanation:
+      "Ưu đãi có thời hạn đủ để dịch chuyển quyết định đầu tư ban đầu - phần việc chính sách muốn làm - rồi kết thúc trước khi trở thành khoản trợ cấp vĩnh viễn. Khi thẩm định dự án, phần lợi nhuận sau khi ưu đãi hết hạn mới cho biết dự án có thực sự khả thi hay không.",
+  },
+
+  // ── Chuyên viên Bảo hiểm & Định phí ──────────────────────────────────────
+  {
+    id: 5082,
+    category: "Bảo hiểm - Định phí & rủi ro",
+    difficulty: "de",
+    question: "Nguyên tắc gộp rủi ro (risk pooling) của bảo hiểm hoạt động thế nào?",
+    options: [
+      "Nhiều người cùng đóng góp để bù tổn thất cho số ít gặp rủi ro",
+      "Công ty bảo hiểm giữ toàn bộ rủi ro không chia sẻ ra ngoài",
+      "Mỗi người tự đóng đúng bằng tổn thất kỳ vọng của mình",
+      "Rủi ro được chuyển hết sang cơ quan quản lý nhà nước",
+    ],
+    correct: 0,
+    explanation:
+      "Một cá nhân không dự đoán được mình có gặp tai nạn hay không, nhưng trên mười nghìn người thì tỷ lệ khá ổn định. Bảo hiểm bán chính sự ổn định đó: đổi một khoản lỗ lớn không chắc chắn lấy một khoản phí nhỏ chắc chắn.",
+  },
+  {
+    id: 5083,
+    category: "Bảo hiểm - Định phí & rủi ro",
+    difficulty: "trung-binh",
+    question: "Lựa chọn ngược (adverse selection) trong bảo hiểm nghĩa là gì?",
+    options: [
+      "Người rủi ro cao có xu hướng mua bảo hiểm nhiều hơn",
+      "Người mua bảo hiểm rồi thì hành xử bất cẩn hơn trước",
+      "Công ty bảo hiểm chọn sai nhóm khách hàng mục tiêu",
+      "Khách hàng chọn gói bảo hiểm không phù hợp nhu cầu",
+    ],
+    correct: 0,
+    explanation:
+      "Người biết mình sức khỏe kém quan tâm bảo hiểm y tế hơn người khỏe mạnh, nên nhóm mua bảo hiểm rủi ro cao hơn dân số chung. Nếu không thẩm định và phân nhóm, phí sẽ phải tăng, người khỏe rời đi, và vòng xoáy đó có thể phá vỡ cả thị trường.",
+  },
+  {
+    id: 5084,
+    category: "Bảo hiểm - Định phí & rủi ro",
+    difficulty: "kho",
+    question: "Rủi ro đạo đức (moral hazard) khác lựa chọn ngược ở điểm nào?",
+    options: [
+      "Rủi ro đạo đức xảy ra sau khi mua, lựa chọn ngược xảy ra lúc mua",
+      "Đạo đức do công ty gây ra, lựa chọn ngược do khách gây ra",
+      "Đạo đức chỉ có ở bảo hiểm nhân thọ, ngược ở phi nhân thọ",
+      "Hai khái niệm giống nhau, chỉ khác cách gọi theo vùng",
+    ],
+    correct: 0,
+    explanation:
+      "Lựa chọn ngược là vấn đề của việc AI mua; rủi ro đạo đức là vấn đề của việc người đã mua HÀNH XỬ ra sao. Hai vấn đề cần hai công cụ khác nhau: thẩm định và phân nhóm cho cái thứ nhất, mức miễn thường và đồng chi trả cho cái thứ hai.",
+  },
+  {
+    id: 5085,
+    category: "Bảo hiểm - Định phí & rủi ro",
+    difficulty: "trung-binh",
+    question: "Phí bảo hiểm thuần (pure premium) gồm những gì?",
+    options: [
+      "Tổn thất kỳ vọng, chưa gồm chi phí và lợi nhuận",
+      "Mức phí tối thiểu do cơ quan quản lý ấn định cho ngành",
+      "Toàn bộ phí khách hàng trả, gồm cả hoa hồng đại lý",
+      "Phần phí còn lại sau khi trừ mọi khoản bồi thường",
+    ],
+    correct: 0,
+    explanation:
+      "Phí thuần = xác suất xảy ra × mức tổn thất trung bình. Phí thương mại mà khách hàng thực trả còn cộng thêm chi phí khai thác, hoa hồng, quản lý và biên lợi nhuận - nên chênh lệch giữa hai con số cho biết bộ máy của công ty tốn kém đến đâu.",
+  },
+  {
+    id: 5086,
+    category: "Bảo hiểm - Định phí & rủi ro",
+    difficulty: "de",
+    question: "Tỷ lệ bồi thường (loss ratio) đạt 110% nghĩa là gì?",
+    options: [
+      "Bồi thường vượt phí thu được, nghiệp vụ đang lỗ",
+      "Có 110 hồ sơ bồi thường trên mỗi 100 hợp đồng bán ra",
+      "Công ty bồi thường đủ 110% giá trị hợp đồng cho khách",
+      "Doanh thu phí tăng 110% so với cùng kỳ năm trước đó",
+    ],
+    correct: 0,
+    explanation:
+      "Loss ratio = bồi thường / phí thu. Trên 100% nghĩa là riêng nghiệp vụ bảo hiểm đã lỗ trước cả chi phí vận hành. Nhiều công ty vẫn có lãi nhờ đầu tư khoản phí thu trước - nhưng đó là lãi tài chính, không phải lãi từ việc định phí đúng.",
+  },
+  {
+    id: 5087,
+    category: "Bảo hiểm - Định phí & rủi ro",
+    difficulty: "trung-binh",
+    question: "Tái bảo hiểm giúp công ty bảo hiểm điều gì?",
+    options: [
+      "Chuyển bớt phần rủi ro lớn sang một bên thứ ba",
+      "Giảm nghĩa vụ trích lập dự phòng xuống mức bằng không",
+      "Bán lại toàn bộ hợp đồng cho công ty bảo hiểm khác",
+      "Tăng phí bảo hiểm thu được từ khách hàng hiện có",
+    ],
+    correct: 0,
+    explanation:
+      "Không có tái bảo hiểm, một cơn bão duy nhất có thể xóa sổ vốn của một công ty bảo hiểm khu vực. Tái bảo hiểm cho phép nhận những hợp đồng lớn hơn mức vốn tự chịu được, đổi lại nhường một phần phí - tức mua bảo hiểm cho chính mình.",
+  },
+  {
+    id: 5088,
+    category: "Bảo hiểm - Định phí & rủi ro",
+    difficulty: "kho",
+    question: "Dự phòng nghiệp vụ trên bảng cân đối của công ty bảo hiểm là gì?",
+    options: [
+      "Nghĩa vụ ước tính cho các tổn thất đã và sẽ phát sinh",
+      "Lợi nhuận chưa phân phối giữ lại từ các năm trước đó",
+      "Phần vốn chủ sở hữu dành riêng cho hoạt động đầu tư",
+      "Khoản tiền mặt bắt buộc gửi tại ngân hàng nhà nước",
+    ],
+    correct: 0,
+    explanation:
+      "Đây là khoản mục lớn nhất và chủ quan nhất trên bảng cân đối của một công ty bảo hiểm: nó bao gồm cả tổn thất đã xảy ra nhưng chưa được báo cáo. Trích lập thiếu làm lợi nhuận hôm nay đẹp lên và đẩy vấn đề sang các năm sau, nên đây là chỗ người phân tích soi kỹ nhất.",
+  },
+  {
+    id: 5089,
+    category: "Bảo hiểm - Định phí & rủi ro",
+    difficulty: "trung-binh",
+    question: "Vì sao bảo hiểm nhân thọ có yếu tố tích lũy còn phi nhân thọ thì không?",
+    options: [
+      "Vì hợp đồng dài hạn nên phí đóng sớm được tích lũy",
+      "Vì rủi ro tử vong luôn thấp hơn rủi ro tài sản bị hư hại",
+      "Vì phi nhân thọ không được phép đầu tư khoản phí thu về",
+      "Vì luật buộc bảo hiểm nhân thọ phải trả lãi cho khách",
+    ],
+    correct: 0,
+    explanation:
+      "Hợp đồng nhân thọ kéo dài hàng chục năm với mức phí gần như cố định, trong khi rủi ro tử vong tăng theo tuổi - nên phần phí đóng dư ở những năm đầu được tích lũy để bù cho những năm sau. Chính khoản tích lũy đó tạo ra giá trị hoàn lại.",
+  },
+  {
+    id: 5090,
+    category: "Bảo hiểm - Định phí & rủi ro",
+    difficulty: "de",
+    question: "Bảng tỷ lệ tử vong (mortality table) được dùng để làm gì?",
+    options: [
+      "Ước lượng xác suất tử vong theo tuổi để định phí",
+      "Xác định mức bồi thường tối đa cho từng nhóm tuổi khác",
+      "Ghi nhận số ca tử vong thực tế mỗi năm",
+      "Phân loại khách hàng theo tình trạng sức khỏe hiện tại",
+    ],
+    correct: 0,
+    explanation:
+      "Đây là đầu vào cốt lõi của định phí nhân thọ. Điểm tinh tế là bảng phải phản ánh nhóm khách hàng thực tế chứ không phải dân số chung - người mua bảo hiểm nhân thọ đã qua thẩm định sức khỏe nên thường sống thọ hơn mức trung bình.",
+  },
+
+  // ── Chuyên viên Phân tích Tín dụng Tiêu dùng ─────────────────────────────
+  {
+    id: 5091,
+    category: "Tín dụng tiêu dùng - Chấm điểm & thu hồi",
+    difficulty: "de",
+    question: "Điểm tín dụng (credit score) của một người vay phản ánh điều gì?",
+    options: [
+      "Xác suất người vay chậm trả nợ trong một khoảng thời gian nhất định",
+      "Mức thu nhập hằng tháng đã được ngân hàng xác minh của người vay",
+      "Tổng giá trị tài sản người vay đang sở hữu một cách hợp pháp",
+      "Số tiền tối đa ngân hàng được phép cho người đó vay",
+    ],
+    correct: 0,
+    explanation:
+      "Điểm tín dụng là một xác suất được quy về thang điểm, không phải thước đo mức giàu có hay thu nhập. Một người thu nhập cao nhưng lịch sử trả nợ xấu vẫn có điểm thấp - mô hình dự báo hành vi, không đánh giá năng lực tài chính tổng thể.",
+  },
+  {
+    id: 5092,
+    category: "Tín dụng tiêu dùng - Chấm điểm & thu hồi",
+    difficulty: "de",
+    question: "Tỷ lệ DTI (nợ trên thu nhập) được dùng để đo điều gì?",
+    options: [
+      "Đo phần thu nhập đã cam kết cho nghĩa vụ trả nợ",
+      "Đo số lượng khoản vay người đó đang có tại các tổ chức",
+      "Đo mức chênh lệch giữa lãi suất cho vay và huy động",
+      "Đo tỷ lệ tài sản đảm bảo trên tổng dư nợ của khách",
+    ],
+    correct: 0,
+    explanation:
+      "DTI trả lời câu hỏi khả năng trả nợ từ dòng tiền: sau khi trừ các khoản phải trả hằng tháng, người vay còn lại bao nhiêu để sống. Nó bổ sung cho điểm tín dụng - một người trả nợ đúng hạn nhiều năm vẫn có thể đang vay quá sức.",
+  },
+  {
+    id: 5093,
+    category: "Tín dụng tiêu dùng - Chấm điểm & thu hồi",
+    difficulty: "trung-binh",
+    question: "Nợ nhóm 3 trở lên trong phân loại nợ của Việt Nam nghĩa là gì?",
+    options: [
+      "Nợ dưới chuẩn trở đi, tức đã bị coi là nợ xấu",
+      "Nợ đủ tiêu chuẩn nhưng cần theo dõi thêm một thời gian",
+      "Nợ được cơ cấu lại thời hạn trả theo đề nghị của khách",
+      "Nợ có bảo đảm bằng bất động sản",
+    ],
+    correct: 0,
+    explanation:
+      "Nhóm 1 là nợ đủ tiêu chuẩn, nhóm 2 cần chú ý, và từ nhóm 3 trở đi được xếp vào nợ xấu với tỷ lệ trích lập dự phòng tăng dần tới 100% ở nhóm 5. Tỷ lệ nợ xấu công bố của một ngân hàng chính là dư nợ nhóm 3-5 trên tổng dư nợ.",
+  },
+  {
+    id: 5094,
+    category: "Tín dụng tiêu dùng - Chấm điểm & thu hồi",
+    difficulty: "trung-binh",
+    question: "Vì sao tổ chức tín dụng trích lập dự phòng theo từng nhóm nợ?",
+    options: [
+      "Vì khả năng thu hồi giảm dần theo mức độ quá hạn",
+      "Vì cơ quan quản lý yêu cầu báo cáo riêng theo từng nhóm",
+      "Vì mỗi nhóm nợ có mức lãi suất cho vay khác nhau hẳn",
+      "Vì quy định thuế cho phép trừ dự phòng khỏi thu nhập",
+    ],
+    correct: 0,
+    explanation:
+      "Một khoản quá hạn 30 ngày và một khoản quá hạn 360 ngày có triển vọng thu hồi hoàn toàn khác nhau, nên gộp chung một tỷ lệ dự phòng sẽ vừa thừa cho nhóm này vừa thiếu cho nhóm kia. Phân nhóm buộc tổn thất được ghi nhận dần thay vì dồn vào một quý.",
+  },
+  {
+    id: 5095,
+    category: "Tín dụng tiêu dùng - Chấm điểm & thu hồi",
+    difficulty: "kho",
+    question: "Vintage analysis trong tín dụng tiêu dùng là phương pháp gì?",
+    options: [
+      "So sánh tỷ lệ nợ xấu theo tháng giải ngân của từng khoản vay",
+      "Đánh giá lại tài sản đảm bảo theo giá thị trường mỗi quý",
+      "Xếp hạng khách hàng theo số năm quan hệ với ngân hàng",
+      "Phân tích cơ cấu kỳ hạn của toàn bộ danh mục cho vay",
+    ],
+    correct: 0,
+    explanation:
+      "Nhóm các khoản vay theo tháng giải ngân rồi theo dõi tỷ lệ nợ xấu của từng nhóm theo số tháng kể từ khi vay. Cách này tách được chất lượng thẩm định của từng thời kỳ khỏi hiệu ứng tăng trưởng danh mục - tỷ lệ nợ xấu tổng luôn bị pha loãng khi cho vay mới tăng nhanh.",
+  },
+  {
+    id: 5096,
+    category: "Tín dụng tiêu dùng - Chấm điểm & thu hồi",
+    difficulty: "trung-binh",
+    question: "Vì sao lãi suất vay tiêu dùng tín chấp cao hơn hẳn vay thế chấp?",
+    options: [
+      "Vì không có tài sản đảm bảo nên tổn thất khi vỡ nợ lớn",
+      "Vì chi phí thẩm định hồ sơ tín chấp cao hơn nhiều lần",
+      "Vì khoản vay tín chấp luôn có kỳ hạn dài hơn thế chấp",
+      "Vì quy định buộc áp trần lãi suất riêng cho tín chấp",
+    ],
+    correct: 0,
+    explanation:
+      "Tổn thất kỳ vọng = xác suất vỡ nợ × tỷ lệ mất vốn khi vỡ nợ. Vay thế chấp có nhà để phát mại nên tỷ lệ mất vốn thấp; vay tín chấp thì gần như mất trắng. Chênh lệch lãi suất là phần bù cho đúng khác biệt đó, không phải do ngân hàng ép giá.",
+  },
+  {
+    id: 5097,
+    category: "Tín dụng tiêu dùng - Chấm điểm & thu hồi",
+    difficulty: "de",
+    question: "Cut-off score trong mô hình chấm điểm tín dụng dùng để làm gì?",
+    options: [
+      "Đặt ngưỡng chấp nhận hoặc từ chối hồ sơ vay",
+      "Xác định mức lãi suất ưu đãi cho khách hàng thân thiết",
+      "Giới hạn số hồ sơ mỗi nhân viên được xử lý trong ngày",
+      "Quy định thời hạn phê duyệt khoản vay",
+    ],
+    correct: 0,
+    explanation:
+      "Mô hình cho ra một điểm liên tục, nhưng quyết định thì nhị phân - duyệt hay không. Cut-off là chỗ ranh giới đó được đặt, và nó là một lựa chọn kinh doanh chứ không phải kết quả của mô hình.",
+  },
+  {
+    id: 5098,
+    category: "Tín dụng tiêu dùng - Chấm điểm & thu hồi",
+    difficulty: "kho",
+    question: "Đánh đổi cốt lõi khi hạ cut-off score xuống là gì?",
+    options: [
+      "Duyệt được nhiều hồ sơ hơn nhưng nợ xấu cũng tăng",
+      "Lãi suất huy động giảm nhưng chi phí marketing tăng lên",
+      "Chi phí vận hành giảm nhưng thời gian xử lý kéo dài ra",
+      "Duyệt được ít hồ sơ hơn nhưng biên lợi nhuận tăng lên",
+    ],
+    correct: 0,
+    explanation:
+      "Hạ ngưỡng là chọn tăng trưởng dư nợ và chấp nhận tổn thất cao hơn. Quyết định đúng phụ thuộc vào việc phần lãi thu thêm từ nhóm khách hàng biên có bù nổi phần tổn thất tăng thêm hay không - và câu trả lời đổi theo chu kỳ kinh tế.",
+  },
+  {
+    id: 5099,
+    category: "Tín dụng tiêu dùng - Chấm điểm & thu hồi",
+    difficulty: "trung-binh",
+    question: "Vì sao mô hình chấm điểm tín dụng cần được hiệu chuẩn lại định kỳ?",
+    options: [
+      "Vì hành vi người vay và kinh tế vĩ mô đều thay đổi",
+      "Vì phần mềm chấm điểm hết hạn bản quyền sử dụng hằng năm",
+      "Vì quy định buộc thay mô hình mới sau mỗi mười hai tháng",
+      "Vì dữ liệu lịch sử bị xóa theo quy định",
+    ],
+    correct: 0,
+    explanation:
+      "Mô hình học từ quan hệ giữa đặc điểm hồ sơ và hành vi trả nợ trong một giai đoạn cụ thể. Khi thất nghiệp tăng, lãi suất đổi, hay chính nhóm khách hàng thay đổi, quan hệ đó trôi đi - hiện tượng gọi là model drift, và nó lặng lẽ làm mô hình kém dần mà không có cảnh báo nào.",
   },
 ];
