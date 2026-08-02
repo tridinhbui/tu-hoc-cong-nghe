@@ -129,6 +129,9 @@ export const IB_CATEGORY_CAREERS: Record<string, readonly string[]> = {
   "Nguồn vốn - Thanh khoản & tỷ giá": ["treasury", "cfo-track", "fpa"],
   "Tuân thủ - Quy định & kiểm soát": ["compliance-officer", "internal-audit", "auditor"],
   "Định lượng - Xác suất & thống kê": ["quant", "data-analyst", "portfolio-analyst"],
+  "ESG - Khung báo cáo & định giá": ["esg-analyst", "portfolio-analyst", "ir-specialist"],
+  "Trái phiếu - Giao dịch & lãi suất": ["fixed-income-trader", "treasury", "portfolio-analyst"],
+  "Môi giới - Sản phẩm & khách hàng": ["stockbroker", "retail-banking-rm", "personal-financial-advisor"],
 };
 
 /** Technical questions worth drilling for a given career. An unmapped career

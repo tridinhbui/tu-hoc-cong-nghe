@@ -119,7 +119,7 @@ export const CAREER_TECHNICAL_QUESTIONS: IbQuestion[] = [
     difficulty: "de",
     question: "NAV trên mỗi chứng chỉ quỹ mở được xác định thế nào?",
     options: [
-      "Tổng tài sản trừ nợ, chia cho số chứng chỉ quỹ đang lưu hành",
+      "Tổng tài sản trừ nợ, chia cho số chứng chỉ lưu hành",
       "Tổng tài sản chia cho số chứng chỉ quỹ, chưa trừ nợ phải trả",
       "Tổng vốn góp ban đầu chia cho số chứng chỉ quỹ đã phát hành",
       "Giá khớp lệnh của chứng chỉ quỹ trên sàn vào cuối phiên",
@@ -150,7 +150,7 @@ export const CAREER_TECHNICAL_QUESTIONS: IbQuestion[] = [
     question:
       "Một quỹ mở nắm nhiều tài sản kém thanh khoản đối mặt rủi ro cấu trúc nào?",
     options: [
-      "Rút vốn hàng loạt buộc quỹ bán tháo đúng vào lúc giá xấu",
+      "Rút vốn hàng loạt buộc quỹ bán tháo lúc giá xấu",
       "Cơ quan quản lý sẽ tự động chuyển quỹ mở thành quỹ đóng",
       "Phải trả lãi suất phạt cho nhà đầu tư khi xử lý rút chậm",
       "NAV của quỹ sẽ bị đóng băng và không được công bố nữa",
@@ -182,7 +182,7 @@ export const CAREER_TECHNICAL_QUESTIONS: IbQuestion[] = [
     difficulty: "de",
     question: "Nhiệm vụ cốt lõi của bộ phận Treasury trong một doanh nghiệp là gì?",
     options: [
-      "Bảo đảm doanh nghiệp luôn đủ tiền trả các nghĩa vụ đến hạn",
+      "Bảo đảm doanh nghiệp đủ tiền trả nghĩa vụ đến hạn",
       "Lập báo cáo tài chính hợp nhất và làm việc với kiểm toán",
       "Tối đa hóa lợi nhuận đầu tư từ khoản tiền mặt nhàn rỗi",
       "Phân tích hiệu quả từng dòng sản phẩm và từng thị trường",
@@ -302,7 +302,7 @@ export const CAREER_TECHNICAL_QUESTIONS: IbQuestion[] = [
     difficulty: "trung-binh",
     question: "Vì sao Treasury thường phân bổ tiền nhàn rỗi theo bậc kỳ hạn (laddering)?",
     options: [
-      "Để luôn có một phần đáo hạn gần, phần còn lại hưởng lãi cao hơn",
+      "Để luôn có phần đáo hạn gần, phần còn lại hưởng lãi cao",
       "Để tránh phải kê khai khoản đầu tư trong thuyết minh báo cáo",
       "Để hưởng mức lãi suất cao nhất trên toàn bộ số tiền nhàn rỗi",
       "Để chuyển toàn bộ rủi ro lãi suất sang phía ngân hàng nhận tiền",
@@ -318,7 +318,7 @@ export const CAREER_TECHNICAL_QUESTIONS: IbQuestion[] = [
     question:
       "Doanh nghiệp vay USD nhưng doanh thu hoàn toàn bằng VND. Rủi ro chính là gì?",
     options: [
-      "VND mất giá làm nghĩa vụ nợ quy ra VND phình lên",
+      "VND mất giá làm nghĩa vụ nợ quy đổi ra VND phình lên",
       "Lãi suất VND tăng làm chi phí lãi vay USD tăng theo",
       "Ngân hàng có quyền yêu cầu trả nợ trước hạn khi tỷ giá đổi",
       "Khoản vay phải được ghi nhận lại thành vốn chủ sở hữu",
@@ -503,7 +503,7 @@ export const CAREER_TECHNICAL_QUESTIONS: IbQuestion[] = [
     difficulty: "kho",
     question: "Kiểm định cho p-value = 0,03. Con số đó nghĩa là gì?",
     options: [
-      "Xác suất thấy dữ liệu này nếu giả thuyết H0 đúng là 3%",
+      "Xác suất thấy dữ liệu này khi giả thuyết H0 đúng là 3%",
       "Mức độ ảnh hưởng của biến độc lập lên biến phụ thuộc là 3%",
       "Xác suất giả thuyết H0 đúng là 3% theo dữ liệu quan sát",
       "Xác suất kết luận của nghiên cứu này bị sai lệch là 3%",
@@ -571,5 +571,416 @@ export const CAREER_TECHNICAL_QUESTIONS: IbQuestion[] = [
     correct: 0,
     explanation:
       "Mô hình overfit trông xuất sắc trên dữ liệu quá khứ vì nó đã học thuộc cả phần ngẫu nhiên, rồi sụp đổ khi gặp dữ liệu mới. Đây chính là cơ chế đứng sau vô số chiến lược giao dịch có backtest đẹp nhưng thua lỗ ngay khi chạy thật.",
+  },
+
+  // ── Chuyên viên Phân tích ESG ────────────────────────────────────────────
+  {
+    id: 5037,
+    category: "ESG - Khung báo cáo & định giá",
+    difficulty: "trung-binh",
+    question: "Chỉ số nào cho phép so sánh mức phát thải giữa các doanh nghiệp khác quy mô?",
+    options: [
+      "Phát thải tính trên mỗi đơn vị doanh thu hoặc sản lượng",
+      "Số lượng dự án giảm phát thải doanh nghiệp đã triển khai",
+      "Tỷ lệ phần trăm nhân viên được đào tạo về môi trường",
+      "Tổng phát thải tuyệt đối của doanh nghiệp trong năm",
+    ],
+    correct: 0,
+    explanation:
+      "Phát thải tuyệt đối luôn thiên vị doanh nghiệp nhỏ: một nhà máy lớn hơn gấp mười lần đương nhiên thải nhiều hơn mà chưa nói gì về hiệu quả. Chia cho doanh thu hoặc sản lượng cho ra cường độ phát thải, thước đo duy nhất so sánh được giữa các quy mô - và cũng là thước đo cho thấy doanh nghiệp đang cải thiện hay chỉ đang thu hẹp sản xuất.",
+  },
+  {
+    id: 5038,
+    category: "ESG - Khung báo cáo & định giá",
+    difficulty: "de",
+    question: "Sàng lọc loại trừ (negative screening) trong đầu tư ESG nghĩa là gì?",
+    options: [
+      "Loại bỏ trước cả một số ngành ra khỏi vũ trụ đầu tư của quỹ",
+      "Chọn doanh nghiệp có điểm ESG cao nhất trong từng ngành",
+      "Đầu tư vào các dự án tạo tác động xã hội đo lường được",
+      "Gây sức ép thay đổi bằng quyền biểu quyết của cổ đông",
+    ],
+    correct: 0,
+    explanation:
+      "Đây là chiến lược ESG lâu đời nhất: gạt thuốc lá, vũ khí, cờ bạc hay nhiên liệu hóa thạch ra khỏi danh mục ngay từ đầu. Ưu điểm là rõ ràng và dễ kiểm chứng; nhược điểm là thu hẹp vũ trụ đầu tư và không tạo ra thay đổi nào bên trong doanh nghiệp bị loại.",
+  },
+  {
+    id: 5039,
+    category: "ESG - Khung báo cáo & định giá",
+    difficulty: "trung-binh",
+    question: "Chiến lược best-in-class khác sàng lọc loại trừ ở điểm nào?",
+    options: [
+      "Giữ mọi ngành nhưng chỉ chọn doanh nghiệp tốt nhất mỗi ngành",
+      "Loại bỏ hoàn toàn các ngành có điểm ESG thấp khỏi danh mục",
+      "Chỉ áp dụng với danh mục trái phiếu chứ không phải cổ phiếu",
+      "Chỉ đầu tư vào doanh nghiệp có chứng nhận quốc tế về ESG",
+    ],
+    correct: 0,
+    explanation:
+      "Best-in-class không loại ngành nào, kể cả ngành ô nhiễm nhất - nó chọn doanh nghiệp dẫn đầu về ESG trong chính ngành đó. Logic đằng sau là thưởng cho sự cải thiện tương đối và giữ được đa dạng hóa ngành, đổi lại danh mục vẫn có thể chứa cổ phiếu dầu khí hay khai khoáng.",
+  },
+  {
+    id: 5040,
+    category: "ESG - Khung báo cáo & định giá",
+    difficulty: "kho",
+    question: "Rủi ro 'tài sản mắc kẹt' (stranded assets) nghĩa là gì?",
+    options: [
+      "Tài sản mất giá trị sớm do chính sách hoặc công nghệ đổi",
+      "Tài sản không thể bán được vì thị trường thiếu thanh khoản",
+      "Tài sản bị cơ quan quản lý phong tỏa do vi phạm môi trường",
+      "Tài sản đã khấu hao hết nhưng vẫn còn được sử dụng thực tế",
+    ],
+    correct: 0,
+    explanation:
+      "Một mỏ than có trữ lượng ba mươi năm nhưng chính sách carbon khiến nó không còn khai thác kinh tế sau mười năm sẽ phải ghi giảm giá trị trước khi hết đời. Đây là kênh chính mà rủi ro khí hậu đi vào bảng cân đối kế toán, và nó tác động cả bên cho vay lẫn bên sở hữu.",
+  },
+  {
+    id: 5041,
+    category: "ESG - Khung báo cáo & định giá",
+    difficulty: "trung-binh",
+    question: "Vì sao Scope 3 là nhóm phát thải khó đo nhất?",
+    options: [
+      "Vì nó nằm ở chuỗi giá trị ngoài tầm kiểm soát doanh nghiệp",
+      "Vì cơ quan quản lý cấm doanh nghiệp công bố số liệu Scope 3",
+      "Vì chuẩn GHG Protocol chưa đưa ra định nghĩa cho Scope 3",
+      "Vì Scope 3 luôn nhỏ hơn nhiều so với Scope 1 và Scope 2",
+    ],
+    correct: 0,
+    explanation:
+      "Scope 1 và 2 đo được từ hóa đơn nhiên liệu và hóa đơn điện của chính doanh nghiệp. Scope 3 nằm ở nhà cung cấp cấp một, cấp hai và ở cách khách hàng sử dụng sản phẩm - dữ liệu doanh nghiệp không sở hữu, nên phần lớn phải ước lượng theo hệ số ngành.",
+  },
+  {
+    id: 5042,
+    category: "ESG - Khung báo cáo & định giá",
+    difficulty: "de",
+    question: "Green bond khác trái phiếu doanh nghiệp thông thường ở điểm nào?",
+    options: [
+      "Vốn huy động bị ràng buộc vào dự án xanh xác định",
+      "Được miễn hoàn toàn thuế thu nhập từ lãi cho nhà đầu tư",
+      "Kỳ hạn luôn dài hơn trái phiếu doanh nghiệp thông thường",
+      "Lãi suất thấp hơn do được chính phủ bảo lãnh thanh toán",
+    ],
+    correct: 0,
+    explanation:
+      "Ràng buộc nằm ở MỤC ĐÍCH SỬ DỤNG VỐN, kèm nghĩa vụ báo cáo phân bổ định kỳ. Rủi ro tín dụng thì vẫn là rủi ro của chính tổ chức phát hành - một green bond của doanh nghiệp yếu vẫn là một khoản đầu tư rủi ro cao, màu xanh không thay đổi điều đó.",
+  },
+  {
+    id: 5043,
+    category: "ESG - Khung báo cáo & định giá",
+    difficulty: "trung-binh",
+    question: "Cơ chế 'say-on-pay' trong quản trị doanh nghiệp là gì?",
+    options: [
+      "Quyền của cổ đông biểu quyết về gói thù lao của ban điều hành",
+      "Nghĩa vụ công bố mức lương trung vị của toàn bộ nhân viên",
+      "Quyền của người lao động thương lượng mức lương tối thiểu",
+      "Quy định trần thù lao áp dụng cho tổng giám đốc công ty",
+    ],
+    correct: 0,
+    explanation:
+      "Say-on-pay đưa gói thù lao ban điều hành ra đại hội đồng cổ đông để biểu quyết. Ở nhiều thị trường kết quả chỉ mang tính tham vấn, nhưng một tỷ lệ phản đối cao vẫn là tín hiệu quản trị mạnh mà hội đồng quản trị khó bỏ qua.",
+  },
+  {
+    id: 5044,
+    category: "ESG - Khung báo cáo & định giá",
+    difficulty: "kho",
+    question: "Vì sao nhiều quỹ lớn chọn engagement thay vì thoái vốn khỏi doanh nghiệp ESG kém?",
+    options: [
+      "Vì bán đi thì mất luôn quyền tác động tới doanh nghiệp",
+      "Vì quy định buộc quỹ phải nắm cổ phiếu tối thiểu năm năm",
+      "Vì thoái vốn bị pháp luật hạn chế với nhà đầu tư tổ chức",
+      "Vì engagement luôn cho lợi nhuận cao hơn trong ngắn hạn",
+    ],
+    correct: 0,
+    explanation:
+      "Thoái vốn chuyển cổ phần sang tay một nhà đầu tư ít quan tâm hơn và không làm doanh nghiệp phát thải ít đi một tấn nào. Giữ cổ phần thì giữ được quyền biểu quyết, quyền đề cử và quyền chất vấn - công cụ duy nhất tạo ra thay đổi thực sự bên trong doanh nghiệp.",
+  },
+  {
+    id: 5045,
+    category: "ESG - Khung báo cáo & định giá",
+    difficulty: "trung-binh",
+    question: "EU Taxonomy (hệ thống phân loại xanh) được lập ra để làm gì?",
+    options: [
+      "Định nghĩa thống nhất hoạt động nào là bền vững",
+      "Ấn định mức thuế carbon áp dụng cho từng ngành sản xuất",
+      "Cấp chứng nhận cho các quỹ đầu tư bền vững tại châu Âu",
+      "Xếp hạng tín nhiệm ESG cho từng doanh nghiệp niêm yết",
+    ],
+    correct: 0,
+    explanation:
+      "Trước Taxonomy, mỗi bên tự định nghĩa 'xanh' theo cách của mình, nên hai quỹ cùng gọi là bền vững có thể nắm hai danh mục hoàn toàn khác nhau. Taxonomy đặt tiêu chí kỹ thuật chung cho từng hoạt động kinh tế, biến 'xanh' từ tính từ marketing thành một mức có thể kiểm chứng.",
+  },
+
+  // ── Chuyên viên Giao dịch Trái phiếu ─────────────────────────────────────
+  {
+    id: 5046,
+    category: "Trái phiếu - Giao dịch & lãi suất",
+    difficulty: "de",
+    question: "Duration của một trái phiếu đo lường điều gì?",
+    options: [
+      "Độ nhạy của giá trái phiếu trước thay đổi lãi suất",
+      "Tổng số tiền lãi coupon sẽ nhận được tới khi đáo hạn",
+      "Khoảng thời gian trái phiếu không được phép bán lại",
+      "Số năm còn lại tới ngày đáo hạn của trái phiếu đó",
+    ],
+    correct: 0,
+    explanation:
+      "Duration xấp xỉ phần trăm giá thay đổi khi lợi suất đổi 1%. Nó có đơn vị năm nên hay bị nhầm với kỳ hạn còn lại, nhưng hai con số chỉ trùng nhau ở trái phiếu zero-coupon - mọi coupon trả trước đáo hạn đều kéo duration xuống thấp hơn kỳ hạn.",
+  },
+  {
+    id: 5047,
+    category: "Trái phiếu - Giao dịch & lãi suất",
+    difficulty: "kho",
+    question: "Convexity bổ sung điều gì mà duration không nói được?",
+    options: [
+      "Hiệu chỉnh phần sai số của duration khi lãi suất đổi mạnh",
+      "Đo mức chênh lệch giữa lợi suất danh nghĩa và lợi suất thực",
+      "Cho biết thời điểm tối ưu để bán lại trái phiếu trên sàn",
+      "Xác định xác suất tổ chức phát hành mất khả năng trả nợ",
+    ],
+    correct: 0,
+    explanation:
+      "Duration là xấp xỉ tuyến tính, còn quan hệ giá - lợi suất thì cong. Với biến động nhỏ sai số không đáng kể; với cú sốc lãi suất lớn, duration đánh giá thấp mức tăng giá khi lợi suất giảm và đánh giá quá mức mức giảm giá khi lợi suất tăng. Convexity dương vì thế là đặc tính có lợi.",
+  },
+  {
+    id: 5048,
+    category: "Trái phiếu - Giao dịch & lãi suất",
+    difficulty: "trung-binh",
+    question: "Đường cong lợi suất đảo ngược thường được thị trường đọc là tín hiệu gì?",
+    options: [
+      "Thị trường kỳ vọng kinh tế giảm tốc trong thời gian tới",
+      "Chỉ báo thanh khoản thị trường trái phiếu đang được cải thiện",
+      "Dấu hiệu ngân hàng trung ương sắp tăng lãi suất điều hành",
+      "Bằng chứng lạm phát sẽ tăng mạnh trong mười hai tháng tới",
+    ],
+    correct: 0,
+    explanation:
+      "Lợi suất dài hạn thấp hơn ngắn hạn nghĩa là thị trường đang định giá việc lãi suất sẽ phải hạ - điều thường chỉ xảy ra khi kinh tế yếu đi. Đây là một trong số ít chỉ báo suy thoái có thành tích lịch sử đáng kể, dù độ trễ giữa tín hiệu và suy thoái rất khác nhau qua từng chu kỳ.",
+  },
+  {
+    id: 5049,
+    category: "Trái phiếu - Giao dịch & lãi suất",
+    difficulty: "trung-binh",
+    question: "Trái phiếu có quyền mua lại (callable) bất lợi cho trái chủ trong tình huống nào?",
+    options: [
+      "Khi lãi suất giảm, bên phát hành mua lại để đi vay rẻ hơn",
+      "Khi thị trường thiếu thanh khoản nên không tìm được người mua",
+      "Khi lãi suất tăng, nhà đầu tư buộc phải bán lại cho tổ chức",
+      "Khi tổ chức phát hành bị hạ xếp hạng tín nhiệm đột ngột",
+    ],
+    correct: 0,
+    explanation:
+      "Quyền mua lại nằm trong tay bên phát hành, nên họ chỉ dùng khi có lợi cho họ: lãi suất giảm thì gọi trái phiếu cũ về và phát hành lô mới rẻ hơn. Trái chủ mất đúng khoản lãi vốn lẽ ra được hưởng, rồi phải tái đầu tư ở mặt bằng lãi suất thấp hơn.",
+  },
+  {
+    id: 5050,
+    category: "Trái phiếu - Giao dịch & lãi suất",
+    difficulty: "de",
+    question: "Giao dịch repo là gì?",
+    options: [
+      "Bán chứng khoán kèm cam kết mua lại ở mức giá đã thỏa thuận",
+      "Hợp đồng hoán đổi lãi suất cố định lấy lãi suất thả nổi",
+      "Cho vay tín chấp giữa hai ngân hàng thương mại với nhau",
+      "Nghiệp vụ phát hành trái phiếu chính phủ ra công chúng",
+    ],
+    correct: 0,
+    explanation:
+      "Về hình thức là mua bán, về bản chất là một khoản vay có tài sản đảm bảo: chênh lệch giữa giá bán và giá mua lại chính là lãi. Đây là nguồn vốn ngắn hạn chính của các nhà giao dịch trái phiếu, và cũng là kênh khiến căng thẳng lan nhanh khi thị trường mất niềm tin.",
+  },
+  {
+    id: 5051,
+    category: "Trái phiếu - Giao dịch & lãi suất",
+    difficulty: "trung-binh",
+    question: "Bid-ask spread rộng bất thường ở một lô trái phiếu doanh nghiệp cho biết điều gì?",
+    options: [
+      "Thanh khoản kém, chi phí vào và ra vị thế đều cao hơn",
+      "Khối lượng giao dịch trong phiên cao hơn mức bình thường",
+      "Tổ chức phát hành vừa được nâng xếp hạng tín nhiệm",
+      "Lợi suất đáo hạn của trái phiếu đó đang tăng nhanh",
+    ],
+    correct: 0,
+    explanation:
+      "Spread là giá của thanh khoản: nhà tạo lập nới rộng nó khi khó tìm đối tác hoặc khi rủi ro nắm giữ tồn kho tăng. Với trái phiếu doanh nghiệp, lợi suất niêm yết đẹp có thể mất sạch vào spread nếu bạn cần thoát vị thế sớm.",
+  },
+  {
+    id: 5052,
+    category: "Trái phiếu - Giao dịch & lãi suất",
+    difficulty: "kho",
+    question: "Vì sao trái phiếu zero-coupon nhạy với lãi suất hơn trái phiếu coupon cùng kỳ hạn?",
+    options: [
+      "Vì toàn bộ dòng tiền dồn vào ngày đáo hạn nên duration dài hơn",
+      "Vì zero-coupon không có coupon nên miễn rủi ro tái đầu tư",
+      "Vì zero-coupon được giao dịch trên thị trường phi tập trung",
+      "Vì zero-coupon luôn có xếp hạng tín nhiệm thấp hơn hẳn",
+    ],
+    correct: 0,
+    explanation:
+      "Trái phiếu coupon trả lại một phần tiền sớm, kéo trọng tâm dòng tiền về gần hiện tại. Zero-coupon không trả gì cho tới ngày cuối, nên duration bằng đúng kỳ hạn - dài nhất có thể - và giá của nó biến động mạnh nhất trong nhóm cùng kỳ hạn.",
+  },
+  {
+    id: 5053,
+    category: "Trái phiếu - Giao dịch & lãi suất",
+    difficulty: "kho",
+    question: "Credit spread duration đo lường điều gì?",
+    options: [
+      "Độ nhạy của giá trước thay đổi của spread tín dụng riêng",
+      "Thời gian trung bình tổ chức phát hành duy trì được xếp hạng",
+      "Chênh lệch kỳ hạn giữa trái phiếu doanh nghiệp và chính phủ",
+      "Số ngày trung bình để một khoản nợ xấu được xử lý xong",
+    ],
+    correct: 0,
+    explanation:
+      "Một trái phiếu doanh nghiệp chịu hai loại rủi ro giá tách biệt: lợi suất phi rủi ro đổi, và phần bù rủi ro tín dụng đổi. Duration thường đo cái thứ nhất; credit spread duration đo cái thứ hai, và trong khủng hoảng tín dụng thì chính cái thứ hai gây phần lớn thiệt hại.",
+  },
+  {
+    id: 5054,
+    category: "Trái phiếu - Giao dịch & lãi suất",
+    difficulty: "trung-binh",
+    question: "Chiến lược carry trade trên thị trường trái phiếu vận hành thế nào?",
+    options: [
+      "Vay ngắn hạn lãi thấp để nắm giữ tài sản lợi suất cao hơn",
+      "Hoán đổi trái phiếu nội tệ lấy trái phiếu ngoại tệ cùng kỳ hạn",
+      "Nắm giữ trái phiếu tới đáo hạn để tránh rủi ro biến động giá",
+      "Mua và bán cùng một trái phiếu trong một phiên giao dịch",
+    ],
+    correct: 0,
+    explanation:
+      "Lợi nhuận đến từ chênh lệch lãi suất, và nó tích lũy đều đặn cho tới khi không còn đều nữa. Rủi ro nằm ở hai đầu: chi phí vay ngắn hạn có thể vọt lên, và tài sản nắm giữ có thể mất giá - cả hai thường xảy ra cùng lúc, đúng lúc đòn bẩy đang cao nhất.",
+  },
+
+  // ── Chuyên viên Môi giới Chứng khoán ─────────────────────────────────────
+  {
+    id: 5055,
+    category: "Môi giới - Sản phẩm & khách hàng",
+    difficulty: "de",
+    question: "Giao dịch ký quỹ tác động thế nào tới rủi ro của nhà đầu tư?",
+    options: [
+      "Khuếch đại cả lãi lẫn lỗ trên phần vốn tự có",
+      "Chỉ khuếch đại phần lãi, phần lỗ do công ty gánh",
+      "Không đổi vì tài sản đảm bảo đã bù hết rủi ro",
+      "Giảm rủi ro nhờ đa dạng hóa được nhiều mã hơn",
+    ],
+    correct: 0,
+    explanation:
+      "Đòn bẩy là phép nhân hai chiều: vay để mua gấp đôi lượng cổ phiếu thì mức tăng 10% thành 20% trên vốn tự có, và mức giảm 10% cũng thành 20%. Thêm vào đó là chi phí lãi vay và nguy cơ bị bán giải chấp đúng đáy - rủi ro mà mua bằng tiền của mình không có.",
+  },
+  {
+    id: 5056,
+    category: "Môi giới - Sản phẩm & khách hàng",
+    difficulty: "trung-binh",
+    question: "Call margin xảy ra khi nào?",
+    options: [
+      "Khi tỷ lệ ký quỹ rơi dưới ngưỡng duy trì bắt buộc",
+      "Khi cổ phiếu bị đưa vào diện cảnh báo của sở giao dịch",
+      "Khi công ty chứng khoán hết hạn mức cho vay ký quỹ",
+      "Khi khách hàng muốn rút tiền mặt khỏi tài khoản",
+    ],
+    correct: 0,
+    explanation:
+      "Tỷ lệ ký quỹ = vốn tự có / giá trị tài sản. Giá giảm làm tử số co lại nhanh hơn mẫu số, nên tỷ lệ tụt qua ngưỡng duy trì và công ty yêu cầu nộp thêm. Không nộp kịp thì bị bán giải chấp - thường vào đúng phiên thị trường xấu nhất, vì đó chính là lúc call margin xuất hiện hàng loạt.",
+  },
+  {
+    id: 5057,
+    category: "Môi giới - Sản phẩm & khách hàng",
+    difficulty: "de",
+    question: "Lệnh ATO khác lệnh LO ở điểm nào?",
+    options: [
+      "ATO khớp ở giá mở cửa, còn LO chỉ khớp ở giá đã đặt",
+      "ATO được ưu tiên khớp trước mọi lệnh khác trong phiên",
+      "ATO có phí giao dịch thấp hơn so với lệnh giới hạn LO",
+      "ATO chỉ dành cho nhà đầu tư tổ chức, LO cho cá nhân",
+    ],
+    correct: 0,
+    explanation:
+      "ATO chấp nhận bất kỳ mức giá nào xác định được ở phiên mở cửa, nên chắc chắn khớp nhưng không kiểm soát được giá. LO kiểm soát được giá nhưng có thể không khớp. Đánh đổi giữa chắc chắn khớp và chắc chắn giá là lựa chọn cơ bản nhất khi đặt lệnh.",
+  },
+  {
+    id: 5058,
+    category: "Môi giới - Sản phẩm & khách hàng",
+    difficulty: "trung-binh",
+    question: "Vì sao môi giới phải đánh giá khẩu vị rủi ro của khách trước khi tư vấn sản phẩm?",
+    options: [
+      "Vì sản phẩm phù hợp với người này có thể sai với người khác",
+      "Vì mức phí môi giới thay đổi theo khẩu vị rủi ro của khách",
+      "Vì công ty cần dữ liệu đó để tính hạn mức ký quỹ được cấp",
+      "Vì quy định buộc mọi khách hàng phải mua cùng một danh mục",
+    ],
+    correct: 0,
+    explanation:
+      "Đây là nguyên tắc tính phù hợp (suitability): một sản phẩm không tốt hay xấu một cách tuyệt đối, nó chỉ phù hợp hay không với mục tiêu, thời gian đầu tư và khả năng chịu lỗ của từng người. Bán chứng quyền cho người sắp nghỉ hưu là sai, kể cả khi sản phẩm đó hoàn toàn hợp pháp.",
+  },
+  {
+    id: 5059,
+    category: "Môi giới - Sản phẩm & khách hàng",
+    difficulty: "kho",
+    question: "Xung đột lợi ích cố hữu của mô hình thu phí theo số lệnh là gì?",
+    options: [
+      "Phí theo số lệnh khuyến khích môi giới đẩy giao dịch",
+      "Công ty chứng khoán trả lương cố định không theo doanh số",
+      "Khách hàng và công ty chứng khoán dùng chung một hệ thống",
+      "Môi giới không được phép nắm giữ cổ phiếu của chính mình",
+    ],
+    correct: 0,
+    explanation:
+      "Thu nhập của môi giới tăng theo số lần khách giao dịch, còn lợi ích của khách thường nằm ở việc giao dịch ít đi. Hai động cơ này ngược nhau về cấu trúc, nên chuẩn nghề nghiệp phải bù bằng nghĩa vụ công bố và giới hạn - không thể trông chờ vào thiện chí cá nhân.",
+  },
+  {
+    id: 5060,
+    category: "Môi giới - Sản phẩm & khách hàng",
+    difficulty: "de",
+    question: "Chu kỳ thanh toán T+2 nghĩa là gì?",
+    options: [
+      "Chứng khoán và tiền về tài khoản sau hai ngày làm việc",
+      "Nhà đầu tư phải nắm giữ tối thiểu hai ngày mới được bán",
+      "Phí giao dịch được thu làm hai lần cách nhau hai ngày",
+      "Lệnh chỉ có hiệu lực trong vòng hai phiên giao dịch",
+    ],
+    correct: 0,
+    explanation:
+      "Giao dịch khớp ngay nhưng việc chuyển giao chứng khoán và tiền hoàn tất sau hai ngày làm việc. Khoảng trễ này là lý do tồn tại của trung tâm lưu ký và ký quỹ thanh toán: trong hai ngày đó, hệ thống phải chịu rủi ro một bên không hoàn thành nghĩa vụ.",
+  },
+  {
+    id: 5061,
+    category: "Môi giới - Sản phẩm & khách hàng",
+    difficulty: "kho",
+    question: "Bán khống tạo ra rủi ro đặc thù nào mà mua thường không có?",
+    options: [
+      "Khoản lỗ về lý thuyết là không giới hạn khi giá tăng",
+      "Giao dịch chỉ được thực hiện vào phiên khớp lệnh định kỳ",
+      "Nhà đầu tư mất quyền nhận cổ tức của cổ phiếu đã bán",
+      "Khoản lỗ tối đa bằng đúng số vốn ban đầu bỏ ra",
+    ],
+    correct: 0,
+    explanation:
+      "Mua cổ phiếu thì mất nhiều nhất là toàn bộ số tiền bỏ ra, vì giá không xuống dưới không. Bán khống thì giá có thể tăng bao nhiêu cũng được, nên khoản lỗ không có trần - và một đợt short squeeze có thể buộc đóng vị thế đúng lúc giá đang vọt lên.",
+  },
+  {
+    id: 5062,
+    category: "Môi giới - Sản phẩm & khách hàng",
+    difficulty: "trung-binh",
+    question: "Vì sao tiền của khách hàng phải tách khỏi tài khoản của công ty chứng khoán?",
+    options: [
+      "Để tiền của khách không bị dùng cho việc của công ty",
+      "Để giảm chi phí quản lý tài khoản cho từng khách hàng",
+      "Để khách hàng được hưởng lãi suất tiền gửi cao hơn",
+      "Để cơ quan thuế tính được thuế thu nhập từ đầu tư",
+    ],
+    correct: 0,
+    explanation:
+      "Tách tài khoản để tiền khách không nằm trong khối tài sản của công ty khi công ty gặp khó khăn - nếu công ty phá sản, tiền đó không bị đưa vào khối tài sản chia cho chủ nợ. Phần lớn các vụ mất tiền lớn của nhà đầu tư đều bắt đầu từ chỗ ranh giới này bị xóa nhòa.",
+  },
+  {
+    id: 5063,
+    category: "Môi giới - Sản phẩm & khách hàng",
+    difficulty: "kho",
+    question: "Hành vi 'churning' trong nghề môi giới là gì?",
+    options: [
+      "Đẩy khách giao dịch quá mức cần thiết chỉ để thu phí",
+      "Gộp nhiều lệnh nhỏ của khách thành một lệnh lớn duy nhất",
+      "Chuyển tài khoản khách sang một công ty chứng khoán khác",
+      "Ưu tiên khớp lệnh của công ty trước lệnh của khách hàng",
+    ],
+    correct: 0,
+    explanation:
+      "Churning là xung đột lợi ích phí-theo-lệnh bị đẩy tới mức lạm dụng: khuyến nghị mua bán liên tục không vì chiến lược nào của khách mà vì phí. Dấu hiệu nhận biết là vòng quay danh mục cao bất thường trong khi tỷ trọng tài sản gần như không đổi.",
   },
 ];
