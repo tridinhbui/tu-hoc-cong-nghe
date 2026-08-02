@@ -1,32 +1,8 @@
 {
   "_comment": "Grandfathered backlog for the quiz length-tell check in scripts/audit-lesson-content.mjs. A lesson listed here has the correct answer as the longest option in 75%+ of its questions, so its quiz can be passed by picking the longest option without knowing any finance. The list may only SHRINK: removing a slug after rewriting that lesson's options is the intended edit. Adding one is not - a lesson absent from this list must pass the check, which is what stops newly authored lessons from reintroducing the defect. Authoring rule for a rewrite: the correct option states the claim only (its reasoning belongs in the question's `explanation`, shown right after answering), each distractor is a mistake a learner actually makes, and one distractor is longer than the correct option in roughly three of every four questions.",
   "lessons": [
-    "bhxh-bhyt-bhtn-10-phay-5-phan-tram",
-    "bien-so-r-twr-mwrr",
-    "bieu-thue-luy-tien-tung-phan-5-bac",
     "cai-cach-thue-tncn-2026-tu-7-bac-xuong-5-bac",
-    "case-dinh-gia-tong-hop-nhieu-phuong-phap",
-    "case-tong-ket-mo-hinh-tai-chinh",
-    "case-tong-ket-tinh-thue-toi-uu-hop-phap",
-    "cfa-economics-can-can-thanh-toan-che-do-ty-gia",
-    "cfa-economics-cung-cau-do-co-gian",
-    "cfa-economics-ly-thuyet-doanh-nghiep-chi-phi",
-    "cfa-economics-tang-truong-kinh-te-nang-suat",
-    "cfa-economics-tong-cung-tong-cau",
-    "danh-gia-du-an-npv-irr",
-    "due-diligence-quy-trinh-tham-dinh",
-    "fcf-deep-dive",
-    "finance-as-math",
-    "kiem-tra-mo-hinh-va-bay-thuong-gap",
-    "lbo-model-co-che-co-ban",
-    "luong-gross-vs-net-thuc-nhan",
-    "masan-wincommerce-case-study",
-    "mo-hinh-lbo-don-gian",
-    "phan-tich-do-nhay-va-kich-ban",
-    "post-merger-integration-vi-sao-that-bai",
-    "quality-of-earnings-nang-cao",
     "quan-ly-no-tieu-dung",
-    "samsung-ai-finance",
     "tong-ket-chang-7-quyet-dinh-tai-chinh-lon"
   ]
 }

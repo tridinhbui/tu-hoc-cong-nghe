@@ -124,6 +124,20 @@ console.log(`Total failing at least one check: ${total}`);
 // distractor is longer than the correct option in ~3 of every 4 questions.
 const MAX_TELL_SHARE = 0.27;
 
+/** The same ceiling for the opposite direction, added after the rewrite of the
+ *  last 47 grandfathered lessons drove the longest share to 20% - past chance,
+ *  which is not a win. Measuring only one direction let the correct option
+ *  become the uniquely shortest in 32% of questions against a 25% chance level,
+ *  so "always pick the shortest" had quietly become a real edge while every
+ *  number this audit printed kept improving. That is the predictable cost of
+ *  the authoring rule "state the claim, nothing more" applied without also
+ *  watching what it does to the distribution.
+ *
+ *  Counted only when the minimum is unique, since a tie for shortest still
+ *  leaves the guesser a coin flip. Ceiling set just above the measured share:
+ *  it exists to stop the drift getting worse, not to declare it fixed. */
+const MAX_SHORTEST_SHARE = 0.33;
+
 /** A lesson fails when this share of its questions have the correct answer as
  *  the longest option. At 4 options, chance level is 25%. A tie for longest
  *  counts - three lessons passed the eyeball test and still failed here because
@@ -136,7 +150,7 @@ const baseline = new Set(JSON.parse(readFileSync(baselinePath, "utf8")).lessons)
 
 const quizStats = { personal: null, professional: null, bonus: null };
 for (const track of Object.keys(quizStats)) {
-  quizStats[track] = { questions: 0, longest: 0, ratioSum: 0 };
+  quizStats[track] = { questions: 0, longest: 0, shortest: 0, ratioSum: 0 };
 }
 
 /** Lessons failing the per-lesson bar but absent from the baseline - i.e. new
@@ -160,6 +174,17 @@ for (const file of files) {
       stats.longest++;
       lessonLongest++;
     }
+    // The other direction, which this audit was blind to for its whole life.
+    // Rewriting the correct option down to the bare claim while distractors
+    // stay full sentences fixes "longest wins" and quietly builds "shortest
+    // wins" in its place - and a bank where the answer is always the shortest
+    // is exactly as guessable as one where it is always the longest. Measured
+    // only when the minimum is unique: a tie for shortest leaves a guess
+    // between the tied options, so it is not on its own exploitable.
+    const minLength = Math.min(...lengths);
+    if (correctLength === minLength && lengths.filter((l) => l === minLength).length === 1) {
+      stats.shortest++;
+    }
     stats.ratioSum += mean > 0 ? correctLength / mean : 0;
   }
 
@@ -174,6 +199,7 @@ for (const file of files) {
 
 const totalQuestions = Object.values(quizStats).reduce((sum, s) => sum + s.questions, 0);
 const totalLongest = Object.values(quizStats).reduce((sum, s) => sum + s.longest, 0);
+const totalShortest = Object.values(quizStats).reduce((sum, s) => sum + s.shortest, 0);
 
 console.log(`\n=== QUIZ GUESSABILITY (chance level for 4 options is ~25%) ===`);
 for (const [track, stats] of Object.entries(quizStats)) {
@@ -182,14 +208,17 @@ for (const [track, stats] of Object.entries(quizStats)) {
   console.log(
     `  ${track.padEnd(13)} ${String(stats.questions).padStart(5)} questions  ` +
       `${String(stats.longest).padStart(5)} longest (${String(percent).padStart(3)}%)  ` +
+      `${String(stats.shortest).padStart(5)} shortest (${String(Math.round((stats.shortest / stats.questions) * 100)).padStart(3)}%)  ` +
       `avg ratio ${(stats.ratioSum / stats.questions).toFixed(2)}`
   );
 }
 const tellShare = totalQuestions > 0 ? totalLongest / totalQuestions : 0;
+const shortestShare = totalQuestions > 0 ? totalShortest / totalQuestions : 0;
 console.log(
   `  ${"TOTAL".padEnd(13)} ${String(totalQuestions).padStart(5)} questions  ` +
     `${String(totalLongest).padStart(5)} longest (${Math.round(tellShare * 100)}%)  ` +
-    `ceiling ${Math.round(MAX_TELL_SHARE * 100)}%`
+    `${String(totalShortest).padStart(5)} shortest (${Math.round(shortestShare * 100)}%)  ` +
+    `ceilings ${Math.round(MAX_TELL_SHARE * 100)}% / ${Math.round(MAX_SHORTEST_SHARE * 100)}%`
 );
 // Printed unrounded because the rounded percentage above has twice now been
 // read straight into MAX_TELL_SHARE, turning the gate red on the very batch
@@ -231,6 +260,14 @@ if (duplicateSlugs.length > 0) {
       `\n  Gộp chúng thành một entry. Xoá bớt entry là sai trừ khi đã đối chiếu ` +
       `từng key - entry bị che thường chứa diagram/sections/explanation mà entry ` +
       `thắng không có.`
+  );
+}
+
+if (shortestShare > MAX_SHORTEST_SHARE) {
+  tellFailures.push(
+    `${totalShortest}/${totalQuestions} questions (${Math.round(shortestShare * 100)}%) have the correct ` +
+      `answer as the uniquely shortest option, over the ${Math.round(MAX_SHORTEST_SHARE * 100)}% ceiling. ` +
+      `Chance is 25%; lengthen the correct option rather than padding a distractor.`
   );
 }
 
