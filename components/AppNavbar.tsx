@@ -6,7 +6,7 @@ import Image from "next/image";
 import { isValidAvatar } from "@/lib/avatar-utils";
 import { usePathname, useRouter } from "next/navigation";
 import { toast } from "sonner";
-import { FileText, BarChart3, StickyNote, GraduationCap, Gamepad2, Menu, X, Briefcase, BriefcaseBusiness, BookOpen, Home, Flame, Users, MessageSquareMore, Search, type LucideIcon } from "lucide-react";
+import { FileText, BarChart3, StickyNote, GraduationCap, Gamepad2, Menu, X, Briefcase, BriefcaseBusiness, BookOpen, Home, Flame, Users, MessageSquareMore, Search, ChevronDown, type LucideIcon } from "lucide-react";
 import { useI18n } from "@/lib/i18n/context";
 import type { Dictionary } from "@/lib/i18n";
 import LanguageSwitcher from "@/components/LanguageSwitcher";
@@ -53,6 +53,11 @@ const DASHBOARD_LINK: NavLink = { href: "/dashboard", label: "Dashboard", icon: 
  *  dictionary section as the item labels, so the headings translate too. */
 type NavSection = { titleKey: keyof Dictionary["nav"]; links: NavLink[] };
 
+/** Fold state lives in localStorage rather than component state alone: the
+ *  navbar survives client-side navigation but not a reload, and a reader who
+ *  folded four sections away does not want them back on every hard refresh. */
+const NAV_SECTION_STORAGE_KEY = "thtcdn:nav-collapsed-sections";
+
 const NAV_SECTIONS: NavSection[] = [
   {
     titleKey: "sectionLearn",
@@ -67,12 +72,17 @@ const NAV_SECTIONS: NavSection[] = [
     links: [
       { href: "/game", label: "Game", icon: Gamepad2 },
       { href: "/phong-van-ky-thuat", labelKey: "technicalInterview", icon: BriefcaseBusiness },
-      { href: "/nhom-hoc", labelKey: "studyGroup", icon: Users },
     ],
   },
   {
+    // Nhóm học nằm ở đây chứ không ở Thực hành: việc học cùng người khác là
+    // hoạt động cộng đồng, và đặt cạnh FinSocial thì hai lối vào duy nhất dẫn
+    // tới người khác nằm cùng một chỗ.
     titleKey: "sectionCommunity",
-    links: [{ href: "/finsocial", label: "FinSocial", icon: MessageSquareMore }],
+    links: [
+      { href: "/nhom-hoc", labelKey: "studyGroup", icon: Users },
+      { href: "/finsocial", label: "FinSocial", icon: MessageSquareMore },
+    ],
   },
   {
     titleKey: "sectionProgress",
@@ -110,6 +120,13 @@ export default function AppNavbar() {
   const [showQuickShop, setShowQuickShop] = useState(false);
   const [searchModalOpen, setSearchModalOpen] = useState(false);
   const [careerGoalId, setCareerGoalId] = useState<string | null>(null);
+  // Which sections the reader has folded away. Stored as the COLLAPSED set,
+  // not the open one, so a section added later starts open instead of hidden.
+  const [collapsedSections, setCollapsedSections] = useState<string[]>([]);
+  // Until localStorage has been read, the sections render open with no
+  // transition - otherwise every page load plays a collapse animation for
+  // anyone who folded something away.
+  const [sectionsHydrated, setSectionsHydrated] = useState(false);
   const desktopDropdownRef = useRef<HTMLDivElement>(null);
   const mobileDropdownRef = useRef<HTMLDivElement>(null);
 
@@ -294,6 +311,38 @@ export default function AppNavbar() {
     setMobileMenuOpen((v) => !v);
   };
 
+  useEffect(() => {
+    try {
+      const raw = window.localStorage.getItem(NAV_SECTION_STORAGE_KEY);
+      if (raw) setCollapsedSections(JSON.parse(raw) as string[]);
+    } catch {
+      // Private mode, quota, or a value from an older shape: opening every
+      // section is a fine outcome, so there is nothing to recover from.
+    }
+    setSectionsHydrated(true);
+  }, []);
+
+  // Landing inside a folded section would otherwise hide the page the reader
+  // is actually on, so navigation unfolds it. This runs on the pathname, not
+  // on every render, so folding a section while standing in it still works.
+  useEffect(() => {
+    const owning = NAV_SECTIONS.find((section) => section.links.some((l) => l.href === pathname));
+    if (!owning) return;
+    setCollapsedSections((prev) => (prev.includes(owning.titleKey) ? prev.filter((k) => k !== owning.titleKey) : prev));
+  }, [pathname]);
+
+  const toggleSection = (titleKey: string) => {
+    setCollapsedSections((prev) => {
+      const next = prev.includes(titleKey) ? prev.filter((k) => k !== titleKey) : [...prev, titleKey];
+      try {
+        window.localStorage.setItem(NAV_SECTION_STORAGE_KEY, JSON.stringify(next));
+      } catch {
+        // Preference is lost on reload; the nav still works this session.
+      }
+      return next;
+    });
+  };
+
   const toggleProfileDropdown = () => {
     setMobileMenuOpen(false);
     setDropdownOpen((v) => !v);
@@ -360,17 +409,60 @@ export default function AppNavbar() {
     );
   };
 
-  /** The five grouped sections. `onNavigate` is how the mobile menu closes
-   *  itself on tap; the desktop sidebar passes nothing. */
-  const renderNavSections = (onNavigate?: () => void) =>
-    NAV_SECTIONS.map((section) => (
-      <div key={section.titleKey} className="mt-2.5 first:mt-1">
-        <p className="px-3 pb-1 text-[10px] font-black uppercase tracking-[0.14em] text-stone-400 dark:text-stone-500">
-          {t.nav[section.titleKey]}
-        </p>
-        <div className="flex flex-col gap-1">{section.links.map((link) => renderNavItem(link, onNavigate))}</div>
-      </div>
-    ));
+  /** The grouped sections, each foldable. `onNavigate` is how the mobile menu
+   *  closes itself on tap; the desktop sidebar passes nothing.
+   *
+   *  The open/close animation uses a 0fr -> 1fr grid row rather than
+   *  max-height: the links inside vary in count and pick up badges at runtime,
+   *  so any fixed max-height is either too small (clipping) or too large (the
+   *  close lags behind the pointer by the unused pixels).
+   *
+   *  `idPrefix` keeps the aria wiring unique - the desktop sidebar and the
+   *  mobile sheet both render this list, and duplicate ids would point every
+   *  header at whichever panel mounted last. */
+  const renderNavSections = (onNavigate?: () => void, idPrefix = "nav") =>
+    NAV_SECTIONS.map((section) => {
+      const collapsed = collapsedSections.includes(section.titleKey);
+      const panelId = `${idPrefix}-section-${section.titleKey}`;
+      const holdsCurrentPage = section.links.some((l) => l.href === pathname);
+      return (
+        <div key={section.titleKey} className="mt-2.5 first:mt-1">
+          <button
+            type="button"
+            onClick={() => toggleSection(section.titleKey)}
+            aria-expanded={!collapsed}
+            aria-controls={panelId}
+            className="group flex w-full items-center gap-1.5 rounded-xl px-3 py-1 text-left transition-colors hover:bg-stone-100/70 dark:hover:bg-stone-900/70 cursor-pointer"
+          >
+            <span className="flex-1 text-[10px] font-black uppercase tracking-[0.14em] text-stone-400 dark:text-stone-500">
+              {t.nav[section.titleKey]}
+            </span>
+            {/* A folded section holding the current page still needs to say so,
+                otherwise the only cue that you are somewhere is hidden. */}
+            {collapsed && holdsCurrentPage && (
+              <span className="h-1.5 w-1.5 rounded-full bg-emerald-500 dark:bg-emerald-400" />
+            )}
+            <ChevronDown
+              className={`h-3.5 w-3.5 shrink-0 text-stone-400 transition-transform duration-200 dark:text-stone-500 ${
+                collapsed ? "-rotate-90" : ""
+              }`}
+            />
+          </button>
+          <div
+            id={panelId}
+            className={`grid ${sectionsHydrated ? "transition-[grid-template-rows] duration-200 ease-out" : ""} ${
+              collapsed ? "grid-rows-[0fr]" : "grid-rows-[1fr]"
+            }`}
+          >
+            <div className="overflow-hidden">
+              <div className="flex flex-col gap-1 pt-1">
+                {section.links.map((link) => renderNavItem(link, onNavigate))}
+              </div>
+            </div>
+          </div>
+        </div>
+      );
+    });
 
   return (
     <>
@@ -623,7 +715,7 @@ export default function AppNavbar() {
               )}
 
               {renderNavItem(DASHBOARD_LINK, () => setMobileMenuOpen(false))}
-              {renderNavSections(() => setMobileMenuOpen(false))}
+              {renderNavSections(() => setMobileMenuOpen(false), "mobile-nav")}
             </div>
           </>
         )}
