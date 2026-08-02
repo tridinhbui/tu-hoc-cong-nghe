@@ -136,6 +136,16 @@ export const IB_CATEGORY_CAREERS: Record<string, readonly string[]> = {
   "Thuế - Doanh nghiệp & cá nhân": ["tax-advisory", "accountant", "cfo-track"],
   "Bảo hiểm - Định phí & rủi ro": ["insurance-actuarial", "insurance-financial-advisor"],
   "Tín dụng tiêu dùng - Chấm điểm & thu hồi": ["consumer-credit-analyst", "credit-officer", "retail-banking-rm"],
+  "Hoạch định tài chính cá nhân": [
+    "wealth-manager",
+    "household-finance-planner",
+    "financial-coach",
+    "family-office-advisor",
+    "personal-financial-advisor",
+  ],
+  "Dữ liệu & BI cho tài chính": ["bi-analyst", "data-engineer", "data-analyst"],
+  "FinTech - Kinh tế sản phẩm": ["fintech-product-finance"],
+  "Nền tảng - Người mới vào ngành": ["non-finance-learner"],
 };
 
 /** Technical questions worth drilling for a given career. An unmapped career

@@ -1531,4 +1531,537 @@ export const CAREER_TECHNICAL_QUESTIONS: IbQuestion[] = [
     explanation:
       "Mô hình học từ quan hệ giữa đặc điểm hồ sơ và hành vi trả nợ trong một giai đoạn cụ thể. Khi thất nghiệp tăng, lãi suất đổi, hay chính nhóm khách hàng thay đổi, quan hệ đó trôi đi - hiện tượng gọi là model drift, và nó lặng lẽ làm mô hình kém dần mà không có cảnh báo nào.",
   },
+
+  // ── Hoạch định tài chính cá nhân ─────────────────────────────────────────
+  {
+    id: 5100,
+    category: "Hoạch định tài chính cá nhân",
+    difficulty: "trung-binh",
+    question: "Quy tắc rút 4% trong kế hoạch hưu trí dựa trên giả định nào?",
+    options: [
+      "Danh mục cổ phiếu và trái phiếu sinh lời vượt lạm phát",
+      "Lãi suất tiền gửi ngân hàng giữ nguyên suốt ba mươi năm",
+      "Người nghỉ hưu sẽ sống thêm đúng hai mươi năm nữa",
+      "Toàn bộ tài sản được giữ bằng tiền mặt để an toàn",
+    ],
+    correct: 0,
+    explanation:
+      "Quy tắc này ra đời từ dữ liệu thị trường Mỹ với danh mục cổ phiếu - trái phiếu, nơi lợi nhuận thực dương bù được phần rút ra. Áp thẳng vào một danh mục toàn tiền gửi hoặc một thị trường có lịch sử khác sẽ cho kết quả sai, nên con số 4% là điểm khởi đầu để tính chứ không phải hằng số.",
+  },
+  {
+    id: 5101,
+    category: "Hoạch định tài chính cá nhân",
+    difficulty: "de",
+    question: "Quỹ khẩn cấp nên đủ chi tiêu bao lâu và được giữ ở đâu?",
+    options: [
+      "Ba tới sáu tháng chi tiêu, giữ ở nơi rút được ngay",
+      "Ba tới sáu tháng chi tiêu, đầu tư vào cổ phiếu tăng trưởng",
+      "Hai tuần chi tiêu, còn lại dồn hết vào bất động sản",
+      "Một năm thu nhập, gửi tiết kiệm kỳ hạn năm năm",
+    ],
+    correct: 0,
+    explanation:
+      "Hai yêu cầu phải cùng thỏa: đủ lớn để trụ qua giai đoạn mất thu nhập, và rút được ngay khi cần. Gửi quỹ khẩn cấp vào cổ phiếu vi phạm yêu cầu thứ hai đúng lúc tệ nhất - khủng hoảng thường làm mất việc và làm giá cổ phiếu giảm cùng một lúc.",
+  },
+  {
+    id: 5102,
+    category: "Hoạch định tài chính cá nhân",
+    difficulty: "de",
+    question: "Vì sao trả nợ thẻ tín dụng thường được ưu tiên trước khi bắt đầu đầu tư?",
+    options: [
+      "Vì lãi suất thẻ cao hơn lợi nhuận đầu tư kỳ vọng",
+      "Vì trả nợ thẻ được khấu trừ vào thuế thu nhập cá nhân",
+      "Vì ngân hàng sẽ khóa tài khoản đầu tư nếu còn nợ thẻ",
+      "Vì pháp luật cấm đầu tư khi còn dư nợ thẻ tín dụng",
+    ],
+    correct: 0,
+    explanation:
+      "Trả một khoản nợ lãi 25%/năm là một khoản đầu tư chắc chắn sinh lời 25%, miễn thuế và không rủi ro - không kênh đầu tư nào cạnh tranh nổi. Đây là một trong số ít quyết định tài chính cá nhân có câu trả lời gần như tuyệt đối.",
+  },
+  {
+    id: 5103,
+    category: "Hoạch định tài chính cá nhân",
+    difficulty: "trung-binh",
+    question: "Bảo hiểm nhân thọ liên kết đầu tư khác bảo hiểm tử kỳ ở điểm nào?",
+    options: [
+      "Liên kết đầu tư gộp bảo vệ với tích lũy, tử kỳ chỉ bảo vệ",
+      "Tử kỳ có phí cao hơn nhiều vì thời hạn hợp đồng dài hơn",
+      "Hai loại giống nhau, chỉ khác tên gọi theo từng công ty",
+      "Liên kết đầu tư được nhà nước bảo lãnh phần vốn gốc",
+    ],
+    correct: 0,
+    explanation:
+      "Tử kỳ mua đúng một thứ - khoản chi trả nếu người được bảo hiểm mất trong kỳ hạn - nên phí rẻ hơn nhiều với cùng số tiền bảo vệ. Sản phẩm liên kết đầu tư gộp bảo vệ và tích lũy vào một hợp đồng, tiện nhưng khó so sánh chi phí của từng phần.",
+  },
+  {
+    id: 5104,
+    category: "Hoạch định tài chính cá nhân",
+    difficulty: "kho",
+    question: "Vì sao chi phí sinh hoạt cố định quan trọng hơn thu nhập khi lập kế hoạch tài chính?",
+    options: [
+      "Vì nó quyết định mức tối thiểu cần có mỗi tháng",
+      "Vì ngân hàng chỉ nhìn chi phí khi xét duyệt khoản vay",
+      "Vì thu nhập luôn ổn định hơn chi phí trong dài hạn",
+      "Vì cơ quan thuế tính thuế dựa trên chi phí cố định",
+    ],
+    correct: 0,
+    explanation:
+      "Thu nhập có thể dừng đột ngột; tiền thuê nhà, học phí và khoản trả góp thì không. Chi phí cố định vì thế xác định quỹ khẩn cấp cần bao nhiêu, mức bảo hiểm cần mua, và bao lâu thì một cú mất việc trở thành khủng hoảng.",
+  },
+  {
+    id: 5105,
+    category: "Hoạch định tài chính cá nhân",
+    difficulty: "kho",
+    question: "Rủi ro thứ tự lợi nhuận (sequence risk) với người vừa nghỉ hưu là gì?",
+    options: [
+      "Lỗ nặng ngay những năm đầu rút tiền phá vỡ kế hoạch",
+      "Lạm phát tăng nhanh hơn mức tăng của lương hưu nhà nước",
+      "Lợi nhuận trung bình dài hạn thấp hơn mức đã dự tính",
+      "Danh mục quá tập trung vào một vài mã cổ phiếu lớn",
+    ],
+    correct: 0,
+    explanation:
+      "Hai người có cùng lợi nhuận trung bình ba mươi năm vẫn có thể kết thúc rất khác nhau nếu thứ tự các năm lãi lỗ khác nhau. Rút tiền trong lúc danh mục đang giảm buộc bán nhiều đơn vị hơn, và phần vốn đã bán không còn ở đó để hồi phục cùng thị trường.",
+  },
+  {
+    id: 5106,
+    category: "Hoạch định tài chính cá nhân",
+    difficulty: "de",
+    question: "Vì sao tái cân bằng danh mục định kỳ lại có ích?",
+    options: [
+      "Đưa tỷ trọng rủi ro về đúng mức đã chọn từ đầu",
+      "Giúp tránh hoàn toàn thuế thu nhập từ đầu tư chứng khoán",
+      "Bảo đảm danh mục luôn có lợi nhuận cao hơn thị trường",
+      "Loại bỏ nhu cầu phải theo dõi danh mục trong cả năm",
+    ],
+    correct: 0,
+    explanation:
+      "Sau vài năm cổ phiếu tăng mạnh, một danh mục đặt ra 60/40 có thể đã thành 80/20 mà chủ nhân không hề quyết định điều đó. Tái cân bằng đưa mức rủi ro về đúng thứ đã chọn - và tình cờ cũng buộc bán phần đã tăng để mua phần đã giảm.",
+  },
+  {
+    id: 5107,
+    category: "Hoạch định tài chính cá nhân",
+    difficulty: "trung-binh",
+    question: "Family office khác một nhà tư vấn tài chính cá nhân ở điểm nào?",
+    options: [
+      "Quản lý trọn gói tài sản, thuế và kế thừa cho một gia đình",
+      "Chỉ phục vụ khách hàng có thu nhập từ lương cố định",
+      "Hoạt động như một quỹ mở bán chứng chỉ ra công chúng",
+      "Chỉ tư vấn danh mục đầu tư chứ không đụng tới thuế",
+    ],
+    correct: 0,
+    explanation:
+      "Family office phục vụ một hoặc vài gia đình rất giàu và bao trùm cả đầu tư, cấu trúc thuế, kế thừa, từ thiện và quản trị gia đình. Quy mô tài sản đủ lớn để chi phí duy trì một bộ máy riêng rẻ hơn việc mua từng dịch vụ bên ngoài.",
+  },
+  {
+    id: 5108,
+    category: "Hoạch định tài chính cá nhân",
+    difficulty: "de",
+    question: "Vì sao đa dạng hóa quan trọng với người tích lũy dài hạn?",
+    options: [
+      "Vì không ai biết trước nhóm tài sản nào sẽ dẫn đầu",
+      "Vì phí giao dịch giảm khi mua nhiều loại tài sản khác nhau",
+      "Vì quy định buộc nắm tối thiểu mười mã trong danh mục",
+      "Vì đa dạng hóa bảo đảm danh mục không bao giờ bị lỗ",
+    ],
+    correct: 0,
+    explanation:
+      "Đa dạng hóa không loại bỏ được rủi ro thị trường chung và không bảo đảm có lãi. Thứ nó loại bỏ là rủi ro đặt cược sai vào một mã hay một ngành - loại rủi ro không được thị trường trả công, nên gánh nó là chịu thiệt mà không được bù.",
+  },
+  {
+    id: 5109,
+    category: "Hoạch định tài chính cá nhân",
+    difficulty: "trung-binh",
+    question: "Lập kế hoạch kế thừa (estate planning) nhằm mục đích gì?",
+    options: [
+      "Chuyển tài sản theo ý nguyện, giảm tranh chấp và thuế",
+      "Tránh hoàn toàn mọi nghĩa vụ thuế theo quy định pháp luật",
+      "Bảo đảm tài sản sinh lời cao nhất sau khi người đó mất",
+      "Chuyển toàn bộ tài sản sang cho nhà nước quản lý hộ",
+    ],
+    correct: 0,
+    explanation:
+      "Không có kế hoạch thì pháp luật quyết định thay, thường chậm, tốn kém và không khớp ý nguyện. Di chúc, ủy thác và việc chỉ định người thụ hưởng là các công cụ chính - và chúng cần được rà lại sau mỗi biến cố lớn trong gia đình.",
+  },
+
+  // ── Dữ liệu, BI và Data Engineering trong tài chính ───────────────────────
+  {
+    id: 5110,
+    category: "Dữ liệu & BI cho tài chính",
+    difficulty: "trung-binh",
+    question: "Vì sao dữ liệu tài chính phải được đối soát trước khi lên dashboard?",
+    options: [
+      "Vì số liệu sai trên dashboard vẫn được tin và dùng",
+      "Vì đối soát giúp giảm dung lượng lưu trữ của kho dữ liệu",
+      "Vì quy định kế toán cấm hiển thị số liệu chưa kiểm toán",
+      "Vì công cụ BI không đọc được dữ liệu chưa đối soát",
+    ],
+    correct: 0,
+    explanation:
+      "Một con số hiện lên dashboard mang theo vẻ chính xác mà bảng tính thô không có, nên nó được tin nhiều hơn chứ không ít hơn. Đối soát với sổ cái trước khi công bố là chốt kiểm soát duy nhất đứng giữa một lỗi ETL và một quyết định kinh doanh dựa trên nó.",
+  },
+  {
+    id: 5111,
+    category: "Dữ liệu & BI cho tài chính",
+    difficulty: "de",
+    question: "Bảng fact khác bảng dimension trong mô hình sao ở điểm nào?",
+    options: [
+      "Fact chứa số đo, dimension chứa thuộc tính mô tả",
+      "Fact luôn nhỏ hơn dimension về số lượng bản ghi",
+      "Fact chứa dữ liệu cũ, dimension chứa dữ liệu mới nhất",
+      "Fact dùng cho báo cáo, dimension dùng cho lưu trữ",
+    ],
+    correct: 0,
+    explanation:
+      "Fact giữ những gì đo được - doanh thu, số lượng, chi phí - và thường rất dài. Dimension giữ ngữ cảnh để cắt lát các số đo đó: khách hàng nào, sản phẩm nào, ngày nào. Tách hai loại ra là lý do một truy vấn theo nhiều chiều vẫn chạy nhanh.",
+  },
+  {
+    id: 5112,
+    category: "Dữ liệu & BI cho tài chính",
+    difficulty: "kho",
+    question: "Slowly changing dimension loại 2 xử lý điều gì?",
+    options: [
+      "Giữ lịch sử thay đổi bằng cách thêm dòng mới",
+      "Ghi đè giá trị cũ để bảng luôn phản ánh hiện tại",
+      "Nén dữ liệu lịch sử để tiết kiệm chi phí lưu trữ",
+      "Xóa bản ghi cũ sau một khoảng thời gian đã định",
+    ],
+    correct: 0,
+    explanation:
+      "Khi một khách hàng chuyển từ phân khúc này sang phân khúc khác, loại 1 ghi đè và mọi báo cáo quá khứ đổi theo; loại 2 thêm một dòng mới với khoảng hiệu lực riêng nên báo cáo cũ giữ nguyên. Chọn sai loại là lý do một báo cáo chạy lại năm sau ra con số khác.",
+  },
+  {
+    id: 5113,
+    category: "Dữ liệu & BI cho tài chính",
+    difficulty: "trung-binh",
+    question: "Vì sao nên lưu cột ngày hiệu lực thay vì chỉ giữ giá trị hiện tại?",
+    options: [
+      "Để báo cáo lại đúng số liệu như tại thời điểm quá khứ",
+      "Để giảm số lượng bảng cần duy trì trong kho dữ liệu",
+      "Để tăng tốc độ truy vấn trên bảng có nhiều bản ghi",
+      "Để hệ thống tự động xóa dữ liệu quá hạn lưu trữ",
+    ],
+    correct: 0,
+    explanation:
+      "Kiểm toán và phân tích đều cần trả lời câu hỏi 'lúc đó chúng ta thấy gì', chứ không phải 'bây giờ dữ liệu ra sao'. Không có khoảng hiệu lực thì mọi báo cáo lịch sử đều bị viết lại mỗi khi một bản ghi được cập nhật.",
+  },
+  {
+    id: 5114,
+    category: "Dữ liệu & BI cho tài chính",
+    difficulty: "kho",
+    question: "Vì sao mỗi chỉ số trên dashboard cần một định nghĩa thống nhất?",
+    options: [
+      "Vì mỗi phòng ban tự định nghĩa thì báo cáo mâu thuẫn",
+      "Vì công cụ BI chỉ chấp nhận một định nghĩa cho mỗi cột",
+      "Vì kiểm toán yêu cầu mọi chỉ số phải có tên tiếng Anh",
+      "Vì định nghĩa thống nhất làm truy vấn chạy nhanh hơn",
+    ],
+    correct: 0,
+    explanation:
+      "'Khách hàng hoạt động' tính theo ba mươi ngày hay chín mươi ngày, có tính tài khoản dùng thử không - mỗi lựa chọn cho một con số khác. Khi hai phòng ban mang hai con số vào cùng một cuộc họp, tranh luận chuyển từ quyết định sang việc số nào đúng.",
+  },
+  {
+    id: 5115,
+    category: "Dữ liệu & BI cho tài chính",
+    difficulty: "kho",
+    question: "Idempotency trong một pipeline dữ liệu nghĩa là gì?",
+    options: [
+      "Chạy lại nhiều lần vẫn cho cùng một kết quả",
+      "Pipeline tự động khởi động lại khi gặp lỗi giữa chừng",
+      "Mỗi lần chạy tạo ra một phiên bản dữ liệu mới",
+      "Dữ liệu được nén lại để giảm chi phí truyền tải",
+    ],
+    correct: 0,
+    explanation:
+      "Pipeline không idempotent mà chạy lại sau khi lỗi giữa chừng sẽ nhân đôi một phần dữ liệu, và với dữ liệu tài chính thì đó là doanh thu bị đếm hai lần. Đây là điều kiện để việc chạy lại trở nên an toàn - mà chạy lại thì luôn xảy ra.",
+  },
+  {
+    id: 5116,
+    category: "Dữ liệu & BI cho tài chính",
+    difficulty: "trung-binh",
+    question: "Backfill trong một pipeline dữ liệu là gì?",
+    options: [
+      "Chạy lại pipeline cho khoảng thời gian trong quá khứ",
+      "Sao lưu toàn bộ kho dữ liệu sang một hệ thống khác",
+      "Điền giá trị trung bình vào các ô dữ liệu bị thiếu",
+      "Xóa dữ liệu cũ để giải phóng dung lượng lưu trữ",
+    ],
+    correct: 0,
+    explanation:
+      "Khi logic thay đổi hoặc phát hiện lỗi, dữ liệu lịch sử phải được tính lại theo logic mới - nếu không, cùng một chỉ số sẽ đứt gãy đúng vào ngày triển khai. Backfill an toàn đòi hỏi pipeline idempotent, nên hai khái niệm này luôn đi cùng nhau.",
+  },
+  {
+    id: 5117,
+    category: "Dữ liệu & BI cho tài chính",
+    difficulty: "trung-binh",
+    question: "Vì sao chỉ số vận hành và chỉ số tài chính hay lệch nhau?",
+    options: [
+      "Vì hai bên dùng thời điểm chốt và định nghĩa khác nhau",
+      "Vì hệ thống vận hành luôn ghi nhận số liệu sai lệch",
+      "Vì dữ liệu vận hành không được lưu quá ba mươi ngày",
+      "Vì kế toán cố tình điều chỉnh số liệu cho đẹp hơn",
+    ],
+    correct: 0,
+    explanation:
+      "Hệ thống vận hành đếm đơn hàng lúc đặt, kế toán ghi nhận doanh thu lúc giao, và hai bên chốt sổ ở hai thời điểm khác nhau. Chênh lệch vì thế là bình thường; điều bất thường là không giải thích được nó bằng một bảng đối chiếu.",
+  },
+  {
+    id: 5118,
+    category: "Dữ liệu & BI cho tài chính",
+    difficulty: "kho",
+    question: "Data lineage (dòng dõi dữ liệu) hữu ích nhất ở điểm nào?",
+    options: [
+      "Truy một con số sai trên báo cáo về tận nguồn gốc",
+      "Cho phép nhiều người cùng sửa một bảng ở cùng một lúc",
+      "Giúp nén dữ liệu lịch sử xuống dung lượng nhỏ hơn",
+      "Tự động sinh biểu đồ từ bảng dữ liệu đã có sẵn",
+    ],
+    correct: 0,
+    explanation:
+      "Khi một con số trên báo cáo ban lãnh đạo trông sai, câu hỏi đầu tiên là nó đi qua những bảng và phép biến đổi nào. Không có lineage thì việc truy ngược là đọc thủ công hàng chục truy vấn, và thời gian đó thường dài hơn thời gian tới cuộc họp tiếp theo.",
+  },
+
+  // ── Chuyên viên Tài chính Sản phẩm FinTech ───────────────────────────────
+  {
+    id: 5119,
+    category: "FinTech - Kinh tế sản phẩm",
+    difficulty: "de",
+    question: "Unit economics của một sản phẩm fintech đo lường điều gì?",
+    options: [
+      "Lãi hoặc lỗ trên mỗi khách sau khi trừ chi phí phục vụ",
+      "Giá trị định giá công ty ở vòng gọi vốn gần nhất",
+      "Tổng doanh thu toàn công ty trong một năm tài chính",
+      "Số lượng khách hàng mới có được trong mỗi tháng",
+    ],
+    correct: 0,
+    explanation:
+      "Unit economics hỏi một câu rất cụ thể: thêm một khách hàng nữa thì công ty lãi hay lỗ. Một công ty tăng trưởng nhanh với unit economics âm chỉ đang mở rộng khoản lỗ - tăng trưởng khi đó không phải bằng chứng của mô hình tốt.",
+  },
+  {
+    id: 5120,
+    category: "FinTech - Kinh tế sản phẩm",
+    difficulty: "trung-binh",
+    question: "CAC và LTV quan hệ với nhau như thế nào?",
+    options: [
+      "LTV phải vượt CAC đủ nhiều thì mô hình mới bền",
+      "CAC phải luôn cao hơn LTV thì mới tăng trưởng nhanh",
+      "LTV được tính bằng CAC nhân số năm khách ở lại",
+      "Hai chỉ số này không liên quan gì tới nhau",
+    ],
+    correct: 0,
+    explanation:
+      "Chi phí có được một khách hàng phải nhỏ hơn giá trị họ mang lại trong suốt vòng đời, và khoảng cách phải đủ rộng để bù chi phí cố định. Thời gian hoàn vốn CAC cũng quan trọng ngang tỷ lệ: LTV/CAC đẹp nhưng hoàn vốn sau bốn năm vẫn có thể làm công ty cạn tiền.",
+  },
+  {
+    id: 5121,
+    category: "FinTech - Kinh tế sản phẩm",
+    difficulty: "trung-binh",
+    question: "Vì sao tỷ lệ rời bỏ (churn) quan trọng với fintech hơn bán lẻ truyền thống?",
+    options: [
+      "Vì doanh thu theo kỳ nên mất khách là mất dòng tiền sau",
+      "Vì fintech không được phép thu phí khi khách rời đi",
+      "Vì chi phí giữ khách của fintech luôn bằng không",
+      "Vì churn được cơ quan quản lý theo dõi và công bố",
+    ],
+    correct: 0,
+    explanation:
+      "Bán lẻ mất một lần bán; mô hình theo kỳ mất toàn bộ dòng doanh thu còn lại của khách hàng đó. Churn vì thế nhân trực tiếp vào LTV, và một điểm phần trăm churn hằng tháng có thể xóa sạch hiệu quả của cả một chiến dịch tăng trưởng.",
+  },
+  {
+    id: 5122,
+    category: "FinTech - Kinh tế sản phẩm",
+    difficulty: "de",
+    question: "Take rate của một nền tảng thanh toán là gì?",
+    options: [
+      "Phần trăm giá trị giao dịch mà nền tảng giữ lại",
+      "Mức phí cố định thu mỗi tháng từ người bán hàng",
+      "Tỷ lệ giao dịch thất bại trên tổng số giao dịch",
+      "Số khách hàng mới trên tổng số người truy cập",
+    ],
+    correct: 0,
+    explanation:
+      "Take rate quyết định doanh thu nền tảng thu được trên mỗi đồng chảy qua hệ thống. Nó thường rất mỏng, nên mô hình chỉ hoạt động ở quy mô lớn - và mọi áp lực cạnh tranh đều đổ vào việc bào mỏng chính con số này.",
+  },
+  {
+    id: 5123,
+    category: "FinTech - Kinh tế sản phẩm",
+    difficulty: "kho",
+    question: "Vì sao fintech cho vay phải mô hình hóa tổn thất trước khi mở rộng nhanh?",
+    options: [
+      "Vì tăng trưởng nhanh khiến nợ xấu chỉ lộ ra sau vài quý",
+      "Vì nhà đầu tư yêu cầu xem mô hình trước khi rót vốn",
+      "Vì luật buộc lập mô hình trước khi cấp khoản vay đầu",
+      "Vì mô hình tổn thất giúp giảm chi phí vốn huy động",
+    ],
+    correct: 0,
+    explanation:
+      "Khoản vay mới chưa kịp xấu, nên danh mục tăng nhanh luôn có tỷ lệ nợ xấu trông đẹp - mẫu số phình ra trước khi tử số kịp theo. Tổn thất thật chỉ hiện ra khi tăng trưởng chậm lại, thường là đúng lúc công ty đã mở rộng hết cỡ.",
+  },
+  {
+    id: 5124,
+    category: "FinTech - Kinh tế sản phẩm",
+    difficulty: "trung-binh",
+    question: "Float trong mô hình ví điện tử là gì?",
+    options: [
+      "Số dư khách gửi mà ví tạm giữ trước khi chi trả",
+      "Số lượng ví đang hoạt động trong một tháng nhất định",
+      "Khoản lỗ lũy kế ví chấp nhận để giành thị phần",
+      "Phần phí ví thu được từ mỗi giao dịch thành công",
+    ],
+    correct: 0,
+    explanation:
+      "Khoảng trễ giữa lúc tiền vào ví và lúc tiền được chi ra tạo một số dư thường trực mà ví đang giữ hộ. Số dư đó có thể sinh lãi, nhưng nó là tiền của khách hàng - nên quy định thường buộc tách riêng và hạn chế cách sử dụng.",
+  },
+  {
+    id: 5125,
+    category: "FinTech - Kinh tế sản phẩm",
+    difficulty: "kho",
+    question: "Vì sao chi phí tuân thủ là rào cản gia nhập lớn trong fintech?",
+    options: [
+      "Vì nó là chi phí cố định, đè nặng lên bên quy mô nhỏ",
+      "Vì chi phí tuân thủ tăng tỷ lệ thuận với số giao dịch",
+      "Vì cơ quan quản lý cấm công ty mới tham gia thị trường",
+      "Vì công ty lớn được miễn hoàn toàn nghĩa vụ tuân thủ",
+    ],
+    correct: 0,
+    explanation:
+      "Giấy phép, hệ thống KYC và bộ máy tuân thủ tốn gần như nhau dù phục vụ mười nghìn hay mười triệu khách. Chi phí cố định chia trên ít khách hàng thì đắt trên mỗi đơn vị, nên quy định vừa bảo vệ người dùng vừa vô tình bảo vệ bên đã có quy mô.",
+  },
+  {
+    id: 5126,
+    category: "FinTech - Kinh tế sản phẩm",
+    difficulty: "trung-binh",
+    question: "Hiệu ứng mạng lưới trong một nền tảng thanh toán vận hành thế nào?",
+    options: [
+      "Càng nhiều người bán thì càng hút người mua và ngược lại",
+      "Càng nhiều giao dịch thì mức phí trên mỗi giao dịch càng cao",
+      "Càng nhiều vốn huy động thì định giá công ty càng cao",
+      "Càng nhiều nhân sự thì tốc độ ra sản phẩm càng nhanh",
+    ],
+    correct: 0,
+    explanation:
+      "Đây là hiệu ứng mạng hai chiều, và nó giải thích vì sao giai đoạn đầu đắt đến vậy: phải trợ giá cho một bên để hút bên kia. Khi vòng lặp đã tự chạy thì nó trở thành hào bảo vệ khó vượt, nhưng trước đó nó chỉ là một khoản lỗ lớn.",
+  },
+
+  // ── Người mới vào ngành tài chính ────────────────────────────────────────
+  {
+    id: 5127,
+    category: "Nền tảng - Người mới vào ngành",
+    difficulty: "de",
+    question: "Lãi kép khác lãi đơn ở điểm nào?",
+    options: [
+      "Lãi kép tính lãi trên cả phần lãi đã sinh ra trước đó",
+      "Lãi kép luôn có lãi suất cao hơn lãi đơn cùng kỳ hạn",
+      "Lãi kép chỉ dùng cho khoản vay, lãi đơn cho tiền gửi",
+      "Lãi đơn chỉ áp dụng cho tiền gửi ngân hàng nhà nước",
+    ],
+    correct: 0,
+    explanation:
+      "Cùng một lãi suất, lãi đơn tăng theo đường thẳng còn lãi kép tăng theo đường cong - và khoảng cách giữa hai đường lớn dần theo thời gian. Đây là lý do thời gian, chứ không phải số tiền ban đầu, mới là biến số mạnh nhất trong tích lũy dài hạn.",
+  },
+  {
+    id: 5128,
+    category: "Nền tảng - Người mới vào ngành",
+    difficulty: "de",
+    question: "Ba báo cáo tài chính chính của một doanh nghiệp là gì?",
+    options: [
+      "Kết quả kinh doanh, cân đối kế toán, lưu chuyển tiền",
+      "Báo cáo thuế, báo cáo lương và báo cáo tồn kho hàng",
+      "Doanh thu, chi phí và lợi nhuận sau thuế của kỳ đó",
+      "Báo cáo thường niên, báo cáo quý và báo cáo tháng",
+    ],
+    correct: 0,
+    explanation:
+      "Ba báo cáo trả lời ba câu hỏi khác nhau: doanh nghiệp lãi hay lỗ trong kỳ, sở hữu và nợ những gì tại một thời điểm, và tiền thật vào ra bao nhiêu. Đọc thiếu một cái là bỏ mất một chiều của bức tranh.",
+  },
+  {
+    id: 5129,
+    category: "Nền tảng - Người mới vào ngành",
+    difficulty: "de",
+    question: "Tài sản, nợ phải trả và vốn chủ sở hữu liên hệ với nhau thế nào?",
+    options: [
+      "Tài sản bằng nợ phải trả cộng với vốn chủ sở hữu",
+      "Tài sản bằng vốn chủ sở hữu trừ đi nợ phải trả",
+      "Vốn chủ sở hữu bằng tài sản cộng nợ phải trả",
+      "Nợ phải trả bằng tài sản cộng vốn chủ sở hữu",
+    ],
+    correct: 0,
+    explanation:
+      "Phương trình kế toán nói rằng mọi thứ doanh nghiệp sở hữu đều được tài trợ bằng tiền đi vay hoặc tiền của chủ sở hữu. Nó luôn cân, và chính vì luôn cân nên mọi bút toán đều phải ghi ở hai vế.",
+  },
+  {
+    id: 5130,
+    category: "Nền tảng - Người mới vào ngành",
+    difficulty: "trung-binh",
+    question: "Lợi nhuận khác dòng tiền ở chỗ nào?",
+    options: [
+      "Lợi nhuận ghi theo dồn tích, dòng tiền theo tiền thật",
+      "Hai khái niệm giống nhau nếu doanh nghiệp làm ăn có lãi",
+      "Dòng tiền luôn lớn hơn lợi nhuận ở mọi doanh nghiệp",
+      "Lợi nhuận tính theo quý, dòng tiền tính theo tháng",
+    ],
+    correct: 0,
+    explanation:
+      "Bán chịu ghi nhận doanh thu ngay dù chưa thu tiền; mua tài sản chi tiền ngay nhưng chỉ ghi chi phí dần qua khấu hao. Hai thước đo vì thế lệch nhau, và doanh nghiệp phá sản vì hết tiền chứ không vì hết lợi nhuận.",
+  },
+  {
+    id: 5131,
+    category: "Nền tảng - Người mới vào ngành",
+    difficulty: "de",
+    question: "Vì sao lạm phát làm giảm giá trị số tiền để trong tài khoản?",
+    options: [
+      "Vì cùng một số tiền đó mua được ít hàng hóa hơn trước",
+      "Vì nhà nước thu thuế trên số dư tài khoản mỗi năm",
+      "Vì lãi suất tiền gửi luôn giảm khi lạm phát tăng",
+      "Vì ngân hàng trừ phí quản lý tài khoản mỗi tháng",
+    ],
+    correct: 0,
+    explanation:
+      "Con số trên sao kê không đổi, nhưng thứ nó đổi được thì ít đi. Đây là lý do lãi suất tiền gửi phải được so với lạm phát trước khi kết luận là có lời - lãi 5% trong khi lạm phát 6% là mất sức mua.",
+  },
+  {
+    id: 5132,
+    category: "Nền tảng - Người mới vào ngành",
+    difficulty: "de",
+    question: "Cổ phiếu khác trái phiếu ở điểm cơ bản nào?",
+    options: [
+      "Cổ phiếu là phần sở hữu, trái phiếu là khoản cho vay",
+      "Cổ phiếu luôn an toàn hơn trái phiếu cùng doanh nghiệp",
+      "Cổ phiếu có kỳ hạn cố định còn trái phiếu thì không",
+      "Trái phiếu cho quyền biểu quyết, cổ phiếu thì không",
+    ],
+    correct: 0,
+    explanation:
+      "Người mua trái phiếu là chủ nợ: được trả lãi cố định và được ưu tiên khi doanh nghiệp phá sản. Người mua cổ phiếu là chủ sở hữu: hưởng phần còn lại sau khi trả hết chủ nợ, nên vừa có tiềm năng lớn hơn vừa rủi ro hơn.",
+  },
+  {
+    id: 5133,
+    category: "Nền tảng - Người mới vào ngành",
+    difficulty: "de",
+    question: "Đa dạng hóa danh mục nghĩa là gì?",
+    options: [
+      "Chia vốn ra nhiều tài sản ít biến động cùng chiều",
+      "Mua thật nhiều cổ phiếu của cùng một doanh nghiệp lớn",
+      "Đổi toàn bộ danh mục sang tiền mặt khi thị trường giảm",
+      "Chỉ đầu tư vào ngành đang tăng trưởng nhanh nhất",
+    ],
+    correct: 0,
+    explanation:
+      "Điểm mấu chốt là ÍT BIẾN ĐỘNG CÙNG CHIỀU, không phải nhiều. Nắm hai mươi mã cùng một ngành thì khi ngành đó gặp khó, cả hai mươi mã cùng giảm - danh mục trông đa dạng nhưng thực chất là một cược duy nhất.",
+  },
+  {
+    id: 5134,
+    category: "Nền tảng - Người mới vào ngành",
+    difficulty: "de",
+    question: "Vì sao nên bắt đầu đầu tư sớm dù số tiền còn nhỏ?",
+    options: [
+      "Vì thời gian là yếu tố mạnh nhất trong lãi kép",
+      "Vì phí giao dịch cho người mới luôn được miễn hoàn toàn",
+      "Vì thị trường luôn tăng nên vào lúc nào cũng có lãi",
+      "Vì số tiền nhỏ không chịu thuế thu nhập từ đầu tư",
+    ],
+    correct: 0,
+    explanation:
+      "Mỗi năm chậm trễ là một năm bị cắt khỏi đầu cuối của đường cong lãi kép - đúng đoạn dốc nhất. Một khoản nhỏ bắt đầu ở tuổi hai mươi lăm thường vượt một khoản lớn hơn bắt đầu ở tuổi ba mươi lăm, dù tổng số tiền bỏ vào ít hơn.",
+  },
 ];
