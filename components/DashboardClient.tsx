@@ -46,9 +46,7 @@ import CertificateModal from "@/components/CertificateModal";
 import { TRACK_PERSONAL, TRACK_PROFESSIONAL, isLessonInRange, PROFESSIONAL_BRANCHES, type ProfessionalBranchId } from "@/lib/track-stages";
 import { getLessonShortTitle } from "@/lib/lesson-labels";
 import { BONUS_CATEGORIES, BONUS_CATEGORY_ORDER } from "@/lib/bonus-lesson-categories";
-import { CFA_LEVEL_1_SUBJECTS } from "@/lib/cfa-track";
 import { TRACKS } from "@/lib/tracks";
-import CfaTrackView from "@/components/CfaTrackView";
 import { getChallengePassedLessonIds } from "@/lib/supabase-challenges";
 import { addLessonFlag, getUserLessonFlags, removeLessonFlag } from "@/lib/supabase-lesson-flags";
 import { getUserBookmarks, type LessonBookmark } from "@/lib/supabase-bookmarks";
@@ -156,20 +154,19 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
   // after merging server data forces a re-render, which makes useProgress()
   // pick up the freshly-merged localStorage snapshot (see mergeCompletedLessons).
   const [, forceProgressResync] = useState(0);
-  const [activeTrack, setActiveTrackState] = useState<"personal" | "professional" | "cfa">(() => {
-    if (typeof window === "undefined") return "personal";
-    const saved = window.localStorage.getItem("activeTrack");
-    return saved === "personal" || saved === "professional" || saved === "cfa" ? saved : "personal";
-  });
-  const [lastNonCfaTrack, setLastNonCfaTrack] = useState<"personal" | "professional">(() => {
+  // CFA và FRM đã tách khỏi dashboard thành hai trang riêng có mục trong
+  // navbar, nên "cfa" không còn là một track ở đây. Giá trị cũ còn trong
+  // localStorage của người đang ở tab đó được quy về "personal" - nếu không họ
+  // mở dashboard ra và không thẻ nào được chọn, nội dung bên dưới thì trống.
+  const [activeTrack, setActiveTrackState] = useState<"personal" | "professional">(() => {
     if (typeof window === "undefined") return "personal";
     const saved = window.localStorage.getItem("activeTrack");
     return saved === "professional" ? "professional" : "personal";
   });
-  const [activeDashboardTab, setActiveDashboardTab] = useState<"career" | "personal" | "professional" | "cfa" | "skill-tree" | "weekly-challenge" | "cards" | "cosmetics">(() => {
+  const [activeDashboardTab, setActiveDashboardTab] = useState<"career" | "personal" | "professional" | "skill-tree" | "weekly-challenge" | "cards" | "cosmetics">(() => {
     if (typeof window === "undefined") return "personal";
     const saved = window.localStorage.getItem("activeDashboardTab");
-    const validTabs = ["career", "personal", "professional", "cfa", "skill-tree", "weekly-challenge", "cards", "cosmetics"];
+    const validTabs = ["career", "personal", "professional", "skill-tree", "weekly-challenge", "cards", "cosmetics"];
     return saved && validTabs.includes(saved) ? (saved as any) : "personal";
   });
   const [professionalBranch, setProfessionalBranch] = useState<ProfessionalBranchId>(() => {
@@ -181,18 +178,15 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
     setProfessionalBranch(branch);
     if (typeof window !== "undefined") window.localStorage.setItem("professionalBranch", branch);
   };
-  const setActiveTrack = (track: "personal" | "professional" | "cfa") => {
+  const setActiveTrack = (track: "personal" | "professional") => {
     setActiveTrackState(track);
     setActiveDashboardTab(track);
-    if (track !== "cfa") {
-      setLastNonCfaTrack(track);
-    }
     if (typeof window !== "undefined") {
       window.localStorage.setItem("activeTrack", track);
       window.localStorage.setItem("activeDashboardTab", track);
     }
   };
-  const setDashboardTab = (tab: "career" | "personal" | "professional" | "cfa" | "skill-tree" | "weekly-challenge" | "cards" | "cosmetics") => {
+  const setDashboardTab = (tab: "career" | "personal" | "professional" | "skill-tree" | "weekly-challenge" | "cards" | "cosmetics") => {
     setActiveDashboardTab(tab);
     if (typeof window !== "undefined") {
       window.localStorage.setItem("activeDashboardTab", tab);
@@ -279,7 +273,7 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
     };
   }, []);
 
-  useRoutePrefetch(["/analytics", "/ghi-chu", "/kiem-tra", "/tai-lieu", "/ban-be", "/profile", "/settings", "/cfa"]);
+  useRoutePrefetch(["/analytics", "/ghi-chu", "/kiem-tra", "/tai-lieu", "/ban-be", "/profile", "/settings", "/cfa", "/frm"]);
 
   useEffect(() => {
     if (!manualFlagInfoOpen) return;
@@ -379,25 +373,6 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
   const lessonById = useMemo(() => new Map(lessonsMeta.map((l) => [l.id, l])), [lessonsMeta]);
   const lessonsBySlug = useMemo(() => Object.fromEntries(lessonsMeta.map((l) => [l.slug, l])), [lessonsMeta]);
   const lessonsById = useMemo(() => Object.fromEntries(lessonsMeta.map((l) => [l.id, l])), [lessonsMeta]);
-
-  // Cross-reference view for Track 3 - not a real day-numbered curriculum,
-  // just the existing lessons (by id) grouped into the 10 official CFA
-  // Level I subjects. See lib/cfa-track.ts.
-  const cfaSubjects = useMemo(() => {
-    const completedSet = new Set(completed);
-    return CFA_LEVEL_1_SUBJECTS.map((subject) => {
-      const lessons = subject.lessonIds
-        .map((id) => lessonById.get(id))
-        .filter((l): l is NonNullable<typeof l> => !!l && l.isVisible !== false);
-      const nextLesson = lessons.find((l) => !completedSet.has(l.id)) ?? null;
-      return {
-        subject,
-        lessons,
-        completedCount: lessons.filter((l) => completedSet.has(l.id)).length,
-        nextLessonSlug: nextLesson?.slug ?? null,
-      };
-    });
-  }, [lessonById, completed]);
 
   // Track-relative lesson numbering: the personal track reuses lesson ids
   // from the 200s (originally written for the professional track) in its
@@ -1180,7 +1155,7 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
             <>
             {/* Resume Learning Card */}
             <div data-tour="resume-learning">
-              <ResumeLearningButton activeTrack={lastNonCfaTrack} />
+              <ResumeLearningButton activeTrack={activeTrack} />
             </div>
 
             {/* The recall / mistake / remediation widgets used to sit here, at
@@ -1240,7 +1215,7 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
               how many content lines each one has (personal/CFA got a fun
               one-line subtitle added specifically to match professional's,
               which was shortened to a single inline badge to compensate). */}
-          <div id="lo-trinh" data-tour="track-selector" className="grid grid-cols-1 sm:grid-cols-5 gap-3.5 mb-8 items-stretch scroll-mt-24">
+          <div id="lo-trinh" data-tour="track-selector" className="grid grid-cols-1 sm:grid-cols-3 gap-3.5 mb-8 items-stretch scroll-mt-24">
             {/* Card 1: Tài chính Nghề Nghiệp */}
             <button
               type="button"
@@ -1345,49 +1320,7 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
                 <div className="absolute top-full left-1/2 -translate-x-1/2 border-8 border-transparent border-t-stone-900 dark:border-t-stone-800" />
               </div>
             </div>
-
-            {/* Card 4: Tài chính Chứng Chỉ CFA (Royal Violet Accent) */}
-            <button
-              type="button"
-              onClick={() => setActiveTrack("cfa")}
-              className={`w-full h-full flex flex-col text-left rounded-2xl border-2 px-5 py-4 transition-all duration-300 relative overflow-hidden backdrop-blur-md ${
-                activeDashboardTab === "cfa"
-                  ? "border-violet-500/80 bg-white/95 dark:bg-stone-900 text-stone-900 dark:text-stone-100 ring-2 ring-violet-500/20 dark:ring-violet-400/30 shadow-md font-extrabold"
-                  : "border-stone-200/80 dark:border-stone-800/90 bg-white/95 dark:bg-stone-900/80 text-stone-700 dark:text-stone-300 hover:border-stone-300 dark:hover:border-stone-700 shadow-xs hover:shadow-sm"
-              }`}
-            >
-              <div className="h-0.5 w-full bg-violet-500/70 absolute top-0 left-0 right-0" />
-              <div className="flex items-center gap-2 flex-wrap mt-1">
-                <div className="text-base font-extrabold tracking-tight text-stone-900 dark:text-stone-100">
-                  Tài chính chứng chỉ
-                </div>
-              </div>
-              <div className="text-xs mt-1.5 text-stone-500 dark:text-stone-400 font-normal">
-                CFA Level I · ~{TRACKS.cfa.estimatedHours} giờ học
-              </div>
-            </button>
-
-            {/* Card 5: FRM (Sky Blue Accent) - links out to its own page
-                rather than joining the activeTrack state machine above,
-                since it doesn't share that pattern's client-side lesson
-                fetch (see app/(app)/frm/page.tsx, a server component). */}
-            <Link
-              href="/frm"
-              className="w-full h-full flex flex-col text-left rounded-2xl border-2 px-5 py-4 transition-all duration-300 relative overflow-hidden backdrop-blur-md border-stone-200/80 dark:border-stone-800/90 bg-white/95 dark:bg-stone-900/80 text-stone-700 dark:text-stone-300 hover:border-sky-300 dark:hover:border-sky-700 shadow-xs hover:shadow-sm"
-            >
-              <div className="h-0.5 w-full bg-sky-500/70 absolute top-0 left-0 right-0" />
-              <div className="flex items-center gap-2 flex-wrap mt-1">
-                <div className="text-base font-extrabold tracking-tight text-stone-900 dark:text-stone-100">
-                  FRM
-                </div>
-              </div>
-              <div className="text-xs mt-1.5 text-stone-500 dark:text-stone-400 font-normal">
-                Financial Risk Manager · GARP Part I &amp; II
-              </div>
-            </Link>
           </div>
-
-
 
         {activeDashboardTab === "career" && (
             <div className="mt-8">
@@ -1430,11 +1363,7 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
             </div>
           )}
 
-          {activeDashboardTab === "career" ? null : activeDashboardTab === "cfa" ? (
-            <div data-tour="stage-list" className="mt-8">
-              <CfaTrackView subjects={cfaSubjects} completedLessonIds={completed} />
-            </div>
-          ) : activeDashboardTab === "skill-tree" ? (
+          {activeDashboardTab === "career" ? null : activeDashboardTab === "skill-tree" ? (
             <SkillTreeWidget completedLessonIds={completed} unlockedLessonIds={unlockedLessonIds} />
           ) : activeDashboardTab === "weekly-challenge" ? (
             <WeeklyChallengeWidget userId={user?.id || ""} />

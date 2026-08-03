@@ -6,7 +6,7 @@ import Image from "next/image";
 import { isValidAvatar } from "@/lib/avatar-utils";
 import { usePathname, useRouter } from "next/navigation";
 import { toast } from "sonner";
-import { FileText, BarChart3, StickyNote, GraduationCap, Gamepad2, Menu, X, Briefcase, BriefcaseBusiness, BookOpen, Home, Flame, Users, MessageSquareMore, Search, ChevronDown, Award, type LucideIcon } from "lucide-react";
+import { FileText, BarChart3, StickyNote, GraduationCap, Gamepad2, Menu, X, Briefcase, BriefcaseBusiness, BookOpen, Home, Flame, Users, MessageSquareMore, Search, ChevronDown, Award, ShieldAlert, type LucideIcon } from "lucide-react";
 import { useI18n } from "@/lib/i18n/context";
 import type { Dictionary } from "@/lib/i18n";
 import LanguageSwitcher from "@/components/LanguageSwitcher";
@@ -69,6 +69,7 @@ const NAV_SECTIONS: NavSection[] = [
       // purpose-built Ethics lessons, flashcards and the formula sheet were
       // reachable only by typing the URL.
       { href: "/cfa", label: "CFA Level I", icon: Award },
+      { href: "/frm", label: "FRM", icon: ShieldAlert },
       { href: "/kiem-tra", labelKey: "quiz", icon: GraduationCap },
       { href: "/ghi-chu", labelKey: "notes", icon: StickyNote },
     ],
