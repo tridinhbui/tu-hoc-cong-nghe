@@ -12,6 +12,7 @@ import CompoundTowerPanel from "./CompoundTowerPanel";
 import CapitalStackPanel from "./CapitalStackPanel";
 import CashCyclePanel from "./CashCyclePanel";
 import PortfolioRiskPanel from "./PortfolioRiskPanel";
+import TeachBackPanel from "./TeachBackPanel";
 
 /** Nội dung của sáu căn nhà dân sự, mở ra khi đứng lên bục giữa phòng.
  *
@@ -472,6 +473,7 @@ const TEACHING_PANELS: Partial<Record<string, (p: { accent: string; onClose: () 
   "phong-lbo": CapitalStackPanel,
   "vong-quay-tien": CashCyclePanel,
   "phan-bo-rui-ro": PortfolioRiskPanel,
+  "ban-tron": TeachBackPanel,
 };
 
 const PANELS: Partial<Record<string, (props: Props) => React.ReactElement>> = {

@@ -78,10 +78,10 @@ describe("mốc khu phố nghề", () => {
     // là điểm: một lần đổi có chủ ý thì sửa mốc, một lần đổi ngoài ý muốn thì
     // bài này đỏ.
     expect(shape).toEqual({
-      rooms: 31,
+      rooms: 32,
       desks: 44,
       portals: 23,
-      doorways: 45,
+      doorways: 47,
       lifts: 10,
       streetHalfLength: 90,
     });

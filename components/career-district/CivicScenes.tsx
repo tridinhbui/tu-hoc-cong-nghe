@@ -587,6 +587,80 @@ function PortfolioRiskInterior({ room }: { room: DistrictRoom }) {
   );
 }
 
+/** Bàn Tròn Giảng Lại: một cái bàn tròn và một ghế trống đối diện.
+ *
+ *  Ghế trống là cả căn phòng. Giảng lại chỉ có tác dụng khi có người nghe
+ *  tưởng tượng, và mỗi đề trong lib/teach-back.ts chỉ định một người nghe khác
+ *  nhau - bạn mở quán ăn, em họ 18 tuổi, đồng nghiệp định dồn hết vào một mã.
+ *  Đổi người nghe là đổi cả bài giảng, nên căn phòng phải nói được rằng có ai
+ *  đó đang ngồi đối diện.
+ *
+ *  Bảng trắng sau lưng để trống cũng có chủ ý: đây là chỗ nói ra, không phải
+ *  chỗ đọc lại. */
+function TeachBackInterior({ room }: { room: DistrictRoom }) {
+  const halfD = room.size.depth / 2;
+  return (
+    <>
+      {/* Bàn tròn ở z = −4,5, KHÔNG phải ở giữa phòng.
+          Bản đầu đặt nó ngay giữa, tức đúng lên bục đứng ở (0, −1), và cái bàn
+          1,9 m che mất vòng sáng dưới chân bục - thứ duy nhất trong mọi phòng
+          dân sự nói "đứng vào đây". Chỉ thấy được khi vào phòng nhìn, không
+          bài test hình học nào bắt: bục là vật cản, còn bàn thì không, nên
+          chúng chồng nhau mà không phòng nào "sai". */}
+      <group position={[0, 0, -4.5]}>
+        <mesh position={[0, 0.72, 0]} castShadow receiveShadow>
+          <cylinderGeometry args={[1.7, 1.7, 0.1, 28]} />
+          <meshStandardMaterial color="#7a5230" roughness={0.65} />
+        </mesh>
+        <mesh position={[0, 0.35, 0]}>
+          <cylinderGeometry args={[0.28, 0.45, 0.7, 12]} />
+          <meshStandardMaterial color="#4a3524" roughness={0.9} />
+        </mesh>
+      </group>
+
+      {/* Một cái ghế duy nhất, và nó TRỐNG. Người học đã đứng ở bục rồi nên
+          không cần ghế cho họ; bản đầu có thêm một ghế "của người học" cùng màu
+          sàn, vừa vô hình vừa nói sai chuyện. Ghế trống là cả căn phòng. */}
+      <group position={[0, 0, -6.4]}>
+        <mesh position={[0, 0.45, 0]} castShadow receiveShadow>
+          <boxGeometry args={[0.9, 0.1, 0.9]} />
+          <meshStandardMaterial
+            color={room.accent}
+            emissive={room.accent}
+            emissiveIntensity={0.4}
+            roughness={0.8}
+          />
+        </mesh>
+        <mesh position={[0, 0.95, -0.42]} castShadow>
+          <boxGeometry args={[0.9, 0.9, 0.1]} />
+          <meshStandardMaterial
+            color={room.accent}
+            emissive={room.accent}
+            emissiveIntensity={0.3}
+            roughness={0.8}
+          />
+        </mesh>
+        {[[-0.36, -0.36], [0.36, -0.36], [-0.36, 0.36], [0.36, 0.36]].map(([lx, lz], i) => (
+          <mesh key={i} position={[lx, 0.22, lz]}>
+            <boxGeometry args={[0.08, 0.44, 0.08]} />
+            <meshStandardMaterial color="#3d2c1d" roughness={0.9} />
+          </mesh>
+        ))}
+      </group>
+
+      {/* Bảng trắng để trống sau lưng ghế trống. */}
+      <mesh position={[0, 2.1, -halfD + 0.25]}>
+        <planeGeometry args={[5, 2.6]} />
+        <meshStandardMaterial color="#e7e5e4" roughness={0.9} />
+      </mesh>
+      <mesh position={[0, 2.1, -halfD + 0.2]}>
+        <planeGeometry args={[5.3, 2.9]} />
+        <meshStandardMaterial color="#57534e" roughness={0.8} />
+      </mesh>
+    </>
+  );
+}
+
 const INTERIORS: Partial<Record<string, (props: { room: DistrictRoom }) => React.ReactElement>> = {
   "cua-hang": ShopInterior,
   "bang-vang": HallOfFameInterior,
@@ -599,6 +673,7 @@ const INTERIORS: Partial<Record<string, (props: { room: DistrictRoom }) => React
   "phong-lbo": CapitalStackInterior,
   "vong-quay-tien": CashCycleInterior,
   "phan-bo-rui-ro": PortfolioRiskInterior,
+  "ban-tron": TeachBackInterior,
 };
 
 export function isCivicRoom(id: string) {

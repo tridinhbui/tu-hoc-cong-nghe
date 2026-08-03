@@ -48,6 +48,7 @@ export type DistrictRoomId =
   | "phong-lbo"
   | "vong-quay-tien"
   | "phan-bo-rui-ro"
+  | "ban-tron"
   | FloorRoomId;
 
 export interface Pose {
@@ -885,6 +886,15 @@ export const CIVIC_ROOMS: CivicSpec[] = [
     blurb: "Vì sao trộn hai thứ lại ít rủi ro hơn trung bình của chúng",
     width: 16,
     depth: 22,
+  },
+  {
+    id: "ban-tron",
+    label: "Bàn Tròn Giảng Lại",
+    accent: "#fb7185",
+    streetX: 84,
+    blurb: "Giải thích bằng lời của bạn - chỗ duy nhất biết bạn có thật sự hiểu",
+    width: 16,
+    depth: 16,
   },
 ];
 
