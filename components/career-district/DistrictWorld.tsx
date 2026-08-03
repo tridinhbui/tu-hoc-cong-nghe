@@ -25,6 +25,7 @@ import { CHAT_MAX_LENGTH } from "@/lib/supabase-lobby";
 import { createWalkState } from "@/components/world-controls/easy-walk";
 import PillarQuiz from "./PillarQuiz";
 import Minimap, { type MinimapPeer } from "./Minimap";
+import CivicPanel from "./CivicPanel";
 import type { CharacterEquipments } from "@/lib/rpg-items";
 import { CAREER_CATEGORY_ORDER, CAREER_CATEGORY_LABELS, isCareerCategory } from "@/lib/career-categories";
 
@@ -43,6 +44,22 @@ function Fallback({ label }: { label: string }) {
     </div>
   );
 }
+
+/** Biểu tượng cho từng nơi trong bảng đi thẳng. Ở một chỗ để thêm phòng mới
+ *  không phải sửa một chuỗi ternary bảy tầng. */
+const PLACE_ICONS: Record<string, string> = {
+  thap: "🛗",
+  "khu-game": "🎮",
+  "cong-vien": "🌳",
+  "trung-tam": "⛲",
+  "quan-ca-phe": "☕",
+  "cua-hang": "🪞",
+  "bang-vang": "🏆",
+  "phong-thi": "📝",
+  "can-ho": "🏠",
+  "bao-tang": "🏛️",
+  "nha-ban-be": "🏘️",
+};
 
 export interface DistrictLesson {
   /** Id bài học - cần cho câu hỏi ôn tại cột, vốn hỏi theo id chứ không theo slug. */
@@ -187,6 +204,10 @@ export default function DistrictWorld({
   const [mapPeers, setMapPeers] = useState<MinimapPeer[]>([]);
   /** Bảng điều hướng trên màn hẹp: ẩn mặc định, mở bằng nút la bàn. */
   const [travelOpen, setTravelOpen] = useState(false);
+  /** Đang đứng ở bục giữa một căn nhà dân sự, và món đang mặc thử ở cửa hàng. */
+  const [atStand, setAtStand] = useState(false);
+  const [civicOpen, setCivicOpen] = useState(false);
+  const [tryOn, setTryOn] = useState<CharacterEquipments | null>(null);
   /** Ghế đang có người: của mình cộng của người khác. Người khác công bố chỗ
    *  ngồi qua presence, cùng cơ chế bàn học ở thư viện. */
   const sound = useWorldSound();
@@ -226,6 +247,9 @@ export default function DistrictWorld({
     setLiftPanel(false);
     setStagePanel(false);
     setTravelOpen(false);
+    setAtStand(false);
+    setCivicOpen(false);
+    setTryOn(null);
   }, []);
 
   /** Bấm một tầng trong bảng thang máy. Cùng đường với đi bộ qua cửa: đổi phòng
@@ -241,6 +265,9 @@ export default function DistrictWorld({
     setLiftPanel(false);
     setStagePanel(false);
     setTravelOpen(false);
+    setAtStand(false);
+    setCivicOpen(false);
+    setTryOn(null);
   }, []);
 
   /** Vào một hành lang lộ trình - của một nghề, hoặc của một chặng học.
@@ -264,6 +291,9 @@ export default function DistrictWorld({
       setLiftPanel(false);
       setStagePanel(false);
       setTravelOpen(false);
+      setAtStand(false);
+      setCivicOpen(false);
+      setTryOn(null);
     },
     []
   );
@@ -320,7 +350,6 @@ export default function DistrictWorld({
         <DistrictScene
           roomId={roomId}
           userId={userId}
-          gear={gear}
           streak={streak}
           doneToday={doneToday}
           onPeerCount={setPeerCount}
@@ -338,6 +367,8 @@ export default function DistrictWorld({
           onLiftChange={setAtLift}
           onStopChange={setStop}
           onSeatChange={setSeatable}
+          onStandChange={setAtStand}
+          gear={tryOn ?? gear}
           seatTaken={seatTaken}
           playerRef={playerRef}
           onPeersChange={setMapPeers}
@@ -691,7 +722,7 @@ export default function DistrictWorld({
           Đi bộ là cái hay của khu phố, nhưng bắt đi bộ mỗi lần là cái dở. */}
       {room.kind === "street" && (
         <div
-          className={`pointer-events-auto absolute right-4 top-20 z-10 w-44 rounded-2xl border border-stone-700 bg-stone-900/85 p-2.5 shadow-xl backdrop-blur sm:block ${
+          className={`pointer-events-auto absolute right-4 top-20 z-10 max-h-[calc(100vh-16rem)] w-44 overflow-y-auto rounded-2xl border border-stone-700 bg-stone-900/85 p-2.5 shadow-xl backdrop-blur sm:block ${
             travelOpen ? "block" : "hidden"
           }`}
         >
@@ -702,7 +733,7 @@ export default function DistrictWorld({
             {/* Tháp đứng đầu danh sách vì nó là đường vào MỌI tính năng khác;
                 năm nhóm ngành chỉ là năm căn nhà. */}
             {getRoom("street")
-              .doorways.filter((d) => d.to === "thap" || d.to === "khu-game" || d.to === "cong-vien" || d.to === "trung-tam" || d.to === "quan-ca-phe")
+              .doorways.filter((d) => d.to !== "street" && !CAREER_CATEGORY_ORDER.includes(d.to as never))
               .map((d) => (
                 <button
                   key={d.id}
@@ -711,15 +742,7 @@ export default function DistrictWorld({
                   className="block w-full cursor-pointer rounded-lg px-2 py-1 text-left text-[11px] font-bold transition hover:bg-stone-800"
                   style={{ color: d.accent }}
                 >
-                  {d.to === "thap"
-                    ? "🛗 Tháp Tự Học"
-                    : d.to === "khu-game"
-                    ? "🎮 Quảng trường Game"
-                    : d.to === "cong-vien"
-                    ? "🌳 Công viên Bến Nghé"
-                    : d.to === "quan-ca-phe"
-                    ? "☕ Cà phê Số & Sách"
-                    : "⛲ Quảng trường Trung tâm"}
+                  {PLACE_ICONS[d.to as string] ?? "■"} {d.label}
                 </button>
               ))}
             {CAREER_CATEGORY_ORDER.map((c) => {
@@ -808,6 +831,31 @@ export default function DistrictWorld({
             </button>
           )}
         </div>
+      )}
+
+      {/* Bục giữa nhà dân sự: đứng vào là mở được nội dung của phòng. */}
+      {atStand && !civicOpen && (
+        <div className="pointer-events-none absolute inset-x-0 bottom-44 z-10 flex justify-center px-4">
+          <button
+            type="button"
+            onClick={() => setCivicOpen(true)}
+            className="pointer-events-auto cursor-pointer rounded-2xl px-5 py-2.5 text-xs font-black text-stone-950 shadow-xl transition hover:brightness-110"
+            style={{ backgroundColor: room.accent }}
+          >
+            Mở · {room.label}
+          </button>
+        </div>
+      )}
+      {civicOpen && (
+        <CivicPanel
+          roomId={roomId}
+          accent={room.accent}
+          userId={userId}
+          gear={gear}
+          tryOn={tryOn}
+          onTryOn={setTryOn}
+          onClose={() => setCivicOpen(false)}
+        />
       )}
 
       {/* Cần điều khiển, luôn hiện */}

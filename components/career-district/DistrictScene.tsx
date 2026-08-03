@@ -12,6 +12,7 @@ import {
   nearestPortal,
   nearestStop,
   nearestCafeSeat,
+  isAtCivicStand,
   isAtLift,
   type CareerDesk,
   type DistrictRoom,
@@ -59,6 +60,7 @@ interface RigProps {
   onLiftChange: (atLift: boolean) => void;
   onStopChange: (stop: PathStop | null) => void;
   onSeatChange: (seat: CafeSeat | null) => void;
+  onStandChange: (atStand: boolean) => void;
   seatTakenRef: React.MutableRefObject<ReadonlySet<number>>;
   onWalkingChange: (walking: boolean) => void;
   /** Danh tính để phát vị trí; null là chưa đăng nhập, khi đó không phát gì. */
@@ -67,7 +69,7 @@ interface RigProps {
   mapPlayerRef: React.MutableRefObject<{ x: number; z: number }>;
 }
 
-function PlayerRig({ room, poseRef, walkRef, orbitRef, onDeskChange, onDoorChange, onPortalChange, onLiftChange, onStopChange, onSeatChange, seatTakenRef, onWalkingChange, userId, peerCountRef, mapPlayerRef }: RigProps) {
+function PlayerRig({ room, poseRef, walkRef, orbitRef, onDeskChange, onDoorChange, onPortalChange, onLiftChange, onStopChange, onSeatChange, onStandChange, seatTakenRef, onWalkingChange, userId, peerCountRef, mapPlayerRef }: RigProps) {
   const { camera } = useThree();
   const lastDesk = useRef<string | null>(null);
   const lastDoor = useRef<string | null>(null);
@@ -78,6 +80,7 @@ function PlayerRig({ room, poseRef, walkRef, orbitRef, onDeskChange, onDoorChang
   outdoorRef.current = room.kind === "street" || room.id === "cong-vien" || room.id === "trung-tam";
   const lastStop = useRef<string | null>(null);
   const lastSeat = useRef<number | null>(null);
+  const lastStand = useRef(false);
   const lastWalking = useRef(false);
   /** Đích bị kẹt: đứng yên mấy khung liền dù đang cố đi thì bỏ đích, thay vì
    *  húc vào tường mãi mãi. */
@@ -177,6 +180,11 @@ function PlayerRig({ room, poseRef, walkRef, orbitRef, onDeskChange, onDoorChang
       lastSeat.current = seat?.index ?? null;
       onSeatChange(seat);
     }
+    const atStand = isAtCivicStand(room, pose.x, pose.z);
+    if (atStand !== lastStand.current) {
+      lastStand.current = atStand;
+      onStandChange(atStand);
+    }
     const atLift = isAtLift(room, pose.x, pose.z);
     if (atLift !== lastLift.current) {
       lastLift.current = atLift;
@@ -272,6 +280,7 @@ export interface DistrictSceneProps {
   onLiftChange: (atLift: boolean) => void;
   onStopChange: (stop: PathStop | null) => void;
   onSeatChange: (seat: CafeSeat | null) => void;
+  onStandChange: (atStand: boolean) => void;
   onWalkingChange: (walking: boolean) => void;
   /** Vị trí người chơi và người khác, để bản đồ nhỏ ngoài Canvas đọc mỗi khung
    *  hình mà không phải đi qua state. */
@@ -308,6 +317,7 @@ export default function DistrictScene({
   onLiftChange,
   onStopChange,
   onSeatChange,
+  onStandChange,
   playerRef,
   onPeersChange,
   doneSlugs,
@@ -459,7 +469,9 @@ export default function DistrictScene({
         name={name}
         color={color}
         avatarUrl={avatarUrl}
-        status={{ streak: 0, level, doneToday: false }}
+        status={{ streak, level, doneToday }}
+        gear={gear}
+        speech={selfSpeech}
         poseRef={poseRef}
         isSelf
       />
@@ -495,6 +507,7 @@ export default function DistrictScene({
         onLiftChange={onLiftChange}
         onStopChange={onStopChange}
         onSeatChange={onSeatChange}
+        onStandChange={onStandChange}
         seatTakenRef={seatTakenRef}
         onWalkingChange={onWalkingChange}
       />

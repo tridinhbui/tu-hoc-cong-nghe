@@ -10,6 +10,7 @@ import {
   GATE_XS,
   GATE_Z,
   CAFE_COUNTER,
+  CIVIC_ROOMS,
   CAFE_X,
   CAFE_PLANTS,
   CAFE_SHELF_XS,
@@ -32,6 +33,7 @@ import {
 } from "./district-space";
 import { formulasFor, type WallFormula } from "./district-content";
 import { STATIONS } from "@/components/lobby/stations";
+import CivicScene, { isCivicRoom } from "./CivicScenes";
 import { ORGANIC_BUILDINGS } from "@/lib/rpg-buildings";
 import { CAREER_CATEGORY_ORDER, isCareerCategory, type CareerCategory } from "@/lib/career-categories";
 import {
@@ -379,6 +381,40 @@ function StreetScene({ progressByCategory }: { progressByCategory: Record<Career
       <Tower />
       <GameHall />
       <CafeFront />
+      {/* Sáu căn nhà dân sự dọc phố. Cùng một khuôn mặt tiền, khác màu và khác
+          biển - chúng là dãy nhà nền của thành phố, không phải công trình
+          điểm nhấn như tháp hay nhà thi đấu. */}
+      {CIVIC_ROOMS.map((c) => (
+        <group key={c.id} position={[c.streetX, 0, STREET.facadeZ]}>
+          <mesh position={[0, 4.5, -2]} castShadow receiveShadow>
+            <boxGeometry args={[11, 9, 6]} />
+            <meshStandardMaterial color="#3a352f" roughness={0.92} />
+          </mesh>
+          <mesh position={[0, 3.4, 1.1]} castShadow>
+            <boxGeometry args={[11.4, 0.26, 2.2]} />
+            <meshStandardMaterial color={c.accent} roughness={0.75} />
+          </mesh>
+          <mesh position={[0, 1.5, 0.32]}>
+            <planeGeometry args={[3, 2.9]} />
+            <meshBasicMaterial color="#ffe2b0" opacity={0.6} transparent toneMapped={false} />
+          </mesh>
+          <pointLight position={[0, 2.2, 1.6]} intensity={6} distance={9} color="#ffd9a0" />
+          {[-3.4, 3.4].map((wx) => (
+            <mesh key={wx} position={[wx, 5.8, 0.32]}>
+              <planeGeometry args={[2, 1.6]} />
+              <meshStandardMaterial color="#1e293b" emissive="#334155" emissiveIntensity={0.4} />
+            </mesh>
+          ))}
+          <TextBoard
+            title={c.label.toUpperCase()}
+            rows={[c.blurb]}
+            accent={c.accent}
+            width={7.4}
+            height={1.7}
+            position={[0, 3.75, 2.23]}
+          />
+        </group>
+      ))}
 
       {/* Hai cổng sang hai thế giới 3D còn lại. Vòm đá thay vì tấm biển: một
           cánh cổng phải trông như đi qua được thì người ta mới thử đi qua. */}
@@ -1017,6 +1053,8 @@ export default function DistrictShell({
   if (room.id === "cong-vien") return <ParkScene room={room} />;
   if (room.id === "trung-tam") return <CenterScene room={room} />;
   if (room.id === "quan-ca-phe") return <CafeScene room={room} seatTaken={seatTaken} />;
+  // Sáu căn nhà dân sự chia nhau một khuôn, nên chúng sống ở file riêng.
+  if (isCivicRoom(room.id)) return <CivicScene room={room} />;
   return (
     <OfficeScene room={room} lessonTitles={lessonTitles} doneSlugs={doneSlugs} />
   );

@@ -14,6 +14,7 @@ import {
   DISTRICT_ROOMS,
   STREET_SPAWN,
   TOWER_STOPS,
+  CIVIC_ROOMS,
   buildPathRoom,
   floorRoomId,
   isAtLift,
@@ -45,9 +46,11 @@ function inBounds(room: DistrictRoom, x: number, z: number) {
 
 describe("khu phố nghề", () => {
   it("có đúng một phòng cho mỗi nhóm ngành, một cho mỗi tầng tháp, cộng phố và sảnh", () => {
-    // +7: phố, sảnh tháp, tầng chặng học, quảng trường game, công viên, quảng
-    // trường trung tâm và quán cà phê.
-    expect(ALL_ROOMS).toHaveLength(CAREER_CATEGORY_ORDER.length + STATIONS.length + 7);
+    // +7 chỗ chung (phố, sảnh tháp, tầng chặng học, quảng trường game, công
+    // viên, quảng trường trung tâm, quán cà phê) cộng các căn nhà dân sự.
+    expect(ALL_ROOMS).toHaveLength(
+      CAREER_CATEGORY_ORDER.length + STATIONS.length + 7 + CIVIC_ROOMS.length
+    );
     for (const category of CAREER_CATEGORY_ORDER) {
       expect(getRoom(category).label).toBe(CAREER_CATEGORY_LABELS[category]);
     }

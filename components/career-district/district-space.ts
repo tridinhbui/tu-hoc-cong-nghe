@@ -37,6 +37,12 @@ export type DistrictRoomId =
   | "cong-vien"
   | "trung-tam"
   | "quan-ca-phe"
+  | "cua-hang"
+  | "bang-vang"
+  | "phong-thi"
+  | "can-ho"
+  | "bao-tang"
+  | "nha-ban-be"
   | FloorRoomId;
 
 export interface Pose {
@@ -742,6 +748,134 @@ export function nearestCafeSeat(
   return best;
 }
 
+
+// ── Khu dân sự: cửa hàng, bảng vàng, phòng thi, căn hộ, bảo tàng, nhà bạn bè ──
+
+/** Sáu căn nhà còn lại của thành phố.
+ *
+ *  Dựng theo cùng một khuôn vì chúng chia nhau một đặc điểm: nội dung đến từ
+ *  dữ liệu đã có ở nơi khác (cửa hàng, bảng xếp hạng, hồ sơ, danh sách bạn),
+ *  còn căn phòng chỉ là chỗ đứng để xem nó. Khuôn chung nghĩa là thêm căn thứ
+ *  bảy chỉ là thêm một dòng, không phải thêm một file.
+ *
+ *  Mỗi căn có một "bục trung tâm" - chỗ đứng để HUD mở nội dung ra. Đó là lý do
+ *  chúng không cần bàn ghế chi tiết như phòng ngành: cái đáng nhìn nằm trên
+ *  HUD, còn căn phòng làm việc đưa người ta tới đúng chỗ và nói đây là chỗ gì. */
+
+export interface CivicSpec {
+  id: DistrictRoomId;
+  label: string;
+  accent: string;
+  /** Vị trí cửa trên phố. */
+  streetX: number;
+  blurb: string;
+  /** Kích thước phòng. */
+  width: number;
+  depth: number;
+}
+
+export const CIVIC_ROOMS: CivicSpec[] = [
+  {
+    id: "cua-hang",
+    label: "Cửa hàng & Gương thử đồ",
+    accent: "#f0abfc",
+    streetX: -39,
+    blurb: "Thử đồ lên người trước khi mua",
+    width: 16,
+    depth: 16,
+  },
+  {
+    id: "bang-vang",
+    label: "Sảnh Bảng vàng",
+    accent: "#fcd34d",
+    streetX: -24,
+    blurb: "Ai đang dẫn đầu từng năng lực",
+    width: 18,
+    depth: 20,
+  },
+  {
+    id: "phong-thi",
+    label: "Phòng thi",
+    accent: "#93c5fd",
+    streetX: -9,
+    blurb: "Đề thi thử CFA, FRM và kiểm tra chặng",
+    width: 16,
+    depth: 20,
+  },
+  {
+    id: "can-ho",
+    label: "Căn hộ của bạn",
+    accent: "#fb923c",
+    streetX: 9,
+    blurb: "Chuỗi ngày, cúp và mục tiêu nghề của riêng bạn",
+    width: 14,
+    depth: 16,
+  },
+  {
+    id: "bao-tang",
+    label: "Bảo tàng Tài chính",
+    accent: "#a5b4fc",
+    streetX: 27,
+    blurb: "1929, 2008, lạm phát - và bài học đằng sau",
+    width: 18,
+    depth: 26,
+  },
+  {
+    id: "nha-ban-be",
+    label: "Khu nhà bạn bè",
+    accent: "#5eead4",
+    streetX: 42,
+    blurb: "Ghé thăm chuỗi ngày và tủ cúp của bạn bè",
+    width: 16,
+    depth: 18,
+  },
+];
+
+/** Bục trung tâm: đứng trong tầm này thì HUD mở nội dung của phòng. */
+export const CIVIC_STAND_REACH = 2.6;
+
+function buildCivic(spec: CivicSpec): DistrictRoom {
+  const halfW = spec.width / 2;
+  const halfD = spec.depth / 2;
+  return {
+    id: spec.id,
+    label: spec.label,
+    kind: "office",
+    accent: spec.accent,
+    size: { width: spec.width, depth: spec.depth, height: 5 },
+    bounds: { minX: -halfW + 0.8, maxX: halfW - 0.8, minZ: -halfD + 0.8, maxZ: halfD - 0.8 },
+    obstacles: [
+      // Bục ở giữa, và hai chậu cây cạnh cửa.
+      { kind: "circle", x: 0, z: -1, radius: 1.3 },
+      { kind: "circle", x: -halfW + 1.4, z: halfD - 2, radius: 0.5 },
+      { kind: "circle", x: halfW - 1.4, z: halfD - 2, radius: 0.5 },
+    ],
+    desks: [],
+    portals: [],
+    lift: null,
+    doorways: [
+      {
+        id: `${spec.id}-exit`,
+        to: "street",
+        x: 0,
+        z: halfD - 0.5,
+        reach: 2.2,
+        label: "Ra phố",
+        arriveAt: { x: spec.streetX, z: -3.4, ry: Math.PI / 2 },
+        accent: spec.accent,
+      },
+    ],
+  };
+}
+
+const CIVIC = CIVIC_ROOMS.map(buildCivic);
+
+/** Đang đứng ở bục giữa phòng dân sự chưa. */
+export function isAtCivicStand(room: DistrictRoom, x: number, z: number): boolean {
+  if (!CIVIC_ROOMS.some((c) => c.id === room.id)) return false;
+  return Math.hypot(x - 0, z - -1) <= CIVIC_STAND_REACH + 1.3;
+}
+
 const STREET_ROOM: DistrictRoom = {
   id: "street",
   label: "Phố nghề Sài Gòn",
@@ -793,6 +927,16 @@ const STREET_ROOM: DistrictRoom = {
   ],
   lift: null,
   doorways: [
+    ...CIVIC_ROOMS.map((c) => ({
+      id: `door-${c.id}`,
+      to: c.id,
+      x: c.streetX,
+      z: STREET.facadeZ + 1.4,
+      reach: 2.4,
+      label: c.label,
+      arriveAt: { x: 0, z: c.depth / 2 - 3, ry: 0 },
+      accent: c.accent,
+    })),
     {
       id: "door-quan-ca-phe",
       to: "quan-ca-phe" as DistrictRoomId,
@@ -859,7 +1003,7 @@ const STREET_ROOM: DistrictRoom = {
 };
 
 export const DISTRICT_ROOMS: Record<string, DistrictRoom> = Object.fromEntries(
-  [STREET_ROOM, TOWER_LOBBY, STAGE_FLOOR, GAME_SQUARE, PARK_ROOM, CENTER_ROOM, CAFE_ROOM, ...OFFICES, ...FLOORS].map(
+  [STREET_ROOM, TOWER_LOBBY, STAGE_FLOOR, GAME_SQUARE, PARK_ROOM, CENTER_ROOM, CAFE_ROOM, ...CIVIC, ...OFFICES, ...FLOORS].map(
     (r) => [r.id, r]
   )
 );
