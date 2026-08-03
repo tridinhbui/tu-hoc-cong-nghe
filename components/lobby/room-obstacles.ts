@@ -1,4 +1,4 @@
-import { ROOM, TABLE_ZS, TABLE_HALF_W, TABLE_HALF_D } from "./ReadingRoom";
+import { ROOM, TABLE_ZS, TABLE_HALF_W, TABLE_HALF_D } from "./room-geometry";
 
 /** Mọi vật cản trong phòng, khai báo MỘT chỗ duy nhất.
  *

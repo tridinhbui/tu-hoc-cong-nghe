@@ -1,5 +1,5 @@
 import * as THREE from "three";
-import { DOOR_HALF_W, ROOM } from "./ReadingRoom";
+import { DOOR_HALF_W, ROOM } from "./room-geometry";
 import { resolveObstacles } from "./room-obstacles";
 
 /** Hình học của thế giới đi lại được: thư viện, ban công tầng hai, và con phố

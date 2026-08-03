@@ -9,41 +9,29 @@ import {
   oakTexture,
 } from "./room-textures";
 import { rgbToHex, type DaySample } from "./daylight";
+import {
+  ROOM,
+  TABLE_ZS,
+  TABLE_HALF_W,
+  TABLE_HALF_D,
+  DOOR_HALF_W,
+  DOOR_HEIGHT,
+  WINDOW_COUNT,
+} from "./room-geometry";
 
-/** Kích thước sảnh. Phòng đọc Rose thật dài 297 feet, rộng 78, cao 52 - tỷ lệ
- *  ~4:1:0.7. Giữ đúng tỷ lệ đó nhưng thu nhỏ về đơn vị mét cho vừa tầm đi bộ,
- *  vì cảm giác "dài hun hút, trần rất cao" mới là thứ nhận ra căn phòng, không
- *  phải con số tuyệt đối. */
-export const ROOM = {
-  length: 56,
-  width: 24,
-  height: 13,
-  /** Nhân vật không đi được ra ngoài khung này. */
-  get bounds() {
-    return { x: this.width / 2 - 1.6, z: this.length / 2 - 1.6 };
-  },
-};
-
-const WINDOW_COUNT = 7;
-const TABLE_ROWS = 6;
-
-/** Vị trí tâm các hàng bàn, tính một lần ở tầng module thay vì trong component.
- *  Va chạm phía người chơi (LobbySceneInner) phải dùng đúng những con số này -
- *  để hai nơi tự tính riêng là cách chắc chắn nhất khiến hình vẽ và khối chặn
- *  lệch nhau sau lần đầu ai đó đổi số hàng bàn. */
-export const TABLE_ZS: number[] = Array.from(
-  { length: TABLE_ROWS },
-  (_, i) => -ROOM.length / 2 + (ROOM.length / (TABLE_ROWS + 1)) * (i + 1)
-);
-/** Nửa kích thước khối chặn của một bàn, khớp với boxGeometry bên dưới. */
-export const TABLE_HALF_W = 9.5 / 2;
-export const TABLE_HALF_D = 1.7 / 2;
-
-/** Ô cửa trổ trên tường đầu nam, lối ra phố. Khai báo ở đây chứ không ở
- *  world.ts vì tường được vẽ ở đây - để hai nơi tự chọn số riêng thì sớm muộn
- *  cũng có người đi xuyên tường hoặc đâm vào khoảng trống. */
-export const DOOR_HALF_W = 2.8;
-export const DOOR_HEIGHT = 5.6;
+// Kích thước phòng, vị trí bàn và ô cửa nằm ở room-geometry.ts - một module
+// thuần, không "use client". Chúng phải ở đó vì `/pho-nghe` chạm tới chúng qua
+// đường server (district-space → stations → world → room-obstacles), và một
+// hằng số khai trong file client nhìn từ server là undefined. Xuất lại ở đây
+// để mọi nơi đang import từ ReadingRoom không phải đổi gì.
+export {
+  ROOM,
+  TABLE_ZS,
+  TABLE_HALF_W,
+  TABLE_HALF_D,
+  DOOR_HALF_W,
+  DOOR_HEIGHT,
+} from "./room-geometry";
 
 /** Cửa sổ vòm. Ô kính là vật liệu phát sáng thay cho ánh sáng trời thật - rẻ
  *  hơn nhiều so với thêm bảy nguồn sáng vào cảnh - nên "trời sáng hay tối" ở
