@@ -3,9 +3,33 @@ import {
   BREATH_CYCLES,
   BREATH_CYCLE_SECONDS,
   BREATH_PHASES,
+  QUIET_CORNER_CLOSING,
   QUIET_CORNER_LIMITS,
   WORRY_REFRAMES,
+  getQuietGreeting,
 } from "../quiet-corner";
+
+describe("cau chao theo gio", () => {
+  it("moi gio trong ngay deu co mot cau chao", () => {
+    for (let hour = 0; hour < 24; hour++) {
+      expect(getQuietGreeting(hour).length).toBeGreaterThan(20);
+    }
+  });
+
+  // Toàn bộ giá trị của hàm này nằm ở chỗ nửa đêm nghe KHÁC ban ngày - nếu hai
+  // dải trả về cùng một câu thì nó chỉ là một hằng số đội lốt hàm.
+  it("nua dem va ban ngay khong dung chung mot cau", () => {
+    expect(getQuietGreeting(1)).not.toBe(getQuietGreeting(9));
+    expect(getQuietGreeting(9)).not.toBe(getQuietGreeting(14));
+    expect(getQuietGreeting(14)).not.toBe(getQuietGreeting(23));
+  });
+
+  it("cau khuya thua nhan noi lo chu khong ra lenh di ngu", () => {
+    const lateNight = getQuietGreeting(1).toLowerCase();
+    expect(lateNight).not.toContain("hãy đi ngủ");
+    expect(lateNight).not.toContain("nên ngủ");
+  });
+});
 
 describe("nhip tho", () => {
   it("la nhip hop 4-4-4-4, mot vong 16 giay", () => {
@@ -56,6 +80,18 @@ describe("goc nhin cho noi lo tien bac", () => {
         expect(text).not.toContain(phrase);
       }
     }
+  });
+});
+
+describe("diem ha canh", () => {
+  // Trang không được kết thúc bằng disclaimer - phần khép lại phải là lời cho
+  // phép rời đi, và không được lén nhét một cú đẩy "học tiếp" vào đây.
+  it("loi khep lai khong chua loi keu goi hoc tiep", () => {
+    const all = QUIET_CORNER_CLOSING.lines.join(" ").toLowerCase();
+    expect(all).not.toContain("học tiếp");
+    expect(all).not.toContain("xp");
+    expect(all).not.toContain("streak");
+    expect(QUIET_CORNER_CLOSING.lines.length).toBeGreaterThan(0);
   });
 });
 

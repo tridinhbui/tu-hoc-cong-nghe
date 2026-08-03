@@ -15,7 +15,13 @@ import {
   MOTIVATION_TONE_LABEL,
   type DailyMotivation,
 } from "@/lib/daily-motivation";
-import { QUIET_CORNER_LIMITS, WORRY_REFRAMES } from "@/lib/quiet-corner";
+import {
+  QUIET_CORNER_CLOSING,
+  QUIET_CORNER_LIMITS,
+  WORRY_REFRAMES,
+  WORRY_SET_DOWN,
+  getQuietGreeting,
+} from "@/lib/quiet-corner";
 import MotivationShareCard from "@/components/MotivationShareCard";
 import BreathingCircle from "@/components/BreathingCircle";
 import DinhHoaFlame from "@/components/DinhHoaFlame";
@@ -30,6 +36,9 @@ import DinhHoaFlame from "@/components/DinhHoaFlame";
 export default function QuietCornerClient({ userId }: { userId: string }) {
   const [motivation, setMotivation] = useState<DailyMotivation | null>(null);
   const [openWorry, setOpenWorry] = useState<string | null>(null);
+  // Nỗi lo đã "đặt xuống" trong phiên này. Cố ý không lưu đi đâu: sang mai
+  // nỗi lo có thể quay lại, và trang không có quyền giả vờ rằng nó đã hết.
+  const [setDownIds, setSetDownIds] = useState<ReadonlySet<string>>(new Set());
 
   useEffect(() => {
     let cancelled = false;
@@ -122,9 +131,17 @@ export default function QuietCornerClient({ userId }: { userId: string }) {
               variants={{ hidden: {}, shown: { transition: { staggerChildren: 0.55, delayChildren: 0.35 } } }}
             >
               {[
+                // Khối này chỉ render sau khi fetch xong ở client, nên đọc
+                // đồng hồ máy người dùng ở đây không gây lệch hydrate.
+                <p
+                  key="greeting"
+                  className="text-xs font-semibold leading-relaxed text-stone-500 dark:text-stone-400"
+                >
+                  {getQuietGreeting(new Date().getHours())}
+                </p>,
                 <p
                   key="tone"
-                  className="text-[11px] font-bold uppercase tracking-[0.2em] text-orange-700 dark:text-orange-300"
+                  className="mt-4 text-[11px] font-bold uppercase tracking-[0.2em] text-orange-700 dark:text-orange-300"
                 >
                   {MOTIVATION_TONE_LABEL[motivation.tone]}
                 </p>,
@@ -184,6 +201,46 @@ export default function QuietCornerClient({ userId }: { userId: string }) {
         <ul className="mt-5 space-y-2.5">
           {WORRY_REFRAMES.map((item) => {
             const open = openWorry === item.id;
+            const isSetDown = setDownIds.has(item.id);
+
+            // Trạng thái "đã đặt xuống": mục lún xuống thành một dòng mờ với
+            // một tàn lửa bay lên - cùng ngôn ngữ với ngọn lửa đầu trang. Nỗi
+            // lo không biến mất (trang không có quyền giả vờ thế), nó chỉ
+            // được phép nằm im; bấm vào là cầm lên xem lại được.
+            if (isSetDown) {
+              return (
+                <li key={item.id}>
+                  <motion.button
+                    type="button"
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    onClick={() =>
+                      setSetDownIds((prev) => {
+                        const next = new Set(prev);
+                        next.delete(item.id);
+                        return next;
+                      })
+                    }
+                    className="relative w-full overflow-visible rounded-2xl border border-dashed border-stone-200 px-4 py-2.5 text-left dark:border-stone-800"
+                  >
+                    <motion.span
+                      aria-hidden
+                      className="absolute right-5 top-1 h-1.5 w-1.5 rounded-full bg-orange-400"
+                      initial={{ y: 4, opacity: 0.9, scale: 1 }}
+                      animate={{ y: -22, opacity: 0, scale: 0.5 }}
+                      transition={{ duration: 1.8, ease: "easeOut" }}
+                    />
+                    <span className="block text-xs font-semibold text-stone-400 line-through decoration-stone-300 dark:text-stone-500 dark:decoration-stone-600">
+                      “{item.worry}”
+                    </span>
+                    <span className="mt-0.5 block text-[11px] leading-relaxed text-stone-400 dark:text-stone-500">
+                      {WORRY_SET_DOWN.done}
+                    </span>
+                  </motion.button>
+                </li>
+              );
+            }
+
             return (
               <li key={item.id}>
                 <button
@@ -199,18 +256,51 @@ export default function QuietCornerClient({ userId }: { userId: string }) {
                   “{item.worry}”
                 </button>
                 {open && (
-                  <motion.p
+                  <motion.div
                     initial={{ opacity: 0, y: -4 }}
                     animate={{ opacity: 1, y: 0 }}
-                    className="mt-2 rounded-2xl bg-gradient-to-br from-amber-50 to-orange-50 px-4 py-3.5 text-sm leading-relaxed text-stone-700 dark:from-stone-800 dark:to-stone-800/60 dark:text-stone-300"
+                    className="mt-2 rounded-2xl bg-gradient-to-br from-amber-50 to-orange-50 px-4 py-3.5 dark:from-stone-800 dark:to-stone-800/60"
                   >
-                    {item.reframe}
-                  </motion.p>
+                    <p className="text-sm leading-relaxed text-stone-700 dark:text-stone-300">
+                      {item.reframe}
+                    </p>
+                    <div className="mt-3 flex justify-end">
+                      <button
+                        type="button"
+                        onClick={() => {
+                          setSetDownIds((prev) => new Set(prev).add(item.id));
+                          setOpenWorry(null);
+                        }}
+                        className="rounded-full border border-orange-200 px-3.5 py-1.5 text-[11px] font-bold text-orange-700 transition-colors hover:bg-orange-100/60 dark:border-orange-900 dark:text-orange-300 dark:hover:bg-orange-950/40"
+                      >
+                        {WORRY_SET_DOWN.action}
+                      </button>
+                    </div>
+                  </motion.div>
                 )}
               </li>
             );
           })}
         </ul>
+      </section>
+
+      {/* --- Điểm hạ cánh ---------------------------------------------------
+          Không viền, không nền - đây không phải một "khối tính năng" nữa mà
+          là lời cuối của trang trước khi trở về. Disclaimer vẫn đứng sau nó,
+          nhưng ấn tượng khép lại nên là một lời cho phép, không phải một lời
+          cảnh báo. */}
+      <section className="mt-10 px-6 text-center">
+        <p className="text-[11px] font-bold uppercase tracking-[0.2em] text-stone-400 dark:text-stone-500">
+          {QUIET_CORNER_CLOSING.title}
+        </p>
+        {QUIET_CORNER_CLOSING.lines.map((line) => (
+          <p
+            key={line}
+            className="mx-auto mt-2.5 max-w-md text-sm leading-relaxed text-stone-600 dark:text-stone-300"
+          >
+            {line}
+          </p>
+        ))}
       </section>
 
       {/* --- Ranh giới ------------------------------------------------------

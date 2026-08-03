@@ -46,6 +46,28 @@ export interface WorryReframe {
   reframe: string;
 }
 
+/**
+ * Một câu chào theo giờ trong ngày - tín hiệu thấu cảm rẻ nhất mà trang có
+ * thể phát ra. Quan trọng nhất là dải đêm khuya: lo lắng về tiền lúc một giờ
+ * sáng là một trải nghiệm rất cụ thể, và việc trang *biết* lúc đó là mấy giờ
+ * đã là một nửa lời an ủi. Hàm thuần theo giờ địa phương, không lưu gì.
+ */
+export function getQuietGreeting(hour: number): string {
+  if (hour < 5) {
+    return "Đã quá nửa đêm. Nỗi lo nào cũng nghe to hơn vào giờ này - chúng sẽ nhỏ lại dưới ánh sáng ban ngày.";
+  }
+  if (hour < 11) {
+    return "Chào buổi sáng. Ngày chưa đòi hỏi gì ở bạn cả - khoan hãy vội.";
+  }
+  if (hour < 17) {
+    return "Giữa một ngày bận, bạn vẫn ghé qua đây - vậy là bạn biết tự cho mình một quãng nghỉ.";
+  }
+  if (hour < 22) {
+    return "Ngày hôm nay đã xong phần việc của nó. Buổi tối còn lại là của bạn.";
+  }
+  return "Đêm đã khuya. Không còn việc gì của hôm nay bắt buộc phải xong nữa.";
+}
+
 export const WORRY_REFRAMES: WorryReframe[] = [
   {
     id: "wr-01",
@@ -95,7 +117,52 @@ export const WORRY_REFRAMES: WorryReframe[] = [
     reframe:
       "\"Đủ\" không có con số mặc định - nếu không tự định nghĩa, nó sẽ luôn lùi ra xa đúng bằng tốc độ bạn tiến tới. Viết ra một con số cụ thể biến nỗi lo vô hạn thành một mục tiêu hữu hạn.",
   },
+  // Bốn mục dưới đây là nhóm nỗi lo đặc thù nhất với người học Việt Nam -
+  // tiền trong quan hệ gia đình - mà tám mục đầu chưa chạm tới. Vẫn đúng
+  // nguyên tắc cũ: thừa nhận trước, không chỉ dẫn hành động tài chính.
+  {
+    id: "wr-09",
+    worry: "Mình đang giấu người thân một khoản nợ.",
+    reframe:
+      "Khoản nợ có con số, còn sự giấu giếm thì không - và thứ không đo được mới là thứ nặng thêm mỗi ngày. Không cần nói với tất cả mọi người; một người đáng tin biết chuyện là gánh đã được chia đôi.",
+  },
+  {
+    id: "wr-10",
+    worry: "Người thân hỏi vay tiền, mình không biết từ chối sao cho phải.",
+    reframe:
+      "Từ chối một khoản vay không phải là từ chối một con người. Một lời không rõ ràng và tử tế thường giữ được quan hệ lâu hơn một cái gật đầu miễn cưỡng kèm theo ấm ức.",
+  },
+  {
+    id: "wr-11",
+    worry: "Xung quanh ai cũng khoe lãi, chỉ mình đứng ngoài.",
+    reframe:
+      "Bạn đang nghe những khoản lãi được kể lại - khoản lỗ hiếm khi được đem đi khoe. Đứng ngoài một thứ mình chưa hiểu không phải là chậm chân; đó là kỷ luật đang làm đúng việc của nó.",
+  },
+  {
+    id: "wr-12",
+    worry: "Cả nhà trông vào thu nhập của mình, mình không được phép sai.",
+    reframe:
+      "Trụ cột cũng là người - được phép mệt, được phép sai rồi sửa. Điều gia đình cần về lâu dài không phải một người không bao giờ sai, mà một người không gãy; và người không gãy là người biết lúc nào cần đặt gánh xuống.",
+  },
 ];
+
+/** Nhãn cho động tác "đặt xuống" một nỗi lo. Chỉ là trạng thái trong phiên -
+ *  không lưu, không đếm, đúng nguyên tắc của trang. */
+export const WORRY_SET_DOWN = {
+  action: "Mình đặt nó xuống hôm nay",
+  done: "Đã đặt xuống. Nó vẫn ở đây nếu bạn muốn cầm lên xem lại.",
+} as const;
+
+/** Điểm hạ cánh của trang - đứng ngay trước phần ranh giới. Trang không được
+ *  phép kết thúc bằng disclaimer: cần thiết nhưng lạnh, và ấn tượng cuối cùng
+ *  nên là một lời cho phép rời đi, không phải một lời cảnh báo. */
+export const QUIET_CORNER_CLOSING = {
+  title: "Trước khi bạn quay lại",
+  lines: [
+    "Không có gì trên trang này cần hoàn thành, nên cũng không có gì đang dở dang.",
+    "Nghỉ đủ rồi thì quay lại. Chưa đủ thì ở thêm một lát. Ngọn lửa không tắt khi bạn rời đi.",
+  ],
+} as const;
 
 /**
  * Ranh giới của trang này. Luôn hiển thị, không gập lại được, không đặt sau
