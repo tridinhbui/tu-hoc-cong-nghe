@@ -194,10 +194,19 @@ export const TRACK_PROFESSIONAL = {
       label: "Chặng 2",
       name: "Đọc 3 báo cáo tài chính",
       days: [41, 60] as [number, number],
+      // Ba bài đọc-sâu nằm ngoài dải ngày vì chúng được viết sau, khi đo ra
+      // rằng chặng này dạy đọc ba bảng số mà không dạy đọc thuyết minh, không
+      // dạy chuẩn hoá theo tỷ trọng, và không nhắc tới ý kiến kiểm toán ở đâu.
+      extraLessonIds: [1690, 1691, 1692],
       available: true,
       parts: [
         { name: "Income Statement và Balance Sheet", days: [41, 50] as [number, number] },
         { name: "Cash Flow Statement và case thực tế", days: [51, 60] as [number, number] },
+        {
+          name: "Đọc sâu: thuyết minh, tỷ trọng và ý kiến kiểm toán",
+          days: [0, 0] as [number, number],
+          extraLessonIds: [1690, 1691, 1692],
+        },
       ],
     },
     {

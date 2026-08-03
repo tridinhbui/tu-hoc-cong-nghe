@@ -73,6 +73,9 @@ export const SKILL_DOMAINS: SkillDomain[] = [
       // Chặng 33: kiểm toán là cách bộ báo cáo này được xác nhận, nên nó
       // thuộc cùng nhóm với việc đọc và lập báo cáo.
       ...range(1531, 1534), 1536,
+      // Ba bài đọc-sâu bổ sung cho chặng "Đọc 3 báo cáo tài chính": thuyết
+      // minh, phân tích theo tỷ trọng, và ý kiến kiểm toán.
+      ...range(1690, 1692),
     ],
   },
   {
