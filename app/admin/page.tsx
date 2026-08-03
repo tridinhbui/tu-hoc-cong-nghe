@@ -22,6 +22,8 @@ import { getOpenBugReportCount } from "@/lib/admin/bugs";
 import { getSystemAnalytics } from "@/lib/admin/analytics";
 import { getFeatureEventStats } from "@/lib/admin/feature-events";
 import FeatureEventsPanel from "@/components/admin/FeatureEventsPanel";
+import WorldUsagePanel from "@/components/admin/WorldUsagePanel";
+import { getWorldUsage, type WorldUsage } from "@/lib/admin/world-usage";
 import NeedsActionPanel from "@/components/admin/NeedsActionPanel";
 
 export const dynamic = "force-dynamic";
@@ -39,6 +41,7 @@ export default async function AdminOverviewPage() {
     openBugReports,
     analyticsResult,
     featureEventStats,
+    worldUsage,
   ] = await Promise.all([
     getUnreadMessageCount().catch(() => 0),
     getUnreadChatCount().catch(() => 0),
@@ -51,6 +54,18 @@ export default async function AdminOverviewPage() {
     getOpenBugReportCount().catch(() => 0),
     getSystemAnalytics().catch(() => null),
     getFeatureEventStats(30).catch(() => []),
+    // Bảng này không được phép làm hỏng cả trang admin nếu bảng chưa tồn tại -
+    // getWorldUsage đã tự trả về trạng thái "không đọc được" thay vì ném lỗi,
+    // catch ở đây chỉ là lớp cuối.
+    getWorldUsage().catch(
+      (e: Error): WorldUsage => ({
+        available: false,
+        reason: e.message,
+        rows: [],
+        totalMinutes: 0,
+        totalLearners: 0,
+      })
+    ),
   ]);
 
   const overviewCards = [
@@ -368,6 +383,8 @@ export default async function AdminOverviewPage() {
 
       {/* Feature Click Events Panel */}
       <FeatureEventsPanel stats={featureEventStats} />
+
+      <WorldUsagePanel usage={worldUsage} />
     </div>
   );
 }

@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useMemo } from "react";
+import { useEffect, useMemo, useRef } from "react";
 import * as THREE from "three";
 import {
   BIKE_SPOTS,
@@ -86,6 +86,102 @@ function TextBoard({
         <planeGeometry args={[width + 0.14, height + 0.14]} />
         <meshStandardMaterial color="#181410" roughness={0.7} />
       </mesh>
+    </group>
+  );
+}
+
+
+/** Nhiều bản sao giống hệt nhau, vẽ trong MỘT lần gọi.
+ *
+ *  Con phố có chín cái cây, bốn cột đèn, năm cái xe và mười ba cái bục - mỗi
+ *  bản sao trước đây là một draw call riêng, và con phố là căn phòng ai cũng
+ *  vào đầu tiên. Hình dạng thì y hệt nhau, nên GPU chỉ cần biết nó một lần và
+ *  biết chúng đứng ở đâu.
+ *
+ *  Đổi lại: mọi bản sao dùng chung một vật liệu, nên thứ nào cần màu riêng
+ *  từng cái (bục game) phải truyền màu qua instanceColor chứ không qua
+ *  material. */
+function Instances({
+  count,
+  place,
+  color,
+  children,
+}: {
+  count: number;
+  /** Đặt bản sao thứ i vào chỗ của nó. */
+  place: (i: number, m: THREE.Object3D) => void;
+  color: string;
+  children: React.ReactNode;
+}) {
+  const ref = useRef<THREE.InstancedMesh>(null);
+  useEffect(() => {
+    const mesh = ref.current;
+    if (!mesh) return;
+    const dummy = new THREE.Object3D();
+    for (let i = 0; i < count; i += 1) {
+      place(i, dummy);
+      dummy.updateMatrix();
+      mesh.setMatrixAt(i, dummy.matrix);
+    }
+    mesh.instanceMatrix.needsUpdate = true;
+    // Bóng đổ của cây và cột đèn ngoài phố không đáng: chúng đứng im, và mỗi
+    // bản sao đổ bóng là một lượt render nữa vào shadow map.
+    mesh.castShadow = false;
+  }, [count, place]);
+  return (
+    <instancedMesh ref={ref} args={[undefined, undefined, count]} receiveShadow>
+      {children}
+      <meshStandardMaterial color={color} roughness={0.9} />
+    </instancedMesh>
+  );
+}
+
+/** Chỉ phần tán - thân cây đi qua instancing. Giữ Tree đầy đủ vì công viên
+ *  dùng nó với vị trí rời rạc, không thành nhóm lặp. */
+function TreeCanopy({ x, z }: { x: number; z: number }) {
+  return (
+    <group position={[x, 0, z]}>
+      {[0, 1, 2].map((i) => (
+        <mesh key={i} position={[0, 3.1 + i * 0.55, 0]} castShadow>
+          <icosahedronGeometry args={[1.35 - i * 0.28, 0]} />
+          <meshStandardMaterial color={i % 2 ? "#2f6b46" : "#3d8a58"} flatShading roughness={0.85} />
+        </mesh>
+      ))}
+    </group>
+  );
+}
+
+/** Bóng đèn và ánh sáng - cột đi qua instancing. */
+function LampHead({ x, z }: { x: number; z: number }) {
+  return (
+    <group position={[x, 0, z]}>
+      <mesh position={[0, 4.85, 0]}>
+        <sphereGeometry args={[0.24, 12, 12]} />
+        <meshBasicMaterial color="#ffe6b0" toneMapped={false} />
+      </mesh>
+      <pointLight position={[0, 4.7, 0]} intensity={9} distance={13} color="#ffdca8" />
+    </group>
+  );
+}
+
+/** Yên, bánh và màu riêng - thân xe đi qua instancing. */
+function MotorbikeDetail({ x, z, color }: { x: number; z: number; color: string }) {
+  return (
+    <group position={[x, 0, z]} rotation={[0, Math.PI / 2, 0]}>
+      <mesh position={[0, 0.52, 0]} castShadow>
+        <boxGeometry args={[1.06, 0.27, 0.35]} />
+        <meshStandardMaterial color={color} roughness={0.5} metalness={0.3} />
+      </mesh>
+      <mesh position={[-0.18, 0.74, 0]} castShadow>
+        <boxGeometry args={[0.44, 0.16, 0.3]} />
+        <meshStandardMaterial color="#1c1917" roughness={0.9} />
+      </mesh>
+      {[-0.58, 0.58].map((wx) => (
+        <mesh key={wx} position={[wx, 0.3, 0]} rotation={[Math.PI / 2, 0, 0]}>
+          <torusGeometry args={[0.3, 0.08, 8, 16]} />
+          <meshStandardMaterial color="#131313" roughness={0.95} />
+        </mesh>
+      ))}
     </group>
   );
 }
@@ -441,14 +537,52 @@ function StreetScene({ progressByCategory }: { progressByCategory: Record<Career
         </group>
       ))}
 
+      {/* Ba nhóm lặp lại nhiều nhất ngoài phố đi qua instancing: thân cây, cột
+          đèn và thân xe. Phần cần khác nhau từng cái - tán cây nhiều lớp, bóng
+          đèn phát sáng, bánh xe - vẫn vẽ riêng, vì chúng ít và chúng là thứ
+          mắt nhìn vào. */}
+      <Instances
+        count={STREET_TREE_XS.length}
+        color="#4a3728"
+        place={(i, m) => {
+          m.position.set(STREET_TREE_XS[i], 1.5, TREE_Z);
+          m.scale.set(1, 1, 1);
+        }}
+      >
+        <cylinderGeometry args={[0.18, 0.26, 3, 8]} />
+      </Instances>
       {STREET_TREE_XS.map((x) => (
-        <Tree key={x} x={x} z={TREE_Z} />
+        <TreeCanopy key={x} x={x} z={TREE_Z} />
       ))}
+
+      <Instances
+        count={LAMP_XS.length}
+        color="#2c2c2c"
+        place={(i, m) => {
+          m.position.set(LAMP_XS[i], 2.4, LAMP_Z);
+          m.scale.set(1, 1, 1);
+        }}
+      >
+        <cylinderGeometry args={[0.08, 0.11, 4.8, 8]} />
+      </Instances>
       {LAMP_XS.map((x) => (
-        <StreetLamp key={x} x={x} z={LAMP_Z} />
+        <LampHead key={x} x={x} z={LAMP_Z} />
       ))}
+
+      <Instances
+        count={BIKE_SPOTS.length}
+        color="#1c1917"
+        place={(i, m) => {
+          const [x, z] = BIKE_SPOTS[i];
+          m.position.set(x, 0.52, z);
+          m.rotation.set(0, Math.PI / 2, 0);
+          m.scale.set(1, 1, 1);
+        }}
+      >
+        <boxGeometry args={[1.05, 0.26, 0.34]} />
+      </Instances>
       {BIKE_SPOTS.map(([x, z], i) => (
-        <Motorbike key={x} x={x} z={z} color={["#b91c1c", "#0f766e", "#1d4ed8", "#a16207", "#7c3aed"][i % 5]} />
+        <MotorbikeDetail key={x} x={x} z={z} color={["#b91c1c", "#0f766e", "#1d4ed8", "#a16207", "#7c3aed"][i % 5]} />
       ))}
 
       {/* Dãy nhà bên kia đường: chỉ để nhìn, không tới được. */}
