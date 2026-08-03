@@ -8,6 +8,7 @@ import {
   DollarSign, PieChart, Layers, ChevronRight, Zap, CheckCircle2 
 } from "lucide-react";
 import { toast } from "sonner";
+import { advanceMarket } from "@/lib/market-sim";
 import { INITIAL_VN30_STOCKS, MARKET_NEWS_POOL, type StockItem, type MarketNewsEvent } from "@/lib/vn30-stock-data";
 import { createClient } from "@/lib/supabase";
 import { recalculateUserStats } from "@/lib/supabase-user";
@@ -82,41 +83,14 @@ export default function FinancialGuildWidget({ userId }: { userId: string }) {
   }
 
   // Advance Time (Simulate Days)
+  //
+  // Toàn bộ phép mô phỏng nằm ở lib/market-sim.ts: hàm khai trong thân
+  // component bị React Compiler đọc như code có thể chạy lúc render, nên
+  // Math.random() ở đây bị chặn dù nó chỉ chạy từ onClick - và quan trọng
+  // hơn, ở ngoài đó nó kiểm được bằng test với nguồn ngẫu nhiên ghim sẵn.
   function advanceDays(numDays: number) {
-    let newStocks = [...stocks];
-    let latestNews: MarketNewsEvent | null = null;
-
-    // Pick random news event occasionally
-    if (Math.random() > 0.4) {
-      const randomNewsIndex = Math.floor(Math.random() * MARKET_NEWS_POOL.length);
-      latestNews = MARKET_NEWS_POOL[randomNewsIndex];
-      setCurrentNews(latestNews);
-    } else {
-      setCurrentNews(null);
-    }
-
-    for (let day = 0; day < numDays; day++) {
-      // General market trend for the day (-1.5% to +1.8%)
-      const marketTrend = (Math.random() - 0.48) * 0.02;
-
-      newStocks = newStocks.map((stock) => {
-        const volMultiplier = stock.volatility === "high" ? 0.035 : stock.volatility === "medium" ? 0.02 : 0.01;
-        let randomDelta = (Math.random() - 0.49) * volMultiplier + marketTrend;
-
-        // Apply News impact if matched sector
-        if (latestNews && latestNews.affectedSectors.includes(stock.sector)) {
-          randomDelta += latestNews.impactMultiplier * 0.5;
-        }
-
-        const newPrice = Math.max(1000, Math.round(stock.currentPrice * (1 + randomDelta) / 100) * 100);
-        return {
-          ...stock,
-          previousPrice: stock.currentPrice,
-          currentPrice: newPrice,
-        };
-      });
-    }
-
+    const { stocks: newStocks, news } = advanceMarket(stocks, numDays, MARKET_NEWS_POOL);
+    setCurrentNews(news);
     setStocks(newStocks);
     const nextDay = simulatedDay + numDays;
     setSimulatedDay(nextDay);

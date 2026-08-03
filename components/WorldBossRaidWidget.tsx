@@ -31,6 +31,18 @@ interface LeaderboardEntry {
   avatarUrl: string | null;
 }
 
+/** Sát thương một đòn đánh trúng: 5.000 tới 6.999.
+ *
+ *  Để ngoài thân component vì React Compiler đọc mọi hàm khai bên trong như
+ *  thể nó có thể chạy lúc render, nên chặn Math.random() ở đó - dù hàm này
+ *  chỉ chạy khi người chơi bấm một đáp án.
+ */
+const HIT_DAMAGE_MIN = 5000;
+const HIT_DAMAGE_SPREAD = 2000;
+function rollHitDamage(): number {
+  return HIT_DAMAGE_MIN + Math.floor(Math.random() * HIT_DAMAGE_SPREAD);
+}
+
 export default function WorldBossRaidWidget({
   userId,
   userLevel = 1,
@@ -114,7 +126,7 @@ export default function WorldBossRaidWidget({
 
     const q = boss.questions[qIndex];
     const isCorrect = optionIndex === q.correct;
-    const hitDamage = isCorrect ? 5000 + Math.floor(Math.random() * 2000) : 0;
+    const hitDamage = isCorrect ? rollHitDamage() : 0;
 
     if (isCorrect) {
       setHitState("hit_boss");

@@ -32,6 +32,16 @@ interface CosmeticItem {
   price: number;
 }
 
+/** Mốc hết hạn của thẻ nhân đôi XP: 24 giờ kể từ lúc kích hoạt.
+ *
+ *  Ngoài thân component vì Date.now() bên trong bị React Compiler chặn - nó
+ *  không phân biệt được hàm chỉ chạy từ onClick với hàm chạy lúc render.
+ */
+const BOOSTER_HOURS = 24;
+function boosterExpiry(): number {
+  return Date.now() + BOOSTER_HOURS * 60 * 60 * 1000;
+}
+
 export default function CosmeticStore({ userId, onBack }: { userId: string; onBack?: () => void }) {
   const supabase = createClient();
   const [showCustomizer, setShowCustomizer] = useState(false);
@@ -160,7 +170,7 @@ export default function CosmeticStore({ userId, onBack }: { userId: string; onBa
   const handleToggleEquip = async (item: CosmeticItem) => {
     // Special activation for boosters / badges / chat effects
     if (item.asset_type === "booster") {
-      const expiry = Date.now() + 24 * 60 * 60 * 1000;
+      const expiry = boosterExpiry();
       try {
         localStorage.setItem(`thtcdn_xp_booster_until_${userId}`, String(expiry));
       } catch (e) {}

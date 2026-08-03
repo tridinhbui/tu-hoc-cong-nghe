@@ -2,6 +2,8 @@
 
 import React, { useState, useEffect } from "react";
 import { createPortal } from "react-dom";
+import { shuffleQuiz } from "@/lib/quiz-shuffle";
+import { useIsClient } from "@/lib/use-is-client";
 import Image from "next/image";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
@@ -56,28 +58,20 @@ export default function BossBattleModal({
   onVictory,
   onClose,
 }: BossBattleModalProps) {
-  const [mounted, setMounted] = useState(false);
+  const mounted = useIsClient();
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
-
-  useEffect(() => {
-    setMounted(true);
-  }, []);
   const [bossHp, setBossHp] = useState(100);
   const [heroHp, setHeroHp] = useState(100);
   const [selectedOption, setSelectedOption] = useState<number | null>(null);
   const [battleState, setBattleState] = useState<"fighting" | "hit_boss" | "hit_hero" | "victory" | "defeat">("fighting");
 
-  const shuffledQuestions = React.useMemo(() => {
-    return questions.map((q) => {
-      const order = q.options.map((_, i) => i).sort(() => Math.random() - 0.5);
-      const correct = order.indexOf(q.correct);
-      return {
-        ...q,
-        options: order.map((i) => q.options[i]),
-        correct,
-      };
-    }).sort(() => Math.random() - 0.5);
-  }, [questions]);
+  // Xáo một lần khi trận mở ra, không xáo lúc render: random lúc render thì
+  // server và client dựng hai thứ tự khác nhau, và mọi lần render lại giữa
+  // trận sẽ đảo chỗ đáp án ngay dưới ngón tay người chơi.
+  // Khởi tạo lười: xáo đúng một lần cho cả trận. Bản dựng trên server bị bỏ
+  // đi (`mounted` còn false nên chưa render portal), nên không có chuyện
+  // server và client lệch thứ tự.
+  const [shuffledQuestions] = useState(() => shuffleQuiz(questions));
 
   const currentQ = shuffledQuestions[currentQuestionIndex] || questions[currentQuestionIndex];
   const maxQ = shuffledQuestions.length;
