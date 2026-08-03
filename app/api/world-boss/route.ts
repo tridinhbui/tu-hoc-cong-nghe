@@ -40,6 +40,13 @@ function shuffleArray<T>(arr: T[]): T[] {
   return a;
 }
 
+/** Câu hỏi của world boss, đọc từ bảng hoặc từ FALLBACK_WORLD_BOSS. */
+interface BossQuestion {
+  options: string[];
+  correct?: number;
+  [key: string]: unknown;
+}
+
 export async function GET(request: NextRequest) {
   const supabase = await createServerSupabaseClient();
 
@@ -55,12 +62,12 @@ export async function GET(request: NextRequest) {
 
   // Shuffle question list and each question's option order so correct answer isn't always A
   const shuffledQuestions = shuffleArray(
-    (activeBoss.questions || []).map((q: any) => {
-      const order = shuffleArray(q.options.map((_: any, i: number) => i));
+    (activeBoss.questions || []).map((q: BossQuestion) => {
+      const order = shuffleArray(q.options.map((_, i) => i));
       const correct = order.indexOf(q.correct ?? 0);
       return {
         ...q,
-        options: order.map((idx: any) => q.options[Number(idx)]),
+        options: order.map((idx) => q.options[Number(idx)]),
         correct,
       };
     })
@@ -79,7 +86,13 @@ export async function GET(request: NextRequest) {
     .order("damage_dealt", { ascending: false })
     .limit(10);
 
-  const leaderboard = logs?.map((log: any, index: number) => ({
+  interface DamageLogRow {
+    user_id: string;
+    damage_dealt: number;
+    user_profiles?: { full_name: string | null; email: string | null; avatar_url: string | null } | null;
+  }
+
+  const leaderboard = (logs as unknown as DamageLogRow[] | null)?.map((log, index) => ({
     rank: index + 1,
     userId: log.user_id,
     name: log.user_profiles?.full_name || log.user_profiles?.email?.split("@")[0] || "Chiến binh Server",

@@ -44,7 +44,18 @@ export async function listAiReports(): Promise<AdminAiReportRow[]> {
   const lessonSlugMap = new Map(lessonsMeta.map((l) => [l.id, l.slug]));
   const lessonTitleMap = new Map(lessonsMeta.map((l) => [l.id, l.title]));
 
-  return (data ?? []).map((row: any) => {
+  /** Hàng báo cáo kèm quan hệ hồ sơ người dùng; chỉ khai phần hàm này đọc. */
+  interface ReportRow {
+    id: number;
+    user_id: string;
+    lesson_id: number;
+    lesson_slug: string | null;
+    quote: string;
+    created_at: string;
+    user_profiles?: { email?: string | null; full_name?: string | null } | null;
+  }
+
+  return ((data ?? []) as unknown as ReportRow[]).map((row) => {
     const resolvedSlug = row.lesson_slug || lessonSlugMap.get(row.lesson_id) || "";
     const resolvedTitle = lessonTitleMap.get(row.lesson_id) || `Bài học #${row.lesson_id}`;
 

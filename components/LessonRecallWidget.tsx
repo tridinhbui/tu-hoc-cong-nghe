@@ -19,6 +19,14 @@ interface DueRecallItem {
   nextRecallAt: string;
 }
 
+/** Câu hỏi trong phiên ôn, ghép từ quiz của bài học. */
+interface RecallQuestion {
+  question: string;
+  options: string[];
+  correct: number;
+  explanation?: string;
+}
+
 export default function LessonRecallWidget({ userId }: LessonRecallWidgetProps) {
   const [dueRecalls, setDueRecalls] = useState<DueRecallItem[]>([]);
   const [loading, setLoading] = useState(true);
@@ -26,7 +34,7 @@ export default function LessonRecallWidget({ userId }: LessonRecallWidgetProps) 
 
   // Active review session state
   const [activeItem, setActiveItem] = useState<DueRecallItem | null>(null);
-  const [questions, setQuestions] = useState<any[]>([]);
+  const [questions, setQuestions] = useState<RecallQuestion[]>([]);
   const [currentQIndex, setCurrentQIndex] = useState(0);
   const [selectedOpt, setSelectedOpt] = useState<number | null>(null);
   const [answersChecked, setAnswersChecked] = useState(false);

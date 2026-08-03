@@ -46,7 +46,19 @@ export async function GET(request: NextRequest) {
     .order("total_xp", { ascending: false })
     .limit(10);
 
-  const formattedGuilds = guilds?.map((g: any) => ({
+  /** Chỉ những cột mà endpoint này đọc; `guild_members(count)` là quan hệ
+   *  tổng hợp nên Supabase trả về mảng một phần tử. */
+  interface GuildRow {
+    id: string;
+    name: string;
+    tag: string;
+    logo_emoji: string;
+    level: number;
+    total_xp: number;
+    guild_members?: { count: number }[] | null;
+  }
+
+  const formattedGuilds = (guilds as GuildRow[] | null)?.map((g) => ({
     id: g.id,
     name: g.name,
     tag: g.tag,

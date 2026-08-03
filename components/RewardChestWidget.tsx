@@ -22,12 +22,19 @@ const REWARDS = [
   { type: "theme", value: "emerald", desc: "Mở khóa Giao diện Ngọc Lục Bảo đặc biệt" }
 ];
 
+/** Phần thưởng vừa mở ra từ rương. */
+interface ChestReward {
+  type: string;
+  value: string | number;
+  desc?: string;
+}
+
 export default function RewardChestWidget({ userId }: RewardChestWidgetProps) {
   const [mounted, setMounted] = useState(false);
   const [chests, setChests] = useState<number>(0);
   const [opening, setOpening] = useState<boolean>(false);
   const [shaking, setShaking] = useState<boolean>(false);
-  const [rewardReveal, setRewardReveal] = useState<any | null>(null);
+  const [rewardReveal, setRewardReveal] = useState<ChestReward | null>(null);
 
   useEffect(() => {
     setMounted(true);

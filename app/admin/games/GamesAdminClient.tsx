@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { toast } from "sonner";
-import { BarChart3, TrendingUp, Users, Trophy, Zap, Award, RefreshCw, Gamepad2 } from "lucide-react";
+import { BarChart3, TrendingUp, Users, Trophy, Zap, Award, RefreshCw, Gamepad2 , type LucideIcon } from "lucide-react";
 import { getGameSessionStats } from "./actions";
 
 interface GameStats {
@@ -21,10 +21,12 @@ interface GameStats {
   }>;
 }
 
+type AdminMetric = "overview" | "players" | "performance" | "earnings";
+
 export default function GamesAdminClient() {
   const [stats, setStats] = useState<GameStats | null>(null);
   const [loading, setLoading] = useState(true);
-  const [selectedMetric, setSelectedMetric] = useState<"overview" | "players" | "performance" | "earnings">("overview");
+  const [selectedMetric, setSelectedMetric] = useState<AdminMetric>("overview");
   const [refreshing, setRefreshing] = useState(false);
 
   useEffect(() => {
@@ -132,18 +134,18 @@ export default function GamesAdminClient() {
       {/* Tabs */}
       <div className="bg-white dark:bg-stone-900 border border-stone-200 dark:border-stone-800 rounded-xl">
         <div className="flex border-b border-stone-200 dark:border-stone-800">
-          {[
+          {([
             { id: "overview", label: "Tổng quan", icon: BarChart3 },
             { id: "players", label: "Người chơi", icon: Users },
             { id: "performance", label: "Hiệu suất", icon: TrendingUp },
             { id: "earnings", label: "Thu nhập XP", icon: Award },
-          ].map((tab) => {
+          ] as { id: AdminMetric; label: string; icon: LucideIcon }[]).map((tab) => {
             const TabIcon = tab.icon;
             const isActive = selectedMetric === tab.id;
             return (
               <button
                 key={tab.id}
-                onClick={() => setSelectedMetric(tab.id as any)}
+                onClick={() => setSelectedMetric(tab.id)}
                 className={`flex-1 flex items-center justify-center gap-2 px-4 py-3 text-sm font-semibold border-b-2 transition-colors ${
                   isActive
                     ? "border-purple-600 dark:border-purple-400 text-purple-600 dark:text-purple-400"

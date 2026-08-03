@@ -19,6 +19,15 @@ interface StageMilestoneExamModalProps {
   onSuccess: () => void;
 }
 
+/** Câu hỏi gộp từ nhiều bài của một chặng, kèm tên bài để hiện nguồn. */
+interface MilestoneQuestion {
+  question: string;
+  options: string[];
+  correct: number;
+  explanation?: string;
+  lessonTitle: string;
+}
+
 export default function StageMilestoneExamModal({
   userId,
   trackId,
@@ -29,7 +38,7 @@ export default function StageMilestoneExamModal({
   onSuccess,
 }: StageMilestoneExamModalProps) {
   const [mounted, setMounted] = useState(false);
-  const [questions, setQuestions] = useState<any[]>([]);
+  const [questions, setQuestions] = useState<MilestoneQuestion[]>([]);
 
   useEffect(() => {
     setMounted(true);
@@ -44,7 +53,7 @@ export default function StageMilestoneExamModal({
   useEffect(() => {
     const buildQuestionPool = async () => {
       try {
-        const pool: any[] = [];
+        const pool: MilestoneQuestion[] = [];
         for (const id of lessonIds) {
           const detail = await getLessonDetailsForRecall(id);
           if (detail && detail.quiz && detail.quiz.length > 0) {

@@ -16,7 +16,14 @@ export async function GET(request: NextRequest) {
     .order("total_xp", { ascending: false })
     .limit(10);
 
-  const leaderboard = topUsers?.map((u: any, idx: number) => ({
+  interface ProfileRow {
+    full_name: string | null;
+    email: string | null;
+    avatar_url: string | null;
+    current_level: number | null;
+  }
+
+  const leaderboard = (topUsers as ProfileRow[] | null)?.map((u, idx) => ({
     rank: idx + 1,
     name: u.full_name || u.email?.split("@")[0] || "Trader CFO",
     avatarUrl: u.avatar_url,

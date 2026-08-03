@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { Wallet, TrendingUp, Target, CheckCircle2, Shuffle, ChevronDown, ChevronUp } from "lucide-react";
+import { Wallet, TrendingUp, Target, CheckCircle2, Shuffle, ChevronDown, ChevronUp, type LucideIcon } from "lucide-react";
 import { toast } from "sonner";
 
 interface GoalSelectionBannerProps {
@@ -10,7 +10,7 @@ interface GoalSelectionBannerProps {
 
 export type LearningGoal = "personal-finance" | "basic-investing" | "corporate-finance";
 
-export const GOALS: { id: LearningGoal; name: string; desc: string; icon: any; color: string; bg: string }[] = [
+export const GOALS: { id: LearningGoal; name: string; desc: string; icon: LucideIcon; color: string; bg: string }[] = [
   {
     id: "personal-finance",
     name: "Tài chính Cá nhân & Thoát nợ",

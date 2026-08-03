@@ -3,7 +3,7 @@
 import { useEffect, useMemo, useState, useRef } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { Trophy, BookOpen, Sparkles, Crown, Medal, Award, Flame, Target, Gamepad2, Star, ShieldCheck, Zap, Shield, Gem, Briefcase, GraduationCap, Heart, ChevronLeft, ChevronRight } from "lucide-react";
+import { Trophy, BookOpen, Sparkles, Crown, Medal, Award, Flame, Target, Gamepad2, Star, ShieldCheck, Zap, Shield, Gem, Briefcase, GraduationCap, Heart, ChevronLeft, ChevronRight , type LucideIcon } from "lucide-react";
 import {
   getLeaderboardByMetric,
   getMyLeaderboardRank,
@@ -175,7 +175,7 @@ const TABS: {
     Dictionary["leaderboard"],
     "compositeScore" | "totalXp" | "lessonsCount" | "avgScore" | "streakDays" | "career" | "cfaArena" | "contribution" | "badgesLabel" | "gamer"
   >;
-  icon: any;
+  icon: LucideIcon;
   format: (v: number, u: Dictionary["leaderboard"]["units"]) => string;
 }[] = [
   // Default tab: the weighted overall score (see

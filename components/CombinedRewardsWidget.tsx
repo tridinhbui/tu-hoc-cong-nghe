@@ -30,6 +30,13 @@ interface CombinedRewardsWidgetProps {
 //    localStorage key, which nothing in the entire codebase ever WROTE to -
 //    it was permanently stuck at 0/5. Now reads the real streak from
 //    user_streaks (the same source StreakDisplay/UserStats already show).
+/** Nhiệm vụ ngày, chỉ khai phần widget này đọc. */
+interface DailyQuest {
+  current: number;
+  target: number;
+  claimed?: boolean;
+}
+
 export default function CombinedRewardsWidget({ userId, defaultExpanded = false, compact = false }: CombinedRewardsWidgetProps) {
   const [mounted, setMounted] = useState(false);
   const [activeTab, setActiveTab] = useState<"daily" | "chests" | "weekly">("daily");
@@ -51,7 +58,7 @@ export default function CombinedRewardsWidget({ userId, defaultExpanded = false,
   const [perfectQuizStreak, setPerfectQuizStreak] = useState<number>(0);
   const [isEpicClaimed, setIsEpicClaimed] = useState<boolean>(false);
   const [claiming, setClaiming] = useState<boolean>(false);
-  const [dailyQuests, setDailyQuests] = useState<any[]>([]);
+  const [dailyQuests, setDailyQuests] = useState<DailyQuest[]>([]);
   const [weeklyClaimed, setWeeklyClaimed] = useState<boolean>(false);
 
   const weeklyLessonsKey = `thtcdn_weekly_completed_lessons_${userId}`;

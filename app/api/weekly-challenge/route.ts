@@ -103,7 +103,7 @@ export async function POST(request: NextRequest) {
 
   // Tính điểm
   let score = 0;
-  const questionsList = challenge.questions as any[];
+  const questionsList = challenge.questions as { correct: number }[];
   questionsList.forEach((q, index) => {
     if (userAnswers[index] === q.correct) {
       score++;

@@ -210,8 +210,8 @@ export default function CosmeticStore({ userId, onBack }: { userId: string; onBa
         setEquippedGear(prev => ({ ...prev, [slot]: item.id }));
         toast.success(`Đã trang bị ${item.name}!`);
       }
-    } catch (error: any) {
-      toast.error("Không thể thay đổi trang bị: " + error.message);
+    } catch (error: unknown) {
+      toast.error("Không thể thay đổi trang bị: " + errorMessage(error));
     }
   };
 

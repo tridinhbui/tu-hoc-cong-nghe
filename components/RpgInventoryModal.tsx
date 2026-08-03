@@ -3,10 +3,10 @@
 import React from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { X } from "lucide-react";
-import RpgInventoryPanel from "@/components/RpgInventoryPanel";
+import RpgInventoryPanel, { type RpgProfile } from "@/components/RpgInventoryPanel";
 
 interface RpgInventoryModalProps {
-  user: any;
+  user: RpgProfile | null;
   onClose: () => void;
 }
 

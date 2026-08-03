@@ -8,7 +8,7 @@ export interface MilestoneCompletion {
 
 function isMissingTableError(error: { code?: string; message?: string } | null): boolean {
   if (!error) return false;
-  return error.code === "PGRST116" || error.code === "42P01" || (error as any).message?.includes("does not exist") || false;
+  return error.code === "PGRST116" || error.code === "42P01" || error.message?.includes("does not exist") || false;
 }
 
 export async function getPassedMilestones(userId: string, trackId: string): Promise<MilestoneCompletion[]> {

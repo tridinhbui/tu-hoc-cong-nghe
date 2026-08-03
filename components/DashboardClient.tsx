@@ -59,8 +59,6 @@ import FinanceCardCollection from "@/components/FinanceCardCollection";
 import WeeklyChallengeWidget from "@/components/WeeklyChallengeWidget";
 import FinanceCharacterAvatar, { CharacterEquipments } from "@/components/FinanceCharacterAvatar";
 import BossBattleModal from "@/components/BossBattleModal";
-import WorldBossRaidWidget from "@/components/WorldBossRaidWidget";
-import FinancialGuildWidget from "@/components/FinancialGuildWidget";
 import PvpDuelModal from "@/components/PvpDuelModal";
 import DashboardStreakWidget from "@/components/DashboardStreakWidget";
 import DailyMotivationWidget from "@/components/DailyMotivationWidget";
@@ -141,6 +139,15 @@ let cachedLessonState: LessonState | null = null;
 // in one place - the accordion depends on nearly all of it.
 export type DashboardView = "overview" | "lessons";
 
+const DASHBOARD_TABS = ["personal", "professional", "skill-tree", "weekly-challenge", "cards", "cosmetics"] as const;
+type DashboardTab = (typeof DASHBOARD_TABS)[number];
+
+/** Giá trị đọc từ localStorage là string bất kỳ - hàm này thu hẹp nó lại thay
+ *  vì ép kiểu, nên một tab bị đổi tên sẽ rơi về mặc định chứ không lọt qua. */
+function isDashboardTab(value: string | null): value is DashboardTab {
+  return value !== null && (DASHBOARD_TABS as readonly string[]).includes(value);
+}
+
 export default function DashboardClient({ lessonsMeta, view = "overview" }: { lessonsMeta: LessonMeta[]; view?: DashboardView }) {
   const isLessonsView = view === "lessons";
   const router = useRouter();
@@ -163,11 +170,10 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
     const saved = window.localStorage.getItem("activeTrack");
     return saved === "professional" ? "professional" : "personal";
   });
-  const [activeDashboardTab, setActiveDashboardTab] = useState<"personal" | "professional" | "skill-tree" | "weekly-challenge" | "cards" | "cosmetics">(() => {
+  const [activeDashboardTab, setActiveDashboardTab] = useState<DashboardTab>(() => {
     if (typeof window === "undefined") return "personal";
     const saved = window.localStorage.getItem("activeDashboardTab");
-    const validTabs = ["personal", "professional", "skill-tree", "weekly-challenge", "cards", "cosmetics"];
-    return saved && validTabs.includes(saved) ? (saved as any) : "personal";
+    return isDashboardTab(saved) ? saved : "personal";
   });
   const [professionalBranch, setProfessionalBranch] = useState<ProfessionalBranchId>(() => {
     if (typeof window === "undefined") return "corporate";
@@ -186,7 +192,7 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
       window.localStorage.setItem("activeDashboardTab", track);
     }
   };
-  const setDashboardTab = (tab: "personal" | "professional" | "skill-tree" | "weekly-challenge" | "cards" | "cosmetics") => {
+  const setDashboardTab = (tab: DashboardTab) => {
     setActiveDashboardTab(tab);
     if (typeof window !== "undefined") {
       window.localStorage.setItem("activeDashboardTab", tab);
@@ -1395,10 +1401,6 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
             <FinanceCardCollection userId={user?.id || ""} />
           ) : activeDashboardTab === "cosmetics" ? (
             <CosmeticStore userId={user?.id || ""} />
-          ) : activeDashboardTab === ("world-boss" as any) ? (
-            <WorldBossRaidWidget userId={user?.id || ""} userLevel={getLevelByXp(userXp, cfaCompletedForLevel).level} equipments={equippedGear} />
-          ) : activeDashboardTab === ("guilds" as any) ? (
-            <FinancialGuildWidget userId={user?.id || ""} />
           ) : (
           <>
           {/* ── Search Bar (Compact Left) + Flag Mode Controls (Right) ── */}

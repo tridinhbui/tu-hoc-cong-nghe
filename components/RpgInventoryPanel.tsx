@@ -99,7 +99,13 @@ const DEFAULT_ITEMS: InventoryItem[] = [
   },
 ];
 
-export default function RpgInventoryPanel({ user }: { user: any }) {
+/** Panel chỉ đọc đúng một trường của hồ sơ, nên prop khai đúng chừng đó -
+ *  `any` ở đây từng khiến cả ba component trong chuỗi cùng mất kiểu. */
+export interface RpgProfile {
+  email?: string | null;
+}
+
+export default function RpgInventoryPanel({ user }: { user: RpgProfile | null }) {
   const [items, setItems] = useState<InventoryItem[]>(DEFAULT_ITEMS);
   const [selectedItem, setSelectedItem] = useState<InventoryItem | null>(DEFAULT_ITEMS[0]);
   const [activeTab, setActiveTab] = useState<"all" | "gear" | "potions">("all");

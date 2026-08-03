@@ -129,13 +129,16 @@ export async function POST(request: NextRequest) {
     .single();
 
   const newTotalXp = (profile?.total_xp ?? 0) + xpEarned;
-  const updatePayload: Record<string, any> = {
+  /** `coins` chỉ tồn tại sau một migration nhất định, nên payload được dựng
+   *  động thay vì khai cứng - unknown giữ được kiểm tra ở chỗ ghi vào. */
+  const updatePayload: Record<string, unknown> = {
     current_level: newOverallLevel,
     total_xp: newTotalXp,
     updated_at: new Date().toISOString()
   };
-  if (profile && typeof (profile as any).coins !== "undefined") {
-    updatePayload.coins = ((profile as any).coins ?? 0) + 10;
+  const profileCoins = (profile as { coins?: number } | null)?.coins;
+  if (profileCoins !== undefined) {
+    updatePayload.coins = profileCoins + 10;
   }
 
   await supabase

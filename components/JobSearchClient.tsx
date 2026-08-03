@@ -23,7 +23,7 @@ import {
   ThumbsUp,
   ThumbsDown,
   TrendingUp
-} from "lucide-react";
+, type LucideIcon } from "lucide-react";
 import { toast } from "sonner";
 import { FINANCE_CAREERS, type FinanceCareer } from "@/lib/finance-careers";
 import { CFA_LEVEL_1_SUBJECTS } from "@/lib/cfa-track";
@@ -216,7 +216,7 @@ function MetricBar({
   value: number; 
   max?: number; 
   color?: string; 
-  icon: any 
+  icon: LucideIcon 
 }) {
   const percentage = (value / max) * 100;
   return (
@@ -587,12 +587,16 @@ function ComparisonModal({
   );
 }
 
+/** Hai dãy tab (bản rộng và bản gọn) cùng chọn từ tập này. Đặt tên union thay
+ *  vì liệt kê tay ở ba chỗ, để thêm một tab không lặng lẽ trượt qua. */
+type JobTab = "daily" | "insights" | "path" | "skills" | "profile" | "search";
+
 export default function JobSearchClient() {
   const [selected, setSelected] = useState<FinanceCareer>(FINANCE_CAREERS[0]);
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("all");
   const categoryTabsRef = useRef<HTMLDivElement>(null);
-  const [activeTab, setActiveTab] = useState<"daily" | "insights" | "path" | "skills" | "profile" | "search">("daily");
+  const [activeTab, setActiveTab] = useState<JobTab>("daily");
   const [mobileDetailOpen, setMobileDetailOpen] = useState(false);
   
   // Custom states for P2 features
@@ -1332,7 +1336,7 @@ export default function JobSearchClient() {
                   return (
                     <button
                       key={tab.id}
-                      onClick={() => setActiveTab(tab.id as any)}
+                      onClick={() => setActiveTab(tab.id as JobTab)}
                       className={`flex items-center gap-1.5 px-4 py-3 text-xs font-black uppercase tracking-wider relative transition-colors ${
                         isActive ? "text-emerald-500 dark:text-emerald-400" : "text-stone-400 dark:text-stone-500 hover:text-stone-600"
                       }`}
@@ -1783,7 +1787,7 @@ export default function JobSearchClient() {
                   return (
                     <button
                       key={tab.id}
-                      onClick={() => setActiveTab(tab.id as any)}
+                      onClick={() => setActiveTab(tab.id as JobTab)}
                       className={`flex items-center gap-1.5 px-3.5 py-2.5 text-[10px] font-black uppercase tracking-wider relative shrink-0 transition-colors select-none ${
                         isActive ? "text-emerald-500 dark:text-emerald-400" : "text-stone-400 dark:text-stone-500 hover:text-stone-600"
                       }`}

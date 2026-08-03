@@ -15,7 +15,10 @@ if (typeof window !== "undefined") {
 function getAudioContext(): AudioContext | null {
   if (typeof window === "undefined") return null;
   if (!audioCtx) {
-    const AudioContextClass = window.AudioContext || (window as any).webkitAudioContext;
+    // Safari cũ chỉ có tiền tố; khai đúng phần mở rộng thay vì mở toàn bộ
+    // window ra `any`.
+    const w = window as typeof window & { webkitAudioContext?: typeof AudioContext };
+    const AudioContextClass = w.AudioContext || w.webkitAudioContext;
     if (AudioContextClass) {
       audioCtx = new AudioContextClass();
     }

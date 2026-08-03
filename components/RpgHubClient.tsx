@@ -2,10 +2,10 @@
 
 import { useState } from "react";
 import { Package, ShoppingBag } from "lucide-react";
-import RpgInventoryPanel from "@/components/RpgInventoryPanel";
+import RpgInventoryPanel, { type RpgProfile } from "@/components/RpgInventoryPanel";
 import CosmeticStore from "@/components/CosmeticStore";
 
-export default function RpgHubClient({ userId, profile }: { userId: string; profile: any }) {
+export default function RpgHubClient({ userId, profile }: { userId: string; profile: RpgProfile | null }) {
   const [tab, setTab] = useState<"inventory" | "shop">("inventory");
 
   return (

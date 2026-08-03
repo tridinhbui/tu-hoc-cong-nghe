@@ -665,7 +665,7 @@ export async function recalculateUserStats(userId: string) {
         if (key && key.startsWith(`milestones_${userId}_`)) {
           try {
             const parsed = JSON.parse(window.localStorage.getItem(key) ?? "[]");
-            milestoneXp += parsed.filter((m: any) => Number(m.score) >= 0.8).length * 50;
+            milestoneXp += parsed.filter((m: { score?: unknown }) => Number(m.score) >= 0.8).length * 50;
           } catch {}
         }
       }
@@ -691,7 +691,7 @@ export async function recalculateUserStats(userId: string) {
       const localData = window.localStorage.getItem(`lesson_recalls_${userId}`);
       if (localData) {
         const parsed = JSON.parse(localData);
-        recallXp = parsed.reduce((sum: number, r: any) => sum + Math.max(0, Number(r.recall_stage) - 1) * 10, 0);
+        recallXp = parsed.reduce((sum: number, r: { recall_stage?: unknown }) => sum + Math.max(0, Number(r.recall_stage) - 1) * 10, 0);
       }
     }
   } catch (err) {
