@@ -33,13 +33,13 @@ const ONBOARDING_STEPS: OnboardingStep[] = [
         <div className="p-4 border-2 border-emerald-200 dark:border-emerald-900 rounded-xl bg-emerald-50 dark:bg-emerald-950/30">
           <h3 className="font-bold text-emerald-900 dark:text-emerald-400 mb-2">💰 Tài chính cá nhân</h3>
           <p className="text-sm text-stone-600 dark:text-stone-400">
-            80 ngày · Quản lý tiền, tiết kiệm, đầu tư cá nhân
+            Quản lý tiền, tiết kiệm và đầu tư cá nhân
           </p>
         </div>
         <div className="p-4 border-2 border-blue-200 dark:border-blue-900 rounded-xl bg-blue-50 dark:bg-blue-950/30">
           <h3 className="font-bold text-blue-900 dark:text-blue-400 mb-2">📊 Tài chính chuyên ngành</h3>
           <p className="text-sm text-stone-600 dark:text-stone-400">
-            180 ngày · Kế toán, báo cáo tài chính, định giá doanh nghiệp
+            Kế toán, báo cáo tài chính và định giá doanh nghiệp
           </p>
         </div>
       </div>

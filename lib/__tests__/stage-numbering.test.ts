@@ -95,3 +95,19 @@ describe("nhãn chặng dùng làm khoá", () => {
     }
   });
 });
+
+describe("hệ đếm 'ngày'", () => {
+  it("không track nào hứa một số ngày cố định", () => {
+    // "Lộ trình 108 ngày" được viết khi track có đúng 108 bài và nhịp là mỗi
+    // ngày một bài. Track cá nhân hôm nay có 136 bài, chuyên ngành 460, và
+    // không màn hình nào trong ứng dụng đếm ngày cả - nên con số đó chỉ còn
+    // là một lời hứa không ai đối chiếu được.
+    for (const track of [TRACKS.personal, TRACKS.professional]) {
+      expect(track.subtitle).not.toMatch(/\d+\s*ngày/);
+    }
+    for (const track of [TRACK_PERSONAL, TRACK_PROFESSIONAL]) {
+      expect(track.subtitle).not.toMatch(/\d+\s*ngày/);
+      expect(track.description).not.toMatch(/\d+\s*ngày/);
+    }
+  });
+});

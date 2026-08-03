@@ -1,7 +1,7 @@
 export const TRACKS = {
   personal: {
     tab: "Tài chính cá nhân",
-    subtitle: "Lộ trình 108 ngày · dành cho người mới",
+    subtitle: "Dành cho người mới bắt đầu",
     estimatedHours: 10,
     description: "Kiểm tra tài chính của chính bạn, kiểm soát chi tiêu, xây quỹ khẩn cấp, trả nợ và đầu tư thông minh - không cần kiến thức ngành.",
     // Phải khớp thứ tự và số hiệu của TRACK_PERSONAL.stages trong
@@ -26,7 +26,7 @@ export const TRACKS = {
   },
   professional: {
     tab: "Tài chính chuyên ngành",
-    subtitle: "Lộ trình 180 ngày · chuyên sâu",
+    subtitle: "Chuyên sâu, cho người đã có nền tài chính",
     estimatedHours: 18,
     description: "Kế toán, đọc báo cáo tài chính, định giá doanh nghiệp, trái phiếu, danh mục, phái sinh và AI in Finance.",
     // Cố ý KHÔNG đánh số. Dashboard chuyên ngành đánh lại số chặng theo

@@ -33,7 +33,10 @@ export function isLessonInRange(
 export const TRACK_PERSONAL = {
   id: "personal",
   title: "Tài chính cá nhân",
-  subtitle: "Lộ trình 108 ngày",
+  // Không hứa số ngày nữa. Con số 108 được viết khi track có 108 bài và mỗi
+  // ngày một bài; hôm nay track có 136 bài và người học đi theo nhịp của họ,
+  // nên "108 ngày" vừa sai vừa không có gì trong ứng dụng đối chiếu được.
+  subtitle: "Dành cho người mới bắt đầu",
   estimatedHours: 10,
   description:
     "Dành cho người muốn hiểu tiền bạc, kiểm soát chi tiêu, xây dựng tài sản và đầu tư thông minh - không cần kiến thức ngành.",
@@ -169,10 +172,10 @@ export const TRACK_PERSONAL = {
 export const TRACK_PROFESSIONAL = {
   id: "professional",
   title: "Tài chính chuyên ngành",
-  subtitle: "Lộ trình 180 ngày chuyên sâu",
+  subtitle: "Chuyên sâu, cho người đã có nền tài chính",
   estimatedHours: 18,
   description:
-    "Lộ trình chuyên sâu 180 ngày dành cho người đã biết tài chính cơ bản: kế toán, báo cáo tài chính, định giá, trái phiếu, danh mục đầu tư, phái sinh.",
+    "Lộ trình chuyên sâu dành cho người đã biết tài chính cơ bản: kế toán, báo cáo tài chính, định giá, trái phiếu, danh mục đầu tư, phái sinh.",
   pillars: ["Kế toán & báo cáo tài chính", "Định giá & phân tích", "Đầu tư & quản lý rủi ro"],
   stages: [
     {

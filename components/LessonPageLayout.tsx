@@ -54,6 +54,9 @@ export interface LessonMeta {
   difficulty: "Dễ" | "Trung bình" | "Khó";
   emoji: string;
   day: number;
+  // Cần cho nhãn hiển thị: bài case không thuộc chặng nào nên chỉ trường này
+  // phân biệt được chúng, và getLessonDisplayLabel không có cách nào khác.
+  track?: "personal" | "professional" | "bonus";
   label?: string;
   recallDay?: number;
   accent: string;
@@ -209,7 +212,7 @@ export default function LessonPageLayout({ lesson, quiz, children }: Props) {
   // What the reader is actually shown. Falls back to durationMin for lessons
   // that bypass the generator and so have no computed estimate.
   const readingMin = lesson.readingMinutes ?? durationMin;
-  const lessonLabel = lesson.label ?? getLessonDisplayLabel({ id: lesson.id, title: lesson.title, track: undefined });
+  const lessonLabel = lesson.label ?? getLessonDisplayLabel({ id: lesson.id, title: lesson.title, track: lesson.track });
 
   useEffect(() => {
     if (!lesson.recallDay) return;

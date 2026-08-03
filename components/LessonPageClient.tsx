@@ -134,6 +134,7 @@ export default function LessonPageClient({ lesson, nextLesson }: Props) {
   const meta = {
     id: lesson.id,
     day: lesson.id,
+    track: lesson.track,
     label: lessonLabel,
     recallDay: getLessonRecallDay(lesson),
     accent: "stone",
