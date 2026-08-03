@@ -278,6 +278,30 @@ export const FRM_REMAINING_DEPTH_LESSONS: Lesson[] = [
         label: "Đáng nhớ",
         text: "Chi phí dùng sai số chuẩn vững khi không cần là mất một chút hiệu quả. Chi phí không dùng khi cần là công bố một kết quả không tồn tại.",
       },
+      {
+        type: "heading",
+        text: "Hệ số không đổi, kết luận đổi hẳn"
+      },
+      {
+        type: "paragraph",
+        text: "Điểm dễ hiểu sai nhất về sai số chuẩn vững: nó KHÔNG sửa hệ số hồi quy. Khi phần dư có phương sai không đồng nhất hoặc tự tương quan, ước lượng hệ số vẫn không chệch - con số 0,42 vẫn là 0,42. Thứ bị sai là độ chính xác mà bạn gán cho con số đó. Giả sử sai số chuẩn thông thường cho ra 0,175, tức thống kê t bằng 2,4 và kết quả có ý nghĩa thống kê. Tính lại bằng sai số chuẩn vững ra 0,32, thống kê t chỉ còn 1,3 - và kết luận đảo chiều hoàn toàn dù hệ số không nhúc nhích."
+      },
+      {
+        type: "callout",
+        label: "Vì sao chuỗi dữ liệu tài chính gần như luôn cần tới nó",
+        text: "Hai điều kiện của sai số chuẩn thông thường đều bị vi phạm thường xuyên trong dữ liệu tài chính. Phương sai không đồng nhất: biến động không cố định theo thời gian, nên phần dư trong giai đoạn thị trường căng lớn hơn hẳn. Tự tương quan: lợi suất và đặc biệt là phần dư của các mô hình dùng dữ liệu chồng lấn có quan hệ với giá trị kỳ trước. Ở dữ liệu bảng theo doanh nghiệp và thời gian, còn thêm việc phần dư của cùng một doanh nghiệp qua các năm tương quan với nhau - và ở đó cần sai số chuẩn gộp theo cụm chứ không chỉ vững theo phương sai."
+      },
+      {
+        type: "comparison",
+        left: {
+          label: "Chi phí dùng khi không cần",
+          text: "Sai số chuẩn rộng hơn một chút, nên có thể bỏ lỡ một kết quả thật sự có ý nghĩa. Đây là cái giá nhỏ và đối xứng - bạn thận trọng hơn mức cần thiết."
+        },
+        right: {
+          label: "Chi phí không dùng khi cần",
+          text: "Công bố một kết quả không tồn tại, rồi xây chiến lược hoặc mô hình rủi ro lên trên nó. Cái giá này không đối xứng chút nào, và đó là toàn bộ lý do thực hành chuẩn trong tài chính là mặc định dùng sai số chuẩn vững."
+        }
+      },
     ],
   },
   {
@@ -1122,6 +1146,41 @@ export const FRM_REMAINING_DEPTH_LESSONS: Lesson[] = [
         type: "callout",
         label: "Đáng nhớ",
         text: "Nếu một quỹ tự nhận là quỹ chọn cổ phiếu nhưng quy kết cho thấy toàn bộ phần vượt đến từ phân bổ ngành, thì thứ họ bán không phải thứ tạo ra lợi nhuận.",
+      },
+      {
+        type: "heading",
+        text: "Tách 2,6 điểm phần trăm vượt chuẩn thành ba phần"
+      },
+      {
+        type: "paragraph",
+        text: "Chỉ số chuẩn có hai ngành, mỗi ngành 50%, lợi suất lần lượt 10% và 4%, nên chuẩn đạt 7%. Danh mục đặt 70% vào ngành đầu và 30% vào ngành sau, đạt lợi suất 12% và 4% trong hai ngành đó, nên tổng là 0,7 × 12% + 0,3 × 4% = 9,6%. Vượt chuẩn 2,6 điểm phần trăm. Câu hỏi của phân tích quy kết không phải con số đó lớn hay nhỏ, mà nó đến từ đâu."
+      },
+      {
+        type: "conceptTable",
+        title: "Ba nguồn, cộng lại đúng bằng 2,6",
+        subtitle: "Mỗi nguồn ứng với một quyết định khác nhau của người quản lý danh mục",
+        concepts: [
+          {
+            vi: "Hiệu ứng phân bổ: +1,20 điểm",
+            en: "Allocation",
+            def: "Đến từ việc đặt tỷ trọng cao hơn chuẩn vào ngành có lợi suất cao hơn mức trung bình của chuẩn. Đây là quyết định chọn ngành, không liên quan gì tới việc chọn cổ phiếu nào trong ngành đó."
+          },
+          {
+            vi: "Hiệu ứng chọn mã: +1,00 điểm",
+            en: "Selection",
+            def: "Đến từ việc trong ngành đầu, danh mục đạt 12% trong khi chuẩn của ngành đó chỉ đạt 10%. Đây là quyết định chọn cổ phiếu, tính ở tỷ trọng của CHUẨN để tách khỏi ảnh hưởng của phân bổ."
+          },
+          {
+            vi: "Hiệu ứng tương tác: +0,40 điểm",
+            en: "Interaction",
+            def: "Phần cộng hưởng: chọn mã tốt trong đúng ngành mà mình cũng đặt tỷ trọng cao. Nó không ứng với một quyết định riêng nào, nên nhiều báo cáo gộp nó vào hiệu ứng chọn mã - và khi đó cần nói rõ là đã gộp."
+          }
+        ]
+      },
+      {
+        type: "callout",
+        label: "Vì sao phép tách này quan trọng hơn con số tổng",
+        text: "Hai người quản lý cùng vượt chuẩn 2,6 điểm nhưng một người vượt nhờ chọn mã còn người kia nhờ đặt cược vào một ngành duy nhất là hai hồ sơ hoàn toàn khác nhau, với khả năng lặp lại khác nhau và mức rủi ro khác nhau. Nếu một quỹ tự mô tả mình là chuyên gia chọn cổ phiếu mà phân tích quy kết cho thấy gần như toàn bộ lợi nhuận đến từ phân bổ ngành, thì thứ họ bán không phải thứ tạo ra lợi nhuận - và đó là kết luận mà không con số tổng nào chỉ ra được."
       },
     ],
   },

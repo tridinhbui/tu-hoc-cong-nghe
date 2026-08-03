@@ -1060,6 +1060,30 @@ export const FRM_LESSONS: Lesson[] = [
         text: "LCR chỉ trả lời câu hỏi 30 ngày tới. NSFR đặt câu hỏi dài hạn hơn: liệu cấu trúc tài trợ của ngân hàng có bền vững trong 1 năm không, hay đang âm thầm dùng nợ ngắn hạn để nuôi tài sản dài hạn - đúng cấu trúc đã hạ gục Northern Rock dù ngân hàng đó vượt qua mọi bài kiểm tra vốn truyền thống.",
       },
       {
+        type: "heading",
+        text: "Tính LCR trên một bảng cân đối cụ thể"
+      },
+      {
+        type: "paragraph",
+        text: "Ngân hàng có 1.000 tiền gửi dân cư ổn định và 200 nguồn vốn bán buôn, cùng 100 tài sản thanh khoản chất lượng cao sau haircut. Kịch bản quy định gán tỷ lệ rút cho từng nhóm: tiền gửi dân cư 5%, nguồn bán buôn 40%. Dòng ra 30 ngày là 1.000 × 5% + 200 × 40% = 50 + 80 = 130. Ngân hàng cũng có 50 dòng tiền vào dự kiến, nhưng chỉ được tính tối đa 75% dòng ra - trần ở đây là 97,5 nên cả 50 được tính. Dòng ra ròng là 80, và LCR = 100 / 80 = 125%."
+      },
+      {
+        type: "callout",
+        label: "Trần 75% không phải chi tiết kỹ thuật",
+        text: "Nếu không có trần đó, một ngân hàng có thể báo cáo LCR rất đẹp bằng cách dựa vào các khoản phải thu đến hạn trong tháng, tức là giả định rằng trong lúc mình gặp khủng hoảng thì mọi đối tác vẫn trả nợ đúng hạn. Trần buộc ít nhất 25% dòng ra phải được phủ bằng tài sản đang nắm trong tay chứ không bằng lời hứa của người khác. Đây là hình mẫu chung của toàn bộ bộ quy định thanh khoản: mọi tham số đều là một giả định hành vi trong căng thẳng, và giá trị của chỉ số nằm ở chỗ mọi ngân hàng phải dùng chung một bộ giả định nên con số so sánh được."
+      },
+      {
+        type: "comparison",
+        left: {
+          label: "LCR - câu hỏi 30 ngày",
+          text: "Tài sản thanh khoản có phủ được dòng tiền ra ròng trong một tháng căng thẳng không. Đây là chỉ số sống sót ngắn hạn, và mẫu số là một kịch bản chứ không phải số liệu quá khứ."
+        },
+        right: {
+          label: "NSFR - câu hỏi một năm",
+          text: "Nguồn vốn ổn định sẵn có có phủ được nhu cầu nguồn vốn ổn định của cơ cấu tài sản không. Đây là chỉ số cấu trúc: nó hỏi ngân hàng có đang tài trợ tài sản dài bằng nguồn ngắn tới mức nguy hiểm không, chứ không hỏi tháng tới ra sao."
+        }
+      },
+      {
         type: "closing",
         lines: [
           "Đủ vốn không đồng nghĩa với đủ thanh khoản - hai rủi ro độc lập cần hai bộ chỉ số riêng.",

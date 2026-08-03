@@ -2310,6 +2310,23 @@ export const FRM_CORE_GAPS_LESSONS: Lesson[] = [
         text: "Thang dòng tiền chỉ có giá trị khi được lập song song cho điều kiện bình thường và điều kiện căng thẳng, bởi vì đúng các giả định giữ cho bản bình thường trông ổn lại là những thứ đổ vỡ sớm nhất khi khủng hoảng nổ ra."
       },
       {
+        type: "heading",
+        text: "Thang dòng tiền trông như thế nào"
+      },
+      {
+        type: "paragraph",
+        text: "Xếp mọi dòng tiền vào và ra theo kỳ hạn còn lại, rồi cộng dồn. Ví dụ: kỳ 0-7 ngày có 20 vào và 50 ra, khe hở −30, luỹ kế −30. Kỳ 8-30 ngày có 40 vào và 30 ra, khe hở +10, luỹ kế −20. Kỳ 1-3 tháng có 60 vào và 40 ra, khe hở +20, luỹ kế về 0. Kỳ 3-12 tháng có 80 vào và 100 ra, khe hở −20, luỹ kế −20. Nhìn từng kỳ riêng lẻ thì chỉ có hai kỳ âm và mức âm không lớn; nhìn cột luỹ kế thì tổ chức này thiếu 30 ngay trong tuần đầu tiên."
+      },
+      {
+        type: "callout",
+        label: "Cột luỹ kế mới là cột phải đọc",
+        text: "Một khe hở âm ở kỳ đầu không tự bù được bằng thặng dư ở kỳ sau, vì tiền của tháng thứ hai không trả được nghĩa vụ của tuần thứ nhất. Đây là lỗi đọc bảng phổ biến nhất: cộng tất cả các kỳ lại thấy tổng bằng 0 rồi kết luận không có vấn đề. Thứ tự thời gian không giao hoán được - và con số −30 ở kỳ đầu chính là lượng tài sản thanh khoản mà tổ chức bắt buộc phải có sẵn từ hôm nay."
+      },
+      {
+        type: "paragraph",
+        text: "Điểm khó của thang dòng tiền không nằm ở phép cộng mà ở việc xếp khoản mục vào kỳ nào. Tiền gửi không kỳ hạn về mặt hợp đồng thuộc kỳ đầu tiên, nhưng trên thực tế phần lớn ở lại nhiều năm - xếp hết vào kỳ 0-7 ngày thì bảng vô dụng vì lúc nào cũng báo động. Khoản vay có quyền trả trước, hạn mức tín dụng chưa dùng, và tài sản về lý thuyết bán được nhưng thực tế cần nhiều ngày cũng vậy. Nghĩa là mọi con số trong bảng đều là một giả định hành vi, và bảng chỉ đáng tin bằng đúng các giả định đó."
+      },
+      {
         type: "closing",
         lines: [
           "Một khe hở thanh khoản nhìn thấy trước ba tháng là vấn đề quản trị; nhìn thấy trước ba ngày là khủng hoảng.",

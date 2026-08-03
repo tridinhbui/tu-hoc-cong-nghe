@@ -280,6 +280,23 @@ export const FRM_MARKET_RISK_DEPTH_LESSONS: Lesson[] = [
         label: "Đáng nhớ",
         text: "Phòng hộ bằng một công cụ neo vào một điểm chỉ bù được rủi ro tại điểm đó. Danh mục trải nhiều kỳ hạn cần nhiều công cụ, và phần chênh còn lại là basis risk của chính phép phòng hộ.",
       },
+      {
+        type: "heading",
+        text: "Hai danh mục cùng duration 5, hai kết cục khác nhau"
+      },
+      {
+        type: "paragraph",
+        text: "Danh mục A đặt toàn bộ vào trái phiếu 5 năm, duration 5. Danh mục B là barbell: 62,5% vào trái phiếu 2 năm và 37,5% vào trái phiếu 10 năm, cũng cho duration 2 × 0,625 + 10 × 0,375 = 5. Một con số duration duy nhất nói rằng chúng giống nhau. Nếu cả đường cong dịch song song lên 100 điểm cơ bản thì đúng là giống nhau: cả hai mất khoảng 5%."
+      },
+      {
+        type: "callout",
+        label: "Nhưng đường cong hiếm khi dịch song song",
+        text: "Giả sử đường cong dốc lên: lãi suất 2 năm không đổi, 5 năm tăng 50 điểm cơ bản, 10 năm tăng 100 điểm. Danh mục A mất 5 × 0,50% = 2,5%. Danh mục B mất 0,375 × 10 × 1% = 3,75% - phần 2 năm không mất gì vì lãi suất ở đó đứng yên. Cùng duration, chênh nhau 1,25 điểm phần trăm. Duration tổng không nhìn thấy khác biệt này vì nó gộp mọi kỳ hạn vào một con số."
+      },
+      {
+        type: "paragraph",
+        text: "Key rate duration tách con số đó ra theo từng điểm kỳ hạn. Danh mục A có KRD 5 năm bằng 5 và bằng 0 ở mọi điểm khác. Danh mục B có KRD 2 năm bằng 1,25 và KRD 10 năm bằng 3,75. Tổng của các KRD luôn bằng duration tổng - 1,25 + 3,75 = 5 - nên không có thông tin nào bị mất, chỉ có thông tin được tách ra. Và chính vì tổng bằng nhau mà một con số tổng duy nhất che được hoàn toàn hai hồ sơ rủi ro rất khác nhau."
+      },
     ],
   },
   {
@@ -552,6 +569,30 @@ export const FRM_MARKET_RISK_DEPTH_LESSONS: Lesson[] = [
         type: "callout",
         label: "Đáng nhớ",
         text: "Đặt hạn mức theo VaR riêng lẻ ép chặt nhất đúng những bàn đang làm giảm rủi ro tổng thể - động cơ ngược hoàn toàn với thứ ngân hàng muốn.",
+      },
+      {
+        type: "heading",
+        text: "Vì sao tổng lớn hơn, tính bằng số"
+      },
+      {
+        type: "paragraph",
+        text: "Hai bàn giao dịch, mỗi bàn có VaR 100. Nếu lợi nhuận của chúng tương quan hoàn toàn - hệ số 1 - thì VaR gộp đúng bằng 200 và không có lợi ích đa dạng hoá nào. Với hệ số tương quan 0,5, VaR gộp là căn bậc hai của (100² + 100² + 2 × 0,5 × 100 × 100), tức 173,2. Với tương quan bằng 0, con số là 141,4. Khoảng cách giữa 200 và VaR gộp thật chính là lợi ích đa dạng hoá: 26,8 ở trường hợp giữa, 58,6 ở trường hợp cuối."
+      },
+      {
+        type: "callout",
+        label: "Con số 26,8 đó thuộc về ai",
+        text: "Đây mới là câu hỏi khó, và nó không có câu trả lời hiển nhiên. Không bàn nào tự mình tạo ra lợi ích đó - nó sinh ra từ QUAN HỆ giữa hai bàn. Nếu phân bổ đều thì một bàn có vị thế phòng hộ tự nhiên cho bàn kia không được ghi nhận gì thêm. Nếu phân bổ theo VaR biên - mức VaR tổng giảm đi khi bỏ hẳn một bàn ra - thì tổng các phần được phân bổ thường không bằng tổng cần chia, nên vẫn phải điều chỉnh. Đây là lý do việc phân rã rủi ro là một bài toán quản trị chứ không phải một phép chia."
+      },
+      {
+        type: "comparison",
+        left: {
+          label: "Hạn mức đặt theo VaR độc lập từng bàn",
+          text: "Đơn giản và dễ giải thích, nhưng nó thưởng cho việc mỗi bàn tự giảm rủi ro của mình mà không quan tâm tới danh mục tổng. Một bàn mở vị thế phòng hộ cho bàn khác sẽ thấy VaR riêng của mình tăng lên, dù rủi ro toàn ngân hàng giảm - động cơ ngược hoàn toàn."
+        },
+        right: {
+          label: "Hạn mức đặt theo đóng góp vào VaR tổng",
+          text: "Khó tính và khó giải thích hơn, nhưng nó đo đúng thứ ngân hàng quan tâm. Một vị thế làm giảm VaR tổng sẽ có đóng góp âm, và người quản lý bàn đó được ghi nhận vì điều đúng đắn họ vừa làm."
+        }
       },
     ],
   },

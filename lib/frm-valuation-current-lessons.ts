@@ -336,6 +336,27 @@ export const FRM_VALUATION_CURRENT_LESSONS: Lesson[] = [
         text: "Khi tính ngược qua cây, trọng số dùng cho hai nhánh là xác suất trung tính rủi ro - đại lượng suy ra từ lãi suất phi rủi ro và biên độ hai nhánh, không phải từ niềm tin của ai về khả năng cổ phiếu tăng."
       },
       {
+        type: "heading",
+        text: "Hai bước, và con số hiện ra"
+      },
+      {
+        type: "paragraph",
+        text: "Giữ nguyên bộ số của bài trước: giá 100, mỗi bước lên 20% hoặc xuống 10%, lãi suất phi rủi ro 5% mỗi kỳ, nên xác suất trung hoà rủi ro vẫn là π = 0,5. Sau hai bước, giá có thể là 144, 108 hoặc 81. Quyền chọn mua giá thực hiện 100 trả lần lượt 44, 8 và 0. Lùi ngược từng nút: ở nhánh trên, giá trị là (0,5×44 + 0,5×8)/1,05 = 24,76; ở nhánh dưới, (0,5×8 + 0,5×0)/1,05 = 3,81. Lùi thêm một bước về gốc: (0,5×24,76 + 0,5×3,81)/1,05 = 13,61. Toàn bộ phương pháp chỉ là lặp lại một phép tính duy nhất từ phải sang trái."
+      },
+      {
+        type: "heading",
+        text: "Thứ mà công thức đóng không làm được"
+      },
+      {
+        type: "paragraph",
+        text: "Cây trở nên cần thiết khi quyền chọn cho phép thực hiện sớm. Xét quyền chọn BÁN giá thực hiện 100 trên cùng cây đó. Ở nút giá 90 sau bước một, giá trị nếu tiếp tục nắm giữ là (0,5×0 + 0,5×19)/1,05 = 9,05. Nhưng thực hiện ngay tại đó thu được 100 − 90 = 10. Với quyền chọn kiểu Mỹ, người nắm giữ chọn 10 - và con số 10 đó được mang ngược về gốc thay cho 9,05."
+      },
+      {
+        type: "callout",
+        label: "Chênh lệch 0,45 chính là quyền thực hiện sớm",
+        text: "Tính tiếp về gốc: quyền chọn bán kiểu Âu định giá 4,31, kiểu Mỹ định giá 4,76. Khoảng cách 0,45 là giá của quyền được chọn thời điểm - thứ mà Black-Scholes không định giá được vì nó giả định chỉ thực hiện tại đáo hạn. Đây là lý do thực tiễn khiến cây nhị thức không bị công thức đóng thay thế: mọi hợp đồng có quyền chọn kiểu Mỹ, quyền mua lại trước hạn, hay bất kỳ quyết định nào ở giữa đường đều cần một mô hình đi từng bước. Và điều kiện để nó chạy đúng chỉ có một - ở mỗi nút, so giá trị nắm giữ tiếp với giá trị thực hiện ngay, rồi lấy số lớn hơn."
+      },
+      {
         type: "closing",
         lines: [
           "Một cây hai nhánh chứa đủ toàn bộ ý tưởng của định giá phái sinh hiện đại.",
@@ -690,6 +711,51 @@ export const FRM_VALUATION_CURRENT_LESSONS: Lesson[] = [
         type: "callout",
         label: "Greeks cộng được, giá thì khó",
         text: "Ưu điểm thực tế lớn nhất: delta của cả danh mục là tổng delta các vị thế, tương tự với gamma và vega. Nhờ vậy một bàn giao dịch nắm hàng nghìn hợp đồng vẫn tóm tắt được rủi ro thành vài con số theo dõi hằng ngày."
+      },
+      {
+        type: "heading",
+        text: "Một vị thế cụ thể, và điều gì xảy ra khi giá nhích 2 đồng"
+      },
+      {
+        type: "paragraph",
+        text: "Giả sử một quyền chọn mua có delta 0,50, gamma 0,05, vega 0,15, theta −0,02 mỗi ngày. Cổ phiếu tăng 2 đồng. Giá trị quyền chọn thay đổi xấp xỉ 0,50 × 2 + ½ × 0,05 × 2² = 1,00 + 0,10 = 1,10. Phần 1,00 là delta, phần 0,10 là gamma - và chính phần thứ hai giải thích vì sao ước lượng chỉ dùng delta luôn sai theo một hướng: nó bỏ sót độ cong. Quan trọng hơn, delta bây giờ không còn là 0,50 mà là 0,50 + 0,05 × 2 = 0,60."
+      },
+      {
+        type: "callout",
+        label: "Gamma là thứ biến phòng hộ thành một việc phải làm liên tục",
+        text: "Nếu bạn đã bán 50 cổ phiếu để phòng hộ 100 quyền chọn ở delta 0,50, thì sau cú tăng 2 đồng bạn cần bán thêm 10 cổ phiếu nữa để về trạng thái trung hoà. Rồi giá lại đổi, rồi lại phải điều chỉnh. Đó là toàn bộ nội dung của phòng hộ động, và nó cũng cho thấy vì sao chi phí phòng hộ tăng theo gamma chứ không theo delta: delta cho biết bạn cần bao nhiêu cổ phiếu, gamma cho biết bạn phải thay đổi con số đó nhanh tới mức nào."
+      },
+      {
+        type: "conceptTable",
+        title: "Năm đạo hàm, năm câu hỏi khác nhau",
+        subtitle: "Cùng một quyền chọn, nhưng mỗi Greek trả lời một loại rủi ro riêng",
+        concepts: [
+          {
+            vi: "Delta",
+            en: "Theo giá tài sản cơ sở",
+            def: "Giá đổi 1 thì quyền chọn đổi bao nhiêu. Cũng xấp xỉ số cổ phiếu cần để phòng hộ, và xấp xỉ xác suất trung hoà rủi ro của việc kết thúc trong tiền."
+          },
+          {
+            vi: "Gamma",
+            en: "Theo chính delta",
+            def: "Delta đổi nhanh thế nào. Lớn nhất khi giá quanh mức thực hiện và gần đáo hạn - đúng lúc phòng hộ khó nhất và tốn nhất."
+          },
+          {
+            vi: "Vega",
+            en: "Theo biến động",
+            def: "Biến động hàm ý tăng 1 điểm phần trăm thì giá trị tăng 0,15 trong ví dụ trên. Đây là Greek duy nhất đo độ nhạy với một đại lượng không quan sát trực tiếp được."
+          },
+          {
+            vi: "Theta",
+            en: "Theo thời gian",
+            def: "Mất 0,02 mỗi ngày chỉ vì thời gian trôi, kể cả khi không có gì xảy ra. Người bán quyền chọn thu khoản này, và đó là phần bù cho gamma âm mà họ đang gánh."
+          },
+          {
+            vi: "Rho",
+            en: "Theo lãi suất",
+            def: "Nhỏ nhất trong năm với quyền chọn ngắn hạn, nên hay bị bỏ qua - nhưng lớn dần theo kỳ hạn và không bỏ qua được với hợp đồng nhiều năm."
+          }
+        ]
       },
       {
         type: "closing",
