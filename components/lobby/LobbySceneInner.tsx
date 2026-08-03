@@ -9,6 +9,9 @@ import RoomProps from "./RoomProps";
 import CityStreet from "./CityStreet";
 import { stepWorld, type Floor } from "./world";
 import { ROTUNDA_Z } from "./room-obstacles";
+import { daylightAt, rgbToHex, sunPosition } from "./daylight";
+import StationDoors from "./StationDoors";
+import type { Station } from "./stations";
 import LobbyAvatar, { type AvatarPose } from "./LobbyAvatar";
 import {
   CHAT_BUBBLE_MS,
@@ -24,6 +27,13 @@ import {
 } from "@/lib/supabase-lobby";
 import { disposeRoomTextures } from "./room-textures";
 import PomodoroClock from "./PomodoroClock";
+
+/** Giờ hiện tại làm tròn xuống bội số 15 phút, dạng số thập phân (13.75 =
+ *  13h45). daylight.ts nhận đúng dạng này. */
+function quarterHourNow(): number {
+  const now = new Date();
+  return now.getHours() + Math.floor(now.getMinutes() / 15) * 0.25;
+}
 
 const WALK_SPEED = 4.2;
 const TURN_SPEED = 2.6;
@@ -337,14 +347,17 @@ function PlayerRig({
  *  cách tới cổng mà không cần chính nó nằm trong cây R3F của PlayerRig. */
 function PlayerPositionTap({
   poseRef,
+  floorRef,
   out,
 }: {
   poseRef: React.MutableRefObject<AvatarPose>;
-  out: React.MutableRefObject<{ x: number; z: number }>;
+  floorRef: React.MutableRefObject<Floor>;
+  out: React.MutableRefObject<{ x: number; z: number; floor: Floor }>;
 }) {
   useFrame(() => {
     out.current.x = poseRef.current.x;
     out.current.z = poseRef.current.z;
+    out.current.floor = floorRef.current;
   });
   return null;
 }
@@ -358,6 +371,8 @@ interface Props {
   onPeerCount: (count: number) => void;
   /** Bàn đang đứng cạnh (null nếu không), để HUD hiện nút "Ngồi xuống học". */
   onSeatableChange: (tableId: number | null) => void;
+  /** Cửa phòng học đang đứng trước, để HUD hiện thẻ công thức + nút vào phòng. */
+  onStationNear: (station: Station | null) => void;
   /** Bàn đang ngồi; do HUD điều khiển qua sit/stand. */
   seatedTable: number | null;
   seatStartedAt: number | null;
@@ -370,6 +385,7 @@ export default function LobbySceneInner({
   selfSpeech,
   onPeerCount,
   onSeatableChange,
+  onStationNear,
   seatedTable,
   seatStartedAt,
 }: Props) {
@@ -381,18 +397,33 @@ export default function LobbySceneInner({
   // ry=0 là nhìn về -z, và camera bám ở phía +z sau lưng - tức là ngoài hiên,
   // nhìn qua ô cửa vào trong. Trước đây spawn quay ry=PI nên camera nằm giữa
   // phòng chĩa ngược ra tường, và quả địa cầu che kín khung hình.
-  // Đứng LÙI hẳn về phía cửa chứ không giữa sảnh tròn: camera bám sau lưng, nên
-  // đứng sát quả địa cầu thì nó nằm đúng giữa camera và nhân vật và chiếm trọn
-  // khung hình ngay khoảnh khắc vào phòng.
-  const spawnZ = ROTUNDA_Z + 4.3;
-  const selfPose = useRef<AvatarPose>({ x: 0, z: spawnZ, y: 0, ry: 0 });
-  const playerPos = useRef({ x: 0, z: spawnZ });
+  // Chỗ xuất hiện phải chọn theo CAMERA chứ không theo nhân vật: camera bám
+  // cách sau lưng 5,6 đơn vị, nên đứng đâu cũng phải hỏi "phía sau chỗ đó có
+  // gì". Đứng giữa sảnh tròn thì quả địa cầu lọt vào đúng giữa camera và nhân
+  // vật; lùi hẳn ra cửa thì camera rơi ra ngoài hiên. Lệch sang bên một chút và
+  // lùi khỏi tâm sảnh là chỗ duy nhất thoả cả hai.
+  const spawnX = 2.8;
+  const spawnZ = ROTUNDA_Z - 3.2;
+  const selfPose = useRef<AvatarPose>({ x: spawnX, z: spawnZ, y: 0, ry: 0 });
+  const playerPos = useRef<{ x: number; z: number; floor: Floor }>({ x: spawnX, z: spawnZ, floor: 0 });
   const peerPoseRefs = useRef(new Map<string, React.MutableRefObject<AvatarPose>>());
   const peerCountRef = useRef(0);
   const seatedRef = useRef<number | null>(null);
   const floorRef = useRef<Floor>(0);
   // Góc nhìn mặc định: hơi chếch từ trên xuống, sau lưng nhân vật.
   const orbitRef = useRef<OrbitState>({ yaw: 0, pitch: 0.4, dist: 5.6 });
+
+  /** Giờ thật của người học, làm tròn tới 15 phút. Không cần mịn hơn: mỗi lần
+   *  đổi là dựng lại vân bầu trời, và mắt không thấy được chênh lệch giữa 14h02
+   *  với 14h07. Mốc 15 phút cũng chặn số vân sinh ra trong một phiên ở mức 4
+   *  cái mỗi giờ ngồi. */
+  const [hour, setHour] = useState(() => quarterHourNow());
+  useEffect(() => {
+    const timer = window.setInterval(() => setHour(quarterHourNow()), 60_000);
+    return () => window.clearInterval(timer);
+  }, []);
+  const day = useMemo(() => daylightAt(hour), [hour]);
+  const sun = useMemo(() => sunPosition(hour), [hour]);
 
   useHeldKeys(keysRef);
 
@@ -502,29 +533,31 @@ export default function LobbySceneInner({
   return (
     <Canvas
       shadows
-      camera={{ position: [0, 3.4, ROOM.bounds.z + 6], fov: 55 }}
+      camera={{ position: [spawnX, 3.4, spawnZ + 6], fov: 55 }}
       // Trần giới hạn DPR: màn Retina 3x không cần render 3x cho một sảnh xã
       // giao, và đây là khác biệt lớn nhất giữa mát máy và cháy quạt.
       dpr={[1, 1.75]}
       gl={{ antialias: true, powerPreference: "high-performance" }}
     >
-      <color attach="background" args={["#171310"]} />
-      {/* Sương đẩy xa hơn trước: giữ được chiều sâu hun hút của sảnh nhưng
-          không nuốt mất dãy nhà bên kia đường. */}
-      <fog attach="fog" args={["#241c14", 34, 130]} />
-      <ambientLight intensity={0.55} color="#ffe8c4" />
+      <color attach="background" args={[rgbToHex(day.fogColor)]} />
+      {/* Sương đẩy xa hơn phiên bản chỉ-có-phòng-đọc: giữ được chiều sâu hun
+          hút của sảnh nhưng không nuốt mất dãy nhà bên kia đường. Màu sương
+          theo giờ, nếu không thì buổi trưa cả con phố vẫn phủ một lớp nâu tối. */}
+      <fog attach="fog" args={[rgbToHex(day.fogColor), 34, 130]} />
+      <ambientLight intensity={day.ambientIntensity} color={rgbToHex(day.ambientColor)} />
       <directionalLight
-        position={[8, 12, 4]}
-        intensity={1.1}
-        color="#fff3dd"
+        position={sun}
+        intensity={day.sunIntensity}
+        color={rgbToHex(day.sunColor)}
         castShadow
         shadow-mapSize={[1024, 1024]}
       />
 
-      <ReadingRoom />
+      <ReadingRoom day={day} />
       <RoomProps />
-      <CityStreet />
+      <CityStreet day={day} />
       <RoomFixtures playerRef={playerPos} onPortalProximity={onPortalProximity} />
+      <StationDoors playerRef={playerPos} onNearChange={onStationNear} />
 
       {/* Đồng hồ Pomodoro: một cái cho mỗi bàn ĐANG có người ngồi. Bàn trống
           không treo đồng hồ - phòng đầy đồng hồ đếm ngược rỗng thì cái đang
@@ -575,7 +608,7 @@ export default function LobbySceneInner({
         orbitRef={orbitRef}
         floorRef={floorRef}
       />
-      <PlayerPositionTap poseRef={selfPose} out={playerPos} />
+      <PlayerPositionTap poseRef={selfPose} floorRef={floorRef} out={playerPos} />
     </Canvas>
   );
 }

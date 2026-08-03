@@ -8,6 +8,7 @@ import {
   marbleFloorTexture,
   oakTexture,
 } from "./room-textures";
+import { rgbToHex, type DaySample } from "./daylight";
 
 /** Kích thước sảnh. Phòng đọc Rose thật dài 297 feet, rộng 78, cao 52 - tỷ lệ
  *  ~4:1:0.7. Giữ đúng tỷ lệ đó nhưng thu nhỏ về đơn vị mét cho vừa tầm đi bộ,
@@ -44,7 +45,22 @@ export const TABLE_HALF_D = 1.7 / 2;
 export const DOOR_HALF_W = 2.8;
 export const DOOR_HEIGHT = 5.6;
 
-function ArchedWindow({ x, z, flip }: { x: number; z: number; flip: boolean }) {
+/** Cửa sổ vòm. Ô kính là vật liệu phát sáng thay cho ánh sáng trời thật - rẻ
+ *  hơn nhiều so với thêm bảy nguồn sáng vào cảnh - nên "trời sáng hay tối" ở
+ *  đây chính là cường độ phát sáng của mặt kính. */
+function ArchedWindow({
+  x,
+  z,
+  flip,
+  glow,
+  tint,
+}: {
+  x: number;
+  z: number;
+  flip: boolean;
+  glow: number;
+  tint: string;
+}) {
   return (
     <group position={[x, 4.6, z]} rotation={[0, flip ? -Math.PI / 2 : Math.PI / 2, 0]}>
       {/* Hốc tường lõm vào, để cửa sổ không dán phẳng lên mặt tường */}
@@ -52,14 +68,12 @@ function ArchedWindow({ x, z, flip }: { x: number; z: number; flip: boolean }) {
         <boxGeometry args={[3.4, 6.4, 0.25]} />
         <meshStandardMaterial color="#b9a98f" />
       </mesh>
-      {/* Ô kính: vật liệu phát sáng thay cho ánh sáng trời thật, rẻ hơn nhiều
-          so với thêm bảy nguồn sáng vào cảnh */}
       <mesh>
         <planeGeometry args={[3, 5.4]} />
         <meshStandardMaterial
-          color="#dff0ff"
-          emissive="#cfe6ff"
-          emissiveIntensity={1.15}
+          color={tint}
+          emissive={tint}
+          emissiveIntensity={0.12 + glow * 1.3}
           toneMapped={false}
         />
       </mesh>
@@ -67,9 +81,9 @@ function ArchedWindow({ x, z, flip }: { x: number; z: number; flip: boolean }) {
       <mesh position={[0, 2.7, 0]}>
         <circleGeometry args={[1.5, 24, 0, Math.PI]} />
         <meshStandardMaterial
-          color="#dff0ff"
-          emissive="#cfe6ff"
-          emissiveIntensity={1.15}
+          color={tint}
+          emissive={tint}
+          emissiveIntensity={0.12 + glow * 1.3}
           toneMapped={false}
         />
       </mesh>
@@ -93,7 +107,15 @@ function ArchedWindow({ x, z, flip }: { x: number; z: number; flip: boolean }) {
 /** Đèn bàn chụp xanh - chi tiết mang tính biểu tượng nhất của phòng đọc.
  *  Chụp đèn phát sáng bằng vật liệu emissive; chỉ vài chiếc mang nguồn sáng
  *  thật, vì mỗi pointLight đều tính lại cho từng vertex. */
-function DeskLamp({ position, lit }: { position: [number, number, number]; lit: boolean }) {
+function DeskLamp({
+  position,
+  lit,
+  lamps,
+}: {
+  position: [number, number, number];
+  lit: boolean;
+  lamps: number;
+}) {
   return (
     <group position={position}>
       <mesh position={[0, 0.06, 0]}>
@@ -119,16 +141,24 @@ function DeskLamp({ position, lit }: { position: [number, number, number]; lit: 
         <meshStandardMaterial
           color="#fff4d0"
           emissive="#ffdca8"
-          emissiveIntensity={2.4}
+          emissiveIntensity={0.5 + lamps * 2.2}
           toneMapped={false}
         />
       </mesh>
-      {lit && <pointLight position={[0, 0.46, 0]} color="#ffcf8f" intensity={7} distance={7} decay={2} />}
+      {lit && lamps > 0.2 && (
+        <pointLight
+          position={[0, 0.46, 0]}
+          color="#ffcf8f"
+          intensity={7 * lamps}
+          distance={7}
+          decay={2}
+        />
+      )}
     </group>
   );
 }
 
-function ReadingTable({ z }: { z: number }) {
+function ReadingTable({ z, lamps }: { z: number; lamps: number }) {
   const wood = useMemo(() => oakTexture(6, 1), []);
   return (
     <group position={[0, 0, z]}>
@@ -149,7 +179,7 @@ function ReadingTable({ z }: { z: number }) {
         </mesh>
       ))}
       {[-3.2, -1.05, 1.05, 3.2].map((x, i) => (
-        <DeskLamp key={x} position={[x, 0.84, 0]} lit={i === 1 || i === 2} />
+        <DeskLamp key={x} position={[x, 0.84, 0]} lit={i === 1 || i === 2} lamps={lamps} />
       ))}
       {/* Ghế: chỉ gợi hình, người dùng không ngồi được nên không cần chi tiết */}
       {[-3.4, -1.2, 1.2, 3.4].map((x) =>
@@ -164,7 +194,7 @@ function ReadingTable({ z }: { z: number }) {
   );
 }
 
-export default function ReadingRoom() {
+export default function ReadingRoom({ day }: { day: DaySample }) {
   const floor = useMemo(() => marbleFloorTexture(), []);
   const ceiling = useMemo(() => cofferedCeilingTexture(), []);
   const books = useMemo(() => bookshelfTexture(), []);
@@ -182,6 +212,11 @@ export default function ReadingRoom() {
   );
 
   const tableZs = TABLE_ZS;
+
+  // Kính lấy màu chân trời: sáng sớm ô cửa ám hồng, giữa trưa trắng xanh, đêm
+  // xám tím. Đây là thứ duy nhất trong phòng kín nói lên bên ngoài đang là lúc
+  // nào, nên nó phải là màu THẬT của bầu trời chứ không phải một màu xanh cố định.
+  const windowTint = useMemo(() => rgbToHex(day.skyHorizon), [day.skyHorizon]);
 
   return (
     <group>
@@ -253,14 +288,14 @@ export default function ReadingRoom() {
       {/* Cửa sổ vòm hai bên */}
       {windowZs.map((z) => (
         <group key={z}>
-          <ArchedWindow x={-halfW + 0.25} z={z} flip={false} />
-          <ArchedWindow x={halfW - 0.25} z={z} flip />
+          <ArchedWindow x={-halfW + 0.25} z={z} flip={false} glow={day.windowGlow} tint={windowTint} />
+          <ArchedWindow x={halfW - 0.25} z={z} flip glow={day.windowGlow} tint={windowTint} />
         </group>
       ))}
 
       {/* Bàn đọc */}
       {tableZs.map((z) => (
-        <ReadingTable key={z} z={z} />
+        <ReadingTable key={z} z={z} lamps={day.lamps} />
       ))}
 
       {/* Đèn chùm dọc trục giữa */}
@@ -282,7 +317,7 @@ export default function ReadingRoom() {
                 <meshStandardMaterial
                   color="#fff2cf"
                   emissive="#ffd79a"
-                  emissiveIntensity={2.2}
+                  emissiveIntensity={0.4 + day.lamps * 2}
                   toneMapped={false}
                 />
               </mesh>

@@ -614,16 +614,18 @@ export function cityFacadeTexture(): THREE.Texture {
   return t;
 }
 
-/** Vòm trời hoàng hôn. Dải màu dọc, đậm ở đỉnh và ấm dần xuống chân trời -
- *  ánh chiều là lúc thành phố lên đèn mà vẫn còn nhìn rõ mặt phố. */
-export function duskSkyTexture(): THREE.Texture {
-  const t = draw("dusk-sky", 16, 256, (ctx) => {
+/** Vòm trời. Dải màu dọc từ đỉnh xuống chân trời, ba màu do daylight.ts quyết
+ *  định theo giờ thật.
+ *
+ *  Khoá cache gồm cả ba màu: giờ đổi thì đây là một vân khác hẳn, và dùng lại
+ *  vân cũ sẽ để bầu trời đứng nguyên màu lúc 6h sáng suốt cả ngày. Số vân sinh
+ *  ra có hạn vì phía gọi chỉ lấy mẫu vài phút một lần. */
+export function skyTexture(top: string, mid: string, horizon: string): THREE.Texture {
+  const t = draw(`sky:${top}:${mid}:${horizon}`, 16, 256, (ctx) => {
     const g = ctx.createLinearGradient(0, 0, 0, 256);
-    g.addColorStop(0, "#1b2a4a");
-    g.addColorStop(0.42, "#4a4470");
-    g.addColorStop(0.68, "#b4694f");
-    g.addColorStop(0.86, "#e29a55");
-    g.addColorStop(1, "#f2c079");
+    g.addColorStop(0, top);
+    g.addColorStop(0.55, mid);
+    g.addColorStop(1, horizon);
     ctx.fillStyle = g;
     ctx.fillRect(0, 0, 16, 256);
   });
@@ -631,6 +633,57 @@ export function duskSkyTexture(): THREE.Texture {
   t.wrapT = THREE.ClampToEdgeWrapping;
   t.repeat.set(1, 1);
   return t;
+}
+
+/** Biển đá khắc công thức phía trên mỗi cửa phòng học.
+ *
+ *  Công thức được vẽ TO nhất trong ba dòng, hơn cả tên phòng. Người đi ngang
+ *  liếc một cái sẽ chỉ đọc kịp một dòng, và `WACC = ...` nói cho họ biết phòng
+ *  này dạy gì rõ hơn chữ "Phòng CFA".
+ *
+ *  Co chữ theo bề rộng thay vì xuống dòng: công thức xuống dòng giữa chừng đọc
+ *  ra thành hai phép tính khác nhau. */
+export function formulaPlaqueTexture(
+  room: string,
+  formula: string,
+  note: string,
+  accent: string
+): THREE.Texture {
+  const W = 768;
+  const H = 288;
+  return draw(`plaque:${room}`, W, H, (ctx) => {
+    ctx.fillStyle = "#1b1713";
+    ctx.beginPath();
+    ctx.roundRect(4, 4, W - 8, H - 8, 22);
+    ctx.fill();
+    ctx.strokeStyle = accent;
+    ctx.lineWidth = 4;
+    ctx.stroke();
+
+    ctx.textAlign = "center";
+    ctx.textBaseline = "middle";
+
+    ctx.fillStyle = accent;
+    ctx.font = "600 34px ui-sans-serif, system-ui, sans-serif";
+    ctx.fillText(room.toUpperCase(), W / 2, 52);
+
+    let size = 60;
+    ctx.font = `600 ${size}px ui-monospace, "SF Mono", Menlo, monospace`;
+    while (ctx.measureText(formula).width > W - 64 && size > 22) {
+      size -= 2;
+      ctx.font = `600 ${size}px ui-monospace, "SF Mono", Menlo, monospace`;
+    }
+    ctx.fillStyle = "#fdf6e3";
+    ctx.fillText(formula, W / 2, 144);
+
+    ctx.fillStyle = "rgba(231,222,203,0.68)";
+    ctx.font = "400 27px ui-sans-serif, system-ui, sans-serif";
+    let line = note;
+    while (ctx.measureText(line).width > W - 56 && line.length > 8) {
+      line = `${line.slice(0, -4)}…`;
+    }
+    ctx.fillText(line, W / 2, 228);
+  });
 }
 
 /** Giải phóng toàn bộ texture đã dựng. Gọi khi rời phòng - CanvasTexture giữ

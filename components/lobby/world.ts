@@ -24,7 +24,7 @@ const halfW = ROOM.width / 2;
 // ── Tầng hai: ban công lửng chạy dọc hai tường dài ──────────────────────────
 
 export const MEZZ_Y = 6.4;
-export const MEZZ_DEPTH = 3.2;
+export const MEZZ_DEPTH = 4.0;
 /** Mép trong ban công (phía lòng phòng). */
 export const MEZZ_INNER_X = halfW - MEZZ_DEPTH;
 /** Dải x đi lại được trên ban công: lùi vào khỏi lan can và khỏi tường. */
@@ -51,7 +51,7 @@ export const CURB_Z = halfL + 12;
 export const ROAD_Z0 = CURB_Z;
 export const ROAD_Z1 = halfL + 22;
 /** Vỉa hè và dãy nhà bên kia đường. Không đi tới được, chỉ để nhìn. */
-export const FAR_WALK_Z = halfL + 24;
+export const FAR_WALK_Z = halfL + 26;
 export const STREET_HALF_X = 44;
 
 /** Hai làn xe chạy ngược chiều. Bên phải là chiều +x, đúng luật đi bên phải. */

@@ -4,7 +4,11 @@ import { useMemo } from "react";
 import * as THREE from "three";
 import { ROOM, TABLE_ZS } from "./ReadingRoom";
 import {
+  ARMCHAIR_X,
+  ARMCHAIR_ZS,
   BUST_ZS,
+  CARREL_X,
+  CARREL_ZS,
   CATALOG_ZS,
   GLOBE_POS,
   FLAGPOLE_SPOTS,
@@ -236,6 +240,80 @@ function Mezzanine({ side }: { side: -1 | 1 }) {
         </mesh>
       ))}
       <Staircase side={side} />
+      <MezzanineFurniture side={side} />
+    </group>
+  );
+}
+
+/** Đồ trên ban công: bàn học cá nhân nép tường ngoài, ghế bành quay ra lan can.
+ *
+ *  Ban công mà trống thì nó chỉ là một hành lang để đi qua. Vị trí lấy từ
+ *  world.ts vì mỗi món vừa được vẽ ở đây vừa chặn đường ở đó. */
+function MezzanineFurniture({ side }: { side: -1 | 1 }) {
+  const wood = useMemo(() => oakTexture(1, 1), []);
+  const y = MEZZ_Y;
+  return (
+    <group>
+      {CARREL_ZS.map((z) => (
+        <group key={`carrel${z}`} position={[side * CARREL_X, y, z]}>
+          <mesh position={[0, 0.74, 0]} castShadow>
+            <boxGeometry args={[1.0, 0.08, 1.75]} />
+            <meshStandardMaterial map={wood} roughness={0.65} />
+          </mesh>
+          {[-0.78, 0.78].map((zo) => (
+            <mesh key={zo} position={[0, 0.37, zo]}>
+              <boxGeometry args={[0.9, 0.74, 0.08]} />
+              <meshStandardMaterial color="#5a3f27" roughness={0.75} />
+            </mesh>
+          ))}
+          {/* Vách ngăn phía tường, đúng kiểu bàn học cá nhân trong thư viện */}
+          <mesh position={[side * 0.46, 1.06, 0]}>
+            <boxGeometry args={[0.07, 0.62, 1.75]} />
+            <meshStandardMaterial color="#4a3220" roughness={0.8} />
+          </mesh>
+          {/* Đèn chụp xanh thu nhỏ */}
+          <mesh position={[side * 0.28, 1.06, 0.55]} rotation={[Math.PI, 0, 0]}>
+            <coneGeometry args={[0.19, 0.17, 12, 1, true]} />
+            <meshStandardMaterial
+              color="#0f5132"
+              emissive="#166534"
+              emissiveIntensity={0.4}
+              side={THREE.DoubleSide}
+              toneMapped={false}
+            />
+          </mesh>
+          <mesh position={[-side * 0.62, 0.42, 0]}>
+            <boxGeometry args={[0.48, 0.84, 0.48]} />
+            <meshStandardMaterial color="#4a3524" roughness={0.85} />
+          </mesh>
+        </group>
+      ))}
+      {ARMCHAIR_ZS.map((z) => (
+        <group key={`chair${z}`} position={[side * ARMCHAIR_X, y, z]} rotation={[0, side * -Math.PI / 2, 0]}>
+          <mesh position={[0, 0.4, 0]} castShadow>
+            <boxGeometry args={[0.95, 0.34, 0.9]} />
+            <meshStandardMaterial color="#5c2c33" roughness={0.92} />
+          </mesh>
+          <mesh position={[-0.42, 0.76, 0]}>
+            <boxGeometry args={[0.16, 0.78, 0.9]} />
+            <meshStandardMaterial color="#5c2c33" roughness={0.92} />
+          </mesh>
+          {[-0.42, 0.42].map((zo) => (
+            <mesh key={zo} position={[0.02, 0.62, zo]}>
+              <boxGeometry args={[0.86, 0.16, 0.14]} />
+              <meshStandardMaterial color="#4b232a" roughness={0.9} />
+            </mesh>
+          ))}
+          {[-0.4, 0.4].map((xo) =>
+            [-0.36, 0.36].map((zo) => (
+              <mesh key={`${xo}:${zo}`} position={[xo, 0.11, zo]}>
+                <cylinderGeometry args={[0.05, 0.05, 0.22, 6]} />
+                <meshStandardMaterial color="#3a2a1c" roughness={0.9} />
+              </mesh>
+            ))
+          )}
+        </group>
+      ))}
     </group>
   );
 }

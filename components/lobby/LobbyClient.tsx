@@ -6,6 +6,7 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { createClient } from "@/lib/supabase";
 import { getUserStreak } from "@/lib/supabase-streak";
+import type { Station } from "./stations";
 import {
   CHAT_MAX_LENGTH,
   POMODORO_MS,
@@ -93,6 +94,7 @@ export default function LobbyClient() {
   const [nearPortal, setNearPortal] = useState(false);
   const [peerCount, setPeerCount] = useState(0);
   const [seatableTable, setSeatableTable] = useState<number | null>(null);
+  const [station, setStation] = useState<Station | null>(null);
   const [seatedTable, setSeatedTable] = useState<number | null>(null);
   const [seatStartedAt, setSeatStartedAt] = useState<number | null>(null);
   const [nowTick, setNowTick] = useState(Date.now());
@@ -194,6 +196,7 @@ export default function LobbyClient() {
           selfSpeech={selfSpeech}
           onPeerCount={setPeerCount}
           onSeatableChange={setSeatableTable}
+          onStationNear={setStation}
           seatedTable={seatedTable}
           seatStartedAt={seatStartedAt}
         />
@@ -277,6 +280,34 @@ export default function LobbyClient() {
               <span className="text-stone-300">{m.text}</span>
             </div>
           ))}
+        </div>
+      )}
+
+      {/* Thẻ cửa phòng học: hiện khi đứng trước một cửa trên ban công tầng hai.
+          Công thức nằm ngay trên thẻ chứ không chỉ trên biển đá trong cảnh -
+          trên điện thoại biển đá trong cảnh 3D nhỏ tới mức không đọc nổi. */}
+      {station && (
+        <div className="pointer-events-none absolute inset-x-0 bottom-40 z-10 flex justify-center px-4 sm:bottom-44">
+          <div
+            className="pointer-events-auto w-full max-w-sm rounded-2xl border bg-stone-900/90 p-4 shadow-2xl backdrop-blur"
+            style={{ borderColor: station.accent }}
+          >
+            <p className="text-[11px] font-bold uppercase tracking-wider" style={{ color: station.accent }}>
+              {station.room}
+            </p>
+            <p className="mt-2 font-mono text-base font-semibold text-stone-50">{station.formula}</p>
+            <p className="mt-1 text-[11px] leading-relaxed text-stone-400">{station.note}</p>
+            <div className="mt-3 flex items-center justify-between gap-3">
+              <p className="min-w-0 flex-1 truncate text-xs text-stone-300">{station.blurb}</p>
+              <Link
+                href={station.href}
+                className="shrink-0 rounded-xl px-3.5 py-2 text-xs font-bold text-stone-900 transition hover:brightness-110"
+                style={{ backgroundColor: station.accent }}
+              >
+                Vào phòng →
+              </Link>
+            </div>
+          </div>
         </div>
       )}
 

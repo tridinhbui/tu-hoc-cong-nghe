@@ -3,7 +3,7 @@
 import { useMemo, useRef } from "react";
 import { useFrame } from "@react-three/fiber";
 import * as THREE from "three";
-import { DOOR_HALF_W, ROOM } from "./ReadingRoom";
+import { DOOR_HALF_W, DOOR_HEIGHT, ROOM } from "./ReadingRoom";
 import { CART_POS, LAMP_XS, LAMP_Z, STREET_TREE_XS, TREE_Z } from "./room-obstacles";
 import {
   CURB_Z,
@@ -17,7 +17,8 @@ import {
   STEP_Z1,
   STREET_HALF_X,
 } from "./world";
-import { asphaltTexture, cityFacadeTexture, duskSkyTexture } from "./room-textures";
+import { asphaltTexture, cityFacadeTexture, skyTexture } from "./room-textures";
+import { rgbToHex, type DaySample } from "./daylight";
 import WavingFlag from "./WavingFlag";
 
 /** Phố Sài Gòn ngay trước cửa thư viện.
@@ -193,8 +194,73 @@ function Traffic() {
   );
 }
 
-/** Cột đèn đường có cần vươn ra lòng đường. */
-function StreetLamp({ x }: { x: number }) {
+/** Người đi bộ trên vỉa hè bên kia đường.
+ *
+ *  Chỉ ở BÊN KIA, nơi người chơi không tới được. Đặt họ trên vỉa hè trước cửa
+ *  thì sớm muộn cũng có người đi xuyên qua nhân vật thật, và một bóng người đi
+ *  xuyên qua mình phá cảm giác "đây là chỗ có người" nhanh hơn là không có ai.
+ *
+ *  Bước chân là dao động sin theo quãng đường đã đi chứ không theo đồng hồ:
+ *  người đi nhanh thì sải chân nhanh, và ai đứng lại thì chân đứng yên. */
+function Pedestrians() {
+  const walkers = useMemo(
+    () =>
+      Array.from({ length: 14 }, (_, i) => ({
+        speed: 1.1 + (i % 4) * 0.35,
+        offset: (i * SPAN) / 14,
+        dir: i % 2 === 0 ? 1 : -1,
+        z: FAR_WALK_Z - 1.2 - (i % 3) * 0.9,
+        shirt: ["#c9584f", "#3f6fa8", "#d8b25a", "#4f8a63", "#8a5f9e", "#c9c2b4"][i % 6],
+        height: 0.92 + (i % 3) * 0.07,
+      })),
+    []
+  );
+  const refs = useRef<Array<THREE.Group | null>>([]);
+
+  useFrame((state) => {
+    const t = state.clock.elapsedTime;
+    for (let i = 0; i < walkers.length; i += 1) {
+      const g = refs.current[i];
+      const w = walkers[i];
+      if (!g) continue;
+      const travelled = (w.offset + t * w.speed) % SPAN;
+      g.position.x = w.dir * (travelled - STREET_HALF_X);
+      g.position.y = Math.abs(Math.sin(travelled * 2.4)) * 0.05;
+    }
+  });
+
+  return (
+    <group position={[0, PLAZA_Y, 0]}>
+      {walkers.map((w, i) => (
+        <group
+          key={i}
+          ref={(el) => {
+            refs.current[i] = el;
+          }}
+          position={[0, 0, w.z]}
+          scale={w.height}
+        >
+          <mesh position={[0, 0.42, 0]}>
+            <boxGeometry args={[0.3, 0.5, 0.22]} />
+            <meshStandardMaterial color="#2f3038" roughness={0.9} />
+          </mesh>
+          <mesh position={[0, 1.0, 0]}>
+            <capsuleGeometry args={[0.19, 0.4, 4, 10]} />
+            <meshStandardMaterial color={w.shirt} roughness={0.85} />
+          </mesh>
+          <mesh position={[0, 1.44, 0]}>
+            <sphereGeometry args={[0.17, 12, 12]} />
+            <meshStandardMaterial color="#d9b48d" roughness={0.75} />
+          </mesh>
+        </group>
+      ))}
+    </group>
+  );
+}
+
+/** Cột đèn đường có cần vươn ra lòng đường. Sáng theo giờ: ban ngày chỉ là cái
+ *  cột, chập tối mới thành nguồn sáng thật. */
+function StreetLamp({ x, lamps }: { x: number; lamps: number }) {
   return (
     <group position={[x, PLAZA_Y, LAMP_Z]}>
       <mesh position={[0, 2.6, 0]}>
@@ -210,11 +276,21 @@ function StreetLamp({ x }: { x: number }) {
         <meshStandardMaterial
           color="#fff0c4"
           emissive="#ffd98a"
-          emissiveIntensity={2.6}
+          emissiveIntensity={0.15 + lamps * 2.6}
           toneMapped={false}
         />
       </mesh>
-      <pointLight position={[0, 5.3, 1.35]} color="#ffd08a" intensity={13} distance={16} decay={2} />
+      {/* Dưới 0,25 thì bỏ hẳn nguồn sáng chứ không hạ cường độ về gần 0: mỗi
+          pointLight vẫn tốn đúng chi phí như nhau dù có sáng hay không. */}
+      {lamps > 0.25 && (
+        <pointLight
+          position={[0, 5.3, 1.35]}
+          color="#ffd08a"
+          intensity={13 * lamps}
+          distance={16}
+          decay={2}
+        />
+      )}
     </group>
   );
 }
@@ -286,7 +362,7 @@ function BanhMiCart() {
 /** Dãy nhà bên kia đường: nhà ống cao thấp so le, cộng một toà tháp cao ở xa.
  *  Chiều cao lấy từ chỉ số chứ không random - random thì mỗi lần vào phòng phố
  *  lại khác, và người dùng sẽ nhớ là phố "đổi hình" chứ không nhớ là có phố. */
-function CityBlock() {
+function CityBlock({ lamps }: { lamps: number }) {
   const facade = useMemo(() => cityFacadeTexture(), []);
   const shops = useMemo(
     () =>
@@ -309,7 +385,17 @@ function CityBlock() {
       {placed.map((s, i) => (
         <mesh key={i} position={[s.x, s.h / 2, FAR_WALK_Z + 4]}>
           <boxGeometry args={[s.w, s.h, 8]} />
-          <meshStandardMaterial map={facade} roughness={0.9} />
+          {/* emissiveMap chứ không phải emissive trơn: dùng chính vân mặt tiền
+              làm mặt phát sáng nên chỉ những ô cửa sổ màu vàng rực lên về đêm,
+              còn mảng tường xám thì gần như không. Emissive trơn sẽ làm cả toà
+              nhà phát sáng đều như một khối đèn. */}
+          <meshStandardMaterial
+            map={facade}
+            emissiveMap={facade}
+            emissive="#ffffff"
+            emissiveIntensity={lamps * 0.75}
+            roughness={0.9}
+          />
         </mesh>
       ))}
       {/* Toà tháp ở xa, lệch khỏi trục cửa để không che mất trục nhìn chính */}
@@ -345,9 +431,12 @@ function CityBlock() {
   );
 }
 
-export default function CityStreet() {
+export default function CityStreet({ day }: { day: DaySample }) {
   const asphalt = useMemo(() => asphaltTexture(), []);
-  const sky = useMemo(() => duskSkyTexture(), []);
+  const sky = useMemo(
+    () => skyTexture(rgbToHex(day.skyTop), rgbToHex(day.skyMid), rgbToHex(day.skyHorizon)),
+    [day.skyTop, day.skyMid, day.skyHorizon]
+  );
   const roadLen = ROAD_Z1 - ROAD_Z0;
 
   return (
@@ -412,17 +501,21 @@ export default function CityStreet() {
 
       <Traffic />
       {LAMP_XS.map((x) => (
-        <StreetLamp key={x} x={x} />
+        <StreetLamp key={x} x={x} lamps={day.lamps} />
       ))}
       {STREET_TREE_XS.map((x) => (
         <StreetTree key={x} x={x} />
       ))}
+      <Pedestrians />
       <BanhMiCart />
-      <CityBlock />
+      <CityBlock lamps={day.lamps} />
 
       {/* Mặt tiền thư viện nhìn từ ngoài: bệ đá chạy hai bên cửa, để bước ra
           không thấy mặt sau của bức tường mỏng dính. */}
-      <mesh position={[0, 2, halfL + 0.35]}>
+      {/* Diềm đá chạy ngang mặt tiền. Phải nằm TRÊN đỉnh ô cửa - đặt ở tầm
+          ngang người thì nó cắt đúng qua lối ra, và từ trong nhìn ra chỉ thấy
+          một thanh xám chắn ngang khung hình. */}
+      <mesh position={[0, DOOR_HEIGHT + 0.6, halfL + 0.35]}>
         <boxGeometry args={[ROOM.width + 3, 0.7, 0.7]} />
         <meshStandardMaterial color="#ddd2bc" roughness={0.85} />
       </mesh>
