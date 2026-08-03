@@ -1,5 +1,19 @@
 import { createClient } from "@/lib/supabase";
 
+/**
+ * Hàng tồn kho kèm quan hệ `gamification_assets`.
+ *
+ * Kiểu Supabase sinh ra cho quan hệ lồng nhau là một MẢNG, nhưng với khoá
+ * ngoại nhiều-một thì runtime trả về một OBJECT. Chỗ này trước đây dùng `any`
+ * để đi qua khoảng vênh đó, tức tắt luôn kiểm tra kiểu ở đúng nơi dữ liệu đến
+ * từ bên ngoài. Khai đúng hình dạng runtime rồi ép một lần, có ghi lý do, giữ
+ * được phần kiểm tra cho mọi thứ phía sau.
+ */
+interface CardInventoryRow {
+  acquired_at?: string | null;
+  gamification_assets?: { asset_key?: string | null; asset_type?: string | null } | null;
+}
+
 export type FinanceCardRarity = "common" | "rare" | "epic" | "legendary";
 
 export interface FinanceCardDefinition {
@@ -161,15 +175,16 @@ export async function maybeAwardFinanceCardDrop(userId: string, score = 100): Pr
       .select("asset_id, acquired_at, gamification_assets(asset_key, asset_type)")
       .eq("user_id", userId);
 
-    const cardInventory = (inventory ?? []).filter((item: any) => item.gamification_assets?.asset_type === "card");
-    const dropsToday = cardInventory.filter((item: any) => new Date(item.acquired_at).getTime() >= todayStart.getTime()).length;
+    const rows = (inventory ?? []) as unknown as CardInventoryRow[];
+    const cardInventory = rows.filter((item) => item.gamification_assets?.asset_type === "card");
+    const dropsToday = cardInventory.filter((item) => new Date(item.acquired_at ?? 0).getTime() >= todayStart.getTime()).length;
 
     if (dropsToday >= 3) return { dropped: false, reason: "daily_cap" };
 
     const chance = score >= 100 ? 0.45 : score >= 80 ? 0.35 : score >= 60 ? 0.25 : 0.16;
     if (Math.random() > chance) return { dropped: false, reason: "chance_miss" };
 
-    const ownedKeys = new Set(cardInventory.map((item: any) => item.gamification_assets?.asset_key).filter(Boolean));
+    const ownedKeys = new Set(cardInventory.map((item) => item.gamification_assets?.asset_key).filter(Boolean));
     const missingCards = FINANCE_CARDS.filter((card) => !ownedKeys.has(card.id));
     if (missingCards.length === 0) return { dropped: false, reason: "complete_collection" };
 

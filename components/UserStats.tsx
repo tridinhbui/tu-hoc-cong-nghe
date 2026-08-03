@@ -123,7 +123,7 @@ export default function UserStats({
         if (!cancelled) {
           if (equipData) {
             const gear: CharacterEquipments = {};
-            equipData.forEach((e: any) => {
+            equipData.forEach((e: { slot: string; asset_key: string }) => {
               gear[e.slot as keyof CharacterEquipments] = e.asset_key;
             });
             setEquippedGear(gear);

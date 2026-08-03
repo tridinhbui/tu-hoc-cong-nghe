@@ -36,7 +36,10 @@ export default function FinanceCardCollection({ userId }: { userId: string }) {
           .select("asset_id, gamification_assets(asset_key)")
           .eq("user_id", userId);
 
-        const keys = new Set(data?.map((inv: any) => inv.gamification_assets?.asset_key).filter(Boolean) || []);
+        // Xem ghi chú ở lib/finance-cards.ts: Supabase khai quan hệ lồng là mảng
+        // còn runtime trả về object, nên ép một lần ở đây thay vì dùng any.
+        const rows = (data ?? []) as unknown as { gamification_assets?: { asset_key?: string | null } | null }[];
+        const keys = new Set(rows.map((inv) => inv.gamification_assets?.asset_key).filter((k): k is string => Boolean(k)));
         setUnlockedCardKeys(keys);
       } catch (err) {
         console.error("Error loading card collection:", err);

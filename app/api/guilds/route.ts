@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
+import { errorMessage } from "@/lib/errors";
 import { createServerSupabaseClient } from "@/lib/supabase-server";
 
 // Fallback Guilds data if DB tables are empty
@@ -129,8 +130,8 @@ export async function POST(request: NextRequest) {
       });
 
       return NextResponse.json({ success: true, guild });
-    } catch (err: any) {
-      return NextResponse.json({ error: err.message }, { status: 400 });
+    } catch (err: unknown) {
+      return NextResponse.json({ error: errorMessage(err) }, { status: 400 });
     }
   }
 
@@ -143,8 +144,8 @@ export async function POST(request: NextRequest) {
       });
 
       return NextResponse.json({ success: true });
-    } catch (err: any) {
-      return NextResponse.json({ error: err.message }, { status: 400 });
+    } catch (err: unknown) {
+      return NextResponse.json({ error: errorMessage(err) }, { status: 400 });
     }
   }
 

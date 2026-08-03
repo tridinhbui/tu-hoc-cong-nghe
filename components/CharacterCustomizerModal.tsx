@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
+import { errorMessage } from "@/lib/errors";
 import { motion, AnimatePresence } from "framer-motion";
 import { 
   X, Sparkles, RefreshCw, Dices, Save, User, Scissors, Glasses as GlassesIcon, 
@@ -111,8 +112,8 @@ export default function CharacterCustomizerModal({
       } else {
         toast.error("Không thể lưu cấu hình. Đã lưu tạm vào máy.");
       }
-    } catch (e: any) {
-      toast.error("Lỗi khi lưu avatar: " + e.message);
+    } catch (e: unknown) {
+      toast.error("Lỗi khi lưu avatar: " + errorMessage(e));
     } finally {
       setSaving(false);
     }

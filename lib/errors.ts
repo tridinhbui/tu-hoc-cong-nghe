@@ -139,3 +139,22 @@ export function logError(context: string, error: unknown, metadata?: Record<stri
   
   console.error('[Error]', JSON.stringify(errorInfo, null, 2));
 }
+
+/**
+ * Thông điệp lỗi để hiển thị cho người dùng, lấy từ một giá trị `unknown`.
+ *
+ * Mọi khối catch đều nhận `unknown` chứ không nhận `Error`, vì JavaScript cho
+ * phép ném bất cứ thứ gì. Khai `catch (e: any)` rồi đọc `e.message` là cách
+ * quen thuộc để né việc đó, nhưng nó tắt luôn phần kiểm tra kiểu ở đúng chỗ
+ * dữ liệu ít đáng tin nhất - và `e.message` sẽ là `undefined` in ra màn hình
+ * khi thứ được ném là một chuỗi hay một object thường.
+ */
+export function errorMessage(error: unknown, fallback = "Đã có lỗi xảy ra."): string {
+  if (error instanceof Error && error.message) return error.message;
+  if (typeof error === "string" && error) return error;
+  if (typeof error === "object" && error !== null) {
+    const message = (error as { message?: unknown }).message;
+    if (typeof message === "string" && message) return message;
+  }
+  return fallback;
+}

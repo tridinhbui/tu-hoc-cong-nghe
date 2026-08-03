@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
+import { errorMessage } from "@/lib/errors";
 import Image from "next/image";
 import { createClient } from "@/lib/supabase";
 import { toast } from "sonner";
@@ -8,6 +9,19 @@ import { ShoppingBag, Check, Zap } from "lucide-react";
 import FinanceCharacterAvatar, { CharacterEquipments, ITEM_DESCRIPTIONS } from "@/components/FinanceCharacterAvatar";
 import GoldCoinIcon from "@/components/GoldCoinIcon";
 import CharacterCustomizerModal from "@/components/CharacterCustomizerModal";
+
+/**
+ * Hàng tồn kho kèm quan hệ `gamification_assets`.
+ *
+ * Kiểu Supabase sinh ra cho quan hệ lồng nhau là một MẢNG, nhưng với khoá
+ * ngoại nhiều-một thì runtime trả về một OBJECT. Chỗ này trước đây dùng `any`
+ * để đi qua khoảng vênh đó, tức tắt luôn kiểm tra kiểu ở đúng nơi dữ liệu đến
+ * từ bên ngoài. Khai đúng hình dạng runtime rồi ép một lần, có ghi lý do, giữ
+ * được phần kiểm tra cho mọi thứ phía sau.
+ */
+interface InventoryRow {
+  gamification_assets?: { asset_key?: string | null } | null;
+}
 
 interface CosmeticItem {
   id: string;
@@ -61,7 +75,10 @@ export default function CosmeticStore({ userId, onBack }: { userId: string; onBa
           .select("asset_id, gamification_assets(asset_key)")
           .eq("user_id", userId);
 
-        const keys = new Set(inventory?.map((inv: any) => inv.gamification_assets?.asset_key).filter(Boolean) || []);
+        const rows = (inventory ?? []) as unknown as InventoryRow[];
+        const keys = new Set(
+          rows.map((inv) => inv.gamification_assets?.asset_key).filter((k): k is string => Boolean(k))
+        );
         setOwnedAssets(keys);
 
         // Lấy danh sách đang trang bị
@@ -71,7 +88,7 @@ export default function CosmeticStore({ userId, onBack }: { userId: string; onBa
           .eq("user_id", userId);
 
         const gear: CharacterEquipments = {};
-        equips?.forEach((e: any) => {
+        equips?.forEach((e: { slot: string; asset_key: string }) => {
           gear[e.slot as keyof CharacterEquipments] = e.asset_key;
         });
         setEquippedGear(gear);
@@ -135,8 +152,8 @@ export default function CosmeticStore({ userId, onBack }: { userId: string; onBa
 
         toast.success(`Chúc mừng! Bạn đã sở hữu thành công: ${item.name}`);
       }
-    } catch (error: any) {
-      toast.error("Giao dịch không thành công: " + error.message);
+    } catch (error: unknown) {
+      toast.error("Giao dịch không thành công: " + errorMessage(error));
     }
   };
 

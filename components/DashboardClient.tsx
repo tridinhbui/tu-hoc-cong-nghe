@@ -574,7 +574,7 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
         .eq("user_id", userId);
 
       const gear: CharacterEquipments = {};
-      equips?.forEach((e: any) => {
+      equips?.forEach((e: { slot: string; asset_key: string }) => {
         gear[e.slot as keyof CharacterEquipments] = e.asset_key;
       });
       setEquippedGear(gear);

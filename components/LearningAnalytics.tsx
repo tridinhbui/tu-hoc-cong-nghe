@@ -66,11 +66,30 @@ const panelClass =
   "min-w-0 overflow-hidden rounded-2xl border border-stone-200/80 dark:border-stone-800 bg-white dark:bg-stone-900";
 const panelSoftClass =
   "rounded-2xl border border-stone-200/60 dark:border-stone-800/80 bg-stone-50/50 dark:bg-stone-800/40";
+type AnalyticsSection = "overview" | "knowledge" | "memory" | "competency" | "leaderboard";
+
 const sectionLabelClass = "text-xs font-extrabold uppercase tracking-[0.22em] text-stone-500 dark:text-stone-400";
 
-const CustomTooltip = ({ active, payload, label, formatter, labelFormatter }: any) => {
+/** Recharts truyền vào tooltip nhiều trường hơn ba trường dưới đây, nhưng đây
+ *  là toàn bộ phần component này đọc - khai đúng phần dùng thì đổi phiên bản
+ *  recharts không âm thầm làm kiểu rộng ra mà không ai biết. */
+interface TooltipEntry {
+  value: number | string;
+  name?: string;
+  color?: string;
+}
+
+interface CustomTooltipProps {
+  active?: boolean;
+  payload?: TooltipEntry[];
+  label?: number | string;
+  formatter?: (value: number | string, name?: string) => React.ReactNode;
+  labelFormatter?: (label: number | string) => React.ReactNode;
+}
+
+const CustomTooltip = ({ active, payload, label, formatter, labelFormatter }: CustomTooltipProps) => {
   if (active && payload && payload.length) {
-    const formattedLabel = labelFormatter ? labelFormatter(label) : label;
+    const formattedLabel = labelFormatter && label !== undefined ? labelFormatter(label) : label;
     return (
       <div className="bg-white/95 dark:bg-stone-900/95 backdrop-blur-md border border-stone-200 dark:border-stone-800 rounded-xl p-3 shadow-xl text-xs space-y-1.5 z-50">
         {formattedLabel && (
@@ -78,7 +97,7 @@ const CustomTooltip = ({ active, payload, label, formatter, labelFormatter }: an
             {formattedLabel}
           </p>
         )}
-        {payload.map((item: any, idx: number) => {
+        {payload.map((item, idx) => {
           const displayVal = formatter ? formatter(item.value, item.name) : item.value;
           const displayName = item.name === "lessonsCompleted" ? "Bài học" : item.name === "minutesSpent" ? "Thời gian" : item.name;
           return (
@@ -207,7 +226,7 @@ export default function LearningAnalytics({ hideLeaderboardTab = false }: { hide
   const [analytics, setAnalytics] = useState<LearningAnalyticsType | null>(null);
   const [loading, setLoading] = useState(true);
   const [userId, setUserId] = useState<string | undefined>(undefined);
-  const [activeSection, setActiveSection] = useState<"overview" | "knowledge" | "memory" | "competency" | "leaderboard">(
+  const [activeSection, setActiveSection] = useState<AnalyticsSection>(
     !hideLeaderboardTab && initialTab === "leaderboard" ? "leaderboard" : "overview"
   );
 
@@ -334,18 +353,18 @@ export default function LearningAnalytics({ hideLeaderboardTab = false }: { hide
 
       {/* Premium Tab Selector */}
       <div className="flex border-b border-stone-200 dark:border-stone-800 gap-6 mt-2 pb-0 overflow-x-auto scrollbar-none">
-        {[
+        {([
           { id: "overview", label: "Thống kê cá nhân" },
           { id: "knowledge", label: "Kiến thức & Kết quả" },
           { id: "memory", label: "Ghi chú & Hành động" },
           { id: "competency", label: "Năng lực" },
           ...(!hideLeaderboardTab ? [{ id: "leaderboard", label: "Bảng xếp hạng" }] : []),
-        ].map((tab) => {
+        ] as { id: AnalyticsSection; label: string }[]).map((tab) => {
           const isActive = activeSection === tab.id;
           return (
             <button
               key={tab.id}
-              onClick={() => setActiveSection(tab.id as any)}
+              onClick={() => setActiveSection(tab.id)}
               className="relative pb-3 text-sm font-bold transition-all cursor-pointer focus:outline-none whitespace-nowrap shrink-0"
             >
               <span className={`transition-colors duration-200 ${isActive ? "text-stone-900 dark:text-stone-50" : "text-stone-400 dark:text-stone-500 hover:text-stone-700 dark:hover:text-stone-300"}`}>
@@ -433,12 +452,12 @@ export default function LearningAnalytics({ hideLeaderboardTab = false }: { hide
                     <Tooltip
                       content={
                         <CustomTooltip
-                          formatter={(value: any, name: any) => {
+                          formatter={(value: number | string, name?: string) => {
                             if (name === "lessonsCompleted") return `${value} bài`;
                             if (name === "minutesSpent") return `${value} phút`;
                             return `${value}`;
                           }}
-                          labelFormatter={(label: any) => `Tuần bắt đầu ${label}`}
+                          labelFormatter={(label: number | string) => `Tuần bắt đầu ${label}`}
                         />
                       }
                     />
@@ -481,8 +500,8 @@ export default function LearningAnalytics({ hideLeaderboardTab = false }: { hide
                       <Tooltip
                         content={
                           <CustomTooltip
-                            formatter={(value: any) => `${value} bài`}
-                            labelFormatter={(label: any) => `Khung giờ ${formatHour(Number(label))}`}
+                            formatter={(value: number | string) => `${value} bài`}
+                            labelFormatter={(label: number | string) => `Khung giờ ${formatHour(Number(label))}`}
                           />
                         }
                       />
@@ -566,7 +585,7 @@ export default function LearningAnalytics({ hideLeaderboardTab = false }: { hide
                             <Cell key={entry.name} fill={entry.color} />
                           ))}
                         </Pie>
-                        <Tooltip content={<CustomTooltip formatter={(value: any) => `${value} bài`} />} />
+                        <Tooltip content={<CustomTooltip formatter={(value: number | string) => `${value} bài`} />} />
                       </PieChart>
                     </ResponsiveContainer>
                     <div className="absolute flex flex-col items-center justify-center">
