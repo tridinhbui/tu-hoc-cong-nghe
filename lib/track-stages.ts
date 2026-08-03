@@ -859,6 +859,37 @@ export const TRACK_PROFESSIONAL = {
         { name: "Điều chỉnh cuối kỳ, đối chiếu và khoá sổ", days: [1723, 1725] as [number, number] },
       ],
     },
+    {
+      // Kho đã có phía ĐỊNH GIÁ bất động sản - cap rate, FFO, định giá tài sản
+      // - nhưng quét pháp lý đất đai, dòng tiền dự án, cấu trúc vốn dự án ra 0
+      // bài. Người học biết định giá một toà nhà đã xây xong và không biết gì
+      // về quãng đường từ mảnh đất tới toà nhà đó, trong khi phần lớn tiền của
+      // ngành được kiếm và mất ở chính quãng ấy.
+      label: "Chặng 42",
+      name: "Tài chính dự án bất động sản",
+      days: [1731, 1735] as [number, number],
+      available: true,
+      isNew: true,
+      parts: [
+        { name: "Pháp lý, dòng tiền chữ J và cấu trúc vốn dự án", days: [1731, 1733] as [number, number] },
+        { name: "Tài sản cho thuê và rủi ro dự án", days: [1734, 1735] as [number, number] },
+      ],
+    },
+    {
+      // Nghề định phí bảo hiểm khai xác suất thống kê nâng cao, mô hình định
+      // phí, dự phòng. Kho có ba bài ở mức giới thiệu và 0 bài về bảng tỷ lệ
+      // tử vong, dự phòng nghiệp vụ hay tái bảo hiểm - nghề này đọc được mô tả
+      // công việc của mình mà không học được một phép tính nào của nó.
+      label: "Chặng 43",
+      name: "Định phí bảo hiểm",
+      days: [1741, 1745] as [number, number],
+      available: true,
+      isNew: true,
+      parts: [
+        { name: "Định phí, dự phòng nghiệp vụ và tái bảo hiểm", days: [1741, 1743] as [number, number] },
+        { name: "Bất cân xứng thông tin và lợi nhuận công ty bảo hiểm", days: [1744, 1745] as [number, number] },
+      ],
+    },
   ] satisfies Stage[],
 };
 
@@ -872,7 +903,7 @@ export const PROFESSIONAL_BRANCHES = [
     label: "Tài chính doanh nghiệp",
     subtitle: "Kế toán, báo cáo tài chính, định giá, vận hành vốn & mô hình tài chính",
     emoji: "🏢",
-    stageLabels: ["Chặng 1", "Chặng 2", "Chặng 3", "Chặng 4", "Chặng 5", "Chặng 11", "Chặng 15", "Chặng 24", "Chặng 31", "Chặng 33", "Chặng 40", "Chặng 41"],
+    stageLabels: ["Chặng 1", "Chặng 2", "Chặng 3", "Chặng 4", "Chặng 5", "Chặng 11", "Chặng 15", "Chặng 24", "Chặng 31", "Chặng 33", "Chặng 40", "Chặng 41", "Chặng 42"],
   },
   {
     id: "investment",
@@ -902,7 +933,7 @@ export const PROFESSIONAL_BRANCHES = [
     label: "Ngân hàng, bảo hiểm & tư vấn",
     subtitle: "Đọc và định giá ngân hàng, tín dụng, tuân thủ, quản lý gia sản & bảo hiểm",
     emoji: "🏦",
-    stageLabels: ["Chặng 18", "Chặng 21", "Chặng 34", "Chặng 35", "Chặng 36", "Chặng 37", "Chặng 38", "Chặng 39"],
+    stageLabels: ["Chặng 18", "Chặng 21", "Chặng 34", "Chặng 35", "Chặng 36", "Chặng 37", "Chặng 38", "Chặng 39", "Chặng 43"],
   },
   {
     id: "quant",

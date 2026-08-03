@@ -102,7 +102,7 @@ export const SKILL_DOMAINS: SkillDomain[] = [
     // Chặng 39 (FinTech) là kinh tế học của một sản phẩm: doanh thu đến từ
     // đâu, biên đóng góp, điểm hoà vốn - cùng bộ câu hỏi của tài chính doanh
     // nghiệp, chỉ đặt trên một mô hình kinh doanh khác.
-    lessonIds: [...range(92, 120), 1017, 1020, 1038, 1209, 1243, 1247, 1253, 1259, ...range(1701, 1706), ...range(1711, 1715)],
+    lessonIds: [...range(92, 120), 1017, 1020, 1038, 1209, 1243, 1247, 1253, 1259, ...range(1701, 1706), ...range(1711, 1715), ...range(1731, 1735)],
   },
   {
     id: "modeling_excel",
@@ -150,7 +150,10 @@ export const SKILL_DOMAINS: SkillDomain[] = [
     // Chặng 19 định giá quyền chọn là phái sinh đúng nghĩa; bảo hiểm và
     // Solvency II là quản trị rủi ro có vốn pháp định; 1328 xử lý rủi ro khí
     // hậu như một rủi ro tài chính, nên thuộc đây chứ không phải nhóm ESG.
-    lessonIds: [...range(181, 198), 804, 1029, 1207, 1208, 1217, 1218, 1223, 1232, 1234, 1254, 1328, ...range(1411, 1414), 1005, ...range(1527, 1530), ...range(1537, 1541), ...range(1551, 1553), 1556, ...range(1557, 1563), ...range(1613, 1630), ...range(1637, 1648), ...range(1650, 1672), 1704, 1705],
+    lessonIds: [...range(181, 198), 804, 1029, 1207, 1208, 1217, 1218, 1223, 1232, 1234, 1254, 1328, ...range(1411, 1414), 1005, ...range(1527, 1530), ...range(1537, 1541), ...range(1551, 1553), 1556, ...range(1557, 1563), ...range(1613, 1630), ...range(1637, 1648), ...range(1650, 1672), 1704, 1705,
+      // Chặng 43: định phí và dự phòng bảo hiểm - quản trị rủi ro có vốn
+      // pháp định, cùng nhóm với Solvency II đã nằm ở đây.
+      ...range(1741, 1745)],
   },
   {
     id: "fpa_budgeting",

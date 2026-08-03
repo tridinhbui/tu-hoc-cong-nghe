@@ -327,7 +327,7 @@ export const IR_LESSONS: Lesson[] = [
         options: [
           "Vì nó hạ độ tin cậy của mọi dự báo tương lai, không chỉ quý này",
           "Vì quy định buộc giải trình khi không đạt",
-          "Vì quỹ chỉ số phải bán ra",
+          "Vì các quỹ chỉ số phải bán ra khi doanh nghiệp không đạt kế hoạch",
           "Vì phần chênh đó là lợi nhuận chất lượng nhất",
         ],
         correct: 0,
@@ -338,7 +338,7 @@ export const IR_LESSONS: Lesson[] = [
         question: "Đặt kế hoạch quá thận trọng gây hậu quả gì?",
         options: [
           "Thị trường tự trừ hao, nên con số mất dần tác dụng dẫn dắt",
-          "Cơ quan quản lý sẽ yêu cầu giải trình",
+          "Cơ quan quản lý sẽ yêu cầu doanh nghiệp giải trình cơ sở lập kế hoạch",
           "Cổ đông lớn sẽ phủ quyết kế hoạch",
           "Công ty phải điều chỉnh tăng giữa năm",
         ],
@@ -351,7 +351,7 @@ export const IR_LESSONS: Lesson[] = [
         options: [
           "Vì khoảng phản ánh đúng mức bất định thật của việc dự báo",
           "Vì khoảng giúp tránh giải trình",
-          "Vì nhà đầu tư tổ chức chỉ chấp nhận khoảng",
+          "Vì nhà đầu tư tổ chức chỉ chấp nhận kế hoạch trình bày dưới dạng khoảng",
           "Vì thông lệ quốc tế yêu cầu hai kịch bản",
         ],
         correct: 0,
