@@ -61,7 +61,10 @@ export interface LampState {
 export const DEFAULT_LAMP_STATE: LampState = { on: false, intensity: DEFAULT_INTENSITY, lamps: [] };
 
 export function clampFraction(value: number): number {
-  if (!Number.isFinite(value)) return 0.5;
+  // Only NaN needs the fallback. An infinity means the pointer was reported
+  // absurdly far past an edge, and Math.min/max already resolve that to the
+  // edge itself - which is where the learner was dragging.
+  if (Number.isNaN(value)) return 0.5;
   return Math.min(1, Math.max(0, value));
 }
 
