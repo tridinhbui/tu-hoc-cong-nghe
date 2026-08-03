@@ -4,6 +4,7 @@ import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import dynamic from "next/dynamic";
 import { CHAT_MAX_LENGTH, POMODORO_MS, colorForUser, type LobbyChatMessage } from "@/lib/supabase-lobby";
 import { sayInStudyWorld } from "@/lib/supabase-study-world";
+import { createWalkState } from "@/components/world-controls/easy-walk";
 
 /** three.js chỉ chạy phía trình duyệt: ssr:false giữ nó ngoài bundle server, và
  *  người dùng thấy khung chờ thay vì lỗi hydrate. */
@@ -40,49 +41,61 @@ function lightingForHour(hour: number): { daylight: number; lampColor: string } 
   return { daylight: 0.08, lampColor: "#ffc98a" };
 }
 
-/** Nút giữ-để-đi. Phát sự kiện bàn phím giả để dùng chung đúng một đường điều
- *  khiển với bàn phím, thay vì mở kênh trạng thái thứ hai chỉ cho cảm ứng.
- *
- *  Luôn hiện, kể cả trên máy có bàn phím: không có gì trên màn hình nói rằng
- *  căn phòng đi được, nên người mở lần đầu sẽ chỉ nhìn nó xoay rồi bỏ đi. */
-function press(key: string, type: "keydown" | "keyup") {
-  window.dispatchEvent(new KeyboardEvent(type, { key }));
-}
+/** Cần điều khiển ảo, giống hệt Phố nghề: kéo trong vòng tròn, thả thì về
+ *  giữa. Bốn nút mũi tên cũ đã bỏ - chúng phát sự kiện bàn phím giả để lái kiểu
+ *  xe tăng, mà kiểu đó không còn nữa. */
+function Joystick({ onVector }: { onVector: (x: number, y: number) => void }) {
+  const base = useRef<HTMLDivElement>(null);
+  const [knob, setKnob] = useState({ x: 0, y: 0 });
+  const active = useRef(false);
+  const radius = 44;
 
-/** Khai ở tầng module, không lồng trong WalkPad: một component định nghĩa lại
- *  mỗi lần render là một component MỚI với React, nên nút bị tháo ra lắp lại -
- *  và nếu điều đó xảy ra giữa lúc ngón tay đang giữ, sự kiện nhả phím không
- *  bao giờ tới và nhân vật đi mãi. */
-function Hold({ eventKey, label, title }: { eventKey: string; label: string; title: string }) {
+  const update = useCallback(
+    (clientX: number, clientY: number) => {
+      const el = base.current;
+      if (!el) return;
+      const rect = el.getBoundingClientRect();
+      let dx = clientX - (rect.left + rect.width / 2);
+      let dy = clientY - (rect.top + rect.height / 2);
+      const len = Math.hypot(dx, dy);
+      if (len > radius) {
+        dx = (dx / len) * radius;
+        dy = (dy / len) * radius;
+      }
+      setKnob({ x: dx, y: dy });
+      // Màn hình có trục y hướng xuống; "đi tới" là hướng lên.
+      onVector(dx / radius, -dy / radius);
+    },
+    [onVector]
+  );
+
+  const stop = useCallback(() => {
+    active.current = false;
+    setKnob({ x: 0, y: 0 });
+    onVector(0, 0);
+  }, [onVector]);
+
   return (
-    <button
-      type="button"
-      aria-label={title}
-      title={title}
-      className="flex h-11 w-11 select-none items-center justify-center rounded-2xl bg-stone-800/85 text-lg font-bold text-stone-100 shadow-lg backdrop-blur transition-colors active:bg-emerald-600"
+    <div
+      ref={base}
+      className="pointer-events-auto relative h-24 w-24 touch-none rounded-full border border-stone-700/70 bg-stone-900/60 backdrop-blur"
       onPointerDown={(e) => {
         e.preventDefault();
-        press(eventKey, "keydown");
+        active.current = true;
+        e.currentTarget.setPointerCapture(e.pointerId);
+        update(e.clientX, e.clientY);
       }}
-      onPointerUp={() => press(eventKey, "keyup")}
-      onPointerLeave={() => press(eventKey, "keyup")}
-      onPointerCancel={() => press(eventKey, "keyup")}
-      onContextMenu={(e) => e.preventDefault()}
+      onPointerMove={(e) => active.current && update(e.clientX, e.clientY)}
+      onPointerUp={stop}
+      onPointerCancel={stop}
+      onPointerLeave={() => active.current && stop()}
+      role="application"
+      aria-label="Cần điều khiển: kéo để đi"
     >
-      {label}
-    </button>
-  );
-}
-
-function WalkPad() {
-  return (
-    <div className="pointer-events-auto grid grid-cols-3 gap-1.5">
-      <div />
-      <Hold eventKey="ArrowUp" label="↑" title="Đi tới" />
-      <div />
-      <Hold eventKey="ArrowLeft" label="↺" title="Xoay trái" />
-      <Hold eventKey="ArrowDown" label="↓" title="Lùi lại" />
-      <Hold eventKey="ArrowRight" label="↻" title="Xoay phải" />
+      <div
+        className="absolute left-1/2 top-1/2 h-11 w-11 rounded-full bg-emerald-500/85 shadow-lg"
+        style={{ transform: `translate(calc(-50% + ${knob.x}px), calc(-50% + ${knob.y}px))` }}
+      />
     </div>
   );
 }
@@ -129,6 +142,7 @@ export default function StudyRoomWorld({
   const [nowTick, setNowTick] = useState(0);
   const [lighting, setLighting] = useState<{ daylight: number; lampColor: string } | null>(null);
   const inputRef = useRef<HTMLInputElement>(null);
+  const walkRef = useRef(createWalkState());
 
   // Đọc đồng hồ sau khi mount, không lúc render: giờ của server và giờ của
   // người học khác nhau, và một căn phòng sáng khác nhau ở hai lần render đầu
@@ -189,6 +203,7 @@ export default function StudyRoomWorld({
     <div className="relative h-full w-full overflow-hidden rounded-2xl bg-stone-950">
       {lighting ? (
         <StudyRoomScene
+          walkRef={walkRef}
           roomId={roomId}
           identity={identity}
           seated={seated}
@@ -308,13 +323,19 @@ export default function StudyRoomWorld({
             </button>
           </form>
           <p className="pointer-events-none hidden text-[10px] font-medium text-stone-400 sm:block">
-            <kbd className="rounded bg-stone-800 px-1 py-0.5">W</kbd>{" "}
-            <kbd className="rounded bg-stone-800 px-1 py-0.5">S</kbd> đi lại ·{" "}
-            <kbd className="rounded bg-stone-800 px-1 py-0.5">A</kbd>{" "}
-            <kbd className="rounded bg-stone-800 px-1 py-0.5">D</kbd> xoay người · kéo để đổi góc nhìn · lời nói ở đây không được lưu
+            Chạm vào chỗ muốn tới, kéo cần điều khiển, hoặc bấm{" "}
+            <kbd className="rounded bg-stone-800 px-1 py-0.5">W A S D</kbd> · kéo để đổi góc nhìn · lời nói ở đây không được lưu
           </p>
         </div>
-        <WalkPad />
+        <Joystick
+          onVector={(x, y) => {
+            const walk = walkRef.current;
+            walk.input.x = x;
+            walk.input.y = y;
+            // Cầm cần là giành lại quyền lái: đích tự đi phải nhường.
+            if (Math.hypot(x, y) > 0.08) walk.target = null;
+          }}
+        />
       </div>
     </div>
   );

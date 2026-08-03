@@ -22,11 +22,14 @@ import {
 } from "./district-space";
 import {
   ARRIVE_RADIUS,
+  applyFollowCamera,
   createWalkState,
   inputTowardTarget,
   turnToward,
+  usePointerControls,
   useWalkKeys,
   worldDirection,
+  type OrbitState,
   type WalkState,
 } from "@/components/world-controls/easy-walk";
 import LobbyAvatar, { type AvatarPose } from "@/components/lobby/LobbyAvatar";
@@ -39,90 +42,6 @@ import {
 } from "@/lib/supabase-study-world";
 
 const WALK_SPEED = 4.4;
-
-export interface OrbitState {
-  /** Góc TUYỆT ĐỐI của camera quanh nhân vật, không phải độ lệch so với hướng
-   *  nhân vật.
-   *
-   *  Ở kiểu điều khiển xe tăng thì lưu độ lệch là đúng: hướng nhân vật do người
-   *  dùng quyết, camera bám theo. Ở kiểu đi-theo-hướng-nhìn thì ngược lại, và
-   *  lưu độ lệch tạo ra một vòng lặp: bấm tới → nhân vật quay theo hướng camera
-   *  → camera quay theo nhân vật → hướng "tới" đổi → nhân vật quay tiếp. Nhân
-   *  vật tự xoáy tròn và không đi tới đâu. Góc tuyệt đối cắt đứt vòng đó: camera
-   *  chỉ đổi khi người dùng kéo. */
-  yaw: number;
-  pitch: number;
-  dist: number;
-}
-
-/** Kéo để xoay, lăn để phóng. Bắt trên chính canvas chứ không trên window: HUD
- *  đè lên trên, và kéo từ một cái nút mà camera xoay theo thì bấm nút gần như
- *  không trúng.
- *
- *  Kéo NGẮN không tính là xoay mà tính là một cú chạm - đó là cách "chạm để đi
- *  tới" và "kéo để nhìn quanh" cùng sống trên một mặt phẳng mà không phải chia
- *  màn hình làm hai vùng. */
-function usePointerControls(
-  orbit: React.MutableRefObject<OrbitState>,
-  onTap: (nx: number, ny: number) => void
-) {
-  const { gl } = useThree();
-  useEffect(() => {
-    const el = gl.domElement;
-    let dragging = false;
-    let moved = 0;
-    let lastX = 0;
-    let lastY = 0;
-
-    const down = (e: PointerEvent) => {
-      if (e.button !== 0) return;
-      dragging = true;
-      moved = 0;
-      lastX = e.clientX;
-      lastY = e.clientY;
-      el.setPointerCapture(e.pointerId);
-    };
-    const move = (e: PointerEvent) => {
-      if (!dragging) return;
-      const dx = e.clientX - lastX;
-      const dy = e.clientY - lastY;
-      lastX = e.clientX;
-      lastY = e.clientY;
-      moved += Math.abs(dx) + Math.abs(dy);
-      orbit.current.yaw -= dx * 0.005;
-      orbit.current.pitch = THREE.MathUtils.clamp(orbit.current.pitch + dy * 0.004, 0.05, 1.05);
-    };
-    const up = (e: PointerEvent) => {
-      if (!dragging) return;
-      dragging = false;
-      if (el.hasPointerCapture(e.pointerId)) el.releasePointerCapture(e.pointerId);
-      // Dưới 8px tổng dịch chuyển thì đây là một cú chạm, không phải cú kéo.
-      if (moved < 8) {
-        const rect = el.getBoundingClientRect();
-        onTap(((e.clientX - rect.left) / rect.width) * 2 - 1, -(((e.clientY - rect.top) / rect.height) * 2 - 1));
-      }
-    };
-    const wheel = (e: WheelEvent) => {
-      e.preventDefault();
-      orbit.current.dist = THREE.MathUtils.clamp(orbit.current.dist + e.deltaY * 0.008, 3, 18);
-    };
-
-    el.style.cursor = "grab";
-    el.addEventListener("pointerdown", down);
-    el.addEventListener("pointermove", move);
-    el.addEventListener("pointerup", up);
-    el.addEventListener("pointercancel", up);
-    el.addEventListener("wheel", wheel, { passive: false });
-    return () => {
-      el.removeEventListener("pointerdown", down);
-      el.removeEventListener("pointermove", move);
-      el.removeEventListener("pointerup", up);
-      el.removeEventListener("pointercancel", up);
-      el.removeEventListener("wheel", wheel);
-      el.style.cursor = "";
-    };
-  }, [gl, orbit, onTap]);
-}
 
 interface RigProps {
   room: DistrictRoom;
@@ -247,29 +166,13 @@ function PlayerRig({ room, poseRef, walkRef, orbitRef, onDeskChange, onDoorChang
       onLiftChange(atLift);
     }
 
-    // Camera đứng ở góc người dùng đã chọn, độc lập với hướng nhân vật.
-    const angle = orbit.yaw;
-    const horizontal = Math.cos(orbit.pitch) * orbit.dist;
-    // Giữ camera TRONG phòng. Camera vai thứ ba đứng cách nhân vật ~6m, nên
-    // chỉ cần đứng gần tường là nó nằm ngoài bức tường đó - và tường chỉ vẽ
-    // một mặt, nên khung hình thành một mảng đen hoặc lộ cả ruột phòng. Kẹp
-    // theo khung đi lại của chính phòng, nới ra một chút để camera vẫn lùi
-    // được sát tường mà không xuyên qua.
-    const margin = room.kind === "street" ? 6 : 0.2;
-    const want = new THREE.Vector3(
-      THREE.MathUtils.clamp(
-        pose.x + Math.sin(angle) * horizontal,
-        room.bounds.minX - margin,
-        room.bounds.maxX + margin
-      ),
-      Math.max(0.8, 1.6 + Math.sin(orbit.pitch) * orbit.dist),
-      THREE.MathUtils.clamp(
-        pose.z + Math.cos(angle) * horizontal,
-        room.bounds.minZ - margin,
-        room.bounds.maxZ + margin
-      )
-    );
-    camera.position.lerp(want, Math.min(1, delta * 6));
+    // Camera đứng ở góc người dùng đã chọn, độc lập với hướng nhân vật, và bị
+    // kẹp trong lòng phòng. Ngoài phố thì nới rộng: không có tường để xuyên,
+    // và kẹp sát sẽ dí camera vào gáy nhân vật giữa một con phố rộng.
+    applyFollowCamera(camera, pose, orbit, delta, {
+      bounds: room.bounds,
+      margin: room.kind === "street" ? 6 : 0.2,
+    });
 
     // Phát vị trí theo nhịp, và chỉ khi thực sự nhúc nhích. Nhịp giãn ra khi
     // đông: mỗi gói mình gửi là N gói cả phòng phải nhận, nên chi phí tăng
@@ -285,7 +188,6 @@ function PlayerRig({ room, poseRef, walkRef, orbitRef, onDeskChange, onDoorChang
       lastSentPose.current = { ...pose };
       sendStudyPose(room.id, userId, { x: pose.x, z: pose.z, ry: pose.ry });
     }
-    camera.lookAt(pose.x, 1.45, pose.z);
   });
 
   return null;

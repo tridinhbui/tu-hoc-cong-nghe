@@ -12,7 +12,16 @@ import {
   nearestFreeSeat,
   resolveStudyObstacles,
 } from "./study-room-space";
-import { applyOrbitCamera, useCameraOrbit, useHeldKeys, type HeldKeys, type OrbitState } from "./use-walk-controls";
+import {
+  applyFollowCamera,
+  inputTowardTarget,
+  turnToward,
+  usePointerControls,
+  useWalkKeys,
+  worldDirection,
+  type OrbitState,
+  type WalkState,
+} from "@/components/world-controls/easy-walk";
 import LobbyAvatar, { type AvatarPose } from "@/components/lobby/LobbyAvatar";
 import { disposeRoomTextures } from "@/components/lobby/room-textures";
 import { CHAT_BUBBLE_MS, MOVE_BROADCAST_MS, type LobbyChatMessage } from "@/lib/supabase-lobby";
@@ -27,7 +36,17 @@ import {
 } from "@/lib/supabase-study-world";
 
 const WALK_SPEED = 3.6;
-const TURN_SPEED = 2.5;
+
+/** Khung giữ camera trong phòng. Tường chỉ vẽ một mặt, nên camera lùi ra ngoài
+ *  là khung hình thành mảng đen. */
+const CAMERA_BOUNDS = {
+  minX: -ROOM.bounds.x,
+  maxX: ROOM.bounds.x,
+  minZ: -ROOM.bounds.z,
+  maxZ: ROOM.bounds.z,
+};
+
+
 
 /** Mỗi frame của người chơi: đọc phím, đi, chặn tường và đồ đạc, đẩy camera
  *  theo, và phát vị trí lên kênh phòng theo nhịp. */
@@ -35,7 +54,7 @@ function PlayerRig({
   roomId,
   userId,
   poseRef,
-  keysRef,
+  walkRef,
   peerCountRef,
   seatedRef,
   takenSeatsRef,
@@ -46,7 +65,7 @@ function PlayerRig({
   roomId: number;
   userId: string;
   poseRef: React.MutableRefObject<AvatarPose>;
-  keysRef: React.MutableRefObject<HeldKeys>;
+  walkRef: React.MutableRefObject<WalkState>;
   peerCountRef: React.MutableRefObject<number>;
   seatedRef: React.MutableRefObject<number | null>;
   takenSeatsRef: React.MutableRefObject<Set<number>>;
@@ -55,15 +74,24 @@ function PlayerRig({
   orbitRef: React.MutableRefObject<OrbitState>;
 }) {
   const { camera } = useThree();
-  useCameraOrbit(orbitRef);
+  usePointerControls(orbitRef, (nx, ny) => {
+    // Chạm vào sàn là đi tới đó. Cách duy nhất trong ba cách điều khiển không
+    // đòi người dùng biết trước gì cả.
+    const ray = new THREE.Raycaster();
+    ray.setFromCamera(new THREE.Vector2(nx, ny), camera);
+    const hit = new THREE.Vector3();
+    if (!ray.ray.intersectPlane(new THREE.Plane(new THREE.Vector3(0, 1, 0), 0), hit)) return;
+    walkRef.current.target = { x: hit.x, z: hit.z };
+  });
   const lastSent = useRef(0);
   const lastSentPose = useRef<AvatarPose>({ x: 0, z: SPAWN_Z, ry: SPAWN_RY });
   const lastSeatable = useRef<number | null>(null);
   const lastNearDoor = useRef(false);
 
   useFrame((state, rawDelta) => {
-    const keys = keysRef.current;
+    const walk = walkRef.current;
     const pose = poseRef.current;
+    const orbit = orbitRef.current;
     // Trần bước thời gian. requestAnimationFrame dừng hẳn khi tab bị ẩn, nên
     // frame đầu tiên sau khi quay lại mang theo cả quãng thời gian đã trôi -
     // có thể là vài giây. Nhân nó với tốc độ đi thì một bước dài hàng mét, và
@@ -76,7 +104,7 @@ function PlayerRig({
     // bàn phím vẫn cắm đó, và một nhân vật vừa ngồi vừa trôi ngang phòng thì
     // phiên học không còn nghĩa gì.
     if (seatedRef.current !== null) {
-      applyOrbitCamera(camera, pose, orbitRef.current, delta, 3.8);
+      applyFollowCamera(camera, pose, orbit, delta, { distOverride: 3.8, bounds: CAMERA_BOUNDS });
       if (lastSeatable.current !== null) {
         lastSeatable.current = null;
         onSeatableChange(null);
@@ -88,21 +116,25 @@ function PlayerRig({
       return;
     }
 
-    // Trái/phải xoay người, lên/xuống tiến lùi - kiểu điều khiển xe tăng, khớp
-    // với bốn nút mũi tên trên màn hình hơn là strafe.
-    if (keys.left) pose.ry += TURN_SPEED * delta;
-    if (keys.right) pose.ry -= TURN_SPEED * delta;
-    const forward = (keys.up ? 1 : 0) - (keys.down ? 0.6 : 0);
-    if (forward !== 0) {
-      const nx = pose.x - Math.sin(pose.ry) * WALK_SPEED * forward * delta;
-      const nz = pose.z - Math.cos(pose.ry) * WALK_SPEED * forward * delta;
+    // Đi theo hướng nhìn: bấm tới là đi vào sâu màn hình, nhân vật tự quay theo
+    // hướng đi. Cùng một bộ điều khiển với Phố nghề, nên bước qua cổng không
+    // phải học lại cách đi.
+    let input = walk.input;
+    if (walk.target) {
+      const auto = inputTowardTarget(walk.target, pose.x, pose.z, orbit.yaw);
+      if (!auto) walk.target = null;
+      else if (Math.hypot(walk.input.x, walk.input.y) < 0.08) input = auto;
+    }
+    const dir = worldDirection(input, orbit.yaw);
+    if (dir) {
       const solved = resolveStudyObstacles(
-        THREE.MathUtils.clamp(nx, -ROOM.bounds.x, ROOM.bounds.x),
-        THREE.MathUtils.clamp(nz, -ROOM.bounds.z, ROOM.bounds.z),
+        THREE.MathUtils.clamp(pose.x + dir.x * WALK_SPEED * delta, -ROOM.bounds.x, ROOM.bounds.x),
+        THREE.MathUtils.clamp(pose.z + dir.z * WALK_SPEED * delta, -ROOM.bounds.z, ROOM.bounds.z),
         BODY_RADIUS
       );
       pose.x = solved.x;
       pose.z = solved.z;
+      pose.ry = turnToward(pose.ry, dir.x, dir.z, delta);
     }
 
     // Báo ra ngoài khi bước vào/ra tầm ghế hoặc cửa. So với lần trước rồi mới
@@ -119,7 +151,7 @@ function PlayerRig({
       onDoorProximity(nearDoor);
     }
 
-    applyOrbitCamera(camera, pose, orbitRef.current, delta);
+    applyFollowCamera(camera, pose, orbit, delta, { bounds: CAMERA_BOUNDS });
 
     // Phát vị trí theo nhịp, và chỉ khi thực sự nhúc nhích - người đứng yên
     // không nên chiếm ngân sách sự kiện của cả phòng. Nhịp giãn ra khi đông
@@ -141,6 +173,8 @@ function PlayerRig({
 }
 
 export interface StudyRoomSceneProps {
+  /** Trạng thái đi lại, do HUD ở ngoài cùng ghi vào qua cần điều khiển. */
+  walkRef: React.MutableRefObject<WalkState>;
   roomId: number;
   identity: Omit<StudyWorldIdentity, "seat" | "seatStartedAt">;
   /** Ghế đang ngồi; HUD điều khiển qua nút ngồi/đứng. */
@@ -159,6 +193,7 @@ export interface StudyRoomSceneProps {
 }
 
 export default function StudyRoomScene({
+  walkRef,
   roomId,
   identity,
   seated,
@@ -175,15 +210,14 @@ export default function StudyRoomScene({
 }: StudyRoomSceneProps) {
   const [peers, setPeers] = useState<StudyWorldPeer[]>([]);
   const [speeches, setSpeeches] = useState<Record<string, { text: string; at: number }>>({});
-  const keysRef = useRef<HeldKeys>({});
   const selfPose = useRef<AvatarPose>({ x: 0, z: SPAWN_Z, ry: SPAWN_RY });
   const peerPoseRefs = useRef(new Map<string, React.MutableRefObject<AvatarPose>>());
   const peerCountRef = useRef(0);
   const seatedRef = useRef<number | null>(null);
   const takenSeatsRef = useRef<Set<number>>(new Set());
-  const orbitRef = useRef<OrbitState>({ yaw: 0, pitch: 0.32, dist: 5.2 });
+  const orbitRef = useRef<OrbitState>({ yaw: SPAWN_RY, pitch: 0.32, dist: 5.2 });
 
-  useHeldKeys(keysRef);
+  useWalkKeys(walkRef);
 
   const handleChat = useCallback(
     (message: LobbyChatMessage) => {
@@ -337,7 +371,7 @@ export default function StudyRoomScene({
         roomId={roomId}
         userId={identity.userId}
         poseRef={selfPose}
-        keysRef={keysRef}
+        walkRef={walkRef}
         peerCountRef={peerCountRef}
         seatedRef={seatedRef}
         takenSeatsRef={takenSeatsRef}

@@ -1,6 +1,7 @@
 "use client";
 
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
+import { useThree } from "@react-three/fiber";
 import * as THREE from "three";
 
 /** Cách đi lại trong mọi cảnh 3D của ứng dụng.
@@ -160,4 +161,130 @@ export function inputTowardTarget(
   const sy = -dz * cos + dx * sin;
   const mag = Math.hypot(sx, sy) || 1;
   return { x: sx / mag, y: sy / mag };
+}
+
+// ── Camera và chuột ─────────────────────────────────────────────────────────
+
+export interface OrbitState {
+  /** Góc TUYỆT ĐỐI của camera quanh nhân vật, không phải độ lệch so với hướng
+   *  nhân vật.
+   *
+   *  Ở kiểu điều khiển xe tăng thì lưu độ lệch là đúng. Ở kiểu đi-theo-hướng-
+   *  nhìn thì nó tạo ra một vòng lặp: bấm tới → nhân vật quay theo hướng camera
+   *  → camera quay theo nhân vật → hướng "tới" đổi → nhân vật quay tiếp, và nó
+   *  tự xoáy tròn tại chỗ. Góc tuyệt đối cắt đứt vòng đó: camera chỉ đổi khi
+   *  người dùng kéo. */
+  yaw: number;
+  pitch: number;
+  dist: number;
+}
+
+/** Kéo để xoay, lăn để phóng, chạm ngắn để đi tới.
+ *
+ *  Bắt sự kiện trên chính canvas WebGL chứ không trên window: HUD nằm đè lên
+ *  trên, và kéo từ một cái nút mà camera xoay theo thì bấm nút gần như không
+ *  trúng.
+ *
+ *  Kéo NGẮN (dưới 8px) tính là một cú chạm chứ không phải cú kéo - đó là cách
+ *  "chạm để đi tới" và "kéo để nhìn quanh" cùng sống trên một mặt phẳng mà
+ *  không phải chia màn hình làm hai vùng. */
+export function usePointerControls(
+  orbit: React.MutableRefObject<OrbitState>,
+  onTap: (nx: number, ny: number) => void,
+  range: { min: number; max: number } = { min: 3, max: 18 }
+) {
+  const { gl } = useThree();
+  const tapRef = useRef(onTap);
+  tapRef.current = onTap;
+
+  useEffect(() => {
+    const el = gl.domElement;
+    let dragging = false;
+    let moved = 0;
+    let lastX = 0;
+    let lastY = 0;
+
+    const down = (e: PointerEvent) => {
+      if (e.button !== 0) return;
+      dragging = true;
+      moved = 0;
+      lastX = e.clientX;
+      lastY = e.clientY;
+      el.setPointerCapture(e.pointerId);
+    };
+    const move = (e: PointerEvent) => {
+      if (!dragging) return;
+      const dx = e.clientX - lastX;
+      const dy = e.clientY - lastY;
+      lastX = e.clientX;
+      lastY = e.clientY;
+      moved += Math.abs(dx) + Math.abs(dy);
+      orbit.current.yaw -= dx * 0.005;
+      orbit.current.pitch = THREE.MathUtils.clamp(orbit.current.pitch + dy * 0.004, 0.05, 1.05);
+    };
+    const up = (e: PointerEvent) => {
+      if (!dragging) return;
+      dragging = false;
+      if (el.hasPointerCapture(e.pointerId)) el.releasePointerCapture(e.pointerId);
+      if (moved < 8) {
+        const rect = el.getBoundingClientRect();
+        tapRef.current(
+          ((e.clientX - rect.left) / rect.width) * 2 - 1,
+          -(((e.clientY - rect.top) / rect.height) * 2 - 1)
+        );
+      }
+    };
+    const wheel = (e: WheelEvent) => {
+      e.preventDefault();
+      orbit.current.dist = THREE.MathUtils.clamp(orbit.current.dist + e.deltaY * 0.008, range.min, range.max);
+    };
+
+    el.style.cursor = "grab";
+    el.addEventListener("pointerdown", down);
+    el.addEventListener("pointermove", move);
+    el.addEventListener("pointerup", up);
+    el.addEventListener("pointercancel", up);
+    el.addEventListener("wheel", wheel, { passive: false });
+    return () => {
+      el.removeEventListener("pointerdown", down);
+      el.removeEventListener("pointermove", move);
+      el.removeEventListener("pointerup", up);
+      el.removeEventListener("pointercancel", up);
+      el.removeEventListener("wheel", wheel);
+      el.style.cursor = "";
+    };
+  }, [gl, orbit, range.min, range.max]);
+}
+
+/** Đặt camera bám sau nhân vật ở góc người dùng đã chọn.
+ *
+ *  `bounds` giữ camera TRONG phòng: camera vai thứ ba đứng cách nhân vật ~6m,
+ *  nên chỉ cần đứng gần tường là nó nằm ngoài bức tường đó - mà tường chỉ vẽ
+ *  một mặt, nên khung hình thành mảng đen hoặc lộ cả ruột phòng. */
+export function applyFollowCamera(
+  camera: THREE.Camera,
+  pose: { x: number; z: number },
+  orbit: OrbitState,
+  delta: number,
+  opts: {
+    distOverride?: number;
+    bounds?: { minX: number; maxX: number; minZ: number; maxZ: number };
+    margin?: number;
+    lookAtY?: number;
+  } = {}
+) {
+  const dist = opts.distOverride ?? orbit.dist;
+  const horizontal = Math.cos(orbit.pitch) * dist;
+  let wantX = pose.x + Math.sin(orbit.yaw) * horizontal;
+  let wantZ = pose.z + Math.cos(orbit.yaw) * horizontal;
+  if (opts.bounds) {
+    const m = opts.margin ?? 0.2;
+    wantX = THREE.MathUtils.clamp(wantX, opts.bounds.minX - m, opts.bounds.maxX + m);
+    wantZ = THREE.MathUtils.clamp(wantZ, opts.bounds.minZ - m, opts.bounds.maxZ + m);
+  }
+  camera.position.lerp(
+    new THREE.Vector3(wantX, Math.max(0.7, 1.6 + Math.sin(orbit.pitch) * dist), wantZ),
+    Math.min(1, delta * 6)
+  );
+  camera.lookAt(pose.x, opts.lookAtY ?? 1.45, pose.z);
 }

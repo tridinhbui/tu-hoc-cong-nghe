@@ -39,6 +39,10 @@ function SceneFallback({ label }: { label: string }) {
 /** Nút giữ-để-đi cho màn cảm ứng: phát sự kiện bàn phím giả để dùng chung một
  *  đường điều khiển với desktop, thay vì mở kênh trạng thái thứ hai.
  *
+ *  Bốn hướng giờ là bốn hướng THẬT trên màn hình, không phải "xoay trái/phải"
+ *  như hồi còn lái kiểu xe tăng: từ khi cả ba thế giới đi theo hướng nhìn, bấm
+ *  ← là bước sang trái màn hình chứ không phải quay người.
+ *
  *  Nhả phím phải bắt cả pointerup, pointerleave LẪN pointercancel. Trên iOS,
  *  ngón tay trượt khỏi nút hay bị hệ thống cắt ngang chỉ sinh ra pointercancel;
  *  thiếu nó thì phím kẹt ở trạng thái đang giữ và nhân vật đi mãi không dừng. */
@@ -83,9 +87,9 @@ function TouchPad() {
       <div />
       <HoldButton eventKey="ArrowUp" label="↑" hint="Đi tới" />
       <div />
-      <HoldButton eventKey="ArrowLeft" label="↺" hint="Xoay trái" />
+      <HoldButton eventKey="ArrowLeft" label="←" hint="Sang trái" />
       <HoldButton eventKey="ArrowDown" label="↓" hint="Lùi lại" />
-      <HoldButton eventKey="ArrowRight" label="↻" hint="Xoay phải" />
+      <HoldButton eventKey="ArrowRight" label="→" hint="Sang phải" />
     </div>
   );
 }
@@ -348,10 +352,8 @@ export default function LobbyClient() {
             </button>
           </form>
           <div className="pointer-events-none hidden text-[11px] font-medium text-stone-400 pointer-fine:sm:block">
-            <kbd className="rounded bg-stone-800 px-1.5 py-0.5">W</kbd>{" "}
-            <kbd className="rounded bg-stone-800 px-1.5 py-0.5">S</kbd> đi lại ·{" "}
-            <kbd className="rounded bg-stone-800 px-1.5 py-0.5">A</kbd>{" "}
-            <kbd className="rounded bg-stone-800 px-1.5 py-0.5">D</kbd> xoay người · kéo chuột để đổi góc nhìn, lăn để phóng · tin nhắn không được lưu lại
+            Chạm vào chỗ muốn tới, hoặc bấm{" "}
+            <kbd className="rounded bg-stone-800 px-1.5 py-0.5">W A S D</kbd> · kéo chuột để đổi góc nhìn, lăn để phóng · tin nhắn không được lưu lại
           </div>
           <div className="pointer-events-none hidden truncate text-[11px] font-medium text-stone-400 max-sm:block pointer-coarse:block">
             Kéo màn hình để đổi góc nhìn · chụm hai ngón để phóng

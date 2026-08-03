@@ -26,6 +26,15 @@ import {
   type LobbyPeer,
 } from "@/lib/supabase-lobby";
 import { disposeRoomTextures } from "./room-textures";
+import {
+  createWalkState,
+  inputTowardTarget,
+  turnToward,
+  usePointerControls,
+  useWalkKeys,
+  worldDirection,
+  type WalkState,
+} from "@/components/world-controls/easy-walk";
 import PomodoroClock from "./PomodoroClock";
 
 /** Giờ hiện tại làm tròn xuống bội số 15 phút, dạng số thập phân (13.75 =
@@ -36,7 +45,6 @@ function quarterHourNow(): number {
 }
 
 const WALK_SPEED = 4.2;
-const TURN_SPEED = 2.6;
 /** Bán kính thân người, dùng khi đẩy ra khỏi bàn. */
 const BODY_RADIUS = 0.34;
 /** Đứng trong khoảng này quanh một bàn thì ngồi xuống được. */
@@ -72,148 +80,17 @@ export function seatPose(tableId: number, fromX: number, fromZ: number): AvatarP
   };
 }
 
-/** Trạng thái phím giữ ngoài React - đọc mỗi frame, không re-render. */
-function useHeldKeys(externalKeys: React.MutableRefObject<Record<string, boolean>>) {
-  useEffect(() => {
-    const down = (e: KeyboardEvent) => {
-      // Không nuốt phím khi người dùng đang gõ vào ô nhập nào đó của trang -
-      // gõ chat mà nhân vật chạy theo từng chữ thì không dùng được.
-      const target = e.target as HTMLElement | null;
-      if (target && /INPUT|TEXTAREA|SELECT/.test(target.tagName)) return;
-      const key = normalize(e.key);
-      if (!key) return;
-      externalKeys.current[key] = true;
-      if (["up", "down", "left", "right"].includes(key)) e.preventDefault();
-    };
-    const up = (e: KeyboardEvent) => {
-      const key = normalize(e.key);
-      if (key) externalKeys.current[key] = false;
-    };
-    // Rời tab thì nhả hết phím - nếu không nhân vật tự đi mãi.
-    const blur = () => {
-      externalKeys.current = {};
-    };
-    window.addEventListener("keydown", down);
-    window.addEventListener("keyup", up);
-    window.addEventListener("blur", blur);
-    return () => {
-      window.removeEventListener("keydown", down);
-      window.removeEventListener("keyup", up);
-      window.removeEventListener("blur", blur);
-    };
-  }, [externalKeys]);
-}
-
-function normalize(key: string): string | null {
-  switch (key) {
-    case "w": case "W": case "ArrowUp": return "up";
-    case "s": case "S": case "ArrowDown": return "down";
-    case "a": case "A": case "ArrowLeft": return "left";
-    case "d": case "D": case "ArrowRight": return "right";
-    default: return null;
-  }
-}
-
 export interface OrbitState {
-  /** Lệch góc ngang so với hướng nhân vật đang quay, radian. */
+  /** Góc TUYỆT ĐỐI của camera, không phải độ lệch so với hướng nhân vật.
+   *
+   *  Đổi từ độ lệch sang tuyệt đối là điều kiện để đi-theo-hướng-nhìn hoạt
+   *  động: giữ độ lệch thì bấm tới làm nhân vật quay, nhân vật quay làm camera
+   *  quay, camera quay làm "tới" đổi nghĩa - nhân vật xoáy tròn tại chỗ. */
   yaw: number;
   /** Góc chúc xuống. Chặn hai đầu để không lộn qua đỉnh đầu hay chui xuống sàn. */
   pitch: number;
   /** Khoảng cách camera tới nhân vật. */
   dist: number;
-}
-
-/** Kéo chuột để xoay quanh nhân vật, lăn chuột để tiến/lùi camera.
- *
- *  Góc xoay là ĐỘ LỆCH so với hướng nhân vật, không phải góc tuyệt đối: đi tới
- *  đâu camera vẫn giữ nguyên góc nhìn tương đối mà người dùng vừa chọn, thay vì
- *  bị giật về sau lưng mỗi lần quay người.
- *
- *  Bắt sự kiện trên chính canvas WebGL chứ không trên window: HUD nằm đè lên
- *  trên, và kéo từ ô chat hay nút "Ngồi xuống" mà camera xoay theo thì bấm nút
- *  gần như không trúng. */
-function useCameraOrbit(orbit: React.MutableRefObject<OrbitState>) {
-  const { gl } = useThree();
-
-  useEffect(() => {
-    const el = gl.domElement;
-    /** Mọi ngón/con trỏ đang chạm. Cần theo dõi từng cái vì hai ngón là chụm để
-     *  phóng, một ngón là xoay - không đếm thì hai ngón sẽ vừa xoay vừa phóng. */
-    const active = new Map<number, { x: number; y: number }>();
-    let pinchDist = 0;
-
-    const down = (e: PointerEvent) => {
-      // Chuột phải để dành cho menu ngữ cảnh; ngón tay không có khái niệm nút.
-      if (e.pointerType === "mouse" && e.button !== 0) return;
-      active.set(e.pointerId, { x: e.clientX, y: e.clientY });
-      if (active.size === 2) {
-        const [a, b] = [...active.values()];
-        pinchDist = Math.hypot(a.x - b.x, a.y - b.y);
-      }
-      el.setPointerCapture(e.pointerId);
-      el.style.cursor = "grabbing";
-    };
-
-    const move = (e: PointerEvent) => {
-      const prev = active.get(e.pointerId);
-      if (!prev) return;
-      active.set(e.pointerId, { x: e.clientX, y: e.clientY });
-
-      if (active.size >= 2) {
-        // Chụm hai ngón thay cho lăn chuột. Bỏ qua xoay trong lúc chụm: hai
-        // ngón hiếm khi giãn ra hoàn toàn đối xứng, nên góc nhìn sẽ trôi theo
-        // mỗi lần phóng nếu vẫn nghe cả hai.
-        const [a, b] = [...active.values()];
-        const d = Math.hypot(a.x - b.x, a.y - b.y);
-        if (pinchDist > 0) {
-          orbit.current.dist = THREE.MathUtils.clamp(
-            orbit.current.dist * (pinchDist / Math.max(1, d)),
-            2.2,
-            16
-          );
-        }
-        pinchDist = d;
-        return;
-      }
-
-      const dx = e.clientX - prev.x;
-      const dy = e.clientY - prev.y;
-      orbit.current.yaw -= dx * 0.005;
-      orbit.current.pitch = THREE.MathUtils.clamp(orbit.current.pitch + dy * 0.004, -0.25, 1.1);
-    };
-
-    const up = (e: PointerEvent) => {
-      active.delete(e.pointerId);
-      if (active.size < 2) pinchDist = 0;
-      if (el.hasPointerCapture(e.pointerId)) el.releasePointerCapture(e.pointerId);
-      el.style.cursor = "grab";
-    };
-
-    const wheel = (e: WheelEvent) => {
-      e.preventDefault();
-      orbit.current.dist = THREE.MathUtils.clamp(orbit.current.dist + e.deltaY * 0.006, 2.2, 16);
-    };
-
-    el.style.cursor = "grab";
-    // Không có dòng này thì trên điện thoại mọi cú kéo đều bị trình duyệt hiểu
-    // là cuộn trang: nó nuốt luôn chuỗi pointermove và camera đứng im, còn cả
-    // trang thì trượt lên xuống dưới tay người dùng.
-    el.style.touchAction = "none";
-    el.addEventListener("pointerdown", down);
-    el.addEventListener("pointermove", move);
-    el.addEventListener("pointerup", up);
-    el.addEventListener("pointercancel", up);
-    el.addEventListener("wheel", wheel, { passive: false });
-    return () => {
-      el.removeEventListener("pointerdown", down);
-      el.removeEventListener("pointermove", move);
-      el.removeEventListener("pointerup", up);
-      el.removeEventListener("pointercancel", up);
-      el.removeEventListener("wheel", wheel);
-      el.style.cursor = "";
-      el.style.touchAction = "";
-    };
-  }, [gl, orbit]);
 }
 
 /** Đặt camera theo quỹ đạo quanh nhân vật. `distOverride` cho phép ngồi thì
@@ -226,7 +103,7 @@ function applyOrbitCamera(
   distOverride?: number
 ) {
   const dist = distOverride ?? orbit.dist;
-  const angle = pose.ry + orbit.yaw;
+  const angle = orbit.yaw;
   const horizontal = Math.cos(orbit.pitch) * dist;
   // Mọi cao độ tính TƯƠNG ĐỐI so với chân nhân vật: đứng trên ban công hay
   // dưới lòng phố thì camera vẫn ở ngang vai, không phải ngang sàn tầng trệt.
@@ -248,7 +125,7 @@ function applyOrbitCamera(
 function PlayerRig({
   userId,
   poseRef,
-  keysRef,
+  walkRef,
   peerCountRef,
   seatedRef,
   onSeatableChange,
@@ -257,7 +134,7 @@ function PlayerRig({
 }: {
   userId: string;
   poseRef: React.MutableRefObject<AvatarPose>;
-  keysRef: React.MutableRefObject<Record<string, boolean>>;
+  walkRef: React.MutableRefObject<WalkState>;
   peerCountRef: React.MutableRefObject<number>;
   /** Đang ngồi bàn nào; null là đang đứng. Đọc mỗi frame để khoá di chuyển. */
   seatedRef: React.MutableRefObject<number | null>;
@@ -267,13 +144,23 @@ function PlayerRig({
   floorRef: React.MutableRefObject<Floor>;
 }) {
   const { camera } = useThree();
-  useCameraOrbit(orbitRef);
+  usePointerControls(orbitRef, (nx, ny) => {
+    // Chạm vào sàn là đi tới đó. Mặt phẳng lấy theo cao độ ĐANG đứng, không
+    // phải y=0: đang ở ban công mà chiếu xuống sàn tầng trệt thì cú chạm rơi
+    // xuống dưới nhà và nhân vật đi về phía lan can.
+    const ray = new THREE.Raycaster();
+    ray.setFromCamera(new THREE.Vector2(nx, ny), camera);
+    const hit = new THREE.Vector3();
+    const y = poseRef.current.y ?? 0;
+    if (!ray.ray.intersectPlane(new THREE.Plane(new THREE.Vector3(0, 1, 0), -y), hit)) return;
+    walkRef.current.target = { x: hit.x, z: hit.z };
+  }, { min: 2.2, max: 16 });
   const lastSent = useRef(0);
   const lastSentPose = useRef<AvatarPose>({ x: 0, z: 0, ry: 0 });
   const lastSeatable = useRef<number | null>(null);
 
   useFrame((state, delta) => {
-    const keys = keysRef.current;
+    const walk = walkRef.current;
     const pose = poseRef.current;
     const seated = seatedRef.current;
 
@@ -289,14 +176,18 @@ function PlayerRig({
       return;
     }
 
-    // Trái/phải xoay người, lên/xuống tiến lùi - kiểu điều khiển xe tăng, dễ
-    // hiểu với phím mũi tên hơn là strafe.
-    if (keys.left) pose.ry += TURN_SPEED * delta;
-    if (keys.right) pose.ry -= TURN_SPEED * delta;
-    const forward = (keys.up ? 1 : 0) - (keys.down ? 0.6 : 0);
-    if (forward !== 0) {
-      const nx = pose.x - Math.sin(pose.ry) * WALK_SPEED * forward * delta;
-      const nz = pose.z - Math.cos(pose.ry) * WALK_SPEED * forward * delta;
+    // Đi theo hướng nhìn, cùng bộ điều khiển với phòng nhóm và Phố nghề: bước
+    // qua cổng sang thế giới khác không phải học lại cách đi.
+    let input = walk.input;
+    if (walk.target) {
+      const auto = inputTowardTarget(walk.target, pose.x, pose.z, orbitRef.current.yaw);
+      if (!auto) walk.target = null;
+      else if (Math.hypot(walk.input.x, walk.input.y) < 0.08) input = auto;
+    }
+    const dir = worldDirection(input, orbitRef.current.yaw);
+    if (dir) {
+      const nx = pose.x + dir.x * WALK_SPEED * delta;
+      const nz = pose.z + dir.z * WALK_SPEED * delta;
       const solved = stepWorld({ x: pose.x, z: pose.z }, nx, nz, floorRef.current, BODY_RADIUS);
       pose.x = solved.x;
       pose.z = solved.z;
@@ -305,6 +196,7 @@ function PlayerRig({
       // dịch tức thời mỗi bậc làm camera giật suốt cả đoạn leo.
       const cur = pose.y ?? 0;
       pose.y = cur + (solved.y - cur) * Math.min(1, delta * 12);
+      pose.ry = turnToward(pose.ry, dir.x, dir.z, delta);
     }
 
     // Báo ra ngoài khi bước vào/ra tầm một cái bàn, để HUD hiện nút ngồi.
@@ -391,7 +283,7 @@ export default function LobbySceneInner({
 }: Props) {
   const [peers, setPeers] = useState<LobbyPeer[]>([]);
   const [speeches, setSpeeches] = useState<Record<string, { text: string; at: number }>>({});
-  const keysRef = useRef<Record<string, boolean>>({});
+  const walkRef = useRef(createWalkState());
   // Xuất phát trong sảnh tròn ở đầu nam, quay mặt vào phòng.
   //
   // ry=0 là nhìn về -z, và camera bám ở phía +z sau lưng - tức là ngoài hiên,
@@ -411,7 +303,7 @@ export default function LobbySceneInner({
   const seatedRef = useRef<number | null>(null);
   const floorRef = useRef<Floor>(0);
   // Góc nhìn mặc định: hơi chếch từ trên xuống, sau lưng nhân vật.
-  const orbitRef = useRef<OrbitState>({ yaw: 0, pitch: 0.4, dist: 5.6 });
+  const orbitRef = useRef<OrbitState>({ yaw: Math.PI, pitch: 0.4, dist: 5.6 });
 
   /** Giờ thật của người học, làm tròn tới 15 phút. Không cần mịn hơn: mỗi lần
    *  đổi là dựng lại vân bầu trời, và mắt không thấy được chênh lệch giữa 14h02
@@ -425,7 +317,7 @@ export default function LobbySceneInner({
   const day = useMemo(() => daylightAt(hour), [hour]);
   const sun = useMemo(() => sunPosition(hour), [hour]);
 
-  useHeldKeys(keysRef);
+  useWalkKeys(walkRef);
 
   // Ngồi xuống: khoá nhân vật vào ghế và công bố chỗ ngồi qua presence.
   // Đứng lên: nhả khoá, xoá chỗ ngồi.
@@ -601,7 +493,7 @@ export default function LobbySceneInner({
       <PlayerRig
         userId={identity.userId}
         poseRef={selfPose}
-        keysRef={keysRef}
+        walkRef={walkRef}
         peerCountRef={peerCountRef}
         seatedRef={seatedRef}
         onSeatableChange={onSeatableChange}
