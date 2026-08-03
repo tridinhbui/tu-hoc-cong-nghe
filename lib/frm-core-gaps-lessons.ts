@@ -724,6 +724,7 @@ export const FRM_CORE_GAPS_LESSONS: Lesson[] = [
         label: "Leo thang qua kênh phù hợp nếu bị ép thay đổi kết luận"
       }
     ],
+    interactiveType: "ethics-case",
     realWorldExample: {
       company: "Vị trí của bộ phận rủi ro trong mô hình ba tuyến phòng vệ",
       description: "Mô hình ba tuyến phòng vệ đặt bộ phận kinh doanh ở tuyến một, quản trị rủi ro và tuân thủ ở tuyến hai, kiểm toán nội bộ ở tuyến ba - với yêu cầu tuyến hai phải độc lập về báo cáo với tuyến một. Lý do rất thực tế: điều tra sau nhiều vụ đổ vỡ cho thấy bộ phận rủi ro có báo cáo đúng nhưng báo cáo đó bị chặn lại ở chính người đứng đầu mảng kinh doanh mà nó đang cảnh báo."
@@ -1819,6 +1820,7 @@ export const FRM_CORE_GAPS_LESSONS: Lesson[] = [
         label: "Phạt, bồi hoàn khách hàng, tổn hại uy tín"
       }
     ],
+    interactiveType: "ethics-case",
     realWorldExample: {
       company: "Bán chéo sản phẩm dưới áp lực chỉ tiêu",
       description: "Một mô hình lặp lại ở nhiều thị trường: ngân hàng đặt chỉ tiêu số sản phẩm trên mỗi khách hàng và gắn thưởng vào đó; nhân viên chi nhánh đáp ứng chỉ tiêu bằng cách mở thêm sản phẩm mà khách hàng không thực sự cần hoặc không hiểu rõ. Doanh thu tăng đúng như thiết kế trong nhiều năm, cho tới khi rà soát phát hiện vấn đề và tổ chức phải bồi hoàn, nộp phạt và thay đổi toàn bộ cơ chế đãi ngộ."

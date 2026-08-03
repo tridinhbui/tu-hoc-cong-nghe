@@ -115,7 +115,9 @@ export interface Lesson {
     | "payoff"
     | "multiples"
     | "prospect"
-    | "accretion";
+    | "accretion"
+    | "ethics-case"
+    | "macro-policy";
   realWorldExample: {
     company: string;
     description: string;

@@ -14,6 +14,8 @@ import InteractivePayoff from "./InteractivePayoff";
 import InteractiveMultiples from "./InteractiveMultiples";
 import InteractiveProspect from "./InteractiveProspect";
 import InteractiveAccretion from "./InteractiveAccretion";
+import InteractiveEthicsCase from "./InteractiveEthicsCase";
+import InteractiveMacroPolicy from "./InteractiveMacroPolicy";
 
 export type WidgetType =
   | "interest-rate"
@@ -31,7 +33,9 @@ export type WidgetType =
   | "payoff"
   | "multiples"
   | "prospect"
-  | "accretion";
+  | "accretion"
+  | "ethics-case"
+  | "macro-policy";
 
 export default function InteractiveWidget({ type }: { type: WidgetType }) {
   switch (type) {
@@ -67,6 +71,10 @@ export default function InteractiveWidget({ type }: { type: WidgetType }) {
       return <InteractiveProspect />;
     case "accretion":
       return <InteractiveAccretion />;
+    case "ethics-case":
+      return <InteractiveEthicsCase />;
+    case "macro-policy":
+      return <InteractiveMacroPolicy />;
   }
 }
 
@@ -91,6 +99,8 @@ export const WIDGET_TYPES: readonly WidgetType[] = [
   "multiples",
   "prospect",
   "accretion",
+  "ethics-case",
+  "macro-policy",
 ];
 
 export function hasInteractiveWidget(type: string | null | undefined): type is WidgetType {
