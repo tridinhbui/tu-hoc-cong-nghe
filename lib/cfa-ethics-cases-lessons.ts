@@ -273,6 +273,44 @@ export const CFA_ETHICS_CASES_LESSONS: Lesson[] = [
     correctOption: 1,
     explanation:
       "Standard I(D) không phải quy tắc đạo đức đời sống nói chung. Nó khoanh vào ba thứ có liên hệ trực tiếp tới việc bạn có đáng được giao tiền của người khác hay không: trung thực, đáng tin cậy, và năng lực chuyên môn. Gian lận trong một kỳ thi ở trường, khai man hồ sơ, hay lừa đảo trong một giao dịch cá nhân đều rơi vào phạm vi - không phải vì chúng xấu nói chung mà vì chúng nói lên điều gì đó về cách người này xử sự khi có cơ hội và không ai nhìn. Ngược lại, một tranh chấp dân sự thông thường hay một va chạm giao thông thì không.",
+    sections: [
+      {
+        "type": "lead",
+        "text": "Standard I(D) mở rộng phạm vi đạo đức nghề nghiệp ra ngoài giờ làm việc - nhưng không rộng như nhiều người tưởng, và biết ranh giới của nó quan trọng ngang biết nội dung."
+      },
+      {
+        "type": "heading",
+        "text": "Ba tiêu chí xác định phạm vi"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Trung thực.",
+          "Đáng tin cậy.",
+          "Năng lực chuyên môn."
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "Hành vi ngoài công việc chỉ thuộc phạm vi khi nó nói lên điều gì đó về ba thứ trên. Gian lận trong một kỳ thi ở trường, khai man hồ sơ, lừa đảo trong một giao dịch cá nhân đều rơi vào - không phải vì chúng xấu nói chung, mà vì chúng cho thấy người này xử sự thế nào khi có cơ hội và không ai nhìn."
+      },
+      {
+        "type": "callout",
+        "label": "Ngoài phạm vi",
+        "text": "Một tranh chấp dân sự thông thường, một va chạm giao thông, hay các lựa chọn đời sống cá nhân không liên quan tới ba tiêu chí trên. Standard I(D) không phải bộ quy tắc đạo đức đời sống nói chung."
+      },
+      {
+        "type": "paragraph",
+        "text": "Hai điểm hay bị hiểu sai. Thứ nhất, không cần một bản án hình sự mới cấu thành vi phạm - bằng chứng về hành vi là đủ. Thứ hai, logic nền của Standard là hành vi ở bối cảnh này dự báo hành vi ở bối cảnh khác, nên câu hỏi cuối cùng luôn quy về một điều: có nên giao tiền của người khác cho người này không."
+      },
+      {
+        "type": "closing",
+        "lines": [
+          "Nghề này không tách được con người khỏi chức danh.",
+          "Vì thứ khách hàng mua chính là con người đó."
+        ]
+      }
+    ],
     diagram: [
       { label: "Ba tiêu chí: trung thực, đáng tin cậy, năng lực nghề", arrow: true },
       { label: "Không phải quy tắc đạo đức đời sống nói chung", arrow: true },
@@ -389,6 +427,48 @@ export const CFA_ETHICS_CASES_LESSONS: Lesson[] = [
     correctOption: 1,
     explanation:
       "Không hợp tác với cuộc điều tra là vi phạm độc lập với vi phạm đang bị điều tra, và trong nhiều trường hợp nó dẫn tới chế tài nặng hơn. Lý do rất thực tế: CFA Institute không có quyền cưỡng chế của nhà nước - không thể triệu tập, không thể khám xét - nên toàn bộ khả năng thực thi của hệ thống dựa vào việc thành viên tự nguyện hợp tác. Bỏ qua thư yêu cầu, cung cấp thông tin sai lệch, hoặc tiêu hủy tài liệu liên quan đều chuyển một vụ việc có thể kết thúc bằng nhắc nhở thành một vụ đình chỉ tư cách.",
+    sections: [
+      {
+        "type": "lead",
+        "text": "Chuẩn mực chỉ có sức nặng khi có quy trình xử lý phía sau. Điều đáng chú ý là quy trình của CFA Institute không có quyền cưỡng chế nào - và chính đặc điểm đó định hình toàn bộ cách nó vận hành."
+      },
+      {
+        "type": "heading",
+        "text": "Nguồn phát hiện"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Khiếu nại từ khách hàng, đồng nghiệp hoặc nhà tuyển dụng.",
+          "Thông tin từ cơ quan quản lý và truyền thông.",
+          "Bản khai hành vi nghề nghiệp hằng năm mà mọi thành viên phải nộp - nguồn phát hiện thật, không phải thủ tục hình thức."
+        ]
+      },
+      {
+        "type": "callout",
+        "label": "Về bản khai hằng năm",
+        "text": "Khai không trung thực trong bản khai này là vi phạm Standard I(C) - một vi phạm riêng, độc lập với điều bạn đang che giấu."
+      },
+      {
+        "type": "heading",
+        "text": "Vì sao không hợp tác lại nặng hơn"
+      },
+      {
+        "type": "paragraph",
+        "text": "CFA Institute không thể triệu tập, không thể khám xét, không thể buộc ai khai báo. Toàn bộ khả năng thực thi dựa vào việc thành viên tự nguyện hợp tác. Vì thế không hợp tác được xử như một vi phạm độc lập, và trong nhiều trường hợp nó dẫn tới chế tài nặng hơn chính vi phạm đang bị điều tra."
+      },
+      {
+        "type": "paragraph",
+        "text": "Bỏ qua thư yêu cầu, cung cấp thông tin sai lệch hoặc tiêu hủy tài liệu liên quan đều có thể chuyển một vụ việc lẽ ra kết thúc bằng nhắc nhở thành một vụ đình chỉ tư cách. Thang chế tài đi từ nhắc nhở riêng, kiểm duyệt công khai, đình chỉ có thời hạn, tới thu hồi chứng chỉ vĩnh viễn."
+      },
+      {
+        "type": "closing",
+        "lines": [
+          "Hệ thống này chạy bằng sự hợp tác.",
+          "Nên từ chối hợp tác là tấn công vào chính hệ thống, không chỉ vào một vụ việc."
+        ]
+      }
+    ],
     diagram: [
       { label: "Nguồn: tự báo cáo, khiếu nại, giám sát, hoặc báo chí", arrow: true },
       { label: "Điều tra: yêu cầu thông tin, thành viên phải hợp tác", arrow: true },

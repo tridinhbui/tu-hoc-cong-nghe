@@ -199,6 +199,51 @@ export const CFA_ETHICS_STANDARDS_LESSONS: Lesson[] = [
     correctOption: 1,
     explanation:
       "Một chiếc điện thoại hỏng thì bạn biết ngay nó hỏng. Một danh mục lỗ 20% thì bạn không biết đó là do người quản lý kém, do thị trường chung, hay do một rủi ro đã được cảnh báo trước mà bạn chấp nhận. Kinh tế học gọi đây là hàng hóa tín nhiệm - loại hàng mà người mua không đánh giá được chất lượng ngay cả sau khi đã tiêu dùng. Với hàng hóa tín nhiệm, cơ chế thị trường thông thường không tự lọc được bên kém, vì tín hiệu chất lượng bị nhiễu quá nặng. Đó là lý do ngành này cần một lớp ràng buộc bổ sung - đạo đức nghề nghiệp và quy định - thay vì để cạnh tranh tự xử lý.",
+    sections: [
+      {
+        "type": "lead",
+        "text": "Mọi ngành đều cần niềm tin. Ngành đầu tư cần nó nhiều hơn, và lý do nằm ở một đặc điểm kinh tế của chính sản phẩm chứ không ở phẩm chất của người làm nghề."
+      },
+      {
+        "type": "heading",
+        "text": "Hàng hóa tín nhiệm"
+      },
+      {
+        "type": "paragraph",
+        "text": "Một chiếc điện thoại hỏng thì bạn biết ngay nó hỏng. Một danh mục lỗ 20% thì bạn không biết đó là do người quản lý kém, do thị trường chung, hay do một rủi ro đã được cảnh báo trước mà bạn chấp nhận. Kinh tế học gọi đây là hàng hóa tín nhiệm: loại hàng mà người mua không đánh giá được chất lượng ngay cả sau khi đã tiêu dùng."
+      },
+      {
+        "type": "callout",
+        "label": "Hệ quả",
+        "text": "Với hàng hóa tín nhiệm, cơ chế thị trường thông thường không tự lọc được bên kém, vì tín hiệu chất lượng bị may rủi làm nhiễu quá nặng. Đó là lý do ngành này cần một lớp ràng buộc bổ sung thay vì để cạnh tranh tự xử lý."
+      },
+      {
+        "type": "heading",
+        "text": "Vì sao một vụ bê bối làm hại cả ngành"
+      },
+      {
+        "type": "paragraph",
+        "text": "Khi khách hàng không phân biệt được bên tốt với bên xấu, họ phản ứng với cả nhóm. Một quỹ gian lận bị phát hiện làm dòng vốn rút khỏi cả những quỹ trung thực, vì người gửi tiền không có cách nào rẻ để kiểm tra ai là ai. Đây là lý do các tổ chức nghề nghiệp tự đặt ra chuẩn mực nghiêm hơn luật - lợi ích tập thể trong việc giữ niềm tin lớn hơn lợi ích riêng của từng thành viên."
+      },
+      {
+        "type": "comparison",
+        "left": {
+          "label": "Đạo đức nghề nghiệp",
+          "text": "Đi trước và rộng hơn. Nó hỏi hành vi này có xứng đáng với niềm tin được giao hay không."
+        },
+        "right": {
+          "label": "Quy định pháp luật",
+          "text": "Đi sau và hẹp hơn. Nó thường chỉ ghi nhận một hành vi sau khi tổn hại đã xảy ra ở quy mô đủ lớn."
+        }
+      },
+      {
+        "type": "closing",
+        "lines": [
+          "Nghề này bán một lời hứa về tương lai.",
+          "Không có gì bảo đảm lời hứa đó ngoài chính người đưa ra nó."
+        ]
+      }
+    ],
     diagram: [
       { label: "Kết quả đến chậm và lẫn với may rủi", arrow: true },
       { label: "Khách hàng không tự kiểm chứng được chất lượng", arrow: true },
@@ -315,6 +360,48 @@ export const CFA_ETHICS_STANDARDS_LESSONS: Lesson[] = [
     correctOption: 1,
     explanation:
       "Standard I(A) không nói 'tuân thủ luật', nó nói tuân thủ tiêu chuẩn NGHIÊM NGẶT HƠN trong ba thứ: luật nơi bạn làm việc, luật nơi hoạt động diễn ra, và Code of Ethics cùng Standards. Điều này chạy theo cả hai chiều. Nếu luật địa phương cấm điều mà Code cho phép, bạn theo luật. Nếu Code khắt khe hơn luật, bạn theo Code - và đây là chiều hay bị bỏ qua, vì nó không có ai cưỡng chế ngoài chính CFA Institute. Hệ quả thực tế: chuyển sang một thị trường quản lý lỏng hơn không làm nghĩa vụ của bạn nhẹ đi chút nào.",
+    sections: [
+      {
+        "type": "lead",
+        "text": "Standard I(A) không nói 'tuân thủ luật'. Nó nói tuân thủ tiêu chuẩn nghiêm ngặt hơn - và sự khác biệt đó là toàn bộ nội dung của Standard này."
+      },
+      {
+        "type": "heading",
+        "text": "Ba nguồn, chọn bên khắt khe nhất"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Luật nơi bạn làm việc.",
+          "Luật nơi hoạt động thực sự diễn ra.",
+          "Code of Ethics và các Standards của CFA Institute."
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "Nguyên tắc chạy theo cả hai chiều. Nếu luật địa phương cấm điều mà Code cho phép, bạn theo luật. Nếu Code khắt khe hơn luật, bạn theo Code."
+      },
+      {
+        "type": "callout",
+        "label": "Chiều hay bị bỏ qua",
+        "text": "Chiều thứ hai - Code khắt khe hơn luật - dễ bị lờ đi vì không có cơ quan nhà nước nào cưỡng chế nó. Hệ quả thực tế: chuyển sang một thị trường quản lý lỏng hơn không làm nghĩa vụ của bạn nhẹ đi chút nào."
+      },
+      {
+        "type": "heading",
+        "text": "Khi phát hiện vi phạm quanh mình"
+      },
+      {
+        "type": "paragraph",
+        "text": "Standard không buộc bạn tố cáo ra bên ngoài. Nó buộc hai việc: tách mình khỏi hành vi vi phạm, và nêu vấn đề trong nội bộ qua kênh phù hợp. Điểm cần nhớ là im lặng làm tiếp không phải trạng thái trung lập - nó là một hình thức tham gia, và được xử như vậy."
+      },
+      {
+        "type": "closing",
+        "lines": [
+          "Câu hỏi không phải luật ở đây cho phép gì.",
+          "Mà là trong ba bộ quy tắc đang áp lên bạn, bộ nào chặt nhất."
+        ]
+      }
+    ],
     diagram: [
       { label: "Luật nơi bạn làm việc", arrow: true },
       { label: "Luật nơi hoạt động diễn ra", arrow: true },
@@ -431,6 +518,48 @@ export const CFA_ETHICS_STANDARDS_LESSONS: Lesson[] = [
     correctOption: 2,
     explanation:
       "Chuyến thăm nhà máy là nghiên cứu tốt và Standard không cấm nó. Thứ tạo vấn đề là ai trả tiền. Khi bên được phân tích chi trả một khoản có giá trị đáng kể, nó tạo cảm giác mắc nợ - nghiên cứu tâm lý gọi là thiên kiến đáp trả - và nó hoạt động dưới mức nhận thức, kể cả với người tin chắc mình khách quan. Cách xử lý chuẩn trong ngành là đi, nhưng tự trả chi phí, hoặc chỉ nhận mức thù tiếp tối thiểu và thông thường. Công bố ở cuối báo cáo là bước bổ sung, không thay thế được việc loại bỏ chính xung đột đó.",
+    sections: [
+      {
+        "type": "lead",
+        "text": "Standard I(B) không nhắm vào hối lộ - chuyện đó đã có luật hình sự. Nó nhắm vào những áp lực hoàn toàn hợp pháp làm lệch phán đoán mà người chịu áp lực thường không nhận ra."
+      },
+      {
+        "type": "heading",
+        "text": "Chuyến thăm nhà máy do doanh nghiệp đài thọ"
+      },
+      {
+        "type": "paragraph",
+        "text": "Đi thăm cơ sở là nghiên cứu tốt và Standard không cấm. Thứ tạo ra vấn đề là ai trả tiền. Khi bên được phân tích chi trả một khoản có giá trị đáng kể, nó tạo cảm giác mắc nợ - thiên kiến đáp trả - và cơ chế này hoạt động dưới mức nhận thức."
+      },
+      {
+        "type": "callout",
+        "label": "Điểm quan trọng nhất",
+        "text": "Việc bạn tin chắc mình vẫn khách quan không phải bằng chứng rằng bạn khách quan. Đó chính là lý do Standard đặt ra quy tắc về cấu trúc thay vì trông vào ý chí cá nhân."
+      },
+      {
+        "type": "heading",
+        "text": "Cách xử lý chuẩn trong ngành"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Đi thăm, nhưng công ty bạn tự trả chi phí đi lại và lưu trú.",
+          "Chỉ nhận mức thù tiếp tối thiểu và thông thường - bữa ăn trong buổi làm việc thì được, chuyến bay hạng thương gia thì không.",
+          "Với nghiên cứu do bên phát hành trả tiền: thù lao phẳng, thỏa thuận trước, không gắn với kết luận, và công bố rõ nguồn tài trợ."
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "Thứ tự đúng là tránh xung đột trước, rồi công bố phần không tránh được. Công bố ở cuối báo cáo là bước bổ sung chứ không thay thế được việc loại bỏ chính xung đột đó."
+      },
+      {
+        "type": "closing",
+        "lines": [
+          "Xung đột lợi ích không cần ai có ý đồ xấu.",
+          "Nó chỉ cần một khoản chi và một chút thời gian."
+        ]
+      }
+    ],
     diagram: [
       { label: "Quà tặng, chuyến đi, thù lao từ bên được phân tích", arrow: true },
       { label: "Cảm giác mắc nợ hoạt động dưới mức nhận thức", arrow: true },
@@ -547,6 +676,51 @@ export const CFA_ETHICS_STANDARDS_LESSONS: Lesson[] = [
     correctOption: 1,
     explanation:
       "Standard I(C) có hai vế và cả hai đều bị chạm ở đây. Vế thứ nhất là quy kết sai nguồn: trình bày công sức của người khác - hay của một công cụ - như của mình là trình bày sai lệch, dù không ai bị thiệt hại tài chính. Vế thứ hai nặng hơn với nghề phân tích: nội dung do mô hình ngôn ngữ sinh ra có thể chứa số liệu bịa đặt trông rất thuyết phục, nên đưa vào báo cáo mà chưa kiểm chứng là đưa vào những khẳng định bạn không có cơ sở. CFA Institute không cấm dùng công cụ; nó yêu cầu bạn chịu trách nhiệm cho từng chữ mang tên bạn.",
+    sections: [
+      {
+        "type": "lead",
+        "text": "Standard I(C) cấm mọi hình thức trình bày sai lệch, và trong công việc phân tích nó chạm vào ba thứ rất đời thường: trích dẫn, đạo văn, và giờ là nội dung do công cụ AI sinh ra."
+      },
+      {
+        "type": "heading",
+        "text": "Hai vế của cùng một Standard"
+      },
+      {
+        "type": "paragraph",
+        "text": "Vế thứ nhất là quy kết sai nguồn: trình bày công sức của người khác - hoặc của một công cụ - như của mình là trình bày sai lệch, kể cả khi không ai bị thiệt hại tài chính và kể cả khi chỉ là sơ suất. Không cần ý định lừa dối mới cấu thành vi phạm."
+      },
+      {
+        "type": "comparison",
+        "left": {
+          "label": "Không cần ghi nguồn",
+          "text": "Dữ kiện đã công bố rộng rãi: số liệu vĩ mô, giá đóng cửa, nội dung báo cáo tài chính đã công khai."
+        },
+        "right": {
+          "label": "Bắt buộc ghi nguồn",
+          "text": "Diễn giải, dự báo, mô hình và kết luận của người khác - tức là phần có công sức trí tuệ trong đó."
+        }
+      },
+      {
+        "type": "heading",
+        "text": "Nội dung do AI sinh ra"
+      },
+      {
+        "type": "paragraph",
+        "text": "CFA Institute không cấm dùng công cụ; nó yêu cầu bạn chịu trách nhiệm cho từng chữ mang tên bạn. Vấn đề nặng hơn với nghề phân tích là mô hình ngôn ngữ có thể sinh ra số liệu bịa đặt trông rất thuyết phục - đưa vào báo cáo mà chưa kiểm chứng nghĩa là bạn đang đưa ra những khẳng định không có cơ sở, và điều đó chạm cả Standard V(A)."
+      },
+      {
+        "type": "callout",
+        "label": "Một hiểu nhầm phổ biến",
+        "text": "Việc công ty sở hữu tài liệu không làm bạn trở thành tác giả của nó. Dùng lại báo cáo do đồng nghiệp cũ viết mà để tên mình vẫn là vi phạm."
+      },
+      {
+        "type": "closing",
+        "lines": [
+          "Ghi nguồn không làm bạn kém đi.",
+          "Nó là điều duy nhất làm phần còn lại của báo cáo đáng tin."
+        ]
+      }
+    ],
     diagram: [
       { label: "Quy kết sai nguồn: lấy công sức người khác làm của mình", arrow: true },
       { label: "Khẳng định chưa kiểm chứng: số liệu không có cơ sở", arrow: true },
