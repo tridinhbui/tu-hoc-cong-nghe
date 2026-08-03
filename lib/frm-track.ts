@@ -40,7 +40,7 @@ export const FRM_SUBJECTS: FrmSubject[] = [
     // 1527-1529 (see lib/frm-lessons.ts) are purpose-built: ERM framework/
     // three lines of defense, risk culture/incentive misalignment, and
     // classic financial disasters (Barings, LTCM, 2008, subprime MBS).
-    lessonIds: [1029, 1527, 1528, 1529, 1613, 1614, 1615, 1616, 1617, 1618],
+    lessonIds: [1029, 1527, 1528, 1529, 1613, 1614, 1615, 1616, 1617, 1618, 1650, 1651, 1652, 1653, 1654],
   },
   {
     id: "quant-analysis",
