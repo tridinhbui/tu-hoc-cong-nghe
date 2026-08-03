@@ -96,6 +96,18 @@ export const VN_STANDARDS_TAX_LESSONS: Lesson[] = [
         explanation:
           "Ví dụ kinh điển là thuê tài sản: một hợp đồng mang tên thuê hoạt động nhưng thực chất chuyển gần hết rủi ro và lợi ích cho bên thuê thì phải ghi như một khoản mua bằng vốn vay, tức là hiện lên cả tài sản lẫn nợ trên bảng cân đối.",
       },
+    
+    {
+      "question": "Vì sao khác biệt giữa hai hệ chuẩn mực lại ảnh hưởng tới việc so sánh bội số định giá?",
+      "options": [
+        "Vì cùng một doanh nghiệp có thể ra hai mức lợi nhuận và vốn chủ khác nhau",
+        "Vì bội số định giá được tính theo công thức khác nhau ở mỗi hệ chuẩn mực",
+        "Vì doanh nghiệp áp dụng IFRS luôn được thị trường trả bội số cao hơn",
+        "Vì hai hệ chuẩn mực quy định kỳ báo cáo tài chính khác nhau trong năm"
+      ],
+      "correct": 0,
+      "explanation": "Bội số là một phân số, và cả tử lẫn mẫu đều phụ thuộc chuẩn mực. Đánh giá lại tài sản, ghi nhận tổn thất, vốn hóa chi phí - mỗi khác biệt đều dịch chuyển lợi nhuận hoặc vốn chủ, nên hai con số P/E cạnh nhau có thể đang đo hai thứ khác nhau."
+    }
     ],
     keyTakeaways: [
       "VAS thiên về giá gốc và hình thức pháp lý; IFRS thiên về giá trị hợp lý và bản chất kinh tế",
@@ -252,6 +264,18 @@ export const VN_STANDARDS_TAX_LESSONS: Lesson[] = [
         explanation:
           "Bảng đối chiếu cho phép làm đúng việc này. Phần tăng do đánh giá lại tài sản hay do thay đổi cách ghi nhận là khoản một lần, không lặp lại, nên không được đưa vào cơ sở dự phóng cho các năm sau.",
       },
+    
+    {
+      "question": "Doanh nghiệp báo lợi nhuận tăng vọt trong năm chuyển đổi chuẩn mực. Cách đọc đúng là gì?",
+      "options": [
+        "Kiểm tra bảng đối chiếu xem phần tăng đến từ thay đổi ghi nhận hay từ kinh doanh",
+        "Coi đây là tín hiệu tích cực vì chuẩn mực mới phản ánh đúng giá trị hơn",
+        "Bỏ qua năm chuyển đổi và chỉ so sánh từ năm thứ hai trở đi",
+        "Điều chỉnh lợi nhuận về mức trung bình của ba năm trước khi chuyển đổi"
+      ],
+      "correct": 0,
+      "explanation": "Chuyển đổi chuẩn mực không tạo ra một đồng tiền nào, nó chỉ đổi cách ghi. Bảng đối chiếu bắt buộc phải công bố chính là nơi tách phần do ghi nhận khỏi phần do hoạt động - và đó là tài liệu giá trị nhất của cả năm chuyển đổi."
+    }
     ],
     keyTakeaways: [
       "Chuyển đổi chuẩn mực làm chỉ số nhảy mà hoạt động kinh doanh không đổi",
@@ -562,6 +586,18 @@ export const VN_STANDARDS_TAX_LESSONS: Lesson[] = [
         explanation:
           "Quy mô càng lớn thì khoản chờ hoàn càng lớn, nên nghịch lý là doanh nghiệp xuất khẩu tăng trưởng nhanh lại càng dễ căng thanh khoản. Khi đọc báo cáo, hãy so khoản thuế được khấu trừ với dòng tiền hoạt động để thấy mức độ vốn bị giữ.",
       },
+    
+    {
+      "question": "Vì sao doanh nghiệp xuất khẩu có thể gặp áp lực dòng tiền từ thuế giá trị gia tăng dù được hưởng thuế suất 0%?",
+      "options": [
+        "Vì họ đã trả thuế đầu vào và phải chờ được hoàn lại",
+        "Vì hàng xuất khẩu vẫn chịu thuế đầu ra ở mức thấp hơn thuế suất thông thường",
+        "Vì thuế giá trị gia tăng đầu vào của hàng xuất khẩu không được khấu trừ",
+        "Vì họ phải nộp trước phần thuế của cả năm rồi mới được quyết toán lại"
+      ],
+      "correct": 0,
+      "explanation": "Thuế suất 0% không có nghĩa là không có dòng tiền: tiền thuế đầu vào đã trả cho nhà cung cấp và nằm lại đó cho tới khi hoàn thuế xong. Với doanh nghiệp xuất khẩu quy mô lớn, khoản chờ hoàn này có thể lớn ngang một khoản vay vốn lưu động."
+    }
     ],
     keyTakeaways: [
       "Thuế giá trị gia tăng đi qua bảng cân đối, không qua báo cáo kết quả kinh doanh - nhưng chiếm vốn lưu động thật",
@@ -714,6 +750,18 @@ export const VN_STANDARDS_TAX_LESSONS: Lesson[] = [
         explanation:
           "Đây không phải khoản nợ quá hạn với ngân sách mà là hệ quả của việc chi phí được trừ thuế đến sớm hơn chi phí kế toán. Với doanh nghiệp liên tục tái đầu tư, khoản này có thể duy trì hoặc tăng gần như vô hạn - trên thực tế nó hoạt động như một nguồn vốn không lãi suất.",
       },
+    
+    {
+      "question": "Vì sao doanh nghiệp lỗ nhiều năm nhưng vẫn ghi nhận tài sản thuế hoãn lại lại là điều cần soi kỹ?",
+      "options": [
+        "Vì việc ghi nhận đó ngầm khẳng định họ tin sẽ có lãi đủ để dùng hết khoản lỗ",
+        "Vì tài sản thuế hoãn lại chỉ được ghi nhận khi doanh nghiệp có lợi nhuận",
+        "Vì khoản này làm tăng nghĩa vụ thuế phải nộp trong các kỳ báo cáo tiếp theo",
+        "Vì cơ quan thuế có thể không chấp nhận việc chuyển lỗ sang các năm sau"
+      ],
+      "correct": 0,
+      "explanation": "Ghi nhận tài sản thuế hoãn lại là một tuyên bố về tương lai: sẽ có lợi nhuận chịu thuế để bù trừ khoản lỗ này. Khi dự báo đó không thành, khoản mục phải xóa đi và cú xóa xuất hiện thẳng trong lợi nhuận của năm sau."
+    }
     ],
     keyTakeaways: [
       "Chỉ chênh lệch tạm thời tạo ra thuế hoãn lại; chênh lệch vĩnh viễn thì không",

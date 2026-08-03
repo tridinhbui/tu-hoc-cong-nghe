@@ -573,6 +573,18 @@ export const EXCEL_DATA_LESSONS: Lesson[] = [
         explanation:
           "Quy ước tốt trong ngành là dùng nhóm (group) thay vì ẩn (hide), vì nhóm để lại dấu hiệu nhìn thấy được ở lề bảng tính, còn ẩn thì hoàn toàn vô hình với người nhận bàn giao.",
       },
+    
+    {
+      "question": "Vì sao nên đặt các ô kiểm tra ở nơi luôn nhìn thấy thay vì giấu trong một sheet riêng?",
+      "options": [
+        "Vì lỗi chỉ được sửa nếu người dùng thấy nó ngay khi vừa phát sinh",
+        "Vì ô kiểm tra đặt ở sheet riêng sẽ không cập nhật khi mô hình thay đổi",
+        "Vì chuẩn trình bày mô hình yêu cầu ô kiểm tra nằm trên sheet đầu tiên",
+        "Vì Excel chỉ tính lại các ô kiểm tra khi sheet chứa chúng đang hiển thị"
+      ],
+      "correct": 0,
+      "explanation": "Một ô kiểm tra nằm khuất chỉ hữu ích với người nhớ ra là phải đi xem nó. Đặt ngay trên đầu sheet chính, đổi màu khi lệch, thì lỗi được phát hiện trong lần bấm phím tiếp theo chứ không phải trong cuộc họp."
+    }
     ],
     keyTakeaways: [
       "F9 từng phần để khoanh vùng lỗi trong công thức dài - nhớ nhấn Esc chứ không phải Enter",
@@ -720,6 +732,18 @@ export const EXCEL_DATA_LESSONS: Lesson[] = [
         explanation:
           "Dữ liệu gốc là nguồn sự thật duy nhất. Khi kết quả bị nghi ngờ, bạn phải quay lại được dữ liệu chưa qua xử lý để đối chiếu - nếu đã sửa đè lên nó thì không còn cách nào kiểm chứng.",
       },
+    
+    {
+      "question": "Vì sao làm sạch dữ liệu bằng quy trình ghi lại được lại quan trọng với báo cáo định kỳ?",
+      "options": [
+        "Vì số liệu giữa các kỳ chỉ so sánh được nếu xử lý theo cùng một cách",
+        "Vì quy trình tự động luôn phát hiện được các dòng dữ liệu bị lỗi",
+        "Vì thao tác thủ công không thể xử lý được tập dữ liệu lớn hơn một triệu dòng",
+        "Vì công cụ này giúp giảm dung lượng của tệp bảng tính khi lưu trữ lâu dài"
+      ],
+      "correct": 0,
+      "explanation": "Làm sạch bằng tay nghĩa là mỗi tháng lại xử lý hơi khác đi một chút, và phần chênh lệch giữa các kỳ có thể đến từ chính thao tác chứ không từ hoạt động kinh doanh. Ghi lại quy trình biến việc làm sạch thành một hằng số thay vì một biến số."
+    }
     ],
     keyTakeaways: [
       "Power Query ghi lại các bước làm sạch thành quy trình chạy lại được, thay cho thao tác tay mỗi kỳ",

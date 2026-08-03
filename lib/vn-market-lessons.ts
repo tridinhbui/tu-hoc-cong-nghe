@@ -97,6 +97,18 @@ export const VN_MARKET_LESSONS: Lesson[] = [
         explanation:
           "Định giá nói cho bạn giá trị, thanh khoản nói cho bạn khả năng biến giá trị đó thành tiền. Một khoản đầu tư đúng về định giá nhưng không thoát được vẫn có thể thành khoản lỗ thực tế nếu bạn cần tiền vào đúng lúc thị trường xấu.",
       },
+    
+    {
+      "question": "Vì sao chu kỳ thanh toán ảnh hưởng tới cách nhà đầu tư quản lý tiền mặt?",
+      "options": [
+        "Vì tiền bán cổ phiếu chỉ dùng được sau khi hoàn tất thanh toán bù trừ",
+        "Vì lệnh mua chỉ được đặt sau khi tiền đã về đủ trong tài khoản",
+        "Vì chu kỳ thanh toán quyết định mức phí giao dịch mà công ty chứng khoán thu",
+        "Vì cổ phiếu mua trong ngày có thể bán lại ngay trong cùng phiên giao dịch"
+      ],
+      "correct": 0,
+      "explanation": "Khớp lệnh không phải nhận tiền. Khoảng trễ giữa hai việc nghĩa là bạn không xoay vòng vốn liên tục được, và nếu có nghĩa vụ chi trả đúng ngày thì phải tính lùi lịch bán - chi tiết nhỏ nhưng gây kẹt tiền thật."
+    }
     ],
     keyTakeaways: [
       "Khớp lệnh và thanh toán là hai việc khác nhau; khoảng trễ giữa chúng giới hạn khả năng xoay xở của bạn",
@@ -241,6 +253,18 @@ export const VN_MARKET_LESSONS: Lesson[] = [
         explanation:
           "Mức chênh giữa giá thỏa thuận cho khối ngoại và giá sàn là một tín hiệu định lượng hiếm có: nó cho biết nhà đầu tư nước ngoài sẵn sàng trả thêm bao nhiêu để sở hữu doanh nghiệp đó, và nó thường co lại khi thị trường xấu đi.",
       },
+    
+    {
+      "question": "Cổ phiếu đã hết room ngoại tạo ra hệ quả gì cho việc phân tích?",
+      "options": [
+        "Giá có thể giao dịch cao hơn giá trị vì cầu ngoại không mua thêm được",
+        "Cổ phiếu đó sẽ bị loại khỏi các bộ chỉ số của tổ chức xếp hạng quốc tế",
+        "Nhà đầu tư trong nước cũng bị giới hạn tỷ lệ sở hữu tương ứng",
+        "Doanh nghiệp buộc phải phát hành thêm cổ phiếu để mở rộng room"
+      ],
+      "correct": 0,
+      "explanation": "Cầu bị chặn ở đúng nhóm nhà đầu tư sẵn sàng trả giá cao nhất, nên hình thành cơ chế mua bán thỏa thuận ngoài sàn với mức chênh so với thị giá. Khi phân tích, giá niêm yết lúc này không còn phản ánh đủ mức giá mà người mua thật sự sẵn sàng trả."
+    }
     ],
     keyTakeaways: [
       "Nâng hạng tạo dòng vốn cơ học từ các quỹ thụ động bám chỉ số, không phụ thuộc quan điểm đầu tư",
@@ -559,6 +583,18 @@ export const VN_MARKET_LESSONS: Lesson[] = [
         explanation:
           "Tính độc lập là điều kiện để cơ chế này có ý nghĩa. Khi thành viên độc lập thực chất là người thân hoặc đối tác lâu năm của cổ đông kiểm soát, lớp bảo vệ chỉ còn trên giấy - và điều này kiểm tra được qua phần công bố lý lịch trong báo cáo thường niên.",
       },
+    
+    {
+      "question": "Trong thuyết minh báo cáo tài chính, dấu hiệu nào về giao dịch bên liên quan đáng chú ý nhất?",
+      "options": [
+        "Giá giao dịch lệch rõ so với mặt bằng thị trường của cùng loại hàng hóa",
+        "Số lượng giao dịch với bên liên quan tăng lên qua các năm báo cáo",
+        "Việc doanh nghiệp có nhiều công ty con và công ty liên kết cùng ngành",
+        "Giao dịch được thực hiện với công ty do cổ đông lớn nắm quyền chi phối"
+      ],
+      "correct": 0,
+      "explanation": "Bản thân việc giao dịch trong nội bộ tập đoàn là bình thường và thường cần thiết. Thứ chuyển nó thành vấn đề là mức giá: mua đắt bán rẻ so với thị trường chính là cách giá trị rời khỏi công ty niêm yết mà vẫn đúng quy trình."
+    }
     ],
     keyTakeaways: [
       "Ở thị trường có sở hữu tập trung, rủi ro lớn nhất với cổ đông nhỏ là giá trị bị chuyển ra ngoài chứ không phải kinh doanh kém",

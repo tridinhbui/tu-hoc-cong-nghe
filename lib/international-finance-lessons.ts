@@ -94,6 +94,18 @@ export const INTERNATIONAL_FINANCE_LESSONS: Lesson[] = [
         explanation:
           "Vay ngoại tệ trong khi doanh thu bằng nội tệ tạo ra chênh lệch đồng tiền giữa tài sản và nợ - cùng loại rủi ro với chênh lệch kỳ hạn đã học ở bài trái phiếu doanh nghiệp. Khoản tiết kiệm lãi suất chỉ là tạm ứng cho một khoản lỗ tỷ giá có thể đến sau.",
       },
+    
+    {
+      "question": "Vì sao vay ngoại tệ lãi suất thấp không tự nó rẻ hơn vay nội tệ lãi suất cao?",
+      "options": [
+        "Vì phần chênh lãi suất thường bị bù lại bằng mức mất giá của đồng nội tệ",
+        "Vì lãi suất vay ngoại tệ luôn được điều chỉnh tăng dần theo thời gian vay",
+        "Vì doanh nghiệp phải trả thêm phí chuyển đổi ngoại tệ cho mỗi kỳ trả nợ",
+        "Vì ngân hàng yêu cầu tài sản bảo đảm lớn hơn với các khoản vay ngoại tệ"
+      ],
+      "correct": 0,
+      "explanation": "Ngang giá lãi suất nói rằng phần lợi từ lãi suất thấp về lý thuyết bị triệt tiêu bởi biến động tỷ giá. Doanh nghiệp không có doanh thu ngoại tệ mà vay ngoại tệ vì lãi rẻ thì thực chất đang đặt cược vào tỷ giá, chứ không đang tiết kiệm chi phí vốn."
+    }
     ],
     keyTakeaways: [
       "Tỷ giá kỳ hạn là kết quả của lập luận chặn arbitrage, không phải dự báo của ngân hàng",
@@ -257,6 +269,18 @@ export const INTERNATIONAL_FINANCE_LESSONS: Lesson[] = [
         explanation:
           "Phần lớn giá thành của một bữa ăn hay một dịch vụ là những thứ không thể xuất nhập khẩu được. Vì vậy quốc gia có mức thu nhập thấp thường có mặt bằng giá thấp một cách hệ thống, và điều đó không có nghĩa là đồng tiền của họ đang bị định giá thấp.",
       },
+    
+    {
+      "question": "Chỉ số so sánh giá cùng một sản phẩm giữa các nước có hạn chế gì?",
+      "options": [
+        "Giá còn phản ánh chi phí nhân công và mặt bằng địa phương, không chỉ tỷ giá",
+        "Sản phẩm đó không được bán ở tất cả các quốc gia nên mẫu so sánh quá nhỏ",
+        "Giá bán được các doanh nghiệp điều chỉnh liên tục nên không so sánh được",
+        "Chỉ số này chỉ tính được với hàng hóa xuất khẩu chứ không với dịch vụ"
+      ],
+      "correct": 0,
+      "explanation": "Phần lớn giá một bữa ăn nhanh là những thứ không giao thương được: tiền thuê mặt bằng, lương nhân viên, chi phí phân phối nội địa. Ngang giá sức mua chỉ áp được cho hàng hóa mua bán xuyên biên giới, nên chỉ số này là minh họa hay chứ không phải phép đo."
+    }
     ],
     keyTakeaways: [
       "Ngang giá sức mua là lực kéo dài hạn: lạm phát cao hơn thì đồng tiền có xu hướng mất giá",
