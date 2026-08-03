@@ -446,6 +446,7 @@ export const FRM_MARKET_RISK_DEPTH_LESSONS: Lesson[] = [
       { label: "Bằng VaR của toàn ngân hàng", arrow: true },
       { label: "Component VaR chia phần này lại và cộng đúng bằng tổng thể", arrow: false },
     ],
+    interactiveType: "tail-risk",
     realWorldExample: {
       company: "Phân bổ hạn mức giữa các bàn giao dịch",
       description:

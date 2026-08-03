@@ -117,7 +117,10 @@ export interface Lesson {
     | "prospect"
     | "accretion"
     | "ethics-case"
-    | "macro-policy";
+    | "macro-policy"
+    | "fee-drag"
+    | "ratios"
+    | "tail-risk";
   realWorldExample: {
     company: string;
     description: string;

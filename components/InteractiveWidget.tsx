@@ -16,6 +16,9 @@ import InteractiveProspect from "./InteractiveProspect";
 import InteractiveAccretion from "./InteractiveAccretion";
 import InteractiveEthicsCase from "./InteractiveEthicsCase";
 import InteractiveMacroPolicy from "./InteractiveMacroPolicy";
+import InteractiveFeeDrag from "./InteractiveFeeDrag";
+import InteractiveRatios from "./InteractiveRatios";
+import InteractiveTailRisk from "./InteractiveTailRisk";
 
 export type WidgetType =
   | "interest-rate"
@@ -35,7 +38,10 @@ export type WidgetType =
   | "prospect"
   | "accretion"
   | "ethics-case"
-  | "macro-policy";
+  | "macro-policy"
+  | "fee-drag"
+  | "ratios"
+  | "tail-risk";
 
 export default function InteractiveWidget({ type }: { type: WidgetType }) {
   switch (type) {
@@ -75,6 +81,12 @@ export default function InteractiveWidget({ type }: { type: WidgetType }) {
       return <InteractiveEthicsCase />;
     case "macro-policy":
       return <InteractiveMacroPolicy />;
+    case "fee-drag":
+      return <InteractiveFeeDrag />;
+    case "ratios":
+      return <InteractiveRatios />;
+    case "tail-risk":
+      return <InteractiveTailRisk />;
   }
 }
 
@@ -101,6 +113,9 @@ export const WIDGET_TYPES: readonly WidgetType[] = [
   "accretion",
   "ethics-case",
   "macro-policy",
+  "fee-drag",
+  "ratios",
+  "tail-risk",
 ];
 
 export function hasInteractiveWidget(type: string | null | undefined): type is WidgetType {

@@ -3222,6 +3222,7 @@ export const FRM_CORE_GAPS_LESSONS: Lesson[] = [
         label: "Tổng hợp phân phối kết quả → lấy phân vị cần thiết"
       }
     ],
+    interactiveType: "tail-risk",
     realWorldExample: {
       company: "Chi phí tính toán của mô phỏng toàn danh mục",
       description: "Với một danh mục lớn chứa nhiều sản phẩm phái sinh phức tạp, mỗi kịch bản đòi hỏi định giá lại toàn bộ danh mục, và bản thân việc định giá một số sản phẩm lại cần một vòng mô phỏng lồng bên trong. Chi phí tính toán tăng theo cấp số nhân, khiến các kỹ thuật giảm phương sai và phương pháp xấp xỉ không phải là tối ưu hoá cho vui mà là điều kiện để bài toán chạy được trong thời gian có ích."
@@ -3385,6 +3386,7 @@ export const FRM_CORE_GAPS_LESSONS: Lesson[] = [
         label: "Phân phối các giá trị đó → khoảng tin cậy"
       }
     ],
+    interactiveType: "tail-risk",
     realWorldExample: {
       company: "Bootstrapping trong kiểm định hậu nghiệm mô hình VaR",
       description: "Khi kiểm định hậu nghiệm một mô hình VaR, câu hỏi là số lần vượt ngưỡng quan sát được có nằm trong khoảng chấp nhận hay không. Với cỡ mẫu thực tế thường chỉ vài trăm ngày, các kiểm định dựa trên phân phối tiệm cận có thể không đáng tin. Bootstrapping cho phép dựng phân phối của thống kê kiểm định ngay từ chính dữ liệu, tránh phải giả định về dạng phân phối trong điều kiện mẫu nhỏ."
@@ -3541,6 +3543,7 @@ export const FRM_CORE_GAPS_LESSONS: Lesson[] = [
         label: "Ngoại suy ra phân vị cao hơn mọi quan sát đã có"
       }
     ],
+    interactiveType: "tail-risk",
     realWorldExample: {
       company: "Vì sao mô hình dựa trên phân phối chuẩn thất bại ở vùng đuôi",
       description: "Theo phân phối chuẩn, một cú sụt bằng năm lần độ lệch chuẩn là biến cố được kỳ vọng xuất hiện vài lần trong khoảng thời gian dài hơn tuổi của thị trường chứng khoán hiện đại. Trên thực tế, các thị trường lớn đã ghi nhận nhiều phiên vượt ngưỡng đó chỉ trong vài thập kỷ. Khoảng cách giữa lý thuyết và quan sát này là lý do trực tiếp khiến lý thuyết giá trị cực trị được đưa vào chương trình quản trị rủi ro."

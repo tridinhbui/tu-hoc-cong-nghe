@@ -678,6 +678,7 @@ export const ADVANCED_MASTERCLASS_LESSONS: Lesson[] = [
       { label: "VaR = ngưỡng lỗ tại đó", arrow: true },
       { label: "Phần đuôi còn lại: Expected Shortfall" },
     ],
+    interactiveType: "tail-risk",
     realWorldExample: {
       company: "Bài học từ khủng hoảng 2008",
       description:
