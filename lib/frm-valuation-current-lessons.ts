@@ -674,6 +674,7 @@ export const FRM_VALUATION_CURRENT_LESSONS: Lesson[] = [
         label: "Trái phiếu có quyền mua lại → phải dùng duration hiệu dụng"
       }
     ],
+    interactiveType: "bond",
     realWorldExample: {
       company: "Vì sao duration hiệu dụng tồn tại",
       description: "Duration thường được tính từ chính dòng tiền hợp đồng của trái phiếu. Nhưng với trái phiếu có quyền mua lại trước hạn hay khoản vay có quyền trả trước, chính dòng tiền lại thay đổi theo lãi suất - lãi suất giảm thì tổ chức phát hành mua lại, dòng tiền biến mất. Duration hiệu dụng đo bằng cách dịch cả đường cong lên xuống rồi định giá lại, nên nó bắt được hiệu ứng đó; công thức dựa trên dòng tiền cố định thì không."

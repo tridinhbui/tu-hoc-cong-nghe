@@ -252,6 +252,7 @@ export const ADVANCED_MASTERCLASS_LESSONS: Lesson[] = [
       { label: "Giá phải giảm", arrow: true },
       { label: "YTM tăng bằng mặt bằng mới" },
     ],
+    interactiveType: "bond",
     realWorldExample: {
       company: "Khủng hoảng trái phiếu doanh nghiệp Việt Nam 2022",
       description:

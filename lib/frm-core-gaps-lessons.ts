@@ -2124,6 +2124,7 @@ export const FRM_CORE_GAPS_LESSONS: Lesson[] = [
         label: "Dải nào dồn tích âm → cần nguồn dự phòng cho dải đó"
       }
     ],
+    interactiveType: "cash-flow-simulator",
     realWorldExample: {
       company: "Vì sao xếp dòng tiền theo hành vi khó hơn theo hợp đồng",
       description: "Tiền gửi không kỳ hạn về mặt hợp đồng có thể bị rút bất cứ lúc nào, nên xếp hết vào dải qua đêm sẽ cho ra một khe hở khổng lồ và vô nghĩa. Thực tế phần lớn số dư này ổn định qua nhiều năm. Ngược lại, một khoản vay có kỳ hạn năm năm nhưng khách hàng có quyền trả trước lại có thể về sớm hơn hợp đồng. Vì vậy các tổ chức xây mô hình hành vi song song với lịch hợp đồng, và chất lượng của mô hình đó quyết định thang dòng tiền có dùng được hay không."
