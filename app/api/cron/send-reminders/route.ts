@@ -4,6 +4,7 @@ import { getStreakRiskStatus, getInactiveDaysCount } from "@/lib/streak-reminder
 import { sendEmail } from "@/lib/send-email";
 import { sendPushNotification } from "@/lib/web-push";
 import { isAuthorizedCronRequest } from "@/lib/cron-auth";
+import { getMotivationLine } from "@/lib/daily-motivation";
 import type { UserStreak } from "@/lib/supabase-streak";
 
 // Vercel Cron hits this route via GET (see vercel.json: "0 12 * * *" = 19:00
@@ -20,9 +21,9 @@ const REMINDER_COOLDOWN_HOURS = 20;
 async function sendReminderEmail(
   to: string,
   subject: string,
-  body: string
+  paragraphs: string[]
 ): Promise<{ sent: boolean; reason?: string }> {
-  return sendEmail(to, subject, `<p>${body}</p>`);
+  return sendEmail(to, subject, paragraphs.map((p) => `<p>${p}</p>`).join(""));
 }
 
 interface ReminderCandidate {
@@ -142,6 +143,16 @@ export async function GET(request: NextRequest) {
         ? "Đừng để mất streak học tập của bạn!"
         : "Đã lâu rồi bạn chưa quay lại học tài chính";
 
+    // Cùng pool "ngọn lửa đinh hoả" với widget dashboard, nên hai kênh nói
+    // cùng một giọng: "sắp mất streak" -> giữ lửa, "vắng 3 ngày" -> kéo về.
+    // Không đảm bảo trùng khít từng câu với widget: widget chạy theo múi giờ
+    // trình duyệt và còn tách riêng trạng thái streak vừa đứt (rekindle), còn
+    // cron chạy theo giờ máy chủ và chỉ có hai lý do.
+    const motivation = getMotivationLine(
+      candidate.user_id,
+      reason === "streak_at_risk" ? "keep" : "return",
+    ).text;
+
     if (candidate.email_reminders_enabled) {
       const profile = profileByUser.get(candidate.user_id);
       if (profile?.email) {
@@ -150,7 +161,7 @@ export async function GET(request: NextRequest) {
             ? `Chào ${profile.full_name || "bạn"}, streak học tập của bạn sắp bị mất nếu hôm nay không học. Quay lại ngay nhé!`
             : `Chào ${profile.full_name || "bạn"}, đã vài ngày rồi bạn chưa học bài mới. Quay lại tiếp tục lộ trình của bạn nhé!`;
 
-        const result = await sendReminderEmail(profile.email, title, body);
+        const result = await sendReminderEmail(profile.email, title, [body, `🔥 ${motivation}`]);
         if (result.sent) {
           emailSent += 1;
         } else if (result.reason === "no_api_key") {
@@ -164,9 +175,11 @@ export async function GET(request: NextRequest) {
         reason === "streak_at_risk"
           ? "Streak học tập của bạn sắp bị mất nếu hôm nay không học. Quay lại ngay nhé!"
           : "Đã vài ngày rồi bạn chưa học bài mới. Quay lại tiếp tục lộ trình của bạn nhé!";
+      // Push chỉ hiện được vài dòng, nên lời nhắn đứng trước câu nhắc việc.
+      const pushBodyWithMotivation = `🔥 ${motivation}\n${pushBody}`;
 
       for (const sub of subscriptionsByUser.get(candidate.user_id) ?? []) {
-        const result = await sendPushNotification(sub, { title, body: pushBody, url: "/dashboard" });
+        const result = await sendPushNotification(sub, { title, body: pushBodyWithMotivation, url: "/dashboard" });
         if (result.sent) {
           pushSent += 1;
         } else if (result.reason === "no_vapid_keys") {

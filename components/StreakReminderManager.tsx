@@ -10,6 +10,7 @@ import {
   reminderShownKey,
   type ReminderKind,
 } from "@/lib/streak-reminders";
+import { getMotivationLine } from "@/lib/daily-motivation";
 import { getRecallCountAction } from "@/lib/recall-actions";
 
 const BANNER_DISMISSED_KEY = "notif-banner-dismissed_v1";
@@ -92,7 +93,14 @@ export default function StreakReminderManager({
           const alreadyShown = (kind: ReminderKind) =>
             window.localStorage.getItem(reminderShownKey(kind)) === "1";
 
-          const decision = decideReminder({ streakRisk, dueRecallCount, alreadyShown });
+          const decision = decideReminder({
+            streakRisk,
+            dueRecallCount,
+            alreadyShown,
+            // Giọng "giữ lửa": người dùng vẫn còn streak, chỉ là hôm nay chưa
+            // học - đúng trạng thái mà getStreakRiskStatus báo isAtRisk.
+            motivationLine: getMotivationLine(userId, "keep").text,
+          });
           if (!decision) return;
 
           // Mark shown before firing, still inside the lock, so a second

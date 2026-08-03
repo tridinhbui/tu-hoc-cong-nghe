@@ -63,6 +63,7 @@ import WorldBossRaidWidget from "@/components/WorldBossRaidWidget";
 import FinancialGuildWidget from "@/components/FinancialGuildWidget";
 import PvpDuelModal from "@/components/PvpDuelModal";
 import DashboardStreakWidget from "@/components/DashboardStreakWidget";
+import DailyMotivationWidget from "@/components/DailyMotivationWidget";
 
 
 
@@ -1112,6 +1113,8 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
               visibly jumps/flashes as the browser recalculates its
               scrollable range every time this column's height changes. */}
           <div className={`space-y-5 min-w-0 ${isLessonsView ? "xl:col-span-8 xl:min-h-0 xl:overflow-y-auto xl:pr-1.5" : "xl:col-span-4 xl:min-h-0 xl:overflow-y-auto xl:pr-0.5"}`}>
+
+            {user?.id && <DailyMotivationWidget userId={user.id} />}
 
             {/* On the overview route the learning path is replaced by a single
                 signpost to it - the whole point of the split is that there is

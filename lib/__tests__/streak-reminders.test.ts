@@ -116,6 +116,26 @@ describe("decideReminder", () => {
     expect(result?.body).toContain("5 ngày");
   });
 
+  it("appends the motivation line to the streak reminder when given one", () => {
+    const result = decideReminder({
+      streakRisk: { hasActiveStreak: true, isAtRisk: true, currentStreak: 5 },
+      dueRecallCount: 0,
+      alreadyShown: notShownYet,
+      motivationLine: "Một bài thôi là nó sống tiếp.",
+    });
+    expect(result?.body).toContain("5 ngày");
+    expect(result?.body).toContain("🔥 Một bài thôi là nó sống tiếp.");
+  });
+
+  it("leaves the body untouched when no motivation line is passed", () => {
+    const result = decideReminder({
+      streakRisk: { hasActiveStreak: true, isAtRisk: true, currentStreak: 5 },
+      dueRecallCount: 0,
+      alreadyShown: notShownYet,
+    });
+    expect(result?.body).not.toContain("🔥");
+  });
+
   it("falls back to recall reminder when streak isn't at risk", () => {
     const result = decideReminder({
       streakRisk: { hasActiveStreak: false, isAtRisk: false, currentStreak: 0 },

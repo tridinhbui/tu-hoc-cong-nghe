@@ -104,14 +104,20 @@ export function decideReminder(params: {
   streakRisk: StreakRiskStatus;
   dueRecallCount: number;
   alreadyShown: (kind: ReminderKind) => boolean;
+  /** Lời nhắn "ngọn lửa đinh hoả" kèm theo, nếu caller có userId để chọn được
+   *  một câu (lib/daily-motivation.ts). Bỏ trống thì thông báo giữ nguyên như
+   *  cũ - hàm này vẫn thuần và test được mà không cần dựng pool. */
+  motivationLine?: string;
 }): ReminderDecision | null {
-  const { streakRisk, dueRecallCount, alreadyShown } = params;
+  const { streakRisk, dueRecallCount, alreadyShown, motivationLine } = params;
+  const withMotivation = (body: string) =>
+    motivationLine ? `${body}\n🔥 ${motivationLine}` : body;
 
   if (streakRisk.isAtRisk && !alreadyShown("streak")) {
     return {
       kind: "streak",
       title: "Sắp hết ngày rồi!",
-      body: `Học 1 bài để giữ streak ${streakRisk.currentStreak} ngày của bạn nhé.`,
+      body: withMotivation(`Học 1 bài để giữ streak ${streakRisk.currentStreak} ngày của bạn nhé.`),
     };
   }
 
