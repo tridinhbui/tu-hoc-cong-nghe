@@ -202,7 +202,7 @@ export default function StudyRoomScene({
     );
     return () => {
       leave();
-      // Vân bề mặt dùng chung với đại sảnh và được cache ở tầng module; nhả ra
+      // Vân bề mặt dùng chung với thư viện và được cache ở tầng module; nhả ra
       // khi rời phòng, nếu không cả bộ ở lại trong GPU suốt phiên.
       disposeRoomTextures();
     };

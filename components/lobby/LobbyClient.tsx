@@ -19,7 +19,7 @@ import {
  *  và người dùng thấy khung chờ thay vì lỗi hydrate. */
 const LobbySceneInner = dynamic(() => import("./LobbySceneInner"), {
   ssr: false,
-  loading: () => <SceneFallback label="Đang dựng đại sảnh…" />,
+  loading: () => <SceneFallback label="Đang dựng thư viện…" />,
 });
 
 function SceneFallback({ label }: { label: string }) {
@@ -204,7 +204,7 @@ export default function LobbyClient() {
       {/* Tiêu đề + số người THẬT trong phòng (đếm từ presence, không phải số dựng) */}
       <div className="pointer-events-none absolute inset-x-0 top-0 z-10 flex justify-center p-4">
         <div className="rounded-2xl bg-stone-900/75 px-5 py-2.5 text-center shadow-lg backdrop-blur">
-          <h1 className="text-sm font-bold text-amber-200">Đại sảnh · Phòng đọc New York</h1>
+          <h1 className="text-sm font-bold text-amber-200">Thư viện · Phòng đọc Sài Gòn</h1>
           <p className="text-[11px] text-stone-400">
             {peerCount > 0
               ? `${peerCount} người đang ở trong sảnh`

@@ -126,7 +126,7 @@ export function colorForUser(userId: string): string {
   return palette[hash % palette.length];
 }
 
-/** Tham gia đại sảnh. Trả về hàm rời đi; gọi nó trong cleanup của useEffect. */
+/** Tham gia thư viện. Trả về hàm rời đi; gọi nó trong cleanup của useEffect. */
 export function joinLobby(
   identity: LobbyIdentity,
   onPeers: PeersListener,

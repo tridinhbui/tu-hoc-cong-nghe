@@ -93,7 +93,7 @@ export interface StudyRoomWorldProps {
   name: string;
   avatarUrl: string | null;
   level: number;
-  /** Số bài đã học trong tuần - khắc lên biển tên như chuỗi ngày ở đại sảnh. */
+  /** Số bài đã học trong tuần - khắc lên biển tên như chuỗi ngày ở thư viện. */
   weeklyLessons: number;
   /** Mục tiêu XP tuần của nhóm, viết lên bảng trắng trong phòng. */
   weeklyXpProgress: number;

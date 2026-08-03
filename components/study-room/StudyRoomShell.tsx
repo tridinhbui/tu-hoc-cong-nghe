@@ -21,7 +21,7 @@ import {
 import { bookshelfTexture, boardTexture, oakTexture, rugTexture } from "@/components/lobby/room-textures";
 
 /** Vỏ phòng và toàn bộ đồ đạc. Không tải model nào: mọi thứ là khối cơ bản với
- *  vân vẽ bằng canvas, cùng cách đại sảnh đang làm - một phòng nhóm phải mở
+ *  vân vẽ bằng canvas, cùng cách thư viện đang làm - một phòng nhóm phải mở
  *  được ngay trên máy yếu, và một file GLB vài MB thì không.
  *
  *  Toạ độ mọi thứ ở đây đọc từ study-room-space.ts, kể cả những thứ không phải

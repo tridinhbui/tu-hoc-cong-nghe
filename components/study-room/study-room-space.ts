@@ -2,8 +2,8 @@
  *
  *  Một nguồn duy nhất cho cả ba thứ hay trôi ra khỏi nhau: chỗ VẼ cái bàn, chỗ
  *  CHẶN cái bàn, và chỗ ĐẶT người ngồi vào bàn. components/lobby/room-obstacles.ts
- *  đã ghi lại đúng bài học ấy cho đại sảnh; ở đây tách file riêng vì đây là một
- *  căn phòng khác với danh sách đồ đạc khác, và hàm giải va chạm của đại sảnh
+ *  đã ghi lại đúng bài học ấy cho thư viện; ở đây tách file riêng vì đây là một
+ *  căn phòng khác với danh sách đồ đạc khác, và hàm giải va chạm của thư viện
  *  gắn cứng vào mảng OBSTACLES cùng khái niệm tầng lửng của riêng nó. */
 
 export const ROOM = {
@@ -134,7 +134,7 @@ export const PLANTS: Array<[number, number]> = [
  *  của nó cần được cả cảnh lẫn HUD biết. */
 export const BOARD = { x: 0, z: -HALF_D + 0.12, y: 2.05, width: 4.6, height: 2.5 };
 
-/** Cửa ở tường nam - nơi nhân vật xuất hiện và cũng là lối về đại sảnh. */
+/** Cửa ở tường nam - nơi nhân vật xuất hiện và cũng là lối về thư viện. */
 export const DOOR = { x: 0, z: HALF_D - 0.06, halfWidth: 1.1, height: 2.6 };
 
 export const OBSTACLES: Obstacle[] = [

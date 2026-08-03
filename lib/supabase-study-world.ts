@@ -6,11 +6,11 @@ import { CHAT_MAX_LENGTH, type LobbyChatMessage, type LobbyPose } from "@/lib/su
  *
  *  Cùng cơ chế với lib/supabase-lobby.ts - presence chở danh tính, broadcast
  *  chở vị trí và lời nói - nhưng KHÔNG dùng lại được nguyên hàm ở đó, và khác
- *  biệt không phải chuyện gu code: đại sảnh có đúng MỘT phòng, nên nó giữ một
+ *  biệt không phải chuyện gu code: thư viện có đúng MỘT phòng, nên nó giữ một
  *  channel duy nhất ở tầng module. Nhóm học có nhiều phòng cùng tồn tại và một
  *  người có thể đổi phòng trong cùng một phiên, nên ở đây mọi thứ phải khoá
  *  theo roomId. Ép cái một-phòng thành nhiều-phòng thì cũng chính là file này,
- *  chỉ khác là đại sảnh phải gánh thêm rủi ro của một lần viết lại.
+ *  chỉ khác là thư viện phải gánh thêm rủi ro của một lần viết lại.
  *
  *  Phần thực sự dùng chung được thì dùng chung thật: kiểu tin nhắn, giới hạn
  *  độ dài, màu theo userId đều import từ supabase-lobby chứ không chép lại. */
