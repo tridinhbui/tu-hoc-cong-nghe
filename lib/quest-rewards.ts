@@ -20,12 +20,24 @@
 // attendance ("send a message", "open a game") is a token.
 export const QUEST_XP_REWARDS: Record<string, number> = {
   daily_1: 10, // Hoàn thành 1 bài học - real learning, unchanged
-  daily_study_group: 2, // Điểm danh Học Nhóm - one message; attendance only (was 10)
+  // 2026-08-24: về 0 và nhường chỗ cho daily_focus. Cả hai đo cùng một thứ -
+  // "hôm nay bạn có tới phòng nhóm không" - nhưng cái cũ tính bằng một tin
+  // nhắn, thứ gõ trong hai giây, còn cái mới tính bằng thời gian ngồi do máy
+  // chủ đo.
+  daily_study_group: 0, // Điểm danh Học Nhóm - đã thay bằng daily_focus
   daily_2: 2, // Chơi 1 ván mini game - participation only (was 5)
-  daily_3: 5, // Đạt 100% trong 1 mini game - skill, but games are short (was 15)
+  daily_3: 2, // Đạt 100% trong 1 mini game - hạ từ 5 để nhường ngân sách cho daily_focus; mini game rất ngắn
   // Zeroed by 20260812_tighten_xp_economy.sql - these two are pure
   // "you opened the page" quests, they shouldn't mint XP.
   daily_4: 0,
+  // Ngồi học đủ một phiên trong thế giới 3D, thời gian do máy chủ đo.
+  //
+  // Năm điểm này KHÔNG phải thêm vào ngân sách ngày - nó lấy từ trong ra:
+  // daily_study_group về 0 (nó đo cùng một việc bằng một cách tệ hơn) và
+  // daily_3 hạ từ 5 xuống 2. Tổng vẫn là 27, đúng bất biến mà
+  // lib/__tests__/quest-rewards.test.ts đang giữ - thêm một nhiệm vụ kiếm XP
+  // mà không lấy từ đâu ra chính là cách nền kinh tế XP trôi lần trước.
+  daily_focus: 5,
   daily_game: 0,
   daily_news_quiz: 8, // components/DailyNewsQuizWidget.tsx - a real quiz (was 15)
   career_assessment: 50, // components/JobSearchClient.tsx - one-time (day_key "once")

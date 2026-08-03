@@ -57,6 +57,17 @@ export async function getDailyQuests(userId: string, dayKey: string): Promise<Qu
   // we can use games played or lessons finished as proxy, or simply check if they solved at least one standalone quiz.
   const solvedQuizCount = completedTodayCount; // reuse completed lessons/quizzes as indicator
 
+  // 3b. Phiên ngồi học trong thế giới 3D hôm nay. Đọc thẳng focus_sessions -
+  // bảng do /api/focus-session ghi với hai mốc thời gian server tự đặt, nên
+  // con số này không giả được bằng devtools như một cờ trong localStorage.
+  const startOfDay = new Date(`${dayKey}T00:00:00`);
+  const { data: focusToday } = await supabase
+    .from("focus_sessions")
+    .select("seconds")
+    .eq("user_id", userId)
+    .gte("started_at", startOfDay.toISOString());
+  const focusSecondsToday = (focusToday ?? []).reduce((sum, r) => sum + ((r.seconds as number) ?? 0), 0);
+
   // 4. Fetch claimed status from DB
   const claimedSet = new Set<string>();
   const { data: claims, error: claimsError } = await supabase
@@ -134,6 +145,18 @@ export async function getDailyQuests(userId: string, dayKey: string): Promise<Qu
       current: 1,
       xpReward: QUEST_XP_REWARDS.daily_4,
       claimed: claimedSet.has("daily_4"),
+    },
+    {
+      // Mục tiêu 15 phút chứ không phải trọn 25: một phiên Pomodoro bị cắt
+      // ngang vì có việc vẫn là thời gian đã ngồi học thật, và bắt phải đủ 25
+      // mới tính sẽ biến nhiệm vụ thành thứ hoặc-tất-cả-hoặc-không.
+      id: "daily_focus",
+      title: "Ngồi học trong thành phố",
+      description: "Ngồi học 15 phút ở thư viện hoặc phòng nhóm 3D",
+      target: 15,
+      current: Math.min(15, Math.floor(focusSecondsToday / 60)),
+      xpReward: QUEST_XP_REWARDS.daily_focus,
+      claimed: claimedSet.has("daily_focus"),
     },
     {
       id: "daily_game",

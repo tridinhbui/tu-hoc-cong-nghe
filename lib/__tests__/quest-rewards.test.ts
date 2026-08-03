@@ -51,7 +51,7 @@ describe("getWeekStartKey", () => {
 describe("getQuestXpReward", () => {
   it("returns the table value for known quests", () => {
     expect(getQuestXpReward("daily_1")).toBe(10);
-    expect(getQuestXpReward("daily_study_group")).toBe(2);
+    expect(getQuestXpReward("daily_focus")).toBe(5);
   });
 
   it("returns 0, not null, for quests deliberately worth nothing", () => {
@@ -59,6 +59,9 @@ describe("getQuestXpReward", () => {
     // quests that simply don't pay, so they must stay distinguishable.
     expect(getQuestXpReward("daily_4")).toBe(0);
     expect(getQuestXpReward("daily_game")).toBe(0);
+    // daily_study_group về 0 khi daily_focus thay chỗ nó: nó vẫn là nhiệm vụ
+    // hợp lệ, chỉ là không trả XP nữa.
+    expect(getQuestXpReward("daily_study_group")).toBe(0);
   });
 
   it("returns null for unknown quests so the route can reject them", () => {

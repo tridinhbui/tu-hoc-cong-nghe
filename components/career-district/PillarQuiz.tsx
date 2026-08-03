@@ -93,7 +93,7 @@ export default function PillarQuiz({ lessonId, accent, onClose, onCorrect }: Pro
   );
 
   return (
-    <div className="pointer-events-auto absolute inset-x-3 bottom-3 z-20 mx-auto max-w-md rounded-2xl border border-stone-700 bg-stone-900/95 p-4 shadow-2xl backdrop-blur sm:inset-x-auto sm:left-4 sm:w-96">
+    <div className="pointer-events-auto absolute inset-x-3 bottom-36 z-20 mx-auto max-w-md rounded-2xl border border-stone-700 bg-stone-900/95 p-4 shadow-2xl backdrop-blur sm:inset-x-auto sm:bottom-3 sm:left-4 sm:w-96">
       <div className="mb-2 flex items-start justify-between gap-2">
         <p className="text-[10px] font-black uppercase tracking-widest" style={{ color: accent }}>
           ❓ Ôn nhanh tại chỗ

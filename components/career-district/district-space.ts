@@ -29,7 +29,15 @@ import { BODY_RADIUS, resolveObstacles, type BoxObstacle, type CircleObstacle, t
  *  và khu phố này không được phép giữ một bản chép thứ hai của nó. */
 export type FloorRoomId = `tang-${string}`;
 
-export type DistrictRoomId = "street" | CareerCategory | "thap" | "khu-game" | FloorRoomId;
+export type DistrictRoomId =
+  | "street"
+  | CareerCategory
+  | "thap"
+  | "khu-game"
+  | "cong-vien"
+  | "trung-tam"
+  | "quan-ca-phe"
+  | FloorRoomId;
 
 export interface Pose {
   x: number;
@@ -91,6 +99,16 @@ export interface LiftSpot {
   reach: number;
 }
 
+/** Một chỗ ngồi học. Khác `stops` (cột bài học) ở chỗ ngồi xuống đây mở một
+ *  phiên focus_sessions thật - đây là nơi duy nhất trong khu phố mà thời gian
+ *  được tính. */
+export interface CafeSeat {
+  index: number;
+  x: number;
+  z: number;
+  ry: number;
+}
+
 export interface DistrictRoom {
   id: DistrictRoomId;
   label: string;
@@ -105,6 +123,8 @@ export interface DistrictRoom {
   lift: LiftSpot | null;
   /** Các cột bài học, chỉ có ở phòng lộ trình. */
   stops?: PathStop[];
+  /** Chỗ ngồi học, chỉ có ở quán cà phê. */
+  seats?: CafeSeat[];
   /** Kích thước hình học để phần vẽ dựng sàn, tường, mái. */
   size: { width: number; depth: number; height: number };
 }
@@ -483,6 +503,245 @@ const GAME_SQUARE: DistrictRoom = (() => {
   };
 })();
 
+
+// ── Công viên và trung tâm ──────────────────────────────────────────────────
+
+/** Công viên bên kia đường, và quảng trường trung tâm ở giữa phố.
+ *
+ *  Hai chỗ này KHÔNG có tính năng nào - và đó là chủ ý. Một khu phố mà chỗ nào
+ *  cũng có việc phải làm thì đi trong đó là đi làm việc vặt; công viên là chỗ
+ *  đứng lại, nhìn quanh, gặp người khác mà không phải mở gì cả. Đây cũng là
+ *  chỗ duy nhất trong cả thành phố có ghế để ngồi mà không tính giờ.
+ *
+ *  Trung tâm thì ngược lại: nó là nơi cả thành phố nhìn thấy nhau - bảng lớn ở
+ *  giữa mang tiến độ của chính người đang đứng, và bốn lối toả ra bốn hướng
+ *  của khu phố. */
+
+export const PARK_X = -18;
+export const CENTER_X = 0;
+
+const PARK_W = 34;
+const PARK_D = 26;
+
+/** Cây trong công viên: xếp theo vòng chứ không theo hàng, để nó khác hẳn hàng
+ *  cây thẳng tắp ngoài phố. */
+export const PARK_TREES: Array<[number, number]> = Array.from({ length: 10 }, (_, i) => {
+  const a = (i / 10) * Math.PI * 2;
+  const r = 9 + (i % 3) * 2.2;
+  return [Math.cos(a) * r, Math.sin(a) * r * 0.8] as [number, number];
+});
+
+/** Ghế đá quanh hồ nước ở giữa. */
+export const PARK_BENCHES: Array<[number, number]> = [
+  [-5, 2.4],
+  [5, 2.4],
+  [-5, -2.4],
+  [5, -2.4],
+];
+
+export const POND = { x: 0, z: 0, radius: 3.4 };
+
+const PARK_ROOM: DistrictRoom = {
+  id: "cong-vien",
+  label: "Công viên Bến Nghé",
+  kind: "office",
+  accent: "#4ade80",
+  size: { width: PARK_W, depth: PARK_D, height: 14 },
+  bounds: { minX: -PARK_W / 2 + 1, maxX: PARK_W / 2 - 1, minZ: -PARK_D / 2 + 1, maxZ: PARK_D / 2 - 1 },
+  obstacles: [
+    { kind: "circle", x: POND.x, z: POND.z, radius: POND.radius },
+    ...PARK_TREES.map(([x, z]): CircleObstacle => ({ kind: "circle", x, z, radius: 0.6 })),
+    ...PARK_BENCHES.map(([x, z]): BoxObstacle => ({ kind: "box", x, z, halfW: 0.9, halfD: 0.3 })),
+  ],
+  desks: [],
+  portals: [],
+  lift: null,
+  doorways: [
+    {
+      id: "cong-vien-exit",
+      to: "street",
+      x: 0,
+      z: PARK_D / 2 - 0.6,
+      reach: 2.2,
+      label: "Ra phố",
+      arriveAt: { x: PARK_X, z: -3.4, ry: Math.PI / 2 },
+      accent: "#4ade80",
+    },
+  ],
+};
+
+const CENTER_W = 24;
+const CENTER_D = 24;
+
+/** Bốn lối toả ra từ quảng trường trung tâm. */
+const CENTER_EXITS: Array<{ id: string; to: DistrictRoomId; x: number; z: number; label: string; accent: string }> = [
+  { id: "tt-pho", to: "street", x: 0, z: CENTER_D / 2 - 0.6, label: "Ra phố", accent: "#fbbf24" },
+  { id: "tt-thap", to: "thap", x: 0, z: -CENTER_D / 2 + 0.6, label: "Tháp Tự Học", accent: "#fbbf24" },
+  { id: "tt-game", to: "khu-game", x: CENTER_W / 2 - 0.6, z: 0, label: "Quảng trường Game", accent: "#f472b6" },
+  { id: "tt-cong-vien", to: "cong-vien", x: -CENTER_W / 2 + 0.6, z: 0, label: "Công viên", accent: "#4ade80" },
+];
+
+/** Cột đèn quanh quảng trường, xếp thành vòng. */
+export const CENTER_LAMPS: Array<[number, number]> = Array.from({ length: 8 }, (_, i) => {
+  const a = (i / 8) * Math.PI * 2 + Math.PI / 8;
+  return [Math.cos(a) * 8.4, Math.sin(a) * 8.4] as [number, number];
+});
+
+/** Đài phun nước ở giữa quảng trường - mốc định hướng của cả thành phố. */
+export const FOUNTAIN = { x: 0, z: 0, radius: 2.6 };
+
+const CENTER_ROOM: DistrictRoom = {
+  id: "trung-tam",
+  label: "Quảng trường Trung tâm",
+  kind: "office",
+  accent: "#fbbf24",
+  size: { width: CENTER_W, depth: CENTER_D, height: 16 },
+  bounds: { minX: -CENTER_W / 2 + 1, maxX: CENTER_W / 2 - 1, minZ: -CENTER_D / 2 + 1, maxZ: CENTER_D / 2 - 1 },
+  obstacles: [
+    { kind: "circle", x: FOUNTAIN.x, z: FOUNTAIN.z, radius: FOUNTAIN.radius },
+    ...CENTER_LAMPS.map(([x, z]): CircleObstacle => ({ kind: "circle", x, z, radius: 0.34 })),
+  ],
+  desks: [],
+  portals: [],
+  lift: null,
+  doorways: CENTER_EXITS.map((e) => ({
+    id: e.id,
+    to: e.to,
+    x: e.x,
+    z: e.z,
+    reach: 2.4,
+    label: e.label,
+    // Vào phòng nào thì đứng ở lối vào của phòng đó, không phải giữa phòng:
+    // bước qua một cánh cửa rồi thấy mình ở giữa gian phòng là mất hẳn cảm
+    // giác vừa đi qua cái gì.
+    arriveAt:
+      e.to === "street"
+        ? { x: CENTER_X, z: -3.4, ry: Math.PI / 2 }
+        : e.to === "thap"
+        ? { x: 0, z: TOWER_HALF_D - 3.8, ry: 0 }
+        : e.to === "khu-game"
+        ? { x: 0, z: SQUARE_D / 2 - 6, ry: 0 }
+        : { x: 0, z: PARK_D / 2 - 3, ry: 0 },
+    accent: e.accent,
+  })),
+};
+
+
+// ── Quán cà phê tài chính ───────────────────────────────────────────────────
+
+/** Quán cà phê vỉa hè kiểu Sài Gòn, có sách và có chỗ ngồi ôn.
+ *
+ *  Đây là chỗ DUY NHẤT trong khu phố mà ngồi xuống thì thời gian được tính -
+ *  cùng một phiên focus_sessions với thư viện và phòng nhóm. Thư viện là chỗ
+ *  ngồi nghiêm túc, phòng nhóm là chỗ ngồi cùng nhóm, còn đây là chỗ ngồi một
+ *  mình với ly cà phê và một cuốn sách; ba kiểu học khác nhau, và người ta
+ *  không phải lúc nào cũng muốn kiểu thứ nhất.
+ *
+ *  Bàn ghế là ghế nhựa thấp và bàn inox, xếp quay ra phía cửa - đúng cách quán
+ *  vỉa hè Sài Gòn xếp bàn, vì người ta ngồi để nhìn ra đường. */
+export const CAFE_X = 18;
+
+const CAFE_W = 20;
+const CAFE_D = 22;
+
+/** Bàn cà phê: một dãy sát cửa nhìn ra phố, một dãy trong góc yên tĩnh. */
+export const CAFE_TABLES: Array<[number, number]> = [
+  [-6, 6.5],
+  [-2, 6.5],
+  [2, 6.5],
+  [6, 6.5],
+  [-6.4, 0.5],
+  [-6.4, -3.5],
+  [6.4, 0.5],
+  [6.4, -3.5],
+];
+
+/** Kệ sách tài chính dọc tường bắc. */
+export const CAFE_SHELF_XS = [-5.5, 0, 5.5];
+export const CAFE_SHELF_Z = -CAFE_D / 2 + 0.35;
+
+/** Quầy pha chế ở góc tây bắc. */
+/** Quầy lùi lên phía tường bắc để không chạm dãy bàn góc tây - hai vùng chặn
+ *  chạm nhau là kẹt người, xem lib/walkable-space.ts. */
+export const CAFE_COUNTER = { x: -CAFE_W / 2 + 1.4, z: -8, halfW: 1.2, halfD: 1.2 };
+
+/** Chậu cây và đèn dây - phần "chill" của quán. */
+export const CAFE_PLANTS: Array<[number, number]> = [
+  [CAFE_W / 2 - 1.4, CAFE_D / 2 - 2],
+  [-CAFE_W / 2 + 1.4, CAFE_D / 2 - 2],
+];
+
+const CAFE_ROOM: DistrictRoom = (() => {
+  const halfW = CAFE_W / 2;
+  const halfD = CAFE_D / 2;
+  // Mỗi bàn một chỗ ngồi, quay mặt về phía bàn.
+  const seats: CafeSeat[] = CAFE_TABLES.map(([x, z], i) => ({
+    index: i,
+    x,
+    z: z + 1.15,
+    ry: 0,
+  }));
+  return {
+    id: "quan-ca-phe",
+    label: "Cà phê Số & Sách",
+    kind: "office",
+    accent: "#fbbf24",
+    size: { width: CAFE_W, depth: CAFE_D, height: 4.6 },
+    bounds: { minX: -halfW + 0.8, maxX: halfW - 0.8, minZ: -halfD + 0.8, maxZ: halfD - 0.8 },
+    obstacles: [
+      ...CAFE_TABLES.map(([x, z]): CircleObstacle => ({ kind: "circle", x, z, radius: 0.62 })),
+      ...CAFE_SHELF_XS.map((x): BoxObstacle => ({ kind: "box", x, z: CAFE_SHELF_Z, halfW: 1.5, halfD: 0.35 })),
+      {
+        kind: "box",
+        x: CAFE_COUNTER.x,
+        z: CAFE_COUNTER.z,
+        halfW: CAFE_COUNTER.halfW,
+        halfD: CAFE_COUNTER.halfD,
+      },
+      ...CAFE_PLANTS.map(([x, z]): CircleObstacle => ({ kind: "circle", x, z, radius: 0.5 })),
+    ],
+    desks: [],
+    portals: [],
+    lift: null,
+    seats,
+    doorways: [
+      {
+        id: "quan-ca-phe-exit",
+        to: "street",
+        x: 0,
+        z: halfD - 0.5,
+        reach: 2.2,
+        label: "Ra phố",
+        arriveAt: { x: CAFE_X, z: -3.4, ry: Math.PI / 2 },
+        accent: "#fbbf24",
+      },
+    ],
+  };
+})();
+
+/** Đứng gần hơn khoảng này thì mời ngồi. */
+export const CAFE_SEAT_REACH = 1.9;
+
+/** Chỗ ngồi trống gần nhất trong tầm, hoặc null. */
+export function nearestCafeSeat(
+  room: DistrictRoom,
+  x: number,
+  z: number,
+  taken: ReadonlySet<number>
+): CafeSeat | null {
+  let best: CafeSeat | null = null;
+  let bestDist = CAFE_SEAT_REACH;
+  for (const seat of room.seats ?? []) {
+    if (taken.has(seat.index)) continue;
+    const d = Math.hypot(seat.x - x, seat.z - z);
+    if (d < bestDist) {
+      bestDist = d;
+      best = seat;
+    }
+  }
+  return best;
+}
+
 const STREET_ROOM: DistrictRoom = {
   id: "street",
   label: "Phố nghề Sài Gòn",
@@ -535,6 +794,36 @@ const STREET_ROOM: DistrictRoom = {
   lift: null,
   doorways: [
     {
+      id: "door-quan-ca-phe",
+      to: "quan-ca-phe" as DistrictRoomId,
+      x: CAFE_X,
+      z: STREET.walkMaxZ - 0.4,
+      reach: 2.6,
+      label: "Cà phê Số & Sách",
+      arriveAt: { x: 0, z: CAFE_D / 2 - 3, ry: 0 },
+      accent: "#fbbf24",
+    },
+    {
+      id: "door-cong-vien",
+      to: "cong-vien" as DistrictRoomId,
+      x: PARK_X,
+      z: STREET.walkMaxZ - 0.4,
+      reach: 2.6,
+      label: "Công viên Bến Nghé",
+      arriveAt: { x: 0, z: PARK_D / 2 - 3, ry: 0 },
+      accent: "#4ade80",
+    },
+    {
+      id: "door-trung-tam",
+      to: "trung-tam" as DistrictRoomId,
+      x: CENTER_X,
+      z: STREET.walkMaxZ - 0.4,
+      reach: 2.6,
+      label: "Quảng trường Trung tâm",
+      arriveAt: { x: 0, z: CENTER_D / 2 - 3, ry: 0 },
+      accent: "#fbbf24",
+    },
+    {
       id: "door-khu-game",
       to: "khu-game" as DistrictRoomId,
       x: GAME_SQUARE_X,
@@ -570,7 +859,9 @@ const STREET_ROOM: DistrictRoom = {
 };
 
 export const DISTRICT_ROOMS: Record<string, DistrictRoom> = Object.fromEntries(
-  [STREET_ROOM, TOWER_LOBBY, STAGE_FLOOR, GAME_SQUARE, ...OFFICES, ...FLOORS].map((r) => [r.id, r])
+  [STREET_ROOM, TOWER_LOBBY, STAGE_FLOOR, GAME_SQUARE, PARK_ROOM, CENTER_ROOM, CAFE_ROOM, ...OFFICES, ...FLOORS].map(
+    (r) => [r.id, r]
+  )
 );
 
 export function getRoom(id: DistrictRoomId): DistrictRoom {

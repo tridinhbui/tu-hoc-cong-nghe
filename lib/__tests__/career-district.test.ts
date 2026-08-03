@@ -45,8 +45,9 @@ function inBounds(room: DistrictRoom, x: number, z: number) {
 
 describe("khu phố nghề", () => {
   it("có đúng một phòng cho mỗi nhóm ngành, một cho mỗi tầng tháp, cộng phố và sảnh", () => {
-    // +4: con phố, sảnh tháp, tầng chặng học, và quảng trường game.
-    expect(ALL_ROOMS).toHaveLength(CAREER_CATEGORY_ORDER.length + STATIONS.length + 4);
+    // +7: phố, sảnh tháp, tầng chặng học, quảng trường game, công viên, quảng
+    // trường trung tâm và quán cà phê.
+    expect(ALL_ROOMS).toHaveLength(CAREER_CATEGORY_ORDER.length + STATIONS.length + 7);
     for (const category of CAREER_CATEGORY_ORDER) {
       expect(getRoom(category).label).toBe(CAREER_CATEGORY_LABELS[category]);
     }

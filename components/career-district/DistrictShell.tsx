@@ -9,7 +9,18 @@ import {
   GATE_PILLAR_Z,
   GATE_XS,
   GATE_Z,
+  CAFE_COUNTER,
+  CAFE_X,
+  CAFE_PLANTS,
+  CAFE_SHELF_XS,
+  CAFE_SHELF_Z,
+  CAFE_TABLES,
+  CENTER_LAMPS,
+  FOUNTAIN,
   GAME_SQUARE_X,
+  PARK_BENCHES,
+  PARK_TREES,
+  POND,
   SHOP_X,
   STREET,
   TOWER_X,
@@ -285,6 +296,64 @@ function GameHall() {
   );
 }
 
+/** Mặt tiền quán cà phê: hiên rộng, đèn dây vàng, bàn ghế bày cả ra vỉa hè.
+ *  Nhìn từ ngoài đường phải biết ngay đây là quán chứ không phải văn phòng. */
+function CafeFront() {
+  return (
+    <group position={[CAFE_X, 0, STREET.facadeZ]}>
+      <mesh position={[0, 4, -2]} castShadow receiveShadow>
+        <boxGeometry args={[11, 8, 6]} />
+        <meshStandardMaterial color="#4a3b2e" roughness={0.9} />
+      </mesh>
+      {/* mái hiên vải sọc */}
+      <mesh position={[0, 3.2, 1.6]} rotation={[0.22, 0, 0]} castShadow>
+        <boxGeometry args={[11.6, 0.12, 3]} />
+        <meshStandardMaterial color="#b45309" roughness={0.85} />
+      </mesh>
+      {/* cửa kính sáng đèn vàng */}
+      <mesh position={[0, 1.5, 0.32]}>
+        <planeGeometry args={[7, 3]} />
+        <meshBasicMaterial color="#ffd9a0" opacity={0.6} transparent toneMapped={false} />
+      </mesh>
+      <pointLight position={[0, 2.2, 2]} intensity={9} distance={12} color="#ffcf87" />
+      {/* bàn ghế bày ra vỉa hè */}
+      {[-3.4, 0, 3.4].map((x) => (
+        <group key={x} position={[x, 0, 2.9]}>
+          <mesh position={[0, 0.5, 0]} castShadow>
+            <cylinderGeometry args={[0.42, 0.4, 0.05, 14]} />
+            <meshStandardMaterial color="#b8bcc0" metalness={0.7} roughness={0.4} />
+          </mesh>
+          <mesh position={[0, 0.25, 0]}>
+            <cylinderGeometry args={[0.05, 0.08, 0.48, 8]} />
+            <meshStandardMaterial color="#8b9095" metalness={0.65} roughness={0.45} />
+          </mesh>
+          {[-0.6, 0.6].map((sx) => (
+            <mesh key={sx} position={[sx, 0.22, 0]} castShadow>
+              <cylinderGeometry args={[0.2, 0.24, 0.06, 10]} />
+              <meshStandardMaterial color="#b91c1c" roughness={0.6} />
+            </mesh>
+          ))}
+        </group>
+      ))}
+      {/* đèn dây vắt trước hiên */}
+      {[-4.5, -2.2, 0, 2.2, 4.5].map((x) => (
+        <mesh key={x} position={[x, 3.3, 3]}>
+          <sphereGeometry args={[0.1, 8, 8]} />
+          <meshBasicMaterial color="#ffcf87" toneMapped={false} />
+        </mesh>
+      ))}
+      <TextBoard
+        title="CÀ PHÊ SỐ & SÁCH"
+        rows={["Cà phê phin, sách tài chính, chỗ ngồi ôn", "Ngồi xuống là bắt đầu tính giờ học"]}
+        accent="#fbbf24"
+        width={7.6}
+        height={1.9}
+        position={[0, 3.9, 3.12]}
+      />
+    </group>
+  );
+}
+
 function StreetScene({ progressByCategory }: { progressByCategory: Record<CareerCategory, { done: number; total: number }> }) {
   const asphalt = useMemo(() => asphaltTexture(), []);
   return (
@@ -309,6 +378,7 @@ function StreetScene({ progressByCategory }: { progressByCategory: Record<Career
       ))}
       <Tower />
       <GameHall />
+      <CafeFront />
 
       {/* Hai cổng sang hai thế giới 3D còn lại. Vòm đá thay vì tấm biển: một
           cánh cổng phải trông như đi qua được thì người ta mới thử đi qua. */}
@@ -351,6 +421,289 @@ function StreetScene({ progressByCategory }: { progressByCategory: Record<Career
           <boxGeometry args={[12, 12, 8]} />
           <meshStandardMaterial color="#2a2724" roughness={1} />
         </mesh>
+      ))}
+    </group>
+  );
+}
+
+
+/** Công viên: hồ nước, ghế đá, cây xếp vòng, trời mở.
+ *
+ *  Không trần và không tường - đây là chỗ duy nhất trong khu phố ở ngoài trời
+ *  mà không phải mặt đường, và cái cảm giác "ngẩng lên thấy trời" là toàn bộ
+ *  lý do nó tồn tại. */
+function ParkScene({ room }: { room: DistrictRoom }) {
+  const { width, depth } = room.size;
+  return (
+    <group>
+      <mesh rotation={[-Math.PI / 2, 0, 0]} receiveShadow>
+        <planeGeometry args={[width + 8, depth + 8]} />
+        <meshStandardMaterial color="#3f5f3a" roughness={0.98} />
+      </mesh>
+      {/* lối đi lát quanh hồ */}
+      <mesh rotation={[-Math.PI / 2, 0, 0]} position={[0, 0.01, 0]}>
+        <ringGeometry args={[POND.radius + 0.6, POND.radius + 2.2, 40]} />
+        <meshStandardMaterial color="#7d7166" roughness={0.95} />
+      </mesh>
+      {/* hồ */}
+      <mesh rotation={[-Math.PI / 2, 0, 0]} position={[POND.x, 0.02, POND.z]}>
+        <circleGeometry args={[POND.radius, 36]} />
+        <meshStandardMaterial color="#1e4d5c" roughness={0.15} metalness={0.5} />
+      </mesh>
+      <mesh position={[POND.x, 0.06, POND.z]} rotation={[-Math.PI / 2, 0, 0]}>
+        <ringGeometry args={[POND.radius - 0.12, POND.radius, 36]} />
+        <meshStandardMaterial color="#8b8078" roughness={0.9} />
+      </mesh>
+
+      {PARK_TREES.map(([x, z]) => (
+        <Tree key={`${x}:${z}`} x={x} z={z} />
+      ))}
+
+      {PARK_BENCHES.map(([x, z]) => (
+        <group key={`${x}:${z}`} position={[x, 0, z]} rotation={[0, z > 0 ? Math.PI : 0, 0]}>
+          <mesh position={[0, 0.42, 0]} castShadow receiveShadow>
+            <boxGeometry args={[1.8, 0.09, 0.5]} />
+            <meshStandardMaterial color="#6b4f33" roughness={0.9} />
+          </mesh>
+          <mesh position={[0, 0.72, -0.22]} castShadow>
+            <boxGeometry args={[1.8, 0.5, 0.07]} />
+            <meshStandardMaterial color="#6b4f33" roughness={0.9} />
+          </mesh>
+          {[-0.75, 0.75].map((lx) => (
+            <mesh key={lx} position={[lx, 0.21, 0]}>
+              <boxGeometry args={[0.12, 0.42, 0.44]} />
+              <meshStandardMaterial color="#57534e" roughness={0.85} />
+            </mesh>
+          ))}
+        </group>
+      ))}
+
+      {/* Hàng rào thấp quanh công viên: nói "hết công viên" mà không dựng tường. */}
+      {[-1, 1].map((s) => (
+        <mesh key={s} position={[0, 0.4, (s * depth) / 2]}>
+          <boxGeometry args={[width, 0.8, 0.12]} />
+          <meshStandardMaterial color="#4a443e" roughness={0.9} />
+        </mesh>
+      ))}
+      {[-1, 1].map((s) => (
+        <mesh key={`x${s}`} position={[(s * width) / 2, 0.4, 0]}>
+          <boxGeometry args={[0.12, 0.8, depth]} />
+          <meshStandardMaterial color="#4a443e" roughness={0.9} />
+        </mesh>
+      ))}
+    </group>
+  );
+}
+
+/** Quảng trường trung tâm: đài phun nước, vòng cột đèn, bốn lối toả ra. */
+function CenterScene({ room }: { room: DistrictRoom }) {
+  const { width, depth } = room.size;
+  return (
+    <group>
+      <mesh rotation={[-Math.PI / 2, 0, 0]} receiveShadow>
+        <planeGeometry args={[width + 6, depth + 6]} />
+        <meshStandardMaterial color="#6f6862" roughness={0.95} />
+      </mesh>
+      {/* vòng lát đá quanh đài phun */}
+      {[4.2, 6.6, 9].map((r) => (
+        <mesh key={r} rotation={[-Math.PI / 2, 0, 0]} position={[0, 0.01, 0]}>
+          <ringGeometry args={[r - 0.14, r, 48]} />
+          <meshStandardMaterial color="#8b8078" roughness={0.9} />
+        </mesh>
+      ))}
+
+      {/* đài phun nước */}
+      <group position={[FOUNTAIN.x, 0, FOUNTAIN.z]}>
+        <mesh position={[0, 0.35, 0]} castShadow receiveShadow>
+          <cylinderGeometry args={[FOUNTAIN.radius, FOUNTAIN.radius + 0.2, 0.7, 24]} />
+          <meshStandardMaterial color="#9a9086" roughness={0.85} />
+        </mesh>
+        <mesh position={[0, 0.72, 0]} rotation={[-Math.PI / 2, 0, 0]}>
+          <circleGeometry args={[FOUNTAIN.radius - 0.25, 24]} />
+          <meshStandardMaterial color="#2f6f86" roughness={0.15} metalness={0.5} />
+        </mesh>
+        <mesh position={[0, 1.5, 0]} castShadow>
+          <cylinderGeometry args={[0.18, 0.34, 1.6, 12]} />
+          <meshStandardMaterial color="#b0a698" roughness={0.8} />
+        </mesh>
+        <mesh position={[0, 2.5, 0]}>
+          <sphereGeometry args={[0.34, 14, 14]} />
+          <meshBasicMaterial color="#a5d8e8" toneMapped={false} />
+        </mesh>
+        <pointLight position={[0, 2.6, 0]} intensity={8} distance={12} color="#a5d8e8" />
+      </group>
+
+      {CENTER_LAMPS.map(([x, z]) => (
+        <StreetLamp key={`${x}:${z}`} x={x} z={z} />
+      ))}
+
+      {/* Bốn khối chỉ hướng ở bốn lối ra, màu theo đích đến. */}
+      {room.doorways.map((d) => (
+        <group key={d.id} position={[d.x * 0.82, 0, d.z * 0.82]}>
+          <mesh position={[0, 1.1, 0]} castShadow>
+            <boxGeometry args={[0.3, 2.2, 0.3]} />
+            <meshStandardMaterial color="#3f3a35" roughness={0.85} />
+          </mesh>
+          <mesh position={[0, 2.35, 0]}>
+            <octahedronGeometry args={[0.3, 0]} />
+            <meshBasicMaterial color={d.accent} toneMapped={false} />
+          </mesh>
+          <pointLight position={[0, 2.4, 0]} intensity={5} distance={7} color={d.accent} />
+        </group>
+      ))}
+    </group>
+  );
+}
+
+
+/** Quán cà phê vỉa hè Sài Gòn: bàn inox, ghế nhựa thấp, đèn dây, kệ sách tài
+ *  chính và quầy pha phin.
+ *
+ *  Ghế thấp và bàn nhỏ là chi tiết làm nên nó - bàn ghế văn phòng cao ngang
+ *  bụng thì đây thành một phòng họp có cây cảnh. Đèn dây vắt ngang trần là thứ
+ *  duy nhất ở đây phát sáng ấm, và nó làm gần hết việc. */
+function CafeScene({ room, seatTaken }: { room: DistrictRoom; seatTaken: ReadonlySet<number> }) {
+  const floor = useMemo(() => oakTexture(5, 6), []);
+  const shelf = useMemo(() => bookshelfTexture(), []);
+  const { width, depth, height } = room.size;
+  const halfW = width / 2;
+  const halfD = depth / 2;
+
+  return (
+    <group>
+      <mesh rotation={[-Math.PI / 2, 0, 0]} receiveShadow>
+        <planeGeometry args={[width, depth]} />
+        <meshStandardMaterial map={floor} roughness={0.9} />
+      </mesh>
+      <mesh rotation={[Math.PI / 2, 0, 0]} position={[0, height, 0]}>
+        <planeGeometry args={[width, depth]} />
+        <meshStandardMaterial color="#241c16" roughness={1} />
+      </mesh>
+      {[
+        [0, height / 2, -halfD, 0],
+        [0, height / 2, halfD, Math.PI],
+        [-halfW, height / 2, 0, Math.PI / 2],
+        [halfW, height / 2, 0, -Math.PI / 2],
+      ].map(([x, y, z, ry], i) => (
+        <mesh key={i} position={[x, y, z]} rotation={[0, ry, 0]} receiveShadow>
+          <planeGeometry args={[i < 2 ? width : depth, height]} />
+          <meshStandardMaterial color={i < 2 ? "#3d3128" : "#372c24"} roughness={0.95} />
+        </mesh>
+      ))}
+
+      {/* Cửa kính nhìn ra phố, ở tường nam. */}
+      <mesh position={[0, 1.8, halfD - 0.06]} rotation={[0, Math.PI, 0]}>
+        <planeGeometry args={[width - 3, 3]} />
+        <meshBasicMaterial color="#f5d9a8" opacity={0.32} transparent toneMapped={false} />
+      </mesh>
+
+      {/* Đèn dây vắt ngang - phần "chill" của quán, và gần như toàn bộ ánh sáng. */}
+      {[-4, 0, 4].map((z) => (
+        <group key={z}>
+          <mesh position={[0, height - 0.6, z]}>
+            <boxGeometry args={[width - 1, 0.03, 0.03]} />
+            <meshStandardMaterial color="#2a2320" />
+          </mesh>
+          {[-6, -3, 0, 3, 6].map((x) => (
+            <group key={x} position={[x, height - 0.78, z]}>
+              <mesh>
+                <sphereGeometry args={[0.11, 10, 10]} />
+                <meshBasicMaterial color="#ffcf87" toneMapped={false} />
+              </mesh>
+              <pointLight intensity={2.4} distance={7} color="#ffcf87" />
+            </group>
+          ))}
+        </group>
+      ))}
+
+      {/* Bàn inox + ghế nhựa thấp. Ghế sáng lên khi có người ngồi. */}
+      {CAFE_TABLES.map(([x, z], i) => {
+        const taken = seatTaken.has(i);
+        return (
+          <group key={`${x}:${z}`} position={[x, 0, z]}>
+            <mesh position={[0, 0.52, 0]} castShadow receiveShadow>
+              <cylinderGeometry args={[0.52, 0.5, 0.05, 18]} />
+              <meshStandardMaterial color="#b8bcc0" metalness={0.75} roughness={0.35} />
+            </mesh>
+            <mesh position={[0, 0.26, 0]}>
+              <cylinderGeometry args={[0.06, 0.09, 0.5, 10]} />
+              <meshStandardMaterial color="#8b9095" metalness={0.7} roughness={0.4} />
+            </mesh>
+            {/* ly cà phê phin */}
+            <mesh position={[0.16, 0.61, 0.08]} castShadow>
+              <cylinderGeometry args={[0.06, 0.05, 0.12, 10]} />
+              <meshStandardMaterial color="#f5f5f4" roughness={0.4} />
+            </mesh>
+            <mesh position={[0.16, 0.7, 0.08]}>
+              <cylinderGeometry args={[0.055, 0.055, 0.06, 10]} />
+              <meshStandardMaterial color="#8a8a8a" metalness={0.8} roughness={0.3} />
+            </mesh>
+            {/* cuốn sách đang mở */}
+            <mesh position={[-0.14, 0.57, -0.02]} rotation={[0, 0.35, 0]} castShadow>
+              <boxGeometry args={[0.34, 0.04, 0.24]} />
+              <meshStandardMaterial color={["#7f1d1d", "#1e3a8a", "#14532d", "#78350f"][i % 4]} roughness={0.8} />
+            </mesh>
+            {/* ghế nhựa thấp, quay ra phía cửa */}
+            <group position={[0, 0, 1.15]}>
+              <mesh position={[0, 0.24, 0]} castShadow receiveShadow>
+                <cylinderGeometry args={[0.22, 0.26, 0.07, 12]} />
+                <meshStandardMaterial color={taken ? "#f59e0b" : "#b91c1c"} roughness={0.6} />
+              </mesh>
+              {[0, 1, 2, 3].map((k) => {
+                const a = (k / 4) * Math.PI * 2 + Math.PI / 4;
+                return (
+                  <mesh key={k} position={[Math.cos(a) * 0.16, 0.1, Math.sin(a) * 0.16]}>
+                    <cylinderGeometry args={[0.022, 0.022, 0.2, 6]} />
+                    <meshStandardMaterial color={taken ? "#b45309" : "#7f1d1d"} roughness={0.7} />
+                  </mesh>
+                );
+              })}
+            </group>
+          </group>
+        );
+      })}
+
+      {/* Kệ sách tài chính dọc tường bắc */}
+      {CAFE_SHELF_XS.map((x) => (
+        <mesh key={x} position={[x, 1.05, CAFE_SHELF_Z]} castShadow receiveShadow>
+          <boxGeometry args={[3, 2.1, 0.7]} />
+          <meshStandardMaterial map={shelf} roughness={0.9} />
+        </mesh>
+      ))}
+      <TextBoard
+        title="CÀ PHÊ SỐ & SÁCH"
+        rows={["Ngồi xuống là bắt đầu tính giờ học", "Sách tài chính đọc tại chỗ"]}
+        accent="#fbbf24"
+        width={6.6}
+        height={1.9}
+        position={[0, 2.9, CAFE_SHELF_Z + 0.4]}
+      />
+
+      {/* Quầy pha phin */}
+      <group position={[CAFE_COUNTER.x, 0, CAFE_COUNTER.z]}>
+        <mesh position={[0, 0.55, 0]} castShadow receiveShadow>
+          <boxGeometry args={[CAFE_COUNTER.halfW * 2, 1.1, CAFE_COUNTER.halfD * 2]} />
+          <meshStandardMaterial color="#4a3728" roughness={0.85} />
+        </mesh>
+        <mesh position={[0, 1.14, 0]}>
+          <boxGeometry args={[CAFE_COUNTER.halfW * 2 + 0.1, 0.06, CAFE_COUNTER.halfD * 2 + 0.1]} />
+          <meshStandardMaterial color="#2b2320" roughness={0.5} metalness={0.3} />
+        </mesh>
+        {[-0.5, 0, 0.5].map((z) => (
+          <mesh key={z} position={[0.2, 1.26, z]}>
+            <cylinderGeometry args={[0.07, 0.07, 0.16, 10]} />
+            <meshStandardMaterial color="#9ca3af" metalness={0.8} roughness={0.3} />
+          </mesh>
+        ))}
+        <pointLight position={[0, 2.1, 0.8]} intensity={4} distance={6} color="#ffcf87" />
+      </group>
+
+      {/* Chậu cây góc quán: dùng lại hình cây ngoài phố nhưng thu nhỏ, thay vì
+          thêm một loại cây nữa chỉ để đứng trong nhà. */}
+      {CAFE_PLANTS.map(([x, z]) => (
+        <group key={`${x}:${z}`} position={[x, 0, z]} scale={0.5}>
+          <Tree x={0} z={0} />
+        </group>
       ))}
     </group>
   );
@@ -646,6 +999,7 @@ export default function DistrictShell({
   lessonTitles,
   doneSlugs,
   progressByCategory,
+  seatTaken,
 }: {
   room: DistrictRoom;
   /** Tên bài học của phòng này, đã tra sẵn ở tầng trên. */
@@ -654,10 +1008,16 @@ export default function DistrictShell({
   doneSlugs: ReadonlySet<string>;
   /** Tiến độ từng nhóm ngành, khắc lên biển hiệu ngoài phố. */
   progressByCategory: Record<CareerCategory, { done: number; total: number }>;
+  /** Ghế cà phê đang có người, để ghế đổi màu. */
+  seatTaken: ReadonlySet<number>;
 }) {
-  return room.kind === "street" ? (
-    <StreetScene progressByCategory={progressByCategory} />
-  ) : (
+  if (room.kind === "street") return <StreetScene progressByCategory={progressByCategory} />;
+  // Công viên và quảng trường là ngoài trời: chúng không có trần, không có bốn
+  // bức tường, và dùng chung OfficeScene sẽ nhốt chúng trong một cái hộp.
+  if (room.id === "cong-vien") return <ParkScene room={room} />;
+  if (room.id === "trung-tam") return <CenterScene room={room} />;
+  if (room.id === "quan-ca-phe") return <CafeScene room={room} seatTaken={seatTaken} />;
+  return (
     <OfficeScene room={room} lessonTitles={lessonTitles} doneSlugs={doneSlugs} />
   );
 }

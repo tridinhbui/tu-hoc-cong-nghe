@@ -6,6 +6,7 @@ import Link from "next/link";
 import { createClient } from "@/lib/supabase";
 import dynamicImport from "next/dynamic";
 import Leaderboard from "@/components/Leaderboard";
+import FocusTimePanel from "@/components/FocusTimePanel";
 
 const LearningAnalytics = dynamicImport(
   () => import("@/components/LearningAnalytics"),
@@ -63,8 +64,11 @@ export default function AnalyticsPage() {
 
       <div className="flex-1 min-h-0 overflow-y-auto max-w-[1480px] mx-auto w-full px-5 pb-4 sm:px-6">
         <div className="grid gap-4 xl:grid-cols-12 xl:items-start">
-          <div className="xl:col-span-5 min-w-0">
+          <div className="xl:col-span-5 min-w-0 space-y-4">
             <LearningAnalytics hideLeaderboardTab />
+            {/* Thời gian ngồi học trong thế giới 3D. Tấm thẻ tự ẩn khi chưa có
+                phiên nào, nên nó không chiếm chỗ của người chưa vào thành phố. */}
+            {userId && <FocusTimePanel userId={userId} />}
           </div>
           <div className="xl:col-span-7 min-w-0">
             <div className="xl:sticky xl:top-3">

@@ -13,11 +13,14 @@ import {
   type DistrictRoomId,
   type Doorway,
   type PathStop,
+  type CafeSeat,
   type Pose,
   type RoomPortal,
 } from "./district-space";
 import { formulasFor, lessonSlugsFor, lessonSlugsForCareer, type StageIndexEntry } from "./district-content";
 import { sayInStudyWorld } from "@/lib/supabase-study-world";
+import { finishFocusSession, startFocusSession } from "@/lib/focus-session";
+import { useWorldSound } from "@/components/world-controls/world-sound";
 import { CHAT_MAX_LENGTH } from "@/lib/supabase-lobby";
 import { createWalkState } from "@/components/world-controls/easy-walk";
 import PillarQuiz from "./PillarQuiz";
@@ -159,6 +162,11 @@ export default function DistrictWorld({
   const [portal, setPortal] = useState<RoomPortal | null>(null);
   const [atLift, setAtLift] = useState(false);
   const [stop, setStop] = useState<PathStop | null>(null);
+  /** Ghế cà phê trong tầm, và ghế đang ngồi. Ngồi xuống mở một phiên
+   *  focus_sessions - cùng đường với thư viện và phòng nhóm. */
+  const [seatable, setSeatable] = useState<CafeSeat | null>(null);
+  const [seated, setSeated] = useState<number | null>(null);
+  const focusIdRef = useRef<number | null>(null);
   /** Bảng thang máy mở bằng nút trên HUD, không cần đi tới buồng thang. */
   const [liftPanel, setLiftPanel] = useState(false);
   const [stagePanel, setStagePanel] = useState(false);
@@ -177,6 +185,15 @@ export default function DistrictWorld({
    *  mỗi khung hình. */
   const playerRef = useRef({ x: 0, z: 0 });
   const [mapPeers, setMapPeers] = useState<MinimapPeer[]>([]);
+  /** Bảng điều hướng trên màn hẹp: ẩn mặc định, mở bằng nút la bàn. */
+  const [travelOpen, setTravelOpen] = useState(false);
+  /** Ghế đang có người: của mình cộng của người khác. Người khác công bố chỗ
+   *  ngồi qua presence, cùng cơ chế bàn học ở thư viện. */
+  const sound = useWorldSound();
+  /** Qua ref để các callback dưới không phải khai lại mỗi lần bật/tắt tiếng. */
+  const soundRef = useRef(sound);
+  soundRef.current = sound;
+  const seatTaken = useMemo(() => new Set(seated === null ? [] : [seated]), [seated]);
 
   const room = getRoom(roomId);
 
@@ -198,6 +215,7 @@ export default function DistrictWorld({
   }, [walking]);
 
   const go = useCallback((target: Doorway) => {
+    soundRef.current.play("enter");
     setRoomId(target.to);
     setEntry(target.arriveAt);
     setDesk(null);
@@ -207,6 +225,7 @@ export default function DistrictWorld({
     setStop(null);
     setLiftPanel(false);
     setStagePanel(false);
+    setTravelOpen(false);
   }, []);
 
   /** Bấm một tầng trong bảng thang máy. Cùng đường với đi bộ qua cửa: đổi phòng
@@ -221,6 +240,7 @@ export default function DistrictWorld({
     setStop(null);
     setLiftPanel(false);
     setStagePanel(false);
+    setTravelOpen(false);
   }, []);
 
   /** Vào một hành lang lộ trình - của một nghề, hoặc của một chặng học.
@@ -243,6 +263,7 @@ export default function DistrictWorld({
       setStop(null);
       setLiftPanel(false);
       setStagePanel(false);
+      setTravelOpen(false);
     },
     []
   );
@@ -316,6 +337,8 @@ export default function DistrictWorld({
           onPortalChange={setPortal}
           onLiftChange={setAtLift}
           onStopChange={setStop}
+          onSeatChange={setSeatable}
+          seatTaken={seatTaken}
           playerRef={playerRef}
           onPeersChange={setMapPeers}
           doneSlugs={doneSlugs}
@@ -324,6 +347,17 @@ export default function DistrictWorld({
           daylight={daylight}
         />
       )}
+
+      {/* Trên màn hẹp, bảng "vào thẳng phòng" và bản đồ đều bị ẩn - trước đó
+          chúng ẩn hẳn, nghĩa là người dùng điện thoại mất cả lối tắt lẫn định
+          hướng. Nút này mở lại chúng, và chỉ tồn tại ở màn hẹp. */}
+      <button
+        type="button"
+        onClick={() => setTravelOpen((v) => !v)}
+        className="pointer-events-auto absolute right-4 top-32 z-20 cursor-pointer rounded-2xl border border-stone-700 bg-stone-900/85 px-3 py-2 text-[11px] font-black text-stone-200 shadow-xl backdrop-blur sm:hidden"
+      >
+        {travelOpen ? "✕" : "🧭"}
+      </button>
 
       {/* Tên phòng + đường về */}
       <div className="pointer-events-none absolute inset-x-0 top-0 z-10 flex items-start justify-between gap-3 p-4">
@@ -343,6 +377,8 @@ export default function DistrictWorld({
               ? `${room.portals.length} địa điểm · đi tới từng bục để mở`
               : room.portals.length === 1
               ? room.portals[0].blurb
+              : room.seats
+              ? `${room.seats.length} chỗ ngồi · ngồi xuống là bắt đầu tính giờ`
               : room.stops
               ? `${room.stops.length} bài trên hành lang · ${room.stops.filter((st) => doneSlugs.has(st.slug)).length} đã học`
               : "Thang máy ở cuối sảnh · mỗi tầng một phòng chức năng"}
@@ -356,12 +392,24 @@ export default function DistrictWorld({
             </p>
           )}
         </div>
-        <Link
-          href="/su-nghiep"
-          className="pointer-events-auto rounded-2xl bg-stone-900/75 px-3 py-2 text-[11px] font-bold text-stone-300 shadow-lg backdrop-blur transition hover:bg-stone-800"
-        >
-          Thoát ra ↗
-        </Link>
+        <div className="flex items-center gap-2">
+          {/* Âm thanh mặc định TẮT: trình duyệt chặn phát tự động, và tiếng tự
+              nổi lên trong một app học tập làm người ta đóng tab. */}
+          <button
+            type="button"
+            onClick={sound.toggle}
+            aria-label={sound.enabled ? "Tắt âm thanh" : "Bật âm thanh"}
+            className="pointer-events-auto cursor-pointer rounded-2xl bg-stone-900/75 px-3 py-2 text-[13px] shadow-lg backdrop-blur transition hover:bg-stone-800"
+          >
+            {sound.enabled ? "🔊" : "🔈"}
+          </button>
+          <Link
+            href="/su-nghiep"
+            className="pointer-events-auto rounded-2xl bg-stone-900/75 px-3 py-2 text-[11px] font-bold text-stone-300 shadow-lg backdrop-blur transition hover:bg-stone-800"
+          >
+            Thoát ra ↗
+          </Link>
+        </div>
       </div>
 
       {/* Lời nhắc cách đi, biến mất ngay khi người học bước đi lần đầu - một
@@ -395,7 +443,7 @@ export default function DistrictWorld({
       {/* Thẻ nghề: hiện khi đứng trước một cái bàn. Đây là chỗ căn phòng trả
           lại thứ gì đó cho công đi bộ - nghề này học gì, và bấm vào là học. */}
       {desk && !portal && !stop && (
-        <div className="pointer-events-auto absolute bottom-4 left-4 z-10 w-72 rounded-2xl border border-stone-700 bg-stone-900/92 p-4 shadow-2xl backdrop-blur sm:w-80">
+        <div className="pointer-events-auto absolute inset-x-3 bottom-36 z-10 rounded-2xl border border-stone-700 bg-stone-900/92 p-4 shadow-2xl backdrop-blur sm:inset-x-auto sm:bottom-4 sm:left-4 sm:w-80">
           <p className="text-[10px] font-black uppercase tracking-widest" style={{ color: room.accent }}>
             {room.label}
           </p>
@@ -451,7 +499,7 @@ export default function DistrictWorld({
 
       {/* Thẻ cổng: đứng trước bàn chức năng thì mở được tính năng thật. */}
       {portal && (
-        <div className="pointer-events-auto absolute bottom-4 left-4 z-10 w-72 rounded-2xl border border-stone-700 bg-stone-900/92 p-4 shadow-2xl backdrop-blur sm:w-80">
+        <div className="pointer-events-auto absolute inset-x-3 bottom-36 z-10 rounded-2xl border border-stone-700 bg-stone-900/92 p-4 shadow-2xl backdrop-blur sm:inset-x-auto sm:bottom-4 sm:left-4 sm:w-80">
           <p className="text-[10px] font-black uppercase tracking-widest" style={{ color: portal.accent }}>
             Phòng chức năng
           </p>
@@ -491,7 +539,7 @@ export default function DistrictWorld({
 
       {/* Bảng chọn chặng học, ở tầng chặng học. */}
       {roomId === STAGE_FLOOR_ID && (
-        <div className="pointer-events-auto absolute bottom-4 left-4 z-10 w-72 rounded-2xl border border-emerald-500/40 bg-stone-900/92 p-3 shadow-2xl backdrop-blur sm:w-80">
+        <div className="pointer-events-auto absolute inset-x-3 bottom-36 z-10 rounded-2xl border border-emerald-500/40 bg-stone-900/92 p-3 shadow-2xl backdrop-blur sm:inset-x-auto sm:bottom-4 sm:left-4 sm:w-80">
           <p className="text-[10px] font-black uppercase tracking-widest text-emerald-300">
             🧭 Chặng học tài chính
           </p>
@@ -544,7 +592,7 @@ export default function DistrictWorld({
 
       {/* Thẻ bài học khi đứng trước một cột trên hành lang lộ trình. */}
       {stop && (
-        <div className="pointer-events-auto absolute bottom-4 left-4 z-10 w-72 rounded-2xl border border-stone-700 bg-stone-900/92 p-4 shadow-2xl backdrop-blur sm:w-80">
+        <div className="pointer-events-auto absolute inset-x-3 bottom-36 z-10 rounded-2xl border border-stone-700 bg-stone-900/92 p-4 shadow-2xl backdrop-blur sm:inset-x-auto sm:bottom-4 sm:left-4 sm:w-80">
           <p className="text-[10px] font-black uppercase tracking-widest" style={{ color: room.accent }}>
             Bài {stop.index + 1} / {room.stops?.length ?? 0}
           </p>
@@ -580,13 +628,16 @@ export default function DistrictWorld({
           lessonId={quizLessonId}
           accent={room.accent}
           onClose={() => setQuizLessonId(null)}
-          onCorrect={() => setJustCorrect((prev) => new Set(prev).add(stop.slug))}
+          onCorrect={() => {
+            soundRef.current.play("correct");
+            setJustCorrect((prev) => new Set(prev).add(stop.slug));
+          }}
         />
       )}
 
       {/* Bảng thang máy: hiện khi đứng trong buồng thang, hoặc khi bấm nút gọi. */}
       {(atLift || liftPanel) && (
-        <div className="pointer-events-auto absolute right-4 top-20 z-10 w-52 rounded-2xl border border-amber-500/40 bg-stone-900/92 p-2.5 shadow-2xl backdrop-blur">
+        <div className="pointer-events-auto absolute right-4 top-20 z-20 w-52 max-w-[calc(100vw-2rem)] rounded-2xl border border-amber-500/40 bg-stone-900/92 p-2.5 shadow-2xl backdrop-blur">
           <div className="mb-1.5 flex items-center justify-between">
             <p className="text-[10px] font-black uppercase tracking-widest text-amber-300">🛗 Thang máy</p>
             {!atLift && (
@@ -639,7 +690,11 @@ export default function DistrictWorld({
       {/* Bản đồ nhanh: bấm là tới thẳng, cho người không muốn đi bộ.
           Đi bộ là cái hay của khu phố, nhưng bắt đi bộ mỗi lần là cái dở. */}
       {room.kind === "street" && (
-        <div className="pointer-events-auto absolute right-4 top-20 z-10 hidden w-44 rounded-2xl border border-stone-700 bg-stone-900/85 p-2.5 shadow-xl backdrop-blur sm:block">
+        <div
+          className={`pointer-events-auto absolute right-4 top-20 z-10 w-44 rounded-2xl border border-stone-700 bg-stone-900/85 p-2.5 shadow-xl backdrop-blur sm:block ${
+            travelOpen ? "block" : "hidden"
+          }`}
+        >
           <p className="mb-1.5 text-[10px] font-black uppercase tracking-widest text-stone-400">
             Vào thẳng phòng
           </p>
@@ -647,7 +702,7 @@ export default function DistrictWorld({
             {/* Tháp đứng đầu danh sách vì nó là đường vào MỌI tính năng khác;
                 năm nhóm ngành chỉ là năm căn nhà. */}
             {getRoom("street")
-              .doorways.filter((d) => d.to === "thap" || d.to === "khu-game")
+              .doorways.filter((d) => d.to === "thap" || d.to === "khu-game" || d.to === "cong-vien" || d.to === "trung-tam" || d.to === "quan-ca-phe")
               .map((d) => (
                 <button
                   key={d.id}
@@ -656,7 +711,15 @@ export default function DistrictWorld({
                   className="block w-full cursor-pointer rounded-lg px-2 py-1 text-left text-[11px] font-bold transition hover:bg-stone-800"
                   style={{ color: d.accent }}
                 >
-                  {d.to === "thap" ? "🛗 Tháp Tự Học" : "🎮 Quảng trường Game"}
+                  {d.to === "thap"
+                    ? "🛗 Tháp Tự Học"
+                    : d.to === "khu-game"
+                    ? "🎮 Quảng trường Game"
+                    : d.to === "cong-vien"
+                    ? "🌳 Công viên Bến Nghé"
+                    : d.to === "quan-ca-phe"
+                    ? "☕ Cà phê Số & Sách"
+                    : "⛲ Quảng trường Trung tâm"}
                 </button>
               ))}
             {CAREER_CATEGORY_ORDER.map((c) => {
@@ -690,7 +753,7 @@ export default function DistrictWorld({
             // Hiện câu của mình ngay, không chờ vòng về server.
             setSelfSpeech({ text: message.text, at: message.at });
           }}
-          className="pointer-events-auto absolute bottom-6 left-1/2 z-10 flex w-[min(22rem,80vw)] -translate-x-1/2 gap-2"
+          className="pointer-events-auto absolute bottom-24 left-1/2 z-10 flex w-[min(22rem,86vw)] -translate-x-1/2 gap-2 sm:bottom-6"
         >
           <input
             value={draft}
@@ -710,6 +773,42 @@ export default function DistrictWorld({
       )}
 
       <Minimap room={room} playerRef={playerRef} peers={mapPeers} />
+
+      {/* Ngồi xuống quán cà phê. Đây là chỗ duy nhất trong khu phố tính giờ,
+          nên nút chỉ hiện khi thực sự đứng cạnh một cái ghế trống. */}
+      {(seatable !== null || seated !== null) && (
+        <div className="pointer-events-none absolute inset-x-0 bottom-44 z-10 flex justify-center px-4">
+          {seated === null ? (
+            <button
+              type="button"
+              onClick={() => {
+                const idx = seatable?.index ?? null;
+                setSeated(idx);
+                soundRef.current.play("sit");
+                void startFocusSession("pho-nghe", "quan-ca-phe").then((id) => {
+                  focusIdRef.current = id;
+                });
+              }}
+              className="pointer-events-auto cursor-pointer rounded-2xl bg-amber-400 px-5 py-2.5 text-xs font-black text-stone-950 shadow-xl transition hover:brightness-110"
+            >
+              ☕ Ngồi xuống học · bắt đầu tính giờ
+            </button>
+          ) : (
+            <button
+              type="button"
+              onClick={() => {
+                setSeated(null);
+                const id = focusIdRef.current;
+                focusIdRef.current = null;
+                if (id !== null) void finishFocusSession(id);
+              }}
+              className="pointer-events-auto cursor-pointer rounded-2xl bg-stone-800 px-5 py-2.5 text-xs font-bold text-stone-100 shadow-xl transition hover:bg-stone-700"
+            >
+              Đứng dậy
+            </button>
+          )}
+        </div>
+      )}
 
       {/* Cần điều khiển, luôn hiện */}
       <div className="pointer-events-none absolute bottom-6 right-6 z-20 sm:bottom-44">

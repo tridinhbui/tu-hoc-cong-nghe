@@ -11,12 +11,14 @@ import {
   nearestDoorway,
   nearestPortal,
   nearestStop,
+  nearestCafeSeat,
   isAtLift,
   type CareerDesk,
   type DistrictRoom,
   type DistrictRoomId,
   type Doorway,
   type Pose,
+  type CafeSeat,
   type PathStop,
   type RoomPortal,
 } from "./district-space";
@@ -56,6 +58,8 @@ interface RigProps {
   onPortalChange: (portal: RoomPortal | null) => void;
   onLiftChange: (atLift: boolean) => void;
   onStopChange: (stop: PathStop | null) => void;
+  onSeatChange: (seat: CafeSeat | null) => void;
+  seatTakenRef: React.MutableRefObject<ReadonlySet<number>>;
   onWalkingChange: (walking: boolean) => void;
   /** Danh tính để phát vị trí; null là chưa đăng nhập, khi đó không phát gì. */
   userId: string;
@@ -63,13 +67,17 @@ interface RigProps {
   mapPlayerRef: React.MutableRefObject<{ x: number; z: number }>;
 }
 
-function PlayerRig({ room, poseRef, walkRef, orbitRef, onDeskChange, onDoorChange, onPortalChange, onLiftChange, onStopChange, onWalkingChange, userId, peerCountRef, mapPlayerRef }: RigProps) {
+function PlayerRig({ room, poseRef, walkRef, orbitRef, onDeskChange, onDoorChange, onPortalChange, onLiftChange, onStopChange, onSeatChange, seatTakenRef, onWalkingChange, userId, peerCountRef, mapPlayerRef }: RigProps) {
   const { camera } = useThree();
   const lastDesk = useRef<string | null>(null);
   const lastDoor = useRef<string | null>(null);
   const lastPortal = useRef<string | null>(null);
   const lastLift = useRef(false);
+  /** Ngoài trời thì không có tường để camera xuyên, nên nới khung kẹp ra. */
+  const outdoorRef = useRef(false);
+  outdoorRef.current = room.kind === "street" || room.id === "cong-vien" || room.id === "trung-tam";
   const lastStop = useRef<string | null>(null);
+  const lastSeat = useRef<number | null>(null);
   const lastWalking = useRef(false);
   /** Đích bị kẹt: đứng yên mấy khung liền dù đang cố đi thì bỏ đích, thay vì
    *  húc vào tường mãi mãi. */
@@ -164,6 +172,11 @@ function PlayerRig({ room, poseRef, walkRef, orbitRef, onDeskChange, onDoorChang
       lastStop.current = stop?.slug ?? null;
       onStopChange(stop);
     }
+    const seat = nearestCafeSeat(room, pose.x, pose.z, seatTakenRef.current);
+    if ((seat?.index ?? null) !== lastSeat.current) {
+      lastSeat.current = seat?.index ?? null;
+      onSeatChange(seat);
+    }
     const atLift = isAtLift(room, pose.x, pose.z);
     if (atLift !== lastLift.current) {
       lastLift.current = atLift;
@@ -175,7 +188,7 @@ function PlayerRig({ room, poseRef, walkRef, orbitRef, onDeskChange, onDoorChang
     // và kẹp sát sẽ dí camera vào gáy nhân vật giữa một con phố rộng.
     applyFollowCamera(camera, pose, orbit, delta, {
       bounds: room.bounds,
-      margin: room.kind === "street" ? 6 : 0.2,
+      margin: outdoorRef.current ? 6 : 0.2,
     });
 
     // Vị trí ra ngoài qua ref, không qua state: bản đồ nhỏ đọc nó mỗi khung
@@ -258,6 +271,7 @@ export interface DistrictSceneProps {
   onPortalChange: (portal: RoomPortal | null) => void;
   onLiftChange: (atLift: boolean) => void;
   onStopChange: (stop: PathStop | null) => void;
+  onSeatChange: (seat: CafeSeat | null) => void;
   onWalkingChange: (walking: boolean) => void;
   /** Vị trí người chơi và người khác, để bản đồ nhỏ ngoài Canvas đọc mỗi khung
    *  hình mà không phải đi qua state. */
@@ -267,6 +281,8 @@ export interface DistrictSceneProps {
   doneSlugs: ReadonlySet<string>;
   /** Tiến độ từng nhóm ngành, khắc lên biển hiệu ngoài phố. */
   progressByCategory: Record<string, { done: number; total: number }>;
+  /** Ghế cà phê đang có người - của mình và của người khác. */
+  seatTaken: ReadonlySet<number>;
   /** Ban ngày 1, khuya 0 - quyết định trời và đèn đường. */
   daylight: number;
 }
@@ -291,10 +307,12 @@ export default function DistrictScene({
   onPortalChange,
   onLiftChange,
   onStopChange,
+  onSeatChange,
   playerRef,
   onPeersChange,
   doneSlugs,
   progressByCategory,
+  seatTaken,
   onWalkingChange,
   daylight,
 }: DistrictSceneProps) {
@@ -305,10 +323,16 @@ export default function DistrictScene({
   const [speeches, setSpeeches] = useState<Record<string, { text: string; at: number }>>({});
   const peerPoseRefs = useRef(new Map<string, React.MutableRefObject<AvatarPose>>());
   const peerCountRef = useRef(0);
+  const seatTakenRef = useRef<ReadonlySet<number>>(seatTaken);
+  seatTakenRef.current = seatTaken;
+  /** Màn hẹp thì lùi camera ra xa hơn. Khung hình dọc của điện thoại cắt mất
+   *  bề ngang, nên cùng một khoảng cách sẽ cho ra một cái đầu nhân vật chiếm
+   *  nửa màn hình và không thấy căn phòng đâu cả. */
+  const narrow = typeof window !== "undefined" && window.innerWidth < 640;
   const orbitRef = useRef<OrbitState>({
     yaw: entry.ry,
     pitch: room.kind === "street" ? 0.46 : 0.36,
-    dist: room.kind === "street" ? 8.5 : 6,
+    dist: (room.kind === "street" || room.id === "cong-vien" || room.id === "trung-tam" ? 8.5 : 6) * (narrow ? 1.45 : 1),
   });
 
   useWalkKeys(walkRef);
@@ -397,7 +421,10 @@ export default function DistrictScene({
     return list;
   }, [peers, userId]);
 
-  const outdoor = room.kind === "street";
+  // Ba nơi ngoài trời: con phố, công viên, quảng trường trung tâm. Chúng dùng
+  // chung bầu trời, sương xa và camera nới rộng - nhốt chúng trong ánh sáng
+  // phòng kín thì công viên trông như một cái sân trong nhà.
+  const outdoor = room.kind === "street" || room.id === "cong-vien" || room.id === "trung-tam";
   const sky = outdoor ? (daylight > 0.5 ? "#7fb2d9" : "#14161f") : "#100e0c";
 
   return (
@@ -424,6 +451,7 @@ export default function DistrictScene({
         lessonTitles={lessonTitles}
         doneSlugs={doneSlugs}
         progressByCategory={progressByCategory as never}
+        seatTaken={seatTaken}
       />
       <TargetMarker walkRef={walkRef} accent={room.accent} still={quality.reducedMotion} />
 
@@ -466,6 +494,8 @@ export default function DistrictScene({
         onPortalChange={onPortalChange}
         onLiftChange={onLiftChange}
         onStopChange={onStopChange}
+        onSeatChange={onSeatChange}
+        seatTakenRef={seatTakenRef}
         onWalkingChange={onWalkingChange}
       />
     </Canvas>
