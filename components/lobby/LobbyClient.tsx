@@ -10,6 +10,15 @@ import { getEquippedGear } from "@/lib/supabase-equipment";
 import { finishFocusSession, getTodayFocusSeconds, startFocusSession } from "@/lib/focus-session";
 import type { Station } from "./stations";
 import {
+  AWAY_MS,
+  formatCountdown,
+  isSessionComplete,
+  notifySessionDone,
+  playSessionChime,
+  remainingMs,
+  shouldEndForAway,
+} from "@/lib/study-session";
+import {
   CHAT_MAX_LENGTH,
   POMODORO_MS,
   colorForUser,
@@ -115,6 +124,9 @@ export default function LobbyClient() {
    *  tính từ hai mốc nó tự đặt. */
   const focusIdRef = useRef<number | null>(null);
   const [todayMinutes, setTodayMinutes] = useState<number | null>(null);
+  /** Phiên đã chạy hết 25 phút chưa. Tách khỏi `seatedTable` vì chuông chỉ được
+   *  kêu một lần, còn người ngồi thì có thể ngồi tiếp sau khi hết giờ. */
+  const [chimed, setChimed] = useState(false);
 
   useEffect(() => {
     const supabase = createClient();
@@ -181,6 +193,16 @@ export default function LobbyClient() {
       .catch(() => setFailed(true));
   }, [router]);
 
+  /** Số phút hôm nay đọc ngay khi vào, không đợi tới lúc đứng dậy lần đầu.
+   *  Trước đây dòng "hôm nay bạn đã ngồi học N phút" chỉ xuất hiện sau khi kết
+   *  thúc một phiên trong chính lần vào này - nên người đã học 90 phút buổi
+   *  sáng, chiều quay lại, được chào bằng một khoảng trống. */
+  useEffect(() => {
+    void getTodayFocusSeconds()
+      .then((s) => setTodayMinutes(Math.round(s / 60)))
+      .catch(() => {});
+  }, []);
+
   /** Mở và đóng phiên ngồi học. Trước đây ngồi hết 25 phút trong thư viện
    *  không để lại dấu vết nào. */
   useEffect(() => {
@@ -210,6 +232,38 @@ export default function LobbyClient() {
     setNowTick(Date.now());
     const timer = window.setInterval(() => setNowTick(Date.now()), 1000);
     return () => window.clearInterval(timer);
+  }, [seatedTable]);
+
+  /** Hết 25 phút thì phải BÁO, chứ không chỉ đổi chữ trên màn hình thành "Xong!".
+   *  Cả điểm của một phiên Pomodoro là được rời mắt khỏi màn hình trong lúc nó
+   *  chạy; một dấu hiệu chỉ nhìn mới thấy thì đúng ra là không có dấu hiệu nào.
+   *  Dùng chung chuông với phòng học để hai nơi nghe giống nhau. */
+  useEffect(() => {
+    if (chimed || !isSessionComplete(seatStartedAt, nowTick, POMODORO_MS)) return;
+    setChimed(true);
+    playSessionChime();
+    notifySessionDone(Math.round(POMODORO_MS / 60000));
+  }, [chimed, seatStartedAt, nowTick]);
+
+  /** Rời tab quá lâu thì đóng phiên. Không có cái này, ngồi vào bàn rồi đi ăn
+   *  trưa vẫn được tính là học - và `todayMinutes` là con số người ta dùng để
+   *  tự đánh giá, nên thổi phồng nó còn tệ hơn là không đếm. */
+  useEffect(() => {
+    if (seatedTable === null) return;
+    let hiddenSince: number | null = null;
+    const onVisibility = () => {
+      if (document.hidden) {
+        hiddenSince = Date.now();
+        return;
+      }
+      if (shouldEndForAway(hiddenSince, Date.now(), AWAY_MS)) {
+        setSeatedTable(null);
+        setSeatStartedAt(null);
+      }
+      hiddenSince = null;
+    };
+    document.addEventListener("visibilitychange", onVisibility);
+    return () => document.removeEventListener("visibilitychange", onVisibility);
   }, [seatedTable]);
 
   const pushLog = useCallback((message: LobbyChatMessage) => {
@@ -278,6 +332,7 @@ export default function LobbyClient() {
               onClick={() => {
                 setSeatedTable(seatableTable);
                 setSeatStartedAt(Date.now());
+                setChimed(false);
               }}
               className="pointer-events-auto rounded-2xl bg-emerald-500 px-6 py-3 text-sm font-bold text-white shadow-xl transition hover:bg-emerald-400"
             >
@@ -287,10 +342,8 @@ export default function LobbyClient() {
             <div className="pointer-events-auto flex items-center gap-3 rounded-2xl bg-stone-900/85 px-4 py-2.5 shadow-xl backdrop-blur">
               <span className="font-mono text-lg font-bold tabular-nums text-amber-300">
                 {(() => {
-                  const left = Math.max(0, POMODORO_MS - (nowTick - (seatStartedAt ?? nowTick)));
-                  const m = String(Math.floor(left / 60000)).padStart(2, "0");
-                  const sec = String(Math.floor((left % 60000) / 1000)).padStart(2, "0");
-                  return left === 0 ? "Xong!" : `${m}:${sec}`;
+                  const left = remainingMs(seatStartedAt, nowTick, POMODORO_MS);
+                  return left === 0 ? "Xong!" : formatCountdown(left);
                 })()}
               </span>
               <button
