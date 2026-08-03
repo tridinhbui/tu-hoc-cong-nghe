@@ -94,12 +94,17 @@ export default function QuietCornerClient({ userId }: { userId: string }) {
             background: `linear-gradient(160deg, rgba(251, 146, 60, ${0.1 + warmth * 0.2}), rgba(249, 115, 22, ${0.03 + warmth * 0.09}))`,
           }}
         />
-        <div
+        {/* Vầng sáng nền thở theo một nhịp riêng, chậm hơn mọi lớp trong
+            DinhHoaFlame - cả khối vì thế sáng lên và lùi xuống rất chậm thay
+            vì đứng yên làm phông. */}
+        <motion.div
           aria-hidden
           className="pointer-events-none absolute inset-0 hidden dark:block"
           style={{
             background: `radial-gradient(120% 70% at 50% 22%, rgba(249, 115, 22, ${0.14 + warmth * 0.2}) 0%, rgba(120, 53, 15, ${0.06 + warmth * 0.08}) 38%, rgba(0,0,0,0) 72%)`,
           }}
+          animate={{ opacity: [0.82, 1, 0.88, 0.82] }}
+          transition={{ duration: 11, repeat: Infinity, ease: [0.4, 0, 0.2, 1] }}
         />
 
         <div className="relative">
@@ -108,17 +113,43 @@ export default function QuietCornerClient({ userId }: { userId: string }) {
           </div>
 
           {motivation ? (
-            <>
-              <p className="mt-5 text-[11px] font-bold uppercase tracking-[0.2em] text-orange-700 dark:text-orange-300">
-                {MOTIVATION_TONE_LABEL[motivation.tone]}
-              </p>
-              <p className="mx-auto mt-4 max-w-lg text-lg font-bold leading-relaxed text-stone-800 sm:text-xl dark:text-stone-100">
-                {motivation.message.text}
-              </p>
-              <div className="mt-6">
-                <MotivationShareCard text={motivation.message.text} size="lg" />
-              </div>
-            </>
+            // Vào chậm và nối tiếp nhau chứ không hiện cùng lúc: nhãn trước,
+            // rồi lời nhắn, rồi nút chia sẻ. Người đọc bắt được nhịp đó và
+            // đọc chậm theo, thay vì quét cả khối trong một cái liếc.
+            <motion.div
+              initial="hidden"
+              animate="shown"
+              variants={{ hidden: {}, shown: { transition: { staggerChildren: 0.55, delayChildren: 0.35 } } }}
+            >
+              {[
+                <p
+                  key="tone"
+                  className="text-[11px] font-bold uppercase tracking-[0.2em] text-orange-700 dark:text-orange-300"
+                >
+                  {MOTIVATION_TONE_LABEL[motivation.tone]}
+                </p>,
+                <p
+                  key="text"
+                  className="mx-auto mt-4 max-w-lg text-lg font-bold leading-relaxed text-stone-800 sm:text-xl dark:text-stone-100"
+                >
+                  {motivation.message.text}
+                </p>,
+                <div key="share" className="mt-6">
+                  <MotivationShareCard text={motivation.message.text} size="lg" />
+                </div>,
+              ].map((child, i) => (
+                <motion.div
+                  key={child.key}
+                  className={i === 0 ? "mt-5" : undefined}
+                  variants={{
+                    hidden: { opacity: 0, y: 8 },
+                    shown: { opacity: 1, y: 0, transition: { duration: 1.4, ease: [0.4, 0, 0.2, 1] } },
+                  }}
+                >
+                  {child}
+                </motion.div>
+              ))}
+            </motion.div>
           ) : (
             // Chỗ giữ chỗ cùng chiều cao để trang không giật khi lời nhắn về.
             <div className="mt-5 h-[168px]" aria-hidden />
