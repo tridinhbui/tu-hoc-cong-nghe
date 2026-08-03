@@ -34,6 +34,9 @@ export const CFA_LEVEL_1_SUBJECTS: CfaSubject[] = [
       // IV(A), IV(C), V(C), VI(A), VII(A) - cùng GIPS ở mức vận hành, bộ máy
       // tuân thủ, đạo đức khi thuật toán ra quyết định, và vận dụng vào VN.
       1591, 1592, 1593, 1594, 1595, 1596, 1597, 1598, 1599, 1600, 1601, 1602,
+      // 1603-1612: VI(B), VI(C), I(D), quy trình kỷ luật, nghiên cứu bên thứ ba,
+      // rồi năm case nhiều tầng - dạng đề thi Ethics thực sự ra.
+      1603, 1604, 1605, 1606, 1607, 1608, 1609, 1610, 1611, 1612,
     ],
   },
   {

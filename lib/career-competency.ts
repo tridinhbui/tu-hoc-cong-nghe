@@ -168,6 +168,7 @@ export const SKILL_DOMAINS: SkillDomain[] = [
       // quyết định và niềm tin trong ngành.
       ...range(1571, 1582),
       ...range(1591, 1602),
+      ...range(1603, 1612),
       1330,
       1506,
       1535,
