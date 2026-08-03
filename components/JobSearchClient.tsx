@@ -185,6 +185,20 @@ function RelatedLessonsPanel({ career }: { career: FinanceCareer }) {
       ) : (
         <p className="text-[11px] text-stone-400">Đăng nhập để xem tiến độ học các bài liên quan.</p>
       )}
+      {/* /nghe-nghiep-hoc had no inbound link anywhere in the app - a full
+          page answering "which lessons should I study for this career",
+          reachable only by typing the URL. This is its natural entry point:
+          the reader is already looking at exactly that question here, in a
+          panel too small to hold the whole list. */}
+      {career.relatedLessonSlugs.length > 0 && (
+        <Link
+          href="/nghe-nghiep-hoc"
+          className="mt-2.5 flex items-center justify-center gap-1.5 rounded-lg border border-emerald-200 dark:border-emerald-900/60 bg-emerald-50/60 dark:bg-emerald-950/30 px-3 py-2 text-[11px] font-extrabold text-emerald-700 dark:text-emerald-400 hover:bg-emerald-100/70 dark:hover:bg-emerald-950/50 transition-colors"
+        >
+          Xem lộ trình học đầy đủ theo nghề
+          <ChevronRight className="w-3.5 h-3.5" />
+        </Link>
+      )}
     </div>
   );
 }

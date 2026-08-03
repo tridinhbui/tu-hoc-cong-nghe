@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { readFileSync } from "node:fs";
+import { readFileSync, readdirSync } from "node:fs";
 import { CFA_LEVEL_1_SUBJECTS } from "@/lib/cfa-track";
 
 /**
@@ -97,3 +97,55 @@ describe("the CFA track is reachable", () => {
     expect(sections).toContain('href: "/cfa"');
   });
 });
+
+/**
+ * Generalises the /cfa finding. That page had a full feature behind it and no
+ * inbound link - reachable only by typing the URL - and nothing caught it
+ * because an unreachable page renders perfectly well on its own.
+ *
+ * Sweeping every route under app/(app) turned up one more of the same shape:
+ * /nghe-nghiep-hoc, a 288-line career learning-path page that nothing linked
+ * to. The two redirect stubs are listed explicitly rather than pattern-matched,
+ * so a page that quietly becomes a stub still has to be justified here.
+ */
+describe("every app route is reachable", () => {
+  const APP_DIR = new URL("../../app/(app)/", import.meta.url);
+
+  // Routes that legitimately have no menu entry, with the reason.
+  const EXEMPT: Record<string, string> = {
+    "cua-hang": "redirect stub -> /game?building=shop",
+    rpg: "redirect stub -> /game?building=shop",
+    "nguoi-hoc": "dynamic [userId], linked from Leaderboard rows",
+    "bai-hoc": "dynamic [slug], linked from every lesson list",
+    profile: "reached from the avatar menu, not a nav item",
+    settings: "reached from the avatar menu, not a nav item",
+  };
+
+  it("has an inbound link, or a stated reason not to", () => {
+    const routes = readdirSync(APP_DIR, { withFileTypes: true })
+      .filter((e) => e.isDirectory() && !e.name.startsWith("[") && !e.name.startsWith("_"))
+      .map((e) => e.name);
+
+    // Search the component and app trees for a link to each route.
+    const haystack = [
+      ...collectSources(new URL("../../components/", import.meta.url)),
+      ...collectSources(APP_DIR),
+    ].join("\n");
+
+    const orphans = routes.filter((r) => {
+      if (EXEMPT[r]) return false;
+      return !new RegExp(`["'\`]/${r}(["'\`?/])`).test(haystack);
+    });
+    expect(orphans, "route không có đường vào nào").toEqual([]);
+  });
+});
+
+function collectSources(dir: URL): string[] {
+  const out: string[] = [];
+  for (const entry of readdirSync(dir, { withFileTypes: true })) {
+    const child = new URL(entry.name + (entry.isDirectory() ? "/" : ""), dir);
+    if (entry.isDirectory()) out.push(...collectSources(child));
+    else if (/\.tsx?$/.test(entry.name)) out.push(readFileSync(child, "utf8"));
+  }
+  return out;
+}
