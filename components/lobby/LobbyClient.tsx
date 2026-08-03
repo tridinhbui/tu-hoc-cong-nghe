@@ -73,7 +73,11 @@ function TouchPad() {
     );
   };
   return (
-    <div className="pointer-events-auto grid grid-cols-3 gap-1.5 sm:hidden">
+    // Hiện khi màn hẹp HOẶC khi con trỏ là ngón tay. Chỉ dựa vào breakpoint
+    // thì hỏng ở điện thoại xoay ngang: Tailwind đo BỀ RỘNG, và 844px bị coi
+    // là desktop nên D-pad biến mất trên đúng thiết bị không có bàn phím thay
+    // thế. Chỉ dựa vào pointer-coarse thì hỏng ở cửa sổ desktop thu hẹp.
+    <div className="pointer-events-auto hidden grid-cols-3 gap-1.5 max-sm:grid pointer-coarse:grid">
       <div />
       <HoldButton eventKey="ArrowUp" label="↑" hint="Đi tới" />
       <div />
@@ -205,7 +209,7 @@ export default function LobbyClient() {
       )}
 
       {/* Tiêu đề + số người THẬT trong phòng (đếm từ presence, không phải số dựng) */}
-      <div className="pointer-events-none absolute inset-x-0 top-0 z-10 flex justify-center p-4">
+      <div className="pointer-events-none absolute inset-x-0 top-0 z-10 flex justify-center p-4 pt-[max(1rem,env(safe-area-inset-top))]">
         <div className="rounded-2xl bg-stone-900/75 px-5 py-2.5 text-center shadow-lg backdrop-blur">
           <h1 className="text-sm font-bold text-amber-200">Thư viện · Phòng đọc Sài Gòn</h1>
           <p className="text-[11px] text-stone-400">
@@ -219,7 +223,7 @@ export default function LobbyClient() {
       {/* Ngồi vào bàn / đứng dậy. Nút chỉ xuất hiện khi thực sự đứng cạnh một
           cái bàn - một nút "ngồi" luôn hiện sẽ phải tự đoán ngồi bàn nào. */}
       {(seatableTable !== null || seatedTable !== null) && (
-        <div className="pointer-events-none absolute inset-x-0 bottom-28 z-10 flex justify-center px-4 sm:bottom-32">
+        <div className="pointer-events-none absolute inset-x-0 bottom-56 z-10 flex justify-center px-4 sm:bottom-32">
           {seatedTable === null ? (
             <button
               type="button"
@@ -287,7 +291,7 @@ export default function LobbyClient() {
           Công thức nằm ngay trên thẻ chứ không chỉ trên biển đá trong cảnh -
           trên điện thoại biển đá trong cảnh 3D nhỏ tới mức không đọc nổi. */}
       {station && (
-        <div className="pointer-events-none absolute inset-x-0 bottom-40 z-10 flex justify-center px-4 sm:bottom-44">
+        <div className="pointer-events-none absolute inset-x-0 bottom-56 z-10 flex justify-center px-4 sm:bottom-44">
           <div
             className="pointer-events-auto w-full max-w-sm rounded-2xl border bg-stone-900/90 p-4 shadow-2xl backdrop-blur"
             style={{ borderColor: station.accent }}
@@ -311,9 +315,17 @@ export default function LobbyClient() {
         </div>
       )}
 
-      {/* Thanh dưới: ô chat + hướng dẫn + D-pad */}
-      <div className="pointer-events-none absolute inset-x-0 bottom-0 z-10 flex items-end justify-between gap-3 p-4">
-        <div className="flex min-w-0 flex-1 flex-col gap-2">
+      {/* Thanh dưới: ô chat + hướng dẫn + D-pad.
+      
+          Trên điện thoại xếp DỌC - D-pad một hàng riêng bên trên, ô chat chiếm
+          trọn bề ngang bên dưới. Xếp ngang như trên desktop thì D-pad ăn mất
+          180px của 390px màn hình và ô nhập còn đúng 102px, hẹp tới mức chữ
+          gợi ý cũng không hiện hết.
+      
+          pb theo safe-area: thanh Home của iPhone nằm đè lên 34px cuối màn
+          hình, và không có dòng này thì hàng nút dưới cùng nằm ngay dưới nó. */}
+      <div className="pointer-events-none absolute inset-x-0 bottom-0 z-10 flex flex-col items-stretch gap-2 p-4 pb-[max(1rem,env(safe-area-inset-bottom))] sm:flex-row sm:items-end sm:justify-between sm:gap-3">
+        <div className="order-2 flex min-w-0 flex-1 flex-col gap-2 sm:order-1">
           <form onSubmit={submit} className="pointer-events-auto flex max-w-md gap-2">
             <input
               ref={inputRef}
@@ -331,17 +343,19 @@ export default function LobbyClient() {
               Gửi
             </button>
           </form>
-          <div className="pointer-events-none hidden text-[11px] font-medium text-stone-400 sm:block">
+          <div className="pointer-events-none hidden text-[11px] font-medium text-stone-400 pointer-fine:sm:block">
             <kbd className="rounded bg-stone-800 px-1.5 py-0.5">W</kbd>{" "}
             <kbd className="rounded bg-stone-800 px-1.5 py-0.5">S</kbd> đi lại ·{" "}
             <kbd className="rounded bg-stone-800 px-1.5 py-0.5">A</kbd>{" "}
             <kbd className="rounded bg-stone-800 px-1.5 py-0.5">D</kbd> xoay người · kéo chuột để đổi góc nhìn, lăn để phóng · tin nhắn không được lưu lại
           </div>
-          <div className="pointer-events-none text-[11px] font-medium text-stone-400 sm:hidden">
-            Nút bên phải để đi · kéo trên màn hình để đổi góc nhìn · chụm hai ngón để phóng
+          <div className="pointer-events-none hidden truncate text-[11px] font-medium text-stone-400 max-sm:block pointer-coarse:block">
+            Kéo màn hình để đổi góc nhìn · chụm hai ngón để phóng
           </div>
         </div>
-        <TouchPad />
+        <div className="order-1 flex justify-end sm:order-2">
+          <TouchPad />
+        </div>
       </div>
     </div>
   );

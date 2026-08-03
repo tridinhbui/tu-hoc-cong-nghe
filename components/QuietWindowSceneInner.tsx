@@ -305,6 +305,14 @@ function DraggableStage({ children }: { children: React.ReactNode }) {
       onPointerLeave={() => {
         dragging.current = false;
       }}
+      // Khối này nằm trong dòng chảy trang, không phải toàn màn hình, nên cú
+      // chạm kéo dọc phải để cho trang cuộn - và trình duyệt cuộn trang bằng
+      // cách HUỶ chuỗi pointer đang chạy. Huỷ thì không có pointerup lẫn
+      // pointerleave nào cả; thiếu nhánh này thì cờ kéo kẹt ở true và lần chạm
+      // sau, dù chỉ lướt qua, đã xoay được cả khung cảnh.
+      onPointerCancel={() => {
+        dragging.current = false;
+      }}
       onPointerMove={(e) => {
         if (!dragging.current) return;
         target.current.yaw = Math.max(
