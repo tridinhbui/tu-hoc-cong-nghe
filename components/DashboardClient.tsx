@@ -7,7 +7,7 @@ import TaiTaiAvatar from "@/components/TaiTaiAvatar";
 import { useRouter, useSearchParams } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import { toast } from "sonner";
-import { CheckCircle2, Lock, CheckCheck, Bookmark, BookOpen, ChevronLeft, ChevronRight, Search, X } from "lucide-react";
+import { CheckCircle2, Lock, CheckCheck, Bookmark, BookOpen, ChevronLeft, ChevronRight, Search, X, Landmark, ArrowRight } from "lucide-react";
 import { useProgress } from "@/lib/client-hooks";
 import { mergeCompletedLessons } from "@/lib/progress";
 import { getIllustrativeCount } from "@/lib/illustrative-stats";
@@ -860,6 +860,38 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
             nextLessonId={sorted.find((l) => !completed.includes(l.id))?.id}
           />
         )}
+
+        {/* ── Lối vào không gian 3D ──
+            Thư viện là nơi duy nhất trong app có người khác đang hiện diện
+            cùng lúc, nhưng nó chỉ có một dòng trong navbar - và một dòng
+            trong navbar thì trông giống mọi trang khác. Đặt ở đây vì đây là
+            màn hình mọi người mở đầu tiên, và vì lời mời vào một căn phòng
+            phải nói được nó là căn phòng chứ không phải một trang nữa.
+
+            Slim và không đóng lại được: nó cao một dòng trên desktop nên
+            không lấn phần lưới bên dưới, và một nút đóng sẽ biến lối vào duy
+            nhất của một không gian thành thứ người dùng gạt đi trong ba giây
+            đầu rồi không tìm lại được. */}
+        <Link
+          href="/cong-dong"
+          className="group mb-4 flex items-center gap-3 rounded-[20px] border border-violet-200 bg-gradient-to-r from-violet-50 via-white to-white px-4 py-3 shadow-2xs transition-colors hover:border-violet-300 hover:from-violet-100 dark:border-violet-900/70 dark:from-violet-950/40 dark:via-stone-900 dark:to-stone-900 dark:hover:border-violet-800"
+        >
+          <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-violet-100 text-violet-600 dark:bg-violet-950/60 dark:text-violet-300">
+            <Landmark className="h-4.5 w-4.5" />
+          </span>
+          <span className="min-w-0 flex-1">
+            <span className="block text-[13px] font-extrabold text-stone-900 dark:text-stone-100">
+              Bước vào Thư viện · Phòng đọc Sài Gòn
+            </span>
+            <span className="block truncate text-[11px] text-stone-500 dark:text-stone-400">
+              Không gian 3D đi lại được - ngồi vào bàn, thấy ai đang học cùng giờ với bạn
+            </span>
+          </span>
+          <span className="inline-flex shrink-0 items-center gap-1 rounded-full bg-violet-600 px-3 py-1.5 text-[11px] font-extrabold text-white transition-transform group-hover:translate-x-0.5">
+            Vào
+            <ArrowRight className="h-3 w-3" />
+          </span>
+        </Link>
 
         {/* ── Unified Dashboard Grid ──
             The overview is laid out as one viewport-height card ("1 hình chữ
