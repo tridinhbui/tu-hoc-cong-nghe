@@ -97,6 +97,18 @@ export const DATA_TOOLS_LESSONS: Lesson[] = [
         explanation:
           "Đây là giá trị bị đánh giá thấp nhất. Câu hỏi \"con số này đến từ đâu\" là câu hỏi kiểm toán và cấp trên hỏi thường xuyên nhất, và một quy trình thủ công gần như không trả lời được sau vài tháng.",
       },
+    
+    {
+      "question": "Vì sao tính lặp lại quan trọng hơn kích thước dữ liệu khi chọn giữa bảng tính và code?",
+      "options": [
+        "Vì công việc làm lại mỗi tuần mới tích lũy đủ thời gian và rủi ro sai sót",
+        "Vì bảng tính không xử lý được tập dữ liệu vượt quá một triệu dòng",
+        "Vì code chạy nhanh hơn bảng tính với mọi kích thước dữ liệu",
+        "Vì dữ liệu lớn thường có nhiều lỗi hơn nên cần công cụ mạnh hơn"
+      ],
+      "correct": 0,
+      "explanation": "Một bảng ba trăm nghìn dòng mở đúng một lần thì Excel vẫn xong. Một bảng hai nghìn dòng nhưng phải làm lại mỗi thứ Hai qua mười hai bước thao tác tay thì mỗi tuần là một cơ hội sai khác đi - và sau một năm không ai tái lập được kết quả của tháng Ba."
+    }
     ],
     keyTakeaways: [
       "Tính lặp lại, không phải số dòng, là dấu hiệu chính để chuyển sang code",
@@ -255,6 +267,18 @@ export const DATA_TOOLS_LESSONS: Lesson[] = [
         explanation:
           "Đây là lỗi khiến tổng doanh thu tự nhiên tăng gấp đôi. Thói quen tốt là kiểm tra số dòng trước và sau khi ghép - nếu thay đổi ngoài dự kiến, khóa của bạn không duy nhất như bạn tưởng.",
       },
+    
+    {
+      "question": "Ghép hai bảng theo khóa chung có rủi ro nào mà bảng tính không cảnh báo?",
+      "options": [
+        "Khóa bị lặp ở bảng bên phải làm số dòng nhân lên",
+        "Hai bảng có số dòng khác nhau nên phần dư sẽ bị cắt bỏ",
+        "Các cột trùng tên giữa hai bảng sẽ bị ghi đè lên nhau",
+        "Thứ tự các dòng sau khi ghép không còn giống bảng gốc"
+      ],
+      "correct": 0,
+      "explanation": "Đây là lỗi im lặng kinh điển: kết quả vẫn ra một bảng trông bình thường, chỉ có tổng doanh thu bỗng lớn hơn thực tế. Cách kiểm tra rẻ nhất là đếm số dòng trước và sau khi ghép - lệch là có nhân bản."
+    }
     ],
     keyTakeaways: [
       "Đơn vị suy nghĩ là cả cột, không phải từng ô - đây là thay đổi tư duy, không phải cú pháp",
@@ -403,6 +427,18 @@ export const DATA_TOOLS_LESSONS: Lesson[] = [
         explanation:
           "Làm sạch không phải thao tác kỹ thuật trung tính, nó là chuỗi phán đoán. Ba tháng sau, khi kết quả bị chất vấn, bạn cần đọc lại được mình đã quyết định những gì.",
       },
+    
+    {
+      "question": "Vì sao điền giá trị trung bình vào các ô thiếu lại là cách xử lý rủi ro?",
+      "options": [
+        "Vì nó làm giảm độ phân tán và tạo cảm giác dữ liệu chắc chắn hơn thực tế",
+        "Vì giá trị trung bình thay đổi mỗi khi có thêm dòng dữ liệu mới",
+        "Vì cách này chỉ áp dụng được cho các cột chứa số chứ không cho cột văn bản",
+        "Vì sau đó không phân biệt được ô nào là gốc"
+      ],
+      "correct": 0,
+      "explanation": "Điền trung bình kéo mọi ô thiếu về đúng tâm, nên độ lệch chuẩn co lại và mọi khoảng tin cậy tính sau đó đều hẹp hơn sự thật. Câu hỏi phải trả lời trước là dữ liệu thiếu ngẫu nhiên hay thiếu có hệ thống - hai trường hợp đòi hai cách xử lý khác hẳn."
+    }
     ],
     keyTakeaways: [
       "Hỏi vì sao thiếu trước khi quyết định xử lý thế nào - thiếu có hệ thống làm lệch kết luận",
@@ -552,6 +588,18 @@ export const DATA_TOOLS_LESSONS: Lesson[] = [
         explanation:
           "Trục là chỗ đầu tiên nên nhìn và là chỗ cuối cùng người ta nhìn. Một trục bị cắt hoặc một thang logarit không được ghi rõ đủ sức đổi hoàn toàn câu chuyện mà hình vẽ kể.",
       },
+    
+    {
+      "question": "Nhận một biểu đồ cột cho thấy chênh lệch rất lớn. Việc cần kiểm tra đầu tiên là gì?",
+      "options": [
+        "Trục tung có bắt đầu từ số không hay đã bị cắt",
+        "Dữ liệu được lấy từ nguồn nào và cập nhật tới thời điểm nào",
+        "Biểu đồ có ghi đầy đủ nhãn cho từng cột hay không",
+        "Số cột có đủ thấy xu hướng không"
+      ],
+      "correct": 0,
+      "explanation": "Với biểu đồ cột, mắt đọc chiều cao thành giá trị, nên cắt trục là cách bóp méo rẻ nhất và phổ biến nhất. Đáng chú ý là quy tắc này không áp cho biểu đồ đường - ở đó mắt đọc độ dốc, và ép trục về không có khi lại làm biến động thật biến mất."
+    }
     ],
     keyTakeaways: [
       "Loại biểu đồ do câu hỏi quyết định: so sánh, xu hướng, quan hệ hay phân bố",
@@ -712,6 +760,18 @@ export const DATA_TOOLS_LESSONS: Lesson[] = [
         explanation:
           "Doanh thu tính theo thời điểm xuất hóa đơn hay thời điểm thu tiền, có gồm thuế hay không - mỗi cách cho một con số khác. Phần lớn tranh cãi quanh dashboard là tranh cãi về định nghĩa chứ không phải về số liệu.",
       },
+    
+    {
+      "question": "Phép thử nào cho biết một dashboard sẽ được dùng lâu dài?",
+      "options": [
+        "Người xem trả lời được rằng con số này đổi thì họ sẽ làm gì khác đi",
+        "Dashboard hiển thị đầy đủ mọi chỉ số mà các phòng ban đã đề nghị",
+        "Dữ liệu được cập nhật tự động theo thời gian thực không cần thao tác tay",
+        "Dashboard được lãnh đạo phê duyệt trước khi triển khai cho toàn công ty"
+      ],
+      "correct": 0,
+      "explanation": "Dashboard chết vì không dẫn tới hành động nào, chứ hiếm khi vì kỹ thuật kém. Nếu câu trả lời là chỉ để biết, thì nó là một báo cáo đẹp - và báo cáo đẹp thì được mở vài lần rồi thôi."
+    }
     ],
     keyTakeaways: [
       "Thiết kế quanh quyết định người xem phải đưa ra, không quanh dữ liệu sẵn có",
@@ -870,6 +930,18 @@ export const DATA_TOOLS_LESSONS: Lesson[] = [
         explanation:
           "Với LEFT JOIN theo một khóa duy nhất, số dòng phải giữ nguyên. Nhiều hơn nghĩa là khóa bên phải bị trùng - kiểm tra bằng cách đếm số giá trị duy nhất của cột khóa đó.",
       },
+    
+    {
+      "question": "Cách kiểm tra nhanh xem một phép ghép bảng có nhân bản dòng hay không là gì?",
+      "options": [
+        "So số dòng trước và sau khi ghép, kèm tổng của một cột giá trị",
+        "Kiểm tra xem hai bảng có cùng số lượng dòng trước khi ghép hay không",
+        "Chạy lại truy vấn với kiểu ghép khác rồi so sánh hai kết quả",
+        "Đếm số giá trị khác nhau trong cột khóa của bảng bên trái"
+      ],
+      "correct": 0,
+      "explanation": "Phép ghép không tạo ra dữ liệu, nên tổng doanh thu sau khi ghép phải bằng trước khi ghép. Lệch nghĩa là một khóa nào đó xuất hiện nhiều lần ở bảng bên phải - và đây là lỗi khó chịu vì kết quả vẫn trông hoàn toàn bình thường."
+    }
     ],
     keyTakeaways: [
       "INNER giữ dòng khớp cả hai bên; LEFT giữ toàn bộ bên trái - khác biệt này đổi hẳn kết quả",

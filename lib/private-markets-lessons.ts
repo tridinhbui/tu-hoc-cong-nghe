@@ -92,6 +92,18 @@ export const PRIVATE_MARKETS_LESSONS: Lesson[] = [
         explanation:
           "Cam kết vốn là một quyết định mù: bạn giao tiền cho một đội ngũ với một chiến lược, chứ không mua một danh mục cụ thể. Vì vậy phần thẩm định tập trung vào lịch sử hiệu suất, tính nhất quán của đội ngũ và mức độ khớp giữa chiến lược đã tuyên bố với các thương vụ đã làm.",
       },
+    
+    {
+      "question": "Vì sao thẩm định nhà quản lý quỹ lại quan trọng hơn thẩm định một thương vụ cụ thể?",
+      "options": [
+        "Vì nhà đầu tư cam kết vốn trước khi biết quỹ sẽ mua những gì",
+        "Vì nhà đầu tư có quyền phủ quyết từng thương vụ trong suốt vòng đời quỹ",
+        "Vì các thương vụ đầu tiên thường quyết định toàn bộ hiệu suất của quỹ",
+        "Vì nhà quản lý quỹ chịu trách nhiệm pháp lý"
+      ],
+      "correct": 0,
+      "explanation": "Bạn ký cam kết mười năm cho một danh mục chưa tồn tại. Thứ duy nhất thẩm định được tại thời điểm đó là con người: cách họ tìm thương vụ, cách họ xử lý khoản đầu tư hỏng, và mức độ nhất quán giữa chiến lược đã nói với những gì họ thực sự làm ở quỹ trước."
+    }
     ],
     keyTakeaways: [
       "Nhà đầu tư cam kết hạn mức vốn, tiền chỉ chuyển khi quỹ gọi vốn theo từng thương vụ",
@@ -574,6 +586,18 @@ export const PRIVATE_MARKETS_LESSONS: Lesson[] = [
         explanation:
           "Các phương án còn lại đều là chi phí hoặc ràng buộc dự đoán được. Việc cửa niêm yết đóng thì không: nó phụ thuộc vào tâm lý thị trường tại đúng thời điểm quỹ cần bán, và thường đóng lại đúng lúc mọi quỹ khác cũng cần bán.",
       },
+    
+    {
+      "question": "Rủi ro lớn nhất khi luận điểm đầu tư phụ thuộc vào việc doanh nghiệp sẽ niêm yết là gì?",
+      "options": [
+        "Cửa niêm yết có thể đóng vì lý do hoàn toàn ngoài doanh nghiệp",
+        "Doanh nghiệp có thể không đáp ứng được điều kiện niêm yết về vốn điều lệ",
+        "Cổ đông hiện hữu sẽ bị pha loãng tỷ lệ sở hữu khi phát hành ra công chúng",
+        "Chi phí tư vấn cho việc niêm yết rất lớn"
+      ],
+      "correct": 0,
+      "explanation": "Doanh nghiệp có thể làm mọi thứ đúng và vẫn không niêm yết được vì thị trường xấu đúng vào năm quỹ cần thoái vốn. Đây là lý do một luận điểm chỉ có một cửa ra là luận điểm mong manh - và là lý do quỹ tiếp nối ra đời."
+    }
     ],
     keyTakeaways: [
       "Lợi nhuận private markets chỉ có thật khi thoái vốn xong - luận điểm đầu tư phải nêu rõ ai là người mua tiếp theo",

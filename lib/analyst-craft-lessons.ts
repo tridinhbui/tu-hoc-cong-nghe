@@ -92,6 +92,18 @@ export const ANALYST_CRAFT_LESSONS: Lesson[] = [
         explanation:
           "Không có tiêu chí phủ định, một luận điểm sai có thể được biện minh vô thời hạn bằng cách đổi lý do - đúng cơ chế thiên kiến xác nhận đã học ở chặng tài chính hành vi. Nêu trước điều kiện sai là cách duy nhất để sau này bạn thừa nhận được.",
       },
+    
+    {
+      "question": "Vì sao memo nên nêu rõ điều gì sẽ chứng minh luận điểm là sai?",
+      "options": [
+        "Vì nó biến luận điểm thành thứ kiểm chứng được thay vì một niềm tin",
+        "Vì hội đồng đầu tư yêu cầu mọi memo phải có phần đánh giá rủi ro đầy đủ",
+        "Vì nó giúp người viết tránh trách nhiệm nếu khoản đầu tư diễn biến xấu",
+        "Vì phần này thay cho việc liệt kê rủi ro"
+      ],
+      "correct": 0,
+      "explanation": "Một luận điểm không nói được điều gì làm nó sai thì không thể sai - và cũng không thể đúng theo cách có ích. Viết ra trước còn giúp bạn nhận ra khi nào nên thoát, thay vì diễn giải lại mọi tin xấu thành tin trung tính."
+    }
     ],
     keyTakeaways: [
       "Kết luận trước, lập luận sau, dữ liệu cuối - ngược với cách viết ở trường",
@@ -249,6 +261,18 @@ export const ANALYST_CRAFT_LESSONS: Lesson[] = [
         explanation:
           "Đây là nguyên tắc kim tự tháp áp dụng cho lời nói. Bắt đầu bằng bối cảnh dài rồi mới tới câu trả lời khiến người nghe phải chờ, và trong một buổi họp căng thẳng điều đó bị đọc thành né tránh.",
       },
+    
+    {
+      "question": "Bị hỏi một con số bạn không nhớ chính xác. Cách xử lý tốt nhất là gì?",
+      "options": [
+        "Nói rõ khoảng ước lượng và cam kết gửi lại con số chính xác",
+        "Đưa ra con số gần đúng nhất mà bạn nhớ được để duy trì mạch trình bày",
+        "Chuyển sang phần khác và quay lại câu hỏi này ở cuối buổi",
+        "Trả lời rằng con số đó có trong phụ lục của tài liệu đã gửi trước"
+      ],
+      "correct": 0,
+      "explanation": "Người ngồi đối diện gần như luôn nhận ra khi bạn đoán, và một lần bị bắt gặp sẽ khiến mọi con số khác của bạn bị nghi ngờ. Nói rõ khoảng ước lượng cho thấy bạn phân biệt được điều mình biết chắc với điều mình chỉ áng chừng."
+    }
     ],
     keyTakeaways: [
       "Không bao giờ đoán số - thừa nhận giới hạn kèm khoảng ước lượng đáng tin hơn nhiều",
@@ -577,6 +601,18 @@ export const ANALYST_CRAFT_LESSONS: Lesson[] = [
         explanation:
           "Đây là hai nghề khác nhau chứ không phải hai bậc cao thấp. Người giỏi chuyên môn được thăng lên quản lý rồi phát hiện mình ghét công việc mới là mô thức phổ biến, và nó gây thiệt hại cho cả cá nhân lẫn tổ chức.",
       },
+    
+    {
+      "question": "Bước chuyển khó nhất trong nghề phân tích tài chính là gì?",
+      "options": [
+        "Từ sản xuất phân tích sang chịu trách nhiệm cho quyết định thiếu dữ liệu",
+        "Từ làm việc với báo cáo tài chính sang làm việc với mô hình định giá",
+        "Từ vị trí chuyên viên sang vị trí quản lý một nhóm phân tích",
+        "Từ phân tích một ngành sang phân tích nhiều ngành cùng lúc"
+      ],
+      "correct": 0,
+      "explanation": "Chuyên viên giỏi luôn có thể xin thêm thời gian và thêm dữ liệu. Người ra quyết định thì không - dữ liệu không bao giờ đủ và cửa sổ cơ hội thì đóng. Đây là chỗ nhiều người phân tích xuất sắc dừng lại, và nó là kỹ năng khác chứ không phải mức độ cao hơn của cùng kỹ năng."
+    }
     ],
     keyTakeaways: [
       "Cấp đầu được đánh giá bằng độ chính xác và tốc độ; cấp giữa bằng phán đoán; cấp cao bằng quyết định",

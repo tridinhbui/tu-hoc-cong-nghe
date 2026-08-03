@@ -587,6 +587,18 @@ export const INTERNATIONAL_FINANCE_LESSONS: Lesson[] = [
         explanation:
           "Hai nguồn gốc dẫn tới hai kết luận trái ngược. Đánh giá lại khoản vay ngoại tệ là dự báo về tiền mặt sẽ mất trong tương lai; chênh lệch quy đổi báo cáo công ty con thì không. Thuyết minh về chênh lệch tỷ giá cho biết chính xác khoản nào là khoản nào.",
       },
+    
+    {
+      "question": "Vì sao lỗ tỷ giá từ đánh giá lại khoản vay ngoại tệ vẫn quan trọng dù chưa tốn tiền mặt?",
+      "options": [
+        "Vì nó ghi nhận trước phần sẽ thành tiền thật vào ngày trả nợ",
+        "Vì khoản lỗ này làm giảm dòng tiền hoạt động của doanh nghiệp trong kỳ",
+        "Vì khoản lỗ này được trừ khi tính thuế",
+        "Vì nó buộc doanh nghiệp phải trả nợ trước hạn theo điều khoản hợp đồng vay"
+      ],
+      "correct": 0,
+      "explanation": "Đánh giá lại chỉ là ghi nhận sớm điều sẽ xảy ra: nghĩa vụ trả bằng ngoại tệ là có thật và tỷ giá đã dịch chuyển. Khác hẳn với lỗ chuyển đổi báo cáo của công ty con ở nước ngoài - khoản đó nằm ở vốn chủ và có thể không bao giờ thành tiền."
+    }
     ],
     keyTakeaways: [
       "Phơi nhiễm giao dịch gắn với nghĩa vụ thật bằng ngoại tệ - sẽ thành tiền mặt",

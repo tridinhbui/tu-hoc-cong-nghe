@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Link from "next/link";
 import { motion } from "framer-motion";
 import { Sparkles, Lightbulb } from "lucide-react";
 import { getWisdomCardForScore, selectWisdomTone } from "@/lib/wisdom-cards";
@@ -86,6 +87,19 @@ export default function WisdomCardFlip({
           </motion.div>
         </button>
       </div>
+
+      {/* Chỉ hiện sau khi đã lật - trước đó nó cạnh tranh sự chú ý với chính
+          việc lật thẻ, và dẫn người ta đi khỏi trang trước khi đọc được gì. */}
+      {flipped && (
+        <p className="mt-3 text-center">
+          <Link
+            href="/loi-nhan"
+            className="text-[11px] font-bold text-orange-600 hover:underline dark:text-orange-400"
+          >
+            Ghé góc yên tĩnh một phút ›
+          </Link>
+        </p>
+      )}
     </div>
   );
 }

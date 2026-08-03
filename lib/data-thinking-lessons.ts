@@ -95,6 +95,18 @@ export const DATA_THINKING_LESSONS: Lesson[] = [
         explanation:
           "Doanh thu quý là chỉ số kết quả: khi biết thì đã hết quý. Số cuộc hẹn khách hàng trong tuần là chỉ số dẫn báo cho chính doanh thu đó, và còn kịp điều chỉnh.",
       },
+    
+    {
+      "question": "Định luật Goodhart cảnh báo điều gì về việc dùng chỉ số làm mục tiêu?",
+      "options": [
+        "Khi một thước đo thành mục tiêu, nó thôi là thước đo tốt",
+        "Chỉ số đo càng chính xác thì càng khó thu thập dữ liệu để tính",
+        "Mọi chỉ số đều mất dần ý nghĩa theo thời gian và phải thay mới",
+        "Chỉ số tổng hợp luôn che giấu biến động của các thành phần bên trong"
+      ],
+      "correct": 0,
+      "explanation": "Khi tiền thưởng gắn vào một con số, người ta tối ưu chính con số đó chứ không tối ưu điều nó đại diện. Đây là lý do mỗi chỉ số chính nên có một chỉ số đối trọng: đẩy số cuộc gọi thì phải nhìn cả tỷ lệ khách quay lại."
+    }
     ],
     keyTakeaways: [
       "Phép thử: nếu chỉ số này xấu đi, ai làm gì khác? Không trả lời được thì đừng đo",
@@ -255,6 +267,18 @@ export const DATA_THINKING_LESSONS: Lesson[] = [
         explanation:
           "Cohort theo kênh thu hút là một trong những phân tích có giá trị nhất về chi phí marketing: kênh rẻ nhất thường mang về nhóm khách rời bỏ sớm nhất.",
       },
+    
+    {
+      "question": "Vì sao chỉ số giữ chân trung bình đứng yên vẫn có thể che giấu một vấn đề nghiêm trọng?",
+      "options": [
+        "Vì nhóm cũ cải thiện có thể đang bù cho nhóm mới rời bỏ nhanh hơn",
+        "Vì giá trị trung bình luôn chậm hơn thực tế một vài kỳ báo cáo",
+        "Vì chỉ số này không tính những khách hàng đã rời đi hoàn toàn",
+        "Vì mỗi bộ phận tính giữ chân một kiểu"
+      ],
+      "correct": 0,
+      "explanation": "Hai lực ngược chiều cân bằng nhau tạo ra một đường phẳng, và đường phẳng thì không ai đặt câu hỏi. Tách theo nhóm khách hàng theo thời điểm gia nhập là cách duy nhất thấy được điều đó - trước khi nhóm cũ không còn đủ lớn để che nữa."
+    }
     ],
     keyTakeaways: [
       "Cohort là nhóm cùng thời điểm bắt đầu, theo dõi song song qua thời gian",
