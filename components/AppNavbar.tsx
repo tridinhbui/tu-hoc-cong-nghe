@@ -6,7 +6,7 @@ import Image from "next/image";
 import { isValidAvatar } from "@/lib/avatar-utils";
 import { usePathname, useRouter } from "next/navigation";
 import { toast } from "sonner";
-import { FileText, BarChart3, StickyNote, GraduationCap, Gamepad2, Menu, X, Briefcase, BriefcaseBusiness, BookOpen, Home, Flame, Users, MessageSquareMore, Search, ChevronDown, Award, ShieldAlert, Route, type LucideIcon } from "lucide-react";
+import { FileText, BarChart3, StickyNote, GraduationCap, Gamepad2, Menu, X, Briefcase, BriefcaseBusiness, BookOpen, Home, Flame, Users, MessageSquareMore, Search, ChevronDown, Award, ShieldAlert, Route, Landmark, type LucideIcon } from "lucide-react";
 import { useI18n } from "@/lib/i18n/context";
 import type { Dictionary } from "@/lib/i18n";
 import LanguageSwitcher from "@/components/LanguageSwitcher";
@@ -43,9 +43,34 @@ type NavLink =
   | { href: string; label: string; labelKey?: never; icon: LucideIcon }
   | { href: string; labelKey: keyof Dictionary["nav"]; label?: never; icon: LucideIcon };
 
-/** Dashboard sits above the sections, ungrouped: it is the way back to the
- *  overview rather than one destination among several. */
-const DASHBOARD_LINK: NavLink = { href: "/dashboard", label: "Dashboard", icon: Home };
+/**
+ * Above the sections, ungrouped, always visible.
+ *
+ * Every section starts folded, so anything inside one is invisible until the
+ * reader opens it. That is right for a shelf of destinations and wrong for
+ * two kinds of entry:
+ *
+ *   - Dashboard, which is the way back to the overview rather than one
+ *     destination among several.
+ *   - Anything that carries a live badge. Học nhóm shows a CHECK-IN prompt and
+ *     Kiểm tra shows "Tin mới" when a news quiz is waiting, both with an
+ *     animated icon to pull the eye. A prompt folded out of sight is a prompt
+ *     that does not exist, so the badges were pulsing on rows nobody could
+ *     see.
+ *
+ * FinSocial and Đại sảnh come along because splitting the three community
+ * entries across a flat row and a folded section would be worse than either
+ * arrangement on its own - the reader would have to know which half a given
+ * one lives in.
+ */
+const TOP_LEVEL_LINKS: NavLink[] = [
+  { href: "/dashboard", label: "Dashboard", icon: Home },
+  { href: "/kiem-tra", labelKey: "quiz", icon: GraduationCap },
+  { href: "/nhom-hoc", labelKey: "studyGroup", icon: Users },
+  { href: "/finsocial", label: "FinSocial", icon: MessageSquareMore },
+  // Đại sảnh 3D - tên riêng của không gian nên hardcode label như FinSocial.
+  { href: "/cong-dong", label: "Đại sảnh", icon: Landmark },
+];
 
 /** The nav is grouped by what the reader is trying to *do*, not by feature
  *  age. Eleven flat entries gave no hint which of them belonged together, so
@@ -79,8 +104,12 @@ const NAV_SECTIONS: NavSection[] = [
       // reachable only by typing the URL.
       { href: "/cfa", label: "CFA Level I", icon: Award },
       { href: "/frm", label: "FRM", icon: ShieldAlert },
-      { href: "/kiem-tra", labelKey: "quiz", icon: GraduationCap },
       { href: "/ghi-chu", labelKey: "notes", icon: StickyNote },
+      // Sự nghiệp sits with the learning entries rather than with the progress
+      // charts. "Nghề nào hợp với tôi" is a question you answer on the way in,
+      // next to the tracks you would then pick - not a statistic you check
+      // afterwards, which is what the Tiến độ group holds.
+      { href: "/su-nghiep", labelKey: "career", icon: Briefcase },
     ],
   },
   {
@@ -90,22 +119,11 @@ const NAV_SECTIONS: NavSection[] = [
       { href: "/phong-van-ky-thuat", labelKey: "technicalInterview", icon: BriefcaseBusiness },
     ],
   },
-  {
-    // Nhóm học nằm ở đây chứ không ở Thực hành: việc học cùng người khác là
-    // hoạt động cộng đồng, và đặt cạnh FinSocial thì hai lối vào duy nhất dẫn
-    // tới người khác nằm cùng một chỗ.
-    titleKey: "sectionCommunity",
-    links: [
-      { href: "/nhom-hoc", labelKey: "studyGroup", icon: Users },
-      { href: "/finsocial", label: "FinSocial", icon: MessageSquareMore },
-    ],
-  },
+  // Cộng đồng no longer exists as a section: all three of its entries moved to
+  // TOP_LEVEL_LINKS above.
   {
     titleKey: "sectionProgress",
-    links: [
-      { href: "/analytics", labelKey: "stats", icon: BarChart3 },
-      { href: "/su-nghiep", labelKey: "career", icon: Briefcase },
-    ],
+    links: [{ href: "/analytics", labelKey: "stats", icon: BarChart3 }],
   },
   {
     titleKey: "sectionResources",
@@ -515,7 +533,7 @@ export default function AppNavbar() {
           </button>
 
           <nav className="mt-3 flex flex-col shrink-0">
-            {renderNavItem(DASHBOARD_LINK)}
+            {TOP_LEVEL_LINKS.map((link) => renderNavItem(link))}
             {renderNavSections()}
           </nav>
 
@@ -743,7 +761,7 @@ export default function AppNavbar() {
                 </div>
               )}
 
-              {renderNavItem(DASHBOARD_LINK, () => setMobileMenuOpen(false))}
+              {TOP_LEVEL_LINKS.map((link) => renderNavItem(link, () => setMobileMenuOpen(false)))}
               {renderNavSections(() => setMobileMenuOpen(false), "mobile-nav")}
             </div>
           </>
