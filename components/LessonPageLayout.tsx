@@ -981,8 +981,16 @@ export default function LessonPageLayout({ lesson, quiz, children }: Props) {
               taller than the viewport - without this, anything past the
               fold (e.g. the "Câu tiếp theo" button) was stuck off-screen
               with no way to reach it, since a sticky element doesn't scroll
-              on its own past its container's height. */}
-          <aside data-tour="lesson-quiz" className="w-full lg:w-[440px] flex-shrink-0 lg:sticky lg:top-24 lg:max-h-[calc(100vh-7rem)] lg:overflow-y-auto space-y-4">
+              on its own past its container's height.
+
+              Every breakpoint here must be `xl`, matching the parent's
+              `xl:flex-row`. They used to be `lg`, which meant that between
+              1024px and 1279px the sidebar was still stacked *below* the
+              article in a column, yet already sticky and clipped to viewport
+              height - so it simply scrolled away instead of following, and a
+              440px column sat oddly in a full-width stack. Sticky positioning
+              only means anything once this is actually a side column. */}
+          <aside data-tour="lesson-quiz" className="w-full xl:w-[440px] flex-shrink-0 xl:sticky xl:top-24 xl:max-h-[calc(100vh-7rem)] xl:overflow-y-auto space-y-4">
             {/* Lesson Notes */}
             <LessonNotes lessonId={persistedLessonId} lessonSlug={lesson.slug || ""} />
 
@@ -1093,7 +1101,7 @@ export default function LessonPageLayout({ lesson, quiz, children }: Props) {
                 )}
 
                 {/* Sticky to the bottom of the quiz sidebar's own scroll
-                    container (see the `aside`'s lg:overflow-y-auto above) so
+                    container (see the `aside`'s xl:overflow-y-auto above) so
                     the action button is always in reach right after picking
                     an option, instead of requiring a scroll down to find it
                     and then back up to see the feedback - the exact
