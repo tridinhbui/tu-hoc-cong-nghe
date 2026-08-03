@@ -399,6 +399,240 @@ export function boardTexture(
   return texture;
 }
 
+/** Quả địa cầu đồng: nền biển sẫm, mảng lục địa vàng đồng, lưới kinh vĩ tuyến.
+ *  Không cần đúng bản đồ - chỉ cần đọc ra "quả địa cầu" từ khoảng cách vài mét. */
+export function globeTexture(): THREE.Texture {
+  const t = draw("globe", 1024, 512, (ctx) => {
+    ctx.fillStyle = "#123243";
+    ctx.fillRect(0, 0, 1024, 512);
+
+    // Lục địa vẽ bằng các vệt ellipse chồng nhau - hình dạng gợi ý, không phải
+    // bản đồ thật, nhưng đủ để mắt nhận ra đất liền trên nền biển.
+    ctx.fillStyle = "#b08d4f";
+    const blobs: Array<[number, number, number, number]> = [
+      [190, 150, 70, 55], [165, 235, 45, 70],   // châu Mỹ
+      [470, 140, 55, 42], [500, 240, 70, 80],   // Âu - Phi
+      [700, 160, 120, 70], [790, 300, 55, 35],  // Á - Úc
+      [520, 60, 300, 28],                        // vành bắc
+    ];
+    for (const [x, y, rx, ry] of blobs) {
+      ctx.beginPath();
+      ctx.ellipse(x, y, rx, ry, 0, 0, Math.PI * 2);
+      ctx.fill();
+    }
+
+    // Lưới kinh vĩ tuyến
+    ctx.strokeStyle = "rgba(226,213,180,0.28)";
+    ctx.lineWidth = 1.5;
+    for (let i = 1; i < 8; i += 1) {
+      ctx.beginPath();
+      ctx.moveTo((1024 / 8) * i, 0);
+      ctx.lineTo((1024 / 8) * i, 512);
+      ctx.stroke();
+    }
+    for (let i = 1; i < 5; i += 1) {
+      ctx.beginPath();
+      ctx.moveTo(0, (512 / 5) * i);
+      ctx.lineTo(1024, (512 / 5) * i);
+      ctx.stroke();
+    }
+    // Xích đạo đậm hơn
+    ctx.strokeStyle = "rgba(226,213,180,0.6)";
+    ctx.lineWidth = 3;
+    ctx.beginPath();
+    ctx.moveTo(0, 256);
+    ctx.lineTo(1024, 256);
+    ctx.stroke();
+  });
+  t.repeat.set(1, 1);
+  return t;
+}
+
+/** Mặt đồng hồ lớn treo tường đầu bắc. Kim đứng yên ở một giờ cố định: đồng hồ
+ *  chạy thật sẽ kéo mắt khỏi đồng hồ Pomodoro trên bàn, mà cái đó mới là thứ
+ *  cần được nhìn. */
+export function wallClockTexture(): THREE.Texture {
+  const t = draw("wallclock", 512, 512, (ctx) => {
+    ctx.fillStyle = "#f3ead6";
+    ctx.beginPath();
+    ctx.arc(256, 256, 240, 0, Math.PI * 2);
+    ctx.fill();
+
+    ctx.strokeStyle = "#3d2c1a";
+    ctx.lineWidth = 14;
+    ctx.beginPath();
+    ctx.arc(256, 256, 236, 0, Math.PI * 2);
+    ctx.stroke();
+
+    // Vạch giờ - số La Mã thì đẹp nhưng ở khoảng cách này chỉ còn là vệt mờ.
+    ctx.strokeStyle = "#3d2c1a";
+    for (let i = 0; i < 12; i += 1) {
+      const a = (i / 12) * Math.PI * 2;
+      const long = i % 3 === 0;
+      ctx.lineWidth = long ? 10 : 5;
+      ctx.beginPath();
+      ctx.moveTo(256 + Math.cos(a) * (long ? 186 : 198), 256 + Math.sin(a) * (long ? 186 : 198));
+      ctx.lineTo(256 + Math.cos(a) * 216, 256 + Math.sin(a) * 216);
+      ctx.stroke();
+    }
+
+    // 10:10 - tư thế kim kinh điển của mọi ảnh quảng cáo đồng hồ, vì nó cân.
+    const hand = (angle: number, len: number, width: number) => {
+      ctx.strokeStyle = "#2a1c11";
+      ctx.lineWidth = width;
+      ctx.lineCap = "round";
+      ctx.beginPath();
+      ctx.moveTo(256, 256);
+      ctx.lineTo(256 + Math.cos(angle) * len, 256 + Math.sin(angle) * len);
+      ctx.stroke();
+    };
+    hand(-Math.PI / 2 - Math.PI / 3, 110, 16); // giờ ~10
+    hand(-Math.PI / 2 + Math.PI / 3, 160, 11); // phút ~10
+
+    ctx.fillStyle = "#3d2c1a";
+    ctx.beginPath();
+    ctx.arc(256, 256, 14, 0, Math.PI * 2);
+    ctx.fill();
+  });
+  t.repeat.set(1, 1);
+  return t;
+}
+
+/** Thảm dệt trải dưới các hàng bàn - mảng màu ấm phá bớt mặt đá mênh mông. */
+export function rugTexture(): THREE.Texture {
+  const t = draw("rug", 512, 256, (ctx) => {
+    ctx.fillStyle = "#6d2230";
+    ctx.fillRect(0, 0, 512, 256);
+    ctx.strokeStyle = "#c9a227";
+    ctx.lineWidth = 6;
+    ctx.strokeRect(18, 18, 512 - 36, 256 - 36);
+    ctx.lineWidth = 2;
+    ctx.strokeRect(34, 34, 512 - 68, 256 - 68);
+    // Hoa văn trám lặp lại
+    ctx.strokeStyle = "rgba(201,162,39,0.55)";
+    ctx.lineWidth = 2.5;
+    for (let x = 70; x < 460; x += 52) {
+      ctx.beginPath();
+      ctx.moveTo(x, 128 - 26);
+      ctx.lineTo(x + 26, 128);
+      ctx.lineTo(x, 128 + 26);
+      ctx.lineTo(x - 26, 128);
+      ctx.closePath();
+      ctx.stroke();
+    }
+  });
+  t.repeat.set(1, 1);
+  return t;
+}
+
+/** Cờ đỏ sao vàng.
+ *
+ *  Tỷ lệ 3:2, đường kính ngôi sao bằng 3/5 chiều cao lá cờ. Sao vẽ bằng mười
+ *  đỉnh xen kẽ ngoài-trong, bán kính trong bằng bán kính ngoài chia cho tỷ lệ
+ *  vàng bình phương (2,618) - đó là ngôi sao năm cánh đều; các tỷ lệ khác cho
+ *  ra ngôi sao mập hoặc gầy hơn cờ thật một cách dễ nhận ra. */
+export function vietnamFlagTexture(): THREE.Texture {
+  const t = draw("vn-flag", 480, 320, (ctx) => {
+    ctx.fillStyle = "#da251d";
+    ctx.fillRect(0, 0, 480, 320);
+
+    const cx = 240;
+    const cy = 160;
+    const outer = (320 * 3) / 10;
+    const inner = outer / 2.618;
+    ctx.fillStyle = "#ffff00";
+    ctx.beginPath();
+    for (let i = 0; i < 10; i += 1) {
+      const r = i % 2 === 0 ? outer : inner;
+      // Bắt đầu từ đỉnh trên cùng: -90 độ.
+      const a = -Math.PI / 2 + (i * Math.PI) / 5;
+      const px = cx + Math.cos(a) * r;
+      const py = cy + Math.sin(a) * r;
+      if (i === 0) ctx.moveTo(px, py);
+      else ctx.lineTo(px, py);
+    }
+    ctx.closePath();
+    ctx.fill();
+  });
+  // Lá cờ là một mảnh vải, không lặp - lặp lại sẽ ra hai ngôi sao.
+  t.wrapS = THREE.ClampToEdgeWrapping;
+  t.wrapT = THREE.ClampToEdgeWrapping;
+  t.repeat.set(1, 1);
+  return t;
+}
+
+/** Mặt đường nhựa với vạch kẻ liền hai mép và vạch đứt giữa. */
+export function asphaltTexture(): THREE.Texture {
+  const t = draw("asphalt", 256, 512, (ctx) => {
+    ctx.fillStyle = "#3a3a3c";
+    ctx.fillRect(0, 0, 256, 512);
+    // Hạt nhựa đường: chấm nhiễu nhạt cho mặt đường không phẳng lì.
+    for (let i = 0; i < 900; i += 1) {
+      ctx.fillStyle = `rgba(255,255,255,${0.02 + Math.random() * 0.05})`;
+      ctx.fillRect(Math.random() * 256, Math.random() * 512, 2, 2);
+    }
+    ctx.fillStyle = "#d8d4c4";
+    ctx.fillRect(10, 0, 5, 512);
+    ctx.fillRect(241, 0, 5, 512);
+    // Vạch đứt phân làn chạy dọc.
+    ctx.fillStyle = "#e8e2cd";
+    for (let y = 0; y < 512; y += 96) ctx.fillRect(125, y, 6, 54);
+  });
+  t.repeat.set(1, 12);
+  return t;
+}
+
+/** Mặt tiền nhà phố Sài Gòn: nhà ống nhiều tầng, cửa sổ sáng đèn, ban công.
+ *  Một vân dùng chung cho cả dãy - mỗi toà lấy một đoạn offset khác nhau nên
+ *  mắt không bắt được chỗ lặp. */
+export function cityFacadeTexture(): THREE.Texture {
+  const t = draw("facade", 256, 512, (ctx) => {
+    ctx.fillStyle = "#cfc6b4";
+    ctx.fillRect(0, 0, 256, 512);
+    const rows = 8;
+    for (let r = 0; r < rows; r += 1) {
+      const y = 512 - (r + 1) * (512 / rows);
+      // Sàn từng tầng
+      ctx.fillStyle = "#b3a894";
+      ctx.fillRect(0, y + 512 / rows - 7, 256, 7);
+      for (let c = 0; c < 3; c += 1) {
+        const lit = Math.random() > 0.42;
+        ctx.fillStyle = lit ? "#ffd98a" : "#4e5a63";
+        ctx.fillRect(24 + c * 76, y + 14, 48, 40);
+        ctx.strokeStyle = "#8d8371";
+        ctx.lineWidth = 3;
+        ctx.strokeRect(24 + c * 76, y + 14, 48, 40);
+      }
+    }
+    // Tầng trệt: mặt bằng kinh doanh, bảng hiệu chạy ngang.
+    ctx.fillStyle = "#2a2622";
+    ctx.fillRect(0, 512 - 512 / rows, 256, 512 / rows);
+    ctx.fillStyle = "#e0603a";
+    ctx.fillRect(0, 512 - 512 / rows, 256, 16);
+  });
+  t.repeat.set(1, 1);
+  return t;
+}
+
+/** Vòm trời hoàng hôn. Dải màu dọc, đậm ở đỉnh và ấm dần xuống chân trời -
+ *  ánh chiều là lúc thành phố lên đèn mà vẫn còn nhìn rõ mặt phố. */
+export function duskSkyTexture(): THREE.Texture {
+  const t = draw("dusk-sky", 16, 256, (ctx) => {
+    const g = ctx.createLinearGradient(0, 0, 0, 256);
+    g.addColorStop(0, "#1b2a4a");
+    g.addColorStop(0.42, "#4a4470");
+    g.addColorStop(0.68, "#b4694f");
+    g.addColorStop(0.86, "#e29a55");
+    g.addColorStop(1, "#f2c079");
+    ctx.fillStyle = g;
+    ctx.fillRect(0, 0, 16, 256);
+  });
+  t.wrapS = THREE.ClampToEdgeWrapping;
+  t.wrapT = THREE.ClampToEdgeWrapping;
+  t.repeat.set(1, 1);
+  return t;
+}
+
 /** Giải phóng toàn bộ texture đã dựng. Gọi khi rời phòng - CanvasTexture giữ
  *  bộ nhớ GPU cho tới khi dispose, và người dùng có thể vào ra nhiều lần. */
 export function disposeRoomTextures() {

@@ -154,18 +154,21 @@ export default function RoomFixtures({
 
   return (
     <group>
-      {/* Bảng tin FinSocial - tường trái, giữa phòng */}
+      {/* Bảng tin FinSocial - tường trái, giữa phòng. Hạ xuống dưới cốt 6,4:
+          phía trên là sàn ban công, treo cao hơn là bảng nằm sau gầm sàn. */}
       <WallBoard
-        position={[-halfW + 0.3, 4.6, -6]}
+        position={[-halfW + 0.3, 3.5, -6]}
         rotation={[0, Math.PI / 2, 0]}
         title="Bảng tin cộng đồng"
         rows={posts}
         accent="#c9a227"
       />
 
-      {/* Bảng xếp hạng - tường phải, đối diện */}
+      {/* Bảng xếp hạng - treo trên tầng hai. Đặt ở đây chứ không đối diện bảng
+          tin dưới sàn là có chủ ý: ban công cần một lý do để leo lên, và "muốn
+          xem mình đứng thứ mấy tuần này" là lý do rẻ nhất mà vẫn thật. */}
       <WallBoard
-        position={[halfW - 0.3, 4.6, -6]}
+        position={[halfW - 0.3, 8.4, 6]}
         rotation={[0, -Math.PI / 2, 0]}
         title="Bảng vàng tuần này"
         rows={ranking}

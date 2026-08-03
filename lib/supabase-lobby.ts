@@ -53,6 +53,11 @@ export const POMODORO_MS = 25 * 60 * 1000;
 export interface LobbyPose {
   x: number;
   z: number;
+  /** Cao độ chân nhân vật. Có tầng hai và bậc thềm ra phố rồi nên vị trí không
+   *  còn nằm gọn trên một mặt phẳng; thiếu số này thì người đang đứng trên ban
+   *  công hiện ra dưới sàn với người khác. Để tuỳ chọn cho tương thích ngược:
+   *  gói cũ không có y nghĩa là đang ở tầng trệt. */
+  y?: number;
   /** Góc quay quanh trục đứng, radian. */
   ry: number;
 }
@@ -154,6 +159,7 @@ export function joinLobby(
               // người đang đi bộ giật về cửa.
               x: existing?.x ?? 0,
               z: existing?.z ?? 12,
+              y: existing?.y ?? 0,
               ry: existing?.ry ?? Math.PI,
               updatedAt: existing?.updatedAt ?? Date.now(),
             });
@@ -176,6 +182,7 @@ export function joinLobby(
           ...existing,
           x: pose.x,
           z: pose.z,
+          y: pose.y ?? 0,
           ry: pose.ry,
           updatedAt: Date.now(),
         });

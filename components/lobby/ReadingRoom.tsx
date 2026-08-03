@@ -38,6 +38,12 @@ export const TABLE_ZS: number[] = Array.from(
 export const TABLE_HALF_W = 9.5 / 2;
 export const TABLE_HALF_D = 1.7 / 2;
 
+/** Ô cửa trổ trên tường đầu nam, lối ra phố. Khai báo ở đây chứ không ở
+ *  world.ts vì tường được vẽ ở đây - để hai nơi tự chọn số riêng thì sớm muộn
+ *  cũng có người đi xuyên tường hoặc đâm vào khoảng trống. */
+export const DOOR_HALF_W = 2.8;
+export const DOOR_HEIGHT = 5.6;
+
 function ArchedWindow({ x, z, flip }: { x: number; z: number; flip: boolean }) {
   return (
     <group position={[x, 4.6, z]} rotation={[0, flip ? -Math.PI / 2 : Math.PI / 2, 0]}>
@@ -210,13 +216,39 @@ export default function ReadingRoom() {
         </group>
       ))}
 
-      {/* Hai tường đầu hồi */}
-      {[-halfL, halfL].map((z) => (
-        <mesh key={z} position={[0, ROOM.height / 2, z]} rotation={[0, z > 0 ? Math.PI : 0, 0]}>
-          <planeGeometry args={[ROOM.width, ROOM.height]} />
+      {/* Tường đầu bắc - kín, phía sau là cổng vào nhóm học */}
+      <mesh position={[0, ROOM.height / 2, -halfL]}>
+        <planeGeometry args={[ROOM.width, ROOM.height]} />
+        <meshStandardMaterial color="#cbbca4" roughness={0.95} />
+      </mesh>
+
+      {/* Tường đầu nam - trổ cửa ra phố, nên chia làm ba mảng quanh ô cửa */}
+      <group position={[0, 0, halfL]} rotation={[0, Math.PI, 0]}>
+        {[-1, 1].map((side) => {
+          const w = ROOM.width / 2 - DOOR_HALF_W;
+          return (
+            <mesh key={side} position={[side * (DOOR_HALF_W + w / 2), ROOM.height / 2, 0]}>
+              <planeGeometry args={[w, ROOM.height]} />
+              <meshStandardMaterial color="#cbbca4" roughness={0.95} />
+            </mesh>
+          );
+        })}
+        <mesh position={[0, (ROOM.height + DOOR_HEIGHT) / 2, 0]}>
+          <planeGeometry args={[DOOR_HALF_W * 2, ROOM.height - DOOR_HEIGHT]} />
           <meshStandardMaterial color="#cbbca4" roughness={0.95} />
         </mesh>
-      ))}
+        {/* Khuôn cửa bằng đá, để mép ô cửa không phải là một đường cắt trần trụi */}
+        {[-1, 1].map((side) => (
+          <mesh key={`j${side}`} position={[side * (DOOR_HALF_W + 0.16), DOOR_HEIGHT / 2, 0.14]}>
+            <boxGeometry args={[0.32, DOOR_HEIGHT + 0.5, 0.5]} />
+            <meshStandardMaterial color="#ddd2bc" roughness={0.85} />
+          </mesh>
+        ))}
+        <mesh position={[0, DOOR_HEIGHT + 0.24, 0.14]}>
+          <boxGeometry args={[DOOR_HALF_W * 2 + 0.9, 0.48, 0.5]} />
+          <meshStandardMaterial color="#ddd2bc" roughness={0.85} />
+        </mesh>
+      </group>
 
       {/* Cửa sổ vòm hai bên */}
       {windowZs.map((z) => (

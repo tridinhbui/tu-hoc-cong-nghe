@@ -13,6 +13,8 @@ import { CHAT_BUBBLE_MS } from "@/lib/supabase-lobby";
 export interface AvatarPose {
   x: number;
   z: number;
+  /** Cao độ chân. Bỏ trống nghĩa là đứng trên sàn tầng trệt. */
+  y?: number;
   ry: number;
 }
 
@@ -114,7 +116,7 @@ export default function LobbyAvatar({
     // Ngồi thì hạ cả thân xuống ~0.45 và gập chân - không có xương nên "ngồi"
     // ở đây là hạ độ cao cộng gập đùi, đủ để nhìn từ xa phân biệt được ai đang
     // học và ai chỉ đứng cạnh bàn. Chuyển mượt thay vì nhảy cóc một khung hình.
-    const seatDrop = seated ? -0.42 : 0;
+    const seatDrop = (seated ? -0.42 : 0) + (pose.y ?? 0);
     g.position.y += (seatDrop - g.position.y) * Math.min(1, delta * 8);
 
     if (isSelf) {

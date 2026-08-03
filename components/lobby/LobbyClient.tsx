@@ -34,35 +34,51 @@ function SceneFallback({ label }: { label: string }) {
 }
 
 /** Nút giữ-để-đi cho màn cảm ứng: phát sự kiện bàn phím giả để dùng chung một
- *  đường điều khiển với desktop, thay vì mở kênh trạng thái thứ hai. */
+ *  đường điều khiển với desktop, thay vì mở kênh trạng thái thứ hai.
+ *
+ *  Nhả phím phải bắt cả pointerup, pointerleave LẪN pointercancel. Trên iOS,
+ *  ngón tay trượt khỏi nút hay bị hệ thống cắt ngang chỉ sinh ra pointercancel;
+ *  thiếu nó thì phím kẹt ở trạng thái đang giữ và nhân vật đi mãi không dừng. */
 function TouchPad() {
   const press = (key: string, type: "keydown" | "keyup") => {
     window.dispatchEvent(new KeyboardEvent(type, { key }));
   };
-  const HoldButton = ({ eventKey, label }: { eventKey: string; label: string }) => (
-    <button
-      type="button"
-      aria-label={label}
-      className="flex h-12 w-12 select-none items-center justify-center rounded-2xl bg-stone-800/80 text-lg text-stone-100 shadow-lg backdrop-blur active:bg-stone-600"
-      onPointerDown={(e) => {
-        e.preventDefault();
-        press(eventKey, "keydown");
-      }}
-      onPointerUp={() => press(eventKey, "keyup")}
-      onPointerLeave={() => press(eventKey, "keyup")}
-      onContextMenu={(e) => e.preventDefault()}
-    >
-      {label}
-    </button>
-  );
+  const HoldButton = ({
+    eventKey,
+    label,
+    hint,
+  }: {
+    eventKey: string;
+    label: string;
+    hint: string;
+  }) => {
+    const release = () => press(eventKey, "keyup");
+    return (
+      <button
+        type="button"
+        aria-label={hint}
+        className="flex h-14 w-14 select-none touch-none items-center justify-center rounded-2xl bg-stone-800/85 text-xl text-stone-100 shadow-lg backdrop-blur active:bg-amber-500 active:text-stone-900"
+        onPointerDown={(e) => {
+          e.preventDefault();
+          press(eventKey, "keydown");
+        }}
+        onPointerUp={release}
+        onPointerLeave={release}
+        onPointerCancel={release}
+        onContextMenu={(e) => e.preventDefault()}
+      >
+        {label}
+      </button>
+    );
+  };
   return (
     <div className="pointer-events-auto grid grid-cols-3 gap-1.5 sm:hidden">
       <div />
-      <HoldButton eventKey="ArrowUp" label="↑" />
+      <HoldButton eventKey="ArrowUp" label="↑" hint="Đi tới" />
       <div />
-      <HoldButton eventKey="ArrowLeft" label="↺" />
-      <HoldButton eventKey="ArrowDown" label="↓" />
-      <HoldButton eventKey="ArrowRight" label="↻" />
+      <HoldButton eventKey="ArrowLeft" label="↺" hint="Xoay trái" />
+      <HoldButton eventKey="ArrowDown" label="↓" hint="Lùi lại" />
+      <HoldButton eventKey="ArrowRight" label="↻" hint="Xoay phải" />
     </div>
   );
 }
@@ -289,6 +305,9 @@ export default function LobbyClient() {
             <kbd className="rounded bg-stone-800 px-1.5 py-0.5">S</kbd> đi lại ·{" "}
             <kbd className="rounded bg-stone-800 px-1.5 py-0.5">A</kbd>{" "}
             <kbd className="rounded bg-stone-800 px-1.5 py-0.5">D</kbd> xoay người · kéo chuột để đổi góc nhìn, lăn để phóng · tin nhắn không được lưu lại
+          </div>
+          <div className="pointer-events-none text-[11px] font-medium text-stone-400 sm:hidden">
+            Nút bên phải để đi · kéo trên màn hình để đổi góc nhìn · chụm hai ngón để phóng
           </div>
         </div>
         <TouchPad />

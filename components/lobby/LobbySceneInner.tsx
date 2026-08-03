@@ -5,6 +5,10 @@ import { Canvas, useFrame, useThree } from "@react-three/fiber";
 import * as THREE from "three";
 import ReadingRoom, { ROOM, TABLE_ZS, TABLE_HALF_W, TABLE_HALF_D } from "./ReadingRoom";
 import RoomFixtures from "./RoomFixtures";
+import RoomProps from "./RoomProps";
+import CityStreet from "./CityStreet";
+import { stepWorld, type Floor } from "./world";
+import { ROTUNDA_Z } from "./room-obstacles";
 import LobbyAvatar, { type AvatarPose } from "./LobbyAvatar";
 import {
   CHAT_BUBBLE_MS,
@@ -100,25 +104,6 @@ function normalize(key: string): string | null {
   }
 }
 
-/** Đẩy nhân vật ra khỏi khối bàn gần nhất nếu vừa bước vào trong.
- *  Giải theo trục có mức chồng lấn NHỎ hơn: đó là hướng vừa đi vào, nên đẩy
- *  ngược lại cho cảm giác trượt dọc mép bàn thay vì bị bắn ngang qua nó. */
-function resolveTableCollision(x: number, z: number): { x: number; z: number } {
-  for (const tz of TABLE_ZS) {
-    const dx = x - 0;
-    const dz = z - tz;
-    const overlapX = TABLE_HALF_W + BODY_RADIUS - Math.abs(dx);
-    const overlapZ = TABLE_HALF_D + BODY_RADIUS - Math.abs(dz);
-    if (overlapX > 0 && overlapZ > 0) {
-      if (overlapZ < overlapX) {
-        return { x, z: tz + Math.sign(dz || 1) * (TABLE_HALF_D + BODY_RADIUS) };
-      }
-      return { x: Math.sign(dx || 1) * (TABLE_HALF_W + BODY_RADIUS), z };
-    }
-  }
-  return { x, z };
-}
-
 export interface OrbitState {
   /** Lệch góc ngang so với hướng nhân vật đang quay, radian. */
   yaw: number;
@@ -142,39 +127,68 @@ function useCameraOrbit(orbit: React.MutableRefObject<OrbitState>) {
 
   useEffect(() => {
     const el = gl.domElement;
-    let dragging = false;
-    let lastX = 0;
-    let lastY = 0;
+    /** Mọi ngón/con trỏ đang chạm. Cần theo dõi từng cái vì hai ngón là chụm để
+     *  phóng, một ngón là xoay - không đếm thì hai ngón sẽ vừa xoay vừa phóng. */
+    const active = new Map<number, { x: number; y: number }>();
+    let pinchDist = 0;
 
     const down = (e: PointerEvent) => {
-      // Chỉ chuột trái / một ngón; chuột phải để dành cho menu ngữ cảnh.
-      if (e.button !== 0) return;
-      dragging = true;
-      lastX = e.clientX;
-      lastY = e.clientY;
+      // Chuột phải để dành cho menu ngữ cảnh; ngón tay không có khái niệm nút.
+      if (e.pointerType === "mouse" && e.button !== 0) return;
+      active.set(e.pointerId, { x: e.clientX, y: e.clientY });
+      if (active.size === 2) {
+        const [a, b] = [...active.values()];
+        pinchDist = Math.hypot(a.x - b.x, a.y - b.y);
+      }
       el.setPointerCapture(e.pointerId);
       el.style.cursor = "grabbing";
     };
+
     const move = (e: PointerEvent) => {
-      if (!dragging) return;
-      const dx = e.clientX - lastX;
-      const dy = e.clientY - lastY;
-      lastX = e.clientX;
-      lastY = e.clientY;
+      const prev = active.get(e.pointerId);
+      if (!prev) return;
+      active.set(e.pointerId, { x: e.clientX, y: e.clientY });
+
+      if (active.size >= 2) {
+        // Chụm hai ngón thay cho lăn chuột. Bỏ qua xoay trong lúc chụm: hai
+        // ngón hiếm khi giãn ra hoàn toàn đối xứng, nên góc nhìn sẽ trôi theo
+        // mỗi lần phóng nếu vẫn nghe cả hai.
+        const [a, b] = [...active.values()];
+        const d = Math.hypot(a.x - b.x, a.y - b.y);
+        if (pinchDist > 0) {
+          orbit.current.dist = THREE.MathUtils.clamp(
+            orbit.current.dist * (pinchDist / Math.max(1, d)),
+            2.2,
+            16
+          );
+        }
+        pinchDist = d;
+        return;
+      }
+
+      const dx = e.clientX - prev.x;
+      const dy = e.clientY - prev.y;
       orbit.current.yaw -= dx * 0.005;
       orbit.current.pitch = THREE.MathUtils.clamp(orbit.current.pitch + dy * 0.004, -0.25, 1.1);
     };
+
     const up = (e: PointerEvent) => {
-      dragging = false;
+      active.delete(e.pointerId);
+      if (active.size < 2) pinchDist = 0;
       if (el.hasPointerCapture(e.pointerId)) el.releasePointerCapture(e.pointerId);
       el.style.cursor = "grab";
     };
+
     const wheel = (e: WheelEvent) => {
       e.preventDefault();
       orbit.current.dist = THREE.MathUtils.clamp(orbit.current.dist + e.deltaY * 0.006, 2.2, 16);
     };
 
     el.style.cursor = "grab";
+    // Không có dòng này thì trên điện thoại mọi cú kéo đều bị trình duyệt hiểu
+    // là cuộn trang: nó nuốt luôn chuỗi pointermove và camera đứng im, còn cả
+    // trang thì trượt lên xuống dưới tay người dùng.
+    el.style.touchAction = "none";
     el.addEventListener("pointerdown", down);
     el.addEventListener("pointermove", move);
     el.addEventListener("pointerup", up);
@@ -187,6 +201,7 @@ function useCameraOrbit(orbit: React.MutableRefObject<OrbitState>) {
       el.removeEventListener("pointercancel", up);
       el.removeEventListener("wheel", wheel);
       el.style.cursor = "";
+      el.style.touchAction = "";
     };
   }, [gl, orbit]);
 }
@@ -203,16 +218,19 @@ function applyOrbitCamera(
   const dist = distOverride ?? orbit.dist;
   const angle = pose.ry + orbit.yaw;
   const horizontal = Math.cos(orbit.pitch) * dist;
+  // Mọi cao độ tính TƯƠNG ĐỐI so với chân nhân vật: đứng trên ban công hay
+  // dưới lòng phố thì camera vẫn ở ngang vai, không phải ngang sàn tầng trệt.
+  const foot = pose.y ?? 0;
   const target = new THREE.Vector3(
     pose.x + Math.sin(angle) * horizontal,
     // Chặn sàn: pitch âm cộng khoảng cách xa sẽ dìm camera xuống dưới nền, và
     // lúc đó nửa dưới khung hình là mặt sau của sàn - một mảng đen. Kẹp ở đây
     // thay vì siết pitch, vì giới hạn thật phụ thuộc cả vào dist.
-    Math.max(0.55, 1.5 + Math.sin(orbit.pitch) * dist),
+    foot + Math.max(0.55, 1.5 + Math.sin(orbit.pitch) * dist),
     pose.z + Math.cos(angle) * horizontal
   );
   camera.position.lerp(target, Math.min(1, delta * 6));
-  camera.lookAt(pose.x, 1.5, pose.z);
+  camera.lookAt(pose.x, foot + 1.5, pose.z);
 }
 
 /** Mọi logic mỗi-frame của người chơi: đọc phím, di chuyển, chặn tường và bàn,
@@ -225,6 +243,7 @@ function PlayerRig({
   seatedRef,
   onSeatableChange,
   orbitRef,
+  floorRef,
 }: {
   userId: string;
   poseRef: React.MutableRefObject<AvatarPose>;
@@ -234,6 +253,8 @@ function PlayerRig({
   seatedRef: React.MutableRefObject<number | null>;
   onSeatableChange: (tableId: number | null) => void;
   orbitRef: React.MutableRefObject<OrbitState>;
+  /** Tầng đang đứng. Không suy ra được từ toạ độ - xem world.ts. */
+  floorRef: React.MutableRefObject<Floor>;
 }) {
   const { camera } = useThree();
   useCameraOrbit(orbitRef);
@@ -266,18 +287,20 @@ function PlayerRig({
     if (forward !== 0) {
       const nx = pose.x - Math.sin(pose.ry) * WALK_SPEED * forward * delta;
       const nz = pose.z - Math.cos(pose.ry) * WALK_SPEED * forward * delta;
-      const solved = resolveTableCollision(
-        THREE.MathUtils.clamp(nx, -ROOM.bounds.x, ROOM.bounds.x),
-        THREE.MathUtils.clamp(nz, -ROOM.bounds.z, ROOM.bounds.z)
-      );
+      const solved = stepWorld({ x: pose.x, z: pose.z }, nx, nz, floorRef.current, BODY_RADIUS);
       pose.x = solved.x;
       pose.z = solved.z;
+      floorRef.current = solved.floor;
+      // Bám cao độ mượt thay vì nhảy cóc từng bậc: bậc thang cao 0,36 và một cú
+      // dịch tức thời mỗi bậc làm camera giật suốt cả đoạn leo.
+      const cur = pose.y ?? 0;
+      pose.y = cur + (solved.y - cur) * Math.min(1, delta * 12);
     }
 
     // Báo ra ngoài khi bước vào/ra tầm một cái bàn, để HUD hiện nút ngồi.
     // So với lần trước rồi mới gọi: đây là useFrame, gọi setState mỗi khung
     // hình sẽ re-render cả cây React 60 lần/giây.
-    const seatable = nearestSeatableTable(pose.x, pose.z);
+    const seatable = floorRef.current === 0 ? nearestSeatableTable(pose.x, pose.z) : null;
     if (seatable !== lastSeatable.current) {
       lastSeatable.current = seatable;
       onSeatableChange(seatable);
@@ -303,7 +326,7 @@ function PlayerRig({
     if (moved && now - lastSent.current >= interval) {
       lastSent.current = now;
       lastSentPose.current = { ...pose };
-      sendPose(userId, { x: pose.x, z: pose.z, ry: pose.ry });
+      sendPose(userId, { x: pose.x, z: pose.z, y: pose.y ?? 0, ry: pose.ry });
     }
   });
 
@@ -353,14 +376,23 @@ export default function LobbySceneInner({
   const [peers, setPeers] = useState<LobbyPeer[]>([]);
   const [speeches, setSpeeches] = useState<Record<string, { text: string; at: number }>>({});
   const keysRef = useRef<Record<string, boolean>>({});
-  // Xuất phát ở cửa phía nam, quay mặt vào phòng.
-  const selfPose = useRef<AvatarPose>({ x: 0, z: ROOM.bounds.z - 1, ry: Math.PI });
-  const playerPos = useRef({ x: 0, z: ROOM.bounds.z - 1 });
+  // Xuất phát trong sảnh tròn ở đầu nam, quay mặt vào phòng.
+  //
+  // ry=0 là nhìn về -z, và camera bám ở phía +z sau lưng - tức là ngoài hiên,
+  // nhìn qua ô cửa vào trong. Trước đây spawn quay ry=PI nên camera nằm giữa
+  // phòng chĩa ngược ra tường, và quả địa cầu che kín khung hình.
+  // Đứng LÙI hẳn về phía cửa chứ không giữa sảnh tròn: camera bám sau lưng, nên
+  // đứng sát quả địa cầu thì nó nằm đúng giữa camera và nhân vật và chiếm trọn
+  // khung hình ngay khoảnh khắc vào phòng.
+  const spawnZ = ROTUNDA_Z + 4.3;
+  const selfPose = useRef<AvatarPose>({ x: 0, z: spawnZ, y: 0, ry: 0 });
+  const playerPos = useRef({ x: 0, z: spawnZ });
   const peerPoseRefs = useRef(new Map<string, React.MutableRefObject<AvatarPose>>());
   const peerCountRef = useRef(0);
   const seatedRef = useRef<number | null>(null);
+  const floorRef = useRef<Floor>(0);
   // Góc nhìn mặc định: hơi chếch từ trên xuống, sau lưng nhân vật.
-  const orbitRef = useRef<OrbitState>({ yaw: 0, pitch: 0.34, dist: 5.6 });
+  const orbitRef = useRef<OrbitState>({ yaw: 0, pitch: 0.4, dist: 5.6 });
 
   useHeldKeys(keysRef);
 
@@ -431,10 +463,10 @@ export default function LobbySceneInner({
     for (const p of list) {
       let ref = peerPoseRefs.current.get(p.userId);
       if (!ref) {
-        ref = { current: { x: p.x, z: p.z, ry: p.ry } };
+        ref = { current: { x: p.x, z: p.z, y: p.y ?? 0, ry: p.ry } };
         peerPoseRefs.current.set(p.userId, ref);
       } else {
-        ref.current = { x: p.x, z: p.z, ry: p.ry };
+        ref.current = { x: p.x, z: p.z, y: p.y ?? 0, ry: p.ry };
       }
     }
     const ids = new Set(list.map((p) => p.userId));
@@ -470,14 +502,16 @@ export default function LobbySceneInner({
   return (
     <Canvas
       shadows
-      camera={{ position: [0, 3.4, ROOM.bounds.z + 4], fov: 55 }}
+      camera={{ position: [0, 3.4, ROOM.bounds.z + 6], fov: 55 }}
       // Trần giới hạn DPR: màn Retina 3x không cần render 3x cho một sảnh xã
       // giao, và đây là khác biệt lớn nhất giữa mát máy và cháy quạt.
       dpr={[1, 1.75]}
       gl={{ antialias: true, powerPreference: "high-performance" }}
     >
       <color attach="background" args={["#171310"]} />
-      <fog attach="fog" args={["#171310", 30, 75]} />
+      {/* Sương đẩy xa hơn trước: giữ được chiều sâu hun hút của sảnh nhưng
+          không nuốt mất dãy nhà bên kia đường. */}
+      <fog attach="fog" args={["#241c14", 34, 130]} />
       <ambientLight intensity={0.55} color="#ffe8c4" />
       <directionalLight
         position={[8, 12, 4]}
@@ -488,6 +522,8 @@ export default function LobbySceneInner({
       />
 
       <ReadingRoom />
+      <RoomProps />
+      <CityStreet />
       <RoomFixtures playerRef={playerPos} onPortalProximity={onPortalProximity} />
 
       {/* Đồng hồ Pomodoro: một cái cho mỗi bàn ĐANG có người ngồi. Bàn trống
@@ -537,6 +573,7 @@ export default function LobbySceneInner({
         seatedRef={seatedRef}
         onSeatableChange={onSeatableChange}
         orbitRef={orbitRef}
+        floorRef={floorRef}
       />
       <PlayerPositionTap poseRef={selfPose} out={playerPos} />
     </Canvas>
