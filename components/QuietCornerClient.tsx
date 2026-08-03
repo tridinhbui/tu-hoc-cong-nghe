@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 import { ArrowLeft, Heart, Info } from "lucide-react";
 import {
   getUserStreak,
@@ -26,6 +26,7 @@ import {
 import MotivationShareCard from "@/components/MotivationShareCard";
 import BreathingCircle from "@/components/BreathingCircle";
 import DinhHoaFlame from "@/components/DinhHoaFlame";
+import { FLARE_MS, flameAt } from "@/lib/quiet-flame";
 
 // "Góc yên tĩnh" - trang riêng đằng sau thẻ lời nhắn.
 //
@@ -77,6 +78,35 @@ export default function QuietCornerClient({ userId }: { userId: string }) {
 
   const warmth = motivation?.warmth ?? 0.5;
 
+  // Ngọn lửa nhận lấy thứ vừa được đặt xuống: bùng lên một nhịp rồi đứng lại
+  // ở mức cao hơn trước. Trước đây nó cháy đúng một độ suốt cả trang, nên cử
+  // chỉ duy nhất trang này mời người ta làm lại không được đáp lại bằng gì.
+  //
+  // Mức nghỉ tính từ số nỗi lo đã đặt xuống chứ không lưu đi đâu, đúng theo
+  // ghi chú ở setDownIds: sang mai nỗi lo có thể quay lại, và ngọn lửa không
+  // có quyền giữ lại một thành tích mà người học chưa chắc còn.
+  const setDownCount = setDownIds.size;
+  const prefersReducedMotion = useReducedMotion() ?? false;
+  const [flareIntensity, setFlareIntensity] = useState<number | null>(null);
+
+  useEffect(() => {
+    if (setDownCount === 0 || prefersReducedMotion) return;
+    // requestAnimationFrame chứ không phải transition CSS: DinhHoaFlame đọc
+    // intensity thẳng vào chuỗi gradient, nên giá trị phải tự đi qua từng
+    // bước - gán một con số mới sẽ là một cú nhảy.
+    let raf = 0;
+    const startedAt = performance.now();
+    const tick = (now: number) => {
+      const elapsed = now - startedAt;
+      setFlareIntensity(flameAt(warmth, setDownCount, elapsed, false));
+      if (elapsed < FLARE_MS) raf = requestAnimationFrame(tick);
+    };
+    raf = requestAnimationFrame(tick);
+    return () => cancelAnimationFrame(raf);
+  }, [setDownCount, warmth, prefersReducedMotion]);
+
+  const flame = flareIntensity ?? flameAt(warmth, setDownCount, FLARE_MS, prefersReducedMotion);
+
   return (
     // Cột chữ giữ nguyên bề rộng đọc được ở mobile và tablet; từ lg trở lên
     // container nới ra để hai khối phụ nằm cạnh nhau thay vì xếp dọc giữa một
@@ -123,7 +153,7 @@ export default function QuietCornerClient({ userId }: { userId: string }) {
 
         <div className="relative">
           <div className="flex justify-center">
-            <DinhHoaFlame intensity={warmth} />
+            <DinhHoaFlame intensity={flame} />
           </div>
 
           {motivation ? (
