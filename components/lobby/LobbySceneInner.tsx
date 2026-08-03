@@ -7,6 +7,7 @@ import ReadingRoom, { ROOM, TABLE_ZS, TABLE_HALF_W, TABLE_HALF_D } from "./Readi
 import RoomFixtures, { type GateTarget } from "./RoomFixtures";
 import RoomProps from "./RoomProps";
 import CityStreet from "./CityStreet";
+import LibrarySurrounds from "./LibrarySurrounds";
 import { stepWorld, type Floor } from "./world";
 import { ROTUNDA_Z } from "./room-obstacles";
 import { daylightAt, rgbToHex, sunPosition } from "./daylight";
@@ -450,6 +451,8 @@ export default function LobbySceneInner({
       <ReadingRoom day={day} />
       <RoomProps />
       <CityStreet day={day} />
+      {/* Hai hẻm hông và sân sau - phần còn lại của vòng 360 độ quanh thư viện. */}
+      <LibrarySurrounds day={day} />
       <RoomFixtures playerRef={playerPos} onPortalProximity={onPortalProximity} />
       <StationDoors playerRef={playerPos} onNearChange={onStationNear} />
 

@@ -10,6 +10,11 @@ import {
   STAIR_Z1,
   stairHeightAt,
   stepWorld,
+  SIDE_X0,
+  SIDE_X1,
+  REAR_Z,
+  STEP_Z0,
+  groundHeightAt,
 } from "@/components/lobby/world";
 
 /** Thế giới 3D không chạy được trong vitest - nó cần WebGL. Nhưng phần QUYẾT
@@ -132,5 +137,72 @@ describe("ranh giới đi lại", () => {
   it("mặt phố thấp hơn sàn thư viện đúng bằng bậc thềm", () => {
     const s = stepWorld(at(0, CURB_Z - 3.2), 0, CURB_Z - 3, 0, BODY);
     expect(s.y).toBeCloseTo(PLAZA_Y);
+  });
+});
+
+describe("vành đai quanh thư viện", () => {
+  /** Đi bộ thật từ quảng trường vòng hết một vòng quanh toà nhà rồi về chỗ cũ.
+   *
+   *  Kiểm bằng cách ĐI chứ không bằng cách hỏi từng điểm: mặt bằng ghép từ
+   *  nhiều ô chữ nhật, và thứ hay hỏng không phải là ô nào thiếu mà là hai ô
+   *  cạnh nhau không chạm nhau - lúc đó mỗi ô đều hợp lệ nhưng không đi từ ô
+   *  này sang ô kia được, và người học đứng khựng ở giữa trời. */
+  it("đi được trọn một vòng và không bao giờ đứng khựng", () => {
+    const halfW = ROOM.width / 2;
+    const halfL = ROOM.length / 2;
+    const lane = (SIDE_X0 + SIDE_X1) / 2;
+    const rearLane = (-halfL + REAR_Z) / 2;
+    // Ra quảng trường → hẻm phải → sân sau → hẻm trái → về quảng trường.
+    const waypoints: Array<[number, number]> = [
+      [0, STEP_Z0 + 2],
+      [lane, STEP_Z0 + 2],
+      [lane, rearLane],
+      [-lane, rearLane],
+      [-lane, STEP_Z0 + 2],
+      [0, STEP_Z0 + 2],
+    ];
+
+    let pos = { x: 0, z: STEP_Z0 + 2 };
+    for (const [tx, tz] of waypoints) {
+      for (let i = 0; i < 2000; i += 1) {
+        const dx = tx - pos.x;
+        const dz = tz - pos.z;
+        const len = Math.hypot(dx, dz);
+        if (len < 0.1) break;
+        const before = { ...pos };
+        const step = stepWorld(pos, pos.x + (dx / len) * 0.12, pos.z + (dz / len) * 0.12, 0, 0.34);
+        pos = { x: step.x, z: step.z };
+        expect(
+          Math.hypot(pos.x - before.x, pos.z - before.z),
+          `kẹt ở (${before.x.toFixed(1)}, ${before.z.toFixed(1)}) khi đi tới (${tx}, ${tz})`
+        ).toBeGreaterThan(0.01);
+      }
+      expect(Math.hypot(pos.x - tx, pos.z - tz), `không tới được (${tx}, ${tz})`).toBeLessThan(0.4);
+    }
+  });
+
+  it("mặt sau và hai hẻm đều ở cốt quảng trường, không lơ lửng", () => {
+    const halfL = ROOM.length / 2;
+    const lane = (SIDE_X0 + SIDE_X1) / 2;
+    for (const [x, z] of [
+      [lane, 0],
+      [-lane, -10],
+      [0, -halfL - 5],
+      [lane, -halfL - 8],
+    ] as Array<[number, number]>) {
+      expect(groundHeightAt(x, z, 0), `(${x}, ${z})`).toBe(PLAZA_Y);
+    }
+  });
+
+  it("vẫn không đi xuyên được vào trong thư viện từ hẻm", () => {
+    // Đứng trong hẻm bên phải, đâm thẳng vào tường hông: phải bị chặn lại
+    // ngoài mặt bằng toà nhà.
+    const start = { x: SIDE_X0 + 3, z: 0 };
+    let pos = start;
+    for (let i = 0; i < 200; i += 1) {
+      const step = stepWorld(pos, pos.x - 0.12, pos.z, 0, 0.34);
+      pos = { x: step.x, z: step.z };
+    }
+    expect(pos.x, "lọt vào trong lòng thư viện qua tường hông").toBeGreaterThanOrEqual(SIDE_X0 - 0.01);
   });
 });

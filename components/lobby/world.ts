@@ -64,12 +64,27 @@ interface Rect {
   z1: number;
 }
 
+/** Hẻm hai bên hông thư viện và sân sau. Trước đây ngoài trời chỉ có quảng
+ *  trường trước cửa: bước ra khỏi thư viện là đứng trong một cái hộp rộng 44m
+ *  và hết - quay đầu lại chỉ thấy mặt tiền, hai bên là hư không. Vành đai này
+ *  cho đi vòng hết 360 độ quanh toà nhà, và cũng là chỗ đặt những thứ một thư
+ *  viện thật có ở mặt sau: sân trong, xe cộ, thùng rác, cửa hậu. */
+export const SIDE_X0 = ROOM.width / 2;
+export const SIDE_X1 = PLAZA_HALF_X;
+/** Mép ngoài cùng của sân sau, tính từ đầu bắc toà nhà. */
+export const REAR_Z = -ROOM.length / 2 - 14;
+
 /** Mặt bằng đi lại của tầng trệt, nối liền nhau qua các mép chung. Ô cửa là một
  *  chữ nhật hẹp riêng - nhờ vậy tường đầu nam vẫn chặn, chỉ chừa đúng lối ra. */
 const GROUND_RECTS: Rect[] = [
   { x0: -ROOM.bounds.x, x1: ROOM.bounds.x, z0: -ROOM.bounds.z, z1: ROOM.bounds.z },
   { x0: -DOOR_HALF_W + 0.4, x1: DOOR_HALF_W - 0.4, z0: ROOM.bounds.z, z1: STEP_Z0 },
   { x0: -PLAZA_HALF_X, x1: PLAZA_HALF_X, z0: STEP_Z0, z1: CURB_Z - 1.1 },
+  // Hai hẻm hông, chạy từ quảng trường ra tận sân sau.
+  { x0: SIDE_X0, x1: SIDE_X1, z0: REAR_Z, z1: STEP_Z0 },
+  { x0: -SIDE_X1, x1: -SIDE_X0, z0: REAR_Z, z1: STEP_Z0 },
+  // Sân sau nối hai hẻm lại thành vòng khép kín.
+  { x0: -SIDE_X1, x1: SIDE_X1, z0: REAR_Z, z1: -ROOM.length / 2 },
 ];
 
 const MEZZ_RECTS: Rect[] = [
@@ -162,6 +177,12 @@ function porchHeightAt(z: number): number {
 
 export function groundHeightAt(x: number, z: number, floor: Floor): number {
   if (floor === 1) return stairHeightAt(z);
+  // Mọi chỗ NGOÀI mặt bằng toà nhà đều ở cốt quảng trường, không chỉ phần
+  // trước cửa: hẻm hông và sân sau nằm ngoài dải z của bậc thềm, nên nếu chỉ
+  // hỏi porchHeightAt thì chúng trả về cốt 0 và người học đi vòng ra sau nhà
+  // sẽ lơ lửng cao hơn mặt đất đúng 1,4m.
+  const outsideBuilding = Math.abs(x) > ROOM.width / 2 - 0.01 || z < -ROOM.length / 2;
+  if (outsideBuilding) return PLAZA_Y;
   return porchHeightAt(z);
 }
 
