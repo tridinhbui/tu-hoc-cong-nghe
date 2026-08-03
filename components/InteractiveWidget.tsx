@@ -17,6 +17,8 @@ import InteractiveAccretion from "./InteractiveAccretion";
 import InteractiveEthicsCase from "./InteractiveEthicsCase";
 import InteractiveMacroPolicy from "./InteractiveMacroPolicy";
 import ExcelPractice from "./ExcelPractice";
+import InteractivePromptCraft from "./InteractivePromptCraft";
+import InteractiveAiVerify from "./InteractiveAiVerify";
 import InteractiveFeeDrag from "./InteractiveFeeDrag";
 import InteractiveRatios from "./InteractiveRatios";
 import InteractiveTailRisk from "./InteractiveTailRisk";
@@ -50,7 +52,9 @@ export type WidgetType =
   | "excel-three-statement"
   | "excel-audit"
   | "excel-power-query"
-  | "excel-sql";
+  | "excel-sql"
+  | "prompt-craft"
+  | "ai-verify";
 
 export default function InteractiveWidget({ type }: { type: WidgetType }) {
   switch (type) {
@@ -97,6 +101,10 @@ export default function InteractiveWidget({ type }: { type: WidgetType }) {
     case "excel-power-query":
     case "excel-sql":
       return <ExcelPractice setKey={type} />;
+    case "prompt-craft":
+      return <InteractivePromptCraft />;
+    case "ai-verify":
+      return <InteractiveAiVerify />;
     case "fee-drag":
       return <InteractiveFeeDrag />;
     case "ratios":
@@ -138,6 +146,8 @@ export const WIDGET_TYPES: readonly WidgetType[] = [
   "excel-audit",
   "excel-power-query",
   "excel-sql",
+  "prompt-craft",
+  "ai-verify",
 ];
 
 export function hasInteractiveWidget(type: string | null | undefined): type is WidgetType {

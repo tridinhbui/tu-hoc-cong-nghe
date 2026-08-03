@@ -126,7 +126,9 @@ export interface Lesson {
     | "excel-three-statement"
     | "excel-audit"
     | "excel-power-query"
-    | "excel-sql";
+    | "excel-sql"
+    | "prompt-craft"
+    | "ai-verify";
   realWorldExample: {
     company: string;
     description: string;
