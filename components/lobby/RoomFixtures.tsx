@@ -4,6 +4,7 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import { useFrame } from "@react-three/fiber";
 import * as THREE from "three";
 import { ROOM } from "./ReadingRoom";
+import { ROTUNDA_Z } from "./room-obstacles";
 import { boardTexture } from "./room-textures";
 import { getCommunityFeed } from "@/lib/supabase-community";
 import { getLeaderboardByMetric } from "@/lib/supabase-user";
@@ -92,23 +93,42 @@ function WallBoard({
 /** Cổng vào nhóm học ở đầu bắc. Đứng gần thì phát tín hiệu ra ngoài để HUD
  *  hiện lời mời - việc điều hướng để React lo, cảnh 3D chỉ báo "đang đứng
  *  trong vùng". */
-function StudyGroupPortal({
+export interface GateTarget {
+  id: string;
+  href: string;
+  label: string;
+  accent: string;
+}
+
+/** Một cánh cổng sang thế giới 3D khác.
+ *
+ *  Trước đây đây là StudyGroupPortal, gắn cứng vào một đích duy nhất và báo ra
+ *  ngoài bằng một biến boolean. Có cổng thứ hai là biến ấy không đủ nữa: HUD
+ *  phải biết đang đứng trước cổng NÀO, không phải đang đứng trước một cổng nào
+ *  đó. Nên nó nhận đích và trả về đích. */
+function Gate({
   playerRef,
   onProximity,
+  target,
+  position,
+  rotationY = 0,
 }: {
   playerRef: React.MutableRefObject<{ x: number; z: number }>;
-  onProximity: (near: boolean) => void;
+  onProximity: (target: GateTarget | null) => void;
+  target: GateTarget;
+  position: [number, number, number];
+  rotationY?: number;
 }) {
   const glow = useRef<THREE.Mesh>(null);
   const wasNear = useRef(false);
-  const z = -ROOM.length / 2 + 0.4;
+  const [gx, , z] = position;
 
   useFrame((state) => {
     const p = playerRef.current;
-    const near = Math.hypot(p.x - 0, p.z - z) < 4.5;
+    const near = Math.hypot(p.x - gx, p.z - z) < 4.5;
     if (near !== wasNear.current) {
       wasNear.current = near;
-      onProximity(near);
+      onProximity(near ? target : null);
     }
     if (glow.current) {
       const mat = glow.current.material as THREE.MeshBasicMaterial;
@@ -118,7 +138,7 @@ function StudyGroupPortal({
   });
 
   return (
-    <group position={[0, 0, z]}>
+    <group position={position} rotation={[0, rotationY, 0]}>
       {/* khung vòm */}
       <mesh position={[-1.7, 1.9, 0]}>
         <boxGeometry args={[0.36, 3.8, 0.5]} />
@@ -135,19 +155,37 @@ function StudyGroupPortal({
       {/* ánh sáng trong khung cửa */}
       <mesh ref={glow} position={[0, 1.9, 0.12]}>
         <planeGeometry args={[3.2, 3.7]} />
-        <meshBasicMaterial color="#7dd3fc" transparent opacity={0.4} toneMapped={false} />
+        <meshBasicMaterial color={target.accent} transparent opacity={0.4} toneMapped={false} />
       </mesh>
-      <pointLight position={[0, 2, 1.4]} color="#7dd3fc" intensity={6} distance={9} decay={2} />
+      <pointLight position={[0, 2, 1.4]} color={target.accent} intensity={6} distance={9} decay={2} />
     </group>
   );
 }
+
+/** Hai cánh cổng của phòng đọc: đầu bắc sang phòng học nhóm, tường tây cạnh
+ *  sảnh tròn sang Phố nghề. Đặt hai đầu đối nhau để không ai đi nhầm, và cổng
+ *  Phố nghề nằm ngay chỗ người chơi xuất hiện - thứ đầu tiên nhìn thấy khi vào
+ *  thư viện là còn một thành phố nữa ở ngoài kia. */
+const GATE_STUDY: GateTarget = {
+  id: "nhom-hoc",
+  href: "/nhom-hoc",
+  label: "Bước qua cổng → vào Nhóm học",
+  accent: "#7dd3fc",
+};
+
+const GATE_DISTRICT: GateTarget = {
+  id: "pho-nghe",
+  href: "/pho-nghe",
+  label: "Bước qua cổng → ra Phố nghề",
+  accent: "#fbbf24",
+};
 
 export default function RoomFixtures({
   playerRef,
   onPortalProximity,
 }: {
   playerRef: React.MutableRefObject<{ x: number; z: number }>;
-  onPortalProximity: (near: boolean) => void;
+  onPortalProximity: (target: GateTarget | null) => void;
 }) {
   const { posts, ranking } = useBoardData();
   const halfW = ROOM.width / 2;
@@ -175,7 +213,19 @@ export default function RoomFixtures({
         accent="#e5b567"
       />
 
-      <StudyGroupPortal playerRef={playerRef} onProximity={onPortalProximity} />
+      <Gate
+        playerRef={playerRef}
+        onProximity={onPortalProximity}
+        target={GATE_STUDY}
+        position={[0, 0, -ROOM.length / 2 + 0.4]}
+      />
+      <Gate
+        playerRef={playerRef}
+        onProximity={onPortalProximity}
+        target={GATE_DISTRICT}
+        position={[-halfW + 0.4, 0, ROTUNDA_Z]}
+        rotationY={Math.PI / 2}
+      />
     </group>
   );
 }

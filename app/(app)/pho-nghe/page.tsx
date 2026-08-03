@@ -3,6 +3,7 @@ import { getLessonsMeta } from "@/lib/lessons-loader";
 import { getCompletedLessons } from "@/lib/supabase-progress";
 import { createServerSupabaseClient } from "@/lib/supabase-server";
 import { colorForUser } from "@/lib/supabase-lobby";
+import { getUserStreak } from "@/lib/supabase-streak";
 import DistrictWorld, { type DistrictLesson } from "@/components/career-district/DistrictWorld";
 import { allDistrictLessonSlugs, buildStageIndex } from "@/components/career-district/district-content";
 
@@ -50,6 +51,21 @@ export default async function PhoNghePage() {
     }
   }
 
+  // Chuỗi ngày nằm ở bảng riêng và "hôm nay đã học chưa" suy từ
+  // last_activity_date - không có cột nào nói thẳng. Thiếu nó không chặn vào
+  // phố, chỉ là biển tên bớt một dòng.
+  let streak = 0;
+  let doneToday = false;
+  try {
+    const s = await getUserStreak(user.id);
+    streak = s?.current_streak ?? 0;
+    if (s?.last_activity_date) {
+      doneToday = s.last_activity_date.slice(0, 10) === new Date().toISOString().slice(0, 10);
+    }
+  } catch {
+    // giữ mặc định
+  }
+
   let name = user.user_metadata?.full_name || user.email?.split("@")[0] || "Người học";
   let avatarUrl: string | null = user.user_metadata?.avatar_url || null;
   let level = 1;
@@ -64,6 +80,9 @@ export default async function PhoNghePage() {
 
   return (
     <DistrictWorld
+      userId={user.id}
+      streak={streak}
+      doneToday={doneToday}
       name={name}
       color={colorForUser(user.id)}
       avatarUrl={avatarUrl}

@@ -4,7 +4,7 @@ import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { Canvas, useFrame, useThree } from "@react-three/fiber";
 import * as THREE from "three";
 import ReadingRoom, { ROOM, TABLE_ZS, TABLE_HALF_W, TABLE_HALF_D } from "./ReadingRoom";
-import RoomFixtures from "./RoomFixtures";
+import RoomFixtures, { type GateTarget } from "./RoomFixtures";
 import RoomProps from "./RoomProps";
 import CityStreet from "./CityStreet";
 import { stepWorld, type Floor } from "./world";
@@ -365,7 +365,7 @@ function PlayerPositionTap({
 interface Props {
   identity: LobbyIdentity;
   onChatMessage: (message: LobbyChatMessage) => void;
-  onPortalProximity: (near: boolean) => void;
+  onPortalProximity: (target: GateTarget | null) => void;
   /** Câu nói của chính mình, do HUD đẩy xuống khi bấm gửi. */
   selfSpeech: { text: string; at: number } | null;
   onPeerCount: (count: number) => void;

@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { Canvas, useFrame, useThree } from "@react-three/fiber";
 import * as THREE from "three";
 import DistrictShell from "./DistrictShell";
@@ -31,6 +31,12 @@ import {
 } from "@/components/world-controls/easy-walk";
 import LobbyAvatar, { type AvatarPose } from "@/components/lobby/LobbyAvatar";
 import { disposeRoomTextures } from "@/components/lobby/room-textures";
+import { MOVE_BROADCAST_MS } from "@/lib/supabase-lobby";
+import {
+  joinStudyWorld,
+  sendStudyPose,
+  type StudyWorldPeer,
+} from "@/lib/supabase-study-world";
 
 const WALK_SPEED = 4.4;
 
@@ -129,9 +135,12 @@ interface RigProps {
   onLiftChange: (atLift: boolean) => void;
   onStopChange: (stop: PathStop | null) => void;
   onWalkingChange: (walking: boolean) => void;
+  /** Danh tính để phát vị trí; null là chưa đăng nhập, khi đó không phát gì. */
+  userId: string;
+  peerCountRef: React.MutableRefObject<number>;
 }
 
-function PlayerRig({ room, poseRef, walkRef, orbitRef, onDeskChange, onDoorChange, onPortalChange, onLiftChange, onStopChange, onWalkingChange }: RigProps) {
+function PlayerRig({ room, poseRef, walkRef, orbitRef, onDeskChange, onDoorChange, onPortalChange, onLiftChange, onStopChange, onWalkingChange, userId, peerCountRef }: RigProps) {
   const { camera } = useThree();
   const lastDesk = useRef<string | null>(null);
   const lastDoor = useRef<string | null>(null);
@@ -142,6 +151,8 @@ function PlayerRig({ room, poseRef, walkRef, orbitRef, onDeskChange, onDoorChang
   /** Đích bị kẹt: đứng yên mấy khung liền dù đang cố đi thì bỏ đích, thay vì
    *  húc vào tường mãi mãi. */
   const stuckFrames = useRef(0);
+  const lastSent = useRef(0);
+  const lastSentPose = useRef<AvatarPose>({ x: 0, z: 0, ry: 0 });
 
   const onTap = useRef<(nx: number, ny: number) => void>(() => {});
   onTap.current = (nx, ny) => {
@@ -155,7 +166,7 @@ function PlayerRig({ room, poseRef, walkRef, orbitRef, onDeskChange, onDoorChang
   };
   usePointerControls(orbitRef, (nx, ny) => onTap.current(nx, ny));
 
-  useFrame((_state, rawDelta) => {
+  useFrame((state, rawDelta) => {
     // Trần bước thời gian: requestAnimationFrame dừng khi tab bị ẩn, nên khung
     // đầu tiên lúc quay lại mang theo cả quãng đã trôi. Nhân với tốc độ đi là
     // một bước dài hàng mét, và bộ giải va chạm chỉ xét điểm đến chứ không xét
@@ -259,6 +270,21 @@ function PlayerRig({ room, poseRef, walkRef, orbitRef, onDeskChange, onDoorChang
       )
     );
     camera.position.lerp(want, Math.min(1, delta * 6));
+
+    // Phát vị trí theo nhịp, và chỉ khi thực sự nhúc nhích. Nhịp giãn ra khi
+    // đông: mỗi gói mình gửi là N gói cả phòng phải nhận, nên chi phí tăng
+    // theo bình phương số người.
+    const interval = peerCountRef.current > 8 ? MOVE_BROADCAST_MS * 2 : MOVE_BROADCAST_MS;
+    const now = state.clock.elapsedTime * 1000;
+    const moved =
+      Math.abs(pose.x - lastSentPose.current.x) > 0.01 ||
+      Math.abs(pose.z - lastSentPose.current.z) > 0.01 ||
+      Math.abs(pose.ry - lastSentPose.current.ry) > 0.02;
+    if (moved && now - lastSent.current >= interval) {
+      lastSent.current = now;
+      lastSentPose.current = { ...pose };
+      sendStudyPose(room.id, userId, { x: pose.x, z: pose.z, ry: pose.ry });
+    }
     camera.lookAt(pose.x, 1.45, pose.z);
   });
 
@@ -290,6 +316,11 @@ function TargetMarker({ walkRef, accent }: { walkRef: React.MutableRefObject<Wal
 
 export interface DistrictSceneProps {
   roomId: DistrictRoomId;
+  /** Danh tính để hiện diện với người khác trong cùng phòng. */
+  userId: string;
+  streak: number;
+  doneToday: boolean;
+  onPeerCount: (count: number) => void;
   /** Chỗ đứng khi vừa vào phòng này. Đổi tham chiếu là đặt lại vị trí. */
   entry: Pose;
   name: string;
@@ -306,12 +337,18 @@ export interface DistrictSceneProps {
   onWalkingChange: (walking: boolean) => void;
   /** Slug bài đã hoàn thành - cột trên hành lang lộ trình sáng theo cái này. */
   doneSlugs: ReadonlySet<string>;
+  /** Tiến độ từng nhóm ngành, khắc lên biển hiệu ngoài phố. */
+  progressByCategory: Record<string, { done: number; total: number }>;
   /** Ban ngày 1, khuya 0 - quyết định trời và đèn đường. */
   daylight: number;
 }
 
 export default function DistrictScene({
   roomId,
+  userId,
+  streak,
+  doneToday,
+  onPeerCount,
   entry,
   name,
   color,
@@ -325,11 +362,15 @@ export default function DistrictScene({
   onLiftChange,
   onStopChange,
   doneSlugs,
+  progressByCategory,
   onWalkingChange,
   daylight,
 }: DistrictSceneProps) {
   const room = getRoom(roomId);
   const poseRef = useRef<AvatarPose>({ ...entry });
+  const [peers, setPeers] = useState<StudyWorldPeer[]>([]);
+  const peerPoseRefs = useRef(new Map<string, React.MutableRefObject<AvatarPose>>());
+  const peerCountRef = useRef(0);
   const orbitRef = useRef<OrbitState>({
     yaw: entry.ry,
     pitch: room.kind === "street" ? 0.46 : 0.36,
@@ -354,6 +395,51 @@ export default function DistrictScene({
 
   useEffect(() => () => disposeRoomTextures(), []);
 
+  /** Vào kênh hiện diện của ĐÚNG phòng đang đứng: id phòng trong khu phố đã là
+   *  chuỗi duy nhất, nên nó dùng thẳng làm khoá kênh. Đổi phòng là rời kênh cũ
+   *  và vào kênh mới - người ở hành lang Chặng 3 không thấy người ở tầng CFA,
+   *  đúng như trong một toà nhà thật. */
+  useEffect(() => {
+    if (!userId) return;
+    const leave = joinStudyWorld(
+      roomId,
+      {
+        userId,
+        name,
+        avatarUrl,
+        color,
+        streak,
+        level,
+        doneToday,
+        seat: null,
+        seatStartedAt: null,
+      },
+      setPeers
+    );
+    return leave;
+  }, [roomId, userId, name, avatarUrl, color, streak, level, doneToday]);
+
+  useEffect(() => {
+    peerCountRef.current = peers.length;
+    onPeerCount(peers.length);
+  }, [peers.length, onPeerCount]);
+
+  /** Pose người khác đi vào ref để LobbyAvatar nội suy mỗi khung hình, thay vì
+   *  đi qua state và kéo cả cây React render lại 8 lần một giây. */
+  const others = useMemo(() => {
+    const list = peers.filter((p) => p.userId !== userId);
+    for (const p of list) {
+      const ref = peerPoseRefs.current.get(p.userId);
+      if (!ref) peerPoseRefs.current.set(p.userId, { current: { x: p.x, z: p.z, ry: p.ry } });
+      else ref.current = { x: p.x, z: p.z, ry: p.ry };
+    }
+    const ids = new Set(list.map((p) => p.userId));
+    for (const id of [...peerPoseRefs.current.keys()]) {
+      if (!ids.has(id)) peerPoseRefs.current.delete(id);
+    }
+    return list;
+  }, [peers, userId]);
+
   const outdoor = room.kind === "street";
   const sky = outdoor ? (daylight > 0.5 ? "#7fb2d9" : "#14161f") : "#100e0c";
 
@@ -376,7 +462,12 @@ export default function DistrictScene({
         shadow-mapSize={[1024, 1024]}
       />
 
-      <DistrictShell room={room} lessonTitles={lessonTitles} doneSlugs={doneSlugs} />
+      <DistrictShell
+        room={room}
+        lessonTitles={lessonTitles}
+        doneSlugs={doneSlugs}
+        progressByCategory={progressByCategory as never}
+      />
       <TargetMarker walkRef={walkRef} accent={room.accent} />
 
       <LobbyAvatar
@@ -388,8 +479,25 @@ export default function DistrictScene({
         isSelf
       />
 
+      {others.map((p) => {
+        const ref = peerPoseRefs.current.get(p.userId);
+        if (!ref) return null;
+        return (
+          <LobbyAvatar
+            key={p.userId}
+            name={p.name}
+            color={p.color}
+            avatarUrl={p.avatarUrl}
+            status={{ streak: p.streak, level: p.level, doneToday: p.doneToday }}
+            poseRef={ref}
+          />
+        );
+      })}
+
       <PlayerRig
         room={room}
+        userId={userId}
+        peerCountRef={peerCountRef}
         poseRef={poseRef}
         walkRef={walkRef}
         orbitRef={orbitRef}

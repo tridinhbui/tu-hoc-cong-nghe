@@ -18,6 +18,8 @@ import {
 
 /** three.js chỉ chạy phía trình duyệt - ssr:false giữ nó ngoài bundle server,
  *  và người dùng thấy khung chờ thay vì lỗi hydrate. */
+import type { GateTarget } from "./RoomFixtures";
+
 const LobbySceneInner = dynamic(() => import("./LobbySceneInner"), {
   ssr: false,
   loading: () => <SceneFallback label="Đang dựng thư viện…" />,
@@ -95,7 +97,7 @@ export default function LobbyClient() {
   const [log, setLog] = useState<LobbyChatMessage[]>([]);
   const [draft, setDraft] = useState("");
   const [selfSpeech, setSelfSpeech] = useState<{ text: string; at: number } | null>(null);
-  const [nearPortal, setNearPortal] = useState(false);
+  const [nearGate, setNearGate] = useState<GateTarget | null>(null);
   const [peerCount, setPeerCount] = useState(0);
   const [seatableTable, setSeatableTable] = useState<number | null>(null);
   const [station, setStation] = useState<Station | null>(null);
@@ -196,7 +198,7 @@ export default function LobbyClient() {
         <LobbySceneInner
           identity={identity}
           onChatMessage={pushLog}
-          onPortalProximity={setNearPortal}
+          onPortalProximity={setNearGate}
           selfSpeech={selfSpeech}
           onPeerCount={setPeerCount}
           onSeatableChange={setSeatableTable}
@@ -260,14 +262,16 @@ export default function LobbyClient() {
         </div>
       )}
 
-      {/* Lời mời vào nhóm học, chỉ hiện khi đứng gần cổng */}
-      {nearPortal && (
+      {/* Lời mời đi tiếp, chỉ hiện khi đứng gần một cánh cổng. Nhãn và màu đến
+          từ chính cánh cổng đó, nên thêm cổng thứ ba không phải sửa ở đây. */}
+      {nearGate && (
         <div className="pointer-events-none absolute inset-x-0 top-24 z-10 flex justify-center px-4">
           <Link
-            href="/nhom-hoc"
-            className="pointer-events-auto rounded-2xl bg-sky-500/90 px-5 py-3 text-sm font-bold text-white shadow-xl backdrop-blur transition hover:bg-sky-400"
+            href={nearGate.href}
+            className="pointer-events-auto rounded-2xl px-5 py-3 text-sm font-bold text-stone-950 shadow-xl backdrop-blur transition hover:brightness-110"
+            style={{ backgroundColor: nearGate.accent }}
           >
-            Bước qua cổng → vào Nhóm học
+            {nearGate.label}
           </Link>
         </div>
       )}

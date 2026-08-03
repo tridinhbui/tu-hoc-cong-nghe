@@ -152,9 +152,15 @@ export const TREE_Z = 4.6;
 export const LAMP_XS = [-27.5, -12.5, 2.5, 17.5];
 export const LAMP_Z = 4.6;
 
+/** Hai cổng ở đầu tây con phố: một sang thư viện, một sang phòng học nhóm. */
+export const GATE_XS = [-STREET.halfLength + 5, -STREET.halfLength + 10];
+export const GATE_Z = -2.4;
+/** Trụ cổng đứng lùi về phía tường, sát mép đi lại nên không chừa khe sau lưng. */
+export const GATE_PILLAR_Z = -4.45;
+
 /** Xe máy dựng trước hiên - thứ khiến một con phố trông là phố Sài Gòn. */
 export const BIKE_SPOTS: Array<[number, number]> = [
-  [-33, -4.2],
+  [-26, -4.2],
   [-18.6, -4.2],
   [-3.4, -4.2],
   [11.4, -4.2],
@@ -418,12 +424,42 @@ const STREET_ROOM: DistrictRoom = {
     maxZ: STREET.walkMaxZ,
   },
   obstacles: [
+    // Hai trụ cổng ở đầu phố. Là vật cản thật để người học đi vòng qua chúng
+    // và nhận ra chúng là cửa, thay vì lướt qua một tấm biển phẳng.
+    ...GATE_XS.map((x): CircleObstacle => ({ kind: "circle", x, z: GATE_PILLAR_Z, radius: 0.6 })),
     ...STREET_TREE_XS.map((x): CircleObstacle => ({ kind: "circle", x, z: TREE_Z, radius: 0.55 })),
     ...LAMP_XS.map((x): CircleObstacle => ({ kind: "circle", x, z: LAMP_Z, radius: 0.3 })),
     ...BIKE_SPOTS.map(([x, z]): BoxObstacle => ({ kind: "box", x, z, halfW: 0.85, halfD: 0.4 })),
   ],
   desks: [],
-  portals: [],
+  /** Đầu tây con phố mở sang hai thế giới 3D còn lại.
+   *
+   *  Chúng là RouterPortal chứ không phải Doorway: thư viện và phòng nhóm là
+   *  hai cảnh three.js riêng ở hai địa chỉ riêng, không phải hai căn phòng của
+   *  khu phố này. Gộp chúng thành một cảnh duy nhất sẽ phải nạp cả ba thế giới
+   *  mỗi lần vào bất kỳ cái nào. */
+  portals: [
+    {
+      id: "toi-thu-vien",
+      x: GATE_XS[0],
+      z: GATE_Z,
+      reach: 2.8,
+      label: "Thư viện Sài Gòn",
+      blurb: "Phòng đọc chung, gặp người khác đang học",
+      href: "/cong-dong",
+      accent: "#e5b567",
+    },
+    {
+      id: "toi-nhom-hoc",
+      x: GATE_XS[1],
+      z: GATE_Z,
+      reach: 2.8,
+      label: "Phòng học nhóm",
+      blurb: "Bàn tám ghế, phiên học 25 phút cùng nhóm",
+      href: "/nhom-hoc",
+      accent: "#34d399",
+    },
+  ],
   lift: null,
   doorways: [
     {

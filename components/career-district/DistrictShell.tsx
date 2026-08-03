@@ -6,6 +6,9 @@ import {
   BIKE_SPOTS,
   LAMP_XS,
   LAMP_Z,
+  GATE_PILLAR_Z,
+  GATE_XS,
+  GATE_Z,
   SHOP_X,
   STREET,
   TOWER_X,
@@ -128,7 +131,7 @@ function Motorbike({ x, z, color }: { x: number; z: number; color: string }) {
 }
 
 /** Một căn nhà mặt phố: mặt tiền, cửa sáng đèn, biển hiệu nhóm ngành. */
-function Shophouse({ category }: { category: CareerCategory }) {
+function Shophouse({ category, progress }: { category: CareerCategory; progress: { done: number; total: number } }) {
   const x = SHOP_X[category];
   const count = careerCountIn(category);
   return (
@@ -166,7 +169,10 @@ function Shophouse({ category }: { category: CareerCategory }) {
           Sài Gòn thật cũng nằm đúng chỗ này vì đúng lý do đó. */}
       <TextBoard
         title={CAREER_CATEGORY_LABEL_SHORT[category]}
-        rows={[CAREER_CATEGORY_BLURBS[category], `${count} nghề bên trong`]}
+        rows={[
+          CAREER_CATEGORY_BLURBS[category],
+          `${count} nghề · bạn đã học ${progress.done}/${progress.total} bài`,
+        ]}
         accent={SHOP_ACCENT[category]}
         width={8.2}
         height={1.9}
@@ -233,7 +239,7 @@ function Tower() {
   );
 }
 
-function StreetScene() {
+function StreetScene({ progressByCategory }: { progressByCategory: Record<CareerCategory, { done: number; total: number }> }) {
   const asphalt = useMemo(() => asphaltTexture(), []);
   return (
     <group>
@@ -253,9 +259,34 @@ function StreetScene() {
       </mesh>
 
       {CAREER_CATEGORY_ORDER.map((c) => (
-        <Shophouse key={c} category={c} />
+        <Shophouse key={c} category={c} progress={progressByCategory[c]} />
       ))}
       <Tower />
+
+      {/* Hai cổng sang hai thế giới 3D còn lại. Vòm đá thay vì tấm biển: một
+          cánh cổng phải trông như đi qua được thì người ta mới thử đi qua. */}
+      {GATE_XS.map((x, i) => (
+        <group key={x} position={[x, 0, GATE_PILLAR_Z]}>
+          <mesh position={[0, 2.2, 0]} castShadow>
+            <cylinderGeometry args={[0.55, 0.68, 4.4, 10]} />
+            <meshStandardMaterial color="#5b5048" roughness={0.9} />
+          </mesh>
+          <mesh position={[0, 4.6, 0]}>
+            <sphereGeometry args={[0.42, 14, 14]} />
+            <meshBasicMaterial color={i === 0 ? "#e5b567" : "#34d399"} toneMapped={false} />
+          </mesh>
+          <pointLight
+            position={[0, 4.4, 1]}
+            intensity={8}
+            distance={11}
+            color={i === 0 ? "#e5b567" : "#34d399"}
+          />
+          <mesh position={[0, 0.02, 1.9]} rotation={[-Math.PI / 2, 0, 0]}>
+            <ringGeometry args={[1.5, 1.85, 26]} />
+            <meshBasicMaterial color={i === 0 ? "#e5b567" : "#34d399"} transparent opacity={0.6} toneMapped={false} />
+          </mesh>
+        </group>
+      ))}
 
       {STREET_TREE_XS.map((x) => (
         <Tree key={x} x={x} z={TREE_Z} />
@@ -533,15 +564,18 @@ export default function DistrictShell({
   room,
   lessonTitles,
   doneSlugs,
+  progressByCategory,
 }: {
   room: DistrictRoom;
   /** Tên bài học của phòng này, đã tra sẵn ở tầng trên. */
   lessonTitles: string[];
   /** Slug những bài đã hoàn thành, để cột trên hành lang sáng lên. */
   doneSlugs: ReadonlySet<string>;
+  /** Tiến độ từng nhóm ngành, khắc lên biển hiệu ngoài phố. */
+  progressByCategory: Record<CareerCategory, { done: number; total: number }>;
 }) {
   return room.kind === "street" ? (
-    <StreetScene />
+    <StreetScene progressByCategory={progressByCategory} />
   ) : (
     <OfficeScene room={room} lessonTitles={lessonTitles} doneSlugs={doneSlugs} />
   );

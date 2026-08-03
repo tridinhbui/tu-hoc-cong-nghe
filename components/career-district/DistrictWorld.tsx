@@ -117,6 +117,10 @@ function Joystick({
 }
 
 export interface DistrictWorldProps {
+  userId: string;
+  /** Chuỗi ngày và "hôm nay đã học chưa" - khắc lên biển tên như ở thư viện. */
+  streak: number;
+  doneToday: boolean;
   name: string;
   color: string;
   avatarUrl: string | null;
@@ -127,7 +131,17 @@ export interface DistrictWorldProps {
   stages: StageIndexEntry[];
 }
 
-export default function DistrictWorld({ name, color, avatarUrl, level, lessons, stages }: DistrictWorldProps) {
+export default function DistrictWorld({
+  userId,
+  streak,
+  doneToday,
+  name,
+  color,
+  avatarUrl,
+  level,
+  lessons,
+  stages,
+}: DistrictWorldProps) {
   const [roomId, setRoomId] = useState<DistrictRoomId>("street");
   const [entry, setEntry] = useState<Pose>(STREET_SPAWN);
   const [desk, setDesk] = useState<CareerDesk | null>(null);
@@ -138,6 +152,7 @@ export default function DistrictWorld({ name, color, avatarUrl, level, lessons, 
   /** Bảng thang máy mở bằng nút trên HUD, không cần đi tới buồng thang. */
   const [liftPanel, setLiftPanel] = useState(false);
   const [stagePanel, setStagePanel] = useState(false);
+  const [peerCount, setPeerCount] = useState(0);
   const [walking, setWalking] = useState(false);
   const [hintSeen, setHintSeen] = useState(false);
   const [daylight, setDaylight] = useState<number | null>(null);
@@ -228,6 +243,18 @@ export default function DistrictWorld({ name, color, avatarUrl, level, lessons, 
     [lessons]
   );
 
+  /** Tiến độ từng nhóm ngành, đếm trên chính kệ bài học của nhóm đó. Biển hiệu
+   *  ngoài phố đọc con số này, nên đi qua trước cửa là biết mình đã đi tới đâu
+   *  trong ngành ấy mà chưa cần bước vào. */
+  const progressByCategory = useMemo(() => {
+    const out = {} as Record<string, { done: number; total: number }>;
+    for (const c of CAREER_CATEGORY_ORDER) {
+      const slugs = lessonSlugsFor(c, 999);
+      out[c] = { done: slugs.filter((sl) => doneSlugs.has(sl)).length, total: slugs.length };
+    }
+    return out;
+  }, [doneSlugs]);
+
   const inTower = roomId === "thap" || String(roomId).startsWith("tang-");
 
   const roomFormulas = useMemo(() => (isCareerCategory(roomId) ? formulasFor(roomId, 4) : []), [roomId]);
@@ -239,6 +266,10 @@ export default function DistrictWorld({ name, color, avatarUrl, level, lessons, 
       ) : (
         <DistrictScene
           roomId={roomId}
+          userId={userId}
+          streak={streak}
+          doneToday={doneToday}
+          onPeerCount={setPeerCount}
           entry={entry}
           name={name}
           color={color}
@@ -252,6 +283,7 @@ export default function DistrictWorld({ name, color, avatarUrl, level, lessons, 
           onLiftChange={setAtLift}
           onStopChange={setStop}
           doneSlugs={doneSlugs}
+          progressByCategory={progressByCategory}
           onWalkingChange={setWalking}
           daylight={daylight}
         />
@@ -277,6 +309,14 @@ export default function DistrictWorld({ name, color, avatarUrl, level, lessons, 
               ? `${room.stops.length} bài trên hành lang · ${room.stops.filter((st) => doneSlugs.has(st.slug)).length} đã học`
               : "Thang máy ở cuối sảnh · mỗi tầng một phòng chức năng"}
           </p>
+          {/* Số người THẬT đang ở cùng phòng, đếm từ presence. Một hành lang có
+              hai người khác đang đi là thông tin khác hẳn một hành lang trống,
+              và là lý do để ở lại. */}
+          {peerCount > 1 && (
+            <p className="mt-0.5 text-[11px] font-bold text-emerald-300">
+              👥 {peerCount} người đang ở đây
+            </p>
+          )}
         </div>
         <Link
           href="/su-nghiep"
@@ -427,6 +467,7 @@ export default function DistrictWorld({ name, color, avatarUrl, level, lessons, 
                 <button
                   key={st.key}
                   type="button"
+                  disabled={!st.available}
                   onClick={() =>
                     enterPath(st.key, `${st.label} · ${st.trackTitle}`, "#a7f3d0", st.slugs, {
                       to: STAGE_FLOOR_ID,
@@ -434,9 +475,14 @@ export default function DistrictWorld({ name, color, avatarUrl, level, lessons, 
                       arriveAt: { x: 0, z: 5.4, ry: 0 },
                     })
                   }
-                  className="block w-full cursor-pointer rounded-lg px-2 py-1.5 text-left transition hover:bg-stone-800"
+                  className="block w-full cursor-pointer rounded-lg px-2 py-1.5 text-left transition hover:bg-stone-800 disabled:cursor-not-allowed disabled:opacity-45 disabled:hover:bg-transparent"
                 >
-                  <span className="text-[11px] font-black text-emerald-200">{st.label}</span>
+                  {/* Chặng chưa mở thì KHOÁ THẬT, không phải mở rồi mới báo:
+                      bước vào một hành lang xong mới bị đuổi ra tệ hơn nhiều
+                      so với thấy nó khoá từ đầu. */}
+                  <span className="text-[11px] font-black text-emerald-200">
+                    {st.available ? st.label : `🔒 ${st.label}`}
+                  </span>
                   <span className="ml-1 text-[10px] text-stone-500">{st.trackTitle}</span>
                   <span className="ml-1 font-mono text-[10px] text-stone-400">
                     {done}/{st.slugs.length}

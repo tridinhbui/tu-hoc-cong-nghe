@@ -49,15 +49,21 @@ interface World {
   chatListeners: Set<ChatListener>;
 }
 
+/** Khoá phòng. Phòng học nhóm dùng số (`room_id` trong database), còn các
+ *  phòng của Phố nghề dùng chuỗi ("street", "tang-cfa", "nghe-quant"…) vì
+ *  chúng không có bản ghi nào trong database cả - chúng là hình học. Cả hai đi
+ *  chung một kênh, chỉ cần khoá là chuỗi. */
+export type WorldKey = string | number;
+
 /** Một world cho mỗi phòng đang mở. Đếm tham chiếu vì StrictMode mount hai lần
  *  và gọi subscribe() lần hai trên cùng channel là lỗi - đúng cái bẫy mà
  *  supabase-lobby đã ghi lại trong phần đầu file của nó. */
-const worlds = new Map<number, World>();
+const worlds = new Map<string, World>();
 
 /** Topic phải CỐ ĐỊNH theo phòng, không được qua uniqueRealtimeTopic(): hậu tố
  *  ngẫu nhiên của helper đó sẽ đẩy hai người cùng phòng sang hai channel khác
  *  nhau và họ không bao giờ thấy nhau. */
-function topicFor(roomId: number) {
+function topicFor(roomId: WorldKey) {
   return `study-room-world:${roomId}`;
 }
 
@@ -68,12 +74,13 @@ function emit(world: World) {
 
 /** Vào phòng. Trả về hàm rời đi; gọi trong cleanup của useEffect. */
 export function joinStudyWorld(
-  roomId: number,
+  roomId: WorldKey,
   identity: StudyWorldIdentity,
   onPeers: PeersListener,
   onChat?: ChatListener
 ): () => void {
-  let world = worlds.get(roomId);
+  const key = String(roomId);
+  let world = worlds.get(key);
 
   if (!world) {
     const supabase = createClient();
@@ -89,7 +96,7 @@ export function joinStudyWorld(
       listeners: new Set(),
       chatListeners: new Set(),
     };
-    worlds.set(roomId, world);
+    worlds.set(key, world);
     const w = world;
 
     channel
@@ -172,7 +179,7 @@ export function joinStudyWorld(
     if (onChat) joined.chatListeners.delete(onChat);
     joined.refCount -= 1;
     if (joined.refCount > 0) return;
-    worlds.delete(roomId);
+    worlds.delete(key);
     joined.peers.clear();
     void joined.channel.untrack();
     void createClient().removeChannel(joined.channel);
@@ -186,8 +193,8 @@ export function joinStudyWorld(
  *  phiên bắt đầu từ lúc nào. Track lại CẢ bản ghi danh tính - Supabase không
  *  có cập nhật từng trường, gửi thiếu là những trường kia biến mất khỏi bản
  *  ghi của mình trên máy mọi người. */
-export function setStudySeat(roomId: number, seat: number | null, startedAt: number | null) {
-  const world = worlds.get(roomId);
+export function setStudySeat(roomId: WorldKey, seat: number | null, startedAt: number | null) {
+  const world = worlds.get(String(roomId));
   if (!world?.lastIdentity) return;
   world.lastIdentity = { ...world.lastIdentity, seat, seatStartedAt: seat === null ? null : startedAt };
   void world.channel.track(world.lastIdentity);
@@ -195,8 +202,8 @@ export function setStudySeat(roomId: number, seat: number | null, startedAt: num
 
 /** Gửi vị trí. Không tự tiết chế tần suất - phía gọi giữ nhịp, vì chỉ nó biết
  *  khi nào nhân vật thực sự nhúc nhích. */
-export function sendStudyPose(roomId: number, userId: string, pose: LobbyPose) {
-  const world = worlds.get(roomId);
+export function sendStudyPose(roomId: WorldKey, userId: string, pose: LobbyPose) {
+  const world = worlds.get(String(roomId));
   if (!world) return;
   void world.channel.send({ type: "broadcast", event: "move", payload: { userId, ...pose } });
 }
@@ -208,12 +215,12 @@ export function sendStudyPose(roomId: number, userId: string, pose: LobbyPose) {
  *  nhóm ngay bên cạnh, vốn ghi vào study_room_messages. Ai đang đứng trong
  *  phòng thì nghe; muốn để lại thứ đọc được sau thì gõ vào ô chat. */
 export function sayInStudyWorld(
-  roomId: number,
+  roomId: WorldKey,
   userId: string,
   name: string,
   rawText: string
 ): LobbyChatMessage | null {
-  const world = worlds.get(roomId);
+  const world = worlds.get(String(roomId));
   const text = rawText.trim().slice(0, CHAT_MAX_LENGTH);
   if (!text || !world) return null;
   void world.channel.send({ type: "broadcast", event: "say", payload: { userId, name, text } });
