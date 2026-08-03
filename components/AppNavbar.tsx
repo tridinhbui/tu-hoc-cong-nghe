@@ -52,8 +52,8 @@ type NavLink =
  * Kiểm tra's "Tin mới" were pulsing on rows nobody could see. Five flat rows
  * above the groups turned out to cost more than the badges were worth, so they
  * went back into sections, and the badge problem is solved properly instead:
- * SECTIONS_WITH_BADGES below unfolds a section the moment something inside it
- * has a live prompt.
+ * `forcedOpenKeys` in the component below unfolds a section the moment
+ * something inside it has a live prompt.
  */
 const TOP_LEVEL_LINKS: NavLink[] = [
   { href: "/dashboard", label: "Dashboard", icon: Home },
