@@ -75,6 +75,16 @@ are fixing an outright error (typos like `"Nợ cợ định"` or a stray `]`, o
 non-Vietnamese text that slipped in). Rewriting the teaching content is a
 separate change from rebalancing the options; don't mix the two.
 
+**An override replaces every key it carries, not just `quiz`.**
+`applyLessonOverrides` is `{ ...lesson, ...override }`, so a `sections` key in
+an override takes ownership of that lesson's teaching content and whatever
+`lib/lessons.ts` says is silently ignored — no compile error, no failing test,
+`npm run audit:lessons` still green, and the lesson on production does not
+change by a single character. 35 slugs are in that state today; the list and
+the guard are in `lib/__tests__/lesson-override-shadowing.test.ts`. Check it
+before editing a lesson's `sections`, and prefer pulling content back into
+`lib/lessons.ts` over adding another entry.
+
 IB question bank: `lib/ib-question-overrides.ts`, keyed by numeric id. Same
 rules apply. Note that the delivery route shuffles option order per question,
 so `correct: 0` everywhere is fine there — position leaks nothing, only length
