@@ -117,6 +117,11 @@ const STATIC_PAGE_LESSON_IDS: Record<string, number> = {
 const PUBLIC_PATHS = new Set([
   "/", // Marketing homepage - has to render for logged-out visitors to sign up at all.
   "/login",
+  // Trang xem cảnh 3D lúc dev. Bản thân trang tự 404 ở production
+  // (app/dev-world-preview/page.tsx); dòng này chỉ để proxy đừng đá về /login
+  // trước khi trang kịp chạy. Tên KHÔNG được mở đầu bằng "_": thư mục gạch
+  // dưới là private folder của App Router, không thành route bao giờ.
+  "/dev-world-preview",
   "/dieu-khoan",
   "/chinh-sach-bao-mat",
   "/sw.js", // Service worker script - the matcher below excludes image assets but
