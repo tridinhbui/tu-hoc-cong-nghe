@@ -1,5 +1,6 @@
 import { describe, expect, it } from "vitest";
 import { CFA_FORMULAS_DATA } from "@/lib/cfa-formulas-data";
+import { CFA_GLOSSARY_TERMS } from "@/lib/cfa-glossary-terms";
 
 /**
  * The formula sheet at /cfa/formulas is one of three things the CFA track
@@ -68,6 +69,36 @@ describe("CFA formula sheet", () => {
 
   it("labels every worked example with a result", () => {
     const broken = CFA_FORMULAS_DATA.filter((f) => f.example && !f.example.result).map((f) => f.id);
+    expect(broken).toEqual([]);
+  });
+});
+
+/**
+ * The flashcard deck at /cfa/flashcards is the third thing the CFA track
+ * offers, and it had the same shape of problem as the formula sheet: 30 terms
+ * across ten subjects, with Alternatives and Portfolio Management on one card
+ * each. A one-card deck is not a deck - you flip it and you are done - but it
+ * renders without error, so nothing said so.
+ */
+describe("CFA flashcard glossary", () => {
+  it("has no duplicate ids", () => {
+    const ids = CFA_GLOSSARY_TERMS.map((t) => t.id);
+    expect(ids.filter((id, i) => ids.indexOf(id) !== i), "id thuật ngữ bị trùng").toEqual([]);
+  });
+
+  it("gives every subject a deck worth flipping", () => {
+    // Unlike the formula sheet, Ethics is not exempt here: it has plenty of
+    // terminology even though it has nothing to compute.
+    const counts = new Map<string, number>();
+    for (const t of CFA_GLOSSARY_TERMS) counts.set(t.subjectId, (counts.get(t.subjectId) ?? 0) + 1);
+    const thin = SUBJECTS.filter((s) => (counts.get(s) ?? 0) < 5).map((s) => `${s} (${counts.get(s) ?? 0})`);
+    expect(thin, "môn có quá ít thẻ để ôn").toEqual([]);
+  });
+
+  it("gives every term both languages and a definition", () => {
+    const broken = CFA_GLOSSARY_TERMS.filter((t) => !t.termEn || !t.termVi || !t.definitionVi).map(
+      (t) => t.id
+    );
     expect(broken).toEqual([]);
   });
 });
