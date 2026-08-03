@@ -159,35 +159,48 @@ function GlossaryTermSpan({ term, en }: { term: string; en: string }) {
         {term}
       </button>
 
+      {/* Lớp bọc định vị. Khoảng cách 8px tới từ gạch chân là `pb-2` (padding)
+          chứ không phải `mb-2` (margin): padding nằm TRONG hộp của phần tử nên
+          hover được, margin thì không. Trước đây popover chỉ mở nhờ
+          `group-hover/term`, mà chuột đi từ chữ lên nút Lưu phải băng qua đúng
+          8px margin đó - không thuộc về phần tử nào, hover tắt, card biến mất
+          giữa chừng. Padding biến khoảng trống ấy thành một phần của popover,
+          nên đường đi từ chữ tới nút liền mạch. */}
       <span
-        className={`absolute left-1/2 -translate-x-1/2 bottom-full mb-2 rounded-2xl bg-stone-900 dark:bg-stone-900 text-white text-xs font-semibold p-3 transition-all duration-200 z-40 shadow-2xl flex flex-col items-center gap-2 border border-stone-700/80 min-w-[150px] ${
-          open
-            ? "opacity-100 scale-100 pointer-events-auto"
-            : "opacity-0 scale-95 pointer-events-none group-hover/term:opacity-100 group-hover/term:scale-100 group-hover/term:pointer-events-auto"
+        className={`absolute left-1/2 -translate-x-1/2 bottom-full pb-2 z-40 ${
+          open ? "pointer-events-auto" : "pointer-events-none group-hover/term:pointer-events-auto"
         }`}
       >
-        <span className="font-bold text-amber-300 text-sm tracking-wide whitespace-nowrap">{en}</span>
-
-        <button
-          type="button"
-          onClick={handleSaveFlashcard}
-          disabled={saveState === "saving" || isSaved}
-          className={`w-full text-[11px] font-bold px-3 py-1.5 rounded-xl shadow-sm active:scale-95 transition-all flex items-center justify-center gap-1.5 cursor-pointer ${
-            isSaved || saveState === "saved"
-              ? "bg-emerald-600 text-white cursor-default"
-              : saveState === "error"
-                ? "bg-rose-600 hover:bg-rose-700 text-white"
-                : "bg-emerald-500 hover:bg-emerald-400 text-white font-bold"
+        <span
+          className={`rounded-2xl bg-stone-900 dark:bg-stone-900 text-white text-xs font-semibold p-3 transition-all duration-200 shadow-2xl flex flex-col items-center gap-2 border border-stone-700/80 min-w-[150px] origin-bottom ${
+            open
+              ? "opacity-100 scale-100"
+              : "opacity-0 scale-95 group-hover/term:opacity-100 group-hover/term:scale-100"
           }`}
         >
-          {saveState === "saving"
-            ? "⏳ Đang lưu..."
-            : isSaved || saveState === "saved"
-              ? "✓ Đã có trong Flashcard"
-              : saveState === "error"
-                ? "⚠ Thử lại"
-                : "+ 🗂️ Lưu vào Flashcard (+5 XP)"}
-        </button>
+          <span className="font-bold text-amber-300 text-sm tracking-wide whitespace-nowrap">{en}</span>
+
+          <button
+            type="button"
+            onClick={handleSaveFlashcard}
+            disabled={saveState === "saving" || isSaved}
+            className={`w-full text-[11px] font-bold px-3 py-1.5 rounded-xl shadow-sm active:scale-95 transition-all flex items-center justify-center gap-1.5 cursor-pointer ${
+              isSaved || saveState === "saved"
+                ? "bg-emerald-600 text-white cursor-default"
+                : saveState === "error"
+                  ? "bg-rose-600 hover:bg-rose-700 text-white"
+                  : "bg-emerald-500 hover:bg-emerald-400 text-white font-bold"
+            }`}
+          >
+            {saveState === "saving"
+              ? "⏳ Đang lưu..."
+              : isSaved || saveState === "saved"
+                ? "✓ Đã có trong Flashcard"
+                : saveState === "error"
+                  ? "⚠ Thử lại"
+                  : "+ 🗂️ Lưu vào Flashcard (+5 XP)"}
+          </button>
+        </span>
       </span>
     </span>
   );
