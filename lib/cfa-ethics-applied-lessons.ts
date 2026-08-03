@@ -37,6 +37,44 @@ export const CFA_ETHICS_APPLIED_LESSONS: Lesson[] = [
     correctOption: 1,
     explanation:
       "Với quỹ hưu trí, bên ký hợp đồng và bên được phục vụ là hai chủ thể khác nhau, và Standard III(A) nói rõ nghĩa vụ thuộc về người thụ hưởng. Đây không phải chi tiết kỹ thuật: yêu cầu tăng tỷ trọng cổ phiếu công ty mẹ làm danh mục hưu trí tập trung rủi ro vào đúng nơi mà thu nhập của người lao động đã phụ thuộc vào - mất việc và mất lương hưu cùng một lúc. Nguyên tắc mở rộng ra mọi tình huống có bên trung gian: quản lý quỹ đầu tư thì khách hàng là chính quỹ và các nhà đầu tư của nó, không phải người giới thiệu bạn vào.",
+    sections: [
+      {
+        "type": "lead",
+        "text": "Standard III(A) đặt ra ba nghĩa vụ với khách hàng: trung thành, thận trọng, và đặt lợi ích của họ lên trước. Câu hỏi khó nhất thường không phải làm gì, mà khách hàng ở đây là ai."
+      },
+      {
+        "type": "heading",
+        "text": "Khi bên ký hợp đồng không phải bên được phục vụ"
+      },
+      {
+        "type": "paragraph",
+        "text": "Với quỹ hưu trí, doanh nghiệp là bên ký hợp đồng nhưng người lao động mới là người thụ hưởng, và Standard nói rõ nghĩa vụ thuộc về người thụ hưởng. Đây không phải chi tiết kỹ thuật: yêu cầu tăng tỷ trọng cổ phiếu công ty mẹ làm danh mục hưu trí tập trung rủi ro vào đúng nơi mà thu nhập của người lao động đã phụ thuộc - mất việc và mất lương hưu cùng một lúc."
+      },
+      {
+        "type": "callout",
+        "label": "Nguyên tắc mở rộng",
+        "text": "Mọi tình huống có bên trung gian đều áp dụng cách hỏi này. Quản lý một quỹ đầu tư thì khách hàng là chính quỹ theo điều lệ và các nhà đầu tư của nó, không phải người đã giới thiệu bạn vào."
+      },
+      {
+        "type": "heading",
+        "text": "Thận trọng không có nghĩa là né rủi ro"
+      },
+      {
+        "type": "paragraph",
+        "text": "Một danh mục quá an toàn so với nghĩa vụ dài hạn cũng có thể là thiếu thận trọng, vì nó gần như chắc chắn không đủ để chi trả. Thận trọng là đối chiếu danh mục với nghĩa vụ, không phải tối thiểu hóa biến động."
+      },
+      {
+        "type": "paragraph",
+        "text": "Về hoa hồng mềm - phần phí giao dịch được dùng để mua dịch vụ nghiên cứu - nguyên tắc rất gọn: đó là tiền của khách hàng, nên thứ mua bằng nó phải phục vụ chính họ. Dùng để mua hệ thống vận hành của công ty bạn thì không đạt điều kiện đó."
+      },
+      {
+        "type": "closing",
+        "lines": [
+          "Hỏi trước: ai là người mà tiền này thuộc về.",
+          "Mọi nghĩa vụ còn lại đều chảy ra từ câu trả lời đó."
+        ]
+      }
+    ],
     diagram: [
       { label: "Bên ký hợp đồng và bên được phục vụ có thể khác nhau", arrow: true },
       { label: "Nghĩa vụ thuộc về người thụ hưởng", arrow: true },
@@ -153,6 +191,48 @@ export const CFA_ETHICS_APPLIED_LESSONS: Lesson[] = [
     correctOption: 1,
     explanation:
       "Standard III(C) xét tính phù hợp ở cấp danh mục. Một cổ phiếu biến động mạnh chiếm 2% danh mục có thể hoàn toàn phù hợp; chiếm 40% thì không - và bản thân cổ phiếu đó không đổi. Với lệnh khách tự đặt đi ngược mục tiêu đã thống nhất, quy trình chuẩn là ba bước: giải thích tác động lên danh mục, ghi nhận rằng lệnh đến từ khách chứ không phải khuyến nghị của bạn, và nếu những lệnh như vậy lặp lại tới mức làm danh mục lệch hẳn khỏi IPS thì phải cập nhật IPS hoặc xem lại quan hệ. Chữ ký miễn trừ trách nhiệm không thay thế được bước nào trong ba bước đó.",
+    sections: [
+      {
+        "type": "lead",
+        "text": "Standard III(C) yêu cầu khuyến nghị phải phù hợp với hoàn cảnh của khách hàng. Điểm mấu chốt là tính phù hợp được xét ở cấp danh mục, không xét từng khoản riêng lẻ."
+      },
+      {
+        "type": "heading",
+        "text": "Vì sao cấp danh mục mới đúng"
+      },
+      {
+        "type": "paragraph",
+        "text": "Một cổ phiếu biến động mạnh chiếm 2% danh mục có thể hoàn toàn phù hợp; chiếm 40% thì không - và bản thân cổ phiếu đó không hề đổi. Đánh giá từng khoản tách rời sẽ vừa loại bỏ những khoản đầu tư hợp lý ở tỷ trọng nhỏ, vừa bỏ lọt rủi ro tập trung."
+      },
+      {
+        "type": "heading",
+        "text": "Khi khách tự đặt lệnh đi ngược mục tiêu đã thống nhất"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Giải thích tác động của lệnh đó lên toàn bộ danh mục, không chỉ nói nó rủi ro.",
+          "Ghi nhận rõ rằng lệnh đến từ khách hàng chứ không phải khuyến nghị của bạn.",
+          "Nếu những lệnh như vậy lặp lại tới mức danh mục lệch hẳn khỏi tuyên bố chính sách đầu tư, phải cập nhật tuyên bố đó hoặc xem lại quan hệ."
+        ]
+      },
+      {
+        "type": "callout",
+        "label": "Điểm hay bị hiểu sai",
+        "text": "Chữ ký miễn trừ trách nhiệm không thay thế được bước nào trong ba bước trên. Nó bảo vệ về mặt pháp lý, không xóa nghĩa vụ theo chuẩn mực nghề nghiệp."
+      },
+      {
+        "type": "paragraph",
+        "text": "Tuyên bố chính sách đầu tư được viết vào lúc bình tĩnh để dùng vào lúc hoảng loạn. Đó là toàn bộ lý do nó tồn tại, và cũng là lý do việc sửa nó giữa cơn biến động phải là một quyết định có cân nhắc chứ không phải phản ứng."
+      },
+      {
+        "type": "closing",
+        "lines": [
+          "Không có khoản đầu tư nào phù hợp hay không phù hợp tự thân.",
+          "Chỉ có phù hợp với danh mục này, của người này, ở tỷ trọng này."
+        ]
+      }
+    ],
     diagram: [
       { label: "Xét ở cấp danh mục, không xét từng khoản riêng lẻ", arrow: true },
       { label: "Lệnh khách tự đặt: giải thích tác động trước", arrow: true },
@@ -269,6 +349,48 @@ export const CFA_ETHICS_APPLIED_LESSONS: Lesson[] = [
     correctOption: 1,
     explanation:
       "Nghĩa vụ bảo mật không có thời hạn và không phụ thuộc vào việc hợp đồng còn hiệu lực hay không. Lý do rất thực tế: thông tin tài chính riêng tư của một người không mất tính nhạy cảm chỉ vì họ đổi nhà tư vấn. Standard III(E) có đúng ba ngoại lệ. Thứ nhất, khi luật pháp yêu cầu tiết lộ. Thứ hai, khi thông tin liên quan tới hoạt động bất hợp pháp của chính khách hàng. Thứ ba, khi khách hàng cho phép. Ngoài ba trường hợp đó, mọi lý do khác - kể cả để đồng nghiệp phân tích tốt hơn, hay để cảnh báo một khách khác - đều không đủ.",
+    sections: [
+      {
+        "type": "lead",
+        "text": "Standard III(E) buộc giữ bí mật thông tin khách hàng. Hai đặc điểm làm nghĩa vụ này khác với cảm nhận thông thường: nó không có thời hạn, và nó chỉ có đúng ba ngoại lệ."
+      },
+      {
+        "type": "heading",
+        "text": "Không có thời hạn"
+      },
+      {
+        "type": "paragraph",
+        "text": "Nghĩa vụ bảo mật kéo dài sau khi quan hệ đã chấm dứt, và không phụ thuộc vào việc hợp đồng còn hiệu lực hay không. Lý do rất thực tế: thông tin tài chính riêng tư của một người không mất tính nhạy cảm chỉ vì họ đổi nhà tư vấn."
+      },
+      {
+        "type": "heading",
+        "text": "Ba ngoại lệ"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Khi luật pháp yêu cầu tiết lộ.",
+          "Khi thông tin liên quan tới hoạt động bất hợp pháp của chính khách hàng.",
+          "Khi khách hàng cho phép."
+        ]
+      },
+      {
+        "type": "callout",
+        "label": "Không có ngoại lệ thứ tư",
+        "text": "Mọi lý do khác - để đồng nghiệp phân tích tốt hơn, để cảnh báo một khách hàng khác, để bảo vệ uy tín công ty - đều không đủ. Mục đích tốt không tạo ra ngoại lệ."
+      },
+      {
+        "type": "paragraph",
+        "text": "Hai giới hạn cần đọc kỹ ở ngoại lệ thứ hai. Nó chỉ áp dụng cho hành vi bất hợp pháp của chính khách hàng, không phải của một bên thứ ba mà bạn tình cờ biết qua khách hàng. Và nó cho phép báo cho cơ quan có thẩm quyền, chứ không cho phép chia sẻ rộng rãi hay đưa lên truyền thông."
+      },
+      {
+        "type": "closing",
+        "lines": [
+          "Khách hàng kể cho bạn vì công việc buộc họ phải kể.",
+          "Đó là lý do nghĩa vụ này chặt hơn cảm giác thông thường về sự tế nhị."
+        ]
+      }
+    ],
     diagram: [
       { label: "Mặc định: bảo mật, không thời hạn", arrow: true },
       { label: "Ngoại lệ 1: luật pháp yêu cầu", arrow: true },

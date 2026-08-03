@@ -995,6 +995,47 @@ export const CFA_ETHICS_STANDARDS_LESSONS: Lesson[] = [
     correctOption: 1,
     explanation:
       "Standard II(B) là một trong số ít Standards mà ý định nằm ngay trong định nghĩa vi phạm. Hủy lệnh là hoạt động hợp pháp và cần thiết: chiến lược thay đổi, giá dịch chuyển, thanh khoản không như dự kiến. Thứ tạo ra vi phạm là đặt lệnh mà bạn không có ý định khớp, nhằm làm người khác tin rằng có lực cầu hoặc lực cung không tồn tại. Vì ý định không quan sát trực tiếp được, cơ quan quản lý đọc nó qua mô hình hành vi: tỷ lệ hủy cực cao, lệnh đặt xa giá khớp rồi rút đúng khi giá tiến tới, và vị thế thật đi ngược hướng lệnh đang hiển thị. Lợi nhuận thực tế không phải điều kiện - thao túng thất bại vẫn là thao túng.",
+    sections: [
+      {
+        "type": "lead",
+        "text": "Standard II(B) cấm thao túng thị trường, và nó là một trong số rất ít Standards mà ý định nằm ngay trong định nghĩa vi phạm - cùng một hành vi có thể hợp lệ hoặc không tùy vào điều bạn định làm."
+      },
+      {
+        "type": "comparison",
+        "left": {
+          "label": "Thao túng bằng giao dịch",
+          "text": "Đặt lệnh, hủy lệnh, giao dịch đối ứng nhằm tạo ra ấn tượng sai về khối lượng hoặc hướng giá."
+        },
+        "right": {
+          "label": "Thao túng bằng thông tin",
+          "text": "Lan truyền tin đồn hoặc phát biểu gây hiểu nhầm nhằm đẩy giá theo hướng có lợi cho vị thế của mình."
+        }
+      },
+      {
+        "type": "heading",
+        "text": "Vì sao hủy lệnh không tự nó là vi phạm"
+      },
+      {
+        "type": "paragraph",
+        "text": "Hủy lệnh là hoạt động hợp pháp và cần thiết: chiến lược thay đổi, giá dịch chuyển, thanh khoản không như dự kiến. Thứ tạo ra vi phạm là đặt lệnh mà bạn không có ý định khớp, nhằm làm người khác tin rằng có lực cầu hoặc lực cung không tồn tại."
+      },
+      {
+        "type": "callout",
+        "label": "Đọc ý định qua hành vi",
+        "text": "Vì ý định không quan sát trực tiếp được, cơ quan quản lý suy ra nó từ mô hình hành vi: tỷ lệ hủy cực cao, lệnh đặt xa giá khớp rồi rút đúng khi giá tiến tới, và vị thế thật đi ngược hướng lệnh đang hiển thị."
+      },
+      {
+        "type": "paragraph",
+        "text": "Hai điểm cần nhớ. Thứ nhất, lợi nhuận thực tế không phải điều kiện cấu thành - thao túng thất bại vẫn là thao túng. Thứ hai, tỷ lệ hủy cao tự nó không chứng minh gì: nhà tạo lập thị trường hợp pháp cũng có tỷ lệ hủy rất cao, nên phải nhìn cả bộ dấu hiệu chứ không nhìn một chỉ số."
+      },
+      {
+        "type": "closing",
+        "lines": [
+          "Cùng một lệnh, cùng một cú hủy.",
+          "Điều phân biệt nằm ở chỗ bạn có định khớp nó hay không."
+        ]
+      }
+    ],
     diagram: [
       { label: "Thao túng bằng giao dịch: lệnh giả, giao dịch vòng tròn", arrow: true },
       { label: "Thao túng bằng thông tin: tung tin sai để dẫn dụ giá", arrow: true },
@@ -1111,6 +1152,48 @@ export const CFA_ETHICS_STANDARDS_LESSONS: Lesson[] = [
     correctOption: 1,
     explanation:
       "Chữ trong Standard là công bằng, không phải đồng nhất - và khác biệt đó có chủ ý. Ngành đầu tư có nhiều mức dịch vụ khác nhau, và bán một gói cao cấp không tự nó là vi phạm. Hai điều kiện biến nó thành hợp lệ: chênh lệch phải được công bố trước để khách gói thường biết mình đang mua gì và không mua gì; và trong cùng một nhóm dịch vụ thì không ai được ưu tiên hơn ai. Cái bị cấm là ưu tiên ngầm - cho một khách quen biết lệnh trước trong khi cả hai trả cùng mức phí, hoặc gọi điện cho vài khách lớn trước khi báo cáo phát hành cho tất cả.",
+    sections: [
+      {
+        "type": "lead",
+        "text": "Standard III(B) yêu cầu đối xử công bằng với mọi khách hàng. Chữ trong Standard là công bằng, không phải đồng nhất - và khác biệt đó có chủ ý."
+      },
+      {
+        "type": "heading",
+        "text": "Phân tầng dịch vụ là hợp lệ"
+      },
+      {
+        "type": "paragraph",
+        "text": "Ngành đầu tư có nhiều mức dịch vụ khác nhau, và bán một gói cao cấp không tự nó là vi phạm. Hai điều kiện biến nó thành hợp lệ: chênh lệch phải được công bố trước để khách gói thường biết mình đang mua gì và không mua gì; và trong cùng một nhóm dịch vụ thì không ai được ưu tiên hơn ai."
+      },
+      {
+        "type": "callout",
+        "label": "Cái bị cấm là ưu tiên ngầm",
+        "text": "Cho một khách quen biết lệnh trước trong khi cả hai trả cùng mức phí. Gọi điện cho vài khách lớn trước khi báo cáo được phát hành cho tất cả. Không ai được thông báo rằng có một hàng đợi, và đó chính là vấn đề."
+      },
+      {
+        "type": "heading",
+        "text": "Phân bổ lệnh"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Lệnh gộp được phân bổ theo tỷ lệ, ở cùng một mức giá bình quân.",
+          "Quy trình phải được viết ra và công bố cho khách hàng.",
+          "Quy trình phải có TRƯỚC khi có lệnh - nếu quyết định sau khi biết kết quả khớp thì nó không phải quy trình, nó là lựa chọn."
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "Nghĩa vụ này bị thử thách mạnh nhất khi bạn đảo chiều khuyến nghị: ai được biết trước vài giờ có thể là khác biệt giữa thoát ra kịp và không kịp. Đó là lúc quy trình viết sẵn có giá trị nhất."
+      },
+      {
+        "type": "closing",
+        "lines": [
+          "Khách hàng chấp nhận được việc trả ít hơn thì nhận ít hơn.",
+          "Điều họ không chấp nhận được là không biết rằng có hàng đợi."
+        ]
+      }
+    ],
     diagram: [
       { label: "Công bằng ≠ đồng nhất: nhiều mức dịch vụ là hợp lệ", arrow: true },
       { label: "Điều kiện 1: chênh lệch được công bố trước", arrow: true },
@@ -1227,6 +1310,47 @@ export const CFA_ETHICS_STANDARDS_LESSONS: Lesson[] = [
     correctOption: 1,
     explanation:
       "Đây là dạng bóp méo tinh vi nhất vì không có con số nào sai. Mỗi quỹ còn sống thật sự đạt mức lãi đó; phép trung bình cũng tính đúng. Thứ sai là mẫu: các quỹ kém thường bị đóng hoặc sáp nhập, và khi biến mất khỏi danh sách thì chúng cũng biến mất khỏi phép tính. Kết quả là con số quảng cáo mô tả một nhóm mà nhà đầu tư mười năm trước không thể chọn được, vì lúc đó họ chưa biết quỹ nào sẽ sống sót. Standard III(D) yêu cầu trình bày công bằng và đầy đủ, và đó chính là lý do GIPS bắt buộc gộp toàn bộ tài khoản cùng chiến lược vào một composite thay vì để công ty tự chọn.",
+    sections: [
+      {
+        "type": "lead",
+        "text": "Standard III(D) đòi hỏi ba thứ ở mọi con số hiệu suất: công bằng, chính xác và đầy đủ. Điều đáng chú ý là các cách bóp méo phổ biến nhất đều không cần một con số sai nào."
+      },
+      {
+        "type": "heading",
+        "text": "Thiên lệch sống sót"
+      },
+      {
+        "type": "paragraph",
+        "text": "Quảng cáo nêu mức lãi bình quân của các quỹ trong nhóm. Mỗi quỹ còn sống thật sự đạt mức đó, và phép trung bình cũng tính đúng. Thứ sai là mẫu: các quỹ kém thường bị đóng hoặc sáp nhập, và khi biến mất khỏi danh sách thì chúng cũng biến mất khỏi phép tính."
+      },
+      {
+        "type": "callout",
+        "label": "Vì sao đó là vi phạm",
+        "text": "Con số quảng cáo mô tả một nhóm mà nhà đầu tư mười năm trước không thể chọn được, vì lúc đó họ chưa biết quỹ nào sẽ sống sót. Nó không sai về số học nhưng sai về điều nó ngụ ý."
+      },
+      {
+        "type": "heading",
+        "text": "Hai cách bóp méo còn lại"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Chọn khoảng thời gian: bắt đầu tính từ đáy thị trường làm mọi con số đẹp lên mà không cần thay đổi gì về kỹ năng.",
+          "Trình bày kết quả mô phỏng như kết quả thật: backtest được phép, nhưng phải ghi rõ là mô phỏng và ghi ở chỗ dễ thấy, không giấu trong chú thích."
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "Đây chính là lý do GIPS bắt buộc gộp toàn bộ tài khoản cùng chiến lược vào một composite: quy tắc đó tồn tại để triệt tiêu khả năng chọn lọc mẫu ngay từ gốc, thay vì trông vào thiện chí của người trình bày."
+      },
+      {
+        "type": "closing",
+        "lines": [
+          "Công bằng, chính xác, đầy đủ.",
+          "Ba chữ đó gánh toàn bộ Standard - và chữ khó nhất là chữ cuối."
+        ]
+      }
+    ],
     diagram: [
       { label: "Thiên lệch sống sót: quỹ kém rơi khỏi mẫu", arrow: true },
       { label: "Chọn khoảng thời gian: bắt đầu ngay sau đáy", arrow: true },
