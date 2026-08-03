@@ -1214,7 +1214,16 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
               how many content lines each one has (personal/CFA got a fun
               one-line subtitle added specifically to match professional's,
               which was shortened to a single inline badge to compensate). */}
-          <div id="lo-trinh" data-tour="track-selector" className="grid grid-cols-1 sm:grid-cols-2 gap-3.5 mb-8 items-stretch scroll-mt-24">
+          <div
+            id="lo-trinh"
+            data-tour="track-selector"
+            className={`grid grid-cols-1 sm:grid-cols-2 gap-3.5 items-stretch scroll-mt-24 ${
+              // The branch strip below belongs to the professional card, so it
+              // sits one grid-gap away rather than a full section break - the
+              // section's own margin then comes from the strip instead.
+              activeDashboardTab === "professional" ? "mb-3.5" : "mb-8"
+            }`}
+          >
             {/* Card 2: Tài chính Cá Nhân (Amber Gold Accent) */}
             <div className="relative group h-full">
               <button
@@ -1302,31 +1311,44 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
 
           {/* "Tài chính chuyên ngành" split into focused branches -
               purely filters which of TRACK_PROFESSIONAL's stages show,
-              same lessons/locking/XP either way. */}
+              same lessons/locking/XP either way.
+
+              A filter strip rather than a card grid: these are a sub-choice
+              of the professional track above, not a third peer group beside
+              the two track cards. Cards also read badly here - seven of them
+              in a three-column grid left one stranded on its own row, and
+              their column rhythm fought the two-column track selector right
+              above. Each branch's subtitle moves to a single line under the
+              strip, so only the selected one is spelled out. */}
           {activeDashboardTab === "professional" && (
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 mb-6">
-              {PROFESSIONAL_BRANCHES.map((branch) => {
-                const isActive = professionalBranch === branch.id;
-                return (
-                  <button
-                    key={branch.id}
-                    onClick={() => handleSetProfessionalBranch(branch.id)}
-                    className={`text-left rounded-xl border-2 px-4 py-3 transition-all ${
-                      isActive
-                        ? "border-stone-900 dark:border-stone-100 bg-stone-900 dark:bg-stone-100 text-white dark:text-stone-900"
-                        : "border-stone-200 dark:border-stone-800 bg-white dark:bg-stone-900 text-stone-700 dark:text-stone-300 hover:border-stone-400 dark:hover:border-stone-600"
-                    }`}
-                  >
-                    <div className={`text-sm font-bold flex items-center gap-1.5 ${isActive ? "text-white dark:text-stone-900" : "text-stone-900 dark:text-stone-100"}`}>
-                      <span className="text-stone-400 dark:text-stone-500">{branch.emoji}</span>
+            <div className="mb-8">
+              {/* Wraps on desktop instead of scrolling: the seven pills need
+                  ~1180px and the content column is narrower than that, so a
+                  scroll strip would leave branches permanently off-screen with
+                  nothing to hint at them. Mobile keeps the swipeable strip,
+                  where a wrapped set would run five rows deep. */}
+              <div className="flex gap-2 overflow-x-auto sm:overflow-visible sm:flex-wrap scrollbar-none pb-1">
+                {PROFESSIONAL_BRANCHES.map((branch) => {
+                  const isActive = professionalBranch === branch.id;
+                  return (
+                    <button
+                      key={branch.id}
+                      onClick={() => handleSetProfessionalBranch(branch.id)}
+                      className={`shrink-0 whitespace-nowrap inline-flex items-center gap-1.5 rounded-full border px-3.5 py-1.5 text-xs font-bold transition-all cursor-pointer ${
+                        isActive
+                          ? "border-stone-900 dark:border-stone-100 bg-stone-900 dark:bg-stone-100 text-white dark:text-stone-900 shadow-sm"
+                          : "border-stone-200 dark:border-stone-800 bg-white dark:bg-stone-900 text-stone-600 dark:text-stone-400 hover:border-stone-400 dark:hover:border-stone-600 hover:text-stone-900 dark:hover:text-stone-200"
+                      }`}
+                    >
+                      <span>{branch.emoji}</span>
                       {branch.label}
-                    </div>
-                    <div className={`text-[11px] mt-0.5 ${isActive ? "text-stone-300 dark:text-stone-600" : "text-stone-500 dark:text-stone-400"}`}>
-                      {branch.subtitle}
-                    </div>
-                  </button>
-                );
-              })}
+                    </button>
+                  );
+                })}
+              </div>
+              <p className="mt-2 text-[11px] leading-relaxed text-stone-500 dark:text-stone-400">
+                {PROFESSIONAL_BRANCHES.find((b) => b.id === professionalBranch)?.subtitle}
+              </p>
             </div>
           )}
 
