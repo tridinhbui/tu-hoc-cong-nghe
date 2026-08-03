@@ -6,6 +6,7 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { createClient } from "@/lib/supabase";
 import { getUserStreak } from "@/lib/supabase-streak";
+import { getEquippedGear } from "@/lib/supabase-equipment";
 import type { Station } from "./stations";
 import {
   CHAT_MAX_LENGTH,
@@ -151,6 +152,15 @@ export default function LobbyClient() {
           // streak là phần thưởng phụ, thiếu nó không chặn vào phòng
         }
 
+        // Đồ trang bị đọc cùng lúc với danh tính. Hỏng thì vào phòng tay
+        // không, không phải không vào được.
+        let gear = {};
+        try {
+          gear = await getEquippedGear(user.id, supabase);
+        } catch {
+          // giữ tay không
+        }
+
         setIdentity({
           userId: user.id,
           name: name || user.email?.split("@")[0] || "Người học",
@@ -160,6 +170,7 @@ export default function LobbyClient() {
           level,
           doneToday,
           seat: null,
+          gear,
         });
       })
       .catch(() => setFailed(true));

@@ -1,6 +1,7 @@
 import { createClient } from "@/lib/supabase";
 import type { RealtimeChannel } from "@supabase/supabase-js";
 import { CHAT_MAX_LENGTH, type LobbyChatMessage, type LobbyPose } from "@/lib/supabase-lobby";
+import type { CharacterEquipments } from "@/lib/rpg-items";
 
 /** Hiện diện + vị trí cho phòng học nhóm đi lại được.
  *
@@ -30,6 +31,8 @@ export interface StudyWorldIdentity {
   seat: number | null;
   /** Epoch ms lúc ngồi xuống, để đồng hồ phiên của cả bàn lấy mốc sớm nhất. */
   seatStartedAt: number | null;
+  /** Đồ đang trang bị, đi kèm presence (xem LobbyIdentity). */
+  gear?: CharacterEquipments | null;
 }
 
 export interface StudyWorldPeer extends StudyWorldIdentity, LobbyPose {

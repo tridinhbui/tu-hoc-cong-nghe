@@ -5,6 +5,7 @@ import dynamic from "next/dynamic";
 import { CHAT_MAX_LENGTH, POMODORO_MS, colorForUser, type LobbyChatMessage } from "@/lib/supabase-lobby";
 import { sayInStudyWorld } from "@/lib/supabase-study-world";
 import { createWalkState } from "@/components/world-controls/easy-walk";
+import type { CharacterEquipments } from "@/lib/rpg-items";
 
 /** three.js chỉ chạy phía trình duyệt: ssr:false giữ nó ngoài bundle server, và
  *  người dùng thấy khung chờ thay vì lỗi hydrate. */
@@ -114,6 +115,8 @@ export interface StudyRoomWorldProps {
   /** Dòng nhiệm vụ hiện lên bảng, tối đa vài dòng cho vừa khung. */
   missionLines: string[];
   topicLabel: string;
+  /** Đồ đang trang bị, nạp ở phía gọi. */
+  gear?: CharacterEquipments | null;
   /** Bấm "ra khỏi phòng" khi đứng ở cửa. */
   onExit?: () => void;
 }
@@ -129,6 +132,7 @@ export default function StudyRoomWorld({
   weeklyXpGoal,
   missionLines,
   topicLabel,
+  gear,
   onExit,
 }: StudyRoomWorldProps) {
   const [seatable, setSeatable] = useState<number | null>(null);
@@ -174,8 +178,9 @@ export default function StudyRoomWorld({
       streak: weeklyLessons,
       level,
       doneToday: weeklyLessons > 0,
+      gear: gear ?? null,
     }),
-    [userId, name, avatarUrl, weeklyLessons, level]
+    [userId, name, avatarUrl, weeklyLessons, level, gear]
   );
 
   const pushLog = useCallback((message: LobbyChatMessage) => {

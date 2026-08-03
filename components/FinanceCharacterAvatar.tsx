@@ -3,17 +3,14 @@ import { Sparkles, Shield, Sword } from "lucide-react";
 import Avatar2DCanvas from "@/components/Avatar2DCanvas";
 import { type AvatarConfig } from "@/lib/avatar-customizer-types";
 import { getLocalAvatarConfig } from "@/lib/supabase-avatar";
+import { ITEM_DESCRIPTIONS, type CharacterEquipments } from "@/lib/rpg-items";
 
-export interface CharacterEquipments {
-  weapon?: string;
-  armor?: string;
-  accessory?: string;
-  companion?: string;
-  watch?: string;
-  suit?: string;
-  laptop?: string;
-  car?: string;
-}
+// Kiểu và bảng vật phẩm đã chuyển sang lib/rpg-items.ts để thế giới 3D dùng
+// chung; xuất lại ở đây để mọi nơi đang import từ file này không phải đổi.
+export { ITEM_DESCRIPTIONS };
+export type { CharacterEquipments };
+
+
 
 interface FinanceCharacterAvatarProps {
   level: number;
@@ -23,25 +20,7 @@ interface FinanceCharacterAvatarProps {
   interactive?: boolean;
 }
 
-export const ITEM_DESCRIPTIONS: Record<string, { name: string; type: keyof CharacterEquipments; icon: string }> = {
-  weapon_valuation_pen: { name: "Bút Định Giá Thần Kỳ", type: "weapon", icon: "🖊️" },
-  weapon_lbo_sword: { name: "Kiếm Phân Tích LBO", type: "weapon", icon: "⚔️" },
-  weapon_bell: { name: "Chuông Giao Dịch Sàn Wall", type: "weapon", icon: "🔔" },
-  
-  armor_risk_shield: { name: "Khiên Quản Trị Rủi Ro", type: "armor", icon: "🛡️" },
-  armor_savings_vest: { name: "Áo Giáp Tích Sản", type: "armor", icon: "🎽" },
-  
-  acc_glasses: { name: "Kính Phân Tích BCTC", type: "accessory", icon: "👓" },
-  acc_crown: { name: "Vương Miện CFO", type: "accessory", icon: "👑" },
-  
-  pet_bull: { name: "Linh vật Bò Tăng Trưởng", type: "companion", icon: "🐂" },
-  pet_bear: { name: "Gấu Tiết Kiệm Thần Kỳ", type: "companion", icon: "🐻" },
 
-  booster_xp_24h: { name: "Thẻ X2 XP Booster (24h)", type: "accessory", icon: "⚡" },
-  title_vip_diamond: { name: "Huy Hiệu VIP Kim Cương", type: "accessory", icon: "💎" },
-  chat_effect_dragon_fire: { name: "Khung Chat Rồng Lửa", type: "accessory", icon: "🔥" },
-  chat_effect_diamond_glow: { name: "Khung Chat Kim Cương", type: "accessory", icon: "💎" },
-};
 
 export default function FinanceCharacterAvatar({
   level,

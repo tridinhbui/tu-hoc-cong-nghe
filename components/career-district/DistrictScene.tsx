@@ -34,12 +34,14 @@ import {
 } from "@/components/world-controls/easy-walk";
 import LobbyAvatar, { type AvatarPose } from "@/components/lobby/LobbyAvatar";
 import { disposeRoomTextures } from "@/components/lobby/room-textures";
+import type { CharacterEquipments } from "@/lib/rpg-items";
 import { MOVE_BROADCAST_MS } from "@/lib/supabase-lobby";
 import {
   joinStudyWorld,
   sendStudyPose,
   type StudyWorldPeer,
 } from "@/lib/supabase-study-world";
+import { CHAT_BUBBLE_MS, type LobbyChatMessage } from "@/lib/supabase-lobby";
 
 const WALK_SPEED = 4.4;
 
@@ -220,9 +222,12 @@ export interface DistrictSceneProps {
   roomId: DistrictRoomId;
   /** Danh tính để hiện diện với người khác trong cùng phòng. */
   userId: string;
+  gear: CharacterEquipments;
   streak: number;
   doneToday: boolean;
   onPeerCount: (count: number) => void;
+  /** Câu của chính mình, do HUD đẩy xuống ngay khi bấm gửi. */
+  selfSpeech: { text: string; at: number } | null;
   /** Chỗ đứng khi vừa vào phòng này. Đổi tham chiếu là đặt lại vị trí. */
   entry: Pose;
   name: string;
@@ -248,9 +253,11 @@ export interface DistrictSceneProps {
 export default function DistrictScene({
   roomId,
   userId,
+  gear,
   streak,
   doneToday,
   onPeerCount,
+  selfSpeech,
   entry,
   name,
   color,
@@ -271,6 +278,7 @@ export default function DistrictScene({
   const room = getRoom(roomId);
   const poseRef = useRef<AvatarPose>({ ...entry });
   const [peers, setPeers] = useState<StudyWorldPeer[]>([]);
+  const [speeches, setSpeeches] = useState<Record<string, { text: string; at: number }>>({});
   const peerPoseRefs = useRef(new Map<string, React.MutableRefObject<AvatarPose>>());
   const peerCountRef = useRef(0);
   const orbitRef = useRef<OrbitState>({
@@ -313,18 +321,40 @@ export default function DistrictScene({
         streak,
         level,
         doneToday,
+        gear,
         seat: null,
         seatStartedAt: null,
       },
-      setPeers
+      setPeers,
+      (message: LobbyChatMessage) =>
+        setSpeeches((prev) => ({ ...prev, [message.userId]: { text: message.text, at: message.at } }))
     );
     return leave;
-  }, [roomId, userId, name, avatarUrl, color, streak, level, doneToday]);
+  }, [roomId, userId, name, avatarUrl, color, streak, level, doneToday, gear]);
 
   useEffect(() => {
     peerCountRef.current = peers.length;
     onPeerCount(peers.length);
   }, [peers.length, onPeerCount]);
+
+  /** Dọn bong bóng đã hết hạn - để lại thì mỗi người từng nói một câu sẽ giữ
+   *  chuỗi đó trong bộ nhớ suốt phiên. */
+  useEffect(() => {
+    if (Object.keys(speeches).length === 0) return;
+    const timer = window.setInterval(() => {
+      const now = Date.now();
+      setSpeeches((prev) => {
+        const next: typeof prev = {};
+        let changed = false;
+        for (const [id, sp] of Object.entries(prev)) {
+          if (now - sp.at < CHAT_BUBBLE_MS) next[id] = sp;
+          else changed = true;
+        }
+        return changed ? next : prev;
+      });
+    }, 1000);
+    return () => window.clearInterval(timer);
+  }, [speeches]);
 
   /** Pose người khác đi vào ref để LobbyAvatar nội suy mỗi khung hình, thay vì
    *  đi qua state và kéo cả cây React render lại 8 lần một giây. */
@@ -391,6 +421,8 @@ export default function DistrictScene({
             color={p.color}
             avatarUrl={p.avatarUrl}
             status={{ streak: p.streak, level: p.level, doneToday: p.doneToday }}
+            gear={p.gear}
+            speech={speeches[p.userId] ?? null}
             poseRef={ref}
           />
         );

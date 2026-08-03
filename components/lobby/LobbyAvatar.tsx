@@ -5,6 +5,8 @@ import { useFrame } from "@react-three/fiber";
 import * as THREE from "three";
 import { nameplateTexture, speechBubbleTexture, type NameplateStatus } from "./room-textures";
 import { CHAT_BUBBLE_MS } from "@/lib/supabase-lobby";
+import AvatarGear from "./AvatarGear";
+import { type CharacterEquipments } from "@/lib/rpg-items";
 
 /** Hình người tối giản: đầu - thân - hai tay hai chân đánh lắc khi bước.
  *  Không tải model GLB nào cả: một hình khối rõ ràng, chạy mượt với vài chục
@@ -32,6 +34,9 @@ interface Props {
    *  setState sẽ re-render cả cây React từng ấy lần. */
   poseRef: React.MutableRefObject<AvatarPose>;
   isSelf?: boolean;
+  /** Đồ đang trang bị. Đi kèm presence nên người khác cũng thấy - đó mới là
+   *  lý do người ta mua đồ trang trí. */
+  gear?: CharacterEquipments | null;
 }
 
 /** Ảnh đại diện dán lên mặt. Ảnh nằm ở miền khác (Supabase storage, Google),
@@ -83,6 +88,7 @@ export default function LobbyAvatar({
   speech,
   poseRef,
   isSelf = false,
+  gear,
 }: Props) {
   const root = useRef<THREE.Group>(null);
   const leftArm = useRef<THREE.Mesh>(null);
@@ -208,6 +214,8 @@ export default function LobbyAvatar({
         <capsuleGeometry args={[0.09, 0.5, 4, 8]} />
         <meshStandardMaterial color="#3f3f46" roughness={0.85} />
       </mesh>
+      <AvatarGear gear={gear} shirt={color} />
+
       {/* biển tên */}
       <mesh name="nameplate" position={[0, status ? 2.24 : 2.15, 0]}>
         <planeGeometry args={status ? [1.45, 0.54] : [1.35, 0.34]} />

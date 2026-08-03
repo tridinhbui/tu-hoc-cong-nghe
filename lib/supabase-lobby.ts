@@ -1,5 +1,6 @@
 import { createClient } from "@/lib/supabase";
 import type { RealtimeChannel } from "@supabase/supabase-js";
+import type { CharacterEquipments } from "@/lib/rpg-items";
 
 /** Đại sảnh dùng CHUNG một topic cố định cho mọi client - đó là điều kiện để
  *  presence hoạt động, và cũng là lý do không được dùng uniqueRealtimeTopic()
@@ -36,6 +37,10 @@ export interface LobbyIdentity {
   doneToday: boolean;
   /** Bàn đang ngồi và mốc bắt đầu phiên. null là đang đứng. */
   seat: LobbySeat | null;
+  /** Đồ đang trang bị, đi kèm presence. Gửi cùng danh tính chứ không mở kênh
+   *  riêng: nó đổi vài lần một phiên chứ không phải vài lần một giây, và
+   *  presence vốn đã là nơi chở "người này là ai". */
+  gear?: CharacterEquipments | null;
 }
 
 export interface LobbySeat {

@@ -4,6 +4,7 @@ import { getCompletedLessons } from "@/lib/supabase-progress";
 import { createServerSupabaseClient } from "@/lib/supabase-server";
 import { colorForUser } from "@/lib/supabase-lobby";
 import { getUserStreak } from "@/lib/supabase-streak";
+import { getEquippedGear } from "@/lib/supabase-equipment";
 import DistrictWorld, { type DistrictLesson } from "@/components/career-district/DistrictWorld";
 import { allDistrictLessonSlugs, buildStageIndex } from "@/components/career-district/district-content";
 
@@ -66,6 +67,8 @@ export default async function PhoNghePage() {
     // giữ mặc định
   }
 
+  const gear = await getEquippedGear(user.id, supabase);
+
   let name = user.user_metadata?.full_name || user.email?.split("@")[0] || "Người học";
   let avatarUrl: string | null = user.user_metadata?.avatar_url || null;
   let level = 1;
@@ -83,6 +86,7 @@ export default async function PhoNghePage() {
       userId={user.id}
       streak={streak}
       doneToday={doneToday}
+      gear={gear}
       name={name}
       color={colorForUser(user.id)}
       avatarUrl={avatarUrl}

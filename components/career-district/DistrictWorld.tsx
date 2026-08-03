@@ -17,8 +17,11 @@ import {
   type RoomPortal,
 } from "./district-space";
 import { formulasFor, lessonSlugsFor, lessonSlugsForCareer, type StageIndexEntry } from "./district-content";
+import { sayInStudyWorld } from "@/lib/supabase-study-world";
+import { CHAT_MAX_LENGTH } from "@/lib/supabase-lobby";
 import { createWalkState } from "@/components/world-controls/easy-walk";
 import PillarQuiz from "./PillarQuiz";
+import type { CharacterEquipments } from "@/lib/rpg-items";
 import { CAREER_CATEGORY_ORDER, CAREER_CATEGORY_LABELS, isCareerCategory } from "@/lib/career-categories";
 
 const DistrictScene = dynamic(() => import("./DistrictScene"), {
@@ -121,6 +124,8 @@ function Joystick({
 
 export interface DistrictWorldProps {
   userId: string;
+  /** Đồ đang trang bị, đọc từ user_equipments ở phía server. */
+  gear: CharacterEquipments;
   /** Chuỗi ngày và "hôm nay đã học chưa" - khắc lên biển tên như ở thư viện. */
   streak: number;
   doneToday: boolean;
@@ -136,6 +141,7 @@ export interface DistrictWorldProps {
 
 export default function DistrictWorld({
   userId,
+  gear,
   streak,
   doneToday,
   name,
@@ -156,6 +162,8 @@ export default function DistrictWorld({
   const [liftPanel, setLiftPanel] = useState(false);
   const [stagePanel, setStagePanel] = useState(false);
   const [peerCount, setPeerCount] = useState(0);
+  const [selfSpeech, setSelfSpeech] = useState<{ text: string; at: number } | null>(null);
+  const [draft, setDraft] = useState("");
   /** Bài đang mở câu hỏi ôn tại chỗ, và những bài vừa trả lời đúng trong phiên
    *  này - cột sáng thêm ngay, không chờ tải lại trang. */
   const [quizLessonId, setQuizLessonId] = useState<number | null>(null);
@@ -277,9 +285,11 @@ export default function DistrictWorld({
         <DistrictScene
           roomId={roomId}
           userId={userId}
+          gear={gear}
           streak={streak}
           doneToday={doneToday}
           onPeerCount={setPeerCount}
+          selfSpeech={selfSpeech}
           entry={entry}
           name={name}
           color={color}
@@ -640,6 +650,38 @@ export default function DistrictWorld({
             })}
           </div>
         </div>
+      )}
+
+      {/* Nói với người trong cùng phòng. Cùng kênh đang chở vị trí, không mở
+          kênh thứ hai; và KHÔNG lưu lại - đây là lời nói trong một căn phòng,
+          ai đang đứng đó thì nghe. */}
+      {peerCount > 1 && (
+        <form
+          onSubmit={(e) => {
+            e.preventDefault();
+            const message = sayInStudyWorld(roomId, userId, name, draft);
+            if (!message) return;
+            setDraft("");
+            // Hiện câu của mình ngay, không chờ vòng về server.
+            setSelfSpeech({ text: message.text, at: message.at });
+          }}
+          className="pointer-events-auto absolute bottom-6 left-1/2 z-10 flex w-[min(22rem,80vw)] -translate-x-1/2 gap-2"
+        >
+          <input
+            value={draft}
+            onChange={(e) => setDraft(e.target.value)}
+            maxLength={CHAT_MAX_LENGTH}
+            placeholder="Nói với người trong phòng…"
+            className="min-w-0 flex-1 rounded-2xl border border-stone-700 bg-stone-900/85 px-3 py-2 text-xs text-stone-100 placeholder:text-stone-500 shadow-lg backdrop-blur outline-none focus:border-emerald-500"
+          />
+          <button
+            type="submit"
+            disabled={!draft.trim()}
+            className="shrink-0 cursor-pointer rounded-2xl bg-emerald-500 px-3 py-2 text-xs font-bold text-white shadow-lg transition hover:bg-emerald-400 disabled:opacity-40"
+          >
+            Nói
+          </button>
+        </form>
       )}
 
       {/* Cần điều khiển, luôn hiện */}

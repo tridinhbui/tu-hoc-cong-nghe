@@ -470,6 +470,7 @@ export default function LobbySceneInner({
         status={{ streak: identity.streak, level: identity.level, doneToday: identity.doneToday }}
         seated={seatedTable !== null}
         speech={selfSpeech}
+        gear={identity.gear}
         poseRef={selfPose}
         isSelf
       />
@@ -485,6 +486,7 @@ export default function LobbySceneInner({
             status={{ streak: p.streak, level: p.level, doneToday: p.doneToday }}
             seated={!!p.seat}
             speech={speeches[p.userId] ?? null}
+            gear={p.gear}
             poseRef={ref}
           />
         );

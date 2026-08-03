@@ -346,6 +346,7 @@ export default function StudyRoomScene({
         avatarUrl={identity.avatarUrl}
         status={{ streak: identity.streak, level: identity.level, doneToday: identity.doneToday }}
         seated={seated !== null}
+        gear={identity.gear}
         speech={selfSpeech}
         poseRef={selfPose}
         isSelf
@@ -361,6 +362,7 @@ export default function StudyRoomScene({
             avatarUrl={p.avatarUrl}
             status={{ streak: p.streak, level: p.level, doneToday: p.doneToday }}
             seated={p.seat !== null}
+            gear={p.gear}
             speech={speeches[p.userId] ?? null}
             poseRef={ref}
           />

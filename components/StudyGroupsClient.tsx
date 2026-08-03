@@ -55,6 +55,8 @@ import {
 } from "@/lib/supabase-study-rooms";
 import { getRoomLighting } from "@/lib/study-room-lighting";
 import StudyRoomWorld from "@/components/study-room/StudyRoomWorld";
+import { getEquippedGear } from "@/lib/supabase-equipment";
+import type { CharacterEquipments } from "@/lib/rpg-items";
 
 interface SessionUser {
   id: string;
@@ -243,6 +245,9 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
    *  nguyên vì nó chở những thứ căn phòng 3D không chở: sơ đồ ghế theo hạng,
    *  hiệu ứng cổ vũ, huy hiệu vừa-vào-phòng. */
   const [walkMode, setWalkMode] = useState(true);
+  /** Đồ trang bị cho nhân vật trong phòng đi lại được. Nạp một lần khi biết
+   *  người dùng là ai; hỏng thì vào phòng tay không, không phải không vào. */
+  const [gear, setGear] = useState<CharacterEquipments>({});
   const [rotation3D, setRotation3D] = useState<{ x: number; y: number }>({ x: 20, y: 0 });
   const [zoom3D, setZoom3D] = useState<number>(1.0);
   const [isDragging3D, setIsDragging3D] = useState(false);
@@ -765,6 +770,9 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
         return;
       }
       setUser({ id: session.user.id });
+      // Đồ trang bị đọc từ user_equipments - cùng bảng mà bản đồ game dùng,
+      // nên cởi mũ ở /game thì nhân vật ở đây cũng bỏ mũ.
+      void getEquippedGear(session.user.id).then(setGear).catch(() => {});
       try {
         await refreshMyRoom();
       } catch (error) {
@@ -1581,6 +1589,7 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
                         (m) => `${m.completed ? "✓" : "•"} ${m.title}: ${m.current_value}/${m.target_value}`
                       )}
                       topicLabel={topicLabel(myRoom.topic)}
+                      gear={gear}
                       onExit={() => setWalkMode(false)}
                     />
                   </div>
