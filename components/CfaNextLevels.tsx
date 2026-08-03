@@ -1,4 +1,6 @@
 import { CFA_LEVELS, type CfaLevelSpec } from "@/lib/cfa-levels";
+import CfaItemSetPractice from "@/components/CfaItemSetPractice";
+import CfaEssayPractice from "@/components/CfaEssayPractice";
 
 /** Level II và Level III: thi cái gì, dài bao lâu, hỏi theo kiểu nào.
  *
@@ -125,6 +127,14 @@ export default function CfaNextLevels() {
           <LevelCard key={spec.level} spec={spec} />
         ))}
       </div>
+
+      {/* Cho tới đây, hai cấp trên mới chỉ là thông tin: thi cái gì, nặng bao
+          nhiêu. Hai khối dưới là phần luyện đầu tiên - và cả hai đều bám đúng
+          lý do đã ghi trong lib/cfa-levels.ts để không có đề thi thử: Level II
+          khó ở chỗ đọc tình huống, Level III khó ở chỗ lập luận. Nên một bên
+          là vignette viết mới, một bên là tự luận có thang chấm tự soi. */}
+      <CfaItemSetPractice />
+      <CfaEssayPractice />
     </section>
   );
 }
