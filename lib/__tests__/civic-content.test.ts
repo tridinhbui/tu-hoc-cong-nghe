@@ -102,3 +102,22 @@ describe("phòng dân sự nối đủ", () => {
     expect(teaching.filter((k) => panels.includes(k))).toEqual([]);
   });
 });
+
+describe("cờ phòng dạy", () => {
+  it("khớp đúng với danh sách tấm thẻ dạy học", () => {
+    // Hai chỗ nói cùng một chuyện: `teaching: true` trong CIVIC_ROOMS quyết
+    // định phòng nào đứng nhóm "Phòng học" trong bảng vào thẳng phòng, còn
+    // TEACHING_PANELS quyết định phòng nào dùng tấm thẻ dạy học. Lệch nhau thì
+    // một căn phòng dạy bị xếp xuống nhóm "Nơi khác" và chìm nghỉm - không có
+    // gì báo, vì cả hai bên đều là giá trị hợp lệ.
+    const flagged = CIVIC_ROOMS.filter((c) => c.teaching).map((c) => c.id as string).sort();
+    const panels = keysOfMap("components/career-district/CivicPanel.tsx", "const TEACHING_PANELS").sort();
+    expect(flagged).toEqual(panels);
+  });
+
+  it("có ít nhất một phòng dạy và ít nhất một phòng không dạy", () => {
+    // Cả mười hai cùng một nhóm thì việc chia nhóm không nói được gì.
+    expect(CIVIC_ROOMS.some((c) => c.teaching)).toBe(true);
+    expect(CIVIC_ROOMS.some((c) => !c.teaching)).toBe(true);
+  });
+});

@@ -1,3 +1,4 @@
+import { readFileSync } from "node:fs";
 import { describe, expect, it } from "vitest";
 import { FINANCE_CAREERS } from "@/lib/finance-careers";
 import { CAREER_CATEGORY_ORDER, CAREER_CATEGORY_LABELS } from "@/lib/career-categories";
@@ -376,6 +377,40 @@ describe("quảng trường game", () => {
         }
       }
       expect(reached, `không đi tới được bục ${portal.id}`).toBe(true);
+    }
+  });
+});
+
+describe("bảng vào thẳng phòng", () => {
+  /** Đọc PLACE_ICONS ra khỏi mã nguồn thay vì export nó: DistrictWorld là
+   *  client component kéo theo three, supabase và cả cây cảnh 3D, còn bài này
+   *  chỉ cần một danh sách khoá. */
+  function placeIcons(): Set<string> {
+    const src = readFileSync("components/career-district/RoomDirectory.tsx", "utf8");
+    const start = src.indexOf("const PLACE_ICONS");
+    const block = src.slice(start, src.indexOf("};", start));
+    return new Set([...block.matchAll(/^\s*"?([a-z0-9-]+)"?:/gm)].map((m) => m[1]));
+  }
+
+  it("mọi nơi trên phố đều có ký hiệu riêng", () => {
+    // Thiếu một id thì mục đó rơi về "■" trong bảng vào thẳng phòng và trông
+    // như một chỗ kém quan trọng hơn hàng xóm. Đã xảy ra với cả sáu căn phòng
+    // DẠY - tức sáu thứ đáng vào nhất lại là sáu dòng mờ nhạt nhất, và không
+    // có gì báo vì "■" là một mặc định hợp lệ.
+    const icons = placeIcons();
+    const targets = getRoom("street")
+      .doorways.map((d) => d.to as string)
+      // Nhóm ngành cố ý không có ký hiệu: chúng dùng ô vuông màu của nhóm.
+      .filter((t) => t !== "street" && !CAREER_CATEGORY_ORDER.includes(t as never));
+    for (const t of targets) {
+      expect(icons.has(t), `${t} chưa có ký hiệu trong PLACE_ICONS`).toBe(true);
+    }
+  });
+
+  it("không có ký hiệu thừa trỏ tới nơi không còn tồn tại", () => {
+    const targets = new Set(getRoom("street").doorways.map((d) => d.to as string));
+    for (const id of placeIcons()) {
+      expect(targets.has(id), `${id} có ký hiệu nhưng không có cửa nào trên phố`).toBe(true);
     }
   });
 });

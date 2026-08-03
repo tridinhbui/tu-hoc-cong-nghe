@@ -5,6 +5,7 @@ import { outdoorBrightnessAt } from "@/components/lobby/daylight";
 import dynamic from "next/dynamic";
 import Link from "next/link";
 import {
+  CIVIC_ROOMS,
   DISTRICT_ROOMS,
   STAGE_FLOOR_ID,
   STREET_SPAWN,
@@ -27,6 +28,7 @@ import { CHAT_MAX_LENGTH } from "@/lib/supabase-lobby";
 import { createWalkState } from "@/components/world-controls/easy-walk";
 import PillarQuiz from "./PillarQuiz";
 import Minimap, { type MinimapPeer } from "./Minimap";
+import RoomDirectory from "./RoomDirectory";
 import CivicPanel from "./CivicPanel";
 import type { CharacterEquipments } from "@/lib/rpg-items";
 import { CAREER_CATEGORY_ORDER, CAREER_CATEGORY_LABELS, isCareerCategory } from "@/lib/career-categories";
@@ -49,19 +51,6 @@ function Fallback({ label }: { label: string }) {
 
 /** Biểu tượng cho từng nơi trong bảng đi thẳng. Ở một chỗ để thêm phòng mới
  *  không phải sửa một chuỗi ternary bảy tầng. */
-const PLACE_ICONS: Record<string, string> = {
-  thap: "🛗",
-  "khu-game": "🎮",
-  "cong-vien": "🌳",
-  "trung-tam": "⛲",
-  "quan-ca-phe": "☕",
-  "cua-hang": "🪞",
-  "bang-vang": "🏆",
-  "phong-thi": "📝",
-  "can-ho": "🏠",
-  "bao-tang": "🏛️",
-  "nha-ban-be": "🏘️",
-};
 
 export interface DistrictLesson {
   /** Id bài học - cần cho câu hỏi ôn tại cột, vốn hỏi theo id chứ không theo slug. */
@@ -769,50 +758,9 @@ export default function DistrictWorld({
         </div>
       )}
 
-      {/* Bản đồ nhanh: bấm là tới thẳng, cho người không muốn đi bộ.
+      {/* Mục lục con phố: bấm là tới thẳng, cho người không muốn đi bộ.
           Đi bộ là cái hay của khu phố, nhưng bắt đi bộ mỗi lần là cái dở. */}
-      {room.kind === "street" && (
-        <div
-          className={`pointer-events-auto absolute right-4 top-20 z-10 max-h-[calc(100vh-16rem)] w-44 overflow-y-auto rounded-2xl border border-stone-700 bg-stone-900/85 p-2.5 shadow-xl backdrop-blur sm:block ${
-            travelOpen ? "block" : "hidden"
-          }`}
-        >
-          <p className="mb-1.5 text-[10px] font-black uppercase tracking-widest text-stone-400">
-            Vào thẳng phòng
-          </p>
-          <div className="space-y-1">
-            {/* Tháp đứng đầu danh sách vì nó là đường vào MỌI tính năng khác;
-                năm nhóm ngành chỉ là năm căn nhà. */}
-            {getRoom("street")
-              .doorways.filter((d) => d.to !== "street" && !CAREER_CATEGORY_ORDER.includes(d.to as never))
-              .map((d) => (
-                <button
-                  key={d.id}
-                  type="button"
-                  onClick={() => go(d)}
-                  className="block w-full cursor-pointer rounded-lg px-2 py-1 text-left text-[11px] font-bold transition hover:bg-stone-800"
-                  style={{ color: d.accent }}
-                >
-                  {PLACE_ICONS[d.to as string] ?? "■"} {d.label}
-                </button>
-              ))}
-            {CAREER_CATEGORY_ORDER.map((c) => {
-              const d = getRoom("street").doorways.find((x) => x.to === c);
-              if (!d) return null;
-              return (
-                <button
-                  key={c}
-                  type="button"
-                  onClick={() => go(d)}
-                  className="block w-full cursor-pointer rounded-lg px-2 py-1 text-left text-[11px] font-bold text-stone-300 transition hover:bg-stone-800"
-                >
-                  <span style={{ color: d.accent }}>■</span> {CAREER_CATEGORY_LABELS[c]}
-                </button>
-              );
-            })}
-          </div>
-        </div>
-      )}
+      {room.kind === "street" && <RoomDirectory open={travelOpen} onGo={go} />}
 
       {/* Nói với người trong cùng phòng. Cùng kênh đang chở vị trí, không mở
           kênh thứ hai; và KHÔNG lưu lại - đây là lời nói trong một căn phòng,

@@ -783,6 +783,19 @@ export interface CivicSpec {
   /** Kích thước phòng. */
   width: number;
   depth: number;
+  /** Căn này DẠY một điều gì đó, thay vì bày lại dữ liệu đã có ở màn hình
+   *  khác.
+   *
+   *  Phân biệt này là dữ liệu chứ không phải cảm nhận, vì bảng "Vào thẳng
+   *  phòng" xếp nhóm theo nó: sáu căn dạy đứng riêng ở trên, còn cửa hàng,
+   *  bảng vàng, căn hộ thì xuống dưới. Trước khi có cờ này cả mười hai căn
+   *  nằm lẫn trong một cột dài, và thứ đáng vào nhất chìm giữa thứ chỉ để
+   *  ngó qua.
+   *
+   *  lib/__tests__/civic-content.test.ts canh cho nó khớp đúng với
+   *  TEACHING_PANELS trong CivicPanel.tsx - hai chỗ nói cùng một chuyện thì
+   *  phải có người đối chiếu. */
+  teaching?: true;
 }
 
 export const CIVIC_ROOMS: CivicSpec[] = [
@@ -794,6 +807,7 @@ export const CIVIC_ROOMS: CivicSpec[] = [
     blurb: "Chạm một khoản, nhìn nó chạy qua cả ba bảng",
     width: 18,
     depth: 18,
+    teaching: true,
   },
   {
     id: "thap-lai-kep",
@@ -803,6 +817,7 @@ export const CIVIC_ROOMS: CivicSpec[] = [
     blurb: "Mỗi tầng một năm - leo để thấy lãi kép",
     width: 14,
     depth: 14,
+    teaching: true,
   },
   {
     id: "phong-lbo",
@@ -812,6 +827,7 @@ export const CIVIC_ROOMS: CivicSpec[] = [
     blurb: "Nợ ưu tiên dưới, vốn chủ trên - ai mất trước",
     width: 16,
     depth: 16,
+    teaching: true,
   },
   {
     id: "cua-hang",
@@ -875,6 +891,7 @@ export const CIVIC_ROOMS: CivicSpec[] = [
     blurb: "Tiền về trước hay tiền đi trước - và ai đang tài trợ cho ai",
     width: 18,
     depth: 20,
+    teaching: true,
   },
   {
     id: "phan-bo-rui-ro",
@@ -886,6 +903,7 @@ export const CIVIC_ROOMS: CivicSpec[] = [
     blurb: "Vì sao trộn hai thứ lại ít rủi ro hơn trung bình của chúng",
     width: 16,
     depth: 22,
+    teaching: true,
   },
   {
     id: "ban-tron",
@@ -895,6 +913,7 @@ export const CIVIC_ROOMS: CivicSpec[] = [
     blurb: "Giải thích bằng lời của bạn - chỗ duy nhất biết bạn có thật sự hiểu",
     width: 16,
     depth: 16,
+    teaching: true,
   },
 ];
 

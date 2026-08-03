@@ -1,0 +1,81 @@
+// @vitest-environment jsdom
+import { afterEach, describe, expect, it, vi } from "vitest";
+import { cleanup, fireEvent, render, screen } from "@testing-library/react";
+import RoomDirectory, { PLACE_ICONS, directoryGroups } from "@/components/career-district/RoomDirectory";
+import { CIVIC_ROOMS, getRoom } from "@/components/career-district/district-space";
+import { CAREER_CATEGORY_ORDER } from "@/lib/career-categories";
+
+/** Mục lục con phố.
+ *
+ *  Bài này dựng thật vì bảng nằm trong DistrictWorld - 900 dòng sau tường đăng
+ *  nhập - nên không mở bằng trình duyệt để nhìn được. Thứ nó canh là cách chia
+ *  nhóm: một căn phòng dạy rơi nhầm xuống nhóm dưới thì chìm nghỉm giữa cửa
+ *  hàng và căn hộ, mà không có gì báo vì cả hai nhóm đều hợp lệ. */
+
+afterEach(cleanup);
+
+describe("chia nhóm", () => {
+  it("mọi cửa trên phố đều xuất hiện đúng một lần", () => {
+    // Chia nhóm bằng filter thì một cửa có thể lọt cả hai nhóm hoặc không nhóm
+    // nào, và cả hai đều trông bình thường trên màn hình.
+    const shown = directoryGroups().flatMap((g) => g.doors.map((d) => d.to as string));
+    const expected = getRoom("street")
+      .doorways.map((d) => d.to as string)
+      .filter((t) => t !== "street" && !CAREER_CATEGORY_ORDER.includes(t as never));
+    expect([...shown].sort()).toEqual([...expected].sort());
+    expect(new Set(shown).size).toBe(shown.length);
+  });
+
+  it("nhóm Phòng học đúng bằng các phòng mang cờ teaching", () => {
+    const teaching = CIVIC_ROOMS.filter((c) => c.teaching).map((c) => c.id as string).sort();
+    const group = directoryGroups().find((g) => g.title === "Phòng học")!;
+    expect(group.doors.map((d) => d.to as string).sort()).toEqual(teaching);
+  });
+
+  it("Phòng học đứng TRƯỚC Nơi khác", () => {
+    // Thứ tự là cả điểm của việc chia nhóm: sáu căn đáng vào nhất phải nằm
+    // trên, không phải nằm sau mười một dòng tiện ích.
+    expect(directoryGroups().map((g) => g.title)).toEqual(["Phòng học", "Nơi khác"]);
+  });
+
+  it("không nhóm nào rỗng", () => {
+    for (const g of directoryGroups()) expect(g.doors.length, g.title).toBeGreaterThan(0);
+  });
+});
+
+describe("dựng ra màn hình", () => {
+  it("hiện đủ ba nhãn nhóm", () => {
+    render(<RoomDirectory open onGo={() => {}} />);
+    for (const t of ["Phòng học", "Nơi khác", "Nhóm ngành"]) {
+      expect(screen.getByText(t), t).toBeTruthy();
+    }
+  });
+
+  it("mỗi phòng dạy hiện đúng ký hiệu của nó, không phải ô vuông mặc định", () => {
+    // Đây là lỗi đã có thật: PLACE_ICONS thiếu cả sáu phòng dạy nên chúng đều
+    // rơi về "■", tức sáu thứ đáng vào nhất là sáu dòng mờ nhạt nhất.
+    render(<RoomDirectory open onGo={() => {}} />);
+    for (const c of CIVIC_ROOMS.filter((x) => x.teaching)) {
+      const row = screen.getByText(new RegExp(c.label.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")));
+      expect(row.textContent, c.id).toContain(PLACE_ICONS[c.id as string]);
+      expect(row.textContent, `${c.id} vẫn dùng ô vuông mặc định`).not.toContain("■");
+    }
+  });
+
+  it("bấm một dòng thì gọi đúng cánh cửa của phòng đó", () => {
+    const go = vi.fn();
+    render(<RoomDirectory open onGo={go} />);
+    fireEvent.click(screen.getByText(/Phòng Vòng Quay Tiền/));
+    expect(go).toHaveBeenCalledTimes(1);
+    expect(go.mock.calls[0][0].to).toBe("vong-quay-tien");
+  });
+
+  it("đóng ở màn hẹp thì ẩn, nhưng vẫn hiện ở màn rộng", () => {
+    // `hidden sm:block` chứ không phải gỡ khỏi cây: gỡ hẳn thì người dùng màn
+    // rộng cũng mất bảng khi cờ đóng.
+    const { container } = render(<RoomDirectory open={false} onGo={() => {}} />);
+    const panel = container.firstElementChild as HTMLElement;
+    expect(panel.className).toContain("hidden");
+    expect(panel.className).toContain("sm:block");
+  });
+});
