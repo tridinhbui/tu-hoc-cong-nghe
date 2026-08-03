@@ -7,6 +7,7 @@ import {
   type CareerCategory,
 } from "@/lib/career-categories";
 import { STATIONS, type Station } from "@/components/lobby/stations";
+import { ORGANIC_BUILDINGS } from "@/lib/rpg-buildings";
 import { BODY_RADIUS, resolveObstacles, type BoxObstacle, type CircleObstacle, type Obstacle } from "@/lib/walkable-space";
 
 /** Phố nghề: một con phố Sài Gòn ngoài trời, và sau mỗi cánh cửa là một căn
@@ -28,7 +29,7 @@ import { BODY_RADIUS, resolveObstacles, type BoxObstacle, type CircleObstacle, t
  *  và khu phố này không được phép giữ một bản chép thứ hai của nó. */
 export type FloorRoomId = `tang-${string}`;
 
-export type DistrictRoomId = "street" | CareerCategory | "thap" | FloorRoomId;
+export type DistrictRoomId = "street" | CareerCategory | "thap" | "khu-game" | FloorRoomId;
 
 export interface Pose {
   x: number;
@@ -411,6 +412,77 @@ export const TOWER_STOPS: Array<{ id: DistrictRoomId; label: string; accent: str
   })),
 ];
 
+
+// ── Khu game ────────────────────────────────────────────────────────────────
+
+/** Quảng trường game ở đầu đông con phố: mười ba địa điểm của Thế Giới Game
+ *  Tài Chính, mỗi cái một bục.
+ *
+ *  Danh sách lấy từ lib/rpg-buildings.ts - đúng cái mà bản đồ 2D ở /game đang
+ *  dùng - nên thêm một địa điểm là có thêm một bục, và không bao giờ có chuyện
+ *  bản đồ có mười bốn chỗ còn quảng trường có mười ba.
+ *
+ *  Bục dẫn sang /game?building=<id>, đúng đường deep-link mà bản đồ đã hỗ trợ
+ *  sẵn. Dựng lại từng trò chơi bằng khối 3D thì vừa khó dùng hơn bản thật vừa
+ *  lệch khỏi nó ngay lần sửa đầu tiên; quảng trường là ĐƯỜNG TỚI, không phải
+ *  bản thay thế. */
+export const GAME_SQUARE_X = -TOWER_X;
+
+/** Quảng trường hẹp lại so với bản đầu: rộng 26m thì hai dãy bục nằm ở x=±7.2,
+ *  và đi giữa quảng trường thì chúng rơi ra ngoài khung hình cả hai bên - người
+ *  học đi hết chiều dài mà không nhìn thấy cái bục nào. */
+const SQUARE_W = 18;
+const PODIUM_PITCH = 4.2;
+const PODIUM_ROW_X = 5;
+/** Chiều sâu suy từ SỐ ĐỊA ĐIỂM, không phải một con số gõ tay.
+ *
+ *  Gõ tay 30 thì mười ba cái bục cần 41 mét đã tràn ra ngoài tường - và tràn
+ *  một cách lặng lẽ, vì bục không phải vật cản chắn đường nên không có gì báo.
+ *  Đây là lý do test giờ kiểm cả bục nằm trong khung phòng, chứ trước đó nó chỉ
+ *  kiểm bàn. */
+const SQUARE_D = Math.max(30, Math.ceil(ORGANIC_BUILDINGS.length / 2) * PODIUM_PITCH + 12);
+
+const GAME_ACCENTS = ["#f472b6", "#facc15", "#60a5fa", "#4ade80", "#c084fc", "#fb923c"];
+
+const GAME_SQUARE: DistrictRoom = (() => {
+  const halfW = SQUARE_W / 2;
+  const halfD = SQUARE_D / 2;
+  const portals: RoomPortal[] = ORGANIC_BUILDINGS.map((b, i) => ({
+    id: `game-${b.id}`,
+    x: (i % 2 === 0 ? -1 : 1) * PODIUM_ROW_X,
+    z: -halfD + 5 + Math.floor(i / 2) * PODIUM_PITCH,
+    reach: 2.3,
+    label: b.name,
+    blurb: b.minLevel ? `${b.subtitle} · cần cấp ${b.minLevel}` : b.subtitle,
+    href: `/game?building=${b.id}`,
+    accent: GAME_ACCENTS[i % GAME_ACCENTS.length],
+  }));
+  return {
+    id: "khu-game",
+    label: "Quảng trường Game Tài chính",
+    kind: "office",
+    accent: "#f472b6",
+    size: { width: SQUARE_W, depth: SQUARE_D, height: 6 },
+    bounds: { minX: -halfW + 0.8, maxX: halfW - 0.8, minZ: -halfD + 0.8, maxZ: halfD - 0.8 },
+    obstacles: portals.map((p): CircleObstacle => ({ kind: "circle", x: p.x, z: p.z, radius: 1.1 })),
+    desks: [],
+    portals,
+    lift: null,
+    doorways: [
+      {
+        id: "khu-game-exit",
+        to: "street",
+        x: 0,
+        z: halfD - 0.6,
+        reach: 2.2,
+        label: "Ra phố",
+        arriveAt: { x: GAME_SQUARE_X, z: -3.4, ry: Math.PI / 2 },
+        accent: "#f472b6",
+      },
+    ],
+  };
+})();
+
 const STREET_ROOM: DistrictRoom = {
   id: "street",
   label: "Phố nghề Sài Gòn",
@@ -463,6 +535,18 @@ const STREET_ROOM: DistrictRoom = {
   lift: null,
   doorways: [
     {
+      id: "door-khu-game",
+      to: "khu-game" as DistrictRoomId,
+      x: GAME_SQUARE_X,
+      z: STREET.facadeZ + 1.4,
+      reach: 2.6,
+      label: "Quảng trường Game",
+      // Đứng lùi hẳn vào quảng trường, không đứng sát cửa: camera bám sau lưng
+      // ~5m và bị kẹp trong khung phòng, nên đứng sát cửa là nó dí vào gáy.
+      arriveAt: { x: 0, z: SQUARE_D / 2 - 6, ry: 0 },
+      accent: "#f472b6",
+    },
+    {
       id: "door-thap",
       to: "thap" as DistrictRoomId,
       x: TOWER_X,
@@ -486,7 +570,7 @@ const STREET_ROOM: DistrictRoom = {
 };
 
 export const DISTRICT_ROOMS: Record<string, DistrictRoom> = Object.fromEntries(
-  [STREET_ROOM, TOWER_LOBBY, STAGE_FLOOR, ...OFFICES, ...FLOORS].map((r) => [r.id, r])
+  [STREET_ROOM, TOWER_LOBBY, STAGE_FLOOR, GAME_SQUARE, ...OFFICES, ...FLOORS].map((r) => [r.id, r])
 );
 
 export function getRoom(id: DistrictRoomId): DistrictRoom {

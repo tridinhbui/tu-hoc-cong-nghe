@@ -9,6 +9,7 @@ import {
   GATE_PILLAR_Z,
   GATE_XS,
   GATE_Z,
+  GAME_SQUARE_X,
   SHOP_X,
   STREET,
   TOWER_X,
@@ -20,6 +21,7 @@ import {
 } from "./district-space";
 import { formulasFor, type WallFormula } from "./district-content";
 import { STATIONS } from "@/components/lobby/stations";
+import { ORGANIC_BUILDINGS } from "@/lib/rpg-buildings";
 import { CAREER_CATEGORY_ORDER, isCareerCategory, type CareerCategory } from "@/lib/career-categories";
 import {
   asphaltTexture,
@@ -239,6 +241,43 @@ function Tower() {
   );
 }
 
+/** Nhà thi đấu ở đầu đông phố - cửa vào quảng trường game. Màu neon để nó
+ *  không lẫn với năm căn nhà nghề và toà tháp: một khu vui chơi phải trông
+ *  khác một văn phòng ngay từ ngoài đường. */
+function GameHall() {
+  return (
+    <group position={[GAME_SQUARE_X, 0, STREET.facadeZ]}>
+      <mesh position={[0, 6, -3]} castShadow receiveShadow>
+        <boxGeometry args={[16, 12, 8]} />
+        <meshStandardMaterial color="#2b2233" roughness={0.85} />
+      </mesh>
+      {[-5, 0, 5].map((x) => (
+        <mesh key={x} position={[x, 7.4, 1.05]}>
+          <planeGeometry args={[3.4, 1.1]} />
+          <meshBasicMaterial color={["#f472b6", "#facc15", "#60a5fa"][(x + 5) / 5]} opacity={0.75} transparent toneMapped={false} />
+        </mesh>
+      ))}
+      <mesh position={[0, 3.6, 1.3]} castShadow>
+        <boxGeometry args={[16.4, 0.3, 2.6]} />
+        <meshStandardMaterial color="#7e22ce" roughness={0.6} />
+      </mesh>
+      <mesh position={[0, 1.6, 1.02]}>
+        <planeGeometry args={[4, 3.2]} />
+        <meshBasicMaterial color="#fbcfe8" opacity={0.75} transparent toneMapped={false} />
+      </mesh>
+      <pointLight position={[0, 2.4, 2.4]} intensity={10} distance={12} color="#f472b6" />
+      <TextBoard
+        title="QUẢNG TRƯỜNG GAME"
+        rows={["Boss, đấu trường, mini game tài chính", `${ORGANIC_BUILDINGS.length} địa điểm bên trong`]}
+        accent="#f472b6"
+        width={9.4}
+        height={2}
+        position={[0, 4, 2.63]}
+      />
+    </group>
+  );
+}
+
 function StreetScene({ progressByCategory }: { progressByCategory: Record<CareerCategory, { done: number; total: number }> }) {
   const asphalt = useMemo(() => asphaltTexture(), []);
   return (
@@ -262,6 +301,7 @@ function StreetScene({ progressByCategory }: { progressByCategory: Record<Career
         <Shophouse key={c} category={c} progress={progressByCategory[c]} />
       ))}
       <Tower />
+      <GameHall />
 
       {/* Hai cổng sang hai thế giới 3D còn lại. Vòm đá thay vì tấm biển: một
           cánh cổng phải trông như đi qua được thì người ta mới thử đi qua. */}
@@ -503,8 +543,39 @@ function OfficeScene({
         );
       })}
 
+      {/* Bục ở quảng trường game: bục tròn phát sáng, không phải cái bàn. Một
+          quảng trường trò chơi mà kê mười ba cái bàn làm việc thì nó không còn
+          là quảng trường trò chơi nữa. */}
+      {room.id === "khu-game" &&
+        room.portals.map((p) => (
+          <group key={p.id} position={[p.x, 0, p.z]}>
+            <mesh position={[0, 0.35, 0]} castShadow receiveShadow>
+              <cylinderGeometry args={[1.05, 1.2, 0.7, 16]} />
+              <meshStandardMaterial color="#241f2b" roughness={0.7} />
+            </mesh>
+            <mesh position={[0, 0.72, 0]} rotation={[-Math.PI / 2, 0, 0]}>
+              <ringGeometry args={[0.72, 1.02, 24]} />
+              <meshBasicMaterial color={p.accent} toneMapped={false} />
+            </mesh>
+            {/* Khối phát sáng trên đỉnh bục là meshBasicMaterial, không phải
+                standard + emissive: trong một quảng trường thiếu sáng thì mặt
+                standard vẫn ăn bóng đổ và khối đọc thành một cục đen, đúng cái
+                ngược lại với "ngọn hải đăng chỉ chỗ". */}
+            <mesh position={[0, 1.9, 0]}>
+              <icosahedronGeometry args={[0.55, 0]} />
+              <meshBasicMaterial color={p.accent} toneMapped={false} />
+            </mesh>
+            <mesh position={[0, 1.9, 0]}>
+              <icosahedronGeometry args={[0.78, 0]} />
+              <meshBasicMaterial color={p.accent} transparent opacity={0.16} toneMapped={false} />
+            </mesh>
+            <pointLight position={[0, 2.1, 0]} intensity={7} distance={7} color={p.accent} />
+          </group>
+        ))}
+
       {/* Bàn cổng: cái bàn mà đứng trước nó thì mở được tính năng thật. */}
-      {room.portals.map((p) => (
+      {room.id !== "khu-game" &&
+        room.portals.map((p) => (
         <group key={p.id} position={[p.x, 0, p.z]}>
           <mesh position={[0, 0.76, 0]} castShadow receiveShadow>
             <boxGeometry args={[3, 0.1, 1.5]} />
@@ -518,9 +589,9 @@ function OfficeScene({
             <boxGeometry args={[1.5, 0.9, 0.06]} />
             <meshStandardMaterial color="#0f172a" emissive={p.accent} emissiveIntensity={0.7} />
           </mesh>
-          <pointLight position={[0, 2, 1]} intensity={8} distance={7} color={p.accent} />
-        </group>
-      ))}
+            <pointLight position={[0, 2, 1]} intensity={8} distance={7} color={p.accent} />
+          </group>
+        ))}
 
       {/* Công thức chủ đạo của tầng, khắc to trên tường bắc. */}
       {room.portals[0]?.formula && (
@@ -550,8 +621,11 @@ function OfficeScene({
       )}
 
       {/* Đèn trần: một cái cho mỗi cặp bàn, đủ để phòng dài không tối ở giữa. */}
-      {Array.from({ length: Math.max(2, Math.ceil(room.desks.length / 3)) }, (_, i) => {
-        const z = -halfD + 5 + i * 6;
+      {/* Đèn trần rải theo CHIỀU SÂU phòng, không theo số bàn: quảng trường
+          game không có cái bàn nào nên công thức cũ cho đúng hai ngọn đèn ở
+          đầu bắc và cả nửa phòng phía nam tối om. */}
+      {Array.from({ length: Math.max(2, Math.round(depth / 7)) }, (_, i) => {
+        const z = -halfD + 4 + i * 7;
         return (
           <pointLight key={i} position={[0, height - 0.7, z]} intensity={16} distance={12} color="#ffeccd" />
         );

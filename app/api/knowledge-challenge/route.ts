@@ -158,6 +158,15 @@ export async function GET(request: NextRequest) {
   const difficulty = searchParams.get("difficulty");
   const career = searchParams.get("career");
   const section = searchParams.get("section");
+  /** Giới hạn vào đúng một bài. Dùng cho cột bài học trong thế giới 3D: đứng
+   *  trước cột nào thì được hỏi đúng bài đó.
+   *
+   *  Thêm tham số vào route này thay vì viết một route mới là có chủ ý: token
+   *  ký câu hỏi và đường chấm điểm ở /submit đã là nơi DUY NHẤT chấm điểm được
+   *  tin, và một route riêng cho thế giới 3D sẽ là nơi thứ hai - rồi lệch khỏi
+   *  nơi thứ nhất ngay lần sửa cách tính điểm đầu tiên. */
+  const lessonParam = searchParams.get("lesson");
+  const onlyLessonId = lessonParam ? Number(lessonParam) : null;
 
   let sourceIds: number[];
 
@@ -197,7 +206,9 @@ export async function GET(request: NextRequest) {
     return NextResponse.json({ questions, totalAvailable: pool.length });
   }
 
-  if (track === "personal" || track === "professional" || track === "cfa") {
+  if (onlyLessonId && Number.isFinite(onlyLessonId)) {
+    sourceIds = [onlyLessonId];
+  } else if (track === "personal" || track === "professional" || track === "cfa") {
     const trackIds = await idsForTrack(track);
     let candidateIds = Array.from(trackIds);
     if (difficulty && difficulty !== "tat-ca" && DIFFICULTY_LABELS[difficulty]) {

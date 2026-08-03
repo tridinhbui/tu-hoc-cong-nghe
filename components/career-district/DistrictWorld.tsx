@@ -18,6 +18,7 @@ import {
 } from "./district-space";
 import { formulasFor, lessonSlugsFor, lessonSlugsForCareer, type StageIndexEntry } from "./district-content";
 import { createWalkState } from "@/components/world-controls/easy-walk";
+import PillarQuiz from "./PillarQuiz";
 import { CAREER_CATEGORY_ORDER, CAREER_CATEGORY_LABELS, isCareerCategory } from "@/lib/career-categories";
 
 const DistrictScene = dynamic(() => import("./DistrictScene"), {
@@ -37,6 +38,8 @@ function Fallback({ label }: { label: string }) {
 }
 
 export interface DistrictLesson {
+  /** Id bài học - cần cho câu hỏi ôn tại cột, vốn hỏi theo id chứ không theo slug. */
+  id: number;
   slug: string;
   title: string;
   done: boolean;
@@ -153,6 +156,10 @@ export default function DistrictWorld({
   const [liftPanel, setLiftPanel] = useState(false);
   const [stagePanel, setStagePanel] = useState(false);
   const [peerCount, setPeerCount] = useState(0);
+  /** Bài đang mở câu hỏi ôn tại chỗ, và những bài vừa trả lời đúng trong phiên
+   *  này - cột sáng thêm ngay, không chờ tải lại trang. */
+  const [quizLessonId, setQuizLessonId] = useState<number | null>(null);
+  const [justCorrect, setJustCorrect] = useState<Set<string>>(new Set());
   const [walking, setWalking] = useState(false);
   const [hintSeen, setHintSeen] = useState(false);
   const [daylight, setDaylight] = useState<number | null>(null);
@@ -238,10 +245,13 @@ export default function DistrictWorld({
     [desk, lessons]
   );
 
-  const doneSlugs = useMemo(
-    () => new Set(Object.values(lessons).filter((l) => l.done).map((l) => l.slug)),
-    [lessons]
-  );
+  const doneSlugs = useMemo(() => {
+    const out = new Set(Object.values(lessons).filter((l) => l.done).map((l) => l.slug));
+    // Trả lời đúng tại cột thì cột sáng NGAY. Đây là phần thưởng duy nhất của
+    // việc đi tới tận nơi; để nó chờ tải lại trang là bỏ mất cả cảm giác.
+    for (const slug of justCorrect) out.add(slug);
+    return out;
+  }, [lessons, justCorrect]);
 
   /** Tiến độ từng nhóm ngành, đếm trên chính kệ bài học của nhóm đó. Biển hiệu
    *  ngoài phố đọc con số này, nên đi qua trước cửa là biết mình đã đi tới đâu
@@ -303,7 +313,9 @@ export default function DistrictWorld({
               ? "Năm căn nhà và một toà tháp"
               : room.desks.length > 0
               ? `${room.desks.length} nghề · ${roomLessons.length} bài học trên kệ`
-              : room.portals.length > 0
+              : room.portals.length > 1
+              ? `${room.portals.length} địa điểm · đi tới từng bục để mở`
+              : room.portals.length === 1
               ? room.portals[0].blurb
               : room.stops
               ? `${room.stops.length} bài trên hành lang · ${room.stops.filter((st) => doneSlugs.has(st.slug)).length} đã học`
@@ -507,14 +519,34 @@ export default function DistrictWorld({
           <p className="mt-1 text-[11px] text-stone-400">
             {doneSlugs.has(stop.slug) ? "✓ Bạn đã học bài này" : "Chưa học"}
           </p>
-          <Link
-            href={`/bai-hoc/${stop.slug}`}
-            className="mt-2.5 block rounded-xl px-3 py-2 text-center text-[11px] font-black text-stone-950 transition hover:brightness-110"
-            style={{ backgroundColor: room.accent }}
-          >
-            Mở bài học ↗
-          </Link>
+          <div className="mt-2.5 flex gap-1.5">
+            <Link
+              href={`/bai-hoc/${stop.slug}`}
+              className="flex-1 rounded-xl px-3 py-2 text-center text-[11px] font-black text-stone-950 transition hover:brightness-110"
+              style={{ backgroundColor: room.accent }}
+            >
+              Mở bài học ↗
+            </Link>
+            {lessons[stop.slug] && (
+              <button
+                type="button"
+                onClick={() => setQuizLessonId(lessons[stop.slug].id)}
+                className="cursor-pointer rounded-xl bg-stone-800 px-3 py-2 text-[11px] font-black text-stone-200 transition hover:bg-stone-700"
+              >
+                ❓ Ôn tại chỗ
+              </button>
+            )}
+          </div>
         </div>
+      )}
+
+      {quizLessonId !== null && stop && (
+        <PillarQuiz
+          lessonId={quizLessonId}
+          accent={room.accent}
+          onClose={() => setQuizLessonId(null)}
+          onCorrect={() => setJustCorrect((prev) => new Set(prev).add(stop.slug))}
+        />
       )}
 
       {/* Bảng thang máy: hiện khi đứng trong buồng thang, hoặc khi bấm nút gọi. */}
@@ -580,15 +612,16 @@ export default function DistrictWorld({
             {/* Tháp đứng đầu danh sách vì nó là đường vào MỌI tính năng khác;
                 năm nhóm ngành chỉ là năm căn nhà. */}
             {getRoom("street")
-              .doorways.filter((d) => d.to === "thap")
+              .doorways.filter((d) => d.to === "thap" || d.to === "khu-game")
               .map((d) => (
                 <button
                   key={d.id}
                   type="button"
                   onClick={() => go(d)}
-                  className="block w-full cursor-pointer rounded-lg px-2 py-1 text-left text-[11px] font-bold text-amber-200 transition hover:bg-stone-800"
+                  className="block w-full cursor-pointer rounded-lg px-2 py-1 text-left text-[11px] font-bold transition hover:bg-stone-800"
+                  style={{ color: d.accent }}
                 >
-                  🛗 Tháp Tự Học
+                  {d.to === "thap" ? "🛗 Tháp Tự Học" : "🎮 Quảng trường Game"}
                 </button>
               ))}
             {CAREER_CATEGORY_ORDER.map((c) => {

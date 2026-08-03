@@ -9,6 +9,7 @@ import {
   lessonSlugsForCareer,
 } from "@/components/career-district/district-content";
 import { STATIONS } from "@/components/lobby/stations";
+import { ORGANIC_BUILDINGS } from "@/lib/rpg-buildings";
 import {
   DISTRICT_ROOMS,
   STREET_SPAWN,
@@ -44,8 +45,8 @@ function inBounds(room: DistrictRoom, x: number, z: number) {
 
 describe("khu phố nghề", () => {
   it("có đúng một phòng cho mỗi nhóm ngành, một cho mỗi tầng tháp, cộng phố và sảnh", () => {
-    // +3: con phố, sảnh tháp, và tầng chặng học (tầng duy nhất không đến từ STATIONS).
-    expect(ALL_ROOMS).toHaveLength(CAREER_CATEGORY_ORDER.length + STATIONS.length + 3);
+    // +4: con phố, sảnh tháp, tầng chặng học, và quảng trường game.
+    expect(ALL_ROOMS).toHaveLength(CAREER_CATEGORY_ORDER.length + STATIONS.length + 4);
     for (const category of CAREER_CATEGORY_ORDER) {
       expect(getRoom(category).label).toBe(CAREER_CATEGORY_LABELS[category]);
     }
@@ -58,10 +59,40 @@ describe("khu phố nghề", () => {
     expect(missing, "nghề không có bàn thì không ai tìm thấy trong phố").toEqual([]);
   });
 
-  it("không có bàn hay đồ đạc nào nằm ngoài khung đi lại", () => {
+  it("không có bàn, bục hay cửa nào nằm ngoài khung đi lại", () => {
+    // Bục và cửa cũng phải kiểm, không chỉ bàn: chúng không chặn đường nên khi
+    // tràn ra ngoài tường thì không có gì báo - căn phòng vẫn chạy, chỉ là ba
+    // cái bục cuối nằm bên kia bức tường và không ai tìm thấy.
     for (const room of ALL_ROOMS) {
       for (const desk of room.desks) {
         expect(inBounds(room, desk.x, desk.z), `${room.id}: bàn ${desk.careerId} nằm ngoài phòng`).toBe(true);
+      }
+      for (const portal of room.portals) {
+        expect(inBounds(room, portal.x, portal.z), `${room.id}: bục ${portal.id} nằm ngoài phòng`).toBe(true);
+      }
+      for (const door of room.doorways) {
+        // Cửa thì NẰM TRÊN TƯỜNG, nên nó được phép ở ngoài dải đi lại - điều
+        // phải đúng là đứng trong phòng vẫn với tới được nó.
+        const stand = {
+          x: Math.max(room.bounds.minX, Math.min(room.bounds.maxX, door.x)),
+          z: Math.max(room.bounds.minZ, Math.min(room.bounds.maxZ, door.z)),
+        };
+        expect(
+          Math.hypot(stand.x - door.x, stand.z - door.z) <= door.reach,
+          `${room.id}: cửa ${door.id} đứng trong phòng không với tới được`
+        ).toBe(true);
+      }
+      if (room.lift) {
+        // Buồng thang cũng áp tường, cùng lý do với cửa: chỉ cần đứng trong
+        // phòng là bấm được nút.
+        const stand = {
+          x: Math.max(room.bounds.minX, Math.min(room.bounds.maxX, room.lift.x)),
+          z: Math.max(room.bounds.minZ, Math.min(room.bounds.maxZ, room.lift.z)),
+        };
+        expect(
+          Math.hypot(stand.x - room.lift.x, stand.z - room.lift.z) <= room.lift.reach,
+          `${room.id}: đứng trong phòng không với tới được thang máy`
+        ).toBe(true);
       }
     }
   });
@@ -306,5 +337,41 @@ describe("hành lang lộ trình", () => {
       expect(new Set(stage.slugs).size, `${stage.key}: bài trùng trong chặng`).toBe(stage.slugs.length);
     }
     expect(new Set(index.map((s) => s.key)).size, "hai chặng trùng khoá").toBe(index.length);
+  });
+});
+
+describe("quảng trường game", () => {
+  it("có đúng một bục cho mỗi địa điểm của bản đồ game", () => {
+    // Dựng từ chính ORGANIC_BUILDINGS, nên hai bản đồ không bao giờ lệch nhau.
+    const square = getRoom("khu-game");
+    expect(square.portals).toHaveLength(ORGANIC_BUILDINGS.length);
+    for (const b of ORGANIC_BUILDINGS) {
+      const portal = square.portals.find((p) => p.id === `game-${b.id}`);
+      expect(portal, `${b.id}: không có bục`).toBeTruthy();
+      expect(portal?.href).toBe(`/game?building=${b.id}`);
+    }
+  });
+
+  it("bục nào cũng đứng tới được và không bục nào chặn bục nào", () => {
+    const square = getRoom("khu-game");
+    expect(touchingPairs(square.obstacles)).toEqual([]);
+    const entry = getRoom("street").doorways.find((d) => d.to === "khu-game")!;
+    for (const portal of square.portals) {
+      let { x, z } = entry.arriveAt;
+      let reached = false;
+      for (const [tx, tz] of [[0, portal.z], [portal.x, portal.z]] as Array<[number, number]>) {
+        for (let i = 0; i < 900 && !reached; i += 1) {
+          const dx = tx - x;
+          const dz = tz - z;
+          const len = Math.hypot(dx, dz);
+          if (len < 0.05) break;
+          const moved = moveWithin(square, x + (dx / len) * 0.08, z + (dz / len) * 0.08);
+          x = moved.x;
+          z = moved.z;
+          reached = nearestPortal(square, x, z)?.id === portal.id;
+        }
+      }
+      expect(reached, `không đi tới được bục ${portal.id}`).toBe(true);
+    }
   });
 });

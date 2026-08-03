@@ -36,7 +36,7 @@ export default async function PhoNghePage() {
     // Slug trỏ tới bài không còn tồn tại thì bỏ qua, không dựng một cái tên
     // rỗng trên kệ sách.
     if (!lesson) continue;
-    lessons[slug] = { slug, title: lesson.title, done: done.has(lesson.id) };
+    lessons[slug] = { id: lesson.id, slug, title: lesson.title, done: done.has(lesson.id) };
   }
 
   // Chặng học đổ ra danh sách bài ở đây: chặng khai bằng dải id, và đổi id ra
@@ -46,7 +46,7 @@ export default async function PhoNghePage() {
     for (const slug of stage.slugs) {
       const lesson = bySlug.get(slug);
       if (lesson && !lessons[slug]) {
-        lessons[slug] = { slug, title: lesson.title, done: done.has(lesson.id) };
+        lessons[slug] = { id: lesson.id, slug, title: lesson.title, done: done.has(lesson.id) };
       }
     }
   }
