@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from "react";
 import { createPortal } from "react-dom";
 import Image from "next/image";
+import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 import { Swords, Heart, ShieldAlert, Trophy, Sparkles, X } from "lucide-react";
 import FinanceCharacterAvatar, { CharacterEquipments } from "@/components/FinanceCharacterAvatar";
@@ -243,20 +244,20 @@ export default function BossBattleModal({
               {bossName} quá mạnh. Hãy ôn lại bài học kiến thức lý thuyết để củng cố lỗ hổng trước khi phục thù!
             </p>
             <div className="grid grid-cols-2 gap-2 text-left pt-2">
-              <a
+              <Link
                 href="/bai-hoc/dong-tien"
                 className="p-3 rounded-xl bg-stone-800 border border-stone-700 hover:border-amber-500 text-xs font-bold text-amber-400 transition-all flex items-center justify-between"
               >
                 <span>📖 Day 4: Dòng tiền là gì?</span>
                 <span>→</span>
-              </a>
-              <a
+              </Link>
+              <Link
                 href="/bai-hoc/tai-chinh-la-gi"
                 className="p-3 rounded-xl bg-stone-800 border border-stone-700 hover:border-amber-500 text-xs font-bold text-amber-400 transition-all flex items-center justify-between"
               >
                 <span>📖 Day 1: Tài chính là gì?</span>
                 <span>→</span>
-              </a>
+              </Link>
             </div>
             <button
               onClick={onClose}
