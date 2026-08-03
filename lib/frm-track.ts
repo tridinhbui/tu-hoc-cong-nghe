@@ -49,7 +49,7 @@ export const FRM_SUBJECTS: FrmSubject[] = [
     weight: "20%",
     // Near-complete: distributions, sampling/CI, hypothesis testing, simple
     // & multiple regression, time series/backtesting - see lib/quant-methods-lessons.ts.
-    lessonIds: [1421, 1422, 1423, 1424, 1425, 1426, 1631, 1632, 1633, 1634, 1635, 1636],
+    lessonIds: [1421, 1422, 1423, 1424, 1425, 1426, 1631, 1632, 1633, 1634, 1635, 1636, 1664, 1665, 1666],
   },
   {
     id: "financial-markets-products",
@@ -92,7 +92,7 @@ export const FRM_SUBJECTS: FrmSubject[] = [
     // credit risk. 1562 (lib/frm-sovereign-digital-lessons.ts) adds
     // sovereign credit risk. Structured-credit stress testing remains
     // uncovered.
-    lessonIds: [144, 149, 151, 153, 224, 1104, 1222, 1256, 802, 1557, 1558, 1559, 1562],
+    lessonIds: [144, 149, 151, 153, 224, 1104, 1222, 1256, 802, 1557, 1558, 1559, 1562, 1667, 1668],
   },
   {
     id: "operational-resilience",
@@ -111,14 +111,14 @@ export const FRM_SUBJECTS: FrmSubject[] = [
     weight: "15%",
     // 1539-1541 (see lib/frm-lessons.ts) are purpose-built: LCR/NSFR,
     // funding concentration risk & contingency funding plan, and ALM/IRRBB.
-    lessonIds: [1401, 1539, 1540, 1541, 1625, 1626, 1627, 1628, 1629, 1630],
+    lessonIds: [1401, 1539, 1540, 1541, 1625, 1626, 1627, 1628, 1629, 1630, 1669, 1670],
   },
   {
     id: "investment-management",
     name: "Risk Management and Investment Management",
     part: "II",
     weight: "15%",
-    lessonIds: [97, 169, 170, 171, 173, 174, 178, 1032, 1250, 1251],
+    lessonIds: [97, 169, 170, 171, 173, 174, 178, 1032, 1250, 1251, 1671, 1672],
   },
   {
     id: "current-issues",
