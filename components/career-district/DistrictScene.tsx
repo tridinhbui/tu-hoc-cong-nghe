@@ -303,6 +303,14 @@ export interface DistrictSceneProps {
   seatTaken: ReadonlySet<number>;
   /** Ban ngày 1, khuya 0 - quyết định trời và đèn đường. */
   daylight: number;
+  /** Vẽ liên tục kể cả khi trình duyệt báo tab đang ẩn.
+   *
+   *  Chỉ trang xem cảnh lúc dev dùng cờ này, và nó tồn tại vì một lý do rất
+   *  cụ thể: khung xem của công cụ tự động LUÔN báo là ẩn, nên qua đường đó
+   *  cảnh không bao giờ vẽ một khung hình nào và không kiểm được gì. Ở bản
+   *  thật thì để mặc định - dừng vẽ khi tab ẩn là đúng, và phố nghề là thế
+   *  giới lớn nhất trong ba cái nên cũng là chỗ tốn nhất khi bị bỏ quên. */
+  forceRender?: boolean;
 }
 
 export default function DistrictScene({
@@ -335,6 +343,7 @@ export default function DistrictScene({
   seatTaken,
   onWalkingChange,
   daylight,
+  forceRender = false,
 }: DistrictSceneProps) {
   const quality = useRenderQuality();
   const pageVisible = usePageVisible();
@@ -464,7 +473,7 @@ export default function DistrictScene({
     <Canvas
       // Tab ẩn thì ngừng vẽ. Phố nghề là thế giới lớn nhất trong ba cái, nên
       // đây cũng là chỗ một tab nền bỏ quên tốn nhiều nhất.
-      frameloop={pageVisible ? "always" : "never"}
+      frameloop={pageVisible || forceRender ? "always" : "never"}
       shadows={quality.shadows}
       camera={{ position: [entry.x, 3.4, entry.z + 6], fov: 55 }}
       dpr={quality.dpr}
