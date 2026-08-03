@@ -985,6 +985,50 @@ export const CFA_ALTERNATIVES_LESSONS: Lesson[] = [
     correctOption: 1,
     explanation:
       "Phân loại theo chức năng là điều làm khung phân tích dùng được. Một đồng tiền dùng để thanh toán, một token cho quyền sử dụng dịch vụ trên nền tảng, một token đại diện quyền sở hữu tài sản thật, và một đồng ổn định neo vào tiền pháp định - bốn thứ này có nguồn giá trị, khung pháp lý và rủi ro hoàn toàn khác nhau, dù cùng chạy trên công nghệ tương tự. Token chứng khoán ở nhiều nước chịu đúng luật chứng khoán như cổ phiếu. Stablecoin thì rủi ro chính không nằm ở công nghệ mà ở chất lượng tài sản dự trữ đằng sau - đúng loại rủi ro của một quỹ thị trường tiền tệ.",
+    sections: [
+      {
+        "type": "lead",
+        "text": "Tài sản số không phải một nhóm tài sản đồng nhất. Phân loại theo chức năng - chứ không theo công nghệ - là điều làm khung phân tích trở nên dùng được."
+      },
+      {
+        "type": "heading",
+        "text": "Bốn nhóm theo chức năng"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Đồng tiền thanh toán: giá trị đến từ mức độ được chấp nhận và độ khan hiếm được cam kết.",
+          "Token tiện ích: cho quyền sử dụng một dịch vụ trên nền tảng, nên giá trị gắn với nhu cầu thật của nền tảng đó.",
+          "Token chứng khoán: đại diện quyền sở hữu tài sản thật, và ở nhiều nước chịu đúng luật chứng khoán.",
+          "Đồng ổn định giá: neo vào tiền pháp định, giá trị phụ thuộc chất lượng tài sản dự trữ đằng sau."
+        ]
+      },
+      {
+        "type": "callout",
+        "label": "Điểm quan trọng nhất",
+        "text": "Bốn nhóm này có nguồn giá trị, khung pháp lý và rủi ro hoàn toàn khác nhau dù chạy trên công nghệ tương tự. Đồng ổn định giá nên được phân tích như một quỹ thị trường tiền tệ, không như một tài sản công nghệ."
+      },
+      {
+        "type": "heading",
+        "text": "Rủi ro lưu ký - dạng rủi ro tài sản truyền thống không có"
+      },
+      {
+        "type": "paragraph",
+        "text": "Với cổ phiếu, mất quyền truy cập tài khoản không làm bạn mất tài sản: có sổ đăng ký, có trung tâm lưu ký, có quy trình khôi phục. Với tài sản số nắm giữ trực tiếp, mất khóa riêng là mất vĩnh viễn, và gửi ở sàn thì bạn đang chịu rủi ro tín dụng của chính sàn đó. Đây là lý do phần lớn nhà đầu tư tổ chức chỉ tham gia qua đơn vị lưu ký được cấp phép."
+      },
+      {
+        "type": "callout",
+        "label": "Cẩn trọng với con số tương quan",
+        "text": "Mức 'không tương quan' được trích dẫn nhiều là ước lượng từ một giai đoạn ngắn của lịch sử, và các đợt căng thẳng gần đây cho thấy tương quan tăng lên đúng lúc bạn cần nó thấp."
+      },
+      {
+        "type": "closing",
+        "lines": [
+          "Công nghệ giống nhau không làm rủi ro giống nhau.",
+          "Hỏi token này cho bạn quyền gì, rồi mới hỏi nó đáng bao nhiêu."
+        ]
+      }
+    ],
     diagram: [
       { label: "Phương tiện thanh toán: giá trị từ chấp nhận rộng rãi", arrow: true },
       { label: "Token tiện ích: quyền dùng dịch vụ trên nền tảng", arrow: true },
@@ -1101,6 +1145,40 @@ export const CFA_ALTERNATIVES_LESSONS: Lesson[] = [
     correctOption: 1,
     explanation:
       "Mô hình tối ưu hóa rất nhạy với đầu vào, và nó dồn tỷ trọng vào đúng tài sản trông có rủi ro thấp và tương quan thấp. Tài sản thay thế trông như vậy không phải vì chúng thật sự thế, mà vì cơ chế định giá thẩm định làm mượt chuỗi lợi nhuận - đúng hiệu ứng đã học ở bài hai. Kết quả là mô hình khuếch đại một sai lệch đo lường thành một khuyến nghị phân bổ. Cách xử lý trong ngành có ba hướng: khử làm mượt chuỗi lợi nhuận trước khi đưa vào, đặt trần phân bổ theo ràng buộc thanh khoản thay vì để mô hình tự chọn, và kiểm tra kết quả bằng phân tích kịch bản thay vì chỉ dựa vào phương sai.",
+    sections: [
+      {
+        "type": "lead",
+        "text": "Câu hỏi cuối cùng của cả chặng: phân bổ bao nhiêu vào nhóm tài sản thay thế. Câu trả lời không nên đến từ mô hình tối ưu hóa - và lý do nằm ở chính bài về đo lường hiệu suất."
+      },
+      {
+        "type": "heading",
+        "text": "Vì sao mô hình tối ưu hóa dẫn tới kết luận sai"
+      },
+      {
+        "type": "paragraph",
+        "text": "Mô hình rất nhạy với đầu vào và nó dồn tỷ trọng vào đúng những tài sản trông có rủi ro thấp cùng tương quan thấp. Tài sản thay thế trông như vậy không phải vì chúng thật sự thế, mà vì định giá thẩm định làm mượt chuỗi lợi nhuận. Kết quả là mô hình khuếch đại một sai lệch đo lường thành một khuyến nghị phân bổ, và khuyến nghị đó luôn nghiêng về phía nhiều hơn."
+      },
+      {
+        "type": "callout",
+        "label": "Ba cách xử lý trong ngành",
+        "text": "Khử làm mượt chuỗi lợi nhuận trước khi đưa vào mô hình; đặt trần phân bổ theo ràng buộc thanh khoản thay vì để mô hình tự chọn; và kiểm tra kết quả bằng phân tích kịch bản thay vì chỉ dựa vào phương sai."
+      },
+      {
+        "type": "heading",
+        "text": "Cam kết vốn chưa gọi - nghĩa vụ khó nhất"
+      },
+      {
+        "type": "paragraph",
+        "text": "Khi cam kết vào một quỹ, bạn không chuyển tiền ngay: quỹ gọi vốn dần khi tìm được thương vụ. Nghĩa là bạn mang một nghĩa vụ có quy mô biết trước nhưng không biết thời điểm. Điều làm nó nguy hiểm là tính đồng pha: quỹ gọi vốn mạnh nhất khi thị trường giảm và có nhiều cơ hội - đúng lúc phần còn lại của danh mục bạn cũng đang mất giá và thanh khoản khan hiếm nhất."
+      },
+      {
+        "type": "closing",
+        "lines": [
+          "Ràng buộc phân bổ nên đến từ nghĩa vụ của chính bạn.",
+          "Không phải từ đầu ra của một mô hình ăn dữ liệu đã bị làm mượt."
+        ]
+      }
+    ],
     diagram: [
       { label: "Làm mượt → độ lệch chuẩn và tương quan báo cáo thấp giả", arrow: true },
       { label: "Mô hình dồn tỷ trọng vào thứ trông ít rủi ro nhất", arrow: true },

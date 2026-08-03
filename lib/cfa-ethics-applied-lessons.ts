@@ -1081,6 +1081,51 @@ export const CFA_ETHICS_APPLIED_LESSONS: Lesson[] = [
     correctOption: 1,
     explanation:
       "Hai cơ chế này giải quyết hai vấn đề ngược nhau và đó là lý do cần cả hai. Danh sách hạn chế phải được phổ biến rộng để mọi người biết mà tránh - nhưng chính việc phổ biến đó tiết lộ rằng công ty đang có thương vụ với doanh nghiệp nào, một thông tin nhạy cảm. Danh sách theo dõi giải quyết bằng cách giữ bí mật ở bộ phận tuân thủ: không ai bị cấm gì, nhưng mọi giao dịch liên quan tới các mã trong danh sách đều bị giám sát chặt. Nhiều công ty dùng đồng thời cả hai, với danh sách theo dõi ở giai đoạn sớm và chuyển sang danh sách hạn chế khi thương vụ đã công khai.",
+    sections: [
+      {
+        "type": "lead",
+        "text": "Chuẩn mực đạo đức chỉ có hiệu lực khi có bộ máy vận hành nó. Bốn công cụ dưới đây là cách các tổ chức tài chính biến nguyên tắc thành quy trình hằng ngày."
+      },
+      {
+        "type": "heading",
+        "text": "Bức tường thông tin"
+      },
+      {
+        "type": "paragraph",
+        "text": "Tách bộ phận nắm thông tin nội bộ - tư vấn thương vụ, bảo lãnh phát hành - khỏi bộ phận giao dịch và nghiên cứu. Tách về hệ thống, về không gian làm việc, và về đường báo cáo. Mục đích không phải ngăn người ta nói chuyện mà là làm cho việc thông tin đi qua ranh giới trở thành một hành vi có chủ ý và để lại dấu vết."
+      },
+      {
+        "type": "comparison",
+        "left": {
+          "label": "Danh sách theo dõi",
+          "text": "Giữ bí mật ở bộ phận tuân thủ. Không ai bị cấm gì, nhưng mọi giao dịch liên quan tới mã trong danh sách đều bị giám sát chặt. Dùng ở giai đoạn sớm của thương vụ."
+        },
+        "right": {
+          "label": "Danh sách hạn chế",
+          "text": "Phổ biến nội bộ và cấm giao dịch. Chính việc phổ biến lại tiết lộ công ty đang có thương vụ với ai - nên chỉ dùng khi thông tin đã công khai."
+        }
+      },
+      {
+        "type": "callout",
+        "label": "Vì sao cần cả hai",
+        "text": "Hai danh sách giải quyết hai vấn đề ngược nhau: một bên cần mọi người biết để tránh, một bên cần giữ kín để không rò rỉ chính sự tồn tại của thương vụ."
+      },
+      {
+        "type": "heading",
+        "text": "Đăng ký trước giao dịch cá nhân"
+      },
+      {
+        "type": "paragraph",
+        "text": "Nhân viên phải xin duyệt trước khi giao dịch trên tài khoản riêng. Đây là loại kiểm soát duy nhất trong bốn công cụ có thể ngăn tổn hại xảy ra - ba công cụ còn lại chỉ phát hiện hoặc răn đe. Rà soát sau giao dịch vẫn cần, nhưng vai trò chính của nó là kiểm tra xem các chốt chặn phía trước có thực sự chạy hay không."
+      },
+      {
+        "type": "closing",
+        "lines": [
+          "Chuẩn mực nói nên làm gì.",
+          "Bộ máy tuân thủ quyết định điều đó có xảy ra hay không."
+        ]
+      }
+    ],
     diagram: [
       { label: "Bức tường thông tin: chặn dòng chảy giữa các bộ phận", arrow: true },
       { label: "Danh sách theo dõi: bí mật, giám sát không cấm", arrow: true },

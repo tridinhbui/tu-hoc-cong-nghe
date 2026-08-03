@@ -737,6 +737,48 @@ export const CFA_ETHICS_CASES_LESSONS: Lesson[] = [
     correctOption: 1,
     explanation:
       "Câu hỏi đầu tiên không phải bạn có được tham gia không, mà cơ hội này có thuộc về khách hàng không. Nếu nó phù hợp với mục tiêu đầu tư của một hoặc nhiều khách hàng bạn đang phục vụ, thì Standard VI(B) đặt họ trước bạn - kể cả khi lời mời gửi đích danh tên bạn, vì bạn nhận được lời mời đó nhờ vị trí nghề nghiệp chứ không nhờ tư cách cá nhân. Quy mô nhỏ không phải lý do loại khách ra: cách xử lý đúng là phân bổ theo tỷ lệ theo quy trình có sẵn, không phải kết luận rằng vì chia không đủ nên thôi để mình lấy. Chỉ khi cơ hội thật sự không phù hợp với bất kỳ khách hàng nào thì mới tới lượt bạn - và khi đó vẫn phải công bố theo VI(A) nếu nó có thể ảnh hưởng tới khuyến nghị của bạn sau này.",
+    sections: [
+      {
+        "type": "lead",
+        "text": "Một cơ hội đầu tư hấp dẫn đến với bạn trước khi đến với khách hàng. Câu hỏi đầu tiên không phải bạn có được tham gia không, mà cơ hội này có thuộc về khách hàng không."
+      },
+      {
+        "type": "heading",
+        "text": "Thứ tự phải hỏi"
+      },
+      {
+        "type": "paragraph",
+        "text": "Nếu cơ hội phù hợp với mục tiêu đầu tư của một hoặc nhiều khách hàng bạn đang phục vụ, Standard VI(B) đặt họ trước bạn. Điều này đúng kể cả khi lời mời được gửi đích danh tên bạn - vì bạn nhận được nó nhờ vị trí nghề nghiệp chứ không nhờ tư cách cá nhân."
+      },
+      {
+        "type": "callout",
+        "label": "Lập luận hay bị dùng sai",
+        "text": "'Quy mô quá nhỏ, chia ra không đủ cho ai' không phải lý do loại khách hàng ra. Cách xử lý đúng là phân bổ theo tỷ lệ theo quy trình đã có sẵn."
+      },
+      {
+        "type": "heading",
+        "text": "Khi nào mới tới lượt bạn"
+      },
+      {
+        "type": "paragraph",
+        "text": "Chỉ khi cơ hội thật sự không phù hợp với bất kỳ khách hàng nào - sai nhóm tài sản, sai mức rủi ro, sai kỳ hạn. Và ngay cả khi đó, nếu khoản đầu tư cá nhân này có thể ảnh hưởng tới khuyến nghị của bạn về sau, Standard VI(A) vẫn buộc công bố."
+      },
+      {
+        "type": "list",
+        "items": [
+          "VI(B) - thứ tự ưu tiên giao dịch: khách hàng trước, công ty, rồi mới tới cá nhân.",
+          "III(B) - đối xử công bằng: phân bổ theo quy trình đã công bố, không tùy nghi.",
+          "VI(A) - công bố xung đột: nếu khoản đầu tư riêng có thể chi phối lời khuyên của bạn."
+        ]
+      },
+      {
+        "type": "closing",
+        "lines": [
+          "Cơ hội đến với bạn vì công việc của bạn.",
+          "Nên nó thuộc về công việc trước, thuộc về bạn sau."
+        ]
+      }
+    ],
     diagram: [
       { label: "Câu hỏi 1: cơ hội này có thuộc về khách hàng không", arrow: true },
       { label: "Nếu có: VI(B) đặt khách trước bạn", arrow: true },
@@ -853,6 +895,44 @@ export const CFA_ETHICS_CASES_LESSONS: Lesson[] = [
     correctOption: 1,
     explanation:
       "Ba hành động kia đều là chuẩn bị hợp pháp cho một bước đi nghề nghiệp bình thường. Sao chép danh sách khách hàng thì khác về bản chất: đó là tài sản của nhà tuyển dụng, và việc mang nó đi phục vụ mục đích cạnh tranh với chính họ. Điểm tinh tế là hành vi này hoàn tất ngay lúc sao chép, không phải lúc bạn dùng danh sách đó - cũng như việc bạn có thể tự nhớ được tên một số khách không làm việc sao chép thành hợp lệ. Kiến thức trong đầu bạn thì đi theo bạn; một file thì không, kể cả khi nội dung file đó bạn cũng nhớ được.",
+    sections: [
+      {
+        "type": "lead",
+        "text": "Chuyển việc là chuyện bình thường trong nghề. Nhưng khoảng thời gian giữa lúc quyết định đi và lúc chính thức nghỉ là nơi Standard IV(A) về lòng trung thành với nhà tuyển dụng bị vi phạm nhiều nhất."
+      },
+      {
+        "type": "heading",
+        "text": "Được phép làm gì trong lúc còn đang làm thuê"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Chuẩn bị thủ tục thành lập doanh nghiệp riêng ngoài giờ làm việc.",
+          "Trao đổi với nhà tuyển dụng mới về điều kiện và thời điểm bắt đầu.",
+          "Thuê văn phòng, mở tài khoản, làm những việc hành chính không dùng nguồn lực công ty hiện tại."
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "Ba việc trên đều là chuẩn bị hợp pháp cho một bước đi nghề nghiệp bình thường. Ranh giới bị vượt qua khi bạn dùng nguồn lực hoặc quan hệ của nhà tuyển dụng hiện tại để cạnh tranh với chính họ - liên hệ trước với khách hàng, hoặc sao chép dữ liệu."
+      },
+      {
+        "type": "callout",
+        "label": "Điểm tinh tế nhất",
+        "text": "Sao chép danh sách khách hàng hoàn tất vi phạm ngay lúc sao chép, không phải lúc bạn dùng nó. Và việc bạn tự nhớ được tên một số khách hàng không làm hành vi sao chép trở nên hợp lệ."
+      },
+      {
+        "type": "paragraph",
+        "text": "Cách phân biệt gọn nhất: kiến thức trong đầu bạn thì đi theo bạn, một file thì không - kể cả khi nội dung file đó bạn cũng nhớ được. Sau khi đã nghỉ việc, nghĩa vụ theo Standard IV(A) chấm dứt; điều còn ràng buộc bạn khi đó chỉ là các thỏa thuận riêng đã ký, nếu có."
+      },
+      {
+        "type": "closing",
+        "lines": [
+          "Chuẩn bị ra đi là quyền của bạn.",
+          "Dùng tài sản của người đang trả lương bạn để làm việc đó thì không."
+        ]
+      }
+    ],
     diagram: [
       { label: "Chuẩn bị hành chính: hợp lệ", arrow: true },
       { label: "Trao đổi với nhà tuyển dụng mới: hợp lệ", arrow: true },
@@ -969,6 +1049,47 @@ export const CFA_ETHICS_CASES_LESSONS: Lesson[] = [
     correctOption: 1,
     explanation:
       "Chuẩn mực CFA không buộc thành viên tố cáo ra bên ngoài - ở nhiều nơi việc đó còn bị luật hạn chế, và một cáo buộc sai gây tổn hại thật cho người bị cáo buộc. Thứ nó buộc là hai điều: tách mình khỏi hành vi vi phạm, và đưa vấn đề lên trong nội bộ qua kênh phù hợp. Phương án thu thập thêm bằng chứng trong vài tháng nghe thận trọng nhưng thường sai, vì trong thời gian đó thiệt hại cho khách hàng tiếp tục tích lũy và sự im lặng của bạn dần trở thành đồng thuận. Nếu kênh nội bộ không xử lý, các bước tiếp theo là leo thang lên cấp cao hơn hoặc lên hội đồng quản trị, và cuối cùng là cân nhắc rời khỏi tổ chức.",
+    sections: [
+      {
+        "type": "lead",
+        "text": "Bạn phát hiện đồng nghiệp hoặc cấp trên đang làm điều sai. Chuẩn mực CFA nói rất rõ về hai việc bạn phải làm - và cũng rõ về việc nó không đòi hỏi."
+      },
+      {
+        "type": "heading",
+        "text": "Hai nghĩa vụ bắt buộc"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Tách mình khỏi hành vi vi phạm: ngừng tham gia, ngừng ký, ngừng để tên mình gắn vào.",
+          "Đưa vấn đề lên trong nội bộ qua kênh phù hợp - bộ phận tuân thủ hoặc cấp quản lý ngoài chuỗi liên quan."
+        ]
+      },
+      {
+        "type": "callout",
+        "label": "Điều chuẩn mực KHÔNG đòi hỏi",
+        "text": "Tố cáo ra bên ngoài. Ở nhiều nơi việc đó còn bị luật hạn chế, và một cáo buộc sai gây tổn hại thật cho người bị cáo buộc. Kênh nội bộ là bước đi trước."
+      },
+      {
+        "type": "heading",
+        "text": "Vì sao 'thu thập thêm bằng chứng' thường là câu trả lời sai"
+      },
+      {
+        "type": "paragraph",
+        "text": "Nghe rất thận trọng, nhưng trong vài tháng chờ đợi đó thiệt hại cho khách hàng tiếp tục tích lũy, và sự im lặng của bạn dần trở thành đồng thuận. Việc tách mình khỏi hành vi vi phạm được nêu trước vì nó không cần điều kiện tiên quyết nào - bạn làm được ngay hôm nay, kể cả khi chưa chắc chắn tuyệt đối."
+      },
+      {
+        "type": "paragraph",
+        "text": "Nếu kênh nội bộ không xử lý, các bước tiếp theo là leo thang lên cấp cao hơn, rồi lên hội đồng quản trị, và cuối cùng là cân nhắc rời khỏi tổ chức. Một điểm cần nhớ suốt quá trình: làm theo chỉ đạo của cấp trên chưa bao giờ là lập luận miễn trách trong khung đạo đức nghề nghiệp."
+      },
+      {
+        "type": "closing",
+        "lines": [
+          "Bạn không bắt buộc phải là người tố cáo.",
+          "Nhưng bạn bắt buộc không được là người tiếp tay."
+        ]
+      }
+    ],
     diagram: [
       { label: "Ngừng mọi tham gia liên quan tới hành vi đó", arrow: true },
       { label: "Nêu vấn đề qua kênh nội bộ phù hợp", arrow: true },
