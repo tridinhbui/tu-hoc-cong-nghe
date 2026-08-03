@@ -743,6 +743,23 @@ export const TRACK_PROFESSIONAL = {
         { name: "Rủi ro tín dụng chủ quyền và stablecoin", days: [1562, 1563] as [number, number] },
       ],
     },
+    {
+      // Bốn môn FRM mỏng nhất so với tỷ trọng đề thi sau các đợt trước (xem
+      // lib/frm-track.ts): Foundations và Operational Resilience mỗi môn 4
+      // bài trên tỷ trọng 20%, Liquidity and Treasury 4 bài trên 15%, và
+      // Quantitative Analysis 6 bài trên 20%.
+      label: "Chặng 37",
+      name: "FRM: Nền tảng, vận hành, thanh khoản & định lượng nâng cao",
+      days: [1613, 1636] as [number, number],
+      available: true,
+      isNew: true,
+      parts: [
+        { name: "Foundations: phân loại rủi ro, khẩu vị & hạn mức, đo hiệu quả, CAPM, đạo đức, BCBS 239", days: [1613, 1618] as [number, number] },
+        { name: "Operational Resilience: sự kiện Basel, RCSA/KRI, an ninh mạng, gian lận, vốn SMA, rủi ro hành vi", days: [1619, 1624] as [number, number] },
+        { name: "Liquidity and Treasury: hai loại thanh khoản, thang dòng tiền, FTP, stress test, tài sản bảo đảm, quỹ mở", days: [1625, 1630] as [number, number] },
+        { name: "Quantitative Analysis: Bayes, MLE, Monte Carlo, bootstrapping, EVT, PCA", days: [1631, 1636] as [number, number] },
+      ],
+    },
   ] satisfies Stage[],
 };
 
@@ -786,7 +803,7 @@ export const PROFESSIONAL_BRANCHES = [
     label: "Ngân hàng, bảo hiểm & tư vấn",
     subtitle: "Đọc và định giá ngân hàng, tín dụng, tuân thủ, quản lý gia sản & bảo hiểm",
     emoji: "🏦",
-    stageLabels: ["Chặng 18", "Chặng 21", "Chặng 34", "Chặng 35", "Chặng 36"],
+    stageLabels: ["Chặng 18", "Chặng 21", "Chặng 34", "Chặng 35", "Chặng 36", "Chặng 37"],
   },
   {
     id: "quant",

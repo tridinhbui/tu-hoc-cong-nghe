@@ -26,7 +26,7 @@ export const FRM_SUBJECTS: FrmSubject[] = [
     // 1527-1529 (see lib/frm-lessons.ts) are purpose-built: ERM framework/
     // three lines of defense, risk culture/incentive misalignment, and
     // classic financial disasters (Barings, LTCM, 2008, subprime MBS).
-    lessonIds: [1029, 1527, 1528, 1529],
+    lessonIds: [1029, 1527, 1528, 1529, 1613, 1614, 1615, 1616, 1617, 1618],
   },
   {
     id: "quant-analysis",
@@ -35,7 +35,7 @@ export const FRM_SUBJECTS: FrmSubject[] = [
     weight: "20%",
     // Near-complete: distributions, sampling/CI, hypothesis testing, simple
     // & multiple regression, time series/backtesting - see lib/quant-methods-lessons.ts.
-    lessonIds: [1421, 1422, 1423, 1424, 1425, 1426],
+    lessonIds: [1421, 1422, 1423, 1424, 1425, 1426, 1631, 1632, 1633, 1634, 1635, 1636],
   },
   {
     id: "financial-markets-products",
@@ -88,7 +88,7 @@ export const FRM_SUBJECTS: FrmSubject[] = [
     // 1530, 1537, 1538 (see lib/frm-lessons.ts) are purpose-built: loss
     // distribution approach, business continuity/disaster recovery/
     // third-party risk, and model risk management.
-    lessonIds: [1254, 1530, 1537, 1538],
+    lessonIds: [1254, 1530, 1537, 1538, 1619, 1620, 1621, 1622, 1623, 1624],
   },
   {
     id: "liquidity-treasury",
@@ -97,7 +97,7 @@ export const FRM_SUBJECTS: FrmSubject[] = [
     weight: "15%",
     // 1539-1541 (see lib/frm-lessons.ts) are purpose-built: LCR/NSFR,
     // funding concentration risk & contingency funding plan, and ALM/IRRBB.
-    lessonIds: [1401, 1539, 1540, 1541],
+    lessonIds: [1401, 1539, 1540, 1541, 1625, 1626, 1627, 1628, 1629, 1630],
   },
   {
     id: "investment-management",
