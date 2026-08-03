@@ -285,7 +285,11 @@ export default function HomePage() {
       try {
         const count = await getTotalUserCount();
         if (cancelledRef.current || !count) return;
-        const safeCount = Math.max(count, 1000);
+        // Số THẬT, không có sàn. Trước đây chỗ này là Math.max(count, 1000):
+        // một người học thứ 40 vẫn được trang chủ báo là người thứ 1.000. Sàn
+        // như vậy không phải làm tròn cho đẹp mà là nói sai với người chưa đăng
+        // ký - đúng nhóm người không có cách nào kiểm chứng.
+        const safeCount = count;
         if (!userCountLoadedRef.current) {
           userCountLoadedRef.current = true;
           animateCountTo(safeCount, setDisplayedUserCount, cancelledRef);
@@ -329,7 +333,8 @@ export default function HomePage() {
       try {
         const count = await getTotalCompletedLessonsCount();
         if (cancelledRef.current || !count) return;
-        const safeCount = Math.max(count, 8000);
+        // Số THẬT, không có sàn - xem ghi chú ở phần đếm người học.
+        const safeCount = count;
         if (!completedCountLoadedRef.current) {
           completedCountLoadedRef.current = true;
           animateCountTo(safeCount, setDisplayedCompletedCount, cancelledRef);
@@ -797,7 +802,12 @@ export default function HomePage() {
                         <div className="mt-3 grid grid-cols-3 gap-2">
                           {[
                             ["Bài học", "5 phút"],
-                            ["Quiz đúng", `${Math.max(72, Math.min(98, (displayedCompletedCount % 100) || 78))}%`],
+                            // Ô này từng hiện "Quiz đúng: N%" với N tính bằng
+                            // (số bài đã hoàn thành % 100) rồi kẹp vào 72-98.
+                            // Đó không phải một tỷ lệ được đo từ đâu cả - nó là
+                            // một con số trông giống thống kê. Thay bằng thứ
+                            // kiểm chứng được: mỗi bài có 5 câu hỏi.
+                            ["Quiz", "5 câu/bài"],
                             ["Ôn lại", "Sau 5 bài"],
                           ].map(([label, value]) => (
                             <div key={label} className="rounded-[16px] border border-white/10 bg-white/8 px-3 py-2">

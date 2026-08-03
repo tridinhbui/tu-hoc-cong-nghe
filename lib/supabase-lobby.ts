@@ -242,6 +242,47 @@ export function joinLobby(
   };
 }
 
+/** Đếm số người đang ở trong sảnh, KHÔNG ghi danh mình vào đó.
+ *
+ *  Dùng cho widget trên dashboard. Điểm mấu chốt là không gọi `track()`: nếu
+ *  gọi, mọi người chỉ mở dashboard sẽ hiện ra thành một nhân vật đứng bất động
+ *  giữa thư viện 3D, và con số cũng tự phồng lên bằng chính người đang xem nó.
+ *  Presence của Supabase cho phép nghe mà không tham gia; đó là cả lý do hàm
+ *  này tồn tại thay vì gọi `joinLobby` rồi bỏ phần vẽ.
+ *
+ *  Mở một thực thể kênh RIÊNG trên CÙNG topic, không dùng chung biến `channel`
+ *  của joinLobby: dùng chung thì refCount và vòng đời hai bên trộn vào nhau -
+ *  rời sảnh 3D trong khi dashboard còn mở sẽ đóng kênh của dashboard, hoặc tệ
+ *  hơn, giữ `track()` của người đã rời phòng. Hai màn hình này nằm ở hai route
+ *  khác nhau nên trong thực tế không cùng gắn kết một lúc.
+ *
+ *  Trả về hàm huỷ đăng ký. */
+export function observeLobbyCount(onCount: (count: number) => void): () => void {
+  const supabase = createClient();
+  // ĐÚNG TOPIC của sảnh, không phải một topic phái sinh. Presence gắn với
+  // topic: một kênh `lobby:reading-room:observe` là một phòng khác hẳn và sẽ
+  // luôn báo 0 người - trông y như code chạy đúng mà phòng đang vắng.
+  const observer = supabase.channel(LOBBY_TOPIC, {
+    // Không đặt presence.key: ta không track nên không cần khoá cho chính mình.
+    config: { presence: {} },
+  });
+
+  const read = () => {
+    const state = observer.presenceState<LobbyIdentity>();
+    const ids = new Set<string>();
+    for (const entries of Object.values(state)) {
+      for (const entry of entries) if (entry?.userId) ids.add(entry.userId);
+    }
+    onCount(ids.size);
+  };
+
+  observer.on("presence", { event: "sync" }, read).subscribe();
+
+  return () => {
+    void supabase.removeChannel(observer);
+  };
+}
+
 /** Ngồi xuống một bàn, hoặc đứng lên khi truyền null.
  *
  *  Chỗ ngồi đi qua PRESENCE chứ không phải broadcast: nó là trạng thái bền,
