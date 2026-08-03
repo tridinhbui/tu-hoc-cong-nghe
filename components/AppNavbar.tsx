@@ -44,19 +44,27 @@ type NavLink =
   | { href: string; labelKey: keyof Dictionary["nav"]; label?: never; icon: LucideIcon };
 
 /**
- * Above the sections, ungrouped, always visible. Only Dashboard: it is the way
- * back to the overview rather than one destination among several.
+ * Above the sections, ungrouped, always visible.
  *
- * Kiểm tra and the three community entries used to sit here too, lifted out
- * because a folded section hides live badges - Học nhóm's CHECK-IN prompt and
- * Kiểm tra's "Tin mới" were pulsing on rows nobody could see. Five flat rows
- * above the groups turned out to cost more than the badges were worth, so they
- * went back into sections, and the badge problem is solved properly instead:
- * `forcedOpenKeys` in the component below unfolds a section the moment
- * something inside it has a live prompt.
+ * Dashboard, because it is the way back to the overview rather than one
+ * destination among several. Then the three community entries, which have no
+ * group of their own: a collapsible header over exactly three rows costs more
+ * room than it hides, and "Cộng đồng" adds nothing the three labels do not
+ * already say. Đại sảnh leads them - it is the newest room and the only one
+ * that opens a space rather than a page.
+ *
+ * Kiểm tra stays in Học tập rather than joining this list. It carries a live
+ * "Tin mới" badge, which is what once justified lifting it out, but
+ * `forcedOpenKeys` in the component below now unfolds a section while
+ * something inside it has a prompt waiting - so the badge is visible without
+ * the row leaving the group it belongs to.
  */
 const TOP_LEVEL_LINKS: NavLink[] = [
   { href: "/dashboard", label: "Dashboard", icon: Home },
+  // Đại sảnh 3D - tên riêng của không gian nên hardcode label như FinSocial.
+  { href: "/cong-dong", label: "Đại sảnh", icon: Landmark },
+  { href: "/nhom-hoc", labelKey: "studyGroup", icon: Users },
+  { href: "/finsocial", label: "FinSocial", icon: MessageSquareMore },
 ];
 
 /** The nav is grouped by what the reader is trying to *do*, not by feature
@@ -103,19 +111,9 @@ const NAV_SECTIONS: NavSection[] = [
       { href: "/su-nghiep", labelKey: "career", icon: Briefcase },
     ],
   },
-  // Cộng đồng ngay dưới Học tập: học một mình xong thì chỗ tiếp theo người ta
-  // tìm là chỗ có người khác, nên hai nhóm này phải nằm cạnh nhau. Ba lối vào
-  // giữ nguyên một chỗ thay vì tách đôi giữa hàng phẳng và nhóm gập - người
-  // đọc không phải nhớ mục nào nằm nửa nào.
-  {
-    titleKey: "sectionCommunity",
-    links: [
-      { href: "/nhom-hoc", labelKey: "studyGroup", icon: Users },
-      { href: "/finsocial", label: "FinSocial", icon: MessageSquareMore },
-      // Đại sảnh 3D - tên riêng của không gian nên hardcode label như FinSocial.
-      { href: "/cong-dong", label: "Đại sảnh", icon: Landmark },
-    ],
-  },
+  // Không còn nhóm Cộng đồng. Ba lối vào đó lên thẳng TOP_LEVEL_LINKS: một
+  // tiêu đề gập được đặt trên đúng ba dòng tốn nhiều chỗ hơn phần nó giấu đi,
+  // và "Cộng đồng" không nói thêm gì mà ba cái nhãn kia chưa nói.
   {
     titleKey: "sectionPractice",
     links: [
@@ -170,6 +168,8 @@ export default function AppNavbar() {
   // preference of a reader who folded things away before this default changed
   // is still read correctly.
   const [collapsedSections, setCollapsedSections] = useState<string[]>(ALL_SECTION_KEYS);
+  // Nhóm mà người đọc đã tự tay gập/mở trong phiên này.
+  const [manuallyToggled, setManuallyToggled] = useState<string[]>([]);
   // Until localStorage has been read, the sections render in their default
   // state with no transition - otherwise every page load plays an animation
   // for whatever the stored preference turns out to differ on.
@@ -392,12 +392,20 @@ export default function AppNavbar() {
     ...(hasPendingStudyGroupCheckin ? ["/nhom-hoc"] : []),
   ];
   const forcedOpenKeys = badgedHrefs.length
-    ? NAV_SECTIONS.filter((section) => section.links.some((l) => badgedHrefs.includes(l.href))).map(
-        (section) => section.titleKey as string
-      )
+    ? NAV_SECTIONS.filter((section) => section.links.some((l) => badgedHrefs.includes(l.href)))
+        .map((section) => section.titleKey as string)
+        .filter((key) => !manuallyToggled.includes(key))
     : [];
 
   const toggleSection = (titleKey: string) => {
+    // Một cú bấm thật thắng force-open. Nếu không, người đọc bấm vào tiêu đề
+    // Học tập mà không có gì xảy ra - hasPendingNewsQuiz mặc định là true tới
+    // khi làm xong quiz tin tức trong ngày, tức gần như cả ngày, nên Kiểm tra
+    // giữ nhóm đó mở và cái nút đọc ra là hỏng.
+    //
+    // Force-open sinh ra để lấn át *lựa chọn đã lưu*, không phải để lấn át
+    // *một hành động đang diễn ra*.
+    setManuallyToggled((prev) => (prev.includes(titleKey) ? prev : [...prev, titleKey]));
     setCollapsedSections((prev) => {
       const next = prev.includes(titleKey) ? prev.filter((k) => k !== titleKey) : [...prev, titleKey];
       try {

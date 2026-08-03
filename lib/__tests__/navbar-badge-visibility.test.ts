@@ -48,6 +48,14 @@ function arrayLiteral(name: string): string {
   throw new Error(`unterminated array literal for ${name}`);
 }
 
+/** Source of a top-level const declaration, up to the next one. */
+function declarationOf(name: string): string {
+  const start = source.indexOf(`const ${name}`);
+  expect(start, `${name} not found in AppNavbar.tsx`).toBeGreaterThan(-1);
+  const next = source.indexOf("\n  const ", start + 1);
+  return source.slice(start, next === -1 ? source.length : next);
+}
+
 const topLevel = arrayLiteral("TOP_LEVEL_LINKS");
 const sections = arrayLiteral("NAV_SECTIONS");
 const forcedOpen = arrayLiteral("badgedHrefs");
@@ -84,6 +92,26 @@ describe("nav rows that carry a badge", () => {
     // The list existing is not enough - it has to win over the stored
     // collapsed preference, or the badge stays folded away regardless.
     expect(/collapsedSections\.includes\([^)]*\)\s*&&\s*!forcedOpenKeys\.includes/.test(source)).toBe(true);
+  });
+
+  it("lets an explicit click beat the force-open", () => {
+    // The bug this catches shipped: hasPendingNewsQuiz defaults to true until
+    // the day's news quiz is answered, so Kiểm tra held Học tập force-open for
+    // most of most days, and pressing the Học tập header did nothing at all.
+    // Force-open exists to override the STORED preference, not a click the
+    // reader is making right now.
+    //
+    // Matched inside each construct rather than by proximity: both bodies open
+    // with a long comment, and a distance window would fail on the comment
+    // getting longer rather than on the behaviour changing.
+    expect(
+      declarationOf("forcedOpenKeys"),
+      "forcedOpenKeys must drop sections the reader has toggled this session"
+    ).toContain("manuallyToggled");
+    expect(
+      declarationOf("toggleSection"),
+      "toggling a section must record that the reader acted on it"
+    ).toContain("setManuallyToggled");
   });
 
   it("derives the force-open list at render instead of writing it to storage", () => {
