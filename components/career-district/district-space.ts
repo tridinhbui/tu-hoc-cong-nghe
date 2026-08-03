@@ -46,6 +46,7 @@ export type DistrictRoomId =
   | "ba-bao-cao"
   | "thap-lai-kep"
   | "phong-lbo"
+  | "vong-quay-tien"
   | FloorRoomId;
 
 export interface Pose {
@@ -858,6 +859,15 @@ export const CIVIC_ROOMS: CivicSpec[] = [
     blurb: "Ghé thăm chuỗi ngày và tủ cúp của bạn bè",
     width: 16,
     depth: 18,
+  },
+  {
+    id: "vong-quay-tien",
+    label: "Phòng Vòng Quay Tiền",
+    accent: "#a3e635",
+    streetX: 69,
+    blurb: "Tiền về trước hay tiền đi trước - và ai đang tài trợ cho ai",
+    width: 18,
+    depth: 20,
   },
 ];
 

@@ -1,6 +1,7 @@
 import { readFileSync } from "node:fs";
 import { describe, expect, it } from "vitest";
 import { WEARABLE_IN_3D, ITEM_DESCRIPTIONS } from "@/lib/rpg-items";
+import { CIVIC_ROOMS } from "@/components/career-district/district-space";
 
 /** Nội dung viết tay trong các căn nhà dân sự.
  *
@@ -51,5 +52,53 @@ describe("cửa hàng", () => {
     // sẽ mặc được mà không mua thử được ở gương.
     const drawn = ["acc_crown", "acc_glasses", "title_vip_diamond", "pet_bull", "pet_bear"];
     for (const key of drawn) expect(WEARABLE_IN_3D.has(key), key).toBe(true);
+  });
+});
+
+/** Mọi phòng dân sự đều có nội thất VÀ có tấm HUD.
+ *
+ *  Lỗ này có thật và tôi vừa đi qua nó khi thêm phòng thứ mười: cả INTERIORS
+ *  trong CivicScenes.tsx lẫn hai bản đồ tấm thẻ trong CivicPanel.tsx đều khai
+ *  là `Partial<Record<string, …>>`. `Partial` nghĩa là thiếu key không phải
+ *  lỗi, và `string` nghĩa là gõ sai key cũng không phải lỗi. Thêm một phòng
+ *  rồi quên nối là một căn phòng trống trơn mà tsc vẫn xanh - đúng kiểu hỏng
+ *  im lặng mà cả đêm nay đi dọn ở chỗ khác.
+ *
+ *  Đọc bằng regex thay vì import: CivicScenes và CivicPanel kéo theo three và
+ *  supabase, còn bài này chỉ cần danh sách key. */
+function keysOfMap(file: string, marker: string): string[] {
+  const src = readFileSync(file, "utf8");
+  const start = src.indexOf(marker);
+  if (start < 0) throw new Error(`không tìm thấy ${marker} trong ${file}`);
+  const block = src.slice(start, src.indexOf("};", start));
+  return [...block.matchAll(/^\s*"([a-z0-9-]+)":/gm)].map((m) => m[1]);
+}
+
+describe("phòng dân sự nối đủ", () => {
+  const civicIds = CIVIC_ROOMS.map((c) => c.id as string);
+
+  it("phòng nào cũng có nội thất 3D", () => {
+    const interiors = keysOfMap("components/career-district/CivicScenes.tsx", "const INTERIORS");
+    for (const id of civicIds) {
+      expect(interiors, `${id} không có nội thất - vào phòng sẽ thấy bốn bức tường trống`).toContain(id);
+    }
+  });
+
+  it("phòng nào cũng có tấm thẻ mở ra khi đứng lên bục", () => {
+    const teaching = keysOfMap("components/career-district/CivicPanel.tsx", "const TEACHING_PANELS");
+    const panels = keysOfMap("components/career-district/CivicPanel.tsx", "const PANELS");
+    for (const id of civicIds) {
+      expect(
+        [...teaching, ...panels],
+        `${id} không có tấm thẻ - đứng lên bục sẽ không có gì xảy ra`
+      ).toContain(id);
+    }
+  });
+
+  it("không phòng nào nối vào cả hai bản đồ tấm thẻ", () => {
+    // Nối hai chỗ thì chỗ nào thắng là do thứ tự tra cứu, không do chủ ý.
+    const teaching = keysOfMap("components/career-district/CivicPanel.tsx", "const TEACHING_PANELS");
+    const panels = keysOfMap("components/career-district/CivicPanel.tsx", "const PANELS");
+    expect(teaching.filter((k) => panels.includes(k))).toEqual([]);
   });
 });

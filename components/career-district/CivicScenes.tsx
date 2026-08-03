@@ -3,6 +3,7 @@
 import { useMemo } from "react";
 import * as THREE from "three";
 import { CIVIC_ROOMS, type DistrictRoom } from "./district-space";
+import { SCENARIOS } from "@/lib/cash-cycle";
 import { bookshelfTexture, oakTexture } from "@/components/lobby/room-textures";
 
 /** Nội thất sáu căn nhà dân sự: cửa hàng, bảng vàng, phòng thi, căn hộ, bảo
@@ -444,6 +445,78 @@ function CapitalStackInterior({ room }: { room: DistrictRoom }) {
   );
 }
 
+/** Phòng Vòng Quay Tiền: ba cung của một vòng tròn đi được.
+ *
+ *  Vòng quay tiền là DSO + DIO − DPO, và cái mà một biểu đồ trên giấy không
+ *  nói được là DPO mang DẤU TRỪ. Ở đây hai cung đầu (tiền kẹt ở kho, tiền kẹt
+ *  ở khách) chạy thuận chiều kim đồng hồ, còn cung phải trả chạy NGƯỢC lại và
+ *  đổi màu - đứng giữa phòng nhìn xuống là thấy ngay nó kéo vòng ngắn lại.
+ *
+ *  Không dựng con số ở đây. Số nằm ở lib/cash-cycle.ts, chỗ duy nhất có thể
+ *  sai về tài chính và là chỗ duy nhất có test. */
+function CashCycleInterior({ room }: { room: DistrictRoom }) {
+  const R = Math.min(room.size.width, room.size.depth) / 2 - 3.2;
+
+  // Ba cung SUY RA từ bộ số của chuỗi siêu thị trong lib/cash-cycle.ts, không
+  // gõ tay bằng phân số. Bản đầu gõ 0,32 / 0,36 / 1,06 và cung cuối lệch khỏi
+  // số thật (0,36 + 55/75 = 1,093) - đúng loại lỗi "con số trong câu văn không
+  // ai kiểm" mà cả nhánh này đang đi dọn. Suy ra thì hình không thể lệch khỏi
+  // tài chính, và sửa DSO/DIO/DPO ở lib là căn phòng tự vẽ lại.
+  const { dso, dio, dpo } = SCENARIOS.find((s) => s.id === "ban-le")!.inputs;
+  // Cả vòng tròn = tổng ba vế, nên ba cung đi hết đúng một vòng và không đè
+  // lên nhau. Thông điệp nằm ở độ dài so nhau: cung "được nợ" dài hơn cả hai
+  // cung kia cộng lại, và đó chính là nghĩa hình học của vòng quay ÂM.
+  const total = dso + dio + dpo;
+  let cursor = 0;
+  const arcs = [
+    { days: dio, color: "#f59e0b", y: 0.12 }, // hàng nằm kho
+    { days: dso, color: "#38bdf8", y: 0.12 }, // chờ khách trả
+    { days: dpo, color: "#a3e635", y: 0.34 }, // được nhà cung cấp cho nợ
+  ].map((a) => {
+    const from = cursor;
+    cursor += a.days / total;
+    return { ...a, from, to: cursor };
+  });
+  const segments = 22;
+  return (
+    <>
+      {arcs.map((arc) =>
+        Array.from({ length: segments }, (_, i) => {
+          const t = arc.from + ((arc.to - arc.from) * i) / segments;
+          const a = t * Math.PI * 2;
+          return (
+            <mesh
+              key={`${arc.color}:${i}`}
+              position={[Math.sin(a) * R, arc.y, -1 + Math.cos(a) * R]}
+              rotation={[0, -a, 0]}
+              castShadow
+              receiveShadow
+            >
+              <boxGeometry args={[0.55, arc.y === 0.34 ? 0.5 : 0.2, 1.1]} />
+              <meshStandardMaterial
+                color={arc.color}
+                emissive={arc.color}
+                emissiveIntensity={arc.y === 0.34 ? 0.45 : 0.22}
+                roughness={0.7}
+              />
+            </mesh>
+          );
+        })
+      )}
+      {/* Cột giữa: chỗ đứng để nhìn cả vòng cùng lúc. Vòng vẽ trên sàn mà
+          không có tâm thì đứng trong đó chỉ thấy hai vạch sáng hai bên. */}
+      <mesh position={[0, 1.1, -1]} castShadow>
+        <cylinderGeometry args={[0.5, 0.65, 2.2, 12]} />
+        <meshStandardMaterial color="#3f4a2a" roughness={0.85} />
+      </mesh>
+      <mesh position={[0, 2.35, -1]}>
+        <torusGeometry args={[0.85, 0.07, 8, 24]} />
+        <meshBasicMaterial color="#a3e635" toneMapped={false} />
+      </mesh>
+    </>
+  );
+}
+
 const INTERIORS: Partial<Record<string, (props: { room: DistrictRoom }) => React.ReactElement>> = {
   "cua-hang": ShopInterior,
   "bang-vang": HallOfFameInterior,
@@ -454,6 +527,7 @@ const INTERIORS: Partial<Record<string, (props: { room: DistrictRoom }) => React
   "ba-bao-cao": ThreeStatementInterior,
   "thap-lai-kep": CompoundTowerInterior,
   "phong-lbo": CapitalStackInterior,
+  "vong-quay-tien": CashCycleInterior,
 };
 
 export function isCivicRoom(id: string) {

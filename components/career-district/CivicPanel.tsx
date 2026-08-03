@@ -10,6 +10,7 @@ import type { DistrictRoomId } from "./district-space";
 import ThreeStatementPanel from "./ThreeStatementPanel";
 import CompoundTowerPanel from "./CompoundTowerPanel";
 import CapitalStackPanel from "./CapitalStackPanel";
+import CashCyclePanel from "./CashCyclePanel";
 
 /** Nội dung của sáu căn nhà dân sự, mở ra khi đứng lên bục giữa phòng.
  *
@@ -468,6 +469,7 @@ const TEACHING_PANELS: Partial<Record<string, (p: { accent: string; onClose: () 
   "ba-bao-cao": ThreeStatementPanel,
   "thap-lai-kep": CompoundTowerPanel,
   "phong-lbo": CapitalStackPanel,
+  "vong-quay-tien": CashCyclePanel,
 };
 
 const PANELS: Partial<Record<string, (props: Props) => React.ReactElement>> = {
