@@ -18,6 +18,7 @@ import {
 import {
   QUIET_CORNER_CLOSING,
   QUIET_CORNER_LIMITS,
+  QUIET_CORNER_QUESTIONS,
   WORRY_REFRAMES,
   WORRY_SET_DOWN,
   getQuietGreeting,
@@ -77,7 +78,11 @@ export default function QuietCornerClient({ userId }: { userId: string }) {
   const warmth = motivation?.warmth ?? 0.5;
 
   return (
-    <div className="mx-auto max-w-2xl px-4 py-6 sm:py-10">
+    // Cột chữ giữ nguyên bề rộng đọc được ở mobile và tablet; từ lg trở lên
+    // container nới ra để hai khối phụ nằm cạnh nhau thay vì xếp dọc giữa một
+    // màn hình rộng với hai bên trống hoác. Bề rộng dòng chữ vẫn bị các
+    // max-w-md/max-w-lg bên trong giữ lại, nên nới container không làm dòng dài ra.
+    <div className="mx-auto max-w-2xl px-4 py-6 sm:py-10 lg:max-w-5xl">
       <Link
         href="/dashboard"
         className="inline-flex items-center gap-1.5 text-xs font-bold text-stone-500 transition-colors hover:text-stone-800 dark:text-stone-400 dark:hover:text-stone-200"
@@ -174,8 +179,11 @@ export default function QuietCornerClient({ userId }: { userId: string }) {
         </div>
       </section>
 
+      {/* Hai khối phụ: xếp dọc ở màn hẹp, đứng cạnh nhau từ lg. items-start để
+          khối thở ngắn không bị kéo cao bằng danh sách nỗi lo. */}
+      <div className="mt-6 grid gap-6 lg:grid-cols-2 lg:items-start">
       {/* --- Một phút thở -------------------------------------------------- */}
-      <section className="mt-6 rounded-[28px] border border-stone-200 bg-stone-50 px-6 py-7 dark:border-stone-800 dark:bg-stone-900/50">
+      <section className="rounded-[28px] border border-stone-200 bg-stone-50 px-6 py-7 dark:border-stone-800 dark:bg-stone-900/50">
         <h2 className="text-center text-base font-extrabold text-stone-800 dark:text-stone-100">
           Một phút thở
         </h2>
@@ -187,7 +195,7 @@ export default function QuietCornerClient({ userId }: { userId: string }) {
       </section>
 
       {/* --- Đặt xuống một gánh nặng --------------------------------------- */}
-      <section className="mt-6 rounded-[28px] border border-stone-200 bg-white px-5 py-7 dark:border-stone-800 dark:bg-stone-900">
+      <section className="rounded-[28px] border border-stone-200 bg-white px-5 py-7 dark:border-stone-800 dark:bg-stone-900">
         <div className="px-1 text-center">
           <h2 className="text-base font-extrabold text-stone-800 dark:text-stone-100">
             Đặt xuống một gánh nặng
@@ -282,6 +290,38 @@ export default function QuietCornerClient({ userId }: { userId: string }) {
             );
           })}
         </ul>
+      </section>
+
+      </div>
+
+      {/* --- Ba câu hỏi cho nỗi lo của riêng bạn -----------------------------
+          Danh sách nỗi lo phía trên là những nỗi lo viết sẵn; khối này dành
+          cho nỗi lo không nằm trong danh sách nào - phần lớn trường hợp thật. */}
+      <section className="mt-6 rounded-[28px] border border-stone-200 bg-white px-5 py-7 dark:border-stone-800 dark:bg-stone-900">
+        <h2 className="text-center text-base font-extrabold text-stone-800 dark:text-stone-100">
+          {QUIET_CORNER_QUESTIONS.title}
+        </h2>
+        <p className="mx-auto mt-1.5 max-w-md text-center text-xs leading-relaxed text-stone-500 dark:text-stone-400">
+          {QUIET_CORNER_QUESTIONS.intro}
+        </p>
+        <ol className="mt-5 grid gap-3 sm:grid-cols-3">
+          {QUIET_CORNER_QUESTIONS.items.map((item, i) => (
+            <li
+              key={item.id}
+              className="rounded-2xl border border-stone-200 bg-stone-50 px-4 py-4 dark:border-stone-800 dark:bg-stone-800/50"
+            >
+              <span className="text-[11px] font-bold text-orange-700 dark:text-orange-300">
+                {String(i + 1).padStart(2, "0")}
+              </span>
+              <p className="mt-1 text-sm font-bold leading-snug text-stone-800 dark:text-stone-100">
+                {item.question}
+              </p>
+              <p className="mt-2 text-xs leading-relaxed text-stone-500 dark:text-stone-400">
+                {item.note}
+              </p>
+            </li>
+          ))}
+        </ol>
       </section>
 
       {/* --- Điểm hạ cánh ---------------------------------------------------

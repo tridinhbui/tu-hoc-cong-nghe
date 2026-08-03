@@ -68,6 +68,23 @@ export function getQuietGreeting(hour: number): string {
   return "Đêm đã khuya. Không còn việc gì của hôm nay bắt buộc phải xong nữa.";
 }
 
+/**
+ * Bản rút gọn của lời chào trên, dành cho card lời nhắn ở dashboard - và cố ý
+ * chỉ lên tiếng trong dải đêm khuya, còn lại trả về null.
+ *
+ * Không phải vì lười đồng bộ: card đó chỉ có một nhãn, một câu và một nút, nên
+ * thêm một dòng vào mọi khung giờ là biến nó thành bốn dòng chữ chen nhau để
+ * đổi lấy gần như không gì. Riêng người mở app tài chính lúc hai giờ sáng thì
+ * dòng này đáng giá - đó là lúc duy nhất mà việc được nhìn thấy quan trọng hơn
+ * việc card gọn.
+ */
+export function getLateNightNote(hour: number): string | null {
+  if (hour >= 23 || hour < 5) {
+    return "Khuya rồi - chuyện gì cũng nặng hơn vào giờ này.";
+  }
+  return null;
+}
+
 export const WORRY_REFRAMES: WorryReframe[] = [
   {
     id: "wr-01",
@@ -144,6 +161,33 @@ export const WORRY_REFRAMES: WorryReframe[] = [
     reframe:
       "Trụ cột cũng là người - được phép mệt, được phép sai rồi sửa. Điều gia đình cần về lâu dài không phải một người không bao giờ sai, mà một người không gãy; và người không gãy là người biết lúc nào cần đặt gánh xuống.",
   },
+  // Nhóm thứ ba: nỗi lo về công việc và thu nhập. Mười hai mục trước nói về
+  // tiền đã có và quan hệ quanh nó; nhóm này nói về nguồn tạo ra nó, phần mà
+  // người đi làm ở đầu sự nghiệp lo nhiều nhất.
+  {
+    id: "wr-13",
+    worry: "Mình sợ mất việc và không có gì để dựa vào.",
+    reframe:
+      "Nỗi sợ đó đang chỉ đúng chỗ: nó không phải chuyện tính cách, nó là chuyện chưa có đệm. Đệm không cần lớn ngay - một tháng chi phí đã đổi hẳn cảm giác so với con số không, và nó xây được bằng những khoản rất nhỏ.",
+  },
+  {
+    id: "wr-14",
+    worry: "Lương mình mãi không tăng, cố gắng cũng chẳng để làm gì.",
+    reframe:
+      "Thu nhập tăng theo bậc chứ hiếm khi tăng đều, nên quãng phẳng không có nghĩa là đứng yên - phần lớn thứ tạo ra bậc tiếp theo được tích trong đúng những quãng phẳng đó. Điều bạn kiểm soát được là năng lực và thông tin về mức giá thị trường của nó.",
+  },
+  {
+    id: "wr-15",
+    worry: "Mình muốn đổi hướng nhưng sợ mất hết những gì đã xây.",
+    reframe:
+      "Phần lớn thứ bạn đã xây là kỹ năng và cách làm việc, và chúng đi theo bạn qua mọi ngành. Thứ thật sự mất đi thường nhỏ hơn nhiều so với con số bạn đang hình dung - và chi phí chìm thì không nên là lý do để ở lại.",
+  },
+  {
+    id: "wr-16",
+    worry: "Mình thấy mệt và không còn muốn cố gắng nữa.",
+    reframe:
+      "Mệt kéo dài là tín hiệu cần nghe, không phải kẻ thù cần thắng. Nghỉ có kế hoạch rẻ hơn rất nhiều so với nghỉ vì kiệt sức - và nếu cảm giác này ở lại nhiều tuần, đó là lúc nên nói với một người thật, không phải cố thêm một chút nữa.",
+  },
 ];
 
 /** Nhãn cho động tác "đặt xuống" một nỗi lo. Chỉ là trạng thái trong phiên -
@@ -151,6 +195,40 @@ export const WORRY_REFRAMES: WorryReframe[] = [
 export const WORRY_SET_DOWN = {
   action: "Mình đặt nó xuống hôm nay",
   done: "Đã đặt xuống. Nó vẫn ở đây nếu bạn muốn cầm lên xem lại.",
+} as const;
+
+/**
+ * Ba câu hỏi để tự gỡ một nỗi lo tiền bạc đang chạy vòng trong đầu.
+ *
+ * Đặt sau danh sách nỗi lo có sẵn vì nó phục vụ đúng trường hợp danh sách kia
+ * không với tới: nỗi lo cụ thể của riêng người đọc, thứ không ai viết sẵn được.
+ * Cả ba câu đều hỏi về thông tin và thời điểm, không câu nào gợi ý nên làm gì
+ * với tiền - ranh giới của trang này vẫn nguyên như cũ.
+ */
+export const QUIET_CORNER_QUESTIONS = {
+  title: "Ba câu hỏi cho nỗi lo của riêng bạn",
+  intro:
+    "Khi nỗi lo không nằm trong danh sách trên, ba câu này thường đủ để tách phần xử lý được ra khỏi phần chỉ có thể chờ.",
+  items: [
+    {
+      id: "qq-01",
+      question: "Đây là một vấn đề, hay là một cảm giác về vấn đề?",
+      note:
+        "Vấn đề có con số và có hạn: còn thiếu bao nhiêu, tới ngày nào. Cảm giác thì không có bờ, nên nó nghe to hơn nhiều so với thứ đang thật sự xảy ra. Viết ra con số cụ thể là cách nhanh nhất để biết mình đang đối mặt với cái nào.",
+    },
+    {
+      id: "qq-02",
+      question: "Có việc gì tôi làm được trong tuần này không?",
+      note:
+        "Nếu có, nó thường nhỏ hơn nhiều so với hình dung - mở một bảng sao kê, hỏi một câu, viết ra một danh sách. Nếu không có việc nào, thì nỗi lo này thuộc nhóm phải chờ, và ngồi nghĩ thêm về nó tối nay không làm nó ngắn lại.",
+    },
+    {
+      id: "qq-03",
+      question: "Một năm nữa nhìn lại, chuyện này còn lớn thế này không?",
+      note:
+        "Câu này không để phủ nhận nỗi lo mà để đặt lại tỷ lệ. Một số chuyện vẫn sẽ lớn, và biết được điều đó cũng có ích - nó cho bạn lý do để xử lý nghiêm túc thay vì để đó. Phần lớn còn lại thì không, và chúng đang chiếm chỗ nhiều hơn phần chúng đáng.",
+    },
+  ],
 } as const;
 
 /** Điểm hạ cánh của trang - đứng ngay trước phần ranh giới. Trang không được

@@ -23,8 +23,18 @@ describe("selectTone", () => {
   });
 
   it("vang tu 3 ngay tro len thi doi sang giong quay lai", () => {
-    expect(selectTone({ ...base, daysSinceLastActivity: 3 })).toBe("return");
-    expect(selectTone({ ...base, daysSinceLastActivity: 2 })).not.toBe("return");
+    const away = { ...base, hasActivityToday: false, currentStreak: 0 };
+    expect(selectTone({ ...away, daysSinceLastActivity: 3 })).toBe("return");
+    expect(selectTone({ ...away, daysSinceLastActivity: 2 })).not.toBe("return");
+  });
+
+  // Hai tín hiệu này đọc từ hai nguồn khác nhau nên lệch nhau được: bảng streak
+  // cập nhật khi hoàn thành bài, còn hoạt động hôm nay ghi nhận sớm hơn. Khi
+  // lệch, người vừa học xong hôm nay từng bị chào "chào mừng quay lại".
+  it("da hoc hom nay thi khong bao gio nhan giong quay lai", () => {
+    expect(
+      selectTone({ ...base, hasActivityToday: true, daysSinceLastActivity: 9 }),
+    ).not.toBe("return");
   });
 
   it("chi an mung moc khi da hoc trong hom nay", () => {

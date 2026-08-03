@@ -5,9 +5,29 @@ import {
   BREATH_PHASES,
   QUIET_CORNER_CLOSING,
   QUIET_CORNER_LIMITS,
+  QUIET_CORNER_QUESTIONS,
   WORRY_REFRAMES,
+  getLateNightNote,
   getQuietGreeting,
 } from "../quiet-corner";
+
+describe("dong nhac dem khuya tren dashboard", () => {
+  // Card lời nhắn ở dashboard chỉ có ba dòng; dòng này được phép chen vào
+  // đúng dải giờ mà nó đáng giá, còn lại phải im.
+  it("chi len tieng tu 23h toi truoc 5h sang", () => {
+    for (const hour of [23, 0, 2, 4]) {
+      expect(getLateNightNote(hour)).toBeTruthy();
+    }
+    for (const hour of [5, 9, 14, 19, 22]) {
+      expect(getLateNightNote(hour)).toBeNull();
+    }
+  });
+
+  it("ngan hon cau chao day du cua trang rieng", () => {
+    const note = getLateNightNote(1)!;
+    expect(note.length).toBeLessThan(getQuietGreeting(1).length);
+  });
+});
 
 describe("cau chao theo gio", () => {
   it("moi gio trong ngay deu co mot cau chao", () => {
@@ -105,5 +125,30 @@ describe("ranh gioi cua trang", () => {
   // Một số hotline sai hoặc đã ngừng hoạt động còn tệ hơn không có số nào.
   it("khong in so dien thoai nao chua duoc kiem chung", () => {
     expect(QUIET_CORNER_LIMITS.body).not.toMatch(/\d{4,}/);
+  });
+});
+
+// Ba câu hỏi này phục vụ nỗi lo không có trong danh sách viết sẵn, nên chúng
+// phải giữ đúng ranh giới của cả trang: hỏi về thông tin và thời điểm, không
+// gợi ý nên làm gì với tiền.
+describe("ba cau hoi cho noi lo rieng", () => {
+  it("khong trung id va moi cau deu co phan giai thich du dai", () => {
+    const ids = new Set(QUIET_CORNER_QUESTIONS.items.map((q) => q.id));
+    expect(ids.size).toBe(QUIET_CORNER_QUESTIONS.items.length);
+    for (const item of QUIET_CORNER_QUESTIONS.items) {
+      expect(item.question.endsWith("?")).toBe(true);
+      expect(item.note.length).toBeGreaterThan(80);
+    }
+  });
+
+  it("khong cau nao ra chi dan tai chinh cu the", () => {
+    const directives = ["bạn nên mua", "hãy mua", "nên bán", "hãy bán", "nên đầu tư vào"];
+    const all = QUIET_CORNER_QUESTIONS.items
+      .map((q) => `${q.question} ${q.note}`)
+      .join(" ")
+      .toLowerCase();
+    for (const phrase of directives) {
+      expect(all).not.toContain(phrase);
+    }
   });
 });
