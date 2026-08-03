@@ -82,6 +82,29 @@ export const FRM_VALUATION_CURRENT_LESSONS: Lesson[] = [
         correct: 0,
         explanation: "Không kinh doanh chênh lệch giá là giả định giới hạn, không phải mô tả chính xác. Một chênh lệch nhỏ hơn chi phí thực hiện sẽ nằm nguyên đó - đây là lý do mô hình định giá luôn có sai số so với giá quan sát."
       }
+    ,
+    {
+      "question": "Vì sao nguyên lý không kinh doanh chênh lệch giá không đòi hỏi nhà đầu tư phải hợp lý?",
+      "options": [
+        "Vì chỉ cần vài người tham lam nhặt tiền rơi là chênh lệch bị xoá",
+        "Vì nguyên lý chỉ đúng ở thị trường có nhà tạo lập",
+        "Vì các nhà đầu tư không hợp lý sẽ bị loại khỏi thị trường trong dài hạn",
+        "Vì mọi mô hình định giá đều giả định nhà đầu tư trung tính với rủi ro"
+      ],
+      "correct": 0,
+      "explanation": "Đây là điểm mạnh của lập luận: nó không cần đa số hành xử hợp lý, chỉ cần một số ít có vốn và có động cơ. Nhờ vậy nó bền hơn nhiều so với các kết luận dựa trên giả thuyết thị trường hiệu quả."
+    },
+    {
+      "question": "Vì sao các chênh lệch giá nhỏ vẫn tồn tại dai dẳng trên thị trường thật?",
+      "options": [
+        "Vì chi phí giao dịch, vốn và rủi ro tài trợ làm việc khai thác không đáng",
+        "Vì các nhà đầu tư lớn đã có thoả thuận ngầm với nhau về việc không khai thác chênh lệch nhỏ",
+        "Vì quy định cấm giao dịch nhằm mục đích khai thác chênh lệch giá",
+        "Vì các mô hình định giá hiện đại đã loại bỏ hết chênh lệch có ý nghĩa"
+      ],
+      "correct": 0,
+      "explanation": "Lý thuyết giả định giao dịch không mất phí và vốn vô hạn. Trong thực tế, khoản chênh vài điểm cơ bản đòi đòn bẩy lớn để đáng làm, mà đòn bẩy lớn thì kéo theo rủi ro bị gọi ký quỹ trước khi giá hội tụ - đúng thứ đã kết liễu LTCM."
+    }
     ],
     keyTakeaways: [
       "Hai dòng tiền giống hệt nhau phải có cùng một giá, nếu không sẽ có tiền rơi",
@@ -689,6 +712,29 @@ export const FRM_VALUATION_CURRENT_LESSONS: Lesson[] = [
         correct: 0,
         explanation: "Thực tế đường cong thường đổi độ dốc: đầu ngắn và đầu dài dịch chuyển khác nhau, có khi ngược chiều. Vì vậy danh mục lớn cần đo thêm độ nhạy theo từng vùng kỳ hạn, chứ một con số duration tổng là chưa đủ."
       }
+    ,
+    {
+      "question": "Duration hiệu dụng khác duration Macaulay ở chỗ nào?",
+      "options": [
+        "Nó tính bằng cách định giá lại trái phiếu ở hai mức lãi suất, nên xử lý được quyền chọn kèm theo",
+        "Nó đo bằng đơn vị tiền thay vì đo bằng đơn vị năm",
+        "Nó chỉ áp dụng được cho trái phiếu không trả coupon nào trong suốt kỳ hạn nắm giữ, kể cả kỳ cuối",
+        "Nó bỏ qua ảnh hưởng của coupon và chỉ tính tới ngày đáo hạn"
+      ],
+      "correct": 0,
+      "explanation": "Với trái phiếu có quyền mua lại hay quyền bán lại, dòng tiền tương lai thay đổi theo lãi suất - nên công thức dựa trên dòng tiền cố định không dùng được. Cách duy nhất là dịch lãi suất lên xuống rồi định giá lại, và đó chính là duration hiệu dụng."
+    },
+    {
+      "question": "Hạn chế chung của cả duration và convexity là gì?",
+      "options": [
+        "Chúng giả định đường cong dịch chuyển song song",
+        "Chúng chỉ đúng với trái phiếu có kỳ hạn dưới mười năm",
+        "Chúng không tính được cho danh mục có nhiều loại trái phiếu khác nhau",
+        "Chúng đòi hỏi phải biết trước hướng thay đổi của lãi suất"
+      ],
+      "correct": 0,
+      "explanation": "Đường cong hiếm khi dịch song song - phần lớn biến động thật là đổi độ dốc và độ cong. Đó là lý do người quản lý danh mục trái phiếu phải bổ sung đo lường theo từng điểm kỳ hạn thay vì chỉ nhìn một con số duration."
+    }
     ],
     keyTakeaways: [
       "DV01 quy độ nhạy lãi suất ra tiền nên cộng được giữa các vị thế",
@@ -834,6 +880,29 @@ export const FRM_VALUATION_CURRENT_LESSONS: Lesson[] = [
         correct: 0,
         explanation: "Hạ hạng thường tới sau khi thị trường đã định giá lại. Tệ hơn, nhiều quỹ có điều khoản buộc bán khi tài sản rơi khỏi hạng đầu tư, nên một lần hạ hạng kích hoạt làn sóng bán đồng loạt - rủi ro biến thành rủi ro hệ thống."
       }
+    ,
+    {
+      "question": "Vì sao dựa hoàn toàn vào xếp hạng bên ngoài là rủi ro với một định chế?",
+      "options": [
+        "Vì xếp hạng phản ứng chậm và nhiều bên cùng bán khi nó bị hạ",
+        "Vì tổ chức xếp hạng không chịu trách nhiệm pháp lý",
+        "Vì xếp hạng bên ngoài không có sẵn cho phần lớn doanh nghiệp niêm yết",
+        "Vì phí trả cho tổ chức xếp hạng thường cao hơn chi phí xây mô hình nội bộ"
+      ],
+      "correct": 0,
+      "explanation": "Xếp hạng thường đổi sau khi thị trường đã đổi, nên nó ít giá trị cảnh báo sớm. Tệ hơn, vì nhiều điều lệ quỹ gắn với ngưỡng xếp hạng, một lần hạ bậc kích hoạt bán tháo đồng loạt - biến đánh giá thành một cú sốc thanh khoản."
+    },
+    {
+      "question": "Trần quốc gia trong xếp hạng tín nhiệm nghĩa là gì?",
+      "options": [
+        "Doanh nghiệp thường không được xếp cao hơn xếp hạng của chính quốc gia đó",
+        "Mỗi quốc gia chỉ được cấp một số lượng xếp hạng bậc cao nhất định",
+        "Xếp hạng quốc gia là mức trần của lãi suất mà doanh nghiệp trong nước phải trả",
+        "Doanh nghiệp nước ngoài không được xếp hạng cao hơn doanh nghiệp trong nước"
+      ],
+      "correct": 0,
+      "explanation": "Lập luận đằng sau là rủi ro chuyển đổi và chuyển tiền: chính phủ gặp khó có thể hạn chế chuyển ngoại tệ ra ngoài, và khi đó doanh nghiệp khoẻ mạnh vẫn không trả được nợ ngoại tệ. Có ngoại lệ, nhưng phải chứng minh nguồn thu nằm ngoài lãnh thổ."
+    }
     ],
     keyTakeaways: [
       "Xếp hạng bên ngoài là thứ hạng tương đối, không phải xác suất vỡ nợ tuyệt đối",
@@ -1116,6 +1185,29 @@ export const FRM_VALUATION_CURRENT_LESSONS: Lesson[] = [
         correct: 0,
         explanation: "Không có tiền lệ nào trong lịch sử tài chính hiện đại để hiệu chỉnh, nên kết quả phụ thuộc gần như hoàn toàn vào giả định kịch bản. Giá trị của nó nằm ở việc buộc tổ chức nhìn ra danh mục đang phơi nhiễm vào đâu, hơn là ở con số cuối cùng."
       }
+    ,
+    {
+      "question": "Kiểm định sức chịu đựng khí hậu khác kiểm định truyền thống ở điểm nào?",
+      "options": [
+        "Chân trời thời gian dài hàng chục năm nên không thể giữ nguyên bảng cân đối hiện tại",
+        "Nó chỉ áp dụng cho danh mục cho vay chứ không cho danh mục đầu tư",
+        "Kết quả của nó không được dùng để xác định mức vốn phải trích lập",
+        "Nó dùng dữ liệu lịch sử về thiên tai trong nhiều thập kỷ thay vì dùng kịch bản giả định"
+      ],
+      "correct": 0,
+      "explanation": "Kiểm định thông thường giả định bảng cân đối đứng yên trong một cú sốc vài quý - hợp lý ở khung thời gian đó. Với ba mươi năm, giả định đó vô nghĩa: cả danh mục lẫn mô hình kinh doanh của khách hàng đều sẽ khác, nên phải mô hình cả phản ứng thích nghi."
+    },
+    {
+      "question": "Vì sao rủi ro chuyển đổi có thể xuất hiện đột ngột dù quá trình chuyển đổi diễn ra chậm?",
+      "options": [
+        "Vì thị trường định giá lại một lần khi kỳ vọng đổi chiều, không đổi dần từng năm",
+        "Vì các quy định về khí hậu luôn có hiệu lực ngay khi được ban hành",
+        "Vì công nghệ thay thế thường xuất hiện mà không có dấu hiệu báo trước",
+        "Vì tác động vật lý của biến đổi khí hậu đang diễn ra nhanh hơn mọi dự báo khoa học"
+      ],
+      "correct": 0,
+      "explanation": "Giá tài sản phản ánh kỳ vọng, và kỳ vọng dịch chuyển theo bậc: một quyết định chính sách, một mốc chi phí công nghệ bị vượt qua. Quá trình vật lý thì chậm, còn việc thị trường thừa nhận nó diễn ra trong vài phiên."
+    }
     ],
     keyTakeaways: [
       "Rủi ro vật lý là thiệt hại từ thiên tai; rủi ro chuyển đổi là từ chính sách và công nghệ",
@@ -1245,6 +1337,29 @@ export const FRM_VALUATION_CURRENT_LESSONS: Lesson[] = [
         correct: 0,
         explanation: "Một con số được hàng trăm nghìn tỷ đô hợp đồng tham chiếu tới mà lại dựa trên ước tính của một nhóm nhỏ người tham gia là một rủi ro tập trung, cả về thao túng lẫn về việc thị trường nền teo dần đi."
       }
+    ,
+    {
+      "question": "Vì sao lãi suất tham chiếu mới cần khoản chênh lệch điều chỉnh khi thay cho LIBOR?",
+      "options": [
+        "Vì LIBOR chứa phần bù rủi ro tín dụng, lãi suất mới thì không",
+        "Vì lãi suất mới được công bố theo ngày còn LIBOR công bố theo kỳ hạn",
+        "Vì hợp đồng cũ ghi bằng LIBOR nên phải quy đổi theo tỷ giá tại ngày chuyển",
+        "Vì cơ quan quản lý yêu cầu mọi hợp đồng chuyển đổi phải có khoản bù cho bên vay"
+      ],
+      "correct": 0,
+      "explanation": "LIBOR là lãi suất vay không bảo đảm giữa các ngân hàng, nên nó gồm cả rủi ro tín dụng của chính ngân hàng. Lãi suất tham chiếu mới dựa trên giao dịch có bảo đảm nên gần như phi rủi ro - chuyển thẳng không có khoản bù thì một bên trong mọi hợp đồng cũ sẽ thiệt."
+    },
+    {
+      "question": "Bài học chung của cuộc chuyển đổi này với quản trị rủi ro là gì?",
+      "options": [
+        "Một chỉ số hạ tầng dùng chung có thể trở thành rủi ro hệ thống khi nền của nó rỗng dần",
+        "Các hợp đồng tài chính nên tránh dùng lãi suất thả nổi để không phải chuyển đổi",
+        "Cơ quan quản lý nên tự công bố lãi suất tham chiếu thay vì để thị trường tự hình thành",
+        "Rủi ro chuyển đổi chỉ ảnh hưởng tới hợp đồng phái sinh, không tới hợp đồng vay"
+      ],
+      "correct": 0,
+      "explanation": "LIBOR chống đỡ hàng trăm nghìn tỷ đô hợp đồng trong khi thị trường thật đằng sau nó teo lại gần như không còn giao dịch. Không ai sở hữu rủi ro đó, và nó chỉ lộ ra khi bê bối thao túng buộc phải nhìn kỹ."
+    }
     ],
     keyTakeaways: [
       "LIBOR dựa trên báo giá ước tính, lãi suất mới dựa trên giao dịch thật",
@@ -1515,6 +1630,29 @@ export const FRM_VALUATION_CURRENT_LESSONS: Lesson[] = [
         correct: 0,
         explanation: "Vì không định chế đơn lẻ nào có đủ đòn bẩy hay động cơ để xử lý rủi ro chung này, xu hướng là đưa nhà cung cấp trọng yếu vào diện giám sát trực tiếp - tương tự cách hạ tầng thị trường tài chính được giám sát."
       }
+    ,
+    {
+      "question": "Vì sao việc chuyển sang nhà cung cấp đám mây khác lại khó trong thực tế?",
+      "options": [
+        "Vì hệ thống bám vào dịch vụ riêng của nhà cung cấp",
+        "Vì hợp đồng đám mây thường có thời hạn tối thiểu mười năm",
+        "Vì dữ liệu lưu trên đám mây không được phép chuyển ra khỏi nhà cung cấp gốc",
+        "Vì cơ quan quản lý phải phê duyệt lại toàn bộ hệ thống sau mỗi lần chuyển"
+      ],
+      "correct": 0,
+      "explanation": "Ứng dụng hiện đại không chỉ thuê máy chủ - nó dùng dịch vụ cơ sở dữ liệu, xếp hàng tin nhắn, xác thực riêng của nền tảng. Chuyển đi nghĩa là viết lại phần lớn hệ thống, nên phương án dự phòng trên giấy thường không thực hiện được trong khủng hoảng."
+    },
+    {
+      "question": "Hướng xử lý mà cơ quan quản lý nhiều nước đang đi với rủi ro này là gì?",
+      "options": [
+        "Giám sát trực tiếp chính các nhà cung cấp quan trọng thay vì chỉ giám sát ngân hàng",
+        "Cấm các định chế tài chính chuyển hệ thống lõi lên hạ tầng đám mây",
+        "Yêu cầu mỗi ngân hàng phải dùng ít nhất ba nhà cung cấp song song",
+        "Buộc các nhà cung cấp đám mây phải xin giấy phép hoạt động ngân hàng"
+      ],
+      "correct": 0,
+      "explanation": "Không ngân hàng nào tự phòng ngừa được rủi ro này bằng biện pháp nội bộ, nên khung giám sát cũ - đặt nghĩa vụ lên từng định chế - không giải quyết được. Cách đang đi là đưa chính nhà cung cấp vào phạm vi giám sát khi họ đủ quan trọng với hệ thống."
+    }
     ],
     keyTakeaways: [
       "Hợp lý ở cấp từng tổ chức nhưng tạo điểm đổ vỡ chung ở cấp hệ thống",
