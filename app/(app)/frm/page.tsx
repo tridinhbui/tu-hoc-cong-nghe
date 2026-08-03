@@ -50,10 +50,18 @@ export default async function FrmPage() {
           >
             <ChevronLeft className="w-5 h-5" />
           </Link>
-          <div>
+          <div className="min-w-0 flex-1">
             <h1 className="text-xl font-bold text-stone-900 dark:text-stone-100">FRM</h1>
             <p className="text-xs text-stone-500 dark:text-stone-400 mt-0.5">Financial Risk Manager - GARP Part I &amp; Part II</p>
           </div>
+          {/* Sổ tay công thức là thứ duy nhất ở track này dùng được mà không
+              cần mở một bài học, nên nó phải với tới được ngay từ đầu trang. */}
+          <Link
+            href="/frm/formulas"
+            className="shrink-0 rounded-full border border-red-200 px-3.5 py-1.5 text-xs font-extrabold text-red-700 transition-colors hover:bg-red-50 dark:border-red-900 dark:text-red-300 dark:hover:bg-red-950/40"
+          >
+            📐 Sổ tay công thức
+          </Link>
         </div>
       </div>
 

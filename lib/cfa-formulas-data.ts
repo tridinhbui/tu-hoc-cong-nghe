@@ -2,7 +2,7 @@ import { FormulaVariable, FormulaExample } from "@/components/FormulaBlock";
 
 export interface CfaFormulaItem {
   id: string;
-  subjectId: "quant" | "fsa" | "corporate" | "equity" | "fixed-income" | "derivatives" | "portfolio" | "econ" | "ethics" | "alt";
+  subjectId: "quant" | "fsa" | "corporate" | "equity" | "fixedIncome" | "derivatives" | "portfolio" | "economics" | "ethics" | "alternatives";
   title: string;
   label?: string;
   badge?: string;
@@ -194,7 +194,7 @@ export const CFA_FORMULAS_DATA: CfaFormulaItem[] = [
   // 5. FIXED INCOME
   {
     id: "fi-001",
-    subjectId: "fixed-income",
+    subjectId: "fixedIncome",
     title: "Thời Lượng Điều Chỉnh (Modified Duration)",
     badge: "Fixed Income • Risk",
     numerator: "Macaulay Duration",
@@ -210,7 +210,7 @@ export const CFA_FORMULAS_DATA: CfaFormulaItem[] = [
   },
   {
     id: "fi-002",
-    subjectId: "fixed-income",
+    subjectId: "fixedIncome",
     title: "Phần Trăm Thay Đổi Giá Trái Phiếu (Duration & Convexity)",
     badge: "Fixed Income • Risk",
     equation: "ΔP/P ≈ -ModDur × ΔYTM + [0.5 × Convexity × (ΔYTM)^2]",
@@ -354,7 +354,7 @@ export const CFA_FORMULAS_DATA: CfaFormulaItem[] = [
   // ── ECONOMICS ────────────────────────────────────────────────────────────
   {
     id: "econ-001",
-    subjectId: "econ",
+    subjectId: "economics",
     title: "Quan Hệ Fisher - Lãi Suất Thực và Danh Nghĩa",
     badge: "Econ • Lãi suất",
     equation: "(1 + i) = (1 + r) × (1 + π)   ≈   i ≈ r + π",
@@ -371,7 +371,7 @@ export const CFA_FORMULAS_DATA: CfaFormulaItem[] = [
   },
   {
     id: "econ-002",
-    subjectId: "econ",
+    subjectId: "economics",
     title: "Ngang Giá Lãi Suất Có Bảo Hiểm (Covered Interest Rate Parity)",
     badge: "Econ • Tỷ giá",
     equation: "F/S = (1 + i_nội tệ) / (1 + i_ngoại tệ)",
@@ -388,7 +388,7 @@ export const CFA_FORMULAS_DATA: CfaFormulaItem[] = [
   },
   {
     id: "econ-003",
-    subjectId: "econ",
+    subjectId: "economics",
     title: "Ngang Giá Sức Mua Tương Đối",
     badge: "Econ • Tỷ giá",
     equation: "%ΔS ≈ π_nội tệ - π_ngoại tệ",
@@ -404,7 +404,7 @@ export const CFA_FORMULAS_DATA: CfaFormulaItem[] = [
   },
   {
     id: "econ-004",
-    subjectId: "econ",
+    subjectId: "economics",
     title: "Tỷ Giá Thực",
     badge: "Econ • Tỷ giá",
     equation: "Tỷ giá thực = Tỷ giá danh nghĩa × (P_ngoại / P_nội)",
@@ -419,7 +419,7 @@ export const CFA_FORMULAS_DATA: CfaFormulaItem[] = [
   },
   {
     id: "econ-005",
-    subjectId: "econ",
+    subjectId: "economics",
     title: "Độ Co Giãn của Cầu Theo Giá",
     badge: "Econ • Cung cầu",
     numerator: "Phần trăm thay đổi lượng cầu",
@@ -436,7 +436,7 @@ export const CFA_FORMULAS_DATA: CfaFormulaItem[] = [
   },
   {
     id: "econ-006",
-    subjectId: "econ",
+    subjectId: "economics",
     title: "Số Nhân Tiền",
     badge: "Econ • Tiền tệ",
     numerator: "1",
@@ -452,7 +452,7 @@ export const CFA_FORMULAS_DATA: CfaFormulaItem[] = [
   },
   {
     id: "econ-007",
-    subjectId: "econ",
+    subjectId: "economics",
     title: "GDP Deflator",
     badge: "Econ • Sản lượng",
     numerator: "GDP danh nghĩa",
@@ -472,7 +472,7 @@ export const CFA_FORMULAS_DATA: CfaFormulaItem[] = [
   // ── ALTERNATIVE INVESTMENTS ──────────────────────────────────────────────
   {
     id: "alt-001",
-    subjectId: "alt",
+    subjectId: "alternatives",
     title: "Lợi Nhuận Vận Hành Ròng và Giá Trị Bất Động Sản",
     badge: "Alt • Bất động sản",
     numerator: "NOI (Lợi nhuận vận hành ròng)",
@@ -489,7 +489,7 @@ export const CFA_FORMULAS_DATA: CfaFormulaItem[] = [
   },
   {
     id: "alt-002",
-    subjectId: "alt",
+    subjectId: "alternatives",
     title: "Bội Số Vốn Đầu Tư (MOIC)",
     badge: "Alt • Private Equity",
     numerator: "Tổng giá trị đã phân phối + Giá trị còn lại",
@@ -505,7 +505,7 @@ export const CFA_FORMULAS_DATA: CfaFormulaItem[] = [
   },
   {
     id: "alt-003",
-    subjectId: "alt",
+    subjectId: "alternatives",
     title: "DPI, RVPI và TVPI của Quỹ PE/VC",
     badge: "Alt • Private Equity",
     equation: "DPI = Đã phân phối / Vốn gọi   |   RVPI = Giá trị còn lại / Vốn gọi   |   TVPI = DPI + RVPI",
@@ -522,7 +522,7 @@ export const CFA_FORMULAS_DATA: CfaFormulaItem[] = [
   },
   {
     id: "alt-004",
-    subjectId: "alt",
+    subjectId: "alternatives",
     title: "Phí Hiệu Suất Với Ngưỡng và High-Water Mark",
     badge: "Alt • Phí quỹ",
     equation: "Phí hiệu suất = Tỷ lệ chia × max(0, NAV cuối kỳ - max(High-water mark, NAV đầu kỳ × (1 + ngưỡng)))",
@@ -538,7 +538,7 @@ export const CFA_FORMULAS_DATA: CfaFormulaItem[] = [
   },
   {
     id: "alt-005",
-    subjectId: "alt",
+    subjectId: "alternatives",
     title: "Tỷ Suất Trên Vốn Tự Có Của Bất Động Sản Có Vay",
     badge: "Alt • Đòn bẩy",
     numerator: "NOI - Chi phí lãi vay",
@@ -555,7 +555,7 @@ export const CFA_FORMULAS_DATA: CfaFormulaItem[] = [
   },
   {
     id: "alt-006",
-    subjectId: "alt",
+    subjectId: "alternatives",
     title: "Tỷ Số Bao Phủ Nợ (DSCR)",
     badge: "Alt • Bất động sản",
     numerator: "NOI",
@@ -806,7 +806,7 @@ export const CFA_FORMULAS_DATA: CfaFormulaItem[] = [
   },
   {
     id: "fi-003",
-    subjectId: "fixed-income",
+    subjectId: "fixedIncome",
     title: "Giá Trái Phiếu Trả Lãi Định Kỳ",
     badge: "Fixed Income • Định giá",
     equation: "P = Σ [C / (1 + y)^t] + [Mệnh giá / (1 + y)^n]",
@@ -823,7 +823,7 @@ export const CFA_FORMULAS_DATA: CfaFormulaItem[] = [
   },
   {
     id: "fi-004",
-    subjectId: "fixed-income",
+    subjectId: "fixedIncome",
     title: "Lợi Suất Hiện Hành và Lợi Suất Đáo Hạn",
     badge: "Fixed Income • Lợi suất",
     equation: "Current yield = Coupon năm / Giá thị trường",
@@ -838,7 +838,7 @@ export const CFA_FORMULAS_DATA: CfaFormulaItem[] = [
   },
   {
     id: "fi-005",
-    subjectId: "fixed-income",
+    subjectId: "fixedIncome",
     title: "Lãi Suất Kỳ Hạn Ngầm Định Từ Lãi Suất Giao Ngay",
     badge: "Fixed Income • Đường cong",
     equation: "(1 + s2)² = (1 + s1) × (1 + f1,1)",

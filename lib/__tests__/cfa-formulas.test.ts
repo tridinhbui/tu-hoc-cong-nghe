@@ -17,11 +17,11 @@ const SUBJECTS = [
   "fsa",
   "corporate",
   "equity",
-  "fixed-income",
+  "fixedIncome",
   "derivatives",
   "portfolio",
-  "econ",
-  "alt",
+  "economics",
+  "alternatives",
   "ethics",
 ] as const;
 
