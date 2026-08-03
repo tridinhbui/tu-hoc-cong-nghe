@@ -475,6 +475,17 @@ export const VN_TAX_LESSONS: Lesson[] = [
         explanation:
           "Mỗi người phụ thuộc chỉ được tính giảm trừ một lần vào một người nộp thuế trong kỳ tính thuế. Vợ chồng cần thống nhất ai là người đăng ký để tránh trùng lặp bị loại khi quyết toán.",
       },
+    {
+      "question": "Người phụ thuộc cần đáp ứng điều kiện nào để được đăng ký giảm trừ?",
+      "options": [
+        "Không có thu nhập hoặc thu nhập dưới ngưỡng quy định, và có hồ sơ chứng minh",
+        "Sống cùng địa chỉ thường trú với người nộp thuế trong suốt năm tính thuế",
+        "Là con ruột hoặc cha mẹ ruột của người nộp thuế, không tính các quan hệ khác",
+        "Chưa từng được đăng ký giảm trừ bởi bất kỳ người nộp thuế nào trong quá khứ"
+      ],
+      "correct": 0,
+      "explanation": "Điều kiện xoay quanh khả năng tự nuôi sống, không xoay quanh nơi cư trú hay quan hệ huyết thống trực hệ. Điểm cần nhớ trong thực tế: mỗi người phụ thuộc chỉ được một người nộp thuế đăng ký, nên vợ chồng phải thống nhất ai đứng tên."
+    }
     ],
     keyTakeaways: [
       "Năm 2026: giảm trừ bản thân 15,5 triệu/tháng, mỗi người phụ thuộc 6,2 triệu/tháng (NQ 110/2025/UBTVQH15)",
@@ -988,6 +999,17 @@ export const VN_TAX_LESSONS: Lesson[] = [
         explanation:
           "Ủy quyền cho công ty là cách đơn giản nhất khi bạn chỉ có một nguồn thu nhập. Có nhiều nguồn thì thường phải tự quyết toán để tổng hợp đầy đủ.",
       },
+    {
+      "question": "Người có thu nhập từ hai nơi trở lên trong năm phải xử lý quyết toán thế nào?",
+      "options": [
+        "Tự quyết toán trực tiếp với cơ quan thuế, không được ủy quyền cho công ty nào",
+        "Ủy quyền cho công ty trả thu nhập cao nhất thực hiện quyết toán thay",
+        "Ủy quyền cho công ty nơi làm việc gần nhất trong năm tính thuế",
+        "Không phải quyết toán nếu cả hai nơi đều đã khấu trừ thuế hằng tháng"
+      ],
+      "correct": 0,
+      "explanation": "Mỗi nơi chỉ khấu trừ dựa trên phần thu nhập họ trả, nên gộp lại thường rơi vào bậc cao hơn và còn thiếu thuế. Không nơi nào có bức tranh đầy đủ, vì thế việc tổng hợp phải do chính người nộp thuế làm."
+    }
     ],
     keyTakeaways: [
       "Thuế khấu trừ hằng tháng chỉ là tạm tính; quyết toán mới xác định nghĩa vụ thực của cả năm",
@@ -1163,6 +1185,17 @@ export const VN_TAX_LESSONS: Lesson[] = [
         explanation:
           "Mức 10% là khấu trừ tại nguồn cố định, không phản ánh bậc thuế thực của bạn. Khi gộp cả năm và trừ các khoản giảm trừ, nghĩa vụ thực có thể thấp hơn - phần chênh được hoàn.",
       },
+    {
+      "question": "Vì sao thu nhập vãng lai đã bị khấu trừ 10% vẫn phải kê khai lại khi quyết toán?",
+      "options": [
+        "Vì mức 10% chỉ là tạm khấu trừ, số phải nộp thật tính trên cả năm",
+        "Vì cơ quan thuế cần đối chiếu với số liệu do bên chi trả báo cáo",
+        "Vì thu nhập vãng lai chịu thuế suất riêng cao hơn thu nhập từ lương",
+        "Vì phần đã khấu trừ sẽ được hoàn lại toàn bộ sau khi kê khai đầy đủ"
+      ],
+      "correct": 0,
+      "explanation": "Mười phần trăm là con số cố định áp cho tiện, không phải nghĩa vụ thuế thật của bạn. Người thu nhập thấp thường được hoàn lại phần lớn khoản này, còn người thu nhập cao có thể phải nộp thêm - chỉ quyết toán mới ra con số đúng."
+    }
     ],
     keyTakeaways: [
       "Thu nhập vãng lai từ 5 triệu đồng/lần trở lên bị khấu trừ 10% tại nguồn (NĐ 253/2026/NĐ-CP)",
