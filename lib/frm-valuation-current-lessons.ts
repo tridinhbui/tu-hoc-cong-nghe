@@ -150,6 +150,27 @@ export const FRM_VALUATION_CURRENT_LESSONS: Lesson[] = [
         text: "Quan điểm của bạn về hướng đi của cổ phiếu đã nằm trong giá cổ phiếu hiện tại - thứ mà công thức lấy làm đầu vào. Đưa thêm dự báo vào lần nữa là tính hai lần cùng một thông tin."
       },
       {
+        type: "heading",
+        text: "Dựng lại một quyền chọn bằng cổ phiếu và tiền vay"
+      },
+      {
+        type: "paragraph",
+        text: "Cổ phiếu đang 100, sau một kỳ chỉ có thể lên 120 hoặc xuống 90. Lãi suất phi rủi ro 5%. Quyền chọn mua giá thực hiện 100 trả 20 ở nhánh trên, 0 ở nhánh dưới. Mua Δ cổ phiếu và vay B, chọn Δ và B sao cho danh mục trả đúng 20 và 0: Δ = (20 − 0)/(120 − 90) = 0,667, và B = −57,14. Kiểm lại: nhánh trên 0,667×120 − 57,14×1,05 = 20; nhánh dưới 0,667×90 − 57,14×1,05 = 0. Danh mục này giống hệt quyền chọn trong MỌI kịch bản, nên hôm nay nó phải có cùng giá: 0,667×100 − 57,14 = 9,52."
+      },
+      {
+        type: "callout",
+        label: "Nếu quyền chọn không bán ở 9,52 thì có tiền miễn phí",
+        text: "Giả sử thị trường ra giá 11. Bán quyền chọn thu 11, đồng thời mua danh mục sao chép hết 9,52 - bỏ túi 1,48 ngay hôm nay. Đến kỳ sau, dù giá lên 120 hay xuống 90, danh mục trả đúng bằng nghĩa vụ của quyền chọn vừa bán, nên khoản 1,48 kia là lợi nhuận không rủi ro, không cần vốn. Chính vì ai cũng làm được điều đó nên giá 11 không tồn tại lâu, và đó là toàn bộ sức mạnh của một giả định nghe rất yếu."
+      },
+      {
+        type: "heading",
+        text: "Xác suất trung hoà rủi ro chỉ là cách viết khác của cùng phép tính"
+      },
+      {
+        type: "paragraph",
+        text: "Từ đúng bộ số trên, đặt π = [(1 + 0,05)×100 − 90] / (120 − 90) = 0,5. Giá quyền chọn = (0,5×20 + 0,5×0) / 1,05 = 9,52 - trùng khít con số vừa dựng bằng danh mục sao chép. π KHÔNG phải xác suất thật của việc giá lên; nó là con số khiến cổ phiếu, nếu chiết khấu ở lãi suất phi rủi ro, có giá đúng bằng 100 hôm nay. Nói cách khác, xác suất thật đã bị thay thế bằng giá cổ phiếu - và đó là lý do dự đoán của bạn về hướng đi không xuất hiện ở đâu trong công thức."
+      },
+      {
         type: "closing",
         lines: [
           "Định giá không hỏi giá sẽ đi đâu; nó chỉ hỏi giá nào khiến không ai kiếm được tiền miễn phí.",
@@ -469,6 +490,43 @@ export const FRM_VALUATION_CURRENT_LESSONS: Lesson[] = [
         type: "callout",
         label: "Giả định gãy đầu tiên khi thị trường sụp",
         text: "Mô hình giả định giá đi liên tục, không nhảy. Đúng vào những ngày quan trọng nhất - tin bất ngờ, mở cửa sau cú sốc qua đêm - giá nhảy một bước lớn, danh mục phòng hộ không kịp chỉnh, và sai số phòng hộ bùng ra đúng lúc nó đắt nhất."
+      },
+      {
+        type: "conceptTable",
+        title: "Năm giả định, và thị trường vi phạm chúng ra sao",
+        subtitle: "Không giả định nào đúng; câu hỏi là sai theo hướng nào và bao nhiêu",
+        concepts: [
+          {
+            vi: "Biến động không đổi",
+            en: "Constant volatility",
+            def: "Vi phạm rõ nhất và đo được: nếu đúng, biến động hàm ý phải bằng nhau ở mọi giá thực hiện. Thực tế nó vẽ thành nụ cười - quyền chọn xa tiền đắt hơn mô hình. Chính nụ cười đó là bằng chứng thị trường không tin giả định này."
+          },
+          {
+            vi: "Giá đi liên tục, không nhảy",
+            en: "Continuous paths",
+            def: "Vỡ đúng vào những ngày quan trọng nhất: công bố kết quả, tin bất ngờ, mở cửa sau cú sốc qua đêm. Mô hình cho rằng phòng hộ động luôn kịp; một cú nhảy qua đêm là chỗ nó không kịp."
+          },
+          {
+            vi: "Vay và cho vay cùng một lãi suất phi rủi ro",
+            en: "Single risk-free rate",
+            def: "Không ai vay được ở lãi suất kho bạc. Chênh lệch này nhỏ với quyền chọn ngắn hạn, lớn dần theo kỳ hạn."
+          },
+          {
+            vi: "Không phí giao dịch, chia nhỏ vô hạn",
+            en: "Frictionless markets",
+            def: "Phòng hộ động cần giao dịch liên tục. Có phí thì càng phòng hộ dày càng tốn, nên trong thực tế người ta phòng hộ theo ngưỡng - và chấp nhận sai số."
+          },
+          {
+            vi: "Lợi suất phân phối loga chuẩn",
+            en: "Lognormal returns",
+            def: "Đuôi thật dày hơn phân phối chuẩn. Những cú giảm mà mô hình coi là gần như không thể xảy ra vài lần trong một đời người."
+          }
+        ]
+      },
+      {
+        type: "callout",
+        label: "Vì sao một mô hình sai vẫn không bị thay",
+        text: "Vì cả ngành đã đồng ý dùng nó làm đơn vị quy đổi. Không ai nói 'quyền chọn này giá 4,20 đô' rồi so với một quyền chọn khác giá 6,80 - hai con số đó không so được vì khác giá thực hiện, khác kỳ hạn. Nói 'biến động hàm ý 22% so với 28%' thì so được ngay. Công thức được dùng ngược: cắm giá thị trường vào, giải ra biến động. Ở chiều đó, tính đúng hay sai của giả định không còn quan trọng bằng việc mọi người dùng chung một cái thước."
       },
       {
         type: "closing",
@@ -1108,6 +1166,36 @@ export const FRM_VALUATION_CURRENT_LESSONS: Lesson[] = [
         text: "Khi nhiều định chế mua mô hình từ cùng vài nhà cung cấp và huấn luyện trên dữ liệu tương tự, họ bắt đầu phản ứng giống nhau trước cùng một tín hiệu. Đây là tính đồng loạt - thứ đã biến nhiều cú sốc riêng lẻ thành khủng hoảng chung, giờ có thêm một kênh lan truyền mới."
       },
       {
+        type: "heading",
+        text: "Vì sao bỏ biến nhạy cảm ra không giải quyết được gì"
+      },
+      {
+        type: "paragraph",
+        text: "Một mô hình chấm điểm tín dụng không được dùng giới tính hay dân tộc - và việc bỏ hai cột đó ra là bước dễ nhất, cũng là bước ít tác dụng nhất. Mã bưu chính, loại điện thoại dùng để nộp hồ sơ, giờ trong ngày người vay bấm nút, tên cửa hàng hay xuất hiện trong sao kê: mỗi biến chỉ tương quan yếu với nhóm dân cư, nhưng một mô hình phi tuyến với vài trăm biến ghép chúng lại và tái tạo được biến đã bị xoá với độ chính xác cao. Đó là lý do kiểm định công bằng phải đo trên KẾT QUẢ theo từng nhóm, không phải kiểm danh sách biến đầu vào."
+      },
+      {
+        type: "conceptTable",
+        title: "Ba câu hỏi cơ quan quản lý sẽ hỏi, và thứ phải chuẩn bị sẵn",
+        subtitle: "Đều trả lời được trước khi triển khai, hoặc không trả lời được nữa",
+        concepts: [
+          {
+            vi: "Vì sao hồ sơ này bị từ chối",
+            en: "Adverse action reason",
+            def: "Phải nêu được lý do cụ thể cho từng quyết định. Mô hình cây tăng cường với hàng nghìn nhánh không tự nêu được, nên cần một lớp giải thích - và lời giải thích ấy phải khớp với quyết định thật, không phải một câu chung chung dán vào sau."
+          },
+          {
+            vi: "Mô hình có đối xử khác nhau giữa các nhóm không",
+            en: "Disparate impact",
+            def: "Đo tỷ lệ chấp thuận và tỷ lệ sai theo từng nhóm, không phải xem danh sách biến. Một mô hình sạch về đầu vào vẫn có thể lệch rõ ở đầu ra."
+          },
+          {
+            vi: "Mô hình còn đúng không",
+            en: "Ongoing monitoring",
+            def: "Học máy suy giảm nhanh hơn hồi quy khi hành vi đổi, vì nó bám sát dữ liệu huấn luyện hơn. Cần theo dõi trôi dạt phân phối đầu vào, không chỉ theo dõi độ chính xác - độ chính xác chỉ tụt sau khi thiệt hại đã xảy ra."
+          }
+        ]
+      },
+      {
         type: "closing",
         lines: [
           "Một mô hình không giải thích được là một mô hình không phản biện được.",
@@ -1551,6 +1639,30 @@ export const FRM_VALUATION_CURRENT_LESSONS: Lesson[] = [
         type: "callout",
         label: "Kịch bản đáng lo nhất là tháo chạy",
         text: "Tháo chạy ngân hàng truyền thống bị hãm bởi ma sát: phải xếp hàng, và chỗ chuyển sang cũng là một ngân hàng khác cũng có rủi ro. CBDC xoá cả hai ma sát cùng lúc, nên tốc độ rút tiền có thể vượt xa mọi mô hình hiệu chỉnh từ lịch sử - đây là lý do trần nắm giữ gần như luôn có mặt trong các đề án."
+      },
+      {
+        type: "heading",
+        text: "Con số làm rõ vì sao đây là câu hỏi cấu trúc"
+      },
+      {
+        type: "paragraph",
+        text: "Một ngân hàng thương mại điển hình huy động phần lớn nguồn vốn từ tiền gửi, và tiền gửi không kỳ hạn là nguồn rẻ nhất - trả gần 0% trong khi tài sản cho vay sinh lời vài phần trăm. Chênh lệch đó là phần lớn lợi nhuận của mô hình ngân hàng. Nếu người dân chuyển được một phần tiền gửi sang tài khoản ở ngân hàng trung ương, ngân hàng phải bù bằng nguồn đắt hơn - phát hành giấy tờ có giá hoặc huy động kỳ hạn - và chi phí vốn tăng lên. Chi phí ấy không biến mất; nó đi vào lãi suất cho vay."
+      },
+      {
+        type: "callout",
+        label: "Hạn mức nắm giữ không phải chi tiết kỹ thuật",
+        text: "Đó là lý do gần như mọi thiết kế CBDC đang thử nghiệm đều đặt trần số dư mỗi người được giữ, hoặc trả lãi 0% và bậc thang âm khi vượt ngưỡng. Cả hai đều nhằm đúng một việc: giữ CBDC ở vai trò phương tiện thanh toán, chặn nó trở thành nơi trú ẩn khi có biến. Con số trần đó chính là nút vặn quyết định ngân hàng thương mại mất bao nhiêu tiền gửi - và nó là một lựa chọn chính sách, không phải tham số kỹ thuật."
+      },
+      {
+        type: "comparison",
+        left: {
+          label: "Tháo chạy ngân hàng kiểu cũ",
+          text: "Bị hãm bởi ma sát: phải đến quầy hoặc chờ chuyển khoản, và nơi chuyển tới cũng là một ngân hàng có rủi ro. Thời gian đó đủ để nhà điều hành can thiệp."
+        },
+        right: {
+          label: "Tháo chạy khi có CBDC",
+          text: "Không ma sát và không cần chọn ngân hàng thay thế: đích đến là chính ngân hàng trung ương, an toàn tuyệt đối theo định nghĩa. Tốc độ tính bằng phút, và điều đó đổi hẳn bài toán xử lý khủng hoảng."
+        }
       },
       {
         type: "closing",
