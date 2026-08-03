@@ -7,6 +7,12 @@ import { createClient } from "@/lib/supabase";
 import { BookOpen, Loader2, ChevronRight, ArrowLeft, Library, ListChecks, CheckCircle2, Circle, PlayCircle } from "lucide-react";
 import type { LessonMeta } from "@/lib/lesson-types";
 import type { CfaSubject } from "@/lib/cfa-track";
+// Số lượng đọc thẳng từ dữ liệu, không gõ tay vào chuỗi quảng cáo. Banner từng
+// ghi "500+ thuật ngữ" trong khi bộ thẻ có 75, và "100% công thức thi CFA"
+// trong khi sổ có 98 - không phải ai nói dối, mà là con số được gõ một lần rồi
+// dữ liệu đi tiếp còn chuỗi thì đứng yên. Đọc từ nguồn thì nó không lệch được.
+import { CFA_GLOSSARY_TERMS } from "@/lib/cfa-glossary-terms";
+import { CFA_FORMULAS_DATA } from "@/lib/cfa-formulas-data";
 import { toTitleCase } from "@/lib/cfa-format";
 import { useRoutePrefetch } from "@/lib/use-route-prefetch";
 
@@ -258,7 +264,7 @@ export default function CfaTrackView({ subjects, completedLessonIds }: Props) {
               Bộ Thẻ Thuật Ngữ CFA Song Ngữ
             </h3>
             <p className="text-[10px] text-stone-500 dark:text-stone-400 line-clamp-2 leading-normal">
-              500+ thuật ngữ En-Vi kèm định nghĩa, công thức &amp; phát âm En-US.
+              {CFA_GLOSSARY_TERMS.length} thuật ngữ En-Vi kèm định nghĩa, công thức &amp; phát âm En-US.
             </p>
           </div>
 
@@ -283,7 +289,7 @@ export default function CfaTrackView({ subjects, completedLessonIds }: Props) {
               Sổ Tay Công Thức CFA Level 1
             </h3>
             <p className="text-[10px] text-stone-500 dark:text-stone-400 line-clamp-2 leading-normal">
-              Tổng hợp 100% công thức thi CFA (TVM, WACC, DuPont, Duration, CAPM...).
+              {CFA_FORMULAS_DATA.length} công thức trọng yếu (TVM, WACC, DuPont, Duration, CAPM...).
             </p>
           </div>
 

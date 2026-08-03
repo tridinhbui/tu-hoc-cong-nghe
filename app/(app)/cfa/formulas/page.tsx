@@ -4,7 +4,8 @@ import CfaFormulaCheatSheet from "@/components/CfaFormulaCheatSheet";
 
 export const metadata = {
   title: "Sổ Tay Công Thức CFA Level 1 | TuHocTaiChinh.org",
-  description: "Trang tổng hợp 100% công thức thi CFA Level 1 với thẻ phân số tầng trực quan, giải thích biến số và ví dụ tính toán số thực tế.",
+  description:
+    "Sổ tay công thức CFA Level 1: thẻ phân số tầng trực quan, giải thích từng biến số và ví dụ tính toán bằng số thực tế cho cả mười môn thi.",
 };
 
 export default function CfaFormulasPage() {
@@ -21,7 +22,7 @@ export default function CfaFormulasPage() {
           </Link>
           <div>
             <h1 className="text-xl font-bold text-stone-900 dark:text-stone-100">Sổ Tay Công Thức CFA Level 1</h1>
-            <p className="text-xs text-stone-500 dark:text-stone-400 mt-0.5">Tổng hợp 100% Công thức thi & Ví dụ tính số thực tế</p>
+            <p className="text-xs text-stone-500 dark:text-stone-400 mt-0.5">Công thức trọng yếu cả mười môn, kèm ví dụ tính bằng số thực tế</p>
           </div>
         </div>
       </div>
