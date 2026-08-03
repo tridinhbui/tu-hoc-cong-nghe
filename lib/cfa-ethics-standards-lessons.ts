@@ -39,6 +39,49 @@ export const CFA_ETHICS_STANDARDS_LESSONS: Lesson[] = [
     correctOption: 1,
     explanation:
       "Phản xạ đầu tiên của phần lớn người học là nhảy thẳng tới hành động - từ chối, tuân theo, hoặc tìm cách lách. Khung ra quyết định đặt một bước trước đó: mô tả tình huống cho đủ trước khi phán xét nó. Ai là người bị ảnh hưởng thật sự - khách hàng đọc báo cáo, nhà tuyển dụng, thị trường nói chung? Nghĩa vụ nào đang xung đột với nghĩa vụ nào? Có sự thật nào bạn chưa biết mà nếu biết sẽ đổi kết luận không? Rất nhiều tình huống trông như vi phạm hóa ra chỉ thiếu một lần công bố, và ngược lại, nhiều tình huống trông vô hại lại vi phạm khi nhìn từ phía người bị ảnh hưởng.",
+    sections: [
+      {
+        "type": "lead",
+        "text": "Phần lớn tình huống đạo đức thực tế không đến kèm nhãn Standard nào áp dụng. Khung ra quyết định là công cụ dùng khi bạn chưa biết mình đang đối mặt với điều gì."
+      },
+      {
+        "type": "heading",
+        "text": "Bốn bước"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Nhận diện: sự thật là gì, ai bị ảnh hưởng, nghĩa vụ nào đang xung đột với nghĩa vụ nào.",
+          "Cân nhắc: các phương án hành động và hệ quả của từng phương án với từng bên.",
+          "Hành động: chọn, thực hiện, và ghi lại lý do.",
+          "Nhìn lại: kết quả có như dự tính không, và lần sau nên khác chỗ nào."
+        ]
+      },
+      {
+        "type": "callout",
+        "label": "Sai lầm phổ biến nhất",
+        "text": "Nhảy thẳng tới hành động - từ chối, tuân theo, hoặc tìm cách lách. Tra Standard quá sớm cũng thuộc nhóm này: khi tình huống chưa được mô tả đủ, bạn rất dễ tra nhầm Standard rồi lập luận rất chặt trên một nền sai."
+      },
+      {
+        "type": "heading",
+        "text": "Vì sao bước mô tả lại quan trọng đến vậy"
+      },
+      {
+        "type": "paragraph",
+        "text": "Rất nhiều tình huống trông như vi phạm hóa ra chỉ thiếu một lần công bố. Ngược lại, nhiều tình huống trông vô hại lại vi phạm khi nhìn từ phía người bị ảnh hưởng. Ba câu hỏi mở khóa hầu hết trường hợp: ai thực sự bị ảnh hưởng, nghĩa vụ nào chọi nghĩa vụ nào, và có sự thật nào bạn chưa biết mà nếu biết sẽ đổi kết luận."
+      },
+      {
+        "type": "paragraph",
+        "text": "Hỏi ý kiến người khác là để bù điểm mù của chính mình, không phải để chia sẻ trách nhiệm - trách nhiệm vẫn thuộc về người ra quyết định. Và bước nhìn lại bị bỏ nhiều nhất vì không ai thúc bạn làm, dù nó là bước duy nhất biến sự việc thành kinh nghiệm."
+      },
+      {
+        "type": "closing",
+        "lines": [
+          "Đạo đức nghề nghiệp không phải trí nhớ về các Standard.",
+          "Nó là thói quen mô tả tình huống cho đủ trước khi hành động."
+        ]
+      }
+    ],
     diagram: [
       { label: "Nhận diện: sự thật, các bên liên quan, nghĩa vụ, xung đột", arrow: true },
       { label: "Cân nhắc: hỏi ý kiến, tìm thêm dữ kiện, xét các phương án", arrow: true },
@@ -620,6 +663,48 @@ export const CFA_ETHICS_STANDARDS_LESSONS: Lesson[] = [
     correctOption: 1,
     explanation:
       "Mosaic theory nói rằng kết luận trọng yếu được tạo ra bằng cách ghép các mảnh không trọng yếu và không phải thông tin nội bộ là tài sản hợp pháp của người phân tích. Logic đằng sau rất thẳng: nếu cấm điều này thì phần thưởng cho việc nghiên cứu biến mất, và thị trường mất đi chính cơ chế đưa thông tin vào giá. Ranh giới nằm ở ba câu hỏi. Từng mảnh có trọng yếu không - nếu một nhà cung cấp nói cho bạn biết tổng doanh thu chưa công bố thì mảnh đó đã trọng yếu rồi. Nguồn có nghĩa vụ giữ bí mật không - nếu người nói đang vi phạm nghĩa vụ của họ, bạn không sạch chỉ vì bạn là người nghe. Và bạn có biết điều đó không.",
+    sections: [
+      {
+        "type": "lead",
+        "text": "Mosaic theory là ranh giới giữa phân tích xuất sắc và giao dịch nội gián - và nó nằm ở nguyên liệu đầu vào, không ở kết luận đầu ra."
+      },
+      {
+        "type": "heading",
+        "text": "Nguyên tắc"
+      },
+      {
+        "type": "paragraph",
+        "text": "Kết luận trọng yếu tạo ra bằng cách ghép nhiều mảnh thông tin công khai hoặc không trọng yếu là tài sản hợp pháp của người phân tích. Logic đằng sau rất thẳng: nếu cấm điều này thì phần thưởng cho việc nghiên cứu biến mất, và thị trường mất chính cơ chế đưa thông tin vào giá."
+      },
+      {
+        "type": "callout",
+        "label": "Kết luận trọng yếu là mục tiêu, không phải vấn đề",
+        "text": "Chỗ cần xét không bao giờ là kết luận của bạn có quan trọng hay không - mà là từng mảnh đầu vào đến từ đâu."
+      },
+      {
+        "type": "heading",
+        "text": "Ba câu hỏi xác định ranh giới"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Từng mảnh có trọng yếu không? Nếu một nhà cung cấp nói cho bạn tổng doanh thu chưa công bố, mảnh đó đã trọng yếu rồi và cả chuỗi hỏng.",
+          "Nguồn có nghĩa vụ giữ bí mật không? Nếu người nói đang vi phạm nghĩa vụ của họ, bạn không sạch chỉ vì bạn là người nghe.",
+          "Bạn có biết điều đó không? Biết hoặc lẽ ra phải biết đều dẫn tới cùng một kết luận."
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "Điều phân biệt một lập luận mosaic thật với một lời chối khi bị hỏi lại là hồ sơ: ghi lại nguồn của từng mảnh, ngày lấy, và cách chúng được ghép thành kết luận. Không có hồ sơ thì hai trường hợp trông giống hệt nhau từ bên ngoài."
+      },
+      {
+        "type": "closing",
+        "lines": [
+          "Kết luận của bạn có thể trọng yếu.",
+          "Nguyên liệu làm ra nó thì không được phép."
+        ]
+      }
+    ],
     diagram: [
       { label: "Từng mảnh: không trọng yếu và không phải thông tin nội bộ", arrow: true },
       { label: "Nguồn không vi phạm nghĩa vụ bảo mật nào", arrow: true },

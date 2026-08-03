@@ -505,6 +505,43 @@ export const CFA_ETHICS_CASES_LESSONS: Lesson[] = [
     correctOption: 1,
     explanation:
       "Standard V(A) cho phép dựa vào nghiên cứu của bên khác, nhưng không cho phép chuyển trách nhiệm sang họ. Mức thẩm định cần thiết phụ thuộc vào hoàn cảnh: một tổ chức có quy trình đã được kiểm chứng và bạn đã dùng nhiều lần thì mức thẩm định thấp hơn một nguồn mới hoặc một nguồn có xung đột lợi ích rõ. Những câu hỏi tối thiểu luôn phải trả lời được: nghiên cứu dựa trên giả định gì, dữ liệu lấy từ đâu, có ai trả tiền cho nghiên cứu này không, và kết luận có nhất quán với những gì bạn biết về doanh nghiệp không. Không trả lời được thì bạn đang đưa khuyến nghị không có cơ sở của chính mình.",
+    sections: [
+      {
+        "type": "lead",
+        "text": "Dùng nghiên cứu của bên khác là chuyện bình thường và cần thiết - không ai tự phân tích được mọi thứ. Standard V(A) cho phép điều đó, nhưng không cho phép chuyển trách nhiệm sang họ."
+      },
+      {
+        "type": "heading",
+        "text": "Mức thẩm định phụ thuộc vào nguồn"
+      },
+      {
+        "type": "paragraph",
+        "text": "Một tổ chức có quy trình đã được kiểm chứng và bạn đã dùng nhiều lần thì đòi hỏi mức thẩm định thấp hơn một nguồn mới, hoặc một nguồn có xung đột lợi ích rõ ràng. Đây là nguyên tắc tỷ lệ chứ không phải một ngưỡng cố định."
+      },
+      {
+        "type": "callout",
+        "label": "Bốn câu hỏi tối thiểu",
+        "text": "Nghiên cứu dựa trên giả định gì? Dữ liệu lấy từ đâu? Có ai trả tiền cho nghiên cứu này không? Kết luận có nhất quán với những gì bạn đã biết về doanh nghiệp không? Không trả lời được thì bạn đang đưa ra khuyến nghị không có cơ sở của chính mình."
+      },
+      {
+        "type": "heading",
+        "text": "Hai tình huống đặc thù"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Nghiên cứu do chính doanh nghiệp được phân tích trả tiền: kéo theo cả Standard I(B) về tính độc lập, nên phải công bố nguồn tài trợ chứ không chỉ thẩm định nội dung.",
+          "Hai nguồn uy tín cho kết luận trái ngược: đây là tín hiệu phải đào sâu, không phải bằng chứng rằng một bên sai. Chọn bên hợp với kết luận có sẵn của mình là thiên kiến xác nhận mặc áo nghiên cứu."
+        ]
+      },
+      {
+        "type": "closing",
+        "lines": [
+          "Trích nguồn giải quyết vấn đề bản quyền.",
+          "Nó không giải quyết vấn đề cơ sở hợp lý - cái đó vẫn là của bạn."
+        ]
+      }
+    ],
     diagram: [
       { label: "Được dựa vào nghiên cứu bên thứ ba", arrow: true },
       { label: "Không được chuyển trách nhiệm sang họ", arrow: true },
@@ -621,6 +658,48 @@ export const CFA_ETHICS_CASES_LESSONS: Lesson[] = [
     correctOption: 1,
     explanation:
       "Đây là điểm hay bị bỏ qua nhất trong dạng case này. Vi phạm Standard I(B) nằm ở phía người tạo sức ép và nó hoàn tất ngay khi sức ép được truyền đi - nếu chỉ tính lúc nhà phân tích đã đổi khuyến nghị thì mọi lần gây sức ép không thành công đều vô can, và điều đó khiến Standard mất hết tác dụng phòng ngừa. Với bạn - người nhận sức ép - nghĩa vụ chưa bị vi phạm nhưng đã phát sinh: giữ nguyên kết luận có cơ sở, ghi lại sự việc, và đưa vấn đề lên bộ phận tuân thủ. Im lặng làm theo thì thêm vi phạm V(A) vì khuyến nghị mới không còn cơ sở hợp lý, và V(B) vì bạn đang trình bày một ý kiến không phải của mình như thể là phân tích của bạn.",
+    sections: [
+      {
+        "type": "lead",
+        "text": "Bạn viết khuyến nghị bán. Bộ phận bảo lãnh phát hành đang chào một thương vụ với chính doanh nghiệp đó, và họ tìm bạn để trao đổi. Đây là dạng xung đột lợi ích được viết vào cấu trúc kinh doanh, không phải do ai cố ý."
+      },
+      {
+        "type": "heading",
+        "text": "Vi phạm hoàn tất khi nào"
+      },
+      {
+        "type": "paragraph",
+        "text": "Standard I(B) bị vi phạm ở phía người tạo sức ép, và nó hoàn tất ngay khi sức ép được truyền đi - không chờ tới lúc bạn đổi khuyến nghị. Nếu chỉ tính khi nhà phân tích đã chịu thua thì mọi lần gây sức ép không thành công đều vô can, và Standard mất hết tác dụng phòng ngừa."
+      },
+      {
+        "type": "callout",
+        "label": "Nếu bạn im lặng làm theo",
+        "text": "Bạn thêm hai vi phạm nữa: V(A) vì khuyến nghị mới không còn cơ sở hợp lý, và V(B) vì bạn đang trình bày ý kiến của người khác như thể là phân tích của mình. Ba vi phạm chồng lên nhau."
+      },
+      {
+        "type": "heading",
+        "text": "Phản ứng đúng"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Giữ nguyên kết luận nếu nó có cơ sở - sức ép không phải bằng chứng mới.",
+          "Ghi lại sự việc: ai nói gì, khi nào, qua kênh nào.",
+          "Đưa vấn đề lên bộ phận tuân thủ, vì đây là lỗi hệ thống chứ không phải mâu thuẫn cá nhân."
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "Điểm cuối cùng là điểm quan trọng nhất: cuộc trao đổi này lẽ ra đã bị bức tường thông tin chặn ngay từ đầu. Khi xung đột nằm trong cấu trúc kinh doanh, giải pháp phải là cơ chế - tách bộ phận, tách đường báo cáo, tách cách trả lương - chứ không phải trông chờ vào sự cứng rắn của từng cá nhân."
+      },
+      {
+        "type": "closing",
+        "lines": [
+          "Nhắc nhau khách quan hơn không sửa được xung đột cấu trúc.",
+          "Chỉ có cơ chế mới làm được."
+        ]
+      }
+    ],
     diagram: [
       { label: "I(B): vi phạm hoàn tất khi sức ép được truyền đi", arrow: true },
       { label: "Nếu đổi khuyến nghị: thêm V(A) - mất cơ sở hợp lý", arrow: true },
@@ -1206,6 +1285,48 @@ export const CFA_ETHICS_CASES_LESSONS: Lesson[] = [
     correctOption: 1,
     explanation:
       "Một con số duy nhất phủ lên cả hai giai đoạn phát đi thông điệp rằng chiến lược đã hoạt động liên tục sáu năm, trong khi bốn năm đầu không có đồng nào thật được đầu tư và các tham số đã được chọn sau khi biết kết quả. Standard III(D) yêu cầu trình bày công bằng, chính xác và đầy đủ - và ở đây cả ba đều bị chạm: không công bằng vì mô phỏng và thực tế không cùng loại bằng chứng, không đầy đủ vì người đọc không biết đâu là đâu, và không chính xác về mặt điều nó ngụ ý dù từng con số riêng lẻ có thể đúng.",
+    sections: [
+      {
+        "type": "lead",
+        "text": "Ra mắt một quỹ mới là lúc tài liệu chào bán được viết dưới sức ép huy động vốn. Đó cũng là lúc Standard III(D) về trình bày hiệu suất bị vi phạm nhiều nhất - thường không phải bằng một con số sai."
+      },
+      {
+        "type": "heading",
+        "text": "Gộp mô phỏng với vận hành thật"
+      },
+      {
+        "type": "paragraph",
+        "text": "Chiến lược chạy mô phỏng bốn năm rồi vận hành thật hai năm, và tài liệu trình bày một đường hiệu suất sáu năm liền mạch. Từng con số riêng lẻ có thể đúng, nhưng thông điệp thì sai: người đọc hiểu rằng chiến lược đã hoạt động liên tục sáu năm, trong khi bốn năm đầu không có đồng nào thật được đầu tư và các tham số đã được chọn sau khi biết kết quả."
+      },
+      {
+        "type": "callout",
+        "label": "Ba yêu cầu bị chạm cùng lúc",
+        "text": "Không công bằng - mô phỏng và thực tế không cùng loại bằng chứng. Không đầy đủ - người đọc không biết đâu là đâu. Không chính xác về điều nó ngụ ý, dù từng số có thể kiểm chứng được."
+      },
+      {
+        "type": "heading",
+        "text": "Ba lỗi còn lại trong cùng bộ tài liệu"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Chuẩn tham chiếu sai loại: so quỹ cổ phiếu vốn hóa nhỏ với chỉ số vốn hóa lớn là sai lệch mà không cần một con số sai nào.",
+          "Cách dùng danh xưng CFA: Standard VII(B) áp dụng nguyên vẹn trong tài liệu marketing, không có ngoại lệ cho mục đích bán hàng.",
+          "Tuyên bố về năng lực đội ngũ: mọi khẳng định theo Standard I(C) phải kiểm chứng được, kể cả những câu nghe như lời quảng cáo thông thường."
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "Một điểm hay bị bỏ qua: nếu tài liệu tuyên bố tuân thủ GIPS, tuyên bố đó kéo theo nghĩa vụ ở cấp toàn công ty chứ không riêng quỹ đang chào bán - và không đáp ứng được thì bản thân câu tuyên bố là một vi phạm."
+      },
+      {
+        "type": "closing",
+        "lines": [
+          "Không con số nào trong bộ tài liệu này sai.",
+          "Nhưng bức tranh chúng vẽ ra thì không có thật."
+        ]
+      }
+    ],
     diagram: [
       { label: "III(D): gộp mô phỏng với thật là trình bày sai lệch", arrow: true },
       { label: "VII(B): danh xưng của đội ngũ phải mô tả đúng tình trạng", arrow: true },

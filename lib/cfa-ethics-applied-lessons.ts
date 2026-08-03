@@ -965,6 +965,51 @@ export const CFA_ETHICS_APPLIED_LESSONS: Lesson[] = [
     correctOption: 1,
     explanation:
       "Đây là quy tắc nền của GIPS và nó tồn tại để chặn đúng hành vi trên. Nếu được tuyên bố cho từng sản phẩm, công ty sẽ chọn sản phẩm có kết quả đẹp để gắn nhãn tuân thủ và im lặng về phần còn lại - tức là dùng GIPS để làm chính điều GIPS sinh ra để ngăn. Tuân thủ ở cấp công ty nghĩa là mọi danh mục có quyền quyết định đầu tư đều phải được đưa vào ít nhất một composite, và mọi composite đều phải được trình bày khi có bên yêu cầu. Không có chỗ nào để giấu một chiến lược thất bại.",
+    sections: [
+      {
+        "type": "lead",
+        "text": "GIPS ở mức nguyên tắc thì dễ đồng ý. Ở mức vận hành, ba quy tắc dưới đây là thứ quyết định chuẩn này có tác dụng hay không."
+      },
+      {
+        "type": "heading",
+        "text": "Tuân thủ chỉ tuyên bố được ở cấp toàn công ty"
+      },
+      {
+        "type": "paragraph",
+        "text": "Đây là quy tắc nền, và nó tồn tại để chặn đúng một hành vi: nếu được tuyên bố cho từng sản phẩm, công ty sẽ gắn nhãn tuân thủ lên sản phẩm có kết quả đẹp và im lặng về phần còn lại - tức dùng GIPS để làm chính điều GIPS sinh ra để ngăn."
+      },
+      {
+        "type": "callout",
+        "label": "Hệ quả vận hành",
+        "text": "Mọi danh mục có quyền quyết định đầu tư đều phải nằm trong ít nhất một composite, và mọi composite phải được trình bày khi có bên yêu cầu. Không còn chỗ nào để giấu một chiến lược thất bại."
+      },
+      {
+        "type": "heading",
+        "text": "Composite gộp theo chiến lược, không theo kết quả"
+      },
+      {
+        "type": "paragraph",
+        "text": "Danh mục được xếp vào composite dựa trên chiến lược đầu tư của nó, quyết định từ trước khi biết kết quả. Xếp sau khi biết kết quả là chọn lọc, và đó là hành vi cốt lõi mà chuẩn cấm."
+      },
+      {
+        "type": "comparison",
+        "left": {
+          "label": "Tuân thủ",
+          "text": "Là tuyên bố của chính công ty, kèm nghĩa vụ áp dụng đầy đủ mọi quy định của chuẩn ở cấp toàn công ty."
+        },
+        "right": {
+          "label": "Xác minh",
+          "text": "Là việc bên thứ ba độc lập đánh giá QUY TRÌNH của công ty. Nó không xác nhận từng con số hiệu suất của từng composite."
+        }
+      },
+      {
+        "type": "closing",
+        "lines": [
+          "Chuẩn không làm cho con số đẹp hơn.",
+          "Nó làm cho con số so sánh được - và đó là điều khó hơn nhiều."
+        ]
+      }
+    ],
     diagram: [
       { label: "Tuân thủ chỉ ở cấp toàn công ty", arrow: true },
       { label: "Mọi danh mục có quyền quyết định phải vào một composite", arrow: true },
