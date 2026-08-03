@@ -180,9 +180,18 @@ export default function AppNavbar() {
   useRoutePrefetch(["/dashboard", "/hoc-bai", "/analytics", "/bxh", "/profile", "/ban-be", "/nhom-hoc", "/finsocial", "/bang-tin", "/cong-dong", "/su-nghiep", "/ghi-chu", "/cong-cu", "/game", "/settings", "/tai-lieu", "/kiem-tra", "/phong-van-ky-thuat", "/cfa"]);
 
   useEffect(() => {
-    // Read local storage immediately on mount
+    // Đọc localStorage NGAY khi gắn, và có chủ ý là trong effect chứ không
+    // phải bằng giá trị khởi tạo của useState.
+    //
+    // react-hooks/set-state-in-effect đúng ở hầu hết mọi chỗ, nhưng không đúng
+    // ở đây: máy chủ không có localStorage. Đưa phép đọc này vào useState thì
+    // máy chủ dựng ra một đằng và trình duyệt dựng ra một nẻo ngay lần đầu -
+    // `careerGoalId` quyết định có hiện lời mời chọn mục tiêu nghề hay không,
+    // nên lệch nhau là lệch cả một khối trên màn hình, và React báo lỗi
+    // hydration. Một lần dựng thừa là cái giá đúng để đổi lấy điều đó.
     if (typeof window !== "undefined") {
       const local = localStorage.getItem("active_career_goal") || localStorage.getItem("thtcdn_career_goal") || localStorage.getItem("user_career_goal");
+      // eslint-disable-next-line react-hooks/set-state-in-effect -- hydration, xem chú thích đầu effect
       if (local) setCareerGoalId(local);
     }
 
@@ -322,10 +331,7 @@ export default function AppNavbar() {
     }
   }, [dropdownOpen]);
 
-  useEffect(() => {
-    setMobileMenuOpen(false);
-    setDropdownOpen(false);
-  }, [pathname]);
+
 
   const handleSignOut = async () => {
     setSigningOut(true);
@@ -359,24 +365,71 @@ export default function AppNavbar() {
   };
 
   useEffect(() => {
+    // Cùng trường hợp: máy chủ không biết người đọc đã gấp những mục nào, nên
+    // phép đọc phải xảy ra sau khi hydrate xong. `sectionsHydrated` tồn tại
+    // riêng để tắt hiệu ứng trượt cho tới lúc đó - không có nó thì mọi mục
+    // đang gấp sẽ TRƯỢT gấp lại ngay trước mắt người dùng ở lần dựng đầu.
     try {
       const raw = window.localStorage.getItem(NAV_SECTION_STORAGE_KEY);
-      if (raw) setCollapsedSections(JSON.parse(raw) as string[]);
+      if (raw) {
+        const stored = JSON.parse(raw) as string[];
+        // Bung ngay mục chứa trang đang mở, TRONG cùng một lần đặt trạng thái.
+        //
+        // Lần đầu vào bằng một đường dẫn nằm sâu trong một mục đang gấp thì
+        // trang đang đọc bị giấu khỏi thanh điều hướng. Trước đây có một effect
+        // riêng lo việc này và nó chạy sau effect đọc localStorage, đúng thứ
+        // tự khai báo. Việc bung theo pathname giờ làm lúc render, mà lúc
+        // render ĐẦU TIÊN thì localStorage chưa đọc xong - làm ở đó sẽ bị chính
+        // dòng dưới ghi đè. Nên trường hợp vào lần đầu phải xử lý ở đây, và gộp
+        // vào một lần đặt trạng thái để không tốn thêm một lần dựng.
+        const owning = NAV_SECTIONS.find((section) =>
+          section.links.some((l) => l.href === pathname)
+        );
+        // eslint-disable-next-line react-hooks/set-state-in-effect -- hydration, xem chú thích đầu effect
+        setCollapsedSections(owning ? stored.filter((k) => k !== owning.titleKey) : stored);
+      }
     } catch {
       // Private mode, quota, or a value from an older shape: falling back to
       // the closed default is a fine outcome, so there is nothing to recover.
     }
     setSectionsHydrated(true);
+    // Cố ý chỉ chạy MỘT LẦN, nên `pathname` không nằm trong danh sách phụ
+    // thuộc: đây là việc "vào trang lần đầu", còn việc "chuyển sang trang
+    // khác" đã do khối chỉnh-lúc-render ở trên lo. Thêm pathname vào đây sẽ
+    // bung lại mục mỗi lần đổi trang và đọc lại localStorage mỗi lần, tức ghi
+    // đè luôn cả những mục người dùng vừa gấp.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  // Landing inside a folded section would otherwise hide the page the reader
-  // is actually on, so navigation unfolds it. This runs on the pathname, not
-  // on every render, so folding a section while standing in it still works.
-  useEffect(() => {
+  // Điều chỉnh khi ĐỔI TRANG, làm lúc render chứ không bằng effect.
+  //
+  // Trước đây đây là hai effect chạy theo `pathname`, và cả hai đều gọi
+  // setState thẳng trong thân effect: React dựng xong khung hình mới với menu
+  // còn mở và mục còn gấp, rồi effect chạy và bắt dựng lại lần nữa. Trên một
+  // thanh điều hướng có mặt ở MỌI trang thì đó là hai lần dựng thừa cho mỗi
+  // lần chuyển trang.
+  //
+  // So sánh với lần render trước rồi setState ngay trong thân component là
+  // cách React khuyến nghị cho đúng tình huống này: React huỷ khung hình đang
+  // dựng dở và dựng lại NGAY, trước khi có gì kịp lên màn hình, nên không có
+  // khung hình trung gian nào và không có hiệu ứng nháy.
+  //
+  // Vẫn chỉ chạy khi pathname đổi, nên gấp một mục trong lúc đang đứng ở đó
+  // vẫn gấp được - nếu chạy mỗi lần render thì mục đó bung lại ngay lập tức.
+  const [lastPath, setLastPath] = useState(pathname);
+  if (lastPath !== pathname) {
+    setLastPath(pathname);
+    setMobileMenuOpen(false);
+    setDropdownOpen(false);
+    // Đứng trong một mục đang gấp thì trang đang đọc bị giấu mất, nên chuyển
+    // trang sẽ bung mục chứa nó ra.
     const owning = NAV_SECTIONS.find((section) => section.links.some((l) => l.href === pathname));
-    if (!owning) return;
-    setCollapsedSections((prev) => (prev.includes(owning.titleKey) ? prev.filter((k) => k !== owning.titleKey) : prev));
-  }, [pathname]);
+    if (owning) {
+      setCollapsedSections((prev) =>
+        prev.includes(owning.titleKey) ? prev.filter((k) => k !== owning.titleKey) : prev
+      );
+    }
+  }
 
   // A badge inside a folded section is a prompt that does not exist - which is
   // why Kiểm tra and Học nhóm were pulled out of the groups in the first place.
