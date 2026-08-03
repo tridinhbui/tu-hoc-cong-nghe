@@ -38,6 +38,7 @@ import { CheckCircle2, Circle, BookOpen } from "lucide-react";
 import CareerRoadmapMap from "@/components/CareerRoadmapMap";
 import CareerProfilePanel from "@/components/CareerProfilePanel";
 import { SUGGESTED_JOB_KEYWORDS } from "@/lib/job-search-links";
+import { CAREER_CATEGORY_LABELS, CAREER_CATEGORY_ORDER } from "@/lib/career-categories";
 
 // Beautiful custom 3D card tilt and glow component
 function CareerAvatar({ career, size = 110, className = "" }: { career?: FinanceCareer | null; size?: number; className?: string }) {
@@ -290,13 +291,12 @@ const QUIZ_QUESTIONS = [
   }
 ];
 
+// Tên nhóm ngành suy ra từ lib/career-categories.ts thay vì khai lại ở đây:
+// một nhóm mới thêm vào FinanceCareer["category"] sẽ tự có nút lọc, thay vì
+// lặng lẽ không lọc ra được ở màn hình này.
 const CATEGORIES = [
-  { id: "all", label: "Tất cả" },
-  { id: "investment", label: "Đầu tư & Nghiên cứu" },
-  { id: "accounting", label: "Kế toán & Kiểm soát" },
-  { id: "banking", label: "Ngân hàng & Nguồn vốn" },
-  { id: "advisory", label: "Dịch vụ & Tư vấn" },
-  { id: "data", label: "Dữ liệu & Công nghệ" },
+  { id: "all" as const, label: "Tất cả" },
+  ...CAREER_CATEGORY_ORDER.map((id) => ({ id, label: CAREER_CATEGORY_LABELS[id] })),
 ];
 
 // SVG Radar Chart for role traits visualization
@@ -878,8 +878,19 @@ export default function JobSearchClient() {
               Bản Đồ Việc Làm Tài Chính
             </h1>
           </div>
-          <div className="text-xs text-stone-500 dark:text-stone-400 max-w-sm">
-            Khám phá chi tiết công việc (JD), lộ trình thăng tiến sự nghiệp, yêu cầu kỹ năng và kết nối tuyển dụng trực tuyến.
+          <div className="flex flex-col items-start gap-2 sm:items-end">
+            {/* Lối vào phố nghề 3D. Đặt ngay cạnh tiêu đề chứ không giấu dưới
+                cuối trang: cả khu phố dựng từ chính danh sách nghề của trang
+                này, và người không biết nó tồn tại thì sẽ không bao giờ vào. */}
+            <Link
+              href="/pho-nghe"
+              className="inline-flex items-center gap-1.5 rounded-full bg-stone-900 px-3.5 py-1.5 text-xs font-extrabold text-amber-200 shadow-md transition-colors hover:bg-stone-800 dark:bg-stone-800 dark:hover:bg-stone-700"
+            >
+              🏙️ Đi dạo Phố nghề 3D
+            </Link>
+            <div className="max-w-sm text-xs text-stone-500 dark:text-stone-400">
+              Khám phá chi tiết công việc (JD), lộ trình thăng tiến sự nghiệp, yêu cầu kỹ năng và kết nối tuyển dụng trực tuyến.
+            </div>
           </div>
         </div>
       </div>

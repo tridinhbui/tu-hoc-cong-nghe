@@ -1,3 +1,11 @@
+import {
+  BODY_RADIUS,
+  resolveObstacles,
+  type BoxObstacle,
+  type CircleObstacle,
+  type Obstacle,
+} from "@/lib/walkable-space";
+
 /** Hình học của phòng học nhóm: kích thước, đồ đạc, vật cản, chỗ ngồi.
  *
  *  Một nguồn duy nhất cho cả ba thứ hay trôi ra khỏi nhau: chỗ VẼ cái bàn, chỗ
@@ -89,21 +97,6 @@ export function nearestFreeSeat(x: number, z: number, taken: ReadonlySet<number>
 
 // ── Đồ đạc và vật cản ───────────────────────────────────────────────────────
 
-export interface BoxObstacle {
-  kind: "box";
-  x: number;
-  z: number;
-  halfW: number;
-  halfD: number;
-}
-export interface CircleObstacle {
-  kind: "circle";
-  x: number;
-  z: number;
-  radius: number;
-}
-export type Obstacle = BoxObstacle | CircleObstacle;
-
 /** Kệ sách áp tường tây. */
 export const SHELF_ZS = [-5.4, -1.4, 2.6];
 export const SHELF_X = -HALF_W + 0.32;
@@ -137,6 +130,8 @@ export const BOARD = { x: 0, z: -HALF_D + 0.12, y: 2.05, width: 4.6, height: 2.5
 /** Cửa ở tường nam - nơi nhân vật xuất hiện và cũng là lối về thư viện. */
 export const DOOR = { x: 0, z: HALF_D - 0.06, halfWidth: 1.1, height: 2.6 };
 
+export { BODY_RADIUS };
+
 export const OBSTACLES: Obstacle[] = [
   { kind: "box", x: TABLE.x, z: TABLE.z, halfW: TABLE.halfW, halfD: TABLE.halfD },
   ...SHELF_ZS.map((z): BoxObstacle => ({ kind: "box", x: SHELF_X, z, halfW: 0.32, halfD: 1.5 })),
@@ -146,46 +141,11 @@ export const OBSTACLES: Obstacle[] = [
   ...PLANTS.map(([x, z]): CircleObstacle => ({ kind: "circle", x, z, radius: 0.52 })),
 ];
 
-/** Bán kính thân người khi va chạm. */
-export const BODY_RADIUS = 0.34;
-
-/** Đẩy nhân vật ra khỏi vật cản gần nhất.
- *
- *  Hộp: giải theo trục chồng lấn NÔNG hơn - đó là hướng vừa đi vào, nên đẩy
- *  ngược lại cho cảm giác trượt dọc mép bàn thay vì bị bắn ngang qua nó.
- *  Tròn: đẩy thẳng ra theo bán kính.
- *
- *  Chỉ giải MỘT vật cản mỗi khung hình: giải hết trong một vòng lặp nghe hợp
- *  lý hơn nhưng sinh kẹt góc - hai vật cản cạnh nhau đẩy qua đẩy lại và nhân
- *  vật đứng im. Một lần mỗi khung, ở 60fps, mắt không thấy được. */
+/** Giải va chạm cho riêng phòng này. Thuật toán ở lib/walkable-space.ts, dùng
+ *  chung với mọi không gian đi được khác; chỉ danh sách đồ đạc là của riêng
+ *  phòng nhóm. */
 export function resolveStudyObstacles(x: number, z: number, bodyRadius = BODY_RADIUS) {
-  for (const o of OBSTACLES) {
-    if (o.kind === "box") {
-      const dx = x - o.x;
-      const dz = z - o.z;
-      const overlapX = o.halfW + bodyRadius - Math.abs(dx);
-      const overlapZ = o.halfD + bodyRadius - Math.abs(dz);
-      if (overlapX > 0 && overlapZ > 0) {
-        if (overlapZ < overlapX) {
-          return { x, z: o.z + Math.sign(dz || 1) * (o.halfD + bodyRadius) };
-        }
-        return { x: o.x + Math.sign(dx || 1) * (o.halfW + bodyRadius), z };
-      }
-    } else {
-      const dx = x - o.x;
-      const dz = z - o.z;
-      const dist = Math.hypot(dx, dz);
-      const minDist = o.radius + bodyRadius;
-      if (dist < minDist) {
-        // Đứng đúng tâm thì không có hướng nào để đẩy; chọn một hướng bất kỳ
-        // thay vì chia cho 0.
-        const nx = dist > 1e-4 ? dx / dist : 1;
-        const nz = dist > 1e-4 ? dz / dist : 0;
-        return { x: o.x + nx * minDist, z: o.z + nz * minDist };
-      }
-    }
-  }
-  return { x, z };
+  return resolveObstacles(OBSTACLES, x, z, bodyRadius);
 }
 
 /** Đứng trong khoảng này quanh cửa thì hiện lời mời ra ngoài. */

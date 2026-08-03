@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
+import { BODY_RADIUS, insideAnyObstacle, touchingPairs } from "@/lib/walkable-space";
 import {
-  BODY_RADIUS,
   OBSTACLES,
   ROOM,
   SEATS,
@@ -17,19 +17,6 @@ import {
  *  sau vài chục bước đi, và một khung xem thử không chạy đủ số khung hình đó
  *  khi tab đang bị ẩn. Ở dạng số thì cả hai kiểm được trong vài mili giây. */
 
-/** Điểm này có nằm trong lòng một vật cản không (tính cả bán kính thân người). */
-function insideAnyObstacle(x: number, z: number) {
-  return OBSTACLES.some((o) => {
-    if (o.kind === "box") {
-      return (
-        Math.abs(x - o.x) < o.halfW + BODY_RADIUS - 1e-6 &&
-        Math.abs(z - o.z) < o.halfD + BODY_RADIUS - 1e-6
-      );
-    }
-    return Math.hypot(x - o.x, z - o.z) < o.radius + BODY_RADIUS - 1e-6;
-  });
-}
-
 describe("vật cản trong phòng học nhóm", () => {
   it("chặn người đi thẳng từ cửa vào bàn", () => {
     // Đi từ chỗ xuất hiện về phía bảng, 3.6 m/s ở 60fps, dài hơn cả chiều sâu
@@ -39,7 +26,7 @@ describe("vật cản trong phòng học nhóm", () => {
     for (let i = 0; i < 400; i += 1) {
       const solved = resolveStudyObstacles(x, z - 3.6 / 60, BODY_RADIUS);
       z = solved.z;
-      expect(insideAnyObstacle(solved.x, solved.z), `bước ${i} lọt vào trong vật cản`).toBe(false);
+      expect(insideAnyObstacle(OBSTACLES, solved.x, solved.z), `bước ${i} lọt vào trong vật cản`).toBe(false);
     }
     // Dừng lại ở mép nam của bàn, không đi qua được sang bên kia.
     expect(z).toBeGreaterThan(TABLE.z + TABLE.halfD);
@@ -60,46 +47,18 @@ describe("vật cản trong phòng học nhóm", () => {
         );
         x = solved.x;
         z = solved.z;
-        expect(insideAnyObstacle(x, z), `hướng ${a}, bước ${i}`).toBe(false);
+        expect(insideAnyObstacle(OBSTACLES, x, z), `hướng ${a}, bước ${i}`).toBe(false);
       }
     }
   });
 });
 
 describe("khoảng cách giữa các món đồ", () => {
-  /** Khoảng cách từ một điểm tới hộp đã nới rộng thêm bán kính thân người. */
-  function distToInflatedBox(px: number, pz: number, o: { x: number; z: number; halfW: number; halfD: number }) {
-    const dx = Math.max(0, Math.abs(px - o.x) - (o.halfW + BODY_RADIUS));
-    const dz = Math.max(0, Math.abs(pz - o.z) - (o.halfD + BODY_RADIUS));
-    return Math.hypot(dx, dz);
-  }
-
   it("không có hai vùng chặn nào chạm nhau", () => {
-    // resolveStudyObstacles chỉ giải MỘT vật cản mỗi khung hình - cố ý, vì
-    // giải hết trong một vòng lặp gây kẹt góc. Cái giá là hai món kê quá sát
-    // sẽ đá người học qua lại giữa chúng, hoặc đẩy thẳng vào trong. Ràng buộc
-    // đó không đọc ra được từ code, nên nó sống ở đây.
-    const overlaps: string[] = [];
-    for (let i = 0; i < OBSTACLES.length; i += 1) {
-      for (let j = i + 1; j < OBSTACLES.length; j += 1) {
-        const a = OBSTACLES[i];
-        const b = OBSTACLES[j];
-        let touching = false;
-        if (a.kind === "box" && b.kind === "box") {
-          touching =
-            Math.abs(a.x - b.x) < a.halfW + b.halfW + 2 * BODY_RADIUS &&
-            Math.abs(a.z - b.z) < a.halfD + b.halfD + 2 * BODY_RADIUS;
-        } else if (a.kind === "circle" && b.kind === "circle") {
-          touching = Math.hypot(a.x - b.x, a.z - b.z) < a.radius + b.radius + 2 * BODY_RADIUS;
-        } else {
-          const box = (a.kind === "box" ? a : b) as typeof a & { halfW: number; halfD: number };
-          const circle = (a.kind === "circle" ? a : b) as typeof a & { radius: number };
-          touching = distToInflatedBox(circle.x, circle.z, box) < circle.radius + BODY_RADIUS;
-        }
-        if (touching) overlaps.push(`#${i} (${a.kind} tại ${a.x},${a.z}) ↔ #${j} (${b.kind} tại ${b.x},${b.z})`);
-      }
-    }
-    expect(overlaps, "kê xa nhau ra, hoặc gộp thành một vật cản").toEqual([]);
+    // resolveObstacles chỉ giải MỘT vật cản mỗi lần gọi - cố ý, vì giải hết
+    // trong một vòng lặp gây kẹt góc. Cái giá là hai món kê quá sát sẽ đá
+    // người học qua lại giữa chúng. Ràng buộc đó không đọc ra được từ code.
+    expect(touchingPairs(OBSTACLES), "kê xa nhau ra, hoặc gộp thành một vật cản").toEqual([]);
   });
 });
 
