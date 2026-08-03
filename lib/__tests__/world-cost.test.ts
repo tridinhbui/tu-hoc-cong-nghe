@@ -24,6 +24,16 @@ import { DISTRICT_ROOMS } from "@/components/career-district/district-space";
  *    khu-game             58       1.988         2
  *    thap-lai-kep         33         468         2
  *
+ *  Và cảnh NGOÀI TRỜI của thế giới thư viện, đo sau khi thêm bờ sông - nặng
+ *  gấp rưỡi con phố và là cảnh đắt nhất trong cả ba thế giới:
+ *
+ *    ngoài trời (ngày)   298      27.320         7
+ *    ngoài trời (đêm)    294      27.272         7
+ *
+ *  Cùng số draw call giữa ngày và đêm là điều đáng chờ đợi: đèn đường bật lên
+ *  không thêm mesh, chỉ đổi vật liệu. Chênh 4 lệnh vẽ là mấy chiếc xe đang ở
+ *  ngoài khung lúc đo.
+ *
  *  Kết luận quan trọng hơn từng con số: tam giác KHÔNG phải nút thắt. Phòng
  *  nặng nhất mới 6.024 tam giác - một cái ghế trong game thật còn nhiều hơn.
  *  Nút thắt là draw call, và cách duy nhất hạ nó là gộp/instancing, không phải

@@ -290,3 +290,21 @@ export function stepWorld(
     floor: nextFloor,
   };
 }
+
+// ── Bờ sông ─────────────────────────────────────────────────────────────────
+
+/** Sông Sài Gòn, nằm sau dãy nhà bên kia đường.
+ *
+ *  Không đi tới được và cố ý không đi tới được: nó ở đây để CÓ MỘT ĐƯỜNG CHÂN
+ *  TRỜI. Cả thế giới thư viện cho tới giờ đều là hộp - phòng đọc là hộp, quảng
+ *  trường là hộp rộng hơn, và ngay cả vành đai 360 độ quanh toà nhà cũng kết
+ *  thúc bằng một bức tường rào. Mái nhà là chỗ duy nhất nhìn ra, mà nhìn ra
+ *  cũng chỉ thấy một dãy nhà nữa.
+ *
+ *  Mặt nước là thứ rẻ nhất phá được cái hộp đó: một mặt phẳng nằm thấp hơn mặt
+ *  phố, đủ xa để không ai thử đi tới, và đủ rộng để mắt không thấy mép. */
+export const RIVER_Z0 = FAR_WALK_Z + 52;
+export const RIVER_Z1 = FAR_WALK_Z + 150;
+/** Thấp hơn mặt phố: bờ sông bao giờ cũng thấp hơn đường, và mặt nước ngang
+ *  bằng mặt phố trông như một vũng nước tràn chứ không như một con sông. */
+export const RIVER_Y = PLAZA_Y - 2.6;

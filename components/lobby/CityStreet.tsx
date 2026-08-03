@@ -20,6 +20,7 @@ import {
 import { asphaltTexture, cityFacadeTexture, skyTexture } from "./room-textures";
 import { rgbToHex, type DaySample } from "./daylight";
 import WavingFlag from "./WavingFlag";
+import Riverfront from "./Riverfront";
 
 /** Phố Sài Gòn ngay trước cửa thư viện.
  *
@@ -509,6 +510,7 @@ export default function CityStreet({ day }: { day: DaySample }) {
       <Pedestrians />
       <BanhMiCart />
       <CityBlock lamps={day.lamps} />
+      <Riverfront day={day} />
 
       {/* Mặt tiền thư viện nhìn từ ngoài: bệ đá chạy hai bên cửa, để bước ra
           không thấy mặt sau của bức tường mỏng dính. */}
