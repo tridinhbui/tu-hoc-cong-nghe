@@ -157,6 +157,14 @@ export const PRIVATE_MARKETS_LESSONS: Lesson[] = [
         text: "Nếu bạn làm ở doanh nghiệp đang gọi vốn, hoặc làm tư vấn cho một thương vụ, hoặc phỏng vấn vào chính một quỹ, câu hỏi đầu tiên cần trả lời là quỹ đối diện đang ở giai đoạn nào của vòng đời. Nó cho biết họ có thời gian không, họ cần gì, và họ sẵn sàng nhượng bộ ở đâu.",
       },
       {
+          "type": "heading",
+          "text": "Vì sao cam kết chưa gọi vốn là phần khó nhất với nhà đầu tư"
+        },
+        {
+          "type": "paragraph",
+          "text": "Nhà đầu tư ký cam kết một số tiền, nhưng tiền chỉ chuyển đi khi nhà quản lý quỹ tìm được thương vụ. Nghĩa là bạn mang một nghĩa vụ biết quy mô nhưng không biết thời điểm, và phải giữ thanh khoản sẵn sàng cho nó suốt nhiều năm. Điều làm nghĩa vụ này khó hơn vẻ ngoài là tính đồng pha: quỹ gọi vốn mạnh nhất khi thị trường giảm và có nhiều cơ hội - đúng lúc phần còn lại của danh mục bạn cũng đang mất giá."
+        },
+      {
         type: "closing",
         lines: [
           "Cấu trúc tạo ra động cơ, và động cơ tạo ra hành vi trên bàn đàm phán.",
@@ -650,6 +658,14 @@ export const PRIVATE_MARKETS_LESSONS: Lesson[] = [
         label: "Tương quan xấu nhất trong ngành",
         text: "Các cửa thoái vốn có xu hướng hẹp lại cùng một lúc, và đúng vào lúc nhiều quỹ cùng cần bán. Đây là dạng rủi ro tương quan giống hệt bài học về tài sản bảo đảm mất giá đúng lúc bên vay lâm nguy - và nó cũng là lý do khoản bù thanh khoản trong private markets tồn tại.",
       },
+      {
+          "type": "heading",
+          "text": "Thị trường thứ cấp giải quyết vấn đề gì"
+        },
+        {
+          "type": "paragraph",
+          "text": "Nhà đầu tư góp vốn cam kết mười năm, nhưng nhu cầu của họ có thể đổi giữa chừng - cần thanh khoản, đổi chiến lược phân bổ, hoặc muốn giảm tỷ trọng một nhà quản lý quỹ. Thị trường thứ cấp cho phép bán lại phần vốn góp đó cho bên khác, thường ở mức chiết khấu so với giá trị ghi sổ. Mức chiết khấu ấy chính là thông tin: nó cho biết thị trường đang định giá phần tài sản chưa thoái ra sao, một con số mà báo cáo định kỳ của quỹ không nói."
+        },
       {
         type: "closing",
         lines: [

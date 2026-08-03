@@ -688,6 +688,14 @@ export const QUANT_METHODS_LESSONS: Lesson[] = [
         text: "Sai lầm nghề nghiệp phổ biến nhất là lấy beta ước lượng có sai số lớn, đưa vào CAPM, ra chi phí vốn 11,37%, rồi dùng nó chiết khấu dòng tiền 10 năm và báo cáo giá mục tiêu chính xác đến từng đồng. Toàn bộ độ chính xác đó là giả tạo. Cách trung thực hơn: chạy định giá với beta ở hai đầu khoảng tin cậy và trình bày một vùng giá trị.",
       },
       {
+          "type": "heading",
+          "text": "Đọc kết quả hồi quy cho đúng"
+        },
+        {
+          "type": "paragraph",
+          "text": "Ba con số cần nhìn cùng nhau và mỗi con số trả lời một câu khác. Hệ số góc cho biết mức nhạy - beta. Sai số chuẩn của nó cho biết ước lượng đó chắc chắn tới đâu, và đây là phần bị bỏ qua nhiều nhất. R bình phương cho biết bao nhiêu phần biến động được thị trường giải thích, phần còn lại là rủi ro riêng của doanh nghiệp. Một beta 1,2 với sai số chuẩn 0,4 nghĩa là giá trị thật có thể nằm đâu đó rất rộng, và đưa thẳng nó vào CAPM là chuyển toàn bộ sự bất định đó vào định giá mà không ai nhìn thấy."
+        },
+      {
         type: "closing",
         lines: [
           "Một hệ số hồi quy luôn tồn tại; câu hỏi là nó có đáng tin không.",

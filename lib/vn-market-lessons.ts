@@ -162,6 +162,14 @@ export const VN_MARKET_LESSONS: Lesson[] = [
         text: "Biên độ ngăn giá sập trong một phiên vì hoảng loạn nhất thời. Nhưng khi tin xấu là thật và lớn, nó chỉ kéo dài quá trình điều chỉnh thành nhiều phiên sàn liên tiếp không có thanh khoản. Với người cần thoát vị thế, phiên có biên độ đôi khi tệ hơn một phiên giảm sâu nhưng vẫn giao dịch được.",
       },
       {
+          "type": "heading",
+          "text": "Chu kỳ thanh toán ảnh hưởng tới việc gì trong thực tế"
+        },
+        {
+          "type": "paragraph",
+          "text": "Khớp lệnh và nhận tiền là hai việc tách nhau. Bán xong, cổ phiếu và tiền chỉ thực sự đổi chủ sau khi hoàn tất bù trừ, nên bạn không xoay vòng vốn liên tục trong ngày như ở một số thị trường khác. Hệ quả thực dụng có hai phần: nếu có nghĩa vụ chi trả vào một ngày cụ thể thì phải tính lùi lịch bán, và trong một phiên thị trường rơi mạnh, khoảng trễ đó là thời gian bạn không làm gì được với số tiền vừa bán ra."
+        },
+      {
         type: "closing",
         lines: [
           "Ý tưởng đầu tư chỉ có giá trị khi thực hiện được trong luật chơi thực tế.",
@@ -805,6 +813,14 @@ export const VN_MARKET_LESSONS: Lesson[] = [
         text: "Một phiên chỉ số tăng 1,5% với 120 mã tăng và 280 mã giảm kể một câu chuyện hoàn toàn khác so với phiên tăng 1,5% với 300 mã tăng. Cái đầu là vài trụ kéo, cái sau là cả thị trường đi lên. Chỉ nhìn con số chỉ số thì hai phiên đó trông giống hệt nhau.",
       },
       {
+          "type": "heading",
+          "text": "Vì sao vài mã có thể kéo cả chỉ số"
+        },
+        {
+          "type": "paragraph",
+          "text": "Trong chỉ số gia quyền theo vốn hóa, đóng góp của một mã tỷ lệ với quy mô của nó. Khi vài doanh nghiệp lớn nhất chiếm phần lớn vốn hóa sàn, một phiên tăng của riêng chúng đủ để đẩy chỉ số lên trong khi phần lớn cổ phiếu còn lại đi xuống. Đây không phải lỗi của cách tính - nó là đúng thứ chỉ số được thiết kế để đo, tức tổng giá trị thị trường. Cái sai nằm ở việc đọc nó như thể nó đại diện cho cổ phiếu trung bình."
+        },
+      {
         type: "closing",
         lines: [
           "Chỉ số là một thước đo, không phải toàn bộ sự thật về một phiên.",
@@ -965,6 +981,14 @@ export const VN_MARKET_LESSONS: Lesson[] = [
         text: "Bán giải chấp không phải quyết định đầu tư, nó là nghĩa vụ hợp đồng. Nhóm bị bán đẩy giá xuống, mức giá mới kéo nhóm tiếp theo chạm ngưỡng, và cứ thế. Không cần thêm tin xấu nào cho vòng lặp này tiếp diễn - điều đó giải thích vì sao mức giảm thường vượt xa quy mô của tin tức ban đầu.",
       },
       {
+          "type": "heading",
+          "text": "Vì sao vòng xoáy tự nuôi chính nó"
+        },
+        {
+          "type": "paragraph",
+          "text": "Bán giải chấp không phải quyết định đầu tư mà là nghĩa vụ hợp đồng, nên nó xảy ra bất kể người bán nghĩ gì về giá trị doanh nghiệp. Điều làm nó nguy hiểm là tính đồng loạt: nhiều tài khoản dùng cùng một mã làm tài sản bảo đảm sẽ chạm ngưỡng gần như cùng lúc, lượng bán đó đẩy giá xuống, và giá xuống lại kéo thêm nhóm tiếp theo vào ngưỡng. Không cần tin xấu mới nào để vòng thứ hai xảy ra."
+        },
+      {
         type: "closing",
         lines: [
           "Đòn bẩy đổi khả năng chờ đợi lấy khả năng khuếch đại - và khả năng chờ đợi mới là lợi thế lớn nhất của nhà đầu tư cá nhân.",
@@ -1119,6 +1143,14 @@ export const VN_MARKET_LESSONS: Lesson[] = [
         label: "Đọc phí cho đúng",
         text: "Phí quản lý công bố thường không phải toàn bộ chi phí. Còn phí phát hành, phí mua lại nếu bán sớm, và chi phí giao dịch bên trong quỹ. Con số cần so sánh là tỷ lệ chi phí toàn phần, và nó thường nằm trong bản cáo bạch chứ không nằm trên trang quảng cáo.",
       },
+      {
+          "type": "heading",
+          "text": "Chênh lệch giá và giá trị tài sản ròng"
+        },
+        {
+          "type": "paragraph",
+          "text": "Chứng chỉ quỹ ETF giao dịch trên sàn nên giá của nó do cung cầu quyết định, trong khi giá trị tài sản ròng được tính từ danh mục bên trong. Hai con số này thường sát nhau nhờ cơ chế tạo lập và hoàn đổi của các thành viên lập quỹ, nhưng chúng có thể lệch khi thanh khoản mỏng hoặc thị trường biến động mạnh. Với quỹ mở thì không có vấn đề này - bạn luôn mua bán ở giá trị tài sản ròng - nhưng đổi lại lệnh chỉ khớp theo kỳ chứ không khớp trong phiên."
+        },
       {
         type: "closing",
         lines: [

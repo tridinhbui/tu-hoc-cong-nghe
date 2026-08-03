@@ -324,6 +324,14 @@ export const PERSONAL_ENTRY_LESSONS: Lesson[] = [
         text: "Số dư nhìn thấy trong tài khoản là mốc tham chiếu não dùng để quyết định chi tiêu, chứ không phải con số trong kế hoạch. Chuyển bốn triệu ra khỏi tài khoản chính ngay đầu tháng làm mốc đó thấp xuống, và chi tiêu tự co lại theo. Cùng con số, cùng thu nhập, khác kết quả - chỉ vì tiền nằm ở đâu.",
       },
       {
+          "type": "heading",
+          "text": "Thứ tự đặt lệnh tự động quyết định kết quả"
+        },
+        {
+          "type": "paragraph",
+          "text": "Đặt lệnh chuyển tiền tiết kiệm vào ngay ngày lương về, trước mọi khoản chi khác, cho kết quả khác hẳn so với để dành phần còn lại vào cuối tháng. Lý do không nằm ở số học mà ở chỗ số dư nhìn thấy trong tài khoản là mốc tham chiếu não dùng để quyết định chi tiêu. Chuyển tiền đi trước làm mốc đó thấp xuống, và mức chi tự điều chỉnh theo mà không cần một lần cố gắng nào."
+        },
+      {
         type: "closing",
         lines: [
           "Kế hoạch tài chính tốt nhất là kế hoạch không cần bạn nhớ tới nó mỗi ngày.",
@@ -478,6 +486,14 @@ export const PERSONAL_ENTRY_LESSONS: Lesson[] = [
         label: "Vì sao gộp bảo vệ với đầu tư thường không có lợi",
         text: "Sản phẩm gộp làm cả hai phần trở nên khó so sánh: bạn không biết phần bảo vệ có đắt hơn mua riêng không, cũng không biết phần đầu tư có tốt hơn tự đầu tư không. Tách riêng thì mỗi phần đều so sánh được với lựa chọn thay thế - và đó thường là cách ra quyết định tốt hơn cho người mới.",
       },
+      {
+          "type": "heading",
+          "text": "Mua bao nhiêu là đủ"
+        },
+        {
+          "type": "paragraph",
+          "text": "Số tiền bảo hiểm cần mua bám vào nghĩa vụ cụ thể chứ không bám vào thu nhập: đủ để trả hết phần nợ còn lại và nuôi người phụ thuộc tới khi họ tự lo được. Cách tính đó cho ra một con số hữu hạn thay vì một cảm giác mơ hồ rằng càng nhiều càng tốt. Một hệ quả hay bị bỏ qua là nhu cầu này giảm dần theo thời gian - nợ vơi đi, con lớn lên - nên hợp đồng có thời hạn khớp với giai đoạn nghĩa vụ còn lớn thường hợp lý hơn hợp đồng trọn đời với cùng số tiền phí."
+        },
       {
         type: "closing",
         lines: [

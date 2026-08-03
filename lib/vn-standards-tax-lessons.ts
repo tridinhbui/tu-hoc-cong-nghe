@@ -495,6 +495,14 @@ export const VN_STANDARDS_TAX_LESSONS: Lesson[] = [
         text: "Thuế suất phổ thông, giới hạn thời gian chuyển lỗ, danh mục ngành nghề và địa bàn ưu đãi đều thay đổi qua các lần sửa luật. Bài học này dạy cơ chế; các con số cụ thể phải được kiểm chứng lại theo quy định có hiệu lực tại thời điểm bạn phân tích.",
       },
       {
+          "type": "heading",
+          "text": "Chuyển lỗ và vì sao nó ảnh hưởng tới định giá"
+        },
+        {
+          "type": "paragraph",
+          "text": "Khoản lỗ của một năm được phép trừ vào thu nhập tính thuế của các năm sau trong một khoảng thời gian giới hạn. Với doanh nghiệp vừa qua giai đoạn lỗ lớn, điều đó nghĩa là những năm lãi đầu tiên gần như không phải nộp thuế - và dòng tiền thật cao hơn hẳn con số mà một mô hình áp thuế suất phổ thông sẽ cho ra. Đây là lý do phần thuế trong mô hình định giá phải bám vào tình trạng cụ thể của doanh nghiệp chứ không lấy một tỷ lệ chung."
+        },
+      {
         type: "closing",
         lines: [
           "Dòng thuế là dòng cuối, nhưng dự phóng sai nó thì sai toàn bộ định giá.",
@@ -988,6 +996,14 @@ export const VN_STANDARDS_TAX_LESSONS: Lesson[] = [
         text: "Tỷ lệ thuế hiệu dụng là một trong những dòng dễ dự báo sai nhất trong mô hình tài chính. Một doanh nghiệp đang hưởng ưu đãi sẽ có lợi nhuận sau thuế đẹp hơn hẳn năng lực thật, và cú điều chỉnh khi ưu đãi hết hạn là một sự kiện đã biết trước ngày - chỉ cần đọc thuyết minh là thấy.",
       },
       {
+          "type": "heading",
+          "text": "Vì sao khoảng chênh giữa hai bộ sổ lại quan trọng với người phân tích"
+        },
+        {
+          "type": "paragraph",
+          "text": "Lợi nhuận kế toán và thu nhập tính thuế khác nhau vì hai bộ quy tắc phục vụ hai mục đích khác nhau, và phần chênh lệch đó hiện ra trên báo cáo dưới dạng thuế hoãn lại. Với người đọc báo cáo, đây là chỗ đáng soi: một doanh nghiệp có tỷ lệ thuế hiệu dụng thấp bất thường qua nhiều năm hoặc đang hưởng ưu đãi có thời hạn, hoặc đang có những khoản chênh lệch tạm thời sẽ đảo chiều - và cả hai đều làm dự phóng thuế của các năm sau sai nếu cứ lấy tỷ lệ hiện tại nhân ra."
+        },
+      {
         type: "closing",
         lines: [
           "Thuế không phải một tỷ lệ cố định nhân vào lợi nhuận; nó là kết quả của một bộ quy tắc riêng.",
@@ -1143,6 +1159,14 @@ export const VN_STANDARDS_TAX_LESSONS: Lesson[] = [
         text: "Biên lợi nhuận thấp bất thường so với doanh nghiệp cùng ngành, tỷ trọng giao dịch với bên liên kết rất cao, hoặc chuỗi năm lỗ đi kèm mở rộng đầu tư - từng dấu hiệu riêng lẻ có thể vô hại, nhưng ba dấu hiệu cùng xuất hiện thì đáng đọc kỹ phần thuyết minh về bên liên kết.",
       },
       {
+          "type": "heading",
+          "text": "Vì sao hai cơ chế này khó nhìn thấy từ báo cáo"
+        },
+        {
+          "type": "paragraph",
+          "text": "Ưu đãi thuế và giá giao dịch nội bộ đều không xuất hiện dưới dạng một dòng riêng trên báo cáo kết quả kinh doanh - chúng nằm ẩn trong tỷ lệ thuế hiệu dụng và trong biên lợi nhuận. Cách đọc thực dụng là so hai con số đó với các doanh nghiệp cùng ngành: tỷ lệ thuế thấp bất thường thường có nguyên nhân là ưu đãi có thời hạn, còn biên lợi nhuận thấp bất thường ở một doanh nghiệp có nhiều giao dịch với bên liên kết là chỗ cần đọc kỹ thuyết minh."
+        },
+      {
         type: "closing",
         lines: [
           "Lợi nhuận công bố là kết quả của cả hoạt động kinh doanh lẫn cấu trúc thuế đứng sau nó.",
@@ -1296,6 +1320,14 @@ export const VN_STANDARDS_TAX_LESSONS: Lesson[] = [
         label: "Vì sao con số công bố thường không phải toàn bộ rủi ro",
         text: "Thanh tra thường chỉ kiểm tra một số kỳ nhất định. Nếu một cách xử lý bị bác cho những kỳ đó mà doanh nghiệp vẫn áp dụng cách tương tự cho các kỳ sau, thì khoản truy thu vừa công bố là một mẫu chứ không phải tổng. Câu hỏi đúng luôn là cơ chế đã dừng chưa, không phải con số là bao nhiêu.",
       },
+      {
+          "type": "heading",
+          "text": "Vì sao hồ sơ quan trọng hơn lập luận"
+        },
+        {
+          "type": "paragraph",
+          "text": "Trong một cuộc thanh tra, phần lớn tranh luận không xoay quanh việc cách xử lý có đúng luật hay không mà xoay quanh việc doanh nghiệp có chứng minh được điều mình đã làm hay không. Hợp đồng, biên bản nghiệm thu, chứng từ thanh toán qua ngân hàng là thứ biến một khoản chi thành khoản được trừ. Đây cũng là lý do việc lưu hồ sơ phải làm ngay tại thời điểm phát sinh - dựng lại sau vài năm gần như luôn thiếu, và phần thiếu đó bị loại."
+        },
       {
         type: "closing",
         lines: [
