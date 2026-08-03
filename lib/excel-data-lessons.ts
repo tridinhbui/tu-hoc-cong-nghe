@@ -39,7 +39,7 @@ export const EXCEL_DATA_LESSONS: Lesson[] = [
       { label: "Nhập và sao chép công thức", arrow: true },
       { label: "Kiểm tra: F2, Ctrl + [ , F9" },
     ],
-    interactiveType: "process",
+    interactiveType: "excel-shortcuts",
     realWorldExample: {
       company: "Bài kiểm tra modeling trong tuyển dụng phân tích",
       description:
@@ -187,7 +187,7 @@ export const EXCEL_DATA_LESSONS: Lesson[] = [
       { label: "Ghép lại thành tra cứu bền vững", arrow: true },
       { label: "SUMIFS cho tổng hợp theo nhiều điều kiện" },
     ],
-    interactiveType: "process",
+    interactiveType: "excel-lookup",
     realWorldExample: {
       company: "Ghép dữ liệu danh mục với dữ liệu thị trường",
       description:
@@ -350,7 +350,7 @@ export const EXCEL_DATA_LESSONS: Lesson[] = [
       { label: "Sheet dự phóng + bảng hỗ trợ", arrow: true },
       { label: "Ô kiểm tra cân đối = 0" },
     ],
-    interactiveType: "process",
+    interactiveType: "excel-three-statement",
     realWorldExample: {
       company: "Quy ước bố cục phổ biến trong ngành",
       description:
@@ -518,7 +518,7 @@ export const EXCEL_DATA_LESSONS: Lesson[] = [
       { label: "F9 từng phần: khoanh vùng lỗi", arrow: true },
       { label: "Sửa nguyên nhân, không sửa triệu chứng" },
     ],
-    interactiveType: "process",
+    interactiveType: "excel-audit",
     realWorldExample: {
       company: "Sai sót mô hình trong các giao dịch thực tế",
       description:
@@ -712,7 +712,7 @@ export const EXCEL_DATA_LESSONS: Lesson[] = [
       { label: "Nạp vào bảng tính hoặc mô hình dữ liệu", arrow: true },
       { label: "Kỳ sau: chỉ cần làm mới" },
     ],
-    interactiveType: "process",
+    interactiveType: "excel-power-query",
     realWorldExample: {
       company: "Báo cáo quản trị hàng tháng",
       description:
@@ -878,7 +878,7 @@ export const EXCEL_DATA_LESSONS: Lesson[] = [
       { label: "WHERE: lọc dòng", arrow: true },
       { label: "GROUP BY + HAVING: gom nhóm và lọc nhóm" },
     ],
-    interactiveType: "process",
+    interactiveType: "excel-sql",
     realWorldExample: {
       company: "Phân tích danh mục tín dụng tại ngân hàng",
       description:

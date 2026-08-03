@@ -120,7 +120,13 @@ export interface Lesson {
     | "macro-policy"
     | "fee-drag"
     | "ratios"
-    | "tail-risk";
+    | "tail-risk"
+    | "excel-shortcuts"
+    | "excel-lookup"
+    | "excel-three-statement"
+    | "excel-audit"
+    | "excel-power-query"
+    | "excel-sql";
   realWorldExample: {
     company: string;
     description: string;

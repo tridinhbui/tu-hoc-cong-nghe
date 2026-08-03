@@ -16,6 +16,7 @@ import InteractiveProspect from "./InteractiveProspect";
 import InteractiveAccretion from "./InteractiveAccretion";
 import InteractiveEthicsCase from "./InteractiveEthicsCase";
 import InteractiveMacroPolicy from "./InteractiveMacroPolicy";
+import ExcelPractice from "./ExcelPractice";
 import InteractiveFeeDrag from "./InteractiveFeeDrag";
 import InteractiveRatios from "./InteractiveRatios";
 import InteractiveTailRisk from "./InteractiveTailRisk";
@@ -41,7 +42,15 @@ export type WidgetType =
   | "macro-policy"
   | "fee-drag"
   | "ratios"
-  | "tail-risk";
+  | "tail-risk"
+  // Chặng Excel: mỗi bài một bộ bài tập gõ được, dữ liệu ở
+  // lib/excel-practice-data.ts.
+  | "excel-shortcuts"
+  | "excel-lookup"
+  | "excel-three-statement"
+  | "excel-audit"
+  | "excel-power-query"
+  | "excel-sql";
 
 export default function InteractiveWidget({ type }: { type: WidgetType }) {
   switch (type) {
@@ -81,6 +90,13 @@ export default function InteractiveWidget({ type }: { type: WidgetType }) {
       return <InteractiveEthicsCase />;
     case "macro-policy":
       return <InteractiveMacroPolicy />;
+    case "excel-shortcuts":
+    case "excel-lookup":
+    case "excel-three-statement":
+    case "excel-audit":
+    case "excel-power-query":
+    case "excel-sql":
+      return <ExcelPractice setKey={type} />;
     case "fee-drag":
       return <InteractiveFeeDrag />;
     case "ratios":
@@ -116,6 +132,12 @@ export const WIDGET_TYPES: readonly WidgetType[] = [
   "fee-drag",
   "ratios",
   "tail-risk",
+  "excel-shortcuts",
+  "excel-lookup",
+  "excel-three-statement",
+  "excel-audit",
+  "excel-power-query",
+  "excel-sql",
 ];
 
 export function hasInteractiveWidget(type: string | null | undefined): type is WidgetType {
