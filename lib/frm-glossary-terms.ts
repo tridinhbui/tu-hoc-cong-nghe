@@ -438,4 +438,550 @@ export const FRM_GLOSSARY_TERMS: FrmGlossaryTerm[] = [
     frmTip:
       "Trở ngại lớn nhất là dữ liệu: sự cố nghiêm trọng hiếm và ít được công bố, nên phân phối phần đuôi gần như không ước lượng được từ dữ liệu nội bộ.",
   },
+  {
+    id: "frm-fou-006",
+    termEn: "Enterprise Risk Management (ERM)",
+    termVi: "Quản trị rủi ro toàn doanh nghiệp",
+    subjectId: "foundations",
+    definitionVi:
+      "Cách nhìn rủi ro trên toàn tổ chức thay vì quản riêng từng loại trong từng bộ phận.",
+    frmTip:
+      "Giá trị của ERM nằm ở chỗ nhìn thấy tương quan giữa các loại rủi ro. Quản rời rạc thì tổng rủi ro luôn bị đánh giá thấp, vì phần chúng cùng xấu đi không thuộc về bảng nào.",
+  },
+  {
+    id: "frm-fou-007",
+    termEn: "Risk-Adjusted Return on Capital (RAROC)",
+    termVi: "Lợi nhuận điều chỉnh rủi ro trên vốn",
+    subjectId: "foundations",
+    definitionVi:
+      "Lợi nhuận sau khi trừ tổn thất kỳ vọng, chia cho vốn kinh tế của hoạt động đó.",
+    formula: { equation: "(Lợi nhuận − EL) / Vốn kinh tế" },
+    frmTip:
+      "So với chi phí vốn mới ra kết luận. Lợi nhuận tuyệt đối luôn thưởng cho mảng gánh nhiều rủi ro nhất, nên nó là thước đo sai khi phân bổ vốn.",
+  },
+  {
+    id: "frm-fou-008",
+    termEn: "Economic Capital",
+    termVi: "Vốn kinh tế",
+    subjectId: "foundations",
+    definitionVi:
+      "Lượng vốn cần để hấp thụ tổn thất ngoài dự kiến ở một mức tin cậy đã chọn.",
+    frmTip:
+      "Đừng lẫn với vốn pháp định. Vốn kinh tế do chính tổ chức mô hình hoá theo khẩu vị của mình; vốn pháp định do cơ quan quản lý áp. Hai con số thường khác nhau đáng kể.",
+  },
+  {
+    id: "frm-fou-009",
+    termEn: "Three Lines of Defence",
+    termVi: "Ba tuyến phòng vệ",
+    subjectId: "foundations",
+    definitionVi:
+      "Đơn vị kinh doanh sở hữu rủi ro, bộ phận rủi ro giám sát độc lập, kiểm toán nội bộ đảm bảo cả hai.",
+    frmTip:
+      "Tuyến một là đơn vị kinh doanh chứ không phải phòng rủi ro. Hiểu ngược chỗ này sinh ra văn hoá coi rủi ro là việc của người khác.",
+  },
+  {
+    id: "frm-qua-005",
+    termEn: "Stationarity",
+    termVi: "Tính dừng",
+    subjectId: "quant-analysis",
+    definitionVi:
+      "Chuỗi có trung bình và phương sai không đổi theo thời gian, hiệp phương sai chỉ phụ thuộc độ trễ.",
+    frmTip:
+      "Hồi quy hai chuỗi không dừng cho R² rất cao mà không có quan hệ nào - đó là hồi quy giả mạo. Kiểm tra tính dừng là bước đầu tiên, không phải bước kiểm tra cuối.",
+  },
+  {
+    id: "frm-qua-006",
+    termEn: "Maximum Likelihood Estimation (MLE)",
+    termVi: "Ước lượng hợp lý cực đại",
+    subjectId: "quant-analysis",
+    definitionVi:
+      "Chọn bộ tham số làm cho dữ liệu quan sát được trở nên khả dĩ nhất.",
+    frmTip:
+      "MLE hiệu quả về mặt tiệm cận nhưng rất nhạy với việc chọn sai dạng phân phối. Chọn nhầm họ phân phối thì tham số vẫn hội tụ - hội tụ về một câu trả lời sai.",
+  },
+  {
+    id: "frm-qua-007",
+    termEn: "Heteroskedasticity",
+    termVi: "Phương sai sai số thay đổi",
+    subjectId: "quant-analysis",
+    definitionVi:
+      "Phương sai của sai số hồi quy không đồng nhất giữa các quan sát.",
+    frmTip:
+      "Nó KHÔNG làm hệ số bị chệch, chỉ làm sai số chuẩn sai - nên kiểm định t và p-value mới là thứ hỏng. Đây là điểm hay bị hiểu ngược nhất.",
+  },
+  {
+    id: "frm-qua-008",
+    termEn: "Bootstrapping",
+    termVi: "Tái chọn mẫu bootstrap",
+    subjectId: "quant-analysis",
+    definitionVi:
+      "Lấy mẫu có hoàn lại từ chính dữ liệu để dựng phân phối của một ước lượng.",
+    frmTip:
+      "Bootstrap không tạo thêm thông tin. Nó chỉ đo được độ bất định trong phạm vi dữ liệu đã có, nên với phần đuôi hiếm nó vẫn im lặng như phương pháp gốc.",
+  },
+  {
+    id: "frm-qua-009",
+    termEn: "Principal Component Analysis (PCA)",
+    termVi: "Phân tích thành phần chính",
+    subjectId: "quant-analysis",
+    definitionVi:
+      "Rút một tập nhân tố trực giao giải thích phần lớn biến động của nhiều biến tương quan.",
+    frmTip:
+      "Với đường cong lợi suất, ba thành phần đầu thường là mức, độ dốc và độ cong - và chúng giải thích gần hết biến động. Đó là cơ sở của phòng hộ theo key rate.",
+  },
+  {
+    id: "frm-fmp-005",
+    termEn: "Forward vs Futures",
+    termVi: "Kỳ hạn và tương lai",
+    subjectId: "financial-markets-products",
+    definitionVi:
+      "Forward là hợp đồng tuỳ chỉnh giao dịch OTC; futures chuẩn hoá, niêm yết, có thanh toán bù trừ hàng ngày.",
+    frmTip:
+      "Khác biệt quan trọng nhất là thanh toán hàng ngày của futures tạo ra dòng tiền trung gian - nên khi lãi suất tương quan với giá tài sản, giá futures và giá forward không còn bằng nhau.",
+  },
+  {
+    id: "frm-fmp-006",
+    termEn: "Put-Call Parity",
+    termVi: "Cân bằng quyền chọn mua - bán",
+    subjectId: "financial-markets-products",
+    definitionVi:
+      "Quan hệ bắt buộc giữa giá quyền mua, quyền bán, tài sản cơ sở và trái phiếu phi rủi ro.",
+    formula: { equation: "c + K·e^(−rT) = p + S₀" },
+    frmTip:
+      "Chỉ đúng với quyền chọn kiểu châu Âu trên tài sản không trả cổ tức. Vi phạm nó là có cơ hội arbitrage, nên trên thực tế nó gần như luôn giữ.",
+  },
+  {
+    id: "frm-fmp-007",
+    termEn: "Option Greeks",
+    termVi: "Các hệ số Greeks",
+    subjectId: "financial-markets-products",
+    definitionVi:
+      "Bộ đo độ nhạy của giá quyền chọn: delta theo giá, gamma theo delta, vega theo biến động, theta theo thời gian.",
+    frmTip:
+      "Vị thế bán quyền chọn có gamma âm: delta thay đổi ngược hướng có lợi cho bạn, nên phải mua cao bán thấp liên tục để phòng hộ.",
+  },
+  {
+    id: "frm-fmp-008",
+    termEn: "Covered Interest Rate Parity",
+    termVi: "Ngang giá lãi suất có phòng hộ",
+    subjectId: "financial-markets-products",
+    definitionVi:
+      "Chênh lệch lãi suất giữa hai đồng tiền phải bằng chênh lệch giữa tỷ giá kỳ hạn và giao ngay.",
+    formula: { equation: "F = S · (1 + r_trong nước) / (1 + r_nước ngoài)" },
+    frmTip:
+      "Sau 2008, cross-currency basis khác 0 kéo dài cho thấy quan hệ này có thể lệch khi vốn bị ràng buộc - một arbitrage tồn tại nhưng không ai đủ bảng cân đối để làm.",
+  },
+  {
+    id: "frm-fmp-009",
+    termEn: "Exchange-Traded Fund (ETF)",
+    termVi: "Quỹ hoán đổi danh mục",
+    subjectId: "financial-markets-products",
+    definitionVi:
+      "Quỹ niêm yết, giao dịch như cổ phiếu, có cơ chế tạo lập và hoàn đổi giữ giá bám sát NAV.",
+    frmTip:
+      "Cơ chế tạo - hoàn của các Authorized Participant là thứ giữ giá khớp NAV. Khi tài sản cơ sở mất thanh khoản, cơ chế đó nghẽn và chênh lệch giá - NAV mới nới ra.",
+  },
+  {
+    id: "frm-fmp-010",
+    termEn: "Commodity Roll Yield",
+    termVi: "Lợi suất đảo hợp đồng hàng hoá",
+    subjectId: "financial-markets-products",
+    definitionVi:
+      "Phần lãi hoặc lỗ phát sinh khi đảo hợp đồng tương lai sắp đáo hạn sang kỳ hạn xa hơn.",
+    frmTip:
+      "Contango kéo dài tạo roll yield âm, bào mòn lợi suất của ETF hàng hoá ngay cả khi giá giao ngay đứng yên. Đây là lý do ETF hàng hoá hay thua chính giá hàng hoá.",
+  },
+  {
+    id: "frm-fmp-011",
+    termEn: "Mortgage-Backed Security (MBS)",
+    termVi: "Chứng khoán bảo đảm bằng thế chấp",
+    subjectId: "financial-markets-products",
+    definitionVi:
+      "Chứng khoán hoá một rổ khoản vay thế chấp, dòng tiền trả cho nhà đầu tư từ tiền gốc và lãi người vay trả.",
+    frmTip:
+      "Rủi ro đặc trưng là trả trước: lãi suất giảm thì người vay tái tài trợ và nhà đầu tư nhận lại vốn đúng lúc chỉ tái đầu tư được ở lãi suất thấp hơn.",
+  },
+  {
+    id: "frm-fmp-012",
+    termEn: "Negative Convexity",
+    termVi: "Độ lồi âm",
+    subjectId: "financial-markets-products",
+    definitionVi:
+      "Giá tăng chậm lại khi lợi suất giảm, thay vì tăng nhanh như trái phiếu thường.",
+    frmTip:
+      "MBS có độ lồi âm vì quyền trả trước thuộc về người vay. Hệ quả: được ít khi lãi suất giảm nhưng mất đủ khi lãi suất tăng - bất đối xứng theo hướng bất lợi.",
+  },
+  {
+    id: "frm-fmp-013",
+    termEn: "Central Counterparty (CCP)",
+    termVi: "Trung tâm thanh toán bù trừ",
+    subjectId: "financial-markets-products",
+    definitionVi:
+      "Tổ chức đứng giữa hai bên giao dịch, trở thành đối tác của cả hai.",
+    frmTip:
+      "CCP đổi mạng lưới phơi nhiễm song phương lấy cấu trúc hình sao - giảm lây lan nhưng dồn rủi ro vào chính nó, nên quỹ bảo đảm và ký quỹ của CCP thành điểm hệ thống.",
+  },
+  {
+    id: "frm-fmp-014",
+    termEn: "Initial vs Variation Margin",
+    termVi: "Ký quỹ ban đầu và ký quỹ biến động",
+    subjectId: "financial-markets-products",
+    definitionVi:
+      "Ký quỹ ban đầu là đệm cho tổn thất tương lai; ký quỹ biến động bù phần lãi lỗ đã phát sinh.",
+    frmTip:
+      "Ký quỹ biến động chuyển tiền theo giá thị trường mỗi ngày; ký quỹ ban đầu nằm yên cho tới khi đóng vị thế. Lẫn hai thứ này là lỗi hay gặp ở phần phái sinh.",
+  },
+  {
+    id: "frm-vrm-006",
+    termEn: "Historical Simulation VaR",
+    termVi: "VaR mô phỏng lịch sử",
+    subjectId: "valuation-risk-models",
+    definitionVi:
+      "Áp lại các biến động lịch sử lên danh mục hôm nay rồi lấy phân vị của chuỗi lãi lỗ.",
+    frmTip:
+      "Không giả định phân phối nên giữ được đuôi dày thật. Đổi lại nó không sinh ra được kịch bản chưa từng có trong cửa sổ quan sát.",
+  },
+  {
+    id: "frm-vrm-007",
+    termEn: "Monte Carlo VaR",
+    termVi: "VaR mô phỏng Monte Carlo",
+    subjectId: "valuation-risk-models",
+    definitionVi:
+      "Sinh hàng loạt kịch bản từ một mô hình phân phối rồi định giá lại danh mục ở từng kịch bản.",
+    frmTip:
+      "Linh hoạt nhất trong ba phương pháp và cũng tốn kém nhất. Rủi ro của nó là rủi ro mô hình: kết quả chỉ tốt bằng phân phối được giả định.",
+  },
+  {
+    id: "frm-vrm-008",
+    termEn: "Delta-Normal VaR",
+    termVi: "VaR tham số delta-normal",
+    subjectId: "valuation-risk-models",
+    definitionVi:
+      "Giả định lợi suất phân phối chuẩn và quan hệ giá tuyến tính, tính VaR từ độ lệch chuẩn danh mục.",
+    formula: { equation: "VaR = z × σ × V" },
+    frmTip:
+      "Với danh mục có quyền chọn, giả định tuyến tính hỏng: gamma làm khoản lỗ tăng nhanh hơn tuyến tính đúng ở phần đuôi cần đo.",
+  },
+  {
+    id: "frm-vrm-009",
+    termEn: "Marginal VaR",
+    termVi: "VaR biên",
+    subjectId: "valuation-risk-models",
+    definitionVi:
+      "Mức thay đổi của VaR danh mục khi tăng thêm một đơn vị nhỏ vào một vị thế.",
+    frmTip:
+      "Dùng cho quyết định điều chỉnh nhỏ. Với việc nhận hay bỏ cả một thương vụ thì phải dùng incremental VaR, vì quan hệ không tuyến tính.",
+  },
+  {
+    id: "frm-vrm-010",
+    termEn: "Component VaR",
+    termVi: "VaR thành phần",
+    subjectId: "valuation-risk-models",
+    definitionVi:
+      "Phần đóng góp của một vị thế vào VaR tổng, có tính chất cộng lại đúng bằng tổng thể.",
+    frmTip:
+      "Đây là thước đo duy nhất trong nhóm dùng được để phân bổ vốn: các phần cộng lại vừa khít nên không phần rủi ro nào bị tính hai lần hay bỏ sót.",
+  },
+  {
+    id: "frm-vrm-011",
+    termEn: "Binomial Tree Model",
+    termVi: "Mô hình cây nhị thức",
+    subjectId: "valuation-risk-models",
+    definitionVi:
+      "Định giá quyền chọn bằng cách dựng cây các trạng thái giá rời rạc và quy ngược về hiện tại.",
+    frmTip:
+      "Ưu thế lớn nhất so với Black-Scholes là định giá được quyền chọn kiểu Mỹ, vì ở mỗi nút đều so được giữa thực hiện sớm và giữ tiếp.",
+  },
+  {
+    id: "frm-vrm-012",
+    termEn: "Risk-Neutral Probability",
+    termVi: "Xác suất trung tính rủi ro",
+    subjectId: "valuation-risk-models",
+    definitionVi:
+      "Xác suất giả định dùng để định giá, dưới đó mọi tài sản đều sinh lợi bằng lãi suất phi rủi ro.",
+    formula: { equation: "p = (e^(rΔt) − d) / (u − d)" },
+    frmTip:
+      "Đây không phải xác suất thật của thị trường. Nó là công cụ tính toán, và lẫn nó với xác suất thực tế là hiểu nhầm cốt lõi ở phần định giá.",
+  },
+  {
+    id: "frm-vrm-013",
+    termEn: "DV01",
+    termVi: "Giá trị một điểm cơ bản",
+    subjectId: "valuation-risk-models",
+    definitionVi:
+      "Mức thay đổi giá trị của một vị thế khi lợi suất dịch một điểm cơ bản.",
+    frmTip:
+      "Phòng hộ theo DV01 chỉ trung hoà dịch chuyển song song. Đường cong xoay hay gãy thì phần rủi ro còn lại không được che - đó là basis risk của chính phép phòng hộ.",
+  },
+  {
+    id: "frm-vrm-014",
+    termEn: "Model Risk",
+    termVi: "Rủi ro mô hình",
+    subjectId: "valuation-risk-models",
+    definitionVi:
+      "Rủi ro thiệt hại do mô hình sai, dùng sai mục đích, hoặc được cho ăn dữ liệu sai.",
+    frmTip:
+      "Ba nguồn khác nhau cần ba cách chữa khác nhau: kiểm định độc lập cho mô hình sai, quản trị sử dụng cho dùng sai chỗ, và chất lượng dữ liệu cho nguồn thứ ba.",
+  },
+  {
+    id: "frm-mkt-004",
+    termEn: "FRTB",
+    termVi: "Khung vốn rủi ro thị trường mới",
+    subjectId: "market-risk",
+    definitionVi:
+      "Bộ chuẩn Basel viết lại toàn bộ cách tính vốn cho sổ giao dịch sau khủng hoảng 2008.",
+    frmTip:
+      "Bốn thay đổi lớn đều trỏ vào một thứ đã hỏng: ranh giới hai sổ bị lợi dụng, VaR mù ở đuôi, giả định thanh khoản đồng nhất, và mô hình nội bộ duyệt ở cấp toàn ngân hàng.",
+  },
+  {
+    id: "frm-mkt-005",
+    termEn: "Liquidity Horizon",
+    termVi: "Chân trời thanh khoản",
+    subjectId: "market-risk",
+    definitionVi:
+      "Thời gian giả định để thoát hoặc phòng hộ một nhân tố rủi ro, phân theo nhóm nhân tố.",
+    frmTip:
+      "Khung cũ dùng 10 ngày cho tất cả. FRTB chia từ 10 tới 120 ngày, vì bài học 2008 là thanh khoản không biến mất đều nhau giữa các thị trường.",
+  },
+  {
+    id: "frm-mkt-006",
+    termEn: "P&L Attribution Test",
+    termVi: "Kiểm định quy kết lãi lỗ",
+    subjectId: "market-risk",
+    definitionVi:
+      "So mức khớp giữa lãi lỗ mà mô hình rủi ro dự báo và lãi lỗ thực tế của một bàn giao dịch.",
+    frmTip:
+      "Chạy ở cấp BÀN chứ không cấp ngân hàng. Trượt thì bàn đó về phương pháp chuẩn hoá với vốn cao hơn - hệ quả là kinh tế, không phải cấm đoán.",
+  },
+  {
+    id: "frm-mkt-007",
+    termEn: "Key Rate Duration",
+    termVi: "Kỳ hạn theo từng điểm lãi suất",
+    subjectId: "market-risk",
+    definitionVi:
+      "Độ nhạy của giá với thay đổi lãi suất tại một điểm kỳ hạn riêng, giữ các điểm khác cố định.",
+    frmTip:
+      "Tổng các key rate duration xấp xỉ duration hiệu dụng, vì cộng chúng lại chính là mô phỏng dịch song song. Đó cũng là phép kiểm tra nhanh xem bộ số có đúng không.",
+  },
+  {
+    id: "frm-mkt-008",
+    termEn: "Risk Factor Mapping",
+    termVi: "Ánh xạ nhân tố rủi ro",
+    subjectId: "market-risk",
+    definitionVi:
+      "Quy hàng nghìn vị thế về một tập nhân tố nhỏ hơn để ma trận hiệp phương sai ước lượng được.",
+    frmTip:
+      "Ánh xạ càng thô thì VaR càng bị ước lượng thấp, vì gộp nhiều vị thế vào một nhân tố là ngầm giả định chúng tương quan hoàn hảo và bù trừ nhau trọn vẹn.",
+  },
+  {
+    id: "frm-mkt-009",
+    termEn: "Basel Traffic Light Approach",
+    termVi: "Ba vùng đèn giao thông của Basel",
+    subjectId: "market-risk",
+    definitionVi:
+      "Phân loại kết quả backtesting VaR trên 250 ngày thành vùng xanh, vàng, đỏ theo số lần vượt ngưỡng.",
+    frmTip:
+      "Vào vùng vàng hay đỏ thì hệ số nhân vốn tăng lên. Đây là cơ chế buộc ngân hàng tự giữ mô hình cho chuẩn: khai VaR thấp sẽ bị lấy lại nhiều hơn phần vừa tiết kiệm.",
+  },
+  {
+    id: "frm-cre-006",
+    termEn: "Close-Out Netting",
+    termVi: "Bù trừ khi chấm dứt",
+    subjectId: "credit-risk",
+    definitionVi:
+      "Điều khoản gộp mọi hợp đồng với một đối tác thành một nghĩa vụ ròng duy nhất khi họ vỡ nợ.",
+    frmTip:
+      "Không có nó, bên phá sản sẽ cherry-picking: đòi đủ ở hợp đồng bạn đang nợ và để khoản họ nợ bạn xếp hàng chung. Tính hiệu lực pháp lý ở từng quốc gia là câu hỏi đầu tiên.",
+  },
+  {
+    id: "frm-cre-007",
+    termEn: "Haircut",
+    termVi: "Tỷ lệ chiết khấu tài sản bảo đảm",
+    subjectId: "credit-risk",
+    definitionVi:
+      "Phần giá trị tài sản bảo đảm không được tính vào khoản vay, làm đệm cho rủi ro giá giảm.",
+    frmTip:
+      "Haircut tăng cho tất cả cùng lúc khi thị trường căng, buộc mọi bên cùng bán một loại tài sản trong một ngày - và chính việc bán đó lại đẩy haircut lên nữa.",
+  },
+  {
+    id: "frm-cre-008",
+    termEn: "Unexpected Loss (UL)",
+    termVi: "Tổn thất ngoài dự kiến",
+    subjectId: "credit-risk",
+    definitionVi:
+      "Độ lệch của tổn thất tín dụng quanh mức kỳ vọng, phần mà vốn phải gánh.",
+    frmTip:
+      "EL vào dự phòng và vào giá khoản vay; chỉ UL mới cần vốn. Lẫn hai thứ này là lỗi khái niệm hay gặp nhất ở phần tín dụng.",
+  },
+  {
+    id: "frm-cre-009",
+    termEn: "Concentration Risk",
+    termVi: "Rủi ro tập trung",
+    subjectId: "credit-risk",
+    definitionVi:
+      "Rủi ro phát sinh khi nhiều khoản vay cùng chịu tác động của một nhân tố chung.",
+    frmTip:
+      "Tổn thất kỳ vọng cộng tuyến tính nên MÙ hoàn toàn với tập trung. Toàn bộ hiệu ứng nằm ở phần đuôi, tức ở vốn chứ không ở dự phòng.",
+  },
+  {
+    id: "frm-ope-005",
+    termEn: "Basel Event Types",
+    termVi: "Bảy nhóm sự kiện Basel",
+    subjectId: "operational-resilience",
+    definitionVi:
+      "Phân loại chuẩn cho sự kiện rủi ro hoạt động, từ gian lận nội bộ tới lỗi thực thi và quy trình.",
+    frmTip:
+      "Phân loại theo NGUYÊN NHÂN GỐC, không theo kênh mà khoản lỗ đi qua. Lỗ hiện ra qua giá thị trường vẫn là rủi ro hoạt động nếu gốc là kiểm soát nội bộ thất bại.",
+  },
+  {
+    id: "frm-ope-006",
+    termEn: "Standardised Measurement Approach (SMA)",
+    termVi: "Phương pháp chuẩn hoá đo rủi ro hoạt động",
+    subjectId: "operational-resilience",
+    definitionVi:
+      "Cách tính vốn rủi ro hoạt động của Basel dựa trên chỉ số kinh doanh và lịch sử tổn thất nội bộ.",
+    frmTip:
+      "SMA thay thế các phương pháp mô hình nội bộ cũ. Đánh đổi: bớt nhạy với hồ sơ rủi ro riêng của từng ngân hàng để đổi lấy khả năng so sánh giữa các ngân hàng.",
+  },
+  {
+    id: "frm-ope-007",
+    termEn: "Impact Tolerance",
+    termVi: "Ngưỡng chịu đựng tác động",
+    subjectId: "operational-resilience",
+    definitionVi:
+      "Thời gian gián đoạn tối đa của một dịch vụ trọng yếu trước khi gây hại không chấp nhận được.",
+    frmTip:
+      "Phải đặt từ mức hại cho khách hàng, không từ năng lực khôi phục hiện có. Đặt theo năng lực thì bài kiểm tra luôn tự qua và cả quy trình thành thủ tục.",
+  },
+  {
+    id: "frm-ope-008",
+    termEn: "Third-Party Risk",
+    termVi: "Rủi ro bên thứ ba",
+    subjectId: "operational-resilience",
+    definitionVi:
+      "Rủi ro từ việc phụ thuộc nhà cung cấp bên ngoài cho các hoạt động trọng yếu.",
+    frmTip:
+      "Thuê ngoài chuyển được công việc nhưng không chuyển được trách nhiệm. Rủi ro tập trung còn nặng hơn: nhiều tổ chức cùng dùng một nhà cung cấp đám mây.",
+  },
+  {
+    id: "frm-ope-009",
+    termEn: "Segregation of Duties",
+    termVi: "Phân tách nhiệm vụ",
+    subjectId: "operational-resilience",
+    definitionVi:
+      "Tách các bước tạo lập, phê duyệt và đối chiếu cho những người khác nhau.",
+    frmTip:
+      "Nó nâng rào cản gian lận từ một người quyết định lên thành phải có thông đồng. Kiểm soát nội bộ gần như chỉ tác động được vào cạnh CƠ HỘI của tam giác gian lận.",
+  },
+  {
+    id: "frm-liq-004",
+    termEn: "Funding vs Market Liquidity",
+    termVi: "Thanh khoản tài trợ và thanh khoản thị trường",
+    subjectId: "liquidity-treasury",
+    definitionVi:
+      "Tài trợ là khả năng huy động tiền; thị trường là khả năng bán tài sản mà không ép giá.",
+    frmTip:
+      "Hai loại này nuôi nhau thành vòng xoáy: thiếu tiền buộc phải bán, bán đồng loạt làm giá giảm, giá giảm làm tài sản bảo đảm mất giá và càng khó huy động.",
+  },
+  {
+    id: "frm-liq-005",
+    termEn: "Funds Transfer Pricing (FTP)",
+    termVi: "Giá vốn điều chuyển nội bộ",
+    subjectId: "liquidity-treasury",
+    definitionVi:
+      "Cơ chế tính giá vốn nội bộ giữa các đơn vị huy động và các đơn vị cho vay trong một ngân hàng.",
+    frmTip:
+      "FTP đặt sai làm chi phí thanh khoản trở nên vô hình với đơn vị kinh doanh - và khi đó họ sẽ cho vay dài bằng nguồn ngắn mà không thấy mình đang làm gì.",
+  },
+  {
+    id: "frm-liq-006",
+    termEn: "Cash Flow Ladder",
+    termVi: "Thang dòng tiền",
+    subjectId: "liquidity-treasury",
+    definitionVi:
+      "Bảng xếp dòng tiền vào và ra theo từng dải kỳ hạn để lộ khe hở thanh khoản.",
+    frmTip:
+      "Khe hở ở một dải có thể được che bởi thặng dư ở dải khác nếu chỉ nhìn tổng. Thang tồn tại để không cho phép việc gộp đó xảy ra.",
+  },
+  {
+    id: "frm-liq-007",
+    termEn: "Intraday Liquidity Risk",
+    termVi: "Rủi ro thanh khoản nội ngày",
+    subjectId: "liquidity-treasury",
+    definitionVi:
+      "Rủi ro không thanh toán được đúng thời điểm trong ngày dù cuối ngày vẫn đủ thanh khoản.",
+    frmTip:
+      "LCR đo theo 30 ngày, NSFR theo một năm - cả hai mù với lệch pha trong vài giờ. Tiền một ngân hàng chưa trả chính là tiền ngân hàng khác đang chờ để trả tiếp.",
+  },
+  {
+    id: "frm-inv-004",
+    termEn: "Alpha",
+    termVi: "Alpha",
+    subjectId: "investment-management",
+    definitionVi:
+      "Phần lợi suất vượt trên mức mà rủi ro hệ thống của danh mục lẽ ra phải mang lại.",
+    formula: { equation: "α = Rp − [Rf + β(Rm − Rf)]" },
+    frmTip:
+      "Beta cao tự nó tạo ra phần vượt trong thị trường tăng mà không cần kỹ năng nào. Phải trừ phần thưởng cho rủi ro trước mới nói tới kỹ năng được.",
+  },
+  {
+    id: "frm-inv-005",
+    termEn: "Performance Attribution",
+    termVi: "Phân tích quy kết hiệu quả",
+    subjectId: "investment-management",
+    definitionVi:
+      "Tách phần chênh lệch so với chỉ số thành hiệu ứng phân bổ, hiệu ứng chọn mã và phần tương tác.",
+    frmTip:
+      "Con số tổng có thể che hai câu chuyện ngược nhau. Quỹ tự nhận giỏi chọn cổ phiếu mà toàn bộ phần vượt đến từ phân bổ ngành thì thứ họ bán không phải thứ tạo ra lợi nhuận.",
+  },
+  {
+    id: "frm-inv-006",
+    termEn: "Survivorship Bias",
+    termVi: "Thiên lệch sống sót",
+    subjectId: "investment-management",
+    definitionVi:
+      "Lệch phát sinh khi dữ liệu chỉ còn lại những quỹ vẫn đang hoạt động và vẫn báo cáo.",
+    frmTip:
+      "Đi kèm hai thiên lệch khác trong dữ liệu quỹ phòng hộ: điền ngược lịch sử đẹp khi gia nhập, và tự chọn thời điểm bắt đầu báo cáo. Cả ba cùng đẩy lợi suất trung bình lên.",
+  },
+  {
+    id: "frm-inv-007",
+    termEn: "Return Smoothing",
+    termVi: "Làm mượt lợi suất",
+    subjectId: "investment-management",
+    definitionVi:
+      "Hiện tượng lợi suất báo cáo ít biến động hơn thực tế do tài sản được định giá theo mô hình.",
+    frmTip:
+      "Dấu hiệu rẻ nhất để phát hiện là tự tương quan dương bất thường trong chuỗi lợi suất. Giá thị trường thật gần như không có tự tương quan đáng kể.",
+  },
+  {
+    id: "frm-cur-003",
+    termEn: "Artificial Intelligence Risk",
+    termVi: "Rủi ro từ trí tuệ nhân tạo",
+    subjectId: "current-issues",
+    definitionVi:
+      "Rủi ro phát sinh khi mô hình học máy được dùng cho quyết định tài chính.",
+    frmTip:
+      "Ba chế độ hỏng khác mô hình truyền thống: khớp quá mức, rò rỉ dữ liệu về thời gian, và một mô hình chính xác mà không giải thích được - thứ không dùng được cho quyết định tín dụng.",
+  },
+  {
+    id: "frm-cur-004",
+    termEn: "Digital Assets and Stablecoins",
+    termVi: "Tài sản số và stablecoin",
+    subjectId: "current-issues",
+    definitionVi:
+      "Nhóm tài sản dựa trên sổ cái phân tán, trong đó stablecoin neo giá vào một tài sản tham chiếu.",
+    frmTip:
+      "Rủi ro chính của stablecoin không phải công nghệ mà là chất lượng dự trữ và khả năng quy đổi - tức đúng bài toán rút tiền hàng loạt cổ điển trong một lớp vỏ mới.",
+  },
+  {
+    id: "frm-cur-005",
+    termEn: "Central Bank Digital Currency (CBDC)",
+    termVi: "Tiền số ngân hàng trung ương",
+    subjectId: "current-issues",
+    definitionVi:
+      "Tiền pháp định dạng số do ngân hàng trung ương phát hành trực tiếp.",
+    frmTip:
+      "Rủi ro hệ thống lớn nhất là phi trung gian hoá: trong khủng hoảng, người gửi có thể chuyển thẳng sang CBDC, làm rút tiền khỏi ngân hàng thương mại nhanh hơn bao giờ hết.",
+  },
 ];
