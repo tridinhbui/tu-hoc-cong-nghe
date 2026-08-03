@@ -2,9 +2,27 @@
 // table, no persistence of which card was shown, purely random each time a
 // lesson is finished. Same "hardcoded content array" pattern as
 // CHEST_REWARDS in lib/chests.ts.
+//
+// The card now reads the quiz result the learner just got. That is a sharper
+// signal here than the streak-based tone on the dashboard
+// (lib/daily-motivation.ts): the flip happens seconds after scoring, so
+// someone who just got 2/10 should not be handed a neutral aphorism about
+// compound interest. Same principle as the dashboard card - the colder the
+// moment, the warmer the line.
+
+export type WisdomTone =
+  /** Điểm tuyệt đối - ghi nhận rồi đẩy tiếp, không tâng bốc. */
+  | "celebrate"
+  /** Làm bài kém - gỡ mặc cảm, đóng khung cái sai là dữ liệu. */
+  | "encourage"
+  /** Mặc định: châm ngôn tài chính, không nhắc gì tới điểm số. */
+  | "steady";
+
 export interface WisdomCard {
   id: string;
   text: string;
+  /** Bỏ trống nghĩa là "steady" - giữ nguyên 45 thẻ cũ không phải sửa. */
+  tone?: WisdomTone;
 }
 
 export const WISDOM_CARDS: WisdomCard[] = [
@@ -55,6 +73,50 @@ export const WISDOM_CARDS: WisdomCard[] = [
   { id: "wc-045", text: "Bảng cân đối kế toán cá nhân của bạn (tài sản trừ nợ) quan trọng hơn nhiều so với mức lương ghi trên hợp đồng." },
 ];
 
+// Thẻ theo kết quả bài quiz. Pool "encourage" dày hơn "celebrate" một chút -
+// người làm sai nhiều dễ quay lại làm lại bài đó ngay, nên lặp câu cũ sẽ lộ
+// hơn; người đạt điểm tuyệt đối thì hiếm khi làm lại.
+export const WISDOM_TONE_CARDS: WisdomCard[] = [
+  { id: "wc-cl-01", tone: "celebrate", text: "Đúng hết không phải may mắn - đó là dấu hiệu bạn đã thật sự hiểu, không chỉ đọc lướt." },
+  { id: "wc-cl-02", tone: "celebrate", text: "Điểm tuyệt đối hôm nay đáng giá nhất ở chỗ nó cho bạn nền để học bài khó hơn." },
+  { id: "wc-cl-03", tone: "celebrate", text: "Hiểu đúng một khái niệm tài chính là thứ không ai lấy lại được của bạn." },
+  { id: "wc-cl-04", tone: "celebrate", text: "Làm tốt rồi thì đừng dừng ở đây - kiến thức chỉ đọng lại khi được dùng ở bài tiếp theo." },
+  { id: "wc-cl-05", tone: "celebrate", text: "Bạn vừa chứng minh mình đọc kỹ. Trong tài chính, đọc kỹ là kỹ năng đắt tiền." },
+
+  { id: "wc-en-01", tone: "encourage", text: "Câu sai hôm nay là câu bạn sẽ nhớ lâu nhất. Đó là cách trí nhớ hoạt động, không phải dấu hiệu bạn kém." },
+  { id: "wc-en-02", tone: "encourage", text: "Sai ở bài tập rẻ hơn sai bằng tiền thật rất nhiều. Bạn đang trả học phí bằng thời gian." },
+  { id: "wc-en-03", tone: "encourage", text: "Không ai hiểu một khái niệm tài chính ngay lần đọc đầu. Đọc lại không phải thụt lùi." },
+  { id: "wc-en-04", tone: "encourage", text: "Điểm thấp chỉ nói bài này cần thêm một lượt nữa, không nói gì về khả năng của bạn." },
+  { id: "wc-en-05", tone: "encourage", text: "Người bỏ cuộc và người làm lại đều vừa làm sai như nhau. Khác nhau ở bước tiếp theo." },
+  { id: "wc-en-06", tone: "encourage", text: "Cứ ôn lại đúng những câu vừa sai - đó là cách học nhanh nhất, và cũng ít người chịu làm nhất." },
+  { id: "wc-en-07", tone: "encourage", text: "Chỗ bạn thấy khó chính là chỗ đáng học nhất. Phần dễ thì ai cũng qua được." },
+];
+
+const ALL_WISDOM_CARDS = [...WISDOM_CARDS, ...WISDOM_TONE_CARDS];
+
+/** Dưới ngưỡng này thì coi là làm chưa tốt và chuyển sang giọng động viên. */
+export const WISDOM_STRUGGLE_RATIO = 0.7;
+
+export function selectWisdomTone(score: number, total: number): WisdomTone {
+  if (total <= 0) return "steady";
+  if (score === total) return "celebrate";
+  if (score / total < WISDOM_STRUGGLE_RATIO) return "encourage";
+  return "steady";
+}
+
+function pickRandom(pool: WisdomCard[]): WisdomCard {
+  return pool[Math.floor(Math.random() * pool.length)];
+}
+
 export function getRandomWisdomCard(): WisdomCard {
-  return WISDOM_CARDS[Math.floor(Math.random() * WISDOM_CARDS.length)];
+  return pickRandom(WISDOM_CARDS);
+}
+
+/**
+ * Thẻ hợp với kết quả vừa đạt. Vẫn random trong pool đúng giọng, không lưu
+ * lại thẻ đã hiện - giữ nguyên tính chất của tính năng cũ.
+ */
+export function getWisdomCardForScore(score: number, total: number): WisdomCard {
+  const tone = selectWisdomTone(score, total);
+  return pickRandom(ALL_WISDOM_CARDS.filter((c) => (c.tone ?? "steady") === tone));
 }

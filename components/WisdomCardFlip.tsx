@@ -3,16 +3,49 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { Sparkles, Lightbulb } from "lucide-react";
-import { getRandomWisdomCard } from "@/lib/wisdom-cards";
+import { getWisdomCardForScore, selectWisdomTone } from "@/lib/wisdom-cards";
 
-export default function WisdomCardFlip() {
-  const [card] = useState(() => getRandomWisdomCard());
+/** Nhãn và màu mặt úp đổi theo giọng, để người học biết mình sắp lật ra gì. */
+const TONE_STYLE = {
+  celebrate: {
+    label: "Thẻ ghi nhận",
+    prompt: "Chạm để nhận lời chúc mừng",
+    face: "from-amber-400 to-orange-500 border-amber-300/50",
+    revealBorder: "border-amber-200 dark:border-amber-900",
+    icon: "text-amber-500",
+  },
+  encourage: {
+    label: "Thẻ tiếp sức",
+    prompt: "Chạm để xem một lời nhắn",
+    face: "from-orange-500 to-rose-600 border-orange-400/50",
+    revealBorder: "border-orange-200 dark:border-orange-900",
+    icon: "text-orange-500",
+  },
+  steady: {
+    label: "Thẻ kinh nghiệm tài chính",
+    prompt: "Chạm để xem một câu kinh nghiệm tài chính",
+    face: "from-emerald-500 to-teal-600 border-emerald-400/50",
+    revealBorder: "border-emerald-200 dark:border-emerald-900",
+    icon: "text-emerald-500",
+  },
+} as const;
+
+export default function WisdomCardFlip({
+  score = 0,
+  total = 0,
+}: {
+  /** Kết quả bài quiz vừa xong. Bỏ trống thì thẻ về đúng hành vi cũ. */
+  score?: number;
+  total?: number;
+}) {
+  const [card] = useState(() => getWisdomCardForScore(score, total));
   const [flipped, setFlipped] = useState(false);
+  const style = TONE_STYLE[selectWisdomTone(score, total)];
 
   return (
     <div className="py-2">
       <p className="text-[10px] font-bold text-stone-500 dark:text-stone-400 uppercase tracking-wide mb-2 text-center">
-        Thẻ kinh nghiệm tài chính
+        {style.label}
       </p>
       <div className="mx-auto max-w-xs" style={{ perspective: 1000 }}>
         <button
@@ -21,7 +54,7 @@ export default function WisdomCardFlip() {
           disabled={flipped}
           className={`relative w-full h-40 ${flipped ? "cursor-default" : "cursor-pointer"}`}
           style={{ transformStyle: "preserve-3d" }}
-          aria-label={flipped ? undefined : "Chạm để lật thẻ kinh nghiệm tài chính"}
+          aria-label={flipped ? undefined : `Chạm để lật ${style.label.toLowerCase()}`}
         >
           <motion.div
             className="absolute inset-0 w-full h-full"
@@ -31,21 +64,21 @@ export default function WisdomCardFlip() {
           >
             {/* Face-down side */}
             <div
-              className="absolute inset-0 w-full h-full rounded-2xl bg-gradient-to-br from-emerald-500 to-teal-600 flex flex-col items-center justify-center gap-2 shadow-md border border-emerald-400/50"
+              className={`absolute inset-0 w-full h-full rounded-2xl bg-gradient-to-br ${style.face} flex flex-col items-center justify-center gap-2 shadow-md border`}
               style={{ backfaceVisibility: "hidden" }}
             >
               <Sparkles className="w-7 h-7 text-white/90" />
               <p className="text-xs font-bold text-white/95 px-6 text-center leading-relaxed">
-                Chạm để xem một câu kinh nghiệm tài chính
+                {style.prompt}
               </p>
             </div>
 
             {/* Revealed side */}
             <div
-              className="absolute inset-0 w-full h-full rounded-2xl bg-white dark:bg-stone-900 border-2 border-emerald-200 dark:border-emerald-900 flex flex-col items-center justify-center gap-2 shadow-md px-5"
+              className={`absolute inset-0 w-full h-full rounded-2xl bg-white dark:bg-stone-900 border-2 ${style.revealBorder} flex flex-col items-center justify-center gap-2 shadow-md px-5`}
               style={{ backfaceVisibility: "hidden", transform: "rotateY(180deg)" }}
             >
-              <Lightbulb className="w-5 h-5 text-emerald-500 flex-shrink-0" />
+              <Lightbulb className={`w-5 h-5 ${style.icon} flex-shrink-0`} />
               <p className="text-sm font-semibold text-stone-800 dark:text-stone-200 text-center leading-relaxed">
                 {card.text}
               </p>

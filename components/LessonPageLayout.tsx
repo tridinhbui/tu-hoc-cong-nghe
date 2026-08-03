@@ -1172,7 +1172,7 @@ export default function LessonPageLayout({ lesson, quiz, children }: Props) {
                     </button>
                   ))}
                 </div>
-                <WisdomCardFlip />
+                <WisdomCardFlip score={score} total={quiz.length} />
                 {results.some((r) => !r) && (
                   <Link
                     href="/on-tap-cau-sai"
