@@ -1,8 +1,9 @@
 import { FormulaVariable, FormulaExample } from "@/components/FormulaBlock";
+import type { CfaSubjectId } from "@/lib/cfa-track";
 
 export interface CfaFormulaItem {
   id: string;
-  subjectId: "quant" | "fsa" | "corporate" | "equity" | "fixedIncome" | "derivatives" | "portfolio" | "economics" | "ethics" | "alternatives";
+  subjectId: CfaSubjectId;
   title: string;
   label?: string;
   badge?: string;

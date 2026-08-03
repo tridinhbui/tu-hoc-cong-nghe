@@ -1,4 +1,5 @@
 import { FormulaVariable, FormulaExample } from "@/components/FormulaBlock";
+import type { FrmSubjectId } from "@/lib/frm-track";
 
 // Sổ tay công thức FRM, đối xứng với lib/cfa-formulas-data.ts.
 //
@@ -13,17 +14,7 @@ import { FormulaVariable, FormulaExample } from "@/components/FormulaBlock";
 
 export interface FrmFormulaItem {
   id: string;
-  subjectId:
-    | "foundations"
-    | "quant-analysis"
-    | "financial-markets-products"
-    | "valuation-risk-models"
-    | "market-risk"
-    | "credit-risk"
-    | "operational-resilience"
-    | "liquidity-treasury"
-    | "investment-management"
-    | "current-issues";
+  subjectId: FrmSubjectId;
   title: string;
   label?: string;
   badge?: string;

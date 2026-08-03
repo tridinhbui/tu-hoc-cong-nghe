@@ -8,8 +8,22 @@
 // the same official outline; until then it renders as "sẽ xây trong tương
 // lai" on the FRM page instead of an empty section (see CfaTrackView's
 // `isEmpty` handling, reused as-is by FrmTrackView).
+/** Id của 10 môn FRM. Cùng lý do như CfaSubjectId trong lib/cfa-track.ts:
+ *  sổ tay công thức lọc theo id này nên hai bên phải dùng chung một union. */
+export type FrmSubjectId =
+  | "foundations"
+  | "quant-analysis"
+  | "financial-markets-products"
+  | "valuation-risk-models"
+  | "market-risk"
+  | "credit-risk"
+  | "operational-resilience"
+  | "liquidity-treasury"
+  | "investment-management"
+  | "current-issues";
+
 export interface FrmSubject {
-  id: string;
+  id: FrmSubjectId;
   name: string;
   part: "I" | "II";
   weight: string;

@@ -11,8 +11,26 @@
 // curriculum structure; until then it renders as "sẽ xây trong tương lai"
 // on the CFA page instead of an empty section. Ethics is the first such
 // subject being actively built out (see app/bai-hoc/cfa-ethics-*/ lessons).
+/** Id của 10 môn CFA Level I. Khai tường minh thay vì để `string`: sổ tay
+ *  công thức và bộ flashcard đều lọc theo id này, và khi chúng tự khai lại
+ *  một union riêng thì hai bên đã trôi khỏi nhau mà không gì báo - dữ liệu
+ *  ghi "fixed-income"/"econ"/"alt" trong khi nút lọc gửi
+ *  "fixedIncome"/"economics"/"alternatives", nên ba nhóm công thức không nút
+ *  nào chọn ra được. Dùng chung một union thì lỗi đó thành lỗi biên dịch. */
+export type CfaSubjectId =
+  | "ethics"
+  | "quant"
+  | "economics"
+  | "fsa"
+  | "corporate"
+  | "equity"
+  | "fixedIncome"
+  | "derivatives"
+  | "alternatives"
+  | "portfolio";
+
 export interface CfaSubject {
-  id: string;
+  id: CfaSubjectId;
   name: string;
   weight: string;
   lessonIds: number[];

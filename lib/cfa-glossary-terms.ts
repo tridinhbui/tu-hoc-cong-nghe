@@ -1,8 +1,9 @@
+import type { CfaSubjectId } from "@/lib/cfa-track";
 export interface CfaGlossaryTerm {
   id: string;
   termEn: string;
   termVi: string;
-  subjectId: "ethics" | "quant" | "economics" | "fsa" | "corporate" | "equity" | "fixedIncome" | "derivatives" | "alternatives" | "portfolio";
+  subjectId: CfaSubjectId;
   definitionVi: string;
   definitionEn?: string;
   formula?: {

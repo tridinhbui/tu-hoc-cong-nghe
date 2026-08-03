@@ -1,3 +1,4 @@
+import type { CfaSubjectId } from "@/lib/cfa-track";
 // Curated "chân dung nghề nghiệp" (career profile) content for the /su-nghiep
 // page - JD summary + required skills per finance career family, aimed at
 // this app's audience (personal finance learners, professional/corporate +
@@ -34,7 +35,7 @@ export interface FinanceCareer {
   // naturally draws on - rendered as "Liên quan CFA: ..." tags on the
   // detail view, tying the career map back to the CFA track's official
   // subject structure (not just individual lessons).
-  relatedCfaSubjectIds?: string[];
+  relatedCfaSubjectIds?: CfaSubjectId[];
   // Enhanced properties
   dayInLife: string;
   careerPath: string[];
