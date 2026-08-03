@@ -998,7 +998,7 @@ export const RECALL_SCHEDULE: Record<number, RecallItem[]> = {
       "fromTitle": "Operating Cash Flow là gì?",
       "text": "OCF = tiền thực từ kinh doanh, điều chỉnh từ Net Income",
       "distractors": [
-        "Nhóm rủi ro và chi phí thực tế (Day 234-235): rủi ro tái đầu tư coupon, thuế thu nhập cá nhân 5% trên lãi trái phiếu doanh nghiệp",
+        "Nhóm rủi ro và chi phí thực tế: rủi ro tái đầu tư coupon, thuế thu nhập cá nhân 5% trên lãi trái phiếu doanh nghiệp",
         "In-the-money, at-the-money, out-of-the-money mô tả vị thế option so với giá thị trường"
       ]
     }
@@ -3893,7 +3893,7 @@ export const RECALL_SCHEDULE: Record<number, RecallItem[]> = {
       "fromTitle": "Lạm phát là gì? Vì sao tiền mất giá.",
       "text": "Lạm phát làm tiền mất sức mua theo thời gian, tích lũy theo năm",
       "distractors": [
-        "Nhóm chiến lược và ứng dụng thực tế (Day 236-239): chiến lược ladder, khi nào nên ưu tiên trái phiếu, các sản phẩm liên quan (CD, bảo hiểm liên kết đầu tư), và case phân bổ danh mục cụ thể",
+        "Nhóm chiến lược và ứng dụng thực tế: chiến lược ladder, khi nào nên ưu tiên trái phiếu, các sản phẩm liên quan (CD, bảo hiểm liên kết đầu tư), và case phân bổ danh mục cụ thể",
         "Có kế hoạch đầu tư rõ ràng từ trước và tuân thủ kỷ luật là cách hiệu quả nhất để giảm ảnh hưởng của cảm xúc lên quyết định"
       ]
     }
@@ -4513,7 +4513,7 @@ export const RECALL_SCHEDULE: Record<number, RecallItem[]> = {
       "fromTitle": "Trái phiếu lãi nổi và trái phiếu lãi cố định",
       "text": "Trái phiếu lãi cố định (fixed rate): coupon không đổi suốt vòng đời, dễ dự đoán dòng tiền nhưng chịu rủi ro khi lãi suất thị trường tăng",
       "distractors": [
-        "Nhóm kiến thức nền tảng (Day 221-224): trái phiếu là gì, ai phát hành, mối quan hệ lãi suất-giá, rủi ro tín dụng và xếp hạng tín nhiệm",
+        "Nhóm kiến thức nền tảng: trái phiếu là gì, ai phát hành, mối quan hệ lãi suất-giá, rủi ro tín dụng và xếp hạng tín nhiệm",
         "D/E: mức độ dùng nợ - phải đánh giá theo đặc thù ngành, không có ngưỡng chung cho mọi công ty"
       ]
     }
@@ -4542,7 +4542,7 @@ export const RECALL_SCHEDULE: Record<number, RecallItem[]> = {
     {
       "fromDay": 240,
       "fromTitle": "Tổng ôn chặng 5: trái phiếu cho người bảo thủ",
-      "text": "Nhóm kiến thức nền tảng (Day 221-224): trái phiếu là gì, ai phát hành, mối quan hệ lãi suất-giá, rủi ro tín dụng và xếp hạng tín nhiệm",
+      "text": "Nhóm kiến thức nền tảng: trái phiếu là gì, ai phát hành, mối quan hệ lãi suất-giá, rủi ro tín dụng và xếp hạng tín nhiệm",
       "distractors": [
         "Phòng hộ lãi suất thả nổi: nhận thả nổi, trả cố định qua hợp đồng IRS",
         "DCA có giá trị tâm lý thực sự: giảm cảm giác hối tiếc nếu mua đúng đỉnh, phù hợp với dòng tiền lương hàng tháng"
@@ -4691,7 +4691,7 @@ export const RECALL_SCHEDULE: Record<number, RecallItem[]> = {
     {
       "fromDay": 240,
       "fromTitle": "Tổng ôn chặng 5: trái phiếu cho người bảo thủ",
-      "text": "Nhóm kiến thức nền tảng (Day 221-224): trái phiếu là gì, ai phát hành, mối quan hệ lãi suất-giá, rủi ro tín dụng và xếp hạng tín nhiệm",
+      "text": "Nhóm kiến thức nền tảng: trái phiếu là gì, ai phát hành, mối quan hệ lãi suất-giá, rủi ro tín dụng và xếp hạng tín nhiệm",
       "distractors": [
         "Cao hơn = tạo doanh thu hiệu quả hơn từ tài sản",
         "Tăng lãi: thắt chặt; Giảm lãi: nới lỏng"
@@ -4733,7 +4733,7 @@ export const RECALL_SCHEDULE: Record<number, RecallItem[]> = {
       "fromTitle": "Cân bằng cổ phiếu-trái phiếu theo tuổi",
       "text": "Tỷ trọng cổ phiếu nên giảm dần khi tuổi tăng, vì thời gian phục hồi sau biến động ngắn lại",
       "distractors": [
-        "Nhóm chiến lược và ứng dụng thực tế (Day 236-239): chiến lược ladder, khi nào nên ưu tiên trái phiếu, các sản phẩm liên quan (CD, bảo hiểm liên kết đầu tư), và case phân bổ danh mục cụ thể",
+        "Nhóm chiến lược và ứng dụng thực tế: chiến lược ladder, khi nào nên ưu tiên trái phiếu, các sản phẩm liên quan (CD, bảo hiểm liên kết đầu tư), và case phân bổ danh mục cụ thể",
         "Intrinsic Value: giá trị nếu thực hiện quyền ngay lập tức (tối thiểu là 0)"
       ]
     }

@@ -175,3 +175,27 @@ describe("số bài trong tiêu đề không vượt quá số bài thật", () 
     expect(broken).toEqual([]);
   });
 });
+
+describe("số ngày nội bộ trong văn bài", () => {
+  it("không bài nào nhắc tới 'Day N' của lịch cũ", () => {
+    // Các bài tổng ôn từng dẫn chiếu chéo bằng số ngày: "Ba chỉ số DIO (Day
+    // 31), DSO (Day 32), DPO (Day 33)". Người học không thấy chữ Day ở bất kỳ
+    // đâu trong ứng dụng, nên đó là con trỏ tới hư không - và trong phần lớn
+    // trường hợp câu văn đã gọi tên chủ đề ngay bên cạnh rồi.
+    //
+    // Ngoại lệ duy nhất là thuật ngữ thật: "Day 1" trong M&A là ngày đầu tiên
+    // sau khi thương vụ đóng, không phải bài số 1. Bài 1260 dạy đúng khái
+    // niệm đó nên nhắc tới nó hàng chục lần một cách hợp lệ.
+    const JARGON_LESSON_ID = 1260;
+    const offenders = LESSONS.filter((l) => l.id !== JARGON_LESSON_ID).filter((l) => {
+      // Tiền tố "Tự học Tài chính Day 81:" trong tiêu đề nguồn bị
+      // lib/lesson-day-prefix.js cắt ra khi dựng dữ liệu, nên nó không bao
+      // giờ tới người đọc - bỏ qua đúng như bộ sinh dữ liệu làm.
+      const body = JSON.stringify(l)
+        .replace(/Tự học Tài chính Day \d+:/g, "")
+        .replace(/Day 1 Readiness/g, "");
+      return /Day \d+/.test(body);
+    }).map((l) => `${l.id} ${l.title.slice(0, 40)}`);
+    expect(offenders).toEqual([]);
+  });
+});
