@@ -242,6 +242,30 @@ export const CFA_ETHICS_APPLIED_LESSONS: Lesson[] = [
         "text": "Tuyên bố chính sách đầu tư được viết vào lúc bình tĩnh để dùng vào lúc hoảng loạn. Đó là toàn bộ lý do nó tồn tại, và cũng là lý do việc sửa nó giữa cơn biến động phải là một quyết định có cân nhắc chứ không phải phản ứng."
       },
       {
+        "type": "heading",
+        "text": "Cùng một cổ phiếu, hai tỷ trọng, hai kết luận"
+      },
+      {
+        "type": "paragraph",
+        "text": "Một cổ phiếu công nghệ biến động mạnh chiếm 2% danh mục của một người sắp nghỉ hưu: nếu nó giảm một nửa, danh mục mất 1% - khó chịu nhưng không đổi được kế hoạch nghỉ hưu của ai. Cũng cổ phiếu đó chiếm 40%: giảm một nửa thì danh mục mất 20%, và với người còn hai năm nữa nghỉ hưu thì đó là một kế hoạch phải viết lại. Bản thân cổ phiếu không đổi gì giữa hai trường hợp. Đó là lý do tính phù hợp được xét ở cấp danh mục, và cũng là lý do câu hỏi cổ phiếu này có phù hợp với khách hàng không là một câu hỏi chưa hoàn chỉnh."
+      },
+      {
+        "type": "callout",
+        "label": "Ba bước khi khách tự đặt lệnh đi ngược mục tiêu đã thống nhất",
+        "text": "Một, giải thích tác động của lệnh đó lên TOÀN BỘ danh mục bằng con số cụ thể, chứ không nói chung chung rằng nó rủi ro - nói danh mục sẽ mất 20% nếu mã này giảm một nửa có sức nặng khác hẳn. Hai, ghi nhận rõ trong hồ sơ rằng lệnh đến từ khách hàng chứ không phải từ khuyến nghị của bạn. Ba, nếu các lệnh kiểu này lặp lại tới mức tuyên bố chính sách đầu tư không còn mô tả đúng danh mục nữa, thì phải sửa lại chính tuyên bố đó hoặc xem lại quan hệ - chứ không tiếp tục vận hành với một văn bản đã sai."
+      },
+      {
+        "type": "comparison",
+        "left": {
+          "label": "Chữ ký miễn trừ làm được gì",
+          "text": "Nó là bằng chứng rằng khách đã được cảnh báo, và có giá trị trong tranh chấp pháp lý. Đó là công dụng thật và duy nhất của nó."
+        },
+        "right": {
+          "label": "Nó không làm được gì",
+          "text": "Không thay thế được bước giải thích, không xoá nghĩa vụ nghề nghiệp, và không biến một danh mục không phù hợp thành phù hợp. Tuyên bố chính sách đầu tư được viết vào lúc bình tĩnh để dùng vào lúc hoảng loạn - đó là toàn bộ lý do nó tồn tại, và một chữ ký thu thập lúc hoảng loạn thì không phục vụ mục đích đó."
+        }
+      },
+      {
         "type": "closing",
         "lines": [
           "Không có khoản đầu tư nào phù hợp hay không phù hợp tự thân.",
@@ -932,6 +956,36 @@ export const CFA_ETHICS_APPLIED_LESSONS: Lesson[] = [
       {
         "type": "paragraph",
         "text": "Điều đáng nhớ nhất về Standard này: không có hồ sơ thì một quy trình phân tích nghiêm túc và một quyết định tùy hứng để lại dấu vết giống hệt nhau - tức là không dấu vết nào. Và trong tình huống bị chất vấn, không dấu vết luôn được đọc theo hướng bất lợi."
+      },
+      {
+        "type": "heading",
+        "text": "Phần bị loại bỏ mới là phần chứng minh được quy trình"
+      },
+      {
+        "type": "paragraph",
+        "text": "Khi một khoản đầu tư diễn biến xấu và khách hàng hoặc cơ quan quản lý quay lại hỏi, câu hỏi không phải bạn có đúng không - ai cũng sai một số lần và điều đó không vi phạm gì. Câu hỏi là ở thời điểm ra quyết định, bạn đã dựa trên cái gì. Hồ sơ trả lời được câu đó chỉ khi nó lưu cả những phương án đã cân nhắc rồi bỏ, cùng lý do bỏ. Một tập tài liệu chỉ có báo cáo cuối cùng chứng minh được bạn đã viết một báo cáo, không chứng minh được bạn đã cân nhắc."
+      },
+      {
+        "type": "conceptTable",
+        "title": "Ba điểm vận hành hay bị bỏ qua",
+        "subtitle": "Cả ba đều chỉ lộ ra khi đã quá muộn để sửa",
+        "concepts": [
+          {
+            "vi": "Thời hạn lưu",
+            "en": "Tối thiểu bảy năm",
+            "def": "Hoặc dài hơn nếu luật địa phương quy định - và theo nguyên tắc chọn bên nghiêm ngặt hơn, luật dài hơn thì theo luật. Bảy năm là khoảng thời gian đủ để một chu kỳ thị trường đi qua và tranh chấp xuất hiện."
+          },
+          {
+            "vi": "Quyền sở hữu",
+            "en": "Thuộc nhà tuyển dụng",
+            "def": "Hồ sơ không theo bạn khi chuyển việc, kể cả hồ sơ chính bạn lập. Nghĩa là ở công ty mới bạn phải dựng lại cơ sở hợp lý từ đầu cho mọi khuyến nghị - không được dựa vào nghiên cứu đã làm ở nơi cũ."
+          },
+          {
+            "vi": "Hình thức",
+            "en": "Bản ghi có ngày tháng",
+            "def": "Ghi chú cuộc gọi, bản mô hình có mốc thời gian, email trao đổi. Điều quan trọng là chúng được tạo tại thời điểm đó chứ không phải dựng lại sau - một hồ sơ viết sau khi có người hỏi thì không chứng minh được điều nó định chứng minh."
+          }
+        ]
       },
       {
         "type": "closing",

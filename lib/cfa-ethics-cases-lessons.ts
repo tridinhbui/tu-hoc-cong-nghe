@@ -83,6 +83,26 @@ export const CFA_ETHICS_CASES_LESSONS: Lesson[] = [
         "text": "Giá trị của hai cơ chế này là chúng biến một nguyên tắc chung thành quy tắc có thể kiểm tra được bằng dữ liệu. Đây cũng là mẫu hình chung của cả chương Standard VI: xung đột lợi ích không được xử lý bằng lời hứa mà bằng cơ chế."
       },
       {
+        "type": "heading",
+        "text": "Hai cơ chế biến một nguyên tắc thành thứ kiểm tra được bằng dữ liệu"
+      },
+      {
+        "type": "comparison",
+        "left": {
+          "label": "Dấu thời gian lệnh",
+          "text": "Khi mọi lệnh - của khách, của công ty, của nhân viên - đều có mốc thời gian ghi tự động, thì việc một lệnh cá nhân đứng trước lệnh khách trong cùng một mã hiện ra khi rà soát định kỳ, không cần ai tố cáo. Đây là lý do bộ phận tuân thủ quan tâm tới hệ thống ghi nhận lệnh nhiều hơn tới lời cam kết."
+        },
+        "right": {
+          "label": "Thời gian chờ",
+          "text": "Cấm giao dịch cá nhân trong một khoảng trước và sau lệnh của khách trong cùng mã, và yêu cầu duyệt trước với các giao dịch nhạy cảm. Cơ chế này không cần chứng minh ý định - nó chỉ cần một mốc ngày, nên nó áp dụng được nhất quán cho tất cả mọi người."
+        }
+      },
+      {
+        "type": "callout",
+        "label": "Tài khoản người thân: nhìn vào lợi ích, không nhìn vào tên",
+        "text": "Tài khoản đứng tên vợ, chồng, con hay cha mẹ sống chung mà bạn được hưởng lợi từ nó thì được coi là tài khoản cá nhân của chính bạn, và xếp cuối hàng cùng bạn. Ngoại lệ đáng chú ý chạy theo chiều ngược lại: nếu người thân đó là khách hàng thật sự, trả phí như mọi khách khác, thì họ phải được đối xử như khách hàng - và lúc này việc xếp họ xuống cuối hàng vì họ là người nhà mới chính là vi phạm Standard III(B) về đối xử công bằng. Cùng một quan hệ gia đình, hai kết luận trái ngược, và thứ quyết định là dòng phí chứ không phải huyết thống."
+      },
+      {
         "type": "closing",
         "lines": [
           "Không ai cấm bạn đầu tư cho chính mình.",
@@ -636,6 +656,30 @@ export const CFA_ETHICS_CASES_LESSONS: Lesson[] = [
         "text": "Bỏ qua thư yêu cầu, cung cấp thông tin sai lệch hoặc tiêu hủy tài liệu liên quan đều có thể chuyển một vụ việc lẽ ra kết thúc bằng nhắc nhở thành một vụ đình chỉ tư cách. Thang chế tài đi từ nhắc nhở riêng, kiểm duyệt công khai, đình chỉ có thời hạn, tới thu hồi chứng chỉ vĩnh viễn."
       },
       {
+        "type": "heading",
+        "text": "Chế tài đi từ nhẹ tới nặng, và cái nặng nhất không phải tiền"
+      },
+      {
+        "type": "comparison",
+        "left": {
+          "label": "Thứ CFA Institute làm được",
+          "text": "Khiển trách kín, khiển trách công khai, đình chỉ tư cách thành viên và quyền dùng danh xưng có thời hạn, huỷ bỏ danh xưng vĩnh viễn, và huỷ kết quả thi hoặc cấm dự thi với thí sinh. Với người hành nghề, mất danh xưng là mất thứ mà họ đã bỏ nhiều năm để có và không mua lại được."
+          },
+        "right": {
+          "label": "Thứ tổ chức này KHÔNG làm được",
+          "text": "Không phạt tiền, không cấm hành nghề, không truy tố. Nó không phải cơ quan quản lý nhà nước và không có quyền lực cưỡng chế nào - không triệu tập được, không khám xét được, không buộc ai khai báo được."
+        }
+      },
+      {
+        "type": "callout",
+        "label": "Chính vì thế mà không hợp tác lại nặng hơn vụ việc gốc",
+        "text": "Toàn bộ khả năng thực thi dựa vào việc thành viên trả lời khi được hỏi. Bỏ qua thư yêu cầu, cung cấp thông tin sai lệch, hoặc tiêu huỷ tài liệu liên quan đều có thể biến một vụ việc lẽ ra kết thúc bằng khiển trách thành một vụ dẫn tới đình chỉ hoặc huỷ danh xưng. Hợp tác điều tra là một nghĩa vụ riêng, không phải một phần của vụ việc đang bị điều tra - nên nó vi phạm được ngay cả khi cáo buộc ban đầu hoá ra là không có cơ sở."
+      },
+      {
+        "type": "paragraph",
+        "text": "Bản khai hằng năm về hành vi nghề nghiệp đáng chú ý vì lý do tương tự. Khai không trung thực trong đó là một vi phạm Standard I(C) độc lập, tồn tại song song với điều bạn đang che giấu. Nghĩa là một người có vụ kỷ luật nhỏ ở nơi làm việc, nếu khai đúng thì thường không sao, còn nếu giấu thì tự tạo ra một vi phạm thứ hai nặng hơn vi phạm thứ nhất. Đây là hình mẫu lặp đi lặp lại trong các vụ việc thật: việc che giấu gây hậu quả lớn hơn việc bị che giấu."
+      },
+      {
         "type": "closing",
         "lines": [
           "Hệ thống này chạy bằng sự hợp tác.",
@@ -1149,6 +1193,30 @@ export const CFA_ETHICS_CASES_LESSONS: Lesson[] = [
         ]
       },
       {
+        "type": "heading",
+        "text": "Quy mô nhỏ không loại được ai ra - nó chỉ chia nhỏ hơn"
+      },
+      {
+        "type": "paragraph",
+        "text": "Giả sử bạn được chào 100 suất trong một thương vụ, và ba khách hàng có mục tiêu đầu tư phù hợp muốn tổng cộng 250 suất: A muốn 125, B muốn 75, C muốn 50. Lập luận quy mô quá nhỏ, chia ra không đủ cho ai không đứng vững - cách xử lý đúng là phân bổ theo tỷ lệ nhu cầu: A nhận 50, B nhận 30, C nhận 20. Con số mỗi người nhận có thể nhỏ tới mức nghe vô nghĩa, nhưng lựa chọn thay thế - bạn tự lấy phần đó - là điều Standard VI(B) cấm thẳng."
+      },
+      {
+        "type": "callout",
+        "label": "Thứ tự các câu hỏi, không phải một câu hỏi",
+        "text": "Câu đầu tiên không phải bạn có được tham gia không, mà là cơ hội này có phù hợp với khách hàng nào đang được bạn phục vụ không. Chỉ khi câu trả lời là không với TẤT CẢ - sai nhóm tài sản, sai mức rủi ro, sai kỳ hạn với từng người - thì mới tới lượt bạn. Và ngay cả lúc đó vẫn còn hai bước: xin phép trước theo Standard VI(A) về công bố xung đột, và tuân thủ quy định giao dịch cá nhân của công ty. Đảo thứ tự này là chỗ hầu hết các vụ việc thật bắt đầu."
+      },
+      {
+        "type": "comparison",
+        "left": {
+          "label": "Ba Standard cùng chạm vào một quyết định",
+          "text": "VI(B) quyết định THỨ TỰ: khách hàng, rồi công ty, rồi cá nhân. III(B) quyết định CÁCH CHIA giữa các khách hàng phù hợp: theo tỷ lệ, cùng điều kiện. VI(A) quyết định phải NÓI GÌ: công bố lợi ích cá nhân trước khi khuyến nghị, không phải sau."
+        },
+        "right": {
+          "label": "Vì sao ba cái này hay bị gộp làm một",
+          "text": "Vì trong một quyết định cụ thể chúng xảy ra gần như đồng thời. Nhưng chúng hỏng theo ba cách khác nhau: lấy phần trước khách là hỏng VI(B); chia cho khách quen nhiều hơn là hỏng III(B); làm đúng cả hai nhưng im lặng về việc bạn cũng có phần là hỏng VI(A)."
+        }
+      },
+      {
         "type": "closing",
         "lines": [
           "Cơ hội đến với bạn vì công việc của bạn.",
@@ -1309,6 +1377,52 @@ export const CFA_ETHICS_CASES_LESSONS: Lesson[] = [
       {
         "type": "paragraph",
         "text": "Cách phân biệt gọn nhất: kiến thức trong đầu bạn thì đi theo bạn, một file thì không - kể cả khi nội dung file đó bạn cũng nhớ được. Sau khi đã nghỉ việc, nghĩa vụ theo Standard IV(A) chấm dứt; điều còn ràng buộc bạn khi đó chỉ là các thỏa thuận riêng đã ký, nếu có."
+      },
+      {
+        "type": "heading",
+        "text": "Ba tháng đó, theo trình tự"
+      },
+      {
+        "type": "conceptTable",
+        "title": "Cùng một người chuyển việc, sáu hành động",
+        "subtitle": "Chuẩn mực kích hoạt ở đúng thời điểm hành động xảy ra, không phải lúc hậu quả xuất hiện",
+        "concepts": [
+          {
+            "vi": "Tháng 1 - đăng ký thành lập công ty riêng, làm ngoài giờ",
+            "en": "Được phép",
+            "def": "Chuẩn bị cho một bước đi nghề nghiệp bình thường, bằng thời gian và nguồn lực của chính bạn. Standard IV(A) không cấm bạn có kế hoạch rời đi."
+          },
+          {
+            "vi": "Tháng 1 - thương lượng điều kiện với nhà tuyển dụng mới",
+            "en": "Được phép",
+            "def": "Không có nghĩa vụ nào buộc bạn báo trước cho nhà tuyển dụng hiện tại rằng mình đang tìm việc."
+          },
+          {
+            "vi": "Tháng 2 - chép danh sách khách hàng sang ổ cứng cá nhân",
+            "en": "Vi phạm ngay lúc chép",
+            "def": "Đây là điểm tinh tế nhất của cả bài: vi phạm hoàn tất tại thời điểm sao chép, không phải lúc bạn dùng tới nó. Xoá file sau đó không hoàn tác được gì."
+          },
+          {
+            "vi": "Tháng 2 - dùng email công ty gọi khách trước ngày nghỉ",
+            "en": "Vi phạm",
+            "def": "Dùng nguồn lực và thời gian mà nhà tuyển dụng đang trả tiền để xây dựng việc kinh doanh cạnh tranh với chính họ. Đây là vi phạm nghĩa vụ trung thành rõ ràng nhất."
+          },
+          {
+            "vi": "Tháng 3 - sau khi nghỉ, liên hệ khách cũ bằng trí nhớ",
+            "en": "Được phép theo chuẩn mực",
+            "def": "Kiến thức trong đầu bạn đi theo bạn. Việc bạn tự nhớ được tên khách không làm cho việc chép file trước đó thành hợp lệ - và ngược lại, không có file thì trí nhớ không bị cấm."
+          },
+          {
+            "vi": "Tháng 3 - liên hệ khách cũ trong khi có điều khoản không lôi kéo",
+            "en": "Vấn đề của hợp đồng",
+            "def": "Chuẩn mực không cấm, nhưng hợp đồng lao động có thể cấm. Đây là hai hệ thống khác nhau - tuân thủ chuẩn mực không miễn trừ nghĩa vụ hợp đồng, và ngược lại."
+          }
+        ]
+      },
+      {
+        "type": "callout",
+        "label": "Vạch phân chia gọn nhất",
+        "text": "Kiến thức trong đầu bạn thì đi theo bạn; một file thì không - kể cả khi nội dung file đó chính bạn tạo ra và chính bạn nhớ được. Lý do là quyền sở hữu chứ không phải bí mật: hồ sơ, mô hình, danh sách khách hàng được làm ra trong thời gian nhà tuyển dụng trả lương, nên chúng là tài sản của họ. Một mô hình định giá bạn tự viết ở công ty cũ cũng thuộc nhóm này, và đây là dạng vi phạm mà người ta hay phạm phải với cảm giác hoàn toàn trong sạch."
       },
       {
         "type": "closing",
@@ -1474,6 +1588,42 @@ export const CFA_ETHICS_CASES_LESSONS: Lesson[] = [
       {
         "type": "paragraph",
         "text": "Nếu kênh nội bộ không xử lý, các bước tiếp theo là leo thang lên cấp cao hơn, rồi lên hội đồng quản trị, và cuối cùng là cân nhắc rời khỏi tổ chức. Một điểm cần nhớ suốt quá trình: làm theo chỉ đạo của cấp trên chưa bao giờ là lập luận miễn trách trong khung đạo đức nghề nghiệp."
+      },
+      {
+        "type": "heading",
+        "text": "Thang leo thang, và điều gì kết thúc mỗi bậc"
+      },
+      {
+        "type": "conceptTable",
+        "title": "Bốn bậc, theo đúng thứ tự",
+        "subtitle": "Mỗi bậc chỉ mở ra khi bậc trước đã thử và không xử lý",
+        "concepts": [
+          {
+            "vi": "Tách mình khỏi hành vi",
+            "en": "Bắt buộc, làm ngay",
+            "def": "Ngừng tham gia, ngừng ký, ngừng để tên mình gắn vào. Bậc này không chờ ai đồng ý và không phụ thuộc vào kết quả của các bậc sau - nó bắt buộc kể cả khi bạn quyết định không làm gì thêm."
+          },
+          {
+            "vi": "Nêu trong nội bộ qua kênh phù hợp",
+            "en": "Bắt buộc",
+            "def": "Cấp trên trực tiếp, bộ phận tuân thủ, hoặc kênh nội bộ được quy định. Nên bằng văn bản - không phải để tự vệ, mà vì một lời nói miệng không phân biệt được với việc chưa từng nêu."
+          },
+          {
+            "vi": "Leo lên cấp cao hơn, rồi hội đồng quản trị",
+            "en": "Khi bậc trước không xử lý",
+            "def": "Im lặng của tổ chức là một dữ kiện, không phải một câu trả lời. Nếu bộ phận tuân thủ nhận báo cáo rồi không làm gì trong nhiều tuần, nghĩa vụ chưa hoàn thành."
+          },
+          {
+            "vi": "Rời khỏi tổ chức",
+            "en": "Khi mọi kênh đã cạn",
+            "def": "Ở lại trong một tổ chức đang vi phạm mà mình đã biết rõ, sau khi mọi kênh nội bộ đã thất bại, dần trở thành hành vi dung túng. Đây là điểm mà rời đi là câu trả lời đúng của chuẩn mực, không phải một thất bại cá nhân."
+          }
+        ]
+      },
+      {
+        "type": "callout",
+        "label": "Vì sao thu thập thêm bằng chứng thường là câu trả lời sai",
+        "text": "Nó nghe rất thận trọng và đó chính là vấn đề - nó cho phép bạn không làm gì trong khi vẫn thấy mình đang hành động. Trong vài tháng chờ đợi đó, thiệt hại cho khách hàng tiếp tục tích luỹ và sự im lặng của bạn ngày càng khó phân biệt với sự đồng thuận. Chuẩn mực không đòi bạn phải chắc chắn trước khi nêu vấn đề; điều tra là việc của bộ phận tuân thủ, còn việc của bạn là chuyển nó tới nơi có thẩm quyền điều tra. Nghi ngờ có cơ sở đã đủ để kích hoạt bậc hai."
       },
       {
         "type": "closing",

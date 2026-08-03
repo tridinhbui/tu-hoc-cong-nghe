@@ -413,6 +413,37 @@ export const CFA_ALTERNATIVES_LESSONS: Lesson[] = [
         "text": "Gộp ba tầng này thành một dòng phân bổ là bỏ qua khác biệt quan trọng nhất: chúng không cùng một loại rủi ro. Cho vay trực tiếp gần với trái phiếu doanh nghiệp; nợ xấu gần với vốn cổ phần, vì lợi nhuận phụ thuộc vào việc tái cơ cấu có thành công không."
       },
       {
+        "type": "heading",
+        "text": "Ba tầng, xếp theo thứ tự được trả tiền"
+      },
+      {
+        "type": "conceptTable",
+        "title": "Gộp ba tầng này thành một dòng phân bổ là bỏ qua khác biệt lớn nhất",
+        "subtitle": "Thứ tự ưu tiên khi doanh nghiệp vỡ nợ quyết định gần như toàn bộ hồ sơ rủi ro",
+        "concepts": [
+          {
+            "vi": "Cho vay trực tiếp",
+            "en": "Direct lending",
+            "def": "Khoản vay có bảo đảm, ưu tiên cao nhất trong cấu trúc vốn, lãi suất thường thả nổi nên ít nhạy với lãi suất. Lợi nhuận đến từ coupon và phí thu xếp, gần như không có phần tăng giá. Đây là tầng gần với cho vay ngân hàng truyền thống nhất."
+          },
+          {
+            "vi": "Mezzanine",
+            "en": "Mezzanine",
+            "def": "Đứng sau nợ có bảo đảm và trước vốn chủ sở hữu. Lợi suất cao hơn, thường kèm quyền chuyển đổi hoặc chứng quyền để chia phần tăng giá. Khi doanh nghiệp gặp khó, tầng này mất tiền trong khi tầng trên vẫn được trả đủ."
+          },
+          {
+            "vi": "Nợ xấu",
+            "en": "Distressed debt",
+            "def": "Mua nợ của doanh nghiệp đang gặp khó với giá chiết khấu sâu. Lợi nhuận đến từ việc tái cơ cấu hoặc thanh lý, nên nó gần với một thương vụ pháp lý hơn là một khoản cho vay - và cần năng lực hoàn toàn khác hai tầng trên."
+          }
+        ]
+      },
+      {
+        "type": "callout",
+        "label": "Hai điều làm rủi ro khác với trái phiếu niêm yết",
+        "text": "Thứ nhất, không có thị trường thứ cấp thật sự - quyết định cho vay gần như không đảo ngược được cho tới khi khoản vay đáo hạn, nên phần bù thanh khoản là một phần lớn của lợi suất chứ không phải phần thưởng cho kỹ năng chọn tín dụng. Thứ hai, giá trị khoản vay được định kỳ đánh giá lại bằng mô hình chứ không bằng giao dịch, nên biến động ghi nhận được thấp hơn biến động thật. Danh mục trông ổn định hơn thực tế, và điều đó làm các thước đo rủi ro dựa trên biến động đánh giá thấp nhóm tài sản này một cách có hệ thống."
+      },
+      {
         "type": "closing",
         "lines": [
           "Nợ tư nhân là ngân hàng không có giấy phép ngân hàng.",
@@ -742,6 +773,42 @@ export const CFA_ALTERNATIVES_LESSONS: Lesson[] = [
         "type": "callout",
         "label": "Cẩn trọng",
         "text": "Mức tương quan thấp với cổ phiếu mà các báo cáo hay nhắc tới một phần đến từ đặc tính thật của tài sản, nhưng một phần chỉ là hiệu ứng làm mượt do định giá thẩm định. Đừng lấy toàn bộ con số đó làm lợi ích đa dạng hóa."
+      },
+      {
+        "type": "heading",
+        "text": "Ba nguồn lợi nhuận, và chỉ một trong số đó phụ thuộc thị trường tài chính"
+      },
+      {
+        "type": "conceptTable",
+        "title": "Vì sao rừng trồng có cấu trúc lợi nhuận hiếm gặp",
+        "subtitle": "Ba nguồn gần như độc lập với nhau, cộng dồn qua thời gian nắm giữ",
+        "concepts": [
+          {
+            "vi": "Sinh khối",
+            "en": "Biological growth",
+            "def": "Cây tiếp tục lớn bất kể thị trường tài chính diễn biến ra sao. Khối lượng tài sản tăng mà không cần ai làm gì, và cũng không cần ai mua bán gì. Đây là nguồn duy nhất hoàn toàn không tương quan với cổ phiếu."
+          },
+          {
+            "vi": "Giá gỗ",
+            "en": "Timber price",
+            "def": "Phụ thuộc chu kỳ xây dựng và nhu cầu công nghiệp. Đây là phần biến động, và cũng là phần mà quyền chọn hoãn thu hoạch xử lý được."
+          },
+          {
+            "vi": "Giá đất",
+            "en": "Land value",
+            "def": "Giá trị nền của mảnh đất, độc lập với cây trên đó. Ở nhiều thị trường, phần này mới là nguồn tăng giá lớn nhất qua các chu kỳ dài."
+          }
+        ]
+      },
+      {
+        "type": "callout",
+        "label": "Quyền chọn thật, không phải cách nói ẩn dụ",
+        "text": "Khi giá gỗ thấp, chủ rừng hoãn thu hoạch và cây vẫn tiếp tục lớn - nghĩa là chi phí của việc chờ đợi âm, vì tài sản tự tăng khối lượng trong lúc chờ. Khi giá cao thì thu hoạch sớm hơn. Rất ít tài sản cho phép người nắm giữ chọn thời điểm bán mà không bị phạt: cổ phiếu chờ thì không tự nhiều thêm, bất động sản cho thuê chờ thì vẫn tốn chi phí duy trì. Đây là điểm khác biệt thật của nhóm tài sản này."
+      },
+      {
+        "type": "callout",
+        "label": "Và đây là chỗ nó bị thổi phồng",
+        "text": "Mức tương quan thấp với cổ phiếu mà các báo cáo hay nhắc tới đến từ hai nguồn, và chỉ một trong hai là thật. Phần thật là đặc tính sinh học ở trên. Phần không thật là do giá trị được xác định bằng thẩm định định kỳ chứ không bằng giao dịch hằng ngày - một tài sản chỉ được định giá lại mỗi quý, bởi một quy trình nhìn vào giá quá khứ, sẽ luôn cho ra chuỗi lợi suất mượt hơn thực tế và tương quan thấp hơn thực tế. Đây là hiệu ứng làm mượt do thẩm định, và nó xuất hiện ở mọi nhóm tài sản không niêm yết chứ không riêng gì rừng."
       },
       {
         "type": "closing",
