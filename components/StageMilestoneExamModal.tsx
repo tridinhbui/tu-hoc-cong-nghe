@@ -8,6 +8,7 @@ import { savePassedMilestone } from "@/lib/supabase-milestones";
 import { getLessonDetailsForRecall } from "@/app/actions/flashcard-actions";
 import { recalculateUserStats } from "@/lib/supabase-user";
 import { earnChest } from "@/lib/chests";
+import { useIsClient } from "@/lib/use-is-client";
 
 interface StageMilestoneExamModalProps {
   userId: string;
@@ -37,12 +38,8 @@ export default function StageMilestoneExamModal({
   onClose,
   onSuccess,
 }: StageMilestoneExamModalProps) {
-  const [mounted, setMounted] = useState(false);
+  const mounted = useIsClient();
   const [questions, setQuestions] = useState<MilestoneQuestion[]>([]);
-
-  useEffect(() => {
-    setMounted(true);
-  }, []);
   const [loading, setLoading] = useState(true);
   const [currentQIndex, setCurrentQIndex] = useState(0);
   const [selectedOpt, setSelectedOpt] = useState<number | null>(null);

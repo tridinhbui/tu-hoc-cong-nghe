@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { createPortal } from "react-dom";
 import { Flame, ShieldCheck, Snowflake, X } from "lucide-react";
 import { toast } from "sonner";
+import { useIsClient } from "@/lib/use-is-client";
 import {
   getUserStreak,
   hasActivityToday as checkActivityToday,
@@ -20,11 +21,7 @@ export default function DashboardStreakWidget({ userId }: { userId: string }) {
   const [streakRow, setStreakRow] = useState<UserStreak | null>(null);
   const [showModal, setShowModal] = useState(false);
   const [freezing, setFreezing] = useState(false);
-  const [mounted, setMounted] = useState(false);
-
-  useEffect(() => {
-    setMounted(true);
-  }, []);
+  const mounted = useIsClient();
 
   useEffect(() => {
     let cancelled = false;

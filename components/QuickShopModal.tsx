@@ -1,10 +1,11 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { createPortal } from "react-dom";
 import { motion } from "framer-motion";
 import { X } from "lucide-react";
 import CosmeticStore from "@/components/CosmeticStore";
+import { useIsClient } from "@/lib/use-is-client";
 
 interface QuickShopModalProps {
   userId: string;
@@ -12,10 +13,9 @@ interface QuickShopModalProps {
 }
 
 export default function QuickShopModal({ userId, onClose }: QuickShopModalProps) {
-  const [mounted, setMounted] = useState(false);
+  const mounted = useIsClient();
 
   useEffect(() => {
-    setMounted(true);
     // Khóa scroll trang đệm khi mở modal cửa hàng
     const originalStyle = window.getComputedStyle(document.body).overflow;
     document.body.style.overflow = "hidden";

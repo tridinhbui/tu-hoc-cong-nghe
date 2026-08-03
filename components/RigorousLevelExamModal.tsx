@@ -14,6 +14,7 @@ import {
   type LevelExamResult,
 } from "@/lib/supabase-level-exams";
 import { LEVELS } from "@/lib/levels";
+import { useIsClient } from "@/lib/use-is-client";
 
 interface RigorousLevelExamModalProps {
   levelToTest: number;
@@ -30,7 +31,7 @@ export default function RigorousLevelExamModal({
   onClose,
   onExamPassed,
 }: RigorousLevelExamModalProps) {
-  const [mounted, setMounted] = useState(false);
+  const mounted = useIsClient();
   // Only for chrome that must render before the exam arrives (title, pass
   // threshold). The questions themselves come from the server - the browser is
   // never sent the answers, so it cannot grade or shortcut the exam.
@@ -38,10 +39,6 @@ export default function RigorousLevelExamModal({
   const levelMeta = LEVELS.find((l) => l.level === levelToTest) || LEVELS[1];
 
   const [exam, setExam] = useState<ServedExam | null>(null);
-
-  useEffect(() => {
-    setMounted(true);
-  }, []);
   const [loadError, setLoadError] = useState<string | null>(null);
   const [answers, setAnswers] = useState<Record<number, number>>({});
   const [timeLeft, setTimeLeft] = useState(fallbackConfig.timeLimitSeconds);

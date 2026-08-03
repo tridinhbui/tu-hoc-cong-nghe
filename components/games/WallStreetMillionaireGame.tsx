@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 import { Trophy, HelpCircle, Users, Sparkles, CheckCircle2, XCircle, DollarSign, ShieldAlert, ArrowLeft, RotateCcw, Award } from "lucide-react";
@@ -9,6 +9,7 @@ import { soundManager } from "@/lib/sounds";
 import { recalculateUserStats } from "@/lib/supabase-user";
 import { recordCustomGameSession } from "@/lib/games";
 import { createPortal } from "react-dom";
+import { useIsClient } from "@/lib/use-is-client";
 
 export interface MillionaireQuestion {
   level: number;
@@ -260,7 +261,7 @@ interface WallStreetMillionaireGameProps {
 }
 
 export default function WallStreetMillionaireGame({ userId, onClose }: WallStreetMillionaireGameProps) {
-  const [mounted, setMounted] = useState(false);
+  const mounted = useIsClient();
   const [currentLevel, setCurrentLevel] = useState(0); // 0 to 14
   const [selectedOption, setSelectedOption] = useState<number | null>(null);
   const [gameState, setGameState] = useState<"playing" | "locked" | "revealed" | "banked" | "won" | "lost">("playing");
@@ -281,10 +282,6 @@ export default function WallStreetMillionaireGame({ userId, onClose }: WallStree
 
   // Earnings
   const [earnedCash, setEarnedCash] = useState(0);
-
-  useEffect(() => {
-    setMounted(true);
-  }, []);
 
   const q = MILLIONAIRE_QUESTIONS[currentLevel];
 

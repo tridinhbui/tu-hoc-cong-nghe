@@ -6,6 +6,7 @@ import Link from "next/link";
 import { X, CheckCircle2 } from "lucide-react";
 import type { ChallengeQuestion } from "@/app/api/knowledge-challenge/route";
 import { submitGateChallenge, type QuizAnswerSubmission } from "@/lib/supabase-challenges";
+import { useIsClient } from "@/lib/use-is-client";
 
 interface KnowledgeChallengeModalProps {
   onClose: () => void;
@@ -22,12 +23,8 @@ type LoadState = "loading" | "empty" | "ready" | "error";
 const PASS_RATIO = 0.6;
 
 export default function KnowledgeChallengeModal({ onClose, gate, onPassed }: KnowledgeChallengeModalProps) {
-  const [mounted, setMounted] = useState(false);
+  const mounted = useIsClient();
   const [state, setState] = useState<LoadState>("loading");
-
-  useEffect(() => {
-    setMounted(true);
-  }, []);
   const [questions, setQuestions] = useState<ChallengeQuestion[]>([]);
   const [activeQ, setActiveQ] = useState(0);
   const [selected, setSelected] = useState<number | null>(null);

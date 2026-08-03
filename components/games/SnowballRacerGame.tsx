@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { createPortal } from "react-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import { Zap, TrendingUp, ShieldAlert, Sparkles, Trophy, RotateCcw, DollarSign, Award, ArrowUpRight, ArrowDownRight } from "lucide-react";
@@ -8,6 +8,7 @@ import { toast } from "sonner";
 import { soundManager } from "@/lib/sounds";
 import { recalculateUserStats } from "@/lib/supabase-user";
 import { recordCustomGameSession } from "@/lib/games";
+import { useIsClient } from "@/lib/use-is-client";
 
 interface Strategy {
   id: "safe" | "balanced font" | "growth" | "leveraged";
@@ -109,7 +110,7 @@ const QUIZ_BOOSTS: QuizBoost[] = [
 ];
 
 export default function SnowballRacerGame({ userId, onClose }: { userId: string; onClose: () => void }) {
-  const [mounted, setMounted] = useState(false);
+  const mounted = useIsClient();
   const [year, setYear] = useState(1);
   const [netWorth, setNetWorth] = useState(10000); // Start with $10,000 capital
   const [annualContribution, setAnnualContribution] = useState(5000); // $5,000 added yearly
@@ -124,10 +125,6 @@ export default function SnowballRacerGame({ userId, onClose }: { userId: string;
   const [selectedQuizOption, setSelectedQuizOption] = useState<number | null>(null);
 
   const TARGET_NET_WORTH = 1000000; // $1,000,000
-
-  useEffect(() => {
-    setMounted(true);
-  }, []);
 
   const handleNextYear = () => {
     // Pick random quiz boost chance (50% chance each turn)

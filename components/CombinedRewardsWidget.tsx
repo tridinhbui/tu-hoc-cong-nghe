@@ -9,6 +9,7 @@ import { getUserStreak } from "@/lib/supabase-streak";
 import { getUnopenedChestCount, openNextChest, earnChest, type ChestReward } from "@/lib/chests";
 import { createClient } from "@/lib/supabase";
 import DailyQuestsWidget from "@/components/DailyQuestsWidget";
+import { useIsClient } from "@/lib/use-is-client";
 
 interface CombinedRewardsWidgetProps {
   userId: string;
@@ -38,13 +39,9 @@ interface DailyQuest {
 }
 
 export default function CombinedRewardsWidget({ userId, defaultExpanded = false, compact = false }: CombinedRewardsWidgetProps) {
-  const [mounted, setMounted] = useState(false);
+  const mounted = useIsClient();
   const [activeTab, setActiveTab] = useState<"daily" | "chests" | "weekly">("daily");
   const [isExpanded, setIsExpanded] = useState(defaultExpanded);
-
-  useEffect(() => {
-    setMounted(true);
-  }, []);
 
   // Chest state (now server-backed - see lib/chests.ts)
   const [chestCount, setChestCount] = useState<number>(0);

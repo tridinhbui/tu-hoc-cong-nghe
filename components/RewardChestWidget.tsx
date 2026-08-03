@@ -5,6 +5,7 @@ import { createPortal } from "react-dom";
 import { Gift, Sparkles, Trophy, CheckCircle2 } from "lucide-react";
 import { toast } from "sonner";
 import { recalculateUserStats } from "@/lib/supabase-user";
+import { useIsClient } from "@/lib/use-is-client";
 
 interface RewardChestWidgetProps {
   userId: string;
@@ -30,15 +31,11 @@ interface ChestReward {
 }
 
 export default function RewardChestWidget({ userId }: RewardChestWidgetProps) {
-  const [mounted, setMounted] = useState(false);
+  const mounted = useIsClient();
   const [chests, setChests] = useState<number>(0);
   const [opening, setOpening] = useState<boolean>(false);
   const [shaking, setShaking] = useState<boolean>(false);
   const [rewardReveal, setRewardReveal] = useState<ChestReward | null>(null);
-
-  useEffect(() => {
-    setMounted(true);
-  }, []);
 
   const chestKey = `thtcdn_chests_${userId}`;
   const titlesKey = `thtcdn_unlocked_titles_${userId}`;

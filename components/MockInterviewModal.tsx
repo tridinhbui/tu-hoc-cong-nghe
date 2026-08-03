@@ -7,6 +7,7 @@ import { toast } from "sonner";
 import type { ChallengeQuestion } from "@/app/api/knowledge-challenge/route";
 import { submitQuizSession, type QuizAnswerSubmission } from "@/lib/supabase-quiz-sessions";
 import { recalculateUserStats } from "@/lib/supabase-user";
+import { useIsClient } from "@/lib/use-is-client";
 
 // A full mock interview run: 10 IB-question-bank questions spread across the
 // bank's categories, on a clock, with no per-question feedback - you find out
@@ -46,14 +47,12 @@ export default function MockInterviewModal({ onClose, onFinished, userId }: Mock
   const [picks, setPicks] = useState<(number | null)[]>([]);
   const [secondsLeft, setSecondsLeft] = useState(SECONDS_PER_QUESTION);
   const [result, setResult] = useState<{ score: number; total: number; xpEarned: number } | null>(null);
-  const [mounted, setMounted] = useState(false);
+  const mounted = useIsClient();
 
   // Held in a ref as well so the interval callback can advance the question
   // without being re-created (and restarting the clock) on every tick.
   const activeQRef = useRef(0);
   activeQRef.current = activeQ;
-
-  useEffect(() => setMounted(true), []);
 
   const load = useCallback(async () => {
     setState("loading");

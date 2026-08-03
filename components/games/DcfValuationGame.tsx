@@ -8,6 +8,7 @@ import { toast } from "sonner";
 import { soundManager } from "@/lib/sounds";
 import { recalculateUserStats } from "@/lib/supabase-user";
 import { recordCustomGameSession } from "@/lib/games";
+import { useIsClient } from "@/lib/use-is-client";
 
 interface CompanyDeal {
   id: string;
@@ -126,17 +127,13 @@ const DEALS: CompanyDeal[] = [
 ];
 
 export default function DcfValuationGame({ userId, onClose }: { userId: string; onClose: () => void }) {
-  const [mounted, setMounted] = useState(false);
+  const mounted = useIsClient();
   const [round, setRound] = useState(0); // 0 to 4
   const [score, setScore] = useState(0);
   const [wacc, setWacc] = useState(0.10);
   const [growthG, setGrowthG] = useState(0.03);
   const [gameState, setGameState] = useState<"playing" | "evaluated" | "finished">("playing");
   const [lastResult, setLastResult] = useState<{ isCorrect: boolean; targetPrice: number } | null>(null);
-
-  useEffect(() => {
-    setMounted(true);
-  }, []);
 
   const deal = DEALS[round];
 
