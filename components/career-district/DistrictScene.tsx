@@ -289,6 +289,8 @@ export interface DistrictSceneProps {
   onPeersChange: (peers: Array<{ x: number; z: number; color: string }>) => void;
   /** Slug bài đã hoàn thành - cột trên hành lang lộ trình sáng theo cái này. */
   doneSlugs: ReadonlySet<string>;
+  /** Bài tới hạn ôn - cột của chúng sáng khác màu và hỏi lại. */
+  dueSlugs: ReadonlySet<string>;
   /** Tiến độ từng nhóm ngành, khắc lên biển hiệu ngoài phố. */
   progressByCategory: Record<string, { done: number; total: number }>;
   /** Ghế cà phê đang có người - của mình và của người khác. */
@@ -322,6 +324,7 @@ export default function DistrictScene({
   playerRef,
   onPeersChange,
   doneSlugs,
+  dueSlugs,
   progressByCategory,
   seatTaken,
   onWalkingChange,
@@ -467,6 +470,7 @@ export default function DistrictScene({
         room={room}
         lessonTitles={lessonTitles}
         doneSlugs={doneSlugs}
+        dueSlugs={dueSlugs}
         progressByCategory={progressByCategory as never}
         seatTaken={seatTaken}
       />

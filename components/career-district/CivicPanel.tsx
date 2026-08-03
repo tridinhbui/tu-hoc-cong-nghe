@@ -7,6 +7,9 @@ import { ITEM_DESCRIPTIONS, WEARABLE_IN_3D, type CharacterEquipments } from "@/l
 import { COMPETENCIES } from "@/lib/career-competency";
 import { getLeaderboardByMetric, type LeaderboardRow } from "@/lib/supabase-user";
 import type { DistrictRoomId } from "./district-space";
+import ThreeStatementPanel from "./ThreeStatementPanel";
+import CompoundTowerPanel from "./CompoundTowerPanel";
+import CapitalStackPanel from "./CapitalStackPanel";
 
 /** Nội dung của sáu căn nhà dân sự, mở ra khi đứng lên bục giữa phòng.
  *
@@ -458,6 +461,15 @@ function FriendsHouse({ accent, userId, onClose }: Props) {
   );
 }
 
+/** Ba phòng học thật sự - chúng không đọc dữ liệu người dùng nào, nên chỉ cần
+ *  màu nhấn và nút đóng. Tách khỏi PANELS để kiểu của chúng không phải giả vờ
+ *  nhận đủ Props của các phòng kia. */
+const TEACHING_PANELS: Partial<Record<string, (p: { accent: string; onClose: () => void }) => React.ReactElement>> = {
+  "ba-bao-cao": ThreeStatementPanel,
+  "thap-lai-kep": CompoundTowerPanel,
+  "phong-lbo": CapitalStackPanel,
+};
+
 const PANELS: Partial<Record<string, (props: Props) => React.ReactElement>> = {
   "cua-hang": Shop,
   "bang-vang": HallOfFame,
@@ -468,6 +480,8 @@ const PANELS: Partial<Record<string, (props: Props) => React.ReactElement>> = {
 };
 
 export default function CivicPanel(props: Props) {
+  const Teaching = TEACHING_PANELS[props.roomId as string];
+  if (Teaching) return <Teaching accent={props.accent} onClose={props.onClose} />;
   const Panel = PANELS[props.roomId as string];
   return Panel ? <Panel {...props} /> : null;
 }

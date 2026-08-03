@@ -797,10 +797,12 @@ function OfficeScene({
   room,
   lessonTitles,
   doneSlugs,
+  dueSlugs,
 }: {
   room: DistrictRoom;
   lessonTitles: string[];
   doneSlugs: ReadonlySet<string>;
+  dueSlugs: ReadonlySet<string>;
 }) {
   const floor = useMemo(() => oakTexture(6, 14), []);
   const shelf = useMemo(() => bookshelfTexture(), []);
@@ -920,20 +922,28 @@ function OfficeScene({
           đâu trên lộ trình, thứ một danh sách phẳng không nói được. */}
       {(room.stops ?? []).map((stop) => {
         const done = doneSlugs.has(stop.slug);
+        // Ba trạng thái, không phải hai: chưa học (tối), đã học (sáng màu
+        // phòng), và ĐẾN HẠN ÔN (hổ phách, sáng hơn hẳn). Trạng thái thứ ba là
+        // lý do người học đi lại hành lang cũ - nếu nó trông giống "đã học"
+        // thì cả cơ chế ôn ngắt quãng vô hình trong thế giới này.
+        const due = dueSlugs.has(stop.slug);
+        const lit = due ? "#fbbf24" : done ? room.accent : "#4b4540";
         return (
           <group key={stop.slug} position={[stop.x, 0, stop.z]}>
             <mesh position={[0, 0.9, 0]} castShadow receiveShadow>
               <cylinderGeometry args={[0.42, 0.5, 1.8, 8]} />
-              <meshStandardMaterial color={done ? "#3f3a2a" : "#2a2724"} roughness={0.85} />
+              <meshStandardMaterial color={due ? "#4a3c22" : done ? "#3f3a2a" : "#2a2724"} roughness={0.85} />
             </mesh>
             <mesh position={[0, 1.95, 0]}>
-              <sphereGeometry args={[0.26, 14, 14]} />
-              <meshBasicMaterial color={done ? room.accent : "#4b4540"} toneMapped={false} />
+              <sphereGeometry args={[due ? 0.32 : 0.26, 14, 14]} />
+              <meshBasicMaterial color={lit} toneMapped={false} />
             </mesh>
-            {done && <pointLight position={[0, 2.1, 0]} intensity={5} distance={5} color={room.accent} />}
+            {(done || due) && (
+              <pointLight position={[0, 2.1, 0]} intensity={due ? 9 : 5} distance={due ? 7 : 5} color={lit} />
+            )}
             <mesh position={[0, 0.02, 0]} rotation={[-Math.PI / 2, 0, 0]}>
-              <ringGeometry args={[0.62, 0.78, 20]} />
-              <meshBasicMaterial color={done ? room.accent : "#3a3532"} toneMapped={false} />
+              <ringGeometry args={[0.62, due ? 0.9 : 0.78, 20]} />
+              <meshBasicMaterial color={done || due ? lit : "#3a3532"} toneMapped={false} />
             </mesh>
           </group>
         );
@@ -1034,6 +1044,7 @@ export default function DistrictShell({
   room,
   lessonTitles,
   doneSlugs,
+  dueSlugs,
   progressByCategory,
   seatTaken,
 }: {
@@ -1042,6 +1053,8 @@ export default function DistrictShell({
   lessonTitles: string[];
   /** Slug những bài đã hoàn thành, để cột trên hành lang sáng lên. */
   doneSlugs: ReadonlySet<string>;
+  /** Slug những bài tới hạn ôn lại. */
+  dueSlugs: ReadonlySet<string>;
   /** Tiến độ từng nhóm ngành, khắc lên biển hiệu ngoài phố. */
   progressByCategory: Record<CareerCategory, { done: number; total: number }>;
   /** Ghế cà phê đang có người, để ghế đổi màu. */
@@ -1056,6 +1069,6 @@ export default function DistrictShell({
   // Sáu căn nhà dân sự chia nhau một khuôn, nên chúng sống ở file riêng.
   if (isCivicRoom(room.id)) return <CivicScene room={room} />;
   return (
-    <OfficeScene room={room} lessonTitles={lessonTitles} doneSlugs={doneSlugs} />
+    <OfficeScene room={room} lessonTitles={lessonTitles} doneSlugs={doneSlugs} dueSlugs={dueSlugs} />
   );
 }

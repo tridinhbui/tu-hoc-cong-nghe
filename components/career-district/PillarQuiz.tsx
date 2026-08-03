@@ -1,6 +1,7 @@
 "use client";
 
 import { useCallback, useEffect, useState } from "react";
+import { processRecallAttempt } from "@/lib/supabase-recalls";
 
 /** Trả lời một câu ôn ngay tại cột, không rời hành lang.
  *
@@ -26,6 +27,9 @@ interface Question {
 interface Props {
   lessonId: number;
   accent: string;
+  /** Bài này đang tới hạn ôn - đổi lời mời và ghi lại kết quả vào lịch ôn. */
+  due?: boolean;
+  userId: string;
   onClose: () => void;
   /** Trả lời đúng thì báo ra ngoài để cột sáng thêm. */
   onCorrect: () => void;
@@ -39,7 +43,7 @@ type Phase =
   | { kind: "grading"; q: Question; picked: number }
   | { kind: "done"; q: Question; picked: number; correct: boolean };
 
-export default function PillarQuiz({ lessonId, accent, onClose, onCorrect }: Props) {
+export default function PillarQuiz({ lessonId, accent, due = false, userId, onClose, onCorrect }: Props) {
   const [phase, setPhase] = useState<Phase>({ kind: "loading" });
 
   useEffect(() => {
@@ -82,6 +86,10 @@ export default function PillarQuiz({ lessonId, accent, onClose, onCorrect }: Pro
         // đáp án đúng, và đó là điều kiện để con số này đáng tin.
         const correct = (data.score ?? 0) > 0;
         setPhase({ kind: "done", q, picked, correct });
+        // Đẩy lịch ôn ngắt quãng theo kết quả: đúng thì giãn ra, sai thì kéo
+        // về đầu. Gọi đúng hàm mà màn hình ôn tập đang dùng - một cách tính
+        // lịch thứ hai sẽ khiến hai nơi hẹn hai ngày khác nhau cho cùng bài.
+        void processRecallAttempt(userId, lessonId, correct).catch(() => {});
         if (correct) onCorrect();
       } catch {
         // Chấm điểm hỏng thì không được coi là sai: người học vẫn cần đọc lời
@@ -99,7 +107,7 @@ export default function PillarQuiz({ lessonId, accent, onClose, onCorrect }: Pro
     >
       <div className="mb-2 flex items-start justify-between gap-2">
         <p className="text-[10px] font-black uppercase tracking-widest" style={{ color: accent }}>
-          ❓ Ôn nhanh tại chỗ
+          {due ? "⏰ Đến hạn ôn lại bài này" : "❓ Ôn nhanh tại chỗ"}
         </p>
         <button
           type="button"

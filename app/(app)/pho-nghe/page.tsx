@@ -5,6 +5,7 @@ import { createServerSupabaseClient } from "@/lib/supabase-server";
 import { colorForUser } from "@/lib/supabase-lobby";
 import { getUserStreak } from "@/lib/supabase-streak";
 import { getEquippedGear } from "@/lib/supabase-equipment";
+import { getLessonRecalls } from "@/lib/supabase-recalls";
 import DistrictWorld, { type DistrictLesson } from "@/components/career-district/DistrictWorld";
 import { allDistrictLessonSlugs, buildStageIndex } from "@/components/career-district/district-content";
 
@@ -69,6 +70,16 @@ export default async function PhoNghePage() {
 
   const gear = await getEquippedGear(user.id, supabase);
 
+  // Lịch ôn ngắt quãng: bài nào đã tới hạn thì cột trong hành lang sáng khác
+  // màu và hỏi lại. Dữ liệu này đã tồn tại từ lâu (user_lesson_recalls) và cho
+  // tới giờ chỉ có màn hình ôn tập đọc nó - hành lang là chỗ thứ hai, và là
+  // chỗ người học đi ngang qua mà không định ôn.
+  const recalls = await getLessonRecalls(user.id);
+  const now = Date.now();
+  const dueLessonIds = recalls
+    .filter((r) => new Date(r.next_recall_at).getTime() <= now)
+    .map((r) => r.lesson_id);
+
   let name = user.user_metadata?.full_name || user.email?.split("@")[0] || "Người học";
   let avatarUrl: string | null = user.user_metadata?.avatar_url || null;
   let level = 1;
@@ -93,6 +104,7 @@ export default async function PhoNghePage() {
       level={level}
       lessons={lessons}
       stages={stages}
+      dueLessonIds={dueLessonIds}
     />
   );
 }

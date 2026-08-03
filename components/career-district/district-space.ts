@@ -43,6 +43,9 @@ export type DistrictRoomId =
   | "can-ho"
   | "bao-tang"
   | "nha-ban-be"
+  | "ba-bao-cao"
+  | "thap-lai-kep"
+  | "phong-lbo"
   | FloorRoomId;
 
 export interface Pose {
@@ -139,7 +142,7 @@ export interface DistrictRoom {
 
 /** Phố chạy theo trục x. Năm căn nhà nằm bên phía -z, vỉa hè trước cửa. */
 export const STREET = {
-  halfLength: 44,
+  halfLength: 78,
   /** Vỉa hè: dải z đi lại được. Lòng đường phía +z để cho xe, không bước vào. */
   walkMinZ: -5.4,
   walkMaxZ: 5.4,
@@ -775,6 +778,33 @@ export interface CivicSpec {
 }
 
 export const CIVIC_ROOMS: CivicSpec[] = [
+  {
+    id: "ba-bao-cao",
+    label: "Phòng Ba Báo Cáo",
+    accent: "#67e8f9",
+    streetX: -54,
+    blurb: "Chạm một khoản, nhìn nó chạy qua cả ba bảng",
+    width: 18,
+    depth: 18,
+  },
+  {
+    id: "thap-lai-kep",
+    label: "Tháp Lãi Kép",
+    accent: "#fdba74",
+    streetX: 54,
+    blurb: "Mỗi tầng một năm - leo để thấy lãi kép",
+    width: 14,
+    depth: 14,
+  },
+  {
+    id: "phong-lbo",
+    label: "Phòng Tầng Vốn",
+    accent: "#f9a8d4",
+    streetX: -69,
+    blurb: "Nợ ưu tiên dưới, vốn chủ trên - ai mất trước",
+    width: 16,
+    depth: 16,
+  },
   {
     id: "cua-hang",
     label: "Cửa hàng & Gương thử đồ",

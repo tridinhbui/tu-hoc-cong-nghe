@@ -159,6 +159,8 @@ export interface DistrictWorldProps {
   lessons: Record<string, DistrictLesson>;
   /** Chặng học đã đổ sẵn ra danh sách bài ở phía server. */
   stages: StageIndexEntry[];
+  /** Bài đã tới hạn ôn lại. Cột của chúng trong hành lang sáng khác màu. */
+  dueLessonIds: number[];
 }
 
 export default function DistrictWorld({
@@ -172,6 +174,7 @@ export default function DistrictWorld({
   level,
   lessons,
   stages,
+  dueLessonIds,
 }: DistrictWorldProps) {
   const [roomId, setRoomId] = useState<DistrictRoomId>("street");
   const [entry, setEntry] = useState<Pose>(STREET_SPAWN);
@@ -324,6 +327,13 @@ export default function DistrictWorld({
     [desk, lessons]
   );
 
+  /** Slug của những bài tới hạn ôn. Đổi từ id sang slug ở đây một lần, thay vì
+   *  để mỗi cột tự tra ngược. */
+  const dueSlugs = useMemo(() => {
+    const byId = new Map(Object.values(lessons).map((l) => [l.id, l.slug]));
+    return new Set(dueLessonIds.map((id) => byId.get(id)).filter((s): s is string => !!s));
+  }, [lessons, dueLessonIds]);
+
   const doneSlugs = useMemo(() => {
     const out = new Set(Object.values(lessons).filter((l) => l.done).map((l) => l.slug));
     // Trả lời đúng tại cột thì cột sáng NGAY. Đây là phần thưởng duy nhất của
@@ -388,6 +398,7 @@ export default function DistrictWorld({
           playerRef={playerRef}
           onPeersChange={setMapPeers}
           doneSlugs={doneSlugs}
+          dueSlugs={dueSlugs}
           progressByCategory={progressByCategory}
           onWalkingChange={setWalking}
           daylight={daylight}
@@ -646,7 +657,11 @@ export default function DistrictWorld({
             {lessons[stop.slug]?.title ?? stop.slug}
           </p>
           <p className="mt-1 text-[11px] text-stone-400">
-            {doneSlugs.has(stop.slug) ? "✓ Bạn đã học bài này" : "Chưa học"}
+            {dueSlugs.has(stop.slug)
+              ? "⏰ Đến hạn ôn lại - trả lời đúng để giãn lịch ra"
+              : doneSlugs.has(stop.slug)
+              ? "✓ Bạn đã học bài này"
+              : "Chưa học"}
           </p>
           <div className="mt-2.5 flex gap-1.5">
             <Link
@@ -662,7 +677,7 @@ export default function DistrictWorld({
                 onClick={() => setQuizLessonId(lessons[stop.slug].id)}
                 className="cursor-pointer rounded-xl bg-stone-800 px-3 py-2 text-[11px] font-black text-stone-200 transition hover:bg-stone-700"
               >
-                ❓ Ôn tại chỗ
+                {dueSlugs.has(stop.slug) ? "⏰ Ôn lại ngay" : "❓ Ôn tại chỗ"}
               </button>
             )}
           </div>
@@ -672,6 +687,8 @@ export default function DistrictWorld({
       {quizLessonId !== null && stop && (
         <PillarQuiz
           lessonId={quizLessonId}
+          userId={userId}
+          due={dueSlugs.has(stop.slug)}
           accent={room.accent}
           onClose={() => setQuizLessonId(null)}
           onCorrect={() => {
