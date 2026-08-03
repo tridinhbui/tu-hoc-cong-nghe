@@ -97,6 +97,18 @@ export const FRM_MARKET_RISK_LESSONS: Lesson[] = [
         explanation:
           "Đây là đánh đổi không có lời giải đúng tuyệt đối, và là lý do bài sau về EWMA tồn tại: gán trọng số giảm dần cho dữ liệu cũ là một cách thoát khỏi lựa chọn nhị phân này.",
       },
+    
+    {
+      "question": "Cửa sổ dữ liệu dài hơn ảnh hưởng thế nào tới VaR tính bằng mô phỏng lịch sử?",
+      "options": [
+        "Ước lượng ổn định hơn nhưng phản ứng chậm hơn với biến động mới",
+        "Ước lượng nhạy hơn với các cú sốc vừa xảy ra trong thị trường",
+        "Ước lượng luôn cho ra mức rủi ro cao hơn so với cửa sổ ngắn",
+        "Ước lượng không đổi vì mô phỏng lịch sử không phụ thuộc độ dài cửa sổ"
+      ],
+      "correct": 0,
+      "explanation": "Đây là đánh đổi cơ bản của mọi ước lượng dựa trên cửa sổ trượt. Cửa sổ dài làm con số ít nhảy nhưng cũng làm mô hình chậm nhận ra thị trường vừa đổi chế độ - và cửa sổ ngắn thì ngược lại, nhạy nhưng ồn."
+    }
     ],
     keyTakeaways: [
       "Ba phương pháp cho ba con số khác nhau trên cùng một danh mục - phải biết đang dùng cái nào",
@@ -245,6 +257,18 @@ export const FRM_MARKET_RISK_LESSONS: Lesson[] = [
         explanation:
           "VaR đo rủi ro của danh mục đầu ngày nếu giữ nguyên. Trộn kết quả giao dịch trong ngày vào sẽ kiểm định lẫn lộn hai thứ khác nhau.",
       },
+    
+    {
+      "question": "Vì sao kiểm định hậu nghiệm dùng lỗ giả định trên danh mục giữ nguyên thay vì lỗ thực tế trong ngày?",
+      "options": [
+        "Vì lỗ thực tế còn chứa kết quả giao dịch trong ngày, không phải rủi ro mô hình đo",
+        "Vì lỗ thực tế chỉ được xác định sau khi kết thúc kỳ báo cáo tài chính",
+        "Vì cơ quan quản lý không cho phép sử dụng số liệu lỗ thực tế của ngân hàng",
+        "Vì lỗ giả định luôn lớn hơn nên cho kết quả kiểm định thận trọng hơn"
+      ],
+      "correct": 0,
+      "explanation": "VaR dự báo cho danh mục đầu ngày. Nếu người giao dịch mua bán suốt phiên, lỗ cuối ngày phản ánh cả quyết định đó lẫn biến động thị trường - trộn hai thứ vào thì không còn kiểm định được bản thân mô hình nữa."
+    }
     ],
     keyTakeaways: [
       "VaR 99% dự kiến bị vượt khoảng 2-3 lần mỗi 250 ngày - không vượt lần nào cũng là một vấn đề",
@@ -394,6 +418,18 @@ export const FRM_MARKET_RISK_LESSONS: Lesson[] = [
         explanation:
           "VaR kiểm định dễ vì chỉ cần đếm vượt hay không vượt. ES là một giá trị trung bình có điều kiện, nên kiểm định nó cần nhiều dữ liệu đuôi hơn hẳn - đúng phần dữ liệu vốn khan hiếm nhất.",
       },
+    
+    {
+      "question": "Nhược điểm chính của Expected Shortfall so với VaR là gì?",
+      "options": [
+        "Nó khó kiểm định hậu nghiệm hơn vì phụ thuộc vào vùng đuôi ít quan sát",
+        "Nó không đo được mức lỗ trong các kịch bản cực đoan của thị trường",
+        "Nó vi phạm tính cộng gộp nên không dùng được cho danh mục lớn",
+        "Nó chỉ áp dụng được cho danh mục cổ phiếu chứ không cho phái sinh"
+      ],
+      "correct": 0,
+      "explanation": "VaR chỉ cần đếm số lần bị vượt nên kiểm định rất gọn. Expected Shortfall là trung bình của phần đuôi, mà phần đuôi thì theo định nghĩa có rất ít quan sát - nên đánh giá xem con số đó đúng hay sai khó hơn hẳn."
+    }
     ],
     keyTakeaways: [
       "VaR chỉ nhìn một điểm trên phân phối và bỏ qua mọi thứ nằm sau điểm đó",
@@ -552,6 +588,18 @@ export const FRM_MARKET_RISK_LESSONS: Lesson[] = [
         explanation:
           "Tính chất này quan trọng khi tính VaR cho kỳ hạn dài: không thể chỉ nhân độ biến động một ngày với căn bậc hai của số ngày nếu biến động hiện tại đang lệch xa mức dài hạn.",
       },
+    
+    {
+      "question": "Vì sao dự báo biến động nhiều kỳ của mô hình GARCH hội tụ về một mức cố định?",
+      "options": [
+        "Vì mô hình có thành phần kéo biến động về mức trung bình dài hạn",
+        "Vì sai số dự báo tích lũy làm mọi kịch bản trở nên giống nhau",
+        "Vì tham số của mô hình được ước lượng lại sau mỗi kỳ dự báo",
+        "Vì biến động thực tế của thị trường luôn ổn định trong dài hạn"
+      ],
+      "correct": 0,
+      "explanation": "Đây chính là điểm GARCH khác EWMA: nó có một mức biến động dài hạn được ước lượng từ dữ liệu, và mọi dự báo đều bị kéo dần về đó. EWMA không có neo này nên dự báo nhiều kỳ của nó phẳng ở mức hiện tại."
+    }
     ],
     keyTakeaways: [
       "Biến động dồn cụm - đây là quy luật thực nghiệm chắc chắn nhất của chuỗi lợi suất",
@@ -700,6 +748,18 @@ export const FRM_MARKET_RISK_LESSONS: Lesson[] = [
         explanation:
           "Khi lý do bán không còn liên quan tới bản thân tài sản mà là nhu cầu tiền mặt, mọi thứ cùng bị bán - và đa dạng hoá theo ngành hay khu vực không giúp được gì.",
       },
+    
+    {
+      "question": "Vì sao mô hình dùng copula Gaussian đánh giá thấp rủi ro danh mục tín dụng trước năm 2008?",
+      "options": [
+        "Vì nó không tạo phụ thuộc đuôi nên bỏ qua vỡ nợ đồng loạt",
+        "Vì nó giả định các khoản vay có xác suất vỡ nợ bằng nhau",
+        "Vì nó chỉ áp dụng được cho danh mục có ít hơn một trăm tài sản",
+        "Vì nó đòi hỏi dữ liệu lịch sử dài hơn mức các tổ chức đang có"
+      ],
+      "correct": 0,
+      "explanation": "Copula Gaussian cho phép đặt tương quan nhưng phần đuôi vẫn độc lập tiệm cận - nghĩa là mô hình gần như loại trừ kịch bản mọi khoản vay cùng vỡ một lúc. Đó đúng là kịch bản đã xảy ra, và nó nằm ngoài thứ mô hình có thể sinh ra."
+    }
     ],
     keyTakeaways: [
       "Hệ số tương quan đo quan hệ trung bình, bị chi phối bởi các ngày bình thường",
@@ -849,6 +909,18 @@ export const FRM_MARKET_RISK_LESSONS: Lesson[] = [
         explanation:
           "Một bộ kết quả stress test được trình bày rồi cất đi không làm tổ chức an toàn hơn chút nào - nó chỉ tạo cảm giác đã kiểm soát.",
       },
+    
+    {
+      "question": "Kết quả một bài kiểm tra sức chịu đựng chỉ có giá trị khi nào?",
+      "options": [
+        "Khi nó dẫn tới một hành động cụ thể nếu kịch bản đó xảy ra thật",
+        "Khi kịch bản được xây dựng dựa trên một sự kiện đã có trong lịch sử",
+        "Khi mức lỗ tính ra nằm trong hạn mức rủi ro đã được phê duyệt",
+        "Khi kịch bản được cơ quan quản lý chấp thuận trước khi thực hiện"
+      ],
+      "correct": 0,
+      "explanation": "Một bảng kết quả cho thấy mất bao nhiêu mà không kèm việc phải làm gì thì chỉ là một con số. Giá trị nằm ở phần sau: giảm vị thế nào, cần thêm bao nhiêu vốn, kích hoạt kế hoạch tài trợ dự phòng ở ngưỡng nào."
+    }
     ],
     keyTakeaways: [
       "Stress test không gắn xác suất: nó hỏi nếu xảy ra thì mất bao nhiêu, không hỏi khả năng bao nhiêu",

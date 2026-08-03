@@ -93,6 +93,18 @@ export const FRM_CREDIT_CURRENT_LESSONS: Lesson[] = [
         explanation:
           "Khoản bồi thường bằng mệnh giá trừ tỷ lệ thu hồi (recovery rate) - nếu trái phiếu vỡ nợ vẫn thu hồi được 40% giá trị qua thủ tục phá sản, bên bán chỉ phải bồi thường 60% mệnh giá, không phải toàn bộ.",
       },
+    
+    {
+      "question": "Điều gì xảy ra với bên bán bảo vệ khi tổ chức tham chiếu xảy ra sự kiện tín dụng?",
+      "options": [
+        "Phải bù phần chênh giữa mệnh giá và giá trị còn lại của trái phiếu",
+        "Phải hoàn lại toàn bộ số phí đã nhận cho bên mua bảo vệ",
+        "Phải mua lại toàn bộ trái phiếu của tổ chức tham chiếu theo mệnh giá gốc",
+        "Không phải làm gì nếu bên mua bảo vệ không nắm giữ trái phiếu tham chiếu"
+      ],
+      "correct": 0,
+      "explanation": "Khoản bồi thường bằng phần tổn thất, tức mệnh giá trừ tỷ lệ thu hồi. Đáng chú ý là phương án cuối cùng sai một cách quan trọng: hợp đồng không đòi bên mua phải sở hữu tài sản tham chiếu, và chính điều đó cho phép dùng nó để đầu cơ."
+    }
     ],
     keyTakeaways: [
       "CDS là hợp đồng bảo vệ tín dụng: bên mua trả phí định kỳ, bên bán bồi thường nếu xảy ra sự kiện tín dụng với tổ chức tham chiếu",
@@ -216,6 +228,18 @@ export const FRM_CREDIT_CURRENT_LESSONS: Lesson[] = [
         explanation:
           "Đây là bản chất của tên gọi \"waterfall\": hình dung dòng tiền như nước chảy từ đỉnh thác xuống, lấp đầy bể Senior trước, rồi mới tràn xuống Mezzanine, cuối cùng mới tới Equity. Tổn thất thì ngược lại - như nước rút từ đáy lên, Equity cạn trước, rồi mới ảnh hưởng tới Mezzanine, và chỉ tới Senior khi cả hai lớp dưới đã bị xoá sổ hoàn toàn.",
       },
+    
+    {
+      "question": "Vì sao lớp cao nhất của nhiều sản phẩm cấu trúc dưới chuẩn vẫn được xếp hạng cao nhất trước 2008?",
+      "options": [
+        "Vì mô hình giả định các khoản vay hầu như không cùng vỡ nợ",
+        "Vì tổ chức xếp hạng không được tiếp cận dữ liệu của các khoản vay gốc",
+        "Vì lớp này được một tổ chức bảo hiểm đứng ra bảo lãnh toàn bộ",
+        "Vì phần lớn khoản vay trong rổ đều có tài sản bảo đảm giá trị cao"
+      ],
+      "correct": 0,
+      "explanation": "Toàn bộ phép màu nằm ở giả định tương quan thấp: nếu vỡ nợ rải rác thì lớp dưới hấp thụ hết và lớp trên gần như an toàn. Khi giá nhà giảm trên cả nước, các khoản vay vỡ cùng lúc, và lớp đệm bên dưới bốc hơi trong vài tháng."
+    }
     ],
     keyTakeaways: [
       "CDO chia dòng tiền từ một rổ tài sản thành nhiều lớp (tranche): Senior nhận trước và chịu tổn thất sau cùng, Equity nhận sau cùng và chịu tổn thất trước",
@@ -338,6 +362,18 @@ export const FRM_CREDIT_CURRENT_LESSONS: Lesson[] = [
         explanation:
           "CVA tỷ lệ thuận với xác suất vỡ nợ của đối tác - khi rủi ro đối tác tăng, chi phí kỳ vọng của việc không nhận được khoản họ đang nợ (nếu hợp đồng có giá trị dương với bạn) cũng tăng theo, buộc ngân hàng phải ghi nhận một khoản lỗ CVA ngay cả khi chưa có sự kiện vỡ nợ thực sự nào xảy ra.",
       },
+    
+    {
+      "question": "Vì sao điều chỉnh định giá tín dụng chỉ phát sinh khi hợp đồng phái sinh đang có giá trị dương với bạn?",
+      "options": [
+        "Vì chỉ khi đó bạn mới là bên có khoản phải thu nếu đối tác vỡ nợ",
+        "Vì hợp đồng có giá trị âm sẽ tự động được chấm dứt trước hạn",
+        "Vì bên có giá trị âm không phải nộp tài sản bảo đảm cho đối tác",
+        "Vì chuẩn kế toán chỉ yêu cầu ghi nhận điều chỉnh cho phần tài sản"
+      ],
+      "correct": 0,
+      "explanation": "Đối tác vỡ nợ khi họ đang nợ bạn thì bạn mất tiền; vỡ nợ khi bạn đang nợ họ thì bạn không được lợi gì thêm. Rủi ro tín dụng đối tác vì vậy chỉ tồn tại ở một chiều - và chính tính bất đối xứng đó khiến việc định giá nó phức tạp."
+    }
     ],
     keyTakeaways: [
       "CVA định lượng chi phí rủi ro rằng đối tác giao dịch phái sinh vỡ nợ đúng lúc hợp đồng đang có giá trị dương với bạn",
@@ -480,6 +516,18 @@ export const FRM_CREDIT_CURRENT_LESSONS: Lesson[] = [
         explanation:
           "Đây là chức năng kinh tế cốt lõi mà cả ngân hàng truyền thống lẫn shadow banking cùng thực hiện, và cũng là nguồn gốc của lệch kỳ hạn - đúng vấn đề đã học ở chặng Liquidity and Treasury Risk (Northern Rock, SVB), chỉ khác là shadow banking thực hiện chức năng này mà không có mạng lưới an toàn đi kèm.",
       },
+    
+    {
+      "question": "Vì sao các tổ chức tín dụng ngoài hệ thống ngân hàng dễ tổn thương hơn trong khủng hoảng thanh khoản?",
+      "options": [
+        "Vì họ không có cửa sổ chiết khấu lẫn bảo hiểm tiền gửi",
+        "Vì họ không được phép nắm giữ tài sản thanh khoản chất lượng cao",
+        "Vì hoạt động của họ nằm ngoài khuôn khổ pháp luật hiện hành",
+        "Vì họ chỉ huy động vốn từ nhà đầu tư cá nhân nhỏ lẻ"
+      ],
+      "correct": 0,
+      "explanation": "Họ làm cùng một việc là chuyển kỳ hạn - huy động ngắn để cho vay dài - nhưng không có lưới an toàn nào phía sau. Khi nguồn tài trợ ngắn hạn đóng lại, không có người cho vay cuối cùng, và họ buộc phải bán tài sản đúng lúc giá xấu nhất."
+    }
     ],
     keyTakeaways: [
       "Shadow banking là các tổ chức phi ngân hàng thực hiện chức năng trung gian tín dụng tương tự ngân hàng nhưng không có bảo hiểm tiền gửi hay cửa sổ chiết khấu ngân hàng trung ương",
@@ -597,6 +645,18 @@ export const FRM_CREDIT_CURRENT_LESSONS: Lesson[] = [
         explanation:
           "Đây là sợi chỉ xuyên suốt của toàn bộ lộ trình FRM vừa học: dù là tương quan bị đánh giá sai (LTCM), cấu trúc phân lớp che giấu rủi ro (CDO), hay mạng lưới liên kết phức tạp (AIG), độ phức tạp gia tăng luôn đi kèm với việc rủi ro thực sự trở nên khó nhìn thấy hơn - đúng lúc risk manager cần nhìn thấy nó rõ nhất.",
       },
+    
+    {
+      "question": "Chuyển giao dịch phái sinh sang thanh toán qua trung tâm bù trừ giải quyết được gì và tạo ra rủi ro mới nào?",
+      "options": [
+        "Giảm mạng lưới đối tác chằng chịt, nhưng dồn rủi ro vào một điểm duy nhất",
+        "Giảm chi phí giao dịch, nhưng làm giảm thanh khoản của thị trường phái sinh",
+        "Tăng minh bạch giá, nhưng khiến các hợp đồng khó tùy chỉnh theo nhu cầu",
+        "Giảm rủi ro tín dụng đối tác, nhưng làm tăng rủi ro lãi suất cho hai bên"
+      ],
+      "correct": 0,
+      "explanation": "Trước đây mỗi bên là một mắt xích và không ai nhìn được cả mạng. Đưa qua trung tâm bù trừ làm mạng gọn lại và ai cũng nhìn thấy, nhưng chính trung tâm đó trở thành tổ chức không được phép sụp - nên yêu cầu vốn và ký quỹ của nó là chuyện hệ thống."
+    }
     ],
     keyTakeaways: [
       "Too-interconnected-to-fail: mức độ liên kết với hệ thống, không chỉ quy mô tài sản, quyết định một tổ chức có gây rủi ro hệ thống hay không (AIG qua thị trường CDS)",

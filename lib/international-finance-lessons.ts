@@ -434,6 +434,18 @@ export const INTERNATIONAL_FINANCE_LESSONS: Lesson[] = [
         explanation:
           "Cách này giữ được cả cấu trúc kinh tế lẫn tính nhất quán đồng tiền. Điều quan trọng là tỷ giá kỳ vọng dùng để quy đổi nên nhất quán với chênh lệch lạm phát đã giả định trong chính dòng tiền.",
       },
+    
+    {
+      "question": "Định giá một doanh nghiệp Việt Nam bằng dòng tiền tiền đồng thì tỷ suất chiết khấu phải được xây thế nào?",
+      "options": [
+        "Bằng tiền đồng, tức có tính cả phần lạm phát của đồng tiền này",
+        "Bằng đô la Mỹ rồi quy đổi kết quả cuối cùng sang tiền đồng",
+        "Bằng trung bình của lãi suất hai đồng tiền theo tỷ trọng doanh thu",
+        "Bằng lãi suất phi rủi ro quốc tế cộng phần bù rủi ro quốc gia"
+      ],
+      "correct": 0,
+      "explanation": "Lạm phát của một đồng tiền nằm ở cả tử số lẫn mẫu số, nên trộn hai đồng tiền vào một phép chiết khấu là tính lạm phát hai lần hoặc bỏ sót nó. Quy tắc rất gọn: dòng tiền đồng nào thì tỷ suất đồng đó, chuyển đổi ở bước cuối."
+    }
     ],
     keyTakeaways: [
       "Nguyên tắc nhất quán: dòng tiền bằng đồng nào thì chiết khấu bằng chi phí vốn của đồng đó",

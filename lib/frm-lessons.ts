@@ -1183,6 +1183,18 @@ export const FRM_LESSONS: Lesson[] = [
         explanation:
           "Đây là bức tranh tổng thể của môn Liquidity and Treasury Risk: LCR/NSFR là thước đo, CFP là kế hoạch hành động khi thước đo báo động, còn ALM/IRRBB là công việc quản lý hằng ngày để cấu trúc bảng cân đối kế toán không bao giờ đi tới điểm cần dùng tới CFP. Cả ba đều xuất phát từ cùng một rủi ro gốc: lệch kỳ hạn và lệch lãi suất giữa tài sản và nợ.",
       },
+    
+    {
+      "question": "Vì sao rủi ro lãi suất trên sổ ngân hàng được gọi là rủi ro âm thầm?",
+      "options": [
+        "Vì khoản mục này không định giá lại nên lỗ chưa hiện ra",
+        "Vì nó chỉ phát sinh khi ngân hàng có hoạt động kinh doanh phái sinh",
+        "Vì chuẩn kế toán không yêu cầu thuyết minh rủi ro lãi suất của sổ ngân hàng",
+        "Vì lãi suất thường thay đổi rất chậm nên tác động tích lũy khó nhận ra"
+      ],
+      "correct": 0,
+      "explanation": "Sổ giao dịch định giá lại hằng ngày nên lỗ hiện ra ngay. Trái phiếu giữ tới đáo hạn thì không, nên khoản lỗ nằm im trên bảng cân đối cho tới lúc buộc phải bán để có tiền - đúng kịch bản đã xảy ra năm 2023."
+    }
     ],
     keyTakeaways: [
       "IRRBB là rủi ro âm thầm vì sổ ngân hàng không mark-to-market hằng ngày như sổ giao dịch, nên khoản lỗ kinh tế thực có thể tích luỹ nhiều năm trước khi lộ ra",
