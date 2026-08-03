@@ -129,6 +129,9 @@ export const SKILL_DOMAINS: SkillDomain[] = [
       ...range(161, 180), ...range(201, 220), 1032, 1215, 1216, 1221,
       ...range(1229, 1231), ...range(1235, 1242), 1245, 1250, 1251, 1252, 1287, 1288, 1031,
       ...range(1451, 1457), ...range(1471, 1474), 805, 1025,
+      // 1583-1590: Alternative Investments - đặc điểm nhóm, đo hiệu suất, nợ tư
+      // nhân, hạ tầng, nông lâm nghiệp, chiến lược hedge fund, tài sản số, phân bổ.
+      ...range(1583, 1590),
     ],
   },
   {
@@ -155,7 +158,20 @@ export const SKILL_DOMAINS: SkillDomain[] = [
     // AML/KYC, quản trị doanh nghiệp, dùng AI có trách nhiệm và đạo đức dữ
     // liệu đều là cùng một câu hỏi: cái gì được phép làm với thông tin và
     // tiền của người khác.
-    lessonIds: [...range(1039, 1046), 1273, 1274, ...range(1281, 1283), ...range(1331, 1336), 1330, 1506, 1535, 1536],
+    lessonIds: [
+      ...range(1039, 1046),
+      1273,
+      1274,
+      ...range(1281, 1283),
+      ...range(1331, 1336),
+      // 1571-1582: chiều sâu từng Standard, cộng hai bài nền tảng về khung ra
+      // quyết định và niềm tin trong ngành.
+      ...range(1571, 1582),
+      1330,
+      1506,
+      1535,
+      1536,
+    ],
   },
   {
     id: "economics",
