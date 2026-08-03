@@ -1143,6 +1143,44 @@ export const CFA_ETHICS_APPLIED_LESSONS: Lesson[] = [
     correctOption: 1,
     explanation:
       "Cam kết bảo mật mà mọi candidate ký trước khi thi bao trùm nội dung đề, và nội dung đề không chỉ là câu chữ của từng câu hỏi. Thông tin về việc phần nào được hỏi nhiều, dạng câu hỏi ra sao, hay chủ đề nào không xuất hiện đều là thông tin về đề thi - và nó tạo lợi thế cho người nhận so với những thí sinh khác của cùng kỳ thi. Đây chính là điều Standard VII(A) bảo vệ: không phải quyền sở hữu của CFA Institute với đề thi, mà tính công bằng giữa các thí sinh và giá trị của một chứng chỉ mà mọi người đều phải đạt bằng cùng một cách.",
+    sections: [
+      {
+        "type": "lead",
+        "text": "Standard VII(A) buộc mọi thí sinh và thành viên không làm tổn hại tính toàn vẹn của chương trình CFA. Nó bảo vệ một thứ cụ thể hơn nhiều so với vẻ ngoài."
+      },
+      {
+        "type": "heading",
+        "text": "Bảo mật đề thi rộng hơn câu chữ"
+      },
+      {
+        "type": "paragraph",
+        "text": "Cam kết bảo mật bao trùm nội dung đề, và nội dung đề không chỉ là câu chữ từng câu hỏi. Thông tin về việc phần nào được hỏi nhiều, dạng câu hỏi ra sao, hay chủ đề nào không xuất hiện đều là thông tin về đề thi - và nó tạo lợi thế cho người nhận so với các thí sinh khác của cùng kỳ."
+      },
+      {
+        "type": "callout",
+        "label": "Thứ được bảo vệ",
+        "text": "Không phải quyền sở hữu của CFA Institute với đề thi, mà tính công bằng giữa các thí sinh và giá trị của một chứng chỉ mà mọi người đều phải đạt bằng cùng một cách."
+      },
+      {
+        "type": "heading",
+        "text": "Ba điểm về phạm vi"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Áp dụng từ lúc đăng ký: khai gian trong hồ sơ đăng ký đã là vi phạm, không cần chờ tới ngày thi.",
+          "Nghĩa vụ bảo mật không có thời hạn, vì nhiều câu hỏi được tái sử dụng ở các kỳ sau.",
+          "Phạm vi gồm cả người tham gia chấm bài và xây dựng đề, không chỉ thí sinh."
+        ]
+      },
+      {
+        "type": "closing",
+        "lines": [
+          "Bạn bảo vệ đề thi không phải vì nó là tài sản của ai.",
+          "Mà vì giá trị tấm chứng chỉ của chính bạn nằm ở chỗ nó khó đạt như nhau với mọi người."
+        ]
+      }
+    ],
     diagram: [
       { label: "Bảo mật bao trùm cả cấu trúc và trọng tâm, không chỉ câu chữ", arrow: true },
       { label: "Khai báo hồ sơ đăng ký phải trung thực", arrow: true },
@@ -1581,6 +1619,44 @@ export const CFA_ETHICS_APPLIED_LESSONS: Lesson[] = [
     correctOption: 1,
     explanation:
       "Standard V(A) yêu cầu cơ sở hợp lý cho mọi khuyến nghị, và việc khuyến nghị đến từ một mô hình không tạo ra ngoại lệ nào. Điều thay đổi là nội dung của chữ 'hiểu đủ': với mô hình, nó nghĩa là biết dữ liệu huấn luyện đến từ đâu và có thiên lệch gì, biết mô hình được tối ưu cho mục tiêu nào, biết nó hoạt động kém trong điều kiện nào, và có cách phát hiện khi nó bắt đầu trôi khỏi điều kiện đã học. Không giải thích được từng trọng số bên trong là chấp nhận được; không biết mô hình sẽ hỏng ở đâu thì không.",
+    sections: [
+      {
+        "type": "lead",
+        "text": "Khi khuyến nghị đầu tư đến từ một mô hình, câu hỏi đầu tiên là trách nhiệm thuộc về ai. Câu trả lời của chuẩn mực rất ngắn: vẫn là người ký tên dưới khuyến nghị."
+      },
+      {
+        "type": "heading",
+        "text": "Standard V(A) áp dụng nguyên vẹn"
+      },
+      {
+        "type": "paragraph",
+        "text": "Yêu cầu về cơ sở hợp lý không có ngoại lệ cho khuyến nghị do máy tạo ra. Điều thay đổi là nội dung của chữ hiểu đủ."
+      },
+      {
+        "type": "callout",
+        "label": "Hiểu đủ một mô hình nghĩa là gì",
+        "text": "Biết dữ liệu huấn luyện đến từ đâu và có thiên lệch gì. Biết mô hình được tối ưu cho mục tiêu nào. Biết nó hoạt động kém trong điều kiện nào. Và có cách phát hiện khi thị trường đã trôi khỏi điều kiện mà nó được học."
+      },
+      {
+        "type": "paragraph",
+        "text": "Không giải thích được từng trọng số bên trong là chấp nhận được - phần lớn mô hình hiện đại đều vậy. Không biết mô hình sẽ hỏng ở đâu thì không, vì lúc đó bạn không có cơ sở nào để nói khuyến nghị này còn đáng tin hay không."
+      },
+      {
+        "type": "heading",
+        "text": "Một rủi ro riêng của đầu ra từ máy"
+      },
+      {
+        "type": "paragraph",
+        "text": "Con số do mô hình đưa ra trông khách quan hơn ý kiến của một người, nên người dùng ít chất vấn nó hơn. Hiệu ứng đó làm rủi ro cao hơn chứ không thấp hơn. Standard V(B) vì thế cũng chạm tới: khách hàng phải biết mô hình có tham gia vào quyết định và biết giới hạn của nó."
+      },
+      {
+        "type": "closing",
+        "lines": [
+          "Mô hình không chịu trách nhiệm được.",
+          "Nên trách nhiệm ở nguyên chỗ cũ."
+        ]
+      }
+    ],
     diagram: [
       { label: "V(A) áp dụng nguyên vẹn cho khuyến nghị từ mô hình", arrow: true },
       { label: "Hiểu đủ: dữ liệu, mục tiêu tối ưu, điều kiện hỏng", arrow: true },
@@ -1697,6 +1773,44 @@ export const CFA_ETHICS_APPLIED_LESSONS: Lesson[] = [
     correctOption: 1,
     explanation:
       "Số tầng trung gian không làm thông tin sạch đi. Hai điều kiện vẫn nguyên: thông tin trọng yếu, và chưa công bố rộng rãi. Điều kiện thứ ba - nguồn gốc từ một người vi phạm nghĩa vụ bảo mật - cũng còn nguyên, và việc bạn không biết cụ thể ai là người đầu tiên không gỡ bỏ được nó nếu hoàn cảnh cho thấy thông tin chỉ có thể đến từ bên trong. Ở thị trường mà quan hệ cá nhân đóng vai trò lớn trong luồng thông tin, đây là tình huống gặp thường xuyên hơn nhiều so với dạng giao dịch nội gián kinh điển - và cũng khó tự nhận ra hơn vì nó đến qua một cuộc trò chuyện bình thường.",
+    sections: [
+      {
+        "type": "lead",
+        "text": "Chuẩn mực CFA được viết cho thị trường toàn cầu. Vận dụng vào một thị trường mới nổi làm lộ ra đúng những chỗ mà Code khắt khe hơn luật - và đó là những chỗ không ai cưỡng chế ngoài chính bạn."
+      },
+      {
+        "type": "heading",
+        "text": "Thông tin đi qua nhiều tầng trung gian"
+      },
+      {
+        "type": "paragraph",
+        "text": "Một tin về kết quả kinh doanh chưa công bố đến với bạn qua ba người quen. Số tầng trung gian không làm thông tin sạch đi: hai điều kiện vẫn nguyên - trọng yếu và chưa công bố rộng rãi. Điều kiện thứ ba, nguồn gốc từ một người vi phạm nghĩa vụ bảo mật, cũng còn nguyên; việc bạn không biết cụ thể ai là người đầu tiên không gỡ bỏ được nó nếu hoàn cảnh cho thấy tin chỉ có thể đến từ bên trong."
+      },
+      {
+        "type": "callout",
+        "label": "Vì sao dạng này khó nhận ra hơn",
+        "text": "Nó không đến dưới hình thức một cuộc gặp bí mật mà đến qua một cuộc trò chuyện bình thường. Ở thị trường mà quan hệ cá nhân đóng vai trò lớn trong luồng thông tin, đây là tình huống gặp thường xuyên hơn nhiều so với giao dịch nội gián kinh điển."
+      },
+      {
+        "type": "heading",
+        "text": "Ba chỗ khác Code đi trước luật"
+      },
+      {
+        "type": "list",
+        "items": [
+          "VI(A) về công bố xung đột rộng hơn quy định kê khai theo ngưỡng sở hữu - dưới ngưỡng luật vẫn có thể phải công bố theo Code.",
+          "III(C) đòi xét tính phù hợp ở cấp danh mục, trong khi quy định thường dừng ở việc phân loại nhà đầu tư chuyên nghiệp hay không.",
+          "GIPS là tự nguyện, nên khoảng cách giữa mức công bố tối thiểu theo luật và mức GIPS yêu cầu chính là vùng của đạo đức nghề nghiệp."
+        ]
+      },
+      {
+        "type": "closing",
+        "lines": [
+          "Ở nơi luật còn đang hoàn thiện, chuẩn mực nghề nghiệp không nhẹ đi.",
+          "Nó là phần duy nhất còn lại."
+        ]
+      }
+    ],
     diagram: [
       { label: "Trọng yếu + chưa công bố = không giao dịch", arrow: true },
       { label: "Số tầng trung gian không làm thông tin sạch đi", arrow: true },

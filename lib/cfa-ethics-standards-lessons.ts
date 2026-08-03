@@ -1775,6 +1775,45 @@ export const CFA_ETHICS_STANDARDS_LESSONS: Lesson[] = [
     correctOption: 1,
     explanation:
       "Danh xưng CFA chỉ thuộc về người đã hoàn thành cả ba kỳ thi, đủ kinh nghiệm làm việc theo yêu cầu, nộp đơn và được cấp - và duy trì tư cách thành viên. Thiếu bất kỳ điều kiện nào thì không được dùng, kể cả khi phần thi đã xong hết. Các biến thể như 'CFA (chờ cấp)' hay 'CFA Level III passed' đặt cạnh tên đều bị coi là vi phạm vì chúng tạo ấn tượng sở hữu danh xưng. Cách viết được chấp nhận là mô tả trạng thái bằng câu, trong phần kinh nghiệm hoặc học vấn, chứ không phải như một hậu tố sau tên.",
+    sections: [
+      {
+        "type": "lead",
+        "text": "Standard VII(B) quy định cách dùng danh xưng CFA. Quy tắc chặt tới mức nhiều người thấy khắt khe - và lý do của sự khắt khe đó nằm ở chính giá trị mà danh xưng mang lại."
+      },
+      {
+        "type": "heading",
+        "text": "Bốn điều kiện, thiếu một là không được dùng"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Đỗ cả ba kỳ thi.",
+          "Đủ kinh nghiệm làm việc theo yêu cầu.",
+          "Nộp đơn và được cấp danh xưng.",
+          "Duy trì tư cách thành viên - điều kiện hay bị quên nhất, vì nó tiếp diễn chứ không phải một lần."
+        ]
+      },
+      {
+        "type": "callout",
+        "label": "Các biến thể đều là vi phạm",
+        "text": "'CFA (chờ cấp)', 'CFA Level III passed' đặt cạnh tên, hay bất kỳ cách viết nào tạo ấn tượng đang sở hữu danh xưng. Cách viết được chấp nhận là mô tả trạng thái bằng một câu trong phần học vấn hoặc kinh nghiệm, không phải như hậu tố sau tên."
+      },
+      {
+        "type": "paragraph",
+        "text": "Cách gọi hợp lệ khi đang trong quá trình là 'CFA Level II candidate', và chỉ dùng được nếu bạn đã đăng ký hợp lệ cho kỳ thi đó - không dùng được cho người dự định thi."
+      },
+      {
+        "type": "paragraph",
+        "text": "Lý do nền của sự khắt khe: các cấp độ là chặng của một chương trình chứ không phải chứng chỉ riêng. Nếu mỗi cấp độ được trình bày như một danh xưng, thị trường lao động sẽ mất khả năng phân biệt người đã hoàn thành với người đang đi giữa đường - và giá trị của cả hệ thống rơi xuống theo."
+      },
+      {
+        "type": "closing",
+        "lines": [
+          "Danh xưng đáng giá vì nó nói chính xác một điều.",
+          "Mọi cách viết làm nó nói gần đúng đều làm nó rẻ đi."
+        ]
+      }
+    ],
     diagram: [
       { label: "Đỗ cả ba kỳ thi", arrow: true },
       { label: "Đủ kinh nghiệm làm việc theo yêu cầu", arrow: true },

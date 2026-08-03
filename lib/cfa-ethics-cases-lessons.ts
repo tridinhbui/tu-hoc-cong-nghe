@@ -41,6 +41,47 @@ export const CFA_ETHICS_CASES_LESSONS: Lesson[] = [
     correctOption: 1,
     explanation:
       "Nguyên tắc là nhìn vào lợi ích chứ không nhìn vào tên trên tài khoản. Tài khoản của người thân sống chung mà bạn được hưởng lợi từ nó thì được coi là tài khoản cá nhân của chính bạn, và phải xếp sau khách hàng. Có một ngoại lệ đáng chú ý: nếu người thân đó là khách hàng thật sự, trả phí như mọi khách khác, thì họ được đối xử như khách hàng - và Standard III(B) về đối xử công bằng lại yêu cầu không được thiệt thòi hơn ai. Đặt họ xuống cuối hàng vì sợ mang tiếng cũng là một dạng đối xử không công bằng.",
+    sections: [
+      {
+        "type": "lead",
+        "text": "Standard VI(B) đặt thứ tự rất gọn: khách hàng trước, nhà tuyển dụng sau, tài khoản cá nhân cuối cùng. Phần khó nằm ở câu hỏi tài khoản nào tính là cá nhân."
+      },
+      {
+        "type": "heading",
+        "text": "Nhìn vào lợi ích, không nhìn tên"
+      },
+      {
+        "type": "paragraph",
+        "text": "Tài khoản đứng tên người thân sống chung mà bạn được hưởng lợi từ nó thì được coi là tài khoản cá nhân của chính bạn và phải xếp sau khách hàng. Đổi tên trên tài khoản không đổi được bản chất, vì Standard quan tâm ai hưởng lợi chứ không quan tâm ai ký."
+      },
+      {
+        "type": "callout",
+        "label": "Ngoại lệ đáng chú ý",
+        "text": "Nếu người thân đó là khách hàng thật sự, trả phí như mọi khách khác, thì họ được đối xử như khách hàng. Và khi đó Standard III(B) lại yêu cầu không được thiệt thòi hơn ai - đẩy họ xuống cuối hàng vì sợ mang tiếng cũng là đối xử không công bằng."
+      },
+      {
+        "type": "heading",
+        "text": "Hai cơ chế làm nguyên tắc này kiểm chứng được"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Dấu thời gian lệnh: khi mọi lệnh đều có mốc thời gian, vi phạm hiện ra tự động mà không cần ai tố cáo.",
+          "Thời gian chờ: nhân viên không được giao dịch cùng mã trong một khoảng trước và sau lệnh của khách hàng."
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "Giá trị của hai cơ chế này là chúng biến một nguyên tắc chung thành quy tắc có thể kiểm tra được bằng dữ liệu. Đây cũng là mẫu hình chung của cả chương Standard VI: xung đột lợi ích không được xử lý bằng lời hứa mà bằng cơ chế."
+      },
+      {
+        "type": "closing",
+        "lines": [
+          "Không ai cấm bạn đầu tư cho chính mình.",
+          "Chỉ là bạn đứng cuối hàng - và hàng đó phải có dấu thời gian."
+        ]
+      }
+    ],
     diagram: [
       { label: "Nhìn vào lợi ích, không nhìn vào tên tài khoản", arrow: true },
       { label: "Người thân sống chung, bạn hưởng lợi: tính là cá nhân", arrow: true },
@@ -157,6 +198,44 @@ export const CFA_ETHICS_CASES_LESSONS: Lesson[] = [
     correctOption: 1,
     explanation:
       "Standard VI(C) không cấm nhận phí giới thiệu - mô hình này hợp pháp và phổ biến. Nó buộc công bố, vì thiếu thông tin đó khách hàng không phân biệt được một lời giới thiệu dựa trên chất lượng dịch vụ với một lời giới thiệu dựa trên mức hoa hồng. Nghĩa vụ chạy theo cả hai chiều: nhận phí phải nói, mà trả phí cho người giới thiệu khách đến với bạn cũng phải nói. Và phạm vi không dừng ở tiền - một thỏa thuận giới thiệu qua lại, hay việc được nhận lại dịch vụ nào đó, đều nằm trong phạm vi phải công bố.",
+    sections: [
+      {
+        "type": "lead",
+        "text": "Standard VI(C) yêu cầu công bố phí giới thiệu. Mô hình này hợp pháp và phổ biến - vấn đề nằm ở chỗ khách hàng không biết thì họ không đánh giá được lời khuyên họ vừa nhận."
+      },
+      {
+        "type": "heading",
+        "text": "Vì sao phải nói"
+      },
+      {
+        "type": "paragraph",
+        "text": "Thiếu thông tin về khoản phí, khách hàng không phân biệt được một lời giới thiệu dựa trên chất lượng dịch vụ với một lời giới thiệu dựa trên mức hoa hồng. Cả hai nghe giống hệt nhau khi được nói ra."
+      },
+      {
+        "type": "callout",
+        "label": "Nghĩa vụ chạy cả hai chiều",
+        "text": "Nhận phí vì giới thiệu khách cho bên khác thì phải nói. Trả phí cho người đã giới thiệu khách đến với bạn cũng phải nói - chiều thứ hai hay bị quên vì cảm giác nó không ảnh hưởng tới lời khuyên của mình."
+      },
+      {
+        "type": "heading",
+        "text": "Phạm vi và thời điểm"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Không chỉ tiền: thỏa thuận giới thiệu qua lại, dịch vụ được nhận lại, hay bất kỳ lợi ích có giá trị nào đều thuộc phạm vi.",
+          "Phải công bố TRƯỚC khi khách hàng quyết định, không phải sau khi họ đã ký.",
+          "Áp dụng cho cả khách hàng tiềm năng, không chỉ khách hàng hiện tại - vì đó là lúc họ đang cân nhắc."
+        ]
+      },
+      {
+        "type": "closing",
+        "lines": [
+          "Khách hàng có thể chấp nhận việc bạn được trả hoa hồng.",
+          "Điều họ không chấp nhận là phát hiện ra điều đó sau."
+        ]
+      }
+    ],
     diagram: [
       { label: "Không cấm nhận hay trả phí giới thiệu", arrow: true },
       { label: "Buộc công bố cả hai chiều: nhận và trả", arrow: true },
