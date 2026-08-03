@@ -550,7 +550,7 @@ export const FRM_MARKET_RISK_LESSONS: Lesson[] = [
       { label: "GARCH: thêm lực kéo về trung bình dài hạn", arrow: true },
       { label: "Dự báo nhiều kỳ hội tụ về mức dài hạn" },
     ],
-    interactiveType: "chart",
+    interactiveType: "tail-risk",
     realWorldExample: {
       company: "Hiệu ứng bóng ma của cửa sổ cố định",
       description:

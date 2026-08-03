@@ -43,7 +43,6 @@ export const IR_LESSONS: Lesson[] = [
       { label: "Nhà đầu tư định giá lại", arrow: true },
       { label: "Phản hồi thị trường quay ngược về ban điều hành" },
     ],
-    interactiveType: "process",
     realWorldExample: {
       company: "Bộ phận IR của các công ty niêm yết trên HOSE",
       description:
@@ -317,7 +316,6 @@ export const IR_LESSONS: Lesson[] = [
       { label: "Kết quả thật so với kế hoạch", arrow: true },
       { label: "Đạt → niềm tin tích luỹ · Hụt → chiết khấu mọi dự báo sau" },
     ],
-    interactiveType: "chart",
     realWorldExample: {
       company: "Kế hoạch trình Đại hội đồng cổ đông của doanh nghiệp niêm yết Việt Nam",
       description:

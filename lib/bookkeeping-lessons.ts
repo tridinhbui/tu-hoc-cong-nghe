@@ -46,7 +46,6 @@ export const BOOKKEEPING_LESSONS: Lesson[] = [
       { label: "Tổng bên Nợ = tổng bên Có", arrow: true },
       { label: "Nên phương trình kế toán luôn cân sau mỗi bút toán" },
     ],
-    interactiveType: "process",
     realWorldExample: {
       company: "Luca Pacioli, Venice, 1494",
       description:
@@ -328,7 +327,6 @@ export const BOOKKEEPING_LESSONS: Lesson[] = [
       { label: "Bốn nhóm: trích trước, phân bổ, khấu hao, dự phòng", arrow: true },
       { label: "Ghi điều chỉnh → báo cáo phản ánh đúng kỳ" },
     ],
-    interactiveType: "process",
     realWorldExample: {
       company: "Chênh lệch giữa báo cáo tự lập và báo cáo sau kiểm toán",
       description:
@@ -465,7 +463,6 @@ export const BOOKKEEPING_LESSONS: Lesson[] = [
       { label: "± khoản ngân hàng đã ghi mà công ty chưa biết (phí, lãi)", arrow: true },
       { label: "= số dư sao kê. Còn lệch → mới là lỗi thật" },
     ],
-    interactiveType: "process",
     realWorldExample: {
       company: "Đối chiếu công nợ cuối năm",
       description:
