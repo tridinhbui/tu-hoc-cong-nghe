@@ -225,7 +225,11 @@ export default function DistrictWorld({
   const sound = useWorldSound();
   /** Qua ref để các callback dưới không phải khai lại mỗi lần bật/tắt tiếng. */
   const soundRef = useRef(sound);
-  soundRef.current = sound;
+  // Ghi trong effect: mọi chỗ đọc soundRef đều là callback do người dùng bấm
+  // hoặc do vòng khung hình gọi, tức đều sau commit.
+  useEffect(() => {
+    soundRef.current = sound;
+  }, [sound]);
   const seatTaken = useMemo(() => new Set(seated === null ? [] : [seated]), [seated]);
 
   const room = getRoom(roomId);
@@ -267,9 +271,11 @@ export default function DistrictWorld({
   }, [tryOn, civicOpen, travelOpen, stagePanel, liftPanel]);
 
   // Lời nhắc cách đi chỉ hiện tới lúc người học thực sự bước đi lần đầu.
-  useEffect(() => {
-    if (walking) setHintSeen(true);
-  }, [walking]);
+  //
+  // Đặt ngay lúc render chứ không bằng effect: đây là một cờ DÍNH, đặt một lần
+  // rồi thôi, nên điều kiện `!hintSeen` tự chặn vòng lặp. Qua effect thì lời
+  // nhắc còn nằm lại đúng một khung hình sau khi người ta đã bước đi.
+  if (walking && !hintSeen) setHintSeen(true);
 
   /** Đóng mọi bảng và bỏ mọi thứ đang đứng gần.
    *

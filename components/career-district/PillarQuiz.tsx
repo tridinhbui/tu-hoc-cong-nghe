@@ -46,9 +46,17 @@ type Phase =
 export default function PillarQuiz({ lessonId, accent, due = false, userId, onClose, onCorrect }: Props) {
   const [phase, setPhase] = useState<Phase>({ kind: "loading" });
 
+  // Đổi sang bài khác thì quay về "đang tải" NGAY lúc render, không đợi effect.
+  // Bản trước gọi setPhase thẳng trong thân effect, nên có đúng một khung hình
+  // hiện câu hỏi của bài CŨ dưới tiêu đề bài mới trước khi nó bị thay.
+  const [lastLesson, setLastLesson] = useState(lessonId);
+  if (lastLesson !== lessonId) {
+    setLastLesson(lessonId);
+    setPhase({ kind: "loading" });
+  }
+
   useEffect(() => {
     let cancelled = false;
-    setPhase({ kind: "loading" });
     fetch(`/api/knowledge-challenge?lesson=${lessonId}`)
       .then((r) => (r.ok ? r.json() : Promise.reject(new Error(String(r.status)))))
       .then((data: { questions?: Question[] }) => {

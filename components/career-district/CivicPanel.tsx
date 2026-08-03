@@ -155,9 +155,17 @@ function HallOfFame({ accent, userId, onClose }: Props) {
   const [metric, setMetric] = useState<(typeof METRICS)[number]["id"]>("xp");
   const [rows, setRows] = useState<LeaderboardRow[] | null>(null);
 
+  // Đổi tiêu chí thì xoá bảng cũ NGAY lúc render. Bản trước gọi setRows(null)
+  // trong thân effect, nên bảng xếp hạng theo XP còn đứng lại một khung hình
+  // dưới nhãn "Chuỗi ngày" - đủ để đọc thành số liệu sai.
+  const [lastMetric, setLastMetric] = useState(metric);
+  if (lastMetric !== metric) {
+    setLastMetric(metric);
+    setRows(null);
+  }
+
   useEffect(() => {
     let cancelled = false;
-    setRows(null);
     void getLeaderboardByMetric(metric, 10)
       .then((r) => !cancelled && setRows(r))
       .catch(() => !cancelled && setRows([]));

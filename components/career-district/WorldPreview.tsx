@@ -33,6 +33,11 @@ function Meter({ onRead }: { onRead: (line: string) => void }) {
   const { gl } = useThree();
 
   useEffect(() => {
+    // Sửa thẳng vào đối tượng của three.js là ĐÚNG việc của effect: đồng bộ
+    // một hệ thống bên ngoài React với trạng thái của React. react-hooks/
+    // immutability không phân biệt được nó với việc sửa một giá trị của React,
+    // nên phải nói ra ở đây.
+    // eslint-disable-next-line react-hooks/immutability -- gl.info là đối tượng của three.js, không phải trạng thái React
     gl.info.autoReset = false;
     return () => {
       gl.info.autoReset = true;

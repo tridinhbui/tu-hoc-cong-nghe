@@ -33,7 +33,12 @@ const PAD = 6;
 export default function Minimap({ room, playerRef, peers }: Props) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const peersRef = useRef(peers);
-  peersRef.current = peers;
+  // Ghi trong effect, không ghi lúc render. Bản đồ vẽ trong một vòng
+  // requestAnimationFrame chạy sau khi commit, nên nó không bao giờ đọc ref
+  // này trong lúc render - đổi sang effect không lệch một khung hình nào.
+  useEffect(() => {
+    peersRef.current = peers;
+  }, [peers]);
 
   useEffect(() => {
     const canvas = canvasRef.current;

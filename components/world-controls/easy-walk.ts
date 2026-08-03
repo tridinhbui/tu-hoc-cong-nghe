@@ -195,9 +195,24 @@ export function usePointerControls(
 ) {
   const { gl } = useThree();
   const tapRef = useRef(onTap);
-  tapRef.current = onTap;
-
+  // Ghi trong effect: tapRef chỉ được đọc trong trình xử lý pointerup, chạy
+  // sau commit.
   useEffect(() => {
+    tapRef.current = onTap;
+  }, [onTap]);
+
+  // eslint-disable-next-line react-hooks/immutability -- xem chú thích trong effect
+  useEffect(() => {
+    // Bốn biến dưới là trạng thái của MỘT cử chỉ kéo: đang kéo chưa, đã đi
+    // được bao nhiêu pixel, điểm chạm trước đó. Chúng sống trong closure của
+    // effect và được các trình xử lý sự kiện gắn ngay bên dưới sửa.
+    //
+    // react-hooks/immutability coi mọi phép gán vào biến cục bộ sau khi render
+    // xong là lỗi. Ở đây thì không: closure này được dựng lại mỗi lần effect
+    // chạy, và bốn biến chỉ được đọc/ghi bên trong chính các trình xử lý mà
+    // effect vừa gắn - không có gì bên ngoài nhìn thấy chúng. Đưa chúng thành
+    // ref thì được lint xanh mà đổi lại là bốn ref chỉ để phục vụ một cử chỉ
+    // kéo, và mất luôn việc chúng tự sạch khi effect chạy lại.
     const el = gl.domElement;
     let dragging = false;
     let moved = 0;
@@ -236,9 +251,17 @@ export function usePointerControls(
     };
     const wheel = (e: WheelEvent) => {
       e.preventDefault();
+      // `orbit` là ref do phía gọi truyền vào, cố ý để sửa được - đây là cách
+      // góc và khoảng cách camera đi từ chuột sang vòng khung hình mà không
+      // kéo cả cây React render lại mỗi lần lăn chuột. Luật coi tham số là bất
+      // biến nên không phân biệt được nó với việc sửa một prop.
+      // eslint-disable-next-line react-hooks/immutability -- orbit là ref truyền vào, cố ý sửa được
       orbit.current.dist = THREE.MathUtils.clamp(orbit.current.dist + e.deltaY * 0.008, range.min, range.max);
     };
 
+    // Đổi con trỏ chuột trên phần tử canvas: sửa DOM thật, đúng việc mà effect
+    // sinh ra để làm. Luật coi `el` là giá trị không được sửa.
+    // eslint-disable-next-line react-hooks/immutability -- el là phần tử DOM của three.js
     el.style.cursor = "grab";
     el.addEventListener("pointerdown", down);
     el.addEventListener("pointermove", move);

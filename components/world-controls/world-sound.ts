@@ -25,6 +25,11 @@ export function useWorldSound() {
   useEffect(() => {
     if (typeof window === "undefined") return;
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    // Đọc lựa chọn đã lưu sau khi hydrate, cố ý trong effect chứ không phải
+    // bằng giá trị khởi tạo: máy chủ không có localStorage lẫn matchMedia, nên
+    // đưa phép đọc này lên trước sẽ khiến máy chủ và trình duyệt dựng ra hai
+    // trạng thái nút âm thanh khác nhau. Một lần dựng thừa là cái giá đúng.
+    // eslint-disable-next-line react-hooks/set-state-in-effect -- hydration, xem chú thích trên
     setEnabled(window.localStorage.getItem(STORAGE_KEY) === "on");
   }, []);
 

@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { Canvas, useFrame, useThree } from "@react-three/fiber";
 import * as THREE from "three";
 import DistrictShell from "./DistrictShell";
@@ -78,7 +78,10 @@ function PlayerRig({ room, poseRef, walkRef, orbitRef, onDeskChange, onDoorChang
   const lastLift = useRef(false);
   /** Ngoài trời thì không có tường để camera xuyên, nên nới khung kẹp ra. */
   const outdoorRef = useRef(false);
-  outdoorRef.current = room.kind === "street" || room.id === "cong-vien" || room.id === "trung-tam";
+  const outdoor = room.kind === "street" || room.id === "cong-vien" || room.id === "trung-tam";
+  useEffect(() => {
+    outdoorRef.current = outdoor;
+  }, [outdoor]);
   const lastStop = useRef<string | null>(null);
   const lastSeat = useRef<number | null>(null);
   const lastStand = useRef(false);
@@ -89,8 +92,11 @@ function PlayerRig({ room, poseRef, walkRef, orbitRef, onDeskChange, onDoorChang
   const lastSent = useRef(0);
   const lastSentPose = useRef<AvatarPose>({ x: 0, z: 0, ry: 0 });
 
-  const onTap = useRef<(nx: number, ny: number) => void>(() => {});
-  onTap.current = (nx, ny) => {
+  // Trước đây đây là một ref được gán lúc render, để usePointerControls luôn
+  // gọi bản mới nhất. Lớp đó thừa: usePointerControls đã tự giữ hàm mới nhất
+  // qua ref của chính nó. Hai lớp ref lồng nhau chỉ làm luật react-hooks/refs
+  // đỏ mà không mua thêm gì.
+  const onTap = useCallback((nx: number, ny: number) => {
     // Bắn tia từ camera qua điểm vừa chạm xuống mặt sàn y=0.
     const ray = new THREE.Raycaster();
     ray.setFromCamera(new THREE.Vector2(nx, ny), camera);
@@ -98,8 +104,8 @@ function PlayerRig({ room, poseRef, walkRef, orbitRef, onDeskChange, onDoorChang
     if (!ray.ray.intersectPlane(new THREE.Plane(new THREE.Vector3(0, 1, 0), 0), hit)) return;
     walkRef.current.target = { x: hit.x, z: hit.z };
     stuckFrames.current = 0;
-  };
-  usePointerControls(orbitRef, (nx, ny) => onTap.current(nx, ny));
+  }, [camera]);
+  usePointerControls(orbitRef, onTap);
 
   useFrame((state, rawDelta) => {
     // Trần bước thời gian: requestAnimationFrame dừng khi tab bị ẩn, nên khung
@@ -339,7 +345,9 @@ export default function DistrictScene({
   const peerPoseRefs = useRef(new Map<string, React.MutableRefObject<AvatarPose>>());
   const peerCountRef = useRef(0);
   const seatTakenRef = useRef<ReadonlySet<number>>(seatTaken);
-  seatTakenRef.current = seatTaken;
+  useEffect(() => {
+    seatTakenRef.current = seatTaken;
+  }, [seatTaken]);
   /** Màn hẹp thì lùi camera ra xa hơn. Khung hình dọc của điện thoại cắt mất
    *  bề ngang, nên cùng một khoảng cách sẽ cho ra một cái đầu nhân vật chiếm
    *  nửa màn hình và không thấy căn phòng đâu cả. */
@@ -423,18 +431,28 @@ export default function DistrictScene({
   /** Pose người khác đi vào ref để LobbyAvatar nội suy mỗi khung hình, thay vì
    *  đi qua state và kéo cả cây React render lại 8 lần một giây. */
   const others = useMemo(() => {
-    const list = peers.filter((p) => p.userId !== userId);
-    for (const p of list) {
-      const ref = peerPoseRefs.current.get(p.userId);
-      if (!ref) peerPoseRefs.current.set(p.userId, { current: { x: p.x, z: p.z, ry: p.ry } });
+    return peers.filter((p) => p.userId !== userId);
+  }, [peers, userId]);
+
+  // Đồng bộ Map pose trong EFFECT, không trong useMemo.
+  //
+  // Bản trước sửa thẳng peerPoseRefs.current bên trong useMemo, và đó là lỗi
+  // thật chứ không chỉ là lint đỏ: React được phép vứt kết quả useMemo đi rồi
+  // tính lại, hoặc chạy nó mà không commit. Việc thêm/xoá người trong Map là
+  // tác dụng phụ, và tác dụng phụ trong useMemo thì chạy bao nhiêu lần cũng
+  // được - hoặc không lần nào.
+  useEffect(() => {
+    const map = peerPoseRefs.current;
+    for (const p of others) {
+      const ref = map.get(p.userId);
+      if (!ref) map.set(p.userId, { current: { x: p.x, z: p.z, ry: p.ry } });
       else ref.current = { x: p.x, z: p.z, ry: p.ry };
     }
-    const ids = new Set(list.map((p) => p.userId));
-    for (const id of [...peerPoseRefs.current.keys()]) {
-      if (!ids.has(id)) peerPoseRefs.current.delete(id);
+    const ids = new Set(others.map((p) => p.userId));
+    for (const id of [...map.keys()]) {
+      if (!ids.has(id)) map.delete(id);
     }
-    return list;
-  }, [peers, userId]);
+  }, [others]);
 
   // Ba nơi ngoài trời: con phố, công viên, quảng trường trung tâm. Chúng dùng
   // chung bầu trời, sương xa và camera nới rộng - nhốt chúng trong ánh sáng
@@ -487,6 +505,14 @@ export default function DistrictScene({
         isSelf
       />
 
+      {/* Đọc ref lúc render là CẢ THIẾT KẾ ở đây, không phải sơ suất. Vị trí
+          người khác về 8 lần một giây; cho chúng đi qua state nghĩa là kéo cả
+          cây React render lại 8 lần một giây cho một cảnh 3D. Thay vào đó mỗi
+          người có một ref, và LobbyAvatar tự nội suy trong vòng khung hình.
+
+          Ref chưa có thì bỏ qua một khung hình - Map được đồng bộ trong effect
+          ở trên, nên người vừa vào phòng xuất hiện ở khung kế tiếp. */}
+      {/* eslint-disable-next-line react-hooks/refs -- pose người khác cố ý đi ngoài state */}
       {others.map((p) => {
         const ref = peerPoseRefs.current.get(p.userId);
         if (!ref) return null;

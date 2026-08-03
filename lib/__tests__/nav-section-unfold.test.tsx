@@ -49,6 +49,7 @@ function Nav({ pathname }: { pathname: string }) {
     if (raw) {
       const stored = JSON.parse(raw) as string[];
       const owning = SECTIONS.find((s) => s.links.some((l) => l.href === pathname));
+      // eslint-disable-next-line react-hooks/set-state-in-effect -- giữ y hệt AppNavbar: hydration
       setCollapsed(owning ? stored.filter((k) => k !== owning.titleKey) : stored);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
