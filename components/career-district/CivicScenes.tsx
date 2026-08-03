@@ -315,6 +315,135 @@ function FriendsInterior({ room }: { room: DistrictRoom }) {
   );
 }
 
+
+/** Phòng Ba Báo Cáo: ba bức tường, ba báo cáo, và những sợi sáng nối chúng.
+ *
+ *  Căn phòng phải nói được điều mà tấm thẻ nói: một bút toán chạm vào cả ba.
+ *  Ba tấm bảng đứng ở ba hướng, và ba sợi sáng nối chúng qua đỉnh đầu người
+ *  học - đứng giữa mà quay một vòng là thấy đủ ba, thứ một trang giấy không
+ *  làm được. */
+function ThreeStatementInterior({ room }: { room: DistrictRoom }) {
+  const halfW = room.size.width / 2;
+  const halfD = room.size.depth / 2;
+  const walls: Array<{ pos: [number, number, number]; ry: number; color: string; label: string }> = [
+    { pos: [0, 2.6, -halfD + 0.2], ry: 0, color: "#67e8f9", label: "KQKD" },
+    { pos: [-halfW + 0.2, 2.6, 0], ry: Math.PI / 2, color: "#86efac", label: "LCTT" },
+    { pos: [halfW - 0.2, 2.6, 0], ry: -Math.PI / 2, color: "#fcd34d", label: "BCĐKT" },
+  ];
+  return (
+    <>
+      {walls.map((w) => (
+        <group key={w.label} position={w.pos} rotation={[0, w.ry, 0]}>
+          <mesh>
+            <planeGeometry args={[6.4, 3.6]} />
+            <meshStandardMaterial color="#141a1c" roughness={0.6} />
+          </mesh>
+          <mesh position={[0, 0, 0.02]}>
+            <planeGeometry args={[6.6, 3.8]} />
+            <meshBasicMaterial color={w.color} transparent opacity={0.18} toneMapped={false} />
+          </mesh>
+          {/* Vài vạch giả lập các dòng của báo cáo - đủ để nhận ra "đây là một
+              cái bảng số", không cần đọc được. */}
+          {[0.9, 0.3, -0.3, -0.9].map((y) => (
+            <mesh key={y} position={[-1.2, y, 0.03]}>
+              <planeGeometry args={[3.4, 0.14]} />
+              <meshBasicMaterial color={w.color} transparent opacity={0.45} toneMapped={false} />
+            </mesh>
+          ))}
+          <pointLight position={[0, 0, 1.6]} intensity={7} distance={9} color={w.color} />
+        </group>
+      ))}
+
+      {/* Ba sợi sáng nối ba tường qua đỉnh đầu: mối nối, ở dạng nhìn thấy được. */}
+      {walls.map((w, i) => {
+        const next = walls[(i + 1) % walls.length];
+        const mid: [number, number, number] = [
+          (w.pos[0] + next.pos[0]) / 2,
+          4.2,
+          (w.pos[2] + next.pos[2]) / 2,
+        ];
+        const len = Math.hypot(next.pos[0] - w.pos[0], next.pos[2] - w.pos[2]);
+        const angle = Math.atan2(next.pos[2] - w.pos[2], next.pos[0] - w.pos[0]);
+        return (
+          <mesh key={`link-${i}`} position={mid} rotation={[0, -angle, 0]}>
+            <boxGeometry args={[len, 0.05, 0.05]} />
+            <meshBasicMaterial color={w.color} transparent opacity={0.5} toneMapped={false} />
+          </mesh>
+        );
+      })}
+    </>
+  );
+}
+
+/** Tháp Lãi Kép: các bậc dựng theo đúng đường lãi kép.
+ *
+ *  Bậc sinh từ công thức chứ không kê tay - nếu kê tay thì hình sẽ đẹp hơn và
+ *  sai, mà cả căn phòng tồn tại để nói rằng đường cong này có hình dạng ấy. */
+function CompoundTowerInterior({ room }: { room: DistrictRoom }) {
+  const halfD = room.size.depth / 2;
+  const years = 24;
+  const rate = 0.1;
+  const values = Array.from({ length: years }, (_, y) => Math.pow(1 + rate, y));
+  const max = values[values.length - 1];
+  const runway = room.size.depth - 5;
+  return (
+    <>
+      {values.map((v, y) => {
+        // Năm 0 ở SÁT CỬA, năm cuối ở đầu xa: đi vào là đi dọc theo đường cong
+        // và ngẩng dần lên. Bản đầu xếp ngược, nên bậc cao nhất chắn ngay cửa
+        // và cả căn phòng chỉ là một bức tường cam.
+        const z = halfD - 2.5 - (y / years) * runway;
+        const h = 0.15 + (v / max) * 4.4;
+        return (
+          <mesh key={y} position={[0, h / 2, z]} castShadow receiveShadow>
+            {/* Hẹp và chừa lối đi hai bên: rộng gần hết phòng thì nó thành bức
+                tường mà người học đi xuyên qua, vì bậc không phải vật cản. */}
+            <boxGeometry args={[4.5, h, runway / years - 0.06]} />
+            <meshStandardMaterial
+              color={y > years * 0.72 ? "#fb923c" : "#4a3f33"}
+              emissive={y > years * 0.72 ? "#fb923c" : "#000000"}
+              emissiveIntensity={0.3}
+              roughness={0.8}
+            />
+          </mesh>
+        );
+      })}
+      {/* Một vệt sáng chạy dọc đỉnh các bậc - đường cong lãi kép, nhìn từ bên. */}
+      <mesh position={[2.6, 2.4, 0]} rotation={[0, 0, 0]}>
+        <boxGeometry args={[0.06, 0.06, runway]} />
+        <meshBasicMaterial color="#fb923c" transparent opacity={0.35} toneMapped={false} />
+      </mesh>
+    </>
+  );
+}
+
+/** Phòng Tầng Vốn: ba tấm xếp chồng, vốn chủ trên đỉnh. */
+function CapitalStackInterior({ room }: { room: DistrictRoom }) {
+  const halfD = room.size.depth / 2;
+  const tranches = [
+    { y: 0.5, h: 1, color: "#60a5fa", w: 6 },
+    { y: 1.7, h: 0.8, color: "#c084fc", w: 5 },
+    { y: 2.7, h: 1.2, color: "#4ade80", w: 4 },
+  ];
+  return (
+    <>
+      {tranches.map((t) => (
+        <group key={t.color} position={[0, t.y, -halfD + 4.5]}>
+          <mesh castShadow receiveShadow>
+            <boxGeometry args={[t.w, t.h, t.w]} />
+            <meshStandardMaterial color={t.color} roughness={0.55} metalness={0.2} />
+          </mesh>
+          <mesh position={[0, t.h / 2 + 0.02, 0]} rotation={[-Math.PI / 2, 0, 0]}>
+            <planeGeometry args={[t.w + 0.1, t.w + 0.1]} />
+            <meshBasicMaterial color={t.color} transparent opacity={0.25} toneMapped={false} />
+          </mesh>
+          <pointLight position={[0, 0, t.w / 2 + 1]} intensity={5} distance={8} color={t.color} />
+        </group>
+      ))}
+    </>
+  );
+}
+
 const INTERIORS: Partial<Record<string, (props: { room: DistrictRoom }) => React.ReactElement>> = {
   "cua-hang": ShopInterior,
   "bang-vang": HallOfFameInterior,
@@ -322,6 +451,9 @@ const INTERIORS: Partial<Record<string, (props: { room: DistrictRoom }) => React
   "can-ho": ApartmentInterior,
   "bao-tang": MuseumInterior,
   "nha-ban-be": FriendsInterior,
+  "ba-bao-cao": ThreeStatementInterior,
+  "thap-lai-kep": CompoundTowerInterior,
+  "phong-lbo": CapitalStackInterior,
 };
 
 export function isCivicRoom(id: string) {
