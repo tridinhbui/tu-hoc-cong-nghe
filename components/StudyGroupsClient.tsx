@@ -1421,7 +1421,7 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
                   📍
                 </span>
                 <div>
-                  <p className="font-extrabold text-stone-900 dark:text-stone-100 flex items-center gap-1.5">
+                  <p className="flex flex-wrap items-center gap-1.5 font-extrabold text-stone-900 dark:text-stone-100">
                     <span>Nhiệm vụ tuần của phòng học</span>
                     <span className="text-[10px] font-black text-amber-700 dark:text-amber-300 bg-amber-100 dark:bg-amber-950/80 px-2 py-0.5 rounded-full border border-amber-300 dark:border-amber-800">
                       {isPermanentRoom ? "Nhóm vĩnh viễn" : `${groupStreakWeeks}/3 tuần streak`}
@@ -1511,12 +1511,24 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
                 style={{ perspective: "900px", perspectiveOrigin: "50% 38%", touchAction: "pan-y" }}
               >
 
-                {/* Stage Header Controls */}
-                <div className="relative z-30 flex items-center justify-between shrink-0 mb-1">
-                  <div className="flex items-center gap-1.5 sm:gap-2">
-                    <span className="text-[10px] font-black uppercase tracking-widest text-emerald-300 bg-emerald-950/80 px-2.5 py-0.5 rounded-full border border-emerald-500/40 backdrop-blur-md">
-                      {walkMode ? "🚶 PHÒNG ĐI LẠI" : "🌐 BÀN HỌC 3D"} · {topicLabel(myRoom.topic).toUpperCase()} ·{" "}
-                      {lighting.label.toUpperCase()}
+                {/* Stage Header Controls
+                    Bọc dòng thay vì một hàng ngang cứng. Trên máy 375px, cái
+                    nhãn dài cộng hai nút cộng thanh cổ vũ vượt xa bề ngang màn
+                    hình, mà thẻ sân khấu lại `overflow-hidden` - nên phần bên
+                    phải, tức thanh cổ vũ, bị cắt mất khỏi màn hình chứ không
+                    xuống dòng. Ba thứ giữ nó lại: cho phép wrap, `min-w-0` để
+                    cụm trái được co, và giấu bớt phần nhãn ở màn hẹp. */}
+                <div className="relative z-30 mb-1 flex shrink-0 flex-wrap items-center justify-between gap-1.5">
+                  <div className="flex min-w-0 flex-wrap items-center gap-1.5 sm:gap-2">
+                    <span className="max-w-full truncate text-[10px] font-black uppercase tracking-widest text-emerald-300 bg-emerald-950/80 px-2.5 py-0.5 rounded-full border border-emerald-500/40 backdrop-blur-md">
+                      {walkMode ? "🚶 PHÒNG ĐI LẠI" : "🌐 BÀN HỌC 3D"}
+                      {/* Chủ đề và buổi trong ngày là thông tin phụ: trên màn
+                          hẹp chúng đẩy cả hàng vỡ ra, và cả hai đều đã hiện ở
+                          chỗ khác trong trang. */}
+                      <span className="hidden sm:inline">
+                        {" · "}
+                        {topicLabel(myRoom.topic).toUpperCase()} · {lighting.label.toUpperCase()}
+                      </span>
                     </span>
                     <button
                       type="button"
@@ -1546,14 +1558,14 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
                   </div>
 
                   {/* Quick Cheer Actions Bar */}
-                  <div className="flex items-center gap-1 bg-stone-900/90 backdrop-blur-md px-2 py-0.5 rounded-xl border border-stone-800 shadow-xs">
+                  <div className="flex shrink-0 items-center gap-0.5 rounded-xl border border-stone-800 bg-stone-900/90 px-1.5 py-0.5 shadow-xs backdrop-blur-md sm:gap-1 sm:px-2">
                     <span className="text-[9px] font-bold text-stone-400 mr-1 hidden sm:inline">Cổ vũ:</span>
                     {QUICK_CHEERS.map((cheer) => (
                       <button
                         key={cheer.emoji}
                         type="button"
                         onClick={() => void handleQuickCheer(cheer.message)}
-                        className="hover:scale-125 transition-transform p-1 text-xs cursor-pointer"
+                        className="cursor-pointer p-0.5 text-xs transition-transform hover:scale-125 sm:p-1"
                         title={`${cheer.label} ${cheer.emoji}`}
                         aria-label={`Gửi lời cổ vũ: ${cheer.label}`}
                       >
