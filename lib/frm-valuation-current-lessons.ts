@@ -208,6 +208,29 @@ export const FRM_VALUATION_CURRENT_LESSONS: Lesson[] = [
         correct: 0,
         explanation: "Đây là mối liên hệ đẹp nhất của chương này: cây nhị thức với số bước tiến ra vô cùng hội tụ về công thức Black-Scholes. Hai mô hình trông rất khác nhau nhưng cùng đứng trên một nguyên lý."
       }
+    ,
+    {
+      "question": "Vì sao xác suất trung hoà rủi ro trong cây nhị thức không phải xác suất thật của thị trường?",
+      "options": [
+        "Vì nó là con số suy ra từ điều kiện không có chênh lệch giá, không phải từ dự báo",
+        "Vì xác suất thật luôn cao hơn xác suất trung hoà rủi ro với mọi tài sản",
+        "Vì xác suất thật không thể quan sát được nên buộc phải thay bằng một con số quy ước",
+        "Vì xác suất trung hoà rủi ro chỉ dùng được khi tài sản cơ sở không trả cổ tức"
+      ],
+      "correct": 0,
+      "explanation": "Toàn bộ lập luận định giá không cần biết cổ phiếu có khả năng tăng bao nhiêu phần trăm. Nó chỉ cần một danh mục tái tạo đúng khoản chi trả trong mọi kịch bản - và chi phí dựng danh mục đó là giá quyền chọn, dù bạn tin xác suất nào."
+    },
+    {
+      "question": "Vì sao cây nhị thức xử lý được quyền chọn kiểu Mỹ trong khi công thức Black-Scholes thì không?",
+      "options": [
+        "Vì tại mỗi nút có thể so sánh giá trị thực hiện ngay với giá trị tiếp tục nắm giữ",
+        "Vì cây nhị thức hoàn toàn không cần giả định gì về phân phối của lợi suất tài sản cơ sở",
+        "Vì công thức Black-Scholes chỉ áp dụng cho tài sản có trả cổ tức đều đặn",
+        "Vì quyền chọn kiểu Mỹ luôn được thực hiện trước ngày đáo hạn"
+      ],
+      "correct": 0,
+      "explanation": "Quyền thực hiện sớm là một quyết định lặp lại ở mọi thời điểm, và cây nhị thức có sẵn cấu trúc để kiểm tra nó tại từng nút. Công thức đóng thì cho ra một con số duy nhất, không có chỗ nào để chèn quyết định trung gian đó vào."
+    }
     ],
     keyTakeaways: [
       "Giá quyền chọn = chi phí dựng danh mục sao chép, không cần xác suất thật",
@@ -349,6 +372,29 @@ export const FRM_VALUATION_CURRENT_LESSONS: Lesson[] = [
         correct: 0,
         explanation: "Lập luận dẫn ra công thức giả định danh mục sao chép được chỉnh lại liên tục và miễn phí. Trong thực tế mỗi lần chỉnh đều mất phí và chỉ xảy ra rời rạc, nên vị thế phòng hộ luôn lệch một chút - và lệch nhiều nhất đúng lúc thị trường nhảy."
       }
+    ,
+    {
+      "question": "Vì sao mô hình Black-Scholes vẫn được dùng rộng rãi dù các giả định của nó bị vi phạm?",
+      "options": [
+        "Vì nó là ngôn ngữ chung để quy giá quyền chọn về một con số biến động so sánh được",
+        "Vì mọi mô hình thay thế đều cho kết quả sai lệch nhiều hơn trong mọi trường hợp",
+        "Vì giả định của nó chỉ bị vi phạm với quyền chọn có kỳ hạn trên một năm",
+        "Vì cơ quan quản lý yêu cầu dùng mô hình này khi báo cáo giá trị quyền chọn"
+      ],
+      "correct": 0,
+      "explanation": "Thị trường không thực sự tin mô hình đúng - họ dùng nó như một hàm chuyển đổi giữa giá và biến động hàm ý. Chính vì thế nụ cười biến động tồn tại: nó là dấu vết của việc thị trường đang bù lại cho phần mô hình sai."
+    },
+    {
+      "question": "Giả định phân phối chuẩn của lợi suất gây sai lệch theo hướng nào?",
+      "options": [
+        "Đánh giá thấp xác suất các cú dịch chuyển cực đoan, nên quyền chọn xa giá bị định giá thấp",
+        "Đánh giá quá cao xác suất của các cú dịch chuyển cực đoan, nên quyền chọn xa giá bị định giá cao",
+        "Không gây sai lệch có hệ thống, vì sai số hai chiều triệt tiêu lẫn nhau",
+        "Chỉ gây sai lệch với quyền chọn bán, không ảnh hưởng tới quyền chọn mua"
+      ],
+      "correct": 0,
+      "explanation": "Lợi suất thật có đuôi dày hơn phân phối chuẩn, nên cú sốc cực đoan xảy ra thường xuyên hơn mức mô hình dự báo. Sai lệch này có hệ thống và lệch về một phía - đó là lý do nó nguy hiểm hơn một sai số ngẫu nhiên."
+    }
     ],
     keyTakeaways: [
       "Bốn đầu vào quan sát được, riêng độ biến động tương lai thì không",
@@ -481,6 +527,29 @@ export const FRM_VALUATION_CURRENT_LESSONS: Lesson[] = [
         correct: 0,
         explanation: "Trung hoà delta là ảnh chụp tại một mức giá. Gamma càng lớn thì bức ảnh đó càng nhanh lỗi thời, nên phòng hộ chỉ dựa vào delta sẽ vỡ đúng lúc giá chạy mạnh - lúc mà nó cần hoạt động nhất."
       }
+    ,
+    {
+      "question": "Vì sao người bán quyền chọn thường có theta dương nhưng gamma âm?",
+      "options": [
+        "Vì họ thu giá trị thời gian mỗi ngày, đổi lại chịu lỗ tăng nhanh khi giá dịch chuyển mạnh",
+        "Vì họ nhận toàn bộ phí quyền chọn ngay từ đầu nên mọi Greeks của họ đều mang dấu dương",
+        "Vì theta và gamma luôn ngược dấu nhau ở mọi vị thế quyền chọn",
+        "Vì vị thế bán quyền chọn không chịu ảnh hưởng của biến động ngầm định"
+      ],
+      "correct": 0,
+      "explanation": "Đây là đánh đổi trung tâm của mọi vị thế quyền chọn: thu tiền đều đặn theo thời gian đi kèm rủi ro lỗ phi tuyến khi thị trường động mạnh. Hình dạng lợi nhuận đó - nhiều lãi nhỏ, thỉnh thoảng một lỗ rất lớn - làm mọi thước đo dựa trên độ lệch chuẩn đánh giá sai."
+    },
+    {
+      "question": "Rho ít được chú ý hơn các Greeks khác trong điều kiện bình thường vì lý do gì?",
+      "options": [
+        "Vì lãi suất đổi chậm hơn nhiều so với giá tài sản cơ sở",
+        "Vì rho chỉ áp dụng cho quyền chọn kiểu Mỹ chứ không áp dụng cho kiểu châu Âu",
+        "Vì ảnh hưởng của lãi suất đã được tính vào delta của vị thế",
+        "Vì rho luôn có giá trị rất nhỏ bất kể kỳ hạn của quyền chọn"
+      ],
+      "correct": 0,
+      "explanation": "Trong một ngày, giá cơ sở có thể động vài phần trăm còn lãi suất gần như đứng yên - nên delta và gamma chi phối. Nhưng với quyền chọn kỳ hạn dài, hoặc trong giai đoạn ngân hàng trung ương đổi lãi suất nhanh, rho trở lại thành đại lượng đáng theo dõi."
+    }
     ],
     keyTakeaways: [
       "Delta đo độ nhạy với giá, gamma đo tốc độ thay đổi của chính delta",
@@ -894,6 +963,29 @@ export const FRM_VALUATION_CURRENT_LESSONS: Lesson[] = [
         correct: 0,
         explanation: "Đây là tính đồng loạt ở dạng mới. Khi các định chế dùng mô hình giống nhau trên dữ liệu giống nhau, họ cùng thấy tín hiệu bán vào cùng một lúc - hành vi hợp lý của từng bên tạo ra cú sụt cho tất cả."
       }
+    ,
+    {
+      "question": "Vì sao mô hình học máy trong tín dụng bị đòi hỏi khả năng giải thích cao hơn nhiều so với mô hình dùng trong marketing?",
+      "options": [
+        "Vì quy định buộc nêu được lý do cụ thể khi từ chối cấp tín dụng cho khách",
+        "Vì mô hình tín dụng thường có độ chính xác thấp hơn mô hình marketing",
+        "Vì dữ liệu tín dụng chứa nhiều biến nhạy cảm hơn dữ liệu hành vi mua sắm",
+        "Vì mô hình tín dụng phải được cơ quan quản lý phê duyệt trước khi triển khai"
+      ],
+      "correct": 0,
+      "explanation": "Đây là ràng buộc pháp lý chứ không phải sở thích kỹ thuật: người bị từ chối có quyền biết vì sao. Một mô hình chính xác hơn nhưng không nêu được lý do vẫn không dùng được ở khâu đó - nên đánh đổi giữa độ chính xác và khả năng giải thích là đánh đổi thật."
+    },
+    {
+      "question": "Vì sao cần theo dõi phân phối dữ liệu đầu vào chứ không chỉ theo dõi độ chính xác của mô hình?",
+      "options": [
+        "Đầu vào lệch khỏi dữ liệu huấn luyện là tín hiệu sớm hơn",
+        "Vì độ chính xác của mô hình chỉ tính được sau khi có kết quả thực tế nhiều tháng",
+        "Vì phân phối đầu vào quyết định số lượng biến mà mô hình được phép sử dụng",
+        "Vì dữ liệu đầu vào thay đổi sẽ làm mô hình ngừng hoạt động hoàn toàn"
+      ],
+      "correct": 0,
+      "explanation": "Với mô hình tín dụng, kết quả thật chỉ biết sau nhiều tháng - lúc đó khoản lỗ đã phát sinh. Theo dõi độ trôi của chính dữ liệu đầu vào là tín hiệu sớm duy nhất có được ngay, và nó không cần chờ nhãn thực tế nào."
+    }
     ],
     keyTakeaways: [
       "Đánh đổi trung tâm: độ chính xác cao hơn đổi lấy khả năng giải thích thấp hơn",
@@ -1282,6 +1374,29 @@ export const FRM_VALUATION_CURRENT_LESSONS: Lesson[] = [
         correct: 0,
         explanation: "CBDC là nghĩa vụ trực tiếp của ngân hàng trung ương nên rủi ro tín dụng gần như bằng 0; câu hỏi của nó là câu hỏi cấu trúc hệ thống. Stablecoin thì chỉ đáng tin bằng đúng tài sản bảo chứng đằng sau, nên nó mang rủi ro tháo chạy giống một quỹ thị trường tiền tệ."
       }
+    ,
+    {
+      "question": "Vì sao thiết kế CBDC thường kèm hạn mức nắm giữ cho mỗi cá nhân?",
+      "options": [
+        "Để tiền gửi không dịch chuyển ồ ạt khỏi ngân hàng thương mại sang ngân hàng trung ương",
+        "Để hạn chế việc CBDC được dùng cho các giao dịch có giá trị lớn",
+        "Vì hệ thống kỹ thuật của ngân hàng trung ương không xử lý được số dư lớn",
+        "Vì quy định phòng chống rửa tiền yêu cầu giới hạn số dư của mọi loại tài khoản điện tử"
+      ],
+      "correct": 0,
+      "explanation": "Tiền gửi dân cư là nguồn vốn rẻ và bám dai nhất của ngân hàng thương mại. Một tài khoản ở ngân hàng trung ương gần như không có rủi ro tín dụng, nên không có hạn mức thì nó hút vốn - đặc biệt trong lúc thị trường căng thẳng, đúng lúc ngân hàng cần vốn nhất."
+    },
+    {
+      "question": "Mô hình CBDC hai tầng khác mô hình trực tiếp ở điểm nào?",
+      "options": [
+        "Ngân hàng trung ương phát hành, còn ngân hàng thương mại giữ quan hệ với người dùng cuối",
+        "Ngân hàng thương mại tự phát hành CBDC dưới sự giám sát của ngân hàng trung ương",
+        "CBDC hai tầng chỉ dùng cho thanh toán liên ngân hàng, không dùng cho bán lẻ",
+        "Mô hình hai tầng cho phép mọi người dùng mở tài khoản trực tiếp tại ngân hàng trung ương"
+      ],
+      "correct": 0,
+      "explanation": "Mô hình này giữ lại vai trò của ngân hàng thương mại ở khâu định danh khách hàng, dịch vụ và xử lý tranh chấp - những việc ngân hàng trung ương không có bộ máy để làm. Nó cũng giảm bớt phần nào lực hút vốn khỏi hệ thống ngân hàng."
+    }
     ],
     keyTakeaways: [
       "Rủi ro chính của CBDC bán lẻ là hút tiền gửi khỏi ngân hàng thương mại",
@@ -1527,6 +1642,29 @@ export const FRM_VALUATION_CURRENT_LESSONS: Lesson[] = [
         correct: 0,
         explanation: "Đây đúng là bài toán khớp duration ở dạng kinh điển: tài sản dài hạn lãi cố định, nguồn vốn ngắn hạn có thể rút bất cứ lúc nào, và không có phòng hộ lãi suất tương xứng. Chương ALM/IRRBB mô tả chính xác kịch bản này từ trước khi nó xảy ra."
       }
+    ,
+    {
+      "question": "Vì sao khoản lỗ chưa thực hiện trên danh mục giữ đến đáo hạn lại trở thành vấn đề thật vào năm 2023?",
+      "options": [
+        "Rút tiền ồ ạt buộc phải bán, lỗ trên sổ thành lỗ thật",
+        "Vì chuẩn kế toán năm 2023 buộc ghi nhận lại toàn bộ danh mục theo giá thị trường",
+        "Vì trái phiếu chính phủ trong danh mục bị hạ xếp hạng tín nhiệm cùng thời điểm",
+        "Vì cơ quan quản lý yêu cầu bán toàn bộ danh mục để tăng tỷ lệ an toàn vốn"
+      ],
+      "correct": 0,
+      "explanation": "Phân loại giữ đến đáo hạn cho phép không ghi nhận biến động giá - hợp lý nếu thật sự giữ được tới cuối. Nhưng khi người gửi rút hàng loạt, ngân hàng buộc bán trước hạn, và phân loại kế toán không cứu được điều đó."
+    },
+    {
+      "question": "Bài học về tốc độ mà đợt bất ổn 2023 để lại là gì?",
+      "options": [
+        "Giả định dòng rút trải ba mươi ngày đã lỗi thời",
+        "Cơ quan quản lý cần thời gian tối thiểu ba ngày để can thiệp vào một ngân hàng",
+        "Tốc độ lan tin trên mạng xã hội chỉ ảnh hưởng tới các ngân hàng quy mô nhỏ",
+        "Ngân hàng cần tăng tỷ lệ an toàn vốn để bù cho tốc độ rút tiền nhanh hơn"
+      ],
+      "correct": 0,
+      "explanation": "Chuẩn thanh khoản được xây trên hình dung về hàng người xếp trước quầy. Khi chuyển tiền chỉ mất vài thao tác và tin lan trong vài giờ, cả tháng đệm bị nén thành một buổi chiều - và không lượng tài sản thanh khoản nào bán kịp."
+    }
     ],
     keyTakeaways: [
       "Khoản lỗ đến từ rủi ro lãi suất, không phải rủi ro tín dụng - khác hẳn 2008",
