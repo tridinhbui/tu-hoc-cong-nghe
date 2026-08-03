@@ -20,10 +20,21 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const root = path.resolve(__dirname, "..");
 const dataDir = path.join(root, "lib/lessons-data");
 
-const MIN_QUIZ_COUNT = 2;
-const MIN_EXPLANATION_LEN = 150;
+// Các ngưỡng dưới đây là mức mà TOÀN BỘ corpus đã đạt tại thời điểm siết, chứ
+// không phải mức mong muốn - nên chúng gác được bài mới mà không đẩy bài cũ vào
+// nợ kỹ thuật. Sàn cũ (2 câu quiz, 150 ký tự) đã tụt lại rất xa so với thực tế:
+// mọi bài đều có ít nhất 5 câu và 250 ký tự, nên sàn đó không còn chặn được gì.
+// Ba lần liên tiếp, bài mới về dưới chuẩn mà audit vẫn xanh, và chỉ phát hiện
+// được bằng cách đo tay. Nâng thì lần sau CI báo, không cần ai nhớ đi đo.
+const MIN_QUIZ_COUNT = 5;
+const MIN_EXPLANATION_LEN = 250;
 // Two nodes is not a flow, it is a caption. Every existing diagram has 2-5.
 const MIN_DIAGRAM_NODES = 2;
+
+/** Số khối tối thiểu trong phần thân bài. Bốn khối - mở đầu, một bảng khái niệm,
+ *  một khối nhấn, một khối kết - là hình dạng gọn nhất còn đọc được; dưới mức đó
+ *  thì bài chỉ còn là một đoạn giải thích dài. Trung vị của corpus là 8. */
+const MIN_SECTION_BLOCKS = 5;
 
 function isPersonalOrProfessionalTrack(lesson) {
   // `resolvedTrack` is computed by scripts/generate-lesson-data.mjs from the
@@ -55,6 +66,9 @@ function auditLesson(lesson) {
   // now carry one, so the requirement is unconditional.
   if ((lesson.diagram ?? []).length < MIN_DIAGRAM_NODES) {
     issues.push(`diagram has ${lesson.diagram?.length ?? 0} nodes < ${MIN_DIAGRAM_NODES}`);
+  }
+  if ((lesson.sections ?? []).length < MIN_SECTION_BLOCKS) {
+    issues.push(`sections ${lesson.sections?.length ?? 0} blocks < ${MIN_SECTION_BLOCKS}`);
   }
   if (!lesson.openingQuestion || (lesson.openingOptions ?? []).length === 0) {
     issues.push("missing openingQuestion/openingOptions");
@@ -393,7 +407,7 @@ if (total > 0 && !process.argv.includes("--warn-only")) {
   console.error(
     `\n${total} lesson(s) below the minimum content bar. Each needs at least ` +
       `${MIN_QUIZ_COUNT} quiz questions, a ${MIN_EXPLANATION_LEN}+ char explanation, ` +
-      `an openingQuestion with options, and a diagram of at least 2 nodes.\n` +
+      `an openingQuestion with options, a diagram of at least 2 nodes, and a body of at least 5 section blocks.\n` +
       `Fix them in lib/lessons.ts (or lib/lesson-quiz-overrides.js for slugs it ` +
       `overrides), re-run scripts/generate-lesson-data.mjs, then run this again.`
   );

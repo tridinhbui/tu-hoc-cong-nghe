@@ -80,6 +80,25 @@ rules apply. Note that the delivery route shuffles option order per question,
 so `correct: 0` everywhere is fine there — position leaks nothing, only length
 survives shuffling.
 
+## The content gates
+
+`scripts/audit-lesson-content.mjs` holds four per-lesson minimums, and each is
+set to the level the **whole corpus already meets** - not to an aspiration.
+That is what makes them gate new lessons without putting old ones into debt:
+
+| gate | value | why |
+| --- | --- | --- |
+| `MIN_QUIZ_COUNT` | 5 | scores feed `avg_quiz_score`, the unlock gate and `/su-nghiep` |
+| `MIN_EXPLANATION_LEN` | 250 | below this the field is usually one quiz answer, not an explanation |
+| `MIN_DIAGRAM_NODES` | 2 | fewer is a caption, not a flow |
+| `MIN_SECTION_BLOCKS` | 5 | four is the leanest readable shape; corpus median is 8 |
+
+Raise one only after the corpus has already cleared the new level; never lower
+one to make a red build pass. The floors sat at 2 questions and 150 characters
+long after every lesson had passed 5 and 250, and in that gap three separate
+batches of new lessons landed under standard with CI green - each found by
+measuring by hand rather than by the audit.
+
 ## Checking your work
 
 ```
