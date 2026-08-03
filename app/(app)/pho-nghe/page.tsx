@@ -7,6 +7,7 @@ import { getUserStreak } from "@/lib/supabase-streak";
 import { getEquippedGear } from "@/lib/supabase-equipment";
 import { getLessonRecalls } from "@/lib/supabase-recalls";
 import DistrictWorld, { type DistrictLesson } from "@/components/career-district/DistrictWorld";
+import { DISTRICT_ROOMS, type DistrictRoomId } from "@/components/career-district/district-space";
 import { allDistrictLessonSlugs, buildStageIndex } from "@/components/career-district/district-content";
 
 export const dynamic = "force-dynamic";
@@ -18,7 +19,24 @@ export const dynamic = "force-dynamic";
 // (lib/lessons-data), và gửi cả 1.500 bài xuống trình duyệt chỉ để hiện vài chục
 // cái tên là đủ nặng để thấy được trên mạng di động. Trang chỉ gửi đúng những
 // bài mà khu phố nhắc tới.
-export default async function PhoNghePage() {
+export default async function PhoNghePage({
+  searchParams,
+}: {
+  searchParams: Promise<{ phong?: string }>;
+}) {
+  // `?phong=` là chuỗi do người dùng gửi lên, nên nó phải được ĐỐI CHIẾU chứ
+  // không ép kiểu: một id không có thật mà lọt vào DistrictWorld thì cả thế
+  // giới không dựng được - trang trắng thay vì con phố. Sai thì lặng lẽ về
+  // phố, đó là hành vi cũ và luôn đúng.
+  //
+  // Object.hasOwn chứ KHÔNG phải `in`. Bản đầu viết `phong in DISTRICT_ROOMS`,
+  // mà `in` đi cả chuỗi nguyên mẫu: `?phong=constructor` lọt qua kiểm tra rồi
+  // đưa hàm khởi tạo của Object vào chỗ đáng ra là một căn phòng. Cùng họ với
+  // `?phong=toString` và `?phong=__proto__`.
+  const { phong } = await searchParams;
+  const startRoom =
+    phong && Object.hasOwn(DISTRICT_ROOMS, phong) ? (phong as DistrictRoomId) : undefined;
+
   const supabase = await createServerSupabaseClient();
   const {
     data: { user },
@@ -105,6 +123,7 @@ export default async function PhoNghePage() {
       lessons={lessons}
       stages={stages}
       dueLessonIds={dueLessonIds}
+      startRoom={startRoom}
     />
   );
 }

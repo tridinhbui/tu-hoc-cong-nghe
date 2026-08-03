@@ -5,6 +5,7 @@ import { outdoorBrightnessAt } from "@/components/lobby/daylight";
 import dynamic from "next/dynamic";
 import Link from "next/link";
 import {
+  DISTRICT_ROOMS,
   STAGE_FLOOR_ID,
   STREET_SPAWN,
   TOWER_STOPS,
@@ -161,6 +162,13 @@ export interface DistrictWorldProps {
   stages: StageIndexEntry[];
   /** Bài đã tới hạn ôn lại. Cột của chúng trong hành lang sáng khác màu. */
   dueLessonIds: number[];
+  /** Phòng mở sẵn khi vào, thay vì bắt đầu ngoài phố.
+   *
+   *  Dùng cho đường dẫn từ trang bài học sang căn phòng dạy đúng điều đó
+   *  (lib/lesson-room-links.ts): con phố dài 180 m với 22 cánh cửa, và bắt
+   *  người vừa đọc xong bài về vốn lưu động phải đi tìm cửa là mất đúng cái
+   *  lúc căn phòng có ích nhất. */
+  startRoom?: DistrictRoomId;
 }
 
 export default function DistrictWorld({
@@ -175,9 +183,20 @@ export default function DistrictWorld({
   lessons,
   stages,
   dueLessonIds,
+  startRoom,
 }: DistrictWorldProps) {
-  const [roomId, setRoomId] = useState<DistrictRoomId>("street");
-  const [entry, setEntry] = useState<Pose>(STREET_SPAWN);
+  const [roomId, setRoomId] = useState<DistrictRoomId>(startRoom ?? "street");
+  // Chỗ đứng khi vào thẳng một phòng LẤY LẠI từ cửa của chính phòng đó trên
+  // phố, không nghĩ ra một pose thứ hai: hai chỗ đứng cho cùng một cánh cửa
+  // rồi sẽ lệch nhau, và cái vào-thẳng thì không có bài test hình học nào
+  // canh - phòng có thể đổi kích thước mà nó vẫn đứng chỗ cũ, tức là trong
+  // tường.
+  const [entry, setEntry] = useState<Pose>(
+    () =>
+      (startRoom &&
+        DISTRICT_ROOMS.street?.doorways.find((d) => d.to === startRoom)?.arriveAt) ||
+      STREET_SPAWN
+  );
   const [desk, setDesk] = useState<CareerDesk | null>(null);
   const [door, setDoor] = useState<Doorway | null>(null);
   const [portal, setPortal] = useState<RoomPortal | null>(null);

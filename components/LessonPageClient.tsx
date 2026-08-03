@@ -15,6 +15,7 @@ import { highlightGlossaryTerms } from "@/components/GlossaryTerm";
 import { LessonApplicationCard, LessonQuestionCard, LessonSummaryCard, ReviewLoopCard } from "@/components/LessonLearningBlocks";
 import { getLessonDisplayLabel, getLessonRecallDay } from "@/lib/lesson-labels";
 import TypingText from "@/components/TypingText";
+import LessonRoomCard from "@/components/LessonRoomCard";
 
 interface Props {
   lesson: Lesson;
@@ -440,6 +441,10 @@ export default function LessonPageClient({ lesson, nextLesson }: Props) {
           </div>
         </div>
       )}
+      {/* 6.5. Đường sang căn phòng 3D dạy đúng điều này, nếu bài có một
+          căn. Sau phần ghi nhớ chứ không phải đầu bài: ở đầu bài nó rủ người
+          ta bỏ dở, ở đây nó là bước tiếp theo của người vừa tóm tắt xong. */}
+      <LessonRoomCard slug={lesson.slug} />
       </FreeRecallCard>
     </LessonPageLayout>
     </div>
