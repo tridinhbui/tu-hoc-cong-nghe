@@ -507,6 +507,51 @@ export const CFA_ETHICS_APPLIED_LESSONS: Lesson[] = [
     correctOption: 1,
     explanation:
       "Standard IV(A) không cấm bạn chuẩn bị nghỉ việc - điều đó sẽ vô lý. Nó cấm dùng nguồn lực của nhà tuyển dụng hiện tại để cạnh tranh với chính họ trong khi vẫn đang nhận lương của họ. Ranh giới rơi vào hành vi cụ thể: thuê văn phòng và đăng ký doanh nghiệp thì được, vì đó là chuẩn bị hành chính. Liên hệ khách hàng để mời họ chuyển theo, sao chép danh sách khách hàng, hay mang mô hình định giá của công ty đi thì không, vì cả ba đều lấy tài sản của nhà tuyển dụng dùng cho mục đích chống lại họ. Sau khi đã nghỉ, liên hệ khách hàng bằng thông tin công khai là hợp lệ - trừ khi có thỏa thuận không cạnh tranh ràng buộc riêng.",
+    sections: [
+      {
+        "type": "lead",
+        "text": "Standard IV(A) không cấm bạn chuẩn bị nghỉ việc - điều đó sẽ vô lý. Nó cấm dùng nguồn lực của nhà tuyển dụng hiện tại để cạnh tranh với chính họ trong khi vẫn đang nhận lương của họ."
+      },
+      {
+        "type": "comparison",
+        "left": {
+          "label": "Trước khi nghỉ - được phép",
+          "text": "Thuê văn phòng, đăng ký doanh nghiệp, trao đổi với nhà tuyển dụng mới, làm thủ tục hành chính ngoài giờ."
+        },
+        "right": {
+          "label": "Trước khi nghỉ - không được phép",
+          "text": "Liên hệ khách hàng để mời chuyển theo, sao chép danh sách khách hàng, mang mô hình định giá của công ty đi."
+        }
+      },
+      {
+        "type": "paragraph",
+        "text": "Ba việc bị cấm có cùng một đặc điểm: chúng lấy tài sản của nhà tuyển dụng - quan hệ khách hàng, dữ liệu, sản phẩm trí tuệ - và dùng cho mục đích chống lại chính họ."
+      },
+      {
+        "type": "callout",
+        "label": "Cách phân biệt gọn nhất",
+        "text": "Kiến thức trong đầu bạn thì đi theo bạn. Tài liệu trong máy thì thuộc về công ty. Việc bạn cũng nhớ được nội dung tài liệu đó không làm việc sao chép thành hợp lệ."
+      },
+      {
+        "type": "heading",
+        "text": "Sau khi đã nghỉ"
+      },
+      {
+        "type": "paragraph",
+        "text": "Nghĩa vụ theo Standard IV(A) chấm dứt. Liên hệ khách hàng cũ bằng thông tin công khai là hợp lệ - trừ khi có thỏa thuận không cạnh tranh ràng buộc riêng, và thỏa thuận đó thuộc phạm vi hợp đồng chứ không phải chuẩn mực nghề nghiệp."
+      },
+      {
+        "type": "paragraph",
+        "text": "Một tình huống khác cùng thuộc Standard này: làm thêm công việc thứ hai. Nó phải được nhà tuyển dụng đồng ý trước, kể cả khi công việc đó ở lĩnh vực khác, vì họ là bên duy nhất đánh giá được nó có tạo xung đột hay chiếm mất thời gian đáng lẽ dành cho họ hay không."
+      },
+      {
+        "type": "closing",
+        "lines": [
+          "Bạn có quyền đi.",
+          "Bạn không có quyền mang theo thứ không phải của mình."
+        ]
+      }
+    ],
     diagram: [
       { label: "Trước khi nghỉ: chuẩn bị hành chính được", arrow: true },
       { label: "Trước khi nghỉ: mời khách, sao chép dữ liệu thì không", arrow: true },
@@ -623,6 +668,53 @@ export const CFA_ETHICS_APPLIED_LESSONS: Lesson[] = [
     correctOption: 1,
     explanation:
       "Standard IV(C) không đòi hỏi người giám sát phải phát hiện mọi vi phạm - điều đó bất khả thi. Nó đòi hỏi các bước hợp lý: có quy trình kiểm soát bằng văn bản, phổ biến cho nhân viên, có cơ chế giám sát định kỳ, và xử lý khi phát hiện dấu hiệu. Nếu bốn thứ đó tồn tại và vận hành mà vi phạm vẫn lọt qua, người giám sát thường không bị quy trách nhiệm. Nếu chúng không tồn tại, câu 'tôi không biết' trở thành bằng chứng buộc tội chứ không phải lời bào chữa - vì chính việc không biết là hệ quả của việc không thiết lập cơ chế để biết.",
+    sections: [
+      {
+        "type": "lead",
+        "text": "Standard IV(C) đặt trách nhiệm lên người giám sát khi nhân viên dưới quyền vi phạm. Nó không đòi hỏi bạn phát hiện mọi vi phạm - điều đó bất khả thi - mà đòi hỏi bạn đã dựng đủ cơ chế để có thể phát hiện."
+      },
+      {
+        "type": "heading",
+        "text": "Bốn bước hợp lý"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Có quy trình kiểm soát bằng văn bản, không phải hiểu ngầm.",
+          "Phổ biến quy trình đó cho nhân viên và bảo đảm họ hiểu.",
+          "Giám sát định kỳ chứ không chờ tới khi có sự cố.",
+          "Xử lý ngay khi phát hiện dấu hiệu, không đợi bằng chứng đầy đủ."
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "Nếu bốn thứ đó tồn tại và thực sự vận hành mà vi phạm vẫn lọt qua, người giám sát thường không bị quy trách nhiệm. Chuẩn ở đây là quy trình, không phải kết quả."
+      },
+      {
+        "type": "callout",
+        "label": "Khi nào 'tôi không biết' thành bằng chứng buộc tội",
+        "text": "Khi việc không biết là hệ quả trực tiếp của việc không thiết lập cơ chế để biết. Lúc đó câu nói ấy không còn là lời bào chữa - nó chính là mô tả của vi phạm."
+      },
+      {
+        "type": "heading",
+        "text": "Khi hệ thống không đủ mà bạn không sửa được"
+      },
+      {
+        "type": "paragraph",
+        "text": "Nghĩa vụ là nêu vấn đề lên cấp có thẩm quyền bằng văn bản. Nếu bị từ chối và bạn vẫn phải chịu trách nhiệm giám sát trên một hệ thống bạn biết là không đủ, chuẩn mực cho phép - và trong nhiều trường hợp khuyến nghị - từ chối nhận vai trò đó."
+      },
+      {
+        "type": "paragraph",
+        "text": "Một điểm hay bị bỏ qua sau mỗi vụ vi phạm: xử lý người vi phạm là chưa đủ. Phải rà lại hệ thống, vì việc một người làm được điều đó nghĩa là chốt kiểm soát có lỗ hổng, và người tiếp theo cũng sẽ làm được."
+      },
+      {
+        "type": "closing",
+        "lines": [
+          "Giám sát không phải chức danh.",
+          "Nó là một tập hợp việc phải làm - và không làm thì chịu trách nhiệm."
+        ]
+      }
+    ],
     diagram: [
       { label: "Có quy trình kiểm soát bằng văn bản", arrow: true },
       { label: "Phổ biến và đào tạo cho nhân viên", arrow: true },
@@ -739,6 +831,48 @@ export const CFA_ETHICS_APPLIED_LESSONS: Lesson[] = [
     correctOption: 1,
     explanation:
       "Standard V(A) yêu cầu mọi khuyến nghị phải có cơ sở hợp lý. Standard V(C) là thứ làm cho yêu cầu đó kiểm chứng được sau này. Khi một khoản đầu tư diễn biến xấu và khách hàng hoặc cơ quan quản lý hỏi lại, câu hỏi không phải 'bạn có đúng không' mà 'lúc đó bạn dựa vào đâu'. Hồ sơ - dữ liệu đã dùng, giả định đã đặt, các phương án đã cân nhắc và loại bỏ - là thứ trả lời được câu đó. Không có nó, một quy trình phân tích nghiêm túc và một quyết định tùy hứng để lại dấu vết giống hệt nhau: không dấu vết nào.",
+    sections: [
+      {
+        "type": "lead",
+        "text": "Standard V(A) yêu cầu mọi khuyến nghị phải có cơ sở hợp lý. Standard V(C) là thứ làm cho yêu cầu đó kiểm chứng được sau này - và nó thường bị coi là thủ tục hành chính cho tới lúc cần dùng."
+      },
+      {
+        "type": "heading",
+        "text": "Câu hỏi thật khi bị hỏi lại"
+      },
+      {
+        "type": "paragraph",
+        "text": "Khi một khoản đầu tư diễn biến xấu và khách hàng hoặc cơ quan quản lý quay lại hỏi, câu hỏi không phải 'bạn có đúng không' - kết quả xấu không tự nó chứng minh phân tích sai. Câu hỏi là 'lúc đó bạn dựa vào đâu'. Hồ sơ là thứ duy nhất trả lời được câu đó."
+      },
+      {
+        "type": "callout",
+        "label": "Lưu cả những gì đã loại bỏ",
+        "text": "Không chỉ báo cáo cuối cùng, mà cả dữ liệu đã dùng, giả định đã đặt, và các phương án đã cân nhắc rồi bỏ. Chính phần bị loại bỏ mới chứng minh rằng có một quá trình cân nhắc thật."
+      },
+      {
+        "type": "heading",
+        "text": "Ba điểm vận hành"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Thời hạn tối thiểu thường là bảy năm, hoặc dài hơn nếu luật địa phương quy định.",
+          "Hồ sơ thuộc về nhà tuyển dụng, không đi theo bạn khi chuyển việc.",
+          "Chuyển việc nghĩa là bạn phải xây lại cơ sở phân tích ở nơi mới, không được dựa vào bản sao mang theo."
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "Điều đáng nhớ nhất về Standard này: không có hồ sơ thì một quy trình phân tích nghiêm túc và một quyết định tùy hứng để lại dấu vết giống hệt nhau - tức là không dấu vết nào. Và trong tình huống bị chất vấn, không dấu vết luôn được đọc theo hướng bất lợi."
+      },
+      {
+        "type": "closing",
+        "lines": [
+          "Bạn không lưu hồ sơ cho hôm nay.",
+          "Bạn lưu cho phiên bản chính mình bị hỏi lại sau ba năm."
+        ]
+      }
+    ],
     diagram: [
       { label: "V(A) đòi khuyến nghị phải có cơ sở hợp lý", arrow: true },
       { label: "V(C) làm cho yêu cầu đó kiểm chứng được sau này", arrow: true },
@@ -855,6 +989,44 @@ export const CFA_ETHICS_APPLIED_LESSONS: Lesson[] = [
     correctOption: 1,
     explanation:
       "Điểm mấu chốt là ai được quyền quyết định xung đột nào đáng kể. Standard VI(A) chuyển quyền đó sang người đọc: nghĩa vụ của bạn là cung cấp thông tin để họ tự đánh giá, không phải tự đánh giá thay họ rồi giữ im lặng. Lý do rất thực tế - người trong cuộc là bên đánh giá kém nhất về việc lợi ích của chính mình có làm lệch phán đoán hay không. Công bố cũng phải nổi bật và dễ hiểu: một dòng chữ nhỏ ở chân trang, hoặc một đoạn viết bằng ngôn ngữ pháp lý mà người đọc thường không hiểu, không đạt chuẩn 'công bố đầy đủ và có ý nghĩa'.",
+    sections: [
+      {
+        "type": "lead",
+        "text": "Standard VI(A) buộc công bố mọi xung đột lợi ích có thể hợp lý được kỳ vọng làm ảnh hưởng tới tính khách quan. Ba chi tiết trong câu đó quyết định toàn bộ cách áp dụng."
+      },
+      {
+        "type": "heading",
+        "text": "Chuẩn là 'có thể ảnh hưởng', không phải 'đã ảnh hưởng'"
+      },
+      {
+        "type": "paragraph",
+        "text": "Bạn không cần chứng minh xung đột đã làm lệch phán đoán của mình. Chỉ cần nó thuộc loại mà một người bình thường sẽ muốn biết trước khi đọc khuyến nghị của bạn."
+      },
+      {
+        "type": "callout",
+        "label": "Ai đánh giá mức đáng kể",
+        "text": "Người đọc, không phải người có xung đột. Nghĩa vụ của bạn là cung cấp thông tin để họ tự đánh giá, không phải đánh giá thay rồi giữ im lặng. Lý do rất thực tế: người trong cuộc là bên đánh giá kém nhất về việc lợi ích của chính mình có làm lệch phán đoán hay không."
+      },
+      {
+        "type": "heading",
+        "text": "Công bố ở đâu và như thế nào"
+      },
+      {
+        "type": "paragraph",
+        "text": "Phải nổi bật và dễ hiểu. Một dòng chữ nhỏ ở chân trang, hoặc một đoạn viết bằng ngôn ngữ pháp lý mà người đọc thường không hiểu, không đạt chuẩn công bố đầy đủ và có ý nghĩa - về hình thức thì có, về mục đích thì không."
+      },
+      {
+        "type": "paragraph",
+        "text": "Hai nghĩa vụ riêng biệt hay bị gộp làm một: công bố cho nhà tuyển dụng và công bố cho khách hàng. Báo cho một bên không thay cho bên kia, vì hai bên dùng thông tin đó cho hai mục đích khác nhau. Và thứ tự đúng vẫn là tránh xung đột trước, công bố phần không tránh được - công bố không phải giấy phép để giữ nguyên xung đột."
+      },
+      {
+        "type": "closing",
+        "lines": [
+          "Công bố không làm xung đột biến mất.",
+          "Nó chỉ trả lại cho người đọc quyền tự quyết định tin bạn tới đâu."
+        ]
+      }
+    ],
     diagram: [
       { label: "Chuẩn: có thể hợp lý được kỳ vọng làm ảnh hưởng", arrow: true },
       { label: "Người đọc đánh giá mức đáng kể, không phải bạn", arrow: true },

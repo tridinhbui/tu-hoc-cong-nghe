@@ -1467,6 +1467,44 @@ export const CFA_ETHICS_STANDARDS_LESSONS: Lesson[] = [
     correctOption: 1,
     explanation:
       "Standard IV(B) không cấm nhận thù lao thêm - nó cấm nhận mà nhà tuyển dụng không biết. Lý do rất cụ thể: một khoản thưởng gắn với hiệu suất danh mục của một khách hàng tạo động cơ ưu tiên khách đó hơn các khách khác, và tạo động cơ gánh thêm rủi ro để chạm ngưỡng thưởng. Nhà tuyển dụng là bên duy nhất nhìn được toàn bộ danh mục khách hàng của bạn, nên họ phải là bên đánh giá xung đột này. Văn bản là bắt buộc chứ không phải hình thức: khi có tranh chấp sau này, đồng ý bằng miệng không phân biệt được với việc không hề xin phép.",
+    sections: [
+      {
+        "type": "lead",
+        "text": "Standard IV(B) không cấm nhận thù lao thêm ngoài lương. Nó cấm nhận mà nhà tuyển dụng không biết - và lý do nằm ở chỗ ai có khả năng đánh giá xung đột."
+      },
+      {
+        "type": "heading",
+        "text": "Vì sao nhà tuyển dụng phải là bên đánh giá"
+      },
+      {
+        "type": "paragraph",
+        "text": "Một khoản thưởng gắn với hiệu suất danh mục của một khách hàng tạo hai động cơ lệch cùng lúc: ưu tiên khách đó hơn các khách khác, và gánh thêm rủi ro để chạm ngưỡng thưởng. Nhà tuyển dụng là bên duy nhất nhìn được toàn bộ danh mục khách hàng của bạn, nên chỉ họ mới đánh giá được xung đột này ở quy mô thật."
+      },
+      {
+        "type": "callout",
+        "label": "Phải báo những gì",
+        "text": "Bản chất của khoản thù lao, số tiền hoặc cách tính, thời hạn, và bên chi trả. Thiếu một trong bốn thì nhà tuyển dụng không có đủ cơ sở để đánh giá."
+      },
+      {
+        "type": "heading",
+        "text": "Vì sao bắt buộc bằng văn bản"
+      },
+      {
+        "type": "paragraph",
+        "text": "Đây không phải hình thức. Khi có tranh chấp sau này, một lời đồng ý bằng miệng không phân biệt được với việc chưa từng xin phép - và người chịu thiệt trong tình huống đó luôn là bạn."
+      },
+      {
+        "type": "paragraph",
+        "text": "Phạm vi của Standard rộng hơn tiền mặt: ghế trong hội đồng quản trị, cổ phần hoặc quyền chọn, hợp đồng tư vấn cuối tuần, thậm chí các lợi ích phi tiền tệ có giá trị đáng kể đều thuộc diện phải báo. Một phép kiểm tra nhanh cho trường hợp lưỡng lự: nếu nhà tuyển dụng biết về khoản này, họ có muốn được biết không."
+      },
+      {
+        "type": "closing",
+        "lines": [
+          "Câu hỏi không phải khoản này có làm bạn lệch không.",
+          "Mà là bạn có đang để người khác tự đánh giá điều đó không."
+        ]
+      }
+    ],
     diagram: [
       { label: "Mọi khoản thu ngoài lương, kể cả phi tiền mặt", arrow: true },
       { label: "Báo rõ: bản chất, số tiền, thời hạn, bên chi trả", arrow: true },
@@ -1583,6 +1621,44 @@ export const CFA_ETHICS_STANDARDS_LESSONS: Lesson[] = [
     correctOption: 1,
     explanation:
       "Chữ 'sẽ' làm toàn bộ khác biệt. Việc nhà máy đi vào hoạt động có thể là sự thật đã công bố; con số 25% thì luôn là ý kiến, dù được xây trên mô hình cẩn thận đến đâu. Standard V(B) yêu cầu phân biệt rõ hai loại này, vì khách hàng đọc chúng theo hai cách hoàn toàn khác nhau và ra quyết định khác nhau. Yêu cầu thứ hai của Standard đi xa hơn: phải nêu quy trình và giới hạn của phân tích - mô hình dựa trên giả định gì, giả định nào nhạy nhất, và điều gì sẽ khiến kết luận đổi. Một khách hàng biết dự báo phụ thuộc vào giá đầu vào sẽ phản ứng khác hẳn khi giá đầu vào tăng vọt.",
+    sections: [
+      {
+        "type": "lead",
+        "text": "Standard V(B) yêu cầu tách rõ sự thật khỏi ý kiến khi trao đổi với khách hàng. Nghe hiển nhiên, nhưng ranh giới bị xóa mờ chỉ bằng một chữ."
+      },
+      {
+        "type": "heading",
+        "text": "Một chữ 'sẽ' là đủ"
+      },
+      {
+        "type": "paragraph",
+        "text": "Việc nhà máy đi vào hoạt động quý tới có thể là sự thật đã công bố. Con số lợi nhuận tăng 25% thì luôn là ý kiến, dù được xây trên mô hình cẩn thận tới đâu. Viết 'lợi nhuận sẽ tăng 25%' thay vì 'chúng tôi ước tính lợi nhuận tăng khoảng 25%' đã chuyển một dự báo thành một khẳng định - và khách hàng ra quyết định khác hẳn với hai cách nói đó."
+      },
+      {
+        "type": "callout",
+        "label": "Yêu cầu thứ hai đi xa hơn",
+        "text": "Phải nêu quy trình và giới hạn của phân tích: mô hình dựa trên giả định gì, giả định nào nhạy nhất, và điều gì sẽ khiến kết luận đổi. Một khách hàng biết dự báo phụ thuộc vào giá đầu vào sẽ phản ứng rất khác khi giá đầu vào tăng vọt."
+      },
+      {
+        "type": "heading",
+        "text": "Khi quy trình thay đổi"
+      },
+      {
+        "type": "paragraph",
+        "text": "Đổi phương pháp phân tích hoặc đổi mô hình phải báo cho khách hàng, kể cả khi kết quả vẫn tốt. Lý do là khách hàng đánh giá kết quả dựa trên hiểu biết của họ về cách nó được tạo ra; đổi cách mà không nói thì họ đang đọc một con số bằng một khung tham chiếu đã cũ."
+      },
+      {
+        "type": "paragraph",
+        "text": "Với khách hàng ít kinh nghiệm tài chính, nghĩa vụ không giảm đi mà đổi hình thức: đơn giản hóa cách nói, không đơn giản hóa nội dung. Bỏ bớt phần rủi ro vì sợ khách không hiểu là vi phạm chứ không phải sự cân nhắc."
+      },
+      {
+        "type": "closing",
+        "lines": [
+          "Khách hàng có quyền biết bạn đang chắc chắn tới đâu.",
+          "Và đó là thứ chỉ bạn nói ra được."
+        ]
+      }
+    ],
     diagram: [
       { label: "Tách rõ sự thật với ý kiến của mình", arrow: true },
       { label: "Nêu quy trình và giả định chính của phân tích", arrow: true },
