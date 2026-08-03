@@ -2622,6 +2622,29 @@ export const FRM_CORE_GAPS_LESSONS: Lesson[] = [
         correct: 0,
         explanation: "Chuỗi tái sử dụng tạo ra hiệu ứng đòn bẩy ẩn: một lượng tài sản gốc chống đỡ cho nhiều lớp giao dịch. Khi một bên trong chuỗi mất khả năng chi trả, việc xác định ai thực sự có quyền với tài sản trở nên rối và cả chuỗi đóng băng."
       }
+    ,
+    {
+      "question": "Vì sao mức chiết khấu áp cho một tài sản bảo đảm lại khác nhau giữa các bên cho vay?",
+      "options": [
+        "Vì mỗi bên đánh giá khác nhau về độ biến động và thời gian cần để bán tài sản đó",
+        "Vì quy định cho phép mỗi bên tự chọn mức chiết khấu trong khoảng đã công bố",
+        "Vì bên cho vay có quy mô lớn hơn luôn áp mức chiết khấu thấp hơn cho cùng một tài sản",
+        "Vì mức chiết khấu được tính theo xếp hạng tín nhiệm của bên đi vay"
+      ],
+      "correct": 0,
+      "explanation": "Mức chiết khấu là ước lượng về phần giá có thể mất trong khoảng từ lúc bên vay vỡ nợ tới lúc bán xong. Hai bên cho vay khác nhau về kinh nghiệm thanh lý, về khả năng giữ tài sản chờ giá, nên ra hai con số khác nhau cho cùng một tài sản."
+    },
+    {
+      "question": "Vì sao tái sử dụng tài sản bảo đảm làm tăng rủi ro hệ thống?",
+      "options": [
+        "Vì cùng một tài sản đứng sau nhiều nghĩa vụ, nên một mắt xích đứt kéo cả chuỗi",
+        "Vì tài sản được tái sử dụng sẽ mất tư cách là tài sản thanh khoản chất lượng cao",
+        "Vì việc tái sử dụng làm tăng mức chiết khấu áp cho toàn bộ thị trường",
+        "Vì bên sở hữu gốc mất quyền đòi lại tài sản khi có tranh chấp xảy ra"
+      ],
+      "correct": 0,
+      "explanation": "Một trái phiếu được thế chấp, rồi bên nhận đem thế chấp tiếp, tạo ra một chuỗi các bên cùng tin rằng mình có tài sản bảo đảm. Chuỗi càng dài thì việc lần ra ai thực sự nắm gì càng chậm - và trong khủng hoảng, sự chậm đó là chính vấn đề."
+    }
     ],
     keyTakeaways: [
       "Haircut là phần chiết khấu bảo vệ bên cho vay trước biến động giá tài sản bảo đảm",
@@ -2748,6 +2771,29 @@ export const FRM_CORE_GAPS_LESSONS: Lesson[] = [
         correct: 0,
         explanation: "Khi các quỹ nắm giữ tỷ trọng lớn trên một thị trường tài sản, việc họ đồng loạt bán để đáp ứng lệnh rút không còn là chuyện nội bộ - nó tự tạo ra cú sụt giá lan sang mọi tổ chức khác đang nắm tài sản tương tự."
       }
+    ,
+    {
+      "question": "Vì sao quỹ mở đầu tư vào trái phiếu doanh nghiệp chịu rủi ro chuyển hoá thanh khoản rõ nhất?",
+      "options": [
+        "Quỹ cho rút hằng ngày, tài sản thì mất nhiều ngày để bán",
+        "Vì trái phiếu doanh nghiệp có rủi ro tín dụng cao hơn các nhóm tài sản khác",
+        "Vì quy định buộc quỹ trái phiếu phải giữ tỷ lệ tiền mặt thấp hơn quỹ cổ phiếu",
+        "Vì giá trái phiếu doanh nghiệp biến động mạnh hơn giá cổ phiếu trong khủng hoảng"
+      ],
+      "correct": 0,
+      "explanation": "Đây đúng là cơ chế của một ngân hàng: hứa thanh khoản hằng ngày trên một danh mục không thanh khoản hằng ngày. Khác biệt là quỹ không có bảo hiểm tiền gửi và không có người cho vay cuối cùng đứng sau."
+    },
+    {
+      "question": "Cổng hạn chế rút vốn và định giá xoay chiều xử lý hai vấn đề khác nhau như thế nào?",
+      "options": [
+        "Cổng chặn dòng rút quá lớn; định giá xoay chiều bắt người rút gánh chi phí họ tạo ra",
+        "Cổng áp dụng cho nhà đầu tư tổ chức; định giá xoay chiều áp dụng cho cá nhân",
+        "Cổng dùng trong khủng hoảng; định giá xoay chiều dùng trong điều kiện bình thường",
+        "Cổng do cơ quan quản lý kích hoạt; định giá xoay chiều do ban điều hành quỹ quyết định"
+      ],
+      "correct": 0,
+      "explanation": "Định giá xoay chiều chuyển chi phí giao dịch sang chính người rút, nên nó xoá đi lợi thế của việc rút trước. Cổng thì thô hơn: nó chặn dòng rút để quỹ không phải bán tháo, nhưng cũng chính là điều có thể kích hoạt hoảng loạn ở các quỹ tương tự."
+    }
     ],
     keyTakeaways: [
       "Quỹ mở thực hiện chuyển hoá thanh khoản giống ngân hàng nhưng không có bảng cân đối để đệm",
@@ -2883,6 +2929,29 @@ export const FRM_CORE_GAPS_LESSONS: Lesson[] = [
         correct: 0,
         explanation: "Điểm mạnh của Bayes trong quản trị rủi ro là xử lý được tình huống dữ liệu rất thưa - đúng đặc điểm của rủi ro hoạt động và sự kiện đuôi - bằng cách kết hợp phán đoán chuyên gia có cấu trúc với số ít quan sát có được."
       }
+    ,
+    {
+      "question": "Vì sao một hệ thống cảnh báo có độ chính xác 99% vẫn có thể tạo ra phần lớn báo động giả?",
+      "options": [
+        "Vì khi sự kiện thật rất hiếm, số báo nhầm trên nền lớn vẫn vượt xa số ca thật",
+        "Vì độ chính xác 99% chỉ đo được trên dữ liệu huấn luyện chứ không trên dữ liệu thật",
+        "Vì hệ thống cảnh báo luôn được đặt ngưỡng thấp để không bỏ sót ca nào",
+        "Vì tỷ lệ báo nhầm tăng dần theo thời gian khi hành vi gian lận thay đổi"
+      ],
+      "correct": 0,
+      "explanation": "Một phần trăm báo nhầm trên chín trăm chín mươi chín nghìn giao dịch hợp lệ vẫn ra gần mười nghìn báo động, trong khi số ca thật chỉ khoảng một nghìn. Xác suất nền thấp là thứ chi phối kết quả, và trực giác gần như luôn bỏ qua nó."
+    },
+    {
+      "question": "Cách tiếp cận Bayes đóng góp gì cho quản trị rủi ro khi dữ liệu quá thưa?",
+      "options": [
+        "Kết hợp phán đoán chuyên môn với số ít quan sát có được",
+        "Loại bỏ được nhu cầu ước lượng tham số từ dữ liệu lịch sử",
+        "Cho ra khoảng tin cậy hẹp hơn so với phương pháp tần suất với cùng dữ liệu",
+        "Bảo đảm kết quả không phụ thuộc vào giả định chủ quan của người phân tích"
+      ],
+      "correct": 0,
+      "explanation": "Ở vùng đuôi của rủi ro hoạt động, dữ liệu ít tới mức ước lượng tần suất gần như vô nghĩa. Bayes cho một cách chính thức để đưa phán đoán chuyên môn vào làm phân phối tiên nghiệm rồi cập nhật khi có quan sát mới - đổi lại, giả định tiên nghiệm phải được nêu rõ."
+    }
     ],
     keyTakeaways: [
       "Xác suất nền chi phối độ tin cậy của cảnh báo mạnh hơn độ chính xác của hệ thống",
@@ -3028,6 +3097,29 @@ export const FRM_CORE_GAPS_LESSONS: Lesson[] = [
         correct: 0,
         explanation: "Các kiểm định độ khớp thông dụng bị chi phối bởi phần thân nơi có nhiều quan sát. Một mô hình qua được kiểm định tổng thể vẫn có thể đánh giá thấp nghiêm trọng xác suất ở đuôi - đúng vùng mà VaR và ES được tính."
       }
+    ,
+    {
+      "question": "Vì sao ước lượng tham số ở vùng đuôi đặc biệt nhạy cảm?",
+      "options": [
+        "Vì rất ít quan sát nằm ở đó, nên thêm hoặc bớt một điểm là kết quả đổi nhiều",
+        "Vì hàm hợp lý không còn nghiệm duy nhất khi trong dữ liệu có giá trị cực trị",
+        "Vì phân phối ở vùng đuôi luôn phải giả định là phân phối chuẩn",
+        "Vì tham số đuôi không thể ước lượng bằng phương pháp hợp lý cực đại"
+      ],
+      "correct": 0,
+      "explanation": "Toàn bộ phần quyết định mức vốn nằm ở vùng có ít quan sát nhất - đó là nghịch lý trung tâm của đo lường rủi ro. Một sự kiện cực đoan mới xuất hiện có thể đổi hẳn tham số, và điều đó không phải lỗi của phương pháp mà là bản chất của dữ liệu."
+    },
+    {
+      "question": "Kiểm định độ khớp sau khi ước lượng tham số cần chú ý nhất điều gì trong ứng dụng rủi ro?",
+      "options": [
+        "Mức khớp ở vùng đuôi, vì đó là vùng quyết định kết quả đo rủi ro",
+        "Mức khớp ở vùng thân, vì phần lớn quan sát nằm ở đó",
+        "Giá trị của hàm hợp lý tại điểm cực đại so với các mô hình khác",
+        "Số tham số của mô hình, vì mô hình ít tham số luôn đáng tin hơn"
+      ],
+      "correct": 0,
+      "explanation": "Một phân phối khớp rất đẹp ở vùng thân vẫn có thể sai hoàn toàn ở vùng đuôi, và các kiểm định tổng quát bị vùng thân đông đảo chi phối nên không phát hiện điều đó. Với mục đích đo rủi ro, phần khớp duy nhất đáng quan tâm lại là phần ít dữ liệu nhất."
+    }
     ],
     keyTakeaways: [
       "MLE chọn tham số làm dữ liệu quan sát trở nên có khả năng xảy ra cao nhất",
@@ -3165,6 +3257,29 @@ export const FRM_CORE_GAPS_LESSONS: Lesson[] = [
         correct: 0,
         explanation: "Con số ba chữ số thập phân sau hàng triệu lần chạy tạo cảm giác chắc chắn, nhưng độ chính xác đó chỉ nói về sai số mô phỏng chứ không nói gì về việc giả định đầu vào có đúng hay không. Đầu vào sai thì mô phỏng chỉ giúp ta sai một cách rất chính xác."
       }
+    ,
+    {
+      "question": "Lấy mẫu quan trọng hữu ích nhất trong tình huống nào?",
+      "options": [
+        "Khi sự kiện cần đo rất hiếm nên mô phỏng thông thường ít khi chạm tới nó",
+        "Khi số biến ngẫu nhiên trong mô hình quá lớn để tính toán trong thời gian hợp lý",
+        "Khi phân phối đầu vào không xác định được và phải ước lượng từ dữ liệu",
+        "Khi kết quả mô phỏng cần được so sánh với lời giải giải tích đã biết"
+      ],
+      "correct": 0,
+      "explanation": "Muốn ước lượng xác suất một sự kiện xảy ra một lần trong mười nghìn thì mô phỏng thông thường phải chạy rất nhiều vòng mới có vài lần chạm. Lấy mẫu quan trọng dịch phân phối để sinh nhiều kịch bản ở vùng cần đo, rồi hiệu chỉnh lại trọng số."
+    },
+    {
+      "question": "Rủi ro lớn nhất khi dùng kết quả Monte Carlo là gì?",
+      "options": [
+        "Số lượng kịch bản lớn tạo cảm giác chắc chắn mà mô hình nền không có",
+        "Kết quả thay đổi sau mỗi lần chạy nên không tái lập lại được cho kiểm toán",
+        "Thời gian tính toán quá dài để dùng trong quyết định hằng ngày",
+        "Phương pháp này chỉ áp dụng được cho danh mục có ít loại tài sản"
+      ],
+      "correct": 0,
+      "explanation": "Một trăm nghìn kịch bản trông thuyết phục hơn hẳn một công thức, nhưng tất cả đều sinh ra từ cùng một bộ giả định về phân phối và tương quan. Nếu giả định sai thì mô phỏng chỉ làm sai lệch đó trở nên chi tiết hơn chứ không đúng hơn."
+    }
     ],
     keyTakeaways: [
       "Sai số Monte Carlo giảm theo căn bậc hai số lần chạy - tăng độ chính xác rất tốn kém",
@@ -3305,6 +3420,29 @@ export const FRM_CORE_GAPS_LESSONS: Lesson[] = [
         correct: 0,
         explanation: "Lợi suất tài chính có phụ thuộc theo thời gian: ngày biến động mạnh thường đi liền nhau. Xáo trộn từng quan sát riêng lẻ phá hỏng cấu trúc đó, nên phải dùng biến thể lấy mẫu theo khối để giữ lại các đoạn liên tiếp."
       }
+    ,
+    {
+      "question": "Vì sao bootstrapping thông thường cần điều chỉnh khi áp dụng cho chuỗi lợi suất tài chính?",
+      "options": [
+        "Vì lấy mẫu ngẫu nhiên phá vỡ cấu trúc phụ thuộc theo thời gian của chuỗi",
+        "Vì chuỗi tài chính thường có quá ít quan sát để lấy mẫu lại có ý nghĩa",
+        "Vì lợi suất tài chính không có phân phối xác định nên không lấy mẫu lại được",
+        "Vì việc lấy mẫu có hoàn lại làm mất các giá trị cực trị của chuỗi gốc"
+      ],
+      "correct": 0,
+      "explanation": "Dồn cụm biến động nghĩa là ngày biến động mạnh đi liền nhau, và xáo trộn ngẫu nhiên các quan sát sẽ xoá đúng đặc tính đó. Cách xử lý là lấy mẫu theo khối - giữ nguyên từng đoạn liên tiếp - để cấu trúc thời gian còn lại."
+    },
+    {
+      "question": "Giới hạn cơ bản của bootstrapping khi đo rủi ro đuôi là gì?",
+      "options": [
+        "Nó không sinh được biến cố tệ hơn cái tệ nhất trong mẫu",
+        "Nó đòi hỏi giả định về dạng phân phối của chuỗi lợi suất gốc",
+        "Nó cho ra kết quả khác nhau sau mỗi lần chạy nên không dùng để báo cáo được",
+        "Nó chỉ áp dụng được cho các thống kê có công thức giải tích rõ ràng"
+      ],
+      "correct": 0,
+      "explanation": "Bootstrapping lấy mẫu lại từ chính dữ liệu đã có, nên mọi kịch bản nó tạo ra đều nằm trong biên độ của quá khứ. Muốn nói về vùng chưa từng xảy ra thì phải dùng công cụ có mô hình cho phần đuôi, như lý thuyết giá trị cực trị."
+    }
     ],
     keyTakeaways: [
       "Bootstrapping lấy mẫu lại có hoàn lại từ dữ liệu gốc để dựng phân phối của một thống kê",
@@ -3438,6 +3576,29 @@ export const FRM_CORE_GAPS_LESSONS: Lesson[] = [
         correct: 0,
         explanation: "VaR chỉ nói ngưỡng tổn thất ở một phân vị, không nói gì về việc vượt qua rồi thì tệ tới đâu. Khi đã bỏ công mô hình hoá riêng phần đuôi, dùng ES để tận dụng toàn bộ thông tin về hình dạng đuôi là lựa chọn tự nhiên."
       }
+    ,
+    {
+      "question": "Vì sao lý thuyết giá trị cực trị chỉ dùng phần quan sát vượt một ngưỡng cao?",
+      "options": [
+        "Vì để phần thân đông đảo tham gia thì tham số sẽ do vùng bình thường quyết định",
+        "Vì các quan sát dưới ngưỡng thường chứa nhiều sai số đo lường hơn",
+        "Vì chuẩn Basel quy định chỉ được dùng dữ liệu vượt ngưỡng khi tính vốn",
+        "Vì phần thân của phân phối luôn tuân theo phân phối chuẩn nên không cần mô hình"
+      ],
+      "correct": 0,
+      "explanation": "Khớp một phân phối cho toàn bộ dữ liệu nghĩa là hàng nghìn quan sát bình thường sẽ chi phối tham số, còn vài chục quan sát cực đoan chỉ là hệ quả phụ. Lý thuyết này đảo ngược điều đó bằng cách mô hình riêng cho phần vượt ngưỡng."
+    },
+    {
+      "question": "Vì sao Expected Shortfall hợp với cách tiếp cận giá trị cực trị hơn VaR?",
+      "options": [
+        "Vì nó dùng toàn bộ phần đuôi đã được mô hình hoá thay vì một điểm cắt",
+        "Vì nó luôn cho kết quả thấp hơn VaR nên thận trọng hơn khi tính vốn",
+        "Vì nó không đòi hỏi ước lượng tham số hình dạng của phân phối đuôi",
+        "Vì nó chỉ cần dữ liệu ở vùng thân của phân phối để tính toán"
+      ],
+      "correct": 0,
+      "explanation": "VaR chỉ đọc một điểm phân vị, nên phần lớn công sức mô hình hoá đuôi bị bỏ phí. Expected Shortfall lấy trung bình toàn bộ phần vượt qua điểm đó - đúng phần mà lý thuyết giá trị cực trị vừa mô tả."
+    }
     ],
     keyTakeaways: [
       "EVT mô hình hoá riêng phần đuôi thay vì để phần thân quyết định tham số",
@@ -3579,6 +3740,29 @@ export const FRM_CORE_GAPS_LESSONS: Lesson[] = [
         correct: 0,
         explanation: "Đây là điểm yếu chí mạng của mọi mô hình rủi ro danh mục. Ma trận ước lượng từ giai đoạn bình thường cho thấy mức đa dạng hoá tốt, nhưng khi thị trường căng thẳng thì các tài sản đồng loạt giảm cùng nhau và lợi ích đa dạng hoá bốc hơi đúng lúc cần nhất."
       }
+    ,
+    {
+      "question": "Ba thành phần chính đầu tiên của đường cong lãi suất thường được diễn giải là gì?",
+      "options": [
+        "Dịch chuyển song song, độ dốc và độ cong",
+        "Lãi suất ngắn hạn, lãi suất trung hạn và lãi suất dài hạn",
+        "Kỳ vọng lạm phát, phần bù kỳ hạn và rủi ro tín dụng",
+        "Chính sách tiền tệ, cung cầu trái phiếu và dòng vốn ngoại"
+      ],
+      "correct": 0,
+      "explanation": "Đây là một trong số ít trường hợp mà các thành phần thống kê có diễn giải kinh tế rõ ràng, và thành phần thứ nhất thường giải thích phần lớn biến động. Nhờ đó một danh mục trái phiếu hàng trăm mã được quy về ba nguồn rủi ro để phòng vệ."
+    },
+    {
+      "question": "Hạn chế quan trọng nhất khi dựa vào ma trận tương quan lịch sử là gì?",
+      "options": [
+        "Tương quan tăng vọt trong khủng hoảng, đúng lúc lợi ích đa dạng hoá cần nhất",
+        "Ma trận lịch sử sẽ không tính được nếu trong danh mục có tài sản mới niêm yết",
+        "Tương quan lịch sử luôn cao hơn tương quan thực tế trong tương lai",
+        "Ma trận này chỉ dùng được cho danh mục có dưới một trăm tài sản"
+      ],
+      "correct": 0,
+      "explanation": "Ma trận ước lượng từ giai đoạn bình thường mô tả một thế giới không còn tồn tại vào ngày bạn cần nó. Đây là lý do mọi mô hình dựa trên tương quan đều phải kèm phân tích kịch bản, trong đó tương quan được đặt tay ở mức căng thẳng."
+    }
     ],
     keyTakeaways: [
       "Số tham số của ma trận hiệp phương sai tăng theo bình phương số yếu tố rủi ro",
