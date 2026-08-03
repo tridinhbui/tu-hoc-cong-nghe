@@ -22,7 +22,54 @@ import { CFA_GLOSSARY_TERMS, type CfaGlossaryTerm } from "@/lib/cfa-glossary-ter
 import { CFA_LEVEL_1_SUBJECTS } from "@/lib/cfa-track";
 import FormulaBlock from "@/components/FormulaBlock";
 
-export default function CfaGlossaryFlashcards() {
+/**
+ * Dùng chung cho cả CFA và FRM. Mặc định là CFA để mọi chỗ gọi cũ
+ * (`<CfaGlossaryFlashcards />`) giữ nguyên hành vi; FRM truyền bộ thẻ và danh
+ * sách môn của mình vào. Nhân đôi 300 dòng này cho track thứ hai thì hai bản
+ * sẽ trôi khỏi nhau ngay ở lần sửa đầu tiên - đúng như hai dropdown avatar
+ * từng trôi khỏi nhau trước khi AppNavbar gộp chúng lại.
+ */
+/**
+ * Hình dạng chung của một thẻ. `subjectId` để là string thay vì union của
+ * từng track: component chỉ in nó ra và so bằng, nên siết thành union sẽ khoá
+ * component vào một track mà không đổi lại được gì.
+ */
+export interface GlossaryTerm {
+  id: string;
+  termEn: string;
+  termVi: string;
+  subjectId: string;
+  definitionVi: string;
+  definitionEn?: string;
+  formula?: { equation?: string; numerator?: string; denominator?: string; multiplier?: string };
+  example?: string;
+  cfaTip?: string;
+  frmTip?: string;
+}
+
+export interface GlossaryDeckProps {
+  terms?: readonly GlossaryTerm[];
+  /** `weight` hiện trên chip lọc; cả CFA lẫn FRM đều công bố trọng số môn. */
+  subjects?: readonly { id: string; name: string; weight: string }[];
+  /** Khoá localStorage riêng cho từng bộ, để tiến độ hai track không đè nhau. */
+  storageKey?: string;
+  /** Nhãn in trên mặt thẻ, ví dụ "CFA TERM" hay "FRM TERM". */
+  badgeLabel?: string;
+  /** Nhãn trước phần mẹo, vì mỗi kỳ thi gọi tên kỳ thi của mình. */
+  tipLabel?: string;
+  allLabel?: string;
+  learnedToastText?: string;
+}
+
+export default function CfaGlossaryFlashcards({
+  terms = CFA_GLOSSARY_TERMS,
+  subjects = CFA_LEVEL_1_SUBJECTS,
+  storageKey = "cfa_glossary_learned",
+  badgeLabel = "CFA TERM",
+  tipLabel = "Mẹo thi CFA",
+  allLabel = "Tất cả (10 Môn CFA)",
+  learnedToastText = "✓ Đã đánh dấu thuộc từ vựng CFA!",
+}: GlossaryDeckProps = {}) {
   const [selectedSubject, setSelectedSubject] = useState<string>("all");
   const [searchQuery, setSearchQuery] = useState("");
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -31,7 +78,7 @@ export default function CfaGlossaryFlashcards() {
 
   useEffect(() => {
     if (typeof window !== "undefined") {
-      const saved = localStorage.getItem("cfa_glossary_learned");
+      const saved = localStorage.getItem(storageKey);
       if (saved) {
         try {
           setLearnedIds(JSON.parse(saved));
@@ -42,7 +89,7 @@ export default function CfaGlossaryFlashcards() {
     }
   }, []);
 
-  const filteredTerms = CFA_GLOSSARY_TERMS.filter((term) => {
+  const filteredTerms = terms.filter((term) => {
     const matchesSubject = selectedSubject === "all" || term.subjectId === selectedSubject;
     const matchesSearch =
       term.termEn.toLowerCase().includes(searchQuery.toLowerCase()) ||
@@ -51,7 +98,7 @@ export default function CfaGlossaryFlashcards() {
     return matchesSubject && matchesSearch;
   });
 
-  const currentTerm: CfaGlossaryTerm | undefined = filteredTerms[currentIndex];
+  const currentTerm: GlossaryTerm | undefined = filteredTerms[currentIndex];
 
   const handleNext = () => {
     setIsFlipped(false);
@@ -70,9 +117,9 @@ export default function CfaGlossaryFlashcards() {
   const toggleLearned = (id: string) => {
     const next = learnedIds.includes(id) ? learnedIds.filter((item) => item !== id) : [...learnedIds, id];
     setLearnedIds(next);
-    localStorage.setItem("cfa_glossary_learned", JSON.stringify(next));
+    localStorage.setItem(storageKey, JSON.stringify(next));
     if (!learnedIds.includes(id)) {
-      toast.success("✓ Đã đánh dấu thuộc từ vựng CFA!");
+      toast.success(learnedToastText);
     }
   };
 
@@ -97,7 +144,7 @@ export default function CfaGlossaryFlashcards() {
               🎓 BỘ TỪ VỰNG & THUẬT NGỮ CFA LEVEL 1
             </span>
             <span className="text-[10px] font-black uppercase tracking-widest bg-indigo-500/20 text-indigo-300 px-2.5 py-1 rounded-full border border-indigo-500/40">
-              {learnedIds.length}/{CFA_GLOSSARY_TERMS.length} Đã thuộc
+              {learnedIds.length}/{terms.length} Đã thuộc
             </span>
           </div>
           <h2 className="text-2xl font-black text-white mt-2">CFA Bilingual Glossary Flashcards</h2>
@@ -135,10 +182,10 @@ export default function CfaGlossaryFlashcards() {
                 : "bg-stone-100 dark:bg-stone-800 text-stone-600 dark:text-stone-300 hover:bg-stone-200"
             }`}
           >
-            Tất cả (10 Môn CFA)
+            {allLabel}
           </button>
 
-          {CFA_LEVEL_1_SUBJECTS.map((s) => (
+          {subjects.map((s) => (
             <button
               key={s.id}
               onClick={() => {
@@ -184,7 +231,7 @@ export default function CfaGlossaryFlashcards() {
               >
                 <div className="flex items-center justify-between">
                   <span className="text-[10px] font-black uppercase tracking-widest px-3 py-1 rounded-full bg-amber-100 dark:bg-amber-950/60 text-amber-800 dark:text-amber-300 border border-amber-300">
-                    CFA TERM • {currentTerm.subjectId.toUpperCase()}
+                    {badgeLabel} • {currentTerm.subjectId.toUpperCase()}
                   </span>
 
                   <button
@@ -268,9 +315,9 @@ export default function CfaGlossaryFlashcards() {
                     </div>
                   )}
 
-                  {currentTerm.cfaTip && (
+                  {(currentTerm.cfaTip ?? currentTerm.frmTip) && (
                     <p className="text-xs text-amber-300 bg-amber-950/60 p-3 rounded-xl border border-amber-500/30">
-                      💡 <strong>Mẹo thi CFA:</strong> {currentTerm.cfaTip}
+                      💡 <strong>{tipLabel}:</strong> {currentTerm.cfaTip ?? currentTerm.frmTip}
                     </p>
                   )}
                 </div>
