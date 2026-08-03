@@ -128,6 +128,30 @@ export const FRM_SOVEREIGN_DIGITAL_LESSONS: Lesson[] = [
         text: "Doanh nghiệp phá sản có quy trình pháp lý rõ ràng: toà án chỉ định người quản lý tài sản, xếp hạng ưu tiên chủ nợ, thanh lý tài sản. Với một quốc gia, không tài sản nào có thể bị \"tịch thu\" theo nghĩa đó - tái cơ cấu nợ chủ quyền luôn là một quá trình đàm phán song phương hoặc đa phương, không có cơ quan tài phán thống nhất toàn cầu.",
       },
       {
+        type: "heading",
+        text: "Đồng tiền vay nợ quyết định câu hỏi nào là câu hỏi thật"
+      },
+      {
+        type: "comparison",
+        left: {
+          label: "Nợ bằng đồng tiền của chính mình",
+          text: "Về mặt kỹ thuật, chính phủ luôn trả được - nó phát hành được đồng tiền đó. Nghĩa là vỡ nợ ở đây gần như luôn là một LỰA CHỌN, không phải một sự bất khả. Nhưng lựa chọn thay thế cũng có giá: in tiền để trả nợ đẩy lạm phát lên và làm mất giá khoản nợ theo cách khác. Câu hỏi thật ở đây là ý chí trả nợ và cái giá chính trị của từng phương án."
+        },
+        right: {
+          label: "Nợ bằng ngoại tệ",
+          text: "Chính phủ không in được đồng tiền đó, nên khả năng trả bị chặn bởi dự trữ ngoại hối và nguồn thu ngoại tệ. Đây là chỗ vỡ nợ chủ quyền thật sự xảy ra, và chỉ số đáng nhìn nhất là dự trữ ngoại hối so với nghĩa vụ ngoại tệ đến hạn trong 12 tháng tới - chứ không phải tỷ lệ nợ trên GDP."
+        }
+      },
+      {
+        type: "callout",
+        label: "Vì sao không có phá sản chủ quyền theo nghĩa doanh nghiệp",
+        text: "Doanh nghiệp phá sản có một quy trình pháp lý rõ ràng: toà án chỉ định người quản lý tài sản, xếp thứ tự ưu tiên chủ nợ, thanh lý hoặc tái cơ cấu theo phán quyết cưỡng chế được. Với một quốc gia thì không có toà án nào có thẩm quyền như vậy và không có tài sản nào bị thu giữ được một cách hệ thống. Tái cơ cấu nợ chủ quyền vì thế là một cuộc đàm phán, không phải một thủ tục - kết quả phụ thuộc vào tương quan đàm phán, vào việc quốc gia đó có cần quay lại thị trường vốn hay không, và vào điều khoản hành động tập thể trong chính hợp đồng trái phiếu."
+      },
+      {
+        type: "paragraph",
+        text: "Hệ quả thực hành: hai quốc gia có cùng tỷ lệ nợ trên GDP có thể có rủi ro hoàn toàn khác nhau, và con số đó một mình gần như không nói được gì. Cần đọc kèm ít nhất bốn thứ - tỷ trọng nợ bằng ngoại tệ, cơ cấu kỳ hạn và lượng nợ phải đảo trong năm tới, ai đang nắm nợ đó (trong nước hay nước ngoài), và lịch sử ý chí trả nợ của chính quốc gia đó. Một quốc gia từng vỡ nợ vẫn bị thị trường tính phí cao hơn nhiều năm sau, dù các chỉ số tài khoá đã lành mạnh trở lại."
+      },
+      {
         type: "closing",
         lines: [
           "Đọc một xếp hạng tín nhiệm quốc gia đòi hỏi hỏi cả hai câu: quốc gia này có tiền không, và quốc gia này có muốn trả không.",

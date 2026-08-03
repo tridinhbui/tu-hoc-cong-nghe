@@ -438,6 +438,30 @@ export const FRM_REMAINING_DEPTH_LESSONS: Lesson[] = [
         label: "Đáng nhớ",
         text: "Mô hình có lý thuyết kinh tế đứng sau xuống cấp từ từ khi thị trường đổi. Mô hình thuần dữ liệu có thể hỏng đột ngột - nên nó cần giám sát chặt hơn, không phải lỏng hơn.",
       },
+      {
+        type: "heading",
+        text: "Rò rỉ thời gian, minh hoạ bằng một biến cụ thể"
+      },
+      {
+        type: "paragraph",
+        text: "Xây mô hình dự báo vỡ nợ doanh nghiệp, và trong tập biến đầu vào có số lần khoản vay được tái cơ cấu. Biến này trông hoàn toàn hợp lý - doanh nghiệp khó khăn thì hay phải tái cơ cấu. Vấn đề là phần lớn các lần tái cơ cấu được ghi nhận SAU khi doanh nghiệp đã gặp vấn đề nghiêm trọng, đôi khi sau cả thời điểm được đánh dấu là vỡ nợ. Mô hình vì thế đang đọc đáp án. Kết quả kiểm thử đẹp một cách khó tin, và nó sụp ngay ngày đầu chạy thật vì lúc dự báo thì biến đó chưa tồn tại."
+      },
+      {
+        type: "callout",
+        label: "Chia tập dữ liệu ngẫu nhiên cũng là một dạng rò rỉ",
+        text: "Với dữ liệu tài chính, chia ngẫu nhiên 80/20 đặt các quan sát của tháng 6 vào tập huấn luyện và tháng 3 vào tập kiểm thử - tức là mô hình được học từ tương lai để dự báo quá khứ. Nó không tái hiện tình huống thật, nơi bạn chỉ có dữ liệu tới hôm nay. Cách chia đúng là theo thời gian: huấn luyện trên giai đoạn đầu, kiểm thử trên giai đoạn sau, và tốt nhất là chừa một khoảng trống giữa hai giai đoạn để tránh các biến có độ trễ bắc cầu qua ranh giới."
+      },
+      {
+        type: "comparison",
+        left: {
+          label: "Mô hình có lý thuyết kinh tế đứng sau",
+          text: "Khi thị trường đổi, nó xuống cấp từ từ và theo hướng đoán được, vì quan hệ nó dựa vào có lý do tồn tại. Bạn thường nhận ra nó đang kém trước khi nó gây thiệt hại."
+        },
+        right: {
+          label: "Mô hình thuần dữ liệu",
+          text: "Có thể hỏng đột ngột, vì quan hệ nó tìm ra có thể chỉ là một đặc điểm của giai đoạn huấn luyện chứ không phải một cơ chế. Đó là lý do nó cần giám sát CHẶT hơn, không phải lỏng hơn - trực giác thông thường thì ngược lại."
+        }
+      },
     ],
   },
 
@@ -713,6 +737,23 @@ export const FRM_REMAINING_DEPTH_LESSONS: Lesson[] = [
         label: "Đáng nhớ",
         text: "Số khoản vay không đo được đa dạng hoá. Số nhân tố độc lập mà danh mục thật sự chịu mới đo được - và con số đó thường nhỏ hơn nhiều so với cảm giác.",
       },
+      {
+        type: "heading",
+        text: "Cùng một tổn thất kỳ vọng, hai phần đuôi khác hẳn"
+      },
+      {
+        type: "paragraph",
+        text: "Một trăm khoản vay, mỗi khoản dư nợ 1, xác suất vỡ nợ 2%, tỷ lệ mất vốn khi vỡ nợ 50%. Tổn thất kỳ vọng là 100 × 2% × 50% = 1,0 - và con số này KHÔNG đổi dù các khoản vay độc lập hoàn toàn hay tương quan chặt với nhau, vì kỳ vọng của tổng luôn bằng tổng các kỳ vọng. Nghĩa là hai danh mục có hồ sơ rủi ro hoàn toàn khác nhau vẫn báo cáo cùng một con số tổn thất kỳ vọng, và đó là lý do chỉ số này không phát hiện được rủi ro tập trung."
+      },
+      {
+        type: "callout",
+        label: "Phần đuôi mới nói ra khác biệt",
+        text: "Nếu các khoản vay độc lập, số vụ vỡ nợ có độ lệch chuẩn khoảng 1,4 vụ, xác suất có từ 5 vụ trở lên chỉ khoảng 5%, và từ 10 vụ trở lên là gần như không xảy ra - dưới ba phần trăm nghìn. Đưa vào một nhân tố chung, ví dụ tất cả cùng thế chấp bất động sản một tỉnh, thì các vụ vỡ nợ không còn rơi rải rác: hoặc gần như không ai vỡ, hoặc rất nhiều bên cùng vỡ. Tổn thất kỳ vọng vẫn là 1,0, nhưng phần vốn cần để sống sót qua kịch bản xấu thì lớn hơn nhiều lần."
+      },
+      {
+        type: "paragraph",
+        text: "Điều làm phần đuôi nặng thêm nữa là xác suất vỡ nợ và tỷ lệ mất vốn không độc lập với nhau. Suy thoái vừa làm bên vay khó trả, vừa làm tài sản bảo đảm mất giá - nên đúng vào kịch bản có nhiều vụ vỡ nợ thì mỗi vụ cũng mất nhiều hơn. Hai đại lượng cùng xấu đi một lúc, và mô hình nào nhân một PD cao với một LGD trung bình dài hạn sẽ đánh giá thấp phần đuôi một cách có hệ thống. Đây cũng là lý do số khoản vay không đo được đa dạng hoá - số nhân tố độc lập mà danh mục thật sự chịu mới đo được."
+      },
     ],
   },
 
@@ -851,6 +892,41 @@ export const FRM_REMAINING_DEPTH_LESSONS: Lesson[] = [
         type: "callout",
         label: "Đáng nhớ",
         text: "Tiền một ngân hàng chưa trả chính là tiền ngân hàng khác đang chờ để trả tiếp. Không kênh lây lan nào trong hệ thống tài chính nhanh bằng kênh này.",
+      },
+      {
+        type: "heading",
+        text: "Đủ tiền cả ngày, thiếu tiền lúc mười giờ"
+      },
+      {
+        type: "paragraph",
+        text: "Ngân hàng mở cửa với số dư 20 tại ngân hàng trung ương. Nghĩa vụ thanh toán 60 phải trả trước 10 giờ sáng. Tiền vào dự kiến 50, nhưng rải từ 11 giờ tới cuối chiều. Nhìn cả ngày thì ngân hàng này dư: 20 + 50 − 60 = +10. Nhìn lúc 10 giờ thì nó thiếu 40, và bảng cân đối cuối ngày không ghi lại một chữ nào về khoảng thiếu đó. Đây là toàn bộ nội dung của rủi ro thanh khoản nội ngày: nó không xuất hiện trong bất kỳ báo cáo nào được lập theo ảnh chụp cuối ngày."
+      },
+      {
+        type: "conceptTable",
+        title: "Ba nguồn để bù khoảng thiếu, ba mức chắc chắn",
+        subtitle: "Chỉ nguồn đầu tiên là thứ bạn đang có; hai nguồn sau là thứ bạn đang trông cậy",
+        concepts: [
+          {
+            vi: "Số dư tại ngân hàng trung ương",
+            en: "Chắc chắn",
+            def: "Đã nằm trong tài khoản, dùng được ngay, không phụ thuộc vào quyết định của ai. Đây là lý do các ngân hàng giữ số dư lớn hơn mức tối thiểu bắt buộc dù nó gần như không sinh lời."
+          },
+          {
+            vi: "Tiền vào từ đối tác",
+            en: "Phụ thuộc người khác",
+            def: "Đúng lịch trong hàng nghìn ngày bình thường. Nhưng nếu đối tác cũng đang thiếu và cũng đang giữ tiền lại, khoản này đến muộn đúng vào ngày bạn cần nó sớm."
+          },
+          {
+            vi: "Tín dụng nội ngày từ ngân hàng trung ương",
+            en: "Có điều kiện",
+            def: "Cần tài sản bảo đảm đủ điều kiện và chưa bị ràng buộc. Nghĩa là năng lực nội ngày thật sự phụ thuộc vào lượng tài sản bảo đảm còn trống, chứ không phụ thuộc vào quy mô bảng cân đối."
+          }
+        ]
+      },
+      {
+        type: "callout",
+        label: "Vì sao giữ tiền lại vừa hợp lý vừa tai hại",
+        text: "Với một ngân hàng, trì hoãn thanh toán để chờ tiền về là cách tiết kiệm thanh khoản hoàn toàn hợp lý. Nếu nhiều ngân hàng cùng làm vậy trong một buổi sáng căng thẳng, hệ thống rơi vào tắc nghẽn: tiền một ngân hàng chưa trả chính là tiền ngân hàng khác đang chờ để trả tiếp. Không kênh lây lan nào trong hệ thống tài chính nhanh bằng kênh này, vì nó chạy trong vài giờ chứ không vài ngày - và đó là lý do các hệ thống thanh toán lớn đặt ra quy tắc về thời điểm phải hoàn tất một tỷ lệ nhất định của nghĩa vụ trong ngày."
       },
     ],
   },
@@ -1317,6 +1393,23 @@ export const FRM_REMAINING_DEPTH_LESSONS: Lesson[] = [
         type: "callout",
         label: "Đáng nhớ",
         text: "Tự tương quan cao bất thường trong chuỗi lợi suất là một trong những dấu hiệu rẻ nhất và đáng tin nhất rằng giá đang được làm mượt.",
+      },
+      {
+        type: "heading",
+        text: "Làm mượt thổi phồng Sharpe bao nhiêu, tính được"
+      },
+      {
+        type: "paragraph",
+        text: "Giả sử lợi suất báo cáo mỗi tháng là hỗn hợp của lợi suất thật tháng này và tháng trước, với trọng số 0,6 và 0,4 - đúng cách một mô hình định giá bám vào giá kỳ trước hoạt động. Phương sai của chuỗi báo cáo khi đó bằng 0,6² + 0,4² = 0,52 lần phương sai thật, nên độ lệch chuẩn báo cáo chỉ bằng 72% mức thật. Lợi suất trung bình thì không đổi, vì các trọng số cộng lại bằng 1. Kết quả: tỷ số Sharpe báo cáo cao hơn Sharpe thật khoảng 1,39 lần, mà không một con số nào trong báo cáo là bịa."
+      },
+      {
+        type: "callout",
+        label: "Dấu hiệu rẻ nhất để phát hiện",
+        text: "Tự tương quan của chuỗi lợi suất hằng tháng. Một chiến lược giao dịch tài sản niêm yết thanh khoản có tự tương quan gần 0 - lợi suất tháng này gần như không nói gì về tháng sau. Một chuỗi có tự tương quan 0,3 đến 0,5 mà quỹ vẫn mô tả mình là thanh khoản thì hoặc là chiến lược thật sự có động lượng mạnh bất thường, hoặc là giá đang được làm mượt. Kiểm tra này không cần dữ liệu nội bộ nào, chỉ cần chuỗi lợi suất mà quỹ đã công bố."
+      },
+      {
+        type: "paragraph",
+        text: "Ba thiên lệch trong dữ liệu ngành đều đẩy con số về cùng một hướng, nên chúng cộng dồn chứ không bù nhau. Báo cáo là tự nguyện, nên quỹ kém ngừng báo cáo và biến mất khỏi mẫu. Quỹ mới gia nhập cơ sở dữ liệu được điền cả lịch sử trước đó - và không ai gia nhập để khoe một lịch sử xấu. Và quỹ đóng cửa vì thua lỗ thường không kịp báo cáo tháng cuối cùng, tức tháng tệ nhất. Cộng với hiệu ứng làm mượt ở trên, khoảng cách giữa lợi suất trung bình của ngành và trải nghiệm thật của một nhà đầu tư chọn quỹ từ đầu là có hệ thống, không phải xui rủi."
       },
     ],
   },

@@ -433,6 +433,23 @@ export const FRM_MARKET_RISK_DEPTH_LESSONS: Lesson[] = [
         label: "Đáng nhớ",
         text: "Ánh xạ càng thô thì VaR càng thấp, vì gộp là ngầm giả định tương quan hoàn hảo và các vị thế ngược chiều trông như bù nhau trọn vẹn.",
       },
+      {
+        type: "heading",
+        text: "Vì sao bắt buộc phải gộp"
+      },
+      {
+        type: "paragraph",
+        text: "Ma trận hiệp phương sai cho n công cụ cần n(n+1)/2 tham số. Với một nghìn công cụ, đó là 500.500 con số phải ước lượng - và ước lượng từ vài trăm ngày dữ liệu. Ma trận thu được gần như chắc chắn không khả nghịch và chứa đầy tương quan giả. Rút về 20 nhân tố rủi ro thì chỉ còn 210 tham số, ước lượng được từ chính bộ dữ liệu đó. Bước ánh xạ không phải một thủ thuật tính toán cho nhanh, nó là điều kiện để bài toán có lời giải."
+      },
+      {
+        type: "callout",
+        label: "Hai điều kiện của một phép chẻ hợp lệ",
+        text: "Chẻ một trái phiếu 7 năm về hai điểm chốt 5 năm và 10 năm phải giữ nguyên hai đại lượng: giá trị hiện tại và độ nhạy lãi suất. Nếu trái phiếu có duration 6,5 thì trọng số w vào điểm 5 năm giải từ 5w + 10(1 − w) = 6,5, cho w = 0,7 - tức 70% giá trị về chốt 5 năm và 30% về chốt 10 năm. Bỏ điều kiện thứ hai và chỉ chia theo giá trị hiện tại thì VaR sai ngay ở bước đầu, trước khi bất kỳ công thức thống kê nào được áp vào."
+      },
+      {
+        type: "paragraph",
+        text: "Điều đáng nhớ nhất là hướng của sai số. Ánh xạ càng thô thì VaR càng THẤP, chứ không phải sai theo hai hướng ngẫu nhiên. Khi hai trái phiếu doanh nghiệp khác nhau cùng được quy về một điểm trên đường cong chính phủ, mô hình ngầm giả định chúng biến động hoàn toàn giống nhau - nên hai vị thế ngược chiều trông như bù nhau trọn vẹn, và phần rủi ro cơ sở giữa chúng biến mất khỏi con số. Đó là lý do chọn tập nhân tố là một quyết định rủi ro, không phải một quyết định kỹ thuật."
+      },
     ],
   },
   {

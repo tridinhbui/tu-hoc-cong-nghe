@@ -1079,6 +1079,30 @@ export const FRM_VALUATION_CURRENT_LESSONS: Lesson[] = [
         text: "Nhiều quỹ có điều khoản buộc bán khi tài sản rơi khỏi hạng đầu tư. Một lần hạ hạng vì thế không chỉ là thông tin - nó là mệnh lệnh bán đồng thời cho rất nhiều bên, và làn sóng bán đó tự tạo ra chính cú sụt giá mà xếp hạng vừa cảnh báo."
       },
       {
+        type: "heading",
+        text: "Hai loại xếp hạng trả lời hai câu hỏi khác nhau"
+      },
+      {
+        type: "comparison",
+        left: {
+          label: "Xếp hạng bên ngoài - xuyên chu kỳ",
+          text: "Cố ý giữ ổn định qua chu kỳ kinh tế: một doanh nghiệp không bị hạ hạng chỉ vì quý này khó khăn. Ưu điểm là nó không tạo ra biến động giả; nhược điểm là nó phản ứng chậm, và khi nó phản ứng thì thường đã muộn."
+        },
+        right: {
+          label: "Xếp hạng nội bộ - tại thời điểm",
+          text: "Ước lượng xác suất vỡ nợ trong 12 tháng tới theo điều kiện hiện tại, nên nó nhạy và dịch chuyển theo chu kỳ. Đây là loại mà chuẩn mực kế toán về tổn thất tín dụng dự kiến cần tới, và cũng là loại làm trích lập dự phòng biến động mạnh theo chu kỳ."
+        }
+      },
+      {
+        type: "callout",
+        label: "Vách đứng hạng đầu tư",
+        text: "Rất nhiều quỹ có điều khoản buộc bán khi tài sản rơi khỏi nhóm hạng đầu tư. Một bậc hạ hạng qua đúng ranh giới đó vì thế không chỉ là thay đổi một ý kiến - nó kích hoạt một làn bán cưỡng bức từ nhiều bên cùng lúc, đẩy giá xuống, làm chi phí vay của doanh nghiệp tăng, và khiến chính rủi ro tín dụng vừa được đánh giá trở nên tệ hơn. Đây là chỗ việc phụ thuộc vào xếp hạng biến một ý kiến thành một cơ chế khuếch đại ở cấp hệ thống, và là lý do các quy định sau 2008 tìm cách giảm dần việc viện dẫn xếp hạng thẳng vào điều khoản."
+      },
+      {
+        type: "paragraph",
+        text: "Trần quốc gia là ràng buộc ít được để ý nhưng có sức nặng lớn: một doanh nghiệp thường không được xếp hạng cao hơn quốc gia nơi nó hoạt động, vì nó chịu chung rủi ro kiểm soát vốn, rủi ro chuyển đổi ngoại tệ và rủi ro can thiệp chính sách. Nghĩa là một công ty vận hành xuất sắc, dòng tiền mạnh, nợ thấp, vẫn có thể bị chặn trần bởi một yếu tố hoàn toàn nằm ngoài tầm kiểm soát của ban lãnh đạo - và khi quốc gia bị hạ hạng, cả nhóm doanh nghiệp trong nước bị hạ theo cùng lúc."
+      },
+      {
         type: "closing",
         lines: [
           "Xếp hạng là ý kiến của người được bên được đánh giá trả tiền - hữu ích, nhưng phải đọc kèm điều đó.",
@@ -1412,6 +1436,37 @@ export const FRM_VALUATION_CURRENT_LESSONS: Lesson[] = [
         type: "callout",
         label: "Bi kịch của chân trời",
         text: "Phần lớn thiệt hại rơi vào khoảng thời gian dài hơn nhiệm kỳ của ban điều hành, dài hơn kỳ lập kế hoạch, và dài hơn cả kỳ hạn nhiều khoản vay. Động cơ hành động hôm nay vì thế rất yếu, dù chi phí của việc hành động muộn cao hơn nhiều - đây là lý do phần này phải do cơ quan quản lý thúc đẩy."
+      },
+      {
+        type: "heading",
+        text: "Khí hậu không phải một loại rủi ro mới, nó là một nguồn gây ra các loại đã có"
+      },
+      {
+        type: "conceptTable",
+        title: "Hai kênh, và chúng đi vào đâu trong sổ sách",
+        subtitle: "Không có dòng nào tên là rủi ro khí hậu - nó hiện ra dưới dạng tín dụng, thị trường và hoạt động",
+        concepts: [
+          {
+            vi: "Rủi ro vật lý",
+            en: "Physical risk",
+            def: "Bão, lũ, hạn, nước biển dâng làm hỏng tài sản bảo đảm và gián đoạn dòng tiền của bên vay. Đi vào rủi ro tín dụng qua cả PD và LGD, và vào rủi ro hoạt động qua chính cơ sở vật chất của ngân hàng."
+          },
+          {
+            vi: "Rủi ro chuyển đổi",
+            en: "Transition risk",
+            def: "Giá carbon, quy định mới, thay đổi công nghệ và thay đổi sở thích người tiêu dùng làm mô hình kinh doanh của bên vay mất giá trị. Đi vào rủi ro tín dụng của các ngành phát thải cao và vào rủi ro thị trường qua định giá lại tài sản."
+          },
+          {
+            vi: "Quan hệ giữa hai kênh",
+            en: "Đánh đổi, không cộng dồn",
+            def: "Hành động chính sách mạnh và sớm làm rủi ro chuyển đổi cao nhưng rủi ro vật lý thấp; không hành động thì ngược lại. Nghĩa là kịch bản tệ nhất cho một danh mục ngân hàng không phải kịch bản tệ nhất cho khí hậu, và đó là chỗ dễ dựng kịch bản sai nhất."
+          }
+        ]
+      },
+      {
+        type: "callout",
+        label: "Bi kịch của chân trời",
+        text: "Phần lớn thiệt hại rơi vào khoảng thời gian dài hơn nhiệm kỳ của ban điều hành, dài hơn kỳ lập kế hoạch kinh doanh, và dài hơn cả kỳ hạn phần lớn khoản vay. Một khoản vay mua nhà 25 năm chịu rủi ro nước biển dâng; một ngân hàng lập kế hoạch 3 năm thì không nhìn thấy nó. Vì không có dữ liệu lịch sử để hiệu chỉnh - không tồn tại một chuỗi thời gian về việc giá carbon tăng gấp năm lần - nên phân tích kịch bản thay thế mô hình thống kê, và khi đó giả định trở thành phần quan trọng nhất của kết quả. Điều cần công bố không phải con số cuối cùng mà là bộ giả định sinh ra nó."
       },
       {
         type: "closing",
@@ -1896,6 +1951,41 @@ export const FRM_VALUATION_CURRENT_LESSONS: Lesson[] = [
         type: "callout",
         label: "Vì sao thị trường không tự giải quyết được",
         text: "Không định chế đơn lẻ nào có động cơ gánh chi phí đa dạng hoá hạ tầng để giảm một rủi ro mà cả ngành cùng chịu. Đây là dạng ngoại ứng kinh điển, và cũng là lý do lời giải phải đến từ phía quy định chứ không từ phía thị trường."
+      },
+      {
+        type: "heading",
+        text: "Nghịch lý hợp thành, phát biểu cho gọn"
+      },
+      {
+        type: "paragraph",
+        text: "Hỏi riêng từng ngân hàng: chuyển hệ thống lên đám mây gần như luôn làm giảm rủi ro hoạt động của họ. Nhà cung cấp lớn có đội an ninh, hạ tầng dự phòng và tần suất vá lỗi mà một trung tâm dữ liệu tự vận hành khó theo kịp. Hỏi cả ngành: khi phần lớn định chế cùng chọn trong ba nhà cung cấp, một sự cố duy nhất chạm tới tất cả cùng lúc. Cả hai câu trả lời đều đúng, và đó chính là nghịch lý - tối ưu cho từng thành phần không cộng lại thành tối ưu cho tổng thể."
+      },
+      {
+        type: "callout",
+        label: "Vì sao thị trường không tự giải quyết được",
+        text: "Không định chế đơn lẻ nào có động cơ gánh chi phí đa dạng hoá hạ tầng để giảm một rủi ro mà cả ngành cùng chịu. Nếu một ngân hàng tự chạy hai nền tảng song song, nó trả gấp đôi chi phí trong khi phần rủi ro hệ thống giảm được gần như bằng không - vì khi nhà cung cấp lớn sập, khách hàng và đối tác của nó vẫn tê liệt. Đây là dạng ngoại ứng kinh điển, và nó chỉ xử lý được ở cấp quy định chứ không ở cấp hợp đồng."
+      },
+      {
+        type: "conceptTable",
+        title: "Ba việc quy định hiện đòi hỏi, và vì sao từng việc",
+        subtitle: "Cả ba đều là câu trả lời cho việc hợp đồng song phương không đủ",
+        concepts: [
+          {
+            vi: "Đăng ký nhà cung cấp trọng yếu",
+            en: "Critical third-party register",
+            def: "Cơ quan quản lý phải biết ai đang phụ thuộc vào ai trước khi sự cố xảy ra. Không có bản đồ đó thì mức tập trung của cả ngành là điều không ai đo được, kể cả khi từng hợp đồng riêng lẻ đều chặt chẽ."
+          },
+          {
+            vi: "Kế hoạch rút lui và khả năng thay thế",
+            en: "Exit and substitutability",
+            def: "Phải chứng minh được rằng nếu nhà cung cấp ngừng phục vụ thì chuyển đi được, trong bao lâu, và sang đâu. Đòn bẩy đàm phán của một ngân hàng nhỏ với một nhà cung cấp lớn hơn nó rất yếu, nên điều khoản trên giấy không thay thế được một kế hoạch đã thử."
+          },
+          {
+            vi: "Quyền kiểm toán và tiếp cận",
+            en: "Audit rights",
+            def: "Trên thực tế thường bị thay bằng báo cáo chứng nhận dùng chung cho mọi khách hàng. Điều đó chấp nhận được cho phần lớn dịch vụ, nhưng nó nghĩa là ngân hàng đang dựa vào đánh giá của một bên thứ ba khác, chứ không phải tự mình kiểm tra."
+          }
+        ]
       },
       {
         type: "closing",

@@ -587,6 +587,37 @@ export const FRM_CREDIT_CURRENT_LESSONS: Lesson[] = [
         text: "Trong thập kỷ gần đây, các quỹ tín dụng tư nhân (private credit funds) đã tăng trưởng mạnh, lấp vào khoảng trống cho vay doanh nghiệp vừa và nhỏ mà ngân hàng truyền thống rút bớt sau các quy định vốn chặt chẽ hơn. Đây là ví dụ hiện tại nhất của việc rủi ro tín dụng di chuyển sang một kênh ít minh bạch và ít giám sát hơn - đúng loại \"current issue\" mà GARP muốn người học theo dõi liên tục, không chỉ nhìn lại quá khứ.",
       },
       {
+        type: "heading",
+        text: "Cùng ba phép biến đổi, thiếu ba lớp bảo vệ"
+      },
+      {
+        type: "conceptTable",
+        title: "Ngân hàng làm gì, và tổ chức phi ngân hàng làm điều đó thiếu cái gì",
+        subtitle: "Chức năng giống nhau là điều làm nhóm này quan trọng; mạng lưới an toàn khác nhau là điều làm nó nguy hiểm",
+        concepts: [
+          {
+            vi: "Biến đổi kỳ hạn",
+            en: "Maturity transformation",
+            def: "Huy động ngắn để cho vay dài. Ngân hàng làm điều này với bảo hiểm tiền gửi phía sau; một quỹ thị trường tiền tệ hay một quỹ tín dụng tư nhân làm điều tương tự mà không có lớp đó, nên người rút trước được lợi và ai cũng biết điều đó."
+          },
+          {
+            vi: "Biến đổi thanh khoản",
+            en: "Liquidity transformation",
+            def: "Nhận vốn có thể rút hằng ngày để nắm tài sản cần nhiều tuần mới bán được. Ngân hàng có cửa sổ vay từ ngân hàng trung ương khi bí; tổ chức phi ngân hàng phải bán tài sản, và bán trong lúc căng thẳng thì đẩy giá xuống cho tất cả mọi người."
+          },
+          {
+            vi: "Tạo đòn bẩy",
+            en: "Leverage",
+            def: "Ngân hàng chịu tỷ lệ vốn tối thiểu và giới hạn đòn bẩy được giám sát liên tục. Đòn bẩy ngoài hệ thống ngân hàng thường được tạo qua repo và phái sinh, không hiện ra trên một chỉ tiêu duy nhất nào và không ai có bức tranh tổng hợp."
+          }
+        ]
+      },
+      {
+        type: "callout",
+        label: "Vì sao siết ngân hàng lại làm nhóm này lớn lên",
+        text: "Nhu cầu tín dụng của nền kinh tế không giảm khi quy định vốn siết lại. Nó chuyển sang nơi chi phí vốn quy định thấp hơn - đúng như thiết kế của quy định ở một nghĩa nào đó, nhưng kèm hệ quả là rủi ro rời khỏi khu vực được giám sát chặt sang khu vực có ít dữ liệu công khai hơn. Đây là lý do câu hỏi giám sát đúng không phải ngân hàng có an toàn không, mà là tổng lượng biến đổi kỳ hạn và đòn bẩy trong cả hệ thống đang là bao nhiêu, và ai sẽ là người bán trước khi có biến."
+      },
+      {
         type: "closing",
         lines: [
           "Giám sát rủi ro hệ thống không thể chỉ nhìn vào bảng cân đối kế toán của ngân hàng - phải nhìn cả nơi các chức năng của ngân hàng đang được thực hiện bởi ai khác.",

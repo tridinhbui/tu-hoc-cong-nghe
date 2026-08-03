@@ -835,6 +835,30 @@ export const FRM_MARKET_RISK_LESSONS: Lesson[] = [
         text: "Đây là quan sát trở đi trở lại qua mọi cuộc khủng hoảng: các tài sản tương quan thấp trong điều kiện bình thường lại cùng giảm trong cú sốc lớn. Cơ chế không bí ẩn - khi nhà đầu tư cần tiền mặt, họ bán những gì bán được, nên lý do bán không còn liên quan tới bản thân tài sản. Hệ quả cho việc quản trị rủi ro là ma trận tương quan ước lượng trên dữ liệu bình thường sẽ đánh giá thấp rủi ro danh mục đúng vào các kịch bản mà con số đó tồn tại để cảnh báo.",
       },
       {
+        type: "heading",
+        text: "Cùng hệ số tương quan, hai cấu trúc phụ thuộc khác nhau"
+      },
+      {
+        type: "paragraph",
+        text: "Hệ số tương quan là một con số duy nhất mô tả quan hệ trung bình trên toàn bộ phân phối. Hai cặp tài sản đều có hệ số 0,3 vẫn có thể hành xử hoàn toàn khác nhau ở phần đuôi: cặp thứ nhất giữ nguyên mức 0,3 kể cả trong những ngày tệ nhất, cặp thứ hai có tương quan gần 0 trong điều kiện bình thường nhưng vọt lên 0,7 trong nhóm 5% ngày xấu nhất. Trung bình lại vẫn ra 0,3. Với người quản trị rủi ro, chỉ có con số thứ hai quan trọng - vì đó là ngày mà danh mục cần đa dạng hoá."
+      },
+      {
+        type: "callout",
+        label: "Copula tách cấu trúc phụ thuộc khỏi phân phối biên",
+        text: "Ý tưởng của copula là tách bài toán làm hai phần độc lập: mỗi tài sản có phân phối riêng của nó, và một hàm riêng mô tả cách chúng đi cùng nhau. Nhờ vậy ta có thể ghép các phân phối biên đuôi dày với một cấu trúc phụ thuộc cũng dày đuôi, thay vì bị ép dùng chung một dạng phân phối nhiều chiều cho tất cả. Đây là công cụ đúng cho bài toán - vấn đề của năm 2008 không nằm ở ý tưởng copula mà ở việc chọn sai hàm copula."
+      },
+      {
+        type: "comparison",
+        left: {
+          label: "Copula Gauss - phụ thuộc đuôi bằng 0",
+          text: "Dù đặt tham số tương quan cao tới đâu, nó vẫn gán xác suất tiến về 0 cho việc hai tài sản cùng rơi vào vùng cực đoan. Nghĩa là mô hình cấu trúc hoá tín dụng dùng nó ngầm khẳng định các khoản vay không thể cùng vỡ hàng loạt - đúng điều đã xảy ra."
+        },
+        right: {
+          label: "Copula Student-t - phụ thuộc đuôi dương",
+          text: "Cho phép các sự kiện cực đoan xảy ra đồng thời với xác suất đáng kể, điều chỉnh được qua bậc tự do. Cùng một hệ số tương quan, hai lựa chọn này cho ra hai con số vốn kinh tế khác nhau rất xa - và khác biệt nằm ở giả định chứ không ở dữ liệu."
+        }
+      },
+      {
         type: "closing",
         lines: [
           "Đa dạng hoá không phải một tính chất cố định của danh mục, nó là một tính chất phụ thuộc trạng thái thị trường.",

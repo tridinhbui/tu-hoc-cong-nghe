@@ -1203,6 +1203,7 @@ export const FRM_CORE_GAPS_LESSONS: Lesson[] = [
         label: "Vượt khẩu vị → kế hoạch hành động có chủ sở hữu và thời hạn"
       }
     ],
+    interactiveType: "sampling",
     realWorldExample: {
       company: "Vì sao RCSA dễ trở thành thủ tục hình thức",
       description: "Điểm yếu cố hữu của RCSA là người tự đánh giá cũng chính là người chịu trách nhiệm nếu kết quả xấu. Trong thực tế, điều này tạo áp lực ngầm khiến các đơn vị chấm điểm kiểm soát của mình là hiệu quả và rủi ro còn lại là thấp. Đây là lý do các tổ chức trưởng thành yêu cầu bộ phận rủi ro độc lập thách thức kết quả RCSA, và đối chiếu điểm tự chấm với dữ liệu tổn thất thực tế của chính đơn vị đó."
@@ -1363,6 +1364,7 @@ export const FRM_CORE_GAPS_LESSONS: Lesson[] = [
         label: "Ứng phó và phục hồi: kịch bản diễn tập, sao lưu tách biệt"
       }
     ],
+    interactiveType: "sampling",
     realWorldExample: {
       company: "Rủi ro tập trung qua nhà cung cấp công nghệ dùng chung",
       description: "Ngành tài chính toàn cầu ngày càng phụ thuộc vào một số ít nhà cung cấp điện toán đám mây và phần mềm lõi. Cơ quan quản lý nhiều nước đã nêu lo ngại rằng điều này tạo ra một điểm đổ vỡ chung: một sự cố ở một nhà cung cấp có thể làm gián đoạn đồng thời hàng loạt định chế, biến một rủi ro hoạt động của từng tổ chức thành rủi ro hệ thống của cả ngành."
@@ -1534,6 +1536,7 @@ export const FRM_CORE_GAPS_LESSONS: Lesson[] = [
         label: "Kiểm soát nhắm vào cơ hội: tách nhiệm vụ, đối chiếu độc lập, nghỉ phép bắt buộc"
       }
     ],
+    interactiveType: "sampling",
     realWorldExample: {
       company: "Mẫu hình chung của các vụ giao dịch trái phép",
       description: "Các vụ thua lỗ lớn do giao dịch trái phép trong lịch sử ngành ngân hàng lặp lại một cấu trúc đáng chú ý: người gây ra thường từng làm ở bộ phận hậu kiểm trước khi chuyển sang giao dịch, nên hiểu rõ cách hệ thống đối chiếu vận hành và biết chỗ nào có thể luồn qua. Đây là lý do nhiều tổ chức áp dụng quy định nghỉ phép liên tục bắt buộc - trong thời gian đó người khác tiếp quản sổ và mọi cách che giấu cần thao tác hằng ngày sẽ lộ ra."
@@ -1642,6 +1645,30 @@ export const FRM_CORE_GAPS_LESSONS: Lesson[] = [
         type: "callout",
         label: "Đãi ngộ cũng là một biện pháp kiểm soát",
         text: "Chỉ tiêu bất khả thi và thưởng gắn chặt vào kết quả ngắn hạn tác động đồng thời vào cạnh động cơ và cạnh tự bào chữa. Đây là lý do khung quản trị rủi ro hiện đại coi thiết kế đãi ngộ là vấn đề rủi ro, không chỉ là vấn đề nhân sự."
+      },
+      {
+        type: "heading",
+        text: "Vì sao nghỉ phép bắt buộc lại bắt được nhiều vụ hơn kiểm toán"
+      },
+      {
+        type: "paragraph",
+        text: "Phần lớn gian lận nội bộ kéo dài không phải một hành động đơn lẻ mà là một trạng thái phải duy trì: mỗi ngày hoặc mỗi kỳ, người thực hiện phải làm thêm một bút toán điều chỉnh, một phiếu đối chiếu tay, một lời giải thích cho cùng một khoản chênh. Che giấu là công việc liên tục. Chính vì thế, quy định buộc nghỉ phép liên tục hai tuần và luân chuyển vị trí là biện pháp bắt được nhiều vụ nhất trên mỗi đồng bỏ ra - trong hai tuần đó, người thay thế nhìn thấy khoản chênh mà không có ai ở đó để giải thích nó."
+      },
+      {
+        type: "callout",
+        label: "Kiểm soát chỉ chạm được vào một cạnh của tam giác",
+        text: "Động cơ nằm trong hoàn cảnh cá nhân - nợ nần, bệnh tật, áp lực chỉ tiêu - và tổ chức gần như không can thiệp được. Khả năng tự bào chữa nằm trong đầu người thực hiện, thường ở dạng tôi chỉ mượn tạm, hoặc công ty nợ tôi khoản này. Cạnh duy nhất mà thiết kế kiểm soát chạm được là CƠ HỘI. Đó là lý do câu hỏi đúng khi rà soát một quy trình không phải ai ở đây có thể gian lận, mà là ở chỗ nào một người có thể vừa tạo giao dịch vừa che nó đi mà không cần đồng loã."
+      },
+      {
+        type: "comparison",
+        left: {
+          label: "Bốn kiểm soát nhắm vào cơ hội",
+          text: "Tách biệt nhiệm vụ để không ai nắm trọn chu trình khởi tạo - phê duyệt - ghi nhận - đối chiếu. Đối chiếu độc lập do người không tham gia giao dịch thực hiện. Hạn mức và phê duyệt kép theo giá trị. Nghỉ phép bắt buộc và luân chuyển vị trí."
+        },
+        right: {
+          label: "Đãi ngộ cũng là một biện pháp kiểm soát",
+          text: "Chỉ tiêu bất khả thi và thưởng gắn chặt vào kết quả ngắn hạn tác động đồng thời vào cạnh động cơ và cạnh tự bào chữa - chúng vừa tạo áp lực vừa cung cấp sẵn lời biện minh rằng ai cũng phải làm thế mới đạt số. Đây là biện pháp duy nhất chạm được vào hai cạnh còn lại, và nó không nằm ở bộ phận kiểm soát nội bộ."
+        }
       },
       {
         type: "closing",
@@ -1791,6 +1818,30 @@ export const FRM_CORE_GAPS_LESSONS: Lesson[] = [
         type: "callout",
         label: "Đánh đổi trung tâm của quy định vốn",
         text: "Càng nhạy với đặc thù từng tổ chức thì càng khó so sánh giữa các tổ chức và càng dễ bị tối ưu hoá có lợi cho người tính. Càng chuẩn hoá thì càng dễ so sánh nhưng càng ít phản ánh rủi ro thật. Không có lời giải đúng tuyệt đối, chỉ có lựa chọn nghiêng về phía nào."
+      },
+      {
+        type: "heading",
+        text: "Vì sao mô hình nội bộ thất bại ở đúng loại rủi ro này"
+      },
+      {
+        type: "paragraph",
+        text: "Ba yếu tố cộng lại. Thứ nhất, dữ liệu ở vùng đuôi cực thưa: một ngân hàng có thể chưa từng gặp sự kiện tổn thất tỷ đô nào, nên việc chọn dạng phân phối - chứ không phải dữ liệu - quyết định phần lớn con số vốn. Thứ hai, có quá nhiều lựa chọn mô hình hoá hợp lý ngang nhau nhưng cho ra kết quả chênh nhau nhiều lần. Thứ ba, hệ quả của hai điều trên: hai ngân hàng có hồ sơ rủi ro gần như giống hệt nhau vẫn công bố mức vốn rất khác nhau, và không ai nói được bên nào đúng."
+      },
+      {
+        type: "callout",
+        label: "Cách tiếp cận chuẩn hoá đổi lấy điều gì",
+        text: "Công thức lấy quy mô hoạt động làm gốc, dựng từ các khoản mục sẵn có trên báo cáo tài chính, với hệ số biên tăng dần theo quy mô - ngân hàng lớn hơn phải giữ vốn nhiều hơn trên mỗi đồng doanh thu. Rồi nó được điều chỉnh bằng lịch sử tổn thất thực tế của chính tổ chức, tính trên trung bình mười năm để một năm bất thường không chi phối kết quả. Cấu trúc này bỏ hẳn tính so sánh được lên trước tính nhạy với đặc thù từng tổ chức - đó là một lựa chọn có ý thức, không phải một sự đơn giản hoá vì lười."
+      },
+      {
+        type: "comparison",
+        left: {
+          label: "Càng nhạy với đặc thù từng tổ chức",
+          text: "Con số vốn phản ánh đúng hơn hồ sơ rủi ro thật của một ngân hàng cụ thể. Nhưng nó khó so sánh giữa các tổ chức, và mỗi bậc tự do trong mô hình là một chỗ có thể tối ưu hoá theo hướng có lợi cho mình."
+        },
+        right: {
+          label: "Càng chuẩn hoá",
+          text: "So sánh được và khó bóp méo, nhưng nó không thưởng cho một ngân hàng có hệ thống kiểm soát tốt hơn. Đó là đánh đổi trung tâm của mọi quy định vốn, và với rủi ro hoạt động thì Basel đã chọn hẳn về phía chuẩn hoá sau khi thử phía kia."
+        }
       },
       {
         type: "closing",
@@ -3216,6 +3267,7 @@ export const FRM_CORE_GAPS_LESSONS: Lesson[] = [
         label: "Kiểm định độ khớp, đặc biệt ở vùng đuôi"
       }
     ],
+    interactiveType: "regression",
     realWorldExample: {
       company: "Vì sao lựa chọn phương pháp ước lượng ảnh hưởng tới vốn",
       description: "Trong mô hình rủi ro hoạt động, cùng một bộ dữ liệu tổn thất có thể được khớp bằng phương pháp moment hoặc bằng MLE, và hai cách cho ra tham số đuôi khác nhau đáng kể. Vì vốn được tính ở phân vị rất cao của phân phối, chênh lệch nhỏ ở tham số đuôi phóng đại thành chênh lệch lớn ở con số vốn. Đây là một trong những lý do khiến Uỷ ban Basel kết luận mô hình nội bộ cho rủi ro hoạt động thiếu tính so sánh giữa các ngân hàng."
@@ -3651,6 +3703,19 @@ export const FRM_CORE_GAPS_LESSONS: Lesson[] = [
         type: "callout",
         label: "Với chuỗi thời gian phải lấy mẫu theo khối",
         text: "Lợi suất tài chính không độc lập theo thời gian: các ngày biến động mạnh dồn cụm với nhau. Xáo trộn từng quan sát riêng lẻ sẽ xoá mất đặc điểm này và cho ra ước lượng rủi ro thấp giả tạo. Biến thể lấy mẫu theo khối rút các đoạn liên tiếp để giữ lại cấu trúc phụ thuộc."
+      },
+      {
+        type: "heading",
+        text: "Mỗi mẫu giả bỏ sót hơn một phần ba dữ liệu gốc"
+      },
+      {
+        type: "paragraph",
+        text: "Rút n giá trị có hoàn lại từ n quan sát nghe như lấy lại chính bộ dữ liệu cũ, nhưng không phải. Xác suất một quan sát cụ thể KHÔNG được rút lần nào là (1 − 1/n)ⁿ, tiến tới 1/e khi n lớn. Nghĩa là mỗi mẫu giả chỉ chứa khoảng 63,2% số quan sát khác nhau của bộ gốc, phần còn lại là các giá trị bị lặp. Chính sự khác biệt giữa các mẫu đó tạo ra phân phối mà ta cần - và cũng chính nó cho thấy vì sao bootstrapping không sinh thêm thông tin, nó chỉ đo xem thông tin sẵn có chắc chắn tới đâu."
+      },
+      {
+        type: "callout",
+        label: "Ứng dụng đắt giá nhất: khoảng tin cậy cho chính con số VaR",
+        text: "Với 250 ngày dữ liệu, VaR mức 99% nằm ở khoảng quan sát xấu thứ 2 tới thứ 3 - tức là toàn bộ con số được quyết định bởi hai ba ngày. Không ai coi đó là ước lượng đáng tin, nhưng cũng ít ai nói ra mức không đáng tin đó là bao nhiêu. Bootstrap 10.000 lần rồi tính VaR trên từng mẫu cho ra một phân phối các giá trị VaR, và khoảng giữa phân vị 2,5% và 97,5% chính là khoảng tin cậy. Báo cáo VaR kèm khoảng đó cho ban lãnh đạo một thông tin mà con số đơn lẻ không bao giờ đưa ra được: ước lượng này rộng tới mức nào."
       },
       {
         type: "closing",
