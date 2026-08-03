@@ -3,6 +3,7 @@ import { FINANCE_CAREERS } from "@/lib/finance-careers";
 import { CAREER_CATEGORY_ORDER, CAREER_CATEGORY_LABELS } from "@/lib/career-categories";
 import { insideAnyObstacle, touchingPairs } from "@/lib/walkable-space";
 import {
+  buildStageIndex,
   formulasFor,
   lessonSlugsFor,
   lessonSlugsForCareer,
@@ -10,11 +11,13 @@ import {
 import { STATIONS } from "@/components/lobby/stations";
 import {
   DISTRICT_ROOMS,
+  STREET_SPAWN,
   TOWER_STOPS,
+  buildPathRoom,
   floorRoomId,
   isAtLift,
   nearestPortal,
-  STREET_SPAWN,
+  nearestStop,
   getRoom,
   moveWithin,
   nearestDesk,
@@ -41,7 +44,8 @@ function inBounds(room: DistrictRoom, x: number, z: number) {
 
 describe("khu phố nghề", () => {
   it("có đúng một phòng cho mỗi nhóm ngành, một cho mỗi tầng tháp, cộng phố và sảnh", () => {
-    expect(ALL_ROOMS).toHaveLength(CAREER_CATEGORY_ORDER.length + STATIONS.length + 2);
+    // +3: con phố, sảnh tháp, và tầng chặng học (tầng duy nhất không đến từ STATIONS).
+    expect(ALL_ROOMS).toHaveLength(CAREER_CATEGORY_ORDER.length + STATIONS.length + 3);
     for (const category of CAREER_CATEGORY_ORDER) {
       expect(getRoom(category).label).toBe(CAREER_CATEGORY_LABELS[category]);
     }
@@ -194,7 +198,8 @@ describe("toà tháp Tự Học", () => {
       expect(room.label).toBe(station.room);
       expect(room.portals.map((p) => p.href)).toContain(station.href);
     }
-    expect(TOWER_STOPS).toHaveLength(STATIONS.length + 1);
+    // +2: sảnh và tầng chặng học.
+    expect(TOWER_STOPS).toHaveLength(STATIONS.length + 2);
   });
 
   it("mọi tầng đều có thang máy, và thang máy đi được tới mọi tầng", () => {
@@ -234,5 +239,72 @@ describe("toà tháp Tự Học", () => {
   it("phố có cửa vào tháp, và tháp có đường ra phố", () => {
     expect(getRoom("street").doorways.map((d) => d.to)).toContain("thap");
     expect(getRoom("thap").doorways.map((d) => d.to)).toContain("street");
+  });
+});
+
+describe("hành lang lộ trình", () => {
+  it("mọi cột bài đều đứng tới được, không cột nào chồng lên cột nào", () => {
+    // Hành lang dựng theo yêu cầu nên hình học của nó phụ thuộc số bài. Kiểm ở
+    // hai đầu quang phổ: một nghề chỉ vài bài, và một chặng dài tối đa.
+    for (const n of [1, 2, 3, 8, 20, 24]) {
+      const slugs = Array.from({ length: n }, (_, i) => `bai-${i}`);
+      const room = buildPathRoom(`thu-${n}`, `Thử ${n}`, "#5eead4", slugs, {
+        to: "street",
+        label: "Ra phố",
+        arriveAt: STREET_SPAWN,
+      });
+      expect(touchingPairs(room.obstacles), `${n} bài: cột chạm nhau`).toEqual([]);
+      expect(room.stops).toHaveLength(n);
+      for (const s of room.stops ?? []) {
+        expect(
+          s.x >= room.bounds.minX && s.x <= room.bounds.maxX && s.z >= room.bounds.minZ && s.z <= room.bounds.maxZ,
+          `${n} bài: cột ${s.index} nằm ngoài hành lang`
+        ).toBe(true);
+        // Đi từ lối vào tới ngang cột rồi rẽ vào, như người thật đi.
+        let x = 0;
+        let z = room.size.depth / 2 - 2.4;
+        let reached = false;
+        for (const [tx, tz] of [[0, s.z], [s.x, s.z]] as Array<[number, number]>) {
+          for (let i = 0; i < 900 && !reached; i += 1) {
+            const dx = tx - x;
+            const dz = tz - z;
+            const len = Math.hypot(dx, dz);
+            if (len < 0.05) break;
+            const moved = moveWithin(room, x + (dx / len) * 0.08, z + (dz / len) * 0.08);
+            x = moved.x;
+            z = moved.z;
+            reached = nearestStop(room, x, z)?.slug === s.slug;
+          }
+        }
+        expect(reached, `${n} bài: không đi tới được cột ${s.index}`).toBe(true);
+      }
+    }
+  });
+
+  it("dựng lại cùng một hành lang thì trả về đúng phòng cũ", () => {
+    // Cùng id phải là cùng phòng: nếu mỗi lần bấm lại dựng một phòng mới thì
+    // vào ra vài lần là bộ nhớ đầy những hành lang không ai đứng trong đó.
+    const a = buildPathRoom("cache-thu", "Thử", "#fff", ["x"], {
+      to: "street",
+      label: "Ra phố",
+      arriveAt: STREET_SPAWN,
+    });
+    const b = buildPathRoom("cache-thu", "Thử", "#fff", ["x", "y", "z"], {
+      to: "street",
+      label: "Ra phố",
+      arriveAt: STREET_SPAWN,
+    });
+    expect(b).toBe(a);
+  });
+
+  it("chặng học đổ ra bài học thật và không chặng nào rỗng", () => {
+    const lessons = Array.from({ length: 1400 }, (_, i) => ({ id: i + 1, slug: `bai-${i + 1}` }));
+    const index = buildStageIndex(lessons);
+    expect(index.length, "không dựng được chặng nào").toBeGreaterThan(10);
+    for (const stage of index) {
+      expect(stage.slugs.length, `${stage.key}: chặng rỗng`).toBeGreaterThan(0);
+      expect(new Set(stage.slugs).size, `${stage.key}: bài trùng trong chặng`).toBe(stage.slugs.length);
+    }
+    expect(new Set(index.map((s) => s.key)).size, "hai chặng trùng khoá").toBe(index.length);
   });
 });

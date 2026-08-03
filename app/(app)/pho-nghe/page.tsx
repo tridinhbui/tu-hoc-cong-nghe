@@ -4,7 +4,7 @@ import { getCompletedLessons } from "@/lib/supabase-progress";
 import { createServerSupabaseClient } from "@/lib/supabase-server";
 import { colorForUser } from "@/lib/supabase-lobby";
 import DistrictWorld, { type DistrictLesson } from "@/components/career-district/DistrictWorld";
-import { allDistrictLessonSlugs } from "@/components/career-district/district-content";
+import { allDistrictLessonSlugs, buildStageIndex } from "@/components/career-district/district-content";
 
 export const dynamic = "force-dynamic";
 
@@ -38,6 +38,18 @@ export default async function PhoNghePage() {
     lessons[slug] = { slug, title: lesson.title, done: done.has(lesson.id) };
   }
 
+  // Chặng học đổ ra danh sách bài ở đây: chặng khai bằng dải id, và đổi id ra
+  // slug cần cả bảng bài học - thứ chỉ có ở server.
+  const stages = buildStageIndex(allLessons);
+  for (const stage of stages) {
+    for (const slug of stage.slugs) {
+      const lesson = bySlug.get(slug);
+      if (lesson && !lessons[slug]) {
+        lessons[slug] = { slug, title: lesson.title, done: done.has(lesson.id) };
+      }
+    }
+  }
+
   let name = user.user_metadata?.full_name || user.email?.split("@")[0] || "Người học";
   let avatarUrl: string | null = user.user_metadata?.avatar_url || null;
   let level = 1;
@@ -57,6 +69,7 @@ export default async function PhoNghePage() {
       avatarUrl={avatarUrl}
       level={level}
       lessons={lessons}
+      stages={stages}
     />
   );
 }

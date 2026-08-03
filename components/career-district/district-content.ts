@@ -1,4 +1,5 @@
 import { FINANCE_CAREERS } from "@/lib/finance-careers";
+import { TRACK_PERSONAL, TRACK_PROFESSIONAL, isLessonInRange } from "@/lib/track-stages";
 import { CAREER_CATEGORY_ORDER, type CareerCategory } from "@/lib/career-categories";
 import { CFA_FORMULAS_DATA } from "@/lib/cfa-formulas-data";
 import { FRM_FORMULAS_DATA } from "@/lib/frm-formulas-data";
@@ -127,4 +128,55 @@ export function allDistrictLessonSlugs(): string[] {
     for (const slug of career.relatedLessonSlugs) seen.add(slug);
   }
   return [...seen];
+}
+
+// ── Chặng học tài chính ─────────────────────────────────────────────────────
+
+export interface StageIndexEntry {
+  key: string;
+  track: "personal" | "professional";
+  trackTitle: string;
+  label: string;
+  name: string;
+  slugs: string[];
+  available: boolean;
+}
+
+/** Chặng học đổ ra thành danh sách bài, dựng ở PHÍA SERVER.
+ *
+ *  Chặng khai bằng dải id bài (`days`) chứ không bằng danh sách slug, nên phải
+ *  có bảng bài học mới đổi ra được. Bảng đó là dữ liệu server; làm việc này ở
+ *  client đồng nghĩa với gửi cả 1.500 bài xuống trình duyệt để rồi dùng vài
+ *  trăm. */
+export function buildStageIndex(
+  lessons: ReadonlyArray<{ id: number; slug: string }>,
+  perStageLimit = 20
+): StageIndexEntry[] {
+  const sorted = [...lessons].sort((a, b) => a.id - b.id);
+  const out: StageIndexEntry[] = [];
+  for (const track of [TRACK_PERSONAL, TRACK_PROFESSIONAL]) {
+    track.stages.forEach((stage, i) => {
+      const slugs = sorted
+        .filter(
+          (l) =>
+            isLessonInRange(l.id, stage) ||
+            stage.parts.some((part) => isLessonInRange(l.id, part))
+        )
+        .slice(0, perStageLimit)
+        .map((l) => l.slug);
+      // Chặng không có bài nào thì không dựng phòng: một hành lang rỗng nói
+      // với người học rằng chỗ này hỏng, chứ không phải rằng chặng chưa mở.
+      if (slugs.length === 0) return;
+      out.push({
+        key: `chang-${track.id}-${i}`,
+        track: track.id as "personal" | "professional",
+        trackTitle: track.title,
+        label: stage.label,
+        name: stage.name,
+        slugs,
+        available: stage.available,
+      });
+    });
+  }
+  return out;
 }

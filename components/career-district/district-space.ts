@@ -102,6 +102,8 @@ export interface DistrictRoom {
   desks: CareerDesk[];
   portals: RoomPortal[];
   lift: LiftSpot | null;
+  /** Các cột bài học, chỉ có ở phòng lộ trình. */
+  stops?: PathStop[];
   /** Kích thước hình học để phần vẽ dựng sàn, tường, mái. */
   size: { width: number; depth: number; height: number };
 }
@@ -305,7 +307,10 @@ const TOWER_LOBBY: DistrictRoom = {
   ],
   desks: [],
   portals: [],
-  lift: { x: 0, z: -TOWER_HALF_D + 1.8, reach: 2.4 },
+  // Buồng thang ÁP SÁT tường, không đứng rời ra giữa sàn: camera vai thứ ba bị
+  // kẹp trong lòng phòng, nên bất cứ khối nào đứng rời khỏi tường đều có lúc
+  // nằm chen giữa camera và nhân vật và chiếm trọn khung hình.
+  lift: { x: 0, z: -TOWER_HALF_D + 0.35, reach: 2.6 },
   doorways: [
     {
       id: "thap-exit",
@@ -357,18 +362,41 @@ function buildFloor(station: Station): DistrictRoom {
         formulaNote: station.note,
       },
     ],
-    lift: { x: 0, z: halfD - 1.6, reach: 2.4 },
+    lift: { x: 0, z: halfD - 0.35, reach: 2.6 },
     doorways: [],
   };
 }
 
 const FLOORS = STATIONS.map(buildFloor);
 
+/** Một tầng riêng cho các chặng học, không đến từ STATIONS: chặng không phải
+ *  một màn hình để mở mà là một danh sách để chọn, nên nó cần bảng chọn của
+ *  riêng nó chứ không phải một cái bàn có nút "mở". */
+export const STAGE_FLOOR_ID = "tang-chang-hoc" as DistrictRoomId;
+
+const STAGE_FLOOR: DistrictRoom = {
+  id: STAGE_FLOOR_ID,
+  label: "Sảnh chặng học",
+  kind: "office",
+  accent: "#a7f3d0",
+  size: { width: 14, depth: 16, height: 4.4 },
+  bounds: { minX: -6.3, maxX: 6.3, minZ: -7.3, maxZ: 7.3 },
+  obstacles: [
+    { kind: "circle", x: -5.6, z: -6.6, radius: 0.52 },
+    { kind: "circle", x: 5.6, z: -6.6, radius: 0.52 },
+  ],
+  desks: [],
+  portals: [],
+  lift: { x: 0, z: 7.65, reach: 2.6 },
+  doorways: [],
+};
+
 /** Danh sách tầng cho bảng thang máy, kèm sảnh ở dưới cùng. */
 export const TOWER_STOPS: Array<{ id: DistrictRoomId; label: string; accent: string; arriveAt: Pose }> = [
   // Ra thang máy ở sảnh thì đứng NGAY TRONG buồng thang, không phải giữa sảnh:
   // người vừa bấm nhầm tầng phải bấm lại được ngay mà không đi bộ vòng lại.
-  { id: "thap", label: "Sảnh · ra phố", accent: "#fbbf24", arriveAt: { x: 0, z: -TOWER_HALF_D + 3.6, ry: Math.PI } },
+  { id: "thap", label: "Sảnh · ra phố", accent: "#fbbf24", arriveAt: { x: 0, z: -TOWER_HALF_D + 2.4, ry: Math.PI } },
+  { id: STAGE_FLOOR_ID, label: "Chặng học tài chính", accent: "#a7f3d0", arriveAt: { x: 0, z: 5.4, ry: 0 } },
   ...STATIONS.map((s) => ({
     id: floorRoomId(s) as DistrictRoomId,
     label: s.room,
@@ -422,11 +450,11 @@ const STREET_ROOM: DistrictRoom = {
 };
 
 export const DISTRICT_ROOMS: Record<string, DistrictRoom> = Object.fromEntries(
-  [STREET_ROOM, TOWER_LOBBY, ...OFFICES, ...FLOORS].map((r) => [r.id, r])
+  [STREET_ROOM, TOWER_LOBBY, STAGE_FLOOR, ...OFFICES, ...FLOORS].map((r) => [r.id, r])
 );
 
 export function getRoom(id: DistrictRoomId): DistrictRoom {
-  const room = DISTRICT_ROOMS[id];
+  const room = DISTRICT_ROOMS[id] ?? pathRoomCache.get(id);
   if (!room) throw new Error(`Không có phòng nào tên "${id}" trong khu phố nghề`);
   return room;
 }
@@ -492,6 +520,103 @@ export function nearestDesk(room: DistrictRoom, x: number, z: number): CareerDes
     if (dist < bestDist) {
       bestDist = dist;
       best = d;
+    }
+  }
+  return best;
+}
+
+// ── Phòng lộ trình ──────────────────────────────────────────────────────────
+
+/** Một chặng đường học, dựng thành hành lang đi được: mỗi bài là một cột đá
+ *  dọc hai bên, đi hết hành lang là hết lộ trình.
+ *
+ *  Đây là chỗ thế giới 3D nói được thứ mà danh sách phẳng không nói: lộ trình
+ *  DÀI bao nhiêu là thứ nhìn thấy bằng mắt, và bài đã học sáng lên phía sau
+ *  lưng trong khi phần chưa học còn tối phía trước. Một danh sách 20 dòng
+ *  không tạo ra cảm giác đó.
+ *
+ *  Phòng dựng THEO YÊU CẦU chứ không dựng sẵn: 44 nghề cộng vài chục chặng là
+ *  gần một trăm căn phòng, và người học chỉ vào một hai căn mỗi phiên. Dựng
+ *  sẵn hết chỉ để chúng nằm im trong bộ nhớ. */
+export interface PathStop {
+  /** Slug bài học, hoặc id bất kỳ mà phía gọi tra ngược được. */
+  slug: string;
+  index: number;
+  x: number;
+  z: number;
+}
+
+const PATH_HALF_W = 4.6;
+const PATH_PITCH = 3.2;
+const PATH_STOP_X = 2.9;
+
+/** Đứng gần hơn khoảng này thì thẻ bài học hiện lên. */
+export const PATH_REACH = 2.2;
+
+const pathRoomCache = new Map<string, DistrictRoom>();
+
+export function buildPathRoom(
+  id: string,
+  label: string,
+  accent: string,
+  slugs: string[],
+  back: { to: DistrictRoomId; label: string; arriveAt: Pose }
+): DistrictRoom {
+  const cached = pathRoomCache.get(id);
+  if (cached) return cached;
+
+  const rows = Math.max(1, Math.ceil(slugs.length / 2));
+  const depth = Math.max(14, rows * PATH_PITCH + 9);
+  const halfD = depth / 2;
+  const firstZ = -halfD + 5;
+
+  const stops: PathStop[] = slugs.map((slug, i) => ({
+    slug,
+    index: i,
+    x: (i % 2 === 0 ? -1 : 1) * PATH_STOP_X,
+    z: firstZ + Math.floor(i / 2) * PATH_PITCH,
+  }));
+
+  const room: DistrictRoom = {
+    id: id as DistrictRoomId,
+    label,
+    kind: "office",
+    accent,
+    size: { width: PATH_HALF_W * 2, depth, height: 4.2 },
+    bounds: { minX: -PATH_HALF_W + 0.6, maxX: PATH_HALF_W - 0.6, minZ: -halfD + 0.6, maxZ: halfD - 0.6 },
+    // Cột đá là vật cản: đi vòng qua chúng chính là cái làm hành lang có nhịp,
+    // và cũng là thứ ngăn người học lướt thẳng từ đầu tới cuối mà không nhìn.
+    obstacles: stops.map((s): CircleObstacle => ({ kind: "circle", x: s.x, z: s.z, radius: 0.55 })),
+    desks: [],
+    portals: [],
+    lift: null,
+    doorways: [
+      {
+        id: `${id}-back`,
+        to: back.to,
+        x: 0,
+        z: halfD - 0.5,
+        reach: 2,
+        label: back.label,
+        arriveAt: back.arriveAt,
+        accent,
+      },
+    ],
+    stops,
+  };
+  pathRoomCache.set(id, room);
+  return room;
+}
+
+/** Cột bài học gần nhất trong tầm, hoặc null. */
+export function nearestStop(room: DistrictRoom, x: number, z: number): PathStop | null {
+  let best: PathStop | null = null;
+  let bestDist = PATH_REACH;
+  for (const s of room.stops ?? []) {
+    const dist = Math.hypot(s.x - x, s.z - z);
+    if (dist < bestDist) {
+      bestDist = dist;
+      best = s;
     }
   }
   return best;

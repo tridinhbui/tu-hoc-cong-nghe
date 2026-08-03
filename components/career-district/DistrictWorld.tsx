@@ -4,16 +4,19 @@ import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import dynamic from "next/dynamic";
 import Link from "next/link";
 import {
+  STAGE_FLOOR_ID,
   STREET_SPAWN,
   TOWER_STOPS,
+  buildPathRoom,
   getRoom,
   type CareerDesk,
   type DistrictRoomId,
   type Doorway,
+  type PathStop,
   type Pose,
   type RoomPortal,
 } from "./district-space";
-import { formulasFor, lessonSlugsFor, lessonSlugsForCareer } from "./district-content";
+import { formulasFor, lessonSlugsFor, lessonSlugsForCareer, type StageIndexEntry } from "./district-content";
 import { createWalkState } from "@/components/world-controls/easy-walk";
 import { CAREER_CATEGORY_ORDER, CAREER_CATEGORY_LABELS, isCareerCategory } from "@/lib/career-categories";
 
@@ -120,15 +123,21 @@ export interface DistrictWorldProps {
   level: number;
   /** Tên và trạng thái hoàn thành của mọi bài học xuất hiện trong khu phố. */
   lessons: Record<string, DistrictLesson>;
+  /** Chặng học đã đổ sẵn ra danh sách bài ở phía server. */
+  stages: StageIndexEntry[];
 }
 
-export default function DistrictWorld({ name, color, avatarUrl, level, lessons }: DistrictWorldProps) {
+export default function DistrictWorld({ name, color, avatarUrl, level, lessons, stages }: DistrictWorldProps) {
   const [roomId, setRoomId] = useState<DistrictRoomId>("street");
   const [entry, setEntry] = useState<Pose>(STREET_SPAWN);
   const [desk, setDesk] = useState<CareerDesk | null>(null);
   const [door, setDoor] = useState<Doorway | null>(null);
   const [portal, setPortal] = useState<RoomPortal | null>(null);
   const [atLift, setAtLift] = useState(false);
+  const [stop, setStop] = useState<PathStop | null>(null);
+  /** Bảng thang máy mở bằng nút trên HUD, không cần đi tới buồng thang. */
+  const [liftPanel, setLiftPanel] = useState(false);
+  const [stagePanel, setStagePanel] = useState(false);
   const [walking, setWalking] = useState(false);
   const [hintSeen, setHintSeen] = useState(false);
   const [daylight, setDaylight] = useState<number | null>(null);
@@ -160,6 +169,9 @@ export default function DistrictWorld({ name, color, avatarUrl, level, lessons }
     setDoor(null);
     setPortal(null);
     setAtLift(false);
+    setStop(null);
+    setLiftPanel(false);
+    setStagePanel(false);
   }, []);
 
   /** Bấm một tầng trong bảng thang máy. Cùng đường với đi bộ qua cửa: đổi phòng
@@ -171,7 +183,34 @@ export default function DistrictWorld({ name, color, avatarUrl, level, lessons }
     setDoor(null);
     setPortal(null);
     setAtLift(false);
+    setStop(null);
+    setLiftPanel(false);
+    setStagePanel(false);
   }, []);
+
+  /** Vào một hành lang lộ trình - của một nghề, hoặc của một chặng học.
+   *
+   *  Phòng dựng ngay lúc bấm chứ không dựng sẵn: gần một trăm hành lang mà
+   *  người học chỉ đi một hai cái mỗi phiên. */
+  const enterPath = useCallback(
+    (id: string, label: string, accent: string, slugs: string[], back: { to: DistrictRoomId; label: string; arriveAt: Pose }) => {
+      const room = buildPathRoom(id, label, accent, slugs, back);
+      // Vào hành lang thì đứng lùi vào một đoạn, không đứng sát cửa: camera
+      // đứng sau lưng ~5m, và sát cửa thì nó bị kẹp vào tường sau và dí sát
+      // gáy nhân vật - khung hình chỉ còn cái biển tên.
+      const entryPose: Pose = { x: 0, z: room.size.depth / 2 - 4.5, ry: 0 };
+      setRoomId(room.id);
+      setEntry(entryPose);
+      setDesk(null);
+      setDoor(null);
+      setPortal(null);
+      setAtLift(false);
+      setStop(null);
+      setLiftPanel(false);
+      setStagePanel(false);
+    },
+    []
+  );
 
   const roomLessons = useMemo(
     () => (isCareerCategory(roomId) ? lessonSlugsFor(roomId).map((s) => lessons[s]).filter(Boolean) : []),
@@ -183,6 +222,13 @@ export default function DistrictWorld({ name, color, avatarUrl, level, lessons }
     () => (desk ? lessonSlugsForCareer(desk.careerId, 5).map((s) => lessons[s]).filter(Boolean) : []),
     [desk, lessons]
   );
+
+  const doneSlugs = useMemo(
+    () => new Set(Object.values(lessons).filter((l) => l.done).map((l) => l.slug)),
+    [lessons]
+  );
+
+  const inTower = roomId === "thap" || String(roomId).startsWith("tang-");
 
   const roomFormulas = useMemo(() => (isCareerCategory(roomId) ? formulasFor(roomId, 4) : []), [roomId]);
 
@@ -204,6 +250,8 @@ export default function DistrictWorld({ name, color, avatarUrl, level, lessons }
           onDoorChange={setDoor}
           onPortalChange={setPortal}
           onLiftChange={setAtLift}
+          onStopChange={setStop}
+          doneSlugs={doneSlugs}
           onWalkingChange={setWalking}
           daylight={daylight}
         />
@@ -225,6 +273,8 @@ export default function DistrictWorld({ name, color, avatarUrl, level, lessons }
               ? `${room.desks.length} nghề · ${roomLessons.length} bài học trên kệ`
               : room.portals.length > 0
               ? room.portals[0].blurb
+              : room.stops
+              ? `${room.stops.length} bài trên hành lang · ${room.stops.filter((st) => doneSlugs.has(st.slug)).length} đã học`
               : "Thang máy ở cuối sảnh · mỗi tầng một phòng chức năng"}
           </p>
         </div>
@@ -256,14 +306,17 @@ export default function DistrictWorld({ name, color, avatarUrl, level, lessons }
             className="pointer-events-auto cursor-pointer rounded-2xl px-6 py-3 text-sm font-bold text-stone-950 shadow-xl transition hover:brightness-110"
             style={{ backgroundColor: door.accent }}
           >
-            {door.to === "street" ? "Ra phố" : `Bước vào · ${door.label}`}
+            {/* Cửa quay lại đã mang sẵn nhãn của nó ("Ra phố", "Về sảnh
+                chặng"); thêm "Bước vào ·" vào trước là đọc thành một câu vô
+                nghĩa. Chỉ cửa ĐI TỚI mới cần chữ mời. */}
+            {/^(Ra|Về)\b/.test(door.label) ? door.label : `Bước vào · ${door.label}`}
           </button>
         </div>
       )}
 
       {/* Thẻ nghề: hiện khi đứng trước một cái bàn. Đây là chỗ căn phòng trả
           lại thứ gì đó cho công đi bộ - nghề này học gì, và bấm vào là học. */}
-      {desk && !portal && (
+      {desk && !portal && !stop && (
         <div className="pointer-events-auto absolute bottom-4 left-4 z-10 w-72 rounded-2xl border border-stone-700 bg-stone-900/92 p-4 shadow-2xl backdrop-blur sm:w-80">
           <p className="text-[10px] font-black uppercase tracking-widest" style={{ color: room.accent }}>
             {room.label}
@@ -293,9 +346,25 @@ export default function DistrictWorld({ name, color, avatarUrl, level, lessons }
               </ul>
             </>
           )}
+          <button
+            type="button"
+            onClick={() =>
+              enterPath(
+                `nghe-${desk.careerId}`,
+                `Lộ trình · ${desk.title}`,
+                room.accent,
+                lessonSlugsForCareer(desk.careerId, 24),
+                { to: roomId, label: "Về phòng ngành", arriveAt: { x: 0, z: desk.z + 2.2, ry: 0 } }
+              )
+            }
+            className="mt-2.5 block w-full cursor-pointer rounded-xl px-3 py-2 text-center text-[11px] font-black text-stone-950 transition hover:brightness-110"
+            style={{ backgroundColor: room.accent }}
+          >
+            Bước vào lộ trình học nghề này
+          </button>
           <Link
             href="/su-nghiep"
-            className="mt-2.5 block rounded-xl bg-stone-800 px-3 py-1.5 text-center text-[11px] font-bold text-stone-200 transition hover:bg-stone-700"
+            className="mt-1.5 block rounded-xl bg-stone-800 px-3 py-1.5 text-center text-[11px] font-bold text-stone-200 transition hover:bg-stone-700"
           >
             Xem chân dung nghề đầy đủ
           </Link>
@@ -328,12 +397,95 @@ export default function DistrictWorld({ name, color, avatarUrl, level, lessons }
         </div>
       )}
 
-      {/* Bảng thang máy: hiện khi đứng trong buồng thang. */}
-      {atLift && (
-        <div className="pointer-events-auto absolute right-4 top-20 z-10 w-52 rounded-2xl border border-amber-500/40 bg-stone-900/92 p-2.5 shadow-2xl backdrop-blur">
-          <p className="mb-1.5 text-[10px] font-black uppercase tracking-widest text-amber-300">
-            🛗 Thang máy
+      {/* Gọi thang máy mà không phải đi bộ tới buồng thang.
+          Buồng thang vẫn còn và vẫn dùng được - nó là thứ khiến toà nhà có
+          thật. Nhưng bắt đi bộ mỗi lần đổi tầng thì đến lần thứ ba đã là hình
+          phạt, nên có luôn cả đường tắt. */}
+      {inTower && !liftPanel && !atLift && (
+        <button
+          type="button"
+          onClick={() => setLiftPanel(true)}
+          className="pointer-events-auto absolute right-4 top-20 z-10 cursor-pointer rounded-2xl border border-amber-500/40 bg-stone-900/85 px-3 py-2 text-[11px] font-black text-amber-200 shadow-xl backdrop-blur transition hover:bg-stone-800"
+        >
+          🛗 Lên tầng
+        </button>
+      )}
+
+      {/* Bảng chọn chặng học, ở tầng chặng học. */}
+      {roomId === STAGE_FLOOR_ID && (
+        <div className="pointer-events-auto absolute bottom-4 left-4 z-10 w-72 rounded-2xl border border-emerald-500/40 bg-stone-900/92 p-3 shadow-2xl backdrop-blur sm:w-80">
+          <p className="text-[10px] font-black uppercase tracking-widest text-emerald-300">
+            🧭 Chặng học tài chính
           </p>
+          <p className="mt-0.5 text-[11px] text-stone-400">
+            Mỗi chặng là một hành lang; đi hết hành lang là hết chặng.
+          </p>
+          <div className="mt-2 max-h-64 space-y-0.5 overflow-y-auto">
+            {stages.map((st) => {
+              const done = st.slugs.filter((sl) => doneSlugs.has(sl)).length;
+              return (
+                <button
+                  key={st.key}
+                  type="button"
+                  onClick={() =>
+                    enterPath(st.key, `${st.label} · ${st.trackTitle}`, "#a7f3d0", st.slugs, {
+                      to: STAGE_FLOOR_ID,
+                      label: "Về sảnh chặng",
+                      arriveAt: { x: 0, z: 5.4, ry: 0 },
+                    })
+                  }
+                  className="block w-full cursor-pointer rounded-lg px-2 py-1.5 text-left transition hover:bg-stone-800"
+                >
+                  <span className="text-[11px] font-black text-emerald-200">{st.label}</span>
+                  <span className="ml-1 text-[10px] text-stone-500">{st.trackTitle}</span>
+                  <span className="ml-1 font-mono text-[10px] text-stone-400">
+                    {done}/{st.slugs.length}
+                  </span>
+                  <span className="block truncate text-[10px] leading-snug text-stone-400">{st.name}</span>
+                </button>
+              );
+            })}
+          </div>
+        </div>
+      )}
+
+      {/* Thẻ bài học khi đứng trước một cột trên hành lang lộ trình. */}
+      {stop && (
+        <div className="pointer-events-auto absolute bottom-4 left-4 z-10 w-72 rounded-2xl border border-stone-700 bg-stone-900/92 p-4 shadow-2xl backdrop-blur sm:w-80">
+          <p className="text-[10px] font-black uppercase tracking-widest" style={{ color: room.accent }}>
+            Bài {stop.index + 1} / {room.stops?.length ?? 0}
+          </p>
+          <p className="mt-0.5 text-sm font-black text-white">
+            {lessons[stop.slug]?.title ?? stop.slug}
+          </p>
+          <p className="mt-1 text-[11px] text-stone-400">
+            {doneSlugs.has(stop.slug) ? "✓ Bạn đã học bài này" : "Chưa học"}
+          </p>
+          <Link
+            href={`/bai-hoc/${stop.slug}`}
+            className="mt-2.5 block rounded-xl px-3 py-2 text-center text-[11px] font-black text-stone-950 transition hover:brightness-110"
+            style={{ backgroundColor: room.accent }}
+          >
+            Mở bài học ↗
+          </Link>
+        </div>
+      )}
+
+      {/* Bảng thang máy: hiện khi đứng trong buồng thang, hoặc khi bấm nút gọi. */}
+      {(atLift || liftPanel) && (
+        <div className="pointer-events-auto absolute right-4 top-20 z-10 w-52 rounded-2xl border border-amber-500/40 bg-stone-900/92 p-2.5 shadow-2xl backdrop-blur">
+          <div className="mb-1.5 flex items-center justify-between">
+            <p className="text-[10px] font-black uppercase tracking-widest text-amber-300">🛗 Thang máy</p>
+            {!atLift && (
+              <button
+                type="button"
+                onClick={() => setLiftPanel(false)}
+                className="cursor-pointer text-[10px] font-bold text-stone-500 hover:text-stone-300"
+              >
+                đóng
+              </button>
+            )}
+          </div>
           <div className="max-h-72 space-y-0.5 overflow-y-auto">
             {TOWER_STOPS.map((stop, i) => (
               <button
@@ -353,7 +505,7 @@ export default function DistrictWorld({ name, color, avatarUrl, level, lessons }
 
       {/* Công thức của phòng, luôn ở góc - cùng nội dung với biển treo tường,
           nhưng đọc được mà không phải đi tới tận nơi. */}
-      {roomFormulas.length > 0 && !desk && !portal && (
+      {roomFormulas.length > 0 && !desk && !portal && !stop && (
         <div className="pointer-events-none absolute bottom-4 left-4 z-10 hidden w-72 rounded-2xl border border-stone-700 bg-stone-900/85 p-3 shadow-xl backdrop-blur sm:block">
           <p className="text-[10px] font-black uppercase tracking-widest text-stone-400">
             📐 Công thức treo trong phòng

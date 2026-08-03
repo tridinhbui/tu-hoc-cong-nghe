@@ -10,12 +10,14 @@ import {
   nearestDesk,
   nearestDoorway,
   nearestPortal,
+  nearestStop,
   isAtLift,
   type CareerDesk,
   type DistrictRoom,
   type DistrictRoomId,
   type Doorway,
   type Pose,
+  type PathStop,
   type RoomPortal,
 } from "./district-space";
 import {
@@ -125,15 +127,17 @@ interface RigProps {
   onDoorChange: (door: Doorway | null) => void;
   onPortalChange: (portal: RoomPortal | null) => void;
   onLiftChange: (atLift: boolean) => void;
+  onStopChange: (stop: PathStop | null) => void;
   onWalkingChange: (walking: boolean) => void;
 }
 
-function PlayerRig({ room, poseRef, walkRef, orbitRef, onDeskChange, onDoorChange, onPortalChange, onLiftChange, onWalkingChange }: RigProps) {
+function PlayerRig({ room, poseRef, walkRef, orbitRef, onDeskChange, onDoorChange, onPortalChange, onLiftChange, onStopChange, onWalkingChange }: RigProps) {
   const { camera } = useThree();
   const lastDesk = useRef<string | null>(null);
   const lastDoor = useRef<string | null>(null);
   const lastPortal = useRef<string | null>(null);
   const lastLift = useRef(false);
+  const lastStop = useRef<string | null>(null);
   const lastWalking = useRef(false);
   /** Đích bị kẹt: đứng yên mấy khung liền dù đang cố đi thì bỏ đích, thay vì
    *  húc vào tường mãi mãi. */
@@ -221,6 +225,11 @@ function PlayerRig({ room, poseRef, walkRef, orbitRef, onDeskChange, onDoorChang
       lastPortal.current = portal?.id ?? null;
       onPortalChange(portal);
     }
+    const stop = nearestStop(room, pose.x, pose.z);
+    if ((stop?.slug ?? null) !== lastStop.current) {
+      lastStop.current = stop?.slug ?? null;
+      onStopChange(stop);
+    }
     const atLift = isAtLift(room, pose.x, pose.z);
     if (atLift !== lastLift.current) {
       lastLift.current = atLift;
@@ -230,10 +239,24 @@ function PlayerRig({ room, poseRef, walkRef, orbitRef, onDeskChange, onDoorChang
     // Camera đứng ở góc người dùng đã chọn, độc lập với hướng nhân vật.
     const angle = orbit.yaw;
     const horizontal = Math.cos(orbit.pitch) * orbit.dist;
+    // Giữ camera TRONG phòng. Camera vai thứ ba đứng cách nhân vật ~6m, nên
+    // chỉ cần đứng gần tường là nó nằm ngoài bức tường đó - và tường chỉ vẽ
+    // một mặt, nên khung hình thành một mảng đen hoặc lộ cả ruột phòng. Kẹp
+    // theo khung đi lại của chính phòng, nới ra một chút để camera vẫn lùi
+    // được sát tường mà không xuyên qua.
+    const margin = room.kind === "street" ? 6 : 0.2;
     const want = new THREE.Vector3(
-      pose.x + Math.sin(angle) * horizontal,
+      THREE.MathUtils.clamp(
+        pose.x + Math.sin(angle) * horizontal,
+        room.bounds.minX - margin,
+        room.bounds.maxX + margin
+      ),
       Math.max(0.8, 1.6 + Math.sin(orbit.pitch) * orbit.dist),
-      pose.z + Math.cos(angle) * horizontal
+      THREE.MathUtils.clamp(
+        pose.z + Math.cos(angle) * horizontal,
+        room.bounds.minZ - margin,
+        room.bounds.maxZ + margin
+      )
     );
     camera.position.lerp(want, Math.min(1, delta * 6));
     camera.lookAt(pose.x, 1.45, pose.z);
@@ -279,7 +302,10 @@ export interface DistrictSceneProps {
   onDoorChange: (door: Doorway | null) => void;
   onPortalChange: (portal: RoomPortal | null) => void;
   onLiftChange: (atLift: boolean) => void;
+  onStopChange: (stop: PathStop | null) => void;
   onWalkingChange: (walking: boolean) => void;
+  /** Slug bài đã hoàn thành - cột trên hành lang lộ trình sáng theo cái này. */
+  doneSlugs: ReadonlySet<string>;
   /** Ban ngày 1, khuya 0 - quyết định trời và đèn đường. */
   daylight: number;
 }
@@ -297,6 +323,8 @@ export default function DistrictScene({
   onDoorChange,
   onPortalChange,
   onLiftChange,
+  onStopChange,
+  doneSlugs,
   onWalkingChange,
   daylight,
 }: DistrictSceneProps) {
@@ -348,7 +376,7 @@ export default function DistrictScene({
         shadow-mapSize={[1024, 1024]}
       />
 
-      <DistrictShell room={room} lessonTitles={lessonTitles} />
+      <DistrictShell room={room} lessonTitles={lessonTitles} doneSlugs={doneSlugs} />
       <TargetMarker walkRef={walkRef} accent={room.accent} />
 
       <LobbyAvatar
@@ -369,6 +397,7 @@ export default function DistrictScene({
         onDoorChange={onDoorChange}
         onPortalChange={onPortalChange}
         onLiftChange={onLiftChange}
+        onStopChange={onStopChange}
         onWalkingChange={onWalkingChange}
       />
     </Canvas>
