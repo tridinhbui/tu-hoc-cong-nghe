@@ -4,6 +4,7 @@ import { useMemo } from "react";
 import * as THREE from "three";
 import { CIVIC_ROOMS, type DistrictRoom } from "./district-space";
 import { SCENARIOS } from "@/lib/cash-cycle";
+import { BONDS, RHO_CASES, STOCKS, mix } from "@/lib/portfolio-risk";
 import { bookshelfTexture, oakTexture } from "@/components/lobby/room-textures";
 
 /** Nội thất sáu căn nhà dân sự: cửa hàng, bảng vàng, phòng thi, căn hộ, bảo
@@ -517,6 +518,75 @@ function CashCycleInterior({ room }: { room: DistrictRoom }) {
   );
 }
 
+/** Phòng Rủi Ro & Phân Bổ: bốn cặp cột, một vạch treo lơ lửng.
+ *
+ *  Ở mỗi mức tương quan có một cột đặc (rủi ro THẬT của danh mục 50/50) và
+ *  ngay trên đầu nó một vạch mảnh (trung bình có trọng số - con số người học
+ *  TƯỞNG là đáp án). Khoảng hụt giữa hai thứ đó chính là bài học, và nó là thứ
+ *  một bảng số không nói được: đi dọc căn phòng thì thấy khoảng hụt teo dần,
+ *  và tới cột cuối cùng - tương quan bằng 1 - nó biến mất hẳn.
+ *
+ *  Chiều cao suy ra từ lib/portfolio-risk.ts, không gõ tay. Bản đầu của phòng
+ *  vòng quay tiền gõ tay ba phân số và lệch khỏi số thật ngay lần đầu. */
+function PortfolioRiskInterior({ room }: { room: DistrictRoom }) {
+  const halfD = room.size.depth / 2;
+  const runway = room.size.depth - 6;
+  // Thang chung cho cả bốn cặp: mỗi cặp một thang thì bốn cột cao bằng nhau và
+  // cả căn phòng không nói gì. Neo vào naiveVol vì nó không đổi theo ρ.
+  const naive = mix(STOCKS, BONDS, { w: 0.5, rho: 0 }).naiveVol;
+  const H = 4.2 / naive;
+
+  return (
+    <>
+      {RHO_CASES.map((c, i) => {
+        const r = mix(STOCKS, BONDS, { w: 0.5, rho: c.rho });
+        const z = halfD - 3.5 - (i / (RHO_CASES.length - 1)) * runway;
+        const h = r.vol * H;
+        const naiveH = r.naiveVol * H;
+        const free = r.diversificationGain > 1e-9;
+        return (
+          <group key={c.id} position={[0, 0, z]}>
+            {/* Cột rủi ro thật. Hẹp và lệch sang một bên để chừa lối đi - cột
+                choán hết phòng thì người học đi xuyên qua nó, vì nó không phải
+                vật cản. */}
+            <mesh position={[-2.6, h / 2, 0]} castShadow receiveShadow>
+              <boxGeometry args={[1.5, h, 1.5]} />
+              <meshStandardMaterial
+                color={free ? "#38bdf8" : "#78716c"}
+                emissive={free ? "#38bdf8" : "#000000"}
+                emissiveIntensity={0.28}
+                roughness={0.75}
+              />
+            </mesh>
+            {/* Vạch trung bình có trọng số, treo đúng trên đầu cột. */}
+            <mesh position={[-2.6, naiveH, 0]}>
+              <boxGeometry args={[2.1, 0.09, 2.1]} />
+              <meshBasicMaterial color="#fbbf24" toneMapped={false} />
+            </mesh>
+            {/* Khoảng hụt: một khối trong suốt lấp đúng phần "được cho không".
+                Ở ρ = 1 nó cao bằng 0 và biến mất - đúng như phải thế. */}
+            {free && (
+              <mesh position={[-2.6, (h + naiveH) / 2, 0]}>
+                <boxGeometry args={[1.62, naiveH - h, 1.62]} />
+                {/* opacity 0,24 gần như chìm hẳn vào phòng tối, mà đây đúng là
+                    thứ căn phòng muốn chỉ ra. */}
+                <meshBasicMaterial color="#4ade80" transparent opacity={0.45} toneMapped={false} />
+              </mesh>
+            )}
+            {/* Cột lợi nhuận, đối diện lối đi: cao BẰNG NHAU ở cả bốn mức. Đó
+                là nửa còn lại của bài học - lợi nhuận không đổi khi tương quan
+                đổi, chỉ rủi ro đổi. */}
+            <mesh position={[2.6, (r.ret * H) / 2, 0]} castShadow receiveShadow>
+              <boxGeometry args={[1.1, r.ret * H, 1.1]} />
+              <meshStandardMaterial color="#c084fc" roughness={0.8} />
+            </mesh>
+          </group>
+        );
+      })}
+    </>
+  );
+}
+
 const INTERIORS: Partial<Record<string, (props: { room: DistrictRoom }) => React.ReactElement>> = {
   "cua-hang": ShopInterior,
   "bang-vang": HallOfFameInterior,
@@ -528,6 +598,7 @@ const INTERIORS: Partial<Record<string, (props: { room: DistrictRoom }) => React
   "thap-lai-kep": CompoundTowerInterior,
   "phong-lbo": CapitalStackInterior,
   "vong-quay-tien": CashCycleInterior,
+  "phan-bo-rui-ro": PortfolioRiskInterior,
 };
 
 export function isCivicRoom(id: string) {

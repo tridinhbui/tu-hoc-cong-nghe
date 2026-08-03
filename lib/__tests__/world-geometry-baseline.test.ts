@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { DISTRICT_ROOMS } from "@/components/career-district/district-space";
+import { DISTRICT_ROOMS, STREET } from "@/components/career-district/district-space";
 import { ROOM as STUDY_ROOM, SEATS, TABLE } from "@/components/study-room/study-room-space";
 
 /** Mốc hình học của thế giới 3D.
@@ -68,16 +68,22 @@ describe("mốc khu phố nghề", () => {
       portals: rooms.reduce((n, r) => n + r.portals.length, 0),
       doorways: rooms.reduce((n, r) => n + r.doorways.length, 0),
       lifts: rooms.filter((r) => r.lift).length,
+      // Chiều dài phố bị khoá vì nó quyết định biên đi lại: cửa phòng dân sự
+      // đặt theo `streetX`, và một lần nới/thu phố mà quên nhìn lại danh sách
+      // cửa là một cánh cửa nằm ngoài chỗ đi được. Đã suýt xảy ra khi thêm
+      // Phòng Rủi Ro & Phân Bổ ở x = −84 trong lúc phố còn dài tới ±77.
+      streetHalfLength: STREET.halfLength,
     };
     // Thêm một nghề, một trạm hay một địa điểm game đều làm đổi số ở đây - đó
     // là điểm: một lần đổi có chủ ý thì sửa mốc, một lần đổi ngoài ý muốn thì
     // bài này đỏ.
     expect(shape).toEqual({
-      rooms: 30,
+      rooms: 31,
       desks: 44,
       portals: 23,
-      doorways: 43,
+      doorways: 45,
       lifts: 10,
+      streetHalfLength: 90,
     });
   });
 });

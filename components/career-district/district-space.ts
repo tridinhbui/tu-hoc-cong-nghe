@@ -47,6 +47,7 @@ export type DistrictRoomId =
   | "thap-lai-kep"
   | "phong-lbo"
   | "vong-quay-tien"
+  | "phan-bo-rui-ro"
   | FloorRoomId;
 
 export interface Pose {
@@ -143,7 +144,12 @@ export interface DistrictRoom {
 
 /** Phố chạy theo trục x. Năm căn nhà nằm bên phía -z, vỉa hè trước cửa. */
 export const STREET = {
-  halfLength: 78,
+  // Nới từ 78 lên 90 khi thêm Phòng Rủi Ro & Phân Bổ ở x = −84. Cửa phòng dân
+  // sự đặt theo `streetX`, và biên đi lại là ±(halfLength − 1) - đặt cửa ngoài
+  // biên thì người học đi tới mép phố rồi đứng lại trước một cánh cửa không
+  // bao giờ với tới. Bài "không có bàn, bục hay cửa nào nằm ngoài khung đi
+  // lại" trong career-district.test.ts bắt đúng chuyện này.
+  halfLength: 90,
   /** Vỉa hè: dải z đi lại được. Lòng đường phía +z để cho xe, không bước vào. */
   walkMinZ: -5.4,
   walkMaxZ: 5.4,
@@ -868,6 +874,17 @@ export const CIVIC_ROOMS: CivicSpec[] = [
     blurb: "Tiền về trước hay tiền đi trước - và ai đang tài trợ cho ai",
     width: 18,
     depth: 20,
+  },
+  {
+    id: "phan-bo-rui-ro",
+    label: "Phòng Rủi Ro & Phân Bổ",
+    accent: "#38bdf8",
+    // Đối xứng với -69 ở đầu kia phố. Phố dài tới ±77 nên vẫn còn chỗ, và
+    // khoảng cách tới cửa 69 đúng bằng khoảng -69 tới -54.
+    streetX: -84,
+    blurb: "Vì sao trộn hai thứ lại ít rủi ro hơn trung bình của chúng",
+    width: 16,
+    depth: 22,
   },
 ];
 
