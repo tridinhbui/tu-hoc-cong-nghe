@@ -7,8 +7,18 @@ describe("LEVEL_EXAMS Question Bank & Rigorous Standards", () => {
       expect(LEVEL_EXAMS[lvl]).toBeDefined();
       expect(LEVEL_EXAMS[lvl].level).toBe(lvl);
       expect(LEVEL_EXAMS[lvl].minPassPercentage).toBeGreaterThanOrEqual(80);
-      expect(LEVEL_EXAMS[lvl].questions.length).toBeGreaterThanOrEqual(5);
+      // app/api/level-exam serves the whole bank rather than sampling from it,
+      // so the bank size IS the exam length - 20 is the floor for a promotion
+      // exam to be worth the badge it hands out.
+      expect(LEVEL_EXAMS[lvl].questions.length).toBeGreaterThanOrEqual(20);
     }
+  });
+
+  it("gives every question a unique id within its own exam", () => {
+    Object.values(LEVEL_EXAMS).forEach((exam) => {
+      const ids = exam.questions.map((q) => q.id);
+      expect(new Set(ids).size).toBe(ids.length);
+    });
   });
 
   it("ensures every exam question has valid fields and correctIndex within bounds", () => {
