@@ -2083,6 +2083,37 @@ export const FRM_CORE_GAPS_LESSONS: Lesson[] = [
         text: "Rủi ro thị trường phòng hộ được vì luôn có đối tác sẵn sàng nhận vị thế ngược lại. Khủng hoảng thanh khoản thì mang tính hệ thống: đúng lúc bạn cần tiền thì mọi người cũng cần. Vì vậy phòng vệ thanh khoản dựa vào dự trữ tự có và cấu trúc kỳ hạn, không dựa vào hợp đồng với bên khác."
       },
       {
+        type: "heading",
+        text: "Đo thanh khoản thị trường bằng ba con số, không phải bằng cảm giác"
+      },
+      {
+        type: "conceptTable",
+        title: "Một trái phiếu yết 99,80 / 100,20 nói lên điều gì",
+        subtitle: "Cả ba chiều đều xấu đi cùng lúc khi thị trường căng, nên đo một chiều là không đủ",
+        concepts: [
+          {
+            vi: "Chênh lệch mua bán",
+            en: "Bid-ask spread",
+            def: "0,40 trên giá 100, tức 40 điểm cơ bản. Bán ngay lập tức nghĩa là mất chừng đó so với giá giữa. Đây là chi phí của một lệnh nhỏ, và là chiều duy nhất nhìn thấy được trên màn hình."
+          },
+          {
+            vi: "Độ sâu",
+            en: "Market depth",
+            def: "Nếu ở mức giá 99,80 chỉ có người mua 2 triệu mà bạn cần bán 10 triệu, phần còn lại phải đi xuống các mức giá thấp hơn. Chi phí thật của lệnh lớn không phải 40 điểm mà lớn hơn nhiều, và nó không hiện ra ở dòng yết giá."
+          },
+          {
+            vi: "Khả năng hồi phục",
+            en: "Resilience",
+            def: "Sau khi lệnh lớn đi qua, sổ lệnh mất bao lâu để đầy lại. Thị trường hồi nhanh thì bán tiếp được; hồi chậm thì lệnh thứ hai của bạn còn đắt hơn lệnh thứ nhất."
+          }
+        ]
+      },
+      {
+        type: "callout",
+        label: "Vì sao chỉ nhìn chênh lệch mua bán là hỏng đúng lúc quan trọng",
+        text: "Trong khủng hoảng, chênh lệch mua bán thường giãn ra một cách khiêm tốn trong khi độ sâu bốc hơi. Màn hình vẫn hiện một mức giá trông chấp nhận được, nhưng khối lượng đứng sau nó gần bằng không. Một tổ chức tính năng lực bán tài sản dựa trên chênh lệch mua bán quan sát được sẽ tin rằng mình thanh lý được danh mục ở gần giá thị trường - và phát hiện ra điều ngược lại đúng vào ngày cần nó nhất."
+      },
+      {
         type: "closing",
         lines: [
           "Vốn giữ cho tổ chức sống sót về mặt kế toán; thanh khoản giữ cho nó sống sót tới sáng mai.",
@@ -2392,6 +2423,19 @@ export const FRM_CORE_GAPS_LESSONS: Lesson[] = [
         text: "Dùng chung một mức FTP cho mọi kỳ hạn nghĩa là trợ giá cho tài sản dài hạn bằng chi phí của tài sản ngắn hạn. Bộ phận kinh doanh phản ứng hoàn toàn hợp lý với tín hiệu giá đó: dồn về tài sản dài hạn lãi cao, và bảng cân đối của cả tổ chức lệch kỳ hạn dần mà không ai cố ý."
       },
       {
+        type: "heading",
+        text: "Một mức bình quân giấu đi bao nhiêu"
+      },
+      {
+        type: "paragraph",
+        text: "Ngân hàng cấp một khoản vay 5 năm, lãi suất 7,5%. Nếu trung tâm vốn tính FTP theo một mức bình quân 3,0% - xấp xỉ chi phí nguồn ngắn hạn - thì đơn vị kinh doanh báo cáo biên lãi 4,5% và khoản vay trông rất hấp dẫn. Nhưng chi phí thật để tài trợ một tài sản 5 năm là lãi suất tham chiếu 5 năm 3,8% cộng phần bù thanh khoản 0,4%, tức 4,2%. Tính đúng kỳ hạn, biên lãi chỉ còn 3,3%. Chênh lệch 120 điểm cơ bản đó không biến mất - nó là khoản bù cho rủi ro thanh khoản mà bộ phận nguồn vốn đang gánh thay, và đang bị ghi nhầm thành lợi nhuận của bộ phận cho vay."
+      },
+      {
+        type: "callout",
+        label: "Hệ quả không dừng ở báo cáo nội bộ",
+        text: "Nếu thưởng và hạn mức tăng trưởng bám theo con số 4,5% kia, đơn vị kinh doanh sẽ đẩy mạnh đúng loại tài sản dài hạn đang được trợ giá, và co lại đúng loại tài sản ngắn hạn đang bị tính đắt. Bảng cân đối dịch chuyển dần về phía lệch kỳ hạn nhiều hơn, không phải vì ai quyết định như vậy, mà vì hệ thống giá nội bộ đã nói với mọi người rằng vốn dài hạn không tốn thêm gì. Đó là lý do FTP là một công cụ quản trị rủi ro, không phải một thủ tục kế toán."
+      },
+      {
         type: "closing",
         lines: [
           "Bạn được cái mà bạn định giá; định giá sai thì được cái mình không muốn.",
@@ -2546,6 +2590,23 @@ export const FRM_CORE_GAPS_LESSONS: Lesson[] = [
         text: "Ngân hàng số và mạng xã hội đã thay đổi tốc độ rút tiền theo cách mà dữ liệu lịch sử chưa ghi nhận. Một giả định được hiệu chỉnh cẩn thận trên số liệu nhiều thập kỷ vẫn có thể lạc hậu, vì bản thân cơ chế rút tiền đã khác."
       },
       {
+        type: "heading",
+        text: "Đếm ra một con số ngày"
+      },
+      {
+        type: "paragraph",
+        text: "Toàn bộ bài kiểm định quy về việc so hai đường. Đường thứ nhất là dòng tiền ra tích lũy theo kịch bản: giả sử 2 đơn vị nguồn vốn bán buôn đáo hạn mỗi ngày và không đơn vị nào được gia hạn; tiền gửi rút 3 đơn vị mỗi ngày trong 5 ngày đầu rồi chậm lại còn 1; và ngay ngày đầu tiên khách hàng rút 10 đơn vị từ các hạn mức tín dụng đã cam kết. Đường thứ hai là năng lực bù đắp - tài sản chất lượng cao chưa bị ràng buộc, sau haircut, giả sử bằng 40."
+      },
+      {
+        type: "callout",
+        label: "Kết quả: sống được 6 ngày",
+        text: "Lũy kế dòng ra: ngày 1 là 15, ngày 2 là 20, ngày 3 là 25, ngày 4 là 30, ngày 5 là 35, ngày 6 là 38, ngày 7 là 41. Năng lực bù đắp 40 cạn trong ngày thứ bảy, nên thời gian sống sót là 6 ngày. Con số này mới là đầu ra có ích, chứ không phải một tỷ lệ phần trăm: nó trả lời trực tiếp câu hỏi ban lãnh đạo cần - còn bao nhiêu ngày để hành động, và mỗi phương án trong kế hoạch dự phòng cần bao lâu để tạo ra tiền. Một phương án bán danh mục mất 10 ngày là vô dụng ở đây."
+      },
+      {
+        type: "paragraph",
+        text: "Thay một giả định thì con số ngày đổi ngay, và đó là điểm mấu chốt: hạn mức tín dụng đã cam kết chưa dùng không nằm trên bảng cân đối, nhưng ở kịch bản này nó chiếm 10 trong tổng 41 - phần lớn nhất của ngày đầu tiên. Một bài kiểm định bỏ qua các nghĩa vụ ngoại bảng sẽ cho ra thời gian sống sót dài hơn nhiều và sai theo đúng hướng nguy hiểm."
+      },
+      {
         type: "closing",
         lines: [
           "Một bài kiểm định không nối được với kế hoạch hành động chỉ là một con số đẹp trong báo cáo.",
@@ -2694,6 +2755,36 @@ export const FRM_CORE_GAPS_LESSONS: Lesson[] = [
         type: "callout",
         label: "Tài sản chưa bị ràng buộc là con số quan trọng",
         text: "Khi đánh giá năng lực thanh khoản của một định chế, tổng tài sản gần như không có ý nghĩa. Con số cần tìm là phần tài sản chất lượng cao chưa bị cầm cố - phần duy nhất có thể đem ra huy động tiền trong tình huống khẩn cấp."
+      },
+      {
+        type: "heading",
+        text: "Con số duy nhất đáng nhìn: tài sản chất lượng cao chưa bị ràng buộc"
+      },
+      {
+        type: "paragraph",
+        text: "Một ngân hàng có tổng tài sản 1.000. Trong đó 550 là khoản vay khách hàng - không ai nhận làm bảo đảm trong một buổi sáng căng thẳng. Còn 450 là trái phiếu chất lượng cao, nhưng 300 đã đem thế chấp cho các khoản vay và giao dịch phái sinh đang mở. Năng lực thanh khoản thật của tổ chức này không phải 1.000, cũng không phải 450, mà là 150 - và sau haircut thì còn ít hơn. Đó là lý do một bảng cân đối lớn không nói gì về khả năng sống sót qua một tuần."
+      },
+      {
+        type: "conceptTable",
+        title: "Vì sao cùng một danh mục lại có nhiều mức haircut khác nhau",
+        subtitle: "Ba yếu tố quyết định, và chúng cùng xấu đi một lúc",
+        concepts: [
+          {
+            vi: "Độ biến động giá",
+            en: "Price volatility",
+            def: "Haircut phải phủ được mức giảm giá có thể xảy ra trong thời gian bên cho vay cần để bán. Biến động tăng gấp đôi thì haircut cũng phải tăng theo, và đó chính là lúc bên vay ít có khả năng bù nhất."
+          },
+          {
+            vi: "Thanh khoản của thị trường cho tài sản đó",
+            en: "Market liquidity",
+            def: "Trái phiếu chính phủ bán được cả tỷ trong vài phút; một lô trái phiếu doanh nghiệp hạng thấp có thể mất nhiều ngày. Thời gian thanh lý dài hơn đồng nghĩa với khoảng giá phải phòng thủ rộng hơn."
+          },
+          {
+            vi: "Tương quan giữa tài sản và bên vay",
+            en: "Wrong-way risk",
+            def: "Nếu tài sản bảo đảm mất giá đúng vào lúc bên vay gặp khó - ví dụ ngân hàng đem chính trái phiếu của các ngân hàng khác đi thế chấp - thì bảo đảm biến mất đúng lúc cần nhất, nên haircut phải cao hơn hẳn."
+          }
+        ]
       },
       {
         type: "closing",

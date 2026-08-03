@@ -327,6 +327,23 @@ export const FRM_MARKET_RISK_LESSONS: Lesson[] = [
         text: "Kiểm định hậu nghiệm không so VaR với lãi lỗ thực tế của ngày hôm đó, mà với lỗ giả định: giữ nguyên danh mục đầu ngày và định giá lại theo biến động thị trường trong ngày. Lý do là lãi lỗ thực tế còn chứa kết quả mua bán trong ngày, phí và hoa hồng - những thứ VaR không hề đo. Trộn chúng vào sẽ khiến một bàn giao dịch có ngày kinh doanh tốt che lấp một mô hình rủi ro tồi.",
       },
       {
+        type: "heading",
+        text: "Hệ đèn giao thông của Basel: từ số vi phạm sang tiền vốn"
+      },
+      {
+        type: "paragraph",
+        text: "Với VaR mức tin cậy 99% và cửa sổ 250 ngày giao dịch, số vi phạm kỳ vọng là 250 × 1% = 2,5 lần một năm. Không ai kỳ vọng đúng 2,5 - câu hỏi là bao nhiêu thì đủ xa để kết luận mô hình sai chứ không phải xui. Basel trả lời bằng ba vùng: 0 đến 4 vi phạm là vùng xanh, 5 đến 9 là vùng vàng, từ 10 trở lên là vùng đỏ. Điều làm cơ chế này có răng là hệ số nhân vốn đi kèm: vùng xanh giữ hệ số 3,0; vùng vàng nâng dần từ 3,4 ở mức 5 vi phạm lên 3,85 ở mức 9; vùng đỏ là 4,0. Một mô hình đo kém không chỉ bị nhắc nhở - nó trực tiếp làm tăng vốn phải giữ."
+      },
+      {
+        type: "callout",
+        label: "Vì sao 4 và 5 vi phạm khác nhau nhiều đến thế",
+        text: "Không phải vì một lần vi phạm thêm có ý nghĩa kinh tế lớn, mà vì ranh giới phải đặt ở đâu đó và vùng vàng được thiết kế để dịch chuyển động cơ. Ở vùng vàng, gánh nặng chứng minh đảo chiều: ngân hàng phải giải thích vì sao mô hình vẫn đáng tin, thay vì cơ quan quản lý phải chứng minh nó hỏng. Với 250 quan sát, một mô hình đúng vẫn có xác suất đáng kể rơi vào vùng vàng - đó là cái giá của mẫu nhỏ, và là lý do vùng vàng không tự động đồng nghĩa với vi phạm."
+      },
+      {
+        type: "paragraph",
+        text: "Đếm số vi phạm mới trả lời được một nửa câu hỏi. Nửa còn lại là chúng nằm rải đều hay dồn cục. Bốn vi phạm rải trong năm nằm gọn trong vùng xanh; bốn vi phạm rơi vào bốn ngày liên tiếp cũng nằm trong vùng xanh, nhưng nó nói rằng mô hình không cập nhật kịp khi biến động nhảy bậc - đúng loại hỏng hóc gây thiệt hại lớn nhất. Đó là lý do kiểm định độc lập của các vi phạm được làm song song với kiểm định tần suất, chứ không thay thế nó."
+      },
+      {
         type: "closing",
         lines: [
           "Một mô hình chưa từng sai chưa chắc tốt - nhiều khả năng nó chỉ đang đắt.",

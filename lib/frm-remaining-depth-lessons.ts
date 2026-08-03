@@ -965,6 +965,26 @@ export const FRM_REMAINING_DEPTH_LESSONS: Lesson[] = [
         label: "Đáng nhớ",
         text: "Đối tác repo không cần rút tiền để làm bạn sụp. Họ chỉ cần không đảo hợp đồng vào sáng hôm sau.",
       },
+      {
+        type: "heading",
+        text: "Haircut tăng 2 điểm phần trăm, danh mục phải bán một nửa"
+      },
+      {
+        type: "paragraph",
+        text: "Một quỹ nắm 100 trái phiếu, tài trợ bằng repo với haircut 2%. Nghĩa là đối tác cho vay 98 và quỹ bỏ ra 2 vốn tự có - đòn bẩy 50 lần. Thị trường biến động, đối tác nâng haircut lên 4%. Cùng danh mục đó giờ chỉ vay được 96, và 2 vốn tự có chỉ đỡ được 2 / 0,04 = 50 tài sản. Quỹ phải bơm thêm vốn hoặc bán 50 trong tổng 100 - một nửa danh mục, trong một buổi sáng, không phải vì có ai đòi lại tiền mà chỉ vì một tham số đổi từ 2 lên 4."
+      },
+      {
+        type: "callout",
+        label: "Chỗ khiến nó thành vấn đề hệ thống",
+        text: "Haircut không tăng riêng cho một quỹ. Nó tăng cho mọi bên vay cùng loại tài sản, cùng một lúc, vì tất cả đối tác đều nhìn cùng một mức biến động. Nên nhiều quỹ cùng phải bán cùng một thứ trong cùng một buổi sáng. Giá giảm, biến động tăng thêm, đối tác lại nâng haircut - và vòng lặp chạy tiếp mà không bước nào trong đó là hành vi sai của ai cả. Mỗi bên cho vay đang tự bảo vệ mình một cách hoàn toàn hợp lý."
+      },
+      {
+        type: "closing",
+        lines: [
+          "Đòn bẩy trong repo không phải một con số bạn chọn, mà là nghịch đảo của một tham số người khác chọn.",
+          "Và họ đổi nó đúng vào lúc bạn ít xoay xở được nhất."
+        ]
+      },
     ],
   },
 
