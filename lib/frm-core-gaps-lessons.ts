@@ -1400,6 +1400,29 @@ export const FRM_CORE_GAPS_LESSONS: Lesson[] = [
         correct: 0,
         explanation: "Chuyển giao hoạt động sang nhà cung cấp không chuyển giao được trách nhiệm với khách hàng và cơ quan quản lý. Khó khăn thực tế là đánh giá mức bảo mật của một hệ thống mình không được vào xem, nên phải dựa vào chứng nhận, kiểm toán bên thứ ba và điều khoản hợp đồng."
       }
+    ,
+    {
+      "question": "Vì sao kế hoạch ứng phó sự cố an ninh mạng phải được diễn tập chứ không chỉ viết ra?",
+      "options": [
+        "Vì chỉ khi diễn tập mới lộ ra các phụ thuộc tài liệu không ghi",
+        "Vì cơ quan quản lý yêu cầu diễn tập tối thiểu hai lần mỗi năm tài chính",
+        "Vì kế hoạch viết ra sẽ hết hiệu lực nếu không được cập nhật hằng quý",
+        "Vì nhân sự sẽ không đọc kế hoạch nếu không bị bắt buộc tham gia diễn tập"
+      ],
+      "correct": 0,
+      "explanation": "Diễn tập là nơi phát hiện rằng hệ thống dự phòng cần một mật khẩu chỉ một người biết, hoặc rằng danh sách liên lạc khẩn được lưu ngay trên hệ thống vừa bị khoá. Những phụ thuộc đó không nằm trong tài liệu nào."
+    },
+    {
+      "question": "Vì sao phát hiện xâm nhập quan trọng ngang với ngăn chặn xâm nhập?",
+      "options": [
+        "Kẻ tấn công sẽ vào được, nên thời gian phát hiện quyết định thiệt hại",
+        "Vì các biện pháp ngăn chặn thường tốn kém hơn nhiều so với biện pháp phát hiện",
+        "Vì cơ quan quản lý chỉ đánh giá năng lực phát hiện",
+        "Vì hệ thống phát hiện có thể tự động chặn mọi cuộc tấn công đã được nhận diện"
+      ],
+      "correct": 0,
+      "explanation": "Không hàng phòng thủ nào kín tuyệt đối, nên câu hỏi không phải có bị vào hay không mà là bao lâu thì biết. Khoảng thời gian kẻ tấn công ở trong hệ thống mà không bị phát hiện tỷ lệ gần như thuận với quy mô thiệt hại cuối cùng."
+    }
     ],
     keyTakeaways: [
       "An ninh mạng có đối thủ thích nghi, nên mô hình dựa trên tần suất quá khứ đặc biệt yếu",
@@ -1531,6 +1554,29 @@ export const FRM_CORE_GAPS_LESSONS: Lesson[] = [
         correct: 0,
         explanation: "Chỉ tiêu bất khả thi tác động vào hai cạnh cùng lúc: tạo áp lực và cấp sẵn câu chuyện tự biện hộ rằng ai cũng phải làm vậy mới đạt. Đây là lý do thiết kế đãi ngộ được coi là một biện pháp kiểm soát rủi ro, không chỉ là chuyện nhân sự."
       }
+    ,
+    {
+      "question": "Vì sao đối chiếu độc lập giữa bộ phận giao dịch và bộ phận hậu kiểm là chốt chặn quan trọng?",
+      "options": [
+        "Vì số liệu phải khớp với xác nhận bên ngoài, không chỉ khớp trong sổ",
+        "Vì nó cho phép bộ phận hậu kiểm phê duyệt lại các giao dịch đã thực hiện",
+        "Vì quy định yêu cầu mọi giao dịch phải được hai bộ phận ghi nhận song song",
+        "Vì bộ phận hậu kiểm thường có nhiều kinh nghiệm hơn về sản phẩm giao dịch"
+      ],
+      "correct": 0,
+      "explanation": "Phần lớn vụ gian lận giao dịch lớn đều dựa vào việc cùng một người vừa giao dịch vừa xác nhận. Đối chiếu với xác nhận của đối tác bên ngoài phá vỡ điều đó, vì người gian lận không kiểm soát được bên kia."
+    },
+    {
+      "question": "Vì sao gian lận có thông đồng làm hỏng chính nguyên tắc phân tách nhiệm vụ?",
+      "options": [
+        "Vì nguyên tắc đó dựa trên giả định hai người kiểm tra chéo nhau độc lập",
+        "Vì người thông đồng thường là quản lý cấp cao",
+        "Vì gian lận dạng này luôn có giá trị nhỏ hơn ngưỡng trọng yếu để kiểm tra",
+        "Vì phân tách nhiệm vụ chỉ áp dụng được cho các quy trình có ít bước xử lý"
+      ],
+      "correct": 0,
+      "explanation": "Phân tách nhiệm vụ hoạt động vì hai người không có động cơ chung. Khi họ bắt tay, chính cơ chế ấy thành lớp vỏ bảo vệ - mọi bước đều có chữ ký hợp lệ. Đây là lý do phải bổ sung các chốt không dựa vào con người, như luân chuyển vị trí và nghỉ phép bắt buộc."
+    }
     ],
     keyTakeaways: [
       "Tam giác gian lận: động cơ, cơ hội, tự bào chữa - kiểm soát nhắm chủ yếu vào cơ hội",
@@ -1662,6 +1708,29 @@ export const FRM_CORE_GAPS_LESSONS: Lesson[] = [
         correct: 0,
         explanation: "Vốn là tấm đệm hấp thụ hậu quả, không phải biện pháp phòng ngừa. Một ngân hàng đủ vốn cho một vụ gian lận lớn vẫn mất tiền và mất uy tín - việc đóng lỗ hổng kiểm soát mới là thứ ngăn tổn thất phát sinh."
       }
+    ,
+    {
+      "question": "Vì sao Basel chuyển từ phương pháp mô hình nội bộ sang một phương pháp chuẩn hoá cho rủi ro hoạt động?",
+      "options": [
+        "Vì hai ngân hàng có hồ sơ rủi ro tương tự lại ra mức vốn rất khác nhau",
+        "Vì phương pháp mô hình nội bộ luôn cho mức vốn thấp hơn thực tế cần thiết",
+        "Vì dữ liệu tổn thất hoạt động không được phép dùng trong tính vốn nữa",
+        "Vì các ngân hàng nhỏ không có đủ nguồn lực để xây mô hình nội bộ"
+      ],
+      "correct": 0,
+      "explanation": "Với dữ liệu đuôi rất thưa và người tính có động cơ giảm vốn, mức tự do trong mô hình hoá trở thành một biến số mạnh hơn cả bản thân hồ sơ rủi ro. Chuẩn hoá đánh đổi độ nhạy lấy khả năng so sánh giữa các tổ chức."
+    },
+    {
+      "question": "Vốn cho rủi ro hoạt động đóng vai trò gì trong khung quản trị?",
+      "options": [
+        "Là lớp hấp thụ tổn thất, không phải công cụ làm giảm khả năng sự cố xảy ra",
+        "Là công cụ chính để giảm tần suất và mức độ nghiêm trọng của sự cố vận hành",
+        "Là khoản dự phòng dùng để bù đắp các khoản phạt từ cơ quan quản lý",
+        "Là chỉ số phản ánh chất lượng hệ thống kiểm soát nội bộ của tổ chức"
+      ],
+      "correct": 0,
+      "explanation": "Vốn không ngăn được một sự cố nào cả - nó chỉ bảo đảm tổ chức sống sót khi sự cố xảy ra. Thứ làm giảm rủi ro thật là quy trình, chốt kiểm soát và văn hoá; vốn là lớp cuối cùng sau khi ba thứ đó đã thất bại."
+    }
     ],
     keyTakeaways: [
       "Basel bỏ mô hình nội bộ cho rủi ro hoạt động vì kết quả thiếu tính so sánh và dễ bị điều chỉnh",
@@ -1788,6 +1857,29 @@ export const FRM_CORE_GAPS_LESSONS: Lesson[] = [
         correct: 0,
         explanation: "Con người tối ưu theo thứ được đo và thưởng. Chỉ tiêu số lượng thuần tuý biến sự phù hợp với khách hàng thành trở ngại cần vượt qua thay vì mục tiêu cần đạt - đây là lý do các cải cách sau khủng hoảng đều động vào cấu trúc thưởng."
       }
+    ,
+    {
+      "question": "Vì sao rủi ro hành vi khó đo bằng dữ liệu tổn thất lịch sử?",
+      "options": [
+        "Vì tổn thất thường đến dưới dạng phạt nhiều năm sau khi hành vi đã chấm dứt",
+        "Vì các khoản phạt hành vi không được ghi nhận trong dữ liệu tổn thất vận hành",
+        "Vì hành vi bán hàng không để lại dấu vết nào trong hệ thống của tổ chức",
+        "Vì cơ quan quản lý không công bố các khoản phạt liên quan tới rủi ro hành vi"
+      ],
+      "correct": 0,
+      "explanation": "Độ trễ giữa hành vi và hậu quả có thể là năm tới mười năm. Trong khoảng đó, dữ liệu tổn thất cho thấy mọi thứ bình thường, và mô hình dựa trên nó sẽ báo rủi ro thấp đúng vào giai đoạn rủi ro đang tích tụ nhanh nhất."
+    },
+    {
+      "question": "Vì sao chỉ tuân thủ đúng quy định pháp lý hiện hành vẫn chưa đủ để kiểm soát rủi ro hành vi?",
+      "options": [
+        "Vì cơ quan quản lý có thể đánh giá lại theo chuẩn đối xử công bằng với khách hàng",
+        "Vì quy định pháp lý thay đổi quá nhanh để bộ phận tuân thủ theo kịp",
+        "Vì phần lớn quy định hiện hành chưa đề cập tới các sản phẩm tài chính mới",
+        "Vì tuân thủ là trách nhiệm của bộ phận pháp chế chứ không phải của kinh doanh"
+      ],
+      "correct": 0,
+      "explanation": "Nhiều vụ phạt lớn nhất xuất phát từ sản phẩm bán đúng quy trình pháp lý lúc đó nhưng không phù hợp với nhu cầu và hiểu biết của người mua. Câu hỏi kiểm tra thực tế không phải điều này có hợp pháp không, mà khách hàng có hiểu họ đang mua gì không."
+    }
     ],
     keyTakeaways: [
       "Tuân thủ hỏi có vi phạm quy định không, hành vi hỏi có đối xử công bằng với khách hàng không",
@@ -1918,6 +2010,29 @@ export const FRM_CORE_GAPS_LESSONS: Lesson[] = [
         correct: 0,
         explanation: "Phòng hộ dựa vào việc có đối tác sẵn sàng nhận rủi ro. Khủng hoảng thanh khoản mang tính hệ thống nên đúng lúc bạn cần thực hiện quyền thì đối tác cũng đang thiếu tiền - đây là lý do phòng vệ thanh khoản chủ yếu dựa vào dự trữ tự có chứ không phải hợp đồng."
       }
+    ,
+    {
+      "question": "Vòng xoáy giữa hai loại thanh khoản vận hành theo cơ chế nào?",
+      "options": [
+        "Thiếu tiền buộc bán tài sản, bán gấp làm giá giảm, giá giảm lại làm khó vay thêm",
+        "Thị trường mất thanh khoản làm lãi suất tăng, lãi suất tăng làm chi phí vốn cao hơn",
+        "Nhà đầu tư rút vốn làm giá cổ phiếu giảm, giá giảm làm xếp hạng tín nhiệm bị hạ",
+        "Ngân hàng trung ương siết tiền tệ làm cả hai loại thanh khoản cùng khan hiếm"
+      ],
+      "correct": 0,
+      "explanation": "Đây là cơ chế đã làm sụp đổ nhiều tổ chức trong khủng hoảng 2008: mỗi vòng làm vòng sau tệ hơn, và nó tự chạy mà không cần thêm cú sốc mới nào. Tài sản bảo đảm mất giá cũng kéo theo yêu cầu ký quỹ bổ sung, siết thêm một vòng nữa."
+    },
+    {
+      "question": "Vì sao tài sản thanh khoản chất lượng cao phải không bị dùng làm tài sản bảo đảm cho khoản vay nào khác?",
+      "options": [
+        "Vì tài sản đã thế chấp thì không bán được để lấy tiền khi cần",
+        "Vì chuẩn kế toán không cho ghi nhận tài sản đã thế chấp trên bảng cân đối",
+        "Vì tài sản thế chấp bị áp chiết khấu cao hơn",
+        "Vì bên nhận thế chấp có quyền ưu tiên mua lại tài sản đó với giá thị trường"
+      ],
+      "correct": 0,
+      "explanation": "Một danh mục trái phiếu chính phủ lớn không giúp gì nếu toàn bộ đã nằm trong các hợp đồng mua lại. Đây là lý do chuẩn thanh khoản chỉ tính phần tài sản thực sự tự do và chuyển thành tiền được ngay khi cần."
+    }
     ],
     keyTakeaways: [
       "Thanh khoản thị trường thuộc về tài sản, thanh khoản tài trợ thuộc về tổ chức",
@@ -2047,6 +2162,29 @@ export const FRM_CORE_GAPS_LESSONS: Lesson[] = [
         correct: 0,
         explanation: "Chính các giả định làm thang dòng tiền bình thường trông ổn - tiền gửi lõi ổn định, tài sản bán được theo giá thị trường, nguồn vốn bán buôn gia hạn được - đều là những thứ đổ vỡ đầu tiên trong khủng hoảng."
       }
+    ,
+    {
+      "question": "Vì sao dòng tiền ngoại bảng phải được đưa vào thang dòng tiền?",
+      "options": [
+        "Vì hạn mức cam kết chưa giải ngân có thể bị rút đồng loạt đúng lúc căng thẳng",
+        "Vì chuẩn kế toán yêu cầu trình bày mọi cam kết ngoại bảng trong thuyết minh",
+        "Vì dòng tiền ngoại bảng thường lớn hơn dòng tiền trên bảng cân đối",
+        "Vì cam kết ngoại bảng luôn đáo hạn trong vòng ba mươi ngày đầu tiên"
+      ],
+      "correct": 0,
+      "explanation": "Hạn mức tín dụng đã cam kết cho khách hàng là nghĩa vụ thật: khi thị trường xấu, khách rút hết cùng lúc vì họ cũng đang thiếu tiền. Bỏ chúng ra khỏi thang dòng tiền là bỏ đúng phần nghĩa vụ tăng vọt trong kịch bản xấu."
+    },
+    {
+      "question": "Vì sao khe hở dồn tích quan trọng hơn khe hở của từng dải riêng lẻ?",
+      "options": [
+        "Vì thặng dư ở dải trước có thể bù cho thiếu hụt ở dải sau",
+        "Vì quy định chỉ yêu cầu con số dồn tích",
+        "Vì khe hở từng dải luôn dao động mạnh nên không đọc được xu hướng",
+        "Vì khe hở dồn tích loại bỏ được ảnh hưởng của các giả định hành vi"
+      ],
+      "correct": 0,
+      "explanation": "Một dải âm không có nghĩa là thiếu tiền nếu dải trước đó dư ra đủ để mang sang. Con số cần nhìn là thời điểm mà tổng cộng dồn chuyển sang âm - đó mới là ngày tổ chức thật sự hết tiền."
+    }
     ],
     keyTakeaways: [
       "Thang dòng tiền xếp dòng vào và ra theo dải kỳ hạn, khe hở dồn tích chỉ ra thời điểm cạn tiền",
@@ -2178,6 +2316,29 @@ export const FRM_CORE_GAPS_LESSONS: Lesson[] = [
         correct: 0,
         explanation: "FTP là tín hiệu giá nội bộ, và tổ chức phân bổ vốn, nhân sự, chỉ tiêu theo tín hiệu đó. Giá sai dẫn tới phân bổ sai một cách hệ thống trong nhiều năm trước khi hậu quả lộ ra."
       }
+    ,
+    {
+      "question": "Vì sao FTP nên là giá nội bộ áp cho cả hai phía - bên huy động vốn và bên sử dụng vốn?",
+      "options": [
+        "Vì chỉ khi đó mới đo được đóng góp thật của từng bộ phận vào lợi nhuận",
+        "Vì bộ phận huy động vốn cần được thưởng theo khối lượng tiền gửi mang về",
+        "Vì quy định yêu cầu mọi luồng vốn nội bộ phải được định giá hai chiều",
+        "Vì hai phía luôn có quy mô bằng nhau nên phải dùng cùng một mức giá"
+      ],
+      "correct": 0,
+      "explanation": "Bên nhận tiền gửi bán vốn cho hệ thống theo giá FTP, bên cho vay mua vốn theo giá đó. Cùng một mức giá cho cả hai phía là điều làm lợi nhuận của từng mảng phản ánh đóng góp thật thay vì phản ánh vị trí của nó trong bảng cân đối."
+    },
+    {
+      "question": "Hệ quả trực tiếp của một hệ thống FTP đặt giá quá thấp cho kỳ hạn dài là gì?",
+      "options": [
+        "Bộ phận cho vay dài hạn trông có lãi hơn thực tế và mở rộng quá mức",
+        "Bộ phận huy động vốn ngắn hạn mất động lực thu hút thêm tiền gửi mới",
+        "Chi phí vốn bình quân của toàn ngân hàng bị ghi nhận cao hơn thực tế",
+        "Ngân hàng phải trích lập thêm vốn cho phần rủi ro kỳ hạn chưa được tính"
+      ],
+      "correct": 0,
+      "explanation": "Giá nội bộ sai dẫn tới phân bổ vốn sai, và nó sai theo hướng nguy hiểm: mảng gánh rủi ro kỳ hạn nhiều nhất lại trông sinh lời nhất, nên được giao thêm nguồn lực. FTP không chỉ là bút toán nội bộ - nó định hình chiến lược."
+    }
     ],
     keyTakeaways: [
       "FTP đưa chi phí vốn và chi phí thanh khoản về đúng đơn vị kinh doanh tạo ra chúng",
@@ -2308,6 +2469,29 @@ export const FRM_CORE_GAPS_LESSONS: Lesson[] = [
         correct: 0,
         explanation: "Các đợt rút tiền gần đây cho thấy tốc độ có thể nhanh hơn nhiều so với các tiền lệ được dùng để hiệu chỉnh mô hình, khi khách hàng chuyển tiền chỉ bằng vài thao tác và tin đồn lan trong vài giờ. Giả định hiệu chỉnh theo quá khứ có thể lạc hậu về mặt cấu trúc."
       }
+    ,
+    {
+      "question": "Vì sao giả định về tốc độ rút tiền gửi là tham số nhạy nhất trong kiểm định thanh khoản?",
+      "options": [
+        "Vì nó quyết định gần như toàn bộ dòng tiền ra trong kịch bản, mà lại không có dữ liệu thật",
+        "Vì tiền gửi chiếm phần lớn tài sản của ngân hàng trên bảng cân đối",
+        "Vì tốc độ rút tiền được cơ quan quản lý quy định cố định cho mọi ngân hàng",
+        "Vì tiền gửi là nguồn vốn duy nhất có thể bị rút trước hạn mà không phải bồi thường"
+      ],
+      "correct": 0,
+      "explanation": "Không tổ chức nào có dữ liệu về chính cuộc rút tiền hàng loạt của mình - nếu có thì họ đã không còn tồn tại để dùng nó. Nên tham số quan trọng nhất lại là tham số phải giả định, và sự kiện Silicon Valley Bank cho thấy các giả định cũ đã quá lạc quan."
+    },
+    {
+      "question": "Kế hoạch tài trợ dự phòng cần yếu tố nào để không dừng ở mức một tài liệu?",
+      "options": [
+        "Ngưỡng kích hoạt cụ thể, người chịu trách nhiệm và các nguồn vốn đã thử nghiệm",
+        "Chữ ký phê duyệt của hội đồng quản trị và bản cập nhật hằng năm",
+        "Danh sách đầy đủ mọi kịch bản căng thẳng có thể xảy ra với tổ chức",
+        "Cam kết bằng văn bản từ ngân hàng trung ương về khả năng hỗ trợ thanh khoản"
+      ],
+      "correct": 0,
+      "explanation": "Kế hoạch không nói rõ ai bấm nút, ở ngưỡng nào, và gọi nguồn nào thì sẽ được đọc lại lần đầu tiên đúng vào lúc khủng hoảng. Nguồn vốn dự phòng cũng phải được thử trong điều kiện bình thường - hạn mức chưa từng rút thường không có sẵn khi cần nhất."
+    }
     ],
     keyTakeaways: [
       "Kết quả cốt lõi là thời gian sống sót, vì đó là con số hành động được",
