@@ -40,6 +40,11 @@ export const ADVANCED_MASTERCLASS_LESSONS: Lesson[] = [
       description:
         "Cap rate căn hộ cho thuê ở các quận trung tâm TP.HCM nhiều năm nay dao động quanh 4-6%, trong khi lãi vay mua nhà thả nổi sau ưu đãi thường 10-12%. Nghĩa là mỗi đồng vay về để mua căn hộ cho thuê đang làm dòng tiền âm thêm - người mua thực chất đang đặt cược vào tăng giá đất chứ không phải vào tiền thuê.",
     },
+    application: {
+      title: "Một căn hộ, ba con số",
+      message: "Lấy một tin rao cho thuê bất kỳ đang có thật trên thị trường và tính lần lượt: lợi suất gộp, cap rate sau khi trừ trống 1,5 tháng cộng phí quản lý và dự phòng nội thất, rồi cash-on-cash nếu vay 60% ở lãi suất thả nổi năm thứ ba. Ba con số này thường cách nhau xa tới mức người bán và người mua đang nói về hai tài sản khác nhau.",
+      secondary: "Nếu cap rate ra thấp hơn lãi suất vay, hãy viết ra thành một câu: khoản này chỉ có lãi nếu giá đất tăng ít nhất bao nhiêu phần trăm mỗi năm. Đó mới là vụ cược bạn đang đặt.",
+    },
     sections: [
       {
         type: "lead",
@@ -258,6 +263,11 @@ export const ADVANCED_MASTERCLASS_LESSONS: Lesson[] = [
       description:
         "Sau các vụ việc liên quan Tân Hoàng Minh và Vạn Thịnh Phát, thị trường trái phiếu doanh nghiệp riêng lẻ gần như đóng băng. Nhiều lô trái phiếu bất động sản được bán cho nhà đầu tư cá nhân với lãi suất 11-13% thuộc nhóm quen được gọi là 'ba không': không xếp hạng tín nhiệm, không tài sản đảm bảo đủ chất lượng, không bảo lãnh thanh toán. Nghị định 65/2022 sau đó siết lại điều kiện phát hành và chuẩn nhà đầu tư chuyên nghiệp.",
     },
+    application: {
+      title: "Đọc phần chênh, không đọc con số to",
+      message: "Với lô trái phiếu gần nhất bạn thấy được chào, tra lợi suất trái phiếu chính phủ cùng kỳ hạn và trừ đi. Phần còn lại là giá thị trường đặt cho khả năng doanh nghiệp này không trả được. Rồi mở báo cáo tài chính và tìm dòng tiền từ hoạt động kinh doanh có đủ phủ lãi vay hay không.",
+      secondary: "Nếu spread cao bất thường mà bạn không chỉ ra được nó cao vì cái gì, thì thứ bạn chưa biết chính là thứ bạn đang được trả tiền để gánh.",
+    },
     sections: [
       {
         type: "lead",
@@ -468,6 +478,11 @@ export const ADVANCED_MASTERCLASS_LESSONS: Lesson[] = [
       description:
         "Các startup như MoMo, VNPay hay Tiki đều đi qua nhiều vòng Seed, Series A, B, C trước khi đạt quy mô lớn. Sau bốn đến năm vòng, tỷ lệ sở hữu của nhóm sáng lập thường rơi từ 100% xuống còn khoảng 15-25% - điều đó bình thường và không đáng sợ, miễn là miếng bánh nhỏ hơn nằm trên một chiếc bánh lớn hơn nhiều lần.",
     },
+    application: {
+      title: "Ba kịch bản thoái vốn trước khi ký",
+      message: "Dựng bảng chia tiền cho ba mức exit - dưới vốn đã gọi, bằng khoảng hai lần, và mức lạc quan - rồi xem nhà sáng lập thực nhận bao nhiêu ở từng mức. Với liquidation preference 1x participating, kịch bản exit thấp có thể trả về gần như không đồng nào cho cổ phần thường dù định giá vòng gọi vốn nghe rất đẹp.",
+      secondary: "Khi so hai term sheet, quy cả hai về cùng gốc: cùng vị trí option pool, cùng loại preference. Chỉ sau đó con số định giá mới so sánh được với nhau.",
+    },
     sections: [
       {
         type: "lead",
@@ -667,6 +682,11 @@ export const ADVANCED_MASTERCLASS_LESSONS: Lesson[] = [
       company: "Bài học từ khủng hoảng 2008",
       description:
         "Trước 2008, mô hình VaR của nhiều ngân hàng lớn báo rủi ro ở mức thấp, vì chúng được hiệu chuẩn trên dữ liệu của những năm thị trường yên ả và giả định giá nhà toàn nước Mỹ không thể cùng giảm một lúc. Khi điều đó xảy ra, tương quan giữa các tài sản vọt lên gần 1 và mọi ước lượng đa dạng hoá sụp đổ cùng lúc. Bản thân công thức không sai - dữ liệu quá khứ đơn giản chưa từng chứa kịch bản đó.",
+    },
+    application: {
+      title: "Hai câu hỏi cho mỗi con số VaR",
+      message: "Lần tới gặp một báo cáo rủi ro, hỏi Expected Shortfall là bao nhiêu, và năm qua backtest vượt ngưỡng mấy lần. Ở mức tin cậy 99%, khoảng bốn lần vượt trong 250 ngày giao dịch nằm trong dung sai; mười lần thì mô hình đang sai chứ không phải thị trường đang lạ.",
+      secondary: "Nếu người trình bày không trả lời được hai câu đó, con số họ đưa chưa phải một phát biểu về rủi ro - nó mới chỉ là đầu ra của một mô hình.",
     },
     sections: [
       {
@@ -878,6 +898,11 @@ export const ADVANCED_MASTERCLASS_LESSONS: Lesson[] = [
       company: "Doanh nghiệp xuất khẩu Việt Nam và CBAM",
       description:
         "Cơ chế điều chỉnh biên giới carbon của EU (CBAM) yêu cầu khai báo lượng phát thải gắn với hàng nhập khẩu ở các nhóm như sắt thép, xi măng, nhôm, phân bón. Với doanh nghiệp Việt Nam trong chuỗi cung ứng này, phát thải chuyển từ một chỉ số báo cáo thành một khoản chi phí trực tiếp. Song song, Việt Nam đã cam kết đạt phát thải ròng bằng 0 vào năm 2050 tại COP26 và đang xây dựng khung pháp lý cho thị trường carbon trong nước.",
+    },
+    application: {
+      title: "Kiểm ba thứ trong mỗi cam kết",
+      message: "Mở báo cáo bền vững của một doanh nghiệp niêm yết và tìm đúng ba thứ: năm gốc để so, mốc trung hạn trước 2030, và tên đơn vị kiểm chứng độc lập. Cam kết trung hoà 2050 không có mốc trung hạn là lời hứa của một ban lãnh đạo đã nghỉ hưu trước hạn.",
+      secondary: "Kiểm luôn phạm vi: giảm phát thải Scope 1 và 2 mà im lặng về Scope 3 thường là bỏ qua phần lớn nhất của chính chuỗi giá trị đó.",
     },
     sections: [
       {

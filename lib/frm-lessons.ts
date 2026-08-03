@@ -136,6 +136,11 @@ export const FRM_LESSONS: Lesson[] = [
       commonMistake: "Coi quản trị rủi ro là việc riêng của phòng Rủi ro, trong khi tuyến 1 (người tạo ra rủi ro) mới là tuyến kiểm soát đầu tiên và quan trọng nhất",
       action: "Với bất kỳ quy trình nào bạn phụ trách, tự hỏi: ai là tuyến 1, ai là tuyến 2 độc lập, và họ có thực sự tách biệt về mặt báo cáo không.",
     },
+    application: {
+      title: "Vẽ ba tuyến cho một quy trình bạn biết",
+      message: "Chọn một quy trình bạn đang tham gia - duyệt chi, phê duyệt tín dụng, đặt lệnh - và ghi tên người thật vào từng tuyến. Kiểm điều kiện cứng: tuyến 2 có báo cáo lên một người khác với người tuyến 1 báo cáo không. Nếu cùng một sếp, tuyến 2 chỉ độc lập trên sơ đồ tổ chức.",
+      secondary: "Chỗ hay hỏng nhất là một người vừa tạo giao dịch vừa xác nhận nó. Tìm xem trong quy trình của bạn có ai đang ở cả hai chỗ không.",
+    },
     sections: [
       {
         type: "lead",
