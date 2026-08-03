@@ -96,6 +96,18 @@ export const MA_EXECUTION_LESSONS: Lesson[] = [
         explanation:
           "Với các thương vụ pha loãng ban đầu, đây là con số ban điều hành phải trình bày cùng lúc với mức pha loãng năm đầu, nếu không hội đồng chỉ nhìn thấy nửa bức tranh.",
       },
+    
+    {
+      "question": "Vì sao một thương vụ làm tăng EPS vẫn có thể phá hủy giá trị?",
+      "options": [
+        "Vì EPS không tính tới cái giá đã trả và rủi ro mới nhận về",
+        "Vì EPS chỉ tăng trong năm đầu rồi giảm trở lại ở các năm sau",
+        "Vì phần tăng EPS đến từ cộng hưởng thường không bao giờ đạt được",
+        "Vì việc tính EPS sau sáp nhập dựa trên số liệu chưa được kiểm toán"
+      ],
+      "correct": 0,
+      "explanation": "Một phép chia có thể cải thiện chỉ vì bạn dùng nợ rẻ để mua lợi nhuận. Nó không nói gì về việc bạn trả cao hơn giá trị nội tại bao nhiêu, hay bảng cân đối vừa gánh thêm rủi ro gì - nên đây là phép tính đầu tiên, không phải phép tính quyết định."
+    }
     ],
     keyTakeaways: [
       "Ba nguồn giảm EPS: lãi vay mới, lãi tiền gửi mất đi, cổ phiếu phát hành thêm",
@@ -259,6 +271,18 @@ export const MA_EXECUTION_LESSONS: Lesson[] = [
         explanation:
           "Các khoản phí thường chiếm vài phần trăm giá trị thương vụ, đủ lớn để thay đổi cơ cấu tài trợ nhưng lại không xuất hiện trong bất kỳ cuộc đàm phán về giá nào.",
       },
+    
+    {
+      "question": "Khoản chi nào hay bị bỏ sót nhất khi lập bảng nguồn và sử dụng vốn lần đầu?",
+      "options": [
+        "Phí giao dịch và phí thu xếp vốn cho phần nợ mới",
+        "Giá mua phần vốn chủ sở hữu trả cho cổ đông bên bán",
+        "Khoản nợ vay hiện hữu của bên bán phải tất toán khi đổi chủ",
+        "Phần vốn tự có mà bên mua bỏ ra để tài trợ thương vụ"
+      ],
+      "correct": 0,
+      "explanation": "Ba khoản kia to và hiển nhiên nên không ai quên. Phí tư vấn, phí pháp lý và phí thu xếp vốn thì lẻ tẻ nhưng cộng lại thường vài phần trăm giá trị thương vụ - đủ để bảng lệch và đủ để đổi cả cấu trúc tài trợ."
+    }
     ],
     keyTakeaways: [
       "Giá mua vốn chủ sở hữu không phải tổng số tiền cần chuẩn bị",
@@ -408,6 +432,18 @@ export const MA_EXECUTION_LESSONS: Lesson[] = [
         explanation:
           "Đây là khoản mục hiếm hoi mà chính báo cáo tài chính thừa nhận một quyết định trong quá khứ đã sai. Nó không ảnh hưởng dòng tiền nhưng ảnh hưởng lớn tới uy tín của ban điều hành.",
       },
+    
+    {
+      "question": "Ghi giảm lợi thế thương mại nói lên điều gì về thương vụ trước đó?",
+      "options": [
+        "Dòng tiền tương lai kỳ vọng lúc mua đã không còn giữ được",
+        "Doanh nghiệp bị mua đã bị bán lại hoặc ngừng hoạt động hoàn toàn",
+        "Giá trị hợp lý của tài sản hữu hình đã bị đánh giá sai lúc mua",
+        "Chuẩn mực kế toán yêu cầu khấu hao lợi thế thương mại theo thời gian"
+      ],
+      "correct": 0,
+      "explanation": "Lợi thế thương mại không khấu hao, nó chỉ bị ghi giảm khi kiểm tra tổn thất cho thấy phần dòng tiền kỳ vọng không còn đỡ nổi con số trên sổ. Nói cách khác, đó là lời thừa nhận công khai rằng cái giá trả hồi đó là quá cao."
+    }
     ],
     keyTakeaways: [
       "Lợi thế thương mại là phần dư sau cùng, không phải toàn bộ chênh lệch giá mua trừ sổ sách",
@@ -557,6 +593,18 @@ export const MA_EXECUTION_LESSONS: Lesson[] = [
         explanation:
           "Đây là điểm bên mua phải soi kỹ nhất khi thẩm định: các giả định chi phí đứng riêng có được xây dựng thận trọng hay đang bị đặt quá lạc quan để đẩy giá bán lên.",
       },
+    
+    {
+      "question": "Vì sao bộ báo cáo tài chính lập cho một mảng sắp bán được coi là ước tính chứ không phải lịch sử?",
+      "options": [
+        "Vì phải giả định chi phí của mảng đó nếu nó từng đứng riêng",
+        "Vì số liệu của mảng đó chưa từng được kiểm toán độc lập trước đây",
+        "Vì doanh thu nội bộ giữa các mảng không được ghi nhận trong tập đoàn",
+        "Vì kỳ báo cáo của mảng đó không trùng với kỳ báo cáo của tập đoàn"
+      ],
+      "correct": 0,
+      "explanation": "Mảng đó chưa bao giờ tự trả tiền cho phòng nhân sự, hệ thống công nghệ hay quan hệ ngân hàng - nó dùng ké của tập đoàn. Dựng lại chi phí độc lập là một chuỗi giả định, và bên mua sẽ chất vấn từng giả định một."
+    }
     ],
     keyTakeaways: [
       "Mảng trong tập đoàn chưa từng đứng riêng, nên báo cáo của nó là ước tính chứ không phải lịch sử",

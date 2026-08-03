@@ -427,6 +427,18 @@ export const DATA_THINKING_LESSONS: Lesson[] = [
         explanation:
           "Với ngưỡng 5%, cứ hai mươi phép so sánh trên dữ liệu hoàn toàn ngẫu nhiên thì trung bình có một cái đạt ý nghĩa. Thử đủ nhiều thì luôn tìm được thứ trông như phát hiện.",
       },
+    
+    {
+      "question": "Vì sao nhìn kết quả thử nghiệm mỗi ngày rồi dừng khi thấy đẹp lại là cách tự lừa mình?",
+      "options": [
+        "Vì mỗi lần nhìn là một cơ hội bắt trúng dao động ngẫu nhiên",
+        "Vì dữ liệu những ngày đầu chưa được hệ thống ghi nhận đầy đủ",
+        "Vì việc dừng sớm làm nhóm đối chứng có ít người tham gia hơn nhóm thử nghiệm",
+        "Vì thử nghiệm phải chạy đủ một chu kỳ tuần"
+      ],
+      "correct": 0,
+      "explanation": "Mẫu nhỏ dao động rất mạnh, nên nếu bạn kiểm tra hai chục lần thì gần như chắc chắn có lúc chênh lệch trông có ý nghĩa. Dừng đúng lúc đó biến nhiễu thành kết luận - đây là lý do cỡ mẫu và thời điểm dừng phải quyết định trước khi chạy."
+    }
     ],
     keyTakeaways: [
       "Nhóm đối chứng là thứ tách ảnh hưởng của thay đổi khỏi mọi biến động khác cùng thời điểm",
@@ -584,6 +596,18 @@ export const DATA_THINKING_LESSONS: Lesson[] = [
         explanation:
           "Thứ tự thời gian là điều kiện cần nhưng không đủ. Quảng cáo chạy trước khi doanh số tăng, nhưng mùa mua sắm có thể là thứ đứng sau cả hai.",
       },
+    
+    {
+      "question": "Vì sao việc A xảy ra trước B vẫn chưa đủ để kết luận A gây ra B?",
+      "options": [
+        "Vì một nguyên nhân thứ ba có thể tác động lên cả hai theo thứ tự đó",
+        "Vì khoảng cách thời gian giữa hai sự kiện thường không đo được chính xác",
+        "Vì quan hệ nhân quả chỉ tồn tại khi hai sự kiện xảy ra đồng thời",
+        "Vì cần lặp lại ba lần mới xác lập được"
+      ],
+      "correct": 0,
+      "explanation": "Thứ tự thời gian là điều kiện cần chứ không phải điều kiện đủ. Doanh số kem tăng trước số vụ đuối nước, nhưng mùa hè mới là nguyên nhân của cả hai - và nó xuất hiện trước cả hai đúng theo thứ tự bạn quan sát."
+    }
     ],
     keyTakeaways: [
       "Biến gây nhiễu: một yếu tố thứ ba tạo ra tương quan giữa hai biến không liên quan nhân quả",
@@ -743,6 +767,18 @@ export const DATA_THINKING_LESSONS: Lesson[] = [
         explanation:
           "Cho thấy bạn đã thực sự cân nhắc quan điểm của họ là điều kiện để kết luận được lắng nghe. Bỏ qua lập luận đối lập khiến người nghe cho rằng bạn chưa xét tới nó.",
       },
+    
+    {
+      "question": "Khuyến nghị của bạn đi ngược mong đợi của người nghe. Cách trình bày phù hợp là gì?",
+      "options": [
+        "Nêu trước bằng chứng mạnh nhất rồi mới đưa ra khuyến nghị",
+        "Đưa khuyến nghị ngay từ đầu như mọi bản trình bày khác",
+        "Trình bày cả hai phương án và để người nghe tự chọn",
+        "Gửi tài liệu trước để họ chuẩn bị tâm lý"
+      ],
+      "correct": 0,
+      "explanation": "Kết luận đặt trước là quy tắc chung, nhưng nó có ngoại lệ: khi người nghe đã có sẵn niềm tin ngược lại, nói kết luận trước sẽ kích hoạt phản bác trước khi họ nghe bằng chứng. Dựng bằng chứng trước để họ tự đi tới kết luận cùng bạn."
+    }
     ],
     keyTakeaways: [
       "Trình tự dựng phân tích khác trình tự trình bày - đừng kể lại theo thứ tự bạn đã làm",
@@ -903,6 +939,18 @@ export const DATA_THINKING_LESSONS: Lesson[] = [
         explanation:
           "Đây là yêu cầu pháp lý ở nhiều thị trường và là yêu cầu đạo đức ở mọi nơi. Câu trả lời mô hình quyết định vậy không phải một lời giải thích chấp nhận được.",
       },
+    
+    {
+      "question": "Vì sao bỏ biến giới tính khỏi mô hình chấm điểm tín dụng vẫn chưa loại được thiên lệch giới?",
+      "options": [
+        "Vì nhiều biến còn lại tương quan mạnh với giới tính và thay thế cho nó",
+        "Vì mô hình vẫn lưu lại thông tin giới tính từ các lần huấn luyện trước",
+        "Vì dữ liệu lịch sử luôn phải có biến giới tính để kiểm tra tính hợp lệ",
+        "Vì quy định buộc theo dõi kết quả theo giới"
+      ],
+      "correct": 0,
+      "explanation": "Ngành nghề, quãng gián đoạn công việc, thậm chí thói quen chi tiêu đều có thể vẽ lại đường ranh giới mà bạn vừa xóa. Cách kiểm tra duy nhất đáng tin là đo tỷ lệ chấp thuận và tỷ lệ sai theo từng nhóm ở đầu ra, chứ không rà lại danh sách biến đầu vào."
+    }
     ],
     keyTakeaways: [
       "Loại bỏ biến nhạy cảm là cần nhưng không đủ - biến thay thế vẫn mang thông tin đó vào mô hình",

@@ -95,6 +95,18 @@ export const FPA_PLANNING_LESSONS: Lesson[] = [
         explanation:
           "Một mô hình chỉ một người hiểu là một rủi ro vận hành. Giới hạn số yếu tố và ghi rõ định nghĩa từng yếu tố là cách giữ cho nó vẫn kiểm tra được bởi người khác.",
       },
+    
+    {
+      "question": "Rủi ro lớn nhất khi chuyển sang lập kế hoạch theo yếu tố dẫn dắt là gì?",
+      "options": [
+        "Tách quá nhiều tầng làm mô hình cồng kềnh mà không thêm thông tin",
+        "Các yếu tố dẫn dắt thay đổi theo mùa nên kế hoạch phải lập lại hằng quý",
+        "Cách này đòi hỏi phần mềm chuyên dụng mà doanh nghiệp nhỏ không có",
+        "Kết quả thường lệch xa hơn cách cũ"
+      ],
+      "correct": 0,
+      "explanation": "Mục đích của việc tách là để chất vấn được từng vế. Tách tới tầng thứ năm thì không ai còn kiểm chứng nổi biến nào, và bạn quay lại đúng chỗ xuất phát - chỉ khác là mất thêm ba ngày dựng bảng."
+    }
     ],
     keyTakeaways: [
       "Giá trị của kế hoạch theo yếu tố không nằm ở độ chính xác, mà ở khả năng chỉ ra chỗ trượt",
@@ -253,6 +265,18 @@ export const FPA_PLANNING_LESSONS: Lesson[] = [
         explanation:
           "Không tuyển là quyết định có thể đảo ngược khi tình hình khá lên; cắt giảm thì không. Đó là lý do phần tuyển mới luôn nên được tách riêng và đánh dấu rõ trong ngân sách.",
       },
+    
+    {
+      "question": "Vì sao lập kế hoạch nhân sự theo từng vị trí lại tốt hơn theo tổng đầu người?",
+      "options": [
+        "Vì thời điểm tuyển và mức lương từng vị trí quyết định chi phí thật",
+        "Vì bộ phận nhân sự yêu cầu danh sách vị trí cụ thể để đăng tuyển",
+        "Vì tổng đầu người không phản ánh được số nhân sự nghỉ việc trong năm",
+        "Vì mỗi vị trí đóng bảo hiểm khác nhau"
+      ],
+      "correct": 0,
+      "explanation": "Mười vị trí tuyển tháng Một khác hẳn mười vị trí tuyển tháng Mười về chi phí năm nay, và khác nữa về cú nhảy chi phí năm sau. Con số tổng làm phẳng cả hai điều đó, nên kế hoạch trông đúng cho tới khi ngân sách năm sau vỡ."
+    }
     ],
     keyTakeaways: [
       "Lập theo từng vị trí kèm tháng vào làm, không phải theo tổng đầu người",
@@ -400,6 +424,18 @@ export const FPA_PLANNING_LESSONS: Lesson[] = [
         explanation:
           "Tuần đầu tiên gần như đã biết chắc, tuần thứ mười ba gần như hoàn toàn là giả định. Cứ mỗi tuần trôi qua, một tuần giả định lại biến thành tuần đã biết, nên bảng luôn giữ được độ tin cậy đó.",
       },
+    
+    {
+      "question": "Vì sao bảng dòng tiền 13 tuần phải cập nhật hằng tuần thay vì lập một lần cho cả quý?",
+      "options": [
+        "Vì mỗi tuần trôi qua lại có thông tin chắc chắn hơn về các tuần kế tiếp",
+        "Vì số dư tiền mặt thực tế luôn khác với số dự báo ban đầu",
+        "Vì ngân hàng yêu cầu doanh nghiệp nộp bảng cập nhật theo tuần",
+        "Vì bảng cũ bỏ sót các khoản chi mới"
+      ],
+      "correct": 0,
+      "explanation": "Tuần đầu tiên gần như là số chắc chắn, tuần thứ mười ba thì vẫn là ước tính. Cuốn bảng đi mỗi tuần nghĩa là phần chắc chắn luôn nằm ngay trước mặt - đúng lúc tiền mặt là ràng buộc, đó là khác biệt giữa xoay kịp và không kịp."
+    }
     ],
     keyTakeaways: [
       "Doanh nghiệp phá sản vì hết tiền, không phải vì lỗ - hai chuyện khác nhau",
@@ -558,6 +594,18 @@ export const FPA_PLANNING_LESSONS: Lesson[] = [
         explanation:
           "Ba kịch bản là con số phổ biến vì vừa đủ để thấy dải kết quả mà vẫn nhớ được. Bảy kịch bản cho cảm giác kỹ lưỡng nhưng thực tế đưa cuộc thảo luận về đúng chỗ cũ.",
       },
+    
+    {
+      "question": "Vì sao không nên trình bày quá nhiều kịch bản cùng lúc cho ban lãnh đạo?",
+      "options": [
+        "Vì quá nhiều lựa chọn làm loãng quyết định thay vì hỗ trợ nó",
+        "Vì mỗi kịch bản đòi hỏi một mô hình riêng nên tốn thời gian dựng",
+        "Vì các kịch bản có xác suất thấp sẽ không bao giờ xảy ra trong thực tế",
+        "Vì phần mềm chỉ hiện được ba kịch bản"
+      ],
+      "correct": 0,
+      "explanation": "Ba kịch bản buộc người nghe phải đối diện với dải kết quả và chuẩn bị hành động cho từng nhánh. Bảy kịch bản thì ai cũng chọn cái hợp với niềm tin sẵn có của mình, và cuộc họp quay về đúng nơi nó bắt đầu."
+    }
     ],
     keyTakeaways: [
       "Độ nhạy đổi một biến để tìm biến quan trọng; kịch bản đổi cả nhóm theo một câu chuyện nhất quán",
@@ -705,6 +753,18 @@ export const FPA_PLANNING_LESSONS: Lesson[] = [
         explanation:
           "Phân bổ chi tiết hơn chỉ đáng làm khi nó đổi được một quyết định nào đó. Nếu cả hai cách đều dẫn tới cùng kết luận, cách đơn giản hơn thắng.",
       },
+    
+    {
+      "question": "Vì sao nên báo cáo lợi nhuận bộ phận cả trước và sau khi phân bổ chi phí chung?",
+      "options": [
+        "Vì phần trước phân bổ mới đo được điều bộ phận thực sự kiểm soát",
+        "Vì chuẩn mực kế toán yêu cầu trình bày hai mức lợi nhuận cho mỗi bộ phận",
+        "Vì con số sau phân bổ luôn thấp hơn nên không dùng để so sánh được",
+        "Vì hai con số dùng cho hai kỳ khác nhau"
+      ],
+      "correct": 0,
+      "explanation": "Người phụ trách một mảng không quyết được tiền thuê trụ sở hay chi phí phòng pháp chế. Chấm họ trên con số đã gánh những khoản đó là chấm trên thứ họ không đổi được - còn bỏ hẳn phần phân bổ thì lại không ai thấy chi phí chung đang phình ra."
+    }
     ],
     keyTakeaways: [
       "Phân bổ không đổi tổng lợi nhuận, nhưng đổi con số mà quyết định dựa vào",
@@ -853,6 +913,18 @@ export const FPA_PLANNING_LESSONS: Lesson[] = [
         explanation:
           "Đây chính là cơ chế của rolling forecast đã học ở Chặng 11, và cũng là chỗ phán đoán một lần hay lặp lại ở trên phát huy tác dụng.",
       },
+    
+    {
+      "question": "Sau khi phân tích kết quả tháng, phần dự báo cho các kỳ còn lại nên xử lý thế nào?",
+      "options": [
+        "Cập nhật lại nếu nguyên nhân chênh lệch còn ảnh hưởng tới các kỳ sau",
+        "Giữ nguyên để bảo toàn tính so sánh với kế hoạch đã được phê duyệt",
+        "Điều chỉnh các kỳ còn lại để bù đúng phần đã hụt trong tháng vừa rồi",
+        "Chỉ cập nhật một lần vào giữa năm theo lịch rà soát ngân sách"
+      ],
+      "correct": 0,
+      "explanation": "Mất một khách hàng lớn không phải sự kiện của riêng tháng này. Câu hỏi phải trả lời sau mỗi lần đóng sổ là nguyên nhân đó có kéo dài không - còn việc điều chỉnh các kỳ sau để tổng năm vẫn khớp kế hoạch chỉ là dời vấn đề sang tháng Mười hai."
+    }
     ],
     keyTakeaways: [
       "Bảng số ai cũng xuất được; phần bình luận vì sao mới là thứ không tự động hóa được",
