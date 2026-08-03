@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { createServerSupabaseClient } from "@/lib/supabase-server";
 import { CFA_LEVEL_1_SUBJECTS } from "@/lib/cfa-track";
+import { FRM_SUBJECTS } from "@/lib/frm-track";
 import { FINANCE_CAREERS } from "@/lib/finance-careers";
 import { SKILL_DOMAINS, computeCompetencyScores, computeDomainCoverage, type QuizSessionSignal } from "@/lib/career-competency";
 import { CERTIFICATION_TARGETS, computeSkillGap, getRequirementsForTarget } from "@/lib/career-skill-gap";
@@ -19,6 +20,7 @@ import { buildWeeklyMissionState, getWeekKey, getWeekStart, type CareerMissionCo
 export const dynamic = "force-dynamic";
 
 const CFA_LESSON_IDS = Array.from(new Set(CFA_LEVEL_1_SUBJECTS.flatMap((s) => s.lessonIds)));
+const FRM_LESSON_IDS = Array.from(new Set(FRM_SUBJECTS.flatMap((s) => s.lessonIds)));
 
 const DOMAIN_META = Object.fromEntries(
   SKILL_DOMAINS.map((d) => [d.id, { label: d.label, gapHint: d.gapHint }])
@@ -110,6 +112,7 @@ export async function GET(request: NextRequest) {
     completedCfaModuleIds: (cfaModuleRes.data ?? []).map((r) => r.module_id),
     totalCfaModules: moduleCountRes.count ?? 0,
     cfaLessonIds: CFA_LESSON_IDS,
+    frmLessonIds: FRM_LESSON_IDS,
   });
 
   const coverage = computeDomainCoverage(completedLessonIds);

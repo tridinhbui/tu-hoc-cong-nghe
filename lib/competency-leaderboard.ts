@@ -1,5 +1,6 @@
 import { COMPETENCIES, getSkillDomain, type CompetencyId, type SkillDomainId } from "@/lib/career-competency";
 import { CFA_LEVEL_1_SUBJECTS } from "@/lib/cfa-track";
+import { FRM_SUBJECTS } from "@/lib/frm-track";
 
 // The lesson set backing each competency's leaderboard - kept out of
 // career-competency.ts (which stays free of the CFA data, see its header
@@ -20,6 +21,13 @@ export const COMPETENCY_LESSON_IDS: Record<CompetencyId, number[]> = {
   interview_readiness: union("accounting", "valuation", "ma"),
   cfa_readiness: Array.from(
     new Set([...CFA_LEVEL_1_SUBJECTS.flatMap((s) => s.lessonIds), ...getSkillDomain("ethics").lessonIds])
+  ),
+  // Cùng cách dựng như cfa_readiness: lấy thẳng ids của 10 môn thi. Nhờ vậy
+  // bảng xếp hạng FRM đếm số bài FRM người học đã hoàn thành thật - khác hẳn
+  // getCfaLeaderboard trong lib/cfa-track.ts, vốn suy ra flashcard và công
+  // thức bằng cách nhân hệ số vào bảng xếp hạng số bài.
+  frm_readiness: Array.from(
+    new Set([...FRM_SUBJECTS.flatMap((s) => s.lessonIds), ...getSkillDomain("derivatives_risk").lessonIds])
   ),
   ib_readiness: union("ma", "valuation", "accounting", "modeling_excel"),
 };

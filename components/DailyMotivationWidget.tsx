@@ -15,6 +15,7 @@ import {
   MOTIVATION_TONE_LABEL,
   type DailyMotivation,
 } from "@/lib/daily-motivation";
+import { getLateNightNote } from "@/lib/quiet-corner";
 import MotivationShareCard from "@/components/MotivationShareCard";
 
 /**
@@ -67,6 +68,9 @@ export default function DailyMotivationWidget({ userId }: { userId: string }) {
   if (!motivation) return null;
 
   const { message, tone, warmth } = motivation;
+  // Đọc đồng hồ ở đây an toàn: khối này chỉ render sau khi fetch xong ở client
+  // nên không có bản HTML từ server để lệch.
+  const lateNight = getLateNightNote(new Date().getHours());
 
   return (
     <div
@@ -105,6 +109,11 @@ export default function DailyMotivationWidget({ userId }: { userId: string }) {
         </motion.div>
 
         <div className="min-w-0">
+          {lateNight && (
+            <p className="mb-1.5 text-[11px] font-semibold leading-relaxed text-stone-500 dark:text-stone-400">
+              {lateNight}
+            </p>
+          )}
           <p className="text-[10px] font-bold uppercase tracking-wide text-orange-700 dark:text-orange-300">
             {MOTIVATION_TONE_LABEL[tone]}
           </p>

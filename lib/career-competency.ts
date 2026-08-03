@@ -221,6 +221,7 @@ export type CompetencyId =
   | "valuation"
   | "interview_readiness"
   | "cfa_readiness"
+  | "frm_readiness"
   | "ib_readiness";
 
 export interface CompetencyDef {
@@ -280,6 +281,14 @@ export const COMPETENCIES: CompetencyDef[] = [
     actionLabel: "Vào lộ trình CFA",
   },
   {
+    id: "frm_readiness",
+    label: "FRM readiness",
+    blurb: "Độ phủ 10 môn thi FRM Part I & II - đo lường và quản trị rủi ro",
+    color: "#dc2626",
+    actionHref: "/frm",
+    actionLabel: "Vào lộ trình FRM",
+  },
+  {
     id: "ib_readiness",
     label: "IB readiness",
     blurb: "Accounting - valuation - M&A - technical interview cho Investment Banking",
@@ -308,6 +317,11 @@ export interface CompetencySignals {
    *  (lib/cfa-track.ts) - passed in rather than imported so this file stays
    *  free of the CFA data too. */
   cfaLessonIds: number[];
+  /** Lesson ids mapped into the 10 official FRM subjects (lib/frm-track.ts).
+   *  Passed in for the same reason cfaLessonIds is: this file stays free of
+   *  both curricula. Optional so callers written before FRM existed keep
+   *  compiling - they just score frm_readiness at 0. */
+  frmLessonIds?: number[];
 }
 
 export interface CompetencyScore {
@@ -410,6 +424,18 @@ export function computeCompetencyScores(signals: CompetencySignals): CompetencyS
     0.15 * quizConfidenceScore(cfaQuiz, 50) +
     0.1 * coverage("ethics");
 
+  // FRM readiness. Không có bảng module riêng như CFA, nên điểm đứng trên ba
+  // chân: độ phủ bài của 10 môn FRM, và hai domain mà GARP kiểm tra nặng nhất
+  // xuyên suốt cả hai phần thi - phái sinh/quản trị rủi ro và định lượng.
+  const frmLessonSet = new Set(signals.frmLessonIds ?? []);
+  let frmLessonsDone = 0;
+  for (const id of frmLessonSet) if (completed.has(id)) frmLessonsDone++;
+  const frmLessonCoverage = frmLessonSet.size > 0 ? frmLessonsDone / frmLessonSet.size : 0;
+  const frmScore =
+    0.6 * frmLessonCoverage +
+    0.25 * coverage("derivatives_risk") +
+    0.15 * coverage("quant");
+
   const financeKnowledge =
     0.3 * coverage("accounting") +
     0.2 * coverage("corporate_finance") +
@@ -476,6 +502,15 @@ export function computeCompetencyScores(signals: CompetencySignals): CompetencyS
         { label: "Bài thuộc 10 môn CFA", value: `${cfaLessonsDone}/${cfaLessonSet.size} bài` },
         { label: "Module CFA", value: `${signals.completedCfaModuleIds.length}/${signals.totalCfaModules}` },
         { label: "Quiz CFA", value: `${cfaQuiz.questions} câu` },
+      ],
+    },
+    {
+      id: "frm_readiness",
+      score: clampPercent(frmScore * 100),
+      parts: [
+        { label: "Bài thuộc 10 môn FRM", value: `${frmLessonsDone}/${frmLessonSet.size} bài` },
+        { label: "Phái sinh & rủi ro", value: `${counts("derivatives_risk").done}/${counts("derivatives_risk").total} bài` },
+        { label: "Định lượng", value: `${counts("quant").done}/${counts("quant").total} bài` },
       ],
     },
     {
