@@ -7,6 +7,16 @@ import { sayInStudyWorld } from "@/lib/supabase-study-world";
 import { createWalkState } from "@/components/world-controls/easy-walk";
 import type { CharacterEquipments } from "@/lib/rpg-items";
 import { finishFocusSession, getTodayFocusSeconds, startFocusSession } from "@/lib/focus-session";
+import { getSceneLighting } from "@/lib/study-room-lighting";
+import {
+  AWAY_MS,
+  formatCountdown,
+  isSessionComplete,
+  notifySessionDone,
+  playSessionChime,
+  remainingMs,
+  shouldEndForAway,
+} from "@/lib/study-session";
 
 /** three.js chỉ chạy phía trình duyệt: ssr:false giữ nó ngoài bundle server, và
  *  người dùng thấy khung chờ thay vì lỗi hydrate. */
@@ -24,23 +34,6 @@ function SceneFallback({ label }: { label: string }) {
       </div>
     </div>
   );
-}
-
-/** Ánh sáng theo giờ, rút gọn về hai con số mà cảnh 3D cần: độ sáng ngoài trời
- *  và màu bóng đèn thả.
- *
- *  Phòng 3D bằng CSS ở ngay cạnh có bảng ánh sáng riêng (lib/study-room-lighting.ts)
- *  với gradient cho tường và cửa sổ - dạng dữ liệu đó không dùng được cho
- *  three.js, và ngược lại. Hai bảng, một ý niệm về giờ giấc; nếu đổi khung giờ
- *  thì phải đổi cả hai. */
-function lightingForHour(hour: number): { daylight: number; lampColor: string } {
-  const h = ((Math.floor(hour) % 24) + 24) % 24;
-  if (h < 5) return { daylight: 0, lampColor: "#ffc98a" };
-  if (h < 7) return { daylight: 0.35, lampColor: "#ffdcae" };
-  if (h < 11) return { daylight: 1, lampColor: "#fff1d6" };
-  if (h < 16) return { daylight: 0.9, lampColor: "#fff1d6" };
-  if (h < 19) return { daylight: 0.45, lampColor: "#ffd7a1" };
-  return { daylight: 0.08, lampColor: "#ffc98a" };
 }
 
 /** Cần điều khiển ảo, giống hệt Phố nghề: kéo trong vòng tròn, thả thì về
@@ -147,6 +140,15 @@ export default function StudyRoomWorld({
   const [log, setLog] = useState<LobbyChatMessage[]>([]);
   const [draft, setDraft] = useState("");
   const [selfSpeech, setSelfSpeech] = useState<{ text: string; at: number } | null>(null);
+  const [seatedCount, setSeatedCount] = useState(0);
+  /** Những người đã bị ẩn trong phiên này.
+   *
+   *  Chỉ nằm trong bộ nhớ và chỉ lọc phần chữ ở máy mình: phòng này giới hạn
+   *  trong nhóm nên rủi ro thấp, và một hệ thống báo cáo có hồ sơ, có người
+   *  duyệt là việc khác hẳn - dựng nửa vời thì tệ hơn không dựng. Cái cần có
+   *  ngay là một lối thoát tức thì cho người đang bị làm phiền, không phải một
+   *  quy trình. */
+  const [mutedIds, setMutedIds] = useState<ReadonlySet<string>>(new Set());
   const [nowTick, setNowTick] = useState(0);
   const [lighting, setLighting] = useState<{ daylight: number; lampColor: string } | null>(null);
   const inputRef = useRef<HTMLInputElement>(null);
@@ -155,13 +157,21 @@ export default function StudyRoomWorld({
    *  server tính, nên đây chỉ cần giữ cái id. */
   const focusIdRef = useRef<number | null>(null);
   const [todayMinutes, setTodayMinutes] = useState<number | null>(null);
+  /** Phiên vừa chạy hết giờ. Giữ tách khỏi `seated` vì người học được quyền
+   *  ngồi tiếp sau khi chuông reo - đứng dậy là quyết định của họ, không phải
+   *  của cái đồng hồ. */
+  const [sessionDone, setSessionDone] = useState(false);
+  /** Vì sao phiên vừa kết thúc, để nói lại cho đúng: tự đứng dậy khác với bị
+   *  dừng vì rời đi. */
+  const [endedAway, setEndedAway] = useState(false);
+  const chimedRef = useRef(false);
 
   // Đọc đồng hồ sau khi mount, không lúc render: giờ của server và giờ của
   // người học khác nhau, và một căn phòng sáng khác nhau ở hai lần render đầu
   // là lỗi hydrate. Cập nhật lại mỗi 10 phút để phiên học kéo dài qua hoàng
   // hôn thì căn phòng cũng đi theo.
   useEffect(() => {
-    const read = () => setLighting(lightingForHour(new Date().getHours()));
+    const read = () => setLighting(getSceneLighting(new Date().getHours()));
     read();
     const timer = window.setInterval(read, 10 * 60 * 1000);
     return () => window.clearInterval(timer);
@@ -196,6 +206,67 @@ export default function StudyRoomWorld({
     setNowTick(Date.now());
     const timer = window.setInterval(() => setNowTick(Date.now()), 1000);
     return () => window.clearInterval(timer);
+  }, [seated]);
+
+  /** Chuông báo hết phiên, đúng một lần cho mỗi lần ngồi.
+   *
+   *  Trước đây đồng hồ chạy về 0 rồi hiện chữ "Xong!" và không có gì khác xảy
+   *  ra - người ngồi học đúng cách nhất, tức là không nhìn màn hình, là người
+   *  duy nhất không biết mình đã xong. */
+  useEffect(() => {
+    if (seated === null || seatStartedAt === null) return;
+    if (chimedRef.current) return;
+    if (!isSessionComplete(seatStartedAt, nowTick, POMODORO_MS)) return;
+    chimedRef.current = true;
+    setSessionDone(true);
+    playSessionChime();
+    notifySessionDone(Math.round(POMODORO_MS / 60000));
+  }, [seated, seatStartedAt, nowTick]);
+
+  /** Rời đi thì phiên dừng.
+   *
+   *  Tab ẩn liên tục quá ngưỡng nghĩa là người học đã đi chỗ khác, và đếm tiếp
+   *  sẽ bơm chính con số mà căn phòng này tồn tại để tạo ra. Cố ý không đo
+   *  bàn phím hay chuột: người học nghiêm túc nhất là người ngồi im đọc sách
+   *  giấy, và một bộ đếm dựa trên thao tác sẽ đá đúng người đó ra. */
+  useEffect(() => {
+    if (seated === null) return;
+    let hiddenSince: number | null = document.hidden ? Date.now() : null;
+    let timer: number | null = null;
+
+    const stopIfAway = () => {
+      if (!shouldEndForAway(hiddenSince, Date.now())) return;
+      setEndedAway(true);
+      setSeated(null);
+      setSeatStartedAt(null);
+    };
+
+    const onVisibility = () => {
+      if (document.hidden) {
+        hiddenSince = Date.now();
+        timer = window.setTimeout(stopIfAway, AWAY_MS + 500);
+      } else {
+        hiddenSince = null;
+        if (timer !== null) window.clearTimeout(timer);
+        timer = null;
+      }
+    };
+
+    if (hiddenSince !== null) timer = window.setTimeout(stopIfAway, AWAY_MS + 500);
+    document.addEventListener("visibilitychange", onVisibility);
+    return () => {
+      document.removeEventListener("visibilitychange", onVisibility);
+      if (timer !== null) window.clearTimeout(timer);
+    };
+  }, [seated]);
+
+  /** Ngồi lại thì dọn trạng thái của phiên trước. */
+  useEffect(() => {
+    if (seated !== null) {
+      setSessionDone(false);
+      setEndedAway(false);
+      chimedRef.current = false;
+    }
   }, [seated]);
 
   const identity = useMemo(
@@ -245,6 +316,7 @@ export default function StudyRoomWorld({
           onSeatableChange={setSeatable}
           onDoorProximity={setNearDoor}
           onPeerCount={setPeerCount}
+          onSeatedCount={setSeatedCount}
           onChatMessage={pushLog}
           selfSpeech={selfSpeech}
           members={members}
@@ -268,6 +340,14 @@ export default function StudyRoomWorld({
           <p className="text-[10px] text-stone-400">
             {peerCount > 1 ? `${peerCount} người đang ở trong phòng` : "Bạn đang ở đây một mình"}
           </p>
+          {/* Ở cùng phòng khác với đang cùng học. Cả căn phòng dựng lên vì sự
+              hiện diện của người khác, nên phân biệt hai điều đó là thông tin
+              đáng hiện nhất ở đây. */}
+          {seatedCount > 0 && (
+            <p className="mt-0.5 text-[10px] font-bold text-amber-300">
+              📖 {seatedCount} người đang trong phiên học
+            </p>
+          )}
           {/* Tổng thời gian đã ngồi học hôm nay. Hiện sau phiên đầu tiên chứ
               không hiện sẵn số 0: một dòng "0 phút" ngay lúc vừa vào phòng là
               lời trách móc, không phải thông tin. */}
@@ -296,14 +376,17 @@ export default function StudyRoomWorld({
               Ngồi xuống học · phiên 25 phút
             </button>
           ) : (
-            <div className="pointer-events-auto flex items-center gap-3 rounded-2xl bg-stone-900/85 px-4 py-2 shadow-xl backdrop-blur">
+            <div
+              className={`pointer-events-auto flex items-center gap-3 rounded-2xl px-4 py-2 shadow-xl backdrop-blur ${
+                sessionDone ? "bg-emerald-600/90" : "bg-stone-900/85"
+              }`}
+            >
               <span className="font-mono text-base font-bold tabular-nums text-emerald-300">
-                {(() => {
-                  const left = Math.max(0, POMODORO_MS - (nowTick - (seatStartedAt ?? nowTick)));
-                  const m = String(Math.floor(left / 60000)).padStart(2, "0");
-                  const s = String(Math.floor((left % 60000) / 1000)).padStart(2, "0");
-                  return left === 0 ? "Xong!" : `${m}:${s}`;
-                })()}
+                {sessionDone ? (
+                  <span className="text-white">Xong một phiên · nghỉ một chút</span>
+                ) : (
+                  formatCountdown(remainingMs(seatStartedAt, nowTick, POMODORO_MS))
+                )}
               </span>
               <button
                 type="button"
@@ -317,6 +400,28 @@ export default function StudyRoomWorld({
               </button>
             </div>
           )}
+        </div>
+      )}
+
+      {/* Phiên vừa bị dừng vì rời đi. Nói thẳng lý do: một phiên biến mất mà
+          không giải thích sẽ bị đọc là lỗi, và lần sau người học không tin con
+          số thời gian nữa. */}
+      {endedAway && seated === null && (
+        <div className="pointer-events-none absolute inset-x-0 bottom-24 z-10 flex justify-center px-4">
+          <div className="pointer-events-auto flex items-center gap-3 rounded-2xl bg-stone-900/90 px-4 py-2.5 shadow-xl backdrop-blur">
+            <p className="text-[11px] leading-snug text-stone-200">
+              Phiên đã dừng vì bạn rời khỏi tab quá {Math.round(AWAY_MS / 60000)} phút.
+              <br />
+              Phần đã ngồi trước đó vẫn được tính.
+            </p>
+            <button
+              type="button"
+              onClick={() => setEndedAway(false)}
+              className="shrink-0 cursor-pointer rounded-xl bg-stone-700 px-3 py-1.5 text-[11px] font-bold text-stone-100 hover:bg-stone-600"
+            >
+              Đã hiểu
+            </button>
+          </div>
         </div>
       )}
 
@@ -336,12 +441,40 @@ export default function StudyRoomWorld({
       {/* Nhật ký lời nói gần đây */}
       {log.length > 0 && (
         <div className="pointer-events-none absolute left-3 top-1/2 z-10 hidden w-56 -translate-y-1/2 flex-col gap-1 sm:flex">
-          {log.slice(-5).map((m) => (
-            <div key={m.id} className="rounded-xl bg-stone-900/70 px-2.5 py-1 text-[11px] text-stone-200 backdrop-blur">
-              <span className="font-bold text-emerald-300">{m.name}</span>{" "}
-              <span className="text-stone-300">{m.text}</span>
-            </div>
-          ))}
+          {log
+            .filter((m) => !mutedIds.has(m.userId))
+            .slice(-5)
+            .map((m) => (
+              <div
+                key={m.id}
+                className="pointer-events-auto group flex items-start gap-1.5 rounded-xl bg-stone-900/70 px-2.5 py-1 text-[11px] text-stone-200 backdrop-blur"
+              >
+                <span className="min-w-0 flex-1">
+                  <span className="font-bold text-emerald-300">{m.name}</span>{" "}
+                  <span className="text-stone-300">{m.text}</span>
+                </span>
+                {m.userId !== userId && (
+                  <button
+                    type="button"
+                    onClick={() => setMutedIds((prev) => new Set(prev).add(m.userId))}
+                    title={`Ẩn lời của ${m.name} trong phiên này`}
+                    aria-label={`Ẩn lời của ${m.name}`}
+                    className="shrink-0 cursor-pointer text-stone-500 opacity-0 transition-opacity hover:text-stone-200 group-hover:opacity-100"
+                  >
+                    ✕
+                  </button>
+                )}
+              </div>
+            ))}
+          {mutedIds.size > 0 && (
+            <button
+              type="button"
+              onClick={() => setMutedIds(new Set())}
+              className="pointer-events-auto cursor-pointer self-start rounded-lg bg-stone-800/70 px-2 py-0.5 text-[10px] font-bold text-stone-400 hover:text-stone-200"
+            >
+              Đang ẩn {mutedIds.size} người · bỏ ẩn
+            </button>
+          )}
         </div>
       )}
 

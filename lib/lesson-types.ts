@@ -111,7 +111,11 @@ export interface Lesson {
     | "process"
     | "budget"
     | "chart"
-    | "risk";
+    | "risk"
+    | "payoff"
+    | "multiples"
+    | "prospect"
+    | "accretion";
   realWorldExample: {
     company: string;
     description: string;

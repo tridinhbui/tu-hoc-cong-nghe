@@ -2,6 +2,7 @@ import { describe, expect, it } from "vitest";
 import {
   getRoomLighting,
   getRoomPhase,
+  getSceneLighting,
   type RoomTimeOfDay,
 } from "../study-room-lighting";
 
@@ -99,6 +100,37 @@ describe("getRoomLighting", () => {
     for (const phase of ALL_PHASES) {
       const hour = { lateNight: 2, dawn: 6, morning: 9, afternoon: 13, dusk: 17, night: 21 }[phase];
       expect(getRoomLighting(hour).label).not.toBe(phase);
+    }
+  });
+});
+
+// Bản 3D từng có bảng giờ chép tay riêng; giờ cả hai cùng đi qua getRoomPhase.
+// Test này khoá điều đó lại: nếu ai đó dựng lại một bảng thứ hai và nó trôi,
+// một trong hai khung giờ sẽ lệch và chỗ này đỏ.
+describe("anh sang cho canh 3D", () => {
+  it("dung chung khung gio voi ban CSS", () => {
+    for (let hour = 0; hour < 24; hour++) {
+      const phase = getRoomPhase(hour);
+      const scene = getSceneLighting(hour);
+      // Cùng một phase thì phải ra cùng một cặp số, ở mọi giờ thuộc phase đó.
+      for (let other = 0; other < 24; other++) {
+        if (getRoomPhase(other) !== phase) continue;
+        expect(getSceneLighting(other)).toEqual(scene);
+      }
+    }
+  });
+
+  it("cang khuya thi troi cang toi va den cang am", () => {
+    expect(getSceneLighting(2).daylight).toBeLessThan(getSceneLighting(9).daylight);
+    expect(getSceneLighting(21).daylight).toBeLessThan(getSceneLighting(14).daylight);
+    expect(getSceneLighting(9).daylight).toBeGreaterThan(getSceneLighting(18).daylight);
+  });
+
+  it("moi gio deu co mot cap so, khong gio nao roi ra ngoai bang", () => {
+    for (let hour = -5; hour < 30; hour++) {
+      const l = getSceneLighting(hour);
+      expect(Number.isFinite(l.daylight)).toBe(true);
+      expect(l.lampColor).toMatch(/^#[0-9a-f]{6}$/i);
     }
   });
 });

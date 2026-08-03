@@ -23,6 +23,7 @@ import {
   type WalkState,
 } from "@/components/world-controls/easy-walk";
 import { useRenderQuality } from "@/components/world-controls/render-quality";
+import { usePageVisible } from "@/components/world-controls/use-page-visible";
 import LobbyAvatar, { type AvatarPose } from "@/components/lobby/LobbyAvatar";
 import { disposeRoomTextures } from "@/components/lobby/room-textures";
 import { CHAT_BUBBLE_MS, MOVE_BROADCAST_MS, type LobbyChatMessage } from "@/lib/supabase-lobby";
@@ -184,6 +185,8 @@ export interface StudyRoomSceneProps {
   onSeatableChange: (seat: number | null) => void;
   onDoorProximity: (near: boolean) => void;
   onPeerCount: (count: number) => void;
+  /** Số người trong phòng đang ngồi trong một phiên học. */
+  onSeatedCount: (count: number) => void;
   onChatMessage: (message: LobbyChatMessage) => void;
   /** Câu của chính mình, do HUD đẩy xuống ngay khi bấm gửi. */
   selfSpeech: { text: string; at: number } | null;
@@ -206,6 +209,7 @@ export default function StudyRoomScene({
   onSeatableChange,
   onDoorProximity,
   onPeerCount,
+  onSeatedCount,
   onChatMessage,
   selfSpeech,
   members,
@@ -215,6 +219,7 @@ export default function StudyRoomScene({
   daylight,
 }: StudyRoomSceneProps) {
   const quality = useRenderQuality();
+  const pageVisible = usePageVisible();
   const [peers, setPeers] = useState<StudyWorldPeer[]>([]);
   const [speeches, setSpeeches] = useState<Record<string, { text: string; at: number }>>({});
   const selfPose = useRef<AvatarPose>({ x: 0, z: SPAWN_Z, ry: SPAWN_RY });
@@ -275,10 +280,21 @@ export default function StudyRoomScene({
     onPeerCount(peers.length);
   }, [peers.length, onPeerCount]);
 
+  /** Có bao nhiêu người quanh bàn đang thực sự trong một phiên - kể cả mình.
+   *  Cả căn phòng dựng lên vì sự hiện diện của người khác, nhưng trước đây
+   *  ngồi cạnh một người đang học và ngồi cạnh một người đang đi loanh quanh
+   *  trông y hệt nhau. */
+  useEffect(() => {
+    const others = peers.filter((p) => p.seat !== null).length;
+    onSeatedCount(others + (seated !== null ? 1 : 0));
+  }, [peers, seated, onSeatedCount]);
+
   /** Dọn bong bóng đã hết hạn - để lại thì mỗi người từng nói một câu sẽ giữ
    *  chuỗi đó trong bộ nhớ suốt phiên. */
   useEffect(() => {
-    if (Object.keys(speeches).length === 0) return;
+    // Mảng phụ thuộc rỗng có chủ ý: trước đây nó là [speeches], nên mỗi câu
+    // nói trong phòng lại huỷ và dựng lại interval. Bản cập nhật dạng hàm ở
+    // dưới đã luôn đọc được giá trị mới nhất, nên không cần phụ thuộc nào.
     const timer = window.setInterval(() => {
       const now = Date.now();
       setSpeeches((prev) => {
@@ -292,7 +308,7 @@ export default function StudyRoomScene({
       });
     }, 1000);
     return () => window.clearInterval(timer);
-  }, [speeches]);
+  }, []);
 
   /** Thành viên vắng mặt được xếp vào những ghế còn trống, theo thứ tự ổn
    *  định để họ không nhảy ghế mỗi lần có người ra vào. */
@@ -343,12 +359,20 @@ export default function StudyRoomScene({
 
   return (
     <Canvas
+      // Tab ẩn thì ngừng vẽ. Một phiên Pomodoro 25 phút ở tab nền vẫn quay GPU
+      // hết tốc độ là điều trớ trêu: chuyển tab đi chỗ khác CHÍNH LÀ cách người
+      // ta dùng Pomodoro. "never" chứ không phải "demand" vì cảnh này không có
+      // gì cần vẽ một lần khi ẩn - lúc quay lại nó tự chạy tiếp.
+      frameloop={pageVisible ? "always" : "never"}
       shadows={quality.shadows}
       camera={{ position: [0, 3.1, SPAWN_Z + 5], fov: 55 }}
       // Trần DPR: màn Retina 3x không cần render 3x cho một phòng học, và đây
       // là khác biệt lớn nhất giữa mát máy và cháy quạt.
       dpr={quality.dpr}
-      gl={{ antialias: true, powerPreference: "high-performance" }}
+      // Comment ở StudyRoomShell nói phòng phải mở được trên máy yếu, nhưng
+      // "high-performance" lại ép laptop bật GPU rời cho một căn phòng tĩnh.
+      // Bám theo cùng phép đo máy yếu mà useRenderQuality đang dùng.
+      gl={{ antialias: true, powerPreference: quality.shadows ? "high-performance" : "low-power" }}
     >
       <color attach="background" args={["#12100e"]} />
       <fog attach="fog" args={["#12100e", 22, 46]} />

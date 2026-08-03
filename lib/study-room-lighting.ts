@@ -129,3 +129,34 @@ export function getRoomLighting(hour: number): RoomLighting {
   const phase = getRoomPhase(hour);
   return { phase, ...LIGHTING[phase] };
 }
+
+/**
+ * Cùng một khung giờ, nhìn từ phía three.js: độ sáng ngoài trời và màu bóng
+ * đèn thả.
+ *
+ * Bản 3D từng có bảng giờ riêng trong StudyRoomWorld với các mốc 5/7/11/16/19
+ * chép tay lại - hai bảng cho cùng một ý niệm, và comment ở đó đã tự ghi rằng
+ * đổi khung giờ thì phải nhớ đổi cả hai. Giờ cả hai cùng đi qua `getRoomPhase`,
+ * nên chỉ còn một chỗ định nghĩa "mấy giờ thì là buổi nào"; phần khác nhau -
+ * gradient CSS so với hai con số cho ánh sáng WebGL - vẫn nằm riêng, vì chúng
+ * thật sự khác nhau.
+ */
+export interface SceneLighting {
+  /** 0 → 1. Lượng sáng ngoài trời hắt vào phòng. */
+  daylight: number;
+  /** Màu bóng đèn thả: càng khuya càng ấm, để bù lại phần trời đã tắt. */
+  lampColor: string;
+}
+
+const SCENE_LIGHTING: Record<RoomTimeOfDay, SceneLighting> = {
+  lateNight: { daylight: 0, lampColor: "#ffc98a" },
+  dawn: { daylight: 0.35, lampColor: "#ffdcae" },
+  morning: { daylight: 1, lampColor: "#fff1d6" },
+  afternoon: { daylight: 0.9, lampColor: "#fff1d6" },
+  dusk: { daylight: 0.45, lampColor: "#ffd7a1" },
+  night: { daylight: 0.08, lampColor: "#ffc98a" },
+};
+
+export function getSceneLighting(hour: number): SceneLighting {
+  return SCENE_LIGHTING[getRoomPhase(hour)];
+}
