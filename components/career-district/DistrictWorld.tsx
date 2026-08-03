@@ -413,13 +413,19 @@ export default function DistrictWorld({
         />
       )}
 
-      {/* Trên màn hẹp, bảng "vào thẳng phòng" và bản đồ đều bị ẩn - trước đó
-          chúng ẩn hẳn, nghĩa là người dùng điện thoại mất cả lối tắt lẫn định
-          hướng. Nút này mở lại chúng, và chỉ tồn tại ở màn hẹp. */}
+      {/* Nút mở mục lục.
+          Trước đây chỉ tồn tại ở màn hẹp, vì ngoài phố thì bảng đã ghim sẵn
+          trên màn rộng. Nhưng trong PHÒNG thì bảng không ghim - ghim luôn ở
+          mọi phòng là một tấm bảng che góc phải suốt lúc đang đọc ba báo cáo -
+          nên ở đó nút phải có ở mọi cỡ màn, không thì người dùng màn rộng
+          đứng trong phòng lại không có đường sang phòng khác ngoài đi bộ. */}
       <button
         type="button"
         onClick={() => setTravelOpen((v) => !v)}
-        className="pointer-events-auto absolute right-4 top-32 z-20 cursor-pointer rounded-2xl border border-stone-700 bg-stone-900/85 px-3 py-2 text-[11px] font-black text-stone-200 shadow-xl backdrop-blur sm:hidden"
+        className={`pointer-events-auto absolute right-4 top-32 z-20 cursor-pointer rounded-2xl border border-stone-700 bg-stone-900/85 px-3 py-2 text-[11px] font-black text-stone-200 shadow-xl backdrop-blur ${
+          room.kind === "street" ? "sm:hidden" : ""
+        }`}
+        aria-label="Mục lục khu phố"
       >
         {travelOpen ? "✕" : "🧭"}
       </button>
@@ -759,8 +765,19 @@ export default function DistrictWorld({
       )}
 
       {/* Mục lục con phố: bấm là tới thẳng, cho người không muốn đi bộ.
-          Đi bộ là cái hay của khu phố, nhưng bắt đi bộ mỗi lần là cái dở. */}
-      {room.kind === "street" && <RoomDirectory open={travelOpen} onGo={go} />}
+          Đi bộ là cái hay của khu phố, nhưng bắt đi bộ mỗi lần là cái dở.
+
+          Hiện ở MỌI phòng, không chỉ ngoài phố. Trước đó đứng trong một phòng
+          thì cách duy nhất sang phòng khác là đi bộ ra phố rồi đi tiếp - với
+          22 phòng và một con phố dài 180 m thì đó là quãng đường vô nghĩa.
+          `go()` nhận cửa của con phố, mà `arriveAt` của cửa là chỗ đứng ở
+          phòng ĐÍCH, nên nó hoạt động từ bất kỳ đâu. */}
+      <RoomDirectory
+        open={travelOpen}
+        onGo={go}
+        pinned={room.kind === "street"}
+        current={roomId}
+      />
 
       {/* Nói với người trong cùng phòng. Cùng kênh đang chở vị trí, không mở
           kênh thứ hai; và KHÔNG lưu lại - đây là lời nói trong một căn phòng,

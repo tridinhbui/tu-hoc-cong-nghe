@@ -70,12 +70,37 @@ describe("dựng ra màn hình", () => {
     expect(go.mock.calls[0][0].to).toBe("vong-quay-tien");
   });
 
-  it("đóng ở màn hẹp thì ẩn, nhưng vẫn hiện ở màn rộng", () => {
-    // `hidden sm:block` chứ không phải gỡ khỏi cây: gỡ hẳn thì người dùng màn
-    // rộng cũng mất bảng khi cờ đóng.
-    const { container } = render(<RoomDirectory open={false} onGo={() => {}} />);
+  it("ghim thì vẫn hiện ở màn rộng dù cờ đóng", () => {
+    // Ngoài phố: `hidden sm:block` chứ không phải gỡ khỏi cây, vì gỡ hẳn thì
+    // người dùng màn rộng cũng mất bảng.
+    const { container } = render(<RoomDirectory open={false} pinned onGo={() => {}} />);
     const panel = container.firstElementChild as HTMLElement;
     expect(panel.className).toContain("hidden");
     expect(panel.className).toContain("sm:block");
+  });
+
+  it("không ghim thì đóng là ẩn ở MỌI cỡ màn", () => {
+    // Trong phòng: ghim luôn nghĩa là một tấm bảng che góc phải suốt lúc đang
+    // đọc ba báo cáo. Nếu `sm:block` sót lại ở đây thì bảng không bao giờ đóng
+    // được trên máy tính bàn - và triệu chứng là "nút la bàn không ăn".
+    const { container } = render(<RoomDirectory open={false} onGo={() => {}} />);
+    const panel = container.firstElementChild as HTMLElement;
+    expect(panel.className).toContain("hidden");
+    expect(panel.className).not.toContain("sm:block");
+  });
+
+  it("đánh dấu đúng một dòng là phòng đang đứng", () => {
+    // Không dòng nào nói "bạn đang ở đây" thì danh sách 22 dòng vẫn bắt người
+    // ta ngước lên đọc lại tên phòng ở góc trên để định vị.
+    render(<RoomDirectory open current="vong-quay-tien" onGo={() => {}} />);
+    const marks = screen.getAllByText(/đang ở đây/);
+    expect(marks).toHaveLength(1);
+    expect(marks[0].parentElement?.textContent).toContain("Phòng Vòng Quay Tiền");
+  });
+
+  it("ở ngoài phố thì không dòng nào bị đánh dấu", () => {
+    // "street" không nằm trong danh sách, nên không được có dấu nào lạc chỗ.
+    render(<RoomDirectory open current="street" onGo={() => {}} />);
+    expect(screen.queryByText(/đang ở đây/)).toBeNull();
   });
 });

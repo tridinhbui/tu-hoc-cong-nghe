@@ -63,15 +63,31 @@ export function directoryGroups(): Array<{ title: string; doors: Doorway[] }> {
   ];
 }
 
-function Row({ door, onGo }: { door: Doorway; onGo: (d: Doorway) => void }) {
+function Row({
+  door,
+  onGo,
+  here,
+}: {
+  door: Doorway;
+  onGo: (d: Doorway) => void;
+  /** Đây có phải chính căn phòng đang đứng không. */
+  here?: boolean;
+}) {
   return (
     <button
       type="button"
       onClick={() => onGo(door)}
-      className="block w-full cursor-pointer rounded-lg px-2 py-1 text-left text-[11px] font-bold transition hover:bg-stone-800"
+      // Phòng đang đứng vẫn bấm được - bấm vào nó là về chỗ đứng ban đầu của
+      // phòng, tức một cách thoát khi đi lạc vào góc. Nhưng nó phải TRÔNG khác,
+      // vì một danh sách 22 dòng mà không dòng nào nói "bạn đang ở đây" thì
+      // vẫn bắt người ta đọc lại tên phòng ở góc trên để định vị.
+      className={`block w-full cursor-pointer rounded-lg px-2 py-1 text-left text-[11px] font-bold transition hover:bg-stone-800 ${
+        here ? "bg-stone-800/70" : ""
+      }`}
       style={{ color: door.accent }}
     >
       {PLACE_ICONS[door.to as string] ?? "■"} {door.label}
+      {here && <span className="ml-1 text-[9px] font-black text-stone-400">· đang ở đây</span>}
     </button>
   );
 }
@@ -87,16 +103,26 @@ function Heading({ children }: { children: React.ReactNode }) {
 export default function RoomDirectory({
   open,
   onGo,
+  pinned = false,
+  current,
 }: {
-  /** Chỉ dùng ở màn hẹp: trên màn rộng bảng luôn hiện. */
   open: boolean;
   onGo: (d: Doorway) => void;
+  /** Ghim mở sẵn trên màn rộng.
+   *
+   *  Bật ở ngoài phố: đứng giữa phố thì mục lục là thứ đang cần. Tắt ở trong
+   *  phòng: ghim luôn ở mọi phòng nghĩa là một tấm bảng che góc phải màn hình
+   *  suốt lúc đang đọc ba báo cáo hay đang gõ bài giảng lại - trong phòng thì
+   *  căn phòng mới là thứ đang cần. */
+  pinned?: boolean;
+  /** Phòng đang đứng, để đánh dấu "đang ở đây". */
+  current?: DistrictRoomId;
 }) {
   return (
     <div
-      className={`pointer-events-auto absolute right-4 top-20 z-10 max-h-[calc(100vh-16rem)] w-44 overflow-y-auto rounded-2xl border border-stone-700 bg-stone-900/85 p-2.5 shadow-xl backdrop-blur sm:block ${
+      className={`pointer-events-auto absolute right-4 top-20 z-10 max-h-[calc(100vh-16rem)] w-44 overflow-y-auto rounded-2xl border border-stone-700 bg-stone-900/85 p-2.5 shadow-xl backdrop-blur ${
         open ? "block" : "hidden"
-      }`}
+      } ${pinned ? "sm:block" : ""}`}
     >
       <p className="mb-1.5 text-[10px] font-black uppercase tracking-widest text-stone-400">
         Vào thẳng phòng
@@ -109,7 +135,7 @@ export default function RoomDirectory({
           <div key={g.title}>
             <Heading>{g.title}</Heading>
             {g.doors.map((d) => (
-              <Row key={d.id} door={d} onGo={onGo} />
+              <Row key={d.id} door={d} onGo={onGo} here={d.to === current} />
             ))}
           </div>
         ))}

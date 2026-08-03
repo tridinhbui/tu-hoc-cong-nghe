@@ -61,11 +61,24 @@ export async function getDailyQuests(userId: string, dayKey: string): Promise<Qu
   // bảng do /api/focus-session ghi với hai mốc thời gian server tự đặt, nên
   // con số này không giả được bằng devtools như một cờ trong localStorage.
   const startOfDay = new Date(`${dayKey}T00:00:00`);
-  const { data: focusToday } = await supabase
+  const { data: focusToday, error: focusError } = await supabase
     .from("focus_sessions")
     .select("seconds")
     .eq("user_id", userId)
     .gte("started_at", startOfDay.toISOString());
+  // PGRST205 = bảng không tồn tại, tức migration 20260824_focus_sessions.sql
+  // chưa chạy. Phải phân biệt với "hôm nay chưa ngồi phiên nào".
+  //
+  // Bản trước bỏ luôn `error` đi, nên bảng thiếu cho ra 0 giây - giống hệt một
+  // ngày chưa học - và nhiệm vụ đứng mãi ở 0/15. Người học nhìn thấy một
+  // nhiệm vụ KHÔNG BAO GIỜ hoàn thành được, không có lý do nào hiện ra, và nó
+  // vẫn chiếm chỗ trong danh sách mỗi ngày. Thà không hiện còn hơn.
+  const focusAvailable = focusError?.code !== "PGRST205";
+  if (!focusAvailable) {
+    console.warn(
+      "focus_sessions chưa tồn tại - ẩn nhiệm vụ daily_focus. Chạy supabase/migrations/20260824_focus_sessions.sql"
+    );
+  }
   const focusSecondsToday = (focusToday ?? []).reduce((sum, r) => sum + ((r.seconds as number) ?? 0), 0);
 
   // 4. Fetch claimed status from DB
@@ -167,7 +180,9 @@ export async function getDailyQuests(userId: string, dayKey: string): Promise<Qu
       xpReward: QUEST_XP_REWARDS.daily_game,
       claimed: claimedSet.has("daily_game"),
     },
-  ];
+    // Lọc bỏ nhiệm vụ không đo được. Hiện tại chỉ có daily_focus rơi vào đây,
+    // và chỉ khi migration focus_sessions chưa chạy.
+  ].filter((q) => focusAvailable || q.id !== "daily_focus");
 }
 
 export interface ClaimQuestResult {
@@ -247,6 +262,7 @@ export async function claimQuestReward(
 
 // Calculates overall quest XP claimed by user
 export async function getTotalQuestXp(userId: string): Promise<number> {
+  const { getQuestXpReward } = await import("./quest-rewards");
   const supabase = createClient();
   const { data, error } = await supabase
     .from("user_quest_completions")
@@ -262,11 +278,15 @@ export async function getTotalQuestXp(userId: string): Promise<number> {
         if (key && key.startsWith(`quests_claimed_${userId}_`)) {
           try {
             const items = JSON.parse(window.localStorage.getItem(key) ?? "[]") as string[];
+            // Đọc từ QUEST_XP_REWARDS, KHÔNG chép lại số.
+            //
+            // Nhánh này từng giữ một bảng thưởng riêng viết tay, và nó đã lệch
+            // hẳn khỏi bảng thật sau lần siết nền kinh tế XP: daily_2 cộng 5
+            // (thật ra 2), daily_news_quiz cộng 15 (thật ra 8), và daily_3
+            // cộng 15 trong khi bảng thật cho 2 - sai gấp bảy lần rưỡi. Không
+            // ai thấy vì đây là nhánh dự phòng, chỉ chạy khi Supabase lỗi.
             items.forEach((item) => {
-              if (item === "daily_1") total += 10;
-              else if (item === "daily_2") total += 5;
-              else if (item === "daily_3") total += 15;
-              else if (item === "daily_news_quiz") total += 15;
+              total += getQuestXpReward(item) ?? 0;
             });
           } catch {}
         }

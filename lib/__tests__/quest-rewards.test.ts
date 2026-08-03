@@ -1,3 +1,4 @@
+import { readFileSync } from "node:fs";
 import { describe, it, expect } from "vitest";
 import {
   QUEST_XP_REWARDS,
@@ -102,5 +103,47 @@ describe("XP economy invariants", () => {
         .filter(([id]) => !ONCE_ONLY_QUESTS.has(id))
         .reduce((sum, [, xp]) => sum + xp, 0)
     );
+  });
+});
+
+describe("không có bản chép thứ hai của bảng thưởng", () => {
+  it("không file nào cộng XP nhiệm vụ bằng số viết tay", () => {
+    // Đã có thật: nhánh dự phòng localStorage trong lib/supabase-quests.ts giữ
+    // một bảng riêng và lệch hẳn sau lần siết nền kinh tế XP - daily_2 cộng 5
+    // (thật ra 2), daily_news_quiz cộng 15 (thật ra 8), daily_3 cộng 15 trong
+    // khi bảng thật cho 2, tức sai gấp bảy lần rưỡi. Không ai thấy vì nhánh đó
+    // chỉ chạy khi Supabase lỗi.
+    //
+    // Bắt theo hình dạng `item === "daily_x"` đi kèm một phép cộng số: đó đúng
+    // là hình dạng của một bảng chép tay, và nó không có lý do chính đáng nào.
+    const src = readFileSync("lib/supabase-quests.ts", "utf8");
+    const handWritten = [...src.matchAll(/=== "(daily_\w+|career_assessment)"\)\s*\w+\s*\+=\s*\d+/g)];
+    expect(
+      handWritten.map((m) => m[0]),
+      "cộng XP bằng số viết tay - dùng getQuestXpReward() thay vì chép số"
+    ).toEqual([]);
+  });
+});
+
+describe("nhiệm vụ không đo được thì không hiện", () => {
+  it("daily_focus bị lọc khi focus_sessions chưa tồn tại", () => {
+    // Bảng focus_sessions cần migration 20260824_focus_sessions.sql. Chưa chạy
+    // thì truy vấn trả PGRST205, và bản trước nuốt luôn lỗi - kết quả là 0
+    // giây, giống hệt một ngày chưa học, nên nhiệm vụ đứng mãi ở 0/15. Người
+    // học nhìn thấy một nhiệm vụ không bao giờ hoàn thành được và không có lý
+    // do nào hiện ra.
+    const src = readFileSync("lib/supabase-quests.ts", "utf8");
+    expect(src, "không còn đọc mã lỗi của focus_sessions").toContain("PGRST205");
+    expect(src, "không còn lọc daily_focus khi bảng thiếu").toMatch(
+      /focusAvailable \|\| q\.id !== "daily_focus"/
+    );
+  });
+
+  it("chỉ daily_focus phụ thuộc bảng đó, không nhiệm vụ nào khác", () => {
+    // Nếu một nhiệm vụ thứ hai bám vào focus_sessions mà không được lọc thì nó
+    // lặp lại đúng lỗi này, im lặng như lần đầu.
+    const src = readFileSync("lib/supabase-quests.ts", "utf8");
+    const uses = [...src.matchAll(/from\("focus_sessions"\)/g)];
+    expect(uses).toHaveLength(1);
   });
 });
