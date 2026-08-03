@@ -6,7 +6,7 @@ import Image from "next/image";
 import { isValidAvatar } from "@/lib/avatar-utils";
 import { usePathname, useRouter } from "next/navigation";
 import { toast } from "sonner";
-import { FileText, BarChart3, StickyNote, GraduationCap, Gamepad2, Menu, X, Briefcase, BriefcaseBusiness, BookOpen, Home, Flame, Users, MessageSquareMore, Search, ChevronDown, Award, ShieldAlert, type LucideIcon } from "lucide-react";
+import { FileText, BarChart3, StickyNote, GraduationCap, Gamepad2, Menu, X, Briefcase, BriefcaseBusiness, BookOpen, Home, Flame, Users, MessageSquareMore, Search, ChevronDown, Award, ShieldAlert, Route, type LucideIcon } from "lucide-react";
 import { useI18n } from "@/lib/i18n/context";
 import type { Dictionary } from "@/lib/i18n";
 import LanguageSwitcher from "@/components/LanguageSwitcher";
@@ -63,6 +63,15 @@ const NAV_SECTIONS: NavSection[] = [
     titleKey: "sectionLearn",
     links: [
       { href: "/hoc-bai", label: "Học bài", icon: BookOpen },
+      // Tách khỏi dashboard cùng đợt với CFA và FRM. Cả ba trước đó là thẻ
+      // trong dãy chọn track nhưng không phải track trong lộ trình đánh số
+      // theo ngày - chúng là các lối học song song, nên thuộc navbar.
+      //
+      // Nhãn và icon phải khác hẳn "Sự nghiệp" (/su-nghiep) ở nhóm Tiến độ:
+      // hai trang trả lời hai câu khác nhau - trang kia là "nghề nào hợp với
+      // tôi", trang này là "nghề đó thì học bài nào" - và dùng chung icon
+      // cặp táp thì đọc như một mục bị lặp.
+      { href: "/nghe-nghiep-hoc", label: "Học theo nghề", icon: Route },
       // /cfa had no nav entry at all. The only way in was a placement modal
       // that fires once per browser and never again once localStorage records
       // it, so ten subjects, 324 cross-referenced lessons, fourteen

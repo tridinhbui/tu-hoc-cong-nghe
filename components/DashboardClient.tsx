@@ -33,7 +33,6 @@ import CareerGoalWidget from "@/components/CareerGoalWidget";
 import ReferralPromptModal from "@/components/ReferralPromptModal";
 import DiagnosticPlacementModal from "@/components/DiagnosticPlacementModal";
 import CombinedRewardsWidget from "@/components/CombinedRewardsWidget";
-import CareerLearningPathClient from "@/components/CareerLearningPathClient";
 import { hasCompletedOnboarding, completeOnboarding } from "@/lib/supabase-onboarding";
 import { getUserProfile, recalculateUserStats, getLeaderboardByMetric, getCfaCompletedCount } from "@/lib/supabase-user";
 import { syncLocalLevelExams } from "@/lib/supabase-level-exams";
@@ -163,10 +162,10 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
     const saved = window.localStorage.getItem("activeTrack");
     return saved === "professional" ? "professional" : "personal";
   });
-  const [activeDashboardTab, setActiveDashboardTab] = useState<"career" | "personal" | "professional" | "skill-tree" | "weekly-challenge" | "cards" | "cosmetics">(() => {
+  const [activeDashboardTab, setActiveDashboardTab] = useState<"personal" | "professional" | "skill-tree" | "weekly-challenge" | "cards" | "cosmetics">(() => {
     if (typeof window === "undefined") return "personal";
     const saved = window.localStorage.getItem("activeDashboardTab");
-    const validTabs = ["career", "personal", "professional", "skill-tree", "weekly-challenge", "cards", "cosmetics"];
+    const validTabs = ["personal", "professional", "skill-tree", "weekly-challenge", "cards", "cosmetics"];
     return saved && validTabs.includes(saved) ? (saved as any) : "personal";
   });
   const [professionalBranch, setProfessionalBranch] = useState<ProfessionalBranchId>(() => {
@@ -186,7 +185,7 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
       window.localStorage.setItem("activeDashboardTab", track);
     }
   };
-  const setDashboardTab = (tab: "career" | "personal" | "professional" | "skill-tree" | "weekly-challenge" | "cards" | "cosmetics") => {
+  const setDashboardTab = (tab: "personal" | "professional" | "skill-tree" | "weekly-challenge" | "cards" | "cosmetics") => {
     setActiveDashboardTab(tab);
     if (typeof window !== "undefined") {
       window.localStorage.setItem("activeDashboardTab", tab);
@@ -273,7 +272,7 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
     };
   }, []);
 
-  useRoutePrefetch(["/analytics", "/ghi-chu", "/kiem-tra", "/tai-lieu", "/ban-be", "/profile", "/settings", "/cfa", "/frm"]);
+  useRoutePrefetch(["/analytics", "/ghi-chu", "/kiem-tra", "/tai-lieu", "/ban-be", "/profile", "/settings", "/cfa", "/frm", "/nghe-nghiep-hoc"]);
 
   useEffect(() => {
     if (!manualFlagInfoOpen) return;
@@ -1215,28 +1214,7 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
               how many content lines each one has (personal/CFA got a fun
               one-line subtitle added specifically to match professional's,
               which was shortened to a single inline badge to compensate). */}
-          <div id="lo-trinh" data-tour="track-selector" className="grid grid-cols-1 sm:grid-cols-3 gap-3.5 mb-8 items-stretch scroll-mt-24">
-            {/* Card 1: Tài chính Nghề Nghiệp */}
-            <button
-              type="button"
-              onClick={() => setDashboardTab("career")}
-              className={`w-full h-full flex flex-col text-left rounded-2xl border-2 px-5 py-4 transition-all duration-300 relative overflow-hidden backdrop-blur-md ${
-                activeDashboardTab === "career"
-                  ? "border-emerald-500/80 bg-white/95 dark:bg-stone-900 text-stone-900 dark:text-stone-100 ring-2 ring-emerald-500/20 dark:ring-emerald-400/30 shadow-md font-extrabold"
-                  : "border-stone-200/80 dark:border-stone-800/90 bg-white/95 dark:bg-stone-900/80 text-stone-700 dark:text-stone-300 hover:border-stone-300 dark:hover:border-stone-700 shadow-xs hover:shadow-sm"
-              }`}
-            >
-              <div className="h-0.5 w-full bg-emerald-500/70 absolute top-0 left-0 right-0" />
-              <div className="flex items-center gap-2 flex-wrap mt-1">
-                <div className="text-base font-extrabold tracking-tight text-stone-900 dark:text-stone-100">
-                  Tài chính Nghề Nghiệp
-                </div>
-              </div>
-              <div className="text-xs mt-1.5 text-stone-500 dark:text-stone-400 font-normal">
-                14+ hướng đi nghề nghiệp
-              </div>
-            </button>
-
+          <div id="lo-trinh" data-tour="track-selector" className="grid grid-cols-1 sm:grid-cols-2 gap-3.5 mb-8 items-stretch scroll-mt-24">
             {/* Card 2: Tài chính Cá Nhân (Amber Gold Accent) */}
             <div className="relative group h-full">
               <button
@@ -1322,17 +1300,6 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
             </div>
           </div>
 
-        {activeDashboardTab === "career" && (
-            <div className="mt-8">
-              <CareerLearningPathClient
-                lessonsBySlug={lessonsBySlug}
-                lessonsById={lessonsById}
-                completedLessonIds={completed}
-                embedded
-              />
-            </div>
-          )}
-
           {/* "Tài chính chuyên ngành" split into focused branches -
               purely filters which of TRACK_PROFESSIONAL's stages show,
               same lessons/locking/XP either way. */}
@@ -1363,7 +1330,7 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
             </div>
           )}
 
-          {activeDashboardTab === "career" ? null : activeDashboardTab === "skill-tree" ? (
+          {activeDashboardTab === "skill-tree" ? (
             <SkillTreeWidget completedLessonIds={completed} unlockedLessonIds={unlockedLessonIds} />
           ) : activeDashboardTab === "weekly-challenge" ? (
             <WeeklyChallengeWidget userId={user?.id || ""} />
