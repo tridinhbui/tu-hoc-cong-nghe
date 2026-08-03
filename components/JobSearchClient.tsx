@@ -35,6 +35,7 @@ import { recalculateUserStats } from "@/lib/supabase-user";
 import { getMyCareerGoal, setCareerGoal, clearCareerGoal } from "@/lib/supabase-career-goals";
 import { getCareerLessonProgress, type CareerLessonProgress } from "@/lib/career-lesson-progress";
 import { CheckCircle2, Circle, BookOpen } from "lucide-react";
+import Image from "next/image";
 import CareerRoadmapMap from "@/components/CareerRoadmapMap";
 import CareerProfilePanel from "@/components/CareerProfilePanel";
 import { SUGGESTED_JOB_KEYWORDS } from "@/lib/job-search-links";
@@ -69,9 +70,11 @@ function CareerAvatar({ career, size = 110, className = "" }: { career?: Finance
           }}
         />
         {career.avatar3d ? (
-          <img
+          <Image
             src={career.avatar3d}
             alt={career.title || "Career"}
+            width={size}
+            height={size}
             className="w-full h-full object-cover select-none relative z-10"
           />
         ) : (
@@ -400,7 +403,13 @@ function ComparisonModal({
           <div className="p-5 rounded-2xl border border-stone-200 dark:border-stone-800 bg-stone-50/50 dark:bg-stone-950/30">
             <div className="flex gap-4 items-center mb-4">
               <div className="w-14 h-14 rounded-xl overflow-hidden border border-stone-200 dark:border-stone-800 shadow-sm shrink-0">
-                <img src={careerA.avatar3d} alt={careerA.title} className="w-full h-full object-cover" />
+                <Image
+                  src={careerA.avatar3d}
+                  alt={careerA.title}
+                  width={56}
+                  height={56}
+                  className="w-full h-full object-cover"
+                />
               </div>
               <div>
                 <span className="text-[9px] font-black uppercase tracking-wider px-2 py-0.5 rounded bg-emerald-100 dark:bg-emerald-950/40 text-emerald-700 dark:text-emerald-400">Hiện tại</span>
@@ -470,7 +479,13 @@ function ComparisonModal({
               <div className="space-y-4 text-xs">
                 <div className="flex gap-4 items-center">
                   <div className="w-14 h-14 rounded-xl overflow-hidden border border-stone-200 dark:border-stone-800 shadow-sm shrink-0">
-                    <img src={careerB.avatar3d} alt={careerB.title} className="w-full h-full object-cover" />
+                    <Image
+                      src={careerB.avatar3d}
+                      alt={careerB.title}
+                      width={56}
+                      height={56}
+                      className="w-full h-full object-cover"
+                    />
                   </div>
                   <div>
                     <h3 className="text-base font-black text-stone-900 dark:text-stone-50 leading-tight">{careerB.title}</h3>
@@ -1134,9 +1149,11 @@ export default function JobSearchClient() {
                       
                       {/* Avatar container */}
                       <div className="relative shrink-0 w-14 h-14 rounded-xl overflow-hidden border border-stone-200 dark:border-stone-800 shadow-sm">
-                        <img
+                        <Image
                           src={career.avatar3d}
                           alt={career.title}
+                          width={56}
+                          height={56}
                           className="w-full h-full object-cover relative z-10"
                         />
                       </div>

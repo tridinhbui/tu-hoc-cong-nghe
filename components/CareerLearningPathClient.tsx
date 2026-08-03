@@ -175,7 +175,13 @@ export default function CareerLearningPathClient({
                   style={{ background: `linear-gradient(135deg, ${career.accentFrom}, ${career.accentTo})` }}
                 >
                   {career.avatar3d ? (
-                    <img src={career.avatar3d} alt={career.title} className="w-full h-full object-cover" />
+                    <Image
+                      src={career.avatar3d}
+                      alt={career.title}
+                      width={48}
+                      height={48}
+                      className="w-full h-full object-cover"
+                    />
                   ) : (
                     career.emoji
                   )}
@@ -213,7 +219,13 @@ export default function CareerLearningPathClient({
         <div className="flex items-center gap-4">
           <div className="w-14 h-14 rounded-xl overflow-hidden bg-white/20 flex items-center justify-center text-3xl shrink-0 relative">
             {selected.avatar3d ? (
-              <img src={selected.avatar3d} alt={selected.title} className="w-full h-full object-cover" />
+              <Image
+                src={selected.avatar3d}
+                alt={selected.title}
+                width={56}
+                height={56}
+                className="w-full h-full object-cover"
+              />
             ) : (
               selected.emoji
             )}
