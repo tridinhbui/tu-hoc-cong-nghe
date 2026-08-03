@@ -810,6 +810,23 @@ export const TRACK_PROFESSIONAL = {
         { name: "Current Issues: AI/ML, rủi ro khí hậu, hậu LIBOR, CBDC, tập trung đám mây, bất ổn 2023", days: [1643, 1648] as [number, number] },
       ],
     },
+    {
+      // Nghề "Chuyên viên Tài chính Sản phẩm FinTech" trong lib/finance-careers.ts
+      // là nghề duy nhất trong 44 nghề mà kho bài học thực sự mỏng - quét cả
+      // 689 bài chỉ ra vài bài chung chung để nối vào, trong khi mọi nghề khác
+      // đều đã có bài đúng chủ đề nằm rải rác. Chặng này lấp chỗ đó, và cố ý
+      // không dạy công nghệ: người làm tài chính sản phẩm không viết code, họ
+      // trả lời câu sản phẩm này kiếm tiền ở đâu và mỗi khách lãi hay lỗ.
+      label: "Chặng 39",
+      name: "Tài chính sản phẩm FinTech",
+      days: [1701, 1706] as [number, number],
+      available: true,
+      isNew: true,
+      parts: [
+        { name: "Doanh thu và đơn vị kinh tế: take rate, CAC/LTV, số dư ví", days: [1701, 1703] as [number, number] },
+        { name: "Phần mất đi và đường tới hoà vốn: rủi ro tín dụng, gian lận, burn", days: [1704, 1706] as [number, number] },
+      ],
+    },
   ] satisfies Stage[],
 };
 
@@ -853,7 +870,7 @@ export const PROFESSIONAL_BRANCHES = [
     label: "Ngân hàng, bảo hiểm & tư vấn",
     subtitle: "Đọc và định giá ngân hàng, tín dụng, tuân thủ, quản lý gia sản & bảo hiểm",
     emoji: "🏦",
-    stageLabels: ["Chặng 18", "Chặng 21", "Chặng 34", "Chặng 35", "Chặng 36", "Chặng 37", "Chặng 38"],
+    stageLabels: ["Chặng 18", "Chặng 21", "Chặng 34", "Chặng 35", "Chặng 36", "Chặng 37", "Chặng 38", "Chặng 39"],
   },
   {
     id: "quant",
