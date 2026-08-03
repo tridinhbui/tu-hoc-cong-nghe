@@ -1,6 +1,7 @@
 "use client";
 
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { outdoorBrightnessAt } from "@/components/lobby/daylight";
 import dynamic from "next/dynamic";
 import Link from "next/link";
 import {
@@ -221,24 +222,51 @@ export default function DistrictWorld({
   // Đọc đồng hồ sau khi mount, không lúc render: giờ máy chủ khác giờ người
   // học, và một bầu trời khác nhau giữa hai lần render đầu là lỗi hydrate.
   useEffect(() => {
-    const read = () => {
-      const h = new Date().getHours();
-      setDaylight(h >= 6 && h < 18 ? 1 : h >= 18 && h < 20 ? 0.45 : 0);
-    };
+    // Đọc từ cùng một bảng giờ với thư viện. Bản cũ ở đây là một ternary
+    // riêng nhảy bậc tại đúng 18:00 - hai thế giới cạnh nhau nói hai giờ khác
+    // nhau, và người đi từ bên này sang bên kia lúc chập tối thấy ngay.
+    const read = () => setDaylight(outdoorBrightnessAt(new Date().getHours()));
     read();
     const timer = window.setInterval(read, 10 * 60 * 1000);
     return () => window.clearInterval(timer);
   }, []);
+
+  /** Escape đóng bảng đang mở.
+   *
+   *  Năm bảng - thang máy, sân khấu, di chuyển, hành chính, thử đồ - trước đây
+   *  chỉ đóng được bằng đúng nút của chính nó. Escape là phản xạ phổ quát trên
+   *  desktop, và thiếu nó thì một bảng mở nhầm đọc ra như bị kẹt.
+   *
+   *  Đóng từng cái một chứ không đóng sạch: người mở hai lớp bảng chồng nhau
+   *  mong bấm Escape là lùi một bước, không phải mất hết. */
+  useEffect(() => {
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key !== "Escape") return;
+      // Đang gõ trong ô nói thì Escape thuộc về ô đó.
+      const el = document.activeElement;
+      if (el instanceof HTMLInputElement || el instanceof HTMLTextAreaElement) return;
+      if (tryOn !== null) return void setTryOn(null);
+      if (civicOpen) return void setCivicOpen(false);
+      if (travelOpen) return void setTravelOpen(false);
+      if (stagePanel) return void setStagePanel(false);
+      if (liftPanel) return void setLiftPanel(false);
+    };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [tryOn, civicOpen, travelOpen, stagePanel, liftPanel]);
 
   // Lời nhắc cách đi chỉ hiện tới lúc người học thực sự bước đi lần đầu.
   useEffect(() => {
     if (walking) setHintSeen(true);
   }, [walking]);
 
-  const go = useCallback((target: Doorway) => {
-    soundRef.current.play("enter");
-    setRoomId(target.to);
-    setEntry(target.arriveAt);
+  /** Đóng mọi bảng và bỏ mọi thứ đang đứng gần.
+   *
+   *  Ba lối vào phòng - đi bộ qua cửa, bấm tầng trong thang máy, mở một hành
+   *  lang lộ trình - trước đây mỗi cái chép lại đúng mười lệnh này. Bảng thứ
+   *  sáu thêm sau sẽ được nhớ ở hai chỗ và quên ở chỗ thứ ba, và triệu chứng
+   *  là một bảng cũ còn treo sau khi đã đổi phòng. */
+  const clearRoomState = useCallback(() => {
     setDesk(null);
     setDoor(null);
     setPortal(null);
@@ -252,23 +280,20 @@ export default function DistrictWorld({
     setTryOn(null);
   }, []);
 
+  const go = useCallback((target: Doorway) => {
+    soundRef.current.play("enter");
+    setRoomId(target.to);
+    setEntry(target.arriveAt);
+    clearRoomState();
+  }, [clearRoomState]);
+
   /** Bấm một tầng trong bảng thang máy. Cùng đường với đi bộ qua cửa: đổi phòng
    *  và đặt chỗ đứng, nên không có hai cách vào phòng cần giữ đồng bộ. */
   const goToFloor = useCallback((id: DistrictRoomId, arriveAt: Pose) => {
     setRoomId(id);
     setEntry(arriveAt);
-    setDesk(null);
-    setDoor(null);
-    setPortal(null);
-    setAtLift(false);
-    setStop(null);
-    setLiftPanel(false);
-    setStagePanel(false);
-    setTravelOpen(false);
-    setAtStand(false);
-    setCivicOpen(false);
-    setTryOn(null);
-  }, []);
+    clearRoomState();
+  }, [clearRoomState]);
 
   /** Vào một hành lang lộ trình - của một nghề, hoặc của một chặng học.
    *
@@ -283,19 +308,9 @@ export default function DistrictWorld({
       const entryPose: Pose = { x: 0, z: room.size.depth / 2 - 4.5, ry: 0 };
       setRoomId(room.id);
       setEntry(entryPose);
-      setDesk(null);
-      setDoor(null);
-      setPortal(null);
-      setAtLift(false);
-      setStop(null);
-      setLiftPanel(false);
-      setStagePanel(false);
-      setTravelOpen(false);
-      setAtStand(false);
-      setCivicOpen(false);
-      setTryOn(null);
+      clearRoomState();
     },
-    []
+    [clearRoomState]
   );
 
   const roomLessons = useMemo(

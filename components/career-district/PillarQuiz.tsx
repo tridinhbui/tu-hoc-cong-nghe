@@ -93,7 +93,10 @@ export default function PillarQuiz({ lessonId, accent, onClose, onCorrect }: Pro
   );
 
   return (
-    <div className="pointer-events-auto absolute inset-x-3 bottom-36 z-20 mx-auto max-w-md rounded-2xl border border-stone-700 bg-stone-900/95 p-4 shadow-2xl backdrop-blur sm:inset-x-auto sm:bottom-3 sm:left-4 sm:w-96">
+    <section
+      aria-label="Ôn nhanh tại chỗ"
+      className="pointer-events-auto absolute inset-x-3 bottom-36 z-20 mx-auto max-w-md rounded-2xl border border-stone-700 bg-stone-900/95 p-4 shadow-2xl backdrop-blur sm:inset-x-auto sm:bottom-3 sm:left-4 sm:w-96"
+    >
       <div className="mb-2 flex items-start justify-between gap-2">
         <p className="text-[10px] font-black uppercase tracking-widest" style={{ color: accent }}>
           ❓ Ôn nhanh tại chỗ
@@ -101,6 +104,7 @@ export default function PillarQuiz({ lessonId, accent, onClose, onCorrect }: Pro
         <button
           type="button"
           onClick={onClose}
+          aria-label="Đóng ô ôn nhanh"
           className="cursor-pointer text-[10px] font-bold text-stone-500 hover:text-stone-300"
         >
           đóng
@@ -118,7 +122,9 @@ export default function PillarQuiz({ lessonId, accent, onClose, onCorrect }: Pro
       {(phase.kind === "asking" || phase.kind === "grading" || phase.kind === "done") && (
         <>
           <p className="text-[13px] font-bold leading-snug text-white">{phase.q.question}</p>
-          <div className="mt-2 space-y-1">
+          {/* Nhóm lại và đặt tên: bốn nút không nhãn cạnh nhau chỉ đọc ra bốn
+              đoạn văn bản, không đọc ra "đây là các lựa chọn của một câu hỏi". */}
+          <div className="mt-2 space-y-1" role="group" aria-label="Các lựa chọn trả lời">
             {phase.q.options.map((opt, i) => {
               const chosen = phase.kind !== "asking" && phase.picked === i;
               const revealed = phase.kind === "done";
@@ -147,7 +153,7 @@ export default function PillarQuiz({ lessonId, accent, onClose, onCorrect }: Pro
           </div>
 
           {phase.kind === "grading" && (
-            <p className="mt-2 text-[11px] text-stone-400">Đang chấm…</p>
+            <p role="status" className="mt-2 text-[11px] text-stone-400">Đang chấm…</p>
           )}
           {phase.kind === "done" && (
             <div className="mt-2.5 rounded-xl bg-stone-950/70 p-2.5">
@@ -159,6 +165,6 @@ export default function PillarQuiz({ lessonId, accent, onClose, onCorrect }: Pro
           )}
         </>
       )}
-    </div>
+    </section>
   );
 }

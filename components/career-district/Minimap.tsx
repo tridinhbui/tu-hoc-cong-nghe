@@ -117,7 +117,15 @@ export default function Minimap({ room, playerRef, peers }: Props) {
 
   return (
     <div className="pointer-events-none absolute bottom-4 right-4 z-10 hidden rounded-2xl border border-stone-700 bg-stone-950/80 p-1.5 shadow-xl backdrop-blur sm:block">
-      <canvas ref={canvasRef} style={{ width: SIZE, height: SIZE }} />
+      {/* Canvas không có nội dung nào cho trình đọc màn hình đọc, nên phải tự
+          mô tả. `img` chứ không để mặc định: đây là một hình tĩnh về mặt ngữ
+          nghĩa, không phải vùng tương tác. */}
+      <canvas
+        ref={canvasRef}
+        role="img"
+        aria-label={`Bản đồ nhỏ của ${room.label}, hiện vị trí của bạn và những người đang ở cùng phòng`}
+        style={{ width: SIZE, height: SIZE }}
+      />
       <p className="mt-0.5 text-center text-[9px] font-bold text-stone-500">{room.label}</p>
     </div>
   );

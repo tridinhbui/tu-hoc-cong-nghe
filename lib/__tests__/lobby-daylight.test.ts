@@ -1,5 +1,5 @@
 import { describe, it, expect } from "vitest";
-import { daylightAt, rgbToHex, sunPosition } from "@/components/lobby/daylight";
+import { daylightAt, outdoorBrightnessAt, rgbToHex, sunPosition } from "@/components/lobby/daylight";
 
 /** Ánh sáng theo giờ là hàm thuần, nên kiểm được đúng cái dễ sai nhất: đoạn
  *  vòng qua nửa đêm. Bảng mốc dừng ở 20h30 rồi quay về mốc 0h, và mọi công thức
@@ -73,5 +73,34 @@ describe("vị trí mặt trời", () => {
 describe("rgbToHex", () => {
   it("kẹp giá trị tràn thay vì sinh mã màu rác", () => {
     expect(rgbToHex([300, -20, 128])).toBe("#ff0080");
+  });
+});
+
+// Phố nghề từng có bảng giờ riêng nhảy bậc tại 18:00 trong khi thư viện ngay
+// cạnh nội suy mượt. Giờ cả hai cùng đọc một nguồn; test khoá lại tính chất
+// làm nó đáng gộp - không có bậc nhảy nào, và luôn nằm trong [0, 1].
+describe("do sang ngoai troi cho Pho nghe", () => {
+  it("luon nam trong khoang 0 den 1, ke ca voi gio hong", () => {
+    for (const h of [-6, 0, 6.5, 12, 18, 23.9, 30]) {
+      const v = outdoorBrightnessAt(h);
+      expect(v).toBeGreaterThanOrEqual(0);
+      expect(v).toBeLessThanOrEqual(1);
+    }
+  });
+
+  it("khong co buoc nhay nao trong ca ngay", () => {
+    let prev = outdoorBrightnessAt(0);
+    for (let h = 0; h <= 24; h += 0.25) {
+      const now = outdoorBrightnessAt(h);
+      // Một phần tư giờ không được đổi quá 0,15 - đủ rộng cho lúc chạng vạng
+      // đổi nhanh nhất, đủ chặt để một bậc nhảy kiểu 1 → 0,45 bị bắt.
+      expect(Math.abs(now - prev), `nhay bac tai ${h}h`).toBeLessThan(0.15);
+      prev = now;
+    }
+  });
+
+  it("giua trua sang hon nua dem", () => {
+    expect(outdoorBrightnessAt(12)).toBeGreaterThan(outdoorBrightnessAt(2));
+    expect(outdoorBrightnessAt(9)).toBeGreaterThan(outdoorBrightnessAt(21));
   });
 });

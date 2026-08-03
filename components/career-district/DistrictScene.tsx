@@ -36,6 +36,7 @@ import {
   type WalkState,
 } from "@/components/world-controls/easy-walk";
 import { useRenderQuality } from "@/components/world-controls/render-quality";
+import { usePageVisible } from "@/components/world-controls/use-page-visible";
 import LobbyAvatar, { type AvatarPose } from "@/components/lobby/LobbyAvatar";
 import { disposeRoomTextures } from "@/components/lobby/room-textures";
 import type { CharacterEquipments } from "@/lib/rpg-items";
@@ -327,6 +328,7 @@ export default function DistrictScene({
   daylight,
 }: DistrictSceneProps) {
   const quality = useRenderQuality();
+  const pageVisible = usePageVisible();
   const room = getRoom(roomId);
   const poseRef = useRef<AvatarPose>({ ...entry });
   const [peers, setPeers] = useState<StudyWorldPeer[]>([]);
@@ -439,10 +441,15 @@ export default function DistrictScene({
 
   return (
     <Canvas
+      // Tab ẩn thì ngừng vẽ. Phố nghề là thế giới lớn nhất trong ba cái, nên
+      // đây cũng là chỗ một tab nền bỏ quên tốn nhiều nhất.
+      frameloop={pageVisible ? "always" : "never"}
       shadows={quality.shadows}
       camera={{ position: [entry.x, 3.4, entry.z + 6], fov: 55 }}
       dpr={quality.dpr}
-      gl={{ antialias: true, powerPreference: "high-performance" }}
+      // Bám theo cùng phép đo máy yếu mà useRenderQuality đang dùng: xin GPU
+      // rời trong khi vừa hạ DPR vì máy yếu là tự vô hiệu một nửa cơ chế.
+      gl={{ antialias: true, powerPreference: quality.shadows ? "high-performance" : "low-power" }}
     >
       <color attach="background" args={[sky]} />
       <fog attach="fog" args={[sky, outdoor ? 34 : 20, outdoor ? 95 : 48]} />

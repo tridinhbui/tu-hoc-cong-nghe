@@ -188,3 +188,20 @@ export function sunPosition(hour: number): [number, number, number] {
   const y = daytime ? Math.max(3, Math.sin(a) * 16) : 9;
   return [Math.cos(a) * 14, y, daytime ? 5 : 8];
 }
+
+/**
+ * Cùng một đồng hồ, rút gọn về đúng một con số cho nơi chỉ cần "trời sáng tới
+ * đâu" - Phố nghề dùng nó để chỉnh ánh sáng cảnh.
+ *
+ * Trước đây Phố nghề tự có một ternary riêng: sáng bằng 1 từ 6h tới 18h, 0,45
+ * tới 20h, rồi 0. Đó là định nghĩa "mấy giờ" thứ ba trong ứng dụng, và là bản
+ * thô nhất - ánh sáng nhảy bậc tại đúng 18:00, trong khi thư viện ngay cạnh
+ * nội suy mượt. Đi từ thư viện sang Phố nghề lúc 18h05 là thấy hai thế giới
+ * cạnh nhau nói hai giờ khác nhau.
+ *
+ * Lấy `windowGlow` chứ không lấy `sunIntensity`: cái đầu đã ở sẵn thang 0 → 1
+ * và mô tả đúng thứ Phố nghề cần - trời ngoài kia còn sáng bao nhiêu.
+ */
+export function outdoorBrightnessAt(hour: number): number {
+  return Math.min(1, Math.max(0, daylightAt(hour).windowGlow));
+}
