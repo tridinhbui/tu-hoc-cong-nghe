@@ -30,6 +30,10 @@ export const CFA_LEVEL_1_SUBJECTS: CfaSubject[] = [
     lessonIds: [
       1039, 1040, 1041, 1042, 1043, 1044, 1045, 1046, 1331, 1332, 1333, 1334, 1335, 1336, 1571,
       1572, 1573, 1574, 1575, 1576, 1577, 1578, 1579, 1580, 1581, 1582,
+      // 1591-1602: các Standard còn lại chưa đào sâu - III(A), III(C), III(E),
+      // IV(A), IV(C), V(C), VI(A), VII(A) - cùng GIPS ở mức vận hành, bộ máy
+      // tuân thủ, đạo đức khi thuật toán ra quyết định, và vận dụng vào VN.
+      1591, 1592, 1593, 1594, 1595, 1596, 1597, 1598, 1599, 1600, 1601, 1602,
     ],
   },
   {

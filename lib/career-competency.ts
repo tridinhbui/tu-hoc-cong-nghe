@@ -167,6 +167,7 @@ export const SKILL_DOMAINS: SkillDomain[] = [
       // 1571-1582: chiều sâu từng Standard, cộng hai bài nền tảng về khung ra
       // quyết định và niềm tin trong ngành.
       ...range(1571, 1582),
+      ...range(1591, 1602),
       1330,
       1506,
       1535,
