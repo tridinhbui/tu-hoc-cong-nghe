@@ -84,6 +84,29 @@ export const FRM_CORE_GAPS_LESSONS: Lesson[] = [
         correct: 0,
         explanation: "Ranh giới mờ là chuyện thường: một khoản lỗ tín dụng do hồ sơ thẩm định bị làm giả vừa là tín dụng vừa là gian lận. Không có quy tắc rõ, sự kiện sẽ bị đếm hai lần hoặc rơi vào khe hở - và không ai đứng ra chịu trách nhiệm quản lý nó."
       }
+    ,
+    {
+      "question": "Vì sao khung phân loại rủi ro nên xếp theo nguyên nhân gốc chứ không theo kênh mà khoản lỗ hiện ra?",
+      "options": [
+        "Vì cách chữa gắn với nguyên nhân chứ không gắn với nơi khoản lỗ hiện ra",
+        "Vì chuẩn Basel quy định mọi khoản lỗ phải xếp theo nguyên nhân phát sinh",
+        "Vì khoản lỗ trên thị trường luôn khó đo lường hơn khoản lỗ vận hành",
+        "Vì nguyên nhân gốc thường dễ xác định hơn kênh mà khoản lỗ đi qua"
+      ],
+      "correct": 0,
+      "explanation": "Vụ Barings hiện ra dưới dạng lỗ giao dịch, nhưng nguyên nhân là kiểm soát nội bộ thất bại - và cách chữa là sửa hạn mức với phân tách nhiệm vụ, không phải giảm vị thế thị trường. Xếp sai nhóm thì tiền đầu tư vào biện pháp cũng đi sai chỗ."
+    },
+    {
+      "question": "Rủi ro danh tiếng thường được xử lý thế nào trong khung phân loại?",
+      "options": [
+        "Là hệ quả của các loại rủi ro khác, không phải loại độc lập",
+        "Là một loại rủi ro riêng, đo bằng mức biến động giá cổ phiếu của tổ chức",
+        "Là một nhánh con của rủi ro chiến lược, do hội đồng quản trị trực tiếp quản",
+        "Là một dạng rủi ro thị trường vì nó tác động qua giá tài sản"
+      ],
+      "correct": 0,
+      "explanation": "Danh tiếng hiếm khi tự hỏng - nó hỏng vì một sự kiện thuộc nhóm khác đã xảy ra: gian lận, sự cố hệ thống, hay xử lý khủng hoảng kém. Vì thế nó được theo dõi như một kênh khuếch đại, và biện pháp phòng ngừa nằm ở chính các loại rủi ro sinh ra nó."
+    }
     ],
     keyTakeaways: [
       "Phân loại theo nguyên nhân gốc, không theo kênh mà khoản lỗ hiện ra",
@@ -225,6 +248,29 @@ export const FRM_CORE_GAPS_LESSONS: Lesson[] = [
         correct: 0,
         explanation: "Điều làm hệ thống hạn mức có giá trị không phải bản thân con số mà là quy trình xử lý khi vượt. Nâng hạn mức cho khớp vị thế là cách phổ biến nhất để một hệ thống hạn mức trở nên vô nghĩa mà trên giấy tờ vẫn đầy đủ."
       }
+    ,
+    {
+      "question": "Vì sao hệ thống hạn mức nên có cả ngưỡng cảnh báo đặt dưới hạn mức cứng?",
+      "options": [
+        "Để có thời gian xử lý trước khi bị buộc phải cắt vị thế gấp",
+        "Để bộ phận kinh doanh có thêm dư địa vượt hạn mức trong thời gian ngắn",
+        "Vì quy định yêu cầu mọi hạn mức phải có ít nhất hai mức khác nhau",
+        "Vì ngưỡng cảnh báo thay thế được việc giám sát hạn mức hằng ngày"
+      ],
+      "correct": 0,
+      "explanation": "Chạm hạn mức cứng thường buộc phải giảm vị thế ngay, mà bán gấp là lúc giá xấu nhất. Ngưỡng cảnh báo biến một cú xử lý khẩn thành một quyết định có thời gian - đó là toàn bộ giá trị của nó, chứ không phải nới thêm dư địa."
+    },
+    {
+      "question": "Vì sao hạn mức cần được rà soát định kỳ chứ không đặt một lần rồi giữ nguyên?",
+      "options": [
+        "Vì quy mô vốn, thanh khoản và chiến lược đều đổi theo thời gian",
+        "Vì hạn mức cũ sẽ tự động hết hiệu lực sau mỗi năm tài chính theo quy định",
+        "Vì bộ phận kinh doanh có quyền yêu cầu nâng hạn mức mỗi khi đạt kế hoạch",
+        "Vì rà soát định kỳ là cách duy nhất phát hiện các lần vượt hạn mức đã xảy ra"
+      ],
+      "correct": 0,
+      "explanation": "Một hạn mức đặt khi vốn tự có bằng một nửa hiện nay là một ràng buộc quá chặt; đặt khi thị trường còn thanh khoản tốt thì lại quá lỏng trong điều kiện hiện tại. Hạn mức không được rà soát dần trở nên hoặc vô nghĩa hoặc bị lách."
+    }
     ],
     keyTakeaways: [
       "Năng lực chịu rủi ro là ngưỡng vật lý, khẩu vị là mức chủ động chọn và luôn nằm dưới năng lực",
@@ -359,6 +405,29 @@ export const FRM_CORE_GAPS_LESSONS: Lesson[] = [
         correct: 0,
         explanation: "Treynor ngầm giả định phần rủi ro riêng lẻ đã được loại bỏ nhờ đa dạng hoá, nên chỉ tính phần còn lại. Áp dụng cho một danh mục dồn vào vài mã sẽ cho con số đẹp giả tạo, vì phần rủi ro lớn nhất mà nhà đầu tư đang chịu không xuất hiện trong mẫu số."
       }
+    ,
+    {
+      "question": "Sortino ratio khác Sharpe ratio ở điểm nào?",
+      "options": [
+        "Mẫu số chỉ tính phần lợi suất nằm dưới mức mục tiêu",
+        "Tử số dùng lợi suất tuyệt đối thay vì lợi suất vượt trên mức phi rủi ro",
+        "Mẫu số dùng beta thay cho độ lệch chuẩn của toàn bộ danh mục",
+        "Tử số trừ đi lợi suất của chỉ số tham chiếu thay vì lãi suất phi rủi ro"
+      ],
+      "correct": 0,
+      "explanation": "Sharpe phạt cả biến động lên lẫn biến động xuống như nhau, dù nhà đầu tư chỉ khó chịu với một chiều. Sortino chỉ đếm phần lệch xuống, nên nó công bằng hơn với các chiến lược có đuôi phải dày - nhưng cũng vì thế nó cần nhiều dữ liệu hơn để ổn định."
+    },
+    {
+      "question": "Vì sao mọi thước đo hiệu quả điều chỉnh rủi ro đều cần một khoảng thời gian đủ dài mới có ý nghĩa?",
+      "options": [
+        "Vì mẫu ngắn có sai số chuẩn lớn, may mắn và kỹ năng không tách được",
+        "Vì các thước đo này chỉ được định nghĩa cho chuỗi lợi suất từ ba năm trở lên",
+        "Vì chi phí quản lý chỉ được phản ánh đầy đủ sau vài năm hoạt động",
+        "Vì độ lệch chuẩn của danh mục luôn giảm dần khi thời gian đo kéo dài ra"
+      ],
+      "correct": 0,
+      "explanation": "Đây là hệ quả trực tiếp của thống kê chứ không phải đặc thù tài chính: sai số chuẩn giảm theo căn bậc hai của số quan sát. Với mức biến động thường thấy của thị trường cổ phiếu, phân biệt một mức vượt trội vài phần trăm với nhiễu cần vài chục năm dữ liệu."
+    }
     ],
     keyTakeaways: [
       "Bốn thước đo cùng chia lợi suất vượt trội, khác nhau ở định nghĩa rủi ro trong mẫu số",
@@ -516,6 +585,29 @@ export const FRM_CORE_GAPS_LESSONS: Lesson[] = [
         correct: 0,
         explanation: "Giá trị lớn nhất là chẩn đoán chứ không phải dự báo: mô hình cho biết bao nhiêu phần biến động của danh mục đến từ nhân tố giá trị, bao nhiêu từ quy mô, bao nhiêu từ ngành. Một danh mục tưởng là đa dạng có thể đang đặt cược tập trung vào đúng một nhân tố."
       }
+    ,
+    {
+      "question": "Beta của một cổ phiếu ước lượng từ dữ liệu ba năm gần nhất có hạn chế gì khi dùng cho định giá?",
+      "options": [
+        "Nó mô tả quá khứ, trong khi cơ cấu vốn có thể đã đổi",
+        "Nó luôn thấp hơn beta thật vì dữ liệu ba năm là quá ngắn",
+        "Nó chỉ dùng được cho cổ phiếu có beta lớn hơn một",
+        "Nó không tính được nếu cổ phiếu đó có trả cổ tức trong kỳ"
+      ],
+      "correct": 0,
+      "explanation": "Beta là ước lượng thống kê từ một cửa sổ quá khứ, còn định giá thì hướng về tương lai. Một doanh nghiệp vừa vay thêm nợ lớn hoặc vừa bán một mảng kinh doanh có mức nhạy với thị trường khác hẳn - và dữ liệu ba năm chưa phản ánh điều đó."
+    },
+    {
+      "question": "Trong quản trị rủi ro, phân rã danh mục theo nhân tố phục vụ mục đích gì?",
+      "options": [
+        "Cho thấy danh mục thực sự đang đặt cược vào đâu, dù tên các mã trông đa dạng",
+        "Cho phép tính chính xác lợi suất kỳ vọng của từng mã trong danh mục",
+        "Thay thế cho việc đo độ lệch chuẩn và tương quan giữa các tài sản",
+        "Xác định mã nào nên bán để nâng hệ số Sharpe của danh mục"
+      ],
+      "correct": 0,
+      "explanation": "Một danh mục ba mươi mã trông rất đa dạng vẫn có thể là một cược duy nhất vào nhân tố giá trị hoặc vào chu kỳ lãi suất. Phân rã theo nhân tố cho thấy điều đó, trong khi đếm số mã thì không."
+    }
     ],
     keyTakeaways: [
       "CAPM: chỉ rủi ro hệ thống được đền bù, vì rủi ro riêng lẻ tự loại bỏ được",
@@ -670,6 +762,29 @@ export const FRM_CORE_GAPS_LESSONS: Lesson[] = [
         correct: 0,
         explanation: "Mô hình sai đang được dùng nghĩa là mọi quyết định dựa trên nó đều có thể sai theo. Báo cáo kịp thời qua kênh nội bộ là bước đầu tiên; tự sửa lặng lẽ phá vỡ nguyên tắc kiểm soát thay đổi mô hình và xoá mất dấu vết cho việc rà soát sau này."
       }
+    ,
+    {
+      "question": "Vì sao bộ quy tắc nhấn mạnh việc trình bày rõ giới hạn của mô hình khi báo cáo kết quả rủi ro?",
+      "options": [
+        "Vì một con số không kèm giới hạn sẽ được người đọc hiểu là chắc chắn hơn thực tế",
+        "Vì quy định yêu cầu mọi báo cáo rủi ro phải kèm phụ lục kỹ thuật đầy đủ",
+        "Vì người đọc báo cáo thường không có nền tảng để hiểu mô hình định lượng",
+        "Vì giới hạn của mô hình quyết định mức vốn tối thiểu phải trích lập"
+      ],
+      "correct": 0,
+      "explanation": "Đầu ra của mô hình trông khách quan hơn một ý kiến, nên nó bị chất vấn ít hơn. Nêu rõ giả định nền và điều kiện mô hình hoạt động kém là cách duy nhất để người ra quyết định biết con số đó đáng tin tới đâu."
+    },
+    {
+      "question": "Nghĩa vụ với công chúng trong bộ quy tắc của người làm quản trị rủi ro xuất phát từ đâu?",
+      "options": [
+        "Từ việc thất bại rủi ro lan ra ngoài phạm vi tổ chức đó",
+        "Từ yêu cầu của cơ quan quản lý về công bố thông tin rủi ro định kỳ",
+        "Từ việc phần lớn tổ chức tài chính đều có cổ đông là nhà đầu tư cá nhân",
+        "Từ nghĩa vụ hợp đồng giữa tổ chức tài chính và người gửi tiền"
+      ],
+      "correct": 0,
+      "explanation": "Ngân hàng sụp đổ kéo theo người gửi tiền, đối tác và cả hệ thống thanh toán - chi phí không dừng ở cổ đông. Đó là lý do người làm quản trị rủi ro được đặt một nghĩa vụ rộng hơn nghĩa vụ với chủ sử dụng lao động của mình."
+    }
     ],
     keyTakeaways: [
       "Tính chính trực nghề nghiệp: kết quả đánh giá rủi ro không được bẻ cong theo áp lực kinh doanh",
@@ -806,6 +921,29 @@ export const FRM_CORE_GAPS_LESSONS: Lesson[] = [
         correct: 0,
         explanation: "Đây là dạng đầu tư có chi phí ngay và lợi ích ở thì tương lai không chắc chắn - rất khó cạnh tranh ngân sách với một dự án kinh doanh có doanh thu dự kiến. Cấu trúc động cơ này giải thích vì sao chuẩn mực phải do cơ quan quản lý áp đặt thay vì để thị trường tự giải quyết."
       }
+    ,
+    {
+      "question": "Vì sao BCBS 239 yêu cầu tổng hợp dữ liệu rủi ro phải làm được cả trong điều kiện căng thẳng?",
+      "options": [
+        "Vì đó là lúc cần số liệu gấp nhất mà quy trình ghép tay không kịp",
+        "Vì trong điều kiện căng thẳng, dữ liệu lịch sử không còn dùng được nữa",
+        "Vì cơ quan quản lý chỉ kiểm tra năng lực dữ liệu trong các đợt khủng hoảng",
+        "Vì các hệ thống công nghệ thường bị quá tải khi thị trường biến động mạnh"
+      ],
+      "correct": 0,
+      "explanation": "Năng lực đo trong ngày yên bình không nói lên gì: quy trình ghép tay từ nhiều hệ thống vẫn ra được báo cáo trong hai tuần. Vấn đề là lúc một đối tác lớn sắp sụp, câu hỏi tổng phơi nhiễm với họ là bao nhiêu phải trả lời trong vài giờ."
+    },
+    {
+      "question": "Nguyên tắc về tính chính xác và toàn vẹn trong BCBS 239 hàm ý điều gì về đối chiếu dữ liệu?",
+      "options": [
+        "Số liệu rủi ro phải khớp được với số liệu kế toán qua một quy trình đối chiếu",
+        "Mọi số liệu rủi ro phải được nhập tay ít nhất hai lần để tránh sai sót",
+        "Dữ liệu rủi ro phải được lưu trữ tách biệt hoàn toàn với dữ liệu kế toán",
+        "Số liệu rủi ro chỉ cần chính xác ở cấp tổng hợp, không cần ở cấp giao dịch"
+      ],
+      "correct": 0,
+      "explanation": "Hai hệ thống cùng mô tả một khối tài sản thì phải quy về nhau được. Không đối chiếu được nghĩa là ít nhất một trong hai sai, và không ai biết cái nào - lúc đó cả hai đều mất giá trị làm cơ sở ra quyết định."
+    }
     ],
     keyTakeaways: [
       "BCBS 239 nhắm vào năng lực hạ tầng dữ liệu, không phải vào mô hình đo lường rủi ro",
@@ -945,6 +1083,29 @@ export const FRM_CORE_GAPS_LESSONS: Lesson[] = [
         correct: 0,
         explanation: "Một lệnh chuyển nhầm được phát hiện kịp thời trước khi rời hệ thống không gây tổn thất đồng nào, nhưng lỗ hổng cho phép nó xảy ra vẫn nguyên đó. Giá trị của dữ liệu này là phòng ngừa, không phải tính vốn."
       }
+    ,
+    {
+      "question": "Vì sao dữ liệu tổn thất bên ngoài cần được điều chỉnh theo quy mô trước khi dùng?",
+      "options": [
+        "Vì tổn thất ở một tổ chức lớn hơn nhiều không tương ứng với mức của bạn",
+        "Vì dữ liệu bên ngoài luôn được công bố chậm hơn dữ liệu nội bộ vài năm",
+        "Vì các tổ chức khác dùng chuẩn phân loại sự kiện khác với Basel",
+        "Vì tổn thất ở tổ chức khác không thuộc phạm vi mô hình vốn của bạn"
+      ],
+      "correct": 0,
+      "explanation": "Một sự cố hệ thống thanh toán gây thiệt hại nghìn tỷ ở ngân hàng lớn gấp hai mươi lần không có nghĩa bạn cũng chịu mức đó. Không hiệu chỉnh quy mô thì phần đuôi của phân phối bị thổi phồng, và vốn phải trích lập cũng vậy."
+    },
+    {
+      "question": "Ranh giới giữa rủi ro hoạt động và rủi ro tín dụng được xử lý thế nào theo Basel?",
+      "options": [
+        "Tổn thất do hồ sơ tín dụng sai xếp vào rủi ro tín dụng, vẫn ghi nhận riêng",
+        "Mọi tổn thất có yếu tố lỗi con người đều được xếp vào rủi ro hoạt động",
+        "Tổn thất nằm giữa hai loại được chia đôi theo tỷ lệ ước tính của từng bên",
+        "Ranh giới do từng tổ chức tự quy định trong chính sách nội bộ của mình"
+      ],
+      "correct": 0,
+      "explanation": "Đây là trường hợp ranh giới kinh điển: khoản vay mất tiền nên nó là tổn thất tín dụng về mặt vốn, nhưng nguyên nhân là lỗi quy trình nên nó phải nằm trong dữ liệu vận hành để mô hình nhìn thấy. Bỏ nó khỏi một trong hai chỗ đều làm sai lệch."
+    }
     ],
     keyTakeaways: [
       "Bảy nhóm sự kiện Basel tồn tại để dữ liệu so sánh và gộp được giữa các tổ chức",
@@ -1079,6 +1240,29 @@ export const FRM_CORE_GAPS_LESSONS: Lesson[] = [
         correct: 0,
         explanation: "Người vận hành hiểu quy trình rõ nhất - đó là lý do họ tự đánh giá. Nhưng họ cũng là người chịu hậu quả nếu kết quả xấu, nên cần một lớp thách thức độc lập đối chiếu điểm tự chấm với dữ liệu tổn thất thực tế và kết quả kiểm toán."
       }
+    ,
+    {
+      "question": "Vì sao mỗi chỉ số rủi ro chính cần có ngưỡng đặt trước thay vì chỉ theo dõi xu hướng?",
+      "options": [
+        "Vì không có ngưỡng thì không ai biết lúc nào phải hành động",
+        "Vì ngưỡng là yêu cầu bắt buộc của Basel với mọi chỉ số vận hành",
+        "Vì xu hướng của chỉ số vận hành thường quá nhiễu để đọc được",
+        "Vì ngưỡng cho phép so sánh chỉ số của tổ chức với mức trung bình ngành"
+      ],
+      "correct": 0,
+      "explanation": "Một biểu đồ đi lên chậm không bao giờ tạo ra một cuộc họp. Ngưỡng biến việc theo dõi thành việc phải phản ứng, và đó là điểm khác biệt giữa một chỉ số được dùng và một chỉ số chỉ được vẽ."
+    },
+    {
+      "question": "Vì sao tự đánh giá rủi ro và kiểm soát nên được làm trước khi thiết kế bộ chỉ số rủi ro chính?",
+      "options": [
+        "Vì biết rủi ro nào đáng kể rồi mới biết cần theo dõi cái gì",
+        "Vì chỉ số rủi ro chính chỉ được phép xây trên các rủi ro đã có trong sổ đăng ký",
+        "Vì kết quả tự đánh giá quyết định tần suất báo cáo của từng chỉ số",
+        "Vì bộ phận rủi ro chỉ phê duyệt chỉ số sau khi tự đánh giá hoàn tất"
+      ],
+      "correct": 0,
+      "explanation": "Chỉ số dựng trước khi biết rủi ro nào quan trọng thường là những đại lượng dễ đo chứ không phải đại lượng đáng đo. Thứ tự đúng là nhận diện rủi ro trước, rồi mới hỏi dấu hiệu sớm của rủi ro đó trông như thế nào."
+    }
     ],
     keyTakeaways: [
       "Dữ liệu tổn thất nhìn về sau, RCSA và KRI nhìn về trước",
