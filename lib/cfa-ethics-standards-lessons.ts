@@ -605,6 +605,41 @@ export const CFA_ETHICS_STANDARDS_LESSONS: Lesson[] = [
         "text": "Thứ tự đúng là tránh xung đột trước, rồi công bố phần không tránh được. Công bố ở cuối báo cáo là bước bổ sung chứ không thay thế được việc loại bỏ chính xung đột đó."
       },
       {
+        "type": "heading",
+        "text": "Áp lực nặng nhất không đi kèm phong bì nào"
+      },
+      {
+        "type": "paragraph",
+        "text": "Một chuyên viên phân tích hạ khuyến nghị xuống BÁN. Doanh nghiệp phản ứng bằng cách cắt quyền tham dự các buổi gặp ban lãnh đạo, không mời tới ngày hội nhà đầu tư, và thôi trả lời điện thoại. Không ai đề nghị gì, không đồng nào đổi chủ, và không điều luật nào bị vi phạm. Nhưng thông điệp gửi tới mọi chuyên viên còn lại trong phòng thì rõ ràng, và nó đắt hơn bất kỳ món quà nào: mất quyền tiếp cận đồng nghĩa với mất khả năng làm việc. Đây mới là dạng áp lực mà Standard I(B) thật sự nhắm tới."
+      },
+      {
+        "type": "callout",
+        "label": "Cách duy nhất chống lại nó là cấu trúc, không phải bản lĩnh",
+        "text": "Vì áp lực này rơi vào từng cá nhân, biện pháp phải nằm ở cấp tổ chức: khuyến nghị do một hội đồng duyệt chứ không do một người ký, thưởng của bộ phận phân tích tách khỏi doanh thu mà bộ phận ngân hàng đầu tư kiếm được từ chính doanh nghiệp đó, và có kênh báo cáo khi bị gây sức ép. Một công ty nói với chuyên viên rằng hãy cứ khách quan mà không đổi gì trong ba thứ trên là đang đẩy toàn bộ chi phí của sự khách quan sang cho cá nhân."
+      },
+      {
+        "type": "conceptTable",
+        "title": "Cùng một chuyến thăm nhà máy, ba cách sắp xếp",
+        "subtitle": "Chuẩn không cấm đi - nó hỏi ai trả tiền",
+        "concepts": [
+          {
+            "vi": "Công ty bạn trả vé máy bay và khách sạn",
+            "en": "Không có vấn đề",
+            "def": "Chi phí nằm ở phía người ra khuyến nghị, nên không có gì phải cân bằng lại. Đây là cách xử lý chuẩn của các tổ chức lớn, và lý do họ chấp nhận tốn kém."
+          },
+          {
+            "vi": "Doanh nghiệp mời bữa trưa tại nhà máy",
+            "en": "Chấp nhận được",
+            "def": "Thù tiếp ở mức tối thiểu và thông thường trong bối cảnh làm việc thì không tạo ra nghĩa vụ đáng kể. Ranh giới là mức thông thường, không phải là con số cụ thể nào."
+          },
+          {
+            "vi": "Doanh nghiệp thuê chuyên cơ đưa đón và tài trợ kỳ nghỉ cuối tuần",
+            "en": "Vi phạm",
+            "def": "Giá trị vượt xa mức cần thiết để làm việc, nên nó không còn là chi phí nghiên cứu mà là một khoản chuyển giao giá trị. Công bố ở cuối báo cáo không sửa được điều đó - thứ tự đúng là tránh trước, công bố phần không tránh được."
+          }
+        ]
+      },
+      {
         "type": "closing",
         "lines": [
           "Xung đột lợi ích không cần ai có ý đồ xấu.",
@@ -774,6 +809,42 @@ export const CFA_ETHICS_STANDARDS_LESSONS: Lesson[] = [
         "text": "Việc công ty sở hữu tài liệu không làm bạn trở thành tác giả của nó. Dùng lại báo cáo do đồng nghiệp cũ viết mà để tên mình vẫn là vi phạm."
       },
       {
+        "type": "heading",
+        "text": "Bốn tình huống hằng ngày, ba trong số đó là vi phạm"
+      },
+      {
+        "type": "conceptTable",
+        "title": "Ranh giới của nghĩa vụ ghi nguồn",
+        "subtitle": "Không cần ý định lừa dối - chỉ cần người đọc hiểu sai ai đã làm ra phần đó",
+        "concepts": [
+          {
+            "vi": "Dùng số liệu GDP hoặc chỉ số thị trường đã công bố rộng rãi",
+            "en": "Không cần ghi nguồn",
+            "def": "Dữ liệu thực tế được thừa nhận rộng rãi thuộc ngoại lệ. Không ai hiểu nhầm rằng bạn tự đo lạm phát."
+          },
+          {
+            "vi": "Dùng dự báo lãi suất của một tổ chức khác, viết lại bằng lời của mình",
+            "en": "Vi phạm",
+            "def": "Diễn đạt lại không làm nó thành của bạn. Đây là phán đoán của người khác, và người đọc đang đánh giá nó như thể là phán đoán của bạn."
+          },
+          {
+            "vi": "Dùng lại báo cáo do đồng nghiệp cũ trong chính công ty viết, để tên mình",
+            "en": "Vi phạm",
+            "def": "Công ty sở hữu tài liệu không làm bạn thành tác giả. Đây là hiểu nhầm phổ biến nhất và cũng là dạng dễ bị phát hiện nhất."
+          },
+          {
+            "vi": "Dùng công cụ AI viết phần tóm tắt rồi ký tên mình",
+            "en": "Chịu trách nhiệm toàn bộ",
+            "def": "Không bị cấm, nhưng bạn chịu trách nhiệm cho từng chữ. Nếu công cụ bịa ra một trích dẫn hoặc một con số và bạn không kiểm, đó là trình bày sai lệch mang tên bạn - việc nó do máy sinh ra không phải tình tiết giảm nhẹ."
+          }
+        ]
+      },
+      {
+        "type": "callout",
+        "label": "Vì sao vế thứ hai nguy hiểm hơn vế đạo văn",
+        "text": "Trình bày sai lệch không chỉ là nhận vơ công người khác; nó gồm cả việc nói quá về năng lực của mình hoặc của công ty - hứa một mức lợi nhuận, mô tả một quy trình quản trị rủi ro chặt hơn thực tế, hay để khách hiểu rằng bạn có chuyên môn ở một mảng bạn chưa từng làm. Vế này không cần ý định lừa dối và cũng không cần ai bị thiệt hại: chuẩn đo là người đọc có hiểu đúng hay không, chứ không phải bạn có định làm họ hiểu sai hay không."
+      },
+      {
         "type": "closing",
         "lines": [
           "Ghi nguồn không làm bạn kém đi.",
@@ -940,6 +1011,26 @@ export const CFA_ETHICS_STANDARDS_LESSONS: Lesson[] = [
         "text": "Điều phân biệt một lập luận mosaic thật với một lời chối khi bị hỏi lại là hồ sơ: ghi lại nguồn của từng mảnh, ngày lấy, và cách chúng được ghép thành kết luận. Không có hồ sơ thì hai trường hợp trông giống hệt nhau từ bên ngoài."
       },
       {
+        "type": "heading",
+        "text": "Mười hai cuộc gọi, hai kết cục pháp lý"
+      },
+      {
+        "type": "comparison",
+        "left": {
+          "label": "Mosaic hợp pháp",
+          "text": "Bạn gọi cho 12 nhà cung cấp của một hãng điện tử. Mỗi bên nói về đơn hàng của CHÍNH HỌ trong quý này - thông tin của họ, không trọng yếu với thị trường khi đứng một mình. Mười một bên nói đơn hàng giảm. Bạn ghép lại và kết luận doanh thu hãng sẽ hụt so với dự báo chung. Kết luận đó rất trọng yếu, và nó hoàn toàn là tài sản của bạn - vì công sức ghép mảnh là của bạn."
+        },
+        "right": {
+          "label": "Chuỗi bị nhiễm độc",
+          "text": "Trong 12 cuộc gọi đó, một nhà cung cấp nói: 'Bên họ vừa báo với chúng tôi rằng quý này sẽ hụt so với dự báo.' Mảnh này là thông tin trọng yếu chưa công bố của chính doanh nghiệp, được truyền qua một bên thứ ba. Từ giây phút nghe nó, cả chuỗi phân tích bị nhiễm - và việc bạn đã có sẵn 11 mảnh hợp lệ kia không gột được nó."
+        }
+      },
+      {
+        "type": "callout",
+        "label": "Hồ sơ là thứ phân biệt lập luận thật với lời chối",
+        "text": "Hai tình huống trên nhìn từ bên ngoài giống hệt nhau: cùng một chuyên viên, cùng một kết luận, cùng một lệnh mua bán. Thứ duy nhất phân biệt được chúng khi bị hỏi lại sau hai năm là hồ sơ nghiên cứu - nguồn của từng mảnh, ngày lấy, và lập luận nối các mảnh với nhau. Không có hồ sơ đó thì mosaic theory không phải một lập luận bảo vệ, nó chỉ là một câu nói. Đó là lý do các tổ chức lớn bắt lưu ghi chú cuộc gọi ngay trong ngày, chứ không phải khi có người hỏi."
+      },
+      {
         "type": "closing",
         "lines": [
           "Kết luận của bạn có thể trọng yếu.",
@@ -1103,6 +1194,30 @@ export const CFA_ETHICS_STANDARDS_LESSONS: Lesson[] = [
       {
         "type": "paragraph",
         "text": "Hai điểm cần nhớ. Thứ nhất, lợi nhuận thực tế không phải điều kiện cấu thành - thao túng thất bại vẫn là thao túng. Thứ hai, tỷ lệ hủy cao tự nó không chứng minh gì: nhà tạo lập thị trường hợp pháp cũng có tỷ lệ hủy rất cao, nên phải nhìn cả bộ dấu hiệu chứ không nhìn một chỉ số."
+      },
+      {
+        "type": "heading",
+        "text": "Đọc ý định qua dấu vết mà nó để lại"
+      },
+      {
+        "type": "paragraph",
+        "text": "Vì không ai đọc được ý định, cơ quan quản lý dựng lại nó từ chuỗi lệnh. Hình mẫu điển hình của thao túng bằng giao dịch: đặt nhiều lệnh mua lớn ở các mức giá thấp hơn giá khớp vài bậc để sổ lệnh trông như đang có lực cầu mạnh, đợi giá nhích lên, bán ra ở phía đối diện, rồi hủy toàn bộ các lệnh mua kia trong vài phần nghìn giây ngay sau khi lệnh bán khớp. Điều tố cáo không phải tỷ lệ hủy cao, mà là thứ tự: lệnh bị hủy ngay sau khi mục đích thật đã đạt được, và điều đó lặp lại hàng nghìn lần."
+      },
+      {
+        "type": "comparison",
+        "left": {
+          "label": "Tạo lập thị trường - hủy nhiều nhưng hợp lệ",
+          "text": "Một nhà tạo lập yết giá hai chiều liên tục và hủy hàng nghìn lệnh mỗi ngày khi giá tham chiếu dịch chuyển. Tỷ lệ hủy có thể trên 95%. Nhưng lệnh của họ đặt sát giá khớp và SẴN SÀNG khớp - đó chính là dịch vụ họ bán. Hủy là hệ quả của việc giá đổi, không phải mục đích ban đầu."
+        },
+        "right": {
+          "label": "Thao túng - cùng tỷ lệ hủy, khác mục đích",
+          "text": "Lệnh đặt ở nơi ít khả năng khớp, kích thước lớn bất thường so với lệnh thật của chính người đó, và biến mất ngay khi phía đối diện khớp xong. Người đặt không bao giờ muốn nó khớp; nó tồn tại để người khác nhìn thấy."
+        }
+      },
+      {
+        "type": "callout",
+        "label": "Hai điều dễ hiểu sai",
+        "text": "Thứ nhất, thao túng thất bại vẫn là thao túng: lợi nhuận không phải điều kiện cấu thành, nên việc thị trường không phản ứng như bạn mong không phải một lời bào chữa. Thứ hai, vế thao túng bằng thông tin không đòi hỏi thông tin đó phải sai - lan truyền một tin đồn ĐÚNG với mục đích đẩy giá theo hướng có lợi cho vị thế của mình vẫn vi phạm, vì thứ bị cấm là làm méo cơ chế hình thành giá, không phải nói dối."
       },
       {
         "type": "closing",
@@ -1271,6 +1386,30 @@ export const CFA_ETHICS_STANDARDS_LESSONS: Lesson[] = [
         "text": "Nghĩa vụ này bị thử thách mạnh nhất khi bạn đảo chiều khuyến nghị: ai được biết trước vài giờ có thể là khác biệt giữa thoát ra kịp và không kịp. Đó là lúc quy trình viết sẵn có giá trị nhất."
       },
       {
+        "type": "heading",
+        "text": "Phân bổ theo tỷ lệ trông như thế nào khi lệnh khớp một phần"
+      },
+      {
+        "type": "paragraph",
+        "text": "Ba tài khoản cùng chiến lược muốn mua tổng cộng 10.000 cổ phiếu: A đặt 5.000, B đặt 3.000, C đặt 2.000. Lệnh gộp đưa ra thị trường nhưng chỉ khớp được 6.000. Phân bổ đúng là theo tỷ lệ đặt lệnh: A nhận 3.000, B nhận 1.800, C nhận 1.200 - và cả ba cùng nhận một mức giá bình quân duy nhất. Không ai được ưu tiên khớp đủ trước, kể cả tài khoản lớn nhất, kể cả tài khoản của chính công ty hay của người quản lý danh mục."
+      },
+      {
+        "type": "callout",
+        "label": "Mức giá bình quân chung quan trọng ngang khối lượng",
+        "text": "Nếu 6.000 cổ phiếu khớp ở nhiều mức giá khác nhau trong ngày, việc gán các mức giá tốt cho một tài khoản và các mức xấu cho tài khoản khác là vi phạm dù khối lượng chia đúng tỷ lệ. Đây là dạng thiên vị khó thấy nhất vì báo cáo khối lượng trông hoàn toàn công bằng. Quy trình phải viết ra trước, công bố cho khách, và áp dụng nhất quán - viết trước là điều kiện, vì một quy tắc chọn sau khi biết giá khớp thì không còn là quy tắc."
+      },
+      {
+        "type": "comparison",
+        "left": {
+          "label": "Phân tầng hợp lệ",
+          "text": "Gói cao cấp nhận báo cáo sớm hơn 4 giờ. Điều kiện: mức phân tầng được công bố công khai, và bất kỳ khách nào cũng mua được gói đó. Khách ở gói thường biết mình đang ở đâu trong hàng đợi và tự quyết định có nâng cấp hay không."
+        },
+        "right": {
+          "label": "Ưu tiên ngầm",
+          "text": "Gọi điện cho vài khách lớn trước khi báo cáo phát hành, trong khi họ trả cùng mức phí như những người khác. Không ai biết có một hàng đợi, nên không ai chọn được. Đây mới là thứ Standard III(B) cấm - và nó bị thử thách mạnh nhất đúng vào lúc bạn đảo chiều khuyến nghị."
+        }
+      },
+      {
         "type": "closing",
         "lines": [
           "Khách hàng chấp nhận được việc trả ít hơn thì nhận ít hơn.",
@@ -1436,6 +1575,30 @@ export const CFA_ETHICS_STANDARDS_LESSONS: Lesson[] = [
         "text": "Đây chính là lý do GIPS bắt buộc gộp toàn bộ tài khoản cùng chiến lược vào một composite: quy tắc đó tồn tại để triệt tiêu khả năng chọn lọc mẫu ngay từ gốc, thay vì trông vào thiện chí của người trình bày."
       },
       {
+        "type": "heading",
+        "text": "Thiên lệch sống sót, tính bằng số"
+      },
+      {
+        "type": "paragraph",
+        "text": "Một công ty ra mắt 10 quỹ cách đây mười năm. Bốn quỹ hoạt động kém và đã đóng, với mức lỗ bình quân 8% một năm trong thời gian tồn tại. Sáu quỹ còn lại đạt bình quân 12% một năm. Quảng cáo ghi: các quỹ của chúng tôi đạt bình quân 12% một năm trong mười năm qua. Từng chữ đều đúng và phép trung bình cũng tính đúng. Nhưng con số mà một nhà đầu tư chọn ngẫu nhiên vào thời điểm đó thực sự nhận được là (6 × 12 + 4 × −8) / 10 = 4,0% một năm - bằng một phần ba con số quảng cáo."
+      },
+      {
+        "type": "callout",
+        "label": "Vì sao đây là vi phạm dù không có câu nào sai",
+        "text": "Con số 12% mô tả một nhóm mà nhà đầu tư mười năm trước không thể chọn được, vì lúc đó chưa ai biết bốn quỹ nào sẽ đóng. Nó trả lời câu hỏi những quỹ sống sót đã làm được gì, trong khi người đọc tưởng nó trả lời câu hỏi nếu tôi đầu tư với công ty này thì kỳ vọng ra sao. Đó chính là chữ ĐẦY ĐỦ trong ba yêu cầu của Standard - và là chữ khó nhất, vì vi phạm nó không cần nói sai một câu nào."
+      },
+      {
+        "type": "comparison",
+        "left": {
+          "label": "Chọn khoảng thời gian",
+          "text": "Bắt đầu tính từ đúng đáy thị trường tháng 3/2009 làm mọi con số đẹp lên mà không cần thay đổi gì về kỹ năng. Cách chặn là trình bày theo năm dương lịch liên tục, để người đọc tự thấy các năm xấu."
+        },
+        "right": {
+          "label": "Hiệu suất mô phỏng ngược",
+          "text": "Áp một quy tắc đầu tư lên dữ liệu quá khứ và trình bày kết quả như thành tích. Không sai nếu ghi rõ đây là mô phỏng, sai nếu để nó nằm cạnh kết quả thật mà không phân biệt - vì quy tắc đó được chọn sau khi đã nhìn thấy dữ liệu."
+        }
+      },
+      {
         "type": "closing",
         "lines": [
           "Công bằng, chính xác, đầy đủ.",
@@ -1596,6 +1759,30 @@ export const CFA_ETHICS_STANDARDS_LESSONS: Lesson[] = [
       {
         "type": "paragraph",
         "text": "Phạm vi của Standard rộng hơn tiền mặt: ghế trong hội đồng quản trị, cổ phần hoặc quyền chọn, hợp đồng tư vấn cuối tuần, thậm chí các lợi ích phi tiền tệ có giá trị đáng kể đều thuộc diện phải báo. Một phép kiểm tra nhanh cho trường hợp lưỡng lự: nếu nhà tuyển dụng biết về khoản này, họ có muốn được biết không."
+      },
+      {
+        "type": "heading",
+        "text": "Cái gì thuộc phạm vi, cái gì không"
+      },
+      {
+        "type": "comparison",
+        "left": {
+          "label": "Phải xin phép bằng văn bản",
+          "text": "Ghế trong hội đồng quản trị một công ty chưa niêm yết, dù ngành nghề không liên quan - vì nó tạo nghĩa vụ trung thành với một pháp nhân khác và chiếm thời gian. Cổ phần hoặc quyền chọn nhận từ một bên ngoài. Hợp đồng tư vấn cuối tuần trong cùng lĩnh vực. Và cả khoản thưởng mà một khách hàng đề nghị trả thẳng cho bạn theo hiệu suất danh mục của họ."
+        },
+        "right": {
+          "label": "Ngoài phạm vi",
+          "text": "Thu nhập từ hoạt động không cạnh tranh với nhà tuyển dụng và không tạo xung đột với lợi ích của họ - dạy một lớp nấu ăn cuối tuần, cho thuê một căn nhà. Standard IV(B) nhắm vào xung đột lợi ích và cạnh tranh về thời gian trong nghề, không phải vào việc kiểm soát đời sống cá nhân."
+        }
+      },
+      {
+        "type": "callout",
+        "label": "Bốn thông tin, thiếu một là chưa đủ để nhà tuyển dụng đánh giá",
+        "text": "Bản chất khoản thù lao, số tiền hoặc công thức tính, thời hạn kéo dài bao lâu, và bên nào chi trả. Thiếu công thức tính thì nhà tuyển dụng không biết động cơ mạnh tới đâu; thiếu thời hạn thì không biết nó ảnh hưởng trong bao lâu. Một lời khai chung chung kiểu tôi có làm thêm bên ngoài không đáp ứng Standard, vì nó không cho bên đánh giá đủ dữ liệu để đánh giá."
+      },
+      {
+        "type": "paragraph",
+        "text": "Yêu cầu bằng văn bản không phải thủ tục hình thức. Khi có tranh chấp ba năm sau, một lời đồng ý bằng miệng không phân biệt được với việc chưa từng xin phép - và người phải chịu hậu quả của sự mơ hồ đó là bạn, không phải nhà tuyển dụng. Đó cũng là lý do khoản thù lao đã được phép vẫn phải báo lại khi số tiền hoặc cấu trúc thay đổi: điều nhà tuyển dụng đồng ý là một thoả thuận cụ thể, không phải một quyền vô thời hạn."
       },
       {
         "type": "closing",
