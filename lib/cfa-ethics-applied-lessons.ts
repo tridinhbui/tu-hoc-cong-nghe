@@ -37,6 +37,14 @@ export const CFA_ETHICS_APPLIED_LESSONS: Lesson[] = [
     correctOption: 1,
     explanation:
       "Với quỹ hưu trí, bên ký hợp đồng và bên được phục vụ là hai chủ thể khác nhau, và Standard III(A) nói rõ nghĩa vụ thuộc về người thụ hưởng. Đây không phải chi tiết kỹ thuật: yêu cầu tăng tỷ trọng cổ phiếu công ty mẹ làm danh mục hưu trí tập trung rủi ro vào đúng nơi mà thu nhập của người lao động đã phụ thuộc vào - mất việc và mất lương hưu cùng một lúc. Nguyên tắc mở rộng ra mọi tình huống có bên trung gian: quản lý quỹ đầu tư thì khách hàng là chính quỹ và các nhà đầu tư của nó, không phải người giới thiệu bạn vào.",
+    summary: {
+      keyIdea: "Bên ký hợp đồng và bên được phục vụ có thể là hai chủ thể khác nhau - với quỹ hưu trí, khách hàng là người thụ hưởng chứ không phải công ty thuê bạn.",
+      commonMistake: "Dùng soft dollar cho nghiên cứu phục vụ chung công ty. Đó là tiền hoa hồng của khách hàng, nên nó chỉ được dùng cho lợi ích của chính khách hàng đó.",
+    },
+    application: {
+      title: "Câu hỏi xác định khách hàng",
+      message: "Tiền này là của ai và ai chịu hậu quả nếu quyết định sai. Câu trả lời chỉ ra khách hàng thật, không phải hợp đồng.",
+    },
     sections: [
       {
         "type": "lead",
@@ -191,6 +199,14 @@ export const CFA_ETHICS_APPLIED_LESSONS: Lesson[] = [
     correctOption: 1,
     explanation:
       "Standard III(C) xét tính phù hợp ở cấp danh mục. Một cổ phiếu biến động mạnh chiếm 2% danh mục có thể hoàn toàn phù hợp; chiếm 40% thì không - và bản thân cổ phiếu đó không đổi. Với lệnh khách tự đặt đi ngược mục tiêu đã thống nhất, quy trình chuẩn là ba bước: giải thích tác động lên danh mục, ghi nhận rằng lệnh đến từ khách chứ không phải khuyến nghị của bạn, và nếu những lệnh như vậy lặp lại tới mức làm danh mục lệch hẳn khỏi IPS thì phải cập nhật IPS hoặc xem lại quan hệ. Chữ ký miễn trừ trách nhiệm không thay thế được bước nào trong ba bước đó.",
+    summary: {
+      keyIdea: "Một khoản đầu tư không tự nó phù hợp hay không phù hợp - câu hỏi chỉ có nghĩa khi đặt cạnh phần còn lại của danh mục và hoàn cảnh của người sở hữu.",
+      commonMistake: "Từ chối một khoản vì bản thân nó rủi ro, mà không xét nó tương tác thế nào với phần còn lại của danh mục.",
+    },
+    application: {
+      title: "Khi khách tự đặt lệnh không phù hợp",
+      message: "Vẫn phải nêu ý kiến và ghi lại. Thực hiện lệnh của khách là được, im lặng để họ tưởng bạn đồng ý thì không.",
+    },
     sections: [
       {
         "type": "lead",
@@ -349,6 +365,14 @@ export const CFA_ETHICS_APPLIED_LESSONS: Lesson[] = [
     correctOption: 1,
     explanation:
       "Nghĩa vụ bảo mật không có thời hạn và không phụ thuộc vào việc hợp đồng còn hiệu lực hay không. Lý do rất thực tế: thông tin tài chính riêng tư của một người không mất tính nhạy cảm chỉ vì họ đổi nhà tư vấn. Standard III(E) có đúng ba ngoại lệ. Thứ nhất, khi luật pháp yêu cầu tiết lộ. Thứ hai, khi thông tin liên quan tới hoạt động bất hợp pháp của chính khách hàng. Thứ ba, khi khách hàng cho phép. Ngoài ba trường hợp đó, mọi lý do khác - kể cả để đồng nghiệp phân tích tốt hơn, hay để cảnh báo một khách khác - đều không đủ.",
+    summary: {
+      keyIdea: "Thông tin khách hàng không phải thứ bạn mượn trong thời gian làm việc mà là thứ bạn không bao giờ được sở hữu - nên chấm dứt quan hệ không chấm dứt nghĩa vụ.",
+      commonMistake: "Cho rằng khách cũ thì hết ràng buộc. Ba ngoại lệ duy nhất là yêu cầu pháp luật, hoạt động phi pháp của khách, và khách cho phép.",
+    },
+    application: {
+      title: "Tình huống hay gặp khi chuyển việc",
+      message: "Danh sách khách hàng cũ nằm trong phạm vi này. Nhớ được trong đầu không làm nó thành thông tin của bạn.",
+    },
     sections: [
       {
         "type": "lead",
@@ -507,6 +531,14 @@ export const CFA_ETHICS_APPLIED_LESSONS: Lesson[] = [
     correctOption: 1,
     explanation:
       "Standard IV(A) không cấm bạn chuẩn bị nghỉ việc - điều đó sẽ vô lý. Nó cấm dùng nguồn lực của nhà tuyển dụng hiện tại để cạnh tranh với chính họ trong khi vẫn đang nhận lương của họ. Ranh giới rơi vào hành vi cụ thể: thuê văn phòng và đăng ký doanh nghiệp thì được, vì đó là chuẩn bị hành chính. Liên hệ khách hàng để mời họ chuyển theo, sao chép danh sách khách hàng, hay mang mô hình định giá của công ty đi thì không, vì cả ba đều lấy tài sản của nhà tuyển dụng dùng cho mục đích chống lại họ. Sau khi đã nghỉ, liên hệ khách hàng bằng thông tin công khai là hợp lệ - trừ khi có thỏa thuận không cạnh tranh ràng buộc riêng.",
+    summary: {
+      keyIdea: "Ranh giới không nằm ở việc bạn có ý định ra đi mà ở việc bạn tiêu nguồn lực của ai để chuẩn bị cho việc đó.",
+      commonMistake: "Lôi kéo khách hàng trong thời gian còn làm việc. Sau khi nghỉ và bằng thông tin công khai thì được; trước khi nghỉ thì không.",
+    },
+    application: {
+      title: "Ranh giới thực hành",
+      message: "Mọi thứ tạo ra bằng thời gian và nguồn lực của công ty thuộc về công ty - kể cả mô hình bạn tự viết ngoài giờ trên máy của họ.",
+    },
     sections: [
       {
         "type": "lead",
@@ -668,6 +700,14 @@ export const CFA_ETHICS_APPLIED_LESSONS: Lesson[] = [
     correctOption: 1,
     explanation:
       "Standard IV(C) không đòi hỏi người giám sát phải phát hiện mọi vi phạm - điều đó bất khả thi. Nó đòi hỏi các bước hợp lý: có quy trình kiểm soát bằng văn bản, phổ biến cho nhân viên, có cơ chế giám sát định kỳ, và xử lý khi phát hiện dấu hiệu. Nếu bốn thứ đó tồn tại và vận hành mà vi phạm vẫn lọt qua, người giám sát thường không bị quy trách nhiệm. Nếu chúng không tồn tại, câu 'tôi không biết' trở thành bằng chứng buộc tội chứ không phải lời bào chữa - vì chính việc không biết là hệ quả của việc không thiết lập cơ chế để biết.",
+    summary: {
+      keyIdea: "Trách nhiệm giám sát không chuyển đi được: bạn không phải phát hiện mọi vi phạm, nhưng bạn phải dựng được hệ thống có khả năng phát hiện.",
+      commonMistake: "Cho rằng có quy trình tuân thủ trên giấy là đủ. Nếu bạn biết quy trình đó không được thực thi mà vẫn để nguyên, bạn đã vi phạm.",
+    },
+    application: {
+      title: "Khi phát hiện vi phạm trong nhóm",
+      message: "Điều tra và ngăn chặn ngay, không chỉ báo lên rồi thôi. Trách nhiệm giám sát không chuyển đi được bằng một email.",
+    },
     sections: [
       {
         "type": "lead",
@@ -831,6 +871,14 @@ export const CFA_ETHICS_APPLIED_LESSONS: Lesson[] = [
     correctOption: 1,
     explanation:
       "Standard V(A) yêu cầu mọi khuyến nghị phải có cơ sở hợp lý. Standard V(C) là thứ làm cho yêu cầu đó kiểm chứng được sau này. Khi một khoản đầu tư diễn biến xấu và khách hàng hoặc cơ quan quản lý hỏi lại, câu hỏi không phải 'bạn có đúng không' mà 'lúc đó bạn dựa vào đâu'. Hồ sơ - dữ liệu đã dùng, giả định đã đặt, các phương án đã cân nhắc và loại bỏ - là thứ trả lời được câu đó. Không có nó, một quy trình phân tích nghiêm túc và một quyết định tùy hứng để lại dấu vết giống hệt nhau: không dấu vết nào.",
+    summary: {
+      keyIdea: "V(C) là thứ làm cho yêu cầu về cơ sở hợp lý của V(A) trở nên kiểm chứng được - không có hồ sơ thì không có cách nào chứng minh bạn đã có cơ sở.",
+      commonMistake: "Coi lưu trữ là việc hành chính. Khi bị hỏi lại sau nhiều năm, hồ sơ là thứ duy nhất còn lại - trí nhớ không phải bằng chứng.",
+    },
+    application: {
+      title: "Điều hay bị quên",
+      message: "Hồ sơ thuộc về nhà tuyển dụng, không thuộc về bạn. Đổi việc thì không mang theo được, nên bản sao phải nằm lại đúng chỗ.",
+    },
     sections: [
       {
         "type": "lead",
@@ -989,6 +1037,14 @@ export const CFA_ETHICS_APPLIED_LESSONS: Lesson[] = [
     correctOption: 1,
     explanation:
       "Điểm mấu chốt là ai được quyền quyết định xung đột nào đáng kể. Standard VI(A) chuyển quyền đó sang người đọc: nghĩa vụ của bạn là cung cấp thông tin để họ tự đánh giá, không phải tự đánh giá thay họ rồi giữ im lặng. Lý do rất thực tế - người trong cuộc là bên đánh giá kém nhất về việc lợi ích của chính mình có làm lệch phán đoán hay không. Công bố cũng phải nổi bật và dễ hiểu: một dòng chữ nhỏ ở chân trang, hoặc một đoạn viết bằng ngôn ngữ pháp lý mà người đọc thường không hiểu, không đạt chuẩn 'công bố đầy đủ và có ý nghĩa'.",
+    summary: {
+      keyIdea: "Công bố tồn tại để người nhận tự đánh giá, nên nó chỉ có nghĩa khi đến đúng người, đúng lúc, và ở chỗ họ thực sự đọc.",
+      commonMistake: "Công bố ở chỗ không ai đọc. Một dòng chữ nhỏ ở cuối báo cáo về mặt kỹ thuật là đã công bố, và về mặt mục đích thì không.",
+    },
+    application: {
+      title: "Ba câu hỏi",
+      message: "Công bố cái gì, cho ai, ở đâu. Câu thứ ba quyết định hai câu đầu có nghĩa gì hay không.",
+    },
     sections: [
       {
         "type": "lead",
@@ -1143,6 +1199,14 @@ export const CFA_ETHICS_APPLIED_LESSONS: Lesson[] = [
     correctOption: 1,
     explanation:
       "Cam kết bảo mật mà mọi candidate ký trước khi thi bao trùm nội dung đề, và nội dung đề không chỉ là câu chữ của từng câu hỏi. Thông tin về việc phần nào được hỏi nhiều, dạng câu hỏi ra sao, hay chủ đề nào không xuất hiện đều là thông tin về đề thi - và nó tạo lợi thế cho người nhận so với những thí sinh khác của cùng kỳ thi. Đây chính là điều Standard VII(A) bảo vệ: không phải quyền sở hữu của CFA Institute với đề thi, mà tính công bằng giữa các thí sinh và giá trị của một chứng chỉ mà mọi người đều phải đạt bằng cùng một cách.",
+    summary: {
+      keyIdea: "Bảo mật kỳ thi bao trùm cả cấu trúc và trọng tâm đề, không chỉ câu chữ - nói 'năm nay nặng phần derivatives' đã là vi phạm.",
+      commonMistake: "Nghĩ rằng chỉ chép nguyên văn câu hỏi mới là vi phạm. Mọi thông tin giúp thí sinh sau có lợi thế đều thuộc phạm vi này.",
+    },
+    application: {
+      title: "Vì sao chặt tới vậy",
+      message: "Giá trị của danh xưng đến từ việc mọi người đỗ theo cùng một tiêu chuẩn. Rò rỉ làm hỏng chính thứ mà kỳ thi tạo ra.",
+    },
     sections: [
       {
         "type": "lead",
@@ -1297,6 +1361,14 @@ export const CFA_ETHICS_APPLIED_LESSONS: Lesson[] = [
     correctOption: 1,
     explanation:
       "Đây là quy tắc nền của GIPS và nó tồn tại để chặn đúng hành vi trên. Nếu được tuyên bố cho từng sản phẩm, công ty sẽ chọn sản phẩm có kết quả đẹp để gắn nhãn tuân thủ và im lặng về phần còn lại - tức là dùng GIPS để làm chính điều GIPS sinh ra để ngăn. Tuân thủ ở cấp công ty nghĩa là mọi danh mục có quyền quyết định đầu tư đều phải được đưa vào ít nhất một composite, và mọi composite đều phải được trình bày khi có bên yêu cầu. Không có chỗ nào để giấu một chiến lược thất bại.",
+    summary: {
+      keyIdea: "GIPS ép công ty phải trưng ra cả phần thua, vì composite gộp mọi danh mục cùng chiến lược - đó là toàn bộ lý do chuẩn này tồn tại.",
+      commonMistake: "Nhầm kiểm chứng với chứng nhận kết quả. Bên kiểm chứng xác nhận quy trình, không xác nhận từng con số hiệu suất là đúng.",
+    },
+    application: {
+      title: "Vì sao composite là trung tâm",
+      message: "Nó buộc gộp mọi danh mục cùng chiến lược, nên không thể chỉ khoe danh mục thắng và im lặng về phần còn lại.",
+    },
     sections: [
       {
         "type": "lead",
@@ -1458,6 +1530,14 @@ export const CFA_ETHICS_APPLIED_LESSONS: Lesson[] = [
     correctOption: 1,
     explanation:
       "Hai cơ chế này giải quyết hai vấn đề ngược nhau và đó là lý do cần cả hai. Danh sách hạn chế phải được phổ biến rộng để mọi người biết mà tránh - nhưng chính việc phổ biến đó tiết lộ rằng công ty đang có thương vụ với doanh nghiệp nào, một thông tin nhạy cảm. Danh sách theo dõi giải quyết bằng cách giữ bí mật ở bộ phận tuân thủ: không ai bị cấm gì, nhưng mọi giao dịch liên quan tới các mã trong danh sách đều bị giám sát chặt. Nhiều công ty dùng đồng thời cả hai, với danh sách theo dõi ở giai đoạn sớm và chuyển sang danh sách hạn chế khi thương vụ đã công khai.",
+    summary: {
+      keyIdea: "Bức tường thông tin, danh sách hạn chế và đăng ký giao dịch trước là ba cơ chế khác nhau cho ba vấn đề khác nhau - không cái nào thay được cái nào.",
+      commonMistake: "Dựng bức tường trên sơ đồ tổ chức mà không dựng trong thực tế vận hành. Hai bộ phận ngồi chung tầng và ăn trưa cùng nhau thì không có bức tường nào.",
+    },
+    application: {
+      title: "Cách kiểm tra",
+      message: "Hỏi ai có quyền truy cập hệ thống nào. Bức tường thật là bức tường về quyền truy cập, không phải về chính sách.",
+    },
     sections: [
       {
         "type": "lead",
@@ -1619,6 +1699,14 @@ export const CFA_ETHICS_APPLIED_LESSONS: Lesson[] = [
     correctOption: 1,
     explanation:
       "Standard V(A) yêu cầu cơ sở hợp lý cho mọi khuyến nghị, và việc khuyến nghị đến từ một mô hình không tạo ra ngoại lệ nào. Điều thay đổi là nội dung của chữ 'hiểu đủ': với mô hình, nó nghĩa là biết dữ liệu huấn luyện đến từ đâu và có thiên lệch gì, biết mô hình được tối ưu cho mục tiêu nào, biết nó hoạt động kém trong điều kiện nào, và có cách phát hiện khi nó bắt đầu trôi khỏi điều kiện đã học. Không giải thích được từng trọng số bên trong là chấp nhận được; không biết mô hình sẽ hỏng ở đâu thì không.",
+    summary: {
+      keyIdea: "Standard V(A) áp dụng nguyên vẹn cho khuyến nghị từ mô hình - trách nhiệm về cơ sở hợp lý thuộc về người đưa khuyến nghị, không chuyển sang thuật toán được.",
+      commonMistake: "Coi mô hình là một bên thứ ba khách quan. Nó là một công cụ do người chọn dữ liệu và chọn cách huấn luyện, nên mọi thiên lệch trong đó là thiên lệch của người dùng.",
+    },
+    application: {
+      title: "Điều phải giải thích được",
+      message: "Vì sao mô hình đưa ra khuyến nghị này. Không giải thích được nghĩa là chưa có cơ sở hợp lý theo nghĩa của V(A).",
+    },
     sections: [
       {
         "type": "lead",
@@ -1773,6 +1861,14 @@ export const CFA_ETHICS_APPLIED_LESSONS: Lesson[] = [
     correctOption: 1,
     explanation:
       "Số tầng trung gian không làm thông tin sạch đi. Hai điều kiện vẫn nguyên: thông tin trọng yếu, và chưa công bố rộng rãi. Điều kiện thứ ba - nguồn gốc từ một người vi phạm nghĩa vụ bảo mật - cũng còn nguyên, và việc bạn không biết cụ thể ai là người đầu tiên không gỡ bỏ được nó nếu hoàn cảnh cho thấy thông tin chỉ có thể đến từ bên trong. Ở thị trường mà quan hệ cá nhân đóng vai trò lớn trong luồng thông tin, đây là tình huống gặp thường xuyên hơn nhiều so với dạng giao dịch nội gián kinh điển - và cũng khó tự nhận ra hơn vì nó đến qua một cuộc trò chuyện bình thường.",
+    summary: {
+      keyIdea: "Ở thị trường mà quan hệ cá nhân dày và luật còn khoảng trống, Code không phải lớp bổ sung mà là ràng buộc thực sự đang áp lên bạn.",
+      commonMistake: "Dựa vào việc luật trong nước chưa quy định rõ. Code là cam kết riêng của người mang danh xưng, và nó áp bên nghiêm ngặt hơn.",
+    },
+    application: {
+      title: "Tình huống đặc thù",
+      message: "Quan hệ cá nhân dày đặc làm ranh giới thông tin mờ đi. Câu hỏi không đổi: thông tin này đã công bố cho mọi nhà đầu tư chưa.",
+    },
     sections: [
       {
         "type": "lead",

@@ -38,6 +38,14 @@ export const CFA_ALTERNATIVES_LESSONS: Lesson[] = [
     correctOption: 1,
     explanation:
       "Bốn đặc điểm này đi cùng nhau và chúng liên hệ nhân quả với nhau. Kém thanh khoản nghĩa là không có giá thị trường liên tục, nên định giá phải dựa vào thẩm định định kỳ hoặc mô hình - và điều đó tạo ra hàng loạt hệ quả về đo lường hiệu suất mà bài sau sẽ nói. Đòn bẩy cao hơn là chuẩn mực chứ không phải ngoại lệ, vì tài sản thực và thương vụ mua lại đều được tài trợ bằng nợ. Cấu trúc phí hai tầng - phí quản lý cộng phần chia lợi nhuận - đổi hoàn toàn động cơ của người quản lý so với một quỹ chỉ thu phí phẳng. Lợi nhuận kỳ vọng cao hơn thì không phải đặc điểm định nghĩa; nó là thứ nhà đầu tư hy vọng đổi lấy bốn điều trên.",
+    summary: {
+      keyIdea: "Bốn đặc điểm - kém thanh khoản, định giá thưa, đòn bẩy cao, phí hai tầng - không phải tiêu chí phân loại mà là bốn nguồn rủi ro đi kèm nhau.",
+      commonMistake: "Coi lợi suất công bố của tài sản thay thế là so sánh được với cổ phiếu. Định giá thưa làm biến động báo cáo thấp giả tạo.",
+    },
+    application: {
+      title: "Trước khi so hai lợi suất",
+      message: "Hỏi tài sản được định giá bằng giá thị trường hay bằng thẩm định. Hai loại đó không đặt cạnh nhau được.",
+    },
     sections: [
       {
         "type": "lead",
@@ -198,6 +206,14 @@ export const CFA_ALTERNATIVES_LESSONS: Lesson[] = [
     correctOption: 1,
     explanation:
       "Tài sản được thẩm định giá mỗi quý, và người thẩm định lấy tham chiếu từ lần định giá trước cùng vài giao dịch so sánh gần đây. Kết quả là chuỗi giá trị báo cáo dịch chuyển từ từ ngay cả khi thị trường thật đã biến động mạnh - hiện tượng gọi là làm mượt lợi nhuận. Hệ quả đo lường thì rất cụ thể: độ lệch chuẩn bị đánh giá thấp, tương quan với các nhóm tài sản khác bị đánh giá thấp, nên Sharpe ratio và lợi ích đa dạng hóa đều trông tốt hơn thực tế. Đây không phải gian lận - nó là hệ quả cấu trúc của việc không có giá thị trường liên tục.",
+    summary: {
+      keyIdea: "Một Sharpe đẹp ở lớp tài sản này thường là hệ quả của CÁCH ĐỊNH GIÁ chứ không của kỹ năng quản lý - và đó là lỗi đọc số, không phải lỗi của người quản lý quỹ.",
+      commonMistake: "Đọc Sharpe của quỹ tài sản thay thế như đọc Sharpe của quỹ cổ phiếu. Mẫu số đã bị nén trước khi phép chia diễn ra.",
+    },
+    application: {
+      title: "Dấu hiệu rẻ nhất",
+      message: "Tự tương quan dương bất thường trong chuỗi lợi suất. Giá thị trường thật gần như không có tự tương quan đáng kể.",
+    },
     sections: [
       {
         "type": "lead",
@@ -356,6 +372,14 @@ export const CFA_ALTERNATIVES_LESSONS: Lesson[] = [
     correctOption: 1,
     explanation:
       "Đây là câu chuyện về quy định chứ không phải về lãi suất. Các chuẩn vốn sau 2008 làm khoản cho vay doanh nghiệp vừa trở nên đắt đỏ với ngân hàng về mặt vốn phải trích lập, nên nhiều ngân hàng thu hẹp mảng này. Nhu cầu vay thì không biến mất, và các quỹ nợ tư nhân - vốn không chịu chuẩn vốn ngân hàng - bước vào lấp chỗ. Điều đó cũng giải thích vì sao rủi ro không biến mất mà chỉ chuyển chỗ: nó rời khỏi bảng cân đối ngân hàng, nơi có bảo hiểm tiền gửi và giám sát chặt, sang bảng cân đối các quỹ, nơi nhà đầu tư tự gánh.",
+    summary: {
+      keyIdea: "Lợi suất cao ở đây là tiền trả cho việc chịu kém thanh khoản và chịu bên vay không tiếp cận được thị trường công - không phải phần thưởng cho kỹ năng chọn khoản vay.",
+      commonMistake: "Đọc lợi suất cao của nợ tư nhân như phần thưởng cho kỹ năng. Phần lớn là phần bù thanh khoản và phần bù rủi ro tín dụng của bên vay không tiếp cận được thị trường công.",
+    },
+    application: {
+      title: "Câu hỏi thẩm định",
+      message: "Nếu bên vay này vay được từ ngân hàng hoặc phát hành trái phiếu công chúng, vì sao họ không làm.",
+    },
     sections: [
       {
         "type": "lead",
@@ -514,6 +538,14 @@ export const CFA_ALTERNATIVES_LESSONS: Lesson[] = [
     correctOption: 1,
     explanation:
       "Một quỹ hưu trí có nghĩa vụ chi trả trải dài ba đến năm mươi năm, và giá trị thực của nghĩa vụ đó tăng theo lạm phát. Rất ít tài sản có dòng tiền cùng kỳ hạn và cùng gắn lạm phát như vậy. Hạ tầng thì có: hợp đồng thu phí đường bộ, hợp đồng mua điện, hay khung phí dịch vụ công thường có điều khoản điều chỉnh theo chỉ số giá, và tài sản vận hành hàng chục năm. Đây là lý do phân bổ vào hạ tầng được thúc đẩy bởi việc khớp nghĩa vụ chứ không chỉ bởi kỳ vọng lợi nhuận - và cũng là lý do tính kém thanh khoản ít gây khó cho nhóm nhà đầu tư này hơn.",
+    summary: {
+      keyIdea: "Hạ tầng hợp quỹ hưu trí vì nó khớp cả hai chiều của nghĩa vụ: dòng tiền dài hạn và gắn với lạm phát - chứ không vì lợi suất kỳ vọng cao.",
+      commonMistake: "Gộp mọi hạ tầng vào một nhóm. Tài sản đã vận hành có hợp đồng dài hạn khác hoàn toàn dự án đang xây, cả về rủi ro lẫn về dòng tiền.",
+    },
+    application: {
+      title: "Rủi ro đặc thù cần hỏi",
+      message: "Rủi ro chính sách. Tài sản hạ tầng thường bị điều tiết giá, nên một quyết định hành chính có thể đổi toàn bộ luận điểm đầu tư.",
+    },
     sections: [
       {
         "type": "lead",
@@ -671,6 +703,14 @@ export const CFA_ALTERNATIVES_LESSONS: Lesson[] = [
     correctOption: 1,
     explanation:
       "Ba nguồn này độc lập nhau và đó là điều làm rừng trồng đặc biệt. Nguồn thứ nhất - sinh khối - là thứ không nhóm tài sản nào khác có: cây tiếp tục lớn bất kể thị trường tài chính diễn biến ra sao, nên khối lượng tài sản tăng lên mà không cần ai làm gì. Nguồn này cũng tạo ra một quyền chọn thật: khi giá gỗ thấp, chủ rừng hoãn thu hoạch và cây tiếp tục lớn; khi giá cao thì thu hoạch sớm hơn. Rất ít tài sản cho phép người sở hữu chọn thời điểm bán mà giá trị nội tại vẫn tăng trong lúc chờ - và chính đặc tính đó giải thích mức tương quan thấp với cổ phiếu.",
+    summary: {
+      keyIdea: "Rừng trồng có ba nguồn lợi nhuận độc lập - sinh khối tăng, giá gỗ, giá đất - và cây vẫn lớn lên trong lúc chờ giá tốt, nên thời điểm bán là một lựa chọn thật.",
+      commonMistake: "Bỏ qua rủi ro vật lý. Cháy, sâu bệnh và thời tiết cực đoan không đa dạng hoá được bằng danh mục tài chính.",
+    },
+    application: {
+      title: "Vì sao khớp với quỹ dài hạn",
+      message: "Chu kỳ sinh trưởng dài đồng nghĩa với việc không bị ép bán theo chu kỳ giá ngắn hạn - một lợi thế chỉ nhà đầu tư kiên nhẫn dùng được.",
+    },
     sections: [
       {
         "type": "lead",
@@ -830,6 +870,14 @@ export const CFA_ALTERNATIVES_LESSONS: Lesson[] = [
     correctOption: 1,
     explanation:
       "Một quỹ vĩ mô đặt cược vào hướng đi của lãi suất và tỷ giá; một quỹ chênh lệch sáp nhập kiếm tiền từ khoảng cách giữa giá thị trường và giá thương vụ; một quỹ giá trị tương đối khai thác lệch giá giữa hai chứng khoán liên quan. Ba chiến lược này lãi và lỗ vì những lý do hoàn toàn khác nhau, tại những thời điểm khác nhau. Thứ chúng chia sẻ là hình thức tổ chức - quỹ tư nhân, phí hai tầng, ít ràng buộc về công cụ - chứ không phải nguồn lợi nhuận. Nên gộp chúng thành một dòng trong bảng phân bổ danh mục là che mất đúng thông tin cần biết.",
+    summary: {
+      keyIdea: "Nói 'phân bổ 10% vào hedge fund' không mô tả được rủi ro nào đang được nhận, vì bốn nhóm chiến lược gần như không chia sẻ nguồn lợi nhuận nào với nhau.",
+      commonMistake: "Xếp mọi hedge fund vào cùng một ô trong phân bổ tài sản. Một quỹ global macro và một quỹ merger arbitrage gần như không có gì chung.",
+    },
+    application: {
+      title: "Câu hỏi đầu tiên",
+      message: "Chiến lược này kiếm tiền từ đâu, và nó thua trong kịch bản nào. Không trả lời được câu thứ hai nghĩa là chưa hiểu chiến lược.",
+    },
     sections: [
       {
         "type": "lead",
@@ -985,6 +1033,14 @@ export const CFA_ALTERNATIVES_LESSONS: Lesson[] = [
     correctOption: 1,
     explanation:
       "Phân loại theo chức năng là điều làm khung phân tích dùng được. Một đồng tiền dùng để thanh toán, một token cho quyền sử dụng dịch vụ trên nền tảng, một token đại diện quyền sở hữu tài sản thật, và một đồng ổn định neo vào tiền pháp định - bốn thứ này có nguồn giá trị, khung pháp lý và rủi ro hoàn toàn khác nhau, dù cùng chạy trên công nghệ tương tự. Token chứng khoán ở nhiều nước chịu đúng luật chứng khoán như cổ phiếu. Stablecoin thì rủi ro chính không nằm ở công nghệ mà ở chất lượng tài sản dự trữ đằng sau - đúng loại rủi ro của một quỹ thị trường tiền tệ.",
+    summary: {
+      keyIdea: "Rủi ro lớn nhất của lớp tài sản này không nằm ở biến động giá mà ở lưu ký: mất khoá là mất vĩnh viễn, một dạng rủi ro vận hành không có ở tài sản truyền thống.",
+      commonMistake: "Đối xử với cả nhóm như một loại tài sản duy nhất. Một stablecoin có dự trữ và một token tiện ích không chia sẻ rủi ro nào đáng kể.",
+    },
+    application: {
+      title: "Rủi ro ít được nhắc",
+      message: "Rủi ro lưu ký. Mất khoá là mất tài sản, không có cơ chế khôi phục nào - một dạng rủi ro vận hành không tồn tại ở tài sản truyền thống.",
+    },
     sections: [
       {
         "type": "lead",
@@ -1145,6 +1201,14 @@ export const CFA_ALTERNATIVES_LESSONS: Lesson[] = [
     correctOption: 1,
     explanation:
       "Mô hình tối ưu hóa rất nhạy với đầu vào, và nó dồn tỷ trọng vào đúng tài sản trông có rủi ro thấp và tương quan thấp. Tài sản thay thế trông như vậy không phải vì chúng thật sự thế, mà vì cơ chế định giá thẩm định làm mượt chuỗi lợi nhuận - đúng hiệu ứng đã học ở bài hai. Kết quả là mô hình khuếch đại một sai lệch đo lường thành một khuyến nghị phân bổ. Cách xử lý trong ngành có ba hướng: khử làm mượt chuỗi lợi nhuận trước khi đưa vào, đặt trần phân bổ theo ràng buộc thanh khoản thay vì để mô hình tự chọn, và kiểm tra kết quả bằng phân tích kịch bản thay vì chỉ dựa vào phương sai.",
+    summary: {
+      keyIdea: "Tối ưu hoá danh mục là bộ khuếch đại sai lệch: đưa vào một chuỗi lợi suất đã bị nén biến động thì đầu ra luôn là khuyến nghị phân bổ quá tay.",
+      commonMistake: "Tin vào con số phân bổ tối ưu mà không kiểm tra đầu vào. Rác vào thì rác ra, và ở đây rác trông rất giống dữ liệu tốt.",
+    },
+    application: {
+      title: "Cách chữa thực dụng",
+      message: "Điều chỉnh lại biến động cho phần đã làm mượt trước khi tối ưu hoá, hoặc đơn giản là đặt trần phân bổ bằng phán đoán.",
+    },
     sections: [
       {
         "type": "lead",

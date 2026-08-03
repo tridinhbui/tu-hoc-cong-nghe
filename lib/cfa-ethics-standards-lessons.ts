@@ -39,6 +39,14 @@ export const CFA_ETHICS_STANDARDS_LESSONS: Lesson[] = [
     correctOption: 1,
     explanation:
       "Phản xạ đầu tiên của phần lớn người học là nhảy thẳng tới hành động - từ chối, tuân theo, hoặc tìm cách lách. Khung ra quyết định đặt một bước trước đó: mô tả tình huống cho đủ trước khi phán xét nó. Ai là người bị ảnh hưởng thật sự - khách hàng đọc báo cáo, nhà tuyển dụng, thị trường nói chung? Nghĩa vụ nào đang xung đột với nghĩa vụ nào? Có sự thật nào bạn chưa biết mà nếu biết sẽ đổi kết luận không? Rất nhiều tình huống trông như vi phạm hóa ra chỉ thiếu một lần công bố, và ngược lại, nhiều tình huống trông vô hại lại vi phạm khi nhìn từ phía người bị ảnh hưởng.",
+    summary: {
+      keyIdea: "Khung bốn bước tồn tại cho đúng những tình huống không Standard nào phủ rõ - nơi bạn phải tự quyết chứ không tra được.",
+      commonMistake: "Đi thẳng tới bước hành động mà bỏ bước cân nhắc các bên liên quan. Phần lớn quyết định sai không sai ở kết luận mà sai ở chỗ chưa hỏi ai chịu ảnh hưởng.",
+    },
+    application: {
+      title: "Bước hay bị bỏ nhất",
+      message: "Bước nhìn lại. Không có nó, cùng một tình huống lần sau vẫn tốn đúng chừng ấy công sức, và bạn không tích được gì.",
+    },
     sections: [
       {
         "type": "lead",
@@ -199,6 +207,14 @@ export const CFA_ETHICS_STANDARDS_LESSONS: Lesson[] = [
     correctOption: 1,
     explanation:
       "Một chiếc điện thoại hỏng thì bạn biết ngay nó hỏng. Một danh mục lỗ 20% thì bạn không biết đó là do người quản lý kém, do thị trường chung, hay do một rủi ro đã được cảnh báo trước mà bạn chấp nhận. Kinh tế học gọi đây là hàng hóa tín nhiệm - loại hàng mà người mua không đánh giá được chất lượng ngay cả sau khi đã tiêu dùng. Với hàng hóa tín nhiệm, cơ chế thị trường thông thường không tự lọc được bên kém, vì tín hiệu chất lượng bị nhiễu quá nặng. Đó là lý do ngành này cần một lớp ràng buộc bổ sung - đạo đức nghề nghiệp và quy định - thay vì để cạnh tranh tự xử lý.",
+    summary: {
+      keyIdea: "Khi khách hàng không phân biệt được kỹ năng với may mắn trong hàng chục năm, thứ duy nhất họ mua được là quy trình - nên quy tắc đạo đức chính là sản phẩm, không phải chi phí kèm theo nó.",
+      commonMistake: "Coi quy tắc đạo đức là chi phí tuân thủ. Với hàng hoá tín nhiệm, niềm tin chính là sản phẩm - mất nó thì không còn gì để bán.",
+    },
+    application: {
+      title: "Vì sao ngành này khác",
+      message: "Khi không phân biệt được kỹ năng với may mắn trong nhiều năm, thứ duy nhất khách hàng dựa vào để chọn là quy trình và uy tín.",
+    },
     sections: [
       {
         "type": "lead",
@@ -360,6 +376,14 @@ export const CFA_ETHICS_STANDARDS_LESSONS: Lesson[] = [
     correctOption: 1,
     explanation:
       "Standard I(A) không nói 'tuân thủ luật', nó nói tuân thủ tiêu chuẩn NGHIÊM NGẶT HƠN trong ba thứ: luật nơi bạn làm việc, luật nơi hoạt động diễn ra, và Code of Ethics cùng Standards. Điều này chạy theo cả hai chiều. Nếu luật địa phương cấm điều mà Code cho phép, bạn theo luật. Nếu Code khắt khe hơn luật, bạn theo Code - và đây là chiều hay bị bỏ qua, vì nó không có ai cưỡng chế ngoài chính CFA Institute. Hệ quả thực tế: chuyển sang một thị trường quản lý lỏng hơn không làm nghĩa vụ của bạn nhẹ đi chút nào.",
+    summary: {
+      keyIdea: "Khi luật địa phương, luật nơi hoạt động và Code khác nhau, áp bên nghiêm ngặt nhất - không phải bên gần nhất hay bên dễ nhất.",
+      commonMistake: "Nghĩ rằng làm đúng luật sở tại là đủ. Code là cam kết riêng của người mang danh xưng, và nó đi theo bạn qua mọi biên giới.",
+    },
+    application: {
+      title: "Tình huống thường gặp ở Việt Nam",
+      message: "Một hoạt động hợp pháp theo luật trong nước vẫn có thể vi phạm Code. Khi hai bên lệch nhau, câu trả lời luôn là bên chặt hơn.",
+    },
     sections: [
       {
         "type": "lead",
@@ -518,6 +542,14 @@ export const CFA_ETHICS_STANDARDS_LESSONS: Lesson[] = [
     correctOption: 2,
     explanation:
       "Chuyến thăm nhà máy là nghiên cứu tốt và Standard không cấm nó. Thứ tạo vấn đề là ai trả tiền. Khi bên được phân tích chi trả một khoản có giá trị đáng kể, nó tạo cảm giác mắc nợ - nghiên cứu tâm lý gọi là thiên kiến đáp trả - và nó hoạt động dưới mức nhận thức, kể cả với người tin chắc mình khách quan. Cách xử lý chuẩn trong ngành là đi, nhưng tự trả chi phí, hoặc chỉ nhận mức thù tiếp tối thiểu và thông thường. Công bố ở cuối báo cáo là bước bổ sung, không thay thế được việc loại bỏ chính xung đột đó.",
+    summary: {
+      keyIdea: "I(B) nhắm vào áp lực HỢP PHÁP làm lệch phán đoán - quà tặng, chuyến đi, quan hệ kinh doanh - chứ không nhắm vào hối lộ, thứ đã bị luật hình sự xử lý.",
+      commonMistake: "Chờ tới lúc thực sự đổi kết luận mới coi là vi phạm. Chuẩn là tình huống có thể hợp lý được kỳ vọng làm ảnh hưởng, không phải đã ảnh hưởng.",
+    },
+    application: {
+      title: "Phép thử đơn giản",
+      message: "Nếu khách hàng biết về khoản lợi ích này, họ có còn tin vào khuyến nghị của bạn như cũ không.",
+    },
     sections: [
       {
         "type": "lead",
@@ -676,6 +708,14 @@ export const CFA_ETHICS_STANDARDS_LESSONS: Lesson[] = [
     correctOption: 1,
     explanation:
       "Standard I(C) có hai vế và cả hai đều bị chạm ở đây. Vế thứ nhất là quy kết sai nguồn: trình bày công sức của người khác - hay của một công cụ - như của mình là trình bày sai lệch, dù không ai bị thiệt hại tài chính. Vế thứ hai nặng hơn với nghề phân tích: nội dung do mô hình ngôn ngữ sinh ra có thể chứa số liệu bịa đặt trông rất thuyết phục, nên đưa vào báo cáo mà chưa kiểm chứng là đưa vào những khẳng định bạn không có cơ sở. CFA Institute không cấm dùng công cụ; nó yêu cầu bạn chịu trách nhiệm cho từng chữ mang tên bạn.",
+    summary: {
+      keyIdea: "Chuẩn mực này bảo vệ người ĐỌC chứ không đo động cơ người viết, nên thiệt hại của một sơ suất và của một hành vi cố ý là như nhau dưới góc nhìn của nó.",
+      commonMistake: "Cho rằng nội dung do AI tạo ra không cần ghi nguồn vì không có tác giả. Trách nhiệm về tính chính xác vẫn thuộc về người ký tên dưới báo cáo.",
+    },
+    application: {
+      title: "Quy tắc dùng được",
+      message: "Nếu một câu không phải bạn nghĩ ra và không phải sự thật ai cũng biết, nó cần nguồn - kể cả khi bạn đã viết lại bằng từ của mình.",
+    },
     sections: [
       {
         "type": "lead",
@@ -837,6 +877,14 @@ export const CFA_ETHICS_STANDARDS_LESSONS: Lesson[] = [
     correctOption: 1,
     explanation:
       "Mosaic theory nói rằng kết luận trọng yếu được tạo ra bằng cách ghép các mảnh không trọng yếu và không phải thông tin nội bộ là tài sản hợp pháp của người phân tích. Logic đằng sau rất thẳng: nếu cấm điều này thì phần thưởng cho việc nghiên cứu biến mất, và thị trường mất đi chính cơ chế đưa thông tin vào giá. Ranh giới nằm ở ba câu hỏi. Từng mảnh có trọng yếu không - nếu một nhà cung cấp nói cho bạn biết tổng doanh thu chưa công bố thì mảnh đó đã trọng yếu rồi. Nguồn có nghĩa vụ giữ bí mật không - nếu người nói đang vi phạm nghĩa vụ của họ, bạn không sạch chỉ vì bạn là người nghe. Và bạn có biết điều đó không.",
+    summary: {
+      keyIdea: "Ghép nhiều mảnh thông tin KHÔNG trọng yếu thành một kết luận trọng yếu là hợp pháp, và đó chính là giá trị của phân tích.",
+      commonMistake: "Lẫn mosaic với việc nhận một mảnh trọng yếu chưa công bố rồi bọc nó trong nhiều mảnh công khai. Một mảnh trọng yếu không sạch đi vì được đặt cạnh chín mảnh sạch.",
+    },
+    application: {
+      title: "Chỗ ranh giới nằm",
+      message: "Hỏi: nếu bỏ đúng một mảnh này ra, kết luận có còn đứng được không. Nếu không, mảnh đó chính là thứ trọng yếu.",
+    },
     sections: [
       {
         "type": "lead",
@@ -995,6 +1043,14 @@ export const CFA_ETHICS_STANDARDS_LESSONS: Lesson[] = [
     correctOption: 1,
     explanation:
       "Standard II(B) là một trong số ít Standards mà ý định nằm ngay trong định nghĩa vi phạm. Hủy lệnh là hoạt động hợp pháp và cần thiết: chiến lược thay đổi, giá dịch chuyển, thanh khoản không như dự kiến. Thứ tạo ra vi phạm là đặt lệnh mà bạn không có ý định khớp, nhằm làm người khác tin rằng có lực cầu hoặc lực cung không tồn tại. Vì ý định không quan sát trực tiếp được, cơ quan quản lý đọc nó qua mô hình hành vi: tỷ lệ hủy cực cao, lệnh đặt xa giá khớp rồi rút đúng khi giá tiến tới, và vị thế thật đi ngược hướng lệnh đang hiển thị. Lợi nhuận thực tế không phải điều kiện - thao túng thất bại vẫn là thao túng.",
+    summary: {
+      keyIdea: "Ý định là yếu tố quyết định: cùng một lệnh giao dịch có thể hợp lệ hoặc là thao túng, tuỳ vào việc nó nhằm thực hiện một vị thế hay nhằm tạo ra một tín hiệu giả.",
+      commonMistake: "Cho rằng chỉ giao dịch mới thao túng được. Lan truyền thông tin sai để dịch giá là kiểu thứ hai, và không cần đặt một lệnh nào.",
+    },
+    application: {
+      title: "Khi tự kiểm tra",
+      message: "Hỏi lệnh này có được đặt nếu không ai nhìn thấy nó không. Câu trả lời 'không' là dấu hiệu mục đích nằm ở tín hiệu chứ không ở vị thế.",
+    },
     sections: [
       {
         "type": "lead",
@@ -1152,6 +1208,14 @@ export const CFA_ETHICS_STANDARDS_LESSONS: Lesson[] = [
     correctOption: 1,
     explanation:
       "Chữ trong Standard là công bằng, không phải đồng nhất - và khác biệt đó có chủ ý. Ngành đầu tư có nhiều mức dịch vụ khác nhau, và bán một gói cao cấp không tự nó là vi phạm. Hai điều kiện biến nó thành hợp lệ: chênh lệch phải được công bố trước để khách gói thường biết mình đang mua gì và không mua gì; và trong cùng một nhóm dịch vụ thì không ai được ưu tiên hơn ai. Cái bị cấm là ưu tiên ngầm - cho một khách quen biết lệnh trước trong khi cả hai trả cùng mức phí, hoặc gọi điện cho vài khách lớn trước khi báo cáo phát hành cho tất cả.",
+    summary: {
+      keyIdea: "Công bằng không có nghĩa là như nhau. Phân tầng dịch vụ là hợp lệ; điều không hợp lệ là để một nhóm biết trước và hành động trước nhóm khác về cùng một khuyến nghị.",
+      commonMistake: "Nghĩ rằng phải gửi mọi thứ cho mọi khách hàng cùng lúc. Được phép có gói dịch vụ khác nhau, miễn khách hàng biết mình đang mua gói nào.",
+    },
+    application: {
+      title: "Chỗ dễ vi phạm nhất",
+      message: "Khoảng thời gian giữa lúc báo cáo tới nhóm này và tới nhóm kia. Khoảng đó phải đủ ngắn để không ai giao dịch được trước.",
+    },
     sections: [
       {
         "type": "lead",
@@ -1310,6 +1374,14 @@ export const CFA_ETHICS_STANDARDS_LESSONS: Lesson[] = [
     correctOption: 1,
     explanation:
       "Đây là dạng bóp méo tinh vi nhất vì không có con số nào sai. Mỗi quỹ còn sống thật sự đạt mức lãi đó; phép trung bình cũng tính đúng. Thứ sai là mẫu: các quỹ kém thường bị đóng hoặc sáp nhập, và khi biến mất khỏi danh sách thì chúng cũng biến mất khỏi phép tính. Kết quả là con số quảng cáo mô tả một nhóm mà nhà đầu tư mười năm trước không thể chọn được, vì lúc đó họ chưa biết quỹ nào sẽ sống sót. Standard III(D) yêu cầu trình bày công bằng và đầy đủ, và đó chính là lý do GIPS bắt buộc gộp toàn bộ tài khoản cùng chiến lược vào một composite thay vì để công ty tự chọn.",
+    summary: {
+      keyIdea: "Ba cách bóp méo hiệu suất phổ biến nhất đều không cần một con số sai nào - chọn kỳ, chọn danh mục, và gộp mô phỏng với vận hành thật.",
+      commonMistake: "Trình bày lợi suất của một danh mục tiêu biểu như thể nó đại diện cho tất cả. Nếu nó được chọn sau khi đã biết kết quả, nó không đại diện cho gì cả.",
+    },
+    application: {
+      title: "Kiểm tra một bảng hiệu suất",
+      message: "Hỏi ba câu: kỳ được chọn thế nào, danh mục nào bị loại ra, và phần nào là mô phỏng.",
+    },
     sections: [
       {
         "type": "lead",
@@ -1467,6 +1539,14 @@ export const CFA_ETHICS_STANDARDS_LESSONS: Lesson[] = [
     correctOption: 1,
     explanation:
       "Standard IV(B) không cấm nhận thù lao thêm - nó cấm nhận mà nhà tuyển dụng không biết. Lý do rất cụ thể: một khoản thưởng gắn với hiệu suất danh mục của một khách hàng tạo động cơ ưu tiên khách đó hơn các khách khác, và tạo động cơ gánh thêm rủi ro để chạm ngưỡng thưởng. Nhà tuyển dụng là bên duy nhất nhìn được toàn bộ danh mục khách hàng của bạn, nên họ phải là bên đánh giá xung đột này. Văn bản là bắt buộc chứ không phải hình thức: khi có tranh chấp sau này, đồng ý bằng miệng không phân biệt được với việc không hề xin phép.",
+    summary: {
+      keyIdea: "Không cấm kiếm thêm ngoài lương - cấm kiếm thêm mà nhà tuyển dụng không biết, vì họ không đánh giá được xung đột mà họ không thấy.",
+      commonMistake: "Cho rằng chỉ tiền mới phải công bố. Mọi khoản lợi ích có thể cạnh tranh với lợi ích của nhà tuyển dụng đều thuộc phạm vi này.",
+    },
+    application: {
+      title: "Quy tắc thực hành",
+      message: "Công bố bằng văn bản và xin chấp thuận trước, không phải thông báo sau. Thứ tự đó là toàn bộ nội dung của Standard này.",
+    },
     sections: [
       {
         "type": "lead",
@@ -1621,6 +1701,14 @@ export const CFA_ETHICS_STANDARDS_LESSONS: Lesson[] = [
     correctOption: 1,
     explanation:
       "Chữ 'sẽ' làm toàn bộ khác biệt. Việc nhà máy đi vào hoạt động có thể là sự thật đã công bố; con số 25% thì luôn là ý kiến, dù được xây trên mô hình cẩn thận đến đâu. Standard V(B) yêu cầu phân biệt rõ hai loại này, vì khách hàng đọc chúng theo hai cách hoàn toàn khác nhau và ra quyết định khác nhau. Yêu cầu thứ hai của Standard đi xa hơn: phải nêu quy trình và giới hạn của phân tích - mô hình dựa trên giả định gì, giả định nào nhạy nhất, và điều gì sẽ khiến kết luận đổi. Một khách hàng biết dự báo phụ thuộc vào giá đầu vào sẽ phản ứng khác hẳn khi giá đầu vào tăng vọt.",
+    summary: {
+      keyIdea: "Khách hàng đọc sự thật và ý kiến theo hai cách hoàn toàn khác nhau, nên trộn hai loại vào một câu là chuyển rủi ro phán đoán sang cho họ mà họ không biết.",
+      commonMistake: "Dùng ngôn ngữ chắc chắn cho một dự báo. 'Doanh nghiệp sẽ tăng trưởng 20%' là ý kiến được viết như sự thật.",
+    },
+    application: {
+      title: "Cách viết an toàn",
+      message: "Tách câu: sự thật đứng riêng, ý kiến bắt đầu bằng cơ sở của nó. Người đọc phải biết được chỗ nào họ đang tin vào dữ liệu và chỗ nào đang tin vào bạn.",
+    },
     sections: [
       {
         "type": "lead",
@@ -1775,6 +1863,14 @@ export const CFA_ETHICS_STANDARDS_LESSONS: Lesson[] = [
     correctOption: 1,
     explanation:
       "Danh xưng CFA chỉ thuộc về người đã hoàn thành cả ba kỳ thi, đủ kinh nghiệm làm việc theo yêu cầu, nộp đơn và được cấp - và duy trì tư cách thành viên. Thiếu bất kỳ điều kiện nào thì không được dùng, kể cả khi phần thi đã xong hết. Các biến thể như 'CFA (chờ cấp)' hay 'CFA Level III passed' đặt cạnh tên đều bị coi là vi phạm vì chúng tạo ấn tượng sở hữu danh xưng. Cách viết được chấp nhận là mô tả trạng thái bằng câu, trong phần kinh nghiệm hoặc học vấn, chứ không phải như một hậu tố sau tên.",
+    summary: {
+      keyIdea: "Danh xưng có giá trị đúng bằng mức độ khó làm giả nó, nên quy tắc chặt tới mức khó chịu là cái giá cho việc nó còn nghĩa lý gì.",
+      commonMistake: "Viết 'CFA Level II candidate' như một danh hiệu. Chỉ được nói mình đang tham gia chương trình và đã đỗ tới cấp nào - không có danh xưng nào cho người đang thi.",
+    },
+    application: {
+      title: "Kiểm tra chữ ký email của bạn",
+      message: "Danh xưng phải đứng sau tên, không viết liền, không dùng như tính từ. 'Nguyễn A, CFA' đúng; 'CFA Nguyễn A' thì không.",
+    },
     sections: [
       {
         "type": "lead",

@@ -41,6 +41,14 @@ export const CFA_ETHICS_CASES_LESSONS: Lesson[] = [
     correctOption: 1,
     explanation:
       "Nguyên tắc là nhìn vào lợi ích chứ không nhìn vào tên trên tài khoản. Tài khoản của người thân sống chung mà bạn được hưởng lợi từ nó thì được coi là tài khoản cá nhân của chính bạn, và phải xếp sau khách hàng. Có một ngoại lệ đáng chú ý: nếu người thân đó là khách hàng thật sự, trả phí như mọi khách khác, thì họ được đối xử như khách hàng - và Standard III(B) về đối xử công bằng lại yêu cầu không được thiệt thòi hơn ai. Đặt họ xuống cuối hàng vì sợ mang tiếng cũng là một dạng đối xử không công bằng.",
+    summary: {
+      keyIdea: "Nhìn vào LỢI ÍCH chứ không nhìn tên trên tài khoản - tài khoản đứng tên người thân mà bạn hưởng lợi vẫn là tài khoản của bạn theo Standard này.",
+      commonMistake: "Cho rằng tài khoản người nhà là bên thứ ba. Nếu bạn có lợi ích kinh tế trong đó, nó xếp sau khách hàng.",
+    },
+    application: {
+      title: "Ngoại lệ đáng chú ý",
+      message: "Tài khoản người thân mà bạn quản lý như một khách hàng thật thì được đối xử như khách hàng - không bị đẩy xuống cuối hàng.",
+    },
     sections: [
       {
         "type": "lead",
@@ -198,6 +206,14 @@ export const CFA_ETHICS_CASES_LESSONS: Lesson[] = [
     correctOption: 1,
     explanation:
       "Standard VI(C) không cấm nhận phí giới thiệu - mô hình này hợp pháp và phổ biến. Nó buộc công bố, vì thiếu thông tin đó khách hàng không phân biệt được một lời giới thiệu dựa trên chất lượng dịch vụ với một lời giới thiệu dựa trên mức hoa hồng. Nghĩa vụ chạy theo cả hai chiều: nhận phí phải nói, mà trả phí cho người giới thiệu khách đến với bạn cũng phải nói. Và phạm vi không dừng ở tiền - một thỏa thuận giới thiệu qua lại, hay việc được nhận lại dịch vụ nào đó, đều nằm trong phạm vi phải công bố.",
+    summary: {
+      keyIdea: "Không cấm phí giới thiệu - buộc công bố, và công bố cả khi tiền chảy vào lẫn khi chảy ra, vì cả hai chiều đều làm lệch động cơ giới thiệu.",
+      commonMistake: "Chỉ công bố khi mình là bên nhận tiền. Trả phí cho người giới thiệu khách tới cũng phải nói với chính khách hàng đó.",
+    },
+    application: {
+      title: "Thời điểm công bố",
+      message: "Trước khi khách hàng quyết định, không phải trong hợp đồng đã ký. Công bố sau khi quyết định xong không còn tác dụng gì.",
+    },
     sections: [
       {
         "type": "lead",
@@ -352,6 +368,14 @@ export const CFA_ETHICS_CASES_LESSONS: Lesson[] = [
     correctOption: 1,
     explanation:
       "Standard I(D) không phải quy tắc đạo đức đời sống nói chung. Nó khoanh vào ba thứ có liên hệ trực tiếp tới việc bạn có đáng được giao tiền của người khác hay không: trung thực, đáng tin cậy, và năng lực chuyên môn. Gian lận trong một kỳ thi ở trường, khai man hồ sơ, hay lừa đảo trong một giao dịch cá nhân đều rơi vào phạm vi - không phải vì chúng xấu nói chung mà vì chúng nói lên điều gì đó về cách người này xử sự khi có cơ hội và không ai nhìn. Ngược lại, một tranh chấp dân sự thông thường hay một va chạm giao thông thì không.",
+    summary: {
+      keyIdea: "Ba tiêu chí - trung thực, đáng tin cậy, năng lực chuyên môn - áp cả cho hành vi ngoài công việc khi hành vi đó nói lên điều gì đó về ba phẩm chất ấy.",
+      commonMistake: "Cho rằng chuyện đời tư không liên quan. Gian lận thuế cá nhân chạm thẳng vào tiêu chí trung thực, dù nó xảy ra ngoài giờ làm.",
+    },
+    application: {
+      title: "Ranh giới",
+      message: "Không phải mọi sai sót cá nhân đều thuộc phạm vi. Câu hỏi là hành vi đó có nói gì về khả năng người khác giao tiền cho bạn hay không.",
+    },
     sections: [
       {
         "type": "lead",
@@ -506,6 +530,14 @@ export const CFA_ETHICS_CASES_LESSONS: Lesson[] = [
     correctOption: 1,
     explanation:
       "Không hợp tác với cuộc điều tra là vi phạm độc lập với vi phạm đang bị điều tra, và trong nhiều trường hợp nó dẫn tới chế tài nặng hơn. Lý do rất thực tế: CFA Institute không có quyền cưỡng chế của nhà nước - không thể triệu tập, không thể khám xét - nên toàn bộ khả năng thực thi của hệ thống dựa vào việc thành viên tự nguyện hợp tác. Bỏ qua thư yêu cầu, cung cấp thông tin sai lệch, hoặc tiêu hủy tài liệu liên quan đều chuyển một vụ việc có thể kết thúc bằng nhắc nhở thành một vụ đình chỉ tư cách.",
+    summary: {
+      keyIdea: "Quy trình kỷ luật đo cách bạn phản ứng nhiều hơn đo vi phạm gốc - đó là lý do việc không hợp tác thường bị xử nặng hơn chính điều đang bị điều tra.",
+      commonMistake: "Im lặng để chờ mọi chuyện qua đi. Nghĩa vụ hợp tác không phụ thuộc vào việc bạn có tin mình đúng hay không.",
+    },
+    application: {
+      title: "Điều nên biết trước",
+      message: "Quy trình có nhiều bước và có cơ hội giải trình ở từng bước. Biết trước cấu trúc đó giúp phản ứng đúng ngay từ thư đầu tiên.",
+    },
     sections: [
       {
         "type": "lead",
@@ -664,6 +696,14 @@ export const CFA_ETHICS_CASES_LESSONS: Lesson[] = [
     correctOption: 1,
     explanation:
       "Standard V(A) cho phép dựa vào nghiên cứu của bên khác, nhưng không cho phép chuyển trách nhiệm sang họ. Mức thẩm định cần thiết phụ thuộc vào hoàn cảnh: một tổ chức có quy trình đã được kiểm chứng và bạn đã dùng nhiều lần thì mức thẩm định thấp hơn một nguồn mới hoặc một nguồn có xung đột lợi ích rõ. Những câu hỏi tối thiểu luôn phải trả lời được: nghiên cứu dựa trên giả định gì, dữ liệu lấy từ đâu, có ai trả tiền cho nghiên cứu này không, và kết luận có nhất quán với những gì bạn biết về doanh nghiệp không. Không trả lời được thì bạn đang đưa khuyến nghị không có cơ sở của chính mình.",
+    summary: {
+      keyIdea: "Ghi nguồn và có cơ sở hợp lý là hai nghĩa vụ tách rời: cái đầu xử lý câu hỏi ai viết, cái sau xử lý câu hỏi vì sao tin được.",
+      commonMistake: "Trích dẫn đầy đủ rồi coi như xong. Ghi nguồn giải quyết vấn đề đạo văn, không giải quyết vấn đề cơ sở hợp lý.",
+    },
+    application: {
+      title: "Việc phải làm",
+      message: "Kiểm tra quy trình của bên cung cấp: họ lấy dữ liệu ở đâu, ai kiểm định, đã sai bao giờ chưa. Đó là phần thẩm định không bỏ được.",
+    },
     sections: [
       {
         "type": "lead",
@@ -817,6 +857,14 @@ export const CFA_ETHICS_CASES_LESSONS: Lesson[] = [
     correctOption: 1,
     explanation:
       "Đây là điểm hay bị bỏ qua nhất trong dạng case này. Vi phạm Standard I(B) nằm ở phía người tạo sức ép và nó hoàn tất ngay khi sức ép được truyền đi - nếu chỉ tính lúc nhà phân tích đã đổi khuyến nghị thì mọi lần gây sức ép không thành công đều vô can, và điều đó khiến Standard mất hết tác dụng phòng ngừa. Với bạn - người nhận sức ép - nghĩa vụ chưa bị vi phạm nhưng đã phát sinh: giữ nguyên kết luận có cơ sở, ghi lại sự việc, và đưa vấn đề lên bộ phận tuân thủ. Im lặng làm theo thì thêm vi phạm V(A) vì khuyến nghị mới không còn cơ sở hợp lý, và V(B) vì bạn đang trình bày một ý kiến không phải của mình như thể là phân tích của bạn.",
+    summary: {
+      keyIdea: "I(B) bị vi phạm ngay khi sức ép được truyền tới nhà phân tích, không chờ tới lúc kết luận thực sự bị đổi.",
+      commonMistake: "Chờ xem mình có chịu thua hay không rồi mới coi là vấn đề. Bản thân việc kênh truyền sức ép tồn tại đã là lỗi cấu trúc.",
+    },
+    application: {
+      title: "Việc cần làm ngay",
+      message: "Ghi lại và báo lên tuân thủ. Không phải để tố cáo ai, mà để lần sau kênh đó không còn dùng được.",
+    },
     sections: [
       {
         "type": "lead",
@@ -975,6 +1023,14 @@ export const CFA_ETHICS_CASES_LESSONS: Lesson[] = [
     correctOption: 1,
     explanation:
       "Câu hỏi đầu tiên không phải bạn có được tham gia không, mà cơ hội này có thuộc về khách hàng không. Nếu nó phù hợp với mục tiêu đầu tư của một hoặc nhiều khách hàng bạn đang phục vụ, thì Standard VI(B) đặt họ trước bạn - kể cả khi lời mời gửi đích danh tên bạn, vì bạn nhận được lời mời đó nhờ vị trí nghề nghiệp chứ không nhờ tư cách cá nhân. Quy mô nhỏ không phải lý do loại khách ra: cách xử lý đúng là phân bổ theo tỷ lệ theo quy trình có sẵn, không phải kết luận rằng vì chia không đủ nên thôi để mình lấy. Chỉ khi cơ hội thật sự không phù hợp với bất kỳ khách hàng nào thì mới tới lượt bạn - và khi đó vẫn phải công bố theo VI(A) nếu nó có thể ảnh hưởng tới khuyến nghị của bạn sau này.",
+    summary: {
+      keyIdea: "Câu hỏi đầu tiên không phải mình có được mua không, mà cơ hội này có thuộc về khách hàng không.",
+      commonMistake: "Bắt đầu từ việc mình có xung đột hay không. Nếu cơ hội phù hợp với khách hàng, nó phải tới khách hàng trước - xung đột chỉ là câu hỏi thứ hai.",
+    },
+    application: {
+      title: "Trình tự đúng",
+      message: "Xác định cơ hội thuộc về ai, rồi mới tới công bố và xin chấp thuận. Đảo thứ tự là bỏ qua câu hỏi quan trọng hơn.",
+    },
     sections: [
       {
         "type": "lead",
@@ -1133,6 +1189,14 @@ export const CFA_ETHICS_CASES_LESSONS: Lesson[] = [
     correctOption: 1,
     explanation:
       "Ba hành động kia đều là chuẩn bị hợp pháp cho một bước đi nghề nghiệp bình thường. Sao chép danh sách khách hàng thì khác về bản chất: đó là tài sản của nhà tuyển dụng, và việc mang nó đi phục vụ mục đích cạnh tranh với chính họ. Điểm tinh tế là hành vi này hoàn tất ngay lúc sao chép, không phải lúc bạn dùng danh sách đó - cũng như việc bạn có thể tự nhớ được tên một số khách không làm việc sao chép thành hợp lệ. Kiến thức trong đầu bạn thì đi theo bạn; một file thì không, kể cả khi nội dung file đó bạn cũng nhớ được.",
+    summary: {
+      keyIdea: "Chuẩn bị hành chính cho việc nghỉ và trao đổi với nhà tuyển dụng mới đều hợp lệ - điều không hợp lệ là dùng tài sản của công ty cũ để khởi động công ty mới.",
+      commonMistake: "Mang theo hồ sơ khách hàng vì 'mình đã tự xây dựng quan hệ đó'. Quan hệ có thể là của bạn; danh sách và dữ liệu thì không.",
+    },
+    application: {
+      title: "Sau khi đã nghỉ",
+      message: "Liên hệ khách hàng cũ bằng thông tin công khai là được. Ranh giới nằm ở nguồn thông tin bạn dùng, không ở việc có liên hệ hay không.",
+    },
     sections: [
       {
         "type": "lead",
@@ -1287,6 +1351,14 @@ export const CFA_ETHICS_CASES_LESSONS: Lesson[] = [
     correctOption: 1,
     explanation:
       "Chuẩn mực CFA không buộc thành viên tố cáo ra bên ngoài - ở nhiều nơi việc đó còn bị luật hạn chế, và một cáo buộc sai gây tổn hại thật cho người bị cáo buộc. Thứ nó buộc là hai điều: tách mình khỏi hành vi vi phạm, và đưa vấn đề lên trong nội bộ qua kênh phù hợp. Phương án thu thập thêm bằng chứng trong vài tháng nghe thận trọng nhưng thường sai, vì trong thời gian đó thiệt hại cho khách hàng tiếp tục tích lũy và sự im lặng của bạn dần trở thành đồng thuận. Nếu kênh nội bộ không xử lý, các bước tiếp theo là leo thang lên cấp cao hơn hoặc lên hội đồng quản trị, và cuối cùng là cân nhắc rời khỏi tổ chức.",
+    summary: {
+      keyIdea: "Giữa im lặng và tố cáo công khai có một bước bắt buộc mà phần lớn người ta không biết là mình có: tách mình ra và nêu nội bộ, có ghi lại.",
+      commonMistake: "Chọn giữa im lặng và tố cáo công khai như hai lựa chọn duy nhất. Có một bước ở giữa, và nó là bước bắt buộc.",
+    },
+    application: {
+      title: "Nếu nội bộ không xử lý",
+      message: "Cân nhắc từ chối tiếp tục tham gia, và tài liệu hoá mọi thứ. Rời khỏi tổ chức là lựa chọn cuối cùng nhưng vẫn nằm trong phạm vi cân nhắc.",
+    },
     sections: [
       {
         "type": "lead",
@@ -1444,6 +1516,14 @@ export const CFA_ETHICS_CASES_LESSONS: Lesson[] = [
     correctOption: 1,
     explanation:
       "Một con số duy nhất phủ lên cả hai giai đoạn phát đi thông điệp rằng chiến lược đã hoạt động liên tục sáu năm, trong khi bốn năm đầu không có đồng nào thật được đầu tư và các tham số đã được chọn sau khi biết kết quả. Standard III(D) yêu cầu trình bày công bằng, chính xác và đầy đủ - và ở đây cả ba đều bị chạm: không công bằng vì mô phỏng và thực tế không cùng loại bằng chứng, không đầy đủ vì người đọc không biết đâu là đâu, và không chính xác về mặt điều nó ngụ ý dù từng con số riêng lẻ có thể đúng.",
+    summary: {
+      keyIdea: "Gộp kết quả mô phỏng với kết quả vận hành thật chạm cả ba yêu cầu của III(D) cùng lúc - đầy đủ, công bằng, và không gây hiểu nhầm.",
+      commonMistake: "Ghi chú nhỏ rằng một phần là mô phỏng rồi coi như đã minh bạch. Nếu hai loại nằm chung một đường biểu diễn, chú thích không sửa được ấn tượng.",
+    },
+    application: {
+      title: "Cách trình bày đúng",
+      message: "Tách hẳn hai giai đoạn thành hai phần, ghi rõ ngày bắt đầu vận hành thật, và nêu mọi giả định của phần mô phỏng.",
+    },
     sections: [
       {
         "type": "lead",
