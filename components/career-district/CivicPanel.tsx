@@ -3,7 +3,7 @@
 import { useEffect, useMemo, useState } from "react";
 import Link from "next/link";
 import { createClient } from "@/lib/supabase";
-import { ITEM_DESCRIPTIONS, type CharacterEquipments } from "@/lib/rpg-items";
+import { ITEM_DESCRIPTIONS, WEARABLE_IN_3D, type CharacterEquipments } from "@/lib/rpg-items";
 import { COMPETENCIES } from "@/lib/career-competency";
 import { getLeaderboardByMetric, type LeaderboardRow } from "@/lib/supabase-user";
 import type { DistrictRoomId } from "./district-space";
@@ -69,7 +69,11 @@ function Card({
 /** Cửa hàng: bấm một món là mặc thử ngay trên nhân vật trước gương. */
 function Shop({ accent, gear, tryOn, onTryOn, onClose }: Props) {
   const wearable = useMemo(
-    () => Object.entries(ITEM_DESCRIPTIONS).filter(([key]) => key in WEARABLE_SLOTS),
+    // Lọc bằng WEARABLE_IN_3D của lib/rpg-items.ts, KHÔNG chép lại danh sách.
+    // Bản đầu tiên của cửa hàng giữ một bản sao ở đây, đúng loại lỗi mà cả
+    // đêm nay đi sửa ở chỗ khác - hai danh sách rồi sẽ lệch, và lúc đó cửa
+    // hàng bày một món mà nhân vật không mặc được.
+    () => Object.entries(ITEM_DESCRIPTIONS).filter(([key]) => WEARABLE_IN_3D.has(key)),
     []
   );
   const shown = tryOn ?? gear;
@@ -133,20 +137,6 @@ function Shop({ accent, gear, tryOn, onTryOn, onClose }: Props) {
     </Card>
   );
 }
-
-/** Ô trang bị của từng món - chỉ những món có hình 3D mới bày trong cửa hàng. */
-const WEARABLE_SLOTS: Record<string, true> = {
-  weapon_valuation_pen: true,
-  weapon_lbo_sword: true,
-  weapon_bell: true,
-  armor_risk_shield: true,
-  armor_savings_vest: true,
-  acc_glasses: true,
-  acc_crown: true,
-  pet_bull: true,
-  pet_bear: true,
-  title_vip_diamond: true,
-};
 
 const METRICS: Array<{ id: "xp" | "lessons" | "streak" | "avg_score"; label: string }> = [
   { id: "xp", label: "Tổng XP" },
@@ -317,12 +307,37 @@ function Apartment({ accent, userId, onClose }: Props) {
   );
 }
 
-/** Hiện vật bảo tàng: mỗi cái trỏ tới một bài học có thật trong lộ trình. */
+/** Hiện vật bảo tàng.
+ *
+ *  Bốn hiện vật đầu tiên đều trỏ tới bài học CÓ THẬT trong kho - và điều đó
+ *  được test canh gác (lib/__tests__/civic-content.test.ts), không phải dựa
+ *  vào việc người thêm hiện vật nhớ kiểm.
+ *
+ *  Bản đầu tiên của danh sách này có bốn slug tôi tự nghĩ ra (khung-hoang-1929,
+ *  khung-hoang-2008...) và ba trong bốn không tồn tại: cả bảo tàng dẫn tới
+ *  trang trống. Bài học không có trường "năm sự kiện" nào để suy ra hiện vật,
+ *  nên danh sách buộc phải viết tay - và thứ viết tay thì phải có test. */
 const EXHIBITS = [
-  { year: "1929", title: "Đại khủng hoảng", slug: "khung-hoang-1929" },
-  { year: "1997", title: "Khủng hoảng tài chính châu Á", slug: "khung-hoang-chau-a-1997" },
-  { year: "2008", title: "Khủng hoảng nhà đất Mỹ", slug: "khung-hoang-2008" },
-  { year: "2020", title: "Cú sốc COVID và tiền rẻ", slug: "lam-phat-la-gi" },
+  {
+    year: "Rủi ro hệ thống",
+    title: "Vì sao thị trường chỉ trả tiền cho rủi ro hệ thống",
+    slug: "frm-thi-truong-chi-tra-cho-rui-ro-he-thong",
+  },
+  {
+    year: "Ngân hàng ngầm",
+    title: "Shadow banking và rủi ro ngoài bảng cân đối",
+    slug: "ngan-hang-ngam-shadow-banking",
+  },
+  {
+    year: "Trái phiếu VN",
+    title: "Giải phẫu một cuộc khủng hoảng trái phiếu riêng lẻ",
+    slug: "trai-phieu-doanh-nghiep-rieng-le-bai-hoc",
+  },
+  {
+    year: "Lạm phát",
+    title: "Lạm phát là gì, vì sao tiền mất giá",
+    slug: "lam-phat-la-gi",
+  },
 ];
 
 function Museum({ accent, onClose }: Props) {
@@ -347,11 +362,8 @@ function Museum({ accent, onClose }: Props) {
           </Link>
         ))}
       </div>
-      {/* Nói thẳng là danh sách này viết tay: bài học không có trường "năm sự
-          kiện" nào để lọc, nên bốn hiện vật này là chọn tay chứ không phải suy
-          ra từ dữ liệu. Thêm hiện vật thì sửa ở đây. */}
       <p className="mt-2 text-[10px] leading-snug text-stone-500">
-        Bốn hiện vật đầu tiên. Slug nào không còn bài sẽ mở ra trang trống - kiểm khi thêm.
+        Danh sách viết tay, và mỗi slug được test đối chiếu với kho bài học.
       </p>
     </Card>
   );
