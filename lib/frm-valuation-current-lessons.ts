@@ -44,6 +44,7 @@ export const FRM_VALUATION_CURRENT_LESSONS: Lesson[] = [
         label: "Không cần biết xác suất thực của các kịch bản"
       }
     ],
+    interactiveType: "payoff",
     realWorldExample: {
       company: "Vì sao định giá phái sinh không cần dự báo giá",
       description: "Điểm khiến người mới học ngạc nhiên nhất khi gặp định giá quyền chọn: công thức không chứa suất sinh lời kỳ vọng của cổ phiếu. Hai nhà phân tích bất đồng hoàn toàn về việc cổ phiếu sẽ lên hay xuống vẫn phải đồng ý về giá quyền chọn, vì cả hai đều đồng ý rằng không ai được phép kiếm tiền phi rủi ro. Dự báo của họ đã nằm sẵn trong giá cổ phiếu hiện tại rồi."
@@ -193,6 +194,7 @@ export const FRM_VALUATION_CURRENT_LESSONS: Lesson[] = [
         label: "Chi phí danh mục = giá quyền chọn"
       }
     ],
+    interactiveType: "payoff",
     realWorldExample: {
       company: "Vì sao cây nhị thức vẫn được dùng dù đã có công thức đóng",
       description: "Black-Scholes cho lời giải tức thì nhưng chỉ đúng với quyền chọn kiểu Âu - loại chỉ thực hiện được đúng ngày đáo hạn. Quyền chọn kiểu Mỹ cho phép thực hiện bất cứ lúc nào, và giá trị của quyền đó phụ thuộc vào việc ở mỗi nút cây, thực hiện ngay có tốt hơn giữ tiếp hay không. Cây nhị thức trả lời được câu hỏi đó ở từng nút; công thức đóng thì không có chỗ để hỏi."
@@ -357,6 +359,7 @@ export const FRM_VALUATION_CURRENT_LESSONS: Lesson[] = [
         label: "Biến động hàm ý khác nhau theo giá thực hiện → nụ cười biến động"
       }
     ],
+    interactiveType: "payoff",
     realWorldExample: {
       company: "Nụ cười biến động: bằng chứng thị trường không tin mô hình",
       description: "Nếu Black-Scholes mô tả đúng thế giới, mọi quyền chọn trên cùng một cổ phiếu với cùng ngày đáo hạn phải cho ra một con số biến động hàm ý duy nhất. Thực tế các quyền chọn ở xa giá luôn hàm ý biến động cao hơn - thị trường đang tự tay cộng thêm phần bù cho khả năng biến cố cực đoan mà giả định phân phối chuẩn của mô hình gán xác suất gần bằng 0. Nụ cười đó là mô hình bị thị trường sửa lưng."
@@ -512,6 +515,7 @@ export const FRM_VALUATION_CURRENT_LESSONS: Lesson[] = [
         label: "Theta: đổi theo thời gian trôi · Rho: đổi theo lãi suất"
       }
     ],
+    interactiveType: "payoff",
     realWorldExample: {
       company: "Vì sao bán quyền chọn được ví như nhặt tiền lẻ trước xe lu",
       description: "Vị thế bán quyền chọn có theta dương - mỗi ngày trôi qua là một khoản thu nhỏ đều đặn - nhưng gamma âm, nghĩa là mỗi cú dịch chuyển lớn của giá làm khoản lỗ tăng nhanh hơn tuyến tính. Chiến lược này cho chuỗi lợi nhuận đẹp trong thời gian dài rồi mất sạch trong một phiên. Bảng Greeks nhìn thấy trước cấu trúc đó, còn chuỗi lợi suất quá khứ thì không."

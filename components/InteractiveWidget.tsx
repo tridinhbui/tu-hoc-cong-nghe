@@ -10,6 +10,10 @@ import InteractiveBudget from "./InteractiveBudget";
 import InteractiveRisk from "./InteractiveRisk";
 import InteractiveChart from "./InteractiveChart";
 import InteractiveProcess from "./InteractiveProcess";
+import InteractivePayoff from "./InteractivePayoff";
+import InteractiveMultiples from "./InteractiveMultiples";
+import InteractiveProspect from "./InteractiveProspect";
+import InteractiveAccretion from "./InteractiveAccretion";
 
 export type WidgetType =
   | "interest-rate"
@@ -23,7 +27,11 @@ export type WidgetType =
   | "process"
   | "budget"
   | "chart"
-  | "risk";
+  | "risk"
+  | "payoff"
+  | "multiples"
+  | "prospect"
+  | "accretion";
 
 export default function InteractiveWidget({ type }: { type: WidgetType }) {
   switch (type) {
@@ -51,6 +59,14 @@ export default function InteractiveWidget({ type }: { type: WidgetType }) {
       return <InteractiveChart />;
     case "process":
       return <InteractiveProcess />;
+    case "payoff":
+      return <InteractivePayoff />;
+    case "multiples":
+      return <InteractiveMultiples />;
+    case "prospect":
+      return <InteractiveProspect />;
+    case "accretion":
+      return <InteractiveAccretion />;
   }
 }
 
@@ -71,6 +87,10 @@ export const WIDGET_TYPES: readonly WidgetType[] = [
   "risk",
   "chart",
   "process",
+  "payoff",
+  "multiples",
+  "prospect",
+  "accretion",
 ];
 
 export function hasInteractiveWidget(type: string | null | undefined): type is WidgetType {
