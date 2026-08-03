@@ -96,6 +96,14 @@ export const FRM_SOVEREIGN_DIGITAL_LESSONS: Lesson[] = [
       "Nga (1998) vỡ nợ dù có thể in thêm tiền - một lựa chọn chính trị ưu tiên ổn định tỷ giá, không phải bất khả kháng kỹ thuật",
       "Argentina - holdout creditors (2001+): thiếu cơ chế cưỡng chế rõ ràng khiến tranh chấp vỡ nợ chủ quyền có thể kéo dài hơn một thập kỷ",
     ],
+    summary: {
+      keyIdea: "Vỡ nợ chủ quyền hiếm khi là chuyện không thể trả - nó thường là chuyện chọn không trả. Nga 1998 vỡ nợ dù in được tiền, vì ưu tiên ổn định tỷ giá.",
+      commonMistake: "Đánh giá quốc gia bằng đúng bộ chỉ số dùng cho doanh nghiệp. Không có toà án phá sản quốc tế nào cưỡng chế được một chính phủ.",
+    },
+    application: {
+      title: "Hai trục phải đọc cùng nhau",
+      message: "Khả năng trả đo bằng số liệu; ý chí trả đo bằng chính trị. Một nước có tỷ lệ nợ trên GDP đẹp vẫn có thể vỡ nợ, và ngược lại.",
+    },
     sections: [
       {
         type: "lead",
@@ -217,6 +225,14 @@ export const FRM_SOVEREIGN_DIGITAL_LESSONS: Lesson[] = [
       "Ngay cả stablecoin asset-backed cũng không miễn nhiễm rủi ro mất giá neo nếu chất lượng/thanh khoản dự trữ và tính minh bạch kiểm toán không đảm bảo",
       "Liên kết ngày càng tăng giữa tài sản số và tài chính truyền thống (qua dự trữ trái phiếu kho bạc) khiến rủi ro stablecoin trở thành current issue dù quy mô còn nhỏ hơn hệ thống ngân hàng",
     ],
+    summary: {
+      keyIdea: "Rủi ro chính của stablecoin không nằm ở công nghệ mà ở chất lượng dự trữ và khả năng quy đổi - tức đúng bài toán rút tiền hàng loạt cổ điển trong một lớp vỏ mới.",
+      commonMistake: "Coi stablecoin có tài sản bảo đảm là an toàn tuyệt đối. Nó vẫn mất neo nếu dự trữ kém thanh khoản đúng lúc nhiều người cùng quy đổi.",
+    },
+    application: {
+      title: "Chỗ nối với tài chính truyền thống",
+      message: "Dự trữ stablecoin phần lớn nằm ở trái phiếu kho bạc ngắn hạn. Một đợt quy đổi lớn vì thế trở thành một đợt bán trái phiếu lớn - và rủi ro thôi ở lại trong thế giới tài sản số.",
+    },
     sections: [
       {
         type: "lead",

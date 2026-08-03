@@ -286,6 +286,15 @@ export const FRM_LESSONS: Lesson[] = [
       explanation:
         "Văn hoá lành mạnh thể hiện ở việc cảnh báo được xử lý dựa trên bản chất rủi ro, không phải dựa trên việc nó đang sinh lời hay không. Ba phương án còn lại đều là dấu hiệu văn hoá rủi ro yếu - từ im lặng, thao túng mô hình, tới chỉ hành động sau khi đã muộn.",
     },
+    summary: {
+      keyIdea: "Cấu trúc quản trị đúng trên giấy chỉ chạy được nếu người thấy vấn đề nói ra được mà không mất gì. Đó là thứ văn hoá quyết định, và không sơ đồ tổ chức nào thay thế được.",
+      commonMistake: "Coi văn hoá rủi ro là chuyện khẩu hiệu và đào tạo. Nó là chuyện động lực: thưởng gắn với kết quả ngắn hạn sẽ thắng mọi quy định bằng lời.",
+    },
+    application: {
+      title: "Kiểm tra nhanh một tổ chức",
+      message: "Hỏi lần gần nhất bộ phận rủi ro chặn được một thương vụ lớn là khi nào. Không có câu trả lời nào trong nhiều năm không có nghĩa là không có gì đáng chặn.",
+      secondary: "Và hỏi tiếp: người nêu vấn đề lần đó bây giờ còn làm ở đó không.",
+    },
     sections: [
       {
         type: "lead",
@@ -418,6 +427,15 @@ export const FRM_LESSONS: Lesson[] = [
       correct: 1,
       explanation:
         "Tương quan đo trong giai đoạn bình thường gần như luôn thấp hơn tương quan thực sự khi khủng hoảng xảy ra. Đây chính là lỗi mô hình khiến LTCM và các CDO trước 2008 đánh giá sai mức độ đa dạng hoá thực tế của danh mục.",
+    },
+    summary: {
+      keyIdea: "Các thảm hoạ khác nhau về quy mô và giống nhau về mẫu hình: đòn bẩy cao, mô hình đánh giá thấp tương quan, và thanh khoản biến mất đúng lúc cần bán.",
+      commonMistake: "Đọc từng vụ như một câu chuyện riêng. Điều đáng học không phải chi tiết của LTCM hay 2008 mà là ba yếu tố lặp lại ở cả hai.",
+    },
+    application: {
+      title: "Áp mẫu hình lên danh mục của bạn",
+      message: "Với bất kỳ vị thế nào, hỏi ba câu: đòn bẩy bao nhiêu, các tài sản có thật sự độc lập không, và bán được trong bao lâu nếu phải bán gấp.",
+      secondary: "Ba câu đó là toàn bộ mẫu hình, viết lại ở dạng dùng được.",
     },
     sections: [
       {
@@ -555,6 +573,15 @@ export const FRM_LESSONS: Lesson[] = [
       explanation:
         "Đây chính là hạn chế cốt lõi được nêu trong bài: sự kiện đuôi hiếm gặp, nên cửa sổ dữ liệu ngắn gần như chắc chắn không chứa quan sát nào ở vùng đuôi, khiến vốn dự phòng ước lượng thấp hơn rủi ro thực tế.",
     },
+    summary: {
+      keyIdea: "LDA tách rủi ro vận hành thành hai chiều - bao nhiêu lần và mỗi lần bao nhiêu - vì một loại sự cố có thể hiếm mà nặng còn loại khác thường xuyên mà nhẹ.",
+      formula: "Tổn thất năm = Tần suất (Poisson) ghép với Mức độ (thường lognormal)",
+      commonMistake: "Khớp phân phối lên dữ liệu nội bộ rồi ngoại suy ra mức 99,9%. Ở đó không có quan sát nào, nên con số cuối do dạng phân phối quyết định chứ không do dữ liệu.",
+    },
+    application: {
+      title: "Khi đọc một mô hình rủi ro vận hành",
+      message: "Hỏi phần đuôi đến từ nguồn nào. Nếu chỉ từ dữ liệu nội bộ, mô hình đang ngoại suy vào vùng nó chưa từng thấy.",
+    },
     sections: [
       {
         type: "lead",
@@ -677,6 +704,14 @@ export const FRM_LESSONS: Lesson[] = [
       "Rủi ro bên thứ ba (CrowdStrike 2024) cho thấy khả năng phục hồi của một tổ chức phụ thuộc cả vào nhà cung cấp mà họ không kiểm soát trực tiếp",
       "Kế hoạch chưa diễn tập gần như vô giá trị, vì các giả định trong kế hoạch chỉ được kiểm chứng khi thực thi thật",
     ],
+    summary: {
+      keyIdea: "RTO và RPO là hai câu hỏi khác nhau - chịu được bao lâu không hoạt động, và chịu mất bao nhiêu dữ liệu. Chúng phải được đặt từ mức hại cho khách hàng, không từ năng lực hiện có.",
+      commonMistake: "Có kế hoạch nhưng chưa từng diễn tập. Giả định trong kế hoạch chỉ được kiểm chứng khi chạy thật, và phần lớn chúng sai.",
+    },
+    application: {
+      title: "Một câu hỏi cho mọi dịch vụ trọng yếu",
+      message: "Lần gần nhất kịch bản khôi phục được chạy thử với dữ liệu thật là khi nào, và mất bao lâu so với con số ghi trong tài liệu.",
+    },
     sections: [
       {
         type: "lead",
@@ -806,6 +841,14 @@ export const FRM_LESSONS: Lesson[] = [
       "Quản trị rủi ro mô hình cần đội kiểm định độc lập, tách biệt khỏi đội xây dựng - áp dụng ngay cả với mô hình đã dùng lâu năm",
       "Rủi ro bên thứ ba mở rộng phạm vi kiểm soát nội bộ ra ngoài ranh giới tổ chức, tới cả các nhà cung cấp trọng yếu mà tổ chức không kiểm soát trực tiếp",
     ],
+    summary: {
+      keyIdea: "Rủi ro mô hình có ba nguồn khác nhau - giả định sai, dữ liệu không đại diện, và dùng đúng mô hình sai chỗ - nên cần ba cách chữa khác nhau chứ không một quy trình chung.",
+      commonMistake: "Để đội xây mô hình tự kiểm định mô hình của mình. London Whale là lỗi triển khai, và nó sống được vì không ai độc lập nhìn vào.",
+    },
+    application: {
+      title: "Mở rộng ra ngoài ranh giới tổ chức",
+      message: "Liệt kê các nhà cung cấp mà một sự cố của họ làm dịch vụ của bạn dừng. Danh sách đó thường ngắn hơn dự tính, và tập trung hơn nhiều.",
+    },
     sections: [
       {
         type: "lead",
@@ -940,6 +983,15 @@ export const FRM_LESSONS: Lesson[] = [
       explanation:
         "Đây chính xác là cấu trúc rủi ro của Northern Rock: vốn cao không giải quyết được vấn đề lệch kỳ hạn tài trợ. Giải pháp đúng là đa dạng hoá nguồn tài trợ theo kỳ hạn dài hơn (điều NSFR đo lường), không phải tăng thêm vốn chủ sở hữu.",
     },
+    summary: {
+      keyIdea: "Đủ vốn và đủ thanh khoản là hai chuyện độc lập. Northern Rock sụp trong khi vẫn đủ vốn, vì tài trợ bán buôn ngắn hạn biến mất nhanh hơn tài sản dài hạn bán được.",
+      formula: "LCR = HQLA / Dòng tiền ra ròng 30 ngày ≥ 100%  ·  NSFR = Nguồn ổn định sẵn có / Nguồn ổn định bắt buộc ≥ 100%",
+      commonMistake: "Hoán đổi chân trời của hai tỷ lệ. LCR là cú sốc 30 ngày; NSFR là cấu trúc một năm.",
+    },
+    application: {
+      title: "Đọc cơ cấu nguồn vốn",
+      message: "Xem tỷ trọng tài trợ bán buôn ngắn hạn và mức tập trung kỳ hạn đáo hạn. Hai con số đó nói về khả năng sống sót nhiều hơn tổng tài sản thanh khoản đang nắm.",
+    },
     sections: [
       {
         type: "lead",
@@ -1069,6 +1121,14 @@ export const FRM_LESSONS: Lesson[] = [
       "CFP là bộ hành động cụ thể đã duyệt trước theo từng mức độ căng thẳng, giúp tổ chức hành động nhanh thay vì ứng biến giữa khủng hoảng",
       "Mô hình thanh khoản cần cập nhật khi hành vi khách hàng và công nghệ thay đổi - đây là điểm giao giữa rủi ro thanh khoản và rủi ro mô hình",
     ],
+    summary: {
+      keyIdea: "SVB cho thấy giả định căng thẳng 30 ngày đã lỗi thời: 42 tỷ USD rút trong một ngày, vì thông tin và thao tác chuyển tiền giờ đi nhanh hơn mọi mô hình được hiệu chỉnh trước đó.",
+      commonMistake: "Giữ nguyên tham số hành vi khách hàng qua nhiều năm. Đây là chỗ rủi ro thanh khoản gặp rủi ro mô hình.",
+    },
+    application: {
+      title: "Kế hoạch tài trợ dự phòng dùng được",
+      message: "Một CFP tốt nói rõ ai quyết định gì ở từng mức căng thẳng, đã duyệt trước. Nếu phải bàn quy trình giữa lúc khủng hoảng thì tốc độ đã thua ngay từ đầu.",
+    },
     sections: [
       {
         type: "lead",
@@ -1213,6 +1273,14 @@ export const FRM_LESSONS: Lesson[] = [
       correct: 1,
       explanation:
         "Đây là ví dụ kinh điển của lệch kỳ hạn kép: rủi ro lãi suất (tài sản lãi suất cố định dài hạn không điều chỉnh theo lãi suất thị trường mới) và rủi ro thanh khoản (người gửi tiền không kỳ hạn có thể rút bất kỳ lúc nào để tìm nơi trả lãi cao hơn) xuất hiện đồng thời từ cùng một cấu trúc bảng cân đối kế toán.",
+    },
+    summary: {
+      keyIdea: "IRRBB là rủi ro âm thầm vì sổ ngân hàng không định giá lại hàng ngày - khoản lỗ kinh tế đã có thật từ lâu trước khi xuất hiện trên báo cáo.",
+      commonMistake: "Yên tâm vì báo cáo chưa ghi nhận lỗ. Không ghi nhận không phải là không có.",
+    },
+    application: {
+      title: "Ba lớp phòng vệ thanh khoản",
+      message: "LCR và NSFR đo, CFP lên kế hoạch hành động, ALM quản hằng ngày. Thiếu lớp nào thì hai lớp còn lại đều phải gánh phần việc chúng không được thiết kế để làm.",
     },
     sections: [
       {

@@ -112,6 +112,14 @@ export const FRM_CREDIT_CURRENT_LESSONS: Lesson[] = [
       "\"Naked CDS\" không đòi hỏi sở hữu khoản nợ gốc, biến CDS thành công cụ đầu cơ thuần tuý, khuếch đại rủi ro hệ thống",
       "AIG (2008): thu phí CDS đều đặn nhiều năm mà không trích lập đủ vốn dự phòng cho kịch bản nhiều sự kiện tín dụng xảy ra đồng thời",
     ],
+    summary: {
+      keyIdea: "CDS spread là đánh giá của thị trường về xác suất vỡ nợ, và nó phản ứng nhanh hơn xếp hạng tín nhiệm vì nó là giá chứ không phải một ý kiến.",
+      commonMistake: "Coi bên bán bảo vệ luôn có khả năng chi trả. AIG thu phí đều nhiều năm mà không trích đủ vốn cho kịch bản nhiều sự kiện tín dụng cùng lúc.",
+    },
+    application: {
+      title: "Đọc CDS như một tín hiệu",
+      message: "Khi CDS spread của một tổ chức nới rộng trong lúc xếp hạng chưa đổi, thị trường đang nói điều mà tổ chức xếp hạng chưa nói.",
+    },
     sections: [
       {
         type: "lead",
@@ -247,6 +255,14 @@ export const FRM_CREDIT_CURRENT_LESSONS: Lesson[] = [
       "CDO-squared (cấu trúc từ lớp Mezzanine của CDO khác) làm rủi ro gần như không thể truy vết, ngay cả với người mua",
       "Xếp hạng AAA của lớp Senior trước 2008 dựa trên giả định tương quan thấp sai lầm - cùng lỗi mô hình đã thấy ở LTCM và subprime MBS",
     ],
+    summary: {
+      keyIdea: "Chia tranche không làm rủi ro biến mất, nó chỉ phân phối lại: lớp thấp nhận tổn thất đầu tiên và được trả nhiều hơn vì đúng chuyện đó.",
+      commonMistake: "Tin vào xếp hạng AAA của lớp Senior mà không hỏi giả định tương quan đứng sau nó. Đó chính là chỗ hỏng năm 2008.",
+    },
+    application: {
+      title: "Câu hỏi cho mọi sản phẩm cấu trúc",
+      message: "Hỏi lớp này chịu tổn thất khi rổ tài sản mất bao nhiêu phần trăm, và giả định tương quan nào tạo ra con số đó.",
+    },
     sections: [
       {
         type: "lead",
@@ -393,6 +409,14 @@ export const FRM_CREDIT_CURRENT_LESSONS: Lesson[] = [
       explanation:
         "CVA phải được cập nhật liên tục theo cả giá trị thị trường của hợp đồng lẫn xác suất vỡ nợ hiện tại của đối tác (thường ước lượng từ CDS spread nếu có). Xếp hạng giảm là tín hiệu trực tiếp cần điều chỉnh CVA tăng lên.",
     },
+    summary: {
+      keyIdea: "Chỉ phần giá trị dương mới tạo phơi nhiễm - nếu hợp đồng đang âm với bạn thì đối tác vỡ nợ không làm bạn mất gì. Đó là lý do mọi công thức CVA đều có max(·, 0).",
+      commonMistake: "Tính phơi nhiễm trên giá trị danh nghĩa. Con số danh nghĩa gần như luôn lớn hơn phơi nhiễm thật rất nhiều lần.",
+    },
+    application: {
+      title: "Sau khi đo phơi nhiễm",
+      message: "Phần lớn việc giảm rủi ro đối tác nằm ở điều khoản bù trừ và cơ chế tài sản bảo đảm, không nằm ở mô hình. Mô hình chỉ đo phần còn lại sau khi hai thứ kia đã làm việc.",
+    },
     sections: [
       {
         type: "lead",
@@ -535,6 +559,14 @@ export const FRM_CREDIT_CURRENT_LESSONS: Lesson[] = [
       "Chức năng chuyển đổi kỳ hạn tạo ra cùng loại rủi ro lệch kỳ hạn đã học ở Liquidity Risk, nhưng thiếu mạng lưới an toàn của ngân hàng truyền thống",
       "Rủi ro shadow banking không tĩnh - nó di chuyển tới nơi quy định mới chưa kịp bao phủ, nên đòi hỏi giám sát liên tục thay vì coi là vấn đề đã giải quyết xong",
     ],
+    summary: {
+      keyIdea: "Shadow banking làm đúng việc của ngân hàng - chuyển đổi kỳ hạn - nhưng không có mạng an toàn của ngân hàng, nên cùng một rủi ro lệch kỳ hạn ở đó không có ai đỡ.",
+      commonMistake: "Coi đây là một danh mục cố định các tổ chức. Nó là một chức năng, và nó di chuyển tới nơi quy định chưa với tới.",
+    },
+    application: {
+      title: "Nhìn theo chức năng thay vì theo tên",
+      message: "Hỏi ai đang vay ngắn để cho vay dài trong hệ thống này, và ai sẽ đỡ nếu bên cho vay ngắn cùng rút một lúc.",
+    },
     sections: [
       {
         type: "lead",
@@ -664,6 +696,14 @@ export const FRM_CREDIT_CURRENT_LESSONS: Lesson[] = [
       "Cấu trúc liên kết của hệ thống tài chính thay đổi liên tục theo công nghệ và quy định - điểm nút quan trọng nhất luôn di chuyển, không cố định",
       "Sợi chỉ xuyên suốt FRM: độ phức tạp và liên kết gia tăng luôn làm rủi ro thực sự khó nhìn thấy hơn, dù biểu hiện qua tương quan sai (LTCM), cấu trúc phân lớp (CDO), hay mạng lưới liên kết (AIG)",
     ],
+    summary: {
+      keyIdea: "Quy mô không quyết định một tổ chức có gây rủi ro hệ thống hay không - mức độ liên kết mới quyết định. Một bên nhỏ nằm ở nút quan trọng nguy hiểm hơn một bên lớn nằm ngoài rìa.",
+      commonMistake: "Cho rằng chuyển sang CCP là xong. Nó đổi rủi ro mạng lưới lấy rủi ro tập trung, và tập trung vào chính CCP.",
+    },
+    application: {
+      title: "Sợi chỉ xuyên suốt FRM",
+      message: "Độ phức tạp và liên kết tăng lên luôn làm rủi ro khó nhìn thấy hơn, kể cả khi từng mắt xích riêng lẻ đều được đo cẩn thận.",
+    },
     sections: [
       {
         type: "lead",
