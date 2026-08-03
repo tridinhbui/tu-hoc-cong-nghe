@@ -97,6 +97,18 @@ export const AUDIT_LESSONS: Lesson[] = [
         explanation:
           "Đây là tín hiệu mạnh nhất mà một báo cáo kiểm toán phát ra trong khi ý kiến vẫn có thể là chấp nhận toàn phần - và cũng là đoạn hay bị bỏ qua nhất khi đọc nhanh.",
       },
+    
+    {
+      "question": "Vì sao ý kiến kiểm toán chấp nhận toàn phần không phải là lời bảo đảm rằng doanh nghiệp làm ăn tốt?",
+      "options": [
+        "Vì nó chỉ nói báo cáo trình bày trung thực, không nói kinh doanh hiệu quả",
+        "Vì kiểm toán viên không được phép nhận xét về hiệu quả kinh doanh",
+        "Vì ý kiến này chỉ áp dụng cho phần bảng cân đối kế toán của doanh nghiệp",
+        "Vì nó chỉ có giá trị trong năm tài chính được kiểm toán mà thôi"
+      ],
+      "correct": 0,
+      "explanation": "Một doanh nghiệp thua lỗ nặng vẫn có thể nhận ý kiến chấp nhận toàn phần - miễn là khoản lỗ đó được trình bày trung thực. Kiểm toán khẳng định về chất lượng báo cáo, không khẳng định về chất lượng doanh nghiệp."
+    }
     ],
     keyTakeaways: [
       "Đảm bảo hợp lý về sai sót trọng yếu, không phải bảo đảm tuyệt đối về mọi con số",
@@ -246,6 +258,18 @@ export const AUDIT_LESSONS: Lesson[] = [
         explanation:
           "Đây là mối liên hệ trực tiếp giữa một phán đoán ở đầu cuộc kiểm toán và chi phí của cả cuộc - và là lý do việc chọn chỉ tiêu nền được rà soát kỹ.",
       },
+    
+    {
+      "question": "Mức trọng yếu được đặt thấp hơn dẫn tới điều gì trong cuộc kiểm toán?",
+      "options": [
+        "Khối lượng công việc và cỡ mẫu tăng lên tương ứng",
+        "Rủi ro tiềm tàng của các khoản mục được đánh giá lại ở mức cao hơn",
+        "Kiểm toán viên phải phát hành ý kiến ngoại trừ thay vì toàn phần",
+        "Doanh nghiệp phải trình bày lại báo cáo tài chính của kỳ trước"
+      ],
+      "correct": 0,
+      "explanation": "Trọng yếu là ngưỡng bỏ qua: đặt thấp nghĩa là ít thứ được bỏ qua hơn, nên phải kiểm tra nhiều hơn. Đây là lý do mức trọng yếu quyết định trực tiếp chi phí và thời lượng của toàn bộ cuộc kiểm toán."
+    }
     ],
     keyTakeaways: [
       "Trọng yếu = tỷ lệ áp lên một chỉ tiêu nền, và việc chọn nền là phán đoán nghề nghiệp",
@@ -400,6 +424,18 @@ export const AUDIT_LESSONS: Lesson[] = [
         explanation:
           "Đây là trục thứ hai của thứ bậc bằng chứng: cách kiểm toán viên có được nó. Tự tính lại đứng cao vì loại bỏ hoàn toàn khả năng con số đã bị chỉnh sửa trên đường đi.",
       },
+    
+    {
+      "question": "Vì sao thư xác nhận gửi trực tiếp từ ngân hàng tới kiểm toán viên lại đáng tin hơn sao kê do doanh nghiệp cung cấp?",
+      "options": [
+        "Vì nó đến từ bên ngoài độc lập và không đi qua tay doanh nghiệp",
+        "Vì ngân hàng chịu trách nhiệm pháp lý cho tính chính xác của thư xác nhận",
+        "Vì thư xác nhận có nhiều thông tin chi tiết hơn bản sao kê thông thường",
+        "Vì sao kê ngân hàng không được coi là tài liệu kế toán hợp lệ"
+      ],
+      "correct": 0,
+      "explanation": "Hai trục quyết định độ tin cậy của bằng chứng: nguồn có độc lập không, và kiểm toán viên có tự mình lấy được không. Thư xác nhận đạt cả hai; bản sao kê do doanh nghiệp đưa thì đạt trục thứ nhất nhưng không đạt trục thứ hai."
+    }
     ],
     keyTakeaways: [
       "Hai trục quyết định độ tin cậy: nguồn bên ngoài hay nội bộ, và kiểm toán viên tự lấy hay nhận lại",
@@ -559,6 +595,18 @@ export const AUDIT_LESSONS: Lesson[] = [
         explanation:
           "Rủi ro này không loại bỏ được, chỉ giảm bằng cách tăng cỡ mẫu. Nó là một phần của rủi ro phát hiện trong mô hình rủi ro ở bài trước.",
       },
+    
+    {
+      "question": "Cỡ mẫu cần thiết trong kiểm toán phụ thuộc chủ yếu vào yếu tố nào?",
+      "options": [
+        "Mức rủi ro chấp nhận được và mức sai sót kỳ vọng",
+        "Số lượng giao dịch phát sinh của doanh nghiệp trong năm",
+        "Quy mô doanh thu và tổng tài sản trên bảng cân đối",
+        "Số lượng kiểm toán viên tham gia vào cuộc kiểm toán"
+      ],
+      "correct": 0,
+      "explanation": "Điểm phản trực giác là quy mô tổng thể hầu như không ảnh hưởng tới cỡ mẫu, giống hệt trong thống kê: kiểm tra một trăm nghìn giao dịch không đòi mẫu lớn hơn nhiều so với mười nghìn. Cái quyết định là bạn chấp nhận sai lầm tới mức nào."
+    }
     ],
     keyTakeaways: [
       "Mẫu không chứng minh tổng thể sạch, nó cho kết luận có mức tin cậy xác định",
@@ -707,6 +755,18 @@ export const AUDIT_LESSONS: Lesson[] = [
         explanation:
           "Lợi nhuận là ý kiến kế toán, tiền là sự thật - khoảng cách kéo dài giữa hai đại lượng này là dấu hiệu cảnh báo được nhắc tới nhiều nhất trong phân tích pháp y.",
       },
+    
+    {
+      "question": "Vì sao gian lận có thông đồng đặc biệt khó phát hiện?",
+      "options": [
+        "Vì các chốt kiểm soát dựa trên việc nhiều người kiểm tra chéo nhau",
+        "Vì người thông đồng thường nắm giữ các vị trí quản lý cấp cao",
+        "Vì gian lận dạng này thường có giá trị nhỏ hơn mức trọng yếu",
+        "Vì chứng từ khi đó được làm giả tinh vi hơn"
+      ],
+      "correct": 0,
+      "explanation": "Phân tách nhiệm vụ là nền móng của kiểm soát nội bộ: người duyệt khác người thực hiện, người ghi sổ khác người giữ tiền. Khi hai người bắt tay, chính cơ chế đó biến thành lớp vỏ bảo vệ cho gian lận thay vì lớp chặn."
+    }
     ],
     keyTakeaways: [
       "Gian lận khác nhầm lẫn ở chỗ cố ý và được che giấu chủ động",
@@ -866,6 +926,18 @@ export const AUDIT_LESSONS: Lesson[] = [
         explanation:
           "Mô hình mô tả cách một tổ chức tự quản trị rủi ro của mình. Kiểm toán độc lập và cơ quan quản lý là lớp bên ngoài, thường được vẽ nằm ngoài cả ba tuyến.",
       },
+    
+    {
+      "question": "Vì sao kiểm toán độc lập không được xếp vào ba tuyến phòng vệ?",
+      "options": [
+        "Vì họ ở ngoài tổ chức và chỉ đưa ý kiến về báo cáo tài chính",
+        "Vì họ chỉ làm việc theo kỳ chứ không giám sát liên tục trong năm",
+        "Vì phạm vi của họ hẹp hơn phạm vi của kiểm toán nội bộ",
+        "Vì họ báo cáo cho ban điều hành chứ không cho hội đồng quản trị"
+      ],
+      "correct": 0,
+      "explanation": "Ba tuyến là cấu trúc bên trong tổ chức, thuộc trách nhiệm quản trị của chính doanh nghiệp. Kiểm toán độc lập là lớp đảm bảo bên ngoài, phục vụ người đọc báo cáo - hai vai trò khác nhau, nên gộp lại là hiểu sai cả hai."
+    }
     ],
     keyTakeaways: [
       "Kiểm toán nội bộ phục vụ hội đồng quản trị; kiểm toán độc lập phục vụ người đọc báo cáo bên ngoài",

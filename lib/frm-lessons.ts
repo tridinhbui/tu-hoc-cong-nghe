@@ -100,6 +100,18 @@ export const FRM_LESSONS: Lesson[] = [
         explanation:
           "Hội đồng quản trị hoạt động ở tầng chiến lược: đặt ra mức rủi ro chấp nhận được cho toàn tổ chức, phê duyệt khung ERM, và giám sát báo cáo rủi ro định kỳ. Việc quản lý rủi ro từng giao dịch thuộc về tuyến 1 và 2, không phải hội đồng quản trị.",
       },
+    
+    {
+      "question": "Vì sao hạn mức rủi ro phải được diễn giải xuống tới từng bộ phận thay vì chỉ đặt ở cấp tập đoàn?",
+      "options": [
+        "Vì người ra quyết định hằng ngày cần biết ranh giới cụ thể của mình",
+        "Vì cơ quan quản lý yêu cầu công bố hạn mức của từng bộ phận kinh doanh",
+        "Vì tổng các hạn mức bộ phận luôn phải bằng đúng hạn mức của tập đoàn",
+        "Vì hạn mức tập đoàn chỉ rà soát mỗi năm một lần"
+      ],
+      "correct": 0,
+      "explanation": "Khẩu vị rủi ro ở cấp cao là một tuyên bố định hướng; nó chỉ có tác dụng khi biến thành con số mà người giao dịch nhìn thấy trên màn hình. Không diễn giải xuống thì mỗi người tự hiểu một kiểu, và tổng rủi ro thật không ai biết."
+    }
     ],
     keyTakeaways: [
       "Ba tuyến phòng thủ: tuyến 1 (kinh doanh) tự kiểm soát, tuyến 2 (Rủi ro/Tuân thủ) giám sát độc lập, tuyến 3 (Kiểm toán nội bộ) đánh giá cả hai tuyến trên",
@@ -243,6 +255,18 @@ export const FRM_LESSONS: Lesson[] = [
         explanation:
           "Văn hoá speaking-up hiệu quả cần hai điều kiện: an toàn tâm lý (không bị trả đũa khi báo cáo) và cơ chế thực thi thật (báo cáo dẫn tới hành động, không chỉ được ghi nhận rồi bỏ qua).",
       },
+    
+    {
+      "question": "Dấu hiệu nào cho thấy văn hóa rủi ro của một tổ chức đang có vấn đề dù chính sách đầy đủ?",
+      "options": [
+        "Người nêu cảnh báo bị coi là cản trở công việc kinh doanh",
+        "Số lượng chính sách rủi ro tăng lên qua mỗi năm rà soát",
+        "Các cuộc họp rủi ro được tổ chức định kỳ nhưng không có biên bản",
+        "Bộ phận rủi ro có ít nhân sự hơn so với bộ phận kinh doanh"
+      ],
+      "correct": 0,
+      "explanation": "Chính sách đo được nên dễ có đủ. Thứ không đo được là điều gì xảy ra với người đầu tiên nói rằng con số này không ổn. Nếu người đó bị gạt sang bên, thì lần sau không ai nói nữa - và mọi chính sách còn lại chỉ là giấy."
+    }
     ],
     keyTakeaways: [
       "Văn hoá rủi ro là lớp vô hình quyết định liệu cấu trúc quản trị đúng trên giấy có thực sự vận hành hay không",
@@ -763,6 +787,18 @@ export const FRM_LESSONS: Lesson[] = [
         explanation:
           "Rủi ro bên thứ ba đã được minh hoạ qua sự cố CrowdStrike ở bài trước: dù lỗi nằm ở nhà cung cấp, hậu quả vận hành và uy tín vẫn thuộc về tổ chức sử dụng dịch vụ đó. Quản trị rủi ro bên thứ ba đòi hỏi đánh giá năng lực phục hồi của đối tác trọng yếu, không chỉ dừng ở việc ký hợp đồng.",
       },
+    
+    {
+      "question": "Vì sao dùng một mô hình ngoài phạm vi nó được thiết kế lại là nguồn rủi ro lớn?",
+      "options": [
+        "Vì mô hình vẫn cho ra kết quả trông hợp lý mà không cảnh báo gì",
+        "Vì mô hình sẽ chạy chậm hơn khi xử lý dữ liệu ngoài phạm vi thiết kế",
+        "Vì người dùng mới thường không được đào tạo về cách vận hành mô hình",
+        "Vì mô hình phải được cơ quan quản lý phê duyệt lại cho mỗi phạm vi mới"
+      ],
+      "correct": 0,
+      "explanation": "Mô hình định giá trái phiếu doanh nghiệp vẫn trả về một con số khi bạn đưa vào một sản phẩm cấu trúc - nó không có cách nào biết rằng giả định nền đã không còn đúng. Đây là lý do quản trị rủi ro mô hình phải ghi rõ phạm vi sử dụng ngay trong hồ sơ mô hình."
+    }
     ],
     keyTakeaways: [
       "Rủi ro mô hình có ba nguồn: giả định nền tảng sai, dữ liệu không đại diện cho tương lai, và mô hình bị dùng ngoài phạm vi thiết kế",

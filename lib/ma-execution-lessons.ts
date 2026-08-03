@@ -753,6 +753,18 @@ export const MA_EXECUTION_LESSONS: Lesson[] = [
         explanation:
           "Trọng tâm là tác động lên cạnh tranh, không phải lên hai bên tham gia. Trong một số trường hợp thương vụ được chấp thuận kèm điều kiện, chẳng hạn buộc bán bớt một mảng để giảm thị phần.",
       },
+    
+    {
+      "question": "Vì sao khoảng thời gian giữa ngày ký và ngày đóng lại là giai đoạn rủi ro nhất của một thương vụ?",
+      "options": [
+        "Vì hai bên đã cam kết nhưng thương vụ vẫn có thể đổ vì điều kiện chưa hoàn thành",
+        "Vì bên bán được phép tiếp tục đàm phán với các bên mua khác trong giai đoạn này",
+        "Vì giá mua được điều chỉnh lại theo kết quả kinh doanh của từng tháng",
+        "Vì bên mua chưa được tiếp cận thông tin nội bộ"
+      ],
+      "correct": 0,
+      "explanation": "Đã cam kết công khai nhưng chưa nắm quyền: nhân sự chủ chốt có thể rời đi, khách hàng lớn có thể chờ xem, và cơ quan quản lý có thể chưa chấp thuận. Đây là lý do hợp đồng luôn có điều khoản về thay đổi bất lợi trọng yếu và phí phá vỡ thỏa thuận."
+    }
     ],
     keyTakeaways: [
       "Ký và đóng là hai thời điểm khác nhau, cách nhau từ vài tháng tới hơn một năm",
@@ -912,6 +924,18 @@ export const MA_EXECUTION_LESSONS: Lesson[] = [
         explanation:
           "Một mức giá có thể vừa nằm trong khoảng hợp lý vừa thấp hơn mức lẽ ra đạt được nếu quy trình chào bán cạnh tranh hơn. Ý kiến này không trả lời câu hỏi thứ hai.",
       },
+    
+    {
+      "question": "Giới hạn quan trọng nhất của một ý kiến về tính công bằng là gì?",
+      "options": [
+        "Nó chỉ nói giá nằm trong khoảng hợp lý, không nói đây là giá tốt nhất",
+        "Nó chỉ có hiệu lực trong vòng ba mươi ngày kể từ ngày phát hành",
+        "Nó không được công bố cho cổ đông mà chỉ dành cho hội đồng quản trị",
+        "Nó chỉ đánh giá phần thanh toán bằng tiền mặt"
+      ],
+      "correct": 0,
+      "explanation": "Văn bản này hay bị hiểu quá lên. Nó không khẳng định thương vụ nên làm, không khẳng định không còn bên nào trả cao hơn, và không thay cho thẩm định - nó chỉ nói mức giá này nằm trong khoảng hợp lý xét về tài chính, tại thời điểm đó."
+    }
     ],
     keyTakeaways: [
       "Ý kiến về tính công bằng chỉ nói giá nằm trong khoảng hợp lý tại một thời điểm, không nói giá tốt nhất",
