@@ -3,7 +3,7 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import { useFrame } from "@react-three/fiber";
 import * as THREE from "three";
-import { nameplateTexture, speechBubbleTexture } from "./room-textures";
+import { nameplateTexture, speechBubbleTexture, type NameplateStatus } from "./room-textures";
 import { CHAT_BUBBLE_MS } from "@/lib/supabase-lobby";
 
 /** Hình người tối giản: đầu - thân - hai tay hai chân đánh lắc khi bước.
@@ -20,6 +20,10 @@ interface Props {
   name: string;
   color: string;
   avatarUrl?: string | null;
+  /** Chuỗi ngày, cấp độ, hôm nay đã học chưa - khắc thẳng lên biển tên. */
+  status?: NameplateStatus;
+  /** Đang ngồi học: hạ người xuống ghế và ngừng đánh tay chân. */
+  seated?: boolean;
   /** Câu đang nói; null là không có bong bóng. Đổi tham chiếu là bong bóng mới. */
   speech?: { text: string; at: number } | null;
   /** Đọc pose mỗi frame từ ref thay vì props: vị trí đổi 60 lần/giây, đi qua
@@ -72,6 +76,8 @@ export default function LobbyAvatar({
   name,
   color,
   avatarUrl,
+  status,
+  seated = false,
   speech,
   poseRef,
   isSelf = false,
@@ -85,7 +91,11 @@ export default function LobbyAvatar({
   const walkPhase = useRef(0);
   const lastPos = useRef(new THREE.Vector2());
 
-  const nameTex = useMemo(() => nameplateTexture(name), [name]);
+  const nameTex = useMemo(
+    () => nameplateTexture(name, status),
+    [name, status?.streak, status?.level, status?.doneToday]
+  );
+  useEffect(() => () => nameTex.dispose(), [nameTex]);
   const shirt = useMemo(() => new THREE.Color(color), [color]);
   const face = useAvatarTexture(avatarUrl);
 
@@ -101,9 +111,16 @@ export default function LobbyAvatar({
     if (!g) return;
     const pose = poseRef.current;
 
+    // Ngồi thì hạ cả thân xuống ~0.45 và gập chân - không có xương nên "ngồi"
+    // ở đây là hạ độ cao cộng gập đùi, đủ để nhìn từ xa phân biệt được ai đang
+    // học và ai chỉ đứng cạnh bàn. Chuyển mượt thay vì nhảy cóc một khung hình.
+    const seatDrop = seated ? -0.42 : 0;
+    g.position.y += (seatDrop - g.position.y) * Math.min(1, delta * 8);
+
     if (isSelf) {
       // Nhân vật của mình bám pose tức thời - trễ ở đây cảm giác như lag input.
-      g.position.set(pose.x, 0, pose.z);
+      g.position.x = pose.x;
+      g.position.z = pose.z;
       g.rotation.y = pose.ry;
     } else {
       // Người khác chỉ gửi ~8 gói/giây; nội suy để bước đi liền mạch.
@@ -121,13 +138,16 @@ export default function LobbyAvatar({
     // nhờ vậy nhân vật người khác cũng bước đúng nhịp dù ta không biết phím họ.
     const speed = lastPos.current.distanceTo(new THREE.Vector2(g.position.x, g.position.z)) / Math.max(delta, 1e-4);
     lastPos.current.set(g.position.x, g.position.z);
-    const target = speed > 0.3 ? 9 : 0;
+    const target = seated ? 0 : speed > 0.3 ? 9 : 0;
     walkPhase.current += delta * target;
-    const swing = Math.sin(walkPhase.current) * Math.min(0.7, speed * 0.28);
-    if (leftArm.current) leftArm.current.rotation.x = swing;
-    if (rightArm.current) rightArm.current.rotation.x = -swing;
-    if (leftLeg.current) leftLeg.current.rotation.x = -swing;
-    if (rightLeg.current) rightLeg.current.rotation.x = swing;
+    const swing = seated ? 0 : Math.sin(walkPhase.current) * Math.min(0.7, speed * 0.28);
+    // Ngồi: đùi gập ra trước một góc cố định, tay buông trên mặt bàn.
+    const legRest = seated ? -1.15 : 0;
+    const armRest = seated ? -0.55 : 0;
+    if (leftArm.current) leftArm.current.rotation.x = swing + armRest;
+    if (rightArm.current) rightArm.current.rotation.x = -swing + armRest;
+    if (leftLeg.current) leftLeg.current.rotation.x = -swing + legRest;
+    if (rightLeg.current) rightLeg.current.rotation.x = swing + legRest;
 
     // Biển tên và bong bóng luôn quay về camera
     const plate = g.getObjectByName("nameplate");
@@ -187,8 +207,8 @@ export default function LobbyAvatar({
         <meshStandardMaterial color="#3f3f46" roughness={0.85} />
       </mesh>
       {/* biển tên */}
-      <mesh name="nameplate" position={[0, 2.15, 0]}>
-        <planeGeometry args={[1.35, 0.34]} />
+      <mesh name="nameplate" position={[0, status ? 2.24 : 2.15, 0]}>
+        <planeGeometry args={status ? [1.45, 0.54] : [1.35, 0.34]} />
         <meshBasicMaterial map={nameTex} transparent depthWrite={false} />
       </mesh>
       {/* Bong bóng thoại. Neo theo MÉP DƯỚI chứ không theo tâm: chiều cao thay

@@ -5,8 +5,10 @@ import dynamic from "next/dynamic";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { createClient } from "@/lib/supabase";
+import { getUserStreak } from "@/lib/supabase-streak";
 import {
   CHAT_MAX_LENGTH,
+  POMODORO_MS,
   colorForUser,
   sendChat,
   type LobbyChatMessage,
@@ -74,6 +76,10 @@ export default function LobbyClient() {
   const [selfSpeech, setSelfSpeech] = useState<{ text: string; at: number } | null>(null);
   const [nearPortal, setNearPortal] = useState(false);
   const [peerCount, setPeerCount] = useState(0);
+  const [seatableTable, setSeatableTable] = useState<number | null>(null);
+  const [seatedTable, setSeatedTable] = useState<number | null>(null);
+  const [seatStartedAt, setSeatStartedAt] = useState<number | null>(null);
+  const [nowTick, setNowTick] = useState(Date.now());
   const inputRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
@@ -89,26 +95,57 @@ export default function LobbyClient() {
         // tại, nên luôn có fallback từ user_metadata.
         let name: string | null = user.user_metadata?.full_name || null;
         let avatarUrl: string | null = user.user_metadata?.avatar_url || null;
+        let level = 1;
         try {
           const { data } = await supabase
             .from("user_profiles")
-            .select("full_name, avatar_url")
+            .select("full_name, avatar_url, current_level")
             .eq("id", user.id)
             .single();
           if (data?.full_name) name = data.full_name;
           if (data?.avatar_url) avatarUrl = data.avatar_url;
+          if (data?.current_level) level = data.current_level;
         } catch {
           // giữ fallback
         }
+        // Streak nằm ở bảng riêng, và "hôm nay đã học chưa" suy từ
+        // last_activity_date chứ không có cột nào nói thẳng.
+        let streak = 0;
+        let doneToday = false;
+        try {
+          const s = await getUserStreak(user.id);
+          streak = s?.current_streak ?? 0;
+          if (s?.last_activity_date) {
+            const today = new Date().toISOString().slice(0, 10);
+            doneToday = s.last_activity_date.slice(0, 10) === today;
+          }
+        } catch {
+          // streak là phần thưởng phụ, thiếu nó không chặn vào phòng
+        }
+
         setIdentity({
           userId: user.id,
           name: name || user.email?.split("@")[0] || "Người học",
           avatarUrl,
           color: colorForUser(user.id),
+          streak,
+          level,
+          doneToday,
+          seat: null,
         });
       })
       .catch(() => setFailed(true));
   }, [router]);
+
+  /** Nhịp giây cho đồng hồ phiên trên HUD. Chỉ chạy khi đang ngồi - một
+   *  setInterval sống suốt phiên chỉ để cập nhật thứ không hiển thị là lãng phí
+   *  và làm cả trang re-render mỗi giây. */
+  useEffect(() => {
+    if (seatedTable === null) return;
+    setNowTick(Date.now());
+    const timer = window.setInterval(() => setNowTick(Date.now()), 1000);
+    return () => window.clearInterval(timer);
+  }, [seatedTable]);
 
   const pushLog = useCallback((message: LobbyChatMessage) => {
     // Giữ 30 dòng gần nhất: đủ để bắt kịp mạch chuyện vừa lỡ, không đủ để
@@ -140,6 +177,9 @@ export default function LobbyClient() {
           onPortalProximity={setNearPortal}
           selfSpeech={selfSpeech}
           onPeerCount={setPeerCount}
+          onSeatableChange={setSeatableTable}
+          seatedTable={seatedTable}
+          seatStartedAt={seatStartedAt}
         />
       ) : (
         <SceneFallback label="Đang mở cửa thư viện…" />
@@ -156,6 +196,46 @@ export default function LobbyClient() {
           </p>
         </div>
       </div>
+
+      {/* Ngồi vào bàn / đứng dậy. Nút chỉ xuất hiện khi thực sự đứng cạnh một
+          cái bàn - một nút "ngồi" luôn hiện sẽ phải tự đoán ngồi bàn nào. */}
+      {(seatableTable !== null || seatedTable !== null) && (
+        <div className="pointer-events-none absolute inset-x-0 bottom-28 z-10 flex justify-center px-4 sm:bottom-32">
+          {seatedTable === null ? (
+            <button
+              type="button"
+              onClick={() => {
+                setSeatedTable(seatableTable);
+                setSeatStartedAt(Date.now());
+              }}
+              className="pointer-events-auto rounded-2xl bg-emerald-500 px-6 py-3 text-sm font-bold text-white shadow-xl transition hover:bg-emerald-400"
+            >
+              Ngồi xuống học · phiên 25 phút
+            </button>
+          ) : (
+            <div className="pointer-events-auto flex items-center gap-3 rounded-2xl bg-stone-900/85 px-4 py-2.5 shadow-xl backdrop-blur">
+              <span className="font-mono text-lg font-bold tabular-nums text-amber-300">
+                {(() => {
+                  const left = Math.max(0, POMODORO_MS - (nowTick - (seatStartedAt ?? nowTick)));
+                  const m = String(Math.floor(left / 60000)).padStart(2, "0");
+                  const sec = String(Math.floor((left % 60000) / 1000)).padStart(2, "0");
+                  return left === 0 ? "Xong!" : `${m}:${sec}`;
+                })()}
+              </span>
+              <button
+                type="button"
+                onClick={() => {
+                  setSeatedTable(null);
+                  setSeatStartedAt(null);
+                }}
+                className="rounded-xl bg-stone-700 px-3 py-1.5 text-xs font-bold text-stone-100 transition hover:bg-stone-600"
+              >
+                Đứng dậy
+              </button>
+            </div>
+          )}
+        </div>
+      )}
 
       {/* Lời mời vào nhóm học, chỉ hiện khi đứng gần cổng */}
       {nearPortal && (
@@ -208,7 +288,7 @@ export default function LobbyClient() {
             <kbd className="rounded bg-stone-800 px-1.5 py-0.5">W</kbd>{" "}
             <kbd className="rounded bg-stone-800 px-1.5 py-0.5">S</kbd> đi lại ·{" "}
             <kbd className="rounded bg-stone-800 px-1.5 py-0.5">A</kbd>{" "}
-            <kbd className="rounded bg-stone-800 px-1.5 py-0.5">D</kbd> xoay người · tin nhắn không được lưu lại
+            <kbd className="rounded bg-stone-800 px-1.5 py-0.5">D</kbd> xoay người · kéo chuột để đổi góc nhìn, lăn để phóng · tin nhắn không được lưu lại
           </div>
         </div>
         <TouchPad />

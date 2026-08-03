@@ -160,30 +160,113 @@ export function cofferedCeilingTexture(): THREE.Texture {
   return t;
 }
 
-/** Biển tên nổi trên đầu nhân vật. Không cache theo tên: mỗi người một tấm,
- *  và số người trong sảnh đủ nhỏ để không đáng lo. */
-export function nameplateTexture(name: string): THREE.Texture {
+export interface NameplateStatus {
+  streak: number;
+  level: number;
+  doneToday: boolean;
+}
+
+/** Biển tên nổi trên đầu nhân vật, kèm dòng trạng thái học. Không cache theo
+ *  tên: mỗi người một tấm, và số người trong sảnh đủ nhỏ để không đáng lo.
+ *
+ *  Trạng thái nằm NGAY TRÊN ĐẦU chứ không giấu trong menu nào: cả điểm của
+ *  việc hiển thị nó là người đi ngang qua đọc được mà không phải bấm gì. */
+export function nameplateTexture(name: string, status?: NameplateStatus): THREE.Texture {
+  const W = 512;
+  const H = status ? 190 : 128;
   const canvas = document.createElement("canvas");
-  canvas.width = 512;
-  canvas.height = 128;
+  canvas.width = W;
+  canvas.height = H;
   const ctx = canvas.getContext("2d");
   if (!ctx) throw new Error("Không lấy được canvas 2D context để dựng biển tên");
 
   const label = name.length > 22 ? `${name.slice(0, 21)}…` : name;
   ctx.font = "600 52px ui-sans-serif, system-ui, -apple-system, sans-serif";
-  const w = Math.min(492, ctx.measureText(label).width + 48);
-  const x = (512 - w) / 2;
+  const nameW = ctx.measureText(label).width;
+
+  // Dòng trạng thái: chuỗi ngày là thứ đáng nhìn nhất nên đứng đầu, dấu tick
+  // hôm nay đứng cuối vì nó là trạng thái nhị phân, đọc lướt vẫn thấy.
+  const bits: string[] = [];
+  if (status) {
+    if (status.streak > 0) bits.push(`🔥 ${status.streak}`);
+    bits.push(`Lv.${status.level}`);
+    bits.push(status.doneToday ? "✓ hôm nay" : "· chưa học");
+  }
+  const statusText = bits.join("   ");
+  ctx.font = "500 34px ui-sans-serif, system-ui, -apple-system, sans-serif";
+  const statusW = status ? ctx.measureText(statusText).width : 0;
+
+  const w = Math.min(W - 20, Math.max(nameW, statusW) + 48);
+  const x = (W - w) / 2;
 
   ctx.fillStyle = "rgba(28,25,23,0.82)";
   ctx.beginPath();
-  ctx.roundRect(x, 26, w, 76, 38);
+  ctx.roundRect(x, 14, w, H - 28, 34);
   ctx.fill();
 
   ctx.fillStyle = "#fdf6e3";
   ctx.textAlign = "center";
   ctx.textBaseline = "middle";
   ctx.font = "600 52px ui-sans-serif, system-ui, -apple-system, sans-serif";
-  ctx.fillText(label, 256, 66);
+  ctx.fillText(label, W / 2, status ? 62 : H / 2);
+
+  if (status) {
+    ctx.font = "500 34px ui-sans-serif, system-ui, -apple-system, sans-serif";
+    ctx.fillStyle = status.doneToday ? "#86efac" : "#d6d3d1";
+    ctx.fillText(statusText, W / 2, 132);
+  }
+
+  const texture = new THREE.CanvasTexture(canvas);
+  texture.colorSpace = THREE.SRGBColorSpace;
+  texture.anisotropy = 4;
+  return texture;
+}
+
+/** Mặt đồng hồ Pomodoro treo trên bàn: thời gian còn lại + số người đang ngồi.
+ *  Vẽ lại mỗi giây nên giữ canvas nhỏ và không cache. */
+export function pomodoroTexture(msLeft: number, seatedCount: number): THREE.Texture {
+  const W = 320;
+  const H = 160;
+  const canvas = document.createElement("canvas");
+  canvas.width = W;
+  canvas.height = H;
+  const ctx = canvas.getContext("2d");
+  if (!ctx) throw new Error("Không lấy được canvas 2D context để dựng đồng hồ");
+
+  const done = msLeft <= 0;
+  const total = Math.max(0, msLeft);
+  const mm = String(Math.floor(total / 60000)).padStart(2, "0");
+  const ss = String(Math.floor((total % 60000) / 1000)).padStart(2, "0");
+
+  ctx.fillStyle = "rgba(20,18,15,0.9)";
+  ctx.beginPath();
+  ctx.roundRect(0, 0, W, H, 26);
+  ctx.fill();
+  ctx.strokeStyle = done ? "#86efac" : "#e5b567";
+  ctx.lineWidth = 4;
+  ctx.beginPath();
+  ctx.roundRect(3, 3, W - 6, H - 6, 24);
+  ctx.stroke();
+
+  ctx.textAlign = "center";
+  ctx.textBaseline = "middle";
+  if (done) {
+    ctx.fillStyle = "#86efac";
+    ctx.font = "700 46px ui-sans-serif, system-ui, sans-serif";
+    ctx.fillText("Xong phiên", W / 2, 62);
+  } else {
+    ctx.fillStyle = "#f5efe0";
+    ctx.font = "700 64px ui-monospace, SFMono-Regular, monospace";
+    ctx.fillText(`${mm}:${ss}`, W / 2, 60);
+  }
+
+  ctx.fillStyle = "#a8a29e";
+  ctx.font = "500 26px ui-sans-serif, system-ui, sans-serif";
+  ctx.fillText(
+    seatedCount === 1 ? "1 người đang học" : `${seatedCount} người đang học`,
+    W / 2,
+    118
+  );
 
   const texture = new THREE.CanvasTexture(canvas);
   texture.colorSpace = THREE.SRGBColorSpace;

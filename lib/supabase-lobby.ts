@@ -28,7 +28,27 @@ export interface LobbyIdentity {
   avatarUrl: string | null;
   /** Màu áo nhân vật, suy ra tất định từ userId nên mỗi lần vào vẫn là màu cũ. */
   color: string;
+  /** Chuỗi ngày học liên tiếp. Khắc lên biển tên vì thấy người bên cạnh đang
+   *  giữ chuỗi 40 ngày có sức thúc mạnh hơn mọi thông báo đẩy. */
+  streak: number;
+  level: number;
+  /** Hôm nay đã học chưa - suy từ last_activity_date của bảng streak. */
+  doneToday: boolean;
+  /** Bàn đang ngồi và mốc bắt đầu phiên. null là đang đứng. */
+  seat: LobbySeat | null;
 }
+
+export interface LobbySeat {
+  tableId: number;
+  /** Epoch ms lúc phiên bắt đầu. Đồng hồ của cả bàn suy từ mốc SỚM NHẤT trong
+   *  số người đang ngồi đó, nên ai vào sau vẫn thấy đúng thời gian còn lại, và
+   *  phiên không chết khi người mở nó rời đi. */
+  startedAt: number;
+}
+
+/** Một phiên Pomodoro. 25 phút là con số kinh điển và cũng là thứ người dùng
+ *  kỳ vọng khi nghe "Pomodoro"; đổi đi thì phải giải thích, mà không được gì. */
+export const POMODORO_MS = 25 * 60 * 1000;
 
 export interface LobbyPose {
   x: number;
@@ -69,6 +89,10 @@ type ChatListener = (message: LobbyChatMessage) => void;
 let channel: RealtimeChannel | null = null;
 let refCount = 0;
 let selfId: string | null = null;
+/** Danh tính đã track gần nhất. Ngồi xuống hay đứng lên là track() lại CẢ bản
+ *  ghi presence - Supabase không có cập nhật từng trường, gửi thiếu là những
+ *  trường kia biến mất khỏi bản ghi của mình trên máy mọi người. */
+let lastIdentity: LobbyIdentity | null = null;
 const listeners = new Set<PeersListener>();
 const chatListeners = new Set<ChatListener>();
 /** Trạng thái hợp nhất: danh tính đến từ presence, vị trí đến từ broadcast. */
@@ -187,6 +211,8 @@ export function joinLobby(
     onPeers([...peers.values()]);
   }
 
+  lastIdentity = identity;
+
   return () => {
     listeners.delete(onPeers);
     if (onChat) chatListeners.delete(onChat);
@@ -195,12 +221,41 @@ export function joinLobby(
     const closing = channel;
     channel = null;
     selfId = null;
+    lastIdentity = null;
     peers.clear();
     if (closing) {
       void closing.untrack();
       void createClient().removeChannel(closing);
     }
   };
+}
+
+/** Ngồi xuống một bàn, hoặc đứng lên khi truyền null.
+ *
+ *  Chỗ ngồi đi qua PRESENCE chứ không phải broadcast: nó là trạng thái bền,
+ *  không phải sự kiện. Người vào phòng sau phải thấy ngay ai đang ngồi ở đâu
+ *  và phiên bắt đầu từ lúc nào - broadcast chỉ tới được những ai đang online
+ *  đúng khoảnh khắc phát, nên người vào sau sẽ thấy một cái bàn trống trong
+ *  khi có hai người đang ngồi học ở đó. */
+export function setSeat(seat: LobbySeat | null) {
+  if (!channel || !lastIdentity) return;
+  lastIdentity = { ...lastIdentity, seat };
+  void channel.track(lastIdentity);
+}
+
+/** Mốc bắt đầu phiên của một bàn: SỚM NHẤT trong số người đang ngồi đó.
+ *
+ *  Lấy mốc sớm nhất chứ không phải mốc của người mở phiên, vì "người mở" là
+ *  một khái niệm không tồn tại sau khi họ rời đi. Ai ngồi xuống một bàn đang
+ *  có phiên thì nhận luôn đồng hồ đang chạy - đó mới là "cùng ngồi học", chứ
+ *  không phải mỗi người một đồng hồ riêng cạnh nhau. */
+export function tableSessionStart(peersAtTable: Array<{ seat: LobbySeat | null }>): number | null {
+  let earliest: number | null = null;
+  for (const p of peersAtTable) {
+    if (!p.seat) continue;
+    if (earliest === null || p.seat.startedAt < earliest) earliest = p.seat.startedAt;
+  }
+  return earliest;
 }
 
 /** Gửi một câu vào phòng. Trả về đúng bản tin đã phát để phía gọi hiển thị
