@@ -754,7 +754,7 @@ export const TRACK_PROFESSIONAL = {
       // 1650-1654 nằm ngoài dải liên tục vì dải 1637-1648 đã thuộc Chặng 38.
       // Không có chúng ở đây thì năm bài đó tồn tại, sinh ra file, lên trang
       // FRM - và không chặng nào dẫn tới, đúng lỗi mà Chặng 12 từng mắc.
-      extraLessonIds: [1650, 1651, 1652, 1653, 1654, 1655, 1656, 1657, 1658, 1659],
+      extraLessonIds: [1650, 1651, 1652, 1653, 1654, 1655, 1656, 1657, 1658, 1659, 1660, 1661, 1662, 1663],
       available: true,
       isNew: true,
       parts: [
@@ -768,6 +768,11 @@ export const TRACK_PROFESSIONAL = {
           name: "Operational nâng cao: phân tích kịch bản, dữ liệu tổn thất bên ngoài, rủi ro thay đổi, dịch vụ trọng yếu, rủi ro con người",
           days: [0, 0] as [number, number],
           extraLessonIds: [1655, 1656, 1657, 1658, 1659],
+        },
+        {
+          name: "Market Risk nâng cao: FRTB, key rate duration, ánh xạ nhân tố rủi ro, phân rã rủi ro giữa các bàn",
+          days: [0, 0] as [number, number],
+          extraLessonIds: [1660, 1661, 1662, 1663],
         },
         { name: "Operational Resilience: sự kiện Basel, RCSA/KRI, an ninh mạng, gian lận, vốn SMA, rủi ro hành vi", days: [1619, 1624] as [number, number] },
         { name: "Liquidity and Treasury: hai loại thanh khoản, thang dòng tiền, FTP, stress test, tài sản bảo đảm, quỹ mở", days: [1625, 1630] as [number, number] },
