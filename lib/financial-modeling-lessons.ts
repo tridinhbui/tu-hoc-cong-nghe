@@ -37,7 +37,6 @@ export const FINANCIAL_MODELING_LESSONS: Lesson[] = [
       { label: "CALCULATION: công thức thuần", arrow: true },
       { label: "OUTPUT: báo cáo & biểu đồ" },
     ],
-    interactiveType: "process",
     realWorldExample: {
       company: "Quy ước trong ngân hàng đầu tư",
       description:
@@ -226,7 +225,6 @@ export const FINANCIAL_MODELING_LESSONS: Lesson[] = [
       { label: "Kiểm chứng từng biến", arrow: true },
       { label: "Doanh thu dự phóng" },
     ],
-    interactiveType: "chart",
     realWorldExample: {
       company: "Chuỗi bán lẻ",
       description:
@@ -725,7 +723,6 @@ export const FINANCIAL_MODELING_LESSONS: Lesson[] = [
       { label: "→ Số dư nợ cuối kỳ", arrow: true },
       { label: "→ quay lại Lãi vay (vòng lặp)" },
     ],
-    interactiveType: "process",
     realWorldExample: {
       company: "Mô hình có revolver",
       description:
@@ -916,7 +913,7 @@ export const FINANCIAL_MODELING_LESSONS: Lesson[] = [
       { label: "Chiết khấu về hiện tại theo WACC", arrow: true },
       { label: "= Giá trị doanh nghiệp (EV)" },
     ],
-    interactiveType: "chart",
+    interactiveType: "interest-rate",
     realWorldExample: {
       company: "Độ nhạy của giả định tăng trưởng dài hạn",
       description:
@@ -1080,7 +1077,6 @@ export const FINANCIAL_MODELING_LESSONS: Lesson[] = [
       { label: "Kịch bản: đổi nhiều biến nhất quán", arrow: true },
       { label: "Khoảng giá trị để ra quyết định" },
     ],
-    interactiveType: "chart",
     realWorldExample: {
       company: "Bảng độ nhạy trong báo cáo định giá",
       description:
@@ -1402,7 +1398,6 @@ export const FINANCIAL_MODELING_LESSONS: Lesson[] = [
       { label: "Kiểm tra thực tế: so lịch sử & ngành", arrow: true },
       { label: "Mô hình sẵn sàng bàn giao" },
     ],
-    interactiveType: "process",
     realWorldExample: {
       company: "Lỗi kéo công thức",
       description:
@@ -1591,7 +1586,6 @@ export const FINANCIAL_MODELING_LESSONS: Lesson[] = [
       { label: "BS + CF → Nối khép vòng", arrow: true },
       { label: "Kiểm tra → Kịch bản → Định giá" },
     ],
-    interactiveType: "process",
     realWorldExample: {
       company: "Quy trình chuẩn trong thực tế",
       description:

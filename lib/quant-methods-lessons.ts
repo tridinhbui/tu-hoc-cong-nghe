@@ -39,7 +39,7 @@ export const QUANT_METHODS_LESSONS: Lesson[] = [
       { label: "Mô tả bằng 4 mô men: trung bình, độ lệch chuẩn, độ lệch, độ nhọn", arrow: true },
       { label: "Kiểm tra giả định trước khi mô hình hóa" },
     ],
-    interactiveType: "chart",
+    interactiveType: "tail-risk",
     realWorldExample: {
       company: "Ngày 19/10/1987",
       description:
@@ -217,7 +217,6 @@ export const QUANT_METHODS_LESSONS: Lesson[] = [
       { label: "Ước lượng điểm + sai số chuẩn", arrow: true },
       { label: "Khoảng tin cậy - phạm vi hợp lý của sự thật" },
     ],
-    interactiveType: "chart",
     realWorldExample: {
       company: "Đánh giá quỹ đầu tư",
       description:
@@ -388,7 +387,6 @@ export const QUANT_METHODS_LESSONS: Lesson[] = [
       { label: "So với ngưỡng, ra giá trị p", arrow: true },
       { label: "Hỏi tiếp: đã thử bao nhiêu lần trước khi ra kết quả này" },
     ],
-    interactiveType: "process",
     realWorldExample: {
       company: "Khủng hoảng nhân rộng trong tài chính học thuật",
       description:
@@ -558,7 +556,6 @@ export const QUANT_METHODS_LESSONS: Lesson[] = [
       { label: "Hệ số góc = beta, hệ số chặn = alpha", arrow: true },
       { label: "Phần dư = những gì mô hình không giải thích được" },
     ],
-    interactiveType: "chart",
     realWorldExample: {
       company: "Beta công bố trên các trang dữ liệu",
       description:
@@ -732,7 +729,6 @@ export const QUANT_METHODS_LESSONS: Lesson[] = [
       { label: "Nhưng phương sai ước lượng cũng tăng", arrow: true },
       { label: "Kết quả: khớp quá mức, dự báo ngoài mẫu tệ đi" },
     ],
-    interactiveType: "chart",
     realWorldExample: {
       company: "Mô hình rủi ro trước 2008",
       description:
@@ -897,7 +893,6 @@ export const QUANT_METHODS_LESSONS: Lesson[] = [
       { label: "Kiểm tra tự tương quan và cụm biến động", arrow: true },
       { label: "Kiểm chứng ngoài mẫu theo trình tự thời gian" },
     ],
-    interactiveType: "chart",
     realWorldExample: {
       company: "Vì sao chiến lược thắng trong backtest lại thua khi triển khai",
       description:

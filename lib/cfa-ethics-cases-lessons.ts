@@ -96,7 +96,7 @@ export const CFA_ETHICS_CASES_LESSONS: Lesson[] = [
       { label: "Người thân là khách trả phí thật: đối xử như khách", arrow: true },
       { label: "Đẩy họ xuống cuối hàng cũng là bất công bằng" },
     ],
-    interactiveType: "chart",
+    interactiveType: "ethics-case",
     realWorldExample: {
       company: "Vì sao đây là Standard dễ bị phát hiện nhất",
       description:
@@ -258,7 +258,7 @@ export const CFA_ETHICS_CASES_LESSONS: Lesson[] = [
       { label: "Phạm vi gồm cả lợi ích phi tiền mặt", arrow: true },
       { label: "Công bố trước khi khách ra quyết định, không phải sau" },
     ],
-    interactiveType: "chart",
+    interactiveType: "ethics-case",
     realWorldExample: {
       company: "Thời điểm công bố quyết định giá trị của việc công bố",
       description:
@@ -420,7 +420,7 @@ export const CFA_ETHICS_CASES_LESSONS: Lesson[] = [
       { label: "Không cần bản án mới cấu thành vi phạm", arrow: true },
       { label: "Câu hỏi: hành vi này nói gì về việc giao tiền cho người đó" },
     ],
-    interactiveType: "chart",
+    interactiveType: "ethics-case",
     realWorldExample: {
       company: "Vì sao lạm dụng rượu hoặc chất kích thích có thể thuộc phạm vi",
       description:
@@ -586,7 +586,7 @@ export const CFA_ETHICS_CASES_LESSONS: Lesson[] = [
       { label: "Kết luận: không vi phạm, hoặc đề xuất chế tài", arrow: true },
       { label: "Chế tài: từ nhắc nhở tới thu hồi chứng chỉ vĩnh viễn" },
     ],
-    interactiveType: "chart",
+    interactiveType: "ethics-case",
     realWorldExample: {
       company: "Tự báo cáo là một nguồn thật, không chỉ trên lý thuyết",
       description:
@@ -747,7 +747,7 @@ export const CFA_ETHICS_CASES_LESSONS: Lesson[] = [
       { label: "Mức thẩm định tùy nguồn: quen thuộc hay mới, có xung đột không", arrow: true },
       { label: "Không trả lời được các câu hỏi tối thiểu thì không có cơ sở" },
     ],
-    interactiveType: "chart",
+    interactiveType: "ethics-case",
     realWorldExample: {
       company: "Ba câu hỏi lọc nhanh một nguồn nghiên cứu",
       description:
@@ -913,7 +913,7 @@ export const CFA_ETHICS_CASES_LESSONS: Lesson[] = [
       { label: "Và V(B) - trình bày ý kiến người khác như của mình", arrow: true },
       { label: "Bức tường thông tin lẽ ra đã phải chặn cuộc trao đổi này" },
     ],
-    interactiveType: "chart",
+    interactiveType: "ethics-case",
     realWorldExample: {
       company: "Vì sao đây là case kinh điển của mâu thuẫn cấu trúc",
       description:
@@ -1079,7 +1079,7 @@ export const CFA_ETHICS_CASES_LESSONS: Lesson[] = [
       { label: "Quy mô nhỏ thì phân bổ theo tỷ lệ, không loại khách ra", arrow: true },
       { label: "Nếu không phù hợp với khách nào: mới tới lượt bạn, kèm công bố" },
     ],
-    interactiveType: "chart",
+    interactiveType: "ethics-case",
     realWorldExample: {
       company: "Vì sao 'lời mời gửi đích danh tôi' không phải lập luận",
       description:
@@ -1241,7 +1241,7 @@ export const CFA_ETHICS_CASES_LESSONS: Lesson[] = [
       { label: "Sao chép tài sản công ty: vi phạm, hoàn tất lúc sao chép", arrow: true },
       { label: "Kiến thức đi theo bạn, file thì không" },
     ],
-    interactiveType: "chart",
+    interactiveType: "ethics-case",
     realWorldExample: {
       company: "Ba tháng sau khi nghỉ, câu trả lời đổi",
       description:
@@ -1406,7 +1406,7 @@ export const CFA_ETHICS_CASES_LESSONS: Lesson[] = [
       { label: "Không xử lý: leo thang lên cấp cao hơn", arrow: true },
       { label: "Vẫn không xử lý: cân nhắc rời khỏi tổ chức" },
     ],
-    interactiveType: "chart",
+    interactiveType: "ethics-case",
     realWorldExample: {
       company: "Vì sao 'tôi chỉ làm theo chỉ đạo' không phải lập luận",
       description:
@@ -1572,7 +1572,7 @@ export const CFA_ETHICS_CASES_LESSONS: Lesson[] = [
       { label: "V(B): chuẩn tham chiếu phải cùng nhóm tài sản", arrow: true },
       { label: "I(C): mọi tuyên bố về năng lực phải kiểm chứng được" },
     ],
-    interactiveType: "chart",
+    interactiveType: "ethics-case",
     realWorldExample: {
       company: "Chuẩn tham chiếu là chỗ sai lệch dễ nhất và khó bắt nhất",
       description:

@@ -232,7 +232,9 @@ export async function sendRoomMessage(
   file?: { url: string; name: string } | null
 ): Promise<StudyRoomMessage> {
   const supabase = createClient();
-  const insertPayload: any = {
+  /** Các cột tuỳ chọn phía dưới chỉ tồn tại sau migration tương ứng, nên
+   *  payload dựng dần thay vì khai cứng một hình dạng cố định. */
+  const insertPayload: Record<string, unknown> = {
     room_id: roomId,
     sender_id: senderId,
     content: content.trim()

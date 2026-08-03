@@ -379,7 +379,6 @@ export const INTERNATIONAL_FINANCE_LESSONS: Lesson[] = [
       { label: "Hoặc: chuyển sang đồng Y theo tỷ giá kỳ vọng", arrow: true },
       { label: "Rồi chiết khấu bằng chi phí vốn đồng Y" },
     ],
-    interactiveType: "process",
     realWorldExample: {
       company: "Báo cáo định giá của khối phân tích quốc tế",
       description:

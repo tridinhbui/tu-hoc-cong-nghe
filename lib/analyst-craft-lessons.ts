@@ -37,7 +37,6 @@ export const ANALYST_CRAFT_LESSONS: Lesson[] = [
       { label: "Bằng chứng và định giá", arrow: true },
       { label: "Rủi ro và điều gì sẽ chứng minh tôi sai" },
     ],
-    interactiveType: "process",
     realWorldExample: {
       company: "Memo trên bàn của giám đốc đầu tư",
       description:
@@ -206,7 +205,6 @@ export const ANALYST_CRAFT_LESSONS: Lesson[] = [
       { label: "Trả lời thẳng trước, giải thích sau", arrow: true },
       { label: "Phân biệt điều biết chắc với điều đang giả định" },
     ],
-    interactiveType: "process",
     realWorldExample: {
       company: "Buổi họp hội đồng đầu tư",
       description:
@@ -376,7 +374,6 @@ export const ANALYST_CRAFT_LESSONS: Lesson[] = [
       { label: "Dựng bản chạy được trước, tinh chỉnh sau", arrow: true },
       { label: "Dành 10 phút cuối để kiểm tra và viết kết luận" },
     ],
-    interactiveType: "process",
     realWorldExample: {
       company: "Hai ứng viên cùng một đề bài",
       description:
@@ -546,7 +543,6 @@ export const ANALYST_CRAFT_LESSONS: Lesson[] = [
       { label: "Cấp cao: ra quyết định và chịu trách nhiệm", arrow: true },
       { label: "Mỗi bước là một loại kỹ năng khác, không phải nhiều hơn" },
     ],
-    interactiveType: "process",
     realWorldExample: {
       company: "Bước hụt ở năm thứ ba",
       description:

@@ -96,7 +96,6 @@ export const CFA_ALTERNATIVES_LESSONS: Lesson[] = [
       { label: "Đòn bẩy cao là chuẩn mực, không phải ngoại lệ", arrow: true },
       { label: "Phí hai tầng đổi động cơ của người quản lý" },
     ],
-    interactiveType: "chart",
     realWorldExample: {
       company: "Vì sao phần bù kém thanh khoản không phải bữa trưa miễn phí",
       description:
@@ -262,7 +261,6 @@ export const CFA_ALTERNATIVES_LESSONS: Lesson[] = [
       { label: "Độ lệch chuẩn và tương quan bị đánh giá thấp", arrow: true },
       { label: "Sharpe và lợi ích đa dạng hóa trông tốt hơn thực tế" },
     ],
-    interactiveType: "chart",
     realWorldExample: {
       company: "Ba thiên lệch của chỉ số hedge fund",
       description:
@@ -428,7 +426,6 @@ export const CFA_ALTERNATIVES_LESSONS: Lesson[] = [
       { label: "Quỹ nợ tư nhân lấp chỗ, không chịu chuẩn vốn ngân hàng", arrow: true },
       { label: "Rủi ro chuyển chỗ chứ không biến mất" },
     ],
-    interactiveType: "chart",
     realWorldExample: {
       company: "Ba tầng của nợ tư nhân",
       description:
@@ -760,7 +757,6 @@ export const CFA_ALTERNATIVES_LESSONS: Lesson[] = [
       { label: "Giá đất thay đổi theo thị trường bất động sản", arrow: true },
       { label: "Ba nguồn độc lập + quyền hoãn thu hoạch" },
     ],
-    interactiveType: "chart",
     realWorldExample: {
       company: "Đất nông nghiệp: hai mô hình sở hữu",
       description:
@@ -923,7 +919,6 @@ export const CFA_ALTERNATIVES_LESSONS: Lesson[] = [
       { label: "Giá trị tương đối: khai thác lệch giá giữa hai chứng khoán", arrow: true },
       { label: "Vĩ mô: đặt cược hướng lãi suất, tỷ giá, hàng hóa" },
     ],
-    interactiveType: "chart",
     realWorldExample: {
       company: "Vì sao chiến lược giá trị tương đối trông an toàn cho tới lúc không",
       description:
@@ -1091,7 +1086,6 @@ export const CFA_ALTERNATIVES_LESSONS: Lesson[] = [
       { label: "Token chứng khoán: quyền sở hữu, chịu luật chứng khoán", arrow: true },
       { label: "Stablecoin: rủi ro nằm ở tài sản dự trữ đằng sau" },
     ],
-    interactiveType: "chart",
     realWorldExample: {
       company: "Rủi ro lưu ký - dạng rủi ro không có ở tài sản truyền thống",
       description:
@@ -1249,7 +1243,6 @@ export const CFA_ALTERNATIVES_LESSONS: Lesson[] = [
       { label: "Sai lệch đo lường thành khuyến nghị phân bổ", arrow: true },
       { label: "Xử lý: khử làm mượt, đặt trần thanh khoản, thử kịch bản" },
     ],
-    interactiveType: "chart",
     realWorldExample: {
       company: "Cam kết vốn chưa gọi - nghĩa vụ không nằm trên bảng cân đối",
       description:

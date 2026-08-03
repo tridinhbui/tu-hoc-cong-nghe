@@ -204,7 +204,6 @@ export const PERSONAL_ENTRY_LESSONS: Lesson[] = [
       { label: "Trả các khoản cố định", arrow: true },
       { label: "Phần còn lại là tiền tiêu tự do" },
     ],
-    interactiveType: "process",
     realWorldExample: {
       company: "Hai người cùng thu nhập, khác thứ tự",
       description:

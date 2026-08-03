@@ -42,7 +42,6 @@ export const DATA_TOOLS_LESSONS: Lesson[] = [
       { label: "Nhiều nguồn phải ghép: script", arrow: true },
       { label: "Cần người khác kiểm chứng lại: script" },
     ],
-    interactiveType: "process",
     realWorldExample: {
       company: "Báo cáo dòng tiền hợp nhất hàng tháng",
       description:
@@ -212,7 +211,6 @@ export const DATA_TOOLS_LESSONS: Lesson[] = [
       { label: "Gom nhóm và tổng hợp", arrow: true },
       { label: "Ghép với bảng khác" },
     ],
-    interactiveType: "process",
     realWorldExample: {
       company: "Tính biên lợi nhuận cho hai mươi nghìn đơn hàng",
       description:
@@ -372,7 +370,6 @@ export const DATA_TOOLS_LESSONS: Lesson[] = [
       { label: "Sai kiểu: ngày, số, chuỗi", arrow: true },
       { label: "Ngoại lai: lỗi nhập hay giá trị thật?" },
     ],
-    interactiveType: "process",
     realWorldExample: {
       company: "Khảo sát thu nhập và bẫy dữ liệu thiếu có hệ thống",
       description:
@@ -533,7 +530,6 @@ export const DATA_TOOLS_LESSONS: Lesson[] = [
       { label: "Quan hệ hai biến: điểm phân tán", arrow: true },
       { label: "Phân bố một biến: histogram" },
     ],
-    interactiveType: "chart",
     realWorldExample: {
       company: "Biểu đồ tăng trưởng trong bản trình bày gọi vốn",
       description:
@@ -705,7 +701,6 @@ export const DATA_TOOLS_LESSONS: Lesson[] = [
       { label: "Bố cục: quan trọng nhất lên trên", arrow: true },
       { label: "Có bộ lọc để tự đào sâu" },
     ],
-    interactiveType: "process",
     realWorldExample: {
       company: "Dashboard công nợ của một phòng tài chính",
       description:
@@ -875,7 +870,6 @@ export const DATA_TOOLS_LESSONS: Lesson[] = [
       { label: "Kiểm tra số dòng trước và sau", arrow: true },
       { label: "Window: tính theo nhóm, giữ nguyên dòng" },
     ],
-    interactiveType: "chart",
     realWorldExample: {
       company: "Xếp hạng khách hàng theo doanh thu trong từng chi nhánh",
       description:

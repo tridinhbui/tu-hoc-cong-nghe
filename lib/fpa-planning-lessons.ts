@@ -40,7 +40,6 @@ export const FPA_PLANNING_LESSONS: Lesson[] = [
       { label: "Giao mỗi yếu tố cho một người", arrow: true },
       { label: "Khi lệch: soi từng yếu tố" },
     ],
-    interactiveType: "process",
     realWorldExample: {
       company: "Chuỗi bán lẻ lập kế hoạch doanh thu",
       description:
@@ -210,7 +209,6 @@ export const FPA_PLANNING_LESSONS: Lesson[] = [
       { label: "Cộng chi phí đi kèm ngoài lương", arrow: true },
       { label: "Tính hiệu ứng tràn sang năm sau" },
     ],
-    interactiveType: "process",
     realWorldExample: {
       company: "Công ty công nghệ và cú nhảy chi phí năm sau",
       description:
@@ -539,7 +537,6 @@ export const FPA_PLANNING_LESSONS: Lesson[] = [
       { label: "Tìm ngưỡng đổi quyết định", arrow: true },
       { label: "Trình bày dải, không phải một điểm" },
     ],
-    interactiveType: "chart",
     realWorldExample: {
       company: "Kế hoạch mở rộng chuỗi cửa hàng",
       description:
@@ -858,7 +855,6 @@ export const FPA_PLANNING_LESSONS: Lesson[] = [
       { label: "Hỏi phòng ban để hiểu chuyện đằng sau số", arrow: true },
       { label: "Viết bình luận và cập nhật dự báo" },
     ],
-    interactiveType: "process",
     realWorldExample: {
       company: "Hai kiểu bình luận cho cùng một chênh lệch",
       description:

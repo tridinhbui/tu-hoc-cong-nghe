@@ -42,7 +42,6 @@ export const VN_MARKET_LESSONS: Lesson[] = [
       { label: "Thanh toán bù trừ", arrow: true },
       { label: "Chứng khoán hoặc tiền về tài khoản, mới dùng tiếp được" },
     ],
-    interactiveType: "process",
     realWorldExample: {
       company: "Phiên thị trường giảm sàn hàng loạt",
       description:
@@ -206,7 +205,6 @@ export const VN_MARKET_LESSONS: Lesson[] = [
       { label: "Quỹ thụ động bắt buộc mua theo tỷ trọng", arrow: true },
       { label: "Dòng vốn cơ học, không phụ thuộc quan điểm đầu tư" },
     ],
-    interactiveType: "process",
     realWorldExample: {
       company: "Cổ phiếu hết room ngoại",
       description:
@@ -536,7 +534,6 @@ export const VN_MARKET_LESSONS: Lesson[] = [
       { label: "Giá không theo thị trường", arrow: true },
       { label: "Giá trị chuyển ra ngoài, cổ đông nhỏ chịu thiệt" },
     ],
-    interactiveType: "process",
     realWorldExample: {
       company: "Cấu trúc tập đoàn có nhiều công ty liên quan",
       description:
@@ -694,7 +691,6 @@ export const VN_MARKET_LESSONS: Lesson[] = [
       { label: "Cộng lại thành tổng vốn hóa rổ", arrow: true },
       { label: "So với kỳ gốc ra chỉ số" },
     ],
-    interactiveType: "chart",
     realWorldExample: {
       company: "Phiên chỉ số xanh, độ rộng đỏ",
       description:
@@ -1024,7 +1020,6 @@ export const VN_MARKET_LESSONS: Lesson[] = [
       { label: "Mua rổ tài sản đa dạng", arrow: true },
       { label: "Mỗi người sở hữu một phần của cả rổ" },
     ],
-    interactiveType: "process",
     realWorldExample: {
       company: "Quỹ chỉ số so với quỹ chủ động",
       description:

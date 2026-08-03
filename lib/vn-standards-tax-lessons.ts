@@ -1074,7 +1074,6 @@ export const VN_STANDARDS_TAX_LESSONS: Lesson[] = [
       { label: "Về thuế suất phổ thông", arrow: true },
       { label: "Lợi nhuận sau thuế bậc thang theo lịch trình" },
     ],
-    interactiveType: "process",
     realWorldExample: {
       company: "Doanh nghiệp FDI hết ưu đãi",
       description:
@@ -1237,7 +1236,6 @@ export const VN_STANDARDS_TAX_LESSONS: Lesson[] = [
       { label: "Ấn định lại số thuế nếu có sai lệch", arrow: true },
       { label: "Truy thu, tiền chậm nộp và phạt" },
     ],
-    interactiveType: "process",
     realWorldExample: {
       company: "Khoản truy thu bất ngờ",
       description:

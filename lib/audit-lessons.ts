@@ -42,7 +42,6 @@ export const AUDIT_LESSONS: Lesson[] = [
       { label: "Trái ngược: sai lan tỏa", arrow: true },
       { label: "Từ chối: không đủ bằng chứng để kết luận" },
     ],
-    interactiveType: "chart",
     realWorldExample: {
       company: "Khoảng cách kỳ vọng",
       description:
@@ -203,7 +202,6 @@ export const AUDIT_LESSONS: Lesson[] = [
       { label: "Đánh giá rủi ro từng khoản mục", arrow: true },
       { label: "Rủi ro cao → thử nghiệm nhiều hơn" },
     ],
-    interactiveType: "process",
     realWorldExample: {
       company: "Vì sao doanh nghiệp đang lỗ lại khó chọn mức trọng yếu",
       description:
@@ -369,7 +367,6 @@ export const AUDIT_LESSONS: Lesson[] = [
       { label: "Tài liệu bên ngoài do doanh nghiệp giữ", arrow: true },
       { label: "Sổ sách nội bộ và giải trình bằng lời" },
     ],
-    interactiveType: "chart",
     realWorldExample: {
       company: "Vì sao thư xác nhận phải gửi thẳng cho kiểm toán viên",
       description:
@@ -540,7 +537,6 @@ export const AUDIT_LESSONS: Lesson[] = [
       { label: "Tính cỡ mẫu, chọn mẫu", arrow: true },
       { label: "Suy rộng sai sót tìm thấy ra tổng thể" },
     ],
-    interactiveType: "chart",
     realWorldExample: {
       company: "Suy rộng một sai sót nhỏ thành con số trọng yếu",
       description:
@@ -700,7 +696,7 @@ export const AUDIT_LESSONS: Lesson[] = [
       { label: "Biện minh: tự thuyết phục là chấp nhận được", arrow: true },
       { label: "Đủ ba yếu tố → rủi ro gian lận cao" },
     ],
-    interactiveType: "risk",
+    interactiveType: "ethics-case",
     realWorldExample: {
       company: "Vì sao ghi nhận doanh thu là nơi gian lận hay xảy ra nhất",
       description:
@@ -871,7 +867,6 @@ export const AUDIT_LESSONS: Lesson[] = [
       { label: "Tuyến 3: kiểm toán nội bộ", arrow: true },
       { label: "Bên ngoài: kiểm toán độc lập" },
     ],
-    interactiveType: "process",
     realWorldExample: {
       company: "Vì sao ngân hàng bắt buộc có ba tuyến",
       description:

@@ -42,7 +42,7 @@ export const FRM_MARKET_RISK_LESSONS: Lesson[] = [
       { label: "Monte Carlo: tự chọn phân phối, tốn máy", arrow: true },
       { label: "Ba con số khác nhau trên cùng danh mục" },
     ],
-    interactiveType: "chart",
+    interactiveType: "tail-risk",
     realWorldExample: {
       company: "Vì sao mô phỏng lịch sử im lặng trước một cú sốc chưa từng có",
       description:
@@ -202,7 +202,7 @@ export const FRM_MARKET_RISK_LESSONS: Lesson[] = [
       { label: "Kiểm định Kupiec: chênh có ý nghĩa?", arrow: true },
       { label: "Vi phạm có bị dồn cụm không?" },
     ],
-    interactiveType: "chart",
+    interactiveType: "tail-risk",
     realWorldExample: {
       company: "Hệ đèn giao thông và hệ số nhân vốn",
       description:
@@ -363,7 +363,7 @@ export const FRM_MARKET_RISK_LESSONS: Lesson[] = [
       { label: "ES thoả tính cộng gộp, VaR thì không", arrow: true },
       { label: "Đổi lại: ES khó kiểm định hậu nghiệm hơn" },
     ],
-    interactiveType: "chart",
+    interactiveType: "tail-risk",
     realWorldExample: {
       company: "Hai câu hỏi khác nhau về cùng một cái đuôi",
       description:

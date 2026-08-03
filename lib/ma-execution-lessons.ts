@@ -41,7 +41,6 @@ export const MA_EXECUTION_LESSONS: Lesson[] = [
       { label: "Chia cho số cổ phiếu mới", arrow: true },
       { label: "So EPS mới với EPS cũ" },
     ],
-    interactiveType: "profit-calc",
     realWorldExample: {
       company: "Vì sao một thương vụ tốt vẫn có thể pha loãng",
       description:
@@ -216,7 +215,6 @@ export const MA_EXECUTION_LESSONS: Lesson[] = [
       { label: "Nguồn: nợ vay mới + vốn góp", arrow: true },
       { label: "+ tiền mặt sẵn có. Hai cột phải bằng nhau" },
     ],
-    interactiveType: "cash-flow-simulator",
     realWorldExample: {
       company: "Khoảng cách giữa giá thỏa thuận và tiền phải chuẩn bị",
       description:
@@ -538,7 +536,6 @@ export const MA_EXECUTION_LESSONS: Lesson[] = [
       { label: "Nhận diện chi phí bị bỏ lại", arrow: true },
       { label: "Thỏa thuận dịch vụ chuyển tiếp" },
     ],
-    interactiveType: "chart",
     realWorldExample: {
       company: "Chi phí bị bỏ lại sau khi bán một mảng",
       description:
@@ -698,7 +695,6 @@ export const MA_EXECUTION_LESSONS: Lesson[] = [
       { label: "Ký: cam kết các điều khoản", arrow: true },
       { label: "Đóng: hoàn thành điều kiện, chuyển tiền" },
     ],
-    interactiveType: "process",
     realWorldExample: {
       company: "Khoảng trống giữa ký và đóng trong các thương vụ lớn",
       description:
@@ -869,7 +865,6 @@ export const MA_EXECUTION_LESSONS: Lesson[] = [
       { label: "Ý kiến: giá có nằm trong khoảng hợp lý", arrow: true },
       { label: "Cổ đông biểu quyết dựa trên hồ sơ đó" },
     ],
-    interactiveType: "process",
     realWorldExample: {
       company: "Xung đột lợi ích trong cách trả phí tư vấn",
       description:

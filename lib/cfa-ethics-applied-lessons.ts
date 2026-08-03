@@ -89,7 +89,7 @@ export const CFA_ETHICS_APPLIED_LESSONS: Lesson[] = [
       { label: "Thận trọng: quyết định như người khôn ngoan làm với tiền của họ", arrow: true },
       { label: "Chăm sóc: phù hợp mục tiêu của chính người thụ hưởng" },
     ],
-    interactiveType: "chart",
+    interactiveType: "ethics-case",
     realWorldExample: {
       company: "Soft dollar - hoa hồng môi giới đổi lấy nghiên cứu",
       description:
@@ -255,7 +255,7 @@ export const CFA_ETHICS_APPLIED_LESSONS: Lesson[] = [
       { label: "Ghi nhận rõ đây không phải khuyến nghị của bạn", arrow: true },
       { label: "Nếu lặp lại làm lệch IPS: cập nhật IPS hoặc xem lại quan hệ" },
     ],
-    interactiveType: "chart",
+    interactiveType: "ethics-case",
     realWorldExample: {
       company: "IPS là công cụ, không phải thủ tục",
       description:
@@ -421,7 +421,7 @@ export const CFA_ETHICS_APPLIED_LESSONS: Lesson[] = [
       { label: "Ngoại lệ 2: khách hàng có hoạt động bất hợp pháp", arrow: true },
       { label: "Ngoại lệ 3: khách hàng cho phép" },
     ],
-    interactiveType: "chart",
+    interactiveType: "ethics-case",
     realWorldExample: {
       company: "Ngoại lệ thứ hai chạy theo chiều nào",
       description:
@@ -590,7 +590,7 @@ export const CFA_ETHICS_APPLIED_LESSONS: Lesson[] = [
       { label: "Sau khi nghỉ: liên hệ bằng thông tin công khai được", arrow: true },
       { label: "Trừ khi có thỏa thuận không cạnh tranh riêng" },
     ],
-    interactiveType: "chart",
+    interactiveType: "ethics-case",
     realWorldExample: {
       company: "Kiến thức trong đầu và tài liệu trong máy",
       description:
@@ -761,7 +761,7 @@ export const CFA_ETHICS_APPLIED_LESSONS: Lesson[] = [
       { label: "Giám sát định kỳ, không chỉ khi có sự cố", arrow: true },
       { label: "Xử lý ngay khi có dấu hiệu - và rà lại chính hệ thống" },
     ],
-    interactiveType: "chart",
+    interactiveType: "ethics-case",
     realWorldExample: {
       company: "Khi hệ thống kiểm soát không đủ mà bạn vẫn nhận vai trò giám sát",
       description:
@@ -927,7 +927,7 @@ export const CFA_ETHICS_APPLIED_LESSONS: Lesson[] = [
       { label: "Lưu: dữ liệu, giả định, phương án đã loại bỏ", arrow: true },
       { label: "Hồ sơ thuộc về công ty, không đi theo bạn khi nghỉ" },
     ],
-    interactiveType: "chart",
+    interactiveType: "ethics-case",
     realWorldExample: {
       company: "Thời hạn lưu trữ và bên sở hữu",
       description:
@@ -1089,7 +1089,7 @@ export const CFA_ETHICS_APPLIED_LESSONS: Lesson[] = [
       { label: "Công bố phải nổi bật và dễ hiểu", arrow: true },
       { label: "Chân trang bằng ngôn ngữ pháp lý không đạt chuẩn" },
     ],
-    interactiveType: "chart",
+    interactiveType: "ethics-case",
     realWorldExample: {
       company: "Công bố cho nhà tuyển dụng và cho khách hàng là hai nghĩa vụ khác nhau",
       description:
@@ -1251,7 +1251,7 @@ export const CFA_ETHICS_APPLIED_LESSONS: Lesson[] = [
       { label: "Không gian lận dưới mọi hình thức trong phòng thi", arrow: true },
       { label: "Bảo vệ tính công bằng giữa thí sinh, không phải bản quyền đề" },
     ],
-    interactiveType: "chart",
+    interactiveType: "ethics-case",
     realWorldExample: {
       company: "Phạm vi trải dài trước, trong và sau kỳ thi",
       description:
@@ -1420,7 +1420,7 @@ export const CFA_ETHICS_APPLIED_LESSONS: Lesson[] = [
       { label: "Composite gộp theo chiến lược, không theo kết quả", arrow: true },
       { label: "Không còn chỗ nào để giấu một chiến lược thất bại" },
     ],
-    interactiveType: "chart",
+    interactiveType: "ethics-case",
     realWorldExample: {
       company: "Xác minh (verification) không phải kiểm toán từng con số",
       description:
@@ -1589,7 +1589,7 @@ export const CFA_ETHICS_APPLIED_LESSONS: Lesson[] = [
       { label: "Danh sách hạn chế: công bố nội bộ, cấm giao dịch", arrow: true },
       { label: "Đăng ký trước: chặn giao dịch trước khi nó xảy ra" },
     ],
-    interactiveType: "chart",
+    interactiveType: "ethics-case",
     realWorldExample: {
       company: "Vì sao kiểm soát phòng ngừa mạnh hơn kiểm soát phát hiện",
       description:
@@ -1751,7 +1751,7 @@ export const CFA_ETHICS_APPLIED_LESSONS: Lesson[] = [
       { label: "Thiên lệch dữ liệu huấn luyện thành thiên lệch khuyến nghị", arrow: true },
       { label: "V(B): khách hàng phải biết mô hình đang tham gia quyết định" },
     ],
-    interactiveType: "chart",
+    interactiveType: "ethics-case",
     realWorldExample: {
       company: "Thiên lệch dữ liệu không tự biến mất vì mô hình là máy",
       description:
@@ -1913,7 +1913,7 @@ export const CFA_ETHICS_APPLIED_LESSONS: Lesson[] = [
       { label: "Luật trong nước lỏng hơn không gỡ nghĩa vụ theo Code", arrow: true },
       { label: "Chiều 'Code khắt khe hơn' không có ai cưỡng chế ngoài bạn" },
     ],
-    interactiveType: "chart",
+    interactiveType: "ethics-case",
     realWorldExample: {
       company: "Ba vùng mà Code thường đi trước quy định trong nước",
       description:

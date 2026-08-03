@@ -48,7 +48,6 @@ export const READING_STATEMENTS_LESSONS: Lesson[] = [
       { label: "Nợ tiềm tàng và cam kết: nghĩa vụ chưa lên bảng cân đối", arrow: true },
       { label: "Bên liên quan: doanh thu này bán cho ai" },
     ],
-    interactiveType: "process",
     realWorldExample: {
       company: "Doanh nghiệp bất động sản ghi nhận doanh thu bán căn hộ",
       description:
@@ -225,7 +224,7 @@ export const READING_STATEMENTS_LESSONS: Lesson[] = [
       { label: "Chia mọi khoản mục cho gốc đó", arrow: true },
       { label: "So giữa các doanh nghiệp, hoặc giữa các năm của cùng một doanh nghiệp" },
     ],
-    interactiveType: "chart",
+    interactiveType: "ratios",
     realWorldExample: {
       company: "So một chuỗi bán lẻ lớn với một chuỗi vùng",
       description:
@@ -387,7 +386,6 @@ export const READING_STATEMENTS_LESSONS: Lesson[] = [
       { label: "Trái ngược: không phản ánh trung thực - dừng lại", arrow: true },
       { label: "Từ chối: không đủ cơ sở để có ý kiến - dừng lại" },
     ],
-    interactiveType: "process",
     realWorldExample: {
       company: "Đoạn 'nghi ngờ khả năng hoạt động liên tục'",
       description:

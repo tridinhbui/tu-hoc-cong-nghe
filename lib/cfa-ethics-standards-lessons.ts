@@ -96,7 +96,7 @@ export const CFA_ETHICS_STANDARDS_LESSONS: Lesson[] = [
       { label: "Hành động: làm, hoặc leo thang lên cấp cao hơn", arrow: true },
       { label: "Nhìn lại: kết quả có đúng như dự kiến không" },
     ],
-    interactiveType: "chart",
+    interactiveType: "ethics-case",
     realWorldExample: {
       company: "Vì sao bước 'nhìn lại' hay bị bỏ qua nhất",
       description:
@@ -266,7 +266,7 @@ export const CFA_ETHICS_STANDARDS_LESSONS: Lesson[] = [
       { label: "Cạnh tranh không tự lọc được bên kém", arrow: true },
       { label: "Cần ràng buộc đạo đức và quy định bù vào" },
     ],
-    interactiveType: "chart",
+    interactiveType: "ethics-case",
     realWorldExample: {
       company: "Vì sao mất niềm tin lan ra cả ngành",
       description:
@@ -432,7 +432,7 @@ export const CFA_ETHICS_STANDARDS_LESSONS: Lesson[] = [
       { label: "Code of Ethics và Standards", arrow: true },
       { label: "Áp dụng bên NGHIÊM NGẶT NHẤT trong ba" },
     ],
-    interactiveType: "chart",
+    interactiveType: "ethics-case",
     realWorldExample: {
       company: "Nghĩa vụ tách mình (dissociation)",
       description:
@@ -598,7 +598,7 @@ export const CFA_ETHICS_STANDARDS_LESSONS: Lesson[] = [
       { label: "Phán đoán lệch mà người trong cuộc không thấy", arrow: true },
       { label: "Xử lý: loại bỏ xung đột trước, công bố sau" },
     ],
-    interactiveType: "chart",
+    interactiveType: "ethics-case",
     realWorldExample: {
       company: "Nghiên cứu do tổ chức phát hành trả tiền",
       description:
@@ -767,7 +767,7 @@ export const CFA_ETHICS_STANDARDS_LESSONS: Lesson[] = [
       { label: "Không cần ý định lừa dối vẫn thành vi phạm", arrow: true },
       { label: "Chịu trách nhiệm cho từng chữ mang tên bạn" },
     ],
-    interactiveType: "chart",
+    interactiveType: "ethics-case",
     realWorldExample: {
       company: "Ngoại lệ cho dữ liệu thực tế đã công bố",
       description:
@@ -933,7 +933,7 @@ export const CFA_ETHICS_STANDARDS_LESSONS: Lesson[] = [
       { label: "Ghép lại bằng phân tích của chính bạn", arrow: true },
       { label: "Kết luận trọng yếu - hợp pháp, là tài sản của bạn" },
     ],
-    interactiveType: "chart",
+    interactiveType: "ethics-case",
     realWorldExample: {
       company: "Vì sao lưu hồ sơ là phần quan trọng nhất của mosaic",
       description:
@@ -1098,7 +1098,7 @@ export const CFA_ETHICS_STANDARDS_LESSONS: Lesson[] = [
       { label: "Ý định nằm trong định nghĩa vi phạm", arrow: true },
       { label: "Đọc ý định qua mô hình hành vi, không qua lời khai" },
     ],
-    interactiveType: "chart",
+    interactiveType: "ethics-case",
     realWorldExample: {
       company: "Ranh giới với hoạt động tạo lập thị trường",
       description:
@@ -1264,7 +1264,7 @@ export const CFA_ETHICS_STANDARDS_LESSONS: Lesson[] = [
       { label: "Điều kiện 2: trong cùng một nhóm thì không ai ưu tiên hơn ai", arrow: true },
       { label: "Cái bị cấm là ưu tiên ngầm, không phải phân tầng dịch vụ" },
     ],
-    interactiveType: "chart",
+    interactiveType: "ethics-case",
     realWorldExample: {
       company: "Phân bổ lệnh khi không đủ hàng",
       description:
@@ -1429,7 +1429,7 @@ export const CFA_ETHICS_STANDARDS_LESSONS: Lesson[] = [
       { label: "Hiệu suất mô phỏng ngược: chiến lược tối ưu trên quá khứ", arrow: true },
       { label: "Cả ba đều đúng từng con số mà vẫn gây hiểu nhầm" },
     ],
-    interactiveType: "chart",
+    interactiveType: "ethics-case",
     realWorldExample: {
       company: "Hiệu suất mô phỏng ngược (backtest)",
       description:
@@ -1591,7 +1591,7 @@ export const CFA_ETHICS_STANDARDS_LESSONS: Lesson[] = [
       { label: "Nhà tuyển dụng đồng ý BẰNG VĂN BẢN", arrow: true },
       { label: "Rồi mới được nhận" },
     ],
-    interactiveType: "chart",
+    interactiveType: "ethics-case",
     realWorldExample: {
       company: "Vì sao phạm vi rộng hơn tiền",
       description:
@@ -1753,7 +1753,7 @@ export const CFA_ETHICS_STANDARDS_LESSONS: Lesson[] = [
       { label: "Nêu giới hạn: điều gì làm kết luận đổi", arrow: true },
       { label: "Báo khi quy trình hoặc giả định thay đổi" },
     ],
-    interactiveType: "chart",
+    interactiveType: "ethics-case",
     realWorldExample: {
       company: "Nghĩa vụ báo khi quy trình thay đổi",
       description:
@@ -1916,7 +1916,7 @@ export const CFA_ETHICS_STANDARDS_LESSONS: Lesson[] = [
       { label: "Nộp đơn, được cấp, duy trì tư cách thành viên", arrow: true },
       { label: "Đủ cả bốn mới được dùng danh xưng CFA" },
     ],
-    interactiveType: "chart",
+    interactiveType: "ethics-case",
     realWorldExample: {
       company: "Vì sao không có 'CFA Level II' như một danh hiệu",
       description:

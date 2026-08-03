@@ -40,7 +40,6 @@ export const DATA_THINKING_LESSONS: Lesson[] = [
       { label: "Xấu đi thì làm gì khác?", arrow: true },
       { label: "Có bị lách được không?" },
     ],
-    interactiveType: "chart",
     realWorldExample: {
       company: "Ngân hàng đo số tài khoản mở mới",
       description:
@@ -212,7 +211,6 @@ export const DATA_THINKING_LESSONS: Lesson[] = [
       { label: "So sánh các nhóm ở cùng độ tuổi", arrow: true },
       { label: "Nhóm mới tốt hơn hay xấu hơn?" },
     ],
-    interactiveType: "process",
     realWorldExample: {
       company: "Ứng dụng tài chính và cái bẫy tăng trưởng che lấp",
       description:
@@ -372,7 +370,6 @@ export const DATA_THINKING_LESSONS: Lesson[] = [
       { label: "Chia nhóm ngẫu nhiên, chạy đủ thời gian", arrow: true },
       { label: "Kết luận một lần, không nhìn giữa chừng" },
     ],
-    interactiveType: "process",
     realWorldExample: {
       company: "Thử nghiệm giao diện đăng ký của một ứng dụng tài chính",
       description:
@@ -541,7 +538,6 @@ export const DATA_THINKING_LESSONS: Lesson[] = [
       { label: "Hay C gây ra cả hai?", arrow: true },
       { label: "Hay chỉ là cách chọn mẫu?" },
     ],
-    interactiveType: "chart",
     realWorldExample: {
       company: "Thiên lệch sống sót trong dữ liệu quỹ đầu tư",
       description:
@@ -712,7 +708,6 @@ export const DATA_THINKING_LESSONS: Lesson[] = [
       { label: "Giới hạn và rủi ro", arrow: true },
       { label: "Phụ lục cho người muốn đào sâu" },
     ],
-    interactiveType: "process",
     realWorldExample: {
       company: "Hai cách trình bày cùng một phân tích công nợ",
       description:
@@ -884,7 +879,6 @@ export const DATA_THINKING_LESSONS: Lesson[] = [
       { label: "Đo kết quả theo từng nhóm", arrow: true },
       { label: "Giải thích được quyết định không?" },
     ],
-    interactiveType: "process",
     realWorldExample: {
       company: "Mô hình duyệt hồ sơ học từ dữ liệu lịch sử",
       description:

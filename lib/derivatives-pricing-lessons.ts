@@ -39,7 +39,7 @@ export const DERIVATIVES_PRICING_LESSONS: Lesson[] = [
       { label: "Put + cổ phiếu", arrow: true },
       { label: "Nên phải cùng giá hôm nay" },
     ],
-    interactiveType: "process",
+    interactiveType: "payoff",
     realWorldExample: {
       company: "Bàn giao dịch phái sinh",
       description:
@@ -223,7 +223,7 @@ export const DERIVATIVES_PRICING_LESSONS: Lesson[] = [
       { label: "Phòng hộ động bằng delta", arrow: true },
       { label: "Ra giá quyền chọn duy nhất không arbitrage" },
     ],
-    interactiveType: "chart",
+    interactiveType: "payoff",
     realWorldExample: {
       company: "Long-Term Capital Management, 1998",
       description:
@@ -625,7 +625,7 @@ export const DERIVATIVES_PRICING_LESSONS: Lesson[] = [
       { label: "Độ biến động hàm ý theo từng giá thực hiện", arrow: true },
       { label: "Vẽ ra: nụ cười hoặc độ nghiêng biến động" },
     ],
-    interactiveType: "chart",
+    interactiveType: "payoff",
     realWorldExample: {
       company: "Chỉ số biến động VIX",
       description:

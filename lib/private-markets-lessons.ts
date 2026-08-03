@@ -37,7 +37,6 @@ export const PRIVATE_MARKETS_LESSONS: Lesson[] = [
       { label: "Thời kỳ đầu tư rồi thời kỳ nắm giữ", arrow: true },
       { label: "Thoái vốn và phân phối tiền về cho LP" },
     ],
-    interactiveType: "process",
     realWorldExample: {
       company: "Áp lực giải ngân cuối thời kỳ đầu tư",
       description:
@@ -201,7 +200,6 @@ export const PRIVATE_MARKETS_LESSONS: Lesson[] = [
       { label: "Cơ chế bắt kịp cho nhà quản lý", arrow: true },
       { label: "Phần còn lại chia theo tỷ lệ đã thỏa thuận" },
     ],
-    interactiveType: "process",
     realWorldExample: {
       company: "Cấu trúc phí thông lệ của ngành",
       description:
@@ -370,7 +368,6 @@ export const PRIVATE_MARKETS_LESSONS: Lesson[] = [
       { label: "DPI: tiền đã thực về tay", arrow: true },
       { label: "TVPI: tổng giá trị gồm cả phần chưa thoái" },
     ],
-    interactiveType: "chart",
     realWorldExample: {
       company: "Đường cong J trong những năm đầu của quỹ",
       description:
@@ -539,7 +536,6 @@ export const PRIVATE_MARKETS_LESSONS: Lesson[] = [
       { label: "Niêm yết ra công chúng", arrow: true },
       { label: "Bán phần vốn góp trên thị trường thứ cấp" },
     ],
-    interactiveType: "process",
     realWorldExample: {
       company: "Khi cửa niêm yết đóng lại",
       description:
