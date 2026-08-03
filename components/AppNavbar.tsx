@@ -421,7 +421,7 @@ export default function AppNavbar() {
         }}
         className={`group relative flex items-center gap-2.5 rounded-2xl px-3 py-2 text-sm font-bold transition-all duration-200 ${
           isGame
-            ? "border border-amber-200 bg-amber-50 text-amber-700 shadow-sm hover:bg-amber-100/70"
+            ? "border border-amber-200 bg-amber-50 text-amber-700 shadow-sm hover:bg-amber-100/70 dark:border-amber-900 dark:bg-amber-950/40 dark:text-amber-300 dark:hover:bg-amber-900/40"
             : isDaiSanh
             ? "border border-violet-300 bg-gradient-to-r from-violet-50 to-indigo-50/70 text-violet-700 shadow-sm hover:from-violet-100 hover:to-indigo-100/70 dark:border-violet-800/70 dark:from-violet-950/60 dark:to-indigo-950/40 dark:text-violet-300 dark:hover:from-violet-900/60"
             : isKiemTra && hasPendingNewsQuiz
@@ -433,11 +433,11 @@ export default function AppNavbar() {
                   : "text-stone-600 hover:bg-stone-100 hover:text-stone-900 dark:text-stone-400 dark:hover:bg-stone-900 dark:hover:text-stone-100"
         }`}
       >
-        <Icon className={`h-4 w-4 shrink-0 ${isGame ? "text-amber-600" : isDaiSanh ? "text-violet-500 dark:text-violet-400" : isCareer ? "text-emerald-600 dark:text-emerald-400" : isKiemTra && hasPendingNewsQuiz ? "text-rose-500 animate-pulse" : isNhomHoc && hasPendingStudyGroupCheckin ? "text-amber-600 animate-bounce" : ""}`} />
+        <Icon className={`h-4 w-4 shrink-0 ${isGame ? "text-amber-600 dark:text-amber-400" : isDaiSanh ? "text-violet-500 dark:text-violet-400" : isCareer ? "text-emerald-600 dark:text-emerald-400" : isKiemTra && hasPendingNewsQuiz ? "text-rose-500 animate-pulse" : isNhomHoc && hasPendingStudyGroupCheckin ? "text-amber-600 animate-bounce" : ""}`} />
         <span className="flex-1">{isGame ? "Game Kingdom" : navLabel}</span>
         {isGame && (
-          <span className="inline-flex items-center gap-1 text-[9px] font-bold uppercase tracking-wider px-1.5 py-0.5 rounded-full bg-white text-amber-700 border border-amber-200">
-            <Flame className="h-2.5 w-2.5 text-orange-500" />
+          <span className="inline-flex items-center gap-1 text-[9px] font-bold uppercase tracking-wider px-1.5 py-0.5 rounded-full bg-white text-amber-700 border border-amber-200 dark:bg-amber-950 dark:text-amber-300 dark:border-amber-800">
+            <Flame className="h-2.5 w-2.5 text-orange-500 dark:text-orange-400" />
             HOT
           </span>
         )}
