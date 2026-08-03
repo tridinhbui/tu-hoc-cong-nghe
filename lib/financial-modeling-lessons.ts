@@ -154,6 +154,41 @@ export const FINANCIAL_MODELING_LESSONS: Lesson[] = [
         ],
       },
       {
+        type: "heading",
+        text: "Một con số cứng nằm trong công thức tốn bao nhiêu",
+      },
+      {
+        type: "paragraph",
+        text: "Giả sử thuế suất 20% được gõ thẳng vào công thức lợi nhuận sau thuế, ở 5 năm dự phóng × 3 kịch bản = 15 ô. Đến khi cần thử mức 17%, bạn phải tìm và sửa đúng 15 chỗ, và chỉ cần bỏ sót một ô là mô hình vẫn chạy, vẫn ra số đẹp, chỉ sai. Không có cách nào để Excel báo cho bạn biết. Cùng giả định ấy đặt ở MỘT ô trong sheet giả định, mọi công thức trỏ về đó: đổi một lần, mọi kịch bản cập nhật, và không có ô nào để bỏ sót. Đây là toàn bộ lý do của quy tắc một-giả-định-một-chỗ - nó không phải chuyện gọn gàng, nó là chuyện có bỏ sót được hay không.",
+      },
+      {
+        type: "conceptTable",
+        title: "Bốn quy tắc cấu trúc, và loại lỗi mà bỏ qua nó sẽ sinh ra",
+        subtitle: "Đều là quy ước, không phải kỹ thuật - nhưng đây là chỗ mô hình hỏng",
+        concepts: [
+          {
+            vi: "Mỗi giả định đúng một ô",
+            en: "Single source of truth",
+            def: "Bỏ qua: sửa kịch bản phải sửa nhiều chỗ, và sai số vào mô hình qua đúng cái ô bị quên.",
+          },
+          {
+            vi: "Thời gian chảy một chiều, trái sang phải",
+            en: "One direction of time",
+            def: "Bỏ qua: công thức năm 3 trỏ ngược về năm 5, và không ai lần được thứ tự tính - cũng là nguồn gốc phần lớn vòng lặp ngoài ý muốn.",
+          },
+          {
+            vi: "Cùng một hàng, cùng một công thức",
+            en: "Consistent rows",
+            def: "Bỏ qua: một ô giữa hàng bị sửa riêng. Đây là lỗi khó thấy nhất vì hàng vẫn trông đều tăm tắp; chỉ Ctrl+' hoặc chế độ hiện công thức mới lộ ra.",
+          },
+          {
+            vi: "Không trộn đơn vị trong một hàng",
+            en: "One unit per row",
+            def: "Bỏ qua: tỷ đồng và triệu đồng nằm chung một hàng, tổng cộng ra một con số vô nghĩa mà vẫn cộng được.",
+          },
+        ],
+      },
+      {
         type: "closing",
         lines: [
           "Cấu trúc tốt khiến lỗi tự lộ diện; cấu trúc tệ khiến lỗi ẩn mình.",
@@ -638,6 +673,19 @@ export const FINANCIAL_MODELING_LESSONS: Lesson[] = [
         type: "callout",
         label: "Tăng trưởng luôn hút tiền",
         text: "Ngay cả khi hiệu quả vận hành không đổi, doanh thu tăng sẽ kéo tồn kho và khoản phải thu tăng theo, hút tiền ra khỏi doanh nghiệp. Mô hình giữ vốn lưu động cố định sẽ che mất rủi ro này - đúng thứ rủi ro đã khiến nhiều doanh nghiệp tăng trưởng nhanh phá sản.",
+      },
+      {
+        type: "heading",
+        text: "Tăng trưởng ăn tiền như thế nào, tính bằng số",
+      },
+      {
+        type: "paragraph",
+        text: "Doanh thu 1.000 tỷ, giá vốn 700 tỷ. Số ngày: phải thu 60, tồn kho 45, phải trả 30. Vốn lưu động = 1.000×60/365 + 700×45/365 − 700×30/365 = 164 + 86 − 58 ≈ 193 tỷ. Sang năm doanh thu tăng 30% lên 1.300 tỷ, giá vốn tăng cùng nhịp lên 910 tỷ, số ngày giữ nguyên: 214 + 112 − 75 ≈ 251 tỷ. Chênh 58 tỷ - đó là tiền doanh nghiệp phải bỏ ra chỉ để nuôi phần tăng trưởng, trước khi nói tới bất kỳ khoản đầu tư tài sản cố định nào.",
+      },
+      {
+        type: "callout",
+        label: "Vì sao doanh nghiệp có lãi vẫn chết vì tiền",
+        text: "Nếu lợi nhuận sau thuế của năm tăng trưởng đó là 50 tỷ mà vốn lưu động ngốn 58 tỷ, dòng tiền hoạt động đã âm dù báo cáo kết quả kinh doanh rất đẹp. Càng tăng nhanh càng hút mạnh, và đó là lý do một doanh nghiệp đang lớn nhanh có thể phá sản trong khi vẫn có lãi từng quý. Mô hình dự phóng vốn lưu động bằng một con số cố định sẽ không bao giờ cho thấy điều này - nó chỉ hiện ra khi vốn lưu động được buộc vào doanh thu qua số ngày luân chuyển.",
       },
       {
         type: "closing",
@@ -1148,6 +1196,19 @@ export const FINANCIAL_MODELING_LESSONS: Lesson[] = [
         text: "Nếu bảng độ nhạy cho khoảng giá trị rất rộng, đó không phải dấu hiệu mô hình tệ - đó là dấu hiệu bài toán vốn dĩ bất định. Phản ứng đúng là đầu tư nghiên cứu vào các biến nhạy nhất, không phải lấy trung bình rồi giả vờ đã chắc chắn.",
       },
       {
+        type: "heading",
+        text: "Chọn hai biến nào cho bảng độ nhạy",
+      },
+      {
+        type: "paragraph",
+        text: "Bảng độ nhạy hai chiều chỉ có hai trục, nên câu hỏi thật là chọn biến nào. Cách làm là chạy trước một lượt: đổi từng giả định một, mỗi lần ±10%, ghi lại giá trị định giá thay đổi bao nhiêu, rồi xếp theo biên độ - biểu đồ xếp hạng đó gọi là tornado vì các thanh dài nhất nằm trên cùng. Hai biến đứng đầu là hai trục của bảng. Kết quả gần như luôn giống nhau ở mô hình DCF: WACC và tốc độ tăng trưởng dài hạn, vì cả hai đều nằm trong mẫu số của giá trị cuối kỳ - vốn chiếm 70-80% tổng giá trị. Đặt biên lợi nhuận hay doanh thu năm 2 lên trục là lãng phí một bảng.",
+      },
+      {
+        type: "callout",
+        label: "Khoảng rộng không phải lỗi của mô hình",
+        text: "WACC ±1% và g ±0,5% có thể cho khoảng định giá rộng gấp đôi từ đáy tới đỉnh. Phản ứng sai là siết dải lại cho đẹp báo cáo. Phản ứng đúng là nói thẳng: định giá doanh nghiệp này nhạy tới mức đó với hai giả định không ai biết chắc, nên con số điểm giữa không đáng tin hơn phần còn lại của dải. Một khoảng trung thực còn dùng để ra quyết định được; một con số giả vờ chính xác thì không.",
+      },
+      {
         type: "closing",
         lines: [
           "Trình bày một khoảng giá trị kèm điều kiện đáng tin hơn nhiều so với một con số không có ngữ cảnh.",
@@ -1455,6 +1516,42 @@ export const FINANCIAL_MODELING_LESSONS: Lesson[] = [
         type: "callout",
         label: "Nguyên tắc bàn giao",
         text: "Trước khi gửi mô hình cho người khác, hãy tự hỏi: nếu người nhận thay đổi một giả định bất kỳ, mô hình có tự báo lỗi khi bị phá vỡ không? Nếu không, bạn chưa hoàn thành công việc.",
+      },
+      {
+        type: "heading",
+        text: "Năm phép thử tính hợp lý, có ngưỡng cụ thể",
+      },
+      {
+        type: "conceptTable",
+        title: "Excel không bao giờ báo những lỗi này - phải tự hỏi",
+        subtitle: "Mỗi dòng là một câu hỏi có câu trả lời đúng/sai rõ ràng",
+        concepts: [
+          {
+            vi: "Thị phần ngầm định",
+            en: "Implied market share",
+            def: "Lấy doanh thu dự phóng năm cuối chia quy mô thị trường. Vượt 100% là vô lý; vượt gấp đôi thị phần hiện tại mà không có lý do cụ thể cũng vậy.",
+          },
+          {
+            vi: "Tăng trưởng vĩnh viễn",
+            en: "Terminal growth",
+            def: "Phải thấp hơn tăng trưởng GDP dài hạn. Cao hơn nghĩa là doanh nghiệp cuối cùng sẽ lớn hơn cả nền kinh tế - toán học không cấm, nhưng thực tế thì có.",
+          },
+          {
+            vi: "Biên lợi nhuận so với ngành",
+            en: "Margin vs peers",
+            def: "Dự phóng biên vượt hẳn mọi doanh nghiệp cùng ngành thì phải trả lời được: nhờ cái gì, và vì sao đối thủ không làm được.",
+          },
+          {
+            vi: "ROIC mãi mãi trên WACC",
+            en: "Excess returns forever",
+            def: "Cạnh tranh kéo ROIC về gần WACC theo thời gian. Mô hình cho ROIC 25% trên WACC 10% tới vô hạn là mô hình giả định không ai bước vào ngành này.",
+          },
+          {
+            vi: "Capex so với khấu hao",
+            en: "Capex vs D&A",
+            def: "Ở trạng thái ổn định hai con số phải xấp xỉ nhau. Capex thấp hơn khấu hao mãi mãi nghĩa là doanh nghiệp đang teo dần tài sản mà vẫn tăng trưởng doanh thu.",
+          },
+        ],
       },
       {
         type: "closing",
