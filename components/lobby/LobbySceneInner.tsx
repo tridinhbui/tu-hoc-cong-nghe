@@ -12,6 +12,7 @@ import { ROTUNDA_Z } from "./room-obstacles";
 import { daylightAt, rgbToHex, sunPosition } from "./daylight";
 import StationDoors from "./StationDoors";
 import type { Station } from "./stations";
+import { useRenderQuality } from "@/components/world-controls/render-quality";
 import LobbyAvatar, { type AvatarPose } from "./LobbyAvatar";
 import {
   CHAT_BUBBLE_MS,
@@ -281,6 +282,7 @@ export default function LobbySceneInner({
   seatedTable,
   seatStartedAt,
 }: Props) {
+  const quality = useRenderQuality();
   const [peers, setPeers] = useState<LobbyPeer[]>([]);
   const [speeches, setSpeeches] = useState<Record<string, { text: string; at: number }>>({});
   const walkRef = useRef(createWalkState());
@@ -424,11 +426,11 @@ export default function LobbySceneInner({
 
   return (
     <Canvas
-      shadows
+      shadows={quality.shadows}
       camera={{ position: [spawnX, 3.4, spawnZ + 6], fov: 55 }}
       // Trần giới hạn DPR: màn Retina 3x không cần render 3x cho một sảnh xã
       // giao, và đây là khác biệt lớn nhất giữa mát máy và cháy quạt.
-      dpr={[1, 1.75]}
+      dpr={quality.dpr}
       gl={{ antialias: true, powerPreference: "high-performance" }}
     >
       <color attach="background" args={[rgbToHex(day.fogColor)]} />

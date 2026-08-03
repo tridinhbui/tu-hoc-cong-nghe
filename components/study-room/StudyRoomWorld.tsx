@@ -6,6 +6,7 @@ import { CHAT_MAX_LENGTH, POMODORO_MS, colorForUser, type LobbyChatMessage } fro
 import { sayInStudyWorld } from "@/lib/supabase-study-world";
 import { createWalkState } from "@/components/world-controls/easy-walk";
 import type { CharacterEquipments } from "@/lib/rpg-items";
+import { finishFocusSession, getTodayFocusSeconds, startFocusSession } from "@/lib/focus-session";
 
 /** three.js chỉ chạy phía trình duyệt: ssr:false giữ nó ngoài bundle server, và
  *  người dùng thấy khung chờ thay vì lỗi hydrate. */
@@ -117,6 +118,8 @@ export interface StudyRoomWorldProps {
   topicLabel: string;
   /** Đồ đang trang bị, nạp ở phía gọi. */
   gear?: CharacterEquipments | null;
+  /** Thành viên nhóm; ai không online sẽ ngồi mờ ở ghế của mình. */
+  members?: Array<{ userId: string; name: string; avatarUrl: string | null; color: string; level: number }>;
   /** Bấm "ra khỏi phòng" khi đứng ở cửa. */
   onExit?: () => void;
 }
@@ -133,6 +136,7 @@ export default function StudyRoomWorld({
   missionLines,
   topicLabel,
   gear,
+  members = [],
   onExit,
 }: StudyRoomWorldProps) {
   const [seatable, setSeatable] = useState<number | null>(null);
@@ -147,6 +151,10 @@ export default function StudyRoomWorld({
   const [lighting, setLighting] = useState<{ daylight: number; lampColor: string } | null>(null);
   const inputRef = useRef<HTMLInputElement>(null);
   const walkRef = useRef(createWalkState());
+  /** Id phiên đang mở ở server. Ngồi xuống mở, đứng dậy đóng - và độ dài do
+   *  server tính, nên đây chỉ cần giữ cái id. */
+  const focusIdRef = useRef<number | null>(null);
+  const [todayMinutes, setTodayMinutes] = useState<number | null>(null);
 
   // Đọc đồng hồ sau khi mount, không lúc render: giờ của server và giờ của
   // người học khác nhau, và một căn phòng sáng khác nhau ở hai lần render đầu
@@ -158,6 +166,27 @@ export default function StudyRoomWorld({
     const timer = window.setInterval(read, 10 * 60 * 1000);
     return () => window.clearInterval(timer);
   }, []);
+
+  /** Mở và đóng phiên ngồi học. Trước đây ngồi hết 25 phút không để lại gì cả:
+   *  đứng dậy là mất sạch, không chuỗi ngày, không dòng nào trong lịch sử. */
+  useEffect(() => {
+    if (seated === null) return;
+    let cancelled = false;
+    void startFocusSession("nhom-hoc", String(roomId)).then((id) => {
+      if (cancelled) void (id !== null && finishFocusSession(id));
+      else focusIdRef.current = id;
+    });
+    return () => {
+      cancelled = true;
+      const id = focusIdRef.current;
+      focusIdRef.current = null;
+      if (id !== null) {
+        void finishFocusSession(id).then((r) => {
+          if (r.counted) void getTodayFocusSeconds().then((s) => setTodayMinutes(Math.round(s / 60)));
+        });
+      }
+    };
+  }, [seated, roomId]);
 
   /** Nhịp giây cho đồng hồ phiên. Chỉ chạy khi đang ngồi - một setInterval sống
    *  suốt phiên chỉ để cập nhật thứ không hiển thị là lãng phí, và nó làm cả
@@ -218,6 +247,7 @@ export default function StudyRoomWorld({
           onPeerCount={setPeerCount}
           onChatMessage={pushLog}
           selfSpeech={selfSpeech}
+          members={members}
           boardTitle={`Phòng ${topicLabel}`}
           boardRows={boardRows}
           lampColor={lighting.lampColor}
@@ -238,6 +268,14 @@ export default function StudyRoomWorld({
           <p className="text-[10px] text-stone-400">
             {peerCount > 1 ? `${peerCount} người đang ở trong phòng` : "Bạn đang ở đây một mình"}
           </p>
+          {/* Tổng thời gian đã ngồi học hôm nay. Hiện sau phiên đầu tiên chứ
+              không hiện sẵn số 0: một dòng "0 phút" ngay lúc vừa vào phòng là
+              lời trách móc, không phải thông tin. */}
+          {todayMinutes !== null && todayMinutes > 0 && (
+            <p className="mt-0.5 text-[10px] font-bold text-emerald-300">
+              ⏱ Hôm nay bạn đã ngồi học {todayMinutes} phút
+            </p>
+          )}
         </div>
       </div>
 

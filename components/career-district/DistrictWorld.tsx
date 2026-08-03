@@ -21,6 +21,7 @@ import { sayInStudyWorld } from "@/lib/supabase-study-world";
 import { CHAT_MAX_LENGTH } from "@/lib/supabase-lobby";
 import { createWalkState } from "@/components/world-controls/easy-walk";
 import PillarQuiz from "./PillarQuiz";
+import Minimap, { type MinimapPeer } from "./Minimap";
 import type { CharacterEquipments } from "@/lib/rpg-items";
 import { CAREER_CATEGORY_ORDER, CAREER_CATEGORY_LABELS, isCareerCategory } from "@/lib/career-categories";
 
@@ -172,6 +173,10 @@ export default function DistrictWorld({
   const [hintSeen, setHintSeen] = useState(false);
   const [daylight, setDaylight] = useState<number | null>(null);
   const walkRef = useRef(createWalkState());
+  /** Vị trí người chơi cho bản đồ nhỏ. Ref chứ không state: cảnh ghi vào nó
+   *  mỗi khung hình. */
+  const playerRef = useRef({ x: 0, z: 0 });
+  const [mapPeers, setMapPeers] = useState<MinimapPeer[]>([]);
 
   const room = getRoom(roomId);
 
@@ -273,6 +278,15 @@ export default function DistrictWorld({
     return out;
   }, [doneSlugs]);
 
+  /** Chặng chưa xong đầu tiên - chỗ người học đang đứng trên lộ trình. */
+  const currentStageKey = useMemo(() => {
+    for (const st of stages) {
+      if (!st.available) continue;
+      if (st.slugs.some((sl) => !doneSlugs.has(sl))) return st.key;
+    }
+    return null;
+  }, [stages, doneSlugs]);
+
   const inTower = roomId === "thap" || String(roomId).startsWith("tang-");
 
   const roomFormulas = useMemo(() => (isCareerCategory(roomId) ? formulasFor(roomId, 4) : []), [roomId]);
@@ -302,6 +316,8 @@ export default function DistrictWorld({
           onPortalChange={setPortal}
           onLiftChange={setAtLift}
           onStopChange={setStop}
+          playerRef={playerRef}
+          onPeersChange={setMapPeers}
           doneSlugs={doneSlugs}
           progressByCategory={progressByCategory}
           onWalkingChange={setWalking}
@@ -485,6 +501,11 @@ export default function DistrictWorld({
           <div className="mt-2 max-h-64 space-y-0.5 overflow-y-auto">
             {stages.map((st) => {
               const done = st.slugs.filter((sl) => doneSlugs.has(sl)).length;
+              const finished = done === st.slugs.length;
+              // "Chặng đang học" = chặng chưa xong đầu tiên trong danh sách.
+              // Không lưu ở đâu cả, suy ra từ tiến độ - một cột trạng thái nữa
+              // trong database là một cột nữa có thể lệch khỏi sự thật.
+              const current = !finished && st.key === currentStageKey;
               return (
                 <button
                   key={st.key}
@@ -502,8 +523,12 @@ export default function DistrictWorld({
                   {/* Chặng chưa mở thì KHOÁ THẬT, không phải mở rồi mới báo:
                       bước vào một hành lang xong mới bị đuổi ra tệ hơn nhiều
                       so với thấy nó khoá từ đầu. */}
-                  <span className="text-[11px] font-black text-emerald-200">
-                    {st.available ? st.label : `🔒 ${st.label}`}
+                  <span
+                    className={`text-[11px] font-black ${
+                      finished ? "text-emerald-400" : current ? "text-amber-300" : "text-emerald-200"
+                    }`}
+                  >
+                    {!st.available ? `🔒 ${st.label}` : finished ? `✓ ${st.label}` : current ? `▶ ${st.label}` : st.label}
                   </span>
                   <span className="ml-1 text-[10px] text-stone-500">{st.trackTitle}</span>
                   <span className="ml-1 font-mono text-[10px] text-stone-400">
@@ -684,8 +709,10 @@ export default function DistrictWorld({
         </form>
       )}
 
+      <Minimap room={room} playerRef={playerRef} peers={mapPeers} />
+
       {/* Cần điều khiển, luôn hiện */}
-      <div className="pointer-events-none absolute bottom-6 right-6 z-10">
+      <div className="pointer-events-none absolute bottom-6 right-6 z-20 sm:bottom-44">
         <Joystick
           onVector={(x, y) => {
             const walk = walkRef.current;

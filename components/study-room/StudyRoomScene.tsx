@@ -22,6 +22,7 @@ import {
   type OrbitState,
   type WalkState,
 } from "@/components/world-controls/easy-walk";
+import { useRenderQuality } from "@/components/world-controls/render-quality";
 import LobbyAvatar, { type AvatarPose } from "@/components/lobby/LobbyAvatar";
 import { disposeRoomTextures } from "@/components/lobby/room-textures";
 import { CHAT_BUBBLE_MS, MOVE_BROADCAST_MS, type LobbyChatMessage } from "@/lib/supabase-lobby";
@@ -186,6 +187,10 @@ export interface StudyRoomSceneProps {
   onChatMessage: (message: LobbyChatMessage) => void;
   /** Câu của chính mình, do HUD đẩy xuống ngay khi bấm gửi. */
   selfSpeech: { text: string; at: number } | null;
+  /** Thành viên nhóm, kể cả người đang offline. Người offline vẫn ngồi ở bàn
+   *  dạng mờ: một căn phòng tám ghế mà lúc nào cũng chỉ có một người trông như
+   *  hỏng, trong khi sự thật là nhóm có tám người và bảy người đang bận. */
+  members: Array<{ userId: string; name: string; avatarUrl: string | null; color: string; level: number }>;
   boardTitle: string;
   boardRows: string[];
   lampColor: string;
@@ -203,11 +208,13 @@ export default function StudyRoomScene({
   onPeerCount,
   onChatMessage,
   selfSpeech,
+  members,
   boardTitle,
   boardRows,
   lampColor,
   daylight,
 }: StudyRoomSceneProps) {
+  const quality = useRenderQuality();
   const [peers, setPeers] = useState<StudyWorldPeer[]>([]);
   const [speeches, setSpeeches] = useState<Record<string, { text: string; at: number }>>({});
   const selfPose = useRef<AvatarPose>({ x: 0, z: SPAWN_Z, ry: SPAWN_RY });
@@ -287,6 +294,30 @@ export default function StudyRoomScene({
     return () => window.clearInterval(timer);
   }, [speeches]);
 
+  /** Thành viên vắng mặt được xếp vào những ghế còn trống, theo thứ tự ổn
+   *  định để họ không nhảy ghế mỗi lần có người ra vào. */
+  const ghostPoseRefs = useRef(new Map<string, React.MutableRefObject<AvatarPose>>());
+  const ghosts = useMemo(() => {
+    const online = new Set(peers.map((p) => p.userId));
+    online.add(identity.userId);
+    const takenSeats = new Set(peers.filter((p) => p.seat !== null).map((p) => p.seat as number));
+    if (seated !== null) takenSeats.add(seated);
+    const free = SEATS.filter((s) => !takenSeats.has(s.index));
+    const absent = members.filter((m) => !online.has(m.userId)).slice(0, free.length);
+    for (let i = 0; i < absent.length; i += 1) {
+      const spot = free[i];
+      const existing = ghostPoseRefs.current.get(absent[i].userId);
+      const pose = { x: spot.x, z: spot.z, ry: spot.ry };
+      if (existing) existing.current = pose;
+      else ghostPoseRefs.current.set(absent[i].userId, { current: pose });
+    }
+    const ids = new Set(absent.map((m) => m.userId));
+    for (const id of [...ghostPoseRefs.current.keys()]) {
+      if (!ids.has(id)) ghostPoseRefs.current.delete(id);
+    }
+    return absent;
+  }, [members, peers, identity.userId, seated]);
+
   const others = useMemo(() => {
     const list = peers.filter((p) => p.userId !== identity.userId);
     for (const p of list) {
@@ -312,11 +343,11 @@ export default function StudyRoomScene({
 
   return (
     <Canvas
-      shadows
+      shadows={quality.shadows}
       camera={{ position: [0, 3.1, SPAWN_Z + 5], fov: 55 }}
       // Trần DPR: màn Retina 3x không cần render 3x cho một phòng học, và đây
       // là khác biệt lớn nhất giữa mát máy và cháy quạt.
-      dpr={[1, 1.75]}
+      dpr={quality.dpr}
       gl={{ antialias: true, powerPreference: "high-performance" }}
     >
       <color attach="background" args={["#12100e"]} />
@@ -351,6 +382,26 @@ export default function StudyRoomScene({
         poseRef={selfPose}
         isSelf
       />
+      {/* Thành viên vắng mặt, ngồi mờ ở ghế của mình. Chỉ vẽ những ghế mà
+          không có ai đang online chiếm - người online luôn được vẽ đầy đủ, và
+          hai bản của cùng một người ngồi chồng nhau thì tệ hơn là không vẽ. */}
+      {ghosts.map((g) => {
+        const ref = ghostPoseRefs.current.get(g.userId);
+        if (!ref) return null;
+        return (
+          <LobbyAvatar
+            key={`ghost-${g.userId}`}
+            name={g.name}
+            color={g.color}
+            avatarUrl={g.avatarUrl}
+            status={{ streak: 0, level: g.level, doneToday: false }}
+            seated
+            poseRef={ref}
+            ghost
+          />
+        );
+      })}
+
       {others.map((p) => {
         const ref = peerPoseRefs.current.get(p.userId);
         if (!ref) return null;

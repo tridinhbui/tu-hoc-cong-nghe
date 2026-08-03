@@ -56,6 +56,7 @@ import {
 import { getRoomLighting } from "@/lib/study-room-lighting";
 import StudyRoomWorld from "@/components/study-room/StudyRoomWorld";
 import { getEquippedGear } from "@/lib/supabase-equipment";
+import { colorForUser } from "@/lib/supabase-lobby";
 import type { CharacterEquipments } from "@/lib/rpg-items";
 
 interface SessionUser {
@@ -1590,6 +1591,13 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
                       )}
                       topicLabel={topicLabel(myRoom.topic)}
                       gear={gear}
+                      members={myRoomMembers.map((m) => ({
+                        userId: m.user_id,
+                        name: m.full_name || "Thành viên",
+                        avatarUrl: m.avatar_url,
+                        color: colorForUser(m.user_id),
+                        level: m.current_level,
+                      }))}
                       onExit={() => setWalkMode(false)}
                     />
                   </div>

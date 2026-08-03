@@ -4,6 +4,7 @@ import { useRef } from "react";
 import { useFrame } from "@react-three/fiber";
 import * as THREE from "three";
 import { type CharacterEquipments } from "@/lib/rpg-items";
+import { useRenderQuality } from "@/components/world-controls/render-quality";
 
 /** Đồ trang bị hiện lên người nhân vật 3D.
  *
@@ -21,11 +22,13 @@ import { type CharacterEquipments } from "@/lib/rpg-items";
 
 const HEAD_Y = 1.62;
 
-function Crown() {
+function Crown({ still }: { still: boolean }) {
   const ref = useRef<THREE.Group>(null);
   useFrame((state) => {
     // Xoay rất chậm để bắt ánh sáng - một vương miện đứng im trông như dán.
-    if (ref.current) ref.current.rotation.y = state.clock.elapsedTime * 0.5;
+    // Trừ khi người dùng đã xin ít chuyển động, lúc đó "trông như dán" là cái
+    // giá đúng để trả.
+    if (ref.current && !still) ref.current.rotation.y = state.clock.elapsedTime * 0.5;
   });
   return (
     <group ref={ref} position={[0, HEAD_Y + 0.19, 0]}>
@@ -68,10 +71,10 @@ function Glasses() {
  *  Phía trên đầu là chỗ đã có biển tên và bong bóng thoại - ba thứ chồng nhau
  *  ở đúng một chỗ thì cái nào cũng đọc không ra. Bay vòng quanh thì nó luôn có
  *  khoảng trống của riêng mình, và chuyển động cũng khiến nó dễ nhận ra hơn. */
-function VipGem() {
+function VipGem({ still }: { still: boolean }) {
   const ref = useRef<THREE.Mesh>(null);
   useFrame((state) => {
-    if (!ref.current) return;
+    if (!ref.current || still) return;
     const t = state.clock.elapsedTime * 1.1;
     ref.current.position.set(Math.cos(t) * 0.46, HEAD_Y - 0.12 + Math.sin(t * 2) * 0.06, Math.sin(t) * 0.46);
     ref.current.rotation.y = t * 2;
@@ -164,17 +167,19 @@ function Armor({ assetKey, shirt }: { assetKey: string; shirt: string }) {
 }
 
 /** Linh vật đi theo: lượn quanh chân nhân vật, nhấp nhô. */
-function Companion({ assetKey }: { assetKey: string }) {
+function Companion({ assetKey, still }: { assetKey: string; still: boolean }) {
   const ref = useRef<THREE.Group>(null);
   const bull = assetKey === "pet_bull";
   useFrame((state) => {
-    if (!ref.current) return;
+    if (!ref.current || still) return;
     const t = state.clock.elapsedTime * 0.8;
     ref.current.position.set(Math.cos(t) * 0.75, 0.3 + Math.sin(t * 2.4) * 0.05, Math.sin(t) * 0.75 - 0.2);
     ref.current.rotation.y = -t + Math.PI / 2;
   });
   return (
-    <group ref={ref}>
+    // Vị trí ban đầu đặt sẵn cạnh nhân vật: khi đứng yên thì useFrame không
+    // chạy, và một linh vật ở gốc toạ độ sẽ nằm lồng trong hai chân người.
+    <group ref={ref} position={[0.75, 0.3, -0.2]}>
       <mesh castShadow>
         <boxGeometry args={[0.3, 0.22, 0.42]} />
         <meshStandardMaterial color={bull ? "#7f1d1d" : "#78350f"} roughness={0.85} />
@@ -210,15 +215,16 @@ export default function AvatarGear({
   gear: CharacterEquipments | null | undefined;
   shirt: string;
 }) {
+  const { reducedMotion } = useRenderQuality();
   if (!gear) return null;
   return (
     <group>
-      {gear.accessory === "acc_crown" && <Crown />}
+      {gear.accessory === "acc_crown" && <Crown still={reducedMotion} />}
       {gear.accessory === "acc_glasses" && <Glasses />}
-      {gear.accessory === "title_vip_diamond" && <VipGem />}
+      {gear.accessory === "title_vip_diamond" && <VipGem still={reducedMotion} />}
       {gear.weapon && <Weapon assetKey={gear.weapon} />}
       {gear.armor && <Armor assetKey={gear.armor} shirt={shirt} />}
-      {gear.companion && <Companion assetKey={gear.companion} />}
+      {gear.companion && <Companion assetKey={gear.companion} still={reducedMotion} />}
     </group>
   );
 }

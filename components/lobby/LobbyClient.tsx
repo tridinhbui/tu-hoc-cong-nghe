@@ -7,6 +7,7 @@ import { useRouter } from "next/navigation";
 import { createClient } from "@/lib/supabase";
 import { getUserStreak } from "@/lib/supabase-streak";
 import { getEquippedGear } from "@/lib/supabase-equipment";
+import { finishFocusSession, getTodayFocusSeconds, startFocusSession } from "@/lib/focus-session";
 import type { Station } from "./stations";
 import {
   CHAT_MAX_LENGTH,
@@ -110,6 +111,10 @@ export default function LobbyClient() {
   const [seatStartedAt, setSeatStartedAt] = useState<number | null>(null);
   const [nowTick, setNowTick] = useState(Date.now());
   const inputRef = useRef<HTMLInputElement>(null);
+  /** Phiên ngồi học ở server. Ngồi vào bàn mở, đứng dậy đóng; độ dài do server
+   *  tính từ hai mốc nó tự đặt. */
+  const focusIdRef = useRef<number | null>(null);
+  const [todayMinutes, setTodayMinutes] = useState<number | null>(null);
 
   useEffect(() => {
     const supabase = createClient();
@@ -176,6 +181,27 @@ export default function LobbyClient() {
       .catch(() => setFailed(true));
   }, [router]);
 
+  /** Mở và đóng phiên ngồi học. Trước đây ngồi hết 25 phút trong thư viện
+   *  không để lại dấu vết nào. */
+  useEffect(() => {
+    if (seatedTable === null) return;
+    let cancelled = false;
+    void startFocusSession("thu-vien", `ban-${seatedTable}`).then((id) => {
+      if (cancelled) void (id !== null && finishFocusSession(id));
+      else focusIdRef.current = id;
+    });
+    return () => {
+      cancelled = true;
+      const id = focusIdRef.current;
+      focusIdRef.current = null;
+      if (id !== null) {
+        void finishFocusSession(id).then((r) => {
+          if (r.counted) void getTodayFocusSeconds().then((s) => setTodayMinutes(Math.round(s / 60)));
+        });
+      }
+    };
+  }, [seatedTable]);
+
   /** Nhịp giây cho đồng hồ phiên trên HUD. Chỉ chạy khi đang ngồi - một
    *  setInterval sống suốt phiên chỉ để cập nhật thứ không hiển thị là lãng phí
    *  và làm cả trang re-render mỗi giây. */
@@ -229,6 +255,11 @@ export default function LobbyClient() {
       <div className="pointer-events-none absolute inset-x-0 top-0 z-10 flex justify-center p-4 pt-[max(1rem,env(safe-area-inset-top))]">
         <div className="rounded-2xl bg-stone-900/75 px-5 py-2.5 text-center shadow-lg backdrop-blur">
           <h1 className="text-sm font-bold text-amber-200">Thư viện · Phòng đọc Sài Gòn</h1>
+          {todayMinutes !== null && todayMinutes > 0 && (
+            <p className="text-[11px] font-bold text-amber-300">
+              ⏱ Hôm nay bạn đã ngồi học {todayMinutes} phút
+            </p>
+          )}
           <p className="text-[11px] text-stone-400">
             {peerCount > 0
               ? `${peerCount} người đang ở trong sảnh`

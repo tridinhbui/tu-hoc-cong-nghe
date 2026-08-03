@@ -37,6 +37,8 @@ interface Props {
   /** Đồ đang trang bị. Đi kèm presence nên người khác cũng thấy - đó mới là
    *  lý do người ta mua đồ trang trí. */
   gear?: CharacterEquipments | null;
+  /** Vẽ mờ: người này thuộc phòng nhưng đang không online. */
+  ghost?: boolean;
 }
 
 /** Ảnh đại diện dán lên mặt. Ảnh nằm ở miền khác (Supabase storage, Google),
@@ -89,6 +91,7 @@ export default function LobbyAvatar({
   poseRef,
   isSelf = false,
   gear,
+  ghost = false,
 }: Props) {
   const root = useRef<THREE.Group>(null);
   const leftArm = useRef<THREE.Mesh>(null);
@@ -177,12 +180,19 @@ export default function LobbyAvatar({
     }
   });
 
+  // Người vắng mặt vẽ mờ và không đổ bóng: đổ bóng thì họ trông như đang thật
+  // sự ở đó, mà cả điểm của hình mờ là nói "người này thuộc phòng, nhưng
+  // không có mặt".
+  const ghostProps = ghost
+    ? { transparent: true, opacity: 0.32, depthWrite: false }
+    : {};
+
   return (
     <group ref={root}>
       {/* đầu */}
       <mesh position={[0, 1.62, 0]} castShadow>
         <sphereGeometry args={[0.21, 16, 16]} />
-        <meshStandardMaterial color="#e8c39e" roughness={0.8} />
+        <meshStandardMaterial color="#e8c39e" roughness={0.8} {...ghostProps} />
       </mesh>
       {/* ảnh đại diện dán lên mặt trước của đầu */}
       {face && (
@@ -194,32 +204,32 @@ export default function LobbyAvatar({
       {/* thân */}
       <mesh position={[0, 1.08, 0]} castShadow>
         <capsuleGeometry args={[0.24, 0.52, 6, 12]} />
-        <meshStandardMaterial color={shirt} roughness={0.75} />
+        <meshStandardMaterial color={shirt} roughness={0.75} {...ghostProps} />
       </mesh>
       {/* tay */}
       <mesh ref={leftArm} position={[-0.32, 1.32, 0]} castShadow>
         <capsuleGeometry args={[0.075, 0.5, 4, 8]} />
-        <meshStandardMaterial color={shirt} roughness={0.75} />
+        <meshStandardMaterial color={shirt} roughness={0.75} {...ghostProps} />
       </mesh>
       <mesh ref={rightArm} position={[0.32, 1.32, 0]} castShadow>
         <capsuleGeometry args={[0.075, 0.5, 4, 8]} />
-        <meshStandardMaterial color={shirt} roughness={0.75} />
+        <meshStandardMaterial color={shirt} roughness={0.75} {...ghostProps} />
       </mesh>
       {/* chân */}
       <mesh ref={leftLeg} position={[-0.12, 0.52, 0]} castShadow>
         <capsuleGeometry args={[0.09, 0.5, 4, 8]} />
-        <meshStandardMaterial color="#3f3f46" roughness={0.85} />
+        <meshStandardMaterial color="#3f3f46" roughness={0.85} {...ghostProps} />
       </mesh>
       <mesh ref={rightLeg} position={[0.12, 0.52, 0]} castShadow>
         <capsuleGeometry args={[0.09, 0.5, 4, 8]} />
-        <meshStandardMaterial color="#3f3f46" roughness={0.85} />
+        <meshStandardMaterial color="#3f3f46" roughness={0.85} {...ghostProps} />
       </mesh>
       <AvatarGear gear={gear} shirt={color} />
 
       {/* biển tên */}
       <mesh name="nameplate" position={[0, status ? 2.24 : 2.15, 0]}>
         <planeGeometry args={status ? [1.45, 0.54] : [1.35, 0.34]} />
-        <meshBasicMaterial map={nameTex} transparent depthWrite={false} />
+        <meshBasicMaterial map={nameTex} transparent depthWrite={false} opacity={ghost ? 0.5 : 1} />
       </mesh>
       {/* Bong bóng thoại. Neo theo MÉP DƯỚI chứ không theo tâm: chiều cao thay
           đổi theo số dòng, nên neo tâm sẽ khiến câu dài trùm xuống che mặt

@@ -173,7 +173,14 @@ function Shophouse({ category, progress }: { category: CareerCategory; progress:
         title={CAREER_CATEGORY_LABEL_SHORT[category]}
         rows={[
           CAREER_CATEGORY_BLURBS[category],
-          `${count} nghề · bạn đã học ${progress.done}/${progress.total} bài`,
+          // Biển hiệu đổi khi vượt mốc: đi ngang một căn nhà đã xong và một
+          // căn chưa động tới phải thấy khác nhau, nếu không cả dãy phố trông
+          // y hệt nhau suốt cả trăm bài học.
+          progress.total > 0 && progress.done >= progress.total
+            ? `★ Bạn đã học xong cả ${progress.total} bài của nhóm này`
+            : progress.done > 0
+            ? `Đang học · ${progress.done}/${progress.total} bài`
+            : `${count} nghề · chưa học bài nào ở đây`,
         ]}
         accent={SHOP_ACCENT[category]}
         width={8.2}

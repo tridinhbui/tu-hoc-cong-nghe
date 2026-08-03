@@ -19,6 +19,7 @@ import {
   TABLE,
 } from "./study-room-space";
 import { bookshelfTexture, boardTexture, oakTexture, rugTexture } from "@/components/lobby/room-textures";
+import { useRenderQuality } from "@/components/world-controls/render-quality";
 
 /** Vỏ phòng và toàn bộ đồ đạc. Không tải model nào: mọi thứ là khối cơ bản với
  *  vân vẽ bằng canvas, cùng cách thư viện đang làm - một phòng nhóm phải mở
@@ -84,11 +85,12 @@ function Plant({ x, z }: { x: number; z: number }) {
 /** Đèn thả trên bàn. Ánh sáng thật (pointLight) chỉ có ở đây và ở cửa sổ: mỗi
  *  nguồn sáng động là một lần tính lại cho từng vật thể mỗi khung hình, nên
  *  phần còn lại của phòng sống bằng ambient + một directional duy nhất. */
-function PendantLamp({ x, warm }: { x: number; warm: string }) {
+function PendantLamp({ x, warm, still }: { x: number; warm: string; still: boolean }) {
   const light = useRef<THREE.PointLight>(null);
   useFrame((state) => {
-    // Nhấp nháy rất nhẹ, đủ để căn phòng không đứng hình như một tấm ảnh.
-    if (light.current) {
+    // Nhấp nháy rất nhẹ, đủ để căn phòng không đứng hình như một tấm ảnh -
+    // trừ khi người dùng đã xin ít chuyển động.
+    if (light.current && !still) {
       light.current.intensity = 12 + Math.sin(state.clock.elapsedTime * 1.7 + x) * 0.5;
     }
   });
@@ -129,6 +131,7 @@ interface Props {
 }
 
 export default function StudyRoomShell({ boardTitle, boardRows, lampColor, daylight }: Props) {
+  const { reducedMotion } = useRenderQuality();
   const floorTex = useMemo(() => {
     const t = oakTexture(10, 12);
     return t;
@@ -238,8 +241,8 @@ export default function StudyRoomShell({ boardTitle, boardRows, lampColor, dayli
         <Chair key={s.index} x={s.x} z={s.z} ry={s.ry} />
       ))}
 
-      <PendantLamp x={-1.5} warm={lampColor} />
-      <PendantLamp x={1.5} warm={lampColor} />
+      <PendantLamp x={-1.5} warm={lampColor} still={reducedMotion} />
+      <PendantLamp x={1.5} warm={lampColor} still={reducedMotion} />
 
       {/* ── Kệ sách áp tường tây ── */}
       {SHELF_ZS.map((z) => (

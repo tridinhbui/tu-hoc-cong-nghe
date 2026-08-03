@@ -32,6 +32,7 @@ import {
   type OrbitState,
   type WalkState,
 } from "@/components/world-controls/easy-walk";
+import { useRenderQuality } from "@/components/world-controls/render-quality";
 import LobbyAvatar, { type AvatarPose } from "@/components/lobby/LobbyAvatar";
 import { disposeRoomTextures } from "@/components/lobby/room-textures";
 import type { CharacterEquipments } from "@/lib/rpg-items";
@@ -59,9 +60,10 @@ interface RigProps {
   /** Danh tính để phát vị trí; null là chưa đăng nhập, khi đó không phát gì. */
   userId: string;
   peerCountRef: React.MutableRefObject<number>;
+  mapPlayerRef: React.MutableRefObject<{ x: number; z: number }>;
 }
 
-function PlayerRig({ room, poseRef, walkRef, orbitRef, onDeskChange, onDoorChange, onPortalChange, onLiftChange, onStopChange, onWalkingChange, userId, peerCountRef }: RigProps) {
+function PlayerRig({ room, poseRef, walkRef, orbitRef, onDeskChange, onDoorChange, onPortalChange, onLiftChange, onStopChange, onWalkingChange, userId, peerCountRef, mapPlayerRef }: RigProps) {
   const { camera } = useThree();
   const lastDesk = useRef<string | null>(null);
   const lastDoor = useRef<string | null>(null);
@@ -176,6 +178,11 @@ function PlayerRig({ room, poseRef, walkRef, orbitRef, onDeskChange, onDoorChang
       margin: room.kind === "street" ? 6 : 0.2,
     });
 
+    // Vị trí ra ngoài qua ref, không qua state: bản đồ nhỏ đọc nó mỗi khung
+    // hình, và đi qua setState sẽ kéo cả cây React render lại 60 lần một giây.
+    mapPlayerRef.current.x = pose.x;
+    mapPlayerRef.current.z = pose.z;
+
     // Phát vị trí theo nhịp, và chỉ khi thực sự nhúc nhích. Nhịp giãn ra khi
     // đông: mỗi gói mình gửi là N gói cả phòng phải nhận, nên chi phí tăng
     // theo bình phương số người.
@@ -197,7 +204,15 @@ function PlayerRig({ room, poseRef, walkRef, orbitRef, onDeskChange, onDoorChang
 
 /** Vòng tròn nhỏ nơi vừa chạm để đi tới - không có nó thì người dùng chạm xong
  *  không biết hệ thống có nhận hay không. */
-function TargetMarker({ walkRef, accent }: { walkRef: React.MutableRefObject<WalkState>; accent: string }) {
+function TargetMarker({
+  walkRef,
+  accent,
+  still,
+}: {
+  walkRef: React.MutableRefObject<WalkState>;
+  accent: string;
+  still: boolean;
+}) {
   const ref = useRef<THREE.Mesh>(null);
   useFrame((state) => {
     const mesh = ref.current;
@@ -206,8 +221,10 @@ function TargetMarker({ walkRef, accent }: { walkRef: React.MutableRefObject<Wal
     mesh.visible = !!target;
     if (target) {
       mesh.position.set(target.x, 0.05, target.z);
-      const pulse = 1 + Math.sin(state.clock.elapsedTime * 6) * 0.12;
-      mesh.scale.setScalar(pulse);
+      // Vòng tròn đích nở bóp để dễ thấy; đứng yên khi người dùng xin ít
+      // chuyển động, nhưng vẫn hiện - nó là phản hồi cho cú chạm, không phải
+      // trang trí.
+      mesh.scale.setScalar(still ? 1 : 1 + Math.sin(state.clock.elapsedTime * 6) * 0.12);
     }
   });
   return (
@@ -242,6 +259,10 @@ export interface DistrictSceneProps {
   onLiftChange: (atLift: boolean) => void;
   onStopChange: (stop: PathStop | null) => void;
   onWalkingChange: (walking: boolean) => void;
+  /** Vị trí người chơi và người khác, để bản đồ nhỏ ngoài Canvas đọc mỗi khung
+   *  hình mà không phải đi qua state. */
+  playerRef: React.MutableRefObject<{ x: number; z: number }>;
+  onPeersChange: (peers: Array<{ x: number; z: number; color: string }>) => void;
   /** Slug bài đã hoàn thành - cột trên hành lang lộ trình sáng theo cái này. */
   doneSlugs: ReadonlySet<string>;
   /** Tiến độ từng nhóm ngành, khắc lên biển hiệu ngoài phố. */
@@ -270,11 +291,14 @@ export default function DistrictScene({
   onPortalChange,
   onLiftChange,
   onStopChange,
+  playerRef,
+  onPeersChange,
   doneSlugs,
   progressByCategory,
   onWalkingChange,
   daylight,
 }: DistrictSceneProps) {
+  const quality = useRenderQuality();
   const room = getRoom(roomId);
   const poseRef = useRef<AvatarPose>({ ...entry });
   const [peers, setPeers] = useState<StudyWorldPeer[]>([]);
@@ -335,7 +359,8 @@ export default function DistrictScene({
   useEffect(() => {
     peerCountRef.current = peers.length;
     onPeerCount(peers.length);
-  }, [peers.length, onPeerCount]);
+    onPeersChange(peers.filter((p) => p.userId !== userId).map((p) => ({ x: p.x, z: p.z, color: p.color })));
+  }, [peers, onPeerCount, onPeersChange, userId]);
 
   /** Dọn bong bóng đã hết hạn - để lại thì mỗi người từng nói một câu sẽ giữ
    *  chuỗi đó trong bộ nhớ suốt phiên. */
@@ -377,9 +402,9 @@ export default function DistrictScene({
 
   return (
     <Canvas
-      shadows
+      shadows={quality.shadows}
       camera={{ position: [entry.x, 3.4, entry.z + 6], fov: 55 }}
-      dpr={[1, 1.75]}
+      dpr={quality.dpr}
       gl={{ antialias: true, powerPreference: "high-performance" }}
     >
       <color attach="background" args={[sky]} />
@@ -400,7 +425,7 @@ export default function DistrictScene({
         doneSlugs={doneSlugs}
         progressByCategory={progressByCategory as never}
       />
-      <TargetMarker walkRef={walkRef} accent={room.accent} />
+      <TargetMarker walkRef={walkRef} accent={room.accent} still={quality.reducedMotion} />
 
       <LobbyAvatar
         name={name}
@@ -432,6 +457,7 @@ export default function DistrictScene({
         room={room}
         userId={userId}
         peerCountRef={peerCountRef}
+        mapPlayerRef={playerRef}
         poseRef={poseRef}
         walkRef={walkRef}
         orbitRef={orbitRef}
