@@ -143,7 +143,7 @@ export const MA_EXECUTION_LESSONS: Lesson[] = [
     sections: [
       {
         type: "lead",
-        text: "Chặng 10 đã dạy vì sao mua, mua ai và trả bằng gì. Chặng này bắt đầu ở phép tính mà bên mua chạy ngay sau khi có ba câu trả lời đó, và cũng là phép tính người phỏng vấn hỏi đầu tiên.",
+        text: "Chặng IB & Phân tích đã dạy vì sao mua, mua ai và trả bằng gì. Chặng này bắt đầu ở phép tính mà bên mua chạy ngay sau khi có ba câu trả lời đó, và cũng là phép tính người phỏng vấn hỏi đầu tiên.",
       },
       {
         type: "heading",

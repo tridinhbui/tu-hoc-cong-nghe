@@ -22,17 +22,37 @@ interface LessonMetaRow {
   track?: string | null;
 }
 
+// Chủ đề phân tích theo nhãn chặng cá nhân, tra thẳng thay vì chuỗi if.
+//
+// Bảng cũ được viết cho lần đánh số trước - khi chặng "Biết mình" còn là
+// Chặng 0 - và không được cập nhật khi track dời số. Hậu quả không lộ ra ở
+// đâu cả: mọi bài vẫn có một chủ đề, chỉ là sai chủ đề. Chặng 2 (Thuế TNCN)
+// bị đếm vào "Đầu tư cá nhân", Chặng 3 (Tư duy tiền bạc) vào "Trái phiếu &
+// lãi suất", và bốn chặng cuối rơi hết vào nhánh mặc định "Nhà ở".
+//
+// Viết thành bảng vì một mục thiếu ở đây là một nhãn không có chủ đề, dễ
+// thấy hơn một điều kiện if không khớp rồi lặng lẽ rơi xuống dòng return
+// cuối cùng.
+const PERSONAL_STAGE_TOPIC: Record<string, string> = {
+  "Chặng 1": "Nền tảng tiền bạc & rủi ro",
+  "Chặng 2": "Thuế & lương thực nhận",
+  "Chặng 3": "Nền tảng tiền bạc & rủi ro",
+  "Chặng 4": "Đầu tư cá nhân",
+  "Chặng 5": "Trái phiếu & lãi suất",
+  "Chặng 6": "Danh mục & hưu trí",
+  "Chặng 7": "Đầu tư cá nhân",
+  "Chặng 8": "Danh mục & hưu trí",
+  "Chặng 9": "Nhà ở & bảo vệ tài sản",
+  "Chặng 10": "Tâm lý đầu tư",
+};
+
 function inferAnalyticsTopic(lesson: LessonMetaRow): string {
   if (lesson.track === "bonus") return "Bài case & ứng dụng";
 
   const personalStage = TRACK_PERSONAL.stages.find((stage) => isLessonInRange(lesson.id, stage));
   if (lesson.track === "personal" || !lesson.track) {
     if (!personalStage) return "Tài chính cá nhân";
-    if (personalStage.label === "Chặng 0" || personalStage.label === "Chặng 1") return "Nền tảng tiền bạc & rủi ro";
-    if (personalStage.label === "Chặng 2" || personalStage.label === "Chặng 5") return "Đầu tư cá nhân";
-    if (personalStage.label === "Chặng 3") return "Trái phiếu & lãi suất";
-    if (personalStage.label === "Chặng 4" || personalStage.label === "Chặng 6") return "Danh mục & hưu trí";
-    return "Nhà ở & bảo vệ tài sản";
+    return PERSONAL_STAGE_TOPIC[personalStage.label] ?? "Nhà ở & bảo vệ tài sản";
   }
 
   const professionalStage = TRACK_PROFESSIONAL.stages.find((stage) => isLessonInRange(lesson.id, stage));

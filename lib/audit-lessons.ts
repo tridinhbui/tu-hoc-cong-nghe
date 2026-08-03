@@ -631,7 +631,7 @@ export const AUDIT_LESSONS: Lesson[] = [
     summary: {
       keyIdea: "Kiểm toán rút kết luận về tổng thể từ một mẫu nhỏ, bằng đúng nền thống kê suy diễn",
       commonMistake: "Coi việc không tìm thấy sai sót trong mẫu là bằng chứng tổng thể không có sai sót",
-      action: "Đọc lại bài về mẫu và khoảng tin cậy ở Chặng 22 - toàn bộ cơ sở của bài này nằm ở đó.",
+      action: "Đọc lại bài về mẫu và khoảng tin cậy ở chặng Phương pháp định lượng - toàn bộ cơ sở của bài này nằm ở đó.",
     },
     application: {
       title: "Việc cần làm",
@@ -642,7 +642,7 @@ export const AUDIT_LESSONS: Lesson[] = [
     sections: [
       {
         type: "lead",
-        text: "Đây là chỗ nghề kiểm toán đặt cược lớn nhất: kết luận về hàng trăm nghìn giao dịch được rút ra từ vài chục mẫu. Cơ sở của việc đó không phải kinh nghiệm, mà là thống kê - chính bộ công cụ ở Chặng 22.",
+        text: "Đây là chỗ nghề kiểm toán đặt cược lớn nhất: kết luận về hàng trăm nghìn giao dịch được rút ra từ vài chục mẫu. Cơ sở của việc đó không phải kinh nghiệm, mà là thống kê - chính bộ công cụ ở chặng Phương pháp định lượng.",
       },
       {
         type: "heading",

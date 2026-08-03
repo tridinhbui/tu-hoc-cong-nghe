@@ -509,7 +509,7 @@ export const RECALL_SCHEDULE: Record<number, RecallItem[]> = {
       "fromTitle": "Vốn lưu động là gì?",
       "text": "WC = Tài sản ngắn hạn − Nợ ngắn hạn",
       "distractors": [
-        "Chặng 4 xây hai lớp: BẢO VỆ (quỹ khẩn cấp, bảo hiểm, bảo mật trước lừa đảo) và TỔ CHỨC (ngân sách, tờ khai tài chính, thừa kế, biết khi nào cần tư vấn chuyên nghiệp)",
+        "Chặng 6 xây hai lớp: BẢO VỆ (quỹ khẩn cấp, bảo hiểm, bảo mật trước lừa đảo) và TỔ CHỨC (ngân sách, tờ khai tài chính, thừa kế, biết khi nào cần tư vấn chuyên nghiệp)",
         "NPV > 0: tạo giá trị; NPV < 0: phá hủy giá trị"
       ]
     },
@@ -2489,7 +2489,7 @@ export const RECALL_SCHEDULE: Record<number, RecallItem[]> = {
       "fromTitle": "FCFE là gì?",
       "text": "FCFE: dòng tiền tự do còn lại chỉ thuộc về cổ đông, sau nghĩa vụ nợ",
       "distractors": [
-        "Chặng 4 xây hai lớp: BẢO VỆ (quỹ khẩn cấp, bảo hiểm, bảo mật trước lừa đảo) và TỔ CHỨC (ngân sách, tờ khai tài chính, thừa kế, biết khi nào cần tư vấn chuyên nghiệp)",
+        "Chặng 6 xây hai lớp: BẢO VỆ (quỹ khẩn cấp, bảo hiểm, bảo mật trước lừa đảo) và TỔ CHỨC (ngân sách, tờ khai tài chính, thừa kế, biết khi nào cần tư vấn chuyên nghiệp)",
         "Market Risk Premium = Rm − Rf ≈ 5-7% lịch sử"
       ]
     },
@@ -2570,7 +2570,7 @@ export const RECALL_SCHEDULE: Record<number, RecallItem[]> = {
       "text": "Sensitivity Analysis: kiểm tra kết quả định giá thay đổi thế nào khi giả định chính thay đổi",
       "distractors": [
         "P/E cao thường phản ánh kỳ vọng tăng trưởng cao; P/E thấp có thể là cơ hội hoặc là dấu hiệu rủi ro",
-        "Chặng 2 xoay quanh bốn trụ cột liên kết chặt chẽ: công cụ đầu tư và định giá (ETF, quỹ mở, P/E), quản trị rủi ro (đa dạng hóa, tránh đòn bẩy), kỷ luật tâm lý (tránh tham lam/sợ hãi, DCA), và kỳ vọng thực tế (8-12%/năm dài hạn, không phải làm giàu nhanh)"
+        "Chặng 4 xoay quanh bốn trụ cột liên kết chặt chẽ: công cụ đầu tư và định giá (ETF, quỹ mở, P/E), quản trị rủi ro (đa dạng hóa, tránh đòn bẩy), kỷ luật tâm lý (tránh tham lam/sợ hãi, DCA), và kỳ vọng thực tế (8-12%/năm dài hạn, không phải làm giàu nhanh)"
       ]
     },
     {
@@ -3178,7 +3178,7 @@ export const RECALL_SCHEDULE: Record<number, RecallItem[]> = {
       "fromTitle": "Vì sao không nên nhìn từng khoản đầu tư riêng lẻ?",
       "text": "Rủi ro của một tài sản riêng lẻ không phản ánh đúng đóng góp của nó vào rủi ro danh mục",
       "distractors": [
-        "Chặng 2 xoay quanh bốn trụ cột liên kết chặt chẽ: công cụ đầu tư và định giá (ETF, quỹ mở, P/E), quản trị rủi ro (đa dạng hóa, tránh đòn bẩy), kỷ luật tâm lý (tránh tham lam/sợ hãi, DCA), và kỳ vọng thực tế (8-12%/năm dài hạn, không phải làm giàu nhanh)",
+        "Chặng 4 xoay quanh bốn trụ cột liên kết chặt chẽ: công cụ đầu tư và định giá (ETF, quỹ mở, P/E), quản trị rủi ro (đa dạng hóa, tránh đòn bẩy), kỷ luật tâm lý (tránh tham lam/sợ hãi, DCA), và kỳ vọng thực tế (8-12%/năm dài hạn, không phải làm giàu nhanh)",
         "Nợ xấu: dùng để tiêu dùng hoặc mua tài sản kém hơn lãi vay"
       ]
     }
@@ -3379,7 +3379,7 @@ export const RECALL_SCHEDULE: Record<number, RecallItem[]> = {
       "text": "Alpha: lợi nhuận vượt trội so với benchmark sau khi điều chỉnh rủi ro",
       "distractors": [
         "ROE: hiệu quả dùng vốn cổ đông để tạo lợi nhuận - càng cao càng tốt trong cùng ngành",
-        "Chặng 0 hoàn chỉnh gồm: biết tài sản ròng, biết khẩu vị rủi ro, có ngân sách, có quỹ khẩn cấp, có chiến lược trả nợ, có sinking fund cho mục tiêu lớn"
+        "Chặng 1 hoàn chỉnh gồm: biết tài sản ròng, biết khẩu vị rủi ro, có ngân sách, có quỹ khẩn cấp, có chiến lược trả nợ, có sinking fund cho mục tiêu lớn"
       ]
     }
   ],
@@ -3459,7 +3459,7 @@ export const RECALL_SCHEDULE: Record<number, RecallItem[]> = {
       "text": "ETF: quỹ chứa rổ tài sản nhưng giao dịch linh hoạt như một cổ phiếu",
       "distractors": [
         "DCA phù hợp nhất với người có thu nhập đều đặn, muốn xây dựng kỷ luật đầu tư dài hạn mà không cần đoán thời điểm thị trường",
-        "Chặng 0 hoàn chỉnh gồm: biết tài sản ròng, biết khẩu vị rủi ro, có ngân sách, có quỹ khẩn cấp, có chiến lược trả nợ, có sinking fund cho mục tiêu lớn"
+        "Chặng 1 hoàn chỉnh gồm: biết tài sản ròng, biết khẩu vị rủi ro, có ngân sách, có quỹ khẩn cấp, có chiến lược trả nợ, có sinking fund cho mục tiêu lớn"
       ]
     }
   ],
@@ -3610,7 +3610,7 @@ export const RECALL_SCHEDULE: Record<number, RecallItem[]> = {
       "text": "Swap: hoán đổi dòng tiền tương lai theo công thức đã thỏa thuận",
       "distractors": [
         "Asset mix ảnh hưởng đến tính thanh khoản và rủi ro",
-        "Chặng 2 xoay quanh bốn trụ cột liên kết chặt chẽ: công cụ đầu tư và định giá (ETF, quỹ mở, P/E), quản trị rủi ro (đa dạng hóa, tránh đòn bẩy), kỷ luật tâm lý (tránh tham lam/sợ hãi, DCA), và kỳ vọng thực tế (8-12%/năm dài hạn, không phải làm giàu nhanh)"
+        "Chặng 4 xoay quanh bốn trụ cột liên kết chặt chẽ: công cụ đầu tư và định giá (ETF, quỹ mở, P/E), quản trị rủi ro (đa dạng hóa, tránh đòn bẩy), kỷ luật tâm lý (tránh tham lam/sợ hãi, DCA), và kỳ vọng thực tế (8-12%/năm dài hạn, không phải làm giàu nhanh)"
       ]
     },
     {
@@ -3726,7 +3726,7 @@ export const RECALL_SCHEDULE: Record<number, RecallItem[]> = {
   "202": [
     {
       "fromDay": 20,
-      "fromTitle": "Tổng ôn chặng 1: tiền, thời gian, rủi ro, dòng tiền.",
+      "fromTitle": "Tổng ôn chặng 3: tiền, thời gian, rủi ro, dòng tiền.",
       "text": "Tiền: phương tiện trao đổi, mất giá theo lạm phát",
       "distractors": [
         "Market Risk Premium = Rm − Rf (~5-7% lịch sử Mỹ)",
@@ -3848,7 +3848,7 @@ export const RECALL_SCHEDULE: Record<number, RecallItem[]> = {
     },
     {
       "fromDay": 20,
-      "fromTitle": "Tổng ôn chặng 1: tiền, thời gian, rủi ro, dòng tiền.",
+      "fromTitle": "Tổng ôn chặng 3: tiền, thời gian, rủi ro, dòng tiền.",
       "text": "Tiền: phương tiện trao đổi, mất giá theo lạm phát",
       "distractors": [
         "P/E = Price / EPS - trả bao nhiêu lần lợi nhuận",
@@ -3885,7 +3885,7 @@ export const RECALL_SCHEDULE: Record<number, RecallItem[]> = {
       "text": "Vay làm giàu khi ROI đầu tư lớn hơn lãi suất vay (spread dương)",
       "distractors": [
         "P/E cao hơn thường phản ánh kỳ vọng tăng trưởng cao hơn, không hẳn là 'đắt' một cách tuyệt đối",
-        "Chặng 4 xây hai lớp: BẢO VỆ (quỹ khẩn cấp, bảo hiểm, bảo mật trước lừa đảo) và TỔ CHỨC (ngân sách, tờ khai tài chính, thừa kế, biết khi nào cần tư vấn chuyên nghiệp)"
+        "Chặng 6 xây hai lớp: BẢO VỆ (quỹ khẩn cấp, bảo hiểm, bảo mật trước lừa đảo) và TỔ CHỨC (ngân sách, tờ khai tài chính, thừa kế, biết khi nào cần tư vấn chuyên nghiệp)"
       ]
     },
     {
@@ -4024,7 +4024,7 @@ export const RECALL_SCHEDULE: Record<number, RecallItem[]> = {
       "fromTitle": "DCA: đầu tư định kỳ hơn là đầu tư một lần",
       "text": "DCA (Dollar-Cost Averaging) là chia vốn thành nhiều phần, đầu tư đều đặn theo định kỳ thay vì bỏ hết vào một lần",
       "distractors": [
-        "Chặng 5 là nền tảng chiến lược đầu tư - Chặng 6 sẽ mở rộng sang quản lý tài sản dài hạn và hưu trí",
+        "Chặng 7 là nền tảng chiến lược đầu tư - Chặng 8 sẽ mở rộng sang quản lý tài sản dài hạn và hưu trí",
         "Khẩu vị rủi ro có thể thay đổi theo thời gian, hoàn cảnh sống và kinh nghiệm đầu tư - nên đánh giá lại định kỳ"
       ]
     },
@@ -4141,8 +4141,8 @@ export const RECALL_SCHEDULE: Record<number, RecallItem[]> = {
   "225": [
     {
       "fromDay": 220,
-      "fromTitle": "Tổng ôn chặng 2: đầu tư chứng khoán cơ bản",
-      "text": "Chặng 2 xoay quanh bốn trụ cột liên kết chặt chẽ: công cụ đầu tư và định giá (ETF, quỹ mở, P/E), quản trị rủi ro (đa dạng hóa, tránh đòn bẩy), kỷ luật tâm lý (tránh tham lam/sợ hãi, DCA), và kỳ vọng thực tế (8-12%/năm dài hạn, không phải làm giàu nhanh)",
+      "fromTitle": "Tổng ôn chặng 4: đầu tư chứng khoán cơ bản",
+      "text": "Chặng 4 xoay quanh bốn trụ cột liên kết chặt chẽ: công cụ đầu tư và định giá (ETF, quỹ mở, P/E), quản trị rủi ro (đa dạng hóa, tránh đòn bẩy), kỷ luật tâm lý (tránh tham lam/sợ hãi, DCA), và kỳ vọng thực tế (8-12%/năm dài hạn, không phải làm giàu nhanh)",
       "distractors": [
         "Lập di chúc hợp lệ (đúng hình thức pháp luật) giúp thể hiện rõ ý nguyện và giảm nguy cơ tranh chấp gia đình",
         "WACC = Ke×(E/V) + Kd×(1−T)×(D/V)"
@@ -4290,8 +4290,8 @@ export const RECALL_SCHEDULE: Record<number, RecallItem[]> = {
     },
     {
       "fromDay": 220,
-      "fromTitle": "Tổng ôn chặng 2: đầu tư chứng khoán cơ bản",
-      "text": "Chặng 2 xoay quanh bốn trụ cột liên kết chặt chẽ: công cụ đầu tư và định giá (ETF, quỹ mở, P/E), quản trị rủi ro (đa dạng hóa, tránh đòn bẩy), kỷ luật tâm lý (tránh tham lam/sợ hãi, DCA), và kỳ vọng thực tế (8-12%/năm dài hạn, không phải làm giàu nhanh)",
+      "fromTitle": "Tổng ôn chặng 4: đầu tư chứng khoán cơ bản",
+      "text": "Chặng 4 xoay quanh bốn trụ cột liên kết chặt chẽ: công cụ đầu tư và định giá (ETF, quỹ mở, P/E), quản trị rủi ro (đa dạng hóa, tránh đòn bẩy), kỷ luật tâm lý (tránh tham lam/sợ hãi, DCA), và kỳ vọng thực tế (8-12%/năm dài hạn, không phải làm giàu nhanh)",
       "distractors": [
         "Mục tiêu hedging: giảm bất định, không phải tối đa hóa lợi nhuận",
         "Discount rate = chi phí cơ hội + phần bù rủi ro"
@@ -4493,7 +4493,7 @@ export const RECALL_SCHEDULE: Record<number, RecallItem[]> = {
       "fromTitle": "Trái phiếu quốc tế: rủi ro tỷ giá",
       "text": "Đầu tư trái phiếu bằng ngoại tệ chịu thêm một lớp rủi ro nữa ngoài rủi ro tín dụng và rủi ro lãi suất: rủi ro tỷ giá hối đoái",
       "distractors": [
-        "Chặng 2 xoay quanh bốn trụ cột liên kết chặt chẽ: công cụ đầu tư và định giá (ETF, quỹ mở, P/E), quản trị rủi ro (đa dạng hóa, tránh đòn bẩy), kỷ luật tâm lý (tránh tham lam/sợ hãi, DCA), và kỳ vọng thực tế (8-12%/năm dài hạn, không phải làm giàu nhanh)",
+        "Chặng 4 xoay quanh bốn trụ cột liên kết chặt chẽ: công cụ đầu tư và định giá (ETF, quỹ mở, P/E), quản trị rủi ro (đa dạng hóa, tránh đòn bẩy), kỷ luật tâm lý (tránh tham lam/sợ hãi, DCA), và kỳ vọng thực tế (8-12%/năm dài hạn, không phải làm giàu nhanh)",
         "Chi phí y tế có xu hướng tăng theo tuổi tác, nên cộng thêm một khoản dự phòng riêng cho y tế"
       ]
     }
@@ -4541,7 +4541,7 @@ export const RECALL_SCHEDULE: Record<number, RecallItem[]> = {
   "245": [
     {
       "fromDay": 240,
-      "fromTitle": "Tổng ôn chặng 3: trái phiếu cho người bảo thủ",
+      "fromTitle": "Tổng ôn chặng 5: trái phiếu cho người bảo thủ",
       "text": "Nhóm kiến thức nền tảng (Day 221-224): trái phiếu là gì, ai phát hành, mối quan hệ lãi suất-giá, rủi ro tín dụng và xếp hạng tín nhiệm",
       "distractors": [
         "Phòng hộ lãi suất thả nổi: nhận thả nổi, trả cố định qua hợp đồng IRS",
@@ -4690,7 +4690,7 @@ export const RECALL_SCHEDULE: Record<number, RecallItem[]> = {
     },
     {
       "fromDay": 240,
-      "fromTitle": "Tổng ôn chặng 3: trái phiếu cho người bảo thủ",
+      "fromTitle": "Tổng ôn chặng 5: trái phiếu cho người bảo thủ",
       "text": "Nhóm kiến thức nền tảng (Day 221-224): trái phiếu là gì, ai phát hành, mối quan hệ lãi suất-giá, rủi ro tín dụng và xếp hạng tín nhiệm",
       "distractors": [
         "Cao hơn = tạo doanh thu hiệu quả hơn từ tài sản",
@@ -5084,7 +5084,7 @@ export const RECALL_SCHEDULE: Record<number, RecallItem[]> = {
       "fromTitle": "nhỏ - Doanh nghiệp xuất khẩu phòng hộ tỷ giá",
       "text": "Forward tỷ giá: công cụ phổ biến nhất để hedging rủi ro tỷ giá xuất nhập khẩu",
       "distractors": [
-        "Đây là nền tảng bắt buộc trước khi học đầu tư - bỏ qua Chặng 0 khiến các quyết định ở chặng sau thiếu cơ sở thực tế",
+        "Đây là nền tảng bắt buộc trước khi học đầu tư - bỏ qua Chặng 1 khiến các quyết định ở chặng sau thiếu cơ sở thực tế",
         "ROIC > WACC = tạo giá trị; ROIC < WACC = phá hủy giá trị"
       ]
     }

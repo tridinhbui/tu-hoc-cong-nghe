@@ -35,7 +35,7 @@ export const FRM_MARKET_RISK_LESSONS: Lesson[] = [
     ],
     correctOption: 1,
     explanation:
-      "Đây là lỗi nguy hiểm vì nó lệch có hệ thống về một phía. Lợi suất tài sản tài chính có đuôi dày hơn phân phối chuẩn - các cú sốc cực đoan xảy ra thường xuyên hơn nhiều so với mức phân phối chuẩn dự báo. Dùng phân phối chuẩn nghĩa là mô hình đánh giá thấp đúng những ngày mà rủi ro thực sự quan trọng. Con số VaR trông yên tâm nhất chính vào lúc nó đáng tin cậy ít nhất, và đó là lý do bài 1421 ở chặng Định lượng mở đầu bằng chuyện đuôi luôn dày hơn ta nghĩ.",
+      "Đây là lỗi nguy hiểm vì nó lệch có hệ thống về một phía. Lợi suất tài sản tài chính có đuôi dày hơn phân phối chuẩn - các cú sốc cực đoan xảy ra thường xuyên hơn nhiều so với mức phân phối chuẩn dự báo. Dùng phân phối chuẩn nghĩa là mô hình đánh giá thấp đúng những ngày mà rủi ro thực sự quan trọng. Con số VaR trông yên tâm nhất chính vào lúc nó đáng tin cậy ít nhất, và đó là lý do bài mở đầu chặng Định lượng mở đầu bằng chuyện đuôi luôn dày hơn ta nghĩ.",
     diagram: [
       { label: "Mô phỏng lịch sử: không giả định phân phối", arrow: true },
       { label: "Tham số: giả định chuẩn, tính nhanh", arrow: true },
@@ -144,7 +144,7 @@ export const FRM_MARKET_RISK_LESSONS: Lesson[] = [
     sections: [
       {
         type: "lead",
-        text: "Bài 1217 đã trả lời VaR là gì. Chặng này bắt đầu ở câu hỏi tiếp theo, và là câu hỏi GARP thực sự kiểm tra: con số đó được tính ra bằng cách nào, và cách đó sai ở đâu.",
+        text: "Bài Value at Risk & Stress Testing đã trả lời VaR là gì. Chặng này bắt đầu ở câu hỏi tiếp theo, và là câu hỏi GARP thực sự kiểm tra: con số đó được tính ra bằng cách nào, và cách đó sai ở đâu.",
       },
       {
         type: "heading",

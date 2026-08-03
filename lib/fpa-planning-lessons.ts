@@ -81,7 +81,7 @@ export const FPA_PLANNING_LESSONS: Lesson[] = [
         ],
         correct: 1,
         explanation:
-          "Đây chính là mối liên hệ với bài phân tích variance ở Chặng 11: variance chỉ hữu ích khi tách được ra thành phần, và tách được hay không là do cấu trúc kế hoạch quyết định từ đầu.",
+          "Đây chính là mối liên hệ với bài phân tích variance ở chặng CFO & Vận hành: variance chỉ hữu ích khi tách được ra thành phần, và tách được hay không là do cấu trúc kế hoạch quyết định từ đầu.",
       },
       {
         question: "Rủi ro lớn nhất khi chuyển sang lập kế hoạch theo yếu tố dẫn dắt là gì?",
@@ -141,7 +141,7 @@ export const FPA_PLANNING_LESSONS: Lesson[] = [
     sections: [
       {
         type: "lead",
-        text: "Chặng 11 đã dạy ngân sách, rolling forecast và phân tích variance - tức là các sản phẩm đầu ra của FP&A. Chặng này lo phần đứng trước: những con số trong ngân sách ấy từ đâu mà có.",
+        text: "Chặng CFO & Vận hành đã dạy ngân sách, rolling forecast và phân tích variance - tức là các sản phẩm đầu ra của FP&A. Chặng này lo phần đứng trước: những con số trong ngân sách ấy từ đâu mà có.",
       },
       {
         type: "heading",
@@ -911,7 +911,7 @@ export const FPA_PLANNING_LESSONS: Lesson[] = [
         ],
         correct: 0,
         explanation:
-          "Đây chính là cơ chế của rolling forecast đã học ở Chặng 11, và cũng là chỗ phán đoán một lần hay lặp lại ở trên phát huy tác dụng.",
+          "Đây chính là cơ chế của rolling forecast đã học ở chặng CFO & Vận hành, và cũng là chỗ phán đoán một lần hay lặp lại ở trên phát huy tác dụng.",
       },
     
     {

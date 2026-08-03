@@ -4,34 +4,47 @@ export const TRACKS = {
     subtitle: "Lộ trình 108 ngày · dành cho người mới",
     estimatedHours: 10,
     description: "Kiểm tra tài chính của chính bạn, kiểm soát chi tiêu, xây quỹ khẩn cấp, trả nợ và đầu tư thông minh - không cần kiến thức ngành.",
+    // Phải khớp thứ tự và số hiệu của TRACK_PERSONAL.stages trong
+    // lib/track-stages.ts - đó mới là thứ người học nhìn thấy trên
+    // dashboard. Danh sách này từng dừng ở "Chặng 0 → Chặng 7" của lần
+    // đánh số cũ, nên trang giới thiệu hứa một lộ trình khác với lộ trình
+    // thật. lib/__tests__/stage-numbering.test.ts giữ hai bên khớp nhau.
     stages: [
-      "Chặng 0 - Biết mình: audit, ngân sách, quỹ khẩn cấp, trả nợ",
-      "Chặng 1 - Tư duy tiền bạc và tài chính cơ bản",
-      "Chặng 2 - Cổ phiếu, ETF và quỹ đầu tư",
-      "Chặng 3 - Trái phiếu và các công cụ cố định",
-      "Chặng 4 - Danh mục đầu tư và kế hoạch hưu trí",
-      "Chặng 5 - Chiến lược đầu tư cá nhân",
-      "Chặng 6 - Quản lý tài sản & hưu trí",
-      "Chặng 7 - Nhà ở, bảo vệ tài sản và các quyết định tài chính lớn",
+      "Chặng 1 - Biết mình: audit, ngân sách, quỹ khẩn cấp, trả nợ",
+      "Chặng 2 - Thuế TNCN và lương thực nhận",
+      "Chặng 3 - Tư duy tiền bạc và tài chính cơ bản",
+      "Chặng 4 - Cổ phiếu, ETF và quỹ đầu tư",
+      "Chặng 5 - Trái phiếu và các công cụ cố định",
+      "Chặng 6 - Danh mục đầu tư và kế hoạch hưu trí",
+      "Chặng 7 - Chiến lược đầu tư cá nhân",
+      "Chặng 8 - Quản lý tài sản & hưu trí",
+      "Chặng 9 - Nhà ở, bảo vệ tài sản và các quyết định tài chính lớn",
+      "Chặng 10 - Tâm lý học tài chính hành vi",
     ],
     previewSlug: "audit-tai-chinh-ca-nhan",
-    previewLabel: "Chặng 0: Bạn đang đứng ở đâu?",
+    previewLabel: "Chặng 1: Bạn đang đứng ở đâu?",
   },
   professional: {
     tab: "Tài chính chuyên ngành",
     subtitle: "Lộ trình 180 ngày · chuyên sâu",
     estimatedHours: 18,
     description: "Kế toán, đọc báo cáo tài chính, định giá doanh nghiệp, trái phiếu, danh mục, phái sinh và AI in Finance.",
+    // Cố ý KHÔNG đánh số. Dashboard chuyên ngành đánh lại số chặng theo
+    // nhánh nghề đang chọn (DashboardClient dựng `Chặng ${displayIdx + 1}`
+    // từ PROFESSIONAL_BRANCHES), nên cùng một chặng hiện ra dưới số khác
+    // nhau tuỳ nhánh: chặng "Cổ phiếu và định giá" là Chặng 6 trong dữ
+    // liệu nhưng là Chặng 1 với người chọn nhánh Đầu tư. Một con số ở đây
+    // chỉ đúng cho một nhánh và sai với mọi nhánh còn lại.
     stages: [
-      "Chặng 1-3 - Kế toán, báo cáo tài chính, chỉ số",
-      "Chặng 4-5 - Giá trị thời gian của tiền, tài chính doanh nghiệp",
-      "Chặng 6-7 - Định giá cổ phiếu, trái phiếu và tín dụng",
-      "Chặng 8-9 - Danh mục đầu tư và công cụ phái sinh",
-      "Chặng 11 - Vận hành tài chính doanh nghiệp hiện đại (sắp ra mắt)",
-      "Chặng 13 - AI trong tài chính: đọc báo cáo, phân tích tin và viết memo",
+      "Kế toán, báo cáo tài chính và chỉ số",
+      "Giá trị thời gian của tiền, tài chính doanh nghiệp",
+      "Định giá cổ phiếu, trái phiếu và tín dụng",
+      "Danh mục đầu tư và công cụ phái sinh",
+      "Vận hành tài chính doanh nghiệp hiện đại",
+      "AI trong tài chính: đọc báo cáo, phân tích tin và viết memo",
     ],
     previewSlug: "ke-toan-la-gi",
-    previewLabel: "Day 21: Kế toán là ngôn ngữ của kinh doanh",
+    previewLabel: "Bài mở đầu: Kế toán là ngôn ngữ của kinh doanh",
   },
   cfa: {
     tab: "Tài chính chứng chỉ",
