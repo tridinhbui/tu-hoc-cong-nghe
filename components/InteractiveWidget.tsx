@@ -6,6 +6,10 @@ import InteractiveBond from "./InteractiveBond";
 import InteractiveMoneyVsAsset from "./InteractiveMoneyVsAsset";
 import InteractiveCashFlowSimulator from "./InteractiveCashFlowSimulator";
 import InteractiveInflationCalculator from "./InteractiveInflationCalculator";
+import InteractiveBudget from "./InteractiveBudget";
+import InteractiveRisk from "./InteractiveRisk";
+import InteractiveChart from "./InteractiveChart";
+import InteractiveProcess from "./InteractiveProcess";
 
 export type WidgetType =
   | "interest-rate"
@@ -39,7 +43,36 @@ export default function InteractiveWidget({ type }: { type: WidgetType }) {
       return <InteractiveCashFlowSimulator />;
     case "inflation-calculator":
       return <InteractiveInflationCalculator />;
-    default:
-      return null;
+    case "budget":
+      return <InteractiveBudget />;
+    case "risk":
+      return <InteractiveRisk />;
+    case "chart":
+      return <InteractiveChart />;
+    case "process":
+      return <InteractiveProcess />;
   }
+}
+
+/** Bài học có `interactiveType` không nằm trong WidgetType thì KHÔNG được
+ *  render khối "Thử nghiệm tương tác" - trước đây nó vẫn render và người học
+ *  nhận một tiêu đề mục với khoảng trống bên dưới. Xuất ra đây để trang bài
+ *  học hỏi trước khi dựng khối, thay vì ép kiểu rồi hy vọng. */
+export const WIDGET_TYPES: readonly WidgetType[] = [
+  "interest-rate",
+  "supply-demand",
+  "profit-calc",
+  "roe",
+  "bond",
+  "money-vs-asset",
+  "cash-flow-simulator",
+  "inflation-calculator",
+  "budget",
+  "risk",
+  "chart",
+  "process",
+];
+
+export function hasInteractiveWidget(type: string | null | undefined): type is WidgetType {
+  return !!type && (WIDGET_TYPES as readonly string[]).includes(type);
 }

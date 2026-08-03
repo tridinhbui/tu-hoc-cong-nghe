@@ -6,7 +6,7 @@ import { motion } from "framer-motion";
 import type { Lesson } from "@/lib/lesson-types";
 import LessonPageLayout from "@/components/LessonPageLayout";
 import OpeningQuestionBlock from "@/components/OpeningQuestionBlock";
-import InteractiveWidget from "@/components/InteractiveWidget";
+import InteractiveWidget, { hasInteractiveWidget } from "@/components/InteractiveWidget";
 import MidpointInteractive from "@/components/MidpointInteractive";
 import FreeRecallCard from "@/components/FreeRecallCard";
 import LessonSections from "@/components/LessonSections";
@@ -327,13 +327,18 @@ export default function LessonPageClient({ lesson, nextLesson }: Props) {
         </div>
       )}
 
-      {/* 4. Interactive Simulation block */}
-      {lesson.interactiveType && (
+      {/* 4. Interactive Simulation block
+          Điều kiện là "có widget cho loại này", không phải "có khai loại".
+          Trước đây nó chỉ kiểm tra trường có giá trị rồi ép kiểu, nên 150 bài
+          khai chart/process/risk/budget - bốn loại chưa có widget - vẫn dựng
+          tiêu đề mục và bỏ trống bên dưới. Cast `as` là thứ giấu đi đúng sự
+          không khớp đó khỏi TypeScript. */}
+      {hasInteractiveWidget(lesson.interactiveType) && (
         <div className="space-y-3">
           <div className="text-[10px] font-bold text-stone-500 dark:text-stone-400 uppercase tracking-wider">
             Thử nghiệm tương tác
           </div>
-          <InteractiveWidget type={lesson.interactiveType as "interest-rate" | "supply-demand" | "profit-calc" | "roe" | "bond"} />
+          <InteractiveWidget type={lesson.interactiveType} />
         </div>
       )}
 
