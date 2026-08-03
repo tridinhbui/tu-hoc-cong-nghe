@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { ArrowLeft, Flame, Heart, Info } from "lucide-react";
+import { ArrowLeft, Heart, Info } from "lucide-react";
 import {
   getUserStreak,
   hasActivityToday as checkActivityToday,
@@ -18,6 +18,7 @@ import {
 import { QUIET_CORNER_LIMITS, WORRY_REFRAMES } from "@/lib/quiet-corner";
 import MotivationShareCard from "@/components/MotivationShareCard";
 import BreathingCircle from "@/components/BreathingCircle";
+import DinhHoaFlame from "@/components/DinhHoaFlame";
 
 // "Góc yên tĩnh" - trang riêng đằng sau thẻ lời nhắn.
 //
@@ -77,33 +78,34 @@ export default function QuietCornerClient({ userId }: { userId: string }) {
       </Link>
 
       {/* --- Lời nhắn hôm nay --------------------------------------------- */}
+      {/* Nền tối gần như đen chứ không phải stone-900 phủ lớp cam: phủ ấm lên
+          nền xám cho ra một mảng nâu đục, và ngọn lửa mất hết chiều sâu. Ở đây
+          nền lùi hẳn xuống để quầng lửa là nguồn sáng duy nhất của khối. */}
       <section
-        className="relative mt-4 overflow-hidden rounded-[28px] border-2 bg-white px-6 py-10 text-center shadow-sm dark:bg-stone-900"
-        style={{ borderColor: `rgba(249, 115, 22, ${0.2 + warmth * 0.5})` }}
+        className="relative mt-4 overflow-hidden rounded-[28px] border-2 bg-white px-6 py-12 text-center shadow-sm dark:bg-[#0a0806]"
+        style={{ borderColor: `rgba(249, 115, 22, ${0.18 + warmth * 0.42})` }}
       >
+        {/* Sáng: nền kem ấm. Tối: chỉ một vầng sáng rất nhạt hắt từ chỗ ngọn
+            lửa đứng, phần còn lại để nguyên đen. */}
         <div
           aria-hidden
-          className="pointer-events-none absolute inset-0"
+          className="pointer-events-none absolute inset-0 dark:hidden"
           style={{
-            background: `linear-gradient(160deg, rgba(251, 146, 60, ${0.1 + warmth * 0.22}), rgba(249, 115, 22, ${0.03 + warmth * 0.1}))`,
+            background: `linear-gradient(160deg, rgba(251, 146, 60, ${0.1 + warmth * 0.2}), rgba(249, 115, 22, ${0.03 + warmth * 0.09}))`,
           }}
         />
-        <motion.div
+        <div
           aria-hidden
-          className="pointer-events-none absolute left-1/2 top-0 h-64 w-64 -translate-x-1/2 -translate-y-1/3 rounded-full blur-3xl"
-          style={{ background: `rgba(251, 146, 60, ${0.2 + warmth * 0.4})` }}
-          animate={{ opacity: [0.6, 1, 0.6], scale: [1, 1.08, 1] }}
-          transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
+          className="pointer-events-none absolute inset-0 hidden dark:block"
+          style={{
+            background: `radial-gradient(120% 70% at 50% 22%, rgba(249, 115, 22, ${0.14 + warmth * 0.2}) 0%, rgba(120, 53, 15, ${0.06 + warmth * 0.08}) 38%, rgba(0,0,0,0) 72%)`,
+          }}
         />
 
         <div className="relative">
-          <motion.div
-            className="mx-auto flex h-16 w-16 items-center justify-center rounded-3xl bg-gradient-to-br from-amber-400 to-orange-600 shadow-lg"
-            animate={{ scale: [1, 1.07, 1] }}
-            transition={{ duration: 2.8, repeat: Infinity, ease: "easeInOut" }}
-          >
-            <Flame className="h-8 w-8 text-white" />
-          </motion.div>
+          <div className="flex justify-center">
+            <DinhHoaFlame intensity={warmth} />
+          </div>
 
           {motivation ? (
             <>
