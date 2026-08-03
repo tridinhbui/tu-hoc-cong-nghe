@@ -1500,6 +1500,23 @@ export const FRM_VALUATION_CURRENT_LESSONS: Lesson[] = [
         text: "Rất nhiều hợp đồng dài hạn chỉ có điều khoản dự phòng viết cho tình huống LIBOR gián đoạn vài ngày, không phải cho việc nó biến mất hẳn. Không sửa thì hợp đồng hoặc bị cố định lãi ở mức cuối cùng, hoặc không xác định được lãi - và cả hai đều là tranh chấp."
       },
       {
+        type: "heading",
+        text: "Hai khoảng cách phải bắc cầu, không phải một"
+      },
+      {
+        type: "paragraph",
+        text: "LIBOR là lãi suất vay tín chấp giữa các ngân hàng, có kỳ hạn. Lãi suất tham chiếu mới thuộc loại gần như phi rủi ro, có bảo đảm, và chỉ có kỳ hạn qua đêm. Hai khác biệt đó phải xử lý riêng. Khác biệt tín dụng được xử lý bằng một khoản điều chỉnh cố định cho từng kỳ hạn, tính bằng trung vị của chênh lệch lịch sử trong 5 năm và chốt cứng vào tháng 3/2021 - với kỳ hạn 3 tháng, con số đó vào khoảng 26 điểm cơ bản. Chốt cứng là chủ ý: một khoản điều chỉnh thả nổi sẽ tái tạo lại đúng vấn đề vừa bỏ đi."
+      },
+      {
+        type: "callout",
+        label: "Khác biệt kỳ hạn tạo ra một vấn đề vận hành hoàn toàn mới",
+        text: "Với LIBOR, lãi suất của kỳ tính lãi được biết ngay từ ngày đầu kỳ, nên người vay biết trước phải trả bao nhiêu. Với một lãi suất qua đêm, mức của cả kỳ chỉ tính ra được bằng cách gộp lãi từng ngày cho tới cuối kỳ - nghĩa là số tiền phải trả chỉ rõ vào ngày cuối cùng. Thị trường xử lý bằng cách nhìn lùi vài ngày làm việc để có thời gian phát hành thông báo. Đó là một thay đổi nhỏ trong công thức nhưng chạm tới hệ thống kế toán, hệ thống thanh toán và cả cách viết hợp đồng."
+      },
+      {
+        type: "paragraph",
+        text: "Bài học chung nằm ở chỗ khác: rủi ro không nằm ở việc LIBOR bị thao túng, mà ở việc một con số được hàng trăm nghìn tỷ đô hợp đồng tham chiếu lại dựa trên câu trả lời ước tính cho một thị trường đã teo đi. Câu hỏi nên hỏi với bất kỳ chuẩn tham chiếu nào đang dùng là: nó neo vào bao nhiêu giao dịch thật mỗi ngày, và điều gì xảy ra với hợp đồng của tôi nếu nó ngừng công bố."
+      },
+      {
         type: "closing",
         lines: [
           "Một chuẩn tham chiếu phải neo vào giao dịch có thật, nếu không nó là một điểm yếu chờ ngày lộ ra.",
@@ -1962,6 +1979,37 @@ export const FRM_VALUATION_CURRENT_LESSONS: Lesson[] = [
         type: "callout",
         label: "Vì sao phân loại kế toán không cứu được ai",
         text: "Giữ tới đáo hạn là một ý định, không phải một khả năng. Ý định đó chỉ giữ được chừng nào không ai buộc bạn bán - và đúng vào lúc người gửi rút tiền đồng loạt thì bạn buộc phải bán. Lúc ấy khoản lỗ chưa thực hiện trở thành khoản lỗ thực hiện ngay lập tức."
+      },
+      {
+        type: "heading",
+        text: "Ba con số làm rõ vì sao lần này khác"
+      },
+      {
+        type: "conceptTable",
+        title: "Không phải quy mô, mà là cấu trúc và tốc độ",
+        subtitle: "Cả ba đều đọc được từ báo cáo công khai trước khi sự việc xảy ra",
+        concepts: [
+          {
+            vi: "Tỷ trọng tiền gửi không được bảo hiểm",
+            en: "Uninsured deposits",
+            def: "Ở ngân hàng đổ vỡ đầu tiên, phần lớn tiền gửi vượt hạn mức bảo hiểm - theo các báo cáo là khoảng 90% trở lên. Người gửi vượt hạn mức không có lý do gì để ở lại chờ xem, nên cả nhóm này hành xử như một khối."
+          },
+          {
+            vi: "Lỗ chưa ghi nhận trên danh mục giữ tới đáo hạn",
+            en: "Unrealised HTM losses",
+            def: "Lãi suất tăng nhanh làm danh mục trái phiếu dài hạn mất giá, nhưng phân loại giữ tới đáo hạn cho phép không ghi nhận khoản lỗ đó vào vốn. Con số ẩn ấy đủ lớn để xoá phần lớn vốn chủ sở hữu nếu buộc phải bán."
+          },
+          {
+            vi: "Tốc độ rút tiền",
+            en: "Run speed",
+            def: "Năm 2008, một vụ tháo chạy lớn diễn ra trong khoảng chục ngày. Năm 2023, lượng rút tương đương xảy ra trong một ngày - vì lệnh chuyển tiền đi qua ứng dụng và tin lan qua mạng xã hội chứ không qua hàng người xếp trước quầy."
+          }
+        ]
+      },
+      {
+        type: "callout",
+        label: "Vì sao chuỗi này khép kín",
+        text: "Ba con số trên không độc lập, chúng kích hoạt lẫn nhau. Người gửi không được bảo hiểm đọc được khoản lỗ chưa ghi nhận, nên rút. Rút nhiều buộc ngân hàng bán danh mục, mà bán thì khoản lỗ đang ẩn hiện ra thành lỗ thật và ăn vào vốn. Vốn giảm làm người gửi còn lại rút nhanh hơn. Không bước nào cần một khoản nợ xấu nào, và đó là điều đáng học nhất: một ngân hàng có thể đủ vốn theo mọi tỷ lệ quy định và vẫn không sống qua được một tuần."
       },
       {
         type: "closing",

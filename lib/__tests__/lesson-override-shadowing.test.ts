@@ -5,7 +5,7 @@ import { lessons } from "@/lib/lessons";
 /** Cái bẫy câm nhất trong kho bài học.
  *
  *  AGENTS.md nói override "thay cả mảng `quiz` cho slug đó". Cài đặt thật là
- *  `{ ...lesson, ...override }` - thay MỌI khoá có trong override. 36 override
+ *  `{ ...lesson, ...override }` - thay MỌI khoá có trong override. 34 override
  *  đang mang theo cả `sections`, tức là nội dung DẠY của những bài đó nằm ở
  *  file override chứ không ở lib/lessons.ts.
  *
@@ -15,9 +15,14 @@ import { lessons } from "@/lib/lessons";
  *  đó: viết lại phần dạy của Modern Portfolio Theory, mọi bước báo thành công,
  *  rồi đo lại thấy bài vẫn nguyên 244 từ.
  *
- *  Test này không cấm chuyện đó - phần lớn 36 bài kia có override ĐẦY ĐỦ HƠN
+ *  Test này không cấm chuyện đó - phần lớn 34 bài kia có override ĐẦY ĐỦ HƠN
  *  bản trong lessons.ts, nên override đang làm đúng việc. Nó chỉ khoá danh
- *  sách lại, để người sau biết mình đang sửa file nào cho bài nào. */
+ *  sách lại, để người sau biết mình đang sửa file nào cho bài nào.
+ *
+ *  "wealth-management" đã ra khỏi danh sách: 6 khối `sections` của nó trùng
+ *  từng byte với 6 khối tương ứng trong lessons.ts, nên override chỉ đang
+ *  nhân bản chứ không sở hữu gì. Gỡ khoá đó đi thì lessons.ts sống lại và
+ *  bài nhận được phần bổ sung viết cho nó. Đó là cách rút một slug ra. */
 
 const bySlug = new Map(
   (lessons as unknown as Array<Record<string, unknown>>).map((l) => [l.slug as string, l])
@@ -32,7 +37,6 @@ const SECTIONS_OWNED_BY_OVERRIDE = new Set([
   "on-tap-wacc",
   "roic",
   "roic-phan-2",
-  "wealth-management",
   "finance-as-math",
   "samsung-ai-finance",
   "fcf-deep-dive",

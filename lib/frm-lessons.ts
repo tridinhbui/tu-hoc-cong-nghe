@@ -737,6 +737,37 @@ export const FRM_LESSONS: Lesson[] = [
         text: "Ngân hàng hiện đại phụ thuộc vào hàng trăm nhà cung cấp công nghệ, dữ liệu, thanh toán. BCP hiệu quả phải mở rộng ra cả các nhà cung cấp trọng yếu: đánh giá khả năng phục hồi của họ, có phương án thay thế nếu họ gián đoạn, và không coi \"lỗi không phải do chúng ta\" là lý do chấp nhận được với khách hàng hay cơ quan quản lý.",
       },
       {
+        type: "heading",
+        text: "Hai con số biến kế hoạch thành thứ kiểm chứng được"
+      },
+      {
+        type: "conceptTable",
+        title: "RTO và RPO trả lời hai câu hỏi khác nhau",
+        subtitle: "Một kế hoạch không có hai con số này thì không có gì để kiểm định",
+        concepts: [
+          {
+            vi: "Thời gian phục hồi mục tiêu",
+            en: "RTO - Recovery Time Objective",
+            def: "Dịch vụ được phép ngừng bao lâu. Đặt RTO 4 giờ nghĩa là toàn bộ hạ tầng dự phòng, quy trình chuyển đổi và nhân sự trực phải cùng chạy xong trong 4 giờ - kể cả lúc 2 giờ sáng chủ nhật."
+          },
+          {
+            vi: "Điểm phục hồi mục tiêu",
+            en: "RPO - Recovery Point Objective",
+            def: "Được phép mất bao nhiêu dữ liệu. RPO 15 phút buộc sao lưu hoặc nhân bản ít nhất mỗi 15 phút; RPO bằng 0 buộc nhân bản đồng bộ, và chi phí nhảy vọt ở đúng chỗ đó."
+          },
+          {
+            vi: "Ngưỡng chịu đựng tác động",
+            en: "Impact tolerance",
+            def: "Câu hỏi mới mà cơ quan quản lý đặt ra: mức gián đoạn tối đa mà một dịch vụ trọng yếu gây ra vẫn chưa tổn hại tới khách hàng và thị trường. Nó đặt cho dịch vụ, không đặt cho hệ thống - nên trả lời được nó đòi phải biết một dịch vụ đi qua những hệ thống nào."
+          }
+        ]
+      },
+      {
+        type: "callout",
+        label: "Khoảng cách chỉ lộ ra khi diễn tập",
+        text: "Giả sử dịch vụ thanh toán có ngưỡng chịu đựng 2 giờ, nhưng bài diễn tập chuyển sang trung tâm dự phòng mất 6 giờ vì phải khởi động lại theo đúng thứ tự phụ thuộc giữa các hệ thống. Khoảng cách 4 giờ đó là kết quả có giá trị nhất của cả bài diễn tập - và nó không bao giờ xuất hiện trong một tài liệu BCP chưa từng được chạy thử. Đó là lý do quy định hiện nay yêu cầu diễn tập trong kịch bản nghiêm trọng nhưng hợp lý, chứ không yêu cầu nộp bản kế hoạch."
+      },
+      {
         type: "closing",
         lines: [
           "Khả năng phục hồi không phải là tránh mọi gián đoạn - điều đó bất khả thi - mà là chuẩn bị sẵn để gián đoạn không biến thành khủng hoảng.",

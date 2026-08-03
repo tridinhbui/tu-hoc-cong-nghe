@@ -1473,6 +1473,23 @@ export const FRM_CORE_GAPS_LESSONS: Lesson[] = [
         text: "Ngân sách an ninh thường dồn gần hết vào phòng ngừa, trong khi giả định thực tế phải là sớm muộn cũng có sự cố. Hai câu hỏi quyết định mức thiệt hại cuối cùng là: bao lâu để phát hiện, và bao lâu để khôi phục hoạt động."
       },
       {
+        type: "heading",
+        text: "Vì sao chiến lược sao lưu tốt cho hỏng ổ cứng lại vô dụng trước mã độc tống tiền"
+      },
+      {
+        type: "paragraph",
+        text: "Sao lưu được thiết kế để chống một sự cố không có ý chí: ổ cứng hỏng, trung tâm dữ liệu cháy, ai đó xoá nhầm. Trong những kịch bản đó, bản sao lưu nằm im và luôn còn nguyên. Mã độc tống tiền đảo ngược giả định nền đó - kẻ tấn công vào hệ thống trước, ở lại một thời gian, tìm chính hệ thống sao lưu và mã hoá hoặc xoá nó, rồi mới kích hoạt phần nhìn thấy được. Đến lúc tổ chức biết mình bị tấn công thì đường lùi đã bị cắt từ trước."
+      },
+      {
+        type: "callout",
+        label: "Hệ quả với thiết kế, không phải với ngân sách",
+        text: "Bản sao lưu phải có ít nhất một phiên bản không ghi đè được và không nối mạng thường trực, và quan trọng không kém: phải diễn tập phục hồi từ chính bản đó. Rất nhiều tổ chức có bản sao lưu ngoại tuyến nhưng chưa từng thử khôi phục toàn bộ hệ thống từ nó, nên không biết việc đó mất mấy ngày. Câu hỏi cần trả lời trước không phải sao lưu có tồn tại không, mà là phục hồi mất bao lâu và trong lúc đó tổ chức vận hành bằng cách nào."
+      },
+      {
+        type: "paragraph",
+        text: "Điểm thứ hai làm an ninh mạng khác các nhóm rủi ro hoạt động còn lại: nó tập trung. Khi hàng trăm định chế cùng dùng một vài nhà cung cấp điện toán đám mây, một nhà cung cấp dữ liệu thị trường hay một hệ thống thanh toán chung, thì một sự cố duy nhất chạm tới tất cả cùng lúc. Kế hoạch dự phòng viết theo giả định các bên khác vẫn hoạt động bình thường sẽ sai ở đúng loại sự kiện nghiêm trọng nhất."
+      },
+      {
         type: "closing",
         lines: [
           "Phòng thủ hoàn hảo là mục tiêu không đạt được; phục hồi nhanh là mục tiêu đạt được.",
@@ -1928,6 +1945,30 @@ export const FRM_CORE_GAPS_LESSONS: Lesson[] = [
         type: "callout",
         label: "Chốt chặn rẻ nhất nằm ở khâu thiết kế",
         text: "Kiểm soát rủi ro hành vi hiệu quả nhất không nằm ở khâu bán mà ở quy trình phê duyệt sản phẩm mới: sản phẩm này giải quyết nhu cầu gì, của nhóm khách hàng nào, và nhân viên tuyến đầu có giải thích nổi nó trong năm phút không."
+      },
+      {
+        type: "heading",
+        text: "Vì sao độ trễ khiến rủi ro hành vi khó chặn hơn mọi loại khác"
+      },
+      {
+        type: "paragraph",
+        text: "Vụ bán sai bảo hiểm khoản vay ở Anh là ví dụ rõ nhất về hình dạng của loại rủi ro này. Sản phẩm được bán rộng rãi suốt những năm 1990 tới khoảng 2010, phần lớn cho những người hoặc không cần nó hoặc không đủ điều kiện đòi bồi thường theo chính hợp đồng đó. Không có vụ tấn công mạng nào, không có giao dịch viên gian lận nào - chỉ có hoa hồng bán hàng và một sản phẩm không phù hợp với người mua. Tổng chi phí bồi hoàn của ngành sau đó lên tới khoảng 38 tỷ bảng, trả rải trong gần một thập kỷ tính từ 2011."
+      },
+      {
+        type: "callout",
+        label: "Khoảng cách mười năm giữa doanh thu và chi phí",
+        text: "Người bán đã nhận thưởng, thăng chức và nhiều người đã nghỉ hoặc chuyển việc từ lâu trước khi hoá đơn tới. Ban lãnh đạo trả tiền không phải ban lãnh đạo tạo ra vấn đề. Không một hệ thống đo lường theo năm tài chính nào bắt được điều đó, và đó chính là lý do rủi ro hành vi phải được chặn bằng thiết kế sản phẩm và cấu trúc thưởng chứ không bằng báo cáo tổn thất - báo cáo tổn thất luôn đến sau khi đã quá muộn để làm gì."
+      },
+      {
+        type: "comparison",
+        left: {
+          label: "Câu hỏi ở khâu phê duyệt sản phẩm",
+          text: "Sản phẩm này giải quyết nhu cầu gì, của ai; khách hàng nào KHÔNG nên mua nó; nếu bán sai đối tượng thì tổn thất cho họ là bao nhiêu; và người bán được thưởng theo doanh số hay theo mức độ phù hợp. Bốn câu hỏi này gần như miễn phí ở thời điểm này."
+        },
+        right: {
+          label: "Câu hỏi ở khâu rà soát sau bán",
+          text: "Đã bán bao nhiêu hợp đồng cho nhóm không phù hợp, trong bao nhiêu năm, và bồi hoàn hết bao nhiêu. Cùng nội dung, nhưng đắt hơn nhiều bậc - và tới lúc này thì thiệt hại về niềm tin đã xảy ra rồi."
+        }
       },
       {
         type: "closing",

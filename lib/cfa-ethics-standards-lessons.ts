@@ -1923,6 +1923,48 @@ export const CFA_ETHICS_STANDARDS_LESSONS: Lesson[] = [
         "text": "Lý do nền của sự khắt khe: các cấp độ là chặng của một chương trình chứ không phải chứng chỉ riêng. Nếu mỗi cấp độ được trình bày như một danh xưng, thị trường lao động sẽ mất khả năng phân biệt người đã hoàn thành với người đang đi giữa đường - và giá trị của cả hệ thống rơi xuống theo."
       },
       {
+        "type": "conceptTable",
+        "title": "Cùng một người, sáu cách viết - hai cách đúng",
+        "subtitle": "Quy tắc chi tiết tới mức này vì mọi biến thể đều tạo ra một ấn tượng hơi khác sự thật",
+        "concepts": [
+          {
+            "vi": "Trần Minh, CFA",
+            "en": "Đúng",
+            "def": "Dạng chuẩn. Danh xưng đi sau tên, viết hoa toàn bộ, không dấu chấm giữa các chữ cái, và không được trình bày nổi bật hơn chính tên người."
+          },
+          {
+            "vi": "Trần Minh, C.F.A.",
+            "en": "Sai",
+            "def": "Có dấu chấm là sai. Nghe như bắt bẻ vặt, nhưng đây là dấu hiệu hình thức giúp phân biệt danh xưng thật với các viết tắt tự đặt."
+          },
+          {
+            "vi": "Trần Minh là một CFA",
+            "en": "Sai",
+            "def": "Danh xưng là tính từ bổ nghĩa, không phải danh từ. Cách viết đúng là CFA charterholder. Dùng như danh từ biến một chứng nhận cá nhân thành một loại nghề nghiệp."
+          },
+          {
+            "vi": "Trần Minh, CFA Level II",
+            "en": "Sai",
+            "def": "Không có chứng chỉ nào tên là CFA Level II. Đây là cách viết tạo cảm giác đã sở hữu một phần danh xưng, trong khi các cấp độ chỉ là chặng của cùng một chương trình."
+          },
+          {
+            "vi": "Trần Minh, CFA Level II candidate",
+            "en": "Đúng có điều kiện",
+            "def": "Hợp lệ nếu và chỉ nếu đã đăng ký hợp lệ cho kỳ thi đó. Đăng ký hết hạn hay chưa đăng ký kỳ tiếp theo thì không còn dùng được."
+          },
+          {
+            "vi": "Trần Minh, CFA (chờ cấp)",
+            "en": "Sai",
+            "def": "Đỗ cả ba kỳ thi vẫn chưa đủ - còn kinh nghiệm làm việc, đơn xin cấp và tư cách thành viên. Trong khoảng thời gian chờ đó, không có cách viết nào được phép gợi ý rằng danh xưng đã thuộc về bạn."
+          }
+        ]
+      },
+      {
+        "type": "callout",
+        "label": "Duy trì cũng là một điều kiện, không chỉ để đạt được",
+        "text": "Danh xưng không phải thứ đạt một lần rồi giữ mãi. Ngừng đóng phí thành viên hoặc không nộp bản cam kết tuân thủ hằng năm thì tư cách bị treo, và trong thời gian đó việc tiếp tục ghi CFA sau tên là vi phạm Standard VII(B) - dù bạn đã đỗ cả ba kỳ thi từ hai mươi năm trước. Đây là dạng vi phạm phổ biến và gần như luôn vô ý."
+      },
+      {
         "type": "closing",
         "lines": [
           "Danh xưng đáng giá vì nó nói chính xác một điều.",

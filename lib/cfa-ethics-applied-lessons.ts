@@ -1447,6 +1447,26 @@ export const CFA_ETHICS_APPLIED_LESSONS: Lesson[] = [
         }
       },
       {
+        "type": "heading",
+        "text": "Xác minh và kiểm tra kết quả không phải một thứ"
+      },
+      {
+        "type": "comparison",
+        "left": {
+          "label": "Xác minh - phạm vi toàn công ty",
+          "text": "Bên thứ ba độc lập kiểm tra hai điều: công ty đã đưa mọi danh mục có quyền quyết định đầu tư vào composite theo đúng quy tắc chưa, và quy trình tính toán, trình bày, lưu trữ dữ liệu có phù hợp với GIPS không. Xác minh KHÔNG khẳng định một bản trình bày composite cụ thể nào là chính xác - đây là chỗ bị hiểu sai nhiều nhất khi đọc quảng cáo của quỹ."
+        },
+        "right": {
+          "label": "Kiểm tra kết quả - phạm vi một composite",
+          "text": "Đi sâu vào một composite cụ thể để soát số liệu của chính composite đó. Chỉ làm được sau khi công ty đã qua xác minh, và cũng chỉ nói về composite được kiểm - không nói gì về các composite còn lại."
+        }
+      },
+      {
+        "type": "callout",
+        "label": "Vì sao quy tắc gộp composite trước khi biết kết quả là quy tắc quan trọng nhất",
+        "text": "Giả sử một công ty có mười danh mục cùng chiến lược cổ phiếu tăng trưởng. Cuối năm, ba danh mục lỗ nặng vì một cổ phiếu riêng lẻ. Nếu được tách ba danh mục đó ra thành một composite khác với lý do nghe rất hợp lý - khác quy mô, khác ràng buộc của khách - thì con số của composite chính đẹp lên mà không ai nói dối một câu nào. Chuẩn chặn điều đó bằng cách buộc tiêu chí gộp phải viết ra trước, và danh mục đóng phải ở lại trong lịch sử composite thay vì biến mất. Không có quy tắc thứ hai đó, một công ty đóng hết các danh mục kém sẽ có lịch sử toàn thắng."
+      },
+      {
         "type": "closing",
         "lines": [
           "Chuẩn không làm cho con số đẹp hơn.",
