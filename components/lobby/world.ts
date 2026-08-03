@@ -16,7 +16,12 @@ import { resolveObstacles } from "./room-obstacles";
  *  công, vừa có thể là đang đứng trên ban công. Chỉ có lịch sử di chuyển - đã
  *  leo thang hay chưa - mới phân biệt được. */
 
-export type Floor = 0 | 1;
+/** Ba cốt đi lại: sàn thư viện, ban công lửng, và sân thượng.
+ *
+ *  Vẫn mang theo trong trạng thái người chơi chứ không suy từ toạ độ, vì lý do
+ *  đã ghi ở đầu file: đứng ở x=10, z=0 có thể là dưới gầm ban công, trên ban
+ *  công, hoặc trên mái - chỉ lịch sử di chuyển mới phân biệt được. */
+export type Floor = 0 | 1 | 2;
 
 const halfL = ROOM.length / 2;
 const halfW = ROOM.width / 2;
@@ -85,6 +90,28 @@ const GROUND_RECTS: Rect[] = [
   { x0: -SIDE_X1, x1: -SIDE_X0, z0: REAR_Z, z1: STEP_Z0 },
   // Sân sau nối hai hẻm lại thành vòng khép kín.
   { x0: -SIDE_X1, x1: SIDE_X1, z0: REAR_Z, z1: -ROOM.length / 2 },
+];
+
+// ── Sân thượng ──────────────────────────────────────────────────────────────
+
+/** Cốt mái, ngay trên trần phòng đọc. */
+export const ROOF_Y = ROOM.height + 0.4;
+/** Thang từ đầu BẮC ban công lên mái - đầu kia của ban công so với thang dưới,
+ *  nên leo lên mái là đi hết chiều dài ban công. Đó là chủ ý: mái phải là chỗ
+ *  đi tới, không phải chỗ tình cờ rơi vào. */
+export const ROOF_STAIR_Z0 = MEZZ_Z_MAX - 7;
+export const ROOF_STAIR_Z1 = MEZZ_Z_MAX - 0.6;
+/** Lan can lùi vào khỏi mép mái - đứng sát mép một toà nhà 13m mà không có gì
+ *  chắn thì cảm giác đầu tiên là muốn lùi lại, không phải muốn nhìn. */
+const ROOF_MARGIN = 1.6;
+
+const ROOF_RECTS: Rect[] = [
+  {
+    x0: -ROOM.width / 2 + ROOF_MARGIN,
+    x1: ROOM.width / 2 - ROOF_MARGIN,
+    z0: -ROOM.length / 2 + ROOF_MARGIN,
+    z1: ROOM.length / 2 - ROOF_MARGIN,
+  },
 ];
 
 const MEZZ_RECTS: Rect[] = [
@@ -175,8 +202,18 @@ function porchHeightAt(z: number): number {
   return (Math.ceil(t * STEP_COUNT) / STEP_COUNT) * PLAZA_Y;
 }
 
+/** Cao độ thang mái: từ cốt ban công lên cốt mái. */
+function roofStairHeightAt(z: number): number {
+  if (z <= ROOF_STAIR_Z0) return MEZZ_Y;
+  if (z >= ROOF_STAIR_Z1) return ROOF_Y;
+  const t = (z - ROOF_STAIR_Z0) / (ROOF_STAIR_Z1 - ROOF_STAIR_Z0);
+  const steps = 12;
+  return MEZZ_Y + (Math.min(steps, Math.floor(t * steps) + 1) / steps) * (ROOF_Y - MEZZ_Y);
+}
+
 export function groundHeightAt(x: number, z: number, floor: Floor): number {
-  if (floor === 1) return stairHeightAt(z);
+  if (floor === 2) return ROOF_Y;
+  if (floor === 1) return roofStairHeightAt(z);
   // Mọi chỗ NGOÀI mặt bằng toà nhà đều ở cốt quảng trường, không chỉ phần
   // trước cửa: hẻm hông và sân sau nằm ngoài dải z của bậc thềm, nên nếu chỉ
   // hỏi porchHeightAt thì chúng trả về cốt 0 và người học đi vòng ra sau nhà
@@ -191,6 +228,19 @@ export function groundHeightAt(x: number, z: number, floor: Floor): number {
 function atStairFoot(x: number, z: number): boolean {
   const ax = Math.abs(x);
   return ax >= MEZZ_BAND[0] - 0.35 && ax <= MEZZ_BAND[1] + 0.2 && z >= STAIR_Z0 - 0.1 && z <= STAIR_Z0 + 1.8;
+}
+
+/** Miệng thang trên mái - hẹp hơn hẳn cửa lên, vì lên là chủ động còn xuống
+ *  thì không nên xảy ra do đi lạc. */
+function atRoofHatch(x: number, z: number): boolean {
+  const ax = Math.abs(x);
+  return ax >= MEZZ_BAND[0] && ax <= MEZZ_BAND[1] && z >= ROOF_STAIR_Z1 - 0.5;
+}
+
+/** Đầu bắc ban công, nơi thang lên mái bắt đầu. */
+function atRoofStairTop(x: number, z: number): boolean {
+  const ax = Math.abs(x);
+  return ax >= MEZZ_BAND[0] - 0.35 && ax <= MEZZ_BAND[1] + 0.2 && z >= ROOF_STAIR_Z1 - 0.8;
 }
 
 export interface WorldStep {
@@ -218,10 +268,20 @@ export function stepWorld(
   // vì mặt bằng tầng hai chặn ở đúng STAIR_Z0 và sẽ không bao giờ cho z nhỏ hơn.
   if (floor === 1 && z < STAIR_Z0) nextFloor = 0;
   else if (floor === 0 && atStairFoot(x, z)) nextFloor = 1;
+  else if (floor === 1 && atRoofStairTop(x, z)) nextFloor = 2;
+  // Xuống khỏi mái ở đúng chỗ đã lên: mặt bằng mái rộng khắp toà nhà, nên nếu
+  // cửa xuống là "bất cứ đâu quanh đầu bắc" thì đi dạo trên mái sẽ vô tình rơi
+  // xuống ban công.
+  else if (floor === 2 && atRoofHatch(x, z)) nextFloor = 1;
 
-  const rects = nextFloor === 1 ? MEZZ_RECTS : GROUND_RECTS;
+  const rects = nextFloor === 2 ? ROOF_RECTS : nextFloor === 1 ? MEZZ_RECTS : GROUND_RECTS;
   const clamped = resolveMove(rects, from.x, from.z, x, z);
-  const solved = resolveObstacles(clamped.x, clamped.z, bodyRadius, nextFloor);
+  // Vật cản chỉ có ở tầng trệt. Ban công và mái đều đi bằng khung đi lại hẹp
+  // sẵn, không có đồ đạc nào để đâm vào.
+  const solved =
+    nextFloor === 0
+      ? resolveObstacles(clamped.x, clamped.z, bodyRadius, 0)
+      : { x: clamped.x, z: clamped.z };
 
   return {
     x: solved.x,

@@ -15,6 +15,7 @@ import {
   REAR_Z,
   STEP_Z0,
   groundHeightAt,
+  ROOF_Y,
 } from "@/components/lobby/world";
 
 /** Thế giới 3D không chạy được trong vitest - nó cần WebGL. Nhưng phần QUYẾT
@@ -204,5 +205,62 @@ describe("vành đai quanh thư viện", () => {
       pos = { x: step.x, z: step.z };
     }
     expect(pos.x, "lọt vào trong lòng thư viện qua tường hông").toBeGreaterThanOrEqual(SIDE_X0 - 0.01);
+  });
+});
+
+describe("sân thượng", () => {
+  const lane = (MEZZ_BAND[0] + MEZZ_BAND[1]) / 2;
+
+  /** Leo từ sàn lên ban công rồi lên mái, bằng cách ĐI - cùng lý do với vành
+   *  đai quanh nhà: thứ hỏng không phải một tầng thiếu mà là cửa giữa hai tầng
+   *  không khớp, và lúc đó mỗi tầng đều đúng nhưng không sang nhau được. */
+  it("leo được từ sàn lên ban công rồi lên mái", () => {
+    let pos = { x: lane, z: STAIR_Z0 + 0.5 };
+    let floor: 0 | 1 | 2 = 0;
+    let y = 0;
+    for (let i = 0; i < 900; i += 1) {
+      const step = stepWorld(pos, pos.x, pos.z + 0.1, floor, 0.34);
+      pos = { x: step.x, z: step.z };
+      floor = step.floor;
+      y = step.y;
+      if (floor === 2) break;
+    }
+    expect(floor, "không lên tới mái").toBe(2);
+    expect(y).toBe(ROOF_Y);
+  });
+
+  it("đi lại được khắp mái mà không rơi xuống", () => {
+    // Đứng trên mái rồi đi về bốn phía: phải luôn ở cốt mái và luôn còn ở tầng
+    // 2, trừ đúng chỗ miệng thang.
+    for (const [dx, dz] of [[1, 0], [-1, 0], [0, 1], [0, -1]] as Array<[number, number]>) {
+      let pos = { x: 0, z: 0 };
+      let floor: 0 | 1 | 2 = 2;
+      for (let i = 0; i < 400; i += 1) {
+        const step = stepWorld(pos, pos.x + dx * 0.12, pos.z + dz * 0.12, floor, 0.34);
+        pos = { x: step.x, z: step.z };
+        floor = step.floor;
+        if (floor !== 2) break;
+        expect(step.y, `(${pos.x.toFixed(1)}, ${pos.z.toFixed(1)})`).toBe(ROOF_Y);
+      }
+      // Đi giữa mái theo bốn hướng chính không được rơi xuống tầng khác: miệng
+      // thang nằm ở hai bên hông đầu bắc, không nằm trên trục giữa.
+      expect(floor, `hướng (${dx}, ${dz}) làm rơi khỏi mái`).toBe(2);
+    }
+  });
+
+  it("mái không nối thẳng xuống tầng trệt", () => {
+    // Xuống từ mái phải qua ban công. Nhảy thẳng xuống sàn là dấu hiệu cửa
+    // tầng bị nối nhầm.
+    let pos = { x: lane, z: 26 };
+    let floor: 0 | 1 | 2 = 2;
+    const seen = new Set<number>([2]);
+    for (let i = 0; i < 400; i += 1) {
+      const step = stepWorld(pos, pos.x, pos.z - 0.12, floor, 0.34);
+      pos = { x: step.x, z: step.z };
+      floor = step.floor;
+      seen.add(floor);
+      if (floor === 0) break;
+    }
+    if (seen.has(0)) expect(seen.has(1), "từ mái rơi thẳng xuống tầng trệt").toBe(true);
   });
 });

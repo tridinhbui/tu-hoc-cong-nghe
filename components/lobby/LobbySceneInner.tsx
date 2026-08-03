@@ -8,12 +8,14 @@ import RoomFixtures, { type GateTarget } from "./RoomFixtures";
 import RoomProps from "./RoomProps";
 import CityStreet from "./CityStreet";
 import LibrarySurrounds from "./LibrarySurrounds";
+import Rooftop from "./Rooftop";
 import { stepWorld, type Floor } from "./world";
 import { ROTUNDA_Z } from "./room-obstacles";
 import { daylightAt, rgbToHex, sunPosition } from "./daylight";
 import StationDoors from "./StationDoors";
 import type { Station } from "./stations";
 import { useRenderQuality } from "@/components/world-controls/render-quality";
+import { usePageVisible } from "@/components/world-controls/use-page-visible";
 import LobbyAvatar, { type AvatarPose } from "./LobbyAvatar";
 import {
   CHAT_BUBBLE_MS,
@@ -284,6 +286,7 @@ export default function LobbySceneInner({
   seatStartedAt,
 }: Props) {
   const quality = useRenderQuality();
+  const pageVisible = usePageVisible();
   const [peers, setPeers] = useState<LobbyPeer[]>([]);
   const [speeches, setSpeeches] = useState<Record<string, { text: string; at: number }>>({});
   const walkRef = useRef(createWalkState());
@@ -367,7 +370,6 @@ export default function LobbySceneInner({
   /** Dọn bong bóng đã hết hạn khỏi state - nếu để lại, mỗi người từng nói một
    *  câu sẽ giữ chuỗi đó trong bộ nhớ suốt phiên. */
   useEffect(() => {
-    if (Object.keys(speeches).length === 0) return;
     const timer = window.setInterval(() => {
       const now = Date.now();
       setSpeeches((prev) => {
@@ -381,7 +383,11 @@ export default function LobbySceneInner({
       });
     }, 1000);
     return () => window.clearInterval(timer);
-  }, [speeches]);
+    // Chạy suốt phiên, không phụ thuộc `speeches`. Để `speeches` trong deps thì
+    // mỗi câu chat lại huỷ và dựng lại interval, nên bong bóng nói lúc sống 1
+    // giây lúc gần 2 giây tuỳ ai vừa nói - và dọn dẹp chính là thứ không nên
+    // phụ thuộc vào việc có người nói hay không.
+  }, []);
 
   // Pose của người khác đi vào ref để LobbyAvatar nội suy mỗi frame.
   const others = useMemo(() => {
@@ -432,7 +438,17 @@ export default function LobbySceneInner({
       // Trần giới hạn DPR: màn Retina 3x không cần render 3x cho một sảnh xã
       // giao, và đây là khác biệt lớn nhất giữa mát máy và cháy quạt.
       dpr={quality.dpr}
-      gl={{ antialias: true, powerPreference: "high-performance" }}
+      // Chất lượng thấp là người dùng đang nói máy của họ không kham nổi, nên
+      // xin GPU rời và bật khử răng cưa lúc đó là đi ngược lại đúng cái họ vừa
+      // chọn - trên laptop nó còn ép chuyển sang card rời và ăn pin.
+      gl={{
+        antialias: quality.shadows,
+        powerPreference: quality.shadows ? "high-performance" : "low-power",
+      }}
+      // Đứng ở tab khác mà vẫn render cả một con phố là đốt pin cho một khung
+      // hình không ai nhìn. Người bên cạnh vẫn thấy ta đứng yên trong phòng vì
+      // presence do Supabase giữ, không do vòng lặp vẽ.
+      frameloop={pageVisible ? "always" : "never"}
     >
       <color attach="background" args={[rgbToHex(day.fogColor)]} />
       {/* Sương đẩy xa hơn phiên bản chỉ-có-phòng-đọc: giữ được chiều sâu hun
@@ -453,6 +469,8 @@ export default function LobbySceneInner({
       <CityStreet day={day} />
       {/* Hai hẻm hông và sân sau - phần còn lại của vòng 360 độ quanh thư viện. */}
       <LibrarySurrounds day={day} />
+      {/* Sân thượng: cốt thứ ba, leo từ đầu bắc ban công. */}
+      <Rooftop day={day} />
       <RoomFixtures playerRef={playerPos} onPortalProximity={onPortalProximity} />
       <StationDoors playerRef={playerPos} onNearChange={onStationNear} />
 
