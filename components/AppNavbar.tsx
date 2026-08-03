@@ -576,7 +576,7 @@ export default function AppNavbar() {
           themselves to one screen subtract exactly this height on mobile
           (see APP_MOBILE_HEADER_H in app/(app)/kiem-tra/page.tsx). Keep the
           two in step. */}
-      <header className="lg:hidden relative h-14 shrink-0 border-b border-stone-200 dark:border-stone-800 sticky top-0 bg-white/95 dark:bg-stone-950/95 backdrop-blur z-50">
+      <header className="lg:hidden h-14 shrink-0 border-b border-stone-200 dark:border-stone-800 sticky top-0 bg-white/95 dark:bg-stone-950/95 backdrop-blur z-50">
         <div className="max-w-6xl mx-auto h-full px-3 sm:px-6 flex items-center justify-between gap-1.5 sm:gap-4 w-full overflow-hidden">
           <Link href="/dashboard" className="flex items-center gap-2 shrink-0">
             <Logo size={28} />
@@ -685,7 +685,9 @@ export default function AppNavbar() {
                 drawer then renders shifted a hundred-odd px to the left of the
                 header it is supposed to hang from. Anchoring to the header's
                 own box makes that impossible, and drops the hardcoded
-                top-[50px]/[56px] header-height guesses at the same time. */}
+                top-[50px]/[56px] header-height guesses at the same time.
+                The header carries no `relative`: `sticky` already positions
+                it, so it is the containing block these resolve against. */}
             <div
               className="absolute left-0 right-0 top-full h-screen bg-stone-950/40 backdrop-blur-xs z-30 lg:hidden"
               onClick={() => setMobileMenuOpen(false)}
