@@ -28,7 +28,7 @@ export function maxAnswersFor(body: { mode?: unknown; track?: unknown }): number
   return body.mode === "cfa-mock" && body.track === "cfa" ? MAX_ANSWERS_CFA_MOCK : MAX_ANSWERS;
 }
 const GATE_PASS_RATIO = 0.6;
-const VALID_TRACKS = new Set(["personal", "professional", "cfa", "ib", "mock-interview"]);
+const VALID_TRACKS = new Set(["personal", "professional", "cfa", "frm", "ib", "mock-interview"]);
 const VALID_DIFFICULTIES = new Set(["de", "trung-binh", "kho", "tat-ca"]);
 
 interface AnswerInput {

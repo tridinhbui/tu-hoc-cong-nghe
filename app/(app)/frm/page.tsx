@@ -54,8 +54,14 @@ export default async function FrmPage() {
             <h1 className="text-xl font-bold text-stone-900 dark:text-stone-100">FRM</h1>
             <p className="text-xs text-stone-500 dark:text-stone-400 mt-0.5">Financial Risk Manager - GARP Part I &amp; Part II</p>
           </div>
-          {/* Hai thứ duy nhất ở track này dùng được mà không cần mở một bài
+          {/* Ba thứ duy nhất ở track này dùng được mà không cần mở một bài
               học, nên chúng phải với tới được ngay từ đầu trang. */}
+          <Link
+            href="/frm/thi-thu"
+            className="shrink-0 rounded-full bg-red-600 px-3.5 py-1.5 text-xs font-extrabold text-white transition-colors hover:bg-red-500"
+          >
+            📝 Thi thử
+          </Link>
           <Link
             href="/frm/flashcards"
             className="shrink-0 rounded-full border border-red-200 px-3.5 py-1.5 text-xs font-extrabold text-red-700 transition-colors hover:bg-red-50 dark:border-red-900 dark:text-red-300 dark:hover:bg-red-950/40"

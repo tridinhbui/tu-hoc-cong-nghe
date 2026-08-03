@@ -25,6 +25,7 @@ const TRACKS: { id: QuizTrack; label: string; desc: string }[] = [
   { id: "personal", label: "Tài chính cá nhân", desc: "Tư duy tiền bạc, đầu tư, danh mục, hưu trí" },
   { id: "professional", label: "Tài chính chuyên ngành", desc: "Kế toán, định giá, trái phiếu, phái sinh" },
   { id: "cfa", label: "Tài chính chứng chỉ", desc: "CFA Level I - 10 môn thi chính thức" },
+  { id: "frm", label: "Quản trị rủi ro (FRM)", desc: "Part I - 4 môn, ra đề theo trọng số GARP" },
 ];
 
 const DIFFICULTIES: { id: QuizDifficulty; label: string }[] = [

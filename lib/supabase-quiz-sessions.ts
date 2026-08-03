@@ -5,7 +5,7 @@ import { handleSupabaseError } from "@/lib/errors";
 // components/MockInterviewModal.tsx, kept distinct from the 5-question "ib"
 // drill on /kiem-tra because Interview readiness weights the two very
 // differently (lib/career-competency.ts).
-export type QuizTrack = "personal" | "professional" | "cfa" | "ib" | "mock-interview";
+export type QuizTrack = "personal" | "professional" | "cfa" | "frm" | "ib" | "mock-interview";
 export type QuizDifficulty = "de" | "trung-binh" | "kho" | "tat-ca";
 
 // "Table not found in schema cache" (PostgREST) or "relation does not

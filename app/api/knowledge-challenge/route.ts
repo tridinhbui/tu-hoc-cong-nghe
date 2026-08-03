@@ -3,6 +3,7 @@ import { getLessonById, getLessonsMeta } from "@/lib/lessons-loader";
 import { TRACK_PERSONAL, TRACK_PROFESSIONAL, isLessonInRange } from "@/lib/track-stages";
 import { CFA_LEVEL_1_SUBJECTS } from "@/lib/cfa-track";
 import { CFA_EXAM, pickCfaWeighted, toThreeOptions } from "@/lib/cfa-exam";
+import { frmLessonIds, pickFrmWeighted, type FrmPart } from "@/lib/frm-exam";
 import { IB_TECHNICAL_QUESTIONS, formatCategoryLabel } from "@/lib/ib-question-bank";
 import { bankCoversCareer, getTechnicalQuestionsForCareer } from "@/lib/ib-question-careers";
 import { signQuestionToken } from "@/lib/quiz-tokens";
@@ -45,9 +46,16 @@ function shuffle<T>(arr: T[]): T[] {
   return a;
 }
 
-async function idsForTrack(track: "personal" | "professional" | "cfa"): Promise<Set<number>> {
+type PoolTrack = "personal" | "professional" | "cfa" | "frm";
+
+async function idsForTrack(track: PoolTrack, frmPart: FrmPart): Promise<Set<number>> {
   if (track === "cfa") {
     return new Set(CFA_LEVEL_1_SUBJECTS.flatMap((s) => s.lessonIds));
+  }
+  // FRM thu hẹp theo phần thi ngay từ khâu lấy bài: Part I và Part II là hai kỳ
+  // thi riêng, và một câu Credit Risk lọt vào đề Part I là hỏi ngoài phạm vi.
+  if (track === "frm") {
+    return new Set(frmLessonIds(frmPart));
   }
   const allLessons = await getLessonsMeta();
   const stages = track === "personal" ? TRACK_PERSONAL.stages : TRACK_PROFESSIONAL.stages;
@@ -173,6 +181,9 @@ export async function GET(request: NextRequest) {
   const lessonParam = searchParams.get("lesson");
   /** Số câu muốn lấy. Mặc định 5 như cũ; bài thi thử CFA gọi với 180. Kẹp trần
    *  vì mỗi câu kéo theo một lượt đọc file bài học. */
+  /** Phần thi FRM. Mặc định Part I - đó là phần người học gặp trước, và một
+   *  tham số sai chính tả không nên đẩy họ sang đề Part II. */
+  const frmPart: FrmPart = searchParams.get("part") === "II" ? "II" : "I";
   const requestedCount = Math.min(
     MAX_QUESTION_COUNT,
     Math.max(1, Number(searchParams.get("count")) || QUESTION_COUNT)
@@ -219,8 +230,13 @@ export async function GET(request: NextRequest) {
 
   if (onlyLessonId && Number.isFinite(onlyLessonId)) {
     sourceIds = [onlyLessonId];
-  } else if (track === "personal" || track === "professional" || track === "cfa") {
-    const trackIds = await idsForTrack(track);
+  } else if (
+    track === "personal" ||
+    track === "professional" ||
+    track === "cfa" ||
+    track === "frm"
+  ) {
+    const trackIds = await idsForTrack(track, frmPart);
     let candidateIds = Array.from(trackIds);
     if (difficulty && difficulty !== "tat-ca" && DIFFICULTY_LABELS[difficulty]) {
       const allLessons = await getLessonsMeta();
@@ -275,8 +291,14 @@ export async function GET(request: NextRequest) {
   }
 
   const want = Math.min(requestedCount, pool.length);
+  // Hai chứng chỉ đều phải cân theo trọng số môn của đề thi thật; các track còn
+  // lại không có trọng số công bố nên xáo đều là đúng.
   const picked =
-    track === "cfa" ? pickCfaWeighted(pool, want) : shuffle(pool).slice(0, want);
+    track === "cfa"
+      ? pickCfaWeighted(pool, want)
+      : track === "frm"
+        ? pickFrmWeighted(pool, want, frmPart).map((r) => ({ ...r.item, subjectId: r.subject }))
+        : shuffle(pool).slice(0, want);
 
   // Reshuffle each question's own options too, so revisiting the same
   // underlying quiz question in a later challenge doesn't always show the
