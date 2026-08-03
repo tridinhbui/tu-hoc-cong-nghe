@@ -5,6 +5,7 @@ import { CFA_LEVEL_1_SUBJECTS } from "@/lib/cfa-track";
 import { getCompletedLessons } from "@/lib/supabase-progress";
 import { createServerSupabaseClient } from "@/lib/supabase-server";
 import CfaTrackView from "@/components/CfaTrackView";
+import CfaNextLevels from "@/components/CfaNextLevels";
 
 export const dynamic = "force-dynamic";
 
@@ -67,6 +68,7 @@ export default async function CfaPage() {
 
       <div className="max-w-4xl mx-auto px-6 py-8">
         <CfaTrackView subjects={subjects} completedLessonIds={completedLessonIds} />
+        <CfaNextLevels />
       </div>
     </div>
   );

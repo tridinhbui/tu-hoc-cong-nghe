@@ -264,7 +264,11 @@ export default function CfaTrackView({ subjects, completedLessonIds }: Props) {
               Bộ Thẻ Thuật Ngữ CFA Song Ngữ
             </h3>
             <p className="text-[10px] text-stone-500 dark:text-stone-400 line-clamp-2 leading-normal">
-              {CFA_GLOSSARY_TERMS.length} thuật ngữ En-Vi kèm định nghĩa, công thức &amp; phát âm En-US.
+              {/* Một biểu thức duy nhất thay vì `{số} chữ`: JSX cắt khoảng
+                  trắng quanh biểu thức theo luật riêng của nó, và ở đây kết
+                  quả render ra "118thuật ngữ" - dính liền. Ghép sẵn trong
+                  chuỗi thì không còn khoảng trắng nào để ai cắt. */}
+              {`${CFA_GLOSSARY_TERMS.length} thuật ngữ En-Vi kèm định nghĩa, công thức & phát âm En-US.`}
             </p>
           </div>
 
@@ -289,7 +293,7 @@ export default function CfaTrackView({ subjects, completedLessonIds }: Props) {
               Sổ Tay Công Thức CFA Level 1
             </h3>
             <p className="text-[10px] text-stone-500 dark:text-stone-400 line-clamp-2 leading-normal">
-              {CFA_FORMULAS_DATA.length} công thức trọng yếu (TVM, WACC, DuPont, Duration, CAPM...).
+              {`${CFA_FORMULAS_DATA.length} công thức trọng yếu (TVM, WACC, DuPont, Duration, CAPM...).`}
             </p>
           </div>
 
