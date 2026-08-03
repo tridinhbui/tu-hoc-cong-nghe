@@ -272,6 +272,18 @@ export const QUANT_METHODS_LESSONS: Lesson[] = [
         explanation:
           "Đây là một kết quả gây ngạc nhiên: chia nhỏ tần suất giúp ước lượng phương sai tốt hơn nhưng gần như không giúp gì cho ước lượng trung bình. Muốn biết lợi suất kỳ vọng chính xác hơn, bạn chỉ có một cách là chờ thêm nhiều năm.",
       },
+    
+    {
+      "question": "Vì sao ba năm hiệu suất gần như không đủ để kết luận một nhà quản lý quỹ có kỹ năng?",
+      "options": [
+        "Vì sai số chuẩn quá lớn nên may mắn và kỹ năng không tách được",
+        "Vì hiệu suất ba năm chưa đi qua đủ một chu kỳ kinh tế trọn vẹn",
+        "Vì quỹ có thể thay đổi chiến lược đầu tư trong khoảng thời gian đó",
+        "Vì lợi suất của ba năm gần nhất chịu ảnh hưởng của chi phí quản lý"
+      ],
+      "correct": 0,
+      "explanation": "Với độ biến động thường thấy của thị trường cổ phiếu, cần vài chục năm dữ liệu mới phân biệt được mức vượt trội vài phần trăm với nhiễu ngẫu nhiên. Đây là một trong những kết quả khó chịu nhất của thống kê áp vào đầu tư - và bị bỏ qua nhiều nhất."
+    }
     ],
     keyTakeaways: [
       "Sai số chuẩn = độ lệch chuẩn / căn bậc hai của n; muốn chính xác gấp đôi cần dữ liệu gấp bốn",
@@ -601,6 +613,18 @@ export const QUANT_METHODS_LESSONS: Lesson[] = [
         explanation:
           "Không có mức R bình phương hay giá trị p nào biến tương quan thành nhân quả. Trong tài chính, biến thứ ba bị bỏ sót thường là chu kỳ kinh tế - nó khiến rất nhiều cặp biến trông như có quan hệ với nhau.",
       },
+    
+    {
+      "question": "Beta ước lượng từ hồi quy có sai số chuẩn lớn. Điều đó nghĩa là gì trong thực tế?",
+      "options": [
+        "Con số beta đó không đáng tin để đưa thẳng vào tính chi phí vốn chủ",
+        "Cổ phiếu đó có mức biến động cao hơn so với thị trường chung",
+        "Mô hình hồi quy đã bỏ sót một biến giải thích quan trọng nào đó",
+        "Cần kéo dài thời gian ước lượng cho tới khi hệ số beta bằng một"
+      ],
+      "correct": 0,
+      "explanation": "Beta chỉ là một ước lượng, và ước lượng thì có khoảng tin cậy. Beta 1,2 với sai số chuẩn 0,4 nghĩa là giá trị thật có thể nằm đâu đó giữa 0,4 và 2 - đưa nguyên con số đó vào CAPM là chuyển sự bất định ấy thẳng vào định giá mà không ai nhìn thấy."
+    }
     ],
     keyTakeaways: [
       "Beta là hệ số góc của hồi quy lợi suất cổ phiếu theo lợi suất thị trường; alpha là hệ số chặn",

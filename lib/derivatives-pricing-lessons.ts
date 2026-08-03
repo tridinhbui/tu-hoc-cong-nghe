@@ -94,6 +94,18 @@ export const DERIVATIVES_PRICING_LESSONS: Lesson[] = [
         explanation:
           "PV(K) = 100/1,05 ≈ 95,2. Vế trái ≈ 107,2 còn vế phải = 106. Chênh lệch khoảng 1,2 cho thấy quan hệ parity bị vi phạm: bán call, mua put, mua cổ phiếu và vay tiền sẽ khóa được khoản chênh này. Đáng chú ý là kết luận này không cần biết độ biến động - đó chính là sức mạnh của lập luận không arbitrage.",
       },
+    
+    {
+      "question": "Vì sao nguyên lý không có cơ hội chênh lệch giá lại đủ mạnh để định giá quyền chọn mà chưa cần công thức nào?",
+      "options": [
+        "Vì hai danh mục cho cùng dòng tiền mọi kịch bản thì phải cùng giá",
+        "Vì thị trường quyền chọn luôn hiệu quả nên giá quyền chọn luôn đúng",
+        "Vì xác suất tăng giảm của cổ phiếu được giả định bằng nhau",
+        "Vì mọi quyền chọn đều có thể tái tạo bằng một trái phiếu phi rủi ro"
+      ],
+      "correct": 0,
+      "explanation": "Lập luận không cần biết cổ phiếu sẽ đi đâu, chỉ cần biết hai danh mục trả về giống hệt nhau. Nếu giá của chúng khác nhau thì tồn tại một chuỗi giao dịch sinh lời chắc chắn không rủi ro - và điều đó không tồn tại lâu trên thị trường."
+    }
     ],
     keyTakeaways: [
       "Put-call parity: C + PV(K) = P + S (điều chỉnh trừ hiện giá cổ tức nếu có)",
@@ -668,6 +680,18 @@ export const DERIVATIVES_PRICING_LESSONS: Lesson[] = [
         explanation:
           "Chênh lệch dương giữa hàm ý và thực tế được gọi là phí bảo hiểm rủi ro biến động, và nó tồn tại dai dẳng trong dữ liệu lịch sử. Nhưng khai thác nó đồng nghĩa với việc nhận rủi ro đuôi - thu đều đặn rồi mất rất lớn trong các cú sốc hiếm.",
       },
+    
+    {
+      "question": "Vì sao đường biến động hàm ý trên thị trường cổ phiếu thường nghiêng chứ không đối xứng?",
+      "options": [
+        "Vì nhà đầu tư sẵn sàng trả thêm để được phòng vệ cho các cú giảm sâu",
+        "Vì quyền chọn mua luôn có thanh khoản cao hơn quyền chọn bán",
+        "Vì mô hình định giá quyền chọn tính sai với các giá thực hiện thấp",
+        "Vì cổ phiếu tăng giá thường xuyên hơn là giảm giá theo thống kê"
+      ],
+      "correct": 0,
+      "explanation": "Nhu cầu mua bảo hiểm cho danh mục cổ phiếu là một chiều: gần như ai cũng muốn được bảo vệ khi thị trường sụp, ít ai cần bảo vệ khi nó tăng. Cầu lệch đó đẩy giá quyền chọn bán ở giá thực hiện thấp lên, và biến động hàm ý quy ra từ giá cũng lệch theo."
+    }
     ],
     keyTakeaways: [
       "Biến động hàm ý là giá của bảo hiểm, không phải dự báo trung lập về biến động tương lai",

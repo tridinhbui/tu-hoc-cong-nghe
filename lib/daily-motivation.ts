@@ -156,6 +156,15 @@ export function warmthFor(tone: MotivationTone): number {
   }
 }
 
+/** Nhãn hiển thị của từng giọng - dùng chung giữa card dashboard và trang riêng. */
+export const MOTIVATION_TONE_LABEL: Record<MotivationTone, string> = {
+  rekindle: "Nhóm lại ngọn lửa",
+  return: "Chào mừng quay lại",
+  milestone: "Cột mốc của bạn",
+  keep: "Giữ lửa hôm nay",
+  steady: "Lời nhắn hôm nay",
+};
+
 export interface DailyMotivation {
   message: MotivationMessage;
   tone: MotivationTone;
