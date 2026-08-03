@@ -102,7 +102,7 @@ export const FRM_SUBJECTS: FrmSubject[] = [
     // 1530, 1537, 1538 (see lib/frm-lessons.ts) are purpose-built: loss
     // distribution approach, business continuity/disaster recovery/
     // third-party risk, and model risk management.
-    lessonIds: [1254, 1530, 1537, 1538, 1619, 1620, 1621, 1622, 1623, 1624],
+    lessonIds: [1254, 1530, 1537, 1538, 1619, 1620, 1621, 1622, 1623, 1624, 1655, 1656, 1657, 1658, 1659],
   },
   {
     id: "liquidity-treasury",
