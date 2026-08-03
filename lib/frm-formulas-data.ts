@@ -186,6 +186,59 @@ export const FRM_FORMULAS_DATA: FrmFormulaItem[] = [
       explanation: "Ước lượng 5.050 tham số từ ~500 quan sát ngày (hai năm dữ liệu) cho ra ma trận đầy nhiễu - đây là lý do các kỹ thuật co rút và PCA được dùng.",
     },
   },
+  {
+    id: "q-005",
+    subjectId: "quant-analysis",
+    title: "Mô hình GARCH(1,1)",
+    badge: "Quantitative • Biến động có điều kiện",
+    equation: "σ²ₜ = ω + α·u²ₜ₋₁ + β·σ²ₜ₋₁",
+    variables: [
+      { symbol: "ω", name: "Hằng số, gắn với phương sai dài hạn qua ω / (1 − α − β)" },
+      { symbol: "α", name: "Trọng số cho cú sốc hôm qua - càng lớn thì mô hình phản ứng càng nhanh" },
+      { symbol: "β", name: "Trọng số cho phương sai hôm qua - càng lớn thì cú sốc càng dai dẳng" },
+    ],
+    example: {
+      title: "Điều kiện dừng",
+      calculation: "α + β = 0,05 + 0,94 = 0,99",
+      result: "Dừng, nhưng sát ngưỡng",
+      explanation: "Phải có α + β < 1 thì phương sai mới quay về mức dài hạn. Bằng 1 thì mô hình thành EWMA và không còn mức dài hạn nào để quay về; càng gần 1 thì cú sốc càng lâu tan.",
+    },
+  },
+  {
+    id: "q-006",
+    subjectId: "quant-analysis",
+    title: "Phương sai dài hạn của GARCH",
+    badge: "Quantitative • Biến động có điều kiện",
+    numerator: "ω",
+    denominator: "1 − α − β",
+    variables: [
+      { symbol: "VL", name: "Phương sai dài hạn mà mô hình kéo về theo thời gian" },
+    ],
+    example: {
+      title: "Tính mức neo",
+      calculation: "ω = 0,000002 · α = 0,05 · β = 0,94 → 0,000002 / 0,01",
+      result: "VL = 0,0002 → σ ≈ 1,41%/ngày",
+      explanation: "Đây là mức biến động mà mọi dự báo GARCH dài hạn hội tụ về, bất kể hôm nay thị trường đang yên hay đang loạn.",
+    },
+  },
+  {
+    id: "q-007",
+    subjectId: "quant-analysis",
+    title: "Thống kê kiểm định hồi tố Kupiec",
+    badge: "Quantitative • Kiểm định mô hình",
+    equation: "LR = −2·ln[(1−p)^(T−N)·p^N] + 2·ln[(1−N/T)^(T−N)·(N/T)^N]",
+    variables: [
+      { symbol: "N", name: "Số lần lỗ thực tế vượt VaR" },
+      { symbol: "T", name: "Số quan sát" },
+      { symbol: "p", name: "Tỷ lệ vượt kỳ vọng, bằng 1 trừ mức tin cậy" },
+    ],
+    example: {
+      title: "Vì sao 250 ngày là ít",
+      calculation: "VaR 99% trên 250 ngày: kỳ vọng 2,5 lần vượt",
+      result: "Khoảng chấp nhận rất rộng",
+      explanation: "Với mẫu nhỏ, kiểm định không phân biệt được mô hình tốt và mô hình kém - đây là lý do backtesting một năm hiếm khi bác bỏ được gì, và vì sao Basel dùng thêm vùng đèn giao thông.",
+    },
+  },
 
   // ─── FINANCIAL MARKETS AND PRODUCTS ──────────────────────────────────
   {
@@ -256,6 +309,56 @@ export const FRM_FORMULAS_DATA: FrmFormulaItem[] = [
       calculation: "Danh mục 100 tỷ, β = 1,2, muốn về 0, mỗi hợp đồng trị giá 2 tỷ → (0 − 1,2) × 100 / 2",
       result: "Bán 60 hợp đồng",
       explanation: "Cách rẻ và nhanh hơn nhiều so với bán từng cổ phiếu, và đảo lại được khi muốn khôi phục vị thế.",
+    },
+  },
+  {
+    id: "m-005",
+    subjectId: "financial-markets-products",
+    title: "Giá kỳ hạn khi tài sản có chi phí lưu kho",
+    badge: "Markets & Products • Hàng hoá",
+    equation: "F₀ = S₀ · e^((r + u − y)·T)",
+    variables: [
+      { symbol: "u", name: "Chi phí lưu kho quy theo tỷ lệ, cộng vào chi phí nắm giữ" },
+      { symbol: "y", name: "Convenience yield - lợi ích của việc giữ hàng thật thay vì giữ hợp đồng" },
+    ],
+    example: {
+      title: "Khi nào thị trường vào backwardation",
+      calculation: "y > r + u",
+      result: "F₀ < S₀",
+      explanation: "Convenience yield lớn hơn tổng chi phí nắm giữ nghĩa là hàng thật đang khan - và đó chính là lúc giá tương lai rơi xuống dưới giá giao ngay.",
+    },
+  },
+  {
+    id: "m-006",
+    subjectId: "financial-markets-products",
+    title: "Hệ số quy đổi và giá hoá đơn hợp đồng tương lai trái phiếu",
+    badge: "Markets & Products • Trái phiếu",
+    equation: "Giá hoá đơn = (Giá kết toán × Hệ số quy đổi) + Lãi tích luỹ",
+    variables: [
+      { symbol: "CF", name: "Hệ số quy đổi, chuẩn hoá các trái phiếu giao được về cùng một mặt bằng" },
+    ],
+    example: {
+      title: "Chọn trái phiếu rẻ nhất để giao",
+      calculation: "Chọn trái phiếu tối thiểu hoá: Giá thị trường − (Giá kết toán × CF)",
+      result: "Đó là CTD",
+      explanation: "Quyền chọn giao thuộc về bên bán, nên bên bán luôn chọn trái phiếu có lợi nhất cho mình - và chính quyền chọn đó kéo giá hợp đồng tương lai xuống một chút.",
+    },
+  },
+  {
+    id: "m-007",
+    subjectId: "financial-markets-products",
+    title: "Định giá hoán đổi lãi suất",
+    badge: "Markets & Products • Phái sinh",
+    equation: "V_swap (bên nhận cố định) = B_cố định − B_thả nổi",
+    variables: [
+      { symbol: "B_cố định", name: "Giá trị hiện tại của nhánh cố định, chiết khấu theo đường cong" },
+      { symbol: "B_thả nổi", name: "Ngay sau ngày ấn định lãi, luôn bằng đúng vốn danh nghĩa" },
+    ],
+    example: {
+      title: "Vì sao giá trị ban đầu bằng 0",
+      calculation: "Lúc ký, lãi cố định được chọn sao cho hai nhánh bằng nhau",
+      result: "V = 0",
+      explanation: "Hoán đổi không tốn phí lúc ký; giá trị chỉ khác 0 khi lãi suất đã dịch chuyển sau đó. Vốn danh nghĩa không bao giờ được trao đổi nên phơi nhiễm tín dụng nhỏ hơn nhiều con số danh nghĩa.",
     },
   },
 
@@ -329,6 +432,75 @@ export const FRM_FORMULAS_DATA: FrmFormulaItem[] = [
       explanation: "Quy ra tiền nên cộng được giữa các vị thế khác kỳ hạn và khác quy mô - thứ mà duration tính bằng phần trăm không làm được.",
     },
   },
+  {
+    id: "v-005",
+    subjectId: "valuation-risk-models",
+    title: "Xấp xỉ giá trái phiếu bằng duration và convexity",
+    badge: "Valuation • Độ nhạy lãi suất",
+    equation: "ΔP/P ≈ −D·Δy + ½·C·(Δy)²",
+    variables: [
+      { symbol: "D", name: "Modified duration - độ nhạy bậc nhất" },
+      { symbol: "C", name: "Convexity - hiệu chỉnh bậc hai cho phần cong của đường giá" },
+    ],
+    example: {
+      title: "Lãi suất tăng 200 điểm cơ bản",
+      calculation: "D = 7 · C = 90 · Δy = 0,02 → −0,14 + 0,018",
+      result: "≈ −12,2% thay vì −14%",
+      explanation: "Chỉ dùng duration sẽ luôn ước lượng giá thấp hơn thực tế theo cả hai chiều, vì convexity dương luôn cộng thêm vào giá. Sai số càng lớn khi lãi suất dịch càng mạnh.",
+    },
+  },
+  {
+    id: "v-006",
+    subjectId: "valuation-risk-models",
+    title: "Khoảng cách tới điểm vỡ nợ trong mô hình Merton",
+    badge: "Valuation • Mô hình cấu trúc",
+    numerator: "ln(V₀/K) + (μ − σ²/2)·T",
+    denominator: "σ·√T",
+    variables: [
+      { symbol: "V₀", name: "Giá trị tài sản doanh nghiệp" },
+      { symbol: "K", name: "Mệnh giá nợ - đóng vai giá thực hiện" },
+      { symbol: "σ", name: "Biến động của giá trị tài sản, không phải của cổ phiếu" },
+    ],
+    example: {
+      title: "Từ khoảng cách sang xác suất",
+      calculation: "PD = N(−DD)",
+      result: "DD = 2,5 → PD ≈ 0,62%",
+      explanation: "Vì đầu vào là giá thị trường, PD nhảy ngay khi cổ phiếu biến động - sớm hơn nhiều so với xếp hạng tín nhiệm, đổi lại là nhiễu hơn.",
+    },
+  },
+  {
+    id: "v-007",
+    subjectId: "valuation-risk-models",
+    title: "Gamma và hiệu chỉnh delta-gamma",
+    badge: "Valuation • Quyền chọn",
+    equation: "ΔV ≈ δ·ΔS + ½·Γ·(ΔS)²",
+    variables: [
+      { symbol: "δ", name: "Delta - độ nhạy bậc nhất theo giá tài sản cơ sở" },
+      { symbol: "Γ", name: "Gamma - tốc độ thay đổi của delta" },
+    ],
+    example: {
+      title: "Vì sao VaR delta-normal hỏng với quyền chọn",
+      calculation: "Danh mục bán quyền chọn có Γ âm lớn",
+      result: "VaR bị ước lượng thấp",
+      explanation: "Xấp xỉ chỉ có delta giả định quan hệ tuyến tính. Với gamma âm, khoản lỗ tăng nhanh hơn tuyến tính theo cả hai chiều - đúng phần đuôi mà VaR cần đo.",
+    },
+  },
+  {
+    id: "v-008",
+    subjectId: "valuation-risk-models",
+    title: "Duration của danh mục và phòng hộ theo DV01",
+    badge: "Valuation • Phòng hộ",
+    equation: "Số hợp đồng = − (DV01_danh mục / DV01_công cụ phòng hộ)",
+    variables: [
+      { symbol: "DV01", name: "Mức thay đổi giá trị khi lợi suất dịch 1 điểm cơ bản" },
+    ],
+    example: {
+      title: "Phòng hộ bằng hợp đồng tương lai trái phiếu",
+      calculation: "DV01 danh mục 42.000 · DV01 hợp đồng 68 → 42.000 / 68",
+      result: "Bán khoảng 618 hợp đồng",
+      explanation: "Phòng hộ theo DV01 chỉ trung hoà dịch chuyển song song của đường cong. Đường cong xoay hay gãy thì phần rủi ro còn lại không được che - đó là basis risk của chính phép phòng hộ này.",
+    },
+  },
 
   // ─── MARKET RISK ─────────────────────────────────────────────────────
   {
@@ -396,6 +568,55 @@ export const FRM_FORMULAS_DATA: FrmFormulaItem[] = [
       calculation: "λ = 0,94 → quan sát cách đây 30 ngày chỉ còn trọng số ≈ 0,94³⁰ ≈ 16%",
       result: "Phản ứng nhanh với cú sốc mới",
       explanation: "Độ lệch chuẩn thường coi mọi ngày trong cửa sổ là như nhau, nên nó phản ứng chậm khi thị trường vừa chuyển sang chế độ biến động cao.",
+    },
+  },
+  {
+    id: "mr-005",
+    subjectId: "market-risk",
+    title: "VaR mô phỏng lịch sử",
+    badge: "Market Risk • Phi tham số",
+    equation: "VaR = phân vị thứ (1−c) của chuỗi lãi lỗ mô phỏng lại",
+    variables: [
+      { symbol: "c", name: "Mức tin cậy" },
+      { symbol: "n", name: "Số quan sát lịch sử được áp lại lên danh mục hôm nay" },
+    ],
+    example: {
+      title: "500 ngày ở mức 99%",
+      calculation: "Sắp xếp 500 kết quả, lấy quan sát xấu thứ 5",
+      result: "Đó là VaR",
+      explanation: "Không giả định phân phối nên giữ được đuôi dày và độ lệch thật của dữ liệu. Đổi lại nó không thể sinh ra kịch bản chưa từng xuất hiện trong cửa sổ quan sát.",
+    },
+  },
+  {
+    id: "mr-006",
+    subjectId: "market-risk",
+    title: "VaR gia tăng và VaR biên",
+    badge: "Market Risk • Phân rã rủi ro",
+    equation: "Incremental VaR = VaR(có vị thế) − VaR(không có vị thế)",
+    variables: [
+      { symbol: "Marginal VaR", name: "Đạo hàm của VaR theo tỷ trọng vị thế - dùng để phân bổ rủi ro" },
+    ],
+    example: {
+      title: "Vì sao tổng các phần không bằng tổng thể",
+      calculation: "Cộng VaR riêng của từng bàn giao dịch",
+      result: "Lớn hơn VaR toàn ngân hàng",
+      explanation: "Phần chênh là lợi ích đa dạng hoá. Phân bổ vốn theo VaR riêng lẻ sẽ tính phí quá tay cho mọi bàn - Component VaR mới là thước đo cộng lại đúng bằng tổng thể.",
+    },
+  },
+  {
+    id: "mr-007",
+    subjectId: "market-risk",
+    title: "Hệ số nhân vốn thị trường theo Basel",
+    badge: "Market Risk • Yêu cầu vốn",
+    equation: "Vốn = max[VaRₜ₋₁ , m × VaR trung bình 60 ngày] + phần stressed VaR",
+    variables: [
+      { symbol: "m", name: "Hệ số nhân, tối thiểu 3 và tăng theo số lần vượt trong backtesting" },
+    ],
+    example: {
+      title: "Vùng đèn giao thông trên 250 ngày",
+      calculation: "0-4 lần vượt: m = 3 · 5 lần: 3,4 · 9 lần: 3,85 · từ 10: 4",
+      result: "Mô hình kém thì vốn đắt lên",
+      explanation: "Đây là cơ chế buộc ngân hàng tự giữ mô hình cho chuẩn: khai VaR thấp để nhẹ vốn sẽ làm số lần vượt tăng, và hệ số nhân sẽ lấy lại nhiều hơn phần vừa tiết kiệm được.",
     },
   },
 
@@ -466,6 +687,55 @@ export const FRM_FORMULAS_DATA: FrmFormulaItem[] = [
       calculation: "Suy thoái → PD tăng VÀ tỷ lệ thu hồi giảm cùng lúc",
       result: "EL tăng nhanh hơn tuyến tính",
       explanation: "Giả định PD và LGD độc lập sẽ đánh giá thấp rủi ro đuôi: đúng lúc nhiều người vay vỡ nợ thì giá tài sản bảo đảm cũng đang sụp.",
+    },
+  },
+  {
+    id: "c-005",
+    subjectId: "credit-risk",
+    title: "Xác suất vỡ nợ biên và tích luỹ",
+    badge: "Credit Risk • Cấu trúc kỳ hạn",
+    equation: "PD tích luỹ (n năm) = 1 − (1 − PD₁)(1 − PD₂)…(1 − PDₙ)",
+    variables: [
+      { symbol: "PDₖ", name: "Xác suất vỡ nợ biên của năm thứ k, với điều kiện đã sống sót tới đó" },
+    ],
+    example: {
+      title: "Ba năm ở PD 2% mỗi năm",
+      calculation: "1 − 0,98³",
+      result: "≈ 5,88%",
+      explanation: "Cộng thẳng 2% ba lần ra 6% - gần đúng nhưng luôn cao hơn thực tế, và sai số phình ra nhanh khi PD lớn hoặc kỳ hạn dài.",
+    },
+  },
+  {
+    id: "c-006",
+    subjectId: "credit-risk",
+    title: "Tổn thất ngoài dự kiến",
+    badge: "Credit Risk • Vốn kinh tế",
+    equation: "UL = EAD × √(PD·σ²_LGD + LGD²·PD·(1−PD))",
+    variables: [
+      { symbol: "UL", name: "Độ lệch chuẩn của tổn thất tín dụng quanh mức kỳ vọng" },
+    ],
+    example: {
+      title: "Vì sao vốn không dùng để bù EL",
+      calculation: "EL vào dự phòng và vào giá khoản vay",
+      result: "Vốn chỉ gánh UL",
+      explanation: "Lẫn hai khoản này là lỗi khái niệm hay gặp nhất phần tín dụng: tổn thất trung bình là chi phí kinh doanh đã tính vào lãi suất cho vay, còn vốn tồn tại cho phần vượt ngoài trung bình.",
+    },
+  },
+  {
+    id: "c-007",
+    subjectId: "credit-risk",
+    title: "Phơi nhiễm kỳ vọng và phơi nhiễm tương lai tiềm tàng",
+    badge: "Credit Risk • Rủi ro đối tác",
+    equation: "EE(t) = E[max(V(t), 0)] · PFE(t) = phân vị thứ α của max(V(t), 0)",
+    variables: [
+      { symbol: "EE", name: "Phơi nhiễm kỳ vọng - giá trị trung bình khi dương" },
+      { symbol: "PFE", name: "Phơi nhiễm tiềm tàng - phân vị đuôi, thường 95% hoặc 97,5%" },
+    ],
+    example: {
+      title: "Cái nào dùng cho hạn mức, cái nào cho định giá",
+      calculation: "Hạn mức đối tác đặt trên PFE; CVA tính từ EE",
+      result: "Hai mục đích khác nhau",
+      explanation: "Chỉ giá trị dương mới tạo phơi nhiễm - nếu hợp đồng đang âm với bạn thì đối tác vỡ nợ không làm bạn mất gì. Đó là lý do cả hai công thức đều có max(·, 0).",
     },
   },
 

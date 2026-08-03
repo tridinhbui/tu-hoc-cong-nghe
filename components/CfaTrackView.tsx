@@ -207,7 +207,7 @@ export default function CfaTrackView({ subjects, completedLessonIds }: Props) {
   return (
     <div className="py-2">
       {/* ─── ALWAYS VISIBLE TOP BANNERS (LIGHT MODE, LOW HEIGHT 1/3 EACH) ─── */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-3.5 mb-5">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-3.5 mb-5">
         {/* 🎯 CFA Global Continuation Summary Banner (1/3) */}
         <div className="bg-white dark:bg-stone-900 border border-stone-200/80 dark:border-stone-800 rounded-2xl p-4 shadow-2xs hover:shadow-xs transition-all flex flex-col justify-between">
           <div className="space-y-1.5">
@@ -292,6 +292,33 @@ export default function CfaTrackView({ subjects, completedLessonIds }: Props) {
             className="mt-3 px-3 py-2 bg-stone-900 hover:bg-stone-800 dark:bg-stone-100 dark:hover:bg-white text-white dark:text-stone-900 font-bold text-xs rounded-xl transition-all shadow-2xs shrink-0 cursor-pointer flex items-center justify-center gap-1.5 w-full text-center active:scale-95"
           >
             <span>Xem Sổ Tay Công Thức →</span>
+          </Link>
+        </div>
+
+        {/* 📝 Thi thử - đứng cùng hàng với sổ công thức và flashcard vì cả ba
+            đều là "công cụ ôn", nhưng đây là cái duy nhất trả lời được câu hỏi
+            "tôi đã sẵn sàng chưa". */}
+        <div className="bg-white dark:bg-stone-900 border border-stone-200/80 dark:border-stone-800 rounded-2xl p-4 shadow-2xs hover:shadow-xs transition-all flex flex-col justify-between">
+          <div className="space-y-1.5">
+            <div className="flex items-center gap-1.5">
+              <span className="text-lg">📝</span>
+              <span className="text-[9px] font-black uppercase text-rose-700 dark:text-rose-300 bg-rose-50 dark:bg-rose-950/50 px-2 py-0.5 rounded-md border border-rose-200/60 dark:border-rose-800/60">
+                THI THỬ
+              </span>
+            </div>
+            <h3 className="text-xs sm:text-sm font-extrabold text-stone-900 dark:text-stone-100 leading-snug">
+              Đề Thi Thử CFA Level I Đầy Đủ
+            </h3>
+            <p className="text-[10px] text-stone-500 dark:text-stone-400 line-clamp-2 leading-normal">
+              180 câu · 2 ca × 135 phút · 3 lựa chọn · chấm tách theo từng môn.
+            </p>
+          </div>
+
+          <Link
+            href="/cfa/thi-thu"
+            className="mt-3 px-3 py-2 bg-rose-600 hover:bg-rose-700 font-bold text-xs text-white rounded-xl transition-all shadow-2xs shrink-0 cursor-pointer flex items-center justify-center gap-1.5 w-full text-center active:scale-95"
+          >
+            <span>Vào thi thử →</span>
           </Link>
         </div>
       </div>

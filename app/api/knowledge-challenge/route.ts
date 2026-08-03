@@ -2,6 +2,7 @@ import { createServerSupabaseClient } from "@/lib/supabase-server";
 import { getLessonById, getLessonsMeta } from "@/lib/lessons-loader";
 import { TRACK_PERSONAL, TRACK_PROFESSIONAL, isLessonInRange } from "@/lib/track-stages";
 import { CFA_LEVEL_1_SUBJECTS } from "@/lib/cfa-track";
+import { CFA_EXAM, pickCfaWeighted, toThreeOptions } from "@/lib/cfa-exam";
 import { IB_TECHNICAL_QUESTIONS, formatCategoryLabel } from "@/lib/ib-question-bank";
 import { bankCoversCareer, getTechnicalQuestionsForCareer } from "@/lib/ib-question-careers";
 import { signQuestionToken } from "@/lib/quiz-tokens";
@@ -24,6 +25,10 @@ export interface ChallengeQuestion {
 }
 
 const QUESTION_COUNT = 5;
+/** Trần số câu một lượt gọi. Đủ cho một đề thi thử đầy đủ và không hơn - mỗi
+ *  câu là một lượt đọc file bài học, nên một `?count=100000` vô tình sẽ đọc
+ *  sạch kho bài trong một request. */
+const MAX_QUESTION_COUNT = CFA_EXAM.totalQuestions;
 
 const DIFFICULTY_LABELS: Record<string, string> = {
   de: "Dễ",
@@ -166,6 +171,12 @@ export async function GET(request: NextRequest) {
    *  tin, và một route riêng cho thế giới 3D sẽ là nơi thứ hai - rồi lệch khỏi
    *  nơi thứ nhất ngay lần sửa cách tính điểm đầu tiên. */
   const lessonParam = searchParams.get("lesson");
+  /** Số câu muốn lấy. Mặc định 5 như cũ; bài thi thử CFA gọi với 180. Kẹp trần
+   *  vì mỗi câu kéo theo một lượt đọc file bài học. */
+  const requestedCount = Math.min(
+    MAX_QUESTION_COUNT,
+    Math.max(1, Number(searchParams.get("count")) || QUESTION_COUNT)
+  );
   const onlyLessonId = lessonParam ? Number(lessonParam) : null;
 
   let sourceIds: number[];
@@ -263,12 +274,19 @@ export async function GET(request: NextRequest) {
     return NextResponse.json({ questions: [], totalAvailable: 0 });
   }
 
-  const picked = shuffle(pool).slice(0, Math.min(QUESTION_COUNT, pool.length));
+  const want = Math.min(requestedCount, pool.length);
+  const picked =
+    track === "cfa" ? pickCfaWeighted(pool, want) : shuffle(pool).slice(0, want);
 
   // Reshuffle each question's own options too, so revisiting the same
   // underlying quiz question in a later challenge doesn't always show the
   // correct answer in the same position as it did in the original lesson.
-  const questions = picked.map((q) => {
+  const questions = picked.map((raw: (typeof pool)[number]) => {
+    // Đề thi CFA Level I thật dùng BA lựa chọn. Cắt lúc giao thay vì viết lại
+    // kho: viết lại thì mức đoán mò đổi từ 25% lên 33% và hai trần trong
+    // scripts/audit-lesson-content.mjs - vốn hiệu chỉnh quanh 25% - phải tính
+    // lại riêng cho nhóm bài CFA trong khi phần còn lại vẫn bốn lựa chọn.
+    const q = track === "cfa" ? toThreeOptions(raw) : raw;
     const order = shuffle(q.options.map((_, i) => i));
     const correct = order.indexOf(q.correct);
     return {

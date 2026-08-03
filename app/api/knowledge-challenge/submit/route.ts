@@ -15,7 +15,18 @@ import { STANDALONE_QUIZ_DAILY_XP_CAP, computeQuizXp } from "@/lib/supabase-quiz
 // supabase/migrations/20260714_harden_quiz_writes.sql, so this uses the
 // service-role client to write on the verified user's behalf.
 
+/** Trần số câu một lần nộp.
+ *
+ *  Track `cfa` được nới lên 180 vì bài thi thử CFA Level I mô phỏng đúng đề
+ *  thật - 180 câu, nộp một lần ở cuối. Các track khác giữ 50: trần này là để
+ *  chặn một request nhồi hàng nghìn token, và nới nó cho mọi track chỉ vì một
+ *  màn hình cần nhiều hơn là bỏ hàng rào ở những nơi không cần. */
 const MAX_ANSWERS = 50;
+const MAX_ANSWERS_CFA_MOCK = 180;
+
+export function maxAnswersFor(body: { mode?: unknown; track?: unknown }): number {
+  return body.mode === "cfa-mock" && body.track === "cfa" ? MAX_ANSWERS_CFA_MOCK : MAX_ANSWERS;
+}
 const GATE_PASS_RATIO = 0.6;
 const VALID_TRACKS = new Set(["personal", "professional", "cfa", "ib", "mock-interview"]);
 const VALID_DIFFICULTIES = new Set(["de", "trung-binh", "kho", "tat-ca"]);
@@ -84,7 +95,12 @@ export async function POST(request: NextRequest) {
   }
 
   const body = await request.json().catch(() => null);
-  if (!body || !Array.isArray(body.answers) || body.answers.length === 0 || body.answers.length > MAX_ANSWERS) {
+  if (
+    !body ||
+    !Array.isArray(body.answers) ||
+    body.answers.length === 0 ||
+    body.answers.length > maxAnswersFor(body)
+  ) {
     return NextResponse.json({ error: "Invalid answers" }, { status: 400 });
   }
   if (!body.answers.every(isAnswerInput)) {
