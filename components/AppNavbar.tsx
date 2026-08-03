@@ -113,6 +113,11 @@ const NAV_SECTIONS: NavSection[] = [
   },
 ];
 
+/** The closed-by-default state: every section key. Derived from NAV_SECTIONS
+ *  rather than listed by hand so a section added later is folded like the
+ *  rest instead of being the one that hangs open. */
+const ALL_SECTION_KEYS = NAV_SECTIONS.map((section) => section.titleKey);
+
 // Single, persistent top navbar for every signed-in page (mounted once in
 // app/(app)/layout.tsx, which Next.js keeps alive across client-side
 // navigations between routes in that group - unlike each page rendering its
@@ -136,12 +141,18 @@ export default function AppNavbar() {
   const [showQuickShop, setShowQuickShop] = useState(false);
   const [searchModalOpen, setSearchModalOpen] = useState(false);
   const [careerGoalId, setCareerGoalId] = useState<string | null>(null);
-  // Which sections the reader has folded away. Stored as the COLLAPSED set,
-  // not the open one, so a section added later starts open instead of hidden.
-  const [collapsedSections, setCollapsedSections] = useState<string[]>([]);
-  // Until localStorage has been read, the sections render open with no
-  // transition - otherwise every page load plays a collapse animation for
-  // anyone who folded something away.
+  // Which sections the reader has folded away. Every section starts folded, so
+  // the sidebar opens as five headers rather than the ~20 links they hold. The
+  // pathname effect below unfolds whichever section owns the current page, so
+  // the one you are standing in is never hidden.
+  //
+  // Still stored as the COLLAPSED set rather than the open one, so the stored
+  // preference of a reader who folded things away before this default changed
+  // is still read correctly.
+  const [collapsedSections, setCollapsedSections] = useState<string[]>(ALL_SECTION_KEYS);
+  // Until localStorage has been read, the sections render in their default
+  // state with no transition - otherwise every page load plays an animation
+  // for whatever the stored preference turns out to differ on.
   const [sectionsHydrated, setSectionsHydrated] = useState(false);
   const desktopDropdownRef = useRef<HTMLDivElement>(null);
   const mobileDropdownRef = useRef<HTMLDivElement>(null);
@@ -332,8 +343,8 @@ export default function AppNavbar() {
       const raw = window.localStorage.getItem(NAV_SECTION_STORAGE_KEY);
       if (raw) setCollapsedSections(JSON.parse(raw) as string[]);
     } catch {
-      // Private mode, quota, or a value from an older shape: opening every
-      // section is a fine outcome, so there is nothing to recover from.
+      // Private mode, quota, or a value from an older shape: falling back to
+      // the closed default is a fine outcome, so there is nothing to recover.
     }
     setSectionsHydrated(true);
   }, []);
