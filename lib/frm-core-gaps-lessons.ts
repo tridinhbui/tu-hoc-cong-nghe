@@ -101,7 +101,7 @@ export const FRM_CORE_GAPS_LESSONS: Lesson[] = [
       "options": [
         "Là hệ quả của các loại rủi ro khác, không phải loại độc lập",
         "Là một loại rủi ro riêng, đo bằng mức biến động giá cổ phiếu của tổ chức",
-        "Là một nhánh con của rủi ro chiến lược, do hội đồng quản trị trực tiếp quản",
+        "Là một nhánh con của rủi ro chiến lược",
         "Là một dạng rủi ro thị trường vì nó tác động qua giá tài sản"
       ],
       "correct": 0,
@@ -253,7 +253,7 @@ export const FRM_CORE_GAPS_LESSONS: Lesson[] = [
       "question": "Vì sao hệ thống hạn mức nên có cả ngưỡng cảnh báo đặt dưới hạn mức cứng?",
       "options": [
         "Để có thời gian xử lý trước khi bị buộc phải cắt vị thế gấp",
-        "Để bộ phận kinh doanh có thêm dư địa vượt hạn mức trong thời gian ngắn",
+        "Để bộ phận kinh doanh có thêm dư địa",
         "Vì quy định yêu cầu mọi hạn mức phải có ít nhất hai mức khác nhau",
         "Vì ngưỡng cảnh báo thay thế được việc giám sát hạn mức hằng ngày"
       ],
@@ -410,7 +410,7 @@ export const FRM_CORE_GAPS_LESSONS: Lesson[] = [
       "question": "Sortino ratio khác Sharpe ratio ở điểm nào?",
       "options": [
         "Mẫu số chỉ tính phần lợi suất nằm dưới mức mục tiêu",
-        "Tử số dùng lợi suất tuyệt đối thay vì lợi suất vượt trên mức phi rủi ro",
+        "Tử số dùng lợi suất tuyệt đối",
         "Mẫu số dùng beta thay cho độ lệch chuẩn của toàn bộ danh mục",
         "Tử số trừ đi lợi suất của chỉ số tham chiếu thay vì lãi suất phi rủi ro"
       ],
@@ -779,7 +779,7 @@ export const FRM_CORE_GAPS_LESSONS: Lesson[] = [
       "options": [
         "Từ việc thất bại rủi ro lan ra ngoài phạm vi tổ chức đó",
         "Từ yêu cầu của cơ quan quản lý về công bố thông tin rủi ro định kỳ",
-        "Từ việc phần lớn tổ chức tài chính đều có cổ đông là nhà đầu tư cá nhân",
+        "Từ việc cổ đông phần lớn là nhà đầu tư cá nhân",
         "Từ nghĩa vụ hợp đồng giữa tổ chức tài chính và người gửi tiền"
       ],
       "correct": 0,
@@ -1256,7 +1256,7 @@ export const FRM_CORE_GAPS_LESSONS: Lesson[] = [
       "question": "Vì sao tự đánh giá rủi ro và kiểm soát nên được làm trước khi thiết kế bộ chỉ số rủi ro chính?",
       "options": [
         "Vì biết rủi ro nào đáng kể rồi mới biết cần theo dõi cái gì",
-        "Vì chỉ số rủi ro chính chỉ được phép xây trên các rủi ro đã có trong sổ đăng ký",
+        "Vì chỉ số chỉ được xây trên rủi ro đã đăng ký",
         "Vì kết quả tự đánh giá quyết định tần suất báo cáo của từng chỉ số",
         "Vì bộ phận rủi ro chỉ phê duyệt chỉ số sau khi tự đánh giá hoàn tất"
       ],

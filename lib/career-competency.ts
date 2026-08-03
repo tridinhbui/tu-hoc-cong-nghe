@@ -141,7 +141,7 @@ export const SKILL_DOMAINS: SkillDomain[] = [
     // Chặng 19 định giá quyền chọn là phái sinh đúng nghĩa; bảo hiểm và
     // Solvency II là quản trị rủi ro có vốn pháp định; 1328 xử lý rủi ro khí
     // hậu như một rủi ro tài chính, nên thuộc đây chứ không phải nhóm ESG.
-    lessonIds: [...range(181, 198), 804, 1029, 1207, 1208, 1217, 1218, 1223, 1232, 1234, 1254, 1328, ...range(1411, 1414), 1005, ...range(1527, 1530), ...range(1537, 1541), ...range(1551, 1553), 1556, ...range(1557, 1563), ...range(1613, 1630)],
+    lessonIds: [...range(181, 198), 804, 1029, 1207, 1208, 1217, 1218, 1223, 1232, 1234, 1254, 1328, ...range(1411, 1414), 1005, ...range(1527, 1530), ...range(1537, 1541), ...range(1551, 1553), 1556, ...range(1557, 1563), ...range(1613, 1630), ...range(1637, 1648)],
   },
   {
     id: "fpa_budgeting",

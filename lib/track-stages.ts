@@ -760,6 +760,20 @@ export const TRACK_PROFESSIONAL = {
         { name: "Quantitative Analysis: Bayes, MLE, Monte Carlo, bootstrapping, EVT, PCA", days: [1631, 1636] as [number, number] },
       ],
     },
+    {
+      // Hai môn còn lại của FRM: Valuation and Risk Models (30% Part I, tỷ
+      // trọng lớn nhất của cả phần, trước đợt này không có bài viết riêng
+      // nào) và Current Issues.
+      label: "Chặng 38",
+      name: "FRM: Định giá, mô hình rủi ro & vấn đề thời sự",
+      days: [1637, 1648] as [number, number],
+      available: true,
+      isNew: true,
+      parts: [
+        { name: "Valuation and Risk Models: không chênh lệch giá, cây nhị thức, Black-Scholes, Greeks, DV01, xếp hạng", days: [1637, 1642] as [number, number] },
+        { name: "Current Issues: AI/ML, rủi ro khí hậu, hậu LIBOR, CBDC, tập trung đám mây, bất ổn 2023", days: [1643, 1648] as [number, number] },
+      ],
+    },
   ] satisfies Stage[],
 };
 
@@ -803,7 +817,7 @@ export const PROFESSIONAL_BRANCHES = [
     label: "Ngân hàng, bảo hiểm & tư vấn",
     subtitle: "Đọc và định giá ngân hàng, tín dụng, tuân thủ, quản lý gia sản & bảo hiểm",
     emoji: "🏦",
-    stageLabels: ["Chặng 18", "Chặng 21", "Chặng 34", "Chặng 35", "Chặng 36", "Chặng 37"],
+    stageLabels: ["Chặng 18", "Chặng 21", "Chặng 34", "Chặng 35", "Chặng 36", "Chặng 37", "Chặng 38"],
   },
   {
     id: "quant",

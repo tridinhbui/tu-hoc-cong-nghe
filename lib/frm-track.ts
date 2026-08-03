@@ -55,7 +55,7 @@ export const FRM_SUBJECTS: FrmSubject[] = [
     name: "Valuation and Risk Models",
     part: "I",
     weight: "30%",
-    lessonIds: [1217, 804, 1289, 233, 227, 1218, 1412, 1413, 1414, 1104, 1222, 1256, 144, 151, 153, 224],
+    lessonIds: [1217, 804, 1289, 233, 227, 1218, 1412, 1413, 1414, 1104, 1222, 1256, 144, 151, 153, 224, 1637, 1638, 1639, 1640, 1641, 1642],
   },
   // ─── PART II ───
   {
@@ -116,6 +116,6 @@ export const FRM_SUBJECTS: FrmSubject[] = [
     // (lib/frm-sovereign-digital-lessons.ts) adds stablecoin/digital-asset
     // systemic risk. Still thin overall - GARP's reading list rotates
     // yearly and most of it has no lesson yet.
-    lessonIds: [1328, 1327, 1253, 1025, 1560, 1561, 1563],
+    lessonIds: [1328, 1327, 1253, 1025, 1560, 1561, 1563, 1643, 1644, 1645, 1646, 1647, 1648],
   },
 ];

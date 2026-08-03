@@ -1,0 +1,1582 @@
+import type { Lesson } from "./lesson-types";
+
+// Hai môn FRM mỏng nhất còn lại sau đợt lib/frm-core-gaps-lessons.ts (xem
+// lib/frm-track.ts): Valuation and Risk Models chiếm 30% Part I - tỷ trọng
+// lớn nhất của cả phần - nhưng toàn bộ 16 bài đều mượn từ nơi khác, không
+// có bài nào viết riêng; và Current Issues 7 bài trên 10%.
+//
+// ids 1637-1648, professional track.
+
+export const FRM_VALUATION_CURRENT_LESSONS: Lesson[] = [
+  {
+    id: 1637,
+    slug: "frm-dinh-gia-khong-kinh-doanh-chenh-lech-gia",
+    title: "FRM Valuation, Bài 1: Nguyên lý không kinh doanh chênh lệch giá",
+    subtitle: "Viên gạch đầu tiên của mọi mô hình định giá - và lý do định giá không cần biết bạn nghĩ giá sẽ đi đâu",
+    duration: "9 phút",
+    difficulty: "Trung bình",
+    emoji: "⚖️",
+    track: "professional",
+    whyItMatters: "Toàn bộ chương định giá của FRM đứng trên một giả định duy nhất: không tồn tại bữa trưa miễn phí. Hiểu nguyên lý này rồi thì cây nhị thức, Black-Scholes và định giá hoán đổi đều là cùng một ý tưởng mặc ba bộ áo khác nhau.",
+    openingQuestion: "Nguyên lý không kinh doanh chênh lệch giá phát biểu điều gì?",
+    openingOptions: [
+      "Hai dòng tiền tương lai giống hệt nhau phải có cùng một giá hôm nay",
+      "Mọi tài sản tài chính đều phải sinh lời cao hơn lãi suất phi rủi ro trong dài hạn",
+      "Giá tài sản luôn phản ánh đúng giá trị nội tại của doanh nghiệp phát hành",
+      "Nhà đầu tư luôn hành động hợp lý và không bao giờ mắc sai lầm khi định giá"
+    ],
+    correctOption: 0,
+    explanation: "Nếu hai gói dòng tiền y hệt nhau mà giá khác nhau, ai cũng mua rẻ bán đắt cho tới khi chênh lệch biến mất. Điều đáng chú ý: nguyên lý này không cần nhà đầu tư hợp lý, không cần thị trường hiệu quả - nó chỉ cần có đủ người tham lam để nhặt tiền rơi.",
+    diagram: [
+      {
+        label: "Dựng một danh mục sao chép đúng dòng tiền của tài sản cần định giá",
+        arrow: true
+      },
+      {
+        label: "Giá của danh mục sao chép quan sát được trên thị trường",
+        arrow: true
+      },
+      {
+        label: "Không chênh lệch giá → tài sản phải có đúng giá đó",
+        arrow: true
+      },
+      {
+        label: "Không cần biết xác suất thực của các kịch bản"
+      }
+    ],
+    realWorldExample: {
+      company: "Vì sao định giá phái sinh không cần dự báo giá",
+      description: "Điểm khiến người mới học ngạc nhiên nhất khi gặp định giá quyền chọn: công thức không chứa suất sinh lời kỳ vọng của cổ phiếu. Hai nhà phân tích bất đồng hoàn toàn về việc cổ phiếu sẽ lên hay xuống vẫn phải đồng ý về giá quyền chọn, vì cả hai đều đồng ý rằng không ai được phép kiếm tiền phi rủi ro. Dự báo của họ đã nằm sẵn trong giá cổ phiếu hiện tại rồi."
+    },
+    quiz: [
+      {
+        question: "Danh mục sao chép trong định giá phái sinh có vai trò gì?",
+        options: [
+          "Tái tạo đúng dòng tiền của phái sinh bằng các tài sản đã có giá thị trường",
+          "Đa dạng hoá danh mục để hạ độ lệch chuẩn",
+          "Dự báo giá tương lai của tài sản cơ sở",
+          "Bảo đảm khoản lãi tối thiểu cho người nắm giữ"
+        ],
+        correct: 0,
+        explanation: "Nếu ta ghép được cổ phiếu và tiền vay sao cho dòng tiền y hệt quyền chọn ở mọi kịch bản, thì giá quyền chọn buộc phải bằng chi phí dựng danh mục đó - nếu không sẽ có cơ hội kiếm tiền phi rủi ro."
+      },
+      {
+        question: "Vì sao xác suất trung tính rủi ro không phải là xác suất thật của thị trường?",
+        options: [
+          "Đó là bộ trọng số toán học làm giá chiết khấu về đúng, không phải dự báo",
+          "Vì thị trường luôn định giá sai xác suất xảy ra của các kịch bản tương lai",
+          "Vì không có cách nào ước lượng được xác suất thật từ dữ liệu lịch sử giá",
+          "Vì cơ quan quản lý cấm sử dụng xác suất thật trong các mô hình định giá"
+        ],
+        correct: 0,
+        explanation: "Xác suất trung tính rủi ro là công cụ tính, không phải niềm tin. Nó gộp sẵn phần bù rủi ro vào bên trong, nhờ đó ta được phép chiết khấu bằng lãi suất phi rủi ro - một mẹo đại số, không phải một tuyên bố về thế giới."
+      },
+      {
+        question: "Trong thực tế, vì sao các chênh lệch giá nhỏ vẫn tồn tại dai dẳng trên thị trường?",
+        options: [
+          "Vì chi phí giao dịch và vốn có hạn khiến khai thác không đáng",
+          "Vì các nhà giao dịch chuyên nghiệp không có công cụ để phát hiện ra chúng",
+          "Vì luật pháp nghiêm cấm mọi hoạt động kinh doanh chênh lệch giá",
+          "Vì chúng chỉ xuất hiện ở các thị trường chưa được số hoá"
+        ],
+        correct: 0,
+        explanation: "Không kinh doanh chênh lệch giá là giả định giới hạn, không phải mô tả chính xác. Một chênh lệch nhỏ hơn chi phí thực hiện sẽ nằm nguyên đó - đây là lý do mô hình định giá luôn có sai số so với giá quan sát."
+      }
+    ],
+    keyTakeaways: [
+      "Hai dòng tiền giống hệt nhau phải có cùng một giá, nếu không sẽ có tiền rơi",
+      "Danh mục sao chép biến bài toán định giá thành bài toán cộng giá các thành phần",
+      "Xác suất trung tính rủi ro là công cụ tính, không phải dự báo về thế giới",
+      "Chi phí giao dịch và vốn có hạn khiến chênh lệch nhỏ tồn tại được trong thực tế"
+    ],
+    summary: {
+      keyIdea: "Định giá phái sinh không cần dự báo giá tương lai, chỉ cần giả định không ai được kiếm tiền phi rủi ro",
+      commonMistake: "Hiểu xác suất trung tính rủi ro như dự báo thật của thị trường về khả năng tăng giảm",
+      action: "Với mọi công thức định giá gặp phải, hỏi: danh mục sao chép ở đây gồm những gì"
+    },
+    application: {
+      title: "Thử với một ví dụ đơn giản",
+      message: "Một hợp đồng hứa trả đúng 100 triệu sau một năm, không rủi ro. Giá hôm nay của nó phải bằng 100 triệu chiết khấu ở lãi suất phi rủi ro - nếu ai bán rẻ hơn, bạn mua và vay đúng khoản đó là có lãi chắc chắn.",
+      secondary: "Toàn bộ định giá phái sinh chỉ là phiên bản phức tạp hơn của phép so sánh này."
+    },
+    sections: [
+      {
+        type: "lead",
+        text: "Có một câu hỏi làm người mới học phái sinh bối rối rất lâu: vì sao công thức định giá quyền chọn không hề chứa dự đoán của ta về việc cổ phiếu sẽ lên hay xuống?"
+      },
+      {
+        type: "heading",
+        text: "Giả định duy nhất"
+      },
+      {
+        type: "paragraph",
+        text: "Không kinh doanh chênh lệch giá nghĩa là: không tồn tại một chiến lược nào cần vốn bằng 0, không rủi ro, mà vẫn sinh lời chắc chắn. Nó không đòi hỏi nhà đầu tư thông minh hay thị trường hiệu quả - chỉ cần có đủ người sẵn sàng nhặt tiền khi thấy tiền rơi trên sàn."
+      },
+      {
+        type: "heading",
+        text: "Từ giả định tới công thức"
+      },
+      {
+        type: "paragraph",
+        text: "Nếu dựng được một danh mục gồm các tài sản đã có giá, sao cho dòng tiền của nó trùng khớp với phái sinh trong mọi kịch bản, thì hai thứ phải có cùng giá. Bài toán định giá vì thế chuyển thành bài toán xây dựng danh mục sao chép - và đó là toàn bộ nội dung của cây nhị thức lẫn Black-Scholes."
+      },
+      {
+        type: "callout",
+        label: "Vì sao dự báo của bạn không xuất hiện trong công thức",
+        text: "Quan điểm của bạn về hướng đi của cổ phiếu đã nằm trong giá cổ phiếu hiện tại - thứ mà công thức lấy làm đầu vào. Đưa thêm dự báo vào lần nữa là tính hai lần cùng một thông tin."
+      },
+      {
+        type: "closing",
+        lines: [
+          "Định giá không hỏi giá sẽ đi đâu; nó chỉ hỏi giá nào khiến không ai kiếm được tiền miễn phí.",
+          "Bài tiếp theo: cách áp nguyên lý này vào một cây hai nhánh."
+        ]
+      }
+    ]
+  },
+  {
+    id: 1638,
+    slug: "frm-cay-nhi-thuc-dinh-gia-quyen-chon",
+    title: "FRM Valuation, Bài 2: Cây nhị thức định giá quyền chọn",
+    subtitle: "Mô hình đơn giản nhất cho thấy toàn bộ logic - và là thứ duy nhất định giá được quyền chọn kiểu Mỹ",
+    duration: "10 phút",
+    difficulty: "Khó",
+    emoji: "🌳",
+    track: "professional",
+    whyItMatters: "Cây nhị thức là nơi nguyên lý không chênh lệch giá hiện ra rõ nhất bằng số học đơn giản, và nó xử lý được thứ Black-Scholes không làm nổi: quyền thực hiện sớm.",
+    openingQuestion: "Trong mô hình cây nhị thức một bước, giá quyền chọn được xác định bằng cách nào?",
+    openingOptions: [
+      "Dựng danh mục cổ phiếu và tiền vay khớp dòng tiền quyền chọn ở cả hai nhánh",
+      "Lấy trung bình có trọng số của hai giá trị tương lai theo xác suất thật rồi chiết khấu về hiện tại bằng suất sinh lời kỳ vọng của cổ phiếu",
+      "Nhân giá cổ phiếu hiện tại với độ biến động hàng năm",
+      "Lấy giá thị trường của quyền chọn tương tự đang niêm yết"
+    ],
+    correctOption: 0,
+    explanation: "Với hai kịch bản và hai công cụ (cổ phiếu và tiền), ta luôn giải được một danh mục cho ra đúng giá trị quyền chọn ở cả hai nhánh. Chi phí dựng danh mục đó chính là giá quyền chọn - không cần biết xác suất thật của mỗi nhánh.",
+    diagram: [
+      {
+        label: "Giá cổ phiếu hôm nay, hai kịch bản ở bước sau",
+        arrow: true
+      },
+      {
+        label: "Tính delta: bao nhiêu cổ phiếu để khớp chênh lệch giá trị quyền chọn",
+        arrow: true
+      },
+      {
+        label: "Bù phần còn lại bằng vay hoặc gửi ở lãi suất phi rủi ro",
+        arrow: true
+      },
+      {
+        label: "Chi phí danh mục = giá quyền chọn"
+      }
+    ],
+    realWorldExample: {
+      company: "Vì sao cây nhị thức vẫn được dùng dù đã có công thức đóng",
+      description: "Black-Scholes cho lời giải tức thì nhưng chỉ đúng với quyền chọn kiểu Âu - loại chỉ thực hiện được đúng ngày đáo hạn. Quyền chọn kiểu Mỹ cho phép thực hiện bất cứ lúc nào, và giá trị của quyền đó phụ thuộc vào việc ở mỗi nút cây, thực hiện ngay có tốt hơn giữ tiếp hay không. Cây nhị thức trả lời được câu hỏi đó ở từng nút; công thức đóng thì không có chỗ để hỏi."
+    },
+    quiz: [
+      {
+        question: "Delta trong cây nhị thức một bước được tính thế nào?",
+        options: [
+          "Chênh lệch giá trị quyền chọn giữa hai nhánh chia cho chênh lệch giá cổ phiếu",
+          "Trung bình hai giá trị tương lai theo xác suất thật rồi chiết khấu",
+          "Giá quyền chọn chia cho giá cổ phiếu hiện tại",
+          "Độ biến động nhân căn bậc hai của thời gian còn lại"
+        ],
+        correct: 0,
+        explanation: "Delta là số cổ phiếu cần nắm để danh mục biến động cùng nhịp với quyền chọn. Lấy chênh lệch giá trị quyền chọn chia cho chênh lệch giá cổ phiếu cho ra đúng tỷ lệ đó - và nó cũng chính là ý nghĩa của delta trong bộ Greeks."
+      },
+      {
+        question: "Vì sao cây nhị thức xử lý được quyền chọn kiểu Mỹ còn Black-Scholes thì không?",
+        options: [
+          "Vì ở mỗi nút so được thực hiện ngay với giữ tiếp",
+          "Vì cây nhị thức sử dụng độ biến động chính xác hơn công thức đóng",
+          "Vì quyền chọn Mỹ không có ngày đáo hạn",
+          "Vì Black-Scholes chỉ áp dụng được cho hàng hoá, không cho cổ phiếu"
+        ],
+        correct: 0,
+        explanation: "Quyền thực hiện sớm là một quyết định lặp lại ở mọi thời điểm, nên định giá nó cần một cấu trúc có các mốc trung gian. Cây có nút để đặt câu hỏi ở từng bước; công thức đóng chỉ có một điểm đáo hạn."
+      },
+      {
+        question: "Khi tăng số bước của cây lên rất lớn, kết quả tiến tới đâu?",
+        options: [
+          "Hội tụ về giá Black-Scholes",
+          "Phân kỳ do sai số tích luỹ",
+          "Về đúng giá trị nội tại của quyền chọn tại thời điểm hiện tại",
+          "Về 0 vì mỗi bước nhỏ dần khiến biến động mỗi bước cũng nhỏ dần"
+        ],
+        correct: 0,
+        explanation: "Đây là mối liên hệ đẹp nhất của chương này: cây nhị thức với số bước tiến ra vô cùng hội tụ về công thức Black-Scholes. Hai mô hình trông rất khác nhau nhưng cùng đứng trên một nguyên lý."
+      }
+    ],
+    keyTakeaways: [
+      "Giá quyền chọn = chi phí dựng danh mục sao chép, không cần xác suất thật",
+      "Delta = chênh lệch giá trị quyền chọn chia chênh lệch giá cổ phiếu",
+      "Cây xử lý được quyền chọn kiểu Mỹ vì có nút để so thực hiện ngay với giữ tiếp",
+      "Số bước tiến ra vô cùng thì cây hội tụ về giá Black-Scholes"
+    ],
+    summary: {
+      keyIdea: "Cây nhị thức là nguyên lý không chênh lệch giá viết ra bằng số học lớp mười, và là công cụ chuẩn cho quyền chọn có quyền thực hiện sớm",
+      commonMistake: "Dùng xác suất tăng giảm thật thay vì xác suất trung tính rủi ro khi tính ngược từ các nút",
+      action: "Khi gặp một quyền chọn phức tạp, hỏi trước: nó có quyền thực hiện sớm không - nếu có thì phải dùng cây"
+    },
+    application: {
+      title: "Tự dựng một cây một bước",
+      message: "Cổ phiếu 100, sau một kỳ lên 120 hoặc xuống 80. Quyền chọn mua giá thực hiện 100 sẽ đáng 20 hoặc 0. Delta = (20−0)/(120−80) = 0,5 - tức nửa cổ phiếu cộng một khoản vay là sao chép được quyền chọn đó.",
+      secondary: "Làm tay đúng một lần thì toàn bộ chương định giá quyền chọn sáng ra."
+    },
+    sections: [
+      {
+        type: "lead",
+        text: "Cây nhị thức được dạy trước Black-Scholes không phải vì nó kém quan trọng hơn, mà vì nó là chỗ duy nhất bạn nhìn thấy được toàn bộ lập luận bằng phép cộng trừ."
+      },
+      {
+        type: "heading",
+        text: "Hai kịch bản, hai công cụ"
+      },
+      {
+        type: "paragraph",
+        text: "Ở một bước, giá cổ phiếu chỉ có thể đi lên hoặc đi xuống. Ta có hai công cụ để sao chép: chính cổ phiếu đó và tiền ở lãi suất phi rủi ro. Hai phương trình, hai ẩn - luôn giải được. Số cổ phiếu cần nắm chính là delta."
+      },
+      {
+        type: "formula",
+        title: "Delta trong cây một bước",
+        equation: "Δ = (Cu − Cd) / (Su − Sd)",
+        variables: [
+          {
+            symbol: "Cu, Cd",
+            name: "Giá trị quyền chọn ở nhánh tăng và nhánh giảm"
+          },
+          {
+            symbol: "Su, Sd",
+            name: "Giá cổ phiếu ở nhánh tăng và nhánh giảm"
+          }
+        ]
+      },
+      {
+        type: "heading",
+        text: "Quyền thực hiện sớm"
+      },
+      {
+        type: "paragraph",
+        text: "Với quyền chọn kiểu Mỹ, ở mỗi nút ta so hai con số: giá trị nếu thực hiện ngay tại đó, và giá trị nếu giữ tiếp. Lấy con số lớn hơn rồi tính ngược về gốc. Cấu trúc nút là thứ khiến phép so sánh này khả thi - và là lý do công thức đóng bó tay."
+      },
+      {
+        type: "callout",
+        label: "Xác suất trung tính rủi ro, không phải xác suất thật",
+        text: "Khi tính ngược qua cây, trọng số dùng cho hai nhánh là xác suất trung tính rủi ro - đại lượng suy ra từ lãi suất phi rủi ro và biên độ hai nhánh, không phải từ niềm tin của ai về khả năng cổ phiếu tăng."
+      },
+      {
+        type: "closing",
+        lines: [
+          "Một cây hai nhánh chứa đủ toàn bộ ý tưởng của định giá phái sinh hiện đại.",
+          "Bài tiếp theo: chuyện gì xảy ra khi cho số bước tiến ra vô cùng."
+        ]
+      }
+    ]
+  },
+  {
+    id: 1639,
+    slug: "frm-black-scholes-gia-dinh-va-gioi-han",
+    title: "FRM Valuation, Bài 3: Black-Scholes-Merton - giả định và giới hạn",
+    subtitle: "Công thức nổi tiếng nhất tài chính, và năm giả định mà thị trường thật vi phạm hằng ngày",
+    duration: "10 phút",
+    difficulty: "Khó",
+    emoji: "📐",
+    track: "professional",
+    whyItMatters: "FRM không kiểm tra bạn có nhớ công thức không - nó kiểm tra bạn có biết công thức sai ở đâu không. Mọi thất bại phái sinh lớn đều là một giả định của mô hình này gãy trong thực tế.",
+    openingQuestion: "Đầu vào nào của Black-Scholes không quan sát trực tiếp được trên thị trường?",
+    openingOptions: [
+      "Độ biến động của tài sản cơ sở trong quãng thời gian còn lại",
+      "Giá thực hiện ghi trong hợp đồng quyền chọn",
+      "Thời gian còn lại tính tới ngày đáo hạn",
+      "Giá hiện tại của tài sản cơ sở trên thị trường"
+    ],
+    correctOption: 0,
+    explanation: "Bốn đầu vào kia đọc thẳng từ hợp đồng và bảng giá. Riêng độ biến động tương lai thì không ai biết - đây là lý do thực tế người ta chạy ngược công thức: lấy giá thị trường của quyền chọn để suy ra biến động hàm ý, thay vì dùng công thức để tính giá.",
+    diagram: [
+      {
+        label: "Năm đầu vào: giá cơ sở, giá thực hiện, thời gian, lãi suất, biến động",
+        arrow: true
+      },
+      {
+        label: "Bốn đầu đầu quan sát được; biến động thì không",
+        arrow: true
+      },
+      {
+        label: "Thực tế: chạy ngược từ giá thị trường ra biến động hàm ý",
+        arrow: true
+      },
+      {
+        label: "Biến động hàm ý khác nhau theo giá thực hiện → nụ cười biến động"
+      }
+    ],
+    realWorldExample: {
+      company: "Nụ cười biến động: bằng chứng thị trường không tin mô hình",
+      description: "Nếu Black-Scholes mô tả đúng thế giới, mọi quyền chọn trên cùng một cổ phiếu với cùng ngày đáo hạn phải cho ra một con số biến động hàm ý duy nhất. Thực tế các quyền chọn ở xa giá luôn hàm ý biến động cao hơn - thị trường đang tự tay cộng thêm phần bù cho khả năng biến cố cực đoan mà giả định phân phối chuẩn của mô hình gán xác suất gần bằng 0. Nụ cười đó là mô hình bị thị trường sửa lưng."
+    },
+    quiz: [
+      {
+        question: "Giả định nào của Black-Scholes bị thực tế thị trường vi phạm rõ nhất?",
+        options: [
+          "Lợi suất phân phối chuẩn, biến động không đổi",
+          "Quyền chọn chỉ thực hiện đúng ngày đáo hạn",
+          "Giá thực hiện được ghi cố định trong hợp đồng ngay từ lúc ký kết",
+          "Tài sản cơ sở có thể mua bán được trên một thị trường có tổ chức"
+        ],
+        correct: 0,
+        explanation: "Lợi suất tài chính có đuôi dày hơn phân phối chuẩn nhiều bậc, và biến động thì dồn cụm chứ không phải hằng số. Hai giả định này gãy hằng ngày, và nụ cười biến động chính là dấu vết mà thị trường để lại."
+      },
+      {
+        question: "Biến động hàm ý được hiểu đúng nhất là gì?",
+        options: [
+          "Mức biến động khiến công thức khớp giá thị trường",
+          "Độ lệch chuẩn của lợi suất tài sản cơ sở đo được từ dữ liệu lịch sử",
+          "Mức biến động tối đa mà cơ quan quản lý cho phép trong một phiên",
+          "Chênh lệch giữa giá mua và giá bán của quyền chọn trên sổ lệnh"
+        ],
+        correct: 0,
+        explanation: "Nó là đầu ra của phép chạy ngược, nên nó phản ánh niềm tin của thị trường chứ không phải một đại lượng đo được. Đây cũng là lý do nó được coi là thước đo nỗi sợ của thị trường."
+      },
+      {
+        question: "Vì sao giả định phòng hộ liên tục là điểm yếu thực tế của mô hình?",
+        options: [
+          "Vì phòng hộ thật là rời rạc và tốn phí",
+          "Vì cơ quan quản lý giới hạn số lần điều chỉnh vị thế trong một ngày",
+          "Vì tài sản cơ sở không phải lúc nào cũng có",
+          "Vì phòng hộ liên tục đòi hỏi phải nắm giữ toàn bộ số cổ phiếu lưu hành"
+        ],
+        correct: 0,
+        explanation: "Lập luận dẫn ra công thức giả định danh mục sao chép được chỉnh lại liên tục và miễn phí. Trong thực tế mỗi lần chỉnh đều mất phí và chỉ xảy ra rời rạc, nên vị thế phòng hộ luôn lệch một chút - và lệch nhiều nhất đúng lúc thị trường nhảy."
+      }
+    ],
+    keyTakeaways: [
+      "Bốn đầu vào quan sát được, riêng độ biến động tương lai thì không",
+      "Thực tế chạy ngược công thức để ra biến động hàm ý từ giá thị trường",
+      "Nụ cười biến động là bằng chứng giả định phân phối chuẩn không đúng",
+      "Phòng hộ thật là rời rạc và tốn phí, để lại sai số mà mô hình bỏ qua"
+    ],
+    summary: {
+      keyIdea: "Giá trị của Black-Scholes ngày nay nằm ở chỗ nó là ngôn ngữ chung để quy đổi giá thành biến động hàm ý, không phải ở chỗ nó cho giá đúng",
+      commonMistake: "Coi biến động hàm ý là dự báo biến động tương lai, trong khi nó còn chứa cả phần bù rủi ro của người bán quyền chọn",
+      action: "Khi dùng bất kỳ mô hình định giá nào, liệt kê trước các giả định rồi hỏi giả định nào yếu nhất trong tình huống này"
+    },
+    application: {
+      title: "Nhìn nụ cười biến động",
+      message: "Nếu tiếp cận được bảng giá quyền chọn, thử lấy biến động hàm ý ở vài mức giá thực hiện khác nhau cùng ngày đáo hạn. Đường nối chúng lại gần như không bao giờ nằm ngang.",
+      secondary: "Độ cong của đường đó cho biết thị trường đang sợ chiều nào hơn."
+    },
+    sections: [
+      {
+        type: "lead",
+        text: "Black-Scholes là mô hình sai nổi tiếng nhất trong tài chính, và vẫn được cả ngành dùng mỗi ngày. Hiểu vì sao cả hai điều đó cùng đúng là nội dung thật của bài này."
+      },
+      {
+        type: "heading",
+        text: "Năm đầu vào"
+      },
+      {
+        type: "list",
+        items: [
+          "Giá tài sản cơ sở hiện tại - đọc từ bảng giá",
+          "Giá thực hiện - ghi trong hợp đồng",
+          "Thời gian còn lại - đếm lịch",
+          "Lãi suất phi rủi ro - quan sát trên thị trường",
+          "Độ biến động trong quãng thời gian còn lại - không ai biết"
+        ]
+      },
+      {
+        type: "heading",
+        text: "Vì sao ngành vẫn dùng một mô hình sai"
+      },
+      {
+        type: "paragraph",
+        text: "Vì nó trở thành ngôn ngữ quy đổi. Thay vì tranh luận giá quyền chọn bằng tiền, người ta nói bằng biến động hàm ý - và con số đó so sánh được giữa các kỳ hạn, các giá thực hiện, các tài sản. Mô hình sai nhưng là một cái thước nhất quán, và một cái thước nhất quán vẫn rất hữu ích."
+      },
+      {
+        type: "callout",
+        label: "Giả định gãy đầu tiên khi thị trường sụp",
+        text: "Mô hình giả định giá đi liên tục, không nhảy. Đúng vào những ngày quan trọng nhất - tin bất ngờ, mở cửa sau cú sốc qua đêm - giá nhảy một bước lớn, danh mục phòng hộ không kịp chỉnh, và sai số phòng hộ bùng ra đúng lúc nó đắt nhất."
+      },
+      {
+        type: "closing",
+        lines: [
+          "Mô hình không cần đúng để hữu ích, nhưng người dùng cần biết nó sai ở đâu.",
+          "Bài tiếp theo: các đạo hàm của công thức này - bộ Greeks."
+        ]
+      }
+    ]
+  },
+  {
+    id: 1640,
+    slug: "frm-cac-greeks-delta-gamma-vega-theta",
+    title: "FRM Valuation, Bài 4: Bộ Greeks - delta, gamma, vega, theta, rho",
+    subtitle: "Năm câu hỏi \"nếu thứ này đổi thì vị thế của tôi đổi bao nhiêu\"",
+    duration: "10 phút",
+    difficulty: "Khó",
+    emoji: "🔢",
+    track: "professional",
+    whyItMatters: "Không ai quản trị rủi ro quyền chọn bằng giá. Người ta quản bằng Greeks, vì chúng trả lời đúng câu hỏi thực tế: nếu thị trường nhích một chút theo hướng này thì tôi mất bao nhiêu.",
+    openingQuestion: "Gamma của một vị thế quyền chọn đo lường điều gì?",
+    openingOptions: [
+      "Tốc độ thay đổi của delta khi giá tài sản cơ sở thay đổi",
+      "Mức thay đổi giá quyền chọn khi độ biến động hàm ý tăng thêm một điểm phần trăm",
+      "Phần giá trị quyền chọn mất đi sau mỗi ngày trôi qua",
+      "Độ nhạy của giá quyền chọn trước thay đổi của lãi suất phi rủi ro"
+    ],
+    correctOption: 0,
+    explanation: "Delta cho biết vị thế nhạy thế nào với giá; gamma cho biết chính delta đó thay đổi nhanh ra sao. Gamma cao nghĩa là vị thế phòng hộ hôm nay sẽ lệch rất nhanh khi giá dịch chuyển - đó là lý do gamma quan trọng với người phải phòng hộ liên tục.",
+    diagram: [
+      {
+        label: "Delta: đổi theo giá cơ sở",
+        arrow: true
+      },
+      {
+        label: "Gamma: delta đổi nhanh thế nào",
+        arrow: true
+      },
+      {
+        label: "Vega: đổi theo biến động hàm ý",
+        arrow: true
+      },
+      {
+        label: "Theta: đổi theo thời gian trôi · Rho: đổi theo lãi suất"
+      }
+    ],
+    realWorldExample: {
+      company: "Vì sao bán quyền chọn được ví như nhặt tiền lẻ trước xe lu",
+      description: "Vị thế bán quyền chọn có theta dương - mỗi ngày trôi qua là một khoản thu nhỏ đều đặn - nhưng gamma âm, nghĩa là mỗi cú dịch chuyển lớn của giá làm khoản lỗ tăng nhanh hơn tuyến tính. Chiến lược này cho chuỗi lợi nhuận đẹp trong thời gian dài rồi mất sạch trong một phiên. Bảng Greeks nhìn thấy trước cấu trúc đó, còn chuỗi lợi suất quá khứ thì không."
+    },
+    quiz: [
+      {
+        question: "Vega của một vị thế mua quyền chọn mang dấu gì và ý nghĩa ra sao?",
+        options: [
+          "Dương - vị thế có lãi khi biến động hàm ý tăng lên",
+          "Âm - vị thế lỗ khi thị trường trở nên bất ổn hơn mức bình thường",
+          "Bằng 0 - biến động không ảnh hưởng tới giá trị quyền chọn đã mua",
+          "Dương với quyền chọn mua và âm với quyền chọn bán"
+        ],
+        correct: 0,
+        explanation: "Cả quyền chọn mua lẫn quyền chọn bán đều đắt lên khi biến động tăng, vì cơ hội rơi vào vùng có lợi rộng ra. Người mua quyền chọn vì thế luôn có vega dương, bất kể là mua hay bán quyền."
+      },
+      {
+        question: "Quan hệ giữa gamma và theta trong một vị thế quyền chọn thường là gì?",
+        options: [
+          "Ngược dấu nhau - gamma dương thường đi kèm theta âm và ngược lại",
+          "Cùng dấu nhau, vì cả hai đều là đạo hàm bậc hai của giá quyền chọn",
+          "Không có quan hệ nào, chúng đo hai đại lượng hoàn toàn độc lập",
+          "Luôn bằng nhau về độ lớn nhưng khác nhau về đơn vị đo"
+        ],
+        correct: 0,
+        explanation: "Đây là đánh đổi trung tâm của giao dịch quyền chọn: muốn hưởng lợi từ biến động lớn (gamma dương) thì phải trả bằng giá trị thời gian mất đi mỗi ngày (theta âm). Người bán quyền chọn nhận đánh đổi ngược lại."
+      },
+      {
+        question: "Vì sao vị thế trung hoà delta vẫn có thể lỗ nặng?",
+        options: [
+          "Vì delta bằng 0 chỉ đúng tại một điểm giá, và gamma làm nó lệch ngay khi giá dịch",
+          "Vì trung hoà delta chỉ có hiệu lực trong phiên giao dịch buổi sáng",
+          "Vì phí giao dịch khi thiết lập vị thế luôn lớn hơn khoản lãi thu được",
+          "Vì cơ quan quản lý không công nhận vị thế trung hoà delta là phòng hộ"
+        ],
+        correct: 0,
+        explanation: "Trung hoà delta là ảnh chụp tại một mức giá. Gamma càng lớn thì bức ảnh đó càng nhanh lỗi thời, nên phòng hộ chỉ dựa vào delta sẽ vỡ đúng lúc giá chạy mạnh - lúc mà nó cần hoạt động nhất."
+      }
+    ],
+    keyTakeaways: [
+      "Delta đo độ nhạy với giá, gamma đo tốc độ thay đổi của chính delta",
+      "Vega dương với mọi vị thế mua quyền chọn, cả mua lẫn bán quyền",
+      "Gamma và theta thường ngược dấu - đó là đánh đổi cốt lõi của quyền chọn",
+      "Trung hoà delta chỉ đúng tại một điểm giá; gamma quyết định nó lệch nhanh ra sao"
+    ],
+    summary: {
+      keyIdea: "Greeks biến một vị thế phi tuyến thành một bảng các độ nhạy đọc được, và đó là cách duy nhất quản trị rủi ro quyền chọn trong thực tế",
+      commonMistake: "Coi trung hoà delta là đã phòng hộ xong, bỏ qua gamma và vega",
+      action: "Với mỗi vị thế quyền chọn, đọc gamma và vega trước khi đọc lãi lỗ - chúng cho biết rủi ro nằm ở đâu"
+    },
+    application: {
+      title: "Đọc một bảng Greeks",
+      message: "Nếu tài khoản chứng khoán của bạn có phái sinh, thử tìm bảng Greeks của một vị thế: dấu của gamma và theta cho biết bạn đang đứng ở phía nào của đánh đổi biến động - thời gian.",
+      secondary: "Gamma âm cộng theta dương là cấu trúc đã làm nhiều tài khoản bốc hơi trong một phiên."
+    },
+    sections: [
+      {
+        type: "lead",
+        text: "Giá của một quyền chọn là một con số. Rủi ro của nó cần năm con số, vì giá trị đó phản ứng phi tuyến với năm thứ khác nhau."
+      },
+      {
+        type: "list",
+        items: [
+          "Delta: giá cơ sở đổi một đơn vị thì giá quyền chọn đổi bao nhiêu",
+          "Gamma: delta đổi nhanh thế nào khi giá cơ sở dịch chuyển",
+          "Vega: biến động hàm ý tăng một điểm thì giá quyền chọn đổi bao nhiêu",
+          "Theta: một ngày trôi qua thì mất bao nhiêu giá trị thời gian",
+          "Rho: lãi suất đổi thì giá quyền chọn đổi bao nhiêu"
+        ]
+      },
+      {
+        type: "heading",
+        text: "Vì sao gamma là Greek đáng sợ nhất"
+      },
+      {
+        type: "paragraph",
+        text: "Delta cho ta một vị thế phòng hộ tại thời điểm này. Gamma cho biết vị thế đó hỏng nhanh ra sao. Gamma lớn nghĩa là mỗi bước giá đều đòi chỉnh lại phòng hộ, và mỗi lần chỉnh đều mất phí - nên gamma vừa là rủi ro vừa là chi phí."
+      },
+      {
+        type: "comparison",
+        left: {
+          label: "Mua quyền chọn",
+          text: "Gamma dương, theta âm. Trả tiền mỗi ngày để đổi lấy quyền hưởng lợi nếu giá chạy mạnh theo bất kỳ chiều nào."
+        },
+        right: {
+          label: "Bán quyền chọn",
+          text: "Gamma âm, theta dương. Thu tiền đều mỗi ngày, đổi lại gánh phần lỗ tăng nhanh hơn tuyến tính khi giá chạy mạnh."
+        }
+      },
+      {
+        type: "callout",
+        label: "Greeks cộng được, giá thì khó",
+        text: "Ưu điểm thực tế lớn nhất: delta của cả danh mục là tổng delta các vị thế, tương tự với gamma và vega. Nhờ vậy một bàn giao dịch nắm hàng nghìn hợp đồng vẫn tóm tắt được rủi ro thành vài con số theo dõi hằng ngày."
+      },
+      {
+        type: "closing",
+        lines: [
+          "Quản trị rủi ro quyền chọn là quản trị các đạo hàm, không phải quản trị giá.",
+          "Bài tiếp theo: bộ độ nhạy tương đương cho thế giới trái phiếu."
+        ]
+      }
+    ]
+  },
+  {
+    id: 1641,
+    slug: "frm-dv01-duration-hieu-dung-convexity",
+    title: "FRM Valuation, Bài 5: DV01, duration hiệu dụng và convexity",
+    subtitle: "Delta và gamma của thế giới trái phiếu, chỉ khác tên gọi",
+    duration: "9 phút",
+    difficulty: "Khó",
+    emoji: "📉",
+    track: "professional",
+    whyItMatters: "Bàn giao dịch trái phiếu không nói về duration bằng năm - họ nói bằng tiền: một điểm cơ bản lãi suất đổi thì danh mục mất bao nhiêu. DV01 là ngôn ngữ đó, và nó cộng được giữa các vị thế.",
+    openingQuestion: "DV01 của một trái phiếu đo lường điều gì?",
+    openingOptions: [
+      "Mức thay đổi giá trị bằng tiền khi lợi suất đổi một điểm cơ bản",
+      "Số năm bình quân có trọng số để nhận lại toàn bộ dòng tiền của trái phiếu",
+      "Tỷ lệ phần trăm giá trái phiếu thay đổi khi lợi suất tăng một phần trăm",
+      "Chênh lệch lợi suất giữa trái phiếu doanh nghiệp và trái phiếu chính phủ"
+    ],
+    correctOption: 0,
+    explanation: "DV01 trả lời bằng tiền chứ không bằng phần trăm hay năm, và đó chính là ưu điểm của nó: hai vị thế trái phiếu rất khác nhau về kỳ hạn và mệnh giá vẫn cộng DV01 lại được để ra rủi ro lãi suất của cả danh mục.",
+    diagram: [
+      {
+        label: "Duration: xấp xỉ bậc một, phần trăm giá đổi theo lợi suất",
+        arrow: true
+      },
+      {
+        label: "DV01: cùng ý tưởng nhưng quy ra tiền, nên cộng được",
+        arrow: true
+      },
+      {
+        label: "Convexity: bổ sung phần cong mà bậc một bỏ sót",
+        arrow: true
+      },
+      {
+        label: "Trái phiếu có quyền mua lại → phải dùng duration hiệu dụng"
+      }
+    ],
+    realWorldExample: {
+      company: "Vì sao duration hiệu dụng tồn tại",
+      description: "Duration thường được tính từ chính dòng tiền hợp đồng của trái phiếu. Nhưng với trái phiếu có quyền mua lại trước hạn hay khoản vay có quyền trả trước, chính dòng tiền lại thay đổi theo lãi suất - lãi suất giảm thì tổ chức phát hành mua lại, dòng tiền biến mất. Duration hiệu dụng đo bằng cách dịch cả đường cong lên xuống rồi định giá lại, nên nó bắt được hiệu ứng đó; công thức dựa trên dòng tiền cố định thì không."
+    },
+    quiz: [
+      {
+        question: "Convexity dương mang lại lợi ích gì cho người nắm giữ trái phiếu?",
+        options: [
+          "Giá giảm ít hơn và tăng nhiều hơn so với mức duration dự báo",
+          "Trái phiếu được trả lãi suất coupon cao hơn mức thị trường hiện hành",
+          "Tổ chức phát hành không được phép mua lại trái phiếu trước hạn",
+          "Giá trái phiếu không còn phụ thuộc vào biến động của lãi suất"
+        ],
+        correct: 0,
+        explanation: "Quan hệ giá và lợi suất là một đường cong lồi, còn duration chỉ là tiếp tuyến của nó. Độ cong đó có lợi ở cả hai chiều, nên trái phiếu convexity cao thường phải trả giá bằng lợi suất thấp hơn."
+      },
+      {
+        question: "Vì sao trái phiếu có quyền mua lại trước hạn có thể mang convexity âm?",
+        options: [
+          "Vì khi lãi suất giảm, khả năng bị mua lại tăng và giá bị chặn trên",
+          "Vì loại trái phiếu này luôn có kỳ hạn ngắn hơn trái phiếu thông thường",
+          "Vì tổ chức phát hành phải trả thêm phí bảo hiểm cho người nắm giữ",
+          "Vì coupon của nó được điều chỉnh theo lãi suất thị trường mỗi kỳ"
+        ],
+        correct: 0,
+        explanation: "Người nắm giữ đã bán một quyền chọn cho tổ chức phát hành. Quyền đó được thực hiện đúng lúc lãi suất giảm và trái phiếu lẽ ra tăng giá mạnh nhất - nên phần lợi bị cắt cụt, đường giá cong ngược lại."
+      },
+      {
+        question: "Hạn chế chung của cả duration và convexity là gì?",
+        options: [
+          "Cả hai giả định đường cong lợi suất dịch chuyển song song ở mọi kỳ hạn",
+          "Cả hai chỉ áp dụng được cho trái phiếu chính phủ, không cho doanh nghiệp",
+          "Cả hai đòi hỏi trái phiếu phải còn kỳ hạn trên mười năm mới tính được",
+          "Cả hai không tính được khi lợi suất thị trường mang giá trị âm"
+        ],
+        correct: 0,
+        explanation: "Thực tế đường cong thường đổi độ dốc: đầu ngắn và đầu dài dịch chuyển khác nhau, có khi ngược chiều. Vì vậy danh mục lớn cần đo thêm độ nhạy theo từng vùng kỳ hạn, chứ một con số duration tổng là chưa đủ."
+      }
+    ],
+    keyTakeaways: [
+      "DV01 quy độ nhạy lãi suất ra tiền nên cộng được giữa các vị thế",
+      "Convexity là phần cong mà xấp xỉ bậc một của duration bỏ sót",
+      "Trái phiếu có quyền mua lại có thể mang convexity âm - phần lợi bị chặn trên",
+      "Cả hai đều giả định đường cong dịch song song, điều thực tế hiếm khi đúng"
+    ],
+    summary: {
+      keyIdea: "DV01 và convexity là delta và gamma của trái phiếu; hiểu chúng như một cặp thì cả hai thế giới phái sinh và thu nhập cố định dùng chung một khung tư duy",
+      commonMistake: "Dùng duration tính từ dòng tiền hợp đồng cho trái phiếu có quyền mua lại, trong đó dòng tiền lại phụ thuộc vào lãi suất",
+      action: "Với mỗi công cụ thu nhập cố định, hỏi trước: dòng tiền của nó có cố định không - nếu không thì phải dùng duration hiệu dụng"
+    },
+    application: {
+      title: "Ước lượng nhanh bằng duration",
+      message: "Danh mục trái phiếu duration 6 gặp lãi suất tăng 1 điểm phần trăm sẽ mất khoảng 6% giá trị. Đây là phép tính nhẩm dùng được ngay, chỉ cần nhớ nó là xấp xỉ và convexity sẽ làm khoản lỗ thật nhỏ hơn một chút.",
+      secondary: "Với biến động lớn thì phần chênh giữa xấp xỉ và thực tế bắt đầu đáng kể."
+    },
+    sections: [
+      {
+        type: "lead",
+        text: "Người làm quyền chọn nói delta và gamma. Người làm trái phiếu nói DV01 và convexity. Hai cặp từ mô tả cùng một thứ: độ nhạy bậc một và phần cong bậc hai."
+      },
+      {
+        type: "formula",
+        title: "Ước lượng hai bậc",
+        equation: "% thay đổi giá ≈ − Duration × Δr + ½ × Convexity × (Δr)²",
+        variables: [
+          {
+            symbol: "Δr",
+            name: "Mức thay đổi của lợi suất"
+          },
+          {
+            symbol: "Duration",
+            name: "Độ nhạy bậc một"
+          },
+          {
+            symbol: "Convexity",
+            name: "Phần điều chỉnh bậc hai, luôn cộng thêm khi convexity dương"
+          }
+        ]
+      },
+      {
+        type: "heading",
+        text: "Vì sao bàn giao dịch thích DV01 hơn duration"
+      },
+      {
+        type: "paragraph",
+        text: "Duration là phần trăm, mà phần trăm của hai vị thế khác quy mô thì không cộng được. DV01 quy về tiền: mỗi vị thế đóng góp bao nhiêu đồng cho mỗi điểm cơ bản. Cộng lại là ra rủi ro lãi suất của cả danh mục, và trừ đi là ra khối lượng phòng hộ cần thiết."
+      },
+      {
+        type: "heading",
+        text: "Duration hiệu dụng cho dòng tiền không cố định"
+      },
+      {
+        type: "paragraph",
+        text: "Khi trái phiếu có quyền mua lại hoặc khoản vay có quyền trả trước, chính dòng tiền thay đổi theo lãi suất. Duration hiệu dụng không tính từ công thức dòng tiền mà đo bằng thực nghiệm: dịch cả đường cong lên và xuống một chút, định giá lại, rồi lấy chênh lệch."
+      },
+      {
+        type: "callout",
+        label: "Cả hai đều giả định dịch chuyển song song",
+        text: "Đây là giới hạn chung ít được nhắc tới. Đường cong lợi suất thường xoay chứ không tịnh tiến - kỳ hạn ngắn và dài có thể đi ngược nhau. Với danh mục lớn, phải đo độ nhạy theo từng vùng kỳ hạn thay vì tin vào một con số duy nhất."
+      },
+      {
+        type: "closing",
+        lines: [
+          "Một con số duration cho cả danh mục là tiện, và tiện thì luôn có giá của nó.",
+          "Bài tiếp theo: xếp hạng tín nhiệm - đầu vào của mọi mô hình rủi ro tín dụng."
+        ]
+      }
+    ]
+  },
+  {
+    id: 1642,
+    slug: "frm-xep-hang-tin-nhiem-noi-bo-va-ben-ngoai",
+    title: "FRM Valuation, Bài 6: Xếp hạng tín nhiệm nội bộ, bên ngoài và rủi ro quốc gia",
+    subtitle: "Ba chữ cái đứng sau hàng nghìn tỷ đồng quyết định cho vay - và điều chúng không nói",
+    duration: "9 phút",
+    difficulty: "Trung bình",
+    emoji: "🔤",
+    track: "professional",
+    whyItMatters: "Xếp hạng tín nhiệm là đầu vào của mô hình vốn, giới hạn đầu tư của quỹ và điều khoản hợp đồng vay. Một chữ cái sai lan ra khắp hệ thống, và khủng hoảng 2008 là ví dụ đắt nhất về điều đó.",
+    openingQuestion: "Xếp hạng tín nhiệm bên ngoài đo lường điều gì?",
+    openingOptions: [
+      "Khả năng tương đối tổ chức phát hành không trả được nợ đúng hạn",
+      "Mức lợi nhuận kỳ vọng mà nhà đầu tư sẽ nhận được khi nắm giữ trái phiếu",
+      "Giá trị thị trường hợp lý của trái phiếu do tổ chức đó phát hành",
+      "Mức độ thanh khoản của trái phiếu trên thị trường thứ cấp"
+    ],
+    correctOption: 0,
+    explanation: "Đây là thước đo thứ hạng chứ không phải xác suất tuyệt đối: nó nói tổ chức này an toàn hơn tổ chức kia, không nói xác suất vỡ nợ là bao nhiêu phần trăm. Nó cũng không nói gì về giá hợp lý hay thanh khoản - hai thứ nhà đầu tư hay gán nhầm cho nó.",
+    diagram: [
+      {
+        label: "Xếp hạng bên ngoài: thứ hạng tương đối, do tổ chức xếp hạng công bố",
+        arrow: true
+      },
+      {
+        label: "Xếp hạng nội bộ: ngân hàng tự chấm, gắn với PD ước lượng riêng",
+        arrow: true
+      },
+      {
+        label: "Trần quốc gia: hạn chế mức xếp hạng của doanh nghiệp trong nước",
+        arrow: true
+      },
+      {
+        label: "Cả ba đều là đầu vào của mô hình vốn và giới hạn đầu tư"
+      }
+    ],
+    realWorldExample: {
+      company: "Xung đột lợi ích trong mô hình bên phát hành trả phí",
+      description: "Tổ chức xếp hạng được trả tiền bởi chính bên phát hành mà họ đánh giá - một xung đột lợi ích rất thẳng thắn, vì tổ chức xếp hạng có động cơ giữ khách. Cộng với việc mô hình đánh giá sản phẩm tài chính cấu trúc dựa trên giả định tương quan vỡ nợ quá thấp, kết quả là hàng loạt xếp hạng AAA sụp đổ trong khủng hoảng 2008. Từ đó, quy định ở nhiều nước siết lại việc phụ thuộc máy móc vào xếp hạng bên ngoài."
+    },
+    quiz: [
+      {
+        question: "Trần quốc gia trong xếp hạng tín nhiệm nghĩa là gì?",
+        options: [
+          "Doanh nghiệp thường không được xếp cao hơn chính quốc gia nơi nó hoạt động",
+          "Mỗi quốc gia chỉ được phép có một số lượng doanh nghiệp hạng AAA nhất định",
+          "Tổ chức xếp hạng phải được cấp phép riêng tại từng quốc gia mới được hoạt động",
+          "Trái phiếu chính phủ luôn có lợi suất thấp hơn trái phiếu doanh nghiệp cùng kỳ hạn"
+        ],
+        correct: 0,
+        explanation: "Lập luận là doanh nghiệp chịu chung rủi ro của môi trường nơi nó hoạt động - kiểm soát vốn, khủng hoảng tiền tệ, can thiệp chính sách. Nguyên tắc này có ngoại lệ, nhưng nó giải thích vì sao doanh nghiệp rất mạnh ở thị trường mới nổi vẫn bị chặn trần."
+      },
+      {
+        question: "Xếp hạng nội bộ khác xếp hạng bên ngoài ở điểm nào quan trọng nhất?",
+        options: [
+          "Xếp hạng nội bộ thường gắn với một xác suất vỡ nợ ước lượng cụ thể",
+          "Xếp hạng nội bộ chỉ áp dụng cho khách hàng cá nhân, không cho doanh nghiệp",
+          "Xếp hạng nội bộ được công bố công khai cho toàn bộ thị trường tham khảo",
+          "Xếp hạng nội bộ không cần được cơ quan quản lý kiểm định hay phê duyệt"
+        ],
+        correct: 0,
+        explanation: "Ngân hàng cần một con số để đưa vào mô hình vốn, nên hệ thống nội bộ phải ánh xạ từng hạng sang một PD ước lượng. Xếp hạng bên ngoài thì cố ý giữ tính thứ hạng và không cam kết một xác suất cụ thể."
+      },
+      {
+        question: "Vì sao dựa hoàn toàn vào xếp hạng bên ngoài là rủi ro với một định chế?",
+        options: [
+          "Vì xếp hạng phản ứng chậm và nhiều bên cùng bị buộc bán khi bị hạ hạng",
+          "Vì các tổ chức xếp hạng không được phép đánh giá trái phiếu doanh nghiệp",
+          "Vì xếp hạng chỉ có giá trị trong vòng ba mươi ngày kể từ ngày công bố",
+          "Vì mọi tổ chức xếp hạng đều sử dụng chung một mô hình đánh giá duy nhất"
+        ],
+        correct: 0,
+        explanation: "Hạ hạng thường tới sau khi thị trường đã định giá lại. Tệ hơn, nhiều quỹ có điều khoản buộc bán khi tài sản rơi khỏi hạng đầu tư, nên một lần hạ hạng kích hoạt làn sóng bán đồng loạt - rủi ro biến thành rủi ro hệ thống."
+      }
+    ],
+    keyTakeaways: [
+      "Xếp hạng bên ngoài là thứ hạng tương đối, không phải xác suất vỡ nợ tuyệt đối",
+      "Xếp hạng nội bộ phải ánh xạ sang PD cụ thể để đưa vào mô hình vốn",
+      "Trần quốc gia thường chặn mức xếp hạng của doanh nghiệp trong nước",
+      "Phụ thuộc máy móc vào xếp hạng tạo ra làn sóng bán đồng loạt khi bị hạ hạng"
+    ],
+    summary: {
+      keyIdea: "Xếp hạng là một ý kiến có cấu trúc về thứ hạng rủi ro, không phải một phép đo, và mô hình phí do bên phát hành trả khiến ý kiến đó có xung đột lợi ích ngay trong thiết kế",
+      commonMistake: "Đọc xếp hạng như xác suất vỡ nợ, hoặc như đánh giá về giá trị đầu tư của trái phiếu",
+      action: "Khi thấy một xếp hạng, hỏi thêm: ai trả tiền cho đánh giá này, và nó đã được cập nhật lần cuối khi nào"
+    },
+    application: {
+      title: "Đọc một bản xếp hạng",
+      message: "Khi gặp xếp hạng của một tổ chức phát hành, tìm thêm hai thứ: triển vọng kèm theo (tích cực, ổn định, tiêu cực) và ngày cập nhật gần nhất. Chữ cái nói hiện trạng, triển vọng mới nói chiều đang đi.",
+      secondary: "Một hạng cao kèm triển vọng tiêu cực nói nhiều hơn bản thân chữ cái."
+    },
+    sections: [
+      {
+        type: "lead",
+        text: "Ba chữ cái quyết định một doanh nghiệp vay được với lãi suất nào, quỹ nào được phép nắm trái phiếu của họ, và ngân hàng phải giữ bao nhiêu vốn cho khoản cho vay đó."
+      },
+      {
+        type: "comparison",
+        left: {
+          label: "Xếp hạng bên ngoài",
+          text: "Do tổ chức xếp hạng công bố, mang tính thứ hạng tương đối. Không cam kết một xác suất vỡ nợ cụ thể và cố ý giữ tính ổn định qua chu kỳ."
+        },
+        right: {
+          label: "Xếp hạng nội bộ",
+          text: "Ngân hàng tự chấm, phải ánh xạ sang PD cụ thể để đưa vào mô hình vốn, và chịu kiểm định của cơ quan quản lý."
+        }
+      },
+      {
+        type: "heading",
+        text: "Trần quốc gia"
+      },
+      {
+        type: "paragraph",
+        text: "Doanh nghiệp thường không được xếp hạng cao hơn quốc gia nơi nó hoạt động, vì nó chịu chung các rủi ro của môi trường đó: kiểm soát vốn, khủng hoảng tiền tệ, thay đổi chính sách đột ngột. Nguyên tắc này có ngoại lệ nhưng nó giải thích vì sao một doanh nghiệp rất mạnh ở thị trường mới nổi vẫn bị chặn trần."
+      },
+      {
+        type: "callout",
+        label: "Vì sao phụ thuộc vào xếp hạng lại nguy hiểm ở cấp hệ thống",
+        text: "Nhiều quỹ có điều khoản buộc bán khi tài sản rơi khỏi hạng đầu tư. Một lần hạ hạng vì thế không chỉ là thông tin - nó là mệnh lệnh bán đồng thời cho rất nhiều bên, và làn sóng bán đó tự tạo ra chính cú sụt giá mà xếp hạng vừa cảnh báo."
+      },
+      {
+        type: "closing",
+        lines: [
+          "Xếp hạng là ý kiến của người được bên được đánh giá trả tiền - hữu ích, nhưng phải đọc kèm điều đó.",
+          "Đây là bài cuối của phần Valuation and Risk Models mở rộng."
+        ]
+      }
+    ]
+  },
+  {
+    id: 1643,
+    slug: "frm-ai-machine-learning-trong-quan-tri-rui-ro",
+    title: "FRM Current Issues, Bài 4: AI và học máy trong quản trị rủi ro",
+    subtitle: "Mô hình dự báo tốt hơn, giải thích kém hơn - và cơ quan quản lý đòi cả hai",
+    duration: "9 phút",
+    difficulty: "Trung bình",
+    emoji: "🤖",
+    track: "professional",
+    whyItMatters: "Học máy đã vào chấm điểm tín dụng, phát hiện gian lận và giám sát giao dịch. Nhưng quản trị rủi ro có một ràng buộc mà nhiều lĩnh vực khác không có: quyết định phải giải thích được cho khách hàng và cho cơ quan quản lý.",
+    openingQuestion: "Đánh đổi cốt lõi khi đưa mô hình học máy vào quyết định tín dụng là gì?",
+    openingOptions: [
+      "Dự báo chính xác hơn nhưng khó giải thích vì sao một hồ sơ bị từ chối",
+      "Chi phí vận hành thấp hơn nhưng thời gian xử lý mỗi hồ sơ kéo dài hơn",
+      "Xử lý được nhiều hồ sơ hơn nhưng chỉ áp dụng được cho khách hàng doanh nghiệp",
+      "Giảm rủi ro tín dụng nhưng làm tăng rủi ro thanh khoản của ngân hàng"
+    ],
+    correctOption: 0,
+    explanation: "Mô hình tuyến tính cho biết mỗi biến đóng góp bao nhiêu; mô hình phi tuyến nhiều tầng thì không có câu trả lời gọn như vậy. Vấn đề là quy định ở nhiều nước yêu cầu nêu được lý do từ chối cấp tín dụng - nên độ chính xác cao hơn không tự động đồng nghĩa với dùng được.",
+    diagram: [
+      {
+        label: "Học máy bắt được quan hệ phi tuyến mà mô hình truyền thống bỏ sót",
+        arrow: true
+      },
+      {
+        label: "Đổi lại: khó truy vì sao ra quyết định đó",
+        arrow: true
+      },
+      {
+        label: "Rủi ro mới: thiên lệch trong dữ liệu huấn luyện, trôi mô hình",
+        arrow: true
+      },
+      {
+        label: "Khung quản trị mô hình phải mở rộng để bao được cả hai"
+      }
+    ],
+    realWorldExample: {
+      company: "Vì sao thiên lệch trong dữ liệu huấn luyện là rủi ro pháp lý, không chỉ kỹ thuật",
+      description: "Mô hình học từ quyết định trong quá khứ, nên nó học luôn cả các thiên lệch có trong quá khứ đó. Nếu dữ liệu lịch sử phản ánh việc một nhóm khách hàng từng bị từ chối nhiều hơn mức đáng có, mô hình sẽ tái tạo lại đúng khuôn mẫu ấy và còn làm nó hiệu quả hơn. Điều nguy hiểm là nó không cần biến nhạy cảm nào để làm vậy - các biến thay thế như nơi ở hay lịch sử tiêu dùng đã đủ."
+    },
+    quiz: [
+      {
+        question: "Hiện tượng trôi mô hình nghĩa là gì?",
+        options: [
+          "Quan hệ giữa dữ liệu đầu vào và kết quả thay đổi khiến mô hình kém dần đi",
+          "Mô hình chạy chậm dần theo thời gian do khối lượng dữ liệu tích luỹ tăng lên",
+          "Tham số mô hình bị thay đổi do lỗi kỹ thuật trong quá trình lưu trữ",
+          "Mô hình được huấn luyện lại quá thường xuyên nên kết quả thiếu ổn định"
+        ],
+        correct: 0,
+        explanation: "Thế giới đổi thì quan hệ mô hình học được từ quá khứ cũng cũ đi - hành vi khách hàng đổi, chu kỳ kinh tế đổi. Đây là lý do giám sát hiệu năng sau triển khai quan trọng ngang việc kiểm định trước khi triển khai."
+      },
+      {
+        question: "Vì sao mô hình học máy có thể tái tạo thiên lệch mà không dùng biến nhạy cảm nào?",
+        options: [
+          "Vì các biến thay thế như nơi cư trú có thể tương quan chặt với biến nhạy cảm",
+          "Vì thuật toán học máy được thiết kế để tự động phân nhóm khách hàng theo nhân khẩu",
+          "Vì dữ liệu huấn luyện luôn phải chứa đầy đủ thông tin nhân khẩu học",
+          "Vì mô hình không thể hoạt động nếu thiếu các biến nhân khẩu học cơ bản"
+        ],
+        correct: 0,
+        explanation: "Loại bỏ biến nhạy cảm khỏi đầu vào không loại bỏ được thông tin đó, vì nó nằm rải trong các biến khác. Kiểm định công bằng vì thế phải đo kết quả đầu ra theo nhóm, chứ không dừng ở việc rà danh sách biến đầu vào."
+      },
+      {
+        question: "Vì sao mô hình càng nhiều bên cùng sử dụng thì rủi ro hệ thống càng tăng?",
+        options: [
+          "Vì nhiều tổ chức cùng phản ứng giống nhau trước cùng một tín hiệu",
+          "Vì các nhà cung cấp mô hình sẽ tăng giá khi có nhiều khách hàng hơn",
+          "Vì mô hình dùng chung sẽ chạy chậm hơn do quá tải hạ tầng tính toán",
+          "Vì cơ quan quản lý cấm nhiều tổ chức cùng dùng một nhà cung cấp mô hình"
+        ],
+        correct: 0,
+        explanation: "Đây là tính đồng loạt ở dạng mới. Khi các định chế dùng mô hình giống nhau trên dữ liệu giống nhau, họ cùng thấy tín hiệu bán vào cùng một lúc - hành vi hợp lý của từng bên tạo ra cú sụt cho tất cả."
+      }
+    ],
+    keyTakeaways: [
+      "Đánh đổi trung tâm: độ chính xác cao hơn đổi lấy khả năng giải thích thấp hơn",
+      "Mô hình học cả thiên lệch trong dữ liệu quá khứ, kể cả khi không có biến nhạy cảm",
+      "Trôi mô hình khiến giám sát sau triển khai quan trọng ngang kiểm định trước",
+      "Mô hình dùng chung rộng rãi làm tăng tính đồng loạt và rủi ro hệ thống"
+    ],
+    summary: {
+      keyIdea: "Học máy không tạo ra loại rủi ro hoàn toàn mới, nhưng làm rủi ro mô hình nặng hơn và khó nhìn thấy hơn nhiều",
+      commonMistake: "Đánh giá mô hình chỉ bằng độ chính xác trên tập kiểm tra, bỏ qua khả năng giải thích và tính công bằng của kết quả",
+      action: "Với mỗi mô hình học máy đưa vào quyết định, hỏi: nếu khách hàng hỏi vì sao bị từ chối, ta trả lời thế nào"
+    },
+    application: {
+      title: "Câu hỏi nên đặt cho mọi mô hình",
+      message: "Ba câu đủ để lộ phần lớn vấn đề: mô hình học từ dữ liệu giai đoạn nào, kết quả có khác nhau giữa các nhóm khách hàng không, và ai chịu trách nhiệm khi nó sai.",
+      secondary: "Ba câu này áp dụng được cho cả mô hình truyền thống lẫn học máy."
+    },
+    sections: [
+      {
+        type: "lead",
+        text: "Học máy vào ngành tài chính không mang theo một loại rủi ro chưa từng có. Nó lấy một rủi ro đã biết - rủi ro mô hình - rồi làm nó nặng hơn và khó nhìn hơn."
+      },
+      {
+        type: "heading",
+        text: "Ba rủi ro mới nổi bật"
+      },
+      {
+        type: "list",
+        items: [
+          "Khả năng giải thích: quy định nhiều nước đòi nêu lý do từ chối cấp tín dụng",
+          "Thiên lệch: mô hình học cả các khuôn mẫu bất công có sẵn trong dữ liệu quá khứ",
+          "Trôi mô hình: quan hệ học được từ quá khứ cũ dần khi thế giới thay đổi"
+        ]
+      },
+      {
+        type: "callout",
+        label: "Loại biến nhạy cảm không đủ để công bằng",
+        text: "Thông tin về giới tính hay nhóm dân cư nằm rải trong hàng chục biến khác - nơi ở, thói quen tiêu dùng, loại thiết bị dùng để nộp hồ sơ. Kiểm định công bằng vì thế phải đo chênh lệch ở đầu ra theo nhóm, chứ không dừng ở việc rà danh sách biến đầu vào."
+      },
+      {
+        type: "heading",
+        text: "Chiều hệ thống"
+      },
+      {
+        type: "paragraph",
+        text: "Khi nhiều định chế mua mô hình từ cùng vài nhà cung cấp và huấn luyện trên dữ liệu tương tự, họ bắt đầu phản ứng giống nhau trước cùng một tín hiệu. Đây là tính đồng loạt - thứ đã biến nhiều cú sốc riêng lẻ thành khủng hoảng chung, giờ có thêm một kênh lan truyền mới."
+      },
+      {
+        type: "closing",
+        lines: [
+          "Một mô hình không giải thích được là một mô hình không phản biện được.",
+          "Bài tiếp theo: loại rủi ro mà mọi dữ liệu quá khứ đều không có mẫu."
+        ]
+      }
+    ]
+  },
+  {
+    id: 1644,
+    slug: "frm-rui-ro-khi-hau-va-stress-test-khi-hau",
+    title: "FRM Current Issues, Bài 5: Rủi ro khí hậu và kiểm định sức chịu đựng khí hậu",
+    subtitle: "Rủi ro vật lý, rủi ro chuyển đổi, và bài toán không có dữ liệu lịch sử để hiệu chỉnh",
+    duration: "9 phút",
+    difficulty: "Trung bình",
+    emoji: "🌏",
+    track: "professional",
+    whyItMatters: "Cơ quan quản lý ở nhiều nước đã đưa kiểm định khí hậu vào chương trình giám sát ngân hàng. Đây cũng là bài toán rủi ro đầu tiên mà toàn bộ hộp công cụ dựa trên dữ liệu quá khứ gần như vô dụng.",
+    openingQuestion: "Rủi ro vật lý khác rủi ro chuyển đổi trong rủi ro khí hậu ở điểm nào?",
+    openingOptions: [
+      "Vật lý là thiệt hại do thiên tai và khí hậu, chuyển đổi là do chính sách và công nghệ đổi",
+      "Vật lý áp dụng cho tài sản hữu hình, chuyển đổi áp dụng cho tài sản tài chính",
+      "Vật lý xảy ra trong ngắn hạn, chuyển đổi chỉ xuất hiện sau năm mươi năm nữa",
+      "Vật lý do doanh nghiệp gánh, chuyển đổi do ngân sách nhà nước gánh"
+    ],
+    correctOption: 0,
+    explanation: "Rủi ro vật lý là bão, lũ, hạn phá huỷ tài sản và làm gián đoạn hoạt động. Rủi ro chuyển đổi là thiệt hại từ chính quá trình chuyển sang kinh tế phát thải thấp: thuế carbon, quy định mới, công nghệ thay thế khiến tài sản cũ mất giá trước hạn.",
+    diagram: [
+      {
+        label: "Rủi ro vật lý: thiên tai cấp tính và biến đổi mãn tính",
+        arrow: true
+      },
+      {
+        label: "Rủi ro chuyển đổi: chính sách, công nghệ, thị hiếu thị trường đổi",
+        arrow: true
+      },
+      {
+        label: "Cả hai truyền vào rủi ro tín dụng, thị trường và hoạt động",
+        arrow: true
+      },
+      {
+        label: "Không có dữ liệu lịch sử tương ứng → phải dùng kịch bản dài hạn"
+      }
+    ],
+    realWorldExample: {
+      company: "Vì sao kiểm định khí hậu không giống mọi bài kiểm định khác",
+      description: "Kiểm định sức chịu đựng thông thường lấy một cú sốc trong quá khứ làm mẫu - khủng hoảng 2008, lãi suất tăng sốc - rồi hỏi bảng cân đối hôm nay chịu được không. Kiểm định khí hậu không có mẫu nào để lấy: chưa từng có giai đoạn nào trong lịch sử tài chính hiện đại giống với thứ đang được mô hình hoá, và chân trời thời gian là hàng chục năm thay vì vài quý. Vì vậy nó là bài tập kịch bản chứ không phải bài tập thống kê."
+    },
+    quiz: [
+      {
+        question: "Tài sản mắc kẹt trong bối cảnh rủi ro chuyển đổi là gì?",
+        options: [
+          "Tài sản mất giá trị trước hạn do chính sách hoặc công nghệ thay đổi",
+          "Tài sản không thể bán được do thị trường thứ cấp thiếu thanh khoản tạm thời",
+          "Tài sản bị cơ quan quản lý phong toả trong quá trình điều tra vi phạm",
+          "Tài sản nằm ở khu vực địa lý có nguy cơ thiên tai cao trong tương lai"
+        ],
+        correct: 0,
+        explanation: "Một mỏ than hay nhà máy nhiệt điện có thể còn nguyên giá trị kỹ thuật nhưng mất giá trị kinh tế khi quy định siết lại hoặc công nghệ thay thế rẻ đi. Với ngân hàng, đó là tài sản bảo đảm bốc hơi trong khi khoản vay vẫn còn nguyên."
+      },
+      {
+        question: "Vì sao chân trời thời gian dài là khó khăn đặc thù của rủi ro khí hậu?",
+        options: [
+          "Vì nó vượt xa chu kỳ lập kế hoạch và nhiệm kỳ của người ra quyết định",
+          "Vì mô hình tài chính không tính toán được cho giai đoạn trên năm năm",
+          "Vì dữ liệu khí hậu chỉ được các cơ quan khí tượng công bố mỗi mười năm",
+          "Vì lãi suất chiết khấu không xác định được cho các kỳ hạn quá dài"
+        ],
+        correct: 0,
+        explanation: "Đây được gọi là bi kịch của chân trời: thiệt hại lớn nhất rơi ra ngoài khoảng thời gian mà người ra quyết định hôm nay chịu trách nhiệm, nên động cơ hành động sớm rất yếu dù chi phí hành động muộn cao hơn nhiều."
+      },
+      {
+        question: "Kiểm định khí hậu khác kiểm định sức chịu đựng truyền thống ở điểm nào?",
+        options: [
+          "Nó là bài tập kịch bản dài hạn, không hiệu chỉnh được từ dữ liệu quá khứ",
+          "Nó chỉ áp dụng cho các ngân hàng có hoạt động cho vay ngành năng lượng",
+          "Nó cho ra một con số vốn yêu cầu bắt buộc thay vì chỉ mang tính tham khảo",
+          "Nó được thực hiện hằng ngày thay vì theo chu kỳ hằng năm như thông thường"
+        ],
+        correct: 0,
+        explanation: "Không có tiền lệ nào trong lịch sử tài chính hiện đại để hiệu chỉnh, nên kết quả phụ thuộc gần như hoàn toàn vào giả định kịch bản. Giá trị của nó nằm ở việc buộc tổ chức nhìn ra danh mục đang phơi nhiễm vào đâu, hơn là ở con số cuối cùng."
+      }
+    ],
+    keyTakeaways: [
+      "Rủi ro vật lý là thiệt hại từ thiên tai; rủi ro chuyển đổi là từ chính sách và công nghệ",
+      "Tài sản mắc kẹt: còn giá trị kỹ thuật nhưng mất giá trị kinh tế trước hạn",
+      "Bi kịch chân trời: thiệt hại lớn nhất nằm ngoài nhiệm kỳ người quyết định hôm nay",
+      "Kiểm định khí hậu là bài tập kịch bản, không hiệu chỉnh được từ lịch sử"
+    ],
+    summary: {
+      keyIdea: "Khí hậu là loại rủi ro đầu tiên buộc ngành phải quản trị nghiêm túc một thứ không có dữ liệu lịch sử tương ứng",
+      commonMistake: "Coi kết quả kiểm định khí hậu như một con số đo được, trong khi nó chủ yếu phản ánh giả định kịch bản đã chọn",
+      action: "Đọc kết quả kiểm định khí hậu bằng cách xem danh mục phơi nhiễm ở đâu, đừng dừng ở con số tổn thất"
+    },
+    application: {
+      title: "Nhìn danh mục qua lăng kính chuyển đổi",
+      message: "Với bất kỳ danh mục nào, thử hỏi: nếu ngày mai có thuế carbon đáng kể, tài sản nào trong đây mất giá trước tiên?",
+      secondary: "Câu hỏi đó thường lộ ra mức tập trung ngành mà bảng phân bổ thông thường không cho thấy."
+    },
+    sections: [
+      {
+        type: "lead",
+        text: "Mọi công cụ trong chương trình FRM đều dựa vào dữ liệu quá khứ ở mức độ nào đó. Rủi ro khí hậu là bài toán đầu tiên mà cách làm đó không dùng được."
+      },
+      {
+        type: "comparison",
+        left: {
+          label: "Rủi ro vật lý",
+          text: "Cấp tính: bão, lũ, cháy rừng phá huỷ tài sản bảo đảm. Mãn tính: nước biển dâng, thay đổi lượng mưa làm giảm năng suất cả vùng."
+        },
+        right: {
+          label: "Rủi ro chuyển đổi",
+          text: "Thuế carbon, quy định mới, công nghệ thay thế và thị hiếu đổi làm tài sản mất giá trước hạn - kể cả khi vẫn hoạt động tốt về mặt kỹ thuật."
+        }
+      },
+      {
+        type: "heading",
+        text: "Nó truyền vào đâu"
+      },
+      {
+        type: "paragraph",
+        text: "Khí hậu không phải một loại rủi ro riêng đứng cạnh tín dụng và thị trường - nó là một nguồn gây ra chính các loại đó. Lũ phá nhà xưởng của khách vay là rủi ro tín dụng; thuế carbon làm cổ phiếu ngành mất giá là rủi ro thị trường; trụ sở ngập là rủi ro hoạt động."
+      },
+      {
+        type: "callout",
+        label: "Bi kịch của chân trời",
+        text: "Phần lớn thiệt hại rơi vào khoảng thời gian dài hơn nhiệm kỳ của ban điều hành, dài hơn kỳ lập kế hoạch, và dài hơn cả kỳ hạn nhiều khoản vay. Động cơ hành động hôm nay vì thế rất yếu, dù chi phí của việc hành động muộn cao hơn nhiều - đây là lý do phần này phải do cơ quan quản lý thúc đẩy."
+      },
+      {
+        type: "closing",
+        lines: [
+          "Không có dữ liệu để hiệu chỉnh thì kịch bản thay thế mô hình, và giả định trở thành phần quan trọng nhất.",
+          "Bài tiếp theo: một cuộc chuyển đổi khác đã hoàn tất và để lại bài học rõ ràng."
+        ]
+      }
+    ]
+  },
+  {
+    id: 1645,
+    slug: "frm-chuyen-doi-libor-sang-lai-suat-tham-chieu-moi",
+    title: "FRM Current Issues, Bài 6: Từ LIBOR sang lãi suất tham chiếu mới",
+    subtitle: "Thay một con số nằm trong hàng trăm nghìn tỷ đô hợp đồng - và những gì nó dạy về rủi ro chuẩn tham chiếu",
+    duration: "9 phút",
+    difficulty: "Khó",
+    emoji: "🔗",
+    track: "professional",
+    whyItMatters: "Đây là cuộc phẫu thuật hạ tầng lớn nhất mà thị trường tài chính từng thực hiện, và nó cho một bài học chung: một chuẩn tham chiếu dựa trên phán đoán thay vì giao dịch thật là một điểm yếu nằm sẵn trong hệ thống.",
+    openingQuestion: "Vấn đề cốt lõi khiến LIBOR phải bị thay thế là gì?",
+    openingOptions: [
+      "Nó dựa trên báo giá ước tính của các ngân hàng thay vì giao dịch thật",
+      "Nó chỉ được công bố cho đồng đô la Mỹ nên không dùng được cho tiền tệ khác",
+      "Nó được tính theo phương pháp quá phức tạp khiến thị trường khó kiểm chứng",
+      "Nó chỉ có kỳ hạn qua đêm nên không phù hợp cho hợp đồng dài hạn"
+    ],
+    correctOption: 0,
+    explanation: "LIBOR hỏi các ngân hàng rằng họ ước tính vay được với lãi suất nào - một phán đoán, không phải một giao dịch. Thị trường vay liên ngân hàng không bảo đảm co lại sau 2008 khiến phán đoán đó ngày càng ít có cơ sở, và cấu trúc dựa trên báo giá cũng mở đường cho các vụ thao túng bị phát hiện sau đó.",
+    diagram: [
+      {
+        label: "LIBOR: báo giá ước tính, có rủi ro tín dụng ngân hàng, nhiều kỳ hạn",
+        arrow: true
+      },
+      {
+        label: "Lãi suất mới: giao dịch thật, gần như phi rủi ro, qua đêm",
+        arrow: true
+      },
+      {
+        label: "Khác biệt cấu trúc → cần chênh lệch điều chỉnh khi chuyển đổi",
+        arrow: true
+      },
+      {
+        label: "Hợp đồng cũ cần điều khoản dự phòng để không rơi vào khoảng trống pháp lý"
+      }
+    ],
+    realWorldExample: {
+      company: "Rủi ro hợp đồng cũ trong một cuộc chuyển đổi chuẩn tham chiếu",
+      description: "Phần khó nhất không phải chọn lãi suất mới mà là hàng loạt hợp đồng dài hạn đã ký, trong đó nhiều hợp đồng chỉ có điều khoản dự phòng viết cho tình huống LIBOR gián đoạn tạm thời một vài ngày - không phải cho việc nó biến mất vĩnh viễn. Nếu không sửa, một số hợp đồng sẽ rơi vào tình trạng lãi suất bị cố định ở mức công bố cuối cùng, hoặc không xác định được lãi suất, và cả hai đều dẫn tới tranh chấp."
+    },
+    quiz: [
+      {
+        question: "Vì sao lãi suất tham chiếu mới cần một khoản chênh lệch điều chỉnh khi thay cho LIBOR?",
+        options: [
+          "Vì LIBOR chứa rủi ro tín dụng ngân hàng",
+          "Vì lãi suất mới công bố chậm hơn một ngày",
+          "Vì hai loại lãi suất sử dụng số ngày trong năm khác nhau khi tính lãi",
+          "Vì cơ quan quản lý muốn giảm chi phí vay cho các doanh nghiệp nhỏ"
+        ],
+        correct: 0,
+        explanation: "LIBOR là lãi suất vay không bảo đảm giữa các ngân hàng, nên nó luôn cao hơn một lãi suất gần như phi rủi ro. Chuyển thẳng mà không cộng chênh lệch sẽ chuyển giá trị từ bên này sang bên kia của mọi hợp đồng."
+      },
+      {
+        question: "Khác biệt cấu trúc lớn nhất giữa LIBOR và các lãi suất tham chiếu mới là gì?",
+        options: [
+          "LIBOR nhiều kỳ hạn nhìn tới trước, lãi suất mới qua đêm nhìn lại sau",
+          "LIBOR do ngân hàng trung ương công bố, lãi suất mới do các ngân hàng tự thoả thuận",
+          "LIBOR chỉ dùng cho phái sinh, lãi suất mới chỉ dùng cho khoản vay doanh nghiệp",
+          "LIBOR được cập nhật hằng giờ, lãi suất mới chỉ được công bố mỗi tuần một lần"
+        ],
+        correct: 0,
+        explanation: "Đây là khác biệt gây nhiều việc nhất trong thực tế: người vay từng biết trước tiền lãi kỳ này ngay từ đầu kỳ, còn với lãi suất qua đêm cộng dồn thì con số chỉ chốt được vào cuối kỳ - toàn bộ hệ thống vận hành và kế toán phải sửa theo."
+      },
+      {
+        question: "Bài học chung của cuộc chuyển đổi này với quản trị rủi ro là gì?",
+        options: [
+          "Chuẩn dựa trên phán đoán thay vì giao dịch thật",
+          "Mọi hợp đồng tài chính nên có kỳ hạn dưới năm năm để dễ sửa khi cần",
+          "Nên tránh lãi suất thả nổi trong hợp đồng dài",
+          "Cơ quan quản lý nên tự công bố toàn bộ các loại lãi suất tham chiếu"
+        ],
+        correct: 0,
+        explanation: "Một con số được hàng trăm nghìn tỷ đô hợp đồng tham chiếu tới mà lại dựa trên ước tính của một nhóm nhỏ người tham gia là một rủi ro tập trung, cả về thao túng lẫn về việc thị trường nền teo dần đi."
+      }
+    ],
+    keyTakeaways: [
+      "LIBOR dựa trên báo giá ước tính, lãi suất mới dựa trên giao dịch thật",
+      "LIBOR chứa rủi ro tín dụng ngân hàng nên chuyển đổi cần chênh lệch điều chỉnh",
+      "Lãi suất mới là qua đêm nhìn lại sau, buộc sửa cả hệ thống vận hành và kế toán",
+      "Rủi ro lớn nhất nằm ở hợp đồng cũ thiếu điều khoản dự phòng cho việc ngừng vĩnh viễn"
+    ],
+    summary: {
+      keyIdea: "Thay một chuẩn tham chiếu là bài toán hợp đồng và vận hành nhiều hơn là bài toán chọn con số, và bài học còn lại là chuẩn phải neo vào giao dịch thật",
+      commonMistake: "Coi đây là chuyện kỹ thuật của bộ phận vận hành, trong khi nó dịch chuyển giá trị kinh tế giữa hai bên của mọi hợp đồng",
+      action: "Với bất kỳ hợp đồng dài hạn nào, đọc điều khoản dự phòng và hỏi: nó viết cho gián đoạn tạm thời hay cho việc biến mất hẳn"
+    },
+    application: {
+      title: "Kiểm tra một hợp đồng vay",
+      message: "Nếu bạn có khoản vay lãi suất thả nổi, tìm xem hợp đồng tham chiếu tới lãi suất nào và quy định gì nếu lãi suất đó ngừng được công bố. Rất nhiều hợp đồng không nói gì về tình huống đó.",
+      secondary: "Khoảng trống ấy chính là thứ đã tạo ra khối lượng công việc khổng lồ trong cuộc chuyển đổi vừa qua."
+    },
+    sections: [
+      {
+        type: "lead",
+        text: "Có lúc LIBOR là con số được tham chiếu bởi khối hợp đồng lớn hơn cả GDP toàn cầu. Nó được tạo ra bằng cách hỏi vài chục ngân hàng: nếu vay, các anh nghĩ mình vay được với lãi bao nhiêu?"
+      },
+      {
+        type: "heading",
+        text: "Vì sao một câu hỏi lại thành rủi ro hệ thống"
+      },
+      {
+        type: "paragraph",
+        text: "Câu trả lời là ước tính, không phải giao dịch. Sau 2008 thị trường vay liên ngân hàng không bảo đảm co lại mạnh, nên ước tính đó ngày càng thiếu cơ sở thực tế. Cùng lúc, cấu trúc dựa trên báo giá tạo điều kiện cho các vụ thao túng bị phát hiện sau đó."
+      },
+      {
+        type: "comparison",
+        left: {
+          label: "LIBOR",
+          text: "Báo giá ước tính, có kỳ hạn nhìn tới trước, chứa rủi ro tín dụng ngân hàng - nên biết trước tiền lãi ngay từ đầu kỳ."
+        },
+        right: {
+          label: "Lãi suất tham chiếu mới",
+          text: "Dựa trên giao dịch thật, qua đêm, gần như phi rủi ro - lãi kỳ này chỉ chốt được vào cuối kỳ sau khi cộng dồn."
+        }
+      },
+      {
+        type: "callout",
+        label: "Phần khó nhất là hợp đồng cũ",
+        text: "Rất nhiều hợp đồng dài hạn chỉ có điều khoản dự phòng viết cho tình huống LIBOR gián đoạn vài ngày, không phải cho việc nó biến mất hẳn. Không sửa thì hợp đồng hoặc bị cố định lãi ở mức cuối cùng, hoặc không xác định được lãi - và cả hai đều là tranh chấp."
+      },
+      {
+        type: "closing",
+        lines: [
+          "Một chuẩn tham chiếu phải neo vào giao dịch có thật, nếu không nó là một điểm yếu chờ ngày lộ ra.",
+          "Bài tiếp theo: hình thức tiền mới và câu hỏi nó đặt ra cho hệ thống ngân hàng."
+        ]
+      }
+    ]
+  },
+  {
+    id: 1646,
+    slug: "frm-cbdc-va-he-thong-ngan-hang",
+    title: "FRM Current Issues, Bài 7: Tiền kỹ thuật số ngân hàng trung ương và hệ thống ngân hàng",
+    subtitle: "Nếu ai cũng gửi được tiền thẳng ở ngân hàng trung ương, ngân hàng thương mại còn lại gì",
+    duration: "9 phút",
+    difficulty: "Khó",
+    emoji: "🏛️",
+    track: "professional",
+    whyItMatters: "Rất nhiều ngân hàng trung ương đang nghiên cứu hoặc thí điểm CBDC. Câu hỏi rủi ro không phải công nghệ mà là cấu trúc: nó động thẳng vào nguồn vốn rẻ nhất và ổn định nhất của ngân hàng thương mại.",
+    openingQuestion: "Rủi ro lớn nhất mà CBDC bán lẻ đặt ra cho hệ thống ngân hàng thương mại là gì?",
+    openingOptions: [
+      "Tiền gửi chảy khỏi ngân hàng thương mại, làm mất nguồn vốn rẻ và ổn định",
+      "Ngân hàng thương mại phải nâng cấp toàn bộ hệ thống công nghệ lõi",
+      "Chi phí tuân thủ chống rửa tiền tăng lên do có thêm một kênh thanh toán",
+      "Ngân hàng trung ương sẽ trực tiếp cạnh tranh trong mảng cho vay doanh nghiệp"
+    ],
+    correctOption: 0,
+    explanation: "Tiền gửi dân cư là nguồn vốn rẻ nhất và bám dai nhất của ngân hàng. Một khoản tiền gửi ở ngân hàng trung ương thì gần như không có rủi ro tín dụng, nên nếu không có giới hạn nắm giữ, nó là lựa chọn thay thế hấp dẫn hơn hẳn - đặc biệt trong lúc thị trường căng thẳng.",
+    diagram: [
+      {
+        label: "CBDC bán lẻ: nghĩa vụ trực tiếp của ngân hàng trung ương",
+        arrow: true
+      },
+      {
+        label: "An toàn hơn tiền gửi ngân hàng thương mại về rủi ro tín dụng",
+        arrow: true
+      },
+      {
+        label: "Nguy cơ rút tiền gửi, đặc biệt trong khủng hoảng",
+        arrow: true
+      },
+      {
+        label: "Thiết kế phải có trần nắm giữ hoặc lãi suất bậc thang để hãm lại"
+      }
+    ],
+    realWorldExample: {
+      company: "Vì sao thiết kế CBDC thường kèm trần nắm giữ",
+      description: "Các đề án CBDC bán lẻ được nghiên cứu nghiêm túc gần như luôn kèm một cơ chế hãm: trần số dư mỗi người được giữ, hoặc lãi suất bậc thang phạt phần vượt ngưỡng. Lý do là kịch bản tháo chạy trong khủng hoảng - khi người gửi nghi ngờ ngân hàng, việc chuyển sang một tài sản không có rủi ro tín dụng chỉ bằng vài thao tác sẽ khiến làn sóng rút tiền nhanh hơn bất kỳ tiền lệ nào."
+    },
+    quiz: [
+      {
+        question: "Vì sao CBDC có thể làm các cuộc tháo chạy ngân hàng diễn ra nhanh hơn?",
+        options: [
+          "Vì chuyển sang tài sản không rủi ro chỉ mất vài thao tác",
+          "Vì ngân hàng trung ương sẽ công bố danh sách các ngân hàng đang gặp khó khăn",
+          "Vì CBDC trả lãi suất cao hơn hẳn tiền gửi tại ngân hàng thương mại",
+          "Vì hệ thống thanh toán sẽ ngừng hoạt động khi có nhiều lệnh chuyển cùng lúc"
+        ],
+        correct: 0,
+        explanation: "Tháo chạy ngân hàng vốn bị hãm bởi ma sát - phải tới quầy, phải tìm chỗ gửi khác cũng có rủi ro. CBDC xoá cả hai ma sát đó cùng lúc, nên tốc độ rút có thể vượt xa mọi mô hình hiệu chỉnh từ dữ liệu lịch sử."
+      },
+      {
+        question: "Mô hình CBDC hai tầng hoạt động thế nào?",
+        options: [
+          "Ngân hàng trung ương phát hành, tư nhân lo phân phối",
+          "Mỗi quốc gia phát hành hai loại CBDC riêng cho dân cư và cho doanh nghiệp",
+          "CBDC được phát hành đồng thời bởi ngân hàng trung ương và các ngân hàng lớn nhất",
+          "Người dùng phải mở hai tài khoản riêng"
+        ],
+        correct: 0,
+        explanation: "Mô hình này giữ ngân hàng trung ương ở vai trò phát hành và vận hành sổ cái, trong khi phần tiếp xúc khách hàng - mở tài khoản, định danh, hỗ trợ - vẫn nằm ở khu vực tư nhân. Nó tránh việc ngân hàng trung ương phải phục vụ hàng chục triệu khách hàng lẻ."
+      },
+      {
+        question: "Vì sao stablecoin và CBDC đặt ra hai loại câu hỏi rủi ro khác nhau?",
+        options: [
+          "Stablecoin phụ thuộc chất lượng tài sản bảo chứng",
+          "Stablecoin không được phép sử dụng cho các giao dịch thanh toán xuyên biên giới",
+          "CBDC chỉ tồn tại dưới dạng vật lý còn stablecoin chỉ tồn tại dưới dạng điện tử",
+          "CBDC không chịu quy định giám sát nào"
+        ],
+        correct: 0,
+        explanation: "CBDC là nghĩa vụ trực tiếp của ngân hàng trung ương nên rủi ro tín dụng gần như bằng 0; câu hỏi của nó là câu hỏi cấu trúc hệ thống. Stablecoin thì chỉ đáng tin bằng đúng tài sản bảo chứng đằng sau, nên nó mang rủi ro tháo chạy giống một quỹ thị trường tiền tệ."
+      }
+    ],
+    keyTakeaways: [
+      "Rủi ro chính của CBDC bán lẻ là hút tiền gửi khỏi ngân hàng thương mại",
+      "Thiết kế thường kèm trần nắm giữ hoặc lãi suất bậc thang để hãm nguy cơ tháo chạy",
+      "Mô hình hai tầng giữ khu vực tư nhân ở khâu phân phối và định danh khách hàng",
+      "Stablecoin mang rủi ro tài sản bảo chứng; CBDC mang câu hỏi về cấu trúc hệ thống"
+    ],
+    summary: {
+      keyIdea: "Câu hỏi rủi ro của CBDC không nằm ở công nghệ mà ở chỗ nó cạnh tranh trực tiếp với nguồn vốn nền tảng của ngân hàng thương mại",
+      commonMistake: "Đánh giá CBDC như một dự án công nghệ thanh toán, bỏ qua tác động lên cấu trúc huy động vốn của cả hệ thống",
+      action: "Khi đọc một đề án CBDC, tìm ngay phần cơ chế hãm - trần nắm giữ hay lãi suất bậc thang - vì đó là chỗ xử lý rủi ro thật"
+    },
+    application: {
+      title: "So sánh ba loại tiền bạn đang giữ",
+      message: "Tiền mặt là nghĩa vụ của ngân hàng trung ương. Tiền trong tài khoản là nghĩa vụ của ngân hàng thương mại. Tiền trong ví điện tử là nghĩa vụ của một công ty tư nhân. Ba mức rủi ro tín dụng khác nhau cho thứ trông giống nhau.",
+      secondary: "CBDC sẽ là loại thứ tư, và vị trí của nó trong bảng này chính là lý do nó gây tranh luận."
+    },
+    sections: [
+      {
+        type: "lead",
+        text: "Tiền trong tài khoản ngân hàng của bạn không phải tiền của ngân hàng trung ương - nó là một khoản nợ mà ngân hàng thương mại nợ bạn. CBDC xoá đi sự phân biệt đó, và toàn bộ tranh luận nằm ở hệ quả của việc xoá."
+      },
+      {
+        type: "heading",
+        text: "Vì sao đây là câu hỏi cấu trúc"
+      },
+      {
+        type: "paragraph",
+        text: "Ngân hàng thương mại vận hành được nhờ tiền gửi rẻ và ổn định. Nếu người dân giữ được một tài sản có tính thanh toán tương đương nhưng không mang rủi ro tín dụng nào, phần lớn lý do để giữ tiền ở ngân hàng thương mại biến mất - kéo theo chi phí vốn tăng và khả năng cho vay giảm."
+      },
+      {
+        type: "callout",
+        label: "Kịch bản đáng lo nhất là tháo chạy",
+        text: "Tháo chạy ngân hàng truyền thống bị hãm bởi ma sát: phải xếp hàng, và chỗ chuyển sang cũng là một ngân hàng khác cũng có rủi ro. CBDC xoá cả hai ma sát cùng lúc, nên tốc độ rút tiền có thể vượt xa mọi mô hình hiệu chỉnh từ lịch sử - đây là lý do trần nắm giữ gần như luôn có mặt trong các đề án."
+      },
+      {
+        type: "closing",
+        lines: [
+          "Thiết kế tiền là thiết kế cấu trúc hệ thống tài chính, không phải chọn công nghệ.",
+          "Bài tiếp theo: khi hạ tầng dùng chung trở thành điểm đổ vỡ chung."
+        ]
+      }
+    ]
+  },
+  {
+    id: 1647,
+    slug: "frm-rui-ro-tap-trung-nha-cung-cap-dam-may",
+    title: "FRM Current Issues, Bài 8: Rủi ro tập trung nhà cung cấp đám mây",
+    subtitle: "Khi cả ngành thuê ngoài cho cùng ba công ty, rủi ro riêng lẻ thành rủi ro hệ thống",
+    duration: "9 phút",
+    difficulty: "Trung bình",
+    emoji: "☁️",
+    track: "professional",
+    whyItMatters: "Mỗi định chế chuyển lên đám mây đều có lý do đúng: rẻ hơn, an toàn hơn, chạy nhanh hơn. Nhưng khi tất cả cùng chọn một trong số ít nhà cung cấp, tổng lại thành một điểm đổ vỡ mà không ai sở hữu.",
+    openingQuestion: "Vì sao cơ quan quản lý lo ngại tập trung nhà cung cấp đám mây trong ngành tài chính?",
+    openingOptions: [
+      "Một sự cố ở một nhà cung cấp có thể làm gián đoạn đồng thời nhiều định chế",
+      "Nhà cung cấp đám mây thường có mức bảo mật thấp hơn hệ thống tự vận hành",
+      "Chi phí thuê đám mây tăng đều mỗi năm làm giảm lợi nhuận của các ngân hàng",
+      "Dữ liệu khách hàng bắt buộc phải được lưu trữ trong lãnh thổ quốc gia"
+    ],
+    correctOption: 0,
+    explanation: "Ở góc độ từng tổ chức, đám mây thường an toàn hơn tự vận hành. Vấn đề là ở cấp hệ thống: khi hàng loạt định chế cùng phụ thuộc vào vài nhà cung cấp, một sự cố duy nhất tạo ra gián đoạn đồng thời mà không định chế nào có thể tự phòng ngừa.",
+    diagram: [
+      {
+        label: "Mỗi tổ chức chuyển lên đám mây vì lý do hợp lý riêng",
+        arrow: true
+      },
+      {
+        label: "Số nhà cung cấp đủ năng lực rất ít",
+        arrow: true
+      },
+      {
+        label: "Tổng lại: điểm đổ vỡ chung cho cả ngành",
+        arrow: true
+      },
+      {
+        label: "Không định chế đơn lẻ nào có động cơ tự giải quyết"
+      }
+    ],
+    realWorldExample: {
+      company: "Vì sao khung thuê ngoài truyền thống không đủ cho đám mây",
+      description: "Quy định về thuê ngoài được viết cho quan hệ song phương: ngân hàng đánh giá nhà cung cấp, ký hợp đồng có điều khoản kiểm toán, chuẩn bị phương án thay thế. Với đám mây, cả ba bước đều khó thực hiện đúng nghĩa - ngân hàng nhỏ không có đòn bẩy đàm phán với nhà cung cấp lớn hơn mình nhiều lần, quyền kiểm toán tại chỗ thường không khả thi, và chuyển sang nhà cung cấp khác là dự án nhiều năm chứ không phải phương án dự phòng."
+    },
+    quiz: [
+      {
+        question: "Vì sao khả năng chuyển đổi nhà cung cấp lại là vấn đề thực tế?",
+        options: [
+          "Vì hệ thống được xây theo dịch vụ riêng của nhà cung cấp nên khó gỡ ra",
+          "Vì hợp đồng đám mây luôn có thời hạn tối thiểu mười năm không được chấm dứt",
+          "Vì cơ quan quản lý yêu cầu mỗi tổ chức chỉ được dùng một nhà cung cấp duy nhất",
+          "Vì dữ liệu lưu trên đám mây không thể sao chép ra ngoài vì lý do kỹ thuật"
+        ],
+        correct: 0,
+        explanation: "Ứng dụng dùng càng nhiều dịch vụ đặc thù của nền tảng thì càng khó tách ra. Đây là lý do phương án dự phòng trên giấy - nếu có sự cố thì chuyển sang nhà cung cấp khác - thường không kiểm chứng được trong thực tế."
+      },
+      {
+        question: "Vì sao đây được xếp vào rủi ro hệ thống chứ không chỉ là rủi ro hoạt động của từng ngân hàng?",
+        options: [
+          "Vì gián đoạn xảy ra đồng thời ở nhiều định chế nên không bên nào bù cho bên nào",
+          "Vì các nhà cung cấp đám mây cũng nắm giữ cổ phần tại các ngân hàng lớn",
+          "Vì sự cố đám mây luôn kéo dài hơn một tuần trước khi được khắc phục",
+          "Vì dữ liệu tài chính trên đám mây được chia sẻ giữa các định chế với nhau"
+        ],
+        correct: 0,
+        explanation: "Rủi ro hoạt động thông thường có tính riêng lẻ: ngân hàng này sập thì khách chuyển sang ngân hàng khác. Khi cả ngành dùng chung một hạ tầng, sự cố đánh vào tất cả cùng lúc và cơ chế bù trừ tự nhiên đó biến mất."
+      },
+      {
+        question: "Hướng xử lý mà cơ quan quản lý nhiều nước đang đi là gì?",
+        options: [
+          "Giám sát trực tiếp nhà cung cấp trọng yếu thay vì chỉ giám sát qua ngân hàng",
+          "Cấm hoàn toàn các định chế tài chính sử dụng dịch vụ điện toán đám mây",
+          "Yêu cầu mọi ngân hàng phải tự xây dựng trung tâm dữ liệu riêng của mình",
+          "Buộc các nhà cung cấp đám mây phải xin giấy phép hoạt động ngân hàng"
+        ],
+        correct: 0,
+        explanation: "Vì không định chế đơn lẻ nào có đủ đòn bẩy hay động cơ để xử lý rủi ro chung này, xu hướng là đưa nhà cung cấp trọng yếu vào diện giám sát trực tiếp - tương tự cách hạ tầng thị trường tài chính được giám sát."
+      }
+    ],
+    keyTakeaways: [
+      "Hợp lý ở cấp từng tổ chức nhưng tạo điểm đổ vỡ chung ở cấp hệ thống",
+      "Khung thuê ngoài truyền thống giả định quan hệ song phương cân bằng, điều không đúng ở đây",
+      "Khả năng chuyển đổi nhà cung cấp thường chỉ tồn tại trên giấy",
+      "Xu hướng quản lý: giám sát trực tiếp nhà cung cấp trọng yếu"
+    ],
+    summary: {
+      keyIdea: "Đây là ví dụ rõ nhất của nghịch lý hợp thành: mỗi quyết định riêng lẻ đều đúng, tổng lại thành một rủi ro không ai sở hữu",
+      commonMistake: "Đánh giá rủi ro đám mây chỉ ở cấp tổ chức, nơi kết luận gần như luôn là an toàn hơn tự vận hành",
+      action: "Khi rà soát rủi ro bên thứ ba, hỏi thêm: bao nhiêu đối thủ của chúng ta cũng đang dùng đúng nhà cung cấp này"
+    },
+    application: {
+      title: "Nhìn ra tập trung ẩn",
+      message: "Thử liệt kê các dịch vụ số bạn dùng hằng ngày rồi tra xem chúng chạy trên hạ tầng của ai. Danh sách thường ngắn hơn nhiều so với số lượng ứng dụng.",
+      secondary: "Đó chính là hình dạng của rủi ro tập trung mà cả ngành tài chính đang đối mặt."
+    },
+    sections: [
+      {
+        type: "lead",
+        text: "Nếu hỏi riêng từng ngân hàng, chuyển lên đám mây gần như luôn làm giảm rủi ro hoạt động của họ. Câu hỏi khó chỉ xuất hiện khi cộng tất cả các câu trả lời lại."
+      },
+      {
+        type: "heading",
+        text: "Nghịch lý hợp thành"
+      },
+      {
+        type: "paragraph",
+        text: "Số nhà cung cấp đủ năng lực phục vụ định chế tài chính lớn là rất ít. Khi phần lớn ngành cùng chọn trong nhóm nhỏ đó, một sự cố ở một nhà cung cấp không còn là sự cố của một tổ chức - nó là gián đoạn đồng thời của nhiều tổ chức, đúng lúc không ai còn ở trạng thái bình thường để bù cho nhau."
+      },
+      {
+        type: "list",
+        items: [
+          "Đòn bẩy đàm phán lệch: ngân hàng nhỏ khó áp điều khoản lên nhà cung cấp lớn hơn mình",
+          "Quyền kiểm toán tại chỗ thường không khả thi với mô hình vận hành của đám mây",
+          "Khả năng chuyển đổi bị khoá bởi các dịch vụ đặc thù của nền tảng",
+          "Chuỗi phụ thuộc nhiều tầng: nhà cung cấp của nhà cung cấp cũng có thể trùng nhau"
+        ]
+      },
+      {
+        type: "callout",
+        label: "Vì sao thị trường không tự giải quyết được",
+        text: "Không định chế đơn lẻ nào có động cơ gánh chi phí đa dạng hoá hạ tầng để giảm một rủi ro mà cả ngành cùng chịu. Đây là dạng ngoại ứng kinh điển, và cũng là lý do lời giải phải đến từ phía quy định chứ không từ phía thị trường."
+      },
+      {
+        type: "closing",
+        lines: [
+          "Thuê ngoài chuyển được hoạt động, nhưng không chuyển được trách nhiệm - và ở đây cũng không chuyển được rủi ro.",
+          "Bài tiếp theo: một đợt bất ổn ngân hàng gần đây và những gì nó xác nhận."
+        ]
+      }
+    ]
+  },
+  {
+    id: 1648,
+    slug: "frm-bat-on-ngan-hang-2023-bai-hoc",
+    title: "FRM Current Issues, Bài 9: Bất ổn ngân hàng 2023 và ba bài học",
+    subtitle: "Rủi ro lãi suất trong sổ ngân hàng, tiền gửi không bảo hiểm, và tốc độ rút tiền thời số hoá",
+    duration: "10 phút",
+    difficulty: "Khó",
+    emoji: "🏦",
+    track: "professional",
+    whyItMatters: "Đây là đợt căng thẳng ngân hàng lớn nhất kể từ 2008, và điều đáng chú ý là nó không đến từ rủi ro tín dụng. Nó là bài kiểm tra thực tế cho gần như mọi chương trong FRM Part II cùng lúc.",
+    openingQuestion: "Nguyên nhân trực tiếp dẫn tới đợt bất ổn ngân hàng năm 2023 ở Mỹ là gì?",
+    openingOptions: [
+      "Lỗ chưa thực hiện trên danh mục trái phiếu khi lãi suất tăng mạnh",
+      "Tỷ lệ nợ xấu tăng vọt trong danh mục cho vay bất động sản thương mại",
+      "Gian lận nội bộ quy mô lớn tại bộ phận giao dịch tự doanh",
+      "Sự cố công nghệ kéo dài làm gián đoạn hệ thống thanh toán liên ngân hàng"
+    ],
+    correctOption: 0,
+    explanation: "Điểm khiến đợt này khác 2008: khoản lỗ không đến từ người vay mất khả năng trả nợ. Nó đến từ trái phiếu chính phủ - tài sản không có rủi ro tín dụng - mất giá khi lãi suất tăng, cộng với việc phần lớn tiền gửi không được bảo hiểm nên rất nhạy cảm.",
+    diagram: [
+      {
+        label: "Lãi suất tăng nhanh → danh mục trái phiếu lỗ chưa thực hiện",
+        arrow: true
+      },
+      {
+        label: "Tiền gửi phần lớn không bảo hiểm, tập trung một nhóm khách",
+        arrow: true
+      },
+      {
+        label: "Tin lan trên mạng xã hội, rút tiền qua ứng dụng trong vài giờ",
+        arrow: true
+      },
+      {
+        label: "Bán tài sản lỗ để trả → lỗ thành hiện thực → mất khả năng thanh toán"
+      }
+    ],
+    realWorldExample: {
+      company: "Vì sao phân loại kế toán giấu được vấn đề một thời gian",
+      description: "Trái phiếu xếp vào nhóm giữ tới đáo hạn không phải đánh giá lại theo giá thị trường trên báo cáo, nên khoản lỗ chưa thực hiện không hiện ra ở vốn chủ sở hữu công bố. Trên giấy tờ ngân hàng vẫn đủ vốn. Nhưng khi buộc phải bán để đáp ứng lệnh rút, phân loại kế toán không cứu được ai - khoản lỗ trở thành hiện thực đúng vào lúc tệ nhất."
+    },
+    quiz: [
+      {
+        question: "Vì sao tỷ lệ tiền gửi không được bảo hiểm cao lại là yếu tố khuếch đại?",
+        options: [
+          "Vì người gửi vượt hạn mức bảo hiểm có động cơ rút trước tất cả những người khác",
+          "Vì tiền gửi không bảo hiểm phải chịu lãi suất cao hơn làm tăng chi phí vốn",
+          "Vì cơ quan quản lý yêu cầu giữ thêm vốn cho phần tiền gửi không bảo hiểm",
+          "Vì loại tiền gửi này không được tính vào tỷ lệ bao phủ thanh khoản"
+        ],
+        correct: 0,
+        explanation: "Bảo hiểm tiền gửi tồn tại chính để triệt tiêu động cơ chạy trước: nếu tiền được bảo đảm thì không việc gì phải vội. Khi phần lớn số dư vượt hạn mức, cơ chế hãm đó biến mất và tháo chạy trở thành phản ứng hợp lý của từng cá nhân."
+      },
+      {
+        question: "Bài học về tốc độ mà đợt bất ổn này để lại là gì?",
+        options: [
+          "Rút tiền qua ứng dụng cộng tin lan trên mạng xã hội nhanh hơn mọi tiền lệ",
+          "Các cơ quan quản lý cần rút ngắn thời gian công bố báo cáo tài chính quý",
+          "Ngân hàng cần tăng số lượng chi nhánh vật lý để phân tán dòng người rút tiền",
+          "Thị trường liên ngân hàng cần được mở cửa hai mươi bốn giờ mỗi ngày"
+        ],
+        correct: 0,
+        explanation: "Các mô hình thanh khoản được hiệu chỉnh trên những đợt tháo chạy trong quá khứ, khi người gửi phải xếp hàng ở quầy. Đợt này cho thấy giả định tốc độ đó đã lạc hậu về mặt cấu trúc chứ không chỉ về mặt tham số."
+      },
+      {
+        question: "Vì sao đợt này được xem như bài kiểm tra cho quản trị tài sản - nợ?",
+        options: [
+          "Vì thất bại nằm ở việc không phòng hộ rủi ro lãi suất giữa tài sản dài và nguồn vốn ngắn",
+          "Vì các ngân hàng liên quan đều không có bộ phận quản trị rủi ro tín dụng",
+          "Vì nguyên nhân chính là chênh lệch tỷ giá giữa tài sản và nguồn vốn ngoại tệ",
+          "Vì các ngân hàng đã cho vay vượt quá giới hạn với một nhóm khách hàng liên quan"
+        ],
+        correct: 0,
+        explanation: "Đây đúng là bài toán khớp duration ở dạng kinh điển: tài sản dài hạn lãi cố định, nguồn vốn ngắn hạn có thể rút bất cứ lúc nào, và không có phòng hộ lãi suất tương xứng. Chương ALM/IRRBB mô tả chính xác kịch bản này từ trước khi nó xảy ra."
+      }
+    ],
+    keyTakeaways: [
+      "Khoản lỗ đến từ rủi ro lãi suất, không phải rủi ro tín dụng - khác hẳn 2008",
+      "Phân loại giữ tới đáo hạn giấu được lỗ trên báo cáo nhưng không cứu được khi phải bán",
+      "Tiền gửi không bảo hiểm tập trung tạo động cơ chạy trước rất mạnh",
+      "Tốc độ rút tiền thời ứng dụng và mạng xã hội vượt xa mọi mô hình hiệu chỉnh từ lịch sử"
+    ],
+    summary: {
+      keyIdea: "Một ngân hàng có thể đủ vốn trên báo cáo và vẫn sụp trong vài ngày, khi rủi ro lãi suất chưa phòng hộ gặp nguồn vốn có thể bốc hơi trong vài giờ",
+      commonMistake: "Đọc vốn chủ sở hữu công bố như thước đo sức chịu đựng mà không xem lỗ chưa thực hiện trong danh mục giữ tới đáo hạn",
+      action: "Khi phân tích một ngân hàng, tìm hai con số: lỗ chưa thực hiện trên danh mục trái phiếu và tỷ lệ tiền gửi không được bảo hiểm"
+    },
+    application: {
+      title: "Hai con số cần tìm",
+      message: "Trong thuyết minh báo cáo tài chính ngân hàng, tìm giá trị hợp lý của danh mục giữ tới đáo hạn và so với giá trị ghi sổ. Chênh lệch đó là khoản lỗ chưa hiện ra ở vốn chủ sở hữu.",
+      secondary: "Đối chiếu tiếp với tỷ lệ tiền gửi không bảo hiểm là ra được bức tranh mà đợt 2023 đã dạy cả ngành."
+    },
+    sections: [
+      {
+        type: "lead",
+        text: "Điều đáng học nhất ở đợt bất ổn 2023 không phải là quy mô, mà là việc nó xảy ra mà gần như không có khoản nợ xấu nào."
+      },
+      {
+        type: "heading",
+        text: "Chuỗi nhân quả"
+      },
+      {
+        type: "paragraph",
+        text: "Lãi suất tăng nhanh làm danh mục trái phiếu dài hạn mất giá. Khoản lỗ đó chưa hiện trên báo cáo nhờ phân loại giữ tới đáo hạn. Nhưng nguồn vốn lại là tiền gửi phần lớn không được bảo hiểm và tập trung ở một nhóm khách hàng giống nhau. Khi nghi ngờ xuất hiện, việc rút tiền diễn ra qua ứng dụng trong vài giờ, buộc bán trái phiếu và biến khoản lỗ trên giấy thành lỗ thật."
+      },
+      {
+        type: "list",
+        items: [
+          "Bài học một: rủi ro lãi suất trong sổ ngân hàng đủ sức đánh sập một ngân hàng, không cần nợ xấu",
+          "Bài học hai: cơ cấu tiền gửi quan trọng ngang quy mô tiền gửi - không bảo hiểm và tập trung là tổ hợp dễ vỡ nhất",
+          "Bài học ba: giả định tốc độ rút tiền hiệu chỉnh từ lịch sử đã lạc hậu về cấu trúc"
+        ]
+      },
+      {
+        type: "callout",
+        label: "Vì sao phân loại kế toán không cứu được ai",
+        text: "Giữ tới đáo hạn là một ý định, không phải một khả năng. Ý định đó chỉ giữ được chừng nào không ai buộc bạn bán - và đúng vào lúc người gửi rút tiền đồng loạt thì bạn buộc phải bán. Lúc ấy khoản lỗ chưa thực hiện trở thành khoản lỗ thực hiện ngay lập tức."
+      },
+      {
+        type: "closing",
+        lines: [
+          "Vốn đủ trên báo cáo và sống sót qua tuần này là hai câu hỏi khác nhau.",
+          "Đây là bài cuối của phần Current Issues mở rộng."
+        ]
+      }
+    ]
+  }
+];
