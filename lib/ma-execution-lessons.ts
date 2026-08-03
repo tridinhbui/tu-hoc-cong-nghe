@@ -339,6 +339,30 @@ export const MA_EXECUTION_LESSONS: Lesson[] = [
         text: "Giá trị doanh nghiệp bằng giá trị vốn chủ cộng nợ vay trừ tiền mặt - công thức đã học ở phần định giá. Bảng nguồn và sử dụng vốn chính là công thức đó diễn ra bằng tiền thật: khoản nợ cộng vào xuất hiện ở cột sử dụng vì phải trả, khoản tiền mặt trừ đi xuất hiện ở cột nguồn vì dùng được. Ai từng lẫn hai đại lượng này khi học định giá sẽ thấy bảng này làm sáng tỏ nó nhanh hơn bất kỳ định nghĩa nào.",
       },
       {
+        type: "heading",
+        text: "Một bảng Sources & Uses, đủ số"
+      },
+      {
+        type: "paragraph",
+        text: "Định giá doanh nghiệp mục tiêu ở 1.000. Doanh nghiệp đang có nợ vay 250 và tiền mặt 50, tức nợ ròng 200. Giá trả cho cổ đông vì thế là 1.000 − 200 = 800 - và đây mới là con số xuất hiện trên báo chí. Nhưng tiền phải chuẩn bị thì nhiều hơn: 800 mua vốn chủ, cộng 200 để tất toán khoản nợ hiện hữu vì hợp đồng vay thường có điều khoản đáo hạn khi đổi chủ, cộng 30 phí tư vấn, phí thu xếp vốn và phí pháp lý. Tổng SỬ DỤNG là 1.030."
+      },
+      {
+        type: "callout",
+        label: "Cột nguồn phải bằng đúng 1.030",
+        text: "Ví dụ: vay mới 600, vốn của bên mua bỏ ra 380, và 50 tiền mặt sẵn có trên bảng cân đối của chính doanh nghiệp mục tiêu - vì sau khi mua thì tiền đó thuộc về bên mua và dùng được ngay để trả một phần giá mua. Cộng lại đúng 1.030. Chính khoản tiền mặt 50 này là lý do giá trị doanh nghiệp trừ đi TIỀN MẶT chứ không chỉ trừ nợ: mua một doanh nghiệp có sẵn tiền trong két thì phần tiền đó không phải trả thêm."
+      },
+      {
+        type: "comparison",
+        left: {
+          label: "Ba khoản hay bị quên ở cột sử dụng",
+          text: "Phí giao dịch, thường 2-3% giá trị thương vụ và không nhỏ. Chi phí tất toán nợ cũ, gồm cả phí phạt trả trước hạn. Và vốn lưu động cần bơm thêm ngay sau khi hoàn tất, vì doanh nghiệp mục tiêu thường được bàn giao ở mức vốn lưu động thấp hơn mức vận hành bình thường."
+        },
+        right: {
+          label: "Vì sao dựng bảng này trước mọi mô hình",
+          text: "Nó buộc trả lời câu hỏi tiền ở đâu ra trước khi bàn tới lợi nhuận. Một thương vụ có định giá hấp dẫn nhưng không thu xếp đủ nguồn thì không tồn tại, và bảng hai cột này phát hiện điều đó trong mười phút - trước khi ai đó bỏ ra ba tuần dựng mô hình dòng tiền chiết khấu."
+        }
+      },
+      {
         type: "closing",
         lines: [
           "Con số trên báo chí là giá trả cho cổ đông. Con số trong bảng này là tiền phải có trong tài khoản.",

@@ -842,6 +842,30 @@ export const EXCEL_DATA_LESSONS: Lesson[] = [
         text: "Nếu bạn làm cùng một thao tác trên dữ liệu ba lần trở lên, hoặc nếu có ai đó khác cũng phải làm đúng thao tác đó, thì đã đến lúc biến nó thành quy trình. Chi phí chuyển đổi luôn hoàn vốn nhanh hơn cảm giác ban đầu.",
       },
       {
+        type: "heading",
+        text: "Khác biệt thật nằm ở chỗ các bước được ghi lại"
+      },
+      {
+        type: "paragraph",
+        text: "Làm sạch bằng tay là một chuỗi thao tác không để lại dấu vết: xoá bốn dòng đầu, tách cột họ tên, đổi định dạng ngày, lọc bỏ dòng tổng cộng, thay dấu chấm thành dấu phẩy. Tháng sau file mới về, phải nhớ lại và làm lại đúng thứ tự đó. Nếu người khác làm thay, họ làm theo cách của họ và kết quả lệch đi mà không ai biết. Power Query ghi từng bước thành một danh sách đọc được, nên quy trình trở thành một thứ tồn tại độc lập với người thực hiện - và tháng sau chỉ còn một thao tác là làm mới."
+      },
+      {
+        type: "callout",
+        label: "Lợi ích lớn nhất không phải tiết kiệm thời gian",
+        text: "Là khả năng kiểm tra lại. Khi con số cuối cùng trông lạ, một quy trình làm bằng tay không cho bạn cách nào truy ngược - bạn chỉ có thể làm lại từ đầu và hy vọng lần này đúng. Với danh sách bước được ghi, bạn bấm vào từng bước và xem dữ liệu trông thế nào ngay sau bước đó, tìm ra chính xác chỗ mọi thứ hỏng. Đó cũng là lý do quy trình này bàn giao được cho người khác, còn một chuỗi thao tác tay thì không."
+      },
+      {
+        type: "comparison",
+        left: {
+          label: "Dấu hiệu nên chuyển sang quy trình ghi lại được",
+          text: "Bạn làm cùng một thao tác trên dữ liệu từ ba lần trở lên. Hoặc có người khác cũng phải làm đúng việc đó. Hoặc dữ liệu nguồn về theo định kỳ với cùng một cấu trúc. Bất kỳ điều nào trong ba điều đó đã đủ để chi phí học ban đầu hoàn lại."
+        },
+        right: {
+          label: "Khi làm tay vẫn hợp lý",
+          text: "Một lần duy nhất, dữ liệu nhỏ, không ai khác cần lặp lại, và cấu trúc file sẽ không bao giờ xuất hiện lại. Trường hợp này có thật và không hiếm - vấn đề chỉ nảy sinh khi người ta cho rằng lần này là lần duy nhất, mà nó lại thành hằng tháng."
+        }
+      },
+      {
         type: "closing",
         lines: [
           "Dữ liệu sạch không phải là kết quả của sự cẩn thận, mà là kết quả của một quy trình tốt.",

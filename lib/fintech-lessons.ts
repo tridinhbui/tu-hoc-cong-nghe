@@ -454,6 +454,30 @@ export const FINTECH_LESSONS: Lesson[] = [
         text: "Không phải ở con số, mà ở phần lãi nó sinh ra và ở việc tiền nằm sẵn trong ví làm giao dịch tiếp theo dễ xảy ra hơn. Một người có 500.000 đồng trong ví sẽ thanh toán bằng ví thay vì mở ứng dụng ngân hàng - và mỗi giao dịch đó mới là doanh thu.",
       },
       {
+        type: "heading",
+        text: "Vì sao float đáng chú ý hơn con số của nó"
+      },
+      {
+        type: "paragraph",
+        text: "Giả sử một ví điện tử giữ 1.000 tỷ số dư của người dùng và gửi toàn bộ ở ngân hàng với lãi suất 4% một năm. Riêng khoản lãi đó là 40 tỷ mỗi năm, không cần thêm một giao dịch nào. Nếu công ty thu phí 0,5% trên giá trị giao dịch, phải xử lý 8.000 tỷ giao dịch mới tạo ra doanh thu tương đương. Với nhiều mô hình ví, thu nhập từ float lớn hơn thu nhập từ phí - nên đọc báo cáo mà không tách hai dòng này ra thì hiểu sai hẳn nguồn lợi nhuận của doanh nghiệp."
+      },
+      {
+        type: "callout",
+        label: "Và vì sao quy định bắt tách riêng",
+        text: "Số dư ví xuất hiện đồng thời ở hai chỗ trên bảng cân đối: một tài sản là tiền gửi tại ngân hàng, và một khoản NỢ PHẢI TRẢ người dùng đúng bằng như vậy. Nó không phải doanh thu và không phải vốn của công ty. Quy định vì thế buộc ba điều: tiền khách không được nằm chung với tiền hoạt động, số dư tài khoản đảm bảo phải luôn bằng hoặc lớn hơn tổng nghĩa vụ với người dùng, và không được dùng khoản đó để cho vay hay đầu tư rủi ro. Lý do rất cụ thể - nếu công ty phá sản, tiền đó phải còn nguyên và không được xếp chung với tài sản đem chia cho chủ nợ."
+      },
+      {
+        type: "comparison",
+        left: {
+          label: "Đọc một fintech đúng cách",
+          text: "Tách số dư ví khỏi tài sản của công ty, tách thu nhập từ float khỏi thu nhập từ phí, rồi hỏi: nếu lãi suất giảm một nửa thì mô hình này còn lãi không. Nhiều mô hình chỉ có lãi trong môi trường lãi suất cao."
+        },
+        right: {
+          label: "Cái bẫy khi đọc nhanh",
+          text: "Tổng tài sản trông rất lớn và tăng nhanh, nhưng phần lớn là nợ phải trả người dùng. Tốc độ tăng của nó đo mức độ phổ biến của sản phẩm, không đo sức khoẻ tài chính - và nó có thể rút đi nhanh hơn bất kỳ nguồn vốn nào khác."
+        }
+      },
+      {
         type: "closing",
         lines: [
           "Float là tiền của người khác đi qua tay bạn.",

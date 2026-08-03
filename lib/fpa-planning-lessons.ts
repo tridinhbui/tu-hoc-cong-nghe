@@ -331,6 +331,30 @@ export const FPA_PLANNING_LESSONS: Lesson[] = [
         text: "Một ngân sách nhân sự nên đọc được thành hai khối: chi phí của những người đã đang làm - phần gần như cố định trong ngắn hạn - và chi phí của các vị trí dự kiến tuyển, phần vẫn còn quyết định được. Khi ban lãnh đạo yêu cầu cắt giảm, ranh giới này là thứ đầu tiên họ cần thấy, và nếu ngân sách không tách sẵn thì cuộc thảo luận sẽ mất vài ngày chỉ để dựng lại nó.",
       },
       {
+        type: "heading",
+        text: "Cùng mười người, chênh 1,1 tỷ"
+      },
+      {
+        type: "paragraph",
+        text: "Kế hoạch tuyển 10 người, lương bình quân 20 triệu một tháng. Nếu lập ngân sách theo cách quen thuộc - lấy 10 người nhân 20 triệu nhân 12 tháng - ra 2,4 tỷ. Nhưng con số đó chỉ đúng nếu cả mười người vào làm từ tháng 1. Trên thực tế, tuyển rải một người mỗi tháng từ tháng 2 tới tháng 11 cho tổng cộng 65 tháng-người, tức 1,3 tỷ. Cùng một kế hoạch đầu người, chênh 1,1 tỷ - và toàn bộ khác biệt nằm ở một cột mà nhiều bảng ngân sách không có: tháng vào làm."
+      },
+      {
+        type: "callout",
+        label: "Con số phải nhân thêm phần đóng góp bắt buộc",
+        text: "Lương gộp chưa phải chi phí thật. Phần người sử dụng lao động đóng cho bảo hiểm xã hội, y tế và thất nghiệp làm chi phí thật cao hơn lương gộp khoảng một phần năm - con số cụ thể theo quy định hiện hành và cần kiểm lại theo năm. Một ngân sách nhân sự quên lớp này sẽ thiếu hụt đúng bằng tỷ lệ đó, và vì đây là dòng chi lớn nhất của phần lớn doanh nghiệp dịch vụ, sai số ấy đủ để làm hỏng cả kế hoạch."
+      },
+      {
+        type: "comparison",
+        left: {
+          label: "Phần đã cam kết",
+          text: "Chi phí của những người đang làm, cộng những người đã ký hợp đồng và sắp vào. Gần như không giảm được trong ngắn hạn, vì cắt giảm nhân sự có chi phí riêng và có độ trễ. Đây là phần phải coi như cố định khi lập kịch bản xấu."
+        },
+        right: {
+          label: "Phần còn lựa chọn được",
+          text: "Các vị trí đã duyệt nhưng chưa tuyển. Đây là đòn bẩy điều chỉnh nhanh nhất mà một doanh nghiệp có - hoãn tuyển ba tháng cho mười vị trí tiết kiệm được đúng 30 tháng-người. Một ngân sách nhân sự nên đọc được thành hai khối này, vì đó là cách ban lãnh đạo dùng nó khi tình hình đổi."
+        }
+      },
+      {
         type: "closing",
         lines: [
           "Số lượng người là câu hỏi dễ. Thời điểm là câu hỏi quyết định con số.",
@@ -657,6 +681,30 @@ export const FPA_PLANNING_LESSONS: Lesson[] = [
         type: "callout",
         label: "Kịch bản phải nhất quán bên trong",
         text: "Lỗi phổ biến nhất là gọi một bản là kịch bản xấu nhưng chỉ hạ mỗi doanh thu xuống 20%, giữ nguyên biên lợi nhuận, số ngày thu tiền và chi phí vốn. Trong thực tế những đại lượng đó đi cùng nhau: doanh thu giảm thường kéo theo phải giảm giá, khách trả chậm hơn, và ngân hàng khắt khe hơn. Một kịch bản chỉ hữu ích khi nó mô tả một thế giới có thể tồn tại.",
+      },
+      {
+        type: "heading",
+        text: "Vì sao doanh thu giảm 20% lại làm lợi nhuận giảm 80%"
+      },
+      {
+        type: "paragraph",
+        text: "Doanh thu 100, chi phí biến đổi 60, chi phí cố định 30, lợi nhuận 10. Kịch bản xấu hạ doanh thu xuống 80: chi phí biến đổi giảm theo còn 48, nhưng chi phí cố định vẫn là 30, nên lợi nhuận còn 2. Doanh thu giảm 20% và lợi nhuận giảm 80%. Đây là đòn bẩy hoạt động, và nó là lý do một bảng độ nhạy chỉ hiển thị phần trăm thay đổi doanh thu che mất phần quan trọng nhất - người đọc ngoại suy tuyến tính và kết luận sai về mức độ nguy hiểm."
+      },
+      {
+        type: "callout",
+        label: "Kịch bản phải nhất quán bên trong",
+        text: "Lỗi phổ biến nhất là gọi một bản là kịch bản xấu nhưng chỉ hạ mỗi doanh thu 20% và giữ nguyên mọi giả định khác. Một kịch bản thật phải hỏi: nếu doanh thu giảm vì nhu cầu yếu, thì giá bán có giữ được không, kỳ thu tiền có dài ra không, hàng tồn có tăng không, và có phải hoãn tuyển không. Các biến này chuyển động cùng nhau vì chúng có chung nguyên nhân - và một kịch bản bỏ qua điều đó cho ra con số dễ chịu hơn thực tế đúng vào lúc cần sự thật nhất."
+      },
+      {
+        type: "comparison",
+        left: {
+          label: "Độ nhạy - đổi một biến",
+          text: "Giữ nguyên mọi thứ, đổi một giả định, xem kết quả dịch bao nhiêu. Mục đích là XẾP HẠNG: biến nào đáng dành thời gian ước lượng cho kỹ. Nếu đổi giả định về tỷ lệ rời bỏ khách hàng làm kết quả xoay 40% còn đổi giả định chi phí văn phòng chỉ làm xoay 1%, bạn biết mình nên tranh luận về cái nào."
+        },
+        right: {
+          label: "Kịch bản - đổi cả cụm biến cùng lúc",
+          text: "Dựng một câu chuyện nhất quán về thế giới rồi để mọi giả định dịch theo nó. Mục đích là CHUẨN BỊ: nếu điều này xảy ra, tiền mặt còn đủ mấy tháng, và ngưỡng nào thì phải hành động. Đầu ra hữu ích không phải một con số mà là một mốc kích hoạt."
+        }
       },
       {
         type: "closing",

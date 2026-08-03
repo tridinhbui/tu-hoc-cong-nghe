@@ -169,6 +169,30 @@ export const ANALYST_CRAFT_LESSONS: Lesson[] = [
         text: "Đọc lại memo của bạn và hỏi: câu nào ở đây mà một người thông minh có quyền không đồng ý? Nếu mọi câu đều là sự thật hiển nhiên không ai phản đối, bạn chưa đưa ra luận điểm nào - bạn vừa viết một bản tóm tắt.",
       },
       {
+        type: "heading",
+        text: "Luận điểm kiểm chứng được trông khác luận điểm nghe hay"
+      },
+      {
+        type: "comparison",
+        left: {
+          label: "Câu nghe hay nhưng không kiểm chứng được",
+          text: "Doanh nghiệp có vị thế dẫn đầu ngành, ban lãnh đạo giàu kinh nghiệm và tiềm năng tăng trưởng lớn trong bối cảnh chuyển đổi số. Không ai phản đối được câu này, và đó chính là vấn đề - một câu không ai phản đối được là một câu không mang thông tin nào."
+        },
+        right: {
+          label: "Câu kiểm chứng được",
+          text: "Biên lợi nhuận gộp sẽ tăng từ 32% lên 38% trong 8 quý tới, vì hợp đồng nguyên liệu giá cao ký năm 2023 hết hạn vào quý sau và giá thị trường hiện thấp hơn 20%. Câu này có thể sai, và biết được nó sai vào lúc nào - đó là điều làm nó có giá trị."
+        }
+      },
+      {
+        type: "callout",
+        label: "Bài kiểm tra khắc nghiệt",
+        text: "Đọc lại memo và hỏi từng câu một: câu này có phải là câu mà một người thông minh, đọc cùng dữ liệu, có quyền không đồng ý không. Nếu mọi câu đều là câu ai cũng gật đầu, bạn chưa đưa ra khuyến nghị nào - bạn đang mô tả doanh nghiệp. Một memo tốt luôn có ít nhất một câu khiến người đọc dừng lại và nghĩ tôi không chắc điều đó đúng, vì đó chính là chỗ bạn đang nói điều thị trường chưa định giá vào."
+      },
+      {
+        type: "paragraph",
+        text: "Cấu trúc kim tự tháp có lý do rất thực dụng đứng sau: người nhận memo thường đọc ba dòng đầu rồi quyết định có đọc tiếp không. Nên khuyến nghị phải nằm ở dòng đầu tiên, kèm mức giá mục tiêu và khung thời gian - không phải ở cuối như một kết luận đến sau lập luận. Trật tự đó ngược với cách chúng ta được dạy viết ở trường, và cũng ngược với cách bạn đã thực sự đi tới kết luận. Nhưng memo không phải bản ghi quá trình suy nghĩ của bạn; nó là công cụ để người khác ra quyết định."
+      },
+      {
         type: "closing",
         lines: [
           "Viết rõ là hệ quả của nghĩ rõ; câu văn lộn xộn hầu như luôn tố cáo một lập luận chưa xong.",

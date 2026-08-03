@@ -279,6 +279,30 @@ export const IR_LESSONS: Lesson[] = [
         text: "Biến động mạnh bất thường thường có nghĩa là thông tin đã ra ngoài qua đường nào đó. Việc đầu tiên không phải là ra thông cáo trấn an, mà là rà soát xem thông tin gì đã rò rỉ - vì nếu có, nghĩa vụ công bố đã phát sinh từ trước khi giá chạy.",
       },
       {
+        type: "heading",
+        text: "Đồng hồ chạy từ lúc nào"
+      },
+      {
+        type: "paragraph",
+        text: "Đây là chỗ sai nhiều nhất, và nó không phải một sai lầm về đạo đức mà về cách đếm. Đồng hồ công bố chạy từ khi sự kiện PHÁT SINH, không phải từ khi bộ phận quan hệ nhà đầu tư được thông báo, và cũng không phải từ khi ban lãnh đạo họp xong để quyết định nói thế nào. Một hợp đồng lớn bị huỷ vào chiều thứ tư, kế toán biết thứ năm, ban điều hành họp thứ sáu, bộ phận công bố nhận tin thứ hai tuần sau - thời hạn đã trôi mất bốn ngày trước khi người chịu trách nhiệm công bố biết là có việc phải làm. Vì thế phần khó của công việc này nằm ở quy trình nội bộ, không nằm ở việc soạn thông cáo."
+      },
+      {
+        type: "callout",
+        label: "Không được đợi cho tới khi thông tin đầy đủ",
+        text: "Một sự kiện trọng yếu mà chưa biết hết hậu quả vẫn phải công bố, kèm chính điều đó: đã xảy ra việc này, mức ảnh hưởng đang được đánh giá, sẽ cập nhật khi có thêm thông tin. Chờ cho tới khi có con số chính xác là lý do phổ biến nhất dẫn tới công bố muộn, và nó nghe rất có trách nhiệm - đó chính là điều làm nó nguy hiểm. Rất ít án phạt đến từ việc nói sai; gần hết đến từ việc nói muộn."
+      },
+      {
+        type: "comparison",
+        left: {
+          label: "Khi giá chạy mà công ty chưa nói gì",
+          text: "Biến động mạnh bất thường thường có nghĩa thông tin đã ra ngoài qua đường nào đó. Việc đầu tiên không phải soạn thông cáo phủ nhận mà là rà soát nội bộ xem có rò rỉ thật không - vì nếu có, im lặng đang kéo dài một giai đoạn mà một nhóm người giao dịch với lợi thế thông tin."
+        },
+        right: {
+          label: "Vì sao im lặng cũng là một lời phát biểu",
+          text: "Khi thị trường đang hỏi và công ty không nói gì, người ta điền vào chỗ trống bằng giả định xấu nhất. Không bình luận là một lựa chọn hợp lệ, nhưng nó có giá - và cái giá đó tăng theo từng ngày im lặng."
+        }
+      },
+      {
         type: "closing",
         lines: [
           "Nghề này có hai đồng hồ: đồng hồ pháp lý và đồng hồ của tin đồn.",
@@ -556,6 +580,23 @@ export const IR_LESSONS: Lesson[] = [
       {
         type: "paragraph",
         text: "Ghi lại mọi câu hỏi được hỏi. Khi cùng một câu xuất hiện ở ba buổi gặp khác nhau, đó không còn là câu hỏi của ba nhà đầu tư - đó là một khoảng trống trong những gì công ty đang công bố, và lấp nó chủ động luôn rẻ hơn để thị trường tự đoán.",
+      },
+      {
+        type: "heading",
+        text: "Chuẩn bị cho câu hỏi bất lợi là phần công việc thật"
+      },
+      {
+        type: "paragraph",
+        text: "Phần trình bày là phần công ty kiểm soát nên nó hiếm khi hỏng. Buổi gặp được nhớ hay bị nhớ nằm ở phần hỏi đáp. Cách chuẩn bị hiệu quả nhất là ngồi lại trước buổi gặp và viết ra năm câu hỏi mà mình ít muốn bị hỏi nhất - thường là biên lợi nhuận đang giảm, một khách hàng lớn vừa rời đi, dòng tiền âm quý thứ ba liên tiếp, hoặc một lời hứa năm ngoái chưa thực hiện được. Với mỗi câu, chuẩn bị một câu trả lời có ba phần: thừa nhận đúng vấn đề, nêu con số thật, nói đang làm gì. Câu trả lời né tránh làm người hỏi tin rằng vấn đề còn tệ hơn họ nghĩ."
+      },
+      {
+        type: "callout",
+        label: "Ranh giới trong phòng họp kín",
+        text: "Trong một buổi gặp riêng, áp lực nói thêm một chút là rất thật - người đối diện đang chăm chú, quan hệ thì quan trọng, và một câu hé lộ nghe như vô hại. Nhưng bất kỳ thông tin trọng yếu nào chưa công bố mà được nói ở đó đều tạo ra lợi thế thông tin cho một nhóm nhà đầu tư. Câu từ chối chuẩn nên thuộc lòng và dùng nguyên văn: chúng tôi không bình luận về số liệu chưa công bố, khi công bố thì mọi nhà đầu tư sẽ nhận cùng một lúc. Nó không làm mất lòng ai, vì người hỏi chuyên nghiệp biết chính xác vì sao bạn phải nói vậy."
+      },
+      {
+        type: "paragraph",
+        text: "Ghi lại mọi câu hỏi được hỏi, ở mọi buổi gặp. Khi cùng một câu xuất hiện ở ba buổi khác nhau, đó không còn là mối quan tâm của một nhà đầu tư mà là một khoảng trống trong cách công ty đang kể câu chuyện của mình - và cách xử lý đúng là bổ sung nó vào bộ tài liệu chuẩn, chứ không phải trả lời tốt hơn ở buổi thứ tư. Nhật ký câu hỏi này là sản phẩm giá trị nhất mà bộ phận quan hệ nhà đầu tư mang về cho ban điều hành."
       },
       {
         type: "closing",

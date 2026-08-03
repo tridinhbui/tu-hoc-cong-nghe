@@ -46,6 +46,7 @@ export const BOOKKEEPING_LESSONS: Lesson[] = [
       { label: "Tổng bên Nợ = tổng bên Có", arrow: true },
       { label: "Nên phương trình kế toán luôn cân sau mỗi bút toán" },
     ],
+    interactiveType: "journal-entry",
     realWorldExample: {
       company: "Luca Pacioli, Venice, 1494",
       description:
@@ -290,6 +291,41 @@ export const BOOKKEEPING_LESSONS: Lesson[] = [
         text: "Ghi nhầm tài khoản nhưng đúng số tiền; ghi sót hoàn toàn một nghiệp vụ; ghi trùng cả hai vế; đảo ngược cả Nợ lẫn Có. Cả bốn đều giữ tổng hai bên bằng nhau - nên một bảng cân bằng chỉ chứng minh không có lỗi cộng trừ, chứ không chứng minh sổ sách phản ánh đúng thực tế.",
       },
       {
+        type: "heading",
+        text: "Vì sao cân hai bên không chứng minh được gì nhiều"
+      },
+      {
+        type: "paragraph",
+        text: "Bảng cân đối thử cộng tổng bên Nợ và tổng bên Có của mọi tài khoản rồi so hai số. Nếu bằng nhau, nó chứng minh đúng một điều: mọi bút toán đã được ghi đủ hai vế với cùng một số tiền. Nó không chứng minh các bút toán đó đúng. Bốn loại lỗi đi qua được bài kiểm tra này mà không để lại dấu vết nào - và cả bốn đều là lỗi thường gặp hơn lỗi lệch số tiền."
+      },
+      {
+        type: "conceptTable",
+        title: "Bốn lỗi bảng cân đối thử không bắt được",
+        subtitle: "Đều giữ nguyên tổng hai bên, nên bảng vẫn cân",
+        concepts: [
+          {
+            vi: "Ghi nhầm tài khoản, đúng số tiền",
+            en: "Sai phân loại",
+            def: "Chi phí thuê văn phòng ghi vào tài khoản chi phí marketing. Hai bên vẫn cân, báo cáo kết quả kinh doanh vẫn ra đúng lợi nhuận, nhưng mọi phân tích theo khoản mục đều sai."
+          },
+          {
+            vi: "Ghi sót hoàn toàn một nghiệp vụ",
+            en: "Bỏ quên",
+            def: "Không có vế nào được ghi, nên không có gì lệch. Đây là lý do đối chiếu với nguồn bên ngoài - sao kê ngân hàng, biên bản kho - là bắt buộc chứ không phải tuỳ chọn."
+          },
+          {
+            vi: "Ghi trùng cả hai vế",
+            en: "Trùng lặp",
+            def: "Cùng một hoá đơn được nhập hai lần đầy đủ. Bảng vẫn cân, và doanh thu hoặc chi phí bị thổi lên đúng bằng giá trị hoá đơn đó."
+          },
+          {
+            vi: "Đảo ngược cả hai vế",
+            en: "Sai chiều",
+            def: "Nợ và Có đổi chỗ cho nhau trong cùng một bút toán. Tổng hai bên không đổi, nhưng số dư của hai tài khoản liên quan lệch đi gấp đôi giá trị."
+          }
+        ]
+      },
+      {
         type: "closing",
         lines: [
           "Phần mềm làm cả ba chặng trong một cú bấm, nên rất dễ không bao giờ nhìn thấy chúng.",
@@ -327,6 +363,7 @@ export const BOOKKEEPING_LESSONS: Lesson[] = [
       { label: "Bốn nhóm: trích trước, phân bổ, khấu hao, dự phòng", arrow: true },
       { label: "Ghi điều chỉnh → báo cáo phản ánh đúng kỳ" },
     ],
+    interactiveType: "journal-entry",
     realWorldExample: {
       company: "Chênh lệch giữa báo cáo tự lập và báo cáo sau kiểm toán",
       description:
@@ -463,6 +500,7 @@ export const BOOKKEEPING_LESSONS: Lesson[] = [
       { label: "± khoản ngân hàng đã ghi mà công ty chưa biết (phí, lãi)", arrow: true },
       { label: "= số dư sao kê. Còn lệch → mới là lỗi thật" },
     ],
+    interactiveType: "journal-entry",
     realWorldExample: {
       company: "Đối chiếu công nợ cuối năm",
       description:
@@ -559,6 +597,41 @@ export const BOOKKEEPING_LESSONS: Lesson[] = [
         type: "callout",
         label: "Mẹo chia hết cho 9",
         text: "Nếu chênh lệch chia hết cho 9, gần như chắc chắn có một cặp chữ số bị đảo: 54 thành 45 lệch 9, 730 thành 370 lệch 360. Biết điều này biến việc dò cả trang sổ thành việc quét tìm những con số có hai chữ số gần nhau, và thường mất chưa tới một phút.",
+      },
+      {
+        type: "heading",
+        text: "Một bảng đối chiếu ngân hàng, chạy đủ hai phía"
+      },
+      {
+        type: "paragraph",
+        text: "Sổ quỹ ghi số dư 100. Sao kê ngân hàng ghi 118,5. Chênh 18,5 không có nghĩa là ai đó sai - phần lớn là chênh do thời điểm. Phía ngân hàng: cộng 8 tiền đã nộp nhưng ngân hàng chưa ghi nhận, trừ 15 séc đã phát hành mà người nhận chưa rút, ra 111,5. Phía sổ sách: trừ 0,5 phí dịch vụ ngân hàng đã thu mà kế toán chưa biết, cộng 12 khoản khách trả thẳng vào tài khoản mà chưa ai ghi sổ, cũng ra 111,5. Hai phía gặp nhau, và đó mới là lúc kết luận được rằng không có lỗi."
+      },
+      {
+        type: "callout",
+        label: "Đọc bảng đúng chiều",
+        text: "Các khoản điều chỉnh ở phía ngân hàng - séc chưa rút, tiền đang trên đường - sẽ tự khớp ở kỳ sau, không cần ghi bút toán nào. Các khoản điều chỉnh ở phía sổ sách thì ngược lại: phí ngân hàng và khoản khách trả thẳng đều phải được ghi vào sổ ngay trong kỳ này. Nhầm hai nhóm này là lỗi thường gặp nhất khi mới làm - và hệ quả là sổ sách vĩnh viễn lệch khỏi thực tế một khoản cố định."
+      },
+      {
+        type: "conceptTable",
+        title: "Ba mẹo số học tìm lỗi trong vài giây",
+        subtitle: "Dùng trước khi dò từng dòng, vì mỗi mẹo loại hẳn một nhóm nguyên nhân",
+        concepts: [
+          {
+            vi: "Chênh lệch chia hết cho 9",
+            en: "Đảo chữ số",
+            def: "Gần như chắc chắn có một cặp chữ số bị đảo: 54 ghi thành 45 lệch 9; 730 ghi thành 370 lệch 360, tức 9 × 40. Tìm trong các số có hai chữ số liền nhau đổi chỗ được."
+          },
+          {
+            vi: "Chênh lệch bằng đúng gấp đôi một số có trong sổ",
+            en: "Ghi nhầm bên",
+            def: "Một khoản đáng lẽ ghi Nợ lại ghi Có. Sai một lần thì lệch gấp đôi giá trị khoản đó, nên chia đôi chênh lệch rồi tìm đúng con số đó trong sổ."
+          },
+          {
+            vi: "Chênh lệch bằng đúng một số có trong sổ",
+            en: "Ghi sót một vế",
+            def: "Bút toán chỉ được ghi một bên. Đây là lỗi mà phần mềm kế toán chặn được nhưng bảng tính thì không - và là lý do làm sổ trên Excel cần đối chiếu thường xuyên hơn."
+          }
+        ]
       },
       {
         type: "closing",

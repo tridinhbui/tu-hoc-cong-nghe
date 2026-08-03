@@ -334,6 +334,30 @@ export const DATA_THINKING_LESSONS: Lesson[] = [
         text: "Có những trường hợp mọi nhóm con đều cải thiện nhưng số tổng hợp lại xấu đi, chỉ vì tỷ trọng giữa các nhóm thay đổi. Đây không phải lỗi tính toán mà là tính chất thật của dữ liệu gộp. Hệ quả thực tế: khi một chỉ số tổng hợp chuyển động bất thường, việc đầu tiên phải kiểm tra là cơ cấu bên dưới có đổi không - trước khi đi tìm nguyên nhân trong bản thân từng nhóm.",
       },
       {
+        type: "heading",
+        text: "Mọi nhóm đều tốt lên, tổng thể xấu đi"
+      },
+      {
+        type: "paragraph",
+        text: "Năm thứ nhất có hai nhóm khách: nhóm đến từ giới thiệu, 100 người, tỷ lệ ở lại 50%; nhóm đến từ quảng cáo, 100 người, tỷ lệ ở lại 20%. Tỷ lệ chung là 35%. Năm thứ hai, cả hai nhóm đều làm tốt hơn: giới thiệu lên 55%, quảng cáo lên 25%. Nhưng công ty đẩy mạnh chi quảng cáo nên cơ cấu đổi - 50 người từ giới thiệu và 250 người từ quảng cáo. Tỷ lệ chung năm hai là (50×55% + 250×25%)/300 = 30%. Cả hai nhóm cùng cải thiện, con số tổng vẫn giảm từ 35% xuống 30%."
+      },
+      {
+        type: "callout",
+        label: "Không có gì sai trong phép tính - sai ở câu hỏi",
+        text: "Con số 30% trả lời đúng câu hỏi khách hàng của tôi năm nay ở lại bao nhiêu phần trăm. Nó không trả lời câu hỏi sản phẩm của tôi có giữ chân tốt hơn năm ngoái không, và đó mới là câu người ta thực sự muốn hỏi khi nhìn vào nó. Đây là nghịch lý Simpson, và bài học vận hành rút ra rất cụ thể: một chỉ số tổng hợp đang xấu đi mà mọi nhóm con đều tốt lên thì vấn đề nằm ở CƠ CẤU, không nằm ở chất lượng - và cách xử lý là xem lại kênh thu hút khách, không phải xem lại sản phẩm."
+      },
+      {
+        type: "comparison",
+        left: {
+          label: "Đọc bảng cohort theo hàng",
+          text: "Một nhóm khách cụ thể thay đổi ra sao qua thời gian: tháng đầu bao nhiêu phần trăm ở lại, tháng thứ ba, tháng thứ sáu. Đây là đường cong giữ chân, và nó cho biết sản phẩm hoạt động thế nào với một nhóm người cố định."
+        },
+        right: {
+          label: "Đọc bảng cohort theo cột",
+          text: "So các nhóm gia nhập ở những thời điểm khác nhau tại cùng độ tuổi: nhóm tháng 1 ở tháng thứ ba so với nhóm tháng 6 ở tháng thứ ba. Đây là chiều cho biết sản phẩm hay chất lượng khách đang tốt lên hay xấu đi - và là chiều mà số trung bình không bao giờ hiện ra được."
+        }
+      },
+      {
         type: "closing",
         lines: [
           "Trước khi tin một con số trung bình, hãy hỏi nó đang trung bình trên những nhóm nào.",

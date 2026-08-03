@@ -494,6 +494,41 @@ export const DATA_TOOLS_LESSONS: Lesson[] = [
         text: "Một cột trộn lẫn đồng và nghìn đồng, hoặc trộn tỷ lệ dạng 0,15 với dạng 15, sẽ vượt qua mọi kiểm tra tự động vì cả hai đều là số hợp lệ. Cách phát hiện duy nhất là nhìn phân bố: nếu một cột tỷ suất lợi nhuận có giá trị vừa quanh 0,2 vừa quanh 20, gần như chắc chắn có hai đơn vị đang lẫn vào nhau.",
       },
       {
+        type: "heading",
+        text: "Xoá dòng thiếu dữ liệu là một quyết định, không phải một thao tác"
+      },
+      {
+        type: "paragraph",
+        text: "Bộ dữ liệu khảo sát có 20% số dòng thiếu cột thu nhập. Xoá hết các dòng đó là cách nhanh nhất và cũng là cách thường sai nhất - vì lý do khiến người ta bỏ trống ô thu nhập hiếm khi ngẫu nhiên. Người thu nhập rất cao và người thu nhập rất thấp đều có xu hướng không trả lời câu đó nhiều hơn người ở giữa. Xoá xong, mẫu còn lại gọn gàng, mọi phép tính chạy trơn tru, và thu nhập trung bình tính ra không còn mô tả nhóm dân cư ban đầu nữa. Dữ liệu sạch hơn nhưng kết luận sai hơn."
+      },
+      {
+        type: "conceptTable",
+        title: "Ba cách xử lý dữ liệu thiếu, ba giả định khác nhau",
+        subtitle: "Không có cách nào trung lập - mỗi cách khẳng định một điều về vì sao dữ liệu bị thiếu",
+        concepts: [
+          {
+            vi: "Xoá dòng",
+            en: "Giả định thiếu hoàn toàn ngẫu nhiên",
+            def: "Chỉ đúng khi việc thiếu không liên quan gì tới giá trị bị thiếu lẫn các biến khác. Kiểm được: so các đặc điểm khác của nhóm thiếu với nhóm đủ, nếu chúng khác nhau thì giả định đã hỏng."
+          },
+          {
+            vi: "Điền bằng trung bình hoặc trung vị",
+            en: "Giữ được cỡ mẫu, mất phương sai",
+            def: "Mọi giá trị điền vào đều nằm ở tâm, nên độ phân tán bị thu hẹp giả tạo và mọi khoảng tin cậy tính sau đó đều hẹp hơn thực tế. Chấp nhận được khi tỷ lệ thiếu nhỏ, nguy hiểm khi nó là 20%."
+          },
+          {
+            vi: "Tạo thêm một cột đánh dấu",
+            en: "Coi việc thiếu là thông tin",
+            def: "Giữ dòng, điền một giá trị quy ước, và thêm một cột ghi nhận rằng ô này vốn trống. Nếu bản thân việc không trả lời có ý nghĩa - và thường là có - thì cách này là cách duy nhất không vứt bỏ ý nghĩa đó."
+          }
+        ]
+      },
+      {
+        type: "callout",
+        label: "Sai đơn vị là dạng bẩn khó thấy nhất",
+        text: "Một cột trộn lẫn đồng với nghìn đồng, hoặc trộn tỷ lệ ghi dạng 0,15 với dạng 15, sẽ vượt qua mọi kiểm tra kiểu dữ liệu - chúng đều là số hợp lệ. Nó cũng vượt qua kiểm tra giá trị thiếu và kiểm tra trùng lặp. Cách duy nhất bắt được là nhìn phân phối: một biểu đồ tần suất có hai cụm cách nhau đúng một nghìn lần là dấu hiệu không thể nhầm. Đây là lý do bước đầu tiên khi nhận một bộ dữ liệu mới nên là vẽ phân phối của từng cột số, chứ không phải chạy phép tính đầu tiên."
+      },
+      {
         type: "closing",
         lines: [
           "Mỗi quyết định làm sạch là một giả định về thế giới thực. Viết nó ra.",
