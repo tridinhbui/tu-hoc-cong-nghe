@@ -404,6 +404,13 @@ export default function AppNavbar() {
     const isCareer = href === "/su-nghiep";
     const isKiemTra = href === "/kiem-tra";
     const isNhomHoc = href === "/nhom-hoc";
+    // Đại sảnh is the only entry that opens a 3D space rather than a page, so
+    // it gets a standing treatment like Game rather than a conditional badge.
+    // Violet because it is the one hue the nav was not already using: amber is
+    // Game and the two check-in prompts, rose is a waiting news quiz, emerald
+    // is the active row. Reusing any of those would read as one of those
+    // states instead of as its own destination.
+    const isDaiSanh = href === "/cong-dong";
     return (
       <Link
         key={href}
@@ -415,6 +422,8 @@ export default function AppNavbar() {
         className={`group relative flex items-center gap-2.5 rounded-2xl px-3 py-2 text-sm font-bold transition-all duration-200 ${
           isGame
             ? "border border-amber-200 bg-amber-50 text-amber-700 shadow-sm hover:bg-amber-100/70"
+            : isDaiSanh
+            ? "border border-violet-300 bg-gradient-to-r from-violet-50 to-indigo-50/70 text-violet-700 shadow-sm hover:from-violet-100 hover:to-indigo-100/70 dark:border-violet-800/70 dark:from-violet-950/60 dark:to-indigo-950/40 dark:text-violet-300 dark:hover:from-violet-900/60"
             : isKiemTra && hasPendingNewsQuiz
               ? "border border-rose-300/80 bg-gradient-to-r from-rose-50 to-orange-50/60 text-rose-700 shadow-xs hover:bg-rose-100/80 dark:border-rose-900 dark:from-rose-950/50 dark:to-stone-900 dark:text-rose-300"
               : isNhomHoc && hasPendingStudyGroupCheckin
@@ -424,12 +433,18 @@ export default function AppNavbar() {
                   : "text-stone-600 hover:bg-stone-100 hover:text-stone-900 dark:text-stone-400 dark:hover:bg-stone-900 dark:hover:text-stone-100"
         }`}
       >
-        <Icon className={`h-4 w-4 shrink-0 ${isGame ? "text-amber-600" : isCareer ? "text-emerald-600 dark:text-emerald-400" : isKiemTra && hasPendingNewsQuiz ? "text-rose-500 animate-pulse" : isNhomHoc && hasPendingStudyGroupCheckin ? "text-amber-600 animate-bounce" : ""}`} />
+        <Icon className={`h-4 w-4 shrink-0 ${isGame ? "text-amber-600" : isDaiSanh ? "text-violet-500 dark:text-violet-400" : isCareer ? "text-emerald-600 dark:text-emerald-400" : isKiemTra && hasPendingNewsQuiz ? "text-rose-500 animate-pulse" : isNhomHoc && hasPendingStudyGroupCheckin ? "text-amber-600 animate-bounce" : ""}`} />
         <span className="flex-1">{isGame ? "Game Kingdom" : navLabel}</span>
         {isGame && (
           <span className="inline-flex items-center gap-1 text-[9px] font-bold uppercase tracking-wider px-1.5 py-0.5 rounded-full bg-white text-amber-700 border border-amber-200">
             <Flame className="h-2.5 w-2.5 text-orange-500" />
             HOT
+          </span>
+        )}
+        {isDaiSanh && (
+          <span className="inline-flex items-center gap-1 rounded-full border border-violet-300 bg-white px-1.5 py-0.5 text-[9px] font-black uppercase tracking-wider text-violet-700 shadow-2xs dark:border-violet-700/70 dark:bg-violet-950 dark:text-violet-300">
+            <span className="h-1.5 w-1.5 rounded-full bg-violet-500" />
+            3D
           </span>
         )}
         {isKiemTra && hasPendingNewsQuiz && (
