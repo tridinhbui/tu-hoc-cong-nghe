@@ -353,6 +353,29 @@ export default function UserStats({
         </div>
       )}
 
+      {/* Lối vào Góc yên tĩnh, và chỉ ở đây.
+
+          Trang đó tồn tại cho những lúc khó, nhưng lối vào duy nhất tới nó là
+          thẻ lời nhắn hôm nay - tức là người ta chỉ tìm thấy nó khi được mời,
+          không phải khi cần. Khoảnh khắc khó thì đã được phát hiện sẵn ngay
+          phía trên: vừa mất chuỗi, và thứ duy nhất được đề nghị là trả XP để
+          mua lại.
+
+          Nên đặt ở đây một lựa chọn không phải giao dịch. Một dòng, chữ nhỏ,
+          không viền, không badge, không đếm số - nó không được phép cạnh
+          tranh với nút khôi phục, chỉ cần có mặt. Không thêm vào navbar vì
+          làm thế là biến một chỗ trú thành một mục nữa phải hoàn thành. */}
+      {restoreOffer.canRestore && (
+        <div className="mt-1.5 text-center relative z-10">
+          <Link
+            href="/loi-nhan"
+            className="text-[10px] font-semibold text-stone-400 underline-offset-2 transition-colors hover:text-stone-600 hover:underline dark:text-stone-500 dark:hover:text-stone-300"
+          >
+            Hoặc để đó đã — ghé Góc yên tĩnh một phút
+          </Link>
+        </div>
+      )}
+
       {/* Level Progress Bar & Alert Banner */}
       {nextLevel && (
         <div className="mt-0.5 pt-2 border-t border-stone-100 dark:border-stone-800/80 relative z-10">

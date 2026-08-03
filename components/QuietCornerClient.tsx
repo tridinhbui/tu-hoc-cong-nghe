@@ -19,7 +19,7 @@ import {
   QUIET_CORNER_CLOSING,
   QUIET_CORNER_LIMITS,
   QUIET_CORNER_QUESTIONS,
-  WORRY_REFRAMES,
+  type WorryReframe,
   WORRY_SET_DOWN,
   getQuietGreeting,
 } from "@/lib/quiet-corner";
@@ -27,6 +27,11 @@ import MotivationShareCard from "@/components/MotivationShareCard";
 import BreathingCircle from "@/components/BreathingCircle";
 import DinhHoaFlame from "@/components/DinhHoaFlame";
 import { FLARE_MS, flameAt } from "@/lib/quiet-flame";
+import {
+  WORRY_THEMES,
+  WORRY_THEME_PROMPT,
+  orderWorriesByTheme,
+} from "@/lib/quiet-corner-themes";
 
 // "Góc yên tĩnh" - trang riêng đằng sau thẻ lời nhắn.
 //
@@ -41,6 +46,9 @@ export default function QuietCornerClient({ userId }: { userId: string }) {
   // Nỗi lo đã "đặt xuống" trong phiên này. Cố ý không lưu đi đâu: sang mai
   // nỗi lo có thể quay lại, và trang không có quyền giả vờ rằng nó đã hết.
   const [setDownIds, setSetDownIds] = useState<ReadonlySet<string>>(new Set());
+  // Nhóm nỗi lo người đọc vừa nói là đang nặng nhất. Chỉ sống trong phiên,
+  // như mọi thứ khác trên trang này.
+  const [worryTheme, setWorryTheme] = useState<string | null>(null);
 
   useEffect(() => {
     let cancelled = false;
@@ -106,6 +114,94 @@ export default function QuietCornerClient({ userId }: { userId: string }) {
   }, [setDownCount, warmth, prefersReducedMotion]);
 
   const flame = flareIntensity ?? flameAt(warmth, setDownCount, FLARE_MS, prefersReducedMotion);
+
+  const { matched: matchedWorries, rest: restWorries } = orderWorriesByTheme(worryTheme);
+
+  // Một mục nỗi lo. Tách ra khỏi JSX vì danh sách giờ vẽ thành hai nhóm -
+  // nhóm người đọc vừa chọn, rồi phần còn lại - và hai nhánh dùng chung y
+  // hệt một cách vẽ là điều kiện để "xếp lại" không âm thầm thành "vẽ lại".
+  const renderWorry = (item: WorryReframe) => {
+        const open = openWorry === item.id;
+        const isSetDown = setDownIds.has(item.id);
+
+        // Trạng thái "đã đặt xuống": mục lún xuống thành một dòng mờ với
+        // một tàn lửa bay lên - cùng ngôn ngữ với ngọn lửa đầu trang. Nỗi
+        // lo không biến mất (trang không có quyền giả vờ thế), nó chỉ
+        // được phép nằm im; bấm vào là cầm lên xem lại được.
+        if (isSetDown) {
+          return (
+            <li key={item.id}>
+              <motion.button
+                type="button"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                onClick={() =>
+                  setSetDownIds((prev) => {
+                    const next = new Set(prev);
+                    next.delete(item.id);
+                    return next;
+                  })
+                }
+                className="relative w-full overflow-visible rounded-2xl border border-dashed border-stone-200 px-4 py-2.5 text-left dark:border-stone-800"
+              >
+                <motion.span
+                  aria-hidden
+                  className="absolute right-5 top-1 h-1.5 w-1.5 rounded-full bg-orange-400"
+                  initial={{ y: 4, opacity: 0.9, scale: 1 }}
+                  animate={{ y: -22, opacity: 0, scale: 0.5 }}
+                  transition={{ duration: 1.8, ease: "easeOut" }}
+                />
+                <span className="block text-xs font-semibold text-stone-400 line-through decoration-stone-300 dark:text-stone-500 dark:decoration-stone-600">
+                  “{item.worry}”
+                </span>
+                <span className="mt-0.5 block text-[11px] leading-relaxed text-stone-400 dark:text-stone-500">
+                  {WORRY_SET_DOWN.done}
+                </span>
+              </motion.button>
+            </li>
+          );
+        }
+
+        return (
+          <li key={item.id}>
+            <button
+              type="button"
+              onClick={() => setOpenWorry(open ? null : item.id)}
+              aria-expanded={open}
+              className={`w-full rounded-2xl border px-4 py-3 text-left text-sm font-semibold transition-colors ${
+                open
+                  ? "border-orange-300 bg-orange-50 text-stone-900 dark:border-orange-900 dark:bg-orange-950/30 dark:text-stone-100"
+                  : "border-stone-200 bg-stone-50 text-stone-700 hover:bg-stone-100 dark:border-stone-800 dark:bg-stone-800/50 dark:text-stone-300 dark:hover:bg-stone-800"
+              }`}
+            >
+              “{item.worry}”
+            </button>
+            {open && (
+              <motion.div
+                initial={{ opacity: 0, y: -4 }}
+                animate={{ opacity: 1, y: 0 }}
+                className="mt-2 rounded-2xl bg-gradient-to-br from-amber-50 to-orange-50 px-4 py-3.5 dark:from-stone-800 dark:to-stone-800/60"
+              >
+                <p className="text-sm leading-relaxed text-stone-700 dark:text-stone-300">
+                  {item.reframe}
+                </p>
+                <div className="mt-3 flex justify-end">
+                  <button
+                    type="button"
+                    onClick={() => {
+                      setSetDownIds((prev) => new Set(prev).add(item.id));
+                      setOpenWorry(null);
+                    }}
+                    className="rounded-full border border-orange-200 px-3.5 py-1.5 text-[11px] font-bold text-orange-700 transition-colors hover:bg-orange-100/60 dark:border-orange-900 dark:text-orange-300 dark:hover:bg-orange-950/40"
+                  >
+                    {WORRY_SET_DOWN.action}
+                  </button>
+                </div>
+              </motion.div>
+            )}
+          </li>
+        );
+  };
 
   return (
     // Cột chữ giữ nguyên bề rộng đọc được ở mobile và tablet; từ lg trở lên
@@ -236,90 +332,54 @@ export default function QuietCornerClient({ userId }: { userId: string }) {
           </p>
         </div>
 
-        <ul className="mt-5 space-y-2.5">
-          {WORRY_REFRAMES.map((item) => {
-            const open = openWorry === item.id;
-            const isSetDown = setDownIds.has(item.id);
-
-            // Trạng thái "đã đặt xuống": mục lún xuống thành một dòng mờ với
-            // một tàn lửa bay lên - cùng ngôn ngữ với ngọn lửa đầu trang. Nỗi
-            // lo không biến mất (trang không có quyền giả vờ thế), nó chỉ
-            // được phép nằm im; bấm vào là cầm lên xem lại được.
-            if (isSetDown) {
+        {/* Chọn nhóm: đưa lên trước, không cắt bớt. */}
+        <div className="mt-5">
+          <p className="text-sm font-bold text-stone-700 dark:text-stone-200">
+            {WORRY_THEME_PROMPT.question}
+          </p>
+          <div className="mt-2.5 flex flex-wrap gap-1.5">
+            {WORRY_THEMES.map((theme) => {
+              const chosen = worryTheme === theme.id;
               return (
-                <li key={item.id}>
-                  <motion.button
-                    type="button"
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    onClick={() =>
-                      setSetDownIds((prev) => {
-                        const next = new Set(prev);
-                        next.delete(item.id);
-                        return next;
-                      })
-                    }
-                    className="relative w-full overflow-visible rounded-2xl border border-dashed border-stone-200 px-4 py-2.5 text-left dark:border-stone-800"
-                  >
-                    <motion.span
-                      aria-hidden
-                      className="absolute right-5 top-1 h-1.5 w-1.5 rounded-full bg-orange-400"
-                      initial={{ y: 4, opacity: 0.9, scale: 1 }}
-                      animate={{ y: -22, opacity: 0, scale: 0.5 }}
-                      transition={{ duration: 1.8, ease: "easeOut" }}
-                    />
-                    <span className="block text-xs font-semibold text-stone-400 line-through decoration-stone-300 dark:text-stone-500 dark:decoration-stone-600">
-                      “{item.worry}”
-                    </span>
-                    <span className="mt-0.5 block text-[11px] leading-relaxed text-stone-400 dark:text-stone-500">
-                      {WORRY_SET_DOWN.done}
-                    </span>
-                  </motion.button>
-                </li>
-              );
-            }
-
-            return (
-              <li key={item.id}>
                 <button
+                  key={theme.id}
                   type="button"
-                  onClick={() => setOpenWorry(open ? null : item.id)}
-                  aria-expanded={open}
-                  className={`w-full rounded-2xl border px-4 py-3 text-left text-sm font-semibold transition-colors ${
-                    open
-                      ? "border-orange-300 bg-orange-50 text-stone-900 dark:border-orange-900 dark:bg-orange-950/30 dark:text-stone-100"
-                      : "border-stone-200 bg-stone-50 text-stone-700 hover:bg-stone-100 dark:border-stone-800 dark:bg-stone-800/50 dark:text-stone-300 dark:hover:bg-stone-800"
+                  aria-pressed={chosen}
+                  onClick={() => setWorryTheme(chosen ? null : theme.id)}
+                  className={`rounded-full border px-3 py-1.5 text-xs font-semibold transition-colors ${
+                    chosen
+                      ? "border-orange-300 bg-orange-50 text-orange-800 dark:border-orange-900 dark:bg-orange-950/40 dark:text-orange-200"
+                      : "border-stone-200 bg-white text-stone-600 hover:bg-stone-100 dark:border-stone-800 dark:bg-stone-900 dark:text-stone-400 dark:hover:bg-stone-800"
                   }`}
                 >
-                  “{item.worry}”
+                  {theme.label}
                 </button>
-                {open && (
-                  <motion.div
-                    initial={{ opacity: 0, y: -4 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    className="mt-2 rounded-2xl bg-gradient-to-br from-amber-50 to-orange-50 px-4 py-3.5 dark:from-stone-800 dark:to-stone-800/60"
-                  >
-                    <p className="text-sm leading-relaxed text-stone-700 dark:text-stone-300">
-                      {item.reframe}
-                    </p>
-                    <div className="mt-3 flex justify-end">
-                      <button
-                        type="button"
-                        onClick={() => {
-                          setSetDownIds((prev) => new Set(prev).add(item.id));
-                          setOpenWorry(null);
-                        }}
-                        className="rounded-full border border-orange-200 px-3.5 py-1.5 text-[11px] font-bold text-orange-700 transition-colors hover:bg-orange-100/60 dark:border-orange-900 dark:text-orange-300 dark:hover:bg-orange-950/40"
-                      >
-                        {WORRY_SET_DOWN.action}
-                      </button>
-                    </div>
-                  </motion.div>
-                )}
-              </li>
-            );
-          })}
-        </ul>
+              );
+            })}
+            {worryTheme && (
+              <button
+                type="button"
+                onClick={() => setWorryTheme(null)}
+                className="rounded-full px-3 py-1.5 text-xs font-semibold text-stone-400 underline-offset-2 hover:underline dark:text-stone-500"
+              >
+                {WORRY_THEME_PROMPT.clear}
+              </button>
+            )}
+          </div>
+          <p className="mt-2 text-[11px] leading-relaxed text-stone-400 dark:text-stone-500">
+            {WORRY_THEME_PROMPT.note}
+          </p>
+        </div>
+
+        {matchedWorries.length > 0 && (
+          <ul className="mt-4 space-y-2.5">{matchedWorries.map(renderWorry)}</ul>
+        )}
+        {matchedWorries.length > 0 && (
+          <p className="mt-5 text-[11px] font-bold uppercase tracking-[0.18em] text-stone-400 dark:text-stone-500">
+            {WORRY_THEME_PROMPT.restHeading}
+          </p>
+        )}
+        <ul className="mt-3 space-y-2.5">{restWorries.map(renderWorry)}</ul>
       </section>
 
       </div>
