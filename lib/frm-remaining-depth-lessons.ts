@@ -11,7 +11,7 @@ export const FRM_REMAINING_DEPTH_LESSONS: Lesson[] = [
   {
     id: 1664,
     slug: "frm-tinh-dung-va-mo-hinh-ar-ma",
-    title: "FRM Quant, Bài 13: Tính dừng và mô hình AR, MA - điều kiện trước mọi dự báo",
+    title: "FRM Quant, Bài 1: Tính dừng và mô hình AR, MA - điều kiện trước mọi dự báo",
     subtitle: "Hồi quy hai chuỗi không dừng cho ra R² đẹp và kết luận vô nghĩa",
     duration: "10 phút",
     difficulty: "Khó",
@@ -147,7 +147,7 @@ export const FRM_REMAINING_DEPTH_LESSONS: Lesson[] = [
   {
     id: 1665,
     slug: "frm-sai-so-chuan-vung-trong-hoi-quy",
-    title: "FRM Quant, Bài 14: Sai số chuẩn vững - khi hệ số đúng nhưng kết luận sai",
+    title: "FRM Quant, Bài 2: Sai số chuẩn vững - khi hệ số đúng nhưng kết luận sai",
     subtitle: "Phương sai thay đổi và tự tương quan không làm lệch hệ số, chúng làm lệch mức tin cậy của bạn vào hệ số",
     duration: "9 phút",
     difficulty: "Khó",
@@ -283,7 +283,7 @@ export const FRM_REMAINING_DEPTH_LESSONS: Lesson[] = [
   {
     id: 1666,
     slug: "frm-machine-learning-trong-quan-tri-rui-ro",
-    title: "FRM Quant, Bài 15: Machine learning trong quản trị rủi ro - và ba cái bẫy",
+    title: "FRM Quant, Bài 3: Machine learning trong quản trị rủi ro - và ba cái bẫy",
     subtitle: "Khớp quá mức, rò rỉ dữ liệu, và một mô hình chính xác mà không ai giải thích được",
     duration: "10 phút",
     difficulty: "Khó",
@@ -696,7 +696,7 @@ export const FRM_REMAINING_DEPTH_LESSONS: Lesson[] = [
   {
     id: 1669,
     slug: "frm-thanh-khoan-noi-ngay",
-    title: "FRM Liquidity, Bài 10: Thanh khoản nội ngày - rủi ro không xuất hiện trên bảng cân đối",
+    title: "FRM Liquidity, Bài 4: Thanh khoản nội ngày - rủi ro không xuất hiện trên bảng cân đối",
     subtitle: "Một ngân hàng có thể đủ thanh khoản cuối ngày mà vẫn không thanh toán nổi lúc mười giờ sáng",
     duration: "9 phút",
     difficulty: "Trung bình",
@@ -833,7 +833,7 @@ export const FRM_REMAINING_DEPTH_LESSONS: Lesson[] = [
   {
     id: 1670,
     slug: "frm-repo-va-tai-tro-co-bao-dam",
-    title: "FRM Liquidity, Bài 11: Repo và tài trợ có bảo đảm - vì sao nguồn an toàn nhất biến mất trước",
+    title: "FRM Liquidity, Bài 5: Repo và tài trợ có bảo đảm - vì sao nguồn an toàn nhất biến mất trước",
     subtitle: "Tài trợ có tài sản bảo đảm nghe an toàn, cho tới khi haircut tăng và cả thị trường phải bán cùng lúc",
     duration: "10 phút",
     difficulty: "Khó",
@@ -972,7 +972,7 @@ export const FRM_REMAINING_DEPTH_LESSONS: Lesson[] = [
   {
     id: 1671,
     slug: "frm-phan-tich-quy-ket-hieu-qua-danh-muc",
-    title: "FRM Đầu tư, Bài 11: Phân tích quy kết - lợi nhuận đó đến từ đâu",
+    title: "FRM Đầu tư, Bài 1: Phân tích quy kết - lợi nhuận đó đến từ đâu",
     subtitle: "Tách phần do phân bổ tài sản, phần do chọn mã, và phần do may mắn",
     duration: "9 phút",
     difficulty: "Trung bình",
@@ -1108,7 +1108,7 @@ export const FRM_REMAINING_DEPTH_LESSONS: Lesson[] = [
   {
     id: 1672,
     slug: "frm-rui-ro-quy-phong-ho-va-thien-lech-du-lieu",
-    title: "FRM Đầu tư, Bài 12: Rủi ro quỹ phòng hộ - đòn bẩy, thanh khoản và dữ liệu nói dối",
+    title: "FRM Đầu tư, Bài 2: Rủi ro quỹ phòng hộ - đòn bẩy, thanh khoản và dữ liệu nói dối",
     subtitle: "Vì sao lợi suất trung bình của ngành quỹ phòng hộ luôn cao hơn thực tế nhà đầu tư nhận được",
     duration: "10 phút",
     difficulty: "Khó",

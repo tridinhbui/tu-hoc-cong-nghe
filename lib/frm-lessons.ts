@@ -480,7 +480,7 @@ export const FRM_LESSONS: Lesson[] = [
   {
     id: 1530,
     slug: "do-luong-rui-ro-van-hanh-lda",
-    title: "FRM Operational Risk, Bài 1: Đo lường rủi ro vận hành bằng phương pháp phân phối tổn thất (LDA)",
+    title: "FRM Operational, Bài 1: Đo lường rủi ro vận hành bằng phương pháp phân phối tổn thất (LDA)",
     subtitle: "Tần suất × Mức độ nghiêm trọng: cách định lượng một loại rủi ro vốn bị coi là \"không đo được\"",
     duration: "10 phút",
     difficulty: "Khó",
@@ -623,7 +623,7 @@ export const FRM_LESSONS: Lesson[] = [
   {
     id: 1537,
     slug: "kha-nang-phuc-hoi-van-hanh-bcp-cyber",
-    title: "FRM Operational Risk, Bài 2: Khả năng phục hồi vận hành - BCP, DR và rủi ro công nghệ",
+    title: "FRM Operational, Bài 2: Khả năng phục hồi vận hành - BCP, DR và rủi ro công nghệ",
     subtitle: "Vì sao \"đo lường được tổn thất\" chưa đủ - tổ chức còn phải sống sót qua gián đoạn",
     duration: "9 phút",
     difficulty: "Trung bình",
@@ -748,7 +748,7 @@ export const FRM_LESSONS: Lesson[] = [
   {
     id: 1538,
     slug: "rui-ro-mo-hinh-va-rui-ro-ben-thu-ba",
-    title: "FRM Operational Risk, Bài 3: Rủi ro mô hình và rủi ro bên thứ ba",
+    title: "FRM Operational, Bài 3: Rủi ro mô hình và rủi ro bên thứ ba",
     subtitle: "Khi chính công cụ đo rủi ro lại là một nguồn rủi ro - và vì sao kiểm soát nội bộ không dừng lại ở ranh giới tổ chức",
     duration: "9 phút",
     difficulty: "Khó",
@@ -890,7 +890,7 @@ export const FRM_LESSONS: Lesson[] = [
   {
     id: 1539,
     slug: "rui-ro-thanh-khoan-ngan-hang-lcr-nsfr",
-    title: "FRM Liquidity Risk, Bài 1: Rủi ro thanh khoản ngân hàng - LCR và NSFR",
+    title: "FRM Liquidity, Bài 1: Rủi ro thanh khoản ngân hàng - LCR và NSFR",
     subtitle: "Hai tỷ lệ Basel III ra đời sau 2008 để trả lời: ngân hàng có sống sót qua một tháng hoảng loạn không, và cấu trúc vốn có bền vững dài hạn không",
     duration: "10 phút",
     difficulty: "Khó",
@@ -1040,7 +1040,7 @@ export const FRM_LESSONS: Lesson[] = [
   {
     id: 1540,
     slug: "rui-ro-tai-tro-va-ke-hoach-tai-tro-du-phong",
-    title: "FRM Liquidity Risk, Bài 2: Rủi ro tài trợ và Kế hoạch Tài trợ Dự phòng (CFP)",
+    title: "FRM Liquidity, Bài 2: Rủi ro tài trợ và Kế hoạch Tài trợ Dự phòng (CFP)",
     subtitle: "Đo được rủi ro thanh khoản chưa đủ - phải có sẵn kịch bản hành động trước khi khủng hoảng xảy ra",
     duration: "9 phút",
     difficulty: "Trung bình",
@@ -1169,7 +1169,7 @@ export const FRM_LESSONS: Lesson[] = [
   {
     id: 1541,
     slug: "quan-ly-tai-san-no-alm-irrbb",
-    title: "FRM Liquidity Risk, Bài 3: Quản lý Tài sản-Nợ (ALM) và rủi ro lãi suất trên sổ ngân hàng",
+    title: "FRM Liquidity, Bài 3: Quản lý Tài sản-Nợ (ALM) và rủi ro lãi suất trên sổ ngân hàng",
     subtitle: "Vì sao một ngân hàng có thể lỗ nặng dù không hề giao dịch gì - chỉ vì cấu trúc kỳ hạn tài sản và nợ lệch nhau",
     duration: "10 phút",
     difficulty: "Khó",

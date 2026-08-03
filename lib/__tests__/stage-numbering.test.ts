@@ -111,3 +111,67 @@ describe("hệ đếm 'ngày'", () => {
     }
   });
 });
+
+describe("số bài trong tiêu đề không vượt quá số bài thật", () => {
+  // Mỗi chuỗi bài có một tiền tố riêng ("Excel, Bài 1", "FRM Foundations,
+  // Bài 3"). Số đứng sau "Bài" phải là vị trí trong chuỗi đó, nên tập các số
+  // của một chuỗi phải đúng bằng 1..N.
+  //
+  // Trước đây không phải vậy. "FRM Đầu tư" có 2 bài, đánh số 11 và 12; "FRM
+  // Quant" có 9 bài, đánh số 7 đến 15 - chúng được viết như phần tiếp của một
+  // chuỗi khác mang tiền tố khác. Và hai chuỗi bị tách đôi bởi chính tiền tố
+  // của mình: "FRM Liquidity Risk, Bài 1-3" rồi "FRM Liquidity, Bài 4-11",
+  // cùng một chuỗi, hai cái tên, nên nhóm nào cũng có lỗ hổng.
+  const groups = new Map<string, number[]>();
+  for (const lesson of LESSONS) {
+    const m = /^(.{2,32}?),\s*Bài\s+(\d+)\s*[:\-]/.exec(lesson.title);
+    if (!m || m[1].startsWith("Tổng ôn")) continue;
+    const key = m[1].trim();
+    groups.set(key, [...(groups.get(key) ?? []), Number(m[2])]);
+  }
+
+  it("có đủ chuỗi bài để phép kiểm này có nghĩa", () => {
+    expect(groups.size).toBeGreaterThan(20);
+  });
+
+  it("số bài khớp vị trí trong thứ tự học, không phải thứ tự id", () => {
+    // Thứ tự id không phải thứ tự học. Chặng 1 mở đầu bằng bài đo chi tiêu
+    // (id 1351) đứng TRƯỚC phần audit (id 263-268) vì `parts` xếp nó lên đầu,
+    // nên đánh số theo id sẽ đẩy bài mở đầu xuống thứ bảy. Bốn chuỗi FRM cũng
+    // vậy: các bài đào sâu viết sau mang id lớn hơn nhưng học trước.
+    const order = new Map<number, number>();
+    let n = 0;
+    for (const track of [TRACK_PERSONAL, TRACK_PROFESSIONAL]) {
+      for (const stage of track.stages) {
+        for (const part of stage.parts) {
+          for (const lesson of LESSONS.filter((l) => isLessonInRange(l.id, part)).sort((a, b) => a.id - b.id)) {
+            if (!order.has(lesson.id)) order.set(lesson.id, n++);
+          }
+        }
+      }
+    }
+
+    const wrong: string[] = [];
+    for (const [key, _] of groups) {
+      const members = LESSONS.filter((l) => {
+        const m = /^(.{2,32}?),\s*Bài\s+(\d+)\s*[:\-]/.exec(l.title);
+        return m && m[1].trim() === key;
+      })
+        .filter((l) => order.has(l.id))
+        .sort((a, b) => order.get(a.id)! - order.get(b.id)!);
+      members.forEach((l, i) => {
+        const num = Number(/Bài\s+(\d+)/.exec(l.title)![1]);
+        if (num !== i + 1) wrong.push(`${key}: ${l.id} ghi Bài ${num} nhưng đứng thứ ${i + 1}`);
+      });
+    }
+    expect(wrong).toEqual([]);
+  });
+
+  it("mỗi chuỗi đánh số liền mạch từ 1, không lỗ hổng và không vượt quá", () => {
+    const broken = [...groups.entries()]
+      .map(([key, ns]) => ({ key, ns: [...ns].sort((a, b) => a - b) }))
+      .filter(({ ns }) => ns.some((n, i) => n !== i + 1))
+      .map(({ key, ns }) => `${key}: có ${ns.length} bài, đánh số ${ns.join(",")}`);
+    expect(broken).toEqual([]);
+  });
+});

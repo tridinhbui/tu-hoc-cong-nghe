@@ -14,7 +14,7 @@ export const FRM_OPERATIONAL_DEPTH_LESSONS: Lesson[] = [
   {
     id: 1655,
     slug: "frm-phan-tich-kich-ban-rui-ro-hoat-dong",
-    title: "FRM Operational, Bài 11: Phân tích kịch bản - đo cái chưa từng xảy ra",
+    title: "FRM Operational, Bài 4: Phân tích kịch bản - đo cái chưa từng xảy ra",
     subtitle: "Dữ liệu nội bộ chỉ kể được những chuyện đã xảy ra, còn phần đuôi thì theo định nghĩa là chưa",
     duration: "10 phút",
     difficulty: "Khó",
@@ -150,7 +150,7 @@ export const FRM_OPERATIONAL_DEPTH_LESSONS: Lesson[] = [
   {
     id: 1656,
     slug: "frm-du-lieu-ton-that-ben-ngoai",
-    title: "FRM Operational, Bài 12: Dữ liệu tổn thất bên ngoài - mượn đuôi của người khác",
+    title: "FRM Operational, Bài 5: Dữ liệu tổn thất bên ngoài - mượn đuôi của người khác",
     subtitle: "Vì sao không thể lấy thẳng con số của ngân hàng khác, và quy đổi thế nào cho đúng",
     duration: "9 phút",
     difficulty: "Trung bình",
@@ -286,7 +286,7 @@ export const FRM_OPERATIONAL_DEPTH_LESSONS: Lesson[] = [
   {
     id: 1657,
     slug: "frm-rui-ro-quan-ly-thay-doi",
-    title: "FRM Operational, Bài 13: Rủi ro thay đổi - phần lớn sự cố bắt đầu từ một lần triển khai",
+    title: "FRM Operational, Bài 6: Rủi ro thay đổi - phần lớn sự cố bắt đầu từ một lần triển khai",
     subtitle: "Hệ thống ổn định suốt sáu tháng rồi hỏng lúc hai giờ sáng thứ Bảy, đúng sau một bản cập nhật",
     duration: "9 phút",
     difficulty: "Trung bình",
@@ -422,7 +422,7 @@ export const FRM_OPERATIONAL_DEPTH_LESSONS: Lesson[] = [
   {
     id: 1658,
     slug: "frm-dich-vu-trong-yeu-va-nguong-chiu-dung",
-    title: "FRM Operational, Bài 14: Dịch vụ trọng yếu và ngưỡng chịu đựng tác động",
+    title: "FRM Operational, Bài 7: Dịch vụ trọng yếu và ngưỡng chịu đựng tác động",
     subtitle: "Câu hỏi không phải hệ thống có sập không, mà sập bao lâu thì gây hại thật cho khách hàng",
     duration: "10 phút",
     difficulty: "Khó",
@@ -558,7 +558,7 @@ export const FRM_OPERATIONAL_DEPTH_LESSONS: Lesson[] = [
   {
     id: 1659,
     slug: "frm-rui-ro-con-nguoi-trong-van-hanh",
-    title: "FRM Operational, Bài 15: Rủi ro con người - nhân sự chủ chốt, động cơ và văn hoá lên tiếng",
+    title: "FRM Operational, Bài 8: Rủi ro con người - nhân sự chủ chốt, động cơ và văn hoá lên tiếng",
     subtitle: "Một quy trình chỉ tốt bằng điều người ta làm khi không ai nhìn",
     duration: "9 phút",
     difficulty: "Trung bình",

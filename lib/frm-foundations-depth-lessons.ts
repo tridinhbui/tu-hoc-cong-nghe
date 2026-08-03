@@ -16,7 +16,7 @@ export const FRM_FOUNDATIONS_DEPTH_LESSONS: Lesson[] = [
   {
     id: 1650,
     slug: "frm-raroc-va-von-kinh-te",
-    title: "FRM Foundations, Bài 11: RAROC và vốn kinh tế - giá của rủi ro tính bằng vốn",
+    title: "FRM Foundations, Bài 10: RAROC và vốn kinh tế - giá của rủi ro tính bằng vốn",
     subtitle: "Vì sao một bàn giao dịch lãi 100 tỷ có thể đang huỷ hoại giá trị, còn bàn lãi 40 tỷ thì không",
     duration: "10 phút",
     difficulty: "Khó",
@@ -153,7 +153,7 @@ export const FRM_FOUNDATIONS_DEPTH_LESSONS: Lesson[] = [
   {
     id: 1651,
     slug: "frm-quan-tri-rui-ro-cap-hoi-dong",
-    title: "FRM Foundations, Bài 12: Quản trị rủi ro cấp hội đồng - CRO báo cáo cho ai",
+    title: "FRM Foundations, Bài 11: Quản trị rủi ro cấp hội đồng - CRO báo cáo cho ai",
     subtitle: "Vì sao đường báo cáo của giám đốc rủi ro quan trọng hơn nội dung báo cáo",
     duration: "9 phút",
     difficulty: "Trung bình",
@@ -289,7 +289,7 @@ export const FRM_FOUNDATIONS_DEPTH_LESSONS: Lesson[] = [
   {
     id: 1652,
     slug: "frm-bon-lua-chon-voi-mot-rui-ro",
-    title: "FRM Foundations, Bài 13: Bốn lựa chọn với một rủi ro - né, giảm, chuyển, giữ",
+    title: "FRM Foundations, Bài 12: Bốn lựa chọn với một rủi ro - né, giảm, chuyển, giữ",
     subtitle: "Phòng hộ không phải lúc nào cũng đúng, và giữ nguyên rủi ro không phải lúc nào cũng sai",
     duration: "9 phút",
     difficulty: "Trung bình",
@@ -425,7 +425,7 @@ export const FRM_FOUNDATIONS_DEPTH_LESSONS: Lesson[] = [
   {
     id: 1653,
     slug: "frm-thi-truong-chi-tra-cho-rui-ro-he-thong",
-    title: "FRM Foundations, Bài 14: Vì sao thị trường chỉ trả tiền cho rủi ro hệ thống",
+    title: "FRM Foundations, Bài 13: Vì sao thị trường chỉ trả tiền cho rủi ro hệ thống",
     subtitle: "Gánh thêm rủi ro riêng lẻ là làm việc không công - và đó là nền của mọi mô hình định giá tài sản",
     duration: "10 phút",
     difficulty: "Khó",
@@ -561,7 +561,7 @@ export const FRM_FOUNDATIONS_DEPTH_LESSONS: Lesson[] = [
   {
     id: 1654,
     slug: "frm-rui-ro-danh-tieng-va-chien-luoc",
-    title: "FRM Foundations, Bài 15: Rủi ro danh tiếng và rủi ro chiến lược - hai loại không có mô hình",
+    title: "FRM Foundations, Bài 14: Rủi ro danh tiếng và rủi ro chiến lược - hai loại không có mô hình",
     subtitle: "Thứ không đo được bằng phân phối xác suất vẫn có thể là thứ giết chết tổ chức nhanh nhất",
     duration: "9 phút",
     difficulty: "Trung bình",

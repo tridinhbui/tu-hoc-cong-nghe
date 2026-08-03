@@ -13,7 +13,7 @@ export const FRM_MARKET_RISK_DEPTH_LESSONS: Lesson[] = [
   {
     id: 1660,
     slug: "frm-frtb-so-giao-dich",
-    title: "FRM Rủi ro TT, Bài 7: FRTB - vẽ lại ranh giới giữa sổ giao dịch và sổ ngân hàng",
+    title: "Rủi ro TT, Bài 7: FRTB - vẽ lại ranh giới giữa sổ giao dịch và sổ ngân hàng",
     subtitle: "Vì sao Basel phải viết lại toàn bộ khung vốn rủi ro thị trường sau 2008",
     duration: "10 phút",
     difficulty: "Khó",
@@ -149,7 +149,7 @@ export const FRM_MARKET_RISK_DEPTH_LESSONS: Lesson[] = [
   {
     id: 1661,
     slug: "frm-key-rate-duration-rui-ro-duong-cong",
-    title: "FRM Rủi ro TT, Bài 8: Key rate duration - khi đường cong không dịch song song",
+    title: "Rủi ro TT, Bài 8: Key rate duration - khi đường cong không dịch song song",
     subtitle: "Một danh mục có duration bằng 0 vẫn có thể lỗ nặng khi đường cong xoay",
     duration: "10 phút",
     difficulty: "Khó",
@@ -285,7 +285,7 @@ export const FRM_MARKET_RISK_DEPTH_LESSONS: Lesson[] = [
   {
     id: 1662,
     slug: "frm-anh-xa-vi-the-vao-nhan-to-rui-ro",
-    title: "FRM Rủi ro TT, Bài 9: Ánh xạ vị thế vào nhân tố rủi ro",
+    title: "Rủi ro TT, Bài 9: Ánh xạ vị thế vào nhân tố rủi ro",
     subtitle: "Không ai mô hình hoá từng trái phiếu một - và lựa chọn gộp thế nào quyết định con số VaR",
     duration: "9 phút",
     difficulty: "Khó",
@@ -421,7 +421,7 @@ export const FRM_MARKET_RISK_DEPTH_LESSONS: Lesson[] = [
   {
     id: 1663,
     slug: "frm-phan-ra-rui-ro-giua-cac-ban",
-    title: "FRM Rủi ro TT, Bài 10: Phân rã rủi ro - vì sao tổng VaR các bàn lớn hơn VaR toàn ngân hàng",
+    title: "Rủi ro TT, Bài 10: Phân rã rủi ro - vì sao tổng VaR các bàn lớn hơn VaR toàn ngân hàng",
     subtitle: "Marginal, incremental và component VaR - ba câu hỏi khác nhau, ba con số khác nhau",
     duration: "9 phút",
     difficulty: "Khó",

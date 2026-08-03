@@ -13,7 +13,7 @@ export const FRM_CORE_GAPS_LESSONS: Lesson[] = [
   {
     id: 1613,
     slug: "frm-phan-loai-rui-ro-tai-chinh",
-    title: "FRM Foundations, Bài 5: Phân loại rủi ro tài chính - bản đồ trước khi đo",
+    title: "FRM Foundations, Bài 4: Phân loại rủi ro tài chính - bản đồ trước khi đo",
     subtitle: "Thị trường, tín dụng, hoạt động, thanh khoản, chiến lược, danh tiếng - và vì sao ranh giới giữa chúng luôn bị rò",
     duration: "9 phút",
     difficulty: "Trung bình",
@@ -177,7 +177,7 @@ export const FRM_CORE_GAPS_LESSONS: Lesson[] = [
   {
     id: 1614,
     slug: "frm-khau-vi-rui-ro-va-han-muc",
-    title: "FRM Foundations, Bài 6: Khẩu vị rủi ro, ngưỡng chịu đựng và hệ thống hạn mức",
+    title: "FRM Foundations, Bài 5: Khẩu vị rủi ro, ngưỡng chịu đựng và hệ thống hạn mức",
     subtitle: "Từ một câu tuyên bố của hội đồng quản trị xuống tới con số hạn mức trên màn hình người giao dịch",
     duration: "9 phút",
     difficulty: "Khó",
@@ -334,7 +334,7 @@ export const FRM_CORE_GAPS_LESSONS: Lesson[] = [
   {
     id: 1615,
     slug: "frm-do-hieu-qua-dieu-chinh-rui-ro",
-    title: "FRM Foundations, Bài 7: Đo hiệu quả điều chỉnh rủi ro - Sharpe, Treynor, Jensen, IR",
+    title: "FRM Foundations, Bài 6: Đo hiệu quả điều chỉnh rủi ro - Sharpe, Treynor, Jensen, IR",
     subtitle: "Bốn thước đo cùng trả lời một câu hỏi, nhưng mẫu số khác nhau nên kết luận cũng khác nhau",
     duration: "10 phút",
     difficulty: "Khó",
@@ -514,7 +514,7 @@ export const FRM_CORE_GAPS_LESSONS: Lesson[] = [
   {
     id: 1616,
     slug: "frm-capm-va-mo-hinh-da-nhan-to",
-    title: "FRM Foundations, Bài 8: CAPM và mô hình đa nhân tố trong quản trị rủi ro",
+    title: "FRM Foundations, Bài 7: CAPM và mô hình đa nhân tố trong quản trị rủi ro",
     subtitle: "Một nhân tố là chưa đủ - vì sao APT và các mô hình nhiều nhân tố ra đời",
     duration: "9 phút",
     difficulty: "Khó",
@@ -691,7 +691,7 @@ export const FRM_CORE_GAPS_LESSONS: Lesson[] = [
   {
     id: 1617,
     slug: "frm-garp-code-of-conduct",
-    title: "FRM Foundations, Bài 9: GARP Code of Conduct - đạo đức của người làm quản trị rủi ro",
+    title: "FRM Foundations, Bài 8: GARP Code of Conduct - đạo đức của người làm quản trị rủi ro",
     subtitle: "Người cảnh báo rủi ro chỉ có giá trị khi dám nói điều không ai muốn nghe",
     duration: "8 phút",
     difficulty: "Trung bình",
@@ -851,7 +851,7 @@ export const FRM_CORE_GAPS_LESSONS: Lesson[] = [
   {
     id: 1618,
     slug: "frm-bcbs-239-du-lieu-rui-ro",
-    title: "FRM Foundations, Bài 10: BCBS 239 - tổng hợp dữ liệu rủi ro và chất lượng dữ liệu",
+    title: "FRM Foundations, Bài 9: BCBS 239 - tổng hợp dữ liệu rủi ro và chất lượng dữ liệu",
     subtitle: "Không tổng hợp được số liệu trong vài giờ thì mọi mô hình tinh vi đều vô dụng khi khủng hoảng nổ ra",
     duration: "9 phút",
     difficulty: "Trung bình",
@@ -1013,7 +1013,7 @@ export const FRM_CORE_GAPS_LESSONS: Lesson[] = [
   {
     id: 1619,
     slug: "frm-phan-loai-su-kien-rui-ro-hoat-dong",
-    title: "FRM Operational, Bài 5: Bảy nhóm sự kiện Basel và dữ liệu tổn thất nội bộ",
+    title: "FRM Operational, Bài 9: Bảy nhóm sự kiện Basel và dữ liệu tổn thất nội bộ",
     subtitle: "Không phân loại được sự kiện thì không xây được phân phối tổn thất - và không tính được vốn",
     duration: "9 phút",
     difficulty: "Trung bình",
@@ -1170,7 +1170,7 @@ export const FRM_CORE_GAPS_LESSONS: Lesson[] = [
   {
     id: 1620,
     slug: "frm-rcsa-va-kri",
-    title: "FRM Operational, Bài 6: RCSA và chỉ số rủi ro chính (KRI)",
+    title: "FRM Operational, Bài 10: RCSA và chỉ số rủi ro chính (KRI)",
     subtitle: "Dữ liệu tổn thất nhìn về quá khứ - RCSA và KRI là hai công cụ nhìn về phía trước",
     duration: "9 phút",
     difficulty: "Trung bình",
@@ -1330,7 +1330,7 @@ export const FRM_CORE_GAPS_LESSONS: Lesson[] = [
   {
     id: 1621,
     slug: "frm-rui-ro-an-ninh-mang",
-    title: "FRM Operational, Bài 7: Rủi ro an ninh mạng và khả năng phục hồi công nghệ",
+    title: "FRM Operational, Bài 11: Rủi ro an ninh mạng và khả năng phục hồi công nghệ",
     subtitle: "Loại rủi ro hoạt động duy nhất có một đối thủ chủ động tìm cách vượt qua kiểm soát của bạn",
     duration: "9 phút",
     difficulty: "Trung bình",
@@ -1484,7 +1484,7 @@ export const FRM_CORE_GAPS_LESSONS: Lesson[] = [
   {
     id: 1622,
     slug: "frm-rui-ro-gian-lan-va-kiem-soat",
-    title: "FRM Operational, Bài 8: Rủi ro gian lận và thiết kế kiểm soát",
+    title: "FRM Operational, Bài 12: Rủi ro gian lận và thiết kế kiểm soát",
     subtitle: "Tam giác gian lận: động cơ, cơ hội và khả năng tự bào chữa - kiểm soát chỉ chạm được vào một cạnh",
     duration: "9 phút",
     difficulty: "Trung bình",
@@ -1638,7 +1638,7 @@ export const FRM_CORE_GAPS_LESSONS: Lesson[] = [
   {
     id: 1623,
     slug: "frm-von-cho-rui-ro-hoat-dong-sma",
-    title: "FRM Operational, Bài 9: Vốn cho rủi ro hoạt động và phương pháp chuẩn hoá SMA",
+    title: "FRM Operational, Bài 13: Vốn cho rủi ro hoạt động và phương pháp chuẩn hoá SMA",
     subtitle: "Vì sao Basel bỏ mô hình nội bộ và quay lại một công thức chuẩn cho tất cả",
     duration: "9 phút",
     difficulty: "Khó",
@@ -1787,7 +1787,7 @@ export const FRM_CORE_GAPS_LESSONS: Lesson[] = [
   {
     id: 1624,
     slug: "frm-rui-ro-hanh-vi-va-tuan-thu",
-    title: "FRM Operational, Bài 10: Rủi ro hành vi, pháp lý và tuân thủ",
+    title: "FRM Operational, Bài 14: Rủi ro hành vi, pháp lý và tuân thủ",
     subtitle: "Bán đúng luật vẫn có thể sai - khi sản phẩm không phù hợp với người mua nó",
     duration: "9 phút",
     difficulty: "Trung bình",
@@ -1941,7 +1941,7 @@ export const FRM_CORE_GAPS_LESSONS: Lesson[] = [
   {
     id: 1625,
     slug: "frm-thanh-khoan-thi-truong-va-tai-tro",
-    title: "FRM Liquidity, Bài 4: Thanh khoản thị trường và thanh khoản tài trợ",
+    title: "FRM Liquidity, Bài 6: Thanh khoản thị trường và thanh khoản tài trợ",
     subtitle: "Hai loại thanh khoản khác nhau, và vòng xoáy khi chúng kéo nhau cùng cạn",
     duration: "9 phút",
     difficulty: "Trung bình",
@@ -2094,7 +2094,7 @@ export const FRM_CORE_GAPS_LESSONS: Lesson[] = [
   {
     id: 1626,
     slug: "frm-liquidity-gap-va-cash-flow-ladder",
-    title: "FRM Liquidity, Bài 5: Khe hở thanh khoản và thang dòng tiền",
+    title: "FRM Liquidity, Bài 7: Khe hở thanh khoản và thang dòng tiền",
     subtitle: "Công cụ cơ bản nhất để thấy ngày nào tổ chức sẽ thiếu tiền, trước khi ngày đó tới",
     duration: "9 phút",
     difficulty: "Trung bình",
@@ -2249,7 +2249,7 @@ export const FRM_CORE_GAPS_LESSONS: Lesson[] = [
   {
     id: 1627,
     slug: "frm-funds-transfer-pricing",
-    title: "FRM Liquidity, Bài 6: Giá vốn điều chuyển nội bộ (FTP)",
+    title: "FRM Liquidity, Bài 8: Giá vốn điều chuyển nội bộ (FTP)",
     subtitle: "Nếu huy động vốn dài hạn không tốn gì với bộ phận kinh doanh, họ sẽ dùng vốn ngắn hạn cho mọi thứ",
     duration: "9 phút",
     difficulty: "Khó",
@@ -2403,7 +2403,7 @@ export const FRM_CORE_GAPS_LESSONS: Lesson[] = [
   {
     id: 1628,
     slug: "frm-stress-test-thanh-khoan",
-    title: "FRM Liquidity, Bài 7: Kiểm định sức chịu đựng thanh khoản",
+    title: "FRM Liquidity, Bài 9: Kiểm định sức chịu đựng thanh khoản",
     subtitle: "Câu hỏi duy nhất: nếu nguồn vốn ngừng chảy hôm nay, tổ chức sống được bao nhiêu ngày",
     duration: "9 phút",
     difficulty: "Khó",
@@ -2557,7 +2557,7 @@ export const FRM_CORE_GAPS_LESSONS: Lesson[] = [
   {
     id: 1629,
     slug: "frm-quan-tri-tai-san-bao-dam",
-    title: "FRM Liquidity, Bài 8: Quản trị tài sản bảo đảm và haircut",
+    title: "FRM Liquidity, Bài 10: Quản trị tài sản bảo đảm và haircut",
     subtitle: "Tài sản bảo đảm là nguồn thanh khoản trong lúc bình thường và là kênh lan truyền căng thẳng khi thị trường xấu",
     duration: "9 phút",
     difficulty: "Khó",
@@ -2707,7 +2707,7 @@ export const FRM_CORE_GAPS_LESSONS: Lesson[] = [
   {
     id: 1630,
     slug: "frm-thanh-khoan-quy-dau-tu",
-    title: "FRM Liquidity, Bài 9: Rủi ro thanh khoản của quỹ đầu tư và cơ chế phòng vệ",
+    title: "FRM Liquidity, Bài 11: Rủi ro thanh khoản của quỹ đầu tư và cơ chế phòng vệ",
     subtitle: "Hứa cho rút hằng ngày trong khi nắm tài sản cần vài tuần để bán là một lời hứa chỉ giữ được lúc yên bình",
     duration: "9 phút",
     difficulty: "Khó",
@@ -2866,7 +2866,7 @@ export const FRM_CORE_GAPS_LESSONS: Lesson[] = [
   {
     id: 1631,
     slug: "frm-xac-suat-va-dinh-ly-bayes",
-    title: "FRM Quant, Bài 7: Xác suất có điều kiện và định lý Bayes trong quản trị rủi ro",
+    title: "FRM Quant, Bài 4: Xác suất có điều kiện và định lý Bayes trong quản trị rủi ro",
     subtitle: "Vì sao một hệ thống cảnh báo chính xác 99% vẫn có thể báo động sai gần như mọi lần",
     duration: "9 phút",
     difficulty: "Khó",
@@ -3034,7 +3034,7 @@ export const FRM_CORE_GAPS_LESSONS: Lesson[] = [
   {
     id: 1632,
     slug: "frm-uoc-luong-hop-ly-cuc-dai",
-    title: "FRM Quant, Bài 8: Ước lượng hợp lý cực đại và phương pháp moment",
+    title: "FRM Quant, Bài 5: Ước lượng hợp lý cực đại và phương pháp moment",
     subtitle: "Hai cách chọn tham số cho một phân phối, và vì sao lựa chọn đó quyết định con số rủi ro cuối cùng",
     duration: "9 phút",
     difficulty: "Khó",
@@ -3194,7 +3194,7 @@ export const FRM_CORE_GAPS_LESSONS: Lesson[] = [
   {
     id: 1633,
     slug: "frm-mo-phong-monte-carlo",
-    title: "FRM Quant, Bài 9: Mô phỏng Monte Carlo và kỹ thuật giảm phương sai",
+    title: "FRM Quant, Bài 6: Mô phỏng Monte Carlo và kỹ thuật giảm phương sai",
     subtitle: "Khi bài toán không có lời giải đóng, ta tạo ra hàng vạn tương lai giả rồi đếm",
     duration: "10 phút",
     difficulty: "Khó",
@@ -3358,7 +3358,7 @@ export const FRM_CORE_GAPS_LESSONS: Lesson[] = [
   {
     id: 1634,
     slug: "frm-bootstrapping-tai-chon-mau",
-    title: "FRM Quant, Bài 10: Bootstrapping và các kỹ thuật tái chọn mẫu",
+    title: "FRM Quant, Bài 7: Bootstrapping và các kỹ thuật tái chọn mẫu",
     subtitle: "Dùng chính dữ liệu đã có làm phân phối, thay vì áp một dạng phân phối lý thuyết lên nó",
     duration: "9 phút",
     difficulty: "Khó",
@@ -3515,7 +3515,7 @@ export const FRM_CORE_GAPS_LESSONS: Lesson[] = [
   {
     id: 1635,
     slug: "frm-ly-thuyet-gia-tri-cuc-tri",
-    title: "FRM Quant, Bài 11: Đuôi dày và lý thuyết giá trị cực trị",
+    title: "FRM Quant, Bài 8: Đuôi dày và lý thuyết giá trị cực trị",
     subtitle: "Cách nói điều gì đó có cơ sở về những biến cố hiếm hơn cả dữ liệu bạn có",
     duration: "10 phút",
     difficulty: "Khó",
@@ -3680,7 +3680,7 @@ export const FRM_CORE_GAPS_LESSONS: Lesson[] = [
   {
     id: 1636,
     slug: "frm-ma-tran-tuong-quan-va-pca",
-    title: "FRM Quant, Bài 12: Ma trận hiệp phương sai và phân tích thành phần chính",
+    title: "FRM Quant, Bài 9: Ma trận hiệp phương sai và phân tích thành phần chính",
     subtitle: "Khi danh mục có hàng trăm yếu tố rủi ro, phần lớn biến động thường đến từ vài chiều duy nhất",
     duration: "10 phút",
     difficulty: "Khó",

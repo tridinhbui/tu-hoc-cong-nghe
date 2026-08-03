@@ -18,7 +18,7 @@ export const PERSONAL_ENTRY_LESSONS: Lesson[] = [
   {
     id: 1351,
     slug: "theo-doi-chi-tieu-truoc-khi-lap-ngan-sach",
-    title: "Chặng 1, Bài 0: Theo dõi chi tiêu - đo trước khi phân bổ",
+    title: "Chặng 1, Bài 1: Theo dõi chi tiêu - đo trước khi phân bổ",
     subtitle: "Không thể lập ngân sách cho số tiền bạn chưa biết mình đang tiêu vào đâu",
     duration: "6 phút",
     difficulty: "Dễ",
@@ -180,7 +180,7 @@ export const PERSONAL_ENTRY_LESSONS: Lesson[] = [
   {
     id: 1352,
     slug: "tu-dong-hoa-tai-chinh-ca-nhan",
-    title: "Chặng 1, Bài 7: Tự động hóa - để kế hoạch không phụ thuộc ý chí",
+    title: "Chặng 1, Bài 8: Tự động hóa - để kế hoạch không phụ thuộc ý chí",
     subtitle: "Vì sao ngân sách đúng vẫn đổ vỡ, và cách sửa bằng cơ chế thay vì quyết tâm",
     duration: "6 phút",
     difficulty: "Dễ",
@@ -342,7 +342,7 @@ export const PERSONAL_ENTRY_LESSONS: Lesson[] = [
   {
     id: 1353,
     slug: "bao-hiem-co-ban-cho-nguoi-moi",
-    title: "Chặng 1, Bài 8: Bảo hiểm cơ bản - lớp bảo vệ sau quỹ khẩn cấp",
+    title: "Chặng 1, Bài 9: Bảo hiểm cơ bản - lớp bảo vệ sau quỹ khẩn cấp",
     subtitle: "Quỹ khẩn cấp lo cú sốc nhỏ; bảo hiểm lo cú sốc có thể xóa sạch mọi thứ",
     duration: "6 phút",
     difficulty: "Dễ",
