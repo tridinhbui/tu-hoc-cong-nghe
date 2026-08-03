@@ -38,6 +38,50 @@ export const CFA_ALTERNATIVES_LESSONS: Lesson[] = [
     correctOption: 1,
     explanation:
       "Bốn đặc điểm này đi cùng nhau và chúng liên hệ nhân quả với nhau. Kém thanh khoản nghĩa là không có giá thị trường liên tục, nên định giá phải dựa vào thẩm định định kỳ hoặc mô hình - và điều đó tạo ra hàng loạt hệ quả về đo lường hiệu suất mà bài sau sẽ nói. Đòn bẩy cao hơn là chuẩn mực chứ không phải ngoại lệ, vì tài sản thực và thương vụ mua lại đều được tài trợ bằng nợ. Cấu trúc phí hai tầng - phí quản lý cộng phần chia lợi nhuận - đổi hoàn toàn động cơ của người quản lý so với một quỹ chỉ thu phí phẳng. Lợi nhuận kỳ vọng cao hơn thì không phải đặc điểm định nghĩa; nó là thứ nhà đầu tư hy vọng đổi lấy bốn điều trên.",
+    sections: [
+      {
+        "type": "lead",
+        "text": "Nhóm tài sản thay thế không được định nghĩa bằng danh sách - bất động sản, hạ tầng, quỹ đầu cơ, vốn tư nhân - mà bằng bốn đặc điểm chung. Nắm bốn đặc điểm đó thì xếp loại được cả những tài sản chưa từng xuất hiện trong sách."
+      },
+      {
+        "type": "heading",
+        "text": "Bốn đặc điểm và quan hệ nhân quả giữa chúng"
+      },
+      {
+        "type": "paragraph",
+        "text": "Kém thanh khoản là gốc: không có thị trường giao dịch liên tục nên không có giá liên tục. Từ đó sinh ra định giá thưa - giá trị chỉ được cập nhật mỗi quý qua thẩm định hoặc mô hình. Đòn bẩy cao là chuẩn mực chứ không phải ngoại lệ, vì tài sản thực và thương vụ mua lại đều được tài trợ bằng nợ. Và cấu trúc phí hai tầng - phí quản lý cộng phần chia lợi nhuận - làm động cơ của người quản lý khác hẳn một quỹ chỉ thu phí phẳng."
+      },
+      {
+        "type": "callout",
+        "label": "Điểm dễ nhầm",
+        "text": "Lợi nhuận kỳ vọng cao hơn KHÔNG phải là đặc điểm định nghĩa. Nó là thứ nhà đầu tư hy vọng nhận được để đổi lấy bốn điều trên - một kỳ vọng, không phải một thuộc tính."
+      },
+      {
+        "type": "heading",
+        "text": "Phần bù kém thanh khoản mua về điều gì"
+      },
+      {
+        "type": "paragraph",
+        "text": "Khi bạn khóa vốn mười năm, bạn từ bỏ quyền rút ra đúng lúc cần nhất - thường là lúc thị trường xấu và bạn có nghĩa vụ chi trả khác. Phần lợi suất vượt trội là giá của quyền đó. Câu hỏi thực dụng không phải phần bù có tồn tại không, mà là bạn có đủ khả năng chịu đựng việc không rút được trong suốt thời gian đó hay không."
+      },
+      {
+        "type": "list",
+        "items": [
+          "Bốn đặc điểm: kém thanh khoản, định giá thưa, đòn bẩy cao, phí hai tầng.",
+          "Kém thanh khoản gây ra định giá thưa, và định giá thưa gây ra mọi vấn đề đo lường ở bài sau.",
+          "Phí hai tầng đổi động cơ: phần chia lợi nhuận thưởng cho biến động lớn, không chỉ cho lợi nhuận.",
+          "Xếp loại theo đặc điểm xử lý được tài sản mới; học thuộc danh sách thì không."
+        ]
+      },
+      {
+        "type": "closing",
+        "lines": [
+          "Nhóm thay thế không phải một nhóm tài sản đồng nhất.",
+          "Nó là tập hợp những thứ chia sẻ cùng bốn vấn đề về cấu trúc.",
+          "Hiểu bốn vấn đề đó là hiểu cả nhóm."
+        ]
+      }
+    ],
     diagram: [
       { label: "Kém thanh khoản: không có giá liên tục", arrow: true },
       { label: "Định giá thưa: thẩm định định kỳ hoặc mô hình", arrow: true },
@@ -154,6 +198,48 @@ export const CFA_ALTERNATIVES_LESSONS: Lesson[] = [
     correctOption: 1,
     explanation:
       "Tài sản được thẩm định giá mỗi quý, và người thẩm định lấy tham chiếu từ lần định giá trước cùng vài giao dịch so sánh gần đây. Kết quả là chuỗi giá trị báo cáo dịch chuyển từ từ ngay cả khi thị trường thật đã biến động mạnh - hiện tượng gọi là làm mượt lợi nhuận. Hệ quả đo lường thì rất cụ thể: độ lệch chuẩn bị đánh giá thấp, tương quan với các nhóm tài sản khác bị đánh giá thấp, nên Sharpe ratio và lợi ích đa dạng hóa đều trông tốt hơn thực tế. Đây không phải gian lận - nó là hệ quả cấu trúc của việc không có giá thị trường liên tục.",
+    sections: [
+      {
+        "type": "lead",
+        "text": "Sharpe ratio, độ lệch chuẩn và hệ số tương quan đều giả định có một chuỗi giá thị trường đáng tin. Ở nhóm tài sản thay thế, giả định đó không đúng - và mọi thước đo dựng trên nó đều lệch về cùng một hướng: tô hồng."
+      },
+      {
+        "type": "heading",
+        "text": "Làm mượt lợi nhuận"
+      },
+      {
+        "type": "paragraph",
+        "text": "Tài sản được thẩm định giá mỗi quý, và người thẩm định lấy tham chiếu từ lần định giá trước cùng vài giao dịch so sánh gần đây. Kết quả là chuỗi giá trị báo cáo dịch chuyển từ từ ngay cả khi thị trường thật đã biến động mạnh. Đây không phải gian lận - nó là hệ quả cấu trúc của việc không có giá liên tục."
+      },
+      {
+        "type": "callout",
+        "label": "Hệ quả đo lường",
+        "text": "Độ lệch chuẩn bị đánh giá thấp và tương quan với các nhóm khác cũng bị đánh giá thấp. Hai sai lệch này cùng chiều, nên Sharpe ratio bị phóng đại VÀ lợi ích đa dạng hóa trông lớn hơn thực tế."
+      },
+      {
+        "type": "heading",
+        "text": "Ba thiên lệch của chỉ số quỹ đầu cơ"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Thiên lệch sống sót: quỹ đóng cửa ngừng báo cáo, nên chỉ số chỉ còn người thắng.",
+          "Thiên lệch tự chọn: báo cáo là tự nguyện, và quỹ đang kém thì ít có lý do báo cáo.",
+          "Thiên lệch lịch sử tức thì: quỹ mới gia nhập được điền cả thành tích quá khứ đẹp vào chỉ số."
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "Cả ba đều đẩy lợi nhuận chỉ số lên cao hơn thực tế, và chúng cộng dồn chứ không triệt tiêu nhau. Với quỹ vốn tư nhân còn một vấn đề riêng: IRR phụ thuộc thời điểm gọi vốn và trả vốn, mà đó là những thứ người quản lý quỹ kiểm soát - nên IRR đo cả kỹ năng chọn thời điểm chứ không chỉ đo kỹ năng đầu tư."
+      },
+      {
+        "type": "closing",
+        "lines": [
+          "Không hiệu chỉnh thì bạn phân bổ vốn dựa trên mức rủi ro thấp hơn thực tế.",
+          "Và phát hiện ra điều đó đúng vào lúc bạn cần rút tiền."
+        ]
+      }
+    ],
     diagram: [
       { label: "Không có giá liên tục → thẩm định định kỳ", arrow: true },
       { label: "Giá trị báo cáo dịch chuyển từ từ: làm mượt", arrow: true },
@@ -270,6 +356,48 @@ export const CFA_ALTERNATIVES_LESSONS: Lesson[] = [
     correctOption: 1,
     explanation:
       "Đây là câu chuyện về quy định chứ không phải về lãi suất. Các chuẩn vốn sau 2008 làm khoản cho vay doanh nghiệp vừa trở nên đắt đỏ với ngân hàng về mặt vốn phải trích lập, nên nhiều ngân hàng thu hẹp mảng này. Nhu cầu vay thì không biến mất, và các quỹ nợ tư nhân - vốn không chịu chuẩn vốn ngân hàng - bước vào lấp chỗ. Điều đó cũng giải thích vì sao rủi ro không biến mất mà chỉ chuyển chỗ: nó rời khỏi bảng cân đối ngân hàng, nơi có bảo hiểm tiền gửi và giám sát chặt, sang bảng cân đối các quỹ, nơi nhà đầu tư tự gánh.",
+    sections: [
+      {
+        "type": "lead",
+        "text": "Nợ tư nhân là việc quỹ đầu tư cho doanh nghiệp vay trực tiếp, thay chỗ ngân hàng. Sự bùng nổ của nó không phải câu chuyện về lãi suất mà là câu chuyện về quy định."
+      },
+      {
+        "type": "heading",
+        "text": "Vì sao mảng này lớn lên"
+      },
+      {
+        "type": "paragraph",
+        "text": "Các chuẩn vốn sau 2008 làm khoản cho vay doanh nghiệp vừa trở nên đắt đỏ với ngân hàng về mặt vốn phải trích lập, nên nhiều ngân hàng thu hẹp mảng này. Nhu cầu vay thì không biến mất, và các quỹ nợ tư nhân - vốn không chịu chuẩn vốn ngân hàng - bước vào lấp chỗ trống."
+      },
+      {
+        "type": "callout",
+        "label": "Điều đáng lưu ý",
+        "text": "Rủi ro không biến mất, nó chỉ chuyển chỗ: rời khỏi bảng cân đối ngân hàng - nơi có bảo hiểm tiền gửi và giám sát chặt - sang bảng cân đối các quỹ, nơi nhà đầu tư tự gánh."
+      },
+      {
+        "type": "heading",
+        "text": "Ba tầng rất khác nhau"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Cho vay trực tiếp: khoản vay có bảo đảm, ưu tiên cao, lợi suất đến từ coupon và phí.",
+          "Mezzanine: đứng sau nợ có bảo đảm, bù lại bằng chứng quyền hoặc quyền chuyển đổi cổ phần.",
+          "Nợ xấu: mua nợ của doanh nghiệp đang khó khăn, lợi nhuận đến từ tái cơ cấu chứ không từ coupon."
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "Gộp ba tầng này thành một dòng phân bổ là bỏ qua khác biệt quan trọng nhất: chúng không cùng một loại rủi ro. Cho vay trực tiếp gần với trái phiếu doanh nghiệp; nợ xấu gần với vốn cổ phần, vì lợi nhuận phụ thuộc vào việc tái cơ cấu có thành công không."
+      },
+      {
+        "type": "closing",
+        "lines": [
+          "Nợ tư nhân là ngân hàng không có giấy phép ngân hàng.",
+          "Cùng công việc, cùng rủi ro, khác lưới an toàn."
+        ]
+      }
+    ],
     diagram: [
       { label: "Chuẩn vốn siết → ngân hàng thu hẹp cho vay doanh nghiệp vừa", arrow: true },
       { label: "Nhu cầu vay không biến mất", arrow: true },
@@ -386,6 +514,47 @@ export const CFA_ALTERNATIVES_LESSONS: Lesson[] = [
     correctOption: 1,
     explanation:
       "Một quỹ hưu trí có nghĩa vụ chi trả trải dài ba đến năm mươi năm, và giá trị thực của nghĩa vụ đó tăng theo lạm phát. Rất ít tài sản có dòng tiền cùng kỳ hạn và cùng gắn lạm phát như vậy. Hạ tầng thì có: hợp đồng thu phí đường bộ, hợp đồng mua điện, hay khung phí dịch vụ công thường có điều khoản điều chỉnh theo chỉ số giá, và tài sản vận hành hàng chục năm. Đây là lý do phân bổ vào hạ tầng được thúc đẩy bởi việc khớp nghĩa vụ chứ không chỉ bởi kỳ vọng lợi nhuận - và cũng là lý do tính kém thanh khoản ít gây khó cho nhóm nhà đầu tư này hơn.",
+    sections: [
+      {
+        "type": "lead",
+        "text": "Hạ tầng - đường thu phí, nhà máy điện, cảng, mạng truyền tải - là nhóm tài sản có kỳ hạn dài nhất trong danh mục, và đó chính là lý do tồn tại của nó."
+      },
+      {
+        "type": "heading",
+        "text": "Khớp nghĩa vụ, không chỉ tìm lợi nhuận"
+      },
+      {
+        "type": "paragraph",
+        "text": "Một quỹ hưu trí có nghĩa vụ chi trả trải dài ba tới năm mươi năm, và giá trị thực của nghĩa vụ đó tăng theo lạm phát. Rất ít tài sản có dòng tiền cùng kỳ hạn và cùng gắn lạm phát như vậy. Hạ tầng thì có: hợp đồng thu phí đường bộ, hợp đồng mua điện hay khung phí dịch vụ công thường kèm điều khoản điều chỉnh theo chỉ số giá."
+      },
+      {
+        "type": "comparison",
+        "left": {
+          "label": "Brownfield",
+          "text": "Tài sản đã vận hành, có dòng tiền ngay, rủi ro chủ yếu là vận hành và chính sách. Lợi suất kỳ vọng thấp hơn."
+        },
+        "right": {
+          "label": "Greenfield",
+          "text": "Dự án còn phải xây. Mang thêm rủi ro chậm tiến độ, đội vốn và chưa có doanh thu trong nhiều năm. Lợi suất cao hơn là để bù đúng phần rủi ro đó."
+        }
+      },
+      {
+        "type": "callout",
+        "label": "Rủi ro chính",
+        "text": "Không phải rủi ro thị trường mà là rủi ro chính trị và pháp lý: doanh thu phụ thuộc vào khung phí do nhà nước đặt, và khung đó có thể bị sửa sau khi bạn đã bỏ vốn."
+      },
+      {
+        "type": "paragraph",
+        "text": "Tính kém thanh khoản ít gây khó cho nhóm nhà đầu tư này hơn so với các nhóm khác, vì họ biết trước lịch chi trả của mình. Đây là ví dụ rõ nhất cho nguyên tắc chung: kém thanh khoản là vấn đề với người có thể phải rút bất ngờ, không phải với người có nghĩa vụ đã lên lịch."
+      },
+      {
+        "type": "closing",
+        "lines": [
+          "Hạ tầng được mua vì nó khớp với nghĩa vụ.",
+          "Lợi nhuận là điều kiện cần, không phải lý do."
+        ]
+      }
+    ],
     diagram: [
       { label: "Nghĩa vụ chi trả dài hạn, tăng theo lạm phát", arrow: true },
       { label: "Hạ tầng: dòng tiền dài hạn gắn chỉ số giá", arrow: true },
@@ -502,6 +671,49 @@ export const CFA_ALTERNATIVES_LESSONS: Lesson[] = [
     correctOption: 1,
     explanation:
       "Ba nguồn này độc lập nhau và đó là điều làm rừng trồng đặc biệt. Nguồn thứ nhất - sinh khối - là thứ không nhóm tài sản nào khác có: cây tiếp tục lớn bất kể thị trường tài chính diễn biến ra sao, nên khối lượng tài sản tăng lên mà không cần ai làm gì. Nguồn này cũng tạo ra một quyền chọn thật: khi giá gỗ thấp, chủ rừng hoãn thu hoạch và cây tiếp tục lớn; khi giá cao thì thu hoạch sớm hơn. Rất ít tài sản cho phép người sở hữu chọn thời điểm bán mà giá trị nội tại vẫn tăng trong lúc chờ - và chính đặc tính đó giải thích mức tương quan thấp với cổ phiếu.",
+    sections: [
+      {
+        "type": "lead",
+        "text": "Đất nông nghiệp và rừng trồng là hai tài sản vừa tạo dòng tiền vừa lên giá, nhưng cơ chế sinh lời của rừng có một thành phần mà không nhóm tài sản nào khác có."
+      },
+      {
+        "type": "heading",
+        "text": "Ba nguồn lợi nhuận độc lập của rừng trồng"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Sinh khối: cây tiếp tục lớn bất kể thị trường tài chính diễn biến ra sao - khối lượng tài sản tăng mà không cần ai làm gì.",
+          "Giá gỗ: giá bán mỗi đơn vị thay đổi theo cung cầu ngành xây dựng và giấy.",
+          "Giá đất: giá trị của chính mảnh đất bên dưới rừng."
+        ]
+      },
+      {
+        "type": "callout",
+        "label": "Quyền chọn thật",
+        "text": "Khi giá gỗ thấp, chủ rừng hoãn thu hoạch và cây vẫn tiếp tục lớn; khi giá cao thì thu hoạch sớm hơn. Rất ít tài sản cho phép chọn thời điểm bán mà giá trị nội tại vẫn tăng trong lúc chờ."
+      },
+      {
+        "type": "heading",
+        "text": "Đất nông nghiệp: hai mô hình khác nhau"
+      },
+      {
+        "type": "paragraph",
+        "text": "Cho thuê đất cho nông hộ vận hành thì dòng tiền đều và gần với một trái phiếu gắn lạm phát. Tự vận hành thì lợi nhuận cao hơn nhưng gánh trọn rủi ro mùa vụ, giá nông sản và chi phí đầu vào. Hai lựa chọn này khác nhau về bản chất rủi ro chứ không chỉ khác về mức lợi nhuận."
+      },
+      {
+        "type": "callout",
+        "label": "Cẩn trọng",
+        "text": "Mức tương quan thấp với cổ phiếu mà các báo cáo hay nhắc tới một phần đến từ đặc tính thật của tài sản, nhưng một phần chỉ là hiệu ứng làm mượt do định giá thẩm định. Đừng lấy toàn bộ con số đó làm lợi ích đa dạng hóa."
+      },
+      {
+        "type": "closing",
+        "lines": [
+          "Cây lớn lên trong lúc bạn chờ.",
+          "Đó là điều làm nhóm tài sản này khác biệt - và cũng là điều dễ bị thổi phồng nhất."
+        ]
+      }
+    ],
     diagram: [
       { label: "Sinh khối: cây lớn lên bất kể thị trường", arrow: true },
       { label: "Giá gỗ thay đổi theo cung cầu ngành", arrow: true },
@@ -618,6 +830,45 @@ export const CFA_ALTERNATIVES_LESSONS: Lesson[] = [
     correctOption: 1,
     explanation:
       "Một quỹ vĩ mô đặt cược vào hướng đi của lãi suất và tỷ giá; một quỹ chênh lệch sáp nhập kiếm tiền từ khoảng cách giữa giá thị trường và giá thương vụ; một quỹ giá trị tương đối khai thác lệch giá giữa hai chứng khoán liên quan. Ba chiến lược này lãi và lỗ vì những lý do hoàn toàn khác nhau, tại những thời điểm khác nhau. Thứ chúng chia sẻ là hình thức tổ chức - quỹ tư nhân, phí hai tầng, ít ràng buộc về công cụ - chứ không phải nguồn lợi nhuận. Nên gộp chúng thành một dòng trong bảng phân bổ danh mục là che mất đúng thông tin cần biết.",
+    sections: [
+      {
+        "type": "lead",
+        "text": "Quỹ đầu cơ là một cấu trúc quỹ, không phải một nhóm tài sản. Hai quỹ cùng mang cái tên đó có thể kiếm tiền theo hai cách chẳng liên quan gì đến nhau."
+      },
+      {
+        "type": "heading",
+        "text": "Bốn nhóm chiến lược"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Cổ phiếu mua bán khống: mua mã tin là tốt, bán khống mã tin là xấu, hưởng phần chênh.",
+          "Chiến lược sự kiện: kiếm tiền từ sáp nhập, tái cơ cấu, phá sản - lợi nhuận gắn với việc sự kiện có xảy ra như dự tính không.",
+          "Giá trị tương đối: khai thác lệch giá giữa hai chứng khoán có liên hệ, mỗi lần lãi rất nhỏ.",
+          "Vĩ mô: đặt cược vào hướng đi của lãi suất, tỷ giá, hàng hóa cơ bản."
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "Bốn nhóm này lãi và lỗ vì những lý do khác nhau, tại những thời điểm khác nhau. Thứ chúng chia sẻ là hình thức tổ chức - quỹ tư nhân, phí hai tầng, ít ràng buộc về công cụ - chứ không phải nguồn lợi nhuận. Gộp chúng thành một dòng trong bảng phân bổ danh mục là che mất đúng thông tin cần biết."
+      },
+      {
+        "type": "callout",
+        "label": "Chỗ nguy hiểm nhất",
+        "text": "Chiến lược giá trị tương đối lãi rất nhỏ mỗi lần nên phải dùng đòn bẩy lớn để có lợi nhuận đáng kể. Cấu trúc đó tạo ra chuỗi nhiều lãi nhỏ và thỉnh thoảng một lỗ rất lớn - LTCM là ví dụ kinh điển."
+      },
+      {
+        "type": "paragraph",
+        "text": "Hình dạng lợi nhuận ấy làm mọi thước đo dựa trên độ lệch chuẩn trở nên vô dụng: chuỗi lãi nhỏ đều đặn cho độ lệch chuẩn thấp và Sharpe rất đẹp, ngay trước khi cú lỗ duy nhất xóa hết. Với nhóm này, phải nhìn mức sụt giảm sâu nhất và mức đòn bẩy, không nhìn Sharpe."
+      },
+      {
+        "type": "closing",
+        "lines": [
+          "Câu hỏi đúng không phải quỹ này lãi bao nhiêu.",
+          "Mà là quỹ này sẽ mất tiền khi nào, và mất bao nhiêu."
+        ]
+      }
+    ],
     diagram: [
       { label: "Cổ phiếu: mua bán khống theo cặp hoặc theo ngành", arrow: true },
       { label: "Sự kiện: sáp nhập, tái cơ cấu, phá sản", arrow: true },
