@@ -21,6 +21,8 @@ import InteractivePromptCraft from "./InteractivePromptCraft";
 import InteractiveAiVerify from "./InteractiveAiVerify";
 import InteractiveEsgScore from "./InteractiveEsgScore";
 import InteractiveLiquidityRun from "./InteractiveLiquidityRun";
+import InteractiveSampling from "./InteractiveSampling";
+import InteractiveRegression from "./InteractiveRegression";
 import InteractiveFeeDrag from "./InteractiveFeeDrag";
 import InteractiveRatios from "./InteractiveRatios";
 import InteractiveTailRisk from "./InteractiveTailRisk";
@@ -58,7 +60,9 @@ export type WidgetType =
   | "prompt-craft"
   | "ai-verify"
   | "esg-score"
-  | "liquidity-run";
+  | "liquidity-run"
+  | "sampling"
+  | "regression";
 
 export default function InteractiveWidget({ type }: { type: WidgetType }) {
   switch (type) {
@@ -113,6 +117,10 @@ export default function InteractiveWidget({ type }: { type: WidgetType }) {
       return <InteractiveEsgScore />;
     case "liquidity-run":
       return <InteractiveLiquidityRun />;
+    case "sampling":
+      return <InteractiveSampling />;
+    case "regression":
+      return <InteractiveRegression />;
     case "fee-drag":
       return <InteractiveFeeDrag />;
     case "ratios":
@@ -158,6 +166,8 @@ export const WIDGET_TYPES: readonly WidgetType[] = [
   "ai-verify",
   "esg-score",
   "liquidity-run",
+  "sampling",
+  "regression",
 ];
 
 export function hasInteractiveWidget(type: string | null | undefined): type is WidgetType {

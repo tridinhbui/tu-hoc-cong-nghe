@@ -370,6 +370,7 @@ export const DATA_THINKING_LESSONS: Lesson[] = [
       { label: "Chia nhóm ngẫu nhiên, chạy đủ thời gian", arrow: true },
       { label: "Kết luận một lần, không nhìn giữa chừng" },
     ],
+    interactiveType: "regression",
     realWorldExample: {
       company: "Thử nghiệm giao diện đăng ký của một ứng dụng tài chính",
       description:
@@ -538,6 +539,7 @@ export const DATA_THINKING_LESSONS: Lesson[] = [
       { label: "Hay C gây ra cả hai?", arrow: true },
       { label: "Hay chỉ là cách chọn mẫu?" },
     ],
+    interactiveType: "regression",
     realWorldExample: {
       company: "Thiên lệch sống sót trong dữ liệu quỹ đầu tư",
       description:

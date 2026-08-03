@@ -38,6 +38,8 @@ export const WIDGET_TOPIC_TERMS: Record<string, string[]> = {
   "esg-score": ["esg", "bền vững", "xếp hạng", "khí hậu", "carbon", "quản trị doanh nghiệp", "governance"],
   "prompt-craft": ["câu lệnh", "prompt", "ai", "chatgpt", "claude", "giao việc", "tài liệu"],
   "ai-verify": ["ai", "kiểm chứng", "bịa", "đối chiếu", "soát", "nguồn"],
+  sampling: ["chọn mẫu", "mẫu", "kiểm toán", "kiểm soát", "bằng chứng", "rcsa", "kri", "ba tuyến", "gian lận", "tuân thủ", "phát hiện"],
+  regression: ["hồi quy", "regression", "p-value", "giả thuyết", "tương quan", "thống kê", "ngoài mẫu", "backtest", "chuỗi thời gian", "hiệp phương sai", "monte carlo", "bootstrap", "bayes", "hợp lý cực đại", "mẫu"],
   "excel-shortcuts": ["excel", "phím tắt", "bàn phím"],
   "excel-lookup": ["tra cứu", "index", "match", "xlookup", "vlookup", "sumifs"],
   "excel-three-statement": ["mô hình", "ba báo cáo", "vòng lặp", "liên kết"],

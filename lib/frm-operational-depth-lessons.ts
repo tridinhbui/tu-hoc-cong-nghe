@@ -311,6 +311,7 @@ export const FRM_OPERATIONAL_DEPTH_LESSONS: Lesson[] = [
       { label: "Triển khai theo lô nhỏ, có cổng kiểm tra giữa các bước", arrow: true },
       { label: "Kế hoạch quay lui đã được thử, không chỉ được viết ra", arrow: false },
     ],
+    interactiveType: "sampling",
     realWorldExample: {
       company: "Ngân hàng di chuyển hệ thống lõi",
       description:

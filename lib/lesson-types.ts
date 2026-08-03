@@ -130,7 +130,9 @@ export interface Lesson {
     | "prompt-craft"
     | "ai-verify"
     | "esg-score"
-    | "liquidity-run";
+    | "liquidity-run"
+    | "sampling"
+    | "regression";
   realWorldExample: {
     company: string;
     description: string;

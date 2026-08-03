@@ -42,7 +42,9 @@ export function tQuantile(p: number, df: number): number {
   return (lo + hi) / 2;
 }
 
-function tCdf(t: number, df: number): number {
+/** Hàm phân phối tích luỹ của Student-t. Xuất ra vì phần hồi quy cần nó để
+ *  đổi hệ số t thành p-value - cùng một phân phối, dùng theo chiều ngược lại. */
+export function tCdf(t: number, df: number): number {
   const x = df / (df + t * t);
   const ib = incompleteBeta(x, df / 2, 0.5);
   return t > 0 ? 1 - 0.5 * ib : 0.5 * ib;

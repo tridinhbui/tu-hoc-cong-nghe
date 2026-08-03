@@ -640,6 +640,7 @@ export const FINTECH_LESSONS: Lesson[] = [
       { label: "Chargeback: tiền bị đòi lại", arrow: true },
       { label: "Nền tảng chịu khoản mất + phí xử lý + rủi ro bị nâng mức giám sát" },
     ],
+    interactiveType: "sampling",
     realWorldExample: {
       company: "Ngưỡng chargeback của Visa và Mastercard",
       description:
