@@ -53,6 +53,8 @@ import {
   type StudyRoomSummary,
   type StudyRoomTopic,
 } from "@/lib/supabase-study-rooms";
+import { getRoomLighting } from "@/lib/study-room-lighting";
+import StudyRoomWorld from "@/components/study-room/StudyRoomWorld";
 
 interface SessionUser {
   id: string;
@@ -236,6 +238,11 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
   const [messages, setMessages] = useState<StudyRoomMessage[]>([]);
   const [messageInput, setMessageInput] = useState("");
   const [sendingMessage, setSendingMessage] = useState(false);
+  /** Căn phòng đi lại được là mặc định: nó là căn phòng thật, có người khác
+   *  đang đứng trong đó và đi tới chỗ họ được. Bàn học CSS bên dưới vẫn giữ
+   *  nguyên vì nó chở những thứ căn phòng 3D không chở: sơ đồ ghế theo hạng,
+   *  hiệu ứng cổ vũ, huy hiệu vừa-vào-phòng. */
+  const [walkMode, setWalkMode] = useState(true);
   const [rotation3D, setRotation3D] = useState<{ x: number; y: number }>({ x: 20, y: 0 });
   const [zoom3D, setZoom3D] = useState<number>(1.0);
   const [isDragging3D, setIsDragging3D] = useState(false);
@@ -1211,6 +1218,11 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
     }
   }
 
+  // Bảng ánh sáng theo giờ thật của người học. Đọc đồng hồ ở đây an toàn: mọi
+  // lần render trên server đều dừng ở nhánh `loading` ngay dưới, nên không có
+  // bản HTML nào của căn phòng để lệch khi hydrate.
+  const lighting = getRoomLighting(new Date().getHours());
+
   if (loading) {
     return (
       <div className={`${embedded ? "min-h-[320px]" : "min-h-screen bg-white dark:bg-stone-950"} flex items-center justify-center`}>
@@ -1457,23 +1469,31 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
             {/* Main 2-Column Split View */}
             <div className="flex-1 min-h-0 grid grid-cols-1 lg:grid-cols-12 gap-3 sm:gap-4 overflow-hidden">
               {/* LEFT COLUMN: 3D Spatial Table Stage 80% Viewport Height with Mouse Wheel Zoom */}
+              {/* Ở chế độ đi lại, KHÔNG gắn các handler xoay phòng: chúng và
+                  camera quỹ đạo của cảnh three.js cùng nghe một cú kéo chuột,
+                  và khi cả hai cùng phản ứng thì căn phòng vừa xoay theo CSS
+                  vừa xoay theo camera - chóng mặt và không điều khiển nổi. */}
               <div
-                onMouseDown={handleStageMouseDown}
-                onMouseMove={handleStageMouseMove}
-                onMouseUp={handleStageMouseUp}
-                onMouseLeave={handleStageMouseUp}
-                onTouchStart={handleStageMouseDown}
-                onTouchMove={handleStageMouseMove}
-                onTouchEnd={handleStageMouseUp}
-                onWheel={handleStageWheel}
-                onKeyDown={handleStageKeyDown}
-                tabIndex={0}
+                onMouseDown={walkMode ? undefined : handleStageMouseDown}
+                onMouseMove={walkMode ? undefined : handleStageMouseMove}
+                onMouseUp={walkMode ? undefined : handleStageMouseUp}
+                onMouseLeave={walkMode ? undefined : handleStageMouseUp}
+                onTouchStart={walkMode ? undefined : handleStageMouseDown}
+                onTouchMove={walkMode ? undefined : handleStageMouseMove}
+                onTouchEnd={walkMode ? undefined : handleStageMouseUp}
+                onWheel={walkMode ? undefined : handleStageWheel}
+                onKeyDown={walkMode ? undefined : handleStageKeyDown}
+                tabIndex={walkMode ? -1 : 0}
                 role="group"
-                aria-label="Phòng học 3D. Dùng phím mũi tên để xoay phòng, phím cộng và trừ để phóng to thu nhỏ, phím số 0 để đặt lại góc nhìn."
+                aria-label={
+                  walkMode
+                    ? "Phòng học 3D đi lại được. Dùng W và S để đi, A và D để xoay người, hoặc bốn nút mũi tên ở góc dưới bên phải."
+                    : "Phòng học 3D. Dùng phím mũi tên để xoay phòng, phím cộng và trừ để phóng to thu nhỏ, phím số 0 để đặt lại góc nhìn."
+                }
                 className={`lg:col-span-7 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-emerald-400 ${
                   mobileTab === "3d" ? "flex" : "hidden lg:flex"
                 } flex-col h-[64vh] min-h-[440px] sm:h-[74vh] sm:min-h-[600px] lg:h-[78vh] lg:min-h-[640px] flex-1 rounded-2xl border border-stone-800 bg-stone-950 p-3 sm:p-4 shadow-2xl relative overflow-hidden text-white justify-between select-none transition-colors ${
-                  isDragging3D ? "cursor-grabbing border-emerald-500/70" : "cursor-grab"
+                  walkMode ? "" : isDragging3D ? "cursor-grabbing border-emerald-500/70" : "cursor-grab"
                 }`}
                 // touchAction "pan-y" is the other half of the scroll fix in
                 // handleStageMouseDown: the browser keeps vertical panning
@@ -1486,20 +1506,34 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
                 <div className="relative z-30 flex items-center justify-between shrink-0 mb-1">
                   <div className="flex items-center gap-1.5 sm:gap-2">
                     <span className="text-[10px] font-black uppercase tracking-widest text-emerald-300 bg-emerald-950/80 px-2.5 py-0.5 rounded-full border border-emerald-500/40 backdrop-blur-md">
-                      🌐 BÀN HỌC 3D · {topicLabel(myRoom.topic).toUpperCase()}
+                      {walkMode ? "🚶 PHÒNG ĐI LẠI" : "🌐 BÀN HỌC 3D"} · {topicLabel(myRoom.topic).toUpperCase()} ·{" "}
+                      {lighting.label.toUpperCase()}
                     </span>
                     <button
                       type="button"
                       onClick={(e) => {
                         e.stopPropagation();
-                        resetCamera();
+                        setWalkMode((prev) => !prev);
                       }}
-                      className="text-[9px] font-bold text-stone-300 bg-stone-900/90 hover:bg-stone-800 px-2 py-0.5 rounded-full border border-stone-700 transition-all cursor-pointer"
-                      title="Đặt lại góc 3D và độ Zoom"
-                      aria-label={`Đặt lại góc nhìn 3D và độ phóng, hiện tại ${Math.round(zoom3D * 100)} phần trăm`}
+                      className="text-[9px] font-bold text-emerald-200 bg-emerald-950/80 hover:bg-emerald-900 px-2 py-0.5 rounded-full border border-emerald-500/40 transition-all cursor-pointer"
+                      title={walkMode ? "Chuyển về bàn học nhìn từ ngoài" : "Vào phòng và đi lại được"}
                     >
-                      🔄 Góc & Zoom ({Math.round(zoom3D * 100)}%)
+                      {walkMode ? "🪑 Xem bàn học" : "🚶 Vào phòng đi lại"}
                     </button>
+                    {!walkMode && (
+                      <button
+                        type="button"
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          resetCamera();
+                        }}
+                        className="text-[9px] font-bold text-stone-300 bg-stone-900/90 hover:bg-stone-800 px-2 py-0.5 rounded-full border border-stone-700 transition-all cursor-pointer"
+                        title="Đặt lại góc 3D và độ Zoom"
+                        aria-label={`Đặt lại góc nhìn 3D và độ phóng, hiện tại ${Math.round(zoom3D * 100)} phần trăm`}
+                      >
+                        🔄 Góc & Zoom ({Math.round(zoom3D * 100)}%)
+                      </button>
+                    )}
                   </div>
 
                   {/* Quick Cheer Actions Bar */}
@@ -1532,10 +1566,35 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
                     string and would drop the placement. Where both are needed
                     the placement lives on a plain wrapper and the animation on
                     a child. */}
+                {walkMode && user ? (
+                  <div className="relative flex-1 min-h-0 w-full">
+                    <StudyRoomWorld
+                      roomId={myRoom.room_id}
+                      userId={user.id}
+                      name={myMemberRow?.full_name || "Bạn"}
+                      avatarUrl={myMemberRow?.avatar_url ?? null}
+                      level={myMemberRow?.current_level ?? 1}
+                      weeklyLessons={myMemberRow?.weekly_lessons ?? 0}
+                      weeklyXpProgress={myRoom.weekly_xp_progress}
+                      weeklyXpGoal={myRoom.weekly_xp_goal}
+                      missionLines={missions.map(
+                        (m) => `${m.completed ? "✓" : "•"} ${m.title}: ${m.current_value}/${m.target_value}`
+                      )}
+                      topicLabel={topicLabel(myRoom.topic)}
+                      onExit={() => setWalkMode(false)}
+                    />
+                  </div>
+                ) : (
+                  <>
                 <div className="relative flex-1 min-h-0 w-full flex items-center justify-center overflow-hidden">
                   {/* Lamp bloom and vignette stay outside the world: light is
                       screen-space, it shouldn't rotate with the furniture. */}
-                  <div className="pointer-events-none absolute inset-0 z-20 bg-[radial-gradient(ellipse_at_50%_32%,transparent_38%,rgba(0,0,0,0.6)_100%)]" />
+                  <div
+                    className="pointer-events-none absolute inset-0 z-20 transition-[background] duration-700"
+                    style={{
+                      background: `radial-gradient(ellipse at 50% 32%, transparent 38%, rgba(0,0,0,${lighting.vignette}) 100%)`,
+                    }}
+                  />
 
                   {/* Weekly goal + reward chest. Deliberately a HUD card in the
                       corner rather than a billboard over the table: it is UI,
@@ -1613,7 +1672,10 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
                         }}
                       >
                         {/* Pool of lamplight on the boards */}
-                        <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[400px] h-[400px] rounded-full bg-[radial-gradient(circle,rgba(16,185,129,0.17)_0%,rgba(16,185,129,0.05)_45%,transparent_72%)]" />
+                        <div
+                          className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[400px] h-[400px] rounded-full transition-[background] duration-700"
+                          style={{ background: lighting.floorPool }}
+                        />
                         {/* Rug under the table */}
                         <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[430px] h-[430px] rounded-full border border-emerald-500/20 bg-emerald-950/30" />
                         <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[340px] h-[340px] rounded-full border border-dashed border-emerald-400/25" />
@@ -1626,11 +1688,15 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
                           width: ROOM_W,
                           height: ROOM_H,
                           transform: `translate(-50%, -50%) translateY(${FLOOR_Y - ROOM_H / 2}px) translateZ(-${ROOM_D / 2}px)`,
-                          background: "linear-gradient(180deg, #0a0908 0%, #1c1917 60%, #292524 100%)",
+                          background: lighting.backWall,
+                          transition: "background 700ms ease",
                         }}
                       >
                         {/* Window onto a night skyline */}
-                        <div className="absolute top-9 left-12 w-[152px] h-[94px] rounded-md border-2 border-stone-700 bg-[linear-gradient(165deg,#0b3b33_0%,#052e2b_55%,#03211f_100%)] shadow-[0_0_46px_rgba(16,185,129,0.28)]">
+                        <div
+                          className="absolute top-9 left-12 w-[152px] h-[94px] rounded-md border-2 border-stone-700 transition-[background,box-shadow] duration-700"
+                          style={{ background: lighting.windowSky, boxShadow: lighting.windowGlow }}
+                        >
                           <div className="absolute inset-0 grid grid-cols-2 grid-rows-2">
                             <div className="border-r border-b border-stone-700/70" />
                             <div className="border-b border-stone-700/70" />
@@ -1693,8 +1759,8 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
                             }px) rotateY(${side * -90}deg)`,
                             background:
                               side === -1
-                                ? "linear-gradient(90deg, #0a0908 0%, #191614 100%)"
-                                : "linear-gradient(270deg, #0a0908 0%, #191614 100%)",
+                                ? lighting.sideWallLeft
+                                : lighting.sideWallRight,
                           }}
                         >
                           <div className="absolute bottom-0 left-0 right-0 h-3.5 bg-stone-800 border-t border-stone-700" />
@@ -2016,6 +2082,8 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
                   <span className="sm:hidden">👉 Vuốt ngang để xoay (vẩy mạnh để quay tiếp) · vuốt dọc để cuộn trang</span>
                   <span className="ml-1 tabular-nums">({Math.round(zoom3D * 100)}%)</span>
                 </div>
+                  </>
+                )}
               </div>
 
               {/* RIGHT COLUMN: Group Chat Box Matched 80% Viewport Height */}
