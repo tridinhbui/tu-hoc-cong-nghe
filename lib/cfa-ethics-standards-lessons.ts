@@ -419,6 +419,26 @@ export const CFA_ETHICS_STANDARDS_LESSONS: Lesson[] = [
         "text": "Standard không buộc bạn tố cáo ra bên ngoài. Nó buộc hai việc: tách mình khỏi hành vi vi phạm, và nêu vấn đề trong nội bộ qua kênh phù hợp. Điểm cần nhớ là im lặng làm tiếp không phải trạng thái trung lập - nó là một hình thức tham gia, và được xử như vậy."
       },
       {
+        "type": "heading",
+        "text": "Hai chi nhánh, cùng một giao dịch"
+      },
+      {
+        "type": "comparison",
+        "left": {
+          "label": "Vi phạm",
+          "text": "Bạn làm ở một văn phòng tại thị trường A, nơi luật không cấm giao dịch trước tin nội bộ. Khách hàng và cổ phiếu đều ở thị trường B, nơi hành vi đó bị cấm. Bạn giao dịch, lập luận rằng luật nơi mình ngồi cho phép. Sai ở hai tầng: luật nơi hoạt động thực sự diễn ra là B, và độc lập với điều đó, Standard II(A) cấm hành vi này ở mọi nơi. Khi ba nguồn bất đồng, bộ chặt nhất thắng."
+        },
+        "right": {
+          "label": "Không vi phạm",
+          "text": "Cùng hai thị trường đó, nhưng thị trường A có quy định công bố danh mục nghiêm hơn cả Code. Bạn theo quy định của A, kể cả với khách ở B. Đúng - vì nguyên tắc chạy cả hai chiều: gặp luật khắt khe hơn Code thì theo luật, gặp Code khắt khe hơn luật thì theo Code."
+        }
+      },
+      {
+        "type": "callout",
+        "label": "Tách mình khỏi hành vi vi phạm nghĩa là gì trên thực tế",
+        "text": "Không phải là im lặng rồi tiếp tục làm việc bên cạnh. Nó gồm những việc để lại dấu vết: từ chối tham gia phần công việc có liên quan, nêu vấn đề bằng văn bản qua kênh nội bộ, và nếu tổ chức không xử lý thì cân nhắc rời vị trí đó. Điều Standard KHÔNG buộc là tố cáo ra bên ngoài - nghĩa vụ đó do luật của từng nơi quy định, không phải do Code."
+      },
+      {
         "type": "closing",
         "lines": [
           "Câu hỏi không phải luật ở đây cho phép gì.",

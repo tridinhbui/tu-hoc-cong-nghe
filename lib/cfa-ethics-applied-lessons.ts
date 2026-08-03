@@ -408,6 +408,26 @@ export const CFA_ETHICS_APPLIED_LESSONS: Lesson[] = [
         "text": "Hai giới hạn cần đọc kỹ ở ngoại lệ thứ hai. Nó chỉ áp dụng cho hành vi bất hợp pháp của chính khách hàng, không phải của một bên thứ ba mà bạn tình cờ biết qua khách hàng. Và nó cho phép báo cho cơ quan có thẩm quyền, chứ không cho phép chia sẻ rộng rãi hay đưa lên truyền thông."
       },
       {
+        "type": "heading",
+        "text": "Ba ngoại lệ, đọc kỹ từng chữ"
+      },
+      {
+        "type": "comparison",
+        "left": {
+          "label": "Rơi vào ngoại lệ",
+          "text": "Trong quá trình quản lý danh mục, bạn phát hiện chính khách hàng đang dùng tài khoản để rửa tiền. Đó là hành vi bất hợp pháp của chính khách hàng, và ngoại lệ thứ hai áp dụng. Cả khi luật của nơi bạn hành nghề trực tiếp buộc báo cáo, ngoại lệ thứ nhất cũng áp dụng - và khi đó nó không còn là lựa chọn."
+        },
+        "right": {
+          "label": "Không rơi vào ngoại lệ",
+          "text": "Khách hàng kể với bạn rằng đối tác của họ đang gian lận thuế. Đây là hành vi của bên thứ ba, không phải của khách hàng, nên ngoại lệ thứ hai không áp dụng. Việc bạn thấy nó nghiêm trọng, hay việc tiết lộ có thể giúp ai đó, đều không tạo ra ngoại lệ mới."
+        }
+      },
+      {
+        "type": "callout",
+        "label": "Vì sao nghĩa vụ không có thời hạn",
+        "text": "Thông tin tài chính của một người không hết giá trị khi hợp đồng kết thúc. Danh mục, khoản nợ, kế hoạch thừa kế, lý do họ bán một tài sản - những thứ đó vẫn nhạy cảm mười năm sau. Hệ quả thực tế: khi bạn chuyển sang công ty mới, không được mang theo thông tin khách hàng cũ, kể cả để chứng minh năng lực của mình. Đó là chỗ Standard III(E) hay bị vi phạm nhất, và thường là vô ý."
+      },
+      {
         "type": "closing",
         "lines": [
           "Khách hàng kể cho bạn vì công việc buộc họ phải kể.",
@@ -1238,6 +1258,26 @@ export const CFA_ETHICS_APPLIED_LESSONS: Lesson[] = [
         ]
       },
       {
+        "type": "heading",
+        "text": "Chia sẻ tới đâu thì thành vi phạm"
+      },
+      {
+        "type": "comparison",
+        "left": {
+          "label": "Vi phạm",
+          "text": "Sau kỳ thi, bạn viết lên diễn đàn rằng phần đạo đức năm nay hỏi rất nhiều về Standard III, gần như không có câu nào về VII, và dạng câu hỏi tình huống dài hơn hẳn đề mẫu. Không câu chữ nào của đề bị chép lại, nhưng thông tin về trọng số và dạng câu hỏi là nội dung đề - và người đọc được nó có lợi thế mà thí sinh khác không có."
+        },
+        "right": {
+          "label": "Không vi phạm",
+          "text": "Bạn viết rằng mình học đạo đức bằng cách đọc kỹ các ca trong Standards of Practice Handbook thay vì học thuộc tên Standard, và cách đó hợp với mình. Đây là kinh nghiệm ôn tập, dựa hoàn toàn trên tài liệu công khai, không nói gì về đề đã thi."
+        }
+      },
+      {
+        "type": "callout",
+        "label": "Nghĩa vụ bắt đầu sớm hơn và kéo dài lâu hơn bạn tưởng",
+        "text": "Sớm hơn: khai gian trong hồ sơ đăng ký - kinh nghiệm làm việc, bằng cấp, hồ sơ kỷ luật - đã là vi phạm Standard VII(A) từ trước ngày thi. Lâu hơn: nghĩa vụ bảo mật không có thời hạn, vì ngân hàng câu hỏi được dùng lại qua nhiều kỳ. Một câu bạn kể lại năm nay có thể vẫn đang được dùng ba năm sau."
+      },
+      {
         "type": "closing",
         "lines": [
           "Bạn bảo vệ đề thi không phải vì nó là tài sản của ai.",
@@ -1736,6 +1776,26 @@ export const CFA_ETHICS_APPLIED_LESSONS: Lesson[] = [
       {
         "type": "paragraph",
         "text": "Con số do mô hình đưa ra trông khách quan hơn ý kiến của một người, nên người dùng ít chất vấn nó hơn. Hiệu ứng đó làm rủi ro cao hơn chứ không thấp hơn. Standard V(B) vì thế cũng chạm tới: khách hàng phải biết mô hình có tham gia vào quyết định và biết giới hạn của nó."
+      },
+      {
+        "type": "heading",
+        "text": "Ranh giới của chữ hiểu đủ"
+      },
+      {
+        "type": "comparison",
+        "left": {
+          "label": "Đủ cơ sở hợp lý",
+          "text": "Bạn không giải thích được vì sao mô hình đặt trọng số 0,31 cho một biến - và không cần. Nhưng bạn biết nó huấn luyện trên dữ liệu 2010-2020, một giai đoạn không có cú sốc lãi suất nào đáng kể; biết nó tối ưu cho lợi suất 12 tháng chứ không phải cho mức sụt giảm tối đa; và biết nó kém hẳn khi thanh khoản mỏng. Bạn nói được nó sẽ hỏng ở đâu."
+        },
+        "right": {
+          "label": "Thiếu cơ sở hợp lý",
+          "text": "Mô hình có thành tích kiểm định lùi tốt và bạn dùng đầu ra của nó, nhưng không biết dữ liệu huấn luyện phủ giai đoạn nào, không biết nó tối ưu cho mục tiêu gì, không biết điều kiện nào làm nó sai. Thành tích quá khứ không thay thế được việc hiểu mô hình - đó chính là chỗ Standard V(A) không có ngoại lệ cho máy."
+        }
+      },
+      {
+        "type": "callout",
+        "label": "Con số trông khách quan hơn ý kiến, và đó là rủi ro chứ không phải sự an tâm",
+        "text": "Một khuyến nghị viết bằng chữ dễ bị chất vấn: người đọc thấy ngay đó là quan điểm của một người. Cùng khuyến nghị đó hiện ra dưới dạng điểm số 7,4/10 thì ít ai hỏi lại, dù nó đến từ cùng những giả định. Hệ quả với nghĩa vụ giải thích cho khách hàng: phải nói rõ đây là đầu ra của một mô hình và mô hình đó dựa trên gì, chứ không được để con số tự tạo ra cảm giác chắc chắn mà nó không có."
       },
       {
         "type": "closing",

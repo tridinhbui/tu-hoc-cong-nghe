@@ -245,6 +245,37 @@ export const CFA_ETHICS_CASES_LESSONS: Lesson[] = [
         ]
       },
       {
+        "type": "heading",
+        "text": "Ba dạng phí giới thiệu, cùng một nghĩa vụ"
+      },
+      {
+        "type": "conceptTable",
+        "title": "Không chỉ tiền mặt mới phải công bố",
+        "subtitle": "Câu hỏi là có lợi ích nào chảy theo lời giới thiệu không, chứ không phải nó có dạng gì",
+        "concepts": [
+          {
+            "vi": "Nhận hoa hồng khi giới thiệu khách sang một quỹ",
+            "en": "Chiều nhận",
+            "def": "Dạng ai cũng nhớ. Phải nói trước khi khách quyết định, và phải nói cả cơ cấu - một lần hay theo tỷ lệ tài sản, vì hai cách tạo động cơ khác nhau."
+          },
+          {
+            "vi": "Trả phí cho người đã dẫn khách đến với bạn",
+            "en": "Chiều trả",
+            "def": "Hay bị quên, vì cảm giác tiền ra khỏi túi mình thì đâu ảnh hưởng gì tới khách. Nhưng khách cần biết lời giới thiệu mà họ tin tưởng đã được trả tiền."
+          },
+          {
+            "vi": "Thoả thuận giới thiệu qua lại, không có tiền",
+            "en": "Không phải tiền",
+            "def": "Bạn dẫn khách sang họ, họ dẫn khách sang bạn. Không đồng nào đổi chủ, nhưng lợi ích thì có và động cơ thì y hệt - nên vẫn phải công bố."
+          }
+        ]
+      },
+      {
+        "type": "callout",
+        "label": "Thời điểm quan trọng ngang nội dung",
+        "text": "Công bố phải diễn ra TRƯỚC khi khách hàng đưa ra quyết định, không phải trong bản báo cáo quý gửi sau đó, và không phải khi khách hỏi. Lý do nằm ở mục đích của Standard: thông tin này tồn tại để khách hàng cân nhắc lời khuyên đúng trọng lượng của nó. Nói sau khi họ đã ký thì thông tin vẫn đầy đủ nhưng đã mất hết công dụng - và đó chính là vi phạm."
+      },
+      {
         "type": "closing",
         "lines": [
           "Khách hàng có thể chấp nhận việc bạn được trả hoa hồng.",
@@ -405,6 +436,38 @@ export const CFA_ETHICS_CASES_LESSONS: Lesson[] = [
       {
         "type": "paragraph",
         "text": "Hai điểm hay bị hiểu sai. Thứ nhất, không cần một bản án hình sự mới cấu thành vi phạm - bằng chứng về hành vi là đủ. Thứ hai, logic nền của Standard là hành vi ở bối cảnh này dự báo hành vi ở bối cảnh khác, nên câu hỏi cuối cùng luôn quy về một điều: có nên giao tiền của người khác cho người này không."
+      },
+      {
+        "type": "conceptTable",
+        "title": "Cùng một loại việc riêng, khác nhau ở chỗ nó nói lên điều gì",
+        "subtitle": "Tiêu chí là trung thực, đáng tin cậy, năng lực nghề - không phải mức độ nghiêm trọng",
+        "concepts": [
+          {
+            "vi": "Khai man bằng cấp trong hồ sơ xin việc ở một ngành khác",
+            "en": "Trong phạm vi",
+            "def": "Không liên quan gì tới công việc đầu tư, nhưng nói thẳng về tính trung thực. Thuộc phạm vi Standard I(D) dù xảy ra ở đâu."
+          },
+          {
+            "vi": "Một tranh chấp hợp đồng dân sự với hàng xóm",
+            "en": "Ngoài phạm vi",
+            "def": "Có thể ồn ào và kéo dài, nhưng không nói gì về trung thực hay năng lực nghề. Standard I(D) không phải điều khoản về danh tiếng chung."
+          },
+          {
+            "vi": "Vỡ nợ cá nhân do rủi ro kinh doanh",
+            "en": "Thường ngoài phạm vi",
+            "def": "Thất bại kinh doanh không đồng nghĩa với gian dối. Nhưng nếu kèm che giấu tài sản hay khai sai với chủ nợ thì phần che giấu đó mới là vi phạm."
+          },
+          {
+            "vi": "Gian lận trong một kỳ thi bất kỳ",
+            "en": "Trong phạm vi",
+            "def": "Chạm cả trung thực lẫn năng lực - và nếu là kỳ thi CFA thì đồng thời vi phạm Standard VII(A)."
+          }
+        ]
+      },
+      {
+        "type": "callout",
+        "label": "Không cần bản án",
+        "text": "Standard I(D) không chờ hệ thống tư pháp. Bằng chứng về hành vi là đủ để cấu thành vi phạm, vì nghĩa vụ ở đây là với nghề chứ không phải với nhà nước. Điều đó cũng có nghĩa chiều ngược lại đúng: được tuyên vô tội trong một vụ án hình sự không tự động xoá vấn đề, nếu bằng chứng về hành vi vẫn còn đó."
       },
       {
         "type": "closing",
@@ -732,6 +795,26 @@ export const CFA_ETHICS_CASES_LESSONS: Lesson[] = [
           "Nghiên cứu do chính doanh nghiệp được phân tích trả tiền: kéo theo cả Standard I(B) về tính độc lập, nên phải công bố nguồn tài trợ chứ không chỉ thẩm định nội dung.",
           "Hai nguồn uy tín cho kết luận trái ngược: đây là tín hiệu phải đào sâu, không phải bằng chứng rằng một bên sai. Chọn bên hợp với kết luận có sẵn của mình là thiên kiến xác nhận mặc áo nghiên cứu."
         ]
+      },
+      {
+        "type": "heading",
+        "text": "Cùng một báo cáo, hai cách dùng"
+      },
+      {
+        "type": "comparison",
+        "left": {
+          "label": "Vi phạm",
+          "text": "Một môi giới gửi báo cáo khuyến nghị MUA một cổ phiếu ngành thép. Bạn chuyển thẳng khuyến nghị đó cho khách, có ghi rõ nguồn. Nhưng bạn không biết báo cáo giả định giá quặng giữ nguyên trong ba năm, cũng không biết môi giới đó vừa bảo lãnh phát hành cho chính doanh nghiệp này. Ghi nguồn đầy đủ không cứu được: cơ sở hợp lý cho khuyến nghị bạn đưa ra vẫn là nghĩa vụ của bạn."
+        },
+        "right": {
+          "label": "Không vi phạm",
+          "text": "Cùng báo cáo đó, nhưng bạn đọc phần giả định, thấy giá quặng là biến quyết định, tự kiểm tra bằng dữ liệu hợp đồng tương lai, phát hiện quan hệ tài trợ và công bố nó cho khách. Bạn vẫn có thể kết luận giống hệt môi giới - khác biệt nằm ở chỗ giờ bạn biết mình đang dựa vào đâu."
+        }
+      },
+      {
+        "type": "callout",
+        "label": "Mức thẩm định thay đổi theo nguồn, không phải theo kết luận",
+        "text": "Một nhà cung cấp có quy trình đã kiểm chứng, bạn đã dùng nhiều năm và từng đối chiếu kết quả, thì mức thẩm định thấp hơn. Một nguồn mới, một nguồn do chính doanh nghiệp được phân tích trả tiền, hay một nguồn có kết luận lệch hẳn với những gì bạn biết về doanh nghiệp - cả ba đều đòi kiểm tra sâu hơn. Điều dễ sai là hạ mức thẩm định khi báo cáo trùng với quan điểm sẵn có của mình."
       },
       {
         "type": "closing",
