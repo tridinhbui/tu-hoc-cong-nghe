@@ -64,6 +64,9 @@ export const SKILL_DOMAINS: SkillDomain[] = [
       271,
       1001, 1007, 1010, 1011, 1012, 1013, 1015, 1016, 1018, 1019, 1022, 1023, 1026, 1027, 1035,
       1101, 1244, 1265, 1266,
+      // Chặng 41: báo cáo được LẬP ra thế nào - phần còn thiếu bên cạnh
+      // hàng chục bài dạy đọc báo cáo.
+      ...range(1721, 1725),
       // Chặng 24 (VAS/IFRS, thuế doanh nghiệp, thuế hoãn lại), đọc BCTC ngân
       // hàng, và khung báo cáo ESG - đều là đọc và lập báo cáo.
       1014, 1327, 1401, ...range(1441, 1448),
@@ -99,7 +102,7 @@ export const SKILL_DOMAINS: SkillDomain[] = [
     // Chặng 39 (FinTech) là kinh tế học của một sản phẩm: doanh thu đến từ
     // đâu, biên đóng góp, điểm hoà vốn - cùng bộ câu hỏi của tài chính doanh
     // nghiệp, chỉ đặt trên một mô hình kinh doanh khác.
-    lessonIds: [...range(92, 120), 1017, 1020, 1038, 1209, 1243, 1247, 1253, 1259, ...range(1701, 1706)],
+    lessonIds: [...range(92, 120), 1017, 1020, 1038, 1209, 1243, 1247, 1253, 1259, ...range(1701, 1706), ...range(1711, 1715)],
   },
   {
     id: "modeling_excel",

@@ -827,6 +827,38 @@ export const TRACK_PROFESSIONAL = {
         { name: "Phần mất đi và đường tới hoà vốn: rủi ro tín dụng, gian lận, burn", days: [1704, 1706] as [number, number] },
       ],
     },
+    {
+      // Quét kho theo từng kỹ năng mà nghề "Chuyên viên Quan hệ Cổ đông" tự
+      // khai - soạn thông cáo, gặp nhà đầu tư, xử lý câu hỏi khó - cho ra 0
+      // bài. Nghề này trước đó học ghép từ các bài tài chính doanh nghiệp
+      // chung, tức là học được phần hiểu số mà không học phần chính: đứng
+      // trước người khác và chịu trách nhiệm về những con số đó.
+      label: "Chặng 40",
+      name: "Quan hệ cổ đông (IR)",
+      days: [1711, 1715] as [number, number],
+      available: true,
+      isNew: true,
+      parts: [
+        { name: "Nghề IR và nghĩa vụ công bố thông tin", days: [1711, 1712] as [number, number] },
+        { name: "Guidance, buổi gặp nhà đầu tư và xử lý tin xấu", days: [1713, 1715] as [number, number] },
+      ],
+    },
+    {
+      // Kho có rất nhiều bài dạy ĐỌC báo cáo tài chính và không bài nào dạy
+      // báo cáo đó được LẬP ra thế nào - quét bút toán, sổ cái, hạch toán ra
+      // 0 bài. Ảnh hưởng xa hơn nghề kế toán: người phân tích chưa từng thấy
+      // hai vế của một định khoản sẽ không giải thích được vì sao lãi tăng mà
+      // tiền không tăng.
+      label: "Chặng 41",
+      name: "Bút toán và sổ sách kế toán",
+      days: [1721, 1725] as [number, number],
+      available: true,
+      isNew: true,
+      parts: [
+        { name: "Ghi sổ kép và đường đi từ chứng từ tới báo cáo", days: [1721, 1722] as [number, number] },
+        { name: "Điều chỉnh cuối kỳ, đối chiếu và khoá sổ", days: [1723, 1725] as [number, number] },
+      ],
+    },
   ] satisfies Stage[],
 };
 
@@ -840,7 +872,7 @@ export const PROFESSIONAL_BRANCHES = [
     label: "Tài chính doanh nghiệp",
     subtitle: "Kế toán, báo cáo tài chính, định giá, vận hành vốn & mô hình tài chính",
     emoji: "🏢",
-    stageLabels: ["Chặng 1", "Chặng 2", "Chặng 3", "Chặng 4", "Chặng 5", "Chặng 11", "Chặng 15", "Chặng 24", "Chặng 31", "Chặng 33"],
+    stageLabels: ["Chặng 1", "Chặng 2", "Chặng 3", "Chặng 4", "Chặng 5", "Chặng 11", "Chặng 15", "Chặng 24", "Chặng 31", "Chặng 33", "Chặng 40", "Chặng 41"],
   },
   {
     id: "investment",
