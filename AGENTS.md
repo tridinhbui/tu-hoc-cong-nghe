@@ -44,10 +44,18 @@ than by reading:
 4. **No absurdity distractors.** `"Luôn tốt"`, `"Không ảnh hưởng"`,
    `"luôn đúng 100%"`, `"Không có khái niệm này"`, `"Tidak ada"` — these are
    blank space, not options. They are eliminated on sight and turn a
-   four-option question into a two-option one. Down from 28% of the corpus to
-   10% (228 questions across 181 lessons) - and unlike the length tell, nothing
-   measures this one yet, so it only shrinks when someone rewrites a lesson for
-   another reason.
+   four-option question into a two-option one. Now measured and gated at zero
+   by `scripts/audit-lesson-content.mjs`; the corpus is clean.
+
+   The "10% of the corpus" figure that stood here was wrong. It came from
+   matching any option containing a marker phrase, and 168 of its 198 matches
+   were legitimate distractors that happened to use one — `"Lạm phát không ảnh
+   hưởng gì tới trái phiếu vì coupon đã được cố định sẵn"` is a misconception
+   worth testing, not filler. The check only flags an option that has no digits
+   (so numeric answers like `"15%"` are left alone), is under 30 characters (so
+   anything carrying a clause is left alone), and opens with a hollow formula.
+   Written that narrowly it found five in 2,815 questions, and all five are
+   fixed.
 5. **Never contradict another lesson's correct answer.** Negative working
    capital is a *strength* for retail and subscription businesses (lesson 178),
    so it cannot be the wrong answer in lesson 50. Check the neighbouring

@@ -138,6 +138,42 @@ const MAX_TELL_SHARE = 0.27;
  *  it exists to stop the drift getting worse, not to declare it fixed. */
 const MAX_SHORTEST_SHARE = 0.28;
 
+// ── Hollow distractors ─────────────────────────────────────────────────────
+//
+// AGENTS.md rule 4 bans options that are blank space: "Luôn tốt", "Không ảnh
+// hưởng", "Không có khái niệm này". They are eliminated on sight, so a
+// four-option question quietly becomes a two-option one and the guesser's odds
+// double. Until now nothing measured it, and the figure quoted in AGENTS.md -
+// 228 questions, 10% of the corpus - turned out to be almost entirely false
+// positives: it matched any option containing a marker phrase, and 168 of the
+// 198 matches were legitimate distractors carrying real reasoning ("Lạm phát
+// không ảnh hưởng gì tới trái phiếu vì coupon đã được cố định sẵn" is a
+// misconception worth testing, not filler).
+//
+// So the check is deliberately narrow, because a noisy gate gets ignored:
+//   - digits anywhere means it is a numeric answer and is left alone. The
+//     shortest options in the corpus are "2x", "15%", "12 lần" - all valid.
+//   - over 30 characters means the option carries a clause, so it is reasoning
+//     rather than a bare assertion.
+//   - what remains must open with one of the hollow formulas below.
+//
+// That found five, which have been rewritten. The budget is zero: this is not
+// a backlog to grind down, it is a shape of option that should never appear.
+const HOLLOW_DISTRACTOR = new RegExp(
+  "^(luôn (tốt|xấu|đúng|sai)" +
+    "|không (ảnh hưởng|liên quan|quan trọng|có khái niệm|cần|có lý do|thể (tính|xác định)|công thức|đổi)" +
+    "|tùy ý|bình thường|tidak ada|thứ tự không)",
+  "i"
+);
+const MAX_HOLLOW_DISTRACTORS = 0;
+
+function isHollowDistractor(option) {
+  const text = String(option ?? "").trim().replace(/\.$/, "");
+  if (/\d/.test(text)) return false;
+  if (text.length > 30) return false;
+  return HOLLOW_DISTRACTOR.test(text);
+}
+
 /** A lesson fails when this share of its questions have the correct answer as
  *  the longest option. At 4 options, chance level is 25%. A tie for longest
  *  counts - three lessons passed the eyeball test and still failed here because
@@ -156,6 +192,8 @@ for (const track of Object.keys(quizStats)) {
 /** Lessons failing the per-lesson bar but absent from the baseline - i.e. new
  *  or newly regressed, which is what the gate exists to catch. */
 const unbaselined = [];
+/** Options that are blank space rather than a wrong answer - see rule 4. */
+const hollowDistractors = [];
 /** Baselined lessons that now pass, so the baseline must shrink. */
 const fixedButStillBaselined = [];
 
@@ -186,6 +224,12 @@ for (const file of files) {
       stats.shortest++;
     }
     stats.ratioSum += mean > 0 ? correctLength / mean : 0;
+    (question.options ?? []).forEach((option, index) => {
+      if (index === question.correct) return;
+      if (isHollowDistractor(option)) {
+        hollowDistractors.push({ id: lesson.id, slug: lesson.slug, option: String(option) });
+      }
+    });
   }
 
   if (questions.length < MIN_QUESTIONS_FOR_TELL_CHECK) continue;
@@ -230,6 +274,19 @@ console.log(
 );
 
 const tellFailures = [];
+
+if (hollowDistractors.length > MAX_HOLLOW_DISTRACTORS) {
+  tellFailures.push(
+    `${hollowDistractors.length} distractor(s) are blank space rather than a wrong answer ` +
+      `(AGENTS.md rule 4) - each one turns a four-option question into a two-option one:\n` +
+      hollowDistractors
+        .sort((a, b) => a.id - b.id)
+        .map((row) => `    [${row.id}] ${row.slug} - "${row.option}"`)
+        .join("\n") +
+      `\n  Replace each with a mistake a learner actually makes. The budget is 0: this is ` +
+      `not a backlog, it is a shape of option that should never be written.`
+  );
+}
 
 // ── Slug trùng trong lesson-quiz-overrides.js ──────────────────────────────
 //
