@@ -446,6 +446,7 @@ export const FRM_REMAINING_DEPTH_LESSONS: Lesson[] = [
       { label: "Tài sản bảo đảm: trừ tiếp phần đã nhận, sau khi trừ haircut", arrow: true },
       { label: "Phần còn lại mới là thứ phải tính vốn và tính CVA", arrow: false },
     ],
+    interactiveType: "liquidity-run",
     realWorldExample: {
       company: "Thoả thuận khung ISDA và phụ lục tài sản bảo đảm",
       description:
@@ -720,6 +721,7 @@ export const FRM_REMAINING_DEPTH_LESSONS: Lesson[] = [
       { label: "Khoảng chênh phải được đệm bằng số dư hoặc hạn mức thấu chi trong ngày", arrow: true },
       { label: "Thiếu đệm thì thanh toán bị xếp hàng và lan sang ngân hàng khác", arrow: false },
     ],
+    interactiveType: "liquidity-run",
     realWorldExample: {
       company: "Hệ thống thanh toán tổng tức thời",
       description:
@@ -856,6 +858,7 @@ export const FRM_REMAINING_DEPTH_LESSONS: Lesson[] = [
       { label: "Bên vay huy động được ít hơn, phải bán tài sản để bù", arrow: true },
       { label: "Bán đồng loạt làm giá giảm tiếp, haircut lại tăng - vòng lặp khép kín", arrow: false },
     ],
+    interactiveType: "liquidity-run",
     realWorldExample: {
       company: "Thị trường repo năm 2008",
       description:

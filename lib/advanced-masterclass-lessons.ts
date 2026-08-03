@@ -895,6 +895,7 @@ export const ADVANCED_MASTERCLASS_LESSONS: Lesson[] = [
       { label: "Xếp hạng ESG", arrow: true },
       { label: "Chi phí vốn và khả năng tiếp cận thị trường" },
     ],
+    interactiveType: "esg-score",
     realWorldExample: {
       company: "Doanh nghiệp xuất khẩu Việt Nam và CBAM",
       description:

@@ -19,6 +19,8 @@ import InteractiveMacroPolicy from "./InteractiveMacroPolicy";
 import ExcelPractice from "./ExcelPractice";
 import InteractivePromptCraft from "./InteractivePromptCraft";
 import InteractiveAiVerify from "./InteractiveAiVerify";
+import InteractiveEsgScore from "./InteractiveEsgScore";
+import InteractiveLiquidityRun from "./InteractiveLiquidityRun";
 import InteractiveFeeDrag from "./InteractiveFeeDrag";
 import InteractiveRatios from "./InteractiveRatios";
 import InteractiveTailRisk from "./InteractiveTailRisk";
@@ -54,7 +56,9 @@ export type WidgetType =
   | "excel-power-query"
   | "excel-sql"
   | "prompt-craft"
-  | "ai-verify";
+  | "ai-verify"
+  | "esg-score"
+  | "liquidity-run";
 
 export default function InteractiveWidget({ type }: { type: WidgetType }) {
   switch (type) {
@@ -105,6 +109,10 @@ export default function InteractiveWidget({ type }: { type: WidgetType }) {
       return <InteractivePromptCraft />;
     case "ai-verify":
       return <InteractiveAiVerify />;
+    case "esg-score":
+      return <InteractiveEsgScore />;
+    case "liquidity-run":
+      return <InteractiveLiquidityRun />;
     case "fee-drag":
       return <InteractiveFeeDrag />;
     case "ratios":
@@ -148,6 +156,8 @@ export const WIDGET_TYPES: readonly WidgetType[] = [
   "excel-sql",
   "prompt-craft",
   "ai-verify",
+  "esg-score",
+  "liquidity-run",
 ];
 
 export function hasInteractiveWidget(type: string | null | undefined): type is WidgetType {

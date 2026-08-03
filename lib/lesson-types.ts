@@ -128,7 +128,9 @@ export interface Lesson {
     | "excel-power-query"
     | "excel-sql"
     | "prompt-craft"
-    | "ai-verify";
+    | "ai-verify"
+    | "esg-score"
+    | "liquidity-run";
   realWorldExample: {
     company: string;
     description: string;

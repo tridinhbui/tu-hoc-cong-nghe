@@ -1974,6 +1974,7 @@ export const FRM_CORE_GAPS_LESSONS: Lesson[] = [
         label: "Giá giảm làm tài sản bảo đảm mất giá → bị rút vốn thêm"
       }
     ],
+    interactiveType: "liquidity-run",
     realWorldExample: {
       company: "Vòng xoáy thanh khoản trong các đợt căng thẳng thị trường",
       description: "Cấu trúc lặp lại trong nhiều đợt căng thẳng: một tổ chức bị nghi ngờ, nguồn vốn ngắn hạn không được gia hạn, buộc bán tài sản để có tiền. Việc bán tháo đẩy giá xuống, làm giá trị tài sản bảo đảm của chính tổ chức đó và của các tổ chức khác nắm tài sản tương tự giảm theo, kích hoạt thêm yêu cầu ký quỹ và thêm áp lực bán. Hai loại thanh khoản kéo nhau cùng cạn theo một vòng khuếch đại."
@@ -2281,6 +2282,7 @@ export const FRM_CORE_GAPS_LESSONS: Lesson[] = [
         label: "Lợi nhuận từng đơn vị phản ánh đúng rủi ro nó tạo ra"
       }
     ],
+    interactiveType: "liquidity-run",
     realWorldExample: {
       company: "FTP sai lệch như một nguyên nhân của khủng hoảng 2008",
       description: "Nhiều rà soát sau khủng hoảng tài chính toàn cầu chỉ ra rằng hệ thống định giá vốn nội bộ ở nhiều ngân hàng không tính phần bù thanh khoản, hoặc tính bằng một mức bình quân duy nhất cho mọi kỳ hạn. Hệ quả là các hoạt động dựa vào vốn ngắn hạn tài trợ cho tài sản dài hạn hiện ra như mảng sinh lời tốt nhất, được cấp thêm nguồn lực và mở rộng - cho tới khi nguồn vốn ngắn hạn ngừng gia hạn."
@@ -2434,6 +2436,7 @@ export const FRM_CORE_GAPS_LESSONS: Lesson[] = [
         label: "Nối vào kế hoạch tài trợ dự phòng với ngưỡng kích hoạt cụ thể"
       }
     ],
+    interactiveType: "liquidity-run",
     realWorldExample: {
       company: "Vì sao kịch bản kết hợp là kịch bản khó nhất",
       description: "Một cú sốc riêng của tổ chức còn xoay xở được nếu thị trường vẫn hoạt động bình thường: tài sản bán được theo giá, các nguồn vốn thay thế vẫn mở. Một cú sốc toàn thị trường thì mọi tổ chức cùng khó nhưng thường có sự can thiệp hỗ trợ. Kịch bản khắc nghiệt nhất là hai thứ xảy ra cùng lúc - danh tiếng tổ chức bị nghi ngờ đúng lúc thị trường đóng băng - và đây chính là hình dạng thực tế của phần lớn các vụ đổ vỡ ngân hàng."
@@ -2587,6 +2590,7 @@ export const FRM_CORE_GAPS_LESSONS: Lesson[] = [
         label: "Giá giảm hoặc biến động tăng → haircut tăng → phải bổ sung tài sản"
       }
     ],
+    interactiveType: "liquidity-run",
     realWorldExample: {
       company: "Cơ chế khuếch đại qua haircut trong khủng hoảng",
       description: "Trong các đợt căng thẳng thị trường, haircut trên thị trường tài trợ có bảo đảm được nâng lên đồng loạt vì bên cho vay lo giá tài sản tiếp tục giảm. Với cùng một danh mục tài sản, bên vay đột nhiên huy động được ít tiền hơn hẳn và phải bán bớt tài sản để bù. Việc bán đồng loạt đẩy giá xuống thêm, biện minh cho mức haircut cao hơn nữa - một vòng lặp tự củng cố mà không bên nào hành động phi lý."
@@ -2736,6 +2740,7 @@ export const FRM_CORE_GAPS_LESSONS: Lesson[] = [
         label: "Tạo động cơ rút sớm cho nhà đầu tư còn lại"
       }
     ],
+    interactiveType: "liquidity-run",
     realWorldExample: {
       company: "Các quỹ trái phiếu doanh nghiệp và bất động sản buộc tạm ngừng rút vốn",
       description: "Nhiều thị trường đã chứng kiến các quỹ đầu tư vào trái phiếu doanh nghiệp hoặc bất động sản phải tạm ngừng cho rút vốn khi làn sóng rút tiền vượt khả năng bán tài sản. Điểm chung là cấu trúc quỹ hứa thanh khoản hằng ngày trong khi tài sản cơ sở cần vài tuần tới vài tháng để bán ở giá hợp lý - lời hứa chỉ giữ được chừng nào không quá nhiều người đòi thực hiện cùng lúc."
