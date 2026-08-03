@@ -26,6 +26,18 @@ export const ROOM = {
 const WINDOW_COUNT = 7;
 const TABLE_ROWS = 6;
 
+/** Vị trí tâm các hàng bàn, tính một lần ở tầng module thay vì trong component.
+ *  Va chạm phía người chơi (LobbySceneInner) phải dùng đúng những con số này -
+ *  để hai nơi tự tính riêng là cách chắc chắn nhất khiến hình vẽ và khối chặn
+ *  lệch nhau sau lần đầu ai đó đổi số hàng bàn. */
+export const TABLE_ZS: number[] = Array.from(
+  { length: TABLE_ROWS },
+  (_, i) => -ROOM.length / 2 + (ROOM.length / (TABLE_ROWS + 1)) * (i + 1)
+);
+/** Nửa kích thước khối chặn của một bàn, khớp với boxGeometry bên dưới. */
+export const TABLE_HALF_W = 9.5 / 2;
+export const TABLE_HALF_D = 1.7 / 2;
+
 function ArchedWindow({ x, z, flip }: { x: number; z: number; flip: boolean }) {
   return (
     <group position={[x, 4.6, z]} rotation={[0, flip ? -Math.PI / 2 : Math.PI / 2, 0]}>
@@ -163,13 +175,7 @@ export default function ReadingRoom() {
     [halfL]
   );
 
-  const tableZs = useMemo(
-    () =>
-      Array.from({ length: TABLE_ROWS }, (_, i) =>
-        -halfL + (ROOM.length / (TABLE_ROWS + 1)) * (i + 1)
-      ),
-    [halfL]
-  );
+  const tableZs = TABLE_ZS;
 
   return (
     <group>

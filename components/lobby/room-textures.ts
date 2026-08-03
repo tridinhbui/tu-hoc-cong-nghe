@@ -191,6 +191,131 @@ export function nameplateTexture(name: string): THREE.Texture {
   return texture;
 }
 
+/** Bong bóng thoại: nền trắng bo tròn, đuôi nhọn chỉ xuống đầu nhân vật, chữ
+ *  tự xuống dòng. Trả về cả tỷ lệ khung để phía gọi đặt plane cho khỏi méo. */
+export function speechBubbleTexture(text: string): { texture: THREE.Texture; aspect: number } {
+  const W = 512;
+  const PAD = 26;
+  const FONT = "500 34px ui-sans-serif, system-ui, -apple-system, sans-serif";
+
+  // Đo trước để biết cần bao nhiêu dòng, rồi mới dựng canvas đúng chiều cao -
+  // canvas cố định sẽ hoặc cắt chữ dài, hoặc chừa khoảng trống với chữ ngắn.
+  const measure = document.createElement("canvas").getContext("2d");
+  if (!measure) throw new Error("Không lấy được canvas 2D context để dựng bong bóng thoại");
+  measure.font = FONT;
+
+  const maxTextW = W - PAD * 2;
+  const lines: string[] = [];
+  let line = "";
+  for (const word of text.split(/\s+/)) {
+    const candidate = line ? `${line} ${word}` : word;
+    if (measure.measureText(candidate).width > maxTextW && line) {
+      lines.push(line);
+      line = word;
+    } else {
+      line = candidate;
+    }
+  }
+  if (line) lines.push(line);
+
+  const lineH = 44;
+  const tail = 22;
+  const H = PAD * 2 + lines.length * lineH + tail;
+
+  const canvas = document.createElement("canvas");
+  canvas.width = W;
+  canvas.height = H;
+  const ctx = canvas.getContext("2d");
+  if (!ctx) throw new Error("Không lấy được canvas 2D context để dựng bong bóng thoại");
+
+  const bodyH = H - tail;
+  ctx.fillStyle = "rgba(253,246,227,0.96)";
+  ctx.beginPath();
+  ctx.roundRect(4, 0, W - 8, bodyH, 28);
+  ctx.fill();
+  // đuôi bong bóng
+  ctx.beginPath();
+  ctx.moveTo(W / 2 - 18, bodyH - 2);
+  ctx.lineTo(W / 2, H);
+  ctx.lineTo(W / 2 + 18, bodyH - 2);
+  ctx.closePath();
+  ctx.fill();
+
+  ctx.fillStyle = "#1c1917";
+  ctx.font = FONT;
+  ctx.textAlign = "center";
+  ctx.textBaseline = "middle";
+  lines.forEach((l, i) => {
+    ctx.fillText(l, W / 2, PAD + lineH / 2 + i * lineH);
+  });
+
+  const texture = new THREE.CanvasTexture(canvas);
+  texture.colorSpace = THREE.SRGBColorSpace;
+  texture.anisotropy = 4;
+  return { texture, aspect: W / H };
+}
+
+/** Bảng gỗ chữ trắng dùng cho bảng tin và bảng xếp hạng treo tường. */
+export function boardTexture(
+  title: string,
+  rows: string[],
+  opts: { width?: number; height?: number; accent?: string } = {}
+): THREE.Texture {
+  const W = opts.width ?? 768;
+  const H = opts.height ?? 512;
+  const canvas = document.createElement("canvas");
+  canvas.width = W;
+  canvas.height = H;
+  const ctx = canvas.getContext("2d");
+  if (!ctx) throw new Error("Không lấy được canvas 2D context để dựng bảng");
+
+  ctx.fillStyle = "#2c1f14";
+  ctx.fillRect(0, 0, W, H);
+  ctx.strokeStyle = opts.accent ?? "#c9a227";
+  ctx.lineWidth = 8;
+  ctx.strokeRect(14, 14, W - 28, H - 28);
+
+  ctx.fillStyle = opts.accent ?? "#c9a227";
+  ctx.font = "700 40px ui-serif, Georgia, serif";
+  ctx.textAlign = "center";
+  ctx.textBaseline = "top";
+  ctx.fillText(title, W / 2, 44);
+
+  ctx.strokeStyle = "rgba(201,162,39,0.45)";
+  ctx.lineWidth = 2;
+  ctx.beginPath();
+  ctx.moveTo(60, 104);
+  ctx.lineTo(W - 60, 104);
+  ctx.stroke();
+
+  ctx.fillStyle = "#f5efe0";
+  ctx.font = "400 27px ui-sans-serif, system-ui, sans-serif";
+  ctx.textAlign = "left";
+  const maxRows = Math.floor((H - 150) / 44);
+  const shown = rows.slice(0, maxRows);
+  if (shown.length === 0) {
+    ctx.fillStyle = "rgba(245,239,224,0.5)";
+    ctx.textAlign = "center";
+    ctx.fillText("Chưa có gì ở đây", W / 2, H / 2 - 12);
+  } else {
+    shown.forEach((row, i) => {
+      const y = 132 + i * 44;
+      let line = row;
+      // Cắt theo bề rộng thật chứ không theo số ký tự: tên tiếng Việt có dấu
+      // và tên tiếng Anh rộng khác nhau nhiều.
+      while (ctx.measureText(line).width > W - 120 && line.length > 4) {
+        line = `${line.slice(0, -2)}…`;
+      }
+      ctx.fillText(line, 60, y);
+    });
+  }
+
+  const texture = new THREE.CanvasTexture(canvas);
+  texture.colorSpace = THREE.SRGBColorSpace;
+  texture.anisotropy = 4;
+  return texture;
+}
+
 /** Giải phóng toàn bộ texture đã dựng. Gọi khi rời phòng - CanvasTexture giữ
  *  bộ nhớ GPU cho tới khi dispose, và người dùng có thể vào ra nhiều lần. */
 export function disposeRoomTextures() {

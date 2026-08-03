@@ -1,9 +1,10 @@
 "use client";
 
-import { useMemo, useRef } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { useFrame } from "@react-three/fiber";
 import * as THREE from "three";
-import { nameplateTexture } from "./room-textures";
+import { nameplateTexture, speechBubbleTexture } from "./room-textures";
+import { CHAT_BUBBLE_MS } from "@/lib/supabase-lobby";
 
 /** Hình người tối giản: đầu - thân - hai tay hai chân đánh lắc khi bước.
  *  Không tải model GLB nào cả: một hình khối rõ ràng, chạy mượt với vài chục
@@ -18,23 +19,82 @@ export interface AvatarPose {
 interface Props {
   name: string;
   color: string;
+  avatarUrl?: string | null;
+  /** Câu đang nói; null là không có bong bóng. Đổi tham chiếu là bong bóng mới. */
+  speech?: { text: string; at: number } | null;
   /** Đọc pose mỗi frame từ ref thay vì props: vị trí đổi 60 lần/giây, đi qua
    *  setState sẽ re-render cả cây React từng ấy lần. */
   poseRef: React.MutableRefObject<AvatarPose>;
   isSelf?: boolean;
 }
 
-export default function LobbyAvatar({ name, color, poseRef, isSelf = false }: Props) {
+/** Ảnh đại diện dán lên mặt. Ảnh nằm ở miền khác (Supabase storage, Google),
+ *  nên cần crossOrigin - thiếu nó thì WebGL từ chối texture vì canvas bị coi
+ *  là "tainted". Hỏng thì trả null và nhân vật giữ khuôn mặt trơn, không phải
+ *  lý do để cả căn phòng không dựng được. */
+function useAvatarTexture(url?: string | null) {
+  const [texture, setTexture] = useState<THREE.Texture | null>(null);
+
+  useEffect(() => {
+    if (!url) {
+      setTexture(null);
+      return;
+    }
+    let cancelled = false;
+    const loader = new THREE.TextureLoader();
+    loader.setCrossOrigin("anonymous");
+    loader.load(
+      url,
+      (t) => {
+        if (cancelled) {
+          t.dispose();
+          return;
+        }
+        t.colorSpace = THREE.SRGBColorSpace;
+        setTexture(t);
+      },
+      undefined,
+      () => {
+        // Ảnh hỏng hoặc bị chặn CORS - im lặng dùng mặt trơn.
+        if (!cancelled) setTexture(null);
+      }
+    );
+    return () => {
+      cancelled = true;
+    };
+  }, [url]);
+
+  useEffect(() => () => texture?.dispose(), [texture]);
+  return texture;
+}
+
+export default function LobbyAvatar({
+  name,
+  color,
+  avatarUrl,
+  speech,
+  poseRef,
+  isSelf = false,
+}: Props) {
   const root = useRef<THREE.Group>(null);
   const leftArm = useRef<THREE.Mesh>(null);
   const rightArm = useRef<THREE.Mesh>(null);
   const leftLeg = useRef<THREE.Mesh>(null);
   const rightLeg = useRef<THREE.Mesh>(null);
+  const bubbleGroup = useRef<THREE.Group>(null);
   const walkPhase = useRef(0);
   const lastPos = useRef(new THREE.Vector2());
 
   const nameTex = useMemo(() => nameplateTexture(name), [name]);
   const shirt = useMemo(() => new THREE.Color(color), [color]);
+  const face = useAvatarTexture(avatarUrl);
+
+  const bubble = useMemo(() => {
+    if (!speech?.text) return null;
+    return speechBubbleTexture(speech.text);
+  }, [speech?.text, speech?.at]);
+
+  useEffect(() => () => bubble?.texture.dispose(), [bubble]);
 
   useFrame((state, delta) => {
     const g = root.current;
@@ -69,9 +129,24 @@ export default function LobbyAvatar({ name, color, poseRef, isSelf = false }: Pr
     if (leftLeg.current) leftLeg.current.rotation.x = -swing;
     if (rightLeg.current) rightLeg.current.rotation.x = swing;
 
-    // Biển tên luôn quay về camera
+    // Biển tên và bong bóng luôn quay về camera
     const plate = g.getObjectByName("nameplate");
     if (plate) plate.quaternion.copy(state.camera.quaternion);
+    if (bubbleGroup.current) {
+      bubbleGroup.current.quaternion.copy(state.camera.quaternion);
+      if (speech) {
+        // Mờ dần trong giây cuối thay vì biến mất đột ngột.
+        const age = Date.now() - speech.at;
+        const fade = THREE.MathUtils.clamp((CHAT_BUBBLE_MS - age) / 800, 0, 1);
+        bubbleGroup.current.visible = age < CHAT_BUBBLE_MS;
+        const mat = (bubbleGroup.current.children[0] as THREE.Mesh | undefined)?.material as
+          | THREE.MeshBasicMaterial
+          | undefined;
+        if (mat) mat.opacity = fade;
+      } else {
+        bubbleGroup.current.visible = false;
+      }
+    }
   });
 
   return (
@@ -81,12 +156,19 @@ export default function LobbyAvatar({ name, color, poseRef, isSelf = false }: Pr
         <sphereGeometry args={[0.21, 16, 16]} />
         <meshStandardMaterial color="#e8c39e" roughness={0.8} />
       </mesh>
+      {/* ảnh đại diện dán lên mặt trước của đầu */}
+      {face && (
+        <mesh position={[0, 1.62, 0.208]}>
+          <circleGeometry args={[0.155, 24]} />
+          <meshBasicMaterial map={face} toneMapped={false} />
+        </mesh>
+      )}
       {/* thân */}
       <mesh position={[0, 1.08, 0]} castShadow>
         <capsuleGeometry args={[0.24, 0.52, 6, 12]} />
         <meshStandardMaterial color={shirt} roughness={0.75} />
       </mesh>
-      {/* tay - neo trục quay ở vai bằng cách dịch geometry xuống */}
+      {/* tay */}
       <mesh ref={leftArm} position={[-0.32, 1.32, 0]} castShadow>
         <capsuleGeometry args={[0.075, 0.5, 4, 8]} />
         <meshStandardMaterial color={shirt} roughness={0.75} />
@@ -109,6 +191,23 @@ export default function LobbyAvatar({ name, color, poseRef, isSelf = false }: Pr
         <planeGeometry args={[1.35, 0.34]} />
         <meshBasicMaterial map={nameTex} transparent depthWrite={false} />
       </mesh>
+      {/* Bong bóng thoại. Neo theo MÉP DƯỚI chứ không theo tâm: chiều cao thay
+          đổi theo số dòng, nên neo tâm sẽ khiến câu dài trùm xuống che mặt
+          nhân vật còn câu ngắn thì lửng lơ. */}
+      {bubble && (
+        <group ref={bubbleGroup} position={[0, 2.42 + 1.7 / bubble.aspect / 2, 0]}>
+          <mesh>
+            <planeGeometry args={[1.7, 1.7 / bubble.aspect]} />
+            <meshBasicMaterial
+              map={bubble.texture}
+              transparent
+              opacity={1}
+              depthWrite={false}
+              depthTest={false}
+            />
+          </mesh>
+        </group>
+      )}
     </group>
   );
 }

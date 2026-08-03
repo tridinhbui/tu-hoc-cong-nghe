@@ -42,18 +42,45 @@ export interface LobbyPeer extends LobbyIdentity, LobbyPose {
   updatedAt: number;
 }
 
+export interface LobbyChatMessage {
+  /** Khoá cục bộ cho React - không đến từ server, chỉ cần duy nhất trong phiên. */
+  id: string;
+  userId: string;
+  name: string;
+  text: string;
+  at: number;
+}
+
+/** Chat đi qua CHÍNH kênh broadcast đang chở vị trí, không mở kênh thứ hai:
+ *  cùng một topic đã join, cùng một ngân sách sự kiện, và tin nhắn tới đúng
+ *  tập người đang ở trong phòng mà không cần lọc gì thêm.
+ *
+ *  Tin nhắn KHÔNG được lưu vào database. Đây là lời nói trong một căn phòng -
+ *  ai đang đứng đó thì nghe, ai vào sau thì không. Muốn để lại thứ đọc được
+ *  sau đã có FinSocial; nhân đôi nó ở đây chỉ tạo ra hai nơi cùng lưu một
+ *  loại nội dung với hai luật kiểm duyệt khác nhau. */
+export const CHAT_MAX_LENGTH = 160;
+/** Bong bóng trên đầu nhân vật sống bằng này rồi tự tan. */
+export const CHAT_BUBBLE_MS = 7000;
+
 type PeersListener = (peers: LobbyPeer[]) => void;
+type ChatListener = (message: LobbyChatMessage) => void;
 
 let channel: RealtimeChannel | null = null;
 let refCount = 0;
 let selfId: string | null = null;
 const listeners = new Set<PeersListener>();
+const chatListeners = new Set<ChatListener>();
 /** Trạng thái hợp nhất: danh tính đến từ presence, vị trí đến từ broadcast. */
 const peers = new Map<string, LobbyPeer>();
 
 function emit() {
   const list = [...peers.values()];
   for (const listener of listeners) listener(list);
+}
+
+function emitChat(message: LobbyChatMessage) {
+  for (const listener of chatListeners) listener(message);
 }
 
 /** Màu tất định theo userId - không lưu đâu cả, chỉ cần cùng một người thì
@@ -71,8 +98,13 @@ export function colorForUser(userId: string): string {
 }
 
 /** Tham gia đại sảnh. Trả về hàm rời đi; gọi nó trong cleanup của useEffect. */
-export function joinLobby(identity: LobbyIdentity, onPeers: PeersListener): () => void {
+export function joinLobby(
+  identity: LobbyIdentity,
+  onPeers: PeersListener,
+  onChat?: ChatListener
+): () => void {
   listeners.add(onPeers);
+  if (onChat) chatListeners.add(onChat);
   refCount += 1;
   selfId = identity.userId;
 
@@ -125,6 +157,24 @@ export function joinLobby(identity: LobbyIdentity, onPeers: PeersListener): () =
         });
         emit();
       })
+      .on("broadcast", { event: "chat" }, ({ payload }) => {
+        const raw = payload as Partial<LobbyChatMessage>;
+        if (!raw?.userId || typeof raw.text !== "string") return;
+        // Người gửi đã tự hiển thị câu của mình ngay lúc bấm gửi, không chờ
+        // vòng về từ server - nếu nhận lại ở đây nữa thì câu bị nhân đôi.
+        if (raw.userId === selfId) return;
+        const text = raw.text.trim().slice(0, CHAT_MAX_LENGTH);
+        if (!text) return;
+        emitChat({
+          id: `${raw.userId}:${Date.now()}:${Math.random().toString(36).slice(2, 7)}`,
+          userId: raw.userId,
+          // Tên lấy từ presence chứ không tin phần name trong gói tin: gói tin
+          // do client gửi nên sửa được, còn presence là bản ghi đã join.
+          name: peers.get(raw.userId)?.name ?? raw.name ?? "Người học",
+          text,
+          at: Date.now(),
+        });
+      })
       .subscribe((status) => {
         if (status === "SUBSCRIBED") {
           void channel?.track(identity);
@@ -139,6 +189,7 @@ export function joinLobby(identity: LobbyIdentity, onPeers: PeersListener): () =
 
   return () => {
     listeners.delete(onPeers);
+    if (onChat) chatListeners.delete(onChat);
     refCount -= 1;
     if (refCount > 0) return;
     const closing = channel;
@@ -150,6 +201,26 @@ export function joinLobby(identity: LobbyIdentity, onPeers: PeersListener): () =
       void createClient().removeChannel(closing);
     }
   };
+}
+
+/** Gửi một câu vào phòng. Trả về đúng bản tin đã phát để phía gọi hiển thị
+ *  ngay cho chính mình, thay vì chờ nó vòng qua server rồi quay lại. */
+export function sendChat(userId: string, name: string, rawText: string): LobbyChatMessage | null {
+  const text = rawText.trim().slice(0, CHAT_MAX_LENGTH);
+  if (!text || !channel) return null;
+  const message: LobbyChatMessage = {
+    id: `${userId}:${Date.now()}:${Math.random().toString(36).slice(2, 7)}`,
+    userId,
+    name,
+    text,
+    at: Date.now(),
+  };
+  void channel.send({
+    type: "broadcast",
+    event: "chat",
+    payload: { userId, name, text },
+  });
+  return message;
 }
 
 /** Gửi vị trí của mình. Không tự tiết chế tần suất - phía gọi giữ nhịp bằng
