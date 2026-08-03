@@ -460,7 +460,7 @@ export const FRM_CORE_GAPS_LESSONS: Lesson[] = [
       "Không loại rủi ro nào được đền bù vì thị trường luôn ở trạng thái cân bằng hoàn hảo"
     ],
     correctOption: 0,
-    explanation: "Lập luận cốt lõi: thị trường không trả tiền cho thứ nhà đầu tư tự xử lý được miễn phí. Rủi ro riêng lẻ biến mất khi nắm đủ nhiều tài sản, nên chỉ phần rủi ro không thể phân tán - đo bằng beta - mới đòi hỏi phần bù.",
+    explanation: "CAPM đứng trên một lập luận duy nhất: thị trường không trả tiền cho rủi ro mà nhà đầu tư tự loại bỏ được miễn phí bằng đa dạng hóa. Vì thế chỉ phần rủi ro hệ thống, đo bằng beta, mới được đền bù. Mô hình đa nhân tố mở rộng ý đó bằng cách thừa nhận còn những nguồn rủi ro hệ thống khác - quy mô, giá trị, đà tăng - và trong quản trị rủi ro, việc phân rã theo nhân tố cho thấy danh mục thực sự đang đặt cược vào đâu.",
     diagram: [
       {
         label: "Rủi ro tổng = rủi ro hệ thống + rủi ro riêng lẻ",
@@ -1023,7 +1023,7 @@ export const FRM_CORE_GAPS_LESSONS: Lesson[] = [
       "Dữ liệu tổn thất tính bằng tiền, RCSA bắt buộc phải tính bằng số giờ gián đoạn"
     ],
     correctOption: 0,
-    explanation: "Hai công cụ nhìn về hai hướng thời gian. Dữ liệu tổn thất là hồi tố và khách quan nhưng luôn thiếu ở vùng hiếm gặp. RCSA là dự báo và chủ quan, dựa trên phán đoán của chính người vận hành về mức rủi ro còn lại sau khi đã có các kiểm soát hiện hành.",
+    explanation: "Tự đánh giá rủi ro và kiểm soát là việc chính bộ phận vận hành nhận diện rủi ro của mình và đánh giá mức còn lại sau các chốt kiểm soát hiện có. Chỉ số rủi ro chính là những đại lượng theo dõi liên tục nhằm cảnh báo trước khi tổn thất xảy ra. Hai công cụ này nhìn về tương lai và mang tính chủ quan, nên chúng bổ sung chứ không thay thế dữ liệu tổn thất lịch sử - vốn khách quan nhưng luôn thiếu ở đúng vùng hiếm gặp.",
     diagram: [
       {
         label: "Xác định rủi ro cố hữu trong từng quy trình",
@@ -1678,7 +1678,7 @@ export const FRM_CORE_GAPS_LESSONS: Lesson[] = [
       "Hai khái niệm này giống nhau, chỉ khác cách gọi ở thị trường phát triển và mới nổi"
     ],
     correctOption: 0,
-    explanation: "Thanh khoản thị trường thuộc về tài sản: bán được bao nhiêu, nhanh thế nào, mất bao nhiêu giá. Thanh khoản tài trợ thuộc về tổ chức: có huy động được tiền để trả nghĩa vụ đến hạn không. Một tổ chức có thể thiếu loại này mà thừa loại kia.",
+    explanation: "Có hai loại thanh khoản và chúng thuộc về hai chủ thể khác nhau. Thanh khoản thị trường là thuộc tính của tài sản: bán nhanh được không và mất bao nhiêu giá khi bán gấp. Thanh khoản tài trợ là thuộc tính của tổ chức: có huy động được tiền để trả nghĩa vụ đến hạn không. Điều làm chúng nguy hiểm là vòng phản hồi giữa hai loại - thiếu tiền buộc phải bán tài sản, bán gấp làm giá giảm, giá giảm làm tài sản bảo đảm mất giá trị và càng khó vay hơn.",
     diagram: [
       {
         label: "Nguồn vốn bị rút → thiếu thanh khoản tài trợ",
@@ -1807,7 +1807,7 @@ export const FRM_CORE_GAPS_LESSONS: Lesson[] = [
       "Xếp hạng tín nhiệm của tất cả các đối tác mà tổ chức đang giao dịch"
     ],
     correctOption: 0,
-    explanation: "Thang dòng tiền chia trục thời gian thành các dải - qua đêm, một tuần, một tháng, ba tháng, một năm - rồi xếp mọi dòng tiền vào và ra dự kiến vào đúng dải của nó. Chênh lệch dồn tích cho biết tổ chức bắt đầu thiếu tiền từ dải nào.",
+    explanation: "Thang dòng tiền chia trục thời gian thành các dải kỳ hạn rồi xếp mọi dòng tiền vào và ra dự kiến vào đúng dải của nó. Khe hở của từng dải cho biết thiếu hụt cục bộ, nhưng con số thực sự quan trọng là chênh lệch dồn tích: nó chỉ ra thời điểm tổ chức bắt đầu không đủ tiền. Điểm phải cẩn trọng là các giả định hành vi - tiền gửi không kỳ hạn được xếp vào dải nào là một phán đoán, và chính phán đoán đó quyết định kết quả.",
     diagram: [
       {
         label: "Chia trục thời gian thành các dải kỳ hạn",
@@ -2068,7 +2068,7 @@ export const FRM_CORE_GAPS_LESSONS: Lesson[] = [
       "Số lượng nhân sự cần cắt giảm để tiết kiệm chi phí vận hành"
     ],
     correctOption: 0,
-    explanation: "Thời gian sống sót là con số hành động được: nó cho biết ban điều hành có bao nhiêu ngày để triển khai kế hoạch tài trợ dự phòng trước khi mất khả năng thanh toán. Mọi kết quả khác đều là phụ so với con số này.",
+    explanation: "Kiểm định sức chịu đựng thanh khoản đặt tổ chức vào một kịch bản căng thẳng cụ thể - khách rút tiền ồ ạt, thị trường liên ngân hàng đóng, hạn mức bị cắt - rồi tính xem tiền còn đủ trong bao lâu. Kết quả quan trọng nhất là thời gian sống sót, vì đó là con số hành động được: nó cho biết có bao nhiêu ngày để triển khai kế hoạch tài trợ dự phòng. Một kịch bản không dẫn tới hành động cụ thể nào thì chỉ là một bảng tính.",
     diagram: [
       {
         label: "Xây kịch bản: riêng tổ chức, toàn thị trường, và kết hợp cả hai",
@@ -2198,7 +2198,7 @@ export const FRM_CORE_GAPS_LESSONS: Lesson[] = [
       "Thời gian tối đa mà tài sản bảo đảm được giữ tại bên cho vay"
     ],
     correctOption: 0,
-    explanation: "Tài sản trị giá 100 với haircut 10% chỉ vay được 90. Phần 10 là đệm bảo vệ bên cho vay trước rủi ro giá tài sản giảm trong khoảng thời gian từ lúc bên vay mất khả năng chi trả tới lúc tài sản được bán ra.",
+    explanation: "Tài sản bảo đảm không được tính đủ giá trị thị trường: bên cho vay áp một mức chiết khấu để tự bảo vệ trước khả năng giá giảm trong khoảng thời gian từ lúc bên vay mất khả năng chi trả tới lúc tài sản được bán. Mức chiết khấu phụ thuộc vào độ biến động và thanh khoản của tài sản. Điều nguy hiểm là nó không cố định: trong khủng hoảng, mức chiết khấu bị nâng lên đúng lúc bên vay cần vốn nhất, tạo thành vòng xoáy siết thanh khoản.",
     diagram: [
       {
         label: "Giá thị trường của tài sản bảo đảm",
@@ -2604,7 +2604,7 @@ export const FRM_CORE_GAPS_LESSONS: Lesson[] = [
       "Chọn bộ tham số do chuyên gia trong ngành thống nhất đề xuất"
     ],
     correctOption: 0,
-    explanation: "MLE đảo ngược câu hỏi: thay vì hỏi dữ liệu nào khớp với tham số, nó hỏi tham số nào khiến dữ liệu ta thực sự thấy trở nên ít bất ngờ nhất. Về mặt kỹ thuật, ta cực đại hoá hàm hợp lý - thường qua dạng logarit cho dễ tính.",
+    explanation: "Ước lượng hợp lý cực đại đảo ngược câu hỏi quen thuộc: thay vì hỏi dữ liệu có khớp với tham số không, nó hỏi bộ tham số nào khiến dữ liệu quan sát được trở nên ít bất ngờ nhất. Về kỹ thuật, ta cực đại hóa hàm hợp lý, thường qua dạng logarit cho dễ tính. Phương pháp moment thì đơn giản hơn - khớp moment mẫu với moment lý thuyết - nhưng kém hiệu quả hơn, nên nó thường được dùng làm điểm khởi đầu cho thuật toán tối ưu.",
     diagram: [
       {
         label: "Chọn họ phân phối phù hợp với bản chất dữ liệu",
@@ -2741,7 +2741,7 @@ export const FRM_CORE_GAPS_LESSONS: Lesson[] = [
       "Không phụ thuộc vào số lần mô phỏng mà chỉ phụ thuộc vào chất lượng bộ sinh số ngẫu nhiên"
     ],
     correctOption: 0,
-    explanation: "Tốc độ hội tụ theo căn bậc hai là giới hạn cơ bản và cũng là lý do các kỹ thuật giảm phương sai tồn tại: tăng số lần chạy là cách rất tốn kém để cải thiện độ chính xác, nhất là khi mỗi lần chạy đòi hỏi định giá lại cả danh mục.",
+    explanation: "Mô phỏng Monte Carlo sinh ra hàng nghìn kịch bản ngẫu nhiên rồi rút kết luận từ phân phối kết quả, nên nó xử lý được những bài toán không có lời giải giải tích. Cái giá là tốc độ hội tụ theo căn bậc hai: muốn giảm một nửa sai số phải chạy gấp bốn lần, và mỗi lần chạy có thể đòi định giá lại cả danh mục. Đó là lý do các kỹ thuật giảm phương sai tồn tại - chúng mua độ chính xác bằng thiết kế thay vì bằng số lần chạy.",
     diagram: [
       {
         label: "Xác định phân phối cho các yếu tố rủi ro đầu vào",
@@ -2881,7 +2881,7 @@ export const FRM_CORE_GAPS_LESSONS: Lesson[] = [
       "Thu thập thêm dữ liệu mới cho tới khi cỡ mẫu đủ lớn để áp dụng định lý giới hạn trung tâm"
     ],
     correctOption: 0,
-    explanation: "Ý tưởng cốt lõi là coi mẫu quan sát được như một xấp xỉ của tổng thể. Lấy mẫu lại có hoàn lại nhiều lần từ nó tạo ra hàng nghìn mẫu giả, và độ phân tán của thống kê qua các mẫu giả đó chính là ước lượng cho độ bất định của thống kê.",
+    explanation: "Bootstrapping coi mẫu quan sát được như một xấp xỉ của tổng thể, rồi lấy mẫu lại có hoàn lại từ chính nó hàng nghìn lần. Độ phân tán của thống kê qua các mẫu giả đó chính là ước lượng cho sai số chuẩn - và điều làm phương pháp này có giá trị là nó không đòi hỏi giả định về dạng phân phối. Giới hạn cần nhớ: nó không tạo ra thông tin mới, nên nếu mẫu gốc thiên lệch thì mọi mẫu giả cũng thiên lệch y hệt.",
     diagram: [
       {
         label: "Bộ dữ liệu gốc n quan sát",
@@ -3155,7 +3155,7 @@ export const FRM_CORE_GAPS_LESSONS: Lesson[] = [
       "Đúng 10.000 tham số, bằng bình phương số yếu tố rủi ro"
     ],
     correctOption: 0,
-    explanation: "Ma trận đối xứng nên chỉ cần phần tam giác trên: n phương sai cộng n nhân (n trừ 1) chia 2 hiệp phương sai. Với n bằng 100 là 5.050. Ước lượng chừng đó tham số từ vài trăm quan sát khiến kết quả chứa rất nhiều nhiễu và ma trận thường không ổn định.",
+    explanation: "Ma trận hiệp phương sai của một danh mục lớn chứa hàng nghìn tham số phải ước lượng - với một trăm tài sản là hơn năm nghìn - trong khi dữ liệu thường chỉ có vài trăm quan sát. Hệ quả là ma trận đầy nhiễu và không ổn định, nên tối ưu hóa danh mục dựa trên nó cho ra những trọng số cực đoan. Phân tích thành phần chính xử lý điều này bằng cách rút gọn về vài nhân tố giải thích phần lớn biến động, đổi tính diễn giải lấy sự ổn định.",
     diagram: [
       {
         label: "n yếu tố rủi ro → ma trận hiệp phương sai n×n",
