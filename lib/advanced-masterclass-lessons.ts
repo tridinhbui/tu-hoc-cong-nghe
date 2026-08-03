@@ -27,7 +27,7 @@ export const ADVANCED_MASTERCLASS_LESSONS: Lesson[] = [
     openingOptions: ["5.0%", "6.0%", "10.0%", "15.0%"],
     correctOption: 1,
     explanation:
-      "Cap Rate = NOI / Giá trị BĐS = 300 triệu / 5.000 triệu = 6,0%. Cap Rate cho phép so sánh hiệu quả sinh lời giữa các bất động sản khác nhau trên cùng một thước đo, bất kể người mua vay bao nhiêu.",
+      "Tỷ suất vốn hóa lấy thu nhập hoạt động ròng chia giá trị bất động sản, cho ra lợi suất trước khi tính tới việc vay bao nhiêu. Vì loại đòn bẩy ra ngoài, nó cho phép so sánh các tài sản trên cùng một thước đo. Điểm cần nhớ là nó chạy ngược chiều với giá: tỷ suất thấp phản ánh thị trường coi dòng tiền đó chắc chắn hơn nên trả nhiều hơn cho mỗi đồng thu nhập, chứ không có nghĩa tài sản đó kém.",
     diagram: [
       { label: "Tiền thuê gộp", arrow: true },
       { label: "Trừ trống phòng + chi phí vận hành", arrow: true },
@@ -245,7 +245,7 @@ export const ADVANCED_MASTERCLASS_LESSONS: Lesson[] = [
     ],
     correctOption: 0,
     explanation:
-      "Coupon đã cố định trên giấy, nên cách duy nhất để trái phiếu cũ cạnh tranh được với trái phiếu mới phát hành lãi 8% là hạ giá bán xuống cho tới khi lợi suất thực nhận của người mua ngang bằng 8%. Giá và lợi suất luôn đi ngược chiều nhau.",
+      "Định giá một trái phiếu doanh nghiệp quy về hai việc: chiết khấu dòng coupon và mệnh giá về hiện tại, rồi hỏi tỷ lệ chiết khấu đó có bù đủ rủi ro không. Vế thứ nhất là toán học thuần túy và giải thích vì sao giá đi ngược chiều lãi suất. Vế thứ hai mới là phần phân tích: phần lợi suất vượt trên trái phiếu chính phủ phải bù được xác suất vỡ nợ nhân với phần không thu hồi được, cộng phần bù cho thanh khoản kém.",
     diagram: [
       { label: "Lãi suất thị trường tăng", arrow: true },
       { label: "Trái phiếu cũ kém hấp dẫn", arrow: true },
@@ -455,7 +455,7 @@ export const ADVANCED_MASTERCLASS_LESSONS: Lesson[] = [
     ],
     correctOption: 3,
     explanation:
-      "Post-money = Pre-money + Vốn mới = 4 + 1 = 5 triệu USD. Tỷ lệ của quỹ luôn tính trên POST-money: 1/5 = 20%. Lỗi kinh điển là chia cho pre-money để ra 25% - sai vì chính tiền của quỹ đã nằm trong công ty ngay khi giao dịch hoàn tất.",
+      "Bảng cổ đông ghi ai sở hữu bao nhiêu phần trăm sau mỗi vòng gọi vốn, và chỗ dễ sai nhất là phân biệt định giá trước và sau khi nhận tiền. Tỷ lệ của nhà đầu tư mới luôn tính trên định giá sau, vì chính khoản tiền của họ đã nằm trong công ty tại thời điểm đó. Ngoài tỷ lệ còn phải đọc các điều khoản đi kèm - quyền ưu tiên thanh toán và chống pha loãng - vì chúng quyết định ai nhận bao nhiêu khi công ty được bán.",
     diagram: [
       { label: "Pre-money", arrow: true },
       { label: "Cộng vốn mới", arrow: true },
