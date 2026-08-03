@@ -330,6 +330,41 @@ export const VN_STANDARDS_TAX_LESSONS: Lesson[] = [
         text: "Nếu bạn lấy EBITDA năm chuyển đổi làm cơ sở dự phóng mà so với bội số EV/EBITDA lịch sử được tính trên cơ sở cũ, bạn đang chia hai con số không cùng đơn vị. Kết quả định giá sẽ sai lệch theo hướng làm doanh nghiệp trông rẻ hơn thực tế.",
       },
       {
+        type: "heading",
+        text: "Một chuỗi bán lẻ, hai bộ chuẩn mực, cùng một cửa hàng",
+      },
+      {
+        type: "paragraph",
+        text: "Doanh nghiệp thuê 100 mặt bằng, tiền thuê 300 tỷ mỗi năm. Theo chuẩn cũ, toàn bộ 300 tỷ là chi phí hoạt động: EBITDA 700 tỷ, và hợp đồng thuê không xuất hiện trên bảng cân đối. Chuyển sang IFRS 16, quyền thuê thành tài sản và nghĩa vụ thuê thành nợ - giả sử hiện giá 1.200 tỷ. Khoản 300 tỷ tách thành khấu hao 240 tỷ và lãi vay 60 tỷ. EBITDA nhảy lên 1.000 tỷ vì cả hai khoản đó đều nằm DƯỚI dòng EBITDA, còn nợ tăng thêm 1.200 tỷ.",
+      },
+      {
+        type: "conceptTable",
+        title: "Cùng một doanh nghiệp, ba chỉ số đọc ra ba câu chuyện khác nhau",
+        subtitle: "Không có đồng tiền nào đổi chỗ giữa hai cột",
+        concepts: [
+          {
+            vi: "EBITDA",
+            en: "700 tỷ → 1.000 tỷ",
+            def: "Tăng 43% mà không bán thêm một món hàng. Ngành nào thuê nhiều mặt bằng - bán lẻ, hàng không, chuỗi F&B - thì cú nhảy này lớn nhất.",
+          },
+          {
+            vi: "Nợ vay",
+            en: "0 → 1.200 tỷ",
+            def: "Tỷ lệ Nợ/EBITDA đi từ 0 lên 1,2 lần. Giao ước vay vốn viết theo chuẩn cũ có thể bị vi phạm ngay trong đêm chuyển đổi, nên hợp đồng tín dụng thường có điều khoản đóng băng định nghĩa tại thời điểm ký.",
+          },
+          {
+            vi: "EV/EBITDA",
+            en: "Mẫu số tăng, tử số cũng tăng",
+            def: "EV cộng thêm nợ thuê nên tử số tăng 1.200 tỷ, mẫu số tăng 300 tỷ. Bội số mới không so được với bội số lịch sử, và cũng không so được với doanh nghiệp cùng ngành chưa chuyển đổi.",
+          },
+        ],
+      },
+      {
+        type: "callout",
+        label: "Cách đọc đúng khi hai kỳ khác chuẩn mực",
+        text: "Báo cáo năm chuyển đổi luôn có thuyết minh đối chiếu: một bảng chỉ ra từng khoản mục theo chuẩn cũ, khoản điều chỉnh, và số theo chuẩn mới. Đó là chỗ duy nhất quy được hai kỳ về cùng một thước, và cũng là chỗ ít người đọc nhất trong cả báo cáo. Không có nó thì mọi phép tính tăng trưởng bắc qua ngày chuyển đổi đều là so hai đơn vị đo khác nhau.",
+      },
+      {
         type: "closing",
         lines: [
           "Mỗi lần thước đo đổi, việc đầu tiên là quy hai kỳ về cùng một thước.",

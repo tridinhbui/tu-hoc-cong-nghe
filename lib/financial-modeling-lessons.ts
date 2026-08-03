@@ -796,6 +796,41 @@ export const FINANCIAL_MODELING_LESSONS: Lesson[] = [
         text: "Sự chính xác thêm được từ cách tính bình quân thường rất nhỏ so với sai số vốn có của các giả định doanh thu. Đổi một chút chính xác lấy sự ổn định và khả năng gỡ lỗi thường là lựa chọn đúng - miễn là bạn ghi chú rõ ràng.",
       },
       {
+        type: "heading",
+        text: "Sai số thực tế nhỏ tới mức nào",
+      },
+      {
+        type: "paragraph",
+        text: "Nợ đầu kỳ 100 tỷ, trong năm vay thêm 20 tỷ, lãi suất 10%. Tính trên số dư đầu kỳ: lãi = 10 tỷ. Tính trên số dư bình quân (100 + 120)/2 = 110: lãi = 11 tỷ. Chênh 1 tỷ trên một doanh nghiệp có lợi nhuận trước thuế vài trăm tỷ - dưới mức nhiễu của chính giả định doanh thu, vốn thường sai vài phần trăm. Đó là toàn bộ cái giá của việc cắt vòng lặp. Đổi lại, mô hình luôn cho ra cùng một kết quả với cùng một bộ giả định, và ai mở file cũng lần được từ ô này sang ô kia mà không rơi vào đường tròn.",
+      },
+      {
+        type: "conceptTable",
+        title: "Ba cách xử lý, và cái giá của từng cách",
+        subtitle: "Xếp theo mức độ an toàn khi mô hình được người khác dùng lại",
+        concepts: [
+          {
+            vi: "Chuyển sang số dư đầu kỳ",
+            en: "Beginning balance",
+            def: "Cắt đứt vòng lặp ở gốc. Sai số dưới mức nhiễu của giả định. Lựa chọn mặc định của phần lớn ngân hàng đầu tư, và là cách duy nhất còn kiểm toán được bằng mắt.",
+          },
+          {
+            vi: "Bật tính lặp",
+            en: "Iterative calculation",
+            def: "Excel giải xấp xỉ bằng cách chạy lại nhiều vòng cho tới khi hai lần liên tiếp chênh nhau dưới ngưỡng. Giữ được cách tính bình quân, nhưng kết quả phụ thuộc giá trị khởi đầu, và một ô lỗi ở bất kỳ đâu sẽ làm cả mô hình đứng lại ở số cũ mà không báo gì.",
+          },
+          {
+            vi: "Công tắc ngắt mạch",
+            en: "Circuit breaker",
+            def: "Một ô bật/tắt ép lãi vay về 0 để phá vòng lặp khi cần gỡ lỗi, rồi bật lại. Dùng kèm tính lặp; không thay thế được nó.",
+          },
+        ],
+      },
+      {
+        type: "callout",
+        label: "Vì sao bật tính lặp ngay trước buổi họp là rủi ro",
+        text: "Tính lặp hội tụ tới một nghiệm gần đúng, không phải nghiệm duy nhất - đổi thứ tự tính hoặc mở file trên máy khác có ngưỡng khác là con số nhúc nhích. Tệ hơn: khi trong mô hình xuất hiện một lỗi #REF! hay #DIV/0!, Excel ngừng lặp và giữ nguyên kết quả của vòng trước, nên bảng vẫn hiện số đẹp trong khi nó đã ngừng phản ánh giả định hiện tại. Không có cảnh báo nào cho việc đó. Nếu buộc phải dùng, hãy đặt một ô kiểm tra so hai vế của bảng cân đối và tô đỏ khi lệch.",
+      },
+      {
         type: "closing",
         lines: [
           "Vòng lặp không phải lỗi Excel - nó phản ánh một quan hệ nhân quả có thật trong tài chính.",

@@ -636,6 +636,41 @@ export const EXCEL_DATA_LESSONS: Lesson[] = [
         ],
       },
       {
+        type: "heading",
+        text: "Dòng kiểm tra: thứ bắt lỗi trong lúc bạn đang dựng, không phải sau khi xong",
+      },
+      {
+        type: "paragraph",
+        text: "Kỹ thuật hiệu quả nhất cũng là kỹ thuật đơn giản nhất: mỗi bảng có một dòng riêng tính hiệu số của hai thứ đáng lẽ phải bằng nhau, và một ô tổng gom mọi dòng kiểm tra của cả file. Bảng cân đối: tổng tài sản trừ tổng nguồn vốn. Bảng nợ: số dư cuối kỳ trừ (đầu kỳ + vay thêm − trả bớt). Bảng dòng tiền: tiền cuối kỳ trên bảng lưu chuyển trừ tiền cuối kỳ trên bảng cân đối. Tất cả phải ra 0. Đặt định dạng có điều kiện tô đỏ khi khác 0, và để ô tổng đó ở góc trên cùng của mọi sheet - lỗi sẽ tự báo ngay khi bạn vừa gõ sai, chứ không đợi tới lúc gửi đi.",
+      },
+      {
+        type: "conceptTable",
+        title: "Bốn công cụ dò lỗi, và loại lỗi mà mỗi cái bắt được",
+        subtitle: "Không cái nào thay được cái nào - chúng bắt những thứ khác nhau",
+        concepts: [
+          {
+            vi: "Dòng kiểm tra bằng 0",
+            en: "Check row",
+            def: "Bắt lỗi logic: thiếu một khoản, cộng nhầm dấu, công thức kéo hụt một hàng. Là lưới an toàn duy nhất chạy liên tục trong lúc dựng.",
+          },
+          {
+            vi: "Dò ô nguồn",
+            en: "Trace precedents (Ctrl+[)",
+            def: "Bắt lỗi tham chiếu: ô đang lấy số từ đâu. Phát hiện nhanh nhất kiểu lỗi công thức trỏ nhầm sang cột năm trước hoặc sang một sheet cũ chưa xoá.",
+          },
+          {
+            vi: "Bôi đen rồi bấm F9",
+            en: "Partial evaluation",
+            def: "Bắt lỗi bên trong một công thức dài: chọn riêng một đoạn, F9 để xem đoạn đó ra giá trị gì, Esc để hoàn tác. Cách duy nhất mổ được một công thức IF lồng năm tầng mà không phải tách nó ra.",
+          },
+          {
+            vi: "Tô màu theo loại ô",
+            en: "Colour convention",
+            def: "Bắt lỗi con người: quy ước xanh dương là số nhập tay, đen là công thức, xanh lá là liên kết sang sheet khác. Một ô đen lẫn giữa vùng xanh dương nghĩa là ai đó vừa ghi đè công thức bằng một con số cứng - lỗi phổ biến nhất và câm lặng nhất trong mô hình nhiều người dùng chung.",
+          },
+        ],
+      },
+      {
         type: "callout",
         label: "Bài kiểm tra cuối cùng",
         text: "Đưa mô hình cho một người chưa từng xem nó và không giải thích gì. Nếu họ tìm được đâu là giả định, đâu là kết quả, và tự chạy được một kịch bản khác trong vòng năm phút, mô hình của bạn đạt chuẩn bàn giao. Nếu không, vấn đề nằm ở cấu trúc chứ không phải ở người xem.",
