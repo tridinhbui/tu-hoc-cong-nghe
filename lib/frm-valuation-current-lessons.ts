@@ -26,7 +26,7 @@ export const FRM_VALUATION_CURRENT_LESSONS: Lesson[] = [
       "Nhà đầu tư luôn hành động hợp lý và không bao giờ mắc sai lầm khi định giá"
     ],
     correctOption: 0,
-    explanation: "Nếu hai gói dòng tiền y hệt nhau mà giá khác nhau, ai cũng mua rẻ bán đắt cho tới khi chênh lệch biến mất. Điều đáng chú ý: nguyên lý này không cần nhà đầu tư hợp lý, không cần thị trường hiệu quả - nó chỉ cần có đủ người tham lam để nhặt tiền rơi.",
+    explanation: "Nguyên lý không có cơ hội kinh doanh chênh lệch giá là nền của toàn bộ định giá phái sinh: nếu hai gói dòng tiền y hệt nhau mà giá khác nhau, ai cũng mua rẻ bán đắt cho tới khi chênh lệch biến mất. Điều đáng chú ý là nó không đòi hỏi nhà đầu tư hợp lý hay thị trường hiệu quả - chỉ cần đủ người tham lam để nhặt tiền rơi. Nhờ giả định nhẹ như vậy, kết luận rút ra từ nó bền hơn nhiều so với các kết luận dựa trên giả thuyết thị trường hiệu quả.",
     diagram: [
       {
         label: "Dựng một danh mục sao chép đúng dòng tiền của tài sản cần định giá",
@@ -175,7 +175,7 @@ export const FRM_VALUATION_CURRENT_LESSONS: Lesson[] = [
       "Lấy giá thị trường của quyền chọn tương tự đang niêm yết"
     ],
     correctOption: 0,
-    explanation: "Với hai kịch bản và hai công cụ (cổ phiếu và tiền), ta luôn giải được một danh mục cho ra đúng giá trị quyền chọn ở cả hai nhánh. Chi phí dựng danh mục đó chính là giá quyền chọn - không cần biết xác suất thật của mỗi nhánh.",
+    explanation: "Cây nhị thức định giá quyền chọn bằng cách chia thời gian thành các bước, mỗi bước giá chỉ có hai khả năng. Với hai kịch bản và hai công cụ - cổ phiếu và tiền - luôn giải được một danh mục cho ra đúng giá trị quyền chọn ở cả hai nhánh, và chi phí dựng danh mục đó chính là giá quyền chọn. Điều đáng chú ý là phép tính không cần biết xác suất thật của mỗi nhánh. Tăng số bước lên rất lớn thì kết quả hội tụ về Black-Scholes.",
     diagram: [
       {
         label: "Giá cổ phiếu hôm nay, hai kịch bản ở bước sau",
@@ -339,7 +339,7 @@ export const FRM_VALUATION_CURRENT_LESSONS: Lesson[] = [
       "Giá hiện tại của tài sản cơ sở trên thị trường"
     ],
     correctOption: 0,
-    explanation: "Bốn đầu vào kia đọc thẳng từ hợp đồng và bảng giá. Riêng độ biến động tương lai thì không ai biết - đây là lý do thực tế người ta chạy ngược công thức: lấy giá thị trường của quyền chọn để suy ra biến động hàm ý, thay vì dùng công thức để tính giá.",
+    explanation: "Black-Scholes cần năm đầu vào, trong đó bốn cái đọc thẳng từ hợp đồng và bảng giá: giá tài sản, giá thực hiện, thời gian còn lại, lãi suất phi rủi ro. Riêng độ biến động tương lai thì không ai biết. Đó là lý do trong thực tế người ta chạy ngược công thức - lấy giá thị trường của quyền chọn để suy ra biến động hàm ý. Mô hình vì vậy được dùng như một hàm chuyển đổi giữa giá và biến động, chứ không phải như một máy tính giá đúng.",
     diagram: [
       {
         label: "Năm đầu vào: giá cơ sở, giá thực hiện, thời gian, lãi suất, biến động",
@@ -494,7 +494,7 @@ export const FRM_VALUATION_CURRENT_LESSONS: Lesson[] = [
       "Độ nhạy của giá quyền chọn trước thay đổi của lãi suất phi rủi ro"
     ],
     correctOption: 0,
-    explanation: "Delta cho biết vị thế nhạy thế nào với giá; gamma cho biết chính delta đó thay đổi nhanh ra sao. Gamma cao nghĩa là vị thế phòng hộ hôm nay sẽ lệch rất nhanh khi giá dịch chuyển - đó là lý do gamma quan trọng với người phải phòng hộ liên tục.",
+    explanation: "Bộ Greeks tách rủi ro của một vị thế quyền chọn thành từng chiều riêng. Delta cho biết vị thế nhạy thế nào với giá tài sản cơ sở; gamma cho biết chính delta đó thay đổi nhanh ra sao khi giá dịch chuyển. Vega đo độ nhạy với biến động, theta đo phần giá trị mất đi theo thời gian, rho đo độ nhạy với lãi suất. Điểm quan trọng khi đọc chúng là các chiều này liên hệ với nhau: một vị thế thu theta đều đặn gần như luôn kèm gamma âm, tức là lỗ tăng nhanh khi thị trường động mạnh.",
     diagram: [
       {
         label: "Delta: đổi theo giá cơ sở",
@@ -656,7 +656,7 @@ export const FRM_VALUATION_CURRENT_LESSONS: Lesson[] = [
       "Chênh lệch lợi suất giữa trái phiếu doanh nghiệp và trái phiếu chính phủ"
     ],
     correctOption: 0,
-    explanation: "DV01 trả lời bằng tiền chứ không bằng phần trăm hay năm, và đó chính là ưu điểm của nó: hai vị thế trái phiếu rất khác nhau về kỳ hạn và mệnh giá vẫn cộng DV01 lại được để ra rủi ro lãi suất của cả danh mục.",
+    explanation: "DV01 trả lời câu hỏi lãi suất tăng một điểm cơ bản thì danh mục mất bao nhiêu tiền. Nó đo bằng tiền chứ không bằng phần trăm hay năm, và đó chính là ưu điểm: hai vị thế rất khác nhau về kỳ hạn và mệnh giá vẫn cộng DV01 lại được để ra rủi ro lãi suất của cả danh mục. Duration đo cùng thứ nhưng theo tỷ lệ phần trăm, còn convexity mô tả phần phi tuyến mà duration bỏ sót - và phần đó chỉ đáng kể khi lãi suất dịch chuyển lớn.",
     diagram: [
       {
         label: "Duration: xấp xỉ bậc một, phần trăm giá đổi theo lợi suất",
@@ -824,7 +824,7 @@ export const FRM_VALUATION_CURRENT_LESSONS: Lesson[] = [
       "Mức độ thanh khoản của trái phiếu trên thị trường thứ cấp"
     ],
     correctOption: 0,
-    explanation: "Đây là thước đo thứ hạng chứ không phải xác suất tuyệt đối: nó nói tổ chức này an toàn hơn tổ chức kia, không nói xác suất vỡ nợ là bao nhiêu phần trăm. Nó cũng không nói gì về giá hợp lý hay thanh khoản - hai thứ nhà đầu tư hay gán nhầm cho nó.",
+    explanation: "Xếp hạng tín nhiệm là thước đo thứ hạng chứ không phải xác suất tuyệt đối: nó nói tổ chức này an toàn hơn tổ chức kia, không nói xác suất vỡ nợ là bao nhiêu phần trăm. Nó cũng không nói gì về giá hợp lý hay thanh khoản - hai thứ nhà đầu tư hay gán nhầm cho nó. Xếp hạng nội bộ khác ở chỗ nó được hiệu chỉnh trên chính danh mục của tổ chức và cập nhật nhanh hơn, nhưng đổi lại không so sánh được với bên ngoài và chịu áp lực từ bộ phận kinh doanh.",
     diagram: [
       {
         label: "Xếp hạng bên ngoài: thứ hạng tương đối, do tổ chức xếp hạng công bố",
@@ -1129,7 +1129,7 @@ export const FRM_VALUATION_CURRENT_LESSONS: Lesson[] = [
       "Vật lý do doanh nghiệp gánh, chuyển đổi do ngân sách nhà nước gánh"
     ],
     correctOption: 0,
-    explanation: "Rủi ro vật lý là bão, lũ, hạn phá huỷ tài sản và làm gián đoạn hoạt động. Rủi ro chuyển đổi là thiệt hại từ chính quá trình chuyển sang kinh tế phát thải thấp: thuế carbon, quy định mới, công nghệ thay thế khiến tài sản cũ mất giá trước hạn.",
+    explanation: "Rủi ro khí hậu chia làm hai nhánh có cơ chế hoàn toàn khác nhau. Rủi ro vật lý là bão, lũ, hạn phá huỷ tài sản và làm gián đoạn hoạt động. Rủi ro chuyển đổi là thiệt hại từ chính quá trình chuyển sang kinh tế phát thải thấp: thuế carbon, quy định mới, công nghệ thay thế khiến tài sản cũ mất giá trước hạn. Với doanh nghiệp thâm dụng carbon, nhánh thứ hai thường lớn hơn nhánh thứ nhất - và nó có thể xuất hiện đột ngột dù quá trình chuyển đổi diễn ra chậm.",
     diagram: [
       {
         label: "Rủi ro vật lý: thiên tai cấp tính và biến đổi mãn tính",
@@ -1574,7 +1574,7 @@ export const FRM_VALUATION_CURRENT_LESSONS: Lesson[] = [
       "Dữ liệu khách hàng bắt buộc phải được lưu trữ trong lãnh thổ quốc gia"
     ],
     correctOption: 0,
-    explanation: "Ở góc độ từng tổ chức, đám mây thường an toàn hơn tự vận hành. Vấn đề là ở cấp hệ thống: khi hàng loạt định chế cùng phụ thuộc vào vài nhà cung cấp, một sự cố duy nhất tạo ra gián đoạn đồng thời mà không định chế nào có thể tự phòng ngừa.",
+    explanation: "Ở góc độ từng tổ chức, hạ tầng đám mây thường an toàn hơn tự vận hành: nhà cung cấp lớn có đội ngũ an ninh và năng lực dự phòng mà một ngân hàng cỡ vừa không xây nổi. Vấn đề nằm ở cấp hệ thống. Khi hàng loạt định chế cùng phụ thuộc vào vài nhà cung cấp, một sự cố duy nhất tạo ra gián đoạn đồng thời trên toàn ngành, và không định chế nào tự phòng ngừa được bằng biện pháp nội bộ - đó là lý do cơ quan quản lý nhiều nước bắt đầu giám sát trực tiếp chính các nhà cung cấp.",
     diagram: [
       {
         label: "Mỗi tổ chức chuyển lên đám mây vì lý do hợp lý riêng",
@@ -1724,7 +1724,7 @@ export const FRM_VALUATION_CURRENT_LESSONS: Lesson[] = [
       "Sự cố công nghệ kéo dài làm gián đoạn hệ thống thanh toán liên ngân hàng"
     ],
     correctOption: 0,
-    explanation: "Điểm khiến đợt này khác 2008: khoản lỗ không đến từ người vay mất khả năng trả nợ. Nó đến từ trái phiếu chính phủ - tài sản không có rủi ro tín dụng - mất giá khi lãi suất tăng, cộng với việc phần lớn tiền gửi không được bảo hiểm nên rất nhạy cảm.",
+    explanation: "Đợt bất ổn 2023 khác 2008 ở chỗ khoản lỗ không đến từ người vay mất khả năng trả nợ. Nó đến từ trái phiếu chính phủ - tài sản không có rủi ro tín dụng - mất giá khi lãi suất tăng, trong khi phần lớn tiền gửi lại không được bảo hiểm nên rất nhạy cảm. Ba bài học rút ra: rủi ro lãi suất trên sổ ngân hàng có thể lớn ngang rủi ro tín dụng; cơ cấu người gửi tiền quan trọng ngang tổng số dư; và tốc độ rút tiền thời ngân hàng số đã vượt xa giả định mà chuẩn thanh khoản được xây trên đó.",
     diagram: [
       {
         label: "Lãi suất tăng nhanh → danh mục trái phiếu lỗ chưa thực hiện",
