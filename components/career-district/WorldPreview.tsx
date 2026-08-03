@@ -91,6 +91,23 @@ const NOOP = () => {};
  *  Presence Supabase bên trong tự hỏng lành khi chưa đăng nhập: không có ai
  *  khác trong phòng, và đó đúng là thứ cần cho việc kiểm điều khiển. */
 function WalkableScene({ id }: { id: DistrictRoomId }) {
+  // Bảng "đang chạm vào cái gì".
+  //
+  // Bản đầu nhồi NOOP vào cả chín callback, nên trang dựng được cảnh mà không
+  // nói được gì về TƯƠNG TÁC: đi tới bục mà không biết bục có kích hoạt không,
+  // đứng trước cửa mà không biết cửa có vào tầm không. Dựng được hình mới là
+  // một nửa việc; nửa còn lại là những cái này.
+  const [near, setNear] = useState<Record<string, string>>({});
+  const mark = (k: string) => (v: unknown) =>
+    setNear((prev) => {
+      const next =
+        v === null || v === false
+          ? ""
+          : typeof v === "object" && v !== null && "label" in v
+            ? String((v as { label: unknown }).label)
+            : String(v);
+      return prev[k] === next ? prev : { ...prev, [k]: next };
+    });
   // Dùng createWalkState() chứ không tự dựng hình dạng: bản đầu tôi gõ tay
   // `{ input: { x: 0, z: 0 }, ... }` và sai cả hai chỗ - trục thứ hai của
   // MoveInput là `y` chứ không phải `z`, và `keys` bị bỏ quên.
@@ -99,6 +116,8 @@ function WalkableScene({ id }: { id: DistrictRoomId }) {
   const room = getRoom(id);
   if (!room) return null;
   return (
+    <>
+    <ReachOut near={near} />
     <DistrictScene
       roomId={id}
       userId="dev-preview"
@@ -114,14 +133,14 @@ function WalkableScene({ id }: { id: DistrictRoomId }) {
       level={1}
       lessonTitles={room.desks.map((_, i) => `Bài mẫu ${i + 1}`)}
       walkRef={walkRef}
-      onDeskChange={NOOP}
-      onDoorChange={NOOP}
-      onPortalChange={NOOP}
-      onLiftChange={NOOP}
-      onStopChange={NOOP}
-      onSeatChange={NOOP}
-      onStandChange={NOOP}
-      onWalkingChange={NOOP}
+      onDeskChange={mark("desk")}
+      onDoorChange={mark("door")}
+      onPortalChange={mark("portal")}
+      onLiftChange={mark("thang máy")}
+      onStopChange={mark("stop")}
+      onSeatChange={mark("seat")}
+      onStandChange={mark("bục")}
+      onWalkingChange={mark("đang đi")}
       playerRef={playerRef}
       onPeersChange={NOOP}
       doneSlugs={NO_SLUGS}
@@ -131,6 +150,30 @@ function WalkableScene({ id }: { id: DistrictRoomId }) {
       daylight={1}
       forceRender
     />
+    </>
+  );
+}
+
+/** Bày ra những gì đang trong tầm với. Nằm ngoài Canvas nên là DOM thường. */
+function ReachOut({ near }: { near: Record<string, string> }) {
+  const on = Object.entries(near).filter(([, v]) => v);
+  return (
+    <div className="pointer-events-none absolute inset-x-0 bottom-0 z-10 flex flex-wrap gap-1 p-2">
+      {on.length === 0 ? (
+        <span className="rounded bg-stone-950/85 px-2 py-0.5 font-mono text-[10px] text-stone-500">
+          không có gì trong tầm với
+        </span>
+      ) : (
+        on.map(([k, v]) => (
+          <span
+            key={k}
+            className="rounded bg-emerald-500 px-2 py-0.5 font-mono text-[10px] font-bold text-stone-950"
+          >
+            {k}: {v}
+          </span>
+        ))
+      )}
+    </div>
   );
 }
 
