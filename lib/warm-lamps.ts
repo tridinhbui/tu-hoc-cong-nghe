@@ -12,6 +12,29 @@
  * A lamp has no such problem to solve: "a third of the way across, near the
  * top" means the same thing on both screens, so the same placement survives a
  * rotation or a window resize with no correction at all.
+ *
+ * HOW THE LIGHT IS DRAWN, and why it is not the obvious way.
+ *
+ * The obvious way is a warm radial gradient blended with `screen` - add light
+ * on top of the dark page. Built that way first, and it is wrong, visibly so:
+ * `screen` lifts near-black background fast and near-white text barely at all,
+ * so text INSIDE the pool loses contrast against its own background. The lamp
+ * made the page harder to read exactly where it was pointed, which is the one
+ * thing a reading lamp must not do.
+ *
+ * So the light is drawn as a lamp in a dark room actually behaves: the pool
+ * keeps the page's own full contrast, and everything outside it recedes under
+ * a warm scrim. Two layers:
+ *
+ *   1. SCRIM - a warm near-black sheet over the page, masked so it is
+ *      transparent at each lamp. Text under a lamp is untouched; text far
+ *      from one dims. Multiple lamps punch multiple holes via
+ *      `mask-composite: intersect`, which multiplies the mask alphas, so a
+ *      hole from any one lamp survives the others.
+ *   2. BLOOM - a small warm halo at the source, blended `screen`. This one is
+ *      additive on purpose and stays small: it is the visible filament, the
+ *      thing that says a lamp is switched on rather than a hole cut in a
+ *      sheet. Small enough that no body text sits inside it.
  */
 
 export interface Lamp {
@@ -25,13 +48,12 @@ export interface Lamp {
 }
 
 /**
- * Radius in `vmax` units. Sized against the larger viewport axis so a lamp
- * covers a similar share of the screen in portrait and landscape.
+ * Pool radius in `vmax` units - sized against the larger viewport axis so a
+ * lamp covers a similar share of the screen in portrait and landscape.
  *
- * The smallest is a task light - roughly a paragraph. The largest washes a
- * whole column without reaching the edges, because a glow that touches every
- * edge stops reading as a lamp and starts reading as a colour filter over the
- * page.
+ * The smallest is a task light, roughly a paragraph. The largest washes a
+ * whole column without reaching the edges, because a pool that touches every
+ * edge means nothing is left in shadow and the lamp stops reading as a lamp.
  */
 export const LAMP_RADII = [22, 36, 55] as const;
 
@@ -41,14 +63,8 @@ export const LAMP_SIZE_LABELS = ["Đèn đọc", "Đèn bàn", "Đèn phòng"] a
 export const MAX_LAMPS = 3;
 
 export const MIN_INTENSITY = 0.2;
-/**
- * Capped well below 1. These lamps blend in `screen`, which lifts the dark
- * background faster than it lifts already-light text, so text *inside* a very
- * bright lamp loses contrast rather than gaining it. The cap keeps the
- * brightest setting on the useful side of that curve.
- */
-export const MAX_INTENSITY = 0.85;
-export const DEFAULT_INTENSITY = 0.5;
+export const MAX_INTENSITY = 1;
+export const DEFAULT_INTENSITY = 0.55;
 
 export const LAMPS_STORAGE_KEY = "thtcdn:warm-lamps";
 
@@ -90,9 +106,9 @@ export function cycleSize(size: number): number {
  */
 export function defaultLamp(index: number, id: string): Lamp {
   const slots = [
-    { x: 0.5, y: 0.28 },
-    { x: 0.26, y: 0.6 },
-    { x: 0.74, y: 0.62 },
+    { x: 0.5, y: 0.32 },
+    { x: 0.26, y: 0.62 },
+    { x: 0.74, y: 0.64 },
   ];
   const slot = slots[index % slots.length];
   return { id, x: slot.x, y: slot.y, size: 1 };
@@ -105,9 +121,9 @@ export function addLamp(state: LampState, id: string): LampState {
 
 export function removeLamp(state: LampState, id: string): LampState {
   const lamps = state.lamps.filter((lamp) => lamp.id !== id);
-  // Turning the layer off when the last lamp goes leaves the button in the
-  // state its icon claims; keeping `on: true` with nothing lit would show a
-  // lit button over an unlit page.
+  // Keeping `on: true` with nothing lit would leave the button wearing its lit
+  // styling over a page with no light on it, and pressing it appears to do
+  // nothing.
   return { ...state, on: lamps.length > 0 && state.on, lamps };
 }
 
@@ -127,35 +143,62 @@ export function resizeLamp(state: LampState, id: string): LampState {
   };
 }
 
+// --- how the light is drawn -------------------------------------------------
+
 /**
- * Tungsten, near 2700K, and warmer toward the edge of the pool.
- *
- * Real filament light is not one colour: the falloff runs slightly redder as
- * it fades, because the eye's blue sensitivity drops off first at low
- * luminance. Holding a single hue across every stop is the thing that makes a
- * CSS glow read as a sticker rather than as light, so each stop shifts a
- * little further toward amber as it dims.
- *
- * The alpha stops approximate inverse-square falloff rather than the linear
- * ramp a two-stop gradient gives: bright and tight in the middle, then a long
- * faint tail. The tail is most of what sells it - light with a hard edge is a
- * spotlight, and a spotlight is not cosy.
+ * How opaque the warm scrim gets at full distance from every lamp. Capped
+ * below 1 so the page is always still legible outside the pool - the lamp is
+ * meant to draw the eye somewhere, not to hide the rest of the interface.
  */
-export function lampGradient(intensity: number): string {
+export function scrimAlpha(intensity: number): number {
+  return Math.min(0.88, 0.38 + 0.68 * clampIntensity(intensity));
+}
+
+/** Deep and warm rather than neutral black, so shadow reads as lamplight. */
+export function scrimColor(intensity: number): string {
+  return `rgba(10, 6, 2, ${scrimAlpha(intensity).toFixed(3)})`;
+}
+
+/**
+ * The mask that punches this lamp's hole in the scrim: fully transparent at
+ * the middle, fully opaque at the rim.
+ *
+ * The plateau of transparency out to 30% matters. Without it the scrim starts
+ * darkening from the very centre, and a lamp with no flat middle reads as a
+ * smudge rather than as a pool with an edge somewhere.
+ */
+export const SCRIM_MASK =
+  "radial-gradient(circle closest-side, transparent 0%, transparent 30%, rgba(0,0,0,0.35) 55%, rgba(0,0,0,0.72) 76%, rgba(0,0,0,0.94) 100%)";
+
+/**
+ * Mask box size for a lamp, in vmax. The mask's transparent plateau ends at
+ * 30% of the box's half-size, so a box of 4× the radius puts the clear middle
+ * at 0.6× the radius and the full falloff at 2× it.
+ */
+export function maskSizeVmax(size: number): number {
+  return LAMP_RADII[clampSize(size)] * 4;
+}
+
+/** The visible filament. Small, warm, and additive. */
+export function bloomGradient(intensity: number): string {
   const a = clampIntensity(intensity);
   const stops: Array<[string, number, number]> = [
-    ["255, 214, 164", 0.95, 0],
-    ["255, 199, 138", 0.62, 12],
-    ["255, 184, 112", 0.38, 26],
-    ["255, 168, 90", 0.2, 42],
-    ["255, 152, 72", 0.09, 60],
-    ["255, 140, 60", 0.03, 78],
-    ["255, 134, 54", 0, 100],
+    ["255, 226, 186", 0.5, 0],
+    ["255, 208, 150", 0.28, 24],
+    ["255, 184, 112", 0.13, 46],
+    ["255, 162, 80", 0.05, 68],
+    ["255, 146, 66", 0.01, 85],
+    ["255, 140, 60", 0, 100],
   ];
   const body = stops
     .map(([rgb, alpha, pos]) => `rgba(${rgb}, ${(alpha * a).toFixed(3)}) ${pos}%`)
     .join(", ");
   return `radial-gradient(circle closest-side, ${body})`;
+}
+
+/** Bloom stays inside the clear middle of the pool, so no body text sits in it. */
+export function bloomSizeVmax(size: number): number {
+  return LAMP_RADII[clampSize(size)] * 0.95;
 }
 
 export function isValidLamp(value: unknown): value is Lamp {

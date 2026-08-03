@@ -10,7 +10,10 @@ import {
   clampIntensity,
   cycleSize,
   defaultLamp,
-  lampGradient,
+  bloomGradient,
+  bloomSizeVmax,
+  maskSizeVmax,
+  scrimAlpha,
   moveLamp,
   parseLampState,
   removeLamp,
@@ -101,10 +104,13 @@ describe("size cycling", () => {
 });
 
 describe("the light itself", () => {
+  const alphasOf = (css: string) =>
+    [...css.matchAll(/rgba\([^)]*?,\s*([\d.]+)\)/g)].map((m) => Number(m[1]));
+
   it("fades monotonically outward", () => {
     // A stop that gets brighter further from the source reads as a ring, not
-    // as light. This is the one property that has to hold at every intensity.
-    const alphas = [...lampGradient(0.6).matchAll(/rgba\([^)]*?,\s*([\d.]+)\)/g)].map((m) => Number(m[1]));
+    // as light. This has to hold at every intensity.
+    const alphas = alphasOf(bloomGradient(0.6));
     expect(alphas.length).toBeGreaterThan(4);
     for (let i = 1; i < alphas.length; i += 1) {
       expect(alphas[i]).toBeLessThanOrEqual(alphas[i - 1]);
@@ -114,22 +120,40 @@ describe("the light itself", () => {
   it("reaches fully transparent at the edge", () => {
     // Any alpha left at the last stop draws a visible disc boundary, which is
     // the difference between a lamp and a sticker.
-    const alphas = [...lampGradient(MAX_INTENSITY).matchAll(/rgba\([^)]*?,\s*([\d.]+)\)/g)].map((m) => Number(m[1]));
+    const alphas = alphasOf(bloomGradient(MAX_INTENSITY));
     expect(alphas[alphas.length - 1]).toBe(0);
   });
 
-  it("scales every stop with intensity", () => {
-    const dim = [...lampGradient(MIN_INTENSITY).matchAll(/rgba\([^)]*?,\s*([\d.]+)\)/g)].map((m) => Number(m[1]));
-    const bright = [...lampGradient(MAX_INTENSITY).matchAll(/rgba\([^)]*?,\s*([\d.]+)\)/g)].map((m) => Number(m[1]));
-    expect(bright[0]).toBeGreaterThan(dim[0]);
+  it("scales the filament with intensity", () => {
+    expect(alphasOf(bloomGradient(MAX_INTENSITY))[0]).toBeGreaterThan(alphasOf(bloomGradient(MIN_INTENSITY))[0]);
   });
 
-  it("never exceeds the intensity cap", () => {
-    // Text sits *inside* the lamp. Screen blending lifts the dark background
-    // faster than it lifts light text, so an uncapped slider would let the
-    // learner make the page less readable while trying to make it brighter.
-    expect(clampIntensity(5)).toBe(MAX_INTENSITY);
-    expect(clampIntensity(-2)).toBe(MIN_INTENSITY);
+  it("keeps the page legible outside the pool at every setting", () => {
+    // The scrim is what dims the rest of the app. Fully opaque would hide the
+    // interface rather than draw the eye to one part of it.
+    for (const i of [MIN_INTENSITY, 0.5, MAX_INTENSITY, 99, -5]) {
+      expect(scrimAlpha(i)).toBeLessThan(0.9);
+      expect(scrimAlpha(i)).toBeGreaterThan(0);
+    }
+  });
+
+  it("darkens the surroundings more as the lamp gets stronger", () => {
+    expect(scrimAlpha(MAX_INTENSITY)).toBeGreaterThan(scrimAlpha(MIN_INTENSITY));
+  });
+
+  it("keeps the filament inside the clear middle of the pool", () => {
+    // The bloom blends in `screen`, which costs contrast for any text under
+    // it. Staying inside the mask's transparent plateau (0.6x the radius, per
+    // maskSizeVmax) is what keeps body text out of it.
+    for (let size = 0; size < LAMP_RADII.length; size += 1) {
+      const plateauRadius = (maskSizeVmax(size) / 2) * 0.3;
+      expect(bloomSizeVmax(size) / 2).toBeLessThanOrEqual(plateauRadius);
+    }
+  });
+
+  it("grows the hole with the lamp size", () => {
+    expect(maskSizeVmax(2)).toBeGreaterThan(maskSizeVmax(1));
+    expect(maskSizeVmax(1)).toBeGreaterThan(maskSizeVmax(0));
   });
 });
 
