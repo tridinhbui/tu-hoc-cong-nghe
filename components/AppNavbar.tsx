@@ -44,32 +44,19 @@ type NavLink =
   | { href: string; labelKey: keyof Dictionary["nav"]; label?: never; icon: LucideIcon };
 
 /**
- * Above the sections, ungrouped, always visible.
+ * Above the sections, ungrouped, always visible. Only Dashboard: it is the way
+ * back to the overview rather than one destination among several.
  *
- * Every section starts folded, so anything inside one is invisible until the
- * reader opens it. That is right for a shelf of destinations and wrong for
- * two kinds of entry:
- *
- *   - Dashboard, which is the way back to the overview rather than one
- *     destination among several.
- *   - Anything that carries a live badge. Học nhóm shows a CHECK-IN prompt and
- *     Kiểm tra shows "Tin mới" when a news quiz is waiting, both with an
- *     animated icon to pull the eye. A prompt folded out of sight is a prompt
- *     that does not exist, so the badges were pulsing on rows nobody could
- *     see.
- *
- * FinSocial and Đại sảnh come along because splitting the three community
- * entries across a flat row and a folded section would be worse than either
- * arrangement on its own - the reader would have to know which half a given
- * one lives in.
+ * Kiểm tra and the three community entries used to sit here too, lifted out
+ * because a folded section hides live badges - Học nhóm's CHECK-IN prompt and
+ * Kiểm tra's "Tin mới" were pulsing on rows nobody could see. Five flat rows
+ * above the groups turned out to cost more than the badges were worth, so they
+ * went back into sections, and the badge problem is solved properly instead:
+ * SECTIONS_WITH_BADGES below unfolds a section the moment something inside it
+ * has a live prompt.
  */
 const TOP_LEVEL_LINKS: NavLink[] = [
   { href: "/dashboard", label: "Dashboard", icon: Home },
-  { href: "/kiem-tra", labelKey: "quiz", icon: GraduationCap },
-  { href: "/nhom-hoc", labelKey: "studyGroup", icon: Users },
-  { href: "/finsocial", label: "FinSocial", icon: MessageSquareMore },
-  // Đại sảnh 3D - tên riêng của không gian nên hardcode label như FinSocial.
-  { href: "/cong-dong", label: "Đại sảnh", icon: Landmark },
 ];
 
 /** The nav is grouped by what the reader is trying to *do*, not by feature
@@ -104,12 +91,29 @@ const NAV_SECTIONS: NavSection[] = [
       // reachable only by typing the URL.
       { href: "/cfa", label: "CFA Level I", icon: Award },
       { href: "/frm", label: "FRM", icon: ShieldAlert },
+      // Kiểm tra thuộc nhóm Học tập chứ không phải Thực hành: các bài kiểm tra
+      // ở đây chấm đúng phần kiến thức của những lối học ngay phía trên, không
+      // phải một trò để luyện tay như Game hay Phỏng vấn.
+      { href: "/kiem-tra", labelKey: "quiz", icon: GraduationCap },
       { href: "/ghi-chu", labelKey: "notes", icon: StickyNote },
       // Sự nghiệp sits with the learning entries rather than with the progress
       // charts. "Nghề nào hợp với tôi" is a question you answer on the way in,
       // next to the tracks you would then pick - not a statistic you check
       // afterwards, which is what the Tiến độ group holds.
       { href: "/su-nghiep", labelKey: "career", icon: Briefcase },
+    ],
+  },
+  // Cộng đồng ngay dưới Học tập: học một mình xong thì chỗ tiếp theo người ta
+  // tìm là chỗ có người khác, nên hai nhóm này phải nằm cạnh nhau. Ba lối vào
+  // giữ nguyên một chỗ thay vì tách đôi giữa hàng phẳng và nhóm gập - người
+  // đọc không phải nhớ mục nào nằm nửa nào.
+  {
+    titleKey: "sectionCommunity",
+    links: [
+      { href: "/nhom-hoc", labelKey: "studyGroup", icon: Users },
+      { href: "/finsocial", label: "FinSocial", icon: MessageSquareMore },
+      // Đại sảnh 3D - tên riêng của không gian nên hardcode label như FinSocial.
+      { href: "/cong-dong", label: "Đại sảnh", icon: Landmark },
     ],
   },
   {
@@ -119,8 +123,6 @@ const NAV_SECTIONS: NavSection[] = [
       { href: "/phong-van-ky-thuat", labelKey: "technicalInterview", icon: BriefcaseBusiness },
     ],
   },
-  // Cộng đồng no longer exists as a section: all three of its entries moved to
-  // TOP_LEVEL_LINKS above.
   {
     titleKey: "sectionProgress",
     links: [{ href: "/analytics", labelKey: "stats", icon: BarChart3 }],
@@ -376,6 +378,25 @@ export default function AppNavbar() {
     setCollapsedSections((prev) => (prev.includes(owning.titleKey) ? prev.filter((k) => k !== owning.titleKey) : prev));
   }, [pathname]);
 
+  // A badge inside a folded section is a prompt that does not exist - which is
+  // why Kiểm tra and Học nhóm were pulled out of the groups in the first place.
+  // They are back in their groups, so instead a group force-opens while
+  // something inside it has a prompt waiting.
+  //
+  // Derived at render rather than pushed into collapsedSections by an effect:
+  // the fold state is the reader's stored preference, and a live prompt should
+  // override it for as long as the prompt lasts, not overwrite it. Once the
+  // check-in is done the section returns to however the reader left it.
+  const badgedHrefs = [
+    ...(hasPendingNewsQuiz ? ["/kiem-tra"] : []),
+    ...(hasPendingStudyGroupCheckin ? ["/nhom-hoc"] : []),
+  ];
+  const forcedOpenKeys = badgedHrefs.length
+    ? NAV_SECTIONS.filter((section) => section.links.some((l) => badgedHrefs.includes(l.href))).map(
+        (section) => section.titleKey as string
+      )
+    : [];
+
   const toggleSection = (titleKey: string) => {
     setCollapsedSections((prev) => {
       const next = prev.includes(titleKey) ? prev.filter((k) => k !== titleKey) : [...prev, titleKey];
@@ -482,7 +503,8 @@ export default function AppNavbar() {
    *  header at whichever panel mounted last. */
   const renderNavSections = (onNavigate?: () => void, idPrefix = "nav") =>
     NAV_SECTIONS.map((section) => {
-      const collapsed = collapsedSections.includes(section.titleKey);
+      const collapsed =
+        collapsedSections.includes(section.titleKey) && !forcedOpenKeys.includes(section.titleKey);
       const panelId = `${idPrefix}-section-${section.titleKey}`;
       const holdsCurrentPage = section.links.some((l) => l.href === pathname);
       return (
