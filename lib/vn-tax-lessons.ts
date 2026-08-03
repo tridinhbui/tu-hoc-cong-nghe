@@ -411,7 +411,7 @@ export const VN_TAX_LESSONS: Lesson[] = [
     ],
     correctOption: 2,
     explanation:
-      "Theo Nghị quyết 110/2025/UBTVQH15, từ kỳ tính thuế 2026 mức giảm trừ cho bản thân tăng từ 11 triệu lên 15,5 triệu đồng/tháng, và mỗi người phụ thuộc tăng từ 4,4 triệu lên 6,2 triệu đồng/tháng - mức tăng gần 41%.",
+      "Giảm trừ gia cảnh là khoản được trừ khỏi thu nhập trước khi áp biểu thuế, và với phần lớn người làm công ăn lương thì đây là khoản trừ lớn nhất họ có. Từ kỳ tính thuế 2026, mức cho bản thân là 15,5 triệu mỗi tháng và mỗi người phụ thuộc là 6,2 triệu. Điểm cần chủ động: người phụ thuộc phải được đăng ký kèm hồ sơ chứng minh, mỗi người chỉ được một người nộp thuế đăng ký, và không đăng ký thì đơn giản là nộp thừa.",
     diagram: [
       { label: "Thu nhập sau bảo hiểm", arrow: true },
       { label: "− 15,5tr (bản thân)", arrow: true },
