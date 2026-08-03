@@ -22,6 +22,8 @@ const dataDir = path.join(root, "lib/lessons-data");
 
 const MIN_QUIZ_COUNT = 2;
 const MIN_EXPLANATION_LEN = 150;
+// Two nodes is not a flow, it is a caption. Every existing diagram has 2-5.
+const MIN_DIAGRAM_NODES = 2;
 
 function isPersonalOrProfessionalTrack(lesson) {
   // `resolvedTrack` is computed by scripts/generate-lesson-data.mjs from the
@@ -45,10 +47,14 @@ function auditLesson(lesson) {
   if ((lesson.explanation ?? "").length < MIN_EXPLANATION_LEN) {
     issues.push(`explanation length ${lesson.explanation?.length ?? 0} < ${MIN_EXPLANATION_LEN}`);
   }
-  const hasDiagram = (lesson.diagram ?? []).length > 0;
-  const hasInteractive = lesson.interactiveType && lesson.interactiveType !== "none";
-  if (!hasDiagram && !hasInteractive) {
-    issues.push("no diagram and no interactiveType");
+  // Was "a diagram OR an interactiveType". Every lesson has an interactiveType,
+  // so that arm made the check unfalsifiable and 149 lessons sat with an empty
+  // `diagram: []` while the audit reported zero failures. The two are not
+  // substitutes either: interactiveType picks one of a handful of generic
+  // widgets, while the diagram is the only per-lesson visual. All 627 lessons
+  // now carry one, so the requirement is unconditional.
+  if ((lesson.diagram ?? []).length < MIN_DIAGRAM_NODES) {
+    issues.push(`diagram has ${lesson.diagram?.length ?? 0} nodes < ${MIN_DIAGRAM_NODES}`);
   }
   if (!lesson.openingQuestion || (lesson.openingOptions ?? []).length === 0) {
     issues.push("missing openingQuestion/openingOptions");
@@ -387,7 +393,7 @@ if (total > 0 && !process.argv.includes("--warn-only")) {
   console.error(
     `\n${total} lesson(s) below the minimum content bar. Each needs at least ` +
       `${MIN_QUIZ_COUNT} quiz questions, a ${MIN_EXPLANATION_LEN}+ char explanation, ` +
-      `an openingQuestion with options, and either a diagram or an interactiveType.\n` +
+      `an openingQuestion with options, and a diagram of at least 2 nodes.\n` +
       `Fix them in lib/lessons.ts (or lib/lesson-quiz-overrides.js for slugs it ` +
       `overrides), re-run scripts/generate-lesson-data.mjs, then run this again.`
   );
