@@ -232,6 +232,7 @@ export const VN_TAX_LESSONS: Lesson[] = [
       { label: "Phần trên 30-60 triệu → 20%", arrow: true },
       { label: "Cộng lại = tổng thuế phải nộp" },
     ],
+    interactiveType: "tax-brackets",
     realWorldExample: {
       company: "Hiểu lầm phổ biến nơi công sở",
       description:
@@ -417,6 +418,7 @@ export const VN_TAX_LESSONS: Lesson[] = [
       { label: "− 6,2tr × số người phụ thuộc", arrow: true },
       { label: "= Thu nhập tính thuế" },
     ],
+    interactiveType: "tax-brackets",
     realWorldExample: {
       company: "Người lao động có con nhỏ và cha mẹ già",
       description:
@@ -598,6 +600,7 @@ export const VN_TAX_LESSONS: Lesson[] = [
       { label: "DN đóng 21,5%", arrow: true },
       { label: "Tổng 32% vào các quỹ bảo hiểm" },
     ],
+    interactiveType: "tax-brackets",
     realWorldExample: {
       company: "Chi phí thực của một nhân sự",
       description:
@@ -768,6 +771,7 @@ export const VN_TAX_LESSONS: Lesson[] = [
       { label: "Hạ thuế suất bậc giữa", arrow: true },
       { label: "Sau: 5 bậc, giảm trừ 15,5tr" },
     ],
+    interactiveType: "tax-brackets",
     realWorldExample: {
       company: "Người lương 30 triệu, độc thân",
       description:
@@ -938,6 +942,7 @@ export const VN_TAX_LESSONS: Lesson[] = [
       { label: "Tính lại thuế với đủ giảm trừ", arrow: true },
       { label: "Nộp thêm hoặc được hoàn" },
     ],
+    interactiveType: "tax-brackets",
     realWorldExample: {
       company: "Người đi làm từ giữa năm",
       description:
@@ -1121,6 +1126,7 @@ export const VN_TAX_LESSONS: Lesson[] = [
       { label: "Tổng hợp khi quyết toán năm", arrow: true },
       { label: "Nộp thêm hoặc được hoàn" },
     ],
+    interactiveType: "tax-brackets",
     realWorldExample: {
       company: "Người làm thêm ngoài giờ",
       description:
@@ -1296,6 +1302,7 @@ export const VN_TAX_LESSONS: Lesson[] = [
       { label: "− Giảm trừ gia cảnh", arrow: true },
       { label: "Áp biểu 5 bậc → Thuế phải nộp" },
     ],
+    interactiveType: "tax-brackets",
     realWorldExample: {
       company: "Ba hồ sơ điển hình",
       description:

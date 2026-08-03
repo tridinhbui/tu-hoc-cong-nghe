@@ -132,7 +132,9 @@ export interface Lesson {
     | "esg-score"
     | "liquidity-run"
     | "sampling"
-    | "regression";
+    | "regression"
+    | "tax-brackets"
+    | "journal-entry";
   realWorldExample: {
     company: string;
     description: string;

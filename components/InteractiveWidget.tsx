@@ -23,6 +23,8 @@ import InteractiveEsgScore from "./InteractiveEsgScore";
 import InteractiveLiquidityRun from "./InteractiveLiquidityRun";
 import InteractiveSampling from "./InteractiveSampling";
 import InteractiveRegression from "./InteractiveRegression";
+import InteractiveTaxBrackets from "./InteractiveTaxBrackets";
+import InteractiveJournalEntry from "./InteractiveJournalEntry";
 import InteractiveFeeDrag from "./InteractiveFeeDrag";
 import InteractiveRatios from "./InteractiveRatios";
 import InteractiveTailRisk from "./InteractiveTailRisk";
@@ -62,7 +64,9 @@ export type WidgetType =
   | "esg-score"
   | "liquidity-run"
   | "sampling"
-  | "regression";
+  | "regression"
+  | "tax-brackets"
+  | "journal-entry";
 
 export default function InteractiveWidget({ type }: { type: WidgetType }) {
   switch (type) {
@@ -121,6 +125,10 @@ export default function InteractiveWidget({ type }: { type: WidgetType }) {
       return <InteractiveSampling />;
     case "regression":
       return <InteractiveRegression />;
+    case "tax-brackets":
+      return <InteractiveTaxBrackets />;
+    case "journal-entry":
+      return <InteractiveJournalEntry />;
     case "fee-drag":
       return <InteractiveFeeDrag />;
     case "ratios":
@@ -168,6 +176,8 @@ export const WIDGET_TYPES: readonly WidgetType[] = [
   "liquidity-run",
   "sampling",
   "regression",
+  "tax-brackets",
+  "journal-entry",
 ];
 
 export function hasInteractiveWidget(type: string | null | undefined): type is WidgetType {
