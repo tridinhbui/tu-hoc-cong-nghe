@@ -1,6 +1,4 @@
 {
   "_comment": "Grandfathered backlog for the quiz length-tell check in scripts/audit-lesson-content.mjs. A lesson listed here has the correct answer as the longest option in 75%+ of its questions, so its quiz can be passed by picking the longest option without knowing any finance. The list may only SHRINK: removing a slug after rewriting that lesson's options is the intended edit. Adding one is not - a lesson absent from this list must pass the check, which is what stops newly authored lessons from reintroducing the defect. Authoring rule for a rewrite: the correct option states the claim only (its reasoning belongs in the question's `explanation`, shown right after answering), each distractor is a mistake a learner actually makes, and one distractor is longer than the correct option in roughly three of every four questions.",
-  "lessons": [
-    "cai-cach-thue-tncn-2026-tu-7-bac-xuong-5-bac"
-  ]
+  "lessons": []
 }
