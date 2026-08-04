@@ -257,11 +257,18 @@ const unbaselined = [];
 const hollowDistractors = [];
 /** Baselined lessons that now pass, so the baseline must shrink. */
 const fixedButStillBaselined = [];
+/** Bài thiếu tóm tắt / thiếu khối áp dụng. */
+const missingSummary = [];
+const missingApplication = [];
+const missingPractice = [];
 
 for (const file of files) {
   const lesson = JSON.parse(readFileSync(path.join(dataDir, file), "utf8"));
   const stats = quizStats[isPersonalOrProfessionalTrack(lesson)];
   const questions = lesson.quiz ?? [];
+  if (!lesson.summary) missingSummary.push(lesson.slug);
+  if (!lesson.application) missingApplication.push(lesson.slug);
+  if (!lesson.practicePrompt) missingPractice.push(lesson.slug);
   let lessonLongest = 0;
   for (const question of questions) {
     const lengths = (question.options ?? []).map((option) => String(option).length);
@@ -398,6 +405,31 @@ console.log(
   `  worst |z| = ${worstBias.toFixed(2)} — ceiling ${MAX_LENGTH_BIAS_Z}. ` +
     `Lower it after a rewrite batch; never raise it.`
 );
+
+// ── Tóm tắt và áp dụng ─────────────────────────────────────────────────────
+//
+// Hai khối này KHÔNG có cổng cứng, và đó là chủ ý tạm thời: 26 bài đang thiếu,
+// nên đặt cổng ở 100% hôm nay là tạo nợ cho những bài vừa được viết - đúng thứ
+// mà luật "đặt cổng ở mức kho đã đạt" cấm. Nhưng chúng cũng không được im
+// lặng: cho tới hôm nay, thiếu chúng không hề lộ ra ở đâu cả, vì
+// LessonPageClient có hai hàm dựng thay thế sinh ra chữ rỗng ("Bài này giúp
+// bạn hiểu rõ hơn về <tên bài>") trông y hệt một tóm tắt thật. Hai hàm đó đã
+// bị gỡ; danh sách dưới đây là thứ thay thế chúng.
+//
+// Khi con số này về 0, biến nó thành cổng cứng như MIN_QUIZ_COUNT.
+console.log(`\n=== SUMMARY / APPLICATION / PRACTICE ===`);
+if (missingSummary.length === 0 && missingApplication.length === 0 && missingPractice.length === 0) {
+  console.log(`  Mọi bài đều có cả ba. Giờ hãy biến việc này thành cổng cứng.`);
+} else {
+  console.log(
+    `  ${missingSummary.length} thiếu summary · ${missingApplication.length} thiếu application · ` +
+      `${missingPractice.length} thiếu practicePrompt.\n` +
+      `  Trang bài học giờ KHÔNG dựng thẻ cho chúng - chỗ trống thấy được, chữ rỗng thì không.`
+  );
+  const shown = [...new Set([...missingSummary, ...missingApplication, ...missingPractice])].sort();
+  shown.slice(0, 30).forEach((slug) => console.log(`    ${slug}`));
+  if (shown.length > 30) console.log(`    … và ${shown.length - 30} bài nữa`);
+}
 const biasFailures = biasRows.filter(
   (r) => Math.abs(r.zLong) > MAX_LENGTH_BIAS_Z || Math.abs(r.zShort) > MAX_LENGTH_BIAS_Z
 );

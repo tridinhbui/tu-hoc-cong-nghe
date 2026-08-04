@@ -22,95 +22,6 @@ interface Props {
   nextLesson?: { id: number; slug: string; title: string };
 }
 
-function buildDefaultPracticePrompt(lesson: Lesson) {
-  const title = lesson.title.toLowerCase();
-
-  if (title.includes("dòng tiền") || title.includes("cash flow")) {
-    return {
-      question: `Một doanh nghiệp hoặc cá nhân có thể bị sai lầm gì nếu chỉ nhìn vào lợi nhuận mà bỏ qua dòng tiền?`,
-      options: [
-        "Một người có thể thấy mình giàu nhưng lại thiếu tiền mặt",
-        "Lợi nhuận không bao giờ quan trọng",
-        "Dòng tiền không liên quan đến tài chính",
-        "Chỉ doanh nghiệp lớn mới cần nhìn dòng tiền",
-      ],
-      correct: 0,
-      explanation: "Lợi nhuận và dòng tiền không phải lúc nào cũng đồng nghĩa. Một người hoặc doanh nghiệp có thể lãi nhưng vẫn thiếu tiền mặt để vận hành.",
-    };
-  }
-
-  if (title.includes("lãi suất") || title.includes("interest")) {
-    return {
-      question: `Nếu lãi suất thay đổi, điều nào sau đây thường có ảnh hưởng lớn nhất đến quyết định của bạn?`,
-      options: [
-        "Chi phí vay và khả năng tiết kiệm",
-        "Chỉ màu sắc của báo cáo",
-        "Chỉ số dân số",
-        "Tên của doanh nghiệp",
-      ],
-      correct: 0,
-      explanation: "Lãi suất ảnh hưởng trực tiếp đến chi phí vay, lợi nhuận đầu tư và sức hấp dẫn của tiền gửi.",
-    };
-  }
-
-  if (title.includes("nợ") || title.includes("debt") || title.includes("vay")) {
-    return {
-      question: `Khi nhìn vào một khoản nợ, điều quan trọng nhất cần hỏi là gì?`,
-      options: [
-        "Khoản nợ này có làm tăng rủi ro và chi phí lâu dài không?",
-        "Khoản nợ này có đáng xem trên mạng xã hội không?",
-        "Khoản nợ này có phải là phần của lịch sử không?",
-        "Khoản nợ này có ở trong báo cáo không?",
-      ],
-      correct: 0,
-      explanation: "Nợ không chỉ là một con số; nó còn ảnh hưởng đến dòng tiền, rủi ro và khả năng đưa ra quyết định tốt hơn.",
-    };
-  }
-
-  if (title.includes("cổ phiếu") || title.includes("equity") || title.includes("định giá") || title.includes("valuation")) {
-    return {
-      question: `Khi đánh giá một cơ hội đầu tư, bạn nên ưu tiên điều gì đầu tiên?`,
-      options: [
-        "Hiểu bản chất doanh nghiệp và cách nó tạo ra giá trị",
-        "Lắng nghe tin đồn trên mạng",
-        "Chỉ nhìn vào biến động giá ngắn hạn",
-        "Chỉ nhìn vào tên công ty",
-      ],
-      correct: 0,
-      explanation: "Định giá và đầu tư hiệu quả bắt đầu từ việc hiểu doanh nghiệp tạo ra giá trị như thế nào.",
-    };
-  }
-
-  return {
-    question: `Tại sao khái niệm "${lesson.title}" lại quan trọng đối với quyết định tài chính của bạn?`,
-    options: [
-      "Vì giúp bạn hiểu rõ hơn về lựa chọn tiền bạc của mình",
-      "Vì chỉ cần đọc là đủ, không cần áp dụng",
-      "Vì chỉ phù hợp với chuyên gia tài chính",
-      "Vì không liên quan đến đời sống hàng ngày",
-    ],
-    correct: 0,
-    explanation: "Bài học tài chính tốt không chỉ dừng ở hiểu lý thuyết; nó phải giúp bạn đưa ra quyết định tốt hơn trong thực tế.",
-  };
-}
-
-function buildDefaultSummary(lesson: Lesson) {
-  const title = lesson.title.replace(/^Tự học Tài chính Day \d+: /i, "");
-  return {
-    keyIdea: `Bài này giúp bạn hiểu rõ hơn về ${title.toLowerCase()}.`,
-    commonMistake: "Đọc khái niệm như một câu chữ thay vì như một nguyên lý để áp dụng.",
-    action: "Hãy nối bài học này với một quyết định nhỏ trong tuần này.",
-  };
-}
-
-function buildDefaultApplication(lesson: Lesson) {
-  return {
-    title: "Áp dụng ngay",
-    message: `Hãy chọn một tình huống nhỏ trong cuộc sống của bạn để thử áp dụng khái niệm ${lesson.title}.`,
-    secondary: "Không cần phải hoàn hảo; điều quan trọng là bắt đầu liên hệ bài học với thực tế.",
-  };
-}
-
 function getMetaphorForLesson(title: string): string {
   const t = title.toLowerCase();
   if (t.includes("lãi kép") || t.includes("compound")) return "quả cầu tuyết lăn từ đỉnh núi: càng lăn xa càng hút thêm tuyết và phình to khổng lồ";
@@ -374,19 +285,25 @@ export default function LessonPageClient({ lesson, nextLesson }: Props) {
         </div>
       )}
 
-      {/* 5.5. Practice prompt block */}
-      {(() => {
-        const practicePrompt = lesson.practicePrompt ?? buildDefaultPracticePrompt(lesson);
-        return (
-          <LessonQuestionCard
-            title="Luyện tập ngay"
-            question={practicePrompt.question}
-            options={practicePrompt.options}
-            correct={practicePrompt.correct}
-            explanation={practicePrompt.explanation}
-          />
-        );
-      })()}
+      {/* 5.5. Câu luyện tập - chỉ khi bài THẬT SỰ có một câu.
+          Hàm dựng thay thế cũ bịa ra một câu cho 97 bài không có, và câu nó
+          bịa vi phạm đúng luật 4 của AGENTS.md: phương án "Vì chỉ cần đọc là
+          đủ, không cần áp dụng" và "Vì không liên quan đến đời sống hàng ngày"
+          là khoảng trống, loại được ngay từ cái nhìn đầu tiên, nên câu bốn
+          phương án thành câu hai phương án.
+
+          Nó KHÔNG ghi điểm đi đâu cả - LessonQuestionCard không đụng tới
+          avg_quiz_score - nên đây là chuyện lãng phí thời gian người học, chứ
+          không phải chuyện làm sai các con số. Vẫn phải gỡ. */}
+      {lesson.practicePrompt && (
+        <LessonQuestionCard
+          title="Luyện tập ngay"
+          question={lesson.practicePrompt.question}
+          options={lesson.practicePrompt.options}
+          correct={lesson.practicePrompt.correct}
+          explanation={lesson.practicePrompt.explanation}
+        />
+      )}
 
       {/* 5.75 - 6. Everything that summarises the lesson, gated behind the
           60-second free-recall exercise. The gate has to start here rather
@@ -399,29 +316,36 @@ export default function LessonPageClient({ lesson, nextLesson }: Props) {
         lessonSlug={lesson.slug}
         takeaways={lesson.keyTakeaways ?? []}
       >
-      {/* 5.75. Summary block */}
-      {(() => {
-        const summary = lesson.summary ?? buildDefaultSummary(lesson);
-        return <LessonSummaryCard summary={summary} />;
-      })()}
+      {/* 5.75 - 5.95. Tóm tắt, áp dụng, và vòng ôn lại.
+          Cả ba CHỈ dựng khi bài thật sự có nội dung cho chúng.
 
-      {/* 5.9. Application block */}
-      {(() => {
-        const application = lesson.application ?? buildDefaultApplication(lesson);
-        return (
-          <LessonApplicationCard
-            title={application.title}
-            message={application.message}
-            secondary={application.secondary}
-          />
-        );
-      })()}
+          Trước đây có hai hàm dựng thay thế, và thứ chúng sinh ra là chữ rỗng:
+          keyIdea là "Bài này giúp bạn hiểu rõ hơn về <tên bài>", còn
+          commonMistake và action thì giống hệt nhau ở mọi bài. Hậu quả không
+          phải một tấm thẻ xấu mà là một tấm thẻ NÓI DỐI: nó trông y hệt tấm
+          thẻ của 689 bài có tóm tắt thật, chiếm cùng chỗ, mang cùng tiêu đề,
+          và không chứa một chữ nào về bài đang đọc. Vì có hàm thay thế nên
+          không ai thấy - 26 bài đã ở tình trạng đó.
 
-      {/* 5.95. Review loop card */}
-      <ReviewLoopCard
-        prompt={`Nếu bạn chỉ nhớ 1 điều từ bài này, hãy nhớ rằng: ${lesson.summary?.keyIdea || lesson.title}.`}
-        cta="Ôn lại trong 1 phút trước khi chuyển bài"
-      />
+          Không có thẻ thì tốt hơn một cái thẻ rỗng: chỗ trống nhìn thấy được,
+          còn chữ rỗng thì không. Bài nào thiếu sẽ hiện trong npm run
+          audit:lessons. */}
+      {lesson.summary && <LessonSummaryCard summary={lesson.summary} />}
+
+      {lesson.application && (
+        <LessonApplicationCard
+          title={lesson.application.title}
+          message={lesson.application.message}
+          secondary={lesson.application.secondary}
+        />
+      )}
+
+      {lesson.summary?.keyIdea && (
+        <ReviewLoopCard
+          prompt={`Nếu bạn chỉ nhớ 1 điều từ bài này, hãy nhớ rằng: ${lesson.summary.keyIdea}.`}
+          cta="Ôn lại trong 1 phút trước khi chuyển bài"
+        />
+      )}
 
       {/* 6. Key Takeaways block */}
       {lesson.keyTakeaways && lesson.keyTakeaways.length > 0 && (
