@@ -97,15 +97,15 @@ function CareerAvatar({ career, size = 110, className = "" }: { career?: Finance
 // no linked lessons yet.
 function RelatedLessonsPanel({ career }: { career: FinanceCareer }) {
   const [progress, setProgress] = useState<CareerLessonProgress | null>(null);
-  const [loading, setLoading] = useState(true);
+  // Suy ra từ nghề nào đã tải xong. Nghề không có bài liên quan thì không có
+  // gì để tải, nên cũng không bao giờ ở trạng thái đang tải - bản cũ phải tắt
+  // cờ bằng một setState đồng bộ ngay trong nhánh thoát sớm của effect.
+  const [loadedCareerId, setLoadedCareerId] = useState<string | null>(null);
+  const loading = career.relatedLessonSlugs.length > 0 && loadedCareerId !== career.id;
 
   useEffect(() => {
-    if (career.relatedLessonSlugs.length === 0) {
-      setLoading(false);
-      return;
-    }
+    if (career.relatedLessonSlugs.length === 0) return;
     let cancelled = false;
-    setLoading(true);
     getCareerLessonProgress(career.relatedLessonSlugs)
       .then((p) => {
         if (!cancelled) setProgress(p);
@@ -114,12 +114,12 @@ function RelatedLessonsPanel({ career }: { career: FinanceCareer }) {
         if (!cancelled) setProgress(null);
       })
       .finally(() => {
-        if (!cancelled) setLoading(false);
+        if (!cancelled) setLoadedCareerId(career.id);
       });
     return () => {
       cancelled = true;
     };
-  }, [career.id]);
+  }, [career.id, career.relatedLessonSlugs.length]);
 
   const cfaSubjects = (career.relatedCfaSubjectIds ?? [])
     .map((id) => CFA_LEVEL_1_SUBJECTS.find((s) => s.id === id))

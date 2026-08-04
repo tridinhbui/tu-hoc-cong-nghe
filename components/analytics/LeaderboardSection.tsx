@@ -162,14 +162,18 @@ export default function LeaderboardSection({ userId }: LeaderboardSectionProps) 
   const [entries, setEntries] = useState<LeaderboardRow[]>([]);
   const [myRank, setMyRank] = useState<{ rank: number; value: number } | null>(null);
   const [loading, setLoading] = useState(true);
-  const [switching, setSwitching] = useState(false);
+  // `switching` (làm mờ bảng trong lúc đổi tab) suy ra từ tab nào đã tải
+  // xong, không phải một cờ bật lên ở đầu effect. Cùng lý do như `loading` ở
+  // các bảng xếp hạng khác: cờ riêng là setState đồng bộ trong effect, và nó
+  // rời khỏi dữ liệu nên mọi nhánh thoát mới phải nhớ tắt.
+  const [loadedTab, setLoadedTab] = useState<string | null>(null);
+  const switching = loadedTab !== activeTab;
   const tabsRef = useRef<HTMLDivElement>(null);
 
   const tab = TABS.find((t) => t.id === activeTab)!;
 
   useEffect(() => {
     let cancelled = false;
-    setSwitching(true);
     (async () => {
       try {
         const { top, mine } = await loadTab(activeTab, userId);
@@ -185,7 +189,7 @@ export default function LeaderboardSection({ userId }: LeaderboardSectionProps) 
       } finally {
         if (!cancelled) {
           setLoading(false);
-          setSwitching(false);
+          setLoadedTab(activeTab);
         }
       }
     })();

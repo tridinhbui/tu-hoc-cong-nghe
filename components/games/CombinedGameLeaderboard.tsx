@@ -17,7 +17,8 @@ export default function CombinedGameLeaderboard() {
 
   useEffect(() => {
     let cancelled = false;
-    setLoading(true);
+    // Không bật lại cờ ở đây: effect chỉ chạy một lần (deps rỗng) và
+    // `loading` đã khởi tạo bằng true.
     getCombinedGameLeaderboard(10)
       .then((data) => {
         if (!cancelled) setRows(data);

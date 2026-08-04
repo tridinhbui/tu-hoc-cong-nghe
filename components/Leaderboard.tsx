@@ -492,14 +492,16 @@ export default function Leaderboard({ userId, compact = false }: { userId?: stri
   // Component breakdown for the composite tab, so the score isn't opaque.
   const [myComposite, setMyComposite] = useState<CompositeRank | null>(null);
   const [loading, setLoading] = useState(true);
-  const [switching, setSwitching] = useState(false);
+  // Xem ghi chú cùng kiểu ở components/analytics/LeaderboardSection.tsx:
+  // trạng thái "đang đổi bảng" suy ra từ chỉ số nào đã tải xong.
+  const [loadedMetric, setLoadedMetric] = useState<string | null>(null);
+  const switching = loadedMetric !== metric;
   const leadTabsRef = useRef<HTMLDivElement>(null);
 
   const activeTab = TABS.find((tab) => tab.metric === metric)!;
 
   useEffect(() => {
     let cancelled = false;
-    setSwitching(true);
 
     (async () => {
       try {
@@ -585,7 +587,7 @@ export default function Leaderboard({ userId, compact = false }: { userId?: stri
       } finally {
         if (!cancelled) {
           setLoading(false);
-          setSwitching(false);
+          setLoadedMetric(metric);
         }
       }
     })();

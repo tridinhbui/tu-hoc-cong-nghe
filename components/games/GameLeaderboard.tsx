@@ -10,18 +10,22 @@ const RANK_MEDAL: Record<number, string> = { 1: "🥇", 2: "🥈", 3: "🥉" };
 
 export default function GameLeaderboard({ gameType }: { gameType: GameType }) {
   const [rows, setRows] = useState<GameLeaderboardRow[]>([]);
-  const [loading, setLoading] = useState(true);
+  const [loadedKey, setLoadedKey] = useState<string | null>(null);
+  // `loading` suy ra từ chỗ dữ liệu đã tải xong cho khoá nào, không phải một
+  // cờ riêng bật lên ở đầu effect. Cờ riêng có hai nhược điểm: nó là setState
+  // đồng bộ trong effect - đúng thứ React khuyên tránh - và nó tách rời khỏi
+  // dữ liệu, nên mọi nhánh thoát mới phải nhớ tắt nó đi.
+  const loading = loadedKey !== gameType;
 
   useEffect(() => {
     let cancelled = false;
-    setLoading(true);
     getGameLeaderboard(gameType, 10)
       .then((data) => {
         if (!cancelled) setRows(data);
       })
       .catch((error) => console.error("Error loading game leaderboard:", error))
       .finally(() => {
-        if (!cancelled) setLoading(false);
+        if (!cancelled) setLoadedKey(gameType);
       });
     return () => {
       cancelled = true;

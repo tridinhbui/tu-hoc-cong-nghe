@@ -5,23 +5,28 @@ import { getGameHistory, type GameSession, type GameType } from "@/lib/games";
 
 export default function GameHistory({ userId, gameType }: { userId: string; gameType: GameType }) {
   const [sessions, setSessions] = useState<GameSession[]>([]);
-  const [loading, setLoading] = useState(true);
+  const [loadedKey, setLoadedKey] = useState<string | null>(null);
+  // `loading` suy ra từ chỗ dữ liệu đã tải xong cho khoá nào, không phải một
+  // cờ riêng bật lên ở đầu effect. Cờ riêng có hai nhược điểm: nó là setState
+  // đồng bộ trong effect - đúng thứ React khuyên tránh - và nó tách rời khỏi
+  // dữ liệu, nên mọi nhánh thoát mới phải nhớ tắt nó đi.
+  const loadedFor = `${userId}::${gameType}`;
+  const loading = loadedKey !== loadedFor;
 
   useEffect(() => {
     let cancelled = false;
-    setLoading(true);
     getGameHistory(userId, gameType)
       .then((data) => {
         if (!cancelled) setSessions(data);
       })
       .catch((error) => console.error("Error loading game history:", error))
       .finally(() => {
-        if (!cancelled) setLoading(false);
+        if (!cancelled) setLoadedKey(loadedFor);
       });
     return () => {
       cancelled = true;
     };
-  }, [userId, gameType]);
+  }, [userId, gameType, loadedFor]);
 
   if (loading) {
     return <div className="py-10 text-center text-sm text-stone-400">Đang tải lịch sử...</div>;
