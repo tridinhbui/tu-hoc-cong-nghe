@@ -5,6 +5,7 @@ import * as THREE from "three";
 import { ROOM } from "./ReadingRoom";
 import { PLAZA_Y, REAR_Z, SIDE_X0, SIDE_X1, STEP_Z0 } from "./world";
 import { asphaltTexture } from "./room-textures";
+import { StaticInstances } from "./instanced";
 import type { DaySample } from "./daylight";
 
 /** Cảnh vòng quanh thư viện: hai hẻm hông và sân sau.
@@ -21,40 +22,100 @@ import type { DaySample } from "./daylight";
 const halfW = ROOM.width / 2;
 const halfL = ROOM.length / 2;
 
-function Dumpster({ x, z, color }: { x: number; z: number; color: string }) {
+
+/** Cục nóng điều hoà bám tường - chi tiết rẻ nhất biến một bức tường phẳng
+ *  thành mặt sau của một toà nhà đang hoạt động. */
+
+/** Toàn bộ cục nóng điều hoà bám tường, gộp về hai draw call.
+ *
+ *  Tám cái ở ba nơi: hai cái sau lưng thư viện, sáu cái trong hai hẻm hông.
+ *  Trước đây mỗi cái là một group xoay chứa hai mesh, tức mười sáu draw call
+ *  cho một thứ không ai nhìn quá hai giây.
+ *
+ *  Cánh quạt phải dùng quaternion ghép sẵn chứ không phải bộ Euler: bản cũ lồng
+ *  một mesh xoay quanh X vào một group xoay quanh Y, và tích hai phép xoay đó
+ *  không bằng Euler XYZ của cùng hai góc. */
+function AcUnits({ units }: { units: Array<{ x: number; y: number; z: number; ry: number }> }) {
+  const bodies = useMemo(
+    () =>
+      units.map((u) => ({
+        position: [u.x, PLAZA_Y + u.y, u.z] as [number, number, number],
+        rotation: [0, u.ry, 0] as [number, number, number],
+      })),
+    [units]
+  );
+  const fans = useMemo(
+    () =>
+      units.map((u) => ({
+        // Mặt quạt nằm ở +0,29 theo trục z ĐỊA PHƯƠNG, nên phải xoay theo ry
+        // trước khi cộng vào vị trí của cục nóng.
+        position: [
+          u.x + Math.sin(u.ry) * 0.29,
+          PLAZA_Y + u.y,
+          u.z + Math.cos(u.ry) * 0.29,
+        ] as [number, number, number],
+        quaternion: new THREE.Quaternion()
+          .setFromEuler(new THREE.Euler(0, u.ry, 0))
+          .multiply(new THREE.Quaternion().setFromEuler(new THREE.Euler(Math.PI / 2, 0, 0))),
+      })),
+    [units]
+  );
+
   return (
-    <group position={[x, PLAZA_Y, z]}>
-      <mesh position={[0, 0.75, 0]} castShadow receiveShadow>
-        <boxGeometry args={[2.2, 1.5, 1.3]} />
-        <meshStandardMaterial color={color} roughness={0.85} metalness={0.2} />
-      </mesh>
-      <mesh position={[0, 1.55, 0]} rotation={[-0.18, 0, 0]} castShadow>
-        <boxGeometry args={[2.3, 0.1, 1.4]} />
-        <meshStandardMaterial color="#2f3a33" roughness={0.9} />
-      </mesh>
-      {[-0.8, 0.8].map((wx) => (
-        <mesh key={wx} position={[wx, 0.12, 0.5]} rotation={[Math.PI / 2, 0, 0]}>
-          <torusGeometry args={[0.12, 0.05, 6, 12]} />
-          <meshStandardMaterial color="#1c1917" roughness={0.95} />
-        </mesh>
-      ))}
+    <group>
+      <StaticInstances transforms={bodies} castShadow>
+        <boxGeometry args={[1.1, 0.9, 0.55]} />
+        <meshStandardMaterial color="#8b8d90" roughness={0.7} metalness={0.35} />
+      </StaticInstances>
+      <StaticInstances transforms={fans}>
+        <cylinderGeometry args={[0.32, 0.32, 0.04, 14]} />
+        <meshStandardMaterial color="#3f3f46" roughness={0.8} />
+      </StaticInstances>
     </group>
   );
 }
 
-/** Cục nóng điều hoà bám tường - chi tiết rẻ nhất biến một bức tường phẳng
- *  thành mặt sau của một toà nhà đang hoạt động. */
-function AcUnit({ x, z, ry, y }: { x: number; z: number; ry: number; y: number }) {
+/** Thùng rác: sáu cái, ba draw call thay vì hai mươi bốn. Màu thân khác nhau
+ *  nên đi qua màu riêng của từng bản sao. */
+function Dumpsters({ units }: { units: Array<{ x: number; z: number; color: string }> }) {
+  const bodies = useMemo(
+    () => units.map((u) => ({ position: [u.x, PLAZA_Y + 0.75, u.z] as [number, number, number] })),
+    [units]
+  );
+  const lids = useMemo(
+    () =>
+      units.map((u) => ({
+        position: [u.x, PLAZA_Y + 1.55, u.z] as [number, number, number],
+        rotation: [-0.18, 0, 0] as [number, number, number],
+      })),
+    [units]
+  );
+  const wheels = useMemo(
+    () =>
+      units.flatMap((u) =>
+        [-0.8, 0.8].map((wx) => ({
+          position: [u.x + wx, PLAZA_Y + 0.12, u.z + 0.5] as [number, number, number],
+          rotation: [Math.PI / 2, 0, 0] as [number, number, number],
+        }))
+      ),
+    [units]
+  );
+  const colors = useMemo(() => units.map((u) => u.color), [units]);
+
   return (
-    <group position={[x, PLAZA_Y + y, z]} rotation={[0, ry, 0]}>
-      <mesh castShadow>
-        <boxGeometry args={[1.1, 0.9, 0.55]} />
-        <meshStandardMaterial color="#8b8d90" roughness={0.7} metalness={0.35} />
-      </mesh>
-      <mesh position={[0, 0, 0.29]} rotation={[Math.PI / 2, 0, 0]}>
-        <cylinderGeometry args={[0.32, 0.32, 0.04, 14]} />
-        <meshStandardMaterial color="#3f3f46" roughness={0.8} />
-      </mesh>
+    <group>
+      <StaticInstances transforms={bodies} colors={colors} castShadow receiveShadow>
+        <boxGeometry args={[2.2, 1.5, 1.3]} />
+        <meshStandardMaterial roughness={0.85} metalness={0.2} />
+      </StaticInstances>
+      <StaticInstances transforms={lids} castShadow>
+        <boxGeometry args={[2.3, 0.1, 1.4]} />
+        <meshStandardMaterial color="#2f3a33" roughness={0.9} />
+      </StaticInstances>
+      <StaticInstances transforms={wheels}>
+        <torusGeometry args={[0.12, 0.05, 6, 12]} />
+        <meshStandardMaterial color="#1c1917" roughness={0.95} />
+      </StaticInstances>
     </group>
   );
 }
@@ -159,32 +220,34 @@ export default function LibrarySurrounds({ day }: { day: DaySample }) {
       {[-7, 7].map((x) => (
         <DrainPipe key={x} x={x} z={-halfL - 0.4} height={11} />
       ))}
-      {[-4.5, 3.5].map((x, i) => (
-        <AcUnit key={x} x={x} z={-halfL - 0.55} ry={0} y={2.2 + i * 1.6} />
-      ))}
+      {/* Tất cả cục nóng của cả ba mặt gom vào một cụm: hai cái sau lưng thư
+          viện và sáu cái trong hai hẻm hông. */}
+      <AcUnits
+        units={[
+          ...[-4.5, 3.5].map((x, i) => ({ x, z: -halfL - 0.55, ry: 0, y: 2.2 + i * 1.6 })),
+          ...[-1, 1].flatMap((side) =>
+            [-14, 2, 16].map((z) => ({
+              x: side * (halfW + 0.55),
+              z,
+              ry: side < 0 ? Math.PI / 2 : -Math.PI / 2,
+              y: 2.6,
+            }))
+          ),
+        ]}
+      />
 
-      {/* Đồ đạc mặt sau */}
-      <Dumpster x={-6} z={-halfL - 4} color="#3f5f45" />
-      <Dumpster x={-3} z={-halfL - 4} color="#4a4a4a" />
+      {/* Thùng rác mặt sau và trong hẻm - cùng một cụm. */}
+      <Dumpsters
+        units={[
+          { x: -6, z: -halfL - 4, color: "#3f5f45" },
+          { x: -3, z: -halfL - 4, color: "#4a4a4a" },
+          ...[-1, 1].flatMap((side) =>
+            [-6, 10].map((z) => ({ x: side * (SIDE_X1 - 1.6), z, color: "#4a4a4a" }))
+          ),
+        ]}
+      />
       <DeliveryTruck x={7} z={-halfL - 5.5} />
 
-      {/* Hẻm hông: điều hoà bám tường thư viện, vài thùng, và đèn hẻm. */}
-      {[-1, 1].map((side) =>
-        [-14, 2, 16].map((z) => (
-          <AcUnit
-            key={`${side}:${z}`}
-            x={side * (halfW + 0.55)}
-            z={z}
-            ry={side < 0 ? Math.PI / 2 : -Math.PI / 2}
-            y={2.6}
-          />
-        ))
-      )}
-      {[-1, 1].map((side) =>
-        [-6, 10].map((z) => (
-          <Dumpster key={`d${side}:${z}`} x={side * (SIDE_X1 - 1.6)} z={z} color="#4a4a4a" />
-        ))
-      )}
       {lampOn &&
         [-1, 1].map((side) =>
           [-18, -4, 12].map((z) => (

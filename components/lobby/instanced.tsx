@@ -30,6 +30,12 @@ export interface InstanceTransform {
   position: [number, number, number];
   scale?: [number, number, number] | number;
   rotation?: [number, number, number];
+  /** Xoay ghép sẵn, cho trường hợp bản cũ lồng group xoay trong group xoay.
+   *  Dùng cái này thay vì `rotation` khi thứ tự nhân ma trận có ý nghĩa: một
+   *  bộ Euler XYZ KHÔNG cho ra cùng kết quả với "xoay quanh Y rồi xoay quanh X"
+   *  của hai group lồng nhau, và sai chỗ đó thì cánh quạt quay sang hướng khác
+   *  mà nhìn thoáng qua vẫn thấy có cánh quạt. */
+  quaternion?: THREE.Quaternion;
 }
 
 const dummy = new THREE.Object3D();
@@ -46,7 +52,8 @@ export function writeInstance(
   if (typeof t.scale === "number") dummy.scale.setScalar(t.scale);
   else if (t.scale) dummy.scale.set(...t.scale);
   else dummy.scale.setScalar(1);
-  if (t.rotation) dummy.rotation.set(...t.rotation);
+  if (t.quaternion) dummy.quaternion.copy(t.quaternion);
+  else if (t.rotation) dummy.rotation.set(...t.rotation);
   else dummy.rotation.set(0, 0, 0);
   dummy.updateMatrix();
   mesh.setMatrixAt(i, dummy.matrix);
