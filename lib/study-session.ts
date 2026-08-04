@@ -124,3 +124,25 @@ export function notifySessionDone(minutes: number): boolean {
     return false;
   }
 }
+
+/**
+ * Mốc bắt đầu của phiên đang chạy tại một bàn: sớm nhất trong số người đang
+ * ngồi.
+ *
+ * Đồng hồ thuộc về BÀN chứ không thuộc về người. Ai ngồi xuống muộn nhận đúng
+ * thời gian còn lại của phiên đang chạy, thay vì mở một phiên 25 phút riêng
+ * ngay cạnh người khác - đó là khác biệt giữa "cùng học" và "ngồi gần nhau".
+ *
+ * Thư viện đã có quy tắc này trong lib/supabase-lobby.ts nhưng gắn với hình
+ * dạng dữ liệu chỗ ngồi của riêng nó (`seat.startedAt`), còn phòng học nhóm
+ * giữ chỗ ngồi và mốc bắt đầu ở hai trường tách rời. Hàm này nhận thẳng danh
+ * sách mốc để cả hai cách lưu đều dùng được.
+ */
+export function earliestSessionStart(starts: Array<number | null | undefined>): number | null {
+  let earliest: number | null = null;
+  for (const t of starts) {
+    if (t === null || t === undefined || !Number.isFinite(t)) continue;
+    if (earliest === null || t < earliest) earliest = t;
+  }
+  return earliest;
+}

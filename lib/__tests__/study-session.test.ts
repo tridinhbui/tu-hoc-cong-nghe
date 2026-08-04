@@ -6,6 +6,7 @@ import {
   isSessionComplete,
   remainingMs,
   shouldEndForAway,
+  earliestSessionStart,
 } from "../study-session";
 
 describe("dong ho phien", () => {
@@ -57,5 +58,30 @@ describe("roi di thi dung phien", () => {
   // không bao giờ kịp bảo vệ điều nó sinh ra để bảo vệ.
   it("nguong vang mat ngan hon mot phien", () => {
     expect(AWAY_MS).toBeLessThan(POMODORO_MS / 2);
+  });
+});
+
+describe("earliestSessionStart", () => {
+  it("lấy mốc sớm nhất trong số người đang ngồi", () => {
+    expect(earliestSessionStart([5000, 2000, 9000])).toBe(2000);
+  });
+
+  it("bỏ qua người không ngồi", () => {
+    expect(earliestSessionStart([null, 7000, undefined])).toBe(7000);
+  });
+
+  it("bàn trống thì không có phiên nào", () => {
+    expect(earliestSessionStart([])).toBe(null);
+    expect(earliestSessionStart([null, null])).toBe(null);
+  });
+
+  it("người ngồi xuống muộn không mở phiên riêng - vẫn là mốc của người đầu", () => {
+    const first = 1_000_000;
+    const later = first + 8 * 60_000;
+    expect(earliestSessionStart([first, later])).toBe(first);
+  });
+
+  it("giá trị hỏng không được thắng mốc thật", () => {
+    expect(earliestSessionStart([Number.NaN, 4000])).toBe(4000);
   });
 });

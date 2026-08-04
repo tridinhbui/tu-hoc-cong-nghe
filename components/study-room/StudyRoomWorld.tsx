@@ -6,6 +6,7 @@ import dynamic from "next/dynamic";
 import { CHAT_MAX_LENGTH, POMODORO_MS, colorForUser, type LobbyChatMessage } from "@/lib/supabase-lobby";
 import { sayInStudyWorld } from "@/lib/supabase-study-world";
 import { createWalkState } from "@/components/world-controls/easy-walk";
+import { useWorldSound } from "@/components/world-controls/world-sound";
 import type { CharacterEquipments } from "@/lib/rpg-items";
 import { finishFocusSession, getTodayFocusSeconds, startFocusSession } from "@/lib/focus-session";
 import { getSceneLighting } from "@/lib/study-room-lighting";
@@ -84,6 +85,9 @@ export default function StudyRoomWorld({
   const [draft, setDraft] = useState("");
   const [selfSpeech, setSelfSpeech] = useState<{ text: string; at: number } | null>(null);
   const [seatedCount, setSeatedCount] = useState(0);
+  /** Phòng học là thế giới duy nhất trong ba cái chưa có tiếng, dù nó là nơi
+   *  người ta ở lại lâu nhất. Mặc định vẫn TẮT - lý do nằm trong world-sound. */
+  const sound = useWorldSound();
   /** Những người đã bị ẩn trong phiên này.
    *
    *  Chỉ nằm trong bộ nhớ và chỉ lọc phần chữ ở máy mình: phòng này giới hạn
@@ -275,7 +279,7 @@ export default function StudyRoomWorld({
       {/* Số người THẬT đang ở trong phòng, đếm từ presence chứ không phải sĩ số
           thành viên: một phòng 8 người mà đang chỉ có mình bạn là một thông tin
           khác hẳn, và là thông tin cần biết. */}
-      <div className="pointer-events-none absolute inset-x-0 top-0 z-10 flex justify-center p-3">
+      <div className="pointer-events-none absolute inset-x-0 top-0 z-10 flex items-start justify-center gap-2 p-3">
         <div className="rounded-2xl bg-stone-900/75 px-4 py-1.5 text-center shadow-lg backdrop-blur">
           <p className="text-[11px] font-bold text-emerald-300">
             🚪 Phòng học · {topicLabel}
@@ -300,6 +304,16 @@ export default function StudyRoomWorld({
             </p>
           )}
         </div>
+        {/* Âm thanh mặc định TẮT: trình duyệt chặn phát tự động, và tiếng tự
+            nổi lên trong một app học tập làm người ta đóng tab. */}
+        <button
+          type="button"
+          onClick={sound.toggle}
+          aria-label={sound.enabled ? "Tắt âm thanh" : "Bật âm thanh"}
+          className="pointer-events-auto cursor-pointer rounded-2xl bg-stone-900/75 px-3 py-2 text-[13px] shadow-lg backdrop-blur transition hover:bg-stone-800"
+        >
+          {sound.enabled ? "🔊" : "🔈"}
+        </button>
       </div>
 
       {/* Ngồi vào bàn / đứng dậy. Nút chỉ hiện khi thực sự đứng trong tầm một
@@ -313,6 +327,9 @@ export default function StudyRoomWorld({
               onClick={() => {
                 setSeated(seatable);
                 setSeatStartedAt(Date.now());
+                // Tiếng ngồi xuống: dấu hiệu duy nhất nói phiên đã bắt đầu mà
+                // không cần rời mắt khỏi chỗ đang nhìn.
+                sound.play("sit");
               }}
               className="pointer-events-auto cursor-pointer rounded-2xl bg-emerald-500 px-5 py-2.5 text-xs font-bold text-white shadow-xl transition hover:bg-emerald-400"
             >

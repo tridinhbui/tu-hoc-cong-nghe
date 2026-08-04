@@ -8,6 +8,7 @@ import {
   BODY_RADIUS,
   ROOM,
   SEATS,
+  TABLE,
   isNearDoor,
   nearestFreeSeat,
   resolveStudyObstacles,
@@ -27,7 +28,9 @@ import { QualityGovernor, useGovernedQuality } from "@/components/world-controls
 import { usePageVisible } from "@/components/world-controls/use-page-visible";
 import LobbyAvatar, { type AvatarPose } from "@/components/lobby/LobbyAvatar";
 import { disposeRoomTextures } from "@/components/lobby/room-textures";
+import PomodoroClock from "@/components/lobby/PomodoroClock";
 import { CHAT_BUBBLE_MS, MOVE_BROADCAST_MS, type LobbyChatMessage } from "@/lib/supabase-lobby";
+import { earliestSessionStart } from "@/lib/study-session";
 import {
   SPAWN_RY,
   SPAWN_Z,
@@ -289,10 +292,26 @@ export default function StudyRoomScene({
    *  Cả căn phòng dựng lên vì sự hiện diện của người khác, nhưng trước đây
    *  ngồi cạnh một người đang học và ngồi cạnh một người đang đi loanh quanh
    *  trông y hệt nhau. */
+  const seatedCount = useMemo(
+    () => peers.filter((p) => p.seat !== null).length + (seated !== null ? 1 : 0),
+    [peers, seated]
+  );
   useEffect(() => {
-    const others = peers.filter((p) => p.seat !== null).length;
-    onSeatedCount(others + (seated !== null ? 1 : 0));
-  }, [peers, seated, onSeatedCount]);
+    onSeatedCount(seatedCount);
+  }, [seatedCount, onSeatedCount]);
+
+  /** Mốc bắt đầu của phiên đang chạy ở bàn này: sớm nhất trong số người đang
+   *  ngồi, kể cả mình. Đồng hồ thuộc về BÀN chứ không thuộc về người - ai ngồi
+   *  xuống muộn nhận đúng thời gian còn lại thay vì mở một phiên riêng cạnh
+   *  người khác. Cùng quy tắc thư viện đang dùng cho các bàn của nó. */
+  const tableStartedAt = useMemo(
+    () =>
+      earliestSessionStart([
+        ...peers.filter((p) => p.seat !== null).map((p) => p.seatStartedAt),
+        seated !== null ? seatStartedAt : null,
+      ]),
+    [peers, seated, seatStartedAt]
+  );
 
   /** Dọn bong bóng đã hết hạn - để lại thì mỗi người từng nói một câu sẽ giữ
    *  chuỗi đó trong bộ nhớ suốt phiên. */
@@ -404,6 +423,18 @@ export default function StudyRoomScene({
         lampColor={lampColor}
         daylight={daylight}
       />
+
+      {/* Đồng hồ phiên treo trên bàn. Trước đây đếm ngược chỉ nằm ở góc HUD -
+          tức là nhìn vào căn phòng thì không thấy gì, trong khi cả căn phòng
+          tồn tại vì đúng phiên 25 phút đó. Treo cao hơn mặt bàn 1,7 đơn vị để
+          không bị đầu người ngồi che. */}
+      {tableStartedAt !== null && (
+        <PomodoroClock
+          position={[TABLE.x, TABLE.top + 1.7, TABLE.z]}
+          startedAt={tableStartedAt}
+          seatedCount={seatedCount}
+        />
+      )}
 
       <LobbyAvatar
         name={identity.name}
