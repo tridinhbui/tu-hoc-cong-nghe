@@ -204,9 +204,50 @@ const MIN_QUESTIONS_FOR_TELL_CHECK = 2;
 const baselinePath = path.join(__dirname, "lesson-quiz-tell-baseline.json");
 const baseline = new Set(JSON.parse(readFileSync(baselinePath, "utf8")).lessons);
 
+/** Ngưỡng lệch, tính bằng số lần độ lệch chuẩn so với ngẫu nhiên.
+ *
+ *  LÝ DO DÙNG z CHỨ KHÔNG DÙNG TỈ LỆ. Hai trần cũ (MAX_TELL_SHARE,
+ *  MAX_SHORTEST_SHARE) là tỉ lệ trên TOÀN kho, và cả hai đều mù ba chuyện:
+ *
+ *  1. Một track lệch trong khi tổng vẫn đẹp. Track nhỏ chìm trong track lớn.
+ *  2. Kích thước track. 543 câu của bonus có độ lệch chuẩn 1,9 điểm phần trăm,
+ *     còn 2.469 câu của professional chỉ 0,9 - nên cùng một con số phần trăm
+ *     mang hai ý nghĩa khác nhau. Một trần cố định hoặc quá lỏng cho track lớn
+ *     hoặc đỏ vì nhiễu ở track nhỏ.
+ *  3. Lệch xuống DƯỚI ngẫu nhiên cũng là mẹo. Trần chỉ chặn phía trên, nên
+ *     "đáp án đúng hiếm khi là phương án dài nhất" trôi tự do - và nó trôi
+ *     thật: professional ở z = −4,6, tức người học chỉ cần LOẠI phương án dài
+ *     nhất rồi đoán là hơn hẳn mức 25%.
+ *
+ *  Ngưỡng đặt ở mức kho HIỆN ĐANG ĐẠT, đúng luật của AGENTS.md - đủ để chặn
+ *  trôi thêm, không tạo nợ cho những gì đã có. Hạ nó sau mỗi đợt viết lại;
+ *  không bao giờ nâng để một build đỏ thành xanh. */
+const MAX_LENGTH_BIAS_Z = 5;
+
 const quizStats = { personal: null, professional: null, bonus: null };
 for (const track of Object.keys(quizStats)) {
-  quizStats[track] = { questions: 0, longest: 0, shortest: 0, ratioSum: 0 };
+  quizStats[track] = {
+    questions: 0,
+    longest: 0,
+    shortest: 0,
+    ratioSum: 0,
+    // Đo bằng CÙNG MỘT LUẬT cho cả hai chiều: chỉ tính khi cực trị là duy
+    // nhất. Hai trường `longest`/`shortest` ở trên không như vậy - `longest`
+    // tính cả hoà còn `shortest` thì không, dù chú thích của `shortest` nêu
+    // đúng lý do phải đòi hỏi duy nhất ("hoà nhau thì người đoán vẫn phải tung
+    // đồng xu"). Cùng một lập luận, chỉ áp cho một bên, suốt cả đời bộ kiểm
+    // này - và nó thổi phồng phía "dài": bonus đọc ra 30% trong khi số thật là
+    // 24,9%. Giữ lại hai trường cũ vì cổng theo từng bài và tệp mốc đang tính
+    // theo chúng.
+    uniqueLongest: 0,
+    uniqueShortest: 0,
+    // Kỳ vọng khi KHÔNG có mẹo nào, cộng dồn từng câu. Không phải 25%: câu nào
+    // có hai phương án dài bằng nhau thì không góp gì vào phía "dài nhất duy
+    // nhất", nên mốc ngẫu nhiên của mỗi track phụ thuộc vào số câu bị hoà của
+    // chính nó. Lấy 25% làm mốc chung là so kho với một mốc không tồn tại.
+    expectedLongest: 0,
+    expectedShortest: 0,
+  };
 }
 
 /** Lessons failing the per-lesson bar but absent from the baseline - i.e. new
@@ -242,6 +283,17 @@ for (const file of files) {
     const minLength = Math.min(...lengths);
     if (correctLength === minLength && lengths.filter((l) => l === minLength).length === 1) {
       stats.shortest++;
+    }
+
+    // Phép đo đối xứng, kèm mốc ngẫu nhiên tính theo từng câu.
+    const maxLength = Math.max(...lengths);
+    if (lengths.filter((l) => l === maxLength).length === 1) {
+      stats.expectedLongest += 1 / lengths.length;
+      if (correctLength === maxLength) stats.uniqueLongest++;
+    }
+    if (lengths.filter((l) => l === minLength).length === 1) {
+      stats.expectedShortest += 1 / lengths.length;
+      if (correctLength === minLength) stats.uniqueShortest++;
     }
     stats.ratioSum += mean > 0 ? correctLength / mean : 0;
     (question.options ?? []).forEach((option, index) => {
@@ -288,6 +340,67 @@ console.log(
 // read straight into MAX_TELL_SHARE, turning the gate red on the very batch
 // that lowered it: a displayed "75%" was an actual 75.4%, then 74.5%.
 console.log(`  exact share ${tellShare.toFixed(4)} — set MAX_TELL_SHARE no lower than this`);
+
+// ── Lệch độ dài, đo bằng z ─────────────────────────────────────────────────
+/** Bao nhiêu độ lệch chuẩn so với ngẫu nhiên. Dấu âm nghĩa là đáp án đúng
+ *  HIẾM khi rơi vào cực trị đó - cũng khai thác được, chỉ theo chiều ngược:
+ *  loại phương án đó ra rồi đoán trong ba cái còn lại. */
+function biasZ(observed, expected, questions) {
+  if (expected <= 0 || questions <= 0) return 0;
+  const variance = expected * (1 - expected / questions);
+  return variance > 0 ? (observed - expected) / Math.sqrt(variance) : 0;
+}
+
+const biasRows = [];
+for (const [track, st] of Object.entries(quizStats)) {
+  if (st.questions === 0) continue;
+  biasRows.push({
+    name: track,
+    zLong: biasZ(st.uniqueLongest, st.expectedLongest, st.questions),
+    zShort: biasZ(st.uniqueShortest, st.expectedShortest, st.questions),
+    st,
+  });
+}
+const totals = Object.values(quizStats).reduce(
+  (a, st) => ({
+    questions: a.questions + st.questions,
+    uniqueLongest: a.uniqueLongest + st.uniqueLongest,
+    uniqueShortest: a.uniqueShortest + st.uniqueShortest,
+    expectedLongest: a.expectedLongest + st.expectedLongest,
+    expectedShortest: a.expectedShortest + st.expectedShortest,
+  }),
+  { questions: 0, uniqueLongest: 0, uniqueShortest: 0, expectedLongest: 0, expectedShortest: 0 }
+);
+biasRows.push({
+  name: "TOTAL",
+  zLong: biasZ(totals.uniqueLongest, totals.expectedLongest, totals.questions),
+  zShort: biasZ(totals.uniqueShortest, totals.expectedShortest, totals.questions),
+  st: totals,
+});
+
+console.log(
+  `\n=== LENGTH BIAS (unique extreme only; expectation is tie-aware, not a flat 25%) ===`
+);
+for (const r of biasRows) {
+  const mark = (z) => (Math.abs(z) > MAX_LENGTH_BIAS_Z ? " <<<" : "");
+  console.log(
+    `  ${r.name.padEnd(13)} longest ${String(r.st.uniqueLongest).padStart(5)} vs ` +
+      `${String(Math.round(r.st.expectedLongest)).padStart(5)} expected  z=${r.zLong.toFixed(1).padStart(5)}${mark(r.zLong)}` +
+      `   shortest ${String(r.st.uniqueShortest).padStart(5)} vs ` +
+      `${String(Math.round(r.st.expectedShortest)).padStart(5)}  z=${r.zShort.toFixed(1).padStart(5)}${mark(r.zShort)}`
+  );
+}
+const worstBias = biasRows.reduce(
+  (w, r) => Math.max(w, Math.abs(r.zLong), Math.abs(r.zShort)),
+  0
+);
+console.log(
+  `  worst |z| = ${worstBias.toFixed(2)} — ceiling ${MAX_LENGTH_BIAS_Z}. ` +
+    `Lower it after a rewrite batch; never raise it.`
+);
+const biasFailures = biasRows.filter(
+  (r) => Math.abs(r.zLong) > MAX_LENGTH_BIAS_Z || Math.abs(r.zShort) > MAX_LENGTH_BIAS_Z
+);
 console.log(
   `  baseline: ${baseline.size} lessons grandfathered  ·  ` +
     `${unbaselined.length} not baselined  ·  ${fixedButStillBaselined.length} fixed but still listed`
@@ -396,6 +509,23 @@ if (fixedButStillBaselined.length > 0) {
       `  Run \`node scripts/audit-lesson-content.mjs --write-baseline\` to drop them:\n` +
       fixedButStillBaselined.map((slug) => `    ${slug}`).join("\n")
   );
+}
+
+if (biasFailures.length > 0 && !process.argv.includes("--warn-only")) {
+  console.error(
+    `\n${biasFailures.length} track/tổng vượt ngưỡng lệch độ dài |z| > ${MAX_LENGTH_BIAS_Z}:\n` +
+      biasFailures
+        .map(
+          (r) =>
+            `  ${r.name}: z(dài) = ${r.zLong.toFixed(2)}, z(ngắn) = ${r.zShort.toFixed(2)}`
+        )
+        .join("\n") +
+      `\n\n  Dấu DƯƠNG: đáp án đúng quá hay là phương án dài nhất (hoặc ngắn nhất) -\n` +
+      `  đoán theo độ dài là ăn. Dấu ÂM cũng khai thác được, chỉ ngược chiều:\n` +
+      `  loại đúng phương án đó ra rồi đoán trong ba cái còn lại.\n` +
+      `  Sửa bằng cách viết lại phương án, không bằng cách nâng ngưỡng.`
+  );
+  process.exit(1);
 }
 
 if (tellFailures.length > 0 && !process.argv.includes("--warn-only")) {

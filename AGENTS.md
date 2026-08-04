@@ -25,6 +25,25 @@ than by reading:
   Picking the longest option scored 91% with no finance knowledge at all. The
   same defect ran through 271 of 276 IB question-bank questions. This one cannot
   be fixed mechanically: a shorter correct answer has to be written.
+- **Length, the other direction.** That rewrite worked, and then overshot. The
+  corpus now sits at 24% longest — chance level — but that headline number was
+  hiding two things. The audit measured the two directions by *different rules*
+  (a tie for longest counted as a tell, a tie for shortest did not), which
+  inflated the longest side: `bonus` read 30% when the true figure was 24.9%.
+  And it compared against a flat 25%, which is not the chance level when
+  questions have tied options — the real expectation depends on how many ties a
+  track has.
+
+  Measured properly, the drift is now *downward* and strongest in the largest
+  track: `professional` has the correct answer as the uniquely longest option
+  452 times against 547 expected, **z = −4.6**. That is exploitable in reverse —
+  eliminate the longest option, then guess among three. It is the predictable
+  cost of rule 1 applied without watching the distribution, and nothing was
+  watching, because every gate was a ceiling and this is a floor.
+
+  `MAX_LENGTH_BIAS_Z` gates both directions, per track and overall, against a
+  tie-aware expectation. Fixing it means writing some correct options *longer*,
+  not shorter.
 
 ## Rules
 
@@ -117,8 +136,17 @@ node scripts/audit-ib-option-length.mjs                # IB question bank
 node scripts/audit-ib-option-length.mjs --ids <cat>    # per-question lengths
 ```
 
-The lesson audit gates CI on two things:
+The lesson audit gates CI on three things:
 
+- `MAX_LENGTH_BIAS_Z` — how far each track, and the corpus, sits from chance on
+  "is the correct answer the uniquely longest / shortest option", measured in
+  standard deviations against a tie-aware expectation. **A z-score rather than a
+  share**, for three reasons a share cannot handle: a track can drift while the
+  total stays flat; 543 questions and 2,469 questions have different noise
+  floors, so one percentage means two different things; and a share ceiling is
+  blind to drift *below* chance, which is where the corpus actually went. Sits
+  at 5 because the worst track is at 4.6. Lower it after a rewrite batch; never
+  raise it to make a build pass.
 - `MAX_TELL_SHARE` in `scripts/audit-lesson-content.mjs` — the share of all
   questions with the length tell. **Lower it after a rewrite batch; never raise
   it.** A share rather than a count, because a count can't tell "someone fixed
