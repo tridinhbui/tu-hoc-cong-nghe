@@ -36,6 +36,7 @@ import {
   type WalkState,
 } from "@/components/world-controls/easy-walk";
 import { useRenderQuality } from "@/components/world-controls/render-quality";
+import { QualityGovernor, useGovernedQuality } from "@/components/world-controls/quality-governor";
 import { usePageVisible } from "@/components/world-controls/use-page-visible";
 import LobbyAvatar, { type AvatarPose } from "@/components/lobby/LobbyAvatar";
 import { disposeRoomTextures } from "@/components/lobby/room-textures";
@@ -345,7 +346,11 @@ export default function DistrictScene({
   daylight,
   forceRender = false,
 }: DistrictSceneProps) {
-  const quality = useRenderQuality();
+  // Chất lượng gốc là một lần đoán từ số nhân CPU; bộ điều tiết bên dưới sửa
+  // lại nó theo thời lượng khung hình thật, vì một laptop tám nhân dùng đồ hoạ
+  // tích hợp vẫn báo là máy khoẻ.
+  const baseQuality = useRenderQuality();
+  const { quality, onLevel } = useGovernedQuality(baseQuality);
   const pageVisible = usePageVisible();
   const room = getRoom(roomId);
   const poseRef = useRef<AvatarPose>({ ...entry });
@@ -479,8 +484,13 @@ export default function DistrictScene({
       dpr={quality.dpr}
       // Bám theo cùng phép đo máy yếu mà useRenderQuality đang dùng: xin GPU
       // rời trong khi vừa hạ DPR vì máy yếu là tự vô hiệu một nửa cơ chế.
-      gl={{ antialias: true, powerPreference: quality.shadows ? "high-performance" : "low-power" }}
+      gl={{
+        antialias: baseQuality.shadows,
+        powerPreference: baseQuality.shadows ? "high-performance" : "low-power",
+      }}
     >
+      {/* Đo khung hình thật và hạ chất lượng nếu cảnh không theo kịp. */}
+      <QualityGovernor onLevel={onLevel} />
       <color attach="background" args={[sky]} />
       <fog attach="fog" args={[sky, outdoor ? 34 : 20, outdoor ? 95 : 48]} />
       <ambientLight intensity={outdoor ? 0.5 + daylight * 0.45 : 0.5} color="#ffe9cf" />

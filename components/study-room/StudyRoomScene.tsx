@@ -23,6 +23,7 @@ import {
   type WalkState,
 } from "@/components/world-controls/easy-walk";
 import { useRenderQuality } from "@/components/world-controls/render-quality";
+import { QualityGovernor, useGovernedQuality } from "@/components/world-controls/quality-governor";
 import { usePageVisible } from "@/components/world-controls/use-page-visible";
 import LobbyAvatar, { type AvatarPose } from "@/components/lobby/LobbyAvatar";
 import { disposeRoomTextures } from "@/components/lobby/room-textures";
@@ -218,7 +219,11 @@ export default function StudyRoomScene({
   lampColor,
   daylight,
 }: StudyRoomSceneProps) {
-  const quality = useRenderQuality();
+  // Chất lượng gốc là một lần đoán từ số nhân CPU; bộ điều tiết bên dưới sửa
+  // lại nó theo thời lượng khung hình thật, vì một laptop tám nhân dùng đồ hoạ
+  // tích hợp vẫn báo là máy khoẻ.
+  const baseQuality = useRenderQuality();
+  const { quality, onLevel } = useGovernedQuality(baseQuality);
   const pageVisible = usePageVisible();
   const [peers, setPeers] = useState<StudyWorldPeer[]>([]);
   const [speeches, setSpeeches] = useState<Record<string, { text: string; at: number }>>({});
@@ -372,8 +377,13 @@ export default function StudyRoomScene({
       // Comment ở StudyRoomShell nói phòng phải mở được trên máy yếu, nhưng
       // "high-performance" lại ép laptop bật GPU rời cho một căn phòng tĩnh.
       // Bám theo cùng phép đo máy yếu mà useRenderQuality đang dùng.
-      gl={{ antialias: true, powerPreference: quality.shadows ? "high-performance" : "low-power" }}
+      gl={{
+        antialias: baseQuality.shadows,
+        powerPreference: baseQuality.shadows ? "high-performance" : "low-power",
+      }}
     >
+      {/* Đo khung hình thật và hạ chất lượng nếu cảnh không theo kịp. */}
+      <QualityGovernor onLevel={onLevel} />
       <color attach="background" args={["#12100e"]} />
       <fog attach="fog" args={["#12100e", 22, 46]} />
       <ambientLight intensity={0.52 + daylight * 0.3} color="#ffe9cf" />

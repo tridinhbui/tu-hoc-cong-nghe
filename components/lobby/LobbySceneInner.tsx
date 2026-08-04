@@ -15,6 +15,7 @@ import { daylightAt, rgbToHex, sunPosition } from "./daylight";
 import StationDoors from "./StationDoors";
 import type { Station } from "./stations";
 import { useRenderQuality } from "@/components/world-controls/render-quality";
+import { QualityGovernor, useGovernedQuality } from "@/components/world-controls/quality-governor";
 import { usePageVisible } from "@/components/world-controls/use-page-visible";
 import LobbyAvatar, { type AvatarPose } from "./LobbyAvatar";
 import {
@@ -288,7 +289,11 @@ export default function LobbySceneInner({
   seatStartedAt,
   walkRef,
 }: Props) {
-  const quality = useRenderQuality();
+  // Chất lượng gốc là một lần đoán từ số nhân CPU; bộ điều tiết bên dưới sửa
+  // lại nó theo thời lượng khung hình thật, vì một laptop tám nhân dùng đồ hoạ
+  // tích hợp vẫn báo là máy khoẻ.
+  const baseQuality = useRenderQuality();
+  const { quality, onLevel } = useGovernedQuality(baseQuality);
   const pageVisible = usePageVisible();
   const [peers, setPeers] = useState<LobbyPeer[]>([]);
   const [speeches, setSpeeches] = useState<Record<string, { text: string; at: number }>>({});
@@ -444,15 +449,20 @@ export default function LobbySceneInner({
       // Chất lượng thấp là người dùng đang nói máy của họ không kham nổi, nên
       // xin GPU rời và bật khử răng cưa lúc đó là đi ngược lại đúng cái họ vừa
       // chọn - trên laptop nó còn ép chuyển sang card rời và ăn pin.
+      // Hai tuỳ chọn này nằm trong lúc khởi tạo WebGL và KHÔNG sửa được sau
+      // đó, nên chúng theo lần đoán ban đầu chứ không theo bộ điều tiết - bộ
+      // điều tiết chỉ đụng được vào bóng đổ và tỉ lệ điểm ảnh.
       gl={{
-        antialias: quality.shadows,
-        powerPreference: quality.shadows ? "high-performance" : "low-power",
+        antialias: baseQuality.shadows,
+        powerPreference: baseQuality.shadows ? "high-performance" : "low-power",
       }}
       // Đứng ở tab khác mà vẫn render cả một con phố là đốt pin cho một khung
       // hình không ai nhìn. Người bên cạnh vẫn thấy ta đứng yên trong phòng vì
       // presence do Supabase giữ, không do vòng lặp vẽ.
       frameloop={pageVisible ? "always" : "never"}
     >
+      {/* Đo khung hình thật và hạ chất lượng nếu cảnh không theo kịp. */}
+      <QualityGovernor onLevel={onLevel} />
       <color attach="background" args={[rgbToHex(day.fogColor)]} />
       {/* Sương đẩy xa hơn phiên bản chỉ-có-phòng-đọc: giữ được chiều sâu hun
           hút của sảnh nhưng không nuốt mất dãy nhà bên kia đường. Màu sương
