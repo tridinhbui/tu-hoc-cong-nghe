@@ -18,6 +18,7 @@ import {
   STREET_HALF_X,
 } from "./world";
 import { asphaltTexture, cityFacadeTexture, skyTexture } from "./room-textures";
+import { AnimatedInstances, StaticInstances, writeInstance } from "./instanced";
 import { rgbToHex, type DaySample } from "./daylight";
 import WavingFlag from "./WavingFlag";
 import Riverfront from "./Riverfront";
@@ -216,63 +217,91 @@ function Pedestrians() {
       })),
     []
   );
-  const refs = useRef<Array<THREE.Group | null>>([]);
+  // Ba phần cơ thể, mỗi phần một draw call cho cả mười bốn người - thay vì
+  // bốn mươi hai. Ma trận cập nhật thẳng vào instancedMesh mỗi khung hình:
+  // đây là chỗ duy nhất trong file phải chạy 60 lần một giây, nên không đi
+  // qua state React.
+  const legsRef = useRef<THREE.InstancedMesh>(null);
+  const torsoRef = useRef<THREE.InstancedMesh>(null);
+  const headRef = useRef<THREE.InstancedMesh>(null);
+  const shirts = useMemo(() => walkers.map((w) => w.shirt), [walkers]);
 
   useFrame((state) => {
     const t = state.clock.elapsedTime;
+    const legs = legsRef.current;
+    const torso = torsoRef.current;
+    const head = headRef.current;
+    if (!legs || !torso || !head) return;
+
     for (let i = 0; i < walkers.length; i += 1) {
-      const g = refs.current[i];
       const w = walkers[i];
-      if (!g) continue;
       const travelled = (w.offset + t * w.speed) % SPAN;
-      g.position.x = w.dir * (travelled - STREET_HALF_X);
-      g.position.y = Math.abs(Math.sin(travelled * 2.4)) * 0.05;
+      const x = w.dir * (travelled - STREET_HALF_X);
+      // Bước chân là dao động sin theo quãng đường đã đi, không theo đồng hồ.
+      const bounce = Math.abs(Math.sin(travelled * 2.4)) * 0.05;
+      const base = PLAZA_Y + bounce;
+      const h = w.height;
+      writeInstance(legs, i, { position: [x, base + h * 0.42, w.z], scale: h });
+      writeInstance(torso, i, { position: [x, base + h * 1.0, w.z], scale: h });
+      writeInstance(head, i, { position: [x, base + h * 1.44, w.z], scale: h });
     }
+    legs.instanceMatrix.needsUpdate = true;
+    torso.instanceMatrix.needsUpdate = true;
+    head.instanceMatrix.needsUpdate = true;
   });
 
   return (
-    <group position={[0, PLAZA_Y, 0]}>
-      {walkers.map((w, i) => (
-        <group
-          key={i}
-          ref={(el) => {
-            refs.current[i] = el;
-          }}
-          position={[0, 0, w.z]}
-          scale={w.height}
-        >
-          <mesh position={[0, 0.42, 0]}>
-            <boxGeometry args={[0.3, 0.5, 0.22]} />
-            <meshStandardMaterial color="#2f3038" roughness={0.9} />
-          </mesh>
-          <mesh position={[0, 1.0, 0]}>
-            <capsuleGeometry args={[0.19, 0.4, 4, 10]} />
-            <meshStandardMaterial color={w.shirt} roughness={0.85} />
-          </mesh>
-          <mesh position={[0, 1.44, 0]}>
-            <sphereGeometry args={[0.17, 12, 12]} />
-            <meshStandardMaterial color="#d9b48d" roughness={0.75} />
-          </mesh>
-        </group>
-      ))}
+    <group>
+      <AnimatedInstances count={walkers.length} meshRef={legsRef}>
+        <boxGeometry args={[0.3, 0.5, 0.22]} />
+        <meshStandardMaterial color="#2f3038" roughness={0.9} />
+      </AnimatedInstances>
+      <AnimatedInstances count={walkers.length} meshRef={torsoRef} colors={shirts}>
+        <capsuleGeometry args={[0.19, 0.4, 4, 10]} />
+        <meshStandardMaterial roughness={0.85} />
+      </AnimatedInstances>
+      <AnimatedInstances count={walkers.length} meshRef={headRef}>
+        <sphereGeometry args={[0.17, 12, 12]} />
+        <meshStandardMaterial color="#d9b48d" roughness={0.75} />
+      </AnimatedInstances>
     </group>
   );
 }
 
-/** Cột đèn đường có cần vươn ra lòng đường. Sáng theo giờ: ban ngày chỉ là cái
- *  cột, chập tối mới thành nguồn sáng thật. */
-function StreetLamp({ x, lamps }: { x: number; lamps: number }) {
+/** Hàng cột đèn đường có cần vươn ra lòng đường. Sáng theo giờ: ban ngày chỉ
+ *  là cái cột, chập tối mới thành nguồn sáng thật.
+ *
+ *  Bốn cột giống hệt nhau nên ba bộ phận của chúng đi chung ba draw call thay
+ *  vì mười hai. */
+function StreetLamps({ lamps }: { lamps: number }) {
+  const poles = useMemo(
+    () => LAMP_XS.map((x) => ({ position: [x, PLAZA_Y + 2.6, LAMP_Z] as [number, number, number] })),
+    []
+  );
+  const arms = useMemo(
+    () =>
+      LAMP_XS.map((x) => ({
+        position: [x, PLAZA_Y + 5.2, LAMP_Z + 0.7] as [number, number, number],
+        rotation: [Math.PI / 2.6, 0, 0] as [number, number, number],
+      })),
+    []
+  );
+  const heads = useMemo(
+    () => LAMP_XS.map((x) => ({ position: [x, PLAZA_Y + 5.55, LAMP_Z + 1.35] as [number, number, number] })),
+    []
+  );
+
   return (
-    <group position={[x, PLAZA_Y, LAMP_Z]}>
-      <mesh position={[0, 2.6, 0]}>
+    <group>
+      <StaticInstances transforms={poles}>
         <cylinderGeometry args={[0.09, 0.13, 5.2, 10]} />
         <meshStandardMaterial color="#39413f" roughness={0.7} metalness={0.4} />
-      </mesh>
-      <mesh position={[0, 5.2, 0.7]} rotation={[Math.PI / 2.6, 0, 0]}>
+      </StaticInstances>
+      <StaticInstances transforms={arms}>
         <cylinderGeometry args={[0.07, 0.07, 1.6, 8]} />
         <meshStandardMaterial color="#39413f" roughness={0.7} metalness={0.4} />
-      </mesh>
-      <mesh position={[0, 5.55, 1.35]}>
+      </StaticInstances>
+      <StaticInstances transforms={heads}>
         <boxGeometry args={[0.44, 0.16, 0.8]} />
         <meshStandardMaterial
           color="#fff0c4"
@@ -280,46 +309,67 @@ function StreetLamp({ x, lamps }: { x: number; lamps: number }) {
           emissiveIntensity={0.15 + lamps * 2.6}
           toneMapped={false}
         />
-      </mesh>
+      </StaticInstances>
       {/* Dưới 0,25 thì bỏ hẳn nguồn sáng chứ không hạ cường độ về gần 0: mỗi
-          pointLight vẫn tốn đúng chi phí như nhau dù có sáng hay không. */}
-      {lamps > 0.25 && (
-        <pointLight
-          position={[0, 5.3, 1.35]}
-          color="#ffd08a"
-          intensity={13 * lamps}
-          distance={16}
-          decay={2}
-        />
-      )}
+          pointLight vẫn tốn đúng chi phí như nhau dù có sáng hay không. Đèn là
+          nguồn sáng chứ không phải mesh nên phần này không instancing được. */}
+      {lamps > 0.25 &&
+        LAMP_XS.map((x) => (
+          <pointLight
+            key={x}
+            position={[x, PLAZA_Y + 5.3, LAMP_Z + 1.35]}
+            color="#ffd08a"
+            intensity={13 * lamps}
+            distance={16}
+            decay={2}
+          />
+        ))}
     </group>
   );
 }
 
 /** Cây me đường phố: thân thẳng, tán là mấy khối cầu chồng lệch nhau. Tán cầu
- *  rẻ hơn nhiều so với lá thật và ở khoảng cách này không phân biệt được. */
-function StreetTree({ x }: { x: number }) {
-  const blobs = useMemo(
-    () => [
-      { p: [0, 4.3, 0] as [number, number, number], r: 1.55 },
-      { p: [0.95, 3.8, 0.5] as [number, number, number], r: 1.15 },
-      { p: [-0.9, 3.9, -0.4] as [number, number, number], r: 1.2 },
-      { p: [0.1, 5.2, -0.6] as [number, number, number], r: 1.0 },
-    ],
+ *  rẻ hơn nhiều so với lá thật và ở khoảng cách này không phân biệt được.
+ *
+ *  Bốn cây đi chung hai draw call: một cho bốn thân, một cho mười sáu khối tán.
+ *  Bán kính tán khác nhau đi qua tỷ lệ của instance, nên hình gốc là cầu đơn vị. */
+const TREE_BLOBS: Array<{ p: [number, number, number]; r: number }> = [
+  { p: [0, 4.3, 0], r: 1.55 },
+  { p: [0.95, 3.8, 0.5], r: 1.15 },
+  { p: [-0.9, 3.9, -0.4], r: 1.2 },
+  { p: [0.1, 5.2, -0.6], r: 1.0 },
+];
+
+function StreetTrees() {
+  const trunks = useMemo(
+    () => STREET_TREE_XS.map((x) => ({ position: [x, PLAZA_Y + 1.6, TREE_Z] as [number, number, number] })),
     []
   );
+  const canopy = useMemo(
+    () =>
+      STREET_TREE_XS.flatMap((x) =>
+        TREE_BLOBS.map((b) => ({
+          position: [x + b.p[0], PLAZA_Y + b.p[1], TREE_Z + b.p[2]] as [number, number, number],
+          scale: b.r,
+        }))
+      ),
+    []
+  );
+  const canopyColors = useMemo(
+    () => STREET_TREE_XS.flatMap(() => TREE_BLOBS.map((_, i) => (i % 2 === 0 ? "#33562f" : "#3d6437"))),
+    []
+  );
+
   return (
-    <group position={[x, PLAZA_Y, TREE_Z]}>
-      <mesh position={[0, 1.6, 0]} castShadow>
+    <group>
+      <StaticInstances transforms={trunks} castShadow>
         <cylinderGeometry args={[0.22, 0.34, 3.2, 10]} />
         <meshStandardMaterial color="#4a3826" roughness={0.95} />
-      </mesh>
-      {blobs.map((b, i) => (
-        <mesh key={i} position={b.p} castShadow>
-          <sphereGeometry args={[b.r, 14, 12]} />
-          <meshStandardMaterial color={i % 2 === 0 ? "#33562f" : "#3d6437"} roughness={0.95} />
-        </mesh>
-      ))}
+      </StaticInstances>
+      <StaticInstances transforms={canopy} colors={canopyColors} castShadow>
+        <sphereGeometry args={[1, 14, 12]} />
+        <meshStandardMaterial roughness={0.95} />
+      </StaticInstances>
     </group>
   );
 }
@@ -383,22 +433,28 @@ function CityBlock({ lamps }: { lamps: number }) {
 
   return (
     <group position={[0, PLAZA_Y, 0]}>
-      {placed.map((s, i) => (
-        <mesh key={i} position={[s.x, s.h / 2, FAR_WALK_Z + 4]}>
-          <boxGeometry args={[s.w, s.h, 8]} />
-          {/* emissiveMap chứ không phải emissive trơn: dùng chính vân mặt tiền
-              làm mặt phát sáng nên chỉ những ô cửa sổ màu vàng rực lên về đêm,
-              còn mảng tường xám thì gần như không. Emissive trơn sẽ làm cả toà
-              nhà phát sáng đều như một khối đèn. */}
-          <meshStandardMaterial
-            map={facade}
-            emissiveMap={facade}
-            emissive="#ffffff"
-            emissiveIntensity={lamps * 0.75}
-            roughness={0.9}
-          />
-        </mesh>
-      ))}
+      {/* Hai mươi hai căn nhà ống cùng một khối hộp, chỉ khác kích thước - nên
+          chúng đi chung một draw call thay vì hai mươi hai. Hộp đơn vị 1×1×1
+          rồi scale theo từng căn: ma trận của instance mang được cả tỷ lệ. */}
+      <StaticInstances
+        transforms={placed.map((s) => ({
+          position: [s.x, s.h / 2, FAR_WALK_Z + 4] as [number, number, number],
+          scale: [s.w, s.h, 8] as [number, number, number],
+        }))}
+      >
+        <boxGeometry args={[1, 1, 1]} />
+        {/* emissiveMap chứ không phải emissive trơn: dùng chính vân mặt tiền
+            làm mặt phát sáng nên chỉ những ô cửa sổ màu vàng rực lên về đêm,
+            còn mảng tường xám thì gần như không. Emissive trơn sẽ làm cả toà
+            nhà phát sáng đều như một khối đèn. */}
+        <meshStandardMaterial
+          map={facade}
+          emissiveMap={facade}
+          emissive="#ffffff"
+          emissiveIntensity={lamps * 0.75}
+          roughness={0.9}
+        />
+      </StaticInstances>
       {/* Toà tháp ở xa, lệch khỏi trục cửa để không che mất trục nhìn chính */}
       <group position={[19, 0, FAR_WALK_Z + 26]}>
         <mesh position={[0, 21, 0]}>
@@ -501,12 +557,8 @@ export default function CityStreet({ day }: { day: DaySample }) {
       </mesh>
 
       <Traffic />
-      {LAMP_XS.map((x) => (
-        <StreetLamp key={x} x={x} lamps={day.lamps} />
-      ))}
-      {STREET_TREE_XS.map((x) => (
-        <StreetTree key={x} x={x} />
-      ))}
+      <StreetLamps lamps={day.lamps} />
+      <StreetTrees />
       <Pedestrians />
       <BanhMiCart />
       <CityBlock lamps={day.lamps} />
