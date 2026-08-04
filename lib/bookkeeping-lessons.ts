@@ -120,6 +120,17 @@ export const BOOKKEEPING_LESSONS: Lesson[] = [
       "Chi ra tiền không đồng nghĩa phát sinh chi phí - mua tài sản chỉ là đổi hình thái của cải.",
       "\"Nợ\" và \"Có\" chỉ là tên hai cột, không mang nghĩa vay mượn.",
     ],
+    summary: {
+      keyIdea: "Mỗi nghiệp vụ ghi vào ít nhất hai tài khoản, và tổng Nợ luôn bằng tổng Có",
+      formula: "Tài sản = Nợ phải trả + Vốn chủ sở hữu",
+      commonMistake: "Hiểu 'Nợ' và 'Có' theo nghĩa vay mượn. Đó chỉ là tên hai cột.",
+      action: "Lấy năm nghiệp vụ trong tháng của chính bạn và ghi hai vế cho từng cái, rồi cộng hai cột xem có cân không.",
+    },
+    application: {
+      title: "Ghi thử một nghiệp vụ mua tài sản",
+      message: "Bạn chi 20 triệu mua một chiếc máy tính cho công ty. Ghi hai vế của nghiệp vụ đó, rồi trả lời: lợi nhuận trong tháng có giảm 20 triệu không.",
+      secondary: "Không - đó là đổi hình thái của cải, không phải chi phí. Chi phí chỉ xuất hiện dần qua khấu hao.",
+    },
     sections: [
       {
         type: "lead",
@@ -269,6 +280,16 @@ export const BOOKKEEPING_LESSONS: Lesson[] = [
       "Số dư trên báo cáo lấy từ sổ cái, không lấy từ nhật ký.",
       "Nghi một con số thì mở sổ cái tài khoản đó và lần ngược - đó là đường ngắn nhất.",
     ],
+    summary: {
+      keyIdea: "Chứng từ → nhật ký theo thời gian → sổ cái theo tài khoản → bảng cân đối thử → báo cáo",
+      commonMistake: "Tin rằng bảng cân đối thử cân nghĩa là sổ sách đúng. Nó chỉ bắt lỗi số học.",
+      action: "Nghi ngờ một con số trên báo cáo thì mở sổ cái của chính tài khoản đó và lần ngược về nhật ký.",
+    },
+    application: {
+      title: "Lần ngược một con số",
+      message: "Chọn một khoản mục trên báo cáo kết quả kinh doanh của một doanh nghiệp nhỏ, mở sổ cái tài khoản tương ứng, và tìm ba bút toán lớn nhất tạo nên nó.",
+      secondary: "Đó là đường ngắn nhất từ một con số tổng hợp về tới các nghiệp vụ thật đứng sau nó.",
+    },
     sections: [
       {
         type: "lead",
@@ -437,6 +458,16 @@ export const BOOKKEEPING_LESSONS: Lesson[] = [
       "Dự phòng dựa trên ước tính nên là chỗ rộng nhất để điều chỉnh lợi nhuận.",
       "Bỏ sót một bút toán điều chỉnh làm sai cả hai báo cáo cùng lúc.",
     ],
+    summary: {
+      keyIdea: "Bút toán điều chỉnh phát sinh vì thời gian trôi, nên không có chứng từ nào nhắc bạn ghi",
+      commonMistake: "Chỉ ghi sổ khi có hoá đơn hoặc phiếu chi, nên bỏ sót toàn bộ nhóm bút toán cuối kỳ.",
+      action: "Cuối mỗi kỳ, chạy qua bốn nhóm: trích trước, phân bổ chi phí trả trước, khấu hao, dự phòng.",
+    },
+    application: {
+      title: "Tìm bút toán bị bỏ sót",
+      message: "Cuối tháng, liệt kê những khoản đã dùng mà chưa có hoá đơn - tiền điện, tiền thuê, lãi vay - và những khoản đã trả trước cho nhiều tháng. Mỗi dòng trong hai danh sách đó là một bút toán điều chỉnh.",
+      secondary: "Bỏ sót một bút toán điều chỉnh làm sai cả báo cáo kết quả kinh doanh lẫn bảng cân đối cùng lúc.",
+    },
     sections: [
       {
         type: "lead",
@@ -574,6 +605,16 @@ export const BOOKKEEPING_LESSONS: Lesson[] = [
       "Chênh lệch chia hết cho 9 gần như luôn là lỗi đảo chữ số.",
       "Thiếu hàng trong kho thì tìm nguyên nhân trước, sửa sổ sau - sửa trước là xoá dấu vết.",
     ],
+    summary: {
+      keyIdea: "Loại trừ chênh lệch do thời điểm trước; phần còn lệch mới là lỗi thật",
+      commonMistake: "Sửa sổ theo số thực tế ngay khi thấy lệch - làm vậy là xoá dấu vết trước khi biết chuyện gì đã xảy ra.",
+      action: "Đối chiếu hằng tháng, không đợi cuối năm. Một chênh lệch ba tháng tuổi gần như không truy được nữa.",
+    },
+    application: {
+      title: "Chạy một bảng đối chiếu ngân hàng",
+      message: "Lấy sao kê tháng gần nhất và số dư sổ quỹ. Cộng trừ các khoản do thời điểm ở phía ngân hàng, ghi bổ sung phí và lãi ở phía sổ sách, rồi xem hai phía có gặp nhau không.",
+      secondary: "Nếu phần lệch chia hết cho 9, gần như chắc chắn có một cặp chữ số bị đảo khi nhập liệu.",
+    },
     sections: [
       {
         type: "lead",
@@ -745,6 +786,16 @@ export const BOOKKEEPING_LESSONS: Lesson[] = [
       "Lợi nhuận kết chuyển vào lợi nhuận giữ lại, không vào tiền mặt.",
       "Lợi nhuận giữ lại là số cộng dồn từ ngày thành lập trừ mọi cổ tức đã chia.",
     ],
+    summary: {
+      keyIdea: "Tài khoản tạm thời đo một khoảng thời gian nên về 0 mỗi kỳ; tài khoản thường xuyên đo một thời điểm nên mang số dư sang",
+      commonMistake: "Tưởng lợi nhuận kết chuyển vào tiền mặt. Nó vào lợi nhuận giữ lại thuộc vốn chủ sở hữu.",
+      action: "Nhìn một tài khoản bất kỳ và hỏi: nó đo một khoảng thời gian hay một thời điểm. Câu trả lời quyết định nó có bị kết chuyển hay không.",
+    },
+    application: {
+      title: "Phân loại mười tài khoản",
+      message: "Viết ra mười tài khoản bất kỳ và xếp chúng vào hai nhóm tạm thời hay thường xuyên, chỉ dựa vào câu hỏi trên. Rồi kiểm lại: mọi khoản mục của báo cáo kết quả kinh doanh phải rơi vào nhóm tạm thời.",
+      secondary: "Lợi nhuận giữ lại là số cộng dồn từ ngày thành lập trừ mọi cổ tức đã chia, không phải lợi nhuận của riêng năm nay.",
+    },
     sections: [
       {
         type: "lead",

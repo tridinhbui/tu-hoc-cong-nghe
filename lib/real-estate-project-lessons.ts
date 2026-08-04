@@ -116,6 +116,16 @@ export const REAL_ESTATE_PROJECT_LESSONS: Lesson[] = [
       "Chậm pháp lý tính bằng chi phí vốn nhân thời gian, áp lên toàn bộ vốn đã bỏ ra.",
       "Mô hình hoá rủi ro pháp lý bằng kịch bản thời gian, không bằng một khoản dự phòng cố định.",
     ],
+    summary: {
+      keyIdea: "Mốc đủ điều kiện huy động vốn quyết định ngày tiền của người mua được phép chảy vào",
+      commonMistake: "Coi rủi ro pháp lý là một khoản dự phòng cố định. Nó biểu hiện bằng thời gian, nên phải mô hình hoá bằng thời gian.",
+      action: "Trong mô hình dự án, đặt ngày đủ điều kiện huy động vốn thành một biến và chạy kịch bản chậm 6, 12, 24 tháng.",
+    },
+    application: {
+      title: "Tìm biến nhạy nhất của một dự án",
+      message: "Với một dự án bất kỳ, thử lần lượt: giá bán giảm 10%, chi phí xây tăng 10%, và pháp lý chậm 12 tháng. So ba kết quả để xem cái nào ăn vào lợi nhuận nhiều nhất.",
+      secondary: "Ở phần lớn dự án, biến thứ ba thắng - vì lãi vay chạy trên toàn bộ vốn đã bỏ ra chứ không riêng phần bị chậm.",
+    },
     sections: [
       {
         type: "lead",
@@ -254,6 +264,16 @@ export const REAL_ESTATE_PROJECT_LESSONS: Lesson[] = [
       "Dừng giữa chừng là kịch bản tệ nhất: tài sản dở dang gần như không có giá trị thanh lý.",
       "Mở bán sớm kéo đỉnh vốn lên - đó là lý do các mốc pháp lý được theo đuổi tới cùng.",
     ],
+    summary: {
+      keyIdea: "NPV và IRR nói dự án có đáng làm không; đỉnh vốn âm nói có làm nổi không",
+      commonMistake: "Duyệt dự án bằng IRR mà không nhìn điểm thấp nhất của dòng tiền tích luỹ - nơi quyết định hạn mức vay cần có.",
+      action: "Vẽ dòng tiền tích luỹ theo tháng và đánh dấu điểm thấp nhất. Đó là số tiền phải thu xếp được trước khi bắt đầu.",
+    },
+    application: {
+      title: "Tìm đỉnh vốn của một dự án",
+      message: "Lập bảng dòng tiền theo quý cho một dự án giả định, cộng dồn qua các quý, và tìm quý có số cộng dồn âm sâu nhất. So con số đó với vốn chủ cộng hạn mức vay đang có.",
+      secondary: "Nếu đỉnh vốn lớn hơn nguồn thu xếp được, dự án có NPV dương vẫn không làm được - và dừng giữa chừng là kịch bản tệ nhất.",
+    },
     sections: [
       {
         type: "lead",
@@ -405,6 +425,16 @@ export const REAL_ESTATE_PROJECT_LESSONS: Lesson[] = [
       "Chi phí thật của tiền trả trước là nghĩa vụ bàn giao, không phải lãi suất.",
       "Đòn bẩy ở đây nguy hiểm hơn vì dự án chưa mở bán không có dòng tiền nào để trả lãi.",
     ],
+    summary: {
+      keyIdea: "Tiền người mua là nguồn rẻ nhất về lãi suất và đắt nhất về nghĩa vụ bàn giao",
+      commonMistake: "Tính chi phí vốn của tiền trả trước bằng 0 vì nó không tính lãi, bỏ qua tiền phạt chậm bàn giao trong hợp đồng.",
+      action: "Xếp ba nguồn vốn theo thứ tự chịu rủi ro và ghi rõ điều kiện kích hoạt của từng nguồn.",
+    },
+    application: {
+      title: "Xếp lịch ba nguồn vốn",
+      message: "Với một dự án, vẽ trục thời gian và đánh dấu giai đoạn nào dùng vốn chủ, giai đoạn nào vay được ngân hàng, giai đoạn nào tiền người mua bắt đầu vào.",
+      secondary: "Giai đoạn pháp lý là giai đoạn khó vay nhất và cũng là giai đoạn dài nhất - đó là chỗ phần lớn dự án chết.",
+    },
     sections: [
       {
         type: "lead",
@@ -542,6 +572,17 @@ export const REAL_ESTATE_PROJECT_LESSONS: Lesson[] = [
       "Không trừ lãi vay vào NOI - đó là chi phí của cách tài trợ, không phải của tài sản.",
       "Ba khoản hay bị quên: tỷ lệ trống, nợ khó đòi, chi phí thay thế định kỳ.",
     ],
+    summary: {
+      keyIdea: "NOI đứng trước lãi vay, thuế và khấu hao, nên nó đo tài sản chứ không đo cách tài trợ",
+      formula: "Giá trị = NOI / cap rate",
+      commonMistake: "Trừ lãi vay vào NOI. Lãi vay là chi phí của cách tài trợ, không phải của toà nhà.",
+      action: "Khi nhận một con số NOI, kiểm ba khoản hay bị bỏ: tỷ lệ trống, nợ khó đòi, và chi phí thay thế định kỳ.",
+    },
+    application: {
+      title: "Kiểm một con số NOI",
+      message: "Lấy một bảng tính NOI bất kỳ và hỏi ba câu: doanh thu đã trừ tỷ lệ trống chưa, đã trừ phần không thu được chưa, và đã có khoản dự trữ thay thế thiết bị chưa.",
+      secondary: "Thiếu cả ba thì NOI cao hơn thực tế chừng 10-15%, và vì giá trị bằng NOI chia cap rate, sai số đó đi thẳng vào định giá.",
+    },
     sections: [
       {
         type: "lead",
@@ -685,6 +726,16 @@ export const REAL_ESTATE_PROJECT_LESSONS: Lesson[] = [
       "Dựng kịch bản cả ba cùng xảy ra, rồi hỏi chủ đầu tư có trụ nổi không.",
       "Chu kỳ thị trường là rủi ro duy nhất không có công cụ phòng ngừa bằng hợp đồng.",
     ],
+    summary: {
+      keyIdea: "Ba rủi ro chính tương quan dương với nhau, nên chúng không bao giờ xảy ra riêng lẻ",
+      commonMistake: "Dùng bảng độ nhạy một chiều rồi kết luận dải kết quả hẹp - nó hẹp vì mỗi lần chỉ đổi một biến.",
+      action: "Dựng một kịch bản có cả ba rủi ro cùng xảy ra ở mức vừa phải, rồi hỏi chủ đầu tư có trụ nổi không.",
+    },
+    application: {
+      title: "Kịch bản ba rủi ro cùng lúc",
+      message: "Lấy một dự án và đặt đồng thời: pháp lý chậm 12 tháng, chi phí xây vượt 10%, giá bán giảm 10%. Tính lại đỉnh vốn và lợi nhuận trong kịch bản đó.",
+      secondary: "Ba biến này cùng bị đẩy bởi chu kỳ thị trường, nên xác suất chúng cùng xấu cao hơn nhiều so với tích ba xác suất riêng lẻ.",
+    },
     sections: [
       {
         type: "lead",

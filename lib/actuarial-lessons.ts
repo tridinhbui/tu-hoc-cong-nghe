@@ -117,6 +117,17 @@ export const ACTUARIAL_LESSONS: Lesson[] = [
       "Luật số lớn là nền của cả mô hình - nó đòi hỏi các rủi ro độc lập với nhau.",
       "Tập khách hàng bảo hiểm khoẻ hơn dân số chung, nên bảng tử vong phải điều chỉnh.",
     ],
+    summary: {
+      keyIdea: "Phí thuần là xác suất xảy ra nhân số tiền bảo hiểm, chiết khấu về hiện tại",
+      formula: "Phí gộp = phí thuần + chi phí quản lý + hoa hồng + biên an toàn",
+      commonMistake: "Dùng thẳng bảng tử vong của dân số chung, trong khi tập khách mua bảo hiểm khoẻ hơn mức trung bình.",
+      action: "Với một sản phẩm bảo hiểm, tách phí thành phí thuần và phần phụ trội để biết mình đang trả cho cái gì.",
+    },
+    application: {
+      title: "Tính phí thuần của một hợp đồng một năm",
+      message: "Giả sử xác suất tử vong trong năm là 0,2% và số tiền bảo hiểm 1 tỷ. Phí thuần là 2 triệu, chiết khấu về đầu năm thì thấp hơn chút ít. So con số đó với mức phí thật đang được chào.",
+      secondary: "Khoảng cách giữa hai con số là chi phí quản lý, hoa hồng và biên an toàn - và nó thường lớn hơn nhiều so với hình dung ban đầu.",
+    },
     sections: [
       {
         type: "lead",
@@ -265,6 +276,16 @@ export const ACTUARIAL_LESSONS: Lesson[] = [
       "Trích thiếu làm lãi năm nay cao giả tạo và dồn lỗ sang các năm sau.",
       "Nghiệp vụ đuôi dài có độ trễ báo cáo tính bằng năm, không bằng tháng.",
     ],
+    summary: {
+      keyIdea: "IBNR là tổn thất đã xảy ra mà công ty chưa biết, và nó là ước tính khó nhất trên báo cáo",
+      commonMistake: "Đọc lợi nhuận của một công ty bảo hiểm như một con số đã chốt. Nó là một ước tính có thể sai nhiều năm.",
+      action: "Xem bảng phát triển tổn thất qua các năm: dự phòng của năm cũ đang được điều chỉnh tăng hay giảm.",
+    },
+    application: {
+      title: "Đọc bảng phát triển tổn thất",
+      message: "Tìm bảng loss development trong báo cáo một công ty bảo hiểm và xem dự phòng của các năm trước được điều chỉnh theo hướng nào qua thời gian.",
+      secondary: "Điều chỉnh tăng liên tục nghĩa là công ty đã trích thiếu và lợi nhuận các năm đó cao giả tạo.",
+    },
     sections: [
       {
         type: "lead",
@@ -401,6 +422,16 @@ export const ACTUARIAL_LESSONS: Lesson[] = [
       "Nó cho phép công ty nhận hợp đồng lớn hơn nhiều lần vốn của mình.",
       "Rủi ro còn lại là rủi ro đối tác - công ty gốc vẫn phải trả cho khách dù nhà tái không trả.",
     ],
+    summary: {
+      keyIdea: "Tái bảo hiểm mua sự chắc chắn về mức mất tối đa, không mua giảm tổn thất trung bình",
+      commonMistake: "Coi việc nhượng rủi ro là đã hết trách nhiệm. Công ty gốc vẫn phải trả cho khách dù nhà tái không trả.",
+      action: "Với một chương trình tái bảo hiểm, hỏi hai điều: ngưỡng giữ lại là bao nhiêu, và nhà tái có xếp hạng tín nhiệm thế nào.",
+    },
+    application: {
+      title: "So hai kiểu tái bảo hiểm",
+      message: "Giả sử một tổn thất 10 tỷ. Tính phần công ty gốc phải chịu theo hợp đồng tỷ lệ 60/40, rồi theo hợp đồng vượt mức với ngưỡng giữ lại 2 tỷ.",
+      secondary: "Hai cấu trúc cho hai hình dạng rủi ro rất khác nhau, và chỉ cấu trúc thứ hai đặt được trần cho mức mất tối đa.",
+    },
     sections: [
       {
         type: "lead",
@@ -534,6 +565,16 @@ export const ACTUARIAL_LESSONS: Lesson[] = [
       "Thẩm định, thời gian chờ và loại trừ xử lý vấn đề thứ nhất.",
       "Mức miễn thường và đồng chi trả xử lý vấn đề thứ hai.",
     ],
+    summary: {
+      keyIdea: "Lựa chọn bất lợi xảy ra trước khi ký, rủi ro đạo đức xảy ra sau - hai lực khác nhau cần hai công cụ khác nhau",
+      commonMistake: "Dùng một công cụ cho cả hai. Thẩm định trước khi ký không chặn được thay đổi hành vi sau khi ký.",
+      action: "Với mỗi điều khoản trong hợp đồng bảo hiểm, hỏi nó đang chặn lực nào trong hai lực đó.",
+    },
+    application: {
+      title: "Nhận diện hai lực trong một sản phẩm",
+      message: "Lấy một sản phẩm bảo hiểm và tách các điều khoản làm hai nhóm: nhóm sàng lọc trước khi ký, và nhóm giữ động cơ đúng sau khi ký.",
+      secondary: "Mức miễn thường và đồng chi trả thuộc nhóm thứ hai - chúng tồn tại để người được bảo hiểm vẫn còn phần mất mát của chính mình.",
+    },
     sections: [
       {
         type: "lead",
@@ -675,6 +716,17 @@ export const ACTUARIAL_LESSONS: Lesson[] = [
       "Lỗ nghiệp vụ chính là chi phí của float; câu hỏi đúng là float rẻ hay đắt.",
       "Dựa nhiều vào lợi nhuận đầu tư là lệch vế: nghĩa vụ cố định, thị trường thì không.",
     ],
+    summary: {
+      keyIdea: "Công ty bảo hiểm kiếm tiền ở hai chỗ: kết quả nghiệp vụ và thu nhập đầu tư từ khoản tiền giữ giữa hai thời điểm",
+      formula: "Tỷ lệ kết hợp = (bồi thường + chi phí) / phí thu được",
+      commonMistake: "Đọc lợi nhuận tổng mà không tách hai nguồn. Một công ty lỗ nghiệp vụ nhiều năm vẫn có thể báo lãi nhờ đầu tư.",
+      action: "Tính tỷ lệ kết hợp trước, rồi mới nhìn tới thu nhập đầu tư. Trên 100% nghĩa là nghiệp vụ đang lỗ.",
+    },
+    application: {
+      title: "Tách hai nguồn lợi nhuận",
+      message: "Lấy báo cáo một công ty bảo hiểm, tính tỷ lệ kết hợp, rồi xem thu nhập đầu tư đóng góp bao nhiêu phần lợi nhuận trước thuế.",
+      secondary: "Nếu tỷ lệ kết hợp trên 100% suốt vài năm, mô hình đó đang phụ thuộc vào lãi suất chứ không vào năng lực định phí.",
+    },
     sections: [
       {
         type: "lead",

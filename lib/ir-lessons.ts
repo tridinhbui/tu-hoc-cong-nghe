@@ -116,6 +116,16 @@ export const IR_LESSONS: Lesson[] = [
       "Nói riêng cho một nhóm trước thị trường là lỗi nặng nhất của nghề.",
       "Thứ nhà đầu tư mua là tính nhất quán và khả năng dự đoán, không phải câu chuyện đẹp.",
     ],
+    summary: {
+      keyIdea: "IR nói với người bỏ vốn, và mọi câu nói nằm dưới quy định công bố thông tin",
+      commonMistake: "Coi IR là một nhánh của truyền thông, nên chọn thời điểm nói theo hướng thuận lợi.",
+      action: "Trước mỗi phát ngôn, hỏi: nếu chỉ một nhóm nhà đầu tư nghe được điều này thì có ai bị thiệt không.",
+    },
+    application: {
+      title: "Kiểm tra một bản tin doanh nghiệp",
+      message: "Lấy một thông cáo bất kỳ của doanh nghiệp niêm yết và tách nó làm hai phần: phần là dữ kiện có con số, và phần là tính từ. Tỷ lệ giữa hai phần cho biết đó là công bố thông tin hay quảng cáo.",
+      secondary: "Thứ nhà đầu tư dài hạn mua là tính nhất quán và khả năng dự đoán, không phải câu chuyện đẹp.",
+    },
     sections: [
       {
         type: "lead",
@@ -253,6 +263,16 @@ export const IR_LESSONS: Lesson[] = [
       "Giá biến động bất thường mà không có tin là dấu hiệu rò rỉ, phải rà soát ngay.",
       "Im lặng không phải trung lập: khoảng trống bị lấp bằng tin đồn.",
     ],
+    summary: {
+      keyIdea: "Trọng yếu nghĩa là một nhà đầu tư hợp lý sẽ đổi quyết định - không phụ thuộc tin tốt hay xấu",
+      commonMistake: "Đếm thời hạn từ lúc bộ phận công bố được báo, trong khi đồng hồ chạy từ khi sự kiện phát sinh.",
+      action: "Rà lại quy trình nội bộ: từ lúc một sự kiện xảy ra tới lúc người chịu trách nhiệm công bố biết, mất mấy giờ.",
+    },
+    application: {
+      title: "Đo độ trễ nội bộ của chính tổ chức",
+      message: "Chọn ba sự kiện đã công bố trong năm, tìm ngày chúng thực sự phát sinh và ngày thông cáo ra. Khoảng cách đó là rủi ro công bố muộn của tổ chức, đo bằng dữ liệu chứ không bằng cảm giác.",
+      secondary: "Rất ít án phạt đến từ việc nói sai; gần hết đến từ việc nói muộn.",
+    },
     sections: [
       {
         type: "lead",
@@ -413,6 +433,16 @@ export const IR_LESSONS: Lesson[] = [
       "Đưa khoảng thay vì điểm: mức bất định tự nó là thông tin.",
       "Biết sẽ hụt thì điều chỉnh sớm; trao đổi riêng với vài chuyên viên phân tích là vi phạm.",
     ],
+    summary: {
+      keyIdea: "Hụt kế hoạch bị phạt vì mất niềm tin vào dự báo, không vì con số chênh lệch",
+      commonMistake: "Đặt kế hoạch thật thận trọng để chắc chắn vượt - thị trường tự trừ hao và con số mất tác dụng.",
+      action: "Đưa khoảng thay vì một điểm, và nói rõ giả định nào quyết định đầu nào của khoảng.",
+    },
+    application: {
+      title: "So kế hoạch với kết quả trong ba năm",
+      message: "Lấy guidance và kết quả thực tế của một doanh nghiệp trong ba năm gần nhất. Nếu năm nào cũng vượt nhẹ, đó không phải năng lực dự báo tốt mà là kế hoạch được đặt thấp có chủ ý.",
+      secondary: "Biết sẽ hụt thì điều chỉnh sớm và công khai; nói riêng với vài chuyên viên phân tích là vi phạm.",
+    },
     sections: [
       {
         type: "lead",
@@ -555,6 +585,16 @@ export const IR_LESSONS: Lesson[] = [
       "Chuẩn bị bắt đầu từ danh sách câu hỏi bất lợi, không từ bản trình bày.",
       "Câu hỏi lặp lại nhiều lần là bản đồ chỉ chỗ nên chủ động công bố.",
     ],
+    summary: {
+      keyIdea: "Từ chối trả lời số chưa công bố là câu trả lời hợp lệ, và nêu rõ nguyên tắc thì không ai mất điểm",
+      commonMistake: "Trả lời chung chung theo hướng tích cực để tránh mất lòng - đó vẫn là truyền tải thông tin chưa công bố.",
+      action: "Trước buổi gặp, viết ra năm câu hỏi bạn ít muốn bị hỏi nhất và chuẩn bị câu trả lời ba phần cho từng câu.",
+    },
+    application: {
+      title: "Lập nhật ký câu hỏi",
+      message: "Ghi lại mọi câu hỏi ở mọi buổi gặp. Khi cùng một câu xuất hiện lần thứ ba, đó là khoảng trống trong cách công ty đang kể câu chuyện của mình, và cách xử lý là bổ sung vào tài liệu chuẩn.",
+      secondary: "Nhật ký này thường là thứ giá trị nhất mà bộ phận IR mang về cho ban điều hành.",
+    },
     sections: [
       {
         type: "lead",
@@ -711,6 +751,16 @@ export const IR_LESSONS: Lesson[] = [
       "Thông cáo tốt có con số và mốc thời gian, không có tính từ và cam kết tuyệt đối.",
       "Sau công bố, giữ nguyên câu chuyện và cập nhật đúng mốc đã hứa.",
     ],
+    summary: {
+      keyIdea: "Xác định phạm vi rồi công bố trọn vẹn một lần - nhỏ giọt khiến mức bất định không bao giờ đóng lại",
+      commonMistake: "Công bố phần đã chắc chắn trước để trấn an, rồi mỗi tuần lộ thêm một phần. Mỗi lần lộ thêm là một lần niềm tin bị đặt lại từ đầu.",
+      action: "Khi có sự cố, việc đầu tiên là khoá giao dịch nội bộ - trước cả khi bắt đầu soạn thông cáo.",
+    },
+    application: {
+      title: "Viết thử một thông cáo tin xấu",
+      message: "Chọn một sự cố giả định và viết thông cáo cho nó: chuyện gì xảy ra, phạm vi bằng con số, đang làm gì, và khi nào sẽ cập nhật tiếp. Rồi xoá mọi tính từ và đọc lại.",
+      secondary: "Một thông cáo còn đứng vững sau khi xoá hết tính từ là một thông cáo có nội dung.",
+    },
     sections: [
       {
         type: "lead",

@@ -125,6 +125,17 @@ export const FINTECH_LESSONS: Lesson[] = [
       "Thanh toán có take rate mỏng, tín dụng dày hơn hàng chục lần; gần như mọi ví đều đi theo con đường đó.",
       "GMV tăng nhanh hơn doanh thu là dấu hiệu take rate đang bị bào mòn.",
     ],
+    summary: {
+      keyIdea: "Doanh thu = khối lượng giao dịch × take rate, và con số thứ hai mới quyết định mô hình",
+      formula: "Doanh thu ròng = GMV × take rate − chi phí trả cho ngân hàng và tổ chức thẻ",
+      commonMistake: "So sánh hai công ty bằng doanh thu gộp, trong khi phần trả cho đối tác khác nhau rất xa.",
+      action: "Lấy báo cáo một fintech niêm yết, chia doanh thu cho GMV và xem take rate đó đang tăng hay giảm qua bốn quý.",
+    },
+    application: {
+      title: "Tính take rate của một sản phẩm bạn dùng",
+      message: "Chọn một ví hoặc sàn bạn đang dùng, tìm biểu phí công khai, rồi ước lượng họ giữ lại bao nhiêu phần trăm trên mỗi giao dịch sau khi trả cho ngân hàng.",
+      secondary: "Nếu con số dưới 0,5%, mô hình đó phải sống bằng khối lượng cực lớn hoặc bằng một sản phẩm khác.",
+    },
     sections: [
       {
         type: "lead",
@@ -281,6 +292,17 @@ export const FINTECH_LESSONS: Lesson[] = [
       "Thời gian hoàn vốn nói nhiều hơn tỷ lệ LTV/CAC, vì nó nói về tiền mặt chứ không phải về một con số nhiều năm.",
       "CAC tăng dần trong khi LTV đứng yên là dấu hiệu nhóm khách dễ đã cạn.",
     ],
+    summary: {
+      keyIdea: "Thời gian hoàn vốn nói nhiều hơn tỷ lệ LTV/CAC, vì nó nói về tiền mặt",
+      formula: "Thời gian hoàn vốn = CAC / lợi nhuận gộp mỗi khách mỗi tháng",
+      commonMistake: "Tính LTV trên doanh thu thay vì lợi nhuận gộp, khiến chi phí phục vụ biến mất khỏi phép tính.",
+      action: "Với một sản phẩm bạn biết, ước lượng CAC và lợi nhuận gộp mỗi tháng, rồi chia ra số tháng hoàn vốn.",
+    },
+    application: {
+      title: "Kiểm tra mẫu số của CAC",
+      message: "Khi đọc một con số CAC, hỏi ngay: mẫu số có gồm cả khách đến tự nhiên không. Nếu có, con số đó thấp hơn thực tế và mọi kết luận dựa trên nó đều lệch.",
+      secondary: "CAC tăng dần trong khi LTV đứng yên là dấu hiệu nhóm khách dễ đã cạn.",
+    },
     sections: [
       {
         type: "lead",
@@ -428,6 +450,16 @@ export const FINTECH_LESSONS: Lesson[] = [
       "Thu nhập thật từ float là phần lãi sinh ra, không phải bản thân số dư.",
       "Float phình lên làm cả hai bên bảng cân đối phình theo, giá trị ròng không đổi.",
     ],
+    summary: {
+      keyIdea: "Số dư ví là nợ phải trả người dùng, không phải doanh thu và không phải vốn của công ty",
+      commonMistake: "Đọc tổng tài sản đang phình lên như dấu hiệu sức khoẻ, trong khi phần lớn là nghĩa vụ với khách.",
+      action: "Mở báo cáo một công ty ví, tách số dư người dùng ra khỏi tài sản của công ty và xem phần còn lại lớn tới đâu.",
+    },
+    application: {
+      title: "Tách hai dòng thu nhập",
+      message: "Với một fintech bạn quan tâm, tách thu nhập từ lãi trên số dư khách ra khỏi thu nhập từ phí dịch vụ. Rồi hỏi: nếu lãi suất giảm một nửa, mô hình này còn lãi không.",
+      secondary: "Nhiều mô hình ví chỉ có lãi trong môi trường lãi suất cao, và điều đó không hiện ra ở dòng doanh thu tổng.",
+    },
     sections: [
       {
         type: "lead",
@@ -590,6 +622,17 @@ export const FINTECH_LESSONS: Lesson[] = [
       "Danh mục lớn nhanh luôn có tỷ lệ nợ xấu trông đẹp, vì mẫu số chạy nhanh hơn tử số.",
       "Đọc theo tập giải ngân, không đọc theo tổng danh mục.",
     ],
+    summary: {
+      keyIdea: "Lãi suất cao là giá của rủi ro cao, không phải dấu hiệu lợi nhuận cao",
+      formula: "Biên thật = lãi thu − chi phí vốn − chi phí vận hành − chi phí rủi ro",
+      commonMistake: "Đọc tỷ lệ nợ xấu trên tổng danh mục đang tăng nhanh - mẫu số chạy nhanh hơn tử số nên con số luôn đẹp.",
+      action: "Yêu cầu số liệu theo tập giải ngân từng tháng thay vì theo tổng danh mục, rồi so các tập cùng độ tuổi với nhau.",
+    },
+    application: {
+      title: "Đọc một danh mục cho vay theo tập giải ngân",
+      message: "Lấy tỷ lệ quá hạn của các khoản giải ngân tháng 1 khi chúng được sáu tháng tuổi, rồi so với tỷ lệ của tập tháng 6 cũng ở sáu tháng tuổi. Đó là phép so duy nhất có nghĩa.",
+      secondary: "Nếu tập sau xấu hơn tập trước ở cùng độ tuổi, chất lượng thẩm định đang đi xuống dù tổng danh mục vẫn trông ổn.",
+    },
     sections: [
       {
         type: "lead",
@@ -738,6 +781,16 @@ export const FINTECH_LESSONS: Lesson[] = [
       "Chặn nhầm là chi phí thật, thường lớn hơn phần gian lận cứu được.",
       "Mục tiêu không phải gian lận bằng không, mà là mức tối ưu về chi phí biên.",
     ],
+    summary: {
+      keyIdea: "Mục tiêu không phải gian lận bằng không, mà là mức tối ưu về chi phí biên",
+      commonMistake: "So tổn thất gian lận với doanh thu thay vì với khối lượng giao dịch, khiến con số trông nhỏ hơn nhiều lần thực tế.",
+      action: "Ước lượng cả hai vế: tiền mất vì gian lận, và doanh thu mất vì giao dịch thật bị chặn nhầm.",
+    },
+    application: {
+      title: "Tìm điểm siết quá tay",
+      message: "Với một quy tắc chặn gian lận bất kỳ, hỏi nó chặn được bao nhiêu tiền gian lận và làm mất bao nhiêu giao dịch thật. Nếu vế thứ hai lớn hơn, quy tắc đó đang lỗ.",
+      secondary: "Chặn nhầm không xuất hiện trong bất kỳ báo cáo tổn thất nào, nên nó gần như luôn bị bỏ ngoài phép tính.",
+    },
     sections: [
       {
         type: "lead",
@@ -881,6 +934,17 @@ export const FINTECH_LESSONS: Lesson[] = [
       "Mức đốt đang giảm dần quan trọng hơn mức đốt hiện tại - đó là hình dạng của đường đi.",
       "Cắt marketing mua thêm thời gian nhưng không sửa được mô hình.",
     ],
+    summary: {
+      keyIdea: "Biên đóng góp dương là điều kiện cần - nếu âm, tăng trưởng chỉ làm lỗ lớn hơn",
+      formula: "Runway = tiền mặt hiện có / mức đốt mỗi tháng",
+      commonMistake: "Coi runway là câu trả lời cho bao giờ hoà vốn. Nó chỉ trả lời còn bao lâu nữa hết tiền.",
+      action: "Với một kế hoạch tăng trưởng bất kỳ, kiểm tra biên đóng góp trước, rồi mới nhìn tới quy mô.",
+    },
+    application: {
+      title: "Đọc hình dạng, không đọc mức",
+      message: "Lấy mức đốt của bốn quý gần nhất và xem nó đang giảm dần, đứng yên hay tăng. Hình dạng đó nói nhiều hơn con số của quý gần nhất.",
+      secondary: "Cắt marketing làm mức đốt giảm ngay nhưng không sửa được mô hình - đó là mua thời gian, không phải tiến tới hoà vốn.",
+    },
     sections: [
       {
         type: "lead",
