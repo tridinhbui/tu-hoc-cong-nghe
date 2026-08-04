@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useRef } from "react";
+import { useState, useMemo, useEffect, useRef } from "react";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 import { 
@@ -40,6 +40,8 @@ import CareerRoadmapMap from "@/components/CareerRoadmapMap";
 import CareerProfilePanel from "@/components/CareerProfilePanel";
 import { SUGGESTED_JOB_KEYWORDS } from "@/lib/job-search-links";
 import { CAREER_CATEGORY_LABELS, CAREER_CATEGORY_ORDER } from "@/lib/career-categories";
+import { notifyLocalStorageChanged, useLocalStorageValue } from "@/lib/use-local-storage-value";
+import { CAREER_GOAL_EVENT, CAREER_GOAL_KEY, CAREER_GOAL_STORAGE_EVENT, CAREER_ITEMS_KEY } from "@/lib/career-goal-storage";
 
 // Beautiful custom 3D card tilt and glow component
 function CareerAvatar({ career, size = 110, className = "" }: { career?: FinanceCareer | null; size?: number; className?: string }) {
@@ -617,8 +619,21 @@ export default function JobSearchClient() {
   // Custom states for P2 features
   const [compareModalOpen, setCompareModalOpen] = useState(false);
   const [selectedPathStep, setSelectedPathStep] = useState<number | null>(0);
-  const [trackedGoal, setTrackedGoal] = useState<string | null>(null);
-  const [completedItems, setCompletedItems] = useState<string[]>([]);
+  // Mục tiêu nghề và danh sách mục đã hoàn thành sống trong localStorage, và
+  // AppNavbar cũng đọc cùng khoá đó. Đọc thẳng từ nguồn thay vì chép sang
+  // state trong một effect lúc mount: giá trị đúng ngay lần render đầu, và
+  // mọi lần ghi ở dưới chỉ cần báo một tiếng là cả hai nơi cùng đổi.
+  const trackedGoal = useLocalStorageValue(CAREER_GOAL_KEY, CAREER_GOAL_STORAGE_EVENT);
+  const completedRaw = useLocalStorageValue(CAREER_ITEMS_KEY, CAREER_GOAL_STORAGE_EVENT);
+  const completedItems = useMemo<string[]>(() => {
+    if (!completedRaw) return [];
+    try {
+      const parsed = JSON.parse(completedRaw);
+      return Array.isArray(parsed) ? parsed : [];
+    } catch {
+      return [];
+    }
+  }, [completedRaw]);
 
   // Career Fit Quiz State
   const [userId, setUserId] = useState<string | null>(null);
@@ -665,20 +680,6 @@ export default function JobSearchClient() {
     });
   }, []);
 
-  useEffect(() => {
-    if (typeof window !== "undefined") {
-      const goal = localStorage.getItem("active_career_goal");
-      const completedStr = localStorage.getItem("active_career_completed_items");
-      if (goal) setTrackedGoal(goal);
-      if (completedStr) {
-        try {
-          setCompletedItems(JSON.parse(completedStr));
-        } catch {
-          setCompletedItems([]);
-        }
-      }
-    }
-  }, []);
 
   // Reconciles the local (instant-first-paint) goal with the real
   // server-side one once we know who's signed in - the server value wins if
@@ -689,8 +690,11 @@ export default function JobSearchClient() {
     getMyCareerGoal(userId)
       .then((serverGoal) => {
         if (serverGoal) {
-          setTrackedGoal(serverGoal);
-          localStorage.setItem("active_career_goal", serverGoal);
+          // Ghi rồi báo. Bản cũ chỉ ghi, nên khi server và máy này lệch nhau
+          // thì AppNavbar giữ nguyên mục tiêu cũ cho tới lần tải trang sau.
+          localStorage.setItem(CAREER_GOAL_KEY, serverGoal);
+          notifyLocalStorageChanged(CAREER_GOAL_STORAGE_EVENT);
+          window.dispatchEvent(new CustomEvent(CAREER_GOAL_EVENT, { detail: { careerId: serverGoal } }));
         }
       })
       .catch((error) => console.error("Error loading career goal:", error));
@@ -698,13 +702,12 @@ export default function JobSearchClient() {
 
   const handleTrackGoal = (careerId: string) => {
     if (trackedGoal === careerId) {
-      setTrackedGoal(null);
-      setCompletedItems([]);
-      localStorage.removeItem("active_career_goal");
+      localStorage.removeItem(CAREER_GOAL_KEY);
       localStorage.removeItem("thtcdn_career_goal");
-      localStorage.removeItem("active_career_completed_items");
+      localStorage.removeItem(CAREER_ITEMS_KEY);
+      notifyLocalStorageChanged(CAREER_GOAL_STORAGE_EVENT);
       toast.info("Đã hủy theo dõi mục tiêu sự nghiệp.");
-      window.dispatchEvent(new CustomEvent("thtcdn:career-goal-updated", { detail: { careerId: null } }));
+      window.dispatchEvent(new CustomEvent(CAREER_GOAL_EVENT, { detail: { careerId: null } }));
       if (userId) {
         void clearCareerGoal(userId).catch((error) => {
           console.error("Error clearing career goal:", error);
@@ -712,13 +715,12 @@ export default function JobSearchClient() {
         });
       }
     } else {
-      setTrackedGoal(careerId);
-      setCompletedItems([]);
-      localStorage.setItem("active_career_goal", careerId);
+      localStorage.setItem(CAREER_GOAL_KEY, careerId);
       localStorage.setItem("thtcdn_career_goal", careerId);
-      localStorage.setItem("active_career_completed_items", JSON.stringify([]));
+      localStorage.setItem(CAREER_ITEMS_KEY, JSON.stringify([]));
+      notifyLocalStorageChanged(CAREER_GOAL_STORAGE_EVENT);
       toast.success(`🎯 Đã đặt làm Mục tiêu Sự nghiệp mới!`);
-      window.dispatchEvent(new CustomEvent("thtcdn:career-goal-updated", { detail: { careerId } }));
+      window.dispatchEvent(new CustomEvent(CAREER_GOAL_EVENT, { detail: { careerId } }));
       // A failed write used to be logged and forgotten while the success
       // toast above stood - so a goal that never left the browser looked
       // saved. Report it instead; the local copy still works for this device.
@@ -735,8 +737,8 @@ export default function JobSearchClient() {
     const next = completedItems.includes(item)
       ? completedItems.filter(i => i !== item)
       : [...completedItems, item];
-    setCompletedItems(next);
-    localStorage.setItem("active_career_completed_items", JSON.stringify(next));
+    localStorage.setItem(CAREER_ITEMS_KEY, JSON.stringify(next));
+    notifyLocalStorageChanged(CAREER_GOAL_STORAGE_EVENT);
   };
 
   const startQuiz = () => {

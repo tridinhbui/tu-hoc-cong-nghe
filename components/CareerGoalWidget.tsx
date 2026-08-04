@@ -6,6 +6,8 @@ import { Briefcase, ArrowRight } from "lucide-react";
 import { getMyCareerGoal } from "@/lib/supabase-career-goals";
 import { getCareerLessonProgress, type CareerLessonProgress } from "@/lib/career-lesson-progress";
 import { FINANCE_CAREERS } from "@/lib/finance-careers";
+import { useLocalStorageValue } from "@/lib/use-local-storage-value";
+import { CAREER_GOAL_KEY, CAREER_GOAL_STORAGE_EVENT } from "@/lib/career-goal-storage";
 
 // Dashboard-side half of "Đặt Mục tiêu Sự nghiệp" (set on /su-nghiep, see
 // lib/supabase-career-goals.ts) - surfaces the pinned career and real
@@ -14,32 +16,37 @@ import { FINANCE_CAREERS } from "@/lib/finance-careers";
 // checklist. Renders nothing if no goal is set, so it doesn't take up
 // sidebar space for users who haven't used this feature.
 export default function CareerGoalWidget({ userId }: { userId?: string }) {
-  const [careerId, setCareerId] = useState<string | null>(null);
+  // Đọc thẳng localStorage thay vì chép vào state lúc mount. Widget này nằm
+  // ở dashboard trong khi mục tiêu được đặt ở trang Sự nghiệp; trước đây nó
+  // KHÔNG nghe kênh báo đổi nào, nên đổi mục tiêu xong quay lại dashboard vẫn
+  // thấy mục tiêu cũ cho tới lần tải trang sau.
+  const localGoal = useLocalStorageValue(CAREER_GOAL_KEY, CAREER_GOAL_STORAGE_EVENT);
+  const [serverGoal, setServerGoal] = useState<string | null>(null);
   const [progress, setProgress] = useState<CareerLessonProgress | null>(null);
-  const [loading, setLoading] = useState(true);
+  const careerId = serverGoal ?? localGoal;
+
+  // `loading` suy ra từ chỗ đã hỏi xong server cho ai, không phải một cờ tự
+  // bật tự tắt.
+  const [checkedFor, setCheckedFor] = useState<string | null>(null);
+  const loading = checkedFor !== (userId ?? "");
 
   useEffect(() => {
     let cancelled = false;
-    let localId: string | null = null;
-    if (typeof window !== "undefined") {
-      localId = localStorage.getItem("active_career_goal") || localStorage.getItem("thtcdn_career_goal") || localStorage.getItem("user_career_goal");
-      if (localId) setCareerId(localId);
-    }
 
     const loadData = async () => {
       const dbId = userId ? await getMyCareerGoal(userId).catch(() => null) : null;
-      const targetId = dbId || localId;
       if (cancelled) return;
+      if (dbId) setServerGoal(dbId);
 
+      const targetId = dbId || localGoal;
       if (targetId) {
-        setCareerId(targetId);
         const career = FINANCE_CAREERS.find((c) => c.id === targetId);
         if (career) {
           const p = await getCareerLessonProgress(career.relatedLessonSlugs);
           if (!cancelled) setProgress(p);
         }
       }
-      if (!cancelled) setLoading(false);
+      if (!cancelled) setCheckedFor(userId ?? "");
     };
 
     void loadData();
@@ -47,7 +54,7 @@ export default function CareerGoalWidget({ userId }: { userId?: string }) {
     return () => {
       cancelled = true;
     };
-  }, [userId]);
+  }, [userId, localGoal]);
 
   if (loading || !careerId) return null;
 
