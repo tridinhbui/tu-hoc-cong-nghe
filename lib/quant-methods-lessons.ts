@@ -251,7 +251,7 @@ export const QUANT_METHODS_LESSONS: Lesson[] = [
         question: "Muốn giảm sai số chuẩn xuống còn một nửa, cần bao nhiêu dữ liệu?",
         options: [
           "Gấp đôi, vì sai số chuẩn tỷ lệ nghịch trực tiếp với cỡ mẫu",
-          "Gấp bốn lần",
+          "Gấp bốn lần, vì sai số chuẩn tỷ lệ nghịch với căn bậc hai của cỡ mẫu",
           "Gấp tám lần, vì sai số giảm theo căn bậc ba của cỡ mẫu",
           "Không thể giảm được, vì sai số chuẩn không phụ thuộc vào cỡ mẫu",
         ],
