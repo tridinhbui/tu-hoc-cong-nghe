@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { toast } from "sonner";
 import { UserPlus, UserCheck } from "lucide-react";
 import { followUser, unfollowUser } from "@/lib/supabase-follows";
@@ -23,11 +23,18 @@ export default function FollowButton({ currentUserId, targetUserId, initialFollo
   const [busy, setBusy] = useState(false);
 
   // Real-time feed refreshes hand down a fresh `is_following` on every
-  // re-render - without this, a stale local `following` from a previous
-  // optimistic update could drift from what the server actually has.
-  useEffect(() => {
+  // re-render - không nhận lại thì một `following` cũ do bấm lạc quan để lại
+  // sẽ trôi khỏi trạng thái thật trên server.
+  //
+  // Chỉnh ngay trong lúc render thay vì trong effect: React thấy setState của
+  // chính component đang render thì dựng lại luôn trước khi vẽ, nên người
+  // dùng không bao giờ thấy khung hình mang giá trị cũ. Bản dùng effect thì
+  // có - nó vẽ giá trị cũ một lần rồi mới sửa.
+  const [syncedProp, setSyncedProp] = useState(initialFollowing);
+  if (syncedProp !== initialFollowing) {
+    setSyncedProp(initialFollowing);
     setFollowing(initialFollowing);
-  }, [initialFollowing]);
+  }
 
   if (currentUserId === targetUserId) return null;
 

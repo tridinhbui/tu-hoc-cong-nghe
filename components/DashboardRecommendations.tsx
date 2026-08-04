@@ -8,6 +8,8 @@ import { GAMES } from "@/lib/games";
 import { getIllustrativeCount } from "@/lib/illustrative-stats";
 import { getWeekSeed, pickRotatingWindow } from "@/lib/content-rotation";
 import { getTotalCompletedLessonsCount } from "@/lib/supabase-user";
+import { useLocalStorageValue } from "@/lib/use-local-storage-value";
+import { GOAL_UPDATED_EVENT } from "@/components/GoalSelectionBanner";
 
 interface DashboardRecommendationsProps {
   lessonsMeta: LessonMeta[];
@@ -66,7 +68,7 @@ const getIllustrativeStudyingCount = getIllustrativeCount;
 export default function DashboardRecommendations({ lessonsMeta, completed, userId }: DashboardRecommendationsProps) {
   const [collapsed, setCollapsed] = useState(false);
   const [hotCollapsed, setHotCollapsed] = useState(false);
-  const [selectedGoal, setSelectedGoal] = useState<string | null>(null);
+
   const [scrollProgress, setScrollProgress] = useState(0);
   const [hotScrollProgress, setHotScrollProgress] = useState(0);
   const [liveCompletedCount, setLiveCompletedCount] = useState<number | null>(null);
@@ -74,22 +76,9 @@ export default function DashboardRecommendations({ lessonsMeta, completed, userI
   const hotScrollContainerRef = useRef<HTMLDivElement>(null);
 
   const goalKey = `thtcdn_learning_goal_${userId}`;
-
-  const loadGoal = () => {
-    if (typeof window !== "undefined") {
-      setSelectedGoal(window.localStorage.getItem(goalKey));
-    }
-  };
-
-  useEffect(() => {
-    loadGoal();
-
-    // Listen for goal changes
-    window.addEventListener("thtcdn_goal_updated", loadGoal);
-    return () => {
-      window.removeEventListener("thtcdn_goal_updated", loadGoal);
-    };
-  }, [goalKey]);
+  // Cùng một khoá, cùng một kênh báo đổi với GoalSelectionBanner - đoạn dây
+  // nghe sự kiện trước đây phải chép ở cả hai nơi giờ nằm trong hook.
+  const selectedGoal = useLocalStorageValue(goalKey, GOAL_UPDATED_EVENT);
 
   useEffect(() => {
     let cancelled = false;

@@ -18,8 +18,17 @@ interface TypingTextProps {
 export default function TypingText({ text, speed = 16, onDone, className }: TypingTextProps) {
   const [shownLength, setShownLength] = useState(0);
 
-  useEffect(() => {
+  // Đưa con trỏ về đầu ngay khi `text` đổi, làm trong lúc render chứ không
+  // trong effect. Effect chạy SAU khi trình duyệt đã vẽ, nên bản cũ để lộ một
+  // khung hình mang đoạn văn cũ ở độ dài cũ trước khi kịp reset - thấy rõ khi
+  // đoạn mới ngắn hơn đoạn đang hiện.
+  const [typingText, setTypingText] = useState(text);
+  if (typingText !== text) {
+    setTypingText(text);
     setShownLength(0);
+  }
+
+  useEffect(() => {
     let i = 0;
     const interval = window.setInterval(() => {
       i += 1;

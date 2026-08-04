@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import { Wallet, TrendingUp, Target, CheckCircle2, Shuffle, ChevronDown, ChevronUp, type LucideIcon } from "lucide-react";
 import { toast } from "sonner";
+import { notifyLocalStorageChanged, useLocalStorageValue } from "@/lib/use-local-storage-value";
 
 interface GoalSelectionBannerProps {
   userId: string;
@@ -37,30 +38,29 @@ export const GOALS: { id: LearningGoal; name: string; desc: string; icon: Lucide
   }
 ];
 
+/** Kênh báo đổi lộ trình học trong cùng một tab. */
+export const GOAL_UPDATED_EVENT = "thtcdn_goal_updated";
+
 export default function GoalSelectionBanner({ userId }: GoalSelectionBannerProps) {
-  const [selectedGoal, setSelectedGoal] = useState<LearningGoal | null>(null);
-  const [showSelector, setShowSelector] = useState<boolean>(false);
   const [isCollapsed, setIsCollapsed] = useState<boolean>(false);
 
   const goalKey = `thtcdn_learning_goal_${userId}`;
+  // Đọc thẳng từ localStorage ở mỗi lần render. Bản cũ chép sang state trong
+  // một effect, nên lần tải nào cũng vẽ banner "chưa chọn lộ trình" một nhịp
+  // rồi mới thay bằng lộ trình đã lưu.
+  const selectedGoal = useLocalStorageValue(goalKey, GOAL_UPDATED_EVENT) as LearningGoal | null;
 
-  useEffect(() => {
-    if (typeof window !== "undefined") {
-      const saved = window.localStorage.getItem(goalKey) as LearningGoal | null;
-      if (saved) {
-        setSelectedGoal(saved);
-      } else {
-        setShowSelector(true); // show options if none selected yet
-      }
-    }
-  }, [goalKey]);
+  // Mở bảng chọn khi chưa có lộ trình, hoặc khi người dùng bấm đổi.
+  const [selectorOpen, setSelectorOpen] = useState(false);
+  const showSelector = selectorOpen || !selectedGoal;
+  const setShowSelector = setSelectorOpen;
 
   const handleSelectGoal = (goalId: LearningGoal) => {
-    setSelectedGoal(goalId);
     if (typeof window !== "undefined") {
       window.localStorage.setItem(goalKey, goalId);
-      // Dispatch event to notify DashboardRecommendations to filter
-      window.dispatchEvent(new Event("thtcdn_goal_updated"));
+      // Báo cho mọi nơi đang đọc khoá này - DashboardRecommendations và chính
+      // component này - biết giá trị vừa đổi.
+      notifyLocalStorageChanged(GOAL_UPDATED_EVENT);
     }
     setShowSelector(false);
     toast.success(`Đã cập nhật lộ trình học: ${GOALS.find(g => g.id === goalId)?.name}! 🎯`);
