@@ -27,6 +27,19 @@ export function notifyLocalStorageChanged(eventName: string) {
   window.dispatchEvent(new Event(eventName));
 }
 
+/** Ghi rồi báo, trong một lệnh - để không có chỗ nào ghi mà quên báo.
+ *  Truyền `null` để xoá khoá. */
+export function writeLocalStorageValue(key: string, value: string | null, changeEvent: string) {
+  if (typeof window === "undefined") return;
+  try {
+    if (value === null) window.localStorage.removeItem(key);
+    else window.localStorage.setItem(key, value);
+  } catch {
+    // Hết dung lượng, hoặc Safari riêng tư: mất bản lưu chứ không sập giao diện.
+  }
+  notifyLocalStorageChanged(changeEvent);
+}
+
 export function useLocalStorageValue(key: string, changeEvent: string): string | null {
   const subscribe = useCallback(
     (onChange: () => void) => {

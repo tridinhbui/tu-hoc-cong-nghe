@@ -12,6 +12,7 @@ import { getLessonDisplayLabel, getLessonShortTitle } from "@/lib/lesson-labels"
 import { getQuizAnswers } from "@/lib/progress";
 import RecallCard from "@/components/RecallCard";
 import type { RecallItem } from "@/lib/recall-schedule";
+import { useLocalStorageValue, writeLocalStorageValue } from "@/lib/use-local-storage-value";
 
 interface ResumeLearningButtonProps {
   activeTrack: "personal" | "professional";
@@ -49,24 +50,21 @@ interface Greeting {
 // about in one line, and how many minutes they've put in so far - instead
 // of a generic label, plus a clear tap target to continue.
 const COLLAPSED_KEY = "thtcdn_resume_card_collapsed";
+/** Kênh báo khi người dùng thu gọn hoặc mở lại thẻ, trong cùng tab. */
+const COLLAPSED_CHANGED_EVENT = "thtcdn:resume-card-collapsed";
 
 export default function ResumeLearningButton({ activeTrack }: ResumeLearningButtonProps) {
   const [greeting, setGreeting] = useState<Greeting | null>(null);
   const [loading, setLoading] = useState(true);
-  const [collapsed, setCollapsed] = useState(false);
-
-  useEffect(() => {
-    setCollapsed(window.localStorage.getItem(COLLAPSED_KEY) === "1");
-  }, []);
+  // Trạng thái thu gọn thẻ đọc thẳng từ localStorage. Bản cũ luôn mở ra ở
+  // lần render đầu rồi mới thu lại trong effect, nên người đã thu gọn thẻ vẫn
+  // thấy nó bung ra một nhịp ở mỗi lần vào dashboard.
+  const collapsed = useLocalStorageValue(COLLAPSED_KEY, COLLAPSED_CHANGED_EVENT) === "1";
 
   function toggleCollapsed(e: React.MouseEvent) {
     e.preventDefault();
     e.stopPropagation();
-    setCollapsed((prev) => {
-      const next = !prev;
-      window.localStorage.setItem(COLLAPSED_KEY, next ? "1" : "0");
-      return next;
-    });
+    writeLocalStorageValue(COLLAPSED_KEY, collapsed ? "0" : "1", COLLAPSED_CHANGED_EVENT);
   }
 
   useEffect(() => {

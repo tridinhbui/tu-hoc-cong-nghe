@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useMemo, useState, useEffect } from "react";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 import {
@@ -21,6 +21,10 @@ import { toast } from "sonner";
 import { CFA_GLOSSARY_TERMS, type CfaGlossaryTerm } from "@/lib/cfa-glossary-terms";
 import { CFA_LEVEL_1_SUBJECTS } from "@/lib/cfa-track";
 import FormulaBlock from "@/components/FormulaBlock";
+
+/** Kênh báo khi danh sách thẻ đã thuộc đổi trong cùng tab. */
+const LEARNED_CHANGED_EVENT = "thtcdn:cfa-glossary-learned";
+import { useLocalStorageValue, writeLocalStorageValue } from "@/lib/use-local-storage-value";
 
 /**
  * Dùng chung cho cả CFA và FRM. Mặc định là CFA để mọi chỗ gọi cũ
@@ -74,20 +78,19 @@ export default function CfaGlossaryFlashcards({
   const [searchQuery, setSearchQuery] = useState("");
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isFlipped, setIsFlipped] = useState(false);
-  const [learnedIds, setLearnedIds] = useState<string[]>([]);
-
-  useEffect(() => {
-    if (typeof window !== "undefined") {
-      const saved = localStorage.getItem(storageKey);
-      if (saved) {
-        try {
-          setLearnedIds(JSON.parse(saved));
-        } catch {
-          setLearnedIds([]);
-        }
-      }
+  // Danh sách thẻ đã thuộc sống trong localStorage; đọc thẳng từ đó thay vì
+  // chép sang state trong một effect lúc mount - bản cũ vẽ một khung hình
+  // "chưa thuộc thẻ nào" trước khi effect kịp chạy.
+  const learnedRaw = useLocalStorageValue(storageKey, LEARNED_CHANGED_EVENT);
+  const learnedIds = useMemo<string[]>(() => {
+    if (!learnedRaw) return [];
+    try {
+      const parsed = JSON.parse(learnedRaw);
+      return Array.isArray(parsed) ? parsed : [];
+    } catch {
+      return [];
     }
-  }, []);
+  }, [learnedRaw]);
 
   const filteredTerms = terms.filter((term) => {
     const matchesSubject = selectedSubject === "all" || term.subjectId === selectedSubject;
@@ -115,9 +118,8 @@ export default function CfaGlossaryFlashcards({
   };
 
   const toggleLearned = (id: string) => {
-    const next = learnedIds.includes(id) ? learnedIds.filter((item) => item !== id) : [...learnedIds, id];
-    setLearnedIds(next);
-    localStorage.setItem(storageKey, JSON.stringify(next));
+    const next = learnedIds.includes(id) ? learnedIds.filter((item: string) => item !== id) : [...learnedIds, id];
+    writeLocalStorageValue(storageKey, JSON.stringify(next), LEARNED_CHANGED_EVENT);
     if (!learnedIds.includes(id)) {
       toast.success(learnedToastText);
     }

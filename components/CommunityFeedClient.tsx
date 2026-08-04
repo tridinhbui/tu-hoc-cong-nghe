@@ -61,6 +61,10 @@ import { isValidAvatar } from "@/lib/avatar-utils";
 import { animateCountTo } from "@/lib/animate-count";
 import { timeAgo } from "@/lib/time-ago";
 import FollowButton from "@/components/FollowButton";
+import { useLocalStorageValue, writeLocalStorageValue } from "@/lib/use-local-storage-value";
+
+/** Kênh báo khi một lá phiếu vừa được lưu, trong cùng tab. */
+const VOTE_CHANGED_EVENT = "thtcdn:community-vote";
 
 interface SessionUser {
   id: string;
@@ -284,19 +288,11 @@ function MarketSentimentWidget({ onShareSentiment }: { onShareSentiment?: (text:
   const todayStr = new Date().toISOString().slice(0, 10);
   const storageKey = `thtcdn_market_sentiment_${todayStr}`;
 
-  const [votedOption, setVotedOption] = useState<"bullish" | "bearish" | null>(null);
+  // Lá phiếu đã bỏ nằm ở localStorage; đọc thẳng thay vì chép vào state bằng
+  // effect - bản cũ hiện hai nút chưa bình chọn một nhịp rồi mới đánh dấu lại.
+  const savedVote = useLocalStorageValue(storageKey, VOTE_CHANGED_EVENT);
+  const votedOption = savedVote === "bullish" || savedVote === "bearish" ? savedVote : null;
   const [stats, setStats] = useState({ bullish: 104, bearish: 48 });
-
-  useEffect(() => {
-    try {
-      const saved = localStorage.getItem(storageKey);
-      if (saved === "bullish" || saved === "bearish") {
-        setVotedOption(saved);
-      }
-    } catch (e) {
-      // ignore
-    }
-  }, [storageKey]);
 
   const handleVote = (option: "bullish" | "bearish") => {
     if (votedOption === option) return;
@@ -313,10 +309,7 @@ function MarketSentimentWidget({ onShareSentiment }: { onShareSentiment?: (text:
       return { bullish: newBullish, bearish: newBearish };
     });
 
-    setVotedOption(option);
-    try {
-      localStorage.setItem(storageKey, option);
-    } catch (e) {}
+    writeLocalStorageValue(storageKey, option, VOTE_CHANGED_EVENT);
 
     toast.success(
       option === "bullish"
@@ -429,27 +422,16 @@ function MarketSentimentWidget({ onShareSentiment }: { onShareSentiment?: (text:
 
 function InteractivePollCard({ postId, metadata }: { postId: number; metadata: PollMetadata }) {
   const storageKey = `thtcdn_poll_vote_${postId}`;
-  const [userVotedId, setUserVotedId] = useState<number | null>(null);
+  const savedPollVote = useLocalStorageValue(storageKey, VOTE_CHANGED_EVENT);
+  const userVotedId = savedPollVote === null || savedPollVote === "" ? null : Number(savedPollVote);
   const [options, setOptions] = useState<PollOption[]>(metadata.options || []);
-
-  useEffect(() => {
-    try {
-      const saved = localStorage.getItem(storageKey);
-      if (saved !== null) {
-        setUserVotedId(Number(saved));
-      }
-    } catch (e) {}
-  }, [storageKey]);
 
   const handleVote = (optionId: number) => {
     if (userVotedId !== null) return;
     setOptions((prev) =>
       prev.map((opt) => (opt.id === optionId ? { ...opt, votes: opt.votes + 1 } : opt))
     );
-    setUserVotedId(optionId);
-    try {
-      localStorage.setItem(storageKey, String(optionId));
-    } catch (e) {}
+    writeLocalStorageValue(storageKey, String(optionId), VOTE_CHANGED_EVENT);
     toast.success("🎉 Đã ghi nhận bình chọn của bạn!");
   };
 
