@@ -294,7 +294,7 @@ export const MA_EXECUTION_LESSONS: Lesson[] = [
         "Giá mua vốn chủ 300 tỷ, nợ cũ phải trả 100 tỷ, phí 15 tỷ. Bên bán có 40 tỷ tiền mặt. Bên mua vay được 250 tỷ. Cần góp thêm bao nhiêu vốn?",
       options: [
         "125 tỷ",
-        "125 tỷ, tính bằng tổng sử dụng 415 tỷ trừ đi 250 tỷ nợ vay và 40 tỷ tiền mặt của bên bán",
+        "125 tỷ",
         "165 tỷ",
         "50 tỷ",
       ],

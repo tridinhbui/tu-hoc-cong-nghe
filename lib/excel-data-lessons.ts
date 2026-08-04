@@ -428,10 +428,10 @@ export const EXCEL_DATA_LESSONS: Lesson[] = [
       question:
         "Bảng cân đối trong mô hình của bạn lệch đúng 1.200 ở mọi năm dự phóng. Cách tìm lỗi hiệu quả nhất là gì?",
       options: [
-        "Cộng thêm 1.200 vào dòng vốn chủ sở hữu cho cân",
-        "Tìm khoản mục có giá trị 1.200 đã vào bảng cân đối nhưng chưa đi qua báo cáo lưu chuyển tiền tệ, hoặc ngược lại - lệch cố định qua các năm gần như luôn là một khoản bị bỏ sót ở một phía",
-        "Xóa mô hình và dựng lại từ đầu",
-        "Tắt tính toán lặp",
+        "Cộng thêm 1.200 vào dòng vốn chủ sở hữu cho bảng cân lại",
+        "Tìm khoản 1.200 bị bỏ sót ở một trong hai báo cáo",
+        "Xóa mô hình và dựng lại từ đầu cho chắc",
+        "Tắt tính toán lặp trong tuỳ chọn Excel",
       ],
       correct: 1,
       explanation:
@@ -597,9 +597,9 @@ export const EXCEL_DATA_LESSONS: Lesson[] = [
         "Trước khi gửi mô hình cho cấp trên, quy trình rà soát mười phút nên gồm những gì?",
       options: [
         "Định dạng lại màu sắc và font chữ cho đẹp",
-        "Kiểm tra các ô kiểm tra đều bằng 0; bật chế độ hiện công thức để tìm số cứng; rà các giá trị lỗi; chạy hai kịch bản cực đoan xem kết quả có vô lý không; và đối chiếu vài chỉ số với hiểu biết ngành",
-        "Nén file để giảm dung lượng",
-        "Đặt mật khẩu bảo vệ toàn bộ sheet",
+        "Kiểm ô kiểm tra, số cứng, lỗi và kịch bản cực đoan",
+        "Nén file để giảm dung lượng trước khi gửi",
+        "Đặt mật khẩu bảo vệ toàn bộ các sheet trước khi gửi",
       ],
       correct: 1,
       explanation:
