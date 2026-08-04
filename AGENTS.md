@@ -75,6 +75,27 @@ than by reading:
    anything carrying a clause is left alone), and opens with a hollow formula.
    Written that narrowly it found five in 2,815 questions, and all five are
    fixed.
+
+   The same rule now runs against the **correct** option too, which it never
+   did before: the loop that applies it skipped `question.correct` on its first
+   line. A hollow *correct* answer is worse than a hollow distractor, because
+   it marks the learner who understood the material wrong. One existed —
+   `revenue-cogs-gross-profit` keyed "Gross Margin cao có tốt không?" to
+   "Không ảnh hưởng" while its own explanation said "cần xem ngành: Retail
+   20-30%, Software 70-80%" — and it was found by accident while measuring
+   option lengths. The correct-answer check counts **words, not characters**:
+   what separates "Không ảnh hưởng" from "Không có dòng tiền nền tảng" is that
+   the second one names something. Two words against six; by character count
+   they are 15 and 27, and no character threshold separates them.
+
+   Two other detectors were built and thrown away, which is worth recording so
+   nobody rebuilds them. Ranking answers by word overlap with the explanation
+   produced 235 suspects and zero real errors — explanations name the
+   misconception they refute, so distractors share their vocabulary. Checking
+   that the keyed answer's numbers appear in the explanation produced 4, then 8
+   after adding tolerance, and again zero real errors: derived answers state a
+   result the explanation reaches by a different route. Neither is in the
+   audit. A noisy gate is a gate people learn to ignore.
 5. **Never contradict another lesson's correct answer.** Negative working
    capital is a *strength* for retail and subscription businesses (lesson 178),
    so it cannot be the wrong answer in lesson 50. Check the neighbouring

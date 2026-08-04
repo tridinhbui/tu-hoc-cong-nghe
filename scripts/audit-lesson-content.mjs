@@ -187,6 +187,26 @@ const HOLLOW_DISTRACTOR = new RegExp(
 );
 const MAX_HOLLOW_DISTRACTORS = 0;
 
+/** Đáp án ĐÚNG có phải một khoảng trống không.
+ *
+ *  Đo bằng SỐ TỪ chứ không bằng số ký tự, khác với isHollowDistractor. Lý do:
+ *  thứ phân biệt "Không ảnh hưởng" với "Không có dòng tiền nền tảng" không
+ *  phải độ dài mà là việc câu sau NÊU TÊN một thứ cụ thể. Cái đầu 2 từ, cái
+ *  sau 6 từ; đo bằng ký tự thì 15 và 27, và mọi ngưỡng ký tự hoặc bắt cả hai
+ *  hoặc bỏ sót cả hai.
+ *
+ *  Ngưỡng 5 từ cho ra đúng 0 trên toàn kho hôm nay, nên nó là cổng cứng chứ
+ *  không phải danh sách cảnh báo - và nó BẮT ĐƯỢC lỗi đã xảy ra thật ("Không
+ *  ảnh hưởng", 2 từ). */
+function isHollowCorrectAnswer(option) {
+  if (option === null || option === undefined) return false;
+  const text = String(option).trim().replace(/\.$/, "");
+  if (!text) return false;
+  if (/\d/.test(text)) return false; // "15%", "2x" là đáp án số hợp lệ
+  if (text.split(/\s+/).length > 5) return false;
+  return /^(không|luôn|chỉ|đều|mọi|tất cả)\b/i.test(text);
+}
+
 function isHollowDistractor(option) {
   const text = String(option ?? "").trim().replace(/\.$/, "");
   if (/\d/.test(text)) return false;
@@ -261,12 +281,26 @@ for (const track of Object.keys(quizStats)) {
 const unbaselined = [];
 /** Options that are blank space rather than a wrong answer - see rule 4. */
 const hollowDistractors = [];
+/** Câu mà ĐÁP ÁN ĐÚNG là khoảng trống - xem isHollowCorrectAnswer. */
+const hollowCorrect = [];
 /** Baselined lessons that now pass, so the baseline must shrink. */
 const fixedButStillBaselined = [];
 /** Bài thiếu tóm tắt / thiếu khối áp dụng. */
 const missingSummary = [];
 const missingApplication = [];
 const missingPractice = [];
+
+/** Trần cho điểm của chiến lược "chọn phương án dài nhất" trong practicePrompt.
+ *
+ *  Đặt ở 0,92 vì kho đang ở 0,917 - đúng luật của AGENTS.md: cổng đặt ở mức
+ *  kho ĐÃ ĐẠT, không tạo nợ. Ở mức này nó chưa chặn được gì; việc của nó lúc
+ *  này là làm con số hiện ra trong CI và bị hạ dần sau mỗi đợt viết lại, y
+ *  như MAX_TELL_SHARE đã được hạ từ 0,91 xuống. Mức đích là 0,25 - may rủi.
+ *
+ *  Cách sửa một câu: cắt đáp án đúng về đúng mệnh đề, vì phần lý lẽ đã nằm
+ *  sẵn ở `explanation` ngay bên dưới. Không phải kéo dài các phương án nhiễu. */
+const MAX_PRACTICE_LONGEST_SCORE = 0.92;
+const practiceStats = { questions: 0, longestScore: 0, randomScore: 0 };
 
 for (const file of files) {
   const lesson = JSON.parse(readFileSync(path.join(dataDir, file), "utf8"));
@@ -275,6 +309,30 @@ for (const file of files) {
   if (!lesson.summary) missingSummary.push(lesson.slug);
   if (!lesson.application) missingApplication.push(lesson.slug);
   if (!lesson.practicePrompt) missingPractice.push(lesson.slug);
+
+  // practicePrompt là một câu trắc nghiệm y hệt một câu quiz, nhưng suốt cả
+  // đời bộ kiểm này nó chỉ được ĐẾM XEM CÓ TỒN TẠI KHÔNG. Không ai nhìn vào
+  // bên trong, nên nó giữ nguyên đúng khuyết tật mà AGENTS.md ghi là đã sửa
+  // xong ở `quiz`: đáp án đúng là cả đoạn lý lẽ, các phương án nhiễu là mấy
+  // chữ cụt. Đo lần đầu: 581/618 câu có đáp án dài nhất, và chiến lược "chọn
+  // phương án dài nhất" ăn 92,9% so với mức may rủi 25%.
+  //
+  // Điều làm nó đáng sửa chứ không đáng bỏ qua: 522 trong 581 câu đó ĐÃ có
+  // sẵn trường `explanation` từ 150 ký tự trở lên. Lý lẽ đang được chép hai
+  // lần, và bản chép nằm đúng chỗ nó không được phép nằm.
+  const pp = lesson.practicePrompt;
+  if (pp?.options?.length) {
+    const lengths = pp.options.map((option) => String(option).length);
+    const longest = Math.max(...lengths);
+    practiceStats.questions++;
+    // Điểm kỳ vọng của chiến lược, không phải tỉ lệ trúng - hoà nhau thì
+    // người đoán vẫn phải chọn trong số các phương án dài bằng nhau.
+    if ((lengths[pp.correct] ?? 0) === longest) {
+      practiceStats.longestScore += 1 / lengths.filter((l) => l === longest).length;
+    }
+    practiceStats.randomScore += 1 / lengths.length;
+  }
+
   let lessonLongest = 0;
   for (const question of questions) {
     const lengths = (question.options ?? []).map((option) => String(option).length);
@@ -315,6 +373,23 @@ for (const file of files) {
         hollowDistractors.push({ id: lesson.id, slug: lesson.slug, option: String(option) });
       }
     });
+
+    // Và phép thử ngược: ĐÁP ÁN ĐÚNG có phải một khoảng trống không.
+    //
+    // Suốt đời bộ kiểm này, luật 4 chỉ được áp lên phương án SAI - vòng lặp
+    // ngay trên bỏ qua `question.correct` ngay dòng đầu. Nhưng một câu hỏi mà
+    // đáp án ĐÚNG là khoảng trống thì tệ hơn hẳn: nó chấm sai đúng người học
+    // biết bài. Đã xảy ra thật, ở revenue-cogs-gross-profit - câu "Gross
+    // Margin cao có tốt không?" khoá đáp án vào "Không ảnh hưởng", trong khi
+    // phần giải thích của chính câu đó nói "cần xem ngành: Retail 20-30%,
+    // Software 70-80%". Tìm ra hoàn toàn tình cờ khi đang soi độ dài.
+    if (isHollowCorrectAnswer(lengths.length ? (question.options ?? [])[question.correct] : null)) {
+      hollowCorrect.push({
+        slug: lesson.slug,
+        option: String((question.options ?? [])[question.correct]),
+        question: String(question.question ?? "").slice(0, 70),
+      });
+    }
   }
 
   if (questions.length < MIN_QUESTIONS_FOR_TELL_CHECK) continue;
@@ -436,6 +511,17 @@ if (missingSummary.length === 0 && missingApplication.length === 0 && missingPra
   shown.slice(0, 30).forEach((slug) => console.log(`    ${slug}`));
   if (shown.length > 30) console.log(`    … và ${shown.length - 30} bài nữa`);
 }
+
+if (practiceStats.questions > 0) {
+  const score = practiceStats.longestScore / practiceStats.questions;
+  const chance = practiceStats.randomScore / practiceStats.questions;
+  console.log(
+    `  practicePrompt: ${practiceStats.questions} câu · "chọn phương án dài nhất" ăn ` +
+      `${(score * 100).toFixed(1)}% (may rủi ${(chance * 100).toFixed(1)}%) · trần ` +
+      `${(MAX_PRACTICE_LONGEST_SCORE * 100).toFixed(0)}%`
+  );
+  console.log(`  Hạ trần sau mỗi đợt viết lại; đích là mức may rủi.`);
+}
 const biasFailures = biasRows.filter(
   (r) => Math.abs(r.zLong) > MAX_LENGTH_BIAS_Z || Math.abs(r.zShort) > MAX_LENGTH_BIAS_Z
 );
@@ -549,6 +635,20 @@ if (fixedButStillBaselined.length > 0) {
   );
 }
 
+if (hollowCorrect.length > 0 && !process.argv.includes("--warn-only")) {
+  console.error(
+    `\n${hollowCorrect.length} câu có ĐÁP ÁN ĐÚNG là một khoảng trống:\n` +
+      hollowCorrect
+        .map((h) => `  ${h.slug}: «${h.option}»  ← ${h.question}`)
+        .join("\n") +
+      `\n\n  Luật 4 của AGENTS.md cấm phương án rỗng vì nó loại được ngay từ cái\n` +
+      `  nhìn đầu tiên. Khi thứ rỗng đó lại là đáp án ĐÚNG thì hậu quả nặng hơn:\n` +
+      `  người học hiểu bài sẽ chọn phương án có nội dung và bị chấm sai.\n` +
+      `  Gần như luôn là khoá nhầm ô - đối chiếu với phần explanation của câu đó.`
+  );
+  process.exit(1);
+}
+
 if (biasFailures.length > 0 && !process.argv.includes("--warn-only")) {
   console.error(
     `\n${biasFailures.length} track/tổng vượt ngưỡng lệch độ dài |z| > ${MAX_LENGTH_BIAS_Z}:\n` +
@@ -564,6 +664,19 @@ if (biasFailures.length > 0 && !process.argv.includes("--warn-only")) {
       `  Sửa bằng cách viết lại phương án, không bằng cách nâng ngưỡng.`
   );
   process.exit(1);
+}
+
+if (practiceStats.questions > 0) {
+  const score = practiceStats.longestScore / practiceStats.questions;
+  if (score > MAX_PRACTICE_LONGEST_SCORE) {
+    console.error(
+      `\npracticePrompt: chiến lược "chọn phương án dài nhất" ăn ${(score * 100).toFixed(1)}%, ` +
+        `vượt trần ${(MAX_PRACTICE_LONGEST_SCORE * 100).toFixed(0)}%.\n` +
+        `  Cắt đáp án đúng về đúng mệnh đề - phần lý lẽ đã nằm ở explanation ngay bên dưới.\n` +
+        `  Đừng kéo dài phương án nhiễu, và đừng nâng trần.`
+    );
+    process.exit(1);
+  }
 }
 
 if (tellFailures.length > 0 && !process.argv.includes("--warn-only")) {
