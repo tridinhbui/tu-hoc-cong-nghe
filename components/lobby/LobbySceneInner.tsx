@@ -31,7 +31,6 @@ import {
 } from "@/lib/supabase-lobby";
 import { disposeRoomTextures } from "./room-textures";
 import {
-  createWalkState,
   inputTowardTarget,
   turnToward,
   usePointerControls,
@@ -272,6 +271,9 @@ interface Props {
   /** Bàn đang ngồi; do HUD điều khiển qua sit/stand. */
   seatedTable: number | null;
   seatStartedAt: number | null;
+  /** Ý định di chuyển. Sở hữu ở LobbyClient vì cần điều khiển nằm ngoài Canvas
+   *  và phải ghi vào đúng vector mà vòng lặp vẽ trong này đọc. */
+  walkRef: React.MutableRefObject<WalkState>;
 }
 
 export default function LobbySceneInner({
@@ -284,12 +286,13 @@ export default function LobbySceneInner({
   onStationNear,
   seatedTable,
   seatStartedAt,
+  walkRef,
 }: Props) {
   const quality = useRenderQuality();
   const pageVisible = usePageVisible();
   const [peers, setPeers] = useState<LobbyPeer[]>([]);
   const [speeches, setSpeeches] = useState<Record<string, { text: string; at: number }>>({});
-  const walkRef = useRef(createWalkState());
+
   // Xuất phát trong sảnh tròn ở đầu nam, quay mặt vào phòng.
   //
   // ry=0 là nhìn về -z, và camera bám ở phía +z sau lưng - tức là ngoài hiên,

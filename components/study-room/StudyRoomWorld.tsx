@@ -1,6 +1,7 @@
 "use client";
 
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import Joystick from "@/components/world-controls/joystick";
 import dynamic from "next/dynamic";
 import { CHAT_MAX_LENGTH, POMODORO_MS, colorForUser, type LobbyChatMessage } from "@/lib/supabase-lobby";
 import { sayInStudyWorld } from "@/lib/supabase-study-world";
@@ -36,64 +37,6 @@ function SceneFallback({ label }: { label: string }) {
   );
 }
 
-/** Cần điều khiển ảo, giống hệt Phố nghề: kéo trong vòng tròn, thả thì về
- *  giữa. Bốn nút mũi tên cũ đã bỏ - chúng phát sự kiện bàn phím giả để lái kiểu
- *  xe tăng, mà kiểu đó không còn nữa. */
-function Joystick({ onVector }: { onVector: (x: number, y: number) => void }) {
-  const base = useRef<HTMLDivElement>(null);
-  const [knob, setKnob] = useState({ x: 0, y: 0 });
-  const active = useRef(false);
-  const radius = 44;
-
-  const update = useCallback(
-    (clientX: number, clientY: number) => {
-      const el = base.current;
-      if (!el) return;
-      const rect = el.getBoundingClientRect();
-      let dx = clientX - (rect.left + rect.width / 2);
-      let dy = clientY - (rect.top + rect.height / 2);
-      const len = Math.hypot(dx, dy);
-      if (len > radius) {
-        dx = (dx / len) * radius;
-        dy = (dy / len) * radius;
-      }
-      setKnob({ x: dx, y: dy });
-      // Màn hình có trục y hướng xuống; "đi tới" là hướng lên.
-      onVector(dx / radius, -dy / radius);
-    },
-    [onVector]
-  );
-
-  const stop = useCallback(() => {
-    active.current = false;
-    setKnob({ x: 0, y: 0 });
-    onVector(0, 0);
-  }, [onVector]);
-
-  return (
-    <div
-      ref={base}
-      className="pointer-events-auto relative h-24 w-24 touch-none rounded-full border border-stone-700/70 bg-stone-900/60 backdrop-blur"
-      onPointerDown={(e) => {
-        e.preventDefault();
-        active.current = true;
-        e.currentTarget.setPointerCapture(e.pointerId);
-        update(e.clientX, e.clientY);
-      }}
-      onPointerMove={(e) => active.current && update(e.clientX, e.clientY)}
-      onPointerUp={stop}
-      onPointerCancel={stop}
-      onPointerLeave={() => active.current && stop()}
-      role="application"
-      aria-label="Cần điều khiển: kéo để đi"
-    >
-      <div
-        className="absolute left-1/2 top-1/2 h-11 w-11 rounded-full bg-emerald-500/85 shadow-lg"
-        style={{ transform: `translate(calc(-50% + ${knob.x}px), calc(-50% + ${knob.y}px))` }}
-      />
-    </div>
-  );
-}
 
 export interface StudyRoomWorldProps {
   roomId: number;

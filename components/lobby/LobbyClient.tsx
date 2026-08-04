@@ -30,6 +30,8 @@ import {
 /** three.js chỉ chạy phía trình duyệt - ssr:false giữ nó ngoài bundle server,
  *  và người dùng thấy khung chờ thay vì lỗi hydrate. */
 import type { GateTarget } from "./RoomFixtures";
+import Joystick from "@/components/world-controls/joystick";
+import { createWalkState } from "@/components/world-controls/easy-walk";
 
 const LobbySceneInner = dynamic(() => import("./LobbySceneInner"), {
   ssr: false,
@@ -43,64 +45,6 @@ function SceneFallback({ label }: { label: string }) {
         <div className="mb-3 text-4xl">🏛️</div>
         <p className="text-sm font-medium text-stone-400">{label}</p>
       </div>
-    </div>
-  );
-}
-
-/** Nút giữ-để-đi cho màn cảm ứng: phát sự kiện bàn phím giả để dùng chung một
- *  đường điều khiển với desktop, thay vì mở kênh trạng thái thứ hai.
- *
- *  Bốn hướng giờ là bốn hướng THẬT trên màn hình, không phải "xoay trái/phải"
- *  như hồi còn lái kiểu xe tăng: từ khi cả ba thế giới đi theo hướng nhìn, bấm
- *  ← là bước sang trái màn hình chứ không phải quay người.
- *
- *  Nhả phím phải bắt cả pointerup, pointerleave LẪN pointercancel. Trên iOS,
- *  ngón tay trượt khỏi nút hay bị hệ thống cắt ngang chỉ sinh ra pointercancel;
- *  thiếu nó thì phím kẹt ở trạng thái đang giữ và nhân vật đi mãi không dừng. */
-function TouchPad() {
-  const press = (key: string, type: "keydown" | "keyup") => {
-    window.dispatchEvent(new KeyboardEvent(type, { key }));
-  };
-  const HoldButton = ({
-    eventKey,
-    label,
-    hint,
-  }: {
-    eventKey: string;
-    label: string;
-    hint: string;
-  }) => {
-    const release = () => press(eventKey, "keyup");
-    return (
-      <button
-        type="button"
-        aria-label={hint}
-        className="flex h-14 w-14 select-none touch-none items-center justify-center rounded-2xl bg-stone-800/85 text-xl text-stone-100 shadow-lg backdrop-blur active:bg-amber-500 active:text-stone-900"
-        onPointerDown={(e) => {
-          e.preventDefault();
-          press(eventKey, "keydown");
-        }}
-        onPointerUp={release}
-        onPointerLeave={release}
-        onPointerCancel={release}
-        onContextMenu={(e) => e.preventDefault()}
-      >
-        {label}
-      </button>
-    );
-  };
-  return (
-    // Hiện khi màn hẹp HOẶC khi con trỏ là ngón tay. Chỉ dựa vào breakpoint
-    // thì hỏng ở điện thoại xoay ngang: Tailwind đo BỀ RỘNG, và 844px bị coi
-    // là desktop nên D-pad biến mất trên đúng thiết bị không có bàn phím thay
-    // thế. Chỉ dựa vào pointer-coarse thì hỏng ở cửa sổ desktop thu hẹp.
-    <div className="pointer-events-auto hidden grid-cols-3 gap-1.5 max-sm:grid pointer-coarse:grid">
-      <div />
-      <HoldButton eventKey="ArrowUp" label="↑" hint="Đi tới" />
-      <div />
-      <HoldButton eventKey="ArrowLeft" label="←" hint="Sang trái" />
-      <HoldButton eventKey="ArrowDown" label="↓" hint="Lùi lại" />
-      <HoldButton eventKey="ArrowRight" label="→" hint="Sang phải" />
     </div>
   );
 }
@@ -120,6 +64,9 @@ export default function LobbyClient() {
   const [seatStartedAt, setSeatStartedAt] = useState<number | null>(null);
   const [nowTick, setNowTick] = useState(Date.now());
   const inputRef = useRef<HTMLInputElement>(null);
+  /** Ý định di chuyển, sở hữu ở đây chứ không trong cảnh: cần điều khiển nằm
+   *  ngoài Canvas nên nó phải ghi được vào cùng một vector mà vòng lặp vẽ đọc. */
+  const walkRef = useRef(createWalkState());
   /** Phiên ngồi học ở server. Ngồi vào bàn mở, đứng dậy đóng; độ dài do server
    *  tính từ hai mốc nó tự đặt. */
   const focusIdRef = useRef<number | null>(null);
@@ -300,6 +247,7 @@ export default function LobbyClient() {
           onStationNear={setStation}
           seatedTable={seatedTable}
           seatStartedAt={seatStartedAt}
+          walkRef={walkRef}
         />
       ) : (
         <SceneFallback label="Đang mở cửa thư viện…" />
@@ -451,11 +399,19 @@ export default function LobbyClient() {
             <kbd className="rounded bg-stone-800 px-1.5 py-0.5">W A S D</kbd> · kéo chuột để đổi góc nhìn, lăn để phóng · tin nhắn không được lưu lại
           </div>
           <div className="pointer-events-none hidden truncate text-[11px] font-medium text-stone-400 max-sm:block pointer-coarse:block">
-            Kéo màn hình để đổi góc nhìn · chụm hai ngón để phóng
+            Kéo cần điều khiển để đi · kéo màn hình để đổi góc nhìn
           </div>
         </div>
         <div className="order-1 flex justify-end sm:order-2">
-          <TouchPad />
+          <Joystick
+            onVector={(x, y) => {
+              const walk = walkRef.current;
+              walk.input.x = x;
+              walk.input.y = y;
+              // Cầm cần là giành lại quyền lái: đích chạm-để-đi phải nhường.
+              if (Math.hypot(x, y) > 0.08) walk.target = null;
+            }}
+          />
         </div>
       </div>
     </div>
