@@ -222,7 +222,7 @@ export const DATA_TOOLS_LESSONS: Lesson[] = [
         options: [
           "Sắp xếp lại thứ tự các cột trong bảng trước khi bắt đầu thực hiện bất kỳ phép tính nào",
           "Áp một phép tính lên toàn bộ cột cùng lúc, thay vì lặp qua từng dòng một",
-          "Chỉ cho phép mỗi bảng dữ liệu chứa duy nhất một cột số tại bất kỳ thời điểm nào",
+          "Mỗi bảng chỉ được chứa duy nhất một cột số",
           "Chuyển vị bảng dữ liệu để các dòng trở thành cột trước khi tính toán trên chúng",
         ],
         correct: 1,
@@ -232,7 +232,7 @@ export const DATA_TOOLS_LESSONS: Lesson[] = [
       {
         question: "Vì sao nên khai báo đúng kiểu dữ liệu cho từng cột ngay từ đầu?",
         options: [
-          "Vì việc khai báo kiểu giúp giảm đáng kể dung lượng tệp khi lưu bảng xuống ổ đĩa",
+          "Vì khai đúng kiểu giúp giảm dung lượng tệp",
           "Vì một cột ngày bị đọc thành chuỗi ký tự sẽ sắp xếp sai mà không hề báo lỗi",
           "Vì các thư viện phân tích sẽ từ chối chạy nếu phát hiện cột chưa được khai báo kiểu",
           "Vì kiểu dữ liệu quyết định thứ tự các cột được hiển thị ra khi in bảng ra màn hình",
@@ -257,7 +257,7 @@ export const DATA_TOOLS_LESSONS: Lesson[] = [
         question: "Ghép hai bảng theo khóa chung có rủi ro gì mà bảng tính không cảnh báo?",
         options: [
           "Nếu khóa bị trùng ở một bên, số dòng kết quả có thể tăng lên ngoài dự kiến",
-          "Hai bảng bắt buộc phải có cùng số lượng dòng thì phép ghép mới thực hiện được",
+          "Hai bảng phải có cùng số dòng mới ghép được",
           "Kết quả ghép luôn bị sắp xếp lại theo thứ tự bảng chữ cái của cột khóa được chọn",
           "Phép ghép sẽ tự động xóa mọi cột trùng tên xuất hiện ở cả hai bảng nguồn đầu vào",
         ],

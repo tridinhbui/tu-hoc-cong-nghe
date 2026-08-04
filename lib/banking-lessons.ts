@@ -54,7 +54,7 @@ export const BANKING_LESSONS: Lesson[] = [
           "Lợi nhuận sau thuế chia cho vốn chủ sở hữu bình quân trong kỳ",
           "Thu nhập lãi thuần chia cho tài sản sinh lãi bình quân",
           "Dư nợ nhóm 3 đến nhóm 5 chia cho tổng dư nợ cho vay khách hàng",
-          "Chi phí hoạt động chia cho tổng thu nhập hoạt động trong kỳ",
+          "Chi phí hoạt động chia tổng thu nhập",
         ],
         correct: 1,
         explanation:
@@ -75,7 +75,7 @@ export const BANKING_LESSONS: Lesson[] = [
       {
         question: "Một ngân hàng có nợ xấu tăng nhưng lợi nhuận vẫn tăng mạnh. Điều đầu tiên cần kiểm tra là gì?",
         options: [
-          "Mức cổ tức tiền mặt năm nay so với năm trước liền kề",
+          "Mức cổ tức tiền mặt năm nay",
           "Chi phí trích lập dự phòng và tỷ lệ bao phủ nợ xấu",
           "Diễn biến giá cổ phiếu ngân hàng trong cùng giai đoạn",
           "Số lượng chi nhánh và phòng giao dịch mở mới trong kỳ",
@@ -90,7 +90,7 @@ export const BANKING_LESSONS: Lesson[] = [
           "Ngân hàng đang cho vay với lãi suất cao hơn mặt bằng thị trường",
           "Tạo ra một đồng tổng thu nhập với ít chi phí vận hành hơn",
           "Ngân hàng có hệ số an toàn vốn cao hơn mức tối thiểu bắt buộc",
-          "Ngân hàng ít chịu ảnh hưởng khi mặt bằng lãi suất đảo chiều",
+          "Ngân hàng ít chịu ảnh hưởng khi lãi suất đảo chiều",
         ],
         correct: 1,
         explanation:

@@ -245,7 +245,7 @@ export const DERIVATIVES_PRICING_LESSONS: Lesson[] = [
       {
         question: "Vì sao lợi suất kỳ vọng của cổ phiếu không xuất hiện trong công thức?",
         options: [
-          "Vì mô hình giả định mọi nhà đầu tư có cùng kỳ vọng về lợi suất",
+          "Vì mọi nhà đầu tư có cùng kỳ vọng lợi suất",
           "Vì phòng hộ đã triệt tiêu rủi ro hướng giá khỏi danh mục",
           "Vì lợi suất kỳ vọng của cổ phiếu trong dài hạn luôn hội tụ về 0",
           "Vì nó đã được phản ánh gián tiếp qua mức giá thực hiện của hợp đồng",
@@ -260,7 +260,7 @@ export const DERIVATIVES_PRICING_LESSONS: Lesson[] = [
           "Giá vận động liên tục và độ biến động không đổi theo thời gian",
           "Tồn tại một lãi suất phi rủi ro để chiết khấu các dòng tiền tương lai",
           "Quyền chọn có ngày đáo hạn xác định và chỉ thực hiện được vào ngày đó",
-          "Mọi nhà đầu tư đều biết giá thực hiện ghi trong hợp đồng quyền chọn",
+          "Mọi nhà đầu tư đều biết giá thực hiện",
         ],
         correct: 0,
         explanation:
@@ -269,7 +269,7 @@ export const DERIVATIVES_PRICING_LESSONS: Lesson[] = [
       {
         question: "Độ biến động hàm ý (implied volatility) là gì?",
         options: [
-          "Độ lệch chuẩn của lợi suất cổ phiếu tính trên dữ liệu quá khứ",
+          "Độ lệch chuẩn lợi suất trong quá khứ",
           "Mức biến động khiến công thức khớp đúng giá thị trường",
           "Mức biến động bình quân do sở giao dịch công bố vào cuối mỗi phiên",
           "Chênh lệch giữa giá chào mua và giá chào bán của hợp đồng quyền chọn",
@@ -425,10 +425,10 @@ export const DERIVATIVES_PRICING_LESSONS: Lesson[] = [
       {
         question: "Delta của một quyền chọn mua có giá trị trong khoảng nào?",
         options: [
-          "Từ −1 đến 0, giống hệt khoảng giá trị của quyền chọn bán",
+          "Từ −1 đến 0",
           "Từ 0 đến 1",
-          "Từ −1 đến 1, tùy quyền chọn đang trong tiền hay ngoài tiền",
-          "Không bị giới hạn, phụ thuộc vào mức đòn bẩy của hợp đồng",
+          "Từ −1 đến 1",
+          "Không bị giới hạn",
         ],
         correct: 1,
         explanation:
@@ -437,7 +437,7 @@ export const DERIVATIVES_PRICING_LESSONS: Lesson[] = [
       {
         question: "Gamma cao có ý nghĩa gì với người phòng hộ?",
         options: [
-          "Vị thế ổn định hơn nên cần điều chỉnh phòng hộ ít lần hơn",
+          "Vị thế ổn định, ít phải chỉnh hơn",
           "Delta đổi nhanh theo giá, nên phòng hộ tốn kém hơn",
           "Quyền chọn sắp hết hạn nên rủi ro còn lại là không đáng kể",
           "Độ biến động của cổ phiếu cơ sở đang trong xu hướng giảm dần",
@@ -449,10 +449,10 @@ export const DERIVATIVES_PRICING_LESSONS: Lesson[] = [
       {
         question: "Người bán quyền chọn có gamma và theta như thế nào?",
         options: [
-          "Gamma dương và theta dương: vừa hưởng biến động vừa hưởng thời gian",
+          "Gamma dương và theta dương",
           "Gamma âm và theta dương",
-          "Gamma âm và theta âm: chịu thiệt cả khi giá chạy lẫn khi thời gian trôi",
-          "Gamma dương và theta âm: giống hệt vị thế của người mua quyền chọn",
+          "Gamma âm và theta âm",
+          "Gamma dương và theta âm",
         ],
         correct: 1,
         explanation:
@@ -473,7 +473,7 @@ export const DERIVATIVES_PRICING_LESSONS: Lesson[] = [
       {
         question: "Vì sao theta của người mua quyền chọn luôn âm?",
         options: [
-          "Vì mỗi ngày nắm giữ đều phát sinh phí lưu ký và phí giao dịch",
+          "Vì mỗi ngày nắm giữ đều tốn phí lưu ký",
           "Vì thời gian còn lại để giá di chuyển có lợi ngày càng ít đi",
           "Vì lãi suất phi rủi ro luôn dương nên chi phí cơ hội tăng theo thời gian",
           "Vì người bán quyền chọn được thu phí ngay tại thời điểm ký hợp đồng",

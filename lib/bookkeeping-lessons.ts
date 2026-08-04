@@ -511,7 +511,7 @@ export const BOOKKEEPING_LESSONS: Lesson[] = [
         question: "Chênh lệch do thời điểm giữa sổ quỹ và sao kê ngân hàng nghĩa là gì?",
         options: [
           "Cả hai bên đều ghi đúng, chỉ khác thời điểm ghi nhận",
-          "Một trong hai bên đã ghi sai và cần điều chỉnh lại số liệu",
+          "Một trong hai bên đã ghi sai số liệu",
           "Ngân hàng chưa cập nhật hệ thống nên số dư hiển thị bị chậm",
           "Doanh nghiệp phải ghi bổ sung một bút toán để hai bên khớp nhau",
         ],
@@ -523,7 +523,7 @@ export const BOOKKEEPING_LESSONS: Lesson[] = [
         question: "Khoản nào doanh nghiệp phải ghi bổ sung sau khi đối chiếu ngân hàng?",
         options: [
           "Phí dịch vụ ngân hàng đã trừ mà công ty chưa hạch toán",
-          "Séc đã phát hành nhưng người nhận chưa mang đi rút tiền",
+          "Séc đã phát hành mà chưa ai rút",
           "Tiền khách chuyển cuối ngày mà ngân hàng ghi sang hôm sau",
           "Khoản chuyển tiền nội bộ giữa hai tài khoản của cùng công ty",
         ],
@@ -547,7 +547,7 @@ export const BOOKKEEPING_LESSONS: Lesson[] = [
         question: "Vì sao nên đối chiếu công nợ hằng quý thay vì chỉ cuối năm?",
         options: [
           "Vì sai sót phát hiện sớm còn đòi được, để lâu thành nợ khó thu",
-          "Vì quy định yêu cầu doanh nghiệp đối chiếu công nợ theo từng quý",
+          "Vì quy định bắt đối chiếu theo quý",
           "Vì kiểm toán viên sẽ giảm phí nếu doanh nghiệp đối chiếu thường xuyên",
           "Vì số dư công nợ cuối năm thường lớn hơn nên khó đối chiếu chính xác",
         ],
@@ -559,7 +559,7 @@ export const BOOKKEEPING_LESSONS: Lesson[] = [
         question: "Đối chiếu kho phát hiện thực tế ít hơn sổ sách. Bước đúng là gì?",
         options: [
           "Tìm nguyên nhân trước, điều chỉnh sổ sau",
-          "Điều chỉnh sổ theo số thực tế rồi tìm nguyên nhân sau",
+          "Điều chỉnh sổ theo số thực tế ngay",
           "Giữ nguyên sổ sách và ghi chú chênh lệch vào thuyết minh",
           "Trích lập dự phòng giảm giá hàng tồn kho tương ứng phần thiếu",
         ],
@@ -683,7 +683,7 @@ export const BOOKKEEPING_LESSONS: Lesson[] = [
         options: [
           "Doanh thu bán hàng",
           "Phải trả người bán",
-          "Hàng tồn kho trong kho công ty",
+          "Hàng tồn kho",
           "Vay dài hạn từ ngân hàng thương mại",
         ],
         correct: 0,
@@ -694,7 +694,7 @@ export const BOOKKEEPING_LESSONS: Lesson[] = [
         question: "Lợi nhuận sau khi kết chuyển đi về đâu?",
         options: [
           "Lợi nhuận giữ lại thuộc vốn chủ sở hữu",
-          "Tài khoản tiền mặt của doanh nghiệp tại ngân hàng",
+          "Tài khoản tiền mặt tại ngân hàng",
           "Quỹ đầu tư phát triển theo tỷ lệ do đại hội cổ đông quyết định",
           "Tài khoản phải thu khách hàng, chờ tới khi thu được tiền về",
         ],
@@ -706,7 +706,7 @@ export const BOOKKEEPING_LESSONS: Lesson[] = [
         question: "Lợi nhuận giữ lại trên bảng cân đối là con số gì?",
         options: [
           "Tổng lợi nhuận mọi năm trừ tổng cổ tức đã chia",
-          "Lợi nhuận sau thuế của riêng năm tài chính vừa kết thúc",
+          "Lợi nhuận sau thuế của riêng năm vừa rồi",
           "Phần lợi nhuận công ty dự kiến giữ lại để tái đầu tư năm tới",
           "Số tiền mặt công ty đang giữ lại chưa dùng đến cho hoạt động",
         ],
@@ -731,7 +731,7 @@ export const BOOKKEEPING_LESSONS: Lesson[] = [
         options: [
           "Ghi vào kỳ hiện tại nếu nhỏ, điều chỉnh hồi tố nếu trọng yếu",
           "Mở lại sổ kỳ cũ và ghi bổ sung vào đúng ngày phát sinh nghiệp vụ",
-          "Bỏ qua vì kỳ đã khoá và báo cáo đã được công bố ra bên ngoài",
+          "Bỏ qua vì kỳ đã khoá",
           "Ghi vào kỳ hiện tại trong mọi trường hợp để giữ nguyên số liệu cũ",
         ],
         correct: 0,

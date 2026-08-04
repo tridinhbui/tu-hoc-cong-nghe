@@ -173,7 +173,7 @@ export const ADVANCED_MASTERCLASS_LESSONS: Lesson[] = [
           "Tăng khoảng 14%, vì cap rate cao nghĩa là tài sản sinh lời tốt hơn",
           "Giảm khoảng 14%, từ 11,67 tỷ xuống 10 tỷ, dù tiền thuê không đổi",
           "Không đổi, vì NOI không đổi",
-          "Giảm đúng 1%, tương ứng mức tăng của cap rate",
+          "Giảm đúng 1%, bằng mức tăng cap rate",
         ],
         correct: 1,
         explanation:

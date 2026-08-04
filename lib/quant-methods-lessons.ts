@@ -906,7 +906,7 @@ export const QUANT_METHODS_LESSONS: Lesson[] = [
       {
         question: "Tính dừng của một chuỗi thời gian nghĩa là gì?",
         options: [
-          "Chuỗi giữ nguyên giá trị qua các kỳ, không dao động lên xuống",
+          "Chuỗi giữ nguyên giá trị qua các kỳ",
           "Trung bình và phương sai của chuỗi ổn định theo thời gian",
           "Chuỗi có xu hướng tăng đều đặn và không đảo chiều trong dài hạn",
           "Chuỗi không có quan sát nào bị thiếu trong toàn bộ giai đoạn khảo sát",
@@ -921,7 +921,7 @@ export const QUANT_METHODS_LESSONS: Lesson[] = [
           "Nhiều cổ phiếu khác nhau cùng biến động mạnh trong một phiên giao dịch",
           "Ngày biến động mạnh có xu hướng đi liền nhau thành từng cụm",
           "Độ biến động luôn tăng lên vào giai đoạn cuối năm rồi giảm trở lại",
-          "Độ biến động của mọi tài sản đều hội tụ về 0 nếu quan sát đủ dài",
+          "Biến động của mọi tài sản hội tụ về 0",
         ],
         correct: 1,
         explanation:
@@ -931,7 +931,7 @@ export const QUANT_METHODS_LESSONS: Lesson[] = [
         question: "Thiên lệch sống sót trong dữ liệu backtest là gì?",
         options: [
           "Dữ liệu chỉ còn công ty tồn tại đến hôm nay, đã mất công ty phá sản",
-          "Dữ liệu chỉ bao gồm các công ty mới niêm yết trong vài năm gần đây nhất",
+          "Dữ liệu chỉ gồm công ty mới niêm yết",
           "Dữ liệu bị thiếu ngẫu nhiên một số phiên do lỗi của nhà cung cấp dữ liệu",
           "Dữ liệu giá chưa được điều chỉnh cho cổ tức và các đợt chia tách cổ phiếu",
         ],

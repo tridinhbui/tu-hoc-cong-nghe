@@ -226,7 +226,7 @@ export const MA_EXECUTION_LESSONS: Lesson[] = [
         options: [
           "Vì hợp đồng vay thường có điều khoản buộc trả hết khi công ty đổi quyền kiểm soát",
           "Vì chuẩn mực kế toán không cho phép ghi nhận khoản nợ của bên bán trên báo cáo hợp nhất của bên mua",
-          "Vì bên cho vay cũ luôn từ chối tiếp tục cấp tín dụng cho doanh nghiệp vừa được mua lại",
+          "Vì bên cho vay cũ luôn từ chối cấp tín dụng tiếp",
           "Vì giá trị khoản nợ phải được cộng vào giá mua vốn chủ sở hữu theo thông lệ đàm phán quốc tế",
         ],
         correct: 0,
@@ -238,7 +238,7 @@ export const MA_EXECUTION_LESSONS: Lesson[] = [
         options: [
           "Xuất hiện ở cột nguồn vốn, vì sau khi đóng thương vụ bên mua sử dụng được khoản tiền đó",
           "Được trừ thẳng vào giá mua vốn chủ sở hữu để ra số tiền thực tế phải thanh toán cho cổ đông",
-          "Không xuất hiện trong bảng vì nó đã thuộc về bên bán trước thời điểm thương vụ hoàn tất",
+          "Không xuất hiện vì tiền đó thuộc bên bán",
           "Xuất hiện ở cột sử dụng vốn, vì đó là một tài sản mà bên mua phải bỏ tiền ra để mua lại",
         ],
         correct: 0,
@@ -249,7 +249,7 @@ export const MA_EXECUTION_LESSONS: Lesson[] = [
         question: "Hai cột nguồn và sử dụng vốn phải có quan hệ gì?",
         options: [
           "Luôn bằng nhau, vì mọi đồng chi ra đều phải có một đồng từ đâu đó tài trợ cho nó",
-          "Cột nguồn phải lớn hơn cột sử dụng một khoản dự phòng tối thiểu bằng 10% giá trị thương vụ",
+          "Cột nguồn phải lớn hơn một khoản dự phòng 10%",
           "Không có ràng buộc nào, vì hai cột phản ánh hai giai đoạn khác nhau của quá trình thực hiện",
           "Cột sử dụng phải lớn hơn để phản ánh phần giá trị cộng hưởng dự kiến đạt được sau sáp nhập",
         ],
@@ -262,7 +262,7 @@ export const MA_EXECUTION_LESSONS: Lesson[] = [
         options: [
           "Phí thu xếp khoản vay mới và các chi phí tư vấn, pháp lý đi kèm thương vụ",
           "Giá mua phần vốn chủ sở hữu mà bên mua phải thanh toán cho cổ đông của bên bán",
-          "Khoản tiền mặt hiện có trên bảng cân đối kế toán của doanh nghiệp bị mua lại",
+          "Tiền mặt trên bảng cân đối của bên bị mua",
           "Giá trị hàng tồn kho và các khoản phải thu mà bên mua tiếp nhận sau thương vụ",
         ],
         correct: 0,
