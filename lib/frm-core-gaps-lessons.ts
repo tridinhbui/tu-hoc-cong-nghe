@@ -55,9 +55,9 @@ export const FRM_CORE_GAPS_LESSONS: Lesson[] = [
         question: "Vì sao rủi ro thanh khoản thường được gọi là rủi ro thứ cấp hay rủi ro khuếch đại?",
         options: [
           "Vì nó thường là hệ quả của một loại rủi ro khác",
-          "Vì nó luôn có mức tổn thất thấp hơn so với rủi ro thị trường và rủi ro tín dụng",
-          "Vì nó chỉ xảy ra ở các định chế tài chính có quy mô nhỏ",
-          "Vì Basel không yêu cầu tính vốn cho loại rủi ro này"
+          "Vì tổn thất luôn thấp hơn rủi ro thị trường",
+          "Vì nó chỉ xảy ra ở định chế quy mô nhỏ",
+          "Vì Basel không yêu cầu vốn cho loại này"
         ],
         correct: 0,
         explanation: "Một cú sốc tín dụng làm đối tác nghi ngờ, nguồn vốn ngắn hạn bị rút, buộc bán tài sản ở giá xấu - khoản lỗ ban đầu nhân lên qua kênh thanh khoản. Thanh khoản hiếm khi là nguyên nhân đầu tiên nhưng thường là thứ biến một sự cố thành một cuộc đổ vỡ."
@@ -77,9 +77,9 @@ export const FRM_CORE_GAPS_LESSONS: Lesson[] = [
         question: "Vì sao khung phân loại rủi ro cần có quy tắc xử lý các trường hợp nằm giữa hai loại?",
         options: [
           "Vì đếm hai lần hoặc bỏ sót đều làm sai tổng vốn",
-          "Vì cơ quan quản lý yêu cầu mọi sự kiện phải được gán vào đúng hai loại rủi ro trở lên",
-          "Vì các loại rủi ro có mức vốn yêu cầu hoàn toàn giống nhau nên gán thế nào cũng được",
-          "Vì việc phân loại chỉ phục vụ mục đích báo cáo, không ảnh hưởng tới quản lý thực tế"
+          "Vì quy định buộc gán vào hai loại trở lên",
+          "Vì các loại rủi ro có mức vốn giống nhau",
+          "Vì phân loại chỉ phục vụ mục đích báo cáo"
         ],
         correct: 0,
         explanation: "Ranh giới mờ là chuyện thường: một khoản lỗ tín dụng do hồ sơ thẩm định bị làm giả vừa là tín dụng vừa là gian lận. Không có quy tắc rõ, sự kiện sẽ bị đếm hai lần hoặc rơi vào khe hở - và không ai đứng ra chịu trách nhiệm quản lý nó."
@@ -734,9 +734,9 @@ export const FRM_CORE_GAPS_LESSONS: Lesson[] = [
         question: "Vì sao độc lập về mặt báo cáo lại là điều kiện cần cho chức năng quản trị rủi ro?",
         options: [
           "Vì cảnh báo có thể bị chặn tại chính nơi cần nghe",
-          "Vì quy định pháp luật cấm bộ phận rủi ro trao đổi trực tiếp với bộ phận kinh doanh",
-          "Vì bộ phận rủi ro cần được trả lương cao hơn bộ phận kinh doanh để đảm bảo khách quan",
-          "Vì độc lập báo cáo giúp giảm chi phí vận hành cho tổ chức"
+          "Vì luật cấm rủi ro trao đổi với kinh doanh",
+          "Vì bộ phận rủi ro cần được trả lương cao hơn",
+          "Vì độc lập báo cáo giúp giảm chi phí vận hành chung"
         ],
         correct: 0,
         explanation: "Đường báo cáo quyết định ai có quyền dừng một cảnh báo. Nếu trưởng bộ phận rủi ro phụ thuộc vào người đứng đầu mảng kinh doanh về lương thưởng và thăng tiến, tính độc lập chỉ tồn tại trên sơ đồ tổ chức."
@@ -756,9 +756,9 @@ export const FRM_CORE_GAPS_LESSONS: Lesson[] = [
         question: "Khi phát hiện một mô hình rủi ro đang dùng có sai sót nghiêm trọng, bước xử lý phù hợp nhất là gì?",
         options: [
           "Báo cáo kịp thời qua kênh nội bộ kèm bằng chứng",
-          "Chờ tới kỳ kiểm định mô hình hằng năm rồi nêu vấn đề một thể cho đỡ gây xáo trộn",
-          "Tự ý sửa mô hình mà không thông báo cho bất kỳ ai để tránh gây hoang mang",
-          "Công bố sai sót đó ra bên ngoài tổ chức trước khi báo cáo nội bộ"
+          "Chờ tới kỳ kiểm định mô hình hằng năm",
+          "Tự ý sửa mô hình mà không báo ai",
+          "Công bố sai sót ra bên ngoài trước khi báo nội bộ"
         ],
         correct: 0,
         explanation: "Mô hình sai đang được dùng nghĩa là mọi quyết định dựa trên nó đều có thể sai theo. Báo cáo kịp thời qua kênh nội bộ là bước đầu tiên; tự sửa lặng lẽ phá vỡ nguyên tắc kiểm soát thay đổi mô hình và xoá mất dấu vết cho việc rà soát sau này."
@@ -1735,9 +1735,9 @@ export const FRM_CORE_GAPS_LESSONS: Lesson[] = [
         question: "Hệ số nhân tổn thất nội bộ đưa yếu tố nào vào công thức SMA?",
         options: [
           "Lịch sử tổn thất thực tế của chính ngân hàng",
-          "Mức lạm phát bình quân của quốc gia nơi ngân hàng đặt trụ sở chính",
-          "Xếp hạng tín nhiệm do các tổ chức xếp hạng quốc tế công bố",
-          "Số lượng sản phẩm tài chính mà ngân hàng đang cung cấp ra thị trường"
+          "Mức lạm phát bình quân của quốc gia",
+          "Xếp hạng tín nhiệm từ tổ chức quốc tế",
+          "Số sản phẩm tài chính ngân hàng đang bán"
         ],
         correct: 0,
         explanation: "Nếu chỉ dựa vào quy mô thì một ngân hàng kiểm soát tốt và một ngân hàng liên tục để xảy ra tổn thất sẽ chịu cùng mức vốn - không còn động cơ cải thiện. Hệ số này giữ lại một phần độ nhạy rủi ro trong khuôn khổ một công thức chuẩn."
@@ -1746,9 +1746,9 @@ export const FRM_CORE_GAPS_LESSONS: Lesson[] = [
         question: "Vì sao vốn không phải là công cụ chính để quản trị rủi ro hoạt động?",
         options: [
           "Vì vốn chỉ hấp thụ tổn thất sau khi đã xảy ra",
-          "Vì cơ quan quản lý không yêu cầu ngân hàng giữ vốn cho rủi ro hoạt động",
-          "Vì rủi ro hoạt động không bao giờ gây ra tổn thất đủ lớn để cần đến vốn",
-          "Vì vốn cho rủi ro hoạt động được hoàn lại vào cuối mỗi năm tài chính"
+          "Vì quy định không yêu cầu giữ vốn",
+          "Vì tổn thất không bao giờ đủ lớn để cần vốn",
+          "Vì vốn được hoàn lại vào cuối năm tài chính"
         ],
         correct: 0,
         explanation: "Vốn là tấm đệm hấp thụ hậu quả, không phải biện pháp phòng ngừa. Một ngân hàng đủ vốn cho một vụ gian lận lớn vẫn mất tiền và mất uy tín - việc đóng lỗ hổng kiểm soát mới là thứ ngăn tổn thất phát sinh."
@@ -1898,9 +1898,9 @@ export const FRM_CORE_GAPS_LESSONS: Lesson[] = [
         question: "Vì sao rủi ro hành vi thường được phát hiện rất muộn?",
         options: [
           "Vì doanh thu đến ngay còn hậu quả đến sau nhiều năm",
-          "Vì cơ quan quản lý chỉ kiểm tra hoạt động bán hàng mười năm một lần",
-          "Vì rủi ro hành vi không để lại bất kỳ dấu vết nào trong hồ sơ giao dịch",
-          "Vì các sản phẩm liên quan đều có kỳ hạn tối thiểu mười năm"
+          "Vì cơ quan quản lý chỉ kiểm tra hoạt động mười năm một lần",
+          "Vì rủi ro hành vi không để lại dấu vết",
+          "Vì sản phẩm đều có kỳ hạn mười năm"
         ],
         correct: 0,
         explanation: "Đây là dạng rủi ro có độ trễ dài giữa hành động và hậu quả. Trong khoảng trễ đó, các chỉ số kinh doanh đều đẹp và mô hình bán hàng gây vấn đề còn được nhân rộng vì trông có vẻ hiệu quả."
@@ -1909,9 +1909,9 @@ export const FRM_CORE_GAPS_LESSONS: Lesson[] = [
         question: "Quy trình phê duyệt sản phẩm mới đóng vai trò gì trong kiểm soát rủi ro hành vi?",
         options: [
           "Hỏi sản phẩm phục vụ nhu cầu gì, của ai",
-          "Đảm bảo sản phẩm mới có biên lợi nhuận cao hơn các sản phẩm hiện có",
-          "Xác nhận sản phẩm đã được đăng ký bản quyền trước khi ra thị trường",
-          "Kiểm tra xem đối thủ cạnh tranh đã có sản phẩm tương tự hay chưa"
+          "Đảm bảo biên lợi nhuận cao hơn sản phẩm cũ",
+          "Xác nhận đã đăng ký bản quyền",
+          "Kiểm tra đối thủ đã có chưa"
         ],
         correct: 0,
         explanation: "Kiểm soát rẻ nhất là chặn ở khâu thiết kế. Một sản phẩm phức tạp mà chính nhân viên bán không giải thích nổi cho khách hàng là dấu hiệu cảnh báo sớm rõ ràng nhất, và phát hiện ở giai đoạn này rẻ hơn nhiều so với bồi hoàn hàng loạt sau đó."
@@ -3947,9 +3947,9 @@ export const FRM_CORE_GAPS_LESSONS: Lesson[] = [
         question: "Vì sao ma trận hiệp phương sai ước lượng từ dữ liệu ngắn thường không ổn định?",
         options: [
           "Vì số tham số tăng theo bình phương số yếu tố",
-          "Vì ma trận hiệp phương sai luôn phải là ma trận đơn vị",
-          "Vì hiệp phương sai giữa hai tài sản không thể tính từ dữ liệu lịch sử",
-          "Vì các phần mềm thống kê không xử lý được ma trận lớn hơn 50 chiều"
+          "Vì ma trận hiệp phương sai phải là đơn vị",
+          "Vì không tính được từ dữ liệu lịch sử",
+          "Vì phần mềm không xử lý được ma trận lớn"
         ],
         correct: 0,
         explanation: "Với 100 yếu tố cần hơn 5.000 tham số. Ước lượng từ hai năm dữ liệu ngày chỉ có khoảng 500 quan sát - ít hơn số tham số. Kết quả là ma trận chứa nhiều nhiễu, và các kỹ thuật co rút được dùng để kéo ước lượng về phía một cấu trúc ổn định hơn."
@@ -3958,9 +3958,9 @@ export const FRM_CORE_GAPS_LESSONS: Lesson[] = [
         question: "Hạn chế quan trọng nhất của việc dựa vào ma trận tương quan lịch sử trong quản trị rủi ro là gì?",
         options: [
           "Tương quan tăng mạnh trong khủng hoảng",
-          "Tương quan lịch sử luôn cho giá trị bằng 0 với mọi cặp tài sản",
-          "Ma trận tương quan không thể tính được cho tài sản chưa niêm yết",
-          "Tương quan chỉ có ý nghĩa với dữ liệu theo tháng, không dùng được dữ liệu ngày"
+          "Tương quan lịch sử luôn bằng 0",
+          "Không tính được nếu chưa niêm yết",
+          "Chỉ dùng được với dữ liệu theo tháng"
         ],
         correct: 0,
         explanation: "Đây là điểm yếu chí mạng của mọi mô hình rủi ro danh mục. Ma trận ước lượng từ giai đoạn bình thường cho thấy mức đa dạng hoá tốt, nhưng khi thị trường căng thẳng thì các tài sản đồng loạt giảm cùng nhau và lợi ích đa dạng hoá bốc hơi đúng lúc cần nhất."
@@ -3970,9 +3970,9 @@ export const FRM_CORE_GAPS_LESSONS: Lesson[] = [
       "question": "Ba thành phần chính đầu tiên của đường cong lãi suất thường được diễn giải là gì?",
       "options": [
         "Dịch chuyển song song, độ dốc và độ cong",
-        "Lãi suất ngắn hạn, lãi suất trung hạn và lãi suất dài hạn",
-        "Kỳ vọng lạm phát, phần bù kỳ hạn và rủi ro tín dụng",
-        "Chính sách tiền tệ, cung cầu trái phiếu và dòng vốn ngoại"
+        "Lãi suất ngắn, trung và dài hạn",
+        "Lạm phát, phần bù kỳ hạn, tín dụng",
+        "Chính sách tiền tệ, cung cầu, dòng vốn"
       ],
       "correct": 0,
       "explanation": "Đây là một trong số ít trường hợp mà các thành phần thống kê có diễn giải kinh tế rõ ràng, và thành phần thứ nhất thường giải thích phần lớn biến động. Nhờ đó một danh mục trái phiếu hàng trăm mã được quy về ba nguồn rủi ro để phòng vệ."

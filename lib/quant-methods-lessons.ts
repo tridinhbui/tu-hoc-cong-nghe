@@ -49,10 +49,10 @@ export const QUANT_METHODS_LESSONS: Lesson[] = [
       {
         question: "Vì sao giá cổ phiếu thường được mô hình hóa bằng phân phối loga chuẩn thay vì phân phối chuẩn?",
         options: [
-          "Vì phân phối loga chuẩn cho phép tính toán nhanh hơn trên máy tính",
+          "Vì loga chuẩn tính toán nhanh hơn trên máy",
           "Vì giá không thể âm và tăng trưởng mang tính nhân",
-          "Vì chuẩn mực báo cáo tài chính yêu cầu trình bày giá theo thang loga",
-          "Vì phân phối loga chuẩn có phương sai bằng 0 nên dễ ước lượng hơn",
+          "Vì chuẩn mực yêu cầu trình bày theo thang loga",
+          "Vì loga chuẩn có phương sai bằng 0",
         ],
         correct: 1,
         explanation:
@@ -97,10 +97,10 @@ export const QUANT_METHODS_LESSONS: Lesson[] = [
       {
         question: "Trong tài chính, vì sao thường dùng lợi suất loga thay vì lợi suất số học?",
         options: [
-          "Vì lợi suất loga luôn lớn hơn lợi suất số học nên trông hấp dẫn hơn",
+          "Vì lợi suất loga luôn lớn hơn nên trông đẹp hơn",
           "Vì lợi suất loga cộng được qua nhiều kỳ liên tiếp",
-          "Vì các sở giao dịch chỉ công bố dữ liệu lợi suất dưới dạng thang loga",
-          "Vì phép lấy loga loại bỏ được phần rủi ro đuôi khỏi chuỗi dữ liệu gốc",
+          "Vì sở giao dịch chỉ công bố theo thang loga",
+          "Vì lấy loga loại bỏ được rủi ro đuôi",
         ],
         correct: 1,
         explanation:

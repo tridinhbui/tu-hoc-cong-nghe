@@ -254,9 +254,9 @@ export const FINTECH_LESSONS: Lesson[] = [
           "CAC 250.000 đồng, lợi nhuận gộp 25.000 đồng mỗi khách mỗi tháng. Bao lâu hoàn vốn?",
         options: [
           "10 tháng (= 250.000 / 25.000)",
-          "6 tháng (chia cho doanh thu thay vì lợi nhuận gộp)",
-          "25 tháng (nhầm đơn vị, chia cho 10.000)",
-          "Không xác định được nếu chưa biết tỷ lệ rời bỏ",
+          "6 tháng (chia cho doanh thu)",
+          "25 tháng (nhầm đơn vị)",
+          "Không đủ dữ liệu để tính",
         ],
         correct: 0,
         explanation:
@@ -266,9 +266,9 @@ export const FINTECH_LESSONS: Lesson[] = [
         question: "Dấu hiệu nào cho thấy tăng trưởng đang được mua bằng tiền chứ không phải bằng sản phẩm?",
         options: [
           "CAC tăng đều qua từng quý trong khi LTV đứng yên",
-          "Số người dùng hoạt động hằng tháng tăng nhanh hơn số lượt tải ứng dụng",
-          "Chi phí marketing tăng chậm hơn tốc độ tăng doanh thu của cùng kỳ",
-          "Tỷ lệ khách hàng quay lại tháng thứ hai cao hơn quý trước đó",
+          "Người dùng hoạt động tăng nhanh hơn lượt tải",
+          "Chi phí marketing tăng chậm hơn doanh thu",
+          "Tỷ lệ quay lại tháng thứ hai cao hơn quý trước",
         ],
         correct: 0,
         explanation:

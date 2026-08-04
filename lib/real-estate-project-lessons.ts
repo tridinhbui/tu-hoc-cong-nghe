@@ -479,9 +479,9 @@ export const REAL_ESTATE_PROJECT_LESSONS: Lesson[] = [
         question: "NOI được tính thế nào?",
         options: [
           "Doanh thu thuê thực tế trừ chi phí vận hành",
-          "Doanh thu thuê trừ toàn bộ chi phí kể cả lãi vay và khấu hao",
-          "Lợi nhuận sau thuế của toà nhà cộng lại phần khấu hao trong kỳ",
-          "Tổng tiền thuê thu được trong năm theo các hợp đồng đã ký kết",
+          "Doanh thu thuê trừ mọi chi phí, cả lãi vay",
+          "Lợi nhuận sau thuế cộng lại khấu hao",
+          "Tổng tiền thuê thu được trong năm",
         ],
         correct: 0,
         explanation:
@@ -502,10 +502,10 @@ export const REAL_ESTATE_PROJECT_LESSONS: Lesson[] = [
       {
         question: "Khoản nào KHÔNG được trừ khi tính NOI?",
         options: [
-          "Lãi vay",
-          "Phí quản lý",
-          "Bảo hiểm tài sản hằng năm",
-          "Chi phí bảo trì và sửa chữa định kỳ",
+          "Lãi vay ngân hàng",
+          "Phí quản lý toà nhà",
+          "Bảo hiểm tài sản",
+          "Chi phí bảo trì",
         ],
         correct: 0,
         explanation:

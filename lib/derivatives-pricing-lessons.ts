@@ -49,10 +49,10 @@ export const DERIVATIVES_PRICING_LESSONS: Lesson[] = [
       {
         question: "Công thức put-call parity cho quyền chọn kiểu châu Âu, cổ phiếu không trả cổ tức là gì?",
         options: [
-          "C + P = S + K, tổng hai quyền chọn bằng cổ phiếu cộng giá thực hiện",
+          "C + P = S + K",
           "C + PV(K) = P + S",
-          "C − P = K − S, chênh lệch hai quyền chọn bằng chênh lệch giá",
-          "C × P = S × PV(K), tích hai quyền chọn bằng tích hai vế còn lại",
+          "C − P = K − S",
+          "C × P = S × PV(K)",
         ],
         correct: 1,
         explanation:
@@ -73,10 +73,10 @@ export const DERIVATIVES_PRICING_LESSONS: Lesson[] = [
       {
         question: "Nếu cổ phiếu trả cổ tức trong kỳ, put-call parity thay đổi thế nào?",
         options: [
-          "Không thay đổi, vì người nắm quyền chọn cũng được hưởng cổ tức",
+          "Không đổi, vì quyền chọn cũng hưởng cổ tức",
           "Trừ hiện giá cổ tức khỏi giá cổ phiếu ở vế phải",
-          "Cộng thêm cổ tức vào giá thực hiện trước khi chiết khấu về hiện tại",
-          "Nhân cả hai vế với một hệ số bằng tỷ suất cổ tức của cổ phiếu",
+          "Cộng cổ tức vào giá thực hiện",
+          "Nhân hai vế với tỷ suất cổ tức",
         ],
         correct: 1,
         explanation:
@@ -647,10 +647,10 @@ export const DERIVATIVES_PRICING_LESSONS: Lesson[] = [
       {
         question: "Nụ cười biến động (volatility smile) là hiện tượng gì?",
         options: [
-          "Độ biến động hàm ý giữ nguyên ở mọi mức giá thực hiện của cùng kỳ hạn",
+          "Biến động hàm ý bằng nhau ở mọi giá thực hiện",
           "Biến động hàm ý cao hơn ở hai đầu, tạo hình chữ U",
-          "Độ biến động hàm ý luôn tăng dần theo thời gian còn lại đến đáo hạn",
-          "Giá quyền chọn mua tăng lên mỗi khi thị trường cơ sở tăng điểm",
+          "Biến động hàm ý tăng dần theo kỳ hạn",
+          "Giá quyền chọn mua tăng khi thị trường tăng",
         ],
         correct: 1,
         explanation:
@@ -671,10 +671,10 @@ export const DERIVATIVES_PRICING_LESSONS: Lesson[] = [
       {
         question: "Nếu biến động hàm ý đang cao hơn nhiều so với mức biến động thực tế sau đó, ai được lợi?",
         options: [
-          "Người mua quyền chọn, vì họ đã trả phí để nắm giữ quyền chọn đó",
+          "Người mua quyền chọn, vì đã trả phí",
           "Người bán quyền chọn có phòng hộ delta",
-          "Không bên nào, vì phần lời của bên này đúng bằng phần lỗ của bên kia",
-          "Chỉ sở giao dịch và các đơn vị môi giới được lợi nhờ thu phí giao dịch",
+          "Không bên nào, hai bên bù trừ nhau",
+          "Chỉ sở giao dịch và môi giới, nhờ phí",
         ],
         correct: 1,
         explanation:

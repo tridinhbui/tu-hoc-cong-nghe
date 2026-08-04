@@ -422,9 +422,9 @@ export const FRM_VALUATION_CURRENT_LESSONS: Lesson[] = [
         question: "Biến động hàm ý được hiểu đúng nhất là gì?",
         options: [
           "Mức biến động khiến công thức khớp giá thị trường",
-          "Độ lệch chuẩn của lợi suất tài sản cơ sở đo được từ dữ liệu lịch sử",
-          "Mức biến động tối đa mà cơ quan quản lý cho phép trong một phiên",
-          "Chênh lệch giữa giá mua và giá bán của quyền chọn trên sổ lệnh"
+          "Độ lệch chuẩn lợi suất đo từ dữ liệu lịch sử",
+          "Mức biến động tối đa cơ quan quản lý cho phép",
+          "Chênh lệch giá mua và giá bán quyền chọn"
         ],
         correct: 0,
         explanation: "Nó là đầu ra của phép chạy ngược, nên nó phản ánh niềm tin của thị trường chứ không phải một đại lượng đo được. Đây cũng là lý do nó được coi là thước đo nỗi sợ của thị trường."
@@ -433,9 +433,9 @@ export const FRM_VALUATION_CURRENT_LESSONS: Lesson[] = [
         question: "Vì sao giả định phòng hộ liên tục là điểm yếu thực tế của mô hình?",
         options: [
           "Vì phòng hộ thật là rời rạc và tốn phí",
-          "Vì cơ quan quản lý giới hạn số lần điều chỉnh vị thế trong một ngày",
-          "Vì tài sản cơ sở không phải lúc nào cũng có",
-          "Vì phòng hộ liên tục đòi hỏi phải nắm giữ toàn bộ số cổ phiếu lưu hành"
+          "Vì quy định giới hạn số lần chỉnh",
+          "Vì tài sản cơ sở không luôn sẵn có",
+          "Vì phải nắm toàn bộ cổ phiếu lưu hành"
         ],
         correct: 0,
         explanation: "Lập luận dẫn ra công thức giả định danh mục sao chép được chỉnh lại liên tục và miễn phí. Trong thực tế mỗi lần chỉnh đều mất phí và chỉ xảy ra rời rạc, nên vị thế phòng hộ luôn lệch một chút - và lệch nhiều nhất đúng lúc thị trường nhảy."
@@ -2075,9 +2075,9 @@ export const FRM_VALUATION_CURRENT_LESSONS: Lesson[] = [
       "question": "Vì sao khoản lỗ chưa thực hiện trên danh mục giữ đến đáo hạn lại trở thành vấn đề thật vào năm 2023?",
       "options": [
         "Rút tiền ồ ạt buộc phải bán, lỗ trên sổ thành lỗ thật",
-        "Vì chuẩn kế toán năm 2023 buộc ghi nhận lại toàn bộ danh mục theo giá thị trường",
-        "Vì trái phiếu chính phủ trong danh mục bị hạ xếp hạng tín nhiệm cùng thời điểm",
-        "Vì cơ quan quản lý yêu cầu bán toàn bộ danh mục để tăng tỷ lệ an toàn vốn"
+        "Vì chuẩn mực kế toán 2023 buộc ghi theo giá thị trường",
+        "Vì trái phiếu trong danh mục bị hạ xếp hạng",
+        "Vì cơ quan quản lý buộc bán toàn bộ danh mục"
       ],
       "correct": 0,
       "explanation": "Phân loại giữ đến đáo hạn cho phép không ghi nhận biến động giá - hợp lý nếu thật sự giữ được tới cuối. Nhưng khi người gửi rút hàng loạt, ngân hàng buộc bán trước hạn, và phân loại kế toán không cứu được điều đó."
@@ -2086,9 +2086,9 @@ export const FRM_VALUATION_CURRENT_LESSONS: Lesson[] = [
       "question": "Bài học về tốc độ mà đợt bất ổn 2023 để lại là gì?",
       "options": [
         "Giả định dòng rút trải ba mươi ngày đã lỗi thời",
-        "Cơ quan quản lý cần thời gian tối thiểu ba ngày để can thiệp vào một ngân hàng",
-        "Tốc độ lan tin trên mạng xã hội chỉ ảnh hưởng tới các ngân hàng quy mô nhỏ",
-        "Ngân hàng cần tăng tỷ lệ an toàn vốn để bù cho tốc độ rút tiền nhanh hơn"
+        "Cơ quan quản lý cần ba ngày để can thiệp",
+        "Tin lan trên mạng xã hội chỉ hại các ngân hàng nhỏ",
+        "Ngân hàng cần tăng vốn để bù tốc độ rút"
       ],
       "correct": 0,
       "explanation": "Chuẩn thanh khoản được xây trên hình dung về hàng người xếp trước quầy. Khi chuyển tiền chỉ mất vài thao tác và tin lan trong vài giờ, cả tháng đệm bị nén thành một buổi chiều - và không lượng tài sản thanh khoản nào bán kịp."
