@@ -23,6 +23,8 @@ import { getSystemAnalytics } from "@/lib/admin/analytics";
 import { getFeatureEventStats } from "@/lib/admin/feature-events";
 import FeatureEventsPanel from "@/components/admin/FeatureEventsPanel";
 import WorldUsagePanel from "@/components/admin/WorldUsagePanel";
+import LessonFunnelPanel from "@/components/admin/LessonFunnelPanel";
+import { getLessonFunnel, type LessonFunnel } from "@/lib/admin/lesson-funnel";
 import { getWorldUsage, type WorldUsage } from "@/lib/admin/world-usage";
 import NeedsActionPanel from "@/components/admin/NeedsActionPanel";
 
@@ -42,6 +44,7 @@ export default async function AdminOverviewPage() {
     analyticsResult,
     featureEventStats,
     worldUsage,
+    lessonFunnel,
   ] = await Promise.all([
     getUnreadMessageCount().catch(() => 0),
     getUnreadChatCount().catch(() => 0),
@@ -64,6 +67,16 @@ export default async function AdminOverviewPage() {
         rows: [],
         totalMinutes: 0,
         totalLearners: 0,
+      })
+    ),
+    getLessonFunnel().catch(
+      (e: Error): LessonFunnel => ({
+        available: false,
+        reason: e.message,
+        rows: [],
+        totalOpens: 0,
+        whySplit: null,
+        minOpensForSplit: 0,
       })
     ),
   ]);
@@ -385,6 +398,7 @@ export default async function AdminOverviewPage() {
       <FeatureEventsPanel stats={featureEventStats} />
 
       <WorldUsagePanel usage={worldUsage} />
+      <LessonFunnelPanel funnel={lessonFunnel} />
     </div>
   );
 }

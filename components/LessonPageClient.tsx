@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import { motion } from "framer-motion";
 import type { Lesson } from "@/lib/lesson-types";
@@ -16,6 +16,7 @@ import { LessonApplicationCard, LessonQuestionCard, LessonSummaryCard, ReviewLoo
 import { getLessonDisplayLabel, getLessonRecallDay } from "@/lib/lesson-labels";
 import TypingText from "@/components/TypingText";
 import LessonRoomCard from "@/components/LessonRoomCard";
+import { trackFeatureClick } from "@/lib/feature-events";
 
 interface Props {
   lesson: Lesson;
@@ -42,6 +43,21 @@ export default function LessonPageClient({ lesson, nextLesson }: Props) {
   // warning fade in - instead of the whole card appearing at once.
   const [metaphorTyped, setMetaphorTyped] = useState(false);
   const lessonLabel = getLessonDisplayLabel(lesson);
+
+  // Đầu phễu bài học.
+  //
+  // Khúc giữa và khúc cuối đã đo được từ trước: FreeRecallCard ghi
+  // lesson_free_recall_start/skip/done, và bài hoàn thành nằm trong
+  // user_progress. Thiếu đúng mảnh này - bao nhiêu người MỞ bài ra - nên
+  // không tính được tỉ lệ bỏ dở của bất kỳ bài nào, và mọi câu hỏi kiểu "bài
+  // nào cần viết lại trước" cho tới nay đều chỉ là phỏng đoán.
+  //
+  // Phụ thuộc theo slug chứ không phải mảng rỗng: đi từ bài này sang bài kế
+  // tiếp không unmount component, nên mảng rỗng sẽ chỉ đếm bài đầu tiên của
+  // cả phiên đọc.
+  useEffect(() => {
+    trackFeatureClick("lesson_open", { label: lesson.slug });
+  }, [lesson.slug]);
 
   const meta = {
     id: lesson.id,
