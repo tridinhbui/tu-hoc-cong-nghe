@@ -221,8 +221,14 @@ const baseline = new Set(JSON.parse(readFileSync(baselinePath, "utf8")).lessons)
  *
  *  Ngưỡng đặt ở mức kho HIỆN ĐANG ĐẠT, đúng luật của AGENTS.md - đủ để chặn
  *  trôi thêm, không tạo nợ cho những gì đã có. Hạ nó sau mỗi đợt viết lại;
- *  không bao giờ nâng để một build đỏ thành xanh. */
-const MAX_LENGTH_BIAS_Z = 5;
+ *  không bao giờ nâng để một build đỏ thành xanh.
+ *
+ *  Hạ 5 → 4,5 sau đợt sửa 33 câu kéo professional từ −4,6 về −3,8. Không hạ
+ *  xuống 4 dù |z| tệ nhất đang là 3,81: MAX_TELL_SHARE từng được đặt cách mức
+ *  đo đúng hai phần trăm nghìn và một sửa đổi bình thường sau đó làm CI đỏ mà
+ *  chẳng có gì thoái lui. 0,69 khoảng đệm là chỗ cho vài chục câu xê dịch,
+ *  không phải chỗ cho một đợt trôi. */
+const MAX_LENGTH_BIAS_Z = 4.5;
 
 const quizStats = { personal: null, professional: null, bonus: null };
 for (const track of Object.keys(quizStats)) {
