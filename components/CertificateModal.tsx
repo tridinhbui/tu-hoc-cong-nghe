@@ -106,6 +106,11 @@ export default function CertificateModal({ stageLabel, stageName, userName, onCl
             ref={svgRef}
             id="cert-svg"
             viewBox="0 0 800 600"
+            // Kích thước nội tại, giống hai thẻ chia sẻ kia. Class Tailwind vẫn
+            // quyết định cỡ hiển thị; hai thuộc tính này là cho lúc SVG bị tách
+            // ra thành ảnh, khi không còn CSS nào áp vào nữa.
+            width="800"
+            height="600"
             className="w-full h-auto aspect-[4/3] rounded-lg"
             xmlns="http://www.w3.org/2000/svg"
           >

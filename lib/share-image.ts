@@ -7,18 +7,53 @@
 // (most desktop browsers), a plain download plus a nudge to attach it
 // manually when posting.
 
+/**
+ * Chuẩn bị một `<svg>` trong trang để đem rasterize: nhân bản, ép kích thước
+ * và namespace, rồi trả về chuỗi XML.
+ *
+ * Vì sao phải ép kích thước: SVG trong trang thường chỉ có `viewBox` và lấy
+ * kích thước từ CSS. Khi bị tách ra thành một tệp riêng nạp qua blob URL thì
+ * KHÔNG có CSS nào cả - nó thành một ảnh không có kích thước nội tại, và
+ * Safari trên iOS từ chối nạp thẳng. Đó chính là lỗi "Không thể tải chứng chỉ
+ * lúc này": thẻ chứng chỉ chỉ có `viewBox` và mấy class Tailwind, trong khi
+ * hai thẻ chia sẻ còn lại đặt sẵn `width`/`height` nên vẫn tải được.
+ *
+ * Ép ở đây thay vì bắt từng nơi gọi tự nhớ: quên một lần là hỏng im lặng trên
+ * đúng nhóm thiết bị mà người viết mã ít thử nhất.
+ */
+export function prepareSvgForRaster(svgElement: SVGSVGElement, width: number, height: number): string {
+  const clone = svgElement.cloneNode(true) as SVGSVGElement;
+  clone.setAttribute("xmlns", "http://www.w3.org/2000/svg");
+  clone.setAttribute("xmlns:xlink", "http://www.w3.org/1999/xlink");
+  clone.setAttribute("width", String(width));
+  clone.setAttribute("height", String(height));
+  // Không có viewBox thì phóng to sẽ cắt cụt thay vì co giãn.
+  if (!clone.getAttribute("viewBox")) {
+    const w = svgElement.clientWidth || width;
+    const h = svgElement.clientHeight || height;
+    clone.setAttribute("viewBox", `0 0 ${w} ${h}`);
+  }
+  return new XMLSerializer().serializeToString(clone);
+}
+
 /** Serializes an inline <svg> and rasterizes it to a PNG Blob at the given
  *  pixel size (should be larger than the SVG's viewBox for a crisp export -
  *  callers render at 2x their on-screen size). */
 export function svgToPngBlob(svgElement: SVGSVGElement, width: number, height: number): Promise<Blob> {
   return new Promise((resolve, reject) => {
-    const serializer = new XMLSerializer();
-    const svgString = serializer.serializeToString(svgElement);
+    const svgString = prepareSvgForRaster(svgElement, width, height);
     const svgBlob = new Blob([svgString], { type: "image/svg+xml;charset=utf-8" });
     const blobUrl = URL.createObjectURL(svgBlob);
 
     const image = new Image();
     image.onload = () => {
+      // Nạp xong mà không có kích thước nghĩa là trình duyệt đã bỏ qua nội
+      // dung. Bắt ở đây để lỗi nói ra được, thay vì xuất một tấm PNG trắng.
+      if (image.naturalWidth === 0 || image.naturalHeight === 0) {
+        URL.revokeObjectURL(blobUrl);
+        reject(new Error("SVG rasterized to a zero-sized image"));
+        return;
+      }
       const canvas = document.createElement("canvas");
       canvas.width = width;
       canvas.height = height;
