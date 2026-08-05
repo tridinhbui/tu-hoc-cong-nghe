@@ -2683,30 +2683,52 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
               </div>
             </div>
 
-      {/* Bottom Group Daily Recommended Lesson Widget */}
+      {/* Nhắc học của phòng.
+      
+          Bản trước là chữ cứng: nó nói "Bài 12: Phân tích Báo cáo Dòng tiền"
+          cho MỌI phòng, mọi ngày, mãi mãi - kèm dòng "Thưởng +50 XP / bài" cho
+          một khoản thưởng không tồn tại ở đâu trong mã, và nút bấm đi thẳng về
+          dashboard. Ba lời hứa, không lời nào có thật.
+      
+          Giờ nó đọc đúng thứ phòng thật sự có: nhiệm vụ tuần và chủ đề phòng.
+          Không có khái niệm "bài học của phòng hôm nay" trong dữ liệu, nên
+          không dựng ra một cái. */}
             <div className="bg-gradient-to-r from-emerald-950 via-stone-900 to-emerald-950 border border-emerald-500/30 rounded-2xl p-3 sm:p-3.5 shrink-0 flex flex-col sm:flex-row items-center justify-between gap-3 text-white shadow-lg">
-              <div className="flex items-center gap-3">
+              <div className="flex items-center gap-3 min-w-0">
                 <span className="w-9 h-9 rounded-xl bg-emerald-500/20 text-emerald-400 border border-emerald-400/40 flex items-center justify-center text-lg shrink-0 shadow-xs">
                   🎯
                 </span>
-                <div>
+                <div className="min-w-0">
                   <div className="flex items-center gap-2">
                     <span className="text-[9px] font-black uppercase tracking-widest text-emerald-400 bg-emerald-950 px-2 py-0.5 rounded-full border border-emerald-500/40">
-                      MỤC TIÊU CẢ PHÒNG HÔM NAY
+                      MỤC TIÊU CẢ PHÒNG TUẦN NÀY
                     </span>
-                    <span className="text-[10px] font-bold text-amber-300">🔥 Thưởng +50 XP / bài</span>
                   </div>
-                  <p className="text-xs sm:text-sm font-black text-stone-100 mt-1">
-                    Bài 12: Phân Tích Báo Cáo Dòng Tiền & Khả Năng Thanh Toán
-                  </p>
+                  {(() => {
+                    const lessonMission = missions.find((m) => m.mission_key === "lessons");
+                    if (lessonMission) {
+                      const left = Math.max(0, lessonMission.target_value - lessonMission.current_value);
+                      return (
+                        <p className="text-xs sm:text-sm font-black text-stone-100 mt-1 truncate">
+                          {lessonMission.title} · {lessonMission.current_value}/{lessonMission.target_value}
+                          {left > 0 ? ` — còn ${left} bài` : " — đã xong"}
+                        </p>
+                      );
+                    }
+                    return (
+                      <p className="text-xs sm:text-sm font-black text-stone-100 mt-1 truncate">
+                        Chủ đề phòng: {topicLabel(myRoom.topic)}
+                      </p>
+                    );
+                  })()}
                 </div>
               </div>
 
               <Link
-                href="/dashboard"
+                href="/hoc-bai"
                 className="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-emerald-500 hover:bg-emerald-400 text-stone-950 font-black px-4 py-2 rounded-xl text-xs transition-all shadow-md active:scale-95 shrink-0 cursor-pointer"
               >
-                <span>Vào Học Bài Này Ngay</span>
+                <span>Vào học ngay</span>
                 <ArrowRight className="w-3.5 h-3.5" />
               </Link>
             </div>
