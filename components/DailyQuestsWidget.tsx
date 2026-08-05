@@ -25,11 +25,29 @@ interface DailyQuestsWidgetProps {
 // read its href directly off the DOM instead of re-fetching the same data
 // here. Falls back to scrolling into view if the card hasn't finished
 // loading yet (skeleton has no anchor) or every lesson is already done
-// (completion banner also has no anchor). Game quests still route to /game.
+// (completion banner also has no anchor).
 //
 // The resume card lives on /hoc-bai, not the dashboard, so on any other route
 // there is nothing to read or scroll to - navigate to /hoc-bai instead of
 // silently doing nothing.
+//
+// Every other quest used to fall through to /game, which is where the boss
+// fights are - so "Điểm danh Học Nhóm" ("gửi 1 tin nhắn check-in") and "Ngồi
+// học trong thành phố" both dropped the learner into the game hub with no way
+// to satisfy the quest there. Each quest now names its own destination, and
+// anything unrecognised keeps the old /game default (the game quests are the
+// majority, and a new quest is far likelier to be one of those than a lesson).
+const QUEST_DESTINATIONS: Record<string, string> = {
+  // Check-in is a message sent in the 2D group chat - lib/supabase-study-rooms.ts
+  // sets the localStorage key that lib/supabase-quests.ts reads.
+  daily_study_group: "/nhom-hoc",
+  // Server-measured seat time. Both places that call startFocusSession() for
+  // this count ("thư viện" = /cong-dong, "phòng nhóm 3D" = /nhom-hoc); send
+  // them to the room, which is the one the description names second and the
+  // one they are likelier to already have a group in.
+  daily_focus: "/nhom-hoc",
+};
+
 function goToQuestAction(questId: string, router: ReturnType<typeof useRouter>) {
   if (questId === "daily_1") {
     const resumeCard = document.querySelector('[data-tour="resume-learning"]');
@@ -44,7 +62,7 @@ function goToQuestAction(questId: string, router: ReturnType<typeof useRouter>) 
       resumeCard.scrollIntoView({ behavior: "smooth", block: "center" });
     }
   } else {
-    router.push("/game");
+    router.push(QUEST_DESTINATIONS[questId] ?? "/game");
   }
 }
 
