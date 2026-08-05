@@ -111,7 +111,7 @@ export default function QuietWindowScene({ intensity = 0.6 }: { intensity?: numb
             {rainOn ? "Tắt tiếng mưa" : "Bật tiếng mưa"}
           </button>
           <p className="pointer-events-none absolute bottom-1 left-0 right-0 text-center text-[10px] font-semibold text-stone-400 dark:text-stone-500">
-            Kéo để nhìn nghiêng · kéo ngang qua ngọn lửa để thổi vào nó
+            Kéo để nhìn nghiêng · lướt nhanh ngang để thổi vào lửa
           </p>
         </>
       )}

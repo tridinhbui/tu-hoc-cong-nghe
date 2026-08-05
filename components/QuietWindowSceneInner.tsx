@@ -1,13 +1,12 @@
 "use client";
 
 import { useMemo, useRef } from "react";
-import { Canvas, useFrame, type ThreeEvent } from "@react-three/fiber";
+import { Canvas, useFrame } from "@react-three/fiber";
 import * as THREE from "three";
 import {
   DRAG_PITCH_LIMIT,
   DRAG_YAW_LIMIT,
   GLASS_DROP_COUNT,
-  KINDLE_SECONDS,
   RAIN_COUNT,
   ambientWind,
   flameMotion,
@@ -15,6 +14,10 @@ import {
   kindleProgress,
   springBack,
 } from "@/lib/quiet-flame-scene";
+
+/** Ngưỡng tốc độ kéo ngang để tính là một cú thổi, điểm ảnh mỗi giây. Đặt trên
+ *  tốc độ của một cú kéo thong thả để "nhìn nghiêng" không vô tình dập lửa. */
+const BLOW_SPEED = 900;
 
 // Khung cửa sổ mưa, ngọn lửa ở bên trong, kéo chuột để nhìn nghiêng.
 //
@@ -28,20 +31,57 @@ import {
 // mưa, và đó là toàn bộ cảm giác mà cảnh này phục vụ. Đặt lửa ra ngoài thì
 // mưa dập tắt nó, cả về logic lẫn về hình.
 
+/** Trạng thái con trỏ dùng chung cho cả cảnh.
+ *
+ *  Vì sao không để mỗi phần tự bắt sự kiện của mình: trong react-three-fiber,
+ *  `onPointerMove` đặt trên một `<group>` chỉ nổ khi tia chiếu TRÚNG một mesh
+ *  con của nó. Cảnh này phần lớn là khoảng tối trống, nên kéo ở chỗ trống thì
+ *  không có gì xảy ra - đúng cái cảm giác "phải kéo mấy lần mới trúng". Và cú
+ *  thổi thì còn phải trúng đúng ngọn lửa, một mục tiêu rộng chừng ba mươi điểm
+ *  ảnh, lại còn tự dịch đi khi cảnh xoay.
+ *
+ *  Nên sự kiện được bắt ở thẻ DOM bao ngoài Canvas: kéo ở đâu trong khung cũng
+ *  ăn, và không cần tia chiếu nào cả. */
+export interface PointerState {
+  dragging: boolean;
+  yaw: number;
+  pitch: number;
+  /** Cơn giật đang chờ hoặc đang tắt dần. `at` là mốc thời gian theo đồng hồ
+   *  của Canvas, và **chỉ Flame được phép đóng dấu nó**: `at < 0` nghĩa là cơn
+   *  giật vừa phát sinh, chưa có mốc.
+   *
+   *  Chỗ này từng là một lỗi câm. Trình xử lý sự kiện đóng dấu bằng
+   *  `event.timeStamp`, đếm từ lúc tải trang; `useFrame` so nó với
+   *  `clock.getElapsedTime()`, đếm từ lúc Canvas dựng xong - luôn muộn hơn.
+   *  Nên tuổi của cơn giật luôn âm, `gustAt` trả 0 cho tuổi âm, và cú thổi
+   *  chưa từng chạy một lần nào. Cái nhúc nhích mà người kéo thỉnh thoảng thấy
+   *  là gió nền trùng nhịp. */
+  gust: { strength: number; at: number };
+}
+
 /** Ngọn lửa: ba lớp chồng nhau, cộng sáng, không lớp nào đổ bóng. */
-function Flame({ intensity }: { intensity: number }) {
+function Flame({
+  intensity,
+  pointer,
+}: {
+  intensity: number;
+  pointer: React.RefObject<PointerState>;
+}) {
   const group = useRef<THREE.Group>(null);
   const core = useRef<THREE.Mesh>(null);
   const light = useRef<THREE.PointLight>(null);
   const start = useRef<number | null>(null);
-  const gust = useRef({ strength: 0, at: 0 });
 
   useFrame(({ clock }) => {
     const t = clock.getElapsedTime();
     if (start.current === null) start.current = t;
     const kindle = kindleProgress(t - start.current);
 
-    const wind = ambientWind(t) + gustAt(gust.current.strength, t - gust.current.at);
+    // Đóng dấu cơn giật vào đồng hồ của chính vòng lặp này, ở khung hình đầu
+    // tiên sau khi nó phát sinh. Đó là mốc duy nhất mà `gustAt` so được.
+    const gust = pointer.current.gust;
+    if (gust.at < 0) gust.at = t;
+    const wind = ambientWind(t) + gustAt(gust.strength, t - gust.at);
     const m = flameMotion(wind, kindle, t);
 
     if (group.current) {
@@ -61,15 +101,6 @@ function Flame({ intensity }: { intensity: number }) {
     }
   });
 
-  // Kéo trên chính ngọn lửa thì thổi vào nó. Đây là chỗ "chát nhen nhóm" -
-  // lửa nghiêng gần như lụi rồi mới đứng dậy lại.
-  const onPointerMove = (e: ThreeEvent<PointerEvent>) => {
-    if (e.buttons === 0) return;
-    const strength = Math.max(-1.4, Math.min(1.4, e.movementX * 0.05));
-    if (Math.abs(strength) < 0.05) return;
-    gust.current = { strength, at: e.nativeEvent.timeStamp / 1000 };
-  };
-
   return (
     <group position={[0, -0.45, 0]}>
       {/* Bấc: cho ngọn lửa một chỗ đứng. Thiếu nó thì đây chỉ là một hình cam
@@ -79,7 +110,7 @@ function Flame({ intensity }: { intensity: number }) {
         <meshStandardMaterial color="#3a2a1c" roughness={0.9} />
       </mesh>
 
-      <group ref={group} onPointerMove={onPointerMove}>
+      <group ref={group}>
         {/* Quầng ngoài, rất mờ - phần khí nóng quanh ngọn lửa. */}
         <mesh position={[0, 0.42, 0]}>
           <coneGeometry args={[0.26, 1.05, 24, 1, true]} />
@@ -273,61 +304,32 @@ function Glass() {
 }
 
 /** Kéo để nhìn nghiêng. Thả tay thì cảnh tự về vị trí nghỉ - đây là một khung
- *  cửa, không phải một vật thể xoay tự do. */
-function DraggableStage({ children }: { children: React.ReactNode }) {
+ *  cửa, không phải một vật thể xoay tự do.
+ *
+ *  Sân khấu chỉ ĐỌC góc từ trạng thái con trỏ; việc bắt sự kiện nằm ở thẻ DOM
+ *  bao ngoài Canvas. */
+function DraggableStage({
+  pointer,
+  children,
+}: {
+  pointer: React.RefObject<PointerState>;
+  children: React.ReactNode;
+}) {
   const group = useRef<THREE.Group>(null);
-  const target = useRef({ yaw: 0, pitch: 0 });
-  const dragging = useRef(false);
 
   useFrame((_, delta) => {
-    if (!dragging.current) {
-      target.current.yaw = springBack(target.current.yaw, delta);
-      target.current.pitch = springBack(target.current.pitch, delta);
+    const p = pointer.current;
+    if (!p.dragging) {
+      p.yaw = springBack(p.yaw, delta);
+      p.pitch = springBack(p.pitch, delta);
     }
     if (group.current) {
-      group.current.rotation.y += (target.current.yaw - group.current.rotation.y) * Math.min(1, delta * 6);
-      group.current.rotation.x += (target.current.pitch - group.current.rotation.x) * Math.min(1, delta * 6);
+      group.current.rotation.y += (p.yaw - group.current.rotation.y) * Math.min(1, delta * 6);
+      group.current.rotation.x += (p.pitch - group.current.rotation.x) * Math.min(1, delta * 6);
     }
   });
 
-  return (
-    <group
-      ref={group}
-      onPointerDown={(e) => {
-        dragging.current = true;
-        (e.target as Element & { setPointerCapture?: (id: number) => void }).setPointerCapture?.(
-          e.pointerId
-        );
-      }}
-      onPointerUp={() => {
-        dragging.current = false;
-      }}
-      onPointerLeave={() => {
-        dragging.current = false;
-      }}
-      // Khối này nằm trong dòng chảy trang, không phải toàn màn hình, nên cú
-      // chạm kéo dọc phải để cho trang cuộn - và trình duyệt cuộn trang bằng
-      // cách HUỶ chuỗi pointer đang chạy. Huỷ thì không có pointerup lẫn
-      // pointerleave nào cả; thiếu nhánh này thì cờ kéo kẹt ở true và lần chạm
-      // sau, dù chỉ lướt qua, đã xoay được cả khung cảnh.
-      onPointerCancel={() => {
-        dragging.current = false;
-      }}
-      onPointerMove={(e) => {
-        if (!dragging.current) return;
-        target.current.yaw = Math.max(
-          -DRAG_YAW_LIMIT,
-          Math.min(DRAG_YAW_LIMIT, target.current.yaw + e.movementX * 0.004)
-        );
-        target.current.pitch = Math.max(
-          -DRAG_PITCH_LIMIT,
-          Math.min(DRAG_PITCH_LIMIT, target.current.pitch + e.movementY * 0.003)
-        );
-      }}
-    >
-      {children}
-    </group>
-  );
+  return <group ref={group}>{children}</group>;
 }
 
 export default function QuietWindowSceneInner({
@@ -337,29 +339,89 @@ export default function QuietWindowSceneInner({
   intensity?: number;
   reducedMotion?: boolean;
 }) {
-  return (
-    <Canvas
-      // Trần DPR: màn Retina 3x không cần render 3x cho một khung cửa sổ, và
-      // đây là khác biệt lớn nhất giữa mát máy và cháy quạt.
-      dpr={[1, 1.75]}
-      camera={{ position: [0, 0.2, 4.2], fov: 42 }}
-      gl={{ antialias: true, powerPreference: "low-power" }}
-      // Ngọn lửa là nguồn sáng duy nhất đáng kể, nên nền phải gần như đen -
-      // phủ ấm lên nền xám cho ra một mảng nâu đục và lửa mất hết chiều sâu.
-      style={{ background: "transparent" }}
-      frameloop={reducedMotion ? "demand" : "always"}
-    >
-      <ambientLight intensity={0.16} color="#7d8fa6" />
-      {/* Ánh sáng lạnh hắt từ ngoài cửa vào, để khung cửa không chìm hẳn. */}
-      <directionalLight position={[-2, 3, -4]} intensity={0.35} color="#8fb3d9" />
+  const pointer = useRef<PointerState>({
+    dragging: false,
+    yaw: 0,
+    pitch: 0,
+    gust: { strength: 0, at: 0 },
+  });
+  /** Toạ độ lần trước, để tự tính quãng dịch. `movementX` của sự kiện pointer
+   *  bằng 0 trên phần lớn trình duyệt di động khi nguồn là ngón tay - đó là lý
+   *  do thứ hai khiến thao tác kéo "không ăn", và nó chỉ hỏng trên điện thoại
+   *  nên rất dễ không ai thấy. */
+  const last = useRef<{ x: number; y: number; t: number } | null>(null);
 
-      <DraggableStage>
-        <Rain />
-        <Glass />
-        <GlassDrops />
-        <WindowFrame />
-        <Flame intensity={intensity} />
-      </DraggableStage>
-    </Canvas>
+  const begin = (e: React.PointerEvent<HTMLDivElement>) => {
+    pointer.current.dragging = true;
+    last.current = { x: e.clientX, y: e.clientY, t: e.timeStamp };
+    e.currentTarget.setPointerCapture?.(e.pointerId);
+  };
+
+  const end = () => {
+    pointer.current.dragging = false;
+    last.current = null;
+  };
+
+  const move = (e: React.PointerEvent<HTMLDivElement>) => {
+    if (!pointer.current.dragging || !last.current) return;
+    const dx = e.clientX - last.current.x;
+    const dy = e.clientY - last.current.y;
+    const dt = Math.max(1, e.timeStamp - last.current.t);
+    last.current = { x: e.clientX, y: e.clientY, t: e.timeStamp };
+
+    const p = pointer.current;
+    p.yaw = Math.max(-DRAG_YAW_LIMIT, Math.min(DRAG_YAW_LIMIT, p.yaw + dx * 0.004));
+    p.pitch = Math.max(-DRAG_PITCH_LIMIT, Math.min(DRAG_PITCH_LIMIT, p.pitch + dy * 0.003));
+
+    // Thổi vào lửa bằng TỐC ĐỘ ngang, không bằng việc trúng ngọn lửa. Lướt tay
+    // nhanh ngang qua một ngọn nến thì nó dạt - đó là thứ ai cũng đã làm ngoài
+    // đời, nên không cần giải thích. Kéo chậm để nhìn nghiêng thì dưới ngưỡng
+    // và lửa đứng yên.
+    const speed = (dx / dt) * 1000; // điểm ảnh mỗi giây
+    if (Math.abs(speed) > BLOW_SPEED) {
+      const strength = Math.max(-1.4, Math.min(1.4, (speed / BLOW_SPEED) * 0.5));
+      // `at: -1` là "chưa đóng dấu". Đóng dấu bằng `e.timeStamp` ở đây là đúng
+      // cái lỗi đã làm cú thổi không bao giờ chạy: đồng hồ của sự kiện đếm từ
+      // lúc tải trang, đồng hồ của vòng lặp đếm từ lúc Canvas dựng.
+      p.gust = { strength, at: -1 };
+    }
+  };
+
+  return (
+    // touch-action: pan-y - cuộn dọc vẫn thuộc về trang, còn kéo ngang là của
+    // cảnh này. Khối nằm giữa dòng chảy trang chứ không chiếm toàn màn hình,
+    // nên nuốt hết cử chỉ sẽ khoá luôn việc cuộn qua nó trên điện thoại.
+    <div
+      className="h-full w-full touch-pan-y"
+      onPointerDown={begin}
+      onPointerMove={move}
+      onPointerUp={end}
+      onPointerLeave={end}
+      onPointerCancel={end}
+    >
+      <Canvas
+        // Trần DPR: màn Retina 3x không cần render 3x cho một khung cửa sổ, và
+        // đây là khác biệt lớn nhất giữa mát máy và cháy quạt.
+        dpr={[1, 1.75]}
+        camera={{ position: [0, 0.2, 4.2], fov: 42 }}
+        gl={{ antialias: true, powerPreference: "low-power" }}
+        // Ngọn lửa là nguồn sáng duy nhất đáng kể, nên nền phải gần như đen -
+        // phủ ấm lên nền xám cho ra một mảng nâu đục và lửa mất hết chiều sâu.
+        style={{ background: "transparent" }}
+        frameloop={reducedMotion ? "demand" : "always"}
+      >
+        <ambientLight intensity={0.16} color="#7d8fa6" />
+        {/* Ánh sáng lạnh hắt từ ngoài cửa vào, để khung cửa không chìm hẳn. */}
+        <directionalLight position={[-2, 3, -4]} intensity={0.35} color="#8fb3d9" />
+
+        <DraggableStage pointer={pointer}>
+          <Rain />
+          <Glass />
+          <GlassDrops />
+          <WindowFrame />
+          <Flame intensity={intensity} pointer={pointer} />
+        </DraggableStage>
+      </Canvas>
+    </div>
   );
 }
