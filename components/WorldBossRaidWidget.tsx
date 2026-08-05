@@ -7,6 +7,7 @@ import { Swords, Flame, Trophy, ShieldAlert, Sparkles, RefreshCw } from "lucide-
 import { toast } from "sonner";
 import FinanceCharacterAvatar, { CharacterEquipments } from "@/components/FinanceCharacterAvatar";
 import { recalculateUserStats } from "@/lib/supabase-user";
+import { DAMAGE_PER_CORRECT, bossHpPercent } from "@/lib/world-boss";
 
 interface BossQuestion {
   prompt: string;
@@ -37,11 +38,10 @@ interface LeaderboardEntry {
  *  thể nó có thể chạy lúc render, nên chặn Math.random() ở đó - dù hàm này
  *  chỉ chạy khi người chơi bấm một đáp án.
  */
-const HIT_DAMAGE_MIN = 5000;
-const HIT_DAMAGE_SPREAD = 2000;
-function rollHitDamage(): number {
-  return HIT_DAMAGE_MIN + Math.floor(Math.random() * HIT_DAMAGE_SPREAD);
-}
+// Sát thương mỗi câu đúng lấy từ lib/world-boss, đúng con số máy chủ dùng.
+// Bản cũ quay ngẫu nhiên 5.000-7.000 ở đây và máy chủ tính `score * 1000`, nên
+// người chơi được khoe một tổng lớn gấp năm lần thứ thực sự trừ vào thanh máu.
+
 
 export default function WorldBossRaidWidget({
   userId,
@@ -126,7 +126,7 @@ export default function WorldBossRaidWidget({
 
     const q = boss.questions[qIndex];
     const isCorrect = optionIndex === q.correct;
-    const hitDamage = isCorrect ? rollHitDamage() : 0;
+    const hitDamage = isCorrect ? DAMAGE_PER_CORRECT : 0;
 
     if (isCorrect) {
       setHitState("hit_boss");
@@ -159,15 +159,22 @@ export default function WorldBossRaidWidget({
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({
               bossId: boss.id,
-              damageDealt: finalDamage,
               score: finalScore,
             }),
           });
-          if (res.ok) {
+          if (!res.ok) {
+            // Im lặng ở đây là lý do lỗi cũ sống lâu: đánh xong, được chúc
+            // mừng, và không có gì thay đổi.
+            const detail = await res.json().catch(() => null);
+            toast.error(detail?.error ?? "Không ghi được sát thương lên máy chủ.");
+          } else {
             const result = await res.json();
             window.dispatchEvent(new CustomEvent("thtcdn:coin-updated", { detail: { coins: result.newCoins } }));
             void recalculateUserStats(userId);
-            toast.success(`🎉 Tổng sát thương trận này: ${finalDamage.toLocaleString()} DMG! +${result.xpReward} XP & +${result.coinReward} Coins`);
+            // Con số của MÁY CHỦ, không phải tổng cộng dồn ở đây: chỉ nó mới
+            // là thứ thực sự trừ vào thanh máu.
+            setSessionDamage(result.damageDealt ?? finalDamage);
+            toast.success(`🎉 Tổng sát thương trận này: ${(result.damageDealt ?? finalDamage).toLocaleString()} DMG! +${result.xpReward} XP & +${result.coinReward} Coins`);
             fetchBossData();
           }
         } catch (error) {
@@ -183,7 +190,7 @@ export default function WorldBossRaidWidget({
   if (loading) return <div className="text-center p-4">Đang tải dữ liệu World Boss Server...</div>;
   if (!boss) return <div className="text-center p-4">Chưa mở sự kiện World Boss tuần này.</div>;
 
-  const hpPercent = Math.max(0, Math.round((boss.current_hp / boss.max_hp) * 100));
+  const hpPercent = bossHpPercent(boss.current_hp, boss.max_hp);
 
   return (
     <div className="h-full min-h-0 bg-gradient-to-b from-white via-orange-50 to-red-50 border-2 border-red-200 rounded-3xl p-6 text-stone-900 shadow-[0_24px_80px_rgba(239,68,68,0.16)] relative overflow-hidden flex flex-col">

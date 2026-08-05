@@ -1,5 +1,12 @@
 import { NextRequest, NextResponse } from "next/server";
 import { createServerSupabaseClient } from "@/lib/supabase-server";
+import { BOSS_QUESTION_COUNT } from "@/lib/world-boss";
+
+/** Cột id của world_bosses là uuid; chuỗi nào khác dạng đó thì không thể là
+ *  một hàng thật, và gửi nó vào truy vấn chỉ tổ sinh lỗi kiểu từ Postgres. */
+function isUuid(value: string | undefined): value is string {
+  return !!value && /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i.test(value);
+}
 
 // Mock Fallback World Boss Server
 const FALLBACK_WORLD_BOSS = {
@@ -122,44 +129,56 @@ export async function POST(request: NextRequest) {
 
   const body = (await request.json().catch(() => null)) as {
     bossId?: string;
-    damageDealt?: number;
     score?: number;
   } | null;
 
-  const bossId = body?.bossId || FALLBACK_WORLD_BOSS.id;
-  const score = Math.max(0, Math.min(15, Math.floor(Number(body?.score ?? 0))));
-  const damageDealt = score * 1000;
-
-  if (damageDealt <= 0) {
+  // `damageDealt` từ trình duyệt bị bỏ qua có chủ ý: nó là con số ai cũng sửa
+  // được. Máy chủ tính lại từ điểm, và giao diện hiện đúng con số máy chủ trả
+  // về - trước đây hai bên tính hai kiểu nên người chơi thấy 78.700 trong khi
+  // thanh máu chỉ nhận 15.000.
+  const score = Math.max(0, Math.min(BOSS_QUESTION_COUNT, Math.floor(Number(body?.score ?? 0))));
+  if (score <= 0) {
     return NextResponse.json({ error: "No damage dealt" }, { status: 400 });
   }
 
-  // 1. Trừ HP World Boss nếu có trong DB
-  if (bossId !== FALLBACK_WORLD_BOSS.id) {
-    const { data: boss } = await supabase
-      .from("world_bosses")
-      .select("current_hp")
-      .eq("id", bossId)
-      .single();
+  // Boss phải là một hàng thật. Bản dự phòng trong mã nguồn có id là chuỗi
+  // thường trong khi cột id là uuid, nên nó không bao giờ khớp hàng nào - và
+  // nhánh trừ máu cũ bị bỏ qua đúng vì thế.
+  const { data: activeBoss } = await supabase
+    .from("world_bosses")
+    .select("id")
+    .eq("is_active", true)
+    .order("created_at", { ascending: false })
+    .limit(1)
+    .maybeSingle();
 
-    if (boss) {
-      const newHp = Math.max(0, boss.current_hp - damageDealt);
-      await supabase
-        .from("world_bosses")
-        .update({ current_hp: newHp })
-        .eq("id", bossId);
-    }
-
-    // Ghi log sát thương
-    await supabase.from("world_boss_damage_logs").insert({
-      boss_id: bossId,
-      user_id: user.id,
-      damage_dealt: damageDealt,
-      score
-    });
+  const bossId = activeBoss?.id ?? (isUuid(body?.bossId) ? body?.bossId : null);
+  if (!bossId) {
+    // Nói thẳng thay vì trả success: im lặng ở đây chính là lý do lỗi này sống
+    // được lâu - người chơi đánh xong, được chúc mừng, và không có gì thay đổi.
+    return NextResponse.json(
+      { error: "Chưa có world boss nào đang hoạt động - chạy migration 20260825 để tạo." },
+      { status: 503 }
+    );
   }
 
-  // 2. Thưởng XP & Coins cho User
+  // Trừ máu và ghi log trong MỘT lệnh, bằng hàm SECURITY DEFINER. Bảng chỉ
+  // cấp quyền select cho người dùng, nên câu update trực tiếp bị RLS chặn im
+  // lặng - đó là chỗ hỏng thứ hai, độc lập với chỗ trên.
+  const { data: hit, error: rpcError } = await supabase
+    .rpc("apply_world_boss_damage", { p_boss_id: bossId, p_score: score })
+    .maybeSingle<{ current_hp: number; max_hp: number; damage_applied: number }>();
+
+  if (rpcError || !hit) {
+    return NextResponse.json(
+      { error: rpcError?.message ?? "Không ghi được sát thương" },
+      { status: 500 }
+    );
+  }
+
+  const damageDealt = hit.damage_applied;
+
+  // Thưởng XP & Coins cho user
   const xpReward = Math.min(50, Math.max(0, score * 5));
   const coinReward = score * 35;
 
@@ -175,7 +194,7 @@ export async function POST(request: NextRequest) {
     .from("user_profiles")
     .update({
       coins: currentCoins + coinReward,
-      updated_at: new Date().toISOString()
+      updated_at: new Date().toISOString(),
     })
     .eq("id", user.id);
 
@@ -183,15 +202,17 @@ export async function POST(request: NextRequest) {
     user_id: user.id,
     game_type: "world-boss-raid",
     score: damageDealt,
-    total: FALLBACK_WORLD_BOSS.max_hp,
+    total: hit.max_hp,
     xp_earned: xpReward,
   });
 
   return NextResponse.json({
     success: true,
     damageDealt,
+    bossHp: hit.current_hp,
+    bossMaxHp: hit.max_hp,
     xpReward,
     coinReward,
-    newCoins: currentCoins + coinReward
+    newCoins: currentCoins + coinReward,
   });
 }
